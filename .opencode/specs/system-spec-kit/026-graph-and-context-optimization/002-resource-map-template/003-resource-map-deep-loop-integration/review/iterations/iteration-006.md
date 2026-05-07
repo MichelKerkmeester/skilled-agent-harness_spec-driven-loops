@@ -6,12 +6,12 @@
 - Scope slice: both reducers, review/research auto+confirm workflows, feature/playbook docs
 
 ## Files Reviewed
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs`
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
 
 ## Findings - New
 

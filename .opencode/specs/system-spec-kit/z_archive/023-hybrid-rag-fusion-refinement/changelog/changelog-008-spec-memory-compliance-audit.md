@@ -113,16 +113,16 @@ No new automated test files were added. Verification came from strict validation
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skill/system-spec-kit/scripts/memory/backfill-frontmatter.ts` | Ran the bulk frontmatter normalization pass across 2,081 files. |
+| `.opencode/skills/system-spec-kit/scripts/memory/backfill-frontmatter.ts` | Ran the bulk frontmatter normalization pass across 2,081 files. |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/scratch/fix-anchors.py` | Inserted missing anchor markers, repaired unclosed anchors, and removed duplicate legacy anchors during the audit. |
-| `.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts` | Removed orphaned search-index records before the rebuild. |
-| `.opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js` | Rebuilt the memory database from zero after filesystem cleanup. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts` | Added the source-side metadata guard for the search-label format mismatch. |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/validation/save-quality-gate.js` | Added the compiled runtime copy of the same metadata guard. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts` | Added source-side handling for search labels stored in array form. |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/learned-feedback.js` | Added the compiled runtime copy of the same array-safe handling. |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/governance/scope-governance.js` | Included in the compiled-runtime audit surface for surrounding search and governance checks during this compliance packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js` | Included in the compiled-runtime audit surface for surrounding rebuilt-search checks during this compliance packet. |
+| `.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts` | Removed orphaned search-index records before the rebuild. |
+| `.opencode/skills/system-spec-kit/scripts/dist/memory/reindex-embeddings.js` | Rebuilt the memory database from zero after filesystem cleanup. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts` | Added the source-side metadata guard for the search-label format mismatch. |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/save-quality-gate.js` | Added the compiled runtime copy of the same metadata guard. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts` | Added source-side handling for search labels stored in array form. |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/learned-feedback.js` | Added the compiled runtime copy of the same array-safe handling. |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/governance/scope-governance.js` | Included in the compiled-runtime audit surface for surrounding search and governance checks during this compliance packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js` | Included in the compiled-runtime audit surface for surrounding rebuilt-search checks during this compliance packet. |
 
 ### Tests (0 files)
 

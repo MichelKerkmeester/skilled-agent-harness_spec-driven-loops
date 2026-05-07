@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -105,7 +105,7 @@ The audit used direct file reads and targeted regex checks. CocoIndex CLI was at
 |-------|--------|
 | CocoIndex semantic search | FAIL: `ccc search` could not connect to daemon due sandbox permission on daemon log; fallback used direct reads and `rg`. |
 | Watcher regex sweep | PASS: current `code_graph` docs only contain negative/no-watcher claims, not real-time structural watching claims. |
-| Packet strict validation | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/004-code-graph-readiness --strict` exited 0. |
+| Packet strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/004-code-graph-readiness --strict` exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Dispatch cli-codex implementation"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code-review/SKILL.md"
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
-      - ".opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code-review/SKILL.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -67,7 +67,7 @@ Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 r
 ## 3. SCOPE
 
 ### In Scope
-- Root playbook `.opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` (~600-800 LOC).
+- Root playbook `.opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` (~600-800 LOC).
 - 6 numbered category folders: `01--baseline-review-flow/`, `02--security-and-correctness-minimums/`, `03--severity-and-evidence-discipline/`, `04--scope-and-precedence/`, `05--re-review-and-stale-context/`, `06--cross-cli-orchestration/`.
 - ~17 per-feature snippet files following the canonical sk-doc template (frontmatter + 5 numbered H2 sections + 9-column scenario table).
 - Cross-CLI category covering native Claude Code / OpenCode + cli-codex + cli-opencode + cli-gemini.
@@ -84,13 +84,13 @@ Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 r
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook with 6 category summaries + integrated review/release-readiness logic |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/01--baseline-review-flow/*.md` | Create | 3 per-feature files (small PR, large refactor, multi-commit branch) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/*.md` | Create | 3 per-feature files (auth, input validation, secrets) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/*.md` | Create | 3 per-feature files (P0 with file:line, finding-class, cross-consumer) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/04--scope-and-precedence/*.md` | Create | 3 per-feature files (explicit scope, baseline-vs-surface precedence, test code review) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/*.md` | Create | 3 per-feature files (re-review, stale architecture, AI-generated code) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/*.md` | Create | 3 per-feature files (native, cli-codex delegation, cli-opencode/cli-gemini handback) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook with 6 category summaries + integrated review/release-readiness logic |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/*.md` | Create | 3 per-feature files (small PR, large refactor, multi-commit branch) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/*.md` | Create | 3 per-feature files (auth, input validation, secrets) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/*.md` | Create | 3 per-feature files (P0 with file:line, finding-class, cross-consumer) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/04--scope-and-precedence/*.md` | Create | 3 per-feature files (explicit scope, baseline-vs-surface precedence, test code review) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/*.md` | Create | 3 per-feature files (re-review, stale architecture, AI-generated code) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/*.md` | Create | 3 per-feature files (native, cli-codex delegation, cli-opencode/cli-gemini handback) |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -18,9 +18,9 @@ I compared external loop, state-tracker, NDJSON, and multi-agent tests with the 
 - `[SOURCE: external/automated-loop/tests/test_loop_driver.py:2213-2468]` Completion-gate rejection and post-review sequencing are specified in tests, not just docs.
 - `[SOURCE: external/automated-loop/tests/test_state_tracker.py:158-168]` State tests cover session continuity rather than only counters and file presence.
 - `[SOURCE: external/automated-loop/tests/test_ndjson_parser.py:135-177]` Stream parsing tests verify tool usage, modified files, and session extraction from runtime output.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:24-57]` Current contract-parity tests focus on documentation/runtime path parity and required artifact mentions.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:43-74]` Reducer tests validate fixture shape and lineage metadata.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:225-259]` Local tests assert reducer refresh outputs, but not richer runtime stop, session, or fallback semantics.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:24-57]` Current contract-parity tests focus on documentation/runtime path parity and required artifact mentions.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:43-74]` Reducer tests validate fixture shape and lineage metadata.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:225-259]` Local tests assert reducer refresh outputs, but not richer runtime stop, session, or fallback semantics.
 
 ## Analysis
 `system-spec-kit` already uses tests to protect contract parity, which is good. The external repo shows the next step: treat tests as executable documentation for loop runtime behavior. That matters because several recommendations from earlier iterations only become safe once they are pinned down in tests. Without that, the docs would say more than the runtime can prove. The highest-value test additions are the ones that lock in explicit stop reasons, session continuity behavior, and any new fallback or completion-gate semantics.
@@ -31,7 +31,7 @@ confidence: high
 finding: The strongest transfer from the external repo is not a single feature but a testing posture. `system-spec-kit` should expand deep-research tests from "artifacts are in sync" to "runtime behavior is specified and provable."
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`, `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`, `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** finalize any new stop-reason, session-health, or completion-gate semantics before encoding them

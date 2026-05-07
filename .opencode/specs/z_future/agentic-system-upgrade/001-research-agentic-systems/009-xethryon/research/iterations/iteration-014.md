@@ -15,7 +15,7 @@ I reviewed Xethryon's AutoDream and lock implementation, then compared it to Spe
 - Xethryon gates AutoDream by elapsed hours and recent memory-file changes, then either executes consolidation immediately or sets `_dreamPending = true` when no `llmCall` is available. `_lastSessionScanAt`, `_config`, and `_dreamPending` all live in module state. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/autoDream.ts:25-42] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/autoDream.ts:85-186]
 - The lock file stores holder PID and last-consolidated time, but it does not persist the semantic "pending dream" state beyond the process that set it. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/consolidationLock.ts:35-115]
 - Xethryon's post-turn hook fires extraction and AutoDream in the background after the main turn completes, which means the operator does not get an explicit durable pending artifact when consolidation is deferred. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/memoryHook.ts:155-171]
-- Spec Kit's reconsolidation bridge already operates on indexed memories, checkpoint guards, structured warnings, and transaction-wrapped writes. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:161-187] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:188-312]
+- Spec Kit's reconsolidation bridge already operates on indexed memories, checkpoint guards, structured warnings, and transaction-wrapped writes. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:161-187] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:188-312]
 
 ## Analysis
 Phase 1 correctly identified deferred reconsolidation cadence as one of the best import candidates from Xethryon. Phase 2 shows the missing architectural constraint: deferred work is only trustworthy if the system can survive process restarts and still explain what is pending. Xethryon's module-local pending flag is acceptable for a fast, UX-oriented fork, but it would be too opaque for Spec Kit's operator-facing memory system. In Spec Kit, deferred reconsolidation should look like a durable queue or ledger-backed state machine, not a hidden in-memory toggle.
@@ -37,7 +37,7 @@ finding: adopt the cadence, not the state model. Deferred reconsolidation is wor
 - **Migration path:** keep current save-time reconsolidation as the baseline, then add a shadow-only scheduler that records eligibility decisions before any automatic reconsolidation is allowed to execute.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **Target file or module:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Change type:** modified existing
 - **Blast radius:** large
 - **Prerequisites:** durable scheduler state model, maintenance visibility, and checkpoint-safe replay semantics

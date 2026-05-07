@@ -15,18 +15,18 @@ Focus Area: **INTEGRATION PROBE — concrete diffs against current source files.
 Three sub-tasks:
 
 1. **Read current source files** (full content, not greps):
-   - `.opencode/skill/system-spec-kit/scripts/spec/create.sh` — focus on the level-switch logic (lines ~538-661 from prior research)
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` — focus on the level→required-files matrix
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` — focus on section presence checks
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` — focus on header expectations
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh` — focus on count thresholds per level
-   - `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh::copy_template` — focus on the cp logic
+   - `.opencode/skills/system-spec-kit/scripts/spec/create.sh` — focus on the level-switch logic (lines ~538-661 from prior research)
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` — focus on the level→required-files matrix
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` — focus on section presence checks
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` — focus on header expectations
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` — focus on count thresholds per level
+   - `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh::copy_template` — focus on the cp logic
 
 2. **Produce concrete unified-diff-format proposed changes** for each file:
    - Use real line numbers from the current source
    - `-` lines = current code to remove, `+` lines = new code to add
    - Each diff hunk should be applyable with `patch -p0` if the user ever wants to
-   - Document any imports/sourcing additions (e.g., `source .opencode/skill/system-spec-kit/scripts/lib/manifest-loader.sh`)
+   - Document any imports/sourcing additions (e.g., `source .opencode/skills/system-spec-kit/scripts/lib/manifest-loader.sh`)
 
 3. **Resolve open spec questions from iter 6**:
    - JSON Schema spelling: pick one — `templateContract` vs `template_contract`, `directories` vs `dirs`, `supportsKinds` vs `supported_kinds`, `conflictsWith` vs `conflicts_with`, preset namespaces — make decisions consistent with the existing spec-kit JSON conventions (check `description.json` and `graph-metadata.json` shapes for camelCase vs snake_case).

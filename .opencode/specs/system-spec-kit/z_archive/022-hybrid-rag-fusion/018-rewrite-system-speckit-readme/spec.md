@@ -64,7 +64,7 @@ Produce a complete rewrite that documents the Spec Kit skill holistically — co
 
 | Category | Items |
 |----------|-------|
-| **Full rewrite** | `.opencode/skill/system-spec-kit/README.md` |
+| **Full rewrite** | `.opencode/skills/system-spec-kit/README.md` |
 | **Section structure** | Overview, Quick Start, Components, Documentation Levels, Memory System, MCP Tools, Commands, Templates, Scripts, Troubleshooting, FAQ, Related Resources |
 | **Content grounding** | Feature catalog, the skill instructions document, command files, and the template directory |
 | **Quality gates** | DQI >= 75, no banned HVR words, template alignment |
@@ -80,8 +80,8 @@ Produce a complete rewrite that documents the Spec Kit skill holistically — co
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/README.md` | Rewrite | Complete rewrite covering the full skill surface |
-| `.opencode/skill/system-spec-kit/README.md.bak` | Create | Backup before rewrite |
+| `.opencode/skills/system-spec-kit/README.md` | Rewrite | Complete rewrite covering the full skill surface |
+| `.opencode/skills/system-spec-kit/README.md.bak` | Create | Backup before rewrite |
 <!-- /ANCHOR:scope -->
 
 ---

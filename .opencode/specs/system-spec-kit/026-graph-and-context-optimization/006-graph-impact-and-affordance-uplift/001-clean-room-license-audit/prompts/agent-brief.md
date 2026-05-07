@@ -55,7 +55,7 @@ You own the P0 governance gate for phase `010-graph-impact-and-affordance-uplift
 - [ ] Allow-list classification table covers 002, 003, 004, 005 patterns
 - [ ] Fail-closed rule articulated
 - [ ] Sign-off recorded in `implementation-summary.md` (your own; do NOT touch phase-root)
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/001-clean-room-license-audit --strict` passes (warnings OK; errors must be addressed)
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/001-clean-room-license-audit --strict` passes (warnings OK; errors must be addressed)
 - [ ] All checklist items in `012/001/checklist.md` ticked with `[x]` and evidence
 
 ## Output contract

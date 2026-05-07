@@ -1,6 +1,6 @@
 # README Audit A24 -- scripts/ and mcp_server/scripts/
 
-Base path: `.opencode/skill/system-spec-kit`
+Base path: `.opencode/skills/system-spec-kit`
 
 ---
 

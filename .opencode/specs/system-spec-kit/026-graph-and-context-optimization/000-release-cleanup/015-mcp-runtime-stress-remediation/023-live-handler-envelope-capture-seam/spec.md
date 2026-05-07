@@ -87,7 +87,7 @@ Add a single behavioral vitest at `mcp_server/tests/handler-memory-search-live-e
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Create | The behavioral test |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Create | The behavioral test |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,7 +105,7 @@ Add a single behavioral vitest at `mcp_server/tests/handler-memory-search-live-e
 | REQ-002 | Test reaches envelope construction. | Response payload contains `searchDecisionEnvelope` (camel) AND `search_decision_envelope` (snake), or the test asserts envelope was built via spy/return-value capture. |
 | REQ-003 | Test writes a real decision-audit JSONL row. | Test sets `SPECKIT_SEARCH_DECISION_AUDIT_PATH` to a tmp file, runs the handler, reads the file, asserts ≥1 row matches the envelope JSON contract. |
 | REQ-004 | Layer disclosure documented. | Test file's leading comment states whether `executePipeline` is real, seeded, or mocked, and which fields are deterministic vs derived. |
-| REQ-005 | Strict validator on this packet exits 0. | `bash .opencode/skill/.../validate.sh <packet> --strict` passes. |
+| REQ-005 | Strict validator on this packet exits 0. | `bash .opencode/skills/.../validate.sh <packet> --strict` passes. |
 <!-- /ANCHOR:requirements -->
 
 ---

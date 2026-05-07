@@ -92,10 +92,10 @@ Make the fork's per-seed telemetry survive code_graph_context expansion as addit
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Extend `ContextHandlerArgs.seeds` shape; normalize wire names; emit telemetry on anchors |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts` | Modify | Extend `CocoIndexSeed` + `ArtifactRef` types; preserve fields in `resolveCocoIndexSeed` |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Extend `codeGraphSeedSchema` with optional snake + camel telemetry fields |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | Create | New vitest covering A-F success criteria |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Extend `ContextHandlerArgs.seeds` shape; normalize wire names; emit telemetry on anchors |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts` | Modify | Extend `CocoIndexSeed` + `ArtifactRef` types; preserve fields in `resolveCocoIndexSeed` |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Extend `codeGraphSeedSchema` with optional snake + camel telemetry fields |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | Create | New vitest covering A-F success criteria |
 | `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `implementation-summary.md` | Create | Packet docs |
 | `description.json` / `graph-metadata.json` | Create | Spec metadata |
 <!-- /ANCHOR:scope -->

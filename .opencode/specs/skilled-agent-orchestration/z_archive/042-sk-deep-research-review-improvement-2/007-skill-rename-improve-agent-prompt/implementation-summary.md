@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -89,8 +89,8 @@ The closeout work followed the live repo first and the old packet second. I veri
 
 | Check | Result |
 |-------|--------|
-| Renamed skill folders present | PASS - `.opencode/skill/sk-improve-agent/` and `.opencode/skill/sk-improve-prompt/` exist |
-| Runtime-agent path references updated | PASS - packet now references `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` |
+| Renamed skill folders present | PASS - `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/` exist |
+| Runtime-agent path references updated | PASS - packet now references `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` |
 | Renamed changelog folders documented | PASS - packet cites `.opencode/changelog/14--sk-improve-prompt/` and `.opencode/changelog/15--sk-improve-agent/` |
 | README template links repaired | PASS - system-spec-kit template and validation references updated |
 | Strict phase validation | PASS after packet rewrite |

@@ -68,11 +68,11 @@ Turn the research synthesis for 007 lifecycle entrypoint simplification into one
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/README.txt` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/plan.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/complete.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/README.txt` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/plan.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/complete.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

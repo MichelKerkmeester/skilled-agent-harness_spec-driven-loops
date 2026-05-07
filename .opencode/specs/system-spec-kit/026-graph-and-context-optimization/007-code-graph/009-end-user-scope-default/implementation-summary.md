@@ -28,7 +28,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Scope decision lives in code_graph/lib/indexer-types.ts plus lib/utils/index-scope.ts."
-      - "Default exclusion should be path-prefix based for .opencode/skill/**."
+      - "Default exclusion should be path-prefix based for .opencode/skills/**."
       - "Opt-in granularity should be all skill internals on/off via SPECKIT_CODE_GRAPH_INDEX_SKILLS=true or includeSkills:true."
       - "Existing graph migration should force a loud full scan because incremental cleanup will not remove existing out-of-scope files."
       - "Advisor and skill graph use separate metadata storage and should not block this change."
@@ -42,7 +42,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented the planned three-phase refactor. `code_graph_scan` now defaults to end-user repository code, excludes `.opencode/skill/**`, and keeps `mcp-coco-index/mcp_server` excluded even when a maintainer opts into skill indexing.
+Implemented the planned three-phase refactor. `code_graph_scan` now defaults to end-user repository code, excludes `.opencode/skills/**`, and keeps `mcp-coco-index/mcp_server` excluded even when a maintainer opts into skill indexing.
 
 ### Scope Policy
 
@@ -81,7 +81,7 @@ The code graph README documents default exclusions, `includeSkills:true`, the en
 
 ### Remediation
 
-Remediated all six deep-review findings from `review/review-report.md`. Per-call `includeSkills` now overrides the env default when provided, so `includeSkills:false` can request an end-user-only scan from an env-enabled process. `scan.ts` now passes the canonical root into `getDefaultConfig()`, which closes the symlinked-root bypass before the default `.opencode/skill/**` guard runs. Scan validation errors and returned warnings now avoid absolute workspace paths. `resource-map.md`, README/env docs, ADR-002, the plan decision table, and focused tests were updated to lock the new contract.
+Remediated all six deep-review findings from `review/review-report.md`. Per-call `includeSkills` now overrides the env default when provided, so `includeSkills:false` can request an end-user-only scan from an env-enabled process. `scan.ts` now passes the canonical root into `getDefaultConfig()`, which closes the symlinked-root bypass before the default `.opencode/skills/**` guard runs. Scan validation errors and returned warnings now avoid absolute workspace paths. `resource-map.md`, README/env docs, ADR-002, the plan decision table, and focused tests were updated to lock the new contract.
 
 ### Remediation v2
 
@@ -138,7 +138,7 @@ Phase 1 added the scope helper, config defaults, walker guard, scan/schema wirin
 | Check | Result |
 |-------|--------|
 | Remediation focused Vitest | PASS: `code-graph-indexer.vitest.ts`, `code-graph-scan.vitest.ts`, `code-graph-scope-readiness.vitest.ts`, `code-graph-siblings-readiness.vitest.ts`, and `tool-input-schema.vitest.ts`; 5 files, 162 tests passed. |
-| Phase 1 grep gates | PASS: `includeSkills` appears in `tool-schemas.ts` and `scan.ts`; `.opencode/skill/**` default exclusion appears in `indexer-types.ts`. |
+| Phase 1 grep gates | PASS: `includeSkills` appears in `tool-schemas.ts` and `scan.ts`; `.opencode/skills/**` default exclusion appears in `indexer-types.ts`. |
 | Phase 2 code graph suite | PASS: `mcp_server/code_graph/tests/`; 19 files, 224 tests passed. |
 | Phase 2 blocked shape | PASS: `context.ts` and `query.ts` still emit `requiredAction:"code_graph_scan"`. |
 | Resource-map drift | PASS: Gate E diff returned no output. |
@@ -167,5 +167,5 @@ None identified.
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

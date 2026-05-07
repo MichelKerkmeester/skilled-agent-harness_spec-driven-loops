@@ -27,7 +27,7 @@ The resource-map track is the second child packet under the 026-graph-and-contex
 
 ## How to read these
 
-Each phase changelog follows the canonical nested-changelog template at `.opencode/skill/system-spec-kit/templates/changelog/phase.md`. Sections are:
+Each phase changelog follows the canonical nested-changelog template at `.opencode/skills/system-spec-kit/templates/changelog/phase.md`. Sections are:
 
 - **Summary**: what changed and why it mattered, in plain language
 - **Added**: new capabilities or surfaces
@@ -37,7 +37,7 @@ Each phase changelog follows the canonical nested-changelog template at `.openco
 - **Files Changed**: source paths with one-line descriptions
 - **Follow-Ups**: known deferred items
 
-Voice rules per `.opencode/skill/sk-doc/references/global/hvr_rules.md` apply throughout.
+Voice rules per `.opencode/skills/sk-doc/references/global/hvr_rules.md` apply throughout.
 
 ## Where to find the full story
 

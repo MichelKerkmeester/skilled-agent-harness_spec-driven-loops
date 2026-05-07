@@ -46,8 +46,8 @@ This phase records a rename that had already shipped. The plan is therefore a do
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] The repo already contains `sk-improve-agent` and `sk-improve-prompt`. [EVIDENCE: `.opencode/skill/sk-improve-agent/` and `.opencode/skill/sk-improve-prompt/` present]
-- [x] The live runtime-agent files already use `improve-agent` naming. [EVIDENCE: `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml`]
+- [x] The repo already contains `sk-improve-agent` and `sk-improve-prompt`. [EVIDENCE: `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/` present]
+- [x] The live runtime-agent files already use `improve-agent` naming. [EVIDENCE: `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml`]
 - [x] The phase packet contains enough delivered-state detail to rebuild into the current Level 3 template. [EVIDENCE: existing spec/plan/tasks/checklist/implementation-summary in the phase folder]
 
 ### Definition of Done

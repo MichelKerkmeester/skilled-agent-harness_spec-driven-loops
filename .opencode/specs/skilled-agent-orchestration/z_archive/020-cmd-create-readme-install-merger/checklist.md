@@ -55,7 +55,7 @@ SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 
 - [x] CHK-020 [P0] Legacy alias parity passes for both operations in `:auto` and `:confirm` [Evidence: static parity+safety suite PASS (20 checks, 0 failed), alias-token + alias-source checks passed for markdown wrappers and `.agents` TOML wrappers]
 - [x] CHK-021 [P0] Preferred unified command path passes end-to-end dry-run checks [Evidence: rollback dry-run simulation PASS (non-destructive), smoke readiness reports `/create:folder_readme` and `/create:install_guide` available in both `:auto` and `:confirm`]
-- [x] CHK-022 [P1] DQI and structural validation gates documented and executed [Evidence: `python3 .opencode/skill/sk-doc/scripts/validate_document.py` VALID for preferred unified markdown wrapper (`.opencode/command/create/folder_readme.md`) plus the merged install-guide branch review; TOML parse check passed via `python3.11`/`tomllib` for preferred unified `.agents` wrapper (`.agents/commands/create/folder_readme.toml`) plus compatibility wrappers (`.agents/commands/create/doc.toml`, `.agents/commands/create/install_guide.toml`)]
+- [x] CHK-022 [P1] DQI and structural validation gates documented and executed [Evidence: `python3 .opencode/skills/sk-doc/scripts/validate_document.py` VALID for preferred unified markdown wrapper (`.opencode/commands/create/folder_readme.md`) plus the merged install-guide branch review; TOML parse check passed via `python3.11`/`tomllib` for preferred unified `.agents` wrapper (`.agents/commands/create/folder_readme.toml`) plus compatibility wrappers (`.agents/commands/create/doc.toml`, `.agents/commands/create/install_guide.toml`)]
 - [x] CHK-023 [P1] Rollback procedure tested and documented [Evidence: rollback dry-run simulation PASS with wrappers + canonical command present, simulated rollback commands listed, and `ROLLBACK_DRY_RUN_STATUS PASS`]
 <!-- /ANCHOR:testing -->
 
@@ -64,9 +64,9 @@ SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No new secret collection fields introduced in setup contract [Evidence: static suite `no-secret-field` checks PASS for `api key`, `password`, `secret key`, `credentials` in `.opencode/command/create/folder_readme.md`]
+- [x] CHK-030 [P0] No new secret collection fields introduced in setup contract [Evidence: static suite `no-secret-field` checks PASS for `api key`, `password`, `secret key`, `credentials` in `.opencode/commands/create/folder_readme.md`]
 - [x] CHK-031 [P0] Overwrite and merge conflict prompts remain explicit opt-in [Evidence: static suite `explicit-overwrite-options` checks PASS for both confirm YAML assets]
-- [x] CHK-032 [P1] Deprecation window and warning messages documented before alias removal [Evidence: `plan.md` deprecation policy finalized (minimum 2 release cycles OR 30 days, whichever is longer); alias behavior is documented with deprecation guidance in `.opencode/command/create/folder_readme.md`, `.agents/commands/create/folder_readme.toml`, and the retained runtime wrapper surfaces]
+- [x] CHK-032 [P1] Deprecation window and warning messages documented before alias removal [Evidence: `plan.md` deprecation policy finalized (minimum 2 release cycles OR 30 days, whichever is longer); alias behavior is documented with deprecation guidance in `.opencode/commands/create/folder_readme.md`, `.agents/commands/create/folder_readme.toml`, and the retained runtime wrapper surfaces]
 <!-- /ANCHOR:security -->
 
 ---

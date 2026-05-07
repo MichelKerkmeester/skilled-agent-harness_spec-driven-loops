@@ -115,7 +115,7 @@ Audit report rows become scoped remediation candidates. Each candidate is filter
 |-----------|-------|-------|
 | Parser sanity | Audit candidate counts, exclusions, unresolved HIGH/MED signatures | Node one-off parser |
 | YAML sanity | Frontmatter after continuity and metadata edits | Node frontmatter parse checks |
-| Spec validation | Packet docs and protected packets | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Spec validation | Packet docs and protected packets | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 | Regression guard | No edits under protected packet prefixes except required `013` docs | `git diff --name-only` and path filter |
 <!-- /ANCHOR:testing -->
 

@@ -67,10 +67,10 @@ Turn the research synthesis for 006 agent role consolidation into one follow-on 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agent/orchestrate.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/agent/context.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/agent/handover.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/agent/speckit.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/agents/orchestrate.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/agents/context.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/agents/handover.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/agents/speckit.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

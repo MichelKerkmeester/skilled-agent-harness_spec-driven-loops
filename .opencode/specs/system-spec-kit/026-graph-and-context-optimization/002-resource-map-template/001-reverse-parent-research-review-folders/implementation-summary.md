@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Phase 002 can emit resource maps beside resolved local packet artifacts"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs"
+      - ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/resource-map.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -72,16 +72,16 @@ The deep-research and deep-review READMEs, SKILL docs, references, dashboards, r
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Modified | Restores the root-local vs owner-local resolver contract and rerun packet reuse. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` | Created | Migrates misplaced child packets repo-wide and rewrites live canonical references. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | Created | Manually maps residual root packet directories to their correct owning phases when legacy metadata shapes defeat heuristic discovery. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modified | Binds deep-research writes to the resolver-provided `artifactDir`. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modified | Binds deep-review writes to the resolver-provided `artifactDir`. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved research packet root. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved review packet root. |
-| `.opencode/skill/sk-deep-research/**` | Modified | Rebased docs, references, and dashboards onto the restored child-local contract. |
-| `.opencode/skill/sk-deep-review/**` | Modified | Rebased docs, references, dashboards, and review contract assets onto the restored child-local contract. |
-| `.opencode/skill/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/Created | Added resolver coverage and updated contract parity expectations. |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modified | Restores the root-local vs owner-local resolver contract and rerun packet reuse. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` | Created | Migrates misplaced child packets repo-wide and rewrites live canonical references. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | Created | Manually maps residual root packet directories to their correct owning phases when legacy metadata shapes defeat heuristic discovery. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified | Binds deep-research writes to the resolver-provided `artifactDir`. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified | Binds deep-review writes to the resolver-provided `artifactDir`. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved research packet root. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Keeps prompts and packet artifacts inside the resolved review packet root. |
+| `.opencode/skills/sk-deep-research/**` | Modified | Rebased docs, references, and dashboards onto the restored child-local contract. |
+| `.opencode/skills/sk-deep-review/**` | Modified | Rebased docs, references, dashboards, and review contract assets onto the restored child-local contract. |
+| `.opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/Created | Added resolver coverage and updated contract parity expectations. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/**` | Modified/Moved | Relocated 135 child-owned packets back to their owner-local folders across a heuristic pass and a manual owner-map cleanup, then rebased phase 002 docs. |
 <!-- /ANCHOR:what-built -->
 
@@ -117,11 +117,11 @@ Because the local `vitest` config could not load `vitest/config` in this workspa
 
 | Check | Result |
 |-------|--------|
-| `node .opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs --json` | PASS: discovered 86 misplaced child packets, moved 86, conflicts 0, rewritten live files 131, remaining misplaced packets 0 |
-| `node .opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs --dry-run --json` | PASS: post-migration scan found 0 misplaced child packets and 0 additional rewrites |
-| `node .opencode/skill/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | PASS: moved 49 residual root packets, conflicts 0, rewritten live files 24, remaining root research 0, remaining root review 0 |
+| `node .opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs --json` | PASS: discovered 86 misplaced child packets, moved 86, conflicts 0, rewritten live files 131, remaining misplaced packets 0 |
+| `node .opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs --dry-run --json` | PASS: post-migration scan found 0 misplaced child packets and 0 additional rewrites |
+| `node .opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | PASS: moved 49 residual root packets, conflicts 0, rewritten live files 24, remaining root research 0, remaining root review 0 |
 | Direct Node assertion pass against resolver, migration reports, reducers, YAMLs, docs, and phase 002 packet | PASS: verified root, child, nested, and rerun reuse cases plus owner-local contract surfaces |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh [packet] --strict` | PASS: validator returned `Errors: 0  Warnings: 0` after metadata refresh and packet-shape fixes |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh [packet] --strict` | PASS: validator returned `Errors: 0  Warnings: 0` after metadata refresh and packet-shape fixes |
 <!-- /ANCHOR:verification -->
 
 ---

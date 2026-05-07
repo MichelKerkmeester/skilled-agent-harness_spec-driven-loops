@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - "migration-plan.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -81,15 +81,15 @@ Give MCP memory, skill-advisor, code-graph, session, and matrix stress coverage 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/` | Move | Full search-quality harness and W3-W13 cells |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/` | Move | Memory search and trigger fast-path benchmark suites |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/` | Move | Skill graph rebuild concurrency stress suite |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/` | Move | Code graph degraded sweep and walker cap suites |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/` | Move | Session-manager stress and resume benchmarks |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/matrix/` | Move | Synthetic matrix/routing comparison suite |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` | Modify | Keep stress folder excluded from default tests |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts` | Create | Dedicated stress-suite Vitest config |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modify | Route stress scripts through the stress config |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/` | Move | Full search-quality harness and W3-W13 cells |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/` | Move | Memory search and trigger fast-path benchmark suites |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/` | Move | Skill graph rebuild concurrency stress suite |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/` | Move | Code graph degraded sweep and walker cap suites |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/` | Move | Session-manager stress and resume benchmarks |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/matrix/` | Move | Synthetic matrix/routing comparison suite |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Modify | Keep stress folder excluded from default tests |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts` | Create | Dedicated stress-suite Vitest config |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Route stress scripts through the stress config |
 | `migration-plan.md` | Create | Content-based classification ledger |
 <!-- /ANCHOR:scope -->
 

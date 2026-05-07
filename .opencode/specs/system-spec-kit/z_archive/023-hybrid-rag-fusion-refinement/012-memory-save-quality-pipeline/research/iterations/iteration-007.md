@@ -30,7 +30,7 @@ Promise.all([
 
 The parallel results are destructured into 5 named variables: `sessionData`, `conversations`, `decisions`, `diagrams`, `workflowData`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:979-1027`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:979-1027`]
 
 ### 2. Trigger Phrase Extraction Pipeline (workflow.ts:1174-1263)
 
@@ -74,7 +74,7 @@ triggerSourceParts.push(folderNameForTriggers);
 
 **JSON-mode problem:** When `sessionData.SUMMARY` falls to the generic `'Session focused on implementing and testing features.'` fallback (see Finding 5 below), the trigger source text is predominantly boilerplate. The folder name tokens and file descriptions become the only meaningful input.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:118-157,1174-1263`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:118-157,1174-1263`]
 
 ### 3. Key Topics Extraction Source (workflow.ts:1163-1164)
 
@@ -96,8 +96,8 @@ import { extractKeyTopics } from './topic-extractor';
 
 The inputs to the workflow's version are `sessionData.SUMMARY`, `decisions.DECISIONS`, and `specFolderName`. When SUMMARY is the generic fallback, topic extraction receives predominantly boilerplate.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:23-24,1163-1164`]
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:535-561`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:23-24,1163-1164`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:535-561`]
 
 ### 4. Quality Score Calculation Chain (workflow.ts:1449-1484)
 
@@ -137,7 +137,7 @@ files[ctxFilename] = injectQualityMetadata(files[ctxFilename], qualityV2.score01
 
 **JSON-mode problem:** `conversations.MESSAGES.length` will be 0 or very low (only synthetic messages from fallback). `patchedToolCount` will be 0 unless captured-session enrichment infers it from file count (line 1041). These two signals heavily influence the quality score.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1449-1484`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1449-1484`]
 
 ### 5. Template Population Merge Order (workflow.ts:1277-1370)
 
@@ -169,7 +169,7 @@ The `populateTemplate('context', {...})` call at line 1277 merges data from mult
 
 **All data assembled in one object:** The template renderer receives a flat object with ~80+ keys. Missing data produces empty/false template conditionals.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1277-1370`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1277-1370`]
 
 ### 6. KEY_FILES Enumeration -- No Cap on Fallback (workflow-path-utils.ts:99-109)
 
@@ -193,8 +193,8 @@ The fallback `listSpecFolderKeyFiles()` (lines 61-97) recursively walks the spec
 
 **JSON-mode trigger:** When the AI provides structured JSON without explicit file references, `effectiveFiles` may be empty or contain only synthetic entries. This triggers the fallback path. For a large spec folder like `022-hybrid-rag-fusion/` with 20+ sub-specs, the walk can produce 300+ entries.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts:61-109`]
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/config.ts:232`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts:61-109`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/config.ts:232`]
 
 ## Ruled Out
 - N/A (no approaches failed this iteration)
@@ -203,10 +203,10 @@ The fallback `listSpecFolderKeyFiles()` (lines 61-97) recursively walks the spec
 - None identified.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 979-1027, 1116-1484)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts` (lines 61-109)
-- `.opencode/skill/system-spec-kit/scripts/core/config.ts` (line 232)
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` (lines 535-561)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 979-1027, 1116-1484)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts` (lines 61-109)
+- `.opencode/skills/system-spec-kit/scripts/core/config.ts` (line 232)
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` (lines 535-561)
 
 ## Assessment
 - New information ratio: 0.83

@@ -11,8 +11,8 @@ Compared BAD's single-skill coordinator packaging to the local orchestrator rost
 
 ## Evidence
 - BAD packages its automation as one skill module with one main coordinator surface. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/.claude-plugin/marketplace.json:22-31] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:9-21]
-- Local orchestration docs expose a 10-agent priority roster and a file map that explains which named agent owns which slice. [SOURCE: .opencode/agent/orchestrate.md:95-127] [SOURCE: .opencode/agent/orchestrate.md:169-183]
-- Local command docs also map primary commands to specific internal agents. [SOURCE: .opencode/command/spec_kit/README.txt:149-159]
+- Local orchestration docs expose a 10-agent priority roster and a file map that explains which named agent owns which slice. [SOURCE: .opencode/agents/orchestrate.md:95-127] [SOURCE: .opencode/agents/orchestrate.md:169-183]
+- Local command docs also map primary commands to specific internal agents. [SOURCE: .opencode/commands/spec_kit/README.txt:149-159]
 
 ## Analysis
 This is a packaging problem more than a capability problem. The local roster likely exists for good internal reasons, but operators do not benefit from carrying all of that topology in their head. BAD shows the value of a domain entrypoint that hides internal decomposition. `system-spec-kit` should keep specialists where they help execution, but merge the public surface toward domain-shaped responsibilities rather than named internal roles.
@@ -43,7 +43,7 @@ confidence: high
 finding: The local agent roster is probably too granular as an operator-facing surface. `system-spec-kit` should merge public agent UX toward domain facades while keeping specialist roles internal where they add execution value.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`
 - **Change type:** UX and packaging merge
 - **Blast radius:** medium
 - **Prerequisites:** define a smaller public role vocabulary and decide which current agent names remain purely internal

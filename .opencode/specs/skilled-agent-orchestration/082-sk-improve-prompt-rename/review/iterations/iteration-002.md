@@ -51,11 +51,11 @@ python3 .../skill_advisor.py "enhance my prompt using CRISPE and CRAFT" --thresh
 ### Identity preservation: agent files unchanged
 | Agent | File | Status |
 |-------|------|--------|
-| `@improve-prompt` | `.opencode/agent/improve-prompt.md` | File name unchanged ✅ |
+| `@improve-prompt` | `.opencode/agents/improve-prompt.md` | File name unchanged ✅ |
 | `@improve-prompt` | `.claude/agents/improve-prompt.md` | File name unchanged ✅ |
 | `@improve-prompt` | `.codex/agents/improve-prompt.toml` | File name unchanged ✅ |
 | `@improve-prompt` | `.gemini/agents/improve-prompt.md` | File name unchanged ✅ |
-| `/improve:prompt` | `.opencode/command/improve/prompt.md` | File name unchanged ✅ |
+| `/improve:prompt` | `.opencode/commands/improve/prompt.md` | File name unchanged ✅ |
 
 ### Identity preservation: @improve-prompt and /improve:prompt still in body text
 All 5 agent/command files reference `@improve-prompt` and `/improve:prompt` by identity. Example hits:
@@ -63,24 +63,24 @@ All 5 agent/command files reference `@improve-prompt` and `/improve:prompt` by i
 - `/improve:prompt`: agent bodies at INT-CMD-IMPROVE-PROMPT entries and command surface references
 
 ### Loaded skill name: all agent bodies reference sk-prompt (not old name)
-Each agent's INT-SKILL-IMPROVE-PROMPT entry now reads `.opencode/skill/sk-prompt/SKILL.md`:
+Each agent's INT-SKILL-IMPROVE-PROMPT entry now reads `.opencode/skills/sk-prompt/SKILL.md`:
 ```
-.claude/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skill/sk-prompt/SKILL.md` | ...
-.codex/agents/improve-prompt.toml:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skill/sk-prompt/SKILL.md` | ...
-.gemini/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skill/sk-prompt/SKILL.md` | ...
-.opencode/agent/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skill/sk-prompt/SKILL.md` | ...
-.opencode/command/improve/prompt.md: 10 refs to `sk-prompt`, 0 refs to `sk-improve-prompt`
+.claude/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
+.codex/agents/improve-prompt.toml:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
+.gemini/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
+.opencode/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
+.opencode/commands/improve/prompt.md: 10 refs to `sk-prompt`, 0 refs to `sk-improve-prompt`
 ```
 
 ### Zero old skill name in any agent/command body
 ```bash
-rg -n 'sk-improve-prompt' .opencode/agent/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md .opencode/command/improve/prompt.md
+rg -n 'sk-improve-prompt' .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md .opencode/commands/improve/prompt.md
 ```
 **Result: 0 hits** ✅
 
 ### Skill folder rename confirmed
-- `.opencode/skill/sk-prompt/` exists (8 entries) ✅
-- `.opencode/skill/sk-improve-prompt` does NOT exist ✅
+- `.opencode/skills/sk-prompt/` exists (8 entries) ✅
+- `.opencode/skills/sk-improve-prompt` does NOT exist ✅
 
 ### SKILL.md frontmatter identity
 ```
@@ -117,7 +117,7 @@ Pre-existing P1 from Iteration 1 (`resource-map.md` missing `trigger_phrases`, `
 
 - **Did I check that agent identities (@improve-prompt, /improve:prompt) were NOT renamed?** Yes — file names, body references, command surface entries all preserve the original identities. Only the loaded skill name changed from `sk-improve-prompt` to `sk-prompt`.
 
-- **Are the .codex TOML agent references correctly rotated?** Yes — `improve-prompt.toml` has 0 `sk-improve-prompt` hits, 9 `sk-prompt` hits, and the INT-SKILL table entry reads `.opencode/skill/sk-prompt/SKILL.md`. TOML structure preserved.
+- **Are the .codex TOML agent references correctly rotated?** Yes — `improve-prompt.toml` has 0 `sk-improve-prompt` hits, 9 `sk-prompt` hits, and the INT-SKILL table entry reads `.opencode/skills/sk-prompt/SKILL.md`. TOML structure preserved.
 
 - **Is the Phase 006 claim of "0 errors, 0 warnings" still inaccurate?** Yes — parent validation still FAILS with FRONTMATTER_MEMORY_BLOCK. This was reported as P1 in Iteration 1 and remains unresolved. However, it is outside this iteration's dimension (skill graph + identity).
 

@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "discovery-notes.md"
-      - ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "037-002-feature-catalog-trio"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -77,14 +77,14 @@ Created `discovery-notes.md` with the exact catalog locations found, template pa
 | `checklist.md` | Created | Track verification evidence |
 | `description.json` | Created | Memory/search metadata |
 | `graph-metadata.json` | Created | Packet graph metadata and dependencies |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Update tool count and root catalog summaries |
-| `.opencode/skill/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` | Created | Add retention sweep catalog entry |
-| `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Created | Add CLI matrix runner catalog entry |
-| `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Created | Add Codex freshness smoke-check catalog entry |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modified | Add no-watcher read-path/manual freshness note |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` | Modified | Add `advisor_rebuild` to MCP surface |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` | Modified | Mark `advisor_status` diagnostic-only |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md` | Created | Add `advisor_rebuild` catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Update tool count and root catalog summaries |
+| `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` | Created | Add retention sweep catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Created | Add CLI matrix runner catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Created | Add Codex freshness smoke-check catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modified | Add no-watcher read-path/manual freshness note |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` | Modified | Add `advisor_rebuild` to MCP surface |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` | Modified | Mark `advisor_status` diagnostic-only |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md` | Created | Add `advisor_rebuild` catalog entry |
 <!-- /ANCHOR:what-built -->
 
 ---

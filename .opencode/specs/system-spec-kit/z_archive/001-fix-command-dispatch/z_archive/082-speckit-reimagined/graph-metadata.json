@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/memory/learn.md",
+      ".opencode/commands/memory/learn.md",
       "tests/test-coverage-matrix.md",
       "tests/test-implementation-guide.md",
       "tests/existing-tests-audit.md",
       "shared/embeddings.js",
-      ".opencode/command/memory/save.md",
+      ".opencode/commands/memory/save.md",
       "tests/README.md",
       "plan.md",
       "tasks.md",
@@ -61,7 +61,7 @@
       {
         "name": "learn.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/learn.md",
+        "path": ".opencode/commands/memory/learn.md",
         "source": "derived"
       },
       {
@@ -91,7 +91,7 @@
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {

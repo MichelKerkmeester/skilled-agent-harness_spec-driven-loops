@@ -18,7 +18,7 @@ Persistent brain for the iterative deep-research session investigating multi-ai-
 
 ## 2. TOPIC
 
-How to further improve the multi-ai-council agent (`.opencode/agent/multi-ai-council.md`) and the `ai-council/` output protocol convention introduced in packet 080. Reference deep-research and deep-review skill patterns as inspiration for iteration mechanics, convergence detection, state schema, resume semantics, and quality gates — BUT do NOT promote multi-ai-council into a dedicated skill folder unless the lightweight bound (ADR-001) provably fails.
+How to further improve the multi-ai-council agent (`.opencode/agents/multi-ai-council.md`) and the `ai-council/` output protocol convention introduced in packet 080. Reference deep-research and deep-review skill patterns as inspiration for iteration mechanics, convergence detection, state schema, resume semantics, and quality gates — BUT do NOT promote multi-ai-council into a dedicated skill folder unless the lightweight bound (ADR-001) provably fails.
 
 Investigate three threads:
 - (1) Concrete improvements landable in follow-on packet 081 / 082+ (helper script shape, §17 caller protocol, §8 shared schema artifact, validator hints, advisor wiring, state.jsonl forward-compat, mirror-sync automation).
@@ -43,7 +43,7 @@ Investigate three threads:
 
 ## 4. NON-GOALS
 
-- Building a dedicated `.opencode/skill/multi-ai-council/` skill folder unless ADR-001 provably fails (per user constraint).
+- Building a dedicated `.opencode/skills/multi-ai-council/` skill folder unless ADR-001 provably fails (per user constraint).
 - Adding a `/spec_kit:council` slash command (per non-goal N2 in spec.md).
 - Auto-dispatch policies (council remains user-invoked).
 - Cross-packet council aggregation.
@@ -63,9 +63,9 @@ Investigate three threads:
 ---
 
 ## 6. ANSWERED QUESTIONS
-- Iteration 1 answered Q1: implement a Node CJS helper at `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`, with parser exports, fixture-driven tests, strict-required §8 sections, optional-section graceful degradation, and exit codes 0/1/2.
+- Iteration 1 answered Q1: implement a Node CJS helper at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`, with parser exports, fixture-driven tests, strict-required §8 sections, optional-section graceful degradation, and exit codes 0/1/2.
 - Iteration 2 answered Q2: add §17 to the agent body as the normative caller persistence protocol, but keep it short; delegate long caller examples and schema details to references when they would push the body toward the ADR-001 spill threshold.
-- Iteration 3 answered Q3: express §8 as `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`, a markdown contract and requiredness matrix that the agent body and helper parser both reference; use vitest fixtures only as executable parser examples.
+- Iteration 3 answered Q3: express §8 as `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`, a markdown contract and requiredness matrix that the agent body and helper parser both reference; use vitest fixtures only as executable parser examples.
 - Iteration 4 answered Q4: keep `validate.sh --strict` free-form for `ai-council/`; avoid ordinary validator warnings because strict mode turns them into failures; add only an explicit council-aware advisory/completion check after helper persistence exists.
 - Iteration 5 answered Q5: do not add Skill Advisor token/phrase boosts for `multi-ai-council` while it remains an agent rather than a skill; rely on direct user/orchestrator dispatch and add only a regression guard if advisor routing is touched.
 - Iteration 6 answered Q6: add normalized four-runtime mirror parity as a test-time contract, preferably through a small general agent mirror checker parameterized by agent name; fall back to a narrow `multi-ai-council` parity test if generalization is too large for packet 081.
@@ -108,18 +108,18 @@ Synthesis-ready: all 10 key questions are answered. Next pass should synthesize 
 
 ### From packet 080 (just shipped, 2 commits ago: 422000f7a + 3802b2d9b)
 
-- Agent body `.opencode/agent/multi-ai-council.md` (683 LOC, 16 sections) carries §12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal. §16 SUMMARY (ASCII box) closes.
+- Agent body `.opencode/agents/multi-ai-council.md` (683 LOC, 16 sections) carries §12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal. §16 SUMMARY (ASCII box) closes.
 - 4-runtime mirrors all in lockstep: .opencode/.md, .claude/.md, .gemini/.md, .codex/.toml.
-- 4 reference files under `.opencode/skill/system-spec-kit/references/multi-ai-council/`: folder-layout.md (38 LOC), seat-diversity-patterns.md (35 LOC), convergence-signals.md (27 LOC), state-format.md (68 LOC).
-- Vitest regression test at `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` (2 cases, codex-dispatch confirmed pass).
+- 4 reference files under `.opencode/skills/system-spec-kit/references/multi-ai-council/`: folder-layout.md (38 LOC), seat-diversity-patterns.md (35 LOC), convergence-signals.md (27 LOC), state-format.md (68 LOC).
+- Vitest regression test at `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` (2 cases, codex-dispatch confirmed pass).
 - Live smoke test produced 13 ai-council/ artifacts on packet 080 itself: config + strategy + state.jsonl (14 events, 2 rounds) + 6 seats + 2 deliberations + 1 critique + council-report.md with round-2 amendment.
 - Round-2 verdict: "round-1 amended with addendum" — 6 ADDs (caller enumeration, graceful degradation, shared schema, depth-1 invocation, forward-only scope, packet 081 sequencing).
-- ADR-001 (lightweight bound) preserved: no `.opencode/skill/multi-ai-council/` folder created.
+- ADR-001 (lightweight bound) preserved: no `.opencode/skills/multi-ai-council/` folder created.
 - ADR-004: validator unchanged; treats `ai-council/` as free-form (alongside scratch/, research/, review/).
 
 ### Sibling deep-skill patterns (for inspiration only)
 
-- deep-research lives at `.opencode/skill/deep-research/` with full SKILL.md (~500 LOC), assets (config template, strategy template, dashboard template, prompt pack), references, scripts (reduce-state.cjs, runtime-capabilities.cjs).
+- deep-research lives at `.opencode/skills/deep-research/` with full SKILL.md (~500 LOC), assets (config template, strategy template, dashboard template, prompt pack), references, scripts (reduce-state.cjs, runtime-capabilities.cjs).
 - deep-research has a reducer that maintains findings-registry.json + dashboard + strategy machine-owned sections per iteration.
 - deep-research has graph-convergence MCP tool, 3-signal vote, quality guards, executor abstraction (native/cli-codex/cli-gemini/cli-claude-code), bounded spec.md mutations with seed markers.
 - deep-review parallels deep-research with severity-rated findings (P0/P1/P2) instead of progressive synthesis.

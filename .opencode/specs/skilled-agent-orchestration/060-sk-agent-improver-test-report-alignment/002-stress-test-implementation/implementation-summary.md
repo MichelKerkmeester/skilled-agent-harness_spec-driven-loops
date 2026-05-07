@@ -49,7 +49,7 @@ _memory:
 - 5 P0 + 1 P1 diff sketches applied: 6/6
 - 4-runtime mirror parity: yes, after manual `.codex` TOML regeneration
 - 6 CP-XXX playbook entries authored: 6/6
-- Fixture target: built at `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/`
+- Fixture target: built at `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`
 - test-report.md: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md`
 
 The implementation is intact. The validation result is intentionally not green: R1 showed that 059's prepend-agent-body methodology tests the wrong layer for `sk-improve-agent`.
@@ -79,8 +79,8 @@ Tripwire-dirty verdicts are false positives for scenario mutation. They reflect 
 
 | Source File | Diff | Status |
 |---|---|---|
-| `.opencode/agent/improve-agent.md` (+ 3 mirrors) | §6.5 CRITIC PASS bullets | done |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Skill-load clarification | done |
+| `.opencode/agents/improve-agent.md` (+ 3 mirrors) | §6.5 CRITIC PASS bullets | done |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Skill-load clarification | done |
 | `improve_improve-agent_auto.yaml` | `legal_stop_evaluated` 5-gate bundle + benchmark/blocked events | done |
 | `improve_improve-agent_confirm.yaml` | Same | done |
 | `score-candidate.cjs` | `--baseline` + `delta` + `thresholdDelta` emission | done |

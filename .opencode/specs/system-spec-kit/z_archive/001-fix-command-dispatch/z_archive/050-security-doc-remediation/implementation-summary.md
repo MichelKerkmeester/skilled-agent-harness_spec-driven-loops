@@ -112,7 +112,7 @@ Added `validateInputLengths()` function with limits:
 
 ```bash
 # Server loads correctly
-node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server'); console.log('OK')"
+node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server'); console.log('OK')"
 # Output: [context-server] Initializing database... (indexes created)
 
 # memory_health works
@@ -122,7 +122,7 @@ memory_health()  # Returns: status: "healthy", dimension: 1024
 memory_search({ query: "security" })  # Returns: 3 results with similarity scores
 
 # generate-context.js help works
-node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
 ```
 
 <!-- /ANCHOR:verification -->

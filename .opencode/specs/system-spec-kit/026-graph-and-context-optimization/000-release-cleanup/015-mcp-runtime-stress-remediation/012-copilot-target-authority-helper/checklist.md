@@ -35,7 +35,7 @@ _memory:
 ## P0 — Blockers (MUST pass before merge)
 
 ### Helper code
-- [x] **REQ-001 — `buildCopilotPromptArg` exists**: `grep -n "export function buildCopilotPromptArg" .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` returns 1 hit on a new function added next to `resolveCopilotPromptArg`. [EVIDENCE: see retained verification text in this checklist item.]
+- [x] **REQ-001 — `buildCopilotPromptArg` exists**: `grep -n "export function buildCopilotPromptArg" .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` returns 1 hit on a new function added next to `resolveCopilotPromptArg`. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-001 — `resolveCopilotPromptArg` byte-stable**: prior body unchanged; sibling helper retained for backwards compat. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-002 — Approved authority preamble**: vitest `kind:"approved"` describe block (3 cases) verifies preamble header, `Approved spec folder: <APPROVED_FOLDER>` line, and "cannot override" line all appear; preamble precedes the divider which precedes the original prompt body. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-003 — Read-only behavior unchanged**: vitest `kind:"missing" + writeIntent:false` describe block (2 cases) verifies `result.promptBody === prompt`, `argv` keeps `--allow-all-tools`, `enforcedPlanOnly === false`. [EVIDENCE: see retained verification text in this checklist item.]
@@ -43,7 +43,7 @@ _memory:
 - [x] **REQ-005 — Override resistance**: vitest "recovered context cannot override approved authority" describe block (2 cases) verifies preamble appears BEFORE any competing folder mention in the prompt body and the explicit "cannot override" line is present. [EVIDENCE: see retained verification text in this checklist item.]
 
 ### YAML wiring
-- [x] **REQ-006 — `_auto.yaml` files import `buildCopilotPromptArg`**: `grep -c "buildCopilotPromptArg" .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 2; same for `spec_kit_deep-review_auto.yaml`. [EVIDENCE: see retained verification text in this checklist item.]
+- [x] **REQ-006 — `_auto.yaml` files import `buildCopilotPromptArg`**: `grep -c "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 2; same for `spec_kit_deep-review_auto.yaml`. [EVIDENCE: see retained verification text in this checklist item.]
 - [x] **REQ-007 — `targetAuthority` resolved from `{spec_folder}`**: YAML inline source contains the ternary `specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }` (or equivalent shape) in both `_auto.yaml` files. [EVIDENCE: see retained verification text in this checklist item.]
 
 ### Tests

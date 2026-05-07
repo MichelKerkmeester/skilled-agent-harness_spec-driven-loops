@@ -22,7 +22,7 @@ Relevant files for this verification include:
 
 Full filename inventory is included in **Appendix A**.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/` directory listing captured on 2026-03-31 — 349 `*.vitest.ts` files]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/` directory listing captured on 2026-03-31 — 349 `*.vitest.ts` files]
 
 ### 2. The existing test infrastructure is plain Vitest + direct source imports
 The current MCP server workspace runs Vitest directly in Node. New tests are auto-discovered under `tests/**/*.{vitest,test}.ts`, run with `globals: true`, `environment: 'node'`, and a `30_000ms` default timeout. The package scripts run `vitest run` for core tests, with `file-watcher.vitest.ts` split into a dedicated script.
@@ -36,11 +36,11 @@ The actual test style is consistent across the sampled files:
 
 This means the general shape of iteration 069's proposed tests is compatible with the infrastructure.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/package.json:16-26`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts:13-22`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:76-146`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:8-46`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:46-107`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/package.json:16-26`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:13-22`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:76-146`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:8-46`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:46-107`]
 
 ### 3. Sampled existing tests confirm four strong suite patterns
 
@@ -58,24 +58,24 @@ What it does **not** cover:
 - `DECORATES`, `OVERRIDES`, `TYPE_OF`
 - scan/query/context tool execution
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:76-146`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:76-146`]
 
 #### 3.2 Budget tests are simple property assertions, not scenario-heavy integration tests
 `budget-allocator.vitest.ts` checks floor values, redistribution, budget caps, empty-source behavior, and constitutional allocation. The file is small and direct, which supports extending existing files for allocator changes instead of necessarily creating a separate large suite.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:11-67`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:11-67`]
 
 #### 3.3 Env-sensitive tests use explicit save/restore
 `graph-flags.vitest.ts` captures the original env value in `beforeEach()` and restores it in `afterEach()`. This is the same pattern used in `runtime-detection.vitest.ts` and is the right model for runtime-specific or feature-flag-specific tests.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:8-46`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:7-65`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:8-46`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:7-65`]
 
 #### 3.4 Stateful/session tests use real helpers with in-memory DBs rather than pure mocks
 `session-manager-extended.vitest.ts` initializes an in-memory SQLite DB, uses real session-manager functions, and asserts concrete trust/rejection semantics. This is the right pattern for session-related code graph tests too.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:48-107`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:270-342`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:48-107`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:270-342`]
 
 ### 4. Iteration 069's proposed designs are only partially compatible as written
 The **infrastructure assumption** was mostly right; the **specific target/helper assumptions** were not.
@@ -94,10 +94,10 @@ The three biggest compatibility corrections are:
 2. **No `ensureFreshFiles()` helper exists today** — current staleness logic is hash-based, not the proposed mtime-driven refresh layer.
 3. **No `GRAPH_AWARE_TOOLS` symbol exists today** — the auto-enrichment design has not landed yet.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-176`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-52`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-465`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:18-53`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-176`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-52`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-465`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:18-53`]
 
 ### 5. Existing tests already cover part of the proposed scenario set
 
@@ -106,8 +106,8 @@ The three biggest compatibility corrections are:
 
 That means iteration 069's proposed `code-graph-cross-runtime.vitest.ts` would duplicate existing fallback coverage unless it is narrowed to **new behavior only** (for example, first-call priming once it actually exists).
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:20-65`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:8-121`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:20-65`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:8-121`]
 
 #### 5.2 Session trust resolution is already covered
 `session-manager-extended.vitest.ts` already tests:
@@ -119,24 +119,24 @@ That means iteration 069's proposed `code-graph-cross-runtime.vitest.ts` would d
 
 Handler-level tests also mock `resolveTrustedSession()` directly, so the session boundary is already well represented.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:270-342`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:253-256`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:270-342`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:253-256`]
 
 #### 5.3 Auto-surface-at-dispatch behavior already has a strong test pattern
 `dual-scope-hooks.vitest.ts` already exercises `autoSurfaceAtToolDispatch()` and `autoSurfaceAtCompaction()`, including lifecycle firing, result shape, array fields, timestamps, and latency fields.
 
 This is a **better pattern reference** for future auto-enrichment tests than `mcp-tool-dispatch.vitest.ts`, because `mcp-tool-dispatch.vitest.ts` is only a shallow export/callability smoke test.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:292-377`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:72-115`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:292-377`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:72-115`]
 
 #### 5.4 Query routing to `code_graph` already exists, but not code-graph E2E execution
 `runtime-routing.vitest.ts` already tests a pure query router that sends structural questions to `code_graph`, semantic questions to CocoIndex, and session questions to memory. That overlaps conceptually with iteration 069's integration aspirations, but it is **not** an end-to-end graph test: it does not invoke `code_graph_scan`, `code_graph_query`, or `code_graph_context`.
 
 So there is still room for a true code-graph pipeline E2E test file.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-routing.vitest.ts:7-65`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-45`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-routing.vitest.ts:7-65`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-45`]
 
 ### 6. Corrected verdict on iteration 069
 Iteration 069's testing strategy was **directionally correct** about the Vitest style and the need for more code-graph coverage, but it is **not accurate as a current execution plan**.
@@ -162,23 +162,23 @@ Iteration 069's testing strategy was **directionally correct** about the Vitest 
 - Searching for dedicated `code_graph_scan` / `code_graph_query` / `code_graph_context` tests in `mcp_server/tests/` did not surface any direct handler/E2E coverage. The closest overlap is `runtime-routing.vitest.ts`, which only tests query classification.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/package.json`
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-routing.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/` directory listing (full inventory)
+- `.opencode/skills/system-spec-kit/mcp_server/package.json`
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-routing.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/` directory listing (full inventory)
 
 ## Assessment
 - New information ratio: **0.61**

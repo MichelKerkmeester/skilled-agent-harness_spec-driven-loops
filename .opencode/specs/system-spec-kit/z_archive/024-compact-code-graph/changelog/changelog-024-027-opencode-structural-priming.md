@@ -40,7 +40,7 @@ Hookless runtimes needed a clearer answer than "the code graph exists". They nee
 
 **Problem:** The non-hook guidance existed, but it was not yet expressed as a clean contract aimed at OpenCode-style flows.
 
-**Fix:** Updated `AGENTS.md` and `.opencode/agent/context-prime.md` so the startup and recovery narrative uses the same structural-context contract as the runtime surfaces themselves.
+**Fix:** Updated `AGENTS.md` and `.opencode/agents/context-prime.md` so the startup and recovery narrative uses the same structural-context contract as the runtime surfaces themselves.
 
 ### Phase-map synchronization
 
@@ -78,7 +78,7 @@ Hookless runtimes needed a clearer answer than "the code graph exists". They nee
 | `mcp_server/handlers/session-health.ts` | Added structural context plus stale/missing recovery hints. |
 | `mcp_server/context-server.ts` | Added Phase 027 structural bootstrap guidance to server instructions. |
 | `AGENTS.md` | Updated hookless startup/recovery wording to match the shared contract. |
-| `.opencode/agent/context-prime.md` | Added structural-context guidance to PrimePackage output. |
+| `.opencode/agents/context-prime.md` | Added structural-context guidance to PrimePackage output. |
 
 </details>
 

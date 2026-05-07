@@ -39,13 +39,13 @@ After the initial 009 scaffold+fix run (all uncommitted in working tree), a wild
 3. The 009 packet docs (scope context):
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/009-post-save-render-fixes/spec.md`
 4. The loader that rejects unknown fields:
-   - `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` OR `.opencode/skill/system-spec-kit/scripts/dist/loaders/data-loader.js` (compiled) — find by searching for `"Unknown field in input data"` in the scripts tree
+   - `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` OR `.opencode/skills/system-spec-kit/scripts/dist/loaders/data-loader.js` (compiled) — find by searching for `"Unknown field in input data"` in the scripts tree
 5. The extractor/workflow that maps payload to render context:
-   - `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts`
-   - `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`
-   - `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`
+   - `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts`
+   - `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`
+   - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts`
 6. The template body (for OVERVIEW rendering + note prose):
-   - `.opencode/skill/system-spec-kit/templates/context_template.md`
+   - `.opencode/skills/system-spec-kit/templates/context_template.md`
 
 ## LANE F FIX — Status/Completion payload override
 
@@ -112,12 +112,12 @@ After the initial 009 scaffold+fix run (all uncommitted in working tree), a wild
 After all 4 fixes:
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 npm run build
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 # Re-run the wild save (the payload is already clean 014-only)
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/save-context-data.json \
   /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades
 ```
@@ -188,7 +188,7 @@ BUILD:
   dist rebuild timestamp: <time>
 
 WILD_RE_SAVE:
-  command: node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .../001-code-graph-upgrades
+  command: node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .../001-code-graph-upgrades
   exit code: <n>
   new memory file: <path>
 

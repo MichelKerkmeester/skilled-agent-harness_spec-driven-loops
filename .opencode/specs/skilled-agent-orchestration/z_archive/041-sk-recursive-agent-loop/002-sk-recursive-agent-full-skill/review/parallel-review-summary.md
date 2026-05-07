@@ -8,10 +8,10 @@ description: "Packet-local summary of post-implementation parallel review findin
 ## Scope
 
 Read-only parallel review covered:
-- `.opencode/skill/sk-improve-agent/`
-- `.opencode/command/spec_kit/agent-improver.md`
-- `.opencode/command/spec_kit/assets/improve_agent-improver_auto.yaml`
-- `.opencode/command/spec_kit/assets/improve_agent-improver_confirm.yaml`
+- `.opencode/skills/sk-improve-agent/`
+- `.opencode/commands/spec_kit/agent-improver.md`
+- `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml`
+- `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml`
 - `041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/`
 
 ## Review Cycle
@@ -29,12 +29,12 @@ The parallel reviewers identified four material trust-boundary gaps during the f
 
 The implementation was updated to close those gaps:
 
-- `.opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs` now requires a matching benchmark report and a passing repeatability report before promotion can proceed.
-- `.opencode/command/spec_kit/agent-improver.md`, `.opencode/command/spec_kit/assets/improve_agent-improver_confirm.yaml`, `.agents/commands/spec_kit/agent-improver.toml`, and `.gemini/commands/spec_kit/agent-improver.toml` now describe the repeatability gate explicitly.
-- `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` now consumes `stopRules` from runtime config and writes reducer-owned `stopStatus` data into `experiment-registry.json` and `agent-improvement-dashboard.md`.
-- `.opencode/command/spec_kit/assets/improve_agent-improver_auto.yaml` now points the auto workflow at reducer-enforced stop status instead of descriptive-only stop prose.
-- `.opencode/agent/context-prime.md`, `.claude/agents/context-prime.md`, `.gemini/agents/context-prime.md`, `.agents/agents/context-prime.md`, and `.codex/agents/context-prime.toml` now use `session_bootstrap()` as the primary recovery step and keep `session_resume()` as fallback-only.
-- `.opencode/skill/sk-improve-agent/assets/fixtures/context-prime/`, `.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc`, and packet-local benchmark evidence under `improvement/benchmark-runs/context-prime/` were updated to match the new bootstrap contract.
+- `.opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs` now requires a matching benchmark report and a passing repeatability report before promotion can proceed.
+- `.opencode/commands/spec_kit/agent-improver.md`, `.opencode/commands/spec_kit/assets/improve_agent-improver_confirm.yaml`, `.agents/commands/spec_kit/agent-improver.toml`, and `.gemini/commands/spec_kit/agent-improver.toml` now describe the repeatability gate explicitly.
+- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` now consumes `stopRules` from runtime config and writes reducer-owned `stopStatus` data into `experiment-registry.json` and `agent-improvement-dashboard.md`.
+- `.opencode/commands/spec_kit/assets/improve_agent-improver_auto.yaml` now points the auto workflow at reducer-enforced stop status instead of descriptive-only stop prose.
+- `.opencode/agents/context-prime.md`, `.claude/agents/context-prime.md`, `.gemini/agents/context-prime.md`, `.agents/agents/context-prime.md`, and `.codex/agents/context-prime.toml` now use `session_bootstrap()` as the primary recovery step and keep `session_resume()` as fallback-only.
+- `.opencode/skills/sk-improve-agent/assets/fixtures/context-prime/`, `.opencode/skills/sk-improve-agent/assets/target_manifest.jsonc`, and packet-local benchmark evidence under `improvement/benchmark-runs/context-prime/` were updated to match the new bootstrap contract.
 
 ## Follow-Up Review
 

@@ -73,18 +73,18 @@ Land the five remaining P1 clusters in one bounded packet, with tests for each b
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Add readiness diagnostics fields and reason detail for blocked read payloads. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Modify | Use shared guarded auto-rescan policy and richer blocked payloads. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Use shared guarded auto-rescan policy and normalize CocoIndex seed shapes. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` | Modify | Add scope-aware verify preflight/result field. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Modify | Add glob arrays to fingerprint v3 and legacy parsing compatibility. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modify | Correct session-prime smoke output docs. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md` | Modify | Add SessionStart, compact, SessionEnd registration and smoke examples. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Modify | Rebuild when freshness or trust state is bad. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modify | Assert post-index artifacts before publishing startup advisor live state. |
-| `.opencode/skill/mcp-coco-index/references/tool_reference.md` | Modify | Document live snake_case MCP result contract and interop note. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modify | Add code graph regression tests. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modify | Add advisor/startup regression tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Add readiness diagnostics fields and reason detail for blocked read payloads. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Modify | Use shared guarded auto-rescan policy and richer blocked payloads. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modify | Use shared guarded auto-rescan policy and normalize CocoIndex seed shapes. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` | Modify | Add scope-aware verify preflight/result field. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Modify | Add glob arrays to fingerprint v3 and legacy parsing compatibility. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modify | Correct session-prime smoke output docs. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md` | Modify | Add SessionStart, compact, SessionEnd registration and smoke examples. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Modify | Rebuild when freshness or trust state is bad. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modify | Assert post-index artifacts before publishing startup advisor live state. |
+| `.opencode/skills/mcp-coco-index/references/tool_reference.md` | Modify | Document live snake_case MCP result contract and interop note. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modify | Add code graph regression tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modify | Add advisor/startup regression tests. |
 | `specs/.../006-cluster-a-to-e/*` | Create | Level 2 packet docs and implementation summary. |
 | `specs/.../012-real-world-usefulness-test/graph-metadata.json` | Modify | Add `006-cluster-a-to-e` child ID. |
 <!-- /ANCHOR:scope -->

@@ -721,9 +721,9 @@ const WORKING_MEMORY_CONFIG = {
 ### E. References
 
 - [Claude-Cognitive Repository](https://github.com/GMaN1911/claude-cognitive)
-- [Spec Kit Memory SKILL.md](.opencode/skill/system-spec-kit/SKILL.md)
+- [Spec Kit Memory SKILL.md](.opencode/skills/system-spec-kit/SKILL.md)
 - [AGENTS.md Section 6: Tool System](AGENTS.md)
-- [MCP Server Implementation](.opencode/skill/system-spec-kit/mcp_server/)
+- [MCP Server Implementation](.opencode/skills/system-spec-kit/mcp_server/)
 
 ---
 

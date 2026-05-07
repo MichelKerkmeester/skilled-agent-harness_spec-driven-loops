@@ -27,9 +27,9 @@ contextType: "research"
   - Keep LEAF deep loops, but refactor them and adjacent command shells onto a shared lifecycle engine.
 - Highest-confidence non-goals:
   - Do not replace Public's Task-tool orchestration with a full Relay broker. [SOURCE: phase-research-prompt.md:21-33] [SOURCE: phase-research-prompt.md:41-51]
-  - Do not discard the Level 1/2/3+ spec lifecycle. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:48-74] [SOURCE: AGENTS.md:233-252]
-  - Do not replace LEAF deep-loop plus externalized state with hidden in-memory continuity. [SOURCE: .opencode/agent/deep-research.md:22-60] [SOURCE: .opencode/agent/deep-review.md:21-57]
-  - Do not replace specialized deep loops with Relay's full generic workflow DSL. [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:47-64] [SOURCE: .opencode/skill/sk-deep-review/SKILL.md:216-285]
+  - Do not discard the Level 1/2/3+ spec lifecycle. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:48-74] [SOURCE: AGENTS.md:233-252]
+  - Do not replace LEAF deep-loop plus externalized state with hidden in-memory continuity. [SOURCE: .opencode/agents/deep-research.md:22-60] [SOURCE: .opencode/agents/deep-review.md:21-57]
+  - Do not replace specialized deep loops with Relay's full generic workflow DSL. [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:47-64] [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:216-285]
 - Execution note: CocoIndex semantic search timed out against this repo snapshot during the research process, so the phase relied on targeted file reads and exact line-numbered evidence instead. [SOURCE: phase-research-prompt.md:132-134]
 
 ## 2. External Repo Map
@@ -70,29 +70,29 @@ Operator surface
 
 #### Finding F-001 — Ready-State Handshake Before Messaging
 - Origin iteration: `iteration-001.md`
-- system-spec-kit target: `.opencode/agent/orchestrate.md` and a future transport module under `.opencode/skill/system-spec-kit/mcp_server/`
+- system-spec-kit target: `.opencode/agents/orchestrate.md` and a future transport module under `.opencode/skills/system-spec-kit/mcp_server/`
 - Priority: should-have | prototype later
-- Description: Relay separates spawn success from transport readiness through `worker_ready` and `waitForAgentReady()`. Public does not need that split today for ordinary delegation, but any future live coordination surface should reserve the concept early. [SOURCE: external/README.md:34-67] [SOURCE: external/packages/sdk/src/relay.ts:889-940] [SOURCE: external/src/main.rs:3323-3358] [SOURCE: .opencode/agent/orchestrate.md:24-36]
+- Description: Relay separates spawn success from transport readiness through `worker_ready` and `waitForAgentReady()`. Public does not need that split today for ordinary delegation, but any future live coordination surface should reserve the concept early. [SOURCE: external/README.md:34-67] [SOURCE: external/packages/sdk/src/relay.ts:889-940] [SOURCE: external/src/main.rs:3323-3358] [SOURCE: .opencode/agents/orchestrate.md:24-36]
 
 #### Finding F-002 — Add a Shared Event Glossary Across Delegation Surfaces
 - Origin iteration: `iteration-002.md`
-- system-spec-kit target: `.opencode/agent/orchestrate.md`, `.opencode/skill/cli-codex/references/agent_delegation.md`, `.opencode/skill/cli-gemini/references/agent_delegation.md`, `.opencode/skill/cli-copilot/references/agent_delegation.md`
+- system-spec-kit target: `.opencode/agents/orchestrate.md`, `.opencode/skills/cli-codex/references/agent_delegation.md`, `.opencode/skills/cli-gemini/references/agent_delegation.md`, `.opencode/skills/cli-copilot/references/agent_delegation.md`
 - Priority: must-have | adopt now
-- Description: Relay's event contract names spawn, ready, output, idle, delivery, and subscription changes explicitly. Public's current delegation docs would become clearer immediately if they shared a common event vocabulary even before any transport runtime exists. [SOURCE: external/packages/sdk/README.md:38-73] [SOURCE: external/packages/sdk/src/relay.ts:349-362] [SOURCE: external/packages/sdk/src/relay.ts:1219-1294] [SOURCE: .opencode/skill/cli-codex/references/agent_delegation.md:124-132] [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:81-88] [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:198-206]
+- Description: Relay's event contract names spawn, ready, output, idle, delivery, and subscription changes explicitly. Public's current delegation docs would become clearer immediately if they shared a common event vocabulary even before any transport runtime exists. [SOURCE: external/packages/sdk/README.md:38-73] [SOURCE: external/packages/sdk/src/relay.ts:349-362] [SOURCE: external/packages/sdk/src/relay.ts:1219-1294] [SOURCE: .opencode/skills/cli-codex/references/agent_delegation.md:124-132] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:81-88] [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:198-206]
 
 #### Finding F-003 — Define Address Types: Channel, DM, Thread
 - Origin iteration: `iteration-003.md`
-- system-spec-kit target: `.opencode/agent/orchestrate.md` and a future transport-routing module under `.opencode/skill/system-spec-kit/mcp_server/`
+- system-spec-kit target: `.opencode/agents/orchestrate.md` and a future transport-routing module under `.opencode/skills/system-spec-kit/mcp_server/`
 - Priority: should-have | prototype later
-- Description: Relay treats channel broadcast, direct targeting, and thread continuation as different routing problems. Public currently distinguishes direct versus parallel execution, but not conversation scope. [SOURCE: external/docs/plugin-claude-code.md:65-87] [SOURCE: external/packages/sdk/src/protocol.ts:30-41] [SOURCE: external/src/routing.rs:68-220] [SOURCE: .opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md:17-28]
+- Description: Relay treats channel broadcast, direct targeting, and thread continuation as different routing problems. Public currently distinguishes direct versus parallel execution, but not conversation scope. [SOURCE: external/docs/plugin-claude-code.md:65-87] [SOURCE: external/packages/sdk/src/protocol.ts:30-41] [SOURCE: external/src/routing.rs:68-220] [SOURCE: .opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md:17-28]
 
 #### Finding F-004 — Scope Future Live Coordination to the Active Spec/Session
 - Origin iteration: `iteration-004.md`
-- system-spec-kit target: `.opencode/command/spec_kit/resume.md`, `.opencode/agent/context-prime.md`, and a future coordination/session module under `.opencode/skill/system-spec-kit/mcp_server/`
+- system-spec-kit target: `.opencode/commands/spec_kit/resume.md`, `.opencode/agents/context-prime.md`, and a future coordination/session module under `.opencode/skills/system-spec-kit/mcp_server/`
 - Priority: nice-to-have | prototype later
-- Description: Relay's workspace-aware routing suggests a safety principle worth borrowing: future live coordination in Public should default to the active spec/session scope and only widen deliberately. [SOURCE: external/ARCHITECTURE.md:274-283] [SOURCE: external/src/spawner.rs:226-256] [SOURCE: external/src/routing.rs:58-89] [SOURCE: .opencode/command/spec_kit/resume.md:250-260] [SOURCE: .opencode/agent/context-prime.md:118-145]
+- Description: Relay's workspace-aware routing suggests a safety principle worth borrowing: future live coordination in Public should default to the active spec/session scope and only widen deliberately. [SOURCE: external/ARCHITECTURE.md:274-283] [SOURCE: external/src/spawner.rs:226-256] [SOURCE: external/src/routing.rs:58-89] [SOURCE: .opencode/commands/spec_kit/resume.md:250-260] [SOURCE: .opencode/agents/context-prime.md:118-145]
 
 #### Finding F-005 — Normalize Provider Capability and Transport Docs
 - Origin iteration: `iteration-005.md`
-- system-spec-kit target: `.opencode/skill/cli-codex/references/agent_delegation.md`, `.opencode/skill/cli-gemini/references/agent_delegation.md`, `.opencode/skill/cli-copilot/references/agent_delegation.md`
+- system-spec-kit target: `.opencode/skills/cli-codex/references/agent_delegation.md`, `.opencode/skills/cli-gemini/references/agent_delegation.md`, `.opencode/skills/cli-copilot/references/agent_delegation.md`
 - Priority: must-have | adopt now

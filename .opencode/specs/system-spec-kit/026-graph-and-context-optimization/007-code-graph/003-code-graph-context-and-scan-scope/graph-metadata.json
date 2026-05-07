@@ -46,11 +46,11 @@
       "mcp_server/package.json",
       "tests/copilot-hook-wiring.vitest.ts",
       "tests/code-graph-db.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
       "dist/lib/session/session-snapshot.js",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-db.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-db.vitest.ts",
       "lib/session/session-snapshot.ts",
       "implementation-summary.md",
       "tests/structural-contract.vitest.ts",
@@ -84,7 +84,7 @@
       {
         "name": "session-snapshot.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
         "source": "derived"
       },
       {
@@ -96,13 +96,13 @@
       {
         "name": "structural-contract.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts",
         "source": "derived"
       },
       {
         "name": "tree-sitter-parser.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts",
         "source": "derived"
       },
       {

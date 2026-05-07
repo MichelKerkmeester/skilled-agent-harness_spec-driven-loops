@@ -109,7 +109,7 @@ Mutation request executes handler logic, then shared post-mutation hooks run and
 - [x] Regenerate build artifacts with `npx tsc -b`
 - [x] Run verification commands: `npx tsc -b`; `npm run lint`; and the combined Vitest rerun `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` (PASS, 9 files / 525 tests)
 - [x] Confirm split playbook verification runs also pass for the same suite split (`7 files / 510 tests` and `2 files / 15 tests`)
-- [x] Confirm a real MCP SDK stdio client connects to `node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js` and lists 28 tools
+- [x] Confirm a real MCP SDK stdio client connects to `node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` and lists 28 tools
 - [x] Re-save context via `generate-context.js`, record existing phase memory artifacts `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/memory/19-03-26_08-35__ux-hooks-automation.md` and `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/memory/19-03-26_08-35__ux-hooks-automation.md`, and document that no new indexed memory ID is available because indexing still fails on the known 1024 vs 768 embedding mismatch
 - [x] Update manual playbook with NEW-103+ scenarios covering UX hook capabilities
 

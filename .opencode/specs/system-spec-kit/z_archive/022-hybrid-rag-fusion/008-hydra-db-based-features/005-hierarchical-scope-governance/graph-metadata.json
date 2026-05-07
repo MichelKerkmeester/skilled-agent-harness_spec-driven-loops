@@ -48,11 +48,11 @@
       "tests/memory-governance.vitest.ts",
       "mcp_server/lib/search/vector-index-mutations.ts",
       "checklist.md",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
@@ -105,13 +105,13 @@
       {
         "name": "job-queue.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

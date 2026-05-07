@@ -1,104 +1,104 @@
 ✗ memory_context
   └ Permission denied and could not request permission from user
 
-● List directory .opencode/skill/system-spec-kit/scripts/core
+● List directory .opencode/skills/system-spec-kit/scripts/core
   └ 14 files found
 
 ● skill(sk-code-review)
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/core/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/core/**/*.ts"
   └ 10 files found
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/index.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/index.ts
   └ 39 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:280 (280 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L281:620 (340 lines read)
 
 ● Search (grep)
   │ "abort|Abort|validation|validate|Promise\.all|quality|warning|template|capabilit|hardcoded|CLI|s
-  │ core|remediation" (.opencode/skill/system-spec-kit/scripts/core)
+  │ core|remediation" (.opencode/skills/system-spec-kit/scripts/core)
   └ 5 lines found
 
 I’ve loaded the core module and started tracing the control flow in `workflow.ts`. Next I’ll map failure boundaries, state transitions, and coupling points across all core files to rank the highest architectural risks.
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1361:1760 (399 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L621:980 (360 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2201:2680 (277 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1761:2200 (433 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L981:1360 (380 lines read)
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/scripts/core/README.md
+  │ .opencode/skills/system-spec-kit/scripts/core/README.md
   └ 77 lines read
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
   └ 356 lines read
 
 ● Read topic-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
   └ 59 lines read
 
 ● Read tree-thinning.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
   └ 285 lines read
 
 ● Read subfolder-utils.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
   └ 223 lines read
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ 204 lines read
 
 ● Read config.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/config.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 369 lines read
 
 ● Read file-writer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 231 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1120:1360 (241 lines read)
 
 ● Search (grep)
   │ "throw new Error\(|console\.warn\(|warn\(|QUALITY_GATE|ALIGNMENT_|CONTAMINATION_|MEMORY_SUFFICIE
   │ NCY|write_skip_index|abort_write|skipped_|failed_"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 57 lines found
 
 ● Search (grep)
   │ "F-[0-9]+|RC-[0-9]+|CG-[0-9]+|P0-[0-9]+|P1-[0-9]+"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 22 lines found
 
 ● Search (grep)
   │ "score01|score100|qualityScore|quality_score|QUALITY_ABORT_THRESHOLD"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 28 lines found
 
 ## Q1+Q7 Synthesis — Top architectural risks

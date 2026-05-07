@@ -74,11 +74,11 @@ Evidence-cited documentation retraction. The current product contract should sep
 
 ### Key Components
 
-- **Read-path self-heal**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442`.
-- **Manual full repair**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356`.
-- **Read-only status**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158-167`.
-- **Required action**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828`.
-- **No watcher proof**: `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:274`.
+- **Read-path self-heal**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442`.
+- **Manual full repair**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356`.
+- **Read-only status**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158-167`.
+- **Required action**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828`.
+- **No watcher proof**: `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:274`.
 
 ### Data Flow
 
@@ -97,7 +97,7 @@ Operator invokes `code_graph_query` or `code_graph_context`. The read path calls
 ### Phase 2: Implementation
 - [x] Patch README with `Code-graph freshness model`.
 - [x] Sweep watcher/real-time/code-graph wording in current operator docs.
-- [x] Confirm `.opencode/skill/system-spec-kit/SKILL.md`, `CLAUDE.md`, and `.opencode/skill/system-spec-kit/references/config/hook_system.md` do not inherit the false watcher claim.
+- [x] Confirm `.opencode/skills/system-spec-kit/SKILL.md`, `CLAUDE.md`, and `.opencode/skills/system-spec-kit/references/config/hook_system.md` do not inherit the false watcher claim.
 
 ### Phase 3: Validation
 - [x] Run strict validator on this packet.

@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -110,7 +110,7 @@ None. All feature flag reference entries verified as MATCH after remediation pas
 
 | Field | Value |
 |-------|-------|
-| **Catalog Entry** | `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` |
+| **Catalog Entry** | `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` |
 | **Classification** | META — not a feature description, excluded from accuracy scoring |
 | **Verdict** | N/A (meta note) |
 

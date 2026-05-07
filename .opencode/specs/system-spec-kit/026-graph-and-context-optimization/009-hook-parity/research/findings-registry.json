@@ -9,8 +9,8 @@
       "evidence": [
         "iteration-02.md#Findings",
         ".codex/config.toml:43",
-        ".opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:219",
-        ".opencode/skill/system-spec-kit/references/config/hook_system.md:67"
+        ".opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:219",
+        ".opencode/skills/system-spec-kit/references/config/hook_system.md:67"
       ],
       "recommended_fix": "Make the checked-in Codex contract and the detector agree: either add the missing activation prerequisites or tighten detectCodexHookPolicy so live requires the documented feature flag and hook registration."
     },
@@ -36,8 +36,8 @@
         "iteration-05.md#Findings",
         ".gemini/settings.json:83",
         ".gemini/settings.json:95",
-        ".opencode/skill/system-spec-kit/references/config/hook_system.md:59",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:102"
+        ".opencode/skills/system-spec-kit/references/config/hook_system.md:59",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:102"
       ],
       "recommended_fix": "Align Gemini docs and runtime fixtures to the checked-in event names, or introduce a single normalization layer that both docs and tests consume."
     },
@@ -48,9 +48,9 @@
       "summary": "Copilot readiness detection keys off generic .github hook files, so unrelated Copilot hooks such as Superset can make Spec Kit parity appear enabled.",
       "evidence": [
         "iteration-04.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts:82",
+        ".opencode/skills/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts:82",
         ".github/hooks/superset-notify.json:4",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:64"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:64"
       ],
       "recommended_fix": "Detect Spec Kit Copilot readiness from .claude/settings.local.json wrapper presence, not from any .github/hooks sessionStart file."
     },
@@ -61,9 +61,9 @@
       "summary": "Startup parity is still uneven: Claude and Codex thread cached-summary and spec-folder-aware continuity into startup context, while Gemini and Copilot use thinner startup builders.",
       "evidence": [
         "iteration-06.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:129",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:153"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:129",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:153"
       ],
       "recommended_fix": "Refactor a shared startup-state adapter so Gemini and Copilot can pass the same continuity inputs as Claude, even if their transport output stays runtime-specific."
     },
@@ -74,8 +74,8 @@
       "summary": "advisor_status conflates daemon availability with freshness readability, so operators can read daemonAvailable as true even when no daemon PID or process evidence is present.",
       "evidence": [
         "iteration-07.md#Findings",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93",
-        ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:29"
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93",
+        ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:29"
       ],
       "recommended_fix": "Split freshness from daemon process presence in advisor_status and back daemon-running reporting with a real PID/lease/heartbeat source."
     }

@@ -41,7 +41,7 @@
 3. Update any internal references to use the cached version
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js:209, 1111`
+- `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js:209, 1111`
 
 **Effort**: 1 hour
 
@@ -71,7 +71,7 @@ UPDATE memory_index SET last_accessed = datetime('now')
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js:2242`
+- `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js:2242`
 
 **Effort**: 30 minutes
 
@@ -96,7 +96,7 @@ ALTER TABLE memory_index ADD COLUMN related_memories TEXT;
 3. Handle JSON serialization for the array of related IDs
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js` (schema and migration)
+- `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js` (schema and migration)
 
 **Effort**: 1 hour
 
@@ -130,7 +130,7 @@ await verifyIntegrity();
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js:1696, 1700`
+- `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js:1696, 1700`
 
 **Effort**: 2 hours
 
@@ -172,7 +172,7 @@ function extractTriggers(content, filePath, specFolder) {
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/trigger-extractor.js:658-673`
+- `.opencode/skills/system-spec-kit/mcp-server/src/trigger-extractor.js:658-673`
 
 **Effort**: 3 hours
 
@@ -206,7 +206,7 @@ checkpoint.data = {
 Also update restore logic to rebuild `vec_memories`.
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/checkpoints.js:263-296`
+- `.opencode/skills/system-spec-kit/mcp-server/src/checkpoints.js:263-296`
 
 **Effort**: 4 hours
 
@@ -236,7 +236,7 @@ const results = await hybridSearch(query, limit, { includeContiguity });
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js:652-657`
+- `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js:652-657`
 
 **Effort**: 30 minutes
 
@@ -260,8 +260,8 @@ const results = await hybridSearch(query, limit, { includeContiguity });
 **Solution**: Update all references to use Gate 5 consistently (matching AGENTS.md as source of truth)
 
 **Files**:
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/command/spec_kit/*.md` (all command files)
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/commands/spec_kit/*.md` (all command files)
 
 **Effort**: 2 hours
 
@@ -278,7 +278,7 @@ const results = await hybridSearch(query, limit, { includeContiguity });
 **Solution**: Update documentation header to say "14-step workflow"
 
 **Files**:
-- `.opencode/command/spec_kit/complete.md`
+- `.opencode/commands/spec_kit/complete.md`
 
 **Effort**: 30 minutes
 
@@ -300,7 +300,7 @@ const results = await hybridSearch(query, limit, { includeContiguity });
 **Solution**: Standardize on AGENTS.md definition (spec.md, plan.md, tasks.md) and update SKILL.md
 
 **Files**:
-- `.opencode/skill/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
 - Validation scripts if affected
 
 **Effort**: 1 hour
@@ -321,7 +321,7 @@ const results = await hybridSearch(query, limit, { includeContiguity });
 3. Or delete archived memories from database entirely
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js` (indexing logic)
+- `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js` (indexing logic)
 - Database records for z_archive files
 
 **Effort**: 1 hour
@@ -362,7 +362,7 @@ function evictLRU() {
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js:2158-2164`
+- `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js:2158-2164`
 
 **Effort**: 2 hours
 
@@ -390,7 +390,7 @@ if (currentHash === storedHash) {
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+- `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Effort**: 2 hours
 
@@ -411,7 +411,7 @@ triggerMatcher.clearCache();
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp-server/src/trigger-matcher.js:150-153`
+- `.opencode/skills/system-spec-kit/mcp-server/src/trigger-matcher.js:150-153`
 - Mutation handlers in context-server.js
 
 **Effort**: 1 hour
@@ -435,7 +435,7 @@ fi
 ```
 
 **Files**:
-- `.opencode/skill/system-spec-kit/scripts/check-files.sh:29`
+- `.opencode/skills/system-spec-kit/scripts/check-files.sh:29`
 
 **Effort**: 1 hour
 

@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 
 - [x] CHK-001 [P0] Requirements are documented in `spec.md` [EVIDENCE: `spec.md` now matches the shipped code paths, thresholds, and remaining verification gaps]
 - [x] CHK-002 [P0] Technical approach is defined in `plan.md` [EVIDENCE: `plan.md` architecture and phases now match `memory-search.ts`, `query-flow-tracker.ts`, and `context-server.ts`]
-- [x] CHK-003 [P1] Dependencies are identified and available [EVIDENCE: runtime files and test suites referenced in this packet all exist under `.opencode/skill/system-spec-kit/mcp_server`]
+- [x] CHK-003 [P1] Dependencies are identified and available [EVIDENCE: runtime files and test suites referenced in this packet all exist under `.opencode/skills/system-spec-kit/mcp_server`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -48,7 +48,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] TypeScript compile verification passes [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` rerun 2026-04-03 exited 0]
+- [x] CHK-010 [P0] TypeScript compile verification passes [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` rerun 2026-04-03 exited 0]
 - [x] CHK-011 [P0] Search-path implicit feedback remains fail-safe [EVIDENCE: `mcp_server/handlers/memory-search.ts` wraps the implicit feedback block in `try/catch` around lines 1181-1221]
 - [x] CHK-012 [P0] Sticky-session follow-on correlation is present for sessionless tools [EVIDENCE: `mcp_server/context-server.ts` keeps `lastKnownSessionId` and uses it in the `logFollowOnToolUse()` path]
 - [x] CHK-013 [P1] Event types and confidence tiers remain centralized in the feedback ledger [EVIDENCE: `mcp_server/lib/feedback/feedback-ledger.ts` enumerates all five event types and their confidence mapping; combined TMPDIR Vitest rerun passed]
@@ -62,7 +62,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-020 [P0] Typecheck and sticky-session runtime coverage pass [EVIDENCE: `npx tsc --noEmit` exited 0 and the combined TMPDIR Vitest rerun passed]
 - [x] CHK-021 [P0] Combined tracker + dispatcher + ledger regression run passes [EVIDENCE: `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/query-flow-tracker.vitest.ts tests/context-server.vitest.ts tests/feedback-ledger.vitest.ts` -> PASS, 3 files / 451 tests]
 - [x] CHK-022 [P1] Dedicated tracker/unit suite passes cleanly [EVIDENCE: covered by the same combined TMPDIR Vitest rerun; `tests/query-flow-tracker.vitest.ts` is green after fixing snake_case ledger assertions]
-- [x] CHK-023 [P1] `<5ms` async-overhead claim is backed by recorded evidence [EVIDENCE: benchmark output from `node --input-type=module` run in `.opencode/skill/system-spec-kit/mcp_server` -> `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233`]
+- [x] CHK-023 [P1] `<5ms` async-overhead claim is backed by recorded evidence [EVIDENCE: benchmark output from `node --input-type=module` run in `.opencode/skills/system-spec-kit/mcp_server` -> `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233`]
 - [x] CHK-024 [P1] End-to-end packet flow coverage exists for citation + follow-on tool use + reformulation [EVIDENCE: `tests/query-flow-tracker.vitest.ts` now includes the DB-level packet flow test at lines 122-147]
 <!-- /ANCHOR:testing -->
 

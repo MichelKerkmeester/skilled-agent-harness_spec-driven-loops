@@ -1,7 +1,7 @@
 # Codex-5 API Surface Assessment (T033)
 
 Date: 2026-03-05
-Scope reviewed: `.opencode/skill/system-spec-kit/mcp_server/api/`
+Scope reviewed: `.opencode/skills/system-spec-kit/mcp_server/api/`
 
 ## Surface Inventory
 - `index.ts`: barrel that re-exports `eval`, `search`, and `providers` modules.

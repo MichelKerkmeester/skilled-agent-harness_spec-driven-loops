@@ -135,8 +135,8 @@ Update Phase 005 artifacts with evidence, then run child and parent strict valid
 |------|---------|----------|
 | Residual old-name grep | Requested grep across listed Phase 005 root docs and config files | No output |
 | JSON validity | Python `json.load()` for each listed JSON file | All parse |
-| Child validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config --strict` | Exit 0 |
-| Parent validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` | Exit 0 |
+| Child validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config --strict` | Exit 0 |
+| Parent validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` | Exit 0 |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +147,7 @@ Update Phase 005 artifacts with evidence, then run child and parent strict valid
 - Phase 001 inventory exists at `001-discovery-impact-map/inventory.tsv`.
 - Parent packet docs exist at `../spec.md` and `../resource-map.md`.
 - Python 3 is available at `/usr/bin/python3` for JSON parsing.
-- The spec validator exists at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- The spec validator exists at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 <!-- /ANCHOR:dependencies -->
 
 ---

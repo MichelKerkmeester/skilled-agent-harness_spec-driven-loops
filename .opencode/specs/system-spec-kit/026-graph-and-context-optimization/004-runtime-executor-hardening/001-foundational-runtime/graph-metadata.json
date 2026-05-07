@@ -62,7 +62,7 @@
       "hooks/copilot/session-prime.ts",
       "checklist.md",
       "scripts/core/workflow.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -170,7 +170,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

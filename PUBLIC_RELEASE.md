@@ -48,11 +48,11 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 | Component      | Path                        |
 | -------------- | --------------------------- |
-| Skills         | `.opencode/skill/`          |
-| Commands       | `.opencode/command/`        |
+| Skills         | `.opencode/skills/`          |
+| Commands       | `.opencode/commands/`        |
 | Install Guides | `.opencode/install_guides/` |
 | Scripts        | `.opencode/scripts/`        |
-| Agents         | `.opencode/agent/`          |
+| Agents         | `.opencode/agents/`          |
 
 ### Project-Specific (gitignored per-subfolder in Public)
 
@@ -134,7 +134,7 @@ No Release   Full Release
 
 1. **Draft release notes** using template in Section 7
 2. **Create version changelog** — Write `changelog/vX.X.X.X.md` using release notes template (Section 7)
-3. **Update Skill CHANGELOGs** (`Public/.opencode/skill/*/CHANGELOG.md`) if applicable
+3. **Update Skill CHANGELOGs** (`Public/.opencode/skills/*/CHANGELOG.md`) if applicable
 4. **Determine version number** using Section 8
 
 ### Phase 3: REVIEW
@@ -245,7 +245,7 @@ echo ".opencode-local/" >> .gitignore
 
 Release notes should read like a brief written for a smart person who is not necessarily a developer. Lead with why the release matters, explain each change in plain English, and keep technical details in the Files Changed table.
 
-**Canonical template file:** `.opencode/command/create/assets/changelog_template.md`
+**Canonical template file:** `.opencode/commands/create/assets/changelog_template.md`
 **Automated workflow:** `/create:changelog --release :auto` (creates changelog + git tag + GitHub release)
 
 ### 7.1 Format
@@ -330,7 +330,7 @@ Before publishing:
 - [ ] `## Files Changed` table present with File and What changed columns
 - [ ] `## Upgrade` section last
 - [ ] Bullet points are short (1-3 sentences each)
-- [ ] For 10+ changes: expanded format with short scan-friendly sub-headings and Problem/Fix paragraphs (see `.opencode/command/create/assets/changelog_template.md`)
+- [ ] For 10+ changes: expanded format with short scan-friendly sub-headings and Problem/Fix paragraphs (see `.opencode/commands/create/assets/changelog_template.md`)
 
 ---
 

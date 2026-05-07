@@ -76,7 +76,7 @@ _memory:
 - [x] T209 Run vitest: `./node_modules/.bin/vitest run tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` — 12/12 green
 - [x] T210 Run sibling regression: `./node_modules/.bin/vitest run tests/code-graph-*.vitest.ts` — confirm no NEW regressions (pre-existing 013 sweep failure exempted)
 - [x] T211 Run `npx tsc --noEmit` from `mcp_server/` — clean
-- [ ] T212 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet-path> --strict` — PASS
+- [ ] T212 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet-path> --strict` — PASS
 - [x] T213 Update `implementation-summary.md`
 - [ ] T214 Commit (deferred to user — packet contract per task instructions)
 <!-- /ANCHOR:phase-3 -->

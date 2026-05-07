@@ -107,7 +107,7 @@ Read-only deep research with externalized state and synthesis-by-iteration.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Validation | Phase doc integrity and completion gates | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase> --strict` |
+| Validation | Phase doc integrity and completion gates | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase> --strict` |
 | Evidence verification | Line-accurate citations for external and internal files | `nl -ba`, `sed`, `rg`, CocoIndex |
 | Manual review | Recommendation quality, overlap control, phase-only write scope | Diff inspection and artifact review |
 <!-- /ANCHOR:testing -->
@@ -121,8 +121,8 @@ Read-only deep research with externalized state and synthesis-by-iteration.
 |------------|------|--------|-------------------|
 | `phase-research-prompt.md` | Internal | Green | Research framing becomes invalid |
 | `external/` Agent Lightning checkout | Internal | Green | No source material to study |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Cannot pass packet gate |
-| `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` | Internal | Green | Memory save cannot complete |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Cannot pass packet gate |
+| `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | Internal | Green | Memory save cannot complete |
 | CocoIndex semantic search | Internal | Green | Repo exploration becomes slower and less semantic |
 <!-- /ANCHOR:dependencies -->
 

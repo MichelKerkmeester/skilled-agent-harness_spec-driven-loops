@@ -24,7 +24,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js. Specific defects observed across 7 memory files in 026-graph-and-context-optimization/001-research-graph-context-systems/{001..005}/memory/: truncated overviews, generic decision placeholders, garbage trigger phrases, importance tier mismatches, missing causal supersedes links, duplicate trigger phrases, empty git provenance, anchor ID mismatches. Investigate JSON-mode pipeline (--json flag, file mode, --stdin mode) and downstream extractors/scorers/template populators. Identify which stage introduces each defect class. Propose backend fixes that prevent recurrence.
+- Topic: Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js. Specific defects observed across 7 memory files in 026-graph-and-context-optimization/001-research-graph-context-systems/{001..005}/memory/: truncated overviews, generic decision placeholders, garbage trigger phrases, importance tier mismatches, missing causal supersedes links, duplicate trigger phrases, empty git provenance, anchor ID mismatches. Investigate JSON-mode pipeline (--json flag, file mode, --stdin mode) and downstream extractors/scorers/template populators. Identify which stage introduces each defect class. Propose backend fixes that prevent recurrence.
 - Started: 2026-04-06T18:35:00.000Z
 - Status: INITIALIZED
 - Iteration: 10 of 10

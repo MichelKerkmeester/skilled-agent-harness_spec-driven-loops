@@ -116,7 +116,7 @@ Research established the execution order. Implementation summaries captured the 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Structural Validation | Parent and child packet docs meet strict Spec Kit rules | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --recursive --strict` |
+| Structural Validation | Parent and child packet docs meet strict Spec Kit rules | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --recursive --strict` |
 | Metadata Validation | Packet metadata remains valid after the Level 3 repair | `jq empty` on packet `description.json` files |
 | Consistency Review | Runtime claims remain unchanged in meaning | Direct compare against existing implementation summaries |
 | Cleanup Verification | Backup directories removed after successful repair | `find ... -name '.backup-*'` |

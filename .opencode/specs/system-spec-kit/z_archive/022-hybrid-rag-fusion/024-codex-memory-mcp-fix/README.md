@@ -50,7 +50,7 @@ This packet now documents the landed Codex-facing `spec_kit_memory` MCP remediat
 Run:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix \
   --no-recursive
 ```

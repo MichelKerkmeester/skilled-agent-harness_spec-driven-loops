@@ -80,12 +80,12 @@ Validate the two-bug remediation in `026/011/spec.md`. Surface bug-surface gaps,
 - `daemon.pid` content: 24938. Leaked PID 98364 untracked.
 
 ### Key file paths
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py` (start_daemon, _pid_alive, _cleanup_stale_files, stop_daemon)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (handle_connection, _dispatch, signal handlers)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py` (start_daemon, _pid_alive, _cleanup_stale_files, stop_daemon)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (handle_connection, _dispatch, signal handlers)
 - `/Users/michelkerkmeester/.cocoindex_code/daemon.log` (live runtime log, 23 MB)
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/test_daemon.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e.py`
 
 ---
 

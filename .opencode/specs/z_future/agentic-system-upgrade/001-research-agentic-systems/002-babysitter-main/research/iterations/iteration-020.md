@@ -14,11 +14,11 @@ I compared Babysitter's built-in compression layers and configuration surface wi
 ## Evidence
 - Babysitter positions compression as a built-in runtime subsystem with automatic plugin registration and four distinct layers: user prompt, command output, SDK context, and process-library cache. [SOURCE: external/README.md:395-425] [SOURCE: external/packages/sdk/src/compression/config.ts:7-82]
 - The density-filter implementation is a generalized sentence-level compressor with deduplication and configurable reduction targets. [SOURCE: external/packages/sdk/src/compression/density-filter.ts:45-89]
-- `system-spec-kit` already has explicit context-budget management rules in the orchestrator, including collection patterns, wave sizing, and file-based overflow handling, but those are workflow-orchestration policies rather than harness-level compression hooks. [SOURCE: .opencode/agent/orchestrate.md:621-724]
+- `system-spec-kit` already has explicit context-budget management rules in the orchestrator, including collection patterns, wave sizing, and file-based overflow handling, but those are workflow-orchestration policies rather than harness-level compression hooks. [SOURCE: .opencode/agents/orchestrate.md:621-724]
 - Phase 2's strongest signals from Babysitter are elsewhere: runtime-enforced gates, a cleaner memory split, a generic iteration engine, and workflow-owned validation.
 
 ## Analysis
-Compression is valuable, but the fit is wrong at the `system-spec-kit` layer. Babysitter can integrate it cleanly because Babysitter is the runtime and harness shell. `system-spec-kit` is a workflow and governance framework layered across multiple runtimes. Importing a four-layer compression subsystem directly into Spec Kit would blur that boundary and add another major surface to maintain. [SOURCE: external/README.md:395-425] [SOURCE: .opencode/agent/orchestrate.md:621-724]
+Compression is valuable, but the fit is wrong at the `system-spec-kit` layer. Babysitter can integrate it cleanly because Babysitter is the runtime and harness shell. `system-spec-kit` is a workflow and governance framework layered across multiple runtimes. Importing a four-layer compression subsystem directly into Spec Kit would blur that boundary and add another major surface to maintain. [SOURCE: external/README.md:395-425] [SOURCE: .opencode/agents/orchestrate.md:621-724]
 
 The more disciplined move is to keep compression as an optional harness/runtime concern and let `system-spec-kit` focus on deterministic workflow control. If later work shows a real Spec Kit-specific context bottleneck, the project can borrow measurements, thresholds, or APIs from Babysitter without importing the entire subsystem. [SOURCE: external/packages/sdk/src/compression/config.ts:7-82] [SOURCE: external/packages/sdk/src/compression/density-filter.ts:45-89]
 
@@ -29,7 +29,7 @@ finding: `system-spec-kit` should **not** adopt Babysitter's compression subsyst
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Manage context pressure through orchestration policy and output-shaping rules, not through a built-in multi-layer compression engine. [SOURCE: .opencode/agent/orchestrate.md:621-724]
+- **Current system-spec-kit approach:** Manage context pressure through orchestration policy and output-shaping rules, not through a built-in multi-layer compression engine. [SOURCE: .opencode/agents/orchestrate.md:621-724]
 - **External repo's approach:** Run a harness-integrated compression stack with per-layer configuration, toggles, and automatic activation. [SOURCE: external/README.md:395-425] [SOURCE: external/packages/sdk/src/compression/config.ts:7-82]
 - **Why the external approach might be better:** It can reduce token usage automatically and consistently across runtime surfaces.
 - **Why system-spec-kit's approach might still be correct:** Spec Kit is not the primary runtime shell, so importing harness-level compression would add maintenance and architectural coupling in the wrong layer.

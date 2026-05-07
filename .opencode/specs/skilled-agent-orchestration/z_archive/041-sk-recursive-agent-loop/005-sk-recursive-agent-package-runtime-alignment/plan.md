@@ -66,8 +66,8 @@ This phase corrects the gap between validator-clean output and exact template-fa
 Source package correction plus downstream runtime and mirror synchronization
 
 ### Key Components
-- **Source package**: `.opencode/skill/sk-improve-agent/`
-- **Runtime agents**: `.opencode/agent/agent-improver.md` plus runtime mirrors
+- **Source package**: `.opencode/skills/sk-improve-agent/`
+- **Runtime agents**: `.opencode/agents/agent-improver.md` plus runtime mirrors
 - **Command surfaces**: canonical command doc, YAML workflows, and TOML wrappers
 - **Mirror package**: `.agents/skills/sk-improve-agent/`
 - **Packet docs**: new phase `005` plus parent packet updates
@@ -83,8 +83,8 @@ The source package is corrected first, runtime agent and command surfaces are al
 
 ### Phase 1: Source Package Alignment
 
-- [x] Rewrite `.opencode/skill/sk-improve-agent/SKILL.md` to the `sk-doc` skill template shape
-- [x] Rewrite `.opencode/skill/sk-improve-agent/README.md` to the `sk-doc` README template shape
+- [x] Rewrite `.opencode/skills/sk-improve-agent/SKILL.md` to the `sk-doc` skill template shape
+- [x] Rewrite `.opencode/skills/sk-improve-agent/README.md` to the `sk-doc` README template shape
 - [x] Rewrite `references/*.md` and markdown `assets/*.md` to the matching template family
 
 ### Phase 2: Runtime and Command Alignment

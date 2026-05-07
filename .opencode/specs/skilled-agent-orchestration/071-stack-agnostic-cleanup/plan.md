@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Run inventory grep and patch matched skills"
     blockers: []
     key_files:
-      - ".opencode/skill/"
+      - ".opencode/skills/"
       - "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/"
     session_dedup:
       fingerprint: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
@@ -91,13 +91,13 @@ Inventory grep produces a match list. Patches replace matched strings with gener
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/cli-*` | Runtime CLI skill guidance | Patch matched docs/config | Grep before/after and frontmatter checks |
-| `.opencode/skill/mcp-*` | MCP orchestration guidance | Patch matched examples | Grep before/after and frontmatter checks |
-| `.opencode/skill/sk-doc` | Documentation guidance | Patch matched examples | Grep before/after |
-| `.opencode/skill/sk-git` | Git workflow guidance | Patch matched examples | Grep before/after |
-| `.opencode/skill/sk-code-review` | Review baseline plus surface evidence | Replace concrete surface tags with `<surface>` placeholders | Grep before/after |
-| `.opencode/skill/system-spec-kit` | Spec and skill routing framework | Generalize examples/signals | Skill graph compile and validate-only |
-| `.opencode/skill/sk-code` | Surface-aware code standards | Unchanged | `git diff --name-only -- .opencode/skill/sk-code` |
+| `.opencode/skills/cli-*` | Runtime CLI skill guidance | Patch matched docs/config | Grep before/after and frontmatter checks |
+| `.opencode/skills/mcp-*` | MCP orchestration guidance | Patch matched examples | Grep before/after and frontmatter checks |
+| `.opencode/skills/sk-doc` | Documentation guidance | Patch matched examples | Grep before/after |
+| `.opencode/skills/sk-git` | Git workflow guidance | Patch matched examples | Grep before/after |
+| `.opencode/skills/sk-code-review` | Review baseline plus surface evidence | Replace concrete surface tags with `<surface>` placeholders | Grep before/after |
+| `.opencode/skills/system-spec-kit` | Spec and skill routing framework | Generalize examples/signals | Skill graph compile and validate-only |
+| `.opencode/skills/sk-code` | Surface-aware code standards | Unchanged | `git diff --name-only -- .opencode/skills/sk-code` |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

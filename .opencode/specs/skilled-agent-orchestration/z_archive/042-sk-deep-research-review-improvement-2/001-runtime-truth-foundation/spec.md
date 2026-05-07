@@ -104,42 +104,42 @@ Define an implementation-ready plan that upgrades deep research and deep review 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
-| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modify | Keep operator-facing guidance aligned with the new defaults and opt-in modes. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add coverage/depth, domain clustering, promotion checkpoints, semantic convergence, and council/coordination planning sections. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling convergence, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
+| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Modify | Keep operator-facing review guidance aligned with the new defaults and optional modes. |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
 
 #### Commands and Workflow Assets
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-| `.opencode/command/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, decomposition workflow steps, and resume-from-run handling. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
 
 #### Agents and Runtime Mirrors
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agent/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
-| `.opencode/agent/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
+| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
+| `.opencode/agents/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
 | `.claude/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
 | `.gemini/agents/deep-research.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
 | `.codex/agents/deep-research.toml` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
@@ -152,13 +152,13 @@ Define an implementation-ready plan that upgrades deep research and deep review 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, active-resume, restart, and compaction-equivalence fixtures; `fork` and `completed-continue` stay deferred until lineage writes exist. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Keep docs, assets, reducers, and mirrors aligned on the new runtime artifacts and modes. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, active-resume, restart, and compaction-equivalence fixtures; `fork` and `completed-continue` stay deferred until lineage writes exist. |
 
 <!-- /ANCHOR:scope -->
 ---

@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Trim arc complete (083 + 086 + 090 + 091); no follow-on packet recommended"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/command/improve/agent.md"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/commands/improve/agent.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-091"
@@ -54,14 +54,14 @@ Final cleanup of the description-budget trim arc. Trimmed the 8 remaining `OVER-
 
 | File | Before | After | Saved |
 |------|------:|------:|------:|
-| `.opencode/skill/sk-prompt/SKILL.md` | 132 | 101 | 31 |
-| `.opencode/command/create/changelog.md` | 114 | 97 | 17 |
-| `.opencode/command/create/sk-skill.md` | 112 | 96 | 16 |
-| `.opencode/command/doctor/code-graph.md` | 119 | 102 | 17 |
-| `.opencode/command/improve/agent.md` | 122 | 100 | 22 |
-| `.opencode/command/improve/prompt.md` | 112 | 97 | 15 |
-| `.opencode/command/memory/manage.md` | 116 | 97 | 19 |
-| `.opencode/command/memory/search.md` | 112 | 94 | 18 |
+| `.opencode/skills/sk-prompt/SKILL.md` | 132 | 101 | 31 |
+| `.opencode/commands/create/changelog.md` | 114 | 97 | 17 |
+| `.opencode/commands/create/sk-skill.md` | 112 | 96 | 16 |
+| `.opencode/commands/doctor/code-graph.md` | 119 | 102 | 17 |
+| `.opencode/commands/improve/agent.md` | 122 | 100 | 22 |
+| `.opencode/commands/improve/prompt.md` | 112 | 97 | 15 |
+| `.opencode/commands/memory/manage.md` | 116 | 97 | 19 |
+| `.opencode/commands/memory/search.md` | 112 | 94 | 18 |
 
 Total saved: **155 chars**.
 
@@ -145,6 +145,6 @@ The signal-to-action loop is proven end-to-end: audit detects → packet acts �
 1. **Trim arc is now complete; no further packet recommended.** All items under soft target with comfortable headroom. The next time `/doctor:skill-budget` reports drift will be when new skills/commands/agents accumulate descriptions over time — at which point a future packet would re-run the same pattern.
 2. **Doc-side and code-side constants still drift-prone.** Tier 1 of packet 086 declared `130/110/1,536/5,600` in markdown; Tier 2 declared them in `quick_validate.py`. If a future tuning packet changes one, the other can drift. Same risk noted in 086 limitations; no enforcement test added.
 3. **Agent runtime mirror sync still relies on script discipline.** Packet 090 enforced uniformity at write time but nothing prevents a manual edit to one mirror without the others. A cross-runtime drift checker remains a candidate follow-on.
-4. **The advisor's lexical-lane scoring uses these descriptions** — if a future trim removes a `TOKEN_BOOSTS` or `PHRASE_BOOSTS` anchor (defined in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`), routing could silently degrade. This packet's trims preserved skill/command name tokens but did not cross-check against the boost-tables explicitly. Risk noted in 086 plan as a `--check-boost-anchors` future flag.
+4. **The advisor's lexical-lane scoring uses these descriptions** — if a future trim removes a `TOKEN_BOOSTS` or `PHRASE_BOOSTS` anchor (defined in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`), routing could silently degrade. This packet's trims preserved skill/command name tokens but did not cross-check against the boost-tables explicitly. Risk noted in 086 plan as a `--check-boost-anchors` future flag.
 
 <!-- /ANCHOR:limitations -->

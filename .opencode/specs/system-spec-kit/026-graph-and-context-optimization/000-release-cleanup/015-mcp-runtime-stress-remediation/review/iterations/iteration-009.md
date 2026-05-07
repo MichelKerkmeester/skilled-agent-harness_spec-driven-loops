@@ -5,10 +5,10 @@ Naming, dead-code disposal, error-message clarity, mock-noise after 026 removed 
 
 ## Sources Read
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/deep-review-strategy.md:37`
-- `.opencode/skill/system-spec-kit/mcp_server/core/README.md:40`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:1`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:33`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:75`
+- `.opencode/skills/system-spec-kit/mcp_server/core/README.md:40`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:1`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:33`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:75`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md:143`
 
 ## Findings

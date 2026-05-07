@@ -59,7 +59,7 @@ Template compliance scaffold for 001-barter-figma-agent/implementation-summary.m
 <!-- ANCHOR:verification -->
 ## VERIFICATION
 
-Verification artifact: commit 690b498; Opus Hook B 9/9 PASS; command: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict
+Verification artifact: commit 690b498; Opus Hook B 9/9 PASS; command: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
@@ -150,7 +150,7 @@ Template compliance scaffold for 001-barter-figma-agent/implementation-summary.m
 **Actual:** ClickUp's `node_modules/` is NOT git-tracked (Barter root `.gitignore` excludes `node_modules/` globally). What ClickUp commits is `package.json` + `package-lock.json` + install scripts. Each user runs `npm install` after cloning.
 **Implication:** "Mirror ClickUp" actually means the LIGHTER pattern (option (b) from the original D5 analysis). Phase 1 implementation matches reality — ADR-005 status updated to **Accepted (revised)** in `decision-record.md`. No rework needed.
 
-### Codex `.opencode/skill/.advisor-state/` scratch folder
+### Codex `.opencode/skills/.advisor-state/` scratch folder
 cli-codex created this folder under the Figma directory during execution. Removed before commit. Future runs may need a `.codexignore` or pre-clean step.
 
 ---

@@ -29,7 +29,7 @@ $ rg -l '@improve-prompt|improve-prompt' .opencode .claude .codex .gemini *.md *
 
 ### 2. Scenario file count
 ```
-$ find .opencode/skill/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
+$ find .opencode/skills/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
 28
 ```
 
@@ -84,30 +84,30 @@ $ grep -l '@prompt-improver' [all 7 category dirs]/*.md | wc -l
 
 ### 9. validate_document.py
 ```
-$ python3 .opencode/skill/sk-doc/scripts/validate_document.py manual_testing_playbook.md
+$ python3 .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook.md
 VALID: Document type: readme, Total issues: 0
 ```
 
 ### 10. Strict validate on packet 085
 ```
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict
 RESULT: PASSED — Errors: 0, Warnings: 0
 ```
 
 ### 11. Advisor probe
 ```
-$ python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+$ python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 sk-prompt @ 0.9262 confidence — resolves correctly.
 ```
 
 ### 12. SKILL.md has exactly 1 RELATED PLAYBOOK link
 ```
-.opencode/skill/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
+.opencode/skills/sk-prompt/SKILL.md:453:## RELATED PLAYBOOK
 ```
 
 ### 13. Renamed agent paths all exist
 ```
-.opencode/agent/prompt-improver.md
+.opencode/agents/prompt-improver.md
 .claude/agents/prompt-improver.md
 .codex/agents/prompt-improver.toml
 .gemini/agents/prompt-improver.md

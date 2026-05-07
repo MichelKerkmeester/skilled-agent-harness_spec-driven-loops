@@ -13,7 +13,7 @@ LEAF agent (cli-codex, gpt-5.5 high fast). DO NOT dispatch sub-agents. Target 3-
 2. **Issue Evidence Requirements** — table mirroring @review §10 (severity → required evidence). Coder-side: P0 needs file:line + verification-fail snippet + escalation, P1 needs file:line + reasoning, P2 needs file:line + suggestion.
 3. **Self-Validation Protocol** — 6 questions (all YES) before returning DONE. Mirror @review §10 self-validation 6Qs.
 4. **Confidence Levels** — HIGH/MEDIUM/LOW table for coder evidence completeness.
-5. **The Iron Law (coder version)** — adapt @review §10 Iron Law line 358 ("NEVER CLAIM COMPLETION WITHOUT VERIFICATION EVIDENCE") for coder context. Cite `.opencode/skill/sk-code/SKILL.md:62` ("NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK") as canonical.
+5. **The Iron Law (coder version)** — adapt @review §10 Iron Law line 358 ("NEVER CLAIM COMPLETION WITHOUT VERIFICATION EVIDENCE") for coder context. Cite `.opencode/skills/sk-code/SKILL.md:62` ("NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK") as canonical.
 
 **Last 3 Iterations Summary:**
 - run 1: Q1 Quality Rubric (0.74, insight)
@@ -38,9 +38,9 @@ LEAF agent (cli-codex, gpt-5.5 high fast). DO NOT dispatch sub-agents. Target 3-
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:315-393` (full Output Verification + Iron Law + Adversarial Self-Check). Note: §10 contains both the Iron Law (Q4) AND the Adversarial Self-Check (Q5 next iter). For THIS iteration, focus only on Pre-Report Verification through Iron Law (lines 315-362) — leave Adversarial Self-Check (lines 364+) for iter-5.
-2. Read `.opencode/skill/sk-code/SKILL.md:60-65` (Iron Law line 62) and search "fresh verification evidence" / "verification command" / "verification_commands" for stack-aware patterns.
-3. Read `.opencode/agent/write.md:295-330` (sk-doc Iron Law adaptation — useful precedent for write-capable LEAF).
+1. Read `.opencode/agents/review.md:315-393` (full Output Verification + Iron Law + Adversarial Self-Check). Note: §10 contains both the Iron Law (Q4) AND the Adversarial Self-Check (Q5 next iter). For THIS iteration, focus only on Pre-Report Verification through Iron Law (lines 315-362) — leave Adversarial Self-Check (lines 364+) for iter-5.
+2. Read `.opencode/skills/sk-code/SKILL.md:60-65` (Iron Law line 62) and search "fresh verification evidence" / "verification command" / "verification_commands" for stack-aware patterns.
+3. Read `.opencode/agents/write.md:295-330` (sk-doc Iron Law adaptation — useful precedent for write-capable LEAF).
 4. Synthesize the coder-side §10 OUTPUT VERIFICATION block.
 
 ## OUTPUT CONTRACT

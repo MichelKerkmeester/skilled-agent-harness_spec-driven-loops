@@ -76,7 +76,7 @@ For each of the 31 sub-questions, codex should probe these concrete locations du
 
 ### Track A
 - **A1**: Node docs `fs.watch`, `chokidar` npm docs, `fsevents` behavior on macOS (search via web tool), atomic-rename editor behaviors (Vim docs, VS Code workspace settings). Existing repo: any `fs.watch` or `chokidar` usage in `mcp_server/lib/**` (grep).
-- **A2**: `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py` (what it currently reads); grep `generate-context.js` invocations across repo; inventory of frontmatter fields in SKILL.md templates.
+- **A2**: `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py` (what it currently reads); grep `generate-context.js` invocations across repo; inventory of frontmatter fields in SKILL.md templates.
 - **A3**: `skill_graph_compiler.py` — does it support per-skill selective recompile? `skill-graph.sqlite` schema inspection.
 - **A4**: `mcp_server/lib/code-graph/freshness.ts` (Phase 020 generation-tag model — reference pattern); SQLite transaction documentation; atomic write strategies used elsewhere in repo.
 - **A5**: macOS `launchctl` + user agent patterns; `mcp_server/` current startup model; how memory MCP currently boots.
@@ -85,7 +85,7 @@ For each of the 31 sub-questions, codex should probe these concrete locations du
 - **A8**: SQLite WAL mode docs; editor atomic-write patterns and how they interact with fs watchers; memory MCP's failure-recovery path (if any).
 
 ### Track B
-- **B1**: `.opencode/skill/skill-advisor/scripts/skill_advisor_runtime.py` — current keyword match function. SKILL.md frontmatter schema. `sk-doc` extraction patterns for headings.
+- **B1**: `.opencode/skills/skill-advisor/scripts/skill_advisor_runtime.py` — current keyword match function. SKILL.md frontmatter schema. `sk-doc` extraction patterns for headings.
 - **B2**: Python `sklearn.feature_extraction.text.TfidfVectorizer` docs; embedding model options available in-repo (check `mcp_server/lib/memory/embeddings*`); cost comparison.
 - **B3**: Current write locations for trigger_phrases (frontmatter-only); alternative: sidecar `advisor-index.json` per skill; hybrid explicit + derived.
 - **B4**: Precision/recall framework; confidence calibration literature. 019/004 corpus as validation.
@@ -108,12 +108,12 @@ For each of the 31 sub-questions, codex should probe these concrete locations du
 - **C8**: Current baseline 56% (from 024 `scripts/observability/smart-router-measurement.ts` output). Realistic improvement targets: hybrid search literature typical gains.
 
 ### Track D
-- **D1**: `ls -R .opencode/skill/skill-advisor/` vs `ls -R .opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/`. Inventory what's where. SQLite DB location. Test files.
+- **D1**: `ls -R .opencode/skills/skill-advisor/` vs `ls -R .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/`. Inventory what's where. SQLite DB location. Test files.
 - **D2**: Memory MCP layout as architectural analog: `mcp_server/lib/memory/` structure. Proposed target.
 - **D3**: `mcp_server/tools/*.ts` (existing MCP tool definitions). Tool schema conventions. Proposed `advisor_*` tool signatures with Zod schemas.
 - **D4**: Pure-TS implementation feasibility — can `skill_advisor_runtime.py` scoring logic be ported? PyOdide bridge vs rewrite. Lines of code.
 - **D5**: `mcp_server/lib/memory/cache.ts` or equivalent; `mcp_server/lib/skill-advisor/prompt-cache.ts` (post-025). Merge feasibility.
-- **D6**: Install guide at `.opencode/skill/system-spec-kit/install_guide/`; current MCP declarations in `opencode.json`; advisor install/uninstall flow.
+- **D6**: Install guide at `.opencode/skills/system-spec-kit/install_guide/`; current MCP declarations in `opencode.json`; advisor install/uninstall flow.
 - **D7**: All call sites of `skill_advisor.py` — grep across repo. CLAUDE.md Gate 2 fallback. `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`. Manual-testing playbook scenarios.
 - **D8**: Plugin/bridge current proxy logic. Post-consolidation options: pass-through to MCP tool, deprecation notice, or removal.
 

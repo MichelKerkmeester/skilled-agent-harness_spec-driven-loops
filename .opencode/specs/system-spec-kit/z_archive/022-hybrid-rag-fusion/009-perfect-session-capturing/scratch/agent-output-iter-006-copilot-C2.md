@@ -2,7 +2,7 @@
   └ Permission denied and could not request permission from user
 
 ✗ Run skill advisor and create session plan stub (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Assess Memory Handback protocol success rate
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Assess Memory Handback protocol success rate
   │ across CLIs and where handback JSON fails minimum payload guidance" --threshold 0.8 && mkdir
   │ -p '/Users/michelkerkmeester/.copilot/session-state/71166979-a8e8-4d2a-9375-205a1a817559' &&
   │ if [ ! -f
@@ -14,11 +14,11 @@
 Got it — I’ll map the minimum payload contract from loader/normalizer + Phase 015 docs, then compare each CLI flow and call out concrete validation gaps with file/line evidence.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ 1 line read
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ 1 line read
 
 ● Search (glob)
@@ -47,20 +47,20 @@ Got it — I’ll map the minimum payload contract from loader/normalizer + Phas
 
 ● Search (grep)
   │ "handback|minimum|payload|schema|required|normalize|outsourced|agent"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 39 lines found
 
 ● Search (grep)
   │ "handback|minimum|payload|schema|required|normalize|outsourced|agent"
-  │ (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 12 lines found
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L386:700 (315 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L460:640 (125 lines read)
 
 ● Search (grep)
@@ -69,39 +69,39 @@ Got it — I’ll map the minimum payload contract from loader/normalizer + Phas
   └ No matches found
 
 ● Search (glob)
-  │ "**/*" in .opencode/skill/cli-copilot
+  │ "**/*" in .opencode/skills/cli-copilot
   └ 7 files found
 
 ● Search (glob)
-  │ "**/*" in .opencode/skill/cli-codex
+  │ "**/*" in .opencode/skills/cli-codex
   └ 7 files found
 
 ● Search (glob)
-  │ "**/*" in .opencode/skill/cli-gemini
+  │ "**/*" in .opencode/skills/cli-gemini
   └ 7 files found
 
 ● Search (glob)
-  │ "**/*" in .opencode/skill/cli-claude-code
+  │ "**/*" in .opencode/skills/cli-claude-code
   └ 7 files found
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|MEMORY_HANDBACK|save-context-data.json|next
-  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skill/cli-copilot)
+  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skills/cli-copilot)
   └ 15 lines found
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|MEMORY_HANDBACK|save-context-data.json|next
-  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skill/cli-claude-code)
+  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skills/cli-claude-code)
   └ 15 lines found
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|MEMORY_HANDBACK|save-context-data.json|next
-  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skill/cli-gemini)
+  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skills/cli-gemini)
   └ 15 lines found
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|MEMORY_HANDBACK|save-context-data.json|next
-  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skill/cli-codex)
+  │ _steps|trigger_phrases|files_modified|session_summary" (.opencode/skills/cli-codex)
   └ 15 lines found
 
 I’ve confirmed the CLI docs are largely aligned; next I’m pulling runtime sufficiency/contamination gate logic and test coverage to quantify where “minimum payload” actually breaks.
@@ -111,76 +111,76 @@ I’ve confirmed the CLI docs are largely aligned; next I’m pulling runtime su
 
 ● Search (grep)
   │ "handback|EXPLICIT_DATA_FILE_LOAD_FAILED|next_steps|nextSteps|INSUFFICIENT_CONTEXT_ABORT|CONTAMI
-  │ NATION_GATE_ABORT" (.opencode/skill/system-spec-kit/scripts/tests)
+  │ NATION_GATE_ABORT" (.opencode/skills/system-spec-kit/scripts/tests)
   └ 66 lines found
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|evaluateMemorySufficienc
-  │ y|_source === 'file'|_source !== 'file'" (.opencode/skill/system-spec-kit/scripts)
+  │ y|_source === 'file'|_source !== 'file'" (.opencode/skills/system-spec-kit/scripts)
   └ 42 lines found
 
 ● Read outsourced-agent-handback-docs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
   └ 76 lines read
 
 ● Read memory-sufficiency.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
   └ 170 lines read
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L60:170 (111 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2100:2260 (161 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1220:1265 (46 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1:220 (220 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L220:385 (166 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L700:860 (161 lines read)
 
 ● Search (grep)
   │ "interface RawInputData|type RawInputData|interface FileEntry|type
   │ FileEntry|buildNextStepsObservation|hasPersistedNextStepsObservation|transformKeyDecision"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 10 lines found
 
 ● Read SKILL.md
-  │ .opencode/skill/cli-copilot/SKILL.md
+  │ .opencode/skills/cli-copilot/SKILL.md
   └ L294:334 (41 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/cli-codex/SKILL.md
+  │ .opencode/skills/cli-codex/SKILL.md
   └ L450:490 (41 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/cli-gemini/SKILL.md
+  │ .opencode/skills/cli-gemini/SKILL.md
   └ L396:436 (41 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/cli-claude-code/SKILL.md
+  │ .opencode/skills/cli-claude-code/SKILL.md
   └ L450:490 (41 lines read)
 
 ● Read 17-outsourced-agent-memory-capture.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-ag
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-ag
   │ ent-memory-capture.md
   └ 66 lines read
 
 ✗ Run targeted handback vitest checks (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/scripts' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/scripts' && npx vitest run
   │ tests/outsourced-agent-handback-docs.vitest.ts tests/runtime-memory-inputs.vitest.ts
   │ --reporter=verbose
   └ Permission denied and could not request permission from user
@@ -198,23 +198,23 @@ I’ve confirmed the CLI docs are largely aligned; next I’m pulling runtime su
 ● Search (grep)
   │ "function
   │ evaluateMemorySufficiency|INSUFFICIENT_CONTEXT_ABORT|PRIMARY_EVIDENCE|evidenceCounts|minimum" in
-  │ **/*memory-sufficiency*.ts (.opencode/skill/system-spec-kit)
+  │ **/*memory-sufficiency*.ts (.opencode/skills/system-spec-kit)
   └ 12 lines found
 
 ● Read memory-sufficiency.ts
-  │ .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts
+  │ .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts
   └ L280:430 (117 lines read)
 
 ● Search (grep)
   │ "missing required FILE_PATH or path field|FILES\[\$\{i\}\] missing required FILE_PATH or path
   │ field|description pending|Modified during session|File modified"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "filesModified\?: string\[]|files_modified\?: string\[]|Array<string \| \{ path\?: string;
   │ changes_summary\?: string \}>"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 2 lines found
 
 ● Search (grep)
@@ -224,78 +224,78 @@ I’ve confirmed the CLI docs are largely aligned; next I’m pulling runtime su
   └ 39 lines found
 
 ● Read prompt_templates.md
-  │ .opencode/skill/cli-codex/assets/prompt_templates.md
+  │ .opencode/skills/cli-codex/assets/prompt_templates.md
   └ L540:610 (70 lines read)
 
 ● Read prompt_templates.md
-  │ .opencode/skill/cli-gemini/assets/prompt_templates.md
+  │ .opencode/skills/cli-gemini/assets/prompt_templates.md
   └ L370:440 (69 lines read)
 
 ● Read prompt_templates.md
-  │ .opencode/skill/cli-copilot/assets/prompt_templates.md
+  │ .opencode/skills/cli-copilot/assets/prompt_templates.md
   └ L350:420 (71 lines read)
 
 ● Read prompt_templates.md
-  │ .opencode/skill/cli-claude-code/assets/prompt_templates.md
+  │ .opencode/skills/cli-claude-code/assets/prompt_templates.md
   └ L464:534 (69 lines read)
 
 ● Search (grep)
   │ "extractNextAction|Next:|Follow-up:|NEXT_ACTION"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts)
   └ 3 lines found
 
 ● Read session-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
   └ L250:320 (71 lines read)
 
 ● Search (grep)
   │ "rejects thin explicit JSON saves with
   │ INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT"
-  │ (.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts)
   └ 3 lines found
 
 ● Search (grep)
   │ "EXPLICIT_DATA_FILE_LOAD_FAILED|Invalid JSON in data file|Data file not found|Permission denied"
-  │ (.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "CONTAMINATION_GATE_ABORT|INSUFFICIENT_CONTEXT_ABORT|_source === 'file'|QUALITY_GATE_ABORT"
-  │ (.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts)
   └ 4 lines found
 
 ● Read workflow-e2e.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
   └ L500:760 (261 lines read)
 
 ● Read task-enrichment.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
   └ L1170:1265 (96 lines read)
 
 ● Search (grep)
   │ "function determineValidationDisposition|determineValidationDisposition\(|QUALITY_GATE_ABORT" in
-  │ **/*.ts (.opencode/skill/system-spec-kit/scripts)
+  │ **/*.ts (.opencode/skills/system-spec-kit/scripts)
   └ 11 lines found
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L720:790 (71 lines read)
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L650:725 (75 lines read)
 
 ● Search (grep)
   │ "files_modified|filesModified|FILES\s*:\s*\["
-  │ (.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts)
   └ 2 lines found
 
 ● Read validation-rule-metadata.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
   └ 73 lines read
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L396:485 (90 lines read)
 
 1) **Minimum handback JSON (runtime)**: needs `specFolder/spec_folder/SPEC_FOLDER` (or CLI arg) plus structured context; accepted fields include `sessionSummary/session_summary`, `observations`, `recentContext/recent_context`, `filesModified/files_modified`, `FILES` (`FILE_PATH|path` required), `keyDecisions`, `nextSteps/next_steps`, `triggerPhrases` (`input-normalizer.ts:72-95,551-639`).

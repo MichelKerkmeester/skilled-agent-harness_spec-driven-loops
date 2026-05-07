@@ -57,10 +57,10 @@ Where iterations disagreed, the later evidence wins only when it explained a nar
 **Answer:** The command-owned Call B is:
 
 ```text
-/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
+/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
 ```
 
-It must run from a command-capable temp project root containing `.opencode/command/improve`, `.opencode/skill/sk-improve-agent`, the fixture target under `.opencode/agent/`, mirrors, and any benchmark/profile assets. YAML-step-by-step prompts are internal evidence only, not the external Call B. A bare fixture cwd and repo-root plus `--add-dir` are both under-specified for the command's relative path assumptions.
+It must run from a command-capable temp project root containing `.opencode/commands/improve`, `.opencode/skills/sk-improve-agent`, the fixture target under `.opencode/agents/`, mirrors, and any benchmark/profile assets. YAML-step-by-step prompts are internal evidence only, not the external Call B. A bare fixture cwd and repo-root plus `--add-dir` are both under-specified for the command's relative path assumptions.
 **Evidence:** Iteration 1 rejected YAML-step-by-step as external Call B and sketched the command form [iteration-001.md:42-54; iteration-001.md:118-136]. Iteration 3 refined the cwd requirement and command-capable sandbox shape [iteration-003.md:22-34; iteration-003.md:97-117]. Iteration 7 narrowed the command-flow lane to CP-040/043/044/045, with CP-041/042 allowed as body-layer tests if inputs exist [iteration-007.md:26-38].
 **Recommended action:** 061 should create a command-capable temp root, invoke the command form above for command-owned CPs, and reserve direct `@improve-agent` leaf dispatch only for CP-041/042-style body-owned checks with the full five-input bundle.
 
@@ -108,11 +108,11 @@ It must run from a command-capable temp project root containing `.opencode/comma
 
 - **Packet name suggestion:** `004-improve-agent-command-flow-stress-tests` for the follow-on named in 002. If the packet is methodology-only, use a subtitle such as "spec-local RED/PARTIAL command-flow proof" to avoid implying product GREEN [002/test-report.md:373-383; iteration-009.md:28-35].
 - **Spec scope:** In scope: command-capable temp root, `/improve:agent` Call B, artifact-root checks, layer-specific CP lanes, RED/PARTIAL classification for known executable seams, and handoff to 062. Out of scope unless explicitly expanded: benchmark materializer, YAML auto/confirm parity patches, stop enum reconciliation, native RT repair, and GREEN rerun [iteration-006.md:72-78; iteration-009.md:134-148].
-- **Call B dispatch shape:** `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, run from a temp project root containing command files, skill scripts, target agent, mirrors, fixture data, and allowed external spec/log paths [iteration-003.md:22-34; iteration-003.md:97-117].
+- **Call B dispatch shape:** `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, run from a temp project root containing command files, skill scripts, target agent, mirrors, fixture data, and allowed external spec/log paths [iteration-003.md:22-34; iteration-003.md:97-117].
 - **CP IDs:** Reuse CP-040..CP-045 for active playbook corrections. Use CP-046..CP-051 only for a spec-local experimental suite or if CP-040..CP-045 are explicitly archived/deprecated from the active root index [iteration-007.md:47-65; iteration-007.md:100-115; iteration-009.md:22-35].
 - **Verdict grep contract:** Require command entry, `improvement/` roots, `integration-report.json`, `dynamic-profile.json`, candidate path under `improvement/candidates`, `candidate_generated`, `score-candidate.cjs`, `candidate_scored`, score JSON with `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, `legal_stop_evaluated`, `blocked_stop`, reducer output, and for GREEN only `details.gateResults.*`, benchmark report `status:"benchmark-complete"`, `benchmark_run` state row, and ordered `session_end` [iteration-001.md:56-87; iteration-003.md:36-53; iteration-004.md:33-42; iteration-008.md:94-107].
 - **RED/GREEN methodology:** 061 may PASS as a methodology packet if it proves the corrected harness reaches the owning layer and classifies failures against known producer/consumer gaps. It must not count expected RED as product GREEN. GREEN product proof belongs after 062 wiring [iteration-004.md:22-31; iteration-006.md:46-62; iteration-008.md:147-154].
-- **Pre-flight requirements:** Build a command-capable sandbox root; materialize the fixture target under `.opencode/agent/`; keep spec artifacts under `/tmp/cp-061-spec/improvement`; include Layer-Owned Evidence Matrix and Evaluator Asset Preflight; define expected GREEN/RED/PARTIAL before execution [iteration-003.md:61-72; iteration-005.md:96-113; iteration-006.md:100-115].
+- **Pre-flight requirements:** Build a command-capable sandbox root; materialize the fixture target under `.opencode/agents/`; keep spec artifacts under `/tmp/cp-061-spec/improvement`; include Layer-Owned Evidence Matrix and Evaluator Asset Preflight; define expected GREEN/RED/PARTIAL before execution [iteration-003.md:61-72; iteration-005.md:96-113; iteration-006.md:100-115].
 - **Score-progression target:** For active release scenarios, do not install expected-RED contracts that make the release surface fail unless the packet explicitly accepts release-not-ready. The progression target is 061 methodology PASS with RED/PARTIAL product findings, then 062 GREEN product PASS, with optional 063 rerun if 062 is too large [iteration-008.md:147-154; iteration-009.md:45-57; iteration-010.md:44-48].
 
 ## 5. PACKET 062 SKETCH (If Applicable)
@@ -120,7 +120,7 @@ It must run from a command-capable temp project root containing `.opencode/comma
 062 is applicable. The iterations consistently found executable gaps that a command-faithful 061 will expose but cannot honestly turn GREEN without code/doc/test changes.
 
 - **Scope:** Patch both auto and confirm YAML unless one mode is explicitly deferred. Replace benchmark `action` prose with a concrete command/helper call; emit `benchmark_completed` only after the report exists; emit `legal_stop_evaluated.details.gateResults.*`; preserve confirm `gateDecision` as supplemental detail, not a schema fork [iteration-008.md:22-38; iteration-008.md:123-145].
-- **Benchmark assets/materialization:** **DECIDED — use static skill assets** under `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` (versioned with the skill, reused across runs). Provide benchmark profile JSON with real `benchmark.fixtureDir`, fixture JSON files, and a materializer that writes `{outputsDir}/{fixture.id}.md` before `run-benchmark.cjs` runs [iteration-005.md:22-38; iteration-005.md:129-157; iteration-008.md:40-57].
+- **Benchmark assets/materialization:** **DECIDED — use static skill assets** under `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` (versioned with the skill, reused across runs). Provide benchmark profile JSON with real `benchmark.fixtureDir`, fixture JSON files, and a materializer that writes `{outputsDir}/{fixture.id}.md` before `run-benchmark.cjs` runs [iteration-005.md:22-38; iteration-005.md:129-157; iteration-008.md:40-57].
 - **Journal/reducer contract:** Standardize GREEN proof on nested `details.gateResults` and reducer-visible `latestLegalStop.gateResults`; optionally keep flat-field reducer tolerance only for migration compatibility [iteration-005.md:58-76; iteration-008.md:94-107].
 - **Stop vocabulary:** Resolve the SKILL/helper/test conflict around `plateau` and `benchmarkPlateau`. Either remove them from helper/tests to match the narrow SKILL enum, or document them as compatibility stop reasons and update docs/verdict greps [iteration-008.md:59-75].
 - **Native oracle repair:** Reconcile RT-028/RT-032 command names, target agent, event vocabulary, and expected signal lists before using them as hard GREEN gates [iteration-008.md:77-92; iteration-009.md:37-43].
@@ -131,16 +131,16 @@ It must run from a command-capable temp project root containing `.opencode/comma
 
 | Agent | Body-level | Command-level | Hybrid | Recommendation |
 |---|---|---|---|---|
-| @code | yes | — | caller gate | Already proven by 059; body-prepend testing is valid because implementation discipline and rubric live in the body. Cite body evidence before asserting caller-gated behavior [`.opencode/agent/code.md:22-58`, `.opencode/agent/code.md:128-157`; iteration-004.md:52-59]. |
-| @improve-agent | — | yes | command-loop leaf | Use command-flow testing for helper/scoring/benchmark/journal/stop evidence; direct body tests only for proposal-only candidate generation and Critic self-validation [`.opencode/agent/improve-agent.md:22-42`, `.opencode/agent/improve-agent.md:160-180`; iteration-007.md:22-38]. |
-| @write | yes | — | — | Body-level stress packet is sufficient if needed. Test template loading, skeleton copying, validation, DQI, and delivery gates through the body, not invented command artifacts [`.opencode/agent/write.md:22-65`; iteration-004.md:57]. |
-| @prompt-improver | yes | — | — | Body-level prompt-package tests are appropriate. No command-orchestrator packet indicated by the iterations [`.opencode/agent/prompt-improver.md:22-40`, `.opencode/agent/prompt-improver.md:86-101`; iteration-004.md:57]. |
-| @debug | yes | — | — | Body-level debugging workflow tests are appropriate. Do not classify as command-orchestrator merely because another workflow may dispatch it [`.opencode/agent/debug.md:22-30`, `.opencode/agent/debug.md:105-180`; iteration-004.md:57; iteration-004.md:96-100]. |
-| @deep-research | partial leaf | yes | command-loop leaf | Needs command-owned loop tests for lifecycle/convergence/state; direct body tests only prove one iteration [`.opencode/agent/deep-research.md:24-34`; iteration-004.md:50-55]. |
-| @deep-review | partial leaf | yes | command-loop leaf | Same as deep-research: command-owned loop testing for lifecycle/convergence/reducer state, leaf-body testing only for one review iteration [`.opencode/agent/deep-review.md:23-33`; iteration-004.md:50-55]. |
-| @context | yes | — | — | Body-level retrieval-package tests are appropriate; the body owns canonical continuity retrieval and forbids nested delegation/writes [`.opencode/agent/context.md:25-55`; iteration-004.md:57]. |
-| @orchestrate | yes | — | primary orchestrator body | Needs orchestration/delegation/synthesis tests, not leaf-agent Call B or command-loop tests [`.opencode/agent/orchestrate.md:18-35`, `.opencode/agent/orchestrate.md:87-113`; iteration-004.md:53-59]. |
-| @review | yes | — | — | Body-level read-only review/rubric tests are appropriate. No command-layer stress packet indicated [`.opencode/agent/review.md:22-57`, `.opencode/agent/review.md:114-141`; iteration-004.md:57]. |
+| @code | yes | — | caller gate | Already proven by 059; body-prepend testing is valid because implementation discipline and rubric live in the body. Cite body evidence before asserting caller-gated behavior [`.opencode/agents/code.md:22-58`, `.opencode/agents/code.md:128-157`; iteration-004.md:52-59]. |
+| @improve-agent | — | yes | command-loop leaf | Use command-flow testing for helper/scoring/benchmark/journal/stop evidence; direct body tests only for proposal-only candidate generation and Critic self-validation [`.opencode/agents/improve-agent.md:22-42`, `.opencode/agents/improve-agent.md:160-180`; iteration-007.md:22-38]. |
+| @write | yes | — | — | Body-level stress packet is sufficient if needed. Test template loading, skeleton copying, validation, DQI, and delivery gates through the body, not invented command artifacts [`.opencode/agents/write.md:22-65`; iteration-004.md:57]. |
+| @prompt-improver | yes | — | — | Body-level prompt-package tests are appropriate. No command-orchestrator packet indicated by the iterations [`.opencode/agents/prompt-improver.md:22-40`, `.opencode/agents/prompt-improver.md:86-101`; iteration-004.md:57]. |
+| @debug | yes | — | — | Body-level debugging workflow tests are appropriate. Do not classify as command-orchestrator merely because another workflow may dispatch it [`.opencode/agents/debug.md:22-30`, `.opencode/agents/debug.md:105-180`; iteration-004.md:57; iteration-004.md:96-100]. |
+| @deep-research | partial leaf | yes | command-loop leaf | Needs command-owned loop tests for lifecycle/convergence/state; direct body tests only prove one iteration [`.opencode/agents/deep-research.md:24-34`; iteration-004.md:50-55]. |
+| @deep-review | partial leaf | yes | command-loop leaf | Same as deep-research: command-owned loop testing for lifecycle/convergence/reducer state, leaf-body testing only for one review iteration [`.opencode/agents/deep-review.md:23-33`; iteration-004.md:50-55]. |
+| @context | yes | — | — | Body-level retrieval-package tests are appropriate; the body owns canonical continuity retrieval and forbids nested delegation/writes [`.opencode/agents/context.md:25-55`; iteration-004.md:57]. |
+| @orchestrate | yes | — | primary orchestrator body | Needs orchestration/delegation/synthesis tests, not leaf-agent Call B or command-loop tests [`.opencode/agents/orchestrate.md:18-35`, `.opencode/agents/orchestrate.md:87-113`; iteration-004.md:53-59]. |
+| @review | yes | — | — | Body-level read-only review/rubric tests are appropriate. No command-layer stress packet indicated [`.opencode/agents/review.md:22-57`, `.opencode/agents/review.md:114-141`; iteration-004.md:57]. |
 
 ## 7. REUSABLE RUBRIC + AUTHORING PREFLIGHT (RQ-6 + RQ-7)
 
@@ -178,7 +178,7 @@ The authoring preflight every CP-XXX scenario author must answer BEFORE writing 
 
 | Signal | Owner Layer | Where Verified |
 |---|---|---|
-| `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=... --iterations=1` | Command entry point | command transcript; command-capable temp cwd [iteration-003.md:22-34] |
+| `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1` | Command entry point | command transcript; command-capable temp cwd [iteration-003.md:22-34] |
 | `integration-report.json` | Command/YAML via `scan-integration.cjs` | `{spec_folder}/improvement/integration-report.json` [iteration-001.md:58-66] |
 | `dynamic-profile.json` | Command/YAML via `generate-profile.cjs` | `{spec_folder}/improvement/dynamic-profile.json` [iteration-001.md:64-65] |
 | `candidate_generated` event | Command/YAML after mutator dispatch | journal JSONL plus candidate path under `improvement/candidates` [iteration-001.md:66-67] |
@@ -206,9 +206,9 @@ The authoring preflight every CP-XXX scenario author must answer BEFORE writing 
 Recommended starting prompt:
 
 ```text
-Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing .opencode/command/improve, .opencode/skill/sk-improve-agent, and the cp-improve-target fixture. For command-owned scenarios, invoke:
+Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing .opencode/commands/improve, .opencode/skills/sk-improve-agent, and the cp-improve-target fixture. For command-owned scenarios, invoke:
 
-/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
+/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
 
 Use a layer-owned evidence matrix per CP. Keep expected-RED/PARTIAL methodology evidence spec-local unless active CP-040..CP-045 contracts can honestly pass under the cli-copilot PASS/PARTIAL/FAIL/SKIP release model. Reuse CP-040..CP-045 for active corrections; use successor IDs only for spec-local experiments or explicit archival.
 ```

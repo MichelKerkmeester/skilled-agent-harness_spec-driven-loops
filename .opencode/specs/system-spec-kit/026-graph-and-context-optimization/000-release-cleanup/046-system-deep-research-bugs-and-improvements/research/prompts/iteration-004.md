@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 004 of 20. The packet root is
 
 **Angle A4 — Silent error recovery patterns**
 
-sa-004 was a misread, but the *pattern* of catch-and-recover that masks real corruption likely exists elsewhere. Audit `try/catch` blocks across `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/` and `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/` for any place that swallows an error without logging, without surfacing, or with too-broad recovery. Classify each as legitimate vs concerning. Cite file:line for concerning sites.
+sa-004 was a misread, but the *pattern* of catch-and-recover that masks real corruption likely exists elsewhere. Audit `try/catch` blocks across `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/` and `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/` for any place that swallows an error without logging, without surfacing, or with too-broad recovery. Classify each as legitimate vs concerning. Cite file:line for concerning sites.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

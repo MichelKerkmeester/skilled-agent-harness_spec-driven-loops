@@ -20,7 +20,7 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-SPEC_KIT_DIR=".opencode/skill/system-spec-kit"
+SPEC_KIT_DIR=".opencode/skills/system-spec-kit"
 DATABASE="$SPEC_KIT_DIR/database/context-index.sqlite"
 BACKUP_DIR="$SPEC_KIT_DIR/database/backups"
 

@@ -66,9 +66,9 @@ Answer the remaining uncertainty for 018 git context and run state evaluation wi
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

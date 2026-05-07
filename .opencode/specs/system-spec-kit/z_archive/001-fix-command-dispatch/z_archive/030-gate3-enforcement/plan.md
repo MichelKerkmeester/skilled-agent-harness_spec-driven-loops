@@ -104,7 +104,7 @@ contextType: "planning"
 1. Create memory file in `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/memory`
 2. Copy content from `constitutional-memory-draft.md` Memory Content section
 3. Ensure anchor format: `<!-- ANCHOR:gate3-constitutional -->...<!-- /ANCHOR:gate3-constitutional -->`
-4. Run `node .opencode/skill/system-memory/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement`
+4. Run `node .opencode/skills/system-memory/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement`
 5. Manually update tier to constitutional via `memory_update()`
 
 ### Option B: Direct Index

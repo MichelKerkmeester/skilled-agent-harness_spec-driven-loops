@@ -74,9 +74,9 @@ This phase added no test files. Verification used one real package build, emitte
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skill/system-spec-kit/shared/package.json` | Added `"type": "module"`, rewrote the `exports` map to point at ESM `dist/*.js` entrypoints, and replaced the no-op build script with `tsc --build`. |
-| `.opencode/skill/system-spec-kit/shared/tsconfig.json` | Set `module` and `moduleResolution` to `nodenext` and added `verbatimModuleSyntax: true`. |
-| `.opencode/skill/system-spec-kit/shared/**/*.ts` | Rewrote 48 relative import and re-export paths to explicit `.js` specifiers across 18 source files. |
+| `.opencode/skills/system-spec-kit/shared/package.json` | Added `"type": "module"`, rewrote the `exports` map to point at ESM `dist/*.js` entrypoints, and replaced the no-op build script with `tsc --build`. |
+| `.opencode/skills/system-spec-kit/shared/tsconfig.json` | Set `module` and `moduleResolution` to `nodenext` and added `verbatimModuleSyntax: true`. |
+| `.opencode/skills/system-spec-kit/shared/**/*.ts` | Rewrote 48 relative import and re-export paths to explicit `.js` specifiers across 18 source files. |
 
 These grouped rows cover the 20 source files changed in Phase 1.
 

@@ -43,10 +43,10 @@
       "checklist.md"
     ],
     "entities": [
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:712",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:209-216",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:2131-2147",
-      ".opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out/tree-sitter-bash.wasm"
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:712",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:209-216",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:2131-2147",
+      ".opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out/tree-sitter-bash.wasm"
     ],
     "causal_summary": "Live broad-scope scan crashes tree-sitter on ~17.5% of files. Investigate root cause (version vs WASM vs content), then ship a persistent skip-list policy with telemetry so full active scope stays usable.",
     "created_at": "2026-05-06T13:34:53Z",

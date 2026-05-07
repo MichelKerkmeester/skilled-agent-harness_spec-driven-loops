@@ -42,8 +42,8 @@ _memory:
 
 ### Source Documents
 
-- [x] CHK-001 [P0] Playbook files for 02--mutation confirmed accessible — 9 scenario files verified at `.opencode/skill/system-spec-kit/manual_testing_playbook/02--mutation/` [EVIDENCE: tasks.md; implementation-summary.md]
-- [x] CHK-002 [P0] Feature catalog files for 02--mutation confirmed accessible — 10 catalog files verified at `.opencode/skill/system-spec-kit/feature_catalog/02--mutation/` [EVIDENCE: tasks.md; implementation-summary.md]
+- [x] CHK-001 [P0] Playbook files for 02--mutation confirmed accessible — 9 scenario files verified at `.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/` [EVIDENCE: tasks.md; implementation-summary.md]
+- [x] CHK-002 [P0] Feature catalog files for 02--mutation confirmed accessible — 10 catalog files verified at `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/` [EVIDENCE: tasks.md; implementation-summary.md]
 - [x] CHK-003 [P0] Review protocol loaded and verdict rules understood — PASS/PARTIAL/FAIL rules applied per playbook acceptance criteria [EVIDENCE: tasks.md; implementation-summary.md]
 
 ### Runtime Environment

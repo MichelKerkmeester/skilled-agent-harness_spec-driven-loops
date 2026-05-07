@@ -43,7 +43,7 @@ Address critical bugs affecting system stability and data integrity (P0), signif
 - **Storage**: SQLite (vec_memories, meta_memories tables)
 - **Testing**: Manual verification, integration tests
 - **Target Platform**: MCP server (macOS/Linux)
-- **Project Type**: single-project - monolithic `.opencode/skill/system-spec-kit/`
+- **Project Type**: single-project - monolithic `.opencode/skills/system-spec-kit/`
 - **Performance Goals**: <100ms trigger matching, <500ms semantic search
 - **Constraints**: Must maintain backward compatibility with existing memory files
 - **Scale/Scope**: ~500+ memory files, 10+ active spec folders
@@ -134,7 +134,7 @@ MCP server with SQLite backend providing semantic search over memory files. Uses
 ### Source Code (Repository Root)
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
   mcp-server/
     src/
       vector-index.js     # Core indexing and search (P0-001, P0-002, P0-005, P0-007)
@@ -152,7 +152,7 @@ MCP server with SQLite backend providing semantic search over memory files. Uses
 
 ### Structure Decision
 
-Selected Option 1 (single project) because all changes are within the existing `.opencode/skill/system-spec-kit/` directory structure. No new projects or major architectural changes required.
+Selected Option 1 (single project) because all changes are within the existing `.opencode/skills/system-spec-kit/` directory structure. No new projects or major architectural changes required.
 
 ---
 

@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 014 of 20. The packet root is
 
 **Angle C4 — Code-graph staleness detection accuracy**
 
-Audit the staleness model in `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/` and the `.opencode/command/doctor/code-graph.md` workflow. Under what change patterns does it false-stale (forces unnecessary reindex)? Under what patterns does it false-fresh (misses needed reindex)? Identify gaps with concrete change types. Cite file:line.
+Audit the staleness model in `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/` and the `.opencode/commands/doctor/code-graph.md` workflow. Under what change patterns does it false-stale (forces unnecessary reindex)? Under what patterns does it false-fresh (misses needed reindex)? Identify gaps with concrete change types. Cite file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

@@ -54,14 +54,14 @@ Copilot CLI has no supported prompt-mutation hook surface. This phase implemente
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts` (NEW) | Managed block renderer preserving human instructions outside markers. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` (NEW) | Advisor brief builder with file refresh and privacy-safe diagnostics. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` (NEW) | Startup context refresh into the managed block. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts` (NEW) | Managed block renderer preserving human instructions outside markers. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` (NEW) | Advisor brief builder with file refresh and privacy-safe diagnostics. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` (NEW) | Startup context refresh into the managed block. |
 | `.github/hooks/scripts/user-prompt-submitted.sh` (NEW) | Repo-local wrapper for `userPromptSubmitted`. |
 | `.github/hooks/superset-notify.json` | Routes through Spec Kit writer before Superset notification. |
-| `.opencode/skill/cli-copilot/SKILL.md` and `README.md` | Document file-based parity model and next-prompt freshness. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts` (NEW) | Asserts file writes and privacy-safe diagnostics. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts` (NEW) | Parity tests mirroring Claude's test surface. |
+| `.opencode/skills/cli-copilot/SKILL.md` and `README.md` | Document file-based parity model and next-prompt freshness. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts` (NEW) | Asserts file writes and privacy-safe diagnostics. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts` (NEW) | Parity tests mirroring Claude's test surface. |
 
 ### Follow-Ups
 

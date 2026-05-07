@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] T014 grep sweep returns zero stale matches: `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skill/system-spec-kit/references/`
+- [ ] CHK-020 [P0] T014 grep sweep returns zero stale matches: `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skills/system-spec-kit/references/`
 - [ ] CHK-021 [P0] T015 cross-doc grep lists all 10 target files
 - [ ] CHK-022 [P0] T016 `validate.sh --strict` on this packet passes modulo SPEC_DOC_INTEGRITY forward-reference noise — evidence: 1 expected error (SPEC_DOC_INTEGRITY only), no other error classes
 - [ ] CHK-023 [P0] T017 026 regression: parent-level error rules unchanged from baseline (3 rules) — evidence: JSON diff

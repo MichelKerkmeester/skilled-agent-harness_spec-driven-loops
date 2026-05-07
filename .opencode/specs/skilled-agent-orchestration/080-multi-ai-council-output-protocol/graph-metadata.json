@@ -48,16 +48,16 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/agent/multi-ai-council.md",
+      ".opencode/agents/multi-ai-council.md",
       ".claude/agents/multi-ai-council.md",
       ".gemini/agents/multi-ai-council.md",
       ".codex/agents/multi-ai-council.toml",
-      ".opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md",
-      ".opencode/skill/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md",
-      ".opencode/skill/system-spec-kit/references/multi-ai-council/convergence-signals.md",
-      ".opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md",
-      ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md",
+      ".opencode/skills/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md",
+      ".opencode/skills/system-spec-kit/references/multi-ai-council/convergence-signals.md",
+      ".opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "references/multi-ai-council/seat-diversity-patterns.md",
       "references/multi-ai-council/convergence-signals.md",
       "references/multi-ai-council/state-format.md",
@@ -98,7 +98,7 @@
       {
         "name": "multi-ai-council.md",
         "kind": "doc",
-        "path": ".opencode/agent/multi-ai-council.md",
+        "path": ".opencode/agents/multi-ai-council.md",
         "source": "derived"
       },
       {
@@ -110,37 +110,37 @@
       {
         "name": "folder-layout.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md",
+        "path": ".opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md",
         "source": "derived"
       },
       {
         "name": "seat-diversity-patterns.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md",
+        "path": ".opencode/skills/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md",
         "source": "derived"
       },
       {
         "name": "convergence-signals.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/multi-ai-council/convergence-signals.md",
+        "path": ".opencode/skills/system-spec-kit/references/multi-ai-council/convergence-signals.md",
         "source": "derived"
       },
       {
         "name": "state-format.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md",
+        "path": ".opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md",
         "source": "derived"
       },
       {
         "name": "multi-ai-council-validator.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

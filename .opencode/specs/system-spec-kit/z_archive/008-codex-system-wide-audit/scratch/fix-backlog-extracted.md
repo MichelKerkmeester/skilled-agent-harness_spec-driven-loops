@@ -26,7 +26,7 @@ Comprehensive extraction from multi-spec audit revealing **5 critical path block
 The upgrade script sources `shell-common.sh` without guarded validation. If this file is missing or moved, the script continues with incomplete functionality instead of failing fast.
 
 **Target File:**  
-- `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` (lines ~29)
+- `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` (lines ~29)
 
 **Change Required:**  
 Add guarded source with explicit `error_exit` on failure.
@@ -38,7 +38,7 @@ Add guarded source with explicit `error_exit` on failure.
 
 **Verification Command:**
 ```bash
-mv .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh.bak && bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder L2 --json; test $? -eq 2; mv .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh.bak .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh
+mv .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh.bak && bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder L2 --json; test $? -eq 2; mv .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh.bak .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh
 ```
 
 ---
@@ -53,7 +53,7 @@ mv .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh .opencode/skill/s
 Backup logic uses root-only glob pattern for `*.md` files, missing subdirectory content (especially `memory/` folder). This creates risk of losing session context and memory files during spec upgrades.
 
 **Target File:**  
-- `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` (lines ~299-315)
+- `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` (lines ~299-315)
 
 **Change Required:**  
 Implement recursive backup for `*.md` files preserving relative paths.
@@ -65,7 +65,7 @@ Implement recursive backup for `*.md` files preserving relative paths.
 
 **Verification Command:**
 ```bash
-mkdir -p /tmp/spec-backup-test/memory && printf "x\n" > /tmp/spec-backup-test/spec.md && printf "y\n" > /tmp/spec-backup-test/memory/session.md && bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh /tmp/spec-backup-test L2 --dry-run
+mkdir -p /tmp/spec-backup-test/memory && printf "x\n" > /tmp/spec-backup-test/spec.md && printf "y\n" > /tmp/spec-backup-test/memory/session.md && bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh /tmp/spec-backup-test L2 --dry-run
 ```
 
 ---
@@ -143,19 +143,19 @@ Spec 123 (generate-context-subfolder) has incomplete P0 verification evidence. B
 
 **Verification Commands:**
 ```bash
-bash -n .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh
+bash -n .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh
 ```
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && tsc --build
+cd .opencode/skills/system-spec-kit/scripts && tsc --build
 ```
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && node scripts/tests/test-subfolder-resolution.js
+cd .opencode/skills/system-spec-kit/scripts && node scripts/tests/test-subfolder-resolution.js
 ```
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder && node scripts/dist/memory/generate-context.js 123-generate-context-subfolder && node scripts/dist/memory/generate-context.js specs/system-spec-kit/z_archive/006-generate-context-subfolder
+cd .opencode/skills/system-spec-kit/scripts && node scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder && node scripts/dist/memory/generate-context.js 123-generate-context-subfolder && node scripts/dist/memory/generate-context.js specs/system-spec-kit/z_archive/006-generate-context-subfolder
 ```
 
 ---
@@ -166,7 +166,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 
 **Priority:** HIGH  
 **Category:** Error Handling  
-**Target:** `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`  
+**Target:** `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`  
 **Evidence:** `context-124-audit.md:345`, `context-124-audit.md:672`
 
 ---
@@ -175,7 +175,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 
 **Priority:** HIGH  
 **Category:** Pattern Matching Precision  
-**Target:** `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`  
+**Target:** `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`  
 **Evidence:** `context-124-audit.md:423`, `context-124-audit.md:702`
 
 ---
@@ -184,7 +184,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 
 **Priority:** HIGH  
 **Category:** Loop Safety  
-**Target:** `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`  
+**Target:** `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`  
 **Evidence:** `context-124-audit.md:735`
 
 ---
@@ -217,7 +217,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 
 **Priority:** LOW  
 **Category:** Documentation  
-**Target:** `.opencode/skill/system-spec-kit/scripts/spec/README.md`  
+**Target:** `.opencode/skills/system-spec-kit/scripts/spec/README.md`  
 **Evidence:** `context-124-audit.md:758`
 
 ---
@@ -226,7 +226,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 
 **Priority:** LOW  
 **Category:** Feature Enhancement  
-**Target:** `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`  
+**Target:** `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`  
 **Evidence:** `context-124-audit.md:763`
 
 ---
@@ -236,8 +236,8 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 **Priority:** LOW  
 **Category:** Code Clarity  
 **Targets:**
-- `.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts`
-- `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts`
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts`
 
 **Enhancement Types:** Comments, @throws documentation, performance notes  
 **Evidence:** `context-123-audit.md:275`, `context-123-audit.md:333`, `context-123-audit.md:336`
@@ -257,7 +257,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 ## Section 4: Files Requiring Changes
 
 ### Code Changes Required (1 file)
-1. `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`
+1. `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`
    - P0-1: Add guarded source for shell-common.sh
    - P0-2: Implement recursive backup for memory/*.md
    - P1-1: Add warning path for OPEN QUESTIONS missing
@@ -330,7 +330,7 @@ cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-
 | **P0 (Critical)** | 5 | Fail-fast, backup coverage, orphan mismatch, open blockers, verification closure |
 | **P1 (High)** | 5 | Error handling, pattern precision, loop safety, doc reconciliation, evidence logs |
 | **P2 (Quality)** | 4 | README.md, optional auto-save, TypeScript clarity, no-action research |
-| **Code Files Affected** | 1 | `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` |
+| **Code Files Affected** | 1 | `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` |
 | **Documentation Files** | 7+ | 3 spec 123 files, 3 spec 123 scratch logs, 1 spec 121 restoration path |
 | **Evidence Citations** | 28 | Preserved line numbers from source audit files |
 | **Verification Commands** | 6 | Bash syntax, build, test, context generation |

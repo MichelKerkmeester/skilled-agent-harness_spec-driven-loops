@@ -34,7 +34,7 @@ Integrated cross-packet review of 012-015 + their 28 catalog/playbook updates.
 - research.md at `../../../011-post-stress-followup-research/research/research.md`
 - 4 implementation-summary.md files at `../../../012-*/...`, `013-*/...`, `014-*/...`, `015-*/...`
 - 4 review-report.md files at the same packets
-- Implementation code at `.opencode/skill/system-spec-kit/mcp_server/`
+- Implementation code at `.opencode/skills/system-spec-kit/mcp_server/`
 - 28 catalog/playbook updates committed in `b227544ca`
 <!-- /ANCHOR:topic -->
 

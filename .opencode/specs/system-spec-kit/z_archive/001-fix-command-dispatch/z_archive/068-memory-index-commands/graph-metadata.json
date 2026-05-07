@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/memory/search.md",
+      ".opencode/commands/memory/search.md",
       ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands/spec.md",
       "spec.md",
       "tasks.md",
@@ -53,7 +53,7 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {

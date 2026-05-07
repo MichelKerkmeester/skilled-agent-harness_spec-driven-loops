@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/command/spec_kit/README.txt",
-      ".opencode/command/memory/README.txt",
+      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/commands/memory/README.txt",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
@@ -67,7 +67,7 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/spec_kit/README.txt",
+        "path": ".opencode/commands/spec_kit/README.txt",
         "source": "derived"
       },
       {

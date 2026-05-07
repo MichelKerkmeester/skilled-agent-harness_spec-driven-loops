@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 git mv feature_catalog/ to assets/ root (`.opencode/skill/sk-doc/assets/feature_catalog/`)
-- [x] T005 git mv testing_playbook/ to assets/ root (`.opencode/skill/sk-doc/assets/testing_playbook/`)
-- [x] T006 git mv agent_template.md to assets/ root (`.opencode/skill/sk-doc/assets/agent_template.md`)
-- [x] T007 git mv command_template.md to assets/ root (`.opencode/skill/sk-doc/assets/command_template.md`)
+- [x] T004 git mv feature_catalog/ to assets/ root (`.opencode/skills/sk-doc/assets/feature_catalog/`)
+- [x] T005 git mv testing_playbook/ to assets/ root (`.opencode/skills/sk-doc/assets/testing_playbook/`)
+- [x] T006 git mv agent_template.md to assets/ root (`.opencode/skills/sk-doc/assets/agent_template.md`)
+- [x] T007 git mv command_template.md to assets/ root (`.opencode/skills/sk-doc/assets/command_template.md`)
 - [x] T008 rmdir empty assets/agents/ folder
 <!-- /ANCHOR:phase-2 -->
 

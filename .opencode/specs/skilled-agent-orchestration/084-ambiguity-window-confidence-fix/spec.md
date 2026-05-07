@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Patch lib/scorer/ambiguity.ts dual-margin"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-084"
@@ -75,7 +75,7 @@ Add a parallel **confidence-margin** check so a candidate is in the ambiguity cl
 - `tests/scorer/native-scorer.vitest.ts`: separate confidences in the "outside score margin" fixture so the dual-margin check still says "not ambiguous"
 - `tests/scorer/advisor-quality-049-003.vitest.ts`: update the F-012-C2-04 "uses ranking score not confidence" test to reflect dual-margin, AND add a new "score outside, confidence inside → ambiguous" test for the SAD-002 case
 - `feature_catalog/04--scorer-fusion/03-ambiguity.md`: clarify dual-margin semantics
-- Build (`npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`)
+- Build (`npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`)
 - Vitest pass on the two updated suites
 - Re-run SAD-002 (advisor_recommend on the cross-domain prompt) and confirm `ambiguous: true`
 
@@ -89,10 +89,10 @@ Add a parallel **confidence-margin** check so a candidate is in the ambiguity cl
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts` | Modify | Add confidence-margin OR check |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Modify | Separate confidences in outside-margin fixture |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts` | Modify | Update F-012-C2-04 test fixtures + add SAD-002 test |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md` | Modify | Clarify dual-margin semantics |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts` | Modify | Add confidence-margin OR check |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Modify | Separate confidences in outside-margin fixture |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/advisor-quality-049-003.vitest.ts` | Modify | Update F-012-C2-04 test fixtures + add SAD-002 test |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/03-ambiguity.md` | Modify | Clarify dual-margin semantics |
 
 <!-- /ANCHOR:scope -->
 

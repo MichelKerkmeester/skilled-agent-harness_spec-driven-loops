@@ -45,8 +45,8 @@
       "convergenceScore"
     ]
   },
-  "reducerScriptPath": ".opencode/skill/sk-deep-review/scripts/reduce-state.cjs",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs",
   "fileProtection": {
     "deep-review-config.json": "immutable",
     "deep-review-state.jsonl": "append-only",

@@ -52,7 +52,7 @@ All five sample paths verified to exist on the filesystem:
 | `lib/providers/embeddings.ts` | YES |
 | `lib/parsing/memory-parser.ts` | YES |
 
-Base: `.opencode/skill/system-spec-kit/mcp_server/`
+Base: `.opencode/skills/system-spec-kit/mcp_server/`
 
 ---
 

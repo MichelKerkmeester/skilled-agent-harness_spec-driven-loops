@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -99,8 +99,8 @@ Delivery used an exact allowlist grep, a two-name README replacement, JSON parse
 - `/usr/bin/python3 -m json.tool .utcp_config.json` exited 0.
 - `/usr/bin/python3 -m json.tool .claude/settings.json` exited 0.
 - `/usr/bin/python3 -m json.tool .claude/settings.local.json` exited 0.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config --strict` exited 0.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` exited 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config --strict` exited 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` exited 0.
 <!-- /ANCHOR:verification -->
 
 ---

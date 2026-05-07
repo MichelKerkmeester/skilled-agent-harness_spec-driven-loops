@@ -97,7 +97,7 @@ node scripts/tests/test-export-contracts.js
 node scripts/tests/test-bug-regressions.js
 
 # All from system-spec-kit root
-cd .opencode/skill/system-spec-kit
+cd .opencode/skills/system-spec-kit
 node scripts/tests/test-naming-migration.js && \
 node scripts/tests/test-export-contracts.js && \
 node scripts/tests/test-bug-regressions.js

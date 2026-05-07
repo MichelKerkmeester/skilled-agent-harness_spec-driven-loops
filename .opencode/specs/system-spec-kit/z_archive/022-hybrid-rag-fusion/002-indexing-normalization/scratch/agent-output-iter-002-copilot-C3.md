@@ -7,14 +7,14 @@ I’m loading the review standards and the target files together so I can answer
 I’ve got the target review lenses loaded. Next I’m pulling the collector, workflow entry/exit, and type definitions together with a few focused searches for fallback and validation paths so the findings are grounded in exact code paths.
 
 ● Read collect-session-data.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ 1 line read
 
 ● Search (grep)
   │ "MAX_OBSERVATIONS|fallback|simulate|validation|index|CollectedDataFull|SessionData|opencode|clau
   │ de|codex|copilot|gemini|capture" in
   │ {extractors/collect-session-data.ts,core/workflow.ts,types/session-types.ts}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Read quick_reference.md
@@ -22,7 +22,7 @@ I’ve got the target review lenses loaded. Next I’m pulling the collector, wo
   └ 151 lines read
 
 ● Read session-types.ts
-  │ .opencode/skill/system-spec-kit/scripts/types/session-types.ts
+  │ .opencode/skills/system-spec-kit/scripts/types/session-types.ts
   └ 534 lines read
 
 ● Read code_quality_checklist.md
@@ -42,18 +42,18 @@ I’ve got the target review lenses loaded. Next I’m pulling the collector, wo
   └ 571 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:500 (500 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1983:end (439 lines read)
 
 ● memory_context
   └ {"summary":"Context retrieved via focused mode (focused strategy) [truncated ...
 
 ● Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Analyze session data collection and workflow
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Analyze session data collection and workflow
   │ integration for capture-source consistency, fallback chains, type hierarchy, data loss risks,
   │ validation, and observation limits in collect-session-data.ts workflow.ts and session-types.ts"
   │ --threshold 0.8
@@ -74,189 +74,189 @@ I’ve confirmed the review overlay and type context. I’m now tracing the coll
 I’ve moved from the high-level workflow into the collector internals. I’m pulling the exact source-selection and fallback code now, because that’s where consistency and data-loss issues will show up.
 
 ● Read collect-session-data.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ L1:260 (260 lines read)
 
 ● Read collect-session-data.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ L261:520 (260 lines read)
 
 ● Read collect-session-data.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ L521:780 (260 lines read)
 
 ● Read collect-session-data.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ L781:1050 (229 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L500:900 (401 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1300:1700 (401 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L900:1300 (401 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1700:1982 (283 lines read)
 
 ● Search (grep)
   │ "collectSessionData\(|captureSource|getSourceCapabilities|determineValidationDisposition|validat
   │ eMemoryQualityContent|evaluateMemorySufficiency|QUALITY_ABORT_THRESHOLD|indexMemory|loadCollecte
   │ dDataFromLoader|_isSimulation|stateless|simulation"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 32 lines found
 
 ● Search (grep)
   │ "MAX_OBSERVATIONS|collectSessionData\(|captureSource|capture source|getSourceCapabilities|loadCo
   │ llectedData|_isSimulation|fallback|simulation|opencode|claude|codex|copilot|gemini"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
   └ 8 lines found
 
 ● Search (grep)
   │ "interface CollectedDataBase|interface SessionData|type CollectedDataSubset|interface
   │ Observation|interface ObservationDetailed|interface SessionMetadata|interface GitMetadata"
-  │ (.opencode/skill/system-spec-kit/scripts/types/session-types.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/types/session-types.ts)
   └ 7 lines found
 
 The collector itself mostly treats input as already-normalized; source-specific behavior seems to sit one layer earlier. I’m checking the loader and capability map now so I can separate “collector consistency” from “upstream normalization quality.”
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L1:320 (320 lines read)
 
 ● Read source-capabilities.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts
   └ 83 lines read
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L321:520 (200 lines read)
 
 ● Search (glob)
-  │ "**/*{opencode,claude,codex,copilot,gemini}*.{ts,js}" in .opencode/skill/system-spec-kit/scripts
+  │ "**/*{opencode,claude,codex,copilot,gemini}*.{ts,js}" in .opencode/skills/system-spec-kit/scripts
   └ 10 files found
 
 ● Search (glob)
   │ "**/*{opencode,claude,codex,copilot,gemini}*capture*.{ts,js}" in
-  │ .opencode/skill/system-spec-kit/scripts
+  │ .opencode/skills/system-spec-kit/scripts
   └ 10 files found
 
 ● Search (grep)
   │ "_source\s*=|_source:|'opencode'|'claude'|'claude-code'|'codex'|'codex-cli'|'copilot'|'copilot-c
-  │ li'|'gemini'|'gemini-cli'|capture source|normalized" (.opencode/skill/system-spec-kit/scripts)
+  │ li'|'gemini'|'gemini-cli'|capture source|normalized" (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 I found the key split: all five native captures are funneled through one loader/normalizer path before the collector sees them. I’m finishing that path now to judge whether failures degrade cleanly or just silently fall back to simulation.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1:360 (360 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L361:760 (400 lines read)
 
 ● Read opencode-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ L1:240 (240 lines read)
 
 ● Read copilot-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
   └ L1:200 (200 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L520:760 (65 lines read)
 
 ● Read codex-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts
   └ L1:200 (200 lines read)
 
 ● Read claude-code-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
   └ L1:220 (220 lines read)
 
 ● Read gemini-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
   └ L1:200 (200 lines read)
 
 The loader does have a real fallback chain: explicit JSON → preferred/native capture order → hard failure. I’m checking the shared `transformOpencodeCapture()` path now, because that determines whether the five sources actually become equivalent before extraction.
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L760:1120 (360 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1121:1460 (98 lines read)
 
 ● Search (grep)
   │ "function transformOpencodeCapture|toolTitleWithPathExpected|_relevanceFallback|files\?|recentCo
   │ ntext|buildToolObservationTitle|sanitizeTool"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 22 lines found
 
 ● Search (grep)
   │ "toolTitleWithPathExpected|prefersStructuredSave|SOURCE_CAPABILITIES|getSourceCapabilities"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 44 lines found
 
 I’ve got enough to separate three layers now: capture adapters, shared normalization, and workflow gating. I’m doing one last pass on `extractFilesFromData`, validation disposition, and the configured observation cap so the findings can be precise about where data is dropped versus merely filtered.
 
 ● Read file-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ L1:360 (360 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L360:470 (110 lines read)
 
 ● Read file-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ L361:760 (87 lines read)
 
 ● Read config.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/config.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "MAX_OBSERVATIONS|MESSAGE_COUNT_TRIGGER|QUALITY_ABORT_THRESHOLD"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 25 lines found
 
 I found the hard cap: `MAX_OBSERVATIONS` is configured in shared config and explicitly tested. I’m reading the default value and a couple of nearby limits so I can assess whether the cap is a deliberate summary strategy or an under-sized bottleneck.
 
 ● Read config.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/config.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ L220:320 (101 lines read)
 
 ● Read validation-rule-metadata.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts
   └ L1:120 (73 lines read)
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L830:920 (91 lines read)
 
 One important correction: the code no longer defaults to a 3-observation cap. The shipped default is `15`, and there’s even an inline note saying it was raised from 3 because of severe data loss. I’m checking whether repo config overrides that default, then I’ll synthesize the findings.
 
 ● Search (grep)
   │ "maxObservations|qualityAbortThreshold|maxFilesInMemory"
-  │ (.opencode/skill/system-spec-kit/config)
+  │ (.opencode/skills/system-spec-kit/config)
   └ No matches found
 
 ● Search (glob)
-  │ "**/config.jsonc" in .opencode/skill/system-spec-kit
+  │ "**/config.jsonc" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Read config.jsonc
-  │ .opencode/skill/system-spec-kit/config/config.jsonc
+  │ .opencode/skills/system-spec-kit/config/config.jsonc
   └ 158 lines read
 
 ## Findings

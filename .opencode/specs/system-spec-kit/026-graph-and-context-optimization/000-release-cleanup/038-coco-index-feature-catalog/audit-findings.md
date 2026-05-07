@@ -58,14 +58,14 @@ _memory:
 
 ## 2. SOURCE SURFACES READ
 
-- `.opencode/skill/mcp-coco-index/SKILL.md`
-- `.opencode/skill/mcp-coco-index/README.md`
-- `.opencode/skill/mcp-coco-index/references/*.md`
-- `.opencode/skill/mcp-coco-index/scripts/*.sh`
-- `.opencode/skill/mcp-coco-index/tests/test_*.py`
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skill/mcp-coco-index/mcp_server/pyproject.toml`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/*.py`
+- `.opencode/skills/mcp-coco-index/SKILL.md`
+- `.opencode/skills/mcp-coco-index/README.md`
+- `.opencode/skills/mcp-coco-index/references/*.md`
+- `.opencode/skills/mcp-coco-index/scripts/*.sh`
+- `.opencode/skills/mcp-coco-index/tests/test_*.py`
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-coco-index/mcp_server/pyproject.toml`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/*.py`
 
 ---
 

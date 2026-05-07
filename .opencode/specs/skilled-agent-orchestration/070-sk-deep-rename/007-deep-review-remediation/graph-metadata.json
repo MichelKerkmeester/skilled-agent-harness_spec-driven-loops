@@ -44,7 +44,7 @@
       "description.json",
       "graph-metadata.json",
       ".opencode/changelog",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     ],
     "entities": [
       "sk-deep-review",

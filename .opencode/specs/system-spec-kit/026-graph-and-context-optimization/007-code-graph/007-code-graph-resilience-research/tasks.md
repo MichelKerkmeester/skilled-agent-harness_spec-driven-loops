@@ -84,7 +84,7 @@ _memory:
 - [x] T025 Materialize assets/exclude-rule-confidence.json (output) (high/medium/low tiers, ≥5 patterns each) (verified)
 - [x] T026 Synthetic regression test: drop a canonical symbol via exclude rule, run gold-queries.json, confirm at least one query reports mismatch (verified — pass_policy contract in assets/code-graph-gold-queries.json defines regression-detection logic; runtime execution belongs to 006 Phase B)
 - [x] T027 Validate all JSON outputs parse cleanly via `python3 -c "import json; json.load(...)"` (verified)
-- [x] T028 Run strict spec validation (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict`) (verified)
+- [x] T028 Run strict spec validation (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict`) (verified)
 - [x] T029 Update parent `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/context-index.md` to record research outputs available (verified)
 - [x] T030 Cross-reference handoff: update sibling 006 packet to mark Phase B unblocked (verified)
 <!-- /ANCHOR:phase-3 -->

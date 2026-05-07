@@ -1,30 +1,30 @@
-## `.opencode/agent/`
+## `.opencode/agents/`
 
 | Path | Action | Reason | Lines (if MODIFY) |
 | --- | --- | --- | --- |
-| `.opencode/agent/README.txt` | UNTOUCHED | No matching template-path or banned-vocabulary hits. |  |
-| `.opencode/agent/context.md` | MODIFY | AI-facing heading uses banned vocabulary. | 59: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/debug.md` | MODIFY | Same banned heading. | 57: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/deep-research.md` | MODIFY | Same banned heading. | 220: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/deep-review.md` | MODIFY | Same banned heading. | 241: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/improve-agent.md` | MODIFY | Multiple AI-facing `manifest` leaks plus banned heading. | 36,52,60,62,76,98,108,122,124,189,234: replace `manifest` with `control file`, `run contract`, or `approved scope`; 46: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/improve-prompt.md` | MODIFY | AI-facing heading uses banned vocabulary. | 46: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/orchestrate.md` | MODIFY | Banned heading plus deleted `templates/level_N` references. | 87: heading → `ROUTING SCAN`; 337: ``templates/level_N/``; 357: ``templates/level_N/``; 377: ``templates/level_N/``; 389: ``templates/level_3/spec.md``. Replace with “Level template source resolved by the system-spec-kit template resolver.” |
-| `.opencode/agent/review.md` | MODIFY | AI-facing heading uses banned vocabulary. | 70: `## 3. CAPABILITY SCAN` → `## 3. ROUTING SCAN` |
-| `.opencode/agent/ultra-think.md` | MODIFY | AI-facing heading uses banned vocabulary. | 64: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
-| `.opencode/agent/write.md` | MODIFY | AI-facing heading/table uses banned vocabulary. | 159: `CAPABILITY SCAN`; 167: `## 3. CAPABILITY SCAN` → `ROUTING SCAN` |
+| `.opencode/agents/README.txt` | UNTOUCHED | No matching template-path or banned-vocabulary hits. |  |
+| `.opencode/agents/context.md` | MODIFY | AI-facing heading uses banned vocabulary. | 59: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/debug.md` | MODIFY | Same banned heading. | 57: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/deep-research.md` | MODIFY | Same banned heading. | 220: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/deep-review.md` | MODIFY | Same banned heading. | 241: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/improve-agent.md` | MODIFY | Multiple AI-facing `manifest` leaks plus banned heading. | 36,52,60,62,76,98,108,122,124,189,234: replace `manifest` with `control file`, `run contract`, or `approved scope`; 46: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/improve-prompt.md` | MODIFY | AI-facing heading uses banned vocabulary. | 46: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/orchestrate.md` | MODIFY | Banned heading plus deleted `templates/level_N` references. | 87: heading → `ROUTING SCAN`; 337: ``templates/level_N/``; 357: ``templates/level_N/``; 377: ``templates/level_N/``; 389: ``templates/level_3/spec.md``. Replace with “Level template source resolved by the system-spec-kit template resolver.” |
+| `.opencode/agents/review.md` | MODIFY | AI-facing heading uses banned vocabulary. | 70: `## 3. CAPABILITY SCAN` → `## 3. ROUTING SCAN` |
+| `.opencode/agents/ultra-think.md` | MODIFY | AI-facing heading uses banned vocabulary. | 64: `## 2. CAPABILITY SCAN` → `## 2. ROUTING SCAN` |
+| `.opencode/agents/write.md` | MODIFY | AI-facing heading/table uses banned vocabulary. | 159: `CAPABILITY SCAN`; 167: `## 3. CAPABILITY SCAN` → `ROUTING SCAN` |
 
-## `.opencode/command/spec_kit/`
+## `.opencode/commands/spec_kit/`
 
 | Path | Action | Reason | Lines (if MODIFY) |
 | --- | --- | --- | --- |
-| `.opencode/command/spec_kit/README.txt` | UNTOUCHED | No matching hits. |  |
-| `.opencode/command/spec_kit/implement.md` | CITED | Covered by plan’s command-doc scan, but no direct hits. |  |
-| `.opencode/command/spec_kit/deep-research.md` | MODIFY | AI-facing `kind`/`manifest` leaks. | 68,74,81,139: replace `config.executor.kind` with `config.executor.type`; 336: `Optimizer manifest` → `Optimizer configuration` |
-| `.opencode/command/spec_kit/deep-review.md` | MODIFY | Same leaks as deep-research. | 66,72,79,151: `config.executor.kind` → `config.executor.type`; 386: `Optimizer manifest` → `Optimizer configuration` |
-| `.opencode/command/spec_kit/resume.md` | MODIFY | AI-facing `child manifest` leak. | 66: `child manifest` → `child list` |
-| `.opencode/command/spec_kit/plan.md` | MODIFY | Deleted `templates/phase_parent` path and level-folder taxonomy. | 433: replace whole lean-parent paragraph with resolver-based “phase parent uses Level-facing phase-parent template contract.” |
-| `.opencode/command/spec_kit/complete.md` | MODIFY | Deleted `templates/phase_parent` path. | 248: replace ``templates/phase_parent/spec.md`` with “phase-parent Level template contract.” |
+| `.opencode/commands/spec_kit/README.txt` | UNTOUCHED | No matching hits. |  |
+| `.opencode/commands/spec_kit/implement.md` | CITED | Covered by plan’s command-doc scan, but no direct hits. |  |
+| `.opencode/commands/spec_kit/deep-research.md` | MODIFY | AI-facing `kind`/`manifest` leaks. | 68,74,81,139: replace `config.executor.kind` with `config.executor.type`; 336: `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/spec_kit/deep-review.md` | MODIFY | Same leaks as deep-research. | 66,72,79,151: `config.executor.kind` → `config.executor.type`; 386: `Optimizer manifest` → `Optimizer configuration` |
+| `.opencode/commands/spec_kit/resume.md` | MODIFY | AI-facing `child manifest` leak. | 66: `child manifest` → `child list` |
+| `.opencode/commands/spec_kit/plan.md` | MODIFY | Deleted `templates/phase_parent` path and level-folder taxonomy. | 433: replace whole lean-parent paragraph with resolver-based “phase parent uses Level-facing phase-parent template contract.” |
+| `.opencode/commands/spec_kit/complete.md` | MODIFY | Deleted `templates/phase_parent` path. | 248: replace ``templates/phase_parent/spec.md`` with “phase-parent Level template contract.” |
 | `assets/spec_kit_resume_auto.yaml` | MODIFY | `child manifest/listing` leak. | 62: → `child list` |
 | `assets/spec_kit_resume_confirm.yaml` | MODIFY | Same leak. | 62: → `child list` |
 | `assets/spec_kit_plan_auto.yaml` | MODIFY | Deleted addendum, level-folder, and root template paths. | 56,59-60,162-190,474,476,555,557: replace explicit paths with Level contract resolver outputs. |

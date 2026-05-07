@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:new-skill-structure -->
 ## New Skill Structure (sk-code/)
 
-- [ ] CHK-010 [P0] `.opencode/skill/sk-code/SKILL.md` exists with merged routing pseudocode (stack detection → intent → load level)
+- [ ] CHK-010 [P0] `.opencode/skills/sk-code/SKILL.md` exists with merged routing pseudocode (stack detection → intent → load level)
 - [ ] CHK-011 [P0] SKILL.md frontmatter valid (name, description, allowed-tools, version 1.0.0)
 - [ ] CHK-012 [P0] `sk-code/README.md` exists with activation, structure inventory, troubleshooting
 - [ ] CHK-013 [P0] `sk-code/CHANGELOG.md` exists with 1.0.0 baseline
@@ -154,13 +154,13 @@ _memory:
 
 ### Tier 5: Agent definitions (3 files)
 
-- [ ] CHK-100 [P1] .opencode/agent/deep-review.md updated
+- [ ] CHK-100 [P1] .opencode/agents/deep-review.md updated
 - [ ] CHK-101 [P1] .claude/agents/deep-review.md updated
 - [ ] CHK-102 [P1] .gemini/agents/deep-review.md updated
 
 ### Tier 6: Documentation (~10 files)
 
-- [ ] CHK-110 [P1] .opencode/skill/README.md updated
+- [ ] CHK-110 [P1] .opencode/skills/README.md updated
 - [ ] CHK-111 [P1] mcp-chrome-devtools/README.md + examples/README.md updated
 - [ ] CHK-112 [P1] Top-level README.md updated
 - [ ] CHK-113 [P2] system-spec-kit references audited + updated where actionable

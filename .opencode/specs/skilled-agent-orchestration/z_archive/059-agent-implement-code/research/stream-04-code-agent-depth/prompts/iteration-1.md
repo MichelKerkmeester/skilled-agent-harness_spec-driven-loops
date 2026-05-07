@@ -8,7 +8,7 @@ You are a LEAF deep-research agent (cli-codex, gpt-5.5 high fast). DO NOT dispat
 **Spec folder:** `specs/skilled-agent-orchestration/059-agent-implement-code`
 **Stream artifact dir:** `specs/skilled-agent-orchestration/059-agent-implement-code/research/stream-04-code-agent-depth/`
 
-**Research Topic:** Stream-04 — translate @review.md (478 lines, §0-§13) structural depth into a CODER perspective for `.opencode/agent/code.md`. Produce a drop-in expanded body proposal (target 400-500 lines).
+**Research Topic:** Stream-04 — translate @review.md (478 lines, §0-§13) structural depth into a CODER perspective for `.opencode/agents/code.md`. Produce a drop-in expanded body proposal (target 400-500 lines).
 
 **Iteration:** 1 of 10
 **Focus Area (Q1):** Quality rubric for code work — validate or refine the starting suggested set (Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern Compliance 15, Integration 15) against @review.md §5 (lines 116-152). Produce dimension definitions, rubric matrix per dimension, pass/fail bands, and severity classification (P0/P1/P2 coder analog).
@@ -58,9 +58,9 @@ D3 is locked: convention-floor + LEAF enforcement. Stack detection lives in sk-c
 
 Investigate Q1 (Quality rubric for code work). Specifically:
 
-1. Read `.opencode/agent/review.md` lines 114-152 (Quality Rubric section: scoring dimensions, quality bands, severity classification, dimension rubrics matrix). This is the structural template.
-2. Read `.opencode/skill/sk-code/SKILL.md` lines 50-100 (Phase 0-3 lifecycle + Iron Law) and search for "P0", "P1", "Code Quality Gate" to extract sk-code's existing severity model.
-3. Read `.opencode/skill/sk-code-review/SKILL.md` for the baseline severity contract (sk-code-review is review-side; mirror for coder side).
+1. Read `.opencode/agents/review.md` lines 114-152 (Quality Rubric section: scoring dimensions, quality bands, severity classification, dimension rubrics matrix). This is the structural template.
+2. Read `.opencode/skills/sk-code/SKILL.md` lines 50-100 (Phase 0-3 lifecycle + Iron Law) and search for "P0", "P1", "Code Quality Gate" to extract sk-code's existing severity model.
+3. Read `.opencode/skills/sk-code-review/SKILL.md` for the baseline severity contract (sk-code-review is review-side; mirror for coder side).
 4. Read `AGENTS.md` Quality Principles + Analysis Lenses section to find coder-side dimensions already in scope.
 5. Synthesize a CODER ACCEPTANCE RUBRIC mirroring @review §5 with:
    - 5 dimensions × 100 points (suggested starting set: Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15 — validate against evidence).

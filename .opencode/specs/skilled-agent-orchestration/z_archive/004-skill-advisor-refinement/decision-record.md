@@ -13,7 +13,7 @@ contextType: "planning"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -109,7 +109,7 @@ Explicit threshold use currently risks silently downgrading uncertainty safeguar
 ### Implementation
 
 **What changes**:
-- Modify filtering mode logic in `.opencode/skill/scripts/skill_advisor.py`.
+- Modify filtering mode logic in `.opencode/skills/scripts/skill_advisor.py`.
 - Add regression assertions for default and confidence-only behavior.
 
 **How to roll back**: Revert filtering flag changes and restore prior mode selection branch; rerun baseline regression.
@@ -254,7 +254,7 @@ Each request currently rescans skills and reprocesses metadata. This increases w
 ### Implementation
 
 **What changes**:
-- Add `.opencode/skill/scripts/skill_advisor_runtime.py` for cache helpers.
+- Add `.opencode/skills/scripts/skill_advisor_runtime.py` for cache helpers.
 - Update advisor load path to use cache API.
 
 **How to roll back**: Bypass runtime cache module and restore direct discovery path.
@@ -335,5 +335,5 @@ Repeated subprocess startup is expensive for bulk routing and there is no perman
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

@@ -64,8 +64,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Read `.opencode/command/spec_kit/*.md` and selected line-numbered YAML assets.
-- [x] T005 Read `.opencode/command/memory/*.md` and confirm memory command asset layout.
+- [x] T004 Read `.opencode/commands/spec_kit/*.md` and selected line-numbered YAML assets.
+- [x] T005 Read `.opencode/commands/memory/*.md` and confirm memory command asset layout.
 - [x] T006 Read destructive memory tool schemas and handlers for gate-bypass checks.
 - [x] T007 Classify correctness, security, traceability, and maintainability findings with file:line evidence.
 <!-- /ANCHOR:phase-2 -->

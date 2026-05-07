@@ -13,13 +13,13 @@ I compared the external repo's minimal shipped artifact set with the internal te
 
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:162-177] The external repo ships a very small artifact set: one workflow, three agent docs, three explanation docs, and a license.
-- [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:30-35] Internal templates use a CORE + ADDENDUM v2.2 architecture that already requires understanding composed versus source templates.
-- [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:42-60] The template tree spans `core`, `addendum`, four level folders, context, research, handover, debug, changelog, scratch, sharded, and composition hashes.
-- [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:66-84] The level model adds required files and workflow notes, including checklist verification and mandatory implementation summaries.
-- [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-75] Level guidance explains compositional architecture, soft LOC thresholds, value layering, and multiple level semantics before actual work begins.
-- [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:81-97] Even Level 1 requires four files and adaptation steps.
-- [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:173-206] Level 2 adds checklist requirements and hard-block enforcement.
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-100] The validator exposes strict mode, recursive behavior, many rules, and warnings-as-errors semantics.
+- [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:30-35] Internal templates use a CORE + ADDENDUM v2.2 architecture that already requires understanding composed versus source templates.
+- [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:42-60] The template tree spans `core`, `addendum`, four level folders, context, research, handover, debug, changelog, scratch, sharded, and composition hashes.
+- [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:66-84] The level model adds required files and workflow notes, including checklist verification and mandatory implementation summaries.
+- [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-75] Level guidance explains compositional architecture, soft LOC thresholds, value layering, and multiple level semantics before actual work begins.
+- [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:81-97] Even Level 1 requires four files and adaptation steps.
+- [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:173-206] Level 2 adds checklist requirements and hard-block enforcement.
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] The validator exposes strict mode, recursive behavior, many rules, and warnings-as-errors semantics.
 
 ## Analysis
 The external repo is too minimal to replace the packet model wholesale, but it does reveal where internal UX drifts from guidance into taxonomy. `system-spec-kit` has a strong documentation framework for high-accountability work, yet the operator-visible story currently begins with architecture vocabulary like CORE, ADDENDUM, composed templates, levels, recursive validation, and rule names. That is excellent for framework maintainers and experienced operators, but it is a lot to front-load for routine work. The better posture is to keep the durable artifact model while dramatically simplifying how the system explains itself: fewer visible levels, stronger defaults, and validator messages that feel assistive rather than constitutional.

@@ -87,10 +87,10 @@ Open the consumer-side cached-summary packet in the train without shifting start
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Modify | Add guarded cached-summary consumption for startup or resume hints. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Read-first targeted modify | Consume existing producer metadata without redefining the writer contract. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Preserve bootstrap authority while exposing additive cached-summary hints. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests` | Modify | Add frozen resume-corpus checks for fidelity-gated summary use. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Modify | Add guarded cached-summary consumption for startup or resume hints. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Read-first targeted modify | Consume existing producer metadata without redefining the writer contract. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Preserve bootstrap authority while exposing additive cached-summary hints. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests` | Modify | Add frozen resume-corpus checks for fidelity-gated summary use. |
 <!-- /ANCHOR:scope -->
 
 ---

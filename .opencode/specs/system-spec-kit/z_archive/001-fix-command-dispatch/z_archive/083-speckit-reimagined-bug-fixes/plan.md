@@ -76,7 +76,7 @@ COMPLETE
 ### 2.1 BUG-001: README ANCHOR Format
 
 **Files to modify:**
-- `.opencode/skill/system-spec-kit/README.md`
+- `.opencode/skills/system-spec-kit/README.md`
 
 **Changes:**
 ```diff
@@ -111,7 +111,7 @@ Line 696:
 
 **Pattern:**
 ```diff
-- `.opencode/command/spec_kit/assets/`
+- `.opencode/commands/spec_kit/assets/`
 + `.claude/commands/spec_kit/assets/`
 ```
 
@@ -178,7 +178,7 @@ step_5_5_preflight:
 
 **Files to modify:**
 - `.claude/commands/spec_kit/handover.md`
-- `.opencode/agent/handover.md`
+- `.opencode/agents/handover.md`
 
 **Changes:**
 ```diff
@@ -279,7 +279,7 @@ Update YAML to use 5-section structure matching command file:
 
 ### 3.5 BUG-012: README Step Count Wrong
 
-**File:** `.opencode/skill/system-spec-kit/README.md`
+**File:** `.opencode/skills/system-spec-kit/README.md`
 
 **Changes:**
 ```diff
@@ -327,13 +327,13 @@ Line 76:
 
 ### 3.8 BUG-015: Agent File Orphaned References
 
-**File:** `.opencode/agent/speckit.md`
+**File:** `.opencode/agents/speckit.md`
 **Lines:** 419-420
 
 **Change:**
 ```diff
-- | `/memory:why`        | Decision lineage            | `.opencode/command/memory/why.md`          |
-- | `/memory:correct`    | Learning from mistakes      | `.opencode/command/memory/correct.md`      |
+- | `/memory:why`        | Decision lineage            | `.opencode/commands/memory/why.md`          |
+- | `/memory:correct`    | Learning from mistakes      | `.opencode/commands/memory/correct.md`      |
 + | `/memory:learn correct` | Learning from mistakes   | `.claude/commands/memory/learn.md`         |
 ```
 

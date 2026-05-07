@@ -30,7 +30,7 @@ No skips observed.
 
 ## §5 — Baseline Diff
 
-Baseline document found at `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md`.
+Baseline document found at `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md`.
 
 No known skip, flake, or known-failure entries are documented there, so there were no baseline known issues to reproduce or clear in this run.
 

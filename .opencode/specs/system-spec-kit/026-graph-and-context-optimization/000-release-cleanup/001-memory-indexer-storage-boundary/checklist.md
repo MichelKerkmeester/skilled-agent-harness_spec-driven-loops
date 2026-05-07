@@ -43,34 +43,34 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] **CHK-T01** [P0] `isIndexableConstitutionalMemoryPath()` exists and exports correctly. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:54]
-- [x] **CHK-T02** [P0] All storage-layer call sites consume the SSOT predicate. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335; .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:450; .opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:104; .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:333]
-- [x] **CHK-T03** [P0] `tests/checkpoint-restore-readme-poisoning.vitest.ts` exits 0 with expected `governance_audit` row. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-restore-readme-poisoning.vitest.ts:125; `npx vitest run tests/checkpoint-restore-readme-poisoning.vitest.ts` exit 0 after T4]
+- [x] **CHK-T01** [P0] `isIndexableConstitutionalMemoryPath()` exists and exports correctly. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:54]
+- [x] **CHK-T02** [P0] All storage-layer call sites consume the SSOT predicate. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335; .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:450; .opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:104; .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:333]
+- [x] **CHK-T03** [P0] `tests/checkpoint-restore-readme-poisoning.vitest.ts` exits 0 with expected `governance_audit` row. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-restore-readme-poisoning.vitest.ts:125; `npx vitest run tests/checkpoint-restore-readme-poisoning.vitest.ts` exit 0 after T4]
 - [x] **CHK-T04** [P0] No regression in focused storage-boundary tests. [EVIDENCE: `npx vitest run tests/index-scope.vitest.ts tests/checkpoint-restore-invariant-enforcement.vitest.ts tests/checkpoint-restore-readme-poisoning.vitest.ts tests/memory-save-index-scope.vitest.ts tests/memory-crud-update-constitutional-guard.vitest.ts tests/symlink-realpath-hardening.vitest.ts tests/cleanup-script-audit-emission.vitest.ts stress_test/code-graph/walker-dos-caps.vitest.ts tests/chunking-orchestrator.vitest.ts` exit 0]
 
 <!-- /ANCHOR:code-quality -->
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] **CHK-T05** [P1] `E_MEMORY_INDEX_SCOPE_EXCLUDED` error code returned with canonicalPath. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:173; .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts:346]
-- [x] **CHK-T06** [P1] `warnings` + `capExceeded` fields appear in scan responses when caps trigger. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:374; .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:47; .opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts:64]
-- [x] **CHK-T07** [P1] Chunking fallback no longer writes `importance_tier` outside SSOT. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:102; .opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:264]
+- [x] **CHK-T05** [P1] `E_MEMORY_INDEX_SCOPE_EXCLUDED` error code returned with canonicalPath. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:173; .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts:346]
+- [x] **CHK-T06** [P1] `warnings` + `capExceeded` fields appear in scan responses when caps trigger. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:374; .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:47; .opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts:64]
+- [x] **CHK-T07** [P1] Chunking fallback no longer writes `importance_tier` outside SSOT. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:102; .opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:264]
 - [x] **CHK-T08** [P1] 005 root docs use current packet ID; aliases preserved only explicitly. [EVIDENCE: specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/spec.md:194]
 - [x] **CHK-T09** [P2] Checked 005 checklist evidence and current-ID references. [EVIDENCE: specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/checklist.md:74]
 - [x] **CHK-T10** [P2] ADR-008..ADR-012 carry alternatives + rationale. [EVIDENCE: specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/decision-record.md:317]
-- [x] **CHK-T11** [P2] Feature catalog + manual playbook updated. [EVIDENCE: .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25; .opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md:38]
-- [x] **CHK-T12** [P2] Runtime trace comments updated for memory-indexer ADR references. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:372; .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:452]
-- [x] **CHK-T13** [P2] Cleanup CLI derives excluded paths from SSOT. [EVIDENCE: .opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:111]
-- [x] **CHK-T14** [P2] Operator README has Repair / Verify / Rollback subsection. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/README.md:121]
+- [x] **CHK-T11** [P2] Feature catalog + manual playbook updated. [EVIDENCE: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25; .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md:38]
+- [x] **CHK-T12** [P2] Runtime trace comments updated for memory-indexer ADR references. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:372; .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:452]
+- [x] **CHK-T13** [P2] Cleanup CLI derives excluded paths from SSOT. [EVIDENCE: .opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:111]
+- [x] **CHK-T14** [P2] Operator README has Repair / Verify / Rollback subsection. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/README.md:121]
 - [x] **CHK-T15** [P2] Strategy artifact map paths corrected. [EVIDENCE: specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/review/005-memory-indexer-invariants-pt-01/deep-review-strategy.md:156]
-- [x] **CHK-T16** [P2] Shared `tests/fixtures/memory-index-db.ts` extracted; 3 test files migrated. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts:10; .opencode/skill/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts:8]
+- [x] **CHK-T16** [P2] Shared `tests/fixtures/memory-index-db.ts` extracted; 3 test files migrated. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts:10; .opencode/skills/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts:8]
 
 <!-- /ANCHOR:testing -->
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] **CHK-S01** [P0] Constitutional README cannot be preserved as constitutional tier by checkpoint, update, save, or post-insert paths. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-restore-readme-poisoning.vitest.ts:125]
-- [x] **CHK-S02** [P1] Save-time excluded-path rejection has a stable error code. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts:346]
+- [x] **CHK-S01** [P0] Constitutional README cannot be preserved as constitutional tier by checkpoint, update, save, or post-insert paths. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-restore-readme-poisoning.vitest.ts:125]
+- [x] **CHK-S02** [P1] Save-time excluded-path rejection has a stable error code. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts:346]
 
 <!-- /ANCHOR:security -->
 <!-- ANCHOR:docs -->
@@ -83,7 +83,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] **CHK-F01** [P1] Shared fixture extraction location remains under the memory-indexer test tree. [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts:10]
+- [x] **CHK-F01** [P1] Shared fixture extraction location remains under the memory-indexer test tree. [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts:10]
 - [x] **CHK-F02** [P1] No runtime-code edits are part of this strict-validator closure pass. [EVIDENCE: temporary hygiene summary records packet-level doc-only validation status]
 
 <!-- /ANCHOR:file-org -->

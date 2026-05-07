@@ -34,7 +34,7 @@ Artifact dir: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 1. **PR 5 metrics maintainability:** Read `mcp_server/skill-advisor/lib/metrics.ts` end-to-end (scope: only the new `spec_kit.*` namespace section, lines 474+). Check: are metric names + label types reusable? Does the cardinality budget (~412 series dry-run) get re-checked at runtime, or only at dry-run? Is `isSpeckitMetricsEnabled()` cached or re-checked per emission (perf concern)?
 
-2. **PR 4 vocab unification — backward compat aliases:** Verify `mcp_server/skill-advisor/lib/freshness/trust-state.ts` exposes V1-V5 deprecation aliases per task T-027. Are external consumers (`.opencode/plugin/`, `.opencode/skill/system-spec-kit/scripts/`, runtime hook adapters) still importing the old type names? Grep for `GraphFreshness`, `TrustState`, V1 strings.
+2. **PR 4 vocab unification — backward compat aliases:** Verify `mcp_server/skill-advisor/lib/freshness/trust-state.ts` exposes V1-V5 deprecation aliases per task T-027. Are external consumers (`.opencode/plugin/`, `.opencode/skills/system-spec-kit/scripts/`, runtime hook adapters) still importing the old type names? Grep for `GraphFreshness`, `TrustState`, V1 strings.
 
 3. **PR 7 + PR 6 test coverage gaps:** The new `mcp_server/skill-advisor/tests/cache/listener-uniqueness.vitest.ts` and `mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts` — do they actually validate the production code paths or just the test-local behavior? Adversarial check: can both tests pass while the production code is broken?
 

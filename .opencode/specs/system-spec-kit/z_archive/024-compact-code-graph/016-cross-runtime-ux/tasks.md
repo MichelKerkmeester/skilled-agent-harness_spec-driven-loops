@@ -76,7 +76,7 @@ Template compliance shim anchor for cross-refs.
 - [x] Item 41: Auto-reindex on session start via first-call priming — Evidence: wired into Phase 014 first-call priming pattern in scan.ts
 - [x] Item 42: CODEX.md updated with Session Start Protocol — Evidence: calls `memory_context()` with resume profile + `code_graph_status()` on first turn
 - [x] Item 42: AGENTS.md updated with code graph auto-trigger — Evidence: Copilot CLI and Gemini CLI agents get auto-trigger instructions
-- [x] Item 42: OpenCode context.md updated with code graph integration — Evidence: `.opencode/agent/context.md` has tool reference table and graph health check
+- [x] Item 42: OpenCode context.md updated with code graph integration — Evidence: `.opencode/agents/context.md` has tool reference table and graph health check
 - [x] Item 42: GEMINI.md updated with session start protocol — Evidence: shares AGENTS.md content via symlink
 - [x] Item 42: CLAUDE.md (root) updated with universal Code Search Protocol — Evidence: recovery instructions work across all runtimes
 - [x] Item 43: Recovery documentation consolidated — Evidence: universal recovery in root CLAUDE.md, Claude-specific hook behavior in `CLAUDE.md` only; no overlapping authority

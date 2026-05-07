@@ -12,7 +12,7 @@ Convergence reached the requested 7 iterations. New info ratios were 0.82, 0.74,
 
 ### RQ1 - Skill Advisor Entry Points
 
-The skill advisor has real automatic entry points for Claude, Gemini, and OpenCode plugin flows, but Copilot and Codex depend on weaker or runtime-gated paths. Manual CLI and MCP advisor paths remain important operator tools. Evidence: Claude hook returns `additionalContext` (`.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:149-190`), Gemini hook returns `additionalContext` (`.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:139-204`), Copilot writes custom instructions because hook output is ignored (`.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-7`, `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:101-190`), Codex has timeout fallback behavior (`.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180`), and the OpenCode plugin appends advisor briefs in-process (`.opencode/plugins/spec-kit-skill-advisor.js:567-663`).
+The skill advisor has real automatic entry points for Claude, Gemini, and OpenCode plugin flows, but Copilot and Codex depend on weaker or runtime-gated paths. Manual CLI and MCP advisor paths remain important operator tools. Evidence: Claude hook returns `additionalContext` (`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:149-190`), Gemini hook returns `additionalContext` (`.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:139-204`), Copilot writes custom instructions because hook output is ignored (`.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-7`, `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:101-190`), Codex has timeout fallback behavior (`.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180`), and the OpenCode plugin appends advisor briefs in-process (`.opencode/plugins/spec-kit-skill-advisor.js:567-663`).
 
 | Claim | Actual behavior | Gap class | Recommended action |
 |-------|-----------------|-----------|--------------------|
@@ -25,11 +25,11 @@ The skill advisor has real automatic entry points for Claude, Gemini, and OpenCo
 | Skill graph stays warm automatically. | Daemon/watcher paths exist for some runtimes, but startup/plugin wiring controls whether they run (`context-server.ts:2047-2090`). | Half | Document runtime-specific triggers. |
 | Python advisor CLI is automatic. | `skill_advisor.py` is an explicit fallback path documented for scripts and unsupported runtimes (`CLAUDE.md:169-210`, `skill-advisor-hook.md:171-194`). | Manual | Keep as fallback, not auto claim. |
 | Advisor MCP recommendation is automatic. | `advisor_recommend` exposes status/scoring when invoked (`skill_advisor/lib/advisor-recommend.ts:207-318`). | Manual | Label as MCP operator/tool path. |
-| Advisor tuner auto-optimizes production. | Doctor asset can analyze, optimize, re-index, and validate but has explicit apply/verify phases (`.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml:1-6`, `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml:162-194`). | Manual | Keep as diagnostic/remediation tool. |
+| Advisor tuner auto-optimizes production. | Doctor asset can analyze, optimize, re-index, and validate but has explicit apply/verify phases (`.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml:1-6`, `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml:162-194`). | Manual | Keep as diagnostic/remediation tool. |
 
 ### RQ2 - Code Graph Scan, Verify, Status, Ensure-Ready, Watcher
 
-The structural code graph has useful read-path freshness support, not continuous whole-repo auto-reindexing. `ensureCodeGraphReady` can selectively reindex changed tracked files (`.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442`), while query/context block or instruct the operator when a full scan is required (`code_graph/handlers/query.ts:787-828`, `code_graph/handlers/query.ts:1087-1092`, `mcp_server/context.ts:163-220`). Manual `code_graph_scan`, verify, status, and doctor commands remain the control plane.
+The structural code graph has useful read-path freshness support, not continuous whole-repo auto-reindexing. `ensureCodeGraphReady` can selectively reindex changed tracked files (`.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442`), while query/context block or instruct the operator when a full scan is required (`code_graph/handlers/query.ts:787-828`, `code_graph/handlers/query.ts:1087-1092`, `mcp_server/context.ts:163-220`). Manual `code_graph_scan`, verify, status, and doctor commands remain the control plane.
 
 | Claim | Actual behavior | Gap class | Recommended action |
 |-------|-----------------|-----------|--------------------|
@@ -42,11 +42,11 @@ The structural code graph has useful read-path freshness support, not continuous
 | `code_graph_verify` repairs by default. | Verify blocks unless fresh and only persists baseline with an explicit option (`code_graph/handlers/verify.ts:141-178`). | Manual | Keep as validation command. |
 | `detect_changes` auto-indexes. | It uses `allowInlineIndex:false` and reports the need for `code_graph_scan` (`code_graph/handlers/detect-changes.ts:241-262`). | Manual | Keep as preflight detector. |
 | A filesystem watcher keeps structural graph current. | README claims real-time watching, but iteration absence search found no watcher under `mcp_server/code_graph/`; watcher evidence is memory/spec-doc scoped (`mcp_server/README.md:515-518`, `context-server.ts:2047-2090`, `research/iterations/iteration-002.md:18`, `research/iterations/iteration-002.md:32`). | Aspirational | Fix docs or implement watcher. |
-| Doctor code-graph command can mutate graph. | Doctor contract is diagnostic-only and forbids invoking `code_graph_scan` (`.opencode/command/doctor/assets/doctor_code-graph_auto.yaml:1-24`, `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml:191-204`). | Manual | Keep as diagnostic. |
+| Doctor code-graph command can mutate graph. | Doctor contract is diagnostic-only and forbids invoking `code_graph_scan` (`.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:1-24`, `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:191-204`). | Manual | Keep as diagnostic. |
 
 ### RQ3 - System-Spec-Kit Validator, Generate-Context, Auto-Indexing
 
-System-spec-kit has strong manual validation and creation automation, plus startup/post-mutation indexing hooks. It does not auto-validate every packet unless the command or agent workflow invokes validation. Evidence: strict validation is a shell command (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh:87-130`), `create.sh` generates metadata (`scripts/spec/create.sh:330-356`, `scripts/spec/create.sh:948-989`, `scripts/spec/create.sh:1184-1195`), and `context-server.ts` performs startup and post-mutation indexing (`mcp_server/context-server.ts:1320-1374`, `mcp_server/context-server.ts:2032-2090`).
+System-spec-kit has strong manual validation and creation automation, plus startup/post-mutation indexing hooks. It does not auto-validate every packet unless the command or agent workflow invokes validation. Evidence: strict validation is a shell command (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:87-130`), `create.sh` generates metadata (`scripts/spec/create.sh:330-356`, `scripts/spec/create.sh:948-989`, `scripts/spec/create.sh:1184-1195`), and `context-server.ts` performs startup and post-mutation indexing (`mcp_server/context-server.ts:1320-1374`, `mcp_server/context-server.ts:2032-2090`).
 
 | Claim | Actual behavior | Gap class | Recommended action |
 |-------|-----------------|-----------|--------------------|
@@ -82,7 +82,7 @@ Memory automation is mixed. Startup scans, async ingest recovery, session cleanu
 
 ### RQ5 - Per-Runtime Hook Reality
 
-Hook wiring is not uniform. Claude, Gemini, and OpenCode plugin bridge have the strongest auto paths; Copilot is a next-prompt workaround; Codex has checked-in hook commands but a documented readiness predicate mismatch; native/no-CLI paths are manual. The fallback chain is explicit: if hook context is unavailable, use `/spec_kit:resume`, memory context, or manual tools (`.opencode/skill/system-spec-kit/references/config/hook_system.md:64-78`).
+Hook wiring is not uniform. Claude, Gemini, and OpenCode plugin bridge have the strongest auto paths; Copilot is a next-prompt workaround; Codex has checked-in hook commands but a documented readiness predicate mismatch; native/no-CLI paths are manual. The fallback chain is explicit: if hook context is unavailable, use `/spec_kit:resume`, memory context, or manual tools (`.opencode/skills/system-spec-kit/references/config/hook_system.md:64-78`).
 
 | Runtime | Wired hooks / config evidence | Fallback chain | Gap class | Recommended action |
 |---------|-------------------------------|----------------|-----------|--------------------|
@@ -178,73 +178,73 @@ Stop reason: max iterations reached; early-stop condition not met. The loop did 
 - `CLAUDE.md:169-210` - gates.
 - `CLAUDE.md:227-232` - memory save rules.
 - `CLAUDE.md:276` - metadata generation requirement.
-- `.opencode/skill/system-spec-kit/SKILL.md:61-63` - governance and deep research exception.
-- `.opencode/skill/system-spec-kit/SKILL.md:766-803` - code graph docs.
-- `.opencode/skill/system-spec-kit/SKILL.md:828-845` - rules.
-- `.opencode/skill/system-spec-kit/SKILL.md:935-963` - quick reference.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:31-41` - default hook flow.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:55-65` - runtime matrix.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:76-85` - shared behavior/fail-open.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:171-194` - operator states.
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md:37-45` - lifecycle and Codex readiness.
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md:64-78` - runtime matrix/fallback.
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md:93-107` - OpenCode bridge.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:149-190` - Claude brief.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:139-204` - Gemini brief.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-7` - Copilot output ignored.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:149-238` - Copilot writer.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:101-190` - Copilot managed block.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:14-36` - Copilot contract.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180` - Codex stale fallback.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:249-343` - Codex brief.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:123-199` - Codex wrapper fallback.
+- `.opencode/skills/system-spec-kit/SKILL.md:61-63` - governance and deep research exception.
+- `.opencode/skills/system-spec-kit/SKILL.md:766-803` - code graph docs.
+- `.opencode/skills/system-spec-kit/SKILL.md:828-845` - rules.
+- `.opencode/skills/system-spec-kit/SKILL.md:935-963` - quick reference.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:31-41` - default hook flow.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:55-65` - runtime matrix.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:76-85` - shared behavior/fail-open.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:171-194` - operator states.
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md:37-45` - lifecycle and Codex readiness.
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md:64-78` - runtime matrix/fallback.
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md:93-107` - OpenCode bridge.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:149-190` - Claude brief.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:139-204` - Gemini brief.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-7` - Copilot output ignored.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:149-238` - Copilot writer.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:101-190` - Copilot managed block.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:14-36` - Copilot contract.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180` - Codex stale fallback.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:249-343` - Codex brief.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:123-199` - Codex wrapper fallback.
 - `.opencode/plugins/README.md:1-16` - OpenCode plugin auto-load.
 - `.opencode/plugins/spec-kit-skill-advisor.js:567-663` - advisor plugin transform.
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:316-360` - bridge states.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:397-539` - brief skip/cache/fail-open.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/advisor-recommend.ts:207-318` - MCP advisor scoring.
-- `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml:1-6` - doctor purpose.
-- `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml:162-194` - doctor apply/verify.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442` - read-path readiness.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828` - full scan block.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1087-1092` - ensure-ready call.
-- `.opencode/skill/system-spec-kit/mcp_server/context.ts:62-96` - context block/fallback.
-- `.opencode/skill/system-spec-kit/mcp_server/context.ts:163-220` - context readiness.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356` - manual scan handler.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158-280` - read-only status.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:141-178` - verify behavior.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:241-262` - no inline index.
-- `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml:1-24` - diagnostic-only intent.
-- `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml:191-204` - no mutations.
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:87-130` - validator args.
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:669-786` - strict checks.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:330-356` - metadata creation.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:948-989` - parent/child description generation.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1184-1195` - normal description generation.
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:58-92` - save CLI modes.
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:404-446` - phase parent pointer.
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:481-590` - structured args.
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1320-1374` - startup scan.
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:2032-2045` - async ingest recovery.
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:2047-2090` - optional watcher.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:140-152` - enrichment/reconsolidation defaults.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:348-355` - watcher default.
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:96-103` - feature flag defaults.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-save.ts:1723-1888` - planner advisories.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-save.ts:2518-2565` - post-insert enrichment.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-save.ts:2681-2770` - save handler.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-save.ts:3028-3058` - plan-only response.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-save.ts:3120-3330` - full-auto save path.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-index.ts:185-245` - explicit index scan.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-index.ts:420-560` - incremental scan.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/memory-triggers.ts:183-280` - explicit prompt matching.
-- `.opencode/skill/system-spec-kit/mcp_server/session-bootstrap.ts:1-11` - bootstrap composite.
-- `.opencode/skill/system-spec-kit/mcp_server/session-resume.ts:1-16` - resume composite.
-- `.opencode/skill/system-spec-kit/mcp_server/checkpoints.ts:28-32` - checkpoint catalog.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:202-257` - cleanup intervals.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:737-840` - cleanup handlers.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:225-333` - retention metadata.
-- `.opencode/skill/system-spec-kit/mcp_server/memory-tools/causal-links-processor.ts:344-420` - causal links.
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:316-360` - bridge states.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:397-539` - brief skip/cache/fail-open.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/advisor-recommend.ts:207-318` - MCP advisor scoring.
+- `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml:1-6` - doctor purpose.
+- `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml:162-194` - doctor apply/verify.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:329-442` - read-path readiness.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828` - full scan block.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1087-1092` - ensure-ready call.
+- `.opencode/skills/system-spec-kit/mcp_server/context.ts:62-96` - context block/fallback.
+- `.opencode/skills/system-spec-kit/mcp_server/context.ts:163-220` - context readiness.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:177-356` - manual scan handler.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158-280` - read-only status.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:141-178` - verify behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:241-262` - no inline index.
+- `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:1-24` - diagnostic-only intent.
+- `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:191-204` - no mutations.
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:87-130` - validator args.
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:669-786` - strict checks.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:330-356` - metadata creation.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:948-989` - parent/child description generation.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1184-1195` - normal description generation.
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:58-92` - save CLI modes.
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:404-446` - phase parent pointer.
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:481-590` - structured args.
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1320-1374` - startup scan.
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:2032-2045` - async ingest recovery.
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:2047-2090` - optional watcher.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:140-152` - enrichment/reconsolidation defaults.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:348-355` - watcher default.
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:96-103` - feature flag defaults.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-save.ts:1723-1888` - planner advisories.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-save.ts:2518-2565` - post-insert enrichment.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-save.ts:2681-2770` - save handler.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-save.ts:3028-3058` - plan-only response.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-save.ts:3120-3330` - full-auto save path.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-index.ts:185-245` - explicit index scan.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-index.ts:420-560` - incremental scan.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/memory-triggers.ts:183-280` - explicit prompt matching.
+- `.opencode/skills/system-spec-kit/mcp_server/session-bootstrap.ts:1-11` - bootstrap composite.
+- `.opencode/skills/system-spec-kit/mcp_server/session-resume.ts:1-16` - resume composite.
+- `.opencode/skills/system-spec-kit/mcp_server/checkpoints.ts:28-32` - checkpoint catalog.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:202-257` - cleanup intervals.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:737-840` - cleanup handlers.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:225-333` - retention metadata.
+- `.opencode/skills/system-spec-kit/mcp_server/memory-tools/causal-links-processor.ts:344-420` - causal links.
 - `.claude/settings.local.json:24-74` - Claude hooks.
 - `.gemini/settings.json:67-125` - Gemini hooks.
 - `.codex/settings.json:2-36` - Codex hooks.

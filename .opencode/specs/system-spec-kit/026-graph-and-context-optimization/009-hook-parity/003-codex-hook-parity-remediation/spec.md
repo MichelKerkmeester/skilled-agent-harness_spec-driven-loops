@@ -21,8 +21,8 @@ _memory:
     next_safe_action: "Validate and save"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts"
       - "~/.codex/hooks.json"
       - "~/.codex/config.toml"
     session_dedup:
@@ -48,7 +48,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify
 
 User-verified on 2026-04-22 that Codex CLI sessions return "no startup context observed" and "no advisor brief observed" — identical user-visible symptoms to the Copilot CLI gap (sibling phase 004). Root cause is different: **Codex natively supports the hook transport**. The file `~/.codex/hooks.json` already registers `SessionStart`, `UserPromptSubmit`, and `Stop` hooks — but only wires Superset's `notify.sh` (notification script), not Spec Kit Memory's advisor/context emitter.
 
-The reference implementation in `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` was wired during spec 020 but only registered for Claude Code. No Codex equivalent exists. This phase is primarily **IMPLEMENTATION**, preceded by a tight investigation to confirm the exact Codex hook contract (stdin payload, stdout injection semantics, error/timeout behavior) so the port doesn't ship against assumptions.
+The reference implementation in `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` was wired during spec 020 but only registered for Claude Code. No Codex equivalent exists. This phase is primarily **IMPLEMENTATION**, preceded by a tight investigation to confirm the exact Codex hook contract (stdin payload, stdout injection semantics, error/timeout behavior) so the port doesn't ship against assumptions.
 
 **Key decisions**: outcome A (full hook parity) is the overwhelmingly likely path — the transport exists, the schema is known, only the contract details need confirming. Outcomes B (workaround) and C (documented limitation) are emergency fallbacks if the investigation uncovers a hard constraint (e.g., Codex hooks are notification-only and can't inject into model context).
 
@@ -86,7 +86,7 @@ Codex CLI sessions do not receive the two payloads Claude Code receives:
 
 Empirical evidence: user ran `codex` and typed "Before I ask anything else: what repository state was injected into your startup context?" — response: "no startup context observed". Then asked about advisor brief — response: "no advisor brief observed".
 
-Root cause (confirmed by direct inspection of `~/.codex/hooks.json`): Codex CLI natively supports hooks, but no Spec Kit Memory hook command is registered. The existing entries only wire `~/.superset/hooks/notify.sh`, a notification-only script. Spec 020 wired these payloads for Claude Code (via `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`) but no Codex counterpart was created.
+Root cause (confirmed by direct inspection of `~/.codex/hooks.json`): Codex CLI natively supports hooks, but no Spec Kit Memory hook command is registered. The existing entries only wire `~/.superset/hooks/notify.sh`, a notification-only script. Spec 020 wired these payloads for Claude Code (via `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`) but no Codex counterpart was created.
 
 ### Purpose
 
@@ -109,8 +109,8 @@ Wire Spec Kit Memory hooks into Codex CLI's existing hook surface so Codex sessi
 ### In Scope
 
 - **Phase 1 — Contract investigation**: confirm the exact Codex hook contract (stdin payload format, stdout injection semantics, exit-code meaning, timeout budget, concurrency/ordering, full event taxonomy).
-- **Phase 2 — Port implementation**: create `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/` mirroring the Claude structure. Port `user-prompt-submit.ts` and any session-start handler. Create parity tests. Register in `~/.codex/hooks.json` alongside the existing notify.sh entries.
-- **Phase 3 — Documentation**: update `.opencode/skill/cli-codex/SKILL.md` and `.opencode/skill/cli-codex/README.md` to document the parity. Update the parent summary.
+- **Phase 2 — Port implementation**: create `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/` mirroring the Claude structure. Port `user-prompt-submit.ts` and any session-start handler. Create parity tests. Register in `~/.codex/hooks.json` alongside the existing notify.sh entries.
+- **Phase 3 — Documentation**: update `.opencode/skills/cli-codex/SKILL.md` and `.opencode/skills/cli-codex/README.md` to document the parity. Update the parent summary.
 
 ### Out of Scope
 
@@ -123,11 +123,11 @@ Wire Spec Kit Memory hooks into Codex CLI's existing hook surface so Codex sessi
 
 | Path                                                                              | Change Type    | Description                                                           |
 | --------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------- |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`    | Create         | Port of Claude's hook, adapted to Codex's stdin payload format        |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts`         | Create (conditional) | If Codex supports SessionStart context injection, mirror Claude    |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts` | Create | Parity tests mirroring Claude's test surface                          |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`    | Create         | Port of Claude's hook, adapted to Codex's stdin payload format        |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`         | Create (conditional) | If Codex supports SessionStart context injection, mirror Claude    |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts` | Create | Parity tests mirroring Claude's test surface                          |
 | `~/.codex/hooks.json`                                                             | Modify (user-local) | Add entries alongside Superset's notify.sh pointing at new Codex hooks |
-| `.opencode/skill/cli-codex/SKILL.md` and `.opencode/skill/cli-codex/README.md`     | Modify         | Document parity status (shipped / feature available)                  |
+| `.opencode/skills/cli-codex/SKILL.md` and `.opencode/skills/cli-codex/README.md`     | Modify         | Document parity status (shipped / feature available)                  |
 | Parent `../implementation-summary.md` | Modify | Record phase outcome |
 | `decision-record.md` (this packet)                                                | Create         | ADR capturing contract-investigation findings + implementation decision |
 <!-- /ANCHOR:scope -->
@@ -161,7 +161,7 @@ Wire Spec Kit Memory hooks into Codex CLI's existing hook surface so Codex sessi
 | ID      | Requirement                                                                                       | Acceptance Criteria                                                                                             |
 | ------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | REQ-010 | Capture investigation findings so the methodology is reusable for future CLI hook parity efforts  | Parent research synthesis has a methodology section with stdin probe and event-taxonomy discovery patterns      |
-| REQ-011 | Document the hook authoring contract in the cli-codex skill so future hook authors don't re-investigate | A reference doc (likely under `.opencode/skill/cli-codex/references/`) captures the stdin/stdout/exit-code/timeout/ordering contract |
+| REQ-011 | Document the hook authoring contract in the cli-codex skill so future hook authors don't re-investigate | A reference doc (likely under `.opencode/skills/cli-codex/references/`) captures the stdin/stdout/exit-code/timeout/ordering contract |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -229,7 +229,7 @@ This is Level 3 because the change spans runtime hooks, live user configuration,
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Codex hook schema changes while under development | Startup/advisor context could stop injecting | `.opencode/skill/cli-codex/references/hook_contract.md` documents source links and smoke checks |
+| Codex hook schema changes while under development | Startup/advisor context could stop injecting | `.opencode/skills/cli-codex/references/hook_contract.md` documents source links and smoke checks |
 | Live hooks run concurrently | Race conditions if hooks write shared state | Spec Kit hooks are stdout-only |
 | Superset notification side effects | Unexpected local notification behavior | Existing notify commands were preserved exactly and remain user-owned |
 
@@ -272,6 +272,6 @@ This is Level 3 because the change spans runtime hooks, live user configuration,
 - **Parent packet**: `../spec.md`, `../plan.md`, `../implementation-summary.md`
 - **Sibling phase**: `../002-copilot-hook-parity-remediation/` — same user-visible symptom, different root cause, investigation-heavy
 - **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` — Claude reference implementation this phase parity-matches
-- **Referenced skill**: `.opencode/skill/cli-codex/` — target of documentation updates
-- **Reference implementation**: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
+- **Referenced skill**: `.opencode/skills/cli-codex/` — target of documentation updates
+- **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
 - **Evidence of hook support**: `~/.codex/hooks.json` (inspected 2026-04-22)

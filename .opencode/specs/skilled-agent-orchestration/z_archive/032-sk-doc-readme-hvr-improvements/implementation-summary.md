@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -45,7 +45,7 @@ This work upgraded the sk-doc standards stack and then repaired this Level 2 pac
 
 ### sk-doc Standards Upgrade
 
-The packet records three primary documentation changes: expanded HVR guidance in `.opencode/skill/sk-doc/references/global/hvr_rules.md`, targeted README template updates in `.opencode/skill/sk-doc/assets/documentation/readme_template.md`, and the new workflow reference in `.opencode/skill/sk-doc/references/specific/readme_creation.md`. It also records the related routing and cli-codex follow-up notes in `.opencode/skill/sk-doc/SKILL.md`, `.opencode/skill/cli-codex/SKILL.md`, and `.opencode/skill/cli-codex/assets/prompt_templates.md`.
+The packet records three primary documentation changes: expanded HVR guidance in `.opencode/skills/sk-doc/references/global/hvr_rules.md`, targeted README template updates in `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, and the new workflow reference in `.opencode/skills/sk-doc/references/specific/readme_creation.md`. It also records the related routing and cli-codex follow-up notes in `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/cli-codex/SKILL.md`, and `.opencode/skills/cli-codex/assets/prompt_templates.md`.
 
 ### Files Changed
 
@@ -85,7 +85,7 @@ The repair pass read the committed packet docs, replaced shorthand or stale mark
 
 | Check | Result |
 |-------|--------|
-| Packet path repair | PASS, cited markdown paths now point at committed `.opencode/skill/` files |
+| Packet path repair | PASS, cited markdown paths now point at committed `.opencode/skills/` files |
 | Template compliance | PASS, required Level 2 headers and anchors restored in `tasks.md`, `checklist.md`, and this summary |
 | Spec validation | PASS after this repair pass on `032-sk-doc-readme-hvr-improvements` with warnings only allowed |
 <!-- /ANCHOR:verification -->

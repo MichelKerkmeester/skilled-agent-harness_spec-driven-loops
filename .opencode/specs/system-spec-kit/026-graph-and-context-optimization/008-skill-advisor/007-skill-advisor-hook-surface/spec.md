@@ -126,7 +126,7 @@ Concrete goals:
 - Surface envelope via **shared-payload** contract from phase 018 R4 (trustState, provenance, sections). Copilot is the transport exception: it writes the rendered brief into the managed `SPEC-KIT-COPILOT-CONTEXT` custom-instructions block for the next prompt because Copilot customer hooks do not support prompt mutation.
 - Reuse the 019/004 200-prompt labeled corpus as regression fixture for hook-produced advisor results — verify they match the direct-CLI output within tolerance.
 - Honor existing `--threshold` / `--uncertainty` CLI flags via hook-side env or config.
-- Document the hook surface contract in a new reference doc under `.opencode/skill/system-spec-kit/references/hooks/` (file created by implementation child 020/008).
+- Document the hook surface contract in a new reference doc under `.opencode/skills/system-spec-kit/references/hooks/` (file created by implementation child 020/008).
 
 ### Out of Scope
 
@@ -134,7 +134,7 @@ Concrete goals:
 - Adding new trigger-phrase categories to Gate 3 or skill metadata. Belongs to a separate phase.
 - Server-side (LLM-backed) skill classification. Advisor stays local-Python.
 - Replacing the explicit Gate 2 invocation for Claude Code. The hook is additive; the explicit path still works for scripted use.
-- Cross-repo skill discovery. The advisor scope remains the current `.opencode/skill/` tree.
+- Cross-repo skill discovery. The advisor scope remains the current `.opencode/skills/` tree.
 - Multi-turn conversation analysis (e.g., "what skill has been active across last N turns"). Per-prompt only.
 
 ### Files to Change
@@ -152,7 +152,7 @@ See research output for full file list. Architectural anchors:
 | `mcp_server/hooks/gemini/user-prompt-submit.ts` | NEW | Per-prompt advisor brief for Gemini transport |
 | `mcp_server/hooks/copilot/user-prompt-submit.ts` | NEW | Per-prompt advisor brief for Copilot transport |
 | `mcp_server/hooks/claude/hook-state.ts` | EDIT | Add `advisorCache` field with { fingerprint, result, updatedAt, ttlSecs } |
-| New hook-surface contract doc under `.opencode/skill/system-spec-kit/references/hooks/` | NEW | Hook surface contract doc (created by 020/009 — research-finalized split: docs live in release-contract child, not the Codex child) |
+| New hook-surface contract doc under `.opencode/skills/system-spec-kit/references/hooks/` | NEW | Hook surface contract doc (created by 020/009 — research-finalized split: docs live in release-contract child, not the Codex child) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -180,7 +180,7 @@ See research output for full file list. Architectural anchors:
 
 1. **Given** a Claude Code session starts with an active spec folder, **when** the first turn's prompt arrives, **then** the session-prime hook surfaces a one-line advisor brief naming the top-1 skill + confidence.
 2. **Given** the user types two prompts with identical prompt text in the same session, **when** the second prompt arrives, **then** the advisor brief is served from cache (marked `cached=true`) with no new `skill_advisor.py` subprocess.
-3. **Given** a user edits `.opencode/skill/sk-code-opencode/SKILL.md` mid-session, **when** the next prompt arrives, **then** the advisor brief shows `freshness=stale` and prompts a background refresh.
+3. **Given** a user edits `.opencode/skills/sk-code-opencode/SKILL.md` mid-session, **when** the next prompt arrives, **then** the advisor brief shows `freshness=stale` and prompts a background refresh.
 4. **Given** a Gemini CLI session is running, **when** the user types a prompt, **then** the same one-line advisor brief appears in Gemini's context prime (via the shared-payload envelope).
 5. **Given** a Copilot CLI session is running, **when** the user types a prompt, **then** the hook refreshes the managed custom-instructions block for the next prompt; same-current-turn parity is not claimed for Copilot.
 6. **Given** the skill-advisor Python subprocess is unavailable (binary missing, dependency error), **when** a prompt arrives, **then** the hook returns `freshness=unavailable` and the brief omits the skill recommendation rather than blocking the turn.
@@ -199,7 +199,7 @@ See research output for full file list. Architectural anchors:
 - [ ] Freshness signal correctly flips `live`→`stale` when any SKILL.md mtime exceeds skill-graph SQLite mtime
 - [ ] Hook failure mode: advisor unavailable → brief degrades to `freshness=unavailable` without turn interruption
 - [ ] Claude/Gemini/Codex hooks ship with same-current-turn brief format; Copilot ships the same rendered brief through next-prompt custom-instructions refresh
-- [ ] Documentation: new hook-surface reference doc covers contract, failure modes, cache invalidation, cross-runtime semantics (location under `.opencode/skill/system-spec-kit/references/hooks/`, created by 020/009)
+- [ ] Documentation: new hook-surface reference doc covers contract, failure modes, cache invalidation, cross-runtime semantics (location under `.opencode/skills/system-spec-kit/references/hooks/`, created by 020/009)
 <!-- /ANCHOR:success-criteria -->
 
 ---

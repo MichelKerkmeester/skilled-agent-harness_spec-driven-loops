@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Begin file edits per tasks.md"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/README.md"
-      - ".opencode/skill/cli-opencode/graph-metadata.json"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/README.md"
+      - ".opencode/skills/cli-opencode/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-051-init"
@@ -77,26 +77,26 @@ Realign cli-opencode so `opencode-go/deepseek-v4-pro --variant high` is the docu
 - Add a Provider Auth Pre-Flight (smart fallback) protocol: detect missing `opencode-go` login, ASK the user before substituting a fallback model, surface login commands when no provider is configured, and re-run the pre-flight on auth-error mid-dispatch
 
 ### Out of Scope
-- Other skills under `.opencode/skill/` - scope is strictly cli-opencode/
+- Other skills under `.opencode/skills/` - scope is strictly cli-opencode/
 - Re-running version baselines or installer instructions
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skill/cli-opencode/SKILL.md | Modify | Replace all `github-copilot/*` model references with `opencode-go/deepseek-v4-pro`; drop copilot rows from model tables; update default-invocation block; refresh keyword comment |
-| .opencode/skill/cli-opencode/README.md | Modify | Update default invocation, key statistics, configuration, FAQ; drop copilot rows from model + provider tables |
-| .opencode/skill/cli-opencode/references/cli_reference.md | Modify | Update default invocation table; drop copilot model rows; update variant ranges section |
-| .opencode/skill/cli-opencode/references/integration_patterns.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
-| .opencode/skill/cli-opencode/references/opencode_tools.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
-| .opencode/skill/cli-opencode/references/agent_delegation.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
-| .opencode/skill/cli-opencode/assets/prompt_templates.md | Modify | Update template default-invocation shape |
-| .opencode/skill/cli-opencode/manual_testing_playbook/manual_testing_playbook.md | Modify | Drop copilot rows from index, retitle multi-provider section |
-| .opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md | Delete | Provider-specific test no longer applicable |
-| .opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md | Delete | Provider-specific test no longer applicable |
-| .opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md | Modify | Reframe variant comparison around opencode-go/deepseek-v4-pro |
-| .opencode/skill/cli-opencode/manual_testing_playbook/* (other entries) | Modify | Replace `github-copilot/gpt-5.4` and `github-copilot/claude-sonnet-4.6` example invocations with `opencode-go/deepseek-v4-pro` |
-| .opencode/skill/cli-opencode/graph-metadata.json | Modify | Drop `github-copilot` from causal_summary; drop copilot keywords from intent_signals/derived.trigger_phrases if present |
+| .opencode/skills/cli-opencode/SKILL.md | Modify | Replace all `github-copilot/*` model references with `opencode-go/deepseek-v4-pro`; drop copilot rows from model tables; update default-invocation block; refresh keyword comment |
+| .opencode/skills/cli-opencode/README.md | Modify | Update default invocation, key statistics, configuration, FAQ; drop copilot rows from model + provider tables |
+| .opencode/skills/cli-opencode/references/cli_reference.md | Modify | Update default invocation table; drop copilot model rows; update variant ranges section |
+| .opencode/skills/cli-opencode/references/integration_patterns.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
+| .opencode/skills/cli-opencode/references/opencode_tools.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
+| .opencode/skills/cli-opencode/references/agent_delegation.md | Modify | Update example commands to use opencode-go/deepseek-v4-pro |
+| .opencode/skills/cli-opencode/assets/prompt_templates.md | Modify | Update template default-invocation shape |
+| .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md | Modify | Drop copilot rows from index, retitle multi-provider section |
+| .opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md | Delete | Provider-specific test no longer applicable |
+| .opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md | Delete | Provider-specific test no longer applicable |
+| .opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md | Modify | Reframe variant comparison around opencode-go/deepseek-v4-pro |
+| .opencode/skills/cli-opencode/manual_testing_playbook/* (other entries) | Modify | Replace `github-copilot/gpt-5.4` and `github-copilot/claude-sonnet-4.6` example invocations with `opencode-go/deepseek-v4-pro` |
+| .opencode/skills/cli-opencode/graph-metadata.json | Modify | Drop `github-copilot` from causal_summary; drop copilot keywords from intent_signals/derived.trigger_phrases if present |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,7 +108,7 @@ Realign cli-opencode so `opencode-go/deepseek-v4-pro --variant high` is the docu
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Zero `github-copilot/` model references in skill files | `grep -ri "github-copilot" .opencode/skill/cli-opencode/` returns no matches |
+| REQ-001 | Zero `github-copilot/` model references in skill files | `grep -ri "github-copilot" .opencode/skills/cli-opencode/` returns no matches |
 | REQ-002 | New default invocation everywhere uses `opencode-go/deepseek-v4-pro --variant high` | SKILL.md §3 default block, README.md §1 key statistics, cli_reference.md default table all show opencode-go default |
 | REQ-003 | DeepSeek direct API still documented | `deepseek/deepseek-v4-pro` and `deepseek/deepseek-v4-flash` remain in provider tables and example commands |
 | REQ-004 | The two copilot-only multi-provider test entries are removed | `001-copilot-default-gpt-5-4.md` and `002-copilot-claude-sonnet-4-6.md` no longer exist; playbook index reflects removal |
@@ -128,7 +128,7 @@ Realign cli-opencode so `opencode-go/deepseek-v4-pro --variant high` is the docu
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -ri "github-copilot" .opencode/skill/cli-opencode/` returns zero hits
+- **SC-001**: `grep -ri "github-copilot" .opencode/skills/cli-opencode/` returns zero hits
 - **SC-002**: SKILL.md §3 Default Invocation block shows `opencode-go/deepseek-v4-pro --variant high` as the pinned default
 - **SC-003**: README.md §3.2 Models table lists only opencode-go and deepseek rows
 - **SC-004**: Manual testing playbook index lists only `003-deepseek-direct-api.md` and `004-variant-levels-comparison.md` under `03--multi-provider/`

@@ -21,8 +21,8 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/skill/sk-code/references/motion_dev/"
-      - ".opencode/skill/sk-code/assets/motion_dev/"
+      - ".opencode/skills/sk-code/references/motion_dev/"
+      - ".opencode/skills/sk-code/assets/motion_dev/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Packet** | `002-motion-dev` |
-| **Implementation Surface** | `.opencode/skill/sk-code/references/motion_dev/`, `.opencode/skill/sk-code/assets/motion_dev/` |
+| **Implementation Surface** | `.opencode/skills/sk-code/references/motion_dev/`, `.opencode/skills/sk-code/assets/motion_dev/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -71,14 +71,14 @@ Create a cited, cross-stack motion.dev reference and asset package that document
 ## 3. SCOPE
 
 ### In Scope
-- Create six Markdown references under `.opencode/skill/sk-code/references/motion_dev/`.
-- Create `install_card.md`, `playbook_entries.md`, and eight runnable JavaScript snippets under `.opencode/skill/sk-code/assets/motion_dev/`.
+- Create six Markdown references under `.opencode/skills/sk-code/references/motion_dev/`.
+- Create `install_card.md`, `playbook_entries.md`, and eight runnable JavaScript snippets under `.opencode/skills/sk-code/assets/motion_dev/`.
 - Cite official Motion docs for every Motion API claim.
 - Cite representative in-repo paths for real local usage patterns, especially `window.Motion` and ES module loading.
 - Preserve cross-stack boundaries by linking to Webflow guidance rather than editing it.
 
 ### Out of Scope
-- Editing `.opencode/skill/sk-code/references/webflow/*` or `.opencode/skill/sk-code/assets/webflow/*`; Packet 3 owns Webflow "See also" pointers.
+- Editing `.opencode/skills/sk-code/references/webflow/*` or `.opencode/skills/sk-code/assets/webflow/*`; Packet 3 owns Webflow "See also" pointers.
 - Editing the sk-code root `SKILL.md`, README, metadata, or changelog; Packet 3 owns metadata synchronization.
 - Implementing Motion animations in production UI files.
 - Rewriting or relocating existing Webflow animation guidance.
@@ -91,10 +91,10 @@ Create a cited, cross-stack motion.dev reference and asset package that document
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/plan.md` | Create | Packet 2 implementation plan |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md` | Create | Packet 2 task ledger |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md` | Create | Packet 2 verification checklist |
-| `.opencode/skill/sk-code/references/motion_dev/*.md` | Create | Six canonical Motion reference docs |
-| `.opencode/skill/sk-code/assets/motion_dev/install_card.md` | Create | Quick install/reference card |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Create | Eight runnable Motion snippets |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Create | Packet 1 playbook hook entries |
+| `.opencode/skills/sk-code/references/motion_dev/*.md` | Create | Six canonical Motion reference docs |
+| `.opencode/skills/sk-code/assets/motion_dev/install_card.md` | Create | Quick install/reference card |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/*.js` | Create | Eight runnable Motion snippets |
+| `.opencode/skills/sk-code/assets/motion_dev/playbook_entries.md` | Create | Packet 1 playbook hook entries |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -24,9 +24,9 @@ Reviewed packet root:
 
 Reviewed referenced implementation surfaces:
 
-- `.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`
 - `AGENTS.md` (level contract reference)
 
 ## 3. Method

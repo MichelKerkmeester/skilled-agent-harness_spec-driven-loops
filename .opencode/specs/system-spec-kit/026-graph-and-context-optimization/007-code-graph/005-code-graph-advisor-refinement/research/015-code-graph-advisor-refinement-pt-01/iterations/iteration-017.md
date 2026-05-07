@@ -17,8 +17,8 @@ The presumed race ("during a scan, advisor sees OLD sourceSignature until genera
 
 Therefore the live-state cache always corresponds to a `(snapshot==generation)` agreement. **The race is closed at `live`-state granularity, not via the cache itself.** This RETRACTS the working hypothesis stated in this iteration's dispatch context.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:242-296]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:418-468]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:242-296]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:418-468]
 
 ### F78 — The actual race window is during a `live → live'` transition (concurrent rebuild between two `live` generations), and it is bounded to a single `cache.get()` call after `invalidateSourceSignatureChange()`
 
@@ -34,8 +34,8 @@ The brief returned at T2 is "stale relative to N+1" but "live relative to N" —
 
 **Severity: P2 (acceptable read-skew, self-healing within one request).** Not a correctness bug; documenting it explicitly to close the F41 question.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:441-450]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts:110-133]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:441-450]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts:110-133]
 
 ### F79 — Concurrent-session edge case: the `advisorPromptCache` is process-local (`new AdvisorPromptCache<unknown>()` at `prompt-cache.ts:180`); cross-session entries cannot outlive each other because they live in disjoint processes
 
@@ -47,8 +47,8 @@ Each MCP server / hook subprocess holds its own module-level `advisorPromptCache
 
 The remaining concurrency surface is: two hook processes both probing freshness around T1 (the rename moment). On POSIX, `rename()` is atomic — readers see either the old `Sn` content or the new `Sn+1` content, never partial. So the worst-case pair is `(reader sees Sn, reader' sees Sn+1)`, both internally consistent, both `live` from their own vantage point. No race.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:40-43,180]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts:44-92]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:40-43,180]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts:44-92]
 
 ### F80 — F50 extension: per-process secret rotation is a FEATURE, not a bug
 
@@ -62,7 +62,7 @@ F50 noted that each host process generates its own HMAC secret at module load (`
 
 **Decision:** Document this as an architectural invariant (`INV-PROMPT-CACHE-PROCESS-LOCAL`) in the spec; no patch needed.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:40-43]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:40-43]
 [SOURCE: iter-9 F50 notes on stale window bounds]
 
 ### F81 — `onCacheInvalidation` listener is wired only in tests, not in production; `advisorPromptCache` does NOT subscribe to generation bumps
@@ -94,8 +94,8 @@ onCacheInvalidation(() => {
 
 This makes `publishSkillGraphGeneration()` (which calls `invalidateSkillGraphCaches()` at `generation.ts:127-131`) flush the prompt cache promptly on every scan completion. Cost: ~5 LOC added; no structural changes; existing tests at `daemon-freshness-foundation.vitest.ts` already exercise the listener fanout.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:14-22]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:180]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:14-22]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:180]
 [SOURCE: grep production search confirming zero callers of onCacheInvalidation]
 
 ### F82 — Should the cache key include `generation`? NO — it would over-invalidate without correctness benefit
@@ -109,7 +109,7 @@ The dispatch context asked whether the cache key should include `generation`. An
 
 **Decision: keep current key composition; the F81 listener wire-up is the right fix, not key extension.**
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:67-80 (key construction)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts:67-80 (key construction)]
 
 ## Ruled Out
 
@@ -124,15 +124,15 @@ The dispatch context asked whether the cache key should include `generation`. An
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` (181 lines, full file)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:350-546` (cache read/write surface)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:220-310` (deriveFreshness + sourceSignature binding)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts` (publishSkillGraphGeneration full file)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts` (listener registry)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts:400-425` (production publisher)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/daemon/lifecycle.ts:51-86` (lifecycle publishers)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:42` (scan handler publisher)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1484` (context-server publisher)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` (181 lines, full file)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:350-546` (cache read/write surface)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts:220-310` (deriveFreshness + sourceSignature binding)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/generation.ts` (publishSkillGraphGeneration full file)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts` (listener registry)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts:400-425` (production publisher)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/daemon/lifecycle.ts:51-86` (lifecycle publishers)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:42` (scan handler publisher)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1484` (context-server publisher)
 - grep: `advisorPromptCache` production call sites (3 files: prompt-cache.ts, skill-advisor-brief.ts, handlers/advisor-recommend.ts)
 - grep: `onCacheInvalidation` production call sites (zero — test-only consumer)
 

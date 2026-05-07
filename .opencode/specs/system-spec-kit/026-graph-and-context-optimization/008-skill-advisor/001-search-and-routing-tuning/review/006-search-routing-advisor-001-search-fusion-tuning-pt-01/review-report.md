@@ -51,7 +51,7 @@ Each iteration re-read prior state, reviewed one dimension, wrote an iteration n
 | maintainability | DRV-P1-004 |
 
 ## 6. Adversarial self-check for P0
-No P0 finding was recorded. Candidate escalation paths were re-checked directly in `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts`; none justified a blocker-grade security or correctness escalation.
+No P0 finding was recorded. Candidate escalation paths were re-checked directly in `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts`; none justified a blocker-grade security or correctness escalation.
 
 ## 7. Remediation order
 1. Repair the root packet closeout by answering RQ-1..RQ-5 and recording the actual measured recommendations.

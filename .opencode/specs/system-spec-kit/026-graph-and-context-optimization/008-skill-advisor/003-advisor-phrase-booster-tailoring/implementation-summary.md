@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Commit the 2-file Public-repo change set (skill_advisor.py + fixture JSONL). Optional follow-ups tracked as separate future specs: (a) Barter repo sync with equivalent migration pattern, (b) REQ-020 bench latency measurement if performance matters downstream."
     blockers: []
     key_files:
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/scratch/phrase-boost-delta.md"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-advisor-phrase-booster-tailoring/research/research.md"
     session_dedup:
@@ -76,8 +76,8 @@ The skill advisor's multi-word phrase routing now actually works as designed. 24
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | Modified | Delete 24 INTENT entries + add 23 PHRASE entries + inline comment block |
-| `.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Modified (append) | +8 P1 fixture cases (44 → 52 total) |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modified | Delete 24 INTENT entries + add 23 PHRASE entries + inline comment block |
+| `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Modified (append) | +8 P1 fixture cases (44 → 52 total) |
 <!-- /ANCHOR:what-built -->
 
 ---

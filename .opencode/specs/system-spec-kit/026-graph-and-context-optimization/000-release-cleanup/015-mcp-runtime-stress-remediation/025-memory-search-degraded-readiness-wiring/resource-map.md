@@ -35,8 +35,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` | Created | OK | Shared `mapGraphReadinessToTelemetry()` helper consumed by handler + W10 |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Updated | OK | Threaded `degradedReadiness` into `buildSearchDecisionEnvelope` (~line 1166); imports `getGraphReadinessSnapshot` + mapper |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` | Created | OK | Shared `mapGraphReadinessToTelemetry()` helper consumed by handler + W10 |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Updated | OK | Threaded `degradedReadiness` into `buildSearchDecisionEnvelope` (~line 1166); imports `getGraphReadinessSnapshot` + mapper |
 
 ---
 
@@ -44,9 +44,9 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` | Created | OK | Unit tests: 4 freshness states (fresh/stale/empty/error) → `degraded` derivation |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Updated | OK | TC-3 expected_fail removed; mocks `getGraphReadinessSnapshot`, asserts envelope's `degradedReadiness.freshness` |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Updated | OK | Snapshot path uses shared helper; richer `handleCodeGraphQuery` payload path stays inline |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` | Created | OK | Unit tests: 4 freshness states (fresh/stale/empty/error) → `degraded` derivation |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Updated | OK | TC-3 expected_fail removed; mocks `getGraphReadinessSnapshot`, asserts envelope's `degradedReadiness.freshness` |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Updated | OK | Snapshot path uses shared helper; richer `handleCodeGraphQuery` payload path stays inline |
 
 ---
 
@@ -54,8 +54,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Cited | OK | `getGraphReadinessSnapshot()` + `GraphReadinessSnapshot` type — non-mutating reader |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `DegradedReadinessTelemetry` interface (lines 31-42) consumed by mapper |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Cited | OK | `getGraphReadinessSnapshot()` + `GraphReadinessSnapshot` type — non-mutating reader |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `DegradedReadinessTelemetry` interface (lines 31-42) consumed by mapper |
 
 ---
 

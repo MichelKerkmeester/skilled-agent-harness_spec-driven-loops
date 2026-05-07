@@ -27,7 +27,7 @@ Recommended next action: remediate the P0 first, then either fix or explicitly a
 - **P1-001** — Active changelog symlinks still use old names and target missing old folders: `.opencode/changelog/sk-deep-review` and `.opencode/changelog/sk-deep-research`.
 - **P1-002** — Advisor probe `iterative review loop for spec folder audit` still ranks `sk-code-review` above `deep-review`, so loop-language prompts can route to the single-pass review skill.
 - **P1-003 (AMENDED)** — Deep-loop family identity remains `sk-deep` across graph metadata, compiled graph, SQLite/schema code, handler validation, tool schemas, compiler allow-lists, and derived trigger phrases.
-- **P1-004** — `skill_advisor.py --validate-only --show-rejections` still fails because `.opencode/skill/sk-code/graph-metadata.json:201` uses entity kind `reference-category`, which the compiler rejects.
+- **P1-004** — `skill_advisor.py --validate-only --show-rejections` still fails because `.opencode/skills/sk-code/graph-metadata.json:201` uses entity kind `reference-category`, which the compiler rejects.
 
 ### P2 (Suggestions)
 
@@ -61,11 +61,11 @@ Recommended next action: remediate the P0 first, then either fix or explicitly a
 
 ## POSITIVE OBSERVATIONS
 
-- Renamed skill folders exist and old `.opencode/skill/sk-deep-*` roots are absent.
+- Renamed skill folders exist and old `.opencode/skills/sk-deep-*` roots are absent.
 - Behavior-parity spot checks across 3 random files per renamed skill matched their old tracked counterparts after rename-token normalization.
-- No filenames containing `sk-deep-*` remain under `.opencode/skill/deep-review` or `.opencode/skill/deep-research`.
+- No filenames containing `sk-deep-*` remain under `.opencode/skills/deep-review` or `.opencode/skills/deep-research`.
 - Command workflow assets hardcode the new skill IDs and paths.
-- `.opencode/skill/sk-code/references/motion_dev`, `.opencode/skill/sk-code/references/webflow`, and `.opencode/skill/system-spec-kit/scripts/test-fixtures/` have no stale exact `sk-deep-*` references.
+- `.opencode/skills/sk-code/references/motion_dev`, `.opencode/skills/sk-code/references/webflow`, and `.opencode/skills/system-spec-kit/scripts/test-fixtures/` have no stale exact `sk-deep-*` references.
 
 ## METHODOLOGY NOTES
 

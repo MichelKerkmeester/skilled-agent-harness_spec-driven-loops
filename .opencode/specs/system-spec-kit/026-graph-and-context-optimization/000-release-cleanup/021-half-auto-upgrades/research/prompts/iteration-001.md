@@ -11,7 +11,7 @@ Take 4 "half-automated" surfaces from 013's reality map and upgrade each to eith
 013 finding F1.CopilotFreshness: Copilot advisor refreshes for the **next** prompt, not the current one (`hooks/copilot/user-prompt-submit.ts:1-7` ignores hook output; `hooks/copilot/custom-instructions.ts:101-190` writes for next turn). Currently many docs say "Copilot advisor auto-injects context" — false. Make it mechanically visible.
 
 Implementation:
-- Update CLAUDE.md, AGENTS.md, .opencode/skill/system-spec-kit/SKILL.md, references/hooks/skill-advisor-hook.md, references/config/hook_system.md to say "Copilot advisor: NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief".
+- Update CLAUDE.md, AGENTS.md, .opencode/skills/system-spec-kit/SKILL.md, references/hooks/skill-advisor-hook.md, references/config/hook_system.md to say "Copilot advisor: NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief".
 - Add a `nextPromptFreshness: true` field to the Copilot custom-instructions block header so operators can see at a glance which version of the brief they're getting.
 - Update `hooks/copilot/README.md:14-36` to make next-prompt the leading sentence.
 
@@ -32,7 +32,7 @@ Implementation:
 013 finding F4.FeatureFlags: many search/memory feature flags ship default-OFF (`mcp_server/lib/search/search-flags.ts:140-152` reconsolidation; `:348-355` watcher; etc.); docs say "auto" without disclosing default state.
 
 Implementation:
-- Read `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts` exhaustively
+- Read `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` exhaustively
 - Generate a "Feature flags reference table" section in `mcp_server/ENV_REFERENCE.md` with columns: flag name | default state (ON/OFF) | governing env var | which automation it gates | added in version
 - Update CLAUDE.md and SKILL.md to reference this table when discussing automation defaults
 - Do NOT change runtime behavior; doc-only generation from existing source
@@ -52,12 +52,12 @@ Implementation:
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/research-report.md` (Section 6 Packet 034 scope)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research/research/research-report.md` (RQ1 Copilot/Codex freshness rows; RQ4 feature flags)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` (current state)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` (current state)
 
 ### Packet structure to create (Level 2)
 

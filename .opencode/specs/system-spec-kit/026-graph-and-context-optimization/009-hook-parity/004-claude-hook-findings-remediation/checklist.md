@@ -53,7 +53,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` green (no type errors; Evidence: `tsc --build`, exit 0) [EVIDENCE: implementation-summary.md]
+- [x] CHK-010 [P0] `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` green (no type errors; Evidence: `tsc --build`, exit 0) [EVIDENCE: implementation-summary.md]
 - [x] CHK-011 [P0] No console errors or warnings from modified TypeScript modules when running direct hook smoke (Evidence: direct smoke stderr contains one JSONL diagnostic with `status:"ok"`) [EVIDENCE: implementation-summary.md]
 - [x] CHK-012 [P1] Error handling: scanner failure mid-write leaves file valid (Evidence: atomic tmp-rename pattern used through `publishSkillGraphGeneration()` / `writeJsonAtomic()`) [EVIDENCE: implementation-summary.md]
 - [x] CHK-013 [P1] Patch follows existing pattern in `hook-state.ts:246` for atomic JSON writes (Evidence: scanner publishes via existing tmp-write + rename generation writer) [EVIDENCE: implementation-summary.md]
@@ -87,7 +87,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P0] REQ-005 verified: §9 "Multi-turn regression harness" present in `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with stream-json fixture and cost rationale (Evidence: §9 heading present) [EVIDENCE: implementation-summary.md]
+- [x] CHK-040 [P0] REQ-005 verified: §9 "Multi-turn regression harness" present in `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with stream-json fixture and cost rationale (Evidence: §9 heading present) [EVIDENCE: implementation-summary.md]
 - [x] CHK-041 [P1] Cross-reference from manual testing playbook to §9 present and accurate (Evidence: manual testing playbook §7 link) [EVIDENCE: implementation-summary.md]
 - [x] CHK-042 [P1] `implementation-summary.md` authored with evidence block (Evidence: JSONL snippets, hook counts, test outputs, cost result limitations) [EVIDENCE: implementation-summary.md]
 - [x] CHK-043 [P2] Changelog entry authored (not warranted: no version bump in scope)

@@ -76,11 +76,11 @@
 - S-PL-04/opencode-native: deferred because it requires a live native runtime, authenticated external CLI, network access, or long-session compaction state unavailable from this sandbox.
 
 ## IMPROVEMENT BACKLOG
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts:5`: add a documented headless smoke mode that verifies hook payload formatting without creating Codex session files or contacting the API.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:27`: add an explicit "offline/unauthenticated preflight" path for the managed-instructions workaround so execution campaigns can distinguish hook failure from Copilot auth failure.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md:15`: document a no-browser headless validation command for `session-prime.ts`, because the CLI auth prompt blocked the sandbox run.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:328`: consider prompt-aware startup brief shaping; the static startup surface is useful for graph work but weaker for Gate 3 review prompts.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:10`: preserve the simple CLI contract, but add a batch JSONL mode so routing accuracy campaigns do not need one Python process per prompt.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:5`: add a documented headless smoke mode that verifies hook payload formatting without creating Codex session files or contacting the API.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27`: add an explicit "offline/unauthenticated preflight" path for the managed-instructions workaround so execution campaigns can distinguish hook failure from Copilot auth failure.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md:15`: document a no-browser headless validation command for `session-prime.ts`, because the CLI auth prompt blocked the sandbox run.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:328`: consider prompt-aware startup brief shaping; the static startup surface is useful for graph work but weaker for Gate 3 review prompts.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:10`: preserve the simple CLI contract, but add a batch JSONL mode so routing accuracy campaigns do not need one Python process per prompt.
 
 ## CONFIDENCE NOTE
 This is a partial execution pass. The parent matrix table sums to 62 cells, despite the parent narrative naming 58, so this packet uses the table-derived count and records 8 completed cells plus 54 deferred cells. The local evidence is solid for code graph, skill advisor, and Gate 3 classifier behavior because it used repo data and compiled/local tools. Runtime integration confidence is lower: the result is a sandbox verdict, not a full product verdict. Broader execution needs authenticated cli-codex, cli-gemini, Claude Code native, and OpenCode native sessions with network access and controlled compaction tests.

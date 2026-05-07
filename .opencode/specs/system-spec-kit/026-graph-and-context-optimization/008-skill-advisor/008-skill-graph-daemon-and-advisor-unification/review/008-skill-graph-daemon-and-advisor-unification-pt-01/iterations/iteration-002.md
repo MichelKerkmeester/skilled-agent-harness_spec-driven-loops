@@ -6,29 +6,29 @@ Security. Focus areas: cache corruption recovery, SIGTERM/SIGKILL behavior, MCP 
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/generation.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/render.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/generation.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/render.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
 
 ## Findings — P0
 
@@ -38,7 +38,7 @@ None.
 
 **DR-008-D2-P1-001: `skill_graph_scan` is a public MCP maintenance tool with no caller-authority check, so any caller that can invoke MCP tools can reindex and publish the skill graph generation.**
 
-Evidence: the tool schema exposes `skill_graph_scan` as an L7 maintenance tool with only an optional `skillsRoot` argument and no authority/session/token field (`.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:673-681`). The central dispatch path validates schemas and calls the matching dispatcher, but it does not gate `skill_graph_scan` on caller trust (`.opencode/skill/system-spec-kit/mcp_server/context-server.ts:919-930`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1009-1013`; `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:97-108`). The skill graph dispatcher routes the tool directly to `handleSkillGraphScan()` (`.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:51-55`). The handler resolves a caller-supplied `skillsRoot`, only checks that it stays under `cwd`, then calls `indexSkillMetadata()` and publishes a live generation (`.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:29-48`).
+Evidence: the tool schema exposes `skill_graph_scan` as an L7 maintenance tool with only an optional `skillsRoot` argument and no authority/session/token field (`.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:673-681`). The central dispatch path validates schemas and calls the matching dispatcher, but it does not gate `skill_graph_scan` on caller trust (`.opencode/skills/system-spec-kit/mcp_server/context-server.ts:919-930`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1009-1013`; `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:97-108`). The skill graph dispatcher routes the tool directly to `handleSkillGraphScan()` (`.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:51-55`). The handler resolves a caller-supplied `skillsRoot`, only checks that it stays under `cwd`, then calls `indexSkillMetadata()` and publishes a live generation (`.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:29-48`).
 
 Impact: this crosses the authority-token/session-id boundary in S7. A read-capable external MCP caller can trigger a mutable reindex and generation bump without going through a trusted daemon, CLI command, or lease-owned rebuild path. Under a compromised in-workspace skill source, the caller can also make attacker-controlled metadata authoritative for later advisor scoring. This is distinct from DR-008-D1-P1-001: the prior finding covers unavailable fail-open recommendation output; this one covers who is allowed to mutate graph authority in the first place.
 
@@ -48,15 +48,15 @@ Concrete fix: either remove `skill_graph_scan` from the public MCP tool list or 
 
 **DR-008-D2-P2-001: SQLite corruption recovery is implemented as an isolated helper, but the live DB open/query paths do not proactively quick-check or invoke it.**
 
-`initDb()` opens `skill-graph.sqlite`, enables WAL/foreign keys, creates schema, and returns the DB, but it does not run `PRAGMA quick_check` or call the recovery helper (`.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:181-201`). `rebuildFromSource()` can detect corruption with `checkSqliteIntegrity()` and rebuild after renaming/removing the corrupt DB (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:31-56`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:58-87`), but repository search found references only in its own module and tests, not in the live handlers/daemon. So corrupted/truncated SQLite is detected on failed DB operations, not proactively recovered by the authoritative daemon path.
+`initDb()` opens `skill-graph.sqlite`, enables WAL/foreign keys, creates schema, and returns the DB, but it does not run `PRAGMA quick_check` or call the recovery helper (`.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:181-201`). `rebuildFromSource()` can detect corruption with `checkSqliteIntegrity()` and rebuild after renaming/removing the corrupt DB (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:31-56`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:58-87`), but repository search found references only in its own module and tests, not in the live handlers/daemon. So corrupted/truncated SQLite is detected on failed DB operations, not proactively recovered by the authoritative daemon path.
 
 **DR-008-D2-P2-002: The corruption rebuild helper is not concurrency-safe as written.**
 
-`rebuildFromSource()` checks integrity, derives a timestamp suffix, then renames or removes the DB before calling the provided indexer (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:61-87`). There is no generation lock, daemon lease, SQLite busy retry, or compare-and-swap guard around the corruption check and rename/remove window. Two recovery attempts can both observe corruption, race the same DB path, and one can fall into the remove path while the other is rebuilding. The normal watcher has busy retry for SQLite writes (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:111-123`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:407-413`), but the corruption rebuild helper does not reuse that boundary.
+`rebuildFromSource()` checks integrity, derives a timestamp suffix, then renames or removes the DB before calling the provided indexer (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:61-87`). There is no generation lock, daemon lease, SQLite busy retry, or compare-and-swap guard around the corruption check and rename/remove window. Two recovery attempts can both observe corruption, race the same DB path, and one can fall into the remove path while the other is rebuilding. The normal watcher has busy retry for SQLite writes (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:111-123`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:407-413`), but the corruption rebuild helper does not reuse that boundary.
 
 **DR-008-D2-P2-003: Several MCP/plugin diagnostic paths expose absolute filesystem paths or caller-controlled path details.**
 
-The scan handler returns the resolved absolute `skillsRoot` on success and includes both the rejected absolute path and workspace `cwd` on escape rejection (`.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:30-37`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:50-52`). `advisor_status` returns raw caught error messages in `errors` (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:151-172`), and the generation lock failure message embeds the full lock path (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:87-88`). The plugin status tool also exposes `node_binary` and absolute `bridge_path` (`.opencode/plugins/spec-kit-skill-advisor.js:670-672`). I did not find prompt text leaking into these envelopes; the issue is filesystem/process detail leakage.
+The scan handler returns the resolved absolute `skillsRoot` on success and includes both the rejected absolute path and workspace `cwd` on escape rejection (`.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:30-37`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:50-52`). `advisor_status` returns raw caught error messages in `errors` (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:151-172`), and the generation lock failure message embeds the full lock path (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:87-88`). The plugin status tool also exposes `node_binary` and absolute `bridge_path` (`.opencode/plugins/spec-kit-skill-advisor.js:670-672`). I did not find prompt text leaking into these envelopes; the issue is filesystem/process detail leakage.
 
 ## Traceability Checks
 

@@ -1,20 +1,20 @@
 I’ll map scoring + indexability logic first, then sample real generated memories and compare by CLI source patterns. I’m starting by reading the core files and collecting candidate fixtures/tests in one pass.
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ 1 line read
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
   └ 356 lines read
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ 204 lines read
 
 ● Search (grep)
   │ "quality|score|indexable|frontmatter|description|continuation|stateless|cli|source|tool"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 files found
 
 ✗ Create session plan file (shell)
@@ -37,98 +37,98 @@ I found the scorer and indexer; next I’m pinpointing where workflow applies ga
   └ L1:200 (155 lines read)
 
 ● Search (glob)
-  │ "**/fixtures/**/*" in .opencode/skill/system-spec-kit
+  │ "**/fixtures/**/*" in .opencode/skills/system-spec-kit
   └ 83 files found
 
 ● Search (glob)
   │ "**/*{quality,index,scorer,memory}*.{test,spec,vitest}.{ts,js,mts,cts}" in
-  │ .opencode/skill/system-spec-kit
+  │ .opencode/skills/system-spec-kit
   └ 58 files found
 
 ● Search (grep)
   │ "scoreMemoryQuality|qualityScore|score01|score100|quality gate|skipped_quality_gate|index|indexi
   │ ng|extractQualityScore|extractQualityFlags|sufficiency|contamination|stateless|session
-  │ source|session_source|tool_state" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ source|session_source|tool_state" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "skipped_quality_gate|quality gate|min.*quality|quality threshold|index
   │ policy|extractQualityScore|qualityScore" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (glob)
-  │ "**/tests/**/*.{ts,js,mts,cts}" in .opencode/skill/system-spec-kit
+  │ "**/tests/**/*.{ts,js,mts,cts}" in .opencode/skills/system-spec-kit
   └ 5 files found
 
 ● Read save-quality-gate.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
   └ 1 line read
 
 ● Read memory-indexer-weighting.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts
   └ 80 lines read
 
 ● Read memory-search-quality-filter.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts
   └ 177 lines read
 
 ● Read memory-sufficiency.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
   └ 170 lines read
 
 ● Read quality-scorer-calibration.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
   └ 222 lines read
 
 ● Read quality-extractors.test.ts
-  │ .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts
+  │ .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts
   └ 154 lines read
 
 ● Search (grep)
   │ "skipped_quality_gate|scoreMemoryQuality|qualityScoreResult|qualityScore|score01|score100|qualit
   │ yFlags|sufficiency|hadContamination|indexMemory\(|updateMetadataEmbeddingStatus"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 53 lines found
 
 ● Search (grep)
   │ "MIN_QUALITY|QUALITY_THRESHOLD|quality threshold|quality
   │ gate|skipped_quality_gate|minQuality|qualityScore|extractQualityScore|skip.*quality" in
-  │ **/*.{ts,js,mjs,sh} (.opencode/skill/system-spec-kit)
+  │ **/*.{ts,js,mjs,sh} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ✗ Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/shared/parsing/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/shared/parsing/quality-scorer.ts
   └ Path does not exist
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:240 (240 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1480:1625 (146 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2090:2275 (186 lines read)
 
 ● Read quality-extractors.ts
-  │ .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts
+  │ .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts
   └ 45 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L930:1060 (131 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2330:2475 (146 lines read)
 
 ● Search (grep)
   │ "QUALITY_ABORT_THRESHOLD|QUALITY_WARN_THRESHOLD|QUALITY|MIN_QUALITY|shouldIndexMemoryForWorkflow
   │ |decideWorkflowIndexing|indexing disposition|write_skip_index|skip_index|skipped_quality_gate"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 15 lines found
 
 I’ve got the workflow gating flow; now I’ll extract hard thresholds from config/tests and then compute an empirical quality distribution from real memory files, including CLI source tags.
@@ -142,19 +142,19 @@ I’ve got the workflow gating flow; now I’ll extract hard thresholds from con
   └ Permission denied and could not request permission from user
 
 ● Read save-quality-gate.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
   └ 1 line read
 
 ● Read memory-save-pipeline-enforcement.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
   └ 1 line read
 
 ● Read ceiling-quality.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts
   └ 523 lines read
 
 ● Read config.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/config.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 369 lines read
 
 ● Search (grep)
@@ -217,38 +217,38 @@ I’ve got the workflow gating flow; now I’ll extract hard thresholds from con
   │ "QUALITY_ABORT_THRESHOLD|qualityAbortThreshold|quality_score|min_quality_score|minQualityScore|w
   │ rite_skip_index|skipped_quality_gate|shouldIndexMemory\(|sufficiency|INSUFFICIENT_CONTEXT_ABORT|
   │ QUALITY_GATE_ABORT"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts)
   └ No matches found
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
   └ 235 lines read
 
 ● Search (grep)
   │ "QUALITY_ABORT_THRESHOLD|qualityAbortThreshold|MIN_QUALITY|0\.15|0\.30|quality_score|index|skip"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts)
   └ 16 lines found
 
 I found a key anomaly already (`quality_score` metadata can be ignored when frontmatter isn’t at byte 0). I’ll now pull the exact indexability gates and any CLI/source signals from tests and broader memory files.
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ 1 line read
 
 ● Read save-quality-gate.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read memory-save-pipeline-enforcement.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
   └ L960:1060 (101 lines read)
 
 ● Read save-quality-gate.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts
   └ L261:520 (260 lines read)
 
 ● Read memory-save-pipeline-enforcement.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts
   └ L430:560 (131 lines read)
 
 ● Search (grep)
@@ -263,54 +263,54 @@ I found a key anomaly already (`quality_score` metadata can be ignored when fron
   └ 5 lines found
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L1:260 (259 lines read)
 
 ● Read source-capabilities.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts
   └ 82 lines read
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L120:230 (110 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L561:860 (189 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L261:560 (300 lines read)
 
 ● Read claude-code-capture.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/claude-code-capture.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/claude-code-capture.vitest.ts
   └ L1:240 (240 lines read)
 
 ● Read copilot-cli-capture.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts
   └ L1:240 (239 lines read)
 
 ● Read codex-cli-capture.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/codex-cli-capture.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/codex-cli-capture.vitest.ts
   └ L1:240 (240 lines read)
 
 ● Read generate-context-cli-authority.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts
   └ L1:260 (257 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ 1 line read
 
 ● Search (grep)
   │ "SIGNAL_DENSITY_THRESHOLD|SEMANTIC_DEDUP_THRESHOLD|MIN_CONTENT_LENGTH|runQualityGate|scoreConten
   │ tQuality|weights|threshold|warnOnly|wouldReject"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
   └ 36 lines found
 
 ● Search (grep)
   │ "runQualityLoop|threshold|0\.6|quality loop|SPECKIT_QUALITY_LOOP" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● List directory .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capt…
@@ -330,15 +330,15 @@ I found a key anomaly already (`quality_score` metadata can be ignored when fron
   └ 5 lines found
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L90:220 (131 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L430:560 (131 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L610:735 (118 lines read)
 
 ● Read metadata.json
@@ -349,7 +349,7 @@ I found a key anomaly already (`quality_score` metadata can be ignored when fron
 ● Search (grep)
   │ "_source:\s*'copilot-cli-capture'|_source:\s*'codex-cli-capture'|_source:\s*'claude-code-capture
   │ '|_source:\s*'gemini-cli-capture'|session_source|capture_source" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 8 lines found
 
 ● Search (grep)
@@ -358,29 +358,29 @@ I found a key anomaly already (`quality_score` metadata can be ignored when fron
   └ 5 lines found
 
 ● Read memory-render-fixture.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
   └ L500:660 (161 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L340:490 (151 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1980:2085 (106 lines read)
 
 ● Read stateless-enrichment.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/stateless-enrichment.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/stateless-enrichment.vitest.ts
   └ L1:240 (240 lines read)
 
 ● Search (grep)
   │ "QUALITY_ABORT_THRESHOLD|0\.15|qualityAbortThreshold" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts/tests)
+  │ (.opencode/skills/system-spec-kit/scripts/tests)
   └ 7 lines found
 
 ● Search (grep)
   │ "inject.*source|sourceProvenance|_sourceTranscriptPath|_sourceSessionId|session_source|capture_s
-  │ ource|source:\s" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ ource|source:\s" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
@@ -410,7 +410,7 @@ I found a key anomaly already (`quality_score` metadata can be ignored when fron
 
 ● Search (grep)
   │ "simulation|stateless|fallback|insufficient_capture|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|
-  │ INSUFFICIENT_CONTEXT_ABORT" in **/*.{ts,js,md} (.opencode/skill/system-spec-kit/scripts)
+  │ INSUFFICIENT_CONTEXT_ABORT" in **/*.{ts,js,md} (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 I’m now sampling the `016-multi-cli-parity` memory corpus directly so we can compare quality scores and provenance by CLI, not just infer from code.
@@ -463,7 +463,7 @@ I’m now sampling the `016-multi-cli-parity` memory corpus directly so we can c
   └ L1:60 (60 lines read)
 
 ● Read file-helpers.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts
   └ L1:260 (180 lines read)
 
 ● Read 17-03-26_16-44__strict-closeout-evidence-refreshed.md
@@ -473,7 +473,7 @@ I’m now sampling the `016-multi-cli-parity` memory corpus directly so we can c
 
 ● Search (grep)
   │ "validateDescription|getDescriptionTierRank|placeholder|activity-only|semantic|high-confidence"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts)
   └ 16 lines found
 
 Findings for **Q11**:

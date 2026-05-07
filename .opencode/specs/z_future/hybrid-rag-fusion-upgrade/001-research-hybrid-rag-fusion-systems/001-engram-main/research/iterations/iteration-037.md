@@ -107,61 +107,61 @@ The existing iteration files are clean and consistent. I’m pulling iteration 0
   └ L1450:1675 (226 lines read)
 
 ● Read session-resume.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts
   └ L400:614 (215 lines read)
 
 ● Read session-bootstrap.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
   └ L163:250 (88 lines read)
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L741:811 (71 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L638:776 (139 lines read)
 
 ● Read query-router.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts
   └ L1:220 (188 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L641:930 (290 lines read)
 
 ● Read generate-context.js
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   └ L1:220 (220 lines read)
 
 I’ve got the authority surfaces and the Engram primitives. I’m filling in the retrieval-path evidence now so the before/after map shows the actual hot paths that change, not just the tooling wrappers.
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L973:1115 (143 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L450:809 (360 lines read)
 
 ● Read memory-triggers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
   └ L150:505 (356 lines read)
 
 ● Read memory-index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
   └ L148:245 (98 lines read)
 
 ● Read memory-index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
   └ L367:505 (138 lines read)
 
 ● Read create-record.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts
   └ L166:229 (64 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L728:905 (178 lines read)
 
 I’ve got enough to draft the evolution map itself. I’m filling a few missing citation ranges—session storage, tool-profile resolution, and runtime setup—so the new iteration can point to exact files instead of broad file-level references.
@@ -197,7 +197,7 @@ I’ve got enough to draft the evolution map itself. I’m filling a few missing
   └ L13:120 (107 lines read)
 
 ● Read session-health.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts
   └ L1:220 (195 lines read)
 
 ● Search (grep)
@@ -221,10 +221,10 @@ I have the evidence and the target shape. I’m delegating the actual iteration-
 
 ● Deep-research Writing iteration artifact
   │ Search (grep)
-  │   │ "thread_key|topic_key" (.opencode/skill/system-spec-kit)
+  │   │ "thread_key|topic_key" (.opencode/skills/system-spec-kit)
   │   └ No matches found
   └ Search (grep)
-      │ "buildOpenCodeTransportPlan" (.opencode/skill/system-spec-kit/mcp_server)
+      │ "buildOpenCodeTransportPlan" (.opencode/skills/system-spec-kit/mcp_server)
       └ 7 lines found
 
 ✗ Edit

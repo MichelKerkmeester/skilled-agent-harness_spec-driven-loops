@@ -3,24 +3,24 @@
 I’m verifying the current docs against the live implementation first, then I’ll patch only the stale statements and broken anchors.
 
 ● Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
   └ L1:260 (175 lines read)
 
 ● Read FEATURE_CATALOG_IN_SIMPLE_TERMS.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
   └ L1:260 (225 lines read)
 
 ● Read 07-namespace-management-crud-tools.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
   │ md
   └ L1:240 (62 lines read)
 
 ● Read 09-correction-tracking-with-undo.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
   └ L1:240 (50 lines read)
 
 ● Read 11-session-recovery-memory-continue.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-continu
+  │ .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-continu
   │ e.md
   └ L1:260 (69 lines read)
 
@@ -43,155 +43,155 @@ I’m verifying the current docs against the live implementation first, then I�
 I’ve confirmed the broken TOCs. Now I’m checking the live shared-memory, corrections, and resume-mode code paths so the wording matches runtime behavior instead of older assumptions.
 
 ● Read continue.md
-  │ .opencode/command/memory/continue.md
+  │ .opencode/commands/memory/continue.md
   └ L1:260 (260 lines read)
 
 ● Search (grep)
-  │ "^##\s+[0-9]+\.\s+" (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
+  │ "^##\s+[0-9]+\.\s+" (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md)
   └ 21 lines found
 
 ● Search (grep)
   │ "^##\s+[0-9]+\.\s+"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
   └ 21 lines found
 
 ● Search (grep)
   │ "\[[^\]]+\]\(([^)#]+)\)"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
   └ No matches found
 
 ● Search (grep)
   │ "resume|systemPromptContext|anchors|next-steps|blockers|summary|1200|minState|enableDedup|useDec
-  │ ay" in **/*.{ts,md} (.opencode/skill/system-spec-kit/mcp_server)
+  │ ay" in **/*.{ts,md} (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read shared-memory.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
   └ L1:260 (260 lines read)
 
 ● Read shared-spaces.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
   └ L1:320 (320 lines read)
 
 ● Read tool-input-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
   └ L1:340 (340 lines read)
 
 ● Search (grep)
   │ "shared_space_upsert|shared_space_membership_set|actorUserId|actorAgentId|owner" in **/*.{ts,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read corrections.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts
   └ L1:320 (320 lines read)
 
 ● Search (grep)
   │ "correction|undo_correction|record_correction|SPECKIT_RELATIONS" in **/*.{ts,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read lifecycle-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts
   └ L1:260 (66 lines read)
 
 ● Read memory-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts
   └ L1:260 (77 lines read)
 
 I’ve got the key mismatch on shared-memory actors. Next I’m narrowing the resume-mode details and the corrections wiring so the final wording is precise, not hand-wavy.
 
 ● Search (grep)
   │ "shared_space_upsert|shared_space_membership_set|actorUserId|actorAgentId|shared_memory_enable|s
-  │ hared_memory_status" (.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
+  │ hared_memory_status" (.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
   └ 20 lines found
 
 ● Read shared.md
-  │ .opencode/command/memory/shared.md
+  │ .opencode/commands/memory/shared.md
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "mode === 'resume'|resume|systemPromptContext|anchors|next-steps|blockers|summary|includeContent
   │ |minState|enableDedup|useDecay"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
   └ 70 lines found
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1:320 (320 lines read)
 
 ● Search (grep)
   │ "memory_context\(|mode: 'resume'|anchors: \[|summary|blockers|next-steps|specFolder|manual|auto"
-  │ (.opencode/command/memory/continue.md)
+  │ (.opencode/commands/memory/continue.md)
   └ 35 lines found
 
 ● Search (grep)
   │ "record_correction\(|undo_correction\(|get_correction|memory_corrections|SPECKIT_RELATIONS" in
-  │ **/*.{ts,md} (.opencode/skill/system-spec-kit/mcp_server)
+  │ **/*.{ts,md} (.opencode/skills/system-spec-kit/mcp_server)
   └ 89 lines found
 
 ● Search (grep)
   │ "memory_corrections|record_correction|undo_correction|corrections" in **/*.{ts,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools)
   └ No matches found
 
 ● Search (grep)
   │ "\]\([^)]*--[^)]*\.md\)"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
   └ No matches found
 
 I’ve pinned down the last behavior mismatch: `/memory:continue` exposes `memory_stats`, but the live recovery chain is `memory_context` → `CONTINUE_SESSION.md` → anchored `memory_search` → `memory_list`. I’m patching the docs to say that plainly.
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L520:660 (141 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1110:1145 (36 lines read)
 
 ● Read tool-input-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
   └ L430:478 (49 lines read)
 
 ● Read shared-memory.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
   └ L248:420 (173 lines read)
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/learning/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/learning/index.ts
   └ L1:220 (51 lines read)
 
 ● Search (grep)
-  │ "memory_stats" (.opencode/command/memory/continue.md)
+  │ "memory_stats" (.opencode/commands/memory/continue.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "memory_stats" in **/*.{ts,md} (.opencode/skill/system-spec-kit/mcp_server)
+  │ "memory_stats" in **/*.{ts,md} (.opencode/skills/system-spec-kit/mcp_server)
   └ 49 lines found
 
 ● Search (grep)
   │ "\[[^\]]+\]\([^)]*\.md\)"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md)
   └ No matches found
 
 I’ve got the exact text changes lined up now. I’m doing a single surgical patch across the five requested files, then I’ll run focused checks and show the diffs file by file.
 
 ● Edit
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-t
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-t
   │ ools.md
   │ Edit
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
-  └ Edit .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-co
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
+  └ Edit .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-co
     ntinue.md
 
 The patch is in. I’m running a couple of narrow checks now: TOC-to-heading validation, stale-phrase searches, and a clean diff check before I show you the per-file changes.
 
 ● Search (grep)
   │ "#(?:1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21)--" in feature_catalog*.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog)
+  │ (.opencode/skills/system-spec-kit/feature_catalog)
   └ No matches found
 
 ● Search (grep)
@@ -199,7 +199,7 @@ The patch is in. I’m running a couple of narrow checks now: TOC-to-heading val
   │ tools|system health context during recovery" in
   │ {01--retrieval/11-session-recovery-memory-continue.md,02--mutation/07-namespace-management-crud-
   │ tools.md,02--mutation/09-correction-tracking-with-undo.md}
-  │ (.opencode/skill/system-spec-kit/feature_catalog)
+  │ (.opencode/skills/system-spec-kit/feature_catalog)
   └ No matches found
 
 ● Validate TOC anchors and diff cleanliness (shell)
@@ -262,7 +262,7 @@ Validation passed. I’m surfacing the diffs for the five requested files so you
   │ 35
   │ 36     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md
 
 ● Show diff FEATURE_CATALOG.md
   │
@@ -498,7 +498,7 @@ Validation passed. I’m surfacing the diffs for the five requested files so you
   │ 4608
   │ 4609     #### Source Files
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md
 
 ● Show diff 07-namespace-management-crud-tools.md
   │
@@ -538,7 +538,7 @@ Validation passed. I’m surfacing the diffs for the five requested files so you
   │       `tenantId`, `userId`, `agentId`. Returns `enabled`, `allowedSharedSpaceIds`, and the
   │       echoed scope IDs.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
+  └ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
     md
 
 ● Show diff 09-correction-tracking-with-undo.md
@@ -581,7 +581,7 @@ Validation passed. I’m surfacing the diffs for the five requested files so you
   │       datetime('now')` on the correction row so the correction is permanently flagged as
   │       reversed without deleting the audit trail.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
 
 ● Show diff 11-session-recovery-memory-continue.md
   │
@@ -626,7 +626,7 @@ Validation passed. I’m surfacing the diffs for the five requested files so you
   │ 22
   │ 23     ### Recovery Modes
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-continu
+  └ .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-memory-continu
     e.md
 
 Done.

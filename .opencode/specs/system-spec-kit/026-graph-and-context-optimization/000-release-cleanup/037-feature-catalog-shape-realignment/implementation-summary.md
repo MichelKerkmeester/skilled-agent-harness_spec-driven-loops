@@ -61,10 +61,10 @@ The six real feature catalog roots now agree on the canonical per-feature shape:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-deep-review/feature_catalog/**/*.md` | Modified | Removed redundant per-feature TOCs |
-| `.opencode/skill/system-spec-kit/feature_catalog/**/*.md` | Modified | Fixed lint-discovered shape drift and evergreen wording |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/**/*.md` | Modified | Mapped SURFACE and runtime behavior sections into canonical blocks |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/**/*.md` | Modified | Mapped PURPOSE, TEST COVERAGE, and RELATED into canonical blocks |
+| `.opencode/skills/sk-deep-review/feature_catalog/**/*.md` | Modified | Removed redundant per-feature TOCs |
+| `.opencode/skills/system-spec-kit/feature_catalog/**/*.md` | Modified | Fixed lint-discovered shape drift and evergreen wording |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/**/*.md` | Modified | Mapped SURFACE and runtime behavior sections into canonical blocks |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/**/*.md` | Modified | Mapped PURPOSE, TEST COVERAGE, and RELATED into canonical blocks |
 | Packet docs and reports | Created | Captured audit, remediation, lint, and validation evidence |
 <!-- /ANCHOR:what-built -->
 

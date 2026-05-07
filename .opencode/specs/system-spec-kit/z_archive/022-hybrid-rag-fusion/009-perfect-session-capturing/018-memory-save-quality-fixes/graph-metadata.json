@@ -41,16 +41,16 @@
     "status": "complete",
     "key_files": [
       "shared/trigger-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
-      ".opencode/skill/system-spec-kit/shared/trigger-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
-      ".opencode/skill/system-spec-kit/shared/dist/trigger-extractor.js",
+      ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
+      ".opencode/skills/system-spec-kit/shared/trigger-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
+      ".opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js",
       "shared/dist/trigger-extractor.js",
       "spec.md",
       "plan.md",
@@ -71,55 +71,55 @@
       {
         "name": "decision-extractor.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
         "source": "derived"
       },
       {
         "name": "collect-session-data.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
         "source": "derived"
       },
       {
         "name": "session-extractor.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
         "source": "derived"
       },
       {
         "name": "implementation-guide-extractor.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "tree-thinning.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts",
         "source": "derived"
       },
       {
         "name": "conversation-extractor.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts",
         "source": "derived"
       },
       {
         "name": "semantic-signal-golden.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
         "source": "derived"
       },
       {
         "name": "trigger-extractor.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/shared/dist/trigger-extractor.js",
+        "path": ".opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js",
         "source": "derived"
       },
       {

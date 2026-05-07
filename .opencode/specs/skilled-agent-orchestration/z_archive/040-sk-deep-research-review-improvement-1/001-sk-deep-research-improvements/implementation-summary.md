@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -58,26 +58,26 @@ The phase packet itself was rewritten into the active Level 1 template so strict
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-deep-research/README.md` | Modified | Reframe the skill as research-only and add lineage/parity guidance |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modified | Freeze lifecycle vocabulary, registry ownership, and runtime contract |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Modified | Align the cheat sheet with pause-sentinel, lifecycle, and capability-matrix truth |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modified | Define lineage fields, reducer contract, and ownership boundaries |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modified | Document lifecycle branches, reducer sequencing, and non-hook equivalence |
-| `.opencode/skill/sk-deep-research/references/capability_matrix.md` | Created | Capture runtime parity invariants |
-| `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json` | Created | Publish the machine-readable runtime capability matrix |
-| `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` | Created | Resolve machine-readable runtime capability lookups |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Created | Reduce packet state into synchronized strategy, registry, and dashboard outputs |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Carry lifecycle, migration, registry, and reducer expectations in auto mode |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Carry the same expectations in confirm mode |
-| `.opencode/agent/deep-research.md` | Modified | Align OpenCode mirror with reducer-owned state |
+| `.opencode/skills/sk-deep-research/README.md` | Modified | Reframe the skill as research-only and add lineage/parity guidance |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modified | Freeze lifecycle vocabulary, registry ownership, and runtime contract |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Modified | Align the cheat sheet with pause-sentinel, lifecycle, and capability-matrix truth |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modified | Define lineage fields, reducer contract, and ownership boundaries |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modified | Document lifecycle branches, reducer sequencing, and non-hook equivalence |
+| `.opencode/skills/sk-deep-research/references/capability_matrix.md` | Created | Capture runtime parity invariants |
+| `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json` | Created | Publish the machine-readable runtime capability matrix |
+| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Created | Resolve machine-readable runtime capability lookups |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Created | Reduce packet state into synchronized strategy, registry, and dashboard outputs |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Carry lifecycle, migration, registry, and reducer expectations in auto mode |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Carry the same expectations in confirm mode |
+| `.opencode/agents/deep-research.md` | Modified | Align OpenCode mirror with reducer-owned state |
 | `.claude/agents/deep-research.md` | Modified | Align Claude mirror with reducer-owned state |
 | `.gemini/agents/deep-research.md` | Modified | Align Gemini mirror with reducer-owned state |
 | `.codex/agents/deep-research.toml` | Modified | Align Codex mirror with reducer-owned state |
 | `.agents/agents/deep-research.md` | Modified | Align the compatibility wrapper with the same runtime contract |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Created | Keep docs, runtime mirrors, and command assets contract-synchronized |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Created | Prove reducer idempotency and packet-integrity behavior |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Modified | Align DR-008 summary wording with reducer-owned refresh behavior |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Modified | Align the concrete playbook scenario with reducer-owned refresh behavior |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Created | Keep docs, runtime mirrors, and command assets contract-synchronized |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Created | Prove reducer idempotency and packet-integrity behavior |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md` | Modified | Align DR-008 summary wording with reducer-owned refresh behavior |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Modified | Align the concrete playbook scenario with reducer-owned refresh behavior |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modified | Restore Level 1 template compliance and truthful completion tracking |
 <!-- /ANCHOR:what-built -->
 
@@ -108,21 +108,21 @@ The work was delivered as a scoped but complete contract pass: inspect the exist
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/README.md --type readme` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/SKILL.md --type skill` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/references/capability_matrix.md --type reference` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/references/quick_reference.md --type reference` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/references/loop_protocol.md --type reference` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/references/state_format.md --type reference` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-deep-research/assets/deep_research_dashboard.md --type reference` | PASS |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/agent/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .claude/agents/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .gemini/agents/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/README.md --type readme` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/SKILL.md --type skill` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/references/capability_matrix.md --type reference` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/references/quick_reference.md --type reference` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/references/loop_protocol.md --type reference` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/references/state_format.md --type reference` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-deep-research/assets/deep_research_dashboard.md --type reference` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .claude/agents/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .gemini/agents/deep-research.md --type agent` | PASS with existing numbering warning (`0. ILLEGAL NESTING`) |
 | `node mcp_server/node_modules/vitest/vitest.mjs run tests/deep-research-contract-parity.vitest.ts tests/deep-research-reducer.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` | PASS |
-| `node .opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs` | PASS |
+| `node .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | PASS |
 | `python3.11` JSON/TOML parse for `deep_research_config.json`, `runtime_capabilities.json`, and `.codex/agents/deep-research.toml` | PASS |
 | Ruby `YAML.load_file` for both deep-research workflow YAML assets | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

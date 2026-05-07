@@ -130,8 +130,8 @@ Targeted vitest is the primary behavioral gate for this review because the reque
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Internal | Required | Cannot close traceability findings without strict validation exit 0. |
-| `.opencode/skill/system-spec-kit/mcp_server` npm scripts | Internal | Required | Cannot verify code changes without typecheck/build/vitest. |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Internal | Required | Cannot close traceability findings without strict validation exit 0. |
+| `.opencode/skills/system-spec-kit/mcp_server` npm scripts | Internal | Required | Cannot verify code changes without typecheck/build/vitest. |
 | Existing 001/002 child docs | Internal | Required | Parent parity validation depends on child continuity staying coherent. |
 | Sandbox write authority | External | Constrained | Git staging/commit is forbidden; summary file hands off to orchestrator. |
 <!-- /ANCHOR:dependencies -->

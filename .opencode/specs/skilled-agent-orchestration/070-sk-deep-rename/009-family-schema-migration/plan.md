@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-009"
@@ -80,12 +80,12 @@ Phase 009 converts `deep-loop` from a reverted metadata edit into a schema-suppo
 Schema-first metadata migration. The live family value changes only after the database schema, type unions, tool schemas, handler allow-lists, compiler validation, and generated runtime mirrors agree on the same `deep-loop` value.
 
 ### Key Components
-- **Schema source**: `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`.
-- **Generated runtime mirror**: `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js`.
-- **Type mirror**: `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts`.
-- **Compiler**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`.
-- **Compiled graph**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
-- **Database state**: `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite`.
+- **Schema source**: `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`.
+- **Generated runtime mirror**: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js`.
+- **Type mirror**: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts`.
+- **Compiler**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`.
+- **Compiled graph**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
+- **Database state**: `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite`.
 
 ### Data Flow
 Per-skill metadata declares `family: deep-loop`. The Python compiler validates that family and emits `skill-graph.json`. The MCP server accepts `deep-loop` through TypeScript type unions, zod/tool schema enums, handler allow-lists, and SQLite insertion constraints. The deleted SQLite file is recreated by the orchestrator rebuild with the updated schema.

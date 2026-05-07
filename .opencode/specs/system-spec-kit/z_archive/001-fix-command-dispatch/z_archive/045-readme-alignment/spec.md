@@ -80,11 +80,11 @@ The README files contain multiple factual errors that cause user confusion:
 
 | File | Issues | Priority |
 |------|--------|----------|
-| `.opencode/skill/system-spec-kit/README.md` | T-001, S-001, C-001 | HIGH |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | L-001, V-001, P-001 | HIGH |
-| `.opencode/skill/mcp-narsil/README.md` | N-005 | HIGH |
+| `.opencode/skills/system-spec-kit/README.md` | T-001, S-001, C-001 | HIGH |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | L-001, V-001, P-001 | HIGH |
+| `.opencode/skills/mcp-narsil/README.md` | N-005 | HIGH |
 | `.opencode/install_guides/MCP/MCP - Code Mode.md` | I-013, I-005 | HIGH |
-| `.opencode/skill/mcp-leann/README.md` | X-001 | MEDIUM |
+| `.opencode/skills/mcp-leann/README.md` | X-001 | MEDIUM |
 
 ---
 

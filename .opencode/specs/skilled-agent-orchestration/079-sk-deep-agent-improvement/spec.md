@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "validate"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-improve-agent/SKILL.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/command/improve/assets/improve_improve-agent_auto.yaml"
+      - ".opencode/skills/sk-improve-agent/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000079"
       session_id: "079-spec-author"
@@ -58,11 +58,11 @@ _memory:
 
 ### Problem Statement
 
-The skill folder `.opencode/skill/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills. Sister skills `sk-deep-review` and `sk-deep-research` were renamed to `deep-review` / `deep-research` in packet 070-sk-deep-rename (2026-05-01/02), establishing the convention that skills carrying autonomous iteration/evaluation loops adopt a `deep-*` semantic prefix. `sk-improve-agent` is the third skill in this family — it runs an evaluator-first improvement loop with packet-local candidates, deterministic scoring, and promotion gates — but its name is still inconsistent with the modern convention. The mismatch causes two practical problems: (a) skill-advisor trigger phrases and graph relationships are awkwardly bifurcated between `sk-` and non-`sk-` family signals, and (b) discoverability suffers because users searching for "deep agent improvement" do not naturally find a skill called `sk-improve-agent`.
+The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills. Sister skills `sk-deep-review` and `sk-deep-research` were renamed to `deep-review` / `deep-research` in packet 070-sk-deep-rename (2026-05-01/02), establishing the convention that skills carrying autonomous iteration/evaluation loops adopt a `deep-*` semantic prefix. `sk-improve-agent` is the third skill in this family — it runs an evaluator-first improvement loop with packet-local candidates, deterministic scoring, and promotion gates — but its name is still inconsistent with the modern convention. The mismatch causes two practical problems: (a) skill-advisor trigger phrases and graph relationships are awkwardly bifurcated between `sk-` and non-`sk-` family signals, and (b) discoverability suffers because users searching for "deep agent improvement" do not naturally find a skill called `sk-improve-agent`.
 
 ### Purpose
 
-Rename `.opencode/skill/sk-improve-agent/` to `.opencode/skill/deep-agent-improvement/` and propagate the change through every active code reference site so the deep-* family becomes visually and semantically consistent (deep-review, deep-research, deep-agent-improvement) without altering any behavior, API, or agent/command surface. Success looks like a single `git mv` plus a clean residual-grep showing zero `sk-improve-agent` hits in active code paths (skill internals, advisor, runtimes, root docs), with the `/improve:agent` command and `@improve-agent` agent dispatching unchanged through the new skill path.
+Rename `.opencode/skills/sk-improve-agent/` to `.opencode/skills/deep-agent-improvement/` and propagate the change through every active code reference site so the deep-* family becomes visually and semantically consistent (deep-review, deep-research, deep-agent-improvement) without altering any behavior, API, or agent/command surface. Success looks like a single `git mv` plus a clean residual-grep showing zero `sk-improve-agent` hits in active code paths (skill internals, advisor, runtimes, root docs), with the `/improve:agent` command and `@improve-agent` agent dispatching unchanged through the new skill path.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -72,13 +72,13 @@ Rename `.opencode/skill/sk-improve-agent/` to `.opencode/skill/deep-agent-improv
 
 ### In Scope
 
-1. **Skill folder rename** — `git mv .opencode/skill/sk-improve-agent .opencode/skill/deep-agent-improvement`.
+1. **Skill folder rename** — `git mv .opencode/skills/sk-improve-agent .opencode/skills/deep-agent-improvement`.
 2. **Symlink rename + retarget** — `.opencode/changelog/sk-improve-agent` → `.opencode/changelog/deep-agent-improvement` pointing at the new skill's `changelog/` directory.
-3. **In-skill reference updates** — `SKILL.md`, `README.md`, `graph-metadata.json`, `scripts/`, `assets/`, `changelog/`, `feature_catalog/`, `manual_testing_playbook/`, `references/`, `test-fixtures/`. Updates skill_id, frontmatter `name`, trigger phrases, all path strings (`.opencode/skill/sk-improve-agent/...` → `.opencode/skill/deep-agent-improvement/...`), and entity definitions.
+3. **In-skill reference updates** — `SKILL.md`, `README.md`, `graph-metadata.json`, `scripts/`, `assets/`, `changelog/`, `feature_catalog/`, `manual_testing_playbook/`, `references/`, `test-fixtures/`. Updates skill_id, frontmatter `name`, trigger phrases, all path strings (`.opencode/skills/sk-improve-agent/...` → `.opencode/skills/deep-agent-improvement/...`), and entity definitions.
 4. **System-spec-kit advisor surface** — `skill_advisor.py` (156 phrase entries in TOKEN_BOOSTS / PHRASE_BOOSTS), `skill-graph.json` (registry, dependency edges, trigger phrases), `graph-metadata.json` (sibling target), `fusion.ts:270` (penalty list), test fixtures (`native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`), compiled `dist/` mirrors (rebuilt via `npm run build`), and SQLite cache (`skill-graph.sqlite` rebuilt via `advisor_rebuild`).
-5. **Cross-skill metadata** — `sk-improve-prompt/graph-metadata.json:32` sibling target; `.opencode/skill/README.md` skill index (3 refs); `system-spec-kit/changelog/v3.3.0.0.md`/`v3.4.0.0.md` path strings only (historical narrative untouched).
+5. **Cross-skill metadata** — `sk-improve-prompt/graph-metadata.json:32` sibling target; `.opencode/skills/README.md` skill index (3 refs); `system-spec-kit/changelog/v3.3.0.0.md`/`v3.4.0.0.md` path strings only (historical narrative untouched).
 6. **Command surfaces in all four runtimes** — `agent.md` body refs, `README.txt` skill matrix, `improve_improve-agent_auto.yaml` (32 path templates), `improve_improve-agent_confirm.yaml` (33 path templates) in `.opencode/`, `.claude/`, `.gemini/`, `.codex/` runtime command directories.
-7. **Agent definitions in all four runtimes** — `improve-agent.md`/`.toml` skill-matrix line in `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`. **Agent name `improve-agent` itself is NOT renamed.**
+7. **Agent definitions in all four runtimes** — `improve-agent.md`/`.toml` skill-matrix line in `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`. **Agent name `improve-agent` itself is NOT renamed.**
 8. **Root docs + install guides** — `README.md` (lines 848, 1220), `AGENTS.md` (line 324), `CLAUDE.md` (line 324), `.opencode/install_guides/README.md` (2 refs), `.opencode/install_guides/SET-UP - AGENTS.md` (1 ref).
 9. **New changelog entry** — `v1.3.0.0.md` (or next-up version) inside the renamed skill's `changelog/` documenting the rename, migration notes, and reverse-mapping pointers.
 10. **Verification battery** — strict spec validation, residual-grep, advisor reindex + recommendation smoke test, `/improve:agent` dispatch smoke test on a sandbox agent, vitest suite, implementation-summary, /memory:save.
@@ -118,22 +118,22 @@ See `resource-map.md` for the exhaustive file-by-file inventory with line number
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Skill folder physically renamed via `git mv` | `ls .opencode/skill/deep-agent-improvement/` succeeds; `ls .opencode/skill/sk-improve-agent/` fails (ENOENT) |
-| REQ-002 | All `skill_id` and frontmatter `name` fields reflect new name | `grep -n '^name:' .opencode/skill/deep-agent-improvement/SKILL.md` returns `name: deep-agent-improvement`; ditto for `skill_id` in `graph-metadata.json` |
-| REQ-003 | Skill advisor scoring tables fully migrated | `grep -c 'sk-improve-agent' .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` returns 0; `advisor_recommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` as top hit with score parity to prior baseline |
+| REQ-001 | Skill folder physically renamed via `git mv` | `ls .opencode/skills/deep-agent-improvement/` succeeds; `ls .opencode/skills/sk-improve-agent/` fails (ENOENT) |
+| REQ-002 | All `skill_id` and frontmatter `name` fields reflect new name | `grep -n '^name:' .opencode/skills/deep-agent-improvement/SKILL.md` returns `name: deep-agent-improvement`; ditto for `skill_id` in `graph-metadata.json` |
+| REQ-003 | Skill advisor scoring tables fully migrated | `grep -c 'sk-improve-agent' .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` returns 0; `advisor_recommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` as top hit with score parity to prior baseline |
 | REQ-004 | Skill-graph SQLite cache rebuilt | `advisor_rebuild` MCP call succeeds; `advisor_status` reports current build timestamp |
-| REQ-005 | Compiled `dist/` mirrors regenerated | `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` succeeds; `grep 'sk-improve-agent' dist/skill_advisor/lib/scorer/fusion.js` returns 0 hits |
+| REQ-005 | Compiled `dist/` mirrors regenerated | `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` succeeds; `grep 'sk-improve-agent' dist/skill_advisor/lib/scorer/fusion.js` returns 0 hits |
 | REQ-006 | All four runtime command surfaces updated | Each of `.opencode/`, `.claude/`, `.gemini/`, `.codex/` `commands/improve/` directories shows zero `sk-improve-agent` hits in active YAML/MD files |
 | REQ-007 | `/improve:agent` dispatches successfully through new skill path | Smoke test on sandbox agent (e.g., `cp-improve-target.md`) completes one auto-mode iteration without broken-path errors; YAML asset templates resolve, scripts execute |
 | REQ-008 | Symlink renamed and retargeted | `readlink .opencode/changelog/deep-agent-improvement` resolves to `../skill/deep-agent-improvement/changelog`; old symlink absent |
-| REQ-009 | Strict spec validation passes | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` exits 0 |
-| REQ-010 | Vitest suite passes | `cd .opencode/skill/system-spec-kit/mcp_server && npm test` passes — particularly `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts` |
+| REQ-009 | Strict spec validation passes | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` exits 0 |
+| REQ-010 | Vitest suite passes | `cd .opencode/skills/system-spec-kit/mcp_server && npm test` passes — particularly `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-011 | New changelog entry authored | `.opencode/skill/deep-agent-improvement/changelog/v1.3.0.0.md` (or next-up version) exists, documents the rename, references precedent (070), and lists migration notes |
+| REQ-011 | New changelog entry authored | `.opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md` (or next-up version) exists, documents the rename, references precedent (070), and lists migration notes |
 | REQ-012 | Root docs (README.md, AGENTS.md, CLAUDE.md) updated | `grep -n 'sk-improve-agent' README.md AGENTS.md CLAUDE.md` returns 0 hits |
 | REQ-013 | Install guides updated | `.opencode/install_guides/README.md` and `SET-UP - AGENTS.md` have zero `sk-improve-agent` hits |
 | REQ-014 | Implementation summary authored with verification evidence | `implementation-summary.md` at the 079 root cites verification command outputs, REQ IDs satisfied, and links to the new changelog entry |
@@ -156,7 +156,7 @@ See `resource-map.md` for the exhaustive file-by-file inventory with line number
 - **SC-002**: Skill advisor returns `deep-agent-improvement` as top recommendation for the prompt phrase "improve agent" with confidence ≥ 0.85 (parity with pre-rename baseline).
 - **SC-003**: `/improve:agent <sandbox-agent-path> :auto` smoke dispatch completes one iteration: integration scan runs, profile generates, candidate scores produce, journal writes — all from new skill paths with zero errors.
 - **SC-004**: `validate.sh ... --strict` exits 0; `npm test` in mcp_server passes.
-- **SC-005**: Sister-skill consistency: `ls .opencode/skill/ | grep -E '^(deep-research|deep-review|deep-agent-improvement)$'` shows all three present, demonstrating naming family completion.
+- **SC-005**: Sister-skill consistency: `ls .opencode/skills/ | grep -E '^(deep-research|deep-review|deep-agent-improvement)$'` shows all three present, demonstrating naming family completion.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -206,7 +206,7 @@ See `resource-map.md` for the exhaustive file-by-file inventory with line number
 - **SQLite advisor cache:** `skill-graph.sqlite` is binary; `advisor_rebuild` MCP call (or equivalent script) must run after `skill-graph.json` updates.
 
 ### Reference shapes
-- **Path strings vs. semantic identifier:** the string `sk-improve-agent` appears in three categorical contexts: (1) path components (`.opencode/skill/sk-improve-agent/...` — always update), (2) skill id / metadata identifier (`skill_id: sk-improve-agent`, `name: sk-improve-agent` — always update), (3) historical prose ("v1.0.0.0 created sk-improve-agent" — leave verbatim, factual record). T-008 / T-009 / T-019 must distinguish between these.
+- **Path strings vs. semantic identifier:** the string `sk-improve-agent` appears in three categorical contexts: (1) path components (`.opencode/skills/sk-improve-agent/...` — always update), (2) skill id / metadata identifier (`skill_id: sk-improve-agent`, `name: sk-improve-agent` — always update), (3) historical prose ("v1.0.0.0 created sk-improve-agent" — leave verbatim, factual record). T-008 / T-009 / T-019 must distinguish between these.
 - **Trigger phrase tables:** `skill_advisor.py` carries phrase variants — `sk-improve-agent`, `sk improve agent`, `improve-agent`, `agent-improvement`, `/sk-improve-agent`, `sk-agent-improvement-loop`, `/improve:agent`. The `/improve:agent` slash-command phrase stays as-is (command naming independent); other phrase variants targeting the skill update to `deep-agent-improvement` and reasonable variants.
 
 ### Test fixtures

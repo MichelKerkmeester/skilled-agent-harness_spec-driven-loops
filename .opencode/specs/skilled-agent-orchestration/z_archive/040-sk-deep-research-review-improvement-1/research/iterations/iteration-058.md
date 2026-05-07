@@ -7,8 +7,8 @@ Risk and rollback model for migration rollout.
 - What rollback triggers and artifacts are needed?
 
 ## Evidence
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:116-146`
-- `.opencode/skill/sk-deep-research/references/state_format.md:276-290`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:116-146`
+- `.opencode/skills/sk-deep-research/references/state_format.md:276-290`
 
 ## Analysis
 Most sensitive areas: paused sessions, naming migration, and partially reconstructed state logs. Rollback must preserve snapshot archives and event logs.

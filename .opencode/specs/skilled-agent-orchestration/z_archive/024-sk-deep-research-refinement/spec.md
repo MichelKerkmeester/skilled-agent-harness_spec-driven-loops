@@ -85,16 +85,16 @@ Run rigorous autonomous deep-research rounds that investigate improvements to th
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/SKILL.md` | Analyze | Core skill protocol — assess gaps |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Analyze | Convergence algorithm — validate vs real data |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Analyze | Loop lifecycle — assess error handling gaps |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Analyze | State schema — validate fault tolerance |
-| `.opencode/command/spec_kit/deep-research.md` | Analyze | Command setup — assess UX gaps |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Analyze | Auto YAML — assess loop logic completeness |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Analyze | Confirm YAML — assess gate logic |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Analyze | Core skill protocol — assess gaps |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Analyze | Convergence algorithm — validate vs real data |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Analyze | Loop lifecycle — assess error handling gaps |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Analyze | State schema — validate fault tolerance |
+| `.opencode/commands/spec_kit/deep-research.md` | Analyze | Command setup — assess UX gaps |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Analyze | Auto YAML — assess loop logic completeness |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Analyze | Confirm YAML — assess gate logic |
 | `.claude/agents/deep-research.md` | Analyze | Claude agent — cross-runtime consistency |
 | `.codex/agents/deep-research.toml` | Analyze | Codex agent — cross-runtime consistency |
-| `.opencode/agent/deep-research.md` | Analyze | OpenCode agent — primary definition |
+| `.opencode/agents/deep-research.md` | Analyze | OpenCode agent — primary definition |
 | `.claude/agents/deep-research.md` | Analyze | Claude runtime agent — canonical cross-runtime reference |
 <!-- /ANCHOR:scope -->
 

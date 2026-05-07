@@ -44,7 +44,7 @@ Wall clock: scripts = 1.29s; mcp_server = 1.76s. Both well under the 15-min budg
 
 ### sanitizeRecoveredPayload (19 cases)
 
-Logic ported verbatim from `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts:25-54`. Blocked = strip pattern fired and the line was removed (i.e. `sanitize(line).trim() === ""`).
+Logic ported verbatim from `.opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:25-54`. Blocked = strip pattern fired and the line was removed (i.e. `sanitize(line).trim() === ""`).
 
 | # | Case | Input codepoint | Blocked? |
 | --- | --- | --- | --- |
@@ -105,7 +105,7 @@ The test `proceeds when args.sessionId is not provided` asserts `expectLatestSco
 
 ### R7-P2-004 — Root `vitest.config.ts` import chain breaks under `scripts/` cwd — **NEW, infrastructure**
 
-Running `vitest` from `.opencode/skill/system-spec-kit/scripts/` fails with `Cannot find module 'vitest/config'` because the root config at `../vitest.config.ts` imports `vitest/config` but `scripts/node_modules/vitest` does not export that subpath resolvable from the parent directory (ESM resolution scoping). Tests still pass when given an inline config, but CI or operator-issued `npm test` from the scripts folder will fail with a cryptic Vite `UNRESOLVED_IMPORT` warning followed by startup error. This is pre-existing (not a Phase 017 regression) but is adjacent to F1/F2 discoverability issues: any operator trying to reproduce Phase 017 test-suite results from inside `scripts/` will hit it. Severity **P2** — dev-ex, not correctness. [SOURCE: reproduced during this iteration; workaround `/tmp/iter7-vitest/vitest.config.js`.]
+Running `vitest` from `.opencode/skills/system-spec-kit/scripts/` fails with `Cannot find module 'vitest/config'` because the root config at `../vitest.config.ts` imports `vitest/config` but `scripts/node_modules/vitest` does not export that subpath resolvable from the parent directory (ESM resolution scoping). Tests still pass when given an inline config, but CI or operator-issued `npm test` from the scripts folder will fail with a cryptic Vite `UNRESOLVED_IMPORT` warning followed by startup error. This is pre-existing (not a Phase 017 regression) but is adjacent to F1/F2 discoverability issues: any operator trying to reproduce Phase 017 test-suite results from inside `scripts/` will hit it. Severity **P2** — dev-ex, not correctness. [SOURCE: reproduced during this iteration; workaround `/tmp/iter7-vitest/vitest.config.js`.]
 
 ## 5. Hypotheses ruled out
 

@@ -32,11 +32,11 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       "README.md",
       "rename-log.md",
       "spec.md",
@@ -51,13 +51,13 @@
       {
         "name": "matrix_runners",
         "kind": "directory",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners",
         "source": "manual"
       },
       {
         "name": "matrix adapter tests",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests",
         "source": "manual"
       },
       {

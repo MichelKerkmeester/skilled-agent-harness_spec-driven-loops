@@ -8,17 +8,17 @@ This pass mapped which runtimes actually stay inside the shared builder-and-rend
 
 - `../deep-research-strategy.md`
 - `iteration-03.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 
 ### Findings
 
-- Claude, Gemini, and Copilot all follow the shared runtime contract by calling `buildSkillAdvisorBrief()` and then `renderAdvisorBrief()`, which means their prompt-visible advisor behavior is centralized in the shared package [.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:156-181] [.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:170-195] [.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:186-207].
-- Copilot is still transport-different even when it uses the shared builder: it writes a managed custom-instructions file and returns `{}`, so its user-visible advisor surface depends on file refresh semantics rather than direct hook output parity [.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:3-7] [.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-132] [.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:56-57].
-- Codex remains the only runtime hook adapter that attempts a native fast path before the shared builder, so the actual shared contract is "Claude/Gemini/Copilot always shared, Codex conditional, OpenCode bridge-specific" rather than the uniformly shared flow described in the high-level reference [.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:227-241] [.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:30-41].
+- Claude, Gemini, and Copilot all follow the shared runtime contract by calling `buildSkillAdvisorBrief()` and then `renderAdvisorBrief()`, which means their prompt-visible advisor behavior is centralized in the shared package [.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:156-181] [.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:170-195] [.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:186-207].
+- Copilot is still transport-different even when it uses the shared builder: it writes a managed custom-instructions file and returns `{}`, so its user-visible advisor surface depends on file refresh semantics rather than direct hook output parity [.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:3-7] [.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-132] [.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:56-57].
+- Codex remains the only runtime hook adapter that attempts a native fast path before the shared builder, so the actual shared contract is "Claude/Gemini/Copilot always shared, Codex conditional, OpenCode bridge-specific" rather than the uniformly shared flow described in the high-level reference [.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:227-241] [.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:30-41].
 
 ### Evidence
 
@@ -26,13 +26,13 @@ This pass mapped which runtimes actually stay inside the shared builder-and-rend
 >   runtime: 'claude',
 >   workspaceRoot: workspaceRootFor(input),
 > });
-> const brief = renderBrief(result); [.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:156-162]
+> const brief = renderBrief(result); [.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:156-162]
 
 > const result = await buildBrief(prompt, {
 >   runtime: 'gemini',
 >   workspaceRoot: workspaceRootFor(input),
 > });
-> const brief = renderBrief(result); [.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:170-176]
+> const brief = renderBrief(result); [.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:170-176]
 
 > const result = await buildBrief(prompt, {
 >   runtime: 'copilot',
@@ -41,7 +41,7 @@ This pass mapped which runtimes actually stay inside the shared builder-and-rend
 > const brief = renderBrief(result);
 > return {
 >   brief,
->   writeResult: await refreshCopilotInstructions(brief, dependencies), [.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:186-207]
+>   writeResult: await refreshCopilotInstructions(brief, dependencies), [.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:186-207]
 
 ### Negative Knowledge
 

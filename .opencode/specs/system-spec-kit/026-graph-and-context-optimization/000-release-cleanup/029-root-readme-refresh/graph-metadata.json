@@ -31,12 +31,12 @@
     "status": "complete",
     "key_files": [
       "README.md",
-      ".opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
+      ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
       "opencode.json",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/verification-notes.md",
       "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/029-root-readme-refresh/audit-findings.md"
     ],
@@ -50,13 +50,13 @@
       {
         "name": "tool-schemas.ts",
         "kind": "source",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "manual"
       },
       {
         "name": "advisor-tool-schemas.ts",
         "kind": "source",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
         "source": "manual"
       }
     ],

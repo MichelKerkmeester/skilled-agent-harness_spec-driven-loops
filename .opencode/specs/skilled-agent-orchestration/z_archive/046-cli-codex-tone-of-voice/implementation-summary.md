@@ -19,8 +19,8 @@ _memory:
     blockers: []
     key_files:
       - ".codex/AGENTS.md"
-      - ".opencode/skill/cli-codex/SKILL.md"
-      - ".opencode/skill/cli-codex/README.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-codex/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "046-closeout-2026-04-19"
@@ -86,10 +86,10 @@ Both were authored, integrated into `cli-codex/SKILL.md` (Resource Domains, LOAD
 | ------------------------------------------------------------------------------ | ------------ | ------------ | ------------------------------------------------------------------------------- |
 | `.codex/AGENTS.md`                                                             | **Created**  | 2746         | **Final deliverable.** Voice / Tone / Reasoning Visibility only. Source of truth. |
 | `~/.codex/AGENTS.md` (outside repo)                                            | **Created**  | symlink      | Symlink to `<repo>/.codex/AGENTS.md`. Codex CLI loads this at global level.     |
-| `.opencode/skill/cli-codex/SKILL.md`                                           | Modified     | revised      | Rule #10 now states "NEVER inject user-level voice content into AI delegations". Resource Domains / LOADING_LEVELS references to deleted assets removed. |
-| `.opencode/skill/cli-codex/README.md`                                          | Modified     | revised      | Voice Personalization FAQ rewritten to point at `<repo>/.codex/AGENTS.md`. Structure tree no longer lists deleted assets. |
-| `.opencode/skill/cli-codex/assets/codex_app_personalization.md`                | **DELETED**  | —            | Per ADR-007. Content migrated into `<repo>/.codex/AGENTS.md`.                  |
-| `.opencode/skill/cli-codex/assets/codex_voice_module.md`                       | **DELETED**  | —            | Per ADR-006. No replacement — voice is orchestrator/user shell-wrapper concern. |
+| `.opencode/skills/cli-codex/SKILL.md`                                           | Modified     | revised      | Rule #10 now states "NEVER inject user-level voice content into AI delegations". Resource Domains / LOADING_LEVELS references to deleted assets removed. |
+| `.opencode/skills/cli-codex/README.md`                                          | Modified     | revised      | Voice Personalization FAQ rewritten to point at `<repo>/.codex/AGENTS.md`. Structure tree no longer lists deleted assets. |
+| `.opencode/skills/cli-codex/assets/codex_app_personalization.md`                | **DELETED**  | —            | Per ADR-007. Content migrated into `<repo>/.codex/AGENTS.md`.                  |
+| `.opencode/skills/cli-codex/assets/codex_voice_module.md`                       | **DELETED**  | —            | Per ADR-006. No replacement — voice is orchestrator/user shell-wrapper concern. |
 
 ### Spec folder (this packet)
 
@@ -129,7 +129,7 @@ Responds with Claude-like voice, governed by project framework.
 
 ## 5. VALIDATION STATUS
 
-`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` reports template-shape deviations (ANCHORS_VALID, TEMPLATE_HEADERS, SECTIONS_PRESENT, SPEC_DOC_INTEGRITY) that are strict-mode style issues, not correctness blockers. `PLACEHOLDER_FILLED`, `LEVEL_DECLARED`, `PRIORITY_TAGS`, `EVIDENCE_CITED`, `COMPLEXITY_MATCH`, `FOLDER_NAMING`, `LEVEL_MATCH`, `NORMALIZER_LINT`, `SPEC_DOC_SUFFICIENCY`, `TOC_POLICY`, `CONTINUITY_FRESHNESS`, and `EVIDENCE_MARKER_LINT` all pass.
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` reports template-shape deviations (ANCHORS_VALID, TEMPLATE_HEADERS, SECTIONS_PRESENT, SPEC_DOC_INTEGRITY) that are strict-mode style issues, not correctness blockers. `PLACEHOLDER_FILLED`, `LEVEL_DECLARED`, `PRIORITY_TAGS`, `EVIDENCE_CITED`, `COMPLEXITY_MATCH`, `FOLDER_NAMING`, `LEVEL_MATCH`, `NORMALIZER_LINT`, `SPEC_DOC_SUFFICIENCY`, `TOC_POLICY`, `CONTINUITY_FRESHNESS`, and `EVIDENCE_MARKER_LINT` all pass.
 
 **Functional validation**: byte-count parity confirmed between `<repo>/.codex/AGENTS.md` and `~/.codex/AGENTS.md` (both 2746 bytes, symlink resolves correctly).
 

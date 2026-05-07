@@ -11,9 +11,9 @@ LEAF (cli-codex, gpt-5.5 high fast). NO sub-agent dispatch. Target 3-5 actions, 
 **Focus (Q10):** ASCII summary box — coder-side analog of @review.md §13 (lines 450-477). Mirror the structural template: 4 quadrants (AUTHORITY / IMPLEMENTATION MODES / WORKFLOW / LIMITS), bordered ASCII box, ~25 lines. The summary distills the entire @code agent.
 
 Reference precedents already in this codebase:
-- `.opencode/agent/review.md:452-477` (canonical mirror target)
-- `.opencode/agent/write.md:373-399` (write-capable LEAF analog)
-- `.opencode/agent/debug.md:480-506` (debug 4-quadrant analog)
+- `.opencode/agents/review.md:452-477` (canonical mirror target)
+- `.opencode/agents/write.md:373-399` (write-capable LEAF analog)
+- `.opencode/agents/debug.md:480-506` (debug 4-quadrant analog)
 
 **Last 3 Iterations Summary:**
 - run 5: Q5 Builder/Critic/Verifier
@@ -38,7 +38,7 @@ Reference precedents already in this codebase:
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:450-477`, `.opencode/agent/write.md:373-399`, `.opencode/agent/debug.md:480-506` (three precedent ASCII boxes).
+1. Read `.opencode/agents/review.md:450-477`, `.opencode/agents/write.md:373-399`, `.opencode/agents/debug.md:480-506` (three precedent ASCII boxes).
 2. Synthesize the coder-side §13 SUMMARY ASCII box. Quadrants (suggested):
    - **AUTHORITY** — Stack-aware application-code implementation; structured RETURN with rubric/confidence/escalation; dispatched only by @orchestrate (D3 convention)
    - **IMPLEMENTATION MODES** — full-implementation / surgical-fix / refactor-only / test-add / scaffold-new-file / rename-move / dependency-bump

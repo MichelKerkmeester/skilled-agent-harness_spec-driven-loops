@@ -61,7 +61,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 ## 3. SCOPE
 
 ### In Scope
-- Create new `.opencode/skill/sk-code/` with merged routing SKILL.md, README.md, CHANGELOG.md, graph-metadata.json, description.json
+- Create new `.opencode/skills/sk-code/` with merged routing SKILL.md, README.md, CHANGELOG.md, graph-metadata.json, description.json
 - `_router/` extracted reference docs (stack_detection.md, intent_classification.md, resource_loading.md, phase_lifecycle.md)
 - `references/universal/` tightly-scoped stack-agnostic content (4 files copied from sk-code-web with browser-context bits stripped)
 - `references/web/` LIVE content (copied verbatim from sk-code-web/references/{implementation,debugging,verification,deployment,performance,standards}/)
@@ -89,11 +89,11 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 
 | Path Class | Action | Count |
 |------------|--------|-------|
-| `.opencode/skill/sk-code/**` | Create | ~80 files (SKILL.md + READMEs + 4 _router + ~30 web refs/assets + 35 placeholder stubs + 3 scripts + metadata) |
-| `.opencode/skill/sk-code-web/SKILL.md` | Modify | 1 (frontmatter only) |
-| `.opencode/skill/sk-code-web/graph-metadata.json` | Modify | 1 |
-| `.opencode/skill/sk-code-full-stack/SKILL.md` | Modify | 1 (frontmatter only) |
-| `.opencode/skill/sk-code-full-stack/graph-metadata.json` | Modify | 1 |
+| `.opencode/skills/sk-code/**` | Create | ~80 files (SKILL.md + READMEs + 4 _router + ~30 web refs/assets + 35 placeholder stubs + 3 scripts + metadata) |
+| `.opencode/skills/sk-code-web/SKILL.md` | Modify | 1 (frontmatter only) |
+| `.opencode/skills/sk-code-web/graph-metadata.json` | Modify | 1 |
+| `.opencode/skills/sk-code-full-stack/SKILL.md` | Modify | 1 (frontmatter only) |
+| `.opencode/skills/sk-code-full-stack/graph-metadata.json` | Modify | 1 |
 | Skill advisor scoring | Modify | 4 (skill_advisor.py, explicit.ts, lexical.ts, lane-attribution.test.ts) |
 | Other graph-metadata.json | Modify | 6 (sk-code-review, sk-code-opencode, mcp-chrome-devtools, mcp-figma, advisor) |
 | Sister SKILL.md cross-refs | Modify | 7 |
@@ -111,7 +111,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | New skill `sk-code` exists with valid SKILL.md, README.md, CHANGELOG.md, graph-metadata.json, description.json | Files present at `.opencode/skill/sk-code/`; `bash validate.sh --strict` passes |
+| REQ-001 | New skill `sk-code` exists with valid SKILL.md, README.md, CHANGELOG.md, graph-metadata.json, description.json | Files present at `.opencode/skills/sk-code/`; `bash validate.sh --strict` passes |
 | REQ-002 | Web content carried forward verbatim into `sk-code/references/web/` and `sk-code/assets/web/` and `sk-code/scripts/` | Diff between source and destination is empty for every migrated file |
 | REQ-003 | Smart routing in SKILL.md detects stack first (Webflow markers / go.mod / Package.swift / app.json+expo / next.config / package.json) then classifies intent | Pseudocode in SKILL.md is reviewable and 5 representative trigger-test prompts route to expected stack branch |
 | REQ-004 | Placeholder stubs exist for all 5 non-web stacks with frontmatter `status: placeholder, canonical_source, source_version: sk-code-full-stack@1.1.0, populated: false` | Each stack folder contains `_placeholder.md` + N stub files where N matches sk-code-full-stack/<stack>/ doc count |

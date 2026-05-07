@@ -10,7 +10,7 @@ Ratios: 0.88 → 0.86 → 0.84 → 0.85 → 0.74 → 0.62
 **Next focus (iter 7):** RQ-02 depth + RQ-09 close.
 
 1. **RQ-02 depth:** Run the actual lane-ablation harness if runnable. Try:
-   - `cd .opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench && ls -1` to see runnable benches
+   - `cd .opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench && ls -1` to see runnable benches
    - If there's a CLI, run `node <bench-entry>` or `npm run bench:scorer` from the repo root — capture baseline accuracy vs per-lane ablation deltas
    - If tests exist in `.../tests/parity/`, run vitest on the existing single-lane assertion (lexical only) and report observed accuracy deltas
    - If nothing runs end-to-end, read `lib/scorer/ablation.ts:54-74` + `bench/scorer-bench.ts:42-61` and SYNTHESIZE what the bias picture would look like if a fuller ablation were run — which lane is MOST likely systematically biased based on code structure?

@@ -8,7 +8,7 @@ SessionId: 2026-05-02T21:41:11Z
 Iter 4 — maintainability: did the new affectedSurfaceHints field follow R5 fix-completeness — same-class producer/consumer + matrix coverage?
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 Apply protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

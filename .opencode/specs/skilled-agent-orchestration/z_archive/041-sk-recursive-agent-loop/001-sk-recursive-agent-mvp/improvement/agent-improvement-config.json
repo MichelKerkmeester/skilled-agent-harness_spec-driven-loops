@@ -1,5 +1,5 @@
 {
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "targetKind": "canonical-agent",
   "maxIterations": 5,
   "maxCandidatesPerIteration": 1,

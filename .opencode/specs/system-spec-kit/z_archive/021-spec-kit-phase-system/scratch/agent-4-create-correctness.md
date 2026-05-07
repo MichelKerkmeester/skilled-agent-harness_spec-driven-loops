@@ -2,7 +2,7 @@
 
 **Reviewer:** @review agent (Claude Opus 4.6)
 **Date:** 2026-03-08
-**Primary file:** `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
+**Primary file:** `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
 **Reference spec:** `.opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md`
 
 ---

@@ -68,7 +68,7 @@ Level 2 includes **5 template files**:
 mkdir -p specs/###-feature-name
 
 # 2. Copy all Level 2 templates
-cp .opencode/skill/system-spec-kit/templates/level_2/*.md specs/###-feature-name/
+cp .opencode/skills/system-spec-kit/templates/level_2/*.md specs/###-feature-name/
 
 # 3. Fill templates in order (see Fill Templates section below)
 ```
@@ -89,7 +89,7 @@ Level 2 requires passing validation script:
 
 ```bash
 # Run validation
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+node .opencode/skills/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
 
 # Exit codes:
 # 0 = Pass
@@ -171,7 +171,7 @@ Automated validation ensures all required sections and formatting standards are 
 **Solution**:
 ```bash
 # Run validation to see specific errors
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+node .opencode/skills/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
 
 # Fix reported errors and re-run
 ```
@@ -206,13 +206,13 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 
 ```bash
 # Validate spec folder
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+node .opencode/skills/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
 
 # Check which files exist
 ls -la specs/###-feature-name/
 
 # Compare with template
-diff specs/###-feature-name/checklist.md .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+diff specs/###-feature-name/checklist.md .opencode/skills/system-spec-kit/templates/level_2/checklist.md
 ```
 
 ---

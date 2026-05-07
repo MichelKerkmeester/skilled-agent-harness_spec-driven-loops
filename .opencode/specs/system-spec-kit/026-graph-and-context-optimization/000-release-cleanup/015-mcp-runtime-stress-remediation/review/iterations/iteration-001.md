@@ -5,11 +5,11 @@
 
 ## Sources Read
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/deep-review-strategy.md:29`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1163`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:45`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:54`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:280`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:47`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1163`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:45`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts:54`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:280`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:47`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md:64`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/tasks.md:83`
 
@@ -29,7 +29,7 @@ Evidence: 023 says TC-3 is still expected-failure and `memory_search` does not p
 ```
 Severity rationale: stale blocker metadata can route the next operator to a resolved race instead of the current release-readiness question.
 
-Evidence: 025 tasks still mark `npx tsc --noEmit` failed and leave T016 blocked at `tasks.md:83` and `tasks.md:88`; completion criteria remain unchecked at `tasks.md:96`. The final committed state was verified in this review with `npx tsc --noEmit` exiting 0 from `.opencode/skill/system-spec-kit/mcp_server`.
+Evidence: 025 tasks still mark `npx tsc --noEmit` failed and leave T016 blocked at `tasks.md:83` and `tasks.md:88`; completion criteria remain unchecked at `tasks.md:96`. The final committed state was verified in this review with `npx tsc --noEmit` exiting 0 from `.opencode/skills/system-spec-kit/mcp_server`.
 
 ## New Info Ratio
 1.00. New weighted findings: P1 + P1 = 10. Any weighted findings: 10.

@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-08
 **Auditor:** Claude Opus 4.6
-**Base path:** `.opencode/skill/system-spec-kit/scripts/`
+**Base path:** `.opencode/skills/system-spec-kit/scripts/`
 
 ---
 
@@ -99,7 +99,7 @@
 
 **Action taken:** Updated line 89 from `# Expected: 10 TypeScript files` to `# Expected: 12 TypeScript files`.
 
-**File modified:** `.opencode/skill/system-spec-kit/scripts/utils/README.md`
+**File modified:** `.opencode/skills/system-spec-kit/scripts/utils/README.md`
 
 ---
 

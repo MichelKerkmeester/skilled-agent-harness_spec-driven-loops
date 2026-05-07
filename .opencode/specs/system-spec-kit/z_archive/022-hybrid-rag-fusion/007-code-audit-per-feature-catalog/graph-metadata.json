@@ -74,8 +74,8 @@
       "scripts/evals/run-ablation.ts",
       "config/config.jsonc",
       "config/filters.jsonc",
-      ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
-      ".opencode/skill/system-spec-kit/nodes/phase-system.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
+      ".opencode/skills/system-spec-kit/nodes/phase-system.md",
       "mcp_server/api/storage.ts",
       "scripts/spec/create.sh",
       "scripts/spec/validate.sh",
@@ -83,7 +83,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md"
     ],
     "entities": [
       {
@@ -149,13 +149,13 @@
       {
         "name": "gate-enforcement.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
         "source": "derived"
       },
       {
         "name": "phase-system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/nodes/phase-system.md",
+        "path": ".opencode/skills/system-spec-kit/nodes/phase-system.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
       {
         "name": "11-session-recovery-spec-kit-resume.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
         "source": "derived"
       },
       {

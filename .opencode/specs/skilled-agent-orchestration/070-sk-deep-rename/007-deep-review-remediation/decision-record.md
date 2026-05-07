@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "decision-record.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
-      - ".opencode/skill/sk-code/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-code/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-007"
@@ -64,7 +64,7 @@ The family bucket name is a structural label that groups those skills. Renaming 
 
 **Decision**: DEFERRED.
 
-The `reference-category` entity kind issue is pre-existing in `.opencode/skill/sk-code/graph-metadata.json:201` and was not introduced by Packet 070. The strict advisor validator rejects that entity kind because it is not in the current allow-list.
+The `reference-category` entity kind issue is pre-existing in `.opencode/skills/sk-code/graph-metadata.json:201` and was not introduced by Packet 070. The strict advisor validator rejects that entity kind because it is not in the current allow-list.
 
 Fixing it requires either extending the allow-list or changing the entity kind in `sk-code` metadata. Both options are outside Packet 070's rename remediation scope and should be handled as their own metadata-contract change.
 

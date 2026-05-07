@@ -15,15 +15,15 @@ Two P0 bugs in the code-graph indexer (introduced/exposed by packet 012):
 
 Path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/002-incremental-fullscan-recovery/`
 
-Create canonical Level 3 docs (use templates from `.opencode/skill/system-spec-kit/templates/level_3/` — pick from `level_3/` if it exists, else `level_2/` and add a decision-record.md):
+Create canonical Level 3 docs (use templates from `.opencode/skills/system-spec-kit/templates/level_3/` — pick from `level_3/` if it exists, else `level_2/` and add a decision-record.md):
 - `spec.md` — problem, scope, requirements, non-goals
 - `plan.md` — phases, dependencies, sequencing rationale (T-001..T-011)
 - `tasks.md` — T-001..T-011 with checkboxes, file paths, expected diff sizes (lift from research.md §7.2)
 - `checklist.md` — P0/P1/P2 items including AC-1..AC-8 from research.md §9
 - `decision-record.md` — ADR for "Option A dedup vs B vs C", "supplement vs rename for fullReindexTriggered"
-- `description.json` + `graph-metadata.json` — generate via `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` post-creation if needed, OR copy template structure from a sibling like `012-code-graph-context-and-scan-scope/`
+- `description.json` + `graph-metadata.json` — generate via `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` post-creation if needed, OR copy template structure from a sibling like `012-code-graph-context-and-scan-scope/`
 
-Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <new-spec-folder> --strict` after document creation. It MUST exit 0 (zero errors / zero warnings).
+Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <new-spec-folder> --strict` after document creation. It MUST exit 0 (zero errors / zero warnings).
 
 ### B. SOURCE-CODE PATCHES (T-001..T-005)
 
@@ -89,7 +89,7 @@ Adapt fixtures as needed; the research provides shapes. Run `npx vitest run` fro
 ### D. BUILD + VERIFY (T-009..T-011)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build
 ```
 
@@ -97,7 +97,7 @@ Confirm dist contains:
 - `dist/code-graph/lib/structural-indexer.js` — has `skipFreshFiles` token
 - `dist/code-graph/handlers/scan.js` — has `fullScanRequested` token
 
-Update `.opencode/skill/system-spec-kit/mcp_server/code-graph/README.md` surface matrix to document the new response fields (`fullScanRequested`, `effectiveIncremental`) and the `IndexFilesOptions { skipFreshFiles }` parameter.
+Update `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md` surface matrix to document the new response fields (`fullScanRequested`, `effectiveIncremental`) and the `IndexFilesOptions { skipFreshFiles }` parameter.
 
 ### E. IMPLEMENTATION SUMMARY (post-build)
 

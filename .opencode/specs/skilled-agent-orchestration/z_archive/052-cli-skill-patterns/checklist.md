@@ -40,7 +40,7 @@ contextType: "general"
 
 ### cli-claude-code
 
-- [ ] CHK-010 [P0] `--effort high` / `--effort` mention preserved `[EVIDENCE: grep -c 'effort high\|--effort' .opencode/skill/cli-claude-code/SKILL.md >= 1]`
+- [ ] CHK-010 [P0] `--effort high` / `--effort` mention preserved `[EVIDENCE: grep -c 'effort high\|--effort' .opencode/skills/cli-claude-code/SKILL.md >= 1]`
 - [ ] CHK-011 [P0] `--json-schema` preserved `[EVIDENCE: grep -c 'json-schema' >= 1]`
 - [ ] CHK-012 [P0] `--max-budget-usd` preserved `[EVIDENCE: grep -c 'max-budget-usd' >= 1]`
 - [ ] CHK-013 [P0] `--permission-mode` preserved `[EVIDENCE: grep -c 'permission-mode' >= 1]`
@@ -94,10 +94,10 @@ contextType: "general"
 ## Testing (Structural Harmonization Verification)
 
 - [ ] CHK-060 [P0] All 5 SKILL.md files have identical 8-section header order/titles `[EVIDENCE: diff <(grep '^## [0-9]\+\.' cli-claude-code/SKILL.md) <(grep '^## [0-9]\+\.' cli-codex/SKILL.md) returns empty; repeat for all pairs]`
-- [ ] CHK-061 [P0] All 5 skills have an Error Handling table in §3 `[EVIDENCE: grep -lE '^### Error Handling' .opencode/skill/cli-*/SKILL.md returns 5 paths]`
-- [ ] CHK-062 [P0] All 5 skills have a Default Invocation block in §3 `[EVIDENCE: grep -lE 'Default Invocation' .opencode/skill/cli-*/SKILL.md returns 5 paths]`
-- [ ] CHK-063 [P0] All 5 skills have a Provider Auth Pre-Flight subsection in §3 `[EVIDENCE: grep -lE 'Provider Auth Pre-Flight' .opencode/skill/cli-*/SKILL.md returns 5 paths]`
-- [ ] CHK-064 [P0] UNKNOWN_FALLBACK_CHECKLIST appears exactly once per skill `[EVIDENCE: for f in .opencode/skill/cli-*/SKILL.md; do echo "$f: $(grep -c UNKNOWN_FALLBACK_CHECKLIST $f)"; done all show 1]`
+- [ ] CHK-061 [P0] All 5 skills have an Error Handling table in §3 `[EVIDENCE: grep -lE '^### Error Handling' .opencode/skills/cli-*/SKILL.md returns 5 paths]`
+- [ ] CHK-062 [P0] All 5 skills have a Default Invocation block in §3 `[EVIDENCE: grep -lE 'Default Invocation' .opencode/skills/cli-*/SKILL.md returns 5 paths]`
+- [ ] CHK-063 [P0] All 5 skills have a Provider Auth Pre-Flight subsection in §3 `[EVIDENCE: grep -lE 'Provider Auth Pre-Flight' .opencode/skills/cli-*/SKILL.md returns 5 paths]`
+- [ ] CHK-064 [P0] UNKNOWN_FALLBACK_CHECKLIST appears exactly once per skill `[EVIDENCE: for f in .opencode/skills/cli-*/SKILL.md; do echo "$f: $(grep -c UNKNOWN_FALLBACK_CHECKLIST $f)"; done all show 1]`
 - [ ] CHK-065 [P1] INTENT_SIGNALS count is 7 across all 5 skills `[EVIDENCE: per-skill awk-block-extraction yields 7 entries each]`
 - [ ] CHK-066 [P1] ALWAYS / NEVER / ESCALATE triple in §4 of all 5 skills `[EVIDENCE: grep -cE '^### (ALWAYS\|NEVER\|ESCALATE)' returns 3 per skill]`
 
@@ -108,8 +108,8 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-070 [P0] No provider credentials embedded in SKILL.md or graph-metadata.json `[EVIDENCE: grep -E 'sk-[a-zA-Z0-9]{20,}\|ghp_[a-zA-Z0-9]{36}\|key-[a-zA-Z0-9]{32}' .opencode/skill/cli-*/SKILL.md .opencode/skill/cli-*/graph-metadata.json returns empty]`
-- [ ] CHK-071 [P0] Self-invocation guard preserved in all 5 skills `[EVIDENCE: grep -lE 'self-invocation\|self_invocation' .opencode/skill/cli-*/SKILL.md returns 5 paths]`
+- [ ] CHK-070 [P0] No provider credentials embedded in SKILL.md or graph-metadata.json `[EVIDENCE: grep -E 'sk-[a-zA-Z0-9]{20,}\|ghp_[a-zA-Z0-9]{36}\|key-[a-zA-Z0-9]{32}' .opencode/skills/cli-*/SKILL.md .opencode/skills/cli-*/graph-metadata.json returns empty]`
+- [ ] CHK-071 [P0] Self-invocation guard preserved in all 5 skills `[EVIDENCE: grep -lE 'self-invocation\|self_invocation' .opencode/skills/cli-*/SKILL.md returns 5 paths]`
 
 <!-- /ANCHOR:security -->
 
@@ -118,9 +118,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-080 [P0] Strict validate exit 0 `[EVIDENCE: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict; echo $?  -> 0]`
-- [ ] CHK-081 [P1] Each skill's `graph-metadata.json` `causal_summary` mentions the new harmonized subsection terms (Default Invocation / Error Handling / Provider Auth Pre-Flight) `[EVIDENCE: grep -l 'Provider Auth Pre-Flight\|Error Handling\|Default Invocation' .opencode/skill/cli-*/graph-metadata.json returns 5 paths]`
-- [ ] CHK-082 [P2] Anchor cross-link audit returns no rotted links `[EVIDENCE: grep -rn '<!-- ANCHOR:' .opencode/skill/cli-*/SKILL.md; manual review]`
+- [ ] CHK-080 [P0] Strict validate exit 0 `[EVIDENCE: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict; echo $?  -> 0]`
+- [ ] CHK-081 [P1] Each skill's `graph-metadata.json` `causal_summary` mentions the new harmonized subsection terms (Default Invocation / Error Handling / Provider Auth Pre-Flight) `[EVIDENCE: grep -l 'Provider Auth Pre-Flight\|Error Handling\|Default Invocation' .opencode/skills/cli-*/graph-metadata.json returns 5 paths]`
+- [ ] CHK-082 [P2] Anchor cross-link audit returns no rotted links `[EVIDENCE: grep -rn '<!-- ANCHOR:' .opencode/skills/cli-*/SKILL.md; manual review]`
 
 <!-- /ANCHOR:docs -->
 
@@ -129,9 +129,9 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-090 [P1] No new top-level files added to any cli-* skill folder (harmonization is in-file edits only) `[EVIDENCE: git status --short .opencode/skill/cli-*/ | grep -v '^[ M]' returns empty]`
-- [ ] CHK-091 [P2] `references/hook_contract.md` (cli-codex) preserved `[EVIDENCE: ls .opencode/skill/cli-codex/references/hook_contract.md returns 0]`
-- [ ] CHK-092 [P2] `assets/shell_wrapper.md` (cli-copilot) preserved `[EVIDENCE: ls .opencode/skill/cli-copilot/assets/shell_wrapper.md returns 0]`
+- [ ] CHK-090 [P1] No new top-level files added to any cli-* skill folder (harmonization is in-file edits only) `[EVIDENCE: git status --short .opencode/skills/cli-*/ | grep -v '^[ M]' returns empty]`
+- [ ] CHK-091 [P2] `references/hook_contract.md` (cli-codex) preserved `[EVIDENCE: ls .opencode/skills/cli-codex/references/hook_contract.md returns 0]`
+- [ ] CHK-092 [P2] `assets/shell_wrapper.md` (cli-copilot) preserved `[EVIDENCE: ls .opencode/skills/cli-copilot/assets/shell_wrapper.md returns 0]`
 
 <!-- /ANCHOR:file-org -->
 

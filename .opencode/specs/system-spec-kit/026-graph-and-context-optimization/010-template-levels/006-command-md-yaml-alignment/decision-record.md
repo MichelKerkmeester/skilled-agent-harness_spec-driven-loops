@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "Execute command/YAML audit with per-hit classification"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/"
+      - ".opencode/commands/spec_kit/"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060003"
       session_id: "2026-05-02-006-command-md-yaml-alignment"
@@ -28,7 +28,7 @@ _memory:
 # Decision Record: command-md-yaml-alignment
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

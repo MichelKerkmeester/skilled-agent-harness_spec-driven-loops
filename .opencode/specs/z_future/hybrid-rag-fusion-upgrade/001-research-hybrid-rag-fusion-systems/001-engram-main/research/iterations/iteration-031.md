@@ -2,7 +2,7 @@
   └ Permission denied and could not request permission from user
 
 ✗ Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "DEEP RESEARCH iteration 31 of 40 on an
+  │ python3 .opencode/skills/scripts/skill_advisor.py "DEEP RESEARCH iteration 31 of 40 on an
   │ external memory system. Focus: ADOPTION ROADMAP DRAFT: Based on all 30 prior iterations, create
   │ a phased adoption roadmap with Q1/Q2/Q3 milestones. Include dependencies between adopted
   │ patterns. Update the existing Engram phase-folder research docs within the pre-approved phase
@@ -26,7 +26,7 @@ I’ve got the phase context now. I’m checking the existing Engram research pa
 
 ✗ Validate Engram phase folder (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
-  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh
   │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
   │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
   │ --strict
@@ -205,19 +205,19 @@ I’ve isolated the two real gaps: packet-level docs are missing, and the final 
   └ L375:590 (216 lines read)
 
 ● Read session-resume.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts
   └ L400:614 (215 lines read)
 
 ● Read session-bootstrap.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
   └ L163:240 (78 lines read)
 
 ● Read query-router.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts
   └ L48:164 (117 lines read)
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L741:811 (71 lines read)
 
 ● Read (Speckit agent — Creating phase docs)

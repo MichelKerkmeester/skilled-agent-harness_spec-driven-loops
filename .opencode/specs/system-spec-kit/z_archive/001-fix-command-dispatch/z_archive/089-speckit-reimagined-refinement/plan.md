@@ -118,7 +118,7 @@ spec: "089"
 
 ### 2.6 Agents: Frontmatter & Section Fixes (REQ-010)
 
-**Files:** Multiple across `.opencode/agent/`
+**Files:** Multiple across `.opencode/agents/`
 
 - `orchestrate.md`: Change `mode: primary` → `mode: agent`; add Section 0 (Model Preference)
 - `write.md`: Change `mode: all` → `mode: agent`; add `task` to allowed-tools

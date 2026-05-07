@@ -3,23 +3,23 @@
 I’m mapping the embedding pipeline end to end first, then I’ll answer each question with source-backed findings and concrete numbers. After that I’ll do a quick cross-check for the `sk-doc` memory-save edge case.
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ 1 line read
 
 ● Read embedding-cache.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
   └ 226 lines read
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts
   └ 48 lines read
 
 ● Read batch-processor.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/utils/batch-processor.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts
   └ 175 lines read
 
 ● Read retry-manager.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts
   └ 573 lines read
 
 ● memory_match_triggers
@@ -40,7 +40,7 @@ I’m mapping the embedding pipeline end to end first, then I’ll answer each q
   └ 4 lines...
 
 ● Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Analyze embedding system performance:
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Analyze embedding system performance:
   │ batching, cache reuse, retry/rate limiting, duplicate embeddings, and sk-doc memory save trigger
   │ ambiguity." --threshold 0.8
   └ 35 lines...
@@ -50,13 +50,13 @@ I’ve got the main MCP-side pieces. Now I’m tracing the shared embedding impl
 ● Search (grep)
   │ "BATCH_DELAY_MS|BATCH_RATE_LIMIT_DELAY|MAX_CACHE|cache|LRU|evict|generateBatchEmbeddings|generat
   │ eDocumentEmbedding|generateEmbeddingWithTimeout|clearEmbeddingCache|getEmbeddingCacheStats|isPro
-  │ viderInitialized|validateApiKey|provider" (.opencode/skill/system-spec-kit/shared/embeddings.ts)
+  │ viderInitialized|validateApiKey|provider" (.opencode/skills/system-spec-kit/shared/embeddings.ts)
   └ 119 lines found
 
 ● Search (grep)
   │ "normalizeContentForEmbedding|generateDocumentEmbedding|storeEmbedding\(|lookupEmbedding\(|compu
   │ teContentHash\(|embedding_status|content_hash" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
@@ -71,30 +71,30 @@ I’ve got the main MCP-side pieces. Now I’m tracing the shared embedding impl
 I found the shared constants, but I want one more pass through the save/index paths and provider implementations so I don’t miss any hidden retry or duplicate-embedding behavior. Then I can turn this into a clean PERF finding list.
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L220:320 (101 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L735:805 (62 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L35:120 (85 lines read)
 
 ● Read embeddings.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings.ts
   └ L390:620 (230 lines read)
 
 ● Search (grep)
   │ "rate limit|429|Retry-After|retry|backoff|throttle|delay|sleep" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/shared/embeddings)
+  │ (.opencode/skills/system-spec-kit/shared/embeddings)
   └ 18 lines found
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|generateBatchEmbeddings\(|computeContentHash\(|lookupEmbedding\(|st
   │ oreEmbedding\(|normalizeContentForEmbedding\(|content_text|embedding_status" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
@@ -104,24 +104,24 @@ I found the shared constants, but I want one more pass through the save/index pa
   └ 5 lines found
 
 ● Read openai.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings/providers/openai.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts
   └ L160:210 (50 lines read)
 
 ● Read voyage.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts
   └ L185:215 (31 lines read)
 
 ● Read retry.ts
-  │ .opencode/skill/system-spec-kit/shared/utils/retry.ts
+  │ .opencode/skills/system-spec-kit/shared/utils/retry.ts
   └ L1:220 (219 lines read)
 
 ● Read gate-enforcement.md
-  │ .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md
+  │ .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md
   └ L1:240 (106 lines read)
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|normalizeContentForEmbedding\(|lookupEmbedding\(|storeEmbedding\(|c
-  │ omputeContentHash\(" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ omputeContentHash\(" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 20 lines found
 
 ● Search (grep)
@@ -132,34 +132,34 @@ I found the shared constants, but I want one more pass through the save/index pa
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|generateBatchEmbeddings\(|generateEmbedding\(" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 43 lines found
 
 I’ve confirmed the provider-level retries now. One last pass is to connect that with the save/index workflows so I can clearly separate “real API protection” from “duplicate embeddings caused by workflow design.”
 
 ✗ Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/tools/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/tools/memory-save.ts
   └ Path does not exist
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ L1:140 (140 lines read)
 
 ● Read vector-index-schema.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
   └ L1828:1848 (21 lines read)
 
 ● Search (grep)
   │ "generate-context\.js|memory_index_scan\(|memory_save\(|includeSpecDocs|implementation-summary\.
   │ md|spec\.md|plan\.md|tasks\.md|checklist\.md|decision-record\.md" in **/*.{ts,js,sh}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "implementation-summary|required for all levels|created after implementation|memory save|save
   │ context|generate-context\.js|spec
   │ docs|includeSpecDocs|index_spec_docs|implementation-summary\.md" in
-  │ **/*.{md,ts,js,sh,json,jsonc} (.opencode/skill/system-spec-kit)
+  │ **/*.{md,ts,js,sh,json,jsonc} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 I hit one stale path, so I’m narrowing directly to the exact save/index files and the spec-doc templates. That should pin down both the duplicate-embedding path and the `implementation-summary` / memory-save ambiguity.
@@ -167,16 +167,16 @@ I hit one stale path, so I’m narrowing directly to the exact save/index files 
 ✗ Search (grep)
   │ "save context|save memory|memory
   │ save|generate-context\.js|/memory:save|implementation-summary\.md"
-  │ (.opencode/skill/system-spec-kit/AGENTS.md)
+  │ (.opencode/skills/system-spec-kit/AGENTS.md)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/AGENTS.md: IO error for operation on
+    Env/Public/.opencode/skills/system-spec-kit/AGENTS.md: IO error for operation on
     /Users/michelkerkmeester/MEGA/Development/Opencode
-    Env/Public/.opencode/skill/system-spec-kit/AGENTS.md: No such file or directory (os error 2)
+    Env/Public/.opencode/skills/system-spec-kit/AGENTS.md: No such file or directory (os error 2)
 
 ● Search (grep)
   │ "buildWeightedDocumentText\(|weightedEmbeddingInput|normalizeContentForEmbedding|generateDocumen
   │ tEmbedding\(|generateBatchEmbeddings\(" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/scripts/core)
+  │ (.opencode/skills/system-spec-kit/scripts/core)
   └ 2 lines found
 
 ● Search (grep)
@@ -185,27 +185,27 @@ I hit one stale path, so I’m narrowing directly to the exact save/index files 
   └ 2 lines found
 
 ● Search (glob)
-  │ "**/memory-save.ts" in .opencode/skill/system-spec-kit
+  │ "**/memory-save.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Search (grep)
   │ "buildWeightedDocumentText\(|normalizeContentForEmbedding\(|generateDocumentEmbedding\(|lookupEm
   │ bedding\(|storeEmbedding\(|computeContentHash\(" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "implementation-summary\.md|required for all levels|created after implementation
   │ completes|created after implementation|REQUIRED for all levels" in **/*.md
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L620:760 (141 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L1085:1165 (81 lines read)
 
 ● Search (grep)
@@ -228,12 +228,12 @@ I have the memory-save rules now. I’m just extracting the exact `implementatio
 
 ● Search (grep)
   │ "implementation-summary\.md|required for all levels|created after implementation
-  │ completes|created after implementation" (.opencode/skill/system-spec-kit/README.md)
+  │ completes|created after implementation" (.opencode/skills/system-spec-kit/README.md)
   └ 2 lines found
 
 ● Search (grep)
   │ "implementation-summary\.md|required for all levels|created after implementation
-  │ completes|created after implementation" (.opencode/skill/system-spec-kit/SKILL.md)
+  │ completes|created after implementation" (.opencode/skills/system-spec-kit/SKILL.md)
   └ 5 lines found
 
 ● Search (grep)
@@ -243,125 +243,125 @@ I have the memory-save rules now. I’m just extracting the exact `implementatio
 
 ● Search (grep)
   │ "includeSpecDocs|spec documents|spec\.md|plan\.md|tasks\.md|checklist\.md|decision-record\.md|im
-  │ plementation-summary\.md" in **/*.{ts,js,md} (.opencode/skill/system-spec-kit)
+  │ plementation-summary\.md" in **/*.{ts,js,md} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read SKILL.md
-  │ .opencode/skill/system-spec-kit/SKILL.md
+  │ .opencode/skills/system-spec-kit/SKILL.md
   └ L384:405 (22 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/system-spec-kit/SKILL.md
+  │ .opencode/skills/system-spec-kit/SKILL.md
   └ L684:696 (13 lines read)
 
 ● Search (grep)
   │ "embeddingCache.size < EMBEDDING_CACHE_MAX_SIZE \* 0\.9|doc:|query:|same text|NOT cached by doc
-  │ namespace" (.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js)
+  │ namespace" (.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js)
   └ 8 lines found
 
 ● Search (grep)
   │ "includeSpecDocs|implementation-summary\.md|spec\.md|plan\.md|tasks\.md|checklist\.md|decision-r
-  │ ecord\.md" in **/*.{ts,js,md} (.opencode/skill/system-spec-kit/scripts)
+  │ ecord\.md" in **/*.{ts,js,md} (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "includeSpecDocs|includeSpecDocs\?: boolean|spec documents|implementation-summary\.md" in
-  │ **/*.{ts,js,md} (.opencode/skill/system-spec-kit/mcp_server)
+  │ **/*.{ts,js,md} (.opencode/skills/system-spec-kit/mcp_server)
   └ 49 lines found
 
 I’ve got the documentation angle. I’m now checking the live save path one more time to see whether the MCP SQLite cache is only used for retries or also for normal saves, because that changes the “unnecessary re-embedding” answer materially.
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L180:200 (21 lines read)
 
 ● Read memory-index-discovery.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
   └ L1:70 (70 lines read)
 
 ● Read test-embeddings-behavioral.js
-  │ .opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js
+  │ .opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js
   └ L592:612 (21 lines read)
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|lookupEmbedding\(|storeEmbedding\(|computeContentHash\(|normalizeCo
-  │ ntentForEmbedding\(" (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ ntentForEmbedding\(" (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 1 line found
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L360:450 (91 lines read)
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|lookupEmbedding\(|storeEmbedding\(|normalizeContentForEmbedding\("
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 12 lines found
 
 ● Search (grep)
   │ "generateDocumentEmbedding\(|lookupEmbedding\(|storeEmbedding\(|normalizeContentForEmbedding\("
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 14 lines found
 
 That answered the big question: the current save path *does* have SQLite cache plumbing, but it sits in a dedicated embedding pipeline, not in the shared script indexer. I’m reading that pipeline now to separate what’s already optimized from what still duplicates work.
 
 ● Read embedding-pipeline.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
   └ L1:240 (203 lines read)
 
 ● Read chunking-orchestrator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
   └ L260:300 (41 lines read)
 
 ● Search (grep)
   │ "embedding-pipeline|computeNormalizedContentHash|buildWeightedEmbeddingInput|lookupEmbedding\(|s
-  │ toreEmbedding\(" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ toreEmbedding\(" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 8 lines found
 
 I’ve got enough to answer most of it, but I want the exact provider retry math before I finalize. That’ll let me state whether a single failed batch can multiply into a larger number of actual API attempts.
 
 ● Read retry.ts
-  │ .opencode/skill/system-spec-kit/shared/utils/retry.ts
+  │ .opencode/skills/system-spec-kit/shared/utils/retry.ts
   └ L220:360 (141 lines read)
 
 ● Search (grep)
   │ "create implementation-summary\.md at end of implementation phase|Requires @speckit|Only agent
   │ permitted to write \*\.md inside spec folders|memory file creation"
-  │ (.opencode/skill/system-spec-kit/SKILL.md)
+  │ (.opencode/skills/system-spec-kit/SKILL.md)
   └ 1 line found
 
 ● Search (grep)
   │ "while \(batchResults === null && retryCount <= MAX_429_RETRIES\)|MAX_429_RETRIES|currentBackoff
   │ = Math.min\(60000, \(currentBackoff \|\| 1000\) \* 2\)|Promise\.all\(|concurrency: number = 5"
-  │ (.opencode/skill/system-spec-kit/shared/embeddings.ts)
+  │ (.opencode/skills/system-spec-kit/shared/embeddings.ts)
   └ 7 lines found
 
 ● Read retry.ts
-  │ .opencode/skill/system-spec-kit/shared/utils/retry.ts
+  │ .opencode/skills/system-spec-kit/shared/utils/retry.ts
   └ L360:430 (40 lines read)
 
 ● Search (grep)
   │ "Create implementation-summary\.md at end of implementation phase"
-  │ (.opencode/skill/system-spec-kit/SKILL.md)
+  │ (.opencode/skills/system-spec-kit/SKILL.md)
   └ 1 line found
 
 I’m down to one final distinction: whether `utils/batch-processor.ts` actually sits on the embedding path. If it doesn’t, that clears up the “is the delay 100ms?” confusion cleanly.
 
 ● Search (grep)
-  │ "processBatches\(|processSequentially\(" in **/*.{ts,js} (.opencode/skill/system-spec-kit)
+  │ "processBatches\(|processSequentially\(" in **/*.{ts,js} (.opencode/skills/system-spec-kit)
   └ 32 lines found
 
 ● Search (grep)
-  │ "generateBatchEmbeddings\(" in **/*.{ts,js} (.opencode/skill/system-spec-kit)
+  │ "generateBatchEmbeddings\(" in **/*.{ts,js} (.opencode/skills/system-spec-kit)
   └ 8 lines found
 
 I found the source of the confusion: there are actually **two** separate 100ms defaults in play — one for file-batch indexing and one for embedding batches. I’m pulling the indexing-batch callsite so I can distinguish them cleanly in the findings.
 
 ● Read memory-index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
   └ L372:388 (17 lines read)
 
 ● Read batch-processor.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/utils/batch-processor.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts
   └ L37:49 (13 lines read)
 
 Here’s the source-backed readout.

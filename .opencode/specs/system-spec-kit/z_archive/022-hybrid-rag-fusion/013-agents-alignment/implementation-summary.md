@@ -43,8 +43,8 @@ _memory:
 
 This pass did not perform a fresh runtime bulk sync. It reconciled the `013-agents-alignment` packet and the scoped runtime-facing delegation/write docs so they now accurately describe the current runtime lineage:
 
-- base markdown family: `.opencode/agent/*.md`
-- ChatGPT markdown family: `.opencode/agent/chatgpt/*.md`
+- base markdown family: `.opencode/agents/*.md`
+- ChatGPT markdown family: `.opencode/agents/chatgpt/*.md`
 - Codex runtime derived from the ChatGPT family: `.codex/agents/*.toml`
 - Gemini runtime-facing path: `.gemini/agents/*.md`
 - Gemini storage detail: `.gemini -> .agents`, with backing files in `.agents/agents/*.md`
@@ -84,8 +84,8 @@ This pass did not perform a fresh runtime bulk sync. It reconciled the `013-agen
 
 | Check | Result |
 |-------|--------|
-| Base family count (`.opencode/agent/*.md`) | PASS (10 files) |
-| ChatGPT family count (`.opencode/agent/chatgpt/*.md`) | PASS (10 files) |
+| Base family count (`.opencode/agents/*.md`) | PASS (10 files) |
+| ChatGPT family count (`.opencode/agents/chatgpt/*.md`) | PASS (10 files) |
 | Claude runtime count (`.claude/agents/*.md`) | PASS (10 files) |
 | Codex runtime count (`.codex/agents/*.toml`) | PASS (10 files) |
 | Gemini runtime count (`find -L .gemini/agents`) | PASS (10 files) |

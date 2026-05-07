@@ -91,35 +91,35 @@
 
 | File | Changes |
 |------|---------|
-| `.opencode/skill/system-memory/src/semantic-memory.js` | Transaction wrapping for atomic metadata updates |
-| `.opencode/skill/system-memory/src/confidence-tracker.js` | Changed promotion tier from constitutional to critical |
-| `.opencode/skill/system-memory/src/vector-index.js` | Verified getDb() export present |
-| `.opencode/skill/system-memory/scripts/opencode-capture.js` | Added USERPROFILE fallback for Windows |
-| `.opencode/skill/system-memory/SKILL.md` | Updated decay formula documentation, version sync |
+| `.opencode/skills/system-memory/src/semantic-memory.js` | Transaction wrapping for atomic metadata updates |
+| `.opencode/skills/system-memory/src/confidence-tracker.js` | Changed promotion tier from constitutional to critical |
+| `.opencode/skills/system-memory/src/vector-index.js` | Verified getDb() export present |
+| `.opencode/skills/system-memory/scripts/opencode-capture.js` | Added USERPROFILE fallback for Windows |
+| `.opencode/skills/system-memory/SKILL.md` | Updated decay formula documentation, version sync |
 
 ### Database & Data Files
 
 | File | Changes |
 |------|---------|
-| `.opencode/skill/system-memory/database/memory-index.sqlite` | VACUUM, orphan cleanup, deduplication |
-| `.opencode/skill/system-memory/src/synonym-map.js` | Added 65+ synonym entries |
+| `.opencode/skills/system-memory/database/memory-index.sqlite` | VACUUM, orphan cleanup, deduplication |
+| `.opencode/skills/system-memory/src/synonym-map.js` | Added 65+ synonym entries |
 
 ### Documentation Files
 
 | File | Changes |
 |------|---------|
 | `AGENTS.md` | Gate 4 label unification, anchor format standardization |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Version sync, gate argument documentation |
-| `.opencode/skill/system-memory/README.md` | Added quickstart section at top |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Version sync, gate argument documentation |
+| `.opencode/skills/system-memory/README.md` | Added quickstart section at top |
 
 ### New Template Files
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/system-spec-kit/templates/spike.md` | Spike/exploration template |
-| `.opencode/skill/system-spec-kit/templates/data-model.md` | Data model documentation template |
-| `.opencode/skill/system-spec-kit/templates/quickstart.md` | Quick start guide template |
-| `.opencode/skill/system-spec-kit/templates/api-contract.md` | API contract template |
+| `.opencode/skills/system-spec-kit/templates/spike.md` | Spike/exploration template |
+| `.opencode/skills/system-spec-kit/templates/data-model.md` | Data model documentation template |
+| `.opencode/skills/system-spec-kit/templates/quickstart.md` | Quick start guide template |
+| `.opencode/skills/system-spec-kit/templates/api-contract.md` | API contract template |
 
 ### New Command Files
 
@@ -132,7 +132,7 @@
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/system-spec-kit/scripts/check-completion.sh` | Completion verification script |
+| `.opencode/skills/system-spec-kit/scripts/check-completion.sh` | Completion verification script |
 
 ### Spec Folder Renames
 

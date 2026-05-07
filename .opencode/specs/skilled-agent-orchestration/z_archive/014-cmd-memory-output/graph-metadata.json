@@ -46,8 +46,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/command/memory/search.md",
-      ".opencode/command/memory/manage.md"
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/manage.md"
     ],
     "entities": [
       {
@@ -83,13 +83,13 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
         "name": "manage.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/manage.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {

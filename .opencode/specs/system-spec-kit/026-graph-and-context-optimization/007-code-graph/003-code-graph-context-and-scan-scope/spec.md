@@ -65,7 +65,7 @@ Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:
 
 1. **Highlights missing from OpenCode session context.** The compact-code-graph plugin hardcodes `RESUME_MODE = 'minimal'` (`spec-kit-compact-code-graph.js:40`), which strips per-function highlights from the payload. Even when the plugin requests them, `session-snapshot.js:159` only computes highlights when status === 'ready'; the user's session showed status='stale' so highlights would be skipped regardless. The SQL at `code-graph-db.js:349` doesn't actually require fresh data — it works fine for stale graphs.
 
-2. **Scan scope expansion = 26K files indexed.** `code_graph_scan` defaults `rootDir` to `process.cwd()` and only excludes `node_modules`, `dist`, `.git`, `vendor` (`indexer-types.js:44`). The scanner uses raw `readdirSync` with no `.gitignore` awareness (`structural-indexer.js:901`). Result: 26.5K files indexed, dominated by `.opencode/skill/mcp-coco-index/mcp_server` and archived future research under `.opencode/specs/**/z_future`.
+2. **Scan scope expansion = 26K files indexed.** `code_graph_scan` defaults `rootDir` to `process.cwd()` and only excludes `node_modules`, `dist`, `.git`, `vendor` (`indexer-types.js:44`). The scanner uses raw `readdirSync` with no `.gitignore` awareness (`structural-indexer.js:901`). Result: 26.5K files indexed, dominated by `.opencode/skills/mcp-coco-index/mcp_server` and archived future research under `.opencode/specs/**/z_future`.
 
 3. **Surface ambiguity not documented.** Two distinct context-injection surfaces exist (OpenCode plugin path = minimal payload; MCP `session_bootstrap` / `startup-brief.js` = full payload with highlights). No doc explains the matrix.
 
@@ -74,7 +74,7 @@ Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:
 Three scoped fixes in one packet:
 
 - **A** — Compute structural highlights for `'stale'` graphs too (single-line condition change in session-snapshot logic).
-- **B** — Tighten default scan excludes to skip `.opencode/specs/**/z_future`, `.opencode/specs/**/z_archive`, `.opencode/skill/mcp-coco-index/mcp_server`. Optionally: respect `.gitignore` via the `ignore` package.
+- **B** — Tighten default scan excludes to skip `.opencode/specs/**/z_future`, `.opencode/specs/**/z_archive`, `.opencode/skills/mcp-coco-index/mcp_server`. Optionally: respect `.gitignore` via the `ignore` package.
 - **C** — Document the surface matrix in cli-codex or system-spec-kit references.
 
 ### Non-goals
@@ -91,10 +91,10 @@ Three scoped fixes in one packet:
 
 ### In Scope
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` (and its compiled `dist/lib/session/session-snapshot.js`) — change the highlights-computation gate from `status === 'ready'` to `status === 'ready' || status === 'stale'`. Add a `(stale)` suffix to highlight summary line so the consumer knows the freshness state.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts` (and its compiled .js) — extend default excludes to include the new paths: `**/z_future/**`, `**/z_archive/**`, `**/mcp-coco-index/mcp_server/**`. (Note: the relative-path matching style of the existing excludes determines exact pattern format.)
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` (and its compiled .js) — add `.gitignore` awareness using the `ignore` package (already a transitive dep, or add it). When `.gitignore` exists in a scanned dir, respect it.
-- New doc reference at the cli-codex code-graph surfaces reference (location TBD by Codex) OR `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md` — short matrix:
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` (and its compiled `dist/lib/session/session-snapshot.js`) — change the highlights-computation gate from `status === 'ready'` to `status === 'ready' || status === 'stale'`. Add a `(stale)` suffix to highlight summary line so the consumer knows the freshness state.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts` (and its compiled .js) — extend default excludes to include the new paths: `**/z_future/**`, `**/z_archive/**`, `**/mcp-coco-index/mcp_server/**`. (Note: the relative-path matching style of the existing excludes determines exact pattern format.)
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` (and its compiled .js) — add `.gitignore` awareness using the `ignore` package (already a transitive dep, or add it). When `.gitignore` exists in a scanned dir, respect it.
+- New doc reference at the cli-codex code-graph surfaces reference (location TBD by Codex) OR `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md` — short matrix:
   | Surface | Includes summary | Includes highlights | Used by |
   |---|---|---|---|
   | MCP `session_bootstrap` / startup-brief | Yes | Yes | MCP clients calling explicitly |
@@ -115,16 +115,16 @@ Three scoped fixes in one packet:
 
 | Path | Change Type | Description |
 |------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Modify | Allow highlights for stale graphs |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts` | Modify | Add 3 new default excludes |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` | Modify | Honor `.gitignore` during scan walk; add `IndexFilesOptions` stale-gate conditioning; add cross-file `globalSeenIds` dedup sweep after TESTED_BY edge construction |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` | Modify | Pass `{ skipFreshFiles: effectiveIncremental }` to `indexFiles()`; expose `fullScanRequested` and `effectiveIncremental` in response |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Modify | Use `INSERT OR IGNORE INTO code_nodes` in `replaceNodes()` |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-snapshot.vitest.ts` | Modify | Add stale-highlights test |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts` | Modify | Add `indexFiles` option tests, scan handler integration tests, and cross-file dedup tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts` | Modify | Add `capturesToNodes()` dedupe regression tests; add gitignore + new-excludes tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-db.vitest.ts` | Create | Direct DB tests for `replaceNodes()` duplicate-symbol tolerance |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/README.md` | Modify | Document `IndexFilesOptions` and new scan response fields |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Modify | Allow highlights for stale graphs |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts` | Modify | Add 3 new default excludes |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` | Modify | Honor `.gitignore` during scan walk; add `IndexFilesOptions` stale-gate conditioning; add cross-file `globalSeenIds` dedup sweep after TESTED_BY edge construction |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` | Modify | Pass `{ skipFreshFiles: effectiveIncremental }` to `indexFiles()`; expose `fullScanRequested` and `effectiveIncremental` in response |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Modify | Use `INSERT OR IGNORE INTO code_nodes` in `replaceNodes()` |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-snapshot.vitest.ts` | Modify | Add stale-highlights test |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts` | Modify | Add `indexFiles` option tests, scan handler integration tests, and cross-file dedup tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts` | Modify | Add `capturesToNodes()` dedupe regression tests; add gitignore + new-excludes tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-db.vitest.ts` | Create | Direct DB tests for `replaceNodes()` duplicate-symbol tolerance |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md` | Modify | Document `IndexFilesOptions` and new scan response fields |
 | Code-graph surface doc (location TBD by Codex) | Create | Surface matrix |
 | Parent handover | Modify | Record phase outcome |
 <!-- /ANCHOR:scope -->
@@ -220,8 +220,8 @@ None — Codex investigation already cited file:line for all three findings, and
 - Investigation source: in-conversation Codex investigation 2026-04-23T11:50Z (read-only sandbox)
 - Plugin path: `.opencode/plugins/spec-kit-compact-code-graph.js:40` (RESUME_MODE), `:204-205` (--minimal flag)
 - Bridge: `.opencode/plugin-helpers/spec-kit-compact-code-graph-bridge.mjs:80` (forwards minimal:true)
-- Handler: `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:386` (minimal early-return)
-- Snapshot: `.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.js:159` (status==='ready' gate)
-- Highlights SQL: `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/code-graph-db.js:349`
-- Indexer excludes: `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/indexer-types.js:44`
-- Indexer walk: `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/structural-indexer.js:901`
+- Handler: `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:386` (minimal early-return)
+- Snapshot: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.js:159` (status==='ready' gate)
+- Highlights SQL: `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/code-graph-db.js:349`
+- Indexer excludes: `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/indexer-types.js:44`
+- Indexer walk: `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/structural-indexer.js:901`

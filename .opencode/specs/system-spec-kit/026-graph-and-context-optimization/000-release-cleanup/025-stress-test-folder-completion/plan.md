@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - "migration-plan.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []

@@ -13,11 +13,11 @@ A comprehensive audit of the system-spec-kit codebase was conducted across 121 s
 ## Scope
 
 - **Paths Scanned:**
-  1. `.opencode/skill/system-spec-kit/scripts/` — JS/TS build, validation, and utility scripts
-  2. `.opencode/skill/system-spec-kit/shared/` — Shared utilities, types, and cross-module contracts
-  3. `.opencode/skill/system-spec-kit/mcp_server/` — MCP server handlers, core modules, and session management
-  4. `.opencode/skill/system-spec-kit/` (root) — Root orchestration, barrel exports, and configuration
-- **Comparison Target:** `.opencode/skill/workflows-code--opencode` (language standards for JS/TS/Python/Shell/JSON)
+  1. `.opencode/skills/system-spec-kit/scripts/` — JS/TS build, validation, and utility scripts
+  2. `.opencode/skills/system-spec-kit/shared/` — Shared utilities, types, and cross-module contracts
+  3. `.opencode/skills/system-spec-kit/mcp_server/` — MCP server handlers, core modules, and session management
+  4. `.opencode/skills/system-spec-kit/` (root) — Root orchestration, barrel exports, and configuration
+- **Comparison Target:** `.opencode/skills/workflows-code--opencode` (language standards for JS/TS/Python/Shell/JSON)
 - **Exclusion:** Node_modules relocation issues excluded per ADR-002. In practice, no findings were excluded under this filter — all confirmed issues represent actual script bugs or misalignments.
 - **Methodology:** 10 context shards (C01-C10) -> 10 build verifications (B01-B10) -> 10 review agents (R01-R10) -> 3 write-agent syntheses (W01-W03) -> checklist verification pass -> uncertainty resolution (ADR-004)
 

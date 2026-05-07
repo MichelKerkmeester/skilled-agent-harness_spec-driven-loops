@@ -67,14 +67,14 @@ $(echo -e "${PRIOR_ITERS}")
 **Source-of-evidence** (re-read selectively):
 - 4 implementation-summary.md files at \`${PWD}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/{012,013,014,015}-*/implementation-summary.md\`
 - 4 review-report.md files at the same packets
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/{status,context}.ts
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- ${PWD}/.opencode/skill/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
-- ${PWD}/.opencode/command/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
-- 28 catalog/playbook files at \`${PWD}/.opencode/skill/system-spec-kit/{feature_catalog,manual_testing_playbook}/\` (recently committed in b227544ca)
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/{status,context}.ts
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- ${PWD}/.opencode/skills/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
+- ${PWD}/.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
+- 28 catalog/playbook files at \`${PWD}/.opencode/skills/system-spec-kit/{feature_catalog,manual_testing_playbook}/\` (recently committed in b227544ca)
 
 ## Iteration ${N} focus
 

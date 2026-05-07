@@ -6,7 +6,7 @@ Re-verified the plugin-vs-hook threshold mismatch using fresh code and catalog e
 ## Evidence read
 - `.opencode/plugins/spec-kit-skill-advisor.js:13-15` and `:35-39` -> plugin default `thresholdConfidence` remains `0.7`.
 - `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs:86-90` and `:107-110` -> bridge threshold helper and forwarded `thresholdConfidence` remain anchored to `0.7 / 0.35`.
-- `.opencode/skill/skill-advisor/feature_catalog/feature_catalog.md:543-547` -> catalog explicitly documents the plugin’s `thresholdConfidence` as `0.7`, while the main advisor docs retain `0.8 / 0.35` as the default hook threshold.
+- `.opencode/skills/skill-advisor/feature_catalog/feature_catalog.md:543-547` -> catalog explicitly documents the plugin’s `thresholdConfidence` as `0.7`, while the main advisor docs retain `0.8 / 0.35` as the default hook threshold.
 
 ## Findings
 
@@ -20,7 +20,7 @@ None.
 None.
 
 ### Re-verified (no new severity)
-- `P1-005-01`: status: re-verified via `.opencode/plugins/spec-kit-skill-advisor.js:13-15`, `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs:86-90`, and `.opencode/skill/skill-advisor/feature_catalog/feature_catalog.md:543-547`.
+- `P1-005-01`: status: re-verified via `.opencode/plugins/spec-kit-skill-advisor.js:13-15`, `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs:86-90`, and `.opencode/skills/skill-advisor/feature_catalog/feature_catalog.md:543-547`.
 
 ## Metrics
 - newInfoRatio: 0.05

@@ -80,7 +80,7 @@ Ship the design artifacts (scenarios, rubric, matrix, scripts) that sub-phase 00
 - Actual dispatch execution (sub-phase 002 owns this)
 - Scoring of actual run outputs (sub-phase 002)
 - Findings synthesis (sub-phase 002)
-- Modifying the canonical command spec at `.opencode/command/memory/search.md`
+- Modifying the canonical command spec at `.opencode/commands/memory/search.md`
 - Adding test scenarios for cli-claude-code or cli-gemini
 
 ### Files to Change
@@ -169,7 +169,7 @@ Ship the design artifacts (scenarios, rubric, matrix, scripts) that sub-phase 00
 - **Cross-ref**: 005/REQ-001 (intent classifier — "search" keyword behavior)
 
 ### Query × Specific → Q3
-- **Prompt**: `Find all token-budget enforcement code paths under .opencode/skill/system-spec-kit/mcp_server/.`
+- **Prompt**: `Find all token-budget enforcement code paths under .opencode/skills/system-spec-kit/mcp_server/.`
 - **Expected outcome**: Locates the budget enforcer + caller chains; ideally surfaces the bug from 005/REQ-002
 - **Target tools**: `cocoindex_search` (semantic), `code_graph_query` (callers), grep (tokens like "tokenBudget")
 - **Success indicators**: Identifies the specific source file + function responsible for truncation

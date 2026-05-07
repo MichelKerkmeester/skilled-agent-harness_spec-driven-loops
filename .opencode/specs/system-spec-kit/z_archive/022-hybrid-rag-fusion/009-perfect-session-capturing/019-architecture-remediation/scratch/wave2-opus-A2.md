@@ -4,7 +4,7 @@ Date: 2026-03-21
 ## Methodology
 
 For each of the 20 child phases (000-018 plus 019), the spec.md was read and its claims checked against:
-1. The actual TypeScript source files under `.opencode/skill/system-spec-kit/scripts/`
+1. The actual TypeScript source files under `.opencode/skills/system-spec-kit/scripts/`
 2. The corresponding `description.json` metadata
 3. The parent spec.md phase documentation map
 4. Cross-phase consistency (predecessor/successor chains, Phase numbering, R-Item references)

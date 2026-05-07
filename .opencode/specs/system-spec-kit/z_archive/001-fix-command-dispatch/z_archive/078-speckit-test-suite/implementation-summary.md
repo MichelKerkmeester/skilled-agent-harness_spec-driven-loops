@@ -90,7 +90,7 @@ Created comprehensive test suite for system-spec-kit v2.1.0 features covering 8 
 
 - Some cognitive integration tests require better-sqlite3 (install with `npm install better-sqlite3`)
 - Dual-threshold tests require Python 3.9+ and pytest (`pip install pytest`)
-- Template tests depend on actual template files in `.opencode/skill/system-spec-kit/templates/`
+- Template tests depend on actual template files in `.opencode/skills/system-spec-kit/templates/`
 
 <!-- /ANCHOR:limitations -->
 ---

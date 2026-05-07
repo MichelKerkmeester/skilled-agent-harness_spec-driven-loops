@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Review remediation diff and rerun targeted validation"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code-opencode/SKILL.md"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code-opencode/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660664"
       session_id: "066-sk-code-opencode-merger-plan"
@@ -33,7 +33,7 @@ _memory:
 # Decision Record: sk-code-opencode-merger
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

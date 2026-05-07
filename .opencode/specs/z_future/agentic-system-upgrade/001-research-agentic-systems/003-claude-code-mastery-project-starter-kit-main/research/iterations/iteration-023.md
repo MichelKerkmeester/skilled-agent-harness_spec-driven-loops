@@ -10,9 +10,9 @@ The local packet system will remain strategically correct, but the external repo
 Compared local template, level, and validation guidance to the external repo's working-doc flow and user-facing setup guidance.
 
 ## Evidence
-- The local template guide asks operators to understand levels, required files, addendums, and phased template selection before or during packet setup. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:15-33] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:77-127] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:168-239]
-- The level specifications deepen that model with different required artifacts, escalation rules, and governance expectations. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-47] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:81-122]
-- The validator reinforces a broad rule surface and emits a substantial checklist of quality gates. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:138-159]
+- The local template guide asks operators to understand levels, required files, addendums, and phased template selection before or during packet setup. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:15-33] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:77-127] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:168-239]
+- The level specifications deepen that model with different required artifacts, escalation rules, and governance expectations. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-47] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:81-122]
+- The validator reinforces a broad rule surface and emits a substantial checklist of quality gates. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:138-159]
 - The external repo uses a much lighter working-doc pattern. Users are guided into a practical doc and incremental workflow without first learning a formal packet taxonomy. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/mdd.md:31-131] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.mdd/docs/03-database-layer.md:1-30] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/USER_GUIDE.md:112-159]
 
 ## Analysis
@@ -44,14 +44,14 @@ confidence: high
 finding: `system-spec-kit` should keep its packet governance model, but hide the visible level taxonomy behind guided defaults and later promotion so operators do not have to learn the whole framework up front.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/templates/`, template-selection workflow, validator messaging
+- **Target file or module:** `.opencode/skills/system-spec-kit/templates/`, template-selection workflow, validator messaging
 - **Change type:** UX simplification
 - **Blast radius:** medium
 - **Prerequisites:** define a default starter packet shape and promotion triggers
 - **Priority:** should-have
 
 ## Counter-evidence sought
-I looked for evidence that the current level taxonomy is already easy to ignore, but the template and validation docs still foreground it as a user-facing concept rather than a mostly internal control system. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:49-71]
+I looked for evidence that the current level taxonomy is already easy to ignore, but the template and validation docs still foreground it as a user-facing concept rather than a mostly internal control system. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-71]
 
 ## Follow-up questions for next iteration
 If packet depth becomes less visible, can the session-continuity agent roster also become less fragmented without losing capability?

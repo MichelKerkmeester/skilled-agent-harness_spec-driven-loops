@@ -3,11 +3,11 @@
 In `buildExchanges()`:
 
 - Parent match is built here:  
-[opencode-capture.ts#L808](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L808)
+[opencode-capture.ts#L808](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L808)
 - First candidate is selected here:  
-[opencode-capture.ts#L812](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L812)
+[opencode-capture.ts#L812](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L812)
 - That first candidate drives `assistant_message_id`:  
-[opencode-capture.ts#L832](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L832)
+[opencode-capture.ts#L832](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L832)
 
 ```ts
 const matchingResponses = responses.filter((r) => {
@@ -52,13 +52,13 @@ Result: no “prefer completed/latest” rule, so stale partial can win identity
 3. **Exact multi-part handling code + where reassembly fails**
 
 - Text parts are flattened per part (not per assistant message):  
-[opencode-capture.ts#L643](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L643), [opencode-capture.ts#L650](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L650), [opencode-capture.ts#L655](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L655)
+[opencode-capture.ts#L643](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L643), [opencode-capture.ts#L650](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L650), [opencode-capture.ts#L655](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L655)
 - Later join is by parent-filtered response parts, not by chosen assistant message:  
-[opencode-capture.ts#L818](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L818)
+[opencode-capture.ts#L818](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L818)
 - Only direct children of the user are included:  
-[opencode-capture.ts#L810](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L810)
+[opencode-capture.ts#L810](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L810)
 - Cached native parts are returned unsorted:  
-[opencode-capture.ts#L607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L607)
+[opencode-capture.ts#L607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L607)
 
 4. **3+ real transcript shapes where P1-04 causes incomplete/truncated memory**
 
@@ -83,11 +83,11 @@ a1.parts = [{time.start:200,text:"later"}, {time.start:100,text:"earlier"}]
 Result: cached path skips sorting, so reconstructed text order can be wrong/incoherent.
 
 4. Long multipart response:
-Many parts join into one long string, then clipped by `TOOL_OUTPUT_MAX_LENGTH` in exchange assembly ([opencode-capture.ts#L820](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L820)), causing incomplete memory text.
+Many parts join into one long string, then clipped by `TOOL_OUTPUT_MAX_LENGTH` in exchange assembly ([opencode-capture.ts#L820](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L820)), causing incomplete memory text.
 
 5. **Severity / likely frequency (inferred)**
 
-- **Impact severity:** High. Bad pairing/assembly directly contaminates `assistantResponse`, which feeds observations/recent context and then memory templates downstream ([workflow.ts#L1581](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1581), [workflow.ts#L1624](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1624), [workflow.ts#L1888](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1888)).
+- **Impact severity:** High. Bad pairing/assembly directly contaminates `assistantResponse`, which feeds observations/recent context and then memory templates downstream ([workflow.ts#L1581](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1581), [workflow.ts#L1624](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1624), [workflow.ts#L1888](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1888)).
 - **Occurrence in OpenCode-style logs:**  
   - Multi-part text: common in tool-heavy turns.  
   - Multiple assistant children (retry/regenerate): moderate, but frequent enough to matter.  

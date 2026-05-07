@@ -105,10 +105,10 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **MCP README (D1)**: `.opencode/skill/system-spec-kit/mcp_server/README.md`
-- **Spec Kit README (D3)**: `.opencode/skill/system-spec-kit/README.md`
-- **Agent definitions**: `.claude/agents/`, `.opencode/agent/`
-- **Skill directory**: `.opencode/skill/`
+- **MCP README (D1)**: `.opencode/skills/system-spec-kit/mcp_server/README.md`
+- **Spec Kit README (D3)**: `.opencode/skills/system-spec-kit/README.md`
+- **Agent definitions**: `.claude/agents/`, `.opencode/agents/`
+- **Skill directory**: `.opencode/skills/`
 <!-- /ANCHOR:cross-refs -->
 
 ---

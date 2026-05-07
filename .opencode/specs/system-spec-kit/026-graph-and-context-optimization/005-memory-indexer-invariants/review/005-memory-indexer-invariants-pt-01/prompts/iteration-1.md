@@ -30,39 +30,39 @@ Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 - `specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/decision-record.md`
 
 **Track A runtime files:**
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 
 **Track B + Wave-1/2 runtime files:**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/canonical-path.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-parser.ts`
-- `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/canonical-path.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-parser.ts`
+- `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
 
 **Test files:**
-- `.opencode/skill/system-spec-kit/mcp_server/tests/pe-orchestration.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/index-scope.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-restore-invariant-enforcement.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/symlink-realpath-hardening.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/exclusion-ssot-unification.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/pe-orchestration.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/index-scope.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-index-scope.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-restore-invariant-enforcement.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/symlink-realpath-hardening.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/exclusion-ssot-unification.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts`
 
 ## ITERATION 1 FOCUS
 

@@ -49,7 +49,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -182,5 +182,5 @@ The `/spec_kit:deep-research:auto` workflow ran 7 sequential iterations against 
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

@@ -7,8 +7,8 @@ CATALOG_CAT="$2"
 ROLE="$3"
 
 BASE="specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog"
-CATALOG_DIR=".opencode/skill/system-spec-kit/feature_catalog/${CATALOG_CAT}"
-MCP_ROOT=".opencode/skill/system-spec-kit/mcp_server"
+CATALOG_DIR=".opencode/skills/system-spec-kit/feature_catalog/${CATALOG_CAT}"
+MCP_ROOT=".opencode/skills/system-spec-kit/mcp_server"
 PHASE_DIR="${BASE}/${PHASE_FOLDER}"
 OUTPUT_DIR="${PHASE_DIR}/scratch/reaudit-2026-03-23"
 

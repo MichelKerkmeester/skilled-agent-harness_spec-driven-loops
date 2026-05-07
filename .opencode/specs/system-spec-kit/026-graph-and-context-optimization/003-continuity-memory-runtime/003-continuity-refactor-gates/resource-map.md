@@ -47,8 +47,8 @@ This resource map is the quick-reference index for the live packet-006 implement
 
 | Surface | Key Files | Purpose |
 |---|---|---|
-| Package architecture | `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Current-reality architecture across scripts, runtime, and shared modules |
-| Runtime overview | `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/ARCHITECTURE.md`, `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skill/system-spec-kit/references/structure/phase_system.md` | Human-readable orientation for the active runtime tree |
+| Package architecture | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Current-reality architecture across scripts, runtime, and shared modules |
+| Runtime overview | `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/references/structure/phase_system.md` | Human-readable orientation for the active runtime tree |
 | Subdirectory READMEs | `mcp_server/**/README.md` | Directory-level ownership, purpose, and related-module pointers |
 | Packet docs | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` under packet 006 and phase subfolders | Packet-local execution truth |
 
@@ -58,9 +58,9 @@ This resource map is the quick-reference index for the live packet-006 implement
 |---|---|---|
 | Runtime typecheck | `npm run --workspace=@spec-kit/mcp-server typecheck` | Validate MCP runtime TypeScript |
 | Scripts typecheck | `npm run --workspace=@spec-kit/scripts typecheck` | Validate generation and validation tooling |
-| Handler cycles | `node .opencode/skill/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js` | Detect circular imports in `mcp_server/handlers/` |
-| Boundary enforcement | `node .opencode/skill/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js` | Enforce package boundary rules |
-| Packet validation | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <phase-folder>` | Enforce packet completeness and markdown contracts |
+| Handler cycles | `node .opencode/skills/system-spec-kit/scripts/dist/evals/check-handler-cycles-ast.js` | Detect circular imports in `mcp_server/handlers/` |
+| Boundary enforcement | `node .opencode/skills/system-spec-kit/scripts/dist/evals/check-architecture-boundaries.js` | Enforce package boundary rules |
+| Packet validation | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <phase-folder>` | Enforce packet completeness and markdown contracts |
 
 ## 5. Current-Reality Notes
 
@@ -72,5 +72,5 @@ This resource map is the quick-reference index for the live packet-006 implement
 ## 6. Related
 
 - `013-dead-code-and-architecture-audit/`
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`

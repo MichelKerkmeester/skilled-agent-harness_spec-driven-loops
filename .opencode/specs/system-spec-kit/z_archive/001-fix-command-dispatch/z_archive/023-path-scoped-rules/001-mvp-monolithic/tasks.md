@@ -40,7 +40,7 @@ contextType: "implementation"
 ## Phase 1: Core Validation Engine (P0)
 
 ### 1.1 Script Skeleton
-- [ ] Create `validate-spec.sh` in `.opencode/skill/system-spec-kit/scripts/`
+- [ ] Create `validate-spec.sh` in `.opencode/skills/system-spec-kit/scripts/`
 - [ ] Add argument parsing (folder path, --json, --help, --strict)
 - [ ] Add help text with usage examples
 - [ ] Source `common.sh` for shared utilities

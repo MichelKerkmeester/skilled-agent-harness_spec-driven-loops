@@ -22,7 +22,7 @@ Prior Findings: P1=ADR stale current-state metadata, P2=resource-map stale conti
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
 
 ## Review Focus
 

@@ -91,7 +91,7 @@ None.
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/spec.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/checklist.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/implementation-summary.md`
-- `.opencode/command/memory/shared.md`
+- `.opencode/commands/memory/shared.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/scratch/deep-review-strategy.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/research/deep-research-state.jsonl`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/research/iterations/iteration-002.md`

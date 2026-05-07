@@ -14,8 +14,8 @@ I compared the external loop's persisted metrics model with `system-spec-kit`'s 
 ## Evidence
 - `[SOURCE: external/automated-loop/state_tracker.py:52-60]` The external loop maintains aggregated workflow metrics in a dedicated model.
 - `[SOURCE: external/automated-loop/state_tracker.py:239-260]` It also computes per-model analytics from cycle history.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:469-499]` The local dashboard is explicitly a markdown artifact generated from JSONL, strategy, and registry data for human review.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:15-27]` The local state model already has many artifacts, but no dedicated machine-readable runtime summary surface.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:469-499]` The local dashboard is explicitly a markdown artifact generated from JSONL, strategy, and registry data for human review.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:15-27]` The local state model already has many artifacts, but no dedicated machine-readable runtime summary surface.
 
 ## Analysis
 This is one of the cleaner "keep the architecture, improve the interface" findings. The local packet already has sufficient raw data. The problem is that downstream automation, cross-packet audits, and operational dashboards have to parse JSONL and markdown instead of reading a compact status artifact. The external toolkit's metrics discipline suggests a low-risk addition: generate a small machine-readable runtime summary from the existing reducer inputs.
@@ -28,7 +28,7 @@ confidence: high
 finding: `system-spec-kit` should add a machine-readable runtime summary artifact for deep loops, derived from existing JSONL and registry data, so humans keep the markdown dashboard while tools and later phases get a compact operational snapshot.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/sk-deep-research/references/state_format.md`, reducer/dashboard generation surfaces, future `research/deep-research-runtime.json`
+- **Target file or module:** `.opencode/skills/sk-deep-research/references/state_format.md`, reducer/dashboard generation surfaces, future `research/deep-research-runtime.json`
 - **Change type:** added option
 - **Blast radius:** small
 - **Prerequisites:** define a stable summary schema with stop reason, iteration counts, answered coverage, active risks, and timing metrics

@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Remove readiness scaffolding and verify zero references"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/core/db-state.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
     completion_pct: 15
 ---
 # Implementation Plan: Readiness Scaffolding Cleanup

@@ -13,9 +13,9 @@ Audit the entire packet implementation for security concerns:
 
 ## Required reads
 1. Strategy + prior iteration outputs (1, 2, 3)
-2. `.opencode/command/spec_kit/skill-advisor.md`
-3. `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
-4. `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml`
+2. `.opencode/commands/spec_kit/skill-advisor.md`
+3. `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
+4. `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml`
 5. `.opencode/install_guides/SET-UP - Skill Advisor.md`
 6. `.opencode/specs/.../012-skill-advisor-setup-command/spec.md` (NFR-S section)
 

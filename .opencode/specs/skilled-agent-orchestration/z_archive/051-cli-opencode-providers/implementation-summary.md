@@ -16,11 +16,11 @@ _memory:
     next_safe_action: "Run /memory:save to refresh canonical continuity, then commit on main"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/README.md"
-      - ".opencode/skill/cli-opencode/references/cli_reference.md"
-      - ".opencode/skill/cli-opencode/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/cli-opencode/graph-metadata.json"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/README.md"
+      - ".opencode/skills/cli-opencode/references/cli_reference.md"
+      - ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/cli-opencode/graph-metadata.json"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -55,8 +55,8 @@ The cli-opencode skill no longer documents the `github-copilot` provider. Defaul
 A new **Provider Auth Pre-Flight (Smart Fallback)** protocol was added so the skill detects missing credentials before dispatching: a one-shot `opencode providers list` check at session start, a 3-state decision table (default available / default missing with fallback ready / both missing), and explicit user-prompt templates that ASK the user before substituting a model. ALWAYS rule 11 mandates the pre-flight; the error-handling table now points auth errors back to the protocol.
 
 **Verification at completion:**
-- `grep -ri "github-copilot" .opencode/skill/cli-opencode/` -> 0 hits (REQ-001, SC-001)
-- `grep -ri "deepseek" .opencode/skill/cli-opencode/` -> 150+ hits preserved (REQ-003)
+- `grep -ri "github-copilot" .opencode/skills/cli-opencode/` -> 0 hits (REQ-001, SC-001)
+- `grep -ri "deepseek" .opencode/skills/cli-opencode/` -> 150+ hits preserved (REQ-003)
 - `manual_testing_playbook/03--multi-provider/` -> 2 files (`003-deepseek-direct-api.md`, `004-variant-levels-comparison.md`); the two github-copilot-only entries deleted (REQ-004, SC-004)
 - `graph-metadata.json` -> valid JSON, causal_summary updated (REQ-005)
 - SKILL.md frontmatter Keywords HTML comment -> github-copilot dropped (REQ-006)
@@ -71,22 +71,22 @@ A new **Provider Auth Pre-Flight (Smart Fallback)** protocol was added so the sk
 ## How It Was Delivered
 
 **Modified files:**
-- `.opencode/skill/cli-opencode/SKILL.md` — frontmatter keywords; new §3 "Provider Auth Pre-Flight (Smart Fallback)" subsection; default invocation block; model selection table; agent dispatch invocation patterns; ALWAYS rule 3 + new ALWAYS rule 11; error-handling table (added `provider/model not found` revision + `401 Unauthorized` row); essential commands block
-- `.opencode/skill/cli-opencode/README.md` — §1 key statistics; requirements row; §3.2 models table; §5 authentication + model defaults; §6 example commands; §8 FAQ (provider question + new auth pre-flight Q/A)
-- `.opencode/skill/cli-opencode/references/cli_reference.md` — §4 default invocation table; §4 new "Provider Auth Pre-Flight (smart fallback)" subsection; §5 models table; §5 variant ranges
-- `.opencode/skill/cli-opencode/references/integration_patterns.md` — example commands
-- `.opencode/skill/cli-opencode/references/opencode_tools.md` — example commands
-- `.opencode/skill/cli-opencode/references/agent_delegation.md` — example commands
-- `.opencode/skill/cli-opencode/assets/prompt_templates.md` — example commands
-- `.opencode/skill/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` — coverage note; §9 multi-provider header + CO-009/CO-010 entries removed; root index updated
-- `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/003-deepseek-direct-api.md` — provider count narrative + cross-reference table
-- `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md` — variant range narrative + troubleshooting note
+- `.opencode/skills/cli-opencode/SKILL.md` — frontmatter keywords; new §3 "Provider Auth Pre-Flight (Smart Fallback)" subsection; default invocation block; model selection table; agent dispatch invocation patterns; ALWAYS rule 3 + new ALWAYS rule 11; error-handling table (added `provider/model not found` revision + `401 Unauthorized` row); essential commands block
+- `.opencode/skills/cli-opencode/README.md` — §1 key statistics; requirements row; §3.2 models table; §5 authentication + model defaults; §6 example commands; §8 FAQ (provider question + new auth pre-flight Q/A)
+- `.opencode/skills/cli-opencode/references/cli_reference.md` — §4 default invocation table; §4 new "Provider Auth Pre-Flight (smart fallback)" subsection; §5 models table; §5 variant ranges
+- `.opencode/skills/cli-opencode/references/integration_patterns.md` — example commands
+- `.opencode/skills/cli-opencode/references/opencode_tools.md` — example commands
+- `.opencode/skills/cli-opencode/references/agent_delegation.md` — example commands
+- `.opencode/skills/cli-opencode/assets/prompt_templates.md` — example commands
+- `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` — coverage note; §9 multi-provider header + CO-009/CO-010 entries removed; root index updated
+- `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/003-deepseek-direct-api.md` — provider count narrative + cross-reference table
+- `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md` — variant range narrative + troubleshooting note
 - 25 other manual_testing_playbook entries — `--model github-copilot/{gpt-5.4,claude-sonnet-4.6}` substituted with `--model opencode-go/deepseek-v4-pro` (single bulk replacement)
-- `.opencode/skill/cli-opencode/graph-metadata.json` — causal_summary names default provider opencode-go and surfaces direct deepseek
+- `.opencode/skills/cli-opencode/graph-metadata.json` — causal_summary names default provider opencode-go and surfaces direct deepseek
 
 **Deleted files:**
-- `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md`
-- `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md`
 
 **New files:**
 - `specs/051-cli-opencode-providers/` — spec.md, plan.md, tasks.md, implementation-summary.md, description.json, graph-metadata.json (auto-generated)
@@ -109,7 +109,7 @@ A new **Provider Auth Pre-Flight (Smart Fallback)** protocol was added so the sk
 <!-- ANCHOR:verification -->
 ## Verification
 
-- **REQ-001 / SC-001**: `grep -ri "github-copilot" .opencode/skill/cli-opencode/` returns 0 hits.
+- **REQ-001 / SC-001**: `grep -ri "github-copilot" .opencode/skills/cli-opencode/` returns 0 hits.
 - **REQ-002 / SC-002**: SKILL.md §3 Default Invocation block shows `opencode-go/deepseek-v4-pro --variant high`. README.md §1 key statistics row matches.
 - **REQ-003**: `deepseek/deepseek-v4-pro` and `deepseek/deepseek-v4-flash` rows still present in SKILL.md §3 Model Selection, README.md §3.2 Models, cli_reference.md §5 model table.
 - **REQ-004 / SC-004**: `manual_testing_playbook/03--multi-provider/` directory contains only `003-deepseek-direct-api.md` and `004-variant-levels-comparison.md`.

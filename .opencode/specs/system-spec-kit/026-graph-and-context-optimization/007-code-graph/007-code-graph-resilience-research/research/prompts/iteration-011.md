@@ -16,9 +16,9 @@ Iteration 7 defined the self-healing safety boundary: auto partial re-scan only 
 ## Required reads
 1. `research/iterations/iteration-007.md` — self-healing boundary definition
 2. `assets/staleness-model.md` — fresh/soft-stale/hard-stale tiers
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` — full readiness flow (especially lines 38-51, 102-187, 189-379)
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts` — example of `allowInlineIndex:false` blocking (lines 245-264)
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` — what's already exposed
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` — full readiness flow (especially lines 38-51, 102-187, 189-379)
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts` — example of `allowInlineIndex:false` blocking (lines 245-264)
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` — what's already exposed
 
 ## What to look for
 - The exact decision tree in `ensureCodeGraphReady` for stale → action mapping

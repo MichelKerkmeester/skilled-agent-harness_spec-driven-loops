@@ -36,7 +36,7 @@ contextType: "planning"
 
 | Component | Current Value | Location |
 |-----------|---------------|----------|
-| **Default Model** | `voyage-3.5` | `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.js:12` |
+| **Default Model** | `voyage-3.5` | `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.js:12` |
 | **Dimensions** | 1024 | `MODEL_DIMENSIONS` mapping |
 | **Environment Variable** | `VOYAGE_API_KEY` | `opencode.json:27` |
 | **Model Override** | `VOYAGE_EMBEDDINGS_MODEL` | Factory reads from env |
@@ -144,18 +144,18 @@ const MODEL_DIMENSIONS = {
 
 | File | Change Required |
 |------|-----------------|
-| `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.js` | Add Voyage 4 models to `MODEL_DIMENSIONS` |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Update model recommendations |
-| `.opencode/skill/system-spec-kit/README.md` | Update model documentation |
-| `.opencode/skill/system-spec-kit/shared/embeddings/factory.js` | Update default from `voyage-3.5` to `voyage-4` |
+| `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.js` | Add Voyage 4 models to `MODEL_DIMENSIONS` |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Update model recommendations |
+| `.opencode/skills/system-spec-kit/README.md` | Update model documentation |
+| `.opencode/skills/system-spec-kit/shared/embeddings/factory.js` | Update default from `voyage-3.5` to `voyage-4` |
 
 ### Consider Updating
 
 | File | Change Required |
 |------|-----------------|
 | `.utcp_config.json` | Only if testing Voyage 4 for Narsil |
-| `.opencode/skill/mcp-narsil/INSTALL_GUIDE.md` | Document Voyage 4 option |
-| `.opencode/skill/mcp-narsil/SKILL.md` | Update model recommendations |
+| `.opencode/skills/mcp-narsil/INSTALL_GUIDE.md` | Document Voyage 4 option |
+| `.opencode/skills/mcp-narsil/SKILL.md` | Update model recommendations |
 
 ### No Change Required
 

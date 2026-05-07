@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -45,7 +45,7 @@ This repair completed the Level 2 packet for the README rewrite program by resto
 
 ### Rewrite Program Summary
 
-The packet still records the same batch-based rewrite story: CLI skill READMEs, MCP skill READMEs, sk-code and sk-doc READMEs, the remaining skill READMEs, and the command README surfaces under `.opencode/command/`. This summary keeps that history while limiting path references to the committed skill README.md files and the currently committed command README.txt files.
+The packet still records the same batch-based rewrite story: CLI skill READMEs, MCP skill READMEs, sk-code and sk-doc READMEs, the remaining skill READMEs, and the command README surfaces under `.opencode/commands/`. This summary keeps that history while limiting path references to the committed skill README.md files and the currently committed command README.txt files.
 
 ### Files Changed
 
@@ -73,7 +73,7 @@ The packet repair reused the committed rewrite narrative, recast it into the req
 
 | Decision | Why |
 |----------|-----|
-| Pointed command-surface references at `.opencode/command/README.txt`, `.opencode/command/create/README.txt`, `.opencode/command/memory/README.txt`, and `.opencode/command/spec_kit/README.txt` | Those are the currently committed command README files in this repo, so they satisfy validator integrity checks |
+| Pointed command-surface references at `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/spec_kit/README.txt` | Those are the currently committed command README files in this repo, so they satisfy validator integrity checks |
 | Summarized rewrite batches instead of enumerating every single README path in backticks | The original packet content is preserved, but the validator only needs current, resolvable references |
 | Added a checklist with evidence only where the packet repair itself can verify completion | This keeps the packet truthful without inventing historical proof for every underlying README change |
 <!-- /ANCHOR:decisions -->
@@ -86,7 +86,7 @@ The packet repair reused the committed rewrite narrative, recast it into the req
 | Check | Result |
 |-------|--------|
 | Template compliance repair | PASS, required anchors and Level 2 headers restored across plan, tasks, checklist, and summary |
-| Reference normalization | PASS, stale shorthand references replaced with current `.opencode/skill/` and `.opencode/command/` paths |
+| Reference normalization | PASS, stale shorthand references replaced with current `.opencode/skills/` and `.opencode/commands/` paths |
 | Spec validation | PASS after this repair pass on `033-skill-command-readme-rewrite` with warnings only allowed |
 <!-- /ANCHOR:verification -->
 

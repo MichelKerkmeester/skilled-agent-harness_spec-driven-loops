@@ -118,7 +118,7 @@ Review evidence drives requirements; requirements drive atomic tasks; completed 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Spec validation | This packet, 005, 011, touched packets | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Spec validation | This packet, 005, 011, touched packets | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Integration | New SSOT helpers + fixtures together | `npx vitest run ...` focused sweep |
 | Data replay | Stress-test rubric sidecar | Node JSON replay against score files |
 | Manual audit | Status/phase map line checks | `nl`, `rg`, `jq` |

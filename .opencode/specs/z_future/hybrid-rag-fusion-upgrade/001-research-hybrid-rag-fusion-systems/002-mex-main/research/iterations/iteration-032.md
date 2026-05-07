@@ -6,7 +6,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, identify what could break dur
 ## Findings
 
 ### Finding 1: The markdown integrity lane must launch as a **separate advisory surface**, not as a new pass/fail gate
-- **Source**: Mex drift engine and scoring, current Spec Kit validator, prior adoption lock [SOURCE: external/README.md:72-87; external/src/drift/index.ts:17-67; external/src/drift/scoring.ts:1-16; .opencode/skill/system-spec-kit/scripts/spec/validate.sh:87-92,499-505,630-634; research/iterations/iteration-031.md:7-16]
+- **Source**: Mex drift engine and scoring, current Spec Kit validator, prior adoption lock [SOURCE: external/README.md:72-87; external/src/drift/index.ts:17-67; external/src/drift/scoring.ts:1-16; .opencode/skills/system-spec-kit/scripts/spec/validate.sh:87-92,499-505,630-634; research/iterations/iteration-031.md:7-16]
 - **What it does**: Mex runs lexical checks first and collapses them into a score, while Spec Kit validation already has a separate error/warning exit-code contract.
 - **Why it matters**: The adopt-now value is the checker logic, not Mex’s score-first health model. If Public mixes the new integrity issues into `validate.sh` too early, it changes an already stable pass/warn/fail contract.
 - **What could break during migration**:
@@ -27,7 +27,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, identify what could break dur
 - **Source strength**: primary
 
 ### Finding 2: The integrity lane needs **Spec Kit–specific path normalization and scope whitelisting** before it is trustworthy
-- **Source**: Mex claim extraction and path resolution, Spec Kit alias handling [SOURCE: external/src/drift/claims.ts:7-119; external/src/drift/checkers/path.ts:6-67; external/src/drift/checkers/edges.ts:5-34; external/src/drift/checkers/index-sync.ts:6-68; .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86-127]
+- **Source**: Mex claim extraction and path resolution, Spec Kit alias handling [SOURCE: external/src/drift/claims.ts:7-119; external/src/drift/checkers/path.ts:6-67; external/src/drift/checkers/edges.ts:5-34; external/src/drift/checkers/index-sync.ts:6-68; .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86-127]
 - **What it does**: Mex extracts path-like claims from markdown, checks them against `projectRoot`/`scaffoldRoot`, strips a `.mex/` prefix in one special case, and assumes `patterns/INDEX.md` as the indexed pattern registry.
 - **Why it matters**: Public already has alias-aware spec paths, and its markdown corpus is broader than Mex’s scaffold. Importing Mex’s resolver unchanged would create false positives faster than it creates trust.
 - **What could break during migration**:
@@ -48,7 +48,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, identify what could break dur
 - **Source strength**: primary
 
 ### Finding 3: The guided maintenance surface must remain a **thin wrapper over existing authority**, with dry-run and confirmation semantics preserved
-- **Source**: Mex sync UX, prompt-export/manual fallback, current Spec Kit repair safeguards [SOURCE: external/src/cli.ts:28-161; external/SYNC.md:3-21,23-62; external/src/sync/index.ts:29-209; external/src/sync/brief-builder.ts:7-158; .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419-440; .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1376; research/iterations/iteration-031.md:18-27]
+- **Source**: Mex sync UX, prompt-export/manual fallback, current Spec Kit repair safeguards [SOURCE: external/src/cli.ts:28-161; external/SYNC.md:3-21,23-62; external/src/sync/index.ts:29-209; external/src/sync/brief-builder.ts:7-158; .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419-440; .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1376; research/iterations/iteration-031.md:18-27]
 - **What it does**: Mex exposes a very small public surface for detect -> preview -> prompt/export -> verify. Spec Kit already has stronger primitives, but they are spread across separate tools with different safety contracts.
 - **Why it matters**: The adopt-now pattern is the UX shape, not Mex’s direct execution model. Public should wrap `session_bootstrap`, `memory_health`, `memory_save(dryRun)`, and later repair helpers, but it should not replace or bypass them.
 - **What could break during migration**:
@@ -70,7 +70,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, identify what could break dur
 - **Source strength**: primary
 
 ### Finding 4: The guided maintenance surface must default to **error-only, structurally-aware routing**, not broad repair orchestration
-- **Source**: Mex warning handling, current bootstrap/health structural hints, current retrieval/graph authority [SOURCE: external/src/sync/index.ts:61-77,171-209; .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194-209,323-330; .opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:117-130; .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-625]
+- **Source**: Mex warning handling, current bootstrap/health structural hints, current retrieval/graph authority [SOURCE: external/src/sync/index.ts:61-77,171-209; .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194-209,323-330; .opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:117-130; .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-625]
 - **What it does**: Mex sync ignores warning-only files by default and loops only on actionable error sets. Spec Kit already knows when structural context is stale or missing and already has explicit tools for retrieval and code-graph refresh.
 - **Why it matters**: If Public ships a wrapper that includes warnings, stale graph state, and optional rescans all at once, the first release becomes a noisy orchestration layer instead of a reliable maintenance surface.
 - **What could break during migration**:
@@ -104,12 +104,12 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, identify what could break dur
 - `external/src/drift/checkers/index-sync.ts` [SOURCE: external/src/drift/checkers/index-sync.ts:6-68]
 - `external/src/sync/index.ts` [SOURCE: external/src/sync/index.ts:29-209]
 - `external/src/sync/brief-builder.ts` [SOURCE: external/src/sync/brief-builder.ts:7-158]
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:87-92,499-505,630-634]
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,218-220,623-625]
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194-209,323-330]
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:117-130]
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86-127,419-440]
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1376]
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:87-92,499-505,630-634]
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,218-220,623-625]
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194-209,323-330]
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:117-130]
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86-127,419-440]
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1376]
 
 ## Assessment
 - **New information ratio**: 0.14

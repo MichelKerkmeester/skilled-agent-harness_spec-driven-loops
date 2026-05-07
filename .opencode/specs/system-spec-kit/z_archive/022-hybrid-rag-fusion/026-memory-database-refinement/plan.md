@@ -82,7 +82,7 @@ Autonomous deep-research review loop with externalized state. Each iteration get
 | **Mode** | `--review` |
 | **Iterations** | 30 (20 primary + 10 deep dives) |
 | **Execution** | `:auto` (autonomous) |
-| **Target** | `.opencode/skill/system-spec-kit/mcp_server/` |
+| **Target** | `.opencode/skills/system-spec-kit/mcp_server/` |
 | **Spec folder** | `026-memory-database-refinement` |
 | **Convergence** | Disabled (force all iterations for full coverage) |
 

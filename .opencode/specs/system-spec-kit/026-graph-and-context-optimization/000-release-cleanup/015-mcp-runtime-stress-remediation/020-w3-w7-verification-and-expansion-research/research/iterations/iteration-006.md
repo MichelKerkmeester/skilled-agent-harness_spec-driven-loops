@@ -13,16 +13,16 @@ Identify whether W3 can feed W4 decisions, whether W5 shadow data can feed W3 tr
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:52` defines trust-tree output with decision, contradiction flag, signals, causal edges, citations, and reasons.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65` composes response policy, code graph, advisor, CocoIndex, and causal signals.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:205` maps mixed/degraded/unavailable states.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:66` already has a weak-evidence trigger.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:69` already accepts disagreement reasons.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327` invokes the gate, but only with local result signals.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176` computes shadow live-vs-shadow deltas.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` emits those deltas in `_shadow`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:20` defines duplicate-density telemetry.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:214` emits blocked degraded envelope fields including readiness, canonical readiness, trust state, and fallback decision.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:52` defines trust-tree output with decision, contradiction flag, signals, causal edges, citations, and reasons.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65` composes response policy, code graph, advisor, CocoIndex, and causal signals.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:205` maps mixed/degraded/unavailable states.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:66` already has a weak-evidence trigger.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:69` already accepts disagreement reasons.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:327` invokes the gate, but only with local result signals.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:176` computes shadow live-vs-shadow deltas.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:270` emits those deltas in `_shadow`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:20` defines duplicate-density telemetry.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:214` emits blocked degraded envelope fields including readiness, canonical readiness, trust state, and fallback decision.
 
 ## Findings
 

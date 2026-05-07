@@ -1,6 +1,6 @@
 ---
 title: "Task 03 — [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-03-command-alignment/spec]"
-description: "Audit all command configuration files in .opencode/command/ to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command refere..."
+description: "Audit all command configuration files in .opencode/commands/ to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command refere..."
 trigger_phrases:
   - "task"
   - "command"
@@ -35,7 +35,7 @@ contextType: "planning"
 <!-- ANCHOR:purpose -->
 ## Purpose
 
-Audit all command configuration files in `.opencode/command/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command references (specs 124, 128, 129) are current and consistent.
+Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command references (specs 124, 128, 129) are current and consistent.
 <!-- /ANCHOR:purpose -->
 
 ---
@@ -47,45 +47,45 @@ Audit all command configuration files in `.opencode/command/` to ensure agent ro
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/command/create/plan.md` | @speckit agent routing (spec 014) |
-| `.opencode/command/create/implement.md` | @speckit agent routing (spec 014) |
-| `.opencode/command/create/research/research/research.md` | @research agent routing (spec 014) |
-| `.opencode/command/create/complete.md` | @speckit agent routing (spec 014) |
-| `.opencode/command/create/debug.md` | @debug agent routing (spec 014) |
-| `.opencode/command/create/resume.md` | @context agent routing (spec 014) |
+| `.opencode/commands/create/plan.md` | @speckit agent routing (spec 014) |
+| `.opencode/commands/create/implement.md` | @speckit agent routing (spec 014) |
+| `.opencode/commands/create/research/research/research.md` | @research agent routing (spec 014) |
+| `.opencode/commands/create/complete.md` | @speckit agent routing (spec 014) |
+| `.opencode/commands/create/debug.md` | @debug agent routing (spec 014) |
+| `.opencode/commands/create/resume.md` | @context agent routing (spec 014) |
 
 ### Create Command Assets (P1 — YAML Workflows)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/command/create/assets/*.yaml` (12 files) | Agent routing in YAML workflows matches .md routing |
+| `.opencode/commands/create/assets/*.yaml` (12 files) | Agent routing in YAML workflows matches .md routing |
 
 ### Spec Kit Commands (P0 — Complete Workflow)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/command/spec_kit/complete.md` | References check-placeholders.sh (spec 128), check-anchors.sh (spec 129), upgrade-level.sh (spec 124) |
-| `.opencode/command/spec_kit/debug.md` | @debug agent routing (spec 014) |
-| `.opencode/command/spec_kit/research/research/research.md` | @research agent routing (spec 014) |
-| `.opencode/command/spec_kit/implement.md` | @speckit agent routing |
-| `.opencode/command/spec_kit/plan.md` | @speckit agent routing |
-| `.opencode/command/spec_kit/resume.md` | @context agent routing |
-| `.opencode/command/spec_kit/handover.md` | @handover agent routing (spec 016: Haiku) |
+| `.opencode/commands/spec_kit/complete.md` | References check-placeholders.sh (spec 128), check-anchors.sh (spec 129), upgrade-level.sh (spec 124) |
+| `.opencode/commands/spec_kit/debug.md` | @debug agent routing (spec 014) |
+| `.opencode/commands/spec_kit/research/research/research.md` | @research agent routing (spec 014) |
+| `.opencode/commands/spec_kit/implement.md` | @speckit agent routing |
+| `.opencode/commands/spec_kit/plan.md` | @speckit agent routing |
+| `.opencode/commands/spec_kit/resume.md` | @context agent routing |
+| `.opencode/commands/spec_kit/handover.md` | @handover agent routing (spec 016: Haiku) |
 
 ### Spec Kit Command Assets (P1 — YAML Workflows)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/command/spec_kit/assets/*.yaml` (10 files) | YAML workflows reference current scripts and tools |
+| `.opencode/commands/spec_kit/assets/*.yaml` (10 files) | YAML workflows reference current scripts and tools |
 
 ### Memory Commands (P1)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/command/memory/context.md` | 5-source pipeline, 7 intents, spec doc indexing |
-| `.opencode/command/memory/learn.md` | Updated capabilities |
-| `.opencode/command/memory/manage.md` | Updated capabilities |
-| `.opencode/command/memory/save.md` | 5-source pipeline, spec doc indexing |
+| `.opencode/commands/memory/context.md` | 5-source pipeline, 7 intents, spec doc indexing |
+| `.opencode/commands/memory/learn.md` | Updated capabilities |
+| `.opencode/commands/memory/manage.md` | Updated capabilities |
+| `.opencode/commands/memory/save.md` | 5-source pipeline, spec doc indexing |
 <!-- /ANCHOR:scope -->
 
 ---

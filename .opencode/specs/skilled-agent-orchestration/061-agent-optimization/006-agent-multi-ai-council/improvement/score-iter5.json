@@ -3,9 +3,9 @@
   "profileId": "multi-ai-council",
   "family": "multi-ai-council",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/multi-ai-council.md",
+  "target": ".opencode/agents/multi-ai-council.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council/improvement/candidates/iter-5-candidate-001.md",
-  "baseline": ".opencode/agent/multi-ai-council.md",
+  "baseline": ".opencode/agents/multi-ai-council.md",
   "score": 94,
   "baselineScore": 94,
   "delta": {

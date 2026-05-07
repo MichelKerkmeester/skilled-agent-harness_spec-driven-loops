@@ -12,8 +12,8 @@ No. The LEAF pattern is exactly the right abstraction when the loop output is it
 I compared the local one-iteration research/review agents with Xethryon's bounded self-reflection pass and background memory post-turn hook.
 
 ## Evidence
-- `@deep-research` is explicitly a one-iteration LEAF worker that writes iteration artifacts, updates JSONL state, and contributes to synthesis/dashboard outputs. [SOURCE: .opencode/agent/deep-research.md:22-32] [SOURCE: .opencode/agent/deep-research.md:48-60] [SOURCE: .opencode/agent/deep-research.md:121-171] [SOURCE: .opencode/agent/deep-research.md:203-213]
-- `@deep-review` uses the same one-iteration LEAF pattern for review-state convergence. [SOURCE: .opencode/agent/deep-review.md:21-31] [SOURCE: .opencode/agent/deep-review.md:45-57] [SOURCE: .opencode/agent/deep-review.md:95-142]
+- `@deep-research` is explicitly a one-iteration LEAF worker that writes iteration artifacts, updates JSONL state, and contributes to synthesis/dashboard outputs. [SOURCE: .opencode/agents/deep-research.md:22-32] [SOURCE: .opencode/agents/deep-research.md:48-60] [SOURCE: .opencode/agents/deep-research.md:121-171] [SOURCE: .opencode/agents/deep-research.md:203-213]
+- `@deep-review` uses the same one-iteration LEAF pattern for review-state convergence. [SOURCE: .opencode/agents/deep-review.md:21-31] [SOURCE: .opencode/agents/deep-review.md:45-57] [SOURCE: .opencode/agents/deep-review.md:95-142]
 - Xethryon's reflection loop is intentionally bounded to a single revise pass and is injected at runtime just before returning to the user. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1389-1428]
 - Xethryon's memory post-turn hook also runs in the background after the main loop finishes. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1643-1659]
 
@@ -48,7 +48,7 @@ finding: do not replace explicit LEAF deep-research/deep-review loops with hidde
 - **Migration path:** none required beyond documentation clarity.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/deep-research.md`
+- **Target file or module:** `.opencode/agents/deep-research.md`
 - **Change type:** no-op architecture decision
 - **Blast radius:** low
 - **Prerequisites:** none

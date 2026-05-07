@@ -86,7 +86,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 ### Phase 4: Search Engine Optimization
 
-> Source: 10-iteration deep research on live search pipeline post-fix. All tasks target `.opencode/skill/system-spec-kit/mcp_server/lib/` unless noted.
+> Source: 10-iteration deep research on live search pipeline post-fix. All tasks target `.opencode/skills/system-spec-kit/mcp_server/lib/` unless noted.
 
 - [x] T024 [P] RRF k-value 60 → 40 (`shared/algorithms/rrf-fusion.ts`)
 - [x] T025 [P] Token budget raised: L1 2000→3500, L2 2500→3500, focused 1500→3000, deep 2000→3500, resume 1200→2000

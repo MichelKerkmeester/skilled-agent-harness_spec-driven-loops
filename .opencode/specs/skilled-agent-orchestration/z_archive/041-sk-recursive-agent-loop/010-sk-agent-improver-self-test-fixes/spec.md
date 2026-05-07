@@ -33,7 +33,7 @@ _memory:
 
 Phase 009 (self-test) found 5 issues:
 
-1. **Real bug**: The canonical `agent-improver.md` has a stale command path (`/improve:agent-improver` pointing to `.opencode/command/spec_kit/agent-improver.md`). The correct slug is `/improve:agent` pointing to `.opencode/command/improve/agent.md`. This also affects all 3 runtime mirrors.
+1. **Real bug**: The canonical `agent-improver.md` has a stale command path (`/improve:agent-improver` pointing to `.opencode/commands/spec_kit/agent-improver.md`). The correct slug is `/improve:agent` pointing to `.opencode/commands/improve/agent.md`. This also affects all 3 runtime mirrors.
 
 2. **Reducer family hardcoding**: `inferFamily()` at line 66 of `reduce-state.cjs` defaults every profile except `context-prime` to `session-handover`. The agent-improver profile shows up as `family: "session-handover"` in the dashboard, which is wrong.
 
@@ -57,7 +57,7 @@ Fix all 5 issues:
 
 ### In Scope
 
-- Fix command path in `.opencode/agent/agent-improver.md` line 156
+- Fix command path in `.opencode/agents/agent-improver.md` line 156
 - Sync fix to `.claude/agents/agent-improver.md`, `.agents/agents/agent-improver.md`, `.codex/agents/agent-improver.toml`
 - Refactor `inferFamily()` in `reduce-state.cjs` to derive family from profile or record metadata
 - Add `stopRules.plateauWindow` config support in `reduce-state.cjs`
@@ -85,7 +85,7 @@ Fix all 5 issues:
 
 ## Success Criteria
 
-- SC-001: `score-candidate.cjs --candidate=.opencode/agent/agent-improver.md --dynamic` scores 100 across all 5 dimensions
+- SC-001: `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` scores 100 across all 5 dimensions
 - SC-002: Re-running Phase 009 loop would show correct family, configurable plateau, and proper accepted counts
 - SC-003: All 8 scripts parse OK
 - SC-004: `scan-integration.cjs --agent=agent-improver` shows all mirrors aligned

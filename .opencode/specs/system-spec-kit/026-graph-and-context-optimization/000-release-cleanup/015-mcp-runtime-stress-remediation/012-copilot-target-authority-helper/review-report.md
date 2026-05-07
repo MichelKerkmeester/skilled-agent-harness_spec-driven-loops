@@ -37,8 +37,8 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 ### P1 — Unresolved or malformed `{spec_folder}` becomes "approved" authority
 
 - **Files:**
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:619-623`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:682-686`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:619-623`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:682-686`
 - **What's wrong:** The current guard only rejects empty/`null`. A literal `{spec_folder}` placeholder, whitespace, `undefined`, or other malformed injected values are truthy and become `{ kind: 'approved', specFolder }`, preserving `--allow-all-tools`.
 - **Why it matters:** The packet's safe-fail claim (`spec.md` SC-002) says missing authority must force Gate 3. A template-resolution failure can silently bypass that and produce an "approved" dispatch with write capability against a malformed folder identifier.
 - **Recommended fix:** Normalize and validate the rendered folder before approval — trim, reject `{...}` placeholders / `null` / `undefined` / control chars, and enforce the expected spec-folder path pattern (e.g. `^\.opencode/specs/.*[0-9]{3}-[a-z0-9-]+/?$`). Add tests for the unresolved placeholder and malformed-folder cases.
@@ -46,9 +46,9 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 ### P1 — Large-prompt authority is inline-only, not in the `@PROMPT_PATH` file
 
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:213-227`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:604-605`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:675-676`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:213-227`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:604-605`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:675-676`
 - **What's wrong:** The helper documents that the referenced `@PROMPT_PATH` prompt file contains the unmodified prompt body, and only the inline arg carries the `## TARGET AUTHORITY` preamble.
 - **Why it matters:** research.md §3.5 (line ~95) requires the approved folder to be regex-matchable inside prompts/iteration-NNN.md. If Copilot loads / prioritizes the `@path` file, recovered or bootstrap folder mentions inside that file can still dominate the agent's anchoring decision — exactly the failure mode the packet aims to fix.
 - **Recommended fix:** For approved large prompts, write the authority-prefixed body to the prompt file (preamble + original body), or expose a separate `promptFileBody` from the helper so callers can persist the prefixed version before dispatch. Add a test on the file contents (not only the inline wrapper string).
@@ -57,7 +57,7 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 
 - **Files:**
   - research.md §3.5 bullet 4 — `.opencode/specs/.../011-post-stress-followup-research/research/research.md:95-98`
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts:37-243`
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts:37-243`
   - `.opencode/specs/.../012-copilot-target-authority-helper/implementation-summary.md:136`
 - **What's wrong:** Tests cover prompt/argv transformations and the 3 behavior branches, but research §3.5 bullet 4 requires an I1-style replay through `cli-copilot` to demonstrate **zero file mutations** when authority is missing + write intent is true. The implementation summary explicitly defers live-dispatch verification as a known limitation.
 - **Why it matters:** This packet fixes a mutation bug. Argv-only unit tests prove the helper transforms inputs correctly but do not falsify the actual mutation outcome the v1.0.2 stress test surfaced.
@@ -68,8 +68,8 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 - **Files (out of packet 012 scope):**
   - `.opencode/specs/.../015-mcp-runtime-stress-remediation/spec.md:114-116` (parent references 013–015)
   - `.opencode/specs/.../015-mcp-runtime-stress-remediation/description.json` and `graph-metadata.json`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:31-40`
-  - `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts:1-3`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:31-40`
+  - `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts:1-3`
   - `.opencode/specs/.../013-graph-degraded-stress-cell/spec.md:1-4` (and 014/015 packet docs)
 - **What's wrong:** The working tree includes code-graph handler changes, a new code-graph degraded-sweep vitest, and packet 013–015 docs beyond the allowed packet 012 files (`executor-config.ts`, the 2 `_auto.yaml` files, the new vitest, and the 7 packet 012 docs). Reviewer did not see direct edits inside 003–009 or 010/011 child packet folders, but the parent phase 011 metadata was modified to reference the new sub-packets.
 - **Why it matters:** Packet 012 should land as a focused, isolated change. Co-merging unrelated remediation packets and code-graph behavior changes makes review/rollback harder and violates the packet's stated scope.
@@ -78,9 +78,9 @@ The core helper (`buildCopilotPromptArg`, `buildTargetAuthorityPreamble`, `build
 ### P2 — Raw spec-folder interpolation is prompt-injection fragile
 
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:152-157`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:619`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:682`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:152-157`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:619`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:682`
 - **What's wrong:** `specFolder` is interpolated directly into JavaScript string literals (in the YAML inline Node scripts) and into the prompt preamble template. Quotes, newlines, or control characters in the folder string could break the inline Node script or inject prompt instructions.
 - **Why it matters:** Existing spec-folder naming conventions probably prevent this in normal use, but the helper itself does not enforce that invariant. Defense-in-depth matters because the failure mode is silent corruption of agent authority.
 - **Recommended fix:** Validate `specFolder` in `buildTargetAuthorityPreamble` (or before constructing `targetAuthority`); reject newlines, control chars, quotes, and characters outside the expected `[a-zA-Z0-9._/-]` set. Pair with the P1 placeholder-rejection fix into a single shared validator.

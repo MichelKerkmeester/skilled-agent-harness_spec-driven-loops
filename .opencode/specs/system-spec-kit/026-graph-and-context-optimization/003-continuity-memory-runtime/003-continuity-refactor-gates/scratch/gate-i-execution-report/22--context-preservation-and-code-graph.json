@@ -14,7 +14,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -34,7 +34,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -54,7 +54,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -74,7 +74,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -94,7 +94,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -114,7 +114,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/runtime-detection.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -134,7 +134,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -174,7 +174,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -194,7 +194,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -214,7 +214,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -234,7 +234,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -254,7 +254,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-indexer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -361,7 +361,7 @@
       }
     ],
     "evidence": [
-      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
+      "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
     ],
     "steps": [
       {
@@ -378,7 +378,7 @@
           "hints present"
         ],
         "evidence": [
-          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
+          "{\"status\":\"ok\",\"data\":{\"memory\":{\"source\":\"none\",\"specFolder\":null,\"resolution\":{\"kind\":\"unresolved\",\"requestedSpecFolder\":null,\"fallbackSpecFolder\":null,\"resolvedSpecFolder\":null,\"folderPath\":null},\"summary\":\"No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.\",\"recentAction\":null,\"nextSafeAction\":null,\"blockers\":[],\"keyFiles\":[],\"hints\":[],\"documents\":[],\"freshnessWinner\":null},\"codeGraph\":{\"status\":\"empty\",\"lastScan\":null,\"nodeCount\":0,\"edgeCount\":0,\"fileCount\":0},\"cocoIndex\":{\"available\":false,\"binaryPath\":\".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc\"},\"cachedSummary\":{\"status\":\"rejected\",\"category\":\"fidelity\",\"reason\":\"missing_state\",\"detail\":\"No recent hook state was available for cached continuity reuse.\",\"cachedSummary\":null},\"structuralContext\":{\"status\":\"missing\",\"summary\":\"No structural context available \u2014 code graph is empty or unavailable\",\"recommendedAction\":\"Call session_bootstrap first. Then run code_graph_scan if structural context is needed.\",\"sourceSurface\":\"session_resume\",\"provenance\":{\"producer\":\"session_snapshot\",\"sourceSurface\":\"session_resume\",\"trustState\":\"stale\",\"generatedAt\":\"2026-04-12T00:32:37.840Z\",\"lastUpdated\":null,\"sourceRefs\":[\"code-graph-db\",\"session-snapshot\"]}},\"payloadContract\":{\"kind\":\"resume\",\"summary\":\"Resume payload: memory=defaulted, graph=exact, cocoindex=exact, structural=exact; resumeSource=none; graph=empty; graphStatus=empty\",\"sections\":[{\"key\":\"memory-resume\",\"title\":\"Memory Resume\",\"content\":\"{\\\"source\\\":\\\"none\\\",\\\"specFolder\\\":null,\\\"resolution\\\":{\\\"kind\\\":\\\"unresolved\\\",\\\"requestedSpecFolder\\\":null,\\\"fallbackSpecFolder\\\":null,\\\"resolvedSpecFolder\\\":null,\\\"folderPath\\\":null},\\\"summary\\\":\\\"No recovery context found. Pass specFol...\",\"source\":\"memory\",\"certainty\":\"defaulted\"},{\"key\":\"code-graph-status\",\"title\":\"Code Graph Status\",\"content\":\"status=empty; files=0; nodes=0; edges=0; lastScan=unknown\",\"source\":\"code-graph\",\"certainty\":\"exact\"},{\"key\":\"cocoindex-status\",\"title\""
         ]
       }
     ]
@@ -410,11 +410,11 @@
     "filePath": "22--context-preservation-and-code-graph/265-gemini-hooks.md",
     "prompt": "Validate 265a session-prime startup",
     "expectedSignals": [
-      "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
+      "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
     ],
     "matchedSignals": [],
     "unmatchedSignals": [
-      "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
+      "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js`"
     ],
     "handlerCalls": [],
     "evidence": [
@@ -506,7 +506,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit && rg -n \"## Tool Routing"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit && rg -n \"## Tool Routing"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

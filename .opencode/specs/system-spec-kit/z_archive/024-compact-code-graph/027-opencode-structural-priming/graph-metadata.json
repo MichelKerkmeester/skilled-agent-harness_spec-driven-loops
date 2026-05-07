@@ -47,7 +47,7 @@
       "mcp_server/handlers/session-resume.ts",
       "mcp_server/handlers/session-health.ts",
       "mcp_server/context-server.ts",
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -94,7 +94,7 @@
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {

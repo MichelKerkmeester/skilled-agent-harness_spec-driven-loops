@@ -4,9 +4,9 @@
 Determine whether the operator-facing resume flow uses the same continuity profile and Stage 3 MMR path as `memory_search()`.
 
 ## Findings
-1. `memory_context` does not treat `resume` as a search mode. The mode table routes `resume` to a dedicated `executeResumeStrategy()`, and that strategy returns canonical ladder content directly from `handover.md -> _memory.continuity -> spec docs`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:776] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:900] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1097]
-2. The resume-mode regression test makes that contract explicit by throwing if `handleMemorySearch()` is called during resume-mode execution. In other words, the canonical resume ladder intentionally bypasses the 4-stage retrieval pipeline. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
-3. `session_resume` documents its first sub-call as `memory_context(mode=resume, profile=resume)`, so the operator-facing recovery surface inherits that ladder behavior rather than the adaptive-fusion/MMR search path. This means the continuity profile currently affects search-style `profile='resume'` calls, not the canonical `/spec_kit:resume` ladder. [SOURCE: .opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md:14]
+1. `memory_context` does not treat `resume` as a search mode. The mode table routes `resume` to a dedicated `executeResumeStrategy()`, and that strategy returns canonical ladder content directly from `handover.md -> _memory.continuity -> spec docs`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:776] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:900] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1097]
+2. The resume-mode regression test makes that contract explicit by throwing if `handleMemorySearch()` is called during resume-mode execution. In other words, the canonical resume ladder intentionally bypasses the 4-stage retrieval pipeline. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
+3. `session_resume` documents its first sub-call as `memory_context(mode=resume, profile=resume)`, so the operator-facing recovery surface inherits that ladder behavior rather than the adaptive-fusion/MMR search path. This means the continuity profile currently affects search-style `profile='resume'` calls, not the canonical `/spec_kit:resume` ladder. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md:14]
 
 ## Ruled Out
 - Treating `/spec_kit:resume` as evidence that the continuity profile already reaches Stage 3 MMR.
@@ -15,9 +15,9 @@ Determine whether the operator-facing resume flow uses the same continuity profi
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts`
-- `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts`
+- `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md`
 
 ## Assessment
 - New information ratio: 0.36

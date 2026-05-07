@@ -22,7 +22,7 @@ const { execSync, spawnSync } = require('child_process');
 // TEST CONFIGURATION
 // ============================================================================
 
-const SPEC_KIT_BASE = path.resolve(__dirname, '../../../../.opencode/skill/system-spec-kit');
+const SPEC_KIT_BASE = path.resolve(__dirname, '../../../../.opencode/skills/system-spec-kit');
 const TEMPLATES_DIR = path.join(SPEC_KIT_BASE, 'templates');
 const SCRIPTS_DIR = path.join(SPEC_KIT_BASE, 'scripts');
 

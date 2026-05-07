@@ -29,7 +29,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -52,7 +52,7 @@ The agent `@improve-prompt` is now `@prompt-improver` across all 4 runtime mirro
 
 ### Runtime mirror renames
 
-Four physical file renames: `.opencode/agent/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`. Frontmatter `name:` field rotated in all 4. Body self-references updated.
+Four physical file renames: `.opencode/agents/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`. Frontmatter `name:` field rotated in all 4. Body self-references updated.
 
 ### Reference rotations across active scope
 
@@ -62,7 +62,7 @@ Four physical file renames: `.opencode/agent/improve-prompt.md` → `prompt-impr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/agent/improve-prompt.md` | Renamed → `prompt-improver.md` | Canonical agent file (4 runtime mirrors) |
+| `.opencode/agents/improve-prompt.md` | Renamed → `prompt-improver.md` | Canonical agent file (4 runtime mirrors) |
 | `.claude/agents/improve-prompt.md` | Renamed → `prompt-improver.md` | Claude runtime mirror |
 | `.codex/agents/improve-prompt.toml` | Renamed → `prompt-improver.toml` | Codex runtime mirror |
 | `.gemini/agents/improve-prompt.md` | Renamed → `prompt-improver.md` | Gemini runtime mirror |
@@ -103,7 +103,7 @@ cli-codex gpt-5.5 medium fast handled 32 of 35 reference files via `sed -i` rota
 | Active-scope `improve-prompt` (case-insensitive, post deep-review fix) | 0 hits |
 | Advisor probe `"improve my prompt"` → top-1 | `sk-prompt` @ 0.9262 |
 | Strict validate phase 001 | PASS — 0 errors, 0 warnings |
-| Dispatcher command `/improve:prompt` unchanged | PASS — file at `.opencode/command/improve/prompt.md` exists; only body refs rotated |
+| Dispatcher command `/improve:prompt` unchanged | PASS — file at `.opencode/commands/improve/prompt.md` exists; only body refs rotated |
 <!-- /ANCHOR:verification -->
 
 ---

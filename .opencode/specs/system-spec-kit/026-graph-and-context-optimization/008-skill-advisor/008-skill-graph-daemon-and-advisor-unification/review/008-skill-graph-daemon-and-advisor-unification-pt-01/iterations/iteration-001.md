@@ -12,26 +12,26 @@ Correctness, with the requested inventory pass.
 - `checklist.md`
 - `implementation-summary.md`
 - `decision-record.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/text.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/text.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- Focused tests under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- Focused tests under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/`.
 
 ## Findings — P0
 
@@ -41,7 +41,7 @@ None.
 
 **DR-008-D1-P1-001: `advisor_recommend` keeps returning normal recommendations when freshness is `unavailable`, so direct MCP callers can receive authoritative-looking routing during corrupt or unavailable graph states.**
 
-Evidence: `readAdvisorStatus()` converts corrupted generation metadata and other status failures into `freshness: 'unavailable'` with errors (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:151-172`). The compat probe treats `unavailable` as not available (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:51-60`). But the direct MCP recommendation path only fail-opens for `absent` freshness (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:161-164`), then still calls `scoreAdvisorPrompt()` and emits recommendations (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:194-220`). Existing tests cover disabled, absent, and stale behavior, but not unavailable fail-open behavior (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238-260`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338-345`).
+Evidence: `readAdvisorStatus()` converts corrupted generation metadata and other status failures into `freshness: 'unavailable'` with errors (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:151-172`). The compat probe treats `unavailable` as not available (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:51-60`). But the direct MCP recommendation path only fail-opens for `absent` freshness (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:161-164`), then still calls `scoreAdvisorPrompt()` and emits recommendations (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:194-220`). Existing tests cover disabled, absent, and stale behavior, but not unavailable fail-open behavior (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:238-260`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-recommend.vitest.ts:338-345`).
 
 Impact: when the generation file is corrupt, the daemon is explicitly unavailable, or a rebuild is in an unavailable window, the native MCP surface can still return `status: ok` and skill recommendations. That contradicts the packet reliability claim that refresh failures degrade to stale or unavailable rather than corrupting advisor output (`spec.md:171-173`) and diverges from the shim availability contract.
 
@@ -55,7 +55,7 @@ The iteration contract asks each completed `CHK-*` item to cite `file:line`, but
 
 **DR-008-D1-P2-002: Packet docs mix stale hyphenated paths with the shipped underscore runtime path.**
 
-The spec says the runtime lives under `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/**` and names `.opencode/skill/skill-advisor/scripts/skill_advisor.py` (`spec.md:91-93`), while the reviewed shipped files are under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/**`, including `watcher.ts`, `advisor-recommend.ts`, and `scripts/skill_advisor.py`. The decision record repeats the hyphenated package name (`decision-record.md:39`). This is documentation drift, not a runtime failure.
+The spec says the runtime lives under `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/**` and names `.opencode/skills/skill-advisor/scripts/skill_advisor.py` (`spec.md:91-93`), while the reviewed shipped files are under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/**`, including `watcher.ts`, `advisor-recommend.ts`, and `scripts/skill_advisor.py`. The decision record repeats the hyphenated package name (`decision-record.md:39`). This is documentation drift, not a runtime failure.
 
 **DR-008-D1-P2-003: Strict-validation completion remains visibly open.**
 

@@ -176,7 +176,7 @@ Open blocker: `.codex/agents` and `.codex/config.toml` are readable but write-bl
 - Runtime command mirrors can embed long prompt strings on one TOML line; exact replacement must preserve escaping.
 - README files may exist but already use target names; reading them is enough unless grep shows old identifiers.
 - Cross-runtime orchestrator dependency tables can reference the skill name without a path.
-- Path references such as `.opencode/skill/sk-deep-research/...` must become `.opencode/skill/deep-research/...`.
+- Path references such as `.opencode/skills/sk-deep-research/...` must become `.opencode/skills/deep-research/...`.
 <!-- /ANCHOR:edge-cases -->
 
 ---

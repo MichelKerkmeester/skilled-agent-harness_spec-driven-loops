@@ -44,7 +44,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | TypeScript MCP server code, Vitest tests, markdown documentation |
-| **Framework** | Node.js ESM under `.opencode/skill/system-spec-kit/mcp_server/` |
+| **Framework** | Node.js ESM under `.opencode/skills/system-spec-kit/mcp_server/` |
 | **Storage** | SQLite code graph database via `code_graph/lib/code-graph-db.ts`; metadata in `code_graph_metadata` |
 | **Testing** | Focused Vitest suites plus `validate.sh --strict` against this packet and sibling 008 |
 
@@ -69,7 +69,7 @@ The timing is right because research has already answered the ten packet questio
 
 ### Overview
 
-Implement a default-off skill-indexing policy for the structural code graph. Phase 1 adds a shared scope policy, threads the opt-in through scan configuration and candidate walking, updates schema/tests, and proves the default excludes `.opencode/skill/**`. Phase 2 stores and compares a scope fingerprint so existing polluted databases require an explicit full scan instead of silently returning stale results. Phase 3 updates operator docs and runs the focused verification sequence.
+Implement a default-off skill-indexing policy for the structural code graph. Phase 1 adds a shared scope policy, threads the opt-in through scan configuration and candidate walking, updates schema/tests, and proves the default excludes `.opencode/skills/**`. Phase 2 stores and compares a scope fingerprint so existing polluted databases require an explicit full scan instead of silently returning stale results. Phase 3 updates operator docs and runs the focused verification sequence.
 
 ### Source Evidence Map
 
@@ -97,7 +97,7 @@ Implement a default-off skill-indexing policy for the structural code graph. Pha
 
 ### Definition of Done
 
-- [ ] `code_graph_scan` excludes `.opencode/skill/**` by default and includes it only with explicit opt-in.
+- [ ] `code_graph_scan` excludes `.opencode/skills/**` by default and includes it only with explicit opt-in.
 - [ ] `includeSkills` is accepted by the strict tool input schema and reaches scan configuration.
 - [ ] The scope policy is shared by default config and walker guard, with tests for both default and opt-in behavior.
 - [ ] Existing polluted databases report a full-scan requirement when stored scope differs from active scope.
@@ -180,7 +180,7 @@ resolveIndexScopePolicy({ includeSkills, env })
         │
         ├─────────────► getDefaultConfig(rootDir, policy)
         │                    │
-        │                    └─ excludeGlobs includes .opencode/skill/** only when policy.includeSkills=false
+        │                    └─ excludeGlobs includes .opencode/skills/** only when policy.includeSkills=false
         │
         ├─────────────► IndexerConfig.scopePolicy / includeSkills default
         │                    │
@@ -195,7 +195,7 @@ resolveIndexScopePolicy({ includeSkills, env })
 
 ### ADR-005 Workflow Invariance
 
-Per research §14, this packet does not change Gate 3, spec level wording, validator public prompts, or user conversation flow (`research/research.md:84`, `research/research.md:86`). The implementation should describe the behavior as "code graph scan scope" and "skill indexing opt-in" only. The only direct reference to `.opencode/skill/system-spec-kit/templates/manifest/` in this plan is the required template source path from the user request and the template header.
+Per research §14, this packet does not change Gate 3, spec level wording, validator public prompts, or user conversation flow (`research/research.md:84`, `research/research.md:86`). The implementation should describe the behavior as "code graph scan scope" and "skill indexing opt-in" only. The only direct reference to `.opencode/skills/system-spec-kit/templates/manifest/` in this plan is the required template source path from the user request and the template header.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -211,20 +211,20 @@ Per research §14, this packet does not change Gate 3, spec level wording, valid
 
 **Step-by-step plan:**
 
-1. Modify `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts` around the current hard guard (`index-scope.ts:31`, `index-scope.ts:39`; cited in `research/research.md:41`). Add `.opencode/skill/**` to the default code graph exclusion policy and make the guard opt-in aware. Estimated delta: 35-55 LOC. Verification: unit or integration test proves a path under `.opencode/skill/example.ts` is rejected by default and accepted with the policy override.
-2. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` near `getDefaultConfig()` (`indexer-types.ts:137`, `indexer-types.ts:138`; cited in `research/research.md:25`). Add a policy/options parameter, include `.opencode/skill/**` in default excludes when skill indexing is off, and expose a stable scope fingerprint. Estimated delta: 40-70 LOC. Verification: `code-graph-indexer.vitest.ts` checks the default exclude list and opt-in list.
-3. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` at `ScanArgs` and config creation (`scan.ts:25`, `scan.ts:214`, `scan.ts:216`; cited in `research/research.md:39`, `research/research.md:45`). Add `includeSkills?: boolean`, resolve env plus scan argument once, and pass policy into `getDefaultConfig()`. Estimated delta: 30-55 LOC. Verification: schema and handler tests show `includeSkills:true` reaches config without relying on process-global test leakage.
-4. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` at the walker guard (`structural-indexer.ts:1292`, `structural-indexer.ts:1298`; cited in `research/research.md:19`). Thread the scope policy to `shouldIndexForCodeGraph()` wherever candidate discovery and workspace canonicalization need it. Estimated delta: 35-65 LOC. Verification: candidate discovery excludes skill files by default before parsing and includes them with opt-in.
-5. Modify `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` near the strict `code_graph_scan` schema (`tool-schemas.ts:562`, `tool-schemas.ts:566`; cited in `research/research.md:21`). Add `includeSkills` as a boolean with default `false` and maintainer-focused description. Estimated delta: 6-12 LOC. Verification: strict schema accepts `includeSkills` and still rejects unknown fields.
-6. Modify `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` near the scan controls (`tool-input-schema.vitest.ts:534`, `tool-input-schema.vitest.ts:537`; cited in `research/research.md:82`). Add acceptance and rejection cases for `includeSkills`. Estimated delta: 15-25 LOC. Verification: focused Vitest file passes.
-7. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` near `getDefaultConfig` tests (`code-graph-indexer.vitest.ts:242`; cited in `research/research.md:82`). Add default exclude, env opt-in, and one-call opt-in cases. Estimated delta: 35-60 LOC. Verification: focused indexer Vitest passes.
-8. New file only if needed: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`. Justification: if adding policy resolution to `indexer-types.ts` would create an import cycle with `index-scope.ts`, put the shared resolver in a small code graph helper. Estimated delta: 40-70 LOC. Verification: imported by both default config and walker guard with no cycle.
+1. Modify `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts` around the current hard guard (`index-scope.ts:31`, `index-scope.ts:39`; cited in `research/research.md:41`). Add `.opencode/skills/**` to the default code graph exclusion policy and make the guard opt-in aware. Estimated delta: 35-55 LOC. Verification: unit or integration test proves a path under `.opencode/skills/example.ts` is rejected by default and accepted with the policy override.
+2. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` near `getDefaultConfig()` (`indexer-types.ts:137`, `indexer-types.ts:138`; cited in `research/research.md:25`). Add a policy/options parameter, include `.opencode/skills/**` in default excludes when skill indexing is off, and expose a stable scope fingerprint. Estimated delta: 40-70 LOC. Verification: `code-graph-indexer.vitest.ts` checks the default exclude list and opt-in list.
+3. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` at `ScanArgs` and config creation (`scan.ts:25`, `scan.ts:214`, `scan.ts:216`; cited in `research/research.md:39`, `research/research.md:45`). Add `includeSkills?: boolean`, resolve env plus scan argument once, and pass policy into `getDefaultConfig()`. Estimated delta: 30-55 LOC. Verification: schema and handler tests show `includeSkills:true` reaches config without relying on process-global test leakage.
+4. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` at the walker guard (`structural-indexer.ts:1292`, `structural-indexer.ts:1298`; cited in `research/research.md:19`). Thread the scope policy to `shouldIndexForCodeGraph()` wherever candidate discovery and workspace canonicalization need it. Estimated delta: 35-65 LOC. Verification: candidate discovery excludes skill files by default before parsing and includes them with opt-in.
+5. Modify `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` near the strict `code_graph_scan` schema (`tool-schemas.ts:562`, `tool-schemas.ts:566`; cited in `research/research.md:21`). Add `includeSkills` as a boolean with default `false` and maintainer-focused description. Estimated delta: 6-12 LOC. Verification: strict schema accepts `includeSkills` and still rejects unknown fields.
+6. Modify `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` near the scan controls (`tool-input-schema.vitest.ts:534`, `tool-input-schema.vitest.ts:537`; cited in `research/research.md:82`). Add acceptance and rejection cases for `includeSkills`. Estimated delta: 15-25 LOC. Verification: focused Vitest file passes.
+7. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` near `getDefaultConfig` tests (`code-graph-indexer.vitest.ts:242`; cited in `research/research.md:82`). Add default exclude, env opt-in, and one-call opt-in cases. Estimated delta: 35-60 LOC. Verification: focused indexer Vitest passes.
+8. New file only if needed: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`. Justification: if adding policy resolution to `indexer-types.ts` would create an import cycle with `index-scope.ts`, put the shared resolver in a small code graph helper. Estimated delta: 40-70 LOC. Verification: imported by both default config and walker guard with no cycle.
 
 **Gate 1 verification:**
 
 - `node mcp_server/node_modules/vitest/vitest.mjs run tests/tool-input-schema.vitest.ts code_graph/tests/code-graph-indexer.vitest.ts --root . --config mcp_server/vitest.config.ts`
-- `rg "includeSkills" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`
-- `rg "\.opencode/skill" .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
+- `rg "includeSkills" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`
+- `rg "\.opencode/skill" .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
 
 ### Phase 2: Migration + readiness messaging
 
@@ -234,13 +234,13 @@ Per research §14, this packet does not change Gate 3, spec level wording, valid
 
 **Step-by-step plan:**
 
-1. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` near `code_graph_metadata` usage (`code-graph-db.ts:55`, `code-graph-db.ts:86`; cited in `research/research.md:78`). Reuse the metadata table rather than adding a new table; store active scope fingerprint and human-readable scope label after scans. Estimated delta: 35-60 LOC. Verification: metadata read/write round trip in existing DB tests or focused inline test.
-2. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` near full-scan pruning (`scan.ts:241`, `scan.ts:247`; cited in `research/research.md:27`). Persist the active scope fingerprint after successful scan completion, including incremental scans that do not prune. Estimated delta: 20-35 LOC. Verification: full scan stores fingerprint and stale old value is replaced.
-3. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` near candidate-manifest readiness (`ensure-ready.ts:301`, `ensure-ready.ts:322`; cited in `research/research.md:57`). Compare stored scope fingerprint with the active policy and return a full-scan-required state on mismatch. Estimated delta: 60-90 LOC. Verification: mismatch state cannot be satisfied by inline selective repair.
-4. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` and `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` where blocked read payloads already set `requiredAction:"code_graph_scan"` (`context.ts:184`, `context.ts:196`, `query.ts:1089`; cited in `research/research.md:64`). Reuse the existing blocked shape, with block reason explaining scope mismatch and full scan. Estimated delta: 35-55 LOC total. Verification: no new response family; payload still includes readiness/trust metadata.
-5. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` before optimistic stats reporting (`status.ts:158`, `status.ts:167`; cited in `research/research.md:65`). Show active scope, stored scope, mismatch status, and optional count of tracked `.opencode/skill` files before pruning. Estimated delta: 50-80 LOC. Verification: status reports mismatch without mutating DB.
-6. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts` and `verify.ts` only if their readiness text needs the same reason string (`detect-changes.ts:246`, `detect-changes.ts:260`, `verify.ts:154`, `verify.ts:160`; cited in `research/research.md:66`, `research/research.md:67`). Estimated delta: 0-30 LOC. Verification: both still block and point to `code_graph_scan`.
-7. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts` around graph summary rendering (`startup-brief.ts:122`, `startup-brief.ts:131`; cited in `research/research.md:69`). Add a concise scope mismatch hint and recommended full scan action. Estimated delta: 25-45 LOC. Verification: startup brief is not noisy when stored and active scope match.
+1. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` near `code_graph_metadata` usage (`code-graph-db.ts:55`, `code-graph-db.ts:86`; cited in `research/research.md:78`). Reuse the metadata table rather than adding a new table; store active scope fingerprint and human-readable scope label after scans. Estimated delta: 35-60 LOC. Verification: metadata read/write round trip in existing DB tests or focused inline test.
+2. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` near full-scan pruning (`scan.ts:241`, `scan.ts:247`; cited in `research/research.md:27`). Persist the active scope fingerprint after successful scan completion, including incremental scans that do not prune. Estimated delta: 20-35 LOC. Verification: full scan stores fingerprint and stale old value is replaced.
+3. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` near candidate-manifest readiness (`ensure-ready.ts:301`, `ensure-ready.ts:322`; cited in `research/research.md:57`). Compare stored scope fingerprint with the active policy and return a full-scan-required state on mismatch. Estimated delta: 60-90 LOC. Verification: mismatch state cannot be satisfied by inline selective repair.
+4. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` and `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` where blocked read payloads already set `requiredAction:"code_graph_scan"` (`context.ts:184`, `context.ts:196`, `query.ts:1089`; cited in `research/research.md:64`). Reuse the existing blocked shape, with block reason explaining scope mismatch and full scan. Estimated delta: 35-55 LOC total. Verification: no new response family; payload still includes readiness/trust metadata.
+5. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` before optimistic stats reporting (`status.ts:158`, `status.ts:167`; cited in `research/research.md:65`). Show active scope, stored scope, mismatch status, and optional count of tracked `.opencode/skill` files before pruning. Estimated delta: 50-80 LOC. Verification: status reports mismatch without mutating DB.
+6. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts` and `verify.ts` only if their readiness text needs the same reason string (`detect-changes.ts:246`, `detect-changes.ts:260`, `verify.ts:154`, `verify.ts:160`; cited in `research/research.md:66`, `research/research.md:67`). Estimated delta: 0-30 LOC. Verification: both still block and point to `code_graph_scan`.
+7. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts` around graph summary rendering (`startup-brief.ts:122`, `startup-brief.ts:131`; cited in `research/research.md:69`). Add a concise scope mismatch hint and recommended full scan action. Estimated delta: 25-45 LOC. Verification: startup brief is not noisy when stored and active scope match.
 
 **Gate 2 verification:**
 
@@ -256,8 +256,8 @@ Per research §14, this packet does not change Gate 3, spec level wording, valid
 
 **Step-by-step plan:**
 
-1. Modify `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` around default excludes and full-scan pruning (`README.md:263`, `README.md:266`, `README.md:289`, `README.md:295`; cited in `research/research.md:35`, `research/research.md:82`). Document `.opencode/skill/**` default exclusion, `includeSkills:true`, env opt-in, and full scan migration. Estimated delta: 35-60 LOC. Verification: grep confirms all operator terms exist and no unrelated spec workflow text changed.
-2. Modify `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` in the Graph section (`ENV_REFERENCE.md:17`, `ENV_REFERENCE.md:171`). Add `SPECKIT_CODE_GRAPH_INDEX_SKILLS` as default `false`, boolean, maintainer opt-in. Estimated delta: 10-20 LOC. Verification: env table entry is present and default-off.
+1. Modify `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` around default excludes and full-scan pruning (`README.md:263`, `README.md:266`, `README.md:289`, `README.md:295`; cited in `research/research.md:35`, `research/research.md:82`). Document `.opencode/skills/**` default exclusion, `includeSkills:true`, env opt-in, and full scan migration. Estimated delta: 35-60 LOC. Verification: grep confirms all operator terms exist and no unrelated spec workflow text changed.
+2. Modify `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` in the Graph section (`ENV_REFERENCE.md:17`, `ENV_REFERENCE.md:171`). Add `SPECKIT_CODE_GRAPH_INDEX_SKILLS` as default `false`, boolean, maintainer opt-in. Estimated delta: 10-20 LOC. Verification: env table entry is present and default-off.
 3. Update any status/startup text touched in Phase 2 for concise operator wording. Evidence source: research §10 and §11 (`research/research.md:59`, `research/research.md:72`). Estimated delta: included in Phase 2 unless copy polish remains. Verification: no Gate 3/spec-level prompt wording changes.
 4. Run focused Vitest suites: `tool-input-schema.vitest.ts`, `code-graph-indexer.vitest.ts`, and any added readiness/status tests. Verification: all focused suites pass.
 5. Run strict packet validation for 009. Verification: `Summary: Errors: 0`.
@@ -270,9 +270,9 @@ Per research §14, this packet does not change Gate 3, spec level wording, valid
 
 ```bash
 PACKET=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "$PACKET" --strict
-(cd .opencode/skill/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/workflow-invariance.vitest.ts --root . --config mcp_server/vitest.config.ts)
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$PACKET" --strict
+(cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/workflow-invariance.vitest.ts --root . --config mcp_server/vitest.config.ts)
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience --strict
 ```
 <!-- /ANCHOR:phases -->
 
@@ -286,7 +286,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sy
 | Schema | `includeSkills` accepted by strict scan schema and unknown fields still rejected | Vitest | 1 |
 | Unit | `getDefaultConfig()` default excludes and opt-in behavior | Vitest | 1 |
 | Unit | `shouldIndexForCodeGraph()` default and opt-in behavior | Vitest or indexer integration | 1 |
-| Integration | Candidate walk excludes `.opencode/skill/**` before parse by default | Vitest fixture | 1 |
+| Integration | Candidate walk excludes `.opencode/skills/**` before parse by default | Vitest fixture | 1 |
 | Unit | Scope fingerprint stored and compared through `code_graph_metadata` | Vitest | 2 |
 | Integration | Context/query blocked shape reused on mismatch | Vitest or focused handler test | 2 |
 | Manual | `code_graph_status` reports mismatch and full-scan action with stale fingerprint | manual command | 2 |
@@ -298,7 +298,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sy
 
 | Scenario | Setup | Expected |
 |----------|-------|----------|
-| Default end-user scan | No env var; call `code_graph_scan({ incremental:false })` | `.opencode/skill/**` candidates are absent. |
+| Default end-user scan | No env var; call `code_graph_scan({ incremental:false })` | `.opencode/skills/**` candidates are absent. |
 | Env opt-in | Start server with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` | Skill files are eligible except `mcp-coco-index/mcp_server`. |
 | One-call opt-in | Call `code_graph_scan({ includeSkills:true, incremental:false })` | Skill files are eligible for that call. |
 | Existing stale graph | Store old fingerprint, active policy default-off | Status/read paths require full scan. |

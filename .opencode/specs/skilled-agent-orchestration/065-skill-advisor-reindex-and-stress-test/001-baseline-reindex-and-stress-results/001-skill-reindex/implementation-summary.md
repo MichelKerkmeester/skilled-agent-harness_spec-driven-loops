@@ -101,7 +101,7 @@ Remediation verification evidence:
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-The only remaining diagnostic is the known `NON-SKILL-METADATA` warning for `.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json` during skill graph scans. It does not block this phase because the graph scan succeeds and rejects no edges.
+The only remaining diagnostic is the known `NON-SKILL-METADATA` warning for `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json` during skill graph scans. It does not block this phase because the graph scan succeeds and rejects no edges.
 <!-- /ANCHOR:limitations -->
 
 <!-- ANCHOR:go-signal -->

@@ -63,7 +63,7 @@ Improvement focus: **LEAF autonomous review loop; P0/P1/P2 severity discipline; 
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/deep-review.md`
+- Canonical agent body: `.opencode/agents/deep-review.md`
 - Runtime mirrors: `.claude/agents/deep-review.md`, `.gemini/agents/deep-review.md`, `.codex/agents/deep-review.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: severity calibration, convergence-signal honesty
@@ -78,7 +78,7 @@ Improvement focus: **LEAF autonomous review loop; P0/P1/P2 severity discipline; 
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/deep-review.md` | Update | Promoted candidate body |
+| `.opencode/agents/deep-review.md` | Update | Promoted candidate body |
 | `.claude/agents/deep-review.md` | Update | Mirror sync |
 | `.gemini/agents/deep-review.md` | Update | Mirror sync |
 | `.codex/agents/deep-review.toml` | Update | Mirror sync (TOML) |

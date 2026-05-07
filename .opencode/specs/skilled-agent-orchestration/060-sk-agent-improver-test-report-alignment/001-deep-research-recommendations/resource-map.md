@@ -91,12 +91,12 @@ Research-only packet. **No source-file changes outside the packet folder.** All 
 
 | Path | Role |
 |---|---|
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
-| `.opencode/agent/improve-agent.md` | Primary research target (246 lines) |
-| `.opencode/command/improve/agent.md` | Primary research target (456 lines) |
-| `.opencode/skill/sk-improve-agent/references/` (12 docs) | Secondary surface |
-| `.opencode/skill/sk-improve-agent/scripts/` (13 .cjs scripts) | Secondary surface |
-| `.opencode/skill/sk-improve-agent/assets/` (6 items) | Secondary surface |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
+| `.opencode/agents/improve-agent.md` | Primary research target (246 lines) |
+| `.opencode/commands/improve/agent.md` | Primary research target (456 lines) |
+| `.opencode/skills/sk-improve-agent/references/` (12 docs) | Secondary surface |
+| `.opencode/skills/sk-improve-agent/scripts/` (13 .cjs scripts) | Secondary surface |
+| `.opencode/skills/sk-improve-agent/assets/` (6 items) | Secondary surface |
 | `.opencode/specs/.../059-agent-implement-code/test-report.md` | Methodology reference (570 lines) |
 
 ---

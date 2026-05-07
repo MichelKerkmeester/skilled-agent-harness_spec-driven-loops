@@ -108,7 +108,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/skills/workflows-memory/SKILL.md` - Documentation
 
-- `.opencode/command/memory/save.md` - Documentation
+- `.opencode/commands/memory/save.md` - Documentation
 
 - `/.../lib/memory-parser.js` - Core memory parser
 
@@ -153,7 +153,7 @@ Performed backward compatibility verification of the memory system (Agent 15 rol
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/skills/workflows-memory/SKILL.md` | Two key improvements: (1) Added anti-pattern documentation |
-| `.opencode/command/memory/save.md` | Explanation of why closing tags are required for regex ex... |
+| `.opencode/commands/memory/save.md` | Explanation of why closing tags are required for regex ex... |
 | `/.../lib/memory-parser.js` | Regex extraction |
 | `/.../semantic-memory/semantic-memory.js` | To log warnings and include them in responses |
 | `specs/.../010-generate-context-fix/implementation-summary.md` | Modified during session |
@@ -476,7 +476,7 @@ key_topics:
 
 key_files:
   - ".opencode/skills/workflows-memory/SKILL.md"
-  - ".opencode/command/memory/save.md"
+  - ".opencode/commands/memory/save.md"
   - "/.../lib/memory-parser.js"
   - "/.../semantic-memory/semantic-memory.js"
   - "specs/.../010-generate-context-fix/implementation-summary.md"

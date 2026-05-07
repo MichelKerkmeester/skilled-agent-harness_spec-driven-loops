@@ -83,7 +83,7 @@ CRITIC PASS labels emitted verbatim. Candidate stayed proposal-only.
 Same 9-step flow as 001/agent-context:
 1. Init (templates renamed, baseline recorded)
 2. scan-integration.cjs --agent=debug
-3. generate-profile.cjs --agent=.opencode/agent/debug.md
+3. generate-profile.cjs --agent=.opencode/agents/debug.md
 4. session_start journal
 5. cli-copilot dispatch with @debug-specific prompt (charter+inputs+CRITIC PASS contract+style preservation note about Unicode box-drawing)
 6. score-candidate.cjs (5-dim dynamic)
@@ -151,7 +151,7 @@ Same 9-step flow as 001/agent-context:
 
 | File | Change |
 |---|---|
-| `.opencode/agent/debug.md` | UNCHANGED (operator review pending) |
+| `.opencode/agents/debug.md` | UNCHANGED (operator review pending) |
 | `.claude/agents/debug.md` | UNCHANGED |
 | `.gemini/agents/debug.md` | UNCHANGED |
 | `.codex/agents/debug.toml` | UNCHANGED |
@@ -182,7 +182,7 @@ Unlike 001 (where Unicode box-drawing was flattened to ASCII and required a fix-
 
 | Runtime | Path | Promoted | Lines |
 |---|---|---|---|
-| OpenCode | `.opencode/agent/debug.md` | ✓ | 605 |
+| OpenCode | `.opencode/agents/debug.md` | ✓ | 605 |
 | Claude | `.claude/agents/debug.md` | ✓ | 605 |
 | Gemini | `.gemini/agents/debug.md` | ✓ | 605 |
 | Codex | `.codex/agents/debug.toml` | ✓ | 594 (TOML wrapper) |

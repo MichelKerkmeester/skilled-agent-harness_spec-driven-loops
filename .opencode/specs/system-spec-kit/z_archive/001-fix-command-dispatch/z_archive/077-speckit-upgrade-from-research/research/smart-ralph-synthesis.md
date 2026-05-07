@@ -219,7 +219,7 @@ Specs:
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/077-speckit-upgrade-from-research/research/smart-ralph-synthesis.md` | Full Smart-Ralph synthesis |
 | https://github.com/tzachbon/smart-ralph | Source repository |
 | `003-memory-and-spec-kit/` | Parent spec folder |
-| `.opencode/skill/system-spec-kit/` | Current implementation |
+| `.opencode/skills/system-spec-kit/` | Current implementation |
 
 ---
 

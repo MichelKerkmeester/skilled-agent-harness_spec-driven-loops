@@ -84,7 +84,7 @@ These must be completed before claiming readiness.
 
 These must be completed or explicitly deferred with user approval.
 
-- [x] **SKILL.md name matches folder name** [EVIDENCE: SKILL.md:2 — `name: sk-improve-prompt` matches directory `.opencode/skill/sk-improve-prompt/`]
+- [x] **SKILL.md name matches folder name** [EVIDENCE: SKILL.md:2 — `name: sk-improve-prompt` matches directory `.opencode/skills/sk-improve-prompt/`]
   - Consistency check: skill name must match directory name
 
 - [x] **Description uses third-person voice** [EVIDENCE: SKILL.md:3 — "Prompt engineering specialist that transforms vague requests..." — no first-person pronouns (I/we/you), professional third-person voice throughout]
@@ -130,7 +130,7 @@ These must be completed or explicitly deferred with user approval.
 
 These enhance quality but are not blockers.
 
-- [ ] **README.md for skill folder** [E: .opencode/skill/sk-improve-prompt/README.md]
+- [ ] **README.md for skill folder** [E: .opencode/skills/sk-improve-prompt/README.md]
   - Overview of skill purpose
   - Quick start guide
   - Links to skill documentation
@@ -163,7 +163,7 @@ For each checked item, provide:
 
 Example:
 ```
-- [x] SKILL.md exists [E: grep -l "name:" .opencode/skill/sk-improve-prompt/SKILL.md returns file path]
+- [x] SKILL.md exists [E: grep -l "name:" .opencode/skills/sk-improve-prompt/SKILL.md returns file path]
 ```
 
 ---

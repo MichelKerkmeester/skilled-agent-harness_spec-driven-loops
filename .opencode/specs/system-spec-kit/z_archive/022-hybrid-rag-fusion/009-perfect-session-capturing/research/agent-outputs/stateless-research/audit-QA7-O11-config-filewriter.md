@@ -3,8 +3,8 @@
 **Auditor:** @review (Claude Opus 4.6)
 **Date:** 2026-03-09
 **Files:**
-- `.opencode/skill/system-spec-kit/scripts/core/config.ts` (311 LOC)
-- `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts` (129 LOC)
+- `.opencode/skills/system-spec-kit/scripts/core/config.ts` (311 LOC)
+- `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts` (129 LOC)
 
 **Spec:** 012 Perfect Session Capturing / 013 Improve Stateless Mode
 

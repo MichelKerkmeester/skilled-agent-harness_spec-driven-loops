@@ -466,7 +466,7 @@ Only normalizes `.opencode/specs/` ↔ `specs/` text variants.
 ## 17. RELATED RESOURCES
 
 - **Spec folder**: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/002-indexing-normalization/`
-- **Implementation**: `.opencode/skill/system-spec-kit/scripts/` and `mcp_server/`
+- **Implementation**: `.opencode/skills/system-spec-kit/scripts/` and `mcp_server/`
 - **Skills**: `system-spec-kit`, `sk-code-opencode`, `sk-doc`
 - **Test suites**: `mcp_server/tests/` (181 tests passing), `scripts/tests/` (37/38 passing)
 <!-- /ANCHOR:related -->

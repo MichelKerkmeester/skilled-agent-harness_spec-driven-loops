@@ -38,20 +38,20 @@ Last claim_adjudication_passed: true
 Audit code clarity, pattern consistency, and safe-follow-on-change cost. **Do NOT re-flag prior findings.** Maintainability findings should focus on patterns that future-you would have to fix even after the current P0/P1 are resolved.
 
 ### M1. SSOT import shape consistency
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts` — does every consumer import the SAME predicate? Or are there local re-implementations that drift over time?
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts` — does every consumer import the SAME predicate? Or are there local re-implementations that drift over time?
 - Grep for `shouldIndexForMemory`, `shouldIndexForCodeGraph`, `EXCLUDED_FOR_MEMORY`, `isConstitutionalPath` callers. Any callers using inline string-match instead of the helper?
 
 ### M2. Cleanup CLI testability under future schema changes
-- `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
+- `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
 - If a future migration adds a new column to `memory_index`, what does the cleanup script need to learn about? Is the schema-touch surface explicit, or does the script silently SELECT * and break on schema drift?
 - The apply path runs `database.transaction(...)`. Are there mock-ability seams for testing without a real DB? What does the test fixture look like?
 
 ### M3. Governance audit helper extensibility
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (`GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (`GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`)
 - If a future invariant adds a new action string (e.g., `tier_downgrade_z_archive_path`), is the addition local or does it require touching every emitter? Look for the registry pattern shape.
 
 ### M4. README operator coverage of stable action strings
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section
 - Does it document the action strings, the cleanup CLI flow, and the rollback story for an operator with no packet context? Or does it assume packet familiarity?
 
 ### M5. Defensive error-handling clarity

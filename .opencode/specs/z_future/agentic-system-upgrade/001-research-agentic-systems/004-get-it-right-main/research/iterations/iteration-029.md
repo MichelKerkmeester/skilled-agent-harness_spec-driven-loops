@@ -14,13 +14,13 @@ I compared the external repo's simple workflow posture with the internal gate do
 ## Evidence
 - [SOURCE: CLAUDE.md:34-40] The master behavior spec already mandates specific tools and routing choices before ordinary work begins.
 - [SOURCE: CLAUDE.md:107-141] It then defines three gates, hard blocks, carry-over behavior, and a consolidated-question protocol in a large operator-facing section.
-- [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-55] Tool routing is duplicated in constitutional memory as a decision tree.
-- [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:53-104] Gate enforcement is also preserved in a separate constitutional file that cross-references AGENTS/CLAUDE behavior.
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/README.md:27-43] The hook layer includes context surfacing helpers plus a separate Claude lifecycle hook system.
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:16-31] The Claude hook docs frame hooks as transport reliability rather than separate business logic.
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:111-170] `session-prime` already performs startup context injection, recovery-tool surfacing, and stale-graph warnings automatically.
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105] `session-stop` can also auto-save context from lightweight state when conditions are met.
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:15-27] Hook state persists real session metadata in temp storage so automation can bridge lifecycle events.
+- [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-55] Tool routing is duplicated in constitutional memory as a decision tree.
+- [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:53-104] Gate enforcement is also preserved in a separate constitutional file that cross-references AGENTS/CLAUDE behavior.
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/README.md:27-43] The hook layer includes context surfacing helpers plus a separate Claude lifecycle hook system.
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:16-31] The Claude hook docs frame hooks as transport reliability rather than separate business logic.
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:111-170] `session-prime` already performs startup context injection, recovery-tool surfacing, and stale-graph warnings automatically.
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105] `session-stop` can also auto-save context from lightweight state when conditions are met.
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:15-27] Hook state persists real session metadata in temp storage so automation can bridge lifecycle events.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:19-49] The external repo presents the workflow directly, without foregrounding a comparable amount of governance machinery.
 
 ## Analysis

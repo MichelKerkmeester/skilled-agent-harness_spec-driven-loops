@@ -84,11 +84,11 @@ Produce a `research/research.md` that answers, with evidence drawn directly from
 
 | Path | Why |
 |---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/**` | Core graph library |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/**` | MCP tool handlers |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/readiness-contract.ts` | Readiness contract |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Hook matrix (for code-graph-related hooks) |
-| `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Env knobs including `SPECKIT_PARSER` |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/**` | Core graph library |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/**` | MCP tool handlers |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/readiness-contract.ts` | Readiness contract |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Hook matrix (for code-graph-related hooks) |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Env knobs including `SPECKIT_PARSER` |
 | `026/003-code-graph-package/research/research.md` | Prior 003 research findings |
 | `026/007/006-integrity-parity-closure/applied/CF-002.md`, `CF-009.md`, `CF-010.md`, `CF-013.md`, `CF-014.md` | Already-applied code-graph fixes to build on |
 

@@ -1,8 +1,8 @@
 # Context Audit C03: `mcp_server`
 
 ## Scope
-- Primary: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server`
-- Alignment baseline: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-code--opencode`
+- Primary: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server`
+- Alignment baseline: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/workflows-code--opencode`
 - Focus areas: runtime bugs, command handlers, schema/tool registration, packaging/entrypoint risks, standards alignment
 - Excluded: issues solely caused by the current `node_modules` move + reference updates in progress
 

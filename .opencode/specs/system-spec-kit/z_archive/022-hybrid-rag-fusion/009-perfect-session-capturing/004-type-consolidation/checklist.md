@@ -73,7 +73,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-021 [P0] `npm run typecheck` passes, including `tsc --noEmit --composite false -p scripts/tsconfig.json`, with zero type errors (SC-001) [Evidence: Verified in this phase's documented implementation and validation outputs.]
 - [x] CHK-022 [P0] `npm run build` passes for `@spec-kit/scripts` after the canonical subset cleanup (SC-002) [Evidence: Verified in this phase's documented implementation and validation outputs.]
-- [x] CHK-023 [P1] `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passes with zero failures (`307` passed) [Evidence: Verified in this phase's documented implementation and validation outputs.]
+- [x] CHK-023 [P1] `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passes with zero failures (`307` passed) [Evidence: Verified in this phase's documented implementation and validation outputs.]
 - [x] CHK-024 [P1] `tests/spec-affinity.vitest.ts` passes (`3` passed), proving the new canonical subset path remains green for spec-affinity consumers [Evidence: Verified in this phase's documented implementation and validation outputs.]
 - [x] CHK-025 [P1] `validate.sh --strict` and `check-completion.sh --strict` both pass for the phase spec pack after documentation reconciliation [Evidence: March 17, 2026 reruns completed with both `validate.sh --strict` and `check-completion.sh --strict` passing for phase `004`.]
 <!-- /ANCHOR:testing -->

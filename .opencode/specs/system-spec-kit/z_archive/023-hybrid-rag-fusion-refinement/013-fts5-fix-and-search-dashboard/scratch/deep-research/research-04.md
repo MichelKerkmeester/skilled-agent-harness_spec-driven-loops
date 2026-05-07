@@ -8,7 +8,7 @@ Is the `JOIN active_memory_projection p ON p.active_memory_id = m.id` filtering 
 
 Using the SQLite database at:
 
-- `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
+- `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 
 I ran the requested counts.
 
@@ -87,7 +87,7 @@ CREATE INDEX IF NOT EXISTS idx_active_memory_projection_active
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1357-1403`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1357-1403`
 
 ## How the table gets populated
 
@@ -112,7 +112,7 @@ ON CONFLICT(logical_key) DO UPDATE SET
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:400-420`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:400-420`
 
 ### 2. Projection is updated inside lineage transition transaction
 
@@ -130,9 +130,9 @@ upsertActiveProjection(database, logicalKey, rootMemoryId, memoryId, validFrom);
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:666-803`
-- especially `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:678-679`
-- and `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:749-776`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:666-803`
+- especially `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:678-679`
+- and `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:749-776`
 
 ### 3. Append-only save path inserts vector row before lineage transition
 
@@ -151,8 +151,8 @@ Then `createAppendOnlyMemoryRecord()` records the lineage transition, which in t
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:512-522`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811-820`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:512-522`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811-820`
 
 ## Why plain `sqlite3` misleads here
 
@@ -173,8 +173,8 @@ If that load fails, the code warns and falls back to anchor-only/no-vector mode.
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:21`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-803`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:21`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-803`
 
 ## Relation to the reported search failure
 
@@ -243,12 +243,12 @@ The highest-value next check is inside the actual vector search execution path, 
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:400-420`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:666-803`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:512-522`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811-820`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1357-1403`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-803`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:535-579`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:87-123`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-470`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:400-420`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:666-803`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:512-522`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811-820`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1357-1403`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-803`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:535-579`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:87-123`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-470`

@@ -19,14 +19,14 @@ This iteration investigated two questions:
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-438`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-450`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-438`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-450`
 
 ### Live SQLite check against the current database file
 
 I ran the requested checks directly against:
 
-`/.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
+`/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 
 Results:
 
@@ -55,8 +55,8 @@ Because `isFtsAvailable()` catches all DB errors and returns `false`, it conflat
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-438`
-- SQLite check run on `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-438`
+- SQLite check run on `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
 
 ## Part B - lazy-init path and startup ordering
 
@@ -79,7 +79,7 @@ That branch initializes only the vector-index DB singleton. It does **not** call
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:790-795`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:790-795`
 
 ### `dbInitialized` is only set in two places
 
@@ -93,9 +93,9 @@ I found no reset back to `false`.
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1151-1152`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:792-795`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1356-1359`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1151-1152`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:792-795`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1356-1359`
 
 ### `main()` fully initializes search wiring before accepting stdio traffic
 
@@ -112,9 +112,9 @@ That ordering matters: the MCP server only starts serving stdio requests **after
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1356-1380`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1407-1452`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1646-1648`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1356-1380`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1407-1452`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1646-1648`
 
 ### `db-state` is the actual rebind mechanism
 
@@ -127,8 +127,8 @@ Sources:
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:128-168`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:190-210`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:128-168`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:190-210`
 
 The vector index side supports this by notifying listeners when the active DB connection changes:
 
@@ -138,9 +138,9 @@ The vector index side supports this by notifying listeners when the active DB co
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:394-419`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:437-441`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-839`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:394-419`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:437-441`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-839`
 
 ### Important nuance: the request handler already assumes `main()` has run
 
@@ -150,7 +150,7 @@ Before the lazy `if (!dbInitialized)` branch, the request handler first calls:
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:744-747`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:744-747`
 
 That matters because `checkDatabaseUpdated()` belongs to `db-state`, and if it needs to reinitialize while `db-state` has never been initialized with a `vectorIndex`, it throws:
 
@@ -158,7 +158,7 @@ That matters because `checkDatabaseUpdated()` belongs to `db-state`, and if it n
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:246-249`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:246-249`
 
 So the lazy `dbInitialized` branch is **not** a full "safe to receive requests before startup finishes" bootstrap path. Earlier code in the same request path already depends on startup work having completed.
 

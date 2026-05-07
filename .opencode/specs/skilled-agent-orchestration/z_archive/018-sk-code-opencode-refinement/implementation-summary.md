@@ -40,10 +40,10 @@ This closeout shipped the approved refinement with a constrained execution footp
 
 ### Scoped Implementation Outcomes
 
-- Updated `.opencode/skill/sk-code-opencode/SKILL.md` to keep policy and verification language aligned with the executed assertion bundle.
-- Updated `.opencode/skill/sk-code-review/SKILL.md` to preserve findings-first review behavior while exposing architecture-lens routing and reference mapping.
-- Updated `.opencode/skill/sk-code-review/references/code_quality_checklist.md` to ensure correctness/performance checks include KISS and DRY enforcement language used by the routing logic.
-- Updated `.opencode/skill/sk-code-review/references/solid_checklist.md` to provide explicit SRP/OCP/LSP/ISP/DIP prompts for architecture-level analysis consistency.
+- Updated `.opencode/skills/sk-code-opencode/SKILL.md` to keep policy and verification language aligned with the executed assertion bundle.
+- Updated `.opencode/skills/sk-code-review/SKILL.md` to preserve findings-first review behavior while exposing architecture-lens routing and reference mapping.
+- Updated `.opencode/skills/sk-code-review/references/code_quality_checklist.md` to ensure correctness/performance checks include KISS and DRY enforcement language used by the routing logic.
+- Updated `.opencode/skills/sk-code-review/references/solid_checklist.md` to provide explicit SRP/OCP/LSP/ISP/DIP prompts for architecture-level analysis consistency.
 
 The implementation stayed narrow on purpose so scope remained inside the four evidence-confirmed changed files, while harmonization tasks for already-compliant policy/checklist files were closed as verification-only outcomes (no net diff required; verified compliant via EVT-001/001b/001c).
 

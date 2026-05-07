@@ -13,7 +13,7 @@
 - **Dimension**: correctness
 - **Files**: All 5 runtimes (speckit.md/.toml)
 - **Finding**: Unqualified paths (`templates/level_N/`, `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/templates/compose.sh`) that don't resolve from repo root and aren't the canonical locations.
-- **Evidence**: Live assets at `.opencode/skill/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}` and `.opencode/skill/system-spec-kit/scripts/spec/...`. Repo-root `templates/` and `scripts/spec/` do not exist.
+- **Evidence**: Live assets at `.opencode/skills/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}` and `.opencode/skills/system-spec-kit/scripts/spec/...`. Repo-root `templates/` and `scripts/spec/` do not exist.
 - **Fix**: Replace with canonical repo-rooted paths or state paths are relative to skill root.
 
 ### WAVE-2A-002

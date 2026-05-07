@@ -6,24 +6,24 @@ Security. Focus: cli-copilot Gate 3 target-authority binding, prompt-file author
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/protocol.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/server.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/cli.py`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py`
 - `003-memory-context-truncation-contract/implementation-summary.md`
 - `004-cocoindex-overfetch-dedup/implementation-summary.md`
 - `006-causal-graph-window-metrics/implementation-summary.md`
@@ -113,7 +113,7 @@ No new P0, P1, or P2 findings. The P0 cli-copilot Gate 3 fix appears correctly i
 Targeted verification run:
 
 ```text
-cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/executor-config-copilot-target-authority.vitest.ts tests/deep-loop/cli-matrix.vitest.ts tests/empty-result-recovery.vitest.ts tests/intent-paraphrase-stability.vitest.ts tests/causal-edges.vitest.ts
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/executor-config-copilot-target-authority.vitest.ts tests/deep-loop/cli-matrix.vitest.ts tests/empty-result-recovery.vitest.ts tests/intent-paraphrase-stability.vitest.ts tests/causal-edges.vitest.ts
 Test Files 5 passed
 Tests 143 passed
 ```

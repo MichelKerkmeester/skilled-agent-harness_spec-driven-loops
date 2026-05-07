@@ -1,13 +1,13 @@
 {
   "topic": "Review: Feature catalog alignment with 022-hybrid-rag-fusion reality",
   "mode": "review",
-  "reviewTarget": "Feature catalog at .opencode/skill/system-spec-kit/feature_catalog/ vs current MCP server implementation and 022-hybrid-rag-fusion spec changes",
+  "reviewTarget": "Feature catalog at .opencode/skills/system-spec-kit/feature_catalog/ vs current MCP server implementation and 022-hybrid-rag-fusion spec changes",
   "reviewTargetType": "files",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "reviewScopeFiles": {
     "featureCatalog": {
-      "masterIndex": ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
-      "simpleIndex": ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md",
+      "masterIndex": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "simpleIndex": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog_in_simple_terms.md",
       "categories": [
         "01--retrieval", "02--mutation", "03--discovery", "04--maintenance",
         "05--lifecycle", "06--analysis", "07--evaluation",
@@ -27,8 +27,8 @@
       "totalChildren": 19
     },
     "implementation": {
-      "mcpServer": ".opencode/skill/system-spec-kit/shared/mcp_server/",
-      "scripts": ".opencode/skill/system-spec-kit/scripts/"
+      "mcpServer": ".opencode/skills/system-spec-kit/shared/mcp_server/",
+      "scripts": ".opencode/skills/system-spec-kit/scripts/"
     }
   },
   "severityThreshold": "P2",

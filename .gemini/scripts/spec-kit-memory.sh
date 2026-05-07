@@ -29,8 +29,8 @@ cd "${REPO_ROOT}"
 # 2. DATABASE CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-DEFAULT_DB_PATH="${REPO_ROOT}/.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
-HF_LOCAL_DB_PATH="${REPO_ROOT}/.opencode/skill/system-spec-kit/mcp_server/database/context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite"
+DEFAULT_DB_PATH="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
+HF_LOCAL_DB_PATH="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite"
 
 export EMBEDDINGS_PROVIDER="${EMBEDDINGS_PROVIDER:-auto}"
 RAW_MEMORY_DB_PATH="${MEMORY_DB_PATH:-${DEFAULT_DB_PATH}}"
@@ -60,4 +60,4 @@ fi
 # 4. LAUNCH
 # ───────────────────────────────────────────────────────────────
 
-exec node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
+exec node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js

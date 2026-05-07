@@ -18,11 +18,11 @@ Use this prompt to launch the research via the sk-deep-research workflow.
 - Focus on measurable quantities: precision@K, latency distributions, cache hit rates, threshold sensitivity.
 
 **Key Files (read these first):**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` - reranking models, thresholds, cache, circuit breaker
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/stage2-fusion.ts` - RRF algorithm, fusion weights, source combination
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` - embedding dim, FSRS decay, search weights config
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/stage1-candidate-gen.ts` - candidate generation
-- `.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json` - actual weight values
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` - reranking models, thresholds, cache, circuit breaker
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/stage2-fusion.ts` - RRF algorithm, fusion weights, source combination
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` - embedding dim, FSRS decay, search weights config
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/stage1-candidate-gen.ts` - candidate generation
+- `.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json` - actual weight values
 
 **Research Questions (5):**
 1. What search-weights.json values produce the best precision@5/10 for different query intents?

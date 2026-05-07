@@ -93,11 +93,11 @@ Search commands produce file paths and match counts. A classifier groups each pa
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/sk-deep-review/` | Old skill folder root | Inventory only in Phase 001; rename in Phase 002 | Filename and text grep evidence |
-| `.opencode/skill/sk-deep-research/` | Old skill folder root | Inventory only in Phase 001; rename in Phase 002 | Filename and text grep evidence |
-| `.opencode/skill/system-spec-kit/mcp_server/` | Advisor and memory implementation | Inventory constants and references; update later in Phase 003 | TS/JS string literal grep |
-| `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` | Runtime agent definitions | Inventory runtime references by area; update later in Phases 003-004 | Path-classified TSV rows |
-| `.opencode/command/` | Command definitions and assets | Inventory command references; update later in Phase 003 | Path-classified TSV rows |
+| `.opencode/skills/sk-deep-review/` | Old skill folder root | Inventory only in Phase 001; rename in Phase 002 | Filename and text grep evidence |
+| `.opencode/skills/sk-deep-research/` | Old skill folder root | Inventory only in Phase 001; rename in Phase 002 | Filename and text grep evidence |
+| `.opencode/skills/system-spec-kit/mcp_server/` | Advisor and memory implementation | Inventory constants and references; update later in Phase 003 | TS/JS string literal grep |
+| `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` | Runtime agent definitions | Inventory runtime references by area; update later in Phases 003-004 | Path-classified TSV rows |
+| `.opencode/commands/` | Command definitions and assets | Inventory command references; update later in Phase 003 | Path-classified TSV rows |
 | Active spec folders | Current planning and graph metadata | Inventory active references; exclude `z_archive/` | Graph metadata grep and spec path classification |
 | Root docs/configs | User-facing and runtime config references | Inventory only; update later in Phase 005 | Root glob grep and TSV rows |
 
@@ -148,7 +148,7 @@ Required inventories:
 | Exact text search | Old-name references in active source/doc/config surfaces | `grep` |
 | Filename audit | Files and folders embedding old names | `find` |
 | Edge probes | MCP constants, SQLite mentions, snapshots, graph metadata | `grep`, `find` |
-| Artifact validation | Spec-kit document contract | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Artifact validation | Spec-kit document contract | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 
 Primary text grep:
 
@@ -169,8 +169,8 @@ find . -name "*sk-deep-*" -not -path "./.git/*"
 Edge-case probes:
 
 ```bash
-grep -rln "['\"]sk-deep-" .opencode/skill/system-spec-kit/mcp_server
-grep -rln "sk-deep" .opencode/skill/system-spec-kit/mcp_server/database
+grep -rln "['\"]sk-deep-" .opencode/skills/system-spec-kit/mcp_server
+grep -rln "sk-deep" .opencode/skills/system-spec-kit/mcp_server/database
 find .opencode \( -name "*.snap" -o -name "*-snapshots" \)
 grep -rln "sk-deep" .opencode/specs --include='graph-metadata.json'
 ```

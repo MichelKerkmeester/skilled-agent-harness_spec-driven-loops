@@ -6,7 +6,7 @@ I audited governance surfaces where prose or string tokens decide runtime behavi
 ## Findings
 
 ### Finding R41-001
-- **File:** `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/command/spec_kit/plan.md`; `.opencode/skill/system-spec-kit/references/intake-contract.md`; `.opencode/skill/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
+- **File:** `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/commands/spec_kit/plan.md`; `.opencode/skills/system-spec-kit/references/intake-contract.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
 - **Lines:** `spec_kit_plan_auto.yaml:338-355,371-372`; `plan.md:93-99`; `intake-contract.md:66-77,217-222`; `transcript-planner-export.vitest.ts:146-217`
 - **Severity:** P2
 - **Description:** The autonomous plan workflow uses a private `folder_state` vocabulary (`... | populated`) that diverges from the canonical intake contract's healthy-state token (`populated-folder`). Because the branch conditions are prose strings rather than parsed enums, the "skip intake" path depends on the interpreter reconciling two different state languages.
@@ -14,7 +14,7 @@ I audited governance surfaces where prose or string tokens decide runtime behavi
 - **Downstream Impact:** Already-healthy packets can be reclassified differently across runtimes or prompt revisions, causing avoidable intake prompts, inconsistent `folderState` event payloads, and drift between what `/spec_kit:plan` tells operators and what the autonomous YAML actually instructs.
 
 ### Finding R41-002
-- **File:** `AGENTS.md`; `.opencode/command/spec_kit/plan.md`; `.opencode/command/spec_kit/complete.md`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-planner-first.vitest.ts`
+- **File:** `AGENTS.md`; `.opencode/commands/spec_kit/plan.md`; `.opencode/commands/spec_kit/complete.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-planner-first.vitest.ts`
 - **Lines:** `AGENTS.md:182-186`; `plan.md:86-89`; `complete.md:74-77`; `memory-save-planner-first.vitest.ts:12-214`
 - **Severity:** P2
 - **Description:** Gate 3 spec-folder detection is still governed by an English trigger-word list in `AGENTS.md`, and both `/spec_kit:plan` and `/spec_kit:complete` explicitly outsource the decision to that document instead of a shared parser or schema. The rule that decides whether setup must halt for a spec-folder question is therefore a prose contract, not executable governance.
@@ -22,7 +22,7 @@ I audited governance surfaces where prose or string tokens decide runtime behavi
 - **Downstream Impact:** Different runtimes, prompt packs, or instruction edits can decide differently on the same request about whether Gate 3 must interrupt execution. That undermines the repository's claim that spec-folder gating is mandatory and consistent across agents.
 
 ### Finding R41-003
-- **File:** `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skill/skill-advisor/scripts/skill_advisor.py`; `.opencode/skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md`; `README.md`; `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-schema.vitest.ts`
+- **File:** `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skills/skill-advisor/scripts/skill_advisor.py`; `.opencode/skills/skill-advisor/manual_testing_playbook/manual_testing_playbook.md`; `README.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-schema.vitest.ts`
 - **Lines:** `skill_graph_compiler.py:272-353,630-663`; `skill_advisor.py:203-239,255-265`; `manual_testing_playbook.md:215-221`; `README.md:614-619`; `skill-graph-schema.vitest.ts:1-12,40-156`
 - **Severity:** P1
 - **Description:** Skill-graph topology checks are intentionally advisory even though the resulting graph is later loaded as routing authority. Symmetry, weight-band, weight-parity, and orphan-skill problems print warnings, `--validate-only` still returns success, and the advisor then consumes the compiled graph for relationship-aware boosts.
@@ -30,7 +30,7 @@ I audited governance surfaces where prose or string tokens decide runtime behavi
 - **Downstream Impact:** Graph metadata can violate the routing model's own recommended invariants and still produce a success-shaped validation result, letting asymmetric or weakly connected graph data silently bias skill recommendations and operator trust in `--validate-only`.
 
 ### Finding R41-004
-- **File:** `.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
+- **File:** `.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
 - **Lines:** `manual-playbook-runner.ts:224-246,251-317,438-445`
 - **Severity:** P1
 - **Description:** The manual playbook runner converts repository markdown into executable JavaScript. It recursively ingests every scenario `.md` file under `manual_testing_playbook/`, extracts command/object-literal fragments from prose, substitutes placeholders, and executes the result with `Function(...)`.

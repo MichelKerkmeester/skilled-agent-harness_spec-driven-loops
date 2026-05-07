@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-b286-7452-82d0-e6d87ee1052d
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts (253 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts (253 lines).
 
 This file extracts structured conversation data from messages.
 
@@ -56,7 +56,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 Reviewing that file line-by-line now and mapping each of your six audit dimensions to concrete code paths, then I’ll return a findings-only report in your exact format.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Conversation Extractor
      3	// ---------------------------------------------------------------
@@ -80,9 +80,9 @@ exec
 codex
 I’ve read the target file fully; next I’m tracing its helper functions (`detectToolCall`, phase classifier, summary generator, config thresholds) so each finding is evidence-based rather than speculative.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Message Utils
      3	// ---------------------------------------------------------------
@@ -125,24 +125,24 @@ exec
     19	  tool?: string;
     20	  [key: string]: unknown;
  exited 1 in 51ms:
-nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core.ts: No such file or directory
+nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core.ts: No such file or directory
 codex
 I found the helper modules; one config import path differs, so I’m locating the actual `core` config file now to verify thresholds like `MESSAGE_TIME_WINDOW`.
 exec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts' | rg '/core(\\.|/|"'$)'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts' | rg '/core(\\.|/|"'$)'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/index.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/index.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Index
      3	// ---------------------------------------------------------------
@@ -187,7 +187,7 @@ exec
 codex
 I’m now checking the conversation data types to confirm whether “key insights” are explicitly modeled or only inferred from summary text.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Session Types
      3	// ---------------------------------------------------------------
@@ -210,7 +210,7 @@ exec
     20	  PROS: Array<{ PRO: string }>;
 codex
 ### FINDING-01: User Prompts Are Not Sorted Before Pairing
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `userPrompts` are processed in input order (`validPrompts = userPrompts`) without timestamp sort.
@@ -220,7 +220,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Observation Matching Uses Absolute Time Window and Greedy Consumption
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L90), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L97), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L108)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L90), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L97), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L108)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Observations are matched by `Math.abs(obsTime - userTime) < window` and then marked consumed globally.
@@ -230,7 +230,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Missing Prompt Timestamps Default to “Now” (Non-Deterministic Output)
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L80)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L80)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If `userPrompt.timestamp` is absent, current runtime time is injected.
@@ -240,7 +240,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Equal-Timestamp Reordering Is One-Pass and Can Still Leave Assistant Before User
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L175), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L182)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L175), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L182)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Single adjacent-swap pass only fixes some equal-time inversions.
@@ -250,7 +250,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Phase Durations Depend on Insertion Order, Not Min/Max Time
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L192), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L194)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L192), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L194)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Duration uses `timestamps[0]` and `timestamps[last]` without sorting; can be wrong/negative if prompt order is unsorted.
@@ -260,7 +260,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Phase Classification Ignores Assistant Narrative Content
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L95)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L95)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Phase classification uses only tool calls + user prompt text.
@@ -270,7 +270,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Phase Rules Have False Positives and Priority Bias
-- **File:** [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L99), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L103), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L107)
+- **File:** [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L99), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L103), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L107)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Simple substring heuristics (`includes('plan')`) and fixed priority (`Research` before `Implementation`, etc.) can mislabel phases.
@@ -280,7 +280,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Tool Detection Coverage Is Narrow and Misses Modern Tool Syntax
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L117), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L38)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L117), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L38)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Detector recognizes a fixed legacy list (`Read/Edit/Write/Bash/...`) and a few phrasings only.
@@ -290,7 +290,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Result Extraction Is Single-Line, So Preview/“Has More” Are Often Wrong
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L128), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L135)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L128), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L135)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `Result:` regex captures only up to newline; multiline tool output is truncated before truncation logic runs.
@@ -300,7 +300,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Confidence Filtering Is Effectively Disabled
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L125), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L30), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L53)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L125), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L30), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L53)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Filter drops only `low`, but detector currently returns only `high`/`medium`; all detections pass.
@@ -310,7 +310,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: No Real “Key Insight” Extraction, Only Generic Exchange Compression
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L140), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L160), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L174)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L140), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L160), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L174)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** “Summary” is built from raw user text + first two assistant sentences (or first 300 chars), not insight scoring.
@@ -326,7 +326,7 @@ codex
 tokens used
 34,742
 ### FINDING-01: User Prompts Are Not Sorted Before Pairing
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L75), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `userPrompts` are processed in input order (`validPrompts = userPrompts`) without timestamp sort.
@@ -336,7 +336,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Observation Matching Uses Absolute Time Window and Greedy Consumption
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L90), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L97), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L108)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L90), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L97), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L108)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Observations are matched by `Math.abs(obsTime - userTime) < window` and then marked consumed globally.
@@ -346,7 +346,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Missing Prompt Timestamps Default to “Now” (Non-Deterministic Output)
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L80)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L80)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If `userPrompt.timestamp` is absent, current runtime time is injected.
@@ -356,7 +356,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Equal-Timestamp Reordering Is One-Pass and Can Still Leave Assistant Before User
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L175), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L182)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L175), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L182)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Single adjacent-swap pass only fixes some equal-time inversions.
@@ -366,7 +366,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Phase Durations Depend on Insertion Order, Not Min/Max Time
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L192), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L194)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L192), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L194)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Duration uses `timestamps[0]` and `timestamps[last]` without sorting; can be wrong/negative if prompt order is unsorted.
@@ -376,7 +376,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Phase Classification Ignores Assistant Narrative Content
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L95)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L156), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L95)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Phase classification uses only tool calls + user prompt text.
@@ -386,7 +386,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Phase Rules Have False Positives and Priority Bias
-- **File:** [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L99), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L103), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L107)
+- **File:** [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L99), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L103), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L107)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Simple substring heuristics (`includes('plan')`) and fixed priority (`Research` before `Implementation`, etc.) can mislabel phases.
@@ -396,7 +396,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Tool Detection Coverage Is Narrow and Misses Modern Tool Syntax
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L117), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L38)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L117), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L38)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Detector recognizes a fixed legacy list (`Read/Edit/Write/Bash/...`) and a few phrasings only.
@@ -406,7 +406,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Result Extraction Is Single-Line, So Preview/“Has More” Are Often Wrong
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L128), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L135)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L128), [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L135)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `Result:` regex captures only up to newline; multiline tool output is truncated before truncation logic runs.
@@ -416,7 +416,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Confidence Filtering Is Effectively Disabled
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L125), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L30), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts#L53)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L125), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L30), [tool-detection.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts#L53)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Filter drops only `low`, but detector currently returns only `high`/`medium`; all detections pass.
@@ -426,7 +426,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: No Real “Key Insight” Extraction, Only Generic Exchange Compression
-- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L140), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L160), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L174)
+- **File:** [conversation-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L140), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L160), [message-utils.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L174)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** “Summary” is built from raw user text + first two assistant sentences (or first 300 chars), not insight scoring.

@@ -19,13 +19,13 @@ _memory:
     next_safe_action: "Apply six surgical test edits, run each in isolation, then validate strict + commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-009-test-reliability"
@@ -38,7 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -158,7 +158,7 @@ Land six surgical test-only edits so each finding is fixed with the minimum code
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §C5 (test reliability findings)
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies
 <!-- /ANCHOR:risks -->
 

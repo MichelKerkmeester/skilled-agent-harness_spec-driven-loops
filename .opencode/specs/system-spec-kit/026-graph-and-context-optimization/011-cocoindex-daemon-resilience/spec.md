@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Dispatch Phase 2 implementation"
     blockers: []
     key_files:
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py"
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-07-026-011-spec-update-post-research"
@@ -123,10 +123,10 @@ Success means an end user can run repeated MCP-driven sessions for hours without
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py` | Modify | Add `_try_acquire_pid_lock()` helper. Modify `start_daemon()` to acquire lock before spawn. Update `ensure_daemon()` version-mismatch path to hold lock across stop+restart. |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` | Modify | Wrap all 6 `send_bytes` sites in `_safe_send_bytes()` helper. Add socket-unlink guard at `:613-615`. Move `pid_path.write_text` inside lock-held region. Replace `FileHandler` with `RotatingFileHandler`. Pass `backlog=128` to `Listener`. |
-| `.opencode/skill/mcp-coco-index/mcp_server/tests/test_daemon.py` | CREATE | Add unit tests for `_try_acquire_pid_lock`, `_safe_send_bytes`, socket-unlink guard, lock-held PID-write. File does not currently exist. |
-| `.opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py` | CREATE | Add E2E concurrency stress test (8 process spawn assert count=1), backlog stress (16 simultaneous connects), version-mismatch race, log-rotation. File does not currently exist. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py` | Modify | Add `_try_acquire_pid_lock()` helper. Modify `start_daemon()` to acquire lock before spawn. Update `ensure_daemon()` version-mismatch path to hold lock across stop+restart. |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` | Modify | Wrap all 6 `send_bytes` sites in `_safe_send_bytes()` helper. Add socket-unlink guard at `:613-615`. Move `pid_path.write_text` inside lock-held region. Replace `FileHandler` with `RotatingFileHandler`. Pass `backlog=128` to `Listener`. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py` | CREATE | Add unit tests for `_try_acquire_pid_lock`, `_safe_send_bytes`, socket-unlink guard, lock-held PID-write. File does not currently exist. |
+| `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py` | CREATE | Add E2E concurrency stress test (8 process spawn assert count=1), backlog stress (16 simultaneous connects), version-mismatch race, log-rotation. File does not currently exist. |
 <!-- /ANCHOR:scope -->
 
 ---

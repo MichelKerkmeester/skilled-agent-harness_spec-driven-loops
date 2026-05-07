@@ -7,9 +7,9 @@ Completion criteria and release-readiness metrics.
 - Which metrics should block release?
 
 ## Evidence
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-review/references/quick_reference.md`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-review/references/quick_reference.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
 
 ## Analysis
 Release should be blocked unless lifecycle branches are executable, naming contract is singular (with compatibility reads), parity checks pass, and hook/non-hook matrix is green.

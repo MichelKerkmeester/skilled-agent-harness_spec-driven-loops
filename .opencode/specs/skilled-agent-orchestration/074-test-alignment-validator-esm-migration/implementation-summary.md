@@ -12,7 +12,7 @@ _memory:
     recent_action: "ESM migration complete; ready to commit + push"
     next_safe_action: "(packet final after commit + push)"
     blockers: []
-    key_files: [.opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.mjs]
+    key_files: [.opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "074-complete"
@@ -25,7 +25,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -54,8 +54,8 @@ The migration replaced the CommonJS `require()` pattern with `import` statements
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.mjs` | Created | ESM-migrated test (~245 lines) |
-| `.opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.js` | Deleted | Legacy CommonJS file |
+| `.opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs` | Created | ESM-migrated test (~245 lines) |
+| `.opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.js` | Deleted | Legacy CommonJS file |
 | `074/{spec,plan,tasks,implementation-summary}.md` | Created | Packet docs |
 <!-- /ANCHOR:what-built -->
 

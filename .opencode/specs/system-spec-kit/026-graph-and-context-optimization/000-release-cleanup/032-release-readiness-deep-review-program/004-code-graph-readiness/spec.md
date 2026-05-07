@@ -75,8 +75,8 @@ Produce a severity-classified `review-report.md` for the code graph readiness co
 
 ### In Scope
 
-- Audit `.opencode/skill/system-spec-kit/mcp_server/code_graph/` readiness code, handlers, feature catalog, and manual testing playbook.
-- Audit `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/` post-038 stress coverage.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/code_graph/` readiness code, handlers, feature catalog, and manual testing playbook.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/` post-038 stress coverage.
 - Cross-check prior packet evidence from 013, 032, 035, and 039 where relevant.
 - Write packet-local docs and the final `review-report.md`.
 

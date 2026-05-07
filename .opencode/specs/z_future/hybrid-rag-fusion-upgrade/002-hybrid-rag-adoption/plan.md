@@ -13,11 +13,11 @@ contextType: "planning"
 # Implementation Plan: 002-hybrid-rag-adoption
 
 ## 1. Affected Files
-- Authority boundary and tool contracts: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`.
-- Save authority and wrappers: `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`.
-- Compaction transport and startup guidance: `.opencode/plugins/spec-kit-compact-code-graph.js`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`.
-- Review and diagnostics surfaces: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`.
-- Documentation and rollout surfaces: workflow docs under `.opencode/skill/system-spec-kit/references/`, packet-local docs under this folder, and the existing strict validator at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- Authority boundary and tool contracts: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`.
+- Save authority and wrappers: `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`.
+- Compaction transport and startup guidance: `.opencode/plugins/spec-kit-compact-code-graph.js`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`.
+- Review and diagnostics surfaces: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`.
+- Documentation and rollout surfaces: workflow docs under `.opencode/skills/system-spec-kit/references/`, packet-local docs under this folder, and the existing strict validator at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 
 ## 2. Implementation Order
 1. `001-architecture-boundary-freeze`

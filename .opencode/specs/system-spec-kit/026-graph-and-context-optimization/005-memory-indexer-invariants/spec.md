@@ -87,7 +87,7 @@ This packet lands two invariant tracks:
 Two distinct invariant failures showed up simultaneously in the memory indexer:
 
 1. **Track A — Cross-file lineage and scan-recheck regressions.** The read-only investigation at `/tmp/codex-lineage-investigation-output.txt` found that the prediction-error gate could treat a sibling spec doc (e.g. `checklist.md`) as the best `UPDATE` or `REINFORCE` candidate for `tasks.md`, then attempt to record a lineage transition across different canonical file paths — surfacing as `E_LINEAGE`. A second failure showed the save-time transactional reconsolidation recheck rerunning candidate selection for scan-originated saves after planner-time decisions had already been made, aborting with `candidate_changed`. Baseline counts across a 026/009 scan were `E_LINEAGE=68` and `candidate_changed=58`.
-2. **Track B — Index-scope and constitutional-tier pollution.** Live database inspection showed `5700` rows at `importance_tier='constitutional'`, but only `2` of those rows came from real `/constitutional/` files. The other `5698` constitutional rows were `z_future` pollution — `5947` indexed rows under `system-spec-kit/z_future/hybrid-rag-fusion-upgrade/*`. The same scan stack also lacked a permanent `external/` exclusion (a dormant but load-bearing boundary for both memory indexing and code-graph scanning), and the pre-cleanup run incorrectly admitted `.opencode/skill/system-spec-kit/constitutional/README.md` even though it is a human-oriented overview doc rather than a constitutional rule surface.
+2. **Track B — Index-scope and constitutional-tier pollution.** Live database inspection showed `5700` rows at `importance_tier='constitutional'`, but only `2` of those rows came from real `/constitutional/` files. The other `5698` constitutional rows were `z_future` pollution — `5947` indexed rows under `system-spec-kit/z_future/hybrid-rag-fusion-upgrade/*`. The same scan stack also lacked a permanent `external/` exclusion (a dormant but load-bearing boundary for both memory indexing and code-graph scanning), and the pre-cleanup run incorrectly admitted `.opencode/skills/system-spec-kit/constitutional/README.md` even though it is a human-oriented overview doc rather than a constitutional rule surface.
 
 ### Purpose
 
@@ -162,7 +162,7 @@ Enforce four permanent invariants in code, clean the existing pollution transact
 | `mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts` | B | Add | Walker DoS caps |
 | `mcp_server/tests/memory-governance.vitest.ts` | B | Modify | Shared audit action coverage |
 | `scripts/memory/cleanup-index-scope-violations.ts` | B | Create | Dry-run / apply / verify cleanup CLI with transactional plan rebuild |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | B | Modify | Document the invariants, helper location, and stable audit action strings |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | B | Modify | Document the invariants, helper location, and stable audit action strings |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -199,7 +199,7 @@ Enforce four permanent invariants in code, clean the existing pollution transact
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-015 | Track A live packet acceptance is recorded honestly. | In a runtime with embedding access, `memory_index_scan` on `026/009-hook-parity` completes with zero `E_LINEAGE` and zero `candidate_changed`, and the exact counts are written to `implementation-summary.md`. |
-| REQ-016 | Operator README documents the invariants and stable audit action strings. | `.opencode/skill/system-spec-kit/mcp_server/README.md` describes the three index-scope invariants, the helper location, and the `GOVERNANCE_AUDIT_ACTIONS` set. |
+| REQ-016 | Operator README documents the invariants and stable audit action strings. | `.opencode/skills/system-spec-kit/mcp_server/README.md` describes the three index-scope invariants, the helper location, and the `GOVERNANCE_AUDIT_ACTIONS` set. |
 | REQ-017 | Storage-layer memory mutation surfaces reject or downgrade constitutional README rows with the same rule-file-only predicate used by parser and discovery. | A path under constitutional `README.md` cannot persist as `importance_tier='constitutional'` through checkpoint restore, SQL update, post-insert metadata, cleanup, or save-time validation. |
 <!-- /ANCHOR:requirements -->
 
@@ -211,7 +211,7 @@ Enforce four permanent invariants in code, clean the existing pollution transact
 - **Given** a spec packet file under a `z_future/` segment, **when** memory discovery, graph-metadata discovery, or direct save runs, **then** the file is rejected before indexing.
 - **Given** any file under an `external/` segment, **when** memory discovery or code-graph scanning runs, **then** the file is skipped in both recursive and `specificFiles` paths.
 - **Given** a non-constitutional spec doc declaring `importanceTier: constitutional`, **when** `memory_save`, `memory_update`, post-insert metadata, or `checkpoint_restore` persists it, **then** the stored tier becomes `important` and a `governance_audit` row with `action='tier_downgrade_non_constitutional_path'` is written without failing the mutation.
-- **Given** a real file under `.opencode/skill/system-spec-kit/constitutional/`, **when** it is saved with `importanceTier: constitutional`, **then** the stored tier remains `constitutional`.
+- **Given** a real file under `.opencode/skills/system-spec-kit/constitutional/`, **when** it is saved with `importanceTier: constitutional`, **then** the stored tier remains `constitutional`.
 - **Given** a symlink pointing into `z_future/`, **when** memory-save or code-graph `specificFiles` runs, **then** `fs.realpathSync()` canonicalization routes the check to the real path and the file is rejected.
 - **Given** the cleanup CLI runs with `--apply` followed by `--verify`, **when** the transaction completes, **then** the DB reports zero `z_future` rows, zero `external` rows, and only the two legitimate `/constitutional/` rule files at constitutional tier.
 - **Given** the packet is validated, **when** `validate.sh --strict` runs, **then** the packet passes without structural errors.

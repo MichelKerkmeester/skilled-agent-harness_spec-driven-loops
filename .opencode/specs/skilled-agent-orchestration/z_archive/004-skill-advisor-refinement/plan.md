@@ -77,7 +77,7 @@ CLI input -> normalize intent -> load cached skills/metadata -> score real skill
 
 ### Phase 1: Baseline and design lock
 - [x] Capture baseline routing quality and latency metrics on frozen dataset [E: benchmark harness runs=7].
-- [x] Define fixture schema for regression and benchmark harness [E: `.opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl`].
+- [x] Define fixture schema for regression and benchmark harness [E: `.opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl`].
 - [x] Confirm CLI contract for default mode vs explicit `--confidence-only` [E: regression behavior checks + README flags].
 
 ### Phase 2: Core refinements
@@ -90,7 +90,7 @@ CLI input -> normalize intent -> load cached skills/metadata -> score real skill
 ### Phase 3: Verification and hardening
 - [x] Add permanent regression harness and protected cases [E: `skill_advisor_regression.py`, total_cases=34].
 - [x] Add benchmark harness and compare before/after metrics [E: `skill_advisor_bench.py`, subprocess p95=46.9855 ms].
-- [x] Update script documentation and usage examples [E: `.opencode/skill/scripts/README.md` and `.opencode/skill/scripts/SET-UP_GUIDE.md` updates].
+- [x] Update script documentation and usage examples [E: `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md` updates].
 <!-- /ANCHOR:phases -->
 
 ---
@@ -100,9 +100,9 @@ CLI input -> normalize intent -> load cached skills/metadata -> score real skill
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Functional regression | Expected top skills, confidence/uncertainty behavior | `python3 .opencode/skill/scripts/skill_advisor_regression.py --dataset .opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl --mode both` |
-| Performance benchmark | One-shot vs warm cache vs structural mode | `python3 .opencode/skill/scripts/skill_advisor_bench.py --dataset .opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl --runs 7` |
-| CLI integration | Flag combinations and output schema | `python3 .opencode/skill/scripts/skill_advisor.py --health` and scripted invocation cases |
+| Functional regression | Expected top skills, confidence/uncertainty behavior | `python3 .opencode/skills/scripts/skill_advisor_regression.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --mode both` |
+| Performance benchmark | One-shot vs warm cache vs structural mode | `python3 .opencode/skills/scripts/skill_advisor_bench.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --runs 7` |
+| CLI integration | Flag combinations and output schema | `python3 .opencode/skills/scripts/skill_advisor.py --health` and scripted invocation cases |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -269,19 +269,19 @@ Phase 1.5 (Fixture Lock) ──┘
 
 ### Pre-Task Checklist
 - Confirm regression fixture path resolves and contains the protected case IDs (`U001-U004`, `C001-C010`) before changing scoring logic.
-- Confirm benchmark output location `.opencode/skill/scripts/out/` is writable so latency evidence can be regenerated after edits.
+- Confirm benchmark output location `.opencode/skills/scripts/out/` is writable so latency evidence can be regenerated after edits.
 - Confirm CLI contract remains backward compatible for one-shot mode (`python3 .../skill_advisor.py "prompt"`) before enabling structural mode paths.
 
 ### Execution Rules
 - Keep dual-threshold filtering as the default path; only bypass uncertainty filtering when `--confidence-only` is explicitly supplied.
 - Keep command bridges and real skills in separate candidate pools and apply slash-intent preference only when the input explicitly signals command intent.
-- Keep runtime changes scoped to `.opencode/skill/scripts/` advisor files and preserve existing JSON response shape.
+- Keep runtime changes scoped to `.opencode/skills/scripts/` advisor files and preserve existing JSON response shape.
 - Re-run both regression and benchmark harnesses after any scoring, cache, or parser modification.
 
 ### Status Reporting Format
 - Report each implementation checkpoint as: `STATUS | component | result | evidence`.
-- Example for this spec: `DONE | calibration layer | top1_accuracy=1.0 | .opencode/skill/scripts/out/regression-report.json`.
-- Example for performance gate: `DONE | structural mode | throughput_multiplier=25.8538x | .opencode/skill/scripts/out/benchmark-report.json`.
+- Example for this spec: `DONE | calibration layer | top1_accuracy=1.0 | .opencode/skills/scripts/out/regression-report.json`.
+- Example for performance gate: `DONE | structural mode | throughput_multiplier=25.8538x | .opencode/skills/scripts/out/benchmark-report.json`.
 
 ### Blocked Task Protocol
 - If a P0/P1 gate fails, mark the related task as blocked in `tasks.md` and include the failing gate ID and command output path.

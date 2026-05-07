@@ -67,10 +67,10 @@ Turn the research synthesis for 004 fresh context validation first into one foll
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

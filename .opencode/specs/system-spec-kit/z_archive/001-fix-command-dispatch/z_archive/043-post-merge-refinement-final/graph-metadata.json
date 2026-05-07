@@ -43,9 +43,9 @@
     "key_files": [
       "scripts/rules/check-files.sh",
       "scripts/rules/check-evidence.sh",
-      ".opencode/command/spec_kit/complete.md",
+      ".opencode/commands/spec_kit/complete.md",
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -68,7 +68,7 @@
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
@@ -80,7 +80,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

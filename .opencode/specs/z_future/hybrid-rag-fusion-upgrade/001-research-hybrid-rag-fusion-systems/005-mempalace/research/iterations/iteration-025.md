@@ -1,5 +1,5 @@
 ### Finding 6: Public already has the stronger decay stack; the missing temporal piece is fact invalidation
-- **Source**: [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts), [tier-classifier.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts), [vector-index-queries.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [access-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- **Source**: [fsrs-scheduler.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts), [tier-classifier.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts), [vector-index-queries.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts), [stage2-fusion.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [access-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
 - **Evidence type**: source-confirmed
 - **What it does**: Public already applies FSRS power-law decay, no-decay rules for constitutional/critical and planning contexts, HOT/WARM/COLD/DORMANT/ARCHIVED state classification, 90-day archival decisions, recency/access weighting, optional strengthen-on-access, and save-time `retentionPolicy` / `deleteAfter` metadata.
 - **Why it matters**: We should not copy MemPalace for decay. Public is already ahead on relevance aging. The real gap is explicit temporal truth: “expired fact” and “as-of query” behavior.
@@ -18,7 +18,7 @@
 --- Iteration 24 ---
 ## Findings
 ### Finding 1: Hook-driven preservation can create blocking saves without proof that good data was actually preserved
-- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
+- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
 - **What it does**: MemPalace blocks every 15 user turns and always blocks before compaction, then tells the AI to save; optional auto-ingest is backgrounded in the stop hook and synchronous only if `MEMPAL_DIR` is configured. The write path itself is weakly protected: `mempalace_add_drawer` uses deterministic IDs, but it does not actually call the semantic duplicate checker before writing.
 - **Why it matters for us**: If we copy this pattern into Public, the biggest failure mode is a false sense of safety: the runtime is interrupted, but preservation quality still depends on the model following instructions correctly. That can yield duplicated memories, noisy categorization, partial saves, or blocked UX with no durable improvement. Public’s current compaction transport and JSON-primary `generate-context.js` path are much more deterministic.
 - **Recommendation**: prototype later
@@ -48,14 +48,14 @@ For EACH finding:
 /bin/zsh -lc 'rg -n "''^### Finding|''^## Findings|Recommendation|Impact|adopt now|prototype later|reject|NEW FEATURE" .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/research.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 ### Finding 3: MemPalace’s best startup idea is not L1 itself, but `status` as a behavioral bootstrap
-- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L155); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L169); [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L684); [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
+- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L155); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L169); [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L684); [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194)
 - **What it does**: `mempalace_status` returns both data and operating rules: search before answering, write diary after sessions, invalidate changed facts. Public already emits hints, recommended calls, and trust/provenance, but not as one compact “memory operating contract.”
 - **Why it matters**: After compaction, agents need to remember how to use memory, not just that memory exists. This is the cleanest MemPalace lesson for startup continuity.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 4: MemPalace handles context pressure with blunt truncation; Public already has the stronger budget discipline
-- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py#L83); [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py#L170); [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py#L21); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L1129)
+- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py#L83); [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py#L170); [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py#L21); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L1129)
 - **What it does**: MemPalace caps wake-up at 15 drawers and 3200 chars, then falls back to “more in L3 search.” Public’s `memory_search` already filters duplicates and reports token savings, which is a better fit for tight context windows than a static L1 truncation wall.
 - **Why it matters**: Compaction survival is partly a token-budget problem. Dedup-aware retrieval preserves more useful state than a fixed-size replay of top snippets.
 - **Recommendation**: reject
@@ -127,10 +127,10 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
 9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
 10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
 11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
 13. Before the main research pass, validate the phase folder with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
     ```
 14. After validation passes, run `spec_kit:deep-research` with this exact topic:
     ```text
@@ -138,7 +138,7 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
     ```
 15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
     ```
 
 ## 6. Research Questions
@@ -337,7 +337,7 @@ exec
 184:scope: adopt-now runtime lane + docs closeout for `005-code-graph-upgrades` with detector provenance, blast-radius constraints, and explicit verification gates
 195:- 005-code-graph-upgrades, shared-payload.ts DetectorProvenance, handlers/code-graph/query.ts unionMode multi maxDepth hotFileBreadcrumb, session_resume session_bootstrap additive edge enrichment, graph-upgrades-regression-floor.vitest.ts.test.ts, validate.sh --strict
 201:- packet closeout reporting should enumerate the same gate sequence explicitly (typecheck, server Vitest batch, scripts Vitest batch, strict validator) and keep out-of-scope packets untouched [Task 1]
-215:scope: bounded style-verifier sweep over the exact HEAD~10 TypeScript diff under `.opencode/skill/system-spec-kit/` with hard stop on failing required verification gates
+215:scope: bounded style-verifier sweep over the exact HEAD~10 TypeScript diff under `.opencode/skills/system-spec-kit/` with hard stop on failing required verification gates
 216:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public; reuse_rule=reuse for user-requested sk-code-opencode conformance sweeps where scope and stop rules are explicitly fixed by git diff output
 218:## Task 1: Verify/fix sk-code-opencode drift on 87 in-scope TS files, outcome partial (halted after required suite failures)
 230:- when user scope is “every TypeScript file changed in HEAD~10..HEAD,” regenerate the exact scope with `git diff --name-only HEAD~10 HEAD | grep -E '\\.(ts|tsx|mts)$' | sort -u`; if file count/location drifts (expected 87 under system-spec-kit roots), halt before edits [Task 1]
@@ -393,7 +393,7 @@ exec
 857:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents; reuse_rule=reuse for TOML agent conversion in this checkout when user asks to skip spec-folder flow
 869:## Task 2: Add missing top-level `description` metadata across `.codex/agents/*.toml`, outcome success
 873:- rollout_summaries/2026-04-04T14-34-19-2403-add_agent_descriptions.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/04/rollout-2026-04-04T16-34-19-019d58ea-8c30-7bf2-9074-2b8983426353.jsonl, updated_at=2026-04-04T14:39:35+00:00, thread_id=019d58ea-8c30-7bf2-9074-2b8983426353)
-877:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agent/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
+877:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agents/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
 879:## Task 3: Apply direct `agent-improver` metadata hotfix after explicit skip-spec-folder choice, outcome success
 883:- rollout_summaries/2026-04-08T06-48-52-EwmT-fix_agent_improver_description.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/08/rollout-2026-04-08T08-48-52-019d6bd9-db76-7030-8fba-aef5e9172d4b.jsonl, updated_at=2026-04-08T06:51:38+00:00, thread_id=019d6bd9-db76-7030-8fba-aef5e9172d4b)
 887:- fix malformed agent role definition of agent-improver, .codex/agents/agent-improver.toml, description key, python3.11 tomllib, direct fix option D
@@ -401,7 +401,7 @@ exec
 892:- when asked which strategy to use for TOML metadata fixes, the user chose “D” (skip), so perform direct `.codex/agents` remediation unless spec-folder work is explicitly requested [Task 2][Task 3]
 897:- after conversion, sweep-parse every `.codex/agents/*.toml` with `python3.11` + `tomllib` to catch parser issues before closeout [Task 1]
 899:- malformed-role warning `Ignoring malformed agent role definition ... must define a description` is resolved by ensuring every `.codex/agents/*.toml` includes top-level `description` [Task 2]
-900:- canonical description strings can be sourced from `.opencode/agent/<role>.md` frontmatter to keep TOML role metadata aligned with documented agent definitions [Task 2]
+900:- canonical description strings can be sourced from `.opencode/agents/<role>.md` frontmatter to keep TOML role metadata aligned with documented agent definitions [Task 2]
 908:scope: keep `.vscode/mcp.json` aligned with richer `.mcp.json`/`.claude/mcp.json` surfaces without breaking VS Code schema compatibility
 935:scope: restoring `/spec_kit:*`, `/memory:*`, and `/create:*` command discovery when prompt links drift between workspace and global Codex prompt directories
 946:- ~/.codex/prompts, readlink ~/.codex/prompts, .codex/prompts, spec_kit-plan.md, memory-save.md, create-component.md, agent_router.md, .opencode/command
@@ -571,7 +571,7 @@ Knowledge Graph:
 - **Tests**: mirror source structure in `tests/test_<module>.py`
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -589,7 +589,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -3705,30 +3705,30 @@ class KnowledgeGraph:
 
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/shared-space-auth.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/shared-space-auth.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-sed: .opencode/skill/system-spec-kit/mcp_server/lib/storage/shared-space-auth.ts: No such file or directory
+sed: .opencode/skills/system-spec-kit/mcp_server/lib/storage/shared-space-auth.ts: No such file or directory
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/filter-rows-by-scope.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/filter-rows-by-scope.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-sed: .opencode/skill/system-spec-kit/mcp_server/lib/storage/filter-rows-by-scope.ts: No such file or directory
+sed: .opencode/skills/system-spec-kit/mcp_server/lib/storage/filter-rows-by-scope.ts: No such file or directory
 
 codex
 I hit a path mismatch on our side of the comparison, so I’m locating the actual shared-memory governance files before I compare anything. That’s a useful signal in itself: I want the Public evidence anchored to current reality, not to an older path guess.
 exec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/mcp_server | rg "filter.*scope|shared.*auth|shared.*space|govern|scope|shared-memory|memory-.*scope|shared-space"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/mcp_server | rg "filter.*scope|shared.*auth|shared.*space|govern|scope|shared-memory|memory-.*scope|shared-space"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts
 
 exec
 /bin/zsh -lc "sed -n '320,520p' .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -4595,7 +4595,7 @@ cat << 'HOOKJSON'
 HOOKJSON
 
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Scope Governance
@@ -4919,7 +4919,7 @@ export function buildGovernancePostInsertFields(decision: GovernanceDecision): R
  */
 
 exec
-/bin/zsh -lc "sed -n '1,340p' .opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,340p' .opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Shared Memory Spaces
@@ -5263,7 +5263,7 @@ export function getSharedRolloutCohortSummary(
 
 
 exec
-/bin/zsh -lc "sed -n '1,360p' .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,360p' .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Shared Memory Handler
@@ -5627,7 +5627,7 @@ function createSharedSpaceAuthError(
 
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 "use strict";
 // ---------------------------------------------------------------
@@ -5891,2174 +5891,2174 @@ function resolveCliSpecFolderReference(rawArg) {
                     resolvedNestedPath = candidate;
 
 exec
-/bin/zsh -lc "rg -n \"filterRowsByScope|tenantId|sharedSpaceId|userId|agentId|scope|govern|shared memory|membership|owner|editor|viewer\" .opencode/skill/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"filterRowsByScope|tenantId|sharedSpaceId|userId|agentId|scope|govern|shared memory|membership|owner|editor|viewer\" .opencode/skills/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1340:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:104:  tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:105:  userId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:106:  agentId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:107:  sharedSpaceId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:123:  tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:124:  userId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:125:  agentId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:126:  sharedSpaceId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:160:  tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:161:  userId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:162:  agentId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:163:  sharedSpaceId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:169:  tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:170:  userId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:171:  agentId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:172:  sharedSpaceId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:186:  // validated at runtime by scope-governance.ts (F3.04 fix).
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:187:  tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:188:  userId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:189:  agentId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:191:  sharedSpaceId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:194:  governedAt: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:205:  specFolder: optionalPathString().describe('Spec folder scope for bulk delete (requires confirm: true)'),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:268:  tenantId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:269:  userId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:270:  agentId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:271:  sharedSpaceId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:277:  tenantId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:278:  userId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:279:  agentId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:280:  sharedSpaceId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:286:  tenantId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:287:  userId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:288:  agentId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:289:  sharedSpaceId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:295:  tenantId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:296:  userId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:297:  agentId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:298:  sharedSpaceId: z.string().min(1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:428:    tenantId: z.string(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:436:  shared_space_membership_set: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:438:    tenantId: z.string(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:443:    role: z.enum(['owner', 'editor', 'viewer']),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:446:    tenantId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:464:  memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:474:  checkpoint_create: ['name', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'metadata'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:475:  checkpoint_list: ['specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:476:  checkpoint_restore: ['name', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'clearExisting'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:477:  checkpoint_delete: ['name', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'confirmName'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:491:  shared_space_upsert: ['spaceId', 'tenantId', 'name', 'actorUserId', 'actorAgentId', 'rolloutEnabled', 'rolloutCohort', 'killSwitch'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:492:  shared_space_membership_set: ['spaceId', 'tenantId', 'actorUserId', 'actorAgentId', 'subjectType', 'subjectId', 'role'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:4:// MCP handler layer for shared-space CRUD, membership assignment,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:19:import { recordGovernanceAudit } from '../lib/governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:24:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:147:  const userIdProvided = typeof args.actorUserId === 'string';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:148:  const agentIdProvided = typeof args.actorAgentId === 'string';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:151:  const hasBlankUser = userIdProvided && normalizedUserId.length === 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:152:  const hasBlankAgent = agentIdProvided && normalizedAgentId.length === 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:210:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:212:  const normalizedTenantId = typeof tenantId === 'string' ? tenantId.trim() : '';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:216:      'Tenant scope is required for shared-memory admin mutations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:219:        error: 'Tenant scope is required for shared-memory admin mutations.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:262:  tenantId: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:265:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:267:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:268:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:271:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:273:    userId: actor.subjectType === 'user' ? actor.subjectId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:274:    agentId: actor.subjectType === 'agent' ? actor.subjectId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:282:    tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:285:    operation: 'space_upsert' | 'membership_set';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:294:    ...buildActorScope(args.actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:316:    case 'shared_space_owner_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:317:      return tool === 'shared_space_membership_set'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:318:        ? `Only a shared-space owner can update membership for "${spaceId}".`
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:319:        : `Only a shared-space owner can update "${spaceId}".`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:320:    case 'shared_space_editor_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:322:    case 'shared_space_membership_required':
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:329:      return 'Tenant scope is required to manage shared spaces.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:336:  return reason === 'shared_space_membership_required'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:337:    ? 'shared_space_owner_required'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:356:        : 'Use the tenant owner identity for this shared space.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:368:      hint: 'Authenticate as the configured shared-memory admin before enabling shared memory.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:408:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:415:  const normalizedTenantId = typeof tenantId === 'string' && tenantId.trim().length > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:416:    ? tenantId.trim()
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:439: * Persist a shared-space definition for rollout and membership checks.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:464:    }, args.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:467:      | { success: true; created: boolean; ownerBootstrap: boolean; rolloutEnabled: boolean; killSwitch: boolean }
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:485:            buildActorScope(actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:487:            'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:490:            const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:493:              tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:500:                actorAuthRole: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:514:          tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:533:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:541:      let ownerBootstrap = false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:548:        ownerBootstrap = createResult.created;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:555:      if (ownerBootstrap) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:560:          role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:573:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:580:          actorAuthRole: isAdmin ? 'admin' : 'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:582:          ownerBootstrap,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:591:        ownerBootstrap,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:606:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:610:        ownerBootstrap: result.ownerBootstrap,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:630: * Persist membership for a user or agent within a shared space.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:633: * @returns MCP success response describing the updated membership.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:645:        tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:652:      tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:655:    }, args.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:660:        buildActorScope(actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:662:        'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:665:        const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:669:            tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:672:            operation: 'membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:675:              operationType: 'membership_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:676:              actorAuthRole: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:687:          'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:689:          getSharedSpaceAccessErrorMessage('shared_space_membership_set', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:704:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:707:        operation: 'membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:708:        reason: 'membership_updated',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:710:          operationType: 'membership_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:711:          actorAuthRole: isAdmin ? 'admin' : 'owner',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:720:      tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:724:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:738:      'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:739:      'Shared space membership update failed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:749: * @param args - Tenant, user, or agent scope to evaluate.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:762:      ? getAllowedSharedSpaceIdsForCaller(db, actor, args.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:772:        tenantId: args.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:773:        userId: actor.subjectType === 'user' ? actor.subjectId : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:774:        agentId: actor.subjectType === 'agent' ? actor.subjectId : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:812:        'Only the configured shared-memory admin can enable shared memory.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:901:- **Spaces** — Named containers for shared memories, scoped to a tenant.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:902:- **Membership** — Deny-by-default: users and agents must be explicitly granted access (owner, editor, or viewer).
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:912:| \`/memory:manage shared member <spaceId> <type> <id> <role>\` | Set membership; caller must already own the space |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:917:Set \`SPECKIT_MEMORY_SHARED_MEMORY=true\` to force-enable shared memory regardless of database state.
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:112:    [--folder <spec-folder>]       Optional: scope to a spec folder
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:270:  // Safety: refuse constitutional/critical without folder scope
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:272:    console.error(`ERROR: Bulk delete of "${tier}" tier requires --folder scope for safety.`);
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:70:      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval. When provided with scope enforcement, results are isolated to this tenant.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:71:      userId: { type: 'string', description: 'User boundary for governed retrieval. Filters private or shared-space user-scoped memories.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:72:      agentId: { type: 'string', description: 'Agent boundary for governed retrieval. Filters agent-scoped memories.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:73:      sharedSpaceId: { type: 'string', description: 'Shared-memory space identifier. Requires explicit membership when shared memory rollout is enabled.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:201:      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:202:      userId: { type: 'string', description: 'User boundary for governed retrieval.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:203:      agentId: { type: 'string', description: 'Agent boundary for governed retrieval.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:204:      sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:321:  description: '[L4:Mutation] Bulk delete memories by importance tier. Use to clean up deprecated or temporary memories at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Supports optional checkpoint bypass for lower-risk tiers when speed is prioritized. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:322:  inputSchema: { type: 'object', additionalProperties: false, properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', const: true, description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', minimum: MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS, description: 'Optional: only delete memories older than this many days' }, skipCheckpoint: { type: 'boolean', default: false, description: 'Optional speed optimization for non-critical tiers. When true, skips auto-checkpoint creation before delete. Rejected for constitutional/critical tiers.' } }, required: ['tier', 'confirm'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:335:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:336:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:337:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:338:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:353:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:354:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:355:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:356:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:370:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:371:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:372:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:373:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:388:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:389:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:390:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:391:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:404:  description: '[L5:Lifecycle] Create or update a shared-memory space. Caller authentication is required. New spaces may only be created by the configured shared-memory admin; updates require the configured admin or a current space owner.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:410:      tenantId: { type: 'string', description: 'Owning tenant for the shared space.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:420:    required: ['spaceId', 'tenantId', 'name'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:425:  name: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:426:  description: '[L5:Lifecycle] Set deny-by-default shared-space membership for a user or agent. Caller authentication is required; membership changes require the configured shared-memory admin or a current space owner.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:432:      tenantId: { type: 'string', description: 'Tenant boundary for the membership mutation.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:437:      role: { type: 'string', description: 'Access role inside the shared space: "owner", "editor", or "viewer".' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:439:    required: ['spaceId', 'tenantId', 'subjectType', 'subjectId', 'role'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:450:      tenantId: { type: 'string', description: 'Optional tenant filter applied to the authenticated caller scope.' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:746:      specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:761:      specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:129: * @param args - Ingest arguments (paths, scope, options)
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:95:// Token budgets for dual-scope lifecycle hooks (TM-05)
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:315:    // Query top attention-weighted memories, scoped to the current session
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:80:  // Safety: refuse to bulk-delete constitutional or critical tiers without explicit specFolder scope
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:82:    throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:41:// C2 FIX: Import DB access for scope filtering
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:112:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:113:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:114:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:213:      tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:214:      userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:      agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:299:        const scopeRows = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:310:        const scopeMap = new Map(scopeRows.map(r => [r.id, r]));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:312:          const row = scopeMap.get(match.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:314:          // H2 FIX: Require exact scope match — rows with NULL scope are excluded
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:315:          // when the caller specifies a scope, not silently passed through.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:317:          if (tenantId && row.tenant_id !== tenantId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:318:          if (userId && row.user_id !== userId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:319:          if (agentId && row.agent_id !== agentId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:324:    } catch (scopeErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/README.md:80:| **Access control** | None | Shared spaces with deny-by-default membership and kill switches |
-.opencode/skill/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
-.opencode/skill/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
-.opencode/skill/system-spec-kit/mcp_server/README.md:313:- **LLM query reformulation** -- asks the LLM to rephrase the query more abstractly, grounding in actual knowledge base content. Reformulated hits pass through the same scope, context and quality checks as ordinary results
-.opencode/skill/system-spec-kit/mcp_server/README.md:400:This is session-scoped to prevent cross-session interference.
-.opencode/skill/system-spec-kit/mcp_server/README.md:439:- **Roles** -- `owner` (full control), `editor` (read/write), `viewer` (read-only)
-.opencode/skill/system-spec-kit/mcp_server/README.md:443:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
-.opencode/skill/system-spec-kit/mcp_server/README.md:475:**Constitutional memory as expert knowledge injection** -- tags high-priority memories with instructions about when to surface. They appear whenever relevant without you asking, like sticky notes on a filing cabinet that say "pull this file whenever someone asks about X." Constitutional injections obey global scope enforcement so the wrong tenant's rules never leak.
-.opencode/skill/system-spec-kit/mcp_server/README.md:479:**Dual-scope memory auto-surface** -- watches for tool use and context compression events and automatically brings up important memories without being asked.
-.opencode/skill/system-spec-kit/mcp_server/README.md:573:| `tenantId` | string | Tenant boundary for governed retrieval |
-.opencode/skill/system-spec-kit/mcp_server/README.md:574:| `userId` | string | User boundary for governed retrieval |
-.opencode/skill/system-spec-kit/mcp_server/README.md:575:| `agentId` | string | Agent boundary for governed retrieval |
-.opencode/skill/system-spec-kit/mcp_server/README.md:576:| `sharedSpaceId` | string | Shared-space boundary for governed retrieval |
-.opencode/skill/system-spec-kit/mcp_server/README.md:631:| `tenantId` | string | Tenant boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:632:| `userId` | string | User boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:633:| `agentId` | string | Agent boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:634:| `sharedSpaceId` | string | Shared-memory boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:660:The lightweight search option. Works like a preset: you provide a query and optional scope boundaries and it forwards to the full search tool with sensible defaults. Use this when you want fast results without setting lots of parameters.
-.opencode/skill/system-spec-kit/mcp_server/README.md:666:| `tenantId` | string | Tenant boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:667:| `userId` | string | User boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:668:| `agentId` | string | Agent boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:669:| `sharedSpaceId` | string | Shared-memory boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:713:| `tenantId` | string | Governance: tenant scope |
-.opencode/skill/system-spec-kit/mcp_server/README.md:714:| `userId` | string | Governance: user attribution |
-.opencode/skill/system-spec-kit/mcp_server/README.md:715:| `agentId` | string | Governance: agent attribution |
-.opencode/skill/system-spec-kit/mcp_server/README.md:716:| `sharedSpaceId` | string | Governance: shared-space target |
-.opencode/skill/system-spec-kit/mcp_server/README.md:719:| `governedAt` | string | ISO timestamp for governed ingest audit |
-.opencode/skill/system-spec-kit/mcp_server/README.md:893:Create or update a shared-memory space. Shared spaces start locked: nobody can read or write until you add members with `shared_space_membership_set`. The person or agent who creates the space automatically becomes its owner.
-.opencode/skill/system-spec-kit/mcp_server/README.md:898:| `tenantId` | string | **Required.** Tenant scope |
-.opencode/skill/system-spec-kit/mcp_server/README.md:908:##### `shared_space_membership_set`
-.opencode/skill/system-spec-kit/mcp_server/README.md:910:Control who can access a shared space. Assign owner, editor or viewer roles. Only existing owners can change membership.
-.opencode/skill/system-spec-kit/mcp_server/README.md:915:| `tenantId` | string | **Required.** Tenant boundary |
-.opencode/skill/system-spec-kit/mcp_server/README.md:920:| `role` | string | **Required.** `owner`, `editor` or `viewer` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:926:Check the state of shared memory. See which spaces exist, who has access and whether the kill switch is active. Use this to verify your setup after making changes.
-.opencode/skill/system-spec-kit/mcp_server/README.md:930:| `tenantId` | string | Filter by tenant |
-.opencode/skill/system-spec-kit/mcp_server/README.md:931:| `userId` | string | Filter by user |
-.opencode/skill/system-spec-kit/mcp_server/README.md:932:| `agentId` | string | Filter by agent |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1228:├── lib/                       # Retrieval, storage, eval, governance, scoring, and parsing internals
-.opencode/skill/system-spec-kit/mcp_server/README.md:1504:    "tenantId": "acme",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1515:  "tool": "shared_space_membership_set",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1518:    "tenantId": "acme",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1522:    "role": "editor"
-.opencode/skill/system-spec-kit/mcp_server/README.md:1527:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
-.opencode/skill/system-spec-kit/mcp_server/README.md:1705:Yes, through shared memory. Call `shared_memory_enable`, create a space with `shared_space_upsert` and grant access with `shared_space_membership_set`. Spaces are deny-by-default and the first creator becomes owner. See [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) for the full guide.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1743:| [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) | Complete shared memory guide: setup, use cases, roles, kill switch, troubleshooting |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:100:  scope: MemoryScopeMatch = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:102:  const tenantId = normalizeScopeMatchValue(scope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:103:  const userId = normalizeScopeMatchValue(scope.userId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:104:  const agentId = normalizeScopeMatchValue(scope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:105:  const sessionId = normalizeScopeMatchValue(scope.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:125:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:126:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:127:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:128:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:129:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:130:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:149:  scope: MemoryScopeMatch = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:174:      scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:131:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:132:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:133:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:138:  governedAt?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:168:  governed_at?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:171:  governance_metadata?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:177:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:178:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:179:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:92:function matchesScope(state: HookState, scope: HookStateScope): boolean {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:93:  if (scope.specFolder && state.lastSpecFolder !== scope.specFolder) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:97:  if (scope.claudeSessionId && state.claudeSessionId !== scope.claudeSessionId) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:107: * older than maxAgeMs, or when the caller cannot prove scope.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:112:    scope?: HookStateScope;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:116:  const scope = options.scope;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:117:  const hasScope = Boolean(scope?.specFolder || scope?.claudeSessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:125:        reason: 'scope_unknown_fail_closed',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:149:      if (!matchesScope(state, scope!)) {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:598:  it('rebuilds auto rows in scope and preserves manual rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:624:    const scopedRows = db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:630:    expect(scopedRows.some((row) => row.entity_text === 'Curated Alias' && row.created_by === 'manual')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:631:    expect(scopedRows.some((row) => row.entity_text === 'Node.js. With Next.js Adapter')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:632:    expect(scopedRows.some((row) => row.entity_text === 'Node.js' && row.created_by === 'auto')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:633:    expect(scopedRows.some((row) => row.entity_text === 'Next.js Adapter' && row.created_by === 'auto')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282:  it('filters trigger matches by governed scope fields when provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:285:        buildTriggerMatch({ memoryId: 11, filePath: '/tmp/scoped.md' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:286:        buildTriggerMatch({ memoryId: 22, filePath: '/tmp/unscoped.md' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:318:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:319:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:320:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:321:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:330:    expect(results[0]?.filePath).toBe('/tmp/scoped.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1082:    it('EXT-H13: handleCheckpointList rejects whitespace tenantId when sharedSpaceId is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1084:        tenantId: '   ',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1085:        sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1086:      })).rejects.toThrow(/tenantId must be a non-empty string/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:27:  'mcp_server/lib/governance/scope-governance.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:30:  'mcp_server/tests/memory-governance.vitest.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:38:  'mcp_server/lib/governance/scope-policy.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:39:  'mcp_server/lib/governance/shared-policy.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:46:  'mcp_server/test/security/scope-isolation.test.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:52:  path.join(SKILL_ROOT, 'feature_catalog', '17--governance', '03-hierarchical-scope-governance-governed-ingest-retention-and-audit.md'),
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:53:  path.join(SKILL_ROOT, 'feature_catalog', '17--governance', '04-shared-memory-rollout-deny-by-default-membership-and-kill-switch.md'),
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:67:  it('parent spec and plan describe the closure pass with current scope, evidence, and support boundaries', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:73:    expect(specContent).toContain('describe shared memory as opt-in live access rather than universally enabled rollout');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:79:    expect(planContent).toContain('shared-space owner enforcement and retention-sweep database routing');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:83:    expect(planContent).not.toContain('root-only scope was confirmed');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:109:    expect(checklistContent).toContain('Hydra follow-up verification passed across targeted governed-retrieval, shared-space admin, graph-ranking, and retention regressions');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:123:    expect(playbookContent).toContain('### 122 | Governed ingest and scope isolation (Phase 5)');
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:137:    expect(summaryContent).toContain('owner-only shared-space operations now enforce explicit actor identity plus owner authorization');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:41:  it('forwards governed scope fields through memory_quick_search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:44:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:45:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:46:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:47:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:53:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:54:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:55:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:56:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:75:- Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:73:    expect(snapshot.metrics['isolation.unscoped_rows']).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:74:    expect(snapshot.metrics['isolation.missing_session_scope_rows']).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:72:10. [Governance and Scope](#10-governance-and-scope)
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:260:<!-- ANCHOR:governance-scope -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:265:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `shared-rollout` | string | Active memory roadmap phase: `baseline`, `lineage`, `graph`, `adaptive`, `scope-governance`, `shared-rollout`. | `lib/config/capability-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:269:| `SPECKIT_MEMORY_SCOPE_ENFORCEMENT` | `true` | boolean | Scope enforcement for tenant/user/agent isolation. Graduated ON. Legacy: `SPECKIT_HYDRA_SCOPE_ENFORCEMENT`. | `lib/governance/scope-governance.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:270:| `SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS` | `true` | boolean | Governance guardrails for validated operations. Graduated ON. Legacy: `SPECKIT_HYDRA_GOVERNANCE_GUARDRAILS`. | `lib/governance/scope-governance.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:271:| `SPECKIT_MEMORY_SHARED_MEMORY` | `false` | boolean | Shared memory spaces with deny-by-default membership. **Default OFF**: opt-in. | `lib/config/capability-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:272:| `SPECKIT_SHARED_MEMORY_ADMIN_USER_ID` | (none) | string | Admin user ID override for shared memory operations. | `handlers/shared-memory.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:273:| `SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID` | (none) | string | Admin agent ID override for shared memory operations. | `handlers/shared-memory.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:274:<!-- /ANCHOR:governance-scope -->
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:418:# Enable shared memory spaces
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:42:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:43:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:44:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:45:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:51:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:52:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:53:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:54:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:60:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:61:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:62:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:63:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:70:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:71:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:72:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:77:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:78:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:79:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:80:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:203:  const tenantId = validateValue(args.tenantId, 'tenantId', { trim: true });
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:204:  const userId = validateValue(args.userId, 'userId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:205:  const agentId = validateValue(args.agentId, 'agentId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:206:  const sharedSpaceId = validateValue(args.sharedSpaceId, 'sharedSpaceId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:208:    userId !== undefined || agentId !== undefined || sharedSpaceId !== undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:212:    && tenantId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:213:    && tenantId.trim().length === 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:215:    throw new Error('tenantId must be a non-empty string when userId, agentId, or sharedSpaceId is provided');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:219:    tenantId: tenantId && tenantId.length > 0 ? tenantId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:220:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:221:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:222:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:226:function hasCheckpointScope(scope: CheckpointScopeArgs): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:228:    scope.tenantId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:229:    || scope.userId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:230:    || scope.agentId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:231:    || scope.sharedSpaceId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:235:function requiresCheckpointTenant(scope: CheckpointScopeArgs): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:236:  return scope.tenantId === undefined && (
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:237:    scope.userId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:238:    || scope.agentId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:239:    || scope.sharedSpaceId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:245:  scope: CheckpointScopeArgs,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:249:    ...(scope.tenantId !== undefined ? { tenantId: scope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:250:    ...(scope.userId !== undefined ? { userId: scope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:251:    ...(scope.agentId !== undefined ? { agentId: scope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:252:    ...(scope.sharedSpaceId !== undefined ? { sharedSpaceId: scope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:256:function checkpointMatchesScope(rawMetadata: unknown, scope: CheckpointScopeArgs): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:259:    const expected = scope[field];
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:268:    matchesScopeField('tenantId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:269:    matchesScopeField('userId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:270:    matchesScopeField('agentId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:271:    matchesScopeField('sharedSpaceId')
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:275:function checkpointScopeDetails(scope: CheckpointScopeArgs): Record<string, string> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:277:  if (scope.tenantId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:278:    details.tenantId = scope.tenantId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:280:  if (scope.userId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:281:    details.userId = scope.userId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:283:  if (scope.agentId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:284:    details.agentId = scope.agentId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:286:  if (scope.sharedSpaceId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:287:    details.sharedSpaceId = scope.sharedSpaceId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:297:    error: 'tenantId is required when userId, agentId, or sharedSpaceId is provided.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:300:      reason: 'checkpoint_scope_tenant_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:303:      hint: 'Retry with tenantId included for governed checkpoint access.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:320:  const scope = validateCheckpointScope(args);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:321:  if (requiresCheckpointTenant(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:336:    metadata: mergeCheckpointScopeMetadata(metadata, scope),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:337:    scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:381:  const scope = validateCheckpointScope(args);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:382:  if (requiresCheckpointTenant(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:394:  const results = checkpoints.listCheckpoints(spec_folder ?? null, limit, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:395:  const filteredResults = hasCheckpointScope(scope)
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:396:    ? results.filter((checkpoint) => checkpointMatchesScope(checkpoint.metadata, scope))
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:444:  const scope = validateCheckpointScope(args);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:445:  if (requiresCheckpointTenant(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:453:  if (hasCheckpointScope(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:454:    const checkpoint = checkpoints.getCheckpoint(name, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:455:    if (checkpoint && !checkpointMatchesScope(checkpoint.metadata, scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:458:        error: `Checkpoint "${name}" scope mismatch`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:462:          scope: checkpointScopeDetails(scope),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:465:          hint: 'Retry with matching scope values or omit optional scope parameters if you intend to access an unscoped checkpoint.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:466:          actions: ['Use checkpoint_list() with the same scope parameters to discover accessible checkpoints'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:473:  const result = checkpoints.restoreCheckpoint(name, clear_existing, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:537:          'Retry with a narrower scope or clearExisting=true if you intend to replace current state',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:587:  const scope = validateCheckpointScope(args);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:588:  if (requiresCheckpointTenant(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:602:  if (hasCheckpointScope(scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:603:    const checkpoint = checkpoints.getCheckpoint(name, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:604:    if (checkpoint && !checkpointMatchesScope(checkpoint.metadata, scope)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:607:        error: `Checkpoint "${name}" scope mismatch`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:611:          scope: checkpointScopeDetails(scope),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:614:          hint: 'Retry with matching scope values or omit optional scope parameters if you intend to access an unscoped checkpoint.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:615:          actions: ['Use checkpoint_list() with the same scope parameters to discover accessible checkpoints'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:622:  const success: boolean = checkpoints.deleteCheckpoint(name, scope);
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:198:    scopeDimensionsTracked: rollout.scopeDimensionsTracked,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:36:  'governance_audit',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:362:    INSERT INTO governance_audit (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:365:  `).run(1, 'scope_check', 'allow', 1, 'specs/022-hybrid-rag-fusion::/tmp/specs/022/alpha.md::_', 'tenant-a', 'user-a', 'agent-a', 'sess-1', 'space-1', 'seed governance', '{"phase":"seed"}', later);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:375:  `).run('space-1', 'user', 'user-a', 'owner', now, later);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:54:} from '../lib/governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:609:    scope?: MemoryScopeMatch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:619:    scope = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:707:      scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:721:      scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:751:              tenantId: scope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:752:              userId: scope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:753:              agentId: scope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:754:              sessionId: scope.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:755:              sharedSpaceId: scope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:800:    }, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:809:      database, parsed, embedding, force, validation.warnings, embeddingStatus, filePath, scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:827:      scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:922:    }, scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:934:        scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:954:            scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1050:    scope = {} as MemoryScopeMatch,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1071:    scope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1106:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1107:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1108:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1110:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1113:    governedAt,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1136:  const governanceDecision = validateGovernedIngest({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1137:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1138:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1139:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1141:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1144:    governedAt,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1149:  if (!governanceDecision.allowed) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1153:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1154:      userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1155:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1157:      sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1158:      reason: governanceDecision.reason ?? 'governance_rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1159:      metadata: { issues: governanceDecision.issues },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1161:    throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1164:  if (sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1166:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1167:      userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1168:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1170:      sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1171:    }, sharedSpaceId, 'editor');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1176:        tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1177:        userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1178:        agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1180:        sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1266:    tenantId: governanceDecision.normalized.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1267:    userId: governanceDecision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1268:    agentId: governanceDecision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1269:    sessionId: governanceDecision.normalized.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1270:    sharedSpaceId: governanceDecision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1285:        tenantId: saveScope.tenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1286:        userId: saveScope.userId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1287:        agentId: saveScope.agentId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1288:        sharedSpaceId: saveScope.sharedSpaceId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1436:      scope: saveScope,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1456:    // B13 + H5 FIX: Wrap governance metadata in a transaction with rollback on failure.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1457:    // If governance application fails, delete the orphaned memory row to prevent
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1460:      applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governanceDecision));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1465:        tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1466:        userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1467:        agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1469:        sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1470:        reason: sharedSpaceId ? 'shared_space_save' : 'governed_ingest',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1474:      if (sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1483:        `).get(sharedSpaceId, validatedPath, result.id) as { id?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1486:            spaceId: sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:92:  tenantId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:93:  userId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:94:  agentId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:102:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:103:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:104:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:159:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:160:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:161:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:331:  tenantId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:332:  userId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:333:  agentId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:351:    tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:352:    userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:353:    agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:358:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:359:  scope: SessionIdentityScope = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:361:  const requestedTenantId = normalizeIdentityValue(scope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:362:  if (requestedTenantId && storedIdentity.tenantId !== requestedTenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:363:    return 'tenantId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:366:  const requestedUserId = normalizeIdentityValue(scope.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:367:  if (requestedUserId && storedIdentity.userId !== requestedUserId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:368:    return 'userId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:371:  const requestedAgentId = normalizeIdentityValue(scope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:372:  if (requestedAgentId && storedIdentity.agentId !== requestedAgentId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:373:    return 'agentId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:380:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null } | null,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:381:): storedIdentity is { tenantId: string | null; userId: string | null; agentId: string | null } {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:382:  return Boolean(storedIdentity && (storedIdentity.tenantId || storedIdentity.userId || storedIdentity.agentId));
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:387:  scope: SessionIdentityScope = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:420:  const mismatch = getIdentityMismatch(storedIdentity, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:976:  'CREATE INDEX IF NOT EXISTS idx_session_state_identity_scope ON session_state(tenant_id, user_id, agent_id);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1030:    const tenantId = normalizeIdentityValue(state.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1031:    const userId = normalizeIdentityValue(state.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1032:    const agentId = normalizeIdentityValue(state.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1064:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1065:      userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1066:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1126:function recoverState(sessionId: string, scope: SessionIdentityScope = {}): RecoverResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1150:      tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1151:      userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1152:      agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1154:    const mismatch = getIdentityMismatch(storedIdentity, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1167:      tenantId: storedIdentity.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1168:      userId: storedIdentity.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1169:      agentId: storedIdentity.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1193:function getInterruptedSessions(scope: SessionIdentityScope = {}): InterruptedSessionsResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1209:        tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1210:        userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1211:        agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1213:      return getIdentityMismatch(storedIdentity, scope) === null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:346:    // T72 SECURITY: Spec-folder scope MUST fail closed — any error in scope
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:347:    // resolution returns [] rather than leaking unscoped BM25 candidates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:351:        const error = new Error('Database unavailable for spec-folder scope lookup');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:352:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:370:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:376:      // Fail closed rather than falling through to unscoped results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:378:        const error = new Error('specFolderMap unexpectedly null after scope resolution');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:379:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1384:  // C138/T316: MMR reranking with request-scoped embedding cache.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1902:  const scopeParts = memoryIdx >= 0 ? parts.slice(0, memoryIdx) : parts.slice(0, -1);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1903:  const tailParts = scopeParts.slice(-2);
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null } = {}): SimilarMemory[] {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null, sharedSpaceId = null } = options;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:79:    const scopedMatches: SimilarMemory[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:84:    while (scopedMatches.length < limit) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:98:        if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:99:        if (!matchesScopedValue(userId, r.user_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:100:        if (!matchesScopedValue(agentId, r.agent_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:103:        if (!matchesScopedValue(sharedSpaceId, r.shared_space_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:107:        scopedMatches.push({
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:120:        if (scopedMatches.length >= limit) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:134:    return scopedMatches.slice(0, limit);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:63:      scopeEnforcement: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:64:      governanceGuardrails: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:117:  it('tracks all five scope dimensions in roadmap defaults', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:118:    expect(getMemoryRoadmapDefaults().scopeDimensionsTracked).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:20:/** Maximum number of entries allowed in each session-scoped cache. */
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:23:/** Session-scoped cache for momentum scores (memoryId -> momentum). */
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:26:/** Session-scoped cache for causal depth scores (memoryId -> normalized depth). */
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:51: * Clear both session-scoped caches. Call at session boundaries or when
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:81:    | 'scope_mismatch'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:82:    | 'unknown_scope';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:306:        'unknown_scope',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:307:        'A target spec folder was requested, but the cached summary did not carry a scope anchor.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:314:        'scope_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:315:        `Cached summary scope ${cachedSpecFolder} did not match requested scope ${expectedSpecFolder}.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:321:      'unknown_scope',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:322:      'Cached summary scope was unknown, so the consumer failed closed instead of guessing.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:360:      scope: {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:180:  it('rejects continuation cursors when the resuming scope does not match the original query scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:183:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:184:      userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:192:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:193:      userId: 'user-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:198:    expect(resumedEnvelope.summary).toBe('Error: Cursor is invalid, expired, or out of scope');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:199:    expect(resumedData.error).toBe('Cursor is invalid, expired, or out of scope');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:391: * @param specFolder - Optional spec folder scope.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:52:| Session-scoped caching | Momentum and depth caches prevent redundant DB queries within a single session. Caches clear at 10,000 entries. |
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:82:| `community-storage.ts` | Stores and retrieves community data (assignments, membership) | `SPECKIT_COMMUNITY_SUMMARIES` |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:65:import { normalizeScopeContext } from '../lib/governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:181:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:182:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:183:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:184:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:498:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:499:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:500:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:501:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:535:    tenantId: normalizedScope.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:536:    userId: normalizedScope.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:537:    agentId: normalizedScope.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:539:    sharedSpaceId: normalizedScope.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:555:        error: 'Cursor is invalid, expired, or out of scope',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:724:    tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:725:    userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:726:    agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:727:    sharedSpaceId: normalizedScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:781:      tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:782:      userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:783:      agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:784:      sharedSpaceId: normalizedScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:          { scopeKey: progressiveScopeKey },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:560:    interpretation = 'Knowledge regression detected - may indicate scope expansion or new complexities discovered';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:61:// Feature catalog: Dual-scope memory auto-surface
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:79:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:80:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:81:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:116:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:117:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:118:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:704:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:705:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:706:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:725:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:726:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:727:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:756:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:757:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:758:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:790:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:791:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:792:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:827:  // Security: session scope derived from server context, not caller input
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:829:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:830:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:831:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1281:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1282:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1283:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1354:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1355:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1356:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:68:          // Enforce optional specFolder scope before including a candidate file.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts:6:// enabling edge invalidation and temporally-scoped graph queries.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:67:- `shared-memory.ts` exports `resolveAdminActor()` and `validateCallerAuth()` so shared-space mutations enforce explicit actor identity, tenant scope, and configured admin ownership.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:191:Bootstrap and resume remain the authority surfaces for structural context. Packet `006` only adds the shared trust contract beside packet `005`'s certainty contract; it does not create a new graph-only owner surface.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:261:| [lib/telemetry/README.md](../telemetry/README.md) | Retrieval telemetry (observability, governance) |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:279:Packet `007-detector-provenance-and-regression-floor` treats frozen detector fixtures as a regression-integrity floor only. The acceptance criterion from research recommendation R6 is the governing boundary: Public must land frozen detector fixtures that fail on structural regressions, while follow-on task corpora for user-visible structural quality are defined separately.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:311:- Current owner surfaces remain authoritative: shared payload sections, session bootstrap or resume consumers, and bridge-facing graph payloads.
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:75:| `scoring/README.md` | Documentation for cache-scoped scoring re-exports |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:203:                limit: (opts.limit ?? 3) * 3, // Over-fetch for post-scope-filter
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:208:              // Post-filter by governance scope to prevent cross-tenant reconsolidation
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:209:              const scopeFiltered = results.filter((r: Record<string, unknown>) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:210:                if (scope?.tenantId && r.tenant_id && r.tenant_id !== scope.tenantId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:211:                if (scope?.userId && r.user_id && r.user_id !== scope.userId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:212:                if (scope?.agentId && r.agent_id && r.agent_id !== scope.agentId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:216:              return scopeFiltered.map((r: Record<string, unknown>) => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:29:    tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:30:    userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:31:    agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:33:    sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:66:    params.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:67:    params.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:68:    params.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:70:    params.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163:  it('derives distinct logical keys for memories that only differ by tenant scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:164:    const filePath = '/tmp/specs/015-memory-state/memory/scoped-tenant.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:171:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:179:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:184:      actor: 'ops:tenant-scope',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:189:      actor: 'ops:tenant-scope',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:194:    expect(tenantA.logicalKey).toContain('scope-sha256:');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:195:    expect(tenantB.logicalKey).toContain('scope-sha256:');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:205:  it('derives distinct logical keys for memories that only differ by user scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:206:    const filePath = '/tmp/specs/015-memory-state/memory/scoped-user.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:213:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:214:      userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:222:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:223:      userId: 'user-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:228:      actor: 'ops:user-scope',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:233:      actor: 'ops:user-scope',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:242:  it('preserves the legacy logical key format for unscoped memories', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:243:    const filePath = '/tmp/specs/015-memory-state/memory/unscoped.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:248:      title: 'Unscoped v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:254:      actor: 'ops:unscoped-compat',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:258:    expect(recorded.logicalKey).toBe('specs/015-memory-state::/tmp/specs/015-memory-state/memory/unscoped.md::_');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:278:  it('creates save-path optimization indexes for canonical-path and scoped hash lookups', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:286:        AND name IN ('idx_save_parent_content_hash_scope', 'idx_save_parent_canonical_path')
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:297:        name: 'idx_save_parent_content_hash_scope',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:4:// Feature catalog: Feature flag governance
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:31: * @param identity - Unique identity string (e.g., flagName, userId)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:19:  ['tenant_id', 'tenantId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:20:  ['user_id', 'userId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:21:  ['agent_id', 'agentId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:52:function buildScopedWhereClauses(scope: MemoryScopeMatch): {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:57:    tenantId: normalizeScopeMatchValue(scope.tenantId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:58:    userId: normalizeScopeMatchValue(scope.userId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:59:    agentId: normalizeScopeMatchValue(scope.agentId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:60:    sessionId: normalizeScopeMatchValue(scope.sessionId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:84:  scopeClauses: string[],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:85:  scopeParams: string[],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:91:    ...scopeClauses,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:103:    ...scopeParams,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:189:  scope: MemoryScopeMatch = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:191:  const { clauses: scopeClauses, params: scopeParams } = buildScopedWhereClauses(scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:198:      scopeClauses,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:199:      scopeParams,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:210:        scopeClauses,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:211:        scopeParams,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:251:  scope: MemoryScopeMatch = {},
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:254:    const { clauses: scopeClauses, params: scopeParams } = buildScopedWhereClauses(scope);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:260:      ...scopeClauses,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:266:      ...scopeParams,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:275:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:296:    it('rejects scope mismatches for bound sessions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:300:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:301:        userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:304:      const result = sm.resolveTrustedSession('bound-session', { tenantId: 'tenant-b', userId: 'user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:307:      expect(result.error).toContain('different tenantId');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:314:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:318:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:319:        userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:323:      expect(result.error).toContain('different userId');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:400:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:401:        userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:402:        agentId: 'agent-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:493:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:509:        expect(state.tenantId).toBe('tenant-a');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:529:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:530:        userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:533:      const r = sm.recoverState('recover-bound', { tenantId: 'tenant-b', userId: 'user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:536:      expect(r.error).toContain('different tenantId');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:551:      sm.saveSessionState('int-1', { specFolder: 'specs/A', currentTask: 'task A', tenantId: 'tenant-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:552:      sm.saveSessionState('int-2', { specFolder: 'specs/B', currentTask: 'task B', tenantId: 'tenant-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:569:    it('filters interrupted sessions by bound identity when caller scope is provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:571:      sm.saveSessionState('int-scope-a', { currentTask: 'task A', tenantId: 'tenant-a', userId: 'user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:572:      sm.saveSessionState('int-scope-b', { currentTask: 'task B', tenantId: 'tenant-b', userId: 'user-b' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:576:      const r = sm.getInterruptedSessions({ tenantId: 'tenant-a', userId: 'user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:579:      expect(ids).toContain('int-scope-a');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:581:      expect(ids).not.toContain('int-scope-b');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:51:/** Immutable snapshot of bounded thresholds and signal weights governing adaptive ranking. */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:504: * Snapshot the bounded thresholds and signal weights that govern adaptive ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:4:// Feature catalog: Feature flag governance
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:11:const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance', 'shared-rollout'] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:21:  scopeEnforcement: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:22:  governanceGuardrails: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:30:  scopeDimensionsTracked: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:59:  scopeEnforcement: 'SPECKIT_MEMORY_SCOPE_ENFORCEMENT',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:60:  governanceGuardrails: 'SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:68:  scopeEnforcement: 'SPECKIT_HYDRA_SCOPE_ENFORCEMENT',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:69:  governanceGuardrails: 'SPECKIT_HYDRA_GOVERNANCE_GUARDRAILS',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:149:    scopeEnforcement: isMemoryRoadmapCapabilityEnabled(
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:150:      [CAPABILITY_ENV.scopeEnforcement, LEGACY_CAPABILITY_ENV.scopeEnforcement],
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:153:    governanceGuardrails: isMemoryRoadmapCapabilityEnabled(
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:154:      [CAPABILITY_ENV.governanceGuardrails, LEGACY_CAPABILITY_ENV.governanceGuardrails],
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:158:    // The runtime in shared-spaces.ts keeps shared memory opt-in until env/config enablement.
-.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:172:    scopeDimensionsTracked: 5, // tenant/user/agent/session/sharedSpace
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:64:  temporary: 'working',              // Session-scoped, fast decay
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:66:    'spec', 'specification', 'requirements', 'scope', 'feature',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:117:    /what\s+(?:is|was)\s+the\s+(?:scope|plan)/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:166:    'show specification scope and implementation tasks',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:272:    /(?:find|show|get)\s+(?:me\s+)?(?:the\s+)?(?:spec|specification|requirements|scope|plan|checklist)/i.test(query) ||
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:274:    /what\s+(?:are|is|was|were)\s+the\s+(?:requirements|scope|plan)/i.test(query)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:45:      tenantId: scope?.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:46:      userId: scope?.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:47:      agentId: scope?.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:48:      sessionId: scope?.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:50:  scopeKey?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:81:  scopeKey?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:334:    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:335:      ? options.scopeKey
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:368:    typeof payload.scopeKey === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:369:    && payload.scopeKey.length > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:370:    && payload.scopeKey !== options?.scopeKey
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:252:├── working-memory.ts           # Session-scoped activation (410 lines)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:573:**Purpose**: Session-scoped attention tracking with capacity limits
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:98:| temporary | working | Session-scoped, fast decay |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/spec-folder-hierarchy.ts:39: * Call this whenever spec_folder membership changes (e.g. after a new memory
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:60:    'idx_save_parent_content_hash_scope',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:121:  CREATE INDEX IF NOT EXISTS idx_save_parent_content_hash_scope
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1413:  const governanceColumns: Array<{ name: string; sql: string }> = [
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1420:    { name: 'governed_at', sql: 'ALTER TABLE memory_index ADD COLUMN governed_at TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1423:    { name: 'governance_metadata', sql: 'ALTER TABLE memory_index ADD COLUMN governance_metadata TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1426:  for (const column of governanceColumns) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1440:    CREATE TABLE IF NOT EXISTS governance_audit (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1458:    CREATE INDEX IF NOT EXISTS idx_governance_audit_action
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1459:      ON governance_audit(action, decision, created_at DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1460:    CREATE INDEX IF NOT EXISTS idx_governance_audit_scope
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1466:      CREATE INDEX IF NOT EXISTS idx_memory_scope_hierarchy
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1496:      role TEXT NOT NULL CHECK(role IN ('owner', 'editor', 'viewer')),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2033:      'idx_save_parent_content_hash_scope',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2041:      index: 'idx_content_hash/idx_save_parent_content_hash_scope',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2332:      governed_at TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2335:      governance_metadata TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2454:    CREATE INDEX IF NOT EXISTS idx_save_parent_content_hash_scope ON memory_index(
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:12:// Decay ownership map:
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:3:description: "Internal ownership boundaries, feature-catalog crosswalk, and dependency directions for mcp_server/lib."
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:7:  - "module ownership"
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:13:> Internal module ownership and dependency map for `mcp_server/lib/`.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:33:This document is the internal ownership and dependency map for the `mcp_server/lib/` surface. It exists to answer three practical questions:
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:44:- Several modules are intentionally small today (`collab/`, `governance/`, `manage/`, `session/`, `response/`).
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:107:- Purpose: Owns shared-space collaboration primitives: shared-space definitions, membership, rollout flags, conflict tracking, and shared-memory metrics. This is the current home for multi-actor/shared-memory tenancy behavior.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:109:  - `shared-spaces.ts` — shared-space schema/runtime, memberships, conflict summaries, and rollout controls.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:113:  - `lib/governance/*`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:132:- Purpose: Serves as a compatibility pointer for retrieval contracts that were moved into the shared package. Within `lib/`, this directory now documents ownership rather than owning runtime logic.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:137:  - No meaningful direct runtime ownership remains inside `lib/`; the real consumers target `@spec-kit/shared/contracts/*`.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:175:  - `README.md` — pipeline overview and extraction scope.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:192:### `governance/`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:196:  - `scope-governance.ts` — scope normalization, policy decisions, filter helpers, and governance audit writes.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:239:  - `README.md` — current management-cycle scope and algorithm notes.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:372:  - `README.md` — telemetry scope and flag overview.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:431:- `17--governance`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:443:| `collab` | `17--governance` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:444:| `config` | `11--scoring-and-calibration`, `17--governance`, `19--feature-flag-reference` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:448:| `extraction` | `02--mutation`, `13--memory-quality-and-indexing`, `17--governance` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:450:| `governance` | `17--governance` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:463:| `storage` | `02--mutation`, `04--maintenance`, `05--lifecycle`, `08--bug-fixes-and-data-integrity`, `10--graph-signal-activation`, `13--memory-quality-and-indexing`, `17--governance` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:464:| `telemetry` | `09--evaluation-and-measurement`, `11--scoring-and-calibration`, `17--governance`, `18--ux-hooks` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:488:| `17--governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:570:- Narrowly scoped infra-to-infra imports are allowed when they reflect clear dependency direction:
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:592:- `governance`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:604:  - May import: core, `parsing`, `validation`, `governance`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:617:  - This is the top domain aggregator and is allowed to consume `cache`, `providers`, `session`, `storage`, `parsing`, `cognitive`, `graph`, `scoring`, `governance`, and `collab`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:631:- `governance`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:635:  - May import: core, `governance`, `storage`
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:646:- `governance <-> collab` cycles
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:660:- `governance/* <-> collab/*`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:451:function get_constitutional_cache_db_scope(): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:463:  const db_scope = get_constitutional_cache_db_scope();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:464:  return `${db_scope}::${spec_folder || 'global'}:${includeArchived ? 'arch' : 'noarch'}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:468:  const current_db_path = get_constitutional_cache_db_scope();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:483:    const current_db_path = get_constitutional_cache_db_scope();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:679:    const scoped_suffix_archived = `::${spec_folder}:arch`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:680:    const scoped_suffix_live = `::${spec_folder}:noarch`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:682:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:687:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:48:import { filterRowsByScope, isScopeEnforcementEnabled } from '../../governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:472:  // Fix #16: Cache embedding at function scope for reuse in constitutional injection
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:484:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:485:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:486:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:487:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:976:  // P0 fix: sessionId is for dedup/state tracking, NOT a governance boundary.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:980:    tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:981:    || userId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:982:    || agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:983:    || sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:986:  const scopeFilter = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:987:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:988:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:989:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:990:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:997:      allowedSharedSpaceIds = getAllowedSharedSpaceIds(db, scopeFilter);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:998:      candidates = filterRowsByScope(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1000:        scopeFilter,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1004:      candidates = filterRowsByScope(candidates, scopeFilter);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1048:        // via vector search bypass the earlier governance/context gate.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1053:        // to ensure constitutional injection respects global scope enforcement
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1055:          ? filterRowsByScope(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1057:            scopeFilter,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1125:                ? filterRowsByScope(resultSet, scopeFilter, allowedSharedSpaceIds)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1180:        ? filterRowsByScope(rawHydeCandidates, scopeFilter, allowedSharedSpaceIds)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1265:            const scopeFilteredSummaryHits = shouldApplyScopeFiltering
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1266:              ? filterRowsByScope(contextFilteredSummaryHits, scopeFilter, allowedSharedSpaceIds)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1270:            const backfilledSummaryHits = backfillMissingQualityScores(scopeFilteredSummaryHits);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:67: * Cache is scoped per bound DB instance to avoid repeated sqlite_master probes.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:111:    // Hierarchy-aware fallback/augmentation for spec-scoped retrieval.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:331: * In-memory degree cache scoped per bound DB instance.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:32:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:33:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:34:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:35:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:115:  tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:116:  userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:117:  agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:118:  sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:144:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:145:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:146:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:147:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:4:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:5:// Shared-space definitions, membership management, rollout
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:18:} from '../governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:21: * Supported membership subject kinds for shared spaces.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:28:export type SharedRole = 'owner' | 'editor' | 'viewer';
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:35:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:58: * Aggregate rollout metrics for shared spaces, memberships, and conflicts.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:61:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:79:  membershipCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:235: * @param tenantId - Optional tenant to constrain the summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:236: * @returns Aggregate rollout, membership, and conflict counts.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:238:export function getSharedRolloutMetrics(database: Database.Database, tenantId?: string): SharedRolloutMetrics {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:240:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:262:  const membershipRow = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:277:    tenantId: normalizedTenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:282:    totalMemberships: membershipRow.count,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:292: * @param tenantId - Optional tenant to constrain the summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:297:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:300:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:313:  const membershipRows = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:314:    SELECT s.space_id, COUNT(m.subject_id) AS membership_count
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:321:    membership_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:324:  const membershipCounts = new Map<string, number>(
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:325:    membershipRows.map((row) => [row.space_id, row.membership_count]),
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:338:      membershipCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:348:    existing.membershipCount += membershipCounts.get(space.space_id) ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:397:  if (!definition.spaceId?.trim() || !definition.tenantId?.trim()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:398:    throw new Error('E_VALIDATION: spaceId and tenantId must be non-empty strings');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:436:    definition.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:469:    definition.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:481: * Create or update a membership entry for a shared space.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:484: * @param membership - Membership values to persist.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:486:export function upsertSharedMembership(database: Database.Database, membership: SharedMembership): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:487:  if (!membership.spaceId?.trim() || !membership.subjectId?.trim()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:497:  `).run(membership.spaceId, membership.subjectType, membership.subjectId, membership.role);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:501: * Collect the shared spaces visible to the provided user or agent scope.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:504: * @param scope - Scope used to filter memberships and tenant boundaries.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:505: * @returns Shared-space identifiers the scope is allowed to see.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:507:export function getAllowedSharedSpaceIds(database: Database.Database, scope: ScopeContext): Set<string> {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:511:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:513:  // P0 fix: require tenant context so null scopes cannot enumerate every tenant.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:514:  if (!normalizedScope.tenantId) return new Set();
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:518:    ['user', normalizedScope.userId],
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:519:    ['agent', normalizedScope.agentId],
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:536:      normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:547: * Enforce rollout, tenancy, and membership rules for shared-space access.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:550: * @param scope - Scope requesting shared-space access.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:557:  scope: ScopeContext,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:559:  requiredRole: SharedRole = 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:561:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:572:        tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:573:        userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:574:        agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:576:        sharedSpaceId: spaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:592:    auditAccessDecision('allow', 'membership_verified', metadata);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:615:  if (normalizedScope.tenantId && space.tenant_id !== normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:620:  if (isGovernanceGuardrailsEnabled() && !normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:624:  const bypassAvailabilityChecks = requiredRole === 'owner';
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:634:    return deny('shared_space_membership_required');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:637:  if (requiredRole === 'viewer') {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:641:  const membership = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:651:      WHEN 'owner' THEN 1
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:652:      WHEN 'editor' THEN 2
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:656:  `).get(spaceId, normalizedScope.userId ?? '', normalizedScope.agentId ?? '') as { role?: SharedRole } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:658:  const role = membership?.role;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:660:    return deny('shared_space_membership_required');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:662:  if (requiredRole === 'owner' && role !== 'owner') {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:663:    return deny('shared_space_owner_required', { resolvedRole: role });
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:665:  if (requiredRole === 'editor' && role === 'viewer') {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:666:    return deny('shared_space_editor_required', { resolvedRole: role });
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:676: * @param args - Conflict details used for shared and governance audits.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:713:      sharedSpaceId: args.spaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:128:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:130:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:131:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:946:    const ownerCapture = captureByFqName.get(method.fqName);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:947:    if (!ownerCapture?.parentName) continue;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:949:    let parentClassCapture = captureByFqName.get(ownerCapture.parentName);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:781:  specFolder: 'specs/<###-spec-name>',  // Optional: scope to project
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:184:    keywords: ['spec', 'specification', 'requirements', 'scope', 'objective', 'constraints'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:185:    patterns: [/spec\.md/i, /specification/i, /(?:the|our)\s+(?:spec|requirements|scope)/i],
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:13:export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'unavailable' | 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:74:    return 'disabled_by_scope';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:87:    if (!existsSync(hooksDir)) return 'disabled_by_scope';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:90:    if (hookFiles.length === 0) return 'disabled_by_scope';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:105:    return 'disabled_by_scope';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:58:function buildRetrievableMemoryPredicates(alias: string, scopeInfo: MemoryIndexScopeInfo): string[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:61:  if (scopeInfo.hasArchivedColumn) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:65:  if (scopeInfo.hasImportanceTierColumn) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:139:  const scopeInfo = getMemoryIndexScopeInfo(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:140:  const targetPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:141:  const siblingPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:147:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:161:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:203:  const scopeInfo = getMemoryIndexScopeInfo(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:204:  const rowPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:205:  const folderPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:212:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:248:       ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:399: * and community membership from the database. Gated behind SPECKIT_RESULT_PROVENANCE.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:467:  // Batch-fetch community memberships for boosted IDs
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:29:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:30:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:31:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:32:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:49:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:50:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:51:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:52:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:156:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:157:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:158:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:160:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:163:  governedAt?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:179:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:190:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:195:  role: 'owner' | 'editor' | 'viewer';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:199:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:219:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:220:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:221:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:222:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:229:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:230:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:231:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:232:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:239:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:240:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:241:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:242:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:249:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:250:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:251:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:252:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:68:  existing_scope?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:69:    tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:70:    userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:71:    agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:72:    sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:103:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:104:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:105:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:106:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:124:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:125:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:126:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:127:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:200:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:201:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:202:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:203:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:425:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:426:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:427:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:428:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:453:    tenantId: normalizeScopeValue(tenantId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:454:    userId: normalizeScopeValue(userId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:455:    agentId: normalizeScopeValue(agentId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:456:    sharedSpaceId: normalizeScopeValue(sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:459:  const scopeFilters = [
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:460:    ['tenant_id', requestedScope.tenantId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:461:    ['user_id', requestedScope.userId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:462:    ['agent_id', requestedScope.agentId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:463:    ['shared_space_id', requestedScope.sharedSpaceId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:483:      existingScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:484:      existingScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:485:      existingScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:486:      existingScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:488:    const isDifferentScope = scopeFilters.some(([_, value], index) => {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:497:      result.existing_scope = undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:503:    result.existing_scope = existingScope;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:522:      for (const [column, value] of scopeFilters) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:572:        tenantId: requestedScope.tenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:573:        userId: requestedScope.userId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:574:        agentId: requestedScope.agentId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:575:        sharedSpaceId: requestedScope.sharedSpaceId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:759:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:760:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:761:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:762:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:853:      { content, spec_folder, database, find_similar, embedding, tenantId, userId, agentId, sharedSpaceId },
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:43:      "category": "scope-conflict"
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:91:      "category": "scope-exception"
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:104:      "scope-conflict": "All vs some/none scope conflicts",
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:110:      "scope-exception": "General rule vs specific exception",
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:477:      'spec': ['spec', 'specification', 'requirements', 'scope', 'what'],
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:5:  - "shared memory spaces"
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:7:  - "shared memory enable"
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:30:- Shared spaces are tenant-scoped, deny-by-default collaboration containers.
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:31:- Roles are `owner`, `editor`, and `viewer`.
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:42:| `shared_memory_status` | Caller-scoped rollout and membership view; requires exactly one actor identity |
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:43:| `shared_space_upsert` | Create or update a shared space; requires caller auth and tenant scope |
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:44:| `shared_space_membership_set` | Set deny-by-default membership for a user or agent; requires caller auth and tenant scope |
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:50:`shared_memory_status`, `shared_space_upsert`, and `shared_space_membership_set` rely on actor identity validation in `handlers/shared-memory.ts`. Admin mutations compare the caller against the configured shared-memory admin identity before allowing ownership-sensitive changes.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:68:    description: 'Session-scoped, auto-expires',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:97:| **temporary** | 0.3 | 0.5x | Yes | 7 days | Session-scoped, auto-expires |
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:397: * deleting only `created_by='auto'` entries in scope, re-extracting from the
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:4:// Hierarchical scope enforcement, governed ingest validation,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:5:// provenance normalization, and governance audit persistence.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:10:// Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:14: * Retention modes applied during governed ingest.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:19: * Request scope used to enforce tenancy, actor, session, and shared-space boundaries.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:22:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:23:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:24:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:26:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:30: * Governed-ingest fields required to persist scope and retention metadata.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:35:  governedAt?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:41: * Result of governed-ingest validation and field normalization.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:45:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:46:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:47:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:49:  sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:52:  governedAt: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:77: * Filters used to review governance audit history.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:83:  allowUnscoped?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:87: * Parsed governance audit row returned for review workflows.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:101: * Aggregate view of governance audit activity for a filtered review.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:112: * Combined governance audit review rows and summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:120: * Options used when benchmarking scope-filter behavior.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:128: * Benchmark result for a scope filter predicate.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:153: * Trim and normalize optional scope identifiers before enforcement.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:160:    tenantId: normalizeId(input.tenantId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:161:    userId: normalizeId(input.userId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:162:    agentId: normalizeId(input.agentId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:164:    sharedSpaceId: normalizeId(input.sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:169: * Resolve whether scope filtering is active for the current process.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:170: * Default: OFF — scope enforcement is opt-in via SPECKIT_MEMORY_SCOPE_ENFORCEMENT=true.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:171: * When enabled without scope constraints in the query, all results are rejected
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:172: * (empty scope + enforcement = no access). Only enable when multi-tenant governance
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:173: * is configured with tenantId/userId/agentId/sharedSpaceId in queries.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:175: * @returns `true` when scope enforcement is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:184: * Resolve whether governance guardrails are active for the current process.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:185: * Default: OFF — governance guardrails are opt-in via SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS=true.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:187: * @returns `true` when governance guardrails are enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:196: * Determine whether an ingest request must pass governed-ingest validation.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:199: * @returns `true` when governance or scope metadata requires enforcement.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:202:  const scope = normalizeScopeContext(input);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:203:  return Object.values(scope).some((value) => typeof value === 'string')
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:206:    || typeof input.governedAt === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:213: * Validate governed-ingest metadata and return normalized persistence fields.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:216: * @returns Validation result with normalized scope, provenance, and retention data.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:219:  const scope = normalizeScopeContext(input);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:221:  const governedAt = normalizeIsoTimestamp(input.governedAt) ?? new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:230:    // B8: Return null instead of empty string for optional scope fields
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:231:    // when governance is not required, to avoid persisting false-y placeholders.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:235:        tenantId: scope.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:236:        userId: scope.userId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:237:        agentId: scope.agentId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:238:        sessionId: scope.sessionId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:239:        sharedSpaceId: scope.sharedSpaceId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:242:        governedAt,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:250:  if (!scope.tenantId) issues.push('tenantId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:251:  if (!scope.sessionId) issues.push('sessionId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:252:  if (!scope.userId && !scope.agentId) issues.push('userId or agentId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:253:  if (!provenanceSource) issues.push('provenanceSource is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:254:  if (!provenanceActor) issues.push('provenanceActor is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:269:      tenantId: scope.tenantId ?? '',
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:270:      userId: scope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:271:      agentId: scope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:272:      sessionId: scope.sessionId ?? '',
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:273:      sharedSpaceId: scope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:276:      governedAt,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:284: * Map a governance decision into memory-index column values.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:286: * @param decision - Normalized governance decision from ingest validation.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:291:    tenant_id: decision.normalized.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:292:    user_id: decision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:293:    agent_id: decision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:295:    shared_space_id: decision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:298:    governed_at: decision.normalized.governedAt,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:301:    governance_metadata: JSON.stringify({
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:302:      tenantId: decision.normalized.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:303:      userId: decision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:304:      agentId: decision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:306:      sharedSpaceId: decision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:309:      governedAt: decision.normalized.governedAt,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:317: * Ensure governance and shared-space audit tables exist before writes.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:319: * @param database - Database connection that stores governance state.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:327: * Persist a governance audit entry for enforcement decisions and lifecycle events.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:329: * @param database - Database connection that stores governance state.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:334:  const scope = normalizeScopeContext(entry);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:336:    INSERT INTO governance_audit (
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:345:    scope.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:346:    scope.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:347:    scope.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:348:    scope.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:349:    scope.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:361: * Determine whether a scope includes at least one concrete constraint.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:363: * @param scope - Scope to inspect for tenant, actor, session, or shared-space bounds.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:364: * @returns `true` when the scope constrains access to at least one boundary.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:366:export function hasScopeConstraints(scope: ScopeContext): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:368:    scope.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:369:    || scope.tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:370:    || scope.userId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:371:    || scope.agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:372:    || scope.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:409:  if (normalized.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:411:    params.push(normalized.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:413:  if (normalized.userId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:415:    params.push(normalized.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:417:  if (normalized.agentId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:419:    params.push(normalized.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:425:  if (normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:427:    params.push(normalized.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:441:    || normalized.tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:442:    || normalized.userId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:443:    || normalized.agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:445:    || normalized.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:450: * Build a reusable row predicate for scope filtering without re-normalizing each row scan.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:452: * @param scope - Requested scope used for filtering.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:453: * @param allowedSharedSpaceIds - Optional shared-space allowlist for the scope.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:457:  scope: ScopeContext,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:460:  const normalized = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:465:    // BUG-001 fix: Empty scope under enforcement means no access, not universal access.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:472:      if (normalized.sharedSpaceId && rowSharedSpaceId !== normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:478:    } else if (normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:482:    // H8 FIX: When a row belongs to an allowed shared space, use membership as
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:486:      return matchesExactScope(row.tenant_id, normalized.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:489:    return matchesExactScope(row.tenant_id, normalized.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:490:      && matchesExactScope(row.user_id, normalized.userId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:491:      && matchesExactScope(row.agent_id, normalized.agentId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:497: * Review governance audit rows and aggregate counts for a filtered governance window.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:499: * @param database - Database connection that stores governance state.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:508:  const allowUnscoped = filters.allowUnscoped === true;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:509:  // Security: audit enumeration requires explicit scope filters or admin override
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:510:  if (!allowUnscoped && !hasGovernanceAuditFilters(filters)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:511:    console.warn('[scope-governance] Unscoped governance audit enumeration blocked; explicit filters or allowUnscoped=true required.');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:543:    FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:567:    FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:578:    FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:586:    FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:606:      tenantId: row.tenant_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:607:      userId: row.user_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:608:      agentId: row.agent_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:610:      sharedSpaceId: row.shared_space_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:626: * Benchmark scope filtering with a reusable predicate for rollout and safety checks.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:628: * @param rows - Candidate rows that include governance scope columns.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:629: * @param scope - Requested scope used for filtering.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:635:  scope: ScopeContext,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:641:  const predicate = createScopeFilterPredicate(scope, options.allowedSharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:666: * Filter result rows to the tenant, actor, session, and shared-space scope in force.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:668: * @param rows - Candidate rows that include governance scope columns.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:669: * @param scope - Requested scope used for filtering.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:670: * @param allowedSharedSpaceIds - Optional shared-space allowlist for the scope.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:671: * @returns Rows that remain visible after governance filtering.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:673:export function filterRowsByScope<T extends Record<string, unknown>>(rows: T[], scope: ScopeContext, allowedSharedSpaceIds?: ReadonlySet<string>): T[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:674:  return rows.filter(createScopeFilterPredicate(scope, allowedSharedSpaceIds));
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:42:| Module Categories | 29 | architecture, cache, chunking, code-graph, cognitive, collab, config, contracts, errors, eval, extraction, feedback, governance, graph, interfaces, learning, manage, ops, parsing, providers, response, scoring, search, session, spec, storage, telemetry, utils, validation |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:60:| **Content Parsing** | Memory file parsing, trigger matching (with CORRECTION/PREFERENCE signals) and entity scope detection |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:283:│   └── shared-spaces.ts        # Shared spaces, memberships, rollout and kill switch
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:291:├── governance/                 # Scope governance (1 module)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:292:│   └── scope-governance.ts     # Hierarchical scope enforcement and governed ingest
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:433:**Working Memory**: Manages session-scoped memory activation
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts:9:  hookPolicy: 'enabled' | 'disabled_by_scope' | 'unavailable';
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:86:        tenantId: validated.tenantId as string | undefined,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:87:        userId: validated.userId as string | undefined,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:88:        agentId: validated.agentId as string | undefined,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:89:        sharedSpaceId: validated.sharedSpaceId as string | undefined,
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:57:  'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:78:    case 'shared_space_membership_set': return handleSharedSpaceMembershipSet(parseArgs<SharedSpaceMembershipArgs>(validateToolArgs('shared_space_membership_set', args)));
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:316:    it('T031-BM25-07: bm25_search() fails closed when scoped lookup throws', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:331:                throw new Error('scope lookup failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:357:        '[BM25] Spec-folder scope lookup failed, returning empty scoped results:',
-.opencode/skill/system-spec-kit/mcp_server/tests/rollout-policy.vitest.ts:67:  it('requires both feature flag and rollout membership', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:111:    metrics['isolation.unscoped_rows'] = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:112:    metrics['isolation.missing_session_scope_rows'] = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:126:  metrics['isolation.unscoped_rows'] = safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:130:  metrics['isolation.missing_session_scope_rows'] = safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:203:        scopeDimensionsTracked: defaults.scopeDimensionsTracked,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:43:  governed_at?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:46:  governance_metadata?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:35:The telemetry module provides structured observability for the retrieval pipeline and scoring subsystem. It records per-stage latency, search mode selection, fallback triggers, composite quality scores, scoring observation samples, trace payload validation, and agent consumption events. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:193:| `scopeDimensionsTracked` | `number` | Number of tracked retrieval scope dimensions in this phase |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:50:// 3. DATABASE HANDLE (module-scoped, set via initScoringObservability)
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:439:  it('requires exact scope equality when a governance scope is supplied', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:446:        content_text: 'scoped',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:449:        file_path: 'scoped.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:479:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:480:      userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:481:      sharedSpaceId: 'space-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:159:    it('T521-C7: Explicit scope is merged into checkpoint metadata on create', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:162:        name: 'scoped-checkpoint',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:168:          reason: 'scope-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:169:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:170:          agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:171:          sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:176:          name: 'scoped-checkpoint',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:178:          metadata: { reason: 'scope-test' },
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:179:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:180:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:181:          agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:182:          sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:185:          name: 'scoped-checkpoint',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:188:            reason: 'scope-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:189:            tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:190:            userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:191:            agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:192:            sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:194:          scope: {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:195:            tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:196:            userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:197:            agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:198:            sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:206:    it('T521-C8: Governed checkpoint create requires tenant scope when actor scope is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:209:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:216:    it('T521-C9: whitespace-only tenantId is rejected when actor scope is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:219:        tenantId: '   ',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:220:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:221:      })).rejects.toThrow(/tenantId must be a non-empty string/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:268:    it('T521-L4: Optional scope filters checkpoint list results by metadata', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:277:          metadata: { userId: 'user-1', sharedSpaceId: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:286:          metadata: { userId: 'user-2', sharedSpaceId: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:291:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:292:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:293:          sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:300:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:301:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:302:          sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:309:    it('T521-L5: Governed checkpoint list requires tenant scope when actor scope is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:310:      const response = await handler.handleCheckpointList({ userId: 'user-1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:405:        name: 'scoped-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:411:        metadata: JSON.stringify({ userId: 'user-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:416:          name: 'scoped-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:417:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:418:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:430:    it('T521-R7: Governed checkpoint restore requires tenant scope when actor scope is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:433:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:514:        name: 'scoped-delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:520:        metadata: JSON.stringify({ sharedSpaceId: 'space-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:525:          name: 'scoped-delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:526:          confirmName: 'scoped-delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:527:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:528:          sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:540:    it('T521-DEL8: Governed checkpoint delete requires tenant scope when actor scope is provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:544:        sharedSpaceId: 'space-1',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:22:} from '../governance/scope-governance.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:81:    'governance_audit',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:123:  'governance_audit',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:172:  scope?: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:322:  'governance_audit', 'shared_spaces', 'shared_space_members', 'shared_space_conflicts',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:423:function checkpointMetadataMatchesScope(rawMetadata: unknown, scope: ScopeContext): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:424:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:431:    (normalizedScope.tenantId === undefined || metadata.tenantId === normalizedScope.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:432:    && (normalizedScope.userId === undefined || metadata.userId === normalizedScope.userId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:433:    && (normalizedScope.agentId === undefined || metadata.agentId === normalizedScope.agentId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:434:    && (normalizedScope.sharedSpaceId === undefined || metadata.sharedSpaceId === normalizedScope.sharedSpaceId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:450:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:456:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:476:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:483:  const { normalizedScope, allowedSharedSpaceIds, predicate } = getScopeFilterContext(database, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:500:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:502:  return getScopedMemories(database, specFolder, scope).memoryIds;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:508:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:513:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:521:  if (normalizedScope.tenantId && columns.has('tenant_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:523:    params.push(normalizedScope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:525:  if (normalizedScope.userId && columns.has('user_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:527:    params.push(normalizedScope.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:529:  if (normalizedScope.agentId && columns.has('agent_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:531:    params.push(normalizedScope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:533:  if (normalizedScope.sharedSpaceId && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:535:    params.push(normalizedScope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:648:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:649:    scope?: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:653:  const { specFolder, memoryIds, sharedSpaceIds, scope = {}, allowedSharedSpaceIds } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:654:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:656:  const scopePredicate = hasScope
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:666:    return scopePredicate ? rows.filter((row) => scopePredicate(row)) : rows;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:704:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:707:    if (normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:710:      ).all(normalizedScope.tenantId) as Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:716:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:720:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:747:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:751:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:793:  if (!scopePredicate) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:798:    return allRows.filter((row) => scopePredicate(row));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:810:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:811:    scope?: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:908:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:910:    scope?: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:917:    sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:919:    scope = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:922:  const normalizedScope = normalizeScopeContext(scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:934:  const { clauses: scopedClauses, params: scopedParams } = buildRestoreScopeDeleteWhere(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:941:    if (scopedClauses.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:942:      database.prepare(`DELETE FROM memory_index WHERE ${scopedClauses.join(' AND ')}`).run(...scopedParams);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:958:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:963:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:968:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:969:      deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:992:  if (scopedClauses.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:993:    database.prepare(`DELETE FROM ${tableName} WHERE ${scopedClauses.join(' AND ')}`).run(...scopedParams);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:997:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:998:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1012:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1013:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1027:    scope?: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1030:  const { checkpointSpecFolder, memoryIds, scope = {} } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1031:  const hasScope = hasScopeConstraints(normalizeScopeContext(scope));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1070:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1072:    scope: ScopeContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1416:    scope = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1424:        memoryIds: scopedMemoryIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1427:      } = getScopedMemories(database, specFolder, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1428:      const sharedSpaceIds = Array.from(new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1441:          memoryIds: scopedMemoryIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1442:          sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1443:          scope: normalizedScope,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1487:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1488:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1489:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1490:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1520:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1521:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1522:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1523:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1542:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1559:      .filter((row) => checkpointMetadataMatchesScope(row.metadata, scope))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1576:function getCheckpoint(nameOrId: string | number, scope: ScopeContext = {}): CheckpointEntry | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1585:    if (checkpoint && !checkpointMetadataMatchesScope(checkpoint.metadata, scope)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1599:  scope: ScopeContext = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1614:    const checkpoint = getCheckpoint(nameOrId, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1634:    const { normalizedScope, allowedSharedSpaceIds } = getScopeFilterContext(database, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1638:    const scopedMemoryIdsToReplace = Array.from(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1646:    const sharedSpaceIds = Array.from(new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1717:            memoryIds: scopedMemoryIdsToReplace,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1718:            scope: normalizedScope,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1727:                memoryIds: scopedMemoryIdsToReplace,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1728:                sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1730:                scope: normalizedScope,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1855:          // In merge mode, replace only the in-scope rows captured by the checkpoint.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1859:              memoryIds: scopedMemoryIdsToReplace,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1860:              sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1862:              scope: normalizedScope,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1922:function deleteCheckpoint(nameOrId: string | number, scope: ScopeContext = {}): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1926:    const checkpoint = getCheckpoint(nameOrId, scope);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:6:// Dimensions for governance review and Wave 2 gate decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:90:  scopeDimensionsTracked: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:212:      scopeDimensionsTracked: roadmapDefaults.scopeDimensionsTracked,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:429:    scopeDimensionsTracked?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:445:  if (typeof update.scopeDimensionsTracked === 'number' && Number.isFinite(update.scopeDimensionsTracked)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:446:    t.architecture.scopeDimensionsTracked = Math.max(0, Math.floor(update.scopeDimensionsTracked));
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:677:        scopeEnforcement: t.architecture.capabilities.scopeEnforcement,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:678:        governanceGuardrails: t.architecture.capabilities.governanceGuardrails,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:681:      scopeDimensionsTracked: t.architecture.scopeDimensionsTracked,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:791:// Self-governance: Opus-F agent, TCB=9, 3 findings addressed (A6-P2-2, A6-P2-3, A10-P2-3)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:25:  | 'scope_filtered';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:70:      "expectedResultDescription": "Should surface the T000b feature flag governance document, rollout-policy.ts, and any SKILL.md sections about flag naming conventions.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:71:      "notes": "Add-feature intent for a procedural question. Tests whether governance documentation is surfaced for implementation guidance."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:121:      "notes": "Find-spec intent with temporal/scope framing. Tests specFolder-aware retrieval."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:298:      "category": "scope_filtered",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:300:      "expectedResultDescription": "Spec-scoped browse. Should surface memory titles and tiers from spec folder system-spec-kit/022-hybrid-rag-fusion or 140-hybrid-rag-fusion-refinement.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:308:      "category": "scope_filtered",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:338:      "category": "scope_filtered",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:435:      "query": "refactor session deduplication to use a sliding window instead of session-scoped set",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:448:      "category": "scope_filtered",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:451:      "notes": "Find-spec intent for a specific flag — tests feature flag governance retrieval."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:720:      "expectedResultDescription": "Should surface SKILL.md documentation distinguishing spec/ directories (governance docs) from memory/ directories (AI context storage).",
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:36:    ownerBootstrap?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:67:    process.env.SPECKIT_SHARED_MEMORY_ADMIN_USER_ID = 'user-owner';
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:89:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:91:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:96:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:97:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:100:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:103:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:116:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:118:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:131:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:133:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:143:  it('auto-bootstraps the creator as owner when creating a shared space', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:146:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:148:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:154:    expect(envelope.data.ownerBootstrap).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:162:      subject_id: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:163:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:167:  it('treats stale create conflicts as updates and bootstraps only one owner', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:170:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:172:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:191:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:193:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:200:    expect(envelope.data.ownerBootstrap).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:205:        AND role = 'owner'
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:218:  it('allows an owner to update an existing shared space', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:221:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:223:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:229:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:231:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:240:  it('rolls back shared-space creation when owner bootstrap fails', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:245:        throw new Error('membership insert failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:252:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:254:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:260:    expect(JSON.stringify(envelope)).not.toContain('membership insert failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:268:  it('rejects updates when the caller is not a shared-space owner or admin', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:271:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:273:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:277:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:278:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:280:      subjectId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:281:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:286:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:288:      actorUserId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:293:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:296:  it('allows a shared-space owner to change membership without admin identity', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:299:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:301:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:305:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:306:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:308:      subjectId: 'user-space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:309:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:314:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:315:      actorUserId: 'user-space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:318:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:322:    expect(envelope.data.role).toBe('editor');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:323:    expect(envelope.data.actorSubjectId).toBe('user-space-owner');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:330:    `).get('space-1', 'agent', 'agent-1')).toEqual({ role: 'editor' });
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:333:  it('rejects membership changes when the caller is not a shared-space owner or admin', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:336:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:338:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:342:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:343:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:345:      subjectId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:346:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:351:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:352:      actorUserId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:355:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:360:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:366:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:386:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:401:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:415:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:428:    process.env.SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID = 'agent-owner';
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:436:        subjectId: 'agent-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:441:  it('preserves rolloutEnabled when an owner updates a shared space without resending the boolean', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:444:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:446:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:452:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:454:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:471:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:473:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:479:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:497:    expect(auditRow.user_id).toBe('user-owner');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:503:      actorSubjectId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:508:  it('rejects non-owner members and audits the denied admin mutation', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:510:      spaceId: 'space-owner-only',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:511:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:513:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:517:      spaceId: 'space-owner-only',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:518:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:519:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:521:      subjectId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:522:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:529:    `).run('user-external-owner', 'owner', 'space-owner-only', 'user', 'user-owner');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:533:    `).run('space-owner-only', 'user', 'user-owner', 'editor');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:536:      spaceId: 'space-owner-only',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:537:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:538:      actorUserId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:541:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:546:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:550:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:566:    expect(auditRow.reason).toBe('shared_space_owner_required');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:568:    expect(auditRow.user_id).toBe('user-editor');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:569:    expect(auditRow.shared_space_id).toBe('space-owner-only');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:571:      operation: 'membership_set',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:572:      operationType: 'membership_update',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:574:      actorSubjectId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:577:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:581:  it('rejects tenant mismatch on membership mutation', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:584:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:586:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:590:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:591:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:593:      subjectId: 'user-space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:594:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:599:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:600:      actorUserId: 'user-space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:603:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:611:  it('returns an internal error when membership persistence throws unexpectedly', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:618:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:619:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:622:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:627:    expect(envelope.data.error).toContain('Shared space membership update failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:637:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:638:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:647:  it('scopes shared-memory status to the authenticated caller identity', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:649:      spaceId: 'space-status-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:650:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:652:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:657:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:659:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:664:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:665:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:668:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:672:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:679:    expect(envelope.data.userId).toBe('user-other');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:680:    expect(envelope.data.agentId).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:723:      actorUserId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:38:  scope: 'match' | 'mismatch';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:130:      && scenario.producerMetadata.scope === 'match',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md:38:- Storage helpers assume document-aware columns such as `document_type`, `spec_level`, governance scope columns, and lineage metadata are available.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:32:// Initialize a test DB at module scope so skipIf conditions can evaluate correctly.
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:314:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:315:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:316:        agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:317:        sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:335:describe('governed retrieval schema propagation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:339:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:340:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:341:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:342:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:363:  it('public and runtime schemas accept governed scope fields for memory_quick_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:366:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:367:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:368:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:369:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:382:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:383:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:384:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:385:      sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:413:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:430:  it('handler auth rejects shared_space_membership_set when both actor identities are provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:435:        tool: 'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:444:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:457:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:321:  it('includes a communities array when community memberships are available', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:70:    it('treats copilot-cli as disabled_by_scope when no repo hook config exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:79:      expect(result.hookPolicy).toBe('disabled_by_scope');
-.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:95:    it('treats null Gemini hooks blocks as disabled_by_scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:117:      expect(result.hookPolicy).toBe('disabled_by_scope');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:4:vi.mock('../lib/governance/scope-governance', async (importOriginal) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:5:  const actual = await importOriginal<typeof import('../lib/governance/scope-governance')>();
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:12:import * as scopeGovernance from '../lib/governance/scope-governance';
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:33:  it('enforces deny-by-default membership for shared spaces', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:39:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:45:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:46:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:54:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:58:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:59:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:60:    }, 'space-1', 'editor');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:63:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:64:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:74:      tenantId: 'tenant-A',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:82:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:85:    expect(getAllowedSharedSpaceIds(db, { userId: 'user-1' })).toEqual(new Set());
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:94:      tenantId: 'tenant-A',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:102:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:106:      tenantId: 'tenant-A',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:107:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:117:      tenantId: 'tenant-A',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:125:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:129:      tenantId: 'tenant-B',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:130:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:139:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:140:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:148:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:158:  it('requires owner role for owner-gated shared-space actions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:163:      spaceId: 'space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:164:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:169:      spaceId: 'space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:171:      subjectId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:172:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:175:      spaceId: 'space-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:177:      subjectId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:178:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:182:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:183:      userId: 'user-editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:184:    }, 'space-owner', 'owner')).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:186:      reason: 'shared_space_owner_required',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:190:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:191:      userId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:192:    }, 'space-owner', 'owner')).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:197:  it('uses the highest role when both user and agent memberships exist', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:203:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:211:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:217:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:221:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:222:      userId: 'user-mixed',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:223:      agentId: 'agent-mixed',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:224:    }, 'space-mixed-role', 'owner')).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:228:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:229:      userId: 'user-mixed',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:230:      agentId: 'agent-mixed',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:234:  it('records governance audits for denied and allowed shared-space access decisions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:240:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:247:      subjectId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:248:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:252:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:253:      userId: 'user-viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:256:      reason: 'shared_space_membership_required',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:260:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:261:      userId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:262:    }, 'space-audit', 'owner')).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:268:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:274:        reason: 'shared_space_membership_required',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:276:        user_id: 'user-viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:281:        reason: 'membership_verified',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:283:        user_id: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:294:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:301:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:322:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:329:      subjectId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:330:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:333:    vi.mocked(scopeGovernance.recordGovernanceAudit)
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:342:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:343:      userId: 'user-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:344:    }, 'space-audit-failure', 'owner')).toEqual({
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:349:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:350:      userId: 'user-viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:353:      reason: 'shared_space_membership_required',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:366:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:374:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:378:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:379:      userId: 'user-2',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:380:    }, 'space-2', 'editor');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:385:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:392:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:393:      userId: 'user-2',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:399:    expect(Array.from(getAllowedSharedSpaceIds(db, { userId: 'user-2' }))).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:402:  it('keeps rollout disabled spaces hidden even when membership exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:408:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:417:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:421:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:422:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:427:    expect(Array.from(getAllowedSharedSpaceIds(db, { agentId: 'agent-1' }))).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:430:  it('rejects blank identifiers when persisting shared spaces and memberships', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:435:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:437:    })).toThrow('E_VALIDATION: spaceId and tenantId must be non-empty strings');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:443:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:453:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:459:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:467:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:473:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:477:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:478:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:482:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:483:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:490:  it('records append-version conflicts in shared conflict and governance audit tables', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:496:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:525:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:544:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:607:      FROM governance_audit
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:644:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:651:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:658:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:665:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:675:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:681:      role: 'editor',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:687:      role: 'viewer',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:693:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:720:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:736:        membershipCount: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:743:        membershipCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:753:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:208:  const scopeTuple = [
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:216:  if (scopeTuple.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:220:  const scopeHash = createHash('sha256')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:221:    .update(JSON.stringify(scopeTuple), 'utf8')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:225:  return `scope-sha256:${scopeHash}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:234:  scopePrefix: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:241:    scopePrefix: parts.scopePrefix,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:258:  const scopePrefix = buildScopePrefix(row);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:266:      scopePrefix,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:272:  if (!scopePrefix) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:275:  return `${row.spec_folder}::${scopePrefix}::${canonicalPath}::${anchorId}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:33:describe('PE gating scoped similar-memory search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:38:  it('expands the vector window until an in-scope match is found', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:58:            content_text: 'in-scope memory',
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:59:            file_path: '/specs/026-memory-database-refinement/in-scope.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:68:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:76:        content: 'in-scope memory',
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:77:        file_path: '/specs/026-memory-database-refinement/in-scope.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:96:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:173:              tenantId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:174:              userId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:175:              agentId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:203:              tenant_id: tenantId ?? existing?.tenant_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:204:              user_id: userId ?? existing?.user_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:205:              agent_id: agentId ?? existing?.agent_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:404:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_identity_scope'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:414:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:415:        userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:416:        agentId: 'agent-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:607:        tenantId: 'tenant-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:608:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:609:        agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:694:        tenantId: 'tenant-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:695:        userId: 'user-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:696:        agentId: 'agent-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:712:        tenantId: 'tenant-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:713:        userId: 'user-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:714:        agentId: 'agent-z',
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:173:    ).rejects.toThrow(/requires specFolder scope/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:10:  filterRowsByScope,
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:11:} from '../lib/governance/scope-governance';
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:37:describe('governance E2E', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:52:  it('isolates scoped retrieval to a single tenant and actor', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:74:    const filtered = filterRowsByScope(rows, {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:75:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:76:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:87:  it('prevents cross-actor leakage when scope enforcement is enabled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:105:    expect(filterRowsByScope(rows, {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:106:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:107:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:109:    expect(filterRowsByScope(rows, {
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:110:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:111:      agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:170:    'spec.md': `# Test Spec\n\n| **Level** | 1 |\n| **Date** | ${today} |\n\n## Overview\nThis is a test spec.\n\n## Scope\nTest scope.\n\n## Requirements\nTest requirements.\n`,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:98:    { id: 901, content: 'Release checklist task ownership and sign-off bookkeeping. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:926:    governed_at: existingRow.governed_at,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:929:    governance_metadata: existingRow.governance_metadata,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:470:    const content = 'Avoid scope creep when fixing bugs.';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:530:      spec_folder: 'specs/777-governance',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:136:    it('returns the newest state file that matches the requested scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:172:        const state = loadMostRecentState({ scope: { specFolder: 'specs/matching' } });
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:184:    it('fails closed when the caller cannot prove scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:215:          scope: { specFolder: 'specs/stale', claudeSessionId: staleSessionId },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:73:  scope: {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:74:    tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:75:    userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:76:    agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:78:    sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:104:    scope.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:105:    scope.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:106:    scope.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:107:    scope.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:108:    scope.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:236:    it('T054-6aa: Cross-tenant duplicates do not dedup when governance scope differs', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:238:      const folder = 'specs/governed-dedup';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:242:        '/specs/governed-dedup/memory/tenant-a.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:246:        { tenantId: 'tenant-a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:255:        { tenantId: 'tenant-b' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:261:    it('T054-6ab: Matching governance scope still dedups identical content', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:263:      const folder = 'specs/governed-dedup-match';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:267:        '/specs/governed-dedup-match/memory/tenant-a.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:271:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:280:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:353:    it('T320-1: Same-path lookup uses two direct probes without nullable OR scope predicates', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:371:        { tenantId: 'tenant-a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:383:    it('T320-2: Content-hash dedup uses exact scope clauses instead of nullable OR predicates', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:400:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:593:    it('T054-6j: Same-path unchanged ignores matching content in another tenant scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:594:      const content = 'Same-path unchanged must remain tenant-scoped.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:595:      const filePath = '/specs/governed-same-path/memory/doc.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:601:        'specs/governed-same-path',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:611:        buildParsedMemory('specs/governed-same-path', content, 'Tenant Scoped'),
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:616:        { tenantId: 'tenant-b' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:622:    it('T054-6k: Same-path predecessor lookup stays inside the current governance scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:624:      const filePath = '/specs/governed-predecessor/memory/doc.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:630:        'specs/governed-predecessor',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:640:        'specs/governed-predecessor',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:643:        { tenantId: 'tenant-b' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:647:        'specs/governed-predecessor',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:650:        { tenantId: 'tenant-a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:141:// Mock governance scope filter
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:142:const mockFilterRowsByScope = vi.fn((rows: Array<Record<string, unknown>>, scope: Record<string, unknown>, allowedSharedSpaceIds?: Set<string>) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:143:  const scopeEnforcementEnabled = process.env.SPECKIT_MEMORY_SCOPE_ENFORCEMENT === 'true'
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:146:    scope.tenantId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:147:    || scope.userId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:148:    || scope.agentId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:149:    || scope.sessionId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:150:    || scope.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:153:  if (scopeEnforcementEnabled && !hasGovernanceScope) {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:158:    const tenantMatches = !scope.tenantId || row.tenant_id === scope.tenantId;
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:159:    const userMatches = !scope.userId || row.user_id === scope.userId;
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:160:    const agentMatches = !scope.agentId || row.agent_id === scope.agentId;
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:162:    const sharedMatches = !scope.sharedSpaceId || (
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:163:      row.shared_space_id === scope.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:169:vi.mock('../lib/governance/scope-governance', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:170:  filterRowsByScope: (rows: Array<Record<string, unknown>>, scope: Record<string, unknown>, allowedSharedSpaceIds?: Set<string>) =>
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:171:    mockFilterRowsByScope(rows, scope, allowedSharedSpaceIds),
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:177:const mockGetAllowedSharedSpaceIds = vi.fn((_db: unknown, _scope: Record<string, unknown>) => undefined as Set<string> | undefined);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:179:  getAllowedSharedSpaceIds: (db: unknown, scope: Record<string, unknown>) => mockGetAllowedSharedSpaceIds(db, scope),
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:457:  it('T8: summary-channel hits are filtered by governance scope before merge', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:471:          spec_folder: 'specs/governed',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:472:          file_path: 'specs/governed/memory/allowed.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:485:          spec_folder: 'specs/governed',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:486:          file_path: 'specs/governed/memory/blocked.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:504:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:505:        sharedSpaceId: 'shared-allowed',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:516:  it('T9: constitutional injection re-applies governance scope after vector fetch', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:550:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:551:        sharedSpaceId: 'allowed-space',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:559:  it('T10: deny-by-default filters empty-scope candidates when enforcement is enabled', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:573:  it('T11: deep-mode LLM reformulation results are scope-filtered before merge', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:597:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:598:        sharedSpaceId: 'shared-allowed',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:612:  it('T12: deep-mode HyDE results are scope-filtered before merge', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:630:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:631:        sharedSpaceId: 'shared-allowed',
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:64:  'scope_filtered',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:9:  filterRowsByScope,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:13:} from '../lib/governance/scope-governance';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:16:describe('Phase 5 memory governance', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:23:  it('rejects governed ingest when provenance or scope markers are missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:28:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:33:    expect(decision.issues).toContain('userId or agentId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:34:    expect(decision.issues).toContain('provenanceSource is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:37:  it('filters rows to the requested tenant and actor scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:39:    const filtered = filterRowsByScope([
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:44:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:45:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:52:  it('denies all rows when enforcement is on and scope is empty', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:59:    const filtered = filterRowsByScope(rows, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:64:  it('honors explicit session scope even when global scope enforcement is disabled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:65:    const filtered = filterRowsByScope([
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:75:  it('writes governance audit rows for allow and deny decisions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:90:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:91:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:93:      reason: 'governed_ingest',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:96:    const row = db.prepare(`SELECT action, decision, tenant_id, user_id FROM governance_audit LIMIT 1`).get() as {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:112:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:113:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:130:  it('reviews governance audit history with summary counts and parsed metadata', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:145:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:146:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:148:      reason: 'governed_ingest',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:154:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:155:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:162:      tenantId: 'tenant-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:163:      userId: 'user-9',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:169:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:183:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:184:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:195:  it('blocks unscoped governance audit enumeration unless allowUnscoped=true', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:209:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:210:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:212:      reason: 'governed_ingest',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:221:      '[scope-governance] Unscoped governance audit enumeration blocked; explicit filters or allowUnscoped=true required.'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:224:    const allowed = reviewGovernanceAudit(db, { allowUnscoped: true, limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:229:  it('reuses cached scope predicates and benchmarks scoped filtering', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:240:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:241:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:246:    expect(filterRowsByScope(rows, {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:247:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:248:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:253:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:254:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:590:    it('find_spec keywords include: spec, specification, requirements, scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:595:      expect(keywords).toContain('scope');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1182:    it('passes governance scope into TM-04 semantic dedup candidate lookup', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1238:      const filePath = createAtomicSaveTargetPath('quality-gate-scope.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1244:        scope: {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1245:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1246:          userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1247:          agentId: 'agent-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1249:          sharedSpaceId: 'shared-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1258:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1259:          userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1260:          agentId: 'agent-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1262:          sharedSpaceId: 'shared-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1267:    it('passes governance scope into PE arbitration', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1307:      const filePath = createAtomicSaveTargetPath('pe-scope.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1313:        scope: {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1314:          tenantId: 'tenant-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1315:          userId: 'user-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1316:          agentId: 'agent-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1318:          sharedSpaceId: 'shared-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1331:          tenantId: 'tenant-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1332:          userId: 'user-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1333:          agentId: 'agent-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1335:          sharedSpaceId: 'shared-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:443:  it('uses query-scoped feedback signals as relevance labels when available', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:173:  describe('T012: Session-scoped cache with 60s TTL', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:4:// Shared-memory enablement, membership enforcement, and kill switch behavior.
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:46:describe('shared memory E2E', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:77:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:85:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:89:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:90:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:93:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:94:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:105:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:112:      subjectId: 'owner-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:113:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:117:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:118:      userId: 'user-2',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:121:      reason: 'shared_space_membership_required',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:124:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:125:      userId: 'user-2',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:134:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:142:      role: 'owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:151:      tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:152:      userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:493:    it('filters exact duplicates by governed scope when scope values are provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:494:      const testContent = 'Tenant scoped duplicate';
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:504:              file_path: '/specs/test/memory/scoped.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:515:        { content: testContent, database: mockDatabase, tenantId: 'tenant-a', userId: 'user-a' } as unknown as DuplicateParams,
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:520:      expect(result.existing_path).toBe('/specs/test/memory/scoped.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:570:    it('redacts duplicate metadata when similar match belongs to a different scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:573:          content: 'Cross-scope similar memory',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:575:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:579:              file_path: '/specs/test/memory/other-scope.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:596:      expect(result.existing_scope).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:599:    it('redacts exact-duplicate identifiers when cross-scope match is detected', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:600:      const testContent = 'Cross-scope exact duplicate';
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:623:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:624:          userId: 'user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/preflight.vitest.ts:634:      expect(result.existing_scope).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:13:// 5. Unscoped queries — no folder restriction applied
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:367:// 5. Unscoped queries — no folder restriction applied
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:370:describe('R9: Unscoped queries — cross-folder behaviour', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:531:  it('R9-15b: scoped result set is a strict subset of cross-folder result set', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:533:    // Equivalently: all scoped results must also appear in the unscoped result set.
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:534:    const scoped = structuralSearch({ specFolder: 'specs/001-auth', limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:535:    const unscoped = structuralSearch({ limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:537:    const unscopedIds = new Set(unscoped.map((r) => r.id));
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:538:    for (const row of scoped) {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:539:      expect(unscopedIds.has(row.id)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:542:    // Unscoped contains rows from other folders as well.
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:543:    expect(unscoped.length).toBeGreaterThan(scoped.length);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:179:  it('scopes hidden-path checks relative to the watched root', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:182:    const scopedPath = __testables.getWatchScopedPath(filePath, [watchRoot]);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:184:    expect(scopedPath).toBe('specs/001-test/spec.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:185:    expect(__testables.shouldIgnoreWatchTarget(scopedPath ?? filePath)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:129:    expect(t.architecture.scopeDimensionsTracked).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:302:      scopeDimensionsTracked: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:311:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.phase).toBe('graph');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:312:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.capabilities?.graphUnified).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:313:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.scopeDimensionsTracked).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:380:      scopeDimensionsTracked: 6,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:386:    expect(t.architecture.scopeDimensionsTracked).toBe(6);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:248:  describe('Governed scope forwarding', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:265:    it('forwards governed scope fields through deep-mode search routing', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:270:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:271:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:272:          agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:273:          sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:276:        'scope-forward-deep'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:281:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:282:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:283:        agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:284:        sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:288:    it('forwards governed scope fields through resume-mode search routing', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:293:          tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:294:          userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:295:          agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:296:          sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:299:        'scope-forward-resume'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:303:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:304:        userId: 'user-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:305:        agentId: 'agent-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:306:        sharedSpaceId: 'shared-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:176:      'shared_space_membership_set',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/lib/utils/logger.ts:64:/** A logger instance scoped to a specific module prefix. */
-.opencode/skill/system-spec-kit/mcp_server/lib/utils/logger.ts:73: * Create a logger scoped to a module name.
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:58:        CREATE INDEX idx_save_parent_content_hash_scope
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:794:    it('creates links only for the saved memory scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:769:    it('limit applies after sprint grouping and report totals match the included scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts:263:        reason: 'ownership-safe undo test',
-.opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts:288:    it('undo removes legacy-format correction-owned edge via scoped fallback only', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:26:  'handlers/memory-triggers.js': 470, // actual: 454 — Trigger matching with cognitive features + governance/scope wiring
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:30:  'handlers/checkpoints.js': 620,   // actual: 611 — Checkpoint operations plus scoped metadata guards, restore/delete safety checks, SEC-002 scope enforcement, and T012 follow-up fixes
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:487:        name: 'scoped-edge-snapshot',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:494:      ).get('scoped-edge-snapshot') as { memory_snapshot: Buffer } | undefined);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:504:      mod.deleteCheckpoint('scoped-edge-snapshot');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:507:    it('T503-12: scoped clearExisting restore preserves other spec data and unrelated edges', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:509:        name: 'scoped-edge-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:524:      const result = mod.restoreCheckpoint('scoped-edge-restore', true);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:546:      mod.deleteCheckpoint('scoped-edge-restore');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:549:    it('T503-13: scoped merge restore replaces stale in-folder edges without touching unrelated ones', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:551:        name: 'scoped-edge-merge-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:562:      const result = mod.restoreCheckpoint('scoped-edge-merge-restore', false);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:578:      mod.deleteCheckpoint('scoped-edge-merge-restore');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:602:    it('T503-14: scoped merge restore only replaces auxiliary rows inside the checkpoint scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:637:        name: 'scoped-aux-merge-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:660:      const result = mod.restoreCheckpoint('scoped-aux-merge-restore', false);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:690:    it('T503-15: unscoped merge restore preserves auxiliary rows outside the checkpoint snapshot', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:793:        name: 'scoped-rollback-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:799:      updateCheckpointSnapshot(database, 'scoped-rollback-restore', (snapshot) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:811:      const result = mod.restoreCheckpoint('scoped-rollback-restore', false);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:824:    it('T503-17: scoped clearExisting restore preserves same-folder rows outside the tenant scope', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:831:        name: 'scoped-tenant-clear-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:833:        scope: { tenantId: 'tenant-a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:839:      const result = mod.restoreCheckpoint('scoped-tenant-clear-restore', true, {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:840:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:858:    it('T503-18: unscoped clearExisting restore still replaces the whole checkpoint folder', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:865:        name: 'unscoped-folder-clear-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:872:      const result = mod.restoreCheckpoint('unscoped-folder-clear-restore', true);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:895:    it('T503-19: scoped merge restore respects tenant scope for memory-linked and direct-scope rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:902:        name: 'scoped-tenant-merge-restore',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:904:        scope: { tenantId: 'tenant-a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:910:      const result = mod.restoreCheckpoint('scoped-tenant-merge-restore', false, {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:911:        tenantId: 'tenant-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:93:  it('clears folder-scoped constitutional cache entries for archived and non-archived keys', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:100:      const specFolder = 'specs/cache-scope';
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:35:- Eval, shared-memory, governance, lineage, and public-API surfaces.
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:87:| Shared memory and governance | `shared-memory-handlers.vitest.ts`, `shared-spaces.vitest.ts`, `governance-e2e.vitest.ts`, `memory-governance.vitest.ts` | Scope enforcement, actor auth, and collab lifecycle |
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:261:  it('stores scope metadata in cursor payloads when provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:263:    const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant:user' });
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:267:    expect(payload?.scopeKey).toBe('tenant:user');
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:373:  it('returns null when cursor scope does not match the resuming caller', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:375:    const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant-a:user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:378:    const resolved = resolveCursor(cursorInfo!.cursor, 5, { scopeKey: 'tenant-b:user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:504:  it('passes cursor scope metadata through the progressive response builder', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:507:    const response = buildProgressiveResponse(results, 5, 'scoped progressive response', {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:508:      scopeKey: 'tenant-a:user-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:512:    const resolved = resolveCursor(response.continuation!.cursor, 5, { scopeKey: 'tenant-a:user-a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:513:    const rejected = resolveCursor(response.continuation!.cursor, 5, { scopeKey: 'tenant-b:user-a' });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1340:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:104:  tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:105:  userId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:106:  agentId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:107:  sharedSpaceId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:123:  tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:124:  userId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:125:  agentId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:126:  sharedSpaceId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:160:  tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:161:  userId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:162:  agentId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:163:  sharedSpaceId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:169:  tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:170:  userId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:171:  agentId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:172:  sharedSpaceId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:186:  // validated at runtime by scope-governance.ts (F3.04 fix).
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:187:  tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:188:  userId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:189:  agentId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:191:  sharedSpaceId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:194:  governedAt: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:205:  specFolder: optionalPathString().describe('Spec folder scope for bulk delete (requires confirm: true)'),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:268:  tenantId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:269:  userId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:270:  agentId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:271:  sharedSpaceId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:277:  tenantId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:278:  userId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:279:  agentId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:280:  sharedSpaceId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:286:  tenantId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:287:  userId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:288:  agentId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:289:  sharedSpaceId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:295:  tenantId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:296:  userId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:297:  agentId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:298:  sharedSpaceId: z.string().min(1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:428:    tenantId: z.string(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:436:  shared_space_membership_set: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:438:    tenantId: z.string(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:443:    role: z.enum(['owner', 'editor', 'viewer']),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:446:    tenantId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:464:  memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:474:  checkpoint_create: ['name', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'metadata'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:475:  checkpoint_list: ['specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:476:  checkpoint_restore: ['name', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'clearExisting'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:477:  checkpoint_delete: ['name', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'confirmName'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:491:  shared_space_upsert: ['spaceId', 'tenantId', 'name', 'actorUserId', 'actorAgentId', 'rolloutEnabled', 'rolloutCohort', 'killSwitch'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:492:  shared_space_membership_set: ['spaceId', 'tenantId', 'actorUserId', 'actorAgentId', 'subjectType', 'subjectId', 'role'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:4:// MCP handler layer for shared-space CRUD, membership assignment,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:19:import { recordGovernanceAudit } from '../lib/governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:24:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:147:  const userIdProvided = typeof args.actorUserId === 'string';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:148:  const agentIdProvided = typeof args.actorAgentId === 'string';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:151:  const hasBlankUser = userIdProvided && normalizedUserId.length === 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:152:  const hasBlankAgent = agentIdProvided && normalizedAgentId.length === 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:210:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:212:  const normalizedTenantId = typeof tenantId === 'string' ? tenantId.trim() : '';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:216:      'Tenant scope is required for shared-memory admin mutations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:219:        error: 'Tenant scope is required for shared-memory admin mutations.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:262:  tenantId: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:265:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:267:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:268:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:271:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:273:    userId: actor.subjectType === 'user' ? actor.subjectId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:274:    agentId: actor.subjectType === 'agent' ? actor.subjectId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:282:    tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:285:    operation: 'space_upsert' | 'membership_set';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:294:    ...buildActorScope(args.actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:316:    case 'shared_space_owner_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:317:      return tool === 'shared_space_membership_set'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:318:        ? `Only a shared-space owner can update membership for "${spaceId}".`
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:319:        : `Only a shared-space owner can update "${spaceId}".`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:320:    case 'shared_space_editor_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:322:    case 'shared_space_membership_required':
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:329:      return 'Tenant scope is required to manage shared spaces.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:336:  return reason === 'shared_space_membership_required'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:337:    ? 'shared_space_owner_required'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:356:        : 'Use the tenant owner identity for this shared space.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:368:      hint: 'Authenticate as the configured shared-memory admin before enabling shared memory.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:408:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:415:  const normalizedTenantId = typeof tenantId === 'string' && tenantId.trim().length > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:416:    ? tenantId.trim()
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:439: * Persist a shared-space definition for rollout and membership checks.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:464:    }, args.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:467:      | { success: true; created: boolean; ownerBootstrap: boolean; rolloutEnabled: boolean; killSwitch: boolean }
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:485:            buildActorScope(actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:487:            'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:490:            const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:493:              tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:500:                actorAuthRole: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:514:          tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:533:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:541:      let ownerBootstrap = false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:548:        ownerBootstrap = createResult.created;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:555:      if (ownerBootstrap) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:560:          role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:573:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:580:          actorAuthRole: isAdmin ? 'admin' : 'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:582:          ownerBootstrap,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:591:        ownerBootstrap,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:606:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:610:        ownerBootstrap: result.ownerBootstrap,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:630: * Persist membership for a user or agent within a shared space.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:633: * @returns MCP success response describing the updated membership.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:645:        tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:652:      tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:655:    }, args.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:660:        buildActorScope(actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:662:        'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:665:        const reason = normalizeOwnerAdminDenyReason(access.reason ?? 'shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:669:            tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:672:            operation: 'membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:675:              operationType: 'membership_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:676:              actorAuthRole: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:687:          'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:689:          getSharedSpaceAccessErrorMessage('shared_space_membership_set', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:704:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:707:        operation: 'membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:708:        reason: 'membership_updated',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:710:          operationType: 'membership_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:711:          actorAuthRole: isAdmin ? 'admin' : 'owner',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:720:      tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:724:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:738:      'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:739:      'Shared space membership update failed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:749: * @param args - Tenant, user, or agent scope to evaluate.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:762:      ? getAllowedSharedSpaceIdsForCaller(db, actor, args.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:772:        tenantId: args.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:773:        userId: actor.subjectType === 'user' ? actor.subjectId : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:774:        agentId: actor.subjectType === 'agent' ? actor.subjectId : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:812:        'Only the configured shared-memory admin can enable shared memory.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:901:- **Spaces** — Named containers for shared memories, scoped to a tenant.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:902:- **Membership** — Deny-by-default: users and agents must be explicitly granted access (owner, editor, or viewer).
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:912:| \`/memory:manage shared member <spaceId> <type> <id> <role>\` | Set membership; caller must already own the space |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:917:Set \`SPECKIT_MEMORY_SHARED_MEMORY=true\` to force-enable shared memory regardless of database state.
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:112:    [--folder <spec-folder>]       Optional: scope to a spec folder
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:270:  // Safety: refuse constitutional/critical without folder scope
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:272:    console.error(`ERROR: Bulk delete of "${tier}" tier requires --folder scope for safety.`);
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:70:      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval. When provided with scope enforcement, results are isolated to this tenant.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:71:      userId: { type: 'string', description: 'User boundary for governed retrieval. Filters private or shared-space user-scoped memories.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:72:      agentId: { type: 'string', description: 'Agent boundary for governed retrieval. Filters agent-scoped memories.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:73:      sharedSpaceId: { type: 'string', description: 'Shared-memory space identifier. Requires explicit membership when shared memory rollout is enabled.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:201:      tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:202:      userId: { type: 'string', description: 'User boundary for governed retrieval.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:203:      agentId: { type: 'string', description: 'Agent boundary for governed retrieval.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:204:      sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:321:  description: '[L4:Mutation] Bulk delete memories by importance tier. Use to clean up deprecated or temporary memories at scale. Auto-creates checkpoint before deletion for safety. Refuses unscoped deletion of constitutional/critical tiers. Supports optional checkpoint bypass for lower-risk tiers when speed is prioritized. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:322:  inputSchema: { type: 'object', additionalProperties: false, properties: { tier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Importance tier to delete (required)' }, specFolder: { type: 'string', description: 'Optional: scope deletion to a specific spec folder' }, confirm: { type: 'boolean', const: true, description: 'Required safety gate: must be true to proceed' }, olderThanDays: { type: 'number', minimum: MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS, description: 'Optional: only delete memories older than this many days' }, skipCheckpoint: { type: 'boolean', default: false, description: 'Optional speed optimization for non-critical tiers. When true, skips auto-checkpoint creation before delete. Rejected for constitutional/critical tiers.' } }, required: ['tier', 'confirm'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:335:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:336:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:337:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:353:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:354:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:355:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:356:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:370:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:371:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:372:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:373:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:388:      tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:389:      userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:390:      agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:391:      sharedSpaceId: { type: 'string', minLength: 1, description: 'Scope to this shared space (requires tenantId).' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:404:  description: '[L5:Lifecycle] Create or update a shared-memory space. Caller authentication is required. New spaces may only be created by the configured shared-memory admin; updates require the configured admin or a current space owner.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:410:      tenantId: { type: 'string', description: 'Owning tenant for the shared space.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:420:    required: ['spaceId', 'tenantId', 'name'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:425:  name: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:426:  description: '[L5:Lifecycle] Set deny-by-default shared-space membership for a user or agent. Caller authentication is required; membership changes require the configured shared-memory admin or a current space owner.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:432:      tenantId: { type: 'string', description: 'Tenant boundary for the membership mutation.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:437:      role: { type: 'string', description: 'Access role inside the shared space: "owner", "editor", or "viewer".' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:439:    required: ['spaceId', 'tenantId', 'subjectType', 'subjectId', 'role'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:450:      tenantId: { type: 'string', description: 'Optional tenant filter applied to the authenticated caller scope.' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:746:      specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:761:      specFolder: { type: 'string', description: 'Optional spec folder to scope the resume context' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:129: * @param args - Ingest arguments (paths, scope, options)
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:95:// Token budgets for dual-scope lifecycle hooks (TM-05)
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:315:    // Query top attention-weighted memories, scoped to the current session
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:80:  // Safety: refuse to bulk-delete constitutional or critical tiers without explicit specFolder scope
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:82:    throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:41:// C2 FIX: Import DB access for scope filtering
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:112:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:113:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:114:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:213:      tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:214:      userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:      agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:299:        const scopeRows = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:310:        const scopeMap = new Map(scopeRows.map(r => [r.id, r]));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:312:          const row = scopeMap.get(match.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:314:          // H2 FIX: Require exact scope match — rows with NULL scope are excluded
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:315:          // when the caller specifies a scope, not silently passed through.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:317:          if (tenantId && row.tenant_id !== tenantId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:318:          if (userId && row.user_id !== userId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:319:          if (agentId && row.agent_id !== agentId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:324:    } catch (scopeErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/README.md:80:| **Access control** | None | Shared spaces with deny-by-default membership and kill switches |
+.opencode/skills/system-spec-kit/mcp_server/README.md:91:| `/memory:manage` | Database maintenance, checkpoints, bulk ingestion, shared-memory spaces and memberships | 19 primary tools + 1 helper |
+.opencode/skills/system-spec-kit/mcp_server/README.md:93:| `/spec_kit:resume` | Continue or recover an interrupted spec-folder session through the broader memory/session recovery stack | Broad helper surface; primary chain uses 3 shared memory tools |
+.opencode/skills/system-spec-kit/mcp_server/README.md:313:- **LLM query reformulation** -- asks the LLM to rephrase the query more abstractly, grounding in actual knowledge base content. Reformulated hits pass through the same scope, context and quality checks as ordinary results
+.opencode/skills/system-spec-kit/mcp_server/README.md:400:This is session-scoped to prevent cross-session interference.
+.opencode/skills/system-spec-kit/mcp_server/README.md:439:- **Roles** -- `owner` (full control), `editor` (read/write), `viewer` (read-only)
+.opencode/skills/system-spec-kit/mcp_server/README.md:443:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
+.opencode/skills/system-spec-kit/mcp_server/README.md:475:**Constitutional memory as expert knowledge injection** -- tags high-priority memories with instructions about when to surface. They appear whenever relevant without you asking, like sticky notes on a filing cabinet that say "pull this file whenever someone asks about X." Constitutional injections obey global scope enforcement so the wrong tenant's rules never leak.
+.opencode/skills/system-spec-kit/mcp_server/README.md:479:**Dual-scope memory auto-surface** -- watches for tool use and context compression events and automatically brings up important memories without being asked.
+.opencode/skills/system-spec-kit/mcp_server/README.md:573:| `tenantId` | string | Tenant boundary for governed retrieval |
+.opencode/skills/system-spec-kit/mcp_server/README.md:574:| `userId` | string | User boundary for governed retrieval |
+.opencode/skills/system-spec-kit/mcp_server/README.md:575:| `agentId` | string | Agent boundary for governed retrieval |
+.opencode/skills/system-spec-kit/mcp_server/README.md:576:| `sharedSpaceId` | string | Shared-space boundary for governed retrieval |
+.opencode/skills/system-spec-kit/mcp_server/README.md:631:| `tenantId` | string | Tenant boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:632:| `userId` | string | User boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:633:| `agentId` | string | Agent boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:634:| `sharedSpaceId` | string | Shared-memory boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:660:The lightweight search option. Works like a preset: you provide a query and optional scope boundaries and it forwards to the full search tool with sensible defaults. Use this when you want fast results without setting lots of parameters.
+.opencode/skills/system-spec-kit/mcp_server/README.md:666:| `tenantId` | string | Tenant boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:667:| `userId` | string | User boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:668:| `agentId` | string | Agent boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:669:| `sharedSpaceId` | string | Shared-memory boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:713:| `tenantId` | string | Governance: tenant scope |
+.opencode/skills/system-spec-kit/mcp_server/README.md:714:| `userId` | string | Governance: user attribution |
+.opencode/skills/system-spec-kit/mcp_server/README.md:715:| `agentId` | string | Governance: agent attribution |
+.opencode/skills/system-spec-kit/mcp_server/README.md:716:| `sharedSpaceId` | string | Governance: shared-space target |
+.opencode/skills/system-spec-kit/mcp_server/README.md:719:| `governedAt` | string | ISO timestamp for governed ingest audit |
+.opencode/skills/system-spec-kit/mcp_server/README.md:893:Create or update a shared-memory space. Shared spaces start locked: nobody can read or write until you add members with `shared_space_membership_set`. The person or agent who creates the space automatically becomes its owner.
+.opencode/skills/system-spec-kit/mcp_server/README.md:898:| `tenantId` | string | **Required.** Tenant scope |
+.opencode/skills/system-spec-kit/mcp_server/README.md:908:##### `shared_space_membership_set`
+.opencode/skills/system-spec-kit/mcp_server/README.md:910:Control who can access a shared space. Assign owner, editor or viewer roles. Only existing owners can change membership.
+.opencode/skills/system-spec-kit/mcp_server/README.md:915:| `tenantId` | string | **Required.** Tenant boundary |
+.opencode/skills/system-spec-kit/mcp_server/README.md:920:| `role` | string | **Required.** `owner`, `editor` or `viewer` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:926:Check the state of shared memory. See which spaces exist, who has access and whether the kill switch is active. Use this to verify your setup after making changes.
+.opencode/skills/system-spec-kit/mcp_server/README.md:930:| `tenantId` | string | Filter by tenant |
+.opencode/skills/system-spec-kit/mcp_server/README.md:931:| `userId` | string | Filter by user |
+.opencode/skills/system-spec-kit/mcp_server/README.md:932:| `agentId` | string | Filter by agent |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1228:├── lib/                       # Retrieval, storage, eval, governance, scoring, and parsing internals
+.opencode/skills/system-spec-kit/mcp_server/README.md:1504:    "tenantId": "acme",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1515:  "tool": "shared_space_membership_set",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1518:    "tenantId": "acme",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1522:    "role": "editor"
+.opencode/skills/system-spec-kit/mcp_server/README.md:1527:For the full shared memory guide, see [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md).
+.opencode/skills/system-spec-kit/mcp_server/README.md:1705:Yes, through shared memory. Call `shared_memory_enable`, create a space with `shared_space_upsert` and grant access with `shared_space_membership_set`. Spaces are deny-by-default and the first creator becomes owner. See [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) for the full guide.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1743:| [SHARED_MEMORY_DATABASE.md](../SHARED_MEMORY_DATABASE.md) | Complete shared memory guide: setup, use cases, roles, kill switch, troubleshooting |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:100:  scope: MemoryScopeMatch = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:102:  const tenantId = normalizeScopeMatchValue(scope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:103:  const userId = normalizeScopeMatchValue(scope.userId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:104:  const agentId = normalizeScopeMatchValue(scope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:105:  const sessionId = normalizeScopeMatchValue(scope.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:125:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:126:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:127:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:128:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:129:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:130:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:149:  scope: MemoryScopeMatch = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:174:      scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:131:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:132:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:133:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:138:  governedAt?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:168:  governed_at?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:171:  governance_metadata?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:177:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:178:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:179:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:92:function matchesScope(state: HookState, scope: HookStateScope): boolean {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:93:  if (scope.specFolder && state.lastSpecFolder !== scope.specFolder) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:97:  if (scope.claudeSessionId && state.claudeSessionId !== scope.claudeSessionId) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:107: * older than maxAgeMs, or when the caller cannot prove scope.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:112:    scope?: HookStateScope;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:116:  const scope = options.scope;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:117:  const hasScope = Boolean(scope?.specFolder || scope?.claudeSessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:125:        reason: 'scope_unknown_fail_closed',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:149:      if (!matchesScope(state, scope!)) {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:598:  it('rebuilds auto rows in scope and preserves manual rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:624:    const scopedRows = db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:630:    expect(scopedRows.some((row) => row.entity_text === 'Curated Alias' && row.created_by === 'manual')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:631:    expect(scopedRows.some((row) => row.entity_text === 'Node.js. With Next.js Adapter')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:632:    expect(scopedRows.some((row) => row.entity_text === 'Node.js' && row.created_by === 'auto')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:633:    expect(scopedRows.some((row) => row.entity_text === 'Next.js Adapter' && row.created_by === 'auto')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282:  it('filters trigger matches by governed scope fields when provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:285:        buildTriggerMatch({ memoryId: 11, filePath: '/tmp/scoped.md' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:286:        buildTriggerMatch({ memoryId: 22, filePath: '/tmp/unscoped.md' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:318:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:319:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:320:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:321:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:330:    expect(results[0]?.filePath).toBe('/tmp/scoped.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1082:    it('EXT-H13: handleCheckpointList rejects whitespace tenantId when sharedSpaceId is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1084:        tenantId: '   ',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1085:        sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1086:      })).rejects.toThrow(/tenantId must be a non-empty string/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:27:  'mcp_server/lib/governance/scope-governance.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:30:  'mcp_server/tests/memory-governance.vitest.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:38:  'mcp_server/lib/governance/scope-policy.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:39:  'mcp_server/lib/governance/shared-policy.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:46:  'mcp_server/test/security/scope-isolation.test.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:52:  path.join(SKILL_ROOT, 'feature_catalog', '17--governance', '03-hierarchical-scope-governance-governed-ingest-retention-and-audit.md'),
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:53:  path.join(SKILL_ROOT, 'feature_catalog', '17--governance', '04-shared-memory-rollout-deny-by-default-membership-and-kill-switch.md'),
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:67:  it('parent spec and plan describe the closure pass with current scope, evidence, and support boundaries', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:73:    expect(specContent).toContain('describe shared memory as opt-in live access rather than universally enabled rollout');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:79:    expect(planContent).toContain('shared-space owner enforcement and retention-sweep database routing');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:83:    expect(planContent).not.toContain('root-only scope was confirmed');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:109:    expect(checklistContent).toContain('Hydra follow-up verification passed across targeted governed-retrieval, shared-space admin, graph-ranking, and retention regressions');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:123:    expect(playbookContent).toContain('### 122 | Governed ingest and scope isolation (Phase 5)');
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:137:    expect(summaryContent).toContain('owner-only shared-space operations now enforce explicit actor identity plus owner authorization');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:41:  it('forwards governed scope fields through memory_quick_search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:44:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:45:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:46:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:47:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:53:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:54:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:55:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:56:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:75:- Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:73:    expect(snapshot.metrics['isolation.unscoped_rows']).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:74:    expect(snapshot.metrics['isolation.missing_session_scope_rows']).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:72:10. [Governance and Scope](#10-governance-and-scope)
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:260:<!-- ANCHOR:governance-scope -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:265:| `SPECKIT_MEMORY_ROADMAP_PHASE` | `shared-rollout` | string | Active memory roadmap phase: `baseline`, `lineage`, `graph`, `adaptive`, `scope-governance`, `shared-rollout`. | `lib/config/capability-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:269:| `SPECKIT_MEMORY_SCOPE_ENFORCEMENT` | `true` | boolean | Scope enforcement for tenant/user/agent isolation. Graduated ON. Legacy: `SPECKIT_HYDRA_SCOPE_ENFORCEMENT`. | `lib/governance/scope-governance.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:270:| `SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS` | `true` | boolean | Governance guardrails for validated operations. Graduated ON. Legacy: `SPECKIT_HYDRA_GOVERNANCE_GUARDRAILS`. | `lib/governance/scope-governance.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:271:| `SPECKIT_MEMORY_SHARED_MEMORY` | `false` | boolean | Shared memory spaces with deny-by-default membership. **Default OFF**: opt-in. | `lib/config/capability-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:272:| `SPECKIT_SHARED_MEMORY_ADMIN_USER_ID` | (none) | string | Admin user ID override for shared memory operations. | `handlers/shared-memory.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:273:| `SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID` | (none) | string | Admin agent ID override for shared memory operations. | `handlers/shared-memory.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:274:<!-- /ANCHOR:governance-scope -->
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:418:# Enable shared memory spaces
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:42:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:43:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:44:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:45:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:51:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:52:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:53:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:54:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:60:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:61:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:62:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:63:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:70:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:71:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:72:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:77:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:78:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:79:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:80:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:203:  const tenantId = validateValue(args.tenantId, 'tenantId', { trim: true });
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:204:  const userId = validateValue(args.userId, 'userId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:205:  const agentId = validateValue(args.agentId, 'agentId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:206:  const sharedSpaceId = validateValue(args.sharedSpaceId, 'sharedSpaceId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:208:    userId !== undefined || agentId !== undefined || sharedSpaceId !== undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:212:    && tenantId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:213:    && tenantId.trim().length === 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:215:    throw new Error('tenantId must be a non-empty string when userId, agentId, or sharedSpaceId is provided');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:219:    tenantId: tenantId && tenantId.length > 0 ? tenantId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:220:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:221:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:222:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:226:function hasCheckpointScope(scope: CheckpointScopeArgs): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:228:    scope.tenantId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:229:    || scope.userId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:230:    || scope.agentId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:231:    || scope.sharedSpaceId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:235:function requiresCheckpointTenant(scope: CheckpointScopeArgs): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:236:  return scope.tenantId === undefined && (
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:237:    scope.userId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:238:    || scope.agentId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:239:    || scope.sharedSpaceId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:245:  scope: CheckpointScopeArgs,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:249:    ...(scope.tenantId !== undefined ? { tenantId: scope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:250:    ...(scope.userId !== undefined ? { userId: scope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:251:    ...(scope.agentId !== undefined ? { agentId: scope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:252:    ...(scope.sharedSpaceId !== undefined ? { sharedSpaceId: scope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:256:function checkpointMatchesScope(rawMetadata: unknown, scope: CheckpointScopeArgs): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:259:    const expected = scope[field];
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:268:    matchesScopeField('tenantId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:269:    matchesScopeField('userId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:270:    matchesScopeField('agentId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:271:    matchesScopeField('sharedSpaceId')
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:275:function checkpointScopeDetails(scope: CheckpointScopeArgs): Record<string, string> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:277:  if (scope.tenantId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:278:    details.tenantId = scope.tenantId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:280:  if (scope.userId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:281:    details.userId = scope.userId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:283:  if (scope.agentId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:284:    details.agentId = scope.agentId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:286:  if (scope.sharedSpaceId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:287:    details.sharedSpaceId = scope.sharedSpaceId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:297:    error: 'tenantId is required when userId, agentId, or sharedSpaceId is provided.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:300:      reason: 'checkpoint_scope_tenant_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:303:      hint: 'Retry with tenantId included for governed checkpoint access.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:320:  const scope = validateCheckpointScope(args);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:321:  if (requiresCheckpointTenant(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:336:    metadata: mergeCheckpointScopeMetadata(metadata, scope),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:337:    scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:381:  const scope = validateCheckpointScope(args);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:382:  if (requiresCheckpointTenant(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:394:  const results = checkpoints.listCheckpoints(spec_folder ?? null, limit, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:395:  const filteredResults = hasCheckpointScope(scope)
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:396:    ? results.filter((checkpoint) => checkpointMatchesScope(checkpoint.metadata, scope))
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:444:  const scope = validateCheckpointScope(args);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:445:  if (requiresCheckpointTenant(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:453:  if (hasCheckpointScope(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:454:    const checkpoint = checkpoints.getCheckpoint(name, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:455:    if (checkpoint && !checkpointMatchesScope(checkpoint.metadata, scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:458:        error: `Checkpoint "${name}" scope mismatch`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:462:          scope: checkpointScopeDetails(scope),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:465:          hint: 'Retry with matching scope values or omit optional scope parameters if you intend to access an unscoped checkpoint.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:466:          actions: ['Use checkpoint_list() with the same scope parameters to discover accessible checkpoints'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:473:  const result = checkpoints.restoreCheckpoint(name, clear_existing, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:537:          'Retry with a narrower scope or clearExisting=true if you intend to replace current state',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:587:  const scope = validateCheckpointScope(args);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:588:  if (requiresCheckpointTenant(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:602:  if (hasCheckpointScope(scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:603:    const checkpoint = checkpoints.getCheckpoint(name, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:604:    if (checkpoint && !checkpointMatchesScope(checkpoint.metadata, scope)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:607:        error: `Checkpoint "${name}" scope mismatch`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:611:          scope: checkpointScopeDetails(scope),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:614:          hint: 'Retry with matching scope values or omit optional scope parameters if you intend to access an unscoped checkpoint.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:615:          actions: ['Use checkpoint_list() with the same scope parameters to discover accessible checkpoints'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:622:  const success: boolean = checkpoints.deleteCheckpoint(name, scope);
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:198:    scopeDimensionsTracked: rollout.scopeDimensionsTracked,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:36:  'governance_audit',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:362:    INSERT INTO governance_audit (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:365:  `).run(1, 'scope_check', 'allow', 1, 'specs/022-hybrid-rag-fusion::/tmp/specs/022/alpha.md::_', 'tenant-a', 'user-a', 'agent-a', 'sess-1', 'space-1', 'seed governance', '{"phase":"seed"}', later);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:375:  `).run('space-1', 'user', 'user-a', 'owner', now, later);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:54:} from '../lib/governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:609:    scope?: MemoryScopeMatch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:619:    scope = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:707:      scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:721:      scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:751:              tenantId: scope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:752:              userId: scope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:753:              agentId: scope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:754:              sessionId: scope.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:755:              sharedSpaceId: scope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:800:    }, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:809:      database, parsed, embedding, force, validation.warnings, embeddingStatus, filePath, scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:827:      scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:922:    }, scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:934:        scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:954:            scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1050:    scope = {} as MemoryScopeMatch,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1071:    scope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1106:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1107:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1108:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1110:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1113:    governedAt,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1136:  const governanceDecision = validateGovernedIngest({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1137:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1138:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1139:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1141:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1144:    governedAt,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1149:  if (!governanceDecision.allowed) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1153:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1154:      userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1155:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1157:      sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1158:      reason: governanceDecision.reason ?? 'governance_rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1159:      metadata: { issues: governanceDecision.issues },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1161:    throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1164:  if (sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1166:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1167:      userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1168:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1170:      sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1171:    }, sharedSpaceId, 'editor');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1176:        tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1177:        userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1178:        agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1180:        sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1266:    tenantId: governanceDecision.normalized.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1267:    userId: governanceDecision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1268:    agentId: governanceDecision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1269:    sessionId: governanceDecision.normalized.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1270:    sharedSpaceId: governanceDecision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1285:        tenantId: saveScope.tenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1286:        userId: saveScope.userId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1287:        agentId: saveScope.agentId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1288:        sharedSpaceId: saveScope.sharedSpaceId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1436:      scope: saveScope,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1456:    // B13 + H5 FIX: Wrap governance metadata in a transaction with rollback on failure.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1457:    // If governance application fails, delete the orphaned memory row to prevent
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1460:      applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governanceDecision));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1465:        tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1466:        userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1467:        agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1469:        sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1470:        reason: sharedSpaceId ? 'shared_space_save' : 'governed_ingest',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1474:      if (sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1483:        `).get(sharedSpaceId, validatedPath, result.id) as { id?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1486:            spaceId: sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:92:  tenantId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:93:  userId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:94:  agentId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:102:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:103:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:104:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:159:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:160:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:161:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:331:  tenantId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:332:  userId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:333:  agentId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:351:    tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:352:    userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:353:    agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:358:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:359:  scope: SessionIdentityScope = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:361:  const requestedTenantId = normalizeIdentityValue(scope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:362:  if (requestedTenantId && storedIdentity.tenantId !== requestedTenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:363:    return 'tenantId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:366:  const requestedUserId = normalizeIdentityValue(scope.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:367:  if (requestedUserId && storedIdentity.userId !== requestedUserId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:368:    return 'userId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:371:  const requestedAgentId = normalizeIdentityValue(scope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:372:  if (requestedAgentId && storedIdentity.agentId !== requestedAgentId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:373:    return 'agentId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:380:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null } | null,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:381:): storedIdentity is { tenantId: string | null; userId: string | null; agentId: string | null } {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:382:  return Boolean(storedIdentity && (storedIdentity.tenantId || storedIdentity.userId || storedIdentity.agentId));
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:387:  scope: SessionIdentityScope = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:420:  const mismatch = getIdentityMismatch(storedIdentity, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:976:  'CREATE INDEX IF NOT EXISTS idx_session_state_identity_scope ON session_state(tenant_id, user_id, agent_id);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1030:    const tenantId = normalizeIdentityValue(state.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1031:    const userId = normalizeIdentityValue(state.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1032:    const agentId = normalizeIdentityValue(state.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1064:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1065:      userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1066:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1126:function recoverState(sessionId: string, scope: SessionIdentityScope = {}): RecoverResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1150:      tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1151:      userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1152:      agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1154:    const mismatch = getIdentityMismatch(storedIdentity, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1167:      tenantId: storedIdentity.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1168:      userId: storedIdentity.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1169:      agentId: storedIdentity.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1193:function getInterruptedSessions(scope: SessionIdentityScope = {}): InterruptedSessionsResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1209:        tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1210:        userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1211:        agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1213:      return getIdentityMismatch(storedIdentity, scope) === null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:346:    // T72 SECURITY: Spec-folder scope MUST fail closed — any error in scope
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:347:    // resolution returns [] rather than leaking unscoped BM25 candidates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:351:        const error = new Error('Database unavailable for spec-folder scope lookup');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:352:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:370:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:376:      // Fail closed rather than falling through to unscoped results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:378:        const error = new Error('specFolderMap unexpectedly null after scope resolution');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:379:        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1384:  // C138/T316: MMR reranking with request-scoped embedding cache.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1902:  const scopeParts = memoryIdx >= 0 ? parts.slice(0, memoryIdx) : parts.slice(0, -1);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1903:  const tailParts = scopeParts.slice(-2);
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null } = {}): SimilarMemory[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null, sharedSpaceId = null } = options;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:79:    const scopedMatches: SimilarMemory[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:84:    while (scopedMatches.length < limit) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:98:        if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:99:        if (!matchesScopedValue(userId, r.user_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:100:        if (!matchesScopedValue(agentId, r.agent_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:103:        if (!matchesScopedValue(sharedSpaceId, r.shared_space_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:107:        scopedMatches.push({
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:120:        if (scopedMatches.length >= limit) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:134:    return scopedMatches.slice(0, limit);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:63:      scopeEnforcement: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:64:      governanceGuardrails: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:117:  it('tracks all five scope dimensions in roadmap defaults', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:118:    expect(getMemoryRoadmapDefaults().scopeDimensionsTracked).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:20:/** Maximum number of entries allowed in each session-scoped cache. */
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:23:/** Session-scoped cache for momentum scores (memoryId -> momentum). */
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:26:/** Session-scoped cache for causal depth scores (memoryId -> normalized depth). */
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:51: * Clear both session-scoped caches. Call at session boundaries or when
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:81:    | 'scope_mismatch'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:82:    | 'unknown_scope';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:306:        'unknown_scope',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:307:        'A target spec folder was requested, but the cached summary did not carry a scope anchor.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:314:        'scope_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:315:        `Cached summary scope ${cachedSpecFolder} did not match requested scope ${expectedSpecFolder}.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:321:      'unknown_scope',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:322:      'Cached summary scope was unknown, so the consumer failed closed instead of guessing.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:360:      scope: {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:180:  it('rejects continuation cursors when the resuming scope does not match the original query scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:183:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:184:      userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:192:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:193:      userId: 'user-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:198:    expect(resumedEnvelope.summary).toBe('Error: Cursor is invalid, expired, or out of scope');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:199:    expect(resumedData.error).toBe('Cursor is invalid, expired, or out of scope');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:391: * @param specFolder - Optional spec folder scope.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:52:| Session-scoped caching | Momentum and depth caches prevent redundant DB queries within a single session. Caches clear at 10,000 entries. |
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:82:| `community-storage.ts` | Stores and retrieves community data (assignments, membership) | `SPECKIT_COMMUNITY_SUMMARIES` |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:65:import { normalizeScopeContext } from '../lib/governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:181:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:182:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:183:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:184:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:498:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:499:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:500:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:501:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:535:    tenantId: normalizedScope.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:536:    userId: normalizedScope.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:537:    agentId: normalizedScope.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:539:    sharedSpaceId: normalizedScope.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:555:        error: 'Cursor is invalid, expired, or out of scope',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:724:    tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:725:    userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:726:    agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:727:    sharedSpaceId: normalizedScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:781:      tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:782:      userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:783:      agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:784:      sharedSpaceId: normalizedScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:          { scopeKey: progressiveScopeKey },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:560:    interpretation = 'Knowledge regression detected - may indicate scope expansion or new complexities discovered';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:61:// Feature catalog: Dual-scope memory auto-surface
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:79:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:80:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:81:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:116:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:117:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:118:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:704:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:705:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:706:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:725:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:726:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:727:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:756:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:757:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:758:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:790:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:791:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:792:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:827:  // Security: session scope derived from server context, not caller input
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:829:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:830:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:831:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1281:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1282:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1283:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1354:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1355:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1356:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:68:          // Enforce optional specFolder scope before including a candidate file.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts:6:// enabling edge invalidation and temporally-scoped graph queries.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:67:- `shared-memory.ts` exports `resolveAdminActor()` and `validateCallerAuth()` so shared-space mutations enforce explicit actor identity, tenant scope, and configured admin ownership.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:191:Bootstrap and resume remain the authority surfaces for structural context. Packet `006` only adds the shared trust contract beside packet `005`'s certainty contract; it does not create a new graph-only owner surface.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:261:| [lib/telemetry/README.md](../telemetry/README.md) | Retrieval telemetry (observability, governance) |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:279:Packet `007-detector-provenance-and-regression-floor` treats frozen detector fixtures as a regression-integrity floor only. The acceptance criterion from research recommendation R6 is the governing boundary: Public must land frozen detector fixtures that fail on structural regressions, while follow-on task corpora for user-visible structural quality are defined separately.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:311:- Current owner surfaces remain authoritative: shared payload sections, session bootstrap or resume consumers, and bridge-facing graph payloads.
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:75:| `scoring/README.md` | Documentation for cache-scoped scoring re-exports |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:203:                limit: (opts.limit ?? 3) * 3, // Over-fetch for post-scope-filter
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:208:              // Post-filter by governance scope to prevent cross-tenant reconsolidation
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:209:              const scopeFiltered = results.filter((r: Record<string, unknown>) => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:210:                if (scope?.tenantId && r.tenant_id && r.tenant_id !== scope.tenantId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:211:                if (scope?.userId && r.user_id && r.user_id !== scope.userId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:212:                if (scope?.agentId && r.agent_id && r.agent_id !== scope.agentId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:216:              return scopeFiltered.map((r: Record<string, unknown>) => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:29:    tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:30:    userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:31:    agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:33:    sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:66:    params.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:67:    params.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:68:    params.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:70:    params.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163:  it('derives distinct logical keys for memories that only differ by tenant scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:164:    const filePath = '/tmp/specs/015-memory-state/memory/scoped-tenant.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:171:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:179:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:184:      actor: 'ops:tenant-scope',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:189:      actor: 'ops:tenant-scope',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:194:    expect(tenantA.logicalKey).toContain('scope-sha256:');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:195:    expect(tenantB.logicalKey).toContain('scope-sha256:');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:205:  it('derives distinct logical keys for memories that only differ by user scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:206:    const filePath = '/tmp/specs/015-memory-state/memory/scoped-user.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:213:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:214:      userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:222:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:223:      userId: 'user-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:228:      actor: 'ops:user-scope',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:233:      actor: 'ops:user-scope',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:242:  it('preserves the legacy logical key format for unscoped memories', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:243:    const filePath = '/tmp/specs/015-memory-state/memory/unscoped.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:248:      title: 'Unscoped v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:254:      actor: 'ops:unscoped-compat',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:258:    expect(recorded.logicalKey).toBe('specs/015-memory-state::/tmp/specs/015-memory-state/memory/unscoped.md::_');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:278:  it('creates save-path optimization indexes for canonical-path and scoped hash lookups', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:286:        AND name IN ('idx_save_parent_content_hash_scope', 'idx_save_parent_canonical_path')
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:297:        name: 'idx_save_parent_content_hash_scope',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:4:// Feature catalog: Feature flag governance
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:31: * @param identity - Unique identity string (e.g., flagName, userId)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:19:  ['tenant_id', 'tenantId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:20:  ['user_id', 'userId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:21:  ['agent_id', 'agentId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:52:function buildScopedWhereClauses(scope: MemoryScopeMatch): {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:57:    tenantId: normalizeScopeMatchValue(scope.tenantId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:58:    userId: normalizeScopeMatchValue(scope.userId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:59:    agentId: normalizeScopeMatchValue(scope.agentId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:60:    sessionId: normalizeScopeMatchValue(scope.sessionId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:84:  scopeClauses: string[],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:85:  scopeParams: string[],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:91:    ...scopeClauses,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:103:    ...scopeParams,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:189:  scope: MemoryScopeMatch = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:191:  const { clauses: scopeClauses, params: scopeParams } = buildScopedWhereClauses(scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:198:      scopeClauses,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:199:      scopeParams,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:210:        scopeClauses,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:211:        scopeParams,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:251:  scope: MemoryScopeMatch = {},
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:254:    const { clauses: scopeClauses, params: scopeParams } = buildScopedWhereClauses(scope);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:260:      ...scopeClauses,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:266:      ...scopeParams,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:275:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:296:    it('rejects scope mismatches for bound sessions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:300:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:301:        userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:304:      const result = sm.resolveTrustedSession('bound-session', { tenantId: 'tenant-b', userId: 'user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:307:      expect(result.error).toContain('different tenantId');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:314:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:318:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:319:        userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:323:      expect(result.error).toContain('different userId');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:400:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:401:        userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:402:        agentId: 'agent-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:493:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:509:        expect(state.tenantId).toBe('tenant-a');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:529:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:530:        userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:533:      const r = sm.recoverState('recover-bound', { tenantId: 'tenant-b', userId: 'user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:536:      expect(r.error).toContain('different tenantId');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:551:      sm.saveSessionState('int-1', { specFolder: 'specs/A', currentTask: 'task A', tenantId: 'tenant-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:552:      sm.saveSessionState('int-2', { specFolder: 'specs/B', currentTask: 'task B', tenantId: 'tenant-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:569:    it('filters interrupted sessions by bound identity when caller scope is provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:571:      sm.saveSessionState('int-scope-a', { currentTask: 'task A', tenantId: 'tenant-a', userId: 'user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:572:      sm.saveSessionState('int-scope-b', { currentTask: 'task B', tenantId: 'tenant-b', userId: 'user-b' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:576:      const r = sm.getInterruptedSessions({ tenantId: 'tenant-a', userId: 'user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:579:      expect(ids).toContain('int-scope-a');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:581:      expect(ids).not.toContain('int-scope-b');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:51:/** Immutable snapshot of bounded thresholds and signal weights governing adaptive ranking. */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:504: * Snapshot the bounded thresholds and signal weights that govern adaptive ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:4:// Feature catalog: Feature flag governance
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:11:const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance', 'shared-rollout'] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:21:  scopeEnforcement: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:22:  governanceGuardrails: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:30:  scopeDimensionsTracked: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:59:  scopeEnforcement: 'SPECKIT_MEMORY_SCOPE_ENFORCEMENT',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:60:  governanceGuardrails: 'SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:68:  scopeEnforcement: 'SPECKIT_HYDRA_SCOPE_ENFORCEMENT',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:69:  governanceGuardrails: 'SPECKIT_HYDRA_GOVERNANCE_GUARDRAILS',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:149:    scopeEnforcement: isMemoryRoadmapCapabilityEnabled(
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:150:      [CAPABILITY_ENV.scopeEnforcement, LEGACY_CAPABILITY_ENV.scopeEnforcement],
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:153:    governanceGuardrails: isMemoryRoadmapCapabilityEnabled(
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:154:      [CAPABILITY_ENV.governanceGuardrails, LEGACY_CAPABILITY_ENV.governanceGuardrails],
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:158:    // The runtime in shared-spaces.ts keeps shared memory opt-in until env/config enablement.
+.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:172:    scopeDimensionsTracked: 5, // tenant/user/agent/session/sharedSpace
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:64:  temporary: 'working',              // Session-scoped, fast decay
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:66:    'spec', 'specification', 'requirements', 'scope', 'feature',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:117:    /what\s+(?:is|was)\s+the\s+(?:scope|plan)/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:166:    'show specification scope and implementation tasks',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:272:    /(?:find|show|get)\s+(?:me\s+)?(?:the\s+)?(?:spec|specification|requirements|scope|plan|checklist)/i.test(query) ||
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:274:    /what\s+(?:are|is|was|were)\s+the\s+(?:requirements|scope|plan)/i.test(query)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:45:      tenantId: scope?.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:46:      userId: scope?.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:47:      agentId: scope?.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:48:      sessionId: scope?.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:50:  scopeKey?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:81:  scopeKey?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:334:    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:335:      ? options.scopeKey
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:368:    typeof payload.scopeKey === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:369:    && payload.scopeKey.length > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:370:    && payload.scopeKey !== options?.scopeKey
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:252:├── working-memory.ts           # Session-scoped activation (410 lines)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:573:**Purpose**: Session-scoped attention tracking with capacity limits
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:98:| temporary | working | Session-scoped, fast decay |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/spec-folder-hierarchy.ts:39: * Call this whenever spec_folder membership changes (e.g. after a new memory
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:60:    'idx_save_parent_content_hash_scope',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:121:  CREATE INDEX IF NOT EXISTS idx_save_parent_content_hash_scope
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1413:  const governanceColumns: Array<{ name: string; sql: string }> = [
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1420:    { name: 'governed_at', sql: 'ALTER TABLE memory_index ADD COLUMN governed_at TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1423:    { name: 'governance_metadata', sql: 'ALTER TABLE memory_index ADD COLUMN governance_metadata TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1426:  for (const column of governanceColumns) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1440:    CREATE TABLE IF NOT EXISTS governance_audit (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1458:    CREATE INDEX IF NOT EXISTS idx_governance_audit_action
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1459:      ON governance_audit(action, decision, created_at DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1460:    CREATE INDEX IF NOT EXISTS idx_governance_audit_scope
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1466:      CREATE INDEX IF NOT EXISTS idx_memory_scope_hierarchy
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1496:      role TEXT NOT NULL CHECK(role IN ('owner', 'editor', 'viewer')),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2033:      'idx_save_parent_content_hash_scope',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2041:      index: 'idx_content_hash/idx_save_parent_content_hash_scope',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2332:      governed_at TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2335:      governance_metadata TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2454:    CREATE INDEX IF NOT EXISTS idx_save_parent_content_hash_scope ON memory_index(
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:12:// Decay ownership map:
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:3:description: "Internal ownership boundaries, feature-catalog crosswalk, and dependency directions for mcp_server/lib."
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:7:  - "module ownership"
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:13:> Internal module ownership and dependency map for `mcp_server/lib/`.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:33:This document is the internal ownership and dependency map for the `mcp_server/lib/` surface. It exists to answer three practical questions:
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:44:- Several modules are intentionally small today (`collab/`, `governance/`, `manage/`, `session/`, `response/`).
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:107:- Purpose: Owns shared-space collaboration primitives: shared-space definitions, membership, rollout flags, conflict tracking, and shared-memory metrics. This is the current home for multi-actor/shared-memory tenancy behavior.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:109:  - `shared-spaces.ts` — shared-space schema/runtime, memberships, conflict summaries, and rollout controls.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:113:  - `lib/governance/*`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:132:- Purpose: Serves as a compatibility pointer for retrieval contracts that were moved into the shared package. Within `lib/`, this directory now documents ownership rather than owning runtime logic.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:137:  - No meaningful direct runtime ownership remains inside `lib/`; the real consumers target `@spec-kit/shared/contracts/*`.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:175:  - `README.md` — pipeline overview and extraction scope.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:192:### `governance/`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:194:- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session/shared-space policy decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:196:  - `scope-governance.ts` — scope normalization, policy decisions, filter helpers, and governance audit writes.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:197:  - `retention.ts` — scoped retention sweep logic over expired memories.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:239:  - `README.md` — current management-cycle scope and algorithm notes.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:372:  - `README.md` — telemetry scope and flag overview.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:431:- `17--governance`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:443:| `collab` | `17--governance` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:444:| `config` | `11--scoring-and-calibration`, `17--governance`, `19--feature-flag-reference` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:448:| `extraction` | `02--mutation`, `13--memory-quality-and-indexing`, `17--governance` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:450:| `governance` | `17--governance` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:463:| `storage` | `02--mutation`, `04--maintenance`, `05--lifecycle`, `08--bug-fixes-and-data-integrity`, `10--graph-signal-activation`, `13--memory-quality-and-indexing`, `17--governance` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:464:| `telemetry` | `09--evaluation-and-measurement`, `11--scoring-and-calibration`, `17--governance`, `18--ux-hooks` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:488:| `17--governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:570:- Narrowly scoped infra-to-infra imports are allowed when they reflect clear dependency direction:
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:592:- `governance`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:604:  - May import: core, `parsing`, `validation`, `governance`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:617:  - This is the top domain aggregator and is allowed to consume `cache`, `providers`, `session`, `storage`, `parsing`, `cognitive`, `graph`, `scoring`, `governance`, and `collab`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:631:- `governance`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:635:  - May import: core, `governance`, `storage`
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:646:- `governance <-> collab` cycles
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:660:- `governance/* <-> collab/*`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:451:function get_constitutional_cache_db_scope(): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:463:  const db_scope = get_constitutional_cache_db_scope();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:464:  return `${db_scope}::${spec_folder || 'global'}:${includeArchived ? 'arch' : 'noarch'}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:468:  const current_db_path = get_constitutional_cache_db_scope();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:483:    const current_db_path = get_constitutional_cache_db_scope();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:679:    const scoped_suffix_archived = `::${spec_folder}:arch`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:680:    const scoped_suffix_live = `::${spec_folder}:noarch`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:682:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:687:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:48:import { filterRowsByScope, isScopeEnforcementEnabled } from '../../governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:472:  // Fix #16: Cache embedding at function scope for reuse in constitutional injection
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:484:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:485:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:486:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:487:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:976:  // P0 fix: sessionId is for dedup/state tracking, NOT a governance boundary.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:980:    tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:981:    || userId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:982:    || agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:983:    || sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:986:  const scopeFilter = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:987:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:988:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:989:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:990:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:997:      allowedSharedSpaceIds = getAllowedSharedSpaceIds(db, scopeFilter);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:998:      candidates = filterRowsByScope(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1000:        scopeFilter,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1004:      candidates = filterRowsByScope(candidates, scopeFilter);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1048:        // via vector search bypass the earlier governance/context gate.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1053:        // to ensure constitutional injection respects global scope enforcement
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1055:          ? filterRowsByScope(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1057:            scopeFilter,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1125:                ? filterRowsByScope(resultSet, scopeFilter, allowedSharedSpaceIds)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1180:        ? filterRowsByScope(rawHydeCandidates, scopeFilter, allowedSharedSpaceIds)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1265:            const scopeFilteredSummaryHits = shouldApplyScopeFiltering
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1266:              ? filterRowsByScope(contextFilteredSummaryHits, scopeFilter, allowedSharedSpaceIds)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1270:            const backfilledSummaryHits = backfillMissingQualityScores(scopeFilteredSummaryHits);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:67: * Cache is scoped per bound DB instance to avoid repeated sqlite_master probes.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:111:    // Hierarchy-aware fallback/augmentation for spec-scoped retrieval.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:331: * In-memory degree cache scoped per bound DB instance.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:32:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:33:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:34:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:35:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:115:  tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:116:  userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:117:  agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:118:  sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:144:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:145:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:146:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:147:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:16:// Timescale: minutes. Operates on session-scoped attention scores only.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:4:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:5:// Shared-space definitions, membership management, rollout
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:18:} from '../governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:21: * Supported membership subject kinds for shared spaces.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:28:export type SharedRole = 'owner' | 'editor' | 'viewer';
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:35:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:58: * Aggregate rollout metrics for shared spaces, memberships, and conflicts.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:61:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:79:  membershipCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:235: * @param tenantId - Optional tenant to constrain the summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:236: * @returns Aggregate rollout, membership, and conflict counts.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:238:export function getSharedRolloutMetrics(database: Database.Database, tenantId?: string): SharedRolloutMetrics {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:240:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:262:  const membershipRow = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:277:    tenantId: normalizedTenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:282:    totalMemberships: membershipRow.count,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:292: * @param tenantId - Optional tenant to constrain the summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:297:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:300:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:313:  const membershipRows = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:314:    SELECT s.space_id, COUNT(m.subject_id) AS membership_count
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:321:    membership_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:324:  const membershipCounts = new Map<string, number>(
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:325:    membershipRows.map((row) => [row.space_id, row.membership_count]),
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:338:      membershipCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:348:    existing.membershipCount += membershipCounts.get(space.space_id) ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:397:  if (!definition.spaceId?.trim() || !definition.tenantId?.trim()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:398:    throw new Error('E_VALIDATION: spaceId and tenantId must be non-empty strings');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:436:    definition.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:469:    definition.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:481: * Create or update a membership entry for a shared space.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:484: * @param membership - Membership values to persist.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:486:export function upsertSharedMembership(database: Database.Database, membership: SharedMembership): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:487:  if (!membership.spaceId?.trim() || !membership.subjectId?.trim()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:497:  `).run(membership.spaceId, membership.subjectType, membership.subjectId, membership.role);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:501: * Collect the shared spaces visible to the provided user or agent scope.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:504: * @param scope - Scope used to filter memberships and tenant boundaries.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:505: * @returns Shared-space identifiers the scope is allowed to see.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:507:export function getAllowedSharedSpaceIds(database: Database.Database, scope: ScopeContext): Set<string> {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:511:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:513:  // P0 fix: require tenant context so null scopes cannot enumerate every tenant.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:514:  if (!normalizedScope.tenantId) return new Set();
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:518:    ['user', normalizedScope.userId],
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:519:    ['agent', normalizedScope.agentId],
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:536:      normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:547: * Enforce rollout, tenancy, and membership rules for shared-space access.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:550: * @param scope - Scope requesting shared-space access.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:557:  scope: ScopeContext,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:559:  requiredRole: SharedRole = 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:561:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:572:        tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:573:        userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:574:        agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:576:        sharedSpaceId: spaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:592:    auditAccessDecision('allow', 'membership_verified', metadata);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:615:  if (normalizedScope.tenantId && space.tenant_id !== normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:620:  if (isGovernanceGuardrailsEnabled() && !normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:624:  const bypassAvailabilityChecks = requiredRole === 'owner';
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:634:    return deny('shared_space_membership_required');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:637:  if (requiredRole === 'viewer') {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:641:  const membership = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:651:      WHEN 'owner' THEN 1
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:652:      WHEN 'editor' THEN 2
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:656:  `).get(spaceId, normalizedScope.userId ?? '', normalizedScope.agentId ?? '') as { role?: SharedRole } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:658:  const role = membership?.role;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:660:    return deny('shared_space_membership_required');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:662:  if (requiredRole === 'owner' && role !== 'owner') {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:663:    return deny('shared_space_owner_required', { resolvedRole: role });
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:665:  if (requiredRole === 'editor' && role === 'viewer') {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:666:    return deny('shared_space_editor_required', { resolvedRole: role });
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:676: * @param args - Conflict details used for shared and governance audits.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:713:      sharedSpaceId: args.spaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:128:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:130:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:131:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:946:    const ownerCapture = captureByFqName.get(method.fqName);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:947:    if (!ownerCapture?.parentName) continue;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:949:    let parentClassCapture = captureByFqName.get(ownerCapture.parentName);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:781:  specFolder: 'specs/<###-spec-name>',  // Optional: scope to project
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:184:    keywords: ['spec', 'specification', 'requirements', 'scope', 'objective', 'constraints'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:185:    patterns: [/spec\.md/i, /specification/i, /(?:the|our)\s+(?:spec|requirements|scope)/i],
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:13:export type HookPolicy = 'enabled' | 'disabled_by_scope' | 'unavailable' | 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:74:    return 'disabled_by_scope';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:87:    if (!existsSync(hooksDir)) return 'disabled_by_scope';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:90:    if (hookFiles.length === 0) return 'disabled_by_scope';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:105:    return 'disabled_by_scope';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:58:function buildRetrievableMemoryPredicates(alias: string, scopeInfo: MemoryIndexScopeInfo): string[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:61:  if (scopeInfo.hasArchivedColumn) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:65:  if (scopeInfo.hasImportanceTierColumn) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:139:  const scopeInfo = getMemoryIndexScopeInfo(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:140:  const targetPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:141:  const siblingPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:147:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:161:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:203:  const scopeInfo = getMemoryIndexScopeInfo(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:204:  const rowPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:205:  const folderPredicates = buildRetrievableMemoryPredicates('m', scopeInfo);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:212:     ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:248:       ${scopeInfo.hasActiveProjection ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id' : ''}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:399: * and community membership from the database. Gated behind SPECKIT_RESULT_PROVENANCE.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:467:  // Batch-fetch community memberships for boosted IDs
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:29:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:30:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:31:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:32:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:49:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:50:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:51:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:52:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:156:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:157:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:158:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:160:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:163:  governedAt?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:179:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:190:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:195:  role: 'owner' | 'editor' | 'viewer';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:199:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:219:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:220:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:221:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:222:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:229:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:230:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:231:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:232:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:239:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:240:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:241:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:242:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:249:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:250:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:251:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:252:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:68:  existing_scope?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:69:    tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:70:    userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:71:    agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:72:    sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:103:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:104:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:105:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:106:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:124:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:125:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:126:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:127:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:200:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:201:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:202:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:203:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:425:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:426:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:427:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:428:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:453:    tenantId: normalizeScopeValue(tenantId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:454:    userId: normalizeScopeValue(userId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:455:    agentId: normalizeScopeValue(agentId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:456:    sharedSpaceId: normalizeScopeValue(sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:459:  const scopeFilters = [
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:460:    ['tenant_id', requestedScope.tenantId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:461:    ['user_id', requestedScope.userId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:462:    ['agent_id', requestedScope.agentId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:463:    ['shared_space_id', requestedScope.sharedSpaceId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:483:      existingScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:484:      existingScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:485:      existingScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:486:      existingScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:488:    const isDifferentScope = scopeFilters.some(([_, value], index) => {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:497:      result.existing_scope = undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:503:    result.existing_scope = existingScope;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:522:      for (const [column, value] of scopeFilters) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:572:        tenantId: requestedScope.tenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:573:        userId: requestedScope.userId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:574:        agentId: requestedScope.agentId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:575:        sharedSpaceId: requestedScope.sharedSpaceId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:759:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:760:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:761:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:762:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:853:      { content, spec_folder, database, find_similar, embedding, tenantId, userId, agentId, sharedSpaceId },
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:43:      "category": "scope-conflict"
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:91:      "category": "scope-exception"
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:104:      "scope-conflict": "All vs some/none scope conflicts",
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:110:      "scope-exception": "General rule vs specific exception",
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:477:      'spec': ['spec', 'specification', 'requirements', 'scope', 'what'],
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:5:  - "shared memory spaces"
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:7:  - "shared memory enable"
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:30:- Shared spaces are tenant-scoped, deny-by-default collaboration containers.
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:31:- Roles are `owner`, `editor`, and `viewer`.
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:42:| `shared_memory_status` | Caller-scoped rollout and membership view; requires exactly one actor identity |
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:43:| `shared_space_upsert` | Create or update a shared space; requires caller auth and tenant scope |
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:44:| `shared_space_membership_set` | Set deny-by-default membership for a user or agent; requires caller auth and tenant scope |
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:50:`shared_memory_status`, `shared_space_upsert`, and `shared_space_membership_set` rely on actor identity validation in `handlers/shared-memory.ts`. Admin mutations compare the caller against the configured shared-memory admin identity before allowing ownership-sensitive changes.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:68:    description: 'Session-scoped, auto-expires',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:97:| **temporary** | 0.3 | 0.5x | Yes | 7 days | Session-scoped, auto-expires |
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:397: * deleting only `created_by='auto'` entries in scope, re-extracting from the
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:4:// Hierarchical scope enforcement, governed ingest validation,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:5:// provenance normalization, and governance audit persistence.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:10:// Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:14: * Retention modes applied during governed ingest.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:19: * Request scope used to enforce tenancy, actor, session, and shared-space boundaries.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:22:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:23:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:24:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:26:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:30: * Governed-ingest fields required to persist scope and retention metadata.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:35:  governedAt?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:41: * Result of governed-ingest validation and field normalization.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:45:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:46:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:47:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:49:  sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:52:  governedAt: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:77: * Filters used to review governance audit history.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:83:  allowUnscoped?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:87: * Parsed governance audit row returned for review workflows.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:101: * Aggregate view of governance audit activity for a filtered review.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:112: * Combined governance audit review rows and summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:120: * Options used when benchmarking scope-filter behavior.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:128: * Benchmark result for a scope filter predicate.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:153: * Trim and normalize optional scope identifiers before enforcement.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:160:    tenantId: normalizeId(input.tenantId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:161:    userId: normalizeId(input.userId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:162:    agentId: normalizeId(input.agentId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:164:    sharedSpaceId: normalizeId(input.sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:169: * Resolve whether scope filtering is active for the current process.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:170: * Default: OFF — scope enforcement is opt-in via SPECKIT_MEMORY_SCOPE_ENFORCEMENT=true.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:171: * When enabled without scope constraints in the query, all results are rejected
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:172: * (empty scope + enforcement = no access). Only enable when multi-tenant governance
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:173: * is configured with tenantId/userId/agentId/sharedSpaceId in queries.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:175: * @returns `true` when scope enforcement is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:184: * Resolve whether governance guardrails are active for the current process.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:185: * Default: OFF — governance guardrails are opt-in via SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS=true.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:187: * @returns `true` when governance guardrails are enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:196: * Determine whether an ingest request must pass governed-ingest validation.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:199: * @returns `true` when governance or scope metadata requires enforcement.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:202:  const scope = normalizeScopeContext(input);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:203:  return Object.values(scope).some((value) => typeof value === 'string')
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:206:    || typeof input.governedAt === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:213: * Validate governed-ingest metadata and return normalized persistence fields.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:216: * @returns Validation result with normalized scope, provenance, and retention data.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:219:  const scope = normalizeScopeContext(input);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:221:  const governedAt = normalizeIsoTimestamp(input.governedAt) ?? new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:230:    // B8: Return null instead of empty string for optional scope fields
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:231:    // when governance is not required, to avoid persisting false-y placeholders.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:235:        tenantId: scope.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:236:        userId: scope.userId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:237:        agentId: scope.agentId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:238:        sessionId: scope.sessionId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:239:        sharedSpaceId: scope.sharedSpaceId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:242:        governedAt,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:250:  if (!scope.tenantId) issues.push('tenantId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:251:  if (!scope.sessionId) issues.push('sessionId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:252:  if (!scope.userId && !scope.agentId) issues.push('userId or agentId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:253:  if (!provenanceSource) issues.push('provenanceSource is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:254:  if (!provenanceActor) issues.push('provenanceActor is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:269:      tenantId: scope.tenantId ?? '',
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:270:      userId: scope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:271:      agentId: scope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:272:      sessionId: scope.sessionId ?? '',
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:273:      sharedSpaceId: scope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:276:      governedAt,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:284: * Map a governance decision into memory-index column values.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:286: * @param decision - Normalized governance decision from ingest validation.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:291:    tenant_id: decision.normalized.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:292:    user_id: decision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:293:    agent_id: decision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:295:    shared_space_id: decision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:298:    governed_at: decision.normalized.governedAt,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:301:    governance_metadata: JSON.stringify({
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:302:      tenantId: decision.normalized.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:303:      userId: decision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:304:      agentId: decision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:306:      sharedSpaceId: decision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:309:      governedAt: decision.normalized.governedAt,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:317: * Ensure governance and shared-space audit tables exist before writes.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:319: * @param database - Database connection that stores governance state.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:327: * Persist a governance audit entry for enforcement decisions and lifecycle events.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:329: * @param database - Database connection that stores governance state.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:334:  const scope = normalizeScopeContext(entry);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:336:    INSERT INTO governance_audit (
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:345:    scope.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:346:    scope.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:347:    scope.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:348:    scope.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:349:    scope.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:361: * Determine whether a scope includes at least one concrete constraint.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:363: * @param scope - Scope to inspect for tenant, actor, session, or shared-space bounds.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:364: * @returns `true` when the scope constrains access to at least one boundary.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:366:export function hasScopeConstraints(scope: ScopeContext): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:368:    scope.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:369:    || scope.tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:370:    || scope.userId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:371:    || scope.agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:372:    || scope.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:409:  if (normalized.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:411:    params.push(normalized.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:413:  if (normalized.userId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:415:    params.push(normalized.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:417:  if (normalized.agentId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:419:    params.push(normalized.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:425:  if (normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:427:    params.push(normalized.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:441:    || normalized.tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:442:    || normalized.userId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:443:    || normalized.agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:445:    || normalized.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:450: * Build a reusable row predicate for scope filtering without re-normalizing each row scan.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:452: * @param scope - Requested scope used for filtering.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:453: * @param allowedSharedSpaceIds - Optional shared-space allowlist for the scope.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:457:  scope: ScopeContext,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:460:  const normalized = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:465:    // BUG-001 fix: Empty scope under enforcement means no access, not universal access.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:472:      if (normalized.sharedSpaceId && rowSharedSpaceId !== normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:478:    } else if (normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:482:    // H8 FIX: When a row belongs to an allowed shared space, use membership as
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:486:      return matchesExactScope(row.tenant_id, normalized.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:489:    return matchesExactScope(row.tenant_id, normalized.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:490:      && matchesExactScope(row.user_id, normalized.userId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:491:      && matchesExactScope(row.agent_id, normalized.agentId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:497: * Review governance audit rows and aggregate counts for a filtered governance window.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:499: * @param database - Database connection that stores governance state.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:508:  const allowUnscoped = filters.allowUnscoped === true;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:509:  // Security: audit enumeration requires explicit scope filters or admin override
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:510:  if (!allowUnscoped && !hasGovernanceAuditFilters(filters)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:511:    console.warn('[scope-governance] Unscoped governance audit enumeration blocked; explicit filters or allowUnscoped=true required.');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:543:    FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:567:    FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:578:    FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:586:    FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:606:      tenantId: row.tenant_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:607:      userId: row.user_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:608:      agentId: row.agent_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:610:      sharedSpaceId: row.shared_space_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:626: * Benchmark scope filtering with a reusable predicate for rollout and safety checks.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:628: * @param rows - Candidate rows that include governance scope columns.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:629: * @param scope - Requested scope used for filtering.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:635:  scope: ScopeContext,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:641:  const predicate = createScopeFilterPredicate(scope, options.allowedSharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:666: * Filter result rows to the tenant, actor, session, and shared-space scope in force.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:668: * @param rows - Candidate rows that include governance scope columns.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:669: * @param scope - Requested scope used for filtering.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:670: * @param allowedSharedSpaceIds - Optional shared-space allowlist for the scope.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:671: * @returns Rows that remain visible after governance filtering.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:673:export function filterRowsByScope<T extends Record<string, unknown>>(rows: T[], scope: ScopeContext, allowedSharedSpaceIds?: ReadonlySet<string>): T[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:674:  return rows.filter(createScopeFilterPredicate(scope, allowedSharedSpaceIds));
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:42:| Module Categories | 29 | architecture, cache, chunking, code-graph, cognitive, collab, config, contracts, errors, eval, extraction, feedback, governance, graph, interfaces, learning, manage, ops, parsing, providers, response, scoring, search, session, spec, storage, telemetry, utils, validation |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:60:| **Content Parsing** | Memory file parsing, trigger matching (with CORRECTION/PREFERENCE signals) and entity scope detection |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:283:│   └── shared-spaces.ts        # Shared spaces, memberships, rollout and kill switch
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:291:├── governance/                 # Scope governance (1 module)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:292:│   └── scope-governance.ts     # Hierarchical scope enforcement and governed ingest
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:433:**Working Memory**: Manages session-scoped memory activation
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts:9:  hookPolicy: 'enabled' | 'disabled_by_scope' | 'unavailable';
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:86:        tenantId: validated.tenantId as string | undefined,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:87:        userId: validated.userId as string | undefined,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:88:        agentId: validated.agentId as string | undefined,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:89:        sharedSpaceId: validated.sharedSpaceId as string | undefined,
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:57:  'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:78:    case 'shared_space_membership_set': return handleSharedSpaceMembershipSet(parseArgs<SharedSpaceMembershipArgs>(validateToolArgs('shared_space_membership_set', args)));
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:316:    it('T031-BM25-07: bm25_search() fails closed when scoped lookup throws', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:331:                throw new Error('scope lookup failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:357:        '[BM25] Spec-folder scope lookup failed, returning empty scoped results:',
+.opencode/skills/system-spec-kit/mcp_server/tests/rollout-policy.vitest.ts:67:  it('requires both feature flag and rollout membership', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:111:    metrics['isolation.unscoped_rows'] = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:112:    metrics['isolation.missing_session_scope_rows'] = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:126:  metrics['isolation.unscoped_rows'] = safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:130:  metrics['isolation.missing_session_scope_rows'] = safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:203:        scopeDimensionsTracked: defaults.scopeDimensionsTracked,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:43:  governed_at?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:46:  governance_metadata?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:35:The telemetry module provides structured observability for the retrieval pipeline and scoring subsystem. It records per-stage latency, search mode selection, fallback triggers, composite quality scores, scoring observation samples, trace payload validation, and agent consumption events. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:193:| `scopeDimensionsTracked` | `number` | Number of tracked retrieval scope dimensions in this phase |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:50:// 3. DATABASE HANDLE (module-scoped, set via initScoringObservability)
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:439:  it('requires exact scope equality when a governance scope is supplied', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:446:        content_text: 'scoped',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:449:        file_path: 'scoped.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:479:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:480:      userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:481:      sharedSpaceId: 'space-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:159:    it('T521-C7: Explicit scope is merged into checkpoint metadata on create', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:162:        name: 'scoped-checkpoint',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:168:          reason: 'scope-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:169:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:170:          agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:171:          sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:176:          name: 'scoped-checkpoint',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:178:          metadata: { reason: 'scope-test' },
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:179:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:180:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:181:          agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:182:          sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:185:          name: 'scoped-checkpoint',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:188:            reason: 'scope-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:189:            tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:190:            userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:191:            agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:192:            sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:194:          scope: {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:195:            tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:196:            userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:197:            agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:198:            sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:206:    it('T521-C8: Governed checkpoint create requires tenant scope when actor scope is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:209:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:216:    it('T521-C9: whitespace-only tenantId is rejected when actor scope is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:219:        tenantId: '   ',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:220:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:221:      })).rejects.toThrow(/tenantId must be a non-empty string/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:268:    it('T521-L4: Optional scope filters checkpoint list results by metadata', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:277:          metadata: { userId: 'user-1', sharedSpaceId: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:286:          metadata: { userId: 'user-2', sharedSpaceId: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:291:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:292:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:293:          sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:300:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:301:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:302:          sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:309:    it('T521-L5: Governed checkpoint list requires tenant scope when actor scope is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:310:      const response = await handler.handleCheckpointList({ userId: 'user-1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:405:        name: 'scoped-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:411:        metadata: JSON.stringify({ userId: 'user-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:416:          name: 'scoped-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:417:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:418:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:430:    it('T521-R7: Governed checkpoint restore requires tenant scope when actor scope is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:433:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:514:        name: 'scoped-delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:520:        metadata: JSON.stringify({ sharedSpaceId: 'space-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:525:          name: 'scoped-delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:526:          confirmName: 'scoped-delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:527:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:528:          sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:540:    it('T521-DEL8: Governed checkpoint delete requires tenant scope when actor scope is provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:544:        sharedSpaceId: 'space-1',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:22:} from '../governance/scope-governance.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:81:    'governance_audit',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:123:  'governance_audit',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:172:  scope?: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:322:  'governance_audit', 'shared_spaces', 'shared_space_members', 'shared_space_conflicts',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:423:function checkpointMetadataMatchesScope(rawMetadata: unknown, scope: ScopeContext): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:424:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:431:    (normalizedScope.tenantId === undefined || metadata.tenantId === normalizedScope.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:432:    && (normalizedScope.userId === undefined || metadata.userId === normalizedScope.userId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:433:    && (normalizedScope.agentId === undefined || metadata.agentId === normalizedScope.agentId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:434:    && (normalizedScope.sharedSpaceId === undefined || metadata.sharedSpaceId === normalizedScope.sharedSpaceId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:450:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:456:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:476:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:483:  const { normalizedScope, allowedSharedSpaceIds, predicate } = getScopeFilterContext(database, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:500:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:502:  return getScopedMemories(database, specFolder, scope).memoryIds;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:508:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:513:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:521:  if (normalizedScope.tenantId && columns.has('tenant_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:523:    params.push(normalizedScope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:525:  if (normalizedScope.userId && columns.has('user_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:527:    params.push(normalizedScope.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:529:  if (normalizedScope.agentId && columns.has('agent_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:531:    params.push(normalizedScope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:533:  if (normalizedScope.sharedSpaceId && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:535:    params.push(normalizedScope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:648:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:649:    scope?: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:653:  const { specFolder, memoryIds, sharedSpaceIds, scope = {}, allowedSharedSpaceIds } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:654:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:656:  const scopePredicate = hasScope
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:666:    return scopePredicate ? rows.filter((row) => scopePredicate(row)) : rows;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:704:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:707:    if (normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:710:      ).all(normalizedScope.tenantId) as Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:716:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:720:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:747:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:751:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:793:  if (!scopePredicate) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:798:    return allRows.filter((row) => scopePredicate(row));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:810:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:811:    scope?: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:908:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:910:    scope?: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:917:    sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:919:    scope = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:922:  const normalizedScope = normalizeScopeContext(scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:934:  const { clauses: scopedClauses, params: scopedParams } = buildRestoreScopeDeleteWhere(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:941:    if (scopedClauses.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:942:      database.prepare(`DELETE FROM memory_index WHERE ${scopedClauses.join(' AND ')}`).run(...scopedParams);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:958:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:963:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:968:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:969:      deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:992:  if (scopedClauses.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:993:    database.prepare(`DELETE FROM ${tableName} WHERE ${scopedClauses.join(' AND ')}`).run(...scopedParams);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:997:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:998:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1012:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1013:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1027:    scope?: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1030:  const { checkpointSpecFolder, memoryIds, scope = {} } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1031:  const hasScope = hasScopeConstraints(normalizeScopeContext(scope));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1070:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1072:    scope: ScopeContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1416:    scope = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1424:        memoryIds: scopedMemoryIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1427:      } = getScopedMemories(database, specFolder, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1428:      const sharedSpaceIds = Array.from(new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1441:          memoryIds: scopedMemoryIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1442:          sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1443:          scope: normalizedScope,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1487:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1488:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1489:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1490:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1520:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1521:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1522:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1523:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1542:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1559:      .filter((row) => checkpointMetadataMatchesScope(row.metadata, scope))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1576:function getCheckpoint(nameOrId: string | number, scope: ScopeContext = {}): CheckpointEntry | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1585:    if (checkpoint && !checkpointMetadataMatchesScope(checkpoint.metadata, scope)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1599:  scope: ScopeContext = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1614:    const checkpoint = getCheckpoint(nameOrId, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1634:    const { normalizedScope, allowedSharedSpaceIds } = getScopeFilterContext(database, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1638:    const scopedMemoryIdsToReplace = Array.from(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1646:    const sharedSpaceIds = Array.from(new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1717:            memoryIds: scopedMemoryIdsToReplace,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1718:            scope: normalizedScope,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1727:                memoryIds: scopedMemoryIdsToReplace,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1728:                sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1730:                scope: normalizedScope,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1855:          // In merge mode, replace only the in-scope rows captured by the checkpoint.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1859:              memoryIds: scopedMemoryIdsToReplace,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1860:              sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1862:              scope: normalizedScope,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1922:function deleteCheckpoint(nameOrId: string | number, scope: ScopeContext = {}): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1926:    const checkpoint = getCheckpoint(nameOrId, scope);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:6:// Dimensions for governance review and Wave 2 gate decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:90:  scopeDimensionsTracked: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:212:      scopeDimensionsTracked: roadmapDefaults.scopeDimensionsTracked,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:429:    scopeDimensionsTracked?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:445:  if (typeof update.scopeDimensionsTracked === 'number' && Number.isFinite(update.scopeDimensionsTracked)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:446:    t.architecture.scopeDimensionsTracked = Math.max(0, Math.floor(update.scopeDimensionsTracked));
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:677:        scopeEnforcement: t.architecture.capabilities.scopeEnforcement,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:678:        governanceGuardrails: t.architecture.capabilities.governanceGuardrails,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:681:      scopeDimensionsTracked: t.architecture.scopeDimensionsTracked,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:791:// Self-governance: Opus-F agent, TCB=9, 3 findings addressed (A6-P2-2, A6-P2-3, A10-P2-3)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:25:  | 'scope_filtered';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:70:      "expectedResultDescription": "Should surface the T000b feature flag governance document, rollout-policy.ts, and any SKILL.md sections about flag naming conventions.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:71:      "notes": "Add-feature intent for a procedural question. Tests whether governance documentation is surfaced for implementation guidance."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:121:      "notes": "Find-spec intent with temporal/scope framing. Tests specFolder-aware retrieval."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:298:      "category": "scope_filtered",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:300:      "expectedResultDescription": "Spec-scoped browse. Should surface memory titles and tiers from spec folder system-spec-kit/022-hybrid-rag-fusion or 140-hybrid-rag-fusion-refinement.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:308:      "category": "scope_filtered",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:338:      "category": "scope_filtered",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:435:      "query": "refactor session deduplication to use a sliding window instead of session-scoped set",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:448:      "category": "scope_filtered",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:451:      "notes": "Find-spec intent for a specific flag — tests feature flag governance retrieval."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:720:      "expectedResultDescription": "Should surface SKILL.md documentation distinguishing spec/ directories (governance docs) from memory/ directories (AI context storage).",
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:36:    ownerBootstrap?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:67:    process.env.SPECKIT_SHARED_MEMORY_ADMIN_USER_ID = 'user-owner';
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:89:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:91:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:96:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:97:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:100:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:103:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:116:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:118:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:131:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:133:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:143:  it('auto-bootstraps the creator as owner when creating a shared space', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:146:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:148:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:154:    expect(envelope.data.ownerBootstrap).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:162:      subject_id: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:163:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:167:  it('treats stale create conflicts as updates and bootstraps only one owner', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:170:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:172:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:191:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:193:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:200:    expect(envelope.data.ownerBootstrap).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:205:        AND role = 'owner'
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:218:  it('allows an owner to update an existing shared space', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:221:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:223:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:229:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:231:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:240:  it('rolls back shared-space creation when owner bootstrap fails', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:245:        throw new Error('membership insert failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:252:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:254:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:260:    expect(JSON.stringify(envelope)).not.toContain('membership insert failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:268:  it('rejects updates when the caller is not a shared-space owner or admin', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:271:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:273:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:277:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:278:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:280:      subjectId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:281:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:286:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:288:      actorUserId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:293:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:296:  it('allows a shared-space owner to change membership without admin identity', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:299:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:301:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:305:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:306:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:308:      subjectId: 'user-space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:309:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:314:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:315:      actorUserId: 'user-space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:318:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:322:    expect(envelope.data.role).toBe('editor');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:323:    expect(envelope.data.actorSubjectId).toBe('user-space-owner');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:330:    `).get('space-1', 'agent', 'agent-1')).toEqual({ role: 'editor' });
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:333:  it('rejects membership changes when the caller is not a shared-space owner or admin', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:336:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:338:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:342:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:343:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:345:      subjectId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:346:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:351:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:352:      actorUserId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:355:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:360:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:366:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:386:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:401:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:415:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:428:    process.env.SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID = 'agent-owner';
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:436:        subjectId: 'agent-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:441:  it('preserves rolloutEnabled when an owner updates a shared space without resending the boolean', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:444:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:446:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:452:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:454:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:471:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:473:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:479:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:497:    expect(auditRow.user_id).toBe('user-owner');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:503:      actorSubjectId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:508:  it('rejects non-owner members and audits the denied admin mutation', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:510:      spaceId: 'space-owner-only',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:511:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:513:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:517:      spaceId: 'space-owner-only',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:518:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:519:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:521:      subjectId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:522:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:529:    `).run('user-external-owner', 'owner', 'space-owner-only', 'user', 'user-owner');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:533:    `).run('space-owner-only', 'user', 'user-owner', 'editor');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:536:      spaceId: 'space-owner-only',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:537:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:538:      actorUserId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:541:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:546:    expect(envelope.data.details?.reason).toBe('shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:550:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:566:    expect(auditRow.reason).toBe('shared_space_owner_required');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:568:    expect(auditRow.user_id).toBe('user-editor');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:569:    expect(auditRow.shared_space_id).toBe('space-owner-only');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:571:      operation: 'membership_set',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:572:      operationType: 'membership_update',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:574:      actorSubjectId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:577:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:581:  it('rejects tenant mismatch on membership mutation', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:584:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:586:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:590:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:591:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:593:      subjectId: 'user-space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:594:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:599:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:600:      actorUserId: 'user-space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:603:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:611:  it('returns an internal error when membership persistence throws unexpectedly', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:618:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:619:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:622:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:627:    expect(envelope.data.error).toContain('Shared space membership update failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:637:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:638:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:647:  it('scopes shared-memory status to the authenticated caller identity', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:649:      spaceId: 'space-status-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:650:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:652:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:657:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:659:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:664:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:665:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:668:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:672:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:679:    expect(envelope.data.userId).toBe('user-other');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:680:    expect(envelope.data.agentId).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:723:      actorUserId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:38:  scope: 'match' | 'mismatch';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:130:      && scenario.producerMetadata.scope === 'match',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md:38:- Storage helpers assume document-aware columns such as `document_type`, `spec_level`, governance scope columns, and lineage metadata are available.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:32:// Initialize a test DB at module scope so skipIf conditions can evaluate correctly.
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:314:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:315:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:316:        agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:317:        sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:335:describe('governed retrieval schema propagation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:339:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:340:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:341:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:342:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:363:  it('public and runtime schemas accept governed scope fields for memory_quick_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:366:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:367:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:368:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:369:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:382:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:383:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:384:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:385:      sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:413:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:430:  it('handler auth rejects shared_space_membership_set when both actor identities are provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:435:        tool: 'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:444:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:457:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:321:  it('includes a communities array when community memberships are available', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:70:    it('treats copilot-cli as disabled_by_scope when no repo hook config exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:79:      expect(result.hookPolicy).toBe('disabled_by_scope');
+.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:95:    it('treats null Gemini hooks blocks as disabled_by_scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts:117:      expect(result.hookPolicy).toBe('disabled_by_scope');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:4:vi.mock('../lib/governance/scope-governance', async (importOriginal) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:5:  const actual = await importOriginal<typeof import('../lib/governance/scope-governance')>();
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:12:import * as scopeGovernance from '../lib/governance/scope-governance';
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:33:  it('enforces deny-by-default membership for shared spaces', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:39:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:45:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:46:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:54:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:58:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:59:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:60:    }, 'space-1', 'editor');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:63:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:64:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:74:      tenantId: 'tenant-A',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:82:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:85:    expect(getAllowedSharedSpaceIds(db, { userId: 'user-1' })).toEqual(new Set());
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:94:      tenantId: 'tenant-A',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:102:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:106:      tenantId: 'tenant-A',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:107:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:117:      tenantId: 'tenant-A',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:125:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:129:      tenantId: 'tenant-B',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:130:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:139:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:140:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:148:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:158:  it('requires owner role for owner-gated shared-space actions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:163:      spaceId: 'space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:164:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:169:      spaceId: 'space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:171:      subjectId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:172:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:175:      spaceId: 'space-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:177:      subjectId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:178:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:182:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:183:      userId: 'user-editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:184:    }, 'space-owner', 'owner')).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:186:      reason: 'shared_space_owner_required',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:190:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:191:      userId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:192:    }, 'space-owner', 'owner')).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:197:  it('uses the highest role when both user and agent memberships exist', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:203:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:211:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:217:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:221:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:222:      userId: 'user-mixed',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:223:      agentId: 'agent-mixed',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:224:    }, 'space-mixed-role', 'owner')).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:228:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:229:      userId: 'user-mixed',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:230:      agentId: 'agent-mixed',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:234:  it('records governance audits for denied and allowed shared-space access decisions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:240:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:247:      subjectId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:248:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:252:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:253:      userId: 'user-viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:256:      reason: 'shared_space_membership_required',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:260:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:261:      userId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:262:    }, 'space-audit', 'owner')).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:268:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:274:        reason: 'shared_space_membership_required',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:276:        user_id: 'user-viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:281:        reason: 'membership_verified',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:283:        user_id: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:294:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:301:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:322:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:329:      subjectId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:330:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:333:    vi.mocked(scopeGovernance.recordGovernanceAudit)
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:342:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:343:      userId: 'user-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:344:    }, 'space-audit-failure', 'owner')).toEqual({
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:349:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:350:      userId: 'user-viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:353:      reason: 'shared_space_membership_required',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:366:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:374:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:378:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:379:      userId: 'user-2',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:380:    }, 'space-2', 'editor');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:385:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:392:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:393:      userId: 'user-2',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:399:    expect(Array.from(getAllowedSharedSpaceIds(db, { userId: 'user-2' }))).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:402:  it('keeps rollout disabled spaces hidden even when membership exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:408:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:417:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:421:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:422:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:427:    expect(Array.from(getAllowedSharedSpaceIds(db, { agentId: 'agent-1' }))).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:430:  it('rejects blank identifiers when persisting shared spaces and memberships', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:435:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:437:    })).toThrow('E_VALIDATION: spaceId and tenantId must be non-empty strings');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:443:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:453:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:459:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:467:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:473:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:477:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:478:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:482:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:483:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:490:  it('records append-version conflicts in shared conflict and governance audit tables', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:496:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:525:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:544:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:607:      FROM governance_audit
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:644:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:651:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:658:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:665:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:675:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:681:      role: 'editor',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:687:      role: 'viewer',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:693:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:720:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:736:        membershipCount: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:743:        membershipCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:753:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:208:  const scopeTuple = [
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:216:  if (scopeTuple.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:220:  const scopeHash = createHash('sha256')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:221:    .update(JSON.stringify(scopeTuple), 'utf8')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:225:  return `scope-sha256:${scopeHash}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:234:  scopePrefix: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:241:    scopePrefix: parts.scopePrefix,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:258:  const scopePrefix = buildScopePrefix(row);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:266:      scopePrefix,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:272:  if (!scopePrefix) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:275:  return `${row.spec_folder}::${scopePrefix}::${canonicalPath}::${anchorId}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:33:describe('PE gating scoped similar-memory search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:38:  it('expands the vector window until an in-scope match is found', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:58:            content_text: 'in-scope memory',
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:59:            file_path: '/specs/026-memory-database-refinement/in-scope.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:68:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:76:        content: 'in-scope memory',
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:77:        file_path: '/specs/026-memory-database-refinement/in-scope.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:96:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:173:              tenantId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:174:              userId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:175:              agentId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:203:              tenant_id: tenantId ?? existing?.tenant_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:204:              user_id: userId ?? existing?.user_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:205:              agent_id: agentId ?? existing?.agent_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:404:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_identity_scope'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:414:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:415:        userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:416:        agentId: 'agent-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:607:        tenantId: 'tenant-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:608:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:609:        agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:694:        tenantId: 'tenant-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:695:        userId: 'user-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:696:        agentId: 'agent-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:712:        tenantId: 'tenant-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:713:        userId: 'user-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:714:        agentId: 'agent-z',
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:173:    ).rejects.toThrow(/requires specFolder scope/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:10:  filterRowsByScope,
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:11:} from '../lib/governance/scope-governance';
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:37:describe('governance E2E', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:52:  it('isolates scoped retrieval to a single tenant and actor', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:74:    const filtered = filterRowsByScope(rows, {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:75:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:76:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:87:  it('prevents cross-actor leakage when scope enforcement is enabled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:105:    expect(filterRowsByScope(rows, {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:106:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:107:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:109:    expect(filterRowsByScope(rows, {
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:110:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:111:      agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:170:    'spec.md': `# Test Spec\n\n| **Level** | 1 |\n| **Date** | ${today} |\n\n## Overview\nThis is a test spec.\n\n## Scope\nTest scope.\n\n## Requirements\nTest requirements.\n`,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:98:    { id: 901, content: 'Release checklist task ownership and sign-off bookkeeping. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:926:    governed_at: existingRow.governed_at,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:929:    governance_metadata: existingRow.governance_metadata,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:470:    const content = 'Avoid scope creep when fixing bugs.';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:530:      spec_folder: 'specs/777-governance',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:136:    it('returns the newest state file that matches the requested scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:172:        const state = loadMostRecentState({ scope: { specFolder: 'specs/matching' } });
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:184:    it('fails closed when the caller cannot prove scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:215:          scope: { specFolder: 'specs/stale', claudeSessionId: staleSessionId },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:73:  scope: {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:74:    tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:75:    userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:76:    agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:78:    sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:104:    scope.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:105:    scope.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:106:    scope.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:107:    scope.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:108:    scope.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:236:    it('T054-6aa: Cross-tenant duplicates do not dedup when governance scope differs', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:238:      const folder = 'specs/governed-dedup';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:242:        '/specs/governed-dedup/memory/tenant-a.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:246:        { tenantId: 'tenant-a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:255:        { tenantId: 'tenant-b' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:261:    it('T054-6ab: Matching governance scope still dedups identical content', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:263:      const folder = 'specs/governed-dedup-match';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:267:        '/specs/governed-dedup-match/memory/tenant-a.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:271:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:280:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:353:    it('T320-1: Same-path lookup uses two direct probes without nullable OR scope predicates', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:371:        { tenantId: 'tenant-a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:383:    it('T320-2: Content-hash dedup uses exact scope clauses instead of nullable OR predicates', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:400:        { tenantId: 'tenant-a', sharedSpaceId: 'shared-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:593:    it('T054-6j: Same-path unchanged ignores matching content in another tenant scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:594:      const content = 'Same-path unchanged must remain tenant-scoped.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:595:      const filePath = '/specs/governed-same-path/memory/doc.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:601:        'specs/governed-same-path',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:611:        buildParsedMemory('specs/governed-same-path', content, 'Tenant Scoped'),
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:616:        { tenantId: 'tenant-b' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:622:    it('T054-6k: Same-path predecessor lookup stays inside the current governance scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:624:      const filePath = '/specs/governed-predecessor/memory/doc.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:630:        'specs/governed-predecessor',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:640:        'specs/governed-predecessor',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:643:        { tenantId: 'tenant-b' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:647:        'specs/governed-predecessor',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:650:        { tenantId: 'tenant-a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:141:// Mock governance scope filter
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:142:const mockFilterRowsByScope = vi.fn((rows: Array<Record<string, unknown>>, scope: Record<string, unknown>, allowedSharedSpaceIds?: Set<string>) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:143:  const scopeEnforcementEnabled = process.env.SPECKIT_MEMORY_SCOPE_ENFORCEMENT === 'true'
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:146:    scope.tenantId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:147:    || scope.userId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:148:    || scope.agentId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:149:    || scope.sessionId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:150:    || scope.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:153:  if (scopeEnforcementEnabled && !hasGovernanceScope) {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:158:    const tenantMatches = !scope.tenantId || row.tenant_id === scope.tenantId;
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:159:    const userMatches = !scope.userId || row.user_id === scope.userId;
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:160:    const agentMatches = !scope.agentId || row.agent_id === scope.agentId;
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:162:    const sharedMatches = !scope.sharedSpaceId || (
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:163:      row.shared_space_id === scope.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:169:vi.mock('../lib/governance/scope-governance', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:170:  filterRowsByScope: (rows: Array<Record<string, unknown>>, scope: Record<string, unknown>, allowedSharedSpaceIds?: Set<string>) =>
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:171:    mockFilterRowsByScope(rows, scope, allowedSharedSpaceIds),
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:177:const mockGetAllowedSharedSpaceIds = vi.fn((_db: unknown, _scope: Record<string, unknown>) => undefined as Set<string> | undefined);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:179:  getAllowedSharedSpaceIds: (db: unknown, scope: Record<string, unknown>) => mockGetAllowedSharedSpaceIds(db, scope),
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:457:  it('T8: summary-channel hits are filtered by governance scope before merge', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:471:          spec_folder: 'specs/governed',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:472:          file_path: 'specs/governed/memory/allowed.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:485:          spec_folder: 'specs/governed',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:486:          file_path: 'specs/governed/memory/blocked.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:504:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:505:        sharedSpaceId: 'shared-allowed',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:516:  it('T9: constitutional injection re-applies governance scope after vector fetch', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:550:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:551:        sharedSpaceId: 'allowed-space',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:559:  it('T10: deny-by-default filters empty-scope candidates when enforcement is enabled', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:573:  it('T11: deep-mode LLM reformulation results are scope-filtered before merge', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:597:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:598:        sharedSpaceId: 'shared-allowed',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:612:  it('T12: deep-mode HyDE results are scope-filtered before merge', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:630:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:631:        sharedSpaceId: 'shared-allowed',
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:64:  'scope_filtered',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:9:  filterRowsByScope,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:13:} from '../lib/governance/scope-governance';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:16:describe('Phase 5 memory governance', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:23:  it('rejects governed ingest when provenance or scope markers are missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:28:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:33:    expect(decision.issues).toContain('userId or agentId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:34:    expect(decision.issues).toContain('provenanceSource is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:37:  it('filters rows to the requested tenant and actor scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:39:    const filtered = filterRowsByScope([
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:44:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:45:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:52:  it('denies all rows when enforcement is on and scope is empty', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:59:    const filtered = filterRowsByScope(rows, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:64:  it('honors explicit session scope even when global scope enforcement is disabled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:65:    const filtered = filterRowsByScope([
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:75:  it('writes governance audit rows for allow and deny decisions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:90:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:91:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:93:      reason: 'governed_ingest',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:96:    const row = db.prepare(`SELECT action, decision, tenant_id, user_id FROM governance_audit LIMIT 1`).get() as {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:112:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:113:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:130:  it('reviews governance audit history with summary counts and parsed metadata', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:145:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:146:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:148:      reason: 'governed_ingest',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:154:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:155:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:162:      tenantId: 'tenant-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:163:      userId: 'user-9',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:169:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:183:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:184:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:195:  it('blocks unscoped governance audit enumeration unless allowUnscoped=true', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:209:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:210:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:212:      reason: 'governed_ingest',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:221:      '[scope-governance] Unscoped governance audit enumeration blocked; explicit filters or allowUnscoped=true required.'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:224:    const allowed = reviewGovernanceAudit(db, { allowUnscoped: true, limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:229:  it('reuses cached scope predicates and benchmarks scoped filtering', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:240:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:241:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:246:    expect(filterRowsByScope(rows, {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:247:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:248:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:253:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:254:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:590:    it('find_spec keywords include: spec, specification, requirements, scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:595:      expect(keywords).toContain('scope');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1182:    it('passes governance scope into TM-04 semantic dedup candidate lookup', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1238:      const filePath = createAtomicSaveTargetPath('quality-gate-scope.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1244:        scope: {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1245:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1246:          userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1247:          agentId: 'agent-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1249:          sharedSpaceId: 'shared-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1258:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1259:          userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1260:          agentId: 'agent-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1262:          sharedSpaceId: 'shared-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1267:    it('passes governance scope into PE arbitration', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1307:      const filePath = createAtomicSaveTargetPath('pe-scope.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1313:        scope: {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1314:          tenantId: 'tenant-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1315:          userId: 'user-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1316:          agentId: 'agent-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1318:          sharedSpaceId: 'shared-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1331:          tenantId: 'tenant-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1332:          userId: 'user-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1333:          agentId: 'agent-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1335:          sharedSpaceId: 'shared-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:443:  it('uses query-scoped feedback signals as relevance labels when available', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:173:  describe('T012: Session-scoped cache with 60s TTL', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:4:// Shared-memory enablement, membership enforcement, and kill switch behavior.
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:46:describe('shared memory E2E', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:77:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:85:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:89:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:90:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:93:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:94:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:105:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:112:      subjectId: 'owner-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:113:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:117:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:118:      userId: 'user-2',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:121:      reason: 'shared_space_membership_required',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:124:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:125:      userId: 'user-2',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:134:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:142:      role: 'owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:151:      tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:152:      userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:493:    it('filters exact duplicates by governed scope when scope values are provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:494:      const testContent = 'Tenant scoped duplicate';
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:504:              file_path: '/specs/test/memory/scoped.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:515:        { content: testContent, database: mockDatabase, tenantId: 'tenant-a', userId: 'user-a' } as unknown as DuplicateParams,
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:520:      expect(result.existing_path).toBe('/specs/test/memory/scoped.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:570:    it('redacts duplicate metadata when similar match belongs to a different scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:573:          content: 'Cross-scope similar memory',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:575:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:579:              file_path: '/specs/test/memory/other-scope.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:596:      expect(result.existing_scope).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:599:    it('redacts exact-duplicate identifiers when cross-scope match is detected', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:600:      const testContent = 'Cross-scope exact duplicate';
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:623:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:624:          userId: 'user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/preflight.vitest.ts:634:      expect(result.existing_scope).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:13:// 5. Unscoped queries — no folder restriction applied
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:367:// 5. Unscoped queries — no folder restriction applied
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:370:describe('R9: Unscoped queries — cross-folder behaviour', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:531:  it('R9-15b: scoped result set is a strict subset of cross-folder result set', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:533:    // Equivalently: all scoped results must also appear in the unscoped result set.
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:534:    const scoped = structuralSearch({ specFolder: 'specs/001-auth', limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:535:    const unscoped = structuralSearch({ limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:537:    const unscopedIds = new Set(unscoped.map((r) => r.id));
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:538:    for (const row of scoped) {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:539:      expect(unscopedIds.has(row.id)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:542:    // Unscoped contains rows from other folders as well.
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:543:    expect(unscoped.length).toBeGreaterThan(scoped.length);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:179:  it('scopes hidden-path checks relative to the watched root', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:182:    const scopedPath = __testables.getWatchScopedPath(filePath, [watchRoot]);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:184:    expect(scopedPath).toBe('specs/001-test/spec.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:185:    expect(__testables.shouldIgnoreWatchTarget(scopedPath ?? filePath)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:129:    expect(t.architecture.scopeDimensionsTracked).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:302:      scopeDimensionsTracked: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:311:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.phase).toBe('graph');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:312:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.capabilities?.graphUnified).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:313:    expect((json as { architecture?: { phase?: string; scopeDimensionsTracked?: number; capabilities?: { graphUnified?: boolean } } }).architecture?.scopeDimensionsTracked).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:380:      scopeDimensionsTracked: 6,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:386:    expect(t.architecture.scopeDimensionsTracked).toBe(6);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:248:  describe('Governed scope forwarding', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:265:    it('forwards governed scope fields through deep-mode search routing', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:270:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:271:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:272:          agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:273:          sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:276:        'scope-forward-deep'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:281:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:282:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:283:        agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:284:        sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:288:    it('forwards governed scope fields through resume-mode search routing', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:293:          tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:294:          userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:295:          agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:296:          sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:299:        'scope-forward-resume'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:303:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:304:        userId: 'user-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:305:        agentId: 'agent-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:306:        sharedSpaceId: 'shared-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:176:      'shared_space_membership_set',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/lib/utils/logger.ts:64:/** A logger instance scoped to a specific module prefix. */
+.opencode/skills/system-spec-kit/mcp_server/lib/utils/logger.ts:73: * Create a logger scoped to a module name.
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:58:        CREATE INDEX idx_save_parent_content_hash_scope
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:794:    it('creates links only for the saved memory scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:769:    it('limit applies after sprint grouping and report totals match the included scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts:263:        reason: 'ownership-safe undo test',
+.opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts:288:    it('undo removes legacy-format correction-owned edge via scoped fallback only', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:26:  'handlers/memory-triggers.js': 470, // actual: 454 — Trigger matching with cognitive features + governance/scope wiring
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:30:  'handlers/checkpoints.js': 620,   // actual: 611 — Checkpoint operations plus scoped metadata guards, restore/delete safety checks, SEC-002 scope enforcement, and T012 follow-up fixes
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:487:        name: 'scoped-edge-snapshot',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:494:      ).get('scoped-edge-snapshot') as { memory_snapshot: Buffer } | undefined);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:504:      mod.deleteCheckpoint('scoped-edge-snapshot');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:507:    it('T503-12: scoped clearExisting restore preserves other spec data and unrelated edges', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:509:        name: 'scoped-edge-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:524:      const result = mod.restoreCheckpoint('scoped-edge-restore', true);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:546:      mod.deleteCheckpoint('scoped-edge-restore');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:549:    it('T503-13: scoped merge restore replaces stale in-folder edges without touching unrelated ones', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:551:        name: 'scoped-edge-merge-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:562:      const result = mod.restoreCheckpoint('scoped-edge-merge-restore', false);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:578:      mod.deleteCheckpoint('scoped-edge-merge-restore');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:602:    it('T503-14: scoped merge restore only replaces auxiliary rows inside the checkpoint scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:637:        name: 'scoped-aux-merge-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:660:      const result = mod.restoreCheckpoint('scoped-aux-merge-restore', false);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:690:    it('T503-15: unscoped merge restore preserves auxiliary rows outside the checkpoint snapshot', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:793:        name: 'scoped-rollback-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:799:      updateCheckpointSnapshot(database, 'scoped-rollback-restore', (snapshot) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:811:      const result = mod.restoreCheckpoint('scoped-rollback-restore', false);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:824:    it('T503-17: scoped clearExisting restore preserves same-folder rows outside the tenant scope', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:831:        name: 'scoped-tenant-clear-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:833:        scope: { tenantId: 'tenant-a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:839:      const result = mod.restoreCheckpoint('scoped-tenant-clear-restore', true, {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:840:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:858:    it('T503-18: unscoped clearExisting restore still replaces the whole checkpoint folder', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:865:        name: 'unscoped-folder-clear-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:872:      const result = mod.restoreCheckpoint('unscoped-folder-clear-restore', true);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:895:    it('T503-19: scoped merge restore respects tenant scope for memory-linked and direct-scope rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:902:        name: 'scoped-tenant-merge-restore',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:904:        scope: { tenantId: 'tenant-a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:910:      const result = mod.restoreCheckpoint('scoped-tenant-merge-restore', false, {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:911:        tenantId: 'tenant-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:93:  it('clears folder-scoped constitutional cache entries for archived and non-archived keys', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:100:      const specFolder = 'specs/cache-scope';
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:35:- Eval, shared-memory, governance, lineage, and public-API surfaces.
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:87:| Shared memory and governance | `shared-memory-handlers.vitest.ts`, `shared-spaces.vitest.ts`, `governance-e2e.vitest.ts`, `memory-governance.vitest.ts` | Scope enforcement, actor auth, and collab lifecycle |
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:261:  it('stores scope metadata in cursor payloads when provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:263:    const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant:user' });
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:267:    expect(payload?.scopeKey).toBe('tenant:user');
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:373:  it('returns null when cursor scope does not match the resuming caller', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:375:    const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant-a:user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:378:    const resolved = resolveCursor(cursorInfo!.cursor, 5, { scopeKey: 'tenant-b:user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:504:  it('passes cursor scope metadata through the progressive response builder', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:507:    const response = buildProgressiveResponse(results, 5, 'scoped progressive response', {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:508:      scopeKey: 'tenant-a:user-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:512:    const resolved = resolveCursor(response.continuation!.cursor, 5, { scopeKey: 'tenant-a:user-a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:513:    const rejected = resolveCursor(response.continuation!.cursor, 5, { scopeKey: 'tenant-b:user-a' });
 
 codex
 I’ve got enough of the storage and auth skeleton to see the contrast forming: MemPalace has owner-only local directories and a WAL audit trail, but I haven’t seen an explicit concurrent-writer or shared-collaboration policy yet. I’m checking the mining and room-config flow next, because project isolation may turn out to be taxonomy-only rather than a hard storage boundary.
@@ -10580,7 +10580,7 @@ exec
    154	fi
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Shared Memory Spaces
@@ -10804,57 +10804,57 @@ exec
    220	}
 
 exec
-/bin/zsh -lc "rg -n \"function filterRowsByScope|const filterRowsByScope|export function filterRowsByScope|resolveSharedConflictStrategy|assertSharedSpaceAccess|deny-by-default|shared_space_conflicts|last_write_wins|manual_merge|append_version|shared_space_members\" .opencode/skill/system-spec-kit/mcp_server/lib -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"function filterRowsByScope|const filterRowsByScope|export function filterRowsByScope|resolveSharedConflictStrategy|assertSharedSpaceAccess|deny-by-default|shared_space_conflicts|last_write_wins|manual_merge|append_version|shared_space_members\" .opencode/skills/system-spec-kit/mcp_server/lib -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:83:    'shared_space_members',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:84:    'shared_space_conflicts',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:125:  'shared_space_members',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:126:  'shared_space_conflicts',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:322:  'governance_audit', 'shared_spaces', 'shared_space_members', 'shared_space_conflicts',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:715:  if (tableName === 'shared_space_members') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:719:        'SELECT * FROM shared_space_members WHERE space_id IN (__PLACEHOLDERS__)',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:723:    return hasScope ? [] : database.prepare('SELECT * FROM shared_space_members').all() as Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:726:  if (tableName === 'shared_space_conflicts') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:732:            SELECT * FROM shared_space_conflicts
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:740:            SELECT * FROM shared_space_conflicts
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:750:        'SELECT * FROM shared_space_conflicts WHERE space_id IN (__PLACEHOLDERS__)',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:754:    return hasScope ? [] : database.prepare('SELECT * FROM shared_space_conflicts').all() as Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:962:  if (tableName === 'shared_space_members') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:967:  if (tableName === 'shared_space_conflicts') {
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:4:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:100:  'append_version',
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:101:  'manual_merge',
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:102:  'last_write_wins',
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:135:function resolveSharedConflictStrategy(
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:147:    FROM shared_space_conflicts
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:155:      ? 'manual_merge'
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:157:        ? 'manual_merge'
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:158:        : 'append_version');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:264:    FROM shared_space_members m
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:271:    FROM shared_space_conflicts c
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:316:    LEFT JOIN shared_space_members m ON m.space_id = s.space_id
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:378:    FROM shared_space_conflicts
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:492:    INSERT INTO shared_space_members (space_id, subject_type, subject_id, role, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:508:  // B2: Respect the same disable gate as assertSharedSpaceAccess.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:526:      FROM shared_space_members m
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:555:export function assertSharedSpaceAccess(
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:634:    return deny('shared_space_membership_required');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:643:    FROM shared_space_members
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:660:    return deny('shared_space_membership_required');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:693:    const resolved = resolveSharedConflictStrategy(database, args);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:695:      INSERT INTO shared_space_conflicts (
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:673:export function filterRowsByScope<T extends Record<string, unknown>>(rows: T[], scope: ScopeContext, allowedSharedSpaceIds?: ReadonlySet<string>): T[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1492:    CREATE TABLE IF NOT EXISTS shared_space_members (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1504:    CREATE TABLE IF NOT EXISTS shared_space_conflicts (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1520:    CREATE INDEX IF NOT EXISTS idx_shared_space_members_subject
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1521:      ON shared_space_members(subject_type, subject_id, role);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1522:    CREATE INDEX IF NOT EXISTS idx_shared_space_conflicts_space
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1523:      ON shared_space_conflicts(space_id, created_at DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:66:    'DELETE FROM shared_space_conflicts WHERE existing_memory_id = ? OR incoming_memory_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:83:    'shared_space_members',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:84:    'shared_space_conflicts',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:125:  'shared_space_members',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:126:  'shared_space_conflicts',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:322:  'governance_audit', 'shared_spaces', 'shared_space_members', 'shared_space_conflicts',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:715:  if (tableName === 'shared_space_members') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:719:        'SELECT * FROM shared_space_members WHERE space_id IN (__PLACEHOLDERS__)',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:723:    return hasScope ? [] : database.prepare('SELECT * FROM shared_space_members').all() as Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:726:  if (tableName === 'shared_space_conflicts') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:732:            SELECT * FROM shared_space_conflicts
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:740:            SELECT * FROM shared_space_conflicts
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:750:        'SELECT * FROM shared_space_conflicts WHERE space_id IN (__PLACEHOLDERS__)',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:754:    return hasScope ? [] : database.prepare('SELECT * FROM shared_space_conflicts').all() as Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:962:  if (tableName === 'shared_space_members') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:967:  if (tableName === 'shared_space_conflicts') {
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:4:// Feature catalog: Shared-memory rollout, deny-by-default membership, and kill switch
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:100:  'append_version',
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:101:  'manual_merge',
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:102:  'last_write_wins',
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:135:function resolveSharedConflictStrategy(
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:147:    FROM shared_space_conflicts
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:155:      ? 'manual_merge'
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:157:        ? 'manual_merge'
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:158:        : 'append_version');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:264:    FROM shared_space_members m
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:271:    FROM shared_space_conflicts c
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:316:    LEFT JOIN shared_space_members m ON m.space_id = s.space_id
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:378:    FROM shared_space_conflicts
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:492:    INSERT INTO shared_space_members (space_id, subject_type, subject_id, role, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:508:  // B2: Respect the same disable gate as assertSharedSpaceAccess.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:526:      FROM shared_space_members m
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:555:export function assertSharedSpaceAccess(
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:634:    return deny('shared_space_membership_required');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:643:    FROM shared_space_members
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:660:    return deny('shared_space_membership_required');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:693:    const resolved = resolveSharedConflictStrategy(database, args);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:695:      INSERT INTO shared_space_conflicts (
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:673:export function filterRowsByScope<T extends Record<string, unknown>>(rows: T[], scope: ScopeContext, allowedSharedSpaceIds?: ReadonlySet<string>): T[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1492:    CREATE TABLE IF NOT EXISTS shared_space_members (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1504:    CREATE TABLE IF NOT EXISTS shared_space_conflicts (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1520:    CREATE INDEX IF NOT EXISTS idx_shared_space_members_subject
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1521:      ON shared_space_members(subject_type, subject_id, role);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1522:    CREATE INDEX IF NOT EXISTS idx_shared_space_conflicts_space
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1523:      ON shared_space_conflicts(space_id, created_at DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:66:    'DELETE FROM shared_space_conflicts WHERE existing_memory_id = ? OR incoming_memory_id = ?',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Shared Memory Handler
@@ -11118,7 +11118,7 @@ exec
    260	function buildActorScope(
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Scope Governance
@@ -11402,552 +11402,552 @@ exec
    280	  };
 
 exec
-/bin/zsh -lc "rg -n \"scopeKey|cursor scope|continuation|resolveCursor|sharedSpaceId|tenantId|userId|agentId\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"scopeKey|cursor scope|continuation|resolveCursor|sharedSpaceId|tenantId|userId|agentId\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:147:  const userIdProvided = typeof args.actorUserId === 'string';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:148:  const agentIdProvided = typeof args.actorAgentId === 'string';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:151:  const hasBlankUser = userIdProvided && normalizedUserId.length === 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:152:  const hasBlankAgent = agentIdProvided && normalizedAgentId.length === 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:210:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:212:  const normalizedTenantId = typeof tenantId === 'string' ? tenantId.trim() : '';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:262:  tenantId: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:265:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:267:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:268:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:271:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:273:    userId: actor.subjectType === 'user' ? actor.subjectId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:274:    agentId: actor.subjectType === 'agent' ? actor.subjectId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:282:    tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:294:    ...buildActorScope(args.actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:408:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:415:  const normalizedTenantId = typeof tenantId === 'string' && tenantId.trim().length > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:416:    ? tenantId.trim()
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:464:    }, args.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:485:            buildActorScope(actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:493:              tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:514:          tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:533:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:573:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:606:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:655:    }, args.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:660:        buildActorScope(actor, args.tenantId, args.spaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:669:            tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:704:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:724:        tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:762:      ? getAllowedSharedSpaceIdsForCaller(db, actor, args.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:772:        tenantId: args.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:773:        userId: actor.subjectType === 'user' ? actor.subjectId : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:774:        agentId: actor.subjectType === 'agent' ? actor.subjectId : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:92:  tenantId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:93:  userId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:94:  agentId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:102:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:103:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:104:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:159:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:160:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:161:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:331:  tenantId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:332:  userId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:333:  agentId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:351:    tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:352:    userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:353:    agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:358:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:361:  const requestedTenantId = normalizeIdentityValue(scope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:362:  if (requestedTenantId && storedIdentity.tenantId !== requestedTenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:363:    return 'tenantId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:366:  const requestedUserId = normalizeIdentityValue(scope.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:367:  if (requestedUserId && storedIdentity.userId !== requestedUserId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:368:    return 'userId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:371:  const requestedAgentId = normalizeIdentityValue(scope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:372:  if (requestedAgentId && storedIdentity.agentId !== requestedAgentId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:373:    return 'agentId';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:380:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null } | null,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:381:): storedIdentity is { tenantId: string | null; userId: string | null; agentId: string | null } {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:382:  return Boolean(storedIdentity && (storedIdentity.tenantId || storedIdentity.userId || storedIdentity.agentId));
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1030:    const tenantId = normalizeIdentityValue(state.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1031:    const userId = normalizeIdentityValue(state.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1032:    const agentId = normalizeIdentityValue(state.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1064:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1065:      userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1066:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1150:      tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1151:      userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1152:      agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1167:      tenantId: storedIdentity.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1168:      userId: storedIdentity.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1169:      agentId: storedIdentity.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1209:        tenantId: normalizeIdentityValue(row.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1210:        userId: normalizeIdentityValue(row.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1211:        agentId: normalizeIdentityValue(row.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:118:**Purpose**: Human-readable recovery file for smooth session continuation.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:112:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:113:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:114:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:213:      tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:214:      userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:      agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:317:          if (tenantId && row.tenant_id !== tenantId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:318:          if (userId && row.user_id !== userId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:319:          if (agentId && row.agent_id !== agentId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:102:  const tenantId = normalizeScopeMatchValue(scope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:103:  const userId = normalizeScopeMatchValue(scope.userId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:104:  const agentId = normalizeScopeMatchValue(scope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:125:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:126:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:127:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:128:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:129:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:130:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:131:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:132:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:133:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:177:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:178:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:179:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:69:    tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:70:    userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:71:    agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:72:    sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:103:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:104:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:105:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:106:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:124:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:125:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:126:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:127:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:200:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:201:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:202:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:203:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:425:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:426:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:427:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:428:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:453:    tenantId: normalizeScopeValue(tenantId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:454:    userId: normalizeScopeValue(userId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:455:    agentId: normalizeScopeValue(agentId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:456:    sharedSpaceId: normalizeScopeValue(sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:460:    ['tenant_id', requestedScope.tenantId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:461:    ['user_id', requestedScope.userId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:462:    ['agent_id', requestedScope.agentId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:463:    ['shared_space_id', requestedScope.sharedSpaceId],
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:483:      existingScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:484:      existingScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:485:      existingScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:486:      existingScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:572:        tenantId: requestedScope.tenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:573:        userId: requestedScope.userId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:574:        agentId: requestedScope.agentId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:575:        sharedSpaceId: requestedScope.sharedSpaceId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:759:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:760:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:761:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:762:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:853:      { content, spec_folder, database, find_similar, embedding, tenantId, userId, agentId, sharedSpaceId },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:210:                if (scope?.tenantId && r.tenant_id && r.tenant_id !== scope.tenantId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:211:                if (scope?.userId && r.user_id && r.user_id !== scope.userId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:212:                if (scope?.agentId && r.agent_id && r.agent_id !== scope.agentId) return false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:99:  // Alternation (no `i` flag, since continuation words must require uppercase start
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:19:  ['tenant_id', 'tenantId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:20:  ['user_id', 'userId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:21:  ['agent_id', 'agentId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:57:    tenantId: normalizeScopeMatchValue(scope.tenantId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:58:    userId: normalizeScopeMatchValue(scope.userId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:59:    agentId: normalizeScopeMatchValue(scope.agentId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:79:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:80:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:81:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:116:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:117:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:118:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:704:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:705:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:706:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:725:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:726:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:727:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:756:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:757:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:758:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:790:    tenantId: options.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:791:    userId: options.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:792:    agentId: options.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:829:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:830:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:831:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1281:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1282:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1283:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1354:    tenantId: args.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1355:    userId: args.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1356:    agentId: args.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:80:  resolveCursor,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:181:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:182:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:183:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:184:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:498:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:499:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:500:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:501:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:535:    tenantId: normalizedScope.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:536:    userId: normalizedScope.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:537:    agentId: normalizedScope.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:539:    sharedSpaceId: normalizedScope.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:567:      summary: `Returned ${snippetResults.length} continuation results`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:571:        continuation: resolved.continuation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:618:        hint: 'Provide a query string, concepts array with 2-5 entries, or a continuation cursor'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:724:    tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:725:    userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:726:    agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:727:    sharedSpaceId: normalizedScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:781:      tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:782:      userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:783:      agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:784:      sharedSpaceId: normalizedScope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:          { scopeKey: progressiveScopeKey },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:45:      tenantId: scope?.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:46:      userId: scope?.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:47:      agentId: scope?.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:42:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:43:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:44:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:45:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:51:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:52:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:53:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:54:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:60:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:61:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:62:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:63:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:70:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:71:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:72:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:77:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:78:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:79:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:80:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:203:  const tenantId = validateValue(args.tenantId, 'tenantId', { trim: true });
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:204:  const userId = validateValue(args.userId, 'userId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:205:  const agentId = validateValue(args.agentId, 'agentId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:206:  const sharedSpaceId = validateValue(args.sharedSpaceId, 'sharedSpaceId');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:208:    userId !== undefined || agentId !== undefined || sharedSpaceId !== undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:212:    && tenantId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:213:    && tenantId.trim().length === 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:215:    throw new Error('tenantId must be a non-empty string when userId, agentId, or sharedSpaceId is provided');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:219:    tenantId: tenantId && tenantId.length > 0 ? tenantId : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:220:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:221:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:222:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:228:    scope.tenantId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:229:    || scope.userId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:230:    || scope.agentId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:231:    || scope.sharedSpaceId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:236:  return scope.tenantId === undefined && (
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:237:    scope.userId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:238:    || scope.agentId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:239:    || scope.sharedSpaceId !== undefined
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:249:    ...(scope.tenantId !== undefined ? { tenantId: scope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:250:    ...(scope.userId !== undefined ? { userId: scope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:251:    ...(scope.agentId !== undefined ? { agentId: scope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:252:    ...(scope.sharedSpaceId !== undefined ? { sharedSpaceId: scope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:268:    matchesScopeField('tenantId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:269:    matchesScopeField('userId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:270:    matchesScopeField('agentId') &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:271:    matchesScopeField('sharedSpaceId')
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:277:  if (scope.tenantId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:278:    details.tenantId = scope.tenantId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:280:  if (scope.userId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:281:    details.userId = scope.userId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:283:  if (scope.agentId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:284:    details.agentId = scope.agentId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:286:  if (scope.sharedSpaceId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:287:    details.sharedSpaceId = scope.sharedSpaceId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:297:    error: 'tenantId is required when userId, agentId, or sharedSpaceId is provided.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:303:      hint: 'Retry with tenantId included for governed checkpoint access.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null } = {}): SimilarMemory[] {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null, sharedSpaceId = null } = options;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:98:        if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:99:        if (!matchesScopedValue(userId, r.user_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:100:        if (!matchesScopedValue(agentId, r.agent_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:103:        if (!matchesScopedValue(sharedSpaceId, r.shared_space_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:751:              tenantId: scope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:752:              userId: scope.userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:753:              agentId: scope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:755:              sharedSpaceId: scope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1106:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1107:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1108:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1110:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1137:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1138:    userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1139:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1141:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1153:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1154:      userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1155:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1157:      sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1164:  if (sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1166:      tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1167:      userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1168:      agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1170:      sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1171:    }, sharedSpaceId, 'editor');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1176:        tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1177:        userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1178:        agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1180:        sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1266:    tenantId: governanceDecision.normalized.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1267:    userId: governanceDecision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1268:    agentId: governanceDecision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1270:    sharedSpaceId: governanceDecision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1285:        tenantId: saveScope.tenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1286:        userId: saveScope.userId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1287:        agentId: saveScope.agentId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1288:        sharedSpaceId: saveScope.sharedSpaceId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1465:        tenantId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1466:        userId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1467:        agentId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1469:        sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1470:        reason: sharedSpaceId ? 'shared_space_save' : 'governed_ingest',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1474:      if (sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1483:        `).get(sharedSpaceId, validatedPath, result.id) as { id?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1486:            spaceId: sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:35:  tenantId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:61:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:235: * @param tenantId - Optional tenant to constrain the summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:238:export function getSharedRolloutMetrics(database: Database.Database, tenantId?: string): SharedRolloutMetrics {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:240:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:277:    tenantId: normalizedTenantId ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:292: * @param tenantId - Optional tenant to constrain the summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:297:  tenantId?: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:300:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:397:  if (!definition.spaceId?.trim() || !definition.tenantId?.trim()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:398:    throw new Error('E_VALIDATION: spaceId and tenantId must be non-empty strings');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:436:    definition.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:469:    definition.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:514:  if (!normalizedScope.tenantId) return new Set();
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:518:    ['user', normalizedScope.userId],
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:519:    ['agent', normalizedScope.agentId],
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:536:      normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:572:        tenantId: normalizedScope.tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:573:        userId: normalizedScope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:574:        agentId: normalizedScope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:576:        sharedSpaceId: spaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:615:  if (normalizedScope.tenantId && space.tenant_id !== normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:620:  if (isGovernanceGuardrailsEnabled() && !normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:656:  `).get(spaceId, normalizedScope.userId ?? '', normalizedScope.agentId ?? '') as { role?: SharedRole } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:713:      sharedSpaceId: args.spaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:431:    (normalizedScope.tenantId === undefined || metadata.tenantId === normalizedScope.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:432:    && (normalizedScope.userId === undefined || metadata.userId === normalizedScope.userId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:433:    && (normalizedScope.agentId === undefined || metadata.agentId === normalizedScope.agentId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:434:    && (normalizedScope.sharedSpaceId === undefined || metadata.sharedSpaceId === normalizedScope.sharedSpaceId)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:521:  if (normalizedScope.tenantId && columns.has('tenant_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:523:    params.push(normalizedScope.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:525:  if (normalizedScope.userId && columns.has('user_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:527:    params.push(normalizedScope.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:529:  if (normalizedScope.agentId && columns.has('agent_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:531:    params.push(normalizedScope.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:533:  if (normalizedScope.sharedSpaceId && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:535:    params.push(normalizedScope.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:648:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:653:  const { specFolder, memoryIds, sharedSpaceIds, scope = {}, allowedSharedSpaceIds } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:704:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:707:    if (normalizedScope.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:710:      ).all(normalizedScope.tenantId) as Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:716:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:720:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:747:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:751:        sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:810:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:908:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:917:    sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:958:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:963:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:968:    if (sharedSpaceIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:969:      deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:997:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:998:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1012:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1013:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1070:    sharedSpaceIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1428:      const sharedSpaceIds = Array.from(new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1442:          sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1487:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1488:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1489:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1490:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1520:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1521:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1522:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1523:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1646:    const sharedSpaceIds = Array.from(new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1728:                sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1860:              sharedSpaceIds,
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:14://              Structured continuation shape for session recovery.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:354: * continuation workflows.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:362:      ? `${results.length} result(s) available for continuation`
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:22:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:23:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:24:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:26:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:45:  tenantId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:46:  userId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:47:  agentId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:49:  sharedSpaceId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:160:    tenantId: normalizeId(input.tenantId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:161:    userId: normalizeId(input.userId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:162:    agentId: normalizeId(input.agentId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:164:    sharedSpaceId: normalizeId(input.sharedSpaceId),
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:173: * is configured with tenantId/userId/agentId/sharedSpaceId in queries.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:235:        tenantId: scope.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:236:        userId: scope.userId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:237:        agentId: scope.agentId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:239:        sharedSpaceId: scope.sharedSpaceId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:250:  if (!scope.tenantId) issues.push('tenantId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:252:  if (!scope.userId && !scope.agentId) issues.push('userId or agentId is required for governed ingest');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:269:      tenantId: scope.tenantId ?? '',
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:270:      userId: scope.userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:271:      agentId: scope.agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:273:      sharedSpaceId: scope.sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:291:    tenant_id: decision.normalized.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:292:    user_id: decision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:293:    agent_id: decision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:295:    shared_space_id: decision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:302:      tenantId: decision.normalized.tenantId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:303:      userId: decision.normalized.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:304:      agentId: decision.normalized.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:306:      sharedSpaceId: decision.normalized.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:345:    scope.tenantId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:346:    scope.userId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:347:    scope.agentId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:349:    scope.sharedSpaceId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:368:    scope.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:369:    || scope.tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:370:    || scope.userId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:371:    || scope.agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:409:  if (normalized.tenantId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:411:    params.push(normalized.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:413:  if (normalized.userId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:415:    params.push(normalized.userId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:417:  if (normalized.agentId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:419:    params.push(normalized.agentId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:425:  if (normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:427:    params.push(normalized.sharedSpaceId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:441:    || normalized.tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:442:    || normalized.userId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:443:    || normalized.agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:445:    || normalized.sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:472:      if (normalized.sharedSpaceId && rowSharedSpaceId !== normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:478:    } else if (normalized.sharedSpaceId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:486:      return matchesExactScope(row.tenant_id, normalized.tenantId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:489:    return matchesExactScope(row.tenant_id, normalized.tenantId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:490:      && matchesExactScope(row.user_id, normalized.userId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:491:      && matchesExactScope(row.agent_id, normalized.agentId)
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:606:      tenantId: row.tenant_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:607:      userId: row.user_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:608:      agentId: row.agent_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:610:      sharedSpaceId: row.shared_space_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:31: * @param identity - Unique identity string (e.g., flagName, userId)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:29:  continuationState: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:89:  'continuationState',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:240:    continuationState: scenario.wrapper.continuationState,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:50:  scopeKey?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:63:  continuation: CursorInfo | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:81:  scopeKey?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:289: * Create a continuation cursor for paginated result retrieval.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:298: * const continuation = createCursor(results, 5, 'memory search');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:334:    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:335:      ? options.scopeKey
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:346: * Resolve a continuation cursor to the next page of results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:354: * const page = resolveCursor(cursor, 5);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:357:function resolveCursor(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:361:): { results: DisclosureResult[]; continuation: CursorInfo | null } | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:368:    typeof payload.scopeKey === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:369:    && payload.scopeKey.length > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:370:    && payload.scopeKey !== options?.scopeKey
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:400:  let continuation: CursorInfo | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:408:    continuation = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:414:  return { results: pageResults, continuation };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:426: * @returns ProgressiveResponse with summary, snippets, and optional continuation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:442:      continuation: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:451:      continuation: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:463:  const continuation = createCursor(results, pageSize, query, options);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:468:    continuation,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:509:  resolveCursor,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:194:    keywords: ['memory', 'context', 'session', 'previous session', 'prior work', 'last time', 'continue', 'resume', 'recover', 'continuation'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:301:            // Walk back to a valid UTF-8 boundary (continuation bytes start with 10xxxxxx).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:484:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:485:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:486:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:487:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:980:    tenantId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:981:    || userId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:982:    || agentId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:983:    || sharedSpaceId
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:987:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:988:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:989:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:990:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:32:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:33:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:34:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:35:  sharedSpaceId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:115:  tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:116:  userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:117:  agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:118:  sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:144:    tenantId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:145:    userId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:146:    agentId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:147:    sharedSpaceId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:128:  tenantId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129:  userId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:130:  agentId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:131:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:147:  const userIdProvided = typeof args.actorUserId === 'string';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:148:  const agentIdProvided = typeof args.actorAgentId === 'string';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:151:  const hasBlankUser = userIdProvided && normalizedUserId.length === 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:152:  const hasBlankAgent = agentIdProvided && normalizedAgentId.length === 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:210:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:212:  const normalizedTenantId = typeof tenantId === 'string' ? tenantId.trim() : '';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:222:        hint: 'Provide the tenantId for the target shared-space mutation.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:262:  tenantId: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:263:  sharedSpaceId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:265:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:266:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:267:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:268:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:271:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:272:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:273:    userId: actor.subjectType === 'user' ? actor.subjectId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:274:    agentId: actor.subjectType === 'agent' ? actor.subjectId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:282:    tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:294:    ...buildActorScope(args.actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:408:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:415:  const normalizedTenantId = typeof tenantId === 'string' && tenantId.trim().length > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:416:    ? tenantId.trim()
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:464:    }, args.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:485:            buildActorScope(actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:493:              tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:514:          tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:533:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:573:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:606:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:655:    }, args.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:660:        buildActorScope(actor, args.tenantId, args.spaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:669:            tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:704:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:724:        tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:762:      ? getAllowedSharedSpaceIdsForCaller(db, actor, args.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:772:        tenantId: args.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:773:        userId: actor.subjectType === 'user' ? actor.subjectId : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:774:        agentId: actor.subjectType === 'agent' ? actor.subjectId : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:911:| \`/memory:manage shared create <spaceId> <tenantId> <name>\` | Create or update a shared space; first creator becomes owner |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:92:  tenantId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:93:  userId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:94:  agentId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:102:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:103:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:104:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:159:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:160:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:161:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:331:  tenantId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:332:  userId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:333:  agentId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:351:    tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:352:    userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:353:    agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:358:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:361:  const requestedTenantId = normalizeIdentityValue(scope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:362:  if (requestedTenantId && storedIdentity.tenantId !== requestedTenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:363:    return 'tenantId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:366:  const requestedUserId = normalizeIdentityValue(scope.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:367:  if (requestedUserId && storedIdentity.userId !== requestedUserId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:368:    return 'userId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:371:  const requestedAgentId = normalizeIdentityValue(scope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:372:  if (requestedAgentId && storedIdentity.agentId !== requestedAgentId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:373:    return 'agentId';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:380:  storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null } | null,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:381:): storedIdentity is { tenantId: string | null; userId: string | null; agentId: string | null } {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:382:  return Boolean(storedIdentity && (storedIdentity.tenantId || storedIdentity.userId || storedIdentity.agentId));
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1030:    const tenantId = normalizeIdentityValue(state.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1031:    const userId = normalizeIdentityValue(state.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1032:    const agentId = normalizeIdentityValue(state.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1064:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1065:      userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1066:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1150:      tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1151:      userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1152:      agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1167:      tenantId: storedIdentity.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1168:      userId: storedIdentity.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1169:      agentId: storedIdentity.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1209:        tenantId: normalizeIdentityValue(row.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1210:        userId: normalizeIdentityValue(row.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1211:        agentId: normalizeIdentityValue(row.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:118:**Purpose**: Human-readable recovery file for smooth session continuation.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:112:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:113:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:114:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:115:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:213:      tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:214:      userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:      agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:292:  const { specFolder, tenantId, userId, agentId, sharedSpaceId } = args;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:293:  if (specFolder || tenantId || userId || agentId || sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:317:          if (tenantId && row.tenant_id !== tenantId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:318:          if (userId && row.user_id !== userId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:319:          if (agentId && row.agent_id !== agentId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:320:          if (sharedSpaceId && row.shared_space_id !== sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:102:  const tenantId = normalizeScopeMatchValue(scope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:103:  const userId = normalizeScopeMatchValue(scope.userId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:104:  const agentId = normalizeScopeMatchValue(scope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:106:  const sharedSpaceId = normalizeScopeMatchValue(scope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:125:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:126:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:127:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:128:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:129:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:130:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:133:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:134:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:131:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:132:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:133:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:135:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:177:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:178:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:179:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:181:  sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:69:    tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:70:    userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:71:    agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:72:    sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:103:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:104:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:105:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:106:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:124:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:125:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:126:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:127:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:200:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:201:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:202:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:203:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:425:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:426:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:427:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:428:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:453:    tenantId: normalizeScopeValue(tenantId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:454:    userId: normalizeScopeValue(userId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:455:    agentId: normalizeScopeValue(agentId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:456:    sharedSpaceId: normalizeScopeValue(sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:460:    ['tenant_id', requestedScope.tenantId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:461:    ['user_id', requestedScope.userId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:462:    ['agent_id', requestedScope.agentId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:463:    ['shared_space_id', requestedScope.sharedSpaceId],
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:483:      existingScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:484:      existingScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:485:      existingScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:486:      existingScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:572:        tenantId: requestedScope.tenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:573:        userId: requestedScope.userId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:574:        agentId: requestedScope.agentId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:575:        sharedSpaceId: requestedScope.sharedSpaceId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:759:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:760:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:761:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:762:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:853:      { content, spec_folder, database, find_similar, embedding, tenantId, userId, agentId, sharedSpaceId },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:210:                if (scope?.tenantId && r.tenant_id && r.tenant_id !== scope.tenantId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:211:                if (scope?.userId && r.user_id && r.user_id !== scope.userId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:212:                if (scope?.agentId && r.agent_id && r.agent_id !== scope.agentId) return false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:213:                if (scope?.sharedSpaceId && r.shared_space_id && r.shared_space_id !== scope.sharedSpaceId) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:99:  // Alternation (no `i` flag, since continuation words must require uppercase start
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:19:  ['tenant_id', 'tenantId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:20:  ['user_id', 'userId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:21:  ['agent_id', 'agentId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:23:  ['shared_space_id', 'sharedSpaceId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:57:    tenantId: normalizeScopeMatchValue(scope.tenantId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:58:    userId: normalizeScopeMatchValue(scope.userId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:59:    agentId: normalizeScopeMatchValue(scope.agentId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:61:    sharedSpaceId: normalizeScopeMatchValue(scope.sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:79:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:80:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:81:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:82:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:116:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:117:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:118:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:119:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:704:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:705:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:706:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:707:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:725:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:726:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:727:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:728:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:756:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:757:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:758:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:759:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:790:    tenantId: options.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:791:    userId: options.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:792:    agentId: options.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:793:    sharedSpaceId: options.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:829:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:830:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:831:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1281:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1282:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1283:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1284:    sharedSpaceId: args.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1354:    tenantId: args.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1355:    userId: args.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1356:    agentId: args.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:80:  resolveCursor,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:181:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:182:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:183:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:184:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:498:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:499:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:500:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:501:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:533:  const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId, sharedSpaceId });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:535:    tenantId: normalizedScope.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:536:    userId: normalizedScope.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:537:    agentId: normalizedScope.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:539:    sharedSpaceId: normalizedScope.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:567:      summary: `Returned ${snippetResults.length} continuation results`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:571:        continuation: resolved.continuation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:618:        hint: 'Provide a query string, concepts array with 2-5 entries, or a continuation cursor'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:724:    tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:725:    userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:726:    agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:727:    sharedSpaceId: normalizedScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:781:      tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:782:      userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:783:      agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:784:      sharedSpaceId: normalizedScope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:          { scopeKey: progressiveScopeKey },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:35:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:45:      tenantId: scope?.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:46:      userId: scope?.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:47:      agentId: scope?.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:49:      sharedSpaceId: scope?.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:42:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:43:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:44:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:45:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:51:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:52:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:53:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:54:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:60:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:61:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:62:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:63:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:70:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:71:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:72:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:77:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:78:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:79:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:80:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:203:  const tenantId = validateValue(args.tenantId, 'tenantId', { trim: true });
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:204:  const userId = validateValue(args.userId, 'userId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:205:  const agentId = validateValue(args.agentId, 'agentId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:206:  const sharedSpaceId = validateValue(args.sharedSpaceId, 'sharedSpaceId');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:208:    userId !== undefined || agentId !== undefined || sharedSpaceId !== undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:212:    && tenantId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:213:    && tenantId.trim().length === 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:215:    throw new Error('tenantId must be a non-empty string when userId, agentId, or sharedSpaceId is provided');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:219:    tenantId: tenantId && tenantId.length > 0 ? tenantId : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:220:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:221:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:222:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:228:    scope.tenantId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:229:    || scope.userId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:230:    || scope.agentId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:231:    || scope.sharedSpaceId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:236:  return scope.tenantId === undefined && (
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:237:    scope.userId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:238:    || scope.agentId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:239:    || scope.sharedSpaceId !== undefined
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:249:    ...(scope.tenantId !== undefined ? { tenantId: scope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:250:    ...(scope.userId !== undefined ? { userId: scope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:251:    ...(scope.agentId !== undefined ? { agentId: scope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:252:    ...(scope.sharedSpaceId !== undefined ? { sharedSpaceId: scope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:268:    matchesScopeField('tenantId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:269:    matchesScopeField('userId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:270:    matchesScopeField('agentId') &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:271:    matchesScopeField('sharedSpaceId')
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:277:  if (scope.tenantId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:278:    details.tenantId = scope.tenantId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:280:  if (scope.userId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:281:    details.userId = scope.userId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:283:  if (scope.agentId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:284:    details.agentId = scope.agentId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:286:  if (scope.sharedSpaceId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:287:    details.sharedSpaceId = scope.sharedSpaceId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:297:    error: 'tenantId is required when userId, agentId, or sharedSpaceId is provided.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:303:      hint: 'Retry with tenantId included for governed checkpoint access.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null; sharedSpaceId?: string | null } = {}): SimilarMemory[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null, sharedSpaceId = null } = options;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:98:        if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:99:        if (!matchesScopedValue(userId, r.user_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:100:        if (!matchesScopedValue(agentId, r.agent_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:103:        if (!matchesScopedValue(sharedSpaceId, r.shared_space_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:751:              tenantId: scope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:752:              userId: scope.userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:753:              agentId: scope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:755:              sharedSpaceId: scope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1106:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1107:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1108:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1110:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1137:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1138:    userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1139:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1141:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1153:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1154:      userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1155:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1157:      sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1164:  if (sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1166:      tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1167:      userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1168:      agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1170:      sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1171:    }, sharedSpaceId, 'editor');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1176:        tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1177:        userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1178:        agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1180:        sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1266:    tenantId: governanceDecision.normalized.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1267:    userId: governanceDecision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1268:    agentId: governanceDecision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1270:    sharedSpaceId: governanceDecision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1285:        tenantId: saveScope.tenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1286:        userId: saveScope.userId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1287:        agentId: saveScope.agentId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1288:        sharedSpaceId: saveScope.sharedSpaceId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1465:        tenantId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1466:        userId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1467:        agentId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1469:        sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1470:        reason: sharedSpaceId ? 'shared_space_save' : 'governed_ingest',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1474:      if (sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1483:        `).get(sharedSpaceId, validatedPath, result.id) as { id?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1486:            spaceId: sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:35:  tenantId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:61:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:235: * @param tenantId - Optional tenant to constrain the summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:238:export function getSharedRolloutMetrics(database: Database.Database, tenantId?: string): SharedRolloutMetrics {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:240:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:277:    tenantId: normalizedTenantId ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:292: * @param tenantId - Optional tenant to constrain the summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:297:  tenantId?: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:300:  const normalizedTenantId = normalizeScopeContext({ tenantId }).tenantId ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:397:  if (!definition.spaceId?.trim() || !definition.tenantId?.trim()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:398:    throw new Error('E_VALIDATION: spaceId and tenantId must be non-empty strings');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:436:    definition.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:469:    definition.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:514:  if (!normalizedScope.tenantId) return new Set();
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:518:    ['user', normalizedScope.userId],
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:519:    ['agent', normalizedScope.agentId],
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:536:      normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:572:        tenantId: normalizedScope.tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:573:        userId: normalizedScope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:574:        agentId: normalizedScope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:576:        sharedSpaceId: spaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:615:  if (normalizedScope.tenantId && space.tenant_id !== normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:620:  if (isGovernanceGuardrailsEnabled() && !normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:656:  `).get(spaceId, normalizedScope.userId ?? '', normalizedScope.agentId ?? '') as { role?: SharedRole } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:713:      sharedSpaceId: args.spaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:431:    (normalizedScope.tenantId === undefined || metadata.tenantId === normalizedScope.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:432:    && (normalizedScope.userId === undefined || metadata.userId === normalizedScope.userId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:433:    && (normalizedScope.agentId === undefined || metadata.agentId === normalizedScope.agentId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:434:    && (normalizedScope.sharedSpaceId === undefined || metadata.sharedSpaceId === normalizedScope.sharedSpaceId)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:521:  if (normalizedScope.tenantId && columns.has('tenant_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:523:    params.push(normalizedScope.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:525:  if (normalizedScope.userId && columns.has('user_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:527:    params.push(normalizedScope.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:529:  if (normalizedScope.agentId && columns.has('agent_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:531:    params.push(normalizedScope.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:533:  if (normalizedScope.sharedSpaceId && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:535:    params.push(normalizedScope.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:648:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:653:  const { specFolder, memoryIds, sharedSpaceIds, scope = {}, allowedSharedSpaceIds } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:700:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:704:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:707:    if (normalizedScope.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:710:      ).all(normalizedScope.tenantId) as Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:716:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:720:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:747:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:751:        sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:810:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:908:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:917:    sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:958:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:963:    deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:968:    if (sharedSpaceIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:969:      deleteRowsByStringIds(database, tableName, 'space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:997:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:998:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1012:  if (sharedSpaceIds.length > 0 && columns.has('shared_space_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1013:    deleteRowsByStringIds(database, tableName, 'shared_space_id', sharedSpaceIds);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1070:    sharedSpaceIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1428:      const sharedSpaceIds = Array.from(new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1442:          sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1487:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1488:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1489:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1490:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1520:          ...(normalizedScope.tenantId ? { tenantId: normalizedScope.tenantId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1521:          ...(normalizedScope.userId ? { userId: normalizedScope.userId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1522:          ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1523:          ...(normalizedScope.sharedSpaceId ? { sharedSpaceId: normalizedScope.sharedSpaceId } : {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1646:    const sharedSpaceIds = Array.from(new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1728:                sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1860:              sharedSpaceIds,
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:14://              Structured continuation shape for session recovery.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:354: * continuation workflows.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:362:      ? `${results.length} result(s) available for continuation`
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:22:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:23:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:24:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:26:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:45:  tenantId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:46:  userId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:47:  agentId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:49:  sharedSpaceId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:160:    tenantId: normalizeId(input.tenantId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:161:    userId: normalizeId(input.userId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:162:    agentId: normalizeId(input.agentId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:164:    sharedSpaceId: normalizeId(input.sharedSpaceId),
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:173: * is configured with tenantId/userId/agentId/sharedSpaceId in queries.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:235:        tenantId: scope.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:236:        userId: scope.userId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:237:        agentId: scope.agentId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:239:        sharedSpaceId: scope.sharedSpaceId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:250:  if (!scope.tenantId) issues.push('tenantId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:252:  if (!scope.userId && !scope.agentId) issues.push('userId or agentId is required for governed ingest');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:269:      tenantId: scope.tenantId ?? '',
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:270:      userId: scope.userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:271:      agentId: scope.agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:273:      sharedSpaceId: scope.sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:291:    tenant_id: decision.normalized.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:292:    user_id: decision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:293:    agent_id: decision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:295:    shared_space_id: decision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:302:      tenantId: decision.normalized.tenantId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:303:      userId: decision.normalized.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:304:      agentId: decision.normalized.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:306:      sharedSpaceId: decision.normalized.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:345:    scope.tenantId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:346:    scope.userId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:347:    scope.agentId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:349:    scope.sharedSpaceId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:368:    scope.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:369:    || scope.tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:370:    || scope.userId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:371:    || scope.agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:409:  if (normalized.tenantId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:411:    params.push(normalized.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:413:  if (normalized.userId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:415:    params.push(normalized.userId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:417:  if (normalized.agentId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:419:    params.push(normalized.agentId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:425:  if (normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:427:    params.push(normalized.sharedSpaceId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:441:    || normalized.tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:442:    || normalized.userId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:443:    || normalized.agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:445:    || normalized.sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:472:      if (normalized.sharedSpaceId && rowSharedSpaceId !== normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:478:    } else if (normalized.sharedSpaceId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:486:      return matchesExactScope(row.tenant_id, normalized.tenantId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:489:    return matchesExactScope(row.tenant_id, normalized.tenantId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:490:      && matchesExactScope(row.user_id, normalized.userId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:491:      && matchesExactScope(row.agent_id, normalized.agentId)
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:606:      tenantId: row.tenant_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:607:      userId: row.user_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:608:      agentId: row.agent_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:610:      sharedSpaceId: row.shared_space_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:31: * @param identity - Unique identity string (e.g., flagName, userId)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:29:  continuationState: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:89:  'continuationState',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:240:    continuationState: scenario.wrapper.continuationState,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:50:  scopeKey?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:63:  continuation: CursorInfo | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:81:  scopeKey?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:289: * Create a continuation cursor for paginated result retrieval.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:298: * const continuation = createCursor(results, 5, 'memory search');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:334:    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:335:      ? options.scopeKey
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:346: * Resolve a continuation cursor to the next page of results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:354: * const page = resolveCursor(cursor, 5);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:357:function resolveCursor(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:361:): { results: DisclosureResult[]; continuation: CursorInfo | null } | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:368:    typeof payload.scopeKey === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:369:    && payload.scopeKey.length > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:370:    && payload.scopeKey !== options?.scopeKey
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:400:  let continuation: CursorInfo | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:408:    continuation = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:414:  return { results: pageResults, continuation };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:426: * @returns ProgressiveResponse with summary, snippets, and optional continuation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:442:      continuation: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:451:      continuation: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:463:  const continuation = createCursor(results, pageSize, query, options);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:468:    continuation,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:509:  resolveCursor,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:194:    keywords: ['memory', 'context', 'session', 'previous session', 'prior work', 'last time', 'continue', 'resume', 'recover', 'continuation'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:301:            // Walk back to a valid UTF-8 boundary (continuation bytes start with 10xxxxxx).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:484:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:485:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:486:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:487:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:980:    tenantId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:981:    || userId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:982:    || agentId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:983:    || sharedSpaceId
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:987:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:988:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:989:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:990:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:32:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:33:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:34:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:35:  sharedSpaceId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:115:  tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:116:  userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:117:  agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:118:  sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:144:    tenantId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:145:    userId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:146:    agentId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:147:    sharedSpaceId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:128:  tenantId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129:  userId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:130:  agentId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:131:  sharedSpaceId?: string;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts | sed -n '540,740p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts | sed -n '540,740p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    540	    }
    541	  }
@@ -12131,7 +12131,7 @@ exec
    719	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '400,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '400,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    400	
    401	  if (filters.action) {
@@ -12411,9 +12411,9 @@ exec
    675	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '350,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '350,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts | sed -n '320,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts | sed -n '320,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    350	  return {
    351	    tenantId: normalizeIdentityValue(row.tenant_id),
@@ -12533,7 +12533,7 @@ exec
 codex
 I’ve got the collaboration contrast now, and one more piece would make the comparison sharper: how Public protects its own save path from concurrent writers. I’m checking the `generate-context` lock path next so I can compare MemPalace’s audit-only WAL against our actual write coordination.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/dist/core/workflow.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 "use strict";
 // ───────────────────────────────────────────────────────────────
@@ -12797,7 +12797,7 @@ function clearWorkflowLockDir() {
         fsSync.rmSync(WORKFLOW_LOCK_DIR, { recursive: true, force: true });
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory Save Handler
@@ -13066,764 +13066,764 @@ exec
 sed: .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/pyproject.toml: No such file or directory
 
 exec
-/bin/zsh -lc "rg -n \"acquireFilesystemLock|releaseFilesystemLock|lock|flock|mutex|concurrent|O_EXCL|randomBytes|ensureUniqueMemoryFilename\" .opencode/skill/system-spec-kit/scripts -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"acquireFilesystemLock|releaseFilesystemLock|lock|flock|mutex|concurrent|O_EXCL|randomBytes|ensureUniqueMemoryFilename\" .opencode/skills/system-spec-kit/scripts -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:43:// HIGH rules (V1, V3, V8, V9, V11, V13) block writes upstream so rarely reach the scorer;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:200:  // The cap at the contamination block above is sufficient; double-counting removed
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:57:  blockers: string;
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:89:  const randomPart = crypto.randomBytes(6).toString('hex'); // 6 bytes = 12 hex chars = 48 bits
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:289:  /^[A-Z][A-Z0-9 _-]{2,}\s+blocked\b/,
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:293:function isInvalidBlockerText(value: string): boolean {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:302:function splitBlockerCandidates(narrative: string): string[] {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:334: * Scan observation narratives for blocker keywords and return the first valid blocker sentence.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:335: * @param observations - Session observations whose narratives are searched for blockers.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:336: * @returns A trimmed blocker sentence (max 100 chars), or `'None'` if no blockers found.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:338:function extractBlockers(observations: Observation[]): string {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:339:  // Fix 3: Require blocker-specific sentence structure, not just keyword presence.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:342:  const blockerPatterns = [
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:343:    /\b(?:blocked|blocking)\s+(?:on|by)\b/i,         // "blocked on/by X"
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:348:    /\bblocker:\s/i,                                   // explicit "blocker:" prefix
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:349:    /\bblocking\s+issue\b/i,                           // "blocking issue"
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:353:    if (blockerPatterns.some(pattern => pattern.test(narrative))) {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:354:      const sentences = splitBlockerCandidates(narrative);
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:356:        if (!blockerPatterns.some(pattern => pattern.test(sentence))) {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:360:        if (isInvalidBlockerText(sentence)) {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:362:            console.debug(`[session-extractor] rejected blocker artifact: ${sentence.trim()}`);
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:618: * @returns Snapshot with project phase, active file, last/next actions, blockers, and file progress.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:628:    blockers: extractBlockers(behavioralObservations),
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:646:  extractBlockers,
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:88:  const blockPattern = /(?:^|\n)---\s*\n([\s\S]*?)\n---\s*(?=\n|$)/g;
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:90:  for (const match of content.matchAll(blockPattern)) {
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:249:  const extractLabeledBlock = (section: string, label: 'Context' | 'Decision'): string => {
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:260:  const extractChosen = (decisionBlock: string): string => {
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:262:    const explicitChosen = decisionBlock.match(/\*\*(?:We chose|Chosen)(?::\*\*|\*\*:)\s*([^\n]+)/i)?.[1] || '';
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:265:    const firstSentence = decisionBlock
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:269:      || decisionBlock.replace(/^\*\*Decision(?::\*\*|\*\*:)\s*/i, '').trim().split('\n')[0] || '';
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:277:    const rationale = cleanText(extractLabeledBlock(section, 'Context'));
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:278:    const decisionBlock = extractLabeledBlock(section, 'Decision');
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:279:    const chosen = extractChosen(decisionBlock);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:378:  blockers: string,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:423:  const resolutionKeywords = /\b(?:resolved|fixed|unblocked|works?\s+now|workaround)\b/i;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:459:  if (blockers && blockers !== 'None') {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:460:    // O5-13: Scope F-25 resolution to observations AFTER the blocker was detected
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:461:    const blockerKeywordsLocal = /\b(?:blocked|stuck|can't proceed|cannot proceed|waiting on|depends on|broken|fails?)\b/i;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:462:    const blockerIdx = observations.findIndex((obs) => {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:464:      return blockerKeywordsLocal.test(text);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:466:    if (blockerIdx >= 0) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:467:      const laterObs = observations.slice(blockerIdx + 1);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:468:      const blockerResolved = laterObs.some((obs) => {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:472:      if (!blockerResolved) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:475:      // Blocker was resolved by a later observation — fall through to check completion
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:477:      // Blocker string was set but no matching observation found in narratives;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:478:      // check ALL observations for resolution (blocker came from summary/external source)
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:479:      const blockerResolved = observations.some((obs) => {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:483:      if (!blockerResolved) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:520:  const hasNoBlockers = !blockers || blockers === 'None';
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:522:  if (hasNoBlockers && highActivity && !hasPendingWorkIndicators) {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:869:  blockers: string;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:874:  const { observations, files, outcomes, nextAction, blockers, limit, explicitEvidence = [], keyDecisions = [] } = params;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:957:  // Add blocker if present
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:958:  if (blockers && blockers !== 'None') {
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:959:    addEvidence(`Blocker: ${blockers}`);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:983:  blockers: string;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:993:    blockers, duration, decisionCount, collectedData
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:996:  const sessionStatus = determineSessionStatus(blockers, observations, userPrompts.length, collectedData);
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1476:  // nextAction and blockers come from here.
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1477:  const { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress } =
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1495:    blockers,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1528:    blockers,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1590:    BLOCKERS: blockers,
-.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:172:      const [header, filesBlock = ''] = entry.split(COMMIT_FILES_SEPARATOR);
-.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:174:      const files = filesBlock
-.opencode/skill/system-spec-kit/scripts/README.md:120:Generated memories are now blocked before write/index when they violate the rendered-memory contract:
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:89:  { label: 'stray backtick block', pattern: /^```\s*$/gm, severity: 'medium' },
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:8:// blocked until Phase 1 replay fixtures AND Phase 3 behavioral
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:36:  BLOCKED: 'blocked',
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:73: * (not locked contract fields), and validate value types and ranges
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:90:  const lockedFields = new Set(
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:91:    (manifest.lockedFields || []).map((f) => f.name || f),
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:95:    if (lockedFields.has(field)) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:96:      violations.push(`Field "${field}" is a locked contract field and cannot be modified by the optimizer`);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:294:          ? 'Candidate touches locked or non-tunable fields. Promotion is blocked.'
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:301:      'Verify no locked fields were modified',
-.opencode/skill/system-spec-kit/scripts/templates/compose.sh:213:# Remove leading YAML frontmatter block from content if present.
-.opencode/skill/system-spec-kit/scripts/templates/compose.sh:327:# Return leading YAML frontmatter block (with delimiters) if present.
-.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:210:  let inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:213:    if (inBlockComment) {
-.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:214:      if (line.indexOf('*/') !== -1) inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:222:        inBlockComment = true;
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:35:  const openBlocks: string[] = (validationContent.match(/\{\{[#^][A-Z_]+\}\}/g) || []);
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:36:  const closeBlocks: string[] = (validationContent.match(/\{\{\/[A-Z_]+\}\}/g) || []);
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:37:  if (openBlocks.length !== closeBlocks.length) {
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:38:    console.warn(`\u26A0\uFE0F  Template has ${openBlocks.length} open blocks but ${closeBlocks.length} close blocks`);
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:190:  const blockMatch = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:191:  if (!blockMatch) {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:195:  const lines = blockMatch[1].split('\n');
-.opencode/skill/system-spec-kit/scripts/utils/README.md:196:| `slug-utils.ts` | Content-aware slug generation for memory filenames. Provides `ensureUniqueMemoryFilename()` to prevent collisions via `-1`, `-2` suffix appending |
-.opencode/skill/system-spec-kit/scripts/utils/README.md:212:#### Path sanitization blocks valid paths
-.opencode/skill/system-spec-kit/scripts/utils/index.ts:116:  ensureUniqueMemoryFilename,
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:198:export function ensureUniqueMemoryFilename(contextDir: string, filename: string): string {
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:199:  // F-07: Use atomic O_CREAT|O_EXCL instead of readdirSync + set check
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:202:    const fd = fs.openSync(filePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:222:      const fd = fs.openSync(candidatePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:233:  // Atomic O_CREAT|O_EXCL path so repeated calls in the same millisecond cannot return
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:236:    const randomSuffix = crypto.randomBytes(6).toString('hex');
-.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts:240:      const fd = fs.openSync(candidatePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:210:  const blocks = normalizeCausalLinkEntries(record.blocks);
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:217:    && blocks.length === 0
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:229:    blocks,
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1296:// RELEVANCE_PATH_STOPWORDS (permissive) — for spec-path-derived keywords; only blocks truly generic words.
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:191:  let inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:195:    if (inBlockComment) {
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:197:      if (closeIdx !== -1) inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:205:        inBlockComment = true;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:249:  let inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:253:    // Track block comments — handle mid-line /* starts and */ ends
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:254:    if (inBlockComment) {
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:257:        inBlockComment = false;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:259:        // Spanning block comment boundaries are not valid TS, so skip line
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:267:        // Block comment opens but doesn't close on this line
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:268:        inBlockComment = true;
-.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:280:      // Inline block comment (/* ... */ on same line) — strip it and scan remainder
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:54:    wallClockMs: number;
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:293:async function runLoadTest1000Concurrent(): Promise<{ totalRequests: number; wallClockMs: number; perRequest: LatencyStats }> {
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:305:  const wallClockMs = performance.now() - wallStart;
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:309:    wallClockMs,
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:372:    `- Total wall-clock: ${report.loadTest1000Concurrent.wallClockMs.toFixed(3)}ms`,
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:431:        Number.isFinite(load.wallClockMs) &&
-.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:469:    console.log(`load_concurrency=${load.totalRequests} wall_clock_ms=${load.wallClockMs.toFixed(3)}`);
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:84:| Empty trigger phrases rate | YAML frontmatter block has zero `trigger_phrases` entries |
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:84:  return crypto.randomBytes(Math.ceil(length * 0.75))
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:132:// Both this file and session-extractor use crypto.randomBytes (CSPRNG).
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:3:  "description": "Canonical manifest declaring which fields are tunable by the offline loop optimizer, which are locked runtime contracts, and which are deferred prompt-pack entrypoints.",
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59:  "lockedFields": [
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:221:    .map((block) => block.trim())
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:224:  for (const block of candidates) {
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:226:      block.startsWith('#')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:227:      || block.startsWith('|')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:228:      || block.startsWith('<!--')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:229:      || block.startsWith('- ')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:230:      || block.startsWith('* ')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:231:      || block.startsWith('```')
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:235:    const cleaned = cleanInlineMarkdown(block);
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:38:  const yamlBlockMatch = content.match(/```yaml\n([\s\S]*?)\n```/);
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:39:  if (!yamlBlockMatch) return 0;
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:40:  const yaml = yamlBlockMatch[1];
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:43:  let inBlock = false;
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:45:    if (!inBlock && /^trigger_phrases:\s*$/.test(line.trim())) {
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:46:      inBlock = true;
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:49:    if (!inBlock) continue;
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:133:  // P1-10: Mustache comment syntax — strip {{! ... }} blocks
-.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts:567:        // O4-8: Block in non-interactive mode when alignment is critically low
-.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts:608:  // O4-8: Block in non-interactive mode when alignment is critically low
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:67:        if grep -qE "AI EXECUTION|Pre-Task Checklist|Blocked Task Protocol" "$folder/tasks.md" 2>/dev/null; then
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:111:# Check for blocked task protocol
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:112:_ai_has_blocked_protocol() {
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:115:        grep -qE "Blocked Task|BLOCKED" "$folder/plan.md" 2>/dev/null && return 0
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:118:        grep -qE "Blocked Task|BLOCKED" "$folder/tasks.md" 2>/dev/null && return 0
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:184:    if _ai_has_blocked_protocol "$folder"; then
-.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh:187:        warnings+=("Missing Blocked Task Protocol")
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:32:  blockOnWrite: boolean;
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:33:  blockOnIndex: boolean;
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:41:  indexBlockingRuleIds: QualityRuleId[];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:50:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:51:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:59:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:60:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:68:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:69:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:77:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:78:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:80:    reason: 'Fallback-decision phrasing is a soft signal and should not block durable indexing on otherwise strong memories.',
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:86:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:87:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:95:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:96:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:104:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:105:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:107:    reason: 'Tool-count contradictions are useful diagnostics, but not durable-index blockers on their own.',
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:113:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:114:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:122:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:123:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:131:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:132:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:140:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:141:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:149:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:150:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:158:    blockOnWrite: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:159:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:167:    blockOnWrite: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:168:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:175:  .filter((metadata) => metadata.blockOnWrite)
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:193:const NON_OPTIONAL_FIELDS = ['decisions', 'next_actions', 'blockers', 'readiness'];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:324:  const fencedBlocks = content.match(/```yaml\n([\s\S]*?)\n```/gi) ?? [];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:325:  for (const block of fencedBlocks) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:326:    const inner = block.replace(/^```yaml\n/i, '').replace(/\n```$/i, '');
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:417:  const fencedBlocks = content.match(/```yaml\n([\s\S]*?)\n```/gi) ?? [];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:418:  for (const block of fencedBlocks) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:419:    const inner = block.replace(/^```yaml\n/i, '').replace(/\n```$/i, '');
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:663:function shouldBlockWrite(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:665:  return metadata.blockOnWrite && ruleAppliesToSource(metadata, source);
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:668:function shouldBlockIndex(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:670:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:687:  const indexBlockingRuleIds = failedRules.filter((ruleId) => shouldBlockIndex(ruleId, source));
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:688:  if (indexBlockingRuleIds.length > 0) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:692:      indexBlockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:693:      softRuleIds: failedRules.filter((ruleId) => !indexBlockingRuleIds.includes(ruleId)),
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:700:    indexBlockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:964:  // Sub-check 2: Content density — strip frontmatter block, count non-whitespace chars (T020)
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:971:    // Content density check: strip the leading frontmatter block then count non-whitespace chars
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:986:  // Emitted as a soft warning (blockOnWrite: false, blockOnIndex: false)
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1076:  shouldBlockIndex,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1077:  shouldBlockWrite,
-.opencode/skill/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:353:function locateFrontmatterSectionRange(rawBlock: string, key: string): { lines: string[]; start: number; end: number } | null {
-.opencode/skill/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:354:  const lines = rawBlock.replace(/\r/g, '').split('\n');
-.opencode/skill/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:386:  const range = locateFrontmatterSectionRange(detection.rawBlock, 'trigger_phrases');
-.opencode/skill/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:392:  const nextRawBlock = trimTrailingBlankLines([
-.opencode/skill/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:398:  return `${content.slice(0, detection.start)}---\n${nextRawBlock}\n---\n${content.slice(detection.end)}`;
-.opencode/skill/system-spec-kit/scripts/renderers/README.md:41:- Supports Mustache-like placeholders and section blocks.
-.opencode/skill/system-spec-kit/scripts/renderers/README.md:42:- Handles conditional and inverted blocks.
-.opencode/skill/system-spec-kit/scripts/renderers/README.md:43:- Cleans leaked template and instructional blocks before final write.
-.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh:241:            RULE_MESSAGE="${#warnings[@]} non-blocking anchor deviation(s) in $file_count file(s)"
-.opencode/skill/system-spec-kit/scripts/test-fixtures/061-template-optional-absent/spec.md:66:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/rules/check-links.sh:40:        # Strip fenced code blocks and inline code before extracting wikilinks.
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:25:import { runWorkflow, releaseFilesystemLock } from '../core/workflow';
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:136:// Robustness: signal handler releases locks before reporting
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:141:  let lockReleaseFailed = false;
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:143:    releaseFilesystemLock();
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:145:    lockReleaseFailed = true;
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:149:  process.exit(lockReleaseFailed ? 1 : 0);
-.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh:94:#   [NEEDS CLARIFICATION] (spec markers), [B] (blocked task)
-.opencode/skill/system-spec-kit/scripts/spec/check-placeholders.sh:96:# Also exclude lines where brackets appear inside code blocks
-.opencode/skill/system-spec-kit/scripts/rules/check-priority-tags.sh:55:        # Priority section headers: ## P0, ## P0 - Blockers, ### P0:, etc.
-.opencode/skill/system-spec-kit/scripts/lib/anchor-generator.ts:66:    return crypto.randomBytes(4).toString('hex');
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:10:/** Structured markdown block emitted by parseMarkdownSections(). */
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:27: * Uses the shared chunker so code blocks/tables stay atomic.
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:35:  const blocks = splitIntoBlocks(markdown);
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:36:  for (const block of blocks) {
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:38:      type: block.type,
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:39:      title: block.type === 'heading' ? extractHeadingTitle(block.content) : null,
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:40:      content: block.content,
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts:48:  splitIntoBlocks,
-.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:10:# Severity: error for structural deviations, warning for non-blocking extras.
-.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:117:        RULE_MESSAGE="${#warnings[@]} non-blocking template header deviation(s) in $files_checked file(s)"
-.opencode/skill/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts:7:// Keep the blocklist and allowlist narrow, shape-based, and aligned to that
-.opencode/skill/system-spec-kit/scripts/rules/check-placeholders.sh:54:        # Filter out fenced code blocks
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:18:  shouldBlockIndex,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:19:  shouldBlockWrite,
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:459:# Before any trailing comment block (multi-line or single-line HTML comments).
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:461:# Echoes the line number to insert BEFORE, or empty string if no trailing block found.
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:469:    local in_comment_block=false
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:484:        if [[ "$in_comment_block" == "true" ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:487:                # Found the opening of this comment block
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:489:                in_comment_block=false
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:491:                continue  # Keep scanning for more blocks or ---
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:498:        # Not inside a comment block
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:505:            # End of a multi-line comment block — scan backward for opening <!--
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:506:            in_comment_block=true
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:510:            # HR separator before the comment block
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:585:    # Find insertion point: before any trailing comment block at end of file
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:591:        # Insert fragment before the trailing comment block
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:592:        verbose "Inserting before trailing comment block at line $insert_before_line"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:599:        # No trailing comment block found — append to end of file
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:664:    # Find insertion point: before any trailing comment block at end of file
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:670:        verbose "Inserting before trailing comment block at line $insert_before_line"
-.opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/spec.md:66:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:35:  rawBlock: string;
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:327:function isLikelyYamlFrontmatter(block: string): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:328:  const lines = block.replace(/\r/g, '').split('\n');
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:375:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:382:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:387:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:396:    rawBlock: '',
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:406:  const blockStart = firstLineEnd + 1;
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:407:  const openingBlockLineCount = content
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:408:    .slice(blockStart, closingMatch.index)
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:411:  if (openingBlockLineCount > 50) {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:415:  const blockEnd = closingMatch.index;
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:416:  const rawBlock = content.slice(blockStart, blockEnd);
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:418:  if (!isLikelyYamlFrontmatter(rawBlock)) {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:422:      reason: 'Frontmatter block is not valid YAML-like key/value content',
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:426:      rawBlock,
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:442:    sections: parseFrontmatterSections(rawBlock),
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:443:    rawBlock,
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:448:export function parseFrontmatterSections(rawBlock: string): FrontmatterSection[] {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:449:  const lines = rawBlock.replace(/\r/g, '').split('\n');
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1027:function extractMemoryMetadataBlock(content: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1033:  const metadataBlock = extractMemoryMetadataBlock(content);
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1034:  if (!metadataBlock) {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1039:  for (const rawLine of metadataBlock.split('\n')) {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1058:  const metadataBlock = extractMemoryMetadataBlock(content);
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1059:  if (!metadataBlock) {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1063:  const lines = metadataBlock.split('\n');
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1114:function mutateMemoryMetadataBlock(
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1118:  const metadataBlockPattern = /(## MEMORY METADATA[\s\S]*?```yaml\s*)([\s\S]*?)(\n?```)/;
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1120:  return content.replace(metadataBlockPattern, (_match, prefix: string, yamlBody: string, suffix: string) => {
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1159:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1165:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
-.opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts:1178:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
-.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts:209:PARALLEL EXECUTION - ${parallelPhases.length} concurrent phases
-.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts:293:    features.push({ FEATURE_NAME: 'Parallel execution', FEATURE_DESC: 'Multiple phases running concurrently' });
-.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts:352:  const hasParallelBlock: boolean = art.includes('parallel') || (hasBranchConnector && hasMultipleBranchArrows);
-.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts:372:  } else if (hasParallelBlock) {
-.opencode/skill/system-spec-kit/scripts/rules/README.md:182:**Severity**: error (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:222:**Severity**: fail (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:235:**Severity**: fail (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:273:**Severity**: error (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:310:**Severity**: error (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:323:- `Blocked Task Protocol`
-.opencode/skill/system-spec-kit/scripts/rules/README.md:371:**Severity**: error (blocks validation)
-.opencode/skill/system-spec-kit/scripts/rules/README.md:483:**Symptom**: Rule flags placeholders inside code blocks
-.opencode/skill/system-spec-kit/scripts/rules/README.md:487:**Solution**: The rule filters fenced code blocks. If still flagged, wrap in backticks:
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:131: * string, an array of content blocks ({ type: 'text', text: '...' }),
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:135: * - claude-code: checks block.type === 'text' && block.text
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:136: * - codex-cli: checks block.text directly (no type guard)
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:137: * - gemini-cli: checks block.text directly (no type guard)
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:139: * The unified version handles both patterns: blocks with a `text`
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:140: * property (codex/gemini style) and blocks with type='text' + text
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:162:      const block = item as Record<string, unknown>;
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:163:      // Superset: accept any block with a text string property.
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:164:      // Claude-style blocks have type='text', codex/gemini blocks
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:166:      if (typeof block.text === 'string') {
-.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts:167:        return block.text;
-.opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/plan.md:96:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:335:function parseMemoryMetadataBlock(content: string): Record<string, string> {
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:336:  const yamlBlock = extractMemoryMetadataYaml(content);
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:337:  if (!yamlBlock) {
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:342:  for (const rawLine of yamlBlock.split('\n')) {
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:424:  const yamlBlock = extractMemoryMetadataYaml(content);
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:425:  if (!yamlBlock) {
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:429:  const lines = yamlBlock.split('\n');
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:460:  const blockMatch = content.match(
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:465:    comment: blockMatch?.[1] ?? null,
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:466:    htmlId: blockMatch?.[2] ?? null,
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:467:    closingComment: blockMatch?.[3] ?? null,
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:483:  const metadata = parseMemoryMetadataBlock(content);
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:714:    // NOTE: `generatedAt` intentionally reflects wall-clock dry-run time, so the
-.opencode/skill/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:715:    // report is not fixture-stable across runs. A fixture-locked harness for
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:272:  // Multiline command blocks
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:288:  // System reminder blocks
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:298:  // Codex CLI reasoning block markers
-.opencode/skill/system-spec-kit/scripts/test-fixtures/057-template-missing-anchor/spec.md:63:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:919:            # Prepend back-reference block to child spec.md
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:62: * @returns {{ converged: boolean, score: number, signals: object, blockedBy: Array<string> }}
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:72:      blockedBy: ['missing-inputs'],
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:77:  const blockedBy = [];
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:85:      blockedBy.push(`${nonTerminal.length} segments not in terminal status`);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:98:      blockedBy.push(`${unconverged.length} segments not converged`);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:101:    blockedBy.push('no-segment-states');
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:113:    blockedBy.push(`cross-segment novelty ${crossNovelty.toFixed(3)} above threshold`);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:125:    blockedBy.push(`gap coverage ${gapCov.toFixed(3)} below required ${(1.0 - thresh).toFixed(3)}`);
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:151:  const converged = blockedBy.length === 0;
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:157:    blockedBy,
-.opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/tasks.md:24:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/tasks.md:62:- [x] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:229:  // Exclude tags inside fenced code blocks to avoid false positives.
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:230:  const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:231:  const codeContent = codeBlocks.join(' ');
-.opencode/skill/system-spec-kit/scripts/core/content-cleaner.ts:14:export const WORKFLOW_BLOCK_HTML_TAG_RE = /<\/?(?:article|aside|blockquote|body|br|dd|details|div|dl|dt|figcaption|figure|footer|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|summary|table|tbody|td|th|thead|tr|ul)\b[^>]*\/?>/gi;
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:258:    BLOCKS: mergeLinkArray('blocks'),
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:398:  blockers?: string;
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:410:    blockers,
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:414:  const meaningfulBlockers = typeof blockers === 'string'
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:415:    && blockers.trim().length > 0
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:416:    && !/^none$/i.test(blockers.trim())
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:417:    ? [blockers.trim()]
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:452:    blockers: meaningfulBlockers,
-.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/spec.md:66:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:26:import { generateContentSlug, ensureUniqueMemoryFilename } from '../utils/slug-utils';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:200: * Frontmatter is a block delimited by `---\n` at position 0 and a closing `---\n`.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:362:/** Filesystem lock directory for cross-process serialization. */
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:364:const WORKFLOW_LOCK_DIR = path.resolve(WORKFLOW_MODULE_DIR, '../../.workflow-lock');
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:399:    // Best-effort stale lock cleanup.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:414:    const lockStats = fsSync.statSync(WORKFLOW_LOCK_DIR);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:415:    return (Date.now() - lockStats.mtimeMs) >= LEGACY_LOCK_STALE_MS;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:422: * Acquire the filesystem lock via atomic mkdir.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:425:async function acquireFilesystemLock(): Promise<boolean> {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:434:      return true; // lock acquired
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:437:        // Unexpected error (permissions, etc.) -- skip fs lock
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:450:  // Timed out -- proceed without fs lock (fallback to in-process queue)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:451:  console.warn('[workflow] Filesystem lock acquisition timed out after 30 s; proceeding without fs lock.');
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:455:function releaseFilesystemLock(): void {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:464:  // Belt: in-process promise queue (serialises concurrent calls in same process)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:473:  // Suspenders: filesystem-based lock (serialises across processes)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:474:  const fsLockAcquired = await acquireFilesystemLock();
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:480:      releaseFilesystemLock();
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:708:        // Q1: Downgrade Block A from hard abort to warning when spec folder was explicitly
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:710:        // Blocks B and C (file-path overlap) remain as hard blocks for safety.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1483:    blocks: mergeCausalLinkList(currentCausalLinkField('blocks'), autoCausalLinks.BLOCKS),
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1633:        const uniqueCtxFilename = ensureUniqueMemoryFilename(contextDir, rawCtxFilename);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1650:  // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1657:    log('   Stripped leaked HTML tags from content (code blocks preserved)');
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1684:    blockers: sessionData.BLOCKERS,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1701:  // Step 8.5b: Spec document health annotation (non-blocking)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1711:    // Non-blocking — health annotation failure must not prevent memory save
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1782:    const failedContaminationRules = validationDisposition.blockingRuleIds.filter((ruleId) => ruleId === 'V8' || ruleId === 'V9');
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1790:    const validationAbortMsg = `QUALITY_GATE_ABORT: Save blocked due to failed validation rules: ${validationDisposition.blockingRuleIds.join(', ')}`;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1799:        `${validationDisposition.indexBlockingRuleIds.join(', ')}`
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1847:      // Fail open — overlap detection is advisory, must not block save
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2010:        blocking: reviewResult.blocking === true,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2033:      throw new Error(reviewResult.blockerReason || 'POST_SAVE_REVIEW_REJECTED');
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2183:  releaseFilesystemLock,
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:92:  it('keeps trigger extraction locked to the shared baseline for frozen inputs', () => {
-.opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md:66:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md:101:| Risk | Extra sections become blocking | Low | Keep required sections intact |
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:72:  blockerReason?: string;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:178:function parseMemoryMetadataBlock(content: string): Record<string, string> {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:179:  const yamlBlock = extractMemoryMetadataYaml(content);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:180:  if (!yamlBlock) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:185:  for (const rawLine of yamlBlock.split('\n')) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:261:function extractYamlListEntries(yamlBlock: string, fieldName: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:262:  if (!yamlBlock) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:266:  const lines = yamlBlock.split('\n');
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:329:  const blockMatch = content.match(
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:334:    comment: blockMatch?.[1] ?? null,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:335:    htmlId: blockMatch?.[2] ?? null,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:336:    closingComment: blockMatch?.[3] ?? null,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:342:  const yamlBlock = extractMemoryMetadataYaml(content);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:343:  if (!yamlBlock) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:347:  const match = yamlBlock.match(/^\s*supersedes:\s*\n(?<entries>(?:\s*-\s+.*(?:\n|$))*)/m);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:621:    const memoryMetadata = parseMemoryMetadataBlock(fileContent);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1034:      ? `Composite blocker fired (${guardrailCounts.high} HIGH, ${guardrailCounts.medium} MEDIUM guardrail findings; DUP=${guardrailCounts.dupHigh} HIGH/${guardrailCounts.dupMedium} MEDIUM)`
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1041:      blockerReason,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1092:    blockerReason: result.blockerReason,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1117:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REJECTED (${result.blockerReason})\n`);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1129:    console.log('The save is REJECTED because the composite blocker fired.\n');
-.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md:96:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md:115:| Phase | Depends On | Blocks |
-.opencode/skill/system-spec-kit/scripts/core/quality-gates.ts:56:      reason: `Validation rules require write-only persistence without semantic indexing: ${options.validationDisposition.indexBlockingRuleIds.join(', ')}`,
-.opencode/skill/system-spec-kit/scripts/core/quality-gates.ts:63:      reason: `Validation rules block writing and indexing: ${options.validationDisposition.blockingRuleIds.join(', ')}`,
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:160:    const tempSuffix = crypto.randomBytes(4).toString('hex');
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:164:      const backupSuffix = crypto.randomBytes(4).toString('hex');
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:172:        fsSync.constants.O_CREAT | fsSync.constants.O_EXCL | fsSync.constants.O_WRONLY,
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:201:            // F-06: rename-based restore instead of copyFile (atomic, detects concurrent modification)
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:11:import { extractBlockers } from '../extractors/session-extractor';
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:183:      blocks: ['memory-004'],
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:324:  it('rejects structural blocker artifacts and keeps real blocker text', () => {
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:325:    const blocker = extractBlockers([
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:327:        narrative: "## 3. SCOPE blocked parsing\nWe are blocked by the API rate limit issue while saving the phase output.",
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:331:    expect(blocker).toContain('API rate limit issue');
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:332:    expect(blocker).not.toContain('## 3. SCOPE');
-.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md:24:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md:62:- [x] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md:75:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:7:  it('blocks package imports for internal runtime roots and descendants', () => {
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:15:  it('blocks relative imports for internal runtime roots and descendants', () => {
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:23:  it('blocks normalized relative bypass attempts into internal runtime roots', () => {
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:29:  it('blocks sibling shared traversals and still allows public package imports', () => {
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:99:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:119:| Phase | Depends On | Blocks |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:170:| Component | Depends On | Produces | Blocks |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:13:<!-- ANCHOR:blockers -->
-.opencode/skill/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:15:## Blockers
-.opencode/skill/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:17:No blockers at this time.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:19:<!-- /ANCHOR:blockers -->
-.opencode/skill/system-spec-kit/scripts/test-fixtures/058-template-reordered-anchor/spec.md:63:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:24:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:66:- [x] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:94:#### Blocked Task Protocol
-.opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:95:If a task is BLOCKED, document the blocker and escalate.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/056-template-reordered-header/spec.md:45:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:155:// BUG 2: memory-parser.js - causalLinks / causalBlockMatch
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:158:// Bug: extractCausalLinks function declares `causalLinks` and `causalBlockMatch`
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:159://      But references `causal_links` (line ~348) and `causal_block_match` (line ~351)
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:163:  section('Bug 2: memory-parser.js - causalLinks/causalBlockMatch');
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:181:  // Check 2: causalBlockMatch is declared (camelCase)
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:182:  const blockDecl = findInFile(source, /const\s+causalBlockMatch\s*=/);
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:183:  if (blockDecl.length > 0) {
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:184:    pass(`causalBlockMatch declared at line ${blockDecl[0].num}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:186:    fail('causalBlockMatch declaration not found', 'Expected: const causalBlockMatch = ...');
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:202:  // Check 4: No references to causal_block_match (the bug)
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:203:  const bugBlock = findInFile(source, /\bcausal_block_match\b/);
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:204:  const realBugBlock = bugBlock.filter(l =>
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:206:    !l.text.includes("'causal_block_match'") && !l.text.includes('"causal_block_match"')
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:208:  if (realBugBlock.length === 0) {
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:209:    pass('No references to causal_block_match (bug is fixed)');
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:211:    fail(`${realBugBlock.length} reference(s) to causal_block_match remain`,
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-regressions.js:212:      realBugBlock.map(l => `Line ${l.num}: ${l.text}`).join('\n    '));
-.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md:170:├── 038-placeholder-in-codeblock/       # Placeholders in code (allowed)
-.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md:215:| **Placeholders** | 6 | 005-unfilled-placeholders, 036-multiple-placeholders, 038-placeholder-in-codeblock |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md:239:| `038-placeholder-in-codeblock/` | Placeholders in code blocks are allowed |
-.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md:303:.opencode/skill/system-spec-kit/scripts/spec/validate.sh test-fixtures/038-placeholder-in-codeblock --verbose
-.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md:305:# Confirm placeholders in code blocks are allowed (should pass)
-.opencode/skill/system-spec-kit/scripts/test-fixtures/055-template-missing-header/spec.md:63:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:282:  // T-FMB-009: Malformed in-block list is treated as malformed and not rewritten.
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:298:      pass('T-FMB-009: Malformed in-block list is skipped', 'malformedFrontmatter=true and content unchanged');
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:300:      fail('T-FMB-009: Malformed in-block list is skipped', `malformed=${result.malformedFrontmatter}, unchanged=${result.content === input}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:303:    fail('T-FMB-009: Malformed in-block list is skipped', error.message);
-.opencode/skill/system-spec-kit/scripts/test-fixtures/009-valid-priority-tags/checklist.md:7:- [ ] Critical blocker item one
-.opencode/skill/system-spec-kit/scripts/test-fixtures/009-valid-priority-tags/checklist.md:8:- [ ] Critical blocker item two
-.opencode/skill/system-spec-kit/scripts/tests/test-phase-system.js:76:      name: 'threshold-hit-level-gate-blocks',
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:4:# Test Feature - Placeholder in Codeblock
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:14:Tests placeholders in fenced code blocks are ignored.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:18:- Code blocks exempt
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:24:- Code block handling
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:462:  it('blocks enrichment in JSON data mode', () => {
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1162:  it('hard-blocks stateless saves via Block B when captured file paths do not overlap with target spec folder', { timeout: 60000 }, async () => {
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1207:      // Q1: Block A now warns instead of throwing for explicit CLI args,
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1208:      // but Block B (file-path overlap) still hard-blocks when captured file paths
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1660:  it('strips broader leaked HTML outside fenced code blocks while preserving fenced HTML', async () => {
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:8:Code block placeholder test.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:12:Testing code block exemption.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:20:L1 with code blocks containing placeholders.
-.opencode/skill/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:37:Create files with placeholders in code blocks.
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/spec.md:90:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-sanitizer.vitest.ts:23:  it('rejects suspicious prefixes without blocking standalone domain nouns', () => {
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:988:    // Check for YAML metadata block
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:990:      pass('TC-700e: context_template has YAML metadata block', 'Metadata block found');
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:992:      fail('TC-700e: context_template has YAML metadata block', 'Metadata block missing');
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:489:    // Test placeholder in code block (should be ignored)
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:490:    const codeBlockContent = `# Spec
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:493:[YOUR_VALUE_HERE: in code block]
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:499:    // Extract non-code-block content
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:500:    const filtered = codeBlockContent.replace(/```[\s\S]*?```/g, '');
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:501:    const inCodeBlock = !filtered.includes('[YOUR_VALUE_HERE:');
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:503:    if (inCodeBlock) {
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:504:      pass('Placeholder in code block ignored', 'Code block content filtered');
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js:506:      fail('Placeholder in code block ignored', 'Code block not properly filtered');
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:368:    const data = { CODE_BLOCKS: ['block1', 'block2'] };
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1707:    // Test 3: extractBlockers is a function
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1708:    assertType(sessionExtractor.extractBlockers, 'function', 'T-027c: extractBlockers exported');
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1754:    // Test 14: extractBlockers finds blockers
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1755:    const obsWithBlocker = [{ narrative: 'Blocked by missing API credentials.' }];
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1756:    const blocker = sessionExtractor.extractBlockers(obsWithBlocker);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1757:    if (blocker !== 'None' && blocker.toLowerCase().includes('blocked')) {
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1758:      pass('T-027n: extractBlockers finds blockers', blocker);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1760:      fail('T-027n: extractBlockers finds blockers', blocker);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1763:    // Test 15: extractBlockers returns None when no blockers
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1764:    const noBlocker = sessionExtractor.extractBlockers([{ narrative: 'Everything is working fine.' }]);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1765:    assertEqual(noBlocker, 'None', 'T-027o: extractBlockers returns None when no blockers');
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1843:        snapshot.nextAction && snapshot.blockers !== undefined && snapshot.fileProgress) {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:10:import { ensureUniqueMemoryFilename } from '../utils/slug-utils';
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:25:describe('ensureUniqueMemoryFilename', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:27:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:33:    const result = ensureUniqueMemoryFilename(nonExistent, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:39:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:47:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:54:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:63:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:74:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:75:    // Should match test-<12-char-hex>.md pattern (randomBytes(6) → 12 hex chars)
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:87:    const first = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:90:    const second = ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:98:    // Make the directory read-only so O_CREAT | O_EXCL fails with EACCES
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:102:      expect(() => ensureUniqueMemoryFilename(tmpDir, 'test.md')).toThrow();
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:105:        ensureUniqueMemoryFilename(tmpDir, 'test.md');
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:46:    // V2 and V12 are the two MEDIUM-severity rules that do not block writes.
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:6:  shouldBlockIndex,
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:7:  shouldBlockWrite,
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:17:    expect(metadata.blockOnWrite).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:18:    expect(metadata.blockOnIndex).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:19:    expect(shouldBlockWrite('V10', 'opencode-capture')).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:20:    expect(shouldBlockIndex('V10', 'opencode-capture')).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:23:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:24:      indexBlockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29:  it('keeps V8 as a hard write and index blocker', () => {
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:32:    expect(metadata.blockOnWrite).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:33:    expect(metadata.blockOnIndex).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:34:    expect(shouldBlockWrite('V8', 'codex-cli-capture')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:35:    expect(shouldBlockIndex('V8', 'codex-cli-capture')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:38:      blockingRuleIds: ['V8'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:39:      indexBlockingRuleIds: ['V8'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:44:  it('supports explicit write-only persistence when a rule blocks indexing but not writing', () => {
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:47:    expect(metadata.blockOnWrite).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:48:    expect(metadata.blockOnIndex).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:51:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:52:      indexBlockingRuleIds: ['V2'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:57:  it('blocks indexing but allows write for V12 topical mismatch', () => {
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:61:    expect(metadata.blockOnWrite).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:62:    expect(metadata.blockOnIndex).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:63:    expect(shouldBlockWrite('V12', 'file')).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:64:    expect(shouldBlockIndex('V12', 'file')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:67:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:68:      indexBlockingRuleIds: ['V12'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:78:    // disposition that V12 behaves as a write-allowed, index-blocked rule — the same
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:24:    manifest: { tunableFields?: Array<{ name: string }>; lockedFields?: Array<{ name: string }> },
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:95:    it('should reject locked contract fields', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:101:      expect(result.violations.some((v: string) => v.includes('locked'))).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:113:    it('should reject mixed tunable and locked fields', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:169:    it('should block promotion when candidate touches locked fields', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:179:      expect(result.decision).toBe('blocked');
-.opencode/skill/system-spec-kit/scripts/tests/test-naming-migration.js:498:      // Skip export alias blocks
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:43:      'release-blocking',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:107:    expect(convergence).toContain('release-blocking');
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:43:  '.workflow-lock',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:418:  it('clears an abandoned legacy workflow lock before starting a new run', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:421:    const dataFile = writeInputFile(harness, 'stale-lock.json', createExplicitJsonInput());
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:440:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      session_summary: 'Exercise the write-only indexing disposition for an index-blocking rule.',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:370:describe('Phase 4 PR-9 composite blocker', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:386:    expect(result.blocking).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:387:    expect(result.blockerReason).toContain('2 HIGH');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:403:        sessionSummary: 'Composite blocker should reject one HIGH plus two MEDIUM findings.',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:408:    expect(result.blocking).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:409:    expect(result.blockerReason).toContain('1 HIGH, 2 MEDIUM');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:416:    expect(result.blocking).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:656:  it('renders git provenance metadata into the session summary table and YAML block (M-007d)', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:713:      // YAML metadata block should include git provenance fields
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:781:      // YAML metadata block should still include the fields (empty values)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/002-implement/spec.md:85:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-extended.sh:671:    run_isolated_rule_test "In code block (ignored)" "check-placeholders.sh" "038-placeholder-in-codeblock" "pass" 1
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:46:  it('returns BLOCKED when blockers text is present and unresolved', () => {
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:79:  it('returns IN_PROGRESS for a short session with no blockers', () => {
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:99:  it('returns COMPLETED when blockers exist but later observations show resolution', () => {
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:109:    // Blocker is resolved via reconciliation pass (F-25), then completion check falls through
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:110:    // Since last observation has "resolved", and it's a resolution keyword, the blocker is
-.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:116:  it('returns COMPLETED for high-activity sessions with no blockers or pending work', () => {
-.opencode/skill/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js:838:  // Test 6: Double-close does not crash (module tries close in catch block too)
-.opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts:572:      // Diff blocks start with "---" or "+++" (unified diff format)
-.opencode/skill/system-spec-kit/scripts/tests/distinguishing-evidence-dedup.vitest.ts:12:      blockers: 'None',
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-sanitizer-manual-preservation.vitest.ts:11:      'DR-002-I003-P1-001 blocked status drift',
-.opencode/skill/system-spec-kit/scripts/tests/test-export-contracts.js:67:  // 1) CJS/ESM default object export blocks
-.opencode/skill/system-spec-kit/scripts/tests/test-export-contracts.js:92:  // 2) ESM named export blocks (supports multiline and "from" re-export)
-.opencode/skill/system-spec-kit/scripts/tests/test-export-contracts.js:93:  const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*(?:from\s+['"][^'"]+['"])?\s*;/g;
-.opencode/skill/system-spec-kit/scripts/tests/test-export-contracts.js:94:  for (const match of source.matchAll(exportBlockRegex)) {
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:66:    const overviewBlockMatch = template.match(/<!-- ANCHOR:overview -->[\s\S]*?##\s+OVERVIEW[\s\S]*?<!-- \/ANCHOR:overview -->/);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:71:    expect(overviewBlockMatch).not.toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:72:    expect(overviewBlockMatch?.[0]).not.toContain('<!-- ANCHOR:summary -->');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:73:    expect(overviewBlockMatch?.[0]).not.toContain('<!-- /ANCHOR:summary -->');
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:10:const blockedDirs = new Set<string>();
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:20:  for (const dir of blockedDirs) {
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:27:  blockedDirs.clear();
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:37:    const blockedDir = path.join(root, 'blocked');
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:40:    fs.mkdirSync(blockedDir, { recursive: true });
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:42:    fs.chmodSync(blockedDir, 0o000);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:43:    blockedDirs.add(blockedDir);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:51:        dirPath: blockedDir,
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:59:    const blockedDir = path.join(root, 'blocked');
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:63:    fs.mkdirSync(blockedDir, { recursive: true });
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:66:    fs.chmodSync(blockedDir, 0o000);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:67:    blockedDirs.add(blockedDir);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:75:        dirPath: blockedDir,
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:83:    const blockedDir = path.join(root, 'blocked');
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:87:    fs.mkdirSync(blockedDir, { recursive: true });
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:90:    fs.chmodSync(blockedDir, 0o000);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:91:    blockedDirs.add(blockedDir);
-.opencode/skill/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:99:        dirPath: blockedDir,
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:19:      triggerPhrases: ['perfect session capturing', 'memory sufficiency', 'memory save', 'alignment block'],
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:80:        'This rendered file contains a long scaffolded summary block, several headings, and anchored metadata, but no real files, observations, decisions, or outcomes from the session.',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:132:          output: 'Confirmed scripts/core/workflow.ts still blocks mis-scoped 009-perfect-session-capturing saves.',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:185:  it('extracts trigger phrases from merged specs that embed a second frontmatter block', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:135:      expect(result.blockedBy.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:150:      expect(result.blockedBy.length).toBe(0);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:229:    it('when fan-out is not proven, wave mode stays blocked', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:238:      // Attempting to advance to fan-out should be blocked by
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:40:  const v2 = validator.validateMemoryQualityContent(validContent.replace('tool_count: 9', 'tool_count: 9\nblockers: [N/A]'));
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:395:          'tool_count: 9\nblockers: [N/A]'
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:454:    assertType(sessionExtractor.extractBlockers, 'function', 'EXT-Session-008: extractBlockers exported');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:523:    // Test extractBlockers
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:524:    const { extractBlockers } = sessionExtractor;
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:525:    const blockerObs = [{ narrative: 'We are blocked by the API rate limit issue.' }];
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:526:    const blockers = extractBlockers(blockerObs);
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:527:    if (blockers !== 'None' && blockers.includes('blocked')) {
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:528:      pass('EXT-Session-034: extractBlockers detects blocker keywords', blockers.substring(0, 50));
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:530:      fail('EXT-Session-034: extractBlockers detects blocker keywords', blockers);
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:533:    const noBlockers = extractBlockers([{ narrative: 'Everything is working great.' }]);
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:534:    assertEqual(noBlockers, 'None', 'EXT-Session-035: No blockers returns None');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:614:    assertExists(snapshot.blockers, 'EXT-Session-058: Snapshot has blockers');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-template.test.ts:278:    '| Blockers | None |',
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:80:    keywords: ['technical debt', 'vendor lock-in', 'flexibility', 'architecture'],
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:335:    const check1Keywords = ['requirement', 'speculative', 'pain point', 'blocker'];
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:390:    // Test Check 5: Has technical debt and vendor lock-in checks
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:391:    if (content.includes('Technical debt') && content.includes('Vendor lock-in')) {
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:392:      pass('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Both concerns documented');
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:394:      fail('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Missing concern documentation');
-.opencode/skill/system-spec-kit/scripts/tests/test-five-checks.js:623:      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'Standard pattern, no lock-in' },
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/001-design/spec.md:83:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.js:491:            // Diff blocks start with "---" or "+++" (unified diff format)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:4:{"type":"event","event":"blocked_stop","mode":"review","run":2,"stopReason":"blockedStop","legalStop":{"blockedBy":["dimensionCoverage","p0Resolution"],"gateResults":{"findingStability":{"pass":true,"detail":"Stability voted STOP."},"dimensionCoverage":{"pass":false,"detail":"Traceability and maintainability not examined."},"p0Resolution":{"pass":false,"detail":"1 unresolved P0."},"evidenceDensity":{"pass":true,"detail":"Density sufficient."},"hotspotSaturation":{"pass":true,"detail":"Hotspots saturated."}},"replayInputs":{"iterationCount":2,"newFindingsRatio":0.40,"noveltyRatio":0.40,"dimensionsExamined":["correctness","security"],"reviewDimensions":["correctness","security","traceability","maintainability"],"activeFindings":{"P0":1,"P1":3,"P2":2},"hotspotCoverage":{"saturated":1,"required":2}}},"recoveryStrategy":"Cover traceability and maintainability dimensions, then resolve the active P0.","timestamp":"2026-03-20T14:24:30Z"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6:{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":3,"verdict":"CONDITIONAL","activeP0":0,"activeP1":3,"activeP2":4,"dimensionCoverage":1.0,"stopReason":"converged","legalStop":{"blockedBy":[],"gateResults":{"findingStability":{"pass":true,"detail":"Stable."},"dimensionCoverage":{"pass":true,"detail":"All dimensions covered."},"p0Resolution":{"pass":true,"detail":"P0 resolved."},"evidenceDensity":{"pass":true,"detail":"Sufficient."},"hotspotSaturation":{"pass":true,"detail":"Saturated."}},"replayInputs":{"iterationCount":3,"newFindingsRatio":0.08,"noveltyRatio":0.08,"dimensionsExamined":["correctness","security","traceability","maintainability"],"hotspotCoverage":{"saturated":2,"required":2},"stopScore":0.62}},"timestamp":"2026-03-20T14:38:00Z"}
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:138:function countProvenanceBlockLines(workflowSource: string): number {
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:206:      const provenanceBlockLines = countProvenanceBlockLines(workflowSource);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:226:      expect(provenanceBlockLines).toBeLessThanOrEqual(10);
-.opencode/skill/system-spec-kit/scripts/tests/test-ast-parser.js:33:  assertTrue(typeof parser.splitIntoBlocks === 'function', 're-exports splitIntoBlocks');
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/spec.md:89:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:5:function buildValidMemory(overrides: { triggerBlock?: string; bodyTail?: string } = {}): string {
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:10:    overrides.triggerBlock ?? [
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:96:      buildValidMemory({ triggerBlock: 'trigger_phrases: "session summary"' })
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/no-children/spec.md:64:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/missing-child-docs/spec.md:80:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:15:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:51:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:37:  const rawBlock = detection.rawBlock.replace(/\r/g, '');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:38:  const lines = rawBlock.split('\n');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:63:  const strippedRawBlock = [
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:70:  return `${content.slice(0, detection.start)}---\n${strippedRawBlock}\n---\n${content.slice(detection.end)}`;
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/plan.md:85:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/no-children/plan.md:83:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:110:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:110:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md:85:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md:107:| Dependency | 001-design | Blocked if incomplete | Complete design first |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/missing-child-docs/001-design/spec.md:85:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/001-design/spec.md:85:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:1:# Test Fixture: phase-blocked-by-level
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:13:but is blocked because the overall level is only 2 (total score 68, below
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:20:- Level score: 68/100 (Level 2 - Verification -- blocks phase recommendation)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:37:## Why Blocked
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:71:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:100:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:135:| Phase | Depends On | Blocks |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:199:| Component | Depends On | Produces | Blocks |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:110:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:135:| Phase | Depends On | Blocks |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:110:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:44:**Critical Dependencies**: [Blocking dependency]
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:97:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:126:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:110:### P0 - Blockers (MUST complete)
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:28:| `[B]` | Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC7-anchor.json:14:      "rationale": "Eliminates the literal mismatch between TOC fragment, HTML id, and comment marker in the OVERVIEW block"
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:43:// HIGH rules (V1, V3, V8, V9, V11, V13) block writes upstream so rarely reach the scorer;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:200:  // The cap at the contamination block above is sufficient; double-counting removed
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:57:  blockers: string;
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:89:  const randomPart = crypto.randomBytes(6).toString('hex'); // 6 bytes = 12 hex chars = 48 bits
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:289:  /^[A-Z][A-Z0-9 _-]{2,}\s+blocked\b/,
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:293:function isInvalidBlockerText(value: string): boolean {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:302:function splitBlockerCandidates(narrative: string): string[] {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:334: * Scan observation narratives for blocker keywords and return the first valid blocker sentence.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:335: * @param observations - Session observations whose narratives are searched for blockers.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:336: * @returns A trimmed blocker sentence (max 100 chars), or `'None'` if no blockers found.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:338:function extractBlockers(observations: Observation[]): string {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:339:  // Fix 3: Require blocker-specific sentence structure, not just keyword presence.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:342:  const blockerPatterns = [
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:343:    /\b(?:blocked|blocking)\s+(?:on|by)\b/i,         // "blocked on/by X"
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:348:    /\bblocker:\s/i,                                   // explicit "blocker:" prefix
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:349:    /\bblocking\s+issue\b/i,                           // "blocking issue"
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:353:    if (blockerPatterns.some(pattern => pattern.test(narrative))) {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:354:      const sentences = splitBlockerCandidates(narrative);
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:356:        if (!blockerPatterns.some(pattern => pattern.test(sentence))) {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:360:        if (isInvalidBlockerText(sentence)) {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:362:            console.debug(`[session-extractor] rejected blocker artifact: ${sentence.trim()}`);
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:618: * @returns Snapshot with project phase, active file, last/next actions, blockers, and file progress.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:628:    blockers: extractBlockers(behavioralObservations),
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:646:  extractBlockers,
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:88:  const blockPattern = /(?:^|\n)---\s*\n([\s\S]*?)\n---\s*(?=\n|$)/g;
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:90:  for (const match of content.matchAll(blockPattern)) {
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:249:  const extractLabeledBlock = (section: string, label: 'Context' | 'Decision'): string => {
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:260:  const extractChosen = (decisionBlock: string): string => {
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:262:    const explicitChosen = decisionBlock.match(/\*\*(?:We chose|Chosen)(?::\*\*|\*\*:)\s*([^\n]+)/i)?.[1] || '';
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:265:    const firstSentence = decisionBlock
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:269:      || decisionBlock.replace(/^\*\*Decision(?::\*\*|\*\*:)\s*/i, '').trim().split('\n')[0] || '';
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:277:    const rationale = cleanText(extractLabeledBlock(section, 'Context'));
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:278:    const decisionBlock = extractLabeledBlock(section, 'Decision');
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:279:    const chosen = extractChosen(decisionBlock);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:378:  blockers: string,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:423:  const resolutionKeywords = /\b(?:resolved|fixed|unblocked|works?\s+now|workaround)\b/i;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:459:  if (blockers && blockers !== 'None') {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:460:    // O5-13: Scope F-25 resolution to observations AFTER the blocker was detected
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:461:    const blockerKeywordsLocal = /\b(?:blocked|stuck|can't proceed|cannot proceed|waiting on|depends on|broken|fails?)\b/i;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:462:    const blockerIdx = observations.findIndex((obs) => {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:464:      return blockerKeywordsLocal.test(text);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:466:    if (blockerIdx >= 0) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:467:      const laterObs = observations.slice(blockerIdx + 1);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:468:      const blockerResolved = laterObs.some((obs) => {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:472:      if (!blockerResolved) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:475:      // Blocker was resolved by a later observation — fall through to check completion
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:477:      // Blocker string was set but no matching observation found in narratives;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:478:      // check ALL observations for resolution (blocker came from summary/external source)
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:479:      const blockerResolved = observations.some((obs) => {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:483:      if (!blockerResolved) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:520:  const hasNoBlockers = !blockers || blockers === 'None';
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:522:  if (hasNoBlockers && highActivity && !hasPendingWorkIndicators) {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:869:  blockers: string;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:874:  const { observations, files, outcomes, nextAction, blockers, limit, explicitEvidence = [], keyDecisions = [] } = params;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:957:  // Add blocker if present
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:958:  if (blockers && blockers !== 'None') {
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:959:    addEvidence(`Blocker: ${blockers}`);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:983:  blockers: string;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:993:    blockers, duration, decisionCount, collectedData
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:996:  const sessionStatus = determineSessionStatus(blockers, observations, userPrompts.length, collectedData);
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1476:  // nextAction and blockers come from here.
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1477:  const { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress } =
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1495:    blockers,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1528:    blockers,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1590:    BLOCKERS: blockers,
+.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:172:      const [header, filesBlock = ''] = entry.split(COMMIT_FILES_SEPARATOR);
+.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:174:      const files = filesBlock
+.opencode/skills/system-spec-kit/scripts/README.md:120:Generated memories are now blocked before write/index when they violate the rendered-memory contract:
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:89:  { label: 'stray backtick block', pattern: /^```\s*$/gm, severity: 'medium' },
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:8:// blocked until Phase 1 replay fixtures AND Phase 3 behavioral
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:36:  BLOCKED: 'blocked',
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:73: * (not locked contract fields), and validate value types and ranges
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:90:  const lockedFields = new Set(
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:91:    (manifest.lockedFields || []).map((f) => f.name || f),
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:95:    if (lockedFields.has(field)) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:96:      violations.push(`Field "${field}" is a locked contract field and cannot be modified by the optimizer`);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:294:          ? 'Candidate touches locked or non-tunable fields. Promotion is blocked.'
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:301:      'Verify no locked fields were modified',
+.opencode/skills/system-spec-kit/scripts/templates/compose.sh:213:# Remove leading YAML frontmatter block from content if present.
+.opencode/skills/system-spec-kit/scripts/templates/compose.sh:327:# Return leading YAML frontmatter block (with delimiters) if present.
+.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:210:  let inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:213:    if (inBlockComment) {
+.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:214:      if (line.indexOf('*/') !== -1) inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts:222:        inBlockComment = true;
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:35:  const openBlocks: string[] = (validationContent.match(/\{\{[#^][A-Z_]+\}\}/g) || []);
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:36:  const closeBlocks: string[] = (validationContent.match(/\{\{\/[A-Z_]+\}\}/g) || []);
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:37:  if (openBlocks.length !== closeBlocks.length) {
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:38:    console.warn(`\u26A0\uFE0F  Template has ${openBlocks.length} open blocks but ${closeBlocks.length} close blocks`);
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:190:  const blockMatch = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:191:  if (!blockMatch) {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:195:  const lines = blockMatch[1].split('\n');
+.opencode/skills/system-spec-kit/scripts/utils/README.md:196:| `slug-utils.ts` | Content-aware slug generation for memory filenames. Provides `ensureUniqueMemoryFilename()` to prevent collisions via `-1`, `-2` suffix appending |
+.opencode/skills/system-spec-kit/scripts/utils/README.md:212:#### Path sanitization blocks valid paths
+.opencode/skills/system-spec-kit/scripts/utils/index.ts:116:  ensureUniqueMemoryFilename,
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:198:export function ensureUniqueMemoryFilename(contextDir: string, filename: string): string {
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:199:  // F-07: Use atomic O_CREAT|O_EXCL instead of readdirSync + set check
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:202:    const fd = fs.openSync(filePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:222:      const fd = fs.openSync(candidatePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:233:  // Atomic O_CREAT|O_EXCL path so repeated calls in the same millisecond cannot return
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:236:    const randomSuffix = crypto.randomBytes(6).toString('hex');
+.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:240:      const fd = fs.openSync(candidatePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:210:  const blocks = normalizeCausalLinkEntries(record.blocks);
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:217:    && blocks.length === 0
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:229:    blocks,
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1296:// RELEVANCE_PATH_STOPWORDS (permissive) — for spec-path-derived keywords; only blocks truly generic words.
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:191:  let inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:195:    if (inBlockComment) {
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:197:      if (closeIdx !== -1) inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:205:        inBlockComment = true;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:249:  let inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:253:    // Track block comments — handle mid-line /* starts and */ ends
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:254:    if (inBlockComment) {
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:257:        inBlockComment = false;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:259:        // Spanning block comment boundaries are not valid TS, so skip line
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:267:        // Block comment opens but doesn't close on this line
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:268:        inBlockComment = true;
+.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts:280:      // Inline block comment (/* ... */ on same line) — strip it and scan remainder
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:54:    wallClockMs: number;
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:293:async function runLoadTest1000Concurrent(): Promise<{ totalRequests: number; wallClockMs: number; perRequest: LatencyStats }> {
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:305:  const wallClockMs = performance.now() - wallStart;
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:309:    wallClockMs,
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:372:    `- Total wall-clock: ${report.loadTest1000Concurrent.wallClockMs.toFixed(3)}ms`,
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:431:        Number.isFinite(load.wallClockMs) &&
+.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:469:    console.log(`load_concurrency=${load.totalRequests} wall_clock_ms=${load.wallClockMs.toFixed(3)}`);
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:84:| Empty trigger phrases rate | YAML frontmatter block has zero `trigger_phrases` entries |
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:84:  return crypto.randomBytes(Math.ceil(length * 0.75))
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:132:// Both this file and session-extractor use crypto.randomBytes (CSPRNG).
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:3:  "description": "Canonical manifest declaring which fields are tunable by the offline loop optimizer, which are locked runtime contracts, and which are deferred prompt-pack entrypoints.",
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59:  "lockedFields": [
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:221:    .map((block) => block.trim())
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:224:  for (const block of candidates) {
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:226:      block.startsWith('#')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:227:      || block.startsWith('|')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:228:      || block.startsWith('<!--')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:229:      || block.startsWith('- ')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:230:      || block.startsWith('* ')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:231:      || block.startsWith('```')
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:235:    const cleaned = cleanInlineMarkdown(block);
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:38:  const yamlBlockMatch = content.match(/```yaml\n([\s\S]*?)\n```/);
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:39:  if (!yamlBlockMatch) return 0;
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:40:  const yaml = yamlBlockMatch[1];
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:43:  let inBlock = false;
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:45:    if (!inBlock && /^trigger_phrases:\s*$/.test(line.trim())) {
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:46:      inBlock = true;
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:49:    if (!inBlock) continue;
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:133:  // P1-10: Mustache comment syntax — strip {{! ... }} blocks
+.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts:567:        // O4-8: Block in non-interactive mode when alignment is critically low
+.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts:608:  // O4-8: Block in non-interactive mode when alignment is critically low
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:67:        if grep -qE "AI EXECUTION|Pre-Task Checklist|Blocked Task Protocol" "$folder/tasks.md" 2>/dev/null; then
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:111:# Check for blocked task protocol
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:112:_ai_has_blocked_protocol() {
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:115:        grep -qE "Blocked Task|BLOCKED" "$folder/plan.md" 2>/dev/null && return 0
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:118:        grep -qE "Blocked Task|BLOCKED" "$folder/tasks.md" 2>/dev/null && return 0
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:184:    if _ai_has_blocked_protocol "$folder"; then
+.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh:187:        warnings+=("Missing Blocked Task Protocol")
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:32:  blockOnWrite: boolean;
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:33:  blockOnIndex: boolean;
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:41:  indexBlockingRuleIds: QualityRuleId[];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:50:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:51:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:59:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:60:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:68:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:69:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:77:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:78:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:80:    reason: 'Fallback-decision phrasing is a soft signal and should not block durable indexing on otherwise strong memories.',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:86:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:87:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:95:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:96:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:104:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:105:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:107:    reason: 'Tool-count contradictions are useful diagnostics, but not durable-index blockers on their own.',
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:113:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:114:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:122:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:123:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:131:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:132:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:140:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:141:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:149:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:150:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:158:    blockOnWrite: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:159:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:167:    blockOnWrite: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:168:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:175:  .filter((metadata) => metadata.blockOnWrite)
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:193:const NON_OPTIONAL_FIELDS = ['decisions', 'next_actions', 'blockers', 'readiness'];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:324:  const fencedBlocks = content.match(/```yaml\n([\s\S]*?)\n```/gi) ?? [];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:325:  for (const block of fencedBlocks) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:326:    const inner = block.replace(/^```yaml\n/i, '').replace(/\n```$/i, '');
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:417:  const fencedBlocks = content.match(/```yaml\n([\s\S]*?)\n```/gi) ?? [];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:418:  for (const block of fencedBlocks) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:419:    const inner = block.replace(/^```yaml\n/i, '').replace(/\n```$/i, '');
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:663:function shouldBlockWrite(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:665:  return metadata.blockOnWrite && ruleAppliesToSource(metadata, source);
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:668:function shouldBlockIndex(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:670:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:687:  const indexBlockingRuleIds = failedRules.filter((ruleId) => shouldBlockIndex(ruleId, source));
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:688:  if (indexBlockingRuleIds.length > 0) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:692:      indexBlockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:693:      softRuleIds: failedRules.filter((ruleId) => !indexBlockingRuleIds.includes(ruleId)),
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:700:    indexBlockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:964:  // Sub-check 2: Content density — strip frontmatter block, count non-whitespace chars (T020)
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:971:    // Content density check: strip the leading frontmatter block then count non-whitespace chars
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:986:  // Emitted as a soft warning (blockOnWrite: false, blockOnIndex: false)
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1076:  shouldBlockIndex,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1077:  shouldBlockWrite,
+.opencode/skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:353:function locateFrontmatterSectionRange(rawBlock: string, key: string): { lines: string[]; start: number; end: number } | null {
+.opencode/skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:354:  const lines = rawBlock.replace(/\r/g, '').split('\n');
+.opencode/skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:386:  const range = locateFrontmatterSectionRange(detection.rawBlock, 'trigger_phrases');
+.opencode/skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:392:  const nextRawBlock = trimTrailingBlankLines([
+.opencode/skills/system-spec-kit/scripts/memory/migrate-trigger-phrase-residual.ts:398:  return `${content.slice(0, detection.start)}---\n${nextRawBlock}\n---\n${content.slice(detection.end)}`;
+.opencode/skills/system-spec-kit/scripts/renderers/README.md:41:- Supports Mustache-like placeholders and section blocks.
+.opencode/skills/system-spec-kit/scripts/renderers/README.md:42:- Handles conditional and inverted blocks.
+.opencode/skills/system-spec-kit/scripts/renderers/README.md:43:- Cleans leaked template and instructional blocks before final write.
+.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh:241:            RULE_MESSAGE="${#warnings[@]} non-blocking anchor deviation(s) in $file_count file(s)"
+.opencode/skills/system-spec-kit/scripts/test-fixtures/061-template-optional-absent/spec.md:66:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/rules/check-links.sh:40:        # Strip fenced code blocks and inline code before extracting wikilinks.
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:25:import { runWorkflow, releaseFilesystemLock } from '../core/workflow';
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:136:// Robustness: signal handler releases locks before reporting
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:141:  let lockReleaseFailed = false;
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:143:    releaseFilesystemLock();
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:145:    lockReleaseFailed = true;
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:149:  process.exit(lockReleaseFailed ? 1 : 0);
+.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh:94:#   [NEEDS CLARIFICATION] (spec markers), [B] (blocked task)
+.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh:96:# Also exclude lines where brackets appear inside code blocks
+.opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh:55:        # Priority section headers: ## P0, ## P0 - Blockers, ### P0:, etc.
+.opencode/skills/system-spec-kit/scripts/lib/anchor-generator.ts:66:    return crypto.randomBytes(4).toString('hex');
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:10:/** Structured markdown block emitted by parseMarkdownSections(). */
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:27: * Uses the shared chunker so code blocks/tables stay atomic.
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:35:  const blocks = splitIntoBlocks(markdown);
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:36:  for (const block of blocks) {
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:38:      type: block.type,
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:39:      title: block.type === 'heading' ? extractHeadingTitle(block.content) : null,
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:40:      content: block.content,
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts:48:  splitIntoBlocks,
+.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:10:# Severity: error for structural deviations, warning for non-blocking extras.
+.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:117:        RULE_MESSAGE="${#warnings[@]} non-blocking template header deviation(s) in $files_checked file(s)"
+.opencode/skills/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts:7:// Keep the blocklist and allowlist narrow, shape-based, and aligned to that
+.opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh:54:        # Filter out fenced code blocks
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:18:  shouldBlockIndex,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:19:  shouldBlockWrite,
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:459:# Before any trailing comment block (multi-line or single-line HTML comments).
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:461:# Echoes the line number to insert BEFORE, or empty string if no trailing block found.
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:469:    local in_comment_block=false
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:484:        if [[ "$in_comment_block" == "true" ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:487:                # Found the opening of this comment block
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:489:                in_comment_block=false
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:491:                continue  # Keep scanning for more blocks or ---
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:498:        # Not inside a comment block
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:505:            # End of a multi-line comment block — scan backward for opening <!--
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:506:            in_comment_block=true
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:510:            # HR separator before the comment block
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:585:    # Find insertion point: before any trailing comment block at end of file
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:591:        # Insert fragment before the trailing comment block
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:592:        verbose "Inserting before trailing comment block at line $insert_before_line"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:599:        # No trailing comment block found — append to end of file
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:664:    # Find insertion point: before any trailing comment block at end of file
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:670:        verbose "Inserting before trailing comment block at line $insert_before_line"
+.opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/spec.md:66:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:35:  rawBlock: string;
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:327:function isLikelyYamlFrontmatter(block: string): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:328:  const lines = block.replace(/\r/g, '').split('\n');
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:375:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:382:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:387:    return { found: false, malformed: false, start: -1, end: -1, sections: [], rawBlock: '' };
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:396:    rawBlock: '',
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:406:  const blockStart = firstLineEnd + 1;
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:407:  const openingBlockLineCount = content
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:408:    .slice(blockStart, closingMatch.index)
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:411:  if (openingBlockLineCount > 50) {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:415:  const blockEnd = closingMatch.index;
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:416:  const rawBlock = content.slice(blockStart, blockEnd);
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:418:  if (!isLikelyYamlFrontmatter(rawBlock)) {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:422:      reason: 'Frontmatter block is not valid YAML-like key/value content',
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:426:      rawBlock,
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:442:    sections: parseFrontmatterSections(rawBlock),
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:443:    rawBlock,
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:448:export function parseFrontmatterSections(rawBlock: string): FrontmatterSection[] {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:449:  const lines = rawBlock.replace(/\r/g, '').split('\n');
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1027:function extractMemoryMetadataBlock(content: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1033:  const metadataBlock = extractMemoryMetadataBlock(content);
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1034:  if (!metadataBlock) {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1039:  for (const rawLine of metadataBlock.split('\n')) {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1058:  const metadataBlock = extractMemoryMetadataBlock(content);
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1059:  if (!metadataBlock) {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1063:  const lines = metadataBlock.split('\n');
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1114:function mutateMemoryMetadataBlock(
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1118:  const metadataBlockPattern = /(## MEMORY METADATA[\s\S]*?```yaml\s*)([\s\S]*?)(\n?```)/;
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1120:  return content.replace(metadataBlockPattern, (_match, prefix: string, yamlBody: string, suffix: string) => {
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1159:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1165:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
+.opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:1178:  return mutateMemoryMetadataBlock(content, (yamlBody) => (
+.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts:209:PARALLEL EXECUTION - ${parallelPhases.length} concurrent phases
+.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts:293:    features.push({ FEATURE_NAME: 'Parallel execution', FEATURE_DESC: 'Multiple phases running concurrently' });
+.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts:352:  const hasParallelBlock: boolean = art.includes('parallel') || (hasBranchConnector && hasMultipleBranchArrows);
+.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts:372:  } else if (hasParallelBlock) {
+.opencode/skills/system-spec-kit/scripts/rules/README.md:182:**Severity**: error (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:222:**Severity**: fail (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:235:**Severity**: fail (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:273:**Severity**: error (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:310:**Severity**: error (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:323:- `Blocked Task Protocol`
+.opencode/skills/system-spec-kit/scripts/rules/README.md:371:**Severity**: error (blocks validation)
+.opencode/skills/system-spec-kit/scripts/rules/README.md:483:**Symptom**: Rule flags placeholders inside code blocks
+.opencode/skills/system-spec-kit/scripts/rules/README.md:487:**Solution**: The rule filters fenced code blocks. If still flagged, wrap in backticks:
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:131: * string, an array of content blocks ({ type: 'text', text: '...' }),
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:135: * - claude-code: checks block.type === 'text' && block.text
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:136: * - codex-cli: checks block.text directly (no type guard)
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:137: * - gemini-cli: checks block.text directly (no type guard)
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:139: * The unified version handles both patterns: blocks with a `text`
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:140: * property (codex/gemini style) and blocks with type='text' + text
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:162:      const block = item as Record<string, unknown>;
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:163:      // Superset: accept any block with a text string property.
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:164:      // Claude-style blocks have type='text', codex/gemini blocks
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:166:      if (typeof block.text === 'string') {
+.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts:167:        return block.text;
+.opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/plan.md:96:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:335:function parseMemoryMetadataBlock(content: string): Record<string, string> {
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:336:  const yamlBlock = extractMemoryMetadataYaml(content);
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:337:  if (!yamlBlock) {
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:342:  for (const rawLine of yamlBlock.split('\n')) {
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:424:  const yamlBlock = extractMemoryMetadataYaml(content);
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:425:  if (!yamlBlock) {
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:429:  const lines = yamlBlock.split('\n');
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:460:  const blockMatch = content.match(
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:465:    comment: blockMatch?.[1] ?? null,
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:466:    htmlId: blockMatch?.[2] ?? null,
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:467:    closingComment: blockMatch?.[3] ?? null,
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:483:  const metadata = parseMemoryMetadataBlock(content);
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:714:    // NOTE: `generatedAt` intentionally reflects wall-clock dry-run time, so the
+.opencode/skills/system-spec-kit/scripts/memory/migrate-historical-json-mode-memories.ts:715:    // report is not fixture-stable across runs. A fixture-locked harness for
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:272:  // Multiline command blocks
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:288:  // System reminder blocks
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:298:  // Codex CLI reasoning block markers
+.opencode/skills/system-spec-kit/scripts/test-fixtures/057-template-missing-anchor/spec.md:63:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:919:            # Prepend back-reference block to child spec.md
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:62: * @returns {{ converged: boolean, score: number, signals: object, blockedBy: Array<string> }}
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:72:      blockedBy: ['missing-inputs'],
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:77:  const blockedBy = [];
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:85:      blockedBy.push(`${nonTerminal.length} segments not in terminal status`);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:98:      blockedBy.push(`${unconverged.length} segments not converged`);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:101:    blockedBy.push('no-segment-states');
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:113:    blockedBy.push(`cross-segment novelty ${crossNovelty.toFixed(3)} above threshold`);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:125:    blockedBy.push(`gap coverage ${gapCov.toFixed(3)} below required ${(1.0 - thresh).toFixed(3)}`);
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:151:  const converged = blockedBy.length === 0;
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:157:    blockedBy,
+.opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/tasks.md:24:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1/tasks.md:62:- [x] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:229:  // Exclude tags inside fenced code blocks to avoid false positives.
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:230:  const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:231:  const codeContent = codeBlocks.join(' ');
+.opencode/skills/system-spec-kit/scripts/core/content-cleaner.ts:14:export const WORKFLOW_BLOCK_HTML_TAG_RE = /<\/?(?:article|aside|blockquote|body|br|dd|details|div|dl|dt|figcaption|figure|footer|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|summary|table|tbody|td|th|thead|tr|ul)\b[^>]*\/?>/gi;
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:258:    BLOCKS: mergeLinkArray('blocks'),
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:398:  blockers?: string;
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:410:    blockers,
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:414:  const meaningfulBlockers = typeof blockers === 'string'
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:415:    && blockers.trim().length > 0
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:416:    && !/^none$/i.test(blockers.trim())
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:417:    ? [blockers.trim()]
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:452:    blockers: meaningfulBlockers,
+.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/spec.md:66:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:26:import { generateContentSlug, ensureUniqueMemoryFilename } from '../utils/slug-utils';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:200: * Frontmatter is a block delimited by `---\n` at position 0 and a closing `---\n`.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:362:/** Filesystem lock directory for cross-process serialization. */
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:364:const WORKFLOW_LOCK_DIR = path.resolve(WORKFLOW_MODULE_DIR, '../../.workflow-lock');
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:399:    // Best-effort stale lock cleanup.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:414:    const lockStats = fsSync.statSync(WORKFLOW_LOCK_DIR);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:415:    return (Date.now() - lockStats.mtimeMs) >= LEGACY_LOCK_STALE_MS;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:422: * Acquire the filesystem lock via atomic mkdir.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:425:async function acquireFilesystemLock(): Promise<boolean> {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:434:      return true; // lock acquired
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:437:        // Unexpected error (permissions, etc.) -- skip fs lock
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:450:  // Timed out -- proceed without fs lock (fallback to in-process queue)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:451:  console.warn('[workflow] Filesystem lock acquisition timed out after 30 s; proceeding without fs lock.');
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:455:function releaseFilesystemLock(): void {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:464:  // Belt: in-process promise queue (serialises concurrent calls in same process)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:473:  // Suspenders: filesystem-based lock (serialises across processes)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:474:  const fsLockAcquired = await acquireFilesystemLock();
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:480:      releaseFilesystemLock();
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:708:        // Q1: Downgrade Block A from hard abort to warning when spec folder was explicitly
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:710:        // Blocks B and C (file-path overlap) remain as hard blocks for safety.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1483:    blocks: mergeCausalLinkList(currentCausalLinkField('blocks'), autoCausalLinks.BLOCKS),
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1633:        const uniqueCtxFilename = ensureUniqueMemoryFilename(contextDir, rawCtxFilename);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1650:  // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1657:    log('   Stripped leaked HTML tags from content (code blocks preserved)');
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1684:    blockers: sessionData.BLOCKERS,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1701:  // Step 8.5b: Spec document health annotation (non-blocking)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1711:    // Non-blocking — health annotation failure must not prevent memory save
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1782:    const failedContaminationRules = validationDisposition.blockingRuleIds.filter((ruleId) => ruleId === 'V8' || ruleId === 'V9');
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1790:    const validationAbortMsg = `QUALITY_GATE_ABORT: Save blocked due to failed validation rules: ${validationDisposition.blockingRuleIds.join(', ')}`;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1799:        `${validationDisposition.indexBlockingRuleIds.join(', ')}`
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1847:      // Fail open — overlap detection is advisory, must not block save
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2010:        blocking: reviewResult.blocking === true,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2033:      throw new Error(reviewResult.blockerReason || 'POST_SAVE_REVIEW_REJECTED');
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2183:  releaseFilesystemLock,
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:92:  it('keeps trigger extraction locked to the shared baseline for frozen inputs', () => {
+.opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md:66:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md:101:| Risk | Extra sections become blocking | Low | Keep required sections intact |
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:72:  blockerReason?: string;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:178:function parseMemoryMetadataBlock(content: string): Record<string, string> {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:179:  const yamlBlock = extractMemoryMetadataYaml(content);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:180:  if (!yamlBlock) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:185:  for (const rawLine of yamlBlock.split('\n')) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:261:function extractYamlListEntries(yamlBlock: string, fieldName: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:262:  if (!yamlBlock) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:266:  const lines = yamlBlock.split('\n');
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:329:  const blockMatch = content.match(
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:334:    comment: blockMatch?.[1] ?? null,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:335:    htmlId: blockMatch?.[2] ?? null,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:336:    closingComment: blockMatch?.[3] ?? null,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:342:  const yamlBlock = extractMemoryMetadataYaml(content);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:343:  if (!yamlBlock) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:347:  const match = yamlBlock.match(/^\s*supersedes:\s*\n(?<entries>(?:\s*-\s+.*(?:\n|$))*)/m);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:621:    const memoryMetadata = parseMemoryMetadataBlock(fileContent);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1034:      ? `Composite blocker fired (${guardrailCounts.high} HIGH, ${guardrailCounts.medium} MEDIUM guardrail findings; DUP=${guardrailCounts.dupHigh} HIGH/${guardrailCounts.dupMedium} MEDIUM)`
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1041:      blockerReason,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1092:    blockerReason: result.blockerReason,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1117:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REJECTED (${result.blockerReason})\n`);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1129:    console.log('The save is REJECTED because the composite blocker fired.\n');
+.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md:96:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md:115:| Phase | Depends On | Blocks |
+.opencode/skills/system-spec-kit/scripts/core/quality-gates.ts:56:      reason: `Validation rules require write-only persistence without semantic indexing: ${options.validationDisposition.indexBlockingRuleIds.join(', ')}`,
+.opencode/skills/system-spec-kit/scripts/core/quality-gates.ts:63:      reason: `Validation rules block writing and indexing: ${options.validationDisposition.blockingRuleIds.join(', ')}`,
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:160:    const tempSuffix = crypto.randomBytes(4).toString('hex');
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:164:      const backupSuffix = crypto.randomBytes(4).toString('hex');
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:172:        fsSync.constants.O_CREAT | fsSync.constants.O_EXCL | fsSync.constants.O_WRONLY,
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:201:            // F-06: rename-based restore instead of copyFile (atomic, detects concurrent modification)
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:11:import { extractBlockers } from '../extractors/session-extractor';
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:183:      blocks: ['memory-004'],
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:324:  it('rejects structural blocker artifacts and keeps real blocker text', () => {
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:325:    const blocker = extractBlockers([
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:327:        narrative: "## 3. SCOPE blocked parsing\nWe are blocked by the API rate limit issue while saving the phase output.",
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:331:    expect(blocker).toContain('API rate limit issue');
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:332:    expect(blocker).not.toContain('## 3. SCOPE');
+.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md:24:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md:62:- [x] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md:75:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:7:  it('blocks package imports for internal runtime roots and descendants', () => {
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:15:  it('blocks relative imports for internal runtime roots and descendants', () => {
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:23:  it('blocks normalized relative bypass attempts into internal runtime roots', () => {
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:29:  it('blocks sibling shared traversals and still allows public package imports', () => {
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:99:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:119:| Phase | Depends On | Blocks |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md:170:| Component | Depends On | Produces | Blocks |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:13:<!-- ANCHOR:blockers -->
+.opencode/skills/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:15:## Blockers
+.opencode/skills/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:17:No blockers at this time.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/007-valid-anchors/memory/context.md:19:<!-- /ANCHOR:blockers -->
+.opencode/skills/system-spec-kit/scripts/test-fixtures/058-template-reordered-anchor/spec.md:63:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:24:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:66:- [x] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:94:#### Blocked Task Protocol
+.opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md:95:If a task is BLOCKED, document the blocker and escalate.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/056-template-reordered-header/spec.md:45:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:155:// BUG 2: memory-parser.js - causalLinks / causalBlockMatch
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:158:// Bug: extractCausalLinks function declares `causalLinks` and `causalBlockMatch`
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:159://      But references `causal_links` (line ~348) and `causal_block_match` (line ~351)
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:163:  section('Bug 2: memory-parser.js - causalLinks/causalBlockMatch');
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:181:  // Check 2: causalBlockMatch is declared (camelCase)
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:182:  const blockDecl = findInFile(source, /const\s+causalBlockMatch\s*=/);
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:183:  if (blockDecl.length > 0) {
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:184:    pass(`causalBlockMatch declared at line ${blockDecl[0].num}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:186:    fail('causalBlockMatch declaration not found', 'Expected: const causalBlockMatch = ...');
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:202:  // Check 4: No references to causal_block_match (the bug)
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:203:  const bugBlock = findInFile(source, /\bcausal_block_match\b/);
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:204:  const realBugBlock = bugBlock.filter(l =>
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:206:    !l.text.includes("'causal_block_match'") && !l.text.includes('"causal_block_match"')
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:208:  if (realBugBlock.length === 0) {
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:209:    pass('No references to causal_block_match (bug is fixed)');
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:211:    fail(`${realBugBlock.length} reference(s) to causal_block_match remain`,
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-regressions.js:212:      realBugBlock.map(l => `Line ${l.num}: ${l.text}`).join('\n    '));
+.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:170:├── 038-placeholder-in-codeblock/       # Placeholders in code (allowed)
+.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:215:| **Placeholders** | 6 | 005-unfilled-placeholders, 036-multiple-placeholders, 038-placeholder-in-codeblock |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:239:| `038-placeholder-in-codeblock/` | Placeholders in code blocks are allowed |
+.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:303:.opencode/skills/system-spec-kit/scripts/spec/validate.sh test-fixtures/038-placeholder-in-codeblock --verbose
+.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:305:# Confirm placeholders in code blocks are allowed (should pass)
+.opencode/skills/system-spec-kit/scripts/test-fixtures/055-template-missing-header/spec.md:63:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:282:  // T-FMB-009: Malformed in-block list is treated as malformed and not rewritten.
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:298:      pass('T-FMB-009: Malformed in-block list is skipped', 'malformedFrontmatter=true and content unchanged');
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:300:      fail('T-FMB-009: Malformed in-block list is skipped', `malformed=${result.malformedFrontmatter}, unchanged=${result.content === input}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js:303:    fail('T-FMB-009: Malformed in-block list is skipped', error.message);
+.opencode/skills/system-spec-kit/scripts/test-fixtures/009-valid-priority-tags/checklist.md:7:- [ ] Critical blocker item one
+.opencode/skills/system-spec-kit/scripts/test-fixtures/009-valid-priority-tags/checklist.md:8:- [ ] Critical blocker item two
+.opencode/skills/system-spec-kit/scripts/tests/test-phase-system.js:76:      name: 'threshold-hit-level-gate-blocks',
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:4:# Test Feature - Placeholder in Codeblock
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:14:Tests placeholders in fenced code blocks are ignored.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:18:- Code blocks exempt
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/spec.md:24:- Code block handling
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:462:  it('blocks enrichment in JSON data mode', () => {
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1162:  it('hard-blocks stateless saves via Block B when captured file paths do not overlap with target spec folder', { timeout: 60000 }, async () => {
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1207:      // Q1: Block A now warns instead of throwing for explicit CLI args,
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1208:      // but Block B (file-path overlap) still hard-blocks when captured file paths
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1660:  it('strips broader leaked HTML outside fenced code blocks while preserving fenced HTML', async () => {
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:8:Code block placeholder test.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:12:Testing code block exemption.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:20:L1 with code blocks containing placeholders.
+.opencode/skills/system-spec-kit/scripts/test-fixtures/038-placeholder-in-codeblock/plan.md:37:Create files with placeholders in code blocks.
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/spec.md:90:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-sanitizer.vitest.ts:23:  it('rejects suspicious prefixes without blocking standalone domain nouns', () => {
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:988:    // Check for YAML metadata block
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:990:      pass('TC-700e: context_template has YAML metadata block', 'Metadata block found');
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:992:      fail('TC-700e: context_template has YAML metadata block', 'Metadata block missing');
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:489:    // Test placeholder in code block (should be ignored)
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:490:    const codeBlockContent = `# Spec
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:493:[YOUR_VALUE_HERE: in code block]
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:499:    // Extract non-code-block content
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:500:    const filtered = codeBlockContent.replace(/```[\s\S]*?```/g, '');
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:501:    const inCodeBlock = !filtered.includes('[YOUR_VALUE_HERE:');
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:503:    if (inCodeBlock) {
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:504:      pass('Placeholder in code block ignored', 'Code block content filtered');
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js:506:      fail('Placeholder in code block ignored', 'Code block not properly filtered');
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:368:    const data = { CODE_BLOCKS: ['block1', 'block2'] };
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1707:    // Test 3: extractBlockers is a function
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1708:    assertType(sessionExtractor.extractBlockers, 'function', 'T-027c: extractBlockers exported');
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1754:    // Test 14: extractBlockers finds blockers
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1755:    const obsWithBlocker = [{ narrative: 'Blocked by missing API credentials.' }];
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1756:    const blocker = sessionExtractor.extractBlockers(obsWithBlocker);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1757:    if (blocker !== 'None' && blocker.toLowerCase().includes('blocked')) {
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1758:      pass('T-027n: extractBlockers finds blockers', blocker);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1760:      fail('T-027n: extractBlockers finds blockers', blocker);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1763:    // Test 15: extractBlockers returns None when no blockers
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1764:    const noBlocker = sessionExtractor.extractBlockers([{ narrative: 'Everything is working fine.' }]);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1765:    assertEqual(noBlocker, 'None', 'T-027o: extractBlockers returns None when no blockers');
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1843:        snapshot.nextAction && snapshot.blockers !== undefined && snapshot.fileProgress) {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:10:import { ensureUniqueMemoryFilename } from '../utils/slug-utils';
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:25:describe('ensureUniqueMemoryFilename', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:27:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:33:    const result = ensureUniqueMemoryFilename(nonExistent, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:39:    const result = ensureUniqueMemoryFilename(tmpDir, '08-03-26_10-24__my-slug.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:47:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:54:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:63:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:74:    const result = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:75:    // Should match test-<12-char-hex>.md pattern (randomBytes(6) → 12 hex chars)
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:87:    const first = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:90:    const second = ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:98:    // Make the directory read-only so O_CREAT | O_EXCL fails with EACCES
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:102:      expect(() => ensureUniqueMemoryFilename(tmpDir, 'test.md')).toThrow();
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:105:        ensureUniqueMemoryFilename(tmpDir, 'test.md');
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:46:    // V2 and V12 are the two MEDIUM-severity rules that do not block writes.
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:6:  shouldBlockIndex,
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:7:  shouldBlockWrite,
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:17:    expect(metadata.blockOnWrite).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:18:    expect(metadata.blockOnIndex).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:19:    expect(shouldBlockWrite('V10', 'opencode-capture')).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:20:    expect(shouldBlockIndex('V10', 'opencode-capture')).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:23:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:24:      indexBlockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29:  it('keeps V8 as a hard write and index blocker', () => {
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:32:    expect(metadata.blockOnWrite).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:33:    expect(metadata.blockOnIndex).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:34:    expect(shouldBlockWrite('V8', 'codex-cli-capture')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:35:    expect(shouldBlockIndex('V8', 'codex-cli-capture')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:38:      blockingRuleIds: ['V8'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:39:      indexBlockingRuleIds: ['V8'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:44:  it('supports explicit write-only persistence when a rule blocks indexing but not writing', () => {
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:47:    expect(metadata.blockOnWrite).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:48:    expect(metadata.blockOnIndex).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:51:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:52:      indexBlockingRuleIds: ['V2'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:57:  it('blocks indexing but allows write for V12 topical mismatch', () => {
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:61:    expect(metadata.blockOnWrite).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:62:    expect(metadata.blockOnIndex).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:63:    expect(shouldBlockWrite('V12', 'file')).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:64:    expect(shouldBlockIndex('V12', 'file')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:67:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:68:      indexBlockingRuleIds: ['V12'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:78:    // disposition that V12 behaves as a write-allowed, index-blocked rule — the same
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:24:    manifest: { tunableFields?: Array<{ name: string }>; lockedFields?: Array<{ name: string }> },
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:95:    it('should reject locked contract fields', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:101:      expect(result.violations.some((v: string) => v.includes('locked'))).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:113:    it('should reject mixed tunable and locked fields', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:169:    it('should block promotion when candidate touches locked fields', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:179:      expect(result.decision).toBe('blocked');
+.opencode/skills/system-spec-kit/scripts/tests/test-naming-migration.js:498:      // Skip export alias blocks
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:43:      'release-blocking',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:107:    expect(convergence).toContain('release-blocking');
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:43:  '.workflow-lock',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:418:  it('clears an abandoned legacy workflow lock before starting a new run', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:421:    const dataFile = writeInputFile(harness, 'stale-lock.json', createExplicitJsonInput());
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:440:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      session_summary: 'Exercise the write-only indexing disposition for an index-blocking rule.',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:370:describe('Phase 4 PR-9 composite blocker', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:386:    expect(result.blocking).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:387:    expect(result.blockerReason).toContain('2 HIGH');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:403:        sessionSummary: 'Composite blocker should reject one HIGH plus two MEDIUM findings.',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:408:    expect(result.blocking).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:409:    expect(result.blockerReason).toContain('1 HIGH, 2 MEDIUM');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr9.test.ts:416:    expect(result.blocking).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:656:  it('renders git provenance metadata into the session summary table and YAML block (M-007d)', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:713:      // YAML metadata block should include git provenance fields
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:781:      // YAML metadata block should still include the fields (empty values)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/002-implement/spec.md:85:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh:671:    run_isolated_rule_test "In code block (ignored)" "check-placeholders.sh" "038-placeholder-in-codeblock" "pass" 1
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:46:  it('returns BLOCKED when blockers text is present and unresolved', () => {
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:79:  it('returns IN_PROGRESS for a short session with no blockers', () => {
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:99:  it('returns COMPLETED when blockers exist but later observations show resolution', () => {
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:109:    // Blocker is resolved via reconciliation pass (F-25), then completion check falls through
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:110:    // Since last observation has "resolved", and it's a resolution keyword, the blocker is
+.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:116:  it('returns COMPLETED for high-activity sessions with no blockers or pending work', () => {
+.opencode/skills/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js:838:  // Test 6: Double-close does not crash (module tries close in catch block too)
+.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts:572:      // Diff blocks start with "---" or "+++" (unified diff format)
+.opencode/skills/system-spec-kit/scripts/tests/distinguishing-evidence-dedup.vitest.ts:12:      blockers: 'None',
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-sanitizer-manual-preservation.vitest.ts:11:      'DR-002-I003-P1-001 blocked status drift',
+.opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:67:  // 1) CJS/ESM default object export blocks
+.opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:92:  // 2) ESM named export blocks (supports multiline and "from" re-export)
+.opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:93:  const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*(?:from\s+['"][^'"]+['"])?\s*;/g;
+.opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:94:  for (const match of source.matchAll(exportBlockRegex)) {
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:66:    const overviewBlockMatch = template.match(/<!-- ANCHOR:overview -->[\s\S]*?##\s+OVERVIEW[\s\S]*?<!-- \/ANCHOR:overview -->/);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:71:    expect(overviewBlockMatch).not.toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:72:    expect(overviewBlockMatch?.[0]).not.toContain('<!-- ANCHOR:summary -->');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:73:    expect(overviewBlockMatch?.[0]).not.toContain('<!-- /ANCHOR:summary -->');
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:10:const blockedDirs = new Set<string>();
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:20:  for (const dir of blockedDirs) {
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:27:  blockedDirs.clear();
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:37:    const blockedDir = path.join(root, 'blocked');
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:40:    fs.mkdirSync(blockedDir, { recursive: true });
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:42:    fs.chmodSync(blockedDir, 0o000);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:43:    blockedDirs.add(blockedDir);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:51:        dirPath: blockedDir,
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:59:    const blockedDir = path.join(root, 'blocked');
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:63:    fs.mkdirSync(blockedDir, { recursive: true });
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:66:    fs.chmodSync(blockedDir, 0o000);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:67:    blockedDirs.add(blockedDir);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:75:        dirPath: blockedDir,
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:83:    const blockedDir = path.join(root, 'blocked');
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:87:    fs.mkdirSync(blockedDir, { recursive: true });
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:90:    fs.chmodSync(blockedDir, 0o000);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:91:    blockedDirs.add(blockedDir);
+.opencode/skills/system-spec-kit/scripts/tests/backfill-frontmatter.vitest.ts:99:        dirPath: blockedDir,
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:19:      triggerPhrases: ['perfect session capturing', 'memory sufficiency', 'memory save', 'alignment block'],
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:80:        'This rendered file contains a long scaffolded summary block, several headings, and anchored metadata, but no real files, observations, decisions, or outcomes from the session.',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:132:          output: 'Confirmed scripts/core/workflow.ts still blocks mis-scoped 009-perfect-session-capturing saves.',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:185:  it('extracts trigger phrases from merged specs that embed a second frontmatter block', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:135:      expect(result.blockedBy.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:150:      expect(result.blockedBy.length).toBe(0);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:229:    it('when fan-out is not proven, wave mode stays blocked', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:238:      // Attempting to advance to fan-out should be blocked by
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:40:  const v2 = validator.validateMemoryQualityContent(validContent.replace('tool_count: 9', 'tool_count: 9\nblockers: [N/A]'));
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:395:          'tool_count: 9\nblockers: [N/A]'
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:454:    assertType(sessionExtractor.extractBlockers, 'function', 'EXT-Session-008: extractBlockers exported');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:523:    // Test extractBlockers
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:524:    const { extractBlockers } = sessionExtractor;
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:525:    const blockerObs = [{ narrative: 'We are blocked by the API rate limit issue.' }];
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:526:    const blockers = extractBlockers(blockerObs);
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:527:    if (blockers !== 'None' && blockers.includes('blocked')) {
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:528:      pass('EXT-Session-034: extractBlockers detects blocker keywords', blockers.substring(0, 50));
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:530:      fail('EXT-Session-034: extractBlockers detects blocker keywords', blockers);
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:533:    const noBlockers = extractBlockers([{ narrative: 'Everything is working great.' }]);
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:534:    assertEqual(noBlockers, 'None', 'EXT-Session-035: No blockers returns None');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:614:    assertExists(snapshot.blockers, 'EXT-Session-058: Snapshot has blockers');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-template.test.ts:278:    '| Blockers | None |',
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:80:    keywords: ['technical debt', 'vendor lock-in', 'flexibility', 'architecture'],
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:335:    const check1Keywords = ['requirement', 'speculative', 'pain point', 'blocker'];
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:390:    // Test Check 5: Has technical debt and vendor lock-in checks
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:391:    if (content.includes('Technical debt') && content.includes('Vendor lock-in')) {
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:392:      pass('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Both concerns documented');
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:394:      fail('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Missing concern documentation');
+.opencode/skills/system-spec-kit/scripts/tests/test-five-checks.js:623:      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'Standard pattern, no lock-in' },
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/broken-links/001-design/spec.md:83:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.js:491:            // Diff blocks start with "---" or "+++" (unified diff format)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:4:{"type":"event","event":"blocked_stop","mode":"review","run":2,"stopReason":"blockedStop","legalStop":{"blockedBy":["dimensionCoverage","p0Resolution"],"gateResults":{"findingStability":{"pass":true,"detail":"Stability voted STOP."},"dimensionCoverage":{"pass":false,"detail":"Traceability and maintainability not examined."},"p0Resolution":{"pass":false,"detail":"1 unresolved P0."},"evidenceDensity":{"pass":true,"detail":"Density sufficient."},"hotspotSaturation":{"pass":true,"detail":"Hotspots saturated."}},"replayInputs":{"iterationCount":2,"newFindingsRatio":0.40,"noveltyRatio":0.40,"dimensionsExamined":["correctness","security"],"reviewDimensions":["correctness","security","traceability","maintainability"],"activeFindings":{"P0":1,"P1":3,"P2":2},"hotspotCoverage":{"saturated":1,"required":2}}},"recoveryStrategy":"Cover traceability and maintainability dimensions, then resolve the active P0.","timestamp":"2026-03-20T14:24:30Z"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6:{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":3,"verdict":"CONDITIONAL","activeP0":0,"activeP1":3,"activeP2":4,"dimensionCoverage":1.0,"stopReason":"converged","legalStop":{"blockedBy":[],"gateResults":{"findingStability":{"pass":true,"detail":"Stable."},"dimensionCoverage":{"pass":true,"detail":"All dimensions covered."},"p0Resolution":{"pass":true,"detail":"P0 resolved."},"evidenceDensity":{"pass":true,"detail":"Sufficient."},"hotspotSaturation":{"pass":true,"detail":"Saturated."}},"replayInputs":{"iterationCount":3,"newFindingsRatio":0.08,"noveltyRatio":0.08,"dimensionsExamined":["correctness","security","traceability","maintainability"],"hotspotCoverage":{"saturated":2,"required":2},"stopScore":0.62}},"timestamp":"2026-03-20T14:38:00Z"}
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:138:function countProvenanceBlockLines(workflowSource: string): number {
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:206:      const provenanceBlockLines = countProvenanceBlockLines(workflowSource);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:226:      expect(provenanceBlockLines).toBeLessThanOrEqual(10);
+.opencode/skills/system-spec-kit/scripts/tests/test-ast-parser.js:33:  assertTrue(typeof parser.splitIntoBlocks === 'function', 're-exports splitIntoBlocks');
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/spec.md:89:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:5:function buildValidMemory(overrides: { triggerBlock?: string; bodyTail?: string } = {}): string {
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:10:    overrides.triggerBlock ?? [
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:96:      buildValidMemory({ triggerBlock: 'trigger_phrases: "session summary"' })
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/no-children/spec.md:64:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/missing-child-docs/spec.md:80:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:15:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:51:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:37:  const rawBlock = detection.rawBlock.replace(/\r/g, '');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:38:  const lines = rawBlock.split('\n');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:63:  const strippedRawBlock = [
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-migration.test.ts:70:  return `${content.slice(0, detection.start)}---\n${strippedRawBlock}\n---\n${content.slice(detection.end)}`;
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/plan.md:85:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/no-children/plan.md:83:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:110:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:110:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md:85:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md:107:| Dependency | 001-design | Blocked if incomplete | Complete design first |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/missing-child-docs/001-design/spec.md:85:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase/001-design/spec.md:85:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:1:# Test Fixture: phase-blocked-by-level
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:13:but is blocked because the overall level is only 2 (total score 68, below
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:20:- Level score: 68/100 (Level 2 - Verification -- blocks phase recommendation)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-detection/phase-blocked-by-level/spec.md:37:## Why Blocked
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:71:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:100:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:135:| Phase | Depends On | Blocks |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:199:| Component | Depends On | Produces | Blocks |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:110:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:135:| Phase | Depends On | Blocks |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:110:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:44:**Critical Dependencies**: [Blocking dependency]
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:97:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:126:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:110:### P0 - Blockers (MUST complete)
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:139:| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:28:| `[B]` | Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:70:- [ ] No `[B]` blocked tasks remaining
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/plan.md:107:| Dependency | Type | Status | Impact if Blocked |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC7-anchor.json:14:      "rationale": "Eliminates the literal mismatch between TOC fragment, HTML id, and comment marker in the OVERVIEW block"
 
 codex
 I’ve now verified the core asymmetry: MemPalace centralizes everything into one local palace path and one collection, then relies on wing metadata for separation, while Public has explicit governed scope fields plus shared-space membership and conflict handling. I’m pulling one last round of exact lines for the MemPalace mine path and Public save lock, then I can synthesize the iteration cleanly.
 exec
-/bin/zsh -lc 'rg -n "withSpecFolderLock|recordSharedConflict|assertSharedSpaceAccess|validateGovernedIngest|tenant_id|shared_space_id|session_id" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "withSpecFolderLock|recordSharedConflict|assertSharedSpaceAccess|validateGovernedIngest|tenant_id|shared_space_id|session_id" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/core/workflow.js | sed -n '220,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/core/workflow.js | sed -n '220,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 53:  validateGovernedIngest,
 56:  assertSharedSpaceAccess,
@@ -13981,7 +13981,7 @@ exec
    360	                const msg = err instanceof Error ? err.message : String(err);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '680,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '680,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    680	  if (!refreshFromDiskAfterLock) {
    681	    const earlyResult = evaluatePreparedMemory(prepared);
@@ -14537,7 +14537,7 @@ exclude_lines = [
 ]
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '900,1055p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '900,1055p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    900	          ? [...(chunkedResult.warnings as string[])]
    901	          : [];
@@ -14697,10 +14697,10 @@ exec
   1055	  const parsed = parsedOverride || memoryParser.parseMemoryFile(filePath);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1128,1188p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1128,1188p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1128	  if (!memoryParser.isMemoryFile(validatedPath)) {
-  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skill/*/constitutional/');
+  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skills/*/constitutional/');
   1130	  }
   1131	
   1132	  if (typeof database.exec === 'function') {
@@ -14762,7 +14762,7 @@ exec
   1188	  if (dryRun && skipPreflight) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1460,1515p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1460,1515p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1460	      applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governanceDecision));
   1461	      recordGovernanceAudit(database, {
@@ -14822,7 +14822,7 @@ exec
   1515	 *
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1560,1595p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1560,1595p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1560	
   1561	      if (prepared.qualityLoopResult.fixes.length > 0 && prepared.qualityLoopResult.passed && prepared.qualityLoopResult.fixedContent) {
@@ -14927,7 +14927,7 @@ MULTI-AGENT MEMORY SAFETY: How does this system handle concurrent agent access, 
 - **Impact**: high
 
 ### Finding 5: Public already has the stronger multi-agent safety model
-- **Source**: [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts), [workflow.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/core/workflow.js), [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts), [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- **Source**: [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts), [workflow.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js), [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts), [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
 - **What it does**: Public validates governed ingest with `tenantId`/`sessionId`/`userId` or `agentId` plus provenance, enforces deny-by-default shared-space membership and role checks, records shared conflicts with explicit strategies, serializes save work with spec-folder locks plus transactions, and binds cursors/session reuse to scope identity.
 - **Why it matters**: The safe direction is not to import MemPalace’s storage model wholesale. The useful imports are taxonomy and temporal ideas, but only on top of Public’s existing scope, conflict, and lock primitives.
 - **Recommendation**: adopt now
@@ -14981,7 +14981,7 @@ MULTI-AGENT MEMORY SAFETY: How does this system handle concurrent agent access, 
 - **Impact**: high
 
 ### Finding 5: Public already has the stronger multi-agent safety model
-- **Source**: [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts), [workflow.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/core/workflow.js), [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts), [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- **Source**: [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts), [shared-spaces.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts), [shared-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts), [workflow.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js), [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts), [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
 - **What it does**: Public validates governed ingest with `tenantId`/`sessionId`/`userId` or `agentId` plus provenance, enforces deny-by-default shared-space membership and role checks, records shared conflicts with explicit strategies, serializes save work with spec-folder locks plus transactions, and binds cursors/session reuse to scope identity.
 - **Why it matters**: The safe direction is not to import MemPalace’s storage model wholesale. The useful imports are taxonomy and temporal ideas, but only on top of Public’s existing scope, conflict, and lock primitives.
 - **Recommendation**: adopt now

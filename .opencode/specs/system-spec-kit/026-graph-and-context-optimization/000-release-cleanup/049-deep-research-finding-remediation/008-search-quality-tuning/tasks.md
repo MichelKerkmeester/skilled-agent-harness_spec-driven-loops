@@ -16,11 +16,11 @@ _memory:
     next_safe_action: "Commit and push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-008-search-quality"

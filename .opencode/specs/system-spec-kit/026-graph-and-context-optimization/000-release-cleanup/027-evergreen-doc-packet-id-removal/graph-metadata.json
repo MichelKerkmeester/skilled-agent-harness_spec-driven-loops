@@ -40,24 +40,24 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/skill/cli-copilot/SKILL.md",
-      ".opencode/skill/cli-opencode/README.md",
-      ".opencode/skill/cli-opencode/references/agent_delegation.md",
-      ".opencode/skill/cli-opencode/references/opencode_tools.md",
-      ".opencode/skill/cli-opencode/SKILL.md",
-      ".opencode/skill/sk-deep-research/feature_catalog/feature_catalog.md",
-      ".opencode/skill/sk-deep-review/feature_catalog/feature_catalog.md",
-      ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/install_guide_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/readme_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md",
-      ".opencode/skill/sk-doc/references/global/quick_reference.md",
-      ".opencode/skill/sk-doc/SKILL.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md"
+      ".opencode/skills/cli-copilot/SKILL.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/cli-opencode/references/opencode_tools.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-deep-research/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-deep-review/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/install_guide_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/readme_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
+      ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
+      ".opencode/skills/sk-doc/references/global/quick_reference.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md"
     ],
     "entities": [
       {
@@ -75,91 +75,91 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/SKILL.md",
+        "path": ".opencode/skills/cli-copilot/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/README.md",
+        "path": ".opencode/skills/cli-opencode/README.md",
         "source": "derived"
       },
       {
         "name": "agent_delegation.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/references/agent_delegation.md",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
         "source": "derived"
       },
       {
         "name": "opencode_tools.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/references/opencode_tools.md",
+        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/sk-deep-research/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
         "source": "derived"
       },
       {
         "name": "install_guide_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/install_guide_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/install_guide_template.md",
         "source": "derived"
       },
       {
         "name": "readme_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/readme_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/readme_template.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md",
         "source": "derived"
       },
       {
         "name": "evergreen_packet_id_rule.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md",
+        "path": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/global/quick_reference.md",
+        "path": ".opencode/skills/sk-doc/references/global/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
         "name": "12-memory-retention-sweep.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
         "source": "derived"
       },
       {
         "name": "37-cli-matrix-adapter-runners.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
         "source": "derived"
       },
       {
         "name": "01-category-overview.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
         "source": "derived"
       },
       {

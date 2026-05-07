@@ -9,7 +9,7 @@ Across four cli-codex iterations the loop converged with all five priority quest
 The plugin is also strictly stack-agnostic: the only `package.json` reads in the CLI are for resolving the plugin's own install location, never project markers like `go.mod` or `Cargo.toml`. The reusable agentic pattern for unfamiliar repositories is the `codemap` skill — it asks the agent to infer include/exclude globs and persists a hash-based folder map. Skill auto-loading is install-time recommendation (presets) plus runtime visibility filtering via `filter-available-skills` and `getSkillPermissionsForAgent`. Write safety is centered on the `apply-patch` hook (root/worktree path guard, conservative verification, EOL preservation), per-agent MCP allowlists, and a prompt nudge hook. Sub-agent dispatch has two paths: OpenCode's `task` tool with payload `{description, prompt, subagent_type, task_id?}` and direct `client.session.create` for council->councillor. SubagentDepthTracker default max is 3, NOT depth-1 LEAF.
 
 ## 3. Topic
-Identify reusable patterns from oh-my-opencode-slim that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory, focusing on (1) skill auto-loading, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety, (5) sub-agent dispatch contracts.
+Identify reusable patterns from oh-my-opencode-slim that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory, focusing on (1) skill auto-loading, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety, (5) sub-agent dispatch contracts.
 
 External source folder: `.opencode/specs/z_future/improved-agent-orchestration/external/oh-my-opencode-slim/` (all citations relative to that folder unless prefixed with `.opencode/...`).
 
@@ -160,7 +160,7 @@ D3 in our `decision-record.md` should record the caller-restriction enforcement 
 
 Cross-stream note: stream-02 (opencode-swarm-main) and stream-03 (internal agent inventory) may surface complementary or contradicting evidence. The parent-level synthesis (`059-agent-implement-code/research/research.md` if produced, or `decision-record.md` D3 directly) should reconcile.
 
-### 8b. Draft `.opencode/agent/code.md` skeleton
+### 8b. Draft `.opencode/agents/code.md` skeleton
 
 This skeleton uses the OpenCode agent file shape we already use elsewhere in our repo and incorporates oh-my-opencode-slim patterns. **The skeleton is a starting point for stream-level synthesis, NOT a final design** — cross-stream agreement is required.
 
@@ -341,8 +341,8 @@ For the parent (`059-agent-implement-code`) workflow:
    - Are there stack-detection patterns elsewhere we should adopt (Webflow / sk-code already does this; how does our internal practice compare)?
    - Are there write-safety patterns stronger than `apply-patch`?
 2. **Update `decision-record.md` D3** using the diff-shape in §8a (caller restriction). Include cross-stream citations.
-3. **Author `.opencode/agent/code.md`** using the skeleton in §8b as a starting point. Validate the skeleton against:
-   - Existing OpenCode agent file shape conventions in our repo (`.opencode/agent/*.md`).
+3. **Author `.opencode/agents/code.md`** using the skeleton in §8b as a starting point. Validate the skeleton against:
+   - Existing OpenCode agent file shape conventions in our repo (`.opencode/agents/*.md`).
    - The dispatch payload shape that our orchestrator actually uses today.
    - The stack-detection logic we already have in `sk-code` (the new agent should COMPLEMENT, not duplicate, sk-code's stack routing).
 4. **Add tests pinning the agent contract** (modeled on slim's `src/agents/*.test.ts`):

@@ -118,9 +118,9 @@ D3 Traceability - verify that the restarted gen2 review packet and remediation d
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py` | [D2] | 2 | 0 P0, 0 P1, 0 P2 (F010 remediated) | reviewed |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | [D2] | 2 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/skill-advisor/scripts/init-skill-graph.sh` | [D2] | 2 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py` | [D2] | 2 | 0 P0, 0 P1, 0 P2 (F010 remediated) | reviewed |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | [D2] | 2 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/skill-advisor/scripts/init-skill-graph.sh` | [D2] | 2 | 0 P0, 0 P1, 0 P2 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
 ---

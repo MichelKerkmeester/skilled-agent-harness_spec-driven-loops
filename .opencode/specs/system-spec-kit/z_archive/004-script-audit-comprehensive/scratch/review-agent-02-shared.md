@@ -42,7 +42,7 @@
 - Context audit lines 3-4 use full absolute paths for scope and alignment target.
 - Impact: cosmetic; breaks if repo moves. Low risk in scratch artifacts.
 - Evidence: `context-agent-02-shared-utils.md:3-4`.
-- Recommendation: use repo-relative paths (e.g., `.opencode/skill/system-spec-kit/shared`).
+- Recommendation: use repo-relative paths (e.g., `.opencode/skills/system-spec-kit/shared`).
 
 ### P2-02 — Path-security module coverage gap
 

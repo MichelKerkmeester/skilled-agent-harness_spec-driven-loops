@@ -1,0 +1,231 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-code",
+  "family": "sk-code",
+  "category": "code-quality",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "sk-code-review",
+        "weight": 0.4,
+        "context": "surface-specific standards evidence for findings-first review"
+      },
+      {
+        "target": "system-spec-kit",
+        "weight": 0.3,
+        "context": "opencode standards and verification for spec-kit system code"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-code-review",
+        "weight": 0.4,
+        "context": "review baseline"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": [
+      {
+        "target": "skill_advisor",
+        "weight": 0.7,
+        "context": "skill advisor routes code work to sk-code surfaces"
+      }
+    ]
+  },
+  "domains": [
+    "code",
+    "smart-router",
+    "surface-aware",
+    "webflow",
+    "frontend",
+    "browser",
+    "html",
+    "css",
+    "javascript",
+    "motion.dev",
+    "motion-dev",
+    "motion_dev",
+    "cross-stack-animation",
+    "opencode",
+    "system-code",
+    "typescript",
+    "python",
+    "shell",
+    "json",
+    "jsonc",
+    "code-quality",
+    "verification"
+  ],
+  "intent_signals": [
+    "code work",
+    "code surface detection",
+    "webflow",
+    "frontend",
+    "animation",
+    "cdn",
+    "browser test",
+    "opencode",
+    "system code",
+    "mcp",
+    "skill",
+    "agent",
+    "command",
+    "typescript",
+    "python",
+    "shell",
+    "jsonc",
+    "alignment verifier",
+    "motion.dev integration",
+    "motion-dev integration",
+    "motion_dev references",
+    "cross-stack animation",
+    "motion api",
+    "motion snippets",
+    "motion decision matrix",
+    "refactor function",
+    "refactor the",
+    "throw on missing",
+    "add a flag",
+    "add a fallback",
+    "add a parameter",
+    "add a method",
+    "implement function",
+    "handle empty",
+    "handle null",
+    "early return",
+    "type annotation",
+    "function signature",
+    "add set -euo pipefail",
+    "console.error fallback",
+    "argparse block",
+    "vitest covering",
+    "stable jsonl keys",
+    "lenis smooth-scroll",
+    "gsap timeline",
+    "hls.js video",
+    "intersectionobserver gate",
+    "build a tiny script",
+    "tiny script that counts",
+    "counts how many",
+    "build a script that"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "sk-code",
+      "code work",
+      "smart router",
+      "surface detection",
+      "webflow",
+      "frontend",
+      "html",
+      "css",
+      "javascript",
+      "motion.dev",
+      "motion-dev",
+      "motion_dev",
+      "cross-stack animation",
+      "motion api",
+      "motion snippets",
+      "motion decision matrix",
+      "gsap",
+      "lenis",
+      "swiper",
+      "hls",
+      "filepond",
+      "opencode",
+      "system code",
+      "mcp",
+      "typescript",
+      "python",
+      "shell",
+      "json",
+      "jsonc",
+      "alignment verifier",
+      "code quality gate",
+      "verification commands"
+    ],
+    "key_topics": [
+      "code",
+      "surface-aware-routing",
+      "webflow",
+      "motion_dev",
+      "cross-stack-animation",
+      "opencode",
+      "language-sub-detection",
+      "code-quality",
+      "verification"
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "references/router/code_surface_detection.md",
+      "references/router/intent_classification.md",
+      "references/router/resource_loading.md",
+      "references/router/phase_lifecycle.md",
+      "references/motion_dev/animate_and_timelines.md",
+      "references/motion_dev/decision_matrix.md",
+      "references/motion_dev/integration_patterns.md",
+      "references/motion_dev/performance_and_pitfalls.md",
+      "references/motion_dev/quick_start.md",
+      "references/motion_dev/scroll_and_gestures.md"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/references/router/code_surface_detection.md",
+      ".opencode/skills/sk-code/references/router/intent_classification.md",
+      ".opencode/skills/sk-code/references/router/resource_loading.md",
+      ".opencode/skills/sk-code/references/router/phase_lifecycle.md",
+      ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
+      ".opencode/skills/sk-code/references/motion_dev/decision_matrix.md",
+      ".opencode/skills/sk-code/references/motion_dev/integration_patterns.md",
+      ".opencode/skills/sk-code/references/motion_dev/performance_and_pitfalls.md",
+      ".opencode/skills/sk-code/assets/motion_dev/install_card.md",
+      ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md",
+      ".opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js",
+      ".opencode/skills/sk-code/references/webflow/implementation/implementation_workflows.md",
+      ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py"
+    ],
+    "entities": [
+      {
+        "name": "sk-code",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion_dev",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_surface_detection",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-code/references/router/code_surface_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend, cross-stack motion.dev animation guidance, and OpenCode system code. Smart-routing internals choose WEBFLOW, OPENCODE, or UNKNOWN first; motion_dev is a peer resource category loaded for Motion API, performance, snippets, integration, and decision_matrix context.",
+    "created_at": "2026-04-30T08:30:00Z",
+    "last_updated_at": "2026-05-05T08:30:00Z",
+    "merger_packet": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+    "motion_dev_packet": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+    "supported_surfaces": [
+      "WEBFLOW",
+      "OPENCODE"
+    ],
+    "peer_resource_categories": [
+      "motion_dev"
+    ]
+  }
+}

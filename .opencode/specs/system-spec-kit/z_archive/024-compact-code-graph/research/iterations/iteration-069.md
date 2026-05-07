@@ -15,9 +15,9 @@ The test suite at `mcp_server/tests/` contains ~100+ vitest files. Code-graph-sp
 
 **Key pattern**: Tests import directly from source modules (no test harness abstraction), use inline content strings for parsing, and `process.env` save/restore for feature flags. No mocking framework beyond vitest builtins.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:1-146]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:1-67]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:1-47]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:1-146]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts:1-67]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts:1-47]
 
 ### 2. endLine Fix Test Design -- 8 Test Cases
 
@@ -38,7 +38,7 @@ The endLine bug (all parsers set `endLine = startLine`) is confirmed in `structu
 
 **Implementation pattern**: Follows existing `parseFile()` test style -- inline content strings, assert `result.nodes[i].endLine` values directly.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:41]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:41]
 [INFERENCE: Test cases designed from endLine bug analysis in iterations 056, 060]
 
 ### 3. New Edge Type Test Design -- DECORATES, OVERRIDES, TYPE_OF
@@ -88,7 +88,7 @@ From iterations 057 and 061, auto-enrichment uses the `memory-surface.ts` patter
 
 **Test pattern**: Use `vi.fn()` to mock the graph DB and timer functions. Follow the existing pattern in `mcp-tool-dispatch.vitest.ts` for handler mocking.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts (pattern reference)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts (pattern reference)]
 [INFERENCE: Design from iteration 057 (three-tier architecture) and iteration 061 (dispatch pass-through analysis)]
 
 ### 5. Stale-on-Read Mechanism Test Design
@@ -143,8 +143,8 @@ describe('FirstCallTracker', () => {
 });
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts (resolveTrustedSession)]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts (pattern)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts (resolveTrustedSession)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts (pattern)]
 [INFERENCE: From iteration 062 (MCP first-call priming) and iteration 058 (four-tier fallback)]
 
 ### 7. Integration Test Design: Scan to Query to Context to Compact Merge
@@ -228,7 +228,7 @@ Existing tests to update:
 - `code-graph-indexer.vitest.ts` -- Add endLine assertions to existing `parseFile` tests (currently none check endLine)
 - `budget-allocator.vitest.ts` -- Add intent-aware priority tests, min-floor trim protection tests
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/ (file listing)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/ (file listing)]
 [INFERENCE: Priority assignment from iteration 064 consolidated backlog]
 
 ## Ruled Out
@@ -240,11 +240,11 @@ Existing tests to update:
 - None identified this iteration. All proposed testing approaches are viable with existing vitest infrastructure.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts` (full file, 146 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts` (full file, 67 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts` (full file, 47 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (lines 1-60, endLine bug confirmation)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts` (resolveTrustedSession reference)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts` (full file, 146 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts` (full file, 67 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-flags.vitest.ts` (full file, 47 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (lines 1-60, endLine bug confirmation)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` (resolveTrustedSession reference)
 - Glob results: 14 graph-related test files, 4 budget-related test files
 
 ## Assessment

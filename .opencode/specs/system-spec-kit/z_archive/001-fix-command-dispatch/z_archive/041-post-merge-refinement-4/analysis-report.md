@@ -680,7 +680,7 @@ These are improvements, polish items, or minor inconsistencies.
 ### Core Files Analyzed
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── SKILL.md (800 lines)
 ├── README.md (1770 lines)
 ├── mcp_server/
@@ -714,7 +714,7 @@ These are improvements, polish items, or minor inconsistencies.
 └── constitutional/
     └── gate-enforcement.md
 
-.opencode/command/spec_kit/
+.opencode/commands/spec_kit/
 ├── assets/
 │   ├── spec_kit_plan_confirm.yaml (852 lines)
 │   ├── spec_kit_plan_auto.yaml

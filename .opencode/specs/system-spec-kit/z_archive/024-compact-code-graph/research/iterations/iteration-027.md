@@ -62,9 +62,9 @@ Verify the current Gemini CLI hooks API against official public documentation an
 
 7. A future Gemini hook adapter could reuse our shared hook business logic, but it should not assume direct reuse of Claude-specific wrapper scripts. Repo reality today:
    - `.gemini/settings.json` does not contain a `"hooks"` block, so this repo currently configures zero Gemini hooks.
-   - `.opencode/skill/cli-gemini/SKILL.md` and its bundled references do not document Gemini hooks.
-   - `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md` explicitly says `hooks/` is a helper/utility layer and "not a standalone MCP hook registration system."
-   That means the reusable layer is our shared memory/context logic, not a finished runtime adapter. Gemini does provide `GEMINI_PROJECT_DIR`, `GEMINI_SESSION_ID`, `GEMINI_CWD`, and even a `CLAUDE_PROJECT_DIR` alias for compatibility, which helps with path portability. But a Gemini adapter still needs its own event translation because Gemini lacks Claude's `compact` session source and does not expose Claude-specific fields like `stop_hook_active`, `last_assistant_message`, or `custom_instructions` on compaction. Sources: `/.gemini/settings.json`, `/.opencode/skill/cli-gemini/SKILL.md`, `/.opencode/skill/system-spec-kit/mcp_server/hooks/README.md`, `https://geminicli.com/docs/hooks/`, `https://geminicli.com/docs/hooks/reference/`.
+   - `.opencode/skills/cli-gemini/SKILL.md` and its bundled references do not document Gemini hooks.
+   - `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` explicitly says `hooks/` is a helper/utility layer and "not a standalone MCP hook registration system."
+   That means the reusable layer is our shared memory/context logic, not a finished runtime adapter. Gemini does provide `GEMINI_PROJECT_DIR`, `GEMINI_SESSION_ID`, `GEMINI_CWD`, and even a `CLAUDE_PROJECT_DIR` alias for compatibility, which helps with path portability. But a Gemini adapter still needs its own event translation because Gemini lacks Claude's `compact` session source and does not expose Claude-specific fields like `stop_hook_active`, `last_assistant_message`, or `custom_instructions` on compaction. Sources: `/.gemini/settings.json`, `/.opencode/skills/cli-gemini/SKILL.md`, `/.opencode/skills/system-spec-kit/mcp_server/hooks/README.md`, `https://geminicli.com/docs/hooks/`, `https://geminicli.com/docs/hooks/reference/`.
 
 8. The packet's current `v0.33.1+` version claim appears stale. I did not find evidence that hooks were introduced specifically in v0.33.1. Public release history shows hooks were already present no later than stable `v0.23.0` on January 7, 2026, because that release already includes multiple hook-related changes (docs/reference/security/telemetry hardening). Stable `v0.24.0` then adds folder-trust support for hooks and a "Hooks list" UI improvement. As of March 30, 2026, the public docs site has a dedicated hooks overview/reference section, and the GitHub releases page shows current stable `v0.35.3` and preview `v0.36.0-preview.6`, both dated March 28, 2026. The safest correction for this packet is:
    - replace "Gemini CLI v0.33.1+ has a first-class hook system"
@@ -79,8 +79,8 @@ Verify the current Gemini CLI hooks API against official public documentation an
 - Official release history: `https://github.com/google-gemini/gemini-cli/releases`
 - Claude Code hooks reference for comparison: `https://code.claude.com/docs/en/hooks`
 - Repo Gemini runtime config shows no `"hooks"` block: `.gemini/settings.json`
-- Repo Gemini skill has no hook guidance: `.opencode/skill/cli-gemini/SKILL.md`
-- Repo shared hook layer is utility-only, not runtime registration: `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md`
+- Repo Gemini skill has no hook guidance: `.opencode/skills/cli-gemini/SKILL.md`
+- Repo shared hook layer is utility-only, not runtime registration: `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md`
 - Packet currently contains stale version wording: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md`
 - Prior packet framing that Gemini is hook-capable but v1-suppressed: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-015.md`
 

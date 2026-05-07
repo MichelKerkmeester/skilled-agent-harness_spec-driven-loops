@@ -13,21 +13,21 @@ Trace `memory_search`, `memory_context`, `memory_save`, advisor, and code graph 
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:912` builds the pipeline config for `memory_search`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921` forwards tenant, user, and agent scope into the pipeline.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:949` executes the pipeline.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1101` exposes rerank metadata only when Stage 3 applies rerank.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1128` builds a separate adaptive shadow proposal for memory-search ranking.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1414` classifies query intent.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1439` routes structural queries to `buildContext`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1454` routes hybrid queries to `buildContext`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1476` logs eval query metadata.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1551` carries tenant, user, and agent scope in context options.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2432` uses `findScopeFilteredCandidates` during reconsolidation.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2439` passes fixed `overfetchMultiplier: 3`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:342` accepts an optional overfetch multiplier.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:351` applies that multiplier to vector search limit.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:546` uses fixed multiplier `3` in save-time lookup.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:912` builds the pipeline config for `memory_search`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921` forwards tenant, user, and agent scope into the pipeline.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:949` executes the pipeline.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1101` exposes rerank metadata only when Stage 3 applies rerank.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1128` builds a separate adaptive shadow proposal for memory-search ranking.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1414` classifies query intent.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1439` routes structural queries to `buildContext`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1454` routes hybrid queries to `buildContext`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1476` logs eval query metadata.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1551` carries tenant, user, and agent scope in context options.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2432` uses `findScopeFilteredCandidates` during reconsolidation.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2439` passes fixed `overfetchMultiplier: 3`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:342` accepts an optional overfetch multiplier.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:351` applies that multiplier to vector search limit.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:546` uses fixed multiplier `3` in save-time lookup.
 
 ## Findings
 

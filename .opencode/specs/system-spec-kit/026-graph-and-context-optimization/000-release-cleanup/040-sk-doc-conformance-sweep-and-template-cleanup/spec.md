@@ -106,10 +106,10 @@ Bring every sk-doc-governed surface into strict conformance with the canonical s
 | 5 `feature_catalog/` directories | Modify | Per-feature files + roots; ~50+ files |
 | 28 reference markdown files | Modify | 20 ssk + 3 skcr drift; 5 partial mechanical fixes |
 | `.opencode/plugins/README.md` | Modify | Rewrite per sk-doc README template |
-| `.opencode/skill/system-spec-kit/templates/sharded/` | Delete | 5 legacy files |
-| `.opencode/skill/system-spec-kit/templates/stress-test/` | Rename | → `stress_test/` plus new README |
-| `.opencode/skill/system-spec-kit/templates/changelog/` | Modify | Align frontmatter to sk-doc shape |
-| `.opencode/skill/system-spec-kit/templates/addendum/level3plus-govern/` | Rename | → `level3-plus-govern/` |
+| `.opencode/skills/system-spec-kit/templates/sharded/` | Delete | 5 legacy files |
+| `.opencode/skills/system-spec-kit/templates/stress-test/` | Rename | → `stress_test/` plus new README |
+| `.opencode/skills/system-spec-kit/templates/changelog/` | Modify | Align frontmatter to sk-doc shape |
+| `.opencode/skills/system-spec-kit/templates/addendum/level3plus-govern/` | Rename | → `level3-plus-govern/` |
 | ~10 path-reference files | Modify | system-spec-kit/{README.md,SKILL.md}, references/{workflows,templates,structure}, feature_catalog and manual_testing_playbook 14--stress-testing entries, feature_catalog 16--tooling-and-scripts/30-template-composition-system.md |
 <!-- /ANCHOR:scope -->
 
@@ -261,7 +261,7 @@ Bring every sk-doc-governed surface into strict conformance with the canonical s
 
 **Acceptance Criteria**:
 1. Given the cleanup is complete, when I `grep -rIn "templates/sharded\|templates/stress-test\|level3plus-govern" .opencode/`, then zero hits in active code paths.
-2. Given the renames are complete, when I list `.opencode/skill/system-spec-kit/templates/`, then I see `stress_test/` (with README) and `addendum/level3-plus-govern/`.
+2. Given the renames are complete, when I list `.opencode/skills/system-spec-kit/templates/`, then I see `stress_test/` (with README) and `addendum/level3-plus-govern/`.
 
 ---
 

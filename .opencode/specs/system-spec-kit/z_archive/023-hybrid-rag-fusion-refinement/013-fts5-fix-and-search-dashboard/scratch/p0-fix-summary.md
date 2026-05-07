@@ -16,7 +16,7 @@
 
 ### Fix 1: Stabilize resolve_database_path()
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` (lines 277-299)
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` (lines 277-299)
 **Change:** +17 -8 lines
 
 The function now:
@@ -28,7 +28,7 @@ The function now:
 
 ### Fix 2: Prevent reinitializeDatabase() from rebinding to empty DB
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts` (lines 285-310)
+**File:** `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts` (lines 285-310)
 **Change:** +27 -0 lines
 
 After `vectorIndex.initializeDb()` and before `rebindDatabaseConsumers()`:
@@ -39,7 +39,7 @@ After `vectorIndex.initializeDb()` and before `rebindDatabaseConsumers()`:
 
 ### Fix 3: Startup health check with auto-backfill
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` (lines 1455-1476 + import at line 79)
+**File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` (lines 1455-1476 + import at line 79)
 **Change:** +24 -0 lines
 
 After database initialization and before module init:
@@ -50,7 +50,7 @@ After database initialization and before module init:
 
 ### Fix 4: Add warnings to silent return [] in hybrid-search.ts
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (4 locations)
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (4 locations)
 **Change:** +7 -4 lines
 
 Replaced silent one-liner guards with explicit `console.warn()` before return:

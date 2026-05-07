@@ -63,7 +63,7 @@ Improvement focus: **Read-only review discipline; severity scoring; pattern enfo
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/review.md`
+- Canonical agent body: `.opencode/agents/review.md`
 - Runtime mirrors: `.claude/agents/review.md`, `.gemini/agents/review.md`, `.codex/agents/review.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: finding severity calibration, false-positive resistance
@@ -78,7 +78,7 @@ Improvement focus: **Read-only review discipline; severity scoring; pattern enfo
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/review.md` | Update | Promoted candidate body |
+| `.opencode/agents/review.md` | Update | Promoted candidate body |
 | `.claude/agents/review.md` | Update | Mirror sync |
 | `.gemini/agents/review.md` | Update | Mirror sync |
 | `.codex/agents/review.toml` | Update | Mirror sync (TOML) |

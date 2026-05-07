@@ -76,9 +76,9 @@ Files to read first when resuming or starting 061:
 3. **`spec.md`** — original goal, scope, 7 research questions
 4. **`decision-record.md`** — 4 ADRs governing executor / cap / scope / target choice
 5. Original target triad (read-only):
-   - `.opencode/skill/sk-improve-agent/SKILL.md` (463 lines)
-   - `.opencode/agent/improve-agent.md` (246 lines)
-   - `.opencode/command/improve/agent.md` (456 lines)
+   - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
+   - `.opencode/agents/improve-agent.md` (246 lines)
+   - `.opencode/commands/improve/agent.md` (456 lines)
 6. Methodology source: `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md` (570 lines, §9 lessons-learned)
 <!-- /ANCHOR:context-quick-load -->
 
@@ -123,5 +123,5 @@ Files to read first when resuming or starting 061:
 
 ### Recommended next-packet (061) starting prompt
 
-> Start packet 004 (was 061) at `specs/skilled-agent-orchestration/061-sk-improve-agent-stress-test-implementation/`. Apply the diff sketches from 060/research.md §5 (P0 first: §6.5 CRITIC PASS in improve-agent.md, `legal_stop_evaluated` 5-gate bundle in auto YAML, baseline/delta wiring in score-candidate.cjs, `.gemini/agents` mirror path fix in scan-integration.cjs). Author CP-040 through CP-045 as real playbook entries under `.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/`. Mirror agent edits across 4 runtimes (.opencode/.claude/.gemini/.codex). Run multi-round stress tests using the fixture-target from 060/research.md §6. Produce `test-report.md` mirroring 059's structure (§9 lessons-learned, anchored sections, transcript pull-quotes).
+> Start packet 004 (was 061) at `specs/skilled-agent-orchestration/061-sk-improve-agent-stress-test-implementation/`. Apply the diff sketches from 060/research.md §5 (P0 first: §6.5 CRITIC PASS in improve-agent.md, `legal_stop_evaluated` 5-gate bundle in auto YAML, baseline/delta wiring in score-candidate.cjs, `.gemini/agents` mirror path fix in scan-integration.cjs). Author CP-040 through CP-045 as real playbook entries under `.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/`. Mirror agent edits across 4 runtimes (.opencode/.claude/.gemini/.codex). Run multi-round stress tests using the fixture-target from 060/research.md §6. Produce `test-report.md` mirroring 059's structure (§9 lessons-learned, anchored sections, transcript pull-quotes).
 <!-- /ANCHOR:phase-2-handoff -->

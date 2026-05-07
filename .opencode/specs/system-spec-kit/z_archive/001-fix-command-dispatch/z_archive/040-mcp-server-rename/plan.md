@@ -31,9 +31,9 @@ contextType: "planning"
 - [ ] Update system-spec-kit SKILL.md
 
 ## Phase 4: Code/Script Updates
-- [ ] Update references in .opencode/skill/system-spec-kit/references/
-- [ ] Update references in .opencode/skill/system-spec-kit/assets/
-- [ ] Update references in .opencode/skill/system-spec-kit/scripts/
+- [ ] Update references in .opencode/skills/system-spec-kit/references/
+- [ ] Update references in .opencode/skills/system-spec-kit/assets/
+- [ ] Update references in .opencode/skills/system-spec-kit/scripts/
 - [ ] Update references in .opencode/scripts/
 
 ## Phase 5: Verification

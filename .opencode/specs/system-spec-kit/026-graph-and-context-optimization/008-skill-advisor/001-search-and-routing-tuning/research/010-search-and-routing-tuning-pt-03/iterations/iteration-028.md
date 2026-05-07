@@ -16,7 +16,7 @@ Break down the remaining `planned` packets before doing manual inspection, so th
 - None. The status TSV split the bucket cleanly once checklist state and implementation-summary presence were added.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:599-629`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:599-629`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

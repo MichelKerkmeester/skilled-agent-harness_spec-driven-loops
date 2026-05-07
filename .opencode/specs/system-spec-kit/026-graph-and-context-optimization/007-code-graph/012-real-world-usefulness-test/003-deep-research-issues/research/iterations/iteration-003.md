@@ -17,9 +17,9 @@ The investigated path was:
 - `lib/readiness-contract.ts` maps the resulting `ReadyResult` into canonical readiness and trust-state payload fields; it does not decide drift.
 
 ## FINDINGS
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` — Candidate manifest drift fires from a stored manifest `{count,digest}` compared against `graphDb.getTrackedFiles()`, not from scope hash or git HEAD. The predicate is `stored exists AND (sorted tracked-file count differs OR sha256(sorted tracked-file paths joined by "\n").slice(0,16) differs)`. Because `query.ts` disables inline full scans, any manifest mismatch becomes a blocked read. Recommended remediation: add a regression test that reproduces the native read-after-`includeSkills:true` scan sequence and asserts the manifest baseline is recorded and compared under the same path/scope normalization.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293` — Scope fingerprint drift is a separate earlier full-scan predicate, and per-call scan scopes are explicitly exempted when `storedScope.source === 'scan-argument'`. The native trial's error text was therefore not the scope mismatch branch. Recommended remediation: keep the branch separation, but include active/stored scope and manifest count/digest diagnostics in blocked-read payloads so operators can distinguish scope drift from manifest drift without source tracing.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241` — `readiness-contract.ts` only decorates the `ReadyResult`; it cannot explain why candidate manifest drift fired. Recommended remediation: do not route future root-cause work to this file except to verify emitted `canonicalReadiness` and `trustState` fields.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` — Candidate manifest drift fires from a stored manifest `{count,digest}` compared against `graphDb.getTrackedFiles()`, not from scope hash or git HEAD. The predicate is `stored exists AND (sorted tracked-file count differs OR sha256(sorted tracked-file paths joined by "\n").slice(0,16) differs)`. Because `query.ts` disables inline full scans, any manifest mismatch becomes a blocked read. Recommended remediation: add a regression test that reproduces the native read-after-`includeSkills:true` scan sequence and asserts the manifest baseline is recorded and compared under the same path/scope normalization.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293` — Scope fingerprint drift is a separate earlier full-scan predicate, and per-call scan scopes are explicitly exempted when `storedScope.source === 'scan-argument'`. The native trial's error text was therefore not the scope mismatch branch. Recommended remediation: keep the branch separation, but include active/stored scope and manifest count/digest diagnostics in blocked-read payloads so operators can distinguish scope drift from manifest drift without source tracing.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241` — `readiness-contract.ts` only decorates the `ReadyResult`; it cannot explain why candidate manifest drift fired. Recommended remediation: do not route future root-cause work to this file except to verify emitted `canonicalReadiness` and `trustState` fields.
 
 ## EVIDENCE
 Native-rerun evidence:
@@ -30,19 +30,19 @@ Native-rerun evidence:
 
 Code path evidence:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089` calls `ensureCodeGraphReady(process.cwd(), { allowInlineIndex: true, allowInlineFullScan: false })`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787` blocks reads when `readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:818` emits `code_graph_full_scan_required: ${readiness.reason}`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:527` returns without scanning when state action is `full_scan` and `allowInlineFullScan` is false.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:532` appends `; inline full scan skipped for read path`, matching the native-rerun error suffix.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:179` records a manifest as sorted tracked file count plus a 16-character SHA-256 digest.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` loads the stored manifest and returns drift when count or digest differs.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:343` assigns `manifestDrift = detectCandidateManifestDrift(trackedFiles)`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:358` returns stale/full-scan with reason `candidate manifest drift: indexable file set has changed since last scan`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:101` builds the scope fingerprint independently as `code-graph-scope:v2:...`.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:302` only fires the scope mismatch gate when the stored scope is not `scan-argument` and stored/active fingerprints differ.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:314` reads git HEAD, and `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:335` treats it as significant only when the diff is not out-of-scope.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241` builds the readiness block from an already-computed `ReadyResult`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089` calls `ensureCodeGraphReady(process.cwd(), { allowInlineIndex: true, allowInlineFullScan: false })`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787` blocks reads when `readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:818` emits `code_graph_full_scan_required: ${readiness.reason}`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:527` returns without scanning when state action is `full_scan` and `allowInlineFullScan` is false.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:532` appends `; inline full scan skipped for read path`, matching the native-rerun error suffix.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:179` records a manifest as sorted tracked file count plus a 16-character SHA-256 digest.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` loads the stored manifest and returns drift when count or digest differs.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:343` assigns `manifestDrift = detectCandidateManifestDrift(trackedFiles)`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:358` returns stale/full-scan with reason `candidate manifest drift: indexable file set has changed since last scan`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:101` builds the scope fingerprint independently as `code-graph-scope:v2:...`.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:302` only fires the scope mismatch gate when the stored scope is not `scan-argument` and stored/active fingerprints differ.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:314` reads git HEAD, and `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:335` treats it as significant only when the diff is not out-of-scope.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:241` builds the readiness block from an already-computed `ReadyResult`.
 
 Exact predicate answer:
 

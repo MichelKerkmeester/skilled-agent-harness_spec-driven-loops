@@ -89,7 +89,7 @@ Capture the second 10-iteration BAD research pass, update the combined synthesis
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | Preserve append-only state continuity for the research loop | `research/deep-research-state.jsonl` contains 20 total entries with Phase 2 lines appended and tagged with `phase: 2` |
-| REQ-005 | Keep the packet validator-clean after the continuation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` exits `0` |
+| REQ-005 | Keep the packet validator-clean after the continuation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` exits `0` |
 | REQ-006 | Repair packet-local documentation drift discovered during validation | `phase-research-prompt.md` no longer references the stale `external/bmad-autonomous-development-main` path or broken markdown targets |
 <!-- /ANCHOR:requirements -->
 

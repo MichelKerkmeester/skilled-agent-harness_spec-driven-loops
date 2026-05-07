@@ -18,9 +18,9 @@ _memory:
     blockers: []
     key_files:
       - "review-report.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -43,8 +43,8 @@ Packet 014 implements the recommended Option #1: a read-only `getGraphReadinessS
 ## Findings table
 | ID | Severity | Check | Title | Evidence |
 |----|----------|-------|-------|----------|
-| F-001 | P2 | 5, 11 | Side-effect proof is mock-surface, not DB-byte-equal | `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:230-235` explicitly substitutes mock-surface assertions for DB-byte equality; `.opencode/.../014-graph-status-readiness-snapshot/spec.md:117` still says "DB file is byte-equal before vs after." |
-| F-002 | INFO | 9 | Write-surface mocks cover all data-mutating exports | `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:223-300`, `322-410`, `485-496`, `770-784` match the 12 asserted write exports in the test. |
+| F-001 | P2 | 5, 11 | Side-effect proof is mock-surface, not DB-byte-equal | `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:230-235` explicitly substitutes mock-surface assertions for DB-byte equality; `.opencode/.../014-graph-status-readiness-snapshot/spec.md:117` still says "DB file is byte-equal before vs after." |
+| F-002 | INFO | 9 | Write-surface mocks cover all data-mutating exports | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:223-300`, `322-410`, `485-496`, `770-784` match the 12 asserted write exports in the test. |
 | F-003 | INFO | 10 | Workspace contains sibling-packet changes outside Packet 014 | `git status --short` shows changes in `context.ts`, `seed-resolver.ts`, `executor-config.ts`, `tool-input-schemas.ts`, and packets `012/013/015`; Packet 014 docs do not attribute those to this packet. |
 
 ## Per-check verdicts
@@ -65,7 +65,7 @@ PASS — `status.ts` now derives `freshness` from `snapshot.freshness` (`status.
 WARN — Criteria A-D are covered as status pass-through tests: fresh (`test:130-142`), empty (`145-159`), broad stale (`162-174`), bounded stale (`177-189`). Error path and trust-state regression are covered (`192-218`). Side-effect freedom is covered by mock-surface assertions (`265-293`), which is not strictly equivalent to DB-byte-equal plus cache inspection from research §5.5 (`research.md:200-206`), but is sufficient when combined with static verification of the full write surface and the helper code path. File-watcher coverage is supported by unchanged constant (`file-watcher.ts:49`) and implementation-summary claims `21/21` pass (`implementation-summary.md:121`), though the reviewer did not run tests.
 
 ### Check 6 — Critical guarded behavior
-PASS — `DEFAULT_DEBOUNCE_MS` remains unchanged at `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49`.
+PASS — `DEFAULT_DEBOUNCE_MS` remains unchanged at `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:49`.
 
 ### Check 7 — Helper extraction quality
 PASS — The new helper is a read-only subset over `detectState()` (`ensure-ready.ts:508-515`). It does not touch `readinessDebounce` (`307`, `321-327`), does not call `cleanupDeletedTrackedFiles` (`341-342` is only in `ensureCodeGraphReady()`), does not call `indexWithTimeout` (`379-402` only in mutating ready path), and does not call `setLastGitHead` (`383-385`, `404-405`).

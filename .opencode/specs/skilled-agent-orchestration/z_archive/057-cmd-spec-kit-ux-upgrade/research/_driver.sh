@@ -46,11 +46,11 @@ render_prompt() {
 
   # Derive last_3_summaries, next_focus, remaining_questions, state_summary via Node helper
   node <<NODE > "$out.tmp" 2>>"$DRIVER_LOG"
-const { renderPromptPack } = require("./.opencode/skill/system-spec-kit/mcp_server/dist/lib/deep-loop/prompt-pack.js");
+const { renderPromptPack } = require("./.opencode/skills/system-spec-kit/mcp_server/dist/lib/deep-loop/prompt-pack.js");
 const fs = require("fs");
 const path = require("path");
 
-const tmpl = "./.opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl";
+const tmpl = "./.opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl";
 const research = "$RESEARCH_DIR";
 const N = $n;
 const NNN = String(N).padStart(3, "0");
@@ -168,7 +168,7 @@ run_iteration() {
 
 reduce_state() {
   log "running reducer..."
-  if node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs "$SPEC_FOLDER" >> "$DRIVER_LOG" 2>&1; then
+  if node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs "$SPEC_FOLDER" >> "$DRIVER_LOG" 2>&1; then
     log "reducer ok"
   else
     log "reducer failed (rc=$?), continuing"
@@ -221,7 +221,7 @@ RESOURCE_MAP="$RESEARCH_DIR/resource-map.md"
 cat > "$SYNTH_PROMPT" <<'SYNTH'
 # Deep-Research Synthesis Pass
 
-You are completing a 10-iteration deep-research loop comparing external SPAR-Kit (jed-tech, npm @spar-kit/install Beta1, Specify→Plan→Act→Retain) at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` against internal `system-spec-kit` (`.opencode/skill/system-spec-kit/SKILL.md`, templates/, `.opencode/command/spec_kit/`, `.opencode/command/memory/`, `.opencode/command/create/`, `.opencode/agent/`).
+You are completing a 10-iteration deep-research loop comparing external SPAR-Kit (jed-tech, npm @spar-kit/install Beta1, Specify→Plan→Act→Retain) at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` against internal `system-spec-kit` (`.opencode/skills/system-spec-kit/SKILL.md`, templates/, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`).
 
 ## Read state
 - `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/research/iterations/iteration-001.md` … `iteration-010.md` (whichever exist)

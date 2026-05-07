@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -50,11 +50,11 @@ The runtime and operator guidance now agree on the same posture: structured JSON
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modified | Reject routine positional stateless saves unless `--recovery` is supplied, and warn only inside the explicit recovery path |
-| `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` | Modified | Mirror the same recovery-only contract and warning behavior in the fallback loader path |
-| `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` | Modified | Add structured JSON enrichment types |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Teach the JSON-primary operator contract |
-| `.opencode/command/memory/save.md` | Modified | Align the save command with the new contract |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modified | Reject routine positional stateless saves unless `--recovery` is supplied, and warn only inside the explicit recovery path |
+| `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` | Modified | Mirror the same recovery-only contract and warning behavior in the fallback loader path |
+| `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` | Modified | Add structured JSON enrichment types |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Teach the JSON-primary operator contract |
+| `.opencode/commands/memory/save.md` | Modified | Align the save command with the new contract |
 <!-- /ANCHOR:what-built -->
 
 ---

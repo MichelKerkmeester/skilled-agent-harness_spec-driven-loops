@@ -39,7 +39,7 @@ _memory:
 
 ### Overview
 
-This plan covers three delivered phases of the CocoIndex integration: Phase 1 installed the `cocoindex-code` Python package via the skill install script into `.opencode/skill/mcp-coco-index/mcp_server/.venv`, initialized and built the code index, and registered the `cocoindex_code` MCP server entry across all 6 CLI config files. Phase 2 hardened the surrounding skill with runtime-truth docs, agent-facing helper scripts, a cross-CLI playbook, and advisor logic that prefers the repo-local binary and semantic exploration prompts. Phase 3 then tightened readiness semantics and published a concrete downstream adoption checklist so sibling repos can verify CocoIndex before relying on advisor heuristics.
+This plan covers three delivered phases of the CocoIndex integration: Phase 1 installed the `cocoindex-code` Python package via the skill install script into `.opencode/skills/mcp-coco-index/mcp_server/.venv`, initialized and built the code index, and registered the `cocoindex_code` MCP server entry across all 6 CLI config files. Phase 2 hardened the surrounding skill with runtime-truth docs, agent-facing helper scripts, a cross-CLI playbook, and advisor logic that prefers the repo-local binary and semantic exploration prompts. Phase 3 then tightened readiness semantics and published a concrete downstream adoption checklist so sibling repos can verify CocoIndex before relying on advisor heuristics.
 
 <!-- /ANCHOR:summary -->
 
@@ -105,8 +105,8 @@ CLI Agent Query ("find authentication middleware")
 
 ### Phase 1: Installation
 
-- [x] Install cocoindex-code via `bash .opencode/skill/mcp-coco-index/scripts/install.sh`
-- [x] Verify binary available at `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc`
+- [x] Install cocoindex-code via `bash .opencode/skills/mcp-coco-index/scripts/install.sh`
+- [x] Verify binary available at `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`
 - [x] Run `ccc init` in project root
 
 ### Phase 2: Index Build
@@ -157,7 +157,7 @@ CLI Agent Query ("find authentication middleware")
 - [x] Add `../../../skill/mcp-coco-index/references/cross_cli_playbook.md` for safe repeated-query, troubleshooting, and cross-CLI usage guidance
 - [x] Add `scripts/common.sh`, `scripts/doctor.sh`, and `scripts/ensure_ready.sh` per `sk-code-opencode`
 - [x] Update `scripts/install.sh` and `scripts/update.sh` to reuse shared helpers and support `--root`
-- [x] Update `.opencode/skill/skill-advisor/scripts/skill_advisor.py` to prefer the repo-local `ccc` binary and auto-route semantic exploration prompts
+- [x] Update `.opencode/skills/skill-advisor/scripts/skill_advisor.py` to prefer the repo-local `ccc` binary and auto-route semantic exploration prompts
 - [x] Validate helper scripts, JSON output cleanliness, and advisor routing behavior
 
 ### Phase 8: Phase 3 Strict Readiness & Adoption Packaging (2026-03-18)
@@ -226,7 +226,7 @@ CLI Agent Query ("find authentication middleware")
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: MCP server causes CLI startup failures, or config changes break existing MCP servers
-- **Procedure**: All changes are additive. Remove `cocoindex_code` entries from all 6 configs, remove `.cocoindex_code/` from `.gitignore`, run `rm -rf .cocoindex_code/`, run `rm -rf .opencode/skill/mcp-coco-index/mcp_server/.venv`
+- **Procedure**: All changes are additive. Remove `cocoindex_code` entries from all 6 configs, remove `.cocoindex_code/` from `.gitignore`, run `rm -rf .cocoindex_code/`, run `rm -rf .opencode/skills/mcp-coco-index/mcp_server/.venv`
 
 <!-- /ANCHOR:rollback -->
 
@@ -286,7 +286,7 @@ Phase 2 (Index) ─────────┘
 2. Remove `[mcp_servers.cocoindex_code]` section from `.codex/config.toml`
 3. Remove `.cocoindex_code/` line from `.gitignore`
 4. Run `rm -rf .cocoindex_code/` to delete local index
-5. Run `rm -rf .opencode/skill/mcp-coco-index/mcp_server/.venv` to remove the local binary
+5. Run `rm -rf .opencode/skills/mcp-coco-index/mcp_server/.venv` to remove the local binary
 6. Verify: re-open each CLI to confirm no startup errors
 
 ### Data Reversal

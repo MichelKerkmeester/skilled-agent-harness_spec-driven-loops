@@ -40,7 +40,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | TypeScript (manifest-loader, inline-gate-renderer) + Bash (scaffolder integration) |
 | **Framework** | Node.js for TS modules; pure shell for orchestration; reuse existing test harness (vitest) |
-| **Storage** | Filesystem only — `.opencode/skill/system-spec-kit/templates/manifest/` |
+| **Storage** | Filesystem only — `.opencode/skills/system-spec-kit/templates/manifest/` |
 | **Testing** | Golden-snapshot tests per preset (5+1 cases from iter 4); existing `validate.sh --strict`; new manifest-loader unit tests |
 
 ### Overview

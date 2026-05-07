@@ -16,9 +16,9 @@ _memory:
     blockers: []
     key_files:
       - "implementation-summary.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/"
-      - ".opencode/skill/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/"
+      - ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/"
+      - ".opencode/skills/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-05"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary
 
@@ -73,9 +73,9 @@ Updated `manual_testing_playbook.md` so the root overview reports 17 determinist
 | `tasks.md` | Created | Packet task ledger |
 | `checklist.md` | Created | Verification checklist |
 | `implementation-summary.md` | Created | Completion summary required by Level 2 validation |
-| `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root playbook count, TOC, category summaries, and cross-reference updates |
-| `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | Created | MR-001 through MR-004 scenario contracts |
-| `.opencode/skill/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | Created | CB-001 through CB-003 scenario contracts |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root playbook count, TOC, category summaries, and cross-reference updates |
+| `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | Created | MR-001 through MR-004 scenario contracts |
+| `.opencode/skills/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | Created | CB-001 through CB-003 scenario contracts |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -110,7 +110,7 @@ The work was delivered as a documentation-only extension. I read the sk-doc play
 | Scenario structure | PASS | Seven new files have frontmatter and five required sections |
 | Root index check | PASS | Root playbook reports MR and CB scenarios and 17 total scenarios |
 | Strict spec validation | PASS | `validate.sh 001-playbook --strict --verbose` returned exit 0 |
-| sk-code alignment drift | PASS | `verify_alignment_drift.py --root .opencode/skill/sk-code` returned exit 0 |
+| sk-code alignment drift | PASS | `verify_alignment_drift.py --root .opencode/skills/sk-code` returned exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

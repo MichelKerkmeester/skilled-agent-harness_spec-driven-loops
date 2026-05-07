@@ -37,7 +37,7 @@
 - **Dimension**: traceability
 - **Files**: All 5 runtimes (orchestrate.md/.toml)
 - **Finding**: Related-resources table references nonexistent `sk-code` path. Live skill surface uses sk-code-review plus stack overlays.
-- **Evidence**: .opencode/skill/ contains sk-code-review, sk-code-opencode, sk-code-web, sk-code-full-stack. No sk-code/ directory.
+- **Evidence**: .opencode/skills/ contains sk-code-review, sk-code-opencode, sk-code-web, sk-code-full-stack. No sk-code/ directory.
 - **Fix**: Replace sk-code references with sk-code-review for baseline.
 
 ## Summary

@@ -123,7 +123,7 @@ EXIT 0
 
 ### Phase 3: Stress Run
 - [ ] Create `logs/` directory
-- [ ] Run `cd .opencode/skill/system-spec-kit/mcp_server && npm run stress 2>&1 | tee <packet>/logs/stress-run-$(date -u +%Y%m%d-%H%M%S).log`
+- [ ] Run `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress 2>&1 | tee <packet>/logs/stress-run-$(date -u +%Y%m%d-%H%M%S).log`
 - [ ] If projected duration >5 min, run in background with Monitor
 - [ ] Capture exit code
 

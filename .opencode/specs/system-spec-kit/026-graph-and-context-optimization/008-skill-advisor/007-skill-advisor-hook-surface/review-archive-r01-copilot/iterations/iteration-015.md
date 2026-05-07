@@ -4,9 +4,9 @@
 Re-verified the producer/runtime brief-authority split using fresh renderer and byte-accounting evidence rather than the earlier first-pass summary only.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:141-152` -> producer-local `renderBrief()` still formats `Advisor: ... use <skill> (confidence X, uncertainty Y).`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:100-137` -> runtime renderer still emits the semicolon/`pass.` format used by adapters.
-- `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts:607-612` -> measurement still sizes `hook.brief`, not the runtime renderer output.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:141-152` -> producer-local `renderBrief()` still formats `Advisor: ... use <skill> (confidence X, uncertainty Y).`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:100-137` -> runtime renderer still emits the semicolon/`pass.` format used by adapters.
+- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts:607-612` -> measurement still sizes `hook.brief`, not the runtime renderer output.
 
 ## Findings
 
@@ -20,7 +20,7 @@ None.
 None.
 
 ### Re-verified (no new severity)
-- `P1-004-01`: status: re-verified via `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:141-152`, `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:100-137`, and `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts:607-612`.
+- `P1-004-01`: status: re-verified via `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:141-152`, `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:100-137`, and `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts:607-612`.
 
 ## Metrics
 - newInfoRatio: 0.05

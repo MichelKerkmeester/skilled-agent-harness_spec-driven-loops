@@ -42,7 +42,7 @@ Implemented the three deferred P2 fixes inside the owned Spec Kit Memory MCP ser
 
 Ran from:
 
-`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server`
+`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server`
 
 Commands:
 

@@ -4,9 +4,9 @@
 Determine whether phase 004 is still a live implementation need and, if not, what future-proof backfill guard would keep the migration safe.
 
 ## Findings
-1. The parser still supports plaintext fallback through `parseLegacyGraphMetadataContent(...)`, so the compatibility path remains real in code even if the current corpus no longer uses it. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:82-160]
+1. The parser still supports plaintext fallback through `parseLegacyGraphMetadataContent(...)`, so the compatibility path remains real in code even if the current corpus no longer uses it. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:82-160]
 2. The active corpus now has zero legacy text `graph-metadata.json` files, and the same is true across all `.opencode/specs/`, including archive folders. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-3. `backfill-graph-metadata.ts` currently refreshes every spec folder; it has no flag to rewrite only legacy-format files. [SOURCE: .opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177]
+3. `backfill-graph-metadata.ts` currently refreshes every spec folder; it has no flag to rewrite only legacy-format files. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177]
 4. The safest future-proof batch path is a guardable flag such as `--rewrite-legacy-only` that rewrites only files whose raw content fails JSON parsing but still loads through the fallback path. On today's branch that flag would be a clean no-op. [INFERENCE: from the current parser plus backfill flow]
 
 ## Ruled Out
@@ -16,8 +16,8 @@ Determine whether phase 004 is still a live implementation need and, if not, wha
 - Assuming the earlier 35-file legacy count still reflected the active branch.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:82-160`
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:82-160`
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/004-normalize-legacy-files/spec.md`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

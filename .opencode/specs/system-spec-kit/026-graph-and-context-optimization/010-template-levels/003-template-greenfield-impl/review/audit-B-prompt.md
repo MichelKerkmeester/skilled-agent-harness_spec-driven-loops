@@ -11,8 +11,8 @@ A binding constraint (ADR-005 in `002/decision-record.md`): **`Level 1/2/3/3+` i
 ## Your task: audit these two files for impact
 
 Audit:
-- `.opencode/skill/system-spec-kit/SKILL.md` (991 lines — the skill definition the AI loads)
-- `.opencode/skill/system-spec-kit/README.md` (1147 lines — the skill maintainer doc)
+- `.opencode/skills/system-spec-kit/SKILL.md` (991 lines — the skill definition the AI loads)
+- `.opencode/skills/system-spec-kit/README.md` (1147 lines — the skill maintainer doc)
 
 For each, identify EVERY:
 

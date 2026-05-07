@@ -155,7 +155,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skill/sk-code-review/references/review_core.md` before assigning severity.
+- Load `.opencode/skills/sk-code-review/references/review_core.md` before assigning severity.
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -233,9 +233,9 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Coc
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/command/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
+| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -254,7 +254,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.opencode/skill/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -299,14 +299,14 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.opencode/skill/deep-review/references/loop_protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `.opencode/skills/deep-review/references/loop_protocol.md §Lifecycle Branches (current release)`.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.opencode/skill/deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `.opencode/skills/deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 

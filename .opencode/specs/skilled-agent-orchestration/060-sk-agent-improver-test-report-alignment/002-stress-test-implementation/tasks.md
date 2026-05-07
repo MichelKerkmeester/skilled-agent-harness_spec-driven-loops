@@ -33,7 +33,7 @@ _memory:
 - **T-002** Bootstrap `description.json` + `graph-metadata.json` via `generate-context.js` — [pending]
 - **T-003** Strict-validate spec folder — [pending]
 - **T-004** Read `001/research/research.md` §6 fully; extract fixture-target requirements — [pending]
-- **T-005** Author fixture-target spec at `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/README.md` (or chosen path) — [pending]
+- **T-005** Author fixture-target spec at `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/README.md` (or chosen path) — [pending]
 <!-- /ANCHOR:stage-1 -->
 
 ---

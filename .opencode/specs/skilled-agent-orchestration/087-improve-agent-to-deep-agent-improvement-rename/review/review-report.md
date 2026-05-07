@@ -37,16 +37,16 @@ Planning Packet:
   ],
   "planSeed": [
     "Replace stale Gemini YAML asset references with improve_deep-agent-improvement_{auto,confirm}.yaml or document Gemini non-YAML behavior explicitly",
-    "Replace active playbook/default benchmark/feature-catalog old agent paths with .opencode/agent/deep-agent-improvement.md",
+    "Replace active playbook/default benchmark/feature-catalog old agent paths with .opencode/agents/deep-agent-improvement.md",
     "Populate implementation-summary placeholders and mark task/checklist evidence truthfully",
     "Re-run active-scope old-name inventory and update resource-map OK rows only after verification"
   ],
   "findingClasses": ["cross-consumer", "matrix/evidence"],
   "affectedSurfacesSeed": [
     ".gemini/commands/improve/",
-    ".opencode/skill/deep-agent-improvement/manual_testing_playbook/",
-    ".opencode/skill/deep-agent-improvement/feature_catalog/",
-    ".opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json",
+    ".opencode/skills/deep-agent-improvement/manual_testing_playbook/",
+    ".opencode/skills/deep-agent-improvement/feature_catalog/",
+    ".opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json",
     "specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/"
   ],
   "fixCompletenessRequired": true
@@ -58,11 +58,11 @@ Planning Packet:
 | ID | Sev | Dimension | Evidence | Summary | Disposition |
 |----|-----|-----------|----------|---------|-------------|
 | F001 | P1 | correctness | `.gemini/commands/improve/improve-agent.toml:60`; `.gemini/commands/improve/README.txt:158` | Gemini command docs still point at obsolete `improve_improve-agent_{auto,confirm}.yaml` names while OpenCode/Claude use renamed assets. | active |
-| F002 | P1 | correctness | `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77`; `015-active-critic-overfit.md:73` | Active playbook commands still `cat .opencode/agent/improve-agent.md` after the file was renamed. | active |
+| F002 | P1 | correctness | `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77`; `015-active-critic-overfit.md:73` | Active playbook commands still `cat .opencode/agents/improve-agent.md` after the file was renamed. | active |
 | F003 | P1 | correctness | `implementation-summary.md:33`, `:43`, `:55`, `:79`, `:133`, `:147`, `:161` | Implementation summary claims COMPLETE while retaining `[POPULATE]` placeholders. | active |
 | F004 | P1 | traceability | `implementation-summary.md:33`; `tasks.md:128-131`; `checklist.md:139-140` | Completion claims are not traceable to task/checklist ledgers, which remain unchecked. | active |
 | F005 | P1 | traceability | `resource-map.md:57`, `:83`, `:112-113`; Gemini/playbook evidence from F001/F002 | Resource map marks active stale-reference surfaces OK despite current stale references. | active |
-| F006 | P1 | maintainability | `.opencode/skill/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:18`; `default.json:6` | Active feature catalog, SKILL integration points, and benchmark defaults still publish old agent/YAML identity. | active |
+| F006 | P1 | maintainability | `.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:18`; `default.json:6` | Active feature catalog, SKILL integration points, and benchmark defaults still publish old agent/YAML identity. | active |
 
 No P0 findings were confirmed. No P2-only advisories were recorded.
 
@@ -88,7 +88,7 @@ Fix F005 after Workstreams A/B by changing false `OK` rows to accurate status/ev
 
 ## 6. Plan Seed
 
-1. Run active exact searches for `improve_improve-agent`, `.opencode/agent/improve-agent.md`, `@improve-agent`, `name: improve-agent`, and `name = "improve-agent"`, excluding historical spec/archive/barter paths.
+1. Run active exact searches for `improve_improve-agent`, `.opencode/agents/improve-agent.md`, `@improve-agent`, `name: improve-agent`, and `name = "improve-agent"`, excluding historical spec/archive/barter paths.
 2. Update each active stale reference to `deep-agent-improvement` naming or document a narrowly scoped non-rename reason where applicable.
 3. Populate `implementation-summary.md` with actual completion date, delivery narrative, limitations, and commit/verification evidence.
 4. Update `tasks.md`, `checklist.md`, and `resource-map.md` to match verified reality.
@@ -110,7 +110,7 @@ Overlay Protocols:
 | skill_agent | partial | Renamed agent exists, but active playbook and skill docs/config still publish stale old paths. |
 | agent_cross_runtime | partial | OpenCode/Claude command docs use renamed YAML assets; Gemini command docs still reference old names. |
 | feature_catalog_code | fail | Feature catalog and benchmark defaults still publish old agent/YAML identity. |
-| playbook_capability | fail | CP-041/CP-042 command blocks still load the removed `.opencode/agent/improve-agent.md`. |
+| playbook_capability | fail | CP-041/CP-042 command blocks still load the removed `.opencode/agents/improve-agent.md`. |
 
 ## Resource Map Coverage Gate
 

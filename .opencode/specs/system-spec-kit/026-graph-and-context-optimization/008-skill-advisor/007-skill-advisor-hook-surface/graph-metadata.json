@@ -56,7 +56,7 @@
       "shared/unicode-normalization.ts",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skill/.advisor-state/generation.json",
+      ".opencode/skills/.advisor-state/generation.json",
       ".gemini/settings.json",
       ".codex/settings.json",
       "mcp_server/hooks/claude/session-prime.ts",
@@ -128,7 +128,7 @@
       {
         "name": "generation.json",
         "kind": "config",
-        "path": ".opencode/skill/.advisor-state/generation.json",
+        "path": ".opencode/skills/.advisor-state/generation.json",
         "source": "derived"
       },
       {

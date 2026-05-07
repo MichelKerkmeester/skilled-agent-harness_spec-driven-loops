@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Update track parent metadata"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-git/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -73,8 +73,8 @@ Produce two `manual_testing_playbook/` packages — one per skill — following 
 ## 3. SCOPE
 
 ### In Scope
-- `manual_testing_playbook/` package under `.opencode/skill/sk-code-review/` (root + 6 categories + ~17 per-feature files).
-- `manual_testing_playbook/` package under `.opencode/skill/sk-git/` (root + 6 categories + ~21 per-feature files).
+- `manual_testing_playbook/` package under `.opencode/skills/sk-code-review/` (root + 6 categories + ~17 per-feature files).
+- `manual_testing_playbook/` package under `.opencode/skills/sk-git/` (root + 6 categories + ~21 per-feature files).
 - RCAF-pattern operator prompts executable natively (Claude Code / OpenCode) and via external CLIs (cli-codex, cli-opencode, cli-gemini, cli-copilot).
 - Strict validation on each root playbook plus manual structural sweep on per-feature files.
 - `@review`-driven sk-code-review DQI quality pass on each playbook (dogfoods sk-code-review while validating its own playbook).
@@ -89,8 +89,8 @@ Produce two `manual_testing_playbook/` packages — one per skill — following 
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skill/sk-code-review/manual_testing_playbook/**` | Create | 001 | Root + 6 categories + ~17 per-feature files |
-| `.opencode/skill/sk-git/manual_testing_playbook/**` | Create | 002 | Root + 6 categories + ~21 per-feature files |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/**` | Create | 001 | Root + 6 categories + ~17 per-feature files |
+| `.opencode/skills/sk-git/manual_testing_playbook/**` | Create | 002 | Root + 6 categories + ~21 per-feature files |
 | `.opencode/specs/skilled-agent-orchestration/graph-metadata.json` | Modify | finalize | Append child id; bump last_active_child_id |
 <!-- /ANCHOR:scope -->
 

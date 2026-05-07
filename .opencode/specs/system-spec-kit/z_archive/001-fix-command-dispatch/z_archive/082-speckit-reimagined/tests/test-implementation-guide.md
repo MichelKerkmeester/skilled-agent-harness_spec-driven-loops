@@ -2007,19 +2007,19 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd .opencode/skill/system-spec-kit/mcp_server
+          cd .opencode/skills/system-spec-kit/mcp_server
           npm ci
 
       - name: Run unit tests
         run: |
-          cd .opencode/skill/system-spec-kit/mcp_server
+          cd .opencode/skills/system-spec-kit/mcp_server
           node tests/tier-classifier.test.js
           node tests/attention-decay.test.js
           node tests/fsrs-scheduler.test.js
 
       - name: Run integration tests
         run: |
-          cd .opencode/skill/system-spec-kit/mcp_server
+          cd .opencode/skills/system-spec-kit/mcp_server
           node tests/memory-search-integration.test.js
           node tests/memory-save-integration.test.js
 
@@ -2027,7 +2027,7 @@ jobs:
         if: matrix.node-version == '20.x'
         uses: codecov/codecov-action@v3
         with:
-          files: .opencode/skill/system-spec-kit/mcp_server/coverage/lcov.info
+          files: .opencode/skills/system-spec-kit/mcp_server/coverage/lcov.info
           fail_ci_if_error: true
 
   lint:

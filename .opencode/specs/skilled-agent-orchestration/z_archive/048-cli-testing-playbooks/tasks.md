@@ -64,9 +64,9 @@ _memory:
 
 ### Wave 1 (parallel @write dispatch × 3)
 
-- [ ] T010 [P] Dispatch `/create:testing-playbook cli-gemini create :auto` via @write (output: `.opencode/skill/cli-gemini/manual_testing_playbook/`)
-- [ ] T011 [P] Dispatch `/create:testing-playbook cli-claude-code create :auto` via @write (output: `.opencode/skill/cli-claude-code/manual_testing_playbook/`)
-- [ ] T012 [P] Dispatch `/create:testing-playbook cli-codex create :auto` via @write (output: `.opencode/skill/cli-codex/manual_testing_playbook/`)
+- [ ] T010 [P] Dispatch `/create:testing-playbook cli-gemini create :auto` via @write (output: `.opencode/skills/cli-gemini/manual_testing_playbook/`)
+- [ ] T011 [P] Dispatch `/create:testing-playbook cli-claude-code create :auto` via @write (output: `.opencode/skills/cli-claude-code/manual_testing_playbook/`)
+- [ ] T012 [P] Dispatch `/create:testing-playbook cli-codex create :auto` via @write (output: `.opencode/skills/cli-codex/manual_testing_playbook/`)
 
 ### Wave 1 Validation
 
@@ -79,8 +79,8 @@ _memory:
 
 ### Wave 2 (parallel @write dispatch × 2)
 
-- [ ] T030 [P] Dispatch `/create:testing-playbook cli-copilot create :auto` via @write (output: `.opencode/skill/cli-copilot/manual_testing_playbook/`)
-- [ ] T031 [P] Dispatch `/create:testing-playbook cli-opencode create :auto` via @write (output: `.opencode/skill/cli-opencode/manual_testing_playbook/`)
+- [ ] T030 [P] Dispatch `/create:testing-playbook cli-copilot create :auto` via @write (output: `.opencode/skills/cli-copilot/manual_testing_playbook/`)
+- [ ] T031 [P] Dispatch `/create:testing-playbook cli-opencode create :auto` via @write (output: `.opencode/skills/cli-opencode/manual_testing_playbook/`)
 
 ### Wave 2 Validation
 

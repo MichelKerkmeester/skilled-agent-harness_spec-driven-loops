@@ -20,13 +20,13 @@ _memory:
       - "Gate 3 still matches pre-existing non-cli-opencode hardcoded paths outside the allowed remediation set"
       - "Gate 7 still reports a pre-existing sk-code diff outside this remediation"
     key_files:
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/mcp-code-mode/references/workflows.md"
-      - ".opencode/skill/cli-opencode/README.md"
-      - ".opencode/skill/cli-opencode/references/opencode_tools.md"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/mcp-code-mode/references/workflows.md"
+      - ".opencode/skills/cli-opencode/README.md"
+      - ".opencode/skills/cli-opencode/references/opencode_tools.md"
     session_dedup:
       fingerprint: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       session_id: "phase-071-001-remediation"
@@ -75,18 +75,18 @@ V-007 is fixed by removing stale sk-code reference links from the agnostic Chrom
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py` | Modified | Remove named library canonical path default |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modified | Remove stack/library explicit boosts and taxonomy comments |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modified | Remove stack-specific lexical hint |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | Remove stack-specific legacy scorer cues |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/*.js` | Modified | Mirror advisor lane changes in ignored dist files |
-| `.opencode/skill/system-spec-kit/scripts/.folder-list.txt` | Modified | Neutralize tracked scan artifact paths |
-| `.opencode/skill/system-spec-kit/scripts/.scan-lines.txt` | Modified | Neutralize tracked scan artifact paths |
-| `.opencode/skill/mcp-code-mode/references/workflows.md` | Modified | Replace real-client expected log text |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md` | Modified | Align MyService tool naming |
-| `.opencode/skill/mcp-chrome-devtools/examples/README.md` | Modified | Remove dead sk-code links |
-| `.opencode/skill/cli-opencode/*` | Modified | Replace hardcoded local path examples with placeholders |
-| `.opencode/skill/system-spec-kit/*tests*` | Modified | Neutralize old sample terms in test source and repair the touched JS test runner |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py` | Modified | Remove named library canonical path default |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modified | Remove stack/library explicit boosts and taxonomy comments |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modified | Remove stack-specific lexical hint |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | Remove stack-specific legacy scorer cues |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/*.js` | Modified | Mirror advisor lane changes in ignored dist files |
+| `.opencode/skills/system-spec-kit/scripts/.folder-list.txt` | Modified | Neutralize tracked scan artifact paths |
+| `.opencode/skills/system-spec-kit/scripts/.scan-lines.txt` | Modified | Neutralize tracked scan artifact paths |
+| `.opencode/skills/mcp-code-mode/references/workflows.md` | Modified | Replace real-client expected log text |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md` | Modified | Align MyService tool naming |
+| `.opencode/skills/mcp-chrome-devtools/examples/README.md` | Modified | Remove dead sk-code links |
+| `.opencode/skills/cli-opencode/*` | Modified | Replace hardcoded local path examples with placeholders |
+| `.opencode/skills/system-spec-kit/*tests*` | Modified | Neutralize old sample terms in test source and repair the touched JS test runner |
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation/*` | Created | Add child remediation packet |
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/graph-metadata.json` | Modified | Register `001-remediation` child |
 <!-- /ANCHOR:what-built -->
@@ -134,7 +134,7 @@ The changes were delivered as narrow text and scorer-rule edits after reading th
 | Check | Result |
 |-------|--------|
 | `PYTHONPYCACHEPREFIX=/tmp/codex-pyc python3 -m py_compile ...settings.py ...skill_advisor.py` | PASS |
-| `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/python -m pytest .opencode/skill/mcp-coco-index/tests/test_settings.py` | PASS, 20 passed |
+| `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python -m pytest .opencode/skills/mcp-coco-index/tests/test_settings.py` | PASS, 20 passed |
 | `npx vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts` | PASS, 21 passed |
 | `scripts/node_modules/.bin/vitest run scripts/tests/generate-context-cli-authority.vitest.ts scripts/tests/session-enrichment.vitest.ts --config mcp_server/vitest.config.ts` | PASS, 26 passed, 1 skipped |
 | `node scripts/tests/test-subfolder-resolution.js` | PASS, 32 passed |
@@ -156,5 +156,5 @@ The changes were delivered as narrow text and scorer-rule edits after reading th
 1. **Global gates are not all green.** The actionable V-001 through V-007 target files are clean, but the exact broad gates still catch generated, vendored, or pre-existing files outside the allowed remediation set.
 2. **Parent metadata remains separate scope.** V-008 is documented in ADR-002 and still needs a parent-metadata-repair packet.
 3. **Compiled graph aggregation remains visible.** V-009 is documented in ADR-003; broad grep still sees the compiled aggregate.
-4. **sk-code exact diff gate is polluted by pre-existing worktree state.** This remediation did not edit sk-code, but `git diff --name-only .opencode/skill/sk-code/` is not empty because the file was already modified before this turn.
+4. **sk-code exact diff gate is polluted by pre-existing worktree state.** This remediation did not edit sk-code, but `git diff --name-only .opencode/skills/sk-code/` is not empty because the file was already modified before this turn.
 <!-- /ANCHOR:limitations -->

@@ -58,9 +58,9 @@ status: done
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Strip `## Agent Routing` (3-agent table: @context, @speckit, @review), remove `<!-- REFERENCE ONLY/END -->` guards, add `## CONSTRAINTS` (.opencode/command/create/skill.md)
-- [x] T003 Restructure 3 `agent_routing:` blocks to `agent_availability:` with `condition:` and `not_for:` fields (`.opencode/command/create/assets/create_skill_auto.yaml`)
-- [x] T004 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/command/create/assets/create_skill_confirm.yaml`)
+- [x] T002 Strip `## Agent Routing` (3-agent table: @context, @speckit, @review), remove `<!-- REFERENCE ONLY/END -->` guards, add `## CONSTRAINTS` (.opencode/commands/create/skill.md)
+- [x] T003 Restructure 3 `agent_routing:` blocks to `agent_availability:` with `condition:` and `not_for:` fields (`.opencode/commands/create/assets/create_skill_auto.yaml`)
+- [x] T004 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/commands/create/assets/create_skill_confirm.yaml`)
 
 **Completion Criteria**: skill.md has CONSTRAINTS, no Agent Routing; both YAMLs have 3 agent_availability blocks each.
 
@@ -78,9 +78,9 @@ status: done
 
 ### Phase 3: agent.md + 2 YAMLs (3-agent)
 
-- [x] T005 Strip `## Agent Routing` (3-agent table: @context, @speckit, @review), remove guards, add `## CONSTRAINTS` (`.opencode/command/create/agent.md`)
-- [x] T006 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/command/create/assets/create_agent_auto.yaml`)
-- [x] T007 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/command/create/assets/create_agent_confirm.yaml`)
+- [x] T005 Strip `## Agent Routing` (3-agent table: @context, @speckit, @review), remove guards, add `## CONSTRAINTS` (`.opencode/commands/create/agent.md`)
+- [x] T006 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/commands/create/assets/create_agent_auto.yaml`)
+- [x] T007 Restructure 3 `agent_routing:` blocks to `agent_availability:` (`.opencode/commands/create/assets/create_agent_confirm.yaml`)
 
 **Completion Criteria**: agent.md has CONSTRAINTS, no Agent Routing; both YAMLs have 3 agent_availability blocks each.
 
@@ -88,9 +88,9 @@ status: done
 
 ### Phase 4: folder_readme.md + 2 YAMLs (1-agent + emoji)
 
-- [x] T008 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS`, remove emoji optionality line (`.opencode/command/create/folder_readme.md`)
-- [x] T009 Restructure 1 `agent_routing:` block + emoji cleanup + rename `emoji_conventions:` to `section_icons:` (`.opencode/command/create/assets/create_folder_readme_auto.yaml`)
-- [x] T010 Restructure 1 `agent_routing:` block + emoji cleanup + rename `emoji_conventions:` to `section_icons:` (`.opencode/command/create/assets/create_folder_readme_confirm.yaml`)
+- [x] T008 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS`, remove emoji optionality line (`.opencode/commands/create/folder_readme.md`)
+- [x] T009 Restructure 1 `agent_routing:` block + emoji cleanup + rename `emoji_conventions:` to `section_icons:` (`.opencode/commands/create/assets/create_folder_readme_auto.yaml`)
+- [x] T010 Restructure 1 `agent_routing:` block + emoji cleanup + rename `emoji_conventions:` to `section_icons:` (`.opencode/commands/create/assets/create_folder_readme_confirm.yaml`)
 
 **Completion Criteria**: folder_readme.md has CONSTRAINTS, no Agent Routing, no emoji line; both YAMLs have agent_availability, section_icons, no emoji language.
 
@@ -98,9 +98,9 @@ status: done
 
 ### Phase 5: install_guide.md + 2 YAMLs (1-agent + emoji)
 
-- [x] T011 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/command/create/install_guide.md)
-- [x] T012 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_install_guide_auto.yaml`)
-- [x] T013 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_install_guide_confirm.yaml`)
+- [x] T011 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/commands/create/install_guide.md)
+- [x] T012 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_install_guide_auto.yaml`)
+- [x] T013 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_install_guide_confirm.yaml`)
 
 **Completion Criteria**: install_guide.md has CONSTRAINTS, no Agent Routing; both YAMLs have agent_availability, no emoji language.
 
@@ -108,9 +108,9 @@ status: done
 
 ### Phase 6: skill_asset.md + 2 YAMLs (1-agent + emoji)
 
-- [x] T014 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/command/create/skill_asset.md)
-- [x] T015 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_skill_asset_auto.yaml`)
-- [x] T016 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_skill_asset_confirm.yaml`)
+- [x] T014 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/commands/create/skill_asset.md)
+- [x] T015 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_skill_asset_auto.yaml`)
+- [x] T016 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_skill_asset_confirm.yaml`)
 
 **Completion Criteria**: skill_asset.md has CONSTRAINTS, no Agent Routing; both YAMLs have agent_availability, no emoji language.
 
@@ -118,9 +118,9 @@ status: done
 
 ### Phase 7: skill_reference.md + 2 YAMLs (1-agent + emoji)
 
-- [x] T017 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/command/create/skill_reference.md)
-- [x] T018 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_skill_reference_auto.yaml`)
-- [x] T019 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/command/create/assets/create_skill_reference_confirm.yaml`)
+- [x] T017 Strip `## Agent Routing` (1-agent: @review), remove guards, add `## CONSTRAINTS` (.opencode/commands/create/skill_reference.md)
+- [x] T018 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_skill_reference_auto.yaml`)
+- [x] T019 Restructure 1 `agent_routing:` block + emoji cleanup (`.opencode/commands/create/assets/create_skill_reference_confirm.yaml`)
 
 **Completion Criteria**: skill_reference.md has CONSTRAINTS, no Agent Routing; both YAMLs have agent_availability, no emoji language.
 

@@ -3,7 +3,7 @@ Date: 2026-03-21
 
 ## Methodology
 
-Analyzed all `import` and `require` statements across 11 subsystems under `.opencode/skill/system-spec-kit/scripts/` plus cross-boundary imports between `scripts/` and `mcp_server/handlers/`. Used Grep to extract every import path and mapped source-subsystem to target-subsystem to build a complete dependency matrix.
+Analyzed all `import` and `require` statements across 11 subsystems under `.opencode/skills/system-spec-kit/scripts/` plus cross-boundary imports between `scripts/` and `mcp_server/handlers/`. Used Grep to extract every import path and mapped source-subsystem to target-subsystem to build a complete dependency matrix.
 
 ## Subsystem File Counts
 

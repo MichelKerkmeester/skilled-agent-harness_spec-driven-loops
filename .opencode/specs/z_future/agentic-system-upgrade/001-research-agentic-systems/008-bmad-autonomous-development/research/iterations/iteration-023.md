@@ -11,8 +11,8 @@ Compared BAD's module setup questionnaire and module manifest to the current lev
 
 ## Evidence
 - BAD centralizes setup in a compact configuration questionnaire and writes the needed files from that single guided path. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:40-93] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module.yaml:7-40]
-- `system-spec-kit` uses a progressive level model with CORE + ADDENDUM templates, multiple level folders, and explicit copy/setup instructions. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:14-39] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:67-186] [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:18-58]
-- Strict validation is comprehensive and helpful for correctness, but the rule inventory is large and the first-run experience depends on the operator understanding required files, placeholders, and section contracts. [SOURCE: .opencode/skill/system-spec-kit/references/validation/validation_rules.md:39-55] [SOURCE: .opencode/skill/system-spec-kit/references/validation/validation_rules.md:65-204]
+- `system-spec-kit` uses a progressive level model with CORE + ADDENDUM templates, multiple level folders, and explicit copy/setup instructions. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:14-39] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:67-186] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:18-58]
+- Strict validation is comprehensive and helpful for correctness, but the rule inventory is large and the first-run experience depends on the operator understanding required files, placeholders, and section contracts. [SOURCE: .opencode/skills/system-spec-kit/references/validation/validation_rules.md:39-55] [SOURCE: .opencode/skills/system-spec-kit/references/validation/validation_rules.md:65-204]
 
 ## Analysis
 The local system has a better documentation substrate than BAD because it solves a broader planning/governance problem. The UX issue is not the existence of levels; it is the amount of up-front template literacy required to start safely. BAD's setup flow offers a portable lesson: ask a small number of intent questions, then generate the right structure. `system-spec-kit` should preserve level depth but front it with a guided scaffold path.
@@ -43,7 +43,7 @@ confidence: high
 finding: The Level 1/2/3+ model should stay, but its UX needs a BAD-style guided bootstrap. `system-spec-kit` should turn level and template selection into a short questionnaire plus generated scaffold path.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/templates/README.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/templates/README.md`
 - **Change type:** added capability
 - **Blast radius:** medium
 - **Prerequisites:** define the minimum question set that predicts level choice without reintroducing more ceremony

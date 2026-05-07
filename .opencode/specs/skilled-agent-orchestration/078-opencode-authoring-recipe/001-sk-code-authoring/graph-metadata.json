@@ -39,16 +39,16 @@
     "status": "complete",
     "key_files": [
       "changelog/v3.2.0.0.md",
-      ".opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md",
-      ".opencode/skill/sk-code/assets/opencode/checklists/agent_authoring.md",
-      ".opencode/skill/sk-code/assets/opencode/checklists/command_authoring.md",
-      ".opencode/skill/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
-      ".opencode/skill/sk-code/assets/opencode/checklists/spec_folder_authoring.md",
-      ".opencode/skill/sk-code/assets/opencode/recipes/spec_folder_write.md",
-      ".opencode/skill/sk-code/SKILL.md",
-      ".opencode/skill/sk-code/description.json",
-      ".opencode/skill/sk-code/changelog/v3.2.0.0.md",
-      ".opencode/skill/sk-doc/assets/documentation/changelog_template.md",
+      ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md",
+      ".opencode/skills/sk-code/assets/opencode/checklists/agent_authoring.md",
+      ".opencode/skills/sk-code/assets/opencode/checklists/command_authoring.md",
+      ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
+      ".opencode/skills/sk-code/assets/opencode/checklists/spec_folder_authoring.md",
+      ".opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/changelog/v3.2.0.0.md",
+      ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -64,55 +64,55 @@
       {
         "name": "skill_authoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md",
         "source": "derived"
       },
       {
         "name": "agent_authoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/checklists/agent_authoring.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/agent_authoring.md",
         "source": "derived"
       },
       {
         "name": "command_authoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/checklists/command_authoring.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/command_authoring.md",
         "source": "derived"
       },
       {
         "name": "mcp_server_authoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
         "source": "derived"
       },
       {
         "name": "spec_folder_authoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/checklists/spec_folder_authoring.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/checklists/spec_folder_authoring.md",
         "source": "derived"
       },
       {
         "name": "spec_folder_write.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/assets/opencode/recipes/spec_folder_write.md",
+        "path": ".opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code/SKILL.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-code/description.json",
+        "path": ".opencode/skills/sk-code/description.json",
         "source": "derived"
       },
       {
         "name": "changelog_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/changelog_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
         "source": "derived"
       },
       {

@@ -13,8 +13,8 @@ _memory:
     next_safe_action: "Commit + push"
     blockers: []
     key_files:
-      - .opencode/skill/cli-copilot/SKILL.md
-      - .opencode/skill/sk-doc/SKILL.md
+      - .opencode/skills/cli-copilot/SKILL.md
+      - .opencode/skills/sk-doc/SKILL.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "075-final"
@@ -65,8 +65,8 @@ Add caveat blocks in two surfaces where future consumers will look:
 ## 3. SCOPE
 
 ### In Scope
-- Add caveat to `.opencode/skill/cli-copilot/SKILL.md` §1 "When NOT to Use" referencing 071/072 data + cli-codex preference
-- Add cross-CLI consumption note to `.opencode/skill/sk-doc/SKILL.md` §2 "Resource Domains" with the per-CLI accuracy table summary
+- Add caveat to `.opencode/skills/cli-copilot/SKILL.md` §1 "When NOT to Use" referencing 071/072 data + cli-codex preference
+- Add cross-CLI consumption note to `.opencode/skills/sk-doc/SKILL.md` §2 "Resource Domains" with the per-CLI accuracy table summary
 - Both caveats reference review-report-v2.md for the full evidence trail
 
 ### Out of Scope
@@ -79,8 +79,8 @@ Add caveat blocks in two surfaces where future consumers will look:
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-copilot/SKILL.md` | Modify | Append caveat bullet to "When NOT to Use" section |
-| `.opencode/skill/sk-doc/SKILL.md` | Modify | Insert cross-CLI consumption note in §2 Resource Domains |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modify | Append caveat bullet to "When NOT to Use" section |
+| `.opencode/skills/sk-doc/SKILL.md` | Modify | Insert cross-CLI consumption note in §2 Resource Domains |
 | `075/{spec,plan,tasks,implementation-summary}.md` | Create | Spec docs |
 <!-- /ANCHOR:scope -->
 

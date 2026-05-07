@@ -6,9 +6,9 @@
 
 ### Multi-Repository Architecture
 
-**Universal Framework:** Code work behavior is handled automatically by the `sk-code` skill, which routes between code surfaces detected at dispatch time. The active set of detection markers and per-surface patterns lives inside `sk-code` — see `.opencode/skill/sk-code/SKILL.md` §2 Smart Routing for the current detection list and `references/<surface>/` for per-surface conventions.
+**Universal Framework:** Code work behavior is handled automatically by the `sk-code` skill, which routes between code surfaces detected at dispatch time. The active set of detection markers and per-surface patterns lives inside `sk-code` — see `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing for the current detection list and `references/<surface>/` for per-surface conventions.
 
-**How It Works:** `sk-code` detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skill/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing.
+**How It Works:** `sk-code` detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skills/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -61,9 +61,9 @@
 
 **MANDATORY TOOLS:**
 - **Spec Kit Memory MCP** - research, context recovery, saves. See Memory Save Rule below for save mechanics.
-- **Skill Advisor Hook** - primary advisor invocation path. Hook-capable runtimes surface a compact skill recommendation on prompt entry when wired; explicit `skill_advisor.py` invocation remains the fallback for scripted checks, unsupported runtimes and hook diagnostics. Reference: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`.
-- **CocoIndex Code MCP** - semantic code search. MUST use when exploring unfamiliar code, finding implementations by concept/intent, or when Grep/Glob exact matching is insufficient. Skill: `.opencode/skill/mcp-coco-index/`
-- **Git (sk-git)** - worktree setup, conventional commits, PR creation. Full details: `.opencode/skill/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
+- **Skill Advisor Hook** - primary advisor invocation path. Hook-capable runtimes surface a compact skill recommendation on prompt entry when wired; explicit `skill_advisor.py` invocation remains the fallback for scripted checks, unsupported runtimes and hook diagnostics. Reference: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
+- **CocoIndex Code MCP** - semantic code search. MUST use when exploring unfamiliar code, finding implementations by concept/intent, or when Grep/Glob exact matching is insufficient. Skill: `.opencode/skills/mcp-coco-index/`
+- **Git (sk-git)** - worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
 **CODE SEARCH DECISION TREE:**
 
@@ -98,7 +98,7 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 
 ### Startup & Resume Recovery
 
-Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skill/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
+Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
 
 **Recovery flow when hooks are unavailable or fail:**
 
@@ -150,7 +150,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **Code search**           | CocoIndex for semantic/intent → Grep for exact text → Glob for file paths → Read for contents                                       |
 | **Resume prior work**     | `/spec_kit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review → Continue    |
 | **Save context**          | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                 |
-| **Claim completion**      | Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence |
+| **Claim completion**      | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence |
 | **End session**           | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                      |
 | **New spec folder**       | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                            |
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
@@ -179,8 +179,8 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 4. **Dual-threshold:** confidence ≥ 0.70 AND uncertainty ≤ 0.35 → PROCEED. Either fails → INVESTIGATE (max 3 iterations) → ESCALATE. Simple: <40% ASK | 40-69% CAUTION | ≥70% PASS
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`.
-2. B) Fallback: run `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior.
+1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
+2. B) Fallback: run `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -188,7 +188,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK - PRIORITY GATE
 - **Overrides Gates 1-2:** If file modification detected → ask Gate 3 BEFORE any analysis/tool calls
-- **Machine contract:** `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). The prose lists below are human-readable; the classifier module is authoritative for runtimes that call it.
+- **Machine contract:** `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`). The prose lists below are human-readable; the classifier module is authoritative for runtimes that call it.
 - **Positive triggers (write actions):** create, add, remove, delete, rename, move, update, change, modify, edit, fix, refactor, implement, build, write, generate, configure
 - **Positive triggers (continuity writes):** `save context`, `save memory`, `/memory:save`, `/spec_kit:resume`, `resume iteration`, `resume deep research`, `resume deep review`, `continue iteration` (these produce `description.json` / `graph-metadata.json` / continuity frontmatter / `iteration-NNN.md` writes)
 - **Read-only disqualifiers:** `review`, `audit`, `inspect`, `analyze`, `explain` — suppress Gate 3 when they appear ALONE (e.g. "review the decomposition phase"). Do NOT suppress when a continuity-write trigger is also present.
@@ -221,7 +221,7 @@ Consolidate multiple questions into a SINGLE prompt before any analysis or tool 
 Trigger: "save context", "save memory", `/memory:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Full save (DB + embeddings + graph):** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Full save (DB + embeddings + graph):** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
   - Also refreshes `graph-metadata.json` and `description.json` for the spec folder.
 - **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
@@ -233,7 +233,7 @@ Trigger: "save context", "save memory", `/memory:save`
 
 #### COMPLETION VERIFICATION RULE [HARD] BLOCK
 Trigger: Claiming "done", "complete", "finished", "works"
-1. Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (Exit 0 = pass, 1 = warnings, 2 = errors).
+1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (Exit 0 = pass, 1 = warnings, 2 = errors).
 2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
 - Skip: Level 1 tasks (no checklist.md required).
 
@@ -264,7 +264,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 | **3+** | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs | Multi-agent, enterprise governance |
 | **Phase Parent** | n/a (control file only) | spec.md, description.json, graph-metadata.json | Folder contains phase children (`[0-9]{3}-name/` subdirs with their own spec.md/description.json) |
 
-**Optional cross-cutting docs (any level)**: `handover.md`, `debug-delegation.md`, `research.md`, and `resource-map.md` - copy from `.opencode/skill/system-spec-kit/templates/` as needed. For phase parents that have undergone reorganization (renames, gap renumbering, consolidation), `context-index.md` provides a migration bridge — optional, no required template.
+**Optional cross-cutting docs (any level)**: `handover.md`, `debug-delegation.md`, `research.md`, and `resource-map.md` - copy from `.opencode/skills/system-spec-kit/templates/` as needed. For phase parents that have undergone reorganization (renames, gap renumbering, consolidation), `context-index.md` provides a migration bridge — optional, no required template.
 
 > **Phase Parent Mode:** When a spec folder contains at least one direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND that child has `spec.md` OR `description.json`, the validator treats the folder as a phase parent and ONLY requires `{spec.md, description.json, graph-metadata.json}` at the parent level. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children where they stay accurate to that phase's actual work. Detection rule: `is_phase_parent()` (shell, in `scripts/lib/shell-common.sh`) and `isPhaseParent()` (TS/JS, in `mcp_server/lib/spec/is-phase-parent.ts` + `scripts/dist/spec/is-phase-parent.js`) are the single source of truth — both must agree. **Content discipline:** the phase-parent `spec.md` must NOT narrate consolidation, merge, or migration history — it documents root purpose, sub-phase control file, and what needs done. Migration history goes in `context-index.md` if needed. Resume on a phase parent first follows a fresh `derived.last_active_child_id` pointer from `graph-metadata.json`; missing, null, stale, or `--no-redirect` cases list child phases with statuses (per `/spec_kit:resume` step 3b) so the user can pick which phase to continue. Tolerant policy: legacy phase parents that retain heavy docs continue to validate; soft-deprecation is a follow-on packet.
 
@@ -274,7 +274,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 ---
 
@@ -303,7 +303,7 @@ Use the agent directory that matches the active runtime/provider profile:
 
 | Runtime / Profile                      | Agent Directory            | Usage Rule                                                  |
 | -------------------------------------- | -------------------------- | ----------------------------------------------------------- |
-| **Opencode** | `.opencode/agent/`         | Load base agent definitions from this directory             |
+| **Opencode** | `.opencode/agents/`         | Load base agent definitions from this directory             |
 | **Claude Code**                     | `.claude/agents/`          | Load Claude-specific agent definitions from this directory  |
 | **Codex CLI**                          | `.codex/agents/`           | Load Codex-specific agent definitions from this directory   |
 | **Gemini CLI**                         | `.gemini/agents/`          | Load Gemini-specific agent definitions from this directory  |
@@ -326,7 +326,7 @@ Use the agent directory that matches the active runtime/provider profile:
 
 #### Distributed Governance Rule
 
-- Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`) MUST use templates from .opencode/skill/system-spec-kit/Level template contract for level-owned docs and the root cross-cutting templates where applicable. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`. `resource-map.md` is optional at any level — copy it from `level_contract_optional_resource-map.md` when a packet wants a lean path ledger alongside `implementation-summary.md`.
+- Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`) MUST use templates from .opencode/skills/system-spec-kit/Level template contract for level-owned docs and the root cross-cutting templates where applicable. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/spec_kit:deep-research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`. `resource-map.md` is optional at any level — copy it from `level_contract_optional_resource-map.md` when a packet wants a lean path ledger alongside `implementation-summary.md`.
 
 ---
 
@@ -355,7 +355,7 @@ Task Received → Gate 2: Read hook brief, or run skill_advisor.py fallback
                     ↓
     Confidence > 0.8 → MUST invoke recommended skill
                     ↓
-     Invoke Skill → Read(".opencode/skill/<skill-name>/SKILL.md")
+     Invoke Skill → Read(".opencode/skills/<skill-name>/SKILL.md")
                     ↓
     Instructions Load → SKILL.md content + resource paths
                     ↓

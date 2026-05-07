@@ -57,10 +57,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation (4 file edits)
 
-- [x] T003 Fix P1-003-A — change `(../agents/command_template.md)` to `(../command_template.md)` at `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770`
-- [x] T004 Fix iter4-F1 P2 — rewrite ASCII project-structure tree at `.opencode/skill/sk-doc/references/global/quick_reference.md:174-189` to reflect new flat layout (4 promoted items at assets/ root, no assets/agents/ line)
-- [x] T005 Fix P2-003-A (file 1) — remove `assets/agents/` from illustrative example list at `.opencode/skill/sk-doc/assets/skill/skill_md_template.md:593`
-- [x] T006 Fix P2-003-A (file 2) — remove `assets/agents/` from illustrative example list at `.opencode/skill/sk-doc/references/specific/skill_creation.md:56`
+- [x] T003 Fix P1-003-A — change `(../agents/command_template.md)` to `(../command_template.md)` at `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770`
+- [x] T004 Fix iter4-F1 P2 — rewrite ASCII project-structure tree at `.opencode/skills/sk-doc/references/global/quick_reference.md:174-189` to reflect new flat layout (4 promoted items at assets/ root, no assets/agents/ line)
+- [x] T005 Fix P2-003-A (file 1) — remove `assets/agents/` from illustrative example list at `.opencode/skills/sk-doc/assets/skill/skill_md_template.md:593`
+- [x] T006 Fix P2-003-A (file 2) — remove `assets/agents/` from illustrative example list at `.opencode/skills/sk-doc/references/specific/skill_creation.md:56`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,10 +68,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 `test -f .opencode/skill/sk-doc/assets/command_template.md` exits 0 (link target exists)
-- [x] T008 `rg -c "assets/agents/" .opencode/skill/sk-doc/references/global/quick_reference.md` returns 0
-- [x] T009 `rg -c "assets/agents/" .opencode/skill/sk-doc/assets/skill/skill_md_template.md` returns 0
-- [x] T010 `rg -c "assets/agents/" .opencode/skill/sk-doc/references/specific/skill_creation.md` returns 0
+- [x] T007 `test -f .opencode/skills/sk-doc/assets/command_template.md` exits 0 (link target exists)
+- [x] T008 `rg -c "assets/agents/" .opencode/skills/sk-doc/references/global/quick_reference.md` returns 0
+- [x] T009 `rg -c "assets/agents/" .opencode/skills/sk-doc/assets/skill/skill_md_template.md` returns 0
+- [x] T010 `rg -c "assets/agents/" .opencode/skills/sk-doc/references/specific/skill_creation.md` returns 0
 - [x] T011 `bash validate.sh --strict` on parent 068 → exit 0, 0 errors, 0 warnings
 - [x] T012 Active-scope residual rg → 0 hits
 - [ ] T013 Stage 4 fix files + 004 spec docs + parent spec + graph-metadata

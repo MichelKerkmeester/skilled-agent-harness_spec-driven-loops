@@ -41,7 +41,7 @@
     "promoted_iter": "iter-5-trimmed",
     "promotion_rationale": "iter-5 synthesis additions valuable beyond scorer's structural-presence dimensions; trim_to_<600 applied",
     "mirrors_synced": [
-      ".opencode/agent/deep-review.md",
+      ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".gemini/agents/deep-review.md",
       ".codex/agents/deep-review.toml"

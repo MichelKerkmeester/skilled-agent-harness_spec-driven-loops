@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "scratch/research-brief.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -54,7 +54,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -78,7 +78,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

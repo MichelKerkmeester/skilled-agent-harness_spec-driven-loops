@@ -1,21 +1,21 @@
 ● Todo added: Fix session ID encoding
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts lines 110-135
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts lines 110-135
   └ 26 lines read
 
-● Edit .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+● Edit .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
 
 ● Grep "crypto\.randomBytes\(8\)\.toString\('hex'\)\.slice\(0, 9\)" in session-extractor.ts
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts)
   └ 1 line found
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts lines 123-127
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts lines 123-127
   └ 5 lines read
 
 ● Todo completed: fix-session-id-encoding
 
-Updated `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` and verified it with grep.  
+Updated `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` and verified it with grep.  
 Exact changed line: `126.   const randomPart = crypto.randomBytes(8).toString('hex').slice(0, 9);`  
 The base64url call was replaced with hex encoding so the random segment stays within the existing `^session-\d+-[a-z0-9]+$` contract.
 

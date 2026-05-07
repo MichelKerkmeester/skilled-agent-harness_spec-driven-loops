@@ -111,13 +111,13 @@ No `||` error handler, no `set -e` trap, no validation.
 ### ✅ MUST FIX NOW (P0 - Blocking Production): 2 Items
 
 **1. Add error guard on shell-common.sh sourcing**
-- File: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` line 29
+- File: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` line 29
 - Evidence: context-124-audit.md:155, :158, :160, :557-562
 - Impact: Production deployment blocked; JSON mode crashes without this
 - Status: MUST FIX NOW
 
 **2. Implement recursive backup for all .md files (including memory/)**
-- File: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` lines 299-315
+- File: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` lines 299-315
 - Evidence: context-124-audit.md:381-389, :564-569
 - Impact: Prevents unrecoverable data loss of session/memory files
 - Status: MUST FIX NOW

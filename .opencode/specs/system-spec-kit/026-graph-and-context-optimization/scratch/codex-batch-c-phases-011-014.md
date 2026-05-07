@@ -29,9 +29,9 @@ Each phase gets its own review packet under `.opencode/specs/system-spec-kit/026
 
 ## MANDATORY READS (read once at start)
 
-1. `.opencode/skill/sk-deep-review/SKILL.md` (sections §1 Purpose, §2 Contract, §3 Phases)
-2. `.opencode/skill/sk-deep-review/assets/deep_review_config.json` (config schema)
-3. `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` (strategy template)
+1. `.opencode/skills/sk-deep-review/SKILL.md` (sections §1 Purpose, §2 Contract, §3 Phases)
+2. `.opencode/skills/sk-deep-review/assets/deep_review_config.json` (config schema)
+3. `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` (strategy template)
 4. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/iterations/iteration-001.md` (reference iteration file format from the earlier parent review)
 5. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/review-report.md` (reference 9-section synthesis; scale down to ~4-5 sections for per-phase reports)
 6. **If `026/review/batch-phase-review-state.json` exists**, read it first. It means Batch A or B ran before this one. Do NOT re-review phases already listed in `phaseResults`. Start from the first Batch C phase that is NOT yet in `phaseResults`.

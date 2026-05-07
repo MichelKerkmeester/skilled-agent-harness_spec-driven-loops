@@ -45,7 +45,7 @@ Complete for actionable D/E/F/G findings. Tier 2 H remains intentionally deferre
 ### What Changed
 
 - **D / 008/007**: accepted and documented Copilot next-prompt semantics instead of unsupported same-current-turn parity; reconciled the parent checklist; verified existing `buildCopilotPromptArg` large-prompt `@path` coverage.
-- **E / 009/005**: corrected stale helper-location evidence to `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`; hardened the compact OpenCode plugin with output-array guards and stable object-sessionID cache keys.
+- **E / 009/005**: corrected stale helper-location evidence to `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`; hardened the compact OpenCode plugin with output-array guards and stable object-sessionID cache keys.
 - **F / 009/002**: restored repo-local Copilot hook wrappers before Superset notification; added workspace-scoped custom-instructions retention plus lock/atomic replacement writes.
 - **G / 006/008**: normalized completed-loop state and `006` packet identity; added acceptance criteria and artifact contract; backfilled sibling 006/007 ledgers to match its implementation summary.
 
@@ -99,7 +99,7 @@ The remediation was delivered as four evidence-preserving source-review closures
 Green focused commands:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 ./node_modules/.bin/vitest run tests/copilot-user-prompt-submit-hook.vitest.ts tests/copilot-hook-wiring.vitest.ts tests/opencode-plugin.vitest.ts tests/deep-loop/cli-matrix.vitest.ts
 # Test Files 4 passed; Tests 36 passed
 
@@ -107,7 +107,7 @@ npm run build
 # tsc --build exit 0
 ```
 
-Broad `npm --prefix .opencode/skill/system-spec-kit/mcp_server run test -- ...` invokes the full `test:core` suite first and surfaced existing unrelated failures before targeted tests; focused tests above are the remediation gate.
+Broad `npm --prefix .opencode/skills/system-spec-kit/mcp_server run test -- ...` invokes the full `test:core` suite first and surfaced existing unrelated failures before targeted tests; focused tests above are the remediation gate.
 
 <!-- /ANCHOR:verification -->
 <!-- ANCHOR:limitations -->

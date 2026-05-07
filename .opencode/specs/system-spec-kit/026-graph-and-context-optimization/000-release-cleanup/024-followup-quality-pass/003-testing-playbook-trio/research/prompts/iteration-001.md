@@ -17,7 +17,7 @@ Locate the playbooks:
 ```bash
 find .opencode/skill -type d -name 'manual_testing_playbook*' -or -type d -name 'manual-testing-playbook*'
 find .opencode/skill -type f -name '*playbook*'
-find .opencode/skill/sk-doc -name '*playbook*'
+find .opencode/skills/sk-doc -name '*playbook*'
 ```
 
 Read at least one existing playbook entry to understand the format.

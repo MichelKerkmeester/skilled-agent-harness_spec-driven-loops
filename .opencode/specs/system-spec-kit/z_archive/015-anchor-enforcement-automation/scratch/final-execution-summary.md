@@ -46,14 +46,14 @@
 ### Files Modified/Created
 **8 files total, ~675 lines added**
 
-1. `.opencode/agent/chatgpt/speckit.md` - Modified (+15 lines)
-2. `.opencode/agent/chatgpt/orchestrate.md` - Modified (+65 lines)
-3. `.opencode/agent/chatgpt/AGENTS.md` - Modified (+23 lines)
-4. `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` - Modified (+5 lines)
-5. `.opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh` - Created (85 lines)
-6. `.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh` - Modified (+12 lines)
-7. `.opencode/skill/system-spec-kit/scripts/lib/anchor-generator.ts` - Modified (+120 lines)
-8. `.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh` - Created (350 lines)
+1. `.opencode/agents/chatgpt/speckit.md` - Modified (+15 lines)
+2. `.opencode/agents/chatgpt/orchestrate.md` - Modified (+65 lines)
+3. `.opencode/agents/chatgpt/AGENTS.md` - Modified (+23 lines)
+4. `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` - Modified (+5 lines)
+5. `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh` - Created (85 lines)
+6. `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` - Modified (+12 lines)
+7. `.opencode/skills/system-spec-kit/scripts/lib/anchor-generator.ts` - Modified (+120 lines)
+8. `.opencode/skills/system-spec-kit/scripts/spec/test-validation.sh` - Created (350 lines)
 
 ### Test Results
 - ✅ 5/5 validation test cases pass
@@ -174,20 +174,20 @@ All P2 items deferred (optional, can defer without approval)
 **How to test:**
 ```bash
 # Run validation on any spec folder
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh [spec-folder-path]
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh [spec-folder-path]
 
 # Run test suite
-.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh
+.opencode/skills/system-spec-kit/scripts/spec/test-validation.sh
 
 # Test feature flag
-SPECKIT_SKIP_VALIDATION=1 .opencode/skill/system-spec-kit/scripts/spec/validate.sh [folder]
+SPECKIT_SKIP_VALIDATION=1 .opencode/skills/system-spec-kit/scripts/spec/validate.sh [folder]
 ```
 
 **Where to find documentation:**
 - Spec folder: `.opencode/specs/system-spec-kit/z_archive/015-anchor-enforcement-automation/`
-- Agent definitions: `.opencode/agent/chatgpt/`
-- Validation scripts: `.opencode/skill/system-spec-kit/scripts/`
-- Test suite: `.opencode/skill/system-spec-kit/scripts/spec/test-validation.sh`
+- Agent definitions: `.opencode/agents/chatgpt/`
+- Validation scripts: `.opencode/skills/system-spec-kit/scripts/`
+- Test suite: `.opencode/skills/system-spec-kit/scripts/spec/test-validation.sh`
 
 **Known limitations:**
 1. Template hash verification not implemented (P1)

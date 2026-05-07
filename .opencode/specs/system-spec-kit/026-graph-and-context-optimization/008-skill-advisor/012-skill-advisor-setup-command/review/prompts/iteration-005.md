@@ -9,7 +9,7 @@ Audit traceability across the packet:
 - Parent doc updates: `008-skill-advisor/{context-index.md, spec.md, tasks.md}` (counts and entries match)
 - Nested changelog at `008-skill-advisor/changelog/changelog-008-012-*.md` matches implementation-summary
 - `.opencode/README.md` Section 5 + Current Counts table (10 spec_kit, 23 commands, 31 YAML assets)
-- `.opencode/command/spec_kit/README.txt` table + structure tree
+- `.opencode/commands/spec_kit/README.txt` table + structure tree
 
 ## Required reads
 1. Strategy + prior iterations
@@ -17,7 +17,7 @@ Audit traceability across the packet:
 3. `008-skill-advisor/{context-index.md, spec.md, tasks.md}`
 4. `008-skill-advisor/changelog/changelog-008-012-skill-advisor-setup-command.md`
 5. `.opencode/README.md`
-6. `.opencode/command/spec_kit/README.txt`
+6. `.opencode/commands/spec_kit/README.txt`
 
 ## What to look for
 - packet_id in graph-metadata.json matches spec_folder string in description.json
@@ -26,7 +26,7 @@ Audit traceability across the packet:
 - Parent spec.md PHASE DOCUMENTATION MAP table has 12-row entry
 - Parent tasks.md has T013 entry referencing the new packet
 - `.opencode/README.md` commands count = 23, YAML assets count = 31, spec_kit count = 10 — verify against `ls`/`find`
-- `.opencode/command/spec_kit/README.txt` table includes skill-advisor row, structure tree shows new files
+- `.opencode/commands/spec_kit/README.txt` table includes skill-advisor row, structure tree shows new files
 
 ## Outputs (MANDATORY)
 Same three artifacts pattern with `iteration-005` suffix. ID prefix `F-TRACE-`.

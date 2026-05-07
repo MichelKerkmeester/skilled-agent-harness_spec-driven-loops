@@ -18,13 +18,13 @@ W4 trigger distribution + SLA panel + decision-class analysis. This follows stra
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/v1-0-3-envelopes.jsonl:12`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:213`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/measurements/phase-h-stress.test.ts:239`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:31`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:42`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:68`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:71`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:82`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:31`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:42`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:68`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:71`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:82`
 
 ## Findings
 

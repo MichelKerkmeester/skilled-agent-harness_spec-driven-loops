@@ -74,11 +74,11 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Command invocable as `/create:prompt "test"` [EVIDENCE: file at .opencode/command/create/prompt.md — correct namespace path]
+- [x] CHK-020 [P0] Command invocable as `/create:prompt "test"` [EVIDENCE: file at .opencode/commands/create/prompt.md — correct namespace path]
 - [x] CHK-021 [P0] Empty invocation triggers mandatory gate [EVIDENCE: prompt.md:12 — "IF $ARGUMENTS is empty, undefined, or contains only whitespace"]
 - [x] CHK-022 [P1] Mode prefixes ($text, $improve, etc.) correctly detected in argument dispatch [EVIDENCE: prompt.md:86-104 — ASCII decision tree with 7 mode prefixes]
 - [x] CHK-023 [P1] :auto/:confirm modes documented and routed [EVIDENCE: prompt.md:109-114 — execution mode parsing with defaults]
-- [x] CHK-024 [P1] Instructions reference sk-improve-prompt SKILL.md correctly [EVIDENCE: prompt.md:146-147 — Read(".opencode/skill/sk-improve-prompt/SKILL.md")]
+- [x] CHK-024 [P1] Instructions reference sk-improve-prompt SKILL.md correctly [EVIDENCE: prompt.md:146-147 — Read(".opencode/skills/sk-improve-prompt/SKILL.md")]
 
 ---
 
@@ -117,7 +117,7 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Command placed in correct namespace directory (`.opencode/command/create/`) [EVIDENCE: file exists at correct path]
+- [x] CHK-050 [P1] Command placed in correct namespace directory (`.opencode/commands/create/`) [EVIDENCE: file exists at correct path]
 - [x] CHK-051 [P2] Memory context saved after implementation [EVIDENCE: memory save via generate-context.js]
 
 ---

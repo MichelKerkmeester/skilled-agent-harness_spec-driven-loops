@@ -8,8 +8,8 @@ Review 10 agent definitions across 5 runtimes for content alignment with 022-hyb
 @context, @orchestrate, @speckit, @deep-review, @deep-research, @handover, @review, @debug, @ultra-think, @write
 
 ### Runtimes
-- Base: `.opencode/agent/*.md`
-- ChatGPT: `.opencode/agent/chatgpt/*.md`
+- Base: `.opencode/agents/*.md`
+- ChatGPT: `.opencode/agents/chatgpt/*.md`
 - Claude: `.claude/agents/*.md`
 - Codex: `.codex/agents/*.toml`
 - Gemini: `.agents/agents/*.md`

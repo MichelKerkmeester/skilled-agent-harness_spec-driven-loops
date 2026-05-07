@@ -69,11 +69,11 @@ Create a skill that teaches Claude Code and OpenCode agents how to invoke Gemini
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skill/cli-gemini/SKILL.md | Create | Main skill definition |
-| .opencode/skill/cli-gemini/references/cli_reference.md | Create | CLI command reference |
-| .opencode/skill/cli-gemini/references/integration_patterns.md | Create | Orchestration patterns |
-| .opencode/skill/cli-gemini/references/gemini_tools.md | Create | Tools documentation |
-| .opencode/skill/cli-gemini/assets/prompt_templates.md | Create | Prompt templates |
+| .opencode/skills/cli-gemini/SKILL.md | Create | Main skill definition |
+| .opencode/skills/cli-gemini/references/cli_reference.md | Create | CLI command reference |
+| .opencode/skills/cli-gemini/references/integration_patterns.md | Create | Orchestration patterns |
+| .opencode/skills/cli-gemini/references/gemini_tools.md | Create | Tools documentation |
+| .opencode/skills/cli-gemini/assets/prompt_templates.md | Create | Prompt templates |
 
 ---
 <!-- /ANCHOR:scope -->

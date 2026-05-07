@@ -2,7 +2,7 @@
 // TEST SUITE: Spec 070 - Memory Ranking System - Part 1: Core Scoring
 // ───────────────────────────────────────────────────────────────
 // Tests for recency, importance, activity, and folder scoring
-// Based on implementation in: .opencode/skill/system-spec-kit/mcp_server/lib/scoring/
+// Based on implementation in: .opencode/skills/system-spec-kit/mcp_server/lib/scoring/
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -10,8 +10,8 @@ const assert = require('assert');
 const path = require('path');
 
 // Module paths
-const SCORING_LIB = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/mcp_server/lib/scoring');
-const STORAGE_LIB = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/mcp_server/lib/storage');
+const SCORING_LIB = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/mcp_server/lib/scoring');
+const STORAGE_LIB = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/mcp_server/lib/storage');
 
 // Import modules under test
 const {

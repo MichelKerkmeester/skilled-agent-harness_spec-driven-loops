@@ -53,15 +53,15 @@ Lean path ledger for the deep-research loop. All paths are absolute or repo-rela
 
 ## Agents
 
-- `.opencode/agent/deep-research.md` — sole executor across iters 1-5
+- `.opencode/agents/deep-research.md` — sole executor across iters 1-5
 
 ---
 
 ## Skills
 
-- `.opencode/skill/deep-research/SKILL.md` — workflow author
-- `.opencode/skill/deep-research/references/loop_protocol.md` — lifecycle branch reference
-- `.opencode/skill/system-spec-kit/SKILL.md` — distributed-governance source for the packet research-write exception
+- `.opencode/skills/deep-research/SKILL.md` — workflow author
+- `.opencode/skills/deep-research/references/loop_protocol.md` — lifecycle branch reference
+- `.opencode/skills/system-spec-kit/SKILL.md` — distributed-governance source for the packet research-write exception
 
 ---
 
@@ -80,7 +80,7 @@ External commands invoked (read-only forensics):
 
 - `grep -rn 'start_daemon\|ensure_daemon\|stop_daemon' tests/`
 - `grep -cE BrokenPipeError /Users/michelkerkmeester/.cocoindex_code/daemon.log`
-- `grep -lE 'lmdb|LMDB|Environment\(' .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/`
+- `grep -lE 'lmdb|LMDB|Environment\(' .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`
 - `python3 -c 'import inspect, multiprocessing.connection as mc; print(inspect.getsource(mc.Listener.__init__))'`
 - `lsof /Users/michelkerkmeester/.cocoindex_code/daemon.sock`
 - `wc -l /Users/michelkerkmeester/.cocoindex_code/daemon.log`
@@ -89,12 +89,12 @@ External commands invoked (read-only forensics):
 
 ## Tests
 
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/` (read-only inspection — confirmed empty of daemon-lifecycle tests, P1-4)
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/` (read-only inspection — confirmed empty of daemon-lifecycle tests, P1-4)
 
 Test files referenced but NOT yet existing (must be CREATED in Phase 2 per P1-4):
 
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/test_daemon.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
 
 ---
 
@@ -108,10 +108,10 @@ Test files referenced but NOT yet existing (must be CREATED in Phase 2 per P1-4)
 
 ### Source files investigated (READ-ONLY)
 
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py` (start_daemon, _pid_alive, _cleanup_stale_files, stop_daemon, ensure_daemon)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (handle_connection, _accept_loop, _async_daemon_main, signal handlers, FileHandler init)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/cli.py` (subprocess.Popen entry points)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/project.py` (sole "LMDB" docstring reference)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py` (start_daemon, _pid_alive, _cleanup_stale_files, stop_daemon, ensure_daemon)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (handle_connection, _accept_loop, _async_daemon_main, signal handlers, FileHandler init)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py` (subprocess.Popen entry points)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py` (sole "LMDB" docstring reference)
 
 ### Runtime evidence (READ-ONLY)
 

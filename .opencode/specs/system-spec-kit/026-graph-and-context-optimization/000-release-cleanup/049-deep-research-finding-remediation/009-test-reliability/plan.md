@@ -16,13 +16,13 @@ _memory:
     next_safe_action: "Apply six surgical edits + helper, run isolation tests, then validate + commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/test-helpers/env-snapshot.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-009-test-reliability"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -108,7 +108,7 @@ No new automated tests are added because the helper is exercised end-to-end by t
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §C5 (test reliability)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Vitest >= 1.x (project default; provides `vi.useFakeTimers`, `vi.setSystemTime`)
 - No other packet dependencies. Sub-phase 009 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->

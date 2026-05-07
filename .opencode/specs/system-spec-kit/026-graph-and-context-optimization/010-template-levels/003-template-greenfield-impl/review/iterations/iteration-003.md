@@ -6,16 +6,16 @@ template-rendering-correctness
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/review_core.md:23` — P1 severity baseline for correctness/spec-mismatch gate issues.
+- `.opencode/skills/sk-code-review/references/review_core.md:23` — P1 severity baseline for correctness/spec-mismatch gate issues.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/tasks.md:77` — T-122 requires replacing `[capability]` with `[needed behavior]` in new manifest templates.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/tasks.md:78` — T-123 requires replacing phase-parent manifest wording with `Sub-phase list`.
-- `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:102` — the raw template exposes the `[YOUR_VALUE_HERE: PHASE_ROW]` placeholder consumed after rendering.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1117` — phase-parent template is rendered before create-time substitutions.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1123` — create-time scope rows still contain `child phase manifest`.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1149-1150` — create-time `_scope_rows` replace the rendered template placeholder.
-- `.opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts:14-24` — snapshot normalization rewrites legacy leak strings before comparison.
-- `.opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts:49-57` — phase-parent golden test renders the raw template directly and never executes create.sh substitutions.
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45-60,93` — default scan roots exist, but prior iteration established broad public-root allowlisting; this pass used it as counterevidence context only.
+- `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:102` — the raw template exposes the `[YOUR_VALUE_HERE: PHASE_ROW]` placeholder consumed after rendering.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1117` — phase-parent template is rendered before create-time substitutions.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1123` — create-time scope rows still contain `child phase manifest`.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1149-1150` — create-time `_scope_rows` replace the rendered template placeholder.
+- `.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts:14-24` — snapshot normalization rewrites legacy leak strings before comparison.
+- `.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts:49-57` — phase-parent golden test renders the raw template directly and never executes create.sh substitutions.
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45-60,93` — default scan roots exist, but prior iteration established broad public-root allowlisting; this pass used it as counterevidence context only.
 
 ## Findings by Severity (P0/P1/P2)
 

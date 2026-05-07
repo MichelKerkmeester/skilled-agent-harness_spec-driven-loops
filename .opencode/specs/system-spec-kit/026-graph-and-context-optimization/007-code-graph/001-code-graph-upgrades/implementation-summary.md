@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -92,10 +92,10 @@ After the runtime work was stable, the packet docs were rewritten to match what 
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=./.tmp/tsc-tmp npm run typecheck` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=./.tmp/vitest-tmp npx vitest run tests/shared-payload-certainty.vitest.ts tests/structural-trust-axis.vitest.ts tests/graph-payload-validator.vitest.ts tests/graph-first-routing-nudge.vitest.ts tests/sqlite-fts.vitest.ts tests/hook-state.vitest.ts tests/hook-session-start.vitest.ts tests/handler-memory-search.vitest.ts tests/publication-gate.vitest.ts tests/code-graph-query-handler.vitest.ts tests/code-graph-context-handler.vitest.ts tests/code-graph-scan.vitest.ts` | PASS |
-| `cd .opencode/skill/system-spec-kit/scripts && TMPDIR=./.tmp/vitest-tmp npx vitest run tests/detector-regression-floor.vitest.ts.test.ts tests/session-cached-consumer.vitest.ts.test.ts tests/warm-start-bundle-benchmark.vitest.ts.test.ts tests/graph-upgrades-regression-floor.vitest.ts.test.ts` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=./.tmp/tsc-tmp npm run typecheck` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=./.tmp/vitest-tmp npx vitest run tests/shared-payload-certainty.vitest.ts tests/structural-trust-axis.vitest.ts tests/graph-payload-validator.vitest.ts tests/graph-first-routing-nudge.vitest.ts tests/sqlite-fts.vitest.ts tests/hook-state.vitest.ts tests/hook-session-start.vitest.ts tests/handler-memory-search.vitest.ts tests/publication-gate.vitest.ts tests/code-graph-query-handler.vitest.ts tests/code-graph-context-handler.vitest.ts tests/code-graph-scan.vitest.ts` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && TMPDIR=./.tmp/vitest-tmp npx vitest run tests/detector-regression-floor.vitest.ts.test.ts tests/session-cached-consumer.vitest.ts.test.ts tests/warm-start-bundle-benchmark.vitest.ts.test.ts tests/graph-upgrades-regression-floor.vitest.ts.test.ts` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,5 +113,5 @@ After the runtime work was stable, the packet docs were rewritten to match what 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

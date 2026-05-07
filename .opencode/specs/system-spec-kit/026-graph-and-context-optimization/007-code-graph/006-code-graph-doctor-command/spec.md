@@ -69,9 +69,9 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 ### In Scope (Phase A — diagnostic-only release)
 
-- New slash command the planned .opencode/command/doctor/code-graph.md (created by T001) with `:auto` and `:confirm` modes
+- New slash command the planned .opencode/commands/doctor/code-graph.md (created by T001) with `:auto` and `:confirm` modes
 - Two YAML workflow assets: `doctor_code-graph_auto.yaml` and `doctor_code-graph_confirm.yaml`
-- Update `.opencode/command/doctor/` listing (add to README.txt if one exists, otherwise to `.opencode/README.md` Doctor Commands section)
+- Update `.opencode/commands/doctor/` listing (add to README.txt if one exists, otherwise to `.opencode/README.md` Doctor Commands section)
 - Update `.opencode/install_guides/` with `SET-UP - Code Graph.md` (user-facing guide)
 - Command reads code_graph_status, code_graph_query, detect_changes via MCP tools
 - Command computes file-on-disk vs file-in-graph delta
@@ -97,9 +97,9 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| the planned .opencode/command/doctor/code-graph.md (created by T001) | Create | Command markdown definition |
-| `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` | Create | Autonomous diagnostic workflow |
-| `.opencode/command/doctor/assets/doctor_code-graph_confirm.yaml` | Create | Interactive diagnostic workflow |
+| the planned .opencode/commands/doctor/code-graph.md (created by T001) | Create | Command markdown definition |
+| `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` | Create | Autonomous diagnostic workflow |
+| `.opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml` | Create | Interactive diagnostic workflow |
 | `.opencode/install_guides/SET-UP - Code Graph.md` | Create | User-facing diagnostic guide |
 | `.opencode/README.md` | Modify | Add `/doctor:code-graph` to Doctor Commands section, bump counts |
 | `.opencode/specs/.../007-code-graph/{context-index,spec,tasks}.md` | Modify | Add 006 child phase entry |
@@ -114,7 +114,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Command file exists and follows existing doctor command conventions | the planned .opencode/command/doctor/code-graph.md (created by T001) loads on `/doctor:code-graph` mirroring the existing `.opencode/command/doctor/mcp_install.md` + the existing `.opencode/command/doctor/skill-advisor.md` patterns |
+| REQ-001 | Command file exists and follows existing doctor command conventions | the planned .opencode/commands/doctor/code-graph.md (created by T001) loads on `/doctor:code-graph` mirroring the existing `.opencode/commands/doctor/mcp_install.md` + the existing `.opencode/commands/doctor/skill-advisor.md` patterns |
 | REQ-002 | Auto and confirm YAML workflows exist | Both YAML files parse cleanly via `python3 yaml.safe_load`; structure mirrors doctor_skill-advisor_*.yaml |
 | REQ-003 | Phase A is diagnostic-only with no mutations | Both YAMLs declare `mutation_boundaries.allowed_targets: []` + `phase_3_apply.skip_in_phase_a: true` |
 | REQ-004 | Command reads code_graph_status via MCP tool | Phase 0 Discovery invokes `code_graph_status({})` and surfaces skill_count, lastScanAt, edge_count |
@@ -125,7 +125,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-006 | Diagnostic report written to packet-local scratch | `<packet_scratch>/code-graph-diagnostic-<timestamp>.md` with discovery + analysis + proposal sections |
-| REQ-007 | Bloat-dir detection covers common patterns | Detects `node_modules/`, `dist/`, `__pycache__/`, `.git/`, `.opencode/scripts/dist/`, `.opencode/skill/system-spec-kit/mcp_server/dist/`, `tmp/` at minimum |
+| REQ-007 | Bloat-dir detection covers common patterns | Detects `node_modules/`, `dist/`, `__pycache__/`, `.git/`, `.opencode/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp_server/dist/`, `tmp/` at minimum |
 | REQ-008 | Confirm mode pauses at `pre_phase_2 (Proposal)` gate | User can review the analysis before the proposal is generated |
 | REQ-009 | Phase B gating documented | YAML refers to 007-code-graph-resilience-research as the prerequisite for promotion to apply mode |
 <!-- /ANCHOR:requirements -->
@@ -164,7 +164,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 - Should Phase A include a "Phase 4 Verify" step that re-runs `code_graph_status` to confirm no state changed? (low risk, useful audit trail)
 - Should the diagnostic report include per-language coverage histograms?
-- Where does the eventual `code-graph-config.json` live for Phase B? (`.opencode/skill/system-spec-kit/mcp_server/code-graph-config.json` is the natural location)
+- Where does the eventual `code-graph-config.json` live for Phase B? (`.opencode/skills/system-spec-kit/mcp_server/code-graph-config.json` is the natural location)
 - Should there be a `--scope=stale|missed|bloat|all` flag in Phase A to focus the diagnostic?
 <!-- /ANCHOR:questions -->
 
@@ -213,7 +213,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 **Scenario 2 — Bloat detection**
 
-**Given** a repo with `node_modules/`, `.opencode/skill/system-spec-kit/mcp_server/node_modules/`, and `dist/` indexed, **When** the user runs `/doctor:code-graph:auto`, **Then** the report flags all three as bloat candidates with proposed exclude rule entries.
+**Given** a repo with `node_modules/`, `.opencode/skills/system-spec-kit/mcp_server/node_modules/`, and `dist/` indexed, **When** the user runs `/doctor:code-graph:auto`, **Then** the report flags all three as bloat candidates with proposed exclude rule entries.
 
 **Scenario 3 — Stale detection**
 
@@ -225,7 +225,7 @@ Deliver a diagnostic-first `/doctor:code-graph` command that audits index health
 
 **Scenario 5 — Phase A is read-only**
 
-**Given** any state of the repo, **When** the user runs `/doctor:code-graph:auto`, **Then** zero files outside packet scratch are modified, `git status -- .opencode/skill/system-spec-kit/mcp_server/` shows no changes, and `code_graph_scan` is NOT triggered.
+**Given** any state of the repo, **When** the user runs `/doctor:code-graph:auto`, **Then** zero files outside packet scratch are modified, `git status -- .opencode/skills/system-spec-kit/mcp_server/` shows no changes, and `code_graph_scan` is NOT triggered.
 <!-- /ANCHOR:edge-cases -->
 
 ---

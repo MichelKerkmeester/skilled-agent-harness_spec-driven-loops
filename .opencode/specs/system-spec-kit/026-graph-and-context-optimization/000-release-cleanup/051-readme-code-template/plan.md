@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Use implementation-summary.md for review"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/readme_template.md"
-      - ".opencode/skill/sk-doc/assets/documentation/readme_code_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_code_template.md"
     session_dedup:
       fingerprint: "sha256:0510000000000000000000000000000000000000000000000000000000000002"
       session_id: "task-10-readme-code-template-diagram-evidence"
@@ -76,13 +76,13 @@ Task #28 updates the active phase packet to reflect the explicit README sweep ta
 Documentation governance packet update.
 
 ### Key Components
-- **README template assets**: `.opencode/skill/sk-doc/assets/documentation/readme_template.md` and `.opencode/skill/sk-doc/assets/documentation/readme_code_template.md` are the changed implementation files from Task #5.
+- **README template assets**: `.opencode/skills/sk-doc/assets/documentation/readme_template.md` and `.opencode/skills/sk-doc/assets/documentation/readme_code_template.md` are the changed implementation files from Task #5.
 - **General README template revision**: the general template was expanded for skill/project README alignment based on sampled skill READMEs.
 - **Code README template revision**: the code template gained an `ARCHITECTURE.md`-style zone diagram, package topology, allowed dependency direction, directory tree, key file table, and control-flow example.
 - **Diagram styling correction**: Task #9 corrected `readme_code_template.md` diagrams to sk-doc Unicode box drawing style, replacing ASCII `+---`, `--->`, lowercase `v`, and bracket-list `->` diagram patterns while leaving directory trees as intentional tree blocks.
 - **Code-folder README batch evidence**: Task #25 records P1 batches complete, P2 batches 01-22 complete, batch validation summaries, and final-review exception notes.
 - **README sweep target manifest**: Task #28 records exact README target paths in `implementation-summary.md` for final review recovery.
-- **Final remediation evidence**: Task #28 records `.opencode/skill/system-spec-kit/shared/README.md` fixed, HVR blockers fixed, lowercase-v diagram blockers fixed, low-DQI files improved, and `templates/scratch/README.md` retained as the remaining template scratch exception.
+- **Final remediation evidence**: Task #28 records `.opencode/skills/system-spec-kit/shared/README.md` fixed, HVR blockers fixed, lowercase-v diagram blockers fixed, low-DQI files improved, and `templates/scratch/README.md` retained as the remaining template scratch exception.
 - **Phase packet docs**: this folder records status, evidence, and completion for release cleanup.
 
 ### Data Flow
@@ -110,7 +110,7 @@ Task #5, Task #9, Task #25, and Task #28 verification results are captured in `i
 - [x] Synchronize tasks and checklist [Files: tasks.md, checklist.md]
 
 ### Phase 3: Verification
-- [x] Run strict phase validation [Command: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template --strict`]
+- [x] Run strict phase validation [Command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/051-readme-code-template --strict`]
 - [x] Report blockers or warnings [Output: final task response]
 <!-- /ANCHOR:phases -->
 

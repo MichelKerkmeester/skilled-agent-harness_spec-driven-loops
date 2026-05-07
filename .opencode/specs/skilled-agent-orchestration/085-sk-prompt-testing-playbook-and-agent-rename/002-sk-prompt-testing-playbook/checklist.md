@@ -48,8 +48,8 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Phase 001 (agent rename) is complete and `@prompt-improver` is canonical.
-  - **Evidence**: `ls .opencode/agent/prompt-improver.md` succeeds; `rg '@improve-prompt' .opencode .claude .codex .gemini` (active scope) returns 0
-- [x] CHK-002 [P0] sk-doc templates loaded from `.opencode/skill/sk-doc/assets/testing_playbook/` before authoring.
+  - **Evidence**: `ls .opencode/agents/prompt-improver.md` succeeds; `rg '@improve-prompt' .opencode .claude .codex .gemini` (active scope) returns 0
+- [x] CHK-002 [P0] sk-doc templates loaded from `.opencode/skills/sk-doc/assets/testing_playbook/` before authoring.
   - **Evidence**: `manual_testing_playbook_template.md` and `manual_testing_playbook_snippet_template.md` referenced in plan.md
 - [x] CHK-003 [P0] `@create` agent verified active before invoking `/create:testing-playbook`.
   - **Evidence**: Task tool dispatched with `subagent_type: create` (Phase 0 hard-block bypassed correctly)
@@ -74,11 +74,11 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] `validate_document.py` exits 0 on root playbook.
-  - **Evidence**: `python3 .opencode/skill/sk-doc/scripts/validate_document.py manual_testing_playbook.md` returns exit 0
+  - **Evidence**: `python3 .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook.md` returns exit 0
 - [x] CHK-021 [P0] Strict validate on phase folder PASSES.
-  - **Evidence**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` returns 0 errors, 0 warnings
+  - **Evidence**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` returns 0 errors, 0 warnings
 - [x] CHK-022 [P0] Feature-ID count matches between root index and per-feature files.
-  - **Evidence**: `find .opencode/skill/sk-prompt/manual_testing_playbook -name '[0-9][0-9][0-9]-*.md' | wc -l` == 28; root index `^| SP-` row count == 28
+  - **Evidence**: `find .opencode/skills/sk-prompt/manual_testing_playbook -name '[0-9][0-9][0-9]-*.md' | wc -l` == 28; root index `^| SP-` row count == 28
 - [x] CHK-023 [P1] Manual probe of 1-3 scenarios end-to-end against the renamed `@prompt-improver` agent.
   - **Evidence**: Static contract probe completed: all 28 scenario files reference `@prompt-improver`; live runtime execution remains a release-readiness activity noted in `implementation-summary.md`
 <!-- /ANCHOR:testing -->
@@ -89,7 +89,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-030 [P0] All 7 category folders exist with correct `NN--name/` naming.
-  - **Evidence**: `ls .opencode/skill/sk-prompt/manual_testing_playbook/ | grep -E '^[0-9]{2}--'` returns 7 entries
+  - **Evidence**: `ls .opencode/skills/sk-prompt/manual_testing_playbook/ | grep -E '^[0-9]{2}--'` returns 7 entries
 - [x] CHK-031 [P0] All 28 SP-NNN scenario files exist (`find ... -name "[0-9][0-9][0-9]-*.md" | wc -l == 28`).
   - **Evidence**: `find` count + visual file tree audit
 - [x] CHK-032 [P0] sk-prompt SKILL.md has ONE `## RELATED PLAYBOOK` link in Section 10.
@@ -142,13 +142,13 @@ _memory:
 
 | Gate | Status | Run At | Evidence |
 |------|--------|--------|----------|
-| Phase 001 prerequisite | [PASS] | 2026-05-06T16:58:29Z | `ls .opencode/agent/prompt-improver.md` succeeds; legacy-name grep returned no playbook/SKILL hits |
+| Phase 001 prerequisite | [PASS] | 2026-05-06T16:58:29Z | `ls .opencode/agents/prompt-improver.md` succeeds; legacy-name grep returned no playbook/SKILL hits |
 | validate_document.py | [PASS] | 2026-05-06T16:58:29Z | Root playbook valid, 0 issues |
 | Strict spec validate | [PASS] | 2026-05-06T16:58:29Z | Strict validator passed with 0 errors, 0 warnings |
 | Feature-ID count match | [PASS] | 2026-05-06T16:58:29Z | 28 scenario files; root index has 28 SP rows |
 | Forbidden-sidecar grep | [PASS] | 2026-05-06T16:58:29Z | Forbidden-sidecar `find` returned empty |
 | Manual scenario probe | [PASS] | 2026-05-06T16:58:29Z | Static contract probe: all 28 scenarios reference `@prompt-improver`; live transcripts deferred to release-readiness run |
-| sk-prompt SKILL.md backref | [PASS] | 2026-05-06T16:58:29Z | `grep -c '^## RELATED PLAYBOOK$' .opencode/skill/sk-prompt/SKILL.md` returned 1 |
+| sk-prompt SKILL.md backref | [PASS] | 2026-05-06T16:58:29Z | `grep -c '^## RELATED PLAYBOOK$' .opencode/skills/sk-prompt/SKILL.md` returned 1 |
 
 **Sign-off (when complete)**: Update each row to `[PASS]` or `[FAIL]` with timestamp + evidence path.
 <!-- /ANCHOR:summary -->

@@ -7,9 +7,9 @@ Executable lifecycle branch model (resume/restart/fork/completed-continue).
 - How can we avoid ad-hoc subfolder creation while preserving history?
 
 ## Evidence
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:127-129`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md:509`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:124-128`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:127-129`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md:509`
 
 ## Analysis
 Lifecycle should be explicit: `resume` in-place; `restart` snapshots current packet and increments generation; `fork` snapshots + creates branch topic metadata; `completed-continue` reopens same lineage with new segment.

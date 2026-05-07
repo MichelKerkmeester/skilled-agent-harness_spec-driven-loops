@@ -14,11 +14,11 @@ I read the external contributor guide and build/test commands, then compared the
 ## Evidence
 - Agent Lightning's verification contract is conventional and narrow: `pytest`, `pyright`, `pre-commit`, and `mkdocs build --strict`. [SOURCE: external/AGENTS.md:11-16]
 - The external testing guidance mirrors runtime directories under `tests/`, uses markers for optional surfaces, and prefers real stores or agents over mocks. [SOURCE: external/AGENTS.md:27-31]
-- `system-spec-kit`'s level system composes multiple documentation layers and scales from roughly 455 LOC at Level 1 to over 1000 LOC at Levels 3 and 3+. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-18] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:50-58]
-- Level 3+ adds AI execution protocols, extended checklists, sign-offs, and coordination-root phase requirements. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:385-416] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:512-516]
-- `validate.sh` performs template-hash inspection, level detection, all-rule execution, and recursive phase validation from one shell entrypoint. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:202-229] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:611-633]
-- The validator auto-enables recursive validation when phase children are detected. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:611-628]
-- Public also maintains detailed scenario-level evidence packs for exact verification sequences in the manual testing playbook. [SOURCE: .opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/108-spec-007-finalized-verification-command-suite-evidence.md:16-29]
+- `system-spec-kit`'s level system composes multiple documentation layers and scales from roughly 455 LOC at Level 1 to over 1000 LOC at Levels 3 and 3+. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-18] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:50-58]
+- Level 3+ adds AI execution protocols, extended checklists, sign-offs, and coordination-root phase requirements. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:385-416] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:512-516]
+- `validate.sh` performs template-hash inspection, level detection, all-rule execution, and recursive phase validation from one shell entrypoint. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:202-229] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:611-633]
+- The validator auto-enables recursive validation when phase children are detected. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:611-628]
+- Public also maintains detailed scenario-level evidence packs for exact verification sequences in the manual testing playbook. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/108-spec-007-finalized-verification-command-suite-evidence.md:16-29]
 
 ## Analysis
 The external repo shows a healthier layering pattern for verification: standard tools do standard jobs, while project-specific structure lives in docs conventions and targeted tests. `system-spec-kit` has a stronger governance problem to solve, so a richer validator is warranted, but the current architecture still feels overly concentrated. Level detection, template structure, recursive phase traversal, and strictness promotion are all useful; housing them behind one large shell script makes the system harder to evolve, harder to observe, and harder to run selectively.
@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should refactor its validation pipeline into composable validators while keeping a strict wrapper entrypoint. The current validation system is doing the right kinds of checks, but it is too centralized inside `validate.sh` and the surrounding template contract.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - **Change type:** architectural refactor
 - **Blast radius:** large
 - **Prerequisites:** define stable validator categories, machine-readable result schema, and wrapper compatibility rules

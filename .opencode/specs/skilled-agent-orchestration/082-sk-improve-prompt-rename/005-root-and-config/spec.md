@@ -61,7 +61,7 @@ Phase 005 updates root docs, install guides, skill catalog docs, active changelo
 ## 3. SCOPE
 
 ### In Scope
-- Update root `README.md`, install guides, `.opencode/skill/README.md`, and listed active changelogs.
+- Update root `README.md`, install guides, `.opencode/skills/README.md`, and listed active changelogs.
 - Update smart-router observability JSONL forward-facing IDs only.
 - Update smart-router measurement report reference.
 
@@ -77,10 +77,10 @@ Phase 005 updates root docs, install guides, skill catalog docs, active changelo
 |-----------|-------------|-------------|
 | `README.md` | Modify | Root skill references |
 | `.opencode/install_guides/SET-UP - AGENTS.md`, `.opencode/install_guides/README.md` | Modify | Install guide refs |
-| `.opencode/skill/README.md` | Modify | Skill catalog entry refs |
-| `.opencode/skill/system-spec-kit/changelog/v3.4.0.0.md` | Modify | Active changelog ref |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Modify | Forward-facing IDs only |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Modify | Observability report ref |
+| `.opencode/skills/README.md` | Modify | Skill catalog entry refs |
+| `.opencode/skills/system-spec-kit/changelog/v3.4.0.0.md` | Modify | Active changelog ref |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Modify | Forward-facing IDs only |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Modify | Observability report ref |
 | `.opencode/changelog/agent-orchestration/v2.4.0.0.md` | Modify | Active orchestration changelog refs |
 <!-- /ANCHOR:scope -->
 
@@ -137,9 +137,9 @@ Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should updat
 - Active changelog refs in the listed files point to `sk-prompt`.
 
 ```bash
-rg 'sk-improve-prompt' README.md AGENTS*.md .opencode/install_guides/ .opencode/skill/README.md .opencode/skill/system-spec-kit/changelog/v3.4.0.0.md
-rg 'sk-improve-prompt' .opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl .opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md .opencode/changelog/agent-orchestration/v2.4.0.0.md
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/005-root-and-config --strict
+rg 'sk-improve-prompt' README.md AGENTS*.md .opencode/install_guides/ .opencode/skills/README.md .opencode/skills/system-spec-kit/changelog/v3.4.0.0.md
+rg 'sk-improve-prompt' .opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl .opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md .opencode/changelog/agent-orchestration/v2.4.0.0.md
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/005-root-and-config --strict
 ```
 <!-- /ANCHOR:handoff -->
 

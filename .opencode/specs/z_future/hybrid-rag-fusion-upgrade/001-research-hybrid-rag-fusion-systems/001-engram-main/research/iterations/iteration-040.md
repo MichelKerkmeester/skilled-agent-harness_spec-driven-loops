@@ -57,7 +57,7 @@ The phase folder is thinner than the prompt assumed: it currently has `phase-res
 
 ✗ Validate Engram phase folder (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
-  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh
   │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
   │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
   │ --strict

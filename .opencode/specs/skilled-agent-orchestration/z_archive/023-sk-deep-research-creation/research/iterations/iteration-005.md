@@ -245,10 +245,10 @@ Ranked by impact-to-effort ratio, based on findings from all three repos and our
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/03--commands-and-skills/023-sk-deep-research-creation/research/iterations/iteration-002.md` (pi-autoresearch deep dive)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/03--commands-and-skills/023-sk-deep-research-creation/research/iterations/iteration-003.md` (autoresearch-opencode deep dive)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/03--commands-and-skills/023-sk-deep-research-creation/research/deep-research-strategy.md` (current strategy state)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-deep-research/references/convergence.md` (our convergence algorithm)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-deep-research/references/loop-protocol.md` (our loop protocol)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-deep-research/references/convergence.md` (our convergence algorithm)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-deep-research/references/loop-protocol.md` (our loop protocol)
 - `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/agents/deep-research.md` (our agent definition)
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/spec_kit/deep-research.md` (our command definition)
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/spec_kit/deep-research.md` (our command definition)
 
 ## Assessment
 - New information ratio: 0.45

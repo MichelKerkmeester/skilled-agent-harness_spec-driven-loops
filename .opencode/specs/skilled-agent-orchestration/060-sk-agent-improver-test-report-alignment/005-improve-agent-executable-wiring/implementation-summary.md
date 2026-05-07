@@ -34,7 +34,7 @@ _memory:
 - REQ status: REQ-001..REQ-007, REQ-101..REQ-103 complete. REQ-008 verified by helper/static RT checks; full command-flow scenario run deferred to 061. REQ-201 deferred to 061.
 - Files created: benchmark profile, 3 benchmark fixtures, materializer helper
 - Files modified: benchmark runner, journal helper, reducer, auto/confirm YAML, sk-improve-agent docs/tests, RT-028/RT-032 docs, CP-040..045 signal contracts
-- Test suite: `bun test .opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts` passed, 91 tests / 193 expects
+- Test suite: `bun test .opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` passed, 91 tests / 193 expects
 - Native RT-028/RT-032: helper/static GREEN (`legal_stop_evaluated` nested bundle accepted; auto YAML contains benchmark/legal-stop/session boundaries)
 - Optional T-023 GREEN check: deferred to 061, per packet scope
 

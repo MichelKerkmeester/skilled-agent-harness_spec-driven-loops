@@ -99,7 +99,7 @@ Discovery commands produce file lists. Grep and direct reads identify candidate 
 
 ### Phase 1: Discovery
 
-- [x] Count `.opencode/command/**/*.md`.
+- [x] Count `.opencode/commands/**/*.md`.
 - [x] Count OpenCode, Claude, Codex, and Gemini agent definitions.
 - [x] Read canonical tool, hook, and prior-packet sources.
 

@@ -64,8 +64,8 @@ This pass rewrites the `013-agents-alignment` packet so it matches the current r
 
 ### Source Families
 
-1. Base markdown family: `.opencode/agent/*.md`
-2. ChatGPT markdown family: `.opencode/agent/chatgpt/*.md`
+1. Base markdown family: `.opencode/agents/*.md`
+2. ChatGPT markdown family: `.opencode/agents/chatgpt/*.md`
 
 ### Runtime Targets
 
@@ -94,7 +94,7 @@ Document runtime-facing paths first, then note storage details only where they m
 - Normalize runtime path-convention wording.
 
 ### Phase 2b: Scoped Runtime-Doc Closeout
-- Fix `.gemini/workflows/delegate_agent.md` so Gemini resolves runtime agents from `.gemini/agents/` first and never references the removed `.opencode/agent/claude/` path.
+- Fix `.gemini/workflows/delegate_agent.md` so Gemini resolves runtime agents from `.gemini/agents/` first and never references the removed `.opencode/agents/claude/` path.
 - Reconcile the write-agent projections so Claude, Gemini, ChatGPT, and Codex keep the documented catalog/playbook modes and nested `references/**/*.md` routing aligned with the authoring families.
 
 ### Phase 3: Verify
@@ -123,13 +123,13 @@ Document runtime-facing paths first, then note storage details only where they m
 
 | Dependency | Status | Role |
 |------------|--------|------|
-| `.opencode/agent/*.md` | Available | Base markdown family |
-| `.opencode/agent/chatgpt/*.md` | Available | ChatGPT markdown family |
+| `.opencode/agents/*.md` | Available | Base markdown family |
+| `.opencode/agents/chatgpt/*.md` | Available | ChatGPT markdown family |
 | `.claude/agents/*.md` | Available | Runtime path verification |
 | `.codex/agents/*.toml` | Available | Codex downstream verification |
 | `.gemini/agents/*.md` and `.agents/agents/*.md` | Available | Gemini runtime/storage verification |
 | `.gemini/workflows/delegate_agent.md` | Available | Scoped delegation-path closeout |
-| `.claude/agents/write.md`, .opencode/agent/chatgpt/write.md, `.codex/agents/write.toml`, `.gemini/agents/write.md` | Available | Scoped writer-surface closeout |
+| `.claude/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.gemini/agents/write.md` | Available | Scoped writer-surface closeout |
 <!-- /ANCHOR:dependencies -->
 
 ---

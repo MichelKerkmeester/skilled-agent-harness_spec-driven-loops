@@ -22,8 +22,8 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts"
     session_dedup:
       fingerprint: "sha256:006-search-query-rag-optimization-20260428"
       session_id: "006-search-query-rag-optimization-20260428"
@@ -100,15 +100,15 @@ Create measurement infrastructure and telemetry-only query planning so future RA
 | `description.json` | Create/Modify | Packet metadata for graph and memory discovery. |
 | `graph-metadata.json` | Create/Modify | Parent/dependency metadata for graph traversal. |
 | `../spec.md` | Modify | Add this child to the PHASE MANIFEST. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Create | Fixture corpus for harness baseline. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Create | Channel-runner harness and capture model. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts` | Create | Precision, recall, latency, refusal, and citation metrics. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts` | Create | Baseline harness assertions over the small corpus. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Create | Typed query-plan contract and builder helpers. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts` | Modify | Emit complexity query-plan telemetry. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts` | Modify | Emit selected/skipped channel and routing-reason query-plan telemetry. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` | Modify | Emit intent query-plan telemetry. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts` | Create | Canonical query-pattern query-plan assertions. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Create | Fixture corpus for harness baseline. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Create | Channel-runner harness and capture model. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts` | Create | Precision, recall, latency, refusal, and citation metrics. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts` | Create | Baseline harness assertions over the small corpus. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Create | Typed query-plan contract and builder helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts` | Modify | Emit complexity query-plan telemetry. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts` | Modify | Emit selected/skipped channel and routing-reason query-plan telemetry. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` | Modify | Emit intent query-plan telemetry. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts` | Create | Canonical query-pattern query-plan assertions. |
 <!-- /ANCHOR:scope -->
 
 ---

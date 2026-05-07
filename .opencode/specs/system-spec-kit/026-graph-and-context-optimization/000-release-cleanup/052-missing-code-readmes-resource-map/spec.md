@@ -25,7 +25,7 @@ _memory:
       - "Task #36 manifest contains 68 original targets normalized to 65 unique existing folders"
       - "All 65 folders are missing README.md; 0 target folders already have README.md"
       - "All original targets exist; 0 paths are missing"
-      - "Three file targets map to .opencode/skill/system-spec-kit/mcp_server/lib/description"
+      - "Three file targets map to .opencode/skills/system-spec-kit/mcp_server/lib/description"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Missing Code READMEs Resource Map
@@ -92,7 +92,7 @@ Create a validated Level 2 phase that preserves the exact 65-target manifest and
 ## 3. SCOPE
 
 ### In Scope
-- Record the exact Task #36 manifest: 65 unique existing folders, 0 existing READMEs at audit time, 0 missing paths, and 3 file-path mappings to `.opencode/skill/system-spec-kit/mcp_server/lib/description`.
+- Record the exact Task #36 manifest: 65 unique existing folders, 0 existing READMEs at audit time, 0 missing paths, and 3 file-path mappings to `.opencode/skills/system-spec-kit/mcp_server/lib/description`.
 - Record batches B01-B17 from Task #36 in `resource-map.md`.
 - Create the 65 target code-folder `README.md` files.
 - State that SMALL folders get concise READMEs without detailed diagrams or topology.

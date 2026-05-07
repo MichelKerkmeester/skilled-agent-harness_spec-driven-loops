@@ -14,7 +14,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -74,7 +74,7 @@ The packet was delivered by reading the legacy dashboards and late-iteration syn
 | `find .opencode/specs/system-spec-kit/999-agentic-system-upgrade/002-agentic-adoption -mindepth 1 -maxdepth 1 -type d -name '0*' | wc -l` | PASS (`18`) |
 | `find .opencode/specs/system-spec-kit/999-agentic-system-upgrade/002-agentic-adoption -type d -name '0*' | wc -l` | INFO (`19`, because the parent `002-agentic-adoption` folder also matches `0*`) |
 | `find .opencode/specs/system-spec-kit/999-agentic-system-upgrade/002-agentic-adoption -type f -name '*.md' | wc -l` | PASS (`78`) |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/002-agentic-adoption --recursive --strict` | PASS (`Errors: 0  Warnings: 0`) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/002-agentic-adoption --recursive --strict` | PASS (`Errors: 0  Warnings: 0`) |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -41,12 +41,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/agent/improve-agent.md",
-      ".opencode/command/improve/agent.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/agents/improve-agent.md",
+      ".opencode/commands/improve/agent.md",
       "implementation-summary.md",
       ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md",
-      ".opencode/skill/sk-deep-research/changelog/v1.9.0.0.md",
+      ".opencode/skills/sk-deep-research/changelog/v1.9.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,26 +56,26 @@
       "resource-map.md",
       ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/spec.md",
       ".opencode/specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md",
-      ".opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
-      ".opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md"
+      ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
+      ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {
@@ -93,7 +93,7 @@
       {
         "name": "v1.9.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/changelog/v1.9.0.0.md",
+        "path": ".opencode/skills/sk-deep-research/changelog/v1.9.0.0.md",
         "source": "derived"
       },
       {
@@ -141,13 +141,13 @@
       {
         "name": "004-code-vs-general-agent-perf-comparison.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
+        "path": ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md",
         "source": "derived"
       },
       {
         "name": "005-unknown-stack-escalation-discipline.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md",
+        "path": ".opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/005-unknown-stack-escalation-discipline.md",
         "source": "derived"
       },
       {

@@ -49,9 +49,9 @@
       "checklist.md",
       "implementation-summary.md",
       "mcp_server/scripts/reindex-embeddings.ts",
-      ".opencode/skill/system-spec-kit/scripts/memory/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/scripts/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/database/README.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/database/README.md",
       "shared/utils/token-estimate.ts",
       "mcp_server/handlers/handler-utils.ts",
       "mcp_server/api/indexing.ts",
@@ -114,7 +114,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/README.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/README.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This completed Level 3 spec captures the architecture audit of `.opencode/skill/system-spec-kit/` with focus on the ownership boundary between root `scripts/` and `mcp_server/`. The work established a boundary contract, reduced cross-area drift, hardened enforcement, merged the former `030-architecture-boundary-remediation` follow-up, and closed later verification-driven issues around naming, README coverage, symlinked runtime paths, and source-dist alignment.",
+    "causal_summary": "This completed Level 3 spec captures the architecture audit of `.opencode/skills/system-spec-kit/` with focus on the ownership boundary between root `scripts/` and `mcp_server/`. The work established a boundary contract, reduced cross-area drift, hardened enforcement, merged the former `030-architecture-boundary-remediation` follow-up, and closed later verification-driven issues around naming, README coverage, symlinked runtime paths, and source-dist alignment.",
     "created_at": "2026-04-12T09:02:50.240Z",
     "last_save_at": "2026-04-26T09:17:15.381Z",
     "save_lineage": "graph_only",

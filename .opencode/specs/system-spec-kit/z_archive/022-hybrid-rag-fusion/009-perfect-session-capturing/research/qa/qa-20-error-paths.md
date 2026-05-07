@@ -3,46 +3,46 @@
 
 ● Count lines in target files
   $ wc -l "/Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts"
+  Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts"
   "/Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts"
+  Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts"
   "/Users/michelkerkmeester/MEGA/Development/Opencode ...
   └ 24 lines...
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
   └ 473 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 90 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/config.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 298 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ 523 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
   └ 402 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 93 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ 351 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ 838 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1-250
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1-250
   └ 249 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 251-500
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 251-500
   └ 250 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 501-750
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 501-750
   └ 250 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 751-995
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 751-995
   └ 245 lines read
 
 ● Todo started: read-target-files
@@ -51,43 +51,43 @@
 {core/{config.ts,workflow.ts,file-writer.ts},extractors/{session-extractor.ts,contamination-filter.t
 s,opencode-capture.ts,decision-extractor.ts,file-extractor.ts,collect-session-data.ts}}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts)
   └ 8 lines found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts)
   └ No matches found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts)
   └ 4 lines found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts)
   └ 17 lines found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts)
   └ No matches found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 11 lines found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
   └ 10 lines found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
   └ No matches found
 
 ● Grep "try\s*\{|catch\s*(\(|\{)" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
   └ 2 lines found
 
 ● Todo started: analyze-catches

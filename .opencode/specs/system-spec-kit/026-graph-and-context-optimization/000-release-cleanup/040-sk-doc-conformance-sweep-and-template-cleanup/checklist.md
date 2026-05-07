@@ -110,7 +110,7 @@ _memory:
 - [x] CHK-050 [P0] templates/sharded/ deleted [EVIDENCE: T-061 git rm -r removed 5 files: 01-overview, 02-requirements, 03-architecture, 04-testing, spec-index]
 - [x] CHK-051 [P0] templates/stress-test/ renamed to stress_test/ with new README [EVIDENCE: T-062 git mv + T-063 created sk-doc-canonical README.md (1636 bytes; Quick Start + Files table + When to Use + Related)]
 - [x] CHK-052 [P0] templates/addendum/level3plus-govern/ renamed to level3-plus-govern/ [EVIDENCE: T-064 git mv]
-- [x] CHK-053 [P0] Zero hits for legacy patterns in active code [EVIDENCE: final residual sweep returns 0 hits for `level3plus-govern` / `templates/stress-test` / `templates/sharded` in .opencode/skill/ active code paths; 1 acceptable residual in shadow-deltas.jsonl runtime data which auto-regenerates]
+- [x] CHK-053 [P0] Zero hits for legacy patterns in active code [EVIDENCE: final residual sweep returns 0 hits for `level3plus-govern` / `templates/stress-test` / `templates/sharded` in .opencode/skills/ active code paths; 1 acceptable residual in shadow-deltas.jsonl runtime data which auto-regenerates]
 - [x] CHK-054 [P1] mcp-clickup/manual_testing_playbook/ now exists [EVIDENCE: T-052 created from scratch — 6 categories, 12 CLU-NNN scenarios with full RCAF prompts; root validates 0 issues]
 - [x] CHK-055 [P1] skill_advisor reclassification complete [EVIDENCE: T-051 moved 44 files to operator_runbook/ (filesystem mv due to sandbox git index lock; git rename detection at staging time), root renamed to operator_runbook.md, internal refs updated; new canonical manual_testing_playbook/ with 3 categories + 4 SAD-NNN scenarios; both pass validators]
 <!-- /ANCHOR:file-org -->

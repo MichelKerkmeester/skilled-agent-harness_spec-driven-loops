@@ -177,7 +177,7 @@ Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should run r
 
 ```bash
 rg -n 'sk-improve-prompt' .opencode .claude .codex .gemini README.md AGENTS*.md --glob '!**/z_archive/**' --glob '!**/z_future/**'
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map --strict
 ```
 <!-- /ANCHOR:handoff -->
 

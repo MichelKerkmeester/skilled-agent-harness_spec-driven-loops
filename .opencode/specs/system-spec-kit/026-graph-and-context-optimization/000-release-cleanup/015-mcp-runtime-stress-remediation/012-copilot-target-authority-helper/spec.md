@@ -108,10 +108,10 @@ Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | Modify | Append `buildCopilotPromptArg` + helpers (~+150 LOC; existing functions untouched) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 596-642) to route through `buildCopilotPromptArg` |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 667-690) to route through `buildCopilotPromptArg` (also unifies on Node-based dispatch matching deep-research) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | Create | 13 tests across 6 describe blocks |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | Modify | Append `buildCopilotPromptArg` + helpers (~+150 LOC; existing functions untouched) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 596-642) to route through `buildCopilotPromptArg` |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Replace `if_cli_copilot.command` (~lines 667-690) to route through `buildCopilotPromptArg` (also unifies on Node-based dispatch matching deep-research) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | Create | 13 tests across 6 describe blocks |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -128,7 +128,7 @@ Add a typed `buildCopilotPromptArg` helper next to `resolveCopilotPromptArg` in 
 | **REQ-003** | Missing authority + `writeIntent:false` returns the prompt unchanged with original argv (preserve prior read-only behavior). | Vitest assertion: `result.promptBody === prompt`, argv contains `--allow-all-tools`, `enforcedPlanOnly === false`. |
 | **REQ-004** | Missing authority + `writeIntent:true` replaces the prompt with a Gate-3 question and strips `--allow-all-tools`. | Vitest assertion: `result.argv` does NOT contain `--allow-all-tools`; `result.promptBody` contains `TARGET AUTHORITY MISSING — GATE 3 REQUIRED` and `Do NOT pick a folder yourself.`; `enforcedPlanOnly === true`. |
 | **REQ-005** | Recovered context (folder names embedded in the prompt body) CANNOT override an approved `specFolder`. | Vitest assertion: when `recoveredContextPrompt` mentions a competing folder + an `approved` authority is set with `APPROVED_FOLDER`, the preamble's `Approved spec folder: <APPROVED_FOLDER>` index in `result.promptBody` is BEFORE the competing folder mention; the explicit "cannot override" line is present. |
-| **REQ-006** | Both `_auto.yaml` call sites route cli-copilot dispatches through `buildCopilotPromptArg`. | `grep -n "buildCopilotPromptArg" .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `... spec_kit_deep-review_auto.yaml` each return ≥1 hit; `grep -n "resolveCopilotPromptArg" .../spec_kit_deep-research_auto.yaml` returns 0 (replaced) or only in the import where unused. |
+| **REQ-006** | Both `_auto.yaml` call sites route cli-copilot dispatches through `buildCopilotPromptArg`. | `grep -n "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `... spec_kit_deep-review_auto.yaml` each return ≥1 hit; `grep -n "resolveCopilotPromptArg" .../spec_kit_deep-research_auto.yaml` returns 0 (replaced) or only in the import where unused. |
 | **REQ-007** | The dispatch-time YAML resolves `targetAuthority` from the workflow's `{spec_folder}` template (kind:"approved" when present; kind:"missing", writeIntent:true when absent). | YAML inline source contains `targetAuthority = specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }` or equivalent ternary. |
 
 ### P1 - Required (complete OR user-approved deferral)

@@ -35,7 +35,7 @@ confidence: high
 finding: The external repo suggests `system-spec-kit` is carrying too much enforceable policy in prose. A slimmer gate system backed by more executable hooks would likely improve UX without sacrificing safety.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `CLAUDE.md`, `.claude/settings.local.json`, hook packages under `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/`
+- **Target file or module:** `CLAUDE.md`, `.claude/settings.local.json`, hook packages under `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/`
 - **Change type:** architectural shift
 - **Blast radius:** large
 - **Prerequisites:** classify which rules are deterministic, Claude-specific, or inherently human-judgment-based

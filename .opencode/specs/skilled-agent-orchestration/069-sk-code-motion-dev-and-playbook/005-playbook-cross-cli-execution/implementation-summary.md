@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -60,7 +60,7 @@ Phase 005 now has the playbook coverage and runner harness needed for a cross-CL
 
 ### Cross-Stack Routing Scenarios
 
-Seven `CS-*` scenarios were added under `.opencode/skill/sk-code/manual_testing_playbook/07--cross-stack-routing/`. They cover Webflow plus Motion.dev, generic non-Webflow Motion.dev, OpenCode plus Motion.dev, the Motion/CSS decision matrix, cross-stack snippet reuse, animation-heavy CWV reference loading, and prefers-reduced-motion guidance.
+Seven `CS-*` scenarios were added under `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/`. They cover Webflow plus Motion.dev, generic non-Webflow Motion.dev, OpenCode plus Motion.dev, the Motion/CSS decision matrix, cross-stack snippet reuse, animation-heavy CWV reference loading, and prefers-reduced-motion guidance.
 
 ### Root Playbook Update
 
@@ -83,8 +83,8 @@ The Phase 005 folder now includes a universal YAML-only test prompt and five scr
 | `prompts/universal_test_prompt.md` | Created | Shared read-only routing-analysis prompt |
 | `scripts/*.sh` | Created | Per-CLI runners and matrix driver |
 | `results/SD-001-codex.yaml` | Generated | Smoke-test structured result |
-| `.opencode/skill/sk-code/manual_testing_playbook/07--cross-stack-routing/*.md` | Created | Seven CS scenario contracts |
-| `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modified | Counts, TOC, Section 13, and cross-reference updates |
+| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/*.md` | Created | Seven CS scenario contracts |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modified | Counts, TOC, Section 13, and cross-reference updates |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -116,8 +116,8 @@ The implementation followed the existing sk-doc playbook shape and the Packet 06
 | Check | Result |
 |-------|--------|
 | `bash -n scripts/run_*.sh` | PASS |
-| `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/sk-code/manual_testing_playbook --root specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution` | PASS |
-| `ls .opencode/skill/sk-code/manual_testing_playbook/07--cross-stack-routing/` | PASS - seven scenario files exist |
+| `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code/manual_testing_playbook --root specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution` | PASS |
+| `ls .opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/` | PASS - seven scenario files exist |
 | `ls -la .../005-playbook-cross-cli-execution/scripts/` | PASS - five scripts executable |
 | `run_codex.sh SD-001 "<prompt>"` | FAIL - produced `/tmp/skc-SD-001-codex.txt` and `results/SD-001-codex.yaml`, but nested Codex could not resolve/connect to `wss://api.openai.com/v1/responses` |
 | Phase 005 strict spec validation | PASS - exit 0 |

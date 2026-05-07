@@ -16,9 +16,9 @@
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/spec.md:116`
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/tasks.md:60`
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:46`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:59`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts:16`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:59`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:16`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts:17`
 - Impact: The packet claims the CommonJS scripts package now crosses a clean explicit interop boundary, but the current tree still contains direct sibling imports from a CommonJS package into migrated ESM packages.
 
 ### P1-023-002: Node 25 interoperability proof is recorded as shipped while package engines still advertise Node 20.11 as sufficient
@@ -27,17 +27,17 @@
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:46`
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:73`
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:84`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/package.json:7`
-- Evidence: `.opencode/skill/system-spec-kit/shared/package.json:19`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/package.json:40`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/package.json:7`
+- Evidence: `.opencode/skills/system-spec-kit/shared/package.json:19`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/package.json:40`
 - Impact: The runtime-compatibility story is internally inconsistent: the packet celebrates Node 25-native `require(esm)` proof, but the shipped manifests still promise a lower engine floor.
 
 ### P2-023-003: V-rule bridge is still optionally fail-open under an environment toggle
 - Severity: `P2`
 - Dimension: `D2 Security`
 - Evidence: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:61`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103`
 - Impact: The packet implies the validator bridge now fails closed, but the current handler still permits an allow-by-default bypass when optional mode is enabled.
 
 ### P1-023-004: Root packet completion state is internally contradictory against the shipped implementation surfaces
@@ -76,32 +76,32 @@
 ### P1-023-007: CLI `--session-id` save path is wired through the surface but dropped before workflow capture
 - Severity: `P1`
 - Dimension: `D6 Reliability`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:398`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:562`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:265`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:589`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:791`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:832`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:398`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:562`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:265`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:589`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:791`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:832`
 - Impact: The operator-facing flag suggests deterministic session targeting, but the current workflow never consumes it and may save against a different synthesized session id.
 
 ### P2-023-008: Startup and recovery guidance still diverges between `session_resume` and `session_bootstrap` entrypoints
 - Severity: `P2`
 - Dimension: `D4 Maintainability`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:662`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:679`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:680`
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:737`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:662`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:679`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:680`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:737`
 - Impact: Non-hook clients still receive mixed recovery guidance from the runtime itself, which makes the intended first-call path harder to preserve consistently across wrappers and docs.
 
 ### P2-023-009: Folder-wide duplicate hashing adds avoidable latency to the hot save path
 - Severity: `P2`
 - Dimension: `D5 Performance`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1447`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1663`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1669`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:94`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:105`
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:129`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1447`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1663`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1669`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:94`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:105`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:129`
 - Impact: Each save still rescans and rehashes the whole target folder after preflight, so save latency grows with folder history even on the normal non-duplicate path.
 
 ## 4. Remediation Workstreams

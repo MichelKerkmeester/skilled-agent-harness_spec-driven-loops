@@ -47,10 +47,10 @@ _memory:
 - [x] T001 Author original 056 spec/plan/tasks/checklist (Phase A start).
 - [x] T002 Pre-flight grep: identify consumers of `references/nextjs` / `assets/nextjs` paths.
 - [x] T003 Decision: rename to `nextjs/` (final user direction), with constant `NEXTJS`.
-- [x] T004 `git mv .opencode/skill/sk-code/references/nextjs .opencode/skill/sk-code/references/react` (Phase A initial — later reverted by user).
+- [x] T004 `git mv .opencode/skills/sk-code/references/nextjs .opencode/skills/sk-code/references/react` (Phase A initial — later reverted by user).
 - [x] T005 `git mv references/react references/nextjs` (final state).
-- [x] T006 `mkdir -p .opencode/skill/sk-code/assets/nextjs/{checklists,patterns,integrations}`.
-- [x] T007 `mkdir -p .opencode/skill/sk-code/assets/go/{checklists,patterns}`.
+- [x] T006 `mkdir -p .opencode/skills/sk-code/assets/nextjs/{checklists,patterns,integrations}`.
+- [x] T007 `mkdir -p .opencode/skills/sk-code/assets/go/{checklists,patterns}`.
 
 ---
 
@@ -65,7 +65,7 @@ _memory:
 
 ### Phase B — Bulk stub fill + carry-over rewrites + scrub
 
-- [x] T010 Read `.opencode/skill/cli-codex/SKILL.md` to confirm dispatch contract.
+- [x] T010 Read `.opencode/skills/cli-codex/SKILL.md` to confirm dispatch contract.
 - [x] T011 Compose cli-codex dispatch prompt (43-entry flat path list + canonical templates + strict prohibitions).
 - [x] T012 Invoke cli-codex `codex exec -c service_tier="fast" --model gpt-5.5` → 43 stub files written.
 - [x] T013 Post-dispatch verification: file count, status:stub markers, kerkmeester sweep, no-fenced-code sweep.

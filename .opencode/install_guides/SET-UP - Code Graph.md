@@ -40,14 +40,14 @@ Phase A invariant: zero mutations to source files. Only the report is written.
 
 | Requirement | Check |
 | --- | --- |
-| MCP server is built | `ls .opencode/skill/system-spec-kit/mcp_server/dist/` shows JS |
+| MCP server is built | `ls .opencode/skills/system-spec-kit/mcp_server/dist/` shows JS |
 | `code_graph_status` available | Tool appears in your AI client's tool list |
 | Index has been populated at least once | `code_graph_status({})` shows non-zero indexed_count |
 
 **Build first if needed:**
 ```bash
-npm --prefix .opencode/skill/system-spec-kit/mcp_server install
-npm --prefix .opencode/skill/system-spec-kit/mcp_server run build
+npm --prefix .opencode/skills/system-spec-kit/mcp_server install
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 ```
 
 **Initial scan if index is empty:**
@@ -98,7 +98,7 @@ Apply mode mutates `.opencode/code-graph.config.json` only. Pre-apply snapshot l
 
 **Never touches (any mode):**
 - Any source file in the workspace
-- Any code under `.opencode/skill/system-spec-kit/mcp_server/`
+- Any code under `.opencode/skills/system-spec-kit/mcp_server/`
 - The code-graph SQLite database (mutations happen via `code_graph_scan` only)
 - The 007 research assets (`.opencode/specs/.../assets/` is read-only)
 

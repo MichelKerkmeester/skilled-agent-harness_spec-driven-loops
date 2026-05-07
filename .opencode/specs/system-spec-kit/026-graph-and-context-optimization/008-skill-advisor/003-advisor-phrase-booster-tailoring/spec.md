@@ -19,10 +19,10 @@ _memory:
     next_safe_action: "Review and proceed to implement per plan.md (Phase 1 audit → Phase 2 migration → Phase 3 regression)"
     blockers: []
     key_files:
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor_regression.py"
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor_bench.py"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor_regression.py"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor_bench.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-start-013-2026-04-15"
@@ -52,7 +52,7 @@ _memory:
 | **Created** | 2026-04-15 |
 | **Branch** | `013-advisor-phrase-booster-tailoring` |
 | **Parent Packet** | `026-graph-and-context-optimization` |
-| **Target File** | `.opencode/skill/skill-advisor/scripts/skill_advisor.py` |
+| **Target File** | `.opencode/skills/skill-advisor/scripts/skill_advisor.py` |
 | **Regression Harness** | `scripts/skill_advisor_regression.py` + `scripts/fixtures/skill_advisor_regression_cases.jsonl` (44 cases) |
 | **Bench Harness** | `scripts/skill_advisor_bench.py` |
 | **Min Top-1 Accuracy Threshold** | 0.92 (enforced by regression harness default) |
@@ -104,8 +104,8 @@ Migrate tokenizer-broken multi-word entries from `INTENT_BOOSTERS` to `PHRASE_IN
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | **Modify** | Clean `INTENT_BOOSTERS` (remove/migrate ~24 multi-word), expand `PHRASE_INTENT_BOOSTERS` |
-| `.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | **Modify** (append) | Optional: 5-10 new P1 fixture cases for newly-routed phrases |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | **Modify** | Clean `INTENT_BOOSTERS` (remove/migrate ~24 multi-word), expand `PHRASE_INTENT_BOOSTERS` |
+| `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | **Modify** (append) | Optional: 5-10 new P1 fixture cases for newly-routed phrases |
 | `scratch/phrase-boost-delta.md` | **Create** | Before/after delta report: which keys moved, new entries added, regression metrics |
 <!-- /ANCHOR:scope -->
 

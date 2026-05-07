@@ -194,13 +194,13 @@ Migration v12 uses DROP+CREATE (not ALTER TABLE) because SQLite cannot modify CH
 | `.opencode/.../search/vector-index.js — Migration v12, create_schema unified DDL, SCHEMA_VERSION=12` | File modified (description pending) |
 | `.opencode/.../cognitive/prediction-error-gate.js — ensure_conflicts_table no-op, log_conflict default fix` | File modified (description pending) |
 | `.opencode/.../handlers/memory-save.js — INSERT column renames, error swallowing removed` | File modified (description pending) |
-| `.opencode/agent/orchestrate.md — Gate 4→Gate 3` | File modified (description pending) |
+| `.opencode/agents/orchestrate.md — Gate 4→Gate 3` | File modified (description pending) |
 | `AGENTS.md (project root) — Gate 4 Option B→Gate 3 Option B` | File modified (description pending) |
 | `.opencode/.../scripts/scripts-registry.json — Gate 6→Completion Verification Rule` | File modified (description pending) |
 | `.opencode/.../scripts/README.md — Gate 6→Completion Verification Rule` | File modified (description pending) |
 | `.opencode/.../spec/check-completion.sh — Gate 6→Completion Verification Rule` | File modified (description pending) |
 | `.opencode/install_guides/SET-UP - AGENTS.md — Full gate section rewrite to 3-gate scheme` | File modified (description pending) |
-| `.opencode/agent/speckit.md — 3 scripts added to Capability Scan, Gate 4→Validation 4` | File modified (description pending) |
+| `.opencode/agents/speckit.md — 3 scripts added to Capability Scan, Gate 4→Validation 4` | File modified (description pending) |
 
 <!-- /ANCHOR:summary-session-1770303531287-d4i3bbsf5-003-memory-and-spec-kit/088-speckit-known-limitations-remediation -->
 
@@ -431,7 +431,7 @@ Manual context save
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/088-speckit-known-limitations-remediation", limit: 10 })
@@ -443,7 +443,7 @@ ls -la 003-memory-and-spec-kit/088-speckit-known-limitations-remediation/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/088-speckit-known-limitations-remediation --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/088-speckit-known-limitations-remediation --force
 ```
 
 ### Recovery Priority
@@ -604,13 +604,13 @@ key_files:
   - ".opencode/.../search/vector-index.js — Migration v12, create_schema unified DDL, SCHEMA_VERSION=12"
   - ".opencode/.../cognitive/prediction-error-gate.js — ensure_conflicts_table no-op, log_conflict default fix"
   - ".opencode/.../handlers/memory-save.js — INSERT column renames, error swallowing removed"
-  - ".opencode/agent/orchestrate.md — Gate 4→Gate 3"
+  - ".opencode/agents/orchestrate.md — Gate 4→Gate 3"
   - "AGENTS.md (project root) — Gate 4 Option B→Gate 3 Option B"
   - ".opencode/.../scripts/scripts-registry.json — Gate 6→Completion Verification Rule"
   - ".opencode/.../scripts/README.md — Gate 6→Completion Verification Rule"
   - ".opencode/.../spec/check-completion.sh — Gate 6→Completion Verification Rule"
   - ".opencode/install_guides/SET-UP - AGENTS.md — Full gate section rewrite to 3-gate scheme"
-  - ".opencode/agent/speckit.md — 3 scripts added to Capability Scan, Gate 4→Validation 4"
+  - ".opencode/agents/speckit.md — 3 scripts added to Capability Scan, Gate 4→Validation 4"
 
 # Relationships
 related_sessions:

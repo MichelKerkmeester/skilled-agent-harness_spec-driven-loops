@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:93-99`, `:140-166`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:192-198`, `:207-240`, `:296-302`, `:334-349`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-331`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:266-379`, `:417-512`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-120`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep for `SPECKIT_CODE_GRAPH_INDEX_SKILLS` / `CODE_GRAPH_INDEX_SKILLS_ENV`: no matches)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:31-42`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:93-99`, `:140-166`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:192-198`, `:207-240`, `:296-302`, `:334-349`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-331`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:266-379`, `:417-512`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-120`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep for `SPECKIT_CODE_GRAPH_INDEX_SKILLS` / `CODE_GRAPH_INDEX_SKILLS_ENV`: no matches)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:31-42`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`
 
 ## Findings by Severity
 
@@ -23,9 +23,9 @@
 
 - **claim:** `relativizeScanError()` still allows a workspace absolute path to remain in `data.errors` when one error string contains multiple absolute paths separated by a colon. The regex treats `/workspace/src/a.ts:/workspace/src/b.ts` as one match, relativizes it to `src/a.ts:/workspace/src/b.ts`, and leaves the second absolute path embedded in the returned error string.
 - **evidenceRefs:**
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
 - **counterevidenceSought:** Verified comma-separated and parenthesized paths are split by the current delimiter class, and the existing regression test covers a single embedded workspace path. Also checked that scan errors are routed through `relativizeScanError()` before response emission.
 - **alternativeExplanation:** A colon can be a legal POSIX filename character, so treating it as part of a path is defensible for raw filesystem paths. However, the helper is not receiving raw paths only; it is redacting human/parser error strings, and colon-separated paths are explicitly in this sweep's edge-case set.
 - **finalSeverity:** P0

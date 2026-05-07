@@ -61,18 +61,18 @@ Updated the 005 packet identity references, added ADR alternatives for ADR-008 t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts` | Modified | Adds `isIndexableConstitutionalMemoryPath()` |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts` | Modified | Downgrades constitutional README rows during restore |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` | Modified | Uses rule-file-only predicate for update guard |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts` | Modified | Uses rule-file-only predicate for metadata writes |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified | Adds stable excluded-path error code and SSOT tier guard |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` | Modified | Adds discovery metadata and SSOT constitutional filtering |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Surfaces walker warnings and cap metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` | Modified | Adds code-graph walker warnings and cap metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Surfaces code-graph scan warnings and cap metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts` | Modified | Routes fallback metadata through guarded helper |
-| `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts` | Modified | Derives excluded rows from SSOT helpers |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts` | Created | Shared SQLite fixture builder |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts` | Modified | Adds `isIndexableConstitutionalMemoryPath()` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts` | Modified | Downgrades constitutional README rows during restore |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` | Modified | Uses rule-file-only predicate for update guard |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts` | Modified | Uses rule-file-only predicate for metadata writes |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified | Adds stable excluded-path error code and SSOT tier guard |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` | Modified | Adds discovery metadata and SSOT constitutional filtering |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | Surfaces walker warnings and cap metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` | Modified | Adds code-graph walker warnings and cap metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Surfaces code-graph scan warnings and cap metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts` | Modified | Routes fallback metadata through guarded helper |
+| `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts` | Modified | Derives excluded rows from SSOT helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/memory-index-db.ts` | Created | Shared SQLite fixture builder |
 
 ---
 

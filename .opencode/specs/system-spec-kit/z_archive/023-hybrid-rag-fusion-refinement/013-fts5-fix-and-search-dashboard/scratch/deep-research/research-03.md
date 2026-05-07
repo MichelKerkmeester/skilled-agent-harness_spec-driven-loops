@@ -24,7 +24,7 @@ So the pipeline entry point is not taking a router-produced channel list and con
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:684-721`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:684-721`
 
 ### 2. Stage 1 metadata comes straight from `executeStage1()`
 
@@ -40,10 +40,10 @@ are Stage 1's own accounting, not something recomputed later by the orchestrator
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57-78`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:182-194`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:194-210`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:323-337`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57-78`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:182-194`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:194-210`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:323-337`
 
 ### 3. The main Stage 1 execution function is `executeStage1()`
 
@@ -74,8 +74,8 @@ So the suspicious `channelCount: 1` is literally whatever value `executeStage1()
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:469-497`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1347-1375`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:469-497`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1347-1375`
 
 ### 4. For `searchType: 'hybrid'`, Stage 1 usually calls `collectRawCandidates()` — but it counts **Stage 1 branches**, not internal hybrid lanes
 
@@ -101,14 +101,14 @@ This explains the apparent contradiction:
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:604-610`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:679-740`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:756-770`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:803-823`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:851-869`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:83-110`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:604-610`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:679-740`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:756-770`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:803-823`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:851-869`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:83-110`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
 
 ### 5. `collectRawCandidates()` **does** hit the hybrid router internally
 
@@ -128,11 +128,11 @@ So yes: `collectRawCandidates()` is absolutely part of the normal `hybrid` Stage
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:987-1007`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:78-95`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:104-110`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:987-1007`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:78-95`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:104-110`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
 
 ### 6. There are real Stage 1 paths that bypass `collectRawCandidates()`
 
@@ -148,7 +148,7 @@ This path sets `channelCount = 1` and never touches `collectRawCandidates()`.
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:569-600`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:569-600`
 
 #### B. Vector path
 
@@ -160,7 +160,7 @@ This also sets `channelCount = 1` and bypasses hybrid raw collection entirely.
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:900-926`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:900-926`
 
 #### C. Hybrid failure fallback
 
@@ -179,7 +179,7 @@ is consistent with either:
 
 Source:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:851-893`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:851-893`
 
 ### 7. `channelCount` is counting configured Stage 1 branch fan-out, not channels-that-returned-results
 
@@ -207,18 +207,18 @@ not:
 
 Sources:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:593`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:679`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:740`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:756`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:765`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:822`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:853`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:868`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:908`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1120`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1174`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1250`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:593`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:679`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:740`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:756`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:765`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:822`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:853`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:868`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:908`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1120`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1174`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1250`
 
 ## Direct answer to the suspicious trace
 

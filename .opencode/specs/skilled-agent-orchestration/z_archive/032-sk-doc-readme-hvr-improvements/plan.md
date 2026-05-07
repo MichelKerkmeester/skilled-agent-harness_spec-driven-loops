@@ -37,7 +37,7 @@ _memory:
 | **Testing** | Manual review and spec validation |
 
 ### Overview
-This work upgraded three sk-doc documentation surfaces: `.opencode/skill/sk-doc/references/global/hvr_rules.md`, `.opencode/skill/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skill/sk-doc/references/specific/readme_creation.md`. The packet records the research, drafting, review, and verification flow needed to land those changes without drifting from the committed repo layout.
+This work upgraded three sk-doc documentation surfaces: `.opencode/skills/sk-doc/references/global/hvr_rules.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skills/sk-doc/references/specific/readme_creation.md`. The packet records the research, drafting, review, and verification flow needed to land those changes without drifting from the committed repo layout.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -66,13 +66,13 @@ This work upgraded three sk-doc documentation surfaces: `.opencode/skill/sk-doc/
 Documentation standards upgrade with one core rules file, one reusable template, and one workflow reference.
 
 ### Key Components
-- **Rules surface**: `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-- **Template surface**: `.opencode/skill/sk-doc/assets/documentation/readme_template.md`
-- **Workflow surface**: `.opencode/skill/sk-doc/references/specific/readme_creation.md`
-- **Supporting references**: `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md`, `.opencode/skill/sk-doc/references/specific/install_guide_creation.md`, `.opencode/skill/cli-codex/SKILL.md`, and `.opencode/skill/cli-codex/assets/prompt_templates.md`
+- **Rules surface**: `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- **Template surface**: `.opencode/skills/sk-doc/assets/documentation/readme_template.md`
+- **Workflow surface**: `.opencode/skills/sk-doc/references/specific/readme_creation.md`
+- **Supporting references**: `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md`, `.opencode/skills/sk-doc/references/specific/install_guide_creation.md`, `.opencode/skills/cli-codex/SKILL.md`, and `.opencode/skills/cli-codex/assets/prompt_templates.md`
 
 ### Data Flow
-The exemplars under `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, and `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md` informed the pattern extraction. Those patterns then flowed into the HVR rules, the README template, and the new README creation guide.
+The exemplars under `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, and `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md` informed the pattern extraction. Those patterns then flowed into the HVR rules, the README template, and the new README creation guide.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -85,11 +85,11 @@ The exemplars under `.opencode/skill/system-spec-kit/README.md`, `.opencode/skil
 - [x] Define the HVR, template, and creation-reference upgrade goals
 
 ### Phase 2: Core Implementation
-- [x] Expand `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-- [x] Update `.opencode/skill/sk-doc/assets/documentation/readme_template.md`
-- [x] Create `.opencode/skill/sk-doc/references/specific/readme_creation.md`
-- [x] Sync related routing guidance in `.opencode/skill/sk-doc/SKILL.md`
-- [x] Record the cli-codex flag warning in `.opencode/skill/cli-codex/SKILL.md` and `.opencode/skill/cli-codex/assets/prompt_templates.md`
+- [x] Expand `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- [x] Update `.opencode/skills/sk-doc/assets/documentation/readme_template.md`
+- [x] Create `.opencode/skills/sk-doc/references/specific/readme_creation.md`
+- [x] Sync related routing guidance in `.opencode/skills/sk-doc/SKILL.md`
+- [x] Record the cli-codex flag warning in `.opencode/skills/cli-codex/SKILL.md` and `.opencode/skills/cli-codex/assets/prompt_templates.md`
 
 ### Phase 3: Verification
 - [ ] Re-run the spec validator after packet repairs
@@ -116,10 +116,10 @@ The exemplars under `.opencode/skill/system-spec-kit/README.md`, `.opencode/skil
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md` | Internal | Green | Format expectations become ambiguous |
-| `.opencode/skill/sk-doc/references/specific/install_guide_creation.md` | Internal | Green | README-creation modeling loses its closest analogue |
-| `.opencode/skill/system-spec-kit/README.md` | Internal | Green | README exemplar quality target becomes weaker |
-| `.opencode/skill/cli-codex/SKILL.md` | Internal | Green | The routing and flag-warning follow-up loses traceability |
+| `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` | Internal | Green | Format expectations become ambiguous |
+| `.opencode/skills/sk-doc/references/specific/install_guide_creation.md` | Internal | Green | README-creation modeling loses its closest analogue |
+| `.opencode/skills/system-spec-kit/README.md` | Internal | Green | README exemplar quality target becomes weaker |
+| `.opencode/skills/cli-codex/SKILL.md` | Internal | Green | The routing and flag-warning follow-up loses traceability |
 <!-- /ANCHOR:dependencies -->
 
 ---

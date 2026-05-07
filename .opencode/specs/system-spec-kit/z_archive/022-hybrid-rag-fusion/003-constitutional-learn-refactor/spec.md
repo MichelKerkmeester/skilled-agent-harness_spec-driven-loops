@@ -68,18 +68,18 @@ Repurpose `/memory:learn` as the dedicated constitutional memory manager — the
 
 ### Approach
 
-Complete rewrite of `.opencode/command/memory/learn.md` with:
+Complete rewrite of `.opencode/commands/memory/learn.md` with:
 - New role: Constitutional Memory Manager
-- New destination: `.opencode/skill/system-spec-kit/constitutional/` (not spec folder memory/)
+- New destination: `.opencode/skills/system-spec-kit/constitutional/` (not spec folder memory/)
 - New subcommands: `list`, `edit`, `remove`, `budget`
 - Guided creation with frontmatter templates, trigger phrases, ANCHOR format
 - Token budget awareness (~2000 max across all constitutional memories)
 
 ### What Changes
-1. `.opencode/command/memory/learn.md` — complete rewrite (~620→~250 lines)
-2. `.opencode/command/memory/README.txt` — update learn command description
+1. `.opencode/commands/memory/learn.md` — complete rewrite (~620→~250 lines)
+2. `.opencode/commands/memory/README.txt` — update learn command description
 3. `CLAUDE.md` (project root) — update Quick Reference table
-4. `.opencode/skill/system-spec-kit/README.md` — update /memory:learn entry
+4. `.opencode/skills/system-spec-kit/README.md` — update /memory:learn entry
 
 ### What Stays
 - Constitutional tier logic in `importance-tiers.ts` — already correct
@@ -95,7 +95,7 @@ Complete rewrite of `.opencode/command/memory/learn.md` with:
 - REQ-001: learn.md MUST be rewritten as a constitutional memory manager, replacing all 5 generic learning types
 - REQ-002: Old subcommands (correct, undo, history) MUST be removed and replaced with (list, edit, remove, budget)
 - REQ-003: Constitutional memory creation MUST include a budget check step enforcing ~2000 token limit
-- REQ-004: File creation MUST use Write tool targeting `.opencode/skill/system-spec-kit/constitutional/`
+- REQ-004: File creation MUST use Write tool targeting `.opencode/skills/system-spec-kit/constitutional/`
 - REQ-005: Indexing MUST use `memory_save()` MCP call (not `generate-context.js`)
 <!-- /ANCHOR:requirements -->
 
@@ -105,7 +105,7 @@ Complete rewrite of `.opencode/command/memory/learn.md` with:
 
 **Given** the learn command is invoked with no subcommand, **When** a user provides a rule, **Then** the CREATE workflow triggers with qualification, structuring, budget-check, and write+index steps.
 
-**Given** the learn command is invoked with `list`, **When** constitutional memories exist, **Then** all files in `.opencode/skill/system-spec-kit/constitutional/` are listed with token usage.
+**Given** the learn command is invoked with `list`, **When** constitutional memories exist, **Then** all files in `.opencode/skills/system-spec-kit/constitutional/` are listed with token usage.
 
 **Given** the learn command is invoked with `budget`, **When** constitutional memories exist, **Then** current token usage vs ~2000 limit is displayed.
 
@@ -126,10 +126,10 @@ Complete rewrite of `.opencode/command/memory/learn.md` with:
 
 | File | Action | LOC Est. |
 |------|--------|----------|
-| `.opencode/command/memory/learn.md` | Rewrite | ~550 (est. ~250, see implementation-summary.md) |
-| `.opencode/command/memory/README.txt` | Edit | ~15 |
+| `.opencode/commands/memory/learn.md` | Rewrite | ~550 (est. ~250, see implementation-summary.md) |
+| `.opencode/commands/memory/README.txt` | Edit | ~15 |
 | `CLAUDE.md` | Edit | ~5 |
-| `.opencode/skill/system-spec-kit/README.md` | Edit | ~3 |
+| `.opencode/skills/system-spec-kit/README.md` | Edit | ~3 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -150,7 +150,7 @@ Complete rewrite of `.opencode/command/memory/learn.md` with:
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Existing users expect old behavior | M | Update all cross-references simultaneously |
-| Dependency | Constitutional directory exists | L | Already exists at `.opencode/skill/system-spec-kit/constitutional/` |
+| Dependency | Constitutional directory exists | L | Already exists at `.opencode/skills/system-spec-kit/constitutional/` |
 | Dependency | `memory_save()` supports constitutional tier | L | Already implemented |
 <!-- /ANCHOR:risks -->
 

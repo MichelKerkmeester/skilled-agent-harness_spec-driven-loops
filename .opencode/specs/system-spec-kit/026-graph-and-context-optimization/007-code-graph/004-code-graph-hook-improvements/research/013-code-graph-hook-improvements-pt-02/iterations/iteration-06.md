@@ -7,20 +7,20 @@ This round traced the startup graph payload from the builder into runtime adapte
 ### Context Consumed
 
 - `iterations/iteration-05.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
 
 ### Findings
 
-- `buildStartupBrief()` still creates a structured `sharedPayload` with `kind`, `sections`, and provenance metadata including `trustState`, `generatedAt`, `lastUpdated`, and `sourceRefs` [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245].
-- The Claude, Gemini, Copilot, and Codex startup adapters consume only `startupSurface`, `graphOutline`, and optional `sessionContinuity`; none forwards `sharedPayload` or any compact structured derivative into runtime-visible output [.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:235-285; .opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:170-219; .opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:171-219; .opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts:155-176].
-- Builder-level tests assert `sharedPayload` exists, but adapter-level tests assert only textual sections or `additionalContext`, so the structured transport path can regress without tripping runtime hook coverage [.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:257-268; .opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68].
+- `buildStartupBrief()` still creates a structured `sharedPayload` with `kind`, `sections`, and provenance metadata including `trustState`, `generatedAt`, `lastUpdated`, and `sourceRefs` [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245].
+- The Claude, Gemini, Copilot, and Codex startup adapters consume only `startupSurface`, `graphOutline`, and optional `sessionContinuity`; none forwards `sharedPayload` or any compact structured derivative into runtime-visible output [.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:235-285; .opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:170-219; .opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:171-219; .opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:155-176].
+- Builder-level tests assert `sharedPayload` exists, but adapter-level tests assert only textual sections or `additionalContext`, so the structured transport path can regress without tripping runtime hook coverage [.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:257-268; .opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68].
 
 ### Evidence
 

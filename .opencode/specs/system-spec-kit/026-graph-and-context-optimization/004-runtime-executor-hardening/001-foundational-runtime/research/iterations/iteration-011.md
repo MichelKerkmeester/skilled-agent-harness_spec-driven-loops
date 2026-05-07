@@ -6,7 +6,7 @@ I revisited the runtime seams already flagged in the packet scratch notes, but o
 ## Findings
 
 ### Finding R11-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `199-218, 248-276`
 - **Severity:** P1
 - **Description:** If transcript stat/parsing or producer-metadata construction fails after a `transcript_path` is present, the stop hook degrades to a warning-only path and still completes the stop flow. Caller perception: the session stop hook finished normally and may still auto-save summary/spec-folder state. Reality: the hook never persisted `producerMetadata`, so transcript fingerprint, last turn timestamp, and cache-token evidence silently disappear for that session.
@@ -14,7 +14,7 @@ I revisited the runtime seams already flagged in the packet scratch notes, but o
 - **Downstream Impact:** Startup/resume continuity and analytics consumers lose the metadata they need to verify transcript freshness and cache-token provenance, but operators only see a warning in hook logs. The session remains observationally similar to an ordinary stop event instead of an incomplete continuity capture.
 
 ### Finding R11-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `223-233`
 - **Severity:** P2
 - **Description:** `validateGraphMetadataContent()` fail-opens legacy line-based payloads into `ok: true` results with no migration or downgrade marker. Caller perception: the file is current-schema-valid graph metadata. Reality: the parser accepted an obsolete fallback format and returned fully trusted metadata without telling the caller that it came through the legacy path.
@@ -22,7 +22,7 @@ I revisited the runtime seams already flagged in the packet scratch notes, but o
 - **Downstream Impact:** Tooling that relies on `validateGraphMetadataContent()` or `loadGraphMetadata()` cannot distinguish first-class metadata from fallback-migrated legacy content. That makes stale packet metadata formats look healthy, which raises the chance of silent drift surviving save/merge/index workflows.
 
 ### Finding R11-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `367-385`
 - **Severity:** P1
 - **Description:** `blast_radius` silently degrades unresolved subjects into seed file paths. Trigger: `resolveSubjectFilePath(candidate)` returns `null` for a symbol ID, fqName, or typo. Caller perception: the handler successfully computed a blast radius and found no dependents beyond the seed. Reality: the subject never resolved; the handler just reused the raw input string as a file path and returned an `ok` payload.
@@ -30,7 +30,7 @@ I revisited the runtime seams already flagged in the packet scratch notes, but o
 - **Downstream Impact:** Change-impact and refactor workflows can get false-negative dependency sets when they ask for blast radius by symbol name or stale file path. The result stays `status: "ok"`, so downstream automation has no built-in signal that the structural seed was never valid.
 
 ### Finding R11-004
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `283-295`
 - **Severity:** P2
 - **Description:** Scope-filtered reconsolidation candidates vanish silently. Trigger: `vectorSearch()` finds similar memories, but `candidateMatchesRequestedScope(...)` filters them all out. Caller perception: the save had no actionable reconsolidation candidate, so the normal create path is the correct outcome. Reality: there were high-similarity candidates, but the bridge dropped them after governance filtering and emitted no warning that dedup/review evidence existed but was suppressed.
@@ -38,7 +38,7 @@ I revisited the runtime seams already flagged in the packet scratch notes, but o
 - **Downstream Impact:** Governed saves can accumulate duplicate or near-duplicate rows with no operator hint that reconsolidation was suppressed by scope metadata. When scope fields drift or are missing, the save path looks indistinguishable from a genuine "no similar memories found" result.
 
 ### Finding R11-005
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `136-147, 187-200`
 - **Severity:** P2
 - **Description:** Post-insert status booleans also collapse helper-return no-ops into success, not just deferred/disabled branches. Caller perception: summary generation and graph lifecycle enrichment completed cleanly. Reality: the helpers can report "nothing stored" or "skipped" while `post-insert.ts` still flips `summaries` / `graphLifecycle` to `true`, which suppresses the save pipeline's only generic partial-enrichment warning.

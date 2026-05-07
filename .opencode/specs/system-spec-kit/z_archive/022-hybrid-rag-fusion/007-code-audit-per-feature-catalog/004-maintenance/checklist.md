@@ -40,7 +40,7 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Feature catalog files accessible and current — `feature_catalog/04--maintenance/` confirmed; 2 features present [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
-- [x] CHK-002 [P0] Source code accessible — `.opencode/skill/system-spec-kit/` accessible; all referenced files located [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
+- [x] CHK-002 [P0] Source code accessible — `.opencode/skills/system-spec-kit/` accessible; all referenced files located [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
 - [x] CHK-003 [P1] Audit methodology documented in plan.md — Read→Locate→Compare→Document pattern recorded in plan.md §3 [EVIDENCE: 2026-03-25 release-alignment normalization cross-checked spec.md, plan.md, and implementation-summary.md.]
 
 <!-- /ANCHOR:pre-impl -->

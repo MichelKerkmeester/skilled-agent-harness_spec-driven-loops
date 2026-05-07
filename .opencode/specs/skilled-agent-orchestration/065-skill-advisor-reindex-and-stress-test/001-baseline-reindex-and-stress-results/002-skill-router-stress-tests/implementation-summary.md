@@ -54,7 +54,7 @@ Aggregate outcome: PASS=1, WARN=1, FAIL=4. CP-102 passed low-confidence honesty.
 
 001 emitted `GO`, then six CP prompts were executed through the Python fallback advisor:
 
-`python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.0`
+`python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.0`
 
 The handover explicitly allowed direct-advisor execution when MCP was reachable because the advisor is the system under test. Each CP result was copied into the cli-codex, and cli-gemini executor slots with `dispatch_mode` provenance in every JSON file. No external CLI timeout occurred because external CLIs were not invoked directly.
 <!-- /ANCHOR:how-delivered -->
@@ -74,7 +74,7 @@ Verification commands (run during T-014 + T-016):
 - `ls results/CP-1{00,01,02,03,04,05}-{copilot,codex,gemini}.json | wc -l` -> 18 files.
 - `test -f test-report.md && grep -E "^## METHODOLOGY" test-report.md` -> methodology section present.
 - `grep -E "PASS=[0-9]+ WARN=[0-9]+ FAIL=[0-9]+" test-report.md` -> `PASS=1 WARN=1 FAIL=4`.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests --strict` -> PASS: Errors 0, Warnings 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests --strict` -> PASS: Errors 0, Warnings 0.
 
 Findings are classified in `test-report.md`: no P0, three P1 missed matches, and two P2 edge cases.
 <!-- /ANCHOR:verification -->

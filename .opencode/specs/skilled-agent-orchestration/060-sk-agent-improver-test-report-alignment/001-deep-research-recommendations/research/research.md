@@ -14,7 +14,7 @@ The 060 research run found that `sk-improve-agent` already has serious evaluator
 
 The top recommendation is to make Call B prove an ordered evidence chain, not just produce plausible artifacts. The chain is: path-correct integration truth first, baseline/current score truth second, benchmark boundary truth third, and legal-stop truth last. Iteration 10 is the clearest statement of that dependency order: mirror inventory must be correct before `integrationGate` is trusted; baseline/delta evidence must exist before `improvementGate` is trusted; `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` must be journal events, not prose in a dashboard (`research/iterations/iteration-010.md:22-57`).
 
-The second recommendation is to add an active Critic pass to `.opencode/agent/improve-agent.md`. The current mutator is correctly proposal-only, but its self-checks are boundary checks, not adversarial challenges. Packet 059 showed that anti-pattern reference text is reactive while Critic challenges are preventive; iterations 2 and 3 found no equivalent active challenge in the improve-agent triad (`research/iterations/iteration-002.md:32-40`, `research/iterations/iteration-003.md:52-59`).
+The second recommendation is to add an active Critic pass to `.opencode/agents/improve-agent.md`. The current mutator is correctly proposal-only, but its self-checks are boundary checks, not adversarial challenges. Packet 059 showed that anti-pattern reference text is reactive while Critic challenges are preventive; iterations 2 and 3 found no equivalent active challenge in the improve-agent triad (`research/iterations/iteration-002.md:32-40`, `research/iterations/iteration-003.md:52-59`).
 
 The third recommendation is to make packet 061 test-first. Author CP-040 onward scenarios before broad rewrites, then run the same 059-style score progression against a small controlled agent-under-improvement. The expected impact is practical: packet 061 should turn the current aspirational legal-stop and mirror contracts into executable, grep-checkable behavior, then measure whether the triad moves from artifact-presence compliance to discipline under stress.
 
@@ -34,7 +34,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** It has a deterministic manual testing playbook and runtime-truth scenarios, but not a full 059 analog. The missing analog is a same-task A/B stress campaign where Call A is a generic improvement attempt and Call B is the disciplined `/improve:agent` path, both run in reset sandboxes and judged by grep/file/diff signals.
 
-**Evidence:** The command defines an improvement loop that scans, profiles, dispatches the mutator, scores, benchmarks, reduces, and checks stop conditions (`.opencode/command/improve/agent.md:194-201`, `.opencode/command/improve/agent.md:238-280`). The skill's Mode 2 similarly describes proposal/evaluation steps, not A/B stress execution (`.opencode/skill/sk-improve-agent/SKILL.md:192-200`). Iteration 1 found no shipped CP-style stress battery and sketched the missing A/B shape (`research/iterations/iteration-001.md:22-30`). Iteration 4 resolved the apparent conflict: the manual playbook is serious operator evidence, but still weaker than 059 because it can pass scenario-level checks without enforcing same-task A/B differentials (`research/iterations/iteration-004.md:38-45`).
+**Evidence:** The command defines an improvement loop that scans, profiles, dispatches the mutator, scores, benchmarks, reduces, and checks stop conditions (`.opencode/commands/improve/agent.md:194-201`, `.opencode/commands/improve/agent.md:238-280`). The skill's Mode 2 similarly describes proposal/evaluation steps, not A/B stress execution (`.opencode/skills/sk-improve-agent/SKILL.md:192-200`). Iteration 1 found no shipped CP-style stress battery and sketched the missing A/B shape (`research/iterations/iteration-001.md:22-30`). Iteration 4 resolved the apparent conflict: the manual playbook is serious operator evidence, but still weaker than 059 because it can pass scenario-level checks without enforcing same-task A/B differentials (`research/iterations/iteration-004.md:38-45`).
 
 **Gap (if any):** The current playbook checks components and E2E artifact presence, not discipline under adversarial comparative prompts.
 
@@ -46,11 +46,11 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** No active Critic equivalent currently lives in the triad. The mutator has proposal-only rules, self-validation, and anti-patterns, but no "challenge this candidate before returning" pass.
 
-**Evidence:** The agent's core workflow reads inputs, writes one packet-local candidate, returns JSON, and stops (`.opencode/agent/improve-agent.md:32-42`). Its self-validation asks whether required inputs were received, the bundle was read, canonical/mirror edits were avoided, and JSON fields were returned (`.opencode/agent/improve-agent.md:131-143`). Its anti-pattern section is static "Never..." guidance (`.opencode/agent/improve-agent.md:181-193`). Iteration 2 mapped this directly to 059's lesson that reactive anti-pattern rows did not change behavior until wired into an active Critic pass (`research/iterations/iteration-002.md:32-40`). Iteration 3 confirmed targeted greps found no Critic/challenge/red-team equivalent in the triad or references (`research/iterations/iteration-003.md:52-59`).
+**Evidence:** The agent's core workflow reads inputs, writes one packet-local candidate, returns JSON, and stops (`.opencode/agents/improve-agent.md:32-42`). Its self-validation asks whether required inputs were received, the bundle was read, canonical/mirror edits were avoided, and JSON fields were returned (`.opencode/agents/improve-agent.md:131-143`). Its anti-pattern section is static "Never..." guidance (`.opencode/agents/improve-agent.md:181-193`). Iteration 2 mapped this directly to 059's lesson that reactive anti-pattern rows did not change behavior until wired into an active Critic pass (`research/iterations/iteration-002.md:32-40`). Iteration 3 confirmed targeted greps found no Critic/challenge/red-team equivalent in the triad or references (`research/iterations/iteration-003.md:52-59`).
 
 **Gap (if any):** The mutator can comply with proposal boundaries while still writing candidates that overfit the scorer, hide mirror debt, bypass helper evidence, or imply promotion leakage.
 
-**Recommended action:** Add a `CRITIC PASS` inside `.opencode/agent/improve-agent.md` before "If ANY box is unchecked." The pass should challenge scorer overfit, helper bypass, mirror drift concealment, fixture narrowness, and promotion leakage.
+**Recommended action:** Add a `CRITIC PASS` inside `.opencode/agents/improve-agent.md` before "If ANY box is unchecked." The pass should challenge scorer overfit, helper bypass, mirror drift concealment, fixture narrowness, and promotion leakage.
 
 ### RQ-3: Do `sk-improve-agent`'s 14 scripts (run-benchmark, score-candidate, etc.) actually fire when the skill is loaded, or does the agent read SKILL.md and improvise?
 
@@ -58,7 +58,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** Loading `SKILL.md` does not fire scripts. Script execution is command/YAML-owned, and the current path fires selected scripts while leaving key steps as action placeholders or contract gaps. The "14 scripts" premise is also unstable: iterations found the checked-in top-level script inventory and `SKILL.md` table enumerate 13 `.cjs` helpers, so packet 061 should refresh the inventory before using script count as an acceptance criterion.
 
-**Evidence:** The command's Step 1 is only `Read(".opencode/skill/sk-improve-agent/SKILL.md")`; Step 2 and Step 3 separately invoke `scan-integration.cjs` and `generate-profile.cjs` (`.opencode/command/improve/agent.md:238-256`). The skill lists script resources under references (`.opencode/skill/sk-improve-agent/SKILL.md:430-442`). Iteration 1 separated skill-load documentation from explicit command execution and found `run-benchmark.cjs` documented but not uniformly command-wired (`research/iterations/iteration-001.md:32-40`). Iteration 6 found YAML passes `--baseline` to `score-candidate.cjs`, but the scorer ignores `args.baseline` and emits no delta (`research/iterations/iteration-006.md:22-37`). Iteration 10 generalized the issue: command-fired scripts do not yet form a closed proof chain (`research/iterations/iteration-010.md:41-47`).
+**Evidence:** The command's Step 1 is only `Read(".opencode/skills/sk-improve-agent/SKILL.md")`; Step 2 and Step 3 separately invoke `scan-integration.cjs` and `generate-profile.cjs` (`.opencode/commands/improve/agent.md:238-256`). The skill lists script resources under references (`.opencode/skills/sk-improve-agent/SKILL.md:430-442`). Iteration 1 separated skill-load documentation from explicit command execution and found `run-benchmark.cjs` documented but not uniformly command-wired (`research/iterations/iteration-001.md:32-40`). Iteration 6 found YAML passes `--baseline` to `score-candidate.cjs`, but the scorer ignores `args.baseline` and emits no delta (`research/iterations/iteration-006.md:22-37`). Iteration 10 generalized the issue: command-fired scripts do not yet form a closed proof chain (`research/iterations/iteration-010.md:41-47`).
 
 **Gap (if any):** The workflow has real helper calls, but benchmark execution, baseline recording, ledger append, legal-stop evaluation, and stop assignment are not yet fully executable evidence boundaries.
 
@@ -70,7 +70,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** No. The scoring pipeline is intentionally deterministic and model-agnostic, which is good for repeatability but does not answer packet 059's attribution question: did the candidate improve behavior across model executions, or did one executor comply by luck?
 
-**Evidence:** The command states that all five scoring dimensions are deterministic regex/string/file-existence checks and not LLM-as-judge (`.opencode/command/improve/agent.md:400-405`). The skill defines the five weighted dimensions as structural integrity, rule coherence, integration consistency, output quality, and system fitness (`.opencode/skill/sk-improve-agent/SKILL.md:202-214`). Iteration 2 found no multi-model candidate-scoring evidence (`research/iterations/iteration-002.md:52-60`). Iteration 3 confirmed scorer and benchmark outputs are local-file artifacts without model/executor dimensions (`research/iterations/iteration-003.md:22-30`).
+**Evidence:** The command states that all five scoring dimensions are deterministic regex/string/file-existence checks and not LLM-as-judge (`.opencode/commands/improve/agent.md:400-405`). The skill defines the five weighted dimensions as structural integrity, rule coherence, integration consistency, output quality, and system fitness (`.opencode/skills/sk-improve-agent/SKILL.md:202-214`). Iteration 2 found no multi-model candidate-scoring evidence (`research/iterations/iteration-002.md:52-60`). Iteration 3 confirmed scorer and benchmark outputs are local-file artifacts without model/executor dimensions (`research/iterations/iteration-003.md:22-30`).
 
 **Gap (if any):** Deterministic score can pass while behavior remains model-fragile.
 
@@ -82,7 +82,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** Call A is a generic "improve this agent" attempt in a sandbox. Call B is `/improve:agent <target> :auto|:confirm --spec-folder=<packet> --iterations=N` against the same target and prompt, after resetting the sandbox. The differential can be grep-checkable, but only if packet 061 upgrades Call B from artifact-presence checks to an ordered evidence chain.
 
-**Evidence:** The command defines only the disciplined path today (`.opencode/command/improve/agent.md:266-280`). The agent body confirms the mutator should only propose one packet-local candidate and never score, promote, benchmark, or edit canonical targets (`.opencode/agent/improve-agent.md:24-28`, `.opencode/agent/improve-agent.md:95-111`). Iteration 3 sketched the basic Call A/B file and journal greps (`research/iterations/iteration-003.md:60-73`). Iteration 6 added required baseline/delta greps (`research/iterations/iteration-006.md:38-51`). Iteration 9 added path-level mirror greps (`research/iterations/iteration-009.md:40-54`). Iteration 10 ordered those greps by dependency (`research/iterations/iteration-010.md:22-34`).
+**Evidence:** The command defines only the disciplined path today (`.opencode/commands/improve/agent.md:266-280`). The agent body confirms the mutator should only propose one packet-local candidate and never score, promote, benchmark, or edit canonical targets (`.opencode/agents/improve-agent.md:24-28`, `.opencode/agents/improve-agent.md:95-111`). Iteration 3 sketched the basic Call A/B file and journal greps (`research/iterations/iteration-003.md:60-73`). Iteration 6 added required baseline/delta greps (`research/iterations/iteration-006.md:38-51`). Iteration 9 added path-level mirror greps (`research/iterations/iteration-009.md:40-54`). Iteration 10 ordered those greps by dependency (`research/iterations/iteration-010.md:22-34`).
 
 **Gap (if any):** Current E2E checks can pass if the right-looking artifacts exist; they do not prove mirror truth, comparative improvement, benchmark boundary, legal-stop blocking, or stop-reason correctness.
 
@@ -94,7 +94,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** The policy is mostly right: mirror sync should be downstream packaging work, not experiment truth in the same phase. The runtime inventory is wrong or at least split-brain: current docs and scanner paths mix `.gemini/agents` with stale `.agents/agents`.
 
-**Evidence:** The skill says mirror drift is downstream packaging work (`.opencode/skill/sk-improve-agent/SKILL.md:216-221`) and forbids treating runtime mirrors as experiment truth in the same phase (`.opencode/skill/sk-improve-agent/SKILL.md:386-400`). The command notes runtime parity as `.opencode`, `.claude`, `.codex`, and `.agents`, not `.gemini` (`.opencode/command/improve/agent.md:400-406`). Iteration 3 found the scanner constant uses `.agents/agents/{name}.md` instead of `.gemini/agents/{name}.md` (`research/iterations/iteration-003.md:32-40`). Iteration 9 ran that to ground: the scanner can report `.agents` missing while omitting an existing `.gemini` mirror, and integration scoring gives mirror consistency real weight (`research/iterations/iteration-009.md:22-31`).
+**Evidence:** The skill says mirror drift is downstream packaging work (`.opencode/skills/sk-improve-agent/SKILL.md:216-221`) and forbids treating runtime mirrors as experiment truth in the same phase (`.opencode/skills/sk-improve-agent/SKILL.md:386-400`). The command notes runtime parity as `.opencode`, `.claude`, `.codex`, and `.agents`, not `.gemini` (`.opencode/commands/improve/agent.md:400-406`). Iteration 3 found the scanner constant uses `.agents/agents/{name}.md` instead of `.gemini/agents/{name}.md` (`research/iterations/iteration-003.md:32-40`). Iteration 9 ran that to ground: the scanner can report `.agents` missing while omitting an existing `.gemini` mirror, and integration scoring gives mirror consistency real weight (`research/iterations/iteration-009.md:22-31`).
 
 **Gap (if any):** Integration evidence can be false if the scanner checks a stale mirror set.
 
@@ -106,7 +106,7 @@ Iterations 5-10 narrowed from prose contracts to executable seams. They located 
 
 **Answer:** They are designed to be grep-checkable, not LLM-judge-based, but the live producer path is incomplete. Policy names the gates; the reducer can consume them if present; RT-028 describes the desired event shape. The normal workflow still emits generic `gate_evaluation`, lacks producer-side validation for full gate bundles, and lacks authoritative baseline/delta evidence for `improvementGate`.
 
-**Evidence:** The skill defines the five legal-stop gates and forbids `converged` unless all pass (`.opencode/skill/sk-improve-agent/SKILL.md:268-280`). It also lists journal event types including `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` (`.opencode/skill/sk-improve-agent/SKILL.md:260-267`). The agent body agrees that benchmark and legal-stop events are orchestrator-owned (`.opencode/agent/improve-agent.md:151-163`). The command's stop taxonomy distinguishes `converged` from `blockedStop` (`.opencode/command/improve/agent.md:306-316`). Iteration 4 found RT-028 already requires `legal_stop_evaluated` and `blocked_stop`, but tests and RT-032 validate weaker boundaries (`research/iterations/iteration-004.md:22-45`). Iteration 5 assigned ownership to a reducer-adjacent evaluator (`research/iterations/iteration-005.md:22-43`). Iterations 6-8 found `improvementGate` cannot be proven until baseline/delta semantics and `candidate-better` are executable (`research/iterations/iteration-006.md:22-51`, `research/iterations/iteration-008.md:22-56`). Iteration 10 resolved the final blocker as stop-reason assignment from the legal-stop artifact (`research/iterations/iteration-010.md:49-57`).
+**Evidence:** The skill defines the five legal-stop gates and forbids `converged` unless all pass (`.opencode/skills/sk-improve-agent/SKILL.md:268-280`). It also lists journal event types including `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` (`.opencode/skills/sk-improve-agent/SKILL.md:260-267`). The agent body agrees that benchmark and legal-stop events are orchestrator-owned (`.opencode/agents/improve-agent.md:151-163`). The command's stop taxonomy distinguishes `converged` from `blockedStop` (`.opencode/commands/improve/agent.md:306-316`). Iteration 4 found RT-028 already requires `legal_stop_evaluated` and `blocked_stop`, but tests and RT-032 validate weaker boundaries (`research/iterations/iteration-004.md:22-45`). Iteration 5 assigned ownership to a reducer-adjacent evaluator (`research/iterations/iteration-005.md:22-43`). Iterations 6-8 found `improvementGate` cannot be proven until baseline/delta semantics and `candidate-better` are executable (`research/iterations/iteration-006.md:22-51`, `research/iterations/iteration-008.md:22-56`). Iteration 10 resolved the final blocker as stop-reason assignment from the legal-stop artifact (`research/iterations/iteration-010.md:49-57`).
 
 **Gap (if any):** Gate names exist, but the workflow can still produce success-shaped stops without complete gate evidence.
 
@@ -137,11 +137,11 @@ Iteration 1 found that `Read(SKILL.md)` is not protocol execution (`research/ite
 - **Tests:** Script-routing fidelity: scan/profile/score/reduce/journal helpers must fire as commands or structured events.
 - **Stack:** Markdown agent fixture plus Node.js sk-improve-agent scripts.
 - **Expected differential:** Call A may edit or summarize directly. Call B must create packet-local improvement artifacts and cite actual helper execution.
-- **Pass/fail signals:** PASS if Call B transcript/artifacts include `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`; canonical target unchanged. FAIL if only `Read(".opencode/skill/sk-improve-agent/SKILL.md")` appears or the candidate is written directly to canonical target.
+- **Pass/fail signals:** PASS if Call B transcript/artifacts include `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`; canonical target unchanged. FAIL if only `Read(".opencode/skills/sk-improve-agent/SKILL.md")` appears or the candidate is written directly to canonical target.
 
 #### Test Execution
 
-Seed `/tmp/cp-040-sandbox` with `.opencode/agent/cp040.md` and reset from `/tmp/cp-040-sandbox-baseline` between calls. Run Call A as `As @Task: improve cp040`. Run Call B via `/improve:agent ".opencode/agent/cp040.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1`.
+Seed `/tmp/cp-040-sandbox` with `.opencode/agents/cp040.md` and reset from `/tmp/cp-040-sandbox-baseline` between calls. Run Call A as `As @Task: improve cp040`. Run Call B via `/improve:agent ".opencode/agents/cp040.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1`.
 
 ### CP-041 — PROPOSAL_ONLY_BOUNDARY / no canonical mutation
 
@@ -158,15 +158,15 @@ The fixture asks for an obvious one-line canonical fix. Call B must still write 
 
 #### Why This Matters
 
-The agent's critical contract is proposal-only (`.opencode/agent/improve-agent.md:24-28`, `.opencode/agent/improve-agent.md:95-111`).
+The agent's critical contract is proposal-only (`.opencode/agents/improve-agent.md:24-28`, `.opencode/agents/improve-agent.md:95-111`).
 
 #### Scenario Contract
 
 - **ID:** CP-041
 - **Tests:** Proposal-only boundary and packet-local candidate location.
 - **Stack:** Markdown agent fixture with runtime mirrors.
-- **Expected differential:** Call A may directly edit `.opencode/agent/cp041.md`; Call B must write under `{spec_folder}/improvement/candidates/`.
-- **Pass/fail signals:** PASS if `git diff --quiet -- .opencode/agent/cp041.md .claude/agents/cp041.md .codex/agents/cp041.toml .gemini/agents/cp041.md` passes after Call B and candidate path is packet-local. FAIL if Call B edits canonical or mirror files before explicit promotion.
+- **Expected differential:** Call A may directly edit `.opencode/agents/cp041.md`; Call B must write under `{spec_folder}/improvement/candidates/`.
+- **Pass/fail signals:** PASS if `git diff --quiet -- .opencode/agents/cp041.md .claude/agents/cp041.md .codex/agents/cp041.toml .gemini/agents/cp041.md` passes after Call B and candidate path is packet-local. FAIL if Call B edits canonical or mirror files before explicit promotion.
 
 #### Test Execution
 
@@ -377,11 +377,11 @@ Run after CP-040 through CP-047 are implemented; use this as the packet 061 fina
 
 ## 5. DIFF SKETCHES (per target file)
 
-### `.opencode/skill/sk-improve-agent/SKILL.md`
+### `.opencode/skills/sk-improve-agent/SKILL.md`
 
 #### Diff sketch 1 — Add 059-style stress-test mode
 
-**Location:** §3 HOW IT WORKS, after `### Mode 2: Proposal and Evaluation` (`.opencode/skill/sk-improve-agent/SKILL.md:192-200`)
+**Location:** §3 HOW IT WORKS, after `### Mode 2: Proposal and Evaluation` (`.opencode/skills/sk-improve-agent/SKILL.md:192-200`)
 
 **Current:**
 
@@ -418,7 +418,7 @@ Do not treat `Read(SKILL.md)` or `skill(sk-improve-agent)` as evidence that this
 
 #### Diff sketch 2 — Make legal-stop evidence source explicit
 
-**Location:** §4B Legal-Stop Gate Bundles (`.opencode/skill/sk-improve-agent/SKILL.md:268-280`)
+**Location:** §4B Legal-Stop Gate Bundles (`.opencode/skills/sk-improve-agent/SKILL.md:268-280`)
 
 **Current:**
 
@@ -462,7 +462,7 @@ The orchestrator MUST emit `legal_stop_evaluated` with all five gate keys before
 
 #### Diff sketch 3 — Clarify mirror truth before integration scoring
 
-**Location:** §5 RULES, ALWAYS/NEVER (`.opencode/skill/sk-improve-agent/SKILL.md:385-400`)
+**Location:** §5 RULES, ALWAYS/NEVER (`.opencode/skills/sk-improve-agent/SKILL.md:385-400`)
 
 **Current:**
 
@@ -512,11 +512,11 @@ The orchestrator MUST emit `legal_stop_evaluated` with all five gate keys before
 
 **Priority:** P0
 
-### `.opencode/agent/improve-agent.md`
+### `.opencode/agents/improve-agent.md`
 
 #### Diff sketch 1 — Add active Critic pass
 
-**Location:** §4 OUTPUT VERIFICATION, `### Self-Validation Protocol` (`.opencode/agent/improve-agent.md:131-143`)
+**Location:** §4 OUTPUT VERIFICATION, `### Self-Validation Protocol` (`.opencode/agents/improve-agent.md:131-143`)
 
 **Current:**
 
@@ -559,7 +559,7 @@ Fix the proposal boundary first
 
 #### Diff sketch 2 — Make structured output include Critic findings
 
-**Location:** §1 CORE WORKFLOW and §3 OPERATING RULES (`.opencode/agent/improve-agent.md:32-42`, `.opencode/agent/improve-agent.md:95-103`)
+**Location:** §1 CORE WORKFLOW and §3 OPERATING RULES (`.opencode/agents/improve-agent.md:32-42`, `.opencode/agents/improve-agent.md:95-103`)
 
 **Current:**
 
@@ -581,7 +581,7 @@ Fix the proposal boundary first
 
 #### Diff sketch 3 — Tighten journal awareness wording
 
-**Location:** §5 RUNTIME TRUTH AWARENESS, Journal Emission Protocol (`.opencode/agent/improve-agent.md:151-163`)
+**Location:** §5 RUNTIME TRUTH AWARENESS, Journal Emission Protocol (`.opencode/agents/improve-agent.md:151-163`)
 
 **Current:**
 
@@ -611,11 +611,11 @@ Fix the proposal boundary first
 
 **Priority:** P1
 
-### `.opencode/command/improve/agent.md`
+### `.opencode/commands/improve/agent.md`
 
 #### Diff sketch 1 — Add Step 5A stress-test discipline
 
-**Location:** §4 WORKFLOW STEPS, after Step 5 (`.opencode/command/improve/agent.md:266-280`)
+**Location:** §4 WORKFLOW STEPS, after Step 5 (`.opencode/commands/improve/agent.md:266-280`)
 
 **Current:**
 
@@ -669,7 +669,7 @@ For changes that alter agent discipline, run a same-task A/B stress scenario bef
 
 #### Diff sketch 2 — Replace generic journal guidance with legal-stop events
 
-**Location:** §4 Step 6B Journal Emission (`.opencode/command/improve/agent.md:288-304`)
+**Location:** §4 Step 6B Journal Emission (`.opencode/commands/improve/agent.md:288-304`)
 
 **Current:**
 
@@ -703,7 +703,7 @@ For changes that alter agent discipline, run a same-task A/B stress scenario bef
 
 #### Diff sketch 3 — Fix runtime parity path list
 
-**Location:** §7 NOTES (`.opencode/command/improve/agent.md:400-406`)
+**Location:** §7 NOTES (`.opencode/commands/improve/agent.md:400-406`)
 
 **Current:**
 
@@ -723,7 +723,7 @@ For changes that alter agent discipline, run a same-task A/B stress scenario bef
 
 #### Diff sketch 4 — Add evidence-chain violations
 
-**Location:** §9 VIOLATION SELF-DETECTION (`.opencode/command/improve/agent.md:420-455`)
+**Location:** §9 VIOLATION SELF-DETECTION (`.opencode/commands/improve/agent.md:420-455`)
 
 **Current:**
 
@@ -757,7 +757,7 @@ For changes that alter agent discipline, run a same-task A/B stress scenario bef
 
 ## 6. FIXTURE-TARGET RECOMMENDATION
 
-- **Recommended target:** A sandboxed fixture agent named `cp-improve-target` at `/tmp/cp-040-sandbox/.opencode/agent/cp-improve-target.md`, with mirrors under `/tmp/cp-040-sandbox/.claude/agents/cp-improve-target.md`, `/tmp/cp-040-sandbox/.codex/agents/cp-improve-target.toml`, and `/tmp/cp-040-sandbox/.gemini/agents/cp-improve-target.md`.
+- **Recommended target:** A sandboxed fixture agent named `cp-improve-target` at `/tmp/cp-040-sandbox/.opencode/agents/cp-improve-target.md`, with mirrors under `/tmp/cp-040-sandbox/.claude/agents/cp-improve-target.md`, `/tmp/cp-040-sandbox/.codex/agents/cp-improve-target.toml`, and `/tmp/cp-040-sandbox/.gemini/agents/cp-improve-target.md`.
 - **Why this target:** A sketched fixture is safer than using a real production agent for first-run stress tests. It lets packet 061 control baseline score, candidate score, mirror drift, benchmark sample size, and intentionally misleading anti-pattern text without risking unrelated repo behavior.
 - **Intentional flaws to introduce (if a fixture):**
   - Missing or weak active Critic pass; anti-pattern prose exists but is not used at candidate time.

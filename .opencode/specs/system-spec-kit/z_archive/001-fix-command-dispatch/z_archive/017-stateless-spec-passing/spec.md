@@ -52,12 +52,12 @@ Deep audit (`grep -rn ".spec-active"`) revealed **60+ references across 17 files
 ### In Scope (13 files across 5 directories)
 
 **Commands:**
-- `.opencode/command/spec_kit/resume.md` (7 refs) - Rewrite Phase 1
-- `.opencode/command/spec_kit/research/research/research.md` (2 refs) - Remove lines 83-85
-- `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` (7 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` (7 refs)
-- `.opencode/command/prompt/assets/improve_prompt.yaml` (2 refs)
-- `.opencode/command/memory/save.md` (1 ref) - Update MCP matrix
+- `.opencode/commands/spec_kit/resume.md` (7 refs) - Rewrite Phase 1
+- `.opencode/commands/spec_kit/research/research/research.md` (2 refs) - Remove lines 83-85
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` (7 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` (7 refs)
+- `.opencode/commands/prompt/assets/improve_prompt.yaml` (2 refs)
+- `.opencode/commands/memory/save.md` (1 ref) - Update MCP matrix
 
 **Scripts:**
 - `.opencode/skills/system-memory/scripts/generate-context.js` (lines 2251-2283) - Remove fallback

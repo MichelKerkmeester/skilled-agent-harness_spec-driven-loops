@@ -2,18 +2,18 @@
   └ Permission denied and could not request permission from user
 
 ✗ Run skill advisor for routing (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Assess documentation and user experience for
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Assess documentation and user experience for
   │ saved but not indexed behavior in system-spec-kit specs and scripts" --threshold 0.8
   └ Permission denied and could not request permission from user
 
 ● Search (grep)
   │ "console\.|logger\.|warn|warning|error|index|search|save|quality|skipped|failed|not
-  │ indexed|semantic|MCP|memory" (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ indexed|semantic|MCP|memory" (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 44 lines found
 
 ● Search (grep)
   │ "console\.|logger\.|warn|warning|error|index|search|save|quality|skipped|failed|not
-  │ indexed|semantic|MCP|memory" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ indexed|semantic|MCP|memory" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
@@ -51,23 +51,23 @@ I found relevant code hits and now I’m drilling into exact documentation text 
 ● Search (grep)
   │ "console\.(log|warn|error)\(|structuredLog\(|indexingStatus|skipped_quality_gate|skipped_index_p
   │ olicy|skipped_embedding_unavailable|failed_embedding|not indexed|searchable|memory
-  │ index|indexing|save" (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ index|indexing|save" (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 23 lines found
 
 ● Search (grep)
   │ "console\.(log|warn|error)\(|structuredLog\(|indexingStatus|skipped_quality_gate|skipped_index_p
   │ olicy|skipped_embedding_unavailable|failed_embedding|not indexed|searchable|memory
-  │ index|indexing|save" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ index|indexing|save" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 50 lines found
 
 ● Search (grep)
   │ "saved but not
   │ indexed|skipped_quality_gate|skipped_index_policy|memory_index_scan|indexed|searchable|indexing
-  │ status|metadata.json|quality gate" in **/*.md (.opencode/skill/system-spec-kit)
+  │ status|metadata.json|quality gate" in **/*.md (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ L60:84 (25 lines read)
 
 ● Read research/research.md
@@ -76,7 +76,7 @@ I found relevant code hits and now I’m drilling into exact documentation text 
   └ L56:76 (21 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2243:2341 (99 lines read)
 
 ● Read spec.md
@@ -84,7 +84,7 @@ I found relevant code hits and now I’m drilling into exact documentation text 
   └ L44:56 (12 lines read)
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md
   └ L60:92 (28 lines read)
 
 ● Read spec.md
@@ -93,23 +93,23 @@ I found relevant code hits and now I’m drilling into exact documentation text 
   └ L80:110 (30 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2138:2164 (26 lines read)
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ L1:60 (60 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L140:205 (66 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:70 (70 lines read)
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ L1:220 (220 lines read)
 
@@ -122,20 +122,20 @@ I found relevant code hits and now I’m drilling into exact documentation text 
 Nice, I have the core signals. I’ll now pull a few precise excerpts on metadata/recovery wording so the audit can cite exact user-visible behavior.
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ L149:190 (41 lines read)
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ L214:290 (77 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L90:140 (51 lines read)
 
 ● Search (grep)
-  │ "npm run rebuild" in **/*.md (.opencode/skill/system-spec-kit)
+  │ "npm run rebuild" in **/*.md (.opencode/skills/system-spec-kit)
   └ No matches found
 
 ● Search (grep)
@@ -145,7 +145,7 @@ Nice, I have the core signals. I’ll now pull a few precise excerpts on metadat
   └ 1 line found
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L560:660 (101 lines read)
 
 ● Search (grep)
@@ -161,7 +161,7 @@ Nice, I have the core signals. I’ll now pull a few precise excerpts on metadat
 
 ● Search (grep)
   │ "const warn =|function warn\(|const log =|function log\("
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 2 lines found
 
 ● Read spec.md
@@ -170,7 +170,7 @@ Nice, I have the core signals. I’ll now pull a few precise excerpts on metadat
   └ L36:56 (21 lines read)
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ L286:360 (75 lines read)
 
@@ -186,7 +186,7 @@ Here’s the audit result for **Q8 (docs + UX)**.
 Yes, mostly. It is explicitly documented as intentional policy in phase 018 (`write_skip_index` / `write_and_index`) in  
 `.opencode/specs/.../018-runtime-contract-and-indexability/spec.md:40-56, 82-91`.  
 It is also reflected in the feature catalog (`V2 ... writeable but intentionally skips semantic indexing`) at  
-`.opencode/skill/system-spec-kit/feature_catalog/.../12-session-capturing-pipeline-quality.md:80-86`.  
+`.opencode/skills/system-spec-kit/feature_catalog/.../12-session-capturing-pipeline-quality.md:80-86`.  
 But `research/research.md` still contains older wording (`qualityValidation.valid` gate) that now reads stale (`research/research.md:62-64`).
 
 2. **User-visible messages (exact):**  

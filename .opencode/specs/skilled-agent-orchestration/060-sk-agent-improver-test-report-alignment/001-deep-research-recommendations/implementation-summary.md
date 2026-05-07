@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/research/research.md
-      - .opencode/skill/sk-improve-agent/SKILL.md
-      - .opencode/agent/improve-agent.md
-      - .opencode/command/improve/agent.md
+      - .opencode/skills/sk-improve-agent/SKILL.md
+      - .opencode/agents/improve-agent.md
+      - .opencode/commands/improve/agent.md
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -43,7 +43,7 @@ Packet 060 took the testing methodology from packet 059 (`@code` stress-test cam
 **Top 3 recommendations identified:**
 
 1. **Make Call B prove an ordered evidence chain, not just produce plausible artifacts.** Iteration 10's clearest framing: mirror inventory must be correct before `integrationGate` is trusted; baseline/delta evidence must exist before `improvementGate` is trusted; `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop` must be journal events, not prose in a dashboard.
-2. **Add an active CRITIC pass to `.opencode/agent/improve-agent.md`** before "If ANY box is unchecked." The mutator currently has anti-pattern reference text but no adversarial challenge — packet 059 §9 L2's lesson directly applies (anti-patterns are reactive; Critic challenges are preventive).
+2. **Add an active CRITIC pass to `.opencode/agents/improve-agent.md`** before "If ANY box is unchecked." The mutator currently has anti-pattern reference text but no adversarial challenge — packet 059 §9 L2's lesson directly applies (anti-patterns are reactive; Critic challenges are preventive).
 3. **Make packet 004 (was 061) test-first.** Author CP-040 onward scenarios before broad rewrites, then run the same 059-style score progression against a small controlled agent-under-improvement.
 
 **Iteration count:** 10 / 10 (max-cap reached; no early convergence)
@@ -87,11 +87,11 @@ When packet 004 (was 061) starts, read this packet's `research/research.md` firs
 
 From research.md §5:
 
-1. **`.opencode/agent/improve-agent.md`** — add §6.5 CRITIC PASS bullets (P0)
-2. **`.opencode/skill/sk-improve-agent/SKILL.md`** — clarify "skill load is not protocol execution" (P0)
-3. **`.opencode/command/improve/assets/improve_improve-agent_auto.yaml`** — emit `legal_stop_evaluated` with 5-gate bundle (P0)
-4. **`.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs`** — actually use `--baseline` and emit `delta` (P0)
-5. **`.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs`** — fix `.gemini/agents` mirror path constant (P1)
+1. **`.opencode/agents/improve-agent.md`** — add §6.5 CRITIC PASS bullets (P0)
+2. **`.opencode/skills/sk-improve-agent/SKILL.md`** — clarify "skill load is not protocol execution" (P0)
+3. **`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`** — emit `legal_stop_evaluated` with 5-gate bundle (P0)
+4. **`.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs`** — actually use `--baseline` and emit `delta` (P0)
+5. **`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs`** — fix `.gemini/agents` mirror path constant (P1)
 
 ### Top scenarios for 061 to author first
 

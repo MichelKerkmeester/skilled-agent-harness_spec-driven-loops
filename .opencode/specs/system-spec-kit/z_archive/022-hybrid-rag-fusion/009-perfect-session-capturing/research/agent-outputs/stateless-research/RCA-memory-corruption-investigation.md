@@ -97,12 +97,12 @@ relevanceKeywords.push(specFolderHint);
 ```
 
 For `specFolderHint = "system-spec-kit/022-hybrid-rag-fusion/013-improve-stateless-mode"`, the extracted keywords are:
-- `"system-spec-kit"` — matches every file under `.opencode/skill/system-spec-kit/`
+- `"system-spec-kit"` — matches every file under `.opencode/skills/system-spec-kit/`
 - `"hybrid-rag-fusion"`
 - `"improve-stateless-mode"`
 - the full path string
 
-Because `"system-spec-kit"` is a parent-folder keyword, **any** tool call that touched any file under `.opencode/skill/system-spec-kit/...` passes `isToolRelevant()`:
+Because `"system-spec-kit"` is a parent-folder keyword, **any** tool call that touched any file under `.opencode/skills/system-spec-kit/...` passes `isToolRelevant()`:
 
 ```typescript
 function isToolRelevant(tool: CaptureToolCall): boolean {
@@ -111,7 +111,7 @@ function isToolRelevant(tool: CaptureToolCall): boolean {
 }
 ```
 
-`sgqs-query.ts`, `handlers/index.ts`, `tool-schemas.ts` all resolve to paths like `.opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts` — which contains the string `system-spec-kit`. These pass the filter and populate `observations[]` and `FILES[]` with 036-skill-graphs content.
+`sgqs-query.ts`, `handlers/index.ts`, `tool-schemas.ts` all resolve to paths like `.opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts` — which contains the string `system-spec-kit`. These pass the filter and populate `observations[]` and `FILES[]` with 036-skill-graphs content.
 
 ### Root Cause C: Alignment Check is Bypassed When `allFilePaths` is Empty
 
@@ -432,7 +432,7 @@ node generate-context.js 013-improve-stateless-mode
 **Evidence:** Memory file line 79 / line 192: 036-skill-graphs analysis text appears verbatim as SUMMARY. Filter loop at `input-normalizer.ts:444-472` applies the relevance check only inside its `for` loop; `recentContext` is built at lines 500-503 outside that loop.
 
 ### H2 — Broad Parent-Folder Keyword Allows SGQS File Leakage (Secondary Contamination)
-**Hypothesis:** The relevance keyword `"system-spec-kit"` (extracted from the spec folder path at `input-normalizer.ts:412`) is too broad — it matches every file under `.opencode/skill/system-spec-kit/`, including all 036-skill-graphs implementation files (`sgqs-query.ts`, `handlers/index.ts`, `tool-schemas.ts`, etc.). `isToolRelevant()` at lines 418–424 therefore passes these tool calls, letting their file paths populate `observations[]`, `FILES[]`, and the IMPLEMENTATION GUIDE section.
+**Hypothesis:** The relevance keyword `"system-spec-kit"` (extracted from the spec folder path at `input-normalizer.ts:412`) is too broad — it matches every file under `.opencode/skills/system-spec-kit/`, including all 036-skill-graphs implementation files (`sgqs-query.ts`, `handlers/index.ts`, `tool-schemas.ts`, etc.). `isToolRelevant()` at lines 418–424 therefore passes these tool calls, letting their file paths populate `observations[]`, `FILES[]`, and the IMPLEMENTATION GUIDE section.
 
 **Evidence:** Memory file lines 102, 133–159, 211–222 all list `system-spec-kit/mcp_server/*` files from 036-skill-graphs work. These paths contain the string `system-spec-kit`, which matches the keyword.
 

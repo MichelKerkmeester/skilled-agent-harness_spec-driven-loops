@@ -146,7 +146,7 @@ As an AI assistant, I need the `/memory:save` command to exist so that documenta
 
 **Why This Priority**: P0 because SKILL.md extensively references this command (lines 109, 421-426, 787-788) but the command file doesn't exist.
 
-**Independent Test**: Check for `.opencode/command/spec_kit/memory_save.md` existence.
+**Independent Test**: Check for `.opencode/commands/spec_kit/memory_save.md` existence.
 
 **Acceptance Scenarios**:
 1. **Given** user invokes `/memory:save`, **When** command is parsed, **Then** the command file is found and executed
@@ -245,7 +245,7 @@ As a developer, I need vec_memories rows to be cleaned up when memories are dele
 - **REQ-FUNC-001:** System MUST either load all config sections from `search-weights.json` via `config-loader.js` OR remove unused config code
 - **REQ-FUNC-002:** System MUST either populate `anchor_id` column and support anchor-based retrieval OR remove ANCHOR documentation claims
 - **REQ-FUNC-003:** System MUST have consistent debug delegation threshold across all documentation (choose 2+ or 3+)
-- **REQ-FUNC-004:** System MUST have `/memory:save` command file at `.opencode/command/spec_kit/memory_save.md` OR remove SKILL.md references
+- **REQ-FUNC-004:** System MUST have `/memory:save` command file at `.opencode/commands/spec_kit/memory_save.md` OR remove SKILL.md references
 - **REQ-FUNC-031:** System MUST await `formatSearchResults()` in `memory_search` so results are fully resolved
 - **REQ-FUNC-032:** System MUST define and document all error codes used (including `E429`)
 - **REQ-FUNC-033:** System MUST rate-limit embedding batch API calls

@@ -8,7 +8,7 @@ Raw TypeScript output: `/tmp/w2-a3-tsc-output.txt`
 
 ## Baseline Summary
 
-- Target workspace: `.opencode/skill/system-spec-kit/mcp_server`
+- Target workspace: `.opencode/skills/system-spec-kit/mcp_server`
 - Vitest status: **FAILED** with `4` known failing tests across `2` files
 - Test file summary: `241 passed / 2 failed / 243 total`
 - Test summary: `7153 passed / 4 failed / 7157 total`
@@ -284,7 +284,7 @@ Raw TypeScript output: `/tmp/w2-a3-tsc-output.txt`
 - Known compiler error:
 
 ```text
-core/config.ts(92,14): error TS4023: Exported variable 'COGNITIVE_CONFIG' has or is using name 'CognitiveConfig' from external module "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/configs/cognitive" but cannot be named.
+core/config.ts(92,14): error TS4023: Exported variable 'COGNITIVE_CONFIG' has or is using name 'CognitiveConfig' from external module "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/configs/cognitive" but cannot be named.
 ```
 
 - Root cause classification: exported API typing / declaration namability issue. `COGNITIVE_CONFIG` exposes the `CognitiveConfig` type from `configs/cognitive`, and TypeScript cannot emit a stable name for that external type in the current export shape.

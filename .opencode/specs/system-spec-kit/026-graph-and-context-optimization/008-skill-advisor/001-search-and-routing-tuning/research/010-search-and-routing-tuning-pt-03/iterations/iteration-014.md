@@ -7,7 +7,7 @@ Measure the structural rule that phase 002 is most likely to need: drop unresolv
 1. Once packet-local docs are allowlisted, rejecting unresolved bare filenames removes 1,402 missing `key_files` across 298 specs. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 2. Combining that structural rule with the earlier explicit junk-token regex removes 1,489 of the 2,195 current misses (67.8%) across 276 specs. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. The dominant removable examples are `validate.sh`, `generate-context.js`, `workflow.ts`, `context-server.ts`, `_memory.continuity`, and similar unresolved bare references. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-4. The safest placement is inside `deriveKeyFiles()` before `normalizeUnique(...)`, while still appending `docs.map((doc) => doc.relativePath)` afterward so canonical packet docs always survive. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/002-sanitize-key-files/spec.md]
+4. The safest placement is inside `deriveKeyFiles()` before `normalizeUnique(...)`, while still appending `docs.map((doc) => doc.relativePath)` afterward so canonical packet docs always survive. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/002-sanitize-key-files/spec.md]
 
 ## Ruled Out
 - Continuing to treat bare unresolved filenames as acceptable because they “look like files.”
@@ -16,7 +16,7 @@ Measure the structural rule that phase 002 is most likely to need: drop unresolv
 - Trying to solve this only with more regexes instead of a structural path-shape rule.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/002-sanitize-key-files/spec.md`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

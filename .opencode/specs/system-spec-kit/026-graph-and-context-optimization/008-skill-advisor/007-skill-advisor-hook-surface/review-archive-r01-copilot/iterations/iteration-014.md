@@ -4,7 +4,7 @@
 Deepened the observability review around static-vs-live telemetry so late iterations can keep low new-info ratios honest without collapsing documented caveats into false correctness findings.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts:626-647` -> static runs intentionally record `actualReads: []` and publish the caveat that no live AI read behavior was observed.
+- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts:626-647` -> static runs intentionally record `actualReads: []` and publish the caveat that no live AI read behavior was observed.
 - `smart-router-measurement.vitest.ts:129-147` -> measurement markdown must retain the methodology caveat that actual AI tool reads are not measured.
 - `smart-router-analyze.vitest.ts:72-87` -> analyzer emits a no-data report rather than fabricating behavioral conclusions from empty telemetry.
 

@@ -36,15 +36,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-prompt/SKILL.md",
-      ".opencode/command/create/changelog.md",
-      ".opencode/command/create/sk-skill.md",
-      ".opencode/command/doctor/code-graph.md",
-      ".opencode/command/improve/agent.md",
-      ".opencode/command/improve/prompt.md",
-      ".opencode/command/memory/manage.md",
-      ".opencode/command/memory/search.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/doctor/code-graph.md",
+      ".opencode/commands/improve/agent.md",
+      ".opencode/commands/improve/prompt.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -54,55 +54,55 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "changelog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/changelog.md",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
         "name": "sk-skill.md",
         "kind": "doc",
-        "path": ".opencode/command/create/sk-skill.md",
+        "path": ".opencode/commands/create/sk-skill.md",
         "source": "derived"
       },
       {
         "name": "code-graph.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/code-graph.md",
+        "path": ".opencode/commands/doctor/code-graph.md",
         "source": "derived"
       },
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/prompt.md",
+        "path": ".opencode/commands/improve/prompt.md",
         "source": "derived"
       },
       {
         "name": "manage.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/manage.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
         "name": "explicit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
         "source": "derived"
       },
       {

@@ -64,7 +64,7 @@ Verify every installation step against the current `package.json` and build syst
 
 | Category | Items |
 |----------|-------|
-| **Update** | `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` |
+| **Update** | `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` |
 | **Verify** | All installation steps against current `package.json` |
 | **Add** | Rollback procedure for failed installations |
 | **Refresh** | Platform-specific configurations (macOS, Linux, Windows) |
@@ -81,8 +81,8 @@ Verify every installation step against the current `package.json` and build syst
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modify | Update against current deps, add rollback, refresh platform configs |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md.bak` | Create | Backup before update |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modify | Update against current deps, add rollback, refresh platform configs |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md.bak` | Create | Backup before update |
 <!-- /ANCHOR:scope -->
 
 ---

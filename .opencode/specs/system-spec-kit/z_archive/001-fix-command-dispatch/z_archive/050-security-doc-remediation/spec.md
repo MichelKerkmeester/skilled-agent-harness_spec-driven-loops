@@ -44,13 +44,13 @@ Security audit of system-spec-kit identified 4 medium-severity and 5 low-severit
 ## Files Affected
 
 ### Security
-- `.opencode/skill/system-spec-kit/scripts/generate-context.js`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- `.opencode/skills/system-spec-kit/scripts/generate-context.js`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 
 ### Documentation
-- `.opencode/skill/system-spec-kit/README.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/README.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - `.opencode/install_guides/MCP/MCP - Spec Kit Memory.md`
 
 <!-- ANCHOR:success-criteria -->

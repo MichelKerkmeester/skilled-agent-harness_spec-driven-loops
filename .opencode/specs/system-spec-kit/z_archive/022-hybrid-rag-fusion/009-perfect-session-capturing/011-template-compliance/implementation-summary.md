@@ -19,7 +19,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -46,16 +46,16 @@ The runtime prompt side now matches the validator. The shared `.agents` runtime 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| .opencode/skill/system-spec-kit/scripts/utils/template-structure.js | Created | Shared live template contract parsing/comparison |
-| .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh | Modified | Enforce required header presence/order and checklist format |
-| .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh | Modified | Enforce required anchor presence/order from live templates |
-| .opencode/skill/system-spec-kit/scripts/spec/validate.sh | Modified | Promote `TEMPLATE_HEADERS` structural failures to errors |
+| .opencode/skills/system-spec-kit/scripts/utils/template-structure.js | Created | Shared live template contract parsing/comparison |
+| .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh | Modified | Enforce required header presence/order and checklist format |
+| .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh | Modified | Enforce required anchor presence/order from live templates |
+| .opencode/skills/system-spec-kit/scripts/spec/validate.sh | Modified | Promote `TEMPLATE_HEADERS` structural failures to errors |
 | `.agents/agents/speckit.md` | Modified | Inline scaffold and strict post-write validation guidance |
-| `.opencode/agent/speckit.md` | Modified | Inline scaffold and strict post-write validation guidance |
+| `.opencode/agents/speckit.md` | Modified | Inline scaffold and strict post-write validation guidance |
 | `.claude/agents/speckit.md` | Modified | Inline scaffold and strict post-write validation guidance |
 | `.gemini/agents/speckit.md` | Modified | Inline scaffold and strict post-write validation guidance |
-| .opencode/command/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml | Modified | Embed scaffold contracts and strict validation steps |
-| System-spec-kit fixture and test lanes under `.opencode/skill/system-spec-kit/scripts/` | Created/Modified | Add compliant/mutation fixture lanes and targeted coverage |
+| .opencode/commands/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml | Modified | Embed scaffold contracts and strict validation steps |
+| System-spec-kit fixture and test lanes under `.opencode/skills/system-spec-kit/scripts/` | Created/Modified | Add compliant/mutation fixture lanes and targeted coverage |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,12 +85,12 @@ The work landed in three passes. First, the shared template helper and validator
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts` | PASS |
-| `node .opencode/skill/system-spec-kit/scripts/tests/test-phase-command-workflows.js` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header` | PASS with warnings |
-| `bash .opencode/skill/system-spec-kit/scripts/tests/test-validation.sh -c "Positive Tests"` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/tests/test-validation-extended.sh -c "Individual Rule: TEMPLATE_HEADERS"` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts` | PASS |
+| `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header` | PASS with warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh -c "Positive Tests"` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh -c "Individual Rule: TEMPLATE_HEADERS"` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

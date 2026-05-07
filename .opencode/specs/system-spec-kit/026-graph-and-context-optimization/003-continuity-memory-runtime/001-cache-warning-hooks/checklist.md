@@ -44,7 +44,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-002 [P0] `research.md` points to the canonical 2026-04-08 synthesis and Claudest continuation order [EVIDENCE: `research.md` names the authoritative synthesis, ranked guidance, and Claudest continuation sources.]
 - [x] CHK-003 [P0] FTS helper plus forced-degrade tests are documented as the hard predecessor [EVIDENCE: predecessor wording is present across `spec.md`, `plan.md`, and `research.md`; `tests/sqlite-fts.vitest.ts` passed.]
 - [x] CHK-004 [P0] `plan.md` documents replay isolation, bounded producer patch, and idempotent verification [EVIDENCE: `plan.md` phases and testing strategy are now marked complete.]
-- [x] CHK-005 [P0] Packet docs explicitly defer `UserPromptSubmit`, startup fast path work, and `.claude/settings.local.json` mutation [EVIDENCE: packet docs defer those surfaces and `git diff --name-only -- .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts .claude/settings.local.json` returned no changes.]
+- [x] CHK-005 [P0] Packet docs explicitly defer `UserPromptSubmit`, startup fast path work, and `.claude/settings.local.json` mutation [EVIDENCE: packet docs defer those surfaces and `git diff --name-only -- .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts .claude/settings.local.json` returned no changes.]
 - [x] CHK-006 [P1] Follow-on continuity packet order is documented honestly [EVIDENCE: docs hand off to analytics reader, cached-summary consumer, workflow split, and token contracts.]
 <!-- /ANCHOR:pre-impl -->
 
@@ -70,7 +70,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-022 [P0] Double-replay idempotency validation exists [EVIDENCE: `tests/hook-session-stop-replay.vitest.ts` runs the same transcript twice.]
 - [x] CHK-023 [P0] Double replay proves stable session totals [EVIDENCE: replay suite asserts second-run metrics equal first-run metrics.]
 - [x] CHK-024 [P0] Double replay proves no duplicate turn ingestion or duplicate producer markers [EVIDENCE: replay suite asserts second run parses 0 new messages and leaves exactly one state file.]
-- [x] CHK-025 [P1] `session-prime.ts` remains unchanged in active scope or additive-safe only [EVIDENCE: `git diff --name-only -- .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts .claude/settings.local.json` returned no changes.]
+- [x] CHK-025 [P1] `session-prime.ts` remains unchanged in active scope or additive-safe only [EVIDENCE: `git diff --name-only -- .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts .claude/settings.local.json` returned no changes.]
 <!-- /ANCHOR:testing -->
 
 ---

@@ -9,7 +9,7 @@ completedAt: 2026-04-12T10:02:04Z
 
 # Deep Review Iteration 006 — security
 
-**Focus:** Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement.
+**Focus:** Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: security
-FOCUS: Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement.
+FOCUS: Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -69,7 +69,7 @@ exec
 exec
 /bin/zsh -lc "rg --files -g 'AGENTS.md' -g 'MEMORY.md' . /Users/michelkerkmeester/.codex/memories | sed 's#"'^./##'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "security deep review of spec folder 042-sk-deep-research-review-improvement-2 focusing on replay-corpus.cjs and replay-runner.cjs path traversal, bounds validation, and promotion gate enforcement" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "security deep review of spec folder 042-sk-deep-research-review-improvement-2 focusing on replay-corpus.cjs and replay-runner.cjs path traversal, bounds validation, and promotion gate enforcement" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 187ms:
 AGENTS.md
 /Users/michelkerkmeester/.codex/memories/MEMORY.md
@@ -164,9 +164,9 @@ mcp: spec_kit_memory/memory_match_triggers started
 mcp: spec_kit_memory/memory_match_triggers (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-review
@@ -185,7 +185,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -612,7 +612,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
     text = _task_text(task)
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: system-spec-kit
@@ -897,8 +897,8 @@ user cancelled MCP tool call
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs
 
 codex
 I’ve resolved the packet under `.opencode/specs/skilled-agent-orchestration/.../004-offline-loop-optimizer`. I’m reading the phase docs and the optimizer implementation together so I can compare the intended security constraints with the actual trust boundaries in corpus loading and replay execution.
@@ -1004,24 +1004,24 @@ Define an offline replay optimizer that learns from real packet traces, scores r
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-| `.opencode/command/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
-| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
+| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1147,9 +1147,9 @@ Define an offline replay optimizer that learns from real packet traces, scores r
 ## 10. RISK MATRIX
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
@@ -1541,7 +1541,7 @@ contextType: "planning"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -1952,7 +1952,7 @@ module.exports = {
 };
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-opencode
@@ -2178,9 +2178,9 @@ def route_opencode_resources(task):
 codex
 I’ve got the phase contract and the two primary implementation files in view. I’m now expanding into the surrounding optimizer modules and tests, because the security questions here depend on how manifest bounds, search mutation, and promotion gating are enforced end-to-end rather than in isolation.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -2808,27 +2808,27 @@ exec
    302	};
 
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts/optimizer .opencode/skill/system-spec-kit/scripts/tests | rg 'optimizer|replay|promote|manifest|search|rubric'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts/optimizer .opencode/skills/system-spec-kit/scripts/tests | rg 'optimizer|replay|promote|manifest|search|rubric'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC5-lineage/hit/memory/06-04-26_12-05__deep-research-run-8.md
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-candidate.json
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-config-baseline.json
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC5-lineage/hit/memory/06-04-26_12-05__deep-research-run-8.md
 
 exec
 /bin/zsh -lc "rg -n \"replay-corpus|replay-runner|promote|optimizer-manifest|search bounded|advisory-only|candidate patch|audit trail|fixtures|behavioral suites\" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11 -g '"'!**/graph-metadata.json'"' -g '"'!**/description.json'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -2851,14 +2851,14 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:69:Define an offline replay optimizer that learns from real packet traces, scores run quality against a shared rubric, searches bounded deterministic config space, and emits advisory candidate patches only. Production promotion remains out of scope until Phase 1 replay fixtures and Phase 3 behavioral suites exist, and prompt or meta-optimization remains deferred future work.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:84:- Add an advisory-only promotion gate that never mutates production config directly while prerequisite fixtures and suites are still missing.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:85:- Record a full audit trail for every optimization attempt, including rejected candidates and patch-style recommendations.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:104:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:105:| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:116:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:117:| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:104:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:105:| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:116:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:117:| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:134:| REQ-006 | No production promotion is allowed until the replay fixtures planned in Phase 1 and the behavioral suites planned in Phase 3 actually exist. | Until both prerequisite surfaces exist, all optimizer outputs are advisory-only candidate patches or reports and must not directly mutate canonical production configs. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:141:| REQ-008 | Every optimization run MUST emit an audit trail that records what was tried, what improved, what regressed, and why a candidate was accepted or rejected. | Audit output exists for every run, including failed searches and rejected advisory promotions, and captures both candidate settings and evaluation outcomes. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:156:- **SC-005**: Promotion remains advisory-only until replay fixtures and behavioral suites exist.
@@ -2874,7 +2874,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:235:| **Deferred Scope** | Very High: prompt optimization and meta-learning are materially premature until behavioral suites and broader corpus coverage exist. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:247:| Missing behavioral tests would allow broken configs through | Medium | High | Keep promotion advisory-only until those suites exist and pass. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:255:- As a release reviewer, I want every candidate to show baseline comparison, audit reasoning, and explicit advisory-only status until replay and behavioral gates are real.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:22:- **F005**: Session-isolation regression omits the ID-collision path — `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62` — The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:22:- **F005**: Session-isolation regression omits the ID-collision path — `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62` — The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:3:description: "Deliver Phase 4a as a deterministic offline config optimizer with advisory-only outputs now, and defer Phase 4b prompt/meta optimization until replay fixtures, behavioral suites, and broader corpus coverage exist."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:29:| **Storage** | Replay corpus fixtures, audit records, candidate config snapshots, existing deep-loop config files |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:34:This phase now splits into two tracks. Phase 4a is the realistic near-term work: harvest real traces, score them with a rubric, search bounded deterministic config space, replay candidates deterministically, and emit advisory candidate patches with a full audit trail. Phase 4b remains deliberately deferred until replay fixtures, behavioral suites, and multi-family corpus coverage exist for safe prompt and meta-optimization.
@@ -2884,14 +2884,14 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:93:  -> record audit trail
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:95:  -> require replay fixtures + behavioral gates before any future production promotion
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:115:- Phase 1 replay fixtures for production-grade replay validation.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:127:- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:129:- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:131:- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:132:- `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:143:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:144:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:127:- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:129:- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:131:- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:132:- `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:143:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:144:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:151:- Prove promotion stays advisory-only while prerequisite replay fixtures and behavioral suites are still missing.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:161:**Why deferred**: Full prompt optimization, cross-packet meta-learning, and automatic promotion are premature today because the corpus is effectively single-family, the optimizer script tree does not exist yet, and the behavioral replay fixtures are still future work.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:164:- Phase 3 behavioral suites must exist.
@@ -2917,62 +2917,62 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:134:- [x] CHK-123 [P1] Future Phase 4b work is explicitly blocked behind behavioral suites and broader corpus coverage. [EVIDENCE: plan.md and spec.md] [TESTS: validate.sh --strict]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:143:- [x] CHK-130 [P1] Audit trails preserve accepted and rejected candidates. [EVIDENCE: implementation-summary.md "Audit Trail"] [TESTS: optimizer-promote.vitest.ts]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:145:- [x] CHK-132 [P2] Missing graph or wave metrics are represented honestly for older traces. [EVIDENCE: spec.md REQ-009 and acceptance scenarios] [TESTS: optimizer-replay-corpus.vitest.ts]
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-008.md:22:- **F013**: Phase 008 implementation summary overclaims REQ-024 closure — `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59` — The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:232:      "description": "The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:292:      "description": "The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-008.md:22:- **F013**: Phase 008 implementation summary overclaims REQ-024 closure — `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59` — The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:232:      "description": "The REQ-024 suite only inserts disjoint node and edge IDs per session (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) across `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62-91`, so it proves filtered reads on non-overlapping fixtures but never exercises the global-ID overwrite path in `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`. The test can stay green while the runtime still corrupts session isolation under shared IDs.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:292:      "description": "The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:69:- **Risk**: the current regression suite proves filtered reads on disjoint fixtures, not isolation under shared-ID collision.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:63:- If the replay fixtures or behavioral suites do not yet exist, keep outputs advisory-only and block any production-promotion task.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:76:| T001 | Completed | REQ-001, REQ-002 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:78:| T003 | Completed | REQ-004 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:95:| T005 | Completed | REQ-008 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:96:| T006 | Completed | REQ-005, REQ-007 | `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`; `.opencode/skill/sk-deep-research/assets/deep_research_config.json`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json`; `.opencode/skill/sk-deep-research/references/convergence.md`; `.opencode/skill/sk-deep-review/references/convergence.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:76:| T001 | Completed | REQ-001, REQ-002 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:78:| T003 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:95:| T005 | Completed | REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:96:| T006 | Completed | REQ-005, REQ-007 | `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-research/references/convergence.md`; `.opencode/skills/sk-deep-review/references/convergence.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:99:- [x] T005 Build the audit trail for optimization runs, including rejected candidates and advisory patch outputs.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:112:| T007 | Completed | REQ-006, REQ-008 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:112:| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:114:- [x] T007 Implement the advisory-only promotion gate that refuses production mutation until replay fixtures and behavioral suites exist.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:122:| T008 | Blocked | REQ-010 | `.opencode/skill/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:124:| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:122:| T008 | Blocked | REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:124:| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:138:- [x] Promotion remains advisory-only unless baseline improvement and prerequisite replay plus behavioral gates both exist and pass.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:3:description: "Phase 4a: offline replay optimizer with deterministic config tuning, advisory promotion gate, and full audit trail. Phase 4b prompt/meta optimization remains deferred."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:35:Deep-loop configs can now be tuned offline against real packet traces without experimenting live in production. Phase 4a delivers a complete compile/evaluate loop: harvest traces, score them with a rubric, search bounded deterministic config space, replay candidates, and emit advisory candidate patches with a full audit trail.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:59:The promotion gate refuses production mutation until replay fixtures and behavioral suites exist. All current outputs are advisory-only candidate patches that require human review before any canonical config is changed.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md:77:| Deterministic `4a` now, `4b` deferred | Safe near-term scope is narrower than originally drafted; prompt/meta optimization needs replay fixtures and behavioral suites first |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:269:| 008-further-deep-loop-improvements | Closes 12 research recommendations: contract truth + graph wiring + reducer surfacing + fixtures + closing audit P1 fixes | d504f19ca through c07c9fbcf |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:25:- .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/ (existing test fixtures)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:956:/bin/zsh -lc "printf 'EVAL FILES\\n'; rg --files .opencode/skill/system-spec-kit/mcp_server/lib/eval; printf '\\nFIXTURE FILES\\n'; rg --files .opencode/skill/system-spec-kit/mcp_server/tests/fixtures" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:978:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:979:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:980:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:981:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:982:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1101:    70	| T001 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1102:    71	| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:25:- .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/ (existing test fixtures)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:956:/bin/zsh -lc "printf 'EVAL FILES\\n'; rg --files .opencode/skills/system-spec-kit/mcp_server/lib/eval; printf '\\nFIXTURE FILES\\n'; rg --files .opencode/skills/system-spec-kit/mcp_server/tests/fixtures" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:978:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:979:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:980:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:981:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:982:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1101:    70	| T001 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1102:    71	| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1106:    75	- [ ] T002 Add corpus fixtures and tests that prove deterministic normalization.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1120:    89	| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1122:    91	| T007 | Pending | REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1139:   108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1141:   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md`; `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1142:   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1120:    89	| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1122:    91	| T007 | Pending | REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1139:   108	| T008 | Pending | REQ-004, REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1141:   110	| T010 | Pending | REQ-004, REQ-007 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1142:   111	| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1200:    29	| **Storage** | Replay corpus fixtures, audit records, candidate config snapshots, existing deep-loop config files |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1205:    34	This phase creates the deep-loop equivalent of an offline compiler: harvest real traces, score them with a rubric, search bounded config space, replay candidates deterministically, and only promote candidates that beat baseline without breaking existing safety nets. The sequence is intentionally conservative so governance and replay fidelity arrive before any config is considered promotable.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1217:    46	- [x] Promotion is explicitly gated by existing parity and behavioral suites.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1272:   101	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1274:   103	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1276:   105	- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1290:   119	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1292:   121	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1307:   136	- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1308:   137	- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1272:   101	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1274:   103	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1276:   105	- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1290:   119	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1292:   121	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1307:   136	- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1308:   137	- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1342:   171	| Existing parity and behavioral suites | Internal | Green | Promotion safety would collapse without current gates. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1350:   179	- **Trigger**: Replay fidelity is insufficient, rubric scoring is untrustworthy, or promoted candidates cannot stay within bounded config surfaces.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3558:/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3560:===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts =====
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3558:/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3560:===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts =====
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3564:     4	// Shared test fixtures for runtime detection and hook availability tests.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3678:===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3682:===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json =====
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3965:.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:61:  /** shadow rank - production rank (negative = promoted in shadow) */
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3678:===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3682:===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json =====
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3965:.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:61:  /** shadow rank - production rank (negative = promoted in shadow) */
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:4672:   139	[Paths definitively eliminated -- not just unproductive this iteration, but proven to be fundamentally unviable. These should be promoted to strategy.md "Exhausted Approaches" if not already there.]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6552:    53	The current deep-loop stack is functional, but it still treats "converged" as a mostly inferred state instead of a strongly explained runtime truth. Deep research and deep review already have JSONL state, dashboards, and reducer/parity coverage, yet the consolidated research shows clear gaps around stop-reason taxonomy, legal done gates, resume/start-from behavior, research claim verification, audit trails, richer dashboards, behavior-first test coverage, and large-run coordination.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6648:   149	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6648:   149	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6665:   166	| REQ-006 | The implementation plan MUST shift loop confidence from structure-only checks to behavior-first tests that exercise narrow questions, evidence citations, conclusion confidence, convergence, and stop-reason persistence. | The planned test stack includes dedicated behavioral suites for deep research and deep review plus extensions to reducer/parity tests; passing behavior tests becomes part of the done gate for these runtime changes. | `CF-004` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:102-111`], `Theme T-005` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:404-406`] |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6815:    95	  -> add replay corpus, thin end-to-end harnesses, reducer/schema extensions, and integration fixtures early
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6894:   174	- Reducer fixtures prove append-only journal rollups, delta replay, snapshot/compaction equivalence, and dashboard regeneration remain idempotent.
@@ -2984,13 +2984,13 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7486:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:22:Phase 004 builds the offline compile/evaluate loop for deep research and deep review. It uses historical packet traces to score real behavior, search for better thresholds and prompts, replay those candidates deterministically, and promote only the candidates that improve baseline outcomes without breaking existing parity and behavioral gates.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7490:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:55:- Deterministic replay runner and promotion gate with full audit trail.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7492:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:69:Define an offline replay optimizer that learns from real packet families, scores run quality against a shared rubric, searches for better configurations, and only promotes configurations that beat baseline behavior under deterministic replay plus existing parity and behavioral tests.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7496:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:97:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7497:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7498:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7501:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7503:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7504:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify promotion gating, rollback behavior, and audit output. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7505:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures and optimization-result snapshots. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7496:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:97:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7497:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7498:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7501:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7503:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:111:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7504:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify promotion gating, rollback behavior, and audit output. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7505:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures and optimization-result snapshots. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7509:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:135:| REQ-006 | Every optimization run MUST emit an audit trail that records what was tried, what improved, what regressed, and why a candidate was accepted or rejected. | Audit output exists for every run, including failed searches and rejected promotions, and captures both candidate settings and evaluation outcomes. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7527:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:239:- As a release reviewer, I want every promoted candidate to show baseline comparison, audit reasoning, and passing test gates so promotion feels safe.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7544:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:95:  -> add replay corpus, thin end-to-end harnesses, reducer/schema extensions, and integration fixtures early
@@ -2998,21 +2998,21 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7552:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:176:- Large-target fixtures cover review inventory plus hotspot ranking and research domain clustering without changing the small-packet default path.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7553:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:207:- Ledger fixtures prove `verified`, `contradicted`, and `unresolved` claims render into synthesis metadata with downgrade conditions and provenance.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7554:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:208:- Semantic convergence fixtures assert novelty, contradiction density, and citation overlap participate in typed stop-decision traces instead of scalar-only thresholds.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7561:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:222:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7562:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:223:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7563:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:224:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7561:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:222:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7562:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:223:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7563:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:224:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7579:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:298:| Integration | Auto and confirm YAML flows across resume/blocked-stop/optional-mode scenarios | Workflow fixtures plus targeted `pnpm vitest` integration cases added in this packet's implementation phase |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7619:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:70:| T001 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7620:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7619:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:70:| T001 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7620:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:71:| T002 | Pending | REQ-001 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7622:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:75:- [ ] T002 Add corpus fixtures and tests that prove deterministic normalization.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7623:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7624:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:91:| T007 | Pending | REQ-006 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7626:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7623:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:89:| T005 | Pending | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7624:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:91:| T007 | Pending | REQ-006 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7626:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:111:| T011 | Pending | REQ-004, REQ-006, REQ-007 | `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8268:I’m at the point where the remaining questions are mostly feasibility and reuse. I’m doing one last pass to verify what’s actually missing today: whether the planned behavioral suites and optimizer scripts already exist in any form, or whether Phase 4 is truly starting from zero on those surfaces.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8270:/bin/zsh -lc 'for p in .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028 .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040 .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042 .opencode/skill/system-spec-kit/scripts/optimizer; do if [ -e "$p" ]; then echo "EXISTS $p"; else echo "MISSING $p"; fi; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8274:MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8275:MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8276:MISSING .opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8270:/bin/zsh -lc 'for p in .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028 .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040 .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042 .opencode/skills/system-spec-kit/scripts/optimizer; do if [ -e "$p" ]; then echo "EXISTS $p"; else echo "MISSING $p"; fi; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8274:MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8275:MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8276:MISSING .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8889:- The broader behavioral suites and packet replay fixtures are still only planned in `042`, not established today [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L218), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L229), [042 plan.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md#L297).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8923:- Keep promotion advisory-only until replay fixtures and behavioral suites actually exist.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8926:- Realistic now: corpus builder for `040`, deterministic replay runner, rubric engine, random-search baseline, audit trail, and patch-style candidate reports.
@@ -3025,9 +3025,9 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:9036:- Add a hard prerequisite: no production promotion until the planned replay fixtures and behavioral suites from packet `042` Phase 3 exist.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/search.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -3709,7 +3709,7 @@ exec
    341	};
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "$schema": "optimizer-manifest/v1",
@@ -3725,8 +3725,8 @@ exec
       "range": { "min": 0.01, "max": 0.20 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
       ]
     },
     {
@@ -3736,8 +3736,8 @@ exec
       "range": { "min": 1, "max": 5 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
       ]
     },
     {
@@ -3747,8 +3747,8 @@ exec
       "range": { "min": 3, "max": 20 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
       ]
     },
     {
@@ -3851,9 +3851,9 @@ exec
 }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
@@ -3868,7 +3868,7 @@ exec
     11	
     12	const replayCorpus = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     15	)) as {
     16	  PACKET_FAMILIES: Record<string, { role: string; required: boolean; compatibilityGrade: string }>;
     17	  REQUIRED_ENTRY_FIELDS: readonly string[];
@@ -4150,7 +4150,7 @@ exec
     11	
     12	const search = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs',
     15	)) as {
     16	  DEFAULT_PARAM_SPACE: Record<string, { min: number; max: number; step: number }>;
     17	  createRNG: (seed: number) => () => number;
@@ -4192,14 +4192,14 @@ exec
     53	
     54	const replayCorpus = require(path.join(
     55	  WORKSPACE_ROOT,
-    56	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    56	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     57	)) as {
     58	  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
     59	};
     60	
     61	const rubricModule = require(path.join(
     62	  WORKSPACE_ROOT,
-    63	  '.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs',
+    63	  '.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs',
     64	)) as {
     65	  defineRubric: (dimensions?: Record<string, number>) => { dimensions: Record<string, number>; totalWeight: number };
     66	};
@@ -4459,7 +4459,7 @@ exec
    320	      );
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
@@ -4474,7 +4474,7 @@ exec
     11	
     12	const promote = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs',
     15	)) as {
     16	  PROMOTION_PREREQUISITES: readonly string[];
     17	  PROMOTION_DECISIONS: Record<string, string>;
@@ -4512,7 +4512,7 @@ exec
     49	  fs.readFileSync(
     50	    path.join(
     51	      WORKSPACE_ROOT,
-    52	      '.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json',
+    52	      '.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json',
     53	    ),
     54	    'utf8',
     55	  ),
@@ -4803,7 +4803,7 @@ exec
    340	    it('should accept values within manifest range', () => {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	  if (skippedLines.length > 0) {
    321	    entry.metadata.skippedLines = skippedLines;
@@ -4889,7 +4889,7 @@ exec
    401	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
@@ -4904,7 +4904,7 @@ exec
     11	
     12	const replayRunner = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs',
+    14	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs',
     15	)) as {
     16	  DEFAULT_CONFIG: Record<string, number | boolean>;
     17	  evaluateConvergence: (
@@ -4936,7 +4936,7 @@ exec
     43	
     44	const replayCorpus = require(path.join(
     45	  WORKSPACE_ROOT,
-    46	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    46	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     47	)) as {
     48	  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
     49	};
@@ -5237,10 +5237,10 @@ exec
    124	6. Advisory promotion
    125	
    126	**Files to change**:
-   127	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-   128	- `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`
-   129	- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-   130	- `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`
+   127	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+   128	- `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`
+   129	- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+   130	- `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`
 
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -5277,27 +5277,27 @@ exec
     30	
     31	| ID | Sev | Dimension | Title | Origin | Key evidence | First seen | Last seen | Status |
     32	|---|---|---|---|---|---|---:|---:|---|
-    33	| F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agent/deep-review.md:147`; `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
-    34	| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
-    35	| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
-    36	| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
-    37	| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
-    38	| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skill/sk-deep-research/references/state_format.md:145`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
-    39	| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skill/sk-deep-review/references/state_format.md:621`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
-    40	| F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skill/sk-deep-review/references/quick_reference.md:145`; `.opencode/skill/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
-    41	| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skill/sk-deep-review/references/convergence.md:44`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
-    42	| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
-    43	| F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skill/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skill/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
-    44	| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skill/sk-improve-agent/SKILL.md:292`; `.opencode/command/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
-    45	| F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
+    33	| F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agents/deep-review.md:147`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
+    34	| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
+    35	| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
+    36	| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
+    37	| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
+    38	| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
+    39	| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
+    40	| F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skills/sk-deep-review/references/quick_reference.md:145`; `.opencode/skills/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
+    41	| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
+    42	| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
+    43	| F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
+    44	| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
+    45	| F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
     46	| F014 | P1 | traceability | Phase 008 closeout claims full requirement closure while open review P1s remain | `I009` (`iteration-009.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:157`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:35` | 9 | 9 | active |
-    47	| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
+    47	| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
     48	| F016 | P1 | traceability | Root packet completion surfaces still certify an obsolete four-phase "implemented" state | `I010` (`iteration-010.md:18`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md:60`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md:95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md:98`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md:23` | 10 | 10 | active |
     49	
     50	### Finding Digests
     51	
     52	#### F001
-    53	- **Risk**: a canonical reviewer following `.opencode/agent/deep-review.md` can produce markdown the reducer does not parse, which drops real findings out of the registry and dashboard.
+    53	- **Risk**: a canonical reviewer following `.opencode/agents/deep-review.md` can produce markdown the reducer does not parse, which drops real findings out of the registry and dashboard.
     54	- **Carry-forward note**: fix the authoritative authoring contract before relying on any parser-driven closeout automation.
     55	
     56	#### F002
@@ -5366,7 +5366,7 @@ exec
    119	
    120	- **Findings**: F002, F007
    121	- **Why first**: the loop can currently synthesize after a failed claim-adjudication packet, so the closing audit cannot trust required-stop behavior until this lane is fixed.
-   122	- **Target surfaces**: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skill/sk-deep-review/references/state_format.md`, `.opencode/skill/sk-deep-review/references/loop_protocol.md`
+   122	- **Target surfaces**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
    123	- **Required decision**: either wire `claim_adjudication_passed` into the legal-stop gate or explicitly downgrade the documentation so claim adjudication is no longer described as STOP-blocking.
    124	- **Exit condition**: a failed or missing typed adjudication packet demonstrably blocks STOP and the operator-facing schema shows the exact typed fields the workflow enforces.
    125	- **Validation proof**: add or extend static contract tests around STOP gating and packet schema parity, then re-run the targeted parity suite.
@@ -5375,7 +5375,7 @@ exec
    128	
    129	- **Findings**: F004, F005, F006, F013
    130	- **Why second**: this is the only active security lane, and every release-facing REQ-024 claim depends on the storage contract actually being session-safe under collision.
-   131	- **Target surfaces**: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-review/references/state_format.md`, phase 008 closeout docs
+   131	- **Target surfaces**: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`, phase 008 closeout docs
    132	- **Required decision**: choose a stable storage namespace model such as composite primary keys or deterministic session-qualified IDs; then document that model on the visible graph-event contract.
    133	- **Exit condition**: shared-ID collisions no longer overwrite prior session rows, the isolation test fails on the pre-fix path and passes on the repaired path, and REQ-024 closeout language cites the repaired test coverage honestly.
    134	- **Validation proof**: targeted vitest for collision reuse plus any DB-level migration or query proof the packet introduces.
@@ -5393,7 +5393,7 @@ exec
    146	
    147	- **Findings**: F001, F003, F008, F009
    148	- **Why fourth**: these are still serious, but they are safer to repair after the runtime and lifecycle decisions stop moving.
-   149	- **Target surfaces**: `.opencode/agent/deep-review.md`, `sk-deep-review` references, the deep-review config JSONL writer in both workflow mirrors
+   149	- **Target surfaces**: `.opencode/agents/deep-review.md`, `sk-deep-review` references, the deep-review config JSONL writer in both workflow mirrors
    150	- **Required decision**: pick one canonical iteration schema and one canonical persisted stop schema, then make every example and writer match it.
    151	- **Exit condition**: the canonical agent, workflow outputs, quick reference, convergence reference, and state-format reference all describe the same parser-accepted structures.
    152	- **Validation proof**: reducer-parity tests and a sample iteration file that round-trips into the registry without manual fixes.
@@ -5452,32 +5452,32 @@ exec
    205	## 6. Plan Seed
    206	
    207	1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-   208	Target files: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+   208	Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
    209	Findings: F002  
    210	REQ: REQ-026
    211	
    212	2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**  
-   213	Target files: `.opencode/skill/sk-deep-review/references/state_format.md`, `.opencode/skill/sk-deep-review/references/loop_protocol.md`  
+   213	Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
    214	Findings: F007  
    215	REQ: REQ-027
    216	
    217	3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**  
-   218	Target files: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
+   218	Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
    219	Findings: F004  
    220	REQ: REQ-028
    221	
    222	4. **T004 [security] Add a collision-path regression for shared node and edge IDs across sessions**  
-   223	Target files: `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
+   223	Target files: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
    224	Findings: F005  
    225	REQ: REQ-029
    226	
    227	5. **T005 [traceability] Document graphEvents payload schema and namespace expectations on review and research references**  
-   228	Target files: `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-review/references/state_format.md`  
+   228	Target files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`  
    229	Findings: F006  
    230	REQ: REQ-029
    231	
    232	6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**  
-   233	Target files: `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
+   233	Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
    234	Findings: F010  
    235	REQ: REQ-030
    236	
@@ -5502,7 +5502,7 @@ completedAt: 2026-04-12T09:57:20Z
 
 # Deep Review Iteration 005 — correctness
 
-**Focus:** Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skill/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
+**Focus:** Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skills/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
 
 ---
 
@@ -5525,7 +5525,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: correctness
-FOCUS: Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skill/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
+FOCUS: Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skills/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -5565,7 +5565,7 @@ exec
 exec
 /bin/zsh -lc "rg --files -g 'CLAUDE.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 5 for spec folder 042-sk-deep-research-review-improvement-2 focused on correctness in Phase 003 wave-executor wave-*.cjs modules" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 5 for spec folder 042-sk-deep-research-review-improvement-2 focused on correctness in Phase 003 wave-executor wave-*.cjs modules" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 175ms:
 CLAUDE.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest/external/CLAUDE.md
@@ -5653,15 +5653,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -5715,48 +5715,48 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 exec
 /bin/zsh -lc 'rg -n "P1-1|P1-2|P1-4|offline optimizer|replay corpus|promotion gate|manifest boundary|random search" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"replay-corpus|replay-runner|optimizer-manifest|promote\\.cjs|search\\.cjs|auditTrail|outputPath|fixturesDir|corpusPath\" .opencode/command .opencode/skill/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"replay-corpus|replay-runner|optimizer-manifest|promote\\.cjs|search\\.cjs|auditTrail|outputPath|fixturesDir|corpusPath\" .opencode/command .opencode/skills/system-spec-kit/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:11:const { replayRun } = require('./replay-runner.cjs');
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:143: * @returns {{ bestCandidate: object|null; bestScore: object|null; auditTrail: object[]; baselineScore: object|null; iterations: number }}
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:150:      auditTrail: [],
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:161:  const auditTrail = [];
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:207:    auditTrail.push(
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:215:    auditTrail,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:315: * @param {string} outputPath - File path for the output.
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:317:function savePromotionReport(report, outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:318:  if (!report || typeof report !== 'object' || typeof outputPath !== 'string' || !outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:321:  const dir = path.dirname(outputPath);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:325:  fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf8');
-.opencode/skill/system-spec-kit/scripts/evals/run-redaction-calibration.ts:83:  const outputPath = path.join(specFolder, 'scratch', 'redaction-calibration.md');
-.opencode/skill/system-spec-kit/scripts/evals/run-redaction-calibration.ts:130:  fs.writeFileSync(outputPath, `${content}\n`, 'utf8');
-.opencode/command/spec_kit/deep-research.md:293:- Optimizer manifest: `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-.opencode/command/spec_kit/deep-review.md:350:- Optimizer manifest: `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:235: * @param {string} [options.fixturesDir] - Path to the fixtures directory.
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272:  } else if (options.fixturesDir) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:274:      options.fixturesDir,
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:285:    errors.push('Either fixturesDir or jsonlContent must be provided');
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:357: * @param {string} outputPath - File path for the output.
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:359:function saveCorpus(corpus, outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:360:  if (!Array.isArray(corpus) || typeof outputPath !== 'string' || !outputPath) return false;
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:361:  const dir = path.dirname(outputPath);
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:365:  fs.writeFileSync(outputPath, JSON.stringify(corpus, null, 2), 'utf8');
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:372: * @param {string} corpusPath - Path to the corpus JSON file.
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:375:function loadCorpus(corpusPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:376:  if (typeof corpusPath !== 'string' || !corpusPath || !fs.existsSync(corpusPath)) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:380:    const content = fs.readFileSync(corpusPath, 'utf8');
-.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:2:  "$schema": "optimizer-manifest/v1",
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs:118: * @param {object} corpusEntry - A validated corpus entry from replay-corpus.cjs.
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:26:  outputPath: string | null;
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:53:  outputPath: string;
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:102:    outputPath: null,
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:134:      options.outputPath = value;
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:653:function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptions, 'mode' | 'outputPath'>): NestedChangelogData {
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:668:  const outputPath = buildOutputPath(rootSpecFolder, specFolder, mode, options.outputPath);
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:683:    outputPath: normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, outputPath)),
-.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts:731:  const absoluteOutputPath = path.join(CONFIG.PROJECT_ROOT, data.outputPath);
-.opencode/skill/system-spec-kit/scripts/spec-folder/README.md:114:  { mode: 'auto', outputPath: null }
-.opencode/skill/system-spec-kit/scripts/spec-folder/README.md:116:// nestedChangelog.outputPath -> ".opencode/specs/.../024-compact-code-graph/changelog/changelog-024-029-review-remediation.md"
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:11:const { replayRun } = require('./replay-runner.cjs');
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:143: * @returns {{ bestCandidate: object|null; bestScore: object|null; auditTrail: object[]; baselineScore: object|null; iterations: number }}
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:150:      auditTrail: [],
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:161:  const auditTrail = [];
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:207:    auditTrail.push(
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:215:    auditTrail,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:315: * @param {string} outputPath - File path for the output.
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:317:function savePromotionReport(report, outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:318:  if (!report || typeof report !== 'object' || typeof outputPath !== 'string' || !outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:321:  const dir = path.dirname(outputPath);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:325:  fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), 'utf8');
+.opencode/skills/system-spec-kit/scripts/evals/run-redaction-calibration.ts:83:  const outputPath = path.join(specFolder, 'scratch', 'redaction-calibration.md');
+.opencode/skills/system-spec-kit/scripts/evals/run-redaction-calibration.ts:130:  fs.writeFileSync(outputPath, `${content}\n`, 'utf8');
+.opencode/commands/spec_kit/deep-research.md:293:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/commands/spec_kit/deep-review.md:350:- Optimizer manifest: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:235: * @param {string} [options.fixturesDir] - Path to the fixtures directory.
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272:  } else if (options.fixturesDir) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:274:      options.fixturesDir,
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:285:    errors.push('Either fixturesDir or jsonlContent must be provided');
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:357: * @param {string} outputPath - File path for the output.
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:359:function saveCorpus(corpus, outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:360:  if (!Array.isArray(corpus) || typeof outputPath !== 'string' || !outputPath) return false;
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:361:  const dir = path.dirname(outputPath);
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:365:  fs.writeFileSync(outputPath, JSON.stringify(corpus, null, 2), 'utf8');
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:372: * @param {string} corpusPath - Path to the corpus JSON file.
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:375:function loadCorpus(corpusPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:376:  if (typeof corpusPath !== 'string' || !corpusPath || !fs.existsSync(corpusPath)) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:380:    const content = fs.readFileSync(corpusPath, 'utf8');
+.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:2:  "$schema": "optimizer-manifest/v1",
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs:118: * @param {object} corpusEntry - A validated corpus entry from replay-corpus.cjs.
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:26:  outputPath: string | null;
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:53:  outputPath: string;
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:102:    outputPath: null,
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:134:      options.outputPath = value;
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:653:function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptions, 'mode' | 'outputPath'>): NestedChangelogData {
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:668:  const outputPath = buildOutputPath(rootSpecFolder, specFolder, mode, options.outputPath);
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:683:    outputPath: normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, outputPath)),
+.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts:731:  const absoluteOutputPath = path.join(CONFIG.PROJECT_ROOT, data.outputPath);
+.opencode/skills/system-spec-kit/scripts/spec-folder/README.md:114:  { mode: 'auto', outputPath: null }
+.opencode/skills/system-spec-kit/scripts/spec-folder/README.md:116:// nestedChangelog.outputPath -> ".opencode/specs/.../024-compact-code-graph/changelog/changelog-024-029-review-remediation.md"
 
  succeeded in 0ms:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record.md:76:- Non-tunable contract fields are protected by an explicit manifest boundary.
@@ -5797,7 +5797,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1251:    80	  -> normalize replay corpus
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3791:I’ve confirmed there’s exactly one substantial in-repo replay corpus today: the `040` research wave with `90` iteration markdown files and a `96`-line JSONL ledger. I’m now tightening the tunable-surface inventory by pulling every threshold, switch, and prompt-bearing file that Phase 4 would realistically optimize, including the agent markdown surfaces the spec hints at.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6192:I’ve now confirmed a key feasibility tension: Phase 4 assumes a multi-family replay corpus, but the actual loop telemetry currently appears concentrated in `040`, while `028` and `042` mostly contribute specs/docs rather than run ledgers. I’m quantifying that gap and summarizing the 040 dataset shape so we can judge whether optimization is realistic now or needs more corpus-building first.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6648:   149	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6648:   149	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6815:    95	  -> add replay corpus, thin end-to-end harnesses, reducer/schema extensions, and integration fixtures early
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7089:One important implementation reality just surfaced: `reduce-state.cjs` is a synchronizer, not a convergence evaluator. It reads the stored JSONL and iteration files, then publishes registry/dashboard state, but it does not recompute stop logic from thresholds itself, which means an offline optimizer would need a new replay evaluator rather than tuning the reducer in isolation.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7484:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:7:  - "replay corpus"
@@ -5806,12 +5806,12 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7490:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:55:- Deterministic replay runner and promotion gate with full audit trail.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7493:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:79:- Build a replay corpus from historical packet families `028`, `040`, and `042`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7495:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:83:- Add a promotion gate that requires replay success plus parity and behavioral test success.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7498:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7498:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and enforce promotion gates. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7506:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:125:| REQ-001 | The phase MUST build a replay corpus from real packet families `028`, `040`, and `042`. | Corpus inputs are tied to real packet artifacts, normalized into a deterministic replay format, and traceable back to their source packets and run metadata. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7516:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:171:| Dependency | Behavioral and parity suites remain the promotion gate | High | Treat those suites as mandatory pass conditions, not advisory checks. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7520:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:204:- Two candidate configs tie on rubric score but differ in risk. The promotion gate must keep the safer or more explainable candidate, or refuse promotion.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7544:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:95:  -> add replay corpus, thin end-to-end harnesses, reducer/schema extensions, and integration fixtures early
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7578:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7578:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7612:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:8:  - "replay corpus"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7621:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:74:- [ ] T001 Build the replay corpus extractor for packet families `028`, `040`, and `042`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7627:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks.md:113:- [ ] T008 Implement the promotion gate that compares candidates to baseline and enforces test success.
@@ -5821,73 +5821,73 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8943:- Only `040` is a true replay corpus today: [040 research.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/research.md#L4) says the packet has `90` iterations across three waves, and [040 dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-dashboard.md#L6) shows `90 / 90` complete.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8970:- External evidence supports a staged strategy: [Random Search for Hyper-Parameter Optimization](https://www.jmlr.org/papers/v13/bergstra12a.html) favors random search over grid in large spaces, while [Practical Bayesian Optimization of Machine Learning Algorithms](https://lips.cs.princeton.edu/bibliography/snoek2012practical/) becomes attractive once evaluations are expensive and the objective is stable.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8971:Novel insight: the right sequence is not grid vs Bayesian; it is tiny deterministic sweeps first, then bounded random search, then BO only after the replay objective is trustworthy.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/dispatch-20-iterations.sh:56:  "Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement."
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/dispatch-20-iterations.sh:56:  "Phase 004 offline-optimizer: replay corpus extraction, config search bounds, audit trail integrity in .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs and replay-runner.cjs. Check for path traversal in corpus loading, bounds validation in config search, and advisory-only promotion gate enforcement."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/dispatch-20-iterations.sh:57:  "Phase 003-004 spec-code alignment: verify 003-wave-executor/spec.md and 004-offline-loop-optimizer/spec.md claims against the actual wave-*.cjs and optimizer/*.cjs implementations. Check that activation thresholds, segment plans, and replay corpus configs match documented values."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/checklist.md:33:- [x] CHK-001 [P0] The phase fixes `040` as the required replay corpus and keeps `028` optional while excluding `042` as training input until traces exist. [EVIDENCE: spec.md REQ-001 and REQ-002; implementation-summary.md "Replay Corpus"] [TESTS: optimizer-replay-corpus.vitest.ts]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:265:| 004-offline-loop-optimizer | Phase 4a: replay corpus, rubric, advisory promotion gate. Phase 4b: deferred | mid 042 |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md:1304:- Offline replay optimization, config search, and promotion gates from Phase 004.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:1556:   152	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:569:   152	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:742:   152	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:1556:   152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:569:   152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:742:   152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:825:   300	| Coordination | 12/15 | Multiple file families, replay corpus seeding, and phased verification must move together; optional coordination-board mode adds design complexity |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:884:   359	- Q6: Which real packet families should seed the first replay corpus: `028`, `040`, or `042` fixtures?
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3101:.opencode/skill/sk-deep-review/references/convergence.md:721:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3233:.opencode/skill/sk-deep-research/references/convergence.md:1241:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3101:.opencode/skills/sk-deep-review/references/convergence.md:721:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3233:.opencode/skills/sk-deep-research/references/convergence.md:1241:The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
 
 exec
-/bin/zsh -lc "rg -n \"buildCorpus\\(|loadCorpus\\(|saveCorpus\\(|randomSearch\\(|evaluateCandidate\\(|savePromotionReport\\(|checkManifestBoundary\\(|sampleConfig\\(\" .opencode/skill/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"buildCorpus\\(|loadCorpus\\(|saveCorpus\\(|randomSearch\\(|evaluateCandidate\\(|savePromotionReport\\(|checkManifestBoundary\\(|sampleConfig\\(\" .opencode/skills/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:157:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:167:      const result = replayCorpus.buildCorpus('028', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:176:      const result = replayCorpus.buildCorpus('042', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:185:      const result = replayCorpus.buildCorpus('999', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:197:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:212:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:220:      const result = replayCorpus.buildCorpus('040', {});
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:244:        replayCorpus.saveCorpus(corpus, tmpPath);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:246:        const loaded = replayCorpus.loadCorpus(tmpPath);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:254:      expect(replayCorpus.loadCorpus('/nonexistent/path.json')).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:286:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:331:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:354:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:366:      const result = replayCorpus.buildCorpus('040', {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:75:  return replayCorpus.buildCorpus('040', { jsonlContent: content }).corpus;
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:113:      const config = search.sampleConfig(search.DEFAULT_PARAM_SPACE, rng);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:127:      const config = search.sampleConfig(space, rng);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:191:      const result = search.randomSearch(corpus, testRubric, undefined, iterations, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:203:      const result1 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:204:      const result2 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:214:      const result = search.randomSearch(corpus, testRubric, undefined, 10, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:231:      const result = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:252:      const result = search.randomSearch(corpus, testRubric, undefined, 3, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:349:      const config = search.sampleConfig(search.DEFAULT_PARAM_SPACE, rng);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:60:function sampleConfig(paramSpace, rng) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:145:function randomSearch(corpus, rubric, paramSpace, iterations, options) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:176:    const candidateConfig = sampleConfig(space, rng);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:80:function checkManifestBoundary(candidate, manifest) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:145:function evaluateCandidate(candidate, baselineScore, options) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:168:    manifestCheck = checkManifestBoundary(candidate.config, opts.manifest);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:317:function savePromotionReport(report, outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:241:function buildCorpus(packetFamily, options = {}) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:359:function saveCorpus(corpus, outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:375:function loadCorpus(corpusPath) {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:58:  const result = replayCorpus.buildCorpus('040', { jsonlContent: content });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:87:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:96:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:105:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:114:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:143:      const result = promote.evaluateCandidate(candidate, baselineScore, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:164:      const result = promote.evaluateCandidate(candidate, baselineScore);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:175:      const result = promote.evaluateCandidate(candidate, baselineScore, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:192:      const result = promote.evaluateCandidate(candidate, baselineScore, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:213:      const result = promote.evaluateCandidate(candidate, baselineScore, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:235:      const result = promote.evaluateCandidate(candidate, baselineScore, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:305:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:314:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:323:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:332:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:341:      const result = promote.checkManifestBoundary(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:364:        promote.savePromotionReport(report, tmpPath);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:157:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:167:      const result = replayCorpus.buildCorpus('028', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:176:      const result = replayCorpus.buildCorpus('042', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:185:      const result = replayCorpus.buildCorpus('999', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:197:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:212:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:220:      const result = replayCorpus.buildCorpus('040', {});
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:244:        replayCorpus.saveCorpus(corpus, tmpPath);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:246:        const loaded = replayCorpus.loadCorpus(tmpPath);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:254:      expect(replayCorpus.loadCorpus('/nonexistent/path.json')).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:286:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:331:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:354:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:366:      const result = replayCorpus.buildCorpus('040', {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:75:  return replayCorpus.buildCorpus('040', { jsonlContent: content }).corpus;
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:113:      const config = search.sampleConfig(search.DEFAULT_PARAM_SPACE, rng);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:127:      const config = search.sampleConfig(space, rng);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:191:      const result = search.randomSearch(corpus, testRubric, undefined, iterations, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:203:      const result1 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:204:      const result2 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:214:      const result = search.randomSearch(corpus, testRubric, undefined, 10, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:231:      const result = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:252:      const result = search.randomSearch(corpus, testRubric, undefined, 3, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:349:      const config = search.sampleConfig(search.DEFAULT_PARAM_SPACE, rng);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:60:function sampleConfig(paramSpace, rng) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:145:function randomSearch(corpus, rubric, paramSpace, iterations, options) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:176:    const candidateConfig = sampleConfig(space, rng);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:80:function checkManifestBoundary(candidate, manifest) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:145:function evaluateCandidate(candidate, baselineScore, options) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:168:    manifestCheck = checkManifestBoundary(candidate.config, opts.manifest);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:317:function savePromotionReport(report, outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:241:function buildCorpus(packetFamily, options = {}) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:359:function saveCorpus(corpus, outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:375:function loadCorpus(corpusPath) {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:58:  const result = replayCorpus.buildCorpus('040', { jsonlContent: content });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:87:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:96:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:105:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:114:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:143:      const result = promote.evaluateCandidate(candidate, baselineScore, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:164:      const result = promote.evaluateCandidate(candidate, baselineScore);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:175:      const result = promote.evaluateCandidate(candidate, baselineScore, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:192:      const result = promote.evaluateCandidate(candidate, baselineScore, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:213:      const result = promote.evaluateCandidate(candidate, baselineScore, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:235:      const result = promote.evaluateCandidate(candidate, baselineScore, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:305:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:314:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:323:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:332:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:341:      const result = promote.checkManifestBoundary(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts:364:        promote.savePromotionReport(report, tmpPath);
 
 codex
 The main risk pattern is getting clearer: the optimizer’s last-line guards are weaker than the packet contract says. I’m pulling exact spec line references now so I can tie each finding back to the promised boundary, not just the implementation detail.
@@ -5918,24 +5918,24 @@ exec
     97	
     98	| File Path | Change Type | Description |
     99	|-----------|-------------|-------------|
-   100	| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-   101	| `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
-   102	| `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
-   103	| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-   104	| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-   105	| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-   106	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-   107	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-   108	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-   109	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-   110	| `.opencode/command/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-   111	| `.opencode/command/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-   112	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-   113	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-   114	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
-   115	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-   116	| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-   117	| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+   100	| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+   101	| `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
+   102	| `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
+   103	| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+   104	| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+   105	| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+   106	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+   107	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+   108	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+   109	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+   110	| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   111	| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+   112	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+   113	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+   114	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
+   115	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+   116	| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+   117	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
    118	<!-- /ANCHOR:scope -->
    119	
    120	---
@@ -6082,7 +6082,7 @@ exec
     98	| 1 | **Necessary?** | PASS | The phase needed a safe near-term optimizer story |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	{
      2	  "$schema": "optimizer-manifest/v1",
@@ -6098,8 +6098,8 @@ exec
     12	      "range": { "min": 0.01, "max": 0.20 },
     13	      "products": ["deep-research", "deep-review"],
     14	      "configPaths": [
-    15	        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-    16	        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+    15	        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+    16	        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
     17	      ]
     18	    },
     19	    {
@@ -6109,8 +6109,8 @@ exec
     23	      "range": { "min": 1, "max": 5 },
     24	      "products": ["deep-research", "deep-review"],
     25	      "configPaths": [
-    26	        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-    27	        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+    26	        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+    27	        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
     28	      ]
     29	    },
     30	    {
@@ -6120,8 +6120,8 @@ exec
     34	      "range": { "min": 3, "max": 20 },
     35	      "products": ["deep-research", "deep-review"],
     36	      "configPaths": [
-    37	        ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-    38	        ".opencode/skill/sk-deep-review/assets/deep_review_config.json"
+    37	        ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+    38	        ".opencode/skills/sk-deep-review/assets/deep_review_config.json"
     39	      ]
     40	    },
     41	    {
@@ -6300,18 +6300,18 @@ I’ve got enough static evidence for likely findings, and I’m doing one quick
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const replayCorpus = require('./.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs');
+const replayCorpus = require('./.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs');
 const p = path.join(process.cwd(), 'package.json');
 console.log(fs.existsSync(p), Array.isArray(replayCorpus.loadCorpus(p)), replayCorpus.loadCorpus(p).length);
 NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T10:00:28.933701Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const promote = require('./.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs');
+const promote = require('./.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs');
 const candidate = { config: { stopReason: 'converged' }, score: { composite: 0.9, perDimension: {} } };
 const baseline = { composite: 0.6, perDimension: {} };
 console.log(JSON.stringify(promote.evaluateCandidate(candidate, baseline), null, 2));
 NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T10:00:28.933723Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const search = require('./.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs');
+const search = require('./.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs');
 const rng = () => 0.5;
 const space = { stopReason: { min: 0, max: 1, step: 1 }, convergenceThreshold: { min: 0.001, max: 0.99, step: 0.989 } };
 console.log(JSON.stringify(search.sampleConfig(space, rng), null, 2));
@@ -6319,17 +6319,17 @@ NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOut
 codex
 The sandbox blocked heredoc temp files, so I’m switching those probes to single-line `node -e` calls. I only need a couple of direct confirmations now, then I can finalize the findings with exact evidence.
 exec
-/bin/zsh -lc "node -e \"const promote=require('./.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs'); const candidate={config:{stopReason:'converged'},score:{composite:0.9,perDimension:{}}}; const baseline={composite:0.6,perDimension:{}}; console.log(JSON.stringify(promote.evaluateCandidate(candidate, baseline)));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const promote=require('./.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs'); const candidate={config:{stopReason:'converged'},score:{composite:0.9,perDimension:{}}}; const baseline={composite:0.6,perDimension:{}}; console.log(JSON.stringify(promote.evaluateCandidate(candidate, baseline)));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"decision":"advisory-accept","improved":true,"regressions":[],"improvements":["Composite score improved: 0.600 -> 0.900"],"manifestCheck":null,"prerequisiteCheck":{"allMet":false,"results":{"replayFixturesExist":false,"behavioralSuitesExist":false},"missing":["replayFixturesExist","behavioralSuitesExist"]},"advisoryOnly":true}
 
 exec
-/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'package.json'); const loaded=replayCorpus.loadCorpus(p); console.log(JSON.stringify({path:p,isArray:Array.isArray(loaded),length:loaded.length}));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'package.json'); const loaded=replayCorpus.loadCorpus(p); console.log(JSON.stringify({path:p,isArray:Array.isArray(loaded),length:loaded.length}));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/package.json","isArray":true,"length":0}
 
 exec
-/bin/zsh -lc "node -e \"const search=require('./.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs'); const rng=()=>0.5; const space={stopReason:{min:0,max:1,step:1},convergenceThreshold:{min:0.001,max:0.99,step:0.989}}; console.log(JSON.stringify(search.sampleConfig(space,rng)));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const search=require('./.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs'); const rng=()=>0.5; const space={stopReason:{min:0,max:1,step:1},convergenceThreshold:{min:0.001,max:0.99,step:0.989}}; console.log(JSON.stringify(search.sampleConfig(space,rng)));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"stopReason":1,"convergenceThreshold":0.99}
 
@@ -6358,12 +6358,12 @@ exec
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/scratch/gate-i-execution-report/13--memory-quality-and-indexing.json
 
 exec
-/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl'); console.log(JSON.stringify(replayCorpus.buildCorpus('040',{fixturesDir:'./.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay'})));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl'); console.log(JSON.stringify(replayCorpus.buildCorpus('040',{fixturesDir:'./.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay'})));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"corpus":[{"id":"040-replay-040-fixture","packetFamily":"040","sourceRun":"replay-040-fixture","compatibilityGrade":"full","role":"primary","config":{"maxIterations":7,"convergenceThreshold":0.1,"stuckThreshold":2,"mode":"review","topic":"Replay fixture for 040"},"iterations":[{"run":1,"status":"complete","focus":"Initial review","findingsCount":3,"newInfoRatio":0.85,"convergenceSignals":null,"durationMs":60000,"timestamp":"2026-03-20T14:10:00Z"},{"run":2,"status":"complete","focus":"Follow-up review","findingsCount":4,"newInfoRatio":0.3,"convergenceSignals":null,"durationMs":55000,"timestamp":"2026-03-20T14:20:00Z"},{"run":3,"status":"complete","focus":"Final pass","findingsCount":4,"newInfoRatio":0.05,"convergenceSignals":{"rollingAvg":0.08,"madScore":0.04,"noveltyRatio":0.05,"compositeStop":0.65},"durationMs":50000,"timestamp":"2026-03-20T14:30:00Z"}],"stopOutcome":{"stopReason":"converged","legalStop":null,"totalIterations":3,"verdict":"PASS"},"metadata":{"extractedAt":"2026-04-12T10:00:47.438Z","sourceRecordCount":5,"hasGraphMetrics":false,"hasWaveMetrics":false,"validationErrors":[]}}],"errors":[],"warnings":["Corpus entry 040-replay-040-fixture: graph metrics unavailable (older trace format)","Corpus entry 040-replay-040-fixture: wave metrics unavailable (older trace format)"],"familyInfo":{"role":"primary","required":true,"compatibilityGrade":"full"}}
 
 exec
-/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/scratch/gate-i-execution-report/05--lifecycle.json'); const loaded=replayCorpus.loadCorpus(p); console.log(JSON.stringify({path:p,isArray:Array.isArray(loaded),length:loaded.length,firstType:loaded[0]&&typeof loaded[0]}));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const replayCorpus=require('./.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs'); const p=require('path').join(process.cwd(),'.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/scratch/gate-i-execution-report/05--lifecycle.json'); const loaded=replayCorpus.loadCorpus(p); console.log(JSON.stringify({path:p,isArray:Array.isArray(loaded),length:loaded.length,firstType:loaded[0]&&typeof loaded[0]}));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/scratch/gate-i-execution-report/05--lifecycle.json","isArray":true,"length":10,"firstType":"object"}
 
@@ -6378,7 +6378,7 @@ codex
 Finding ID: `F-006-001`  
 Severity: `P1`  
 Dimension: `security`  
-File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:317)  
+File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:317)  
 Line: `317-325`  
 Title: Advisory report writes can overwrite arbitrary repo paths  
 Description: The phase contract says promotion output must remain advisory-only and must not directly mutate canonical production configs, but `savePromotionReport()` will write JSON to any caller-supplied `outputPath`. A buggy or malicious caller can point this at a real config or any other writable repo file, which collapses the “advisory-only” safety boundary into an arbitrary file write primitive.  
@@ -6388,17 +6388,17 @@ Recommendation: Restrict report output to a dedicated audit directory, resolve a
 Finding ID: `F-006-002`  
 Severity: `P1`  
 Dimension: `security`  
-File: [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:60)  
+File: [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:60)  
 Line: `60-73`, `145-177`  
 Title: Config search accepts out-of-bounds and locked-field mutations  
 Description: Phase 004 promises that search stays inside deterministic numeric, manifest-governed fields, but `sampleConfig()` and `randomSearch()` trust any caller-provided `paramSpace`. There is no validation that fields are tunable, numeric, finite, within manifest range, or even sane (`step > 0`, `min <= max`). That lets callers generate candidates for locked fields and impossible bounds before the promotion layer ever sees them.  
-Evidence: `sampleConfig()` blindly iterates `Object.entries(paramSpace)`, and `randomSearch()` passes that output straight into evaluation and the audit trail. Direct probe result: `{"stopReason":1,"convergenceThreshold":0.99}` was accepted from a custom parameter space, even though the manifest marks `stopReason` locked and caps `convergenceThreshold` at `0.20` in [optimizer-manifest.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59). That violates [REQ-007](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:140) and the ADR claim that search mutates only manifest-managed numeric fields.  
+Evidence: `sampleConfig()` blindly iterates `Object.entries(paramSpace)`, and `randomSearch()` passes that output straight into evaluation and the audit trail. Direct probe result: `{"stopReason":1,"convergenceThreshold":0.99}` was accepted from a custom parameter space, even though the manifest marks `stopReason` locked and caps `convergenceThreshold` at `0.20` in [optimizer-manifest.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59). That violates [REQ-007](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:140) and the ADR claim that search mutates only manifest-managed numeric fields.  
 Recommendation: Derive the effective search space from the canonical manifest, reject unknown/locked fields, validate `min/max/step` rigorously, and add regression tests for malicious custom `paramSpace` input.
 
 Finding ID: `F-006-003`  
 Severity: `P1`  
 Dimension: `security`  
-File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:165)  
+File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:165)  
 Line: `165-180`  
 Title: Promotion boundary enforcement is optional instead of fail-closed  
 Description: The manifest check is treated as optional plumbing. If a caller forgets or omits `options.manifest`, `evaluateCandidate()` skips locked-field enforcement entirely and can return `advisory-accept` for a candidate that touches forbidden contract fields. Because this is the last policy gate before generating “approved” advisory artifacts, omission becomes a bypass.  
@@ -6408,7 +6408,7 @@ Recommendation: Make the manifest mandatory for evaluation, or load the canonica
 Finding ID: `F-006-004`  
 Severity: `P2`  
 Dimension: `security`  
-File: [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272)  
+File: [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272)  
 Line: `272-282`, `359-365`, `375-384`  
 Title: Corpus helpers are path-agnostic and mask integrity failures  
 Description: The corpus layer trusts caller-controlled filesystem locations for fixture loading, corpus saving, and corpus loading. That is enough path-escape surface for future CLI/operator wiring, and `loadCorpus()` further hides corruption by collapsing parse/type failures into `[]`, making a tampered corpus indistinguishable from an empty one.  
@@ -6436,7 +6436,7 @@ tokens used
 Finding ID: `F-006-001`  
 Severity: `P1`  
 Dimension: `security`  
-File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:317)  
+File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:317)  
 Line: `317-325`  
 Title: Advisory report writes can overwrite arbitrary repo paths  
 Description: The phase contract says promotion output must remain advisory-only and must not directly mutate canonical production configs, but `savePromotionReport()` will write JSON to any caller-supplied `outputPath`. A buggy or malicious caller can point this at a real config or any other writable repo file, which collapses the “advisory-only” safety boundary into an arbitrary file write primitive.  
@@ -6446,17 +6446,17 @@ Recommendation: Restrict report output to a dedicated audit directory, resolve a
 Finding ID: `F-006-002`  
 Severity: `P1`  
 Dimension: `security`  
-File: [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:60)  
+File: [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:60)  
 Line: `60-73`, `145-177`  
 Title: Config search accepts out-of-bounds and locked-field mutations  
 Description: Phase 004 promises that search stays inside deterministic numeric, manifest-governed fields, but `sampleConfig()` and `randomSearch()` trust any caller-provided `paramSpace`. There is no validation that fields are tunable, numeric, finite, within manifest range, or even sane (`step > 0`, `min <= max`). That lets callers generate candidates for locked fields and impossible bounds before the promotion layer ever sees them.  
-Evidence: `sampleConfig()` blindly iterates `Object.entries(paramSpace)`, and `randomSearch()` passes that output straight into evaluation and the audit trail. Direct probe result: `{"stopReason":1,"convergenceThreshold":0.99}` was accepted from a custom parameter space, even though the manifest marks `stopReason` locked and caps `convergenceThreshold` at `0.20` in [optimizer-manifest.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59). That violates [REQ-007](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:140) and the ADR claim that search mutates only manifest-managed numeric fields.  
+Evidence: `sampleConfig()` blindly iterates `Object.entries(paramSpace)`, and `randomSearch()` passes that output straight into evaluation and the audit trail. Direct probe result: `{"stopReason":1,"convergenceThreshold":0.99}` was accepted from a custom parameter space, even though the manifest marks `stopReason` locked and caps `convergenceThreshold` at `0.20` in [optimizer-manifest.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:59). That violates [REQ-007](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:140) and the ADR claim that search mutates only manifest-managed numeric fields.  
 Recommendation: Derive the effective search space from the canonical manifest, reject unknown/locked fields, validate `min/max/step` rigorously, and add regression tests for malicious custom `paramSpace` input.
 
 Finding ID: `F-006-003`  
 Severity: `P1`  
 Dimension: `security`  
-File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:165)  
+File: [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:165)  
 Line: `165-180`  
 Title: Promotion boundary enforcement is optional instead of fail-closed  
 Description: The manifest check is treated as optional plumbing. If a caller forgets or omits `options.manifest`, `evaluateCandidate()` skips locked-field enforcement entirely and can return `advisory-accept` for a candidate that touches forbidden contract fields. Because this is the last policy gate before generating “approved” advisory artifacts, omission becomes a bypass.  
@@ -6466,7 +6466,7 @@ Recommendation: Make the manifest mandatory for evaluation, or load the canonica
 Finding ID: `F-006-004`  
 Severity: `P2`  
 Dimension: `security`  
-File: [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272)  
+File: [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:272)  
 Line: `272-282`, `359-365`, `375-384`  
 Title: Corpus helpers are path-agnostic and mask integrity failures  
 Description: The corpus layer trusts caller-controlled filesystem locations for fixture loading, corpus saving, and corpus loading. That is enough path-escape surface for future CLI/operator wiring, and `loadCorpus()` further hides corruption by collapsing parse/type failures into `[]`, making a tampered corpus indistinguishable from an empty one.  

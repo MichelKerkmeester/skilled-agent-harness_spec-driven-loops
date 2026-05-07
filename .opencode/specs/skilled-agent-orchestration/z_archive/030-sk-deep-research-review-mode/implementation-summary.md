@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -71,7 +71,7 @@ The repair reused the committed packet docs, traced each broken handover referen
 
 | Decision | Why |
 |----------|-----|
-| Pointed handover references at `.opencode/skill/sk-code-review/references/review_core.md`, `.opencode/skill/sk-code-review/references/review_ux_single_pass.md`, `.opencode/skill/sk-code-review/references/quick_reference.md`, and `.opencode/skill/sk-code-review/SKILL.md` | Those are the committed markdown files the handover was trying to describe |
+| Pointed handover references at `.opencode/skills/sk-code-review/references/review_core.md`, `.opencode/skills/sk-code-review/references/review_ux_single_pass.md`, `.opencode/skills/sk-code-review/references/quick_reference.md`, and `.opencode/skills/sk-code-review/SKILL.md` | Those are the committed markdown files the handover was trying to describe |
 | Left local codex output artifacts as plain text instead of markdown links | The artifacts were temporary session outputs, not repository files |
 <!-- /ANCHOR:decisions -->
 

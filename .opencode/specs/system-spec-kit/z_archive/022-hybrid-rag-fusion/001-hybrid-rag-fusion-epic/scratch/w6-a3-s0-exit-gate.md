@@ -76,7 +76,7 @@ This certification evaluates the Sprint 0 exit gate criteria defined in the Spri
 Requested command executed on 2026-03-08:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server && \
+cd .opencode/skills/system-spec-kit/mcp_server && \
 npx vitest run tests/eval-db.vitest.ts tests/bm25-baseline.vitest.ts tests/graph-search-fn.vitest.ts --reporter=verbose 2>&1 | tail -20
 ```
 

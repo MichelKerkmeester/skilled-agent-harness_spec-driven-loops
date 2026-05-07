@@ -7,7 +7,7 @@
       "id": "R1-P1-001",
       "severity": "P1",
       "cluster": "correctness",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30",
       "title": "includeSkills:false cannot force end-user scope when SPECKIT_CODE_GRAPH_INDEX_SKILLS=true",
       "iteration": 1
     },
@@ -31,7 +31,7 @@
       "id": "R3-P1-001",
       "severity": "P1",
       "cluster": "security",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184-217",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184-217",
       "title": "Symlinked rootDir can bypass default .opencode/skill exclusion",
       "iteration": 3
     },
@@ -39,7 +39,7 @@
       "id": "R4-P2-001",
       "severity": "P2",
       "cluster": "security",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184",
       "title": "Scope validation errors and scan warnings expose absolute filesystem paths",
       "iteration": 4
     },

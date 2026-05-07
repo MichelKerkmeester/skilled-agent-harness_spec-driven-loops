@@ -45,8 +45,8 @@ DIMENSIONS=(
 
 FOCUS_AREAS=(
   # Round 1: Reducer workflow logic after fixes
-  "UPDATED WORKFLOW: Verify reduce-state.cjs in sk-deep-review now correctly parses synthesis_complete, persists lineage on resume/restart, handles claim-adjudication finalSeverity, guards stale STOP vetos, throws on corruption, and renders ACTIVE RISKS without [object Object]. Check .opencode/skill/sk-deep-review/scripts/reduce-state.cjs end to end."
-  "UPDATED WORKFLOW: Verify coverage-graph namespace isolation after fixes. Check .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts for full composite-key predicates in ALL subqueries. Check coverage-graph-signals.ts for session-scoped edge lookups. Check all 4 MCP handlers for mandatory sessionId."
+  "UPDATED WORKFLOW: Verify reduce-state.cjs in sk-deep-review now correctly parses synthesis_complete, persists lineage on resume/restart, handles claim-adjudication finalSeverity, guards stale STOP vetos, throws on corruption, and renders ACTIVE RISKS without [object Object]. Check .opencode/skills/sk-deep-review/scripts/reduce-state.cjs end to end."
+  "UPDATED WORKFLOW: Verify coverage-graph namespace isolation after fixes. Check .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts for full composite-key predicates in ALL subqueries. Check coverage-graph-signals.ts for session-scoped edge lookups. Check all 4 MCP handlers for mandatory sessionId."
   "UPDATED WORKFLOW: Verify config and reference doc accuracy after fixes. Check deep_research_config.json has no fork/completed-continue. Check review_mode_contract.yaml has 3 modes only. Check convergence.md uses blocked_stop schema throughout. Check loop_protocol.md describes full replay consistently."
   "UPDATED WORKFLOW: Verify wave executor fixes. Check wave-segment-planner.cjs for composite hotspot scoring. Check wave-lifecycle.cjs for adjacent-transition matrix. Check wave-coordination-board.cjs for 5-key composite merge and board transition API. Check coverage-graph-core.cjs session normalization."
 

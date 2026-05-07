@@ -27,7 +27,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **EDGE-CASE PRINCIPLE**: Ambiguity, contradictions, missing dependencies, and partial-success states must be named in `ESCALATION_NOTES` instead of being hidden behind a polished prompt.
 
-**IMPORTANT**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 ---
 
@@ -113,7 +113,7 @@ Incoming prompt-escalation request
 
 ### ✅ ALWAYS
 
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, or partial success.
 - Keep scope, constraints, non-goals, and verification requirements explicit in the enhanced prompt.
@@ -287,7 +287,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 

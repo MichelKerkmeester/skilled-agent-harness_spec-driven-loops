@@ -97,30 +97,30 @@ Output: a triage of which automation claims hold, which are partial, which are a
 ### Files to Read (representative; iterations may add more)
 
 - Skill advisor:
-  - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-  - `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-  - `.opencode/skill/system-spec-kit/references/config/hook_system.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+  - `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+  - `.opencode/skills/system-spec-kit/references/config/hook_system.md`
 - Code graph:
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/{query,scan,verify,status}.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/watcher/`
-  - `.opencode/command/doctor/assets/doctor_code-graph_*.yaml`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/{query,scan,verify,status}.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/watcher/`
+  - `.opencode/commands/doctor/assets/doctor_code-graph_*.yaml`
 - system-spec-kit:
-  - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-  - `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` source
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts`
-  - `.opencode/skill/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+  - `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` source
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
 - Memory/DB:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-{save,search,context,crud,index-scan}.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoint.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/causal/`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-{save,search,context,crud,index-scan}.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoint.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/causal/`
 - Hook wiring:
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/`
   - `.opencode/hooks/`
   - `.claude/settings.local.json` (if any) for runtime config
-  - `.codex/`, `.gemini/`, `.opencode/agent/` for per-runtime hook surfaces
+  - `.codex/`, `.gemini/`, `.opencode/agents/` for per-runtime hook surfaces
 <!-- /ANCHOR:scope -->
 
 ---

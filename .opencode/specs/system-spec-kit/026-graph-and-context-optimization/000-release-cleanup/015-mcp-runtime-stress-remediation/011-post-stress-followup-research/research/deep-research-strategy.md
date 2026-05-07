@@ -114,7 +114,7 @@ Refine actionable fix proposals for four v1.0.2 stress-test follow-ups (P0 cli-c
 1. Read `../../010-stress-test-rerun-v1-0-2/findings.md` Recommendations §1-5 verbatim
 2. Read `../../010-stress-test-rerun-v1-0-2/runs/I1/cli-copilot-1/score.md` (load-bearing for Q-P0)
 3. Read `../../010-stress-test-rerun-v1-0-2/runs/I1/cli-codex-1/score.md` + `I1/cli-opencode-1/score.md` (compare correct-Gate-3 behavior)
-4. Read `../../004-cocoindex-overfetch-dedup/spec.md` and the fork at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/` to ground Q-OPP
+4. Read `../../004-cocoindex-overfetch-dedup/spec.md` and the fork at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` to ground Q-OPP
 5. Identify 2-3 candidate fix approaches per question (don't commit yet; surface options)
 
 **Output expectation**: iteration-001.md should produce per-question initial evidence + 2-3 candidate approaches; subsequent iterations refine.
@@ -173,7 +173,7 @@ Refine actionable fix proposals for four v1.0.2 stress-test follow-ups (P0 cli-c
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred)
 - Machine-owned sections: reducer controls §3, §6, §7-§11
 - Canonical pause sentinel: `research/.deep-research-pause`
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
 - Current generation: 1
 - Started: 2026-04-27T17:00:49Z
 

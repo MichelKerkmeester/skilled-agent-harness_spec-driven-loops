@@ -78,7 +78,7 @@ contextType: "implementation"
 | Item | Evidence | Verified By | Date |
 |------|----------|-------------|------|
 | CHK-001-004 | 10 Opus agents returned findings | Orchestrator | 2026-01-20 |
-| CHK-005-008 | `grep -r "🔜" .opencode/command/` = 0 matches | Grep tool | 2026-01-20 |
+| CHK-005-008 | `grep -r "🔜" .opencode/commands/` = 0 matches | Grep tool | 2026-01-20 |
 | CHK-009 | `grep "MANDATORY FIRST" memory/search.md` found | Grep tool | 2026-01-20 |
 | CHK-010-011 | Manual verification post-edit | Orchestrator | 2026-01-20 |
 | CHK-012 | `grep "<skill-name>" skill.md` confirmed | Grep tool | 2026-01-20 |

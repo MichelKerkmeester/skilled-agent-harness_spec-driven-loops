@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Preflight exact-duplicate checks can reject valid same-path saves before the runtime dedup logic gets a chance to classify them correctly
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`
 
 **Issue** `handleMemorySave()` runs preflight before the real save pipeline, but preflight's exact-duplicate check does not use the same-path exclusion, embedding-status filter, or governance-scope filter that the runtime dedup path uses. As a result, a legitimate same-path re-save can be rejected as an exact duplicate during preflight instead of reaching the runtime logic that would return `unchanged` or allow a metadata-only append-first update.
 
@@ -12,7 +12,7 @@
 **Fix** Stop using the standalone preflight exact-duplicate query as an authoritative blocker for `memory_save`. Either pass file path plus governance scope into preflight and make it reuse the same `checkExistingRow()` / `checkContentHashDedup()` semantics, or downgrade preflight exact matches to advisory status and let the runtime save pipeline make the final same-path vs cross-path decision.
 
 ### [P1] Large-file chunked indexing bypasses content-hash dedup after the same-path check
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
 
 **Issue** Once the save path decides a file needs chunking, it jumps into `indexChunkedMemoryFile()` before running the runtime `checkContentHashDedup()` precheck. The chunking orchestrator only looks for an existing parent by file path, so cross-path identical large memories can be indexed twice even though small-memory saves would be deduped by content hash.
 
@@ -21,7 +21,7 @@
 **Fix** Run the same scope-aware `checkContentHashDedup()` before the chunking branch, or add an equivalent cross-path hash lookup inside `indexChunkedMemoryFile()` that mirrors the single-record path's same-path exclusion and healthy-status rules.
 
 ### [P2] PE reinforcement can backfill `content_text` without updating `content_hash`
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts`
 
 **Issue** The reinforcement path mutates stored content by backfilling `content_text` when it is null, but it never refreshes the row's `content_hash`. On legacy or partially populated rows, that can leave the persisted text and persisted hash out of sync, weakening future exact-dedup checks and any downstream tooling that treats `content_hash` as the canonical fingerprint of the stored content.
 
@@ -30,7 +30,7 @@
 **Fix** Keep reinforcement metadata-only, or update `content_hash` in the same statement whenever `content_text` is backfilled. If the intent is to preserve immutable content, remove the `COALESCE(content_text, ?)` write entirely and leave content hydration to a dedicated repair/backfill path that recomputes hashes atomically.
 
 ### [P2] Hash matches are trusted blindly, with no secondary verification against stored content
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts`
 
 **Issue** Both exact-dedup helpers treat a matching `content_hash` as conclusive and never verify that the stored content actually matches the incoming content. A real SHA-256 collision is unlikely, but the same blind trust also means a corrupted backfill, manual DB edit, or stale hash can silently alias unrelated memories and force the wrong duplicate decision.
 

@@ -11,8 +11,8 @@ Compared Ralph's tightly integrated continuity model (`prd.json`, `progress.txt`
 
 ## Evidence
 - Ralph keeps continuity inside the core workflow: the same README that explains execution also explains the only persisted state bundle. There is no parallel "memory management" UX for normal operators. [SOURCE: external/README.md:132-145] [SOURCE: external/README.md:163-168]
-- `system-spec-kit` exposes four separate memory commands, including large management and analysis surfaces that branch far beyond normal lifecycle usage. [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/command/memory/manage.md:72-140] [SOURCE: .opencode/command/memory/learn.md:87-95]
-- Even simple save/search flows require dedicated routing, validation, and intent handling, which makes memory feel like a separate product. [SOURCE: .opencode/command/memory/save.md:7-47] [SOURCE: .opencode/command/memory/search.md:53-91] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:560-617]
+- `system-spec-kit` exposes four separate memory commands, including large management and analysis surfaces that branch far beyond normal lifecycle usage. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/commands/memory/manage.md:72-140] [SOURCE: .opencode/commands/memory/learn.md:87-95]
+- Even simple save/search flows require dedicated routing, validation, and intent handling, which makes memory feel like a separate product. [SOURCE: .opencode/commands/memory/save.md:7-47] [SOURCE: .opencode/commands/memory/search.md:53-91] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:560-617]
 
 ## Analysis
 The issue is not that memory is too capable. The issue is that routine operators are asked to reason about that capability explicitly. Ralph demonstrates the opposite pattern: continuity is part of the loop, while only unusual maintenance work feels "manual." `system-spec-kit` would be easier to use if save/search behavior were pulled under the spec lifecycle by default, leaving `manage` and `learn` as advanced surfaces for explicit maintenance.
@@ -23,7 +23,7 @@ confidence: high
 finding: `system-spec-kit` should merge routine memory actions into the default spec workflow and reserve `/memory:manage` and `/memory:learn` for advanced or administrative use.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 - **Change type:** modified existing
 - **Blast radius:** architectural
 - **Prerequisites:** define which save/search behaviors become automatic or embedded inside spec commands
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should merge routine memory actions into the default 
 - **Net recommendation:** MERGE
 
 ## Counter-evidence sought
-I looked for proof that the memory surface is already mostly hidden behind `/spec_kit:resume` or automatic hooks, but the quick-reference and command docs still present the memory family as a first-class parallel surface. [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:116-187] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:560-589]
+I looked for proof that the memory surface is already mostly hidden behind `/spec_kit:resume` or automatic hooks, but the quick-reference and command docs still present the memory family as a first-class parallel surface. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-187] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:560-589]
 
 ## Follow-up questions for next iteration
 - If lifecycle and memory UX both simplify, does the current spec-folder template and validation model still feel proportionate, or is that another major friction source?

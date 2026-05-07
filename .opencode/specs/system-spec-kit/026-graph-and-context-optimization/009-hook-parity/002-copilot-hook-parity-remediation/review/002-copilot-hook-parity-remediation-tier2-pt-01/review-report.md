@@ -17,7 +17,7 @@ Route this packet to remediation planning before treating the Copilot parity wor
 **Severity:** P1  
 **Dimension:** D1 Correctness / D3 Traceability  
 **Status:** active  
-**Evidence:** [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:18), [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:21), [implementation-summary.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/implementation-summary.md:72), [copilot-hook-wiring.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts:26)
+**Evidence:** [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:18), [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:21), [implementation-summary.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/implementation-summary.md:72), [copilot-hook-wiring.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts:26)
 
 The implementation summary claims `.github/hooks/scripts/user-prompt-submitted.sh` routes `userPromptSubmitted` through the compiled writer before Superset notification. In the current checkout, `.github/hooks/` contains only `superset-notify.json`, and that JSON routes `userPromptSubmitted` to `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh userPromptSubmitted`. The focused wiring test still expects `.github/hooks/scripts/user-prompt-submitted.sh`, but that script is absent. This means the custom-instructions writer can pass its direct unit tests while live Copilot prompts never refresh `$HOME/.copilot/copilot-instructions.md` through repo hook wiring.
 
@@ -36,7 +36,7 @@ The implementation summary claims `.github/hooks/scripts/user-prompt-submitted.s
 **Severity:** P1  
 **Dimension:** D2 Security / D4 Maintainability  
 **Status:** active  
-**Evidence:** [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:55), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:58), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:139), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:140), [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:11)
+**Evidence:** [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:55), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:58), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:139), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:140), [.github/hooks/superset-notify.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.github/hooks/superset-notify.json:11)
 
 The writer defaults to `$HOME/.copilot/copilot-instructions.md` and writes the managed Spec Kit block there. That file is a global Copilot input, not a repo-local session cache. No reviewed path removes the managed block on `sessionEnd`, scopes it to the current workspace, adds an expiry guard, or prevents a later Copilot session in another repo from seeing stale startup/advisor context from the previous repo. Diagnostics are prompt-safe, but the managed file itself remains a durable cross-session artifact.
 
@@ -55,7 +55,7 @@ The writer defaults to `$HOME/.copilot/copilot-instructions.md` and writes the m
 **Severity:** P2  
 **Dimension:** D1 Correctness  
 **Status:** active  
-**Evidence:** [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:119), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:129), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:140), [session-prime.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:229), [user-prompt-submit.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:213)
+**Evidence:** [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:119), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:129), [custom-instructions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:140), [session-prime.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:229), [user-prompt-submit.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:213)
 
 `writeCopilotCustomInstructions()` reads the current file, renders a new block, merges, then writes the full file back. Both session-start and user-prompt paths can call the same writer. A late session-start write can overwrite a fresher user-prompt advisor block with the advisor fallback, and simultaneous writers can lose human edits made between read and write. The normal idempotency path is fine; concurrent mutation is unguarded.
 
@@ -130,22 +130,22 @@ Add or revise requirements in this packet:
 
 ## Commands Attempted
 
-- `npx vitest run .opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts --runInBand` did not execute tests. `npx` attempted to reach `https://registry.npmjs.org/vitest` and failed with `ENOTFOUND` under restricted network.
+- `npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts --runInBand` did not execute tests. `npx` attempted to reach `https://registry.npmjs.org/vitest` and failed with `ENOTFOUND` under restricted network.
 
 ## Files Reviewed
 
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts`
 - `.github/hooks/superset-notify.json`
 - `.claude/settings.local.json`
-- `.opencode/skill/cli-copilot/SKILL.md`
-- `.opencode/skill/cli-copilot/assets/shell_wrapper.md`
+- `.opencode/skills/cli-copilot/SKILL.md`
+- `.opencode/skills/cli-copilot/assets/shell_wrapper.md`
 
 ## Planning Packet
 

@@ -6,7 +6,7 @@ I stayed on the already-identified unlocked write seams, but looked for additive
 ## Findings
 
 ### Finding R33-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts`
 - **Lines:** `hook-state.ts:184-217`; `session-prime.ts:43-46, 281-287`; `hooks/gemini/session-prime.ts:221-227`; `hooks/gemini/compact-inject.ts:70-75`
 - **Severity:** P1
 - **Description:** The compact-recovery consumer clears `pendingCompactPrime` by session only, not by payload identity. `handleCompact()` reads one cached payload, but the later `clearCompactPrime(sessionId)` nulls whatever compact payload is current at clear time. If a newer precompact write lands between the read and the clear, the newer payload is erased.
@@ -14,7 +14,7 @@ I stayed on the already-identified unlocked write seams, but looked for additive
 - **Downstream Impact:** A fresh compact brief can be deleted by an older recovery consumer, so the next post-compaction or startup recovery falls back to the generic "call memory_context" path even though a newer cached payload had already been produced.
 
 ### Finding R33-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `session-stop.ts:119-125, 244-268`; `hook-state.ts:221-241`
 - **Severity:** P1
 - **Description:** Overlapping Claude stop hooks can move `metrics.lastTranscriptOffset` backwards. Each invocation snapshots `startOffset` once from `stateBeforeStop`, parses forward from that point, and then overwrites the whole `metrics` object with its own `newOffset`. There is no monotonicity guard against an older invocation persisting a smaller offset after a newer invocation already advanced it.
@@ -22,7 +22,7 @@ I stayed on the already-identified unlocked write seams, but looked for additive
 - **Downstream Impact:** A regressed offset makes the next stop hook re-parse already-counted transcript bytes, which can duplicate token snapshots, duplicate producer-metadata updates, and skew cost / usage history while still looking like a normal incremental parse.
 
 ### Finding R33-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `hook-state.ts:170-180, 221-241`; `session-stop.ts:60-67, 119-125, 261-309`
 - **Severity:** P1
 - **Description:** The stop-hook lane treats failed state persistence as non-blocking, then immediately trusts disk for autosave. If `saveState()` loses the shared `.tmp` race or otherwise fails, `updateState()` only logs a warning; `recordStateUpdate()` does not surface that failure; and `runContextAutosave()` still reloads state from disk and can autosave stale `lastSpecFolder` / `sessionSummary` data.

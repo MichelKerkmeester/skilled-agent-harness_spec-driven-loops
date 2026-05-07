@@ -89,7 +89,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Run `npm run typecheck` for `.opencode/skill/system-spec-kit/mcp_server`
+- [x] T008 Run `npm run typecheck` for `.opencode/skills/system-spec-kit/mcp_server`
 - [x] T009 Run targeted `vitest` coverage for shared payload, transport adapter, live plugin, graph ops, bootstrap, and context-server behavior
 - [x] T010 Run strict packet validation and JSON validation for packet 030
 - [x] T010a Run plugin-specific verification for `.opencode/plugins/spec-kit-compact-code-graph.js` and `opencode.json`

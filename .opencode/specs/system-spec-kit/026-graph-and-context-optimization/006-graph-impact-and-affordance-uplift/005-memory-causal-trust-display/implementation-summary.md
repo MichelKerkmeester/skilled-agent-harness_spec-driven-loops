@@ -69,8 +69,8 @@ The trust display ships on each `MemoryResultEnvelope` result in `memory_search`
 | `mcp_server/lib/response/profile-formatters.ts` | Modified | Preserve trust badges through response-profile typing |
 | `mcp_server/tests/memory/trust-badges.test.ts` | Created | Cover badge derivation, age rendering, orphan detection, and explicit payload preservation |
 | `mcp_server/tests/response-profile-formatters.vitest.ts` | Modified | Cover profile preservation for `trustBadges` |
-| `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md` | Created | Packet-local feature catalog entry |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md` | Created | Packet-local manual testing playbook entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md` | Created | Packet-local feature catalog entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md` | Created | Packet-local manual testing playbook entry |
 | `implementation-summary.md` | Modified | Record placement, delivery, and verification state for 012/005 |
 <!-- /ANCHOR:what-built -->
 
@@ -128,7 +128,7 @@ $ cd mcp_server && npx --no-install vitest run \
    Duration  1.34s
 
 # validate.sh --strict (005 sub-phase)
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display \
   --strict
 → FAILED (template-section conformance — cosmetic; not a contract violation)
@@ -138,7 +138,7 @@ $ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
 
 | Check | Result |
 |-------|--------|
-| Feature catalog DQI | OPERATOR-PENDING — original implementation reported 28-memory-causal-trust-display.md scored 87 (script-backed), but score was captured outside the canonical Wave-3 channel; operator may re-run `python3 .opencode/skill/sk-doc/scripts/validate_document.py` for fresh attestation. |
+| Feature catalog DQI | OPERATOR-PENDING — original implementation reported 28-memory-causal-trust-display.md scored 87 (script-backed), but score was captured outside the canonical Wave-3 channel; operator may re-run `python3 .opencode/skills/sk-doc/scripts/validate_document.py` for fresh attestation. |
 | Manual testing playbook DQI | OPERATOR-PENDING — original implementation reported 203-memory-causal-trust-display.md scored 91; same canonical-channel caveat. |
 | Protected-file static diff | PASS — `git diff --stat main -- .../causal-edges.ts .../causal-boost.ts` returned no changes (unchanged from original verification). |
 | Relation vocabulary review | PASS — source still declares only `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from`, `supports`. |

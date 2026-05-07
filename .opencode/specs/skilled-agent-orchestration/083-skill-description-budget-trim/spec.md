@@ -68,8 +68,8 @@ Trim project-owned skill and command descriptions to free ≥2,100 chars of budg
 ## 3. SCOPE
 
 ### In Scope
-- Trim `description` field in YAML frontmatter for 16 files in `.opencode/skill/*/SKILL.md`
-- Trim `description` field in YAML frontmatter for 23 files in `.opencode/command/**/*.md`
+- Trim `description` field in YAML frontmatter for 16 files in `.opencode/skills/*/SKILL.md`
+- Trim `description` field in YAML frontmatter for 23 files in `.opencode/commands/**/*.md`
 - Verification audit re-run to confirm new total fits under 8,000 chars with margin
 - Caps: ≤130 chars per skill, ≤110 chars per command (uniform target)
 
@@ -84,8 +84,8 @@ Trim project-owned skill and command descriptions to free ≥2,100 chars of budg
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/*/SKILL.md` (16 files) | Modify | Tighten `description` line to ≤130 chars, drop enumerations and product lists |
-| `.opencode/command/**/*.md` (23 files) | Modify | Tighten `description` line to ≤110 chars |
+| `.opencode/skills/*/SKILL.md` (16 files) | Modify | Tighten `description` line to ≤130 chars, drop enumerations and product lists |
+| `.opencode/commands/**/*.md` (23 files) | Modify | Tighten `description` line to ≤110 chars |
 
 <!-- /ANCHOR:scope -->
 
@@ -98,8 +98,8 @@ Trim project-owned skill and command descriptions to free ≥2,100 chars of budg
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 16 skill descriptions trimmed | Each `.opencode/skill/*/SKILL.md` description field ≤130 chars; keyword density preserved (skill name, primary verb, primary object) |
-| REQ-002 | All 23 command descriptions trimmed | Each `.opencode/command/**/*.md` description field ≤110 chars |
+| REQ-001 | All 16 skill descriptions trimmed | Each `.opencode/skills/*/SKILL.md` description field ≤130 chars; keyword density preserved (skill name, primary verb, primary object) |
+| REQ-002 | All 23 command descriptions trimmed | Each `.opencode/commands/**/*.md` description field ≤110 chars |
 | REQ-003 | Total project description budget < 5,600 chars | Audit script sum reports < 5,600 (leaves ≥2,400 for Claude Code built-ins under the 8,000 default) |
 | REQ-004 | No stack enumerations in skill descriptions | sk-code, mcp-code-mode, etc. drop product lists per memory rule "Stack-agnostic phrasing in agent descriptions" |
 

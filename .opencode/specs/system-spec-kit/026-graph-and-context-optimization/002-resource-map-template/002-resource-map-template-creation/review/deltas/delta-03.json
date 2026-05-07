@@ -5,14 +5,14 @@
   "copilot_dispatched": false,
   "copilot_dispatch_reason": "Scope small enough to verify inline; both edited test files <1100 LOC, source truth files verified against assertions",
   "files_audited": [
-    ".opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/thin-continuity-record.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/resume-ladder.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts"
+    ".opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/thin-continuity-record.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/resume-ladder.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts"
   ],
   "assertions_verified": {
     "spec_document_configs_length_11": "correct — 8 canonical md + resource_map + description_metadata + graph_metadata",
@@ -29,7 +29,7 @@
       "severity": "P2",
       "title": "Missing negative test for resource-map-backup.md fall-through",
       "description": "No test asserts that resource-map-backup.md, my-resource-map.md, or resource-map.txt fall through to generic memory/handler. Regex is strict so runtime safe, but regression coverage gap.",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
       "blocker": false,
       "sibling_canonical_docs_same_gap": true
     },
@@ -38,7 +38,7 @@
       "severity": "P2",
       "title": "memory-types.vitest.ts L114-122 could add resource-map.md semantic example",
       "description": "Representative path list at T078 includes plan.md, decision-record.md, implementation-summary.md, research.md but not handover.md or resource-map.md. The list is representative, not exhaustive — not a bug. Adding the entry is a nice-to-have.",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
       "blocker": false
     },
     {
@@ -46,7 +46,7 @@
       "severity": "INFO",
       "title": "CONFIGS.length vs FILENAMES.size divergence is intentional",
       "description": "SPEC_DOCUMENT_CONFIGS has 11 entries (includes graph_metadata config) but SPEC_DOCUMENT_FILENAMES.size is 10 (graph-metadata.json is exported as separate GRAPH_METADATA_FILENAME constant). Both assertions are correct. Inline comment would aid future maintainers.",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts",
       "blocker": false
     }
   ],

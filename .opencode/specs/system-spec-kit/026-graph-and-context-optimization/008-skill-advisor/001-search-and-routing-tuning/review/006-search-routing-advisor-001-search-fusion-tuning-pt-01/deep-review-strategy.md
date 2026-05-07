@@ -53,7 +53,7 @@ Deep review of the root packet `001-search-fusion-tuning`, including its root sp
 - **Child implementation verification -- PRODUCTIVE (iterations 005, 006):** The underlying code/test changes matched the narrow child packet claims; the remaining issues are packet-governance drift rather than hidden runtime regressions.
 
 ## 10. RULED OUT DIRECTIONS
-- No P0-grade correctness or security defect was confirmed in `cross-encoder.ts`, `stage3-rerank.ts`, or `content-router.ts`; the material problems are packet closure and metadata integrity issues instead. Evidence: `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35-59,396-559`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:49-56,146-212`; `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:11-31`.
+- No P0-grade correctness or security defect was confirmed in `cross-encoder.ts`, `stage3-rerank.ts`, or `content-router.ts`; the material problems are packet closure and metadata integrity issues instead. Evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35-59,396-559`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:49-56,146-212`; `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:11-31`.
 
 ## 11. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
@@ -87,9 +87,9 @@ Loop complete. Next focus is packet remediation in this order: root closeout syn
 | `graph-metadata.json` | traceability | 007 | 0 P0, 2 P1 | complete |
 | `prompts/deep-research-prompt.md` | correctness | 009 | 0 P0, 1 P1 | complete |
 | `001-004/*decision-record.md` | maintainability | 004 | 0 P0, 1 P1 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` | security, correctness | 010 | 0 P0, 0 P1 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | correctness, security | 010 | 0 P0, 0 P1 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts` | correctness, security | 010 | 0 P0, 0 P1 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` | security, correctness | 010 | 0 P0, 0 P1 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | correctness, security | 010 | 0 P0, 0 P1 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts` | correctness, security | 010 | 0 P0, 0 P1 | complete |
 <!-- MACHINE-OWNED: END -->
 
 ## 15. REVIEW BOUNDARIES

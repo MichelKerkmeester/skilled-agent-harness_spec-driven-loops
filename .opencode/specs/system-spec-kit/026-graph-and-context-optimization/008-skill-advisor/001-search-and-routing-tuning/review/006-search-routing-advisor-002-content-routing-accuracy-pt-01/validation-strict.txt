@@ -698,10 +698,10 @@ Auto-enabled recursive validation: phase child folders detected.
 ✓ LINKS_VALID: Wikilink validation skipped (set SPECKIT_VALIDATE_LINKS=true to enable)
 ✓ SECTION_COUNTS: Section counts appropriate for Level 2
 ✗ SPEC_DOC_INTEGRITY: 4 spec documentation integrity issue(s) found
-    - checklist.md references missing markdown file: .opencode/agent/speckit.md
-    - checklist.md references missing markdown file: .opencode/agent/speckit.md
-    - implementation-summary.md references missing markdown file: .opencode/agent/speckit.md
-    - tasks.md references missing markdown file: .opencode/agent/speckit.md
+    - checklist.md references missing markdown file: .opencode/agents/speckit.md
+    - checklist.md references missing markdown file: .opencode/agents/speckit.md
+    - implementation-summary.md references missing markdown file: .opencode/agents/speckit.md
+    - tasks.md references missing markdown file: .opencode/agents/speckit.md
 ✓ TEMPLATE_SOURCE: Template source headers present in all 5 spec files
 ✓ TEMPLATE_HEADERS: All template headers match in 5 file(s)
 ✓ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
@@ -930,7 +930,7 @@ Auto-enabled recursive validation: phase child folders detected.
     - plan.md: Extra custom section header '## Phases <!-- ANCHOR:phases -->This plan separates prompt text changes from verification updates.<!-- /ANCHOR:phases -->' does not exist in the active template
     - plan.md: Extra custom section header '## Phase 1' does not exist in the active template
     - plan.md: Extra custom section header '## Phase 2' does not exist in the active template
-    - plan.md: Extra custom section header '## Testing <!-- ANCHOR:testing -->Run `npx tsc --noEmit` and `npx vitest run tests/content-router.vitest.ts` from `.opencode/skill/system-spec-kit/mcp_server`.<!-- /ANCHOR:testing -->' does not exist in the active template
+    - plan.md: Extra custom section header '## Testing <!-- ANCHOR:testing -->Run `npx tsc --noEmit` and `npx vitest run tests/content-router.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`.<!-- /ANCHOR:testing -->' does not exist in the active template
     - plan.md: Extra custom section header '## Dependencies <!-- ANCHOR:dependencies -->Depends on the current prompt contract in `content-router.ts` and focused router test coverage in the mcp server package.<!-- /ANCHOR:dependencies -->' does not exist in the active template
     - plan.md: Extra custom section header '## Rollback <!-- ANCHOR:rollback -->If the prompt wording causes confusion or test churn, revert the paragraph and its assertions together.<!-- /ANCHOR:rollback -->' does not exist in the active template
     - tasks.md: Extra custom section header '## Notation <!-- ANCHOR:notation -->`[ ]` pending, `[x]` complete, `T-V*` verification-only.<!-- /ANCHOR:notation -->' does not exist in the active template

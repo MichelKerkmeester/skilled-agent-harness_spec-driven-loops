@@ -1,7 +1,7 @@
 # Test Files Scan - System-Spec-Kit
 
 **Scan Date:** 2026-01-16
-**Target:** `.opencode/skill/system-spec-kit/`
+**Target:** `.opencode/skills/system-spec-kit/`
 **Total Files Found:** 9 test files (excluding node_modules)
 
 ## Executive Summary
@@ -27,7 +27,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js` |
 | Size | 19K |
 | Last Modified | Jan 15 17:58 (2026) |
 | Purpose | Unit tests for cognitive attention decay module |
@@ -48,7 +48,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.test.js` |
 | Size | 16K |
 | Last Modified | Jan 15 17:59 (2026) |
 | Purpose | Tests spreading activation for related memories |
@@ -69,7 +69,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/modularization.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/modularization.test.js` |
 | Size | 13K |
 | Last Modified | Jan 15 17:13 (2026) |
 | Purpose | Verifies SPEC 066 modularization implementation |
@@ -99,7 +99,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js` |
 | Size | 23K |
 | Last Modified | Jan 15 08:19 (2026) |
 | Purpose | Tests summary generation for WARM tier content |
@@ -120,7 +120,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js` |
 | Size | 19K |
 | Last Modified | Jan 15 08:15 (2026) |
 | Purpose | Tests HOT/WARM/COLD tier classification |
@@ -141,7 +141,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js` |
 | Size | 20K |
 | Last Modified | Jan 15 08:16 (2026) |
 | Purpose | Unit tests for session-based working memory module |
@@ -164,7 +164,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js` |
 | Size | 19K |
 | Last Modified | Jan 6 16:05 (2026) |
 | Purpose | Bug fix regression tests |
@@ -191,7 +191,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js` |
 | Size | 5.9K |
 | Last Modified | Jan 15 13:58 (2026) |
 | Purpose | Test embedding provider configuration |
@@ -215,7 +215,7 @@
 
 | Property | Value |
 |----------|-------|
-| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh` |
+| Path | `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/tests/test-validation.sh` |
 | Size | 36K |
 | Last Modified | Jan 15 13:16 (2026) |
 | Purpose | Validation test runner against fixture spec folders |

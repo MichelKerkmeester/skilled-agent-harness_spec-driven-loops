@@ -1,6 +1,6 @@
 # Feature Catalog — Per-Category Summary
 
-> Source: `.opencode/skill/system-spec-kit/feature_catalog/`
+> Source: `.opencode/skills/system-spec-kit/feature_catalog/`
 > Generated: 2026-03-22
 > Total categories: 19 | Total features: 220
 

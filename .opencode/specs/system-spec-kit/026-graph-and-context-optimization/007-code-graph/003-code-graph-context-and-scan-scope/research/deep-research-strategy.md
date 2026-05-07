@@ -97,7 +97,7 @@ Code graph indexer scope anomaly after packet 012 (.gitignore-aware walk + z_fut
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 
-Iteration 1 should: (a) read `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` and `indexer-types.ts` end-to-end to map the actual control flow when `incremental=false` is passed AND `previousGitHead === currentGitHead`; (b) reproduce the post-exclude file count empirically using the same `ignore` package the indexer uses, walking the workspace root with the same exclude set; (c) trace exactly where the 3 UNIQUE constraint errors come from (the full-reindex DELETE path or the per-file upsert path).
+Iteration 1 should: (a) read `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts` and `indexer-types.ts` end-to-end to map the actual control flow when `incremental=false` is passed AND `previousGitHead === currentGitHead`; (b) reproduce the post-exclude file count empirically using the same `ignore` package the indexer uses, walking the workspace root with the same exclude set; (c) trace exactly where the 3 UNIQUE constraint errors come from (the full-reindex DELETE path or the per-file upsert path).
 
 ---
 
@@ -132,11 +132,11 @@ Iteration 1 should: (a) read `.opencode/skill/system-spec-kit/mcp_server/code-gr
 
 ### Relevant files
 
-- Indexer code: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
-- Types/excludes: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts`
-- Built dist: `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/{structural-indexer,indexer-types}.js`
-- Tests: `.opencode/skill/system-spec-kit/mcp_server/tests/{structural-contract,tree-sitter-parser}.vitest.ts`
-- Scan handler: `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` (and likely a code-graph counterpart)
+- Indexer code: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+- Types/excludes: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts`
+- Built dist: `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/{structural-indexer,indexer-types}.js`
+- Tests: `.opencode/skills/system-spec-kit/mcp_server/tests/{structural-contract,tree-sitter-parser}.vitest.ts`
+- Scan handler: `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` (and likely a code-graph counterpart)
 - DB: `mcp_server/database/code-graph.sqlite`
 - Repo root .gitignore + nested `.gitignore` files (need enumeration)
 - Surface matrix doc: `code-graph/README.md` (or `SURFACES.md` — packet 012 created/folded)
@@ -156,9 +156,9 @@ Iteration 1 should: (a) read `.opencode/skill/system-spec-kit/mcp_server/code-gr
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred)
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11
 - Canonical pause sentinel: `research/007-deep-review-remediation-pt-04/.deep-research-pause`
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
-- Capability matrix doc: `.opencode/skill/sk-deep-research/references/capability_matrix.md`
-- Capability resolver: `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs`
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
+- Capability matrix doc: `.opencode/skills/sk-deep-research/references/capability_matrix.md`
+- Capability resolver: `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs`
 - Current generation: 1
 - Started: 2026-04-23T13:01:00Z
 - Executor: cli-codex / model=gpt-5.4 / reasoningEffort=high / serviceTier=fast / timeoutSeconds=900

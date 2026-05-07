@@ -140,7 +140,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/scripts/generate-context.js |
+| Active File | .opencode/skills/system-spec-kit/scripts/generate-context.js |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | js caused by incomplete prior edit (duplicate code block at lines 1279-1289). |
@@ -177,9 +177,9 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/scripts/generate-context.js` - React context provider
+- `.opencode/skills/system-spec-kit/scripts/generate-context.js` - React context provider
 
-- `.opencode/skill/system-spec-kit/scripts/lib/vector-index.js` - Entry point / exports
+- `.opencode/skills/system-spec-kit/scripts/lib/vector-index.js` - Entry point / exports
 
 - `.opencode/.../lib/simulation-factory.js` - Core simulation factory
 
@@ -229,8 +229,8 @@ Completed Phase 2 of security remediation and complexity refactoring for system-
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Caused by incomplete prior edit (duplicate code block at ... |
-| `.opencode/skill/system-spec-kit/scripts/lib/vector-index.js` | Modified during session |
+| `.opencode/skills/system-spec-kit/scripts/generate-context.js` | Caused by incomplete prior edit (duplicate code block at ... |
+| `.opencode/skills/system-spec-kit/scripts/lib/vector-index.js` | Modified during session |
 | `.opencode/.../lib/simulation-factory.js` | Modified during session |
 
 <!-- /ANCHOR:summary-session-1766683041763-hnpzhyzk0-003-memory-and-spec-kit/035-memory-speckit-merger -->
@@ -562,8 +562,8 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/generate-context.js"
-  - ".opencode/skill/system-spec-kit/scripts/lib/vector-index.js"
+  - ".opencode/skills/system-spec-kit/scripts/generate-context.js"
+  - ".opencode/skills/system-spec-kit/scripts/lib/vector-index.js"
   - ".opencode/.../lib/simulation-factory.js"
 
 # Relationships

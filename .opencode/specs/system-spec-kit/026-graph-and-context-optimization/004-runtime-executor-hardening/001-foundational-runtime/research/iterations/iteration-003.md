@@ -1,12 +1,12 @@
 # Iteration 3 — Code-Graph Query Truthfulness (3/10)
 
 ## Investigation Thread
-Candidate **M3**: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`, with focus on whether the runtime truthfully reports subject resolution, readiness state, and aggregate edge trust to downstream callers.
+Candidate **M3**: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`, with focus on whether the runtime truthfully reports subject resolution, readiness state, and aggregate edge trust to downstream callers.
 
 ## Findings
 
 ### Finding R3-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `42-58`
 - **Severity:** P1
 - **Description:** `resolveSubject()` silently picks the first `fq_name` or `name` match with `LIMIT 1`, but the backing `code_nodes` schema does not enforce uniqueness on either column. Any caller that passes a human-readable name instead of a stable `symbol_id` can therefore query an arbitrary symbol with no ambiguity signal.
@@ -14,7 +14,7 @@ Candidate **M3**: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-grap
 - **Downstream Impact:** `code_graph_query` can return callers/importers for the wrong symbol when agents ask about a common function or class name, which contaminates structural context, blast-radius reasoning, and any follow-on MCP workflow that trusts the returned `symbolId`.
 
 ### Finding R3-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `319-334`
 - **Severity:** P1
 - **Description:** The readiness gate fails open: any `ensureCodeGraphReady()` exception is swallowed, and the handler continues with a default `readiness` object that looks like a benign empty graph state rather than a failed precondition.
@@ -22,7 +22,7 @@ Candidate **M3**: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-grap
 - **Downstream Impact:** Callers cannot distinguish "graph unavailable or readiness check failed" from "graph is empty/stale but usable," so recovery logic and operators may treat infrastructure faults as genuine no-result answers.
 
 ### Finding R3-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `551-564`
 - **Severity:** P2
 - **Description:** Response-level edge trust is derived exclusively from `result.edges[0]`, so heterogeneous edge sets are summarized using the first edge's `edgeEvidenceClass` and `numericConfidence` even when later edges carry different provenance or confidence.

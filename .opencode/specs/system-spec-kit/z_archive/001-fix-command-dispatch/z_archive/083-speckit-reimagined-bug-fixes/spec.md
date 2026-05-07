@@ -77,8 +77,8 @@ This specification covers remediation of:
 | Location | Current State | Truth |
 |----------|---------------|-------|
 | README.md v1.2.2 changelog | Claims path fixed TO `.claude/commands/` | **MISLEADING** |
-| Actual file location | `.opencode/command/` | **CORRECT** |
-| Symlink | `.claude/commands/spec_kit → .opencode/command/spec_kit/` | Works |
+| Actual file location | `.opencode/commands/` | **CORRECT** |
+| Symlink | `.claude/commands/spec_kit → .opencode/commands/spec_kit/` | Works |
 
 **Resolution:** The README changelog entry is BACKWARDS and needs correction.
 
@@ -106,7 +106,7 @@ This specification covers remediation of:
 | ID | Issue | Location | Description |
 |----|-------|----------|-------------|
 | **BUG-001** | ANCHOR Format Mismatch | README.md lines 421, 696 | Uses `ANCHOR_END` instead of `/ANCHOR:` |
-| **BUG-002** | Systematic YAML Path Error | All 12 commands | References `.opencode/command/` instead of `.claude/commands/` |
+| **BUG-002** | Systematic YAML Path Error | All 12 commands | References `.opencode/commands/` instead of `.claude/commands/` |
 | **BUG-003** | Missing Steps in complete.md YAMLs | spec_kit_complete_*.yaml | Steps 11 and 14 missing |
 | **BUG-004** | Missing PREFLIGHT/POSTFLIGHT | spec_kit_implement_*.yaml | Steps 5.5 and 7.5 not implemented |
 | **BUG-005** | Invalid Task Tool Parameter | handover.md lines 398-401 | Uses non-existent `model` parameter |
@@ -264,7 +264,7 @@ This specification covers remediation of:
 │  └─ mcp_server/README.md                                        │
 │                                                                 │
 │  AGENT FILES (1 file)                                           │
-│  └─ .opencode/agent/speckit.md                                  │
+│  └─ .opencode/agents/speckit.md                                  │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -389,5 +389,5 @@ This specification covers remediation of:
 - [Bug Inventory](./bug-inventory.md)
 - [Spec 082: SpecKit Reimagined](../082-speckit-reimagined/)
 - [Spec 083: Memory Command Consolidation](../083-memory-command-consolidation/)
-- [system-spec-kit README](/.opencode/skill/system-spec-kit/README.md)
-- [system-spec-kit CHANGELOG](/.opencode/skill/system-spec-kit/CHANGELOG.md)
+- [system-spec-kit README](/.opencode/skills/system-spec-kit/README.md)
+- [system-spec-kit CHANGELOG](/.opencode/skills/system-spec-kit/CHANGELOG.md)

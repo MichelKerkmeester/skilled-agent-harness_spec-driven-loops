@@ -30,17 +30,17 @@ _memory:
 
 ## Problem
 
-The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent definition (`.opencode/agent/agent-improver.md`) has never been a target. This is the only agent in the system that describes the improvement workflow itself, creating a unique self-referential case where the integration scanner discovers its own surfaces, the profile generator extracts its own rules, and the scorer evaluates its own quality.
+The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent definition (`.opencode/agents/agent-improver.md`) has never been a target. This is the only agent in the system that describes the improvement workflow itself, creating a unique self-referential case where the integration scanner discovers its own surfaces, the profile generator extracts its own rules, and the scorer evaluates its own quality.
 
 ## Solution
 
-Execute a real end-to-end `/improve:agent` run targeting `.opencode/agent/agent-improver.md` using the Phase 009 spec folder as the runtime root. Run the full loop (scan, profile, candidate, score, benchmark, reduce, stop-check) for 3 bounded iterations in `:confirm` mode with dynamic scoring. Record all runtime artifacts and document self-referential observations.
+Execute a real end-to-end `/improve:agent` run targeting `.opencode/agents/agent-improver.md` using the Phase 009 spec folder as the runtime root. Run the full loop (scan, profile, candidate, score, benchmark, reduce, stop-check) for 3 bounded iterations in `:confirm` mode with dynamic scoring. Record all runtime artifacts and document self-referential observations.
 
 ## Scope
 
 ### In Scope
 
-- Run the full `/improve:agent` command targeting `.opencode/agent/agent-improver.md`
+- Run the full `/improve:agent` command targeting `.opencode/agents/agent-improver.md`
 - Use dynamic scoring mode (5-dimension)
 - Use the Phase 009 spec folder as the runtime root
 - Use `:confirm` mode (interactive gates for observation)

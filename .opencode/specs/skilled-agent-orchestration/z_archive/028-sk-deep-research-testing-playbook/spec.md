@@ -27,11 +27,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Implement the first `manual_testing_playbook/` package for `.opencode/skill/sk-deep-research/` as a greenfield documentation package derived from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`. The approved plan is fixed: 19 scenarios using IDs `DR-001` through `DR-019`, organized into 6 numbered categories, with explicit disclosure that no `feature_catalog/` exists yet for `sk-deep-research`.
+Implement the first `manual_testing_playbook/` package for `.opencode/skills/sk-deep-research/` as a greenfield documentation package derived from the live deep-research command, skill, README, references, assets, and `.codex/agents/deep-research.toml`. The approved plan is fixed: 19 scenarios using IDs `DR-001` through `DR-019`, organized into 6 numbered categories, with explicit disclosure that no `feature_catalog/` exists yet for `sk-deep-research`.
 
 **Key Decisions**: keep the playbook greenfield and create-first, use the integrated `sk-doc` root-guidance contract, and preserve the approved 19-scenario ordering from entry points through synthesis and guardrails.
 
-**Critical Dependencies**: `.opencode/skill/sk-deep-research/`, `.opencode/command/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
+**Critical Dependencies**: `.opencode/skills/sk-deep-research/`, `.opencode/commands/spec_kit/deep-research.md`, `.codex/agents/deep-research.toml`, and the `sk-doc` testing-playbook creation guide and templates.
 
 ---
 
@@ -67,7 +67,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 ## 3. SCOPE
 
 ### In Scope
-- Implement a greenfield `manual_testing_playbook/` package under `.opencode/skill/sk-deep-research/`.
+- Implement a greenfield `manual_testing_playbook/` package under `.opencode/skills/sk-deep-research/`.
 - Create one root playbook and 19 per-feature scenario files using stable IDs `DR-001` through `DR-019`.
 - Use the 6 approved category folders:
   - `01--entry-points-and-modes`
@@ -80,7 +80,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 - State clearly that no `feature_catalog/` exists yet and that the playbook is a greenfield create effort, not an update or migration.
 
 ### Out of Scope
-- Creating `.opencode/skill/sk-deep-research/feature_catalog/` in this workstream.
+- Creating `.opencode/skills/sk-deep-research/feature_catalog/` in this workstream.
 - Modifying `sk-deep-research`, `sk-doc`, command, agent, or validator source files.
 - Turning reference-only concepts such as wave mode, segment partitioning, or alternate CLI dispatch into shipped runtime features.
 
@@ -88,7 +88,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/ root playbook` | Create | Root playbook with integrated review protocol, evidence rules, category summaries, and explicit no-feature-catalog disclosure |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/ root playbook` | Create | Root playbook with integrated review protocol, evidence rules, category summaries, and explicit no-feature-catalog disclosure |
 | `01--entry-points-and-modes / DR-001` | Create | Setup prompt and topic-capture scenario |
 | `01--entry-points-and-modes / DR-002` | Create | Required spec-folder-choice scenario |
 | `01--entry-points-and-modes / DR-003` | Create | Autonomous-mode scenario |
@@ -119,7 +119,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Create the greenfield playbook package at `.opencode/skill/sk-deep-research/manual_testing_playbook/` | The package contains the root playbook file, the 6 approved category folders, and all 19 planned scenario files listed in Scope |
+| REQ-001 | Create the greenfield playbook package at `.opencode/skills/sk-deep-research/manual_testing_playbook/` | The package contains the root playbook file, the 6 approved category folders, and all 19 planned scenario files listed in Scope |
 | REQ-002 | Use the current integrated `sk-doc` testing-playbook contract | The root playbook owns review protocol, orchestration rules, evidence expectations, and category summaries; there are no canonical sidecar review files and no `snippets/` subtree |
 | REQ-003 | Derive every scenario from live `sk-deep-research` sources only | Scenario content is anchored to the current command, skill, README, references, assets, and `.codex/agents/deep-research.toml`, not to deleted or missing design docs |
 | REQ-004 | Handle the missing feature catalog honestly | The root playbook cross-reference section and each per-feature file explicitly note that no dedicated `feature_catalog/` exists yet for `sk-deep-research` |
@@ -163,7 +163,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `.opencode/skill/sk-deep-research/` docs and assets | Missing or stale anchors would weaken scenario truth | Anchor every scenario to current files and re-read live docs immediately before authoring |
+| Dependency | `.opencode/skills/sk-deep-research/` docs and assets | Missing or stale anchors would weaken scenario truth | Anchor every scenario to current files and re-read live docs immediately before authoring |
 | Dependency | `sk-doc` playbook creation guide and templates | Contract drift would create a non-standard package | Follow the shipped creation guide and root/snippet template structure exactly |
 | Risk | Source docs mix live and reference-only behavior | Operators could test unshipped features as if they were live | Reserve explicit guardrail treatment for `DR-019` and label boundaries clearly |
 | Risk | README points at a non-existent design spec path | Authors may copy stale references into the playbook | Treat the missing path as stale documentation and exclude it from live source anchors |

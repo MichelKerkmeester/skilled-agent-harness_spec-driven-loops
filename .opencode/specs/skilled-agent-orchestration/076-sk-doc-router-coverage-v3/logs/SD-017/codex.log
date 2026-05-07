@@ -31,106 +31,106 @@ hook: UserPromptSubmit Completed
 codex
 SKILL ROUTING: User directed this as an sk-doc routing-trace test, and the advisor also ranks `sk-doc` highest. I’m only checking the skill’s routing metadata, not generating the guide.
 exec
-/bin/zsh -lc 'find .opencode/skill/sk-doc -maxdepth 3 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'find .opencode/skills/sk-doc -maxdepth 3 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-doc/README.md
-.opencode/skill/sk-doc/SKILL.md
-.opencode/skill/sk-doc/assets/agent_template.md
-.opencode/skill/sk-doc/assets/command_template.md
-.opencode/skill/sk-doc/assets/documentation/changelog_template.md
-.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md
-.opencode/skill/sk-doc/assets/documentation/install_guide_template.md
-.opencode/skill/sk-doc/assets/documentation/llmstxt_templates.md
-.opencode/skill/sk-doc/assets/documentation/readme_code_template.md
-.opencode/skill/sk-doc/assets/documentation/readme_template.md
-.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
-.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md
-.opencode/skill/sk-doc/assets/flowcharts/approval_workflow_loops.md
-.opencode/skill/sk-doc/assets/flowcharts/decision_tree_flow.md
-.opencode/skill/sk-doc/assets/flowcharts/parallel_execution.md
-.opencode/skill/sk-doc/assets/flowcharts/simple_workflow.md
-.opencode/skill/sk-doc/assets/flowcharts/system_architecture_swimlane.md
-.opencode/skill/sk-doc/assets/flowcharts/user_onboarding.md
-.opencode/skill/sk-doc/assets/skill/skill_asset_template.md
-.opencode/skill/sk-doc/assets/skill/skill_md_template.md
-.opencode/skill/sk-doc/assets/skill/skill_reference_template.md
-.opencode/skill/sk-doc/assets/skill/skill_smart_router.md
-.opencode/skill/sk-doc/assets/template_rules.json
-.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
-.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
-.opencode/skill/sk-doc/changelog/v1.0.0.0.md
-.opencode/skill/sk-doc/changelog/v1.0.1.0.md
-.opencode/skill/sk-doc/changelog/v1.0.2.0.md
-.opencode/skill/sk-doc/changelog/v1.0.3.0.md
-.opencode/skill/sk-doc/changelog/v1.0.4.0.md
-.opencode/skill/sk-doc/changelog/v1.0.5.0.md
-.opencode/skill/sk-doc/changelog/v1.0.6.0.md
-.opencode/skill/sk-doc/changelog/v1.0.7.0.md
-.opencode/skill/sk-doc/changelog/v1.0.8.0.md
-.opencode/skill/sk-doc/changelog/v1.0.9.0.md
-.opencode/skill/sk-doc/changelog/v1.1.0.0.md
-.opencode/skill/sk-doc/changelog/v1.1.2.0.md
-.opencode/skill/sk-doc/changelog/v1.1.3.0.md
-.opencode/skill/sk-doc/changelog/v1.2.0.0.md
-.opencode/skill/sk-doc/changelog/v1.3.0.0.md
-.opencode/skill/sk-doc/changelog/v1.3.0.1.md
-.opencode/skill/sk-doc/changelog/v1.3.0.2.md
-.opencode/skill/sk-doc/changelog/v1.4.0.0.md
-.opencode/skill/sk-doc/changelog/v1.4.1.0.md
-.opencode/skill/sk-doc/graph-metadata.json
-.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md
-.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md
-.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md
-.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md
-.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md
-.opencode/skill/sk-doc/manual_testing_playbook/02--resource-loading/001-references-global-only.md
-.opencode/skill/sk-doc/manual_testing_playbook/02--resource-loading/002-assets-only.md
-.opencode/skill/sk-doc/manual_testing_playbook/02--resource-loading/003-mixed-references-assets.md
-.opencode/skill/sk-doc/manual_testing_playbook/03--unknown-fallback/001-ambiguous-multi-intent.md
-.opencode/skill/sk-doc/manual_testing_playbook/03--unknown-fallback/002-no-keyword-match.md
-.opencode/skill/sk-doc/manual_testing_playbook/03--unknown-fallback/003-disambiguation-required.md
-.opencode/skill/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md
-.opencode/skill/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md
-.opencode/skill/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/003-multi-step-dispatch.md
-.opencode/skill/sk-doc/manual_testing_playbook/05--token-cost-baseline/001-minimal-load.md
-.opencode/skill/sk-doc/manual_testing_playbook/05--token-cost-baseline/002-medium-load.md
-.opencode/skill/sk-doc/manual_testing_playbook/05--token-cost-baseline/003-max-load.md
-.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skill/sk-doc/references/global/core_standards.md
-.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md
-.opencode/skill/sk-doc/references/global/hvr_rules.md
-.opencode/skill/sk-doc/references/global/optimization.md
-.opencode/skill/sk-doc/references/global/quick_reference.md
-.opencode/skill/sk-doc/references/global/validation.md
-.opencode/skill/sk-doc/references/global/workflows.md
-.opencode/skill/sk-doc/references/specific/agent_creation.md
-.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md
-.opencode/skill/sk-doc/references/specific/install_guide_creation.md
-.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md
-.opencode/skill/sk-doc/references/specific/readme_creation.md
-.opencode/skill/sk-doc/references/specific/skill_creation.md
-.opencode/skill/sk-doc/scripts/audit_readmes.py
-.opencode/skill/sk-doc/scripts/extract_structure.py
-.opencode/skill/sk-doc/scripts/init_skill.py
-.opencode/skill/sk-doc/scripts/package_skill.py
-.opencode/skill/sk-doc/scripts/quick_validate.py
-.opencode/skill/sk-doc/scripts/tests/missing_emojis.md
-.opencode/skill/sk-doc/scripts/tests/missing_sections.md
-.opencode/skill/sk-doc/scripts/tests/missing_toc.md
-.opencode/skill/sk-doc/scripts/tests/single_dash_anchors.md
-.opencode/skill/sk-doc/scripts/tests/test_extract_structure_regressions.py
-.opencode/skill/sk-doc/scripts/tests/test_flowchart_validator.sh
-.opencode/skill/sk-doc/scripts/tests/test_package_skill_regressions.py
-.opencode/skill/sk-doc/scripts/tests/test_validator.py
-.opencode/skill/sk-doc/scripts/tests/valid_command.md
-.opencode/skill/sk-doc/scripts/tests/valid_install_guide.md
-.opencode/skill/sk-doc/scripts/tests/valid_readme.md
-.opencode/skill/sk-doc/scripts/tests/valid_skill.md
-.opencode/skill/sk-doc/scripts/tests/valid_spec.md
-.opencode/skill/sk-doc/scripts/validate_document.py
-.opencode/skill/sk-doc/scripts/validate_flowchart.sh
+.opencode/skills/sk-doc/README.md
+.opencode/skills/sk-doc/SKILL.md
+.opencode/skills/sk-doc/assets/agent_template.md
+.opencode/skills/sk-doc/assets/command_template.md
+.opencode/skills/sk-doc/assets/documentation/changelog_template.md
+.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
+.opencode/skills/sk-doc/assets/documentation/install_guide_template.md
+.opencode/skills/sk-doc/assets/documentation/llmstxt_templates.md
+.opencode/skills/sk-doc/assets/documentation/readme_code_template.md
+.opencode/skills/sk-doc/assets/documentation/readme_template.md
+.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
+.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md
+.opencode/skills/sk-doc/assets/flowcharts/approval_workflow_loops.md
+.opencode/skills/sk-doc/assets/flowcharts/decision_tree_flow.md
+.opencode/skills/sk-doc/assets/flowcharts/parallel_execution.md
+.opencode/skills/sk-doc/assets/flowcharts/simple_workflow.md
+.opencode/skills/sk-doc/assets/flowcharts/system_architecture_swimlane.md
+.opencode/skills/sk-doc/assets/flowcharts/user_onboarding.md
+.opencode/skills/sk-doc/assets/skill/skill_asset_template.md
+.opencode/skills/sk-doc/assets/skill/skill_md_template.md
+.opencode/skills/sk-doc/assets/skill/skill_reference_template.md
+.opencode/skills/sk-doc/assets/skill/skill_smart_router.md
+.opencode/skills/sk-doc/assets/template_rules.json
+.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
+.opencode/skills/sk-doc/changelog/v1.0.0.0.md
+.opencode/skills/sk-doc/changelog/v1.0.1.0.md
+.opencode/skills/sk-doc/changelog/v1.0.2.0.md
+.opencode/skills/sk-doc/changelog/v1.0.3.0.md
+.opencode/skills/sk-doc/changelog/v1.0.4.0.md
+.opencode/skills/sk-doc/changelog/v1.0.5.0.md
+.opencode/skills/sk-doc/changelog/v1.0.6.0.md
+.opencode/skills/sk-doc/changelog/v1.0.7.0.md
+.opencode/skills/sk-doc/changelog/v1.0.8.0.md
+.opencode/skills/sk-doc/changelog/v1.0.9.0.md
+.opencode/skills/sk-doc/changelog/v1.1.0.0.md
+.opencode/skills/sk-doc/changelog/v1.1.2.0.md
+.opencode/skills/sk-doc/changelog/v1.1.3.0.md
+.opencode/skills/sk-doc/changelog/v1.2.0.0.md
+.opencode/skills/sk-doc/changelog/v1.3.0.0.md
+.opencode/skills/sk-doc/changelog/v1.3.0.1.md
+.opencode/skills/sk-doc/changelog/v1.3.0.2.md
+.opencode/skills/sk-doc/changelog/v1.4.0.0.md
+.opencode/skills/sk-doc/changelog/v1.4.1.0.md
+.opencode/skills/sk-doc/graph-metadata.json
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md
+.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/001-references-global-only.md
+.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/002-assets-only.md
+.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/003-mixed-references-assets.md
+.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/001-ambiguous-multi-intent.md
+.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/002-no-keyword-match.md
+.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/003-disambiguation-required.md
+.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md
+.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md
+.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/003-multi-step-dispatch.md
+.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/001-minimal-load.md
+.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/002-medium-load.md
+.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/003-max-load.md
+.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/sk-doc/references/global/core_standards.md
+.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md
+.opencode/skills/sk-doc/references/global/hvr_rules.md
+.opencode/skills/sk-doc/references/global/optimization.md
+.opencode/skills/sk-doc/references/global/quick_reference.md
+.opencode/skills/sk-doc/references/global/validation.md
+.opencode/skills/sk-doc/references/global/workflows.md
+.opencode/skills/sk-doc/references/specific/agent_creation.md
+.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md
+.opencode/skills/sk-doc/references/specific/install_guide_creation.md
+.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md
+.opencode/skills/sk-doc/references/specific/readme_creation.md
+.opencode/skills/sk-doc/references/specific/skill_creation.md
+.opencode/skills/sk-doc/scripts/audit_readmes.py
+.opencode/skills/sk-doc/scripts/extract_structure.py
+.opencode/skills/sk-doc/scripts/init_skill.py
+.opencode/skills/sk-doc/scripts/package_skill.py
+.opencode/skills/sk-doc/scripts/quick_validate.py
+.opencode/skills/sk-doc/scripts/tests/missing_emojis.md
+.opencode/skills/sk-doc/scripts/tests/missing_sections.md
+.opencode/skills/sk-doc/scripts/tests/missing_toc.md
+.opencode/skills/sk-doc/scripts/tests/single_dash_anchors.md
+.opencode/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py
+.opencode/skills/sk-doc/scripts/tests/test_flowchart_validator.sh
+.opencode/skills/sk-doc/scripts/tests/test_package_skill_regressions.py
+.opencode/skills/sk-doc/scripts/tests/test_validator.py
+.opencode/skills/sk-doc/scripts/tests/valid_command.md
+.opencode/skills/sk-doc/scripts/tests/valid_install_guide.md
+.opencode/skills/sk-doc/scripts/tests/valid_readme.md
+.opencode/skills/sk-doc/scripts/tests/valid_skill.md
+.opencode/skills/sk-doc/scripts/tests/valid_spec.md
+.opencode/skills/sk-doc/scripts/validate_document.py
+.opencode/skills/sk-doc/scripts/validate_flowchart.sh
 
  succeeded in 0ms:
 ---
@@ -171,7 +171,7 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 - Authoring a global component changelog at `.opencode/changelog/{NN--component}/v{VERSION}.md`
 - Composing GitHub release notes that mirror the changelog body
 - Choosing between compact (under 10 changes) and expanded (10+ changes or major) formats
-- Template: [changelog_template.md](./assets/documentation/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skill/system-spec-kit/templates/changelog/` instead.
+- Template: [changelog_template.md](./assets/documentation/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
 
 **Validation Workflow** - Apply after Write/Edit operations:
 - Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
@@ -189,9 +189,9 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
 
 **Component Types:**
-- **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
-- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
+- **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
+- **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
+- **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
 For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and `references/specific/` for creation-specific workflows.
 
@@ -357,7 +357,7 @@ LOADING_LEVELS = {
 codex
 Found the relevant router table. The input has an exact `install guide` signal plus `prerequisites`, so this resolves cleanly to `INSTALL_GUIDE`; no fallback or mixed intent needed.
 exec
-/bin/zsh -lc "sed -n '220,360p' .opencode/skill/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '220,360p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],

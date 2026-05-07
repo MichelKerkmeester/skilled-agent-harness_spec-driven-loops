@@ -10,7 +10,7 @@ contextType: "implementation"
 
 ### Changed
 - The packet documentation was updated to preserve the original four-command research recommendation while separately recording the approved all-commands short-list override.
-- The packet now states the downstream implementation target clearly: update `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` first and keep `.opencode/skill/system-spec-kit/SKILL.md` as a pointer-only surface.
+- The packet now states the downstream implementation target clearly: update `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` first and keep `.opencode/skills/system-spec-kit/SKILL.md` as a pointer-only surface.
 - This is a patch-level documentation update for the Packet 039 record only. It does not claim that the downstream quick-reference or skill-file edits have already shipped.
 
 ### Files Changed

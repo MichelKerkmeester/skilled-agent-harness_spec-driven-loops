@@ -8,7 +8,7 @@ You are running iteration 1 of 5 in a CLOSURE re-review loop. This is NOT a fres
 3. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-002.md` (F-CORR-005..009)
 4. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-003.md` (F-CORR-010..014)
 5. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md` (post-review-fixes section)
-6. CURRENT state of: `.opencode/command/spec_kit/skill-advisor.md`, both YAMLs
+6. CURRENT state of: `.opencode/commands/spec_kit/skill-advisor.md`, both YAMLs
 
 ## What to verify (per-finding closure check)
 

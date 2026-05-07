@@ -54,13 +54,13 @@ _memory:
 - [ ] T005 Create decision-record.md with ADR-001..ADR-005 (`decision-record.md`)
 - [ ] T006 Create research.md with Phase-1 test-data inventory (`research.md`)
 - [ ] T007 Run `generate-description.js` to create `description.json` and backfill `graph-metadata.json` (`description.json`, `graph-metadata.json`)
-- [ ] T008 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` and confirm exit 0
+- [ ] T008 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` and confirm exit 0
 
 ---
 
 ## Phase 2: Author CM playbook (mcp-code-mode, ~26 scenarios)
 
-- [ ] T010 Create folder structure: 7 category folders under `.opencode/skill/mcp-code-mode/manual_testing_playbook/`
+- [ ] T010 Create folder structure: 7 category folders under `.opencode/skills/mcp-code-mode/manual_testing_playbook/`
 - [ ] T011 Author root `manual_testing_playbook.md` with 6 global sections + 7 per-category summary sections + AUTOMATED TEST CROSS-REFERENCE + FEATURE FILE INDEX
 - [ ] T012 [P] Author `01--core-tools/` (4 files): CM-001 list_tools, CM-002 search_tools, CM-003 tool_info, CM-004 call_tool_chain
 - [ ] T013 [P] Author `02--manual-namespace-contract/` (3 files): CM-005, CM-006, CM-007
@@ -77,7 +77,7 @@ _memory:
 
 ## Phase 3: Author BDG playbook (mcp-chrome-devtools, ~22 scenarios)
 
-- [ ] T030 Create folder structure: 6 category folders under `.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/`
+- [ ] T030 Create folder structure: 6 category folders under `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/`
 - [ ] T031 Author root `manual_testing_playbook.md`
 - [ ] T032 [P] Author `01--cli-bdg-lifecycle/` (4 files): BDG-001..BDG-004
 - [ ] T033 [P] Author `02--protocol-discovery/` (3 files): BDG-005..BDG-007
@@ -93,7 +93,7 @@ _memory:
 
 ## Phase 4: Author CU playbook (mcp-clickup, ~25 scenarios)
 
-- [ ] T050 Create folder structure: 6 category folders under `.opencode/skill/mcp-clickup/manual_testing_playbook/`
+- [ ] T050 Create folder structure: 6 category folders under `.opencode/skills/mcp-clickup/manual_testing_playbook/`
 - [ ] T051 Author root `manual_testing_playbook.md`
 - [ ] T052 [P] Author `01--cli-cu-install-and-auth/` (4 files): CU-001..CU-004
 - [ ] T053 [P] Author `02--discovery-and-readonly/` (6 files): CU-005..CU-010
@@ -128,9 +128,9 @@ _memory:
 - [ ] T085 V7 smoke: execute BDG-001 (real Chrome lifecycle) end-to-end; capture evidence (SKIP if no browser)
 - [ ] T086 V7 smoke: execute CU-001 (live ClickUp install/version) end-to-end; capture evidence (SKIP if no token)
 - [ ] T087 V7 smoke: execute CCC-001 (existing index search) end-to-end; capture evidence
-- [ ] T088 Spec strict validate: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` exits 0
+- [ ] T088 Spec strict validate: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` exits 0
 - [ ] T089 Fill `implementation-summary.md` with per-task evidence + V7 smoke verdicts + per-skill scenario counts
-- [ ] T090 Memory save: run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<spec-049-data>' .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/`
+- [ ] T090 Memory save: run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<spec-049-data>' .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/`
 - [ ] T091 Verify `description.json` and `graph-metadata.json` refreshed (new `last_updated_at` timestamp)
 
 ---

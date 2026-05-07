@@ -78,7 +78,7 @@ _memory:
 - [ ] T202 Test: health/meetsTarget reconciliation — fixture with meetsTarget:false asserts health is "degraded" not "healthy"
 - [ ] T203 Test: supersedes-burst fixture (60+ supersedes in window, no other relations) → balanceStatus:"relation_skewed", dominantRelation:"supersedes", dominantRelationShare ~1.0, remediationHint set
 - [ ] T204 Test: cap enforcement — attempt 105 supersedes inserts in 15min window → 100 succeed, 5 throttled
-- [ ] T205 Run `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/handler-causal-graph*.vitest.ts tests/causal-edges*.vitest.ts` → green
+- [ ] T205 Run `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/handler-causal-graph*.vitest.ts tests/causal-edges*.vitest.ts` → green
 - [ ] T206 npm run build
 - [ ] T207 grep dist for `deltaByRelation`, `dominantRelationShare`, `balanceStatus`, `enforceRelationWindowCap` markers
 - [ ] T208 Document daemon restart requirement

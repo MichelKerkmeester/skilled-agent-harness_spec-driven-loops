@@ -84,7 +84,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [x] T022 Append the convergence report appendix to research/research.md
 - [x] T023 Update checklist.md with evidence and final marks
 - [x] T024 Create implementation-summary.md
-- [x] T025 Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js 003-contextador`
+- [x] T025 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js 003-contextador`
 - [x] T026 Verify memory artifact exists in 003-contextador/memory/
 - [x] T027 Re-run validate.sh --strict for final compliance
 <!-- /ANCHOR:phase-3 -->

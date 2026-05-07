@@ -1,6 +1,6 @@
 ---
 title: "Voyage 4 Upgrade Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade/plan]"
-description: "File: .opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.js"
+description: "File: .opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.js"
 trigger_phrases:
   - "voyage"
   - "upgrade"
@@ -16,7 +16,7 @@ contextType: "planning"
 ## Phase 1: Code Updates (Spec Kit Memory)
 
 ### 1.1 Update Voyage Provider
-**File**: `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.js`
+**File**: `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.js`
 
 **Changes**:
 1. Update `DEFAULT_MODEL` from `voyage-3.5` to `voyage-4`
@@ -42,13 +42,13 @@ contextType: "planning"
 3. Add pricing comment update for voyage-4 models
 
 ### 1.2 Update Factory Default
-**File**: `.opencode/skill/system-spec-kit/shared/embeddings/factory.js`
+**File**: `.opencode/skills/system-spec-kit/shared/embeddings/factory.js`
 
 **Changes**:
 1. Line 165: Update `VOYAGE_EMBEDDINGS_MODEL` default from `voyage-3.5` to `voyage-4`
 
 ### 1.3 Update Install Guide
-**File**: `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 
 **Changes**:
 1. Update model table to show `voyage-4` as recommended
@@ -61,7 +61,7 @@ contextType: "planning"
 ## Phase 2: Documentation Updates
 
 ### 2.1 Spec Kit README
-**File**: `.opencode/skill/system-spec-kit/README.md`
+**File**: `.opencode/skills/system-spec-kit/README.md`
 
 **Changes**:
 1. Update Voyage model recommendation from `voyage-3.5` to `voyage-4`
@@ -69,8 +69,8 @@ contextType: "planning"
 
 ### 2.2 Narsil Documentation (Optional)
 **Files**: 
-- `.opencode/skill/mcp-narsil/INSTALL_GUIDE.md`
-- `.opencode/skill/mcp-narsil/SKILL.md`
+- `.opencode/skills/mcp-narsil/INSTALL_GUIDE.md`
+- `.opencode/skills/mcp-narsil/SKILL.md`
 
 **Changes**:
 1. Add note that `voyage-4` can be tested for code search

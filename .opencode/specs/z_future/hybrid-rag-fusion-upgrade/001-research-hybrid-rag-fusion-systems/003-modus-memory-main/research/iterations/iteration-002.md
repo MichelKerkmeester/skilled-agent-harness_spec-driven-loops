@@ -34,14 +34,14 @@ CORE DATA MODEL: Examine the storage layer - schemas, data structures, persisten
 - **Impact**: medium
 
 ### Finding 5: Identity is path-derived, not stable, so renames are semantic changes
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/facts.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
 - **What it does**: Search hits and facts are identified by relative path; `MemFact.ID` is the relative markdown path, dedup uses `Path`, and `memory_reinforce` takes a path. New facts are slugged from `subject-predicate` and collision-suffixed. There is no Modus-side equivalent of Public’s `memory_lineage` + `active_memory_projection` stable logical identity model.
 - **Why it matters for us**: This is fine for a small personal vault, but path-based identity makes renames and moves double as identity changes, which weakens continuity for reinforcement history, links, and long-lived references. Public’s lineage tables are substantially stronger for evolving memories.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 6: Public already has the richer persisted storage graph; Modus is a portability reference, not a schema upgrade
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`, `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`, `.opencode/skill/system-spec-kit/mcp_server/core/config.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`, `.opencode/skills/system-spec-kit/mcp_server/core/config.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
 - **What it does**: Public persists a unified `memory_index` row with provenance, governance scope, FSRS fields, chunking, quality, and `content_text`, then derives `memory_fts`, `vec_memories`, `causal_edges`, `memory_summaries`, `memory_entities`, `entity_catalog`, `memory_lineage`, and `active_memory_projection`. DB consumers can rebind when the backing SQLite handle changes, and FSRS strengthening on retrieval is opt-in via `trackAccess`.
 - **Why it matters for us**: The storage-layer gap is architectural, not incremental. Modus’s value is in transparent file-native ergonomics and understandable portability, but its underlying persistence model is much weaker than what Public already has.
 - **Recommendation**: reject
@@ -60,17 +60,17 @@ CORE DATA MODEL: Examine the storage layer - schemas, data structures, persisten
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/core/config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/core/config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
 
 ## Assessment
 - **New information ratio**: 0.88

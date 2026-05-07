@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/plan.md"
-      - ".opencode/command/create/testing-playbook.md"
-      - ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/commands/create/testing-playbook.md"
+      - ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000048"
       session_id: "048-plan-init"
@@ -88,7 +88,7 @@ Pipeline-of-canonical-commands. The playbook contract lives in templates + the `
 - **Spec folder (`048-cli-testing-playbooks/`)** — scope, taxonomy decisions, checklist, summary
 - **`/create:testing-playbook` command** — YAML-driven generator with H0–H4 validation gates
 - **`@write` subagent** — runs the command with template-first generation behavior
-- **Templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`** — root + per-feature scaffolds
+- **Templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`** — root + per-feature scaffolds
 - **Validator (`validate_document.py`)** — checks root playbook structure
 - **Per-skill playbook output** — root + category folders + per-feature files
 
@@ -237,7 +237,7 @@ Each dispatch is `Agent(subagent_type="write", prompt="run /create:testing-playb
 | `/create:testing-playbook` command | Internal | Green | Hand-craft to same contract using templates directly |
 | `validate_document.py` | Internal | Green | Cannot run H4 validation; manual structural review only |
 | `generate-context.js` | Internal | Green | Cannot refresh metadata; hand-edit `description.json` + `graph-metadata.json` |
-| Templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Internal | Green | Cannot generate playbook; halt |
+| Templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Internal | Green | Cannot generate playbook; halt |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -247,7 +247,7 @@ Each dispatch is `Agent(subagent_type="write", prompt="run /create:testing-playb
 - **Trigger**: Validator failures cannot be resolved within 3 fix-and-revalidate iterations OR taxonomy drift discovered between waves
 - **Procedure**:
   1. Stop further dispatches
-  2. `git checkout -- .opencode/skill/<affected-cli>/manual_testing_playbook/` to revert the affected playbook(s)
+  2. `git checkout -- .opencode/skills/<affected-cli>/manual_testing_playbook/` to revert the affected playbook(s)
   3. Re-read decision-record.md to confirm taxonomy invariants
   4. Re-dispatch with corrected briefing
 - **Spec docs rollback**: spec docs are versioned in git; `git revert` the offending commit if scope drift discovered
@@ -264,10 +264,10 @@ This section defines the four operator-facing AI execution components required f
 Before each `@write` dispatch (T010, T011, T012, T030, T031), the orchestrating agent MUST confirm:
 
 - [ ] Spec folder `048-cli-testing-playbooks/` is the active spec context (Gate 3 answered)
-- [ ] Target CLI skill folder exists at `.opencode/skill/<cli>/`
+- [ ] Target CLI skill folder exists at `.opencode/skills/<cli>/`
 - [ ] Target CLI skill has no pre-existing `manual_testing_playbook/` (verified by `ls`)
 - [ ] Frozen taxonomy from `decision-record.md` ADR-001/ADR-002/ADR-003 is loaded into the dispatch brief
-- [ ] Templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` are unchanged from session start (checksum)
+- [ ] Templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` are unchanged from session start (checksum)
 - [ ] `@write` agent confirmed available (no nested-dispatch attempt)
 
 Before each Phase 3 validation invocation (T015–T020, T035–T040, T050–T055), the orchestrating agent MUST confirm:
@@ -285,7 +285,7 @@ The TASK-SEQ + TASK-SCOPE rules below govern every Phase 2 / Phase 3 task in thi
 | TASK-SEQ-01 | Phase 1 (Setup) MUST complete before any Phase 2 dispatch | T001–T007 |
 | TASK-SEQ-02 | Wave 1 validation (T015–T020) MUST complete before Wave 2 dispatch | T010–T020 → T030–T031 |
 | TASK-SEQ-03 | All Phase 2 outputs MUST exist before Phase 3 close-out (T050–T055) | Phase 2 → Phase 3 |
-| TASK-SCOPE-01 | `@write` dispatches MUST stay within `.opencode/skill/<cli>/manual_testing_playbook/` | T010, T011, T012, T030, T031 |
+| TASK-SCOPE-01 | `@write` dispatches MUST stay within `.opencode/skills/<cli>/manual_testing_playbook/` | T010, T011, T012, T030, T031 |
 | TASK-SCOPE-02 | No CLI skill SKILL.md / references / assets may be modified | All Phase 2 tasks |
 | TASK-SCOPE-03 | Spec folder writes (this packet) MUST stay inside `048-cli-testing-playbooks/` | All tasks |
 | TASK-SCOPE-04 | Validator failures trigger fix-and-revalidate within the wave; do NOT advance to next phase | T015, T035, T051 |
@@ -365,7 +365,7 @@ Phase 1 (Setup) ──► Phase 2 Wave 1 ──► Wave 1 validation ──► P
 
 1. Stop further dispatches
 2. `git status` to identify which playbook trees were created
-3. `git checkout -- .opencode/skill/<cli>/manual_testing_playbook/` per affected tree
+3. `git checkout -- .opencode/skills/<cli>/manual_testing_playbook/` per affected tree
 4. Verify checklist.md P0 items not yet marked
 5. Notify user with summary of what was reverted and why
 

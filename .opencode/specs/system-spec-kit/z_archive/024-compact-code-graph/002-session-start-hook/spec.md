@@ -143,7 +143,7 @@ The one exception is `source=compact`, which reads a pre-cached payload produced
       "matcher": "",
       "hooks": [{
         "type": "command",
-        "command": "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js"
+        "command": "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js"
       }]
     }]
   }

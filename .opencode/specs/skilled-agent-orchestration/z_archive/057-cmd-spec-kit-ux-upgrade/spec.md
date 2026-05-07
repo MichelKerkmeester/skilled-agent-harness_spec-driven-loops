@@ -21,7 +21,7 @@ _memory:
     key_files:
       - "spec.md"
       - "external/README.md"
-      - ".opencode/skill/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []
@@ -223,13 +223,13 @@ Comparison along **6 axes**, each producing 2-4 ranked findings:
 - Personas/research: `Research/Personas/Personas.md`, `specs/`
 
 **Internal surface**:
-- Skill: `.opencode/skill/system-spec-kit/SKILL.md` (991 lines)
-- Templates: `.opencode/skill/system-spec-kit/templates/` (99 files: `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, `level_{1,2,3,3+}/`, `examples/`, cross-cutting `handover.md` / `research.md` / `resource-map.md` / `context-index.md` / `debug-delegation.md` / `phase_parent/`)
+- Skill: `.opencode/skills/system-spec-kit/SKILL.md` (991 lines)
+- Templates: `.opencode/skills/system-spec-kit/templates/` (99 files: `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, `level_{1,2,3,3+}/`, `examples/`, cross-cutting `handover.md` / `research.md` / `resource-map.md` / `context-index.md` / `debug-delegation.md` / `phase_parent/`)
 - Commands:
-  - `.opencode/command/spec_kit/{plan, implement, deep-research, deep-review, resume, complete}.md` + `assets/*.yaml` (12 mode-specific YAMLs)
-  - `.opencode/command/memory/{search, learn, manage, save}.md` (no `:auto`/`:confirm` modes — inline workflows)
-  - `.opencode/command/create/{agent, sk-skill, folder_readme, feature-catalog, testing-playbook, changelog}.md` + `assets/*.yaml`
-- Agents: `.opencode/agent/{orchestrate, context, deep-research, deep-review, debug, review, improve-agent, improve-prompt, ultra-think, write}.md`
+  - `.opencode/commands/spec_kit/{plan, implement, deep-research, deep-review, resume, complete}.md` + `assets/*.yaml` (12 mode-specific YAMLs)
+  - `.opencode/commands/memory/{search, learn, manage, save}.md` (no `:auto`/`:confirm` modes — inline workflows)
+  - `.opencode/commands/create/{agent, sk-skill, folder_readme, feature-catalog, testing-playbook, changelog}.md` + `assets/*.yaml`
+- Agents: `.opencode/agents/{orchestrate, context, deep-research, deep-review, debug, review, improve-agent, improve-prompt, ultra-think, write}.md`
 - Helpers: `system-spec-kit/scripts/spec/validate.sh`, `scripts/dist/memory/generate-context.js`, `mcp_server/skill_advisor/`, `templates/compose.sh`
 
 **Comparison axes** (from §3 In Scope): installer/distribution, instruction-file management, command/skill granularity, template architecture, tool-discovery UX, personas & UX tone.

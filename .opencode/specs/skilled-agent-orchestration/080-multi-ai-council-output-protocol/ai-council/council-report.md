@@ -65,7 +65,7 @@
 
 ### Step 1 — Author the persistence helper
 
-Path: `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.sh` (or `.js` if matching existing scripts/ conventions). Input: `<packet-spec-folder> <agent-output-text-or-file> [--round NNN]`. Behavior: parse the agent output's §-headers (Council Composition, per-seat sections, Deliberation Notes, Recommended Plan), then write `ai-council/seats/round-NNN/seat-<lens>.md` (one per seat), `ai-council/deliberations/round-NNN.md`, and `ai-council/council-report.md` (appended/superseded on subsequent rounds).
+Path: `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.sh` (or `.js` if matching existing scripts/ conventions). Input: `<packet-spec-folder> <agent-output-text-or-file> [--round NNN]`. Behavior: parse the agent output's §-headers (Council Composition, per-seat sections, Deliberation Notes, Recommended Plan), then write `ai-council/seats/round-NNN/seat-<lens>.md` (one per seat), `ai-council/deliberations/round-NNN.md`, and `ai-council/council-report.md` (appended/superseded on subsequent rounds).
 
 Idempotent: re-running same round overwrites; new round increments NNN. Exit codes: 0 success, 1 parse error before any write, 2 partial-write recovery needed. Include a fixture-driven vitest test that dispatches a sample council report through the helper and asserts artifact layout.
 
@@ -131,7 +131,7 @@ Round-2 critique (3 seats: Critical / Holistic / Research) confirmed round-1's d
 Round-1's central assumption *"callers are concentrated to `/spec_kit:*` commands"* was falsified by Seat 3's grep evidence. Actual dispatchers include:
 
 - **(a)** Top-level Task dispatch (Claude Code or any AI assistant invoking `@multi-ai-council` directly)
-- **(b)** `@orchestrate` agent at Depth 1 (codified in `.opencode/agent/orchestrate.md` line 97, 192, 749 as LEAF target)
+- **(b)** `@orchestrate` agent at Depth 1 (codified in `.opencode/agents/orchestrate.md` line 97, 192, 749 as LEAF target)
 - **(c)** `/spec_kit:*` command YAMLs (zero current commands actually dispatch the council; future-target)
 - **(d)** CLI-skill manual dispatch (cli-claude-code, cli-codex, cli-opencode, cli-gemini playbooks and references)
 
@@ -150,7 +150,7 @@ This protects against §8 evolution and ADR-004 free-form variation without brea
 
 ### ADD-3 — §8 OUTPUT FORMAT promoted to shared schema artifact
 
-Create `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` (or a JSON-schema fixture in `scripts/tests/fixtures/multi-ai-council-output-schema.json`) as the **single source of truth** for §8 OUTPUT FORMAT. Both the agent body's §8 prose AND the helper's parser reference this artifact. Schema change requires updating both in lockstep.
+Create `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` (or a JSON-schema fixture in `scripts/tests/fixtures/multi-ai-council-output-schema.json`) as the **single source of truth** for §8 OUTPUT FORMAT. Both the agent body's §8 prose AND the helper's parser reference this artifact. Schema change requires updating both in lockstep.
 
 ### ADD-4 — Depth-1 helper invocation note (parent owns it, not LEAF)
 
@@ -190,7 +190,7 @@ This sequencing means callers (a), (b), (d) get value from Step 2 even if Step 3
 
 - Spec: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/spec.md`
 - ADRs: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md`
-- Agent body: `.opencode/agent/multi-ai-council.md` (§12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal)
+- Agent body: `.opencode/agents/multi-ai-council.md` (§12 Output Protocol, §13 Invocation Contract, §14 State Schema, §15 Convergence Signal)
 - Round-1 per-seat reasoning: `seats/round-001/seat-{001,002,003}-*.md`
 - Round-1 deliberation: `deliberations/round-001.md`
 - Round-2 per-seat reasoning: `seats/round-002/seat-{001-cli-codex,002-cli-claude-code,003-deep-research}.md`

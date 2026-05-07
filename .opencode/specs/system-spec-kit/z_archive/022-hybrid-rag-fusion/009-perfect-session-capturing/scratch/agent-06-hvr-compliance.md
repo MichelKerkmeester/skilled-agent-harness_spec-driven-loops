@@ -163,7 +163,7 @@
 ### `002-contamination-detection/implementation-summary.md`
 - `em dash` at line 67: | `npm run test:task-enrichment` | Passed — 1 file, 43 tests, 0 failures |
 - `em dash` at line 71: | `scripts/spec/validate.sh <phase-folder>` | Passed — 0 errors, 0 warnings |
-- `em dash` at line 72: | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <phase-folder>` | Passed — saved `memory/16-03-26_18-23__contamination-detection.md` and refreshed `metadata.json` |
+- `em dash` at line 72: | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <phase-folder>` | Passed — saved `memory/16-03-26_18-23__contamination-detection.md` and refreshed `metadata.json` |
 - `semicolon` at line 80: 1. The extractor scrubber still relies on the existing lexical denylist; this phase adds auditability around that behavior but does not redesign the scrubber itself.
 
 ### `002-contamination-detection/plan.md`
@@ -337,7 +337,7 @@
 - `em dash` at line 72: - [x] CHK-041 [P2] implementation-summary.md written after completion — Evidence: implementation summary completed with verification and limitations. [Evidence: Verified in this phase's documented implementation and validation outputs.]
 - `em dash` at line 80: - [x] CHK-050 [P1] Temp files in scratch/ only — Evidence: no repo temp files were added for this phase. [Evidence: Verified in this phase's documented implementation and validation outputs.]
 - `em dash` at line 81: - [x] CHK-051 [P1] scratch/ cleaned before completion — Evidence: no scratch artifacts were left behind. [Evidence: Verified in this phase's documented implementation and validation outputs.]
-- `em dash` at line 82: - [x] CHK-052 [P2] Findings saved to memory/ — Evidence: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <phase-folder>` completed and indexed memory #4362 on 2026-03-16. [Evidence: Verified in this phase's documented implementation and validation outputs.]
+- `em dash` at line 82: - [x] CHK-052 [P2] Findings saved to memory/ — Evidence: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js <phase-folder>` completed and indexed memory #4362 on 2026-03-16. [Evidence: Verified in this phase's documented implementation and validation outputs.]
 
 ### `005-confidence-calibration/implementation-summary.md`
 - `semicolon` at line 81: 2. Vitest still logs the existing `ascii-boxes library not available` warning when TS source imports `decision-tree-generator.ts`; the fallback rendering path keeps the targeted tests green.
@@ -362,11 +362,11 @@
 - `em dash` at line 44: - [x] T008 Base confidence starts at 0.50 for both, caps at 1.0 (`scripts/extractors/decision-extractor.ts`) — Evidence: helper normalizes/clamps both dual fields into `0.0-1.0`.
 - `em dash` at line 45: - [x] T009 Verify existing heuristic ladder outcomes are preserved through the derived field (`scripts/extractors/decision-extractor.ts`) — Evidence: explicit single-value confidence overrides still map to both dual fields and preserve legacy behavior.
 - `em dash` at line 48: - [x] T010 [P] Update decision tree generator to show split confidence on tree nodes when values diverge by > 0.1 (REQ-003) (`scripts/lib/decision-tree-generator.ts`) — Evidence: `DecisionNode` now carries dual confidence fields and forwards them to header rendering.
-- `em dash` at line 49: - [x] T011 [P] Update renderer templates to include `Choice: X% / Rationale: Y%` labels when dual values are present (REQ-004) (`.opencode/skill/system-spec-kit/templates/context_template.md`) — Evidence: decision sections render split confidence only when the values materially diverge.
+- `em dash` at line 49: - [x] T011 [P] Update renderer templates to include `Choice: X% / Rationale: Y%` labels when dual values are present (REQ-004) (`.opencode/skills/system-spec-kit/templates/context_template.md`) — Evidence: decision sections render split confidence only when the values materially diverge.
 - `em dash` at line 50: - [x] T012 [P] Update `workflow.ts` percent conversion to use legacy `CONFIDENCE` with new type shape (`scripts/core/workflow.ts`) — Evidence: workflow now converts overall, choice, and rationale confidence to percentages and tags divergent cases.
 - `em dash` at line 51: - [x] T013 [P] Update confidence validation to understand dual fields (`scripts/memory/validate-memory-quality.ts`) — Evidence: no validator logic change was required for Phase 1; render fixtures were updated and validated without changing quality-gate semantics.
 - `semicolon` at line 51: - [x] T013 [P] Update confidence validation to understand dual fields (`scripts/memory/validate-memory-quality.ts`) — Evidence: no validator logic change was required for Phase 1; render fixtures were updated and validated without changing quality-gate semantics.
-- `em dash` at line 52: - [x] T014 [P] Add dual confidence display placeholders for decision sections (`.opencode/skill/system-spec-kit/templates/context_template.md`) — Evidence: added `HAS_SPLIT_CONFIDENCE` branch with choice/rationale formatting.
+- `em dash` at line 52: - [x] T014 [P] Add dual confidence display placeholders for decision sections (`.opencode/skills/system-spec-kit/templates/context_template.md`) — Evidence: added `HAS_SPLIT_CONFIDENCE` branch with choice/rationale formatting.
 - `em dash` at line 53: - [x] T015 [P] Render split confidence in decision box labels when values diverge (`scripts/lib/ascii-boxes.ts`) — Evidence: ASCII decision headers now render split confidence when the delta exceeds 10 percentage points.
 - `em dash` at line 61: - [x] T016 Add unit tests for dual confidence computation with various input combinations — Evidence: added `scripts/tests/decision-confidence.vitest.ts` covering alternatives-only, rationale-heavy, split, override, and clamping cases.
 - `em dash` at line 62: - [x] T017 Add regression tests verifying legacy `CONFIDENCE` matches `Math.min` of the two new fields — Evidence: extractor/loaders regression and Vitest assertions validate `CONFIDENCE === Math.min(choice, rationale)`.
@@ -510,9 +510,9 @@
 
 ### `009-embedding-optimization/implementation-summary.md`
 - `em dash` at line 69: | `node mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts tests/memory-indexer-weighting.vitest.ts tests/semantic-signal-golden.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` | Passed — 3 files, 49 tests |
-- `em dash` at line 72: | `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts tests/embedding-pipeline-weighting.vitest.ts tests/embeddings.vitest.ts tests/handler-memory-save.vitest.ts` | Passed — 4 files, 49 tests |
-- `em dash` at line 73: | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed — wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md` and `memory/metadata.json`; production indexing remained pending after a memory quality gate warning |
-- `semicolon` at line 73: | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed — wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md` and `memory/metadata.json`; production indexing remained pending after a memory quality gate warning |
+- `em dash` at line 72: | `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts tests/embedding-pipeline-weighting.vitest.ts tests/embeddings.vitest.ts tests/handler-memory-save.vitest.ts` | Passed — 4 files, 49 tests |
+- `em dash` at line 73: | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed — wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md` and `memory/metadata.json`; production indexing remained pending after a memory quality gate warning |
+- `semicolon` at line 73: | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed — wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md` and `memory/metadata.json`; production indexing remained pending after a memory quality gate warning |
 - `semicolon` at line 81: 1. This phase does not roll weighting out to every other `generateDocumentEmbedding()` caller; broader parity remains out of scope for `009`.
 
 ### `009-embedding-optimization/plan.md`
@@ -731,7 +731,7 @@
 - `semicolon` at line 82: - [x] CHK-032 [P1] No path traversal — relative paths normalized via `path.relative()` and bounded with `startsWith('..')` check; `generatePerFolderDescription()` validates `realFolder === realBase || realFolder.startsWith(realBase + path.sep)` before any I/O [EVIDENCE: folder-discovery.ts:572 path.sep boundary check; generate-description.ts:42 same pattern; test T046-28 verifies specs-evil rejection]
 - `semicolon` at line 82: - [x] CHK-032 [P1] No path traversal — relative paths normalized via `path.relative()` and bounded with `startsWith('..')` check; `generatePerFolderDescription()` validates `realFolder === realBase || realFolder.startsWith(realBase + path.sep)` before any I/O [EVIDENCE: folder-discovery.ts:572 path.sep boundary check; generate-description.ts:42 same pattern; test T046-28 verifies specs-evil rejection]
 - `semicolon` at line 82: - [x] CHK-032 [P1] No path traversal — relative paths normalized via `path.relative()` and bounded with `startsWith('..')` check; `generatePerFolderDescription()` validates `realFolder === realBase || realFolder.startsWith(realBase + path.sep)` before any I/O [EVIDENCE: folder-discovery.ts:572 path.sep boundary check; generate-description.ts:42 same pattern; test T046-28 verifies specs-evil rejection]
-- `em dash` at line 90: - [x] CHK-040 [P1] Feature catalog `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` updated — backfill note added, `generate-description.js` referenced [EVIDENCE: The feature catalog entry documents per-folder architecture, backfill behavior, and the generator CLI path.]
+- `em dash` at line 90: - [x] CHK-040 [P1] Feature catalog `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` updated — backfill note added, `generate-description.js` referenced [EVIDENCE: The feature catalog entry documents per-folder architecture, backfill behavior, and the generator CLI path.]
 - `em dash` at line 91: - [x] CHK-041 [P1] Testing playbook updated with description system scenarios — NEW-120 (batch backfill) and NEW-121 (schema validation) added [EVIDENCE: The same feature-catalog entry records the backfill and schema-validation test scenarios shipped with this phase.]
 - `em dash` at line 92: - [x] CHK-042 [P1] spec.md, plan.md, checklist.md synchronized — documentation sweep applied across 5 files [EVIDENCE: spec.md, plan.md, tasks.md, and checklist.md were aligned to the live Level 2 template contract on 2026-03-16.]
 - `em dash` at line 93: - [x] CHK-043 [P2] Implementation-summary.md created after implementation — `implementation-summary.md` added for this spec folder on 2026-03-09 with campaign verification notes
@@ -831,8 +831,8 @@
 - `semicolon` at line 139: | **Risk** | Low | Additive-only; no behavior changes |
 
 ### `checklist.md`
-- `semicolon` at line 57: - [x] CHK-023 [P1] Workspace typecheck/build prerequisites pass [Evidence: `.opencode/skill/system-spec-kit`: `npm run typecheck` PASS; `scripts`: `npm run check` PASS, `npm run build` PASS; `mcp_server`: `npm run lint` PASS, `npm run build` PASS.]
-- `semicolon` at line 57: - [x] CHK-023 [P1] Workspace typecheck/build prerequisites pass [Evidence: `.opencode/skill/system-spec-kit`: `npm run typecheck` PASS; `scripts`: `npm run check` PASS, `npm run build` PASS; `mcp_server`: `npm run lint` PASS, `npm run build` PASS.]
+- `semicolon` at line 57: - [x] CHK-023 [P1] Workspace typecheck/build prerequisites pass [Evidence: `.opencode/skills/system-spec-kit`: `npm run typecheck` PASS; `scripts`: `npm run check` PASS, `npm run build` PASS; `mcp_server`: `npm run lint` PASS, `npm run build` PASS.]
+- `semicolon` at line 57: - [x] CHK-023 [P1] Workspace typecheck/build prerequisites pass [Evidence: `.opencode/skills/system-spec-kit`: `npm run typecheck` PASS; `scripts`: `npm run check` PASS, `npm run build` PASS; `mcp_server`: `npm run lint` PASS, `npm run build` PASS.]
 - `semicolon` at line 58: - [x] CHK-024 [P1] Root and recursive validation pass cleanly [Evidence: `validate.sh` rerun on 2026-03-17 reports no blocking file, level, or phase-link errors; remaining output is warning-only.]
 - `semicolon` at line 68: - [x] CHK-031 [P0] No hardcoded secrets introduced during verification or documentation work [Evidence: Only spec markdown and one test-lane file changed; no credentials added.]
 - `semicolon` at line 88: - [x] CHK-051 [P1] Support artifacts remain in `scratch/` and `memory/` only [Evidence: No closure evidence depends on scratch-only notes; canonical claims live in root docs.]
@@ -1058,8 +1058,8 @@
 - `three-item enumeration` at line 80: Bullet list of exactly three items spans lines 80-82
 
 ### `005-confidence-calibration/implementation-summary.md`
-- `Oxford comma` at line 30: `ascii-boxes.ts`, `workflow.ts`, and `.opencode/skill/system-spec-kit/templates/context_template.md` so divergent confidence values surface as split choice/rationale labels.
-- `three-item enumeration` at line 30: `ascii-boxes.ts`, `workflow.ts`, and `.opencode/skill/system-spec-kit/templates/context_template.md` so divergent confidence values surface as split choice/rationale labels.
+- `Oxford comma` at line 30: `ascii-boxes.ts`, `workflow.ts`, and `.opencode/skills/system-spec-kit/templates/context_template.md` so divergent confidence values surface as split choice/rationale labels.
+- `three-item enumeration` at line 30: `ascii-boxes.ts`, `workflow.ts`, and `.opencode/skills/system-spec-kit/templates/context_template.md` so divergent confidence values surface as split choice/rationale labels.
 - `Oxford comma` at line 41: tree generation, workflow percentage mapping, and rendered templates.
 - `three-item enumeration` at line 41: tree generation, workflow percentage mapping, and rendered templates.
 - `Oxford comma` at line 42: additive choice/rationale signals, normalization/clamping, and explicit single-value overrides.
@@ -1633,14 +1633,14 @@
 - `Oxford comma` at line 31: the feature catalog, `scratch/`, and the phase `memory/` directory verified in repo [Evidence: runtime sources plus spec folder directories read during reconciliation]
 - `three-item enumeration` at line 31: the feature catalog, `scratch/`, and the phase `memory/` directory verified in repo [Evidence: runtime sources plus spec folder directories read during reconciliation]
 - `three-item enumeration` at line 29: Bullet list of exactly three items spans lines 29-31
-- `Oxford comma` at line 42: remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`
-- `three-item enumeration` at line 42: remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`
-- `Oxford comma` at line 50: - [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/SKILL.md`]
-- `three-item enumeration` at line 50: - [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/SKILL.md`]
-- `Oxford comma` at line 51: - [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/assets/prompt_templates.md`]
-- `three-item enumeration` at line 51: - [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/assets/prompt_templates.md`]
-- `Oxford comma` at line 54: - [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` returned `244` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
-- `three-item enumeration` at line 54: - [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` returned `244` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
+- `Oxford comma` at line 42: remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
+- `three-item enumeration` at line 42: remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
+- `Oxford comma` at line 50: - [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/SKILL.md`]
+- `three-item enumeration` at line 50: - [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/SKILL.md`]
+- `Oxford comma` at line 51: - [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/assets/prompt_templates.md`]
+- `three-item enumeration` at line 51: - [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/assets/prompt_templates.md`]
+- `Oxford comma` at line 54: - [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` returned `244` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
+- `three-item enumeration` at line 54: - [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` returned `244` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
 - `Oxford comma` at line 69: `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` for `FILES` entries [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
 - `three-item enumeration` at line 69: `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` for `FILES` entries [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
 - `Oxford comma` at line 77: `tasks.md`, `checklist.md`, and `implementation-summary.md` now agree on runtime behavior
@@ -1731,8 +1731,8 @@
 - `three-item enumeration` at line 44: - [x] T006 [P] Update all 4 `cli-*` SKILL files with redact-and-scrub, rejection-code, and minimum-payload guidance
 - `Oxford comma` at line 45: - [x] T007 [P] Update all 4 `cli-*` prompt template files with accepted snake_case fields, richer `FILES` examples, and explicit JSON-mode hard-fail behavior
 - `three-item enumeration` at line 45: - [x] T007 [P] Update all 4 `cli-*` prompt template files with accepted snake_case fields, richer `FILES` examples, and explicit JSON-mode hard-fail behavior
-- `Oxford comma` at line 56: - [x] T011 Record current alignment-drift evidence: `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` passed with `244` scanned files, `0` findings, and `0` warnings
-- `three-item enumeration` at line 56: - [x] T011 Record current alignment-drift evidence: `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` passed with `244` scanned files, `0` findings, and `0` warnings
+- `Oxford comma` at line 56: - [x] T011 Record current alignment-drift evidence: `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` passed with `244` scanned files, `0` findings, and `0` warnings
+- `three-item enumeration` at line 56: - [x] T011 Record current alignment-drift evidence: `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` passed with `244` scanned files, `0` findings, and `0` warnings
 - `Oxford comma` at line 60: `tasks.md`, `checklist.md`, and `implementation-summary.md` so they agree on runtime behavior
 - `three-item enumeration` at line 60: `tasks.md`, `checklist.md`, and `implementation-summary.md` so they agree on runtime behavior
 - `Oxford comma` at line 71: - [x] All `cli-*` references use the real path layout and include redact-and-scrub, rejection-code, and minimum-payload guidance
@@ -1765,8 +1765,8 @@
 - `three-item enumeration` at line 37: You now have a direct classifier regression in `phase-classification.vitest.ts`, a new `content-filter-parity.vitest.ts` lane for built-in multi-CLI noise markers, and a runtime-memory input regression that proves `Read ...` title rendering plus CLI-derived file provenance.
 - `Oxford comma` at line 41: tasks, checklist, and implementation summary were rewritten to the active Level 2 structure. That removed the custom task headers
 - `three-item enumeration` at line 41: tasks, checklist, and implementation summary were rewritten to the active Level 2 structure. That removed the custom task headers
-- `Oxford comma` at line 48: | `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
-- `three-item enumeration` at line 48: | `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+- `Oxford comma` at line 48: | `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+- `three-item enumeration` at line 48: | `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
 - `Oxford comma` at line 50: requirements, success criteria, and final status. |
 - `three-item enumeration` at line 50: requirements, success criteria, and final status. |
 - `Oxford comma` at line 62: the live parity seams were re-read to confirm the runtime behavior was already shipped. Next, focused tests were added only where proof was missing, and one expectation was corrected to the actual path-shortening contract (`Read loaders/data-loader.ts`). Finally
@@ -1806,8 +1806,8 @@
 - `three-item enumeration` at line 63: `tasks.md`, `checklist.md`, and `implementation-summary.md` to the active Level 2 structure with evidence-backed completion.
 - `three-item enumeration` at line 61: Bullet list of exactly three items spans lines 61-63
 - `three-item enumeration` at line 67: Bullet list of exactly three items spans lines 67-69
-- `Oxford comma` at line 76: | `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
-- `three-item enumeration` at line 76: | `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+- `Oxford comma` at line 76: | `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+- `three-item enumeration` at line 76: | `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Create | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
 - `Oxford comma` at line 91: `reasoning`, `<reasoning>...</reasoning>`, and empty XML wrapper tags all register as noise through `isNoiseContent()` / `NOISE_PATTERNS`. |
 - `three-item enumeration` at line 91: `reasoning`, `<reasoning>...</reasoning>`, and empty XML wrapper tags all register as noise through `isNoiseContent()` / `NOISE_PATTERNS`. |
 - `Oxford comma` at line 99: extractor-loader baseline, `typecheck`, and `build` all pass. |
@@ -1826,8 +1826,8 @@
 - `Oxford comma` at line 37: - [x] T003 Identify the missing parity-specific regression seams in `phase-classification.vitest.ts`, `runtime-memory-inputs.vitest.ts`, and the content-filter test surface.
 - `three-item enumeration` at line 37: - [x] T003 Identify the missing parity-specific regression seams in `phase-classification.vitest.ts`, `runtime-memory-inputs.vitest.ts`, and the content-filter test surface.
 - `three-item enumeration` at line 35: Bullet list of exactly three items spans lines 35-37
-- `Oxford comma` at line 46: - [x] T005 Create `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` for Copilot lifecycle noise, Codex reasoning markers, and empty XML wrappers.
-- `three-item enumeration` at line 46: - [x] T005 Create `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` for Copilot lifecycle noise, Codex reasoning markers, and empty XML wrappers.
+- `Oxford comma` at line 46: - [x] T005 Create `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` for Copilot lifecycle noise, Codex reasoning markers, and empty XML wrappers.
+- `three-item enumeration` at line 46: - [x] T005 Create `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` for Copilot lifecycle noise, Codex reasoning markers, and empty XML wrappers.
 - `Oxford comma` at line 48: `tasks.md`, `checklist.md`, and `implementation-summary.md` to the current Level 2 structure with evidence-backed completion.
 - `three-item enumeration` at line 48: `tasks.md`, `checklist.md`, and `implementation-summary.md` to the current Level 2 structure with evidence-backed completion.
 - `Oxford comma` at line 56: `content-filter-parity.vitest.ts`, `runtime-memory-inputs.vitest.ts`, and `description-enrichment.vitest.ts`.
@@ -1922,13 +1922,13 @@
 - `three-item enumeration` at line 290: Bullet list of exactly three items spans lines 290-292
 
 ### `tasks.md`
-- `Oxford comma` at line 38: - [x] T002 Capture current verification evidence for scripts, MCP, and CLI proof lanes (`.opencode/skill/system-spec-kit/`)
-- `three-item enumeration` at line 38: - [x] T002 Capture current verification evidence for scripts, MCP, and CLI proof lanes (`.opencode/skill/system-spec-kit/`)
+- `Oxford comma` at line 38: - [x] T002 Capture current verification evidence for scripts, MCP, and CLI proof lanes (`.opencode/skills/system-spec-kit/`)
+- `three-item enumeration` at line 38: - [x] T002 Capture current verification evidence for scripts, MCP, and CLI proof lanes (`.opencode/skills/system-spec-kit/`)
 - `three-item enumeration` at line 37: Bullet list of exactly three items spans lines 37-39
 - `Oxford comma` at line 49: `checklist.md`, `decision-record.md`, and `implementation-summary.md` (root spec folder)
 - `three-item enumeration` at line 49: `checklist.md`, `decision-record.md`, and `implementation-summary.md` (root spec folder)
-- `Oxford comma` at line 61: - [x] T011 Reconfirm targeted scripts, extractor, and MCP verification lanes after doc and test-lane remediation (`.opencode/skill/system-spec-kit/`)
-- `three-item enumeration` at line 61: - [x] T011 Reconfirm targeted scripts, extractor, and MCP verification lanes after doc and test-lane remediation (`.opencode/skill/system-spec-kit/`)
+- `Oxford comma` at line 61: - [x] T011 Reconfirm targeted scripts, extractor, and MCP verification lanes after doc and test-lane remediation (`.opencode/skills/system-spec-kit/`)
+- `three-item enumeration` at line 61: - [x] T011 Reconfirm targeted scripts, extractor, and MCP verification lanes after doc and test-lane remediation (`.opencode/skills/system-spec-kit/`)
 - `three-item enumeration` at line 59: Bullet list of exactly three items spans lines 59-61
 - `three-item enumeration` at line 69: Bullet list of exactly three items spans lines 69-71
 - `three-item enumeration` at line 88: Bullet list of exactly three items spans lines 88-90

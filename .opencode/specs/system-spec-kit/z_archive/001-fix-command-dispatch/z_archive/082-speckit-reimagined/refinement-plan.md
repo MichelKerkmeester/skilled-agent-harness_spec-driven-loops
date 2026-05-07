@@ -576,7 +576,7 @@ The following patterns developed in this spec may warrant addition to SpecKit te
 | Embedding-agnostic language | All files | Provider-neutral documentation |
 | Phase-based evidence logs | checklist.md (planned) | Verification tracking |
 
-**Recommendation:** After implementation completes, extract these patterns into `.opencode/skill/system-spec-kit/templates/` as optional addendums.
+**Recommendation:** After implementation completes, extract these patterns into `.opencode/skills/system-spec-kit/templates/` as optional addendums.
 ```
 
 **Validation:** Informational - no automated check needed

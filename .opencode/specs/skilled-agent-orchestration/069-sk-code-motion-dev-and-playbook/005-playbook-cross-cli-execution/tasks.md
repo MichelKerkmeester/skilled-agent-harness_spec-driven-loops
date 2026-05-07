@@ -110,5 +110,5 @@ _memory:
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Implementation Summary**: `implementation-summary.md`
-- **Root Playbook**: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
+- **Root Playbook**: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 <!-- /ANCHOR:cross-refs -->

@@ -54,10 +54,10 @@ _memory:
 
 - [x] CHK-010 [P0] Runtime code remains read-only. [EVIDENCE: no `.ts`, `.js`, `.py`, or shell implementation files edited]
 - [x] CHK-011 [P0] Edits are limited to requested docs and packet docs. [EVIDENCE: README plus packet docs only for packet 032]
-- [x] CHK-012 [P1] README documents read-path selective self-heal. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:521`]
-- [x] CHK-013 [P1] README documents manual `code_graph_scan` full repair. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:523`]
-- [x] CHK-014 [P1] README documents `code_graph_status` as read-only diagnostic. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:525`]
-- [x] CHK-015 [P1] README documents query blocked required-action behavior. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:527`]
+- [x] CHK-012 [P1] README documents read-path selective self-heal. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:521`]
+- [x] CHK-013 [P1] README documents manual `code_graph_scan` full repair. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:523`]
+- [x] CHK-014 [P1] README documents `code_graph_status` as read-only diagnostic. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:525`]
+- [x] CHK-015 [P1] README documents query blocked required-action behavior. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:527`]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -85,10 +85,10 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] README references 013 research-report reality matrix. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:519`]
-- [x] CHK-041 [P1] System-spec-kit skill guide checked or patched for code-graph automation wording. [EVIDENCE: `.opencode/skill/system-spec-kit/SKILL.md:796-798`]
+- [x] CHK-040 [P1] README references 013 research-report reality matrix. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:519`]
+- [x] CHK-041 [P1] System-spec-kit skill guide checked or patched for code-graph automation wording. [EVIDENCE: `.opencode/skills/system-spec-kit/SKILL.md:796-798`]
 - [x] CHK-042 [P1] CLAUDE.md checked or patched for code-graph automation wording. [EVIDENCE: `CLAUDE.md:107`]
-- [x] CHK-043 [P1] Hook-system reference checked or patched for code-graph automation wording. [EVIDENCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:76-101`]
+- [x] CHK-043 [P1] Hook-system reference checked or patched for code-graph automation wording. [EVIDENCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:76-101`]
 <!-- /ANCHOR:docs -->
 
 ---

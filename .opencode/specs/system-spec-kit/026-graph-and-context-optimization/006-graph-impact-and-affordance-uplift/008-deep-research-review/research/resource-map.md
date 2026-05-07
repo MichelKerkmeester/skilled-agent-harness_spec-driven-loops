@@ -180,10 +180,10 @@ This document maps every finding from the 10-iteration deep-research review to t
 |---|---|---|
 | `mcp_server/tool-schemas.ts` | TOOL_DEFINITIONS | Canonical = 51 |
 | `README.md` (root) | 7, 56, 1261, 1281, 1301, 677 | Synced to 51/60 |
-| `.opencode/skill/system-spec-kit/SKILL.md` | (drift) | Still claims 48/47 in places |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | (drift) | Still claims 43 |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | (detail section) | Omits 11 of 51 entries |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | (command-surface paragraph) | Still says 43 |
+| `.opencode/skills/system-spec-kit/SKILL.md` | (drift) | Still claims 48/47 in places |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | (drift) | Still claims 43 |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | (detail section) | Omits 11 of 51 entries |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | (command-surface paragraph) | Still says 43 |
 
 ---
 

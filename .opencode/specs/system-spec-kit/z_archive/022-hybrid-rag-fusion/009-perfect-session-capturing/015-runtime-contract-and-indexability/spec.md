@@ -72,11 +72,11 @@ Make write-vs-index behavior explicit by introducing validation-rule metadata an
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts` | Modify | Add rule metadata and disposition helpers |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Modify | Enforce explicit write/index policy |
-| `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Persist policy-aware indexing status |
-| `.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts` | Create | Prove rule-metadata behavior |
-| `.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` | Modify | Prove V10 indexing and write-only policy |
+| `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts` | Modify | Add rule metadata and disposition helpers |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify | Enforce explicit write/index policy |
+| `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` | Modify | Persist policy-aware indexing status |
+| `.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts` | Create | Prove rule-metadata behavior |
+| `.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` | Modify | Prove V10 indexing and write-only policy |
 <!-- /ANCHOR:scope -->
 
 ---

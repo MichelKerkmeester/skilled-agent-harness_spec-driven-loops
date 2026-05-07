@@ -277,8 +277,8 @@ AFTER (Separated):
 ## 7. IMPACT ASSESSMENT
 
 ### Systems Affected
-- `.opencode/command/memory/search.md` - Major refactoring
-- `.opencode/command/memory/database.md` - New file created
+- `.opencode/commands/memory/search.md` - Major refactoring
+- `.opencode/commands/memory/database.md` - New file created
 - User workflows that use `/memory:search cleanup` - Must use `/memory:database cleanup`
 
 ### Teams Impacted
@@ -292,8 +292,8 @@ AFTER (Separated):
 
 ### Rollback Strategy
 If issues arise:
-1. Revert search.md from git: `git checkout HEAD~1 -- .opencode/command/memory/search.md`
-2. Delete database.md: `rm .opencode/command/memory/database.md`
+1. Revert search.md from git: `git checkout HEAD~1 -- .opencode/commands/memory/search.md`
+2. Delete database.md: `rm .opencode/commands/memory/database.md`
 3. Original unified command restored
 
 ---

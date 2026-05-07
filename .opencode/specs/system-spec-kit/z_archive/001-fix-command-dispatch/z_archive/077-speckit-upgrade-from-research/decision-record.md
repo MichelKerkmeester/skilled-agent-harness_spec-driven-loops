@@ -432,7 +432,7 @@ Keep current SQLite + better-sqlite3 implementation. Defer LanceDB evaluation to
 ### References
 
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/077-speckit-upgrade-from-research/research/superego-synthesis.md`
-- Current SQLite implementation in `.opencode/skill/system-spec-kit/mcp_server/`
+- Current SQLite implementation in `.opencode/skills/system-spec-kit/mcp_server/`
 
 <!-- /ANCHOR:decision -->
 ---

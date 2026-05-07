@@ -47,8 +47,8 @@ Install guide updated to reflect current setup steps, dependencies, and configur
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Updated deps, added rollback, refreshed platform configs |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md.bak` | Created | Backup before update |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | Updated deps, added rollback, refreshed platform configs |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md.bak` | Created | Backup before update |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -5,11 +5,11 @@ You are running iteration 1 of a 5-iteration deep review on spec folder `.openco
 Audit the structural correctness of the deliverables produced in the recent session:
 
 1. The 5 manual_testing_playbook packages:
-   - `.opencode/skill/cli-claude-code/manual_testing_playbook/`
-   - `.opencode/skill/cli-codex/manual_testing_playbook/`
-   - `.opencode/skill/cli-copilot/manual_testing_playbook/`
-   - `.opencode/skill/cli-gemini/manual_testing_playbook/`
-   - `.opencode/skill/cli-opencode/manual_testing_playbook/`
+   - `.opencode/skills/cli-claude-code/manual_testing_playbook/`
+   - `.opencode/skills/cli-codex/manual_testing_playbook/`
+   - `.opencode/skills/cli-copilot/manual_testing_playbook/`
+   - `.opencode/skills/cli-gemini/manual_testing_playbook/`
+   - `.opencode/skills/cli-opencode/manual_testing_playbook/`
 2. The Level 3 spec docs at `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/`
 
 ## What to verify (structural correctness)

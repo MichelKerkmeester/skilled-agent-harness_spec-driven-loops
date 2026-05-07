@@ -106,7 +106,7 @@
 ### Agent 6: /spec_kit:debug.md
 
 **Bugs Found:**
-1. **Lines 345-346**: YAML path mismatch (`.opencode/command/` vs `.claude/commands/`)
+1. **Lines 345-346**: YAML path mismatch (`.opencode/commands/` vs `.claude/commands/`)
    - Severity: MEDIUM
 
 2. **Line 57**: Fictional model name "GPT-5.2-Codex"
@@ -216,7 +216,7 @@
 2. **Lines 258 vs 550**: YAML contradiction (claims no YAML, then references one)
    - Severity: HIGH
 
-3. **Line 550**: Wrong file path (`.opencode/command/` vs `.claude/commands/`)
+3. **Line 550**: Wrong file path (`.opencode/commands/` vs `.claude/commands/`)
    - Severity: HIGH
 
 4. **YAML Lines 34-89**: 7 sections in YAML vs 5 in command
@@ -242,7 +242,7 @@
 **Status:** 99.5% Complete
 
 **Issue Found:**
-- `.opencode/agent/speckit.md` lines 419-420 reference deleted commands `/memory:why` and `/memory:correct`
+- `.opencode/agents/speckit.md` lines 419-420 reference deleted commands `/memory:why` and `/memory:correct`
 
 ---
 
@@ -261,7 +261,7 @@
 ## Patterns Identified
 
 ### Pattern 1: Systematic YAML Path Error
-All 12 commands reference `.opencode/command/` instead of `.claude/commands/`
+All 12 commands reference `.opencode/commands/` instead of `.claude/commands/`
 
 ### Pattern 2: Step Numbering Drift
 Multiple commands have step references that don't match actual step counts

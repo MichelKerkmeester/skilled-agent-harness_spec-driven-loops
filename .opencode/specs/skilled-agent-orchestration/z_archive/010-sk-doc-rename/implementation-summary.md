@@ -145,7 +145,7 @@ Delivery used a strict evidence-first workflow. Preflight artifacts established 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
 
 ---

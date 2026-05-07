@@ -20,10 +20,10 @@ _memory:
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/implementation-summary.md"
       - ".opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/handover.md"
-      - ".opencode/agent/debug.md"
-      - ".opencode/agent/orchestrate.md"
-      - ".opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md"
+      - ".opencode/agents/debug.md"
+      - ".opencode/agents/orchestrate.md"
+      - ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-04-27-debug-integration"
@@ -121,12 +121,12 @@ This handover documents the end-state of the 2026-04-27 session that completed t
 
 See `implementation-summary.md::what-built` for the full table (25 files in the primary edit set, plus the spec folder's own 7 documents). Highlights:
 
-- **Runtime debug agent definitions (4 mirrors):** `.opencode/agent/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`
-- **Orchestrator routing prose (4 mirrors):** `.opencode/agent/orchestrate.md`, `.claude/agents/orchestrate.md`, `.codex/agents/orchestrate.toml`, `.gemini/agents/orchestrate.md`
+- **Runtime debug agent definitions (4 mirrors):** `.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`
+- **Orchestrator routing prose (4 mirrors):** `.opencode/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.codex/agents/orchestrate.toml`, `.gemini/agents/orchestrate.md`
 - **Workflow YAML configs:** `spec_kit_implement_{auto,confirm}.yaml`, `spec_kit_complete_{auto,confirm}.yaml` (4 files)
-- **Command-doc guardrails:** `.opencode/command/spec_kit/{implement,complete}.md` + `.gemini/commands/spec_kit/{implement,complete}.toml`
-- **New helper:** `.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (executable, ~250 LOC)
-- **New playbook entry:** `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001)
+- **Command-doc guardrails:** `.opencode/commands/spec_kit/{implement,complete}.md` + `.gemini/commands/spec_kit/{implement,complete}.toml`
+- **New helper:** `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (executable, ~250 LOC)
+- **New playbook entry:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001)
 - **Spec folder:** `.opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/` — full Level 2 doc set
 - **Memory rule:** `~/.claude/projects/.../memory/feedback_debug_agent_user_invoked_only.md` (saved + indexed in MEMORY.md)
 <!-- /ANCHOR:context-transfer -->
@@ -143,7 +143,7 @@ See `implementation-summary.md::what-built` for the full table (25 files in the 
 
 ### 3.2 Optional Follow-Ups
 
-1. **Run DBG-SCAF-001 manual rehearsal end-to-end** against a synthetic 3-failure spec folder to exercise the y/manually/skip prompt branches in `spec_kit_implement_auto.yaml`. Steps documented in `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md`.
+1. **Run DBG-SCAF-001 manual rehearsal end-to-end** against a synthetic 3-failure spec folder to exercise the y/manually/skip prompt branches in `spec_kit_implement_auto.yaml`. Steps documented in `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md`.
 2. **Track `debug-delegation.md` creation rate over the next 90 days** to confirm or refute the discoverability premise. The deepseek reviewer's strongest critique: operators may skip `@debug` due to perceived cost / lack of trust, not menu placement. If creation rate stays at zero, this packet won't move the metric and the agent may genuinely deserve deletion.
 3. **Investigate similar adoption gaps for `@ultra-think` and `@orchestrate`.** The deep dive showed both have low reference counts (94 and 86 respectively, bottom of the 9-agent roster). Out of scope for this packet; tracked here for a future cleanup pass.
 
@@ -180,7 +180,7 @@ Before handover, verify:
 
 When editing agent definitions or orchestrator prose, the 4 runtime profile directories must all be updated in lockstep:
 
-- `.opencode/agent/*.md` (canonical OpenCode)
+- `.opencode/agents/*.md` (canonical OpenCode)
 - `.claude/agents/*.md` (Claude profile)
 - `.codex/agents/*.toml` (Codex profile — body wrapped in `developer_instructions = '''...'''`)
 - `.gemini/agents/*.md` (Gemini profile)
@@ -209,7 +209,7 @@ RECOMMENDED NEXT STEPS
 HANDOFF CHECKLIST
 ```
 
-Source of truth: `.opencode/agent/debug.md` lines 60-89.
+Source of truth: `.opencode/agents/debug.md` lines 60-89.
 <!-- /ANCHOR:session-notes -->
 
 ---
@@ -221,7 +221,7 @@ Source of truth: `.opencode/agent/debug.md` lines 60-89.
 - **Memory feedback rule:** `~/.claude/projects/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/memory/feedback_debug_agent_user_invoked_only.md` (saved + indexed in `MEMORY.md`)
 - **Source plan:** `~/.claude/plans/i-have-the-feeling-enchanted-cake.md` (the original deep-dive plan that drove this packet)
 - **Commit:** `619de83c9 feat(050): user-invoked @debug — truth-up aspirational auto-dispatch claims + prompted-offer scaffold` on `origin/main`
-- **Manual test playbook:** `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001)
+- **Manual test playbook:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001)
 <!-- /ANCHOR:related-artifacts -->
 
 ---

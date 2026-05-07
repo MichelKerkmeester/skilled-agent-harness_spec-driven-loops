@@ -81,7 +81,7 @@ Command-Template Architecture: The `/create` command uses template files and val
 ### Key Components
 - **Validation Layer**: Functions that check input/output validity (currently includes emoji enforcement)
 - **Template Engine**: Processes markdown templates with placeholders
-- **Asset Repository**: Template files in `.opencode/command/create/assets/`
+- **Asset Repository**: Template files in `.opencode/commands/create/assets/`
 
 ### Data Flow
 User invokes `/create` → Command parses input → Validation runs → Templates processed → Output files written
@@ -94,8 +94,8 @@ User invokes `/create` → Command parses input → Validation runs → Template
 
 ### Phase 1: Analysis & Documentation
 - [x] Spec folder created
-- [ ] Locate all emoji enforcement logic in `.opencode/command/create`
-- [ ] Locate all emoji requirements in `.opencode/command/create/assets`
+- [ ] Locate all emoji enforcement logic in `.opencode/commands/create`
+- [ ] Locate all emoji requirements in `.opencode/commands/create/assets`
 - [ ] Document current enforcement mechanism in implementation-summary.md
 
 ### Phase 2: Core Implementation
@@ -130,7 +130,7 @@ User invokes `/create` → Command parses input → Validation runs → Template
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| File system access to `.opencode/command/create` | Internal | Green | Cannot modify files |
+| File system access to `.opencode/commands/create` | Internal | Green | Cannot modify files |
 | Understanding current validation logic | Internal | Yellow | Need to analyze code first |
 <!-- /ANCHOR:dependencies -->
 

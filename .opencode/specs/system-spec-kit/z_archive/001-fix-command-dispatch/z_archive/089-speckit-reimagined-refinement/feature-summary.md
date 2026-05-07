@@ -426,22 +426,22 @@ All 5 items resolved. Many were pre-applied during the research session's verifi
 
 | # | File | Key Changes |
 |---|------|-------------|
-| 1 | `.opencode/skill/system-spec-kit/SKILL.md` | 10 fixes: 6 CLAUDE.md reverted to AGENTS.md, 4 detail/accuracy, Level 1-3 to 1-3+ |
-| 2 | `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | LOC counts reconciled (5 edits), complexity_guide link fixed |
-| 3 | `.opencode/skill/system-spec-kit/references/templates/level_selection_guide.md` | LOC counts aligned, deprecated content consolidated to appendix |
-| 4 | `.opencode/skill/system-spec-kit/references/config/environment_variables.md` | Voyage version to voyage-4, validate-spec.sh path fixed, memory_system.md path fixed |
-| 5 | `.opencode/skill/system-spec-kit/references/validation/validation_rules.md` | validate-spec.sh paths corrected (3 edits) |
-| 6 | `.opencode/skill/system-spec-kit/assets/level_decision_matrix.md` | Level 3+ support added |
-| 7 | `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md` | Level 3+ support added |
-| 8 | `.opencode/skill/system-spec-kit/assets/template_mapping.md` | Level 3+ added, template_guide.md link fixed |
-| 9 | `.opencode/agent/write.md` | mode: all, task: deny (reverted from allow) |
-| 10 | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.js` | Indentation normalized (2 to 6 space) |
-| 11 | `.opencode/skill/system-spec-kit/config/README.md` | complexity-config.jsonc marked deprecated, actual functions reflected |
-| 12 | `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.js` | ALLOWED_BASE_PATHS consolidated (imports from core) |
-| 13 | `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js` | Path set justified with comments |
-| 14 | `.opencode/skill/system-spec-kit/mcp_server/core/README.md` | Updated for ALLOWED_BASE_PATHS as canonical source |
-| 15 | `.opencode/skill/system-spec-kit/mcp_server/formatters/README.md` | Updated for ALLOWED_BASE_PATHS import pattern |
-| 16 | `.opencode/agent/orchestrate.md` | 2 CLAUDE.md refs reverted to AGENTS.md |
+| 1 | `.opencode/skills/system-spec-kit/SKILL.md` | 10 fixes: 6 CLAUDE.md reverted to AGENTS.md, 4 detail/accuracy, Level 1-3 to 1-3+ |
+| 2 | `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | LOC counts reconciled (5 edits), complexity_guide link fixed |
+| 3 | `.opencode/skills/system-spec-kit/references/templates/level_selection_guide.md` | LOC counts aligned, deprecated content consolidated to appendix |
+| 4 | `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | Voyage version to voyage-4, validate-spec.sh path fixed, memory_system.md path fixed |
+| 5 | `.opencode/skills/system-spec-kit/references/validation/validation_rules.md` | validate-spec.sh paths corrected (3 edits) |
+| 6 | `.opencode/skills/system-spec-kit/assets/level_decision_matrix.md` | Level 3+ support added |
+| 7 | `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | Level 3+ support added |
+| 8 | `.opencode/skills/system-spec-kit/assets/template_mapping.md` | Level 3+ added, template_guide.md link fixed |
+| 9 | `.opencode/agents/write.md` | mode: all, task: deny (reverted from allow) |
+| 10 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.js` | Indentation normalized (2 to 6 space) |
+| 11 | `.opencode/skills/system-spec-kit/config/README.md` | complexity-config.jsonc marked deprecated, actual functions reflected |
+| 12 | `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.js` | ALLOWED_BASE_PATHS consolidated (imports from core) |
+| 13 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js` | Path set justified with comments |
+| 14 | `.opencode/skills/system-spec-kit/mcp_server/core/README.md` | Updated for ALLOWED_BASE_PATHS as canonical source |
+| 15 | `.opencode/skills/system-spec-kit/mcp_server/formatters/README.md` | Updated for ALLOWED_BASE_PATHS import pattern |
+| 16 | `.opencode/agents/orchestrate.md` | 2 CLAUDE.md refs reverted to AGENTS.md |
 | 17 | `specs/.../089-speckit-reimagined-refinement/feature-summary.md` | Post-implementation corrections documented |
 | 18 | `specs/.../089-speckit-reimagined-refinement/implementation-summary.md` | Post-implementation corrections documented |
 | 19 | `specs/.../089-speckit-reimagined-refinement/checklist.md` | Updated to reflect corrections |

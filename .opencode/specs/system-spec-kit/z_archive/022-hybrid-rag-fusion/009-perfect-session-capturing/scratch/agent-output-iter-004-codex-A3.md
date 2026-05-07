@@ -19,11 +19,11 @@ Deep audit of the quality scoring system: how the two scoring systems (legacy 0-
 **Q1 (deep dive).** Focus on quality scoring consolidation as a remediation risk area.
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts` — Full read
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — Where both scores are used
-- `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` — Which score controls indexing
-- `.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts` (if exists) — Quality extraction from frontmatter
-- `.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts` — Full read
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — Where both scores are used
+- `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` — Which score controls indexing
+- `.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts` (if exists) — Quality extraction from frontmatter
+- `.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts`
 
 ## Known Context
 - RC-7 comment in workflow.ts: "qualityScore is 0-100 scale (legacy scorer); frontmatter quality_score is 0.0-1.0 (v2 scorer)"
@@ -53,7 +53,7 @@ exec
 AGENTS.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Deep audit of quality scoring consolidation risk between legacy 0-100 and v2 0.0-1.0 in system-spec-kit" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 805ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Deep audit of quality scoring consolidation risk between legacy 0-100 and v2 0.0-1.0 in system-spec-kit" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 805ms:
 python3: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 python3: error: couldn't create cache file '/tmp/xcrun_db-hTZUilDY' (errno=Operation not permitted)
 [
@@ -78,7 +78,7 @@ codex
 I found only one applicable `AGENTS.md` in scope (repo root), so no deeper overrides for these target paths.  
 SKILL ROUTING: `system-spec-kit` (confidence 0.95) and `sk-code-review` (0.86) both passed threshold, so I’ll apply those review standards while tracing the scoring flow. Next I’m loading the relevant skill instructions and then the five code files in full.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -100,7 +100,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -124,7 +124,7 @@ Use this skill when:
 codex
 I’ve loaded the review/spec-kit guardrails needed for this audit. Next I’m reading each target source file fully and then I’ll build a precise producer/consumer map for both score scales plus every threshold comparison.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Quality Scorer
 // ---------------------------------------------------------------
@@ -146,15 +146,15 @@ import {
   validateDescription,
 } from '../utils/file-helpers';
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     356 .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-    2477 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     204 .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-      45 .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts
-     154 .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     356 .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+    2477 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     204 .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+      45 .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts
+     154 .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts
     3236 total
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Workflow
 // ───────────────────────────────────────────────────────────────
@@ -176,7 +176,7 @@ import {
   extractDiagrams,
   extractPhasesFromData,
 exec
-/bin/zsh -lc "sed -n '261,420p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '261,420p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     qualityFlags.add('leaked_html');
     breakdown.noLeakedTags = 10;
     warnings.push(`${realLeakedTags} HTML tag(s) leaked into content`);
@@ -198,7 +198,7 @@ exec
       .filter((title) => title.length > 0);
     const uniqueTitles = new Set(titles);
 exec
-/bin/zsh -lc "sed -n '220,290p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '220,290p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
       qualityFlags.add('missing_file_context');
       warnings.push(`${files.length - filesWithDesc.length}/${files.length} files missing descriptions`);
     }
@@ -222,9 +222,9 @@ exec
 codex
 I’ve confirmed the legacy scorer returns both aliases (`score100` and `score01`) in one object, which is likely the key compatibility mechanism. I’m now tracing every comparison and threshold use across `workflow.ts`, `memory-indexer.ts`, config, and frontmatter extractors to detect any cross-scale misuse.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"qualityScore|quality_score|score01|score100|qualityAbortThreshold|shouldIndexMemory|indexMemory\\(\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"qualityScore|quality_score|score01|score100|qualityAbortThreshold|shouldIndexMemory|indexMemory\\(\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Quality Extractors
 // ---------------------------------------------------------------
@@ -267,28 +267,28 @@ import { DB_UPDATED_FILE } from '@spec-kit/shared/config';
 import { extractTriggerPhrases } from '../lib/trigger-extractor';
 import type { CollectedDataFull } from '../extractors/collect-session-data';
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/config.ts:34:  qualityAbortThreshold: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
-.opencode/skill/system-spec-kit/scripts/core/config.ts:112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
-.opencode/skill/system-spec-kit/scripts/core/config.ts:151:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
-.opencode/skill/system-spec-kit/scripts/core/config.ts:152:    validated.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:153:    defaults.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:239:    qualityAbortThreshold: 0.15,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:136:    qualityScore: number;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:150:function shouldIndexMemory(options: {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:155:  qualityScore01: number;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:156:  qualityAbortThreshold: number;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179:  if (options.qualityScore01 < options.qualityAbortThreshold) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:959:function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:980:    if (/^quality_score\s*:/i.test(trimmed)) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:993:    `quality_score: ${qualityScore.toFixed(2)}`,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1805:  log(`   Content quality: ${filterStats.qualityScore}/100 (${filterStats.noiseFiltered} noise, ${filterStats.duplicatesRemoved} duplicates filtered from ${filterStats.totalProcessed} items)`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2055:        // Metadata.json qualityScore is 0-100 (legacy scorer), while
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2056:        // Frontmatter quality_score is 0.0-1.0 (v2 scorer). Different metrics.
+.opencode/skills/system-spec-kit/scripts/core/config.ts:34:  qualityAbortThreshold: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
+.opencode/skills/system-spec-kit/scripts/core/config.ts:112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
+.opencode/skills/system-spec-kit/scripts/core/config.ts:151:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
+.opencode/skills/system-spec-kit/scripts/core/config.ts:152:    validated.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:153:    defaults.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:239:    qualityAbortThreshold: 0.15,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:136:    qualityScore: number;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:150:function shouldIndexMemory(options: {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:155:  qualityScore01: number;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:156:  qualityAbortThreshold: number;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179:  if (options.qualityScore01 < options.qualityAbortThreshold) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:959:function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:980:    if (/^quality_score\s*:/i.test(trimmed)) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:993:    `quality_score: ${qualityScore.toFixed(2)}`,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1805:  log(`   Content quality: ${filterStats.qualityScore}/100 (${filterStats.noiseFiltered} noise, ${filterStats.duplicatesRemoved} duplicates filtered from ${filterStats.totalProcessed} items)`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2055:        // Metadata.json qualityScore is 0-100 (legacy scorer), while
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2056:        // Frontmatter quality_score is 0.0-1.0 (v2 scorer). Different metrics.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 import { extractQualityFlags, extractQualityScore } from './quality-extractors';
 
 function assertEqual(actual: unknown, expected: unknown, label: string): void {
@@ -310,7 +310,7 @@ function assertArrayEqual(actual: string[], expected: string[], label: string): 
       throw new Error(
         `${label} failed at index ${i}: expected ${expected[i]}, got ${actual[i]}`
 exec
-/bin/zsh -lc "sed -n '1,360p' .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,360p' .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Config
 // ---------------------------------------------------------------
@@ -334,7 +334,7 @@ export interface WorkflowConfig {
 codex
 I’ve mapped the obvious references; next I’m drilling into the exact workflow sections around those line hits and also inspecting the v2 scorer implementation itself so we can verify whether disagreements are mathematically possible or just naming confusion. I’ll also run one semantic search pass to make sure we don’t miss hidden consumers.
 exec
-/bin/zsh -lc "sed -n '900,1045p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '900,1045p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     .createHash('sha1')
     .update(`${sessionData.SESSION_ID}\n${memoryTitle}\n${sessionData.SUMMARY}`)
     .digest('hex');
@@ -356,8 +356,8 @@ exec
     ),
     FINGERPRINT_HASH: readString(
 exec
-/bin/zsh -lc "sed -n '2320,2485p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1980,2295p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '2320,2485p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1980,2295p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
       console.warn(`[workflow] description.json tracking error: ${descErr instanceof Error ? descErr.message : String(descErr)}`);
     }
   } else {
@@ -400,7 +400,7 @@ exec
             RATIONALE_CONFIDENCE: rationaleConfidence,
             CONFIDENCE: overallConfidence,
 exec
-/bin/zsh -lc "sed -n '1740,1835p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1740,1835p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
       const features = flowchartGen.extractFlowchartFeatures(phases, patternType);
       const useCases = flowchartGen.getPatternUseCases(patternType);
       const useCaseTitle = specFolderName.replace(/^\d+-/, '').replace(/-/g, ' ');
@@ -422,7 +422,7 @@ exec
   ]);
     log('\n   All extraction complete (parallel execution)\n');
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Quality Scorer
 // ---------------------------------------------------------------
@@ -444,27 +444,27 @@ import type { ContaminationSeverity } from './contamination-filter';
 ------------------------------------------------------------------*/
 
 exec
-/bin/zsh -lc "rg -n \"scoreMemoryQualityV2|scoreMemoryQuality\\(|quality_score|extractQualityScore\\(|qualityAbortThreshold|QUALITY_ABORT_THRESHOLD\" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:39:    'quality_score: 0.95',
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:48:// 3. Valid frontmatter with quality_score: 0.85 -> 0.85
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:50:  const content = ['---', 'quality_score: 0.85', '---', 'Body text'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:54:// 4. quality_score > 1 -> clamped to 1.0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:56:  const content = ['---', 'quality_score: 1.75', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:60:// 5. quality_score < 0 -> clamped to 0.0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:62:  const content = ['---', 'quality_score: -0.25', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:66:// 6. quality_score: NaN or non-numeric -> 0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:68:  const nanContent = ['---', 'quality_score: NaN', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:69:  const textContent = ['---', 'quality_score: not-a-number', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:75:// 7. quality_score in body text but NOT in frontmatter -> must return 0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:81:    'quality_score: 0.99',
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
+/bin/zsh -lc "rg -n \"scoreMemoryQualityV2|scoreMemoryQuality\\(|quality_score|extractQualityScore\\(|qualityAbortThreshold|QUALITY_ABORT_THRESHOLD\" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:39:    'quality_score: 0.95',
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:48:// 3. Valid frontmatter with quality_score: 0.85 -> 0.85
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:50:  const content = ['---', 'quality_score: 0.85', '---', 'Body text'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:54:// 4. quality_score > 1 -> clamped to 1.0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:56:  const content = ['---', 'quality_score: 1.75', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:60:// 5. quality_score < 0 -> clamped to 0.0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:62:  const content = ['---', 'quality_score: -0.25', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:66:// 6. quality_score: NaN or non-numeric -> 0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:68:  const nanContent = ['---', 'quality_score: NaN', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:69:  const textContent = ['---', 'quality_score: not-a-number', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:75:// 7. quality_score in body text but NOT in frontmatter -> must return 0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:81:    'quality_score: 0.99',
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
 tool cocoindex_code.search({"query":"quality_score frontmatter extraction and use in memory indexing threshold comparison","limit":8})
 cocoindex_code.search({"query":"quality_score frontmatter extraction and use in memory indexing threshold comparison","limit":8}) success in 374ms:
 {
@@ -493,7 +493,7 @@ cocoindex_code.search({"query":"QUALITY_ABORT_THRESHOLD qualityScore01 compariso
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X02.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **Severity:** CRITICAL\\n- **Category:** BUG\\n- **Current Behavior:** Workflow injects `quality_score` and `quality_flags` into the machine-readable fenced YAML block, but the shared parser used by indexing reads only top frontmatter, so the indexed quality metadata resolves to `0` / `[]`. The workflow also returns the legacy `0-100` score in `stats.qualityScore`, so the two scorers can contradict on the same memory.\\n- **Expected Behavior:** One consistent quality signal should be embedded, indexed, and returned on one documented scale.\\n- **Root Cause:** Writer and reader disagree about where quality metadata lives, and workflow exposes the other scorer’s units.\\n- **Suggested Fix:** Either move injected quality metadata into frontmatter or teach the shared parser to read the machine-readable YAML block first; then return the same normalized score from workflow stats.\\n- **Effort:** MEDIUM (<2 hr)\",\n      \"start_line\": 1060,\n      \"end_line\": 1066,\n      \"score\": 0.621489633012736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X02.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **Severity:** CRITICAL\\n- **Category:** BUG\\n- **Current Behavior:** Workflow injects `quality_score` and `quality_flags` into the machine-readable fenced YAML block, but the shared parser used by indexing reads only top frontmatter, so the indexed quality metadata resolves to `0` / `[]`. The workflow also returns the legacy `0-100` score in `stats.qualityScore`, so the two scorers can contradict on the same memory.\\n- **Expected Behavior:** One consistent quality signal should be embedded, indexed, and returned on one documented scale.\\n- **Root Cause:** Writer and reader disagree about where quality metadata lives, and workflow exposes the other scorer’s units.\\n- **Suggested Fix:** Either move injected quality metadata into frontmatter or teach the shared parser to read the machine-readable YAML block first; then return the same normalized score from workflow stats.\\n- **Effort:** MEDIUM (<2 hr)\",\n      \"start_line\": 1156,\n      \"end_line\": 1162,\n      \"score\": 0.621489633012736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. PROBLEM & PURPOSE\\n\\n### Problem Statement\\n\\nThe pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100. The `qualityAbortThreshold` config is validated as 1-100 with a default of 15. The V1 scorer covers 7 dimensions on the 0-100 scale. The V2 scorer covers 9 dimensions on 0.0-1.0. Neither scorer accounts for contamination detection results -- contamination produces a flag but no score penalty.\\n\\n### Purpose\\n\\nMake `score01` (0.0-1.0) the canonical quality scale across the entire pipeline, keep `score100` as a backward-compatible alias, migrate the abort threshold to the canonical scale, and ensure contamination detection produces a measurable score penalty rather than just a boolean flag.\\n<!-- /ANCHOR:problem -->\\n\\n---\\n\\n<!-- ANCHOR:scope -->\",\n      \"start_line\": 49,\n      \"end_line\": 62,\n      \"score\": 0.5833183569593245\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/qa/qa-08-p1-fixes-part2.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-13: workflow.ts Step 8.7 Quality Abort Gate — INCORRECT\\n- **File:** `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:881-888`\\n- **Severity:** HIGH\\n- **Category:** ALIGNMENT\\n- **Current Behavior:** The workflow aborts when `qualityResult.score < 25` (and not simulation).\\n- **Expected Behavior:** Abort only when the score is below `15`.\\n- **Root Cause:** `QUALITY_ABORT_THRESHOLD` is set to `25`, not `15`.\\n- **Suggested Fix:** Change `const QUALITY_ABORT_THRESHOLD = 25;` to `15`, and verify any tests/docs expecting the stricter threshold.\\n- **Effort:** TRIVIAL (<5 min)\",\n      \"start_line\": 178,\n      \"end_line\": 186,\n      \"score\": 0.5766473066905728\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/implementation-summary.md\",\n      \"language\": \"markdown\",\n      \"content\": \"<!-- /ANCHOR:what-built -->\\n\\n---\\n\\n<!-- ANCHOR:how-delivered -->\\n## 3. HOW IT WAS DELIVERED\\n\\n1. Defined the unified `QualityScoreResult` interface in `core/quality-scorer.ts` with both scales, then had `extractors/quality-scorer.ts` import and re-export the types instead of duplicating them.\\n2. Added the contamination penalty in the V2 scorer matching the spec: `qualityScore -= 0.25` and `sufficiencyCap = Math.min(sufficiencyCap ?? 1, 0.6)`.\\n3. Added `normalizeQualityAbortThreshold()` to auto-detect integer thresholds (>1) and convert by dividing by 100, with a deprecation warning.\\n4. Migrated all workflow quality comparisons from `score` (0-100) to `score01` (0.0-1.0).\\n<!-- /ANCHOR:how-delivered -->\\n\\n---\\n\\n<!-- ANCHOR:decisions -->\",\n      \"start_line\": 36,\n      \"end_line\": 51,\n      \"score\": 0.5749369601430772\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/16-03-26_22-31__completed-phase-015-by-aligning-the-outsourced.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 4. DECISIONS\\n\\n<!-- ANCHOR:decision-document-distinction-between-qualitygateabort-82a0452a -->\\n### Decision 1: Document the distinction between QUALITY_GATE_ABORT and non\\n\\n**Context**: blocking QUALITY_GATE_FAIL for file-backed handbacks so callers understand why a write can succeed while indexing is skipped.\\n\\n**Timestamp**: 2026-03-16T22:31:51Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   Document the distinction between QUALITY_GATE_ABORT and non\\n\\n#### Chosen Approach\\n\\n**Selected**: Document the distinction between QUALITY_GATE_ABORT and non\\n\\n**Rationale**: blocking QUALITY_GATE_FAIL for file-backed handbacks so callers understand why a write can succeed while indexing is skipped.\\n\\n#### Trade-offs\\n\\n**Confidence**: 50%\\n\\n<!-- /ANCHOR:decision-document-distinction-between-qualitygateabort-82a0452a -->\\n\\n---\\n\\n<!-- ANCHOR:decision-dedicated-doc-regression-test-df04a0fe -->\",\n      \"start_line\": 264,\n      \"end_line\": 294,\n      \"score\": 0.5661644076296977\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/RCA-memory-corruption-investigation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### H7 — Two Quality Scores on Different Scales Write to the Same Conceptual Field (Quality-Score Conflict)\\n**Hypothesis:** `metadata.json`'s `filtering.qualityScore: 30` and the frontmatter `quality_score: 0.85` are produced by two completely different scoring systems:  \\n- **30/100** = `filterPipeline.getStats().qualityScore` (content filter pipeline, 0–100 scale) measuring message noise/deduplication quality. Stored at `workflow.ts:941` inside the `filtering` key of metadata.json.  \\n- **0.85/1.00** = `qualityV2.qualityScore` from `scoreMemoryQualityV2()` (structural validator, 0.0–1.0 scale) measuring rendered markdown structural compliance. Injected into frontmatter via `injectQualityMetadata()` at `workflow.ts:1008`.\\n\\nNeither output includes the scale or algorithm name. A third scorer (`scoreMemoryQuality()`, legacy 0–100) runs at line 1014 but is only logged, never persisted.\",\n      \"start_line\": 459,\n      \"end_line\": 464,\n      \"score\": 0.5599246058972938\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/checklist.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- [x] CHK-018 [P1] `workflow.ts` compares `score01` against the migrated threshold (REQ-004) [Evidence: `scripts/core/workflow.ts` quality-gate comparison path uses canonical `score01` and normalized threshold.]\\n- [x] CHK-019 [P2] No `as any` or `as unknown` casts introduced during migration [Evidence: grep confirms zero `as any` or `as unknown` occurrences in core/quality-scorer.ts, extractors/quality-scorer.ts, core/workflow.ts, and core/config.ts.]\\n<!-- /ANCHOR:code-quality -->\\n\\n---\\n\\n<!-- ANCHOR:testing -->\",\n      \"start_line\": 47,\n      \"end_line\": 53,\n      \"score\": 0.5579762526535887\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X02.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **Severity:** CRITICAL\\n- **Category:** BUG\\n- **Current Behavior:** Workflow injects `quality_score` and `quality_flags` into the machine-readable fenced YAML block, but the shared parser used by indexing reads only top frontmatter, so the indexed quality metadata resolves to `0` / `[]`. The workflow also returns the legacy `0-100` score in `stats.qualityScore`, so the two scorers can contradict on the same memory.\\n- **Expected Behavior:** One consistent quality signal should be embedded, indexed, and returned on one documented scale.\\n- **Root Cause:** Writer and reader disagree about where quality metadata lives, and workflow exposes the other scorer’s units.\\n- **Suggested Fix:** Either move injected quality metadata into frontmatter or teach the shared parser to read the machine-readable YAML block first; then return the same normalized score from workflow stats.\\n- **Effort:** MEDIUM (<2 hr)\",\n      \"start_line\": 1060,\n      \"end_line\": 1066,\n      \"score\": 0.621489633012736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X02.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **Severity:** CRITICAL\\n- **Category:** BUG\\n- **Current Behavior:** Workflow injects `quality_score` and `quality_flags` into the machine-readable fenced YAML block, but the shared parser used by indexing reads only top frontmatter, so the indexed quality metadata resolves to `0` / `[]`. The workflow also returns the legacy `0-100` score in `stats.qualityScore`, so the two scorers can contradict on the same memory.\\n- **Expected Behavior:** One consistent quality signal should be embedded, indexed, and returned on one documented scale.\\n- **Root Cause:** Writer and reader disagree about where quality metadata lives, and workflow exposes the other scorer’s units.\\n- **Suggested Fix:** Either move injected quality metadata into frontmatter or teach the shared parser to read the machine-readable YAML block first; then return the same normalized score from workflow stats.\\n- **Effort:** MEDIUM (<2 hr)\",\n      \"start_line\": 1156,\n      \"end_line\": 1162,\n      \"score\": 0.621489633012736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. PROBLEM & PURPOSE\\n\\n### Problem Statement\\n\\nThe pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100. The `qualityAbortThreshold` config is validated as 1-100 with a default of 15. The V1 scorer covers 7 dimensions on the 0-100 scale. The V2 scorer covers 9 dimensions on 0.0-1.0. Neither scorer accounts for contamination detection results -- contamination produces a flag but no score penalty.\\n\\n### Purpose\\n\\nMake `score01` (0.0-1.0) the canonical quality scale across the entire pipeline, keep `score100` as a backward-compatible alias, migrate the abort threshold to the canonical scale, and ensure contamination detection produces a measurable score penalty rather than just a boolean flag.\\n<!-- /ANCHOR:problem -->\\n\\n---\\n\\n<!-- ANCHOR:scope -->\",\n      \"start_line\": 49,\n      \"end_line\": 62,\n      \"score\": 0.5833183569593245\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/qa/qa-08-p1-fixes-part2.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-13: workflow.ts Step 8.7 Quality Abort Gate — INCORRECT\\n- **File:** `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:881-888`\\n- **Severity:** HIGH\\n- **Category:** ALIGNMENT\\n- **Current Behavior:** The workflow aborts when `qualityResult.score < 25` (and not simulation).\\n- **Expected Behavior:** Abort only when the score is below `15`.\\n- **Root Cause:** `QUALITY_ABORT_THRESHOLD` is set to `25`, not `15`.\\n- **Suggested Fix:** Change `const QUALITY_ABORT_THRESHOLD = 25;` to `15`, and verify any tests/docs expecting the stricter threshold.\\n- **Effort:** TRIVIAL (<5 min)\",\n      \"start_line\": 178,\n      \"end_line\": 186,\n      \"score\": 0.5766473066905728\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/implementation-summary.md\",\n      \"language\": \"markdown\",\n      \"content\": \"<!-- /ANCHOR:what-built -->\\n\\n---\\n\\n<!-- ANCHOR:how-delivered -->\\n## 3. HOW IT WAS DELIVERED\\n\\n1. Defined the unified `QualityScoreResult` interface in `core/quality-scorer.ts` with both scales, then had `extractors/quality-scorer.ts` import and re-export the types instead of duplicating them.\\n2. Added the contamination penalty in the V2 scorer matching the spec: `qualityScore -= 0.25` and `sufficiencyCap = Math.min(sufficiencyCap ?? 1, 0.6)`.\\n3. Added `normalizeQualityAbortThreshold()` to auto-detect integer thresholds (>1) and convert by dividing by 100, with a deprecation warning.\\n4. Migrated all workflow quality comparisons from `score` (0-100) to `score01` (0.0-1.0).\\n<!-- /ANCHOR:how-delivered -->\\n\\n---\\n\\n<!-- ANCHOR:decisions -->\",\n      \"start_line\": 36,\n      \"end_line\": 51,\n      \"score\": 0.5749369601430772\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/16-03-26_22-31__completed-phase-015-by-aligning-the-outsourced.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 4. DECISIONS\\n\\n<!-- ANCHOR:decision-document-distinction-between-qualitygateabort-82a0452a -->\\n### Decision 1: Document the distinction between QUALITY_GATE_ABORT and non\\n\\n**Context**: blocking QUALITY_GATE_FAIL for file-backed handbacks so callers understand why a write can succeed while indexing is skipped.\\n\\n**Timestamp**: 2026-03-16T22:31:51Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   Document the distinction between QUALITY_GATE_ABORT and non\\n\\n#### Chosen Approach\\n\\n**Selected**: Document the distinction between QUALITY_GATE_ABORT and non\\n\\n**Rationale**: blocking QUALITY_GATE_FAIL for file-backed handbacks so callers understand why a write can succeed while indexing is skipped.\\n\\n#### Trade-offs\\n\\n**Confidence**: 50%\\n\\n<!-- /ANCHOR:decision-document-distinction-between-qualitygateabort-82a0452a -->\\n\\n---\\n\\n<!-- ANCHOR:decision-dedicated-doc-regression-test-df04a0fe -->\",\n      \"start_line\": 264,\n      \"end_line\": 294,\n      \"score\": 0.5661644076296977\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/RCA-memory-corruption-investigation.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### H7 — Two Quality Scores on Different Scales Write to the Same Conceptual Field (Quality-Score Conflict)\\n**Hypothesis:** `metadata.json`'s `filtering.qualityScore: 30` and the frontmatter `quality_score: 0.85` are produced by two completely different scoring systems:  \\n- **30/100** = `filterPipeline.getStats().qualityScore` (content filter pipeline, 0–100 scale) measuring message noise/deduplication quality. Stored at `workflow.ts:941` inside the `filtering` key of metadata.json.  \\n- **0.85/1.00** = `qualityV2.qualityScore` from `scoreMemoryQualityV2()` (structural validator, 0.0–1.0 scale) measuring rendered markdown structural compliance. Injected into frontmatter via `injectQualityMetadata()` at `workflow.ts:1008`.\\n\\nNeither output includes the scale or algorithm name. A third scorer (`scoreMemoryQuality()`, legacy 0–100) runs at line 1014 but is only logged, never persisted.\",\n      \"start_line\": 459,\n      \"end_line\": 464,\n      \"score\": 0.5599246058972938\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/checklist.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- [x] CHK-018 [P1] `workflow.ts` compares `score01` against the migrated threshold (REQ-004) [Evidence: `scripts/core/workflow.ts` quality-gate comparison path uses canonical `score01` and normalized threshold.]\\n- [x] CHK-019 [P2] No `as any` or `as unknown` casts introduced during migration [Evidence: grep confirms zero `as any` or `as unknown` occurrences in core/quality-scorer.ts, extractors/quality-scorer.ts, core/workflow.ts, and core/config.ts.]\\n<!-- /ANCHOR:code-quality -->\\n\\n---\\n\\n<!-- ANCHOR:testing -->\",\n      \"start_line\": 47,\n      \"end_line\": 53,\n      \"score\": 0.5579762526535887\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -509,8 +509,8 @@ cocoindex_code.search({"query":"QUALITY_ABORT_THRESHOLD qualityScore01 compariso
       },
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X02.md",
-tool cocoindex_code.search({"query":"quality score threshold comparison workflow indexing uses score01","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":8})
-cocoindex_code.search({"query":"quality score threshold comparison workflow indexing uses score01","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":8}) success in 688ms:
+tool cocoindex_code.search({"query":"quality score threshold comparison workflow indexing uses score01","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":8})
+cocoindex_code.search({"query":"quality score threshold comparison workflow indexing uses score01","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":8}) success in 688ms:
 {
   "content": [
     {
@@ -563,7 +563,7 @@ cocoindex_code.search({"query":"workflow qualityScore01 qualityAbortThreshold sh
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/tests/task-enrichment.vitest.ts",
 exec
-/bin/zsh -lc "sed -n '1200,1335p' .opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1200,1335p' .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     const contextDir = path.join(tempRoot, 'memory');
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(contextDir, { recursive: true });
@@ -587,7 +587,7 @@ exec
 codex
 I found an important behavioral seam: `memory-indexer` reads `quality_score` only from frontmatter at file start, while `workflow.ts` can prepend warning/simulation headers before indexing. I’m now collecting exact line references to verify whether that can force indexed `quality_score` to `0` and distort reconciliation between legacy and v2 scores.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '300,356p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '300,356p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    300	    qualityFlags.add('has_contamination');
    301	    const severity = effectiveSeverity;
    302	    if (severity === 'low') {
@@ -609,8 +609,8 @@ exec
    318	    scoreCap = Math.min(scoreCap ?? 1, clamp01(sufficiencyResult.score * 0.4));
    319	    warnings.push(
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '955,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '145,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '955,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '145,190p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    955	    releaseCurrentRun();
    956	  }
    957	}
@@ -654,9 +654,9 @@ exec
    164	
 2026-03-20T07:35:47.037168Z ERROR codex_core::models_manager::manager: failed to renew cache TTL: EOF while parsing a value at line 1 column 0
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2115,2275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2038,2085p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2360,2405p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2115,2275p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2038,2085p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2360,2405p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2360	    };
   2361	    await updateMetadataEmbeddingStatus(contextDir, indexingStatus);
   2362	  };
@@ -720,7 +720,7 @@ exec
   2133	    toolCount: sessionData.TOOL_COUNT,
   2134	    decisionCount: decisions.DECISIONS.length,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     90	/* ───────────────────────────────────────────────────────────────
     91	   3. CONFIG VALIDATION
     92	------------------------------------------------------------------*/
@@ -742,7 +742,7 @@ exec
    108	  }
    109	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '228,312p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '228,312p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    228	    messageTimeWindow: 300000,
    229	    contextPreviewHeadLines: 50,
    230	    contextPreviewTailLines: 20,
@@ -764,7 +764,7 @@ exec
    246	
    247	  const configPath: string = path.join(SCRIPTS_DIR, '..', 'config', 'config.jsonc');
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '112,145p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '112,145p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    112	      triggerPhrases = collectedData._manualTriggerPhrases;
    113	      console.log(`   Using ${triggerPhrases.length} manual trigger phrases`);
    114	    }
@@ -786,8 +786,8 @@ exec
    130	    title: title,
    131	    triggerPhrases: triggerPhrases,
 exec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts | sed -n '24,95p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts | sed -n '24,95p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Extractors
      3	// ---------------------------------------------------------------
@@ -830,7 +830,7 @@ exec
     42	  ].join('\n');
     43	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '60,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '60,235p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     60	      maxScore100: 100,
     61	      passed,
     62	    };
@@ -852,7 +852,7 @@ exec
     78	
     79	  if (!content || typeof content !== 'string' || content.trim().length === 0) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1248,1318p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1248,1318p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1248	      fs.rmSync(tempRoot, { recursive: true, force: true });
   1249	    }
   1250	  });
@@ -874,7 +874,7 @@ exec
   1266	    qualityHarness.legacyResult = {
   1267	      ...qualityHarness.legacyResult,
 exec
-/bin/zsh -lc 'rg -n "interface FilterStats|qualityScore|warnThreshold|isLowQuality" .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "interface FilterStats|qualityScore|warnThreshold|isLowQuality" .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 53:    warnThreshold: number;
 67:export interface FilterStats {
 71:  qualityScore: number;
@@ -886,7 +886,7 @@ exec
 619:    isLowQuality(): boolean {
 620:      return filterStats.qualityScore < (config.quality?.warnThreshold || 20);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts | sed -n '60,85p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts | sed -n '60,85p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     60	  uniqueness: number;
     61	  density: number;
     62	  fileRefs: number;
@@ -908,7 +908,7 @@ exec
     78	  };
     79	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts | sed -n '175,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts | sed -n '175,205p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    175	      enabled: true,
    176	      minContentLength: 5,
    177	      minUniqueWords: 2,
@@ -930,7 +930,7 @@ exec
    193	      },
    194	    },
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts | sed -n '292,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts | sed -n '292,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    292	] as const;
    293	
    294	// Strip wrappers but preserve value
@@ -952,12 +952,12 @@ exec
    310	    duplicatesRemoved: 0,
    311	    qualityScore: 100,
 exec
-/bin/zsh -lc "rg -n \"function calculateQualityScore|return Math.round\\(|qualityScore = calculateQualityScore\" .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function calculateQualityScore|return Math.round\\(|qualityScore = calculateQualityScore\" .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 400:function calculateQualityScore(items: PromptItem[], config: FilterConfig): number {
 447:  return Math.round(
 513:        filterStats.qualityScore = calculateQualityScore(filtered, config);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/content-filter.ts | sed -n '392,455p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/content-filter.ts | sed -n '392,455p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    392	
    393	  for (let i = 0; i < shorter.length; i++) {
    394	    if (shorter[i] === longer[i]) matches++;
@@ -979,29 +979,29 @@ exec
    410	  for (const item of items) {
    411	    const content: string = typeof item === 'string' ? item : (item as PromptItem).prompt || (item as PromptItem).content || '';
 exec
-/bin/zsh -lc "rg -n \"qualityResult\\.score\\b|qualityResult\\.score100\\b|qualityV2\\.score\\b|qualityV2\\.score100\\b|QUALITY_ABORT_THRESHOLD|qualityAbortThreshold\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/config.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:156:  qualityAbortThreshold: number;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179:  if (options.qualityScore01 < options.qualityAbortThreshold) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2194:    `   Memory quality score: ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}) ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2195:    `canonical, ${qualityV2.score100}/100 (${qualityV2.score01.toFixed(2)}) (v2)`
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2215:    const abortMsg = `QUALITY_GATE_ABORT: Memory quality score ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}) ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2253:    const mediumQualityWarning = `> **Warning:** Memory quality score is ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}), which is below the recommended threshold of 0.60. Content may have issues with: ${qualityResult.warnings.slice(0, 3).join('; ')}.\n\n`;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2255:    log(`   Medium quality warning added (score: ${qualityResult.score100}/100)`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2463:          qualityScore: qualityResult.score,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:34:  qualityAbortThreshold: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
-.opencode/skill/system-spec-kit/scripts/core/config.ts:112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
-.opencode/skill/system-spec-kit/scripts/core/config.ts:151:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
-.opencode/skill/system-spec-kit/scripts/core/config.ts:152:    validated.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:153:    defaults.qualityAbortThreshold,
+/bin/zsh -lc "rg -n \"qualityResult\\.score\\b|qualityResult\\.score100\\b|qualityV2\\.score\\b|qualityV2\\.score100\\b|QUALITY_ABORT_THRESHOLD|qualityAbortThreshold\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/config.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:156:  qualityAbortThreshold: number;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179:  if (options.qualityScore01 < options.qualityAbortThreshold) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2194:    `   Memory quality score: ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}) ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2195:    `canonical, ${qualityV2.score100}/100 (${qualityV2.score01.toFixed(2)}) (v2)`
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2215:    const abortMsg = `QUALITY_GATE_ABORT: Memory quality score ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}) ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2253:    const mediumQualityWarning = `> **Warning:** Memory quality score is ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}), which is below the recommended threshold of 0.60. Content may have issues with: ${qualityResult.warnings.slice(0, 3).join('; ')}.\n\n`;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2255:    log(`   Medium quality warning added (score: ${qualityResult.score100}/100)`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2463:          qualityScore: qualityResult.score,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:34:  qualityAbortThreshold: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
+.opencode/skills/system-spec-kit/scripts/core/config.ts:112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
+.opencode/skills/system-spec-kit/scripts/core/config.ts:151:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(
+.opencode/skills/system-spec-kit/scripts/core/config.ts:152:    validated.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:153:    defaults.qualityAbortThreshold,
 exec
-/bin/zsh -lc 'cat .opencode/skill/system-spec-kit/package.json' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'cat .opencode/skills/system-spec-kit/package.json' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 {
   "name": "system-spec-kit",
   "version": "1.7.2",
@@ -1023,7 +1023,7 @@ exec
     "test": "npm run test:cli && npm run test:embeddings && npm run test:mcp",
     "test:mcp": "npm run test --workspace=mcp_server",
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/vitest.config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/vitest.config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Vitest Config
 // ───────────────────────────────────────────────────────────────
@@ -1045,13 +1045,13 @@ export default defineConfig({
     alias: {
       '@lib': path.resolve(__dirname, 'lib'),
 exec
-/bin/zsh -lc 'npm run test:task-enrichment' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit exited 1 in 1.32s:
+/bin/zsh -lc 'npm run test:task-enrichment' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit exited 1 in 1.32s:
 
 > system-spec-kit@1.7.2 test:task-enrichment
 > node mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts
 
 
- RUN  v4.0.18 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
+ RUN  v4.0.18 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts
 
  ❯ tests/task-enrichment.vitest.ts (0 test)
 
@@ -1069,7 +1069,7 @@ Error: EPERM: operation not permitted, mkdir '/var/folders/3c/zfqcqsts0kn19cgblj
 codex
 I confirmed a concrete risk path: any banner prepended before frontmatter can make indexed `quality_score` parse as `0`, even when workflow quality gates passed. I’m doing one final pass for downstream consumers of `stats.qualityScore`/`quality_score` so we can judge consolidation blast radius accurately.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2448,2472p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2448,2472p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2448	        contextDir,
   2449	        specFolder,
   2450	        specFolderName,
@@ -1091,30 +1091,30 @@ exec
   2466	      };
   2467	  });
 exec
-/bin/zsh -lc "rg -n \"stats\\.qualityScore|qualityScore:\\s*qualityResult\\.score|quality_score|extractQualityScore\\(\" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:39:    'quality_score: 0.95',
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:48:// 3. Valid frontmatter with quality_score: 0.85 -> 0.85
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:50:  const content = ['---', 'quality_score: 0.85', '---', 'Body text'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:54:// 4. quality_score > 1 -> clamped to 1.0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:56:  const content = ['---', 'quality_score: 1.75', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:60:// 5. quality_score < 0 -> clamped to 0.0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:62:  const content = ['---', 'quality_score: -0.25', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:66:// 6. quality_score: NaN or non-numeric -> 0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:68:  const nanContent = ['---', 'quality_score: NaN', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:69:  const textContent = ['---', 'quality_score: not-a-number', '---'].join('\n');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:75:// 7. quality_score in body text but NOT in frontmatter -> must return 0
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:81:    'quality_score: 0.99',
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
+/bin/zsh -lc "rg -n \"stats\\.qualityScore|qualityScore:\\s*qualityResult\\.score|quality_score|extractQualityScore\\(\" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:39:    'quality_score: 0.95',
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:48:// 3. Valid frontmatter with quality_score: 0.85 -> 0.85
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:50:  const content = ['---', 'quality_score: 0.85', '---', 'Body text'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:54:// 4. quality_score > 1 -> clamped to 1.0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:56:  const content = ['---', 'quality_score: 1.75', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:60:// 5. quality_score < 0 -> clamped to 0.0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:62:  const content = ['---', 'quality_score: -0.25', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:66:// 6. quality_score: NaN or non-numeric -> 0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:68:  const nanContent = ['---', 'quality_score: NaN', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:69:  const textContent = ['---', 'quality_score: not-a-number', '---'].join('\n');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:75:// 7. quality_score in body text but NOT in frontmatter -> must return 0
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:81:    'quality_score: 0.99',
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '760,790p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts | sed -n '118,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '760,790p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts | sed -n '118,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    760	    enableSessionBoost: enableSessionBoost = isSessionBoostEnabled(),
    761	    enableCausalBoost: enableCausalBoost = isCausalBoostEnabled(),
    762	    minQualityScore,
@@ -1157,7 +1157,7 @@ exec
    136	  intent: intentEnum.optional(),
    137	  autoDetectIntent: z.boolean().optional(),
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '82,106p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '82,106p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     82	  if (typeof threshold !== 'number' || !Number.isFinite(threshold)) {
     83	    return results;
     84	  }
@@ -1181,42 +1181,42 @@ exec
 codex
 **Findings (Severity-Ordered)**  
 1. **Critical:** Indexed `quality_score` can be forced to `0` even when quality gates pass.  
-Evidence chain: warnings/comments can be prepended before frontmatter in [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168), [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2174), [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252); indexing uses that final content in [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2384); extractor requires frontmatter at byte 0 in [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:5), [quality-extractors.ts:12](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:12), [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21), and “no frontmatter => 0” is tested in [quality-extractors.test.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:35). Index write uses that extracted value in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).  
+Evidence chain: warnings/comments can be prepended before frontmatter in [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168), [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2174), [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252); indexing uses that final content in [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2384); extractor requires frontmatter at byte 0 in [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:5), [quality-extractors.ts:12](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:12), [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21), and “no frontmatter => 0” is tested in [quality-extractors.test.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:35). Index write uses that extracted value in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).  
 
 2. **High:** Legacy and v2 scores are intentionally decoupled and can disagree in opposite directions.  
-v2 is computed/injected in [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2138).  
-Abort/index gates use legacy scorer output (`qualityResult.score01`) in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2378).  
-Test explicitly proves disagreement case (legacy 0.4 vs v2 0.9) in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266), [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274), [task-enrichment.vitest.ts:1303](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1303).  
+v2 is computed/injected in [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2138).  
+Abort/index gates use legacy scorer output (`qualityResult.score01`) in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2378).  
+Test explicitly proves disagreement case (legacy 0.4 vs v2 0.9) in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266), [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274), [task-enrichment.vitest.ts:1303](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1303).  
 
 3. **Medium:** RC-7 note is misleading about what `metadata.filtering.qualityScore` is.  
-`metadata.filtering` spreads `filterPipeline.getStats()` in [workflow.ts:2052](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2052). That score is from content-filter math (`0-100`) in [content-filter.ts:400](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:400), [content-filter.ts:447](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:447), not from `core/quality-scorer.ts`.
+`metadata.filtering` spreads `filterPipeline.getStats()` in [workflow.ts:2052](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2052). That score is from content-filter math (`0-100`) in [content-filter.ts:400](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:400), [content-filter.ts:447](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:447), not from `core/quality-scorer.ts`.
 
 ---
 
 1. **Map of both systems (compute + consume)**  
-- **Legacy scorer (`core/quality-scorer.ts`)**: computes `score01` + `score100` aliases in [quality-scorer.ts:340](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:340).  
-  Consumers: workflow abort gate/index gate/stats in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2378), [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2463).  
-- **V2 scorer (`extractors/quality-scorer.ts`)**: computes normalized score and flags in [extractors/quality-scorer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:66), [extractors/quality-scorer.ts:205](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:205).  
-  Consumers: written to frontmatter in [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2138), parsed for DB indexing in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).
+- **Legacy scorer (`core/quality-scorer.ts`)**: computes `score01` + `score100` aliases in [quality-scorer.ts:340](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:340).  
+  Consumers: workflow abort gate/index gate/stats in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2378), [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2463).  
+- **V2 scorer (`extractors/quality-scorer.ts`)**: computes normalized score and flags in [extractors/quality-scorer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:66), [extractors/quality-scorer.ts:205](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:205).  
+  Consumers: written to frontmatter in [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2138), parsed for DB indexing in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).
 
 2. **Wrong-scale comparisons found?**  
 - In the audited paths, **no direct 0-100 vs 0-1 threshold comparison bug** was found.  
-- Threshold compares are on normalized `score01` in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214) and [workflow.ts:179](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179).  
+- Threshold compares are on normalized `score01` in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214) and [workflow.ts:179](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179).  
 - Main risk is **semantic disagreement**, not direct wrong-scale math.
 
 3. **Thresholds**  
-- `qualityAbortThreshold` configured + normalized in [config.ts:98](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:98), [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:110), default `0.15` in [config.ts:239](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:239).  
-- Indexing gate uses that threshold in [workflow.ts:2379](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379).  
-- `memory-indexer.ts` itself has **no threshold gate**; it indexes whatever workflow allows, then stores extracted quality in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).
+- `qualityAbortThreshold` configured + normalized in [config.ts:98](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:98), [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:110), default `0.15` in [config.ts:239](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:239).  
+- Indexing gate uses that threshold in [workflow.ts:2379](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379).  
+- `memory-indexer.ts` itself has **no threshold gate**; it indexes whatever workflow allows, then stores extracted quality in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).
 
 4. **Can the two scores disagree?**  
 - **Yes, definitely.**  
-- Proven by test fixture with legacy low / v2 high in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266) and [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274).  
+- Proven by test fixture with legacy low / v2 high in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266) and [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274).  
 - Also can disagree at persistence time due frontmatter-offset issue (Finding 1).
 
 5. **Is consolidation safe now?**  
 - **Not fully safe as a hard cutover right now.**  
-- Backward-compat surfaces exist: workflow public stats are 0-100 in [workflow.ts:136](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:136) and [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2463); config accepts legacy threshold inputs in [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:110); search APIs expect DB `quality_score` in `[0,1]` in [tool-input-schemas.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:129).  
+- Backward-compat surfaces exist: workflow public stats are 0-100 in [workflow.ts:136](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:136) and [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2463); config accepts legacy threshold inputs in [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:110); search APIs expect DB `quality_score` in `[0,1]` in [tool-input-schemas.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:129).  
 - Safe path is phased: fix frontmatter/indexing extraction consistency first, then migrate consumers while preserving aliases.
 
 `npm run test:task-enrichment` could not run in this sandbox (`EPERM mkdir .../ssr`), so this audit is static-code validated plus existing test-fixture evidence.
@@ -1224,42 +1224,42 @@ tokens used
 141,511
 **Findings (Severity-Ordered)**  
 1. **Critical:** Indexed `quality_score` can be forced to `0` even when quality gates pass.  
-Evidence chain: warnings/comments can be prepended before frontmatter in [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168), [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2174), [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252); indexing uses that final content in [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2384); extractor requires frontmatter at byte 0 in [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:5), [quality-extractors.ts:12](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:12), [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21), and “no frontmatter => 0” is tested in [quality-extractors.test.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:35). Index write uses that extracted value in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).  
+Evidence chain: warnings/comments can be prepended before frontmatter in [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168), [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2174), [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252); indexing uses that final content in [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2384); extractor requires frontmatter at byte 0 in [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:5), [quality-extractors.ts:12](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:12), [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21), and “no frontmatter => 0” is tested in [quality-extractors.test.ts:35](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:35). Index write uses that extracted value in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).  
 
 2. **High:** Legacy and v2 scores are intentionally decoupled and can disagree in opposite directions.  
-v2 is computed/injected in [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2138).  
-Abort/index gates use legacy scorer output (`qualityResult.score01`) in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2378).  
-Test explicitly proves disagreement case (legacy 0.4 vs v2 0.9) in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266), [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274), [task-enrichment.vitest.ts:1303](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1303).  
+v2 is computed/injected in [workflow.ts:2127](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2127), [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2138).  
+Abort/index gates use legacy scorer output (`qualityResult.score01`) in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2378).  
+Test explicitly proves disagreement case (legacy 0.4 vs v2 0.9) in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266), [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274), [task-enrichment.vitest.ts:1303](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1303).  
 
 3. **Medium:** RC-7 note is misleading about what `metadata.filtering.qualityScore` is.  
-`metadata.filtering` spreads `filterPipeline.getStats()` in [workflow.ts:2052](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2052). That score is from content-filter math (`0-100`) in [content-filter.ts:400](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:400), [content-filter.ts:447](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:447), not from `core/quality-scorer.ts`.
+`metadata.filtering` spreads `filterPipeline.getStats()` in [workflow.ts:2052](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2052). That score is from content-filter math (`0-100`) in [content-filter.ts:400](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:400), [content-filter.ts:447](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:447), not from `core/quality-scorer.ts`.
 
 ---
 
 1. **Map of both systems (compute + consume)**  
-- **Legacy scorer (`core/quality-scorer.ts`)**: computes `score01` + `score100` aliases in [quality-scorer.ts:340](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:340).  
-  Consumers: workflow abort gate/index gate/stats in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2378), [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2463).  
-- **V2 scorer (`extractors/quality-scorer.ts`)**: computes normalized score and flags in [extractors/quality-scorer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:66), [extractors/quality-scorer.ts:205](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:205).  
-  Consumers: written to frontmatter in [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2138), parsed for DB indexing in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).
+- **Legacy scorer (`core/quality-scorer.ts`)**: computes `score01` + `score100` aliases in [quality-scorer.ts:340](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:340).  
+  Consumers: workflow abort gate/index gate/stats in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), [workflow.ts:2378](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2378), [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2463).  
+- **V2 scorer (`extractors/quality-scorer.ts`)**: computes normalized score and flags in [extractors/quality-scorer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:66), [extractors/quality-scorer.ts:205](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:205).  
+  Consumers: written to frontmatter in [workflow.ts:2138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2138), parsed for DB indexing in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).
 
 2. **Wrong-scale comparisons found?**  
 - In the audited paths, **no direct 0-100 vs 0-1 threshold comparison bug** was found.  
-- Threshold compares are on normalized `score01` in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214) and [workflow.ts:179](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179).  
+- Threshold compares are on normalized `score01` in [workflow.ts:2214](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214) and [workflow.ts:179](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179).  
 - Main risk is **semantic disagreement**, not direct wrong-scale math.
 
 3. **Thresholds**  
-- `qualityAbortThreshold` configured + normalized in [config.ts:98](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:98), [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:110), default `0.15` in [config.ts:239](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:239).  
-- Indexing gate uses that threshold in [workflow.ts:2379](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379).  
-- `memory-indexer.ts` itself has **no threshold gate**; it indexes whatever workflow allows, then stores extracted quality in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123).
+- `qualityAbortThreshold` configured + normalized in [config.ts:98](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:98), [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:110), default `0.15` in [config.ts:239](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:239).  
+- Indexing gate uses that threshold in [workflow.ts:2379](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379).  
+- `memory-indexer.ts` itself has **no threshold gate**; it indexes whatever workflow allows, then stores extracted quality in [memory-indexer.ts:123](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123).
 
 4. **Can the two scores disagree?**  
 - **Yes, definitely.**  
-- Proven by test fixture with legacy low / v2 high in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266) and [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274).  
+- Proven by test fixture with legacy low / v2 high in [task-enrichment.vitest.ts:1266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1266) and [task-enrichment.vitest.ts:1274](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1274).  
 - Also can disagree at persistence time due frontmatter-offset issue (Finding 1).
 
 5. **Is consolidation safe now?**  
 - **Not fully safe as a hard cutover right now.**  
-- Backward-compat surfaces exist: workflow public stats are 0-100 in [workflow.ts:136](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:136) and [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2463); config accepts legacy threshold inputs in [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:110); search APIs expect DB `quality_score` in `[0,1]` in [tool-input-schemas.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:129).  
+- Backward-compat surfaces exist: workflow public stats are 0-100 in [workflow.ts:136](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:136) and [workflow.ts:2463](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2463); config accepts legacy threshold inputs in [config.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:110); search APIs expect DB `quality_score` in `[0,1]` in [tool-input-schemas.ts:129](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:129).  
 - Safe path is phased: fix frontmatter/indexing extraction consistency first, then migrate consumers while preserving aliases.
 
 `npm run test:task-enrichment` could not run in this sandbox (`EPERM mkdir .../ssr`), so this audit is static-code validated plus existing test-fixture evidence.

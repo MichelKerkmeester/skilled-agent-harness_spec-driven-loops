@@ -15,7 +15,7 @@ Per the original 026 release-readiness program assessment:
 
 1. **Read inputs**:
    - `specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation/{spec,plan,tasks,checklist,implementation-summary,decision-record}.md`
-   - Plugin loader code under `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` and `.opencode/plugins/`
+   - Plugin loader code under `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` and `.opencode/plugins/`
    - Focused test files cited in implementation-summary
    - Look at `.github/hooks/superset-notify.json` to assess the structural blocker
 

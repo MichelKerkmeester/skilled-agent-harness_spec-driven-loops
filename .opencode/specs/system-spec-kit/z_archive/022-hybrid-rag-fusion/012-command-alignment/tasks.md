@@ -58,7 +58,7 @@ _memory:
 
 ### T00: Recount live tool inventory
 - **Priority:** P0
-- **Files:** `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- **Files:** `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - **Action:** Count `TOOL_DEFINITIONS` and confirm the live total is 33.
 - **Acceptance:** The reconciled 012 pack uses 33 as the only valid tool count.
 - **Covers:** CA-001
@@ -66,7 +66,7 @@ _memory:
 
 ### T01: Verify live memory command surface
 - **Priority:** P0
-- **Files:** `.opencode/command/memory/`
+- **Files:** `.opencode/commands/memory/`
 - **Action:** Confirm the live memory suite contains `search`, `learn`, `manage`, and `save`, that session recovery now lives under `/spec_kit:resume`, and that no standalone `analyze`, `shared`, or `context` command file exists.
 - **Acceptance:** The reconciled 012 pack uses a 4-command memory model, records `/spec_kit:resume` as the recovery workflow, and removes the standalone `analyze`, `shared`, and `context` command assumptions.
 - **Covers:** CA-002, CA-003
@@ -74,7 +74,7 @@ _memory:
 
 ### T02: Verify retrieval ownership
 - **Priority:** P0
-- **Files:** `.opencode/command/memory/search.md`, `.opencode/command/memory/manage.md`, `.opencode/command/memory/README.txt`
+- **Files:** `.opencode/commands/memory/search.md`, `.opencode/commands/memory/manage.md`, `.opencode/commands/memory/README.txt`
 - **Action:** Confirm `/memory:search` is the documented home for retrieval, `memory_quick_search`, analysis/eval tooling, and learning history, and confirm shared lifecycle lives under `/memory:manage shared`.
 - **Acceptance:** The reconciled 012 pack assigns retrieval ownership to `/memory:search` and shared lifecycle ownership to `/memory:manage shared`.
 - **Covers:** CA-004, CA-005
@@ -90,7 +90,7 @@ _memory:
 - **Priority:** P0
 - **File:** `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/spec.md`
 - **Action:** Replace stale 32-tool, `/memory:analyze`, `/memory:shared`, and stale 5-command planning language with live repo truth.
-- **Acceptance:** `spec.md` describes a 33-tool surface, a 4-command memory suite, session recovery under `.opencode/command/spec_kit/resume.md`, retrieval under `.opencode/command/memory/search.md`, and shared lifecycle under `.opencode/command/memory/manage.md`.
+- **Acceptance:** `spec.md` describes a 33-tool surface, a 4-command memory suite, session recovery under `.opencode/commands/spec_kit/resume.md`, retrieval under `.opencode/commands/memory/search.md`, and shared lifecycle under `.opencode/commands/memory/manage.md`.
 - **Covers:** CA-001, CA-002, CA-003, CA-004
 - [x] Done
 

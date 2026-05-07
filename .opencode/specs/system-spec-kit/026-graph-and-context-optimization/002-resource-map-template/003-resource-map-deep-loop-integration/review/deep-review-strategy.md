@@ -76,30 +76,30 @@ Audit the resource-map deep-loop integration packet across the shared extractor,
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
+### `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
+- Do NOT retry: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` and `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` gate emission behind `--emit-resource-map` plus config opt-out rather than always writing.
 
-### `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic.
+### `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic.
+- Do NOT retry: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` emits the resource map through the shared extractor rather than duplicating path logic.
 
-### `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
+### `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
+- Do NOT retry: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` only imports `node:fs` and `node:path`, rejects traversal-style `../` candidates, and ignores URLs.
 
-### `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior.
+### `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior.
+- Do NOT retry: `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` correctly scopes the extractor to repo paths and deterministic degradation behavior.
 
-### `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
+### `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
+- Do NOT retry: `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
 
 ### `checklist_evidence`: fail - completion surfaces cannot be independently verified because the packet simultaneously claims both failure and completion for `T035`. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: `checklist_evidence`: fail - completion surfaces cannot be independently verified because the packet simultaneously claims both failure and completion for `T035`.
@@ -252,25 +252,25 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
 - The packet root has no `resource-map.md`; the coverage gate is informationally skipped at init.
 - The intended review order is correctness -> security -> traceability -> maintainability, then cross-cutting stabilization passes.
 - Files in scope for review:
-  1. `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`
-  2. `.opencode/skill/system-spec-kit/scripts/resource-map/README.md`
-  3. `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts`
-  4. `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs`
-  5. `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-  6. `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-  7. `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-  8. `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  9. `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-  10. `.opencode/skill/sk-deep-review/SKILL.md`
-  11. `.opencode/skill/sk-deep-research/SKILL.md`
-  12. `.opencode/command/spec_kit/deep-review.md`
-  13. `.opencode/command/spec_kit/deep-research.md`
-  14. `.opencode/skill/sk-deep-review/references/convergence.md`
-  15. `.opencode/skill/sk-deep-research/references/convergence.md`
-  16. `.opencode/skill/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
-  17. `.opencode/skill/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
-  18. `.opencode/skill/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md`
-  19. `.opencode/skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md`
+  1. `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`
+  2. `.opencode/skills/system-spec-kit/scripts/resource-map/README.md`
+  3. `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts`
+  4. `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+  5. `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+  6. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+  7. `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+  8. `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+  9. `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  10. `.opencode/skills/sk-deep-review/SKILL.md`
+  11. `.opencode/skills/sk-deep-research/SKILL.md`
+  12. `.opencode/commands/spec_kit/deep-review.md`
+  13. `.opencode/commands/spec_kit/deep-research.md`
+  14. `.opencode/skills/sk-deep-review/references/convergence.md`
+  15. `.opencode/skills/sk-deep-research/references/convergence.md`
+  16. `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
+  17. `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
+  18. `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md`
+  19. `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md`
   20. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/spec.md`
   21. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/plan.md`
   22. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/tasks.md`
@@ -301,25 +301,25 @@ None. Proceed to synthesis and remediation planning for the four recorded findin
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-review/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-research/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/deep-review.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/command/spec_kit/deep-research.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/SKILL.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/deep-review.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/commands/spec_kit/deep-research.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/spec.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/plan.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/tasks.md` | — | 0 | 0 P0, 0 P1, 0 P2 | pending |

@@ -142,7 +142,7 @@ Fix remaining MEDIUM severity bugs, add input validation, and begin documentatio
 
 | Task ID | Bug ID | Description | File | Est. |
 |---------|--------|-------------|------|------|
-| T-WS4-001 | BUG-M4 | Create debug command YAML assets | `.opencode/command/spec_kit/assets/` | 1h |
+| T-WS4-001 | BUG-M4 | Create debug command YAML assets | `.opencode/commands/spec_kit/assets/` | 1h |
 
 ### Work Stream 8: Security & Config
 
@@ -239,12 +239,12 @@ Address remaining technical debt items as capacity allows.
 ### Database Rollback
 ```bash
 # Before any changes, backup database
-cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
-   .opencode/skill/system-spec-kit/database/context-index.sqlite.backup
+cp .opencode/skills/system-spec-kit/database/context-index.sqlite \
+   .opencode/skills/system-spec-kit/database/context-index.sqlite.backup
 
 # To restore
-cp .opencode/skill/system-spec-kit/database/context-index.sqlite.backup \
-   .opencode/skill/system-spec-kit/database/context-index.sqlite
+cp .opencode/skills/system-spec-kit/database/context-index.sqlite.backup \
+   .opencode/skills/system-spec-kit/database/context-index.sqlite
 ```
 
 ---

@@ -85,7 +85,7 @@ _memory:
 - [x] T020 Run `npx vitest run --config vitest.stress.config.ts mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` -> 5 tests pass, zero skips
 - [x] T021 Run `npx vitest run mcp_server/tests/code-graph-*.vitest.ts` → 34 tests pass, zero regressions
 - [x] T022 `git status` shows changes only in `mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` and `013-graph-degraded-stress-cell/`
-- [x] T023 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → structural errors = 0
+- [x] T023 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → structural errors = 0
 <!-- /ANCHOR:phase-3 -->
 
 ---

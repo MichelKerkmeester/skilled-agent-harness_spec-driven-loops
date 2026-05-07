@@ -12,9 +12,9 @@ contextType: "planning"
 # Plan: 009-prototype-backlog
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/decision-record.md`
 
 ## Implementation Order

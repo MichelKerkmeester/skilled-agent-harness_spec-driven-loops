@@ -5,7 +5,7 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 
 ## Findings
 ### Finding 1: The **before** architecture already has three distinct authority planes: retrieval, recovery/routing, and explicit maintenance
-- **Source**: `README.md`, `opencode.json`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts` [SOURCE: `README.md:522-547,657-698`; `opencode.json:19-59`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-706,739-776`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815,891-927`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-124,143-156,163-209`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1394`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-267`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-58`]
+- **Source**: `README.md`, `opencode.json`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts` [SOURCE: `README.md:522-547,657-698`; `opencode.json:19-59`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-706,739-776`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815,891-927`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-124,143-156,163-209`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1394`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-267`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-58`]
 - **What it does**: Public already separates concerns cleanly:
 
   ```text
@@ -69,7 +69,7 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 - **Source strength**: primary
 
 ### Finding 3: The main new control-plane element is a thin planner surface that sits **above** existing authorities
-- **Source**: `external/src/cli.ts`, `external/src/sync/index.ts`, `research/iterations/iteration-031.md`, `research/iterations/iteration-032.md`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` [SOURCE: `external/src/cli.ts:28-161`; `external/src/sync/index.ts:29-210`; `research/iterations/iteration-031.md:18-37`; `research/iterations/iteration-032.md:50-91`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:7-27,39-45`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101-124,163-209`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1301-1394`]
+- **Source**: `external/src/cli.ts`, `external/src/sync/index.ts`, `research/iterations/iteration-031.md`, `research/iterations/iteration-032.md`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` [SOURCE: `external/src/cli.ts:28-161`; `external/src/sync/index.ts:29-210`; `research/iterations/iteration-031.md:18-37`; `research/iterations/iteration-032.md:50-91`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:7-27,39-45`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101-124,163-209`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1301-1394`]
 - **What it does**: The operator-facing evolution is not “integrity checker only.” It is a planner/wrapper surface that can run integrity checks, summarize readiness, emit repair briefs, and route operators to the correct existing tool without taking over mutation authority itself.
 
   ```text
@@ -95,7 +95,7 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 - **Source strength**: primary
 
 ### Finding 4: Session startup and recovery stay canonical; integrity only adds advisory context and routing hints
-- **Source**: `README.md`, `.opencode/command/spec_kit/resume.md`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md` [SOURCE: `README.md:522-547,657-665`; `.opencode/command/spec_kit/resume.md:202-223,248-280`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113-124,143-156,163-209`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:15-20`]
+- **Source**: `README.md`, `.opencode/commands/spec_kit/resume.md`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `research/iterations/iteration-035.md`, `research/iterations/iteration-036.md` [SOURCE: `README.md:522-547,657-665`; `.opencode/commands/spec_kit/resume.md:202-223,248-280`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113-124,143-156,163-209`; `research/iterations/iteration-035.md:15-21`; `research/iterations/iteration-036.md:15-20`]
 - **What it does**: The after-map does **not** move startup authority to a markdown router. `session_bootstrap` and `/spec_kit:resume` still own recovery, structural readiness, and next actions. The new integrity lane can annotate those flows with “docs look stale” or “integrity check recommended” hints, but it does not become the entry point for session continuity.
 - **Why it matters**: This preserves the strongest existing Public capability that Mex does not have: structured, merged session recovery. The new lane improves observability without regressing the recovery contract agents already depend on.
 - **Recommendation**: adopt now
@@ -115,14 +115,14 @@ ARCHITECTURE EVOLUTION MAP: Draw the before/after architecture showing exactly w
 ## Sources Consulted
 - `README.md:522-547,657-698`
 - `opencode.json:19-59`
-- `.opencode/command/spec_kit/resume.md:202-223,248-280`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-706,739-776`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815,891-927`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-209`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1394`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-267`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-58`
+- `.opencode/commands/spec_kit/resume.md:202-223,248-280`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-44,623-706,739-776`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815,891-927`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-209`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-440`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1187-1262,1273-1394`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-267`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-58`
 - `external/README.md:72-87,81-87,178-198`
 - `external/src/cli.ts:28-161`
 - `external/src/sync/index.ts:29-210`

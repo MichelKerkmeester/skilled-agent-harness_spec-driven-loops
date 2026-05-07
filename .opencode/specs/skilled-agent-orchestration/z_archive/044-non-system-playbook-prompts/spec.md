@@ -38,11 +38,11 @@ _memory:
     next_safe_action: "Implement the prompt rewrite only inside the five scoped documentation targets"
     blockers: []
     key_files:
-      - ".opencode/skill/mcp-coco-index/manual_testing_playbook/"
-      - ".opencode/skill/sk-improve-agent/manual_testing_playbook/"
-      - ".opencode/skill/sk-deep-research/manual_testing_playbook/"
-      - ".opencode/skill/sk-deep-review/manual_testing_playbook/"
-      - ".opencode/skill/sk-doc/assets/documentation/testing_playbook/"
+      - ".opencode/skills/mcp-coco-index/manual_testing_playbook/"
+      - ".opencode/skills/sk-improve-agent/manual_testing_playbook/"
+      - ".opencode/skills/sk-deep-research/manual_testing_playbook/"
+      - ".opencode/skills/sk-deep-review/manual_testing_playbook/"
+      - ".opencode/skills/sk-doc/assets/documentation/testing_playbook/"
     session_dedup:
       fingerprint: "sha256:044-non-system-playbook-prompts"
       session_id: "044-non-system-playbook-prompts"
@@ -105,7 +105,7 @@ Define the exact Level 2 rewrite scope for modernizing prompt and scenario-contr
 
 ### Out of Scope
 
-- Any edits under `.opencode/skill/system-spec-kit/manual_testing_playbook/`.
+- Any edits under `.opencode/skills/system-spec-kit/manual_testing_playbook/`.
 - Creating, deleting, or renumbering scenarios or category folders.
 - Changing runtime code, command YAML, agent definitions, or skill behavior.
 - Expanding the work into feature-catalog creation, validator changes, or playbook architecture redesign.
@@ -114,11 +114,11 @@ Define the exact Level 2 rewrite scope for modernizing prompt and scenario-contr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/` | Modify | Modernize root and per-scenario prompt wording across 24 playbook files |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/` | Modify | Modernize root and per-scenario prompt wording across 32 playbook files |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/` | Modify | Harmonize existing rich prompt language across 35 files without changing scenario inventory |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/` | Modify | Harmonize existing rich prompt language across 33 files without changing scenario inventory |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Modify | Update `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` and `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` to define the modernization target contract |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/` | Modify | Modernize root and per-scenario prompt wording across 24 playbook files |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/` | Modify | Modernize root and per-scenario prompt wording across 32 playbook files |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/` | Modify | Harmonize existing rich prompt language across 35 files without changing scenario inventory |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/` | Modify | Harmonize existing rich prompt language across 33 files without changing scenario inventory |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Modify | Update `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` and `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` to define the modernization target contract |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -141,7 +141,7 @@ Define the exact Level 2 rewrite scope for modernizing prompt and scenario-contr
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-006 | Bring older playbooks up to the newer orchestrator-led wording standard | Older compact prompt formats in `mcp-coco-index` and `sk-improve-agent` are upgraded to the richer style already used in newer playbooks where appropriate |
-| REQ-007 | Keep `sk-doc` templates in sync with the final rewrite style | `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` and `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` reflect the same prompt contract used in the rewritten target files |
+| REQ-007 | Keep `sk-doc` templates in sync with the final rewrite style | `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` and `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` reflect the same prompt contract used in the rewritten target files |
 | REQ-008 | Preserve destructive and sensitive scenario safeguards | Any scenario involving reset, rebuild, or mutation keeps its current isolation or recovery warnings after wording updates |
 | REQ-009 | Make verification practical for a 126-file documentation batch | The implementation plan defines file-count parity checks, prompt-contract sweeps, and spot-check rules instead of relying on ad hoc review |
 
@@ -172,7 +172,7 @@ Define the exact Level 2 rewrite scope for modernizing prompt and scenario-contr
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Existing playbook files across the five scoped targets | The rewrite can only be accurate if current docs are treated as source material first | Inventory all 126 files, then batch by target before editing |
-| Dependency | `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` templates | If templates drift from rewritten files, future packets will reintroduce inconsistency | Update the two template assets as part of the same batch |
+| Dependency | `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` templates | If templates drift from rewritten files, future packets will reintroduce inconsistency | Update the two template assets as part of the same batch |
 | Risk | Volume-based drift across 126 files | Medium | Use target-by-target workstreams plus prompt-contract sweeps after each batch |
 | Risk | Scope creep into structure or runtime behavior | Medium | Freeze IDs, folders, counts, and non-doc surfaces as hard boundaries |
 | Risk | Prompt wording accidentally changes behavioral meaning | Medium | Anchor edits to live source docs and keep deterministic command sequences intact |

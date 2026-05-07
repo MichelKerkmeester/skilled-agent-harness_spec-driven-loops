@@ -22,7 +22,7 @@ Phase `001-agent-lightning-main` is a read-only research packet that studies the
 
 **Key Decisions**: Keep all writes inside this phase folder; treat `external/` as read-only; prefer static source analysis over runtime reproduction; require exact file:line citations in every iteration artifact.
 
-**Critical Dependencies**: Phase brief at `phase-research-prompt.md`; Level 3 phase docs; strict validation via `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`; bundled Agent Lightning checkout under `external/`; comparison targets under `.opencode/skill/system-spec-kit/`, `.opencode/command/`, and `.opencode/agent/`.
+**Critical Dependencies**: Phase brief at `phase-research-prompt.md`; Level 3 phase docs; strict validation via `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`; bundled Agent Lightning checkout under `external/`; comparison targets under `.opencode/skills/system-spec-kit/`, `.opencode/commands/`, and `.opencode/agents/`.
 
 ---
 
@@ -44,7 +44,7 @@ Phase `001-agent-lightning-main` is a read-only research packet that studies the
 
 ### Problem Statement
 
-`Code_Environment/Public` already has mature orchestration and recovery surfaces in `.opencode/agent/`, Spec Kit Memory, validation gates, and command workflows, but it does not yet have an evidence-backed answer for whether RL-oriented tracing and reward patterns would strengthen `system-spec-kit` or merely duplicate existing prompt and workflow orchestration. Agent Lightning specifically claims zero-code-change observability plus pluggable optimization loops; without a function-level audit of how its tracer, store, adapter, trainer, and algorithm modules actually interact, any attempt to import those ideas into `system-spec-kit` would be speculative and likely mis-scoped.
+`Code_Environment/Public` already has mature orchestration and recovery surfaces in `.opencode/agents/`, Spec Kit Memory, validation gates, and command workflows, but it does not yet have an evidence-backed answer for whether RL-oriented tracing and reward patterns would strengthen `system-spec-kit` or merely duplicate existing prompt and workflow orchestration. Agent Lightning specifically claims zero-code-change observability plus pluggable optimization loops; without a function-level audit of how its tracer, store, adapter, trainer, and algorithm modules actually interact, any attempt to import those ideas into `system-spec-kit` would be speculative and likely mis-scoped.
 
 ### Purpose
 
@@ -67,13 +67,13 @@ Produce a three-wave, 30-iteration evidence-backed research report that classifi
   - `agentlightning/algorithm/`
   - representative `examples/` and `docs/`
 - Comparison against existing Public surfaces:
-  - `.opencode/skill/system-spec-kit/SKILL.md`
-  - `.opencode/skill/system-spec-kit/scripts/`
-  - `.opencode/skill/system-spec-kit/mcp_server/`
-  - `.opencode/skill/system-spec-kit/constitutional/`
-  - `.opencode/command/spec_kit/`
-  - `.opencode/command/memory/`
-  - `.opencode/agent/`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/scripts/`
+  - `.opencode/skills/system-spec-kit/mcp_server/`
+  - `.opencode/skills/system-spec-kit/constitutional/`
+  - `.opencode/commands/spec_kit/`
+  - `.opencode/commands/memory/`
+  - `.opencode/agents/`
 - Thirty dated research iteration artifacts under `research/iterations/`
 - State tracking in `research/deep-research-state.jsonl`
 - Canonical synthesis in `research/research.md`
@@ -279,7 +279,7 @@ Produce a three-wave, 30-iteration evidence-backed research report that classifi
 ## 12. OPEN QUESTIONS
 
 - Which Agent Lightning subsystem yields the highest-value first adoption target for `system-spec-kit`: tracing seam, reward schema, store contract, or trainer pluggability?
-- Does Agent Lightning's selective multi-agent optimization model map more naturally to `.opencode/agent/orchestrate.md` or to future evaluator-style workflows?
+- Does Agent Lightning's selective multi-agent optimization model map more naturally to `.opencode/agents/orchestrate.md` or to future evaluator-style workflows?
 - Which Public write path, if any, could safely host deterministic span or reward summaries without overloading existing memory-save flows?
 <!-- /ANCHOR:questions -->
 

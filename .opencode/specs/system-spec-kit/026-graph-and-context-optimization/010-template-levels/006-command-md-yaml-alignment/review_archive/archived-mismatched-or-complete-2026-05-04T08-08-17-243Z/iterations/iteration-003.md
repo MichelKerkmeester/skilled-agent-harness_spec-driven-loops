@@ -29,7 +29,7 @@
 - `spec_code`: fail; strict validation fails and target spec remains placeholder content.
 
 ## Integration Evidence
-- Validation gate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` strict mode output.
+- Validation gate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` strict mode output.
 
 ## Edge Cases
 - The shell output provides command evidence, but active finding citation remains tied to target source marker line.

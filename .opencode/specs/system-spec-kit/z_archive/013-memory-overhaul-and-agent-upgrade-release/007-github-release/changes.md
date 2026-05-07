@@ -46,7 +46,7 @@ Cross-system documentation alignment following 11 source specs (014-016 agent sy
 - **Command configs aligned** - Memory and spec_kit command docs updated for current parameter naming and agent routing behavior
 - **Root README statistics** - Updated feature descriptions and technical statistics to match current system state
 - **Install guide accuracy** - Corrected component counts and wording in install guide documentation
-- **Skill catalog refreshed** - Updated .opencode/skill/README.md and workflow skill READMEs
+- **Skill catalog refreshed** - Updated .opencode/skills/README.md and workflow skill READMEs
 - **3 changelog entries created** - Environment v2.1.0.0, Spec-Kit v2.2.19.0, Agent Orchestration v2.0.4.0
 
 #### Breaking Changes

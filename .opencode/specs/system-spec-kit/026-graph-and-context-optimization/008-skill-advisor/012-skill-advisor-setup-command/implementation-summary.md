@@ -39,7 +39,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -62,11 +62,11 @@ You can now run `/doctor:skill-advisor` to interactively analyze every skill in 
 
 ### `/doctor:skill-advisor` slash command
 
-The command markdown lives at `.opencode/command/doctor/skill-advisor.md` and follows the same conventions as the existing `.opencode/command/spec_kit/resume.md` and `.opencode/command/spec_kit/plan.md`: frontmatter with `argument-hint` and `allowed-tools`, an EXECUTION PROTOCOL header that points the runner at the YAML asset, a SINGLE CONSOLIDATED PROMPT for setup (mode, scope, skip-tests, dry-run), and reference sections for scoring system, mutation boundaries, examples, and next-step routing. It supports `:auto` and `:confirm` modes plus `--scope=all|explicit|derived|lexical`, `--dry-run`, and `--skip-tests` flags.
+The command markdown lives at `.opencode/commands/doctor/skill-advisor.md` and follows the same conventions as the existing `.opencode/commands/spec_kit/resume.md` and `.opencode/commands/spec_kit/plan.md`: frontmatter with `argument-hint` and `allowed-tools`, an EXECUTION PROTOCOL header that points the runner at the YAML asset, a SINGLE CONSOLIDATED PROMPT for setup (mode, scope, skip-tests, dry-run), and reference sections for scoring system, mutation boundaries, examples, and next-step routing. It supports `:auto` and `:confirm` modes plus `--scope=all|explicit|derived|lexical`, `--dry-run`, and `--skip-tests` flags.
 
 ### Auto and confirm YAML workflows
 
-Both YAML files in `.opencode/command/spec_kit/assets/` describe the same five-phase pipeline — Discovery, Analysis, Proposal, Apply, Verify — but the `_confirm.yaml` adds approval gates between phases (with a per-skill review loop in Phase 3) while `_auto.yaml` runs end-to-end with self-validation. Mutation boundaries are explicit: only `explicit.ts`, `lexical.ts`, and `.opencode/skill/*/graph-metadata.json` are writeable; SKILL.md content, weights-config.ts, fusion scorer, and daemon code are read-only.
+Both YAML files in `.opencode/commands/spec_kit/assets/` describe the same five-phase pipeline — Discovery, Analysis, Proposal, Apply, Verify — but the `_confirm.yaml` adds approval gates between phases (with a per-skill review loop in Phase 3) while `_auto.yaml` runs end-to-end with self-validation. Mutation boundaries are explicit: only `explicit.ts`, `lexical.ts`, and `.opencode/skills/*/graph-metadata.json` are writeable; SKILL.md content, weights-config.ts, fusion scorer, and daemon code are read-only.
 
 ### User-facing install guide
 
@@ -76,10 +76,10 @@ Both YAML files in `.opencode/command/spec_kit/assets/` describe the same five-p
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/doctor/skill-advisor.md` | Created | Command markdown definition (frontmatter + protocol + reference) |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml` | Created | Autonomous 5-phase workflow (no approval gates) |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_confirm.yaml` | Created | Interactive 5-phase workflow with per-phase + per-skill approval |
-| `.opencode/command/spec_kit/README.txt` | Modified | Added skill-advisor row to commands table, structure tree, and usage example |
+| `.opencode/commands/doctor/skill-advisor.md` | Created | Command markdown definition (frontmatter + protocol + reference) |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml` | Created | Autonomous 5-phase workflow (no approval gates) |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_confirm.yaml` | Created | Interactive 5-phase workflow with per-phase + per-skill approval |
+| `.opencode/commands/spec_kit/README.txt` | Modified | Added skill-advisor row to commands table, structure tree, and usage example |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Created (was broken symlink) | User-facing setup guide with AI-first prompt and rollback procedure |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md` | Modified | Added 012 child phase row, summary, and open-items entry |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md` | Modified | Added 012 row to phase documentation map |
@@ -98,7 +98,7 @@ Both YAML files in `.opencode/command/spec_kit/assets/` describe the same five-p
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Authoring happened in two parallel tracks within a single autonomous run. Track 1 created the three new command files (markdown + auto + confirm YAML) using the existing `.opencode/command/spec_kit/resume.md` and `.opencode/command/spec_kit/deep-review.md` patterns. Track 2 updated the README index, the parent spec folder docs (parent context-index, spec, and tasks files), wrote the install guide replacement for the broken symlink, and added the mandatory description.json + graph-metadata.json metadata files. Both YAML workflows were syntax-validated with `python3 -m yaml`, the new command was confirmed visible in the runtime skills list (`doctor:skill-advisor` registered), and strict spec-folder validation passed cleanly with 0 errors and 0 warnings after fixing pre-existing `template_source_hint` placement in the frontmatter and reformatting acceptance scenarios to the `**Given**/**When**/**Then**` pattern the validator counts.
+Authoring happened in two parallel tracks within a single autonomous run. Track 1 created the three new command files (markdown + auto + confirm YAML) using the existing `.opencode/commands/spec_kit/resume.md` and `.opencode/commands/spec_kit/deep-review.md` patterns. Track 2 updated the README index, the parent spec folder docs (parent context-index, spec, and tasks files), wrote the install guide replacement for the broken symlink, and added the mandatory description.json + graph-metadata.json metadata files. Both YAML workflows were syntax-validated with `python3 -m yaml`, the new command was confirmed visible in the runtime skills list (`doctor:skill-advisor` registered), and strict spec-folder validation passed cleanly with 0 errors and 0 warnings after fixing pre-existing `template_source_hint` placement in the frontmatter and reformatting acceptance scenarios to the `**Given**/**When**/**Then**` pattern the validator counts.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -109,9 +109,9 @@ Authoring happened in two parallel tracks within a single autonomous run. Track 
 | Decision | Why |
 |----------|-----|
 | Built two YAML files (auto + confirm) instead of one with mode branches | Matches the established convention used by every other spec_kit command; the runner picks the file by mode suffix instead of dispatching conditionals inside one file |
-| Replaced broken SET-UP - Skill Advisor symlink with a real file | The symlink pointed at a non-existent target under skill/scripts; the actual operator guide lives at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md` and is for internal operator setup, not end-user onboarding. The new install_guides/ entry is the user-facing surface |
+| Replaced broken SET-UP - Skill Advisor symlink with a real file | The symlink pointed at a non-existent target under skill/scripts; the actual operator guide lives at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md` and is for internal operator setup, not end-user onboarding. The new install_guides/ entry is the user-facing surface |
 | Limited mutation boundaries to `explicit.ts`, `lexical.ts`, per-skill `graph-metadata.json` | The spec explicitly excludes weights-config.ts, fusion scorer, daemon, and SKILL.md content from scope. The YAML enforces this in `mutation_boundaries.forbidden_targets` |
-| Kept the existing operator setup guide at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md` | That doc covers operator concerns (validation, rollback, MCP tool registration). The new install guide is for end-users running the command. They serve different audiences and should not be merged |
+| Kept the existing operator setup guide at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md` | That doc covers operator concerns (validation, rollback, MCP tool registration). The new install guide is for end-users running the command. They serve different audiences and should not be merged |
 | Moved `template_source_hint:` higher in the frontmatter of all 4 child docs | The validator reads the first 20 lines of each file via `head -n 20`. With the long _memory.continuity block the original placement at line 32 was invisible to the validator. Moving it to position 4 (right after `description:`) makes the magic string visible in the head sample and silences the false-positive failure |
 | Reformatted acceptance scenarios with `**Given**/**When**/**Then**` bold markers | The `check-section-counts.sh` validator counts `\*\*Given\*\*` literal occurrences. The original `Scenario 1 — ... Given/When/Then` inline form had zero matches and triggered a "found 0 acceptance scenarios" warning even though the spec had 5 scenarios |
 | Used parallel Write/Edit tool calls within a single assistant turn instead of dispatching sub-agents | The user picked Multi-Agent (1+2) but the actual work was templated authoring with sequential dependencies. Concurrent Write calls preserve the parallel intent without paying agent dispatch overhead or risking style divergence between sub-agents on tightly-coupled command pattern files |
@@ -207,5 +207,5 @@ P0 outstanding: 0. P1 outstanding: 0. P2 outstanding: 0. The packet is now merge
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

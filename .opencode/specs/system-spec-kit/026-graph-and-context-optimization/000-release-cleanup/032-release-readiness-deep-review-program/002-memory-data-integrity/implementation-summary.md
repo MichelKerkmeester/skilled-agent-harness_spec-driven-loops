@@ -107,7 +107,7 @@ The audit read the actual memory handlers, schema, search/index mutation helpers
 |-------|--------|
 | Evidence review | PASS: memory handlers, governance, schema, tests, cache, and search helpers reviewed with file:line citations. |
 | Packet scope | PASS: authored files are packet-local. |
-| Strict validator | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/002-memory-data-integrity --strict`. |
+| Strict validator | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/002-memory-data-integrity --strict`. |
 <!-- /ANCHOR:verification -->
 
 ---

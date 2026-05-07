@@ -4,7 +4,7 @@
 Trace the exact `deriveStatus()` behavior and measure the current active-corpus status mismatch before recommending the smallest phase-001 fix.
 
 ## Findings
-1. `deriveStatus()` still does only one thing after override handling: it reads ranked frontmatter `status` scalars from `implementation-summary.md`, `checklist.md`, `tasks.md`, `plan.md`, and `spec.md`, then falls back to `planned`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
+1. `deriveStatus()` still does only one thing after override handling: it reads ranked frontmatter `status` scalars from `implementation-summary.md`, `checklist.md`, `tasks.md`, `plan.md`, and `spec.md`, then falls back to `planned`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
 2. The active corpus has drifted since iteration 10. On 2026-04-13 there are 360 active `graph-metadata.json` files, and 340 currently store `planned`. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. Of those 340 planned folders, 282 already contain `implementation-summary.md`, so the phase-001 premise still holds even though the older 259-of-344 number is stale. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 4. The literal minimal code change is a fallback immediately after the ranked frontmatter lookup: if `implementation-summary.md` exists and no explicit status was found, return `complete`. That keeps the patch inside `deriveStatus()` and matches the child phase scope. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/001-fix-status-derivation/spec.md]
@@ -16,8 +16,8 @@ Trace the exact `deriveStatus()` behavior and measure the current active-corpus 
 - Assuming the earlier 344-file snapshot still reflected the live corpus.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/001-fix-status-derivation/spec.md`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

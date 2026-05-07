@@ -29,10 +29,10 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 **Problem**: `loadMostRecentState()` in `mcp_server/hooks/claude/hook-state.ts:91-99` picks the newest hook-state file in the entire project by mtime. Three callsites pass no scope filter, so session A startup can surface session B's cached continuity summary. Cross-session leakage risk; violates `012/spec.md` REQ-002 (scope check) and REQ-007 (explicit invalidation).
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:91-99` (the resolver)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:346` (callsite 1)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:467` (callsite 2)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:121` (callsite 3)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:91-99` (the resolver)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:346` (callsite 1)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:467` (callsite 2)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:121` (callsite 3)
 
 **Fix**:
 1. Add an optional `scope` parameter to `loadMostRecentState({ specFolder?: string; claudeSessionId?: string })`. When `scope` is provided, filter the candidate hook-state files to those whose persisted producer metadata matches `specFolder` and/or `claudeSessionId`.
@@ -52,7 +52,7 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 
 **Problem**: When `handleSessionResume()` throws inside `session-bootstrap.ts:201`, the resume payload is reduced to `{ error }` but `session-bootstrap.ts:258` still calls `attachStructuralTrustFields(resumeData, ...)`, attaching synthesized trust to an errored object. That widens trust authority instead of failing closed.
 
-**Affected file**: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:201-258`
+**Affected file**: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:201-258`
 
 **Fix**:
 1. After the resume try/catch, check `resumeData.error`. If set, do NOT call `attachStructuralTrustFields(resumeData, ...)`.
@@ -72,9 +72,9 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 **Problem**: `session-resume.ts:533` emits the `structural-context` section with `certainty` only — no `structuralTrust`. `session-bootstrap.ts:251` then synthesizes trust from a local snapshot via the `??` fallback (`extractStructuralTrustFromPayload(resumePayload) ?? buildStructuralContextTrust(structuralContext)`). Packet 011's spec REQ-002 + impl-summary lines 36/46/79 claim end-to-end resume trust preservation; the runtime does NOT satisfy that claim. The graph-payload-validator vitest at `tests/graph-payload-validator.vitest.ts:138` mocks the resume payload with `structuralTrust` already attached, hiding the gap.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:525-540` (the structural-context section emission)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:251` (the `??` fallback)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:138` (the mock that hides the gap)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:525-540` (the structural-context section emission)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:251` (the `??` fallback)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:138` (the mock that hides the gap)
 
 **Fix**:
 1. In `session-resume.ts`, build a `StructuralTrust` envelope for the structural-context section. Use the same `buildStructuralContextTrust(structuralContext)` helper that bootstrap currently uses (import from `mcp_server/lib/context/shared-payload.ts` if needed). Attach it to the structural-context payload section emitted at line 533, alongside `certainty`.
@@ -90,7 +90,7 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 **Problem**: `scripts/tests/session-cached-consumer.vitest.ts.test.ts:6` imports only the helper-level gate/additive functions and scores a handcrafted baseline object. The test never instantiates `session_resume`, `session_bootstrap`, or `session-prime`. Packet 012's spec REQ-005 + REQ-008 + SC-004 + impl-summary lines 35/47/81 claim "frozen corpus equal-or-better" against live reconstruction — that claim is unverified against the named consumer surfaces.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts` (extend with integration tests, do NOT replace existing helper tests)
+- `.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts` (extend with integration tests, do NOT replace existing helper tests)
 - Reference for test harness: `mcp_server/tests/hook-session-stop-replay.vitest.ts` (this is the existing pattern for mounting producer artifacts via hook-state)
 
 **Fix**:
@@ -115,10 +115,10 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 **Problem**: `mcp_server/lib/eval/warm-start-variant-runner.ts:82` defines `REQUIRED_FINAL_FIELDS = [title, triggers, evidenceBullets, continuationState, decisionRecordPointer, implementationSummaryPointer, followUpResolution]` — all 7 wrapper-derived fields populated by every scenario regardless of variant. Pass-rate is constant by construction (28/28 across all variants in `scratch/benchmark-matrix.md`). The R8 / REQ-006 "equal-or-better pass rate" gate is unfalsifiable. The benchmark reports cost dominance but cannot detect a pass-rate regression.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:82-90` (REQUIRED_FINAL_FIELDS)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:191` (variant runner logic)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:215` (scoring function)
-- `.opencode/skill/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts:176` (corpus)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:82-90` (REQUIRED_FINAL_FIELDS)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:191` (variant runner logic)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:215` (scoring function)
+- `.opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts:176` (corpus)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/research-governance-contracts/z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/scratch/benchmark-matrix.md` (rewrite output)
 
 **Fix**:
@@ -140,11 +140,11 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 **Problem**: `lib/context/publication-gate.ts:47` ships as a helper. `tests/publication-gate.vitest.ts:3` is a unit test. NO handler in `mcp_server/handlers/` consumes the helper. Spec REQ-001/REQ-002 + SC-001/SC-002 require handler-level publication output behavior with surfaced exclusion reasons. The codex implementer's own LIMITATIONS section admitted "no row-oriented export handler exists yet" — but the packet was still marked Implemented.
 
 **Affected files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts` (existing helper, KEEP unchanged)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts` (existing helper, KEEP unchanged)
 - One reporting handler to wire up — pick ONE of:
-  - **Option A (preferred)**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` — already shapes response payloads
-  - **Option B**: Create a minimal `.opencode/skill/system-spec-kit/mcp_server/handlers/export.ts` if no existing handler fits cleanly
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts` (or new tests for the chosen handler)
+  - **Option A (preferred)**: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` — already shapes response payloads
+  - **Option B**: Create a minimal `.opencode/skills/system-spec-kit/mcp_server/handlers/export.ts` if no existing handler fits cleanly
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts` (or new tests for the chosen handler)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/research-governance-contracts/z_archive/research-governance-contracts/009-auditable-savings-publication-contract/implementation-summary.md` (remove the LIMITATIONS admission)
 
 **Fix**:
@@ -166,7 +166,7 @@ There are **6 lanes** below. Execute them in the listed order — Lanes 1 and 2 
 ## VERIFICATION (run after each lane AND at the very end)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 TMPDIR=./.tmp/tsc-tmp npm run typecheck
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/hook-state.vitest.ts \
@@ -183,7 +183,7 @@ TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/publication-gate.vitest.ts
 cd -
 
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/session-cached-consumer.vitest.ts.test.ts \
   tests/warm-start-bundle-benchmark.vitest.ts.test.ts \
@@ -196,7 +196,7 @@ for pkt in 009-auditable-savings-publication-contract \
            012-cached-sessionstart-consumer-gated \
            013-warm-start-bundle-conditional-validation; do
   echo "=== $pkt ==="
-  bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict \
+  bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict \
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/$pkt"
 done
 ```

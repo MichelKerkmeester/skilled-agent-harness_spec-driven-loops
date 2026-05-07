@@ -15,7 +15,7 @@ The DEFAULT_DENYLIST in `contamination-filter.ts` contains exactly **29 labeled 
 - **Tool scaffolding** (high severity): 4 patterns -- tool usage narration, active form, preamble form, tool title with path
 - **API/service error leakage** (high severity): 3 patterns -- API error prefix, JSON error payload, request ID leak
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:31-74]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:31-74]
 
 ### Finding 2: The "74 patterns" claim from the research prompt is inaccurate
 The current codebase has 29 patterns. The number 74 may reference an earlier version, a planned target, or a miscount. This is important because Q10 asks about "missing categories from the 74-pattern filter" -- the baseline is actually 29.
@@ -26,25 +26,25 @@ The current codebase has 29 patterns. The number 74 may reference an earlier ver
 The pipeline derives/synthesizes content in these locations:
 
 **3a. Context type detection (session-extractor.ts:119-134):** `detectContextType()` synthesizes a context type string (`'decision'`, `'discovery'`, `'research'`, `'implementation'`, `'general'`) from tool usage ratios. In JSON mode, tool counts are always 0, so unless the AI provides explicit `contextType`, this defaults to `'general'` (after the RC5 fix for decisionCount). The explicit contextType override was added at lines 557-562.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:119-134, 545-568]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:119-134, 545-568]
 
 **3b. Importance tier detection (session-extractor.ts:142-175):** `detectImportanceTier()` synthesizes an importance tier by scanning file path segments for keywords like 'architecture', 'core', 'schema', 'security', 'config'. This can OVERRIDE the actual importance of the session if files happen to be in directories named with these segments. The `resolveImportanceTier()` function respects explicit input if valid, but falls back to the heuristic.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:142-175]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:142-175]
 
 **3c. Project phase detection (session-extractor.ts:188-207):** `detectProjectPhase()` synthesizes a phase string from tool ratios. In JSON mode, with tool counts at 0, it always returns `'RESEARCH'` regardless of the actual session phase. There is no explicit override mechanism for this field (unlike contextType and importanceTier).
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:188-207]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:188-207]
 
 **3d. Next action fallback (session-extractor.ts:289-297):** `extractNextAction()` returns `'Continue implementation'` as a hardcoded fallback when no pattern match is found in observations or recentContext. This synthesized default is misleading -- it implies implementation work when the session may have been research or planning.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:289-297]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:289-297]
 
 **3e. Session status determination (collect-session-data.ts:338-399):** `determineSessionStatus()` synthesizes status from keyword matching on observation text. Uses broad regex patterns for completion (`done|complete|finished|successful`) and resolution (`resolved|fixed|unblocked`). Can hallucinate `'COMPLETED'` if any observation casually mentions "done" in a different context (e.g., "the done button").
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:338-399]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:338-399]
 
 **3f. Learning summary generation (collect-session-data.ts:279-332):** `generateLearningSummary()` synthesizes narrative text like "Highly productive learning session" from numeric score deltas. While the numbers come from input, the narrative phrasing is entirely invented.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:279-332]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:279-332]
 
 **3g. Key topics extraction (session-extractor.ts:501-527):** `extractKeyTopics()` runs SemanticSignalExtractor on summary and decision text to derive topic terms. This transforms input text into derived tokens that may not preserve original meaning (e.g., splitting compound terms, aggressive stopword removal losing domain-specific terms).
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:501-527]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:501-527]
 
 ### Finding 4: Missing contamination categories
 Comparing the 29-pattern filter against real-world AI-generated session content, these categories are absent:
@@ -81,13 +81,13 @@ It does NOT clean:
 
 This means contamination in these fields passes through unfiltered to the final memory output.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:597-602]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:597-602]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` (full file, 200 lines)
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 611 lines)
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 1-400)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 530-610, contamination area)
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` (full file, 200 lines)
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 611 lines)
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 1-400)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 530-610, contamination area)
 
 ## Assessment
 - New information ratio: 0.90

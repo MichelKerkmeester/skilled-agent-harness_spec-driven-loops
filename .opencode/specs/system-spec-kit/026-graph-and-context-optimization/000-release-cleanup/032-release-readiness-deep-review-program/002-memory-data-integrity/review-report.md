@@ -22,9 +22,9 @@ _memory:
       - "P1-003 embedding cache invalidation is undefined for governed retention deletes"
     key_files:
       - "review-report.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"
     session_dedup:
       fingerprint: "sha256:045-002-memory-data-integrity-report"
       session_id: "045-002-memory-data-integrity"
@@ -75,12 +75,12 @@ Audit dimensions:
 
 **Evidence:**
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:379` sets `status` to `healthy` when a database handle exists.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:381` summarizes the system as healthy on DB connectivity.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:450` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:459` detects FTS count mismatch but only appends repair hints.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:550` runs deeper `verifyIntegrity` only inside the `autoRepair` branch.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:565` through `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:588` returns no structured `consistency` verdict for FTS/vector/BM25/cache state.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1285` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1418` has a richer integrity checker, but it is not exposed as the default health verdict.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:379` sets `status` to `healthy` when a database handle exists.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:381` summarizes the system as healthy on DB connectivity.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:450` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:459` detects FTS count mismatch but only appends repair hints.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:550` runs deeper `verifyIntegrity` only inside the `autoRepair` branch.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:565` through `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:588` returns no structured `consistency` verdict for FTS/vector/BM25/cache state.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1285` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1418` has a richer integrity checker, but it is not exposed as the default health verdict.
 
 **Fix:** Always run read-only integrity checks for FTS row count, vector orphan/missing rows, orphan chunks/files, and derived-index visibility in `memory_health`. Return a structured `consistency` object and downgrade top-level status to `degraded` when any check fails. Keep mutation-based repair behind `autoRepair`.
 
@@ -92,9 +92,9 @@ Audit dimensions:
 
 **Evidence:**
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:132` selects candidates before the deletion transaction.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:152` through `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:196` deletes each candidate in one transaction and writes history/audit/ledger records.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:180` through `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:193` claims interleaving coverage, but both operations use `Promise.resolve().then(...)` over the same synchronous `better-sqlite3` connection.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:132` selects candidates before the deletion transaction.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:152` through `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:196` deletes each candidate in one transaction and writes history/audit/ledger records.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:180` through `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:193` claims interleaving coverage, but both operations use `Promise.resolve().then(...)` over the same synchronous `better-sqlite3` connection.
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/checklist.md:68` records interleaving coverage as complete, which now overstates the fixture's concurrency strength.
 
 **Fix:** Add a file-backed SQLite fixture with two independent DB handles and explicit barriers. Start a sweep after candidate selection, run `memory_save` or equivalent insert from another handle, then release deletion and assert `memory_index`, `memory_fts`, `vec_memories`, active projections, causal refs, governance audit rows, and health consistency. Include a second case where a row becomes expired during the sweep and must be handled by the next sweep, not the current candidate set.
@@ -107,12 +107,12 @@ Audit dimensions:
 
 **Evidence:**
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:45` through `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:56` stores embeddings by `content_hash`, `model_id`, and `dimensions`, not memory id.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:72` through `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:149` supports lookup/store, but not delete-by-memory or delete-by-content-hash for retention.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2196` generates or reuses an embedding before the DB write transaction.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2276` persists pending embedding-cache writes before governance gating and before the primary memory insert transaction.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:590` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:632` deletes vector rows, ancillary rows, and `memory_index`, but does not touch `embedding_cache`.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:38` through `.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:260` covers cache store/lookup/eviction/clear, but not retention deletion invalidation.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:45` through `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:56` stores embeddings by `content_hash`, `model_id`, and `dimensions`, not memory id.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:72` through `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:149` supports lookup/store, but not delete-by-memory or delete-by-content-hash for retention.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2196` generates or reuses an embedding before the DB write transaction.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2276` persists pending embedding-cache writes before governance gating and before the primary memory insert transaction.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:590` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:632` deletes vector rows, ancillary rows, and `memory_index`, but does not touch `embedding_cache`.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:38` through `.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts:260` covers cache store/lookup/eviction/clear, but not retention deletion invalidation.
 
 **Fix:** Decide the product contract. For governed ephemeral data, delete cache rows by content hash/model/dimensions during retention deletion and rollback if that deletion fails. If cache reuse is intentional, document that retained embeddings are non-row-bound derived cache entries, add a bounded TTL, and expose cache retention state in health.
 
@@ -124,10 +124,10 @@ Audit dimensions:
 
 **Evidence:**
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:621` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:630` removes BM25 documents after the DB transaction and swallows cleanup failures.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:357` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:382` resolves BM25 IDs against the DB only when a `specFolder` filter is present.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:385` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:396` allows all BM25 results through when no `specFolder` is provided.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1131` through `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1138` includes BM25 results in the search pipeline.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:621` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:630` removes BM25 documents after the DB transaction and swallows cleanup failures.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:357` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:382` resolves BM25 IDs against the DB only when a `specFolder` filter is present.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:385` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:396` allows all BM25 results through when no `specFolder` is provided.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1131` through `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1138` includes BM25 results in the search pipeline.
 
 **Fix:** Hydrate/filter BM25 results through `memory_index` for all searches, not only scoped searches. Add a `memory_health` BM25 consistency metric and a rebuild action for missing/deleted-row drift.
 
@@ -176,14 +176,14 @@ Non-goals:
 
 | Question | Answer | Evidence |
 |----------|--------|----------|
-| Does `memory_retention_sweep` correctly remove FTS + vector entries for deleted rows? | **Mostly yes for primary SQLite indexes.** Sweep calls shared delete; shared delete removes `vec_memories` and `memory_index`; FTS delete triggers remove `memory_fts`. BM25 remains best-effort, covered as P2-001. | `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:154`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:597`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:613`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2468`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:137` |
+| Does `memory_retention_sweep` correctly remove FTS + vector entries for deleted rows? | **Mostly yes for primary SQLite indexes.** Sweep calls shared delete; shared delete removes `vec_memories` and `memory_index`; FTS delete triggers remove `memory_fts`. BM25 remains best-effort, covered as P2-001. | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:597`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:613`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2468`; `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:137` |
 | Are there race conditions between `memory_save` and `memory_retention_sweep`? | **Unproven.** Source shape is reasonable, but tests do not exercise true concurrent writers. | P1-002 |
 | Does the embedding cache invalidate correctly when a row is deleted? | **No defined invalidation.** Cache is content-hash keyed and delete paths do not remove cache entries. Whether this is a bug depends on the governed-retention contract; release readiness needs that contract. | P1-003 |
-| What happens if `memory_save` partially succeeds? | Primary DB/index writes are transaction-backed, and governance post-insert failure calls the shared delete path. The remaining partial-state risk is pre-transaction embedding-cache persistence. | `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:259`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:2276`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:3112` |
+| What happens if `memory_save` partially succeeds? | Primary DB/index writes are transaction-backed, and governance post-insert failure calls the shared delete path. The remaining partial-state risk is pre-transaction embedding-cache persistence. | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:259`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2276`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3112` |
 | Does `memory_health` accurately report DB consistency state? | **No.** It reports connectivity health by default and only exposes parts of consistency through hints or `autoRepair`. | P1-001 |
-| SQL injection paths? | No active SQL injection finding found in reviewed dynamic paths. Bulk delete builds fixed SQL fragments with bound params; governance audit uses parameterized insert; post-insert metadata uses an allowed column map. | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:115`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:183`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:352`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:57` |
-| Tenant/governance isolation? | No active tenant isolation finding found in reviewed paths. Governed ingest requires tenant/session/provenance actor/source when governance is triggered, and search filters by tenant/user/agent when scope is provided. Session-only is explicitly not treated as a governance boundary. | `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:241`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:283`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1050`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1065` |
-| Retention deletion audit trail? | Present for swept rows: retention sweep records delete history, governance audit, and ledger entries in the deletion transaction. | `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:161`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:174`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:193` |
+| SQL injection paths? | No active SQL injection finding found in reviewed dynamic paths. Bulk delete builds fixed SQL fragments with bound params; governance audit uses parameterized insert; post-insert metadata uses an allowed column map. | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:115`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:183`; `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:352`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:57` |
+| Tenant/governance isolation? | No active tenant isolation finding found in reviewed paths. Governed ingest requires tenant/session/provenance actor/source when governance is triggered, and search filters by tenant/user/agent when scope is provided. Session-only is explicitly not treated as a governance boundary. | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:241`; `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:283`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1050`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1065` |
+| Retention deletion audit trail? | Present for swept rows: retention sweep records delete history, governance audit, and ledger entries in the deletion transaction. | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:161`; `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:174`; `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:193` |
 
 ---
 
@@ -199,23 +199,23 @@ Non-goals:
 
 ### Primary Evidence Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/memory/`
-- `.opencode/skill/system-spec-kit/mcp_server/db/`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/memory/`
+- `.opencode/skills/system-spec-kit/mcp_server/db/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-memory-retention-sweep/`
 
 ### Positive Controls

@@ -111,7 +111,7 @@ This pass made graph consultation real on the visible research and review paths 
 
 - [x] ADR-001 selected the canonical graph approach. `[EVIDENCE: decision-record.md]`
 - [x] Research and review releases both describe live graph upsert and convergence calls. `[EVIDENCE: v1.6.0.0; v1.3.0.0]`
-- [x] Session isolation and graph-aware stop tests were added. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts; graph-aware-stop.vitest.ts]`
+- [x] Session isolation and graph-aware stop tests were added. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts; graph-aware-stop.vitest.ts]`
 
 ### Phase 3: Reducer Surfacing and Replay
 

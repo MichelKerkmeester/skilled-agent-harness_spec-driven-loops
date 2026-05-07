@@ -151,8 +151,8 @@ Analyze `external/opencode-lcm-master` as an OpenCode plugin reference and answe
 
 - Adopt the full `opencode-lcm` archive as our main memory backend: ruled out because it duplicates an existing memory stack and is tightly bound to OpenCode plugin lifecycle APIs. [SOURCE: `external/opencode-lcm-master/src/index.ts:14-220`]
 - Treat the plugin as a code-graph implementation: ruled out because its core archive is session/message centric, while packet 024 already defines a separate structural SQLite graph with `code_files`, `code_nodes`, and `code_edges`. [SOURCE: `external/opencode-lcm-master/src/store.ts:860-960`] [SOURCE: `009-code-graph-storage-query/spec.md:68-168`]
-- Rebuild our whole hook/tool architecture around LCM: ruled out because packet 024 already decided on a hybrid hook + tool model and already exposes startup/session bootstrap surfaces. [SOURCE: `decision-record.md:39-99`] [SOURCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:21-57`]
-- Replace the current compact-merger and structural-bootstrap flow: ruled out because our existing budgeted merge/deduplication and startup bootstrap flow already solves the compact-assembly problem; the missing pieces are portability, provenance, safety, and repair. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
+- Rebuild our whole hook/tool architecture around LCM: ruled out because packet 024 already decided on a hybrid hook + tool model and already exposes startup/session bootstrap surfaces. [SOURCE: `decision-record.md:39-99`] [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:21-57`]
+- Replace the current compact-merger and structural-bootstrap flow: ruled out because our existing budgeted merge/deduplication and startup bootstrap flow already solves the compact-assembly problem; the missing pieces are portability, provenance, safety, and repair. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
 - Add a second persistent recovery/snapshot plane on top of existing hook cache plus `session_resume`/`session_bootstrap`: ruled out because delegated risk analysis showed this would create competing authorities and operator confusion.
 
 ---
@@ -176,9 +176,9 @@ Research complete. The next implementation-focused steps would be:
 ## 12. KNOWN CONTEXT
 
 - Packet 024 already recommends clean-room code graph work, complementary CocoIndex usage, and a hybrid hook + tool architecture rather than dependency adoption. [SOURCE: `decision-record.md:39-120`] [SOURCE: `research/research.md:31-86`]
-- Current Spec Kit Memory already has startup instructions, session recovery digests, structural bootstrap guidance, tool routing guidance, and working-memory attention boosts. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:639-712`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
-- Hook-capable runtimes already use shared retrieval primitives; OpenCode is explicitly the non-hook runtime that should recover with `session_bootstrap()` and `session_resume()`. [SOURCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:21-57`]
-- Current graph-runtime internals already include startup briefs, bounded structural bootstrap, tempdir-backed hook state, and budgeted compaction merging; the missing layer is operational durability and portability. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:14-198`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+- Current Spec Kit Memory already has startup instructions, session recovery digests, structural bootstrap guidance, tool routing guidance, and working-memory attention boosts. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:639-712`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
+- Hook-capable runtimes already use shared retrieval primitives; OpenCode is explicitly the non-hook runtime that should recover with `session_bootstrap()` and `session_resume()`. [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:21-57`]
+- Current graph-runtime internals already include startup briefs, bounded structural bootstrap, tempdir-backed hook state, and budgeted compaction merging; the missing layer is operational durability and portability. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:14-198`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 - Current graph-runtime internals also reveal subtle internal gaps that matter before implementation: path-derived graph identities, hidden readiness diagnostics, inconsistent stale semantics, and unused working-set signals.
 - Live startup investigation added another boundary: the real OpenCode binary and Superset wrapper must be treated as the runtime source of truth for plugin loading, because local package types can drift away from the packed loader behavior.
 
@@ -195,9 +195,9 @@ Research complete. The next implementation-focused steps would be:
 - Lifecycle branches: `resume`, `restart`, `fork`, `completed-continue`
 - Machine-owned sections: reducer controls Sections 7-11
 - Canonical pause sentinel: `research/.deep-research-pause`
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
-- Capability matrix doc: `.opencode/skill/sk-deep-research/references/capability_matrix.md`
-- Capability resolver: `.opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs`
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
+- Capability matrix doc: `.opencode/skills/sk-deep-research/references/capability_matrix.md`
+- Capability resolver: `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs`
 - Current generation: 1
 - Started: 2026-04-03T14:10:00+02:00
 - Extended for loader crash analysis: 2026-04-04T09:10:00+02:00

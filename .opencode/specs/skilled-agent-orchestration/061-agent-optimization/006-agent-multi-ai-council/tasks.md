@@ -43,14 +43,14 @@ _memory:
 ## 2. PHASE 1: SETUP
 
 ### T-001: Read target + scan integration surface
-- `cat .opencode/agent/ultra-think.md`
-- `node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent=ultra-think --output=<packet>/integration.json`
+- `cat .opencode/agents/ultra-think.md`
+- `node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent=ultra-think --output=<packet>/integration.json`
 
 ### T-002: Generate dynamic 5-dimension profile
-- `node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agent/ultra-think.md --output=<packet>/profile.json`
+- `node .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agents/ultra-think.md --output=<packet>/profile.json`
 
 ### T-003: Dispatch /improve:agent
-- `/improve:agent .opencode/agent/ultra-think.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council`
+- `/improve:agent .opencode/agents/ultra-think.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,15 +59,15 @@ _memory:
 ## 3. PHASE 2: IMPLEMENTATION
 
 ### T-004: Score + benchmark
-- `node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agent/ultra-think.md --manifest=<packet>/profile.json`
-- `node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs --profile=ultra-think --outputs-dir=<packet>/benchmark-outputs --output=<packet>/benchmark.json`
+- `node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agents/ultra-think.md --manifest=<packet>/profile.json`
+- `node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs --profile=ultra-think --outputs-dir=<packet>/benchmark-outputs --output=<packet>/benchmark.json`
 
 ### T-005: Legal-stop gate verification
-- `node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs <packet>`
+- `node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs <packet>`
 - Verify `legal_stop_evaluated.details.gateResults` shows 5/5 pass
 
 ### T-006: Rename ultra-think → multi-ai-council across 4 runtimes
-- git mv `.opencode/agent/ultra-think.md` → `.opencode/agent/multi-ai-council.md`
+- git mv `.opencode/agents/ultra-think.md` → `.opencode/agents/multi-ai-council.md`
 - git mv `.claude/agents/ultra-think.md` → `.claude/agents/multi-ai-council.md`
 - git mv `.gemini/agents/ultra-think.md` → `.gemini/agents/multi-ai-council.md`
 - git mv `.codex/agents/ultra-think.toml` → `.codex/agents/multi-ai-council.toml`
@@ -76,12 +76,12 @@ _memory:
 ### T-007: Sed-update every reference
 - READMEs in each runtime agent dir
 - Root README.md, CLAUDE.md, AGENTS.md
-- All `.opencode/skill/*/SKILL.md` mentioning @ultra-think
-- All `.opencode/command/*` mentioning @ultra-think
+- All `.opencode/skills/*/SKILL.md` mentioning @ultra-think
+- All `.opencode/commands/*` mentioning @ultra-think
 - MEMORY index + memory files
 
 ### T-008: Promote candidate
-- `node .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agent/ultra-think.md --score=<packet>/score.json --approve`
+- `node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agents/ultra-think.md --score=<packet>/score.json --approve`
 <!-- /ANCHOR:phase-2 -->
 
 ---

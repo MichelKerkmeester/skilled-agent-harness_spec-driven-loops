@@ -4,9 +4,9 @@
 Read the shipped code-path files for obvious trust-boundary, secret-handling, or prompt-execution issues.
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts`
 
 ## Findings
 No P0/P1/P2 finding was confirmed in this security pass.

@@ -84,10 +84,10 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 | Check | Command | Result |
 |-------|---------|--------|
-| Baseline focused Vitest | `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` | 23 passed before edits |
+| Baseline focused Vitest | `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` | 23 passed before edits |
 | Post-refactor focused Vitest | same command | 23 passed after state refactor |
 | Final focused Vitest | same command | 30 passed |
-| Build | `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | passed (`tsc --build`) |
+| Build | `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | passed (`tsc --build`) |
 
 Strict packet validation and canonical memory save were run after documentation updates; see `checklist.md` verification log for final command evidence.
 <!-- /ANCHOR:verification -->

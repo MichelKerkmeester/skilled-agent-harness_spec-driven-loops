@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Run inventory and stale-reference sweep"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/SKILL.md"
-      - ".opencode/skill/system-spec-kit/references/"
-      - ".opencode/skill/system-spec-kit/assets/"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/references/"
+      - ".opencode/skills/system-spec-kit/assets/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-skill-references-assets-alignment"
@@ -62,7 +62,7 @@ Round 5 audits the remaining AI-facing system-spec-kit documentation surface tha
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Earlier rounds cleaned `.opencode/agent/`, `.opencode/command/spec_kit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs. The canonical skill entry doc, recursive references, and Markdown assets may still carry stale references to deleted scripts, old template folder names, and the retired architecture label, or may omit newly shipped validation and workflow features.
+Earlier rounds cleaned `.opencode/agents/`, `.opencode/commands/spec_kit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs. The canonical skill entry doc, recursive references, and Markdown assets may still carry stale references to deleted scripts, old template folder names, and the retired architecture label, or may omit newly shipped validation and workflow features.
 
 ### Purpose
 Bring the remaining AI-facing system-spec-kit docs into alignment with the current Level contract, validation orchestrator, secure scaffold path handling, save locking, and inline rendering workflows.
@@ -74,22 +74,22 @@ Bring the remaining AI-facing system-spec-kit docs into alignment with the curre
 ## 3. SCOPE
 
 ### In Scope
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/references/` including hooks, structure, templates, validation, workflows, and root Markdown files
-- `.opencode/skill/system-spec-kit/assets/` Markdown files
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/references/` including hooks, structure, templates, validation, workflows, and root Markdown files
+- `.opencode/skills/system-spec-kit/assets/` Markdown files
 
 ### Out of Scope
-- `.opencode/agent/`, `.opencode/command/spec_kit/`, `AGENTS.md`, and `CLAUDE.md` because Phase 4B and the Round 3 sweep already covered them
+- `.opencode/agents/`, `.opencode/commands/spec_kit/`, `AGENTS.md`, and `CLAUDE.md` because Phase 4B and the Round 3 sweep already covered them
 - `.opencode/specs/` historical artifacts outside this packet
-- `.opencode/skill/system-spec-kit/templates/manifest/` because it is private implementation documentation and explicitly allowlisted
+- `.opencode/skills/system-spec-kit/templates/manifest/` because it is private implementation documentation and explicitly allowlisted
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify if needed | Remove stale references and add brief current-feature notes where natural |
-| `.opencode/skill/system-spec-kit/references/` | Modify if needed | Align command, validation, template, structure, and workflow docs |
-| `.opencode/skill/system-spec-kit/assets/` | Modify if needed | Align Markdown assets with current template and validation reality |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify if needed | Remove stale references and add brief current-feature notes where natural |
+| `.opencode/skills/system-spec-kit/references/` | Modify if needed | Align command, validation, template, structure, and workflow docs |
+| `.opencode/skills/system-spec-kit/assets/` | Modify if needed | Align Markdown assets with current template and validation reality |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json` | Modify | Register the 005 packet as the active child |
 <!-- /ANCHOR:scope -->
 

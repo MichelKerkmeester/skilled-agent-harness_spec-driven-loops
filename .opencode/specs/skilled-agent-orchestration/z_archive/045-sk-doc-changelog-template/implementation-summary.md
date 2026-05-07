@@ -36,12 +36,12 @@ _memory:
     next_safe_action: "Commit the packet on the active branch when the user is ready"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/changelog_template.md"
-      - ".opencode/skill/sk-doc/SKILL.md"
-      - ".opencode/command/create/assets/create_changelog_auto.yaml"
-      - ".opencode/command/create/assets/create_changelog_confirm.yaml"
-      - ".opencode/command/create/changelog.md"
-      - ".opencode/skill/system-spec-kit/references/workflows/nested_changelog.md"
+      - ".opencode/skills/sk-doc/assets/documentation/changelog_template.md"
+      - ".opencode/skills/sk-doc/SKILL.md"
+      - ".opencode/commands/create/assets/create_changelog_auto.yaml"
+      - ".opencode/commands/create/assets/create_changelog_confirm.yaml"
+      - ".opencode/commands/create/changelog.md"
+      - ".opencode/skills/system-spec-kit/references/workflows/nested_changelog.md"
     session_dedup:
       fingerprint: "sha256:045-sk-doc-changelog-template"
       session_id: "045-sk-doc-changelog-template"
@@ -57,7 +57,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -80,11 +80,11 @@ The canonical changelog and release-notes template now sits next to every other 
 
 ### Template relocation
 
-The 7,718-byte template was copied verbatim to [.opencode/skill/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md) and the original was deleted. File parity was confirmed by size and by reading the new file end-to-end before the delete. No content was edited during the move.
+The 7,718-byte template was copied verbatim to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md) and the original was deleted. File parity was confirmed by size and by reading the new file end-to-end before the delete. No content was edited during the move.
 
 ### Reference updates
 
-Both `/create:changelog` YAMLs (auto and confirm), the user-facing changelog command markdown, and the spec-kit nested-changelog reference now resolve to the sk-doc path. A grep for the old path under `.opencode/command/` and `.opencode/skill/` returns zero hits in live source files. The only remaining matches are this packet's own docs (intentional), a frozen historical changelog at `.opencode/changelog/04--commands/v3.0.1.4` documenting the original creation, and frozen research and review iteration logs.
+Both `/create:changelog` YAMLs (auto and confirm), the user-facing changelog command markdown, and the spec-kit nested-changelog reference now resolve to the sk-doc path. A grep for the old path under `.opencode/commands/` and `.opencode/skills/` returns zero hits in live source files. The only remaining matches are this packet's own docs (intentional), a frozen historical changelog at `.opencode/changelog/04--commands/v3.0.1.4` documenting the original creation, and frozen research and review iteration logs.
 
 ### sk-doc Smart Router wire-up
 
@@ -92,7 +92,7 @@ A new CHANGELOG intent was added to `INTENT_SIGNALS` (weight 4, keywords include
 
 ### Template restructured to match the canonical asset shape
 
-After the move, the template was rewritten to match the canonical skill asset template at `.opencode/skill/sk-doc/assets/skill/skill_asset_template` so it conforms to the same skeleton as every other documentation template (readme, install_guide, llmstxt, and frontmatter templates under sk-doc/assets/documentation). It now has YAML frontmatter (title + description), an H1 with subtitle and 1-2 sentence intro, a `## 1. OVERVIEW` section with `### Purpose` and `### Usage` subsections, retrieval-anchor open/close comment markers on every H2, and a final `## 8. RELATED RESOURCES` section linking to other documentation templates and HVR/core standards. The actual content (compact and expanded format blocks, writing-style rules, format-selection guide, real examples, nested-changelog pointer) was preserved verbatim. `validate_document.py` reports it as a clean asset-type document with 0 issues.
+After the move, the template was rewritten to match the canonical skill asset template at `.opencode/skills/sk-doc/assets/skill/skill_asset_template` so it conforms to the same skeleton as every other documentation template (readme, install_guide, llmstxt, and frontmatter templates under sk-doc/assets/documentation). It now has YAML frontmatter (title + description), an H1 with subtitle and 1-2 sentence intro, a `## 1. OVERVIEW` section with `### Purpose` and `### Usage` subsections, retrieval-anchor open/close comment markers on every H2, and a final `## 8. RELATED RESOURCES` section linking to other documentation templates and HVR/core standards. The actual content (compact and expanded format blocks, writing-style rules, format-selection guide, real examples, nested-changelog pointer) was preserved verbatim. `validate_document.py` reports it as a clean asset-type document with 0 issues.
 
 ### sk-doc README.md directory-tree updated
 
@@ -100,20 +100,20 @@ The sk-doc README Section 4 lists every template in a directory tree under `asse
 
 ### sk-git impact
 
-sk-git references the `/create:changelog` command surface (in finish_workflows reference and elsewhere), not the template path itself. A grep for `changelog_template` under `.opencode/skill/sk-git/` returns zero hits, so no sk-git source files were modified. The user-facing slash command `/create:changelog` continues to work without behavioural change.
+sk-git references the `/create:changelog` command surface (in finish_workflows reference and elsewhere), not the template path itself. A grep for `changelog_template` under `.opencode/skills/sk-git/` returns zero hits, so no sk-git source files were modified. The user-facing slash command `/create:changelog` continues to work without behavioural change.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| .opencode/skill/sk-doc/assets/documentation/changelog_template.md | Created | Canonical changelog and release-notes template, moved from the create-command asset folder |
-| .opencode/command/create/assets/changelog_template.md | Deleted | Old location removed |
-| .opencode/command/create/assets/create_changelog_auto.yaml | Modified | Five path references repointed at sk-doc |
-| .opencode/command/create/assets/create_changelog_confirm.yaml | Modified | Five path references repointed at sk-doc |
-| .opencode/command/create/changelog.md | Modified | Section 3 canonical-template reference repointed at sk-doc |
-| .opencode/skill/system-spec-kit/references/workflows/nested_changelog.md | Modified | "Do not reuse global template" pointer repointed at sk-doc |
-| .opencode/skill/sk-doc/SKILL.md | Modified | Added CHANGELOG intent, RESOURCE_MAP entry, use-case mention, references-list entry, and updated assets/documentation domain bullet |
-| .opencode/skill/sk-doc/README.md | Modified | Added changelog_template.md to the assets/documentation directory tree |
+| .opencode/skills/sk-doc/assets/documentation/changelog_template.md | Created | Canonical changelog and release-notes template, moved from the create-command asset folder |
+| .opencode/commands/create/assets/changelog_template.md | Deleted | Old location removed |
+| .opencode/commands/create/assets/create_changelog_auto.yaml | Modified | Five path references repointed at sk-doc |
+| .opencode/commands/create/assets/create_changelog_confirm.yaml | Modified | Five path references repointed at sk-doc |
+| .opencode/commands/create/changelog.md | Modified | Section 3 canonical-template reference repointed at sk-doc |
+| .opencode/skills/system-spec-kit/references/workflows/nested_changelog.md | Modified | "Do not reuse global template" pointer repointed at sk-doc |
+| .opencode/skills/sk-doc/SKILL.md | Modified | Added CHANGELOG intent, RESOURCE_MAP entry, use-case mention, references-list entry, and updated assets/documentation domain bullet |
+| .opencode/skills/sk-doc/README.md | Modified | Added changelog_template.md to the assets/documentation directory tree |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -144,13 +144,13 @@ The work was a single-pass refactor: copy + delete + repoint references + wire t
 
 | Check | Result |
 |-------|--------|
-| validate_document.py on sk-doc/SKILL (`python3 .opencode/skill/sk-doc/scripts/validate_document.py` against the modified skill document) | PASS, 0 issues |
+| validate_document.py on sk-doc/SKILL (`python3 .opencode/skills/sk-doc/scripts/validate_document.py` against the modified skill document) | PASS, 0 issues |
 | validate_document.py on the rewritten changelog_template (asset type) | PASS, 0 issues |
 | validate_document.py on the updated sk-doc README (readme type) | PASS, 0 issues |
-| Grep for `command/create/assets/changelog_template` under `.opencode/command/` and `.opencode/skill/` | PASS, zero hits in live source files (only matches in this packet's own docs and frozen historical artifacts) |
+| Grep for `command/create/assets/changelog_template` under `.opencode/commands/` and `.opencode/skills/` | PASS, zero hits in live source files (only matches in this packet's own docs and frozen historical artifacts) |
 | File parity check on the moved template | PASS, 7,718 bytes both before and after the move |
 | Skill list mid-run shows `/create:assets:changelog_template` is gone | PASS, the old slash command surface is no longer registered |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` on the new spec folder | PASS after fixing template-source headers, acceptance scenarios, prose paths, and adding `description.json` and `graph-metadata.json` |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` on the new spec folder | PASS after fixing template-source headers, acceptance scenarios, prose paths, and adding `description.json` and `graph-metadata.json` |
 <!-- /ANCHOR:verification -->
 
 ---

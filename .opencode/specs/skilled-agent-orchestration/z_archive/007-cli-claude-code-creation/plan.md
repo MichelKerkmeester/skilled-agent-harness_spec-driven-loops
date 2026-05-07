@@ -38,7 +38,7 @@ Create a cli-claude-code skill for external AI assistants to invoke Claude Code 
 ### Definition of Ready
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable (skill_advisor.py confidence, symlink, grep counts)
-- [x] Dependencies identified (cli-codex as template, .opencode/agent/ as agent source)
+- [x] Dependencies identified (cli-codex as template, .opencode/agents/ as agent source)
 
 ### Definition of Done
 - [x] All acceptance criteria met (REQ-001 through REQ-010)
@@ -74,7 +74,7 @@ External AI request → skill_advisor.py routing → SKILL.md smart router
 ### Phase 1: Setup
 - [x] Create directory structure: cli-claude-code/{references,assets}
 - [x] Read cli-codex as template reference
-- [x] Read .opencode/agent/*.md for agent roster
+- [x] Read .opencode/agents/*.md for agent roster
 
 ### Phase 2: Core Implementation
 - [x] Create SKILL.md (8 sections, smart routing, reversed orchestration)
@@ -88,7 +88,7 @@ External AI request → skill_advisor.py routing → SKILL.md smart router
 ### Phase 3: Verification
 - [x] Register in skill_advisor.py (INTENT_BOOSTERS, MULTI_SKILL_BOOSTERS, PHRASE_INTENT_BOOSTERS)
 - [x] Create .claude/skills/cli-claude-code symlink
-- [x] Update 3 READMEs (.opencode/skill/, .opencode/, root)
+- [x] Update 3 READMEs (.opencode/skills/, .opencode/, root)
 - [x] Run skill_advisor.py confidence test
 - [x] Verify symlink resolves
 - [x] Create spec folder documentation
@@ -115,7 +115,7 @@ External AI request → skill_advisor.py routing → SKILL.md smart router
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | cli-codex skill (template) | Internal | Green | Would need to create from scratch |
-| .opencode/agent/*.md files | Internal | Green | Agent roster would be incomplete |
+| .opencode/agents/*.md files | Internal | Green | Agent roster would be incomplete |
 | skill_advisor.py | Internal | Green | Routing would not work |
 | Claude Code CLI `--help` | External | Green | Flag reference would be incomplete |
 <!-- /ANCHOR:dependencies -->
@@ -167,12 +167,12 @@ Phase 1 (Setup) ──► Phase 2 (Core Implementation) ──► Phase 3 (Verif
 
 ### Pre-deployment Checklist
 - [x] Template reference (cli-codex) read and understood
-- [x] Agent roster verified against actual .opencode/agent/ files
+- [x] Agent roster verified against actual .opencode/agents/ files
 - [x] skill_advisor.py backup not needed (git-tracked)
 
 ### Rollback Procedure
 1. Remove entries from skill_advisor.py (INTENT_BOOSTERS, MULTI_SKILL_BOOSTERS, PHRASE_INTENT_BOOSTERS)
-2. Delete `.opencode/skill/cli-claude-code/` directory
+2. Delete `.opencode/skills/cli-claude-code/` directory
 3. Remove `.claude/skills/cli-claude-code` symlink
 4. Revert README changes in 3 files
 5. Verify skill_advisor.py no longer returns cli-claude-code

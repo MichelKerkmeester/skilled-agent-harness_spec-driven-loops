@@ -480,7 +480,7 @@ Before starting ANY task:
 
 - **Feature Specification**: See `spec.md` for requirements and user stories
 - **Task Breakdown**: See `tasks.md` for implementation task list
-- **Checklist**: See `.opencode/skill/system-spec-kit/templates/checklist.md` for validation
+- **Checklist**: See `.opencode/skills/system-spec-kit/templates/checklist.md` for validation
 
 ### Additional References
 

@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "scratch/research-brief.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -54,7 +54,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
@@ -78,13 +78,13 @@
       {
         "name": "FEATURE_CATALOG.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {

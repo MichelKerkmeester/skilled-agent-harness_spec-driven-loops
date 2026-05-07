@@ -13,7 +13,7 @@ _memory:
     next_safe_action: "Author plan/tasks/impl-summary, commit, push"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.mjs
+      - .opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "074-final"
@@ -78,8 +78,8 @@ Migrate the test to ESM (`.mjs`): use `import` statements, `createRequire(import
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.mjs` | Create | ESM-migrated test |
-| `.opencode/skill/system-spec-kit/scripts/tests/test-alignment-validator.js` | Delete | Legacy CommonJS file |
+| `.opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.mjs` | Create | ESM-migrated test |
+| `.opencode/skills/system-spec-kit/scripts/tests/test-alignment-validator.js` | Delete | Legacy CommonJS file |
 | `074/{spec,plan,tasks,implementation-summary}.md` | Create | Spec docs |
 <!-- /ANCHOR:scope -->
 

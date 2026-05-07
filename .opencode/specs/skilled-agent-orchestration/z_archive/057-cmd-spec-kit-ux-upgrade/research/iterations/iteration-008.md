@@ -6,7 +6,7 @@ Risk + edge cases for the ranked SPAR-Kit adoption backlog: sync triad, hook con
 
 1. Read the active strategy, state-log tail, findings registry, and iteration 7 ranking. The registry is still empty, so this pass used iteration 7 plus direct source evidence as the working backlog.
 2. Read SPAR installer surfaces: `external/lib/repo-bootstrap.mjs`, `external/lib/install-engine.mjs`, and `external/install-root/targets/{default,codex,opencode}.json`.
-3. Read internal contract surfaces: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`, `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`, and `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh`.
+3. Read internal contract surfaces: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, and `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`.
 4. Scanned advisor scoring and command-mode surfaces for thresholds, suffixes, and mode/scope contracts; counted the current spec corpus with `find`.
 5. Checked nearby instruction roots. Public and Barter instruction roots are visible; no `fs-enterprises` instruction root appeared in the searched `Code_Environment` depth, so full sync-triad validation remains incomplete.
 

@@ -35,7 +35,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Audit/Creation
 
-- [ ] T001 Review .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md
+- [ ] T001 Review .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md
 - [ ] T002 Identify stale references or missing content
 - [ ] T003 Document findings systematically
 <!-- /ANCHOR:phase-1 -->

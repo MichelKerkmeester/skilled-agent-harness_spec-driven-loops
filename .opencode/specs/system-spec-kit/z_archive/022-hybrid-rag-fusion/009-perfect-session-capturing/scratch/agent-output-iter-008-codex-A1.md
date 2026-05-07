@@ -19,10 +19,10 @@ Final gap-fill: trace how source-capabilities.ts concretely affects contaminatio
 **Q9 (final).** Complete the source-capabilities interaction map. Show the concrete effect of each capability on pipeline behavior.
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts` — Full read
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` — How capabilities affect severity
-- `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts` — How capabilities affect rule applicability
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — How capabilities affect mode decisions
+- `.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts` — Full read
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` — How capabilities affect severity
+- `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts` — How capabilities affect rule applicability
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — How capabilities affect mode decisions
 
 ## Deliverable
 1. For each capability field (inputMode, toolTitleWithPathExpected, prefersStructuredSave): trace every consumer and document the concrete behavioral effect
@@ -41,27 +41,27 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m going to map each capability field end-to-end across the four target files, then verify whether any capability is unused or bypassed by raw source-name checks. I’ll start by reading the files fully and indexing all references to `source-capabilities` and each field name.
 exec
-/bin/zsh -lc 'rg -n "source-capabilities|inputMode|toolTitleWithPathExpected|prefersStructuredSave|source name|sourceName" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:9:  toolTitleWithPathExpected: boolean;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:10:  prefersStructuredSave: boolean;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:17:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:18:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:23:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:24:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:29:    toolTitleWithPathExpected: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:30:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:35:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:36:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:41:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:42:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:47:    toolTitleWithPathExpected: false,
+/bin/zsh -lc 'rg -n "source-capabilities|inputMode|toolTitleWithPathExpected|prefersStructuredSave|source name|sourceName" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:9:  toolTitleWithPathExpected: boolean;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:10:  prefersStructuredSave: boolean;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:17:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:18:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:23:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:24:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:29:    toolTitleWithPathExpected: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:30:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:35:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:36:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:41:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:42:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:47:    toolTitleWithPathExpected: false,
 exec
 /bin/zsh -lc "rg --files -g 'AGENTS.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 AGENTS.md
@@ -69,7 +69,7 @@ AGENTS.md
 codex
 I’ve located all direct references; next I’m reading the four requested files in full and then I’ll cross-check for any raw `source`/`sourceName` conditionals that should have used capabilities instead.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 import type { DataSource } from './input-normalizer';
 
 export type SourceInputMode = 'structured' | 'stateless';
@@ -91,9 +91,9 @@ const SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {
   },
   'opencode-capture': {
 exec
-/bin/zsh -lc "sed -n '2100,2360p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '2100,2360p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     log('   No HTML cleaning needed');
   }
 
@@ -157,7 +157,7 @@ type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9
 type ValidationRuleSeverity = 'low' | 'medium' | 'high';
 type ValidationDisposition = 'abort_write' | 'write_skip_index' | 'write_and_index';
 exec
-/bin/zsh -lc 'rg -n "getSourceCapabilities|appliesToSources|captureSource|inputMode|prefersStructuredSave|toolTitleWithPathExpected|determineValidationDisposition|VALIDATION_RULE_METADATA" .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "getSourceCapabilities|appliesToSources|captureSource|inputMode|prefersStructuredSave|toolTitleWithPathExpected|determineValidationDisposition|VALIDATION_RULE_METADATA" .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 15:import { getSourceCapabilities, type KnownDataSource } from '../utils/source-capabilities';
 27:  appliesToSources: 'all' | readonly KnownDataSource[];
 38:const VALIDATION_RULE_METADATA: Record<QualityRuleId, ValidationRuleMetadata> = {
@@ -181,7 +181,7 @@ exec
 codex
 I found where quality-rule applicability and disposition are computed; I’m now reading the remaining section around those functions so we can tie capabilities to exact write/index behavior.
 exec
-/bin/zsh -lc "sed -n '320,780p' .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '320,780p' .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     return null;
   }
 
@@ -203,7 +203,7 @@ function hasSignificantFileCountDivergence(
     return false;
   }
 exec
-/bin/zsh -lc 'rg -n "getSourceCapabilities|captureCapabilities|captureSource|stateless|structured|prefersStructuredSave|toolTitleWithPathExpected|determineValidationDisposition|source ===|source !==|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|simulation" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "getSourceCapabilities|captureCapabilities|captureSource|stateless|structured|prefersStructuredSave|toolTitleWithPathExpected|determineValidationDisposition|source ===|source !==|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|simulation" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 45:  determineValidationDisposition,
 80:import * as simFactory from '../lib/simulation-factory';
 83:import { structuredLog } from '../utils/logger';
@@ -227,8 +227,8 @@ exec
 codex
 I’ve pinpointed the key `workflow.ts` callsites and am now reading the surrounding control flow to map exactly where capabilities change enrichment, warnings, and disposition behavior.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1180,1700p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1180,1700p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Workflow
 // ───────────────────────────────────────────────────────────────
@@ -271,7 +271,7 @@ import {
           ...(enriched._manualDecisions || []),
           ...specContext.decisions,
 exec
-/bin/zsh -lc "sed -n '1720,2025p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1720,2025p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
       log(`   Found ${result.MESSAGES.length} messages`);
       return result;
     })(),
@@ -293,35 +293,35 @@ exec
       const patternType: string = flowchartGen.detectWorkflowPattern(phases);
       const phaseDetails = flowchartGen.buildPhaseDetails(phases);
 exec
-/bin/zsh -lc "rg -n \"captureCapabilities|getSourceCapabilities\\(|sourceCapabilities\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"captureCapabilities|getSourceCapabilities\\(|sourceCapabilities\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 1508:    const captureCapabilities = getSourceCapabilities(captureSource);
 1514:        captureSource ? { captureSource: captureCapabilities.source, sourceCapabilities: captureCapabilities } : undefined,
 2244:    } else if (captureCapabilities.inputMode === 'stateless') {
 exec
-/bin/zsh -lc 'rg -n "contaminationSeverity|hadContamination|QUALITY_ABORT_THRESHOLD|contamination" .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:15:import type { ContaminationSeverity } from './contamination-filter';
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:31:  hadContamination?: boolean;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:32:  contaminationSeverity?: ContaminationSeverity | null;
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:70:    hadContamination = false,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:71:    contaminationSeverity = null,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:85:    if (hadContamination) {
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:86:      emptyContentFlags.push('has_contamination');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:96:      hadContamination,
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:140:  if (hadContamination) {
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:141:    qualityFlags.add('has_contamination');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:142:    const severity = contaminationSeverity || 'medium';
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:144:      warnings.push('Low-severity contamination detected (preamble only) — penalty applied post-bonus');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:147:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:150:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:158:    // Preserve any existing cap (e.g. contamination 0.6) as a ceiling
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:187:  // Apply contamination penalty AFTER bonuses so bonuses cannot offset it
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:188:  if (hadContamination) {
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:189:    const severity = contaminationSeverity || 'medium';
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:212:    hadContamination,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
+/bin/zsh -lc 'rg -n "contaminationSeverity|hadContamination|QUALITY_ABORT_THRESHOLD|contamination" .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:15:import type { ContaminationSeverity } from './contamination-filter';
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:31:  hadContamination?: boolean;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:32:  contaminationSeverity?: ContaminationSeverity | null;
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:70:    hadContamination = false,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:71:    contaminationSeverity = null,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:85:    if (hadContamination) {
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:86:      emptyContentFlags.push('has_contamination');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:96:      hadContamination,
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:140:  if (hadContamination) {
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:141:    qualityFlags.add('has_contamination');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:142:    const severity = contaminationSeverity || 'medium';
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:144:      warnings.push('Low-severity contamination detected (preamble only) — penalty applied post-bonus');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:147:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:150:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:158:    // Preserve any existing cap (e.g. contamination 0.6) as a ceiling
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:187:  // Apply contamination penalty AFTER bonuses so bonuses cannot offset it
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:188:  if (hadContamination) {
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:189:    const severity = contaminationSeverity || 'medium';
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:212:    hadContamination,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Quality Scorer
 // ---------------------------------------------------------------
@@ -364,7 +364,7 @@ import type { ContaminationSeverity } from './contamination-filter';
 ------------------------------------------------------------------*/
 
 exec
-/bin/zsh -lc "sed -n '260,420p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '260,420p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   } else if (realLeakedTags <= 2) {
     qualityFlags.add('leaked_html');
     breakdown.noLeakedTags = 10;
@@ -386,8 +386,8 @@ exec
       .map((observation) => normalizeMemoryNameCandidate(observation.TITLE || ''))
       .filter((title) => title.length > 0);
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -430,7 +430,7 @@ describe('filterContamination severity tracking', () => {
     expect(result.maxSeverity).toBe('high');
   });
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Input Normalizer
 // ---------------------------------------------------------------
@@ -454,7 +454,7 @@ import {
 codex
 I’m now checking for raw source-name conditionals in the same execution path (especially mode and fallback logic) to answer whether anything bypasses `getSourceCapabilities`.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Task Enrichment
 // ---------------------------------------------------------------
@@ -476,31 +476,31 @@ export function normalizeSpecTitleForMemory(title: string): string {
 }
 
 exec
-/bin/zsh -lc "rg -n \"_source\\s*===|_source\\s*"'!==|source'"\\s*===\\s*'|source\\s*"'!=='"\\s*'|dataSource\\s*===|dataSource\\s*"'!==|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|simulation|file" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts:27:  if (source === 'file' || hasJsonDataFile(dataFilePath)) {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:14:  file: {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:15:    source: 'file',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:20:  'opencode-capture': {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:21:    source: 'opencode-capture',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:26:  'claude-code-capture': {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:27:    source: 'claude-code-capture',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:32:  'codex-cli-capture': {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:33:    source: 'codex-cli-capture',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:38:  'copilot-cli-capture': {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:39:    source: 'copilot-cli-capture',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:44:  'gemini-cli-capture': {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:45:    source: 'gemini-cli-capture',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:50:  simulation: {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:51:    source: 'simulation',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:64:    return SOURCE_CAPABILITIES.file;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:67:  if (typeof source === 'string' && isKnownDataSource(source)) {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:71:  if (typeof source === 'string') {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:72:    return SOURCE_CAPABILITIES.file;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:8:// Main workflow orchestrator -- coordinates data loading, extraction, rendering, and file output
+/bin/zsh -lc "rg -n \"_source\\s*===|_source\\s*"'!==|source'"\\s*===\\s*'|source\\s*"'!=='"\\s*'|dataSource\\s*===|dataSource\\s*"'!==|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|simulation|file" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:27:  if (source === 'file' || hasJsonDataFile(dataFilePath)) {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:14:  file: {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:15:    source: 'file',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:20:  'opencode-capture': {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:21:    source: 'opencode-capture',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:26:  'claude-code-capture': {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:27:    source: 'claude-code-capture',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:32:  'codex-cli-capture': {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:33:    source: 'codex-cli-capture',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:38:  'copilot-cli-capture': {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:39:    source: 'copilot-cli-capture',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:44:  'gemini-cli-capture': {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:45:    source: 'gemini-cli-capture',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:50:  simulation: {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:51:    source: 'simulation',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:64:    return SOURCE_CAPABILITIES.file;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:67:  if (typeof source === 'string' && isKnownDataSource(source)) {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:71:  if (typeof source === 'string') {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:72:    return SOURCE_CAPABILITIES.file;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:8:// Main workflow orchestrator -- coordinates data loading, extraction, rendering, and file output
 codex
 I’ve identified one adjacent path (`task-enrichment.ts`) that still does raw source-name branching; next I’ll confirm with semantic search and then produce a field-by-field interaction map with concrete score/disposition effects.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -521,19 +521,19 @@ Universal `sk-code` review baseline for any codebase, implemented by `sk-code-re
 
 Use this skill when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
-tool cocoindex_code.search({"query":"Where is getSourceCapabilities used in system-spec-kit scripts and what behaviors depend on inputMode toolTitleWithPathExpected prefersStructuredSave?","paths":".opencode/skill/system-spec-kit/scripts/*","limit":20,"refresh_index":false})
-cocoindex_code.search({"query":"Where is getSourceCapabilities used in system-spec-kit scripts and what behaviors depend on inputMode toolTitleWithPathExpected prefersStructuredSave?","paths":".opencode/skill/system-spec-kit/scripts/*","limit":20,"refresh_index":false}) failed in 2ms:
+tool cocoindex_code.search({"query":"Where is getSourceCapabilities used in system-spec-kit scripts and what behaviors depend on inputMode toolTitleWithPathExpected prefersStructuredSave?","paths":".opencode/skills/system-spec-kit/scripts/*","limit":20,"refresh_index":false})
+cocoindex_code.search({"query":"Where is getSourceCapabilities used in system-spec-kit scripts and what behaviors depend on inputMode toolTitleWithPathExpected prefersStructuredSave?","paths":".opencode/skills/system-spec-kit/scripts/*","limit":20,"refresh_index":false}) failed in 2ms:
 {
   "content": [
     {
       "type": "text",
-      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skill/system-spec-kit/scripts/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
+      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skills/system-spec-kit/scripts/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
     }
   ],
   "isError": true
 }
-tool cocoindex_code.search({"query":"getSourceCapabilities usage inputMode toolTitleWithPathExpected prefersStructuredSave in system-spec-kit scripts","paths":[".opencode/skill/system-spec-kit/scripts/**/*"],"limit":20,"refresh_index":false})
-cocoindex_code.search({"query":"getSourceCapabilities usage inputMode toolTitleWithPathExpected prefersStructuredSave in system-spec-kit scripts","paths":[".opencode/skill/system-spec-kit/scripts/**/*"],"limit":20,"refresh_index":false}) success in 398ms:
+tool cocoindex_code.search({"query":"getSourceCapabilities usage inputMode toolTitleWithPathExpected prefersStructuredSave in system-spec-kit scripts","paths":[".opencode/skills/system-spec-kit/scripts/**/*"],"limit":20,"refresh_index":false})
+cocoindex_code.search({"query":"getSourceCapabilities usage inputMode toolTitleWithPathExpected prefersStructuredSave in system-spec-kit scripts","paths":[".opencode/skills/system-spec-kit/scripts/**/*"],"limit":20,"refresh_index":false}) success in 398ms:
 {
   "content": [
     {
@@ -556,7 +556,7 @@ cocoindex_code.search({"query":"getSourceCapabilities inputMode toolTitleWithPat
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/input-normalizer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"  function isToolRelevant(tool: CaptureToolCall): boolean {\\n    if (!specFolderHint) {\\n      return true;\\n    }\\n\\n    const toolTextParts = flattenToolContextStrings({\\n      title: tool.title || '',\\n      output: tool.output || '',\\n      input: tool.input || {},\\n    });\\n\\n    if ((tool.input?.filePath && matchesSpecAffinityFilePath(tool.input.filePath, specAffinityTargets))\\n      || (tool.input?.file_path && matchesSpecAffinityFilePath(tool.input.file_path, specAffinityTargets))\\n      || (tool.input?.path && matchesSpecAffinityFilePath(tool.input.path, specAffinityTargets))\\n    ) {\\n      return true;\\n    }\\n\\n    if (toolTextParts.some((part) => matchesSpecAffinityText(part, specAffinityTargets))) {\\n      return true;\\n    }\\n\\n    const safeToolContext = toolTextParts.some((part) => isSafeSpecFallback(currentSpecId, part));\\n    return safeToolContext && alignedExchangeTexts.length > 0;\\n  }\",\n      \"start_line\": 799,\n      \"end_line\": 823,\n      \"score\": 0.512651506292114\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/input-normalizer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"// 7. TOOL OBSERVATION TITLE BUILDER\\n/**\\n * Build a descriptive observation title from a tool call.\\n * Uses the tool's file path, pattern, or command to create a meaningful title\\n * instead of a generic \\\"Tool: grep\\\" label.\\n */\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  const toolName = tool.tool || 'unknown';\\n  const input = tool.input || {};\\n\\n  // Prefer the tool's own title if it's descriptive (not just a tool name)\\n  if (tool.title && tool.title.length > 10 && !/^Tool:\\\\s/i.test(tool.title)) {\\n    return tool.title.substring(0, 80);\\n  }\\n\\n  const filePath = input.filePath || input.file_path || input.path || '';\\n  const shortPath = filePath ? filePath.split('/').slice(-2).join('/') : '';\\n  const outputSummary = typeof tool.output === 'string'\\n    ? tool.output.replace(/\\\\s+/g, ' ').trim().slice(0, 60)\\n    : '';\\n\\n  switch (toolName.toLowerCase()) {\\n    case 'view':  // Copilot CLI equivalent of 'read'\",\n      \"start_line\": 614,\n      \"end_line\": 636,\n      \"score\": 0.4977084428137388\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/source-capabilities.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import type { DataSource } from './input-normalizer';\\n\\nexport type SourceInputMode = 'structured' | 'stateless';\\nexport type KnownDataSource = DataSource;\\n\\nexport interface SourceCapabilities {\\n  source: DataSource;\\n  inputMode: SourceInputMode;\\n  toolTitleWithPathExpected: boolean;\\n  prefersStructuredSave: boolean;\\n}\\n\\nconst SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {\\n  file: {\\n    source: 'file',\\n    inputMode: 'structured',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: true,\\n  }\",\n      \"start_line\": 1,\n      \"end_line\": 19,\n      \"score\": 0.47203977085603555\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"describe('source capabilities', () => {\\n  it('treats structured file input as the preferred structured save path', () => {\\n    expect(getSourceCapabilities('file')).toMatchObject({\\n      inputMode: 'structured',\\n      prefersStructuredSave: true,\\n      toolTitleWithPathExpected: false,\\n    });\\n  });\\n\\n  it('limits transcript-style tool-title downgrades to the capable source set', () => {\\n    expect(getSourceCapabilities('claude-code-capture').toolTitleWithPathExpected).toBe(true);\\n    expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('gemini-cli-capture').toolTitleWithPathExpected).toBe(false);\\n  });\\n});\",\n      \"start_line\": 57,\n      \"end_line\": 73,\n      \"score\": 0.4693908874421311\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/R02-opencode-capture-analysis.md\",\n      \"language\": \"markdown\",\n      \"content\": \"Source: `input-normalizer.ts:115-124,353-482`.\\n\\nMain behavior:\\n1. Reads `exchanges`, `toolCalls`, `metadata`, and `sessionTitle` from the capture.\\n2. Builds a relevance-keyword list from `specFolderHint` path segments.\\n3. Filters tool calls by file path/title substring matching when a spec folder hint is present.\\n4. Converts **all exchanges** into `userPrompts`.\\n5. Converts non-placeholder assistant responses into `feature` observations.\\n6. Converts filtered tool calls into `implementation` or generic `observation` observations.\\n7. Builds a single `recentContext` item from the first user request and last assistant response.\\n8. Builds `FILES` only from filtered `edit`/`write` tool calls.\\n\\nSource: `input-normalizer.ts:353-482`.\",\n      \"start_line\": 113,\n      \"end_line\": 125,\n      \"score\": 0.4306208847646005\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C15.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:27:import { normalizeSpecTitleForMemory, pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:342:function extractSpecTitle(specFolderPath: string): string {\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:350:    return normalizeSpecTitleForMemory(titleMatch[1]);\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:624:    const specTitle = extractSpecTitle(specFolder);\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:625:    const allowSpecTitleFallback = shouldEnrichTaskFromSpecTitle(\",\n      \"start_line\": 534,\n      \"end_line\": 538,\n      \"score\": 0.41850009167634994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"/* ───────────────────────────────────────────────────────────────\\n   CONTENT EXTRACTION HELPERS\\n----------------------------------------------------------------*/\\n\\n/**\\n * Extracts a display title from indexed content.\\n * @param content - The content to inspect.\\n * @param filename - The optional source filename.\\n * @returns The extracted title.\\n */\",\n      \"start_line\": 414,\n      \"end_line\": 423,\n      \"score\": 0.4180927478559795\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X01.md\",\n      \"language\": \"markdown\",\n      \"content\": \"   368\\t    // Also include the full path for direct substring matching\\n   369\\t    relevanceKeywords.push(specFolderHint);\\n   370\\t  }\\n   371\\t\\n   372\\t  function isToolRelevant(tool: CaptureToolCall): boolean {\\n   373\\t    if (relevanceKeywords.length === 0) return true; // no filter\\n   374\\t    const filePath = tool.input?.filePath || tool.input?.file_path || tool.input?.path || '';\\n   375\\t    const title = tool.title || '';\\n   376\\t    const combined = `${filePath} ${title}`.toLowerCase();\\n   377\\t    return relevanceKeywords.some(kw => combined.includes(kw.toLowerCase()));\\n   378\\t  }\",\n      \"start_line\": 232,\n      \"end_line\": 242,\n      \"score\": 0.41596911726617236\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"citing `input-normalizer.ts:430–451`.\\n\\nThe **current code** at `input-normalizer.ts:358–393` contains `buildToolObservationTitle()`:\\n```ts\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  ...\\n  switch (toolName.toLowerCase()) {\\n    case 'read':  return shortPath ? `Read ${shortPath}` : 'Read file';\\n    case 'edit':  return shortPath ? `Edit ${shortPath}` : 'Edit file';\\n    case 'grep':  return pattern  ? `Grep: ${pattern}`  : 'Grep search';\\n    // ... etc.\\n  }\\n}\\n```\\nAnd at `input-normalizer.ts:477`: `const toolTitle = buildToolObservationTitle(tool);` is used instead of the raw `Tool: ${tool.tool}` template.\\n\\n**The plan.md itself acknowledges this staleness** at line 175:\",\n      \"start_line\": 47,\n      \"end_line\": 63,\n      \"score\": 0.4124826055315154\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C05.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Tool relevance check misses many relevant tool calls\\n- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:374)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.\\n- **Expected Behavior:** Relevance should inspect other tool input fields (e.g., query, glob pattern, args) when path fields are absent.\\n- **Root Cause:** Narrow field selection in `isToolRelevant`.\\n- **Suggested Fix:** Serialize/select additional safe input fields for relevance matching.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 157,\n      \"end_line\": 165,\n      \"score\": 0.4099748432459407\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C05.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Tool relevance check misses many relevant tool calls\\n- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:374)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.\\n- **Expected Behavior:** Relevance should inspect other tool input fields (e.g., query, glob pattern, args) when path fields are absent.\\n- **Root Cause:** Narrow field selection in `isToolRelevant`.\\n- **Suggested Fix:** Serialize/select additional safe input fields for relevance matching.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 306,\n      \"end_line\": 314,\n      \"score\": 0.4099748432459407\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/core/workflow.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import { detectSpecFolder, setupContextDirectory } from '../spec-folder';\\nimport { populateTemplate } from '../renderers';\\nimport { scoreMemoryQuality } from './quality-scorer';\\nimport { extractKeyTopics } from './topic-extractor';\\nimport type { DecisionForTopics } from './topic-extractor';\\nimport { writeFilesAtomically } from './file-writer';\\nimport { generateContentSlug, pickBestContentName, ensureUniqueMemoryFilename } from '../utils/slug-utils';\\nimport { normalizeSpecTitleForMemory, pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment';\\nimport {\\n  buildSpecAffinityTargets,\\n  evaluateCollectedDataSpecAffinity,\\n} from '../utils/spec-affinity';\\nimport { deriveMemoryDescription } from '../utils/memory-frontmatter';\\nimport { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data';\\nimport type { CollectedDataFull } from '../extractors/collect-session-data';\",\n      \"start_line\": 23,\n      \"end_line\": 37,\n      \"score\": 0.4051126073157931\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. Staleness Detection\\n\\n### 2.1 R02: Generic `Tool: read` Titles — **CONFIRMED STALE**\\n\\n**Claim:** `title: \\\\`Tool: ${tool.tool}\\\\`` in tool-call observations.\\n\\n**Current code:**\\n```ts\\n// input-normalizer.ts:358–393\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  const toolName = tool.tool || 'unknown';\\n  const input = tool.input || {};\\n  if (tool.title && tool.title.length > 10 && !/^Tool:\\\\s/i.test(tool.title)) {\\n    return tool.title.substring(0, 80);\\n  }\\n  switch (toolName.toLowerCase()) {\\n    case 'read': return shortPath ? `Read ${shortPath}` : 'Read file';\\n    case 'edit': return shortPath ? `Edit ${shortPath}` : 'Edit file';\\n    // ...\\n  }\\n}\\n// input-normalizer.ts:477\\nconst toolTitle = buildToolObservationTitle(tool);\\n```\",\n      \"start_line\": 194,\n      \"end_line\": 217,\n      \"score\": 0.39634291907506736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/core/quality-scorer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"function extractHeadingTitle(content: string): string {\\n  const headingMatch = content.match(/^#\\\\s+(.+)$/m);\\n  return headingMatch?.[1]?.trim() || '';\\n}\\n\\nfunction hasSpecificPrimaryTitle(content: string): boolean {\\n  const titleCandidate = pickBestContentName([\\n    extractFrontmatterTitle(content),\\n    extractHeadingTitle(content),\\n  ]);\\n\\n  return titleCandidate.length >= 8;\\n}\\n\\nfunction hasMeaningfulObservationTitle(title?: string): boolean {\\n  if (!title) {\\n    return false;\\n  }\\n\\n  const normalized = normalizeMemoryNameCandidate(title);\\n  if (normalized.length < 10) {\\n    return false;\\n  }\\n\\n  return !isGenericContentTask(normalized) && !isContaminatedMemoryName(normalized);\\n}\\n\\n/**\\n * Score the quality of a generated memory file.\\n * Runs after template rendering, before file writing.\\n * Returns canonical score01 plus a score100 compatibility alias and a per-criterion breakdown.\\n */\",\n      \"start_line\": 130,\n      \"end_line\": 161,\n      \"score\": 0.3962355069231478\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/017-stateless-quality-gates/decision-record.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### Decision\\n\\n**We chose**: Add an optional `captureSource?: string` parameter to `filterContamination()`; when source is `'claude-code-capture'`, return `'low'` for the tool-title-with-path pattern instead of `'high'`.\\n\\n**How it works**: The `captureSource` parameter is optional and defaults to undefined. In the severity lookup for tool-title-with-path, a conditional check on `captureSource === 'claude-code-capture'` returns `'low'`. All other patterns are unaffected. The `captureSource` value is threaded from `collectedData.captureSource` (or the stateless mode detection flag) in `workflow.ts` (~line 1356).\\n<!-- /ANCHOR:adr-003-decision -->\\n\\n---\\n\\n<!-- ANCHOR:adr-003-alternatives -->\",\n      \"start_line\": 250,\n      \"end_line\": 259,\n      \"score\": 0.3929975346664989\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Verdict:** R02's tool-title section is stale. The `buildToolObservationTitle()` function did not exist when R02 was written. The function is called at `input-normalizer.ts:477` and replaces the raw `` `Tool: ${tool.tool}` `` template. The plan.md self-flags this at line 175.\\n\\n**Remaining R02 concerns that are still valid:**\\n- snake_case/camelCase mismatch for session metadata fields (plan.md Phase 0, task still unchecked)\\n- Single `recentContext` entry (plan.md Phase 0/1 concern)\\n- `FILES` limited to edit/write only\\n\\n---\",\n      \"start_line\": 219,\n      \"end_line\": 226,\n      \"score\": 0.39054780976106684\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/task-enrichment.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import { isContaminatedMemoryName, isGenericContentTask, normalizeMemoryNameCandidate, pickBestContentName } from './slug-utils';\\n\\nfunction hasJsonDataFile(dataFilePath: string | null | undefined): boolean {\\n  return typeof dataFilePath === 'string' && dataFilePath.trim().length > 0;\\n}\\n\\n/** Normalizes a spec title for reuse in memory task enrichment. */\\nexport function normalizeSpecTitleForMemory(title: string): string {\\n  return normalizeMemoryNameCandidate(title);\\n}\\n\\n/** Returns whether the spec title should enrich the stored memory task. */\",\n      \"start_line\": 10,\n      \"end_line\": 21,\n      \"score\": 0.3905080623412047\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/z_archive/016-index-workflows-code/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### US-003: Document Type Attribution (Priority: P1)\\n\\n**As a** search result consumer, **I want** skill files tagged with their source skill name, **so that** I can trace context back to the originating skill.\\n\\n**Acceptance Criteria**:\\n1. Given file `.opencode/skill/workflows-code--validation/references/guide.md`, When indexed, Then `spec_folder` field = `skill:workflows-code--validation`\\n2. Given search results, When I inspect metadata, Then skill-sourced files clearly distinguished from spec folder files\\n\\n---\",\n      \"start_line\": 288,\n      \"end_line\": 296,\n      \"score\": 0.3901720000778539\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/tests/context-server.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"    // T14: Each tool has a description\\n    for (const tool of EXPECTED_TOOLS) {\\n      it(`T14: Tool ${tool} has description`, () => {\\n        const toolDefRegex = new RegExp(`name:\\\\\\\\s*'${tool}'\\\\\\\\s*,\\\\\\\\s*description:\\\\\\\\s*'`)\\n        expect(toolDefRegex.test(toolSchemasCode)).toBe(true)\\n      })\\n    }\\n\\n    // T15: Each tool has an inputSchema\\n    for (const tool of EXPECTED_TOOLS) {\\n      it(`T15: Tool ${tool} has inputSchema`, () => {\\n        const schemaRegex = new RegExp(`name:\\\\\\\\s*'${tool}'[\\\\\\\\s\\\\\\\\S]*?inputSchema:\\\\\\\\s*\\\\\\\\{`)\\n        expect(schemaRegex.test(toolSchemasCode)).toBe(true)\\n      })\\n    }\\n\\n    it('T15b: context-server imports scoring observability init', () => {\\n      expect(sourceCode).toMatch(/initScoringObservability\\\\s*}\\\\s*from\\\\s*'\\\\.\\\\/lib\\\\/telemetry\\\\/scoring-observability'/)\\n    })\\n\\n    it('T15c: context-server initializes scoring observability at startup', () => {\\n      expect(sourceCode).toMatch(/initScoringObservability\\\\(database\\\\)/)\\n    })\\n  })\",\n      \"start_line\": 231,\n      \"end_line\": 254,\n      \"score\": 0.38614444446091056\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/source-capabilities.ts\",\n      \"language\": \"typescript\",\n      \"content\": \": {\\n    source: 'gemini-cli-capture',\\n    inputMode: 'stateless',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: true,\\n  },\\n  simulation: {\\n    source: 'simulation',\\n    inputMode: 'structured',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: false,\\n  },\\n};\\n\\nfunction isKnownDataSource(source: string): source is KnownDataSource {\\n  return source in SOURCE_CAPABILITIES;\\n}\\n\\nfunction getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {\\n  if (!source) {\\n    return SOURCE_CAPABILITIES.file;\\n  }\\n\\n  if (typeof source === 'string' && isKnownDataSource(source)) {\\n    return SOURCE_CAPABILITIES[source];\\n  }\\n\\n  if (typeof source === 'string') {\\n    return SOURCE_CAPABILITIES.file;\\n  }\\n\\n  return SOURCE_CAPABILITIES[source];\\n}\\n\\nexport {\\n  SOURCE_CAPABILITIES,\\n  getSourceCapabilities,\\n  isKnownDataSource,\\n};\",\n      \"start_line\": 44,\n      \"end_line\": 82,\n      \"score\": 0.38458986090719804\n    }\n  ],\n  \"total_returned\": 20,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/input-normalizer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"  function isToolRelevant(tool: CaptureToolCall): boolean {\\n    if (!specFolderHint) {\\n      return true;\\n    }\\n\\n    const toolTextParts = flattenToolContextStrings({\\n      title: tool.title || '',\\n      output: tool.output || '',\\n      input: tool.input || {},\\n    });\\n\\n    if ((tool.input?.filePath && matchesSpecAffinityFilePath(tool.input.filePath, specAffinityTargets))\\n      || (tool.input?.file_path && matchesSpecAffinityFilePath(tool.input.file_path, specAffinityTargets))\\n      || (tool.input?.path && matchesSpecAffinityFilePath(tool.input.path, specAffinityTargets))\\n    ) {\\n      return true;\\n    }\\n\\n    if (toolTextParts.some((part) => matchesSpecAffinityText(part, specAffinityTargets))) {\\n      return true;\\n    }\\n\\n    const safeToolContext = toolTextParts.some((part) => isSafeSpecFallback(currentSpecId, part));\\n    return safeToolContext && alignedExchangeTexts.length > 0;\\n  }\",\n      \"start_line\": 799,\n      \"end_line\": 823,\n      \"score\": 0.512651506292114\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/input-normalizer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"// 7. TOOL OBSERVATION TITLE BUILDER\\n/**\\n * Build a descriptive observation title from a tool call.\\n * Uses the tool's file path, pattern, or command to create a meaningful title\\n * instead of a generic \\\"Tool: grep\\\" label.\\n */\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  const toolName = tool.tool || 'unknown';\\n  const input = tool.input || {};\\n\\n  // Prefer the tool's own title if it's descriptive (not just a tool name)\\n  if (tool.title && tool.title.length > 10 && !/^Tool:\\\\s/i.test(tool.title)) {\\n    return tool.title.substring(0, 80);\\n  }\\n\\n  const filePath = input.filePath || input.file_path || input.path || '';\\n  const shortPath = filePath ? filePath.split('/').slice(-2).join('/') : '';\\n  const outputSummary = typeof tool.output === 'string'\\n    ? tool.output.replace(/\\\\s+/g, ' ').trim().slice(0, 60)\\n    : '';\\n\\n  switch (toolName.toLowerCase()) {\\n    case 'view':  // Copilot CLI equivalent of 'read'\",\n      \"start_line\": 614,\n      \"end_line\": 636,\n      \"score\": 0.4977084428137388\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/source-capabilities.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import type { DataSource } from './input-normalizer';\\n\\nexport type SourceInputMode = 'structured' | 'stateless';\\nexport type KnownDataSource = DataSource;\\n\\nexport interface SourceCapabilities {\\n  source: DataSource;\\n  inputMode: SourceInputMode;\\n  toolTitleWithPathExpected: boolean;\\n  prefersStructuredSave: boolean;\\n}\\n\\nconst SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {\\n  file: {\\n    source: 'file',\\n    inputMode: 'structured',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: true,\\n  }\",\n      \"start_line\": 1,\n      \"end_line\": 19,\n      \"score\": 0.47203977085603555\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"describe('source capabilities', () => {\\n  it('treats structured file input as the preferred structured save path', () => {\\n    expect(getSourceCapabilities('file')).toMatchObject({\\n      inputMode: 'structured',\\n      prefersStructuredSave: true,\\n      toolTitleWithPathExpected: false,\\n    });\\n  });\\n\\n  it('limits transcript-style tool-title downgrades to the capable source set', () => {\\n    expect(getSourceCapabilities('claude-code-capture').toolTitleWithPathExpected).toBe(true);\\n    expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(false);\\n    expect(getSourceCapabilities('gemini-cli-capture').toolTitleWithPathExpected).toBe(false);\\n  });\\n});\",\n      \"start_line\": 57,\n      \"end_line\": 73,\n      \"score\": 0.4693908874421311\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/R02-opencode-capture-analysis.md\",\n      \"language\": \"markdown\",\n      \"content\": \"Source: `input-normalizer.ts:115-124,353-482`.\\n\\nMain behavior:\\n1. Reads `exchanges`, `toolCalls`, `metadata`, and `sessionTitle` from the capture.\\n2. Builds a relevance-keyword list from `specFolderHint` path segments.\\n3. Filters tool calls by file path/title substring matching when a spec folder hint is present.\\n4. Converts **all exchanges** into `userPrompts`.\\n5. Converts non-placeholder assistant responses into `feature` observations.\\n6. Converts filtered tool calls into `implementation` or generic `observation` observations.\\n7. Builds a single `recentContext` item from the first user request and last assistant response.\\n8. Builds `FILES` only from filtered `edit`/`write` tool calls.\\n\\nSource: `input-normalizer.ts:353-482`.\",\n      \"start_line\": 113,\n      \"end_line\": 125,\n      \"score\": 0.4306208847646005\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C15.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:27:import { normalizeSpecTitleForMemory, pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment';\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:342:function extractSpecTitle(specFolderPath: string): string {\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:350:    return normalizeSpecTitleForMemory(titleMatch[1]);\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:624:    const specTitle = extractSpecTitle(specFolder);\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:625:    const allowSpecTitleFallback = shouldEnrichTaskFromSpecTitle(\",\n      \"start_line\": 534,\n      \"end_line\": 538,\n      \"score\": 0.41850009167634994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"/* ───────────────────────────────────────────────────────────────\\n   CONTENT EXTRACTION HELPERS\\n----------------------------------------------------------------*/\\n\\n/**\\n * Extracts a display title from indexed content.\\n * @param content - The content to inspect.\\n * @param filename - The optional source filename.\\n * @returns The extracted title.\\n */\",\n      \"start_line\": 414,\n      \"end_line\": 423,\n      \"score\": 0.4180927478559795\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/analysis/analysis-X01.md\",\n      \"language\": \"markdown\",\n      \"content\": \"   368\\t    // Also include the full path for direct substring matching\\n   369\\t    relevanceKeywords.push(specFolderHint);\\n   370\\t  }\\n   371\\t\\n   372\\t  function isToolRelevant(tool: CaptureToolCall): boolean {\\n   373\\t    if (relevanceKeywords.length === 0) return true; // no filter\\n   374\\t    const filePath = tool.input?.filePath || tool.input?.file_path || tool.input?.path || '';\\n   375\\t    const title = tool.title || '';\\n   376\\t    const combined = `${filePath} ${title}`.toLowerCase();\\n   377\\t    return relevanceKeywords.some(kw => combined.includes(kw.toLowerCase()));\\n   378\\t  }\",\n      \"start_line\": 232,\n      \"end_line\": 242,\n      \"score\": 0.41596911726617236\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"citing `input-normalizer.ts:430–451`.\\n\\nThe **current code** at `input-normalizer.ts:358–393` contains `buildToolObservationTitle()`:\\n```ts\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  ...\\n  switch (toolName.toLowerCase()) {\\n    case 'read':  return shortPath ? `Read ${shortPath}` : 'Read file';\\n    case 'edit':  return shortPath ? `Edit ${shortPath}` : 'Edit file';\\n    case 'grep':  return pattern  ? `Grep: ${pattern}`  : 'Grep search';\\n    // ... etc.\\n  }\\n}\\n```\\nAnd at `input-normalizer.ts:477`: `const toolTitle = buildToolObservationTitle(tool);` is used instead of the raw `Tool: ${tool.tool}` template.\\n\\n**The plan.md itself acknowledges this staleness** at line 175:\",\n      \"start_line\": 47,\n      \"end_line\": 63,\n      \"score\": 0.4124826055315154\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C05.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Tool relevance check misses many relevant tool calls\\n- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:374)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.\\n- **Expected Behavior:** Relevance should inspect other tool input fields (e.g., query, glob pattern, args) when path fields are absent.\\n- **Root Cause:** Narrow field selection in `isToolRelevant`.\\n- **Suggested Fix:** Serialize/select additional safe input fields for relevance matching.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 157,\n      \"end_line\": 165,\n      \"score\": 0.4099748432459407\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C05.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Tool relevance check misses many relevant tool calls\\n- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:374)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.\\n- **Expected Behavior:** Relevance should inspect other tool input fields (e.g., query, glob pattern, args) when path fields are absent.\\n- **Root Cause:** Narrow field selection in `isToolRelevant`.\\n- **Suggested Fix:** Serialize/select additional safe input fields for relevance matching.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 306,\n      \"end_line\": 314,\n      \"score\": 0.4099748432459407\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/core/workflow.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import { detectSpecFolder, setupContextDirectory } from '../spec-folder';\\nimport { populateTemplate } from '../renderers';\\nimport { scoreMemoryQuality } from './quality-scorer';\\nimport { extractKeyTopics } from './topic-extractor';\\nimport type { DecisionForTopics } from './topic-extractor';\\nimport { writeFilesAtomically } from './file-writer';\\nimport { generateContentSlug, pickBestContentName, ensureUniqueMemoryFilename } from '../utils/slug-utils';\\nimport { normalizeSpecTitleForMemory, pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment';\\nimport {\\n  buildSpecAffinityTargets,\\n  evaluateCollectedDataSpecAffinity,\\n} from '../utils/spec-affinity';\\nimport { deriveMemoryDescription } from '../utils/memory-frontmatter';\\nimport { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data';\\nimport type { CollectedDataFull } from '../extractors/collect-session-data';\",\n      \"start_line\": 23,\n      \"end_line\": 37,\n      \"score\": 0.4051126073157931\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. Staleness Detection\\n\\n### 2.1 R02: Generic `Tool: read` Titles — **CONFIRMED STALE**\\n\\n**Claim:** `title: \\\\`Tool: ${tool.tool}\\\\`` in tool-call observations.\\n\\n**Current code:**\\n```ts\\n// input-normalizer.ts:358–393\\nfunction buildToolObservationTitle(tool: CaptureToolCall): string {\\n  const toolName = tool.tool || 'unknown';\\n  const input = tool.input || {};\\n  if (tool.title && tool.title.length > 10 && !/^Tool:\\\\s/i.test(tool.title)) {\\n    return tool.title.substring(0, 80);\\n  }\\n  switch (toolName.toLowerCase()) {\\n    case 'read': return shortPath ? `Read ${shortPath}` : 'Read file';\\n    case 'edit': return shortPath ? `Edit ${shortPath}` : 'Edit file';\\n    // ...\\n  }\\n}\\n// input-normalizer.ts:477\\nconst toolTitle = buildToolObservationTitle(tool);\\n```\",\n      \"start_line\": 194,\n      \"end_line\": 217,\n      \"score\": 0.39634291907506736\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/core/quality-scorer.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"function extractHeadingTitle(content: string): string {\\n  const headingMatch = content.match(/^#\\\\s+(.+)$/m);\\n  return headingMatch?.[1]?.trim() || '';\\n}\\n\\nfunction hasSpecificPrimaryTitle(content: string): boolean {\\n  const titleCandidate = pickBestContentName([\\n    extractFrontmatterTitle(content),\\n    extractHeadingTitle(content),\\n  ]);\\n\\n  return titleCandidate.length >= 8;\\n}\\n\\nfunction hasMeaningfulObservationTitle(title?: string): boolean {\\n  if (!title) {\\n    return false;\\n  }\\n\\n  const normalized = normalizeMemoryNameCandidate(title);\\n  if (normalized.length < 10) {\\n    return false;\\n  }\\n\\n  return !isGenericContentTask(normalized) && !isContaminatedMemoryName(normalized);\\n}\\n\\n/**\\n * Score the quality of a generated memory file.\\n * Runs after template rendering, before file writing.\\n * Returns canonical score01 plus a score100 compatibility alias and a per-criterion breakdown.\\n */\",\n      \"start_line\": 130,\n      \"end_line\": 161,\n      \"score\": 0.3962355069231478\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/017-stateless-quality-gates/decision-record.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### Decision\\n\\n**We chose**: Add an optional `captureSource?: string` parameter to `filterContamination()`; when source is `'claude-code-capture'`, return `'low'` for the tool-title-with-path pattern instead of `'high'`.\\n\\n**How it works**: The `captureSource` parameter is optional and defaults to undefined. In the severity lookup for tool-title-with-path, a conditional check on `captureSource === 'claude-code-capture'` returns `'low'`. All other patterns are unaffected. The `captureSource` value is threaded from `collectedData.captureSource` (or the stateless mode detection flag) in `workflow.ts` (~line 1356).\\n<!-- /ANCHOR:adr-003-decision -->\\n\\n---\\n\\n<!-- ANCHOR:adr-003-alternatives -->\",\n      \"start_line\": 250,\n      \"end_line\": 259,\n      \"score\": 0.3929975346664989\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-deep-research-scratch.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Verdict:** R02's tool-title section is stale. The `buildToolObservationTitle()` function did not exist when R02 was written. The function is called at `input-normalizer.ts:477` and replaces the raw `` `Tool: ${tool.tool}` `` template. The plan.md self-flags this at line 175.\\n\\n**Remaining R02 concerns that are still valid:**\\n- snake_case/camelCase mismatch for session metadata fields (plan.md Phase 0, task still unchecked)\\n- Single `recentContext` entry (plan.md Phase 0/1 concern)\\n- `FILES` limited to edit/write only\\n\\n---\",\n      \"start_line\": 219,\n      \"end_line\": 226,\n      \"score\": 0.39054780976106684\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/task-enrichment.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"import { isContaminatedMemoryName, isGenericContentTask, normalizeMemoryNameCandidate, pickBestContentName } from './slug-utils';\\n\\nfunction hasJsonDataFile(dataFilePath: string | null | undefined): boolean {\\n  return typeof dataFilePath === 'string' && dataFilePath.trim().length > 0;\\n}\\n\\n/** Normalizes a spec title for reuse in memory task enrichment. */\\nexport function normalizeSpecTitleForMemory(title: string): string {\\n  return normalizeMemoryNameCandidate(title);\\n}\\n\\n/** Returns whether the spec title should enrich the stored memory task. */\",\n      \"start_line\": 10,\n      \"end_line\": 21,\n      \"score\": 0.3905080623412047\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/z_archive/016-index-workflows-code/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### US-003: Document Type Attribution (Priority: P1)\\n\\n**As a** search result consumer, **I want** skill files tagged with their source skill name, **so that** I can trace context back to the originating skill.\\n\\n**Acceptance Criteria**:\\n1. Given file `.opencode/skills/workflows-code--validation/references/guide.md`, When indexed, Then `spec_folder` field = `skill:workflows-code--validation`\\n2. Given search results, When I inspect metadata, Then skill-sourced files clearly distinguished from spec folder files\\n\\n---\",\n      \"start_line\": 288,\n      \"end_line\": 296,\n      \"score\": 0.3901720000778539\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/tests/context-server.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"    // T14: Each tool has a description\\n    for (const tool of EXPECTED_TOOLS) {\\n      it(`T14: Tool ${tool} has description`, () => {\\n        const toolDefRegex = new RegExp(`name:\\\\\\\\s*'${tool}'\\\\\\\\s*,\\\\\\\\s*description:\\\\\\\\s*'`)\\n        expect(toolDefRegex.test(toolSchemasCode)).toBe(true)\\n      })\\n    }\\n\\n    // T15: Each tool has an inputSchema\\n    for (const tool of EXPECTED_TOOLS) {\\n      it(`T15: Tool ${tool} has inputSchema`, () => {\\n        const schemaRegex = new RegExp(`name:\\\\\\\\s*'${tool}'[\\\\\\\\s\\\\\\\\S]*?inputSchema:\\\\\\\\s*\\\\\\\\{`)\\n        expect(schemaRegex.test(toolSchemasCode)).toBe(true)\\n      })\\n    }\\n\\n    it('T15b: context-server imports scoring observability init', () => {\\n      expect(sourceCode).toMatch(/initScoringObservability\\\\s*}\\\\s*from\\\\s*'\\\\.\\\\/lib\\\\/telemetry\\\\/scoring-observability'/)\\n    })\\n\\n    it('T15c: context-server initializes scoring observability at startup', () => {\\n      expect(sourceCode).toMatch(/initScoringObservability\\\\(database\\\\)/)\\n    })\\n  })\",\n      \"start_line\": 231,\n      \"end_line\": 254,\n      \"score\": 0.38614444446091056\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/source-capabilities.ts\",\n      \"language\": \"typescript\",\n      \"content\": \": {\\n    source: 'gemini-cli-capture',\\n    inputMode: 'stateless',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: true,\\n  },\\n  simulation: {\\n    source: 'simulation',\\n    inputMode: 'structured',\\n    toolTitleWithPathExpected: false,\\n    prefersStructuredSave: false,\\n  },\\n};\\n\\nfunction isKnownDataSource(source: string): source is KnownDataSource {\\n  return source in SOURCE_CAPABILITIES;\\n}\\n\\nfunction getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {\\n  if (!source) {\\n    return SOURCE_CAPABILITIES.file;\\n  }\\n\\n  if (typeof source === 'string' && isKnownDataSource(source)) {\\n    return SOURCE_CAPABILITIES[source];\\n  }\\n\\n  if (typeof source === 'string') {\\n    return SOURCE_CAPABILITIES.file;\\n  }\\n\\n  return SOURCE_CAPABILITIES[source];\\n}\\n\\nexport {\\n  SOURCE_CAPABILITIES,\\n  getSourceCapabilities,\\n  isKnownDataSource,\\n};\",\n      \"start_line\": 44,\n      \"end_line\": 82,\n      \"score\": 0.38458986090719804\n    }\n  ],\n  \"total_returned\": 20,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -573,55 +573,55 @@ cocoindex_code.search({"query":"getSourceCapabilities inputMode toolTitleWithPat
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/utils/input-normalizer.ts",
 exec
-/bin/zsh -lc "rg -n \"prefersStructuredSave|toolTitleWithPathExpected|inputMode\" .opencode/skill/system-spec-kit/scripts --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:9:  toolTitleWithPathExpected: boolean;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:10:  prefersStructuredSave: boolean;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:17:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:18:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:23:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:24:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:29:    toolTitleWithPathExpected: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:30:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:35:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:36:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:41:    toolTitleWithPathExpected: false,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:42:    prefersStructuredSave: true,
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:47:    toolTitleWithPathExpected: false,
+/bin/zsh -lc "rg -n \"prefersStructuredSave|toolTitleWithPathExpected|inputMode\" .opencode/skills/system-spec-kit/scripts --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:9:  toolTitleWithPathExpected: boolean;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:10:  prefersStructuredSave: boolean;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:17:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:18:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:23:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:24:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:29:    toolTitleWithPathExpected: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:30:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:35:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:36:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:41:    toolTitleWithPathExpected: false,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:42:    prefersStructuredSave: true,
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:47:    toolTitleWithPathExpected: false,
 exec
-/bin/zsh -lc "rg -n \"getSourceCapabilities\\(\" .opencode/skill/system-spec-kit/scripts --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:110:  const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(options?.captureSource);
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:62:function getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:398:  const capabilities = getSourceCapabilities(source);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1508:    const captureCapabilities = getSourceCapabilities(captureSource);
+/bin/zsh -lc "rg -n \"getSourceCapabilities\\(\" .opencode/skills/system-spec-kit/scripts --glob '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:110:  const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(options?.captureSource);
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:62:function getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:398:  const capabilities = getSourceCapabilities(source);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1508:    const captureCapabilities = getSourceCapabilities(captureSource);
 exec
-/bin/zsh -lc 'rg -n "QUALITY_ABORT_THRESHOLD" .opencode/skill/system-spec-kit/scripts/core/config.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/**/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/dist/core/config.d.ts:47:    QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1284:    const previousThreshold = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1285:    CONFIG.QUALITY_ABORT_THRESHOLD = 0.5;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1307:      CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
+/bin/zsh -lc 'rg -n "QUALITY_ABORT_THRESHOLD" .opencode/skills/system-spec-kit/scripts/core/config.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/**/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/dist/core/config.d.ts:47:    QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1284:    const previousThreshold = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1285:    CONFIG.QUALITY_ABORT_THRESHOLD = 0.5;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1307:      CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
 exec
-/bin/zsh -lc "sed -n '250,340p' .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '250,340p' .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     if (fsSync.existsSync(configPath)) {
       const configContent: string = fsSync.readFileSync(configPath, 'utf-8');
 
@@ -643,7 +643,7 @@ exec
     }
   } catch (error: unknown) {
 exec
-/bin/zsh -lc 'rg -n "qualityAbortThreshold" .opencode/skill/system-spec-kit/scripts/core/config.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "qualityAbortThreshold" .opencode/skills/system-spec-kit/scripts/core/config.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 34:  qualityAbortThreshold: number;
 104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
 112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
@@ -653,7 +653,7 @@ exec
 239:    qualityAbortThreshold: 0.15,
 303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
 exec
-/bin/zsh -lc "sed -n '220,250p' .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '220,250p' .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    4. CONFIG LOADER
 ------------------------------------------------------------------*/
 
@@ -677,10 +677,10 @@ function loadConfig(): WorkflowConfig {
 codex
 I now have the behavior map; I’m pulling exact line-number snippets so the final report can cite each capability field to each downstream effect precisely.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '130,215p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '292,355p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '90,150p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '380,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '130,215p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '292,355p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '90,150p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '380,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    292	    }
    293	  }
    294	
@@ -765,7 +765,7 @@ exec
    398	  const capabilities = getSourceCapabilities(source);
    399	  return metadata.appliesToSources.includes(capabilities.source);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1406,1465p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1406,1465p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1406	
   1407	    if (!collectedData) {
   1408	      throw new Error('No data available - provide dataFile, collectedData, or loadDataFn');
@@ -787,11 +787,11 @@ exec
   1424	        // Blocks B and C (file-path overlap) remain as hard blocks for safety.
   1425	        const alignMsg = `ALIGNMENT_WARNING: Captured stateless content matched the workspace but not the target spec folder "${activeSpecFolderArg}". ` +
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1490,1535p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2218,2255p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1228,1260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts | sed -n '20,60p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1490,1535p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2218,2255p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1228,1260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts | sed -n '20,60p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import type { DataSource } from './input-normalizer';
      2	
      3	export type SourceInputMode = 'structured' | 'stateless';
@@ -897,7 +897,7 @@ exec
     38	  specTitle: string,
     39	  folderBase: string,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2100,2145p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2100,2145p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2100	    log('   No HTML cleaning needed');
   2101	  }
   2102	
@@ -919,7 +919,7 @@ exec
   2118	    files: effectiveFiles,
   2119	    observations: sessionData.OBSERVATIONS || [],
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2178,2230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2178,2230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2178	  }
   2179	
   2180	  if (!qualityValidation.valid) {
@@ -941,7 +941,7 @@ exec
   2196	  );
   2197	  if (qualityResult.warnings.length > 0) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '34,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '34,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     34	  indexBlockingRuleIds: QualityRuleId[];
     35	  softRuleIds: QualityRuleId[];
     36	}
@@ -963,7 +963,7 @@ exec
     52	    appliesToSources: 'all',
     53	    reason: 'Structured content can be saved for inspection, but placeholder leakage with real tool evidence should not reach the semantic index.',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1848,1875p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1848,1875p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1848	  // Step 8: Populate templates
   1849	  log('Step 8: Populating template...');
   1850	
@@ -985,7 +985,7 @@ exec
   1866	        log(`   Enriched task from spec.md: "${enrichedTask}"`);
   1867	      }
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '68,88p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '68,88p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     68	  // F-10: Tool titles with path arguments (Read/Edit/Write/Grep/Glob/Bash) — high severity
     69	  { label: 'tool title with path', pattern: /\b(?:Read|Edit|Write|Grep|Glob|Bash)\s+(?:tool\s+)?(?:on\s+)?[\/\.][^\s]+/gi, severity: 'high' },
     70	  // API/service error leakage — high severity
@@ -1007,7 +1007,7 @@ exec
     86	  sourceCapabilities?: SourceCapabilities;
     87	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2358,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2358,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2358	      ...(reason ? { reason } : {}),
   2359	      ...(errorMessage ? { errorMessage } : {}),
   2360	    };
@@ -1029,7 +1029,7 @@ exec
   2376	        templateContractValid: templateContractEarly.valid,
   2377	        sufficiencyPass: sufficiencyResult.pass,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '150,210p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '150,210p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    150	function shouldIndexMemory(options: {
    151	  ctxFileWritten: boolean;
    152	  validationDisposition: ValidationDispositionResult;
@@ -1054,30 +1054,30 @@ codex
 1. **Capability field interaction map**
 
 - **`toolTitleWithPathExpected`**
-  - Consumer: [`contamination-filter.ts:111`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:111).
-  - Concrete effect: for denylist label `tool title with path` (base severity is `high` at [`contamination-filter.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:69)), severity is downgraded to `low` when capability is `true`.
+  - Consumer: [`contamination-filter.ts:111`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:111).
+  - Concrete effect: for denylist label `tool title with path` (base severity is `high` at [`contamination-filter.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:69)), severity is downgraded to `low` when capability is `true`.
   - End-to-end propagation:
-    - Capabilities are loaded in workflow and passed into contamination filtering at [`workflow.ts:1508`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1508), [`workflow.ts:1514`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1514).
-    - Resulting `contaminationMaxSeverity` is accumulated at [`workflow.ts:1521`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1521).
-    - That severity feeds both scorers at [`workflow.ts:2131`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2131) and [`workflow.ts:2191`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2191).
+    - Capabilities are loaded in workflow and passed into contamination filtering at [`workflow.ts:1508`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1508), [`workflow.ts:1514`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1514).
+    - Resulting `contaminationMaxSeverity` is accumulated at [`workflow.ts:1521`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1521).
+    - That severity feeds both scorers at [`workflow.ts:2131`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2131) and [`workflow.ts:2191`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2191).
     - Scoring impact:
-      - v2 scorer: low = `-0.10`, medium = `-0.20` + cap `0.85`, high = `-0.30` + cap `0.60` ([`extractors/quality-scorer.ts:190`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:190), [`extractors/quality-scorer.ts:193`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:193), [`extractors/quality-scorer.ts:195`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:195)).
-      - canonical scorer: low = `-0.05`, medium = `-0.10` + cap `0.85`, high = `-0.25` + cap `0.60` ([`core/quality-scorer.ts:303`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:303), [`core/quality-scorer.ts:307`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:307), [`core/quality-scorer.ts:311`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:311)).
-    - Threshold/index consequences: lower contamination severity reduces chance of abort at quality threshold [`workflow.ts:2214`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), and reduces skip risk in index policy check [`workflow.ts:2373`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2373).
+      - v2 scorer: low = `-0.10`, medium = `-0.20` + cap `0.85`, high = `-0.30` + cap `0.60` ([`extractors/quality-scorer.ts:190`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:190), [`extractors/quality-scorer.ts:193`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:193), [`extractors/quality-scorer.ts:195`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:195)).
+      - canonical scorer: low = `-0.05`, medium = `-0.10` + cap `0.85`, high = `-0.25` + cap `0.60` ([`core/quality-scorer.ts:303`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:303), [`core/quality-scorer.ts:307`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:307), [`core/quality-scorer.ts:311`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:311)).
+    - Threshold/index consequences: lower contamination severity reduces chance of abort at quality threshold [`workflow.ts:2214`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), and reduces skip risk in index policy check [`workflow.ts:2373`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2373).
 
 - **`inputMode`**
-  - Consumer: [`workflow.ts:2244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2244).
+  - Consumer: [`workflow.ts:2244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2244).
   - Concrete effect: only changes warning text (`"Stateless save..."` vs `"Structured save..."`) when there are soft validation failures.
-  - Important non-effect: it does **not** drive real mode branching. Actual stateless-mode behavior is selected by `!activeDataFile && !preloadedData` at [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1415), not by `captureCapabilities.inputMode`.
+  - Important non-effect: it does **not** drive real mode branching. Actual stateless-mode behavior is selected by `!activeDataFile && !preloadedData` at [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1415), not by `captureCapabilities.inputMode`.
 
 - **`prefersStructuredSave`**
-  - Defined in capabilities schema and per-source map ([`source-capabilities.ts:10`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:10), [`source-capabilities.ts:13`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:13)).
+  - Defined in capabilities schema and per-source map ([`source-capabilities.ts:10`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:10), [`source-capabilities.ts:13`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:13)).
   - Runtime consumers found: **none** in `scripts/` (outside tests).
   - Concrete effect today: **no effect** on contamination scoring, validation disposition, thresholding, or mode selection.
 
 - **Quality-rule applicability (`validate-memory-quality.ts`)**
-  - Source capabilities are consulted in `ruleAppliesToSource` at [`validate-memory-quality.ts:398`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:398).
-  - Current concrete effect: effectively none, because all rules are `appliesToSources: 'all'` ([`validate-memory-quality.ts:44`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:44), same for V1–V12 through [`validate-memory-quality.ts:132`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:132)).
+  - Source capabilities are consulted in `ruleAppliesToSource` at [`validate-memory-quality.ts:398`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:398).
+  - Current concrete effect: effectively none, because all rules are `appliesToSources: 'all'` ([`validate-memory-quality.ts:44`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:44), same for V1–V12 through [`validate-memory-quality.ts:132`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:132)).
 
 2. **Capabilities defined but never consumed**
 
@@ -1087,39 +1087,39 @@ codex
 3. **Consumers using raw source names instead of capabilities**
 
 - Yes.
-  - Raw `_source === 'file'` enrichment branch: [`workflow.ts:1240`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1240).
-  - Stateless mode decision based on input presence (not capabilities): [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1415).
-  - Task fallback routing uses raw `source === 'file'`: [`workflow.ts:1855`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1855), [`task-enrichment.ts:27`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts:27).
+  - Raw `_source === 'file'` enrichment branch: [`workflow.ts:1240`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1240).
+  - Stateless mode decision based on input presence (not capabilities): [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1415).
+  - Task fallback routing uses raw `source === 'file'`: [`workflow.ts:1855`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1855), [`task-enrichment.ts:27`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:27).
 - In contrast, contamination severity and validation disposition logic use capabilities abstraction properly (via `getSourceCapabilities`).
 tokens used
 82,163
 1. **Capability field interaction map**
 
 - **`toolTitleWithPathExpected`**
-  - Consumer: [`contamination-filter.ts:111`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:111).
-  - Concrete effect: for denylist label `tool title with path` (base severity is `high` at [`contamination-filter.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:69)), severity is downgraded to `low` when capability is `true`.
+  - Consumer: [`contamination-filter.ts:111`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:111).
+  - Concrete effect: for denylist label `tool title with path` (base severity is `high` at [`contamination-filter.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:69)), severity is downgraded to `low` when capability is `true`.
   - End-to-end propagation:
-    - Capabilities are loaded in workflow and passed into contamination filtering at [`workflow.ts:1508`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1508), [`workflow.ts:1514`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1514).
-    - Resulting `contaminationMaxSeverity` is accumulated at [`workflow.ts:1521`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1521).
-    - That severity feeds both scorers at [`workflow.ts:2131`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2131) and [`workflow.ts:2191`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2191).
+    - Capabilities are loaded in workflow and passed into contamination filtering at [`workflow.ts:1508`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1508), [`workflow.ts:1514`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1514).
+    - Resulting `contaminationMaxSeverity` is accumulated at [`workflow.ts:1521`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1521).
+    - That severity feeds both scorers at [`workflow.ts:2131`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2131) and [`workflow.ts:2191`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2191).
     - Scoring impact:
-      - v2 scorer: low = `-0.10`, medium = `-0.20` + cap `0.85`, high = `-0.30` + cap `0.60` ([`extractors/quality-scorer.ts:190`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:190), [`extractors/quality-scorer.ts:193`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:193), [`extractors/quality-scorer.ts:195`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:195)).
-      - canonical scorer: low = `-0.05`, medium = `-0.10` + cap `0.85`, high = `-0.25` + cap `0.60` ([`core/quality-scorer.ts:303`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:303), [`core/quality-scorer.ts:307`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:307), [`core/quality-scorer.ts:311`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:311)).
-    - Threshold/index consequences: lower contamination severity reduces chance of abort at quality threshold [`workflow.ts:2214`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214), and reduces skip risk in index policy check [`workflow.ts:2373`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2373).
+      - v2 scorer: low = `-0.10`, medium = `-0.20` + cap `0.85`, high = `-0.30` + cap `0.60` ([`extractors/quality-scorer.ts:190`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:190), [`extractors/quality-scorer.ts:193`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:193), [`extractors/quality-scorer.ts:195`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:195)).
+      - canonical scorer: low = `-0.05`, medium = `-0.10` + cap `0.85`, high = `-0.25` + cap `0.60` ([`core/quality-scorer.ts:303`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:303), [`core/quality-scorer.ts:307`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:307), [`core/quality-scorer.ts:311`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:311)).
+    - Threshold/index consequences: lower contamination severity reduces chance of abort at quality threshold [`workflow.ts:2214`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214), and reduces skip risk in index policy check [`workflow.ts:2373`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2373).
 
 - **`inputMode`**
-  - Consumer: [`workflow.ts:2244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2244).
+  - Consumer: [`workflow.ts:2244`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2244).
   - Concrete effect: only changes warning text (`"Stateless save..."` vs `"Structured save..."`) when there are soft validation failures.
-  - Important non-effect: it does **not** drive real mode branching. Actual stateless-mode behavior is selected by `!activeDataFile && !preloadedData` at [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1415), not by `captureCapabilities.inputMode`.
+  - Important non-effect: it does **not** drive real mode branching. Actual stateless-mode behavior is selected by `!activeDataFile && !preloadedData` at [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1415), not by `captureCapabilities.inputMode`.
 
 - **`prefersStructuredSave`**
-  - Defined in capabilities schema and per-source map ([`source-capabilities.ts:10`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:10), [`source-capabilities.ts:13`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:13)).
+  - Defined in capabilities schema and per-source map ([`source-capabilities.ts:10`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:10), [`source-capabilities.ts:13`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:13)).
   - Runtime consumers found: **none** in `scripts/` (outside tests).
   - Concrete effect today: **no effect** on contamination scoring, validation disposition, thresholding, or mode selection.
 
 - **Quality-rule applicability (`validate-memory-quality.ts`)**
-  - Source capabilities are consulted in `ruleAppliesToSource` at [`validate-memory-quality.ts:398`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:398).
-  - Current concrete effect: effectively none, because all rules are `appliesToSources: 'all'` ([`validate-memory-quality.ts:44`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:44), same for V1–V12 through [`validate-memory-quality.ts:132`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:132)).
+  - Source capabilities are consulted in `ruleAppliesToSource` at [`validate-memory-quality.ts:398`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:398).
+  - Current concrete effect: effectively none, because all rules are `appliesToSources: 'all'` ([`validate-memory-quality.ts:44`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:44), same for V1–V12 through [`validate-memory-quality.ts:132`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:132)).
 
 2. **Capabilities defined but never consumed**
 
@@ -1129,7 +1129,7 @@ tokens used
 3. **Consumers using raw source names instead of capabilities**
 
 - Yes.
-  - Raw `_source === 'file'` enrichment branch: [`workflow.ts:1240`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1240).
-  - Stateless mode decision based on input presence (not capabilities): [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1415).
-  - Task fallback routing uses raw `source === 'file'`: [`workflow.ts:1855`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1855), [`task-enrichment.ts:27`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts:27).
+  - Raw `_source === 'file'` enrichment branch: [`workflow.ts:1240`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1240).
+  - Stateless mode decision based on input presence (not capabilities): [`workflow.ts:1415`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1415).
+  - Task fallback routing uses raw `source === 'file'`: [`workflow.ts:1855`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1855), [`task-enrichment.ts:27`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:27).
 - In contrast, contamination severity and validation disposition logic use capabilities abstraction properly (via `getSourceCapabilities`).

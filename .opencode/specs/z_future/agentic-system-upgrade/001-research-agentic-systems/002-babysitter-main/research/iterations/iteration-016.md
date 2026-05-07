@@ -14,13 +14,13 @@ I compared Babysitter's plugin/harness boundary with `system-spec-kit`'s orchest
 ## Evidence
 - Babysitter plugin manifests are intentionally thin: one harness, plus roots for hooks, commands, and skills. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14]
 - Harness-local hook wiring is also centralized in compact manifest files instead of duplicated role definitions. [SOURCE: external/plugins/babysitter-codex/hooks.json:1-36]
-- `system-spec-kit`'s orchestrator defines a fairly rich specialist roster with hard boundaries such as `@speckit` for spec docs, `@deep-research` for iterative investigation, `@review` for quality, and `@handover` for context preservation. [SOURCE: .opencode/agent/orchestrate.md:24-36] [SOURCE: .opencode/agent/orchestrate.md:95-183]
-- The repo then carries multiple runtime mirrors and parity tests to keep those contracts aligned across `.opencode`, `.claude`, `.gemini`, `.codex`, and `.agents`. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100] [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:24-107]
+- `system-spec-kit`'s orchestrator defines a fairly rich specialist roster with hard boundaries such as `@speckit` for spec docs, `@deep-research` for iterative investigation, `@review` for quality, and `@handover` for context preservation. [SOURCE: .opencode/agents/orchestrate.md:24-36] [SOURCE: .opencode/agents/orchestrate.md:95-183]
+- The repo then carries multiple runtime mirrors and parity tests to keep those contracts aligned across `.opencode`, `.claude`, `.gemini`, `.codex`, and `.agents`. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:24-107]
 
 ## Analysis
-Babysitter does make `system-spec-kit` look heavy, but the external comparison also clarifies that not all complexity is equal. `@speckit`, `@deep-review`, and related roles are not just convenience personas; they carry real policy and artifact-boundary meaning. Replacing them with a purely generic Babysitter-style task model would likely lose important guardrails. [SOURCE: .opencode/agent/orchestrate.md:95-183]
+Babysitter does make `system-spec-kit` look heavy, but the external comparison also clarifies that not all complexity is equal. `@speckit`, `@deep-review`, and related roles are not just convenience personas; they carry real policy and artifact-boundary meaning. Replacing them with a purely generic Babysitter-style task model would likely lose important guardrails. [SOURCE: .opencode/agents/orchestrate.md:95-183]
 
-The deeper problem is representational, not conceptual. `system-spec-kit` is paying a large maintenance tax to mirror the same role contracts across runtimes and wrappers. Babysitter's manifest boundary suggests the right response: keep the specialist roles, but stop hand-maintaining so many runtime-specific copies of their contract surface. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100]
+The deeper problem is representational, not conceptual. `system-spec-kit` is paying a large maintenance tax to mirror the same role contracts across runtimes and wrappers. Babysitter's manifest boundary suggests the right response: keep the specialist roles, but stop hand-maintaining so many runtime-specific copies of their contract surface. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100]
 
 ## Conclusion
 confidence: high
@@ -29,7 +29,7 @@ finding: Babysitter does **not** prove that `system-spec-kit` should collapse it
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Maintain specialized agent roles plus runtime-specific mirrors and parity tests to keep them aligned. [SOURCE: .opencode/agent/orchestrate.md:95-183] [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100]
+- **Current system-spec-kit approach:** Maintain specialized agent roles plus runtime-specific mirrors and parity tests to keep them aligned. [SOURCE: .opencode/agents/orchestrate.md:95-183] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:35-100]
 - **External repo's approach:** Keep runtime integration thin and manifest-driven, while core orchestration semantics live in reusable runtime/process primitives. [SOURCE: external/plugins/babysitter-opencode/plugin.json:2-14] [SOURCE: external/plugins/babysitter-codex/hooks.json:1-36]
 - **Why the external approach might be better:** It lowers maintenance cost and runtime drift without forcing a collapse of higher-level workflow roles.
 - **Why system-spec-kit's approach might still be correct:** Some of its specialist roles encode domain policy that a generic task abstraction would not preserve cleanly.
@@ -39,14 +39,14 @@ finding: Babysitter does **not** prove that `system-spec-kit` should collapse it
 - **Migration path:** Start with deep-research and deep-review, where parity-test burden is already explicit, then extend the generation path to `speckit`, `handover`, and `debug`.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/`, runtime mirror directories, `.opencode/skill/system-spec-kit/scripts/tests/`
+- **Target file or module:** `.opencode/agents/`, runtime mirror directories, `.opencode/skills/system-spec-kit/scripts/tests/`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** agree on a single machine-readable agent contract source
 - **Priority:** should-have
 
 ## Counter-evidence sought
-I looked for proof that the specialist roles are merely cosmetic, but the orchestrator rules show they carry hard policy boundaries, especially for spec documentation and deep-review behavior. [SOURCE: .opencode/agent/orchestrate.md:95-183]
+I looked for proof that the specialist roles are merely cosmetic, but the orchestrator rules show they carry hard policy boundaries, especially for spec documentation and deep-review behavior. [SOURCE: .opencode/agents/orchestrate.md:95-183]
 
 ## Follow-up questions for next iteration
 - How much operator pain today comes from poor error quality rather than architecture itself?

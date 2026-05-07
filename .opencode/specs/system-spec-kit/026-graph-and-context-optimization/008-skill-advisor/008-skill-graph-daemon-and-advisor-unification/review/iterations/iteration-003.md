@@ -16,9 +16,9 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/004-mcp-advisor-surface/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/005-compat-migration-and-bootstrap/checklist.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/006-promotion-gates/checklist.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts`
 
 ## Findings by Severity (P0/P1/P2)
 

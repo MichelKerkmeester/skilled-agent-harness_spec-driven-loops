@@ -108,7 +108,7 @@ The only operational constraint: hooks require `[features] codex_hooks = true` i
 **References**:
 - Full synthesis: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/003-codex-hook-parity-remediation/research/007-deep-review-remediation-pt-02/research.md` — §5 decision matrix, §6 recommended plan, §7 implementation considerations.
 - Primary-source URLs: 40+ in the parent research synthesis across developers.openai.com/codex, openai/codex repo source files, generated schemas, Rust stdlib docs.
-- Reference implementation (Claude-side): `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`.
+- Reference implementation (Claude-side): `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`.
 
 ---
 
@@ -124,13 +124,13 @@ The only operational constraint: hooks require `[features] codex_hooks = true` i
 2. Add Spec Kit Memory hook commands for `SessionStart` and `UserPromptSubmit` beside the existing notification entries.
 3. Emit Codex-native JSON output with `hookSpecificOutput.additionalContext`.
 4. Enable `[features].codex_hooks = true` in `~/.codex/config.toml`.
-5. Document the stable authoring contract in `.opencode/skill/cli-codex/references/hook_contract.md`.
+5. Document the stable authoring contract in `.opencode/skills/cli-codex/references/hook_contract.md`.
 
 **Evidence**:
 
 | Check | Result |
 |-------|--------|
-| Build | `npm run build` passed in `.opencode/skill/system-spec-kit/mcp_server`. |
+| Build | `npm run build` passed in `.opencode/skills/system-spec-kit/mcp_server`. |
 | Focused tests | `npx vitest run tests/codex-session-start-hook.vitest.ts tests/codex-user-prompt-submit-hook.vitest.ts tests/claude-user-prompt-submit-hook.vitest.ts` passed: 3 files, 22 tests. |
 | Direct SessionStart smoke | Emitted `hookSpecificOutput.hookEventName="SessionStart"` with startup context and code graph metrics in 42.22ms. |
 | Direct UserPromptSubmit smoke | Emitted `Advisor: stale; use sk-code-opencode 0.92/0.12 pass.` in 71ms. |

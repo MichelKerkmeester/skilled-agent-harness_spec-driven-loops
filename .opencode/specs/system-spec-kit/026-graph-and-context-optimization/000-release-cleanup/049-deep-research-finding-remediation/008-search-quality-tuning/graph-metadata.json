@@ -51,7 +51,7 @@
       "mcp_server/stress_test/search-quality/cross-encoder-cap.vitest.ts",
       "mcp_server/stress_test/search-quality/w11-cocoindex-calibration-telemetry.vitest.ts",
       "tests/stage3-rerank-regression.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -122,7 +122,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

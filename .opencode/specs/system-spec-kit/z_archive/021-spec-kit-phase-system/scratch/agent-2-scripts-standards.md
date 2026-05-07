@@ -36,7 +36,7 @@
 
 ### File 1: `create.sh`
 
-**Path:** `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
+**Path:** `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
 **Total LOC:** 1179
 **Phase-related sections reviewed:** Lines 40-44, 110-156, 270-280, 558-985
 
@@ -137,7 +137,7 @@ Consistent guard-clause pattern throughout.
 
 ### File 2: `validate.sh`
 
-**Path:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+**Path:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 **Total LOC:** 553
 **Phase-related sections reviewed:** Lines 27, 108-116, 312 (PHASE_LINKS rule mapping), 447-525, 527-551
 
@@ -228,7 +228,7 @@ Constants that should be `readonly`:
 
 ### File 3: `check-phase-links.sh`
 
-**Path:** `.opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh`
+**Path:** `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh`
 **Total LOC:** 125
 
 #### Check 1: Box-drawing header — PASS

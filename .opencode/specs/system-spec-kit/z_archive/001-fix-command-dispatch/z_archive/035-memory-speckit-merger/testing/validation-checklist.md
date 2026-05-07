@@ -27,13 +27,13 @@ Run these tests BEFORE making any changes to verify baseline functionality.
   - Expected: Constitutional tier memories appear first
 
 - [ ] Constitutional folder contains expected files
-  - Check: `.opencode/skill/system-spec-kit/constitutional/`
+  - Check: `.opencode/skills/system-spec-kit/constitutional/`
   - Expected: Memory files defining critical system behaviors
 
 ### Memory Generation
 
 - [ ] `generate-context.js` creates valid memory files
-  - Run: `node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger`
+  - Run: `node .opencode/skills/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger`
   - Expected: Creates timestamped .md file in `memory/` subfolder
 
 ---
@@ -45,7 +45,7 @@ Run these tests AFTER running `memory-restart.sh` and restarting OpenCode.
 ### Database Recreation
 
 - [ ] Database recreated on OpenCode restart
-  - Check: `.opencode/skill/system-spec-kit/database/context-index.sqlite` exists
+  - Check: `.opencode/skills/system-spec-kit/database/context-index.sqlite` exists
   - Expected: File created automatically
 
 - [ ] `memory_index_scan({ force: true })` completes

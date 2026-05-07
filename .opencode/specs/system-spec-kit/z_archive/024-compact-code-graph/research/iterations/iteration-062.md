@@ -13,7 +13,7 @@ The `session-manager.ts` function `resolveTrustedSession()` (line 385) already p
 
 **Design implication**: The MCP server can detect "first call in a new session" by tracking whether a given ephemeral session ID has been seen before. Since non-hook runtimes never pass a sessionId, every call generates a new UUID. The server needs an in-memory timestamp map keyed by a higher-level identity (tenantId + userId + agentId hash, or a process-level singleton if no identity is available).
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-435]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-435]
 
 ### 2. memory-context Handler Has a Complete Mode Resolution Pipeline
 The `handleMemoryContext` function (line 980) follows a clear pipeline:
@@ -26,7 +26,7 @@ The resume heuristic in `resolveEffectiveMode()` (lines 801-814) already auto-de
 
 **Design implication for first-call priming**: The priming mechanism should NOT modify memory-context's existing pipeline. Instead, it should be a separate interceptor layer that runs BEFORE the handler, injecting a lightweight context preamble into the first MCP response of a new session. This keeps the existing mode resolution clean and avoids coupling.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:724-849, 980]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:724-849, 980]
 
 ### 3. CODEX.md Establishes the Instruction-File Trigger Pattern (T2)
 CODEX.md already contains explicit instruction patterns for forcing tool calls:
@@ -41,7 +41,7 @@ The same patterns exist in `.claude/CLAUDE.md` for Claude Code.
 [SOURCE: CODEX.md:1-32]
 
 ### 4. OpenCode Agent Definitions Use Gate 1 for Context Loading (T4)
-The OpenCode agent directory (`.opencode/agent/`) contains 10 agents. The orchestrate agent (`.opencode/agent/orchestrate.md`) shows the standard pattern:
+The OpenCode agent directory (`.opencode/agents/`) contains 10 agents. The orchestrate agent (`.opencode/agents/orchestrate.md`) shows the standard pattern:
 - Gate 1 (CLAUDE.md) requires `memory_match_triggers(prompt)` on each new user message
 - No agent definition contains startup-specific tool call instructions
 - Agents receive their instructions when dispatched, not at session start
@@ -49,7 +49,7 @@ The OpenCode agent directory (`.opencode/agent/`) contains 10 agents. The orches
 
 **Design implication**: OpenCode agents cannot self-trigger code graph on startup because they have no lifecycle hook -- they are dispatched by the orchestrator with a task. The "startup" concept for OpenCode agents is "first user message in a conversation", which is handled by Gate 1's `memory_match_triggers`. First-call priming at the MCP level would transparently serve these agents without requiring changes to agent definitions.
 
-[SOURCE: .opencode/agent/orchestrate.md:1-80]
+[SOURCE: .opencode/agents/orchestrate.md:1-80]
 
 ### 5. Concrete First-Call Priming Design
 
@@ -158,12 +158,12 @@ This adds T2 instruction-level coverage for code graph that currently does not e
 None identified this iteration. All approaches investigated were productive.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` (lines 1-860, 980+)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts` (lines 1-460)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts` (event_counter patterns)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` (lines 1-860, 980+)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` (lines 1-460)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts` (event_counter patterns)
 - `CODEX.md` (full file, 32 lines)
-- `.opencode/agent/orchestrate.md` (lines 1-80)
-- `.opencode/agent/` directory listing (10 agents)
+- `.opencode/agents/orchestrate.md` (lines 1-80)
+- `.opencode/agents/` directory listing (10 agents)
 
 ## Assessment
 - New information ratio: 0.72

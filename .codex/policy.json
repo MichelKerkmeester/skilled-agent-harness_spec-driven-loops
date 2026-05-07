@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "notes": "Conservative starter Bash denylist for Codex PreToolUse enforcement. Full-word match required per .opencode/skill/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts. Review + extend based on operator needs. Dual key aliases (`bashDenylist` and `bash_denylist`) provided to match both the shipped adapter field name and the Phase 024 operator-facing contract.",
+  "notes": "Conservative starter Bash denylist for Codex PreToolUse enforcement. Full-word match required per .opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts. Review + extend based on operator needs. Dual key aliases (`bashDenylist` and `bash_denylist`) provided to match both the shipped adapter field name and the Phase 024 operator-facing contract.",
   "bashDenylist": [
     "rm -rf /",
     "rm -rf ~",

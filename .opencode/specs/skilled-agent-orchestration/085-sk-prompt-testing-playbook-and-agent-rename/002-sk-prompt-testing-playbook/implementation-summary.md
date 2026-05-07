@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Final memory save"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-prompt/manual_testing_playbook/"
-      - ".opencode/skill/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/SKILL.md"
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -33,7 +33,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -74,15 +74,15 @@ The playbook package contains the root `manual_testing_playbook.md` plus 28 numb
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-prompt/manual_testing_playbook/03--depth-clear-loop/*.md` | Created | SP-009..SP-014 DEPTH and CLEAR loop scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/04--clear-scoring/*.md` | Created | SP-015..SP-018 CLEAR scoring scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/05--framework-selection/*.md` | Created | SP-019..SP-022 framework selection scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/06--escalation-tiers/*.md` | Created | SP-023..SP-026 escalation and agent-contract scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/07--format-modes/*.md` | Created | SP-027..SP-028 format-mode scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/01--mode-detection/*.md` | Modified | Added `@prompt-improver` references to inherited scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/02--smart-routing/*.md` | Modified | Added `@prompt-improver` references to inherited scenarios |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` | Modified | Fixed validator-required TOC anchors; existing SP-009..SP-028 root rows already present |
-| `.opencode/skill/sk-prompt/SKILL.md` | Modified | Added the single related-playbook backref |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/*.md` | Created | SP-009..SP-014 DEPTH and CLEAR loop scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/*.md` | Created | SP-015..SP-018 CLEAR scoring scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/05--framework-selection/*.md` | Created | SP-019..SP-022 framework selection scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/*.md` | Created | SP-023..SP-026 escalation and agent-contract scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/07--format-modes/*.md` | Created | SP-027..SP-028 format-mode scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/01--mode-detection/*.md` | Modified | Added `@prompt-improver` references to inherited scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/02--smart-routing/*.md` | Modified | Added `@prompt-improver` references to inherited scenarios |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` | Modified | Fixed validator-required TOC anchors; existing SP-009..SP-028 root rows already present |
+| `.opencode/skills/sk-prompt/SKILL.md` | Modified | Added the single related-playbook backref |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -124,14 +124,14 @@ The implementation stayed inside the existing Phase 002 spec folder and playbook
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` | PASS: valid readme, 0 issues |
-| `find .opencode/skill/sk-prompt/manual_testing_playbook -name '[0-9][0-9][0-9]-*.md' \| wc -l` | PASS: 28 |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` | PASS: valid readme, 0 issues |
+| `find .opencode/skills/sk-prompt/manual_testing_playbook -name '[0-9][0-9][0-9]-*.md' \| wc -l` | PASS: 28 |
 | Category counts | PASS: 03=6, 04=4, 05=4, 06=4, 07=2 |
 | Forbidden sidecar check | PASS: no `review_protocol.md`, `subagent_utilization_ledger.md`, or `snippets/` |
 | Legacy agent-name grep | PASS: no `@improve-prompt` under playbook or `SKILL.md` |
 | Scenario `@prompt-improver` sweep | PASS: all 28 scenario files reference `@prompt-improver` |
 | Mandatory section sweep | PASS: all 28 scenario files contain the five mandatory numbered sections |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook --strict` | PASS: 0 errors, 0 warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook --strict` | PASS: 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -152,5 +152,5 @@ The implementation stayed inside the existing Phase 002 spec folder and playbook
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

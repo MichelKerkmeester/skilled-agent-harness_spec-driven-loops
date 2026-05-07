@@ -113,9 +113,9 @@ Phase 5: Command and agent definition updates
 | Agent D | 3 | `scripts/hooks/claude/claude-transcript.ts` | None (new file) |
 | Agent E | 3 | DB migration: `session_token_snapshots` table | `mcp_server/core/` (read) |
 | Agent F | 4 | `CLAUDE.md` compaction section only | Current CLAUDE.md (read) |
-| Agent G | 5 | `.opencode/command/spec_kit/` assets | Phase spec files (read) |
+| Agent G | 5 | `.opencode/commands/spec_kit/` assets | Phase spec files (read) |
 
-**You (orchestrator):** Phase 5 agent definitions (`.claude/agents/`, `.opencode/agent/`) — only you touch agent files.
+**You (orchestrator):** Phase 5 agent definitions (`.claude/agents/`, `.opencode/agents/`) — only you touch agent files.
 
 **File ownership during Wave 2:**
 ```
@@ -123,7 +123,7 @@ LOCKED (Agent C): session-stop.ts
 LOCKED (Agent D): claude-transcript.ts
 LOCKED (Agent E): DB schema / migration files
 LOCKED (Agent F): CLAUDE.md (ONLY §Context Compaction section)
-LOCKED (Agent G): .opencode/command/spec_kit/ assets
+LOCKED (Agent G): .opencode/commands/spec_kit/ assets
 LOCKED (orchestrator): agent definitions
 READ-ONLY: All Wave 1 output files, hooks/, context-server.ts
 NO-TOUCH: .claude/settings.local.json (already done in Wave 1)
@@ -156,7 +156,7 @@ NO-TOUCH: .claude/settings.local.json (already done in Wave 1)
 ```
 LOCKED (Agent H): feature_catalog/ (NEW files only, never edit existing)
 LOCKED (Agent I): manual_testing_playbook/ (NEW files only)
-LOCKED (Agent J): SKILL.md, ARCHITECTURE.md, .opencode/skill/README.md, root README.md, AGENTS.md
+LOCKED (Agent J): SKILL.md, ARCHITECTURE.md, .opencode/skills/README.md, root README.md, AGENTS.md
 NO-TOUCH: Any code files (implementation is done)
 ```
 
@@ -244,7 +244,7 @@ npx vitest run tests/runtime-routing.vitest.ts tests/hook-*.vitest.ts tests/cros
 npx vitest run tests/dual-scope-hooks.vitest.ts tests/crash-recovery.vitest.ts
 
 # 4. Verify file count
-find .opencode/skill/system-spec-kit/scripts/hooks/claude/ -type f | wc -l  # expect 6 .ts files
+find .opencode/skills/system-spec-kit/scripts/hooks/claude/ -type f | wc -l  # expect 6 .ts files
 
 # 5. Verify hook registration
 cat .claude/settings.local.json | jq '.hooks'
@@ -274,19 +274,19 @@ git diff --stat  # review every changed file
 Commit after each wave:
 ```bash
 # After Wave 1
-git add .opencode/skill/system-spec-kit/scripts/hooks/claude/ .claude/settings.local.json
+git add .opencode/skills/system-spec-kit/scripts/hooks/claude/ .claude/settings.local.json
 git commit -m "feat(hooks): Phase 1+2 — PreCompact precompute + SessionStart injection"
 
 # After Wave 2
-git add .opencode/skill/system-spec-kit/scripts/hooks/claude/session-stop.ts .opencode/skill/system-spec-kit/scripts/hooks/claude/claude-transcript.ts CLAUDE.md .opencode/command/
+git add .opencode/skills/system-spec-kit/scripts/hooks/claude/session-stop.ts .opencode/skills/system-spec-kit/scripts/hooks/claude/claude-transcript.ts CLAUDE.md .opencode/commands/
 git commit -m "feat(hooks): Phase 3+4+5 — Stop hook, cross-runtime fallback, command alignment"
 
 # After Wave 3
-git add .opencode/skill/system-spec-kit/feature_catalog/ .opencode/skill/system-spec-kit/manual_testing_playbook/ .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/system-spec-kit/ARCHITECTURE.md .opencode/skill/README.md README.md AGENTS.md
+git add .opencode/skills/system-spec-kit/feature_catalog/ .opencode/skills/system-spec-kit/manual_testing_playbook/ .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/ARCHITECTURE.md .opencode/skills/README.md README.md AGENTS.md
 git commit -m "docs(hooks): Phase 6 — documentation alignment for hook system"
 
 # After Wave 4
-git add .opencode/skill/system-spec-kit/mcp_server/tests/
+git add .opencode/skills/system-spec-kit/mcp_server/tests/
 git commit -m "test(hooks): Phase 7 — automated tests for hook system"
 
 # Push all

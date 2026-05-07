@@ -26,7 +26,7 @@ As a developer, I want the memory dashboard command renamed from `/memory` to `/
 ## Requirements
 
 ### Primary Changes
-1. **File Rename**: `.opencode/command/memory/memory.md` → `.opencode/command/memory/check.md`
+1. **File Rename**: `.opencode/commands/memory/memory.md` → `.opencode/commands/memory/check.md`
 2. **Reference Updates**: All invocations of `/memory` (dashboard) must become `/memory:check`
 
 ### Scope
@@ -62,9 +62,9 @@ As a developer, I want the memory dashboard command renamed from `/memory` to `/
 - [ ] MCP tool names remain unchanged
 
 ## Files Affected
-1. `.opencode/command/memory/memory.md` → `check.md`
-2. `.opencode/command/memory/save.md`
-3. `.opencode/command/memory/checkpoint.md`
+1. `.opencode/commands/memory/memory.md` → `check.md`
+2. `.opencode/commands/memory/save.md`
+3. `.opencode/commands/memory/checkpoint.md`
 4. `.opencode/skills/workflows-memory/SKILL.md`
 5. `.opencode/memory/mcp_server/README.md`
 6. `.opencode/memory/mcp_server/INSTALL_GUIDE.md`

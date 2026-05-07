@@ -79,8 +79,8 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 - Iteration 003: LEAF dispatch completed read-only analysis but artifact writing was unavailable; the command manager materialized markdown, state JSONL, delta JSONL, and strategy updates from returned evidence.
 - Iteration 004: Validation references claim complete rule coverage but document a legacy subset and omit current registry-backed validators such as `TEMPLATE_SOURCE`, `TEMPLATE_HEADERS`, `SECTION_COUNTS`, and `SPEC_DOC_INTEGRITY`.
 - Iteration 004: Direct artifact writing was unavailable/disabled; the command manager materialized markdown, state JSONL, delta JSONL, and strategy updates from returned recovery content.
-- Iteration 005: The shared iteration prompt pack points severity-doctrine loading at `.agents/skills/sk-code-review/references/review_core.md`, while the canonical and existing review doctrine path is `.opencode/skill/sk-code-review/references/review_core.md`; this is a P1 cross-consumer executor-context defect.
-- Iteration 005: Runtime mirrors keep downstream mirror-awareness wording, but their top-level Path Convention lines label each mirror's runtime path as canonical, while command/YAML marks `.opencode/agent/deep-review.md` as canonical; this is a P2 traceability wording drift.
+- Iteration 005: The shared iteration prompt pack points severity-doctrine loading at `.agents/skills/sk-code-review/references/review_core.md`, while the canonical and existing review doctrine path is `.opencode/skills/sk-code-review/references/review_core.md`; this is a P1 cross-consumer executor-context defect.
+- Iteration 005: Runtime mirrors keep downstream mirror-awareness wording, but their top-level Path Convention lines label each mirror's runtime path as canonical, while command/YAML marks `.opencode/agents/deep-review.md` as canonical; this is a P2 traceability wording drift.
 - Iteration 005: Direct artifact writing was unavailable/disabled; the command manager materialized markdown, state JSONL, delta JSONL, and strategy updates from returned recovery content.
 
 ## 10. EXHAUSTED APPROACHES (do not retry)
@@ -126,25 +126,25 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/assets/complexity_decision_matrix.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/assets/level_decision_matrix.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/assets/template_mapping.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/references/config/environment_variables.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/intake-contract.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/structure/phase_system.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/templates/level_selection_guide.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/references/templates/template_guide.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/references/validation/path_scoped_rules.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/validation/validation_rules.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
-| `.opencode/skill/system-spec-kit/references/workflows/execution_methods.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 1 P2 | reviewed |
-| `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 1 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/SKILL.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/assets/level_decision_matrix.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/assets/template_mapping.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/intake-contract.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/structure/phase_system.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/templates/level_selection_guide.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/references/templates/template_guide.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/references/validation/path_scoped_rules.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/validation/validation_rules.md` | - | - | 0 P0, 0 P1, 0 P2 | pending |
+| `.opencode/skills/system-spec-kit/references/workflows/execution_methods.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 1 P2 | reviewed |
+| `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 1 P2 | reviewed |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json` | implementation-spec-alignment | 001 | 0 P0, 0 P1, 0 P2 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
@@ -191,10 +191,10 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### `agent_cross_runtime`: complete. Compared canonical `.opencode/agent/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `agent_cross_runtime`: complete. Compared canonical `.opencode/agent/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found.
+### `agent_cross_runtime`: complete. Compared canonical `.opencode/agents/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `agent_cross_runtime`: complete. Compared canonical `.opencode/agents/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `agent_cross_runtime`: complete. Compared canonical `.opencode/agent/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found.
+- Do NOT retry: `agent_cross_runtime`: complete. Compared canonical `.opencode/agents/deep-review.md` with `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md`; one P2 mirror wording drift found.
 
 ### `agent_cross_runtime`: deferred to iteration 005. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: `agent_cross_runtime`: deferred to iteration 005.
@@ -251,10 +251,10 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `playbook_capability`: notApplicable. No playbook surfaces were in this iteration's declared focus.
 
-### `review_core`: complete. Loaded `.opencode/skill/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `review_core`: complete. Loaded `.opencode/skill/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine.
+### `review_core`: complete. Loaded `.opencode/skills/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `review_core`: complete. Loaded `.opencode/skills/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `review_core`: complete. Loaded `.opencode/skill/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine.
+- Do NOT retry: `review_core`: complete. Loaded `.opencode/skills/sk-code-review/references/review_core.md` before severity classification; P1/P2 severities classified using the shared doctrine.
 
 ### `skill_agent`: complete. Checked `sk-deep-review` skill surfaces for executor invariants and runtime path descriptions; one P1 prompt-pack doctrine path defect found through the skill/YAML render surface. -- BLOCKED (iteration 5, 1 attempts)
 - What was tried: `skill_agent`: complete. Checked `sk-deep-review` skill surfaces for executor invariants and runtime path descriptions; one P1 prompt-pack doctrine path defect found through the skill/YAML render surface.
@@ -271,10 +271,10 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `skill_agent`: partial-complete. Skill-facing and template docs were checked where they instruct agents how to render optional templates and how scaffold/validation flows use Level contracts.
 
-### `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:386`]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:386`].
+### `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:386`]. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:386`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:386`].
+- Do NOT retry: `skill_agent`: partial/complete for implementation-alignment scope. `SKILL.md` exposes the current CLI exit-code taxonomy [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:111`] and instructs agents to scaffold through `create.sh` or `inline-gate-renderer` [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:386`].
 
 ### `skill_agent`: partial/complete. The scaffold and validation commands referenced by skill-facing docs exist and accept the documented options. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: `skill_agent`: partial/complete. The scaffold and validation commands referenced by skill-facing docs exist and accept the documented options.
@@ -286,10 +286,10 @@ Review target: `.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: complete for code-correctness. The docs point agents at live create/validate/renderer/resolver surfaces, and those surfaces expose the documented flags and interfaces.
 
-### `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skill/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`]. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skill/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`].
+### `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skills/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`]. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skills/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skill/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`].
+- Do NOT retry: `spec_code`: complete for this iteration. The packet requirement to preserve legitimate `templates/manifest/` references [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/spec.md:107`] aligns with current template architecture docs [SOURCE: `.opencode/skills/system-spec-kit/templates/README.md:37`] and resolver manifest loading [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:58`].
 
 ### `spec_code`: complete. Manifest Level rows, resolver contract exposure, shell helper path resolution, inline renderer behavior, and create-flow batch rendering were checked against implementation surfaces. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: `spec_code`: complete. Manifest Level rows, resolver contract exposure, shell helper path resolution, inline renderer behavior, and create-flow batch rendering were checked against implementation surfaces.

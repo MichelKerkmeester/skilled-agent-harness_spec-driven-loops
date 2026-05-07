@@ -55,14 +55,14 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Folder structure: `references/nextjs/` exists; `references/react/` does NOT exist. Evidence: `ls .opencode/skill/sk-code/references/` shows webflow/, nextjs/, go/, router/, universal/.
+- [x] CHK-010 [P0] Folder structure: `references/nextjs/` exists; `references/react/` does NOT exist. Evidence: `ls .opencode/skills/sk-code/references/` shows webflow/, nextjs/, go/, router/, universal/.
 - [x] CHK-011 [P0] Asset directories: `assets/nextjs/{checklists,patterns,integrations}/` and `assets/go/{checklists,patterns}/` populated.
 - [x] CHK-012 [P0] All 33 paths in SKILL.md `RESOURCE_MAPS[NEXTJS|GO]` (and matching WEBFLOW) resolve. Evidence: path-existence sweep returns 33/33, 0 missing.
 - [x] CHK-013 [P0] Every md stub declares `status: stub`. Evidence: `grep -rL "status: stub" references/{nextjs,go} assets/{nextjs,go} --include="*.md"` returns empty.
 - [x] CHK-014 [P0] Every code stub declares `Status: stub` in comment header. Evidence: `grep -rL "Status: stub" assets/{nextjs,go}/patterns/` returns empty.
 - [x] CHK-015 [P0] No fenced code blocks in markdown stubs (cross_stack_pairing exempt). Evidence: `grep -rE '^\`\`\`' references/{nextjs,go} --include="*.md"` returns empty.
-- [x] CHK-016 [P0] No `kerkmeester` references anywhere in `sk-code/`. Evidence: `grep -rl "kerkmeester" .opencode/skill/sk-code/` returns empty.
-- [x] CHK-017 [P0] No `<!--.*ANCHOR:.*-->` HTML comments anywhere in `sk-code/`. Evidence: `grep -rln '<!--.*ANCHOR:' .opencode/skill/sk-code/` returns 0.
+- [x] CHK-016 [P0] No `kerkmeester` references anywhere in `sk-code/`. Evidence: `grep -rl "kerkmeester" .opencode/skills/sk-code/` returns empty.
+- [x] CHK-017 [P0] No `<!--.*ANCHOR:.*-->` HTML comments anywhere in `sk-code/`. Evidence: `grep -rln '<!--.*ANCHOR:' .opencode/skills/sk-code/` returns 0.
 - [x] CHK-018 [P1] Webflow content untouched. Evidence: `git diff -- references/webflow assets/webflow scripts/` shows only the perl pass replacing REACT → NEXTJS in stack-name strings — no functional Webflow changes.
 - [x] CHK-019 [P1] cross_stack_pairing.md structure intact post-restructure. Evidence: 10 numbered sections (OVERVIEW + Topology/API/Schema/JWT/CORS/Pagination/Deploy/Drift + RELATED RESOURCES); 16K bytes preserved.
 

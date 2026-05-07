@@ -11,10 +11,10 @@ Read the research charter, all prior iteration files present on disk, the native
 
 Traced `code_graph_verify` through:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts`
 
 `code_graph_verify` checks the following:
 
@@ -35,10 +35,10 @@ Coverage answers:
 - (c) Parser-crash recovery: not covered. Tests cover formatting of parse errors in scan output and atomic rollback on thrown DB writes, but not preserving a previous successful file graph when a later parse result has `parseHealth: "error"` with zero nodes.
 
 ## FINDINGS
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:153` - `code_graph_verify` gates only on generic readiness and then runs the gold battery; because it has no expected-scope input and no scope-specific assertion, a verify run cannot prove the active maintainer scope matches the graph scope beyond whatever `ensureCodeGraphReady()` happens to classify; recommended remediation: add a scope-aware verify preflight/result field and a verify-handler test that seeds a stored default/env scope mismatch and asserts the returned readiness explains the required `code_graph_scan` flags.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:285` - scan coverage asserts normal full-reindex stale-file removal, but does not cover the native regression shape where a populated graph is followed by a full scan returning zero nodes; recommended remediation: add a regression test that seeds tracked files/non-zero stats, mocks `indexFiles()` to return `[]` or only zero-node parse-error results, and asserts the old graph is preserved or the scan is quarantined instead of calling `removeFile()` across the prior index.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:671` - parser-error coverage only verifies workspace-relative error formatting after a `parseHealth: "error"` result, while persistence still replaces nodes/edges for that result; recommended remediation: add parser-crash recovery tests around `persistIndexedFileResult()` or the scan handler that seed a previous clean graph, feed a zero-node `parseHealth: "error"` result such as `memory access out of bounds`, and assert prior nodes/edges remain available with diagnostics stored separately.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:331` - verify-handler tests mock `ensureCodeGraphReady()` and cover only a generic stale readiness envelope, so they do not exercise the real stored-scope/active-scope mismatch branch used by read-path tools; recommended remediation: add one integration-style verify test using a temp DB and the real readiness path, or add a focused mock assertion that the scope-mismatch reason is preserved verbatim in the verify response.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:153` - `code_graph_verify` gates only on generic readiness and then runs the gold battery; because it has no expected-scope input and no scope-specific assertion, a verify run cannot prove the active maintainer scope matches the graph scope beyond whatever `ensureCodeGraphReady()` happens to classify; recommended remediation: add a scope-aware verify preflight/result field and a verify-handler test that seeds a stored default/env scope mismatch and asserts the returned readiness explains the required `code_graph_scan` flags.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:285` - scan coverage asserts normal full-reindex stale-file removal, but does not cover the native regression shape where a populated graph is followed by a full scan returning zero nodes; recommended remediation: add a regression test that seeds tracked files/non-zero stats, mocks `indexFiles()` to return `[]` or only zero-node parse-error results, and asserts the old graph is preserved or the scan is quarantined instead of calling `removeFile()` across the prior index.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:671` - parser-error coverage only verifies workspace-relative error formatting after a `parseHealth: "error"` result, while persistence still replaces nodes/edges for that result; recommended remediation: add parser-crash recovery tests around `persistIndexedFileResult()` or the scan handler that seed a previous clean graph, feed a zero-node `parseHealth: "error"` result such as `memory access out of bounds`, and assert prior nodes/edges remain available with diagnostics stored separately.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:331` - verify-handler tests mock `ensureCodeGraphReady()` and cover only a generic stale readiness envelope, so they do not exercise the real stored-scope/active-scope mismatch branch used by read-path tools; recommended remediation: add one integration-style verify test using a temp DB and the real readiness path, or add a focused mock assertion that the scope-mismatch reason is preserved verbatim in the verify response.
 
 ## EVIDENCE
 Read-first packet evidence:

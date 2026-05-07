@@ -15,7 +15,7 @@ Two allocated iterations covered the live `code_graph_query`, `code_graph_contex
 
 ### P2
 
-1. Packet-local scratch prompts still tell operators to expect detector provenance summary from `code_graph_status`, but the live status handler only returns counts and health while the summary is exposed on the scan response. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:13] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110]
+1. Packet-local scratch prompts still tell operators to expect detector provenance summary from `code_graph_status`, but the live status handler only returns counts and health while the summary is exposed on the scan response. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:13] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110]
 
     {
       "claim": "The packet-local scratch verification prompts over-claim the `code_graph_status` response by asking for detector provenance summary there instead of on the scan response.",
@@ -24,10 +24,10 @@ Two allocated iterations covered the live `code_graph_query`, `code_graph_contex
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:13",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:28",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/scratch/test-prompts-all-clis.md:30",
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18",
-        ".opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:31",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110"
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:18",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:31",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110"
       ],
       "counterevidenceSought": "I re-checked the main packet docs and implementation summary first. Those surfaces only promise scan-handler persistence and context-handler exposure, which is why this remains a packet-local prompt drift instead of a broader P1.",
       "alternativeExplanation": "The scratch prompts may have been written before the final surface split was settled and never refreshed after implementation closed.",
@@ -48,4 +48,4 @@ The live code-graph runtime stayed within the main packet boundary. `query.ts`, 
 ## 5. Cross-References
 
 - The main packet spec keeps the summary requirement on the scan handler. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/spec.md:99]
-- The scan-handler test proves the summary on the scan response today. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110]
+- The scan-handler test proves the summary on the scan response today. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:82] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:110]

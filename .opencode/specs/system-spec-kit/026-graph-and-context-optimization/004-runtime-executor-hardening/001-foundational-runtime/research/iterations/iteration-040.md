@@ -6,7 +6,7 @@ I treated Iterations 031-038 as the baseline and avoided reusing the already-cla
 ## Findings
 
 ### Finding R40-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `hook-state.ts:170-176, 247-255`; `session-stop.ts:321-328`
 - **Severity:** P2
 - **Description:** `cleanStaleStates()` can delete a freshly-written session state because its stale-file decision is made from a pre-delete `statSync()`, while `saveState()` replaces the whole pathname with `renameSync()`. If cleanup stats an old file, then a live writer renames a new generation onto the same `filePath` before `unlinkSync(filePath)`, the cleanup pass deletes the fresh state and still increments `removed` as if it had deleted the stale one.
@@ -14,7 +14,7 @@ I treated Iterations 031-038 as the baseline and avoided reusing the already-cla
 - **Downstream Impact:** A finalize sweep that overlaps with live hook writers can erase the newest continuity state and make the next startup/resume look like a cold start. Because the cleanup count still looks normal, operators get a false maintenance-success signal instead of a visible lost-state failure.
 
 ### Finding R40-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `203-236`, `282-295`, `453-465`
 - **Severity:** P1
 - **Description:** Governed reconsolidation candidate filtering is internally split-brain even before the later write transaction race. The bridge first ranks candidates with `vectorSearch(...)`, then separately re-reads each candidate's governance scope via `SELECT tenant_id, user_id, agent_id, session_id FROM memory_index WHERE id = ?`. A concurrent writer can therefore change or remove the candidate between those reads, so one candidate is admitted or rejected using similarity/content from one snapshot and scope from another.

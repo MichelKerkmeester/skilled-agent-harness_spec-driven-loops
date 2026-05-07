@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Wait for copilot completion, validate scenarios, commit"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md
+      - .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase1-authoring"
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is Phase 1 of the 071 packet. It creates `.opencode/skill/sk-doc/manual_testing_playbook/` from scratch — sk-doc previously had no test playbook (just `assets/testing_playbook/` templates for OTHER projects).
+This is Phase 1 of the 071 packet. It creates `.opencode/skills/sk-doc/manual_testing_playbook/` from scratch — sk-doc previously had no test playbook (just `assets/testing_playbook/` templates for OTHER projects).
 
 **Scope Boundary**: 15 scenario .md files + 1 top-level index. NO router code changes. NO test execution (Phase 2 handles execution). NO synthesis (Phase 3 handles).
 
@@ -87,7 +87,7 @@ Author 15 representative scenarios that exercise sk-doc's router across intent c
 ## 3. SCOPE
 
 ### In Scope
-- 15 scenario .md files under `.opencode/skill/sk-doc/manual_testing_playbook/<category>/<scenario>.md`
+- 15 scenario .md files under `.opencode/skills/sk-doc/manual_testing_playbook/<category>/<scenario>.md`
 - 1 top-level `manual_testing_playbook.md` index
 - Each scenario has frontmatter (id, category, expected_intent, expected_resources, expected_token_range), Setup, Expected Behavior, Cross-CLI Variants, Success Criteria
 - Authored by cli-copilot in one batched dispatch
@@ -102,8 +102,8 @@ Author 15 representative scenarios that exercise sk-doc's router across intent c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/manual_testing_playbook/{01-05}/{001-003}-*.md` | Create | 15 scenarios |
-| `.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Create | Index |
+| `.opencode/skills/sk-doc/manual_testing_playbook/{01-05}/{001-003}-*.md` | Create | 15 scenarios |
+| `.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Create | Index |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -115,11 +115,11 @@ Author 15 representative scenarios that exercise sk-doc's router across intent c
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | 15 scenario files created across 5 categories | `find .opencode/skill/sk-doc/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" \| wc -l` returns 15 |
+| REQ-001 | 15 scenario files created across 5 categories | `find .opencode/skills/sk-doc/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" \| wc -l` returns 15 |
 | REQ-002 | Each scenario has required frontmatter fields | grep -L "expected_intent:\|expected_resources:" returns no files |
-| REQ-003 | Top-level index exists | `test -f .opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` |
+| REQ-003 | Top-level index exists | `test -f .opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` |
 | REQ-004 | Each scenario references a valid intent from sk-doc's RESOURCE_MAP | Manual review confirms expected_intent ∈ {DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, UNKNOWN_FALLBACK} |
-| REQ-005 | All 5 categories have exactly 3 scenarios | `for d in .opencode/skill/sk-doc/manual_testing_playbook/[0-9]*/; do echo "$d: $(ls $d | wc -l)"; done` shows 3 each |
+| REQ-005 | All 5 categories have exactly 3 scenarios | `for d in .opencode/skills/sk-doc/manual_testing_playbook/[0-9]*/; do echo "$d: $(ls $d | wc -l)"; done` shows 3 each |
 | REQ-006 | One commit on main; no surviving feature branch | `git branch --show-current = main` |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -146,7 +146,7 @@ Author 15 representative scenarios that exercise sk-doc's router across intent c
 
 **Given** cli-copilot dispatched with the authoring prompt, **When** it completes, **Then** all 16 files exist with non-empty content.
 
-**Given** all 16 files exist, **When** running `wc -l .opencode/skill/sk-doc/manual_testing_playbook/*/*.md`, **Then** each scenario is 30-80 lines (not bloated, not stub).
+**Given** all 16 files exist, **When** running `wc -l .opencode/skills/sk-doc/manual_testing_playbook/*/*.md`, **Then** each scenario is 30-80 lines (not bloated, not stub).
 
 **Given** all scenarios authored, **When** committing, **Then** message matches `feat(sk-doc): scaffold manual_testing_playbook (071/001)`.
 

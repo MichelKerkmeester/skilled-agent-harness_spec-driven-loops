@@ -74,9 +74,9 @@ This packet applies that proven substrate to the **remaining 9 agents** in the f
 
 Each sub-phase follows the same shape — single linear iteration, no R1/R2/R3 stress rounds (the substrate is already validated):
 
-1. **Read target** — load the canonical `.opencode/agent/<name>.md` and identify integration surface via `scan-integration.cjs`
+1. **Read target** — load the canonical `.opencode/agents/<name>.md` and identify integration surface via `scan-integration.cjs`
 2. **Profile** — run `generate-profile.cjs` to derive the dynamic 5-dimension scoring profile for that target
-3. **Dispatch** — invoke `/improve:agent .opencode/agent/<name>.md :auto` (or `:confirm` for the higher-stakes targets like @orchestrate)
+3. **Dispatch** — invoke `/improve:agent .opencode/agents/<name>.md :auto` (or `:confirm` for the higher-stakes targets like @orchestrate)
 4. **Score** — `score-candidate.cjs` produces 5-dimension scoring against profile
 5. **Benchmark** — `run-benchmark.cjs` against the static fixtures (the fixture contract holds for any agent body)
 6. **Legal-stop** — verify all 5 gate bundles (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate) pass
@@ -102,7 +102,7 @@ Sub-phase **006** has additional rename steps interleaved between 7 and 8 (renam
 ## CAMPAIGN SUCCESS CRITERIA
 
 - All 9 sub-phases report `complete` with `completion_pct=100` in `graph-metadata.json`
-- Each canonical `.opencode/agent/<name>.md` shows a measurable score uplift on at least 3 of the 5 dimensions vs pre-improvement baseline
+- Each canonical `.opencode/agents/<name>.md` shows a measurable score uplift on at least 3 of the 5 dimensions vs pre-improvement baseline
 - All 4 runtime mirrors are byte-aligned (modulo runtime-specific frontmatter shape)
 - Sub-phase 006: `@ultra-think` is fully renamed — zero remaining references in skills/commands/READMEs/MEMORY/CLAUDE.md/AGENTS.md after grep audit (active surfaces only; spec-folder + changelog history left frozen)
 - No regressions in dependent skills/commands (smoke-test by re-running representative scenarios from sk-improve-agent's manual_testing_playbook)
@@ -131,12 +131,12 @@ Substrate sanity-checked end-to-end before any sub-phase dispatch.
 
 ### 4-runtime mirror presence (all 9 × 4 = 36 mirror files verified)
 
-`@context`, `@debug`, `@write`, `@review`, `@orchestrate`, `@ultra-think`, `@improve-prompt`, `@deep-review`, `@deep-research` — each has all 4 runtime mirrors (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`).
+`@context`, `@debug`, `@write`, `@review`, `@orchestrate`, `@ultra-think`, `@improve-prompt`, `@deep-review`, `@deep-research` — each has all 4 runtime mirrors (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`).
 
 ### Dry-run results (per-target, 2026-05-02)
 
 - `scan-integration.cjs --agent=<each>` → returns valid surfaces dict with canonical+mirrors syncStatus for all 9
-- `generate-profile.cjs --agent=.opencode/agent/<each>.md` → produces dynamic profile with structural+behavioral+integration check arrays for all 9; default `promotionEligible: false` (set true downstream by guard logic)
+- `generate-profile.cjs --agent=.opencode/agents/<each>.md` → produces dynamic profile with structural+behavioral+integration check arrays for all 9; default `promotionEligible: false` (set true downstream by guard logic)
 
 Saved at `/tmp/061-preflight/scan-*.json` and `/tmp/061-preflight/profile-*.json` for reference.
 
@@ -144,7 +144,7 @@ Saved at `/tmp/061-preflight/scan-*.json` and `/tmp/061-preflight/profile-*.json
 
 | Caveat | Detail | Impact |
 |---|---|---|
-| Benchmark profile `targetPath` hardcoded | `assets/benchmark-profiles/default.json` says `targetPath: ".opencode/agent/improve-agent.md"` | Metadata only — used in report.target + JSONL emission, not scoring. Per-agent runs will mis-label `report.target` but score correctly. Non-blocking. |
+| Benchmark profile `targetPath` hardcoded | `assets/benchmark-profiles/default.json` says `targetPath: ".opencode/agents/improve-agent.md"` | Metadata only — used in report.target + JSONL emission, not scoring. Per-agent runs will mis-label `report.target` but score correctly. Non-blocking. |
 | `generate-profile.cjs` defaults `promotionEligible: false` | Set true downstream in guard logic when conditions met | Confirm guard logic fires for non-@improve-agent targets when running first sub-phase |
 | `--profiles-dir` default | `assets/target-profiles` (doesn't exist) vs `assets/benchmark-profiles/` (does) | Only matters if a target-specific profile is preferred over `default.json`. Non-blocking for default-profile use. |
 
@@ -153,7 +153,7 @@ Saved at `/tmp/061-preflight/scan-*.json` and `/tmp/061-preflight/profile-*.json
 Grep across all `*.md`, `*.json`, `*.txt`, `*.toml`, `*.yaml` for `ultra-think|@ultra-think|ultrathink|ultra_think`:
 
 **ACTIVE surfaces — must rename (~50 files):**
-- 4 runtime agent files (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) → 3-4 each (target file + orchestrate.md cross-ref + README.txt)
+- 4 runtime agent files (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) → 3-4 each (target file + orchestrate.md cross-ref + README.txt)
 - CLI runtime skills referring to @ultra-think for delegation: `cli-claude-code/`, `cli-codex/`, `cli-gemini/`, `cli-opencode/` (~30 files combined)
 - `system-spec-kit/` references in skill body (count timed out at 20s; estimate 5-10)
 - 2 install_guide files

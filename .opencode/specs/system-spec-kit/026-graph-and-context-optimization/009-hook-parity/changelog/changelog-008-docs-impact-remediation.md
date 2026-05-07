@@ -26,7 +26,7 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 
 - `references/config/hook_system.md`: refreshed canonical runtime hook matrix with Codex native `SessionStart`, Claude `UserPromptSubmit` in four-event example, OpenCode plugin bridge, and Copilot file-based parity via `.claude/settings.local.json`.
 - `.opencode/install_guides/SET-UP - AGENTS.md`: Gate 2 setup now teaches runtime hook brief first with `skill_advisor.py` as diagnostic fallback. Added native-tool/bootstrap verification steps and `--force-native`/`--force-local`/disable-flag notes.
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`: Copilot file-based transport documented. OpenCode plugin bridge ESM default-export entrypoint documented. Per-instance state isolation, in-flight dedup, and cap/eviction documented.
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`: Copilot file-based transport documented. OpenCode plugin bridge ESM default-export entrypoint documented. Per-instance state isolation, in-flight dedup, and cap/eviction documented.
 - `mcp_server/hooks/copilot/README.md`: Registration example replaced to show `.claude/settings.local.json` wrapper contract instead of `.github/hooks/scripts/*.sh`. Claude nested commands noted as coexisting.
 - `mcp_server/INSTALL_GUIDE.md`: Added `advisor_recommend`/`advisor_status`/`advisor_validate` to verification. Copilot row revised for merged wrapper execution and top-level fields.
 - `mcp_server/ENV_REFERENCE.md`: Added `SPECKIT_CODEX_HOOK_TIMEOUT_MS` (default 3000 ms) with scope and timeout-fallback behavior.
@@ -35,8 +35,8 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 ### Changed
 
 - `.opencode/README.md`: Gate 2 prose and directory structure updated. Advisor surface pointer corrected to `mcp_server/skill-advisor/`. Hook-primary routing with `skill_advisor.py` described as compatibility/scripted fallback.
-- `.opencode/skill/system-spec-kit/README.md`: Hook-primary skill-advisor section. `scripts/` ESM module profile. Copilot runtime-hooks summary. Prompt-vs-lifecycle split.
-- `.opencode/skill/system-spec-kit/SKILL.md`: Startup/recovery split with Codex native `SessionStart`, Claude `UserPromptSubmit`, Copilot `.claude/settings.local.json` startup surface.
+- `.opencode/skills/system-spec-kit/README.md`: Hook-primary skill-advisor section. `scripts/` ESM module profile. Copilot runtime-hooks summary. Prompt-vs-lifecycle split.
+- `.opencode/skills/system-spec-kit/SKILL.md`: Startup/recovery split with Codex native `SessionStart`, Claude `UserPromptSubmit`, Copilot `.claude/settings.local.json` startup surface.
 - `AGENTS.md`: Gate 2 anchored on hook brief primary with `skill_advisor.py` fallback. Codex `SessionStart` parity note. OpenCode plugin ESM exemption.
 - `feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md`: Copilot entry now names `.claude/settings.local.json` as the effective wrapper surface and notes top-level writer commands.
 - `manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md`: Copilot validation scenario inspects `.claude/settings.local.json` and smokes managed-block refresh.
@@ -61,17 +61,17 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 |------|--------------|
 | `.opencode/README.md` | Gate 2 prose + directory-structure updated. |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Gate 2 setup teaches hook-first path. |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Copilot transport + OpenCode plugin bridge documented. |
-| `.opencode/skill/system-spec-kit/README.md` | Hook-primary routing, ESM profile, Copilot section. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Startup/recovery split for all runtimes. |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Canonical runtime matrix refreshed. |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Copilot transport + OpenCode plugin bridge documented. |
+| `.opencode/skills/system-spec-kit/README.md` | Hook-primary routing, ESM profile, Copilot section. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Startup/recovery split for all runtimes. |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Canonical runtime matrix refreshed. |
 | `AGENTS.md` | Gate 2 anchored on hook brief primary. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` | Registration example shows settings.local.json contract. |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Advisor native tools + Copilot wrapper contract. |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` | Copilot wrapper surface documented. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Copilot validation scenario updated. |
-| `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Added `SPECKIT_CODEX_HOOK_TIMEOUT_MS`. |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Hook-surface summary with cross-links. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Registration example shows settings.local.json contract. |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Advisor native tools + Copilot wrapper contract. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` | Copilot wrapper surface documented. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Copilot validation scenario updated. |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Added `SPECKIT_CODEX_HOOK_TIMEOUT_MS`. |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Hook-surface summary with cross-links. |
 
 ### Follow-Ups
 

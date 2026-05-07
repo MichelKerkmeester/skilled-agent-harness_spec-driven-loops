@@ -32,9 +32,9 @@ Cross-check surfaces used as evidence only:
 | Surface | Why it mattered |
 |---|---|
 | `AGENTS.md` | Current spec-packet file requirements |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Verified the cited `metadata_only` behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | Verified the cited handler regression coverage |
-| `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Verified the removed Tier-3 flag wording |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Verified the cited `metadata_only` behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | Verified the cited handler regression coverage |
+| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | Verified the removed Tier-3 flag wording |
 
 ## 3. Method
 
@@ -102,7 +102,7 @@ No P0 finding survived adversarial re-check. The closest candidate was whether t
 
 | Check | Purpose |
 |---|---|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | Re-test the root packet after the canonical files and template surfaces are restored. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | Re-test the root packet after the canonical files and template surfaces are restored. |
 | Regenerate `description.json` / `graph-metadata.json` from the current packet path | Clear the stale `010` parent-chain residue. |
 | Add a parent `implementation-summary.md` that explicitly closes `spec.md` exit criteria | Restore parent-level research traceability. |
 | Add a parent `decision-record.md` or explicit security-boundary link section | Make the parent packet security-auditable. |

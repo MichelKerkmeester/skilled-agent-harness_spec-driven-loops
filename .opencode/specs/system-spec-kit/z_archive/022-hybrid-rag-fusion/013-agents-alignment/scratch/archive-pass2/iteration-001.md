@@ -12,7 +12,7 @@
 ### WAVE-1A-001
 - **Severity**: P2
 - **Dimension**: correctness
-- **Files**: `.opencode/agent/context.md`, `.opencode/agent/chatgpt/context.md`, `.claude/agents/context.md`, `.codex/agents/context.toml`, `.agents/agents/context.md`
+- **Files**: `.opencode/agents/context.md`, `.opencode/agents/chatgpt/context.md`, `.claude/agents/context.md`, `.codex/agents/context.toml`, `.agents/agents/context.md`
 - **Finding**: Agent files do not enumerate the full 33-tool MCP surface. Newer tools (`memory_quick_search`, `memory_get_learning_history`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`, `shared_space_upsert`, `shared_space_membership_set`, `shared_memory_enable`, `shared_memory_status`, `eval_run_ablation`, `eval_reporting_dashboard`, `task_preflight`, `task_postflight`) are not mentioned.
 - **Evidence**: Grep across all 5 runtimes returned 0 matches for these tool names. `tool-schemas.ts` exports 33 tools.
 - **Impact**: Low — agent definitions describe behavioral rules and retrieval workflows, not tool inventories. The agent works correctly through the MCP registration.

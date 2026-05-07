@@ -138,7 +138,7 @@ Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should edit 
 ```bash
 rg 'sk-improve-prompt' .claude/ .codex/ .gemini/
 test -f .claude/agents/improve-prompt.md && test -f .codex/agents/improve-prompt.toml && test -f .gemini/agents/improve-prompt.md
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/004-runtime-mirrors --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/004-runtime-mirrors --strict
 ```
 <!-- /ANCHOR:handoff -->
 

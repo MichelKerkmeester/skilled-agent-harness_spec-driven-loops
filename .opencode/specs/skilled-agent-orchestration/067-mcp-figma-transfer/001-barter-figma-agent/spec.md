@@ -132,7 +132,7 @@ This is **Phase 1** of the mcp-figma transfer. Output: a complete role-bound Fig
 **Scope Boundary**: Authoring + committing in the **AI_Systems/Barter** repo only. Public AI Systems duplicate (Phase 2) and Public skill repo deletion (Phase 3) are out of scope here.
 
 **Dependencies**:
-- Read access to `Code_Environment/Public/.opencode/skill/mcp-figma/` (source content)
+- Read access to `Code_Environment/Public/.opencode/skills/mcp-figma/` (source content)
 - Read access to `AI_Systems/Barter/MCP Agents/ClickUp/` (format ground truth)
 - Approved decision register D1–D10 in `decision-record.md`
 

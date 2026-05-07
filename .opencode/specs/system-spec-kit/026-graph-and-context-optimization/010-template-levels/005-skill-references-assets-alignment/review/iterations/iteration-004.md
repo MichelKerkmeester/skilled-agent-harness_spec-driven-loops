@@ -15,28 +15,28 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/review_core.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-config.json`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-state.jsonl`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-findings-registry.json`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-strategy.md`
-- `.opencode/skill/system-spec-kit/references/validation/path_scoped_rules.md`
-- `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md`
-- `.opencode/skill/system-spec-kit/references/validation/validation_rules.md`
-- `.opencode/skill/system-spec-kit/references/workflows/execution_methods.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh`
-- `.opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts`
+- `.opencode/skills/system-spec-kit/references/validation/path_scoped_rules.md`
+- `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md`
+- `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`
+- `.opencode/skills/system-spec-kit/references/workflows/execution_methods.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh`
+- `.opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/validation-v13-v14-v12.vitest.ts`
 
 ## Findings - New
 
@@ -50,13 +50,13 @@ None.
 
 ### P2 Findings
 
-1. **Validation references are not registry-complete for the current validator surface** -- `.opencode/skill/system-spec-kit/references/validation/validation_rules.md:16` -- The validation reference claims it documents "every validation rule enforced by the SpecKit system," but its rule summary covers a smaller legacy set of rules and omits currently registered validator rules such as `TEMPLATE_SOURCE`, `TEMPLATE_HEADERS`, `SECTION_COUNTS`, `SPEC_DOC_INTEGRITY`, `TOC_POLICY`, and operational runtime/canonical-save rules. The path-scoped reference repeats the same stale subset under "Implemented Rules." The live validator resolves its default rule set from `scripts/lib/validator-registry.json`, so agents using these references for coverage planning can miss enforced validators and severities even though runtime validation still executes them.
+1. **Validation references are not registry-complete for the current validator surface** -- `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:16` -- The validation reference claims it documents "every validation rule enforced by the SpecKit system," but its rule summary covers a smaller legacy set of rules and omits currently registered validator rules such as `TEMPLATE_SOURCE`, `TEMPLATE_HEADERS`, `SECTION_COUNTS`, `SPEC_DOC_INTEGRITY`, `TOC_POLICY`, and operational runtime/canonical-save rules. The path-scoped reference repeats the same stale subset under "Implemented Rules." The live validator resolves its default rule set from `scripts/lib/validator-registry.json`, so agents using these references for coverage planning can miss enforced validators and severities even though runtime validation still executes them.
    - Evidence:
-     - The reference claims complete rule coverage: `.opencode/skill/system-spec-kit/references/validation/validation_rules.md:16`.
-     - The rule summary lists only a subset through `PHASE_PARENT_CONTENT`: `.opencode/skill/system-spec-kit/references/validation/validation_rules.md:41`.
-     - `path_scoped_rules.md` lists only seven implemented rules: `.opencode/skill/system-spec-kit/references/validation/path_scoped_rules.md:67`.
-     - The live registry includes additional enforced rules, including `SECTION_COUNTS`: `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:187`, `SPEC_DOC_INTEGRITY`: `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:195`, `TEMPLATE_SOURCE`: `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:203`, and `TEMPLATE_HEADERS`: `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:211`.
-     - `validate.sh` reads the registry and emits all non-skip default rules from it: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:357`, `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:390`, `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:482`.
+     - The reference claims complete rule coverage: `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:16`.
+     - The rule summary lists only a subset through `PHASE_PARENT_CONTENT`: `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:41`.
+     - `path_scoped_rules.md` lists only seven implemented rules: `.opencode/skills/system-spec-kit/references/validation/path_scoped_rules.md:67`.
+     - The live registry includes additional enforced rules, including `SECTION_COUNTS`: `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:187`, `SPEC_DOC_INTEGRITY`: `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:195`, `TEMPLATE_SOURCE`: `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:203`, and `TEMPLATE_HEADERS`: `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:211`.
+     - `validate.sh` reads the registry and emits all non-skip default rules from it: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:357`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:390`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:482`.
    - Impact: advisory maintainability/coverage issue. Runtime validation remains registry-backed, but the reference docs no longer provide reliable validator coverage guidance for agents or reviewers.
    - Recommendation: generate or verify the rule summary from `scripts/lib/validator-registry.json`, or add a test that asserts `validation_rules.md` and `path_scoped_rules.md` include all default non-skip registry rules with matching severity/category labels.
    - Finding class: matrix/evidence
@@ -73,23 +73,23 @@ None.
 ## Integration Evidence
 
 - `validate.sh` registry integration:
-  - `VALIDATOR_REGISTRY_JSON` points to `../lib/validator-registry.json` at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:22`.
-  - `validator_registry_query()` loads and queries the registry at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:357`.
-  - default rules are derived by filtering registry entries where `strict_only !== true` and `severity !== "skip"` at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:390`.
-  - `get_rule_scripts()` enumerates those default rules at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:474`.
+  - `VALIDATOR_REGISTRY_JSON` points to `../lib/validator-registry.json` at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:22`.
+  - `validator_registry_query()` loads and queries the registry at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:357`.
+  - default rules are derived by filtering registry entries where `strict_only !== true` and `severity !== "skip"` at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:390`.
+  - `get_rule_scripts()` enumerates those default rules at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:474`.
 - Registry coverage:
-  - `TEMPLATE_SOURCE` registered at `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:203`.
-  - `TEMPLATE_HEADERS` registered at `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:211`.
-  - `SECTION_COUNTS` registered at `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:187`.
-  - `SPEC_DOC_INTEGRITY` registered at `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json:195`.
+  - `TEMPLATE_SOURCE` registered at `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:203`.
+  - `TEMPLATE_HEADERS` registered at `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:211`.
+  - `SECTION_COUNTS` registered at `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:187`.
+  - `SPEC_DOC_INTEGRITY` registered at `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:195`.
 - Template-system validator behavior:
-  - `check-template-headers.sh` compares live documents against `template-structure.js` contracts at `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:63`.
-  - `check-section-counts.sh` derives minimum expectations from the shared Level contract at `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh:152`.
-  - `check-files.sh` asks `template-structure.js` for required docs and has a phase-parent lean-trio branch at `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh:41`.
+  - `check-template-headers.sh` compares live documents against `template-structure.js` contracts at `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:63`.
+  - `check-section-counts.sh` derives minimum expectations from the shared Level contract at `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh:152`.
+  - `check-files.sh` asks `template-structure.js` for required docs and has a phase-parent lean-trio branch at `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh:41`.
 - Test coverage context:
-  - `template-structure.vitest.ts` verifies contract extraction and phase addenda behavior at `.opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts:62` and `.opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts:151`.
-  - `level-contract-resolver.vitest.ts` verifies Level contract document sets at `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:9`.
-  - `progressive-validation.vitest.ts` verifies validate/progressive baseline parity at `.opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts:207`.
+  - `template-structure.vitest.ts` verifies contract extraction and phase addenda behavior at `.opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts:62` and `.opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts:151`.
+  - `level-contract-resolver.vitest.ts` verifies Level contract document sets at `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:9`.
+  - `progressive-validation.vitest.ts` verifies validate/progressive baseline parity at `.opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts:207`.
 
 ## Edge Cases
 
@@ -120,4 +120,4 @@ None.
 - Reason: Validator coverage has one advisory P2 and no active P0/P1; the final configured dimension is cross-runtime mirror consistency.
 - Rotation status: advance
 - Blocked/productive carry-forward: Carry P2-001, P2-002, and P2-003 as advisory precision/coverage issues only. Do not retry validator docs-vs-registry coverage unless new evidence changes runtime behavior.
-- Required evidence: direct file:line reads from `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/command/spec_kit/deep-review.md`, `.opencode/agent/*.md` canonical surfaces, and runtime mirrors only where explicitly in scope.
+- Required evidence: direct file:line reads from `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/agents/*.md` canonical surfaces, and runtime mirrors only where explicitly in scope.

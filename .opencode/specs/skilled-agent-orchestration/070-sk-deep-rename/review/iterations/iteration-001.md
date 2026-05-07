@@ -22,7 +22,7 @@ None.
   - `.opencode/changelog/sk-deep-review:1` -> `../skill/sk-deep-review/changelog`
   - `.opencode/changelog/sk-deep-research:1` -> `../skill/sk-deep-research/changelog`
 - Why this is a cross-file consistency issue: these are active filesystem entries outside the allowed historical/snapshot/changelog `v*.md` list. The symlink names still expose `sk-deep-review` and `sk-deep-research`, and their targets resolve to old skill folders that no longer exist.
-- Impact: changelog discovery through `.opencode/changelog/<skill>` will fail for both renamed skills, while the actual changelog directories now exist at `.opencode/skill/deep-review/changelog` and `.opencode/skill/deep-research/changelog`.
+- Impact: changelog discovery through `.opencode/changelog/<skill>` will fail for both renamed skills, while the actual changelog directories now exist at `.opencode/skills/deep-review/changelog` and `.opencode/skills/deep-research/changelog`.
 - Concrete fix: replace the two old symlinks with `.opencode/changelog/deep-review -> ../skill/deep-review/changelog` and `.opencode/changelog/deep-research -> ../skill/deep-research/changelog`.
 
 # P2 FINDINGS
@@ -31,9 +31,9 @@ None.
 
 # POSITIVE OBSERVATIONS
 
-- Command entrypoints and YAML workflows use the new names: `.opencode/command/spec_kit/deep-review.md:35`, `.opencode/command/spec_kit/deep-research.md:33`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, and `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`.
-- Canonical OpenCode agents and runtime mirrors use the new names: `.opencode/agent/deep-review.md:2`, `.opencode/agent/deep-research.md:2`, `.claude/agents/deep-review.md:2`, `.claude/agents/deep-research.md:2`, `.codex/agents/deep-review.toml:9`, `.codex/agents/deep-research.toml:9`, `.gemini/agents/deep-review.md:2`, and `.gemini/agents/deep-research.md:2`.
-- Canonical skills use the new names and paths: `.opencode/skill/deep-review/SKILL.md:2`, `.opencode/skill/deep-research/SKILL.md:2`, `.opencode/skill/deep-review/references/quick_reference.md:14`, and `.opencode/skill/deep-research/references/quick_reference.md:14`.
+- Command entrypoints and YAML workflows use the new names: `.opencode/commands/spec_kit/deep-review.md:35`, `.opencode/commands/spec_kit/deep-research.md:33`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:56`, and `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:67`.
+- Canonical OpenCode agents and runtime mirrors use the new names: `.opencode/agents/deep-review.md:2`, `.opencode/agents/deep-research.md:2`, `.claude/agents/deep-review.md:2`, `.claude/agents/deep-research.md:2`, `.codex/agents/deep-review.toml:9`, `.codex/agents/deep-research.toml:9`, `.gemini/agents/deep-review.md:2`, and `.gemini/agents/deep-research.md:2`.
+- Canonical skills use the new names and paths: `.opencode/skills/deep-review/SKILL.md:2`, `.opencode/skills/deep-research/SKILL.md:2`, `.opencode/skills/deep-review/references/quick_reference.md:14`, and `.opencode/skills/deep-research/references/quick_reference.md:14`.
 - Active `.opencode/specs/` outside Packet 070 and outside `z_archive/` had zero `sk-deep-review` / `sk-deep-research` hits in this pass.
 
 # DIMENSION COVERAGE
@@ -44,9 +44,9 @@ Sampled files with old/new counts:
 
 | Area | Files sampled | Result |
 | --- | ---: | --- |
-| `.opencode/skill/` | 10 | 0 old-name hits; sampled deep-loop and related skills use new names where referenced |
-| `.opencode/agent/` | 4 | 0 old-name hits; `deep-review` / `deep-research` canonical agents use new names |
-| `.opencode/command/spec_kit/` | 6 | 0 old-name hits; command docs and auto/confirm YAML use new names |
+| `.opencode/skills/` | 10 | 0 old-name hits; sampled deep-loop and related skills use new names where referenced |
+| `.opencode/agents/` | 4 | 0 old-name hits; `deep-review` / `deep-research` canonical agents use new names |
+| `.opencode/commands/spec_kit/` | 6 | 0 old-name hits; command docs and auto/confirm YAML use new names |
 | `.opencode/specs/` active packets | 7 | 0 old-name hits in sampled non-070 active specs |
 | `.claude/agents/` | 3 | 0 old-name hits |
 | `.codex/agents/` | 3 | 0 old-name hits |
@@ -55,9 +55,9 @@ Sampled files with old/new counts:
 
 Broad checks executed:
 
-- Text grep over `.opencode/skill`, `.opencode/agent`, `.opencode/command/spec_kit`, `.claude/agents`, `.codex/agents`, `.gemini/agents`, `README.md`, `AGENTS.md`, `CLAUDE.md`, and `opencode.json`: no old-name hits.
+- Text grep over `.opencode/skill`, `.opencode/agent`, `.opencode/commands/spec_kit`, `.claude/agents`, `.codex/agents`, `.gemini/agents`, `README.md`, `AGENTS.md`, `CLAUDE.md`, and `opencode.json`: no old-name hits.
 - Active `.opencode/specs` grep excluding `z_archive/`, `runs/`, and `070-sk-deep-rename/`: no old-name hits.
-- Filename scan over `.opencode/skill`, `.opencode/agent`, `.opencode/command/spec_kit`, `.claude/agents`, `.codex/agents`, and `.gemini/agents`: no old-name filenames.
+- Filename scan over `.opencode/skill`, `.opencode/agent`, `.opencode/commands/spec_kit`, `.claude/agents`, `.codex/agents`, and `.gemini/agents`: no old-name filenames.
 - Broader filename scan over `.opencode`, `.claude`, `.codex`, and `.gemini` excluding archive/run/pre-promote paths surfaced only the two active `.opencode/changelog/sk-deep-*` symlinks plus allowed archived/Packet 070 paths.
 
 Legitimate preserved old-name references observed:

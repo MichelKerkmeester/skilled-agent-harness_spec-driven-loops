@@ -130,9 +130,9 @@ After the Spec Kit Memory merger (spec 035), multiple refinement specs (036-042)
 |------|---------|
 | `SKILL.md` | P0-008, P1-001, P1-008, P1-009, P1-010 |
 | `AGENTS.md` | P1-003, P1-011 |
-| `.opencode/command/spec_kit/complete.md` | P1-002 |
-| `.opencode/command/spec_kit/help.md` | P1-013 |
-| `.opencode/command/memory/help.md` | P1-014 (created) |
+| `.opencode/commands/spec_kit/complete.md` | P1-002 |
+| `.opencode/commands/spec_kit/help.md` | P1-013 |
+| `.opencode/commands/memory/help.md` | P1-014 (created) |
 
 ### Configuration/Assets
 | File | Changes |

@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Review final verification output"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
     session_dedup:
       fingerprint: "sha256:c80e7b157449fde64fcb516970c656b7e8132b20de01ed50fb54c65011c805e6"
       session_id: "026-007-012-004-remediation"
@@ -46,7 +46,7 @@ _memory:
 | **Language/Stack** | TypeScript, NodeNext ESM |
 | **Framework** | MCP server handlers and SQLite persistence |
 | **Storage** | `better-sqlite3` code graph database |
-| **Testing** | Vitest under `.opencode/skill/system-spec-kit/mcp_server` |
+| **Testing** | Vitest under `.opencode/skills/system-spec-kit/mcp_server` |
 
 ### Overview
 Implement the P0 fixes before any P1 behavior so the graph cannot be wiped while the rest of the packet is in flight. The core design is fail-safe promotion: scan results are evaluated before destructive pruning or live metadata updates, parser runtime errors become diagnostics rather than replacement graph rows, and DB writes filter impossible edge shapes.
@@ -104,8 +104,8 @@ Fail-safe persistence and additive diagnostics in the existing MCP handler/DB ar
 | Dist mirrors | Runtime JS output. | Rebuild after TypeScript edits. | `npm run build`. |
 
 Required inventories:
-- Same-class producers: `rg -n "setLastGitHead|setCodeGraphScope|recordCandidateManifest|replaceEdges|parseHealth" .opencode/skill/system-spec-kit/mcp_server/code_graph`.
-- Consumers of changed symbols: `rg -n "parseDiagnostics|forceZeroNodeReset|staleButValid|zero_node_scan_rejected" .opencode/skill/system-spec-kit/mcp_server`.
+- Same-class producers: `rg -n "setLastGitHead|setCodeGraphScope|recordCandidateManifest|replaceEdges|parseHealth" .opencode/skills/system-spec-kit/mcp_server/code_graph`.
+- Consumers of changed symbols: `rg -n "parseDiagnostics|forceZeroNodeReset|staleButValid|zero_node_scan_rejected" .opencode/skills/system-spec-kit/mcp_server`.
 - Matrix axes: scan mode (`incremental`/full), prior graph nodes (`0`/`>0`), candidate nodes (`0`/`>0`), override (`false`/`true`), parse-error ratio (`0`, `<=0.5`, `>0.5`).
 - Algorithm invariant: no candidate scan may remove live graph content until it has either usable nodes, no prior graph, or an explicit destructive override.
 <!-- /ANCHOR:affected-surfaces -->

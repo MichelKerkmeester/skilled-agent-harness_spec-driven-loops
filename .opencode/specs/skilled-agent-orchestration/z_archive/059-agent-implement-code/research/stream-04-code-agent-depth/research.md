@@ -1,6 +1,6 @@
 ---
 title: "Stream-04 Research Synthesis — @code Agent Depth/Structure (Mirroring @review Rigor)"
-description: "Synthesis of 8 deep-research iterations translating @review.md's rich §0-§13 structure into a CODER perspective for .opencode/agent/code.md. Includes a drop-in expanded body proposal."
+description: "Synthesis of 8 deep-research iterations translating @review.md's rich §0-§13 structure into a CODER perspective for .opencode/agents/code.md. Includes a drop-in expanded body proposal."
 status: complete
 ---
 
@@ -8,11 +8,11 @@ status: complete
 
 ## Summary
 
-This stream translated `.opencode/agent/review.md`'s rich structural depth (478 lines, §0-§13) into a CODER analog for `.opencode/agent/code.md`. The current `@code` body (102 lines) is structurally shallow compared to `@review`. Across 8 iterations under cli-codex (gpt-5.5, reasoning=high, service_tier=fast), we derived: a 5-dimension Coder Acceptance Rubric, 7 implementation modes, three lifecycle-gated checklists (Pre/During/Pre-Return), a Pre-Return Verification protocol with the canonical `sk-code` Iron Law, the Builder/Critic/Verifier adversarial self-check, 11 coder-specific anti-patterns, HIGH/MEDIUM/LOW confidence levels with strict LOW-blocks-DONE rule, an expanded RETURN contract with structured markdown body and gate-validation sub-format, baseline+overlay skill precedence (sk-code + one sk-code-* overlay; sk-code-review excluded), and a four-quadrant ASCII summary box. All ten priority questions resolved with cited evidence; convergence reached the strong stop signal (zero remaining + each Q has ≥1 finding) at iteration 8 of 10.
+This stream translated `.opencode/agents/review.md`'s rich structural depth (478 lines, §0-§13) into a CODER analog for `.opencode/agents/code.md`. The current `@code` body (102 lines) is structurally shallow compared to `@review`. Across 8 iterations under cli-codex (gpt-5.5, reasoning=high, service_tier=fast), we derived: a 5-dimension Coder Acceptance Rubric, 7 implementation modes, three lifecycle-gated checklists (Pre/During/Pre-Return), a Pre-Return Verification protocol with the canonical `sk-code` Iron Law, the Builder/Critic/Verifier adversarial self-check, 11 coder-specific anti-patterns, HIGH/MEDIUM/LOW confidence levels with strict LOW-blocks-DONE rule, an expanded RETURN contract with structured markdown body and gate-validation sub-format, baseline+overlay skill precedence (sk-code + one sk-code-* overlay; sk-code-review excluded), and a four-quadrant ASCII summary box. All ten priority questions resolved with cited evidence; convergence reached the strong stop signal (zero remaining + each Q has ≥1 finding) at iteration 8 of 10.
 
 ## Topic
 
-Translate `.opencode/agent/review.md` (`§0`-`§13`, ~478 lines) into a coder/implementation-perspective analog for `.opencode/agent/code.md`, producing a drop-in body proposal at ~400-500 lines that mirrors review's structural rigor while staying codebase-agnostic (sk-code owns stack-specific rules) and preserving the D3 convention-floor caller-restriction locked in Phase 2 synthesis.
+Translate `.opencode/agents/review.md` (`§0`-`§13`, ~478 lines) into a coder/implementation-perspective analog for `.opencode/agents/code.md`, producing a drop-in body proposal at ~400-500 lines that mirrors review's structural rigor while staying codebase-agnostic (sk-code owns stack-specific rules) and preserving the D3 convention-floor caller-restriction locked in Phase 2 synthesis.
 
 ---
 
@@ -39,25 +39,25 @@ None. All ten priority questions resolved with cited evidence per the quality gu
 
 ## Key Findings (selected, all citations repo-relative)
 
-1. **The structural template is `@review.md` §5 lines 116-152** (Quality Rubric). Mirroring 5-dimensions × 100 points + bands + severity + per-dimension matrix produces a rigorous coder-side acceptance gate. (`.opencode/agent/review.md:114-152`; iter-1 f-iter001-001)
+1. **The structural template is `@review.md` §5 lines 116-152** (Quality Rubric). Mirroring 5-dimensions × 100 points + bands + severity + per-dimension matrix produces a rigorous coder-side acceptance gate. (`.opencode/agents/review.md:114-152`; iter-1 f-iter001-001)
 
-2. **Coder rubric MUST give Verification-Evidence its own scoring weight** — not bury it in Correctness. The canonical Iron Law lives in `sk-code/SKILL.md:62`: "NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK." Verification-Evidence at 20 points enforces this. (`.opencode/skill/sk-code/SKILL.md:50-62`; iter-1 f-iter001-002, iter-4 f-iter004-002)
+2. **Coder rubric MUST give Verification-Evidence its own scoring weight** — not bury it in Correctness. The canonical Iron Law lives in `sk-code/SKILL.md:62`: "NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK." Verification-Evidence at 20 points enforces this. (`.opencode/skills/sk-code/SKILL.md:50-62`; iter-1 f-iter001-002, iter-4 f-iter004-002)
 
-3. **Stack-Pattern-Compliance dimension is owned by `sk-code` Phase 1.5, not embedded in `@code` body.** `sk-code` loads the matching checklist, validates by P0/P1/P2 severity, and blocks completion on any P0. The agent body delegates instead of duplicating. (`.opencode/skill/sk-code/SKILL.md:398-413,463-473`; iter-1 f-iter001-003)
+3. **Stack-Pattern-Compliance dimension is owned by `sk-code` Phase 1.5, not embedded in `@code` body.** `sk-code` loads the matching checklist, validates by P0/P1/P2 severity, and blocks completion on any P0. The agent body delegates instead of duplicating. (`.opencode/skills/sk-code/SKILL.md:398-413,463-473`; iter-1 f-iter001-003)
 
-4. **Modes change discovery/implementation surface — they NEVER skip sk-code, quality gates, verification, or explicit return.** This is the Mode Invariant. The 7-mode set (full / surgical / refactor / test-add / scaffold / rename / dependency) covers all coder dispatch shapes without redundancy. (`.opencode/agent/review.md:101-111`, `.opencode/agent/write.md:206-217`, `.opencode/skill/sk-code/SKILL.md:50-62`; iter-2 f-iter002-001..005)
+4. **Modes change discovery/implementation surface — they NEVER skip sk-code, quality gates, verification, or explicit return.** This is the Mode Invariant. The 7-mode set (full / surgical / refactor / test-add / scaffold / rename / dependency) covers all coder dispatch shapes without redundancy. (`.opencode/agents/review.md:101-111`, `.opencode/agents/write.md:206-217`, `.opencode/skills/sk-code/SKILL.md:50-62`; iter-2 f-iter002-001..005)
 
-5. **Pre-Return is a fail-closed verification gate, not a Pre-Report block.** The coder boundary is the handoff RETURN, because `code.md` already defines a structured return line. Every claim in the RETURN summary needs proof; verification command + exit code are required. (`.opencode/agent/code.md:80-101`, `.opencode/skill/sk-code/SKILL.md:427-489`; iter-3 f-iter003-003, iter-4 f-iter004-001)
+5. **Pre-Return is a fail-closed verification gate, not a Pre-Report block.** The coder boundary is the handoff RETURN, because `code.md` already defines a structured return line. Every claim in the RETURN summary needs proof; verification command + exit code are required. (`.opencode/agents/code.md:80-101`, `.opencode/skills/sk-code/SKILL.md:427-489`; iter-3 f-iter003-003, iter-4 f-iter004-001)
 
-6. **Builder/Critic/Verifier challenges completion claims, not findings** — opposite axis from Hunter/Skeptic/Referee in `@review`. Builder argues `DONE`; Critic challenges silent retries / scope drift / phantom edges / cargo-culted neighbors / partial verifies; Verifier ships only when Critic challenges are answered with evidence. (`.opencode/agent/review.md:364-393`, `.opencode/agent/debug.md:204-234`; iter-5 f-iter005-001..005)
+6. **Builder/Critic/Verifier challenges completion claims, not findings** — opposite axis from Hunter/Skeptic/Referee in `@review`. Builder argues `DONE`; Critic challenges silent retries / scope drift / phantom edges / cargo-culted neighbors / partial verifies; Verifier ships only when Critic challenges are answered with evidence. (`.opencode/agents/review.md:364-393`, `.opencode/agents/debug.md:204-234`; iter-5 f-iter005-001..005)
 
-7. **Coder anti-patterns must use execution verbs, not approval verbs.** AGENTS.md already covers generic over-engineering / cargo-culting / scope-creep at a high level (`AGENTS.md:125-153`); the coder table converts those into authoring-time triggers (silent retry on verify-fail, "while we're here" cleanups, Bash bypass, partial-success returns, claim-without-verify, phantom edge-case handling, silent stack switch, dead-code/comment leftover, spec-doc authorship bleed). (`.opencode/agent/review.md:396-434`, `AGENTS.md:125-153`, `.opencode/agent/debug.md:426-457`; iter-6 f-iter006-001..005)
+7. **Coder anti-patterns must use execution verbs, not approval verbs.** AGENTS.md already covers generic over-engineering / cargo-culting / scope-creep at a high level (`AGENTS.md:125-153`); the coder table converts those into authoring-time triggers (silent retry on verify-fail, "while we're here" cleanups, Bash bypass, partial-success returns, claim-without-verify, phantom edge-case handling, silent stack switch, dead-code/comment leftover, spec-doc authorship bleed). (`.opencode/agents/review.md:396-434`, `AGENTS.md:125-153`, `.opencode/agents/debug.md:426-457`; iter-6 f-iter006-001..005)
 
-8. **LOW confidence MUST block DONE for coder, stricter than for reviewer.** `@review`'s LOW says "DO NOT send until fixed" (review report); coder-side LOW says "DO NOT RETURN DONE — RETURN BLOCKED with the specific gap." Different action because reviewer's output is judgment; coder's output is committed code. (`.opencode/agent/review.md:348-354`; iter-6 f-iter006-005)
+8. **LOW confidence MUST block DONE for coder, stricter than for reviewer.** `@review`'s LOW says "DO NOT send until fixed" (review report); coder-side LOW says "DO NOT RETURN DONE — RETURN BLOCKED with the specific gap." Different action because reviewer's output is judgment; coder's output is committed code. (`.opencode/agents/review.md:348-354`; iter-6 f-iter006-005)
 
-9. **Expand RETURN body but keep the compact first line.** Current 3-field format (`<files> | <verification> | <escalation>`) is too thin for orchestrator retry/reassign decisions. Add: mode, command, exit_code, first_failing_assertion, rubric_score, confidence, conditional adversarial_summary, conditional out_of_scope. Three coder gate types align Builder/Critic/Verifier with @review's pre/mid/post execution gates. (`.opencode/agent/review.md:237-279`, `.opencode/agent/debug.md:296-367`, `.opencode/agent/orchestrate.md:188-220`; iter-7 f-iter007-001..003)
+9. **Expand RETURN body but keep the compact first line.** Current 3-field format (`<files> | <verification> | <escalation>`) is too thin for orchestrator retry/reassign decisions. Add: mode, command, exit_code, first_failing_assertion, rubric_score, confidence, conditional adversarial_summary, conditional out_of_scope. Three coder gate types align Builder/Critic/Verifier with @review's pre/mid/post execution gates. (`.opencode/agents/review.md:237-279`, `.opencode/agents/debug.md:296-367`, `.opencode/agents/orchestrate.md:188-220`; iter-7 f-iter007-001..003)
 
-10. **Coder-side circuit breaker is BLOCKED-count, not score-based.** `@review`'s "score < 50 across attempts" doesn't fit because @code can BLOCKED for non-quality reasons (UNKNOWN stack, scope conflict, low confidence, logic-sync, verify fail). 3 consecutive BLOCKED on same task → orchestrator offers `@debug`. (`.opencode/agent/review.md:255-260`, `.opencode/agent/debug.md:321-344`; iter-7 f-iter007-003)
+10. **Coder-side circuit breaker is BLOCKED-count, not score-based.** `@review`'s "score < 50 across attempts" doesn't fit because @code can BLOCKED for non-quality reasons (UNKNOWN stack, scope conflict, low confidence, logic-sync, verify fail). 3 consecutive BLOCKED on same task → orchestrator offers `@debug`. (`.opencode/agents/review.md:255-260`, `.opencode/agents/debug.md:321-344`; iter-7 f-iter007-003)
 
 11. **Baseline + exactly one overlay precedence: `sk-code` always; one `sk-code-*` overlay if applicable; `sk-code-review` always excluded; UNKNOWN escalates rather than picking default.** Mirrors `@review.md:70-99` and matches caller contract in `@orchestrate.md:310-315`. (iter-7 f-iter007-004)
 
@@ -83,9 +83,9 @@ None. All ten priority questions resolved with cited evidence per the quality gu
 
 ## Recommendations
 
-The recommendation is the drop-in expanded `.opencode/agent/code.md` body below. Frontmatter stays unchanged from current `code.md:1-20`. The body is fully expanded to ~440 lines, mirroring `@review.md`'s §0-§13 structure but adapted for the implementation perspective.
+The recommendation is the drop-in expanded `.opencode/agents/code.md` body below. Frontmatter stays unchanged from current `code.md:1-20`. The body is fully expanded to ~440 lines, mirroring `@review.md`'s §0-§13 structure but adapted for the implementation perspective.
 
-### Drop-In Expanded `.opencode/agent/code.md` Body Proposal
+### Drop-In Expanded `.opencode/agents/code.md` Body Proposal
 
 ````markdown
 ---
@@ -113,9 +113,9 @@ permission:
 
 Stack-aware application-code implementer that delegates stack detection to `sk-code`, executes bounded by sk-code-returned guidance, runs Builder→Critic→Verifier on its own completion claim, and verifies fail-closed via stack-appropriate gates.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agent/orchestrate.md` §3 NDP), HALT and return:
+> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §3 NDP), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate. (D3 caller-restriction convention; see specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md ADR-D3.)"
 >
@@ -138,14 +138,14 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 1. **RECEIVE** → Parse scope from orchestrator (task description, target files, success criteria, packet/spec-folder context, dispatch mode if specified, verification expectation).
 2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` Iron Law.
-3. **INVOKE sk-code** → Read `.opencode/skill/sk-code/SKILL.md` and apply its detection / intent / resource-loading protocol. Capture: stack, intents, verification_commands, resource paths, applicable quality checklist.
+3. **INVOKE sk-code** → Read `.opencode/skills/sk-code/SKILL.md` and apply its detection / intent / resource-loading protocol. Capture: stack, intents, verification_commands, resource paths, applicable quality checklist.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
 5. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
 6. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract
 
-@code does NOT pre-detect stack. The full marker-file probing logic lives in `.opencode/skill/sk-code/SKILL.md` and `.opencode/skill/sk-code/references/router/stack_detection.md`. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs stack hint or sibling skill").
+@code does NOT pre-detect stack. The full marker-file probing logic lives in `.opencode/skills/sk-code/SKILL.md` and `.opencode/skills/sk-code/references/router/stack_detection.md`. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs stack hint or sibling skill").
 
 ---
 
@@ -480,7 +480,7 @@ If ANY is NO: **DO NOT return `DONE`.** Fix the verification gap or RETURN the a
 
 > **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK.**
 
-Canonical source: `.opencode/skill/sk-code/SKILL.md:62`.
+Canonical source: `.opencode/skills/sk-code/SKILL.md:62`.
 
 Before returning: (1) run the 6-question self-validation, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN.
 
@@ -620,7 +620,7 @@ See §3 for available skills and tools.
 
 ### Primary structural template
 
-- `.opencode/agent/review.md` — 478 lines, §0-§13 (canonical mirror target)
+- `.opencode/agents/review.md` — 478 lines, §0-§13 (canonical mirror target)
   - §0 ILLEGAL NESTING: lines 35-40
   - §1 CORE WORKFLOW: lines 43-57
   - §2 FAST PATH & CONTEXT PACKAGE: lines 60-66
@@ -638,16 +638,16 @@ See §3 for available skills and tools.
 
 ### Supporting precedents
 
-- `.opencode/agent/write.md` — 400 lines, write-capable LEAF analog (modes 206-217; output verification 295-330; summary box 373-399)
-- `.opencode/agent/debug.md` — 507 lines, 5-phase methodology with rich structure (Phase 4 Adversarial 204-234; output formats 296-367; summary box 480-506)
-- `.opencode/agent/code.md` — current 102-line shallow version (frontmatter 1-20; workflow 45-66; scope 70-77; escalation 80-101)
-- `.opencode/agent/orchestrate.md` — dispatch contract (188-220 dispatch fields; 296-318 implementation example with Skills line)
+- `.opencode/agents/write.md` — 400 lines, write-capable LEAF analog (modes 206-217; output verification 295-330; summary box 373-399)
+- `.opencode/agents/debug.md` — 507 lines, 5-phase methodology with rich structure (Phase 4 Adversarial 204-234; output formats 296-367; summary box 480-506)
+- `.opencode/agents/code.md` — current 102-line shallow version (frontmatter 1-20; workflow 45-66; scope 70-77; escalation 80-101)
+- `.opencode/agents/orchestrate.md` — dispatch contract (188-220 dispatch fields; 296-318 implementation example with Skills line)
 
 ### Skills cited
 
-- `.opencode/skill/sk-code/SKILL.md` — 717 lines (Iron Law line 62; Phase 1.5 Code Quality Gate 395-475; verification gate 427-489)
-- `.opencode/skill/sk-code-review/SKILL.md` — 392 lines (baseline+overlay model; severity contract; review_core.md evidence baseline)
-- `.opencode/skill/sk-code/references/universal/code_quality_standards.md` — P0/P1/P2 model (lines 36-130)
+- `.opencode/skills/sk-code/SKILL.md` — 717 lines (Iron Law line 62; Phase 1.5 Code Quality Gate 395-475; verification gate 427-489)
+- `.opencode/skills/sk-code-review/SKILL.md` — 392 lines (baseline+overlay model; severity contract; review_core.md evidence baseline)
+- `.opencode/skills/sk-code/references/universal/code_quality_standards.md` — P0/P1/P2 model (lines 36-130)
 
 ### Governance
 
@@ -696,14 +696,14 @@ Iterations 9 and 10 were not run — strong stop signal met.
 
 The parent `@orchestrate` (or operator) should:
 
-1. **Review the proposed `code.md` body** in §Recommendations above against current `.opencode/agent/code.md`. The proposal preserves frontmatter, expands body from 102 → ~440 lines, and adds 11 new sections (§4 modes / §5 rubric / §6 checklists / §7 gate types / §8 RETURN body / §9 rules / §10 output verification + adversarial self-check / §11 anti-patterns / §12 related resources / §13 summary box) while keeping the existing §0 dispatch gate / §0 illegal nesting / §1 workflow / §2 scope boundaries / §3 escalation contract intact.
+1. **Review the proposed `code.md` body** in §Recommendations above against current `.opencode/agents/code.md`. The proposal preserves frontmatter, expands body from 102 → ~440 lines, and adds 11 new sections (§4 modes / §5 rubric / §6 checklists / §7 gate types / §8 RETURN body / §9 rules / §10 output verification + adversarial self-check / §11 anti-patterns / §12 related resources / §13 summary box) while keeping the existing §0 dispatch gate / §0 illegal nesting / §1 workflow / §2 scope boundaries / §3 escalation contract intact.
 
-2. **Apply the proposed body** to `.opencode/agent/code.md` if accepted. Consider whether to:
+2. **Apply the proposed body** to `.opencode/agents/code.md` if accepted. Consider whether to:
    - Apply in full (recommended — all sections are independently grounded in cited evidence and the structure mirrors @review's proven shape)
    - Apply in stages (e.g. §5 rubric + §10 output verification + §11 anti-patterns first; §7 gate types + §8 expanded RETURN later if orchestrator integration is staged)
    - Adopt only the rubric + adversarial self-check + anti-patterns and defer the gate-type integration
 
-3. **Validate** with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` after applying.
+3. **Validate** with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` after applying.
 
 4. **Update siblings** per memory rule (AGENTS.md sync triad): the @code dispatch contract sharpenings should mirror into `AGENTS_Barter.md` and `AGENTS_example_fs_enterprises.md` if the body change implies new shared infrastructure. The detailed §4-§13 content is @code-internal and does NOT need to mirror.
 
@@ -718,4 +718,4 @@ The parent `@orchestrate` (or operator) should:
 
 ## Stream-04 Status
 
-**COMPLETE.** Phase 3 synthesis finished. Drop-in expanded `.opencode/agent/code.md` body proposal authored above (§Recommendations). All 10 priority questions resolved with cited evidence; convergence STOP signal met at iteration 8 of 10.
+**COMPLETE.** Phase 3 synthesis finished. Drop-in expanded `.opencode/agents/code.md` body proposal authored above (§Recommendations). All 10 priority questions resolved with cited evidence; convergence STOP signal met at iteration 8 of 10.

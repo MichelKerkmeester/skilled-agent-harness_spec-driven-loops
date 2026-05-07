@@ -11,7 +11,7 @@ The entire feature flag system is built on `isFeatureEnabled()` in `lib/cognitiv
 
 **Implication**: Any flag using `isFeatureEnabled()` is ON by default unless the code explicitly checks for `=== 'true'` instead.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:53-74]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:53-74]
 
 ### 2. Complete Feature Flag Inventory -- DEFAULT ON (Graduated)
 
@@ -73,7 +73,7 @@ All of the following flags use `isFeatureEnabled()` via `search-flags.ts` and ar
 
 **Total default-ON flags: 50**
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:1-575]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:1-575]
 
 ### 3. Features that are DEFAULT OFF (Opt-in)
 
@@ -85,7 +85,7 @@ All of the following flags use `isFeatureEnabled()` via `search-flags.ts` and ar
 | `SPECKIT_QUALITY_LOOP` | Verify-fix-verify memory quality loop | Explicit opt-in (`=== 'true'`) |
 | `SPECKIT_NOVELTY_BOOST` | Cold-start novelty boost | Opt-in (test evidence: returns 0 when not set) |
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:161-318, tests/cold-start.vitest.ts:35-41]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:161-318, tests/cold-start.vitest.ts:35-41]
 
 ### 4. Roadmap Capability Flags (Mixed defaults)
 
@@ -102,7 +102,7 @@ From `capability-flags.ts`, the roadmap-level capability flags have mixed defaul
 
 **Key discovery: `adaptiveRanking` defaults to FALSE** in the roadmap flags. This may be intentional or a gap.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:134-164]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:134-164]
 
 ### 5. Governance Flags -- Dual Default Pattern (Roadmap ON, Runtime OFF)
 
@@ -114,8 +114,8 @@ There is a discrepancy for scope enforcement and governance guardrails:
 
 The runtime `isDefaultOffFlagEnabled()` function likely requires explicit `true` to enable. The roadmap flags say ON, but the actual runtime gate says OFF. **The runtime behavior (OFF) takes precedence** since that is the code path that guards actual functionality.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:185-206]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:148-155]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:185-206]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:148-155]
 
 ### 6. opencode.json Explicit Configuration
 
@@ -171,7 +171,7 @@ And documents: "Opt-out flags (all default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT
 - **Feedback signals**: `SPECKIT_NEGATIVE_FEEDBACK` (ON), `SPECKIT_IMPLICIT_FEEDBACK_LOG` (ON), `SPECKIT_BATCH_LEARNED_FEEDBACK` (ON), `SPECKIT_SHADOW_FEEDBACK` (ON)
 - **Graph signals**: `SPECKIT_GRAPH_SIGNALS` (ON), `SPECKIT_COMMUNITY_DETECTION` (ON), `SPECKIT_DEGREE_BOOST` (ON), `SPECKIT_TYPED_TRAVERSAL` (ON)
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:27-37, 169-171, 230-232, 361-363, opencode.json:28-37]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:27-37, 169-171, 230-232, 361-363, opencode.json:28-37]
 
 ## Ruled Out
 None -- this was the first iteration; all approaches were productive.
@@ -180,14 +180,14 @@ None -- this was the first iteration; all approaches were productive.
 None identified yet.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts` (canonical flag registry)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts` (rollout infrastructure)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts` (roadmap capability flags)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (governance runtime)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts` (session boost)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (causal boost)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` (canonical flag registry)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts` (rollout infrastructure)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` (roadmap capability flags)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (governance runtime)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts` (session boost)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts` (causal boost)
 - `opencode.json` (deployed env var configuration)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts` (novelty boost tests)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts` (novelty boost tests)
 - Full SPECKIT_* grep across all .ts/.js files (120+ matches)
 - Full process.env.SPECKIT_* grep (150+ matches)
 

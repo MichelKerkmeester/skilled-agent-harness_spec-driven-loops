@@ -36,8 +36,8 @@ Drop this into the existing `try` block in `context-server.ts`, immediately afte
 ```
 
 Why this shape:
-- It avoids a new top-level import and matches the current `buildServerInstructions()` style. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:627-645`]
-- It reuses `snap.cocoIndexAvailable` and `snap.graphFreshness`, which are already computed by the session snapshot helper. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:53-105`]
+- It avoids a new top-level import and matches the current `buildServerInstructions()` style. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:627-645`]
+- It reuses `snap.cocoIndexAvailable` and `snap.graphFreshness`, which are already computed by the session snapshot helper. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:53-105`]
 
 ### 2) Exact availability/freshness check to use in the routing section
 
@@ -55,7 +55,7 @@ const { isCocoIndexAvailable } = await import('./lib/utils/cocoindex-path.js');
 const cocoReady = isCocoIndexAvailable();
 ```
 
-The direct helper is safe because `isCocoIndexAvailable()` is only an `existsSync()` check against the resolved `ccc` binary path. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:51-59`]
+The direct helper is safe because `isCocoIndexAvailable()` is only an `existsSync()` check against the resolved `ccc` binary path. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:51-59`]
 
 ### 3) Updated `code_graph_query` description
 
@@ -123,19 +123,19 @@ const codeGraphContext: ToolDefinition = {
 
 ## Findings:
 
-1. `buildServerInstructions()` can absorb routing guidance with no new top-level imports or helper functions. The function already dynamically imports `getSessionSnapshot()` inside its existing `try` block, so the least-risk implementation is to derive `cocoReady` and `graphReady` from `snap.cocoIndexAvailable` and `snap.graphFreshness` rather than adding more startup wiring. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:627-645`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:53-105`]
+1. `buildServerInstructions()` can absorb routing guidance with no new top-level imports or helper functions. The function already dynamically imports `getSessionSnapshot()` inside its existing `try` block, so the least-risk implementation is to derive `cocoReady` and `graphReady` from `snap.cocoIndexAvailable` and `snap.graphFreshness` rather than adding more startup wiring. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:627-645`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:53-105`]
 
-2. The correct freshness gate for Code Graph routing is `snap.graphFreshness === 'fresh'`, not merely `!== 'error'`. The snapshot classifies graph state as `fresh | stale | empty | error`, and the implementation uses a 24-hour threshold over `graphDb.getStats().lastScanTimestamp`; therefore stale and empty should route to "refresh first" guidance, not "graph available" guidance. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:31-47`]
+2. The correct freshness gate for Code Graph routing is `snap.graphFreshness === 'fresh'`, not merely `!== 'error'`. The snapshot classifies graph state as `fresh | stale | empty | error`, and the implementation uses a 24-hour threshold over `graphDb.getStats().lastScanTimestamp`; therefore stale and empty should route to "refresh first" guidance, not "graph available" guidance. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:31-47`]
 
-3. The correct CocoIndex availability signal already exists in session snapshot as `snap.cocoIndexAvailable`, and that field is itself backed by `isCocoIndexAvailable()`. The helper resolves the project root, builds the absolute path to `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc`, and returns `existsSync(...)`, so the routing section can trust it as a cheap startup-time availability check. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:70-74`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:12-13`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:51-59`]
+3. The correct CocoIndex availability signal already exists in session snapshot as `snap.cocoIndexAvailable`, and that field is itself backed by `isCocoIndexAvailable()`. The helper resolves the project root, builds the absolute path to `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc`, and returns `existsSync(...)`, so the routing section can trust it as a cheap startup-time availability check. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:70-74`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:12-13`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:51-59`]
 
-4. The strongest implementation pattern for `code_graph_query` is to turn the description from a passive capability summary into an explicit routing rule: "use this instead of Grep for structural questions when you already know the file or symbol." That directly addresses the current gap where the description lists operations but does not steer the model away from Grep for call/import/dependency questions. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:637-652`]
+4. The strongest implementation pattern for `code_graph_query` is to turn the description from a passive capability summary into an explicit routing rule: "use this instead of Grep for structural questions when you already know the file or symbol." That directly addresses the current gap where the description lists operations but does not steer the model away from Grep for call/import/dependency questions. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:637-652`]
 
-5. The strongest implementation pattern for `code_graph_context` is to present it as the bridge between semantic discovery and structural expansion: use CocoIndex first to find candidate code, then feed those results into `code_graph_context` for neighborhood or impact context. This matches the existing schema, which already accepts CocoIndex seeds via `provider: 'cocoindex'`, but the current description does not foreground that routing path. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:660-693`]
+5. The strongest implementation pattern for `code_graph_context` is to present it as the bridge between semantic discovery and structural expansion: use CocoIndex first to find candidate code, then feed those results into `code_graph_context` for neighborhood or impact context. This matches the existing schema, which already accepts CocoIndex seeds via `provider: 'cocoindex'`, but the current description does not foreground that routing path. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:660-693`]
 
-6. The routing text should refer to "CocoIndex" rather than hard-coding a runtime-specific external tool identifier inside server instructions. The MCP server controls only the Spec Kit Memory tool descriptions here, while CocoIndex is registered as a separate provider in `opencode.json`; using the product name keeps the instruction accurate across hook-compatible and non-hook runtimes whose displayed tool names may differ. [SOURCE: `opencode.json:40-49`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:637-693`]
+6. The routing text should refer to "CocoIndex" rather than hard-coding a runtime-specific external tool identifier inside server instructions. The MCP server controls only the Spec Kit Memory tool descriptions here, while CocoIndex is registered as a separate provider in `opencode.json`; using the product name keeps the instruction accurate across hook-compatible and non-hook runtimes whose displayed tool names may differ. [SOURCE: `opencode.json:40-49`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:637-693`]
 
-7. The proposed routing section is short enough to fit the prior <200-token guidance budget while still encoding the three essential branches: semantic search -> CocoIndex, structural analysis -> Code Graph, exact text/path -> grep/glob. The lines are deliberately concise and avoid examples or long caveats so they can live alongside the existing memory/session summary without bloating the startup instruction payload. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:619-645`]
+7. The proposed routing section is short enough to fit the prior <200-token guidance budget while still encoding the three essential branches: semantic search -> CocoIndex, structural analysis -> Code Graph, exact text/path -> grep/glob. The lines are deliberately concise and avoid examples or long caveats so they can live alongside the existing memory/session summary without bloating the startup instruction payload. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:619-645`]
 
 ## Key Questions Answered:
 

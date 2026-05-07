@@ -54,8 +54,8 @@ So the answer to the headline question is:
 
 > `vector_search` returned `0` because the probe hit the **empty provider-specific DB**, not because the populated legacy DB had unusable vectors.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
 [SOURCE: live probe on 2026-04-01 from repo root: `generateQueryEmbedding('semantic')` followed by `vector_search(...)` resolved `get_db_path()` to `context-index__voyage__voyage-4__1024.sqlite` and returned `0`]  
 [SOURCE: live probe on 2026-04-01 with explicit `initialize_db('./database/context-index.sqlite')` returned vector matches]  
 
@@ -75,7 +75,7 @@ Result:
 
 This immediately rules out hypothesis D as the primary explanation. The status filter is **not** eliminating almost everything at the table level.
 
-[SOURCE: sqlite3 CLI probe on 2026-04-01 against `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`]
+[SOURCE: sqlite3 CLI probe on 2026-04-01 against `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]
 
 ### 1.2 `vec_memories` type/length probe
 
@@ -135,7 +135,7 @@ So hypothesis A is **not** supported for the populated live DB path I tested:
 - vec metadata dimension = 1024
 - vec schema dimension = 1024
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:103-123`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:103-123`]  
 [SOURCE: live Node probe on 2026-04-01 showing `embeddingLength: 1024`, `expectedDim: 1024`, and `vec_metadata.embedding_dim = 1024`]  
 
 ## 3. What does the schema expect?
@@ -165,7 +165,7 @@ and the companion metadata row says:
 
 - `embedding_dim = 1024`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2361-2379`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2361-2379`]  
 [SOURCE: live SQLite/Node probe on 2026-04-01 reading `sqlite_master.sql` and `vec_metadata`]  
 
 ## 4. Is `sqlite-vec` loaded?
@@ -195,7 +195,7 @@ That means the standalone `sqlite3` CLI did **not** have the `sqlite-vec` module
 
 So hypothesis B is **true for raw sqlite3 CLI**, but that is **not the runtime path used by the Node server**.
 
-[SOURCE: sqlite3 CLI probe on 2026-04-01 against `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`]
+[SOURCE: sqlite3 CLI probe on 2026-04-01 against `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]
 
 ### 4.2 In Node runtime
 
@@ -216,7 +216,7 @@ and direct `vector_search()` calls succeeded.
 So hypothesis B is **false for the actual runtime/search environment**.
 
 [SOURCE: live Node probe on 2026-04-01 using `better-sqlite3` + `sqlite-vec`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-804`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:795-804`]  
 
 ## 5. Direct `vector_search` on the live populated DB
 
@@ -295,8 +295,8 @@ For `voyage-4` at `1024`, that means:
 
 - `context-index__voyage__voyage-4__1024.sqlite`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
 
 ### 6.2 Reproduction of the failure mode
 
@@ -310,7 +310,7 @@ Observed output:
 
 ```json
 {
-  "resolvedDbPath": ".../.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite",
+  "resolvedDbPath": ".../.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite",
   "count": 0
 }
 ```

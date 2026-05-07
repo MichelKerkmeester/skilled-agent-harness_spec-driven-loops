@@ -25,7 +25,7 @@ _memory:
 
 ## ADR-1: Benchmark assets are static skill assets
 
-**Decision:** Benchmark profiles + fixtures live at `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json`. NOT packet-local.
+**Decision:** Benchmark profiles + fixtures live at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json`. NOT packet-local.
 
 **Why:** Versioned with the skill. Reused across improvement runs (every dispatch shares the same baseline benchmark contract). Doesn't bloat each spec packet. User-decided after 060/003 research surfaced both options.
 
@@ -33,7 +33,7 @@ _memory:
 
 ## ADR-2: Materializer ships alongside run-benchmark.cjs
 
-**Decision:** `materialize-benchmark-fixtures.cjs` lives at `.opencode/skill/sk-improve-agent/scripts/`, adjacent to the runner that consumes its output.
+**Decision:** `materialize-benchmark-fixtures.cjs` lives at `.opencode/skills/sk-improve-agent/scripts/`, adjacent to the runner that consumes its output.
 
 **Why:** Adjacent ownership keeps the materializer + runner contract obvious. Both update together. Easier code review.
 

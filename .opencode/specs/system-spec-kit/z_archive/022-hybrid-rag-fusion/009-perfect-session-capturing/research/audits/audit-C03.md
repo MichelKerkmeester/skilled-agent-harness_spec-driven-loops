@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-4872-7612-9ac9-009eb606fbae
 --------
 user
-You are a code auditor. Read lines 400-837 of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts (836 total lines).
+You are a code auditor. Read lines 400-837 of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts (836 total lines).
 
 Audit the second half specifically:
 1. collectSessionData(): Is the main function logic correct? Any missing steps?
@@ -54,7 +54,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 Reviewing the requested section now. I’ll read lines 400–837 directly and audit each of the six areas you listed with line-specific findings.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '400,837p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '400,837p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    400	
    401	  let basePercent = 0;
    402	  basePercent += Math.min(50, messageCount * 5);
@@ -78,7 +78,7 @@ exec
 codex
 I’ve pulled the target segment and next I’m checking surrounding helper definitions (just above line 400) so the completion and session-status analysis is accurate and not missing context.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '330,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '330,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    330	  if (deltaContext > 15) {
    331	    parts.push(`Substantial context enrichment (+${deltaContext} points)`);
    332	  } else if (deltaContext > 5) {
@@ -100,7 +100,7 @@ exec
    348	  if (learningIndex >= 40) {
    349	    summary += ' Overall: Highly productive learning session.';
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Collect Session Data
      3	// ---------------------------------------------------------------
@@ -122,7 +122,7 @@ exec
     19	  buildProjectStateSnapshot,
     20	  calculateSessionDuration,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Session Types
      3	// ---------------------------------------------------------------
@@ -146,7 +146,7 @@ exec
 codex
 I’m now validating type compatibility (especially return fields vs `SessionData`) so we can catch any hidden undefined/null issues in the final object.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Session Extractor
      3	// ---------------------------------------------------------------
@@ -168,7 +168,7 @@ exec
     19	
     20	/* -----------------------------------------------------------------
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '360,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts' | sed -n '360,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    360	  return found;
    361	}
    362	
@@ -190,7 +190,7 @@ exec
    378	    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
    379	    'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '260,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '260,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    260	    DELTA_CONTEXT_TREND: '\u2192',
    261	    LEARNING_INDEX: DEFAULT_VALUE,
    262	    LEARNING_SUMMARY: 'Learning metrics will be calculated when both preflight and postflight data are provided.'
@@ -212,21 +212,21 @@ exec
    278	      DELTA_KNOW_SCORE: formatDelta(deltaKnow),
    279	      DELTA_UNCERTAINTY_SCORE: formatDelta(deltaUncert),
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder.ts: No such file or directory
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder.ts: No such file or directory
 codex
 I hit a path mismatch on `spec-folder.ts`; I’m locating the actual `detectSpecFolder` implementation to validate whether folder resolution in `collectSessionData()` can fail or mis-normalize.
 exec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts' | rg 'spec-folder'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/directory-setup.ts
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts' | rg 'spec-folder'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/index.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Index
      3	// ---------------------------------------------------------------
@@ -269,10 +269,10 @@ exec
     19	  isArchiveFolder,
     20	  extractConversationTopics,
 exec
-/bin/zsh -lc "rg -n \"async function detectSpecFolder|function detectSpecFolder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"async function detectSpecFolder|function detectSpecFolder\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 792:async function detectSpecFolder(
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts' | sed -n '760,930p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts' | sed -n '760,930p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    760	    const ranked = rankSessionCandidates(buildSessionCandidatesForTesting(inputs));
    761	    const confidence = assessSessionConfidence(ranked);
    762	    if (!confidence.lowConfidence) {
@@ -294,7 +294,7 @@ exec
    778	function printNoSpecFolderError(commandName: string = 'memory'): void {
    779	  console.error('\n Cannot save context: No spec folder found\n');
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Implementation Guide Extractor
      3	// ---------------------------------------------------------------
@@ -316,30 +316,30 @@ exec
     19	
     20	/** Associates an important file with its role in the implementation. */
 exec
-/bin/zsh -lc "rg -n \"recentContext\\?|recentContext\\[0\\]|continuationCount|CONTINUATION_COUNT|NEXT_CONTINUATION_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:35:  recentContext?: RecentContext[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:72:  recentContext?: unknown[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:57:  recentContext?: RecentContext[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:104:  continuationCount?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:116:  recentContext?: RecentContextEntry[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:207:  recentContext?: RecentContextEntry[]
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:221:  if (recentContext?.[0]?.learning) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:222:    const nextMatch = recentContext[0].learning.match(/\b(?:next|then|afterwards?):\s*(.+)/i);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:136:  recentContext?: RecentContextEntry[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:547:  recentContext?: RecentContextEntry[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573:  const continuationCount = recentContext?.[0]?.continuationCount || 1;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:671:  const sessionInfo = collectedData.recentContext?.[0] || {};
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:117:    CONTINUATION_COUNT: 0,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:120:    NEXT_CONTINUATION_COUNT: 1,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts:45:  recentContext?: Array<{ request?: string; files?: string[] }>;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts:321:  if (collectedData?.recentContext?.[0]?.request) {
+/bin/zsh -lc "rg -n \"recentContext\\?|recentContext\\[0\\]|continuationCount|CONTINUATION_COUNT|NEXT_CONTINUATION_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:35:  recentContext?: RecentContext[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:72:  recentContext?: unknown[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:57:  recentContext?: RecentContext[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:104:  continuationCount?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:116:  recentContext?: RecentContextEntry[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:207:  recentContext?: RecentContextEntry[]
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:221:  if (recentContext?.[0]?.learning) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:222:    const nextMatch = recentContext[0].learning.match(/\b(?:next|then|afterwards?):\s*(.+)/i);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:136:  recentContext?: RecentContextEntry[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:547:  recentContext?: RecentContextEntry[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573:  const continuationCount = recentContext?.[0]?.continuationCount || 1;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:671:  const sessionInfo = collectedData.recentContext?.[0] || {};
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:117:    CONTINUATION_COUNT: 0,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:120:    NEXT_CONTINUATION_COUNT: 1,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts:45:  recentContext?: Array<{ request?: string; files?: string[] }>;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts:321:  if (collectedData?.recentContext?.[0]?.request) {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     90	    PREFLIGHT_KNOW_ASSESSMENT: 'Moderate',
     91	    PREFLIGHT_UNCERTAINTY_ASSESSMENT: 'Low uncertainty',
     92	    PREFLIGHT_CONTEXT_ASSESSMENT: 'Moderate',
@@ -382,29 +382,29 @@ exec
     19	  OutcomeEntry,
     20	} from '../types/session-types';
 exec
-/bin/zsh -lc "rg -n \"CONTINUATION_COUNT|NEXT_CONTINUATION_COUNT|SESSION_STATUS|COMPLETION_PERCENT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:123:  SESSION_STATUS: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:124:  COMPLETION_PERCENT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:581:    SESSION_STATUS: sessionStatus,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:582:    COMPLETION_PERCENT: completionPercent,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:13:  SESSION_STATUS: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:14:  COMPLETION_PERCENT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:17:  CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:20:  NEXT_CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:128:      'SESSION_STATUS', 'COMPLETION_PERCENT', 'LAST_ACTIVITY_TIMESTAMP',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:129:      'SESSION_DURATION', 'CONTINUATION_COUNT', 'CONTEXT_SUMMARY',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:130:      'PENDING_TASKS', 'NEXT_CONTINUATION_COUNT', 'RESUME_CONTEXT',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:141:    expect(data.CONTINUATION_COUNT).toBe(3);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:142:    expect(data.NEXT_CONTINUATION_COUNT).toBe(4);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:148:    expect(data.CONTINUATION_COUNT).toBe(1);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:149:    expect(data.NEXT_CONTINUATION_COUNT).toBe(2);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:168:    expect(data.SESSION_STATUS).toBe('BLOCKED');
+/bin/zsh -lc "rg -n \"CONTINUATION_COUNT|NEXT_CONTINUATION_COUNT|SESSION_STATUS|COMPLETION_PERCENT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:123:  SESSION_STATUS: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:124:  COMPLETION_PERCENT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:581:    SESSION_STATUS: sessionStatus,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:582:    COMPLETION_PERCENT: completionPercent,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:13:  SESSION_STATUS: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:14:  COMPLETION_PERCENT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:17:  CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:20:  NEXT_CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:128:      'SESSION_STATUS', 'COMPLETION_PERCENT', 'LAST_ACTIVITY_TIMESTAMP',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:129:      'SESSION_DURATION', 'CONTINUATION_COUNT', 'CONTEXT_SUMMARY',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:130:      'PENDING_TASKS', 'NEXT_CONTINUATION_COUNT', 'RESUME_CONTEXT',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:141:    expect(data.CONTINUATION_COUNT).toBe(3);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:142:    expect(data.NEXT_CONTINUATION_COUNT).toBe(4);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:148:    expect(data.CONTINUATION_COUNT).toBe(1);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:149:    expect(data.NEXT_CONTINUATION_COUNT).toBe(2);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:168:    expect(data.SESSION_STATUS).toBe('BLOCKED');
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// CONTINUE_SESSION coverage:
      2	// - T124 uses collect-session-data extractor
      3	// - T017-T020 retains DB-dependent placeholders
@@ -426,17 +426,17 @@ exec
     19	  PENDING_TASKS: unknown[];
     20	  NEXT_CONTINUATION_COUNT: number;
 exec
-/bin/zsh -lc "rg -n \"continuationCount|continuation_count|NEXT_CONTINUATION_COUNT|CONTINUATION_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:104:  continuationCount?: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573:  const continuationCount = recentContext?.[0]?.continuationCount || 1;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:117:    CONTINUATION_COUNT: 0,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:120:    NEXT_CONTINUATION_COUNT: 1,
+/bin/zsh -lc "rg -n \"continuationCount|continuation_count|NEXT_CONTINUATION_COUNT|CONTINUATION_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:104:  continuationCount?: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:127:  CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:130:  NEXT_CONTINUATION_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573:  const continuationCount = recentContext?.[0]?.continuationCount || 1;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:585:    CONTINUATION_COUNT: continuationCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:588:    NEXT_CONTINUATION_COUNT: continuationCount + 1,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:117:    CONTINUATION_COUNT: 0,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:120:    NEXT_CONTINUATION_COUNT: 1,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -458,7 +458,7 @@ exec
     19	} from '../utils/input-normalizer';
     20	import type { RawInputData, NormalizedData, OpencodeCapture, Observation, UserPrompt, RecentContext, FileEntry, DataSource } from '../utils/input-normalizer';
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -480,7 +480,7 @@ exec
     19	  _manualDecision?: {
     20	    fullText: string;
 exec
-/bin/zsh -lc "rg -n \"recentContext|continuationCount|request|learning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"recentContext|continuationCount|request|learning\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 34:  request: string;
 35:  learning: string;
 57:  recentContext?: RecentContext[];
@@ -498,7 +498,7 @@ exec
 455:    learning: exchanges[exchanges.length - 1]?.assistantResponse || ''
 477:    recentContext,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '430,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '430,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    430	  for (const tool of filteredToolCalls) {
    431	    const toolObs: Observation = {
    432	      type: tool.tool === 'edit' || tool.tool === 'write' ? 'implementation' : 'observation',
@@ -520,7 +520,7 @@ exec
    448	    }
    449	
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Extractor
      3	// ---------------------------------------------------------------
@@ -561,7 +561,7 @@ exec
 /proj/specs/abs/005-x
 codex
 ### FINDING-01: Spec Doc Detection Uses Wrong Folder Source and Join Strategy
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:725)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:725)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `SPEC_FILES` detection only runs when `collectedData.SPEC_FOLDER` is set, and builds `specFolderPath` using `path.join(activeSpecsDir, collectedData.SPEC_FOLDER)`.
@@ -574,7 +574,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Anchor Generation Can Use Different Spec Folder Than Returned Payload
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:716](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:716)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:716](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:716)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `OBSERVATIONS_DETAILED` uses `collectedData.SPEC_FOLDER || folderName`, while returned `SPEC_FOLDER` is `folderName`.
@@ -584,7 +584,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Invalid Timestamp Can Crash Continue Session Payload
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:576](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:576)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:576](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:576)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(lastPrompt.timestamp).toISOString()` throws `RangeError` for invalid timestamps.
@@ -596,7 +596,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-04: `extractPendingTasks` Accepts `recentContext` But Never Uses It
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:415)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:415)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Pending tasks are extracted only from observations/facts and `nextAction`.
@@ -606,7 +606,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Task Regex Is Too Permissive, Producing Frequent False Positives
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Patterns treat `should:` / `must:` / `task:` as tasks indiscriminately (e.g., `Task: 123` becomes a task).
@@ -616,7 +616,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Task Regex Misses Common Task Formats
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** It requires colon formats for many keywords (`need to:`, `todo:`), so common forms like `TODO - ...` or `need to update tests` are missed.
@@ -626,7 +626,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Task Extraction Drops Useful Short Tasks and Truncates Context
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:434)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:434)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Tasks shorter than 11 chars are discarded; all tasks are hard-truncated to 100 chars.
@@ -636,7 +636,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Continuation Count Clobbers Legitimate `0`
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `recentContext?.[0]?.continuationCount || 1` converts `0` to `1`.
@@ -646,7 +646,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Continue Session State Can Be Inherited From Unrelated Session
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:671](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:671)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:671](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:671)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Continuation state is taken from `recentContext[0]` without validating session identity/spec folder recency.
@@ -656,7 +656,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Completion Status Detection Misclassifies Negated Phrases
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:377)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:377)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any completion keyword in last observation marks session `COMPLETED`, including negations like `not complete`.
@@ -666,7 +666,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Completion Percentage Heuristic Is Non-Monotonic and Weakly Meaningful
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:405](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:405)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:405](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:405)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `%` heavily depends on message/tool ratios; adding non-write tools can lower progress despite forward movement.
@@ -676,7 +676,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-12: Summary/Outcomes Prefer Earliest Observations, Not Latest State
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:684](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:684)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:684](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:684)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Uses `slice(0, ...)` for `OUTCOMES` and fallback `SUMMARY`, biasing toward early-session data.
@@ -686,7 +686,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: `MESSAGE_COUNT` Represents Only User Prompts
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:674](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:674)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:674](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:674)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `MESSAGE_COUNT` is `userPrompts.length`, excluding assistant/tool turns.
@@ -696,7 +696,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: `OUTCOMES` Can Contain Empty Strings
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:686](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:686)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:686](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:686)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Mapping allows `OUTCOME: ''`; if observations exist but are sparse, fallback (`Session in progress`) is skipped.
@@ -706,7 +706,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-15: `lastAction` Is Passed Into Continue Builder but Unused
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:562](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:562)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:562](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:562)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `lastAction` exists in params but is never used in `buildContinueSessionData`.
@@ -725,7 +725,7 @@ codex
 tokens used
 76,593
 ### FINDING-01: Spec Doc Detection Uses Wrong Folder Source and Join Strategy
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:725)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:725)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `SPEC_FILES` detection only runs when `collectedData.SPEC_FOLDER` is set, and builds `specFolderPath` using `path.join(activeSpecsDir, collectedData.SPEC_FOLDER)`.
@@ -738,7 +738,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Anchor Generation Can Use Different Spec Folder Than Returned Payload
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:716](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:716)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:716](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:716)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `OBSERVATIONS_DETAILED` uses `collectedData.SPEC_FOLDER || folderName`, while returned `SPEC_FOLDER` is `folderName`.
@@ -748,7 +748,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Invalid Timestamp Can Crash Continue Session Payload
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:576](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:576)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:576](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:576)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(lastPrompt.timestamp).toISOString()` throws `RangeError` for invalid timestamps.
@@ -760,7 +760,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-04: `extractPendingTasks` Accepts `recentContext` But Never Uses It
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:415)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:415)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Pending tasks are extracted only from observations/facts and `nextAction`.
@@ -770,7 +770,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Task Regex Is Too Permissive, Producing Frequent False Positives
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Patterns treat `should:` / `must:` / `task:` as tasks indiscriminately (e.g., `Task: 123` becomes a task).
@@ -780,7 +780,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Task Regex Misses Common Task Formats
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:420)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** It requires colon formats for many keywords (`need to:`, `todo:`), so common forms like `TODO - ...` or `need to update tests` are missed.
@@ -790,7 +790,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Task Extraction Drops Useful Short Tasks and Truncates Context
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:434)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:434](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:434)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Tasks shorter than 11 chars are discarded; all tasks are hard-truncated to 100 chars.
@@ -800,7 +800,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Continuation Count Clobbers Legitimate `0`
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:573)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:573)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `recentContext?.[0]?.continuationCount || 1` converts `0` to `1`.
@@ -810,7 +810,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Continue Session State Can Be Inherited From Unrelated Session
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:671](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:671)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:671](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:671)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Continuation state is taken from `recentContext[0]` without validating session identity/spec folder recency.
@@ -820,7 +820,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Completion Status Detection Misclassifies Negated Phrases
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:377)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:377)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any completion keyword in last observation marks session `COMPLETED`, including negations like `not complete`.
@@ -830,7 +830,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Completion Percentage Heuristic Is Non-Monotonic and Weakly Meaningful
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:405](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:405)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:405](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:405)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `%` heavily depends on message/tool ratios; adding non-write tools can lower progress despite forward movement.
@@ -840,7 +840,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-12: Summary/Outcomes Prefer Earliest Observations, Not Latest State
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:684](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:684)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:684](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:684)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Uses `slice(0, ...)` for `OUTCOMES` and fallback `SUMMARY`, biasing toward early-session data.
@@ -850,7 +850,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: `MESSAGE_COUNT` Represents Only User Prompts
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:674](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:674)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:674](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:674)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `MESSAGE_COUNT` is `userPrompts.length`, excluding assistant/tool turns.
@@ -860,7 +860,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: `OUTCOMES` Can Contain Empty Strings
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:686](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:686)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:686](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:686)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Mapping allows `OUTCOME: ''`; if observations exist but are sparse, fallback (`Session in progress`) is skipped.
@@ -870,7 +870,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-15: `lastAction` Is Passed Into Continue Builder but Unused
-- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:562](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:562)
+- **File:** [/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:562](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:562)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `lastAction` exists in params but is never used in `buildContinueSessionData`.

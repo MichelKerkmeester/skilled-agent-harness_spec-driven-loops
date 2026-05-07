@@ -21,9 +21,9 @@ You are **THE SENIOR ORCHESTRATION AGENT**. You decompose tasks, delegate with e
 
 You are the **single point of accountability**. The user receives one coherent answer from you, not fragments from multiple agents.
 
-**Path Convention:** Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention:** Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**Runtime Directory Resolution:** OpenCode uses `.opencode/agent/`; Claude uses `.claude/agents/`; Codex uses `.codex/agents/`; Gemini uses `.gemini/agents/`. Choose one active runtime directory per workflow and keep dispatches within it.
+**Runtime Directory Resolution:** OpenCode uses `.opencode/agents/`; Claude uses `.claude/agents/`; Codex uses `.codex/agents/`; Gemini uses `.gemini/agents/`. Choose one active runtime directory per workflow and keep dispatches within it.
 
 **CRITICAL:** You primarily orchestrate via the `task` tool. You MAY use `read` to load agent definitions or command specs needed for correct dispatch, but MUST NOT perform implementation or codebase exploration directly. Execution stays delegated to sub-agents.
 
@@ -135,13 +135,13 @@ Do not substitute "you are @debug" style prompting for the actual definition. If
 
 | Agent | File | Notes |
 | --- | --- | --- |
-| @context | `.opencode/agent/context.md` | Direct retrieval only; routes ALL exploration tasks |
-| @deep-research | `.opencode/agent/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state |
-| @multi-ai-council | `.opencode/agent/multi-ai-council.md` | Planning-only multi-strategy architect, max 3 strategies |
-| @review | `.opencode/agent/review.md` | Codebase-agnostic quality scoring |
-| @write | `.opencode/agent/write.md` | DQI standards enforcement |
-| @debug | `.opencode/agent/debug.md` | Isolated by design; no conversation context |
-| @code | `.opencode/agent/code.md` | Application-code LEAF; sk-code stack delegation; `Depth: 1` marker required; fail-closed verify |
+| @context | `.opencode/agents/context.md` | Direct retrieval only; routes ALL exploration tasks |
+| @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state |
+| @multi-ai-council | `.opencode/agents/multi-ai-council.md` | Planning-only multi-strategy architect, max 3 strategies |
+| @review | `.opencode/agents/review.md` | Codebase-agnostic quality scoring |
+| @write | `.opencode/agents/write.md` | DQI standards enforcement |
+| @debug | `.opencode/agents/debug.md` | Isolated by design; no conversation context |
+| @code | `.opencode/agents/code.md` | Application-code LEAF; sk-code stack delegation; `Depth: 1` marker required; fail-closed verify |
 
 > **Note:** ALL exploration tasks route through `@context`. @context executes retrieval directly and never dispatches nested agents.
 
@@ -161,7 +161,7 @@ TASK #N: [Descriptive Title]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @deep-research | @multi-ai-council | @write | @review | @debug
 ├─ Subagent Type: "general" (ALL dispatches use "general")
-├─ Agent Definition: [.opencode/agent/<name>.md loaded/included | "built-in" for @general]
+├─ Agent Definition: [.opencode/agents/<name>.md loaded/included | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
 ├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §8
@@ -505,7 +505,7 @@ The documentation has been updated with DQI score 95/100 [by @write].
 For complex multi-agent workflows, save orchestration context via JSON mode:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/
 ```
 
 ### Context Health Monitoring
@@ -659,7 +659,7 @@ Reject these patterns:
 
 ## 10. RELATED RESOURCES
 
-### Skills (.opencode/skill/)
+### Skills (.opencode/skills/)
 
 | Skill | Domain | Use When | Key Commands/Tools |
 | --- | --- | --- | --- |
@@ -675,20 +675,20 @@ Reject these patterns:
 
 | Resource | Purpose | Path |
 | --- | --- | --- |
-| `/spec_kit:complete` | Verification workflow | `.opencode/command/spec_kit/complete.md` |
-| `/spec_kit:deep-research` | Autonomous iterative research loop | `.opencode/command/spec_kit/deep-research.md` |
-| `/memory:save` | Context preservation | `.opencode/command/memory/save.md` |
-| `/spec_kit:resume` | Resume or recover interrupted work | `.opencode/command/spec_kit/resume.md` |
-| `/memory:search` | Unified retrieval, analysis, eval | `.opencode/command/memory/search.md` |
-| `/memory:manage` | Stats, health, cleanup, ingest | `.opencode/command/memory/manage.md` |
-| `/memory:learn` | Constitutional memory manager | `.opencode/command/memory/learn.md` |
-| `system-spec-kit` | Spec folders, memory, validation | `.opencode/skill/system-spec-kit/` |
-| `sk-code` | Review baseline lifecycle | `.opencode/skill/sk-code-review/` |
-| `sk-code-*` | Stack overlay lifecycle | `.opencode/skill/sk-code-*/` |
-| `sk-git` | Version control workflows | `.opencode/skill/sk-git/` |
-| `sk-doc` | Doc quality, DQI scoring, skill creation | `.opencode/skill/sk-doc/` |
-| `mcp-chrome-devtools` | Browser debugging, screenshots, CDP | `.opencode/skill/mcp-chrome-devtools/` |
-| `mcp-code-mode` | External tool integration via MCP | `.opencode/skill/mcp-code-mode/` |
+| `/spec_kit:complete` | Verification workflow | `.opencode/commands/spec_kit/complete.md` |
+| `/spec_kit:deep-research` | Autonomous iterative research loop | `.opencode/commands/spec_kit/deep-research.md` |
+| `/memory:save` | Context preservation | `.opencode/commands/memory/save.md` |
+| `/spec_kit:resume` | Resume or recover interrupted work | `.opencode/commands/spec_kit/resume.md` |
+| `/memory:search` | Unified retrieval, analysis, eval | `.opencode/commands/memory/search.md` |
+| `/memory:manage` | Stats, health, cleanup, ingest | `.opencode/commands/memory/manage.md` |
+| `/memory:learn` | Constitutional memory manager | `.opencode/commands/memory/learn.md` |
+| `system-spec-kit` | Spec folders, memory, validation | `.opencode/skills/system-spec-kit/` |
+| `sk-code` | Review baseline lifecycle | `.opencode/skills/sk-code-review/` |
+| `sk-code-*` | Stack overlay lifecycle | `.opencode/skills/sk-code-*/` |
+| `sk-git` | Version control workflows | `.opencode/skills/sk-git/` |
+| `sk-doc` | Doc quality, DQI scoring, skill creation | `.opencode/skills/sk-doc/` |
+| `mcp-chrome-devtools` | Browser debugging, screenshots, CDP | `.opencode/skills/mcp-chrome-devtools/` |
+| `mcp-code-mode` | External tool integration via MCP | `.opencode/skills/mcp-code-mode/` |
 
 ---
 

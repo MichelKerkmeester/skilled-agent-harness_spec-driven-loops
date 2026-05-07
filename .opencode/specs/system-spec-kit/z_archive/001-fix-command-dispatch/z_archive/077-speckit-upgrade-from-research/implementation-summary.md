@@ -50,10 +50,10 @@ This implementation adds **epistemic awareness** capabilities to the SpecKit fra
 |------|---------|
 | `AGENTS.md` | Added: Uncertainty Tracking, Dual-Threshold Validation, Five Checks Framework, Structured Gate Decision Format |
 | `.opencode/scripts/skill_advisor.py` | Added: `calculate_uncertainty()`, `passes_dual_threshold()`, uncertainty output field, `--uncertainty` and `--show-rejections` flags |
-| `.opencode/command/spec_kit/resume.md` | Enhanced: Session Detection Priority with 4-tier semantic search priority order |
-| `.opencode/skill/system-spec-kit/templates/context_template.md` | Added: PREFLIGHT BASELINE section, POSTFLIGHT LEARNING DELTA section with ANCHOR tags |
-| `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md` | Added: Five Checks Evaluation table |
-| `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md` | Added: Five Checks Evaluation table, Session Decision Log for audit trail |
+| `.opencode/commands/spec_kit/resume.md` | Enhanced: Session Detection Priority with 4-tier semantic search priority order |
+| `.opencode/skills/system-spec-kit/templates/context_template.md` | Added: PREFLIGHT BASELINE section, POSTFLIGHT LEARNING DELTA section with ANCHOR tags |
+| `.opencode/skills/system-spec-kit/templates/level_3/decision-record.md` | Added: Five Checks Evaluation table |
+| `.opencode/skills/system-spec-kit/templates/level_3+/decision-record.md` | Added: Five Checks Evaluation table, Session Decision Log for audit trail |
 
 ---
 
@@ -210,7 +210,7 @@ The following items were implemented via parallel agent dispatch:
 # Per-phase rollback
 git checkout HEAD~N -- AGENTS.md
 git checkout HEAD~N -- .opencode/scripts/skill_advisor.py
-git checkout HEAD~N -- .opencode/skill/system-spec-kit/
+git checkout HEAD~N -- .opencode/skills/system-spec-kit/
 ```
 
 ---

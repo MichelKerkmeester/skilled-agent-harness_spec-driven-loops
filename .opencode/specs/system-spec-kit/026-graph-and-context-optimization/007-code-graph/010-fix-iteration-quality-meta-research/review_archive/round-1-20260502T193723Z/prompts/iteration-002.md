@@ -21,7 +21,7 @@ Iter 2 — traceability: read R1-R8 spec text from .opencode/specs/system-spec-k
 
 ## R5 dogfood — apply the new checklist to R1-R8 work itself
 
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first. Apply
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first. Apply
 its protocol to your review of R1-R8: classify each suspected issue, run same-class producer
 inventory (`rg -n`), check cross-consumer (does the new field flow to all consumers?), check
 matrix completeness.

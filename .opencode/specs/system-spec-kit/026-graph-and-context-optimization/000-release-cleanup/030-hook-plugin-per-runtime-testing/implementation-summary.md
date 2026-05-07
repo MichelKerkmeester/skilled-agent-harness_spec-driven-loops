@@ -97,7 +97,7 @@ The implementation stayed packet-local. Runtime configs were only read for evide
 |---------|--------|
 | `node --experimental-strip-types specs/.../runners/run-all-runtime-hooks.ts` | Exit 0; 5 cells classified |
 | `rg <secret patterns> specs/.../results` | Exit 0; no unredacted key-like values found |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/.../030-hook-plugin-per-runtime-testing --strict` | Exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/.../030-hook-plugin-per-runtime-testing --strict` | Exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

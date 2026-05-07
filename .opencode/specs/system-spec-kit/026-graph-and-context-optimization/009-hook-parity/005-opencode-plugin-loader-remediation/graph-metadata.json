@@ -47,9 +47,9 @@
       "spec.md",
       ".opencode/plugins/spec-kit-compact-code-graph.js",
       ".opencode/plugins/spec-kit-skill-advisor.js",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
       "decision-record.md",
       "tests/opencode-plugins-folder-purity.vitest.ts",
       "mcp_server/package.json",
@@ -88,19 +88,19 @@
       {
         "name": "opencode-plugins-folder-purity.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts",
         "source": "derived"
       },
       {
         "name": "opencode-plugin.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
         "source": "derived"
       },
       {
         "name": "spec-kit-skill-advisor-plugin.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
         "source": "derived"
       },
       {

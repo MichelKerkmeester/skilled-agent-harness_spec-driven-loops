@@ -24,8 +24,8 @@ contextType: "implementation"
 This document defines the mandatory closure protocol that must execute before any completion claim for `018-sk-code-opencode-refinement`.
 
 Protocol coverage is global and includes every changed file in scope across:
-- `.opencode/skill/sk-code-opencode/` shared references, language guides, and checklists.
-- Optional `.opencode/skill/sk-code-review/` files if the conditional alignment trigger is met.
+- `.opencode/skills/sk-code-opencode/` shared references, language guides, and checklists.
+- Optional `.opencode/skills/sk-code-review/` files if the conditional alignment trigger is met.
 - Level 3+ spec artifacts used to prove planning, decision, verification, and closure consistency.
 <!-- /ANCHOR:purpose -->
 
@@ -74,41 +74,41 @@ Protocol coverage is global and includes every changed file in scope across:
 ```bash
 # Policy assertions: threshold and AI semantics
 rg -n "Maximum 3 comments per 10 lines|WHY|GUARD|INVARIANT|REQ-|BUG-|SEC-|RISK|PERF" \
-  .opencode/skill/sk-code-opencode/SKILL.md \
-  .opencode/skill/sk-code-opencode/references/shared/universal_patterns.md \
-  .opencode/skill/sk-code-opencode/references/javascript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/typescript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/python/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/shell/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/config/style_guide.md
+  .opencode/skills/sk-code-opencode/SKILL.md \
+  .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md \
+  .opencode/skills/sk-code-opencode/references/javascript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/typescript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/python/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/shell/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/config/style_guide.md
 
 # Header non-regression: numbered ALL-CAPS sections
 rg -n "^## [0-9]+\\. [A-Z0-9 ()/:-]+$" \
-  .opencode/skill/sk-code-opencode/references/shared/code_organization.md \
-  .opencode/skill/sk-code-opencode/references/javascript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/typescript/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/python/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/shell/style_guide.md \
-  .opencode/skill/sk-code-opencode/references/config/style_guide.md
+  .opencode/skills/sk-code-opencode/references/shared/code_organization.md \
+  .opencode/skills/sk-code-opencode/references/javascript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/typescript/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/python/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/shell/style_guide.md \
+  .opencode/skills/sk-code-opencode/references/config/style_guide.md
 
 # Principle enforcement checks
 rg -n "KISS|DRY|SRP|OCP|LSP|ISP|DIP" \
-  .opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md \
-  .opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md
+  .opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md \
+  .opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md
 
 # Optional review alignment checks (run only if review files changed)
 rg -n "KISS|DRY|SOLID|module|adapter|interface|abstraction|responsibility|dependency|boundary" \
-  .opencode/skill/sk-code-review/SKILL.md \
-  .opencode/skill/sk-code-review/references/quick_reference.md \
-  .opencode/skill/sk-code-review/references/code_quality_checklist.md \
-  .opencode/skill/sk-code-review/references/solid_checklist.md
+  .opencode/skills/sk-code-review/SKILL.md \
+  .opencode/skills/sk-code-review/references/quick_reference.md \
+  .opencode/skills/sk-code-review/references/code_quality_checklist.md \
+  .opencode/skills/sk-code-review/references/solid_checklist.md
 
 # Spec folder structure validation
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/03--commands-and-skills/018-code-opencode-refinement
 ```
 <!-- /ANCHOR:commands -->

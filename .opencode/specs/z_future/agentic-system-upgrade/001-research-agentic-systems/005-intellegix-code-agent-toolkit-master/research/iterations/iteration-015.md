@@ -12,11 +12,11 @@ Yes. The local orchestrator prompt currently carries too much routing, policy, b
 I compared the local `orchestrate.md` profile with the external orchestrator agent, orchestrator command, and orchestrator guard. I focused on the number of responsibilities each surface carries and how much of the enforcement model depends on one very large prompt.
 
 ## Evidence
-- `[SOURCE: .opencode/agent/orchestrate.md:24-36]` The local orchestrator owns task decomposition, delegation, evaluation, conflict resolution, synthesis, and a command-level prohibition on direct exploration.
-- `[SOURCE: .opencode/agent/orchestrate.md:49-60]` Its core workflow spans receiving, gate checks, capability scans, decomposition, budgeting, delegation, evaluation, failure handling, synthesis, and delivery.
-- `[SOURCE: .opencode/agent/orchestrate.md:93-118]` Routing tables and leaf-agent tiering also live inside the same prompt.
-- `[SOURCE: .opencode/agent/orchestrate.md:158-166]` Agent-loading policy is also encoded in that prompt.
-- `[SOURCE: .opencode/agent/orchestrate.md:191-210]` Even task-dispatch message shape is hard-coded in the same file.
+- `[SOURCE: .opencode/agents/orchestrate.md:24-36]` The local orchestrator owns task decomposition, delegation, evaluation, conflict resolution, synthesis, and a command-level prohibition on direct exploration.
+- `[SOURCE: .opencode/agents/orchestrate.md:49-60]` Its core workflow spans receiving, gate checks, capability scans, decomposition, budgeting, delegation, evaluation, failure handling, synthesis, and delivery.
+- `[SOURCE: .opencode/agents/orchestrate.md:93-118]` Routing tables and leaf-agent tiering also live inside the same prompt.
+- `[SOURCE: .opencode/agents/orchestrate.md:158-166]` Agent-loading policy is also encoded in that prompt.
+- `[SOURCE: .opencode/agents/orchestrate.md:191-210]` Even task-dispatch message shape is hard-coded in the same file.
 - `[SOURCE: external/agents/orchestrator.md:15-23]` The external orchestrator agent has a smaller role definition centered on loop management.
 - `[SOURCE: external/agents/orchestrator.md:52-67]` Its non-goals are also narrow and explicit.
 - `[SOURCE: external/agents/orchestrator.md:69-109]` The operational flow is simple and single-purpose.
@@ -34,7 +34,7 @@ confidence: high
 finding: `system-spec-kit` should refactor the orchestrator into a leaner decision prompt backed by machine-readable routing, budget, and enforcement policy. The current prompt is carrying too much system weight.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`, `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`, future orchestration policy manifests
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`, future orchestration policy manifests
 - **Change type:** refactor existing
 - **Blast radius:** large
 - **Prerequisites:** identify which orchestration policies need to become data, hooks, or support references

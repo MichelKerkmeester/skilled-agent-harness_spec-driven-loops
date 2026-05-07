@@ -23,7 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -48,12 +48,12 @@ The repo already completed a physical rename from `sk-agent-improver` and `sk-pr
 The closeout raised three related questions that must be settled together so the packet cannot drift again:
 
 1. **Canonical skill naming** — should the packet record the new `sk-improve-*` names, the retired names, or both?
-2. **Runtime-agent filename boundary** — should `.opencode/agent/improve-agent.*`, `.claude/agents/improve-agent.*`, `.gemini/agents/improve-agent.*`, and `.codex/agents/improve-agent.toml` be renamed to match the old `agent-improver` convention, or left as-is?
+2. **Runtime-agent filename boundary** — should `.opencode/agents/improve-agent.*`, `.claude/agents/improve-agent.*`, `.gemini/agents/improve-agent.*`, and `.codex/agents/improve-agent.toml` be renamed to match the old `agent-improver` convention, or left as-is?
 3. **Historical spec-folder slug preservation** — should historical spec folders that still carry the retired names in their slugs be renamed to match the new convention?
 
 ### Constraints
 
-- The live skill folders at `.opencode/skill/sk-improve-agent/` and `.opencode/skill/sk-improve-prompt/` must remain the single source of truth.
+- The live skill folders at `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/` must remain the single source of truth.
 - The shipped `/improve:agent` and `/improve:prompt` command namespace cannot be changed as part of this closeout.
 - Historical spec-folder slugs referencing the retired names already exist on disk and in git history and must not be rewritten.
 - The runtime-agent files already match the current runtime naming convention across four runtime directories.
@@ -76,7 +76,7 @@ The packet references `sk-improve-agent` and `sk-improve-prompt` everywhere. Ret
 
 #### Sub-Decision B: Runtime-Agent Filename Boundary
 
-The runtime-agent filenames at `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` are left as-is. They already use the current runtime naming convention, and renaming them would create a second rename surface with no behavioral win.
+The runtime-agent filenames at `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` are left as-is. They already use the current runtime naming convention, and renaming them would create a second rename surface with no behavioral win.
 
 #### Sub-Decision C: Historical Spec-Folder Slug Preservation
 
@@ -166,5 +166,5 @@ Level 3 Decision Record: One compound ADR covering the rename closeout.
 Sub-Decision A locks canonical skill naming (`sk-improve-*`), Sub-Decision B draws
 the runtime-agent filename boundary (`improve-agent.*` unchanged), and Sub-Decision C
 preserves historical spec-folder slugs as archival identity. Accepted 2026-04-11.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

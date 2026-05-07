@@ -4,13 +4,13 @@
 Dimension `code-correctness` — focused on logic errors, error-handling defects, edge cases, exit code handling, and determinism of `inline-gate-renderer.ts`.
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` (full, 1708 lines)
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` (281 lines)
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` (877 lines)
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts` (297 lines)
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh` (14 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` (235 lines)
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` (709 lines)
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` (full, 1708 lines)
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` (281 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` (877 lines)
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` (297 lines)
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh` (14 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` (235 lines)
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` (709 lines)
 
 ## Findings - New
 

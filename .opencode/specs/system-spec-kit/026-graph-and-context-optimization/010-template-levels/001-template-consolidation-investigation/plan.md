@@ -47,7 +47,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Bash + TypeScript (existing `compose.sh` + `wrap-all-templates.ts`) |
 | **Framework** | Node.js for TS scripts; pure shell for orchestration |
-| **Storage** | Filesystem only (`.opencode/skill/system-spec-kit/templates/`) |
+| **Storage** | Filesystem only (`.opencode/skills/system-spec-kit/templates/`) |
 | **Testing** | Byte-diff comparison against current `level_N/` outputs; existing `validate.sh --strict` |
 
 ### Overview
@@ -115,7 +115,7 @@ Investigation packet — no production architecture yet. The deep-research loop 
 - [x] Decision-record ADR-001 finalized: **PARTIAL**
 
 ### Phase 1: Byte-Equivalence Repair (follow-on packet `011-template-consolidation-impl/`)
-- [ ] Extend `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` with `SPECKIT_TEMPLATE_OUT_ROOT` env or `--out-root` flag for non-mutating temp output
+- [ ] Extend `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` with `SPECKIT_TEMPLATE_OUT_ROOT` env or `--out-root` flag for non-mutating temp output
 - [ ] Repair legacy `_memory.continuity` frontmatter blocks in source so generated output omits them
 - [ ] Preserve committed ANCHOR span shapes (verify via byte-diff)
 - [ ] Preserve metadata-level quirks (numeric anchor ordering, blank-line normalization)
@@ -230,7 +230,7 @@ Phase 0 (Research) ──► Phase 1 (Schema + Generator) ──► Phase 2 (Con
 ### Rollback Procedure
 1. `git revert <consolidation-commit>` — restores `level_N/` directories
 2. `git push origin main` — same commit reverts validator + consumer changes
-3. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict --all-packets` — confirms recovery
+3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict --all-packets` — confirms recovery
 4. No notification needed — internal tooling, no user-facing surface
 
 ### Data Reversal

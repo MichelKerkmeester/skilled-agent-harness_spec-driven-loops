@@ -16,7 +16,7 @@ I traced the autonomy UX from README and TUI keybinding through worker sync, pro
 - The config layer binds autonomy to `f4`, and the worker thread mutates `process.env.XETHRYON_AUTONOMY` when the toggle changes. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/config/config.ts:752-764] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/cli/cmd/tui/worker.ts:160-166]
 - The autonomy prompt is large and prescriptive, embedding mode-switch rules, autonomous skill invocation rules, and a mandatory post-task checklist. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/autonomy.ts:35-77]
 - The switching and self-invocation behaviors are implemented as separate tools with their own gating and rejection behavior. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/switch_agent.ts:39-105] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/tool/invoke_skill.ts:28-97]
-- Spec Kit's gate system is explicit and inspectable: Gate 3, skill routing, and tool-routing decisions are written down in constitutional docs instead of being mostly hidden inside prompt/runtime composition. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-106] [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-55]
+- Spec Kit's gate system is explicit and inspectable: Gate 3, skill routing, and tool-routing decisions are written down in constitutional docs instead of being mostly hidden inside prompt/runtime composition. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-106] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-55]
 
 ## Analysis
 Xethryon's autonomy is a UX compression trick. It collapses many workflow steps into a simple user story, but it does not actually delete the complexity; it hides it. For Spec Kit, hiding that complexity would cut directly against auditable gate behavior and operator trust. The better takeaway is presentational: operators need a short, visible explanation of what mode they are in, what the next safe action is, and which constraints are active. That can be done without moving workflow enforcement into a hidden autonomy prompt.
@@ -38,7 +38,7 @@ finding: Spec Kit should keep explicit gate-driven behavior, but it should simpl
 - **Migration path:** start with presentation only; keep all current gates and routing rules intact.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** decide a stable compact summary format that can be reused in docs and runtime surfaces

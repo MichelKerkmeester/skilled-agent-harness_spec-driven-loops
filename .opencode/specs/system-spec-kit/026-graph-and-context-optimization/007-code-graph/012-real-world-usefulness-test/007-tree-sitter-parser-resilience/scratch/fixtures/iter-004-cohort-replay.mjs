@@ -18,7 +18,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 function findRepoRoot(startDir) {
   let dir = startDir;
   for (let i = 0; i < 12; i += 1) {
-    if (existsSync(resolve(dir, '.opencode/skill/system-spec-kit/mcp_server/package.json'))) {
+    if (existsSync(resolve(dir, '.opencode/skills/system-spec-kit/mcp_server/package.json'))) {
       return dir;
     }
     const parent = dirname(dir);
@@ -35,9 +35,9 @@ const REPO = findRepoRoot(__dirname);
 const wtsArg = process.argv[2];
 const WTS_DIR = wtsArg
   ? resolve(wtsArg)
-  : resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server/node_modules/web-tree-sitter');
+  : resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/node_modules/web-tree-sitter');
 
-const WASMS_DIR = resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out');
+const WASMS_DIR = resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out');
 const COHORT_FILE = resolve(REPO, 'scratch/fixtures/iter-004-oob-cohort.txt');
 
 console.log(`# cohort-replay`);

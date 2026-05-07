@@ -154,21 +154,21 @@ I’m verifying Lane 3 against the live lifecycle surfaces, not just the packet 
 
 ● Search (grep)
   │ "completed-continue|fork|resumed|restarted|Resume/Continuation Semantics|continuedFromRun"
-  │ (.opencode/skill/sk-deep-review)
+  │ (.opencode/skills/sk-deep-review)
   └ 50 lines found
 
 ● Search (grep)
-  │ "completed-continue|fork|resumed|restarted|continuedFromRun" (.opencode/skill/sk-deep-research)
+  │ "completed-continue|fork|resumed|restarted|continuedFromRun" (.opencode/skills/sk-deep-research)
   └ 60 lines found
 
 ● Search (grep)
   │ "completed-continue|fork|resumed|restarted|Resume/Continuation Semantics|continuedFromRun"
-  │ (.opencode/skill/sk-improve-agent)
+  │ (.opencode/skills/sk-improve-agent)
   └ 2 lines found
 
 ● Search (grep)
   │ "completed-continue|fork|resumed|restarted|continuedFromRun" in spec_kit_deep-*confirm.yaml
-  │ (.opencode/command/spec_kit/assets)
+  │ (.opencode/commands/spec_kit/assets)
   └ 12 lines found
 
 ● Search (grep)
@@ -179,23 +179,23 @@ I’m verifying Lane 3 against the live lifecycle surfaces, not just the packet 
 I found a more important nuance: the root summary’s Lane 3 paragraph is cautious, but other packet-level “PASS” statements appear to outrun the live lifecycle docs. I’m pinning those to exact lines now.
 
 ● Read quick_reference.md
-  │ .opencode/skill/sk-deep-research/references/quick_reference.md
+  │ .opencode/skills/sk-deep-research/references/quick_reference.md
   └ L110:150 (41 lines read)
 
 ● Read deep_research_dashboard.md
-  │ .opencode/skill/sk-deep-research/assets/deep_research_dashboard.md
+  │ .opencode/skills/sk-deep-research/assets/deep_research_dashboard.md
   └ L1:40 (39 lines read)
 
 ● Read deep_research_strategy.md
-  │ .opencode/skill/sk-deep-research/assets/deep_research_strategy.md
+  │ .opencode/skills/sk-deep-research/assets/deep_research_strategy.md
   └ L1:40 (40 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-improve-agent/SKILL.md
+  │ .opencode/skills/sk-improve-agent/SKILL.md
   └ L286:305 (20 lines read)
 
 ● Read quick_reference.md
-  │ .opencode/skill/sk-deep-review/references/quick_reference.md
+  │ .opencode/skills/sk-deep-review/references/quick_reference.md
   └ L138:154 (16 lines read)
 
 ● Read implementation-summary.md
@@ -215,15 +215,15 @@ I found a more important nuance: the root summary’s Lane 3 paragraph is cautio
 The lifecycle drift is not hypothetical — there are still user-facing research docs that present `fork` and `completed-continue` as live branches. I’m pulling the exact lines so the finding stays evidence-first.
 
 ● Read quick_reference.md
-  │ .opencode/skill/sk-deep-research/references/quick_reference.md
+  │ .opencode/skills/sk-deep-research/references/quick_reference.md
   └ L1:40 (40 lines read)
 
 ● Read capability_matrix.md
-  │ .opencode/skill/sk-deep-research/references/capability_matrix.md
+  │ .opencode/skills/sk-deep-research/references/capability_matrix.md
   └ L1:40 (40 lines read)
 
 ● Read state_format.md
-  │ .opencode/skill/sk-deep-research/references/state_format.md
+  │ .opencode/skills/sk-deep-research/references/state_format.md
   └ L28:44 (17 lines read)
 
 ● Read spec.md
@@ -233,43 +233,43 @@ The lifecycle drift is not hypothetical — there are still user-facing research
 
 ● Search (grep)
   │ "Live lifecycle branches|fork|completed-continue"
-  │ (.opencode/skill/sk-deep-research/references/quick_reference.md)
+  │ (.opencode/skills/sk-deep-research/references/quick_reference.md)
   └ 1 line found
 
 ● Search (grep)
   │ "Lifecycle decision|Lifecycle Mode|fork|completed-continue"
-  │ (.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md)
+  │ (.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md)
   └ 2 lines found
 
 ● Search (grep)
   │ "Lifecycle branches|fork|completed-continue"
-  │ (.opencode/skill/sk-deep-research/assets/deep_research_strategy.md)
+  │ (.opencode/skills/sk-deep-research/assets/deep_research_strategy.md)
   └ 1 line found
 
 I have the stale lifecycle surfaces; I just need exact numbered lines for the report. Then I can collapse this into the smallest set of non-duplicative findings.
 
 ● Read quick_reference.md
-  │ .opencode/skill/sk-deep-research/references/quick_reference.md
+  │ .opencode/skills/sk-deep-research/references/quick_reference.md
   └ L40:80 (41 lines read)
 
 ● Read deep_research_strategy.md
-  │ .opencode/skill/sk-deep-research/assets/deep_research_strategy.md
+  │ .opencode/skills/sk-deep-research/assets/deep_research_strategy.md
   └ L40:80 (41 lines read)
 
 ● Read loop_protocol.md
-  │ .opencode/skill/sk-deep-research/references/loop_protocol.md
+  │ .opencode/skills/sk-deep-research/references/loop_protocol.md
   └ L130:170 (41 lines read)
 
 ● Read quick_reference.md
-  │ .opencode/skill/sk-deep-research/references/quick_reference.md
+  │ .opencode/skills/sk-deep-research/references/quick_reference.md
   └ L80:120 (41 lines read)
 
 ● Read deep_research_strategy.md
-  │ .opencode/skill/sk-deep-research/assets/deep_research_strategy.md
+  │ .opencode/skills/sk-deep-research/assets/deep_research_strategy.md
   └ L80:120 (41 lines read)
 
 ● Read loop_protocol.md
-  │ .opencode/skill/sk-deep-research/references/loop_protocol.md
+  │ .opencode/skills/sk-deep-research/references/loop_protocol.md
   └ L196:235 (39 lines read)
 
 Found **3 findings** in the requested traceability pass: **0 P0 / 2 P1 / 1 P2**.

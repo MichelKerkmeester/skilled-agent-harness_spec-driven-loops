@@ -28,7 +28,7 @@ Docs:
 - mcp_server/ENV_REFERENCE.md (5 env vars)
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 
 ## Output
 Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/review/iterations/iteration-002.md`

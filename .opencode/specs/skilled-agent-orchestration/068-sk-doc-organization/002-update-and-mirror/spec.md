@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Author plan.md/tasks.md, then dispatch cli-codex for substring sweep batches"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/SKILL.md
-      - .opencode/command/create/assets/create_agent_auto.yaml
-      - .opencode/agent/create.md
+      - .opencode/skills/sk-doc/SKILL.md
+      - .opencode/commands/create/assets/create_agent_auto.yaml
+      - .opencode/agents/create.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase2-authoring"
@@ -63,14 +63,14 @@ This is **Phase 2** of the Reorganize sk-doc/assets reorganization. After Phase 
 
 **Dependencies**:
 - Phase 001-relocate must be complete (4 git mv + rmdir landed on main)
-- Pre-flight `diff -rq .opencode/command/create/ .claude/commands/create/` must return empty (3-way mirror parity preserved)
+- Pre-flight `diff -rq .opencode/commands/create/ .claude/commands/create/` must return empty (3-way mirror parity preserved)
 
 **Deliverables**:
 - Substring sweep applied to canonical `.opencode/` (~24 files: sk-doc internal + /create:* canonical + @create + install guide)
 - `.claude/commands/create/` and `.codex/prompts/create/` byte-identical via `rsync`
 - 4 `.gemini/commands/create/*.toml` regenerated (agent, changelog, feature-catalog, testing-playbook)
 - `.codex/agents/create.toml` regenerated with workspace-write sandbox + Path Convention preserved
-- `.claude/agents/create.md` and `.gemini/agents/create.md` copied from updated `.opencode/agent/create.md`
+- `.claude/agents/create.md` and `.gemini/agents/create.md` copied from updated `.opencode/agents/create.md`
 - One commit on main: `feat(sk-doc): update path references + mirror to 4 runtimes (068/002)`
 
 **Changelog**:
@@ -97,10 +97,10 @@ Close the path-reference gap by applying 4 fixed-string substring substitutions 
 ### In Scope
 - 4 fixed-string substring substitutions on canonical `.opencode/` (sk-doc internal: 11 files; /create:* canonical: 11 files; @create + install: 2 files)
 - Pre-flight `diff -rq` mirror parity assertion before bulk-copy
-- `rsync -a --delete` replication from `.opencode/command/create/` to `.claude/commands/create/` and `.codex/prompts/create/`
+- `rsync -a --delete` replication from `.opencode/commands/create/` to `.claude/commands/create/` and `.codex/prompts/create/`
 - Regeneration of 4 `.gemini/commands/create/*.toml` files (TOML triple-quoted prompt blocks; `tomllib.loads()` parse-check)
 - Regeneration of `.codex/agents/create.toml` (workspace-write sandbox + Path Convention preserved from current frontmatter)
-- `cp` of `.opencode/agent/create.md` to `.claude/agents/create.md` and `.gemini/agents/create.md`
+- `cp` of `.opencode/agents/create.md` to `.claude/agents/create.md` and `.gemini/agents/create.md`
 - One commit on main with descriptive message
 
 ### Out of Scope
@@ -115,18 +115,18 @@ Close the path-reference gap by applying 4 fixed-string substring substitutions 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/{SKILL.md,references/global/*.md,references/specific/*.md}` | Modify | Substring sweep for 4 path patterns |
-| `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` | Modify | One cross-ref to `../agents/command_template.md` |
-| `.opencode/command/create/{agent,feature-catalog,testing-playbook,changelog}.md` | Modify | Path table + DOC_REF substring sweep |
-| `.opencode/command/create/README.txt` | Modify | Markdown link refs |
-| `.opencode/command/create/assets/create_{agent,feature_catalog,testing_playbook}_{auto,confirm}.yaml` | Modify | YAML execution-path keys (`primary:`, `root_catalog:`, `feature_file:`) |
-| `.opencode/agent/create.md` | Modify | Two template-load tables (lines 186-189, 282-285) |
+| `.opencode/skills/sk-doc/{SKILL.md,references/global/*.md,references/specific/*.md}` | Modify | Substring sweep for 4 path patterns |
+| `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` | Modify | One cross-ref to `../agents/command_template.md` |
+| `.opencode/commands/create/{agent,feature-catalog,testing-playbook,changelog}.md` | Modify | Path table + DOC_REF substring sweep |
+| `.opencode/commands/create/README.txt` | Modify | Markdown link refs |
+| `.opencode/commands/create/assets/create_{agent,feature_catalog,testing_playbook}_{auto,confirm}.yaml` | Modify | YAML execution-path keys (`primary:`, `root_catalog:`, `feature_file:`) |
+| `.opencode/agents/create.md` | Modify | Two template-load tables (lines 186-189, 282-285) |
 | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Modify | 4 hits |
-| `.claude/commands/create/` | Replicate | rsync byte-identity from `.opencode/command/create/` |
-| `.codex/prompts/create/` | Replicate | rsync byte-identity from `.opencode/command/create/` |
+| `.claude/commands/create/` | Replicate | rsync byte-identity from `.opencode/commands/create/` |
+| `.codex/prompts/create/` | Replicate | rsync byte-identity from `.opencode/commands/create/` |
 | `.gemini/commands/create/{agent,changelog,feature-catalog,testing-playbook}.toml` | Regenerate | TOML re-escape from updated `.opencode/` `.md` content |
-| `.claude/agents/create.md` | Copy | cp from updated `.opencode/agent/create.md` |
-| `.gemini/agents/create.md` | Copy | cp from updated `.opencode/agent/create.md` |
+| `.claude/agents/create.md` | Copy | cp from updated `.opencode/agents/create.md` |
+| `.gemini/agents/create.md` | Copy | cp from updated `.opencode/agents/create.md` |
 | `.codex/agents/create.toml` | Regenerate | TOML re-escape with sandbox + Path Convention |
 <!-- /ANCHOR:scope -->
 
@@ -140,8 +140,8 @@ Close the path-reference gap by applying 4 fixed-string substring substitutions 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | All 4 fixed-string substitutions applied across canonical `.opencode/` (sk-doc internal + /create:* canonical + @create + install guide) | `rg --no-config --no-ignore-vcs 'assets/(documentation/(feature_catalog\|testing_playbook)\|agents/(agent\|command)_template)' .opencode/` returns 0 hits |
-| REQ-002 | Pre-flight 3-way mirror parity asserted before bulk copy | `diff -rq .opencode/command/create/ .claude/commands/create/` returns empty; same for `.opencode↔.codex` |
-| REQ-003 | `.claude/commands/create/` and `.codex/prompts/create/` byte-identical to canonical `.opencode/command/create/` post-rsync | `diff -rq` between any pair returns empty |
+| REQ-002 | Pre-flight 3-way mirror parity asserted before bulk copy | `diff -rq .opencode/commands/create/ .claude/commands/create/` returns empty; same for `.opencode↔.codex` |
+| REQ-003 | `.claude/commands/create/` and `.codex/prompts/create/` byte-identical to canonical `.opencode/commands/create/` post-rsync | `diff -rq` between any pair returns empty |
 | REQ-004 | All 4 `.gemini/commands/create/*.toml` files regenerated and parse cleanly | `python3 -c "import tomllib; tomllib.loads(open('<file>').read())"` exits 0 for each |
 | REQ-005 | `.codex/agents/create.toml` regenerated with sandbox + Path Convention block preserved from current frontmatter | grep verifies `workspace-write` sandbox flag present and Path Convention section unchanged |
 | REQ-006 | cli-codex used fixed-string substitution (NOT regex) | Codex transcript shows `rg -F` or literal `Edit` calls; no regex metacharacters in substitution patterns |
@@ -164,13 +164,13 @@ Close the path-reference gap by applying 4 fixed-string substring substitutions 
 
 ### Given/When/Then Verification Scenarios
 
-**Given** Phase 1 complete (4 git mv + rmdir landed), **When** cli-codex applies 4 fixed-string substitutions to `.opencode/skill/sk-doc/SKILL.md`, **Then** the file contains 0 occurrences of the OLD patterns and N occurrences of the NEW patterns matching the original hit count.
+**Given** Phase 1 complete (4 git mv + rmdir landed), **When** cli-codex applies 4 fixed-string substitutions to `.opencode/skills/sk-doc/SKILL.md`, **Then** the file contains 0 occurrences of the OLD patterns and N occurrences of the NEW patterns matching the original hit count.
 
-**Given** canonical `.opencode/command/create/` substring sweep complete, **When** `rsync -a --delete .opencode/command/create/ .claude/commands/create/` runs, **Then** `diff -rq .opencode/command/create/ .claude/commands/create/` returns empty.
+**Given** canonical `.opencode/commands/create/` substring sweep complete, **When** `rsync -a --delete .opencode/commands/create/ .claude/commands/create/` runs, **Then** `diff -rq .opencode/commands/create/ .claude/commands/create/` returns empty.
 
-**Given** `.opencode/command/create/agent.md` updated, **When** cli-codex regenerates `.gemini/commands/create/agent.toml` by re-escaping the `.md` content into TOML triple-quoted prompt, **Then** `python3 -c "import tomllib; tomllib.loads(open('.gemini/commands/create/agent.toml').read())"` exits 0.
+**Given** `.opencode/commands/create/agent.md` updated, **When** cli-codex regenerates `.gemini/commands/create/agent.toml` by re-escaping the `.md` content into TOML triple-quoted prompt, **Then** `python3 -c "import tomllib; tomllib.loads(open('.gemini/commands/create/agent.toml').read())"` exits 0.
 
-**Given** `.opencode/agent/create.md` updated, **When** cli-codex copies to `.claude/agents/create.md` and `.gemini/agents/create.md`, **Then** the 3 files are byte-identical (`md5sum` match) and the path-references in each match the new layout.
+**Given** `.opencode/agents/create.md` updated, **When** cli-codex copies to `.claude/agents/create.md` and `.gemini/agents/create.md`, **Then** the 3 files are byte-identical (`md5sum` match) and the path-references in each match the new layout.
 
 **Given** all canonical edits complete, **When** running `git status --porcelain`, **Then** modifications are staged for one descriptive commit on main.
 
@@ -184,7 +184,7 @@ Close the path-reference gap by applying 4 fixed-string substring substitutions 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 1 (001-relocate) must be complete | High — Phase 2 cannot start without moves | Verify via `ls -la .opencode/skill/sk-doc/assets/` and `test ! -e .opencode/skill/sk-doc/assets/agents` before Phase 2 begins |
+| Dependency | Phase 1 (001-relocate) must be complete | High — Phase 2 cannot start without moves | Verify via `ls -la .opencode/skills/sk-doc/assets/` and `test ! -e .opencode/skills/sk-doc/assets/agents` before Phase 2 begins |
 | Risk | cli-codex hallucinates a search pattern | High — silent corruption of one runtime | Pre-compute exact 4 fixed-string patterns; codex MUST use `rg -F` (literal) flags, not regex |
 | Risk | TOML escape drift in `.gemini` regeneration | Medium — broken TOML parse at runtime | Use triple-quoted (`"""`) prompt blocks; post-write `tomllib.loads()` parse-check |
 | Risk | 3-way mirror drift before rsync | Medium — stale state propagates | Pre-flight `diff -rq` assertion between B and C; halt if non-empty |

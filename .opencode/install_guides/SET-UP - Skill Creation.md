@@ -3,7 +3,7 @@
 Complete guide for creating AI agent skills with native OpenCode discovery. Covers the full 6-step workflow from concept to deployment: understanding, planning, initializing, editing, packaging, and iterating. Includes SKILL.md template reference, bundled resources (scripts, references, assets), validation with DQI scoring, and troubleshooting for common discovery issues.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Scope:** `.opencode/skill/` | **Agent Required:** `@general` | **Target DQI:** 75+ (Good), 90+ (Excellent)
+> **Scope:** `.opencode/skills/` | **Agent Required:** `@general` | **Target DQI:** 75+ (Good), 90+ (Excellent)
 
 ---
 
@@ -47,10 +47,10 @@ If you are NOT the @general agent: STOP immediately and instruct the user to res
 
 **After gathering my answers, please:**
 
-1. Run: `python .opencode/skill/sk-doc/scripts/init_skill.py <skill-name> --path .opencode/skill`
+1. Run: `python .opencode/skills/sk-doc/scripts/init_skill.py <skill-name> --path .opencode/skill`
 2. Help me populate the SKILL.md template with my answers
 3. Guide me through creating any bundled resources
-4. Run: `python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/<skill-name>` to validate
+4. Run: `python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/<skill-name>` to validate
 5. Help me test the skill with a real example
 6. Iterate and refine based on testing
 
@@ -106,7 +106,7 @@ The AI will:
 
 ## 1. OVERVIEW
 
-Skills are specialized, on-demand capabilities loaded into an AI agent at runtime. Each skill is a folder under `.opencode/skill/` containing a `SKILL.md` file with YAML frontmatter that OpenCode reads on startup. The agent invokes the skill when a task matches the skill's description, then follows the instructions inside `SKILL.md` to complete the task.
+Skills are specialized, on-demand capabilities loaded into an AI agent at runtime. Each skill is a folder under `.opencode/skills/` containing a `SKILL.md` file with YAML frontmatter that OpenCode reads on startup. The agent invokes the skill when a task matches the skill's description, then follows the instructions inside `SKILL.md` to complete the task.
 
 ### Core Principle
 
@@ -141,7 +141,7 @@ Step 6: ITERATING (ongoing)
 ```text
 OpenCode starts
     |
-Scans .opencode/skill/*/SKILL.md
+Scans .opencode/skills/*/SKILL.md
     |
 Parses YAML frontmatter (name, description, allowed-tools)
     |
@@ -163,7 +163,7 @@ Skills appear as `skills_*` functions in available tools after each restart. The
 | Software | Version | Verification Command |
 | -------- | ------- | -------------------- |
 | Python | 3.10+ | `python3 --version` |
-| sk-doc skill | Latest | `ls .opencode/skill/sk-doc/` |
+| sk-doc skill | Latest | `ls .opencode/skills/sk-doc/` |
 | OpenCode | v1.0.190+ | Native skill discovery built-in |
 | **@general agent** | - | `ls .opencode/agent/orchestrate.md` |
 
@@ -181,14 +181,14 @@ Run these prerequisite checks before continuing:
 
 ```bash
 python3 --version && \
-ls .opencode/skill/sk-doc/scripts/init_skill.py && \
+ls .opencode/skills/sk-doc/scripts/init_skill.py && \
 ls .opencode/agent/orchestrate.md && \
 echo "Prerequisites OK (including @general agent)"
 ```
 
 **Checklist:**
 - [ ] Python 3.10+ installed?
-- [ ] sk-doc skill exists at `.opencode/skill/sk-doc/`?
+- [ ] sk-doc skill exists at `.opencode/skills/sk-doc/`?
 - [ ] `init_skill.py` and `package_skill.py` accessible?
 - [ ] @general agent exists at `.opencode/agent/orchestrate.md` (or any general agent)?
 
@@ -203,20 +203,20 @@ echo "Prerequisites OK (including @general agent)"
 Use `init_skill.py` to scaffold the correct folder structure automatically:
 
 ```bash
-python .opencode/skill/sk-doc/scripts/init_skill.py <skill-name> --path .opencode/skill
+python .opencode/skills/sk-doc/scripts/init_skill.py <skill-name> --path .opencode/skill
 ```
 
 **Example:**
 
 ```bash
-python .opencode/skill/sk-doc/scripts/init_skill.py my-flowchart-skill --path .opencode/skill
+python .opencode/skills/sk-doc/scripts/init_skill.py my-flowchart-skill --path .opencode/skill
 ```
 
 **Expected output:**
 
 ```text
 Creating skill: my-flowchart-skill
-Location: .opencode/skill/my-flowchart-skill/
+Location: .opencode/skills/my-flowchart-skill/
 
 Created:
   OK SKILL.md (template)
@@ -228,7 +228,7 @@ Created:
 **Resulting structure:**
 
 ```text
-.opencode/skill/my-flowchart-skill/
+.opencode/skills/my-flowchart-skill/
 |-- SKILL.md          # Main orchestrator (template stub)
 |-- references/       # Detailed documentation
 |-- scripts/          # Automation scripts
@@ -240,8 +240,8 @@ Created:
 If `init_skill.py` is not available, create the structure manually:
 
 ```bash
-mkdir -p .opencode/skill/my-skill/{references,scripts,assets}
-touch .opencode/skill/my-skill/SKILL.md
+mkdir -p .opencode/skills/my-skill/{references,scripts,assets}
+touch .opencode/skills/my-skill/SKILL.md
 ```
 
 Then copy the frontmatter stub from Section 7 into `SKILL.md` before editing.
@@ -250,7 +250,7 @@ Then copy the frontmatter stub from Section 7 into `SKILL.md` before editing.
 
 ```bash
 # Step 1: Initialize skill structure (~2 min)
-python .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Step 2: Edit SKILL.md with your content (~15 min)
 # Required frontmatter: name (must match folder), description
@@ -260,10 +260,10 @@ python .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/sk
 # scripts/ -> automation, references/ -> documentation, assets/ -> templates
 
 # Step 4: Validate (~1 min)
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill --check
+python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill --check
 
 # Step 5: Full package and restart OpenCode
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill
 ```
 
 **Result:** Skill auto-discovered by OpenCode v1.0.190+ as `skills_my_skill()` function.
@@ -271,13 +271,13 @@ python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
 ### Validation: `phase_2_complete`
 
 ```bash
-ls .opencode/skill/my-skill/SKILL.md && \
-head -5 .opencode/skill/my-skill/SKILL.md && \
+ls .opencode/skills/my-skill/SKILL.md && \
+head -5 .opencode/skills/my-skill/SKILL.md && \
 echo "Skill folder initialized"
 ```
 
 **Checklist:**
-- [ ] Skill folder exists at `.opencode/skill/<skill-name>/`?
+- [ ] Skill folder exists at `.opencode/skills/<skill-name>/`?
 - [ ] `SKILL.md` file is present?
 - [ ] Subdirectories (`references/`, `scripts/`, `assets/`) created?
 
@@ -444,10 +444,10 @@ Run validation before declaring the skill ready:
 
 ```bash
 # Quick validation (check mode only)
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill --check
+python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill --check
 
 # Full packaging and validation
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
+python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill
 ```
 
 **Expected success output:**
@@ -485,8 +485,8 @@ Fix the errors above and re-run validation.
 ### Validation: `phase_3_complete`
 
 ```bash
-python3 .opencode/skill/sk-doc/scripts/package_skill.py \
-  .opencode/skill/my-skill --check && \
+python3 .opencode/skills/sk-doc/scripts/package_skill.py \
+  .opencode/skills/my-skill --check && \
 echo "SKILL.md populated and frontmatter valid"
 ```
 
@@ -535,10 +535,10 @@ echo "SKILL.md populated and frontmatter valid"
 ### Validation: `phase_4_complete`
 
 ```bash
-python3 .opencode/skill/sk-doc/scripts/package_skill.py \
-  .opencode/skill/my-skill && \
-python3 .opencode/skill/sk-doc/scripts/extract_structure.py \
-  .opencode/skill/my-skill/SKILL.md && \
+python3 .opencode/skills/sk-doc/scripts/package_skill.py \
+  .opencode/skills/my-skill && \
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py \
+  .opencode/skills/my-skill/SKILL.md && \
 echo "Validation and DQI check complete"
 ```
 
@@ -558,10 +558,10 @@ echo "Validation and DQI check complete"
 # 1. Restart OpenCode
 
 # 2. Check frontmatter name matches folder
-grep "^name:" .opencode/skill/my-skill/SKILL.md
+grep "^name:" .opencode/skills/my-skill/SKILL.md
 
 # 3. Confirm skill folder name
-ls -d .opencode/skill/my-skill
+ls -d .opencode/skills/my-skill
 ```
 
 ### Validation: `phase_5_complete`
@@ -605,13 +605,13 @@ After the skill passes all 5 phase checkpoints, continue with this iteration cyc
 
 ### Discovery Mechanics
 
-OpenCode has built-in skill discovery - no plugin required. Skills are auto-discovered from `.opencode/skill/*/SKILL.md` frontmatter.
+OpenCode has built-in skill discovery - no plugin required. Skills are auto-discovered from `.opencode/skills/*/SKILL.md` frontmatter.
 
 **Discovery process:**
 
 ```text
 Step 1: STARTUP SCAN
-    |-> OpenCode scans .opencode/skill/*/SKILL.md
+    |-> OpenCode scans .opencode/skills/*/SKILL.md
             |
 Step 2: FRONTMATTER PARSING
     |-> Extract name, description, allowed-tools from YAML
@@ -623,7 +623,7 @@ Step 3: FUNCTION REGISTRATION
 Step 4: AVAILABILITY
     |-> Skill accessible via:
         - Direct call: skills_my_skill()
-        - Read tool: Read(".opencode/skill/my-skill/SKILL.md")
+        - Read tool: Read(".opencode/skills/my-skill/SKILL.md")
         - Natural language matching description
 ```
 
@@ -639,13 +639,13 @@ Step 4: AVAILABILITY
 **Function naming examples:**
 
 ```text
-Folder: .opencode/skill/mcp-code-mode/
+Folder: .opencode/skills/mcp-code-mode/
     -> Function: skills_mcp_code_mode()
 
-Folder: .opencode/skill/system-spec-kit/
+Folder: .opencode/skills/system-spec-kit/
     -> Function: skills_system_spec_kit()
 
-Folder: .opencode/skill/my-custom-skill/
+Folder: .opencode/skills/my-custom-skill/
     -> Function: skills_my_custom_skill()
 ```
 
@@ -656,7 +656,7 @@ The AI agent invokes a skill through Gate 2 (skill routing) when:
 - A user references the skill by name or capability
 - The `skill_advisor.py` recommends the skill with confidence >= 0.8
 
-Skills can also be invoked directly with `Read(".opencode/skill/my-skill/SKILL.md")` when the agent needs to load instructions explicitly.
+Skills can also be invoked directly with `Read(".opencode/skills/my-skill/SKILL.md")` when the agent needs to load instructions explicitly.
 
 ---
 
@@ -783,7 +783,7 @@ A simple skill with no bundled resources. Use this as the starting point for low
 **Folder structure:**
 
 ```text
-.opencode/skill/greeting-formatter/
+.opencode/skills/greeting-formatter/
 `-- SKILL.md
 ```
 
@@ -860,7 +860,7 @@ Resources: references/review_checklist.md
 **Step 2 - Initialize:**
 
 ```bash
-python .opencode/skill/sk-doc/scripts/init_skill.py code-reviewer \
+python .opencode/skills/sk-doc/scripts/init_skill.py code-reviewer \
   --path .opencode/skill
 ```
 
@@ -881,15 +881,15 @@ allowed-tools:
 **Step 4 - Validate:**
 
 ```bash
-python .opencode/skill/sk-doc/scripts/package_skill.py \
-  .opencode/skill/code-reviewer --check
+python .opencode/skills/sk-doc/scripts/package_skill.py \
+  .opencode/skills/code-reviewer --check
 ```
 
 **Step 5 - Add reference file:**
 
 ```bash
 # Create reference file for detailed checklist
-touch .opencode/skill/code-reviewer/references/review_checklist.md
+touch .opencode/skills/code-reviewer/references/review_checklist.md
 ```
 
 **Step 6 - Add SMART ROUTING to SKILL.md:**
@@ -908,14 +908,14 @@ For comprehensive real-world examples, examine these production skills:
 
 | Skill | Path | Highlights |
 | ----- | ---- | ---------- |
-| **mcp-code-mode** | `.opencode/skill/mcp-code-mode/SKILL.md` | MCP orchestration, external tool integration, SMART ROUTING |
-| **system-spec-kit** | `.opencode/skill/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation |
+| **mcp-code-mode** | `.opencode/skills/mcp-code-mode/SKILL.md` | MCP orchestration, external tool integration, SMART ROUTING |
+| **system-spec-kit** | `.opencode/skills/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation |
 
 **To examine:**
 
 ```bash
-head -100 .opencode/skill/mcp-code-mode/SKILL.md
-head -100 .opencode/skill/system-spec-kit/SKILL.md
+head -100 .opencode/skills/mcp-code-mode/SKILL.md
+head -100 .opencode/skills/system-spec-kit/SKILL.md
 ```
 
 ---
@@ -932,10 +932,10 @@ head -100 .opencode/skill/system-spec-kit/SKILL.md
 
 ```bash
 # Check the name in frontmatter
-grep "^name:" .opencode/skill/my-skill/SKILL.md
+grep "^name:" .opencode/skills/my-skill/SKILL.md
 
 # Check the folder name
-ls -d .opencode/skill/my-skill
+ls -d .opencode/skills/my-skill
 
 # The two values must match exactly (case-sensitive)
 # Then restart OpenCode to trigger a rescan
@@ -1081,7 +1081,7 @@ Also improve the WHEN TO USE section with explicit trigger phrases and keyword l
 Verify the file exists:
 
 ```bash
-ls .opencode/skill/my-skill/references/guide.md
+ls .opencode/skills/my-skill/references/guide.md
 ```
 
 ---
@@ -1095,8 +1095,8 @@ ls .opencode/skill/my-skill/references/guide.md
 **Fix - run diagnostics first:**
 
 ```bash
-python .opencode/skill/sk-doc/scripts/extract_structure.py \
-  .opencode/skill/my-skill/SKILL.md
+python .opencode/skills/sk-doc/scripts/extract_structure.py \
+  .opencode/skills/my-skill/SKILL.md
 ```
 
 Common fixes based on diagnostic output:
@@ -1114,30 +1114,30 @@ Common fixes based on diagnostic output:
 
 | Path | Purpose |
 | ---- | ------- |
-| `.opencode/skill/` | Skills directory |
-| `.opencode/skill/sk-doc/scripts/init_skill.py` | Initialize skill |
-| `.opencode/skill/sk-doc/scripts/package_skill.py` | Validate and package |
-| `.opencode/skill/sk-doc/scripts/extract_structure.py` | DQI scoring |
-| `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md` | SKILL.md template |
+| `.opencode/skills/` | Skills directory |
+| `.opencode/skills/sk-doc/scripts/init_skill.py` | Initialize skill |
+| `.opencode/skills/sk-doc/scripts/package_skill.py` | Validate and package |
+| `.opencode/skills/sk-doc/scripts/extract_structure.py` | DQI scoring |
+| `.opencode/skills/sk-doc/assets/opencode/skill_md_template.md` | SKILL.md template |
 | `.opencode/agent/orchestrate.md` (or any general agent) | general agent definition (orchestrate is a good baseline) |
 
 ### Scripts Reference
 
 ```bash
 # Initialize new skill
-python .opencode/skill/sk-doc/scripts/init_skill.py \
+python .opencode/skills/sk-doc/scripts/init_skill.py \
   <skill-name> --path .opencode/skill
 
 # Validation only (check mode)
-python .opencode/skill/sk-doc/scripts/package_skill.py \
+python .opencode/skills/sk-doc/scripts/package_skill.py \
   <skill-path> --check
 
 # Full packaging and validation
-python .opencode/skill/sk-doc/scripts/package_skill.py \
+python .opencode/skills/sk-doc/scripts/package_skill.py \
   <skill-path>
 
 # DQI scoring
-python .opencode/skill/sk-doc/scripts/extract_structure.py \
+python .opencode/skills/sk-doc/scripts/extract_structure.py \
   <skill-path>/SKILL.md
 ```
 
@@ -1182,4 +1182,4 @@ python .opencode/skill/sk-doc/scripts/extract_structure.py \
 
 ---
 
-Your skill is now ready. OpenCode v1.0.190+ will auto-discover it from `.opencode/skill/*/SKILL.md` frontmatter. Skills appear as `skills_*` functions in available tools after each restart.
+Your skill is now ready. OpenCode v1.0.190+ will auto-discover it from `.opencode/skills/*/SKILL.md` frontmatter. Skills appear as `skills_*` functions in available tools after each restart.

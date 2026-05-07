@@ -7,7 +7,7 @@ trigger_phrases:
   - "constitutional"
 importance_tier: "normal"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/tasks.md -->"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/tasks.md -->"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor"
@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["tasks.md"]
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/tasks.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/tasks.md -->
 ---
 title: "Tasks: Refactor /memory:learn"
 status: done
@@ -78,7 +78,7 @@ updated: 2026-03-14
 
 ### T5: Verify [P0] — COMPLETE
 - [x] No broken cross-references — all links verified
-- [x] Constitutional directory path correct — `.opencode/skill/system-spec-kit/constitutional/` consistent
+- [x] Constitutional directory path correct — `.opencode/skills/system-spec-kit/constitutional/` consistent
 - [x] Token budget constant correct (~2000) — referenced in Sections 4, 5, 6, 7, 10
 <!-- /ANCHOR:phase-2 -->
 
@@ -90,13 +90,13 @@ updated: 2026-03-14
 
 ### T6: Post-Verification Remediation and Scope-Complete Alignment [P0] — COMPLETE
 - [x] Fix stale active `/memory:learn` references in command/workspace/agent docs
-  - `.opencode/command/README.txt`
-  - `.opencode/command/spec_kit/debug.md`
-  - `.opencode/command/spec_kit/complete.md`
+  - `.opencode/commands/README.txt`
+  - `.opencode/commands/spec_kit/debug.md`
+  - `.opencode/commands/spec_kit/complete.md`
   - `README.md`
   - `.opencode/README.md`
-  - `.opencode/agent/speckit.md`
-  - .opencode/agent/chatgpt/speckit.md
+  - `.opencode/agents/speckit.md`
+  - .opencode/agents/chatgpt/speckit.md
 - [x] Resolve learn.md contract drift
   - Contradictory qualification text fixed to match branch behavior
   - Dead "save as critical instead" option removed and replaced with `/memory:save` path
@@ -104,9 +104,9 @@ updated: 2026-03-14
   - Feature catalog entry: `../../../../skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`
   - Manual playbook scenario: `NEW-147`
 - [x] Add regression test for command/doc alignment
-  - `.opencode/skill/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts`
+  - `.opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts`
 - [x] Re-run verification after remediation
-  - `npm run typecheck` in `.opencode/skill/system-spec-kit` — PASS
+  - `npm run typecheck` in `.opencode/skills/system-spec-kit` — PASS
   - `memory-learn-command-docs.vitest.ts` — PASS (2/2)
   - Targeted MCP suite — PASS (581/581)
 <!-- /ANCHOR:phase-3 -->

@@ -166,7 +166,7 @@ Successfully completed the Memory Command Consolidation project with comprehensi
 
 **Memory Commands (5 total):**
 ```
-.opencode/command/memory/
+.opencode/commands/memory/
 ├── context.md     ✅ (unified retrieval, absorbed search)
 ├── continue.md    ✅ (session recovery)
 ├── learn.md       ✅ (feedback + correct/undo/history subcommands)
@@ -217,7 +217,7 @@ Successfully completed the Memory Command Consolidation project with comprehensi
 ## ANCHOR: files-modified
 
 **This Session:**
-1. `.opencode/skill/system-spec-kit/templates/memory/README.md` - Fixed `/memory:search` → `/memory:context`
+1. `.opencode/skills/system-spec-kit/templates/memory/README.md` - Fixed `/memory:search` → `/memory:context`
 2. `specs/003-memory-and-spec-kit/083-memory-command-consolidation/spec.md` - Added verification date
 3. `specs/003-memory-and-spec-kit/083-memory-command-consolidation/checklist.md` - Added 17-agent audit results
 4. `specs/003-memory-and-spec-kit/083-memory-command-consolidation/implementation-summary.md` - Added final verification section

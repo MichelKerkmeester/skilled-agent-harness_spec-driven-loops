@@ -37,16 +37,16 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-      ".opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
-      ".opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+      ".opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
       ".claude/mcp.json",
       ".vscode/mcp.json",
       ".codex/config.toml",
@@ -62,61 +62,61 @@
       {
         "name": "context-index.sqlite",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
         "name": "ablation-framework.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
         "source": "derived"
       },
       {
         "name": "hybrid-search.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
         "source": "derived"
       },
       {
         "name": "run-ablation.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts",
         "source": "derived"
       },
       {
         "name": "eval-reporting.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts",
         "source": "derived"
       },
       {
         "name": "map-ground-truth-ids.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts",
         "source": "derived"
       },
       {
         "name": "ground-truth.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
         "source": "derived"
       },
       {
         "name": "ablation-framework.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts",
         "source": "derived"
       },
       {
         "name": "handler-eval-reporting.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts",
         "source": "derived"
       },
       {
         "name": "hybrid-search.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
         "source": "derived"
       },
       {

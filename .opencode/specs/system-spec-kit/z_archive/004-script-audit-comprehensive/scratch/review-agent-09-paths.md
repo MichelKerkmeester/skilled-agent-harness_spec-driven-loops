@@ -26,7 +26,7 @@ claims (Windows, WSL, Git Bash) are theoretical and untested.
 - Build Evidence: CONFIRMED. `config.ts:203` contains `PROJECT_ROOT: path.resolve(..., '..', '..', '..', '..')`. `memory-indexer.ts:19` contains `path.join(__dirname, '../../../mcp_server/database/.db-updated')`.
 - Verdict: CONFIRMED
 - Severity: P0
-- Evidence: `.opencode/skill/system-spec-kit/scripts/core/config.ts:203`, `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:19`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/core/config.ts:203`, `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:19`
 - Notes: Both patterns are structurally fragile. Any directory reorganization would silently break path resolution. This is the highest-impact finding in the shard.
 
 ### C09-002: Shell Scripts Use Unresolved CWD Pattern with Symlink Risk
@@ -34,7 +34,7 @@ claims (Windows, WSL, Git Bash) are theoretical and untested.
 - Build Evidence: CONFIRMED. `common.sh:24` uses `(cd "$script_dir/../../../.." && pwd)` fallback. `archive.sh:23` uses `PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"` fallback.
 - Verdict: CONFIRMED
 - Severity: P0
-- Evidence: `.opencode/skill/system-spec-kit/scripts/common.sh:24`, `.opencode/skill/system-spec-kit/scripts/spec/archive.sh:23`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/common.sh:24`, `.opencode/skills/system-spec-kit/scripts/spec/archive.sh:23`
 - Notes: Build confirms the non-git fallback path still depends on relative depth and logical `pwd` behavior. The archive.sh traversal is actually 5 levels deep (one more than C09 stated), which makes it even more fragile. The `-P` flag for `pwd` and `readlink -f` fixes are straightforward.
 
 ### C09-003: Database Path Validation Missing with Optional Env Var Override
@@ -42,15 +42,15 @@ claims (Windows, WSL, Git Bash) are theoretical and untested.
 - Build Evidence: PARTIAL. Path fragility exists at `config.ts:31-33` and `vector-index.ts:152`. However, counter-evidence found: `vector-index-impl.ts:792-794` creates missing directories automatically, and `vector-index-impl.ts:797-817` throws explicit DB errors with informative messages.
 - Verdict: DOWNGRADED (CRITICAL → HIGH)
 - Severity: P1
-- Evidence: `.opencode/skill/system-spec-kit/mcp_server/core/config.ts:31-33`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:792-817`
+- Evidence: `.opencode/skills/system-spec-kit/mcp_server/core/config.ts:31-33`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:792-817`
 - Notes: The context shard's claim of "no validation" and "no fallback mechanism" is partially incorrect. The vector-index-impl does create missing directories and throws explicit errors. The path fragility concern remains valid (hence HIGH), but the CRITICAL framing overstated the risk by not examining the downstream handling code. This is the only severity overclaim in the shard.
 
 ### C09-004: Template Directory Resolved via REPO_ROOT + Hardcoded Path
 - Context Claim: Template directory path uses `REPO_ROOT` + hardcoded relative path with no existence validation. Fails if skill path structure changes.
-- Build Evidence: CONFIRMED. `create.sh:297` hardcodes `TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"`. `compose.sh:60` resolves templates via fixed relative traversal.
+- Build Evidence: CONFIRMED. `create.sh:297` hardcodes `TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"`. `compose.sh:60` resolves templates via fixed relative traversal.
 - Verdict: CONFIRMED
 - Severity: P1
-- Evidence: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:297`, `.opencode/skill/system-spec-kit/scripts/templates/compose.sh:60`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:297`, `.opencode/skills/system-spec-kit/scripts/templates/compose.sh:60`
 - Notes: Template discovery is tightly coupled to current repository layout. While the structure is currently stable, any future reorganization of the skill directory would break spec folder creation and template composition simultaneously.
 
 ### C09-005: Path Sanitization Allows Hardcoded Base Paths but Uses process.cwd()
@@ -58,7 +58,7 @@ claims (Windows, WSL, Git Bash) are theoretical and untested.
 - Build Evidence: CONFIRMED. `data-loader.ts:85-87` anchors allow-list to `process.cwd()` and its subpaths.
 - Verdict: CONFIRMED
 - Severity: P1
-- Evidence: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:85-87`
+- Evidence: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:85-87`
 - Notes: Validation behavior varies by invocation directory. This is a security-adjacent concern since path sanitization effectively becomes CWD-dependent, meaning the same file could be allowed or denied based on where the script was launched from.
 
 ### C09-006: process.cwd() Used Directly Without Validation or Fallback

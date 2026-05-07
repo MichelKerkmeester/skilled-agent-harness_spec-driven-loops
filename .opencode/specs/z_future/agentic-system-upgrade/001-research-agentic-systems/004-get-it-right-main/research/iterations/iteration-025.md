@@ -12,12 +12,12 @@ They are two modes of the same capability and should likely be merged at the ope
 I compared the two agent contracts, their orchestration roles, and the external repo's simpler role partitioning to see whether the split helps operators or mainly helps internal implementation clarity.
 
 ## Evidence
-- [SOURCE: .opencode/agent/orchestrate.md:18-21] The orchestrator bootstraps the session by delegating to `@context-prime` on first turn or after `/clear`.
-- [SOURCE: .opencode/agent/orchestrate.md:95-107] The routing table then separately reserves `@context` for all exploration tasks.
-- [SOURCE: .opencode/agent/context-prime.md:34-39] `@context-prime` is a lightweight bootstrap agent that calls `session_bootstrap()` and optionally `session_health()` with a strict under-15-second bias.
-- [SOURCE: .opencode/agent/context-prime.md:61-66] Its toolset is explicitly just a small session-recovery slice of the broader context stack.
-- [SOURCE: .opencode/agent/context.md:45-54] `@context` is also a read-only retrieval specialist, just in a heavier thorough mode.
-- [SOURCE: .opencode/agent/context.md:108-123] `@context` hardcodes thorough mode with a broader tool sequence and larger output budget.
+- [SOURCE: .opencode/agents/orchestrate.md:18-21] The orchestrator bootstraps the session by delegating to `@context-prime` on first turn or after `/clear`.
+- [SOURCE: .opencode/agents/orchestrate.md:95-107] The routing table then separately reserves `@context` for all exploration tasks.
+- [SOURCE: .opencode/agents/context-prime.md:34-39] `@context-prime` is a lightweight bootstrap agent that calls `session_bootstrap()` and optionally `session_health()` with a strict under-15-second bias.
+- [SOURCE: .opencode/agents/context-prime.md:61-66] Its toolset is explicitly just a small session-recovery slice of the broader context stack.
+- [SOURCE: .opencode/agents/context.md:45-54] `@context` is also a read-only retrieval specialist, just in a heavier thorough mode.
+- [SOURCE: .opencode/agents/context.md:108-123] `@context` hardcodes thorough mode with a broader tool sequence and larger output budget.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:152-159] The external repo does not split bootstrap versus exploration into separate visible specialist roles; it keeps a much smaller public role vocabulary.
 
 ## Analysis

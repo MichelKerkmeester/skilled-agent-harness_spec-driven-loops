@@ -18,22 +18,22 @@ _memory:
     next_safe_action: "validate.sh --strict; commit + push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher-orchestrator.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/graph/community-types.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state-values.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/lifecycle/status-values.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/advisor-runtime-values.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-contract-keys.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher-orchestrator.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/session/structural-bootstrap-contract.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/community-types.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state-values.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/lifecycle/status-values.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/advisor-runtime-values.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-contract-keys.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-006-architecture-cleanup"
@@ -46,7 +46,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

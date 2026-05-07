@@ -19,11 +19,11 @@ Trace how description enrichment (phases 006, 014) interacts with quality scorin
 **Q12.** How does description enrichment (phases 006, 014) interact with quality scoring? Is fallback text degrading search?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts` — How quality scorer uses descriptions
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — Description enrichment in the pipeline
-- `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` — How descriptions affect indexing
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` — Where descriptions are collected
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` (if exists) — Per-folder description generation
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts` — How quality scorer uses descriptions
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — Description enrichment in the pipeline
+- `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` — How descriptions affect indexing
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` — Where descriptions are collected
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` (if exists) — Per-folder description generation
 - Search for "description" and "fallback" in the scripts directory
 
 ## Known Context
@@ -57,7 +57,7 @@ AGENTS.md
 codex
 I found the governing `AGENTS.md` at repo root (no deeper override for these paths), so I’m now tracing each target file directly and mapping where descriptions are created, transformed, scored, and indexed.
 exec
-/bin/zsh -lc 'ls -la .opencode/skill/system-spec-kit/scripts/extractors' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'ls -la .opencode/skills/system-spec-kit/scripts/extractors' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 total 648
 drwxr-xr-x@ 21 michelkerkmeester  staff    672 Mar 20 08:28 .
 drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
@@ -79,7 +79,7 @@ drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
 -rw-r--r--@  1 michelkerkmeester  staff   7853 Mar 19 21:54 quality-scorer.ts
 -rw-r--r--@  1 michelkerkmeester  staff   9406 Mar 19 20:16 session-activity-signal.ts
 exec
-/bin/zsh -lc 'ls -la .opencode/skill/system-spec-kit/scripts/core' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'ls -la .opencode/skills/system-spec-kit/scripts/core' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 total 408
 drwxr-xr-x@ 16 michelkerkmeester  staff    512 Mar 20 08:26 .
 drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
@@ -98,7 +98,7 @@ drwxr-xr-x@ 34 michelkerkmeester  staff   1088 Mar 19 19:58 ..
 -rw-r--r--@  1 michelkerkmeester  staff   9587 Mar 16 12:04 tree-thinning.ts
 -rw-r--r--@  1 michelkerkmeester  staff  98490 Mar 20 08:26 workflow.ts
 exec
-/bin/zsh -lc 'ls -la .opencode/skill/system-spec-kit/mcp_server/lib/search' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'ls -la .opencode/skills/system-spec-kit/mcp_server/lib/search' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 total 1608
 drwxr-xr-x@ 52 michelkerkmeester  staff   1664 Mar 19 14:00 .
 drwxr-xr-x@ 31 michelkerkmeester  staff    992 Mar 19 14:20 ..
@@ -122,29 +122,29 @@ drwxr-xr-x@ 31 michelkerkmeester  staff    992 Mar 19 14:20 ..
 codex
 I’ve confirmed all target files exist, including `folder-discovery.ts`. Next I’m extracting every `description`/`fallback` occurrence to build a concrete flow map and fallback inventory.
 exec
-/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:806:  // Prevents a random last exchange from becoming the memory's entire description.
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:51:  | 'generic_title'
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:56:  | 'has_fallback_decision'
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:209:  // 3. File descriptions populated (0-20 points)
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:217:    const descriptionQualityAverage = files.reduce((sum, file) => sum + getDescriptionQualityScore(file), 0) / files.length;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:218:    breakdown.fileDescriptions = Math.round(descriptionQualityAverage * 20);
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:219:    if (descriptionQualityAverage < 0.5) {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:221:      warnings.push(`${files.length - filesWithDesc.length}/${files.length} files missing descriptions`);
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:235:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:237:    warnings.push('Primary memory title is generic — long output still lacks specificity');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:239:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:241:    warnings.push('Primary memory title is generic — medium-length output lacks specificity');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:243:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:245:    warnings.push('Primary memory title is generic — short output lacks specificity');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:291:      warnings.push('Observation titles remain too generic — semantic diversity reduced');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:333:    { id: 'file_descriptions', score01: breakdown.fileDescriptions / 20, score100: breakdown.fileDescriptions, maxScore100: 20, passed: files.length === 0 || breakdown.fileDescriptions / 20 >= 0.5 },
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:557:  const fallback = readableFolder.length > 0 ? `${readableFolder} session ${_date}` : `Session ${_date}`;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:558:  return truncateMemoryTitle(fallback);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:740:function readNumber(source: Record<string, unknown> | null | undefined, fallback: number, ...keys: string[]): number {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:742:    return fallback;
+/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:806:  // Prevents a random last exchange from becoming the memory's entire description.
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:51:  | 'generic_title'
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:56:  | 'has_fallback_decision'
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:209:  // 3. File descriptions populated (0-20 points)
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:217:    const descriptionQualityAverage = files.reduce((sum, file) => sum + getDescriptionQualityScore(file), 0) / files.length;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:218:    breakdown.fileDescriptions = Math.round(descriptionQualityAverage * 20);
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:219:    if (descriptionQualityAverage < 0.5) {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:221:      warnings.push(`${files.length - filesWithDesc.length}/${files.length} files missing descriptions`);
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:235:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:237:    warnings.push('Primary memory title is generic — long output still lacks specificity');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:239:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:241:    warnings.push('Primary memory title is generic — medium-length output lacks specificity');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:243:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:245:    warnings.push('Primary memory title is generic — short output lacks specificity');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:291:      warnings.push('Observation titles remain too generic — semantic diversity reduced');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:333:    { id: 'file_descriptions', score01: breakdown.fileDescriptions / 20, score100: breakdown.fileDescriptions, maxScore100: 20, passed: files.length === 0 || breakdown.fileDescriptions / 20 >= 0.5 },
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:557:  const fallback = readableFolder.length > 0 ? `${readableFolder} session ${_date}` : `Session ${_date}`;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:558:  return truncateMemoryTitle(fallback);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:740:function readNumber(source: Record<string, unknown> | null | undefined, fallback: number, ...keys: string[]): number {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:742:    return fallback;
 exec
-/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 4:// Feature catalog: Spec folder description discovery
 15: * Describes a single spec folder with its cached description
 20:  description: string;
@@ -166,29 +166,29 @@ exec
 416:      // Keywords set lookup is O(1); description substring is fallback for partial matches
 421:      // Fall back to substring match in description
 exec
-/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/README.md:3:description: "Current script inventory and execution flow for system-spec-kit scripts."
-.opencode/skill/system-spec-kit/scripts/README.md:47:- `spec-folder/` - 5 TypeScript modules (`generate-description.ts`, `folder-detector.ts`, `alignment-validator.ts`, `directory-setup.ts`, `index.ts`)
-.opencode/skill/system-spec-kit/scripts/loaders/README.md:3:description: "Data loader modules that normalize input from JSON files or native CLI capture, then hard-stop when no usable session data exists."
-.opencode/skill/system-spec-kit/scripts/loaders/README.md:45:3. Native capture fallback order:
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:3:description: "Shell-based quality KPI reporter that scans memory files for placeholders, fallback content, AI contamination and missing trigger phrases."
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:4:  "description": "Spec Kit Script Registry - Centralized catalog of all scripts for dynamic discovery",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:11:      "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:28:      "description": "Force full embedding reindex across memory docs, specs, and constitutional files",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:45:      "description": "Validate spec folder contents against documentation level requirements",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:62:      "description": "Completion Verification Rule enforcement - verify checklist items are complete before claiming done",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:79:      "description": "Upgrade existing spec folders to higher documentation levels with backup and rollback. Post-upgrade: AI must auto-populate injected placeholder content from existing spec context",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:96:      "description": "Validate spec folder exists and contains required files for its level",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:112:      "description": "Calculate percentage of template placeholders replaced with real content",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:129:      "description": "Test runner for validate-spec.sh against fixture spec folders",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:145:      "description": "Create new spec folders with appropriate templates based on documentation level",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:150:        "required": "Feature description",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:162:      "description": "Recommend documentation level based on task complexity factors",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:178:      "description": "Move completed spec folders to archive, keeping specs/ directory clean",
-.opencode/skill/system-spec-kit/scripts/scripts-registry.json:195:      "description": "Repository and branch utilities - get_repo_root(), get_current_branch()",
+/bin/zsh -lc 'rg -n "description|fallback|continued work|generic" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/README.md:3:description: "Current script inventory and execution flow for system-spec-kit scripts."
+.opencode/skills/system-spec-kit/scripts/README.md:47:- `spec-folder/` - 5 TypeScript modules (`generate-description.ts`, `folder-detector.ts`, `alignment-validator.ts`, `directory-setup.ts`, `index.ts`)
+.opencode/skills/system-spec-kit/scripts/loaders/README.md:3:description: "Data loader modules that normalize input from JSON files or native CLI capture, then hard-stop when no usable session data exists."
+.opencode/skills/system-spec-kit/scripts/loaders/README.md:45:3. Native capture fallback order:
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:3:description: "Shell-based quality KPI reporter that scans memory files for placeholders, fallback content, AI contamination and missing trigger phrases."
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:4:  "description": "Spec Kit Script Registry - Centralized catalog of all scripts for dynamic discovery",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:11:      "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:28:      "description": "Force full embedding reindex across memory docs, specs, and constitutional files",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:45:      "description": "Validate spec folder contents against documentation level requirements",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:62:      "description": "Completion Verification Rule enforcement - verify checklist items are complete before claiming done",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:79:      "description": "Upgrade existing spec folders to higher documentation levels with backup and rollback. Post-upgrade: AI must auto-populate injected placeholder content from existing spec context",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:96:      "description": "Validate spec folder exists and contains required files for its level",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:112:      "description": "Calculate percentage of template placeholders replaced with real content",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:129:      "description": "Test runner for validate-spec.sh against fixture spec folders",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:145:      "description": "Create new spec folders with appropriate templates based on documentation level",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:150:        "required": "Feature description",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:162:      "description": "Recommend documentation level based on task complexity factors",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:178:      "description": "Move completed spec folders to archive, keeping specs/ directory clean",
+.opencode/skills/system-spec-kit/scripts/scripts-registry.json:195:      "description": "Repository and branch utilities - get_repo_root(), get_current_branch()",
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Scorer
      3	// ---------------------------------------------------------------
@@ -210,7 +210,7 @@ exec
     19	  validateDescription,
     20	} from '../utils/file-helpers';
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '500,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '500,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    500	      DESCRIPTION: mergeNote,
    501	      ACTION: 'Merged',
    502	      _synthetic: true,
@@ -232,7 +232,7 @@ exec
    518	    .replace(/[\s\-:;,]+$/, '');
    519	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1080,1335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1080,1335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1080	    title,
   1081	    content,
   1082	    triggerPhrases,
@@ -254,7 +254,7 @@ exec
   1098	  return {
   1099	    title,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1580,1705p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1580,1705p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1580	      // Count-based severity escalation: mass low-severity matches indicate
   1581	      // pervasive contamination that warrants a higher penalty
   1582	      if (hadContamination && contaminationMaxSeverity === 'low' && extractorRemovedPhraseCount >= 10) {
@@ -276,7 +276,7 @@ exec
   1598	        const alignmentTargetsPost = await resolveAlignmentTargets(specFolder);
   1599	
 exec
-/bin/zsh -lc 'rg -n "continued work|No specific decisions|Development session|description|fallback|_provenance|validateDescription|quality" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "continued work|No specific decisions|Development session|description|fallback|_provenance|validateDescription|quality" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:import { scoreMemoryQuality } from './quality-scorer';
 43:} from '../extractors/quality-scorer';
 48:} from '../memory/validate-memory-quality';
@@ -298,7 +298,7 @@ exec
 832:    readString(collectedData, fallbackType, 'memory_type', 'memoryType'),
 899:  const fallbackFingerprint = crypto
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1860,2335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1860,2335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1860	      activeDataFile
   1861	    );
   1862	
@@ -320,7 +320,7 @@ exec
   1878	    ],
   1879	    allowSpecTitleFallback
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Indexer
      3	// ---------------------------------------------------------------
@@ -344,7 +344,7 @@ exec
 codex
 I’ve now mapped the workflow/quality scorer sections; next I’m checking the collector and folder-discovery code for exact fallback strings and then computing how many branches can emit fallback descriptions.
 exec
-/bin/zsh -lc 'rg -n "DESCRIPTION|description|fallback|continued work|No specific|generic|validateDescription|Recent commit|Updated code|first line|summary" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "DESCRIPTION|description|fallback|continued work|No specific|generic|validateDescription|Recent commit|Updated code|first line|summary" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 211:    PREFLIGHT_GAPS: preflight?.gaps?.map((g) => ({ GAP_DESCRIPTION: g })) ?? [],
 266:    GAPS_CLOSED: postflight?.gapsClosed?.map((g) => ({ GAP_DESCRIPTION: g })) ?? [],
 267:    NEW_GAPS: postflight?.newGaps?.map((g) => ({ GAP_DESCRIPTION: g })) ?? []
@@ -366,7 +366,7 @@ exec
 540:    parts.push(`**Summary:** ${trimmed}${summary.length > 200 ? '...' : ''}`);
 583:  summary: string;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '720,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '720,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    720	      skillVersion: CONFIG.SKILL_VERSION
    721	    });
    722	  }
@@ -388,7 +388,7 @@ exec
    738	    const followups = observations.filter(o => o.type === 'followup');
    739	    const others = observations.filter(o => o.type !== 'followup');
 exec
-/bin/zsh -lc "rg -n \"function extractFilesFromData|DESCRIPTION|description|Recent commit|modified|updated|fallback\" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function extractFilesFromData|DESCRIPTION|description|Recent commit|modified|updated|fallback\" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 211:    PREFLIGHT_GAPS: preflight?.gaps?.map((g) => ({ GAP_DESCRIPTION: g })) ?? [],
 266:    GAPS_CLOSED: postflight?.gapsClosed?.map((g) => ({ GAP_DESCRIPTION: g })) ?? [],
 267:    NEW_GAPS: postflight?.newGaps?.map((g) => ({ GAP_DESCRIPTION: g })) ?? []
@@ -398,7 +398,7 @@ exec
 555:    items.push({ CONTEXT_ITEM: `Files modified: ${fileList}` });
 806:  // Prevents a random last exchange from becoming the memory's entire description.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Collect Session Data
      3	// ---------------------------------------------------------------
@@ -420,7 +420,7 @@ exec
     19	import { coerceFactsToText } from '../utils/fact-coercion';
     20	import { detectSpecFolder } from '../spec-folder';
 exec
-/bin/zsh -lc 'rg -n "DESCRIPTION|description|fallback|continued work|updated code|recent commit|placeholder|generic|validateDescription|_provenance" .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "DESCRIPTION|description|fallback|continued work|updated code|recent commit|placeholder|generic|validateDescription|_provenance" .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 8:// Extracts file references, descriptions, and observation types from session data
 18:  validateDescription,
 47:  description: string;
@@ -442,7 +442,7 @@ exec
 191:            ...(mergedProvenance ? { _provenance: mergedProvenance } : {}),
 198:        description: cleaned || 'Modified during session',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '1,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Extractor
      3	// ---------------------------------------------------------------
@@ -464,7 +464,7 @@ exec
     19	} from '../utils/file-helpers';
     20	import { getPathBasename } from '../utils/path-utils';
 exec
-/bin/zsh -lc 'rg -n "validateDescription|isDescriptionValid|placeholder|activity-only|semantic|high-confidence|Modified during session|Recent commit|generic|fallback|continued work" .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "validateDescription|isDescriptionValid|placeholder|activity-only|semantic|high-confidence|Modified during session|Recent commit|generic|fallback|continued work" .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 12:export type DescriptionTier = 'placeholder' | 'activity-only' | 'semantic' | 'high-confidence';
 20:  placeholder: 0,
 21:  'activity-only': 1,
@@ -482,7 +482,7 @@ exec
 177:  validateDescription,
 178:  isDescriptionValid,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Helpers
      3	// ---------------------------------------------------------------
@@ -504,8 +504,8 @@ exec
     19	const DESCRIPTION_TIER_ORDER: Record<DescriptionTier, number> = {
     20	  placeholder: 0,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '240,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '440,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '240,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '440,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    240	        } catch (_error: unknown) {
    241	          // Description.json may not exist yet — ignore.
    242	        }
@@ -548,7 +548,7 @@ exec
    458	 */
    459	export function generateFolderDescriptions(specsBasePaths: string[]): DescriptionCache {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '560,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '560,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    560	      }
    561	    }
    562	  }
@@ -570,7 +570,7 @@ exec
    578	  timestamp: string,
    579	): FolderDescription | null {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '338,436p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '338,436p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    338	/**
    339	 * Extract significant keywords from a description string.
    340	 *
@@ -592,29 +592,29 @@ exec
    356	
    357	  const seen = new Set<string>();
 exec
-/bin/zsh -lc 'rg -n "continued work on|continued work|Development session|Session focused on implementing and testing features|Modified during session|description pending|No specific decisions were made|Recent commit:|tracked file history snapshot" .opencode/skill/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:198:        description: cleaned || 'Modified during session',
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:211:      const description = fileInfo.DESCRIPTION || fileInfo.description || 'Modified during session';
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:225:      addFile(fileInfo.path, fileInfo.changes_summary || 'Modified during session', 'Modified');
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:233:        addFile(file, 'Modified during session');
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:242:              addFile(file, 'Modified during session');
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:290:        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:317:        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
-.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:449:        : `Recent commit: ${entry.action} in repository history`;
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:817:    || 'Session focused on implementing and testing features.';
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:840:    || 'Development session';
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:82:| Fallback rate | Contains phrases like "No specific decisions were made" |
-.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:476:  let task: string = 'Development session';
-.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:496:  if (task === 'Development session' && questionMessages.length > 0) {
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:84:    MESSAGES: [{ TIMESTAMP: '2026-03-06T09:00:00Z', ROLE: 'User', CONTENT: 'Development session', TOOL_CALLS: [] }],
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:208:        userPrompts: [{ prompt: 'Development session', timestamp: '2026-03-06T09:00:00Z' }],
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:214:      userPrompts: [{ prompt: 'Development session', timestamp: '2026-03-06T09:01:00Z' }],
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:229:    task: 'Development session',
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:442:  'Development session',
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:475:    expect(shouldEnrichTaskFromSpecTitle('Development session', 'file', null)).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:476:    expect(shouldEnrichTaskFromSpecTitle('Development session', 'opencode-capture', '/tmp/context.json')).toBe(false);
+/bin/zsh -lc 'rg -n "continued work on|continued work|Development session|Session focused on implementing and testing features|Modified during session|description pending|No specific decisions were made|Recent commit:|tracked file history snapshot" .opencode/skills/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:198:        description: cleaned || 'Modified during session',
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:211:      const description = fileInfo.DESCRIPTION || fileInfo.description || 'Modified during session';
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:225:      addFile(fileInfo.path, fileInfo.changes_summary || 'Modified during session', 'Modified');
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:233:        addFile(file, 'Modified during session');
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:242:              addFile(file, 'Modified during session');
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:290:        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:317:        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
+.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:449:        : `Recent commit: ${entry.action} in repository history`;
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:817:    || 'Session focused on implementing and testing features.';
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:840:    || 'Development session';
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:82:| Fallback rate | Contains phrases like "No specific decisions were made" |
+.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:476:  let task: string = 'Development session';
+.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:496:  if (task === 'Development session' && questionMessages.length > 0) {
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:84:    MESSAGES: [{ TIMESTAMP: '2026-03-06T09:00:00Z', ROLE: 'User', CONTENT: 'Development session', TOOL_CALLS: [] }],
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:208:        userPrompts: [{ prompt: 'Development session', timestamp: '2026-03-06T09:00:00Z' }],
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:214:      userPrompts: [{ prompt: 'Development session', timestamp: '2026-03-06T09:01:00Z' }],
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:229:    task: 'Development session',
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:442:  'Development session',
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:475:    expect(shouldEnrichTaskFromSpecTitle('Development session', 'file', null)).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:476:    expect(shouldEnrichTaskFromSpecTitle('Development session', 'opencode-capture', '/tmp/context.json')).toBe(false);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts | sed -n '380,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts | sed -n '380,500p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    380	      : [];
    381	    const changeScores = new Map(
    382	      Array.from(parseStatScores(projectRoot, revCount > 0 ? getDiffOutput(projectRoot, revCount, '--stat') : '').entries())
@@ -636,7 +636,7 @@ exec
    398	        .filter((commit) => commit.files.length > 0)
    399	      : [];
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '330,530p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '330,530p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    330	    return observation.facts.some((fact) => {
    331	      if (typeof fact !== 'string') {
    332	        return false;
@@ -658,7 +658,7 @@ exec
    348	  return JSON.parse(JSON.stringify(data)) as T;
    349	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts | sed -n '80,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts | sed -n '80,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     80	 * Determine whether a file path is a memory file.
     81	 * Memory files live under any directory segment named "memory".
     82	 */
@@ -680,7 +680,7 @@ exec
     98	  segments.pop();
     99	  return segments.join('/');
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Sufficiency
      3	// ---------------------------------------------------------------
@@ -702,7 +702,7 @@ exec
     19	  /^session context$/i,
     20	  /^implementation$/i,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Scorer
      3	// ---------------------------------------------------------------
@@ -724,7 +724,7 @@ exec
     19	------------------------------------------------------------------*/
     20	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env node
      2	// ---------------------------------------------------------------
      3	// MODULE: Validate Memory Quality
@@ -746,7 +746,7 @@ exec
     19	type ValidationRuleSeverity = 'low' | 'medium' | 'high';
     20	type ValidationDisposition = 'abort_write' | 'write_skip_index' | 'write_and_index';
 exec
-/bin/zsh -lc 'rg -n "FALLBACK_DECISION_REGEX|V4|fallback decision|No specific decisions" .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "FALLBACK_DECISION_REGEX|V4|fallback decision|No specific decisions" .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 17:type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9' | 'V10' | 'V11' | 'V12';
 63:  V4: {
 64:    ruleId: 'V4',
@@ -755,7 +755,7 @@ exec
 491:    ruleId: 'V4',
 493:    message: hasFallbackDecision ? 'fallback decision text present' : 'ok',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '430,530p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '430,530p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    430	  const indexBlockingRuleIds = failedRules.filter((ruleId) => shouldBlockIndex(ruleId, source));
    431	  if (indexBlockingRuleIds.length > 0) {
    432	    return {
@@ -777,29 +777,29 @@ exec
    448	function hasExecutionSignals(content: string): boolean {
    449	  return EXECUTION_SIGNAL_PATTERNS.some((pattern) => pattern.test(content));
 exec
-/bin/zsh -lc 'rg -n "deriveMemoryDescription|MEMORY_DESCRIPTION|continued work on|continued work|summary missing|fallback" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/loaders/README.md:45:3. Native capture fallback order:
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:3:description: "Shell-based quality KPI reporter that scans memory files for placeholders, fallback content, AI contamination and missing trigger phrases."
-.opencode/skill/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
-.opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh:47:        # Pattern 5: Anchored inline fallback
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:82:      'has_fallback_decision',
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:115:      qualityFlags.add('has_fallback_decision');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:56:  | 'has_fallback_decision'
-.opencode/skill/system-spec-kit/shared/types.ts:208:   * - `'fallback'` — best-effort score from degraded search path
-.opencode/skill/system-spec-kit/shared/types.ts:214:   * `'rrf'`, `'cross-encoder'`, `'fallback'`.
-.opencode/skill/system-spec-kit/shared/types.ts:216:  scoringMethod?: 'vector' | 'bm25' | 'hybrid' | 'rrf' | 'cross-encoder' | 'fallback';
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:18:const fallbackRegex = /No (specific )?decisions were made/i;
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:68:  fallback: 0,
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:76:  if (fallbackRegex.test(content)) totals.fallback += 1;
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:88:    fallbackRate: rate(totals.fallback),
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:96:console.error(`KPI Summary: files=${totals.total}, placeholder=${output.rates.placeholderRate}%, fallback=${output.rates.fallbackRate}%, contamination=${output.rates.contaminationRate}%, empty_trigger=${output.rates.emptyTriggerPhrasesRate}%`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:35:import { deriveMemoryDescription } from '../utils/memory-frontmatter';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:557:  const fallback = readableFolder.length > 0 ? `${readableFolder} session ${_date}` : `Session ${_date}`;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:558:  return truncateMemoryTitle(fallback);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:740:function readNumber(source: Record<string, unknown> | null | undefined, fallback: number, ...keys: string[]): number {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:742:    return fallback;
+/bin/zsh -lc 'rg -n "deriveMemoryDescription|MEMORY_DESCRIPTION|continued work on|continued work|summary missing|fallback" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/loaders/README.md:45:3. Native capture fallback order:
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:3:description: "Shell-based quality KPI reporter that scans memory files for placeholders, fallback content, AI contamination and missing trigger phrases."
+.opencode/skills/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
+.opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh:47:        # Pattern 5: Anchored inline fallback
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:82:      'has_fallback_decision',
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:115:      qualityFlags.add('has_fallback_decision');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:56:  | 'has_fallback_decision'
+.opencode/skills/system-spec-kit/shared/types.ts:208:   * - `'fallback'` — best-effort score from degraded search path
+.opencode/skills/system-spec-kit/shared/types.ts:214:   * `'rrf'`, `'cross-encoder'`, `'fallback'`.
+.opencode/skills/system-spec-kit/shared/types.ts:216:  scoringMethod?: 'vector' | 'bm25' | 'hybrid' | 'rrf' | 'cross-encoder' | 'fallback';
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:18:const fallbackRegex = /No (specific )?decisions were made/i;
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:68:  fallback: 0,
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:76:  if (fallbackRegex.test(content)) totals.fallback += 1;
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:88:    fallbackRate: rate(totals.fallback),
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:96:console.error(`KPI Summary: files=${totals.total}, placeholder=${output.rates.placeholderRate}%, fallback=${output.rates.fallbackRate}%, contamination=${output.rates.contaminationRate}%, empty_trigger=${output.rates.emptyTriggerPhrasesRate}%`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:35:import { deriveMemoryDescription } from '../utils/memory-frontmatter';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:557:  const fallback = readableFolder.length > 0 ? `${readableFolder} session ${_date}` : `Session ${_date}`;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:558:  return truncateMemoryTitle(fallback);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:740:function readNumber(source: Record<string, unknown> | null | undefined, fallback: number, ...keys: string[]): number {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:742:    return fallback;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Frontmatter
      3	// ---------------------------------------------------------------
@@ -821,7 +821,7 @@ exec
     19	  return value
     20	    .replace(/<!--[\s\S]*?-->/g, ' ')
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Generate Description
      3	// ───────────────────────────────────────────────────────────────
@@ -843,7 +843,7 @@ exec
     19	  loadPerFolderDescription,
     20	  extractKeywords,
 exec
-/bin/zsh -lc "rg -n \"enhancedFiles|effectiveFiles|reduceMemoryTree|enhanceFilesWithSemanticDescriptions|_provenance|FILES:\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"enhancedFiles|effectiveFiles|reduceMemoryTree|enhanceFilesWithSemanticDescriptions|_provenance|FILES:\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 21:  enhanceFilesWithSemanticDescriptions,
 203:function ensureMinSemanticTopics(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
 214:  const fileTokens = enhancedFiles
@@ -865,7 +865,7 @@ exec
 1983:      FILES: effectiveFiles,
 1984:      HAS_FILES: effectiveFiles.length > 0,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1760,1855p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1760,1855p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1760	
   1761	  // Patch TOOL_COUNT for enriched stateless saves so V7 does not flag
   1762	  // Synthetic file paths as contradictory with zero tool usage.
@@ -887,7 +887,7 @@ exec
   1778	  log('Step 7.5: Generating semantic summary...');
   1779	
 exec
-/bin/zsh -lc 'rg -n "function extractFileChanges|description|Modified during session|fallback|Updated code|changed" .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "function extractFileChanges|description|Modified during session|fallback|Updated code|changed" .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 44:  description: string;
 59:  description: string;
 200:function extractFileChanges(messages: SemanticMessage[], observations: SemanticObservation[] = []): Map<string, FileChangeInfo> {
@@ -909,7 +909,7 @@ exec
 323:  if (!description || description.length < 8) return false;
 333:    /^changed?$/i,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '180,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '180,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    180	    const type: MessageType = classifyMessage(content);
    181	    const bucket = classified.get(type);
    182	    if (bucket) bucket.push({
@@ -931,7 +931,7 @@ exec
    198	}
    199	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '370,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '370,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    370	  }
    371	
    372	  const withPatterns: RegExp[] = [
@@ -953,7 +953,7 @@ exec
    388	      if (desc.length >= DESC_MIN_LENGTH && desc.length <= DESC_MAX_LENGTH && !/^(the|a|an)\s/i.test(desc)) {
    389	        return desc;
 exec
-/bin/zsh -lc "rg -n \"hasMeaningfulFileDescription|PLACEHOLDER_FILE_PATTERNS|files\\.|meaningful file|evidenceCounts\" .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"hasMeaningfulFileDescription|PLACEHOLDER_FILE_PATTERNS|files\\.|meaningful file|evidenceCounts\" .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 51:const PLACEHOLDER_FILE_PATTERNS = [
 111:  evidenceCounts: MemorySufficiencyEvidenceCounts;
 181:function hasMeaningfulFileDescription(file: MemoryEvidenceFile): boolean {
@@ -961,7 +961,7 @@ exec
 309:    if (hasMeaningfulFileDescription(file)) {
 393:    evidenceCounts: counts,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	    currentBody.push(trimmed);
    261	  }
    262	
@@ -983,34 +983,34 @@ exec
    278	}
    279	
 exec
-/bin/zsh -lc "rg -n \"indexMemory\\(|embeddingSections|buildWeightedDocumentSections|WeightedDocumentSections|files:\\s*effectiveFiles|MEMORY_DESCRIPTION\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/shared/index* .opencode/skill/system-spec-kit/shared/index/*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
-zsh:1: no matches found: .opencode/skill/system-spec-kit/shared/index/*.ts
+/bin/zsh -lc "rg -n \"indexMemory\\(|embeddingSections|buildWeightedDocumentSections|WeightedDocumentSections|files:\\s*effectiveFiles|MEMORY_DESCRIPTION\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/shared/index* .opencode/skills/system-spec-kit/shared/index/*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
+zsh:1: no matches found: .opencode/skills/system-spec-kit/shared/index/*.ts
 codex
 I hit a shell glob miss while tracing embedding-section construction; I’m rerunning that search with safe path quoting to map exactly how file descriptions enter index embeddings.
 exec
-/bin/zsh -lc "rg -n \"indexMemory\\(|embeddingSections|buildWeightedDocumentSections|WeightedDocumentSections|MEMORY_DESCRIPTION|buildWeightedDocumentText\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:22:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:54:async function indexMemory(
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:61:  embeddingSections: WeightedDocumentSections | null = null,
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:64:  const weightedEmbeddingInput = buildWeightedDocumentText(
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:65:    embeddingSections ?? {
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:126:  const memoryId: number = vectorIndex.indexMemory({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2041:      MEMORY_DESCRIPTION: memoryDescription,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2383:        const embeddingSections = buildWeightedEmbeddingSections(implSummary, files[ctxFilename]);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2384:        memoryId = await indexMemory(
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2391:          embeddingSections
-.opencode/skill/system-spec-kit/shared/index.ts:70:export type { WeightedDocumentSections } from './embeddings';
-.opencode/skill/system-spec-kit/shared/index.ts:90:  buildWeightedDocumentText,
-.opencode/skill/system-spec-kit/shared/embeddings.ts:25:export interface WeightedDocumentSections {
-.opencode/skill/system-spec-kit/shared/embeddings.ts:147:function buildGeneralWeightedBlock(sections: WeightedDocumentSections): string {
-.opencode/skill/system-spec-kit/shared/embeddings.ts:152:function buildDecisionWeightedBlock(sections: WeightedDocumentSections): string {
-.opencode/skill/system-spec-kit/shared/embeddings.ts:156:function buildOutcomeWeightedBlock(sections: WeightedDocumentSections): string {
-.opencode/skill/system-spec-kit/shared/embeddings.ts:160:function buildTitleWeightedBlock(sections: WeightedDocumentSections): string {
-.opencode/skill/system-spec-kit/shared/embeddings.ts:209:function buildWeightedDocumentText(
-.opencode/skill/system-spec-kit/shared/embeddings.ts:210:  sections: WeightedDocumentSections,
-.opencode/skill/system-spec-kit/shared/embeddings.ts:760:  buildWeightedDocumentText,
+/bin/zsh -lc "rg -n \"indexMemory\\(|embeddingSections|buildWeightedDocumentSections|WeightedDocumentSections|MEMORY_DESCRIPTION|buildWeightedDocumentText\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:22:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:54:async function indexMemory(
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:61:  embeddingSections: WeightedDocumentSections | null = null,
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:64:  const weightedEmbeddingInput = buildWeightedDocumentText(
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:65:    embeddingSections ?? {
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:126:  const memoryId: number = vectorIndex.indexMemory({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2041:      MEMORY_DESCRIPTION: memoryDescription,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2383:        const embeddingSections = buildWeightedEmbeddingSections(implSummary, files[ctxFilename]);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2384:        memoryId = await indexMemory(
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2391:          embeddingSections
+.opencode/skills/system-spec-kit/shared/index.ts:70:export type { WeightedDocumentSections } from './embeddings';
+.opencode/skills/system-spec-kit/shared/index.ts:90:  buildWeightedDocumentText,
+.opencode/skills/system-spec-kit/shared/embeddings.ts:25:export interface WeightedDocumentSections {
+.opencode/skills/system-spec-kit/shared/embeddings.ts:147:function buildGeneralWeightedBlock(sections: WeightedDocumentSections): string {
+.opencode/skills/system-spec-kit/shared/embeddings.ts:152:function buildDecisionWeightedBlock(sections: WeightedDocumentSections): string {
+.opencode/skills/system-spec-kit/shared/embeddings.ts:156:function buildOutcomeWeightedBlock(sections: WeightedDocumentSections): string {
+.opencode/skills/system-spec-kit/shared/embeddings.ts:160:function buildTitleWeightedBlock(sections: WeightedDocumentSections): string {
+.opencode/skills/system-spec-kit/shared/embeddings.ts:209:function buildWeightedDocumentText(
+.opencode/skills/system-spec-kit/shared/embeddings.ts:210:  sections: WeightedDocumentSections,
+.opencode/skills/system-spec-kit/shared/embeddings.ts:760:  buildWeightedDocumentText,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2336,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2336,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2336	    log(`  - ${filename} (${lines} lines)`);
   2337	  }
   2338	  log();
@@ -1032,18 +1032,18 @@ exec
   2354	  ): Promise<void> => {
   2355	    indexingStatus = {
 exec
-/bin/zsh -lc "rg -n \"function buildWeightedEmbeddingSections|buildWeightedEmbeddingSections\\(\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function buildWeightedEmbeddingSections|buildWeightedEmbeddingSections\\(\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 2383:        const embeddingSections = buildWeightedEmbeddingSections(implSummary, files[ctxFilename]);
 exec
-/bin/zsh -lc 'rg -n "buildWeightedEmbeddingSections" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:718:function buildWeightedEmbeddingSections(
-.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:761:  buildWeightedEmbeddingSections,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:58:  buildWeightedEmbeddingSections,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2383:        const embeddingSections = buildWeightedEmbeddingSections(implSummary, files[ctxFilename]);
+/bin/zsh -lc 'rg -n "buildWeightedEmbeddingSections" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:718:function buildWeightedEmbeddingSections(
+.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:761:  buildWeightedEmbeddingSections,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:58:  buildWeightedEmbeddingSections,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2383:        const embeddingSections = buildWeightedEmbeddingSections(implSummary, files[ctxFilename]);
 codex
 I’ve confirmed indexing uses `buildWeightedEmbeddingSections(...)` from `semantic-summarizer`; I’m checking that function now to verify whether fallback descriptions propagate into embedding text or only frontmatter/trigger fields.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '680,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '680,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    680	      ? (headings[index + 1].index ?? markdown.length)
    681	      : markdown.length;
    682	    const content = markdown.slice(contentStart, end).trim();
@@ -1065,7 +1065,7 @@ exec
    698	    .filter((line) => /^[-*]\s+/.test(line))
    699	    .map((line) => line.replace(/^[-*]\s+/, '').trim())
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '468,680p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts | sed -n '468,680p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    468	function generateImplementationSummary(messages: SemanticMessage[], observations: SemanticObservation[] = []): ImplementationSummary {
    469	  const classified: Map<MessageType, SemanticMessage[]> = classifyMessages(messages);
    470	  const fileChanges: Map<string, FileChangeInfo> = extractFileChanges(messages, observations);
@@ -1087,7 +1087,7 @@ exec
    486	    for (const pattern of taskPatterns) {
    487	      const match: RegExpMatchArray | null = firstIntent.match(pattern);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env bash
      2	# ───────────────────────────────────────────────────────────────
      3	# SCRIPT: Quality KPI
@@ -1109,29 +1109,29 @@ exec
     19	const contaminationRegex = /\b(I'll execute this step by step|Let me analyze|I'll now|Step\s+\d+:|Let me check|I need to|I'll start by)\b/i;
     20	
 exec
-/bin/zsh -lc "rg -n \"Modified during session|Recent commit:|Uncommitted:|Session focused on implementing and testing features\\.|Development session|Session context preserved for future continuation\\.|\\|\\|\\s*'["'^'"']*'\" .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts:121:  return 'Session context preserved for future continuation.';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:203:    decisionText = decisionItem.decision || decisionItem.title || 'Unknown decision';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:372:    FILE_PATH: (file.FILE_PATH || file.path || '') as string,
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:373:    DESCRIPTION: (file.DESCRIPTION || file.description || 'Modified during session') as string,
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:469:        filePath = entry.path || '';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:470:        changesSummary = entry.changes_summary || '';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:475:        const basename = filePath.replace(/\\/g, '/').split('/').pop()?.replace(/\.[^.]+$/, '') || '';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:521:    prompt: sessionSummary || 'Manual context save',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:526:    request: sessionSummary || 'Manual context save',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:527:    learning: sessionSummary || ''
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:650:  const toolName = tool.tool || 'unknown';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:658:  const filePath = input.filePath || input.file_path || input.path || '';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:683:      return shortPath ? `Bash ${shortPath}` : (desc || cmd || outputSummary || 'Bash command');
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:839:    matchesSpecAffinityText([exchange.userInput || '', exchange.assistantResponse || ''].join(' '), specAffinityTargets)
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:878:      title: tool.title || '',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:879:      output: tool.output || '',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:924:    prompt: ex.userInput || '',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1052:          || matchesSpecAffinityText([ex.userInput || '', ex.assistantResponse || ''].join(' '), specAffinityTargets);
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1089:    request: contextExchanges[0].userInput || sessionTitle || 'OpenCode session',
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1090:    learning: contextExchanges[contextExchanges.length - 1]?.assistantResponse || ''
+/bin/zsh -lc "rg -n \"Modified during session|Recent commit:|Uncommitted:|Session focused on implementing and testing features\\.|Development session|Session context preserved for future continuation\\.|\\|\\|\\s*'["'^'"']*'\" .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts:121:  return 'Session context preserved for future continuation.';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:203:    decisionText = decisionItem.decision || decisionItem.title || 'Unknown decision';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:372:    FILE_PATH: (file.FILE_PATH || file.path || '') as string,
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:373:    DESCRIPTION: (file.DESCRIPTION || file.description || 'Modified during session') as string,
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:469:        filePath = entry.path || '';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:470:        changesSummary = entry.changes_summary || '';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:475:        const basename = filePath.replace(/\\/g, '/').split('/').pop()?.replace(/\.[^.]+$/, '') || '';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:521:    prompt: sessionSummary || 'Manual context save',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:526:    request: sessionSummary || 'Manual context save',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:527:    learning: sessionSummary || ''
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:650:  const toolName = tool.tool || 'unknown';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:658:  const filePath = input.filePath || input.file_path || input.path || '';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:683:      return shortPath ? `Bash ${shortPath}` : (desc || cmd || outputSummary || 'Bash command');
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:839:    matchesSpecAffinityText([exchange.userInput || '', exchange.assistantResponse || ''].join(' '), specAffinityTargets)
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:878:      title: tool.title || '',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:879:      output: tool.output || '',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:924:    prompt: ex.userInput || '',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1052:          || matchesSpecAffinityText([ex.userInput || '', ex.assistantResponse || ''].join(' '), specAffinityTargets);
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1089:    request: contextExchanges[0].userInput || sessionTitle || 'OpenCode session',
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1090:    learning: contextExchanges[contextExchanges.length - 1]?.assistantResponse || ''
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/embeddings.ts | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/embeddings.ts | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Embeddings
      3	// ---------------------------------------------------------------
@@ -1153,29 +1153,29 @@ exec
     19	  ApiKeyValidationResult,
     20	  TaskPrefixMap,
 exec
-/bin/zsh -lc "rg -n \"Phase 006|phase 006|Phase 014|phase 014|F-06|F-14|description enrichment|per-folder description|description\\.json\" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:36: * Per-folder description stored as `description.json` inside each spec folder.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:232:        // Also check description.json mtime so aggregate cache staleness
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:233:        // Detects per-folder description edits (CHK-024 / REQ-008).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:235:          const descPath = path.join(discoveredFolder.folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:472:      const descPath = path.join(discoveredFolder.folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474:      // Prefer per-folder description.json if fresh and non-empty. Blank-description edge
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:540: * F-39: Batch repair stale description.json files.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:630: * Preserves memorySequence and memoryNameHistory from existing description.json.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:673:  // Preserve existing tracking data if description.json already exists
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:692: * Load a PerFolderDescription from `description.json` in the given folder.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:699:  const descPath = path.join(folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:747: * Save a PerFolderDescription to `description.json` using atomic write.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:761:  const descPath = path.join(folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:783: * Check whether a per-folder description.json is stale.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:784: * Compares description.json mtime vs spec.md mtime.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:785: * Missing description.json = stale.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:788: * @returns true if description.json is missing or older than spec.md.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:791:  const descPath = path.join(folderPath, 'description.json');
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:811:  // F-14: Runtime guards — validate capture shape before processing
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:234:  const descriptionDoc = readFileSafe(path.join(resolvedSpecFolderPath, 'description.json'));
+/bin/zsh -lc "rg -n \"Phase 006|phase 006|Phase 014|phase 014|F-06|F-14|description enrichment|per-folder description|description\\.json\" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:36: * Per-folder description stored as `description.json` inside each spec folder.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:232:        // Also check description.json mtime so aggregate cache staleness
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:233:        // Detects per-folder description edits (CHK-024 / REQ-008).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:235:          const descPath = path.join(discoveredFolder.folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:472:      const descPath = path.join(discoveredFolder.folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474:      // Prefer per-folder description.json if fresh and non-empty. Blank-description edge
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:540: * F-39: Batch repair stale description.json files.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:630: * Preserves memorySequence and memoryNameHistory from existing description.json.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:673:  // Preserve existing tracking data if description.json already exists
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:692: * Load a PerFolderDescription from `description.json` in the given folder.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:699:  const descPath = path.join(folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:747: * Save a PerFolderDescription to `description.json` using atomic write.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:761:  const descPath = path.join(folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:783: * Check whether a per-folder description.json is stale.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:784: * Compares description.json mtime vs spec.md mtime.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:785: * Missing description.json = stale.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:788: * @returns true if description.json is missing or older than spec.md.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:791:  const descPath = path.join(folderPath, 'description.json');
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:811:  // F-14: Runtime guards — validate capture shape before processing
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:234:  const descriptionDoc = readFileSafe(path.join(resolvedSpecFolderPath, 'description.json'));
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/description-enrichment.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/description-enrichment.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import { describe, expect, it } from 'vitest';
      2	
      3	import { scoreMemoryQuality } from '../core/quality-scorer';
@@ -1197,29 +1197,29 @@ exec
     19	
     20	describe('description enrichment', () => {
 exec
-/bin/zsh -lc "rg -n \"extractDescription|description\\.json|fallback to folder name|blank-description|perFolderFresh|findRelevantFolders\" .opencode/skill/system-spec-kit/mcp_server/tests .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:36: * Per-folder description stored as `description.json` inside each spec folder.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:232:        // Also check description.json mtime so aggregate cache staleness
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:235:          const descPath = path.join(discoveredFolder.folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270:export function extractDescription(specContent: string): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394:export function findRelevantFolders(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:472:      const descPath = path.join(discoveredFolder.folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474:      // Prefer per-folder description.json if fresh and non-empty. Blank-description edge
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:477:      const perFolderFresh = perFolder && !isPerFolderDescriptionStale(discoveredFolder.folderPath);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:478:      if (perFolderFresh && perFolder.description.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:493:      if (descExists && (!perFolderFresh || (perFolder && perFolder.description.trim().length === 0))) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:514:      } else if (perFolderFresh) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:540: * F-39: Batch repair stale description.json files.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:588:  const rawDescription = extractDescription(content);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:630: * Preserves memorySequence and memoryNameHistory from existing description.json.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:657:  const description = extractDescription(content);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:673:  // Preserve existing tracking data if description.json already exists
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:692: * Load a PerFolderDescription from `description.json` in the given folder.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:699:  const descPath = path.join(folderPath, 'description.json');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:747: * Save a PerFolderDescription to `description.json` using atomic write.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:761:  const descPath = path.join(folderPath, 'description.json');
+/bin/zsh -lc "rg -n \"extractDescription|description\\.json|fallback to folder name|blank-description|perFolderFresh|findRelevantFolders\" .opencode/skills/system-spec-kit/mcp_server/tests .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:36: * Per-folder description stored as `description.json` inside each spec folder.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:232:        // Also check description.json mtime so aggregate cache staleness
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:235:          const descPath = path.join(discoveredFolder.folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270:export function extractDescription(specContent: string): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394:export function findRelevantFolders(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:472:      const descPath = path.join(discoveredFolder.folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474:      // Prefer per-folder description.json if fresh and non-empty. Blank-description edge
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:477:      const perFolderFresh = perFolder && !isPerFolderDescriptionStale(discoveredFolder.folderPath);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:478:      if (perFolderFresh && perFolder.description.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:493:      if (descExists && (!perFolderFresh || (perFolder && perFolder.description.trim().length === 0))) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:514:      } else if (perFolderFresh) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:540: * F-39: Batch repair stale description.json files.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:588:  const rawDescription = extractDescription(content);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:630: * Preserves memorySequence and memoryNameHistory from existing description.json.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:657:  const description = extractDescription(content);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:673:  // Preserve existing tracking data if description.json already exists
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:692: * Load a PerFolderDescription from `description.json` in the given folder.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:699:  const descPath = path.join(folderPath, 'description.json');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:747: * Save a PerFolderDescription to `description.json` using atomic write.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:761:  const descPath = path.join(folderPath, 'description.json');
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts | sed -n '590,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-integration.vitest.ts | sed -n '590,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    590	
    591	/* ═══════════════════════════════════════════════════════════════
    592	   7. Per-Folder Description Integration
@@ -1241,7 +1241,7 @@ exec
    608	    const specDir = createSpecFolder(tmpDir, '001-auth', '# Authentication System');
    609	
 exec
-/bin/zsh -lc "rg -n \"folder name|slug|fallback|empty|extractDescription\\('---|returns ''|spec.md has no\" .opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"folder name|slug|fallback|empty|extractDescription\\('---|returns ''|spec.md has no\" .opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 23:  slugifyFolderName,
 57:  it('handles empty string input', () => {
 93:  it('returns empty string for frontmatter-only content', () => {
@@ -1265,7 +1265,7 @@ exec
 codex
 I’m now validating the enrichment source itself (`spec-folder-extractor`/`git-context-extractor`) so we can distinguish real description upgrades from placeholder replacements and quantify where generic text still leaks through.
 exec
-/bin/zsh -lc "rg -n \"FILES|DESCRIPTION|summary|triggerPhrases|decisions|fallback|description pending|Modified during session|_provenance|spec-folder\" .opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"FILES|DESCRIPTION|summary|triggerPhrases|decisions|fallback|description pending|Modified during session|_provenance|spec-folder\" .opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 31:    _provenance: 'spec-folder';
 34:  FILES: Array<{ FILE_PATH: string; DESCRIPTION: string; _provenance: 'spec-folder' }>;
 36:  summary: string;
@@ -1287,8 +1287,8 @@ exec
 320:    spec.summary,
 321:    plan.summary,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '300,410p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '150,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '300,410p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts | sed -n '150,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    150	function getSubsection(content: string, headingPattern: RegExp): string {
    151	  const lines = content.split('\n');
    152	  const start = lines.findIndex((line) => headingPattern.test(line));
@@ -1331,7 +1331,7 @@ exec
    318	    String(description.title || description.name || ''),
    319	    String(description.description || ''),
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/historical-memory-remediation.ts | sed -n '580,700p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/historical-memory-remediation.ts | sed -n '580,700p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    580	  lines.splice(sectionEnd, 0, '', '<!-- /ANCHOR:metadata -->');
    581	
    582	  return lines.join('\n');
@@ -1353,24 +1353,24 @@ exec
    598	  if (
    599	    totalMessages !== null &&
 exec
-/bin/zsh -lc 'rg -n "modified during session|recent commit|fallback data|placeholder|session focused on implementing and testing features|development session|memory dashboard|context template|session summary" .opencode/skill/system-spec-kit/shared/trigger-extractor.ts .opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:64:  'placeholder data',
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:65:  'fallback data',
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:69:  'placeholder',
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:138:  'placeholder',
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:168:  const placeholderHits = PLACEHOLDER_INDICATORS.filter((indicator) => lowerText.includes(indicator));
-.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:169:  return placeholderHits.length >= 2;
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:50:  'placeholder', 'simulation', 'simulated', 'fallback', 'unknown',
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:182:  'simulation', 'placeholder', 'fallback', 'mock', 'stub', 'fake',
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:217:    /\b(simulation|placeholder|fallback|mock|stub|fake|debug|verbose|silent|readonly|disabled|enabled|pending|stale|cached|expired|deprecated|legacy)\s+(mode|data|value|state|behavior|response|output|result|content)\b/gi,
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:218:    /\b(mode|data|value|state|behavior|response|output|result|content)\s+(simulation|placeholder|fallback|mock|stub|fake|debug|verbose|silent|readonly|disabled|enabled|pending|stale|cached|expired|deprecated|legacy)\b/gi,
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:544:  const placeholderIndicators: string[] = [
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:547:    'placeholder data',
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:548:    'fallback data',
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:554:  const placeholderCount = placeholderIndicators.filter(p => lowerText.includes(p)).length;
-.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:555:  if (placeholderCount >= 2) {
+/bin/zsh -lc 'rg -n "modified during session|recent commit|fallback data|placeholder|session focused on implementing and testing features|development session|memory dashboard|context template|session summary" .opencode/skills/system-spec-kit/shared/trigger-extractor.ts .opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:64:  'placeholder data',
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:65:  'fallback data',
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:69:  'placeholder',
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:138:  'placeholder',
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:168:  const placeholderHits = PLACEHOLDER_INDICATORS.filter((indicator) => lowerText.includes(indicator));
+.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:169:  return placeholderHits.length >= 2;
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:50:  'placeholder', 'simulation', 'simulated', 'fallback', 'unknown',
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:182:  'simulation', 'placeholder', 'fallback', 'mock', 'stub', 'fake',
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:217:    /\b(simulation|placeholder|fallback|mock|stub|fake|debug|verbose|silent|readonly|disabled|enabled|pending|stale|cached|expired|deprecated|legacy)\s+(mode|data|value|state|behavior|response|output|result|content)\b/gi,
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:218:    /\b(mode|data|value|state|behavior|response|output|result|content)\s+(simulation|placeholder|fallback|mock|stub|fake|debug|verbose|silent|readonly|disabled|enabled|pending|stale|cached|expired|deprecated|legacy)\b/gi,
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:544:  const placeholderIndicators: string[] = [
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:547:    'placeholder data',
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:548:    'fallback data',
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:554:  const placeholderCount = placeholderIndicators.filter(p => lowerText.includes(p)).length;
+.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:555:  if (placeholderCount >= 2) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/trigger-extractor.ts | sed -n '520,575p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/trigger-extractor.ts | sed -n '520,575p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    520	    const words = candidate.phrase.split(' ');
    521	    return !words.every((word: string) => STOP_WORDS_TECH.has(word));
    522	  });
@@ -1392,7 +1392,7 @@ exec
    538	
    539	  if (text.length < CONFIG.MIN_CONTENT_LENGTH) {
 exec
-/bin/zsh -lc "rg -n \"STOP_WORDS_TECH|stop words|modified|session|commit|recent\" .opencode/skill/system-spec-kit/shared/trigger-extractor.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"STOP_WORDS_TECH|stop words|modified|session|commit|recent\" .opencode/skills/system-spec-kit/shared/trigger-extractor.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 20:/** Defines stop words english. */
 37:/** Defines stop words tech. */
 38:export const STOP_WORDS_TECH: Set<string> = new Set([
@@ -1404,7 +1404,7 @@ exec
 517:/** Filter out phrases composed entirely of tech stop words */
 521:    return !words.every((word: string) => STOP_WORDS_TECH.has(word));
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/trigger-extractor.ts | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/trigger-extractor.ts | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Trigger Extractor
      3	// ---------------------------------------------------------------
@@ -1426,7 +1426,7 @@ exec
     19	
     20	/** Defines stop words english. */
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '130,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '130,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    130	    messageCount: number;
    131	    /** Number of decisions extracted. */
    132	    decisionCount: number;
@@ -1448,7 +1448,7 @@ exec
    148	const WORKFLOW_ANY_HTML_TAG_RE = /<\/?\s*[A-Za-z][\w:-]*(?:\s[^<>]*?)?\s*\/?>/g;
    149	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '940,1010p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | sed -n '940,1010p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    940	      saveDescriptionCache(fresh, cachePath);
    941	    } catch (_error: unknown) {
    942	      // Cache write failure — still return the generated cache
@@ -1470,106 +1470,106 @@ exec
    958	 * @returns The best-matching specFolder path, or null if none meets threshold.
    959	 */
 exec
-/bin/zsh -lc "rg -n \"continued work on|continued work\" .opencode/skill/system-spec-kit | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"continued work on|continued work\" .opencode/skills/system-spec-kit | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 codex
 **Q12 Audit Results**
 
 1. **Description Data Flow (Generate → Score → Index)**
 1. Generation:
-- File descriptions are collected via `collect-session-data` calling `extractFilesFromData` ([collect-session-data.ts:34](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:34), [file-extractor.ts:96](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:96)).
-- Stateless enrichment upgrades short file descriptions from git (`desc.length < 20`) in workflow ([workflow.ts:1208](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1208)).
-- Git context can synthesize descriptions when commit subjects are missing ([git-context-extractor.ts:438](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:438)).
-- Per-folder descriptions are produced from `spec.md` heading/problem/first-line and cached in `description.json`; stale/corrupt entries fall back to spec extraction ([folder-discovery.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270), [folder-discovery.ts:459](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:459)).
+- File descriptions are collected via `collect-session-data` calling `extractFilesFromData` ([collect-session-data.ts:34](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:34), [file-extractor.ts:96](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:96)).
+- Stateless enrichment upgrades short file descriptions from git (`desc.length < 20`) in workflow ([workflow.ts:1208](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1208)).
+- Git context can synthesize descriptions when commit subjects are missing ([git-context-extractor.ts:438](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:438)).
+- Per-folder descriptions are produced from `spec.md` heading/problem/first-line and cached in `description.json`; stale/corrupt entries fall back to spec extraction ([folder-discovery.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270), [folder-discovery.ts:459](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:459)).
 1. Scoring:
-- Quality scorer classifies each file description (`placeholder/activity-only/semantic/high-confidence`) and applies provenance weighting ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:122)).
-- Placeholder/generic patterns are centrally defined in validator rules ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:26), [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:121)).
-- Workflow runs both v2 and canonical scorer before gating/indexing ([workflow.ts:2104](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2104), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2183)).
+- Quality scorer classifies each file description (`placeholder/activity-only/semantic/high-confidence`) and applies provenance weighting ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:122)).
+- Placeholder/generic patterns are centrally defined in validator rules ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:26), [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:121)).
+- Workflow runs both v2 and canonical scorer before gating/indexing ([workflow.ts:2104](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2104), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2183)).
 1. Indexing:
-- Embeddings are built from weighted sections, not raw frontmatter (`stripFrontmatter`), and include summary file descriptions in `general` ([semantic-summarizer.ts:718](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:718), [semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:734), [memory-indexer.ts:64](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:64)).
-- Trigger phrases for index metadata are pre-extracted and can include file descriptions ([workflow.ts:1921](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1921), [memory-indexer.ts:82](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:82)).
-- Folder search relevance uses per-folder `description` + `keywords` with substring fallback matching ([folder-discovery.ts:394](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394), [folder-discovery.ts:421](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:421)).
+- Embeddings are built from weighted sections, not raw frontmatter (`stripFrontmatter`), and include summary file descriptions in `general` ([semantic-summarizer.ts:718](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:718), [semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:734), [memory-indexer.ts:64](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:64)).
+- Trigger phrases for index metadata are pre-extracted and can include file descriptions ([workflow.ts:1921](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1921), [memory-indexer.ts:82](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:82)).
+- Folder search relevance uses per-folder `description` + `keywords` with substring fallback matching ([folder-discovery.ts:394](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394), [folder-discovery.ts:421](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:421)).
 
 2. **Exact Fallback Text / Patterns**
-- `'Modified during session'` ([file-extractor.ts:198](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:198)).
-- `` `Recent commit: ${entry.action} in repository history` `` ([git-context-extractor.ts:449](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:449)).
-- `` `Uncommitted: ${entry.action} during session` `` ([git-context-extractor.ts:442](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:442)).
-- `` `Updated ${humanReadable}` `` semantic fallback ([semantic-summarizer.ts:418](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:418)).
-- `'Session focused on implementing and testing features.'` summary fallback ([collect-session-data.ts:817](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:817)).
-- `'Development session'` quick-summary fallback ([collect-session-data.ts:840](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:840)).
-- `'Session context preserved for future continuation.'` frontmatter-description fallback ([memory-frontmatter.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts:121)).
-- Folder name fallback when spec text extraction is empty ([folder-discovery.ts:590](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:590)).
-- Placeholder classifier patterns explicitly include `description pending`, `modified during session`, `tracked file history snapshot`, and `Recent commit: ... in repository history` ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:26)).
+- `'Modified during session'` ([file-extractor.ts:198](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:198)).
+- `` `Recent commit: ${entry.action} in repository history` `` ([git-context-extractor.ts:449](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:449)).
+- `` `Uncommitted: ${entry.action} during session` `` ([git-context-extractor.ts:442](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:442)).
+- `` `Updated ${humanReadable}` `` semantic fallback ([semantic-summarizer.ts:418](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:418)).
+- `'Session focused on implementing and testing features.'` summary fallback ([collect-session-data.ts:817](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:817)).
+- `'Development session'` quick-summary fallback ([collect-session-data.ts:840](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:840)).
+- `'Session context preserved for future continuation.'` frontmatter-description fallback ([memory-frontmatter.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts:121)).
+- Folder name fallback when spec text extraction is empty ([folder-discovery.ts:590](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:590)).
+- Placeholder classifier patterns explicitly include `description pending`, `modified during session`, `tracked file history snapshot`, and `Recent commit: ... in repository history` ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:26)).
 - Literal `"continued work on"` was not found in current codebase search.
 
 3. **Measured Fallback-Capable Path Ratios (Static branch analysis)**
-- `extractFilesFromData` source branches: fallback-capable in 4/4 source channels; unconditional fallback in 2/4 (`observations.files`, `observations.facts.files`) ([file-extractor.ts:207](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:207), [file-extractor.ts:229](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:229)).
-- Git description synthesis: explicit fallback in 2/4 outcomes (50%) ([git-context-extractor.ts:440](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:440)).
-- Frontmatter description derivation: hard fallback in 1/4 exit paths (25%) ([memory-frontmatter.ts:97](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts:97)).
-- `SUMMARY` derivation in session collector: hard fallback in 1/3 branches (~33%) ([collect-session-data.ts:814](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:814)).
-- Per-folder cache selection by state: only fresh+non-empty `description.json` avoids fallback; stale/blank/corrupt/missing states fall back (4/5 states = 80%) ([folder-discovery.ts:474](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474), [folder-discovery.ts:504](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:504)).
+- `extractFilesFromData` source branches: fallback-capable in 4/4 source channels; unconditional fallback in 2/4 (`observations.files`, `observations.facts.files`) ([file-extractor.ts:207](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:207), [file-extractor.ts:229](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:229)).
+- Git description synthesis: explicit fallback in 2/4 outcomes (50%) ([git-context-extractor.ts:440](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:440)).
+- Frontmatter description derivation: hard fallback in 1/4 exit paths (25%) ([memory-frontmatter.ts:97](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts:97)).
+- `SUMMARY` derivation in session collector: hard fallback in 1/3 branches (~33%) ([collect-session-data.ts:814](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:814)).
+- Per-folder cache selection by state: only fresh+non-empty `description.json` avoids fallback; stale/blank/corrupt/missing states fall back (4/5 states = 80%) ([folder-discovery.ts:474](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474), [folder-discovery.ts:504](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:504)).
 
 4. **Impact Assessment**
-- **Quality score:** Yes, fallback file descriptions are penalized. Placeholder-tier descriptions score `0` before weighting, directly reducing the `fileDescriptions` 0–20 component ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:217](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:217)).
-- **Save/index gate:** Placeholder file descriptions can reduce sufficiency evidence; sufficiency failure blocks indexing/write progression ([memory-sufficiency.ts:181](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:181), [workflow.ts:172](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:172)).
-- **Search relevance:** Yes, generic fallback descriptions can degrade semantic signal because they are injected into weighted embedding text ([semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:734)).  
-  Mitigation exists: trigger extractor filters many artifact/generic tokens ([trigger-extractor.ts:55](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:55)).
-- **Frontmatter generic description fallback:** lower impact on embeddings because frontmatter is stripped in weighted-section construction ([semantic-summarizer.ts:722](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:722)).
+- **Quality score:** Yes, fallback file descriptions are penalized. Placeholder-tier descriptions score `0` before weighting, directly reducing the `fileDescriptions` 0–20 component ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:217](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:217)).
+- **Save/index gate:** Placeholder file descriptions can reduce sufficiency evidence; sufficiency failure blocks indexing/write progression ([memory-sufficiency.ts:181](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:181), [workflow.ts:172](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:172)).
+- **Search relevance:** Yes, generic fallback descriptions can degrade semantic signal because they are injected into weighted embedding text ([semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:734)).  
+  Mitigation exists: trigger extractor filters many artifact/generic tokens ([trigger-extractor.ts:55](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:55)).
+- **Frontmatter generic description fallback:** lower impact on embeddings because frontmatter is stripped in weighted-section construction ([semantic-summarizer.ts:722](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:722)).
 
 5. **Code That Detects/Flags Generic or Fallback Descriptions**
-- Central description classifier + tiers: [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:121).
-- Quality penalties/flags from description quality: [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:122), [quality-scorer.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:219).
-- Sufficiency placeholder-file rejection: [memory-sufficiency.ts:51](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:51), [memory-sufficiency.ts:309](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:309).
-- Fallback-decision detector (separate, not file-description specific): [validate-memory-quality.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:154), [validate-memory-quality.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:489).
-- KPI fallback-rate metric: [quality-kpi.sh:18](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:18), [quality-kpi.sh:76](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:76).
+- Central description classifier + tiers: [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:121).
+- Quality penalties/flags from description quality: [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:122), [quality-scorer.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:219).
+- Sufficiency placeholder-file rejection: [memory-sufficiency.ts:51](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:51), [memory-sufficiency.ts:309](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:309).
+- Fallback-decision detector (separate, not file-description specific): [validate-memory-quality.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:154), [validate-memory-quality.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:489).
+- KPI fallback-rate metric: [quality-kpi.sh:18](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:18), [quality-kpi.sh:76](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:76).
 tokens used
 177,605
 **Q12 Audit Results**
 
 1. **Description Data Flow (Generate → Score → Index)**
 1. Generation:
-- File descriptions are collected via `collect-session-data` calling `extractFilesFromData` ([collect-session-data.ts:34](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:34), [file-extractor.ts:96](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:96)).
-- Stateless enrichment upgrades short file descriptions from git (`desc.length < 20`) in workflow ([workflow.ts:1208](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1208)).
-- Git context can synthesize descriptions when commit subjects are missing ([git-context-extractor.ts:438](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:438)).
-- Per-folder descriptions are produced from `spec.md` heading/problem/first-line and cached in `description.json`; stale/corrupt entries fall back to spec extraction ([folder-discovery.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270), [folder-discovery.ts:459](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:459)).
+- File descriptions are collected via `collect-session-data` calling `extractFilesFromData` ([collect-session-data.ts:34](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:34), [file-extractor.ts:96](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:96)).
+- Stateless enrichment upgrades short file descriptions from git (`desc.length < 20`) in workflow ([workflow.ts:1208](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1208)).
+- Git context can synthesize descriptions when commit subjects are missing ([git-context-extractor.ts:438](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:438)).
+- Per-folder descriptions are produced from `spec.md` heading/problem/first-line and cached in `description.json`; stale/corrupt entries fall back to spec extraction ([folder-discovery.ts:270](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:270), [folder-discovery.ts:459](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:459)).
 1. Scoring:
-- Quality scorer classifies each file description (`placeholder/activity-only/semantic/high-confidence`) and applies provenance weighting ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:122)).
-- Placeholder/generic patterns are centrally defined in validator rules ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:26), [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:121)).
-- Workflow runs both v2 and canonical scorer before gating/indexing ([workflow.ts:2104](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2104), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2183)).
+- Quality scorer classifies each file description (`placeholder/activity-only/semantic/high-confidence`) and applies provenance weighting ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:122)).
+- Placeholder/generic patterns are centrally defined in validator rules ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:26), [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:121)).
+- Workflow runs both v2 and canonical scorer before gating/indexing ([workflow.ts:2104](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2104), [workflow.ts:2183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2183)).
 1. Indexing:
-- Embeddings are built from weighted sections, not raw frontmatter (`stripFrontmatter`), and include summary file descriptions in `general` ([semantic-summarizer.ts:718](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:718), [semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:734), [memory-indexer.ts:64](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:64)).
-- Trigger phrases for index metadata are pre-extracted and can include file descriptions ([workflow.ts:1921](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1921), [memory-indexer.ts:82](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:82)).
-- Folder search relevance uses per-folder `description` + `keywords` with substring fallback matching ([folder-discovery.ts:394](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394), [folder-discovery.ts:421](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:421)).
+- Embeddings are built from weighted sections, not raw frontmatter (`stripFrontmatter`), and include summary file descriptions in `general` ([semantic-summarizer.ts:718](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:718), [semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:734), [memory-indexer.ts:64](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:64)).
+- Trigger phrases for index metadata are pre-extracted and can include file descriptions ([workflow.ts:1921](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1921), [memory-indexer.ts:82](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:82)).
+- Folder search relevance uses per-folder `description` + `keywords` with substring fallback matching ([folder-discovery.ts:394](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:394), [folder-discovery.ts:421](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:421)).
 
 2. **Exact Fallback Text / Patterns**
-- `'Modified during session'` ([file-extractor.ts:198](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:198)).
-- `` `Recent commit: ${entry.action} in repository history` `` ([git-context-extractor.ts:449](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:449)).
-- `` `Uncommitted: ${entry.action} during session` `` ([git-context-extractor.ts:442](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:442)).
-- `` `Updated ${humanReadable}` `` semantic fallback ([semantic-summarizer.ts:418](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:418)).
-- `'Session focused on implementing and testing features.'` summary fallback ([collect-session-data.ts:817](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:817)).
-- `'Development session'` quick-summary fallback ([collect-session-data.ts:840](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:840)).
-- `'Session context preserved for future continuation.'` frontmatter-description fallback ([memory-frontmatter.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts:121)).
-- Folder name fallback when spec text extraction is empty ([folder-discovery.ts:590](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:590)).
-- Placeholder classifier patterns explicitly include `description pending`, `modified during session`, `tracked file history snapshot`, and `Recent commit: ... in repository history` ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:26)).
+- `'Modified during session'` ([file-extractor.ts:198](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:198)).
+- `` `Recent commit: ${entry.action} in repository history` `` ([git-context-extractor.ts:449](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:449)).
+- `` `Uncommitted: ${entry.action} during session` `` ([git-context-extractor.ts:442](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:442)).
+- `` `Updated ${humanReadable}` `` semantic fallback ([semantic-summarizer.ts:418](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:418)).
+- `'Session focused on implementing and testing features.'` summary fallback ([collect-session-data.ts:817](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:817)).
+- `'Development session'` quick-summary fallback ([collect-session-data.ts:840](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:840)).
+- `'Session context preserved for future continuation.'` frontmatter-description fallback ([memory-frontmatter.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts:121)).
+- Folder name fallback when spec text extraction is empty ([folder-discovery.ts:590](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:590)).
+- Placeholder classifier patterns explicitly include `description pending`, `modified during session`, `tracked file history snapshot`, and `Recent commit: ... in repository history` ([file-helpers.ts:26](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:26)).
 - Literal `"continued work on"` was not found in current codebase search.
 
 3. **Measured Fallback-Capable Path Ratios (Static branch analysis)**
-- `extractFilesFromData` source branches: fallback-capable in 4/4 source channels; unconditional fallback in 2/4 (`observations.files`, `observations.facts.files`) ([file-extractor.ts:207](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:207), [file-extractor.ts:229](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:229)).
-- Git description synthesis: explicit fallback in 2/4 outcomes (50%) ([git-context-extractor.ts:440](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts:440)).
-- Frontmatter description derivation: hard fallback in 1/4 exit paths (25%) ([memory-frontmatter.ts:97](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts:97)).
-- `SUMMARY` derivation in session collector: hard fallback in 1/3 branches (~33%) ([collect-session-data.ts:814](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:814)).
-- Per-folder cache selection by state: only fresh+non-empty `description.json` avoids fallback; stale/blank/corrupt/missing states fall back (4/5 states = 80%) ([folder-discovery.ts:474](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474), [folder-discovery.ts:504](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:504)).
+- `extractFilesFromData` source branches: fallback-capable in 4/4 source channels; unconditional fallback in 2/4 (`observations.files`, `observations.facts.files`) ([file-extractor.ts:207](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:207), [file-extractor.ts:229](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:229)).
+- Git description synthesis: explicit fallback in 2/4 outcomes (50%) ([git-context-extractor.ts:440](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts:440)).
+- Frontmatter description derivation: hard fallback in 1/4 exit paths (25%) ([memory-frontmatter.ts:97](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts:97)).
+- `SUMMARY` derivation in session collector: hard fallback in 1/3 branches (~33%) ([collect-session-data.ts:814](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:814)).
+- Per-folder cache selection by state: only fresh+non-empty `description.json` avoids fallback; stale/blank/corrupt/missing states fall back (4/5 states = 80%) ([folder-discovery.ts:474](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:474), [folder-discovery.ts:504](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:504)).
 
 4. **Impact Assessment**
-- **Quality score:** Yes, fallback file descriptions are penalized. Placeholder-tier descriptions score `0` before weighting, directly reducing the `fileDescriptions` 0–20 component ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:217](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:217)).
-- **Save/index gate:** Placeholder file descriptions can reduce sufficiency evidence; sufficiency failure blocks indexing/write progression ([memory-sufficiency.ts:181](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:181), [workflow.ts:172](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:172)).
-- **Search relevance:** Yes, generic fallback descriptions can degrade semantic signal because they are injected into weighted embedding text ([semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:734)).  
-  Mitigation exists: trigger extractor filters many artifact/generic tokens ([trigger-extractor.ts:55](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/trigger-extractor.ts:55)).
-- **Frontmatter generic description fallback:** lower impact on embeddings because frontmatter is stripped in weighted-section construction ([semantic-summarizer.ts:722](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:722)).
+- **Quality score:** Yes, fallback file descriptions are penalized. Placeholder-tier descriptions score `0` before weighting, directly reducing the `fileDescriptions` 0–20 component ([quality-scorer.ts:99](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:99), [quality-scorer.ts:217](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:217)).
+- **Save/index gate:** Placeholder file descriptions can reduce sufficiency evidence; sufficiency failure blocks indexing/write progression ([memory-sufficiency.ts:181](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:181), [workflow.ts:172](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:172)).
+- **Search relevance:** Yes, generic fallback descriptions can degrade semantic signal because they are injected into weighted embedding text ([semantic-summarizer.ts:734](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:734)).  
+  Mitigation exists: trigger extractor filters many artifact/generic tokens ([trigger-extractor.ts:55](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/trigger-extractor.ts:55)).
+- **Frontmatter generic description fallback:** lower impact on embeddings because frontmatter is stripped in weighted-section construction ([semantic-summarizer.ts:722](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:722)).
 
 5. **Code That Detects/Flags Generic or Fallback Descriptions**
-- Central description classifier + tiers: [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:121).
-- Quality penalties/flags from description quality: [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:122), [quality-scorer.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:219).
-- Sufficiency placeholder-file rejection: [memory-sufficiency.ts:51](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:51), [memory-sufficiency.ts:309](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts:309).
-- Fallback-decision detector (separate, not file-description specific): [validate-memory-quality.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:154), [validate-memory-quality.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:489).
-- KPI fallback-rate metric: [quality-kpi.sh:18](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:18), [quality-kpi.sh:76](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:76).
+- Central description classifier + tiers: [file-helpers.ts:121](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:121).
+- Quality penalties/flags from description quality: [quality-scorer.ts:122](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:122), [quality-scorer.ts:219](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:219).
+- Sufficiency placeholder-file rejection: [memory-sufficiency.ts:51](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:51), [memory-sufficiency.ts:309](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:309).
+- Fallback-decision detector (separate, not file-description specific): [validate-memory-quality.ts:154](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:154), [validate-memory-quality.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:489).
+- KPI fallback-rate metric: [quality-kpi.sh:18](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:18), [quality-kpi.sh:76](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:76).

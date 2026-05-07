@@ -25,8 +25,8 @@ After all tasks:
 
 2. Author `implementation-summary.md` at .../002-mcp-stress-cycle-cleanup/implementation-summary.md (L1 template — Status, What Was Built, Verification).
 3. Update `_memory.continuity.recent_action` and `completion_pct` in spec.md frontmatter to 100.
-4. Run validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation --strict`. Capture exit code.
-5. ALSO run validator for THIS sub-phase: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup --strict`.
+4. Run validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation --strict`. Capture exit code.
+5. ALSO run validator for THIS sub-phase: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-mcp-stress-cycle-cleanup --strict`.
 
 ## CRITICAL RULES
 

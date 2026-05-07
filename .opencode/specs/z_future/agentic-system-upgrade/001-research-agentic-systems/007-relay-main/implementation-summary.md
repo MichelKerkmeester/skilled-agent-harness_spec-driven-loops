@@ -69,7 +69,7 @@ Once the ten new iterations were written, the JSONL was parsed to verify all 20 
 | JSONL integrity | PASS - 20 sequential rows, 10 tagged with `phase: 2` |
 | Combined totals | PASS - must=6, should=8, nice=3, rejected=3 |
 | Phase 2 verdict totals | PASS - REFACTOR=3, PIVOT=1, SIMPLIFY=4, KEEP=2 |
-| Strict packet validation | PASS - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
+| Strict packet validation | PASS - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
 | Scope control | PASS - edits stayed inside `007-relay-main/`; `external/` untouched |
 | Memory save | SKIPPED - not performed in this turn |
 <!-- /ANCHOR:verification -->

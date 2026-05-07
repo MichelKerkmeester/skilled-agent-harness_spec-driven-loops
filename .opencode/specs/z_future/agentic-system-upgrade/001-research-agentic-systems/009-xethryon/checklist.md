@@ -50,7 +50,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Strict phase validation passes [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon`]
+- [x] CHK-020 [P0] Strict phase validation passes [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon`]
 - [x] CHK-021 [P0] No whitespace or patch-format issues remain [Evidence: `git diff --check -- .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon` exited 0]
 - [x] CHK-022 [P1] Iteration artifacts stay additive to Phase 1 [Evidence: only `research/iterations/iteration-011.md` through `research/iterations/iteration-020.md` were added]
 - [x] CHK-023 [P1] Refactor / pivot coverage meets the Phase 2 brief [Evidence: the merged dashboard reports REFACTOR 1, SIMPLIFY 3, KEEP 6 across Phase 2]

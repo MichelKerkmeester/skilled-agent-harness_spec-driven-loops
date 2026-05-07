@@ -2,7 +2,7 @@
 
 **GATE 3 PRE-ANSWERED — A (Existing folder)**: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary`. The orchestrator (Claude) has authorized this folder for the entire implementation session. DO NOT re-ask Gate 3. Proceed directly to implementation.
 
-**TARGET AUTHORITY**: All write paths in this prompt are pre-approved under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/`. You may also write runtime code under `.opencode/skill/system-spec-kit/mcp_server/`, scripts under `.opencode/skill/system-spec-kit/scripts/memory/`, tests under `.opencode/skill/system-spec-kit/mcp_server/tests/`, and the listed feature catalog + playbook docs.
+**TARGET AUTHORITY**: All write paths in this prompt are pre-approved under that spec folder AND its declared dependency `specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/`. You may also write runtime code under `.opencode/skills/system-spec-kit/mcp_server/`, scripts under `.opencode/skills/system-spec-kit/scripts/memory/`, tests under `.opencode/skills/system-spec-kit/mcp_server/tests/`, and the listed feature catalog + playbook docs.
 
 You are dispatched to execute the full implementation plan for the **memory-indexer storage-boundary remediation**. This closes one P1 and 13 P2 findings from the 005 deep-review.
 
@@ -25,9 +25,9 @@ Execute Phase 1 → Phase 2 → Phase 3 from the plan sequentially. Each task in
 
 After all tasks complete:
 
-6. Author `implementation-summary.md` at .../001-memory-indexer-storage-boundary/implementation-summary.md using the L2 template (`.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md` if it exists; otherwise the L3 template). Include: What Was Built, How It Was Delivered (Phase 1/2/3), Key Decisions, Verification (commands + exit codes), Known Limitations.
+6. Author `implementation-summary.md` at .../001-memory-indexer-storage-boundary/implementation-summary.md using the L2 template (`.opencode/skills/system-spec-kit/templates/level_2/implementation-summary.md` if it exists; otherwise the L3 template). Include: What Was Built, How It Was Delivered (Phase 1/2/3), Key Decisions, Verification (commands + exit codes), Known Limitations.
 7. Update `_memory.continuity.recent_action` and `completion_pct` in spec.md frontmatter.
-8. Run final validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary --strict`. Capture exit code in implementation-summary.md.
+8. Run final validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-memory-indexer-storage-boundary --strict`. Capture exit code in implementation-summary.md.
 
 ## CRITICAL RULES
 

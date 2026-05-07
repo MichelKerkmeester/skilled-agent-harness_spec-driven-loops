@@ -49,7 +49,7 @@ Items 1 and 2 are complete. Phase 1 records their completion and sets up the con
 - [x] T001 Fix FTS5 double-quoting guard (`mcp_server/lib/search/sqlite-fts.ts` line 58)
 - [x] T002 Compile dist after FTS5 fix (`bun run build`)
 - [x] T003 Generate 30 dashboard design alternatives (`scratch/01-*.md` through `scratch/30-*.md`)
-- [x] T004 Apply Design 10 (folder-as-tree-group) to search command (`.opencode/command/memory/search.md`)
+- [x] T004 Apply Design 10 (folder-as-tree-group) to search command (`.opencode/commands/memory/search.md`)
 - [x] T005 Apply Design 10 to agent command definition (`.agents/commands/memory/search.toml`)
 - [x] T006 Audit all server entrypoints for `MEMORY_DB_PATH` usage — list entrypoints that do not pass `MEMORY_DB_PATH` to the DB init path
 - [x] T007 Confirm `context-index.sqlite` exists and is populated (prerequisite for DB path fix)

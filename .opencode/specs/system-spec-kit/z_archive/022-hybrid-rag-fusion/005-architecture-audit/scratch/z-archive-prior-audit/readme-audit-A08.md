@@ -2,7 +2,7 @@
 
 **Date**: 2026-03-08
 **Auditor**: Claude Opus 4.6
-**Base path**: `.opencode/skill/system-spec-kit/mcp_server/lib/`
+**Base path**: `.opencode/skills/system-spec-kit/mcp_server/lib/`
 
 ---
 
@@ -81,4 +81,4 @@
 | `session/` | PASS | 0 | None |
 
 **Files modified**: 1
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md` (3 edits)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md` (3 edits)

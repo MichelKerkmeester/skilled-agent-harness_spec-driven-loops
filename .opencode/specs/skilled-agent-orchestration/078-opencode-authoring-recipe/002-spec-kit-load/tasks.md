@@ -94,6 +94,6 @@ _memory:
 - Parent: 078-opencode-authoring-recipe (phase parent)
 - Successor: 078/003 coco-priority (depends on Phase 2 doc-as-source-of-truth)
 - 077 findings closed: F-009-001, F-009-002, F-008-004, F-006-004 (4 P1 findings)
-- Changelog: `.opencode/skill/sk-code/changelog/v3.2.1.0.md`
+- Changelog: `.opencode/skills/sk-code/changelog/v3.2.1.0.md`
 - Modified files: 4 (2 YAMLs + 2 SKILL.md) + 1 description.json + 1 new changelog
 <!-- /ANCHOR:cross-refs -->

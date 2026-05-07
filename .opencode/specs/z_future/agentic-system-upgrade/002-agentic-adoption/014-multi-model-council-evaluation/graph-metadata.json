@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/agent/orchestrate.md",
-      ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "deep_research_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
         "source": "derived"
       },
       {

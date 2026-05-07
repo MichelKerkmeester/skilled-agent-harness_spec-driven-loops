@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 002 — Manual Testing Playbook for sk-prompt Skill"
-description: "Author a 28-scenario manual testing playbook at .opencode/skill/sk-prompt/manual_testing_playbook/ using sk-doc templates and the /create:testing-playbook command. 7 categories cover mode-detection, smart-routing, depth-clear-loop, clear-scoring, framework-selection, escalation-tiers, format-modes."
+description: "Author a 28-scenario manual testing playbook at .opencode/skills/sk-prompt/manual_testing_playbook/ using sk-doc templates and the /create:testing-playbook command. 7 categories cover mode-detection, smart-routing, depth-clear-loop, clear-scoring, framework-selection, escalation-tiers, format-modes."
 trigger_phrases:
   - "085 phase 002"
   - "sk-prompt testing playbook"
@@ -69,7 +69,7 @@ Author a 28-scenario manual testing playbook conforming to sk-doc's contract. Us
 ## 3. SCOPE
 
 ### In Scope
-- Author `.opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` (root index)
+- Author `.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` (root index)
 - Author 28 per-feature scenario files (SP-001..SP-028) across 7 numbered category folders
 - Add ONE `## RELATED PLAYBOOK` link to `sk-prompt/SKILL.md` Section 10 (no inline backrefs)
 - Run validation gates: `validate_document.py` + spec strict + feature-ID count match + forbidden-sidecar grep
@@ -108,7 +108,7 @@ Phase scope is sk-doc-compliant playbook authoring. Acceptance criteria captured
 
 - 28 scenario files exist under 7 numbered category folders
 - Each scenario has the 5 mandatory sections: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES, SOURCE METADATA
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py manual_testing_playbook.md` → exit 0
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook.md` → exit 0
 - Forbidden sidecar grep returns 0 hits (no `review_protocol.md`, `subagent_utilization_ledger.md`, `snippets/`)
 - Feature-ID count matches: `find . -name "SP-*.md" | wc -l` == root index `^| SP-` row count == 28
 - Strict validate on phase folder PASSES (0 errors, 0 warnings)
@@ -192,6 +192,6 @@ Phase 002 → packet completion:
 
 - Parent: `../spec.md`
 - Sibling phase (predecessor): `../001-prompt-improver-rename/spec.md`
-- sk-doc templates: `.opencode/skill/sk-doc/assets/testing_playbook/{manual_testing_playbook_template.md, manual_testing_playbook_snippet_template.md}`
-- Precedent playbook: `.opencode/skill/cli-codex/manual_testing_playbook/` (most recent canonical)
+- sk-doc templates: `.opencode/skills/sk-doc/assets/testing_playbook/{manual_testing_playbook_template.md, manual_testing_playbook_snippet_template.md}`
+- Precedent playbook: `.opencode/skills/cli-codex/manual_testing_playbook/` (most recent canonical)
 - Plan: `/Users/michelkerkmeester/.claude/plans/create-new-085-spec-magical-stardust.md`

@@ -60,18 +60,18 @@ This phase restored the local-owner contract in three passes. The shared resolve
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Modified: local-owner resolution + rerun packet reuse. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` (NEW) | Heuristic packet discovery and migration utility. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` (NEW) | Explicit owner-map migration for legacy metadata shapes. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resolved packet path in prompts and state. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resolved packet path in prompts and state. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
-| `.opencode/skill/sk-deep-research/**` | Modified: docs, references, dashboards rebased to local-owner contract. |
-| `.opencode/skill/sk-deep-review/**` | Modified: docs, references, dashboards, review contract assets rebased. |
-| `.opencode/skill/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/created: resolver coverage + contract parity. |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modified: local-owner resolution + rerun packet reuse. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` (NEW) | Heuristic packet discovery and migration utility. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` (NEW) | Explicit owner-map migration for legacy metadata shapes. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified: uses resolver-provided `artifactDir` only. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resolved packet path in prompts and state. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resolved packet path in prompts and state. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
+| `.opencode/skills/sk-deep-research/**` | Modified: docs, references, dashboards rebased to local-owner contract. |
+| `.opencode/skills/sk-deep-review/**` | Modified: docs, references, dashboards, review contract assets rebased. |
+| `.opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts` | Modified/created: resolver coverage + contract parity. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/**` | Moved/modified: 135 child packets relocated, 155 references rewritten, phase 003 rebased. |
 
 Commits: `79e97aec92` (scaffold sweep), `30024e3bed` (fleet marker + validation), `083f74c814` (test playbooks), `79ea13374c` (bulk WIP commit).

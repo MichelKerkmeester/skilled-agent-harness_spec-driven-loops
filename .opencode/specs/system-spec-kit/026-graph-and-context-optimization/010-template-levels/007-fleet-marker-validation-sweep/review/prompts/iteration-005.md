@@ -37,12 +37,12 @@ Review Iteration: 5 of 5
 Mode: review
 Dimension: cross-runtime-mirror-consistency
 Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep
-Review Scope Files: .opencode/command/spec_kit/deep-review.md, .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml, .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml, .opencode/agent/deep-review.md, .claude/agents/deep-review.md, .codex/agents/deep-review.toml, .gemini/agents/deep-review.md, .opencode/skill/sk-deep-review/SKILL.md, .opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl, .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
+Review Scope Files: .opencode/commands/spec_kit/deep-review.md, .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml, .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml, .opencode/agents/deep-review.md, .claude/agents/deep-review.md, .codex/agents/deep-review.toml, .gemini/agents/deep-review.md, .opencode/skills/sk-deep-review/SKILL.md, .opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl, .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
 Prior Findings: P1-001 target scaffold placeholders; P1-002 graph metadata disconnected; P1-003 marker comments counted by semantic validators; P1-004 default validation path omits semantic marker validators.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/references/review_core.md` before final severity calls.
+Load `.opencode/skills/sk-code-review/references/review_core.md` before final severity calls.
 
 ## Iteration Task
 
@@ -51,11 +51,11 @@ Review cross-runtime mirror consistency only where it affects the marker validat
 Required checks:
 
 - Inspect `/spec_kit:deep-review` command Markdown and auto/confirm YAML for setup binding, executor handling, target authority, and review artifact paths.
-- Inspect canonical `.opencode/agent/deep-review.md` and runtime mirrors for path convention, write boundary, and setup binding consistency.
+- Inspect canonical `.opencode/agents/deep-review.md` and runtime mirrors for path convention, write boundary, and setup binding consistency.
 - Inspect `sk-deep-review` prompt pack and executor config only where they affect this CLI-Copilot run or artifact authority.
 - Check whether any runtime surface could redirect writes to another phase folder such as `006-command-md-yaml-alignment`, or omit the target authority guard.
 - Avoid duplicating unrelated prior mirror wording issues unless they directly affect this 007 marker validation sweep.
-- Use `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts.
+- Use `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts.
 
 ## Writable State Files
 

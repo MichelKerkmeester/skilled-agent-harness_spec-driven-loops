@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/sk-improve-prompt/SKILL.md",
-      ".opencode/skill/sk-improve-prompt/references/depth_framework.md",
+      ".opencode/skills/sk-improve-prompt/SKILL.md",
+      ".opencode/skills/sk-improve-prompt/references/depth_framework.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,13 +54,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "depth_framework.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-prompt/references/depth_framework.md",
+        "path": ".opencode/skills/sk-improve-prompt/references/depth_framework.md",
         "source": "derived"
       },
       {

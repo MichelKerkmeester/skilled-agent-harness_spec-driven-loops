@@ -23,7 +23,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -46,7 +46,7 @@ You can now resume a dedicated phase for missing code README/resource-map work w
 
 ### Corrected Manifest Packet
 
-The packet replaces the incorrect one-missing-README finding. It records 68 original Task #36 targets normalized to 65 unique existing folders, with 0 existing `README.md` files at audit time, 0 missing target paths, and 3 file-path mappings to `.opencode/skill/system-spec-kit/mcp_server/lib/description`.
+The packet replaces the incorrect one-missing-README finding. It records 68 original Task #36 targets normalized to 65 unique existing folders, with 0 existing `README.md` files at audit time, 0 missing target paths, and 3 file-path mappings to `.opencode/skills/system-spec-kit/mcp_server/lib/description`.
 
 ### README Implementation
 

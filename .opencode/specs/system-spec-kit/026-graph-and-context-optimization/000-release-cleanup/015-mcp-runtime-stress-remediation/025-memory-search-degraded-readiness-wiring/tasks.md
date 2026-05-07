@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Closed; final batch state typechecks cleanly"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "025-memory-search-degraded-readiness-wiring"

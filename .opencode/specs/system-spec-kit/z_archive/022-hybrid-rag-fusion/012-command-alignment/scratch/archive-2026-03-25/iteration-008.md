@@ -39,7 +39,7 @@
 
 ## Validated as Correct
 - Template paths in focus YAMLs resolve to real files under templates/
-- Runtime agent filenames resolve under .opencode/agent/
+- Runtime agent filenames resolve under .opencode/agents/
 
 ## Summary
 - Total findings: 5 (P0=0, P1=3, P2=2)

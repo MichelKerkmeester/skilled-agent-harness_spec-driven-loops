@@ -94,7 +94,7 @@ Run 10 deep-research iterations on these questions, producing `research/research
 
 - Read 060/001/research/research.md, 060/002/test-report.md, and 060/002/stress-runs/* as primary evidence
 - Read 060/002 modified source files (the 6 P0/P1 diffs already applied) to understand current state
-- Investigate other meta-agents in `.opencode/agent/*.md` — identify which share @improve-agent's command-orchestrator pattern
+- Investigate other meta-agents in `.opencode/agents/*.md` — identify which share @improve-agent's command-orchestrator pattern
 - Synthesize 10 iterations into `research/research.md` with: gap analysis (per-RQ), 061 packet sketch, generalization recommendations, reusable rubric
 - Hand-off notes to packets 061 (command-flow stress tests) and 062 (further sk-improve-agent edits if the research supports them)
 
@@ -116,7 +116,7 @@ Run 10 deep-research iterations on these questions, producing `research/research
 | **RQ-1** | Of the 6 P0/P1 diffs already applied in 060/002, which would meaningfully improve under further iteration vs which are functionally complete as shipped? |
 | **RQ-2** | What's the exact dispatch shape for 061's Call B? `/improve:agent <target> :auto --spec-folder=...` or YAML-step-by-step or something else? |
 | **RQ-3** | What grep contract should 061's Call B verdict use? List specific journal events + artifact paths + script invocation traces with file:line evidence. |
-| **RQ-4** | Which OTHER meta-agents in the system share @improve-agent's command-orchestrator pattern (discipline in command, not body)? Read each .opencode/agent/*.md and classify body-level vs command-level. |
+| **RQ-4** | Which OTHER meta-agents in the system share @improve-agent's command-orchestrator pattern (discipline in command, not body)? Read each .opencode/agents/*.md and classify body-level vs command-level. |
 | **RQ-5** | Are there gaps in 060/001's research that R1 surfaced (i.e. things the 854-line synthesis missed that the actual stress run revealed)? |
 | **RQ-6** | What's the right rubric for grading meta-agent stress tests? Should the 5-dim Coder Acceptance Rubric (from 059) be adapted, or is a different shape needed? |
 | **RQ-7** | How do we generalize the test-layer-selection finding into a reusable template? What questions should a future packet author ask before authoring CP-XXX scenarios for any new agent? |
@@ -145,6 +145,6 @@ A successful 003 produces:
   - `../002-stress-test-implementation/stress-runs/stage4-run-log.txt` — full transcripts
 - **Source-of-recommendations:** `../001-deep-research-recommendations/research/research.md` (854 lines)
 - **Methodology template:** `../../059-agent-implement-code/test-report.md`
-- **Modified source files (state after 002):** `.opencode/agent/improve-agent.md` (4 mirrors), `.opencode/skill/sk-improve-agent/{SKILL.md,scripts/scan-integration.cjs,scripts/score-candidate.cjs}`, `.opencode/command/improve/assets/improve_improve-agent_{auto,confirm}.yaml`
-- **Other meta-agents to classify (RQ-4):** `.opencode/agent/{write,improve-agent,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
+- **Modified source files (state after 002):** `.opencode/agents/improve-agent.md` (4 mirrors), `.opencode/skills/sk-improve-agent/{SKILL.md,scripts/scan-integration.cjs,scripts/score-candidate.cjs}`, `.opencode/commands/improve/assets/improve_improve-agent_{auto,confirm}.yaml`
+- **Other meta-agents to classify (RQ-4):** `.opencode/agents/{write,improve-agent,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
 <!-- /ANCHOR:references -->

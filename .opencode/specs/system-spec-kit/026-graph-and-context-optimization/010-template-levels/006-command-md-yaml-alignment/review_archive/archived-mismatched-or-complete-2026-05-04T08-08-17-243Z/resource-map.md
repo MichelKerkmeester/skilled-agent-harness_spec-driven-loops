@@ -13,7 +13,7 @@ Generated from review deltas for `007-fleet-marker-validation-sweep`.
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/decision-record.md` | target ADR | 1,5 | F001 context |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/description.json` | metadata | 4 | F005 |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/graph-metadata.json` | graph metadata | 4 | F005 context |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh` | validator context | 2 | F003 context |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh` | validator context | 2 | F003 context |
 
 ## Resource Map Coverage Gate
 - Source resource-map at target/spec owner: absent at init.

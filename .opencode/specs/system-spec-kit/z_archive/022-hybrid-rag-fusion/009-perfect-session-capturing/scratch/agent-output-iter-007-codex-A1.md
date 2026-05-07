@@ -19,9 +19,9 @@ Design the automated live-proof protocol.
 **Q6.** What would a minimum viable automated live-proof protocol look like per CLI?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` — CLI entry point, argument parsing
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — WorkflowResult interface (what gets returned)
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` — Per-CLI capture dispatch
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` — CLI entry point, argument parsing
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — WorkflowResult interface (what gets returned)
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` — Per-CLI capture dispatch
 
 ## Deliverable
 1. Document generate-context.ts CLI interface: what arguments, what modes, what output
@@ -42,8 +42,8 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’ll inspect the three specified files and extract the CLI contract, capture modes, and workflow return fields so we can define a concrete live-proof protocol per CLI. I’ll start by reading those files with line numbers and then synthesize an MVP script outline.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Generate Context
      3	// ---------------------------------------------------------------
@@ -86,7 +86,7 @@ exec
     19	  extractDiagrams,
     20	  extractPhasesFromData,
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -110,14 +110,14 @@ exec
 codex
 I’ve pulled the top sections; next I’m drilling into the argument parser and native-capture dispatch paths deeper in those files so the protocol reflects the actual runtime behavior.
 exec
-/bin/zsh -lc "wc -l '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     611 .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
-    2477 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     584 .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+/bin/zsh -lc "wc -l '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     611 .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
+    2477 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     584 .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
     3672 total
 exec
-/bin/zsh -lc "rg -n \"parse|argv|--stdin|--json|session-id|runWorkflow|loadCollectedData|Direct mode|JSON mode|Output:\" '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"capture|native|source|order|preferred|loadCollectedData|switch|if \\(|return \\{|exchanges|toolCalls\" '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"parse|argv|--stdin|--json|session-id|runWorkflow|loadCollectedData|Direct mode|JSON mode|Output:\" '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"capture|native|source|order|preferred|loadCollectedData|switch|if \\(|return \\{|exchanges|toolCalls\" '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 8:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
 25:import { runWorkflow } from '../core/workflow';
 26:import { loadCollectedData } from '../loaders';
@@ -160,7 +160,7 @@ exec
 128:  if (_codexCliCapture === undefined) {
 130:      _codexCliCapture = await import('../extractors/codex-cli-capture') as CodexCliCaptureMod;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '320,611p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '320,611p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    320	
    321	  return null;
    322	}
@@ -182,7 +182,7 @@ exec
    338	    throw new Error(`${sourceLabel} requires a non-empty JSON object`);
    339	  }
 exec
-/bin/zsh -lc "rg -n \"async function runWorkflow|return \\{\\s*contextDir|contextFilename|writtenFiles|memoryId|indexingStatus|stats:\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"async function runWorkflow|return \\{\\s*contextDir|contextFilename|writtenFiles|memoryId|indexingStatus|stats:\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 120:  contextFilename: string;
 122:  writtenFiles: string[];
 124:  memoryId: number | null;
@@ -204,7 +204,7 @@ exec
 2384:        memoryId = await indexMemory(
 2393:        if (memoryId !== null) {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '320,584p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '320,584p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    320	  ];
    321	}
    322	
@@ -226,8 +226,8 @@ exec
    338	      }
    339	
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1360,1465p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '2328,2477p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1360,1465p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '2328,2477p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2328	  log('Step 9.5: State embedded in memory file (V13.0)');
   2329	
   2330	  // Step 10: Success confirmation
@@ -272,66 +272,66 @@ exec
 codex
 I now have the parser/dispatch blocks; I’m checking each CLI capture extractor to pin down the truly minimal “valid capture” condition per runtime, instead of guessing from the loader alone.
 exec
-/bin/zsh -lc "rg --files '.opencode/skill/system-spec-kit/scripts/extractors' | rg 'capture'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts
+/bin/zsh -lc "rg --files '.opencode/skills/system-spec-kit/scripts/extractors' | rg 'capture'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts
 exec
-/bin/zsh -lc "rg -n \"export async function capture|session|transcript|history|exchange|toolCall|return null|projectRoot|maxExchanges\" '.opencode/skill/system-spec-kit/scripts/extractors'/*capture*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:8:// Captures Gemini transcript data from ~/.gemini/tmp for
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:33:const GEMINI_HISTORY = path.join(GEMINI_HOME, 'history');
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:60:  toolCalls?: GeminiToolCall[];
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:64:  sessionId?: string;
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:79:function transcriptTimestamp(value?: string): number {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:172:function buildSessionTitle(exchanges: CaptureExchange[], sessionId: string): string {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:173:  const firstPrompt = exchanges.find((exchange) => (exchange.userInput || '').trim().length > 0);
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:178:  return `Gemini CLI session ${sessionId.slice(0, 8)}`;
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:185:function getMatchingProjectDirs(projectRoot: string): string[] {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:197:    const projectRootPath = path.join(GEMINI_HISTORY, entry.name, '.project_root');
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:198:    if (!fsSync.existsSync(projectRootPath)) {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:203:      const value = fsSync.readFileSync(projectRootPath, 'utf-8').trim();
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:204:      if (isSameWorkspacePath(projectRoot, value)) {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:215:async function resolveSession(projectRoot: string): Promise<{ sessionPath: string; session: GeminiSession } | null> {
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:216:  const matchingDirs = getMatchingProjectDirs(projectRoot);
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:218:    return null;
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:221:  let newestMatch: { sessionPath: string; session: GeminiSession; sortTimestamp: number } | null = null;
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:229:    const sessionFiles = fsSync.readdirSync(chatsDir)
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:230:      .filter((entry) => entry.startsWith('session-') && entry.endsWith('.json'))
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:233:    for (const sessionPath of sessionFiles) {
+/bin/zsh -lc "rg -n \"export async function capture|session|transcript|history|exchange|toolCall|return null|projectRoot|maxExchanges\" '.opencode/skills/system-spec-kit/scripts/extractors'/*capture*.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:8:// Captures Gemini transcript data from ~/.gemini/tmp for
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:33:const GEMINI_HISTORY = path.join(GEMINI_HOME, 'history');
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:60:  toolCalls?: GeminiToolCall[];
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:64:  sessionId?: string;
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:79:function transcriptTimestamp(value?: string): number {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:172:function buildSessionTitle(exchanges: CaptureExchange[], sessionId: string): string {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:173:  const firstPrompt = exchanges.find((exchange) => (exchange.userInput || '').trim().length > 0);
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:178:  return `Gemini CLI session ${sessionId.slice(0, 8)}`;
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:185:function getMatchingProjectDirs(projectRoot: string): string[] {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:197:    const projectRootPath = path.join(GEMINI_HISTORY, entry.name, '.project_root');
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:198:    if (!fsSync.existsSync(projectRootPath)) {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:203:      const value = fsSync.readFileSync(projectRootPath, 'utf-8').trim();
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:204:      if (isSameWorkspacePath(projectRoot, value)) {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:215:async function resolveSession(projectRoot: string): Promise<{ sessionPath: string; session: GeminiSession } | null> {
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:216:  const matchingDirs = getMatchingProjectDirs(projectRoot);
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:218:    return null;
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:221:  let newestMatch: { sessionPath: string; session: GeminiSession; sortTimestamp: number } | null = null;
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:229:    const sessionFiles = fsSync.readdirSync(chatsDir)
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:230:      .filter((entry) => entry.startsWith('session-') && entry.endsWith('.json'))
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:233:    for (const sessionPath of sessionFiles) {
 exec
-/bin/zsh -lc "wc -l '.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     860 .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-     731 .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
-     471 .opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts
-     414 .opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
-     394 .opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
+/bin/zsh -lc "wc -l '.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     860 .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+     731 .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
+     471 .opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts
+     414 .opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
+     394 .opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
     2870 total
 exec
-/bin/zsh -lc "rg -n \"export async function capture|const .*HOME|const .*SESSION|return null|resolve|projectRoot|workspace|history|transcript\" '.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' '.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:8:// Captures Codex transcript data from ~/.codex/sessions for
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29:const CODEX_HOME = path.join(
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:33:const CODEX_SESSIONS = path.join(CODEX_HOME, 'sessions');
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:91:function transcriptTimestamp(value?: string): number {
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:111:          return null;
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:122:    return null;
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:268:async function resolveTranscript(
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:269:  projectRoot: string,
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:270:): Promise<{ transcriptPath: string; transcriptLines: unknown[] } | null> {
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:271:  const candidates = listTranscriptCandidates(CODEX_SESSIONS);
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:273:    return null;
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:286:    const transcriptLines = await readJsonl(candidatePath);
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:287:    if (transcriptLines.length === 0) {
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:291:    const sessionMeta = transcriptLines
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:295:    if (isSameWorkspacePath(projectRoot, sessionMeta?.payload?.cwd)) {
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:296:      return { transcriptPath: candidatePath, transcriptLines };
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:300:  return null;
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:307:export async function captureCodexConversation(
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:309:  projectRoot: string,
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:311:  const resolved = await resolveTranscript(projectRoot);
+/bin/zsh -lc "rg -n \"export async function capture|const .*HOME|const .*SESSION|return null|resolve|projectRoot|workspace|history|transcript\" '.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' '.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:8:// Captures Codex transcript data from ~/.codex/sessions for
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29:const CODEX_HOME = path.join(
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:33:const CODEX_SESSIONS = path.join(CODEX_HOME, 'sessions');
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:91:function transcriptTimestamp(value?: string): number {
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:111:          return null;
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:122:    return null;
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:268:async function resolveTranscript(
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:269:  projectRoot: string,
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:270:): Promise<{ transcriptPath: string; transcriptLines: unknown[] } | null> {
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:271:  const candidates = listTranscriptCandidates(CODEX_SESSIONS);
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:273:    return null;
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:286:    const transcriptLines = await readJsonl(candidatePath);
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:287:    if (transcriptLines.length === 0) {
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:291:    const sessionMeta = transcriptLines
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:295:    if (isSameWorkspacePath(projectRoot, sessionMeta?.payload?.cwd)) {
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:296:      return { transcriptPath: candidatePath, transcriptLines };
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:300:  return null;
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:307:export async function captureCodexConversation(
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:309:  projectRoot: string,
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:311:  const resolved = await resolveTranscript(projectRoot);
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts' | sed -n '24,45p;268,320p;307,320p;432,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts' | sed -n '24,45p;268,320p;307,320p;432,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     24	
     25	/* ───────────────────────────────────────────────────────────────
     26	   1. INTERFACES
@@ -353,7 +353,7 @@ exec
     42	type CodexSessionMetaEntry = {
     43	  type?: string;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts' | sed -n '24,80p;389,420p;525,540p;688,718p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts' | sed -n '24,80p;389,420p;525,540p;688,718p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     24	} from '../utils';
     25	import { sanitizeToolDescription, sanitizeToolInputPaths } from '../utils/tool-sanitizer';
     26	
@@ -375,7 +375,7 @@ exec
     42	
     43	type ClaudeHistoryEntry = {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' | sed -n '24,45p;185,220p;262,276p;354,382p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' | sed -n '24,45p;185,220p;262,276p;354,382p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     24	
     25	/* ───────────────────────────────────────────────────────────────
     26	   1. INTERFACES
@@ -397,7 +397,7 @@ exec
     42	  id?: string;
     43	  name?: string;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' | sed -n '24,45p;149,210p;374,404p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' | sed -n '24,45p;149,210p;374,404p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     24	
     25	/* ───────────────────────────────────────────────────────────────
     26	   1. INTERFACES
@@ -419,7 +419,7 @@ exec
     42	
     43	type CopilotEvent = {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '124,170p;394,420p;724,766p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '124,170p;394,420p;724,766p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    124	
    125	/* ───────────────────────────────────────────────────────────────
    126	   2. STORAGE PATHS
@@ -441,7 +441,7 @@ exec
    142	/* ───────────────────────────────────────────────────────────────
    143	   3. UTILITY FUNCTIONS
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '240,330p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '240,330p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    240	    };
    241	  }
    242	
@@ -465,7 +465,7 @@ exec
 codex
 I’m now mapping each runtime’s on-disk transcript prerequisites (workspace-match + non-empty events/messages), so the proof protocol can assert pass/fail deterministically per CLI.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' | sed -n '215,255p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts' | sed -n '215,255p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    215	async function resolveSession(projectRoot: string): Promise<{ sessionPath: string; session: GeminiSession } | null> {
    216	  const matchingDirs = getMatchingProjectDirs(projectRoot);
    217	  if (matchingDirs.length === 0) {
@@ -487,7 +487,7 @@ exec
    233	    for (const sessionPath of sessionFiles) {
    234	      try {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' | sed -n '210,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts' | sed -n '210,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    210	
    211	  const { eventsPath, workspace } = resolved;
    212	  const rawEvents = await readJsonl(eventsPath);
@@ -509,8 +509,8 @@ exec
    228	  for (const event of events) {
    229	    if (event.type === 'session.start') {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts' | sed -n '292,388p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts' | sed -n '240,274p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts' | sed -n '292,388p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts' | sed -n '240,274p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    240	  }
    241	
    242	  const candidates: string[] = [];
@@ -553,9 +553,9 @@ exec
    310	      transcriptLines,
    311	      sessionId: bounds.sessionId,
 exec
-/bin/zsh -lc "ls -1 '.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+/bin/zsh -lc "ls -1 '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
 codex
 I’m also running a semantic cross-check with CocoIndex to make sure we didn’t miss any alternate workflow return or capture-order implementations outside these files.
 tool cocoindex_code.search({"query":"WorkflowResult interface returned by runWorkflow includes contextDir specFolder contextFilename writtenFiles memoryId indexingStatus stats","limit":5,"refresh_index":false})
@@ -580,19 +580,19 @@ cocoindex_code.search({"query":"WorkflowResult interface returned by runWorkflow
       },
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/R01-code-path-trace.md",
-tool cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":".opencode/skill/system-spec-kit/scripts/loaders/*","languages":"typescript","limit":5,"refresh_index":false})
-cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":".opencode/skill/system-spec-kit/scripts/loaders/*","languages":"typescript","limit":5,"refresh_index":false}) failed in 2ms:
+tool cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":".opencode/skills/system-spec-kit/scripts/loaders/*","languages":"typescript","limit":5,"refresh_index":false})
+cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":".opencode/skills/system-spec-kit/scripts/loaders/*","languages":"typescript","limit":5,"refresh_index":false}) failed in 2ms:
 {
   "content": [
     {
       "type": "text",
-      "text": "Error executing tool search: 2 validation errors for searchArguments\nlanguages\n  Input should be a valid list [type=list_type, input_value='typescript', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skill/system-s...c-kit/scripts/loaders/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
+      "text": "Error executing tool search: 2 validation errors for searchArguments\nlanguages\n  Input should be a valid list [type=list_type, input_value='typescript', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skills/system-s...c-kit/scripts/loaders/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
     }
   ],
   "isError": true
 }
-tool cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":[".opencode/skill/system-spec-kit/scripts/loaders/*"],"languages":["typescript"],"limit":5,"refresh_index":false})
-cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":[".opencode/skill/system-spec-kit/scripts/loaders/*"],"languages":["typescript"],"limit":5,"refresh_index":false}) success in 363ms:
+tool cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":[".opencode/skills/system-spec-kit/scripts/loaders/*"],"languages":["typescript"],"limit":5,"refresh_index":false})
+cocoindex_code.search({"query":"loadCollectedData preferred native capture order opencode claude codex copilot gemini","paths":[".opencode/skills/system-spec-kit/scripts/loaders/*"],"languages":["typescript"],"limit":5,"refresh_index":false}) success in 363ms:
 {
   "content": [
     {
@@ -632,7 +632,7 @@ cocoindex_code.search({"query":"DEFAULT_NATIVE_CAPTURE_ORDER opencode-capture cl
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/scripts/loaders/data-loader.ts",
 exec
-/bin/zsh -lc "python3 '.opencode/skill/scripts/skill_advisor.py' \"Design the automated live-proof protocol for generate-context CLI parity across claude/codex/copilot/gemini\" --threshold 0.8" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.33s:
+/bin/zsh -lc "python3 '.opencode/skills/scripts/skill_advisor.py' \"Design the automated live-proof protocol for generate-context CLI parity across claude/codex/copilot/gemini\" --threshold 0.8" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.33s:
 python3: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 python3: error: couldn't create cache file '/tmp/xcrun_db-vG4hYgxS' (errno=Operation not permitted)
 [
@@ -656,7 +656,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-vG4hYgxS' (errno=Opera
 codex
 I’ve confirmed each extractor’s storage paths and valid-content checks; next I’m pulling the source-type enum so the artifact schema can assert the exact capture backend (`claude-code-capture`, `codex-cli-capture`, etc.).
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -678,7 +678,7 @@ exec
     19	// 2. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "rg -n \"type DataSource|type CaptureDataSource|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture\" '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"type DataSource|type CaptureDataSource|opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture\" '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 22:export type DataSource =
 24:  | 'opencode-capture'
 25:  | 'claude-code-capture'
@@ -689,7 +689,7 @@ exec
 803: * @param source - The data source identifier, defaults to 'opencode-capture'.
 809:  source: CaptureDataSource = 'opencode-capture',
 exec
-/bin/zsh -lc "rg -n \"function validateInputData|throw new Error|required|user_prompts|observations|recent_context|SPEC_FOLDER|specFolder\" '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function validateInputData|throw new Error|required|user_prompts|observations|recent_context|SPEC_FOLDER|specFolder\" '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 73:  specFolder?: string;
 75:  SPEC_FOLDER?: string;
 90:  observations?: Observation[];
@@ -711,7 +711,7 @@ exec
 420:      cloned.observations.push(buildNextStepsObservation(nextSteps));
 425:    if (data.specFolder || data.spec_folder || data.SPEC_FOLDER) {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '546,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '546,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    546	 * Validates raw input data, throwing an error if required fields are missing or fields have incorrect types.
    547	 * @param data - The raw input data object to validate.
    548	 * @param specFolderArg - Optional spec folder path from CLI argument; when provided, the specFolder field in data is not required.
@@ -733,7 +733,7 @@ exec
    564	  if (data.triggerPhrases !== undefined && !Array.isArray(data.triggerPhrases)) {
    565	    errors.push('triggerPhrases must be an array');
 exec
-/bin/zsh -lc "rg -n \"type IndexingStatusValue|type WorkflowIndexingStatus|export type\" '.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' && nl -ba '.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"type IndexingStatusValue|type WorkflowIndexingStatus|export type\" '.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' && nl -ba '.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 24:type IndexingStatusValue =
 201:export type {
      1	// ---------------------------------------------------------------
@@ -776,13 +776,13 @@ codex
 2. Performs conditional semantic indexing
 3. CLI itself prints logs and exits `0` on success, `1` on failure (no JSON result printed)
 
-Sources: [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:51), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:394), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:553)
+Sources: [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:51), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:394), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:553)
 
 2. **Per-CLI minimal live test (4 CLIs)**
 - Shared valid-capture rule from loader: capture is usable if `exchanges.length > 0` OR `toolCalls.length > 0`.
 - So minimum practical seed input per CLI: one prompt in that CLI session in this repo workspace (assistant reply recommended but not strictly required).
 
-Commands (assume `GEN=.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, `SPEC=specs/NNN-cli-parity`):
+Commands (assume `GEN=.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, `SPEC=specs/NNN-cli-parity`):
 
 1. **Claude Code**
 - Native/direct proof: `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=claude node "$GEN" --session-id "$CLAUDE_SESSION_ID" "$SPEC"`
@@ -804,7 +804,7 @@ Commands (assume `GEN=.opencode/skill/system-spec-kit/scripts/dist/memory/genera
 - JSON/file proof: `node "$GEN" /tmp/save-context-data-gemini.json "$SPEC"`
 - Capture prerequisites: `~/.gemini/history/<id>/.project_root` matches workspace + `~/.gemini/tmp/<id>/chats/session-*.json` with non-empty `messages`.
 
-Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:221), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:231), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:323), [claude-code-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts:31), [codex-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29), [copilot-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts:29), [gemini-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:29)
+Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:221), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:231), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:323), [claude-code-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts:31), [codex-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29), [copilot-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts:29), [gemini-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:29)
 
 3. **Proof artifact schema (must include `WorkflowResult` fields)**
 ```json
@@ -844,14 +844,14 @@ Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env
 }
 ```
 
-Sources: [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:112), [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2447), [memory-indexer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:24)
+Sources: [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:112), [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2447), [memory-indexer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:24)
 
 4. **`prove-cli-parity.sh` outline (MVP)**
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
 
-GEN=".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js"
+GEN=".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
 SPEC="${1:?spec folder required}"
 OUT="${2:-/tmp/cli-parity-$(date +%Y%m%d-%H%M%S)}"
 CLIS=(claude codex copilot gemini)
@@ -913,13 +913,13 @@ tokens used
 2. Performs conditional semantic indexing
 3. CLI itself prints logs and exits `0` on success, `1` on failure (no JSON result printed)
 
-Sources: [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:51), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:394), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:553)
+Sources: [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:51), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:394), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:553)
 
 2. **Per-CLI minimal live test (4 CLIs)**
 - Shared valid-capture rule from loader: capture is usable if `exchanges.length > 0` OR `toolCalls.length > 0`.
 - So minimum practical seed input per CLI: one prompt in that CLI session in this repo workspace (assistant reply recommended but not strictly required).
 
-Commands (assume `GEN=.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, `SPEC=specs/NNN-cli-parity`):
+Commands (assume `GEN=.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, `SPEC=specs/NNN-cli-parity`):
 
 1. **Claude Code**
 - Native/direct proof: `SYSTEM_SPEC_KIT_CAPTURE_SOURCE=claude node "$GEN" --session-id "$CLAUDE_SESSION_ID" "$SPEC"`
@@ -941,7 +941,7 @@ Commands (assume `GEN=.opencode/skill/system-spec-kit/scripts/dist/memory/genera
 - JSON/file proof: `node "$GEN" /tmp/save-context-data-gemini.json "$SPEC"`
 - Capture prerequisites: `~/.gemini/history/<id>/.project_root` matches workspace + `~/.gemini/tmp/<id>/chats/session-*.json` with non-empty `messages`.
 
-Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:221), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:231), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:323), [claude-code-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts:31), [codex-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29), [copilot-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts:29), [gemini-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:29)
+Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:221), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:231), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:323), [claude-code-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts:31), [codex-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts:29), [copilot-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts:29), [gemini-cli-capture.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts:29)
 
 3. **Proof artifact schema (must include `WorkflowResult` fields)**
 ```json
@@ -981,14 +981,14 @@ Sources: [data-loader.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env
 }
 ```
 
-Sources: [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:112), [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2447), [memory-indexer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:24)
+Sources: [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:112), [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2447), [memory-indexer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:24)
 
 4. **`prove-cli-parity.sh` outline (MVP)**
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
 
-GEN=".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js"
+GEN=".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
 SPEC="${1:?spec folder required}"
 OUT="${2:-/tmp/cli-parity-$(date +%Y%m%d-%H%M%S)}"
 CLIS=(claude codex copilot gemini)

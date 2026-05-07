@@ -5,10 +5,10 @@ Final convergence pass across remaining target files and packet docs to check fo
 
 ### Files Audited
 - `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:191-271`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:298-345`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:168-199`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-85`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts:39-100`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:298-345`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:168-199`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:36-85`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts:39-100`
 
 ### Findings
 

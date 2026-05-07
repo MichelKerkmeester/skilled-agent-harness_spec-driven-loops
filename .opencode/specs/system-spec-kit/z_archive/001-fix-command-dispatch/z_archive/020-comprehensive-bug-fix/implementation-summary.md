@@ -37,27 +37,27 @@ Comprehensive bug fix and refinement of the `system-spec-kit` skill and all `spe
 |------|--------|---------|
 | `.opencode/scripts/skill_advisor.py` | Modified | Fixed critical regex bug, added health check |
 | `AGENTS.md` | Modified | Added full generate-context.js path to Gate 5 |
-| `.opencode/skill/system-spec-kit/templates/implementation-summary.md` | Created | New template for implementation completion |
-| `.opencode/skill/system-spec-kit/templates/planning-summary.md` | Created | New template for planning phase summary |
-| `.opencode/command/spec_kit/debug.md` | Modified | Fixed Task tool syntax, added model advisory |
-| `.opencode/skill/system-memory/scripts/generate-context.js` | Modified | Fixed substr(), Windows paths, readline errors |
-| `.opencode/command/spec_kit/plan.md` | Modified | Fixed section numbering, clarified tasks.md |
-| `.opencode/command/spec_kit/handover.md` | Modified | Added attempt counter logic |
-| `.opencode/command/spec_kit/resume.md` | Modified | Fixed MCP syntax |
-| `.opencode/command/spec_kit/complete.md` | Modified | Added Step 10.5, Gate 4 reference |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Restructured sections, documented checklists |
-| `.opencode/skill/system-spec-kit/README.md` | Modified | Updated template count to 12 |
-| `.opencode/skill/system-spec-kit/templates/checklist.md` | Modified | Fixed P3 priority, aligned definitions |
-| `.opencode/skill/system-spec-kit/templates/spec.md` | Modified | Fixed section 12/13, added Level field |
-| `.opencode/skill/system-spec-kit/templates/tasks.md` | Modified | Fixed version, added task notation |
-| `.opencode/skill/system-spec-kit/templates/decision-record.md` | Modified | Added placeholders, parallel notation |
-| `.opencode/skill/system-spec-kit/references/template_guide.md` | Modified | Removed non-existent template refs |
-| `.opencode/skill/system-spec-kit/references/quick_reference.md` | Modified | Updated template count, added Gate 4 |
-| `.opencode/skill/system-spec-kit/references/level_specifications.md` | Modified | Fixed phrasing, added Level 2 example |
-| `.opencode/skill/system-spec-kit/references/sub_folder_versioning.md` | Modified | Fixed numbering, added walkthrough |
-| `.opencode/skill/system-spec-kit/references/path_scoped_rules.md` | Modified | Added DESIGN DOCUMENT banner |
-| `.opencode/skill/system-spec-kit/references/worked_examples.md` | Created | New reference with 4 practical examples |
-| `.opencode/skill/system-spec-kit/scripts/README.md` | Created | New documentation for all scripts |
+| `.opencode/skills/system-spec-kit/templates/implementation-summary.md` | Created | New template for implementation completion |
+| `.opencode/skills/system-spec-kit/templates/planning-summary.md` | Created | New template for planning phase summary |
+| `.opencode/commands/spec_kit/debug.md` | Modified | Fixed Task tool syntax, added model advisory |
+| `.opencode/skills/system-memory/scripts/generate-context.js` | Modified | Fixed substr(), Windows paths, readline errors |
+| `.opencode/commands/spec_kit/plan.md` | Modified | Fixed section numbering, clarified tasks.md |
+| `.opencode/commands/spec_kit/handover.md` | Modified | Added attempt counter logic |
+| `.opencode/commands/spec_kit/resume.md` | Modified | Fixed MCP syntax |
+| `.opencode/commands/spec_kit/complete.md` | Modified | Added Step 10.5, Gate 4 reference |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Restructured sections, documented checklists |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Updated template count to 12 |
+| `.opencode/skills/system-spec-kit/templates/checklist.md` | Modified | Fixed P3 priority, aligned definitions |
+| `.opencode/skills/system-spec-kit/templates/spec.md` | Modified | Fixed section 12/13, added Level field |
+| `.opencode/skills/system-spec-kit/templates/tasks.md` | Modified | Fixed version, added task notation |
+| `.opencode/skills/system-spec-kit/templates/decision-record.md` | Modified | Added placeholders, parallel notation |
+| `.opencode/skills/system-spec-kit/references/template_guide.md` | Modified | Removed non-existent template refs |
+| `.opencode/skills/system-spec-kit/references/quick_reference.md` | Modified | Updated template count, added Gate 4 |
+| `.opencode/skills/system-spec-kit/references/level_specifications.md` | Modified | Fixed phrasing, added Level 2 example |
+| `.opencode/skills/system-spec-kit/references/sub_folder_versioning.md` | Modified | Fixed numbering, added walkthrough |
+| `.opencode/skills/system-spec-kit/references/path_scoped_rules.md` | Modified | Added DESIGN DOCUMENT banner |
+| `.opencode/skills/system-spec-kit/references/worked_examples.md` | Created | New reference with 4 practical examples |
+| `.opencode/skills/system-spec-kit/scripts/README.md` | Created | New documentation for all scripts |
 
 **Total: 23 files (4 created, 19 modified)**
 <!-- /ANCHOR:what-built -->
@@ -69,7 +69,7 @@ Comprehensive bug fix and refinement of the `system-spec-kit` skill and all `spe
 | # | Issue | File | Fix |
 |---|-------|------|-----|
 | 1 | **skill_advisor.py regex bug** | skill_advisor.py | Changed `\\n` → `\n` on lines 210, 214, 268. Skill discovery now works (finds 9 skills, was 0) |
-| 2 | **generate-context.js path missing** | AGENTS.md | Added full path `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` to Gate 5 |
+| 2 | **generate-context.js path missing** | AGENTS.md | Added full path `node .opencode/skills/system-memory/scripts/generate-context.js [spec-folder-path]` to Gate 5 |
 | 3 | **Missing implementation-summary.md** | templates/ | Created complete template with 6 sections |
 | 4 | **Missing planning-summary.md** | templates/ | Created complete template with 6 sections |
 | 5 | **Task tool syntax incorrect** | debug.md | Replaced JavaScript-style `Task({...})` with proper markdown format |

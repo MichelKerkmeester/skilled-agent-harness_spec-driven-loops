@@ -69,7 +69,7 @@ contextType: "research"
 ### CF-001 — Runtime-Owned Policy And Hidden Gate Defaults
 - **Origin phase(s)**: `001/iteration-014`, `002/iteration-003`, `002/iteration-012`, `002/iteration-029`, `003/iteration-027`, `003/iteration-028`, `006/iteration-029`, `007/iteration-027`, `007/iteration-028`, `008/iteration-027`, `008/iteration-028`, `009/iteration-027`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:156-162]` `[SOURCE: 002-babysitter-main/research/research.md:124-135]` `[SOURCE: 002-babysitter-main/research/research.md:216-221]` `[SOURCE: 003-claude-code-mastery-project-starter-kit-main/research/research.md:198-209]` `[SOURCE: 006-ralph-main/research/research.md:222-228]` `[SOURCE: 007-relay-main/research/research.md:203-214]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:199-212]` `[SOURCE: 009-xethryon/research/research.md:81-82]`
-- **system-spec-kit target**: `AGENTS.md`, `CLAUDE.md`, `.opencode/skill/system-spec-kit/constitutional/`, `.opencode/skill/scripts/skill_advisor.py`, runtime hooks and wrappers
+- **system-spec-kit target**: `AGENTS.md`, `CLAUDE.md`, `.opencode/skills/system-spec-kit/constitutional/`, `.opencode/skills/scripts/skill_advisor.py`, runtime hooks and wrappers
 - **Change type**: architectural shift
 - **Blast radius**: large
 - **Cross-phase convergence**: `001, 002, 003, 006, 007, 008, 009`
@@ -80,7 +80,7 @@ contextType: "research"
 ### CF-002 — One Guided Lifecycle Front Door
 - **Origin phase(s)**: `001/iteration-022`, `002/iteration-021`, `003/iteration-021`, `003/iteration-029`, `004/iteration-021`, `004/iteration-029`, `005/iteration-021`, `006/iteration-022`, `006/iteration-030`, `007/iteration-021`, `007/iteration-029`, `008/iteration-022`, `008/iteration-029`, `009/iteration-021`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:193-199]` `[SOURCE: 002-babysitter-main/research/research.md:174-179]` `[SOURCE: 004-get-it-right-main/research/research.md:164-169]` `[SOURCE: 004-get-it-right-main/research/research.md:212-244]` `[SOURCE: 007-relay-main/research/research.md:173-178]` `[SOURCE: 007-relay-main/research/research.md:215-220]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:171-177]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:213-221]` `[SOURCE: 009-xethryon/research/research.md:77-78]`
-- **system-spec-kit target**: `.opencode/command/spec_kit/README.txt`, `plan.md`, `implement.md`, `complete.md`, shared lifecycle assets
+- **system-spec-kit target**: `.opencode/commands/spec_kit/README.txt`, `plan.md`, `implement.md`, `complete.md`, shared lifecycle assets
 - **Change type**: architectural shift
 - **Blast radius**: large
 - **Cross-phase convergence**: all `9` phases
@@ -102,7 +102,7 @@ contextType: "research"
 ### CF-004 — Shift Validation Truth Toward Executable Evidence And Runtime Tests
 - **Origin phase(s)**: `001/iteration-012`, `003/iteration-016`, `005/iteration-010`, `005/iteration-016`, `006/iteration-014`, `007/iteration-015`, `008/iteration-019`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:142-148]` `[SOURCE: 003-claude-code-mastery-project-starter-kit-main/research/research.md:119-124]` `[SOURCE: 005-intellegix-code-agent-toolkit-master/research/research.md:88-93]` `[SOURCE: 005-intellegix-code-agent-toolkit-master/research/research.md:131-137]` `[SOURCE: 006-ralph-main/research/research.md:136-142]` `[SOURCE: 007-relay-main/research/research.md:147-152]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:148-154]`
-- **system-spec-kit target**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`, runtime test suites, readiness output surfaces
+- **system-spec-kit target**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, runtime test suites, readiness output surfaces
 - **Change type**: architectural shift
 - **Blast radius**: large
 - **Cross-phase convergence**: `001, 003, 005, 006, 007, 008`
@@ -135,7 +135,7 @@ contextType: "research"
 ### CF-007 — Shrink The Public Agent And Context Surface To Domain Facades
 - **Origin phase(s)**: `001/iteration-025`, `003/iteration-024`, `004/iteration-025`, `005/iteration-024`, `006/iteration-025`, `007/iteration-024`, `008/iteration-024`, `009/iteration-024`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:214-220]` `[SOURCE: 003-claude-code-mastery-project-starter-kit-main/research/research.md:186-191]` `[SOURCE: 005-intellegix-code-agent-toolkit-master/research/research.md:175-181]` `[SOURCE: 006-ralph-main/research/research.md:201-207]` `[SOURCE: 007-relay-main/research/research.md:191-196]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:185-191]` `[SOURCE: 009-xethryon/research/research.md:79-80]`
-- **system-spec-kit target**: `.opencode/agent/orchestrate.md`, `context.md`, `context-prime.md`, `handover.md`, public command/help surfaces
+- **system-spec-kit target**: `.opencode/agents/orchestrate.md`, `context.md`, `context-prime.md`, `handover.md`, public command/help surfaces
 - **Change type**: merge/redesign
 - **Blast radius**: medium-large
 - **Cross-phase convergence**: `001, 003, 004, 005, 006, 007, 008, 009`
@@ -146,7 +146,7 @@ contextType: "research"
 ### CF-008 — Consolidate Public Skills And Make Routing Silent By Default
 - **Origin phase(s)**: `001/iteration-027`, `001/iteration-028`, `002/iteration-027`, `002/iteration-028`, `003/iteration-026`, `003/iteration-027`, `004/iteration-027`, `005/iteration-026`, `005/iteration-027`, `006/iteration-027`, `006/iteration-028`, `007/iteration-026`, `007/iteration-027`, `008/iteration-026`, `008/iteration-027`, `009/iteration-026`, `009/iteration-027`
 - **External source**: `[SOURCE: 001-agent-lightning-main/research/research.md:229-241]` `[SOURCE: 002-babysitter-main/research/research.md:204-215]` `[SOURCE: 003-claude-code-mastery-project-starter-kit-main/research/research.md:192-209]` `[SOURCE: 004-get-it-right-main/research/research.md:200-205]` `[SOURCE: 005-intellegix-code-agent-toolkit-master/research/research.md:182-195]` `[SOURCE: 006-ralph-main/research/research.md:208-221]` `[SOURCE: 007-relay-main/research/research.md:197-208]` `[SOURCE: 008-bmad-autonomous-development/research/research.md:192-205]` `[SOURCE: 009-xethryon/research/research.md:80-82]`
-- **system-spec-kit target**: `.opencode/skill/README.md`, `sk-code-*`, `sk-review`, `skill_advisor.py`, Gate 2 surfaces
+- **system-spec-kit target**: `.opencode/skills/README.md`, `sk-code-*`, `sk-review`, `skill_advisor.py`, Gate 2 surfaces
 - **Change type**: merge/simplify
 - **Blast radius**: large
 - **Cross-phase convergence**: all `9` phases
@@ -212,7 +212,7 @@ contextType: "research"
 ### CF-014 — Add A Claim-Verification Ledger For Research Quality
 - **Origin phase(s)**: `009/iteration-010`, `009/iteration-012`
 - **External source**: `[SOURCE: 009-xethryon/research/research.md:62-71]`
-- **system-spec-kit target**: `.opencode/agent/deep-research.md`, research packet templates, research reducers
+- **system-spec-kit target**: `.opencode/agents/deep-research.md`, research packet templates, research reducers
 - **Change type**: add
 - **Blast radius**: small-medium
 - **Cross-phase convergence**: `009` only
@@ -478,7 +478,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: none; this is the top-level UX anchor
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/command/spec_kit/README.txt`
+- **First-step suggestion**: `.opencode/commands/spec_kit/README.txt`
 
 ### Bundle B-002 — Guided Profiles And Spec Bootstrap
 - **Proposed packet name**: `003-profile-driven-bootstrap`
@@ -486,7 +486,7 @@ contextType: "research"
 - **Blast radius**: medium-large
 - **Dependencies**: `B-001`
 - **Estimated complexity**: Level 2-3
-- **First-step suggestion**: `.opencode/skill/system-spec-kit/templates/README.md`
+- **First-step suggestion**: `.opencode/skills/system-spec-kit/templates/README.md`
 
 ### Bundle B-003 — Continuity And Memory Split
 - **Proposed packet name**: `004-continuity-memory-split`
@@ -494,7 +494,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: `B-001`
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/skill/system-spec-kit/references/memory/save_workflow.md`
+- **First-step suggestion**: `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
 
 ### Bundle B-004 — Shared Lifecycle And Deep-Loop Runtime
 - **Proposed packet name**: `005-shared-lifecycle-engine`
@@ -502,7 +502,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: `B-001`, `B-003`
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **First-step suggestion**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
 
 ### Bundle B-005 — Validation As Runtime Truth
 - **Proposed packet name**: `006-runtime-truth-validation`
@@ -510,7 +510,7 @@ contextType: "research"
 - **Blast radius**: large
 - **Dependencies**: `B-004`
 - **Estimated complexity**: Level 3
-- **First-step suggestion**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- **First-step suggestion**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 
 ### Bundle B-006 — Capability Surface Consolidation
 - **Proposed packet name**: `007-capability-surface-consolidation`
@@ -518,7 +518,7 @@ contextType: "research"
 - **Blast radius**: medium-large
 - **Dependencies**: `B-001`
 - **Estimated complexity**: Level 2-3
-- **First-step suggestion**: `.opencode/agent/orchestrate.md`
+- **First-step suggestion**: `.opencode/agents/orchestrate.md`
 
 ### Bundle B-007 — Workflow Profiles, Runtime Manifest, And Provider Registry
 - **Proposed packet name**: `008-workflow-profile-layer`
@@ -526,7 +526,7 @@ contextType: "research"
 - **Blast radius**: medium-large
 - **Dependencies**: `B-004`, `B-006`
 - **Estimated complexity**: Level 2-3
-- **First-step suggestion**: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- **First-step suggestion**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
 
 ### Bundle B-008 — Tactical Safety And Operator Observability
 - **Proposed packet name**: `009-tactical-safety-and-observability`
@@ -561,4 +561,4 @@ contextType: "research"
 
 ## 11. Recommended Next Step
 
-The first implementation packet should be `002-operator-shell-compression`, anchored on `CF-001`, `CF-002`, `CF-008`, and `CF-009`. It has the clearest target files, the strongest cross-phase convergence, and the highest leverage because it removes visible friction without forcing immediate deep runtime migration. The concrete starting point is `.opencode/command/spec_kit/README.txt`, followed immediately by the policy-source decision across `AGENTS.md`, `CLAUDE.md`, and the constitutional gate surfaces.
+The first implementation packet should be `002-operator-shell-compression`, anchored on `CF-001`, `CF-002`, `CF-008`, and `CF-009`. It has the clearest target files, the strongest cross-phase convergence, and the highest leverage because it removes visible friction without forcing immediate deep runtime migration. The concrete starting point is `.opencode/commands/spec_kit/README.txt`, followed immediately by the policy-source decision across `AGENTS.md`, `CLAUDE.md`, and the constitutional gate surfaces.

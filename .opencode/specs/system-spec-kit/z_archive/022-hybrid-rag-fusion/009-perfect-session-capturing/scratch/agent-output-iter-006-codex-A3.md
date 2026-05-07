@@ -19,9 +19,9 @@ Cross-validate the CRITICAL frontmatter displacement bug (NEW-1 from iteration 0
 **Verify NEW-1.** Does the prepended-warning → frontmatter-displacement → quality_score=0 chain actually occur in practice?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — Lines 2168, 2174, 2252 (prepend points)
-- `.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts` — Frontmatter parsing logic
-- `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` — Where quality_score is consumed
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — Lines 2168, 2174, 2252 (prepend points)
+- `.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts` — Frontmatter parsing logic
+- `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` — Where quality_score is consumed
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/` — Check actual files for displaced frontmatter
 
 ## Deliverable
@@ -49,8 +49,8 @@ AGENTS.md
 codex
 I found only the root `AGENTS.md` in scope for these files, so I’m now pulling the exact code sections from the three target scripts to trace the chain precisely.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '2120,2295p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '2120,2295p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Extractors
      3	// ---------------------------------------------------------------
@@ -93,7 +93,7 @@ exec
   2138	  files[ctxFilename] = injectQualityMetadata(files[ctxFilename], qualityV2.score01, qualityV2.qualityFlags);
   2139	
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Indexer
      3	// ---------------------------------------------------------------
@@ -117,7 +117,7 @@ exec
 codex
 I confirmed the key snippets: `workflow.ts` has three explicit preprends, and `quality-extractors.ts` uses a start-anchored regex for frontmatter extraction. Next I’m scanning the rest of `workflow.ts` for any additional prepend paths, then auditing the real memory files in the target spec folder to measure actual incidence.
 exec
-/bin/zsh -lc "rg -n \"prepend|warningHeader|simWarning|mediumQualityWarning|QUALITY_GATE\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"prepend|warningHeader|simWarning|mediumQualityWarning|QUALITY_GATE\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 2154:  // CG-07b: Validate template contract BEFORE any banner/warning is prepended.
 2155:  // Banners prepended after this point (low-quality, simulation, medium-quality)
 2163:    const contractAbortMsg = `QUALITY_GATE_ABORT: Rendered memory violated template contract: ${contractDetails}`;
@@ -134,7 +134,7 @@ exec
 2253:    const mediumQualityWarning = `> **Warning:** Memory quality score is ${qualityResult.score100}/100 (${qualityResult.score01.toFixed(2)}), which is below the recommended threshold of 0.60. Content may have issues with: ${qualityResult.warnings.slice(0, 3).join('; ')}.\n\n`;
 2254:    files[ctxFilename] = mediumQualityWarning + files[ctxFilename];
 exec
-/bin/zsh -lc "rg -n \"files\\[ctxFilename\\]\\s*=\\s*.*\\+\\s*files\\[ctxFilename\\]\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"files\\[ctxFilename\\]\\s*=\\s*.*\\+\\s*files\\[ctxFilename\\]\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 2170:    files[ctxFilename] = warningHeader + files[ctxFilename];
 2176:    files[ctxFilename] = simWarning + files[ctxFilename];
 2254:    files[ctxFilename] = mediumQualityWarning + files[ctxFilename];
@@ -196,7 +196,7 @@ exec
     19	  - "files showed two distinct"
     20	  - "showed two distinct clusters"
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1990,2195p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1990,2195p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1990	      DECISIONS: decisions.DECISIONS.map((d) => ({
   1991	        ...d,
   1992	        ...(() => {
@@ -218,7 +218,7 @@ exec
   2008	      HAS_AUTO_GENERATED: diagrams.HAS_AUTO_GENERATED,
   2009	      FLOW_TYPE: diagrams.FLOW_TYPE,
 exec
-/bin/zsh -lc "rg -n \"\\bfilterStats\\b|\\bisSimulation\\b|QUALITY_ABORT_THRESHOLD|scoreMemoryQuality\\(|scoreMemoryQualityV2\\(\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"\\bfilterStats\\b|\\bisSimulation\\b|QUALITY_ABORT_THRESHOLD|scoreMemoryQuality\\(|scoreMemoryQualityV2\\(\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 138:    isSimulation: boolean;
 1802:  const filterStats: FilterStats = filterPipeline.getStats();
 1803:  contaminationAuditTrail.push(...filterStats.contaminationAudit);
@@ -239,7 +239,7 @@ exec
 2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
 2464:          isSimulation
 exec
-/bin/zsh -lc "rg -n \"indexMemory\\(|updateMetadataEmbeddingStatus\\(|qualityScore\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"indexMemory\\(|updateMetadataEmbeddingStatus\\(|qualityScore\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 136:    qualityScore: number;
 155:  qualityScore01: number;
 179:  if (options.qualityScore01 < options.qualityAbortThreshold) {
@@ -258,7 +258,7 @@ exec
 2384:        memoryId = await indexMemory(
 2463:          qualityScore: qualityResult.score,
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '2330,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '2330,2425p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2330	  // Step 10: Success confirmation
   2331	  log('Context saved successfully!\n');
   2332	  log(`Location: ${contextDir}\n`);
@@ -328,29 +328,29 @@ exec
     19	          "/^User prompt$/i",
     20	          "/^Assistant message$/i",
 exec
-/bin/zsh -lc "rg -n \"qualityScore|quality_score|indexMemory\\(|vectorIndex\" '.opencode/skill/system-spec-kit' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:63:import * as vectorIndex from './lib/search/vector-index';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:320:      vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:470:    const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:637:    runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:667:  const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:694:      if (vectorIndex.deleteMemory(row.id)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:742:  vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:749:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:839:    const report = vectorIndex.verifyIntegrity();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:844:    const dimValidation = vectorIndex.validateEmbeddingDimension();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:855:    const database = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:896:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:42:  vectorIndex,
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:15:import * as vectorIndex from './lib/search/vector-index';
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:82:  vectorIndex.initializeDb();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:83:  const db = vectorIndex.getDb();
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:89:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:100:  const db = vectorIndex.getDb()!;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:211:  const db = vectorIndex.getDb()!;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:309:      if (vectorIndex.deleteMemory(memory.id)) {
+/bin/zsh -lc "rg -n \"qualityScore|quality_score|indexMemory\\(|vectorIndex\" '.opencode/skills/system-spec-kit' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:63:import * as vectorIndex from './lib/search/vector-index';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:320:      vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:470:    const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:637:    runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:667:  const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:694:      if (vectorIndex.deleteMemory(row.id)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:742:  vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:749:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:839:    const report = vectorIndex.verifyIntegrity();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:844:    const dimValidation = vectorIndex.validateEmbeddingDimension();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:855:    const database = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:896:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:42:  vectorIndex,
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:15:import * as vectorIndex from './lib/search/vector-index';
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:82:  vectorIndex.initializeDb();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:83:  const db = vectorIndex.getDb();
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:89:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:100:  const db = vectorIndex.getDb()!;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:211:  const db = vectorIndex.getDb()!;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:309:      if (vectorIndex.deleteMemory(memory.id)) {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Vector Index
      3	// ───────────────────────────────────────────────────────────────
@@ -372,15 +372,15 @@ exec
     19	  EnrichedSearchResult,
     20	} from './vector-index-types';
 exec
-/bin/zsh -lc "rg -n \"function indexMemory|indexMemory\\(|quality_score|getDbPath|DB_PATH|CREATE TABLE.*memory_index|INSERT INTO memory_index\" '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function indexMemory|indexMemory\\(|quality_score|getDbPath|DB_PATH|CREATE TABLE.*memory_index|INSERT INTO memory_index\" '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 136:  getDbPath,
 146:  DEFAULT_DB_PATH,
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts' | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts' | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"index_memory|indexMemory|quality_score|qualityScore|INSERT INTO memory_index\" '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"index_memory|indexMemory|quality_score|qualityScore|INSERT INTO memory_index\" '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import type Database from 'better-sqlite3';
      2	
      3	// ───────────────────────────────────────────────────────────────
@@ -423,8 +423,8 @@ exec
 402:    if (qualityScore !== undefined) {
 403:      updates.push('quality_score = ?');
 exec
-/bin/zsh -lc "rg -n \"quality_score|CREATE TABLE memory_index|INSERT INTO memory_index\" '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"quality_score|CREATE TABLE memory_index|INSERT INTO memory_index\" '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts' | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 133:// V15: Add quality_score and quality_flags columns for memory quality gates
 579:        database.exec('ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0');
 580:        logger.info('Migration v15: Added quality_score column');
@@ -457,19 +457,19 @@ exec
     20	import * as fs from 'fs';
 exec
 /bin/zsh -lc "find . -name 'context-index.sqlite' -o -name '*.sqlite' | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 836ms:
-./.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite
-./.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
-./.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index__voyage__voyage-4__1024.sqlite
-./.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
-./.opencode/skill/system-spec-kit/mcp_server/dist/database/backups/context-index-pre-orphan-cleanup-20260313-131047.sqlite
+./.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite
+./.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
+./.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index__voyage__voyage-4__1024.sqlite
+./.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite
+./.opencode/skills/system-spec-kit/mcp_server/dist/database/backups/context-index-pre-orphan-cleanup-20260313-131047.sqlite
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' ORDER BY id DESC LIMIT 5;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' ORDER BY id DESC LIMIT 5;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' ORDER BY id DESC LIMIT 5;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' ORDER BY id DESC LIMIT 5;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
  succeeded in 0ms:
 
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder LIKE '%009-perfect-session-capturing%' ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder LIKE '%009-perfect-session-capturing%' ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25392|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_14-47__the-march-17-2026-re-analysis-disposition-for.md|0.853|success
 25391|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-multi-cli-parity|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-multi-cli-parity/memory/18-03-26_13-49__claude-code-p1-result-captured-tool-used-mcp.md|0.851|success
 25390|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-multi-cli-parity|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/016-multi-cli-parity/memory/17-03-26_16-44__strict-closeout-evidence-refreshed.md|0.927|success
@@ -491,7 +491,7 @@ exec
 25316|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction/memory/16-03-26_19-54__signal-extraction.md|0.0|success
 25315|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction/memory/16-03-26_19-54__signal-extraction.md|0.0|success
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder LIKE '%009-perfect-session-capturing%' ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder LIKE '%009-perfect-session-capturing%' ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 exec
 /bin/zsh -lc 'for db in $(find . -name '"'*.sqlite'); do out="'$(sqlite3 "$db" "SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE file_path LIKE '"'%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' LIMIT 5;\" 2>/dev/null); if [ -n \""'$out" ]; then echo "DB:$db"; echo "$out"; fi; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 779ms:
@@ -502,21 +502,21 @@ exec
 /bin/zsh -lc "find '/Users/michelkerkmeester/.opencode' -name 'context-index*.sqlite' 2>/dev/null | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status,updated_at FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 codex
 I found a concrete displaced file and proved the extractor would return `0` for it, but the row isn’t in the repo-local SQLite files I checked. I’m now asking the runtime module for its active DB path so we can confirm exactly where that memory’s indexed row lives.
 exec
-/bin/zsh -lc "node -e \"try{const vi=require('./.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/vector-index.js'); console.log('getDbPath', typeof vi.getDbPath==='function'?vi.getDbPath():'missing');}catch(e){console.error(String(e)); process.exit(1);}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-getDbPath /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite
+/bin/zsh -lc "node -e \"try{const vi=require('./.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/vector-index.js'); console.log('getDbPath', typeof vi.getDbPath==='function'?vi.getDbPath():'missing');}catch(e){console.error(String(e)); process.exit(1);}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+getDbPath /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT COUNT(*), MIN(id), MAX(id) FROM memory_index;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT COUNT(*), MIN(id), MAX(id) FROM memory_index;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 476|47|25422
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index ORDER BY id DESC LIMIT 20;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25422|system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis/memory/19-03-26_20-17__next-steps.md|0.904|success
 25421|system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle/memory/19-03-26_20-16__005-lifecycle-manual-testing.md|0.866|success
 25420|system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval/memory/19-03-26_20-08__manual-testing-per-playbook-retrieval-phase.md|0.864|success
@@ -538,8 +538,8 @@ exec
 25402|04--agent-orchestration/z_archive/005-agent-system-improvements|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/04--agent-orchestration/z_archive/005-agent-system-improvements/memory/28-01-26_09-11__agent-system-improvements.md|0.885|success
 25401|03--commands-and-skills/024-sk-deep-research-refinement|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/03--commands-and-skills/024-sk-deep-research-refinement/memory/18-03-26_21-24__the-current-state-of-the-repository.md|0.889|success
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder='system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing' ORDER BY id DESC LIMIT 50;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE spec_folder='system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing' ORDER BY id DESC LIMIT 50;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE id=4420;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
  succeeded in 0ms:
 25392|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_14-47__the-march-17-2026-re-analysis-disposition-for.md|0.853|success
@@ -548,16 +548,16 @@ exec
 24374|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-checks-100-pass-rate-across-lint.md|0.856|success
 24372|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/14-03-26_15-47__code-issues-found-during-review.md|0.739|success
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE file_path LIKE '%009-perfect-session-capturing/memory/%' ORDER BY id DESC LIMIT 100;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE file_path LIKE '%009-perfect-session-capturing/memory/%' ORDER BY id DESC LIMIT 100;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25392|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_14-47__the-march-17-2026-re-analysis-disposition-for.md|0.853|success
 24380|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__verified-trigger-phrase-yaml-rendering.md|0.888|success
 24375|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-validation-is-strong-all-listed.md|0.86|success
 24374|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-checks-100-pass-rate-across-lint.md|0.856|success
 24372|system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/14-03-26_15-47__code-issues-found-during-review.md|0.739|success
 exec
-/bin/zsh -lc "find '.opencode/skill/system-spec-kit/mcp_server' -name '*nomic*sqlite' -o -name 'context-index__*__*.sqlite' | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 44ms:
-.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite
-.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index__voyage__voyage-4__1024.sqlite
+/bin/zsh -lc "find '.opencode/skills/system-spec-kit/mcp_server' -name '*nomic*sqlite' -o -name 'context-index__*__*.sqlite' | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 44ms:
+.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite
+.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index__voyage__voyage-4__1024.sqlite
 exec
 /bin/zsh -lc "set -e; paths=''; [ -d specs ] && paths=\""'$paths specs"; [ -d .opencode/specs ] && paths="$paths .opencode/specs"; total=0; displaced=0; for f in $(find $paths -type f -path '"'*/memory/*.md' 2>/dev/null | sort); do total="'$((total+1)); first=$(head -n 1 "$f" || true); if [ "$first" != '"'---' ]; then displaced="'$((displaced+1)); printf '"'%s\\t%s\\n' \""'$f" "$first"; fi; done | sed -n '"'1,200p'; echo \"TOTAL="'$total"; echo "DISPLACED=$displaced"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 TOTAL=0
@@ -621,12 +621,12 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/17-03-26_19-49__outsourced-agent-handback-architecture.md	> **Note:** This session had limited actionable content (quality score: 0/100). 3 noise entries and 0 duplicates were filtered.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/memory/17-03-26_15-40__next-steps.md	> **Note:** This session had limited actionable content (quality score: 0/100). 0 noise entries and 0 duplicates were filtered.
 exec
-/bin/zsh -lc "sqlite3 '.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' OR file_path LIKE '%16-03-26_22-23__template-compliance.md%' OR file_path LIKE '%17-03-26_15-40__next-steps.md%' OR file_path LIKE '%17-03-26_19-49__outsourced-agent-handback-architecture.md%' ORDER BY id DESC;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sqlite3 '.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite' \"SELECT id,spec_folder,file_path,quality_score,embedding_status FROM memory_index WHERE file_path LIKE '%17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md%' OR file_path LIKE '%16-03-26_22-23__template-compliance.md%' OR file_path LIKE '%17-03-26_15-40__next-steps.md%' OR file_path LIKE '%17-03-26_19-49__outsourced-agent-handback-architecture.md%' ORDER BY id DESC;\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 codex
 I confirmed five displaced files in the `009-perfect-session-capturing` tree, all with warning text prepended before YAML. I’m now checking the SQLite index for any existing rows where `quality_score=0` aligns with this displaced-frontmatter shape, to determine if the full chain has already materialized end-to-end.
 exec
-/bin/zsh -lc "db='.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite'; sqlite3 -separator '|' \""'$db" "SELECT id,file_path,quality_score FROM memory_index WHERE quality_score=0 ORDER BY id DESC LIMIT 80;" | while IFS='"'|' read -r id f qs; do if [ -f \""'$f" ]; then first=$(head -n 1 "$f" 2>/dev/null || true); any=$(rg -n "''^quality_score:'"\\s*\" \""'$f" | head -n1 | cut -d: -f1,3- || true); [ -z "$any" ] && any='"'NONE'; printf '%s|%s|%s|%s|%s\\n' \""'$id" "$qs" "$f" "$first" "$any"; fi; done | sed -n '"'1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 381ms:
+/bin/zsh -lc "db='.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite'; sqlite3 -separator '|' \""'$db" "SELECT id,file_path,quality_score FROM memory_index WHERE quality_score=0 ORDER BY id DESC LIMIT 80;" | while IFS='"'|' read -r id f qs; do if [ -f \""'$f" ]; then first=$(head -n 1 "$f" 2>/dev/null || true); any=$(rg -n "''^quality_score:'"\\s*\" \""'$f" | head -n1 | cut -d: -f1,3- || true); [ -z "$any" ] && any='"'NONE'; printf '%s|%s|%s|%s|%s\\n' \""'$id" "$qs" "$f" "$first" "$any"; fi; done | sed -n '"'1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 381ms:
 25316|0.0|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction/memory/16-03-26_19-54__signal-extraction.md|---|38: 1.00
 25315|0.0|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction/memory/16-03-26_19-54__signal-extraction.md|---|38: 1.00
 25314|0.0|/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction/memory/16-03-26_19-54__signal-extraction.md|---|38: 1.00
@@ -676,7 +676,7 @@ exec
 fm_found=true
 score=1.00
 exec
-/bin/zsh -lc "db='.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite'; sqlite3 -separator '|' \""'$db" "SELECT id,file_path,quality_score FROM memory_index ORDER BY id DESC;" | while IFS='"'|' read -r id f qs; do [ -f \""'$f" ] || continue; first=$(head -n 1 "$f" 2>/dev/null || true); if [ "$first" != '"'---' ]; then any="'$(rg -n "''^quality_score:'"\\s*\" \""'$f" | head -n1 | cut -d: -f1,3- || true); [ -z "$any" ] && any='"'NONE'; printf '%s|%s|%s|%s|%s\\n' \""'$id" "$qs" "$f" "$first" "$any"; fi; done | sed -n '"'1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 885ms:
+/bin/zsh -lc "db='.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite'; sqlite3 -separator '|' \""'$db" "SELECT id,file_path,quality_score FROM memory_index ORDER BY id DESC;" | while IFS='"'|' read -r id f qs; do [ -f \""'$f" ] || continue; first=$(head -n 1 "$f" 2>/dev/null || true); if [ "$first" != '"'---' ]; then any="'$(rg -n "''^quality_score:'"\\s*\" \""'$f" | head -n1 | cut -d: -f1,3- || true); [ -z "$any" ] && any='"'NONE'; printf '%s|%s|%s|%s|%s\\n' \""'$id" "$qs" "$f" "$first" "$any"; fi; done | sed -n '"'1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 885ms:
 
 exec
 /bin/zsh -lc "dir='.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory'; total="'$(find "$dir" -maxdepth 1 -type f -name '"'*.md' | wc -l | tr -d ' '); displaced="'$(find "$dir" -maxdepth 1 -type f -name '"'*.md' | while IFS= read -r f; do first="'$(head -n 1 "$f" || true); [ "$first" != '"'---' ] && echo \""'$f"; done | wc -l | tr -d '"' '); echo \"TOTAL_MD="'$total"; echo "DISPLACED_MD=$displaced"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
@@ -709,25 +709,25 @@ TOP:     6	trigger_phrases:
 QS:46:quality_score: 0.85
 
 exec
-/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|warnThreshold|quality.*warnThreshold\" '.opencode/skill/system-spec-kit' | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/config/filters.jsonc:44:    "warnThreshold": 20,
-.opencode/skill/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:53:    warnThreshold: number;
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:187:      warnThreshold: 20,
-.opencode/skill/system-spec-kit/scripts/lib/content-filter.ts:620:      return filterStats.qualityScore < (config.quality?.warnThreshold || 20);
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1284:    const previousThreshold = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1285:    CONFIG.QUALITY_ABORT_THRESHOLD = 0.5;
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1307:      CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
+/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|warnThreshold|quality.*warnThreshold\" '.opencode/skills/system-spec-kit' | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/config/filters.jsonc:44:    "warnThreshold": 20,
+.opencode/skills/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1807:    warn(`   Warning: Low quality content detected (score: ${filterStats.qualityScore}/100, threshold: ${filterPipeline.config.quality?.warnThreshold || 20})`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:53:    warnThreshold: number;
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:187:      warnThreshold: 20,
+.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts:620:      return filterStats.qualityScore < (config.quality?.warnThreshold || 20);
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1284:    const previousThreshold = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1285:    CONFIG.QUALITY_ABORT_THRESHOLD = 0.5;
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1307:      CONFIG.QUALITY_ABORT_THRESHOLD = previousThreshold;
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/config/filters.jsonc' | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/config.ts' | sed -n '250,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/config/filters.jsonc' | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/config.ts' | sed -n '250,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// CONFIG: CONTENT FILTERS
      3	// ───────────────────────────────────────────────────────────────
@@ -770,7 +770,7 @@ exec
    268	    }
    269	  } catch (error: unknown) {
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/config.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/config.ts' | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Config
      3	// ---------------------------------------------------------------
@@ -792,7 +792,7 @@ exec
     19	export interface WorkflowConfig {
     20	  maxResultPreview: number;
 exec
-/bin/zsh -lc "rg -n \"qualityAbortThreshold\" '.opencode/skill/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"qualityAbortThreshold\" '.opencode/skills/system-spec-kit/scripts/core/config.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 34:  qualityAbortThreshold: number;
 104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
 112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
@@ -802,19 +802,19 @@ exec
 239:    qualityAbortThreshold: 0.15,
 303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
 exec
-/bin/zsh -lc "rg -n \"CG-07|missing_frontmatter|frontmatter.*position|prepended\" '.opencode/skill/system-spec-kit/scripts' '.opencode/skill/system-spec-kit/shared' | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:12:  | 'missing_frontmatter'
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:14:  | 'missing_frontmatter_key'
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:243:      code: 'missing_frontmatter',
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:271:          code: 'missing_frontmatter_key',
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:374: * CG-07c: Extract all spec IDs from the full spec folder path.
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:520:  // CG-07c: Use the full set of allowed IDs (current + all ancestors in path).
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2154:  // CG-07b: Validate template contract BEFORE any banner/warning is prepended.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2155:  // Banners prepended after this point (low-quality, simulation, medium-quality)
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2156:  // would shift the frontmatter away from position 0, causing false
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2157:  // missing_frontmatter violations when the contract is checked later.
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2251:  // CG-07: Add warning banner for medium-quality scores (0.30-0.60 legacy 30-60)
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1076:      pass('T-013j: add_simulation_warning adds warning', 'Warning prepended');
+/bin/zsh -lc "rg -n \"CG-07|missing_frontmatter|frontmatter.*position|prepended\" '.opencode/skills/system-spec-kit/scripts' '.opencode/skills/system-spec-kit/shared' | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:12:  | 'missing_frontmatter'
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:14:  | 'missing_frontmatter_key'
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:243:      code: 'missing_frontmatter',
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:271:          code: 'missing_frontmatter_key',
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:374: * CG-07c: Extract all spec IDs from the full spec folder path.
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:520:  // CG-07c: Use the full set of allowed IDs (current + all ancestors in path).
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2154:  // CG-07b: Validate template contract BEFORE any banner/warning is prepended.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2155:  // Banners prepended after this point (low-quality, simulation, medium-quality)
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2156:  // would shift the frontmatter away from position 0, causing false
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2157:  // missing_frontmatter violations when the contract is checked later.
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2251:  // CG-07: Add warning banner for medium-quality scores (0.30-0.60 legacy 30-60)
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1076:      pass('T-013j: add_simulation_warning adds warning', 'Warning prepended');
 exec
 /bin/zsh -lc "root='.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing'; rg -n \""'^<!-- WARNING: This is simulated/placeholder content" "$root" -g '"'*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 
@@ -826,7 +826,7 @@ exec
 -rw-------@ 1 michelkerkmeester  staff  14455 Mar 18 21:45 specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification/memory/17-03-26_15-40__next-steps.md
 -rw-------@ 1 michelkerkmeester  staff  26192 Mar 18 21:45 specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '900,1045p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '900,1045p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    900	    .createHash('sha1')
    901	    .update(`${sessionData.SESSION_ID}\n${memoryTitle}\n${sessionData.SUMMARY}`)
    902	    .digest('hex');
@@ -851,14 +851,14 @@ codex
 NEW-1 is **verified**.
 
 1. Exact prepend paths that displace frontmatter  
-- Low-quality note prepend: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168) → [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2170)  
-- Simulation warning prepend: [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2174) → [workflow.ts:2176](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2176)  
-- Medium-quality warning prepend: [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252) → [workflow.ts:2254](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2254)  
-- Indexed content is this same mutated string: [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2384) → [workflow.ts:2388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2388)
+- Low-quality note prepend: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168) → [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2170)  
+- Simulation warning prepend: [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2174) → [workflow.ts:2176](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2176)  
+- Medium-quality warning prepend: [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252) → [workflow.ts:2254](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2254)  
+- Indexed content is this same mutated string: [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2384) → [workflow.ts:2388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2388)
 
 2. Frontmatter parser strictness in `quality-extractors.ts`  
-- `FRONTMATTER_RE` is start-anchored (`^---...`): [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:5)  
-- `extractQualityScore` returns `0` when frontmatter isn’t matched: [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21) to [quality-extractors.ts:24](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:24)
+- `FRONTMATTER_RE` is start-anchored (`^---...`): [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:5)  
+- `extractQualityScore` returns `0` when frontmatter isn’t matched: [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21) to [quality-extractors.ts:24](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:24)
 
 3. Actual memory-file evidence of displacement  
 - In your exact target folder (`.../009-perfect-session-capturing/memory`): `1/9` `.md` files are displaced.  
@@ -881,14 +881,14 @@ tokens used
 NEW-1 is **verified**.
 
 1. Exact prepend paths that displace frontmatter  
-- Low-quality note prepend: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168) → [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2170)  
-- Simulation warning prepend: [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2174) → [workflow.ts:2176](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2176)  
-- Medium-quality warning prepend: [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252) → [workflow.ts:2254](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2254)  
-- Indexed content is this same mutated string: [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2384) → [workflow.ts:2388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2388)
+- Low-quality note prepend: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168) → [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2170)  
+- Simulation warning prepend: [workflow.ts:2174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2174) → [workflow.ts:2176](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2176)  
+- Medium-quality warning prepend: [workflow.ts:2252](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252) → [workflow.ts:2254](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2254)  
+- Indexed content is this same mutated string: [workflow.ts:2384](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2384) → [workflow.ts:2388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2388)
 
 2. Frontmatter parser strictness in `quality-extractors.ts`  
-- `FRONTMATTER_RE` is start-anchored (`^---...`): [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:5)  
-- `extractQualityScore` returns `0` when frontmatter isn’t matched: [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21) to [quality-extractors.ts:24](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:24)
+- `FRONTMATTER_RE` is start-anchored (`^---...`): [quality-extractors.ts:5](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:5)  
+- `extractQualityScore` returns `0` when frontmatter isn’t matched: [quality-extractors.ts:21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21) to [quality-extractors.ts:24](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:24)
 
 3. Actual memory-file evidence of displacement  
 - In your exact target folder (`.../009-perfect-session-capturing/memory`): `1/9` `.md` files are displaced.  

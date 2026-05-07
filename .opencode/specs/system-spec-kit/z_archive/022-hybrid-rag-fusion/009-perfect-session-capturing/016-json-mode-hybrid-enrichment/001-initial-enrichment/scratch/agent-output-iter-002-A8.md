@@ -13,7 +13,7 @@ Investigate which fields bypass contamination cleaning (Q7) and how projectPhase
 2. **SUMMARY** — the collectedData.SUMMARY string field (line 600-601)
 
 No other field anywhere in the codebase calls `filterContamination`. Confirmed by grep: only workflow.ts:550 is a non-test call site.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:548-602]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:548-602]
 
 **Finding 2: Fields that bypass contamination cleaning entirely** — traced from JSON input through input-normalizer.ts to collect-session-data.ts output:
 
@@ -26,14 +26,14 @@ No other field anywhere in the codebase calls `filterContamination`. Confirmed b
 | `recentContext` | Passed through as-is (input-normalizer.ts:425-429, collect-session-data.ts:948, output at line 1202) | **HIGH** — Never passes through any cleaning. The `recentContext[].learning` and `recentContext[].request` strings go directly to output. `extractFromRecentContext()` (session-extractor.ts:276-281) also reads this uncleaned data to extract nextAction. | Critical |
 | `technicalContext` | Mapped to `TECHNICAL_CONTEXT` array of `{KEY, VALUE}` (input-normalizer.ts:457-459, collect-session-data.ts:995-996) | **MEDIUM** — Neither keys nor values are cleaned. Technical context strings could contain AI preambles. | High |
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:414-491]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:988-996]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:414-491]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:988-996]
 
 **Finding 3: The `_JSON_SESSION_SUMMARY` passthrough is the most dangerous gap.** At collect-session-data.ts line 990, the raw `sessionSummary` from JSON input is passed through as `_JSON_SESSION_SUMMARY` without any cleaning. This value is then used in title generation (line 918 shows it as first candidate: `sessionData._JSON_SESSION_SUMMARY || ''`). If the AI writes "Let me analyze the session and save context" as `sessionSummary`, the contamination phrase "Let me analyze" would survive into the memory title.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:918, 990]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:918, 990]
 
 **Finding 4: `_manualDecisions` preserves uncleaned decision text.** When `keyDecisions` is provided in JSON, it is cloned to `_manualDecisions` (input-normalizer.ts:477) BEFORE the observations are cleaned. The `_manualDecisions` array is used separately in template rendering for the DECISIONS section. This means decision titles and rationales could contain contamination phrases that the observation cleaning already caught.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:476-477]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:476-477]
 
 ### Q8: projectPhase Detection — Always 'RESEARCH' in JSON Mode
 
@@ -49,14 +49,14 @@ readTools/total > 0.6 → 'RESEARCH'
 default → 'IMPLEMENTATION'
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:188-207]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:188-207]
 
 **Finding 6: Unlike `contextType` and `importanceTier`, there is NO explicit override mechanism for `projectPhase`.** The session-extractor.ts exports `detectProjectPhase` but not a `resolveProjectPhase` function. Compare:
 - `contextType`: Has explicit override via `explicitContextType` parameter in `detectSessionCharacteristics()` (session-extractor.ts:550-562). Input-normalizer propagates `contextType` through both fast-path (line 466-468) and slow-path.
 - `importanceTier`: Has explicit override via `resolveImportanceTier()` (session-extractor.ts:162-175). Input-normalizer propagates `importanceTier` through both fast-path (line 461-464) and slow-path.
 - `projectPhase`: Called as `detectProjectPhase(toolCounts, observations, messageCount)` in `buildProjectStateSnapshot()` (session-extractor.ts:580). No explicit parameter, no override mechanism, no propagation in input-normalizer.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:545-569, 576-587]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:545-569, 576-587]
 
 **Finding 7: Impact of incorrect projectPhase on output.** The `projectPhase` flows to:
 1. `PROJECT_PHASE` in the output data (collect-session-data.ts:1012) — rendered in the memory YAML frontmatter
@@ -64,14 +64,14 @@ default → 'IMPLEMENTATION'
 3. Memory files permanently record `project_phase: RESEARCH` even for implementation-heavy sessions
 
 The downstream impact: MCP search queries filtering by phase would return wrong results. A session that implemented 50 files would be tagged as RESEARCH. The quality scorer and importance tier don't directly use projectPhase, so the impact is primarily on metadata accuracy and search relevance.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:543-548, 1012]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:543-548, 1012]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` (full file, 200 lines)
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 611 lines)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 530-610)
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 1-520)
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 600-1030)
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` (full file, 200 lines)
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 611 lines)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 530-610)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 1-520)
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 600-1030)
 - Grep results for `filterContamination` across scripts/ (22 results, only 1 non-test call site)
 - Grep results for `projectPhase` across scripts/ (14 results)
 

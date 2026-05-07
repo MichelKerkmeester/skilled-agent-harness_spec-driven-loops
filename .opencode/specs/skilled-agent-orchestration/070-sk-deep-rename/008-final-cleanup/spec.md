@@ -77,7 +77,7 @@ Phase 008 closes those final P1 findings with targeted JSON and compiler updates
 - Strengthen `deep-review` positive advisor signals for iterative review-loop audit prompts.
 - Add matching `sk-code-review` anti-signals so single-pass review does not win loop-language prompts.
 - Rename the internal family taxonomy from `sk-deep` to `deep-loop` in graph source, per-skill metadata, and compiler validation.
-- Normalize `.opencode/skill/sk-code/graph-metadata.json` entity kind from `reference-category` to `reference`.
+- Normalize `.opencode/skills/sk-code/graph-metadata.json` entity kind from `reference-category` to `reference`.
 - Add Phase 008 to the parent packet `children_ids`.
 - Run JSON, advisor validation, targeted grep, and strict spec validation checks.
 
@@ -100,11 +100,11 @@ Phase 008 closes those final P1 findings with targeted JSON and compiler updates
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup/description.json` | Create | Canonical packet description |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup/graph-metadata.json` | Create/Update | Canonical graph metadata |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/graph-metadata.json` | Update | Add Phase 008 child ID |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | P1-002 signals and P1-003 family bucket |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Update | P1-003 family allow-list |
-| `.opencode/skill/deep-review/graph-metadata.json` | Update | P1-003 family field |
-| `.opencode/skill/deep-research/graph-metadata.json` | Update | P1-003 family field |
-| `.opencode/skill/sk-code/graph-metadata.json` | Update | P1-004 entity kind |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | P1-002 signals and P1-003 family bucket |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Update | P1-003 family allow-list |
+| `.opencode/skills/deep-review/graph-metadata.json` | Update | P1-003 family field |
+| `.opencode/skills/deep-research/graph-metadata.json` | Update | P1-003 family field |
+| `.opencode/skills/sk-code/graph-metadata.json` | Update | P1-004 entity kind |
 <!-- /ANCHOR:scope -->
 
 ---

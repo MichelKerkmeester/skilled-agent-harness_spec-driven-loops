@@ -1,6 +1,6 @@
 # Audit QA1-O01: workflow.ts Deep Code Quality Review
 
-**File:** `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (1143 LOC)
+**File:** `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (1143 LOC)
 **Reviewer:** Claude Opus 4.6 (@review agent)
 **Date:** 2026-03-09
 **Scope:** Spec 012 (session capturing) + Spec 013 (stateless mode enrichment) interaction
@@ -342,17 +342,17 @@ When `preloadedData` is provided, `isStatelessMode` is `false`, so neither the a
 
 | Path | Lines | Issues |
 |------|-------|--------|
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | 1143 | 4 P1, 6 P2 |
-| `.opencode/skill/system-spec-kit/scripts/core/config.ts` | 311 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/core/index.ts` | 40 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts` | 293 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts` | 187 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` | 91 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` | ~800 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/index.ts` | 38 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` | 196 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts` | ~30 | 0 (context) |
-| `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts` | ~20 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | 1143 | 4 P1, 6 P2 |
+| `.opencode/skills/system-spec-kit/scripts/core/config.ts` | 311 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/core/index.ts` | 40 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts` | 293 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts` | 187 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` | 91 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` | ~800 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/index.ts` | 38 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` | 196 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts` | ~30 | 0 (context) |
+| `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts` | ~20 | 0 (context) |
 
 ---
 

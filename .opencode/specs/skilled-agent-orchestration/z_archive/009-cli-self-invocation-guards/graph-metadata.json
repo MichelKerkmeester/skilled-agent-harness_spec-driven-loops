@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/cli-claude-code/SKILL.md",
-      ".opencode/skill/cli-gemini/SKILL.md",
-      ".opencode/skill/cli-codex/SKILL.md",
-      ".opencode/skill/cli-copilot/SKILL.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/cli-codex/SKILL.md",
+      ".opencode/skills/cli-copilot/SKILL.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -54,7 +54,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-claude-code/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "source": "derived"
       },
       {

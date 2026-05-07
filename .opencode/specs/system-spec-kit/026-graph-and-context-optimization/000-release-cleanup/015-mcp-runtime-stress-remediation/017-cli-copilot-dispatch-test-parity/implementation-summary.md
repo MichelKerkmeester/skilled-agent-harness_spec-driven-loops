@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary: cli-copilot Dispatch Test Parity
 
@@ -93,7 +93,7 @@ This is anti-regression dead code. If a future test adds a `cli-copilot` case to
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | Modified | Rewrite cli-copilot dispatch tests + smoke test against `buildCopilotPromptArg`; ~+150 / -55 LOC |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | Modified | Rewrite cli-copilot dispatch tests + smoke test against `buildCopilotPromptArg`; ~+150 / -55 LOC |
 | `.opencode/specs/.../017-cli-copilot-dispatch-test-parity/{spec,plan,tasks,checklist,implementation-summary}.md` | Created | Standard Level 1 packet docs |
 | `.opencode/specs/.../017-cli-copilot-dispatch-test-parity/{description,graph-metadata}.json` | Created | Required spec metadata |
 

@@ -6,11 +6,11 @@ You are a LEAF research agent. Investigate the assigned focus area, write three 
 
 Audit three intertwined surfaces in the OpenCode skill ecosystem:
 
-1. **system-spec-kit** skill + MCP server at `.opencode/skill/system-spec-kit/` — drift between docs and code, validator + graph-metadata test coverage, MCP tool surface coverage vs docs, performance hotspots, concrete improvement targets.
+1. **system-spec-kit** skill + MCP server at `.opencode/skills/system-spec-kit/` — drift between docs and code, validator + graph-metadata test coverage, MCP tool surface coverage vs docs, performance hotspots, concrete improvement targets.
 
-2. **mcp-coco-index** skill + MCP server at `.opencode/skill/mcp-coco-index/` — semantic-search effectiveness, freshness behavior, CLI vs MCP parity, query routing decisions vs decision tree, embedding-provider abstraction.
+2. **mcp-coco-index** skill + MCP server at `.opencode/skills/mcp-coco-index/` — semantic-search effectiveness, freshness behavior, CLI vs MCP parity, query routing decisions vs decision tree, embedding-provider abstraction.
 
-3. **sk-code OpenCode side**: `.opencode/skill/sk-code/references/opencode/` and `.opencode/skill/sk-code/assets/opencode/`. Audit for staleness, coverage gaps (language sub-detection docs, verification recipes, skills/agents/commands authoring checklists), drift between declared resource_map paths and on-disk structure, concrete add/refine/remove targets.
+3. **sk-code OpenCode side**: `.opencode/skills/sk-code/references/opencode/` and `.opencode/skills/sk-code/assets/opencode/`. Audit for staleness, coverage gaps (language sub-detection docs, verification recipes, skills/agents/commands authoring checklists), drift between declared resource_map paths and on-disk structure, concrete add/refine/remove targets.
 
 **Cross-cutting questions:**
 

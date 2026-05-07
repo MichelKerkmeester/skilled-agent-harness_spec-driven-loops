@@ -2,7 +2,7 @@
 
 Date: 2026-02-15  
 Mode: Read-only validation (no source edits)  
-Scope: Validate C06 findings against current shell scripts in `Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/{spec,rules}`.  
+Scope: Validate C06 findings against current shell scripts in `Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/{spec,rules}`.  
 Constraint: Excluded node_modules-move-only issues.
 
 ## Verdict Summary

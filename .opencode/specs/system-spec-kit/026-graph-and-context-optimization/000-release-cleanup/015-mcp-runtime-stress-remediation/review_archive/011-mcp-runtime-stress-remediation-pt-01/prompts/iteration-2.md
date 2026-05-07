@@ -29,7 +29,7 @@ Last claim_adjudication_passed: true (no new P0/P1 in iter-1)
 
 The `011-post-stress-followup-research/` deep-research loop produced a P0 patch proposal: a Gate-3 bypass in the cli-copilot dispatch path lets recovered/bootstrap context override the workflow-approved spec folder, unilaterally enabling write-intent dispatch outside the approved scope.
 
-The proposed fix lives in `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` (and a helper `buildCopilotPromptArg`). Read the actual implementation and validate:
+The proposed fix lives in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` (and a helper `buildCopilotPromptArg`). Read the actual implementation and validate:
 
 1. **Insertion point correctness**: Where exactly does the authority-token bind to the workflow-approved spec folder? An off-by-one (binding to the wrong scope variable) would reintroduce the bypass. Trace the variable from workflow input through helper invocation through copilot argv assembly.
 2. **Plan-only safe-fail**: When `spec_folder` is missing/malformed/unresolved on a write-intent dispatch, does the helper enforce plan-only mode by replacing the prompt with a Gate-3 question AND stripping `--allow-all-tools`?

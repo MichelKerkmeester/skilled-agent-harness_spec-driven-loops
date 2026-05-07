@@ -103,7 +103,7 @@ Template compliance shim anchor for summary.
 
 ### Layer 4: Instruction File Updates
 
-- [x] T-016: Create constitutional memory `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md` with search decision tree (already existed with richer content) [EVIDENCE: verified in implementation-summary.md]
+- [x] T-016: Create constitutional memory `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md` with search decision tree (already existed with richer content) [EVIDENCE: verified in implementation-summary.md]
 - [x] T-017: Update root `CLAUDE.md` -- replace passive "MUST use" with active decision tree [EVIDENCE: verified in implementation-summary.md]
 - [x] T-018: Keep Claude-aware routing reinforcement consolidated in `../../../../../CLAUDE.md` [EVIDENCE: verified in implementation-summary.md]
 - [x] T-019: Update `../../../../../AGENTS.md` with non-hook routing enforcement [EVIDENCE: verified in implementation-summary.md]
@@ -111,11 +111,11 @@ Template compliance shim anchor for summary.
 
 ### Layer 5: Agent Updates
 
-- [x] T-021: Update `.opencode/agent/context.md` with routing rules in output [EVIDENCE: verified in implementation-summary.md]
+- [x] T-021: Update `.opencode/agents/context.md` with routing rules in output [EVIDENCE: verified in implementation-summary.md]
 - [x] T-022: Update `.claude/agents/context.md` with routing rules [EVIDENCE: verified in implementation-summary.md]
 - [x] T-023: Update `.codex/agents/context-prime.toml` with routing rules [EVIDENCE: verified in implementation-summary.md]
 - [x] T-024: Update `.gemini/agents/context.md` with routing rules [EVIDENCE: verified in implementation-summary.md]
-- [x] T-025: Update `.opencode/agent/context.md` with routing rules [EVIDENCE: verified in implementation-summary.md]
+- [x] T-025: Update `.opencode/agents/context.md` with routing rules [EVIDENCE: verified in implementation-summary.md]
 
 ### Validation
 
@@ -123,4 +123,4 @@ Template compliance shim anchor for summary.
 - [x] T-027: Unit test -- PrimePackage includes `routingRules` with >= 3 rules (tsc clean) [EVIDENCE: verified in implementation-summary.md]
 - [x] T-028: Integration test -- hint fires on semantic search pattern (code verified) [EVIDENCE: verified in implementation-summary.md]
 - [x] T-029: Grep verify -- all 4 runtime instruction files contain active enforcement [EVIDENCE: verified in implementation-summary.md]
-- [x] T-030: Manual semantic-routing verification is covered by the dedicated tool-routing playbook scenario [EVIDENCE: `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md` includes the runtime routing checks]
+- [x] T-030: Manual semantic-routing verification is covered by the dedicated tool-routing playbook scenario [EVIDENCE: `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md` includes the runtime routing checks]

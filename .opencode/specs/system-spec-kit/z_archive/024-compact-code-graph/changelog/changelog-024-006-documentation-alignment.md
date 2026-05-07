@@ -48,10 +48,10 @@ This phase documented the compact-code-graph rollout across the places users act
 
 | File | What changed |
 |------|-------------|
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | Added compact-code-graph capability coverage. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Added testing coverage for recovery and startup behavior. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Synced system behavior and recovery references. |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Added architecture notes for the packet’s runtime behavior. |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Added compact-code-graph capability coverage. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Added testing coverage for recovery and startup behavior. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Synced system behavior and recovery references. |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Added architecture notes for the packet’s runtime behavior. |
 | `README.md` | Added cross-links to the new packet documentation surfaces. |
 
 ---

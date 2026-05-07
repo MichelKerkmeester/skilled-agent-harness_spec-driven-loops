@@ -41,7 +41,7 @@ _memory:
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Canonical packet files were read before rewriting [EVIDENCE: spec.md, plan.md, tasks.md, checklist.md, and implementation-summary.md were reviewed before the lineage rewrite.]
-- [x] CHK-002 [P0] Live runtime lineage was checked across base, ChatGPT, Claude, Codex, and Gemini [EVIDENCE: runtime-facing agent families were cross-checked across `.opencode/agent/`, `.opencode/agent/chatgpt/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.]
+- [x] CHK-002 [P0] Live runtime lineage was checked across base, ChatGPT, Claude, Codex, and Gemini [EVIDENCE: runtime-facing agent families were cross-checked across `.opencode/agents/`, `.opencode/agents/chatgpt/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.]
 - [x] CHK-003 [P1] Gemini runtime-facing and storage-facing paths were both verified [EVIDENCE: packet docs record both `.gemini/agents/` runtime usage and `.agents` storage via the symlinked Gemini path.]
 <!-- /ANCHOR:pre-impl -->
 
@@ -103,7 +103,7 @@ _memory:
 
 - [x] CHK-060 [P0] @explore removed from all orchestrate LEAF lists and NDP examples (5 runtimes) [EVIDENCE: grep confirms 0 matches for @explore across all agent dirs]
 - [x] CHK-061 [P0] @deep-review added to orchestrate LEAF lists (5 runtimes) [EVIDENCE: grep confirms @deep-review present in all 5 orchestrate files]
-- [x] CHK-062 [P0] Dead sk-code path replaced with sk-code-review in orchestrate resource tables (5 runtimes) [EVIDENCE: grep confirms 0 matches for `.opencode/skill/sk-code/` across all agent dirs]
+- [x] CHK-062 [P0] Dead sk-code path replaced with sk-code-review in orchestrate resource tables (5 runtimes) [EVIDENCE: grep confirms 0 matches for `.opencode/skills/sk-code/` across all agent dirs]
 - [x] CHK-063 [P1] Live memory routing surface present in orchestrate suggestion tables (5 runtimes) [EVIDENCE: `/memory:search`, `/memory:manage`, `/memory:manage shared`, `/memory:learn`, and `/memory:save` are represented in the active routing tables.]
 - [x] CHK-064 [P1] `/memory:manage shared` added to speckit command tables (5 runtimes) [EVIDENCE: grep confirms `/memory:manage shared` in speckit and orchestrate agents]
 - [x] CHK-065 [P1] Codex speckit /memory:learn label corrected to "Constitutional memory manager" [EVIDENCE: .codex/agents/speckit.toml updated]

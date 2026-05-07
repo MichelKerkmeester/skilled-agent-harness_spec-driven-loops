@@ -12,11 +12,11 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/research-report.md` (Section 4 P1-2 verdict; Section 6 Packet 033 scope)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/iterations/iteration-004.md` (Hunter→Skeptic→Referee detail for P1-2)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scope-governance.ts` (specifically lines 225-333 — the `delete_after` persistence path)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts` (specifically lines 202-257 cleanup intervals; lines 737-840 sweep target tables)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` (existing bulk-delete handler)
-- `.opencode/skill/system-spec-kit/mcp_server/db/` (memory_index table schema for `delete_after`)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` (related health diagnostic)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scope-governance.ts` (specifically lines 225-333 — the `delete_after` persistence path)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` (specifically lines 202-257 cleanup intervals; lines 737-840 sweep target tables)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` (existing bulk-delete handler)
+- `.opencode/skills/system-spec-kit/mcp_server/db/` (memory_index table schema for `delete_after`)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` (related health diagnostic)
 - Any existing retention tests under `mcp_server/tests/` (`grep -l 'delete_after\|retention'`)
 
 ### Implementation
@@ -48,8 +48,8 @@ Per the 013 research-report's recommendation, the **α path** (audit-worthy) is 
    - `mcp_server/ENV_REFERENCE.md` — document `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS`
    - `scope-governance.ts` JSDoc — add a comment near `delete_after` persistence pointing to the sweep
 6. **Run TypeScript build + tests**:
-   - `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` (or equivalent — find the build command in package.json) — must succeed
-   - `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep` — must pass
+   - `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` (or equivalent — find the build command in package.json) — must succeed
+   - `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep` — must pass
    - DO NOT run the full vitest suite (some tests hang per memory feedback)
 
 ### Packet structure to create (Level 2)

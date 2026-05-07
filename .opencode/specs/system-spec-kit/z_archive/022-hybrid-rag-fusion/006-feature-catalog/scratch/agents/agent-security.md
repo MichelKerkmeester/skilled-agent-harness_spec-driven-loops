@@ -4,8 +4,8 @@
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
 
 ● Run skill advisor (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Security review of feature catalog entries in
-  │ .opencode/skill/system-spec-kit/feature_catalog focusing on secrets, unsafe patterns, and
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Security review of feature catalog entries in
+  │ .opencode/skills/system-spec-kit/feature_catalog focusing on secrets, unsafe patterns, and
   │ misleading security claims vs mcp_server" --threshold 0.8
   └ 43 lines...
 
@@ -41,31 +41,31 @@ I’ve loaded the review baseline and OpenCode overlay. Now I’m inventorying t
   │ traversal|unvalidated|sanitize|validation|guardrail|auth|authorization|tenant|shared
   │ memory|deny-by-default|containment|canonical|path\.resolve|path traversal|injection" in
   │ {01--retrieval,02--mutation,07--evaluation,08--bug-fixes-and-data-integrity,17--governance,18--u
-  │ x-hooks}/**/*.md (.opencode/skill/system-spec-kit/feature_catalog)
+  │ x-hooks}/**/*.md (.opencode/skills/system-spec-kit/feature_catalog)
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/07--evaluation/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/07--evaluation/**/*.md"
   └ 2 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/**/*.md"
   └ 11 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/**/*.md"
   └ 10 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/**/*.md"
   └ 11 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/17--governance/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/17--governance/**/*.md"
   └ 4 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/**/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/**/*.md"
   └ 19 files found
 
 ● search security validation authorization tenant isolation canonical path containment input valida…
@@ -80,19 +80,19 @@ The keyword sweep came back mostly quiet, so I’m switching to a file-by-file p
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ base = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog')
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog')
   │ sections = ['01--retrieval','02--mutation','07--evaluation','08--bug-fixes-and-data-integrity'…
   └ 64 lines...
 
 ● Explore Scout security risks
   │ Read governance 01 (shell)
   │   │ head -200 "/Users/michelkerkmeester/MEGA/Development/Opencode
-  │   Env/Public/.opencode/skill/system-
+  │   Env/Public/.opencode/skills/system-
   │   │ spec-kit/feature_catalog/17--governance/01-feature-flag-governance.md"
   │   └ 39 lines...
   └ Read governance 04 (shell)
       │ head -200 "/Users/michelkerkmeester/MEGA/Development/Opencode
-      │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog/17--governance/04-shared-memory-r
+      │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog/17--governance/04-shared-memory-r
       ollo
       │ ut-deny-by-default-membership-and-kill-switch.md"
       └ 70 lines...
@@ -101,42 +101,42 @@ The keyword sweep came back mostly quiet, so I’m switching to a file-by-file p
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/17--governance)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/17--governance)
   └ 47 lines found
 
 ● Search (grep)
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/02--mutation)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/02--mutation)
   └ 5 lines found
 
 ● Search (grep)
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks)
   └ 5 lines found
 
 ● Search (grep)
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/01--retrieval)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/01--retrieval)
   └ 5 lines found
 
 ● Search (grep)
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/07--evaluation)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/07--evaluation)
   └ 10 lines found
 
 ● Search (grep)
   │ "security|secret|credential|token|password|api key|auth|authorization|tenant|shared memory|kill
   │ switch|deny-by-default|confirmname|audit|retention|provenance|canonical|containment|path|travers
   │ al|sanitize|validate|validation|guardrail|unsafe|inject|exposure|scope" in *.md
-  │ (.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity)
   └ 34 lines found
 
 I’ve narrowed it to the governance and UX hook entries that actually make security-relevant promises, plus a couple of path-safety/data-integrity docs. I’m now checking the concrete handlers and schemas they cite to see whether those claims really hold.
@@ -145,126 +145,126 @@ I’ve narrowed it to the governance and UX hook entries that actually make secu
   │ "shared_memory_enable|shared_space|kill switch|killSwitch|deny-by-default|membership|confirmName
   │ |provenanceSource|provenanceActor|retentionPolicy|deleteAfter|validateGovernedIngest|audit
   │ trail|record deny|governance audit|tenantId|sharedSpaceId" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/lib/governance/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/lib/governance/*.ts"
   └ 1 file found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/handlers/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/handlers/*.ts"
   └ 31 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/hooks/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/hooks/**/*.ts"
   └ 4 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/lib/utils/*path*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/lib/utils/*path*.ts"
   └ 2 files found
 
 ● Read (Explore agent — Scout security risks)
   └ Running
 
 ● Read 03-hierarchical-scope-governance-governed-ingest-retention-and-audit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/03-hierarchical-scope-governance-
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/03-hierarchical-scope-governance-
   │ governed-ingest-retention-and-audit.md
   └ L1:120 (62 lines read)
 
 ● Read 04-shared-memory-rollout-deny-by-default-membership-and-kill-switch.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/04-shared-memory-rollout-deny-by-
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/04-shared-memory-rollout-deny-by-
   │ default-membership-and-kill-switch.md
   └ L1:120 (69 lines read)
 
 ● Read 03-checkpoint-delete-confirmname-safety.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/03-checkpoint-delete-confirmname-sa
+  │ .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/03-checkpoint-delete-confirmname-sa
   │ fety.md
   └ L1:220 (144 lines read)
 
 ● Read 07-mutation-response-ux-payload-exposure.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/07-mutation-response-ux-payload-exp
+  │ .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/07-mutation-response-ux-payload-exp
   │ osure.md
   └ L1:120 (50 lines read)
 
 ● Read 04-sha-256-content-hash-deduplication.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-cont
+  │ .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/04-sha-256-cont
   │ ent-hash-deduplication.md
   └ L1:120 (69 lines read)
 
 ● Read 06-guards-and-edge-cases.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-e
+  │ .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/06-guards-and-e
   │ dge-cases.md
   └ L1:120 (56 lines read)
 
 ● Search (grep)
   │ "validateGovernedIngest|provenanceSource|provenanceActor|retentionPolicy|deleteAfter|audit|share
   │ dSpaceId|tenantId|userId|agentId|sessionId"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 53 lines found
 
 ● Search (grep)
   │ "shared memory|killSwitch|isSharedMemoryEnabled|membership|sharedSpace|deny|allow|tenant
-  │ alignment|shared_space" (.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts)
+  │ alignment|shared_space" (.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts)
   └ 94 lines found
 
 ● Search (grep)
   │ "evaluateAccess|validateGovernedIngest|audit|deny|allow|sharedSpace|tenant|actor|session"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "sharedSpace|membership|killSwitch|allowedSharedSpaces|tenantId|userId|agentId|sessionId"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 14 lines found
 
 ● Search (grep)
   │ "confirmName|checkpoint.*delete|safetyConfirmationUsed"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
   └ 18 lines found
 
 ● Search (grep)
   │ "confirmName|shared_memory_enable|shared_space_upsert|shared_space_membership_set|shared_memory_
   │ status|provenanceSource|provenanceActor|retentionPolicy|deleteAfter"
-  │ (.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
   └ 15 lines found
 
 ● Search (grep)
   │ "postMutationHooks|hint|cache|toolCacheInvalidated|contentHash|duplicate|no-op|payload"
-  │ (.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "canonical|containment|path traversal|isAllowed|resolve|approved roots|NNN-name"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/utils/path-security.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/utils/path-security.ts)
   └ No matches found
 
 ● Read scope-governance.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts
   └ L1:320 (320 lines read)
 
 ● Read shared-spaces.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts
   └ L180:640 (461 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L730:820 (91 lines read)
 
 ● Read mutation-feedback.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts
   └ L1:200 (61 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L680:980 (301 lines read)
 
 ● Read canonical-path.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/utils/canonical-path.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/utils/canonical-path.ts
   └ L1:220 (64 lines read)
 
 ● Read path-security.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/utils/path-security.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/utils/path-security.ts
   └ L1:260 (11 lines read)
 
 The first concrete discrepancy I’m checking is around shared-memory kill-switch wording versus the actual owner/admin bypass in code. I’m also pulling the scout agent’s pass now to see if it found any other security-only mismatches worth validating.
@@ -273,81 +273,81 @@ The first concrete discrepancy I’m checking is around shared-memory kill-switc
   └ idle
 
 ● Read shared-memory.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts
   └ L1:320 (320 lines read)
 
 ● Read mutation-hooks.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts
   └ L1:260 (106 lines read)
 
 ✗ Read FEATURE_CATALOG.md
-  │ .opencode/skill/system-spec-kit/mcp_server/FEATURE_CATALOG.md
+  │ .opencode/skills/system-spec-kit/mcp_server/FEATURE_CATALOG.md
   └ Path does not exist
 
 ● Search (grep)
   │ "buildMutationHookFeedback|postMutationHooks|safetyConfirmationUsed|shared_space_kill_switch|byp
-  │ assAvailabilityChecks" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ assAvailabilityChecks" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 73 lines found
 
 ● Read 04-tier-based-bulk-deletion-memorybulkdelete.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memoryb
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memoryb
   │ ulkdelete.md
   └ L1:220 (160 lines read)
 
 ● Read 01-feature-flag-governance.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/17--governance/01-feature-flag-governance.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/17--governance/01-feature-flag-governance.md
   └ L1:120 (38 lines read)
 
 ● Read memory-bulk-delete.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
   └ L1:260 (260 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L1:260 (257 lines read)
 
 I’ve ruled out a couple of the scout’s looser candidates. The two remaining areas that still look security-relevant are raw error exposure in mutation UX payloads and whether the catalog overstates the shared-memory kill switch.
 
 ● Search (grep)
   │ "recordGovernanceAudit|GovernanceAudit|audit"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ No matches found
 
 ● Search (grep)
   │ "recordGovernanceAudit|audit"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ No matches found
 
 ● Search (grep)
   │ "recordGovernanceAudit|audit"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts)
   └ 19 lines found
 
 ● Read hooks-ux-feedback.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts
   └ L1:140 (132 lines read)
 
 ● Read 08-context-server-success-hint-append.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/08-context-server-success-hint-appe
+  │ .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/08-context-server-success-hint-appe
   │ nd.md
   └ L1:120 (120 lines read)
 
 I found another possible security-posture mismatch: the governance catalog says decisions are audited across ingest and retrieval, but the retrieval path doesn’t appear to write governance audit records at all. I’m doing one last call-site pass so I can separate that from the weaker, non-security candidates.
 
 ● Search (grep)
-  │ "recordGovernanceAudit\(" in **/*.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "recordGovernanceAudit\(" in **/*.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 12 lines found
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:220 (220 lines read)
 
 ● Read response-builder.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts
   └ L300:360 (61 lines read)
 
 ● Read shared-spaces.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts
   └ L380:430 (51 lines read)
 
 17--governance/03-hierarchical-scope-governance-governed-ingest-retention-and-audit.md | Overstates audit coverage for governed retrieval | P2 | The entry says the feature governs ingest and retrieval and “keeps a record of every decision it makes” / “captures scope decisions” (`17--governance/03-hierarchical-scope-governance-governed-ingest-retention-and-audit.md:10-12,18-26`). In code, governance audit writes are present for save/shared-space access (`mcp_server/handlers/memory-save.ts:709-721,733-743,935-948`; `mcp_server/lib/collab/shared-spaces.ts:505-536,530-612`), but there are no retrieval-side audit call sites in `mcp_server/handlers/memory-search.ts` or `mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` (repo-wide `recordGovernanceAudit(` grep only hits save/shared-memory paths). This is a misleading security/auditability claim for retrieval operations.

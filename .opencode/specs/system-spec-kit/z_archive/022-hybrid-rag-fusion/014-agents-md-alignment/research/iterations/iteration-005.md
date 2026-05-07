@@ -25,8 +25,8 @@
 ### D4-001 - CONFIRMED (P1)
 
 - `014/spec.md` goes from `## 6. RISKS & DEPENDENCIES` directly to `## 10. OPEN QUESTIONS` (`spec.md:134-149`).
-- The canonical Level 2 composed template includes three intervening sections before open questions: `## L2: NON-FUNCTIONAL REQUIREMENTS`, `## L2: EDGE CASES`, and `## L2: COMPLEXITY ASSESSMENT` (`.opencode/skill/system-spec-kit/templates/level_2/spec.md:109-160`).
-- `template_guide.md` states Level 2 is `Core + level2-verify addendum`, making the composed Level 2 template the authoritative structure (`.opencode/skill/system-spec-kit/references/templates/template_guide.md:64-68`).
+- The canonical Level 2 composed template includes three intervening sections before open questions: `## L2: NON-FUNCTIONAL REQUIREMENTS`, `## L2: EDGE CASES`, and `## L2: COMPLEXITY ASSESSMENT` (`.opencode/skills/system-spec-kit/templates/level_2/spec.md:109-160`).
+- `template_guide.md` states Level 2 is `Core + level2-verify addendum`, making the composed Level 2 template the authoritative structure (`.opencode/skills/system-spec-kit/references/templates/template_guide.md:64-68`).
 - Adjudication: the numbering gap is not explained by optional section omission; the packet skips required Level 2 structural sections and keeps the wrong section numbering.
 
 ### D3-003 - CONFIRMED (P2)

@@ -13,15 +13,15 @@ Expansion candidate ranking + Planning Packet synthesis. This follows strategy i
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/020-w3-w7-verification-and-expansion-research/research/research-report.md:171`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:105`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring/findings-v1-0-3.md:107`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:927`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1169`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1410`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:29`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:23`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts:39`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts:47`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:927`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1169`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1410`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts:29`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:23`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:57`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts:39`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts:47`
 
 ## Findings
 

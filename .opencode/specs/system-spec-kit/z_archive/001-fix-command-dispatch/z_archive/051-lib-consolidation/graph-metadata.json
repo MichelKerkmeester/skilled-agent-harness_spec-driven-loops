@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/shared/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/shared/embeddings.js",
-      ".opencode/skill/system-spec-kit/mcp_server/shared/trigger-extractor.js",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js",
+      ".opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js",
+      ".opencode/skills/system-spec-kit/README.md",
       "mcp_server/shared/embeddings.js",
       "mcp_server/shared/trigger-extractor.js",
       "spec.md",
@@ -57,19 +57,19 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/shared/README.md",
+        "path": ".opencode/skills/system-spec-kit/shared/README.md",
         "source": "derived"
       },
       {
         "name": "embeddings.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/shared/embeddings.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js",
         "source": "derived"
       },
       {
         "name": "trigger-extractor.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/shared/trigger-extractor.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js",
         "source": "derived"
       },
       {

@@ -12,12 +12,12 @@ Yes. The local lifecycle split is internally coherent, but it leaks too much wor
 I compared the local lifecycle command prompts and their setup blocks against the external repo's orchestration entry points. I focused on how many operator-visible modes, questions, and workflow concepts each system asks a human to carry.
 
 ## Evidence
-- `[SOURCE: .opencode/command/spec_kit/plan.md:7-21]` The planning command starts by teaching a markdown-versus-YAML ownership split before any task work begins.
-- `[SOURCE: .opencode/command/spec_kit/plan.md:31-138]` The planning flow exposes a large consolidated-question protocol with up to nine setup questions and multiple feature flags.
-- `[SOURCE: .opencode/command/spec_kit/implement.md:7-18]` The implementation command repeats the YAML-first setup model as a separate entry surface.
-- `[SOURCE: .opencode/command/spec_kit/implement.md:77-120]` The implementation command asks its own consolidated setup block even after planning has already happened.
-- `[SOURCE: .opencode/command/spec_kit/complete.md:7-21]` The completion command repeats the same execution-protocol framing yet again.
-- `[SOURCE: .opencode/command/spec_kit/complete.md:198-229]` The full lifecycle command then adds still more mode flags, including `:with-research`, `:with-phases`, and `:auto-debug`.
+- `[SOURCE: .opencode/commands/spec_kit/plan.md:7-21]` The planning command starts by teaching a markdown-versus-YAML ownership split before any task work begins.
+- `[SOURCE: .opencode/commands/spec_kit/plan.md:31-138]` The planning flow exposes a large consolidated-question protocol with up to nine setup questions and multiple feature flags.
+- `[SOURCE: .opencode/commands/spec_kit/implement.md:7-18]` The implementation command repeats the YAML-first setup model as a separate entry surface.
+- `[SOURCE: .opencode/commands/spec_kit/implement.md:77-120]` The implementation command asks its own consolidated setup block even after planning has already happened.
+- `[SOURCE: .opencode/commands/spec_kit/complete.md:7-21]` The completion command repeats the same execution-protocol framing yet again.
+- `[SOURCE: .opencode/commands/spec_kit/complete.md:198-229]` The full lifecycle command then adds still more mode flags, including `:with-research`, `:with-phases`, and `:auto-debug`.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:1-18]` The external repo presents one main single-loop execution entry point with a crisp role boundary and a smaller public concept count.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator-new.md:1-16]` The external repo handles greenfield variation with a second specialized entry point rather than splitting the whole lifecycle into three public phases.
 
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should merge the public `plan` / `implement` / `complete` lifecycle into one profile-driven entry surface, while keeping the current internal workflow separation behind that surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/plan.md`, `.opencode/command/spec_kit/implement.md`, `.opencode/command/spec_kit/complete.md`
+- **Target file or module:** `.opencode/commands/spec_kit/plan.md`, `.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/complete.md`
 - **Change type:** should-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define profile vocabulary and a compatibility path for existing slash commands

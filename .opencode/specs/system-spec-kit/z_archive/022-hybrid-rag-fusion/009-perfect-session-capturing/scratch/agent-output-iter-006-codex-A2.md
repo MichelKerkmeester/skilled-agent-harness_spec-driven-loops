@@ -20,8 +20,8 @@ Assess the quality distribution of actual generated memory files.
 
 ## Files to Examine
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/` — Read all files, check frontmatter quality_score values
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts` — Scoring criteria
-- `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts` — Indexability threshold
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts` — Scoring criteria
+- `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts` — Indexability threshold
 
 ## Deliverable
 1. Read at least 5 actual memory files from the memory/ directory
@@ -42,7 +42,7 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’ll analyze the generated memory files and map their `quality_score` distribution, then cross-check it against the scoring and indexing scripts to explain what drives low scores and whether scores look CLI-consistent. I’m starting by enumerating the memory files and sampling at least 5 frontmatters.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts && sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts && sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Quality Scorer
 // ---------------------------------------------------------------
@@ -110,32 +110,32 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/20-03-26_07-47__session-identity-passthrough-via-session-id-cli.md:318:**Files:** scripts/memory/validate-memory-quality.ts
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/20-03-26_07-47__session-identity-passthrough-via-session-id-cli.md:340:<!-- ANCHOR:implementation-minimum-message-ratio-quality-4c2160b7 -->
 exec
-/bin/zsh -lc 'rg -n "quality|skipped_quality_gate|index policy|qualityScore|extractQualityScore|threshold|gate" .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:21:import { extractQualityScore, extractQualityFlags } from '@spec-kit/shared/parsing/quality-extractors';
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:28:  | 'skipped_quality_gate'
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123:  const qualityScore = extractQualityScore(content);
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:124:  const qualityFlags = extractQualityFlags(content);
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:134:    qualityScore,
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:135:    qualityFlags,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:8:// Scores the quality of generated memory files based on multiple criteria
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:79:/** Represents quality score. */
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:84:  qualityScore: number;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:86:  qualityFlags: QualityFlag[];
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:160: * Score the quality of a generated memory file.
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:175:  const qualityFlags = new Set<QualityFlag>();
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:193:    qualityFlags.add('missing_trigger_phrases');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:205:    qualityFlags.add('missing_key_topics');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:213:    qualityFlags.add('missing_file_context');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:220:      qualityFlags.add('missing_file_context');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:235:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:239:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:243:    qualityFlags.add('generic_title');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:247:    qualityFlags.add('short_content');
+/bin/zsh -lc 'rg -n "quality|skipped_quality_gate|index policy|qualityScore|extractQualityScore|threshold|gate" .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:21:import { extractQualityScore, extractQualityFlags } from '@spec-kit/shared/parsing/quality-extractors';
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:28:  | 'skipped_quality_gate'
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123:  const qualityScore = extractQualityScore(content);
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:124:  const qualityFlags = extractQualityFlags(content);
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:134:    qualityScore,
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:135:    qualityFlags,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:8:// Scores the quality of generated memory files based on multiple criteria
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:79:/** Represents quality score. */
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:84:  qualityScore: number;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:86:  qualityFlags: QualityFlag[];
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:160: * Score the quality of a generated memory file.
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:175:  const qualityFlags = new Set<QualityFlag>();
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:193:    qualityFlags.add('missing_trigger_phrases');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:205:    qualityFlags.add('missing_key_topics');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:213:    qualityFlags.add('missing_file_context');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:220:      qualityFlags.add('missing_file_context');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:235:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:239:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:243:    qualityFlags.add('generic_title');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:247:    qualityFlags.add('short_content');
 codex
 I’ve confirmed the frontmatter includes `quality_score` in each memory file, and there’s already a visible outlier at `0.82` while the rest appear to be `1.00`. I’m now reading full frontmatter blocks from all memory files and locating where index gating actually happens in code.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '160,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts | sed -n '160,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Indexer
      3	// ---------------------------------------------------------------
@@ -298,32 +298,32 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "general"
 quality_score: 1.00
-tool cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":".opencode/skill/system-spec-kit/scripts/**","limit":10,"refresh_index":false})
-cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":".opencode/skill/system-spec-kit/scripts/**","limit":10,"refresh_index":false}) failed in 7ms:
+tool cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":".opencode/skills/system-spec-kit/scripts/**","limit":10,"refresh_index":false})
+cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":".opencode/skills/system-spec-kit/scripts/**","limit":10,"refresh_index":false}) failed in 7ms:
 {
   "content": [
     {
       "type": "text",
-      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skill/system-spec-kit/scripts/**', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
+      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skills/system-spec-kit/scripts/**', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
     }
   ],
   "isError": true
 }
-tool cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":".opencode/skill/system-spec-kit/scripts/**","limit":10,"refresh_index":false})
-cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":".opencode/skill/system-spec-kit/scripts/**","limit":10,"refresh_index":false}) failed in 1ms:
+tool cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":".opencode/skills/system-spec-kit/scripts/**","limit":10,"refresh_index":false})
+cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":".opencode/skills/system-spec-kit/scripts/**","limit":10,"refresh_index":false}) failed in 1ms:
 {
   "content": [
     {
       "type": "text",
-      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skill/system-spec-kit/scripts/**', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
+      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skills/system-spec-kit/scripts/**', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
     }
   ],
   "isError": true
 }
 codex
 I hit a parameter mismatch on the CocoIndex query, so I’m rerunning with the correct `paths` format to locate the exact file and line where quality-based indexing is gated.
-tool cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false})
-cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false}) success in 7.51s:
+tool cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false})
+cocoindex_code.search({"query":"where is skipped_quality_gate assigned or quality gate blocks indexing","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false}) success in 7.51s:
 {
   "content": [
     {
@@ -340,8 +340,8 @@ cocoindex_code.search({"query":"where is skipped_quality_gate assigned or qualit
   },
   "isError": false
 }
-tool cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false})
-cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":[".opencode/skill/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false}) success in 214ms:
+tool cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false})
+cocoindex_code.search({"query":"indexability threshold quality score 0.30 or 30/100 for memory indexing","paths":[".opencode/skills/system-spec-kit/scripts/**"],"limit":10,"refresh_index":false}) success in 214ms:
 {
   "content": [
     {
@@ -364,7 +364,7 @@ cocoindex_code.search({"query":"skipped_quality_gate","limit":10,"refresh_index"
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/04--agent-orchestration/z_archive/014-command-agent-utilization/implementation-summary.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## Known Limitations\\n\\n- Quality gate is advisory only (`blocking: false`) — low-quality artifacts can still be delivered without fixes\\n- Phase 1+2 changes only apply to skill and agent commands; future create commands should include @speckit/@context routing at creation time\\n\\n<!-- /ANCHOR:limitations -->\\n\\n---\\n\\n<!--\\nLEVEL 3 Implementation Summary — Retroactive documentation\\n204/204 verification checks passed\\n-->\",\n      \"start_line\": 116,\n      \"end_line\": 128,\n      \"score\": 0.5852599701601644\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:280:trigger_phrases: [integration test, quality gate, validation]\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:286:This memory contains substantial content about the implementation of the quality gate feature.\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:291:The quality gate uses a 3-layer approach for maximum coverage while maintaining low false-positive rates.\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:299:      const result: QualityGateResult = runQualityGate({\",\n      \"start_line\": 1319,\n      \"end_line\": 1322,\n      \"score\": 0.5799693229977194\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C08.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-01: `QUALITY_GATE_FAIL` does not gate file generation\\n- **File:** [workflow.ts:824](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:824), [workflow.ts:845](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:845)\\n- **Severity:** HIGH\\n- **Category:** DESIGN\\n- **Current Behavior:** When validation fails, code logs `QUALITY_GATE_FAIL` but still writes memory files and reports success.\\n- **Expected Behavior:** Failed quality gate should block output (or explicitly write to a quarantine/draft path).\\n- **Root Cause:** Validation result is only used for logging and later indexing skip, not for write gating.\\n- **Suggested Fix:** Add hard gate before Step 9:\\n  - `if (!qualityValidation.valid) throw new Error(...)` (strict mode), or route to `memory/failed/`.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 589,\n      \"end_line\": 598,\n      \"score\": 0.57387497109994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C08.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-01: `QUALITY_GATE_FAIL` does not gate file generation\\n- **File:** [workflow.ts:824](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:824), [workflow.ts:845](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:845)\\n- **Severity:** HIGH\\n- **Category:** DESIGN\\n- **Current Behavior:** When validation fails, code logs `QUALITY_GATE_FAIL` but still writes memory files and reports success.\\n- **Expected Behavior:** Failed quality gate should block output (or explicitly write to a quarantine/draft path).\\n- **Root Cause:** Validation result is only used for logging and later indexing skip, not for write gating.\\n- **Suggested Fix:** Add hard gate before Step 9:\\n  - `if (!qualityValidation.valid) throw new Error(...)` (strict mode), or route to `memory/failed/`.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 449,\n      \"end_line\": 458,\n      \"score\": 0.57387497109994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-checks-100-pass-rate-across-lint.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:22:52Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 468,\n      \"end_line\": 490,\n      \"score\": 0.5736678851681472\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-validation-is-strong-all-listed.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:22:52Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 474,\n      \"end_line\": 496,\n      \"score\": 0.5736678851681472\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/legacy-memory-quarantine/15-03-26_12-25__how-is-used-later-in-the-template-to-match-th.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:25:14Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 496,\n      \"end_line\": 518,\n      \"score\": 0.5734337729295476\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. QUALITY GATES\\n\\n### Definition of Ready\\n- [x] Problem statement clear and scope documented\\n- [x] Success criteria measurable\\n- [x] Dependencies identified (SKILL.md, feature catalog, commands, templates)\\n\\n### Definition of Done\\n- [ ] All components documented (levels, memory, tools, commands, templates, scripts)\\n- [ ] DQI >= 75 verified\\n- [ ] No banned HVR words\\n- [ ] Links to MCP README verified\\n- [ ] No content duplication with MCP README\\n<!-- /ANCHOR:quality-gates -->\\n\\n---\\n\\n<!-- ANCHOR:architecture -->\",\n      \"start_line\": 32,\n      \"end_line\": 49,\n      \"score\": 0.5709645093628364\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. QUALITY GATES\\n\\n### Definition of Ready\\n- [x] Problem statement clear and scope documented\\n- [x] Success criteria measurable\\n- [x] Dependencies identified (feature catalog, template, tool schemas)\\n\\n### Definition of Done\\n- [ ] All 32 tools documented with parameters\\n- [ ] DQI >= 75 verified by `validate_document.py`\\n- [ ] No banned HVR words\\n- [ ] Section structure matches readme template\\n- [ ] Cross-references to sibling docs verified\\n<!-- /ANCHOR:quality-gates -->\\n\\n---\\n\\n<!-- ANCHOR:architecture -->\",\n      \"start_line\": 32,\n      \"end_line\": 49,\n      \"score\": 0.5676781433768792\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/legacy-memory-quarantine/15-03-26_12-27__i-m-starting-with-the-repo-s-own-runbook-and.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:27:00Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 497,\n      \"end_line\": 519,\n      \"score\": 0.5665114003186318\n    }\n  ],\n  \"total_returned\": 10,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/04--agent-orchestration/z_archive/014-command-agent-utilization/implementation-summary.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## Known Limitations\\n\\n- Quality gate is advisory only (`blocking: false`) — low-quality artifacts can still be delivered without fixes\\n- Phase 1+2 changes only apply to skill and agent commands; future create commands should include @speckit/@context routing at creation time\\n\\n<!-- /ANCHOR:limitations -->\\n\\n---\\n\\n<!--\\nLEVEL 3 Implementation Summary — Retroactive documentation\\n204/204 verification checks passed\\n-->\",\n      \"start_line\": 116,\n      \"end_line\": 128,\n      \"score\": 0.5852599701601644\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md\",\n      \"language\": \"markdown\",\n      \"content\": \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:280:trigger_phrases: [integration test, quality gate, validation]\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:286:This memory contains substantial content about the implementation of the quality gate feature.\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:291:The quality gate uses a 3-layer approach for maximum coverage while maintaining low false-positive rates.\\n/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:299:      const result: QualityGateResult = runQualityGate({\",\n      \"start_line\": 1319,\n      \"end_line\": 1322,\n      \"score\": 0.5799693229977194\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C08.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-01: `QUALITY_GATE_FAIL` does not gate file generation\\n- **File:** [workflow.ts:824](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:824), [workflow.ts:845](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:845)\\n- **Severity:** HIGH\\n- **Category:** DESIGN\\n- **Current Behavior:** When validation fails, code logs `QUALITY_GATE_FAIL` but still writes memory files and reports success.\\n- **Expected Behavior:** Failed quality gate should block output (or explicitly write to a quarantine/draft path).\\n- **Root Cause:** Validation result is only used for logging and later indexing skip, not for write gating.\\n- **Suggested Fix:** Add hard gate before Step 9:\\n  - `if (!qualityValidation.valid) throw new Error(...)` (strict mode), or route to `memory/failed/`.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 589,\n      \"end_line\": 598,\n      \"score\": 0.57387497109994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C08.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-01: `QUALITY_GATE_FAIL` does not gate file generation\\n- **File:** [workflow.ts:824](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:824), [workflow.ts:845](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:845)\\n- **Severity:** HIGH\\n- **Category:** DESIGN\\n- **Current Behavior:** When validation fails, code logs `QUALITY_GATE_FAIL` but still writes memory files and reports success.\\n- **Expected Behavior:** Failed quality gate should block output (or explicitly write to a quarantine/draft path).\\n- **Root Cause:** Validation result is only used for logging and later indexing skip, not for write gating.\\n- **Suggested Fix:** Add hard gate before Step 9:\\n  - `if (!qualityValidation.valid) throw new Error(...)` (strict mode), or route to `memory/failed/`.\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 449,\n      \"end_line\": 458,\n      \"score\": 0.57387497109994\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-checks-100-pass-rate-across-lint.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:22:52Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 468,\n      \"end_line\": 490,\n      \"score\": 0.5736678851681472\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/15-03-26_12-22__pass-automated-validation-is-strong-all-listed.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:22:52Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 474,\n      \"end_line\": 496,\n      \"score\": 0.5736678851681472\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/legacy-memory-quarantine/15-03-26_12-25__how-is-used-later-in-the-template-to-match-th.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:25:14Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 496,\n      \"end_line\": 518,\n      \"score\": 0.5734337729295476\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system-speckit-readme/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. QUALITY GATES\\n\\n### Definition of Ready\\n- [x] Problem statement clear and scope documented\\n- [x] Success criteria measurable\\n- [x] Dependencies identified (SKILL.md, feature catalog, commands, templates)\\n\\n### Definition of Done\\n- [ ] All components documented (levels, memory, tools, commands, templates, scripts)\\n- [ ] DQI >= 75 verified\\n- [ ] No banned HVR words\\n- [ ] Links to MCP README verified\\n- [ ] No content duplication with MCP README\\n<!-- /ANCHOR:quality-gates -->\\n\\n---\\n\\n<!-- ANCHOR:architecture -->\",\n      \"start_line\": 32,\n      \"end_line\": 49,\n      \"score\": 0.5709645093628364\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"## 2. QUALITY GATES\\n\\n### Definition of Ready\\n- [x] Problem statement clear and scope documented\\n- [x] Success criteria measurable\\n- [x] Dependencies identified (feature catalog, template, tool schemas)\\n\\n### Definition of Done\\n- [ ] All 32 tools documented with parameters\\n- [ ] DQI >= 75 verified by `validate_document.py`\\n- [ ] No banned HVR words\\n- [ ] Section structure matches readme template\\n- [ ] Cross-references to sibling docs verified\\n<!-- /ANCHOR:quality-gates -->\\n\\n---\\n\\n<!-- ANCHOR:architecture -->\",\n      \"start_line\": 32,\n      \"end_line\": 49,\n      \"score\": 0.5676781433768792\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/legacy-memory-quarantine/15-03-26_12-27__i-m-starting-with-the-repo-s-own-runbook-and.md\",\n      \"language\": \"markdown\",\n      \"content\": \"**Timestamp**: 2026-03-15T12:27:00Z\\n\\n**Importance**: medium\\n\\n#### Options Considered\\n\\n1. **Chosen Approach**\\n   DR\\n\\n#### Chosen Approach\\n\\n**Selected**: Insufficiency is an immediate hard-block and is not softened by the older warn-only save-quality gate behavior.\\n\\n**Rationale**: 009: Make Insufficiency Stronger Than Warn-Only Quality Modes\\n\\n#### Trade-offs\\n\\n**Confidence**: 0.5%\\n<!-- /ANCHOR:decision-unnamed-fa61a452-9 -->\\n\\n---\\n\\n<!-- ANCHOR:decision-unnamed-fa61a452-10 -->\",\n      \"start_line\": 497,\n      \"end_line\": 519,\n      \"score\": 0.5665114003186318\n    }\n  ],\n  \"total_returned\": 10,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -405,8 +405,8 @@ cocoindex_code.search({"query":"memory indexing quality gate threshold","limit":
 codex
 CocoIndex returned mostly documentation references, so I’m now validating directly in the core scripts to pinpoint where indexing is actually blocked by quality thresholds (it appears to be upstream of `memory-indexer.ts`).
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    760	  for (const key of keys) {
    761	    const value = source[key];
    762	    if (typeof value === 'string' && value.trim().length > 0) {
@@ -449,29 +449,29 @@ exec
     19	type ValidationRuleSeverity = 'low' | 'medium' | 'high';
     20	type ValidationDisposition = 'abort_write' | 'write_skip_index' | 'write_and_index';
 exec
-/bin/zsh -lc 'rg -n "skipped_quality_gate|QUALITY_GATE|blockOnIndex|quality.*threshold|score.*threshold|qualityScore" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts .opencode/skill/system-spec-kit/scripts/memory/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:26:  blockOnIndex: boolean;
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:43:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:51:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:59:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:67:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:75:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:83:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:91:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:99:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:107:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:115:    blockOnIndex: false,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:123:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:131:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:413:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:716:    console.error(`QUALITY_GATE_FAIL: ${result.failedRules.join(', ')}`);
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:723:  console.log('QUALITY_GATE_PASS');
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:26:  blockOnIndex: boolean;
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:43:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:51:    blockOnIndex: true,
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:59:    blockOnIndex: true,
+/bin/zsh -lc 'rg -n "skipped_quality_gate|QUALITY_GATE|blockOnIndex|quality.*threshold|score.*threshold|qualityScore" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts .opencode/skills/system-spec-kit/scripts/memory/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:26:  blockOnIndex: boolean;
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:43:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:51:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:59:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:67:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:75:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:83:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:91:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:99:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:107:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:115:    blockOnIndex: false,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:123:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:131:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:413:  return metadata.blockOnIndex && ruleAppliesToSource(metadata, source);
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:716:    console.error(`QUALITY_GATE_FAIL: ${result.failedRules.join(', ')}`);
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:723:  console.log('QUALITY_GATE_PASS');
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:26:  blockOnIndex: boolean;
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:43:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:51:    blockOnIndex: true,
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:59:    blockOnIndex: true,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '120,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '120,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    120	  contextFilename: string;
    121	  /** List of absolute paths for all files written during this run. */
    122	  writtenFiles: string[];
@@ -493,7 +493,7 @@ exec
    138	    isSimulation: boolean;
    139	  };
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2140,2285p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2140,2285p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2140	  // Step 8.5b: Spec document health annotation (non-blocking)
   2141	  let specDocHealth: SpecDocHealthResult | null = null;
   2142	  try {
@@ -515,7 +515,7 @@ exec
   2158	  const templateContractEarly = validateMemoryTemplateContract(files[ctxFilename]);
   2159	  if (!templateContractEarly.valid) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '360,470p' && nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '650,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '360,470p' && nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '650,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    360	
    361	  return counts;
    362	}
@@ -537,16 +537,16 @@ exec
    378	 *   → allowed = { "009-perfect-session-capturing", "012-template-compliance" }
    379	 */
 exec
-/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|QUALITY_WARN_THRESHOLD|quality abort\" .opencode/skill/system-spec-kit/scripts/core -g'*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
+/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|QUALITY_WARN_THRESHOLD|quality abort\" .opencode/skills/system-spec-kit/scripts/core -g'*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/config.ts:64:  QUALITY_ABORT_THRESHOLD: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:303:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '250,340p' && nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '250,340p' && nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    250	    if (fsSync.existsSync(configPath)) {
    251	      const configContent: string = fsSync.readFileSync(configPath, 'utf-8');
    252	
@@ -568,7 +568,7 @@ exec
    268	    }
    269	  } catch (error: unknown) {
 exec
-/bin/zsh -lc "rg -n \"qualityAbortThreshold|defaultConfig\" .opencode/skill/system-spec-kit/scripts/core/config.ts && nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '140,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"qualityAbortThreshold|defaultConfig\" .opencode/skills/system-spec-kit/scripts/core/config.ts && nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '140,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 34:  qualityAbortThreshold: number;
 104:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {
 112:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {
@@ -590,7 +590,7 @@ exec
    144	        `Config validation: "${field}" has invalid value (${JSON.stringify(value)}). ` +
    145	        `Must be a positive number. Falling back to default: ${defaults[field]}`
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/config.ts | sed -n '224,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/config.ts | sed -n '224,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    224	  const defaultConfig: WorkflowConfig = {
    225	    maxResultPreview: 500,
    226	    maxConversationMessages: 100,
@@ -612,7 +612,7 @@ exec
    242	      context: 0.35,
    243	      uncertainty: 0.25,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2340,2445p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2340,2445p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2340	  log(`  - ${conversations.MESSAGES.length} messages captured`);
   2341	  log(`  - ${decisions.DECISIONS.length} key decisions documented`);
   2342	  log(`  - ${diagrams.DIAGRAMS.length} diagrams preserved`);
@@ -734,14 +734,14 @@ Read completed: I reviewed all 9 memory files in that folder (including at least
 - There is a scoring mismatch symptom: [17-03...bimodal.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md:1) says “quality score: 0/100” in body note, but frontmatter `quality_score` is `1.00` ([line 44](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md:44)).
 
 **Scoring + indexability code check**
-- Quality scoring dimensions are in [quality-scorer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:185) (triggers, topics, file descriptions, length, HTML leakage, dedup) with contamination/sufficiency penalties at [299+](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:299).
-- `memory-indexer.ts` itself does not enforce a numeric threshold; it reads and stores score/flags ([extract](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123), [index call](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:126)).
-- Threshold gating happens upstream in workflow: skip/abort when `qualityScore01 < QUALITY_ABORT_THRESHOLD` ([shouldIndexMemory](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179), [abort path](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213)). Default threshold is `0.15` in config ([config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:239)).
-- Additional index-skip rules come from validation disposition (`write_skip_index`) via rule metadata (`blockOnIndex`) in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:38) and [disposition logic](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:416).
+- Quality scoring dimensions are in [quality-scorer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:185) (triggers, topics, file descriptions, length, HTML leakage, dedup) with contamination/sufficiency penalties at [299+](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:299).
+- `memory-indexer.ts` itself does not enforce a numeric threshold; it reads and stores score/flags ([extract](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123), [index call](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:126)).
+- Threshold gating happens upstream in workflow: skip/abort when `qualityScore01 < QUALITY_ABORT_THRESHOLD` ([shouldIndexMemory](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179), [abort path](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213)). Default threshold is `0.15` in config ([config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:239)).
+- Additional index-skip rules come from validation disposition (`write_skip_index`) via rule metadata (`blockOnIndex`) in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:38) and [disposition logic](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:416).
 
 **Are scores consistent across CLIs?**
 - I'M UNCERTAIN ABOUT THIS: per-CLI comparison is weak from these files alone because frontmatter does not carry a reliable `source_cli` field (many `_sourceSessionId` are empty).
-- What is consistent in code: validation/index rules are currently source-agnostic (`appliesToSources: 'all'` across V1–V12 in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:38)), so policy is designed to be CLI-consistent.
+- What is consistent in code: validation/index rules are currently source-agnostic (`appliesToSources: 'all'` across V1–V12 in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:38)), so policy is designed to be CLI-consistent.
 - Empirically in this sample, scores are overwhelmingly clustered at `1.00` regardless of CLI mentions inside content.
 tokens used
 159,801
@@ -771,12 +771,12 @@ Read completed: I reviewed all 9 memory files in that folder (including at least
 - There is a scoring mismatch symptom: [17-03...bimodal.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md:1) says “quality score: 0/100” in body note, but frontmatter `quality_score` is `1.00` ([line 44](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memory/17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md:44)).
 
 **Scoring + indexability code check**
-- Quality scoring dimensions are in [quality-scorer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:185) (triggers, topics, file descriptions, length, HTML leakage, dedup) with contamination/sufficiency penalties at [299+](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:299).
-- `memory-indexer.ts` itself does not enforce a numeric threshold; it reads and stores score/flags ([extract](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:123), [index call](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:126)).
-- Threshold gating happens upstream in workflow: skip/abort when `qualityScore01 < QUALITY_ABORT_THRESHOLD` ([shouldIndexMemory](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:179), [abort path](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2213)). Default threshold is `0.15` in config ([config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/config.ts:239)).
-- Additional index-skip rules come from validation disposition (`write_skip_index`) via rule metadata (`blockOnIndex`) in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:38) and [disposition logic](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:416).
+- Quality scoring dimensions are in [quality-scorer.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:185) (triggers, topics, file descriptions, length, HTML leakage, dedup) with contamination/sufficiency penalties at [299+](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:299).
+- `memory-indexer.ts` itself does not enforce a numeric threshold; it reads and stores score/flags ([extract](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:123), [index call](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:126)).
+- Threshold gating happens upstream in workflow: skip/abort when `qualityScore01 < QUALITY_ABORT_THRESHOLD` ([shouldIndexMemory](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:179), [abort path](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2213)). Default threshold is `0.15` in config ([config.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/config.ts:239)).
+- Additional index-skip rules come from validation disposition (`write_skip_index`) via rule metadata (`blockOnIndex`) in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:38) and [disposition logic](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:416).
 
 **Are scores consistent across CLIs?**
 - I'M UNCERTAIN ABOUT THIS: per-CLI comparison is weak from these files alone because frontmatter does not carry a reliable `source_cli` field (many `_sourceSessionId` are empty).
-- What is consistent in code: validation/index rules are currently source-agnostic (`appliesToSources: 'all'` across V1–V12 in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:38)), so policy is designed to be CLI-consistent.
+- What is consistent in code: validation/index rules are currently source-agnostic (`appliesToSources: 'all'` across V1–V12 in [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:38)), so policy is designed to be CLI-consistent.
 - Empirically in this sample, scores are overwhelmingly clustered at `1.00` regardless of CLI mentions inside content.

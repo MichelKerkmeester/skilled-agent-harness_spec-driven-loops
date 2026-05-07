@@ -41,12 +41,12 @@
       "mcp_server/INSTALL_GUIDE.md",
       "feature_catalog/feature_catalog.md",
       "manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md",
       "tasks.md",
       "checklist.md",
@@ -86,7 +86,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

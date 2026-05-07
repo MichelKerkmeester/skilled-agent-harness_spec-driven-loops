@@ -13,23 +13,23 @@ _memory:
     next_safe_action: "create_065_skill_reindex_and_stress_test_phase"
     blockers: []
     key_files:
-      - ".opencode/agent/create.md"
+      - ".opencode/agents/create.md"
       - ".claude/agents/create.md"
       - ".gemini/agents/create.md"
       - ".codex/agents/create.toml"
-      - ".opencode/command/create/agent.md"
-      - ".opencode/command/create/sk-skill.md"
-      - ".opencode/command/create/feature-catalog.md"
-      - ".opencode/command/create/testing-playbook.md"
-      - ".opencode/command/create/folder_readme.md"
-      - ".opencode/command/create/changelog.md"
-      - ".opencode/command/create/assets/agent.yaml"
-      - ".opencode/command/create/assets/sk-skill.yaml"
-      - ".opencode/command/create/assets/feature-catalog.yaml"
-      - ".opencode/command/create/assets/testing-playbook.yaml"
-      - ".opencode/command/create/assets/folder_readme.yaml"
-      - ".opencode/command/create/assets/changelog.yaml"
-      - ".opencode/skill/sk-doc/assets/agents/agent_template.md"
+      - ".opencode/commands/create/agent.md"
+      - ".opencode/commands/create/sk-skill.md"
+      - ".opencode/commands/create/feature-catalog.md"
+      - ".opencode/commands/create/testing-playbook.md"
+      - ".opencode/commands/create/folder_readme.md"
+      - ".opencode/commands/create/changelog.md"
+      - ".opencode/commands/create/assets/agent.yaml"
+      - ".opencode/commands/create/assets/sk-skill.yaml"
+      - ".opencode/commands/create/assets/feature-catalog.yaml"
+      - ".opencode/commands/create/assets/testing-playbook.yaml"
+      - ".opencode/commands/create/assets/folder_readme.yaml"
+      - ".opencode/commands/create/assets/changelog.yaml"
+      - ".opencode/skills/sk-doc/assets/agents/agent_template.md"
       - "README.md"
       - "AGENTS.md"
     session_dedup:
@@ -63,7 +63,7 @@ _memory:
 ## 2. WHAT WAS BUILT
 Created the dedicated `@create` LEAF executor in four runtime surfaces:
 
-- `.opencode/agent/create.md`
+- `.opencode/agents/create.md`
 - `.claude/agents/create.md`
 - `.gemini/agents/create.md`
 - `.codex/agents/create.toml`
@@ -91,18 +91,18 @@ The Markdown mirrors are byte-identical across `.opencode`, `.claude`, and `.gem
 ## 4. KEY DECISIONS
 - No `mcpServers` field was added; the agent uses local file and command workflow context first.
 - Caller restriction is documented as convention-level, matching the project pattern for agent self-gates.
-- The YAML assets under `.opencode/command/create/assets/` were not changed because this packet scoped rewiring to the six command markdown entrypoints.
+- The YAML assets under `.opencode/commands/create/assets/` were not changed because this packet scoped rewiring to the six command markdown entrypoints.
 - `T-008` remains unchecked because commit/push was listed in the scaffold but was not requested for this direct implementation turn.
 <!-- /ANCHOR:decisions -->
 
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/agent/create.md --type agent --blocking-only` -> PASS
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .claude/agents/create.md --type agent --blocking-only` -> PASS
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .gemini/agents/create.md --type agent --blocking-only` -> PASS
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/create.md --type agent --blocking-only` -> PASS
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .claude/agents/create.md --type agent --blocking-only` -> PASS
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .gemini/agents/create.md --type agent --blocking-only` -> PASS
 - `python3` + `tomli.loads(Path(".codex/agents/create.toml").read_text())` -> PASS
 - Line counts: `.opencode/.claude/.gemini` 311 lines each; `.codex` 302 lines; all under 600.
-- Mirror check: `.opencode/agent/create.md` matches `.claude/agents/create.md` and `.gemini/agents/create.md`.
+- Mirror check: `.opencode/agents/create.md` matches `.claude/agents/create.md` and `.gemini/agents/create.md`.
 - Grep audit: no `@general`, `general_agent_verified`, or `write.md` references remain in the six command markdown entrypoints.
 <!-- /ANCHOR:verification -->
 

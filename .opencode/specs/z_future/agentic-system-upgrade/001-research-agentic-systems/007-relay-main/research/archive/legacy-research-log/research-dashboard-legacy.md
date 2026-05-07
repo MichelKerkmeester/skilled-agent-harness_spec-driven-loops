@@ -2,14 +2,14 @@
 
 | Iteration | Phase | Question | Confidence | Priority | Verdict | Adopt Target |
 |-----------|-------|----------|------------|----------|---------|--------------|
-| 001 | 1 | Ready-state handshake vs. spawn success | high | should-have | future transport concept | `.opencode/agent/orchestrate.md` + future `mcp_server` transport module |
-| 002 | 1 | Callback and lifecycle-hook contract | high | must-have | adopt | `.opencode/agent/orchestrate.md` + `cli-*/references/agent_delegation.md` |
-| 003 | 1 | Channels vs. DMs vs. threads | high | should-have | prototype later | `.opencode/agent/orchestrate.md` + future transport-routing module |
-| 004 | 1 | Workspace-aware delivery scoping | medium | nice-to-have | prototype later | `.opencode/command/spec_kit/resume.md` + `.opencode/agent/context-prime.md` |
+| 001 | 1 | Ready-state handshake vs. spawn success | high | should-have | future transport concept | `.opencode/agents/orchestrate.md` + future `mcp_server` transport module |
+| 002 | 1 | Callback and lifecycle-hook contract | high | must-have | adopt | `.opencode/agents/orchestrate.md` + `cli-*/references/agent_delegation.md` |
+| 003 | 1 | Channels vs. DMs vs. threads | high | should-have | prototype later | `.opencode/agents/orchestrate.md` + future transport-routing module |
+| 004 | 1 | Workspace-aware delivery scoping | medium | nice-to-have | prototype later | `.opencode/commands/spec_kit/resume.md` + `.opencode/agents/context-prime.md` |
 | 005 | 1 | Provider-first spawning + transport defaults | high | must-have | adopt | `cli-codex`, `cli-gemini` delegation references |
-| 006 | 1 | Team / fan-out / pipeline taxonomy | high | must-have | adopt | `.opencode/agent/orchestrate.md` + `parallel_dispatch_config.md` + `deep-research.md` |
-| 007 | 1 | Evidence-based completion pipeline | high | should-have | adopt | `.opencode/command/spec_kit/deep-research.md` |
-| 008 | 1 | Delivery-state + idle-state tracking | medium | nice-to-have | roadmap | future `.opencode/skill/system-spec-kit/mcp_server/` coordination module |
+| 006 | 1 | Team / fan-out / pipeline taxonomy | high | must-have | adopt | `.opencode/agents/orchestrate.md` + `parallel_dispatch_config.md` + `deep-research.md` |
+| 007 | 1 | Evidence-based completion pipeline | high | should-have | adopt | `.opencode/commands/spec_kit/deep-research.md` |
+| 008 | 1 | Delivery-state + idle-state tracking | medium | nice-to-have | roadmap | future `.opencode/skills/system-spec-kit/mcp_server/` coordination module |
 | 009 | 1 | TypeScript/Python parity rubric | medium | should-have | adopt | `cli-*/references/agent_delegation.md` + `system-spec-kit` documentation contract |
 | 010 | 1 | Replace Task orchestration with full broker now? | high | rejected | KEEP | architectural boundary only |
 | 011 | 2 | One shared deep-loop kernel for research + review? | high | should-have | REFACTOR | `deep-research`, `deep-review`, `sk-deep-research`, `sk-deep-review` |

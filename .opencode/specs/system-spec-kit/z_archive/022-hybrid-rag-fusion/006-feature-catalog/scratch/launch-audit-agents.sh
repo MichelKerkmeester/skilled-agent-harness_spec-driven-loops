@@ -11,8 +11,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
 SCRATCH_DIR="$SCRIPT_DIR"
-FC_DIR="$PROJECT_ROOT/.opencode/skill/system-spec-kit/feature_catalog"
-MCP_DIR="$PROJECT_ROOT/.opencode/skill/system-spec-kit/mcp_server"
+FC_DIR="$PROJECT_ROOT/.opencode/skills/system-spec-kit/feature_catalog"
+MCP_DIR="$PROJECT_ROOT/.opencode/skills/system-spec-kit/mcp_server"
 SCAN_FILE="$SCRIPT_DIR/../undocumented-features-scan.md"
 
 DRY_RUN=false

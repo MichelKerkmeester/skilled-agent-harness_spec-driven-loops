@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -91,7 +91,7 @@ The repair reused the committed Level 1 packet content, derived the summary from
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Research-only packet** This folder documents recommended upgrade priorities, but it does not implement them in `.opencode/skill/sk-deep-research/`.
+1. **Research-only packet** This folder documents recommended upgrade priorities, but it does not implement them in `.opencode/skills/sk-deep-research/`.
 <!-- /ANCHOR:limitations -->
 
 ---

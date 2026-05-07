@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -113,7 +113,7 @@ The review and planning docs landed first, then the metadata and parent-map drif
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **011 cannot be made strict-green inside the approved write scope.** The recursive validator failure is caused by `check-phase-links.sh:39` using an undeclared global `phase_dir`; when a non-phased child is checked, `validate.sh:898` later runs evidence-marker lint against `child/[0-9][0-9][0-9]-*/`. Fixing that requires editing `.opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh`, which is outside the user-approved 026 write boundary.
+1. **011 cannot be made strict-green inside the approved write scope.** The recursive validator failure is caused by `check-phase-links.sh:39` using an undeclared global `phase_dir`; when a non-phased child is checked, `validate.sh:898` later runs evidence-marker lint against `child/[0-9][0-9][0-9]-*/`. Fixing that requires editing `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh`, which is outside the user-approved 026 write boundary.
 2. **011 also has historical leaf-packet template debt.** Even after the validator variable leak is fixed, strict mode will still need a separate broad hygiene packet for missing evidence markers, missing internal references, and custom template headers in child packets 010-017.
 
 ### Disposition Table

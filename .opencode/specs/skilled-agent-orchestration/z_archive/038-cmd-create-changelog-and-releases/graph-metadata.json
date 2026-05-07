@@ -41,8 +41,8 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/create/changelog.md",
-      ".opencode/skill/sk-git/references/finish_workflows.md",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/skills/sk-git/references/finish_workflows.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -53,13 +53,13 @@
       {
         "name": "changelog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/changelog.md",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
         "name": "finish_workflows.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/finish_workflows.md",
+        "path": ".opencode/skills/sk-git/references/finish_workflows.md",
         "source": "derived"
       },
       {

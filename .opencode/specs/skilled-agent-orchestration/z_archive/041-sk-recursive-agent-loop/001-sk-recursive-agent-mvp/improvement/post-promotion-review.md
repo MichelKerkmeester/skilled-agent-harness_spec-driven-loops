@@ -6,11 +6,11 @@
 - Baseline score: 95
 - Accepted score: 100
 - Delta: 5
-- Promoted target: `.opencode/agent/handover.md`
+- Promoted target: `.opencode/agents/handover.md`
 
 ## T072 Re-evaluation
 
-`.opencode/agent/handover.md` remains the right first target.
+`.opencode/agents/handover.md` remains the right first target.
 
 Why:
 - it produced a measurable score improvement
@@ -20,7 +20,7 @@ Why:
 ## T081 Second Target Evaluation
 
 Recommended second target:
-- `.opencode/agent/context-prime.md`
+- `.opencode/agents/context-prime.md`
 
 Reason:
 - still structured

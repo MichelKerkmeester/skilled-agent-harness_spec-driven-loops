@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-0509-7182-9585-5954ceaab0c4
 --------
 user
-You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/01-evaluation-database-and-schema.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/08-agent-consumption-instrumentation.md (files 01 through 08). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/01-evaluation-database-and-schema.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/08-agent-consumption-instrumentation.md (files 01 through 08). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,14 +37,14 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m verifying those eight feature catalog snippets against the `mcp_server` codebase. I’ll start by loading the requested feature files, run the required skill routing check, and then compare each `Current Reality` and `Source Files` section to the actual implementation.
 exec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/01-evaluation-database-and-schema.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-feedback-capture-and-storage.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-skill-effectiveness-analysis.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-ab-testing-and-experimentation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-evaluation-api-and-crud.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-threshold-monitoring-and-alerting.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/08-agent-consumption-instrumentation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-performance-dashboard-and-reporting.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/01-evaluation-database-and-schema.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-feedback-capture-and-storage.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-skill-effectiveness-analysis.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-ab-testing-and-experimentation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-evaluation-api-and-crud.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-threshold-monitoring-and-alerting.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/08-agent-consumption-instrumentation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-performance-dashboard-and-reporting.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Evaluation database and schema
 
 ## Current Reality
@@ -66,15 +66,15 @@ Logging hooks in the search, context and trigger handlers are best-effort and fa
 | File | Focus |
 |------|-------|
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-skill-effectiveness-analysis.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-skill-effectiveness-analysis.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-ab-testing-and-experimentation.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-ab-testing-and-experimentation.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-feedback-capture-and-storage.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-feedback-capture-and-storage.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-evaluation-api-and-crud.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-evaluation-api-and-crud.md: No such file or directory
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-threshold-monitoring-and-alerting.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-threshold-monitoring-and-alerting.md: No such file or directory
  succeeded in 51ms:
 # Agent consumption instrumentation
 
@@ -97,9 +97,9 @@ The earlier pattern-analysis outcome from this workstream still informed ground-
 | File | Focus |
 |------|-------|
  exited 1 in 51ms:
-sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-performance-dashboard-and-reporting.md: No such file or directory
+sed: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-performance-dashboard-and-reporting.md: No such file or directory
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify feature catalog snippets 01 through 08 in .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement against the system-spec-kit mcp_server code; confirm Current Reality accuracy, listed Source Files existence, and missing important source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 660ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify feature catalog snippets 01 through 08 in .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement against the system-spec-kit mcp_server code; confirm Current Reality accuracy, listed Source Files existence, and missing important source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 660ms:
 [
   {
     "skill": "system-spec-kit",
@@ -123,9 +123,9 @@ exec
 codex
 I’ve confirmed the catalog folder doesn’t currently contain files `02` through `07` at the paths you supplied, so I’m checking the directory contents next to distinguish “missing feature snippet” issues from code-reference issues. After that I’ll inspect the actual `mcp_server` implementation files behind the snippets that do exist.
 exec
-/bin/zsh -lc 'ls -1 "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/SKILL.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg --files "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc 'ls -1 "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/SKILL.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg --files "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 01-evaluation-database-and-schema.md
 02-core-metric-computation.md
 03-observer-effect-mitigation.md
@@ -164,36 +164,36 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
  succeeded in 51ms:
 Total output lines: 505
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/eslint.config.mjs
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tsconfig.json
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/eslint.config.mjs
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tsconfig.json
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts
 codex
 I found a naming mismatch: the directory’s actual `02` through `07` files are different from the filenames in your prompt. I’m treating the numeric range `01` to `08` as authoritative, verifying those real files, and I’ll call out the filename mismatch explicitly where it matters.
 exec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-observer-effect-mitigation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-full-context-ceiling-evaluation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-formula.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/03-observer-effect-mitigation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/04-full-context-ceiling-evaluation.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/05-quality-proxy-formula.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # Core metric computation
 
 ## Current Reality
@@ -383,13 +383,13 @@ import { initEvalDb } from './eval-db';
  * Returns true only when SPECKIT_EVAL_LOGGING=true (case-insensitive).
  * Anything else (undefined, "false", "1", …) disables logging.
 exec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Shadow Scoring
 // ---------------------------------------------------------------
@@ -537,12 +537,12 @@ import {
 // ---------------------------------------------------------------
 
 exec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '220,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '220,520p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
  */
 export async function computeCeilingWithScorer(
   options: CeilingEvalOptions,
@@ -669,8 +669,8 @@ import { calculateTokenMetrics, type TokenMetrics } from '../formatters';
 
 // Lib modules
 exec
-/bin/zsh -lc 'rg -n "compute(AllMetrics|MRR|NDCG|Recall|HitRate|Precision|F1|MAP|InversionRate|ConstitutionalSurfacingRate|ImportanceWeightedRecall|ColdStartDetectionRate|IntentWeightedNDCG)" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "logConsumptionEvent|initConsumptionLog|isConsumptionLogEnabled|logChannelResult|logFinalResult|logSearchQuery" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc 'rg -n "compute(AllMetrics|MRR|NDCG|Recall|HitRate|Precision|F1|MAP|InversionRate|ConstitutionalSurfacingRate|ImportanceWeightedRecall|ColdStartDetectionRate|IntentWeightedNDCG)" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "logConsumptionEvent|initConsumptionLog|isConsumptionLogEnabled|logChannelResult|logFinalResult|logSearchQuery" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 42:/** All computed metrics returned by computeAllMetrics(). */
 107:export function computeMRR(
 137:export function computeNDCG(
@@ -692,35 +692,35 @@ exec
 577:    precision: computePrecision(results, groundTruth),
 578:    f1: computeF1(results, groundTruth),
  succeeded in 50ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:31:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:34:import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:203:    const evalEntry = logSearchQuery({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:        logFinalResult({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:445:      initConsumptionLog(db);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:447:      logConsumptionEvent(db, {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:33:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:36:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:433:    const evalEntry = logSearchQuery({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:690:      initConsumptionLog(db);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700:      logConsumptionEvent(db, {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:726:      logFinalResult({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:738:      logChannelResult({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:18:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:23:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:682:    const evalEntry = logSearchQuery({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:984:      initConsumptionLog(db);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:996:      logConsumptionEvent(db, {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1023:      logFinalResult({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:        logChannelResult({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:31:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:34:import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:203:    const evalEntry = logSearchQuery({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:215:        logFinalResult({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:445:      initConsumptionLog(db);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:447:      logConsumptionEvent(db, {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:33:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:36:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:433:    const evalEntry = logSearchQuery({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:690:      initConsumptionLog(db);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700:      logConsumptionEvent(db, {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:726:      logFinalResult({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:738:      logChannelResult({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:18:import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:23:import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:682:    const evalEntry = logSearchQuery({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:984:      initConsumptionLog(db);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:996:      logConsumptionEvent(db, {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1023:      logFinalResult({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1033:        logChannelResult({
 codex
 I’ve confirmed the runtime wiring: the three retrieval handlers still call both eval logging and consumption logging hooks. The next pass is narrowing where the markdown overstates behavior, especially around metric counts, baseline numbers, and whether “active” instrumentation is actually writing anything.
 exec
-/bin/zsh -lc "sed -n '430,470p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '660,760p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '970,1055p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-db.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "sed -n '430,470p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '660,760p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '970,1055p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-db.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
       results: formattedResults,
       cognitive: cognitiveStats
     },
@@ -847,10 +847,10 @@ import {
   computePrecision,
   computeF1,
 exec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "110|manualQueryCount|hardNegativeCount|QUERY_DISTRIBUTION|pattern_derived|trigger_derived|manual|hard_negative|G-NEW-2|consumption" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"0\\.2083|110|ENABLE_BM25|FTS5|hybrid performance|relative|RATIONALIZE|PROCEED|PAUSE\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "110|manualQueryCount|hardNegativeCount|QUERY_DISTRIBUTION|pattern_derived|trigger_derived|manual|hard_negative|G-NEW-2|consumption" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"0\\.2083|110|ENABLE_BM25|FTS5|hybrid performance|relative|RATIONALIZE|PROCEED|PAUSE\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts\" \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Test — Ground Truth
 // ---------------------------------------------------------------
@@ -872,26 +872,26 @@ exec
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:18:  QUERY_DISTRIBUTION,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:34:  distribution: typeof QUERY_DISTRIBUTION;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:96: * Returns all 110 queries plus graded relevance judgments mapped
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:115:    distribution: QUERY_DISTRIBUTION,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:204: *   5. ≥30 manually curated queries (source='manual')
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:205: *   6. ≥3 hard negative queries (category='hard_negative')
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:259:  const manualCount = queries.filter(q => q.source === 'manual').length;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:261:    dimension: 'Manual queries (source=manual)',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:263:    actual: manualCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:269:  const hardNegativeCount = queries.filter(q => q.category === 'hard_negative').length;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:273:    actual: hardNegativeCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:274:    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:324:  QUERY_DISTRIBUTION,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:9://   T007.4  — ≥30 manual queries (source='manual')
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:34:  QUERY_DISTRIBUTION,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:62:  'hard_negative',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:67:const VALID_SOURCES: QuerySource[] = ['manual', 'trigger_derived', 'pattern_derived', 'seed'];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:217:   T007.4: ≥30 manual queries (NOT trigger-derived)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:221:  it('T007.4.1: at least 30 queries have source="manual"', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:18:  QUERY_DISTRIBUTION,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:34:  distribution: typeof QUERY_DISTRIBUTION;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:96: * Returns all 110 queries plus graded relevance judgments mapped
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:115:    distribution: QUERY_DISTRIBUTION,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:204: *   5. ≥30 manually curated queries (source='manual')
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:205: *   6. ≥3 hard negative queries (category='hard_negative')
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:259:  const manualCount = queries.filter(q => q.source === 'manual').length;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:261:    dimension: 'Manual queries (source=manual)',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:263:    actual: manualCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:269:  const hardNegativeCount = queries.filter(q => q.category === 'hard_negative').length;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:273:    actual: hardNegativeCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:274:    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:324:  QUERY_DISTRIBUTION,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:9://   T007.4  — ≥30 manual queries (source='manual')
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:34:  QUERY_DISTRIBUTION,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:62:  'hard_negative',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:67:const VALID_SOURCES: QuerySource[] = ['manual', 'trigger_derived', 'pattern_derived', 'seed'];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:217:   T007.4: ≥30 manual queries (NOT trigger-derived)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:221:  it('T007.4.1: at least 30 queries have source="manual"', () => {
  succeeded in 50ms:
 // ---------------------------------------------------------------
 // MODULE: Test — BM25 Baseline
@@ -914,30 +914,30 @@ import Database from 'better-sqlite3';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as path from 'path';
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:5:// Runs the ground truth query set through the BM25/FTS5-only
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:17://     into an actionable gate: PAUSE / RATIONALIZE / PROCEED.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:43:  /** Maximum number of queries to run. Defaults to all 110. */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:77:  /** Gate action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED'. */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:78:  action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:81:  /** Comparison mode: 'absolute' (Sprint 0) or 'relative' (Sprint 1+). */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:82:  mode?: 'absolute' | 'relative';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:83:  /** Hybrid MRR@5 used as reference (relative mode only). */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:85:  /** BM25/hybrid ratio (relative mode only). */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:97:  /** Retrieval score (raw BM25 / FTS5 rank). */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:117: * using ONLY the BM25/FTS5 channel (vector, graph, trigger disabled).
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:118: * For production use, wire up the FTS5 path from hybrid-search with all
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:134: *   MRR@5 >= 0.80 → PAUSE
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:139: *   MRR@5 0.50–0.79 → RATIONALIZE
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:144: *   MRR@5 < 0.50 → PROCEED
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:157:      action: 'PAUSE',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:171:      action: 'RATIONALIZE',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:183:    action: 'PROCEED',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:194:   Spec: "BM25 >= 80% of hybrid MRR@5" → PAUSE.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:198: * Evaluate BM25 performance relative to hybrid MRR@5 (spec-compliant).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:5:// Runs the ground truth query set through the BM25/FTS5-only
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:17://     into an actionable gate: PAUSE / RATIONALIZE / PROCEED.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:43:  /** Maximum number of queries to run. Defaults to all 110. */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:77:  /** Gate action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED'. */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:78:  action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:81:  /** Comparison mode: 'absolute' (Sprint 0) or 'relative' (Sprint 1+). */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:82:  mode?: 'absolute' | 'relative';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:83:  /** Hybrid MRR@5 used as reference (relative mode only). */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:85:  /** BM25/hybrid ratio (relative mode only). */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:97:  /** Retrieval score (raw BM25 / FTS5 rank). */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:117: * using ONLY the BM25/FTS5 channel (vector, graph, trigger disabled).
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:118: * For production use, wire up the FTS5 path from hybrid-search with all
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:134: *   MRR@5 >= 0.80 → PAUSE
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:139: *   MRR@5 0.50–0.79 → RATIONALIZE
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:144: *   MRR@5 < 0.50 → PROCEED
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:157:      action: 'PAUSE',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:171:      action: 'RATIONALIZE',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:183:    action: 'PROCEED',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:194:   Spec: "BM25 >= 80% of hybrid MRR@5" → PAUSE.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:198: * Evaluate BM25 performance relative to hybrid MRR@5 (spec-compliant).
 exec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "ENABLE_BM25|BM25" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/core"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "ENABLE_BM25|BM25" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/core"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Hybrid Search
 // ---------------------------------------------------------------
@@ -980,31 +980,31 @@ export function isMMREnabled(): boolean {
 /**
  * Transparent Reasoning Module (evidence-gap detection).
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4:// AI-WHY: Combines vector, FTS, and BM25 search with fallback
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * - `'bm25'` — BM25 term-frequency relevance (min-max normalized per source group)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:242:/* --- 8. BM25 SEARCH --- */
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:245: * Search the BM25 index with optional spec folder filtering.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:248: * @returns Array of BM25-scored results tagged with source 'bm25'.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:260:    // AI-WHY: Fix #8 (017-refinement-phase-6) — BM25 document IDs are stringified
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:283:    console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:289: * Check whether the BM25 index is populated and available for search.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:290: * @returns True if the BM25 index exists and contains at least one document.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:323: * Run FTS5 full-text search with weighted BM25 scoring and optional spec folder filtering.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:337:    // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:359: * Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:395: * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:448:  // BM25 search
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:617:    // BM25 channel (internal error handling in bm25Search) — gated by Sprint 3 routing
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:621:        // AI-WHY: BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:622:        // has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1074:  // AI-WHY: Fallback to BM25 only
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:158:// REQ-031: Deferred indexing - entry searchable via BM25/FTS5 only
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:226:  logger.info(`Deferred indexing: Memory ${Number(row_id)} saved without embedding (BM25/FTS5 searchable)`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4:// AI-WHY: Combines vector, FTS, and BM25 search with fallback
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * - `'bm25'` — BM25 term-frequency relevance (min-max normalized per source group)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:242:/* --- 8. BM25 SEARCH --- */
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:245: * Search the BM25 index with optional spec folder filtering.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:248: * @returns Array of BM25-scored results tagged with source 'bm25'.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:260:    // AI-WHY: Fix #8 (017-refinement-phase-6) — BM25 document IDs are stringified
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:283:    console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:289: * Check whether the BM25 index is populated and available for search.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:290: * @returns True if the BM25 index exists and contains at least one document.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:323: * Run FTS5 full-text search with weighted BM25 scoring and optional spec folder filtering.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:337:    // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:359: * Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:395: * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:448:  // BM25 search
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:617:    // BM25 channel (internal error handling in bm25Search) — gated by Sprint 3 routing
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:621:        // AI-WHY: BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:622:        // has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1074:  // AI-WHY: Fallback to BM25 only
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:158:// REQ-031: Deferred indexing - entry searchable via BM25/FTS5 only
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:226:  logger.info(`Deferred indexing: Memory ${Number(row_id)} saved without embedding (BM25/FTS5 searchable)`);
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path'); const dir=path.resolve('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement'); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-8]-.*'"\\.md"'$/.test(f)).sort(); for(const file of files){ const text=fs.readFileSync(path.join(dir,file),'"'utf8'); const matches=[...text.matchAll(/"'`(mcp_server'"\\/["'^`]+)`/g)].map(m=>m[1]); console.log('"'FILE:'+file); for(const rel of matches){ const full=path.resolve('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit', rel); console.log(rel+' => '+(fs.existsSync(full)?'OK':'MISSING')); } }\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
+/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path'); const dir=path.resolve('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement'); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-8]-.*'"\\.md"'$/.test(f)).sort(); for(const file of files){ const text=fs.readFileSync(path.join(dir,file),'"'utf8'); const matches=[...text.matchAll(/"'`(mcp_server'"\\/["'^`]+)`/g)].map(m=>m[1]); console.log('"'FILE:'+file); for(const rel of matches){ const full=path.resolve('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit', rel); console.log(rel+' => '+(fs.existsSync(full)?'OK':'MISSING')); } }\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 zsh:1: unmatched "
 exec
-/bin/zsh -lc "python3 -c 'import os,re; from pathlib import Path; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\"); dir=base/\"feature_catalog/09--evaluation-and-measurement\"; files=sorted([p for p in dir.iterdir() if re.match(r\"0[1-8]-.*\\\\.md"'$", p.name)]); 
+/bin/zsh -lc "python3 -c 'import os,re; from pathlib import Path; base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\"); dir=base/\"feature_catalog/09--evaluation-and-measurement\"; files=sorted([p for p in dir.iterdir() if re.match(r\"0[1-8]-.*\\\\.md"'$", p.name)]); 
 for f in files:
     print("FILE:"+f.name)
     text=f.read_text()
@@ -1015,7 +1015,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-KLqB9VnN' (errno=Opera
 python3: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 python3: error: couldn't create cache file '/tmp/xcrun_db-2NElTKsH' (errno=Operation not permitted)
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"), path=require(\"path\"); const base=path.resolve(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\"); const dir=path.join(base,\"feature_catalog/09--evaluation-and-measurement\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-8]-.*'"\\.md"'$/.test(f)).sort(); for (const file of files){ console.log("FILE:"+file); const text=fs.readFileSync(path.join(dir,file),"utf8"); const matches=[...text.matchAll(/`(mcp_server'"\\/["'^`]+)`/g)].map(m=>m[1]); for (const rel of matches){ console.log(rel+" => "+(fs.existsSync(path.join(base,rel))?"OK":"MISSING")); } }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"), path=require(\"path\"); const base=path.resolve(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\"); const dir=path.join(base,\"feature_catalog/09--evaluation-and-measurement\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[1-8]-.*'"\\.md"'$/.test(f)).sort(); for (const file of files){ console.log("FILE:"+file); const text=fs.readFileSync(path.join(dir,file),"utf8"); const matches=[...text.matchAll(/`(mcp_server'"\\/["'^`]+)`/g)].map(m=>m[1]); for (const rel of matches){ console.log(rel+" => "+(fs.existsSync(path.join(base,rel))?"OK":"MISSING")); } }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 FILE:01-evaluation-database-and-schema.md
 mcp_server/lib/eval/eval-db.ts => OK
 mcp_server/tests/eval-db.vitest.ts => OK
@@ -1037,9 +1037,9 @@ mcp_server/lib/eval/eval-quality-proxy.ts => OK
 FILE:06-synthetic-ground-truth-corpus.md
 mcp_server/lib/eval/ground-truth-data.ts => OK
 exec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "p95|95|latency|overhead|10%|5ms|health check|healthcheck|alert|budget" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "p95|95|latency|overhead|10%|5ms|health check|healthcheck|alert|budget" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // TEST: Shadow Scoring + Channel Attribution
 // R13-S2: Shadow scoring infrastructure, channel attribution,
@@ -1061,11 +1061,11 @@ import {
   type ShadowConfig,
   type ShadowComparison,
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:61:    latency_ms REAL,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:74:    latency_ms REAL,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:50:        { memoryId: 2, score: 0.95, rank: 1 },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:421:        { memoryId: 42, score: 0.95, rank: 1 },
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:428:      expect(attributed[0].score).toBe(0.95);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:61:    latency_ms REAL,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:74:    latency_ms REAL,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:50:        { memoryId: 2, score: 0.95, rank: 1 },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:421:        { memoryId: 42, score: 0.95, rank: 1 },
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts:428:      expect(attributed[0].score).toBe(0.95);
  succeeded in 50ms:
 // ---------------------------------------------------------------
 // TEST: SCORING
@@ -1088,62 +1088,62 @@ import { describe, it, expect } from 'vitest';
 import {
   calculateRecencyScore,
 exec
-/bin/zsh -lc 'rg --files "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests" | rg "quality-proxy|eval-ceiling|ground-truth-feedback|channel-attribution|eval-logger|reporting-dashboard|ablation-framework|shadow-scoring|consumption-logger|bm25-baseline|eval-metrics|ground-truth"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "computeCeilingWithScorer|interpretCeilingVsBaseline|ceilingMRR|theoretical|upper bound|quadrant" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "computeQualityProxy|quality proxy|excellent|good|acceptable|poor" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts
+/bin/zsh -lc 'rg --files "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests" | rg "quality-proxy|eval-ceiling|ground-truth-feedback|channel-attribution|eval-logger|reporting-dashboard|ablation-framework|shadow-scoring|consumption-logger|bm25-baseline|eval-metrics|ground-truth"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "computeCeilingWithScorer|interpretCeilingVsBaseline|ceilingMRR|theoretical|upper bound|quadrant" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "computeQualityProxy|quality proxy|excellent|good|acceptable|poor" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:434:      // High everything: test upper bound
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:487:      expect(sum).toBeLessThan(3.0); // Sanity upper bound
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:477:    // Test upper bound - try to exceed 10
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:8:  interpretCeilingVsBaseline,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:51:  it('T006f-01: perfect ranking → ceilingMRR = 1.0', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:60:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:67:  it('T006f-02: no relevant results in ground truth → ceilingMRR = 0.0', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:75:    expect(result.ceilingMRR).toBe(0);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:80:  it('T006f-03: gap = ceilingMRR − systemMRR when systemMRR provided', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:90:    // Both queries have their best result at rank 1 → ceilingMRR = 1.0
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:91:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:96:  it('T006f-04: gap equals ceilingMRR when systemMRR is not provided', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:105:    expect(result.gap).toBeCloseTo(result.ceilingMRR, 5);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:151:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:155:  it('T006f-07: empty queries → ceilingMRR = 0 and empty perQueryCeiling', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:163:    expect(result.ceilingMRR).toBe(0);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:168:  it('T006f-08: empty groundTruth → ceilingMRR = 0', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:176:    expect(result.ceilingMRR).toBe(0);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:180:  it('T006f-09: ceilingMRR is always in [0, 1]', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:188:    expect(result.ceilingMRR).toBeGreaterThanOrEqual(0);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:434:      // High everything: test upper bound
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:487:      expect(sum).toBeLessThan(3.0); // Sanity upper bound
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:477:    // Test upper bound - try to exceed 10
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:8:  interpretCeilingVsBaseline,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:51:  it('T006f-01: perfect ranking → ceilingMRR = 1.0', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:60:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:67:  it('T006f-02: no relevant results in ground truth → ceilingMRR = 0.0', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:75:    expect(result.ceilingMRR).toBe(0);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:80:  it('T006f-03: gap = ceilingMRR − systemMRR when systemMRR provided', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:90:    // Both queries have their best result at rank 1 → ceilingMRR = 1.0
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:91:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:96:  it('T006f-04: gap equals ceilingMRR when systemMRR is not provided', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:105:    expect(result.gap).toBeCloseTo(result.ceilingMRR, 5);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:151:    expect(result.ceilingMRR).toBeCloseTo(1.0, 5);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:155:  it('T006f-07: empty queries → ceilingMRR = 0 and empty perQueryCeiling', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:163:    expect(result.ceilingMRR).toBe(0);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:168:  it('T006f-08: empty groundTruth → ceilingMRR = 0', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:176:    expect(result.ceilingMRR).toBe(0);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:180:  it('T006f-09: ceilingMRR is always in [0, 1]', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:188:    expect(result.ceilingMRR).toBeGreaterThanOrEqual(0);
  succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:98:      // If CWD is not in ALLOWED_BASE_PATHS, this may throw — that's acceptable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:65:        // Also acceptable: throwing is valid behavior
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:155:    const content = 'Hello World is good. Hello World is great. Hello World is best.';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:509:      // No results is acceptable too
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:150:      // If we get here without throwing, values should be numbers (NaN is acceptable for typed params)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:155:      // Throwing is also acceptable defensive behavior
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:232:    const acceptableActions = ['REINFORCE', 'UPDATE', 'CREATE_LINKED', 'SUPERSEDE', 'CREATE'];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:233:    expect(acceptableActions).toContain(resultAt.action);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:328:    // Realistic distribution: top results are good, then a cliff, then irrelevant.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:347:  it('T26: larger tail removal — 10 results with 4 good, 6 irrelevant', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:50:        // DB or infra errors are acceptable (no DB in test env)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:78:      // DB/infra errors are acceptable in test env.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:92:      // DB/infra errors are acceptable in test env.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:25:      // result may be false without DB, or truthy with DB — either is acceptable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:468:        // May fail due to missing FSRS columns - acceptable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:112:      tolerance: 0.15, // max acceptable quality gap
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:137:      // Either clamped to floor or deleted — both are acceptable
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:141:      // If null, that's also acceptable (deleted below threshold)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:171:        // DB errors are acceptable (means validation passed)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:190:        // Either validation error or DB error is acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:98:      // If CWD is not in ALLOWED_BASE_PATHS, this may throw — that's acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:65:        // Also acceptable: throwing is valid behavior
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:155:    const content = 'Hello World is good. Hello World is great. Hello World is best.';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:509:      // No results is acceptable too
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:150:      // If we get here without throwing, values should be numbers (NaN is acceptable for typed params)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:155:      // Throwing is also acceptable defensive behavior
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:232:    const acceptableActions = ['REINFORCE', 'UPDATE', 'CREATE_LINKED', 'SUPERSEDE', 'CREATE'];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:233:    expect(acceptableActions).toContain(resultAt.action);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:328:    // Realistic distribution: top results are good, then a cliff, then irrelevant.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:347:  it('T26: larger tail removal — 10 results with 4 good, 6 irrelevant', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:50:        // DB or infra errors are acceptable (no DB in test env)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:78:      // DB/infra errors are acceptable in test env.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-checkpoint-lifecycle.vitest.ts:92:      // DB/infra errors are acceptable in test env.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:25:      // result may be false without DB, or truthy with DB — either is acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:468:        // May fail due to missing FSRS columns - acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:112:      tolerance: 0.15, // max acceptable quality gap
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:137:      // Either clamped to floor or deleted — both are acceptable
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:141:      // If null, that's also acceptable (deleted below threshold)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:171:        // DB errors are acceptable (means validation passed)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:190:        // Either validation error or DB error is acceptable
 exec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Test — Ceiling Quality
 // ---------------------------------------------------------------
@@ -1165,7 +1165,7 @@ import {
 
 import type { GroundTruthEntry } from '../lib/eval/eval-metrics';
 exec
-/bin/zsh -lc "node -e 'const data=require(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json\"); const qs=data.queries; const by=(k)=>qs.reduce((a,q)=>(a[q[k]]=(a[q[k]]||0)+1,a),{}); console.log(JSON.stringify({total:qs.length, bySource:by(\"source\"), byIntentType:by(\"intentType\"), byComplexityTier:by(\"complexityTier\"), byCategory:by(\"category\")}, null, 2));'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "node -e 'const data=require(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json\"); const qs=data.queries; const by=(k)=>qs.reduce((a,q)=>(a[q[k]]=(a[q[k]]||0)+1,a),{}); console.log(JSON.stringify({total:qs.length, bySource:by(\"source\"), byIntentType:by(\"intentType\"), byComplexityTier:by(\"complexityTier\"), byCategory:by(\"category\")}, null, 2));'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 {
   "total": 110,
   "bySource": {
@@ -1187,51 +1187,51 @@ exec
     "simple": 37,
     "moderate": 53,
 exec
-/bin/zsh -lc 'rg -n "G-NEW-2|consumption|pattern_derived|agent consumption|query patterns|manual" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:27:export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:69:    pattern_derived: GROUND_TRUTH_QUERIES.filter(q => q.source === 'pattern_derived').length,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:71:    manual: GROUND_TRUTH_QUERIES.filter(q => q.source === 'manual').length,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:77:  manualQueryCount: GROUND_TRUTH_QUERIES.filter(q => q.source === 'manual').length,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:204: *   5. ≥30 manually curated queries (source='manual')
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:259:  const manualCount = queries.filter(q => q.source === 'manual').length;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:261:    dimension: 'Manual queries (source=manual)',
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:263:    actual: manualCount,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:219:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:229:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:239:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:249:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:259:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:269:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:279:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:289:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:299:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:309:      "source": "pattern_derived",
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:319:      "source": "pattern_derived",
+/bin/zsh -lc 'rg -n "G-NEW-2|consumption|pattern_derived|agent consumption|query patterns|manual" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:27:export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:69:    pattern_derived: GROUND_TRUTH_QUERIES.filter(q => q.source === 'pattern_derived').length,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:71:    manual: GROUND_TRUTH_QUERIES.filter(q => q.source === 'manual').length,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:77:  manualQueryCount: GROUND_TRUTH_QUERIES.filter(q => q.source === 'manual').length,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:204: *   5. ≥30 manually curated queries (source='manual')
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:259:  const manualCount = queries.filter(q => q.source === 'manual').length;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:261:    dimension: 'Manual queries (source=manual)',
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:263:    actual: manualCount,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:219:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:229:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:239:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:249:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:259:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:269:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:279:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:289:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:299:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:309:      "source": "pattern_derived",
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:319:      "source": "pattern_derived",
 exec
-/bin/zsh -lc 'rg -n "computeQualityProxy|eval-quality-proxy|quality proxy" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/README.md:297:├── ceiling-quality.vitest.ts             # Ceiling quality proxy
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **QualityMetrics** | Composite 0–1 quality proxy derived from relevance, result count, and latency |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:146:| `qualityProxyScore` | `number` | Composite quality proxy score (0–1) |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:32:/** Maximum latency value (ms) for quality proxy normalization.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:190:  t.quality.qualityProxyScore = computeQualityProxy(t);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:211: * Compute a 0-1 quality proxy score from the telemetry record.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:219:function computeQualityProxy(t: RetrievalTelemetry): number {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:308:  computeQualityProxy,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/README.md:246:│   ├── eval-quality-proxy.ts   # Quality proxy scoring
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:15:  computeQualityProxy,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:18:} from '../lib/eval/eval-quality-proxy';
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:259:describe('T006g: computeQualityProxy', () => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:262:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:277:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:295:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:314:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:329:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:344:    const result = computeQualityProxy({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:367:    const result = computeQualityProxy(input);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:381:    const result = computeQualityProxy({
+/bin/zsh -lc 'rg -n "computeQualityProxy|eval-quality-proxy|quality proxy" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/README.md:297:├── ceiling-quality.vitest.ts             # Ceiling quality proxy
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **QualityMetrics** | Composite 0–1 quality proxy derived from relevance, result count, and latency |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:146:| `qualityProxyScore` | `number` | Composite quality proxy score (0–1) |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:32:/** Maximum latency value (ms) for quality proxy normalization.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:190:  t.quality.qualityProxyScore = computeQualityProxy(t);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:211: * Compute a 0-1 quality proxy score from the telemetry record.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:219:function computeQualityProxy(t: RetrievalTelemetry): number {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:308:  computeQualityProxy,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/README.md:246:│   ├── eval-quality-proxy.ts   # Quality proxy scoring
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:15:  computeQualityProxy,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:18:} from '../lib/eval/eval-quality-proxy';
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:259:describe('T006g: computeQualityProxy', () => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:262:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:277:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:295:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:314:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:329:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:344:    const result = computeQualityProxy({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:367:    const result = computeQualityProxy(input);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/ceiling-quality.vitest.ts:381:    const result = computeQualityProxy({
 exec
-/bin/zsh -lc "sed -n '180,250p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '180,250p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
       if (typeof r.score === 'number' && Number.isFinite(r.score)) return r.score;
       if (typeof r.similarity === 'number' && Number.isFinite(r.similarity)) return r.similarity / 100;
       return 0;
@@ -1253,7 +1253,7 @@ function recordTracePayload(t: RetrievalTelemetry, payload: unknown): boolean {
     delete t.tracePayload;
     return false;
 exec
-/bin/zsh -lc "sed -n '540,620p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '540,620p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 
   return computeNDCG(results, weightedGT, k);
 }
@@ -1275,7 +1275,7 @@ exec
 export function computeAllMetrics(params: {
   results: EvalResult[];
 exec
-/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' \"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Test — Eval Logger
 // ---------------------------------------------------------------
@@ -1297,7 +1297,7 @@ import {
   generateEvalRunId,
   logSearchQuery,
 exec
-/bin/zsh -lc 'rg -n "10%|overhead|p95|latency" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc 'rg -n "10%|overhead|p95|latency" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 9:// more than 10% overhead to the core logging operations
 196:        latencyMs: 42,
 239:        latencyMs: 123,
@@ -1319,7 +1319,7 @@ exec
 425:    // Simulate a representative "search baseline" time: 50ms (well within real search latency).
 426:    // The logging overhead (treatment - control) must be < 10% of 50ms = 5ms.
 exec
-/bin/zsh -lc 'rg -n "recordBaselineMetrics|eval_metric_snapshots|GROUND_TRUTH_RELEVANCES|loadGroundTruth|queryLimit|skipHardNegatives|getIndex|ENABLE_BM25" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc 'rg -n "recordBaselineMetrics|eval_metric_snapshots|GROUND_TRUTH_RELEVANCES|loadGroundTruth|queryLimit|skipHardNegatives|getIndex|ENABLE_BM25" "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 18://   - recordBaselineMetrics() is a pure DB write — no network I/O.
 33:  GROUND_TRUTH_RELEVANCES,
 44:  queryLimit?: number;
@@ -1341,7 +1341,7 @@ FEATURE: 01-evaluation-database-and-schema.md
 DESCRIPTION_ACCURATE: YES
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: UPDATE_PATHS
 NOTES: The five-table separate eval DB is real, and the fail-safe gated logging behavior matches code. The source list is incomplete because the description explicitly discusses logger and handler wiring that are not listed.
@@ -1361,7 +1361,7 @@ FEATURE: 03-observer-effect-mitigation.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: HIGH
 RECOMMENDED_ACTION: BOTH
 NOTES: Non-blocking/fail-safe behavior exists, and shadow scoring is disabled, but there is no runtime health check or alerting path comparing enabled vs disabled search p95 latency. The listed `scoring.vitest.ts` exists but is generic composite-scoring coverage, not the main observer-effect implementation.
@@ -1381,7 +1381,7 @@ FEATURE: 05-quality-proxy-formula.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [retrieval-telemetry.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
+MISSING_CODE_PATHS: [retrieval-telemetry.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
 SEVERITY: HIGH
 RECOMMENDED_ACTION: BOTH
 NOTES: The formula and weights are correct, but `eval-quality-proxy.ts` is only a pure function. Automatic logged-data regression detection and correlation-validation claims are not implemented here, and an important runtime quality-proxy implementation also exists in telemetry.
@@ -1391,7 +1391,7 @@ FEATURE: 06-synthetic-ground-truth-corpus.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [ground-truth.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json)
+MISSING_CODE_PATHS: [ground-truth.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: The corpus shape matches code/data: 110 queries, 40 manual queries, 7 intents, 3 complexity tiers, and hard negatives. The actual corpus data file is omitted from the source list, and the “G-NEW-2 agent consumption analysis” provenance is not evidenced in code.
@@ -1401,7 +1401,7 @@ FEATURE: 07-bm25-only-baseline.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
+MISSING_CODE_PATHS: [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: The baseline runner and contingency matrix exist, and `ENABLE_BM25` is default-on in the BM25 index. The hard-coded `MRR@5 = 0.2083`, the “below 50% of hybrid” claim, and the historical decision narrative are not present in source.
@@ -1411,7 +1411,7 @@ FEATURE: 08-agent-consumption-instrumentation.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: Handler wiring is still present and `isConsumptionLogEnabled()` is hardcoded `false`, so row logging is inert. But the handlers still call `initConsumptionLog`, so this is not a total runtime no-op, and the ground-truth-design provenance claim is not directly evidenced in code.
@@ -1426,7 +1426,7 @@ FEATURE: 01-evaluation-database-and-schema.md
 DESCRIPTION_ACCURATE: YES
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: UPDATE_PATHS
 NOTES: The five-table separate eval DB is real, and the fail-safe gated logging behavior matches code. The source list is incomplete because the description explicitly discusses logger and handler wiring that are not listed.
@@ -1446,7 +1446,7 @@ FEATURE: 03-observer-effect-mitigation.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [eval-logger.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: HIGH
 RECOMMENDED_ACTION: BOTH
 NOTES: Non-blocking/fail-safe behavior exists, and shadow scoring is disabled, but there is no runtime health check or alerting path comparing enabled vs disabled search p95 latency. The listed `scoring.vitest.ts` exists but is generic composite-scoring coverage, not the main observer-effect implementation.
@@ -1466,7 +1466,7 @@ FEATURE: 05-quality-proxy-formula.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [retrieval-telemetry.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
+MISSING_CODE_PATHS: [retrieval-telemetry.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
 SEVERITY: HIGH
 RECOMMENDED_ACTION: BOTH
 NOTES: The formula and weights are correct, but `eval-quality-proxy.ts` is only a pure function. Automatic logged-data regression detection and correlation-validation claims are not implemented here, and an important runtime quality-proxy implementation also exists in telemetry.
@@ -1476,7 +1476,7 @@ FEATURE: 06-synthetic-ground-truth-corpus.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [ground-truth.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json)
+MISSING_CODE_PATHS: [ground-truth.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: The corpus shape matches code/data: 110 queries, 40 manual queries, 7 intents, 3 complexity tiers, and hard negatives. The actual corpus data file is omitted from the source list, and the “G-NEW-2 agent consumption analysis” provenance is not evidenced in code.
@@ -1486,7 +1486,7 @@ FEATURE: 07-bm25-only-baseline.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
+MISSING_CODE_PATHS: [bm25-index.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts), [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts), [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: The baseline runner and contingency matrix exist, and `ENABLE_BM25` is default-on in the BM25 index. The hard-coded `MRR@5 = 0.2083`, the “below 50% of hybrid” claim, and the historical decision narrative are not present in source.
@@ -1496,7 +1496,7 @@ FEATURE: 08-agent-consumption-instrumentation.md
 DESCRIPTION_ACCURATE: PARTIAL
 CODE_PATHS_VALID: YES
 INVALID_PATHS: NONE
-MISSING_CODE_PATHS: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+MISSING_CODE_PATHS: [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
 SEVERITY: MEDIUM
 RECOMMENDED_ACTION: BOTH
 NOTES: Handler wiring is still present and `isConsumptionLogEnabled()` is hardcoded `false`, so row logging is inert. But the handlers still call `initConsumptionLog`, so this is not a total runtime no-op, and the ground-truth-design provenance claim is not directly evidenced in code.

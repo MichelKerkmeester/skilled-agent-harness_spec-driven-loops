@@ -43,7 +43,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
 12. Compare Mex directly against current `Code_Environment/Public` capabilities: Spec Kit validation, memory frontmatter, documented memory/index structure, and other repo guidance files. Be precise about where Mex adds new capability versus where it overlaps with systems already covered by phases `001`, `003`, or `004`.
 13. Before any deep-research run, ensure this phase folder contains the expected spec-kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -51,7 +51,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every finding must cite exact file paths, describe what Mex actually does, why it matters for `Code_Environment/Public`, whether it should be `adopt now`, `prototype later`, or `reject`, what subsystem it would affect, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
     ```
 
 ## 6. Research Questions
@@ -251,7 +251,7 @@ exec
 2121:- symptom: structure refactor introduces formatting/style drift; cause: large-file manual reshaping; fix: always run targeted Prettier and ESLint on the edited screen before closeout [Task 1]
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1864ms:
 
 ───────────────────────────────────────────────────────────────
@@ -266,7 +266,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -279,7 +279,7 @@ exec
 codex
 The phase validation is still running, and I already have one useful prior-memory signal: earlier work in this repo emphasized truth-sync passes when packet docs drift from research findings. While that finishes, I’m loading the deep-research workflow guidance and the external repo structure so the architecture scan stays source-first.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -297,7 +297,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -629,7 +629,7 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/research/iterations
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1630ms:
 
 ───────────────────────────────────────────────────────────────
@@ -644,7 +644,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -4632,274 +4632,274 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/research/.gitkeep
 
 exec
-/bin/zsh -lc "rg -n \"memory_search|memory_context|memory_match_triggers|generate-context|code_graph|validate\\.sh|Spec Kit Memory|memory_index_scan|CocoIndex\" .opencode/skill/system-spec-kit .opencode/packages .opencode/src .opencode/commands .opencode/agent 2>/dev/null | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"memory_search|memory_context|memory_match_triggers|generate-context|code_graph|validate\\.sh|Spec Kit Memory|memory_index_scan|CocoIndex\" .opencode/skills/system-spec-kit .opencode/packages .opencode/src .opencode/commands .opencode/agent 2>/dev/null | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/agent/orchestrate.md:361:- `memory/` subdirectory → generated via `generate-context.js` script (never manual Write)
-.opencode/agent/orchestrate.md:381:| **No Validation**             | @speckit completion claim without `validate.sh` output                                                          | REJECT → Run validation        |
-.opencode/agent/orchestrate.md:390:   - Verify `validate.sh` was run (exit code in output)
-.opencode/agent/orchestrate.md:571:After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
-.opencode/agent/orchestrate.md:807:If hook-injected context is present at the start of a session (injected by Claude Code SessionStart hook), use it directly as the baseline context. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information.
-.opencode/agent/orchestrate.md:810:1. `memory_context({ mode: "resume", profile: "resume" })` for session recovery
-.opencode/agent/orchestrate.md:811:2. `memory_match_triggers()` for constitutional/triggered context
-.opencode/agent/orchestrate.md:819:| "Find code that..." / semantic discovery | CocoIndex | `mcp__cocoindex_code__search` |
-.opencode/agent/orchestrate.md:820:| "What calls/imports/extends..." / structural | Code Graph | `code_graph_query`, `code_graph_context` |
-.opencode/agent/orchestrate.md:821:| "Show file structure/outline" | Code Graph | `code_graph_query` (operation: outline) |
-.opencode/agent/orchestrate.md:822:| Session continuity / prior decisions | Memory | `memory_search`, `memory_context` |
-.opencode/agent/review.md:64:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
-.opencode/agent/deep-research.md:55:3. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, memory_search)
-.opencode/agent/deep-research.md:108:| memory_search | Check prior research findings | Find related spec folder work |
-.opencode/agent/deep-research.md:235:| `memory_search` | Find prior research in memory system |
-.opencode/agent/deep-research.md:236:| `memory_context` | Load context for the research topic |
-.opencode/agent/deep-research.md:440:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
-.opencode/agent/deep-research.md:442:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
-.opencode/agent/ultra-think.md:53:2. **PREPARE** → Load context via memory (`memory_match_triggers` → `memory_context`) and gather required file context. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
-.opencode/agent/ultra-think.md:83:| `memory_match_triggers` | Memory triggers                | Quick context surfacing in PREPARE     |
-.opencode/agent/ultra-think.md:84:| `memory_context`        | Unified memory retrieval       | Deep context loading in PREPARE        |
-.opencode/agent/ultra-think.md:85:| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
-.opencode/agent/ultra-think.md:286:- Preserve context via `memory_context` before dispatching strategies
-.opencode/agent/write.md:87:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:756:    `Spec Kit Memory MCP has ${stats.totalMemories} indexed memories across ${stats.specFolderCount} spec folders.`,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
-.opencode/agent/deep-review.md:104:| memory_search | Check prior research findings | Find related spec folder work |
-.opencode/agent/deep-review.md:285:| `memory_search` | Find prior research in memory system |
-.opencode/agent/deep-review.md:286:| `memory_context` | Load context for the review topic |
-.opencode/agent/deep-review.md:570:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
-.opencode/agent/deep-review.md:572:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:3:description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server, organized by subsystem with defaults, types and source file references.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:8:> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:17:**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> CocoIndex -> Memory), the graph env vars are among the most impactful configuration levers.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:229:| `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:230:| `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/agent/speckit.md:28:> ⛔ **EXCLUSIVITY:** @speckit is the ONLY agent permitted to create or substantively write documentation (*.md) inside spec folders. Other agents (@general, @write, etc.) MUST NOT write spec folder documentation. Exceptions: `@handover` may write `handover.md`, `@deep-research` may write `research/research.md`. Files in `memory/` (uses generate-context.js) and `scratch/` (any agent) are also excepted.
-.opencode/agent/speckit.md:75:6. **VALIDATE** → Run `scripts/spec/validate.sh` to verify completeness
-.opencode/agent/speckit.md:101:5. **Validate** with `validate.sh --recursive` for the entire phase tree
-.opencode/agent/speckit.md:113:  ↓  (Run validate.sh --strict AFTER EACH FILE WRITE. Fix errors before proceeding to the next file.)
-.opencode/agent/speckit.md:123:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
-.opencode/agent/speckit.md:140:| `scripts/spec/validate.sh`               | Validate completeness   | Before claiming completion           |
-.opencode/agent/speckit.md:162:| L1    | `memory_context`                                                                   | Unified entry point   |
-.opencode/agent/speckit.md:163:| L2    | `memory_search`, `memory_match_triggers`, `memory_save`                            | Core operations       |
-.opencode/agent/speckit.md:168:| L7    | `memory_index_scan`, `memory_get_learning_history`                                 | Maintenance           |
-.opencode/agent/speckit.md:170:> **memory_context modes:** `auto` (default, detects intent), `quick` (trigger-based), `deep` (comprehensive), `focused` (intent-optimized), `resume` (session recovery).
-.opencode/agent/speckit.md:240:- Run `validate.sh` before claiming completion
-.opencode/agent/speckit.md:241:- Run `scripts/spec/validate.sh [SPEC_FOLDER] --strict` immediately after each spec-doc write or update; if it fails, repair template drift before continuing
-.opencode/agent/speckit.md:328:4. Run `scripts/spec/validate.sh [SPEC_FOLDER] --strict` before moving to the next workflow step.
-.opencode/agent/speckit.md:417:- `validate.sh` exit code: [0|1|2]
-.opencode/agent/speckit.md:471:□ validate.sh --strict run after each file write (exit code 0 or 1 to proceed)
-.opencode/agent/speckit.md:491:2. Run verification checks (Glob + validate.sh)
-.opencode/agent/speckit.md:500:2. **Validation output** — `validate.sh` exit code + error/warning counts
-.opencode/agent/speckit.md:511:- **Validation:** `validate.sh` exit code [0|1|2], [actual output summary]
-.opencode/agent/speckit.md:524:❌ **Never skip validation** — Run `validate.sh` before ANY completion claim. Validation catches missing files and incomplete sections.
-.opencode/agent/speckit.md:539:1. Run: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict`
-.opencode/agent/speckit.md:585:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
-.opencode/agent/speckit.md:587:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
-.opencode/agent/context.md:46:2. **MEMORY FIRST** → Check memory before codebase (memory_match_triggers → memory_context → memory_search)
-.opencode/agent/context.md:47:3. **GRAPH HEALTH** → Call `code_graph_status()` once per session before structural exploration so the agent knows whether code graph tools are usable or whether CocoIndex/filesystem fallbacks are required
-.opencode/agent/context.md:48:4. **CODEBASE SCAN** → Prefer `code_graph_query` / `code_graph_context` for structural questions, then CocoIndex, Glob, Grep, and Read as needed
-.opencode/agent/context.md:65:| `CocoIndex search`      | Semantic    | Concept-based code discovery | Find code by intent, not exact text |
-.opencode/agent/context.md:68:| `memory_match_triggers` | Memory (L2) | Trigger phrase matching   | Quick context surfacing (Layer 1)    |
-.opencode/agent/context.md:69:| `memory_context`        | Memory (L1) | Unified context retrieval | Intent-aware routing (Layer 1/3)     |
-.opencode/agent/context.md:70:| `memory_search`         | Memory (L2) | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion | Deep memory retrieval (Layer 3) |
-.opencode/agent/context.md:71:| `code_graph_status`     | Structure   | Code graph health check   | First session probe before structural retrieval |
-.opencode/agent/context.md:72:| `code_graph_query`      | Structure   | Graph traversal           | Structural questions: calls, imports, impact |
-.opencode/agent/context.md:73:| `code_graph_context`    | Structure   | Compact graph context     | Neighborhood/outline context around structural seeds |
-.opencode/agent/context.md:89:    │   └─► CocoIndex search → find code by meaning
-.opencode/agent/context.md:95:    │   └─► memory_match_triggers → memory_search
-.opencode/agent/context.md:98:    │   └─► memory_context → unified retrieval
-.opencode/agent/context.md:121:**Tool Sequence**: `memory_match_triggers` → `memory_context(deep)` → `code_graph_status()` → `memory_search(includeContent)` → `code_graph_query/context` for structural questions → `CocoIndex search` (1-3 concept queries) → `Glob` (5-10 patterns) → `Grep` (3-5 patterns) → `Read` (5-8 key files) → spec folder analysis → `memory_list(specFolder)`
-.opencode/agent/context.md:135:**Tools**: `memory_match_triggers`, `memory_context`
-.opencode/agent/context.md:140:- Run `memory_match_triggers(prompt)` — match user's request against stored trigger phrases, returns matching memories with relevance scores
-.opencode/agent/context.md:141:- Run `memory_context({ input: topic, mode: "deep" })` — intent-aware context retrieval, returns relevant context ranked by importance
-.opencode/agent/context.md:147:**Tools**: `code_graph_status`, `code_graph_query`, `code_graph_context`, `Glob`, `Grep`, `Read`
-.opencode/agent/context.md:150:- **Code graph** — Run `code_graph_status()` once per session, then use `code_graph_query` / `code_graph_context` for structural questions when the index is healthy.
-.opencode/agent/context.md:151:- **CocoIndex** — Semantic search for concept-based discovery. Use 1-3 short queries (3-5 words). Examples: `ccc search "authentication middleware"`, `ccc search "error handling patterns"`. Set `refresh_index=false` after first query.
-.opencode/agent/context.md:160:**Tools**: `memory_search`, `memory_context (deep)`, `memory_list`
-.opencode/agent/context.md:163:- `memory_search({ query: topic, includeContent: true })` — 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion across all memories with full content
-.opencode/agent/context.md:164:- `memory_context({ input: topic, mode: "deep" })` — comprehensive retrieval with full analysis, ranked intent-aware results
-.opencode/agent/context.md:361:When the query intent is semantic (find code by concept, understand implementations, discover patterns), ALWAYS try CocoIndex FIRST before falling back to Grep/Glob:
-.opencode/agent/context.md:364:2. Only if CocoIndex unavailable or returns no results → fall back to Grep/Glob
-.opencode/agent/context.md:365:3. **Structural queries** ("what calls...", "what imports...") → `code_graph_query` / `code_graph_context`
-.opencode/agent/context.md:387:### Memory Tools (Spec Kit Memory MCP)
-.opencode/agent/context.md:391:| `memory_context`        | L1    | Unified entry point for context retrieval |
-.opencode/agent/context.md:392:| `memory_match_triggers` | L2    | Fast trigger phrase matching              |
-.opencode/agent/context.md:393:| `memory_search`         | L2    | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion |
-.opencode/agent/context.md:408:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
-.opencode/agent/context.md:410:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
-.opencode/agent/context.md:427:│  ├─► Layer 1: memory_match_triggers and memory_context                  │
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/agent/debug.md:99:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:30:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:108:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:291:  hints.push(`Run memory_index_scan({ force: true }) to re-index if needed`);
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:421:  memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:486:  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:562:  name: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:664:  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:681:            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:682:            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:683:            score: { type: 'number', description: 'CocoIndex relevance score' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:688:        description: 'Seeds from CocoIndex, manual input, or graph lookups',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:706:  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:718:  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:747:      minimal: { type: 'boolean', description: 'When true, skip the heavy memory context call and return code-graph, CocoIndex, structural-context, hints, and session-quality fields without the full memory payload' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:927:  // L8: CocoIndex
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:104:spec-kit-cli — Bulk database operations for Spec Kit Memory
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1:# Spec Kit Memory MCP Server: Installation Guide
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:16:I want to install Spec Kit Memory MCP server from .opencode/skill/system-spec-kit/mcp_server
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:32:- Install Spec Kit Memory dependencies
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:60:Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:75:│              Spec Kit Memory MCP Server (Node.js)               │
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:120:- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored alongside `context-index.sqlite`)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:126:- `code_graph_query` and `code_graph_context` may repair small stale deltas inline
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:127:- empty or broadly stale graphs still require explicit `code_graph_scan`
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:273:Phase 4 connects Spec Kit Memory to your AI assistant.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:426:- `memory_context` (unified context retrieval)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:427:- `memory_search` (semantic search)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:430:- `memory_index_scan` (bulk indexing)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:432:- `code_graph_scan` (structural code indexing)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:433:- `code_graph_query` (structural relationship queries)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:434:- `code_graph_status` (graph health check)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:435:- `code_graph_context` (LLM-oriented graph neighborhoods)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:465:- [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:490:# This calls memory_index_scan() internally
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:524:The server supports phase folders for multi-phase spec work. Phase folders follow the pattern `specs/NNN-name/001-phase/`. Use the `--recursive` flag in `validate.sh` to validate all phases in a spec folder at once. The `recommend-level.sh` script applies phase detection scoring automatically.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:530:### memory_context: Unified Context Retrieval
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:532:`memory_context()` is the primary entry point for context loading. It detects task intent and routes to the optimal retrieval strategy automatically.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:548:### memory_search: Semantic Search
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:550:`memory_search()` runs vector-based similarity search across all indexed memories.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:565:`memory_save()` indexes a single new or updated memory file into the database. For bulk indexing, use `memory_index_scan()` instead.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:567:### memory_index_scan: Bulk Indexing
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:569:`memory_index_scan()` scans the workspace for new or changed memory files and indexes them.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:629:- `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:681:**Behind the scenes:** The AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, then returns the previous session state.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:692:1. AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:706:1. AI calls `memory_index_scan({ force: false })`
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:774:bash .opencode/skill/system-spec-kit/scripts/validate.sh \
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:790:| Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:791:| `code_graph_query` reports `full_scan` or `inline full scan skipped for read path` | The graph is empty or too stale for bounded read-path repair | Run `code_graph_scan`, then retry the structural read |
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:792:| Startup or resume shows graph `stale` | Freshness-aware startup detected drift before a structural read ran | Run a structural read to allow bounded inline repair, or run `code_graph_scan` for broader stale states |
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:863:Recovery: ask your AI "Index all memory files" (calls `memory_index_scan({ force: true })`). Restart your MCP client after manual database operations.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:970:This calls `memory_index_scan({ force: true })` to repopulate the search index from the restored database.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:987:| `.opencode/skill/system-spec-kit/scripts/validate.sh` | Spec folder validator (supports --recursive) |
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1027:bash .opencode/skill/system-spec-kit/scripts/validate.sh specs/NNN-name --recursive
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1040:PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1048:           memory_save, memory_index_scan, memory_stats
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1064:| v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:29:    recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:65:      'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:75:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:88:    expect(parsed.data.hints.some((hint: string) => hint.includes('Run code_graph_scan'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:89:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/assets/template_mapping.md:179:    └── *.md                     (auto-generated via generate-context.js)
-.opencode/skill/system-spec-kit/assets/template_mapping.md:201:    └── *.md                     (auto-generated via generate-context.js)
-.opencode/skill/system-spec-kit/assets/template_mapping.md:223:    └── *.md                     (auto-generated via generate-context.js)
-.opencode/skill/system-spec-kit/assets/template_mapping.md:245:    └── *.md                     (auto-generated via generate-context.js)
-.opencode/skill/system-spec-kit/assets/template_mapping.md:322:**Generation:** Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to auto-generate properly formatted memory files.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:48:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148:/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:153:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:157:        hint: 'Retry memory_index_scan after checkpoint_restore maintenance completes.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:176:      console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${profile.dim}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:180:    console.warn('[memory_index_scan] Could not verify embedding dimension:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:195:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:271:              'mcp:memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:312:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:631:    tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:671:const handle_memory_index_scan = handleMemoryIndexScan;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:680:  handle_memory_index_scan,
-.opencode/skill/system-spec-kit/mcp_server/README.md:2:title: "Spec Kit Memory - MCP Server"
-.opencode/skill/system-spec-kit/mcp_server/README.md:9:  - "memory_context"
-.opencode/skill/system-spec-kit/mcp_server/README.md:10:  - "memory_search"
-.opencode/skill/system-spec-kit/mcp_server/README.md:15:# Spec Kit Memory - MCP Server
-.opencode/skill/system-spec-kit/mcp_server/README.md:47:Spec Kit Memory is a Model Context Protocol (MCP) server that gives AI assistants persistent memory. It stores decisions, code context and project history in a local SQLite database, then finds exactly what is relevant when you need it. Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task.
-.opencode/skill/system-spec-kit/mcp_server/README.md:55:| **MCP tools** | 47 | Organized across core memory layers plus dedicated code-graph and CocoIndex dispatch groups |
-.opencode/skill/system-spec-kit/mcp_server/README.md:56:| **Search channels** | 5 core + CocoIndex bridge | Vector, FTS5, BM25, Causal Graph, Degree (+ CocoIndex semantic code search as external bridge) |
-.opencode/skill/system-spec-kit/mcp_server/README.md:67:| Capability | Basic RAG | Spec Kit Memory |
-.opencode/skill/system-spec-kit/mcp_server/README.md:69:| **Search** | Vector similarity only | 5 core channels + CocoIndex bridge, fused with Reciprocal Rank Fusion (K tuned per intent) |
-.opencode/skill/system-spec-kit/mcp_server/README.md:70:| **Routing** | No routing | Graph-first structural routing: Code Graph -> CocoIndex -> Memory; 3-tier FTS fallback when graph/semantic miss |
-.opencode/skill/system-spec-kit/mcp_server/README.md:200:  "tool": "memory_context",
-.opencode/skill/system-spec-kit/mcp_server/README.md:227:**Five core search channels** work together, with **CocoIndex** available as an external semantic code search bridge:
-.opencode/skill/system-spec-kit/mcp_server/README.md:236:| **CocoIndex** *(bridge)* | Semantic code search via vector embeddings across source files | Finding code implementations when memory channels miss; concept-first code discovery |
-.opencode/skill/system-spec-kit/mcp_server/README.md:238:**Graph-first routing** determines query dispatch order: structural queries route to the Code Graph first, then CocoIndex for semantic code discovery, then the 5-channel memory pipeline. This avoids forcing one search system to handle both structural relationships and semantic similarity.
-.opencode/skill/system-spec-kit/mcp_server/README.md:266:**Stage 1 -- Gather candidates** using graph-first routing: structural queries dispatch to Code Graph first, then CocoIndex for semantic code discovery, then the memory pipeline's active channels in parallel. Constitutional-tier memories are always injected regardless of score.
-.opencode/skill/system-spec-kit/mcp_server/README.md:535:**Architecture:** CocoIndex (semantic, external MCP) finds code by concept. Code Graph (structural, this server) maps imports, calls and hierarchy. Memory (session, this server) preserves decisions. The compact-merger combines all three under a 4000-token budget for compaction injection.
-.opencode/skill/system-spec-kit/mcp_server/README.md:539:**Storage:** `database/code-graph.sqlite` (separate from `database/context-index.sqlite`), with tables: `code_files`, `code_nodes`, `code_edges`, and `code_graph_metadata`.
+.opencode/agents/orchestrate.md:361:- `memory/` subdirectory → generated via `generate-context.js` script (never manual Write)
+.opencode/agents/orchestrate.md:381:| **No Validation**             | @speckit completion claim without `validate.sh` output                                                          | REJECT → Run validation        |
+.opencode/agents/orchestrate.md:390:   - Verify `validate.sh` was run (exit code in output)
+.opencode/agents/orchestrate.md:571:After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
+.opencode/agents/orchestrate.md:807:If hook-injected context is present at the start of a session (injected by Claude Code SessionStart hook), use it directly as the baseline context. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information.
+.opencode/agents/orchestrate.md:810:1. `memory_context({ mode: "resume", profile: "resume" })` for session recovery
+.opencode/agents/orchestrate.md:811:2. `memory_match_triggers()` for constitutional/triggered context
+.opencode/agents/orchestrate.md:819:| "Find code that..." / semantic discovery | CocoIndex | `mcp__cocoindex_code__search` |
+.opencode/agents/orchestrate.md:820:| "What calls/imports/extends..." / structural | Code Graph | `code_graph_query`, `code_graph_context` |
+.opencode/agents/orchestrate.md:821:| "Show file structure/outline" | Code Graph | `code_graph_query` (operation: outline) |
+.opencode/agents/orchestrate.md:822:| Session continuity / prior decisions | Memory | `memory_search`, `memory_context` |
+.opencode/agents/review.md:64:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+.opencode/agents/deep-research.md:55:3. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, memory_search)
+.opencode/agents/deep-research.md:108:| memory_search | Check prior research findings | Find related spec folder work |
+.opencode/agents/deep-research.md:235:| `memory_search` | Find prior research in memory system |
+.opencode/agents/deep-research.md:236:| `memory_context` | Load context for the research topic |
+.opencode/agents/deep-research.md:440:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
+.opencode/agents/deep-research.md:442:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
+.opencode/agents/ultra-think.md:53:2. **PREPARE** → Load context via memory (`memory_match_triggers` → `memory_context`) and gather required file context. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
+.opencode/agents/ultra-think.md:83:| `memory_match_triggers` | Memory triggers                | Quick context surfacing in PREPARE     |
+.opencode/agents/ultra-think.md:84:| `memory_context`        | Unified memory retrieval       | Deep context loading in PREPARE        |
+.opencode/agents/ultra-think.md:85:| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
+.opencode/agents/ultra-think.md:286:- Preserve context via `memory_context` before dispatching strategies
+.opencode/agents/write.md:87:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:756:    `Spec Kit Memory MCP has ${stats.totalMemories} indexed memories across ${stats.specFolderCount} spec folders.`,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
+.opencode/agents/deep-review.md:104:| memory_search | Check prior research findings | Find related spec folder work |
+.opencode/agents/deep-review.md:285:| `memory_search` | Find prior research in memory system |
+.opencode/agents/deep-review.md:286:| `memory_context` | Load context for the review topic |
+.opencode/agents/deep-review.md:570:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
+.opencode/agents/deep-review.md:572:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:3:description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server, organized by subsystem with defaults, types and source file references.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:8:> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:17:**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> CocoIndex -> Memory), the graph env vars are among the most impactful configuration levers.
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:229:| `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:230:| `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/agents/speckit.md:28:> ⛔ **EXCLUSIVITY:** @speckit is the ONLY agent permitted to create or substantively write documentation (*.md) inside spec folders. Other agents (@general, @write, etc.) MUST NOT write spec folder documentation. Exceptions: `@handover` may write `handover.md`, `@deep-research` may write `research/research.md`. Files in `memory/` (uses generate-context.js) and `scratch/` (any agent) are also excepted.
+.opencode/agents/speckit.md:75:6. **VALIDATE** → Run `scripts/spec/validate.sh` to verify completeness
+.opencode/agents/speckit.md:101:5. **Validate** with `validate.sh --recursive` for the entire phase tree
+.opencode/agents/speckit.md:113:  ↓  (Run validate.sh --strict AFTER EACH FILE WRITE. Fix errors before proceeding to the next file.)
+.opencode/agents/speckit.md:123:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+.opencode/agents/speckit.md:140:| `scripts/spec/validate.sh`               | Validate completeness   | Before claiming completion           |
+.opencode/agents/speckit.md:162:| L1    | `memory_context`                                                                   | Unified entry point   |
+.opencode/agents/speckit.md:163:| L2    | `memory_search`, `memory_match_triggers`, `memory_save`                            | Core operations       |
+.opencode/agents/speckit.md:168:| L7    | `memory_index_scan`, `memory_get_learning_history`                                 | Maintenance           |
+.opencode/agents/speckit.md:170:> **memory_context modes:** `auto` (default, detects intent), `quick` (trigger-based), `deep` (comprehensive), `focused` (intent-optimized), `resume` (session recovery).
+.opencode/agents/speckit.md:240:- Run `validate.sh` before claiming completion
+.opencode/agents/speckit.md:241:- Run `scripts/spec/validate.sh [SPEC_FOLDER] --strict` immediately after each spec-doc write or update; if it fails, repair template drift before continuing
+.opencode/agents/speckit.md:328:4. Run `scripts/spec/validate.sh [SPEC_FOLDER] --strict` before moving to the next workflow step.
+.opencode/agents/speckit.md:417:- `validate.sh` exit code: [0|1|2]
+.opencode/agents/speckit.md:471:□ validate.sh --strict run after each file write (exit code 0 or 1 to proceed)
+.opencode/agents/speckit.md:491:2. Run verification checks (Glob + validate.sh)
+.opencode/agents/speckit.md:500:2. **Validation output** — `validate.sh` exit code + error/warning counts
+.opencode/agents/speckit.md:511:- **Validation:** `validate.sh` exit code [0|1|2], [actual output summary]
+.opencode/agents/speckit.md:524:❌ **Never skip validation** — Run `validate.sh` before ANY completion claim. Validation catches missing files and incomplete sections.
+.opencode/agents/speckit.md:539:1. Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict`
+.opencode/agents/speckit.md:585:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
+.opencode/agents/speckit.md:587:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
+.opencode/agents/context.md:46:2. **MEMORY FIRST** → Check memory before codebase (memory_match_triggers → memory_context → memory_search)
+.opencode/agents/context.md:47:3. **GRAPH HEALTH** → Call `code_graph_status()` once per session before structural exploration so the agent knows whether code graph tools are usable or whether CocoIndex/filesystem fallbacks are required
+.opencode/agents/context.md:48:4. **CODEBASE SCAN** → Prefer `code_graph_query` / `code_graph_context` for structural questions, then CocoIndex, Glob, Grep, and Read as needed
+.opencode/agents/context.md:65:| `CocoIndex search`      | Semantic    | Concept-based code discovery | Find code by intent, not exact text |
+.opencode/agents/context.md:68:| `memory_match_triggers` | Memory (L2) | Trigger phrase matching   | Quick context surfacing (Layer 1)    |
+.opencode/agents/context.md:69:| `memory_context`        | Memory (L1) | Unified context retrieval | Intent-aware routing (Layer 1/3)     |
+.opencode/agents/context.md:70:| `memory_search`         | Memory (L2) | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion | Deep memory retrieval (Layer 3) |
+.opencode/agents/context.md:71:| `code_graph_status`     | Structure   | Code graph health check   | First session probe before structural retrieval |
+.opencode/agents/context.md:72:| `code_graph_query`      | Structure   | Graph traversal           | Structural questions: calls, imports, impact |
+.opencode/agents/context.md:73:| `code_graph_context`    | Structure   | Compact graph context     | Neighborhood/outline context around structural seeds |
+.opencode/agents/context.md:89:    │   └─► CocoIndex search → find code by meaning
+.opencode/agents/context.md:95:    │   └─► memory_match_triggers → memory_search
+.opencode/agents/context.md:98:    │   └─► memory_context → unified retrieval
+.opencode/agents/context.md:121:**Tool Sequence**: `memory_match_triggers` → `memory_context(deep)` → `code_graph_status()` → `memory_search(includeContent)` → `code_graph_query/context` for structural questions → `CocoIndex search` (1-3 concept queries) → `Glob` (5-10 patterns) → `Grep` (3-5 patterns) → `Read` (5-8 key files) → spec folder analysis → `memory_list(specFolder)`
+.opencode/agents/context.md:135:**Tools**: `memory_match_triggers`, `memory_context`
+.opencode/agents/context.md:140:- Run `memory_match_triggers(prompt)` — match user's request against stored trigger phrases, returns matching memories with relevance scores
+.opencode/agents/context.md:141:- Run `memory_context({ input: topic, mode: "deep" })` — intent-aware context retrieval, returns relevant context ranked by importance
+.opencode/agents/context.md:147:**Tools**: `code_graph_status`, `code_graph_query`, `code_graph_context`, `Glob`, `Grep`, `Read`
+.opencode/agents/context.md:150:- **Code graph** — Run `code_graph_status()` once per session, then use `code_graph_query` / `code_graph_context` for structural questions when the index is healthy.
+.opencode/agents/context.md:151:- **CocoIndex** — Semantic search for concept-based discovery. Use 1-3 short queries (3-5 words). Examples: `ccc search "authentication middleware"`, `ccc search "error handling patterns"`. Set `refresh_index=false` after first query.
+.opencode/agents/context.md:160:**Tools**: `memory_search`, `memory_context (deep)`, `memory_list`
+.opencode/agents/context.md:163:- `memory_search({ query: topic, includeContent: true })` — 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion across all memories with full content
+.opencode/agents/context.md:164:- `memory_context({ input: topic, mode: "deep" })` — comprehensive retrieval with full analysis, ranked intent-aware results
+.opencode/agents/context.md:361:When the query intent is semantic (find code by concept, understand implementations, discover patterns), ALWAYS try CocoIndex FIRST before falling back to Grep/Glob:
+.opencode/agents/context.md:364:2. Only if CocoIndex unavailable or returns no results → fall back to Grep/Glob
+.opencode/agents/context.md:365:3. **Structural queries** ("what calls...", "what imports...") → `code_graph_query` / `code_graph_context`
+.opencode/agents/context.md:387:### Memory Tools (Spec Kit Memory MCP)
+.opencode/agents/context.md:391:| `memory_context`        | L1    | Unified entry point for context retrieval |
+.opencode/agents/context.md:392:| `memory_match_triggers` | L2    | Fast trigger phrase matching              |
+.opencode/agents/context.md:393:| `memory_search`         | L2    | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion |
+.opencode/agents/context.md:408:If hook-injected context is present (from Claude Code SessionStart hook), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, fall back to: `memory_context({ mode: "resume", profile: "resume" })` then `memory_match_triggers()`.
+.opencode/agents/context.md:410:Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
+.opencode/agents/context.md:427:│  ├─► Layer 1: memory_match_triggers and memory_context                  │
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/agents/debug.md:99:**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:30:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:108:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:291:  hints.push(`Run memory_index_scan({ force: true }) to re-index if needed`);
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:421:  memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:486:  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:562:  name: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:664:  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:681:            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:682:            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:683:            score: { type: 'number', description: 'CocoIndex relevance score' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:688:        description: 'Seeds from CocoIndex, manual input, or graph lookups',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:706:  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:718:  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:747:      minimal: { type: 'boolean', description: 'When true, skip the heavy memory context call and return code-graph, CocoIndex, structural-context, hints, and session-quality fields without the full memory payload' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:927:  // L8: CocoIndex
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:104:spec-kit-cli — Bulk database operations for Spec Kit Memory
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1:# Spec Kit Memory MCP Server: Installation Guide
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:5:Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides 43 tools covering semantic search, trigger-based memory surfacing, intent-aware context loading, causal relationship tracking, shared memory spaces, session learning, evaluation, validation, and bounded structural code-graph indexing.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:16:I want to install Spec Kit Memory MCP server from .opencode/skills/system-spec-kit/mcp_server
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:32:- Install Spec Kit Memory dependencies
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:60:Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:75:│              Spec Kit Memory MCP Server (Node.js)               │
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:120:- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored alongside `context-index.sqlite`)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:126:- `code_graph_query` and `code_graph_context` may repair small stale deltas inline
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:127:- empty or broadly stale graphs still require explicit `code_graph_scan`
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:273:Phase 4 connects Spec Kit Memory to your AI assistant.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:426:- `memory_context` (unified context retrieval)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:427:- `memory_search` (semantic search)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:430:- `memory_index_scan` (bulk indexing)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:432:- `code_graph_scan` (structural code indexing)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:433:- `code_graph_query` (structural relationship queries)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:434:- `code_graph_status` (graph health check)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:435:- `code_graph_context` (LLM-oriented graph neighborhoods)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:465:- [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:490:# This calls memory_index_scan() internally
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:524:The server supports phase folders for multi-phase spec work. Phase folders follow the pattern `specs/NNN-name/001-phase/`. Use the `--recursive` flag in `validate.sh` to validate all phases in a spec folder at once. The `recommend-level.sh` script applies phase detection scoring automatically.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:530:### memory_context: Unified Context Retrieval
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:532:`memory_context()` is the primary entry point for context loading. It detects task intent and routes to the optimal retrieval strategy automatically.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:548:### memory_search: Semantic Search
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:550:`memory_search()` runs vector-based similarity search across all indexed memories.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:565:`memory_save()` indexes a single new or updated memory file into the database. For bulk indexing, use `memory_index_scan()` instead.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:567:### memory_index_scan: Bulk Indexing
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:569:`memory_index_scan()` scans the workspace for new or changed memory files and indexes them.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:629:- `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:681:**Behind the scenes:** The AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, then returns the previous session state.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:692:1. AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:706:1. AI calls `memory_index_scan({ force: false })`
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:774:bash .opencode/skills/system-spec-kit/scripts/validate.sh \
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:790:| Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:791:| `code_graph_query` reports `full_scan` or `inline full scan skipped for read path` | The graph is empty or too stale for bounded read-path repair | Run `code_graph_scan`, then retry the structural read |
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:792:| Startup or resume shows graph `stale` | Freshness-aware startup detected drift before a structural read ran | Run a structural read to allow bounded inline repair, or run `code_graph_scan` for broader stale states |
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:863:Recovery: ask your AI "Index all memory files" (calls `memory_index_scan({ force: true })`). Restart your MCP client after manual database operations.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:970:This calls `memory_index_scan({ force: true })` to repopulate the search index from the restored database.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:987:| `.opencode/skills/system-spec-kit/scripts/validate.sh` | Spec folder validator (supports --recursive) |
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1027:bash .opencode/skills/system-spec-kit/scripts/validate.sh specs/NNN-name --recursive
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1040:PHASE VALID:  bash scripts/validate.sh specs/NNN-name --recursive
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1048:           memory_save, memory_index_scan, memory_stats
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1064:| v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:29:    recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:65:      'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:75:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:88:    expect(parsed.data.hints.some((hint: string) => hint.includes('Run code_graph_scan'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:89:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/assets/template_mapping.md:179:    └── *.md                     (auto-generated via generate-context.js)
+.opencode/skills/system-spec-kit/assets/template_mapping.md:201:    └── *.md                     (auto-generated via generate-context.js)
+.opencode/skills/system-spec-kit/assets/template_mapping.md:223:    └── *.md                     (auto-generated via generate-context.js)
+.opencode/skills/system-spec-kit/assets/template_mapping.md:245:    └── *.md                     (auto-generated via generate-context.js)
+.opencode/skills/system-spec-kit/assets/template_mapping.md:322:**Generation:** Use `/memory:save` or `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/` to auto-generate properly formatted memory files.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:48:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:148:/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:153:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:157:        hint: 'Retry memory_index_scan after checkpoint_restore maintenance completes.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:176:      console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${profile.dim}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:180:    console.warn('[memory_index_scan] Could not verify embedding dimension:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:195:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:271:              'mcp:memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:312:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:631:    tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:671:const handle_memory_index_scan = handleMemoryIndexScan;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:680:  handle_memory_index_scan,
+.opencode/skills/system-spec-kit/mcp_server/README.md:2:title: "Spec Kit Memory - MCP Server"
+.opencode/skills/system-spec-kit/mcp_server/README.md:9:  - "memory_context"
+.opencode/skills/system-spec-kit/mcp_server/README.md:10:  - "memory_search"
+.opencode/skills/system-spec-kit/mcp_server/README.md:15:# Spec Kit Memory - MCP Server
+.opencode/skills/system-spec-kit/mcp_server/README.md:47:Spec Kit Memory is a Model Context Protocol (MCP) server that gives AI assistants persistent memory. It stores decisions, code context and project history in a local SQLite database, then finds exactly what is relevant when you need it. Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task.
+.opencode/skills/system-spec-kit/mcp_server/README.md:55:| **MCP tools** | 47 | Organized across core memory layers plus dedicated code-graph and CocoIndex dispatch groups |
+.opencode/skills/system-spec-kit/mcp_server/README.md:56:| **Search channels** | 5 core + CocoIndex bridge | Vector, FTS5, BM25, Causal Graph, Degree (+ CocoIndex semantic code search as external bridge) |
+.opencode/skills/system-spec-kit/mcp_server/README.md:67:| Capability | Basic RAG | Spec Kit Memory |
+.opencode/skills/system-spec-kit/mcp_server/README.md:69:| **Search** | Vector similarity only | 5 core channels + CocoIndex bridge, fused with Reciprocal Rank Fusion (K tuned per intent) |
+.opencode/skills/system-spec-kit/mcp_server/README.md:70:| **Routing** | No routing | Graph-first structural routing: Code Graph -> CocoIndex -> Memory; 3-tier FTS fallback when graph/semantic miss |
+.opencode/skills/system-spec-kit/mcp_server/README.md:200:  "tool": "memory_context",
+.opencode/skills/system-spec-kit/mcp_server/README.md:227:**Five core search channels** work together, with **CocoIndex** available as an external semantic code search bridge:
+.opencode/skills/system-spec-kit/mcp_server/README.md:236:| **CocoIndex** *(bridge)* | Semantic code search via vector embeddings across source files | Finding code implementations when memory channels miss; concept-first code discovery |
+.opencode/skills/system-spec-kit/mcp_server/README.md:238:**Graph-first routing** determines query dispatch order: structural queries route to the Code Graph first, then CocoIndex for semantic code discovery, then the 5-channel memory pipeline. This avoids forcing one search system to handle both structural relationships and semantic similarity.
+.opencode/skills/system-spec-kit/mcp_server/README.md:266:**Stage 1 -- Gather candidates** using graph-first routing: structural queries dispatch to Code Graph first, then CocoIndex for semantic code discovery, then the memory pipeline's active channels in parallel. Constitutional-tier memories are always injected regardless of score.
+.opencode/skills/system-spec-kit/mcp_server/README.md:535:**Architecture:** CocoIndex (semantic, external MCP) finds code by concept. Code Graph (structural, this server) maps imports, calls and hierarchy. Memory (session, this server) preserves decisions. The compact-merger combines all three under a 4000-token budget for compaction injection.
+.opencode/skills/system-spec-kit/mcp_server/README.md:539:**Storage:** `database/code-graph.sqlite` (separate from `database/context-index.sqlite`), with tables: `code_files`, `code_nodes`, `code_edges`, and `code_graph_metadata`.
 
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '45,90p' && printf '\\n===== MCP README SEARCH =====\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '227,280p' && printf '\\n===== MCP README ARCH =====\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '530,545p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '45,90p' && printf '\\n===== MCP README SEARCH =====\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '227,280p' && printf '\\n===== MCP README ARCH =====\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '530,545p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     45	Your AI assistant has amnesia. Every conversation starts from scratch. You explain your project architecture on Monday and by Wednesday it is a blank slate. This server fixes that.
     46	
@@ -5023,7 +5023,7 @@ exec
    545	**Startup/recovery surfaces:** `session_resume`, `session_bootstrap`, and the startup brief now report freshness-aware graph status instead of count-only health. Startup surfaces are intentionally non-mutating snapshots, so later structural reads may still differ if repo state changes.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,220p' && printf '\\n===== VALIDATE =====\\n' && nl -ba .opencode/skill/system-spec-kit/scripts/spec/validate.sh | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,220p' && printf '\\n===== VALIDATE =====\\n' && nl -ba .opencode/skills/system-spec-kit/scripts/spec/validate.sh | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	"use strict";
      2	// ---------------------------------------------------------------
@@ -5469,7 +5469,7 @@ exec
    220	                actual_hash=$(md5 -q "$actual_file" 2>/dev/null)
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '42,65p' && printf '\\n===== QUICK SEARCH =====\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '190,215p' && printf '\\n===== MATCH TRIGGERS =====\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '211,235p' && printf '\\n===== CODE GRAPH =====\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '624,668p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '42,65p' && printf '\\n===== QUICK SEARCH =====\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '190,215p' && printf '\\n===== MATCH TRIGGERS =====\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '211,235p' && printf '\\n===== CODE GRAPH =====\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '624,668p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     42	  name: 'memory_context',
     43	  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
@@ -5534,7 +5534,7 @@ exec
    217	const memorySave: ToolDefinition = {
    218	  name: 'memory_save',
    219	  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
    221	};
    222	
    223	// L3: Discovery - Browse and explore (Token Budget: 800)
@@ -5932,7 +5932,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 ### Finding 4: The drift engine is a clean static-analysis pipeline, not an AI validator
 - **Source**: [external/src/drift/index.ts:17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts:17), [external/src/drift/claims.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts:36), [external/src/markdown.ts:11](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/markdown.ts:11), [external/src/drift/scoring.ts:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts:9)
 - **What it does**: Mex parses markdown into ASTs, extracts typed claims (`path`, `command`, `dependency`, `version`), parses frontmatter edges, runs checker modules, and computes a simple 0-100 score by severity. This is fully static and zero-token.
-- **Why it matters for us**: This is the biggest capability gap versus `Code_Environment/Public`. Our [`validate.sh`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh:1) validates spec structure/completeness, while Spec Kit Memory focuses on retrieval, not whether docs now contradict the live filesystem or manifests.
+- **Why it matters for us**: This is the biggest capability gap versus `Code_Environment/Public`. Our [`validate.sh`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh:1) validates spec structure/completeness, while Spec Kit Memory focuses on retrieval, not whether docs now contradict the live filesystem or manifests.
 - **Recommendation**: adopt now
 - **Impact**: high
 
@@ -5953,7 +5953,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - [external/src/drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts), [external/src/drift/claims.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts), [external/src/drift/frontmatter.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/frontmatter.ts), [external/src/drift/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts)
 - [external/src/drift/checkers/path.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/path.ts), [external/src/drift/checkers/edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/edges.ts), [external/src/drift/checkers/index-sync.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/index-sync.ts), [external/src/drift/checkers/staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts), [external/src/drift/checkers/command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [external/src/drift/checkers/dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [external/src/drift/checkers/cross-file.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/cross-file.ts), [external/src/drift/checkers/script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts)
 - [external/src/scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts), [external/src/sync/brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [external/src/sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [external/src/pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
-- [mcp_server/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md), [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh)
+- [mcp_server/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md), [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
 
 ## Assessment
 - New information ratio: 0.82
@@ -6002,7 +6002,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 ### Finding 4: The drift engine is a clean static-analysis pipeline, not an AI validator
 - **Source**: [external/src/drift/index.ts:17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts:17), [external/src/drift/claims.ts:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts:36), [external/src/markdown.ts:11](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/markdown.ts:11), [external/src/drift/scoring.ts:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts:9)
 - **What it does**: Mex parses markdown into ASTs, extracts typed claims (`path`, `command`, `dependency`, `version`), parses frontmatter edges, runs checker modules, and computes a simple 0-100 score by severity. This is fully static and zero-token.
-- **Why it matters for us**: This is the biggest capability gap versus `Code_Environment/Public`. Our [`validate.sh`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh:1) validates spec structure/completeness, while Spec Kit Memory focuses on retrieval, not whether docs now contradict the live filesystem or manifests.
+- **Why it matters for us**: This is the biggest capability gap versus `Code_Environment/Public`. Our [`validate.sh`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh:1) validates spec structure/completeness, while Spec Kit Memory focuses on retrieval, not whether docs now contradict the live filesystem or manifests.
 - **Recommendation**: adopt now
 - **Impact**: high
 
@@ -6023,7 +6023,7 @@ ARCHITECTURE OVERVIEW: Scan repository structure, key directories, main entry po
 - [external/src/drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts), [external/src/drift/claims.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts), [external/src/drift/frontmatter.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/frontmatter.ts), [external/src/drift/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts)
 - [external/src/drift/checkers/path.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/path.ts), [external/src/drift/checkers/edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/edges.ts), [external/src/drift/checkers/index-sync.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/index-sync.ts), [external/src/drift/checkers/staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts), [external/src/drift/checkers/command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [external/src/drift/checkers/dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [external/src/drift/checkers/cross-file.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/cross-file.ts), [external/src/drift/checkers/script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts)
 - [external/src/scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts), [external/src/sync/brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [external/src/sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [external/src/pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
-- [mcp_server/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md), [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh)
+- [mcp_server/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md), [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js), [validate.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh)
 
 ## Assessment
 - New information ratio: 0.82

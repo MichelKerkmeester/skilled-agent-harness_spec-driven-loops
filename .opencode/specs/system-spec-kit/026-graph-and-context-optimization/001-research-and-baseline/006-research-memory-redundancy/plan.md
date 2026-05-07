@@ -138,7 +138,7 @@ The local research files define the redundancy conclusions. Parent docs absorb t
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Strict validation | This packet folder | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy --strict` |
+| Strict validation | This packet folder | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy --strict` |
 | Parent-sync review | Parent root and parent research docs | `rg -n "006-research-memory-redundancy|compact wrapper"` |
 | Downstream review coverage | Packet classifications | `rg -n "002-cache-warning-hooks|003-memory-quality-remediation|012-cached-sessionstart-consumer-gated|013-warm-start-bundle-conditional-validation" spec.md` |
 <!-- /ANCHOR:testing -->

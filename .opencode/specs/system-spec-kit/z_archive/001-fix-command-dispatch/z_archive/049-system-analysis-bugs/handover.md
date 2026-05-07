@@ -42,9 +42,9 @@ contextType: "general"
 ### 2.3 Files Modified
 | File | Change Summary | Status |
 | ---- | -------------- | ------ |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js` | Enhanced getEmbeddingDim() to check env vars, fixed multiConceptSearch() | COMPLETE |
-| `.opencode/skill/system-spec-kit/scripts/lib/embeddings.js` | Added getEmbeddingProfileAsync() export | COMPLETE |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Fixed hardcoded 768 dimension check at line 675, bumped to v12.6.1 | COMPLETE |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` | Enhanced getEmbeddingDim() to check env vars, fixed multiConceptSearch() | COMPLETE |
+| `.opencode/skills/system-spec-kit/scripts/lib/embeddings.js` | Added getEmbeddingProfileAsync() export | COMPLETE |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Fixed hardcoded 768 dimension check at line 675, bumped to v12.6.1 | COMPLETE |
 
 ---
 
@@ -116,7 +116,7 @@ memory_search({ query: "embedding dimension bug" })  // Should return results (n
 ### Files Changed This Session
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
   - Line 674-679: Changed hardcoded 768 to use getEmbeddingProfile().dimension
   - Line 14: Version bumped to 12.6.1
   - Line 1250: Version string bumped to 12.6.1

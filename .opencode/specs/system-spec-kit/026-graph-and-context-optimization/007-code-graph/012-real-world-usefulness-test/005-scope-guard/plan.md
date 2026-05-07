@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Review and commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
     session_dedup:
       fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
       session_id: "026-007-012-005-scope-guard"
@@ -102,8 +102,8 @@ The scan handler resolves the candidate scope, runs `indexFiles()`, computes pri
 | Dist build output | Runtime JS consumed by MCP server. | Rebuild from source. | `npm run build`. |
 
 Required inventories:
-- Same-class producers: `rg -n "forceZeroNodeReset|setCodeGraphScope|getStoredCodeGraphScope|recordCandidateManifest" .opencode/skill/system-spec-kit/mcp_server`.
-- Consumers of changed public field: `rg -n "forceScopeChange|forceZeroNodeReset" .opencode/skill/system-spec-kit/mcp_server`.
+- Same-class producers: `rg -n "forceZeroNodeReset|setCodeGraphScope|getStoredCodeGraphScope|recordCandidateManifest" .opencode/skills/system-spec-kit/mcp_server`.
+- Consumers of changed public field: `rg -n "forceScopeChange|forceZeroNodeReset" .opencode/skills/system-spec-kit/mcp_server`.
 - Matrix axes: stored fingerprint present/missing, candidate fingerprint same/different, prior graph populated/empty, candidate nodes zero/nonzero, override present/absent.
 - Algorithm invariant: no full-scan scope mismatch may mutate live graph state while prior nodes exist unless `forceScopeChange: true` is explicit.
 <!-- /ANCHOR:affected-surfaces -->

@@ -57,35 +57,35 @@
   },
   "changedFiles": [
     {
-      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/addendum/level3-arch/decision-record.md",
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/addendum/level3-arch/decision-record.md",
       "kind": "template",
       "documentType": "template",
       "title": "Decision Record: [NAME] [template:addendum/level3-arch/decision-record.md]",
       "hadFrontmatter": true
     },
     {
-      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/changelog/README.md",
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/changelog/README.md",
       "kind": "template",
       "documentType": "template",
       "title": "Nested Changelog Templates [template:changelog/README.md]",
       "hadFrontmatter": true
     },
     {
-      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/changelog/phase.md",
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/changelog/phase.md",
       "kind": "template",
       "documentType": "template",
       "title": "{{TITLE}} [template:changelog/phase.md]",
       "hadFrontmatter": true
     },
     {
-      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/changelog/root.md",
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/changelog/root.md",
       "kind": "template",
       "documentType": "template",
       "title": "{{TITLE}} [template:changelog/root.md]",
       "hadFrontmatter": true
     },
     {
-      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md",
+      "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/level_3+/decision-record.md",
       "kind": "template",
       "documentType": "template",
       "title": "Decision Record: [NAME] [template:level_3+/decision-record.md]",

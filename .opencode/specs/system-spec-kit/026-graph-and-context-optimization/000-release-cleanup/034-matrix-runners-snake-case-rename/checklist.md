@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run final validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/matrix_runners"
+      - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -103,7 +103,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only. [EVIDENCE: no packet temp files created]
-- [x] CHK-051 [P1] Runtime folder is snake_case. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` exists]
+- [x] CHK-051 [P1] Runtime folder is snake_case. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` exists]
 - [x] CHK-052 [P1] No old runtime directory remains. [EVIDENCE: max-depth directory check shows only `matrix_runners`]
 <!-- /ANCHOR:file-org -->
 

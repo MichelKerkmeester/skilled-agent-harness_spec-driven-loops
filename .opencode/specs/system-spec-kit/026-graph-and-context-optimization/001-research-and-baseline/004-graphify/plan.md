@@ -51,8 +51,8 @@ Run a 20-iteration two-wave deep-research loop. Wave 1 audits `external/graphify
 - [x] Phase research prompt exists at `scratch/phase-research-prompt.md` with 12 explicit research questions
 - [x] Cross-phase awareness (002 codesight, 003 contextador) loaded into strategy.md `Known Context` section
 - [x] cli-codex CLI installed (verified via `which codex`)
-- [x] Reducer script reachable at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- [x] Memory script reachable at `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- [x] Reducer script reachable at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- [x] Memory script reachable at `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 
 ### Definition of Done
 
@@ -345,7 +345,7 @@ Before dispatching any iteration, verify:
 | TASK-SCOPE-001 | Each iteration writes to exactly ONE iteration file | research/iterations/iteration-NNN.md write-once |
 | TASK-SCOPE-002 | External repo `external/graphify/` is READ-ONLY | sandbox_mode workspace-write outside external/ only |
 | TASK-SEQ-002 | Append iteration record to JSONL after iteration completes | One JSONL line per iteration with `type=iteration` |
-| TASK-SEQ-003 | Run reducer after every iteration before the next dispatch | `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs <spec-folder>` |
+| TASK-SEQ-003 | Run reducer after every iteration before the next dispatch | `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs <spec-folder>` |
 | TASK-SCOPE-003 | Findings must cite file:line evidence | `[SOURCE: external/graphify/...:LINE-LINE]` format |
 | TASK-SEQ-004 | Convergence check before each iteration | composite_converged stop unless user override |
 

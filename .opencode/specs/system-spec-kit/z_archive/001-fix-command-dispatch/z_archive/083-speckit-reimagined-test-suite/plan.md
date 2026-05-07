@@ -896,8 +896,8 @@ Phase 1 (Unit Tests) ───────────────────�
 
 - **Parent Specification**: See `../082-speckit-reimagined/spec.md`
 - **Parent Tasks**: See `../082-speckit-reimagined/tasks.md`
-- **Implementation**: See `../../.opencode/skill/system-spec-kit/mcp_server/`
-- **Existing Tests**: See `../../.opencode/skill/system-spec-kit/mcp_server/tests/`
+- **Implementation**: See `../../.opencode/skills/system-spec-kit/mcp_server/`
+- **Existing Tests**: See `../../.opencode/skills/system-spec-kit/mcp_server/tests/`
 
 ---
 

@@ -69,7 +69,7 @@ _memory:
 
 - [x] CHK-020 [P0] Verification 7.1 stale-reference grep passes. Evidence: command exited 1 with no output, the expected zero-hit result.
 - [x] CHK-021 [P0] Verification 7.2 destination `ls` passes. Evidence: Webflow folder lists three `.mjs` scripts; generic folder lists two alignment scripts.
-- [x] CHK-022 [P0] Verification 7.3 old scripts directory check passes. Evidence: `ls .opencode/skill/sk-code/scripts/ 2>&1` reports "No such file or directory".
+- [x] CHK-022 [P0] Verification 7.3 old scripts directory check passes. Evidence: `ls .opencode/skills/sk-code/scripts/ 2>&1` reports "No such file or directory".
 - [x] CHK-023 [P1] Verification 7.4 destination mode listing captured. Evidence: `ls -la` output captured for both destination folders.
 - [x] CHK-024 [P0] Verification 7.5 strict spec validation exits 0. Evidence: `validate.sh ... --strict` result passed with 0 errors and 0 warnings.
 - [x] CHK-025 [P1] Verification 7.6 `SKILL.md` script/resource sanity check captured. Evidence: grep output includes `RESOURCE_MAP`, `assets/webflow/scripts/`, and `assets/scripts/`.

@@ -15,11 +15,11 @@ _memory:
     next_safe_action: "Run /memory:save to refresh canonical continuity, then commit on main"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-claude-code/SKILL.md"
-      - ".opencode/skill/cli-codex/SKILL.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-gemini/SKILL.md"
-      - ".opencode/skill/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-claude-code/SKILL.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-gemini/SKILL.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -69,13 +69,13 @@ Every per-skill unique value prop survives — the do-not-collapse grep gate ran
 ## How It Was Delivered
 
 **Modified files (4 SKILL.md):**
-- `.opencode/skill/cli-claude-code/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
-- `.opencode/skill/cli-codex/SKILL.md` — added Provider Auth Pre-Flight to §3 (between Prerequisites and existing Default Invocation)
-- `.opencode/skill/cli-copilot/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern); added Error Handling table at end of §3 (before §4 RULES)
-- `.opencode/skill/cli-gemini/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
+- `.opencode/skills/cli-claude-code/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
+- `.opencode/skills/cli-codex/SKILL.md` — added Provider Auth Pre-Flight to §3 (between Prerequisites and existing Default Invocation)
+- `.opencode/skills/cli-copilot/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern); added Error Handling table at end of §3 (before §4 RULES)
+- `.opencode/skills/cli-gemini/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
 
 **Unmodified files (intentional):**
-- `.opencode/skill/cli-opencode/SKILL.md` — already had all canonical subsections (post-051); served as donor template only
+- `.opencode/skills/cli-opencode/SKILL.md` — already had all canonical subsections (post-051); served as donor template only
 - All `references/`, `assets/`, `manual_testing_playbook/`, `graph-metadata.json` for all 5 skills — no changes needed; the harmonization is in-SKILL.md only
 
 **New files:**

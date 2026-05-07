@@ -122,17 +122,17 @@ The <user_feature> parameter is empty - no feature description was provided.
 
 - `specs/004-speckit/010-speckit-refinement/plan.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
-- `.opencode/command/spec_kit/COMMAND.md` - Documentation
+- `.opencode/commands/spec_kit/COMMAND.md` - Documentation
 
 - `AGENTS.md` - Documentation
 
 - `AGENTS (Universal).md` - Documentation
 
-- `.opencode/skill/system-spec-kit/templates/handover.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/handover.md` - Template file
 
-- `.opencode/command/spec_kit/resume.md` - Documentation
+- `.opencode/commands/spec_kit/resume.md` - Documentation
 
 **How to Extend**:
 
@@ -173,12 +173,12 @@ The `<user_feature>` par
 |:---------|:----------------|
 | `specs/004-speckit/010-speckit-refinement/spec.md` | Updated spec |
 | `specs/004-speckit/010-speckit-refinement/plan.md` | Updated plan |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Updated skill |
-| `.opencode/command/spec_kit/COMMAND.md` | Updated command |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Updated skill |
+| `.opencode/commands/spec_kit/COMMAND.md` | Updated command |
 | `AGENTS.md` | Updated agents |
 | `AGENTS (Universal).md` | Updated agents (universal) |
-| `.opencode/skill/system-spec-kit/templates/handover.md` | Updated handover |
-| `.opencode/command/spec_kit/resume.md` | Updated resume |
+| `.opencode/skills/system-spec-kit/templates/handover.md` | Updated handover |
+| `.opencode/commands/spec_kit/resume.md` | Updated resume |
 | `specs/004-speckit/010-speckit-refinement` | Updated 010 speckit refinement |
 
 <!-- /ANCHOR:summary-session-1766487836383-4mqpy6w3x-004-speckit/010-speckit-refinement -->
@@ -247,9 +247,9 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-read-b62240d5-session-1766487836383-4mqpy6w3x -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/SKILL.md
+.opencode/skills/system-spec-kit/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-b62240d5-session-1766487836383-4mqpy6w3x -->
 
@@ -258,7 +258,7 @@ Executed sequential_thinking_sequentialthinking
 
 Executed read
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/spec_kit/COMMAND.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/commands/spec_kit/COMMAND.md
 **Details:** Tool: read | Status: error
 <!-- /ANCHOR:implementation-tool-read-b62240d5-2-session-1766487836383-4mqpy6w3x -->
 
@@ -307,18 +307,18 @@ AGENTS (Universal).md
 <!-- ANCHOR:implementation-tool-read-b62240d5-5-session-1766487836383-4mqpy6w3x -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/handover.md
+.opencode/skills/system-spec-kit/templates/handover.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/handover.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/handover.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-b62240d5-5-session-1766487836383-4mqpy6w3x -->
 
 <!-- ANCHOR:implementation-tool-read-b62240d5-6-session-1766487836383-4mqpy6w3x -->
 ### OBSERVATION: Tool: read
 
-.opencode/command/spec_kit/resume.md
+.opencode/commands/spec_kit/resume.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/spec_kit/resume.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/commands/spec_kit/resume.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-b62240d5-6-session-1766487836383-4mqpy6w3x -->
 
@@ -709,12 +709,12 @@ key_topics:
 key_files:
   - "specs/004-speckit/010-speckit-refinement/spec.md"
   - "specs/004-speckit/010-speckit-refinement/plan.md"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
-  - ".opencode/command/spec_kit/COMMAND.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
+  - ".opencode/commands/spec_kit/COMMAND.md"
   - "AGENTS.md"
   - "AGENTS (Universal).md"
-  - ".opencode/skill/system-spec-kit/templates/handover.md"
-  - ".opencode/command/spec_kit/resume.md"
+  - ".opencode/skills/system-spec-kit/templates/handover.md"
+  - ".opencode/commands/spec_kit/resume.md"
   - "specs/004-speckit/010-speckit-refinement"
 
 # Relationships

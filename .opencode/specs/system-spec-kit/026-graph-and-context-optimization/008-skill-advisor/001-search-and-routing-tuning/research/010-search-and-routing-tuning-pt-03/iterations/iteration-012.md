@@ -4,7 +4,7 @@
 Use Spec Kit's existing completion gate to determine whether `checklist.md` can safely refine the phase-001 status fallback.
 
 ## Findings
-1. `check-completion.sh` already defines a concrete `COMPLETE` state for `checklist.md`: all required P0/P1 items must be checked, evidence must be present, and untagged items fail the gate. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh]
+1. `check-completion.sh` already defines a concrete `COMPLETE` state for `checklist.md`: all required P0/P1 items must be checked, evidence must be present, and untagged items fail the gate. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh]
 2. Among the 340 currently planned folders, 180 already have both `implementation-summary.md` and a `COMPLETE` checklist. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. 39 planned folders have `implementation-summary.md` but no checklist at all, which likely reflects Level 1 or checklist-less packets. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 4. A safer precedence is: explicit frontmatter status wins; completed checklist means `complete`; `implementation-summary.md` with no checklist also means `complete`; otherwise keep `planned` (or normalize separately later). This avoids treating incomplete checklists as fully complete. [INFERENCE: from the parser order plus completion-gate counts]
@@ -16,8 +16,8 @@ Use Spec Kit's existing completion gate to determine whether `checklist.md` can 
 - Assuming implementation-summary presence and checklist completion always co-occur.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
+- `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

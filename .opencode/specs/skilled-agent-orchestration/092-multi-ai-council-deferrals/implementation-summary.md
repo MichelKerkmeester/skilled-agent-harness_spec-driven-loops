@@ -18,9 +18,9 @@ _memory:
     blockers:
       - ".codex/agents/multi-ai-council.toml is not writable in this sandbox"
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs"
-      - ".opencode/skill/system-spec-kit/references/multi-ai-council/command-wiring.md"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/command-wiring.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/092-multi-ai-council-deferrals"
@@ -33,7 +33,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -115,15 +115,15 @@ Implementation stayed inside the existing `system-spec-kit` helper and reference
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals --strict` | PASS before completion-doc updates |
-| `node -c .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | PASS |
-| `node -c .opencode/skill/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals --strict` | PASS before completion-doc updates |
+| `node -c .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` | PASS |
+| `node -c .opencode/skills/system-spec-kit/scripts/multi-ai-council/advise-council-completion.cjs` | PASS |
 | `scripts/node_modules/.bin/vitest run scripts/tests/multi-ai-council-persist-artifacts.vitest.ts scripts/tests/multi-ai-council-advise-completion.vitest.ts scripts/tests/multi-ai-council-mirror-parity.vitest.ts --config mcp_server/vitest.config.ts --root .` | PASS, 13 tests |
 | Advisor smoke on packet 080 | PASS, `No advisories.` |
 | Helper smoke with `--memory-save-payload-out` | PASS, wrote 8 artifacts and parseable payload |
 | Reference docs and tests existence checks | PASS |
 | Four-runtime grep for new §14/§16 markers | PARTIAL: `.opencode`, `.claude`, `.gemini` report `2`; `.codex` reports `0` because the file is not writable in this sandbox |
-| No new `.opencode/skill/multi-ai-council/` folder | PASS |
+| No new `.opencode/skills/multi-ai-council/` folder | PASS |
 | Planning-only permission invariant | PASS, `write: deny`, `edit: deny` preserved |
 <!-- /ANCHOR:verification -->
 
@@ -146,5 +146,5 @@ Implementation stayed inside the existing `system-spec-kit` helper and reference
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

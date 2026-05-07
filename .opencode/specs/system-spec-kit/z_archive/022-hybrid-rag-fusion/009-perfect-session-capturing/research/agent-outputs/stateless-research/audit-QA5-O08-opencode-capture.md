@@ -1,6 +1,6 @@
 # Audit QA5-O08: opencode-capture.ts
 
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts`
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts`
 **LOC:** 523
 **Auditor:** Claude Opus 4.6 (Reviewer Agent)
 **Date:** 2026-03-09

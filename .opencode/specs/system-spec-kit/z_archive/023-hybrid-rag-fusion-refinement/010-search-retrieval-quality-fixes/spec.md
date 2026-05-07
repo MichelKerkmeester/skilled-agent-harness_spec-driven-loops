@@ -127,7 +127,7 @@ Restore retrieval quality so that `memory_context` reliably returns relevant res
 | `mcp_server/handlers/memory-search.ts` | Modify | RC3-B |
 | `mcp_server/lib/search/folder-discovery.ts` | Modify | RC1-B |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 <!-- /ANCHOR:scope -->
 
 ---

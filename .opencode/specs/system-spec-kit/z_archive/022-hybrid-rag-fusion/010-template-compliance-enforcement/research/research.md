@@ -142,8 +142,8 @@ The @speckit agent definition (speckit agent file, section 8) contains an "Inlin
 
 The @speckit agent is defined in 4 CLI-specific locations:
 - `.claude/agents/speckit.md` (Claude Code)
-- `.opencode/agent/speckit.md` (Copilot/OpenCode base)
-- .opencode/agent/chatgpt/speckit.md (ChatGPT)
+- `.opencode/agents/speckit.md` (Copilot/OpenCode base)
+- .opencode/agents/chatgpt/speckit.md (ChatGPT)
 - `.codex/agents/speckit.toml` (Codex CLI)
 
 Any prompt injection strategy must either: (a) be applied to all 4 surfaces independently, or (b) use a shared resource (SKILL.md, a generated contract file, or constitutional memory) that all agents reference.
@@ -162,7 +162,7 @@ Any prompt injection strategy must either: (a) be applied to all 4 surfaces inde
 
 **Decision**: Use a HYBRID approach combining strategies 1 and 3.
 
-- **Canonical source**: Create .opencode/skill/system-spec-kit/references/template-compliance-contract.md (proposed) containing the full contract with examples, rationale, and version metadata
+- **Canonical source**: Create .opencode/skills/system-spec-kit/references/template-compliance-contract.md (proposed) containing the full contract with examples, rationale, and version metadata
 - **Agent inline**: Embed a compact 49-line summary (anchor-to-H2 tables only) in all 4 CLI @speckit agent definitions
 - **Sync mechanism**: Version stamp in the shared file; checklist item in template update workflow to verify agent definitions are updated
 
@@ -276,7 +276,7 @@ This inconsistency means agents choose the least costly interpretation (once at 
 
 ### 4.3 The Uninstalled Pre-Commit Hook
 
-A fully functional pre-commit hook exists at `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` with:
+A fully functional pre-commit hook exists at `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` with:
 - 6-rule fast subset: FILE_EXISTS, LEVEL_DECLARED, FRONTMATTER_VALID, TEMPLATE_SOURCE, ANCHORS_VALID, FOLDER_NAMING
 - Configurable enforcement modes via `.speckit-enforce.yaml`: warn, block, strict
 - New folder detection (blocks new folders, warns on existing)
@@ -367,7 +367,7 @@ Agent prompt ──[Layer 1: contract injection]──> Agent writes file
 ### 6.3 Layer 2: Post-Write Auto-Validation Loop
 
 - **What**: After every spec file write, run `validate.sh` and fix any errors before proceeding
-- **Implementation**: Single mandatory instruction replacing 3 conflicting directives: "After writing ANY spec folder .md file, immediately run: `bash .opencode/skill/system-spec-kit/scripts/validate/validate.sh <path>`. If errors, fix before proceeding."
+- **Implementation**: Single mandatory instruction replacing 3 conflicting directives: "After writing ANY spec folder .md file, immediately run: `bash .opencode/skills/system-spec-kit/scripts/validate/validate.sh <path>`. If errors, fix before proceeding."
 - **Current state**: 3 conflicting timing directives; agents choose least costly (once at end)
 - **Estimated impact**: Catches ~95% cumulative (Layer 1 + Layer 2)
 
@@ -375,7 +375,7 @@ Agent prompt ──[Layer 1: contract injection]──> Agent writes file
 
 - **What**: Pre-commit hook blocks non-compliant commits
 - **Implementation**: Install existing `pre-commit-spec-validate.sh` via `git config core.hooksPath` or symlink
-- **Current state**: Script exists at `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` with `.speckit-enforce.yaml` config -- designed but undeployed
+- **Current state**: Script exists at `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` with `.speckit-enforce.yaml` config -- designed but undeployed
 - **Estimated impact**: Catches 100% of structural errors
 
 ### 6.5 Implementation Priority
@@ -457,7 +457,7 @@ The 3-layer architecture provides defense-in-depth. No single layer is sufficien
 
 | Deliverable | Action | Key Detail |
 |---|---|---|
-| Shared compliance reference file | CREATE | .opencode/skill/system-spec-kit/references/template-compliance-contract.md (proposed) -- canonical source with version metadata, full contract, sync protocol |
+| Shared compliance reference file | CREATE | .opencode/skills/system-spec-kit/references/template-compliance-contract.md (proposed) -- canonical source with version metadata, full contract, sync protocol |
 | @speckit agent definition update | EDIT x4 | Replace 12-line spec.md-only scaffold (lines 318-339) with 49-line full contract across all 4 CLI agent defs |
 | Timing directive consolidation | EDIT x4 | Collapse 3 conflicting directives (lines 109, 238, 325) into one: "validate after EACH file write" |
 | Post-write validation protocol | ADD x4 | New section in all agent defs: exit code parsing, fix loop (max 3 attempts), proceed/stop logic |
@@ -492,7 +492,7 @@ New mandatory section added to all @speckit agent definitions:
 
 **Recommended method**: Symlink into `.git/hooks/`:
 ```bash
-ln -sf ../../.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh .git/hooks/pre-commit
+ln -sf ../../.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh .git/hooks/pre-commit
 ```
 
 **Current config** (`.speckit-enforce.yaml`):
@@ -554,7 +554,7 @@ ln -sf ../../.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-valida
 | Step | Action | Impact | Effort |
 |------|--------|--------|--------|
 | B1 | Replace spec.md-only scaffold with full 49-line contract in `.claude/agents/speckit.md` | Layer 1 for Claude Code | 20 min |
-| B2 | Replicate B1 to `.opencode/agent/speckit.md` and .opencode/agent/chatgpt/speckit.md | Layer 1 for Copilot + ChatGPT | 10 min |
+| B2 | Replicate B1 to `.opencode/agents/speckit.md` and .opencode/agents/chatgpt/speckit.md | Layer 1 for Copilot + ChatGPT | 10 min |
 | B3 | Replicate B1 to `.codex/agents/speckit.toml` (TOML-formatted) | Layer 1 for Codex | 10 min |
 
 **Phase C: Directive Consolidation (Day 2, ~30 min)**
@@ -593,8 +593,8 @@ The complete, copy-pasteable content for references/template-compliance-contract
 
 All @speckit agent definitions that need updating:
 - `.claude/agents/speckit.md` (Claude Code)
-- `.opencode/agent/speckit.md` (Copilot/OpenCode base)
-- .opencode/agent/chatgpt/speckit.md (ChatGPT profile)
+- `.opencode/agents/speckit.md` (Copilot/OpenCode base)
+- .opencode/agents/chatgpt/speckit.md (ChatGPT profile)
 - `.codex/agents/speckit.toml` (Codex CLI)
 
 Note: `.gemini/agents/speckit.md` may also exist as a 5th surface and should be checked during implementation.

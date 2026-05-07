@@ -82,10 +82,10 @@ Shared loop-runtime hardening with explicit product overlays.
 
 ### Key Components
 
-- **Command layer**: `.opencode/command/spec_kit/deep-research.md` and `.opencode/command/spec_kit/deep-review.md`
+- **Command layer**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/commands/spec_kit/deep-review.md`
 - **Workflow layer**: auto/confirm YAML assets for deep research and deep review
 - **Skill layer**: current contracts, references, config/strategy/dashboard assets
-- **Agent layer**: canonical `.opencode/agent/` deep-loop workers plus parity mirrors if still hand-authored
+- **Agent layer**: canonical `.opencode/agents/` deep-loop workers plus parity mirrors if still hand-authored
 - **Runtime substrate**: reducer logic and state contracts
 - **Verification layer**: reducer, parity, and new behavior-first Vitest suites
 
@@ -127,25 +127,25 @@ Phase 5 optional advanced modes
 **Why first**: Every later improvement depends on a trusted answer to four questions: why did the loop stop, was STOP legal, where can a session resume, and can the stop decision be replayed from packet-local state. The agent instructions also need to stop fighting the reducer contract before broader runtime work begins.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-review/SKILL.md`
-- `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-review/references/convergence.md`
-- `.opencode/skill/sk-deep-review/references/state_format.md`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/agent/deep-research.md`
-- `.opencode/agent/deep-review.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-review/SKILL.md`
+- `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-review/references/convergence.md`
+- `.opencode/skills/sk-deep-review/references/state_format.md`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/agents/deep-research.md`
+- `.opencode/agents/deep-review.md`
 
 **Estimated complexity**: High
 
@@ -162,24 +162,24 @@ Phase 5 optional advanced modes
 **Why second**: Separate journal artifacts, compaction, observability, and large-target decomposition all build on the Phase 1 event schema and need to exist before trust surfaces or optional modes can be trusted at scale. Journals land here as their own packet-local append-only files; ledgers stay deferred to Phase 2b.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/skill/sk-deep-review/references/state_format.md`
-- `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/skill/sk-deep-review/assets/deep_review_config.json`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/agent/deep-research.md`
-- `.opencode/agent/deep-review.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/skills/sk-deep-review/references/state_format.md`
+- `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+- `.opencode/skills/sk-deep-review/assets/deep_review_config.json`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/agents/deep-research.md`
+- `.opencode/agents/deep-review.md`
 
 **Estimated complexity**: High
 
@@ -195,24 +195,24 @@ Phase 5 optional advanced modes
 **Why third**: Once the substrate is durable and observable, we can safely layer the trust surfaces that decide what evidence is promoted, how ledger transitions work, what convergence means semantically, and which sections stay machine-owned.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md`
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- `.opencode/skill/sk-deep-review/SKILL.md`
-- `.opencode/skill/sk-deep-review/references/convergence.md`
-- `.opencode/skill/sk-deep-review/references/state_format.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
-- `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/agent/deep-research.md`
-- `.opencode/agent/deep-review.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/skills/sk-deep-review/SKILL.md`
+- `.opencode/skills/sk-deep-review/references/convergence.md`
+- `.opencode/skills/sk-deep-review/references/state_format.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
+- `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/agents/deep-research.md`
+- `.opencode/agents/deep-review.md`
 
 **Estimated complexity**: High
 
@@ -228,13 +228,13 @@ Phase 5 optional advanced modes
 **Why now**: This phase starts immediately after the Phase 1 lock so replay harnesses can protect substrate and trust-surface work while those phases are still being implemented. The first fixture slice stays narrow on lifecycle, blocked-stop, and replay before it expands into semantic convergence and richer trust-surface scenarios.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
-- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
-- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
+- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
+- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
 
 **Estimated complexity**: High
 
@@ -250,10 +250,10 @@ Phase 5 optional advanced modes
 **Why after early verification**: Once the foundational and trust contracts have replay-backed coverage, parity and mirror alignment can move as one bounded follow-on without guessing at unstable interim surfaces.
 
 **Files to change**:
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/skill/sk-deep-research/references/quick_reference.md`
-- `.opencode/skill/sk-deep-review/references/quick_reference.md`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/skills/sk-deep-research/references/quick_reference.md`
+- `.opencode/skills/sk-deep-review/references/quick_reference.md`
 - `.claude/agents/deep-research.md`
 - `.gemini/agents/deep-research.md`
 - `.codex/agents/deep-research.toml`
@@ -261,8 +261,8 @@ Phase 5 optional advanced modes
 - `.claude/agents/deep-review.md`
 - `.gemini/agents/deep-review.md`
 - `.codex/agents/deep-review.toml`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts`
 
 **Estimated complexity**: Medium
 
@@ -278,17 +278,17 @@ Phase 5 optional advanced modes
 **Why last**: Council synthesis and coordination boards remain useful only after the default runtime path is durable, observable, behavior-tested, and parity-locked.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/agent/deep-research.md`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/agents/deep-research.md`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
 
 **Estimated complexity**: Medium
 
@@ -305,11 +305,11 @@ Phase 5 optional advanced modes
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Contract parity | Skills, commands, agents, runtime mirrors | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` |
-| Reducer and schema | Research reducer, review reducer contract/schema | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` |
-| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
+| Contract parity | Skills, commands, agents, runtime mirrors | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` |
+| Reducer and schema | Research reducer, review reducer contract/schema | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` |
+| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
 | Integration | Auto and confirm YAML flows across resume/blocked-stop/optional-mode scenarios | Workflow fixtures plus targeted `pnpm vitest` integration cases added in this packet's implementation phase |
-| Documentation | Packet structure and markdown validity | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 --strict` |
+| Documentation | Packet structure and markdown validity | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 --strict` |
 
 ### Integration Test Plan
 

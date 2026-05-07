@@ -27,7 +27,7 @@ from pathlib import Path
 REPO_ROOT = Path("/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public")
 SPEC_ROOT = REPO_ROOT / ".opencode/specs/system-spec-kit/026-graph-and-context-optimization"
 SPEC_REL = "system-spec-kit/026-graph-and-context-optimization"
-GENERATE_DESC = REPO_ROOT / ".opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
+GENERATE_DESC = REPO_ROOT / ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
 
 # Packets to refresh: every packet that moved, was renamed, or had its parent change.
 PACKETS = [

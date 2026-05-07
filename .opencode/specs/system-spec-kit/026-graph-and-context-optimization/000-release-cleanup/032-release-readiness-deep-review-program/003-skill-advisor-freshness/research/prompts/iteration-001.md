@@ -8,16 +8,16 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/` (entire dir)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-daemon*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scoring/` (TOKEN_BOOSTS, PHRASE_BOOSTS tables)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` (entire dir)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-daemon*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scoring/` (TOKEN_BOOSTS, PHRASE_BOOSTS tables)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
 
 ### Audit dimensions + advisor-specific questions
 

@@ -43,9 +43,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 - [x] T001 Read `../011-post-stress-followup-research/review/review-report.md` §4 (F-005 / F-007 / F-008 doc parts) and §7 Packet C end-to-end
-- [x] T002 [P] Read the auto-trigger catalog page at `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` lines 15-23 (the `fallbackDecision` bullet)
-- [x] T003 [P] Read the readiness-contract catalog page at `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` §1 OVERVIEW
-- [x] T004 [P] Read the CocoIndex routing playbook page at `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` lines 133-144 (rankingSignals shape)
+- [x] T002 [P] Read the auto-trigger catalog page at `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` lines 15-23 (the `fallbackDecision` bullet)
+- [x] T003 [P] Read the readiness-contract catalog page at `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` §1 OVERVIEW
+- [x] T004 [P] Read the CocoIndex routing playbook page at `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` lines 133-144 (rankingSignals shape)
 - [x] T005 [P] Read `mcp_server/schemas/tool-input-schemas.ts:482-492` to confirm Zod shape
 - [x] T006 [P] Verify hardlink topology with `stat -f %l` on the 3 target files (link count = 1 confirmed; only `.opencode/` hosts these files)
 - [x] T007 [P] Check sibling packet 016 status (folder empty — write against expected contract from review-report §3 / §7 Packet A)
@@ -65,7 +65,7 @@ _memory:
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T201 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` — PASS
+- [ ] T201 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` — PASS
 - [ ] T202 Re-read auto-trigger catalog page to confirm REQ-001 (per-handler bullets + footnote)
 - [ ] T203 Re-read readiness-contract catalog page to confirm REQ-002 (shared-vocabulary rule + per-handler paragraphs)
 - [ ] T204 Re-read CocoIndex routing playbook page to confirm REQ-003 (`rankingSignals (array of strings)` + Pass/Fail update)

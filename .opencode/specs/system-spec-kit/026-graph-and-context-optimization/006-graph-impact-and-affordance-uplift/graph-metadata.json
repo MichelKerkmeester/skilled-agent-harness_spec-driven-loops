@@ -66,10 +66,10 @@
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md",
       "code_graph/handlers/index.ts",
       "code_graph/lib/code-graph-context.ts",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
     ],
     "entities": [
       {
@@ -153,7 +153,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

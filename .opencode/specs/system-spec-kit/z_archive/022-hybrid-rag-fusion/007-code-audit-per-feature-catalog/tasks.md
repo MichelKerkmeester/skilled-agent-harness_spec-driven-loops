@@ -99,11 +99,11 @@ _memory:
 
 ### 5B: Audit 5 Unaudited Snippets
 
-- [x] T032 Audit `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md` → MATCH — added to 001-retrieval/implementation-summary.md. All source files exist and match catalog description.
-- [x] T033 Audit `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md` → MATCH — added to 016-tooling/implementation-summary.md. 3-layer defense-in-depth system verified across 7 source files.
-- [x] T034 Review `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` → META — reclassified as meta note in 020/implementation-summary.md. Explicitly excluded from accuracy scoring per file header.
-- [x] T035 Review `.opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` → MATCH — not a stub. Full catalog entry documenting runtime remediation surface. Added to 021/implementation-summary.md. 7 source files verified.
-- [x] T036 Review `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` → MATCH — not a stub. Full catalog entry documenting retired runtime shims. Added to 022/implementation-summary.md. 5 source files verified.
+- [x] T032 Audit `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md` → MATCH — added to 001-retrieval/implementation-summary.md. All source files exist and match catalog description.
+- [x] T033 Audit `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md` → MATCH — added to 016-tooling/implementation-summary.md. 3-layer defense-in-depth system verified across 7 source files.
+- [x] T034 Review `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` → META — reclassified as meta note in 020/implementation-summary.md. Explicitly excluded from accuracy scoring per file header.
+- [x] T035 Review `.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` → MATCH — not a stub. Full catalog entry documenting runtime remediation surface. Added to 021/implementation-summary.md. 7 source files verified.
+- [x] T036 Review `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` → MATCH — not a stub. Full catalog entry documenting retired runtime shims. Added to 022/implementation-summary.md. 5 source files verified.
 
 ### 5C: Audit 13 BOTH_MISSING Capabilities
 
@@ -117,8 +117,8 @@ _memory:
 - [x] T044 Audit `scripts/evals/run-ablation.ts` (182 lines) → assigned to 007-evaluation. Ablation study runtime entry point.
 - [x] T045 Audit `config/config.jsonc` (159 lines) → assigned to 020-feature-flag. Runtime configuration (Section 1 active, rest documentation-only).
 - [x] T046 Audit `config/filters.jsonc` (53 lines) → assigned to 020-feature-flag. Content filter pipeline configuration.
-- [x] T047 Audit `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md` (107 lines) → assigned to 017-governance. Constitutional memory for mandatory gate enforcement.
-- [x] T048 Audit `.opencode/skill/system-spec-kit/nodes/phase-system.md` (108 lines) → assigned to 016-tooling. Phase decomposition knowledge node.
+- [x] T047 Audit `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` (107 lines) → assigned to 017-governance. Constitutional memory for mandatory gate enforcement.
+- [x] T048 Audit `.opencode/skills/system-spec-kit/nodes/phase-system.md` (108 lines) → assigned to 016-tooling. Phase decomposition knowledge node.
 - [x] T049 Note `mcp_server/api/storage.ts` (10 lines) → NOT dead code. Minimal re-export facade for storage initialization. Skip formal audit.
 
 ### 5D: Audit 2 AUDIT_MISSING Items

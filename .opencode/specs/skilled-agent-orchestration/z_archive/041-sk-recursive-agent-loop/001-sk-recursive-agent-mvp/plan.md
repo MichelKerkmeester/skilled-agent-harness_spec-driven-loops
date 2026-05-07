@@ -32,8 +32,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown, YAML workflows, JSON/JSONC state, Node.js reducer/scoring scripts |
-| **Primary Runtime Surface** | `.opencode/agent/`, `.opencode/command/spec_kit/`, `.opencode/skill/` |
-| **Initial Target Under Test** | `.opencode/agent/handover.md` evaluated through `/spec_kit:handover` artifact expectations |
+| **Primary Runtime Surface** | `.opencode/agents/`, `.opencode/commands/spec_kit/`, `.opencode/skills/` |
+| **Initial Target Under Test** | `.opencode/agents/handover.md` evaluated through `/spec_kit:handover` artifact expectations |
 | **State Model** | `improvement-state.jsonl` plus strategy, charter, manifest, config, and reducer-owned dashboard outputs |
 | **Verification Basis** | Spec validation, deterministic artifact scoring, proposal-only dry runs, reducer outputs |
 
@@ -91,7 +91,7 @@ Complete the Level 3 packet before implementation work starts.
 
 ### Phase 2: Evaluator Contract and First Target
 Lock the MVP around one measurable surface before building the loop.
-- Define the first target as `.opencode/agent/handover.md`
+- Define the first target as `.opencode/agents/handover.md`
 - Specify the corresponding artifact contract through `/spec_kit:handover`
 - Write the evaluator contract, improvement charter, and target manifest
 - Decide acceptance threshold, baseline handling, and simplicity tie-break
@@ -182,7 +182,7 @@ Phase 9 (Runtime Parity + Additional Targets)
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/agent/handover.md` and `/spec_kit:handover` | Internal target/evaluator dependency | Green | MVP target contract becomes ambiguous |
+| `.opencode/agents/handover.md` and `/spec_kit:handover` | Internal target/evaluator dependency | Green | MVP target contract becomes ambiguous |
 | `sk-deep-research` loop/state pattern | Internal architecture reference | Green | More design work required for packet state model |
 | Skill routing/catalog surfaces | Internal registration dependency | Green | New skill is not discoverable |
 | Independent scoring harness | Core blocker | Yellow | The feature should not ship without it |
@@ -336,7 +336,7 @@ Evaluator Contract ──► Skill + State ──► Agent + Scorer ──► Co
 | Rule | Requirement |
 |------|-------------|
 | 1 | Keep the MVP evaluator-first and proposal-only until checklist gates explicitly allow promotion work. |
-| 2 | Treat `.opencode/agent/handover.md` as the only phase-1 mutation target unless the packet is intentionally amended. |
+| 2 | Treat `.opencode/agents/handover.md` as the only phase-1 mutation target unless the packet is intentionally amended. |
 | 3 | Keep runtime mirrors out of the target set until drift and promotion rules are documented. |
 | 4 | Preserve rejected-candidate evidence in the ledger; do not discard failed runs just because they lost. |
 

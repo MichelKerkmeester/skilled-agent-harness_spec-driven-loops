@@ -1,7 +1,7 @@
 {
   "topic": "Review: Feature catalog ↔ Manual testing playbook ↔ Spec phase traceability for system-spec-kit",
   "mode": "review",
-  "reviewTarget": ".opencode/skill/system-spec-kit/manual_testing_playbook AND specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "reviewTarget": ".opencode/skills/system-spec-kit/manual_testing_playbook AND specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "reviewScopeFiles": "feature_catalog (222 entries, 21 categories), manual_testing_playbook (230 scenarios, 19 categories), spec phases (22 phase folders)",

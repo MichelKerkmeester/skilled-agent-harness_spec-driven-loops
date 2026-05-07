@@ -69,7 +69,7 @@ Completed. The highest-value next step is remediation planning for F001-F003; F0
 ## 12. KNOWN CONTEXT
 
 - User-requested write scope is limited to `003-graph-metadata-validation/review/`.
-- The shipped parser and schema live under `.opencode/skill/system-spec-kit/...`, not a repo-root `mcp_server/`.
+- The shipped parser and schema live under `.opencode/skills/system-spec-kit/...`, not a repo-root `mcp_server/`.
 - Full corpus scan found `540` `graph-metadata.json` files; excluding `z_archive` yields `364`, with status counts of `218 complete`, `89 in_progress` when the single `in-progress` outlier is folded in, and `56 planned`.
 - Full-corpus scans also found `59` command-shaped `derived.key_files`, `42` command-shaped `entities.path` values, `0` duplicate groups, and `0` trigger-cap overflows.
 
@@ -86,12 +86,12 @@ Completed. The highest-value next step is remediation planning for F001-F003; F0
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|---------------------|----------------|----------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | D1, D2, D3, D4 | 10 | 2 P1, 2 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | D1, D4 | 10 | 0 P0, 0 P1, 1 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts` | D1, D2, D3 | 10 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts` | D1, D3 | 10 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts` | D1, D3 | 3 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts` | D1, D3 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | D1, D2, D3, D4 | 10 | 2 P1, 2 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | D1, D4 | 10 | 0 P0, 0 P1, 1 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts` | D1, D2, D3 | 10 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts` | D1, D3 | 10 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts` | D1, D3 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts` | D1, D3 | 3 | 0 P0, 0 P1, 0 P2 | complete |
 | `003/spec.md` | D3 | 10 | 0 P0, 1 P1, 1 P2 | complete |
 | `003/001-005 phase docs` | D3, D4 | 8 | 0 P0, 2 P1, 0 P2 | complete |
 

@@ -10,9 +10,9 @@ Use `opencode-lcm` to refine a graph-adjacent export/import contract for the cur
 
 The current graph derives structural identity from file paths:
 
-- scanned files resolve to full paths [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1065-1067`]
-- symbol IDs are generated from `filePath`, `fqName`, and kind [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:68-74`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:688-705`]
-- `code_files.file_path` and `code_nodes.symbol_id` are unique keys [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:28-57`]
+- scanned files resolve to full paths [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1065-1067`]
+- symbol IDs are generated from `filePath`, `fqName`, and kind [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:68-74`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:688-705`]
+- `code_files.file_path` and `code_nodes.symbol_id` are unique keys [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:28-57`]
 
 That means raw graph dumps are not portable across worktrees without identity rewriting.
 

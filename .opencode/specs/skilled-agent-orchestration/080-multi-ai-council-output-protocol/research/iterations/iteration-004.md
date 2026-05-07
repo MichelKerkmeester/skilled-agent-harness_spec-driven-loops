@@ -21,13 +21,13 @@ The rejected alternative is also explicit: requiring `council-report.md` was rej
 
 ### 2. The current regression test protects free-form behavior, not a meaningful layout check
 
-The vitest file states the policy directly: `ai-council/` is free-form alongside `scratch/`, `research/`, and `review/` at `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:1`. The first test runs strict validation against packet 080 and asserts there is no unknown-subfolder failure and that validation passes at `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:15`.
+The vitest file states the policy directly: `ai-council/` is free-form alongside `scratch/`, `research/`, and `review/` at `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:1`. The first test runs strict validation against packet 080 and asserts there is no unknown-subfolder failure and that validation passes at `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:15`.
 
-The second test is weaker than its title suggests: it only creates arbitrary `ai-council/` files and shells out to `ls`, so it proves filesystem presence is non-fatal but does not exercise the validator at `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:25`. Packet 081 should keep the non-enforcement assertion, but replace or augment the second case with a real synthetic Level 1 packet that runs `validate.sh --strict` and still passes with partial `ai-council/` contents.
+The second test is weaker than its title suggests: it only creates arbitrary `ai-council/` files and shells out to `ls`, so it proves filesystem presence is non-fatal but does not exercise the validator at `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts:25`. Packet 081 should keep the non-enforcement assertion, but replace or augment the second case with a real synthetic Level 1 packet that runs `validate.sh --strict` and still passes with partial `ai-council/` contents.
 
 ### 3. A warning inside `validate.sh --strict` is not safe, because strict mode converts warnings to failures
 
-The validator already has a warning channel: `ValidationEntry.status` includes `warn` at `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:19`, and the shell validator has warning severities at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:75`. But strict mode treats warnings as failed validation: the TypeScript report marks `passed` false when `opts.strict && summary.warnings > 0` at `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:378`, and the shell summary prints `FAILED (strict)` when warnings exist under strict mode at `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:899`.
+The validator already has a warning channel: `ValidationEntry.status` includes `warn` at `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:19`, and the shell validator has warning severities at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:75`. But strict mode treats warnings as failed validation: the TypeScript report marks `passed` false when `opts.strict && summary.warnings > 0` at `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:378`, and the shell summary prints `FAILED (strict)` when warnings exist under strict mode at `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:899`.
 
 That means "non-blocking hint" cannot be implemented as an ordinary validator warning if the normal completion gate is `validate.sh <spec-folder> --strict`. It would make missing `council-report.md` a hard failure in the exact path where ADR-004 says it should remain free-form.
 
@@ -47,7 +47,7 @@ This preserves free-form evolution while still catching the specific operational
 
 ### 5. Recommended validator work for packet 081 is test hardening, not new enforcement
 
-Packet 081 should not add `ai-council/` to required spec docs or template contracts. The TypeScript validator's required-file logic is level-based at `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:168`, and extending that to council artifacts would blur spec-document validation with optional planning evidence.
+Packet 081 should not add `ai-council/` to required spec docs or template contracts. The TypeScript validator's required-file logic is level-based at `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:168`, and extending that to council artifacts would blur spec-document validation with optional planning evidence.
 
 The landable validator-adjacent work is:
 

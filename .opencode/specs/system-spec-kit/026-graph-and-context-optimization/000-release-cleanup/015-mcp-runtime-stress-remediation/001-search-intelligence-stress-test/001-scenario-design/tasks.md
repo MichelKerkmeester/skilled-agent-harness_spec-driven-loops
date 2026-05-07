@@ -105,7 +105,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - **Sibling sub-phase (execution)**: `../002-scenario-execution/`
 - **Sibling defects packet**: `../../005-memory-search-runtime-bugs/`
 - **CLI skills referenced**:
-  - `.opencode/skill/cli-codex/SKILL.md`
-  - `.opencode/skill/cli-copilot/SKILL.md`
-  - `.opencode/skill/cli-opencode/SKILL.md`
+  - `.opencode/skills/cli-codex/SKILL.md`
+  - `.opencode/skills/cli-copilot/SKILL.md`
+  - `.opencode/skills/cli-opencode/SKILL.md`
 <!-- /ANCHOR:cross-refs -->

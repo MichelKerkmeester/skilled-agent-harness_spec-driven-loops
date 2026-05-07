@@ -104,12 +104,12 @@ Create a safe adaptive-retrieval layer that can learn from feedback in shadow mo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts` | Modify | Capture adaptive-learning signals |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` | Modify | Record adaptive shadow metrics and decisions |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/` | Create/Modify | Add adaptive-ranking policy helpers |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts` | Modify | Run bounded background learning or evaluation jobs |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Create/Modify | Add shadow-mode, rollback, and regression coverage |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add adaptive-learning validation procedures |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts` | Modify | Capture adaptive-learning signals |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts` | Modify | Record adaptive shadow metrics and decisions |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/` | Create/Modify | Add adaptive-ranking policy helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts` | Modify | Run bounded background learning or evaluation jobs |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/` | Create/Modify | Add shadow-mode, rollback, and regression coverage |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add adaptive-learning validation procedures |
 
 <!-- /ANCHOR:scope -->
 

@@ -122,7 +122,7 @@ Q1 + Q2: probe the stdin payload format and stdout injection semantics. Two path
 
 ### Related prior work
 
-- Spec 020 shipped the Claude hook wiring at `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`. Reference implementation for the port.
+- Spec 020 shipped the Claude hook wiring at `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`. Reference implementation for the port.
 - Sibling phase 007 is researching Copilot CLI parity (separate transport, separate contract).
 
 ---

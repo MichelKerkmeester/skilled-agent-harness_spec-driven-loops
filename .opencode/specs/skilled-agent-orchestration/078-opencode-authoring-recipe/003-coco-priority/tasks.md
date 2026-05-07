@@ -95,6 +95,6 @@ _memory:
 - Parent: 078-opencode-authoring-recipe (phase parent)
 - Successor: 078/004 validator-cleanup (depends on canonical paths being live)
 - 077 findings closed: F-001-002, F-005-001, F-005-002, F-005-004, F-007-005, F-008-005, F-009-003, F-009-004 (3 P1 + 5 P2 findings)
-- Changelog: `.opencode/skill/mcp-coco-index/changelog/v1.3.0.0.md`
+- Changelog: `.opencode/skills/mcp-coco-index/changelog/v1.3.0.0.md`
 - Modified files: settings.py + query.py + indexer.py + test_settings.py + SKILL.md
 <!-- /ANCHOR:cross-refs -->

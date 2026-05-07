@@ -50,7 +50,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:code-quality -->
 ## 3. CODE QUALITY
 
-- [x] CHK-010 [P0] Shared live template contract helper shipped [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`]
+- [x] CHK-010 [P0] Shared live template contract helper shipped [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`]
 - [x] CHK-011 [P0] Missing/out-of-order required headers fail in normal validation [Evidence: `check-template-headers.sh` + `validate.sh` updated]
 - [x] CHK-012 [P0] Missing/out-of-order required anchors fail from the same shared contract [Evidence: `check-anchors.sh` updated]
 - [x] CHK-013 [P1] Extra custom sections remain warning-only in normal mode [Evidence: `054-template-extra-header` returns warn]
@@ -63,10 +63,10 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:testing -->
 ## 4. TESTING
 
-- [x] CHK-020 [P0] Template contract Vitest coverage passes [Evidence: `cd .opencode/skill/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts`]
-- [x] CHK-021 [P0] Runtime prompt/workflow assertion script passes [Evidence: `node .opencode/skill/system-spec-kit/scripts/tests/test-phase-command-workflows.js`]
-- [x] CHK-022 [P0] Compliant fixture passes strict validation [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict`]
-- [x] CHK-023 [P1] Warning path verified for extra custom sections [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header` returned warnings only]
+- [x] CHK-020 [P0] Template contract Vitest coverage passes [Evidence: `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts`]
+- [x] CHK-021 [P0] Runtime prompt/workflow assertion script passes [Evidence: `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js`]
+- [x] CHK-022 [P0] Compliant fixture passes strict validation [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict`]
+- [x] CHK-023 [P1] Warning path verified for extra custom sections [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header` returned warnings only]
 - [x] CHK-024 [P1] Targeted shell suite categories pass for positive/template-header/evidence/placeholder lanes [Evidence: targeted `test-validation.sh` and `test-validation-extended.sh` category runs passed]
 - [x] CHK-025 [P1] Phase workflow assertion coverage includes every runtime speckit surface [Evidence: `test-phase-command-workflows.js` now checks `.agents`, OpenCode x2, Claude, and Gemini speckit agent docs]
 <!-- /ANCHOR:testing -->

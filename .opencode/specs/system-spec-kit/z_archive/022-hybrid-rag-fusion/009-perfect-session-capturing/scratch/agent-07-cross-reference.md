@@ -130,7 +130,7 @@ Each phase spec.md references an R-Item in its METADATA table. The research file
 
 ## E. File Path Verification
 
-Spot-checked 40+ file paths across all 16 phases from their "Files to Change" tables. All paths were verified relative to the `.opencode/skill/system-spec-kit/` base directory.
+Spot-checked 40+ file paths across all 16 phases from their "Files to Change" tables. All paths were verified relative to the `.opencode/skills/system-spec-kit/` base directory.
 
 ### Phase 001 (4 paths checked)
 - `scripts/core/quality-scorer.ts` — EXISTS

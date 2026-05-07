@@ -51,7 +51,7 @@ contextType: "general"
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** `.opencode/skill/system-spec-kit/README.md`
+- **File:** `.opencode/skills/system-spec-kit/README.md`
 - **Context:** Start with Phase 1 (8 tasks) - template count, script count, command count fixes
 
 ### 3.2 Priority Tasks Remaining

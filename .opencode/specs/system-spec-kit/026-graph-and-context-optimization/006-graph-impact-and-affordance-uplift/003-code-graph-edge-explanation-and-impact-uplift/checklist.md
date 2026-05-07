@@ -24,7 +24,7 @@ contextType: "implementation"
 ## P2 — Documentation
 - [x] feature_catalog entry in `06--analysis/` — `08-code-graph-edge-explanation-blast-radius-uplift.md`.
 - [x] manual_testing_playbook entry in `06--analysis/` — `026-code-graph-edge-explanation-blast-radius-uplift.md`.
-- [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. The original `[x]` cited feature catalog DQI 87 and playbook DQI 89 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel and are not reproducible from the current rubric without re-running `python3 .opencode/skill/sk-doc/scripts/validate_document.py <doc> --json` for both entries. Marked R-007-20 — premature PASS until script-backed scoring is captured.
+- [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. The original `[x]` cited feature catalog DQI 87 and playbook DQI 89 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel and are not reproducible from the current rubric without re-running `python3 .opencode/skills/sk-doc/scripts/validate_document.py <doc> --json` for both entries. Marked R-007-20 — premature PASS until script-backed scoring is captured.
 
 ## Phase Hand-off
 - [ ] `validate.sh --strict` passes — OPERATOR-PENDING-COSMETIC. Wave-3 canonical (010/007/T-B, 2026-04-25): FAILED on template-section conformance only (extra/non-canonical section headers from per-sub-phase scaffold). Cosmetic, NOT a contract violation: required Level-2 files present, anchors balanced, no `[TBD]` placeholders. Tracked as deferred P2 cleanup in 010/007. See `implementation-summary.md` §Verification Evidence for full canonical evidence.

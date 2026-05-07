@@ -189,14 +189,14 @@ Add to `.claude/settings.local.json`:
       "matcher": "",
       "hooks": [{
         "type": "command",
-        "command": "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js"
+        "command": "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js"
       }]
     }],
     "SessionStart": [{
       "matcher": "compact",
       "hooks": [{
         "type": "command",
-        "command": "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js"
+        "command": "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js"
       }]
     }]
   }
@@ -216,8 +216,8 @@ Add to `.claude/settings.local.json`:
 - [ ] Existing hooks in settings.local.json preserved (merge-safe)
 
 ### Files Modified
-- NEW: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- NEW: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- NEW: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- NEW: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
 - EDIT: `.claude/settings.local.json` (add PreCompact + SessionStart hooks)
 
 ### LOC Estimate

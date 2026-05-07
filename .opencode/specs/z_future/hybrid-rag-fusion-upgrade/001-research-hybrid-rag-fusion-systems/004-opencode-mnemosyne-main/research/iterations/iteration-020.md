@@ -1,12 +1,12 @@
 ### Finding 5: A direct `core=true` shortcut should be rejected on Public’s primary surface
-- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence type: both
+- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence type: both
 - **What it does**: Mnemosyne maps `core` to a simple tag and treats it as always-available context; Public’s constitutional path has explicit tier validation, cache semantics, and token-budget enforcement.
 - **Why it matters for us**: A convenience alias would collapse an intentionally stricter hierarchy into a casual flag and encourage over-promotion. Affected subsystem: importance-tier semantics.
 - **Recommendation**: reject
 - **Impact**: medium
 
 ### Finding 6: If we add an OpenCode-native memory facade, it must be delegation-only
-- **Source**: [external/package.json:1](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [opencode-transport.ts:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L82), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330); evidence type: both
+- **Source**: [external/package.json:1](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [opencode-transport.ts:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L82), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330); evidence type: both
 - **What it does**: Mnemosyne proves that a very thin OpenCode plugin can be ergonomically nice, but Public already has a richer transport/MCP authority layer with startup, resume, and compaction payload planning.
 - **Why it matters for us**: A second implementation of save/search logic would create drift fast. The only safe version is a façade that delegates to MCP and adds zero new memory authority. Affected subsystem: OpenCode plugin integration.
 - **Recommendation**: NEW FEATURE, but only as a delegation-only wrapper
@@ -25,27 +25,27 @@
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
-- [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
-- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-- [response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
-- [validation-responses.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts)
-- [pe-orchestration.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts)
-- [post-insert.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts)
-- [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
+- [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
+- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+- [response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
+- [validation-responses.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts)
+- [pe-orchestration.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts)
+- [post-insert.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts)
+- [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - New information ratio: 0.78
 - Questions addressed: compaction-survival leverage, governed mutation mismatch, project/global ergonomics, AGENTS/startup reuse, `core=true` semantics, OpenCode plugin layering, offline-first tradeoffs, current hybrid-retrieval overlap, CocoIndex separation.
 - Questions answered: Phase A adopt now: add a deduped memory-tool reminder to the existing compaction transport, and rewrite startup/AGENTS wording around `session_bootstrap` plus governed save flows. Phase B prototype later: add read-only `project/global` recall aliases that compile down to current retrieval scope, with no write aliases. Phase C hold or reject: do not add a direct `core=true` shortcut, do not replace Public’s retrieval stack with Mnemosyne, and only pursue an OpenCode-native facade if it delegates to MCP instead of becoming a second authority.
 - Questions answered: Mnemosyne’s genuinely new value for Public is not hybrid ranking, it is wrapper ergonomics plus compaction-time memory awareness.
-- Validation command used: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict`
+- Validation command used: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict`
 - Validation result: `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, plus `cannot create temp file for here document: Operation not permitted` from the read-only sandbox.
 
 ## Reflection
@@ -85,7 +85,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -101,11 +101,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -113,7 +113,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -144,7 +144,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -741,7 +741,7 @@ exec
 /bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/research/iterations/iteration-019.md' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	### Finding 2: Reusing Mnemosyne’s AGENTS/startup discipline verbatim would misfit Public’s governed, file-backed memory model
-     2	- **Source**: [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L738), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L755), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L897)
+     2	- **Source**: [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L738), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L755), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L897)
      3	- **Evidence type**: README-documented for Mnemosyne workflow; wrapper-confirmed for Public startup guidance
      4	- **What it does**: Mnemosyne recommends “recall at start, store after decisions, delete contradictions, use global for cross-project prefs.” Public already emits startup instructions, tool-routing hints, session priming, and automatic memory surfacing.
      5	- **Why it matters for us**: The risk is instruction drift. If we copy Mnemosyne’s wording directly, we imply cheap direct mutation semantics that Public does not have: `memory_save` is governed and file-path constrained, and deletion/update flows are more opinionated than a simple binary-backed store.
@@ -749,7 +749,7 @@ exec
      7	- **Impact**: medium
      8	
      9	### Finding 3: Thin `project` and `global` aliases are useful, but write-side aliases could blur Public’s scope boundaries
-    10	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L492), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L812), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136)
+    10	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L27), [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L492), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L812), [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136)
     11	- **Evidence type**: wrapper-confirmed for Mnemosyne; wrapper-confirmed for Public
     12	- **What it does**: Mnemosyne derives project scope from the current directory basename, special-cases `global`, and exposes separate recall/store tools. Public already supports `retrievalLevel: local|global|auto` plus governed save scope via `tenantId`, `userId`, `agentId`, `sessionId`, and `sharedSpaceId`.
     13	- **Why it matters for us**: Read aliases are low risk, but write aliases are not. A directory-basename mental model is much weaker than Public’s governed scope model and creates real collision/leak risks across similarly named repos, worktrees, or shared-memory spaces.
@@ -757,7 +757,7 @@ exec
     15	- **Impact**: medium
     16	
     17	### Finding 4: A `core=true` shortcut could erode constitutional-tier discipline if it acts like a simple tag
-    18	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L53), [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67)
+    18	- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L53), [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67)
     19	- **Evidence type**: both
     20	- **What it does**: Mnemosyne maps `core=true` to a `core` tag and describes it as always available context. Public’s “always surface” path is tied to the constitutional tier, token budgeting, cache keys, mutation hooks, and validated importance-tier updates.
     21	- **Why it matters for us**: The risk is semantic collapse. If `core=true` becomes a casual alias, operators will over-promote memories, inflate the constitutional budget, and create ambiguity between `constitutional`, `critical`, and merely “important” memories.
@@ -765,7 +765,7 @@ exec
     23	- **Impact**: medium
     24	
     25	### Finding 5: A native OpenCode memory facade is feasible, but a second authority layer would be the biggest adoption hazard
-    26	- **Source**: [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L168), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L755)
+    26	- **Source**: [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L168), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L755)
     27	- **Evidence type**: wrapper-confirmed for Mnemosyne wrapper shape; wrapper-confirmed for Public MCP/transport shape
     28	- **What it does**: Mnemosyne is a tiny OpenCode plugin that delegates everything to a local binary via argv-safe `Bun.spawn`. Public already has a richer MCP server plus OpenCode transport payloads for bootstrap/resume/compaction.
     29	- **Why it matters for us**: The biggest risk is split truth. If we add a native plugin that reinterprets save/search/scope logic instead of delegating to MCP, we will create semantic drift, duplicate failure handling, and mismatched recovery behavior. The offline-first dependency model also adds first-run latency and missing-binary failure states that Public’s current MCP surface does not require.
@@ -777,20 +777,20 @@ exec
     35	- [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
     36	- [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
     37	- [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-    38	- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
-    39	- [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts)
-    40	- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-    41	- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-    42	- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-    43	- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-    44	- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-    45	- [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts)
-    46	- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+    38	- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
+    39	- [memory-surface.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts)
+    40	- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+    41	- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+    42	- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+    43	- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+    44	- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+    45	- [vector-index-store.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts)
+    46	- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
     47	
     48	## Assessment
     49	- New information ratio: 0.67
     50	- Questions addressed: adoption risk for compaction reminders, startup/AGENTS policy reuse, project/global ergonomic aliases, `core=true` mapping, thin plugin delegation, offline-first failure handling, and separation from CocoIndex/code-graph responsibilities
-    51	- Questions answered: the safest near-term adoption is still the compaction reminder pattern, but only as a deduped add-on to existing compaction transport; AGENTS guidance should be rewritten for governed saves instead of copied; project/global and `core=true` need wrapper-only prototypes because Public’s scope and constitutional semantics are stricter than Mnemosyne’s; a native OpenCode facade is viable only if it delegates to MCP and never becomes a second memory authority. Validation command run: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict`, which returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, while also emitting `cannot create temp file for here document: Operation not permitted`.
+    51	- Questions answered: the safest near-term adoption is still the compaction reminder pattern, but only as a deduped add-on to existing compaction transport; AGENTS guidance should be rewritten for governed saves instead of copied; project/global and `core=true` need wrapper-only prototypes because Public’s scope and constitutional semantics are stricter than Mnemosyne’s; a native OpenCode facade is viable only if it delegates to MCP and never becomes a second memory authority. Validation command run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict`, which returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, while also emitting `cannot create temp file for here document: Operation not permitted`.
     52	
     53	## Reflection
     54	- What worked: starting from the wrapper source and then tracing Public’s save/search/compaction/governance paths made the real risks obvious; the important differences are not retrieval quality but scope authority, mutation semantics, and compaction duplication.
@@ -829,7 +829,7 @@ exec
     87	
     88	### 4.3 What This Repo Already Has
     89	
-    90	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+    90	`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
     91	
     92	What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
     93	
@@ -845,11 +845,11 @@ exec
    103	8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
    104	9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
    105	10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-   106	11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+   106	11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
    107	12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
    108	13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
    109	    ```bash
-   110	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+   110	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
    111	    ```
    112	14. After validation passes, run deep research using this exact topic:
    113	    ```text
@@ -857,7 +857,7 @@ exec
    115	    ```
    116	15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
    117	    ```bash
-   118	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+   118	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
    119	    ```
    120	
    121	## 6. Research Questions
@@ -888,7 +888,7 @@ exec
    146	- Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
    147	- Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
    148	- Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-   149	- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+   149	- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
    150	- Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
    151	- Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
    152	- Do not edit anything under `external/` or outside this phase folder.
@@ -1268,7 +1268,7 @@ exec
    260	  if (sessionID) {
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '460,920p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '460,920p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    460	  if (filtered.length > 0) {
    461	    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
@@ -2043,7 +2043,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/research/iterations/iteration-011.md:13026:### Finding 5: Build an explicit offline warmup and doctor flow for memory readiness
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/context-server.ts' | sed -n '720,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/context-server.ts' | sed -n '720,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    720	    const pending = typeof byStatus.pending === 'number' ? byStatus.pending : 0;
    721	    const failed = typeof byStatus.failed === 'number' ? byStatus.failed : 0;
@@ -2270,7 +2270,7 @@ exec
 codex
 I’ve confirmed Public already carries structured startup, priming, and retrieval federation. I’m filling in the remaining comparison points now: save/update/delete authority, transport ownership, and the code-search boundary with CocoIndex, then I’ll compress the repeated iteration findings into one final decision matrix.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' | sed -n '1120,1320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' | sed -n '1120,1320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1120	    throw new Error('filePath is required and must be a string');
   1121	  }
@@ -2281,7 +2281,7 @@ exec
   1126	  const database = requireDb();
   1127	
   1128	  if (!memoryParser.isMemoryFile(validatedPath)) {
-  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skill/*/constitutional/');
+  1129	    throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), or .opencode/skills/*/constitutional/');
   1130	  }
   1131	
   1132	  if (typeof database.exec === 'function') {
@@ -2475,7 +2475,7 @@ exec
   1320	        }
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ────────────────────────────────────────────────────────────────
      2	// MODULE: Memory Crud Delete
@@ -2739,7 +2739,7 @@ exec
    260	    ? `Deleted ${deletedCount} memory(s)`
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ────────────────────────────────────────────────────────────────
      2	// MODULE: Memory Crud Update Handler
@@ -2963,7 +2963,7 @@ exec
    220	        actor: 'mcp:memory_update',
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: OpenCode Transport Adapter
@@ -3122,9 +3122,9 @@ exec
    155	}
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' | sed -n '150,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' | sed -n '150,380p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Surface
@@ -3591,7 +3591,7 @@ exec
    350	}
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/mcp-coco-index/README.md' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/mcp-coco-index/README.md' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	title: "CocoIndex Code - Semantic Code Search"
@@ -3691,7 +3691,7 @@ exec
     96	Run the idempotent bootstrap helper. It installs the binary, initializes the project if needed, and reports readiness.
     97	
     98	```bash
-    99	bash .opencode/skill/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
+    99	bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
    100	```
    101	
    102	**Step 2: Build the index**
@@ -3815,7 +3815,7 @@ exec
    220	    settings_reference.md          Embedding model switching and daemon settings
 
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public' && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main' --strict" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public' && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main' --strict" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1367ms:
 
 ───────────────────────────────────────────────────────────────
@@ -3830,7 +3830,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -3870,33 +3870,33 @@ exec
   2024	
 
 exec
-/bin/zsh -lc "rg -n \"experimental\\.session\\.compacting|compaction|dedupeKey|retrievalPolicyOwner|transportOnly|memory action\" '.opencode/plugins/spec-kit-compact-code-graph.js' '.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' '.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts' '.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"experimental\\.session\\.compacting|compaction|dedupeKey|retrievalPolicyOwner|transportOnly|memory action\" '.opencode/plugins/spec-kit-compact-code-graph.js' '.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' '.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts' '.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:21:  dedupeKey: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:28:  transportOnly: true;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:29:  retrievalPolicyOwner: 'runtime';
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:106:    transportOnly: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:107:    retrievalPolicyOwner: 'runtime',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:121:          dedupeKey: `system:${systemPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:134:      dedupeKey: `messages:${payload.kind}:${index}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:21:  dedupeKey: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:28:  transportOnly: true;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:29:  retrievalPolicyOwner: 'runtime';
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:106:    transportOnly: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:107:    retrievalPolicyOwner: 'runtime',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:121:          dedupeKey: `system:${systemPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:134:      dedupeKey: `messages:${payload.kind}:${index}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
 .opencode/plugins/spec-kit-compact-code-graph.js:60: *   dedupeKey: string,
 .opencode/plugins/spec-kit-compact-code-graph.js:68: *   transportOnly: true,
 .opencode/plugins/spec-kit-compact-code-graph.js:69: *   retrievalPolicyOwner: string,
@@ -3944,7 +3944,7 @@ exec
    419	}
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts' | sed -n '620,670p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts' | sed -n '620,670p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    620	   7. COMPACTION HOOK (TM-05)
    621	──────────────────────────────────────────────────────────────── */
@@ -3999,7 +3999,7 @@ exec
    670	  // Functions
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	"use strict";
      2	// ---------------------------------------------------------------
@@ -4223,7 +4223,7 @@ exec
    220	        return {
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts' | sed -n '600,628p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts' | sed -n '600,628p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    600	// BUG-004 FIX: Checks external DB modifications before using cache
    601	// BUG-012 FIX: Prevent thundering herd when cache expires
@@ -4256,48 +4256,48 @@ exec
    628	
 
 exec
-/bin/zsh -lc "rg -n \"contradicts|supersedes|causal|memory_causal_link|mutation ledger|checkpoint\" '.opencode/skill/system-spec-kit/mcp_server' | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"contradicts|supersedes|causal|memory_causal_link|mutation ledger|checkpoint\" '.opencode/skills/system-spec-kit/mcp_server' | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:77:import * as checkpointsLib from './lib/storage/checkpoints.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1564:    checkpoints: checkpointsLib,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1667:    checkpointsLib.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:20:type CheckpointsModule = Awaited<typeof import('./lib/storage/checkpoints.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:26:type CausalEdgesModule = Awaited<typeof import('./lib/storage/causal-edges.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:31:let _checkpoints: CheckpointsModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:37:let _causal_edges: CausalEdgesModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:46:  return _checkpoints ??= await import('./lib/storage/checkpoints.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:70:  return _causal_edges ??= await import('./lib/storage/causal-edges.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:115:    [--skip-checkpoint]            Optional: skip pre-delete checkpoint (blocked for constitutional/critical)
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:142:  const [vectorIndex, checkpointsLib, accessTracker, coreIndex] = await Promise.all([
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:157:  coreIndex.init({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:158:  checkpointsLib.init(db);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:259:  const skipCheckpoint = getFlag('skip-checkpoint');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:276:    console.error(`ERROR: --skip-checkpoint is not allowed for "${tier}" tier.`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:312:  if (skipCheckpoint) console.log(`  Checkpoint:  skipped (--skip-checkpoint)`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:343:  let checkpointName: string | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:346:    checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:349:      checkpointsLib.createCheckpoint({
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:350:        name: checkpointName,
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:359:      console.log(`\n  Checkpoint:  ${checkpointName}`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:362:      console.error(`  WARNING: Failed to create checkpoint: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:364:      checkpointName = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:378:  // Initialize causal edges for cleanup
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:379:  causalEdges.init(db);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:396:        try { causalEdges.deleteEdgesForMemory(String(memory.id)); } catch { /* ignore */ }
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:403:  // Record in mutation ledger
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:417:        checkpoint: checkpointName,
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:430:  if (checkpointName) {
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:431:    console.log(`  Restore:     Use checkpoint_restore MCP tool with name: ${checkpointName}`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:433:    console.log(`  Restore:     unavailable (checkpoint skipped)`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:537:    console.log(`  Scope checkpoint: ${specFolder}`);
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:544:  console.log(`  Checkpoint: ${result.checkpointName}`);
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:81:export * as causalBoost from '../lib/search/causal-boost.js';
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:89:  'supersedes',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:77:import * as checkpointsLib from './lib/storage/checkpoints.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1564:    checkpoints: checkpointsLib,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1667:    checkpointsLib.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:20:type CheckpointsModule = Awaited<typeof import('./lib/storage/checkpoints.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:26:type CausalEdgesModule = Awaited<typeof import('./lib/storage/causal-edges.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:31:let _checkpoints: CheckpointsModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:37:let _causal_edges: CausalEdgesModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:46:  return _checkpoints ??= await import('./lib/storage/checkpoints.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:70:  return _causal_edges ??= await import('./lib/storage/causal-edges.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:115:    [--skip-checkpoint]            Optional: skip pre-delete checkpoint (blocked for constitutional/critical)
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:142:  const [vectorIndex, checkpointsLib, accessTracker, coreIndex] = await Promise.all([
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:157:  coreIndex.init({ vectorIndex, checkpoints: checkpointsLib, accessTracker });
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:158:  checkpointsLib.init(db);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:259:  const skipCheckpoint = getFlag('skip-checkpoint');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:276:    console.error(`ERROR: --skip-checkpoint is not allowed for "${tier}" tier.`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:281:  const [vectorIndex, checkpointsLib, mutationLedger, triggerMatcher, causalEdges, history] = await Promise.all([
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:312:  if (skipCheckpoint) console.log(`  Checkpoint:  skipped (--skip-checkpoint)`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:343:  let checkpointName: string | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:346:    checkpointName = `pre-bulk-delete-${tier}-${timestamp}`;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:349:      checkpointsLib.createCheckpoint({
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:350:        name: checkpointName,
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:359:      console.log(`\n  Checkpoint:  ${checkpointName}`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:362:      console.error(`  WARNING: Failed to create checkpoint: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:364:      checkpointName = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:378:  // Initialize causal edges for cleanup
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:379:  causalEdges.init(db);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:396:        try { causalEdges.deleteEdgesForMemory(String(memory.id)); } catch { /* ignore */ }
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:403:  // Record in mutation ledger
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:417:        checkpoint: checkpointName,
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:430:  if (checkpointName) {
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:431:    console.log(`  Restore:     Use checkpoint_restore MCP tool with name: ${checkpointName}`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:433:    console.log(`  Restore:     unavailable (checkpoint skipped)`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:537:    console.log(`  Scope checkpoint: ${specFolder}`);
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:544:  console.log(`  Checkpoint: ${result.checkpointName}`);
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:81:export * as causalBoost from '../lib/search/causal-boost.js';
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:89:  'supersedes',
 
 codex
 # Iteration 020: FINAL SYNTHESIS
@@ -4307,70 +4307,70 @@ FINAL SYNTHESIS: I consolidated the repeated iteration themes into 10 non-overla
 
 ## Findings
 ### Finding 1: Mnemosyne is not a retrieval-engine upgrade for Public
-- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
+- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
 - **What it does**: Mnemosyne’s wrapper forwards search requests to a backend whose BM25/vector/RRF internals are only README-documented, while Public already runs a visible multi-stage hybrid search pipeline.
 - **Why it matters for us**: The transferable value is wrapper ergonomics, not ranking replacement, so using Mnemosyne as a reason to re-architect Public retrieval would be a category error.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 2: Compaction-time memory action guidance is the strongest adopt-now idea
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence: both
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence: both
 - **What it does**: Mnemosyne preserves memory behavior across compaction with an explicit action card, while Public currently preserves continuity/state but not equally direct memory-tool verbs on the OpenCode surface.
 - **Why it matters for us**: A transport-owned, deduped memory reminder would improve post-compaction behavior without changing retrieval authority.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Mnemosyne’s startup/AGENTS discipline should be reused only after translation into Public terms
-- **Source**: [external/README.md:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L64), [context-server.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L755), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [memory-save.ts:1136](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136); evidence: both
+- **Source**: [external/README.md:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L64), [context-server.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L755), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [memory-save.ts:1136](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136); evidence: both
 - **What it does**: Mnemosyne repeats “recall early, save after decisions, delete contradictions” in AGENTS and compaction, but Public’s save/delete paths are governed and more constrained.
 - **Why it matters for us**: The behavioral pattern is good, but the wording must point to `session_bootstrap`, `memory_context`, governed saves, and careful deletions instead of cheap direct CLI mutations.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 4: Read-only `project` / `global` recall aliases are worth prototyping
-- **Source**: [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [external/src/index.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-search.ts:529](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L529), [memory-search.ts:818](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L818); evidence: wrapper-confirmed
+- **Source**: [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [external/src/index.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-search.ts:529](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L529), [memory-search.ts:818](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L818); evidence: wrapper-confirmed
 - **What it does**: Mnemosyne gives simple project/global tool pairs; Public already has richer runtime scoping via `retrievalLevel` and broader fallback behavior.
 - **Why it matters for us**: Thin read aliases could improve ergonomics, but only if they compile down to existing scope logic and do not invent new authority.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 5: Basename-derived project identity is too weak for Public’s memory authority
-- **Source**: [external/src/index.ts:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L28), [external/src/index.ts:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L79), [external/README.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L55), [memory-save.ts:1265](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1265); evidence: both
+- **Source**: [external/src/index.ts:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L28), [external/src/index.ts:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L79), [external/README.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L55), [memory-save.ts:1265](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1265); evidence: both
 - **What it does**: Mnemosyne normalizes the current directory basename into a collection key and auto-inits that collection on load.
 - **Why it matters for us**: That is fragile across renames, sibling worktrees, and same-name repos, and it is materially weaker than Public’s governed scope model.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 6: An ergonomic inline memory intake is valid only as a governed facade
-- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [generate-context.js:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85), [memory-save.ts:1128](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1128), [memory-save.ts:1273](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1273); evidence: both
+- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [generate-context.js:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85), [memory-save.ts:1128](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1128), [memory-save.ts:1273](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1273); evidence: both
 - **What it does**: Mnemosyne lets the agent store concise strings directly, while Public’s durable save path is JSON-primary, file-backed, preflighted, and governed.
 - **Why it matters for us**: A `memory_remember`-style helper could be useful, but only if it produces the same governed save artifacts rather than bypassing them.
 - **Recommendation**: NEW FEATURE
 - **Impact**: medium
 
 ### Finding 7: A direct `core=true` shortcut should not be added to Public’s main surface
-- **Source**: [external/src/index.ts:140](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L140), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence: both
+- **Source**: [external/src/index.ts:140](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L140), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence: both
 - **What it does**: Mnemosyne collapses “always-on” behavior into a simple `core` tag, while Public reserves that behavior for explicit constitutional-tier handling and budgeted cache/query logic.
 - **Why it matters for us**: A shortcut would blur `constitutional`, `critical`, and ordinary memories and encourage over-promotion.
 - **Recommendation**: reject
 - **Impact**: medium
 
 ### Finding 8: Mnemosyne’s blind append and hard-delete lifecycle is the wrong primary mutation model for Public
-- **Source**: [external/src/index.ts:147](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L147), [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [memory-crud-delete.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L67), [memory-crud-update.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138); evidence: both
+- **Source**: [external/src/index.ts:147](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L147), [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [memory-crud-delete.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L67), [memory-crud-update.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138); evidence: both
 - **What it does**: Mnemosyne exposes append-plus-delete behavior at the wrapper boundary, while Public wraps updates/deletes in transactions, history, ledgering, checkpointing, and hook invalidation.
 - **Why it matters for us**: Public should keep its auditable mutation model and treat contradiction cleanup as structured revision, not as plain-text ID deletion.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 9: A native OpenCode memory plugin is viable only as a delegation-only facade
-- **Source**: [external/package.json:31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [opencode-transport.ts:104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L104); evidence: both
+- **Source**: [external/package.json:31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [opencode-transport.ts:104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L104); evidence: both
 - **What it does**: Mnemosyne shows that a thin OpenCode wrapper can feel good, and Public already emits OpenCode transport plans from MCP-owned state.
 - **Why it matters for us**: If we build a native facade, it must delegate to MCP for save/search/recovery and keep CocoIndex/code-graph as separate retrieval planes, or it will become a second authority layer.
 - **Recommendation**: NEW FEATURE
 - **Impact**: medium
 
 ### Finding 10: Optional offline backend readiness is worth prototyping, but Mnemosyne’s runtime stack should not become Public’s default
-- **Source**: [external/README.md:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [context-server.ts:751](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L751), [session-bootstrap.ts:194](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194); evidence: both
+- **Source**: [external/README.md:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [context-server.ts:751](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L751), [session-bootstrap.ts:194](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194); evidence: both
 - **What it does**: Mnemosyne assumes a local binary plus a first-run model download and mainly reports failures through stderr or one install hint, while Public already has explicit bootstrap/readiness surfaces.
 - **Why it matters for us**: If we ever support optional local memory backends, they need a real warmup/doctor/readiness flow; Public should not switch its primary path to Bun-plus-binary-plus-model-download.
 - **Recommendation**: prototype later
@@ -4380,23 +4380,23 @@ FINAL SYNTHESIS: I consolidated the repeated iteration themes into 10 non-overla
 - [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts)
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
-- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
+- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - Executive summary: 10 consolidated decisions. `adopt now`: 2. `prototype later`: 2. `NEW FEATURE`: 2. `reject`: 4. The highest-confidence transfers are compaction-time memory action guidance and rewritten startup policy; the highest-confidence rejections are basename-derived scope, `core=true`, and Mnemosyne-style mutation semantics.
 - New information ratio: 0.46
 - Questions addressed: hybrid contract vs wrapper proof, compaction resilience, AGENTS/startup reuse, project/global ergonomics, scope identity stability, inline save ergonomics, constitutional pinning semantics, mutation/audit model, OpenCode facade design, federated retrieval separation, offline readiness tradeoffs
 - Questions answered: Public should borrow Mnemosyne’s behavioral ergonomics, not its authority model. The safe path is `session_bootstrap`-aligned guidance plus a transport-owned compaction memory card, with any future aliases or facades compiled into existing MCP/governance surfaces.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, plus `cannot create temp file for here document: Operation not permitted` from the read-only sandbox.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, plus `cannot create temp file for here document: Operation not permitted` from the read-only sandbox.
 
 ## Reflection
 - What worked: source-first tracing from [`external/src/index.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts) into Public’s transport, bootstrap, save, and mutation handlers made the true boundary obvious: Mnemosyne contributes behavior cues and wrapper ergonomics, not a stronger core memory substrate.
@@ -4417,70 +4417,70 @@ FINAL SYNTHESIS: I consolidated the repeated iteration themes into 10 non-overla
 
 ## Findings
 ### Finding 1: Mnemosyne is not a retrieval-engine upgrade for Public
-- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
+- **Source**: [external/src/index.ts:106](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L106), [external/README.md:82](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), [memory-search.ts:809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L809); evidence: both
 - **What it does**: Mnemosyne’s wrapper forwards search requests to a backend whose BM25/vector/RRF internals are only README-documented, while Public already runs a visible multi-stage hybrid search pipeline.
 - **Why it matters for us**: The transferable value is wrapper ergonomics, not ranking replacement, so using Mnemosyne as a reason to re-architect Public retrieval would be a category error.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 2: Compaction-time memory action guidance is the strongest adopt-now idea
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence: both
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [memory-surface.ts:640](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L640); evidence: both
 - **What it does**: Mnemosyne preserves memory behavior across compaction with an explicit action card, while Public currently preserves continuity/state but not equally direct memory-tool verbs on the OpenCode surface.
 - **Why it matters for us**: A transport-owned, deduped memory reminder would improve post-compaction behavior without changing retrieval authority.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Mnemosyne’s startup/AGENTS discipline should be reused only after translation into Public terms
-- **Source**: [external/README.md:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L64), [context-server.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L755), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [memory-save.ts:1136](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136); evidence: both
+- **Source**: [external/README.md:64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L64), [context-server.ts:755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L755), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [memory-save.ts:1136](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1136); evidence: both
 - **What it does**: Mnemosyne repeats “recall early, save after decisions, delete contradictions” in AGENTS and compaction, but Public’s save/delete paths are governed and more constrained.
 - **Why it matters for us**: The behavioral pattern is good, but the wording must point to `session_bootstrap`, `memory_context`, governed saves, and careful deletions instead of cheap direct CLI mutations.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 4: Read-only `project` / `global` recall aliases are worth prototyping
-- **Source**: [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [external/src/index.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-search.ts:529](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L529), [memory-search.ts:818](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L818); evidence: wrapper-confirmed
+- **Source**: [external/src/index.ts:118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [external/src/index.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-search.ts:529](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L529), [memory-search.ts:818](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L818); evidence: wrapper-confirmed
 - **What it does**: Mnemosyne gives simple project/global tool pairs; Public already has richer runtime scoping via `retrievalLevel` and broader fallback behavior.
 - **Why it matters for us**: Thin read aliases could improve ergonomics, but only if they compile down to existing scope logic and do not invent new authority.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 5: Basename-derived project identity is too weak for Public’s memory authority
-- **Source**: [external/src/index.ts:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L28), [external/src/index.ts:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L79), [external/README.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L55), [memory-save.ts:1265](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1265); evidence: both
+- **Source**: [external/src/index.ts:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L28), [external/src/index.ts:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L79), [external/README.md:55](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L55), [memory-save.ts:1265](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1265); evidence: both
 - **What it does**: Mnemosyne normalizes the current directory basename into a collection key and auto-inits that collection on load.
 - **Why it matters for us**: That is fragile across renames, sibling worktrees, and same-name repos, and it is materially weaker than Public’s governed scope model.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 6: An ergonomic inline memory intake is valid only as a governed facade
-- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [generate-context.js:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85), [memory-save.ts:1128](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1128), [memory-save.ts:1273](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1273); evidence: both
+- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [generate-context.js:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85), [memory-save.ts:1128](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1128), [memory-save.ts:1273](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1273); evidence: both
 - **What it does**: Mnemosyne lets the agent store concise strings directly, while Public’s durable save path is JSON-primary, file-backed, preflighted, and governed.
 - **Why it matters for us**: A `memory_remember`-style helper could be useful, but only if it produces the same governed save artifacts rather than bypassing them.
 - **Recommendation**: NEW FEATURE
 - **Impact**: medium
 
 ### Finding 7: A direct `core=true` shortcut should not be added to Public’s main surface
-- **Source**: [external/src/index.ts:140](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L140), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence: both
+- **Source**: [external/src/index.ts:140](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L140), [external/README.md:57](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L57), [vector-index-store.ts:609](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L609), [memory-crud-update.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L67); evidence: both
 - **What it does**: Mnemosyne collapses “always-on” behavior into a simple `core` tag, while Public reserves that behavior for explicit constitutional-tier handling and budgeted cache/query logic.
 - **Why it matters for us**: A shortcut would blur `constitutional`, `critical`, and ordinary memories and encourage over-promotion.
 - **Recommendation**: reject
 - **Impact**: medium
 
 ### Finding 8: Mnemosyne’s blind append and hard-delete lifecycle is the wrong primary mutation model for Public
-- **Source**: [external/src/index.ts:147](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L147), [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [memory-crud-delete.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L67), [memory-crud-update.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138); evidence: both
+- **Source**: [external/src/index.ts:147](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L147), [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [memory-crud-delete.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L67), [memory-crud-update.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138); evidence: both
 - **What it does**: Mnemosyne exposes append-plus-delete behavior at the wrapper boundary, while Public wraps updates/deletes in transactions, history, ledgering, checkpointing, and hook invalidation.
 - **Why it matters for us**: Public should keep its auditable mutation model and treat contradiction cleanup as structured revision, not as plain-text ID deletion.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 9: A native OpenCode memory plugin is viable only as a delegation-only facade
-- **Source**: [external/package.json:31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [opencode-transport.ts:104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L104); evidence: both
+- **Source**: [external/package.json:31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [session-bootstrap.ts:330](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L330), [opencode-transport.ts:104](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L104); evidence: both
 - **What it does**: Mnemosyne shows that a thin OpenCode wrapper can feel good, and Public already emits OpenCode transport plans from MCP-owned state.
 - **Why it matters for us**: If we build a native facade, it must delegate to MCP for save/search/recovery and keep CocoIndex/code-graph as separate retrieval planes, or it will become a second authority layer.
 - **Recommendation**: NEW FEATURE
 - **Impact**: medium
 
 ### Finding 10: Optional offline backend readiness is worth prototyping, but Mnemosyne’s runtime stack should not become Public’s default
-- **Source**: [external/README.md:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [context-server.ts:751](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L751), [session-bootstrap.ts:194](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194); evidence: both
+- **Source**: [external/README.md:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [external/src/index.ts:67](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L67), [context-server.ts:751](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L751), [session-bootstrap.ts:194](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L194); evidence: both
 - **What it does**: Mnemosyne assumes a local binary plus a first-run model download and mainly reports failures through stderr or one install hint, while Public already has explicit bootstrap/readiness surfaces.
 - **Why it matters for us**: If we ever support optional local memory backends, they need a real warmup/doctor/readiness flow; Public should not switch its primary path to Bun-plus-binary-plus-model-download.
 - **Recommendation**: prototype later
@@ -4490,23 +4490,23 @@ FINAL SYNTHESIS: I consolidated the repeated iteration themes into 10 non-overla
 - [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts)
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
-- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
+- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - Executive summary: 10 consolidated decisions. `adopt now`: 2. `prototype later`: 2. `NEW FEATURE`: 2. `reject`: 4. The highest-confidence transfers are compaction-time memory action guidance and rewritten startup policy; the highest-confidence rejections are basename-derived scope, `core=true`, and Mnemosyne-style mutation semantics.
 - New information ratio: 0.46
 - Questions addressed: hybrid contract vs wrapper proof, compaction resilience, AGENTS/startup reuse, project/global ergonomics, scope identity stability, inline save ergonomics, constitutional pinning semantics, mutation/audit model, OpenCode facade design, federated retrieval separation, offline readiness tradeoffs
 - Questions answered: Public should borrow Mnemosyne’s behavioral ergonomics, not its authority model. The safe path is `session_bootstrap`-aligned guidance plus a transport-owned compaction memory card, with any future aliases or facades compiled into existing MCP/governance surfaces.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, plus `cannot create temp file for here document: Operation not permitted` from the read-only sandbox.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, plus `cannot create temp file for here document: Operation not permitted` from the read-only sandbox.
 
 ## Reflection
 - What worked: source-first tracing from [`external/src/index.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts) into Public’s transport, bootstrap, save, and mutation handlers made the true boundary obvious: Mnemosyne contributes behavior cues and wrapper ergonomics, not a stronger core memory substrate.

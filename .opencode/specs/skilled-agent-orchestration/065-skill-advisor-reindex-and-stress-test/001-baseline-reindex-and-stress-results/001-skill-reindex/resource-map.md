@@ -51,11 +51,11 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Updated | OK | MCP trust/reload behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Updated | OK | Freshness/trust reporting |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Route projection behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Explicit lane scoring |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback parity |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Updated | OK | MCP trust/reload behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Updated | OK | Freshness/trust reporting |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Route projection behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Explicit lane scoring |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback parity |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -63,6 +63,6 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts` | Updated | OK | Freshness tests |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Native scorer tests |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/handlers/advisor-status.vitest.ts` | Updated | OK | Freshness tests |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Native scorer tests |
 <!-- /ANCHOR:tests -->

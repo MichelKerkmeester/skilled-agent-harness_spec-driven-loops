@@ -4,9 +4,9 @@
 Checked the integrity of the key operator docs after separating the broken build-command issue from general document quality and cross-reference health.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:1-35` -> the validation playbook exists and cross-references the expected runtime parity, timing, privacy, and hook reference surfaces.
-- `.opencode/skill/skill-advisor/feature_catalog/feature_catalog.md:535-676` -> the plugin + observability section is present in-line and points to concrete source files instead of dangling leaf docs.
-- `skill-advisor-hook.md` validated cleanly with `python3 .opencode/skill/sk-doc/scripts/validate_document.py ... --json` -> `valid: true`, `total_issues: 0`.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:1-35` -> the validation playbook exists and cross-references the expected runtime parity, timing, privacy, and hook reference surfaces.
+- `.opencode/skills/skill-advisor/feature_catalog/feature_catalog.md:535-676` -> the plugin + observability section is present in-line and points to concrete source files instead of dangling leaf docs.
+- `skill-advisor-hook.md` validated cleanly with `python3 .opencode/skills/sk-doc/scripts/validate_document.py ... --json` -> `valid: true`, `total_issues: 0`.
 
 ## Findings
 

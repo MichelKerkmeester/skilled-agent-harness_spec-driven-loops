@@ -65,7 +65,7 @@ _memory:
 
 - [x] T005 Create L2 packet docs and metadata. Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `description.json`, `graph-metadata.json`.
 - [x] T006 Patch 005 validator freshness while preserving CHK-T15. Evidence: `../../../005-memory-indexer-invariants/implementation-summary.md`, `../../../005-memory-indexer-invariants/graph-metadata.json`; final 005 strict validator PASS.
-- [x] T007 Attempt 011 validator hygiene pass 1. Evidence: 011 strict validator rerun still fails; recursive validator variable leak identified at `.opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh:39`.
+- [x] T007 Attempt 011 validator hygiene pass 1. Evidence: 011 strict validator rerun still fails; recursive validator variable leak identified at `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh:39`.
 - [B] T008 Attempt 011 validator hygiene pass 2 if pass 1 does not go green. Blocked: required validator-script fix is outside approved 026 write scope.
 - [x] T009 Refresh stale `derived.status` values for completed packets. Evidence: `../001-memory-indexer-storage-boundary/graph-metadata.json`, `../004-tier2-remediation/graph-metadata.json`, `../../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/graph-metadata.json`.
 - [x] T010 Update parent phase maps. Evidence: `../../../000-release-cleanup/spec.md`, `../../../spec.md`.

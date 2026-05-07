@@ -12,17 +12,17 @@ session id: 019ccec8-d09b-79a1-be52-f09a85e72f81
 user
 You are auditing the session-capturing pipeline of a Spec Kit Memory system. Your focus: DATA FLOW & ARCHITECTURE.
 
-The pipeline converts AI conversation state (from OpenCode/Copilot JSON storage) into indexed memory files (.md). The entry point is /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts which calls the workflow in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts.
+The pipeline converts AI conversation state (from OpenCode/Copilot JSON storage) into indexed memory files (.md). The entry point is /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts which calls the workflow in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts.
 
 TASK: Map the COMPLETE data flow from OpenCode session storage → memory file output. Read these files in order:
-1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts (CLI entry, 502 lines)
-2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts (data loading, 195 lines)
-3. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts (data transformation, 499 lines)
-4. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts (orchestration, 950 lines)
-5. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts (OpenCode capture, 539 lines)
-6. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts (session data collection, 836 lines)
-7. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts (output rendering, 201 lines)
-8. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts (file writing, 97 lines)
+1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts (CLI entry, 502 lines)
+2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts (data loading, 195 lines)
+3. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts (data transformation, 499 lines)
+4. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts (orchestration, 950 lines)
+5. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts (OpenCode capture, 539 lines)
+6. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts (session data collection, 836 lines)
+7. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts (output rendering, 201 lines)
+8. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts (file writing, 97 lines)
 
 For each stage, identify:
 - What data enters and exits
@@ -70,16 +70,16 @@ Plan update
   • Trace cross-file data structures to identify dropped fields, dead branches, and error-handling gaps
   • Write the audit with findings in the requested template and include an ASCII data-flow diagram
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg --files -g 'AGENTS.md' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-     502 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
-     195 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
-     499 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-     950 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     539 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-     836 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-     201 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
-      97 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+     502 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
+     195 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
+     499 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+     950 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     539 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+     836 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+     201 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
+      97 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts
     3819 total
  succeeded in 52ms:
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/AGENTS.md
@@ -89,9 +89,9 @@ exec
 codex
 I’ve confirmed the file set and line counts, and there aren’t deeper `AGENTS.md` files covering the `system-spec-kit/scripts` tree. I’m in the code now, starting at the CLI entry and walking downstream so the data-shape changes stay anchored to the real call order.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '361,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '361,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Generate Context
      3	// ---------------------------------------------------------------
@@ -155,10 +155,10 @@ exec
    379	      }
    380	    } catch (error: unknown) {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '361,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '361,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -245,12 +245,12 @@ exec
 codex
 I’ve finished the loader and normalization layer. The important pattern so far is that the pipeline already forks in three ways very early: JSON file, live OpenCode capture, or simulation fallback, and the normalization step starts dropping fidelity as soon as it tries to coerce everything into `observations/userPrompts/recentContext/FILES`.
 exec
-/bin/zsh -lc 'rg -n "''^(export )?(async )?function |''^interface |''^type |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '221,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '441,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '661,880p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '881,1020p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc 'rg -n "''^(export )?(async )?function |''^interface |''^type |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '221,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '441,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '661,880p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '881,1020p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 93:function ensureMinSemanticTopics(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
 113:function ensureMinTriggerPhrases(existing: string[], enhancedFiles: FileChange[], specFolderName: string): string[] {
 149:function normalizeFilePath(rawPath: string): string {
@@ -372,34 +372,34 @@ exec
    679	    triggerSourceParts.push(folderNameForTriggers);
    680	
 exec
-/bin/zsh -lc 'rg -n "''^(export )?(async )?function |''^interface |''^type |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '661,900p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '361,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '221,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '441,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:114:async function pathExists(filePath: string): Promise<boolean> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:126:async function readJsonSafe<T = unknown>(filePath: string): Promise<T | null> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:138:async function readJsonlTail<T = unknown>(filePath: string, limit: number): Promise<T[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:183:async function getRecentPrompts(limit: number = 20): Promise<PromptEntry[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:198:function getProjectId(directory: string): string | null {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:234:async function getRecentSessions(projectId: string, limit: number = 10): Promise<SessionInfo[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:272:async function getCurrentSession(projectId: string): Promise<SessionInfo | null> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:281:async function getSessionMessages(sessionId: string): Promise<MessageInfo[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:326:async function getMessageParts(messageId: string): Promise<Record<string, unknown>[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:361:async function getSessionResponses(sessionId: string): Promise<ResponseInfo[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:387:async function getToolExecutions(sessionId: string): Promise<ToolExecution[]> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:416:function truncateOutput(output: string | undefined, maxLength: number = 500): string {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:424:function calculateDuration(time: Record<string, number> | undefined): number | null {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:433:async function captureConversation(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:476:function buildExchanges(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:154:function getScoreAssessment(score: number | null | undefined, metric: string): string {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:172:function getTrendIndicator(delta: number | null | undefined, invertedBetter: boolean = false): string {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:186:function calculateLearningIndex(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:198:function extractPreflightPostflightData(collectedData: CollectedDataFull | null): PreflightPostflightResult {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:304:function generateLearningSummary(
+/bin/zsh -lc 'rg -n "''^(export )?(async )?function |''^interface |''^type |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '181,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '661,900p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts' | sed -n '361,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '221,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '441,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:114:async function pathExists(filePath: string): Promise<boolean> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:126:async function readJsonSafe<T = unknown>(filePath: string): Promise<T | null> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:138:async function readJsonlTail<T = unknown>(filePath: string, limit: number): Promise<T[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:183:async function getRecentPrompts(limit: number = 20): Promise<PromptEntry[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:198:function getProjectId(directory: string): string | null {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:234:async function getRecentSessions(projectId: string, limit: number = 10): Promise<SessionInfo[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:272:async function getCurrentSession(projectId: string): Promise<SessionInfo | null> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:281:async function getSessionMessages(sessionId: string): Promise<MessageInfo[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:326:async function getMessageParts(messageId: string): Promise<Record<string, unknown>[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:361:async function getSessionResponses(sessionId: string): Promise<ResponseInfo[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:387:async function getToolExecutions(sessionId: string): Promise<ToolExecution[]> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:416:function truncateOutput(output: string | undefined, maxLength: number = 500): string {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:424:function calculateDuration(time: Record<string, number> | undefined): number | null {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:433:async function captureConversation(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:476:function buildExchanges(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:154:function getScoreAssessment(score: number | null | undefined, metric: string): string {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:172:function getTrendIndicator(delta: number | null | undefined, invertedBetter: boolean = false): string {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:186:function calculateLearningIndex(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:198:function extractPreflightPostflightData(collectedData: CollectedDataFull | null): PreflightPostflightResult {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:304:function generateLearningSummary(
  succeeded in 50ms:
    181	------------------------------------------------------------------*/
    182	
@@ -550,9 +550,9 @@ exec
 codex
 The capture layer is now clear enough to see a key architectural split: OpenCode storage is read as rich session/message/part artifacts, but the capture adapter immediately compresses that into a much smaller `exchanges + toolCalls` shape before the main workflow ever sees it. I’m reading the renderer and writer next so I can line up exactly which of those fields survive all the way into the final `.md` and `metadata.json` outputs.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"populateTemplate|renderTemplate|template|mustache|handlebars|replace\\(|writeFilesAtomically|rename|rollback|metadata.json\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts' | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"populateTemplate|renderTemplate|template|mustache|handlebars|replace\\(|writeFilesAtomically|rename|rollback|metadata.json\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -595,48 +595,48 @@ exec
     19	    .replace(/^\|.*\|$/gm, '')                 // table rows (template structure)
     20	    .replace(/^\s*[-*]\s*$/gm, '')             // empty list items
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:4:// Atomic file writing with validation and rollback on failure
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:16:    .replace(FRONTMATTER_BLOCK_RE, '')            // frontmatter
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:17:    .replace(/<!--.*?-->/g, '')                 // HTML comments / anchors
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:18:    .replace(/^#+\s*.*$/gm, '')                // empty headings
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:19:    .replace(/^\|.*\|$/gm, '')                 // table rows (template structure)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:20:    .replace(/^\s*[-*]\s*$/gm, '')             // empty list items
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:24:      `Empty/template-only content in ${filename}: ` +
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:84:      await fs.rename(tempPath, filePath);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4:// Mustache-based template engine — renders memory files from collected session data
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:50:  // "false" strings and empty arrays treated as falsy for template conditionals
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:60:  return text.replace(/\n{3,}/g, '\n\n');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:64:  let result: string = text.replace(/<!--\s*Template Configuration Comments[\s\S]*?-->\s*\n*/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:65:  result = result.replace(/<!--\s*Context Type Detection:[\s\S]*?-->\s*\n*/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:66:  result = result.replace(/<!--\s*Importance Tier Guidelines:[\s\S]*?-->\s*\n*/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:67:  result = result.replace(/<!--\s*Constitutional Tier Promotion:[\s\S]*?-->\s*\n*/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:68:  result = result.replace(/<!--\s*Channel\/Branch Association:[\s\S]*?-->\s*\n*/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:69:  result = result.replace(/<!--\s*SESSION CONTEXT DOCUMENTATION[\s\S]*?-->\s*$/g, '');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:70:  return result.replace(/\n{3,}/g, '\n\n');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77:function renderTemplate(template: string, data: TemplateContext, parentData: TemplateContext = {}): string {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:4:// Atomic file writing with validation and rollback on failure
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:16:    .replace(FRONTMATTER_BLOCK_RE, '')            // frontmatter
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:17:    .replace(/<!--.*?-->/g, '')                 // HTML comments / anchors
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:18:    .replace(/^#+\s*.*$/gm, '')                // empty headings
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:19:    .replace(/^\|.*\|$/gm, '')                 // table rows (template structure)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:20:    .replace(/^\s*[-*]\s*$/gm, '')             // empty list items
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:24:      `Empty/template-only content in ${filename}: ` +
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:84:      await fs.rename(tempPath, filePath);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4:// Mustache-based template engine — renders memory files from collected session data
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:50:  // "false" strings and empty arrays treated as falsy for template conditionals
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:60:  return text.replace(/\n{3,}/g, '\n\n');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:64:  let result: string = text.replace(/<!--\s*Template Configuration Comments[\s\S]*?-->\s*\n*/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:65:  result = result.replace(/<!--\s*Context Type Detection:[\s\S]*?-->\s*\n*/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:66:  result = result.replace(/<!--\s*Importance Tier Guidelines:[\s\S]*?-->\s*\n*/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:67:  result = result.replace(/<!--\s*Constitutional Tier Promotion:[\s\S]*?-->\s*\n*/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:68:  result = result.replace(/<!--\s*Channel\/Branch Association:[\s\S]*?-->\s*\n*/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:69:  result = result.replace(/<!--\s*SESSION CONTEXT DOCUMENTATION[\s\S]*?-->\s*$/g, '');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:70:  return result.replace(/\n{3,}/g, '\n\n');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77:function renderTemplate(template: string, data: TemplateContext, parentData: TemplateContext = {}): string {
 codex
 I’ve got the core pipeline read end-to-end. I’m doing one supporting pass over the template and a few call sites now, because that’s where we can distinguish “data carried through the workflow” from “data actually makes it into the saved memory file,” which matters for the dropped-field findings.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit' | rg 'context_template\\.md"'$|session-types'"\\.ts"'$|session-extractor'"\\.ts"'$|file-extractor'"\\.ts"'$|detect-spec-folder|spec-folder'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"PREFLIGHT_|POSTFLIGHT_|LEARNING_|RESUME_CONTEXT|PENDING_TASKS|SESSION_STATUS|COMPLETION_PERCENT|SPEC_FILES|IMPORTANCE_TIER|CONTEXT_TYPE|RELEVANCE_BOOST|LAST_SEARCH_QUERY|ACCESS_COUNT|TOOL_COUNTS|PROJECT_PHASE|ACTIVE_FILE|LAST_ACTION|NEXT_ACTION|BLOCKERS|FILE_PROGRESS|GRAPH_CONTEXT|MEMORY_TITLE|MEMORY_DASHBOARD_TITLE|QUALITY\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/spec-folder-hierarchy.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/directory-setup.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/index.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/README.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/15--retrieval-enhancements/03-spec-folder-hierarchy-as-retrieval-structure.md
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit' | rg 'context_template\\.md"'$|session-types'"\\.ts"'$|session-extractor'"\\.ts"'$|file-extractor'"\\.ts"'$|detect-spec-folder|spec-folder'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"PREFLIGHT_|POSTFLIGHT_|LEARNING_|RESUME_CONTEXT|PENDING_TASKS|SESSION_STATUS|COMPLETION_PERCENT|SPEC_FILES|IMPORTANCE_TIER|CONTEXT_TYPE|RELEVANCE_BOOST|LAST_SEARCH_QUERY|ACCESS_COUNT|TOOL_COUNTS|PROJECT_PHASE|ACTIVE_FILE|LAST_ACTION|NEXT_ACTION|BLOCKERS|FILE_PROGRESS|GRAPH_CONTEXT|MEMORY_TITLE|MEMORY_DASHBOARD_TITLE|QUALITY\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/spec-folder-hierarchy.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/README.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/03-spec-folder-hierarchy-as-retrieval-structure.md
  succeeded in 51ms:
 2:title: "{{MEMORY_DASHBOARD_TITLE}}"
 8:importance_tier: "{{IMPORTANCE_TIER}}"
@@ -680,55 +680,55 @@ exec
     19	  - "general": fallback when no clear pattern
     20	
 exec
-/bin/zsh -lc "rg -n \"extractConversations|extractDecisions|extractDiagrams|extractPhasesFromData|enhanceFilesWithSemanticDescriptions|extractFilesFromData|buildObservationsWithAnchors|detectSessionCharacteristics\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"_manualDecisions|_manualTriggerPhrases|_sessionId|_capturedAt|sessionTitle|session_title|metadata\\.file_summary|toolCalls|assistant_message_id|user_message_id|mode\\b|parts\\b|summary\\b\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:111:async function extractDecisions(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:399:  extractDecisions,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:401:  extractDecisions as extractDecisions_alias
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:55:function extractPhasesFromData(collectedData: CollectedDataForDiagrams | null): PhaseEntry[] {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:128:async function extractDiagrams(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:172:  const phases = extractPhasesFromData(collectedData);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:231:  extractPhasesFromData,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:232:  extractDiagrams,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:234:  extractPhasesFromData as extractPhasesFromData_alias,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:235:  extractDiagrams as extractDiagrams_alias
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:92:function extractFilesFromData(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:175:function enhanceFilesWithSemanticDescriptions(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:226:function buildObservationsWithAnchors(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:334:  extractFilesFromData,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:335:  enhanceFilesWithSemanticDescriptions,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:336:  buildObservationsWithAnchors,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:14:  extractConversations,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:15:  extractDecisions,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:16:  extractDiagrams,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:17:  extractPhasesFromData,
+/bin/zsh -lc "rg -n \"extractConversations|extractDecisions|extractDiagrams|extractPhasesFromData|enhanceFilesWithSemanticDescriptions|extractFilesFromData|buildObservationsWithAnchors|detectSessionCharacteristics\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"_manualDecisions|_manualTriggerPhrases|_sessionId|_capturedAt|sessionTitle|session_title|metadata\\.file_summary|toolCalls|assistant_message_id|user_message_id|mode\\b|parts\\b|summary\\b\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:111:async function extractDecisions(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:399:  extractDecisions,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:401:  extractDecisions as extractDecisions_alias
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:55:function extractPhasesFromData(collectedData: CollectedDataForDiagrams | null): PhaseEntry[] {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:128:async function extractDiagrams(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:172:  const phases = extractPhasesFromData(collectedData);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:231:  extractPhasesFromData,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:232:  extractDiagrams,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:234:  extractPhasesFromData as extractPhasesFromData_alias,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:235:  extractDiagrams as extractDiagrams_alias
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:92:function extractFilesFromData(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:175:function enhanceFilesWithSemanticDescriptions(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:226:function buildObservationsWithAnchors(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:334:  extractFilesFromData,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:335:  enhanceFilesWithSemanticDescriptions,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:336:  buildObservationsWithAnchors,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:14:  extractConversations,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:15:  extractDecisions,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:16:  extractDiagrams,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:17:  extractPhasesFromData,
  succeeded in 51ms:
 Total output lines: 684
 
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/wrap-all-templates.sh:24:  for template in spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md; do
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/README.md:107:JSON mode is also supported:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/scripts-registry.json:33:      "outputs": ["Scan summary", "Indexed/updated counts", "Per-file status"],
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:160:        console.log(`   \u2713 Session: ${conversation.sessionTitle || 'Unnamed'}`);
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:181:  console.log('   \u26A0\uFE0F  Using fallback simulation mode');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:182:  console.warn('[generate-context] WARNING: Using simulation mode - placeholder data generated');
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/README.md:32:The `kpi/` directory contains shell scripts that compute quality health metrics across memory files in the specs tree. The primary script, `quality-kpi.sh`, walks all `.md` files inside `memory/` subdirectories and reports defect rates as JSON plus a one-line stderr summary.
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/ops/ops-common.sh:73:    local summary="$3"
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/ops/ops-common.sh:76:    payload="$(printf '{"event":"RECOVERY_COMPLETE","failure_class":"%s","owner":"%s","summary":"%s","timestamp":"%s"}' \
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/ops/ops-common.sh:79:        "$(ops_json_escape "$summary")" \
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh:4:# Computes memory quality KPI rates and prints JSON + summary
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:42:#   implementation-summary.md: Copy impl-summary-core.md (no addendums)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:129:  Level 1:  Core templates only (spec, plan, tasks, impl-summary)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:155:# Print only if verbose mode is enabled (to stderr to avoid polluting stdout)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:632:# compose_impl_summary()
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:633:# Copy impl-summary-core.md (no addendums exist)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/compose.sh:634:compose_impl_summary() {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/wrap-all-templates.sh:24:  for template in spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md; do
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/README.md:107:JSON mode is also supported:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/scripts-registry.json:33:      "outputs": ["Scan summary", "Indexed/updated counts", "Per-file status"],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:160:        console.log(`   \u2713 Session: ${conversation.sessionTitle || 'Unnamed'}`);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:181:  console.log('   \u26A0\uFE0F  Using fallback simulation mode');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:182:  console.warn('[generate-context] WARNING: Using simulation mode - placeholder data generated');
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/README.md:32:The `kpi/` directory contains shell scripts that compute quality health metrics across memory files in the specs tree. The primary script, `quality-kpi.sh`, walks all `.md` files inside `memory/` subdirectories and reports defect rates as JSON plus a one-line stderr summary.
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/README.md:69:- **stderr** -- One-line summary: `KPI Summary: files=N, placeholder=N%, fallback=N%, contamination=N%, empty_trigger=N%`
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/ops/ops-common.sh:73:    local summary="$3"
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/ops/ops-common.sh:76:    payload="$(printf '{"event":"RECOVERY_COMPLETE","failure_class":"%s","owner":"%s","summary":"%s","timestamp":"%s"}' \
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/ops/ops-common.sh:79:        "$(ops_json_escape "$summary")" \
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh:4:# Computes memory quality KPI rates and prints JSON + summary
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:42:#   implementation-summary.md: Copy impl-summary-core.md (no addendums)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:129:  Level 1:  Core templates only (spec, plan, tasks, impl-summary)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:155:# Print only if verbose mode is enabled (to stderr to avoid polluting stdout)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:632:# compose_impl_summary()
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:633:# Copy impl-summary-core.md (no addendums exist)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/compose.sh:634:compose_impl_summary() {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts' | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: File Extractor
      3	// ---------------------------------------------------------------
@@ -834,9 +834,9 @@ exec
     19	function notifyDatabaseUpdated(): void {
     20	  try {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts' | sed -n '260,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '280,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' | sed -n '280,820p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts' | sed -n '260,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts' | sed -n '280,380p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' | sed -n '280,820p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    280	    const title = (obs.title || '').trim();
    281	    // Skip empty titles
    282	    if (!title) {
@@ -963,7 +963,7 @@ argv / CONFIG / optional JSON file
 ```
 
 ### FINDING-01: Post-render cleanup deletes anchors and valid markup
-- **File:** [workflow.ts:790](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L790), [file-writer.ts:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L68), [memory-indexer.ts:91](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L91)
+- **File:** [workflow.ts:790](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L790), [file-writer.ts:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L68), [memory-indexer.ts:91](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L91)
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** After rendering, the workflow runs `/<[^>]+>/g` over the whole markdown, which removes `<a id=...>` tags, `<!-- ANCHOR:... -->` comments, and any legitimate HTML/XML/JSX-like content before writing and indexing.
@@ -973,7 +973,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: OpenCode capture schema does not match the normalizer contract
-- **File:** [opencode-capture.ts:77](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L77), [data-loader.ts:40](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L40), [input-normalizer.ts:106](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L106)
+- **File:** [opencode-capture.ts:77](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L77), [data-loader.ts:40](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L40), [input-normalizer.ts:106](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L106)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `captureConversation()` returns `session_id/session_title/captured_at`, but the loader and normalizer expect `sessionId/sessionTitle/capturedAt`. Live-capture memories therefore lose real session title/id/timestamp provenance.
@@ -983,7 +983,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Explicit input failures silently fall through to capture or simulation
-- **File:** [data-loader.ts:76](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L76)
+- **File:** [data-loader.ts:76](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L76)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** If a user-supplied JSON file is missing, invalid, or rejected by path validation, the loader only logs warnings and then tries live capture; if that fails, it emits simulation data and the workflow still writes a memory file.
@@ -993,7 +993,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Session reconstruction is lossy and can mispair prompts
-- **File:** [opencode-capture.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L183), [opencode-capture.ts:433](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L433), [opencode-capture.ts:476](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L476)
+- **File:** [opencode-capture.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L183), [opencode-capture.ts:433](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L433), [opencode-capture.ts:476](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L476)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Prompt history is global, matched to user messages only by a 5-second timestamp window, assistant text is truncated to 500 chars, only one response is paired per user message, and tool calls are sliced to the last `maxMessages * 3`.
@@ -1003,7 +1003,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** LARGE (>2 hr)
 
 ### FINDING-05: Spec-folder keyword filtering drops valid current-session content
-- **File:** [input-normalizer.ts:353](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L353)
+- **File:** [input-normalizer.ts:353](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L353)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** When `specFolderHint` is present, tool calls and assistant exchanges are kept only if file paths, titles, prompts, or responses happen to contain folder-derived keywords.
@@ -1013,7 +1013,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: The resolved spec folder is not reused inside session collection
-- **File:** [workflow.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L446), [collect-session-data.ts:620](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L620), [collect-session-data.ts:723](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L723)
+- **File:** [workflow.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L446), [collect-session-data.ts:620](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L620), [collect-session-data.ts:723](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L723)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `runWorkflow()` resolves the target spec folder, but `collectSessionData()` only builds `specFolderPath` from `collectedData.SPEC_FOLDER`. Live capture payloads usually do not include that field, so related docs and spec-file context are skipped.
@@ -1023,7 +1023,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Partially normalized JSON drops manual decisions and trigger phrases
-- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L222), [decision-extractor.ts:114](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L114), [memory-indexer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L66)
+- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L222), [decision-extractor.ts:114](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L114), [memory-indexer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L66)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If incoming JSON already has `userPrompts`, `observations`, or `recentContext`, `normalizeInputData()` returns early and never copies `keyDecisions` or `triggerPhrases` into `_manualDecisions/_manualTriggerPhrases`.
@@ -1033,7 +1033,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Workflow visualization data is computed but never renderable
-- **File:** [workflow.ts:525](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L525), [context_template.md:174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L174), [context_template.md:375](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L375)
+- **File:** [workflow.ts:525](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L525), [context_template.md:174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L174), [context_template.md:375](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L375)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** The workflow spends work generating `WORKFLOW_FLOWCHART`, `PATTERN_TYPE`, `PHASES`, `FEATURES`, and `USE_CASES`, but hardcodes `HAS_WORKFLOW_DIAGRAM: false`, so the entire template section is unreachable.
@@ -1043,7 +1043,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Multi-file output is not actually atomic
-- **File:** [file-writer.ts:58](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L58)
+- **File:** [file-writer.ts:58](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L58)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Each file is individually written via temp-rename, but if the second file fails, the first file remains committed. The comment says “rollback on failure,” but earlier successful writes are never reverted.
@@ -1053,7 +1053,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Capture I/O does repeated full scans and builds extra transient shapes
-- **File:** [opencode-capture.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L138), [opencode-capture.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L281), [opencode-capture.ts:451](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L451)
+- **File:** [opencode-capture.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L138), [opencode-capture.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L281), [opencode-capture.ts:451](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L451)
 - **Severity:** MEDIUM
 - **Category:** PERFORMANCE
 - **Current Behavior:** `captureConversation()` reads messages once, then `getSessionResponses()` and `getToolExecutions()` each re-read messages and re-read parts. `readJsonlTail()` also scans the full JSONL file despite only needing the tail. The data then passes through multiple short-lived shapes before normalization.
@@ -1131,7 +1131,7 @@ argv / CONFIG / optional JSON file
 ```
 
 ### FINDING-01: Post-render cleanup deletes anchors and valid markup
-- **File:** [workflow.ts:790](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L790), [file-writer.ts:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L68), [memory-indexer.ts:91](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L91)
+- **File:** [workflow.ts:790](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L790), [file-writer.ts:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L68), [memory-indexer.ts:91](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L91)
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** After rendering, the workflow runs `/<[^>]+>/g` over the whole markdown, which removes `<a id=...>` tags, `<!-- ANCHOR:... -->` comments, and any legitimate HTML/XML/JSX-like content before writing and indexing.
@@ -1141,7 +1141,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: OpenCode capture schema does not match the normalizer contract
-- **File:** [opencode-capture.ts:77](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L77), [data-loader.ts:40](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L40), [input-normalizer.ts:106](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L106)
+- **File:** [opencode-capture.ts:77](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L77), [data-loader.ts:40](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L40), [input-normalizer.ts:106](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L106)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `captureConversation()` returns `session_id/session_title/captured_at`, but the loader and normalizer expect `sessionId/sessionTitle/capturedAt`. Live-capture memories therefore lose real session title/id/timestamp provenance.
@@ -1151,7 +1151,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Explicit input failures silently fall through to capture or simulation
-- **File:** [data-loader.ts:76](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L76)
+- **File:** [data-loader.ts:76](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L76)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** If a user-supplied JSON file is missing, invalid, or rejected by path validation, the loader only logs warnings and then tries live capture; if that fails, it emits simulation data and the workflow still writes a memory file.
@@ -1161,7 +1161,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Session reconstruction is lossy and can mispair prompts
-- **File:** [opencode-capture.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L183), [opencode-capture.ts:433](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L433), [opencode-capture.ts:476](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L476)
+- **File:** [opencode-capture.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L183), [opencode-capture.ts:433](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L433), [opencode-capture.ts:476](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L476)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Prompt history is global, matched to user messages only by a 5-second timestamp window, assistant text is truncated to 500 chars, only one response is paired per user message, and tool calls are sliced to the last `maxMessages * 3`.
@@ -1171,7 +1171,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** LARGE (>2 hr)
 
 ### FINDING-05: Spec-folder keyword filtering drops valid current-session content
-- **File:** [input-normalizer.ts:353](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L353)
+- **File:** [input-normalizer.ts:353](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L353)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** When `specFolderHint` is present, tool calls and assistant exchanges are kept only if file paths, titles, prompts, or responses happen to contain folder-derived keywords.
@@ -1181,7 +1181,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: The resolved spec folder is not reused inside session collection
-- **File:** [workflow.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L446), [collect-session-data.ts:620](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L620), [collect-session-data.ts:723](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L723)
+- **File:** [workflow.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L446), [collect-session-data.ts:620](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L620), [collect-session-data.ts:723](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L723)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `runWorkflow()` resolves the target spec folder, but `collectSessionData()` only builds `specFolderPath` from `collectedData.SPEC_FOLDER`. Live capture payloads usually do not include that field, so related docs and spec-file context are skipped.
@@ -1191,7 +1191,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Partially normalized JSON drops manual decisions and trigger phrases
-- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L222), [decision-extractor.ts:114](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L114), [memory-indexer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L66)
+- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L222), [decision-extractor.ts:114](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L114), [memory-indexer.ts:66](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L66)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If incoming JSON already has `userPrompts`, `observations`, or `recentContext`, `normalizeInputData()` returns early and never copies `keyDecisions` or `triggerPhrases` into `_manualDecisions/_manualTriggerPhrases`.
@@ -1201,7 +1201,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Workflow visualization data is computed but never renderable
-- **File:** [workflow.ts:525](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L525), [context_template.md:174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L174), [context_template.md:375](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L375)
+- **File:** [workflow.ts:525](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L525), [context_template.md:174](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L174), [context_template.md:375](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L375)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** The workflow spends work generating `WORKFLOW_FLOWCHART`, `PATTERN_TYPE`, `PHASES`, `FEATURES`, and `USE_CASES`, but hardcodes `HAS_WORKFLOW_DIAGRAM: false`, so the entire template section is unreachable.
@@ -1211,7 +1211,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Multi-file output is not actually atomic
-- **File:** [file-writer.ts:58](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L58)
+- **File:** [file-writer.ts:58](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L58)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Each file is individually written via temp-rename, but if the second file fails, the first file remains committed. The comment says “rollback on failure,” but earlier successful writes are never reverted.
@@ -1221,7 +1221,7 @@ argv / CONFIG / optional JSON file
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Capture I/O does repeated full scans and builds extra transient shapes
-- **File:** [opencode-capture.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L138), [opencode-capture.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L281), [opencode-capture.ts:451](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L451)
+- **File:** [opencode-capture.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L138), [opencode-capture.ts:281](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L281), [opencode-capture.ts:451](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L451)
 - **Severity:** MEDIUM
 - **Category:** PERFORMANCE
 - **Current Behavior:** `captureConversation()` reads messages once, then `getSessionResponses()` and `getToolExecutions()` each re-read messages and re-read parts. `readJsonlTail()` also scans the full JSONL file despite only needing the tail. The data then passes through multiple short-lived shapes before normalization.

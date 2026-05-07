@@ -1,7 +1,7 @@
 {
   "id": "orchestrate",
   "family": "derived",
-  "targetPath": ".opencode/agent/orchestrate.md",
+  "targetPath": ".opencode/agents/orchestrate.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

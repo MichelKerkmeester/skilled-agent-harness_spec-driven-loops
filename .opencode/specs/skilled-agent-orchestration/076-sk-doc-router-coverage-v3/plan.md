@@ -143,7 +143,7 @@ Net effect on the 51-cell sweep: numbers shift by less than ±5pp from v2, confi
 If matrix run produces invalid logs or v3 extractor crashes on edge cases:
 - The packet is purely additive (no edits to 071/072 logs)
 - `rm -rf 076/` removes all packet artifacts cleanly
-- The 2 new scenario files at `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/00[45]-*.md` can be deleted
+- The 2 new scenario files at `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/00[45]-*.md` can be deleted
 - `manual_testing_playbook.md` index update can be reverted via git revert
 
 Per memory rule: DELETE not archive. No `.bak`, no `_deprecated`, no commented-out paths.

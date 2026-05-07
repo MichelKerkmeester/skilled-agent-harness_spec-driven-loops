@@ -454,7 +454,7 @@ The following phrases and patterns should trigger SpecKit skill loading and spec
 
 ### 17.2 Template Improvements Planned
 
-**Target:** `.opencode/skill/system-spec-kit/templates/context_template.md`
+**Target:** `.opencode/skills/system-spec-kit/templates/context_template.md`
 
 | Priority | Section/Field | Purpose |
 |----------|---------------|---------|
@@ -466,7 +466,7 @@ The following phrases and patterns should trigger SpecKit skill loading and spec
 
 ### 17.3 Command Documentation Planned
 
-**Target:** `.opencode/command/memory/save.md`
+**Target:** `.opencode/commands/memory/save.md`
 
 | Priority | Addition | Purpose |
 |----------|----------|---------|
@@ -508,7 +508,7 @@ Test planning and coverage documentation is consolidated in the `tests/` subdire
 | `tests/test-implementation-guide.md` | Test patterns, mocking, templates |
 | `tests/existing-tests-audit.md` | Audit of 29 existing test files |
 
-**Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+**Test Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
 
 ### Coverage Summary
 

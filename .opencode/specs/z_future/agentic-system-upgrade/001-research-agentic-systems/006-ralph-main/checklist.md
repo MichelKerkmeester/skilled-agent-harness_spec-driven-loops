@@ -49,7 +49,7 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 ## Verification
 
-- [x] CHK-030 [P0] Strict packet validation passed [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exited 0 after the packet-root repair.]
+- [x] CHK-030 [P0] Strict packet validation passed [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exited 0 after the packet-root repair.]
 - [x] CHK-031 [P1] Output contract totals documented explicitly [Evidence: the dashboard and report both record Phase 3 totals and combined totals.]
 - [ ] CHK-032 [P2] Memory save completed [Evidence: intentionally not performed in this turn.]
 <!-- /ANCHOR:verification -->

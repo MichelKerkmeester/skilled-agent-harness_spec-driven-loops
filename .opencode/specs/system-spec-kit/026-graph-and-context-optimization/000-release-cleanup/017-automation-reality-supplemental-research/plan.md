@@ -38,7 +38,7 @@ _memory:
 | **Language/Stack** | Markdown research artifacts, JSONL state, shell validator |
 | **Framework** | system-spec-kit deep research packet (continuation of 012) |
 | **Storage** | Packet-local `research/` tree and spec docs |
-| **Testing** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 | **Executor** | cli-codex `gpt-5.5` reasoning=`xhigh` service-tier=`fast` |
 
 ### Overview

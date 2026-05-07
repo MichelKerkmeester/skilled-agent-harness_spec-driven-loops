@@ -20,7 +20,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 > **Placeholder.** This document is scaffolded at charter time and will be filled after the 001 research wave converges and implementation children (`019/002-*`, `019/003-*`, ...) ship. See `spec.md §4 Requirements REQ-002` for the research-first gating rule.
 
@@ -77,7 +77,7 @@ Additional decisions recorded after research convergence will be appended here.
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening --strict` | TBD (pending charter approval + child packet scaffold) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening --strict` | TBD (pending charter approval + child packet scaffold) |
 | 001 research convergence | TBD |
 | Implementation-child completeness | TBD |
 <!-- /ANCHOR:verification -->

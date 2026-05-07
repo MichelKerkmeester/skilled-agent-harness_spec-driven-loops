@@ -6,7 +6,7 @@ I filtered out the already-written write-side races from Iterations 031-037 and 
 ## Findings
 
 ### Finding R38-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
 - **Lines:** `hook-state.ts:131-165`; `session-resume.ts:348-366`
 - **Severity:** P2
 - **Description:** `loadMostRecentState()` is still all-or-nothing under concurrent file churn. The function wraps the entire directory scan in one `try` block, so a single `statSync`, `readFileSync`, or `JSON.parse` failure on any sibling state file aborts the whole lookup and returns `null`, even if another matching state file is still valid. That turns one transient concurrent delete/replace/read failure into a false cold-start result for all cached-summary consumers.
@@ -14,7 +14,7 @@ I filtered out the already-written write-side races from Iterations 031-037 and 
 - **Downstream Impact:** One disappearing or unreadable sibling file in the hook-state directory can make resume/startup logic behave as if there is no recoverable recent state at all. That degrades continuity reuse, cached summary recovery, and packet targeting even when a valid matching state file still exists.
 
 ### Finding R38-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts`
 - **Lines:** `hook-state.ts:243-263`; `session-stop.ts:321-328`; `hooks/gemini/session-stop.ts:77-84`
 - **Severity:** P2
 - **Description:** Stale-state cleanup is also single-failure fragile. `cleanStaleStates()` wraps the whole sweep in one `try` block, so one concurrent `statSync`/`unlinkSync` failure aborts the remaining cleanup pass and returns a partial `removed` count without any indication that later files were skipped. Both Claude and Gemini `session-stop --finalize` modes trust that count as the cleanup result.

@@ -98,7 +98,7 @@ _memory:
 
 - [x] T007b [P] G-NEW-2 pre-analysis: Lightweight agent consumption pattern survey — analyze how AI agents currently consume memory search results (query patterns, selection behavior, ignored results). Examine recent agent query logs, CLAUDE.md routing patterns, and skill definitions. Document top 5-10 consumption patterns. Findings feed into ground truth query design (T007). [3-4h] — G-NEW-2 pre-analysis
   - Acceptance: Pattern report produced with >=5 identified consumption patterns
-  - Implementation hint: Check `memory_search` call sites in `.opencode/skill/` and `.claude/agents/` for query construction patterns
+  - Implementation hint: Check `memory_search` call sites in `.opencode/skills/` and `.claude/agents/` for query construction patterns
   - Fallback: If no agent logs available, enumerate patterns manually from CLAUDE.md and skill advisor routing logic
 
 ---

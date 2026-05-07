@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-a6ac-72d3-a55e-3c81e5bfdaec
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts (400 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts (400 lines).
 
 This file extracts architectural decisions from conversation text.
 
@@ -56,8 +56,8 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m going to do a full line-by-line audit of that `decision-extractor.ts` file now, focusing on the six areas you listed, then I’ll return a findings-first report in your exact format. I’ll start by reading the entire file with line numbers so each finding can point to precise locations.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-     400 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+     400 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
      1	// ---------------------------------------------------------------
      2	// MODULE: Decision Extractor
      3	// ---------------------------------------------------------------
@@ -79,7 +79,7 @@ exec
     19	------------------------------------------------------------------*/
 codex
 ### FINDING-01: Overly Broad Cue `we'll` Causes Frequent False Positives
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any sentence containing `we'll` can be treated as a decision cue.
@@ -89,7 +89,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Cue Regex Lacks Word Boundaries
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Substring matches can trigger (e.g., `selectedIndex`, `adoption`).
@@ -99,7 +99,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: No Negation Handling in Decision Cue Detection
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Phrases like `not decided yet` still trigger extraction.
@@ -109,7 +109,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Decision Cue Vocabulary Is Incomplete
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Common forms like `choose`, `chosen`, `opted`, `settled on`, `approved`, `finalized` are missed.
@@ -119,7 +119,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Only First Cue in Text Is Processed
-- **File:** [decision-extractor.ts#L43](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L43)
+- **File:** [decision-extractor.ts#L43](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L43)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `text.match(...)` captures only first cue; additional decisions in same text are ignored.
@@ -129,7 +129,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: Sentence Boundary Detection Ignores Newlines/Bullets
-- **File:** [decision-extractor.ts#L52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L52)
+- **File:** [decision-extractor.ts#L52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L52)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Uses only `. ! ?` to find sentence start/end.
@@ -139,7 +139,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: End-of-Sentence Detection Breaks on Abbreviations/Decimals
-- **File:** [decision-extractor.ts#L53](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L53)
+- **File:** [decision-extractor.ts#L53](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L53)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Stops at first punctuation after cue, including `e.g.` or version numbers.
@@ -149,7 +149,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Hard 200-Character Truncation Loses Key Context
-- **File:** [decision-extractor.ts#L63](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L63)
+- **File:** [decision-extractor.ts#L63](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L63)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Extracted sentence is always clipped to 200 chars.
@@ -159,7 +159,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Option Detection Is Case-Sensitive and Narrow
-- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
+- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Only `Option`/`Alternative` exact casing are recognized.
@@ -169,7 +169,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-10: Options Are Ignored Unless in `facts`
-- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
+- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Options present in narrative are not parsed.
@@ -179,7 +179,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: `CHOSEN` Extraction Is Fragile and Fallback Is Incorrectly Generic
-- **File:** [decision-extractor.ts#L252](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L252), [decision-extractor.ts#L253](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L253)
+- **File:** [decision-extractor.ts#L252](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L252), [decision-extractor.ts#L253](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L253)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** If regex misses, `CHOSEN` becomes label (`Chosen Approach`) instead of actual chosen content.
@@ -189,7 +189,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Rationale Parsing Is Over-Simplified and Boundary-Unsafe
-- **File:** [decision-extractor.ts#L255](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L255)
+- **File:** [decision-extractor.ts#L255](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L255)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Matches first `because|rationale|reason`, then cuts at first period/newline.
@@ -199,7 +199,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Confidence Defaults Are Hardcoded (80/75) Instead of Derived
-- **File:** [decision-extractor.ts#L168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L168), [decision-extractor.ts#L259](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L259)
+- **File:** [decision-extractor.ts#L168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L168), [decision-extractor.ts#L259](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L259)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Manual decisions always `80`; non-explicit auto decisions default to `75`.
@@ -209,7 +209,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-14: Parsed Confidence Is Not Validated/Clamped
-- **File:** [decision-extractor.ts#L258](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L258)
+- **File:** [decision-extractor.ts#L258](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L258)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `confidence: 999` is accepted as-is.
@@ -219,7 +219,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-15: No Semantic Deduplication of Decisions
-- **File:** [decision-extractor.ts#L205](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L205)
+- **File:** [decision-extractor.ts#L205](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L205)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Repeated observations/prompts produce duplicate decision records.
@@ -229,7 +229,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-16: Lexical Extraction Is Disabled If Any `type=decision` Observation Exists
-- **File:** [decision-extractor.ts#L197](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L197), [decision-extractor.ts#L201](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L201)
+- **File:** [decision-extractor.ts#L197](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L197), [decision-extractor.ts#L201](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L201)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Presence of one explicit decision observation blocks lexical extraction entirely.
@@ -239,7 +239,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-17: Manual Decision `CONTEXT` Drops Surrounding Context
-- **File:** [decision-extractor.ts#L139](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L139), [decision-extractor.ts#L159](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L159)
+- **File:** [decision-extractor.ts#L139](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L139), [decision-extractor.ts#L159](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L159)
 - **Severity:** HIGH
 - **Category:** QUALITY
 - **Current Behavior:** Manual context is derived from title/rationale split, not full source decision text/context.
@@ -249,7 +249,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-18: Lexical Decision Metadata Uses Synthetic Timestamp and Minimal Facts
-- **File:** [decision-extractor.ts#L91](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L91), [decision-extractor.ts#L92](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L92)
+- **File:** [decision-extractor.ts#L91](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L91), [decision-extractor.ts#L92](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L92)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Lexical candidates use extraction-time timestamp and only `Source: ... lexical cue`.
@@ -268,7 +268,7 @@ codex
 tokens used
 24,650
 ### FINDING-01: Overly Broad Cue `we'll` Causes Frequent False Positives
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any sentence containing `we'll` can be treated as a decision cue.
@@ -278,7 +278,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Cue Regex Lacks Word Boundaries
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Substring matches can trigger (e.g., `selectedIndex`, `adoption`).
@@ -288,7 +288,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: No Negation Handling in Decision Cue Detection
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Phrases like `not decided yet` still trigger extraction.
@@ -298,7 +298,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Decision Cue Vocabulary Is Incomplete
-- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
+- **File:** [decision-extractor.ts#L36](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L36)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Common forms like `choose`, `chosen`, `opted`, `settled on`, `approved`, `finalized` are missed.
@@ -308,7 +308,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Only First Cue in Text Is Processed
-- **File:** [decision-extractor.ts#L43](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L43)
+- **File:** [decision-extractor.ts#L43](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L43)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `text.match(...)` captures only first cue; additional decisions in same text are ignored.
@@ -318,7 +318,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: Sentence Boundary Detection Ignores Newlines/Bullets
-- **File:** [decision-extractor.ts#L52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L52)
+- **File:** [decision-extractor.ts#L52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L52)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Uses only `. ! ?` to find sentence start/end.
@@ -328,7 +328,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: End-of-Sentence Detection Breaks on Abbreviations/Decimals
-- **File:** [decision-extractor.ts#L53](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L53)
+- **File:** [decision-extractor.ts#L53](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L53)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Stops at first punctuation after cue, including `e.g.` or version numbers.
@@ -338,7 +338,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Hard 200-Character Truncation Loses Key Context
-- **File:** [decision-extractor.ts#L63](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L63)
+- **File:** [decision-extractor.ts#L63](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L63)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Extracted sentence is always clipped to 200 chars.
@@ -348,7 +348,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: Option Detection Is Case-Sensitive and Narrow
-- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
+- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Only `Option`/`Alternative` exact casing are recognized.
@@ -358,7 +358,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-10: Options Are Ignored Unless in `facts`
-- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
+- **File:** [decision-extractor.ts#L209](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L209)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Options present in narrative are not parsed.
@@ -368,7 +368,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: `CHOSEN` Extraction Is Fragile and Fallback Is Incorrectly Generic
-- **File:** [decision-extractor.ts#L252](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L252), [decision-extractor.ts#L253](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L253)
+- **File:** [decision-extractor.ts#L252](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L252), [decision-extractor.ts#L253](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L253)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** If regex misses, `CHOSEN` becomes label (`Chosen Approach`) instead of actual chosen content.
@@ -378,7 +378,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Rationale Parsing Is Over-Simplified and Boundary-Unsafe
-- **File:** [decision-extractor.ts#L255](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L255)
+- **File:** [decision-extractor.ts#L255](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L255)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Matches first `because|rationale|reason`, then cuts at first period/newline.
@@ -388,7 +388,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Confidence Defaults Are Hardcoded (80/75) Instead of Derived
-- **File:** [decision-extractor.ts#L168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L168), [decision-extractor.ts#L259](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L259)
+- **File:** [decision-extractor.ts#L168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L168), [decision-extractor.ts#L259](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L259)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Manual decisions always `80`; non-explicit auto decisions default to `75`.
@@ -398,7 +398,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-14: Parsed Confidence Is Not Validated/Clamped
-- **File:** [decision-extractor.ts#L258](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L258)
+- **File:** [decision-extractor.ts#L258](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L258)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `confidence: 999` is accepted as-is.
@@ -408,7 +408,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-15: No Semantic Deduplication of Decisions
-- **File:** [decision-extractor.ts#L205](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L205)
+- **File:** [decision-extractor.ts#L205](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L205)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Repeated observations/prompts produce duplicate decision records.
@@ -418,7 +418,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-16: Lexical Extraction Is Disabled If Any `type=decision` Observation Exists
-- **File:** [decision-extractor.ts#L197](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L197), [decision-extractor.ts#L201](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L201)
+- **File:** [decision-extractor.ts#L197](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L197), [decision-extractor.ts#L201](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L201)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Presence of one explicit decision observation blocks lexical extraction entirely.
@@ -428,7 +428,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-17: Manual Decision `CONTEXT` Drops Surrounding Context
-- **File:** [decision-extractor.ts#L139](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L139), [decision-extractor.ts#L159](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L159)
+- **File:** [decision-extractor.ts#L139](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L139), [decision-extractor.ts#L159](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L159)
 - **Severity:** HIGH
 - **Category:** QUALITY
 - **Current Behavior:** Manual context is derived from title/rationale split, not full source decision text/context.
@@ -438,7 +438,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-18: Lexical Decision Metadata Uses Synthetic Timestamp and Minimal Facts
-- **File:** [decision-extractor.ts#L91](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L91), [decision-extractor.ts#L92](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts#L92)
+- **File:** [decision-extractor.ts#L91](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L91), [decision-extractor.ts#L92](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts#L92)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Lexical candidates use extraction-time timestamp and only `Source: ... lexical cue`.

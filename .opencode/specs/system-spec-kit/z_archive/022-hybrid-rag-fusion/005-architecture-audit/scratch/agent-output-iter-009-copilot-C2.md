@@ -5,23 +5,23 @@ I’m auditing the two Vitest suites now: inventorying tests, mapping them to so
 ● Search (grep)
   │ "\b(fixtures?|__fixtures__|mock[A-Z]|fake[A-Z]|vi\.mock|setTimeout|Date\.|performance\.now|Math\
   │ .random|sleep|waitFor|beforeAll|afterAll|describe\.serial|test\.concurrent|it\.concurrent)\b" in
-  │ **/*.{test,spec,vitest}.ts (.opencode/skill/system-spec-kit)
+  │ **/*.{test,spec,vitest}.ts (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
-  │ "\b(describe|it|test)\s*\(" in **/*.{test,spec,vitest}.ts (.opencode/skill/system-spec-kit)
+  │ "\b(describe|it|test)\s*\(" in **/*.{test,spec,vitest}.ts (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/**/*.ts"
   └ 138 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/**/*"
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/**/*"
   └ 6 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/**/*.ts"
   └ 6 files found
 
 ● Search (glob)
@@ -29,45 +29,45 @@ I’m auditing the two Vitest suites now: inventorying tests, mapping them to so
   └ 1 file found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/tests/**/*"
+  │ ".opencode/skills/system-spec-kit/scripts/tests/**/*"
   └ 154 files found
 
 I’ve got the inventory; next I’m sampling representative tests plus package/config files so I can judge naming, fixture style, and how the suites are actually organized.
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/mcp_server/package.json
+  │ .opencode/skills/system-spec-kit/mcp_server/package.json
   └ 59 lines read
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/scripts/package.json
+  │ .opencode/skills/system-spec-kit/scripts/package.json
   └ 28 lines read
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/scripts/tests/README.md
+  │ .opencode/skills/system-spec-kit/scripts/tests/README.md
   └ 115 lines read
 
 ● Read vitest.config.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/vitest.config.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/vitest.config.ts
   └ 23 lines read
 
 ● Read workflow-e2e.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read test-integration.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/test-integration.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/test-integration.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read memory-render-fixture.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts
   └ L1:240 (240 lines read)
 
 ● Read input-normalizer-unit.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts
   └ L1:220 (194 lines read)
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts"
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts"
   └ 6 files found
 
 I’m switching from spot checks to a repo-wide pass now: generating an import-based source→test map so the coverage-gap findings are evidence-backed rather than just filename guesses.
@@ -75,51 +75,51 @@ I’m switching from spot checks to a repo-wide pass now: generating an import-b
 ● Search (grep)
   │ "\b(not\.toThrow|toThrow|toBeTruthy\(|toBeDefined\(|toBeGreaterThan\(0\)|toContain\(|toEqual\(|t
   │ oMatchObject\(|toStrictEqual\()" in **/*.{vitest,js,py,sh}.ts
-  │ (.opencode/skill/system-spec-kit/scripts/tests)
+  │ (.opencode/skills/system-spec-kit/scripts/tests)
   └ 5 lines found
 
 ● Search (grep)
   │ "\b(not\.toThrow|toThrow|toBeTruthy\(|toBeDefined\(|toBeGreaterThan\(0\)|toContain\(|toEqual\(|t
   │ oMatchObject\(|toStrictEqual\()" in **/*.vitest.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Summarize tests and import-based source coverage (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3 - <<'PY'
   │ from pathlib import Path
   │ import json, re
-  │ root = Path('.opencode/skill/system-spec-kit')…
+  │ root = Path('.opencode/skills/system-spec-kit')…
   └ 82 lines...
 
 The first coverage script tripped on a path-normalization bug, so I’m rerunning it with a stricter parser and also pulling the specific files that look most likely to reveal flakiness or weak assertions.
 
 ● Search (grep)
   │ "\b(beforeAll|afterAll|beforeEach|afterEach|describe\.skip|it\.skip|test\.skip|describe\.concurr
-  │ ent|it\.concurrent|test\.concurrent)\b" (.opencode/skill/system-spec-kit/scripts/tests)
+  │ ent|it\.concurrent|test\.concurrent)\b" (.opencode/skills/system-spec-kit/scripts/tests)
   └ 64 lines found
 
 ● Search (grep)
   │ "\b(Date\.now|new
   │ Date\(|setTimeout|setInterval|performance\.now|Math\.random|process\.hrtime|sleep|waitFor)\b"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Search (grep)
   │ "\b(beforeAll|afterAll|beforeEach|afterEach|describe\.skip|it\.skip|test\.skip|describe\.concurr
-  │ ent|it\.concurrent|test\.concurrent)\b" (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ ent|it\.concurrent|test\.concurrent)\b" (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Search (grep)
   │ "\b(Date\.now|new
   │ Date\(|setTimeout|setInterval|performance\.now|Math\.random|process\.hrtime|sleep|waitFor)\b"
-  │ (.opencode/skill/system-spec-kit/scripts/tests)
+  │ (.opencode/skills/system-spec-kit/scripts/tests)
   └ 71 lines found
 
 ● Compute categorized tests and uncovered sources (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3 - <<'PY'
   │ from pathlib import Path
   │ import json, re
-  │ root = (Path('.opencode/skill/system-spec-kit')).resolve()
+  │ root = (Path('.opencode/skills/system-spec-kit')).resolve()
   │ import_re = re.compile(r"(?:import\s+(?:type\s+)?(?:[^'\"]+?from\s+)?|export\s+[^'\"]+?from\s+…
   └ 88 lines...
 
@@ -142,24 +142,24 @@ The first coverage script tripped on a path-normalization bug, so I’m rerunnin
 I’ve got enough breadth now; I’m tightening the evidence on two places that matter most for the final callout list: the “missing coverage” map and whether any suites lean on weak, performance, or timing-based assertions.
 
 ● Read tool-input-schema.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
   └ L260:340 (46 lines read)
 
 ● Read interfaces.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
   └ L120:150 (31 lines read)
 
 ● Read memory-save-extended.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts
   └ L620:740 (121 lines read)
 
 ● Read search-limits-scoring.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts
   └ L130:190 (61 lines read)
 
 ● Count weak assertion patterns (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit' && python3 - <<'PY'
+  │ Env/Public/.opencode/skills/system-spec-kit' && python3 - <<'PY'
   │ from pathlib import Path
   │ import re
   │ for workspace in ['scripts/tests','mcp_server/tests']:…
@@ -169,78 +169,78 @@ I’ve got enough breadth now; I’m tightening the evidence on two places that 
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3 - <<'PY'
   │ from pathlib import Path
   │ import json, re
-  │ root = (Path('.opencode/skill/system-spec-kit')).resolve()
+  │ root = (Path('.opencode/skills/system-spec-kit')).resolve()
   │ static_import_re = re.compile(r"(?:import\s+(?:type\s+)?(?:[^'\"]+?from\s+)?|export\s+[^'\"]+?…
   └ 149 lines...
 
 One last pass: I’m checking fixture layout in both workspaces so the report can distinguish “realistic but heavy” from genuinely brittle fixture strategy.
 
 ● Read session-data-factory.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts
   └ L1:240 (202 lines read)
 
 ● Read full-spec-doc-indexing.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts
   └ L1:240 (240 lines read)
 
 ● Read checkpoints-extended.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "fixtures?|mkdtempSync|tmpdir\(|writeFileSync\(|mkdirSync\(|createTemp|tempDir" in
-  │ **/*.vitest.ts (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ **/*.vitest.ts (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 5 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/**/*fixture*"
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/**/*fixture*"
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/**/fixtures/**/*"
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/**/fixtures/**/*"
   └ 3 files found
 
 I’ve confirmed the fixture split too: `scripts` leans on rich hand-built repo fixtures, while `mcp_server` mixes a few reusable JSON fixtures with lots of per-test temp DB setup. I’m grabbing the actual fixture contents now so I can judge realism and maintainability instead of hand-waving.
 
 ● Read contradiction-pairs.json
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json
   └ L1:220 (116 lines read)
 
 ● Read similarity-test-cases.json
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json
   └ L1:220 (147 lines read)
 
 ● Read sample-memories.json
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json
   └ L1:220 (106 lines read)
 
 ● Read test-validation-system.js
-  │ .opencode/skill/system-spec-kit/scripts/tests/test-validation-system.js
+  │ .opencode/skills/system-spec-kit/scripts/tests/test-validation-system.js
   └ L1:220 (220 lines read)
 
 ● Read progressive-validation.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/progressive-validation.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts
   └ L1:260 (259 lines read)
 
 I’ve got the core evidence. I’m doing a final normalization step now so the report has clean counts instead of rough estimates, especially where the suites mix Vitest, Bash, Node, and Python.
 
 ● Read checkpoints-extended.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts
   └ L220:420 (201 lines read)
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L130:175 (46 lines read)
 
 ● Read hybrid-search.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts
   └ L600:760 (161 lines read)
 
 ● Count test runners by workspace (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ root = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit')
+  │ Env/Public/.opencode/skills/system-spec-kit')
   │ for workspace in ['scripts/tests','mcp_server/tests']:…
   └ 23 lines...
 
@@ -249,52 +249,52 @@ I’ve got the core evidence. I’m doing a final normalization step now so the 
   │ from pathlib import Path
   │ import re
   │ root = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit')…
+  │ Env/Public/.opencode/skills/system-spec-kit')…
   └ 29 lines...
 
 ● Read interfaces.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
   └ L1:260 (260 lines read)
 
 ● Read recovery-hints.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts
   └ L1:220 (219 lines read)
 
 ● Read vector-index-impl.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "toBeTruthy\(|toBeDefined\(|not\.toThrow\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts)
   └ 38 lines found
 
 ● Search (grep)
   │ "toBeTruthy\(|toBeDefined\(|not\.toThrow\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts)
   └ 54 lines found
 
 ● Search (grep)
   │ "setFailRate|_failRate|Math\.random\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts)
   └ 6 lines found
 
 ● Read interfaces.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/interfaces.vitest.ts
   └ L450:478 (28 lines read)
 
 I’m converting the coverage-gap section to “no obvious dedicated test” instead of pretending import analysis is perfect. That gives a fairer audit, especially where some behavior is exercised indirectly through integration suites.
 
 ● Read semantic-signal-golden.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts
   └ L1:180 (159 lines read)
 
 ● Read quality-scorer-calibration.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts
   └ L1:180 (180 lines read)
 
 ● Read workspace-identity.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/workspace-identity.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/workspace-identity.vitest.ts
   └ L1:120 (79 lines read)
 
 ● Find source files lacking obvious dedicated tests (shell)
@@ -302,7 +302,7 @@ I’m converting the coverage-gap section to “no obvious dedicated test” ins
   │ from pathlib import Path
   │ import re
   │ root = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit')…
+  │ Env/Public/.opencode/skills/system-spec-kit')…
   └ 125 lines...
 
 # System-spec-kit test audit

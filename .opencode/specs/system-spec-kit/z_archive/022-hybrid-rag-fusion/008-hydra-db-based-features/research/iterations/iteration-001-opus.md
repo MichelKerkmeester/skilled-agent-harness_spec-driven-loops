@@ -63,12 +63,12 @@ Deep audit of two core Hydra runtime modules: `lineage-state.ts` (append-only li
     — SOURCE: memory-lineage-backfill.vitest.ts:146-148
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts` (1206 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (605 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts` (291 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts` (313 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts` (173 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` (grep for table definitions)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts` (1206 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` (605 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts` (291 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts` (313 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts` (173 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` (grep for table definitions)
 - Import consumers: `handlers/memory-save.ts`, `handlers/pe-gating.ts`, `handlers/save/create-record.ts`, `lib/governance/retention.ts`, `lib/search/pipeline/stage1-candidate-gen.ts`
 
 ## Assessment

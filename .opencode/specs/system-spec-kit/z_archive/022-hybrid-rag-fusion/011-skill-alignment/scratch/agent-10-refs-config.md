@@ -85,7 +85,7 @@ All markdown cross-references in SKILL.md were checked. All resolve to existing 
 | `mcp_server/lib/search/README.md` | OK |
 | `templates/level_1/` through `level_3+/` | OK |
 | `constitutional/` | OK |
-| `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` | OK |
+| `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` | OK |
 
 **One path notation inconsistency (P2):**
 The External Dependencies table (line 780) lists "Memory gen: `scripts/memory/generate-context.ts → scripts/dist/`". The source file `scripts/memory/generate-context.ts` exists, but the arrow notation implies it compiles to `scripts/dist/` — which is correct. The notation is accurate but could be clearer: the runtime invocation uses `scripts/dist/memory/generate-context.js` (as stated in SKILL.md §3 Context Preservation section). No broken link; notation only.

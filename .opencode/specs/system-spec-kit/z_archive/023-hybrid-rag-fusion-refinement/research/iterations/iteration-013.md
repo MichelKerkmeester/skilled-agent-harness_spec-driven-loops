@@ -27,7 +27,7 @@ The `mcp_server/tests/` directory contains 100+ `.vitest.ts` files. Key files re
 | `adaptive-ranking.vitest.ts` / `adaptive-ranking-e2e.vitest.ts` | Adaptive ranking modes | General pipeline |
 | `artifact-routing.vitest.ts` | Artifact strategy recencyBias | P1-3 (recency) |
 
-[SOURCE: Glob output from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/`]
+[SOURCE: Glob output from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/`]
 
 ### 2. Stage 2 Fusion Test Coverage: Strong for graph signals, weak for recency
 
@@ -47,7 +47,7 @@ The `mcp_server/tests/` directory contains 100+ `.vitest.ts` files. Key files re
 
 **MISSING for P1-4 (GRAPH_WEIGHT_CAP):** The stage2 test verifies `appliedBonus: 0.03` (the STAGE2_GRAPH_BONUS_CAP), but does not directly test the GRAPH_WEIGHT_CAP constant at 0.05. The cap is applied in `graph-calibration.ts`, not in stage2 directly. Need to verify `graph-calibration` has its own test or add one.
 
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:1-270`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:1-270`]
 
 ### 3. Feature Flag Test Coverage: Reconsolidation explicitly tested as opt-in
 
@@ -75,8 +75,8 @@ Additionally, `reconsolidation.vitest.ts` (lines 217-248) has its own flag toggl
 
 **QUALITY_LOOP:** `memory-save-ux-regressions.vitest.ts` references `SPECKIT_QUALITY_LOOP` in env setup/teardown but the flag default assertion needs to be verified. The `rollout-policy.vitest.ts` tests `isFeatureEnabled()` generically and would automatically cover QUALITY_LOOP if it uses the standard isFeatureEnabled pattern.
 
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/search-flags.vitest.ts:71-121`]
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:217-248`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/search-flags.vitest.ts:71-121`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:217-248`]
 
 ### 4. NOVELTY_BOOST Test Coverage: Comprehensive, cleanup is safe
 
@@ -89,7 +89,7 @@ The test descriptions already document that the feature is removed. The describe
 - Updating any `calculateCompositeScore` tests that reference `noveltyBoostApplied`/`noveltyBoostValue` metadata
 - No other test files import `calculateNoveltyBoost` directly
 
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:1-60`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:1-60`]
 
 ### 5. Integration/E2E Test Coverage: Shallow module-loading level
 
@@ -106,7 +106,7 @@ There is no integration test that:
 
 This means proposed changes lack a regression safety net at the integration level. Each change relies on unit-level tests only.
 
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:1-80`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:1-80`]
 
 ### 6. Doc-Type Shift (P2-4): No direct test for DOC_TYPE_WEIGHT_SHIFT
 
@@ -115,7 +115,7 @@ The doc-type weight shift logic lives in `shared/algorithms/adaptive-fusion.ts`.
 **MISSING:** No test verifies that the flat +/-0.1 shift is applied correctly, and no test would catch a change to proportional shifting. A new test is needed.
 
 [SOURCE: Grep for DOC_TYPE_WEIGHT_SHIFT across tests/ -- 0 results]
-[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:175-500`]
+[SOURCE: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:175-500`]
 
 ### 7. Coverage Gap Matrix Per Proposed Change
 

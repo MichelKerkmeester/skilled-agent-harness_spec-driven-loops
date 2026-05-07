@@ -248,7 +248,7 @@ Same patterns as AGENTS.md, plus fix inconsistency at line 339 (missing `.openco
 
 **Files (8 total):**
 ```
-.opencode/command/spec_kit/assets/
+.opencode/commands/spec_kit/assets/
 ├── spec_kit_complete_auto.yaml
 ├── spec_kit_complete_confirm.yaml
 ├── spec_kit_plan_auto.yaml

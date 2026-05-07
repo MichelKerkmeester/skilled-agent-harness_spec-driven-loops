@@ -114,8 +114,8 @@ The `/create` command currently enforces emoji usage in documentation through va
 ### Implementation
 
 **Affected Systems**:
-- `.opencode/command/create` validation logic (3 documentation files)
-- `.opencode/command/create/assets` template files (10 YAML templates)
+- `.opencode/commands/create` validation logic (3 documentation files)
+- `.opencode/commands/create/assets` template files (10 YAML templates)
 - Inline help text and documentation comments
 
 **Implementation Complete:**
@@ -145,7 +145,7 @@ The `/create` command currently enforces emoji usage in documentation through va
 
 ### Context
 
-Existing templates in `.opencode/command/create/assets` may contain emojis in titles and sections. We need to decide whether to remove these emojis as part of the enforcement removal or leave them in place.
+Existing templates in `.opencode/commands/create/assets` may contain emojis in titles and sections. We need to decide whether to remove these emojis as part of the enforcement removal or leave them in place.
 
 ### Constraints
 - Must not break existing templates that users may depend on
@@ -223,7 +223,7 @@ Existing templates in `.opencode/command/create/assets` may contain emojis in ti
 ### Implementation
 
 **Affected Systems**:
-- Template files in `.opencode/command/create/assets` (no emoji removal)
+- Template files in `.opencode/commands/create/assets` (no emoji removal)
 - Documentation to clarify emojis are optional
 
 **Implementation Complete:**

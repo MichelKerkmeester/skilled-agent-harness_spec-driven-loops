@@ -22,7 +22,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 1. checkpoints.js - Dynamic Dimension Handling (P0)
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 
 **Problem:** Hardcoded `EMBEDDING_DIM = 768` caused all checkpoint restores to fail with Voyage (1024-dim) or OpenAI (1536-dim) providers. Every embedding was marked for regeneration.
 
@@ -37,7 +37,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 2. embeddings.js - Smart Dimension Detection (P0)
 
-**File:** `.opencode/skill/system-spec-kit/shared/embeddings.js`
+**File:** `.opencode/skills/system-spec-kit/shared/embeddings.js`
 
 **Problem:** `getEmbeddingDimension()` returned 768 as default before provider initialization, which was wrong for Voyage (1024) and OpenAI (1536).
 
@@ -51,7 +51,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 3. embeddings.js - Parallel Batch Processing (P1)
 
-**File:** `.opencode/skill/system-spec-kit/shared/embeddings.js`
+**File:** `.opencode/skills/system-spec-kit/shared/embeddings.js`
 
 **Problem:** `generateBatchEmbeddings()` processed texts sequentially, causing 10x slower performance.
 
@@ -64,7 +64,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 4. shared/utils.js - Consolidated Utilities (P2)
 
-**File:** `.opencode/skill/system-spec-kit/shared/utils.js` (NEW)
+**File:** `.opencode/skills/system-spec-kit/shared/utils.js` (NEW)
 
 **Problem:** `validateFilePath` was duplicated in context-server.js and vector-index.js. `escapeRegex` was duplicated in trigger-matcher.js and memory-parser.js.
 
@@ -77,7 +77,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 5. context-server.js - Async File I/O (P1)
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 
 **Problem:** `fs.readFileSync` blocked the event loop during file reads.
 
@@ -90,7 +90,7 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ### 6. shared/embeddings.js - Embedding Cache (P1)
 
-**File:** `.opencode/skill/system-spec-kit/shared/embeddings.js`
+**File:** `.opencode/skills/system-spec-kit/shared/embeddings.js`
 
 **Problem:** Same text was re-embedded repeatedly, wasting API calls and time.
 
@@ -145,14 +145,14 @@ Fixed critical embedding dimension bugs and performance issues in the Spec Kit M
 
 ## Files Modified
 
-1. `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` - v11.0.0 → v11.1.0
-2. `.opencode/skill/system-spec-kit/shared/embeddings.js` - Updated getEmbeddingDimension(), generateBatchEmbeddings(), added embedding cache
-3. `.opencode/skill/system-spec-kit/shared/utils.js` - NEW - validateFilePath, escapeRegex
-4. `.opencode/skill/system-spec-kit/mcp_server/context-server.js` - Async file I/O, import from shared/utils, empty catch fix
-5. `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js` - Import from shared/utils
-6. `.opencode/skill/system-spec-kit/mcp_server/lib/trigger-matcher.js` - Import from shared/utils
-7. `.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js` - Import from shared/utils
-8. `.opencode/skill/system-spec-kit/scripts/generate-context.js` - Empty catch fix
+1. `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` - v11.0.0 → v11.1.0
+2. `.opencode/skills/system-spec-kit/shared/embeddings.js` - Updated getEmbeddingDimension(), generateBatchEmbeddings(), added embedding cache
+3. `.opencode/skills/system-spec-kit/shared/utils.js` - NEW - validateFilePath, escapeRegex
+4. `.opencode/skills/system-spec-kit/mcp_server/context-server.js` - Async file I/O, import from shared/utils, empty catch fix
+5. `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` - Import from shared/utils
+6. `.opencode/skills/system-spec-kit/mcp_server/lib/trigger-matcher.js` - Import from shared/utils
+7. `.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js` - Import from shared/utils
+8. `.opencode/skills/system-spec-kit/scripts/generate-context.js` - Empty catch fix
 
 ## Backward Compatibility
 

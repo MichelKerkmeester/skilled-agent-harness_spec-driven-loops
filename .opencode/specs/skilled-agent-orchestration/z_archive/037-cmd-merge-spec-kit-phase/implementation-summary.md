@@ -61,14 +61,14 @@ Merged the standalone `/spec_kit:phase` command into the existing `/spec_kit:pla
 |------|--------|-----|
 | `spec_kit/plan` command | Added `:with-phases` flag, setup parsing, Section 12 (Phase Decomposition) | +55 |
 | `spec_kit/complete` command | Added `:with-phases` flag, execution modes row, Optional Phase Decomposition section, command chain | +20 |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | Added `optional_workflows.phase_decomposition` block | +42 |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | Added `optional_workflows.phase_decomposition` block | +42 |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Added `phase_decomposition` to existing `optional_workflows` | +42 |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` | Added `phase_decomposition` to existing `optional_workflows` | +42 |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | Added `optional_workflows.phase_decomposition` block | +42 |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | Added `optional_workflows.phase_decomposition` block | +42 |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Added `phase_decomposition` to existing `optional_workflows` | +42 |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Added `phase_decomposition` to existing `optional_workflows` | +42 |
 | `spec_kit/phase` command | Deleted | -228 |
 | `spec_kit/assets/spec_kit_phase_auto.yaml` | Deleted | -326 |
 | `spec_kit/assets/spec_kit_phase_confirm.yaml` | Deleted | -326 |
-| `.opencode/command/spec_kit/README.txt` | Removed phase row, updated plan/complete entries | -5, +2 |
+| `.opencode/commands/spec_kit/README.txt` | Removed phase row, updated plan/complete entries | -5, +2 |
 | `CLAUDE.md` | Updated quick reference table | +1 |
 <!-- /ANCHOR:how-delivered -->
 

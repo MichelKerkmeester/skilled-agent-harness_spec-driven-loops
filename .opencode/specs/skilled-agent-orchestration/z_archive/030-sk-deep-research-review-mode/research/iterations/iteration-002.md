@@ -4,7 +4,7 @@
 Design the exact canonical review-mode contract manifest, define ownership boundaries for generated vs mixed-authored artifacts, and specify the drift-detection checks that should protect YAML workflows, agent docs, quick reference, README, and playbooks.
 
 ## Findings
-1. The canonical source should be a neutral manifest file owned by `sk-deep-research`, not a workflow YAML or prose doc, because the current contract is split across workflow inputs and appendix constants, agent JSONL instructions, state-format tables, quick-reference tables, README capability bullets, and command docs. A manifest should therefore normalize the contract into four top-level domains: `meta`, `contract`, `render`, and `validation`. This is the closest fit to the repo's existing "source components -> composed outputs -> verify drift" pattern in `system-spec-kit`. [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:28-35] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:650-682] [SOURCE: .opencode/agent/deep-review.md:225-258] [SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:536-575] [SOURCE: .opencode/skill/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skill/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:6-12] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:17-20]
+1. The canonical source should be a neutral manifest file owned by `sk-deep-research`, not a workflow YAML or prose doc, because the current contract is split across workflow inputs and appendix constants, agent JSONL instructions, state-format tables, quick-reference tables, README capability bullets, and command docs. A manifest should therefore normalize the contract into four top-level domains: `meta`, `contract`, `render`, and `validation`. This is the closest fit to the repo's existing "source components -> composed outputs -> verify drift" pattern in `system-spec-kit`. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:28-35] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:650-682] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:536-575] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:6-12] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:17-20]
 
    Proposed manifest path and shape:
 
@@ -12,7 +12,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    manifestVersion: 1
    contractId: sk-deep-research.review-mode
    meta:
-     ownerSkill: .opencode/skill/sk-deep-research
+     ownerSkill: .opencode/skills/sk-deep-research
      reviewModeVersion: 1
      generatedNotice: "<!-- GENERATED: review-mode-contract; DO NOT EDIT -->"
      sourceOfTruth: "contract-only"
@@ -33,7 +33,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
      checks: []
    ```
 
-2. The exact contract payload should use stable IDs and ordered arrays so generators can render both machine-oriented consumers and human tables without hand-written ordering rules. The schema below covers every duplicated review-mode concept visible today: target types, 7 dimensions, P0/P1/P2 severities, 4 verdicts, 5 quality guards, convergence defaults and weights, 6 cross-reference protocols, 11 report sections, strategy/dashboard section mappings, and JSONL field contracts. This is an inference from the currently duplicated runtime and docs surfaces. [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:29-35] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:511-559] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:656-682] [SOURCE: .opencode/agent/deep-review.md:228-258] [SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:538-575] [SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:626-687] [SOURCE: .opencode/skill/sk-deep-research/references/quick_reference.md:255-296] [SOURCE: .opencode/skill/sk-deep-research/README.md:48-55]
+2. The exact contract payload should use stable IDs and ordered arrays so generators can render both machine-oriented consumers and human tables without hand-written ordering rules. The schema below covers every duplicated review-mode concept visible today: target types, 7 dimensions, P0/P1/P2 severities, 4 verdicts, 5 quality guards, convergence defaults and weights, 6 cross-reference protocols, 11 report sections, strategy/dashboard section mappings, and JSONL field contracts. This is an inference from the currently duplicated runtime and docs surfaces. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:29-35] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:511-559] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:656-682] [SOURCE: .opencode/agents/deep-review.md:228-258] [SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:538-575] [SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:626-687] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:255-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:48-55]
 
    Proposed `contract` schema:
 
@@ -253,7 +253,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    | `generated/review-mode-contract.snapshot.yaml` | Fully generated | Expanded canonical snapshot for audits/tests |
    | `generated/review-mode-contract.hash` or `.hashes` entry | Fully generated | Cheap drift sentinel for CI/pre-commit |
 
-   This means the manifest owns all normative enumerations, formulas, rule text, section catalogs, and next-command mappings, while authored files only own narrative, examples, and workflow-specific prose. Historical changelog/version-history text should remain manual and non-canonical, otherwise contract updates would incorrectly rewrite release history. [SOURCE: .opencode/skill/system-spec-kit/templates/context_template.md:15] [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:57] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:6-15] [SOURCE: .opencode/agent/deep-review.md:225-258] [SOURCE: .opencode/skill/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skill/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skill/sk-deep-research/README.md:334-342]
+   This means the manifest owns all normative enumerations, formulas, rule text, section catalogs, and next-command mappings, while authored files only own narrative, examples, and workflow-specific prose. Historical changelog/version-history text should remain manual and non-canonical, otherwise contract updates would incorrectly rewrite release history. [SOURCE: .opencode/skills/system-spec-kit/templates/context_template.md:15] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:57] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:6-15] [SOURCE: .opencode/agents/deep-review.md:225-258] [SOURCE: .opencode/skills/sk-deep-research/references/quick_reference.md:253-296] [SOURCE: .opencode/skills/sk-deep-research/README.md:47-55] [SOURCE: .opencode/skills/sk-deep-research/README.md:334-342]
 
 4. The propagation workflow should mirror `compose.sh`: edit only the canonical manifest, run a single renderer, then verify that every downstream artifact matches the rendered contract. A concrete workflow is:
    1. Edit `review_mode_contract.yaml`.
@@ -261,7 +261,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    3. Run `render-review-contract --verify` in pre-commit/CI.
    4. Fail if any tracked artifact changes, any required marker is missing, or any file contains stale contract literals outside allowed generated regions.
 
-   The renderer should treat the manifest's `render.artifacts[]` array as the routing table. Each entry should declare `path`, `ownership`, `format`, `markers`, and `sections` so the generator knows exactly which contract fragments belong in each target. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:13-20] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:890-907]
+   The renderer should treat the manifest's `render.artifacts[]` array as the routing table. Each entry should declare `path`, `ownership`, `format`, `markers`, and `sections` so the generator knows exactly which contract fragments belong in each target. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-70] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:13-20] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:38-49] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907]
 
    Recommended `render.artifacts[]` shape:
 
@@ -269,7 +269,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    render:
      artifacts:
        - id: workflow-auto
-         path: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml
+         path: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml
          ownership: mixed
          format: yaml
          markers:
@@ -283,7 +283,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
            - contract.crossReferenceProtocols
            - contract.outputs.reviewReport.sections
        - id: agent-opencode
-         path: .opencode/agent/deep-review.md
+         path: .opencode/agents/deep-review.md
          ownership: mixed
          format: markdown
          markers:
@@ -296,7 +296,7 @@ Design the exact canonical review-mode contract manifest, define ownership bound
            - contract.convergence
            - contract.crossReferenceProtocols
        - id: quick-reference-review-mode
-         path: .opencode/skill/sk-deep-research/references/quick_reference.md
+         path: .opencode/skills/sk-deep-research/references/quick_reference.md
          ownership: mixed
          format: markdown
          markers:
@@ -308,14 +308,14 @@ Design the exact canonical review-mode contract manifest, define ownership bound
            - contract.convergence
            - contract.outputs.reviewReport.sections
        - id: review-contract-snapshot
-         path: .opencode/skill/sk-deep-research/generated/review-mode-contract.snapshot.yaml
+         path: .opencode/skills/sk-deep-research/generated/review-mode-contract.snapshot.yaml
          ownership: generated
          format: yaml
          sections:
            - contract
    ```
 
-5. Drift detection should be validator-first, not review-playbook-first. The minimal CI/pre-commit contract should check six classes of drift: schema validity, render parity, marker integrity, duplicate literals, runtime parity, and playbook parity. These checks are directly motivated by the repo's existing verify workflow and by the specific drift incidents already found in review-mode docs. [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:889-907] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-001.md:12-14]
+5. Drift detection should be validator-first, not review-playbook-first. The minimal CI/pre-commit contract should check six classes of drift: schema validity, render parity, marker integrity, duplicate literals, runtime parity, and playbook parity. These checks are directly motivated by the repo's existing verify workflow and by the specific drift incidents already found in review-mode docs. [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:889-907] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-001.md:12-14]
 
    Recommended validator checklist:
 
@@ -330,29 +330,29 @@ Design the exact canonical review-mode contract manifest, define ownership bound
    | `runtime-coverage` | Every declared runtime agent file has a render target entry | `.opencode`, `.codex`, `.gemini`, `.claude`, ChatGPT variants |
    | `playbook-assertions` | Generated playbook appendix/fixture matches current target types, verdicts, and cross-reference protocol names | maintained playbooks |
 
-   The duplicate-literal lint is the key extra safeguard. `compose.sh --verify` catches stale generated outputs, but it does not catch a maintainer manually adding a conflicting dimension list elsewhere in README or a playbook. For review mode, the validator should therefore allowlist true historical release notes and otherwise ban normative taxonomy copies outside declared generated blocks. [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/skill/sk-deep-research/README.md:334-342]
+   The duplicate-literal lint is the key extra safeguard. `compose.sh --verify` catches stale generated outputs, but it does not catch a maintainer manually adding a conflicting dimension list elsewhere in README or a playbook. For review mode, the validator should therefore allowlist true historical release notes and otherwise ban normative taxonomy copies outside declared generated blocks. [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907] [SOURCE: .opencode/skills/sk-deep-research/README.md:334-342]
 
-6. Q1 can now be treated as answered. The exact contract should live in a neutral manifest with stable IDs, generated-block routing metadata, and validator rules; the repo should preserve authored workflow prose around generated contract blocks instead of trying to regenerate whole human-oriented files; and CI should enforce `--verify`-style parity plus duplicate-literal linting. This resolves the remaining gap left open in iteration 1. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-001.md:13-14] [SOURCE: .opencode/skill/system-spec-kit/scripts/templates/compose.sh:890-907]
+6. Q1 can now be treated as answered. The exact contract should live in a neutral manifest with stable IDs, generated-block routing metadata, and validator rules; the repo should preserve authored workflow prose around generated contract blocks instead of trying to regenerate whole human-oriented files; and CI should enforce `--verify`-style parity plus duplicate-literal linting. This resolves the remaining gap left open in iteration 1. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-001.md:13-14] [SOURCE: .opencode/skills/system-spec-kit/scripts/templates/compose.sh:890-907]
 
 ## Ruled Out
-- Full-file generation for `README.md`, agent docs, or playbooks is the wrong default. Those files contain surrounding narrative, examples, and history that should remain authored; generated blocks are a better fit than replacing whole documents. [SOURCE: .opencode/agent/deep-review.md:262-289] [SOURCE: .opencode/skill/sk-deep-research/README.md:57-80] [SOURCE: .opencode/skill/sk-deep-research/README.md:330-343]
-- Keeping version history or changelog entries as canonical contract replicas is also the wrong fit, because canonical contract updates would mutate historical descriptions instead of only updating current-state surfaces. [SOURCE: .opencode/skill/sk-deep-research/README.md:330-343]
+- Full-file generation for `README.md`, agent docs, or playbooks is the wrong default. Those files contain surrounding narrative, examples, and history that should remain authored; generated blocks are a better fit than replacing whole documents. [SOURCE: .opencode/agents/deep-review.md:262-289] [SOURCE: .opencode/skills/sk-deep-research/README.md:57-80] [SOURCE: .opencode/skills/sk-deep-research/README.md:330-343]
+- Keeping version history or changelog entries as canonical contract replicas is also the wrong fit, because canonical contract updates would mutate historical descriptions instead of only updating current-state surfaces. [SOURCE: .opencode/skills/sk-deep-research/README.md:330-343]
 
 ## Dead Ends
 - CocoIndex again added no useful evidence for this markdown-and-config-heavy task; exact line reads and repo-pattern inspection were the productive path.
 
 ## Sources Consulted
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/agent/deep-review.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/quick_reference.md`
-- `.opencode/skill/sk-deep-research/README.md`
-- `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`
-- `.opencode/skill/system-spec-kit/templates/context_template.md`
-- `.opencode/skill/system-spec-kit/templates/README.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/agents/deep-review.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/quick_reference.md`
+- `.opencode/skills/sk-deep-research/README.md`
+- `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`
+- `.opencode/skills/system-spec-kit/templates/context_template.md`
+- `.opencode/skills/system-spec-kit/templates/README.md`
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-001.md`
 
 ## Assessment (newInfoRatio, questions addressed/answered)

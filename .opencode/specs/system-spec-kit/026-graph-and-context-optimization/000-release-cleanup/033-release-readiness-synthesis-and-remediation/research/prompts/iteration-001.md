@@ -26,8 +26,8 @@ Two-phase packet:
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/010-upgrade-safety-operability/review-report.md`
 
 Plus:
-- `.opencode/skill/sk-deep-review/SKILL.md` (severity rubric reference)
-- `.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md` (honor in any new docs)
+- `.opencode/skills/sk-deep-review/SKILL.md` (severity rubric reference)
+- `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor in any new docs)
 
 ### Phase 1: Synthesis
 
@@ -77,8 +77,8 @@ Apply fixes inline. Be surgical. For each fix:
 If a P0 requires a design decision before fixing (e.g., "memory_delete needs confirmation gate but the gate semantics are not yet defined"), document in synthesis.md Section 6 (open questions) and DO NOT apply a hasty fix.
 
 After applying fixes:
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` — must pass
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run <affected-test-files>` — must pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run <affected-test-files>` — must pass
 - Strict validators on touched spec packets: must pass
 
 ### Packet structure to create (Level 2)

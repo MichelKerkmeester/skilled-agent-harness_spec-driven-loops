@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 > **Status**: Analysis phase complete; remediation sprints pending execution. Wave 1 (135 findings from 15 agents) complete. Wave 3 synthesis and sprint remediation plan established.
 

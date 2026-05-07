@@ -41,11 +41,11 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/command/spec_kit/implement.md",
-      ".opencode/skill/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skill/sk-git/SKILL.md",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-priority-tags.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/skills/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,19 +56,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/implement.md",
+        "path": ".opencode/commands/spec_kit/implement.md",
         "source": "derived"
       },
       {
         "name": "check-priority-tags.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-priority-tags.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh",
         "source": "derived"
       },
       {

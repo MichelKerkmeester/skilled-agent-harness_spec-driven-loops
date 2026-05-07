@@ -31,9 +31,9 @@
 - [external/hooks/mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh)
 - [external/hooks/mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh)
 - [external/benchmarks/BENCHMARKS.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/benchmarks/BENCHMARKS.md)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 - [iteration-018.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-018.md)
 
@@ -47,7 +47,7 @@
 - What did not work: this environment is read-only, the phase folder still lacks the expected Level 3 docs, `validate.sh --strict` reported `RESULT: PASSED` while also emitting `cannot create temp file for here document: Operation not permitted`, and the canonical `research/research.md` artifact is not present yet, so I could not update packet outputs in place
 
 ## Recommended Next Focus
-1. Implement the smallest viable preservation experiment in Public: trigger one save checkpoint from the existing `experimental.session.compacting` surface, write only JSON-primary structured context through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js), and add a “recently saved” dedupe guard.
+1. Implement the smallest viable preservation experiment in Public: trigger one save checkpoint from the existing `experimental.session.compacting` surface, write only JSON-primary structured context through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js), and add a “recently saved” dedupe guard.
 2. Add a 3-5 line memory-behavior hint block to startup/bootstrap output, not a second protocol manual.
 3. Prototype quote-carrying evidence retention inside saved memory artifacts so high-stakes decisions keep verbatim support without moving to full transcript mining.
 4. Treat layered wake-up as a presentation experiment on top of existing `session_bootstrap` and `memory_search`, not as a new storage model.
@@ -104,10 +104,10 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
 9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
 10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
 11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
 13. Before the main research pass, validate the phase folder with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
     ```
 14. After validation passes, run `spec_kit:deep-research` with this exact topic:
     ```text
@@ -115,7 +115,7 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
     ```
 15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
     ```
 
 ## 6. Research Questions
@@ -380,7 +380,7 @@ AGENTS.md
 codex
 I found an `external/AGENTS.md`, so this repo does carry additional scoped instructions under the MemPalace snapshot; I’m loading that next alongside the local deep-research guidance and the relevant memory note for this phase. After that I’ll run the requested strict validation command and finish the source trace against the current Public files.
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -398,7 +398,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -719,7 +719,7 @@ phase-research-prompt.md
 research
 
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2215ms:
 
 ───────────────────────────────────────────────────────────────
@@ -734,7 +734,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -1849,12 +1849,12 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:264:- **Why it matters for us**: concrete relevance
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:265:- **Recommendation**: adopt now / prototype later / reject / NEW FEATURE
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:266:- **Impact**: high / medium / low
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:4935:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:296:  t.quality.boostImpactDelta = Number.isFinite(boostDelta) ? boostDelta : 0;
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:4950:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:667:      boostImpactDelta: t.quality.boostImpactDelta,
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5135:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:123:    expect(t.quality.boostImpactDelta).toBe(0);
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5150:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:278:    expect(t.quality.boostImpactDelta).toBe(0.05);
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5163:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:357:    expect(t.quality.boostImpactDelta).toBe(0);
-.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5164:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:360:    expect(t.quality.boostImpactDelta).toBe(0);
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:4935:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:296:  t.quality.boostImpactDelta = Number.isFinite(boostDelta) ? boostDelta : 0;
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:4950:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:667:      boostImpactDelta: t.quality.boostImpactDelta,
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5135:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:123:    expect(t.quality.boostImpactDelta).toBe(0);
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5150:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:278:    expect(t.quality.boostImpactDelta).toBe(0.05);
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5163:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:357:    expect(t.quality.boostImpactDelta).toBe(0);
+.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:5164:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:360:    expect(t.quality.boostImpactDelta).toBe(0);
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:10786:## Findings
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:10787:### Finding 1: MemPalace duplicate hygiene is a thin similarity check; Public treats duplicates as a scoped save-integrity problem
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-010.md:10789:- **What it does**: MemPalace checks only the top 5 vector neighbors of the proposed content and flags a duplicate when `1 - distance >= threshold`; there is no exact-hash pass, no scope-aware duplicate boundary, and no layered content-quality gate before filing. Public runs exact-hash duplicate checks inside scope, similar-duplicate warnings, and a 3-layer quality gate before save.
@@ -6469,9 +6469,9 @@ exec
    120	| Temporal | ~64% | 79.2% | **87.3%** | ~87%? |
 
 exec
-/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n \"session_bootstrap|memory_context|memory_search|memory_match_triggers|resume|protocol|hint|save|generate-context|compacting|experimental\\.session\\.compacting|memory save|trigger|dedup|cursor|includeContent|causal|lineage|quality|validate\" .opencode/skill/system-spec-kit/mcp_server/context-server.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/plugins/spec-kit-compact-code-graph.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n \"session_bootstrap|memory_context|memory_search|memory_match_triggers|resume|protocol|hint|save|generate-context|compacting|experimental\\.session\\.compacting|memory save|trigger|dedup|cursor|includeContent|causal|lineage|quality|validate\" .opencode/skills/system-spec-kit/mcp_server/context-server.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/plugins/spec-kit-compact-code-graph.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Context Server
@@ -6735,84 +6735,84 @@ exec
    260	
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:15:import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:16:import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:17:import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:42:import { validateInputLengths } from './utils/index.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:71:  validateConfiguredEmbeddingsProvider,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:79:import { runLineageBackfill } from './lib/storage/lineage-state.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:112:// T001-T004: Session deduplication
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:115:// Phase 023: Context metrics — lightweight session quality tracking
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:324:    surface: options.surface ?? 'response-hints',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:332:  const hints = Array.isArray(envelope.hints)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:333:    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:335:  envelope.hints = hints;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:336:  if (!hints.includes(nudge.message)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:337:    hints.push(nudge.message);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:671:  const hints = Array.isArray(envelope.hints)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:672:    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:674:  envelope.hints = hints;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:684:  hints.push(
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:688:  // T018: Include Prime Package hints for non-hook CLIs
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:692:      hints.push(`Active spec folder: ${pkg.specFolder}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:696:      hints.push(`Recommended next calls: ${pkg.recommendedCalls.join(', ')}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:739:// This is by design — instruction updates require MCP protocol re-negotiation which most clients
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:777:      lines.push(`- Session quality: ${snap.sessionQuality}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:819:async function invalidateReinitializedDbCaches(): Promise<void> {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:820:  const invalidatedEntries = toolCache.clear();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:832:  if (invalidatedEntries > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:833:    console.error(`[context-server] Cleared ${invalidatedEntries} tool-cache entries after DB reinitialization`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:870:    validateInputLengths(args);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:878:      // Phase 023: Record metric event for context quality tracking
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:894:      await invalidateReinitializedDbCaches();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:976:    // Phase 024: Code-search redirect hint for memory tools
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:984:            const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:986:            envelope.hints = existingHints;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:990:          // Response is not JSON envelope — skip hint injection
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1007:                surface: 'response-hints',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1026:        if (!enrichment.skipped && enrichment.hints.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1030:              const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1031:              envelope.hints = [...existingHints, ...enrichment.hints];
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1045:    // SK-004: Inject auto-surface hints before token-budget enforcement so
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1098:              if (Array.isArray(envelope.hints)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1099:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1105:              // No truncatable results array — add warning hint only
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1106:              if (Array.isArray(envelope.hints)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1107:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1120:    // REQ-004: Include recovery hints in all error responses
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1488:  validateConfiguredEmbeddingsProvider();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1536:        console.error(`[context-server] API key validated (provider: ${validation.provider})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1602:      console.error(`[context-server] Embedding dimension validated: ${dimValidation.stored}`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1660:      console.error('[context-server] WARNING: Database has 0 memories — search will return no results until memories are saved');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1789:    // T001-T004: Session deduplication module
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:15:import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:16:import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:17:import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:42:import { validateInputLengths } from './utils/index.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:71:  validateConfiguredEmbeddingsProvider,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:79:import { runLineageBackfill } from './lib/storage/lineage-state.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:86:import * as causalBoost from './lib/search/causal-boost.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:112:// T001-T004: Session deduplication
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:115:// Phase 023: Context metrics — lightweight session quality tracking
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:163:  triggered: unknown[];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:324:    surface: options.surface ?? 'response-hints',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:332:  const hints = Array.isArray(envelope.hints)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:333:    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:335:  envelope.hints = hints;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:336:  if (!hints.includes(nudge.message)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:337:    hints.push(nudge.message);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:671:  const hints = Array.isArray(envelope.hints)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:672:    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:674:  envelope.hints = hints;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:684:  hints.push(
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:688:  // T018: Include Prime Package hints for non-hook CLIs
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:692:      hints.push(`Active spec folder: ${pkg.specFolder}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:694:    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:696:      hints.push(`Recommended next calls: ${pkg.recommendedCalls.join(', ')}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:739:// This is by design — instruction updates require MCP protocol re-negotiation which most clients
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:777:      lines.push(`- Session quality: ${snap.sessionQuality}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:819:async function invalidateReinitializedDbCaches(): Promise<void> {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:820:  const invalidatedEntries = toolCache.clear();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:823:    const triggerMatcher = await import('./lib/parsing/trigger-matcher.js');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:824:    if (typeof triggerMatcher.clearCache === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:825:      triggerMatcher.clearCache();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:829:    console.error(`[context-server] Failed to clear trigger cache after DB reinit: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:832:  if (invalidatedEntries > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:833:    console.error(`[context-server] Cleared ${invalidatedEntries} tool-cache entries after DB reinitialization`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:870:    validateInputLengths(args);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:878:      // Phase 023: Record metric event for context quality tracking
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:894:      await invalidateReinitializedDbCaches();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:976:    // Phase 024: Code-search redirect hint for memory tools
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:984:            const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:986:            envelope.hints = existingHints;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:990:          // Response is not JSON envelope — skip hint injection
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1007:                surface: 'response-hints',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1026:        if (!enrichment.skipped && enrichment.hints.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1030:              const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1031:              envelope.hints = [...existingHints, ...enrichment.hints];
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1045:    // SK-004: Inject auto-surface hints before token-budget enforcement so
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1098:              if (Array.isArray(envelope.hints)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1099:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1105:              // No truncatable results array — add warning hint only
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1106:              if (Array.isArray(envelope.hints)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1107:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1120:    // REQ-004: Include recovery hints in all error responses
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1488:  validateConfiguredEmbeddingsProvider();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1536:        console.error(`[context-server] API key validated (provider: ${validation.provider})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1571:      causalBoost,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1594:    const dimValidation = vectorIndex.validateEmbeddingDimension();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1602:      console.error(`[context-server] Embedding dimension validated: ${dimValidation.stored}`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1622:        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1656:      console.error('[context-server] Auto-backfill triggered: %d rows seeded into active_memory_projection', result.seeded);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1660:      console.error('[context-server] WARNING: Database has 0 memories — search will return no results until memories are saved');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1674:    causalBoost.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1694:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1789:    // T001-T004: Session deduplication module
 .opencode/plugins/spec-kit-compact-code-graph.js:60: *   dedupeKey: string,
 .opencode/plugins/spec-kit-compact-code-graph.js:254:function shouldInvalidateEvent(eventType) {
 .opencode/plugins/spec-kit-compact-code-graph.js:259:function invalidateTransportCache(sessionID, specFolder) {
@@ -6822,103 +6822,103 @@ exec
 .opencode/plugins/spec-kit-compact-code-graph.js:374:        if (hasSyntheticTextPartMarker(anchor.parts, SYNTHETIC_METADATA_KEY, block.dedupeKey)) {
 .opencode/plugins/spec-kit-compact-code-graph.js:384:            [SYNTHETIC_METADATA_KEY]: block.dedupeKey,
 .opencode/plugins/spec-kit-compact-code-graph.js:396:    'experimental.session.compacting': async (input, output) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:53:import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:151:  hints: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:176:  cursor?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:191:  includeContent?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:207:  min_quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:281:    const hints = Array.isArray(envelope.hints)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:282:      ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:289:    return { summary, data, hints };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:343:    hints: payload.hints,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:466:    dedupStats: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:467:      ...dedupStats,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:493:    cursor,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:508:    includeContent: includeContent = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:517:    rerank = true, // Enable reranking by default for better result quality
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:524:    min_quality_score,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:543:  const hasCursor = typeof cursor === 'string' && cursor.trim().length > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:547:    return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:557:        details: { parameter: 'cursor' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:578:  const qualityThreshold = resolveQualityThreshold(minQualityScore, min_quality_score);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:589:      normalizedQuery = validateQuery(query);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:599:            hint: 'Provide a valid query string or use concepts array instead'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:614:      error: 'Either query (string), concepts (array of 2-5 strings), or cursor (string) is required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:618:        hint: 'Provide a query string, concepts array with 2-5 entries, or a continuation cursor'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:630:        hint: 'Provide specFolder as a string path'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:734:    qualityThreshold,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:738:    includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:789:      includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:791:      qualityThreshold,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:834:                     quality_score, created_at
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1000:      includeContent,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1079:        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1086:    // P1-018 — Validate response shape before dedup. If the cached response
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1087:    // Doesn't have the expected data.results array, log a warning and skip dedup
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1095:      console.warn('[memory-search] Cached response shape mismatch: missing "data" object, skipping dedup');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1097:      console.warn('[memory-search] Cached response shape mismatch: "data.results" is not an array, skipping dedup');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1119:      const dedupStats = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1129:      resultsData.dedupStats = dedupStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1318:        if (includeContent && shownIds.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:42:exports.validateArguments = validateArguments;
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:48:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:62:Usage: node generate-context.js [options] <input>
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:66:                    - JSON file mode: node generate-context.js data.json [spec-folder]
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:72:  --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:75:  node generate-context.js /tmp/context-data.json
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:76:  node generate-context.js /tmp/context-data.json specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:77:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:78:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:79:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85:Preferred save path (JSON-PRIMARY):
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:93:    but they must not reroute the save to another folder.
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:170:    return (0, path_security_1.validateFilePath)(path.resolve(core_1.CONFIG.PROJECT_ROOT, normalizedInput), (0, core_1.getSpecsDirectories)()) !== null;
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:190:                        (0, path_security_1.validateFilePath)(candidate, (0, core_1.getSpecsDirectories)()) !== null) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:219:        // (findChildFolderSync in validateArguments handles this, so just report the error here)
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:505:        validateArguments();
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:546://# sourceMappingURL=generate-context.js.map
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:53:import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:151:  hints: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:176:  cursor?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:191:  includeContent?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:207:  min_quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:281:    const hints = Array.isArray(envelope.hints)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:282:      ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:289:    return { summary, data, hints };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:343:    hints: payload.hints,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:454:      dedupStats: { enabled: false, sessionId: null }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:458:  const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:466:    dedupStats: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:467:      ...dedupStats,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:493:    cursor,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:508:    includeContent: includeContent = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:517:    rerank = true, // Enable reranking by default for better result quality
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:524:    min_quality_score,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:543:  const hasCursor = typeof cursor === 'string' && cursor.trim().length > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:547:    return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:551:    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:557:        details: { parameter: 'cursor' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:559:          hint: 'Retry the original search to generate a fresh continuation cursor',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:578:  const qualityThreshold = resolveQualityThreshold(minQualityScore, min_quality_score);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:589:      normalizedQuery = validateQuery(query);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:599:            hint: 'Provide a valid query string or use concepts array instead'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:614:      error: 'Either query (string), concepts (array of 2-5 strings), or cursor (string) is required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:618:        hint: 'Provide a query string, concepts array with 2-5 entries, or a continuation cursor'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:630:        hint: 'Provide specFolder as a string path'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:734:    qualityThreshold,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:738:    includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:789:      includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:791:      qualityThreshold,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:834:                     quality_score, created_at
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000:      includeContent,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1079:        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1086:    // P1-018 — Validate response shape before dedup. If the cached response
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1087:    // Doesn't have the expected data.results array, log a warning and skip dedup
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1095:      console.warn('[memory-search] Cached response shape mismatch: missing "data" object, skipping dedup');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1097:      console.warn('[memory-search] Cached response shape mismatch: "data.results" is not an array, skipping dedup');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1119:      const dedupStats = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1129:      resultsData.dedupStats = dedupStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1318:        if (includeContent && shownIds.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:42:exports.validateArguments = validateArguments;
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:48:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:62:Usage: node generate-context.js [options] <input>
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:66:                    - JSON file mode: node generate-context.js data.json [spec-folder]
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:72:  --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:75:  node generate-context.js /tmp/context-data.json
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:76:  node generate-context.js /tmp/context-data.json specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:77:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:78:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:79:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85:Preferred save path (JSON-PRIMARY):
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:93:    but they must not reroute the save to another folder.
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:170:    return (0, path_security_1.validateFilePath)(path.resolve(core_1.CONFIG.PROJECT_ROOT, normalizedInput), (0, core_1.getSpecsDirectories)()) !== null;
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:190:                        (0, path_security_1.validateFilePath)(candidate, (0, core_1.getSpecsDirectories)()) !== null) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:219:        // (findChildFolderSync in validateArguments handles this, so just report the error here)
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:505:        validateArguments();
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:546://# sourceMappingURL=generate-context.js.map
 
 exec
-/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Search
@@ -7184,7 +7184,7 @@ exec
 exec
 /bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js | sed -n '396,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '62,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '62,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    396	    'experimental.session.compacting': async (input, output) => {
    397	      const plan = await loadTransportPlan({
@@ -7273,7 +7273,7 @@ exec
    120	      "gapsClosed": ["gap1"],
 
 exec
-/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '759,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '759,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    759	    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
    760	    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
@@ -7344,9 +7344,9 @@ exec
     31	- [external/hooks/mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh)
     32	- [external/hooks/mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh)
     33	- [external/benchmarks/BENCHMARKS.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/benchmarks/BENCHMARKS.md)
-    34	- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-    35	- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-    36	- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+    34	- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+    35	- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+    36	- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
     37	- [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
     38	
     39	## Assessment
@@ -7411,10 +7411,10 @@ exec
     98	9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
     99	10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
    100	11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-   101	12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+   101	12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
    102	13. Before the main research pass, validate the phase folder with this exact command:
    103	    ```bash
-   104	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+   104	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
    105	    ```
    106	14. After validation passes, run `spec_kit:deep-research` with this exact topic:
    107	    ```text
@@ -7422,7 +7422,7 @@ exec
    109	    ```
    110	15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
    111	    ```bash
-   112	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+   112	    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
    113	    ```
    114	
    115	## 6. Research Questions
@@ -7670,28 +7670,28 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 
 ## Findings
 ### Finding 1: Pre-compaction preservation is the clearest adopt-now transfer
-- **Source**: [hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh), [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- **Source**: [hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh), [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - **What it does**: MemPalace blocks on `PreCompact` and periodically blocks on `Stop` to force preservation before context loss. Public already has an `experimental.session.compacting` surface and a JSON-primary save path, but not a comparable structured preservation checkpoint.
 - **Why it matters for us**: This is the highest-leverage continuity improvement with the smallest architecture change. The safe Public version is one compaction-time checkpoint that writes curated JSON through `generate-context.js`, with dedupe/last-save guards.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: Status-as-protocol is worth porting as a tiny bootstrap hint layer
-- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: `mempalace_status` returns counts plus `PALACE_PROTOCOL`, telling the agent when to search, verify, diary-write, and invalidate facts. Public already emits recovery/bootstrap hints, so it can add a short memory-behavior hint block without inventing a second protocol surface.
 - **Why it matters for us**: MemPalace’s strongest UX idea is not the palace metaphor; it is that the memory system teaches the agent how to use it. Public can get that benefit with 3-5 concrete hints, not a new subsystem.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 3: Raw-verbatim upside is real, but only as selective evidence retention
-- **Source**: [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py), [miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/miner.py), [convo_miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/convo_miner.py), [general_extractor.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/general_extractor.py), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- **Source**: [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py), [miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/miner.py), [convo_miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/convo_miner.py), [general_extractor.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/general_extractor.py), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - **What it does**: MemPalace returns verbatim text at retrieval time, but ingest is not truly “store everything”: project files are chunked and re-mined, conversations keep only the first 8 AI lines per turn, and heuristic extraction drops low-confidence segments.
 - **Why it matters for us**: The reusable lesson is not full transcript hoarding. It is keeping verbatim supporting evidence for high-stakes memories so later retrieval can show the actual quote or rationale, while Public keeps its structured, auditable save contract.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 4: L0-L3 wake-up is a presentation pattern, not a storage model to copy
-- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
 - **What it does**: MemPalace’s wake-up stack is L0 identity text plus an L1 “essential story” built by sorting stored drawers by lightweight importance metadata and grouping by room; L2 and L3 are filtered retrieval and search over the same store.
 - **Why it matters for us**: Public already has `session_bootstrap`, `memory_context`, hints, profiles, and progressive disclosure. The right transfer is a “wake-up profile” on the existing retrieval stack, not a second memory engine or AAAK-first startup contract.
 - **Recommendation**: prototype later
@@ -7738,9 +7738,9 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 - [external/hooks/mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh)
 - [external/hooks/mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh)
 - [external/benchmarks/BENCHMARKS.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/benchmarks/BENCHMARKS.md)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 - [iteration-019.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-019.md)
 
@@ -7754,7 +7754,7 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 - What did not work: the phase folder still lacks the expected Level 3 docs, the strict validator reported `RESULT: PASSED` while also emitting `cannot create temp file for here document: Operation not permitted`, the environment is read-only so I could not update `research/research.md` or save memory, and CocoIndex was unavailable in this session
 
 ## Recommended Next Focus
-1. Implement one compaction-time preservation checkpoint on Public’s existing `experimental.session.compacting` surface that writes only structured JSON through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js).
+1. Implement one compaction-time preservation checkpoint on Public’s existing `experimental.session.compacting` surface that writes only structured JSON through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js).
 2. Add a 3-5 line memory-behavior hint block to bootstrap/status output, not a second protocol manual.
 3. Prototype quote-carrying evidence retention for high-stakes saved memories without moving to full transcript mining.
 4. Test a wake-up/recovery profile on top of existing `session_bootstrap` and `memory_search`, not a separate L0-L3 storage system.
@@ -7775,28 +7775,28 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 
 ## Findings
 ### Finding 1: Pre-compaction preservation is the clearest adopt-now transfer
-- **Source**: [hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh), [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- **Source**: [hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh), [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - **What it does**: MemPalace blocks on `PreCompact` and periodically blocks on `Stop` to force preservation before context loss. Public already has an `experimental.session.compacting` surface and a JSON-primary save path, but not a comparable structured preservation checkpoint.
 - **Why it matters for us**: This is the highest-leverage continuity improvement with the smallest architecture change. The safe Public version is one compaction-time checkpoint that writes curated JSON through `generate-context.js`, with dedupe/last-save guards.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: Status-as-protocol is worth porting as a tiny bootstrap hint layer
-- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: `mempalace_status` returns counts plus `PALACE_PROTOCOL`, telling the agent when to search, verify, diary-write, and invalidate facts. Public already emits recovery/bootstrap hints, so it can add a short memory-behavior hint block without inventing a second protocol surface.
 - **Why it matters for us**: MemPalace’s strongest UX idea is not the palace metaphor; it is that the memory system teaches the agent how to use it. Public can get that benefit with 3-5 concrete hints, not a new subsystem.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 3: Raw-verbatim upside is real, but only as selective evidence retention
-- **Source**: [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py), [miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/miner.py), [convo_miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/convo_miner.py), [general_extractor.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/general_extractor.py), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- **Source**: [searcher.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/searcher.py), [miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/miner.py), [convo_miner.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/convo_miner.py), [general_extractor.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/general_extractor.py), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - **What it does**: MemPalace returns verbatim text at retrieval time, but ingest is not truly “store everything”: project files are chunked and re-mined, conversations keep only the first 8 AI lines per turn, and heuristic extraction drops low-confidence segments.
 - **Why it matters for us**: The reusable lesson is not full transcript hoarding. It is keeping verbatim supporting evidence for high-stakes memories so later retrieval can show the actual quote or rationale, while Public keeps its structured, auditable save contract.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 4: L0-L3 wake-up is a presentation pattern, not a storage model to copy
-- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- **Source**: [layers.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/layers.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts), [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
 - **What it does**: MemPalace’s wake-up stack is L0 identity text plus an L1 “essential story” built by sorting stored drawers by lightweight importance metadata and grouping by room; L2 and L3 are filtered retrieval and search over the same store.
 - **Why it matters for us**: Public already has `session_bootstrap`, `memory_context`, hints, profiles, and progressive disclosure. The right transfer is a “wake-up profile” on the existing retrieval stack, not a second memory engine or AAAK-first startup contract.
 - **Recommendation**: prototype later
@@ -7843,9 +7843,9 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 - [external/hooks/mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh)
 - [external/hooks/mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh)
 - [external/benchmarks/BENCHMARKS.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/benchmarks/BENCHMARKS.md)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
 - [iteration-019.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/research/iterations/iteration-019.md)
 
@@ -7859,7 +7859,7 @@ MemPalace contributes two near-term ideas worth carrying into Public now: a comp
 - What did not work: the phase folder still lacks the expected Level 3 docs, the strict validator reported `RESULT: PASSED` while also emitting `cannot create temp file for here document: Operation not permitted`, the environment is read-only so I could not update `research/research.md` or save memory, and CocoIndex was unavailable in this session
 
 ## Recommended Next Focus
-1. Implement one compaction-time preservation checkpoint on Public’s existing `experimental.session.compacting` surface that writes only structured JSON through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js).
+1. Implement one compaction-time preservation checkpoint on Public’s existing `experimental.session.compacting` surface that writes only structured JSON through [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js).
 2. Add a 3-5 line memory-behavior hint block to bootstrap/status output, not a second protocol manual.
 3. Prototype quote-carrying evidence retention for high-stakes saved memories without moving to full transcript mining.
 4. Test a wake-up/recovery profile on top of existing `session_bootstrap` and `memory_search`, not a separate L0-L3 storage system.

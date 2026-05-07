@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run final validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/matrix_runners"
+      - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

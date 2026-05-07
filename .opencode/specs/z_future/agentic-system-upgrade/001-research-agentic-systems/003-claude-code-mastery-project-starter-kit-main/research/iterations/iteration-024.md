@@ -10,10 +10,10 @@ The external repo's flatter role structure will show that `system-spec-kit` can 
 Compared the local continuity-oriented agents and their contracts to the external repo's much smaller role surface and its document-driven continuity patterns.
 
 ## Evidence
-- `context` is a retrieval-first agent focused on loading memory, code evidence, and working context before implementation. [SOURCE: .opencode/agent/context.md:45-53] [SOURCE: .opencode/agent/context.md:61-75]
-- `context-prime` is a lighter bootstrap specialist that loads session health, code graph, CocoIndex status, and next-step guidance. [SOURCE: .opencode/agent/context-prime.md:22-39] [SOURCE: .opencode/agent/context-prime.md:92-107] [SOURCE: .opencode/agent/context-prime.md:118-140]
-- `handover` is dedicated to continuation artifacts and transition packages when the session ends or shifts. [SOURCE: .opencode/agent/handover.md:22-32] [SOURCE: .opencode/agent/handover.md:40-58]
-- The local repo therefore splits continuity across at least three adjacent concepts before counting memory hooks and resume commands. [SOURCE: .opencode/command/spec_kit/README.txt:168-178]
+- `context` is a retrieval-first agent focused on loading memory, code evidence, and working context before implementation. [SOURCE: .opencode/agents/context.md:45-53] [SOURCE: .opencode/agents/context.md:61-75]
+- `context-prime` is a lighter bootstrap specialist that loads session health, code graph, CocoIndex status, and next-step guidance. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context-prime.md:92-107] [SOURCE: .opencode/agents/context-prime.md:118-140]
+- `handover` is dedicated to continuation artifacts and transition packages when the session ends or shifts. [SOURCE: .opencode/agents/handover.md:22-32] [SOURCE: .opencode/agents/handover.md:40-58]
+- The local repo therefore splits continuity across at least three adjacent concepts before counting memory hooks and resume commands. [SOURCE: .opencode/commands/spec_kit/README.txt:168-178]
 - The external repo handles similar concerns with a much flatter role system plus working docs and progress commands; its named agents are narrow and few. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/agents/code-reviewer.md:1-39] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/agents/test-writer.md:1-60] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/progress.md:11-60]
 
 ## Analysis
@@ -45,14 +45,14 @@ confidence: high
 finding: `system-spec-kit` should merge its visible session-continuity surface so operators see one continuity capability rather than separate `context`, `context-prime`, and `handover` concepts.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/context.md`, `.opencode/agent/context-prime.md`, `.opencode/agent/handover.md`, resume docs
+- **Target file or module:** `.opencode/agents/context.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/handover.md`, resume docs
 - **Change type:** role and UX consolidation
 - **Blast radius:** medium
 - **Prerequisites:** decide whether the consolidation is documentation-only, routing-level, or also a roster change
 - **Priority:** should-have
 
 ## Counter-evidence sought
-I looked for evidence that users actively benefit from seeing all three continuity roles as distinct first-class concepts, but the benefits appear implementation-facing more than operator-facing. [SOURCE: .opencode/agent/context-prime.md:57-65]
+I looked for evidence that users actively benefit from seeing all three continuity roles as distinct first-class concepts, but the benefits appear implementation-facing more than operator-facing. [SOURCE: .opencode/agents/context-prime.md:57-65]
 
 ## Follow-up questions for next iteration
 Would the same logic apply to the deep-research and deep-review LEAF patterns, or are those loops earning their complexity in a way continuity roles do not?

@@ -11,11 +11,11 @@ contextType: "planning"
 # Plan: 001-architecture-boundary-freeze
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 
 ## Implementation Order
 1. Document the preserved authorities and explicit non-goals.

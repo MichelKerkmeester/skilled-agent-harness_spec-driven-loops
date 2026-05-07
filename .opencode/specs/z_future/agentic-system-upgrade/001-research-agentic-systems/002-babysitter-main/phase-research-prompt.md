@@ -55,11 +55,11 @@ Use this table to avoid rediscovering the same theme in every phase. Keep Babysi
 
 Anchor recommendations against existing strengths in `Code_Environment/Public` so findings are additive, not redundant.
 
-- Spec Kit documentation workflows under `.opencode/skill/system-spec-kit/`
+- Spec Kit documentation workflows under `.opencode/skills/system-spec-kit/`
 - spec-folder validation and Level 1-3+ packet conventions
 - Spec Kit Memory for session continuity, retrieval, and saved context
 - CocoIndex, code-graph, and MCP-backed context retrieval
-- agent and skill routing across `.opencode/agent/`, `.agents/skills/`, and runtime-specific agent directories
+- agent and skill routing across `.opencode/agents/`, `.agents/skills/`, and runtime-specific agent directories
 - deep-research and deep-review workflows already designed for evidence-backed iteration
 - validation-first operational culture with explicit checklists and phase folders
 - multi-runtime support patterns spanning Claude, Codex, Gemini, Copilot, and OpenCode ecosystems
@@ -92,7 +92,7 @@ Do not recommend replacing systems this repo already has unless Babysitter shows
 9. Then inspect `external/babysitter-main/plugins/`, starting with `plugins/babysitter-opencode/` and at least one additional harness plugin. Identify the plugin bundle shape, hooks, commands, skills, and installation model.
 10. Explicitly study the internal harness and multi-harness story from the README plus plugin/runtime evidence. Determine what is runtime-core versus harness-adapter glue.
 11. Review the README sections on "How It Works" and "Compression" and verify claims against source files wherever possible. Do not repeat README marketing language without code evidence.
-12. Compare Babysitter patterns to this repo's current capabilities in `.opencode/skill/system-spec-kit/`, `.opencode/agent/`, `.agents/skills/`, `opencode.json`, and related orchestration or memory surfaces. Focus on gaps, not superficial similarities.
+12. Compare Babysitter patterns to this repo's current capabilities in `.opencode/skills/system-spec-kit/`, `.opencode/agents/`, `.agents/skills/`, `opencode.json`, and related orchestration or memory surfaces. Focus on gaps, not superficial similarities.
 13. Before any deep-research run, ensure this phase folder has proper Level 3 docs:
    - `spec.md`
    - `plan.md`
@@ -100,12 +100,12 @@ Do not recommend replacing systems this repo already has unless Babysitter shows
    - `checklist.md`
    - `decision-record.md`
 14. Validate the phase packet before deep research:
-   - `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main" --strict`
+   - `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main" --strict`
 15. After docs validate, run deep research against this same phase folder with a Babysitter-specific topic such as:
    - `Research Babysitter at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/babysitter-main, focusing on event-sourced orchestration, mandatory stop-gates, deterministic replay and resume, harness plugin architecture, methodology packaging, and token compression patterns that could improve Code_Environment/Public.`
 16. Save research artifacts inside this phase folder, especially under `research/`, and keep all writable outputs local to `002-babysitter-main`.
 17. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
-   - `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main"`
+   - `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main"`
 18. Every meaningful finding must include exact source paths, a clear explanation of what Babysitter does, why it matters here, whether to adopt now/prototype later/reject, what part of this repo it affects, and what validation or migration risk comes with it.
 
 ## 6. Research Questions

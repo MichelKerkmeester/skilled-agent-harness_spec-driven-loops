@@ -23,7 +23,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -70,16 +70,16 @@ CLAUDE.md, AGENTS.md, AGENTS_Barter.md, AGENTS_example_fs_enterprises.md, and `s
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh` | Modified | Added `is_phase_parent()` helper (bash 3.2 compatible) |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts` | Created | TS source for `isPhaseParent()` (used by future generator branch) |
-| `.opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.js` | Created (ESM) | Runtime ESM helper consumed by ESM-typed scripts package |
-| `.opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts` | Created | Type declarations |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | Modified | Phase-parent early branch; require only `spec.md` |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh` | Modified | Phase-parent early branch; skip enforcement, emit info |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-graph-metadata.sh` | Modified | Accept optional `last_active_child_id` / `last_active_at` |
-| `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md` | Created | Lean phase-parent spec template with content-discipline comment |
-| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/is-phase-parent/{populated,scaffolded-empty,support-folders-only,mixed}/` | Created | Cross-impl detection test fixtures (4 cases) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Phase Parent row in Level Guidelines + Phase Parent Mode paragraph |
+| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | Modified | Added `is_phase_parent()` helper (bash 3.2 compatible) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts` | Created | TS source for `isPhaseParent()` (used by future generator branch) |
+| `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js` | Created (ESM) | Runtime ESM helper consumed by ESM-typed scripts package |
+| `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.d.ts` | Created | Type declarations |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Modified | Phase-parent early branch; require only `spec.md` |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh` | Modified | Phase-parent early branch; skip enforcement, emit info |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh` | Modified | Accept optional `last_active_child_id` / `last_active_at` |
+| `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md` | Created | Lean phase-parent spec template with content-discipline comment |
+| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/is-phase-parent/{populated,scaffolded-empty,support-folders-only,mixed}/` | Created | Cross-impl detection test fixtures (4 cases) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Phase Parent row in Level Guidelines + Phase Parent Mode paragraph |
 | `CLAUDE.md` | Modified | §1 fallback ladder gains a Phase parent branch step |
 | `AGENTS.md` | Modified | §3 Documentation Levels gains Phase Parent row + Phase Parent Mode block |
 | `AGENTS_Barter.md` | Modified | Sync triad: Phase Parent row + Phase Parent Mode block |
@@ -120,7 +120,7 @@ Phase 1 (Setup — detection helpers, validator branches, template, fixtures) sh
 | `validate.sh --strict` regression on `026-graph-and-context-optimization/` (parent-level errors before vs after patches) | PASS — 6 baseline errors REMOVED at parent (FILE_EXISTS, LEVEL_MATCH, ANCHORS_VALID, CANONICAL_SAVE_ROOT_SPEC_REQUIRED, EVIDENCE_MARKER_LINT, TEMPLATE_HEADERS); 0 new errors introduced |
 | `check-graph-metadata.sh` schema check on existing 026 graph-metadata.json (additive fields don't break) | PASS — `graph-metadata schema check PASS` |
 | `check-files.sh` phase-parent fixture detection | PASS — emits "Phase parent: missing 1 required file" or "Phase parent: spec.md present (lean trio policy)" depending on fixture state, confirming phase-parent branch is taken |
-| `validate.sh --strict` on this packet (`014-phase-parent-documentation/`) | PARTIAL — strict mode reports SPEC_DOC_INTEGRITY false-positives on forward references to files this spec proposes (e.g. `templates/phase_parent/spec.md`) and cross-folder paths (e.g. `.opencode/skill/.../SKILL.md`). These are expected for a planning-time spec; resolve post-implementation as the proposed files now exist on disk. |
+| `validate.sh --strict` on this packet (`014-phase-parent-documentation/`) | PARTIAL — strict mode reports SPEC_DOC_INTEGRITY false-positives on forward references to files this spec proposes (e.g. `templates/phase_parent/spec.md`) and cross-folder paths (e.g. `.opencode/skills/.../SKILL.md`). These are expected for a planning-time spec; resolve post-implementation as the proposed files now exist on disk. |
 | AGENTS sync triad invariant (root → Barter → fs-enterprises) | PASS — `grep "Phase Parent Mode"` matches in all three files |
 | Tasks.md completion (P0 tasks `[x]` with evidence; deferrals marked `[D]`) | PASS — T001-T009 ✓, T011 ✓, T019 ✓ (existing), T021-T026 ✓; T010/T012-T018/T020/T027-T028 marked `[D]` with rationale |
 <!-- /ANCHOR:verification -->

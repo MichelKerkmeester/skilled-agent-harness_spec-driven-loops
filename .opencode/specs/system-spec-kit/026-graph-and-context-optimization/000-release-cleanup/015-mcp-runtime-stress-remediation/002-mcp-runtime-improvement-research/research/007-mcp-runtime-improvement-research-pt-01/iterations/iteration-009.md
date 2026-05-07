@@ -21,7 +21,7 @@ This is different from a missing retrieval payload. The runtime did expose weakn
 
 ### 2. The current recovery contract has no hard guard action
 
-`RecoveryAction` is limited to `retry_broader`, `switch_mode`, `save_memory`, and `ask_user` (`.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:28-37`). `recommendAction()` maps low-confidence knowledge gaps to `ask_user`, partial matches to `retry_broader`, and no-results knowledge gaps to `save_memory` (`recovery-payload.ts:152-164`). None of those names means "refuse to cite canonical paths", "do not invent", or "require disambiguation before answering".
+`RecoveryAction` is limited to `retry_broader`, `switch_mode`, `save_memory`, and `ask_user` (`.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:28-37`). `recommendAction()` maps low-confidence knowledge gaps to `ask_user`, partial matches to `retry_broader`, and no-results knowledge gaps to `save_memory` (`recovery-payload.ts:152-164`). None of those names means "refuse to cite canonical paths", "do not invent", or "require disambiguation before answering".
 
 That is too soft for model callers. The guard should be a machine-readable policy field, not only a hint string.
 
@@ -33,13 +33,13 @@ Empty suggestions need a stronger fallback action. If `suggestedQueries.length =
 
 ### 4. `requestQuality` is ranking confidence, not evidence authority
 
-The confidence module explicitly scopes itself to retrieval ordering and says it is not structural trust or evidence authority (`.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24-25`). It returns `weak` when results exist but the top score or confidence ratio is only marginal (`confidence-scoring.ts:293-315`). That label is useful telemetry, but it does not by itself tell the model which claims are forbidden.
+The confidence module explicitly scopes itself to retrieval ordering and says it is not structural trust or evidence authority (`.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24-25`). It returns `weak` when results exist but the top score or confidence ratio is only marginal (`confidence-scoring.ts:293-315`). That label is useful telemetry, but it does not by itself tell the model which claims are forbidden.
 
 The missing layer is a response policy derived from `requestQuality` + `recovery`: for weak/gap evidence, canonical path claims require retrieved citations; otherwise the model must ask, broaden, or refuse.
 
 ### 5. The formatter attaches recovery metadata but does not escalate weak recovery into response policy
 
-For empty results, `formatSearchResults()` builds `requestQuality` and `recovery` into the empty envelope (`.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:713-739`). For non-empty weak or partial results, it computes confidence, assesses request quality, optionally builds recovery, and includes both in `responseData` (`search-results.ts:951-982`, `:1025-1035`).
+For empty results, `formatSearchResults()` builds `requestQuality` and `recovery` into the empty envelope (`.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:713-739`). For non-empty weak or partial results, it computes confidence, assesses request quality, optionally builds recovery, and includes both in `responseData` (`search-results.ts:951-982`, `:1025-1035`).
 
 That proves the right insertion point exists. The formatter can derive a hard `responsePolicy` beside `recovery`, such as `mustAskUser`, `mustBroaden`, `noCanonicalPathClaims`, and `citationRequiredForPaths`.
 

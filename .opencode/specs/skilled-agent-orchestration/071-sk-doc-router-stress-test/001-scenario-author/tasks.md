@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create 5 category dirs under `.opencode/skill/sk-doc/manual_testing_playbook/`
+- [x] T001 Create 5 category dirs under `.opencode/skills/sk-doc/manual_testing_playbook/`
 - [x] T002 Read sk-doc/SKILL.md §2 RESOURCE_MAP (11 intents identified)
 - [x] T003 Identify sk-code/manual_testing_playbook/01--surface-detection/001-webflow-detection.md as template
 <!-- /ANCHOR:phase-1 -->

@@ -54,7 +54,7 @@ A follow-up commit closed two leftover caveats from this same cluster, and a sep
 - F-018: Read paths no longer block on minor benign scope drifts.
 - F-019: Verify is no longer falsely blocked by scope mismatch.
 - v3 fingerprint: Two semantically equivalent scans with different glob ordering now produce the same fingerprint and do not trigger false drift detection.
-- Verify default path: The gold-battery file was failing to resolve because the post-refactor relative walk was correct from source but landed at `.opencode/skill/specs/` from compiled output (a path that does not exist).
+- Verify default path: The gold-battery file was failing to resolve because the post-refactor relative walk was correct from source but landed at `.opencode/skills/specs/` from compiled output (a path that does not exist).
 
 ### Verification
 

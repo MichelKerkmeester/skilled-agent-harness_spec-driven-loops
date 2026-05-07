@@ -8,18 +8,18 @@
 - **Focus**: `templates/manifest/*.tmpl` level-gating correctness, ANCHOR tag survival, renderManifestTemplate vs inline-gate-renderer parity
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/templates/manifest/spec.md.tmpl` — 846 lines, 4 level gates (1/2/3/3+)
-- `.opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl` — 572 lines, 3 level gates (2/3/3+)
-- `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl` — 134 lines, 1 level gate (phase)
-- `.opencode/skill/system-spec-kit/templates/manifest/tasks.md.tmpl` — 431 lines, 3 gates (1/2/3+)
-- `.opencode/skill/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` — 547 lines, 3 gates (1/2/3+)
-- `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl` — gate structure verified
-- `.opencode/skill/system-spec-kit/templates/manifest/decision-record.md.tmpl` — gate structure verified
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` — 709 lines, level contract
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts` — 297 lines
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` — 877 lines
-- `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts` — 114 lines (test suite)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` — 208 lines
+- `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` — 846 lines, 4 level gates (1/2/3/3+)
+- `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` — 572 lines, 3 level gates (2/3/3+)
+- `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl` — 134 lines, 1 level gate (phase)
+- `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` — 431 lines, 3 gates (1/2/3+)
+- `.opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` — 547 lines, 3 gates (1/2/3+)
+- `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` — gate structure verified
+- `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` — gate structure verified
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` — 709 lines, level contract
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` — 297 lines
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` — 877 lines
+- `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts` — 114 lines (test suite)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` — 208 lines
 
 ## Findings - New
 
@@ -86,8 +86,8 @@
 
 ## Integration Evidence
 
-- **CLI renderer: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts`** — Used to verify all level renderings. Parses `<!-- IF level:X -->` gates with proper tokenizer. All tests exercised via CLI `--level` flag.
-- **Shell wrapper: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh`** — Exists as wrapper but not needed for this review; used tsx directly.
+- **CLI renderer: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts`** — Used to verify all level renderings. Parses `<!-- IF level:X -->` gates with proper tokenizer. All tests exercised via CLI `--level` flag.
+- **Shell wrapper: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh`** — Exists as wrapper but not needed for this review; used tsx directly.
 - **Validator integration: `check-template-headers.sh`** — Reads contract from `template-structure.js compare` using `compareDocumentToTemplate()`. Any ANCHOR mismatch (P1-003-001) would cause validate.sh failures on valid L3+ spec.md files.
 
 ## Edge Cases

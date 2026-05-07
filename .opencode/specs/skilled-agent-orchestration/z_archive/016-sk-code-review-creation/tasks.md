@@ -39,17 +39,17 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Hard-rename `.opencode/skill/legacy-single-hyphen-review/` -> `.opencode/skill/sk-code-review/`
+- [x] T001 Hard-rename `.opencode/skills/legacy-single-hyphen-review/` -> `.opencode/skills/sk-code-review/`
 - [x] T002 Remove generated artifact `legacy-single-hyphen-review.zip`
-- [x] T003 Rebuild `.opencode/skill/sk-code-review/SKILL.md` with standards-parity smart routing and baseline+overlay precedence model
-- [x] T004 Update `.opencode/skill/sk-code-review/README.md` and internal package references
-- [x] T005 Update `.opencode/skill/sk-code-review/references/quick_reference.md` with baseline+overlay contract guidance
+- [x] T003 Rebuild `.opencode/skills/sk-code-review/SKILL.md` with standards-parity smart routing and baseline+overlay precedence model
+- [x] T004 Update `.opencode/skills/sk-code-review/README.md` and internal package references
+- [x] T005 Update `.opencode/skills/sk-code-review/references/quick_reference.md` with baseline+overlay contract guidance
 
 Verification commands:
 
 ```bash
 ls -la .opencode/skill | rg "sk-code-review|legacy-single-hyphen-review"
-rg -n "baseline\+overlay|overlay|precedence|RELATED RESOURCES" .opencode/skill/sk-code-review/SKILL.md
+rg -n "baseline\+overlay|overlay|precedence|RELATED RESOURCES" .opencode/skills/sk-code-review/SKILL.md
 ```
 
 ---
@@ -62,8 +62,8 @@ rg -n "baseline\+overlay|overlay|precedence|RELATED RESOURCES" .opencode/skill/s
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 Update review agent contracts in `.opencode/agent/review.md`, .opencode/agent/chatgpt/review.md, `.gemini/agents/review.md`, and `.claude/agents/review.md`
-- [x] T007 Update orchestrator review mapping in `.opencode/agent/orchestrate.md`, .opencode/agent/chatgpt/orchestrate.md, `.gemini/agents/orchestrate.md`, and `.claude/agents/orchestrate.md`
+- [x] T006 Update review agent contracts in `.opencode/agents/review.md`, .opencode/agents/chatgpt/review.md, `.gemini/agents/review.md`, and `.claude/agents/review.md`
+- [x] T007 Update orchestrator review mapping in `.opencode/agents/orchestrate.md`, .opencode/agents/chatgpt/orchestrate.md, `.gemini/agents/orchestrate.md`, and `.claude/agents/orchestrate.md`
 - [x] T008 Update `.codex/agents/review.toml` to enforce baseline+overlay review contract while using canonical chatgpt review playbook
 - [x] T009 Update `.codex/agents/orchestrate.toml` to require baseline+overlay contract whenever `@review` is dispatched
 
@@ -71,10 +71,10 @@ Verification commands:
 
 ```bash
 rg -n "sk-code-review|baseline\+overlay|overlay" \
-  .opencode/agent/review.md \
-  .opencode/agent/chatgpt/review.md \
-  .opencode/agent/orchestrate.md \
-  .opencode/agent/chatgpt/orchestrate.md \
+  .opencode/agents/review.md \
+  .opencode/agents/chatgpt/review.md \
+  .opencode/agents/orchestrate.md \
+  .opencode/agents/chatgpt/orchestrate.md \
   .gemini/agents/review.md \
   .gemini/agents/orchestrate.md \
   .claude/agents/review.md \
@@ -120,40 +120,40 @@ Verification commands:
 
 ```bash
 rg -n "standards_contract|baseline: \"sk-code-review\"" \
-  .opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_debug_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_debug_confirm.yaml \
-  .opencode/command/create/assets/create_agent_auto.yaml \
-  .opencode/command/create/assets/create_agent_confirm.yaml \
-  .opencode/command/create/assets/create_folder_readme_auto.yaml \
-  .opencode/command/create/assets/create_folder_readme_confirm.yaml \
-  .opencode/command/create/assets/create_install_guide_auto.yaml \
-  .opencode/command/create/assets/create_install_guide_confirm.yaml \
-  .opencode/command/create/assets/create_skill_auto.yaml \
-  .opencode/command/create/assets/create_skill_confirm.yaml \
-  .opencode/command/create/assets/create_skill_asset_auto.yaml \
-  .opencode/command/create/assets/create_skill_asset_confirm.yaml \
-  .opencode/command/create/assets/create_skill_reference_auto.yaml \
-  .opencode/command/create/assets/create_skill_reference_confirm.yaml
+  .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_debug_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_debug_confirm.yaml \
+  .opencode/commands/create/assets/create_agent_auto.yaml \
+  .opencode/commands/create/assets/create_agent_confirm.yaml \
+  .opencode/commands/create/assets/create_folder_readme_auto.yaml \
+  .opencode/commands/create/assets/create_folder_readme_confirm.yaml \
+  .opencode/commands/create/assets/create_install_guide_auto.yaml \
+  .opencode/commands/create/assets/create_install_guide_confirm.yaml \
+  .opencode/commands/create/assets/create_skill_auto.yaml \
+  .opencode/commands/create/assets/create_skill_confirm.yaml \
+  .opencode/commands/create/assets/create_skill_asset_auto.yaml \
+  .opencode/commands/create/assets/create_skill_asset_confirm.yaml \
+  .opencode/commands/create/assets/create_skill_reference_auto.yaml \
+  .opencode/commands/create/assets/create_skill_reference_confirm.yaml
 ```
 
 ---
 
 ### Phase 4: Routing + catalogs
 
-- [x] T028 Update `.opencode/skill/scripts/skill_advisor.py` review intent routing
-- [x] T029 Update `.opencode/skill/README.md` for `sk-code-review` and skill counts
+- [x] T028 Update `.opencode/skills/scripts/skill_advisor.py` review intent routing
+- [x] T029 Update `.opencode/skills/README.md` for `sk-code-review` and skill counts
 - [x] T030 Update `.opencode/README.md` for `sk-code-review` and skill counts
 
 Verification commands:
 
 ```bash
-python3 .opencode/skill/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8
-python3 .opencode/skill/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8
-python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture diff" --threshold 0.8
+python3 .opencode/skills/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8
+python3 .opencode/skills/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8
+python3 .opencode/skills/scripts/skill_advisor.py "visual review of architecture diff" --threshold 0.8
 ```
 
 ---
@@ -169,9 +169,9 @@ python3 .opencode/skill/scripts/skill_advisor.py "visual review of architecture 
 Verification commands:
 
 ```bash
-python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code-review --json
-python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code-review
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill
+python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-code-review --json
+python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-code-review
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill
 ```
 
 ---

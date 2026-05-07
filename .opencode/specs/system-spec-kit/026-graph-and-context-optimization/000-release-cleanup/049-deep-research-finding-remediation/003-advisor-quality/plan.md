@@ -18,14 +18,14 @@ _memory:
     next_safe_action: "Apply fixes per phase order"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-003-advisor-quality"
@@ -38,7 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -126,7 +126,7 @@ The new test file lives at `mcp_server/skill_advisor/tests/scorer/advisor-qualit
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §6 (B1), §12 (C2), §13 (C3)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Existing scorer modules: `lanes/`, `fusion.ts`, `ambiguity.ts`, `projection.ts` — boundaries preserved
 - Sub-phase 006 (NOT YET RUN) will refactor scorer module structure; this packet must NOT pre-empt that work
 - No other packet dependencies; sub-phase 003 is independent

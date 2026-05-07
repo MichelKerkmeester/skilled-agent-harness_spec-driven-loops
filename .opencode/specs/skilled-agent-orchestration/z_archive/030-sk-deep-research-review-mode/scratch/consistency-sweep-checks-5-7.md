@@ -78,7 +78,7 @@ Generated: 2026-03-24
 
 | Attribute | OpenCode | ChatGPT | Claude | Codex | Agents/Gemini |
 |-----------|----------|---------|--------|-------|---------------|
-| **Path** | `.opencode/agent/deep-review.md` | `.opencode/agent/chatgpt/deep-review.md` | `.claude/agents/deep-review.md` | `.codex/agents/deep-review.toml` | `.agents/agents/deep-review.md` |
+| **Path** | `.opencode/agents/deep-review.md` | `.opencode/agents/chatgpt/deep-review.md` | `.claude/agents/deep-review.md` | `.codex/agents/deep-review.toml` | `.agents/agents/deep-review.md` |
 | **Tool budget target** | 9-12 | 9-12 | 9-12 | 9-12 | 9-12 |
 | **Tool budget max** | 13 | 13 | 13 | 13 | 13 |
 | **Tools (6)** | Read, Write, Edit, Bash, Grep, Glob | Read, Write, Edit, Bash, Grep, Glob | Read, Write, Edit, Bash, Grep, Glob | Read, Write, Edit, Bash, Grep, Glob | read_file, write_file, replace, run_shell_command, grep_search, list_directory |
@@ -89,7 +89,7 @@ Generated: 2026-03-24
 | **Read-only target** | Section 4, Rule 10 | Section 4, Rule 10 | Section 4, Rule 10 | Section 4, Rule 10 | Section 4, Rule 10 |
 | **10 sections** | 0-10 | 0-10 | 0-10 | 0-10 | 0-10 |
 | **Model** | (not in frontmatter) | (not in frontmatter) | opus | gpt-5.4 (effort: high) | gemini-3.1-pro-preview |
-| **Path convention ref** | `.opencode/agent/*.md` | `.opencode/agent/chatgpt/*.md` | `.claude/agents/*.md` | `.codex/agents/*.toml` | `.gemini/agents/*.md` |
+| **Path convention ref** | `.opencode/agents/*.md` | `.opencode/agents/chatgpt/*.md` | `.claude/agents/*.md` | `.codex/agents/*.toml` | `.gemini/agents/*.md` |
 
 ### Semantic Differences (acceptable, runtime-specific)
 

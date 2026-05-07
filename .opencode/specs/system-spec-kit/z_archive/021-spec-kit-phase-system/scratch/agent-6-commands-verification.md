@@ -318,9 +318,9 @@ This addresses:
 
 | Sub-requirement | Status | Evidence |
 |-----------------|--------|----------|
-| `phase.md` exists | VERIFIED | File present at `.opencode/command/spec_kit/phase.md` (228 lines) |
-| Auto YAML exists | VERIFIED | File present at `.opencode/command/spec_kit/assets/spec_kit_phase_auto.yaml` (325 lines) |
-| Confirm YAML exists | VERIFIED | File present at `.opencode/command/spec_kit/assets/spec_kit_phase_confirm.yaml` (401 lines) |
+| `phase.md` exists | VERIFIED | File present at `.opencode/commands/spec_kit/phase.md` (228 lines) |
+| Auto YAML exists | VERIFIED | File present at `.opencode/commands/spec_kit/assets/spec_kit_phase_auto.yaml` (325 lines) |
+| Confirm YAML exists | VERIFIED | File present at `.opencode/commands/spec_kit/assets/spec_kit_phase_confirm.yaml` (401 lines) |
 | Follows existing command structure pattern | VERIFIED | Checks 1-4 above confirm structural consistency |
 
 **REQ-004 Status: SATISFIED**

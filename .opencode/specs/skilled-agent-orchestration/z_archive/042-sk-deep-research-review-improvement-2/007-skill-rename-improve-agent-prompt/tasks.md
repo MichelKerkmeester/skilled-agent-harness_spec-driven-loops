@@ -42,7 +42,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read the phase packet and identify stale metadata, missing template markers, and broken README links. (`spec.md`; `plan.md`; `tasks.md`; `checklist.md`; `implementation-summary.md`; `README.md`)
-- [x] T002 Verify the live renamed skill and runtime-agent paths before rewriting packet references. (`.opencode/skill/sk-improve-agent/`; `.opencode/skill/sk-improve-prompt/`; `.opencode/agent/improve-agent.md`; `.claude/agents/improve-agent.md`; `.gemini/agents/improve-agent.md`; `.codex/agents/improve-agent.toml`)
+- [x] T002 Verify the live renamed skill and runtime-agent paths before rewriting packet references. (`.opencode/skills/sk-improve-agent/`; `.opencode/skills/sk-improve-prompt/`; `.opencode/agents/improve-agent.md`; `.claude/agents/improve-agent.md`; `.gemini/agents/improve-agent.md`; `.codex/agents/improve-agent.toml`)
 - [x] T003 Confirm the renamed changelog directories are the canonical closeout targets. (`.opencode/changelog/14--sk-improve-prompt/`; `.opencode/changelog/15--sk-improve-agent/`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,7 +67,7 @@ _memory:
 
 - [x] T011 Verify the packet references the live runtime-agent files and renamed changelog folders. (`spec.md`; `implementation-summary.md`; `decision-record.md`)
 - [x] T012 Verify all checklist items include evidence and reflect the completed rename state. (`checklist.md`)
-- [x] T013 Run strict validation on the phase folder until it passes cleanly. (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt --strict`)
+- [x] T013 Run strict validation on the phase folder until it passes cleanly. (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt --strict`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -49,7 +49,7 @@ _memory:
 - [x] CHK-002 [P0] Technical approach defined in plan.md with 3 serial phases
 - [x] CHK-003 [P0] Baseline regression metrics captured: `scratch/baseline-regression.json` exists with `top1_accuracy` + `p0_pass_rate` + per-case results
 - [x] CHK-004 [P0] Baseline confidence captured for 5 REQ-010 queries: `scratch/baseline-queries.md` exists
-- [x] CHK-005 [P1] Git HEAD clean in `.opencode/skill/skill-advisor/` before starting
+- [x] CHK-005 [P1] Git HEAD clean in `.opencode/skills/skill-advisor/` before starting
 <!-- /ANCHOR:pre-impl -->
 
 ---

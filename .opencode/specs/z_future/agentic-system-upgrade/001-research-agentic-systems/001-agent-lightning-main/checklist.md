@@ -40,7 +40,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Phase artifacts pass strict validation [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` passed after synthesis and closeout updates on 2026-04-10]
+- [x] CHK-010 [P0] Phase artifacts pass strict validation [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` passed after synthesis and closeout updates on 2026-04-10]
 - [x] CHK-011 [P0] No edits were made under `external/` [Evidence: all created and modified files stayed under this phase folder's docs, `research/`, and `memory/`]
 - [x] CHK-012 [P1] All citations resolve to real file:line evidence [Evidence: every iteration and the final report use `[SOURCE: file:line-line]` citations only]
 - [x] CHK-013 [P1] Recommendations map to concrete Public targets [Evidence: each finding names a specific `.opencode/...` file or module target in both iteration files and `research/research.md`]

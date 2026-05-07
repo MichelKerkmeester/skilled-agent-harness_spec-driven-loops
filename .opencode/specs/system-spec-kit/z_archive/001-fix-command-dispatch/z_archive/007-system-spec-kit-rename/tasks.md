@@ -150,71 +150,71 @@ contextType: "implementation"
 - **Status**: [ ] Pending
 
 ### Task 3.3: Update spec_kit_complete_auto.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
 - **References**: 15
 - **Lines**: 149-161, 637, 668, 710, 848, 850, 937
 - **Status**: [ ] Pending
 
 ### Task 3.4: Update spec_kit_complete_confirm.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
 - **References**: 13
 - **Lines**: 119-131, 517, 604, 727, 801
 - **Status**: [ ] Pending
 
 ### Task 3.5: Update spec_kit_plan_auto.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
 - **References**: 12
 - **Lines**: 118-130, 414, 478, 593
 - **Status**: [ ] Pending
 
 ### Task 3.6: Update spec_kit_plan_confirm.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
 - **References**: 12
 - **Lines**: 118-130, 439, 517, 636
 - **Status**: [ ] Pending
 
 ### Task 3.7: Update spec_kit_research_auto.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_research_auto.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_research_auto.yaml`
 - **References**: 10
 - **Lines**: 118-128, 585, 627, 651
 - **Status**: [ ] Pending
 
 ### Task 3.8: Update spec_kit_research_confirm.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_research_confirm.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_research_confirm.yaml`
 - **References**: 10
 - **Lines**: 118-128, 646, 693, 727
 - **Status**: [ ] Pending
 
 ### Task 3.9: Update spec_kit_implement_auto.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
 - **References**: 5
 - **Lines**: 138-143, 352
 - **Status**: [ ] Pending
 
 ### Task 3.10: Update spec_kit_implement_confirm.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
 - **References**: 5
 - **Lines**: 138-143, 385
 - **Status**: [ ] Pending
 
 ### Task 3.11: Update spec_kit_resume_auto.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
 - **References**: 1 (command reference, not path - may not need change)
 - **Status**: [ ] Pending
 
 ### Task 3.12: Update spec_kit_resume_confirm.yaml
-- **File**: `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml`
+- **File**: `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml`
 - **References**: 1 (command reference, not path - may not need change)
 - **Status**: [ ] Pending
 
 ### Task 3.13: Update create_skill.yaml
-- **File**: `.opencode/command/create/assets/create_skill.yaml`
+- **File**: `.opencode/commands/create/assets/create_skill.yaml`
 - **References**: 2
 - **Lines**: 231-232
 - **Status**: [ ] Pending
 
 ### Task 3.14: Update create_folder_readme.yaml
-- **File**: `.opencode/command/create/assets/create_folder_readme.yaml`
+- **File**: `.opencode/commands/create/assets/create_folder_readme.yaml`
 - **References**: 1
 - **Line**: 195
 - **Status**: [ ] Pending
@@ -276,7 +276,7 @@ contextType: "implementation"
 - **Status**: [ ] Pending
 
 ### Task 4.3: Grep verification - Command YAMLs
-- **Command**: `grep -r "workflows-spec-kit" .opencode/command/`
+- **Command**: `grep -r "workflows-spec-kit" .opencode/commands/`
 - **Expected**: Zero matches
 - **Status**: [ ] Pending
 

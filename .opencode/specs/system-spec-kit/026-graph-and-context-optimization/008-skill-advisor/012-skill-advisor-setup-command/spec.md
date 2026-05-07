@@ -69,11 +69,11 @@ Deliver a `/doctor:skill-advisor` slash command that interactively walks the AI 
 ## 3. SCOPE
 
 ### In Scope
-- New slash command `.opencode/command/doctor/skill-advisor.md` with `:auto` and `:confirm` modes
+- New slash command `.opencode/commands/doctor/skill-advisor.md` with `:auto` and `:confirm` modes
 - Two YAML workflow assets: `doctor_skill-advisor_auto.yaml` and `doctor_skill-advisor_confirm.yaml`
-- Update `.opencode/command/spec_kit/README.txt` to document the new command
+- Update `.opencode/commands/spec_kit/README.txt` to document the new command
 - Install guide `.opencode/install_guides/SET-UP - Skill Advisor.md`
-- Command reads all skills from `.opencode/skill/*/SKILL.md`
+- Command reads all skills from `.opencode/skills/*/SKILL.md`
 - Command reads current `graph-metadata.json` files and detects gaps
 - Command reads current `explicit.ts` TOKEN_BOOSTS and PHRASE_BOOSTS
 - Command reads current `lexical.ts` CATEGORY_HINTS
@@ -94,10 +94,10 @@ Deliver a `/doctor:skill-advisor` slash command that interactively walks the AI 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/doctor/skill-advisor.md` | Create | Command markdown definition |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml` | Create | Autonomous execution workflow |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_confirm.yaml` | Create | Interactive execution workflow |
-| `.opencode/command/spec_kit/README.txt` | Modify | Add new command to index |
+| `.opencode/commands/doctor/skill-advisor.md` | Create | Command markdown definition |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml` | Create | Autonomous execution workflow |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_confirm.yaml` | Create | Interactive execution workflow |
+| `.opencode/commands/spec_kit/README.txt` | Modify | Add new command to index |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Create | User-facing setup guide |
 <!-- /ANCHOR:scope -->
 
@@ -110,7 +110,7 @@ Deliver a `/doctor:skill-advisor` slash command that interactively walks the AI 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Command file exists and follows existing spec_kit command conventions | `.opencode/command/doctor/skill-advisor.md` loads on `/doctor:skill-advisor` with same header/metadata pattern as `.opencode/command/spec_kit/resume.md`, `plan.md` |
+| REQ-001 | Command file exists and follows existing spec_kit command conventions | `.opencode/commands/doctor/skill-advisor.md` loads on `/doctor:skill-advisor` with same header/metadata pattern as `.opencode/commands/spec_kit/resume.md`, `plan.md` |
 | REQ-002 | Auto and confirm YAML workflows exist in assets/ | Both YAML files follow existing workflow structure (operating_mode, workflow steps, error_recovery) |
 | REQ-003 | Command reads all skill SKILL.md files and graph-metadata.json files | Parses skill name, description, domains, intent_signals, derived triggers/keywords |
 | REQ-004 | Command reads current explicit.ts TOKEN_BOOSTS and PHRASE_BOOSTS | Parses the TSTypeScript object literals and detects which skills are already covered |
@@ -149,7 +149,7 @@ Deliver a `/doctor:skill-advisor` slash command that interactively walks the AI 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `skill_graph_scan` MCP tool must be operational | High — can't index changes | Verify tool availability in Phase 0 |
-| Dependency | Advisor test suite at `.opencode/skill/system-spec-kit/mcp_server/` | High — can't validate scoring changes | Run tests before and after changes |
+| Dependency | Advisor test suite at `.opencode/skills/system-spec-kit/mcp_server/` | High — can't validate scoring changes | Run tests before and after changes |
 | Risk | Over-optimization of scoring tables breaks existing skill recommendations | Medium | Run full test suite, review changes in confirm mode |
 | Risk | Command adds tokens that collide with other skills' scoring | Low | Cross-reference TOKEN_BOOSTS for existing entries before adding |
 <!-- /ANCHOR:risks -->
@@ -188,7 +188,7 @@ Deliver a `/doctor:skill-advisor` slash command that interactively walks the AI 
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty `.opencode/skill/` directory: Command reports "no skills found" and exits
+- Empty `.opencode/skills/` directory: Command reports "no skills found" and exits
 - Corrupt `graph-metadata.json`: Command skips skill with warning
 - Missing SKILL.md: Command infers skill name from folder name
 

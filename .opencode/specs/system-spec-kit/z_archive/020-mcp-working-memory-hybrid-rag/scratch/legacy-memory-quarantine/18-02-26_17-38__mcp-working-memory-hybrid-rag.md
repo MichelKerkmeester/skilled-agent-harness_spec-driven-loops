@@ -367,7 +367,7 @@ Created handover.md for spec 136 with continuation instructions, current plannin
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag", limit: 10 })
@@ -379,7 +379,7 @@ ls -la ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/memo
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag --force
 ```
 
 ### Recovery Priority

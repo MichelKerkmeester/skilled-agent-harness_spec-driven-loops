@@ -1,13 +1,13 @@
 # C6 Shared Module Boundary Audit
 
-Scope: `.opencode/skill/system-spec-kit/shared/**/*.ts`
+Scope: `.opencode/skills/system-spec-kit/shared/**/*.ts`
 
 Direct import scan result: no `shared/*.ts` file directly imports from `mcp_server/` or `scripts/`. The findings below focus on the remaining boundary, API-surface, type-safety, organization, re-export, and documentation issues inside the shared layer.
 
 ### C6-001: Shared path helpers are still runtime-coupled to `mcp_server/database`
 Severity: HIGH
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/shared/config.ts:23`
+Location: `.opencode/skills/system-spec-kit/shared/config.ts:23`
 
 Description: `shared/config.ts` and `shared/paths.ts` avoid direct imports from `mcp_server/`, but they still hard-code the runtime server database layout. That makes the shared package non-neutral: any consumer that wants to reuse these helpers inherits `mcp_server/database` as an implicit filesystem contract.
 
@@ -31,7 +31,7 @@ Recommended Fix: Move runtime-specific database path resolution behind an inject
 ### C6-002: Two incompatible `DegradedModeContract` exports exist in the same shared surface
 Severity: HIGH
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/shared/index.ts:180`
+Location: `.opencode/skills/system-spec-kit/shared/index.ts:180`
 
 Description: Shared defines `DegradedModeContract` twice with incompatible field naming and semantics: one in `algorithms/adaptive-fusion.ts` uses camelCase, while `contracts/retrieval-trace.ts` uses snake_case and adds `degradedStages`. `shared/index.ts` already contains a comment-based workaround to avoid exporting one of them through the barrel, which is a strong signal that the public model is conflicted.
 
@@ -67,7 +67,7 @@ Recommended Fix: Consolidate to one canonical degraded-mode contract, or rename 
 ### C6-003: Folder scoring relies on repeated unsafe casts instead of narrowing a real input type
 Severity: MEDIUM
 Category: bug
-Location: `.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts:206`
+Location: `.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:206`
 
 Description: `FolderMemoryInput` is defined as `Partial<Memory> & Record<string, unknown>`, then the implementation repeatedly casts unknown fields to strings. The shared API accepts almost anything and recovers with assertions rather than guards.
 
@@ -92,9 +92,9 @@ Recommended Fix: Replace `Record<string, unknown>` plus assertions with an expli
 ### C6-004: Several shared exports appear to be orphaned public API surface
 Severity: MEDIUM
 Category: alignment
-Location: `.opencode/skill/system-spec-kit/shared/utils/retry.ts:231`
+Location: `.opencode/skills/system-spec-kit/shared/utils/retry.ts:231`
 
-Description: Consumer scans across `.opencode/skill/system-spec-kit/**/*.{ts,js}` found multiple exported symbols with no source consumer outside their declaration file or the shared barrel. The clearest cases are `getBackoffSequence` and `withRetry` in `retry.ts`, `createProfileSlug` and `parseProfileSlug` in `embeddings/profile.ts`, `getMemoryTemplateSectionRules` in `parsing/memory-template-contract.ts`, and `filterStopWords` / `extractNgrams` in `trigger-extractor.ts`.
+Description: Consumer scans across `.opencode/skills/system-spec-kit/**/*.{ts,js}` found multiple exported symbols with no source consumer outside their declaration file or the shared barrel. The clearest cases are `getBackoffSequence` and `withRetry` in `retry.ts`, `createProfileSlug` and `parseProfileSlug` in `embeddings/profile.ts`, `getMemoryTemplateSectionRules` in `parsing/memory-template-contract.ts`, and `filterStopWords` / `extractNgrams` in `trigger-extractor.ts`.
 
 Evidence (code snippet):
 ```ts
@@ -125,7 +125,7 @@ Recommended Fix: Either remove these exports from the public surface or add a do
 ### C6-005: Barrel depth obscures real source ownership for shared algorithms
 Severity: LOW
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/shared/index.ts:168`
+Location: `.opencode/skills/system-spec-kit/shared/index.ts:168`
 
 Description: The algorithm exports flow through two barrel layers: `shared/index.ts` re-exports `./algorithms`, and `shared/algorithms/index.ts` re-exports each implementation with `export *`. A consumer can import from the top-level shared barrel without any clue whether the symbol comes from `rrf-fusion`, `adaptive-fusion`, or `mmr-reranker`.
 
@@ -154,7 +154,7 @@ Recommended Fix: Prefer leaf imports for non-trivial modules and keep the top-le
 ### C6-006: `shared/embeddings.ts` exports undocumented public helpers
 Severity: LOW
 Category: alignment
-Location: `.opencode/skill/system-spec-kit/shared/embeddings.ts:209`
+Location: `.opencode/skills/system-spec-kit/shared/embeddings.ts:209`
 
 Description: Several helpers are exported as part of the shared embeddings API without JSDoc or inline contract notes. The clearest examples are `buildWeightedDocumentText`, `clearEmbeddingCache`, `getEmbeddingCacheStats`, and `getProviderMetadata`.
 

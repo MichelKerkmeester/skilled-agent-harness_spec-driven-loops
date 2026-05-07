@@ -37,12 +37,12 @@ Review Iteration: 4 of 5
 Mode: review
 Dimension: validator-coverage
 Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep
-Review Scope Files: .opencode/skill/system-spec-kit/scripts/spec/validate.sh, .opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh, .opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh, .opencode/skill/system-spec-kit/scripts/rules/check-placeholders.sh, .opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh, .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh, .opencode/skill/system-spec-kit/scripts/rules/check-sections.sh, .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh, .opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh, .opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts, .opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/checklist.md
+Review Scope Files: .opencode/skills/system-spec-kit/scripts/spec/validate.sh, .opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh, .opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh, .opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh, .opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh, .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh, .opencode/skills/system-spec-kit/scripts/rules/check-sections.sh, .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh, .opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh, .opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts, .opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/checklist.md
 Prior Findings: P1-001 target scaffold placeholders; P1-002 graph metadata disconnected; P1-003 marker comments counted by semantic validators.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/references/review_core.md` before final severity calls.
+Load `.opencode/skills/sk-code-review/references/review_core.md` before final severity calls.
 
 ## Iteration Task
 
@@ -55,7 +55,7 @@ Required checks:
 - Inspect test coverage for validator metadata, scaffold snapshots, template structure, and negative fixtures around comments or `SCAFFOLD_*` markers.
 - Confirm whether F003 is sufficient or whether validator coverage has an additional missing-regression-test finding.
 - Avoid duplicating F003 unless the coverage gap is a distinct test/validation blind spot with file:line evidence.
-- Use `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts.
+- Use `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts.
 
 ## Writable State Files
 

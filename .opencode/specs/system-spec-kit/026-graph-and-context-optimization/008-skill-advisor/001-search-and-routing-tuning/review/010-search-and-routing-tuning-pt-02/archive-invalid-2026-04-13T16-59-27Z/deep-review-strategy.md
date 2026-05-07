@@ -18,7 +18,7 @@ Root review of `010-search-and-routing-tuning` covering the promoted parent meta
 <!-- /ANCHOR:review-dimensions -->
 <!-- ANCHOR:non-goals -->
 ## 4. NON-GOALS
-- Reopening runtime implementation files under `.opencode/skill/system-spec-kit/`.
+- Reopening runtime implementation files under `.opencode/skills/system-spec-kit/`.
 - Rewriting the promoted packet docs during the review itself.
 - Auditing unrelated packet families outside `010-search-and-routing-tuning/`.
 
@@ -62,12 +62,12 @@ Root review of `010-search-and-routing-tuning` covering the promoted parent meta
 <!-- /ANCHOR:what-failed -->
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### Live Stage 3 continuity regression in the promoted 001 runtime: ruled out by the shipped MMR handoff and regression test. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:244`] -- BLOCKED (iteration 10, 1 attempts)
+### Live Stage 3 continuity regression in the promoted 001 runtime: ruled out by the shipped MMR handoff and regression test. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:244`] -- BLOCKED (iteration 10, 1 attempts)
 - What was tried: Re-check whether the promoted `001` root review report was still correct about an active Stage 3 continuity defect.
 - Why blocked: Current code and tests show the handoff is already fixed; only the review artifact remained stale.
 - Do NOT retry: `001-search-fusion-tuning` root review as evidence for a live Stage 3 bug.
 
-### Live metadata-only host-selection regression in the promoted 002 runtime: ruled out by the current handler and focused regression coverage. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1054`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157`] -- BLOCKED (iteration 11, 1 attempts)
+### Live metadata-only host-selection regression in the promoted 002 runtime: ruled out by the current handler and focused regression coverage. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1054`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1157`] -- BLOCKED (iteration 11, 1 attempts)
 - What was tried: Re-check whether the promoted `002` root review report still reflected an open host-selection bug.
 - Why blocked: The runtime now prefers `implementation-summary.md` and the targeted regression proves that behavior.
 - Do NOT retry: `002-content-routing-accuracy/review/review-report.md` as evidence for a live metadata-only host bug.
@@ -130,9 +130,9 @@ Stop iteration. Open a promotion-integrity remediation pass that regenerates roo
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/implementation-summary.md` | D1, D3 | 17 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/review/deep-review-dashboard.md` | D3, D4 | 13 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/review/deep-review-config.json` | D3, D4 | 13 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | D1, D3 | 17 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts` | D1 | 17 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | D1, D3 | 17 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | D1 | 17 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts` | D1, D3 | 17 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts` | D1 | 17 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | D1, D3 | 17 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts` | D1 | 17 | 0 P0, 0 P1, 0 P2 | complete |
 
 <!-- /ANCHOR:files-under-review -->

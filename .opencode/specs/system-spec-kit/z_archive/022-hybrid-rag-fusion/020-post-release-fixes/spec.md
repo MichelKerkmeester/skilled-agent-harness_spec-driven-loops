@@ -39,7 +39,7 @@ This documentation pass does not fix those findings yet. Its job is narrower and
 
 **Key Decisions**: use `review/review-report.md` as the only authoritative review source inside this packet; treat the top-level `review-report.md` in this folder as historical evidence only; keep the written verdict `FAIL` until fresh reruns justify any change; group remediation into four workstreams: runtime/code integrity, packet/spec truth-sync, public docs and wrapper alignment, and feature verification/tooling contract repair.
 
-**Critical Dependencies**: [`review/review-report.md`](./review/review-report.md), [`tasks.md`](./tasks.md), [`checklist.md`](./checklist.md), the live feature catalog under `.opencode/skill/system-spec-kit/feature_catalog/`, and the runtime plus test surfaces cited by the canonical review.
+**Critical Dependencies**: [`review/review-report.md`](./review/review-report.md), [`tasks.md`](./tasks.md), [`checklist.md`](./checklist.md), the live feature catalog under `.opencode/skills/system-spec-kit/feature_catalog/`, and the runtime plus test surfaces cited by the canonical review.
 
 ---
 

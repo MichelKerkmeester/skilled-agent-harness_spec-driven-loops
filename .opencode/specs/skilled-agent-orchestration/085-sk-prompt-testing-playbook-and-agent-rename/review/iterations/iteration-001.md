@@ -30,70 +30,70 @@ rg -l '@improve-prompt|improve-prompt' .opencode .claude .codex .gemini *.md *.j
 
 ### 2. Agent file existence (new paths)
 ```bash
-ls .opencode/agent/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
+ls .opencode/agents/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
 ```
 **Result:** All 4 paths exist and are readable.
 
 ### 3. Old agent paths absent
 ```bash
-ls .opencode/agent/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md
+ls .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md
 ```
 **Result:** All 4 return "No such file or directory."
 
 ### 4. Frontmatter `name:` rotated
-- `.opencode/agent/prompt-improver.md`: `name: prompt-improver`
+- `.opencode/agents/prompt-improver.md`: `name: prompt-improver`
 - `.claude/agents/prompt-improver.md`: `name: prompt-improver`
 - `.codex/agents/prompt-improver.toml`: `name = "prompt-improver"`
 - `.gemini/agents/prompt-improver.md`: `name: prompt-improver`
 
 ### 5. Advisor probe
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 ```
 **Result:** `sk-prompt` @ 0.9262 confidence — still resolves correctly.
 
 ### 6. Strict validate
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
 ```
 **Result:** PASSED — Errors: 0, Warnings: 0
 
 ### 7. Playbook validation
 ```bash
-python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md
 ```
 **Result:** VALID — Document type: readme, Total issues: 0
 
 ### 8. Scenario file count
 ```bash
-find .opencode/skill/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
+find .opencode/skills/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
 ```
 **Result:** 28 (matches spec: 4+4+6+4+4+4+2 across 7 categories)
 
 ### 9. SKILL.md RELATED PLAYBOOK link
 ```bash
-grep -n 'RELATED PLAYBOOK\|manual_testing_playbook' .opencode/skill/sk-prompt/SKILL.md
+grep -n 'RELATED PLAYBOOK\|manual_testing_playbook' .opencode/skills/sk-prompt/SKILL.md
 ```
 **Result:** Single link at lines 453-455 (`## RELATED PLAYBOOK` + path), no inline backrefs.
 
 ### 10. Playbook `@prompt-improver` refs / zero old refs
 ```bash
-grep -c 'prompt-improver' .opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md  # → 22
-rg -l '@improve-prompt|improve-prompt' .opencode/skill/sk-prompt/manual_testing_playbook/  # → (empty)
+grep -c 'prompt-improver' .opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md  # → 22
+rg -l '@improve-prompt|improve-prompt' .opencode/skills/sk-prompt/manual_testing_playbook/  # → (empty)
 ```
 
 ### 11. Command path unchanged
 ```bash
-ls .opencode/command/improve/prompt.md  # → exists
+ls .opencode/commands/improve/prompt.md  # → exists
 ```
 Body references `@prompt-improver` throughout (line 9, 18, 48, 51, 204, 297, 368).
 
 ## Adversarial Self-Check
 
-**Did I miss any `@improve-prompt` residuals?** The grep exclusion list was comprehensive per the strategy doc — all frozen-completed packets, z_archive, z_future, .git, barter, and the command file path `.opencode/command/improve/prompt.md` itself. The result was empty after correct exclusion of `improve/prompt.md`. No borderline cases.
+**Did I miss any `@improve-prompt` residuals?** The grep exclusion list was comprehensive per the strategy doc — all frozen-completed packets, z_archive, z_future, .git, barter, and the command file path `.opencode/commands/improve/prompt.md` itself. The result was empty after correct exclusion of `improve/prompt.md`. No borderline cases.
 
 **Are my P1s actually blockers?** No. The implementation-summary being template is a documentation gap, not a code defect. It does not block the package from functioning — it only compromises traceability for future maintainers.
 
 **Does the checklist.md absence matter?** The strict validate passed without it, so the validator's phase-child rules apparently accept Level 1 minimums or treat the metadata table as advisory. I classified this as P2 (dimension 4, documentation hygiene) since it doesn't affect function.
 
-**Is the command truly unchanged?** Yes — `ls .opencode/command/improve/prompt.md` confirms the file path still contains `improve`, and the grep shows `/improve:prompt` is still the command name. Only the internal agent reference was rotated.
+**Is the command truly unchanged?** Yes — `ls .opencode/commands/improve/prompt.md` confirms the file path still contains `improve`, and the grep shows `/improve:prompt` is still the command name. Only the internal agent reference was rotated.

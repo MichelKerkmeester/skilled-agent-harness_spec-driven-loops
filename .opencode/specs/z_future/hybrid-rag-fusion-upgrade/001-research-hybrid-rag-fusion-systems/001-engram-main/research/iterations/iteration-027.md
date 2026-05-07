@@ -19,21 +19,21 @@ DEVELOPER EXPERIENCE: How easy is this system to set up, configure, debug, and m
 - **Impact**: high
 
 ### Finding 3: Tool profiles plus explicit eager/deferred guidance make the MCP surface easier to learn
-- **Source**: `001-engram-main/external/internal/mcp/mcp.go:7-13,50-79,121-138,169-210,375-579`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:230-239,733-756`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:7-13,50-79,121-138,169-210,375-579`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:230-239,733-756`
 - **What it does**: Engram explicitly separates `agent` versus `admin` tool profiles, supports `--tools=agent` or `--tools=admin`, and embeds server instructions that say which tools are core and always-in-context versus deferred. The tool descriptions themselves also teach usage patterns, including when to search, when to save, and when to close a session.
 - **Why it matters**: Public exposes a much broader surface that includes orchestration, discovery, health, resume, graph, and indexing tools. That power is valuable, but it is harder to discover. Engram’s DX pattern worth stealing is not feature reduction; it is shipping an agent-safe profile or beginner bundle with opinionated guidance layered on top of the full Spec Kit Memory surface.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 4: Engram’s direct session-summary and passive-capture tools are ergonomically simpler than Public’s save pipeline
-- **Source**: `001-engram-main/external/internal/mcp/mcp.go:460-579`; `.opencode/skill/system-spec-kit/scripts/README.md:104-118`; `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:67`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:460-579`; `.opencode/skills/system-spec-kit/scripts/README.md:104-118`; `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:67`
 - **What it does**: Engram exposes first-class MCP tools for end-of-session summaries and passive learning extraction, both with explicit schemas and usage guidance in the tool descriptions. Public’s current memory-save rule routes through `generate-context.js`, and even the internal loader guidance tells the agent to write structured JSON to `/tmp/save-context-data.json` before invoking the script.
 - **Why it matters**: Public’s structured save path is safer and richer, but it is noticeably less ergonomic. The DX pattern to steal is a friendlier front door: a high-level session-summary or passive-capture surface that compiles down to `generate-context.js` internally, so the robust save contract stays intact without making every caller manage temp JSON files.
 - **Recommendation**: NEW FEATURE
 - **Impact**: high
 
 ### Finding 5: Engram is unusually explicit about degraded modes, platform caveats, and debugging paths
-- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:45-61,84-103`; `001-engram-main/external/docs/INSTALLATION.md:73-97,147-159`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:784-788`
+- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:45-61,84-103`; `001-engram-main/external/docs/INSTALLATION.md:73-97,147-159`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:784-788`
 - **What it does**: Engram repeatedly documents the fallback path: plugin versus bare MCP, Windows hook caveats, antivirus false positives, exact config-file locations, and when a user should choose the manual route instead of the full integration. Public already has stronger health and recovery machinery, and `context-server.ts` does emit structural bootstrap guidance, but the operational story is spread across more subsystems and documents.
 - **Why it matters**: Debuggability is not only about runtime checks; it is also about reducing uncertainty during setup and recovery. Public should steal Engram’s habit of packaging the happy path and the fallback path together, ideally with a single setup/doctor document or command that points to `session_bootstrap`, `session_health`, `memory_health`, graph status, and CocoIndex status in one place.
 - **Recommendation**: adopt now

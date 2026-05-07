@@ -1,5 +1,5 @@
 ### Finding 4: Capability-aware fallback is good DX only when the route is visible
-- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
+- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
 - **What it does**: Modus cleanly falls back to the original query when librarian expansion is unavailable or unparsable. Public already has stronger fail-open behavior across FTS, intent routing, and community fallback, but much of that is visible only in stderr or trace metadata.
 - **Why it matters**: Operators trust fallback only when they can tell what path actually ran and why.
 - **Recommendation**: **adopt now**. Public should surface a compact route summary in debug profiles or status tools instead of keeping routing visibility mostly in logs.
@@ -13,7 +13,7 @@
 - **Impact**: **medium**
 
 ### Finding 6: Modus’s small curated tool bundle is easier to learn than Public’s broad surface
-- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
+- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
 - **What it does**: Modus deliberately narrows its memory-facing MCP surface to 11 tools. Public’s surface is more capable, but also harder for operators and AI clients to learn quickly.
 - **Why it matters**: Discoverability is part of DX. A smaller “operator bundle” can make a powerful system feel approachable without removing advanced capabilities.
 - **Recommendation**: **prototype later**. Keep Public’s full surface, but add a curated operator profile or alias bundle centered on search, status, review, debug, health, and adjacency.
@@ -38,7 +38,7 @@ Run the next iteration on **operator workflow design**: map Public’s existing 
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -98,12 +98,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -112,7 +112,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -269,7 +269,7 @@ I’m treating this as a read-only deep-research pass for iteration 29 focused o
 exec
 /bin/zsh -lc 'rg -n "modus|hybrid-rag|FSRS|librarian|crossref|architecture decision|003-modus-memory-main" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 456:## Task 2: Rename packet `023-esm-module-compliance` to `023-hybrid-rag-fusion-refinement` and sync changelog references, outcome success
 464:- 023-hybrid-rag-fusion-refinement, memory_index_scan, memory_quick_search, parentChain, B3-hybrid-rag-fusion-refinement, .opencode/changelog
@@ -302,7 +302,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -2553,139 +2553,139 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:924:		return index.FormatConnected(refs), nil
 
 exec
-/bin/zsh -lc 'rg -n "FSRS|trackAccess|processReview|nextReviewDate|memory_validate|enableSessionBoost|causal|trace|profile|route|fallback|debug|review|search_shown|result_cited" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "FSRS|trackAccess|processReview|nextReviewDate|memory_validate|enableSessionBoost|causal|trace|profile|route|fallback|debug|review|search_shown|result_cited" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:5:// Augments FSRS stability scores with graph centrality so that
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:26: * Compute structural freshness by augmenting an FSRS stability score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts:36: * @param stability  - FSRS stability value, clamped to [0, 1].
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:5:// CANONICAL FSRS CONSTANTS & ALGORITHM
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10:// FSRS v4 power-law: R(t) = (1 + FSRS_FACTOR * t/S)^FSRS_DECAY
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:11:// Timescale: days/weeks. Constants: FSRS_FACTOR=19/81, FSRS_DECAY=-0.5
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:21:// Where t = elapsed days, S = stability (grows with successful reviews).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:31:/** FSRS v4 algorithm constants */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:32:const FSRS_FACTOR = 19 / 81;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:33:const FSRS_DECAY = -0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:36:// From R(h) = 0.5: S = (FSRS_FACTOR / 3) * h = (19/243) * h
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:37:const FSRS_HALF_LIFE_FACTOR = FSRS_FACTOR / 3; // 19/243 ≈ 0.07819
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39:/** Grade constants for review scoring */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:86:    1 + FSRS_FACTOR * (elapsedDays / stability),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:87:    FSRS_DECAY
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:94: * Update stability based on review grade.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:95: * Uses simplified FSRS v4 update rules.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:122: * Calculate optimal review interval from stability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:138: * Update difficulty based on review grade.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:159: * Calculate elapsed days since last review.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:186: * Create initial FSRS parameters for a new memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:198: * Process a review and return updated parameters.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:222:const FSRS_CONSTANTS = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:223:  FSRS_FACTOR,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:224:  FSRS_DECAY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:225:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant (19/243)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:244: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:261:   Multiplies FSRS stability so that:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:268: * Applied to the FSRS stability parameter before computing retrievability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:271: * 1.0 = standard FSRS schedule.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:341: * @param stability      Base FSRS stability value
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:379:      Normal FSRS schedule applies without modification.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:396:const HYBRID_FSRS_CONTEXT_TYPES: ReadonlySet<string> = new Set([
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:445: *   - all others → returns stability unchanged (normal FSRS schedule)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:447: * @param stability    Base FSRS stability value
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:458:  FSRS_FACTOR,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:459:  FSRS_DECAY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:460:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:470:  FSRS_CONSTANTS,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:481:  HYBRID_FSRS_CONTEXT_TYPES,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:93:      enableSessionBoost: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:99:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:104:        description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls. When implicit feedback logging is enabled, includeContent searches also emit shadow-only result_cited events for returned memories.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:111:      profile: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:113:        enum: ['quick', 'research', 'resume', 'debug'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:114:        description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:168:        description: 'When true, writes FSRS strengthening updates to memory_index for each returned result. Off by default to avoid write-on-read side effects.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:184:        description: 'When true (or when SPECKIT_RESPONSE_TRACE=true), include provenance-rich scores/source/trace envelope fields in each result.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:497:  name: 'memory_causal_stats',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:498:  description: '[L6:Analysis] Get statistics about the causal memory graph. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of memories linked (CHK-065). Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:564:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:691:      profile: { type: 'string', enum: ['quick', 'research', 'debug'], description: 'Output density profile' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:692:      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:786:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type: research or review (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:832:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:850:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:863:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:62:// Retrieval trace contracts (C136-08)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:63:import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:75:} from '../lib/response/profile-formatters.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:103:// Feature catalog: Quality-aware 3-tier search fallback
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:139:  contentSource?: 'reassembled_chunks' | 'file_read_fallback';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:204:  enableSessionBoost?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:212:  profile?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:521:    enableSessionBoost: enableSessionBoost = isSessionBoostEnabled(),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:528:    profile,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:675:    if (classification.fallback) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:676:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:691:  // Phase C: Intent-to-profile auto-routing.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:692:  // Explicit caller `profile` always takes precedence; auto-detect fills in when absent.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:693:  let effectiveProfile: string | undefined = profile;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:699:        console.error(`[memory-search] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:702:      // Auto-profile is best-effort — never breaks search
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:706:  // Re-run artifact routing with detected intent for fallback coverage
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:712:  const trace = createTrace(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:745:    enableSessionBoost,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:799:      enableSessionBoost,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:806:      trace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:812:    // Phase B T018/T019: Community search fallback — inject community members on weak results
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:858:          console.warn(`[memory-search] Community search fallback failed (fail-open): ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:965:    if (pipelineResult.trace) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:966:      extraData.retrievalTrace = pipelineResult.trace;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1251:  // REQ-D4-001: Implicit feedback — log search_shown events for returned results
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1270:            type: 'search_shown',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1284:  // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1325:  // REQ-D5-003: Apply presentation profile when flag is enabled and profile is specified.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1326:  // Phase C: effectiveProfile includes auto-routed profile from intent detection.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1331:        const profiled = applyProfileToEnvelope(effectiveProfile, firstEntry.text);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1332:        if (profiled !== firstEntry.text) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1335:            content: [{ ...firstEntry, text: profiled }],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1338:      } catch (_profileError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:5:// Augments FSRS stability scores with graph centrality so that
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:26: * Compute structural freshness by augmenting an FSRS stability score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts:36: * @param stability  - FSRS stability value, clamped to [0, 1].
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:5:// CANONICAL FSRS CONSTANTS & ALGORITHM
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10:// FSRS v4 power-law: R(t) = (1 + FSRS_FACTOR * t/S)^FSRS_DECAY
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:11:// Timescale: days/weeks. Constants: FSRS_FACTOR=19/81, FSRS_DECAY=-0.5
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:19:// Algorithm. All temporal decay for persistent memories should route
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:21:// Where t = elapsed days, S = stability (grows with successful reviews).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:31:/** FSRS v4 algorithm constants */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:32:const FSRS_FACTOR = 19 / 81;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:33:const FSRS_DECAY = -0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:36:// From R(h) = 0.5: S = (FSRS_FACTOR / 3) * h = (19/243) * h
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:37:const FSRS_HALF_LIFE_FACTOR = FSRS_FACTOR / 3; // 19/243 ≈ 0.07819
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39:/** Grade constants for review scoring */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:86:    1 + FSRS_FACTOR * (elapsedDays / stability),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:87:    FSRS_DECAY
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:94: * Update stability based on review grade.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:95: * Uses simplified FSRS v4 update rules.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:122: * Calculate optimal review interval from stability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:132:  const interval = (safeStability / FSRS_FACTOR) * (Math.pow(desiredRetention, 1 / FSRS_DECAY) - 1);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:138: * Update difficulty based on review grade.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:159: * Calculate elapsed days since last review.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:186: * Create initial FSRS parameters for a new memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:198: * Process a review and return updated parameters.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:222:const FSRS_CONSTANTS = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:223:  FSRS_FACTOR,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:224:  FSRS_DECAY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:225:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant (19/243)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:244: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:261:   Multiplies FSRS stability so that:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:268: * Applied to the FSRS stability parameter before computing retrievability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:271: * 1.0 = standard FSRS schedule.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:341: * @param stability      Base FSRS stability value
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:379:      Normal FSRS schedule applies without modification.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:396:const HYBRID_FSRS_CONTEXT_TYPES: ReadonlySet<string> = new Set([
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:445: *   - all others → returns stability unchanged (normal FSRS schedule)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:447: * @param stability    Base FSRS stability value
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:458:  FSRS_FACTOR,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:459:  FSRS_DECAY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:460:  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:470:  FSRS_CONSTANTS,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:481:  HYBRID_FSRS_CONTEXT_TYPES,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:93:      enableSessionBoost: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:99:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:104:        description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls. When implicit feedback logging is enabled, includeContent searches also emit shadow-only result_cited events for returned memories.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:111:      profile: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:113:        enum: ['quick', 'research', 'resume', 'debug'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:114:        description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:168:        description: 'When true, writes FSRS strengthening updates to memory_index for each returned result. Off by default to avoid write-on-read side effects.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:184:        description: 'When true (or when SPECKIT_RESPONSE_TRACE=true), include provenance-rich scores/source/trace envelope fields in each result.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:497:  name: 'memory_causal_stats',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:498:  description: '[L6:Analysis] Get statistics about the causal memory graph. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of memories linked (CHK-065). Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:564:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:691:      profile: { type: 'string', enum: ['quick', 'research', 'debug'], description: 'Output density profile' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:692:      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:786:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type: research or review (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:832:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:850:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:863:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:62:// Retrieval trace contracts (C136-08)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:63:import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:75:} from '../lib/response/profile-formatters.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:103:// Feature catalog: Quality-aware 3-tier search fallback
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:139:  contentSource?: 'reassembled_chunks' | 'file_read_fallback';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:204:  enableSessionBoost?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:212:  profile?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:213:  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:365:  if (typeof data.fallbackState !== 'string' && snapshot) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:366:    data.fallbackState = snapshot.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:521:    enableSessionBoost: enableSessionBoost = isSessionBoostEnabled(),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:528:    profile,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:675:    if (classification.fallback) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:676:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:691:  // Phase C: Intent-to-profile auto-routing.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:692:  // Explicit caller `profile` always takes precedence; auto-detect fills in when absent.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:693:  let effectiveProfile: string | undefined = profile;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:699:        console.error(`[memory-search] Intent-to-profile auto-routing: '${detectedIntent}' → profile '${autoProfile}'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:702:      // Auto-profile is best-effort — never breaks search
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:706:  // Re-run artifact routing with detected intent for fallback coverage
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:711:  // Create retrieval trace at pipeline entry
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:712:  const trace = createTrace(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:745:    enableSessionBoost,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:799:      enableSessionBoost,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:806:      trace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:812:    // Phase B T018/T019: Community search fallback — inject community members on weak results
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:858:          console.warn(`[memory-search] Community search fallback failed (fail-open): ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:908:        `[memory-search] Lexical capability path '${lexicalCapability.lexicalPath}' (fallbackState: ${lexicalCapability.fallbackState})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921:      extraData.fallbackState = lexicalCapability.fallbackState;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:965:    if (pipelineResult.trace) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:966:      extraData.retrievalTrace = pipelineResult.trace;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:986:      causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1251:  // REQ-D4-001: Implicit feedback — log search_shown events for returned results
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1270:            type: 'search_shown',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1284:  // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1325:  // REQ-D5-003: Apply presentation profile when flag is enabled and profile is specified.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1326:  // Phase C: effectiveProfile includes auto-routed profile from intent detection.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1331:        const profiled = applyProfileToEnvelope(effectiveProfile, firstEntry.text);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1332:        if (profiled !== firstEntry.text) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1335:            content: [{ ...firstEntry, text: profiled }],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1338:      } catch (_profileError: unknown) {
 
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3032,7 +3032,7 @@ exec
 497:Currently supported: **Khoj** (ZIP or JSON export). The import system is extensible — adding new sources means writing a converter from their export format to markdown files.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs Scheduler
@@ -3276,7 +3276,7 @@ exec
    240	 * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs
@@ -3362,7 +3362,7 @@ exec
     82	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '500,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '500,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    500	    agentId,
    501	    sharedSpaceId,
@@ -3847,7 +3847,7 @@ exec
    980	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1240,1345p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1240,1345p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1240	          evalRunId: _evalRunId,
   1241	          queryId: _evalQueryId,
@@ -3957,7 +3957,7 @@ exec
   1345	    responseToReturn,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '288,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '288,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    288	  },
    289	};
@@ -3994,7 +3994,7 @@ exec
    320	  name: 'memory_bulk_delete',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '40,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '40,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     40	// T061: L1 Orchestration - Unified entry point (Token Budget: 3500)
     41	const memoryContext: ToolDefinition = {
@@ -4079,7 +4079,7 @@ exec
    120	        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1139ms:
 
 ───────────────────────────────────────────────────────────────
@@ -4094,7 +4094,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -4113,9 +4113,9 @@ Read-only iteration 29 research pass is in synthesis. Code evidence and validati
   ✓ Run strict validation on the phase folder
   → Synthesize iteration 29 architecture decision record
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '120,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '120,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '236,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '236,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    120	        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
    121	      },
@@ -4297,7 +4297,7 @@ exec
    340	 *
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '488,505p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '488,505p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    488	  // Core functions
    489	  calculateRetrievability,
@@ -4324,35 +4324,35 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 
 ## Findings
 ### Finding 1: A small, opinionated operator control plane is a real architectural advantage
-- **Source**: [memory.go:7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [memory.go:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L18); [tool-schemas.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L41); [tool-schemas.ts:48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L48)
+- **Source**: [memory.go:7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [memory.go:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L18); [tool-schemas.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L41); [tool-schemas.ts:48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L48)
 - **What it does**: Modus deliberately trims its exposed MCP surface to 11 memory-facing tools, while Public exposes a much richer retrieval platform with orchestration, search, graph, health, and profile surfaces.
 - **Why it matters**: This is a DX architecture decision, not just naming. Modus is easier for operators and agents to learn because the “happy path” is obvious. Public is stronger, but its control plane is broader than many users need.
 - **Recommendation**: **adopt now**
 - **Impact**: **high**
 
 ### Finding 2: Lexical recall should be a complementary lane, not the core retrieval architecture
-- **Source**: [bm25.go:16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/bm25.go#L16); [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [indexer.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L160); [tool-schemas.ts:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L49); [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
+- **Source**: [bm25.go:16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/bm25.go#L16); [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [indexer.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L160); [tool-schemas.ts:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L49); [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
 - **What it does**: Modus uses weighted BM25, prefix fallback, tiny query caching, OOD filtering, oversampling, and dedup as its main search path. Public already runs a richer hybrid pipeline with reranking, intent weighting, and multiple fallback lanes.
 - **Why it matters**: Modus proves that lexical search can be fast and predictable, but its architecture is intentionally simpler than Public’s. Replacing Public’s hybrid stack with BM25 would be a downgrade; adding a lightweight lexical lane for specific debug or constrained-recall cases could still help.
 - **Recommendation**: **prototype later**
 - **Impact**: **medium**
 
 ### Finding 3: Search-route visibility is worth copying more than librarian expansion itself
-- **Source**: [search.go:15](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L15); [vault.go:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go:47](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [memory-search.ts:675](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L675); [memory-search.ts:907](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L907); [memory-search.ts:1327](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L1327)
+- **Source**: [search.go:15](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L15); [vault.go:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go:47](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [memory-search.ts:675](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L675); [memory-search.ts:907](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L907); [memory-search.ts:1327](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L1327)
 - **What it does**: Modus cleanly falls back to the original query when expansion is unavailable, and the route is conceptually easy to understand. Public already has stronger fail-open routing, but much of the explanation lives in stderr, metadata, or optional profiles.
 - **Why it matters**: The durable architecture lesson is not “use an LLM expander.” It is “make the retrieval route legible.” Operators trust fallback when they can see which lane ran, which fallback triggered, and why.
 - **Recommendation**: **adopt now**
 - **Impact**: **medium**
 
 ### Finding 4: Explicit review and decay operations are the right control surface; write-on-read is not
-- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L297); [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200)
+- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L297); [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200)
 - **What it does**: Modus ships explicit `memory_reinforce` and `memory_decay_facts`, but it also auto-reinforces returned facts during `memory_search`. Public already has canonical FSRS review math and keeps `trackAccess` off by default to avoid write-on-read side effects; its exposed feedback action today is `memory_validate`, not a first-class graded review tool.
 - **Why it matters**: The right architectural decision is explicit operator control over memory freshness, not silent mutation during observation. Public should copy the explicit control surface and reject the automatic mutation model.
 - **Recommendation**: **adopt now**
 - **Impact**: **high**
 
 ### Finding 5: Cheap adjacency maps are a useful complement to causal graphs, not a replacement
-- **Source**: [crossref.go:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L9); [crossref.go:154](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L154); [vault.go:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L75); [tool-schemas.ts:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L97); [tool-schemas.ts:485](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L485); [fsrs.ts:25](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts#L25)
+- **Source**: [crossref.go:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L9); [crossref.go:154](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L154); [vault.go:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L75); [tool-schemas.ts:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L97); [tool-schemas.ts:485](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L485); [fsrs.ts:25](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts#L25)
 - **What it does**: Modus builds subject/tag/entity adjacency maps at index time and exposes connected documents directly. Public already has causal traversal and graph-aware freshness, but those are heavier semantic structures than simple adjacency hints.
 - **Why it matters**: For compaction recovery and cheap rehydration, adjacency is often the fastest useful move. It is weaker than Public’s causal graph for “why” questions, but better for low-cost “what else is nearby?” expansion.
 - **Recommendation**: **prototype later**
@@ -4381,35 +4381,35 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 
 ## Findings
 ### Finding 1: A small, opinionated operator control plane is a real architectural advantage
-- **Source**: [memory.go:7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [memory.go:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L18); [tool-schemas.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L41); [tool-schemas.ts:48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L48)
+- **Source**: [memory.go:7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [memory.go:18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L18); [tool-schemas.ts:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L41); [tool-schemas.ts:48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L48)
 - **What it does**: Modus deliberately trims its exposed MCP surface to 11 memory-facing tools, while Public exposes a much richer retrieval platform with orchestration, search, graph, health, and profile surfaces.
 - **Why it matters**: This is a DX architecture decision, not just naming. Modus is easier for operators and agents to learn because the “happy path” is obvious. Public is stronger, but its control plane is broader than many users need.
 - **Recommendation**: **adopt now**
 - **Impact**: **high**
 
 ### Finding 2: Lexical recall should be a complementary lane, not the core retrieval architecture
-- **Source**: [bm25.go:16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/bm25.go#L16); [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [indexer.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L160); [tool-schemas.ts:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L49); [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
+- **Source**: [bm25.go:16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/bm25.go#L16); [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [indexer.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L160); [tool-schemas.ts:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L49); [memory-search.ts:771](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L771)
 - **What it does**: Modus uses weighted BM25, prefix fallback, tiny query caching, OOD filtering, oversampling, and dedup as its main search path. Public already runs a richer hybrid pipeline with reranking, intent weighting, and multiple fallback lanes.
 - **Why it matters**: Modus proves that lexical search can be fast and predictable, but its architecture is intentionally simpler than Public’s. Replacing Public’s hybrid stack with BM25 would be a downgrade; adding a lightweight lexical lane for specific debug or constrained-recall cases could still help.
 - **Recommendation**: **prototype later**
 - **Impact**: **medium**
 
 ### Finding 3: Search-route visibility is worth copying more than librarian expansion itself
-- **Source**: [search.go:15](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L15); [vault.go:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go:47](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [memory-search.ts:675](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L675); [memory-search.ts:907](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L907); [memory-search.ts:1327](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L1327)
+- **Source**: [search.go:15](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L15); [vault.go:28](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go:47](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [memory-search.ts:675](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L675); [memory-search.ts:907](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L907); [memory-search.ts:1327](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L1327)
 - **What it does**: Modus cleanly falls back to the original query when expansion is unavailable, and the route is conceptually easy to understand. Public already has stronger fail-open routing, but much of the explanation lives in stderr, metadata, or optional profiles.
 - **Why it matters**: The durable architecture lesson is not “use an LLM expander.” It is “make the retrieval route legible.” Operators trust fallback when they can see which lane ran, which fallback triggered, and why.
 - **Recommendation**: **adopt now**
 - **Impact**: **medium**
 
 ### Finding 4: Explicit review and decay operations are the right control surface; write-on-read is not
-- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L297); [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200)
+- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L297); [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200)
 - **What it does**: Modus ships explicit `memory_reinforce` and `memory_decay_facts`, but it also auto-reinforces returned facts during `memory_search`. Public already has canonical FSRS review math and keeps `trackAccess` off by default to avoid write-on-read side effects; its exposed feedback action today is `memory_validate`, not a first-class graded review tool.
 - **Why it matters**: The right architectural decision is explicit operator control over memory freshness, not silent mutation during observation. Public should copy the explicit control surface and reject the automatic mutation model.
 - **Recommendation**: **adopt now**
 - **Impact**: **high**
 
 ### Finding 5: Cheap adjacency maps are a useful complement to causal graphs, not a replacement
-- **Source**: [crossref.go:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L9); [crossref.go:154](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L154); [vault.go:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L75); [tool-schemas.ts:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L97); [tool-schemas.ts:485](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L485); [fsrs.ts:25](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts#L25)
+- **Source**: [crossref.go:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L9); [crossref.go:154](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/crossref.go#L154); [vault.go:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L75); [tool-schemas.ts:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L97); [tool-schemas.ts:485](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L485); [fsrs.ts:25](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts#L25)
 - **What it does**: Modus builds subject/tag/entity adjacency maps at index time and exposes connected documents directly. Public already has causal traversal and graph-aware freshness, but those are heavier semantic structures than simple adjacency hints.
 - **Why it matters**: For compaction recovery and cheap rehydration, adjacency is often the fastest useful move. It is weaker than Public’s causal graph for “why” questions, but better for low-cost “what else is nearby?” expansion.
 - **Recommendation**: **prototype later**

@@ -18,7 +18,7 @@ Note: this packet has prior review archives at `review-archive-r01-copilot/` and
 1. **Read inputs**:
    - `specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/{spec,plan,tasks,checklist,implementation-summary,decision-record,handover,battle-plan}.md`
    - Sample 1-2 prior review reports under `review-archive-*/` to see what's already known
-   - Code under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/hook/` and `.opencode/plugins/spec-kit-skill-advisor.js` (Copilot SDK fallback paths)
+   - Code under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/hook/` and `.opencode/plugins/spec-kit-skill-advisor.js` (Copilot SDK fallback paths)
 
 2. **4-dimension review (single pass, mark dimension boundaries)**:
    - **D1 Correctness**: Does the wrapper fallback semantically match the SDK? Specifically `buildCopilotPromptArg`, subprocess invocation, timeout handling, error envelope translation.

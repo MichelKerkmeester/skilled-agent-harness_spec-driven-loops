@@ -32,8 +32,8 @@ The spec status was marked Complete at close of the audit.
 ### Changed
 
 - `SKILL.md`: removed stale references to deleted scripts and directory names. Added brief current-feature notes.
-- `.opencode/skill/system-spec-kit/references/`: aligned command, validation, template, structure, and workflow reference docs with current reality.
-- `.opencode/skill/system-spec-kit/assets/`: aligned Markdown assets with current template and validation behavior.
+- `.opencode/skills/system-spec-kit/references/`: aligned command, validation, template, structure, and workflow reference docs with current reality.
+- `.opencode/skills/system-spec-kit/assets/`: aligned Markdown assets with current template and validation behavior.
 - `graph-metadata.json`: registered 005 packet as the active child.
 
 ### Fixed
@@ -51,9 +51,9 @@ The spec status was marked Complete at close of the audit.
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Stale references removed. Current-feature notes added. |
-| `.opencode/skill/system-spec-kit/references/` (multiple files) | Aligned with manifest-backed template system |
-| `.opencode/skill/system-spec-kit/assets/` (multiple files) | Aligned Markdown assets |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Stale references removed. Current-feature notes added. |
+| `.opencode/skills/system-spec-kit/references/` (multiple files) | Aligned with manifest-backed template system |
+| `.opencode/skills/system-spec-kit/assets/` (multiple files) | Aligned Markdown assets |
 | `010-template-levels/graph-metadata.json` | 005 registered as active child |
 
 One commit: `e60b095416`.

@@ -54,12 +54,12 @@ Completed doc-only remediation for the highest-leverage 013 automation-reality f
 | `implementation-summary.md` | Created | This summary |
 | `description.json` | Created | Memory metadata |
 | `graph-metadata.json` | Created | Graph metadata |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Modified | Copilot/Codex authority and trigger matrix |
-| `.opencode/command/memory/manage.md` | Modified | CCC routing for `/memory:manage ccc ...` |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Modified | Actual CCC handler paths |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modified | Copilot/Codex authority and trigger matrix |
+| `.opencode/commands/memory/manage.md` | Modified | CCC routing for `/memory:manage ccc ...` |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modified | Actual CCC handler paths |
 | `AGENTS.md` / `CLAUDE.md` | Modified | Validation wording and automation trigger table |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Validation wording, hook trigger table, CCC triggers |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Trigger columns and watcher/CCC wording |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Validation wording, hook trigger table, CCC triggers |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Trigger columns and watcher/CCC wording |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +90,7 @@ Phase 1 initialized packet docs and metadata. Phase 2 applied the requested doc-
 
 | Check | Command / Artifact | Result |
 |-------|--------------------|--------|
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` | PASS: RESULT PASSED, 0 errors, 0 warnings |
 | Runtime-code scope | targeted `git diff --name-only` review | PASS: packet touched docs only; no `.ts`, `.js`, or `.py` runtime files edited |
 | Stale wording check | targeted `rg` for Copilot wrapper and validation auto-run claims | PASS: stale claims replaced with trigger-specific wording |
 <!-- /ANCHOR:verification -->

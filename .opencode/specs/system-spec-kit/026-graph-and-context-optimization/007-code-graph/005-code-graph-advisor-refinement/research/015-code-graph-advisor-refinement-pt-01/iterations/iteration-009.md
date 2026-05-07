@@ -16,7 +16,7 @@ Three depth-evidence tasks: (1) Convert F37 #2 (corpus path) and F37 #1's adjace
 8. Read `handlers/advisor-recommend.ts:160-234` to confirm the second cache-invalidation entry point uses the same `cacheSourceSignature(status)` derivation.
 9. Read `lib/scorer/lanes/graph-causal.ts` in full (82 lines) to inspect what edge taxonomy the lane uses.
 10. Grepped `edgeType|sourceId|targetId|AdvisorProjection` against `lib/scorer/types.ts` and `lib/scorer/projection.ts` -- confirmed `AdvisorProjection.edgeType` is restricted to a 5-element skill-graph union (`depends_on | enhances | siblings | conflicts_with | prerequisite_for`).
-11. Grepped `code_graph|code-graph|skill_graph` across `lib/scorer/` and `lib/skill-advisor-brief.ts` -- only hit is `projection.ts:38` `SKILL_GRAPH_DB = '.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite'`. No code-graph imports anywhere in the scorer.
+11. Grepped `code_graph|code-graph|skill_graph` across `lib/scorer/` and `lib/skill-advisor-brief.ts` -- only hit is `projection.ts:38` `SKILL_GRAPH_DB = '.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite'`. No code-graph imports anywhere in the scorer.
 
 ## Findings
 
@@ -24,7 +24,7 @@ Three depth-evidence tasks: (1) Convert F37 #2 (corpus path) and F37 #1's adjace
 
 PR-ready before/after diff. The current constant references a sub-spec corpus that doesn't exist at that path under spec 026/008; the live corpus is shipped beside the Python advisor at `scripts/routing-accuracy/labeled-prompts.jsonl`.
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts`
 
 **Before (lines 40-43):**
 
@@ -40,7 +40,7 @@ const CORPUS_PATH = resolve(
 ```ts
 const CORPUS_PATH = resolve(
   WORKSPACE_ROOT,
-  '.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl',
+  '.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl',
 );
 ```
 
@@ -50,7 +50,7 @@ Verification: `Read` of `scripts/routing-accuracy/labeled-prompts.jsonl` returne
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-cd .opencode/skill/system-spec-kit/mcp_server/skill-advisor
+cd .opencode/skills/system-spec-kit/mcp_server/skill-advisor
 npx vitest run tests/parity/python-ts-parity.vitest.ts
 ```
 
@@ -138,7 +138,7 @@ Iter-6 F31 implied that the iter-1 F3 finding (CALLS edge regex + 5-class flatte
 
 1. `lib/scorer/lanes/graph-causal.ts:12-18` defines `EDGE_MULTIPLIER` over five edge types: `enhances, siblings, depends_on, prerequisite_for, conflicts_with`. **None of these are code-graph edges.** Code-graph edges are `CALLS, IMPORTS, DEFINES, REFERENCES`, etc.
 2. `lib/scorer/types.ts:36`: `edgeType: 'depends_on' | 'enhances' | 'siblings' | 'conflicts_with' | 'prerequisite_for'`. The TypeScript union restricts edges to the SKILL-graph taxonomy at the type level. Code-graph edges cannot pass this gate.
-3. `lib/scorer/projection.ts:38`: `SKILL_GRAPH_DB = '.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite'`. The scorer's projection loader reads the **skill-graph SQLite**, not the code-graph SQLite.
+3. `lib/scorer/projection.ts:38`: `SKILL_GRAPH_DB = '.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite'`. The scorer's projection loader reads the **skill-graph SQLite**, not the code-graph SQLite.
 4. Grep `code_graph|code-graph` across `lib/scorer/` and `lib/skill-advisor-brief.ts` returns ZERO hits. There is no import, no read, no shared schema between the code-graph emit pipeline and the skill-advisor scorer.
 
 **What this means for the F37 remediation table:**
@@ -202,17 +202,17 @@ So the production attack surface for INV-F5-V2 stale-serve is: "within a single 
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts` (lines 1-181, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts` (lines 1-290, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` (lines 1-181, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts` (lines 1-88, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` (lines 420-540)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` (lines 160-234)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/lanes/graph-causal.ts` (lines 1-82, full read)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/types.ts:34-91` (via grep)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts:11-275` (via grep)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:100-128`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl` (head 2 rows for schema validation)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts` (lines 1-181, full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts` (lines 1-290, full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts` (lines 1-181, full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts` (lines 1-88, full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` (lines 420-540)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` (lines 160-234)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/lanes/graph-causal.ts` (lines 1-82, full read)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/types.ts:34-91` (via grep)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts:11-275` (via grep)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:100-128`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl` (head 2 rows for schema validation)
 - `iterations/iteration-008.md` F37, F39, F41, F44 (re-anchored)
 
 ## Assessment

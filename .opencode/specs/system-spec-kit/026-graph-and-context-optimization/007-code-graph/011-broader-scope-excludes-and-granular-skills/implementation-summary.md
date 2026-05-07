@@ -21,12 +21,12 @@ _memory:
     next_safe_action: "Review gate results, then hand off without committing."
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts"
       - ".mcp.json"
       - "opencode.json"
     session_dedup:
@@ -42,7 +42,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -110,7 +110,7 @@ R5 fix-completeness drove the implementation: first inventory same-class `.openc
 | Decision | Why |
 |----------|-----|
 | Use v2 fingerprints and reject v1 parsing | Stored v1 scope cannot represent the broader folders or selected skills. Blocking reads until full scan is safer. |
-| Filter selected skills in the walker | A blanket `.opencode/skill/**` glob would prevent traversal into selected skill folders. |
+| Filter selected skills in the walker | A blanket `.opencode/skills/**` glob would prevent traversal into selected skill folders. |
 | Sort selected skill names before fingerprinting | Equivalent input order must produce the same stored scope. |
 | Extend public validator | Zod alone was not enough because the public schema path accepted invalid selected skill payloads. |
 <!-- /ANCHOR:decisions -->
@@ -145,8 +145,8 @@ DR-011 iteration 5 found that a scan could store selected-skill and agent scope 
 LOC delta for code and test files before this summary update: +214 / -8.
 
 R5 audit results:
-- Same-class producers: `rg -n "'\\*\\*/\\*\\.(ts|py|sh)" .opencode/skill/system-spec-kit/mcp_server/` and `rg -n "includeGlobs" .opencode/skill/system-spec-kit/mcp_server/` found one production default producer, `indexer-types.ts`, patched here. Other hits are tests, stress fixtures, schema fields, or the scan handler's user-provided override.
-- Cross-consumer audit: `rg -n "from code_files|FROM code_files|code_files\\b" .opencode/skill/system-spec-kit/mcp_server/ --type ts` found path/hash/count/status consumers. They tolerate `language='doc'`, `node_count=0`, and `edge_count=0` because node and edge reads join through `code_nodes`/`code_edges`, while file-level readers use paths, hashes, counts, timestamps, or parse health summaries.
+- Same-class producers: `rg -n "'\\*\\*/\\*\\.(ts|py|sh)" .opencode/skills/system-spec-kit/mcp_server/` and `rg -n "includeGlobs" .opencode/skills/system-spec-kit/mcp_server/` found one production default producer, `indexer-types.ts`, patched here. Other hits are tests, stress fixtures, schema fields, or the scan handler's user-provided override.
+- Cross-consumer audit: `rg -n "from code_files|FROM code_files|code_files\\b" .opencode/skills/system-spec-kit/mcp_server/ --type ts` found path/hash/count/status consumers. They tolerate `language='doc'`, `node_count=0`, and `edge_count=0` because node and edge reads join through `code_nodes`/`code_edges`, while file-level readers use paths, hashes, counts, timestamps, or parse health summaries.
 - Gates A-D: A pass, B pass, C pass, D exact worktree-wide command blocked by unrelated pre-existing diffs; task-scoped path check pass.
 
 ---
@@ -202,8 +202,8 @@ Approach: Option A. After scan persistence, `scan.ts` now runs a DB-backed cross
 LOC delta before this summary update: +462 / -9 across code and tests.
 
 R5 audit summary:
-- Same-class producers: `rg -n "edgeType: 'CALLS'" .opencode/skill/system-spec-kit/mcp_server --glob '*.ts'` found one production CALLS producer, `mcp_server/code_graph/lib/structural-indexer.ts`; no second producer required a patch. Other hits are query constants, tests, stress fixtures, or benchmarks.
-- Cross-consumer audit: `rg -n "queryEdgesFrom|queryEdgesTo|CALLS|calls_to|calls_from|blast_radius|queryStartupHighlights|queryFileDegrees" .opencode/skill/system-spec-kit/mcp_server/code_graph --glob '*.ts'` found relationship queries, context neighborhoods, startup highlights, file-degree reads, and blast-radius reads. They all consume `code_edges` by `source_id` / `target_id` joins; import nodes remain in `code_nodes`, and only qualifying CALLS target IDs change.
+- Same-class producers: `rg -n "edgeType: 'CALLS'" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts'` found one production CALLS producer, `mcp_server/code_graph/lib/structural-indexer.ts`; no second producer required a patch. Other hits are query constants, tests, stress fixtures, or benchmarks.
+- Cross-consumer audit: `rg -n "queryEdgesFrom|queryEdgesTo|CALLS|calls_to|calls_from|blast_radius|queryStartupHighlights|queryFileDegrees" .opencode/skills/system-spec-kit/mcp_server/code_graph --glob '*.ts'` found relationship queries, context neighborhoods, startup highlights, file-degree reads, and blast-radius reads. They all consume `code_edges` by `source_id` / `target_id` joins; import nodes remain in `code_nodes`, and only qualifying CALLS target IDs change.
 - Idempotence: covered by repeated full scan plus a direct second resolver pass.
 - Negative case: same-file function-to-function CALLS edge remains unchanged.
 

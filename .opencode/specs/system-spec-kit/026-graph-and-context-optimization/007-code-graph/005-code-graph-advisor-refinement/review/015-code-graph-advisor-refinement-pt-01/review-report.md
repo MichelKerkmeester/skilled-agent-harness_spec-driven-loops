@@ -68,12 +68,12 @@ Six findings are classified under the correctness dimension. They span trust-sta
 
 | ID | Severity | PR Source | Title | File:line | Recommended Fix | Effort |
 |---|---|---|---|---|---|---|
-| R1-P1-001 | P1 | PR-4 | Startup brief collapses graph probe errors into absent trust | `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:245` | Preserve an `unavailable`/error axis in startup provenance. Map the error branch directly to `trustState: 'unavailable'` instead of routing through `graphState = 'missing'`, which later maps to `absent`. | S, 1–2 h |
-| R2-P1-001 | P1 | PR-1 | PR-1 corpus repair missed a live legacy parity test and the requested export contract | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts:27` | Export a shared corpus-path constant from `python-ts-parity.vitest.ts` (currently a local `const`) and repoint the legacy parity suite to the live corpus at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`. | S, 1–2 h |
-| R2-P1-002 | P1 | PR-9 | PR-9 query-latency bench fail-softs missing baselines and internal bench errors as passing skips | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:153` | Move baseline-existence check, sample-count assertion, and JSON-parse step outside the catch-all. Reserve `skip` behavior for narrowly identified optional-environment failures with a machine-readable `skipReason` class. Treat zero samples and extraction errors as failures. | M, 3–4 h |
-| R2-P1-003 | P1 | PR-4/PR-5 | PR-5 query-latency freshness metric maps `recent` structural context to `absent` | `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:176` | Add an explicit `recent` branch in the `computeFreshness()`-to-trust-vocabulary mapping at context.ts:175–177. Map `recent` to `live` or `stale` per product semantics; never map an existing graph to `absent`. | S, 1 h |
-| R5-P1-001 | P1 | PR-8/PR-10 | Benchmark files are now on the default test path and one parse fixture depends on untracked build output | `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts:17` | Remove `mcp_server/skill-advisor/bench/**/*.bench.ts` from the shared Vitest `include` and add an explicit `bench:*` script, or replace the `dist/startup-checks.js` fixture dependency with a tracked source fixture. No first-party CI workflow guarantees `npm run build` precedes `npm run test:core`. | M, 3–5 h |
-| R5-P2-001 | P2 | PR-10 | The signal/noise bench only asserts signal presence and manually emits the metric it claims to verify | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts:52` | Add negative/noise fixtures for each documented noise boundary (non-live freshness, no passing recommendations, sanitization rejection, excessive token cap). Drive the production `renderAdvisorBrief()` path to emit `spec_kit.advisor.recommendation_emitted_total` rather than manually incrementing the counter. | M, 2–3 h |
+| R1-P1-001 | P1 | PR-4 | Startup brief collapses graph probe errors into absent trust | `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:245` | Preserve an `unavailable`/error axis in startup provenance. Map the error branch directly to `trustState: 'unavailable'` instead of routing through `graphState = 'missing'`, which later maps to `absent`. | S, 1–2 h |
+| R2-P1-001 | P1 | PR-1 | PR-1 corpus repair missed a live legacy parity test and the requested export contract | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts:27` | Export a shared corpus-path constant from `python-ts-parity.vitest.ts` (currently a local `const`) and repoint the legacy parity suite to the live corpus at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`. | S, 1–2 h |
+| R2-P1-002 | P1 | PR-9 | PR-9 query-latency bench fail-softs missing baselines and internal bench errors as passing skips | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:153` | Move baseline-existence check, sample-count assertion, and JSON-parse step outside the catch-all. Reserve `skip` behavior for narrowly identified optional-environment failures with a machine-readable `skipReason` class. Treat zero samples and extraction errors as failures. | M, 3–4 h |
+| R2-P1-003 | P1 | PR-4/PR-5 | PR-5 query-latency freshness metric maps `recent` structural context to `absent` | `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:176` | Add an explicit `recent` branch in the `computeFreshness()`-to-trust-vocabulary mapping at context.ts:175–177. Map `recent` to `live` or `stale` per product semantics; never map an existing graph to `absent`. | S, 1 h |
+| R5-P1-001 | P1 | PR-8/PR-10 | Benchmark files are now on the default test path and one parse fixture depends on untracked build output | `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:17` | Remove `mcp_server/skill-advisor/bench/**/*.bench.ts` from the shared Vitest `include` and add an explicit `bench:*` script, or replace the `dist/startup-checks.js` fixture dependency with a tracked source fixture. No first-party CI workflow guarantees `npm run build` precedes `npm run test:core`. | M, 3–5 h |
+| R5-P2-001 | P2 | PR-10 | The signal/noise bench only asserts signal presence and manually emits the metric it claims to verify | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts:52` | Add negative/noise fixtures for each documented noise boundary (non-live freshness, no passing recommendations, sanitization rejection, excessive token cap). Drive the production `renderAdvisorBrief()` path to emit `spec_kit.advisor.recommendation_emitted_total` rather than manually incrementing the counter. | M, 2–3 h |
 
 **Dimension summary:** 5 open findings (4 P1, 1 P2). The most severe is R1-P1-001, which silently corrupts the shared-payload trust contract used by consumers of the startup brief.
 
@@ -85,7 +85,7 @@ Two findings are classified under the security dimension. Both concern unbounded
 
 | ID | Severity | PR Source | Title | File:line | Recommended Fix | Effort |
 |---|---|---|---|---|---|---|
-| R1-P1-003 | P1 | PR-5 (absorbs R4-P1-001 from PR-5) | Metrics cardinality envelope is not enforced for caller-provided labels (env-derived and repo-controlled) | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:320` (env labels); `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:578` (collector sink) | Normalize `SPECKIT_RUNTIME` and `SPECKIT_ADVISOR_FRESHNESS` to closed enums before emission. Clamp or bucket `skill_id` (sourced from SQLite `skill_nodes.id` or filesystem `graph-metadata.json.skill_id`) to known built-in IDs plus a `custom_skill` fallback. Have `SpeckitMetricsCollector` reject or bucket labels outside declared value policies at the sink rather than only at individual emission sites. | M, 4–6 h |
+| R1-P1-003 | P1 | PR-5 (absorbs R4-P1-001 from PR-5) | Metrics cardinality envelope is not enforced for caller-provided labels (env-derived and repo-controlled) | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:320` (env labels); `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:578` (collector sink) | Normalize `SPECKIT_RUNTIME` and `SPECKIT_ADVISOR_FRESHNESS` to closed enums before emission. Clamp or bucket `skill_id` (sourced from SQLite `skill_nodes.id` or filesystem `graph-metadata.json.skill_id`) to known built-in IDs plus a `custom_skill` fallback. Have `SpeckitMetricsCollector` reject or bucket labels outside declared value policies at the sink rather than only at individual emission sites. | M, 4–6 h |
 | R4-P1-002 | P1 | PR-2/PR-7 | Claude hook commands execute a repo-relative hook selected by ambient cwd and PATH | `.claude/settings.local.json:31` | Anchor the `git rev-parse --show-toplevel` fallback to the canonical settings-file directory rather than ambient cwd. Use a pinned Node binary (`process.execPath` from setup, or an absolute path) rather than unqualified `node`. In nested-repo or worktree launches, the current command can resolve `.opencode/…/dist/hooks/claude/*.js` from a different repository. | M, 3–5 h |
 
 **Dimension summary:** 2 open findings, both P1. R1-P1-003 is the largest refactor in the report (collector-side policy enforcement plus per-emission-site tests for env and skill-id labels). R4-P1-002 is a path-confusion surface rather than a direct injection vector but carries the same P1 severity because it enables execution of an attacker-controlled `dist` hook.
@@ -100,8 +100,8 @@ Three findings are classified under the traceability dimension. They concern an 
 
 | ID | Severity | PR Source | Title | File:line | Recommended Fix | Effort |
 |---|---|---|---|---|---|---|
-| R1-P1-002 | P1 | PR-3 | Delete sweep left a task-listed promotion test file on disk (absorbs R1-P2-001 stale manual evidence) | `.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:1` | Decide whether the residual promotion test belongs to the removed subsystem. If yes, delete it as part of the PR-3 close-out. If no, update `plan.md`/`tasks.md` so the approved deletion inventory excludes it. Also scrub or mark historical the stale `SCENARIO_RUN_2026-04-21.md` entry that claims the deleted `promotion-gates.vitest.ts` suite passes (`.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:30`). | S, 1–2 h |
-| R3-P1-001 | P1 | PR-4 | PR-4 T-027 compatibility alias surface is not actually centralized in `trust-state.ts` | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:59` | Either implement the promised V1–V5 deprecation aliases (`GraphFreshness`, `StructuralReadiness`) as re-exports from `trust-state.ts`, and migrate external import consumers (e.g., `session-resume.ts:15`) toward that canonical surface; or amend T-027/`plan.md` evidence to state the old exports remain intentionally code-graph-owned compatibility exports. | M, 2–4 h |
+| R1-P1-002 | P1 | PR-3 | Delete sweep left a task-listed promotion test file on disk (absorbs R1-P2-001 stale manual evidence) | `.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:1` | Decide whether the residual promotion test belongs to the removed subsystem. If yes, delete it as part of the PR-3 close-out. If no, update `plan.md`/`tasks.md` so the approved deletion inventory excludes it. Also scrub or mark historical the stale `SCENARIO_RUN_2026-04-21.md` entry that claims the deleted `promotion-gates.vitest.ts` suite passes (`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:30`). | S, 1–2 h |
+| R3-P1-001 | P1 | PR-4 | PR-4 T-027 compatibility alias surface is not actually centralized in `trust-state.ts` | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:59` | Either implement the promised V1–V5 deprecation aliases (`GraphFreshness`, `StructuralReadiness`) as re-exports from `trust-state.ts`, and migrate external import consumers (e.g., `session-resume.ts:15`) toward that canonical surface; or amend T-027/`plan.md` evidence to state the old exports remain intentionally code-graph-owned compatibility exports. | M, 2–4 h |
 | R3-P1-003 | P1 | Cross | Spec close-out summary still says the packet is planned and research-only | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/implementation-summary.md:4` | Update `implementation-summary.md` with: the implemented PR set, current deep-review verdict (CONDITIONAL), all 11 open P1 + 3 P2 findings by ID, validation run evidence, and the next remediation step. Update the `_memory.continuity` frontmatter to point to the remediation phase, not to `/spec_kit:deep-research:auto`. | S, 1 h |
 
 **Dimension summary:** 3 open findings, all P1. R3-P1-003 is the most urgent for operational continuity because the stale implementation summary will misroute any agent or developer resuming this packet.
@@ -116,8 +116,8 @@ Two findings are classified under the maintainability dimension. Both relate to 
 
 | ID | Severity | PR Source | Title | File:line | Recommended Fix | Effort |
 |---|---|---|---|---|---|---|
-| R3-P1-002 | P1 | PR-7 | PR-7 settings parity can pass by skipping every assertion in the default non-Claude test environment | `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts:135` | Split the settings-parity test file: move runtime-independent JSON shape assertions (no top-level `bash`, `matcher` string format, nested `hooks[]` structure, correct command path fragments) into an always-on suite that runs on all executors. Keep only live Claude interpreter behavior behind the `describe.skipIf(!isClaudeCodeRuntime())` guard. | M, 2–3 h |
-| R3-P2-001 | P2 | PR-7/PR-2 | Copilot hook README still documents the deleted mixed `.claude/settings.local.json` top-level `bash` wrapper shape | `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:27` | Rewrite the Copilot registration section to describe the current Copilot-supported hook surface and remove prescriptions for a top-level `bash` field inside `.claude/settings.local.json`. The production settings file is correct; the README has not caught up. | S, 1 h |
+| R3-P1-002 | P1 | PR-7 | PR-7 settings parity can pass by skipping every assertion in the default non-Claude test environment | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts:135` | Split the settings-parity test file: move runtime-independent JSON shape assertions (no top-level `bash`, `matcher` string format, nested `hooks[]` structure, correct command path fragments) into an always-on suite that runs on all executors. Keep only live Claude interpreter behavior behind the `describe.skipIf(!isClaudeCodeRuntime())` guard. | M, 2–3 h |
+| R3-P2-001 | P2 | PR-7/PR-2 | Copilot hook README still documents the deleted mixed `.claude/settings.local.json` top-level `bash` wrapper shape | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27` | Rewrite the Copilot registration section to describe the current Copilot-supported hook surface and remove prescriptions for a top-level `bash` field inside `.claude/settings.local.json`. The production settings file is correct; the README has not caught up. | S, 1 h |
 
 **Dimension summary:** 2 open findings (1 P1, 1 P2). R3-P1-002 is structurally linked to R4-P1-002 and R3-P2-001 — all three concern the hook settings surface and are batched together in B4.
 
@@ -143,12 +143,12 @@ The 5 batches below correspond directly to the `remediation_plan` object in `ite
 
 **Files in scope:**
 ```
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts
 ```
 
 **Pre-merge sanity check:** Run `npx vitest run code-graph/tests/code-graph-context-handler.vitest.ts code-graph/tests/code-graph-query-handler.vitest.ts --config vitest.config.ts` from `mcp_server`. Mock `getGraphFreshness()` to return `error` and assert `sharedPayload.provenance.trustState === 'unavailable'`.
@@ -173,15 +173,15 @@ The 5 batches below correspond directly to the `remediation_plan` object in `ite
 
 **Files in scope:**
 ```
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
-.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts
-.opencode/skill/system-spec-kit/mcp_server/package.json
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
+.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts
+.opencode/skills/system-spec-kit/mcp_server/package.json
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts
 ```
 
 **Pre-merge sanity check:** Run default test suite (`npm run test:core`) without pre-building `dist/`. Confirm benches are excluded from the default run and no test failure occurs on a clean checkout. Separately run the explicit bench script and confirm baseline comparisons fail closed on missing/malformed input. Confirm `speckitMetrics.snapshot().metricsUniqueSeriesCount` does not grow when unique `SPECKIT_RUNTIME` values or novel `skill_id` values are injected.
@@ -202,12 +202,12 @@ The 5 batches below correspond directly to the `remediation_plan` object in `ite
 
 **Files in scope:**
 ```
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/implementation-summary.md
 ```
 
-**Pre-merge sanity check:** Confirm `find .opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` returns no result (if delete path taken). Confirm `implementation-summary.md` frontmatter status is no longer `planned`. Confirm `_memory.continuity` next-action points to remediation implementation, not `/spec_kit:deep-research:auto`.
+**Pre-merge sanity check:** Confirm `find .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` returns no result (if delete path taken). Confirm `implementation-summary.md` frontmatter status is no longer `planned`. Confirm `_memory.continuity` next-action points to remediation implementation, not `/spec_kit:deep-research:auto`.
 
 **Suggested executor:** codex gpt-5.5 high
 
@@ -226,8 +226,8 @@ The 5 batches below correspond directly to the `remediation_plan` object in `ite
 **Files in scope:**
 ```
 .claude/settings.local.json
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md
 ```
 
 **Pre-merge sanity check:** Run `npx vitest run mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts --config mcp_server/vitest.config.ts` without setting `CLAUDE_CODE` or `CLAUDE_SESSION_ID`. Confirm at least the always-on suite asserts > 0 assertions. Confirm the `bash -c` command in `.claude/settings.local.json` resolves hook paths in a nested-repo scenario to the intended project root.
@@ -248,8 +248,8 @@ The 5 batches below correspond directly to the `remediation_plan` object in `ite
 
 **Files in scope:**
 ```
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts
 ```
 
 **Pre-merge sanity check:** Run `npx vitest run mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts --config mcp_server/vitest.config.ts`. Both suites must pass (not skip) against the live corpus.

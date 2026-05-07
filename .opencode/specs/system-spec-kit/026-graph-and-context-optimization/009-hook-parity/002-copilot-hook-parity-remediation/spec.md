@@ -21,8 +21,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/research.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/claude-user-prompt-submit-hook.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/claude-user-prompt-submit-hook.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-009-004-synth-2026-04-22"
@@ -45,7 +45,7 @@ _memory:
 
 Spec 020 (`skill-advisor-hook-surface`) wired the Spec Kit Memory MCP to inject two payloads via Claude Code's native hook system: `SessionStart:startup` delivers code-graph freshness and structural highlights, and `UserPromptSubmit` delivers the skill-advisor brief (format: `Advisor: <skill> <conf>/<uncert> <status>`). Both hooks work correctly in Claude Code.
 
-Under Copilot CLI, neither payload appears. Empirical test: user asked Copilot "describe the startup context you were given" → Copilot responded "no startup context observed"; user asked "what skill did the advisor recommend" → Copilot responded "no advisor brief observed". The hook transport in `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` is explicitly under a `claude/` path — there is no Copilot counterpart.
+Under Copilot CLI, neither payload appears. Empirical test: user asked Copilot "describe the startup context you were given" → Copilot responded "no startup context observed"; user asked "what skill did the advisor recommend" → Copilot responded "no advisor brief observed". The hook transport in `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` is explicitly under a `claude/` path — there is no Copilot counterpart.
 
 **Key decisions**: Phase scope is investigation-first; implementation is conditional on Copilot CLI exposing a usable injection surface. If no such surface exists, the phase closes with a documented gap and a recommended workaround (e.g., pre-prompt shell wrapper, file-based context read, or accepting asymmetry and leaving Copilot sessions context-free).
 
@@ -125,10 +125,10 @@ The managed block is scoped by workspace root. `custom-instructions.ts` renders 
 
 | Path                                                                              | Change Type    | Description                                                            |
 | --------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------- |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/*.ts`                   | Create/Modify | Copilot file-backed custom-instructions transport and lifecycle contract |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-*.vitest.ts`            | Create (conditional) | Parity tests mirroring `claude-user-prompt-submit-hook.vitest.ts`      |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/*.ts`                   | Create/Modify | Copilot file-backed custom-instructions transport and lifecycle contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-*.vitest.ts`            | Create (conditional) | Parity tests mirroring `claude-user-prompt-submit-hook.vitest.ts`      |
 | `.github/hooks/superset-notify.json` + `.github/hooks/scripts/*.sh`               | Modify/Create | Route `sessionStart` / `userPromptSubmitted` through Spec Kit wrappers before Superset notification |
-| `.opencode/skill/cli-copilot/SKILL.md` and `README.md`                            | Modify         | Document hook parity status (works / doesn't work / workaround)        |
+| `.opencode/skills/cli-copilot/SKILL.md` and `README.md`                            | Modify         | Document hook parity status (works / doesn't work / workaround)        |
 | Parent ../implementation-summary.md                                             | Modify         | Record phase outcome and reference this packet                         |
 | `decision-record.md` (this packet)                                                | Create         | ADR capturing the "wire hooks vs. document gap" decision after investigation |
 
@@ -304,5 +304,5 @@ None for this closure pass. Historical investigation questions were answered by 
 - **Predecessor phase**: `../001-hook-parity-remediation/`
 - **Successor phase**: `../003-codex-hook-parity-remediation/`
 - **Referenced spec**: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/` — established the Claude hook wiring this phase aims to parity-match
-- **Referenced skill**: `.opencode/skill/cli-copilot/` — target of the documentation updates
-- **Reference implementation**: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
+- **Referenced skill**: `.opencode/skills/cli-copilot/` — target of the documentation updates
+- **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`

@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 007 of 20. The packet root is
 
 **Angle B2 — CLI orchestrator skill correctness**
 
-Audit `.opencode/skill/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/` SKILL.md and any reference docs for: dispatch-prompt template correctness, mode/flag drift between skills, self-invocation guards, sandbox/approval flag wiring, model defaults. Where does each skill drift from the others? Cite the SKILL.md sections + line numbers.
+Audit `.opencode/skills/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/` SKILL.md and any reference docs for: dispatch-prompt template correctness, mode/flag drift between skills, self-invocation guards, sandbox/approval flag wiring, model defaults. Where does each skill drift from the others? Cite the SKILL.md sections + line numbers.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

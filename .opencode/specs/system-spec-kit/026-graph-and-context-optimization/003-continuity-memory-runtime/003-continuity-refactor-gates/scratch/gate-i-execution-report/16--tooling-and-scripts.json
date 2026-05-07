@@ -16,7 +16,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Create or identify a high-complexity spec folder (>500 LOC, multiple concerns) 2) `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>` 3) Inspect JSON output for `recommended_phases`, `phase_score`, and `suggested_phase_count` fields 4) Verify all 4 scoring dimensions are present in output: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%) 5) Run on a simple spec folder and confirm `recommended_phases` is false"
+      "Command sequence is not expressible as direct handler calls: 1) Create or identify a high-complexity spec folder (>500 LOC, multiple concerns) 2) `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>` 3) Inspect JSON output for `recommended_phases`, `phase_score`, and `suggested_phase_count` fields 4) Verify all 4 scoring dimensions are present in output: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%) 5) Run on a simple spec folder and confirm `recommended_phases` is false"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -42,7 +42,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh \"Phase Test\" --phase --level 3 --phases 3 --phase-names \"Design,Implement,Verify\"` 2) Verify parent folder `specs/NNN-phase-test/` exists with spec.md containing Phase Documentation Map 3) Verify 3 child folders `001-design/`, `002-implement/`, `003-verify/` exist under parent 4) Verify each child has spec.md with parent back-reference 5) Verify `002-implement/spec.md` has predecessor link to `001-design` and successor link to `003-verify` 6) Verify Level 3 template files present in parent and each child"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh \"Phase Test\" --phase --level 3 --phases 3 --phase-names \"Design,Implement,Verify\"` 2) Verify parent folder `specs/NNN-phase-test/` exists with spec.md containing Phase Documentation Map 3) Verify 3 child folders `001-design/`, `002-implement/`, `003-verify/` exist under parent 4) Verify each child has spec.md with parent back-reference 5) Verify `002-implement/spec.md` has predecessor link to `001-design` and successor link to `003-verify` 6) Verify Level 3 template files present in parent and each child"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -68,7 +68,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder created in PHASE-002 (or create one via `create.sh \"Validate Test\" --phase --level 2 --phases 2`) 2) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --recursive specs/<phase-parent>` 3) Inspect output for per-phase validation results 4) Verify JSON output contains `phases` array with one entry per child folder 5) Verify combined exit code matches highest severity across children 6) Introduce a deliberate error in one child spec.md and re-run; verify aggregated exit code is 2 (error)"
+      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder created in PHASE-002 (or create one via `create.sh \"Validate Test\" --phase --level 2 --phases 2`) 2) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --recursive specs/<phase-parent>` 3) Inspect output for per-phase validation results 4) Verify JSON output contains `phases` array with one entry per child folder 5) Verify combined exit code matches highest severity across children 6) Introduce a deliberate error in one child spec.md and re-run; verify aggregated exit code is 2 (error)"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -116,7 +116,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder from PHASE-002 2) `bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>` 3) Verify output checks 4 link types: Phase Documentation Map, parent back-references, predecessor links, successor links 4) Confirm all links pass on a well-formed phase folder (exit code 0) 5) Remove a child folder and re-run; verify Phase Documentation Map check warns about missing child (exit code 1) 6) Edit a child spec.md to corrupt the parent back-reference and re-run; verify back-reference check warns (exit code 1) 7) Confirm all issues are reported at warn severity, not error"
+      "Command sequence is not expressible as direct handler calls: 1) Use the phase folder from PHASE-002 2) `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>` 3) Verify output checks 4 link types: Phase Documentation Map, parent back-references, predecessor links, successor links 4) Confirm all links pass on a well-formed phase folder (exit code 0) 5) Remove a child folder and re-run; verify Phase Documentation Map check warns about missing child (exit code 1) 6) Edit a child spec.md to corrupt the parent back-reference and re-run; verify back-reference check warns (exit code 1) 7) Confirm all issues are reported at warn severity, not error"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -320,7 +320,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsc -b` 2) `npm run lint` 3) `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 4) `npx vitest run tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` 5) run MCP SDK stdio smoke test against `node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsc -b` 2) `npm run lint` 3) `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 4) `npx vitest run tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` 5) run MCP SDK stdio smoke test against `node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -370,7 +370,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/migration-checkpoint-scripts.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/migration-checkpoint-scripts.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -392,7 +392,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -414,7 +414,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Pick 3 features with known multi-layer implementations (e.g., \"Hybrid search pipeline\", \"Classification-based decay\", \"Prediction-error save arbitration\") 2) For each: `grep -r \"// Feature catalog: <feature>\" .opencode/skill/system-spec-kit/mcp_server/` 3) Verify each grep returns hits in both `handlers/` and `lib/` directories 4) Verify all returned files exist and contain the annotation"
+      "Command sequence is not expressible as direct handler calls: 1) Pick 3 features with known multi-layer implementations (e.g., \"Hybrid search pipeline\", \"Classification-based decay\", \"Prediction-error save arbitration\") 2) For each: `grep -r \"// Feature catalog: <feature>\" .opencode/skills/system-spec-kit/mcp_server/` 3) Verify each grep returns hits in both `handlers/` and `lib/` directories 4) Verify all returned files exist and contain the annotation"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -434,7 +434,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Extract all unique annotation names: `grep -rho \"// Feature catalog: .*\" .opencode/skill/system-spec-kit/mcp_server/ .opencode/skill/system-spec-kit/shared/ \\"
+      "Command sequence is not expressible as direct handler calls: 1) Extract all unique annotation names: `grep -rho \"// Feature catalog: .*\" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ \\"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -485,7 +485,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -551,14 +551,14 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
           "dryRun": true
         }
       },
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
           "force": true
         }
       }
@@ -573,7 +573,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
             "dryRun": true
           }
         },
@@ -583,7 +583,7 @@
           "indexed successfully"
         ],
         "evidence": [
-          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
+          "{\"summary\":\"Dry-run detected structural template-contract violations\",\"data\":{\"status\":\"dry_run\",\"would_pass\":false,\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"title\":\"Sandbox Extra\",\"validation\":{\"errors\":[],\"warnings\":[],\"details\":{\"file_path\":\"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md\",\"spec_folder\":\"002-test-sandbox\",\"checks_run\":[\"content_size\",\"anchor_format\",\"token_budget\",\"duplicate_check\"],\"content_size\":{\"valid\":true,\"content_length\":1008,\"errors\":[],\"warnings\":[]},\"anchor_format\":{\"valid\":true,\"errors\":[],\"warnings\":[],\"anchors\":[\"continue-session\",\"overview\",\"recovery-hints\",\"metadata\"]},\"token_budget\":{\"within_budget\":true,\"estimated_tokens\":402,\"maxTokens\":8000,\"percentage_used\":0.05025,\"warnings\":[],\"errors\":[]},\"duplicate_check\":{\"isDuplicate\":false,\"duplicate_type\":null,\"existingId\":null,\"existing_path\":null,\"similarity\":null,\"content_hash\":\"91f7cb4dd4819bb20486da93727a83466a1eba3362599aa3fe11069aaf7bb04c\"}}},\"qualityLoop\":{\"passed\":true,\"rejected\":false,\"fixes\":[]},\"templateContract\":{\"valid\":false,\"violations\":[{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required canonical-docs section.\",\"sectionId\":\"canonical-docs\"},{\"code\":\"missing_section\",\"message\":\"Rendered memory is missing the required evidence section.\",\"sectionId\":\"evidence\"}],\"missingAnchors\":[],\"unexpectedTemplateArtifacts\":[]},\"sufficiency\":{\"pass\":false,\"rejectionCode\":\"INSUFFICIENT_CONTEXT_ABORT\",\"reasons\":[\"No primary evidence was captured for this memory.\"],\"evidenceCounts\":{\"primary\":0,\"support\":3,\"total\":3,\"semanticChars\":317,\"uniqueWords\":27,\"anchors\":4,\"triggerPhrases\":1},\"sc"
         ]
       },
       {
@@ -592,7 +592,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/002-test-sandbox/memory/sandbox-extra.md",
             "force": true
           }
         },
@@ -631,7 +631,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `npx ts-node --transpile-only scripts/evals/check-source-dist-alignment.ts` 3) Check exit code is 0 4) Verify \"violations: 0\" in output"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `npx ts-node --transpile-only scripts/evals/check-source-dist-alignment.ts` 3) Check exit code is 0 4) Verify \"violations: 0\" in output"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -651,7 +651,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) Read MODULE_MAP.md entries for config, cognitive, search, storage, scoring 3) For each module: `ls mcp_server/lib/{module}/` to verify key files exist 4) For each module: `grep -r \"from.*/{module}/\" mcp_server/ --include=\"*.ts\" -l` to verify consumers 5) Compare against MODULE_MAP.md listings"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) Read MODULE_MAP.md entries for config, cognitive, search, storage, scoring 3) For each module: `ls mcp_server/lib/{module}/` to verify key files exist 4) For each module: `grep -r \"from.*/{module}/\" mcp_server/ --include=\"*.ts\" -l` to verify consumers 5) Compare against MODULE_MAP.md listings"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -671,7 +671,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit` 2) `find mcp_server/lib -type l` 3) Verify output is empty 4) `echo $?` to confirm exit 0"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `find mcp_server/lib -type l` 3) Verify output is empty 4) `echo $?` to confirm exit 0"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -691,7 +691,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Compose JSON payload with `toolCalls`, `exchanges`, `user_prompts`, `trigger_phrases` 2) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Inspect rendered .md output for field preservation 4) Verify decision confidence matches input 5) Verify git_changed_file_count matches explicit count"
+      "Command sequence is not expressible as direct handler calls: 1) Compose JSON payload with `toolCalls`, `exchanges`, `user_prompts`, `trigger_phrases` 2) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>` 3) Inspect rendered .md output for field preservation 4) Verify decision confidence matches input 5) Verify git_changed_file_count matches explicit count"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -703,15 +703,15 @@
     "filePath": "16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
     "prompt": "Test the generate-context.js save paths: (1) --json with valid structured payload should succeed, (2) --stdin with valid structured payload should succeed, and (3) direct positional JSON file input should still succeed on the same structured path. Return a pass/fail verdict for each path.",
     "expectedSignals": [
-      "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
+      "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
     ],
     "matchedSignals": [],
     "unmatchedSignals": [
-      "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
+      "node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder>` \u2192 expect exit 0 3) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json <spec-folder>` \u2192 expect exit 0"
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}' <spec-folder>` \u2192 expect exit 0 2) `printf '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}'"
+      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}' <spec-folder>` \u2192 expect exit 0 2) `printf '{\"specFolder\":\"test\",\"sessionSummary\":\"test\"}'"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -735,7 +735,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) Create a Level 2 spec folder via @speckit agent for a test feature 2) `bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder>` 3) Check exit code and capture stdout/stderr output"
+      "Command sequence is not expressible as direct handler calls: 1) Create a Level 2 spec folder via @speckit agent for a test feature 2) `bash .opencode/skills/system-spec-kit/scripts/validate.sh --strict <spec-folder>` 3) Check exit code and capture stdout/stderr output"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -765,7 +765,7 @@
     "category": "16--tooling-and-scripts",
     "status": "UNAUTOMATABLE",
     "filePath": "16--tooling-and-scripts/183-runtime-lineage-naming-parity.md",
-    "prompt": "Audit runtime agent naming parity. Capture the evidence needed to prove base (.opencode/agent/) matches Claude and Gemini, Codex traces lineage to base after extension normalization, deep-research is the active name, and stale research naming is absent. Return a concise pass/fail verdict with the main reason.",
+    "prompt": "Audit runtime agent naming parity. Capture the evidence needed to prove base (.opencode/agents/) matches Claude and Gemini, Codex traces lineage to base after extension normalization, deep-research is the active name, and stale research naming is absent. Return a concise pass/fail verdict with the main reason.",
     "expectedSignals": [
       "all diff commands produce no output",
       "rg finds no active `research/research.md`."
@@ -925,7 +925,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1` 2) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 3) `TMP_DIR=\"$(mktemp -d /tmp/speckit-completion-XXXXXX)\"` 4) `cp -R .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 \"$TMP_DIR/level3-missing-evidence\"` 5) `perl -0pi -e 's/ \\\\[EVIDENCE:[^\\\\n]+\\\\]//' \"$TMP_DIR/level3-missing-evidence/checklist.md\"` 6) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh \"$TMP_DIR/level3-missing-evidence\" --json"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1` 2) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 3) `TMP_DIR=\"$(mktemp -d /tmp/speckit-completion-XXXXXX)\"` 4) `cp -R .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 \"$TMP_DIR/level3-missing-evidence\"` 5) `perl -0pi -e 's/ \\\\[EVIDENCE:[^\\\\n]+\\\\]//' \"$TMP_DIR/level3-missing-evidence/checklist.md\"` 6) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh \"$TMP_DIR/level3-missing-evidence\" --json"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -941,7 +941,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh list` 2) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh show index-drift` 3) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3` 4) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3` 5) `bash .opencode/skill/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list` 2) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift` 3) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3` 4) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3` 5) `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -957,7 +957,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts --channels vector"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts --channels vector"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -981,7 +981,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh` 2) `node .opencode/skill/system-spec-kit/scripts/tests/test-phase-command-workflows.js` 3) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive` 4) `bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh .opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh` 2) `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js` 3) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive` 4) `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1007,7 +1007,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help` 2) `bash .opencode/skill/system-spec-kit/scripts/tests/test-upgrade-level.sh` 3) `bash .opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 4) `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 5) `bash .opencode/skill/system-spec-kit/scripts/spec/archive.sh --help`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --help` 2) `bash .opencode/skills/system-spec-kit/scripts/tests/test-upgrade-level.sh` 3) `bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 4) `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 5) `bash .opencode/skills/system-spec-kit/scripts/spec/archive.sh --help`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1023,7 +1023,7 @@
     "unmatchedSignals": [],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 2) `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/054-template-extra-header"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3 --json` 2) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1047,7 +1047,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json` 2) `node .opencode/skill/system-spec-kit/scripts/tests/test-frontmatter-backfill.js` 3) `node .opencode/skill/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js` 4) `node .opencode/skill/system-spec-kit/scripts/tests/test-ast-parser.js` 5) `printf '[{\\\"path\\\":\\\"memory/demo.md\\\",\\\"title\\\":\\\"Demo Memory\\\",\\\"importance_tier\\\":\\\"important\\\",\\\"updated_at\\\":\\\"2026-03-26T00:00:00.000Z\\\"}]' > /tmp/memories.json` 6) `node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json`"
+      "Command sequence is not expressible as direct handler calls: 1) `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json` 2) `node .opencode/skills/system-spec-kit/scripts/tests/test-frontmatter-backfill.js` 3) `node .opencode/skills/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js` 4) `node .opencode/skills/system-spec-kit/scripts/tests/test-ast-parser.js` 5) `printf '[{\\\"path\\\":\\\"memory/demo.md\\\",\\\"title\\\":\\\"Demo Memory\\\",\\\"importance_tier\\\":\\\"important\\\",\\\"updated_at\\\":\\\"2026-03-26T00:00:00.000Z\\\"}]' > /tmp/memories.json` 6) `node .opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1067,7 +1067,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/memory-indexer-weighting.vitest.ts tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/workflow-e2e.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1091,7 +1091,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` 2) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` 2) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/session-enrichment.vitest.ts tests/phase-classification.vitest.ts tests/description-enrichment.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1115,7 +1115,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js` 2) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-alignment-validator.js` 3) `cd .opencode/skill/system-spec-kit/scripts && node tests/test-subfolder-resolution.js` 4) `npx tsx .opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion .opencode/specs --description \"Manual scenario description\"`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js` 2) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js` 3) `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js` 4) `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion .opencode/specs --description \"Manual scenario description\"`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1141,7 +1141,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate` 2) `cd .opencode/skill/system-spec-kit && bash scripts/setup/check-native-modules.sh` 3) `cd .opencode/skill/system-spec-kit && node scripts/setup/record-node-version.js` 4) `cd .opencode/skill/system-spec-kit && bash scripts/setup/install.sh --skip-verify`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate` 2) `cd .opencode/skills/system-spec-kit && bash scripts/setup/check-native-modules.sh` 3) `cd .opencode/skills/system-spec-kit && node scripts/setup/record-node-version.js` 4) `cd .opencode/skills/system-spec-kit && bash scripts/setup/install.sh --skip-verify`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1167,7 +1167,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify` 2) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --dry-run --verbose 2 3` 3) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2` 4) `bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify 2`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --verify` 2) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --dry-run --verbose 2 3` 3) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh 2` 4) `bash .opencode/skills/system-spec-kit/scripts/templates/compose.sh --verify 2`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1193,7 +1193,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` 3) `npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-bm25-baseline.ts --verbose` 4) `npx tsx --tsconfig .opencode/skill/system-spec-kit/scripts/tsconfig.json .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts system-spec-kit/022-hybrid-rag-fusion` 5) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/architecture-boundary-enforcement.vitest.ts tests/import-policy-rules.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run` 2) `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` 3) `npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts --verbose` 4) `npx tsx --tsconfig .opencode/skills/system-spec-kit/scripts/tsconfig.json .opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts system-spec-kit/022-hybrid-rag-fusion` 5) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/architecture-boundary-enforcement.vitest.ts tests/import-policy-rules.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1215,7 +1215,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/scripts && npx vitest run tests/semantic-signal-golden.vitest.ts tests/utils-regressions.vitest.ts tests/workspace-identity.vitest.ts tests/backfill-frontmatter.vitest.ts tests/tool-sanitizer.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/semantic-signal-golden.vitest.ts tests/utils-regressions.vitest.ts tests/workspace-identity.vitest.ts tests/backfill-frontmatter.vitest.ts tests/tool-sanitizer.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -1239,7 +1239,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh` 2) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion` 3) `bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion > /tmp/quality-kpi.json` 4) `node -e \"const fs=require('fs'); const data=JSON.parse(fs.readFileSync('/tmp/quality-kpi.json','utf8')); console.log(data.scope, data.totalFiles, data.rates.emptyTriggerPhrasesRate)\"`"
+      "Command sequence is not expressible as direct handler calls: 1) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh` 2) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion` 3) `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion > /tmp/quality-kpi.json` 4) `node -e \"const fs=require('fs'); const data=JSON.parse(fs.readFileSync('/tmp/quality-kpi.json','utf8')); console.log(data.scope, data.totalFiles, data.rates.emptyTriggerPhrasesRate)\"`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

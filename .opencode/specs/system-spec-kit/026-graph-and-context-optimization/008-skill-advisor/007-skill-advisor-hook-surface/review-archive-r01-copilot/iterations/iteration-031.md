@@ -4,9 +4,9 @@
 Reviewed the privacy contract and emitted-diagnostic schema together to make sure the late-pass D1 work still cleanly separates persisted prompt safety from the already logged argv exposure.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:48-55` -> the public privacy claim is explicitly scoped to caches, metrics, diagnostics, and health output.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159` -> privacy audit step checks forbidden prompt-bearing fields in the emitted schemas.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:111-117` and `:229-255` -> diagnostics reject `prompt`, `promptFingerprint`, `promptExcerpt`, `stdout`, and `stderr` fields at validation/serialization time.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:48-55` -> the public privacy claim is explicitly scoped to caches, metrics, diagnostics, and health output.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md:140-159` -> privacy audit step checks forbidden prompt-bearing fields in the emitted schemas.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:111-117` and `:229-255` -> diagnostics reject `prompt`, `promptFingerprint`, `promptExcerpt`, `stdout`, and `stderr` fields at validation/serialization time.
 
 ## Findings
 

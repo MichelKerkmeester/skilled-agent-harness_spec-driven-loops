@@ -3,17 +3,17 @@ You are running iteration 1 of 7 in a deep-review loop. Read this prompt fully, 
 # Iteration 1 — Correctness: Command Markdown + Setup Phase
 
 ## Focus
-Audit `.opencode/command/spec_kit/skill-advisor.md` for correctness against:
-- The sk-doc Mode-Based command template at `.opencode/skill/sk-doc/assets/agents/command_template.md` (Section 11)
-- The convention used by sibling commands `.opencode/command/spec_kit/{resume,plan,deep-review}.md`
+Audit `.opencode/commands/spec_kit/skill-advisor.md` for correctness against:
+- The sk-doc Mode-Based command template at `.opencode/skills/sk-doc/assets/agents/command_template.md` (Section 11)
+- The convention used by sibling commands `.opencode/commands/spec_kit/{resume,plan,deep-review}.md`
 - Internal consistency: the SETUP PHASE prompt logic, GATE 3 EXEMPT block, USER INPUT block, KEY BEHAVIORS section, OUTPUT FORMATS, EXAMPLES, NEXT STEPS
 
 ## Required reads (in order)
 1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/deep-review-strategy.md`
-2. `.opencode/command/spec_kit/skill-advisor.md` (the file under review)
-3. `.opencode/command/spec_kit/resume.md` (parity reference)
-4. `.opencode/command/spec_kit/deep-review.md` (parity reference for Mode-Based)
-5. `.opencode/skill/sk-doc/assets/agents/command_template.md` (sk-doc standard)
+2. `.opencode/commands/spec_kit/skill-advisor.md` (the file under review)
+3. `.opencode/commands/spec_kit/resume.md` (parity reference)
+4. `.opencode/commands/spec_kit/deep-review.md` (parity reference for Mode-Based)
+5. `.opencode/skills/sk-doc/assets/agents/command_template.md` (sk-doc standard)
 
 ## What to look for
 - Frontmatter: description present, single-line; argument-hint format correct; allowed-tools enumerated

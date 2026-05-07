@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -51,7 +51,7 @@ Root packet output writes to `<spec-root>/changelog/changelog-<packet>-root.md`.
 
 ### Canonical templates for packet history
 
-System Spec Kit now has dedicated changelog templates for packet roots and phase children. `.opencode/skill/system-spec-kit/templates/changelog/root.md` is tuned for packet-level rollups, including included-phase summaries, while `.opencode/skill/system-spec-kit/templates/changelog/phase.md` focuses on the specific phase and points back to the parent packet. This replaces the previous situation where packet changelog files existed but had no single source-of-truth template.
+System Spec Kit now has dedicated changelog templates for packet roots and phase children. `.opencode/skills/system-spec-kit/templates/changelog/root.md` is tuned for packet-level rollups, including included-phase summaries, while `.opencode/skills/system-spec-kit/templates/changelog/phase.md` focuses on the specific phase and points back to the parent packet. This replaces the previous situation where packet changelog files existed but had no single source-of-truth template.
 
 ### Command and workflow alignment
 
@@ -89,7 +89,7 @@ Verification stayed narrow and honest. The scripts workspace build was rerun aft
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/scripts && npm run build` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run build` | PASS |
 | `npx vitest run tests/nested-changelog.vitest.ts --config ../mcp_server/vitest.config.ts --root .` | PASS |
 | Root output path contract | PASS - focused test asserts `changelog-<packet>-root.md` |
 | Phase output path contract | PASS - focused test asserts parent-packet `changelog-<packet>-<phase-folder>.md` output |

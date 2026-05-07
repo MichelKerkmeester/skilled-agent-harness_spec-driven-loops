@@ -105,12 +105,12 @@ Ensure the outsourced agent handback protocol produces saves that survive the fu
 | `scripts/extractors/session-extractor.ts` | Modify | `extractNextAction()` reads `Next:` facts into `NEXT_ACTION` |
 | `scripts/tests/runtime-memory-inputs.vitest.ts` | Modify | Regression coverage for explicit failures and next-step persistence |
 | `scripts/tests/outsourced-agent-handback-docs.vitest.ts` | Create | Guard the 8 handback docs and feature catalog against post-010 drift |
-| `.opencode/skill/cli-codex/SKILL.md` | Modify | Memory Handback Protocol with redact-and-scrub guidance |
-| `.opencode/skill/cli-copilot/SKILL.md` | Modify | Same |
-| `.opencode/skill/cli-gemini/SKILL.md` | Modify | Same |
-| `.opencode/skill/cli-claude-code/SKILL.md` | Modify | Same |
+| `.opencode/skills/cli-codex/SKILL.md` | Modify | Memory Handback Protocol with redact-and-scrub guidance |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modify | Same |
+| `.opencode/skills/cli-gemini/SKILL.md` | Modify | Same |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Modify | Same |
 | 4 prompt_templates.md files | Modify | `MEMORY_HANDBACK_START`/`END` delimiters and extraction guidance |
-| `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md` | Modify | Align the catalog entry to phase `015` and the post-010 gate contract |
+| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md` | Modify | Align the catalog entry to phase `015` and the post-010 gate contract |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -11,7 +11,7 @@
 
 | File | Path |
 |------|------|
-| SKILL.md | `.opencode/skill/system-spec-kit/SKILL.md` |
+| SKILL.md | `.opencode/skills/system-spec-kit/SKILL.md` |
 | CLAUDE.md | `CLAUDE.md` (project root) |
 | spec.md (reference) | `.opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md` |
 
@@ -48,9 +48,9 @@
 ```
 
 All three files verified to exist on disk:
-- `references/structure/phase_definitions.md` — EXISTS at `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md`
-- `references/structure/sub_folder_versioning.md` — EXISTS at `.opencode/skill/system-spec-kit/references/structure/sub_folder_versioning.md`
-- `references/validation/phase_checklists.md` — EXISTS at `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md`
+- `references/structure/phase_definitions.md` — EXISTS at `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md`
+- `references/structure/sub_folder_versioning.md` — EXISTS at `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md`
+- `references/validation/phase_checklists.md` — EXISTS at `.opencode/skills/system-spec-kit/references/validation/phase_checklists.md`
 
 ---
 

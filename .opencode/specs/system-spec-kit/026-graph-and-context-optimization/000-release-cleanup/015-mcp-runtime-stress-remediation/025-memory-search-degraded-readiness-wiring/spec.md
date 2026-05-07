@@ -92,11 +92,11 @@ Add a shared `mapGraphReadinessToTelemetry()` helper that consumes a `GraphReadi
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` (or equivalent) | Create | Shared mapper helper |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Edit | Wire snapshot + mapper into envelope build |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Edit | Flip TC-3 from expected_fail to expected_pass |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Edit (minor) | Use shared helper where the inputs are a snapshot |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` (or equivalent) | Create | Focused mapper unit test |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` (or equivalent) | Create | Shared mapper helper |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Edit | Wire snapshot + mapper into envelope build |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Edit | Flip TC-3 from expected_fail to expected_pass |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Edit (minor) | Use shared helper where the inputs are a snapshot |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` (or equivalent) | Create | Focused mapper unit test |
 <!-- /ANCHOR:scope -->
 
 ---

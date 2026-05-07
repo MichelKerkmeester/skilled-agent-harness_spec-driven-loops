@@ -29,7 +29,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -54,11 +54,11 @@ The root `sk-code/scripts/` folder is gone. Webflow minification utilities now l
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs` | Moved | Webflow JavaScript minification utility. |
-| `.opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs` | Moved | Runtime smoke test for minified Webflow output. |
-| `.opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs` | Moved | Minification correctness verifier. |
-| `.opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py` | Moved | Generic/OpenCode multi-language alignment verifier. |
-| `.opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py` | Moved | Test suite for the alignment verifier. |
+| `.opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs` | Moved | Webflow JavaScript minification utility. |
+| `.opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs` | Moved | Runtime smoke test for minified Webflow output. |
+| `.opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs` | Moved | Minification correctness verifier. |
+| `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py` | Moved | Generic/OpenCode multi-language alignment verifier. |
+| `.opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py` | Moved | Test suite for the alignment verifier. |
 
 ### Reference Updates
 
@@ -101,9 +101,9 @@ The work started with a saved old-path inventory in `scratch/initial-inventory.m
 | Verification 7.1 stale old-path grep | PASS: zero hits outside `072-sk-code-scripts-relocation` (grep pipeline exited 1 with no output). |
 | Verification 7.2 Webflow destination | PASS: `minify-webflow.mjs`, `test-minified-runtime.mjs`, `verify-minification.mjs` present. |
 | Generic alignment destination | PASS: `verify_alignment_drift.py` and `test_verify_alignment_drift.py` present. |
-| Verification 7.3 old root scripts folder | PASS: `ls .opencode/skill/sk-code/scripts/` reports "No such file or directory". |
+| Verification 7.3 old root scripts folder | PASS: `ls .opencode/skills/sk-code/scripts/` reports "No such file or directory". |
 | Verification 7.4 destination modes | PASS: destination files retain `-rw-r--r--`; source files were also non-executable. |
-| Alignment verifier tests | PASS: `python3 .opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py` ran 9 tests, OK. |
+| Alignment verifier tests | PASS: `python3 .opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py` ran 9 tests, OK. |
 | Alignment verifier on sk-code | PASS: 24 files scanned, 0 findings. |
 | Webflow script syntax | PASS: `node --check` passed for all three moved `.mjs` files. |
 | Verification 7.5 strict spec validation | PASS: `validate.sh ... --strict` exited 0 with 0 errors and 0 warnings. |

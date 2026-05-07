@@ -41,22 +41,22 @@
 10. `011-skill-alignment/001-post-session-capturing-alignment/implementation-summary.md`
 
 ### Implementation Files
-11. `.opencode/skill/system-spec-kit/SKILL.md`
-12. `.opencode/skill/system-spec-kit/references/memory/save_workflow.md`
-13. `.opencode/skill/system-spec-kit/references/memory/embedding_resilience.md`
-14. `.opencode/skill/system-spec-kit/references/memory/memory_system.md`
-15. `.opencode/skill/system-spec-kit/references/config/environment_variables.md`
-16. `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md`
-17. `.opencode/skill/system-spec-kit/assets/complexity_decision_matrix.md`
-18. `.opencode/skill/system-spec-kit/assets/level_decision_matrix.md`
-19. `.opencode/skill/system-spec-kit/assets/template_mapping.md`
+11. `.opencode/skills/system-spec-kit/SKILL.md`
+12. `.opencode/skills/system-spec-kit/references/memory/save_workflow.md`
+13. `.opencode/skills/system-spec-kit/references/memory/embedding_resilience.md`
+14. `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
+15. `.opencode/skills/system-spec-kit/references/config/environment_variables.md`
+16. `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md`
+17. `.opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md`
+18. `.opencode/skills/system-spec-kit/assets/level_decision_matrix.md`
+19. `.opencode/skills/system-spec-kit/assets/template_mapping.md`
 
 ### Cross-Reference
 20. `.opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md`
 
 ### Verification Sources
-21. `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-22. `.opencode/command/memory/` (directory listing)
+21. `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+22. `.opencode/commands/memory/` (directory listing)
 
 ## Traceability Protocols
 - **Core**: spec_code, checklist_evidence

@@ -54,7 +54,7 @@ _memory:
 
 - [x] T001 Read parent spec, metadata, and resource map (`../spec.md`, `../description.json`, `../graph-metadata.json`, `../resource-map.md`)
 - [x] T002 Read Phase 005 artifacts for Level 2 structure (`../005-root-and-config/`)
-- [x] T003 Read Level 2 template sources (`.opencode/skill/system-spec-kit/templates/manifest/`)
+- [x] T003 Read Level 2 template sources (`.opencode/skills/system-spec-kit/templates/manifest/`)
 - [x] T004 Create Phase 006 planning artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `graph-metadata.json`)
 <!-- /ANCHOR:phase-1 -->
 

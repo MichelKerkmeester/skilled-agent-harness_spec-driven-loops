@@ -55,7 +55,7 @@ Phase A: High-Impact, Low-Risk -- create foundational artifacts.
 Phase B: Contract Injection -- embed compact structural contract in all agent definitions.
 
 - [ ] T004 Replace 12-line spec.md-only scaffold with full 49-line compact contract in `.claude/agents/speckit.md` (Section 8 "Inline Scaffold Contract"). Contract covers all 5 L2 doc types + L3 decision-record.md.
-- [ ] T005 [P] Replicate T004 contract injection to `.opencode/agent/speckit.md` and .opencode/agent/chatgpt/speckit.md
+- [ ] T005 [P] Replicate T004 contract injection to `.opencode/agents/speckit.md` and .opencode/agents/chatgpt/speckit.md
 - [ ] T006 [P] Replicate T004 contract injection to `.codex/agents/speckit.toml` (TOML multi-line string format with triple-quoted literals)
 
 Phase C: Directive Consolidation -- eliminate conflicting validation timing instructions.
@@ -95,8 +95,8 @@ Phase D: End-to-end testing across all enforcement layers.
 - **Plan**: See `plan.md` -- 4 phases (A-D) with architecture and testing strategy
 - **Research**: See `research/research.md` -- 9 iterations, 8/8 questions answered, per-document failure analysis
 - **Contract Draft**: See `research/iterations/iteration-009.md` Finding 2 -- complete 140-line reference file content
-- **Validation System**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- **Template Engine**: `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
+- **Validation System**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- **Template Engine**: `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
 <!-- /ANCHOR:cross-refs -->
 
 ---

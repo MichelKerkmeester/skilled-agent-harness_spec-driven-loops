@@ -12,11 +12,11 @@ It should be merged. The local system has valuable specialization, but too many 
 I compared the local orchestrator's routing table and related specialist agents with the external repo's flatter agent partitioning. I focused on whether each local role buys a distinct user-facing benefit.
 
 ## Evidence
-- `[SOURCE: .opencode/agent/orchestrate.md:24-36]` The local orchestrator claims full authority over decomposition, delegation, evaluation, conflict resolution, and synthesis, while forbidding direct implementation.
-- `[SOURCE: .opencode/agent/orchestrate.md:93-106]` The orchestrator routes among a large priority table including `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`.
-- `[SOURCE: .opencode/agent/context.md:25-32]` `@context` is the exclusive entry point for all exploration and retrieval tasks.
-- `[SOURCE: .opencode/agent/context-prime.md:22-40]` `@context-prime` exists as a lightweight bootstrap specialist for first-turn and `/clear` recovery.
-- `[SOURCE: .opencode/agent/handover.md:22-32]` `@handover` exists as a separate continuation-document specialist.
+- `[SOURCE: .opencode/agents/orchestrate.md:24-36]` The local orchestrator claims full authority over decomposition, delegation, evaluation, conflict resolution, and synthesis, while forbidding direct implementation.
+- `[SOURCE: .opencode/agents/orchestrate.md:93-106]` The orchestrator routes among a large priority table including `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`.
+- `[SOURCE: .opencode/agents/context.md:25-32]` `@context` is the exclusive entry point for all exploration and retrieval tasks.
+- `[SOURCE: .opencode/agents/context-prime.md:22-40]` `@context-prime` exists as a lightweight bootstrap specialist for first-turn and `/clear` recovery.
+- `[SOURCE: .opencode/agents/handover.md:22-32]` `@handover` exists as a separate continuation-document specialist.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:15-23]` The external repo's primary orchestrator role is narrower and avoids a similarly large public roster.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/research.md:15-22]` The external repo treats research as one focused specialist rather than splitting bootstrap, context, and handoff into multiple related surfaces.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator-multi.md:15-25]` Even the external multi-agent mode stays centered on a smaller set of responsibilities: split, launch, monitor, merge, report.
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should merge its default agent roster down to a smaller core by collapsing closely related session-context roles while retaining truly distinct specialist agents.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`, `.opencode/agent/context.md`, `.opencode/agent/context-prime.md`, `.opencode/agent/handover.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/agents/context.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/handover.md`
 - **Change type:** should-have
 - **Blast radius:** agent-system
 - **Prerequisites:** define which roles remain first-class and which become internal behaviors

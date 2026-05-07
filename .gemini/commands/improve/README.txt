@@ -60,7 +60,7 @@ Both commands support `:auto` and `:confirm` execution modes.
 
 | Command | Requires |
 |---------|----------|
-| `agent` | Target agent file in `.opencode/agent/*.md`, spec folder for runtime |
+| `agent` | Target agent file in `.opencode/agents/*.md`, spec folder for runtime |
 | `prompt` | Prompt text or topic description |
 
 ### Skills Used
@@ -83,7 +83,7 @@ improve/
 +-- deep-agent-improvement.toml                     # /improve:agent command (TOML format)
 ```
 
-> **Note:** This runtime uses TOML command files. The canonical `.opencode/command/improve/` directory also includes `prompt.md` (`/improve:prompt`) and YAML workflow assets. See the OpenCode canonical for the full command surface.
+> **Note:** This runtime uses TOML command files. The canonical `.opencode/commands/improve/` directory also includes `prompt.md` (`/improve:prompt`) and YAML workflow assets. See the OpenCode canonical for the full command surface.
 
 <!-- /ANCHOR:structure -->
 
@@ -95,7 +95,7 @@ improve/
 ### Agent Improvement Loop
 
 ```text
-/improve:agent ".opencode/agent/handover.md" :confirm
+/improve:agent ".opencode/agents/handover.md" :confirm
     |
     v
 Phase 0: @general agent verification
@@ -176,13 +176,13 @@ Each mode maps to a YAML workflow file in `assets/`:
 
 ```bash
 # Evaluate handover agent with interactive approval
-/improve:agent ".opencode/agent/handover.md" :confirm --spec-folder=specs/041/008
+/improve:agent ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
 
 # Evaluate any agent autonomously with 3 iterations
-/improve:agent ".opencode/agent/debug.md" :auto --iterations=3
+/improve:agent ".opencode/agents/debug.md" :auto --iterations=3
 
 # Quick integration health check (1 iteration)
-/improve:agent ".opencode/agent/review.md" :auto --iterations=1
+/improve:agent ".opencode/agents/review.md" :auto --iterations=1
 
 # Improve a prompt with auto-detection
 /improve:prompt "Write a blog post about AI" :auto
@@ -203,7 +203,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 
 **Q: Can I evaluate any agent, not just handover?**
 
-Yes. `/improve:agent` supports dynamic profiling via `generate-profile.cjs`, which derives scoring rules from any agent's own ALWAYS/NEVER/ESCALATE IF sections. Any file in `.opencode/agent/*.md` is a valid target.
+Yes. `/improve:agent` supports dynamic profiling via `generate-profile.cjs`, which derives scoring rules from any agent's own ALWAYS/NEVER/ESCALATE IF sections. Any file in `.opencode/agents/*.md` is a valid target.
 
 **Q: What are the 5 scoring dimensions?**
 

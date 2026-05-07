@@ -47,37 +47,37 @@ Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Version (should reflect post-v2.2.18.0 state), 5-source discovery, 7 intents, upgrade-level workflow, auto-populate workflow, anchor tag script, check-placeholders.sh, spec 126 MCP server hardening (import paths, specFolder filtering, metadata preservation, causal edge stability) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Version (should reflect post-v2.2.18.0 state), 5-source discovery, 7 intents, upgrade-level workflow, auto-populate workflow, anchor tag script, check-placeholders.sh, spec 126 MCP server hardening (import paths, specFolder filtering, metadata preservation, causal edge stability) |
 
 ### SKILL.md Files (P1) — Other Skills
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/skill/sk-doc/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/sk-code-opencode/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/workflows-code--web-dev/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/sk-code-full-stack/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/sk-git/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/mcp-code-mode/SKILL.md` | Version number, cross-references |
-| `.opencode/skill/mcp-figma/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/sk-doc/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/sk-code-opencode/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/workflows-code--web-dev/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/sk-code-full-stack/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/sk-git/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/mcp-code-mode/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/mcp-figma/SKILL.md` | Version number, cross-references |
 
 ### Reference Files (P0)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/skill/system-spec-kit/references/memory/memory_system.md` | 5 sources, 7 intents, schema v13, document-type scoring |
-| `.opencode/skill/system-spec-kit/references/memory/readme_indexing.md` | 5-source pipeline (not 4) |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Spec docs row in source table |
+| `.opencode/skills/system-spec-kit/references/memory/memory_system.md` | 5 sources, 7 intents, schema v13, document-type scoring |
+| `.opencode/skills/system-spec-kit/references/memory/readme_indexing.md` | 5-source pipeline (not 4) |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Spec docs row in source table |
 
 ### Reference Files (P1)
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/skill/system-spec-kit/references/structure/sub_folder_versioning.md` | upgrade-level.sh references (spec 124), check-anchors.sh |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Auto-populate workflow (spec 128), level escalation criteria |
-| `.opencode/skill/system-spec-kit/references/templates/template_guide.md` | Anchor tag conventions (spec 129), CORE + ADDENDUM structure |
-| `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` | Complete workflow listing including upgrade-level, auto-populate, check-placeholders |
+| `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md` | upgrade-level.sh references (spec 124), check-anchors.sh |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Auto-populate workflow (spec 128), level escalation criteria |
+| `.opencode/skills/system-spec-kit/references/templates/template_guide.md` | Anchor tag conventions (spec 129), CORE + ADDENDUM structure |
+| `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` | Complete workflow listing including upgrade-level, auto-populate, check-placeholders |
 <!-- /ANCHOR:scope -->
 
 ---

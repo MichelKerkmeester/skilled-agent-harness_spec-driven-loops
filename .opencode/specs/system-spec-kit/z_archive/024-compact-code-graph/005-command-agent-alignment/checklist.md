@@ -85,7 +85,7 @@ Template compliance shim anchor for summary.
 
 #### P1
 - [x] Agent definitions in `.claude/agents/` updated for compaction awareness [EVIDENCE: verified in implementation-summary.md]
-- [x] Agent definitions in `.opencode/agent/` updated for compaction awareness [EVIDENCE: verified in implementation-summary.md]
+- [x] Agent definitions in `.opencode/agents/` updated for compaction awareness [EVIDENCE: verified in implementation-summary.md]
 - [x] Agent definitions in `.codex/agents/` updated for compaction awareness [EVIDENCE: verified in implementation-summary.md]
 - [x] Agent definitions in `.gemini/agents/` updated for compaction awareness [EVIDENCE: verified in implementation-summary.md]
 - [x] `@handover` agent references hook state when available [EVIDENCE: verified in implementation-summary.md]

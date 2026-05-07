@@ -5,14 +5,14 @@ audit_date: "2026-04-27"
 auditor: "claude-opus-4-7 (1M context)"
 read_only: true
 scope:
-  - .opencode/skill/system-spec-kit/manual_testing_playbook/
-  - .opencode/skill/cli-copilot/manual_testing_playbook/
-  - .opencode/skill/cli-codex/manual_testing_playbook/
-  - .opencode/skill/cli-claude-code/manual_testing_playbook/
-  - .opencode/skill/cli-gemini/manual_testing_playbook/
-  - .opencode/skill/cli-opencode/manual_testing_playbook/
-  - .opencode/skill/sk-deep-research/manual_testing_playbook/
-  - .opencode/skill/sk-deep-review/manual_testing_playbook/
+  - .opencode/skills/system-spec-kit/manual_testing_playbook/
+  - .opencode/skills/cli-copilot/manual_testing_playbook/
+  - .opencode/skills/cli-codex/manual_testing_playbook/
+  - .opencode/skills/cli-claude-code/manual_testing_playbook/
+  - .opencode/skills/cli-gemini/manual_testing_playbook/
+  - .opencode/skills/cli-opencode/manual_testing_playbook/
+  - .opencode/skills/sk-deep-research/manual_testing_playbook/
+  - .opencode/skills/sk-deep-review/manual_testing_playbook/
   - .gemini/skills/system-spec-kit/manual_testing_playbook/ (hardlinked to .opencode mirror)
 ---
 
@@ -22,7 +22,7 @@ scope:
 
 This audit began as a 2026-04-27 snapshot and is preserved below as historical evidence. Current-state reconciliation on 2026-04-28 shows the manual testing playbooks have since absorbed the high-impact phase-011 surfaces: token-budget envelope, `responsePolicy` / `citationPolicy`, `fallbackDecision`, `readiness.action`, CocoIndex telemetry, IntentTelemetry target-authority entries, and sk-deep-research / sk-deep-review dispatch coverage now appear in the live playbook roots. The old "0 are fully covered" statement is therefore historical only, not current guidance.
 
-The live system-spec-kit roots are `.opencode/skill/system-spec-kit/feature_catalog/` and `.opencode/skill/system-spec-kit/manual_testing_playbook/`. The `.opencode/skill/sk-doc/...` path named by one cleanup prompt does not exist in this checkout.
+The live system-spec-kit roots are `.opencode/skills/system-spec-kit/feature_catalog/` and `.opencode/skills/system-spec-kit/manual_testing_playbook/`. The `.opencode/skills/sk-doc/...` path named by one cleanup prompt does not exist in this checkout.
 
 ## 1A. CURRENT-STATE RECONCILIATION (2026-04-28)
 
@@ -42,17 +42,17 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 | Phase | Behavior change | Playbook file(s) affected | Status | Recommended action |
 |-------|-----------------|---------------------------|--------|---------------------|
-| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
-| **004** | cocoindex fork telemetry: `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting cocoindex_code search responses contain `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` per result |
+| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
+| **004** | cocoindex fork telemetry: `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting cocoindex_code search responses contain `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` per result |
 | **005** | code-graph fast-fail: `fallbackDecision.nextTool` routing on blocked code-graph reads | (no existing entry) | NEW-ENTRY-NEEDED | Create 22--context-preservation-and-code-graph/277-code-graph-fast-fail.md covering the four routing branches: empty graph → `code_graph_scan`; broad-stale → `code_graph_scan`; readiness exception → `rg`; fresh → no `fallbackDecision` |
-| **006** | causal-graph window metrics: `deltaByRelation`, `balanceStatus`, per-relation per-window cap | `.opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | NEEDS-UPDATE | Replace single-line "coverage and edge metrics present" with multi-block scenarios asserting `deltaByRelation` exists for each relation type, `balanceStatus ∈ {balanced, skewed_<dir>, capped}`, and per-window cap surfaces when triggered |
-| **007** | intent classifier stability: `IntentTelemetry` shape (normalized across runtimes) | `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting the response carries the canonical `IntentTelemetry` envelope shape (intent, confidence, matchedKeywords, classifierVersion, runtimeId) for aggregation across CLI executors |
+| **006** | causal-graph window metrics: `deltaByRelation`, `balanceStatus`, per-relation per-window cap | `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | NEEDS-UPDATE | Replace single-line "coverage and edge metrics present" with multi-block scenarios asserting `deltaByRelation` exists for each relation type, `balanceStatus ∈ {balanced, skewed_<dir>, capped}`, and per-window cap surfaces when triggered |
+| **007** | intent classifier stability: `IntentTelemetry` shape (normalized across runtimes) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting the response carries the canonical `IntentTelemetry` envelope shape (intent, confidence, matchedKeywords, classifierVersion, runtimeId) for aggregation across CLI executors |
 | **008** | daemon rebuild + live-probe protocol (canonical 4-part: source diff → tests → dist marker → restart → live probe) | (no existing entry) | NEW-ENTRY-NEEDED | Create 16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md codifying the 4-part verification contract. references/mcp-rebuild-restart-protocol.md and references/live-probe-template.md exist as the source-of-truth references; the playbook needs the exercising scenario |
-| **009** | `memory_search` response policy: `responsePolicy.noCanonicalPathClaims`, `safeResponse`, `citationPolicy` | `.opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block: weak-quality query (low recall + low confidence) MUST return `responsePolicy.noCanonicalPathClaims:true`, `safeResponse:true`, `citationPolicy` enumerated. High-quality query keeps `noCanonicalPathClaims:false` |
-| **012** | `buildCopilotPromptArg` + `targetAuthority` + Gate-3 enforcement at cli-copilot dispatch (P0, NEW) | `.opencode/skill/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (existing, partial); `.opencode/skill/cli-copilot/manual_testing_playbook/05--session-continuity/` (no entry); `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/`; `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/` | NEEDS-UPDATE + MISSING (multiple) | (a) Update CP-002 to note `--allow-all-tools` MUST be paired with approved `targetAuthority` preamble in deep-loop dispatch; (b) Add new CP-022 "TARGET AUTHORITY approved → preamble present" + CP-023 "TARGET AUTHORITY missing + writeIntent → plan-only, --allow-all-tools stripped" + CP-024 "I1-style 'save the context' replay produces zero mutations" + CP-025 "@PROMPT_PATH wrapper preserves preamble for 20kb prompts"; (c) Add deep-research / deep-review dispatch entries asserting each cli-copilot dispatch in `_auto.yaml` routes through `buildCopilotPromptArg` and the workflow-resolved `{spec_folder}` produces `kind:"approved"` |
+| **009** | `memory_search` response policy: `responsePolicy.noCanonicalPathClaims`, `safeResponse`, `citationPolicy` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block: weak-quality query (low recall + low confidence) MUST return `responsePolicy.noCanonicalPathClaims:true`, `safeResponse:true`, `citationPolicy` enumerated. High-quality query keeps `noCanonicalPathClaims:false` |
+| **012** | `buildCopilotPromptArg` + `targetAuthority` + Gate-3 enforcement at cli-copilot dispatch (P0, NEW) | `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (existing, partial); `.opencode/skills/cli-copilot/manual_testing_playbook/05--session-continuity/` (no entry); `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/`; `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/` | NEEDS-UPDATE + MISSING (multiple) | (a) Update CP-002 to note `--allow-all-tools` MUST be paired with approved `targetAuthority` preamble in deep-loop dispatch; (b) Add new CP-022 "TARGET AUTHORITY approved → preamble present" + CP-023 "TARGET AUTHORITY missing + writeIntent → plan-only, --allow-all-tools stripped" + CP-024 "I1-style 'save the context' replay produces zero mutations" + CP-025 "@PROMPT_PATH wrapper preserves preamble for 20kb prompts"; (c) Add deep-research / deep-review dispatch entries asserting each cli-copilot dispatch in `_auto.yaml` routes through `buildCopilotPromptArg` and the workflow-resolved `{spec_folder}` produces `kind:"approved"` |
 | **013** | degraded-graph stress cell (SPEC_KIT_DB_DIR isolation, vi.spyOn(getDb), live-DB byte-equal) (NEW) | (no existing entry) | NEW-ENTRY-NEEDED | Create 16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md covering the `initDb(tmpdir)` isolation pattern, `vi.spyOn(getDb)` usage, sha256 byte-equality assertion, and the three coverage buckets (empty, readiness exception, fresh) |
-| **014** | `code_graph_status` readiness snapshot: `readiness.action ∈ {full_scan, selective_reindex, none}` (NEW) | `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` (existing, partial); `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md` (existing, partial) | NEEDS-UPDATE (both) | Update 254 step 3 expected signal from "counts plus `graphQualitySummary`" to "counts plus `graphQualitySummary` plus `readiness.action ∈ {full_scan, selective_reindex, none}` derived via read-only `getGraphReadinessSnapshot()`". Update 275 to assert handler invocation does NOT mutate the DB (criterion E from spec). Optionally add a dedicated 280 entry for the side-effect-freedom guarantee |
-| **015** | cocoindex seed telemetry passthrough through `code_graph_context` anchors (`rawScore`, `pathClass`, `rankingSignals`) (NEW) | `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fifth TEST EXECUTION block asserting that when seeds are supplied with `raw_score` / `path_class` / `rankingSignals`, the returned anchors carry `rawScore`, `pathClass`, `rankingSignals` next to existing `score`, `snippet`, `range`. Backward-compat: seeds without telemetry produce anchors without those fields (byte-equal envelope assertion) |
+| **014** | `code_graph_status` readiness snapshot: `readiness.action ∈ {full_scan, selective_reindex, none}` (NEW) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` (existing, partial); `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md` (existing, partial) | NEEDS-UPDATE (both) | Update 254 step 3 expected signal from "counts plus `graphQualitySummary`" to "counts plus `graphQualitySummary` plus `readiness.action ∈ {full_scan, selective_reindex, none}` derived via read-only `getGraphReadinessSnapshot()`". Update 275 to assert handler invocation does NOT mutate the DB (criterion E from spec). Optionally add a dedicated 280 entry for the side-effect-freedom guarantee |
+| **015** | cocoindex seed telemetry passthrough through `code_graph_context` anchors (`rawScore`, `pathClass`, `rankingSignals`) (NEW) | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fifth TEST EXECUTION block asserting that when seeds are supplied with `raw_score` / `path_class` / `rankingSignals`, the returned anchors carry `rawScore`, `pathClass`, `rankingSignals` next to existing `score`, `snippet`, `range`. Backward-compat: seeds without telemetry produce anchors without those fields (byte-equal envelope assertion) |
 | 001/002/010/011 | Pure-research / pure-evidence packets | n/a | UP-TO-DATE (no playbook impact by definition) | None — research artifacts live in spec folders, not testing playbooks |
 
 **Counts:** 14 behavior surfaces total — UP-TO-DATE (research-only) **4**, NEEDS-UPDATE **5**, NEW-ENTRY-NEEDED **5** (including 4 cli-copilot entries grouped under packet 012).
@@ -63,7 +63,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.1 Packet 003 — memory_context token-budget envelope (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md`
 
 **Current state (lines 37-39, 41-43):**
 ```
@@ -97,7 +97,7 @@ As a retrieval validation operator, validate the token-budget envelope contract 
 
 ### 3.2 Packet 004 — cocoindex fork telemetry (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`
 
 **Current state (lines 26-37):** the §2 SCENARIO CONTRACT mentions seed-resolver normalization, neighborhood/outline/impact modes, blocked payload, partialOutput — but does NOT enumerate the 7 NEW telemetry fields shipped by the fork (`dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score`).
 
@@ -121,7 +121,7 @@ All 7 fields present per result (rankingSignals object non-empty); `dedupedAlias
 
 ### 3.3 Packet 005 — code-graph fast-fail (NEW-ENTRY-NEEDED)
 
-**Recommended new file:** `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/277-code-graph-fast-fail.md`
+**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/277-code-graph-fast-fail.md`
 
 **Sketch:**
 ```markdown
@@ -144,7 +144,7 @@ description: "Validates fallbackDecision.nextTool routing on blocked code_graph_
 
 ### 3.4 Packet 006 — causal-graph window metrics (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md`
 
 **Current state (lines 19-22, 30-32):**
 ```
@@ -167,7 +167,7 @@ description: "Validates fallbackDecision.nextTool routing on blocked code_graph_
 
 ### 3.5 Packet 007 — intent classifier stability (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/264-query-intent-routing.md`
 
 **Current state:** three TEST EXECUTION blocks asserting structural / semantic / hybrid routing. None assert the canonical `IntentTelemetry` envelope shape.
 
@@ -186,7 +186,7 @@ Single shape across all 4 CLI runtimes; confidence is a number ∈ [0,1]; matche
 
 ### 3.6 Packet 008 — daemon rebuild + live-probe protocol (NEW-ENTRY-NEEDED)
 
-**Recommended new file:** `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md`
+**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md`
 
 **Sketch:** 4-part operator scenario exercising the canonical contract from references/mcp-rebuild-restart-protocol.md:
 1. Source diff capture: `git diff mcp_server/` shows expected paths.
@@ -201,7 +201,7 @@ This codifies the "phantom-fix" prevention loop. Existing 243 entry covers prere
 
 ### 3.7 Packet 009 — memory_search response policy (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md`
 
 **Current state (lines 30-50):** asserts hybrid precision but nothing about refusal contract.
 
@@ -230,7 +230,7 @@ This is the **highest-impact gap** — packet 012 is the v1.0.2 P0 catastrophic-
 
 **Existing files needing update:**
 
-(a) `.opencode/skill/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/spec_kit:deep-research:auto`, `/spec_kit:deep-review:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
+(a) `.opencode/skills/cli-copilot/manual_testing_playbook/01--cli-invocation/002-allow-all-tools-sandboxed-write.md` (CP-002): currently passes `--allow-all-tools` directly without `targetAuthority`. Add a note in §2 SCENARIO CONTRACT: *"For deep-loop dispatch (`/spec_kit:deep-research:auto`, `/spec_kit:deep-review:auto`), `--allow-all-tools` MUST be paired with a `kind:'approved'` `targetAuthority` token via `buildCopilotPromptArg`. CP-002 covers direct CLI use only; deep-loop dispatch is covered by CP-022 - CP-025."*
 
 **New CP-NNN entries needed (recommended 022-025) under cli-copilot playbook:**
 
@@ -258,7 +258,7 @@ Both should add a dispatch-helper coverage entry under `03--iteration-execution-
 
 Each asserts:
 1. `_auto.yaml` `if_cli_copilot.command` block routes through `buildCopilotPromptArg`.
-2. `grep -n "buildCopilotPromptArg" .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 1 hit.
+2. `grep -n "buildCopilotPromptArg" .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` ≥ 1 hit.
 3. YAML inline source contains `targetAuthority = specFolder ? { kind: 'approved', specFolder } : { kind: 'missing', writeIntent: true }`.
 4. End-to-end run: when `{spec_folder}` substitutes a real folder, dispatch produces approved preamble; when null, dispatch produces Gate-3 plan-only.
 
@@ -266,7 +266,7 @@ Each asserts:
 
 ### 3.9 Packet 013 — degraded-graph stress cell (NEW-ENTRY-NEEDED)
 
-**Recommended new file:** `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md`
+**Recommended new file:** `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md`
 
 **Sketch:**
 - Objective: Validate the deterministic isolated-DB sweep that exercises all 4 `fallbackDecision` matrix branches without touching the live code-graph DB.
@@ -281,8 +281,8 @@ This is operator-facing — the vitest exists and packet 013 is complete. Playbo
 ### 3.10 Packet 014 — code_graph_status readiness snapshot (NEEDS-UPDATE)
 
 **Files affected:**
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md`
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md`
 
 **254 — current state (line 32, 110-112):** Expected signal says `code_graph_status returns counts (files indexed, nodes, edges) plus graphQualitySummary.detectorProvenanceSummary and graphQualitySummary.graphEdgeEnrichmentSummary`. Doesn't mention `readiness.action`.
 
@@ -301,7 +301,7 @@ Add a fifth TEST EXECUTION block asserting the four readiness states (empty → 
 
 ### 3.11 Packet 015 — cocoindex seed telemetry passthrough (NEEDS-UPDATE)
 
-**File:** `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`
 
 **Gap:** The §2 SCENARIO CONTRACT covers seed resolution (`exact symbol → enclosing → file anchor`) but does NOT assert the per-seed telemetry passthrough on returned anchors (rawScore, pathClass, rankingSignals).
 
@@ -336,7 +336,7 @@ Telemetry survives expansion as additive metadata; score/confidence/resolution/o
 | **sk-deep-research** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `03--iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
 | **sk-deep-review** | **012 (dispatch helper called from `_auto.yaml`)** | MEDIUM — 1 NEW ENTRY in `03--iteration-execution-and-state-discipline/` covering the helper + targetAuthority resolution. |
 | **system-spec-kit** | **003, 004, 005, 006, 007, 008, 009, 014, 015** | HIGH — 5 NEEDS-UPDATE + 3 NEW ENTRIES across `01--retrieval/`, `06--analysis/`, `16--tooling-and-scripts/`, `22--context-preservation-and-code-graph/`. |
-| **.gemini mirror** | (auto-inherits via hardlinks) | NONE — verified inode equality; updates to `.opencode/skill/system-spec-kit/manual_testing_playbook/` propagate automatically. |
+| **.gemini mirror** | (auto-inherits via hardlinks) | NONE — verified inode equality; updates to `.opencode/skills/system-spec-kit/manual_testing_playbook/` propagate automatically. |
 
 **Distribution by playbook root:**
 - system-spec-kit: 5 NEEDS-UPDATE + 3 NEW = **8 actions**
@@ -391,8 +391,8 @@ The closest-to-contradiction case is 255-cocoindex-code-graph-routing.md line 12
 
 1. Open a packet under 026/011 (or a fresh packet under 026) for "playbook regression-coverage update — phase 011 follow-on".
 2. Apply NEEDS-UPDATE diffs to the 5 affected files in a single change set per file.
-3. Author the 9 NEW entries using the sketches in §3 as starting points; copy from `.opencode/skill/system-spec-kit/templates/` if a template exists, otherwise mirror the closest existing entry's structure (e.g. CP-002 for 254 for system-spec-kit).
-4. Re-run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <new-packet> --strict` after each file write per the distributed-governance rule.
+3. Author the 9 NEW entries using the sketches in §3 as starting points; copy from `.opencode/skills/system-spec-kit/templates/` if a template exists, otherwise mirror the closest existing entry's structure (e.g. CP-002 for 254 for system-spec-kit).
+4. Re-run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <new-packet> --strict` after each file write per the distributed-governance rule.
 5. Verify .gemini mirror hardlinks are intact post-update (`stat -f "%i"` parity check on at least one file).
 
 ---

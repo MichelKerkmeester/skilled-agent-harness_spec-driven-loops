@@ -6,8 +6,8 @@
 |---|---------|-----------|-------|--------|
 | 1 | Claude | `.claude/agents/deep-research.md` | 433 | YAML frontmatter + Markdown |
 | 2 | Codex | `.codex/agents/deep-research.toml` | 426 | TOML wrapper + Markdown body |
-| 3 | OpenCode/Copilot | `.opencode/agent/deep-research.md` | 438 | YAML frontmatter + Markdown |
-| 4 | ChatGPT | `.opencode/agent/chatgpt/deep-research.md` | 438 | YAML frontmatter + Markdown |
+| 3 | OpenCode/Copilot | `.opencode/agents/deep-research.md` | 438 | YAML frontmatter + Markdown |
+| 4 | ChatGPT | `.opencode/agents/chatgpt/deep-research.md` | 438 | YAML frontmatter + Markdown |
 
 ---
 
@@ -23,7 +23,7 @@
 | Permissions (explicit) | (none -- implicit via `tools:` list) | (none -- implicit via sandbox) | 12 explicit permission entries | 12 explicit permission entries | **NO** |
 | Tools (frontmatter) | Read, Write, Edit, Bash, Grep, Glob, WebFetch | (none declared in frontmatter) | read, write, edit, bash, grep, glob, webfetch, memory, list, external_directory (+ denies: chrome_devtools, task, patch) | Identical to OpenCode | **NO** |
 | MCP Servers (frontmatter) | `spec_kit_memory` | (none declared) | (none declared) | (none declared) | **NO** |
-| Path Convention | `.claude/agents/*.md` | `.codex/agents/*.toml` | `.opencode/agent/*.md` | `.opencode/agent/chatgpt/*.md` | Expected (runtime-specific) |
+| Path Convention | `.claude/agents/*.md` | `.codex/agents/*.toml` | `.opencode/agents/*.md` | `.opencode/agents/chatgpt/*.md` | Expected (runtime-specific) |
 | Core Workflow (7 steps) | Identical | Identical | Identical | Identical | **YES** |
 | Tool Budget (target/max) | 8-11 / 12 | 8-11 / 12 | 8-11 / 12 | 8-11 / 12 | **YES** |
 | Budget wording (Step 3) | "within an overall budget of" | "within an overall budget of" | "Recommended overall budget:" | "Recommended overall budget:" | **NO** |
@@ -138,7 +138,7 @@
 ### Divergence 10: Conversion Comment in Codex
 
 - **Files**: Codex only
-- **Codex** (line 2): Contains the comment `# Converted from: .opencode/agent/chatgpt/deep-research.md`
+- **Codex** (line 2): Contains the comment `# Converted from: .opencode/agents/chatgpt/deep-research.md`
 - **Impact**: Documents provenance -- the Codex definition was converted from the ChatGPT version. This means the ChatGPT version may be the actual source-of-truth for the Codex runtime, explaining why their body content is nearly identical.
 - **Recommendation**: Maintain this provenance comment. Consider adding similar comments to other runtime-specific files.
 
@@ -183,7 +183,7 @@
 
 ## Recommended Canonical Source
 
-The **OpenCode/Copilot** version (`.opencode/agent/deep-research.md`) should be the canonical source:
+The **OpenCode/Copilot** version (`.opencode/agents/deep-research.md`) should be the canonical source:
 1. It has the most complete permission model (explicit allow/deny)
 2. It sets temperature explicitly
 3. Its body content is identical to ChatGPT (which was the Codex source per the conversion comment)

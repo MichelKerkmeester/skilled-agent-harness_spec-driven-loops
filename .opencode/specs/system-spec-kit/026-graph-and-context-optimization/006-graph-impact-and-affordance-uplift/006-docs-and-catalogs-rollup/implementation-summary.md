@@ -75,12 +75,12 @@ The umbrella docs now cite — only where supported by 002-005's implementation-
 | File | LOC delta | Surfaces touched |
 |------|-----------|------------------|
 | `README.md` (repo root) | +32 / -1 | Code Graph readiness contract subsection extended (Edge Explanation + `detect_changes` Preflight); Skill Advisor Affordance Evidence subsection added; Memory Engine Causal Trust Display Badges subsection added; documentation-version footer bumped (4.2 -> 4.3, 2026-04-25, Phase 012 mention) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | +9 / -3 | Code Graph capability matrix expanded to 5 rows (added `detect_changes` handler row, annotated phase-DAG runner + edge `reason`/`step` + `blast_radius` enrichment in existing rows); Key Concepts bullets added for memory trust display badges (012/005) and Skill Advisor affordance evidence (012/004) |
-| `.opencode/skill/system-spec-kit/README.md` | +20 / -2 | Code Graph table expanded with Preflight row pointing at `detect_changes` (handler — tool-schema deferred); Phase-DAG runner paragraph added; Edge explanation and blast-radius uplift paragraph added; `detect_changes` preflight paragraph added; Skill Advisor Affordance evidence paragraph added; Memory System Causal Trust Display Badges section with badge table added; documentation-version footer bumped (3.0 -> 3.1) |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | +13 / -1 | §3.1.13 Code Graph: Phase-DAG runner paragraph added; Edge explanation and blast-radius uplift paragraph added; `detect_changes` preflight handler paragraph added (with deferred-tool-schema note); §3.1.14 Skill Advisor: Affordance evidence paragraph added; §3.1.5 Causal Graph: Causal trust display badges paragraph added; L7 tool reference: new `detect_changes` (handler — tool-schema deferred) entry between `code_graph_status` and `ccc_status` with parameter table and full safety-invariant description |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | +75 / -3 | New §6 Step 4 "Phase 012 Smoke Tests" with 4 sub-sections (one per shipped capability): 4a `detect_changes` preflight (stale + fresh), 4b `blast_radius` enrichment, 4c Skill Advisor affordance evidence (Vitest + Python suites), 4d Memory causal trust display badges (rg + protected-file diff guard + Vitest); banner version line annotated with the Phase 012 refresh date |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | +18 / -3 | TOC gains Phase 012 audit anchor; new Phase 012 audit section (audit date 2026-04-25) listing the 5 new per-packet entries with relative paths and one-line descriptions; `last_updated` frontmatter bumped (2026-04-17 -> 2026-04-25) |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | +18 / -3 | TOC gains Phase 012 audit anchor; new Phase 012 audit section (audit date 2026-04-25) listing the 5 new per-packet scenarios with playbook IDs and relative paths; `last_updated` frontmatter bumped (2026-04-17 -> 2026-04-25) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | +9 / -3 | Code Graph capability matrix expanded to 5 rows (added `detect_changes` handler row, annotated phase-DAG runner + edge `reason`/`step` + `blast_radius` enrichment in existing rows); Key Concepts bullets added for memory trust display badges (012/005) and Skill Advisor affordance evidence (012/004) |
+| `.opencode/skills/system-spec-kit/README.md` | +20 / -2 | Code Graph table expanded with Preflight row pointing at `detect_changes` (handler — tool-schema deferred); Phase-DAG runner paragraph added; Edge explanation and blast-radius uplift paragraph added; `detect_changes` preflight paragraph added; Skill Advisor Affordance evidence paragraph added; Memory System Causal Trust Display Badges section with badge table added; documentation-version footer bumped (3.0 -> 3.1) |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | +13 / -1 | §3.1.13 Code Graph: Phase-DAG runner paragraph added; Edge explanation and blast-radius uplift paragraph added; `detect_changes` preflight handler paragraph added (with deferred-tool-schema note); §3.1.14 Skill Advisor: Affordance evidence paragraph added; §3.1.5 Causal Graph: Causal trust display badges paragraph added; L7 tool reference: new `detect_changes` (handler — tool-schema deferred) entry between `code_graph_status` and `ccc_status` with parameter table and full safety-invariant description |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | +75 / -3 | New §6 Step 4 "Phase 012 Smoke Tests" with 4 sub-sections (one per shipped capability): 4a `detect_changes` preflight (stale + fresh), 4b `blast_radius` enrichment, 4c Skill Advisor affordance evidence (Vitest + Python suites), 4d Memory causal trust display badges (rg + protected-file diff guard + Vitest); banner version line annotated with the Phase 012 refresh date |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | +18 / -3 | TOC gains Phase 012 audit anchor; new Phase 012 audit section (audit date 2026-04-25) listing the 5 new per-packet entries with relative paths and one-line descriptions; `last_updated` frontmatter bumped (2026-04-17 -> 2026-04-25) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | +18 / -3 | TOC gains Phase 012 audit anchor; new Phase 012 audit section (audit date 2026-04-25) listing the 5 new per-packet scenarios with playbook IDs and relative paths; `last_updated` frontmatter bumped (2026-04-17 -> 2026-04-25) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` | +10 / 0 | New "Derived Implementation Phases" section after "Active Phase Themes": 012 entry (derived from `001-research-and-baseline/007-external-project/` pt-01 + pt-02; owner wrapper `026-graph-and-context-optimization/`) with one-paragraph note describing the six sub-phase decomposition and the ownership-boundary contract from pt-02 §13 |
 
 Total: **+214 / -11 lines** across **8 files**. Zero per-packet entries modified (per scope). Zero code files modified (this sub-phase is docs-only).
@@ -96,11 +96,11 @@ sk-doc DQI script-backed scoring is **OPERATOR-PENDING**. The pre-flight self-ch
 Operator must run, from the worktree root, to obtain canonical DQI numbers:
 
 ```sh
-python3 .opencode/skill/sk-doc/scripts/validate_document.py README.md --json
-python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/SKILL.md --json --type skill
-python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/README.md --json
-python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/mcp_server/README.md --json
-python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md --json --type install_guide
+python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --json
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/SKILL.md --json --type skill
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/README.md --json
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/README.md --json
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md --json --type install_guide
 ```
 
 ### Pre-flight self-check (estimates, NOT canonical scores)
@@ -144,7 +144,7 @@ $ cd mcp_server && npx --no-install vitest run \
    Duration  1.34s
 
 # validate.sh --strict (006 sub-phase)
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup \
   --strict
 → FAILED (template-section conformance — cosmetic; not a contract violation)
@@ -185,12 +185,12 @@ VALIDATED FAILED-COSMETIC (Wave-3 canonical, 010/007/T-B, 2026-04-25): FAILED on
 | File | Action | Purpose |
 |------|--------|---------|
 | `/README.md` | Modified | Phase 012 capability descriptions (Code Graph: edge uplift + `detect_changes` preflight; Skill Advisor: affordance evidence; Memory: causal trust display badges); footer version bump |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Code Graph capability matrix expanded to 5 rows; Key Concepts bullets for affordance evidence + memory trust badges |
-| `.opencode/skill/system-spec-kit/README.md` | Modified | Code Graph table expanded; phase-DAG runner / blast-radius uplift / `detect_changes` preflight / affordance evidence / Memory trust badge subsections added; footer version bump |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | §3.1.5 Causal Graph trust badge paragraph; §3.1.13 Code Graph phase-DAG / edge uplift / `detect_changes` paragraphs; §3.1.14 Skill Advisor affordance evidence paragraph; L7 tool reference `detect_changes` (handler — tool-schema deferred) entry |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | §6 Step 4 Phase 012 Smoke Tests (4 sub-sections, one per shipped capability); banner annotation |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Phase 012 audit section listing 5 new per-packet entries with paths; TOC anchor; `last_updated` bump |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Phase 012 audit section listing 5 new per-packet scenarios with paths and IDs; TOC anchor; `last_updated` bump |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Code Graph capability matrix expanded to 5 rows; Key Concepts bullets for affordance evidence + memory trust badges |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Code Graph table expanded; phase-DAG runner / blast-radius uplift / `detect_changes` preflight / affordance evidence / Memory trust badge subsections added; footer version bump |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | §3.1.5 Causal Graph trust badge paragraph; §3.1.13 Code Graph phase-DAG / edge uplift / `detect_changes` paragraphs; §3.1.14 Skill Advisor affordance evidence paragraph; L7 tool reference `detect_changes` (handler — tool-schema deferred) entry |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Modified | §6 Step 4 Phase 012 Smoke Tests (4 sub-sections, one per shipped capability); banner annotation |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Phase 012 audit section listing 5 new per-packet entries with paths; TOC anchor; `last_updated` bump |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Phase 012 audit section listing 5 new per-packet scenarios with paths and IDs; TOC anchor; `last_updated` bump |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` | Modified | "Derived Implementation Phases" section recording 012 as the External Project implementation phase derived from pt-01 + pt-02 |
 | `012/006/tasks.md` | Modified | All 18 tasks flipped to `complete` with evidence |
 | `012/006/checklist.md` | Modified | All P2 + Hand-off items ticked with evidence |
@@ -202,21 +202,21 @@ Phase-root files (`012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.m
 
 ## Known Limitations
 
-1. **Estimated DQI scores are NOT validated DQI scores (R-007-15, closed by 010/007/T-B 2026-04-25).** The pre-flight ~87.6 aggregate cited in §DQI Scores is derived from structural template adherence (anchor balance, table column counts, heading patterns) — it is advisory only and is NOT canonical sign-off for the ≥85 threshold. Operator must run `python3 .opencode/skill/sk-doc/scripts/validate_document.py <doc> --json` for each of the 5 modified umbrella docs to attest the numeric DQI scores. Wave-3 canonical channel covered the test/type/validate.sh runs but did NOT cover the DQI script execution.
+1. **Estimated DQI scores are NOT validated DQI scores (R-007-15, closed by 010/007/T-B 2026-04-25).** The pre-flight ~87.6 aggregate cited in §DQI Scores is derived from structural template adherence (anchor balance, table column counts, heading patterns) — it is advisory only and is NOT canonical sign-off for the ≥85 threshold. Operator must run `python3 .opencode/skills/sk-doc/scripts/validate_document.py <doc> --json` for each of the 5 modified umbrella docs to attest the numeric DQI scores. Wave-3 canonical channel covered the test/type/validate.sh runs but did NOT cover the DQI script execution.
 2. **Commit is operator-pending.** Same as 012/002's Known Limitation #2 and 012/005's #3: the autonomous-worktree sandbox denies `git add` and `git commit` (returns "This command requires approval" even with `dangerouslyDisableSandbox`). All deliverables are written to disk in the worktree but unstaged. The orchestrator should run, from the worktree root, the equivalent of the three pre-drafted conventional-commit chunks below — body text and scope are pre-written so the operator only needs to stage + commit:
 
    ```sh
    # Chunk 1 — Umbrella docs sync
    git add README.md \
-           .opencode/skill/system-spec-kit/SKILL.md \
-           .opencode/skill/system-spec-kit/README.md \
-           .opencode/skill/system-spec-kit/mcp_server/README.md \
-           .opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+           .opencode/skills/system-spec-kit/SKILL.md \
+           .opencode/skills/system-spec-kit/README.md \
+           .opencode/skills/system-spec-kit/mcp_server/README.md \
+           .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md
    git commit -m "docs(012/006): sync umbrella docs to 012/002-005 capabilities"
 
    # Chunk 2 — Catalog indexes + phase map
-   git add .opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md \
-           .opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md \
+   git add .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md \
+           .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md \
            .opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md
    git commit -m "docs(012/006): roll up catalog indexes + record 012 in 026 merged-phase-map"
 
@@ -245,4 +245,4 @@ Phase-root files (`012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.m
 - 012/004 implementation-summary.md (Skill Advisor affordance evidence)
 - 012/005 implementation-summary.md (Memory causal trust display)
 - pt-02 §11 Packet 1 (Code Graph foundation), §12 RISK-03 (false-safe rollback gate), §13 (ownership boundary contract)
-- sk-doc skill: `.opencode/skill/sk-doc/`
+- sk-doc skill: `.opencode/skills/sk-doc/`

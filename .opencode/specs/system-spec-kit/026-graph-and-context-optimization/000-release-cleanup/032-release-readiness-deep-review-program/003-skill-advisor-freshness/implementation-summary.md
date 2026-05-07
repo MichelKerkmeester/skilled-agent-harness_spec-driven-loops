@@ -103,7 +103,7 @@ The audit read the current skill advisor handlers, daemon lifecycle, scoring imp
 |-------|--------|
 | Evidence review | PASS: status, rebuild, cache, daemon, scoring, shim, hook fallback, tests, and related packet history reviewed with file:line citations. |
 | Packet scope | PASS: authored files are packet-local. |
-| Strict validator | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/003-skill-advisor-freshness --strict`. |
+| Strict validator | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/003-skill-advisor-freshness --strict`. |
 <!-- /ANCHOR:verification -->
 
 ---

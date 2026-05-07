@@ -51,8 +51,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/agent/README.txt` | Updated | OK | Line 18 — agent registry entry. T-016 |
-| `.opencode/command/improve/README.txt` | Updated | OK | YAML filename refs + body. T-014 |
+| `.opencode/agents/README.txt` | Updated | OK | Line 18 — agent registry entry. T-016 |
+| `.opencode/commands/improve/README.txt` | Updated | OK | YAML filename refs + body. T-014 |
 | `.claude/commands/improve/README.txt` | Updated | OK | Mirror. T-014 |
 | `.gemini/commands/improve/README.txt` | Updated | OK | Body content. T-014 |
 <!-- /ANCHOR:readmes -->
@@ -74,9 +74,9 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/command/improve/agent.md` | Updated | OK | 2+ refs to `@improve-agent` (lines ~269-270 YAML filename refs, line ~274 dispatch, line ~410 critic-pass note). T-013/T-014 |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Renamed + Updated | OK | `git mv` to `improve_deep-agent-improvement_auto.yaml`; 2 internal refs updated. T-009/T-014 |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Renamed + Updated | OK | `git mv` to `improve_deep-agent-improvement_confirm.yaml`; content update. T-010/T-014 |
+| `.opencode/commands/improve/agent.md` | Updated | OK | 2+ refs to `@improve-agent` (lines ~269-270 YAML filename refs, line ~274 dispatch, line ~410 critic-pass note). T-013/T-014 |
+| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Renamed + Updated | OK | `git mv` to `improve_deep-agent-improvement_auto.yaml`; 2 internal refs updated. T-009/T-014 |
+| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Renamed + Updated | OK | `git mv` to `improve_deep-agent-improvement_confirm.yaml`; content update. T-010/T-014 |
 | `.claude/commands/improve/agent.md` | Updated | OK | Mirror. T-013/T-014 |
 | `.claude/commands/improve/assets/improve_improve-agent_auto.yaml` | Renamed + Updated | OK | T-011 |
 | `.claude/commands/improve/assets/improve_improve-agent_confirm.yaml` | Renamed + Updated | OK | T-012 |
@@ -90,7 +90,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/agent/improve-agent.md` | Renamed + Updated | OK | `git mv` to `deep-agent-improvement.md`; frontmatter `name:` rotated (T-001/T-005). Body self-refs updated. |
+| `.opencode/agents/improve-agent.md` | Renamed + Updated | OK | `git mv` to `deep-agent-improvement.md`; frontmatter `name:` rotated (T-001/T-005). Body self-refs updated. |
 | `.claude/agents/improve-agent.md` | Renamed + Updated | OK | `git mv` to `deep-agent-improvement.md` (T-002/T-006) |
 | `.gemini/agents/improve-agent.md` | Renamed + Updated | OK | `git mv` to `deep-agent-improvement.md` (T-003/T-007) |
 | `.codex/agents/improve-agent.toml` | Renamed + Updated | OK | `git mv` to `deep-agent-improvement.toml`; `name = "..."` field rotated (T-004/T-008) |
@@ -103,18 +103,18 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/deep-agent-improvement/SKILL.md` | Updated | OK | `@improve-agent` mentions. T-014 |
-| `.opencode/skill/deep-agent-improvement/README.md` | Updated | OK | 1 ref. T-014 |
-| `.opencode/skill/deep-agent-improvement/graph-metadata.json` | Updated | OK | 2 refs. T-014 |
-| `.opencode/skill/deep-agent-improvement/changelog/v1.4.0.0.md` | Updated | OK | 2 refs. T-014 |
-| `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` | Created | PLANNED | New entry documenting agent rename. T-017 |
-| `.opencode/skill/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | 4 refs. T-014 |
-| `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | Updated | OK | 4 refs. T-014 |
-| `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | Updated | OK | 3 refs. T-014 |
-| `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | Updated | OK | 1 ref. T-014 |
-| `.opencode/skill/deep-agent-improvement/feature_catalog/feature_catalog.md` | Updated | OK | 1 ref. T-014 |
-| `.opencode/skill/deep-agent-improvement/feature_catalog/02--integration-scanning/03-command-dispatch.md` | Updated | OK | 1 ref. T-014 |
-| `.opencode/skill/sk-doc/assets/agent_template.md` | Updated | OK | 1 ref. T-014 |
+| `.opencode/skills/deep-agent-improvement/SKILL.md` | Updated | OK | `@improve-agent` mentions. T-014 |
+| `.opencode/skills/deep-agent-improvement/README.md` | Updated | OK | 1 ref. T-014 |
+| `.opencode/skills/deep-agent-improvement/graph-metadata.json` | Updated | OK | 2 refs. T-014 |
+| `.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md` | Updated | OK | 2 refs. T-014 |
+| `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` | Created | PLANNED | New entry documenting agent rename. T-017 |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | 4 refs. T-014 |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` | Updated | OK | 4 refs. T-014 |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md` | Updated | OK | 3 refs. T-014 |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | Updated | OK | 1 ref. T-014 |
+| `.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md` | Updated | OK | 1 ref. T-014 |
+| `.opencode/skills/deep-agent-improvement/feature_catalog/02--integration-scanning/03-command-dispatch.md` | Updated | OK | 1 ref. T-014 |
+| `.opencode/skills/sk-doc/assets/agent_template.md` | Updated | OK | 1 ref. T-014 |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -160,10 +160,10 @@ _memory:
 
 ## Critical-File Risk Ranking
 
-1. `.opencode/command/improve/agent.md` + `.claude/commands/improve/agent.md` — YAML filename refs must update atomically with `git mv` of YAML asset files (T-013 + T-009..T-012)
+1. `.opencode/commands/improve/agent.md` + `.claude/commands/improve/agent.md` — YAML filename refs must update atomically with `git mv` of YAML asset files (T-013 + T-009..T-012)
 2. 4 agent definition files — `git mv` + frontmatter `name:` rotation (T-001..T-008)
 3. 4 YAML asset files — filename rename + content sed (T-009..T-012, T-014)
-4. `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` — most-referenced docs (4 refs each)
+4. `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md` — most-referenced docs (4 refs each)
 
 ---
 

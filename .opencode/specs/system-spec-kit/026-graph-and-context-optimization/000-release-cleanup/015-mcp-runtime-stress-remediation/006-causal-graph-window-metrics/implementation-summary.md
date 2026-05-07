@@ -18,10 +18,10 @@ _memory:
       - "npm run build exits non-zero on handlers/memory-context.ts TS2741 missing intentEvidence, outside packet 011 source scope"
       - "Live runtime probe requires MCP daemon/client restart per packet 013"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts"
       - "implementation-summary.md"
     completion_pct: 85
     open_questions: []
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -66,11 +66,11 @@ Built behavior:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Modified | Added relation-window stats helper, zero-filled relation counts, new response fields, and `meetsTarget:false -> health:"degraded"` |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modified | Added `enforceRelationWindowCap`, env-configurable defaults, and insert gating for direct, batch, and bulk paths |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Added empty DB zero-fill, health reconciliation, and supersedes-burst skew coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts` | Modified | Added 105-insert cap fixture asserting 100 inserted and 5 throttled WARNs |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts` | Read-only verified | Prediction-error supersedes route already uses gated `causalEdges.insertEdge` path |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Modified | Added relation-window stats helper, zero-filled relation counts, new response fields, and `meetsTarget:false -> health:"degraded"` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modified | Added `enforceRelationWindowCap`, env-configurable defaults, and insert gating for direct, batch, and bulk paths |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Added empty DB zero-fill, health reconciliation, and supersedes-burst skew coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts` | Modified | Added 105-insert cap fixture asserting 100 inserted and 5 throttled WARNs |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts` | Read-only verified | Prediction-error supersedes route already uses gated `causalEdges.insertEdge` path |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/006-causal-graph-window-metrics/implementation-summary.md` | Modified | Recorded implementation and verification evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -104,17 +104,17 @@ Packet 013 requires source diff, targeted tests, dist verification, runtime rest
 
 | Check | Result | Evidence |
 |-------|--------|----------|
-| Targeted Vitest | PASS | `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/*causal-graph*.vitest.ts tests/causal-edges*.vitest.ts` -> 5 files passed, 226 tests passed |
+| Targeted Vitest | PASS | `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/*causal-graph*.vitest.ts tests/causal-edges*.vitest.ts` -> 5 files passed, 226 tests passed |
 | Empty DB zero-fill | PASS | `T014-CS4` asserts `by_relation` and `deltaByRelation` contain all six relation keys at zero |
 | Health/meetsTarget reconciliation | PASS | `T014-CS5` asserts `meetsTarget:false` with `health:"degraded"` |
 | Supersedes burst skew fixture | PASS | `T014-CS6` inserts 60 supersedes edges and asserts `balanceStatus:"relation_skewed"`, `dominantRelation:"supersedes"`, share near `1.0`, and remediation hint |
 | Per-window cap fixture | PASS | `causal-edges.vitest.ts` inserts 105 supersedes attempts: 100 inserted, 5 throttled, 5 WARN calls observed |
 | `npm run build` | FAIL | `tsc --build` exits with `handlers/memory-context.ts(1771,7): error TS2741: Property 'intentEvidence' is missing...`; file is outside packet 011 source scope |
-| `grep -l deltaByRelation .opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js` | PASS | Matched `dist/handlers/causal-graph.js` |
-| `grep -l balanceStatus .opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js` | PASS | Matched `dist/handlers/causal-graph.js` |
-| `grep -l enforceRelationWindowCap .opencode/skill/system-spec-kit/mcp_server/dist/lib/storage/causal-edges.js` | PASS | Matched `dist/lib/storage/causal-edges.js` |
+| `grep -l deltaByRelation .opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js` | PASS | Matched `dist/handlers/causal-graph.js` |
+| `grep -l balanceStatus .opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js` | PASS | Matched `dist/handlers/causal-graph.js` |
+| `grep -l enforceRelationWindowCap .opencode/skills/system-spec-kit/mcp_server/dist/lib/storage/causal-edges.js` | PASS | Matched `dist/lib/storage/causal-edges.js` |
 | Dist timestamp check | PASS | `dist/handlers/causal-graph.js` and `dist/lib/storage/causal-edges.js` mtimes are newer than their source files |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/006-causal-graph-window-metrics --strict` | PASS | Errors 0, Warnings 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/006-causal-graph-window-metrics --strict` | PASS | Errors 0, Warnings 0 |
 | Live `memory_causal_stats()` probe | PASS | Recorded 2026-04-27T10:12:36.021Z (fresh Claude Code session post-2026-04-26 dist rebuild). `total_edges:2527`, `link_coverage_percent:"85.65%"`, `health:"healthy"`, `meetsTarget:true`. All 6 `by_relation` keys present (`caused:1193`, `enabled:0`, `supersedes:819`, `contradicts:0`, `derived_from:0`, `supports:515`). `deltaByRelation` zero-filled, `balanceStatus:"insufficient_data"`, `windowStartedAt:"2026-04-27T09:57:39.113Z"`, `dominantRelation:null`, `dominantRelationShare:0` — consistent idle-window state per REQ-003. Burst skew branch (REQ-004) not exercised on this probe; covered by `T014-CS6` fixture. |
 
 REQ acceptance criteria:

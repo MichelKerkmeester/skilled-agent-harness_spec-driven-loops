@@ -93,7 +93,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Package JSON**: `.opencode/skill/system-spec-kit/mcp_server/package.json`
+- **Package JSON**: `.opencode/skills/system-spec-kit/mcp_server/package.json`
 <!-- /ANCHOR:cross-refs -->
 
 ---

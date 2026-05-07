@@ -2,20 +2,20 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12-85`
-- `.opencode/skill/sk-code-review/references/review_core.md:83-87`
-- `.opencode/agent/deep-review.md:149-185`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:215-225`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
-- `.opencode/skill/sk-deep-review/references/state_format.md:14-42`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:74-193`
-- `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl:88-102`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-85`
+- `.opencode/skills/sk-code-review/references/review_core.md:83-87`
+- `.opencode/agents/deep-review.md:149-185`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-225`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
+- `.opencode/skills/sk-deep-review/references/state_format.md:14-42`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:74-193`
+- `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:88-102`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/spec.md:23-27`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/plan.md:19-38`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/tasks.md:19-38`
@@ -34,7 +34,7 @@ Applied R5 fix-completeness protocol:
 
 Traceability outcome:
 
-- Confirmed closed: FIX-010-v1 modified the claimed cross-cutting implementation surfaces. The scoped `git diff --name-status` includes `.opencode/agent/deep-review.md`, both deep-review command modes, both plan command modes, `sk-deep-review` docs/contracts, post-dispatch validation, template validation, and the active 010 review-state artifacts.
+- Confirmed closed: FIX-010-v1 modified the claimed cross-cutting implementation surfaces. The scoped `git diff --name-status` includes `.opencode/agents/deep-review.md`, both deep-review command modes, both plan command modes, `sk-deep-review` docs/contracts, post-dispatch validation, template validation, and the active 010 review-state artifacts.
 - Still open: the canonical 010 packet docs do not reflect the FIX-010-v1 state. The spec frontmatter still says the next safe action is dispatching the earlier deep-research run, while `plan.md`, `tasks.md`, and `implementation-summary.md` still say `PENDING — populated by deep-research workflow`; `description.json` and `graph-metadata.json` still carry the old `2026-05-02T15:35:00Z` timestamp.
 - New packet-state gap: the active review packet has `deep-review-config.json`, `deep-review-state.jsonl`, registry, deltas, prompts, and iterations, but no `review/deep-review-strategy.md`, even though the deep-review state contract lists it as an updated-each-iteration state file.
 

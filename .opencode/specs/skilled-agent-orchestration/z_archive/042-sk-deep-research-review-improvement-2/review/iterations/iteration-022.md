@@ -60,7 +60,7 @@ exec
 /bin/zsh -lc "rg -n \"namespace isolation|coverage-graph-query|coverage-graph-signals|promote\\.cjs|search\\.cjs|replay-corpus\\.cjs|rvw-2026-04-12T11-30-00Z|security\" /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "POST-FIX VALIDATION iteration 22 of deep review session security validation for namespace isolation fixes in coverage graph query/signals handlers and optimizer scripts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "POST-FIX VALIDATION iteration 22 of deep review session security validation for namespace isolation fixes in coverage graph query/signals handlers and optimizer scripts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 392ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-hhtKW75A' (errno=Operation not permitted)
 [
@@ -104,9 +104,9 @@ mcp: spec_kit_memory/memory_quick_search started
 mcp: spec_kit_memory/memory_quick_search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -347,7 +347,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -594,17 +594,17 @@ Review mode is lineage-aware. Every packet uses canonical review-mode artifacts:
 exec
 /bin/zsh -lc "rg --files | rg '(coverage-graph-query\\.ts|coverage-graph-signals\\.ts|query\\.ts|status\\.ts|convergence\\.ts|promote\\.cjs|search\\.cjs|replay-corpus\\.cjs)"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 171ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs
-.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs
+.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/scripts/db-query.ts
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/console/app/src/routes/auth/status.ts
 .opencode/specs/system-spec-kit/z_future/agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/status.ts
@@ -618,9 +618,9 @@ Running a targeted post-fix validation pass for the security dimension. I’ll v
 codex
 I’ve got the file map now. Next I’m reading the coverage-graph query/signals internals and the handler/optimizer surfaces side by side so we can verify not just that a guard exists, but that every namespace-sensitive path carries the full composite key all the way through.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Signals
@@ -1266,9 +1266,9 @@ exec
    320	// 5. UNVERIFIED CLAIMS
 
 exec
-/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts; do echo "FILE: $f"; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts; do echo "FILE: $f"; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
+FILE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Query Handler
      3	// ───────────────────────────────────────────────────────────────
@@ -1444,7 +1444,7 @@ FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.t
    173	    }],
    174	  };
    175	}
-FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
+FILE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Status Handler
      3	// ───────────────────────────────────────────────────────────────
@@ -1546,7 +1546,7 @@ FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.
     99	    }],
    100	  };
    101	}
-FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
+FILE: .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Convergence Handler
      3	// ───────────────────────────────────────────────────────────────
@@ -1769,9 +1769,9 @@ FILE: .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/converg
    220	        trace,
 
 exec
-/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs; do echo "FILE: $f"; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs .opencode/skills/system-spec-kit/scripts/optimizer/search.cjs .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs; do echo "FILE: $f"; nl -ba "$f" | sed -n '"'1,260p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-FILE: .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs
+FILE: .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs
      1	'use strict';
      2	
      3	// ---------------------------------------------------------------
@@ -2032,7 +2032,7 @@ FILE: .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs
    258	      }
    259	    }
    260	  }
-FILE: .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs
+FILE: .opencode/skills/system-spec-kit/scripts/optimizer/search.cjs
      1	'use strict';
      2	
      3	// ---------------------------------------------------------------
@@ -2293,7 +2293,7 @@ FILE: .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs
    258	 * @param {object} rubric - A rubric from defineRubric().
    259	 * @param {Record<string, { min: number; max: number; step: number }>} [paramSpace] - Parameter space definition.
    260	 * @param {number} [iterations=20] - Number of random candidates to try.
-FILE: .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs
+FILE: .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs
      1	'use strict';
      2	
      3	// ---------------------------------------------------------------
@@ -2558,7 +2558,7 @@ FILE: .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs
 codex
 The first pass looks promising in a few places, but I still need the lower sections where the helper functions actually hit the database and the convergence/status handlers thread namespace through shared helpers. I’m drilling into those now so we don’t miss a partial fix hiding behind a safe-looking top-level signature.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	// 5. UNVERIFIED CLAIMS
    321	// ───────────────────────────────────────────────────────────────
@@ -2696,7 +2696,7 @@ exec
    453	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '320,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '320,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	
    321	  for (const edge of edges) {
@@ -3001,36 +3001,36 @@ exec
    620	  return momentum;
 
 exec
-/bin/zsh -lc 'rg -n "computeScoped|getEdgesByRelation|getEdgesForNode|SELECT .*coverage_edges|session_id|buildCompositeNodeJoin|buildNamespacePredicate" .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "computeScoped|getEdgesByRelation|getEdgesForNode|SELECT .*coverage_edges|session_id|buildCompositeNodeJoin|buildNamespacePredicate" .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:166:    const stats = computeScopedStats(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:184:    const signals = computeScopedSignals(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:185:    const momentum = computeScopedMomentum(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:279:export function computeScopedStats(ns: Namespace): ScopedCoverageStats {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:303:function computeScopedResearchSignals(ns: Namespace): ResearchConvergenceSignals {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:316:function computeScopedReviewSignals(ns: Namespace): ReviewConvergenceSignals {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:372:export function computeScopedSignals(ns: Namespace): ConvergenceSignals {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:377:    ? computeScopedResearchSignals(ns)
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:378:    : computeScopedReviewSignals(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:381:export function computeScopedMomentum(ns: Namespace): Record<string, number> | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:78:function buildNamespacePredicate(alias: string, ns: Namespace): SqlFragment {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:84:    clauses.push(`${prefix}session_id = ?`);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:94:function buildCompositeNodeJoin(
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:101:      AND ${nodeAlias}.session_id = ${edgeAlias}.session_id
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:412:  const nodeNamespace = buildNamespacePredicate('', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:413:  const scopedNodeNamespace = buildNamespacePredicate('n', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:414:  const edgeNamespace = buildNamespacePredicate('e', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:415:  const bareEdgeNamespace = buildNamespacePredicate('', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:426:        SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:444:        SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:469:            `SELECT COUNT(*) as c FROM coverage_edges e WHERE ${edgeNamespace.clause} AND e.target_id = ? AND e.relation = 'RESOLVES'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:481:    `SELECT COUNT(*) as c FROM coverage_edges WHERE ${bareEdgeNamespace.clause} AND relation = 'EVIDENCE_FOR'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:499:  const nodeNamespace = buildNamespacePredicate('', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:500:  const edgeNamespace = buildNamespacePredicate('e', ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:527:      JOIN coverage_nodes n ON ${buildCompositeNodeJoin('n', 'e', 'source_id')}
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:166:    const stats = computeScopedStats(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:184:    const signals = computeScopedSignals(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:185:    const momentum = computeScopedMomentum(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:279:export function computeScopedStats(ns: Namespace): ScopedCoverageStats {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:303:function computeScopedResearchSignals(ns: Namespace): ResearchConvergenceSignals {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:316:function computeScopedReviewSignals(ns: Namespace): ReviewConvergenceSignals {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:372:export function computeScopedSignals(ns: Namespace): ConvergenceSignals {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:377:    ? computeScopedResearchSignals(ns)
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:378:    : computeScopedReviewSignals(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:381:export function computeScopedMomentum(ns: Namespace): Record<string, number> | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:78:function buildNamespacePredicate(alias: string, ns: Namespace): SqlFragment {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:84:    clauses.push(`${prefix}session_id = ?`);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:94:function buildCompositeNodeJoin(
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:101:      AND ${nodeAlias}.session_id = ${edgeAlias}.session_id
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:412:  const nodeNamespace = buildNamespacePredicate('', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:413:  const scopedNodeNamespace = buildNamespacePredicate('n', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:414:  const edgeNamespace = buildNamespacePredicate('e', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:415:  const bareEdgeNamespace = buildNamespacePredicate('', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:426:        SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:444:        SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:469:            `SELECT COUNT(*) as c FROM coverage_edges e WHERE ${edgeNamespace.clause} AND e.target_id = ? AND e.relation = 'RESOLVES'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:481:    `SELECT COUNT(*) as c FROM coverage_edges WHERE ${bareEdgeNamespace.clause} AND relation = 'EVIDENCE_FOR'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:499:  const nodeNamespace = buildNamespacePredicate('', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:500:  const edgeNamespace = buildNamespacePredicate('e', ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:527:      JOIN coverage_nodes n ON ${buildCompositeNodeJoin('n', 'e', 'source_id')}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts | sed -n '220,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts | sed -n '220,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	        trace,
    221	      );
@@ -3337,9 +3337,9 @@ exec
 codex
 I’ve reached the point where the helper implementations matter more than the signatures. I’m checking the DB-layer contracts and the actual call sites in the optimizer scripts now, because a safe helper that never gets used would still leave the original finding effectively open.
 exec
-/bin/zsh -lc 'rg -n "resolveApprovedCorpusPath|APPROVED_CORPUS_ROOTS|REPO_ROOT|readFileSync|readdirSync|walk|jsonl|sourceDir|root" .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "resolveApprovedCorpusPath|APPROVED_CORPUS_ROOTS|REPO_ROOT|readFileSync|readdirSync|walk|jsonl|sourceDir|root" .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "function getNodes|function getEdges|function getSnapshots|function getStats|interface Namespace|type Namespace|sessionId" .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "function getNodes|function getEdges|function getSnapshots|function getStats|interface Namespace|type Namespace|sessionId" .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 53:const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 54:const APPROVED_CORPUS_ROOTS = Object.freeze([
@@ -3364,139 +3364,139 @@ exec
 488:    const content = fs.readFileSync(corpusPath, 'utf8');
 
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.js: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:57:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:72:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:86:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:95:export interface Namespace {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:98:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:306:  if (ns.sessionId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:    params.push(ns.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:328: * Insert or update a node scoped to `(specFolder, loopType, sessionId, id)`.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:339:  ).get(node.specFolder, node.loopType, node.sessionId, node.id) as { id: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:349:      node.specFolder, node.loopType, node.sessionId, node.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:361:    node.specFolder, node.loopType, node.sessionId, node.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370:  if (!ns.sessionId) return null;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:374:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:379:export function getNodes(ns: Namespace): CoverageNode[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:387:export function getNodesByKind(ns: Namespace, kind: NodeKind): CoverageNode[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:396:  if (!ns.sessionId) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:401:    ).run(ns.specFolder, ns.loopType, ns.sessionId, id, id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:404:    ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:415: * Insert or update an edge scoped to `(specFolder, loopType, sessionId, id)`.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:433:  ).get(edge.specFolder, edge.loopType, edge.sessionId, edge.id) as { id: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:441:      edge.specFolder, edge.loopType, edge.sessionId, edge.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:453:    edge.specFolder, edge.loopType, edge.sessionId, edge.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:462:  if (!ns.sessionId) return null;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:466:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:471:export function getEdges(ns: Namespace): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:479:export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:480:  if (!ns.sessionId) return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:484:  ).all(ns.specFolder, ns.loopType, ns.sessionId, sourceId) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:489:export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:490:  if (!ns.sessionId) return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:494:  ).all(ns.specFolder, ns.loopType, ns.sessionId, targetId) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:504:  if (!ns.sessionId) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:508:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:516:  ).run(weight, metadataStr, ns.specFolder, ns.loopType, ns.sessionId, id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:522:  if (!ns.sessionId) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:526:  ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:549:    snapshot.specFolder, snapshot.loopType, snapshot.sessionId, snapshot.iteration,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:556:export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:558:  if (sessionId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:563:    `).get(specFolder, loopType, sessionId) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:575:export function getSnapshots(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:577:  if (sessionId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:582:    `).all(specFolder, loopType, sessionId) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:598:export function getStats(specFolder: string, loopType: LoopType): {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:692:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:708:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:723:    sessionId: r.session_id as string,
+rg: .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.js: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:57:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:72:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:86:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:95:export interface Namespace {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:98:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:306:  if (ns.sessionId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:    params.push(ns.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:328: * Insert or update a node scoped to `(specFolder, loopType, sessionId, id)`.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:339:  ).get(node.specFolder, node.loopType, node.sessionId, node.id) as { id: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:349:      node.specFolder, node.loopType, node.sessionId, node.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:361:    node.specFolder, node.loopType, node.sessionId, node.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370:  if (!ns.sessionId) return null;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:374:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:379:export function getNodes(ns: Namespace): CoverageNode[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:387:export function getNodesByKind(ns: Namespace, kind: NodeKind): CoverageNode[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:396:  if (!ns.sessionId) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:401:    ).run(ns.specFolder, ns.loopType, ns.sessionId, id, id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:404:    ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:415: * Insert or update an edge scoped to `(specFolder, loopType, sessionId, id)`.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:433:  ).get(edge.specFolder, edge.loopType, edge.sessionId, edge.id) as { id: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:441:      edge.specFolder, edge.loopType, edge.sessionId, edge.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:453:    edge.specFolder, edge.loopType, edge.sessionId, edge.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:462:  if (!ns.sessionId) return null;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:466:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:471:export function getEdges(ns: Namespace): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:479:export function getEdgesFrom(ns: Namespace, sourceId: string): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:480:  if (!ns.sessionId) return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:484:  ).all(ns.specFolder, ns.loopType, ns.sessionId, sourceId) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:489:export function getEdgesTo(ns: Namespace, targetId: string): CoverageEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:490:  if (!ns.sessionId) return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:494:  ).all(ns.specFolder, ns.loopType, ns.sessionId, targetId) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:504:  if (!ns.sessionId) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:508:  ).get(ns.specFolder, ns.loopType, ns.sessionId, id) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:516:  ).run(weight, metadataStr, ns.specFolder, ns.loopType, ns.sessionId, id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:522:  if (!ns.sessionId) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:526:  ).run(ns.specFolder, ns.loopType, ns.sessionId, id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:549:    snapshot.specFolder, snapshot.loopType, snapshot.sessionId, snapshot.iteration,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:556:export function getLatestSnapshot(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:558:  if (sessionId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:563:    `).get(specFolder, loopType, sessionId) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:575:export function getSnapshots(specFolder: string, loopType: LoopType, sessionId?: string): CoverageSnapshot[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:577:  if (sessionId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:582:    `).all(specFolder, loopType, sessionId) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:598:export function getStats(specFolder: string, loopType: LoopType): {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:692:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:708:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:723:    sessionId: r.session_id as string,
 
 exec
-/bin/zsh -lc 'rg -n "resolvePromotionAuditPath|PROMOTION_AUDIT_DIR|writeFileSync|outputPath|manifest|checkManifestBoundary|validateParamSpaceAgainstManifest|DEFAULT_PARAM_SPACE|paramSpace|loadCanonicalManifest" .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "resolvePromotionAuditPath|PROMOTION_AUDIT_DIR|writeFileSync|outputPath|manifest|checkManifestBoundary|validateParamSpaceAgainstManifest|DEFAULT_PARAM_SPACE|paramSpace|loadCanonicalManifest" .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs .opencode/skills/system-spec-kit/scripts/optimizer/search.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:22: * Step sizes for the manifest-declared tunable search space.
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:33:const CANONICAL_MANIFEST_PATH = path.join(__dirname, 'optimizer-manifest.json');
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:35:function loadCanonicalManifest() {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:39:function deriveParamSpaceFromManifest(manifest) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:40:  if (!manifest || typeof manifest !== 'object') {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:41:    throw new Error('Canonical optimizer manifest is required');
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:44:  const paramSpace = {};
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:45:  for (const field of manifest.tunableFields || []) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:63:    paramSpace[name] = {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:70:  return paramSpace;
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:73:function validateParamSpaceAgainstManifest(paramSpace, manifest) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:74:  if (!paramSpace || typeof paramSpace !== 'object') {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:77:  if (!manifest || typeof manifest !== 'object') {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:78:    return { valid: false, violations: ['Canonical optimizer manifest is required'] };
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:83:  for (const field of manifest.tunableFields || []) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:90:    (manifest.lockedFields || [])
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:95:  for (const [name, bounds] of Object.entries(paramSpace)) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:101:    const manifestField = tunableFields.get(name);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:102:    if (!manifestField) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:103:      violations.push(`Field "${name}" is not declared tunable in the canonical manifest`);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:122:    const manifestRange = manifestField.range || {};
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:123:    if (typeof manifestRange.min === 'number' && min < manifestRange.min) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:124:      violations.push(`Field "${name}" minimum ${min} is below manifest minimum ${manifestRange.min}`);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:126:    if (typeof manifestRange.max === 'number' && max > manifestRange.max) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:127:      violations.push(`Field "${name}" maximum ${max} exceeds manifest maximum ${manifestRange.max}`);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:132:    if (manifestField.type === 'integer' && (!Number.isInteger(min) || !Number.isInteger(max) || !Number.isInteger(step))) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:143:const CANONICAL_MANIFEST = loadCanonicalManifest();
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:150:const DEFAULT_PARAM_SPACE = Object.freeze(deriveParamSpaceFromManifest(CANONICAL_MANIFEST));
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:177: * @param {Record<string, { min: number; max: number; step: number }>} paramSpace
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:181:function sampleConfig(paramSpace, rng) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:182:  if (!paramSpace || typeof paramSpace !== 'object' || typeof rng !== 'function') return {};
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:185:  for (const [name, bounds] of Object.entries(paramSpace)) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:259: * @param {Record<string, { min: number; max: number; step: number }>} [paramSpace] - Parameter space definition.
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:266:function randomSearch(corpus, rubric, paramSpace, iterations, options) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:277:  let space = DEFAULT_PARAM_SPACE;
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:278:  if (paramSpace !== undefined) {
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:279:    const validation = validateParamSpaceAgainstManifest(paramSpace, CANONICAL_MANIFEST);
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:283:    space = paramSpace;
-.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:455:  DEFAULT_PARAM_SPACE,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:39:const PROMOTION_AUDIT_DIR = path.resolve(__dirname, 'audit', 'promotion-reports');
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:58:function resolvePromotionAuditPath(outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:59:  const auditRoot = ensureCanonicalDirectory(PROMOTION_AUDIT_DIR, 'Promotion audit directory');
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:60:  const candidatePath = path.isAbsolute(outputPath)
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:61:    ? path.resolve(outputPath)
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:62:    : path.resolve(auditRoot, outputPath);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:115: * against the manifest definitions.
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:118: * @param {object} manifest - The optimizer manifest.
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:121:function checkManifestBoundary(candidate, manifest) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:122:  if (!candidate || typeof candidate !== 'object' || !manifest || typeof manifest !== 'object') {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:123:    return { valid: false, violations: ['Candidate and manifest objects are required'] };
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:127:  for (const f of manifest.tunableFields || []) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:132:    (manifest.lockedFields || []).map((f) => f.name || f),
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:139:      violations.push(`Field "${field}" is not listed as tunable in the optimizer manifest`);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:141:      // Validate type and range against manifest definition
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:155:            violations.push(`Field "${field}" value ${value} is below manifest minimum ${def.range.min}`);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:158:            violations.push(`Field "${field}" value ${value} is above manifest maximum ${def.range.max}`);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:183: * @param {object} options.manifest - Optimizer manifest for boundary checking.
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:184: * @returns {{ decision: string; improved: boolean; regressions: string[]; improvements: string[]; manifestCheck: object|null; prerequisiteCheck: object; advisoryOnly: boolean }}
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:193:      manifestCheck: null,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:206:  let manifestCheck;
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:207:  if (!opts.manifest || typeof opts.manifest !== 'object') {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:208:    manifestCheck = {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:210:      violations: ['Canonical optimizer manifest is required'],
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:213:    manifestCheck = checkManifestBoundary(candidate.config, opts.manifest);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:215:  if (!manifestCheck.valid) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:219:      regressions: manifestCheck.violations,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:221:      manifestCheck,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:276:    manifestCheck,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:333:    manifestBoundary: opts.manifestCheck || null,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:360: * @param {string} outputPath - File path for the output.
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:362:function savePromotionReport(report, outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:363:  if (!report || typeof report !== 'object' || typeof outputPath !== 'string' || !outputPath) {
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:366:  const resolvedOutputPath = resolvePromotionAuditPath(outputPath);
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:367:  fs.writeFileSync(resolvedOutputPath, JSON.stringify(report, null, 2), 'utf8');
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:378:  PROMOTION_AUDIT_DIR,
-.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:380:  checkManifestBoundary,
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:22: * Step sizes for the manifest-declared tunable search space.
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:33:const CANONICAL_MANIFEST_PATH = path.join(__dirname, 'optimizer-manifest.json');
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:35:function loadCanonicalManifest() {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:39:function deriveParamSpaceFromManifest(manifest) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:40:  if (!manifest || typeof manifest !== 'object') {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:41:    throw new Error('Canonical optimizer manifest is required');
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:44:  const paramSpace = {};
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:45:  for (const field of manifest.tunableFields || []) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:63:    paramSpace[name] = {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:70:  return paramSpace;
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:73:function validateParamSpaceAgainstManifest(paramSpace, manifest) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:74:  if (!paramSpace || typeof paramSpace !== 'object') {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:77:  if (!manifest || typeof manifest !== 'object') {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:78:    return { valid: false, violations: ['Canonical optimizer manifest is required'] };
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:83:  for (const field of manifest.tunableFields || []) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:90:    (manifest.lockedFields || [])
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:95:  for (const [name, bounds] of Object.entries(paramSpace)) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:101:    const manifestField = tunableFields.get(name);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:102:    if (!manifestField) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:103:      violations.push(`Field "${name}" is not declared tunable in the canonical manifest`);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:122:    const manifestRange = manifestField.range || {};
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:123:    if (typeof manifestRange.min === 'number' && min < manifestRange.min) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:124:      violations.push(`Field "${name}" minimum ${min} is below manifest minimum ${manifestRange.min}`);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:126:    if (typeof manifestRange.max === 'number' && max > manifestRange.max) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:127:      violations.push(`Field "${name}" maximum ${max} exceeds manifest maximum ${manifestRange.max}`);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:132:    if (manifestField.type === 'integer' && (!Number.isInteger(min) || !Number.isInteger(max) || !Number.isInteger(step))) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:143:const CANONICAL_MANIFEST = loadCanonicalManifest();
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:150:const DEFAULT_PARAM_SPACE = Object.freeze(deriveParamSpaceFromManifest(CANONICAL_MANIFEST));
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:177: * @param {Record<string, { min: number; max: number; step: number }>} paramSpace
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:181:function sampleConfig(paramSpace, rng) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:182:  if (!paramSpace || typeof paramSpace !== 'object' || typeof rng !== 'function') return {};
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:185:  for (const [name, bounds] of Object.entries(paramSpace)) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:259: * @param {Record<string, { min: number; max: number; step: number }>} [paramSpace] - Parameter space definition.
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:266:function randomSearch(corpus, rubric, paramSpace, iterations, options) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:277:  let space = DEFAULT_PARAM_SPACE;
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:278:  if (paramSpace !== undefined) {
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:279:    const validation = validateParamSpaceAgainstManifest(paramSpace, CANONICAL_MANIFEST);
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:283:    space = paramSpace;
+.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:455:  DEFAULT_PARAM_SPACE,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:39:const PROMOTION_AUDIT_DIR = path.resolve(__dirname, 'audit', 'promotion-reports');
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:58:function resolvePromotionAuditPath(outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:59:  const auditRoot = ensureCanonicalDirectory(PROMOTION_AUDIT_DIR, 'Promotion audit directory');
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:60:  const candidatePath = path.isAbsolute(outputPath)
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:61:    ? path.resolve(outputPath)
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:62:    : path.resolve(auditRoot, outputPath);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:115: * against the manifest definitions.
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:118: * @param {object} manifest - The optimizer manifest.
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:121:function checkManifestBoundary(candidate, manifest) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:122:  if (!candidate || typeof candidate !== 'object' || !manifest || typeof manifest !== 'object') {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:123:    return { valid: false, violations: ['Candidate and manifest objects are required'] };
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:127:  for (const f of manifest.tunableFields || []) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:132:    (manifest.lockedFields || []).map((f) => f.name || f),
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:139:      violations.push(`Field "${field}" is not listed as tunable in the optimizer manifest`);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:141:      // Validate type and range against manifest definition
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:155:            violations.push(`Field "${field}" value ${value} is below manifest minimum ${def.range.min}`);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:158:            violations.push(`Field "${field}" value ${value} is above manifest maximum ${def.range.max}`);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:183: * @param {object} options.manifest - Optimizer manifest for boundary checking.
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:184: * @returns {{ decision: string; improved: boolean; regressions: string[]; improvements: string[]; manifestCheck: object|null; prerequisiteCheck: object; advisoryOnly: boolean }}
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:193:      manifestCheck: null,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:206:  let manifestCheck;
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:207:  if (!opts.manifest || typeof opts.manifest !== 'object') {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:208:    manifestCheck = {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:210:      violations: ['Canonical optimizer manifest is required'],
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:213:    manifestCheck = checkManifestBoundary(candidate.config, opts.manifest);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:215:  if (!manifestCheck.valid) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:219:      regressions: manifestCheck.violations,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:221:      manifestCheck,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:276:    manifestCheck,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:333:    manifestBoundary: opts.manifestCheck || null,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:360: * @param {string} outputPath - File path for the output.
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:362:function savePromotionReport(report, outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:363:  if (!report || typeof report !== 'object' || typeof outputPath !== 'string' || !outputPath) {
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:366:  const resolvedOutputPath = resolvePromotionAuditPath(outputPath);
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:367:  fs.writeFileSync(resolvedOutputPath, JSON.stringify(report, null, 2), 'utf8');
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:378:  PROMOTION_AUDIT_DIR,
+.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:380:  checkManifestBoundary,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '90,170p;300,330p;370,490p;556,635p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '90,170p;300,330p;370,490p;556,635p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/search.cjs | sed -n '260,340p;440,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/search.cjs | sed -n '260,340p;440,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	 * @param {number} [iterations=20] - Number of random candidates to try.
    261	 * @param {object} [options={}] - Additional options.
@@ -3920,9 +3920,9 @@ exec
    635	  if (dbPath) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '330,420p;470,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs | sed -n '330,420p;470,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs | sed -n '320,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs | sed -n '320,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    330	
    331	/**
@@ -4124,48 +4124,48 @@ exec
    384	};
 
 exec
-/bin/zsh -lc "rg -n \"computeReviewSignals\\(|computeSignals\\(|createSignalSnapshot\\(|computeMomentum\\(|handleCoverageGraph(Query|Status|Convergence)\\(\" .opencode/skill/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"computeReviewSignals\\(|computeSignals\\(|createSignalSnapshot\\(|computeMomentum\\(|handleCoverageGraph(Query|Status|Convergence)\\(\" .opencode/skills/system-spec-kit -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:147:export async function handleCoverageGraphConvergence(
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:374:    return computeSignals(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:43:export async function handleCoverageGraphQuery(
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:29:export async function handleCoverageGraphStatus(
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:406:    expect(computeReviewSignals(reviewNs)).toMatchObject({
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:457:    expect(computeReviewSignals(alphaNs)).toMatchObject({
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:213:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:229:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:244:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:255:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:261:      const momentum = computeMomentum(db, 999);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:896:      const momentum = computeMomentum(db, 9999);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:919:      const momentum = computeMomentum(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:941:      expect(() => computeMomentum(db, 100)).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410:export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:548:export function computeSignals(ns: Namespace): ConvergenceSignals {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:552:  return computeReviewSignals(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:559:export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSnapshot {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:560:  const signals = computeSignals(ns);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:600:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:158:      expect(signalsModule.computeMomentum(graph, 'a', 600000)).toBe(activity);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:172:    const scopedData = parseHandlerData(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:191:    const queryError = parseHandlerError(await handleCoverageGraphQuery({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:196:    const statusError = parseHandlerError(await handleCoverageGraphStatus({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:200:    const convergenceError = parseHandlerError(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:414:    const queryX = parseHandlerData(await handleCoverageGraphQuery({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:420:    const queryY = parseHandlerData(await handleCoverageGraphQuery({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:426:    const statusX = parseHandlerData(await handleCoverageGraphStatus({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:431:    const statusY = parseHandlerData(await handleCoverageGraphStatus({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:436:    const convergenceX = parseHandlerData(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:441:    const convergenceY = parseHandlerData(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md:1583:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:147:export async function handleCoverageGraphConvergence(
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:374:    return computeSignals(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:43:export async function handleCoverageGraphQuery(
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:29:export async function handleCoverageGraphStatus(
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:406:    expect(computeReviewSignals(reviewNs)).toMatchObject({
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:457:    expect(computeReviewSignals(alphaNs)).toMatchObject({
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:213:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:229:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:244:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:255:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:261:      const momentum = computeMomentum(db, 999);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:896:      const momentum = computeMomentum(db, 9999);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:919:      const momentum = computeMomentum(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:941:      expect(() => computeMomentum(db, 100)).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:158:export function computeMomentum(db: Database.Database, memoryId: number): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:186:    const momentum = computeMomentum(db, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410:export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:548:export function computeSignals(ns: Namespace): ConvergenceSignals {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:552:  return computeReviewSignals(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:559:export function createSignalSnapshot(ns: Namespace, iteration: number): SignalSnapshot {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:560:  const signals = computeSignals(ns);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:600:export function computeMomentum(specFolder: string, loopType: LoopType): Record<string, number> | null {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:158:      expect(signalsModule.computeMomentum(graph, 'a', 600000)).toBe(activity);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:172:    const scopedData = parseHandlerData(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:191:    const queryError = parseHandlerError(await handleCoverageGraphQuery({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:196:    const statusError = parseHandlerError(await handleCoverageGraphStatus({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:200:    const convergenceError = parseHandlerError(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:414:    const queryX = parseHandlerData(await handleCoverageGraphQuery({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:420:    const queryY = parseHandlerData(await handleCoverageGraphQuery({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:426:    const statusX = parseHandlerData(await handleCoverageGraphStatus({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:431:    const statusY = parseHandlerData(await handleCoverageGraphStatus({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:436:    const convergenceX = parseHandlerData(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:441:    const convergenceY = parseHandlerData(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:1583:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md:21:Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
 
 codex
 I’ve confirmed there are dedicated session-isolation tests touching these handlers, which helps anchor intent. I’m sampling those assertions now to distinguish “fix was meant to cover this exact path” from “this helper is still intentionally legacy,” especially around the optimizer and snapshot code paths.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '150,240p;400,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '150,240p;400,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    150	    expect(sessionEdges.map(edge => edge.id).sort()).toEqual([
    151	      'a-answers-1',
@@ -4321,7 +4321,7 @@ exec
    460	    expect(statusX.totalNodes).toBe(sessionXNodes.length);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '430,480p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts | sed -n '430,480p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    430	
    431	    upsertEdge(makeEdge({
@@ -4376,28 +4376,28 @@ exec
    480	    }));
 
 exec
-/bin/zsh -lc "rg -n \"replay-corpus|saveCorpus|loadCorpus|promotion-reports|randomSearch\\(\" .opencode/skill/system-spec-kit/scripts/tests .opencode/skill/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"replay-corpus|saveCorpus|loadCorpus|promotion-reports|randomSearch\\(\" .opencode/skills/system-spec-kit/scripts/tests .opencode/skills/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:15:  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:26:  saveCorpus: (corpus: object[], outputPath: string) => void;
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:27:  loadCorpus: (corpusPath: string) => object[];
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:284:  describe('saveCorpus / loadCorpus', () => {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:302:        replayCorpus.saveCorpus(corpus, tmpPath);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:304:        const loaded = replayCorpus.loadCorpus(tmpPath);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:312:      expect(replayCorpus.loadCorpus('/nonexistent/path.json')).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:56:  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:191:      const result = search.randomSearch(corpus, testRubric, undefined, iterations, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:203:      const result1 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:204:      const result2 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:214:      const result = search.randomSearch(corpus, testRubric, undefined, 10, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:231:      const result = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:252:      const result = search.randomSearch(corpus, testRubric, undefined, 3, {
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:359:      expect(() => search.randomSearch(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:372:      expect(() => search.randomSearch(
-.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:51:  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:15:  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:26:  saveCorpus: (corpus: object[], outputPath: string) => void;
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:27:  loadCorpus: (corpusPath: string) => object[];
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:284:  describe('saveCorpus / loadCorpus', () => {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:302:        replayCorpus.saveCorpus(corpus, tmpPath);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:304:        const loaded = replayCorpus.loadCorpus(tmpPath);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts:312:      expect(replayCorpus.loadCorpus('/nonexistent/path.json')).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:56:  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:191:      const result = search.randomSearch(corpus, testRubric, undefined, iterations, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:203:      const result1 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:204:      const result2 = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:214:      const result = search.randomSearch(corpus, testRubric, undefined, 10, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:231:      const result = search.randomSearch(corpus, testRubric, undefined, 5, { seed: 42 });
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:252:      const result = search.randomSearch(corpus, testRubric, undefined, 3, {
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:359:      expect(() => search.randomSearch(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts:372:      expect(() => search.randomSearch(
+.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts:51:  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,220p;240,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts | sed -n '1,220p;240,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import os from 'node:os';
@@ -4413,7 +4413,7 @@ exec
     12	
     13	const replayCorpus = require(path.join(
     14	  WORKSPACE_ROOT,
-    15	  '.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
+    15	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     16	)) as {
     17	  PACKET_FAMILIES: Record<string, { role: string; required: boolean; compatibilityGrade: string }>;
     18	  REQUIRED_ENTRY_FIELDS: readonly string[];
@@ -4714,7 +4714,7 @@ exec
 codex
 The code paths are mostly lining up with the intended isolation model, and I want one more layer of evidence before I close the call. I’m running the targeted review/session-isolation test files that exercise these handlers and optimizer guards; if the sandbox blocks them, I’ll call that out explicitly instead of overstating confidence.
 exec
-/bin/zsh -lc 'pnpm vitest run .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'pnpm vitest run .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 127 in 0ms:
 zsh:1: command not found: pnpm
 
@@ -4742,17 +4742,17 @@ codex
 No new P0/P1/P2 findings in the requested validation slice. I did not find any `PARTIAL`, `OPEN`, or `REGRESSED` items among the specific namespace-isolation fixes you asked me to validate.
 
 **Original Finding Status**
-1. `FIXED` — Review-mode coverage-gap `NOT EXISTS` subquery now scopes edge reads with the full namespace via `buildNamespacePredicate('e', ns)` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:113) and uses that predicate inside the subquery at lines 120-125.
-2. `FIXED` — Research-mode coverage-gap `NOT EXISTS` subquery applies the same namespace-qualified edge predicate in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:145) with the guarded subquery at lines 152-157.
-3. `FIXED` — Review-mode unverified-claims `NOT EXISTS` subquery is namespace-scoped through `reviewEdgeNamespace` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:364) and applies it at lines 370-375.
-4. `FIXED` — Contradiction lookup now joins source/target nodes on the full composite key, including `session_id`, via `buildCompositeNodeJoin()` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:75) and uses that join in `findContradictions()` at lines 194-196.
-5. `FIXED` — Review signal edge lookups in [coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410) are threaded through session-aware namespace predicates for `COVERS`, `CONTRADICTS`, `RESOLVES`, `EVIDENCE_FOR`, and hotspot joins at lines 422-487 and 499-537.
-6. `FIXED` — `deep_loop_graph_query` now makes `sessionId` mandatory in [query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:28) and rejects missing values at lines 54-62.
-7. `FIXED` — `deep_loop_graph_status` now makes `sessionId` mandatory in [status.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:18) and rejects missing values at lines 39-47.
-8. `FIXED` — `deep_loop_graph_convergence` now makes `sessionId` mandatory in [convergence.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:104) and rejects missing values at lines 157-165.
-9. `FIXED` — Promotion report output is now restricted to the canonical audit directory with traversal and symlink guards in [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:39), enforced by `resolvePromotionAuditPath()` at lines 58-78 and used in `savePromotionReport()` at lines 362-367.
-10. `FIXED` — Optimizer search now enforces the canonical manifest by deriving defaults from `optimizer-manifest.json` and validating caller-supplied parameter spaces in [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:33), [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:73), and [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:277).
-11. `FIXED` — Replay corpus fixture loading is now constrained to approved roots and rejects symlinked/out-of-root fixture paths in [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:53), with enforcement in `resolveApprovedCorpusPath()` at lines 71-98 and `buildCorpus()` at lines 373-389.
+1. `FIXED` — Review-mode coverage-gap `NOT EXISTS` subquery now scopes edge reads with the full namespace via `buildNamespacePredicate('e', ns)` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:113) and uses that predicate inside the subquery at lines 120-125.
+2. `FIXED` — Research-mode coverage-gap `NOT EXISTS` subquery applies the same namespace-qualified edge predicate in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:145) with the guarded subquery at lines 152-157.
+3. `FIXED` — Review-mode unverified-claims `NOT EXISTS` subquery is namespace-scoped through `reviewEdgeNamespace` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:364) and applies it at lines 370-375.
+4. `FIXED` — Contradiction lookup now joins source/target nodes on the full composite key, including `session_id`, via `buildCompositeNodeJoin()` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:75) and uses that join in `findContradictions()` at lines 194-196.
+5. `FIXED` — Review signal edge lookups in [coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410) are threaded through session-aware namespace predicates for `COVERS`, `CONTRADICTS`, `RESOLVES`, `EVIDENCE_FOR`, and hotspot joins at lines 422-487 and 499-537.
+6. `FIXED` — `deep_loop_graph_query` now makes `sessionId` mandatory in [query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:28) and rejects missing values at lines 54-62.
+7. `FIXED` — `deep_loop_graph_status` now makes `sessionId` mandatory in [status.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:18) and rejects missing values at lines 39-47.
+8. `FIXED` — `deep_loop_graph_convergence` now makes `sessionId` mandatory in [convergence.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:104) and rejects missing values at lines 157-165.
+9. `FIXED` — Promotion report output is now restricted to the canonical audit directory with traversal and symlink guards in [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:39), enforced by `resolvePromotionAuditPath()` at lines 58-78 and used in `savePromotionReport()` at lines 362-367.
+10. `FIXED` — Optimizer search now enforces the canonical manifest by deriving defaults from `optimizer-manifest.json` and validating caller-supplied parameter spaces in [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:33), [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:73), and [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:277).
+11. `FIXED` — Replay corpus fixture loading is now constrained to approved roots and rejects symlinked/out-of-root fixture paths in [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:53), with enforcement in `resolveApprovedCorpusPath()` at lines 71-98 and `buildCorpus()` at lines 373-389.
 
 **New Findings**
 None.
@@ -4773,17 +4773,17 @@ tokens used
 No new P0/P1/P2 findings in the requested validation slice. I did not find any `PARTIAL`, `OPEN`, or `REGRESSED` items among the specific namespace-isolation fixes you asked me to validate.
 
 **Original Finding Status**
-1. `FIXED` — Review-mode coverage-gap `NOT EXISTS` subquery now scopes edge reads with the full namespace via `buildNamespacePredicate('e', ns)` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:113) and uses that predicate inside the subquery at lines 120-125.
-2. `FIXED` — Research-mode coverage-gap `NOT EXISTS` subquery applies the same namespace-qualified edge predicate in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:145) with the guarded subquery at lines 152-157.
-3. `FIXED` — Review-mode unverified-claims `NOT EXISTS` subquery is namespace-scoped through `reviewEdgeNamespace` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:364) and applies it at lines 370-375.
-4. `FIXED` — Contradiction lookup now joins source/target nodes on the full composite key, including `session_id`, via `buildCompositeNodeJoin()` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:75) and uses that join in `findContradictions()` at lines 194-196.
-5. `FIXED` — Review signal edge lookups in [coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410) are threaded through session-aware namespace predicates for `COVERS`, `CONTRADICTS`, `RESOLVES`, `EVIDENCE_FOR`, and hotspot joins at lines 422-487 and 499-537.
-6. `FIXED` — `deep_loop_graph_query` now makes `sessionId` mandatory in [query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:28) and rejects missing values at lines 54-62.
-7. `FIXED` — `deep_loop_graph_status` now makes `sessionId` mandatory in [status.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:18) and rejects missing values at lines 39-47.
-8. `FIXED` — `deep_loop_graph_convergence` now makes `sessionId` mandatory in [convergence.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:104) and rejects missing values at lines 157-165.
-9. `FIXED` — Promotion report output is now restricted to the canonical audit directory with traversal and symlink guards in [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs:39), enforced by `resolvePromotionAuditPath()` at lines 58-78 and used in `savePromotionReport()` at lines 362-367.
-10. `FIXED` — Optimizer search now enforces the canonical manifest by deriving defaults from `optimizer-manifest.json` and validating caller-supplied parameter spaces in [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:33), [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:73), and [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs:277).
-11. `FIXED` — Replay corpus fixture loading is now constrained to approved roots and rejects symlinked/out-of-root fixture paths in [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs:53), with enforcement in `resolveApprovedCorpusPath()` at lines 71-98 and `buildCorpus()` at lines 373-389.
+1. `FIXED` — Review-mode coverage-gap `NOT EXISTS` subquery now scopes edge reads with the full namespace via `buildNamespacePredicate('e', ns)` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:113) and uses that predicate inside the subquery at lines 120-125.
+2. `FIXED` — Research-mode coverage-gap `NOT EXISTS` subquery applies the same namespace-qualified edge predicate in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:145) with the guarded subquery at lines 152-157.
+3. `FIXED` — Review-mode unverified-claims `NOT EXISTS` subquery is namespace-scoped through `reviewEdgeNamespace` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:364) and applies it at lines 370-375.
+4. `FIXED` — Contradiction lookup now joins source/target nodes on the full composite key, including `session_id`, via `buildCompositeNodeJoin()` in [coverage-graph-query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:75) and uses that join in `findContradictions()` at lines 194-196.
+5. `FIXED` — Review signal edge lookups in [coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:410) are threaded through session-aware namespace predicates for `COVERS`, `CONTRADICTS`, `RESOLVES`, `EVIDENCE_FOR`, and hotspot joins at lines 422-487 and 499-537.
+6. `FIXED` — `deep_loop_graph_query` now makes `sessionId` mandatory in [query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:28) and rejects missing values at lines 54-62.
+7. `FIXED` — `deep_loop_graph_status` now makes `sessionId` mandatory in [status.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:18) and rejects missing values at lines 39-47.
+8. `FIXED` — `deep_loop_graph_convergence` now makes `sessionId` mandatory in [convergence.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:104) and rejects missing values at lines 157-165.
+9. `FIXED` — Promotion report output is now restricted to the canonical audit directory with traversal and symlink guards in [promote.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs:39), enforced by `resolvePromotionAuditPath()` at lines 58-78 and used in `savePromotionReport()` at lines 362-367.
+10. `FIXED` — Optimizer search now enforces the canonical manifest by deriving defaults from `optimizer-manifest.json` and validating caller-supplied parameter spaces in [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:33), [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:73), and [search.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs:277).
+11. `FIXED` — Replay corpus fixture loading is now constrained to approved roots and rejects symlinked/out-of-root fixture paths in [replay-corpus.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs:53), with enforcement in `resolveApprovedCorpusPath()` at lines 71-98 and `buildCorpus()` at lines 373-389.
 
 **New Findings**
 None.

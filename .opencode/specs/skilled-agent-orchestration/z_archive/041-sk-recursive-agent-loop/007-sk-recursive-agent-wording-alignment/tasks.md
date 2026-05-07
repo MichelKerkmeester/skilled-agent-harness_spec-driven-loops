@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Clean up wording in `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/skill/sk-improve-agent/README.md`, and bundled agent-improver references
+- [x] T004 Clean up wording in `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, and bundled agent-improver references
 - [x] T005 Clean up wording in the canonical command and mirrored wrapper prompts
 - [x] T006 Clean up wording in runtime-specific agent-improver mirrors and fix runtime-path wording bugs
 - [x] T007 Update parent packet `041` docs and registry metadata to record phase `007`

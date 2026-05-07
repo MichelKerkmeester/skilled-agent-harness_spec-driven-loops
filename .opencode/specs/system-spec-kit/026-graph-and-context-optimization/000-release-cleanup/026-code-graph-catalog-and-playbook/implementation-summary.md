@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-code-graph-catalog-and-playbook"
@@ -65,12 +65,12 @@ Created `mcp_server/code_graph/manual_testing_playbook/` with 8 groups and 15 de
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/` | Created | Runtime feature catalog package |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/` | Created | Runtime manual testing package |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` | Modified | Link package docs |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | Link code_graph runtime docs |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md` | Modified | Link runtime catalog |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Modified | Link runtime playbook |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/` | Created | Runtime feature catalog package |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/` | Created | Runtime manual testing package |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | Modified | Link package docs |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Link code_graph runtime docs |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md` | Modified | Link runtime catalog |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Modified | Link runtime playbook |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/026-code-graph-catalog-and-playbook/` | Created | Level 2 packet docs |
 <!-- /ANCHOR:what-built -->
 

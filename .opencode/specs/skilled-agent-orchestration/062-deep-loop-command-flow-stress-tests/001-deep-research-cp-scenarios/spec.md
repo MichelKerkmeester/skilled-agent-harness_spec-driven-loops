@@ -59,7 +59,7 @@ The 060/004 methodology proved that LEAF agents with command-orchestrator archit
 ## 3. SCOPE
 
 ### In Scope
-- 6 CP-XXX scenarios authored in `.opencode/skill/sk-deep-research/manual_testing_playbook/`
+- 6 CP-XXX scenarios authored in `.opencode/skills/sk-deep-research/manual_testing_playbook/`
 - Per-CP signal contracts (grep-checkable artifacts/journals)
 - Sandbox helper script (setup-cp-sandbox.sh) for sub-phase 002
 - Pass the 13-question authoring preflight from 060/003 §7 for each CP
@@ -91,7 +91,7 @@ The 060/004 methodology proved that LEAF agents with command-orchestrator archit
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: 6 CPs landed under `.opencode/skill/sk-deep-research/manual_testing_playbook/`
+- **SC-001**: 6 CPs landed under `.opencode/skills/sk-deep-research/manual_testing_playbook/`
 - **SC-002**: setup-cp-sandbox.sh executes cleanly, builds isolated /tmp/cp-NNN-sandbox/
 - **SC-003**: Each CP has clear bash block + signal contract
 

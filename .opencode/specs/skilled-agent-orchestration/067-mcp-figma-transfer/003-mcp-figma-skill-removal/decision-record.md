@@ -92,13 +92,13 @@ Applied during Phase 4 Job 3 for 003-mcp-figma-skill-removal.
 | **Deciders** | Michel Kerkmeester, Claude |
 
 ### Context
-The `mcp-code-mode` skill at `Code_Environment/Public/.opencode/skill/mcp-code-mode/` is a separate skill that orchestrates external MCP tools via Code Mode. It uses Figma as a worked example throughout — 127 references to `figma-developer-mcp` (the npm package), `figma.figma_<tool>` invocation patterns, OAuth/HTTP `mcp.figma.com` configs, `FIGMA_API_KEY` env wiring, etc. These are LEGITIMATE — they document Code Mode's capability to integrate Figma MCP, not the mcp-figma skill itself.
+The `mcp-code-mode` skill at `Code_Environment/Public/.opencode/skills/mcp-code-mode/` is a separate skill that orchestrates external MCP tools via Code Mode. It uses Figma as a worked example throughout — 127 references to `figma-developer-mcp` (the npm package), `figma.figma_<tool>` invocation patterns, OAuth/HTTP `mcp.figma.com` configs, `FIGMA_API_KEY` env wiring, etc. These are LEGITIMATE — they document Code Mode's capability to integrate Figma MCP, not the mcp-figma skill itself.
 
 Separately, mcp-code-mode has 4 references to the `mcp-figma` SKILL by name:
 1. `SKILL.md:476` — "Related skills: `mcp-figma` for Figma access through Code Mode..."
 2. `README.md:451` — `| [mcp-figma](../mcp-figma/SKILL.md) | Figma design file access via Code Mode |`
 3. `references/architecture.md:514` — `- `mcp-figma` - Figma design file access (via Code Mode)`
-4. `manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md:88` — `| `.opencode/skill/mcp-figma/SKILL.md` | Figma MCP tool catalog |`
+4. `manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md:88` — `| `.opencode/skills/mcp-figma/SKILL.md` | Figma MCP tool catalog |`
 
 These 4 break when the mcp-figma skill is deleted. They must be stripped.
 
@@ -147,7 +147,7 @@ Many spec folders under `.opencode/specs/**` and `system-spec-kit/z_archive/**` 
 ### Decision
 **We chose**: KEEP all spec-folder mentions of `mcp-figma`. Phase 3 does NOT touch:
 - `.opencode/specs/**/*.md` (live + archived)
-- `.opencode/skill/system-spec-kit/z_archive/**`
+- `.opencode/skills/system-spec-kit/z_archive/**`
 - `.opencode/specs/z_future/**`
 
 ### Alternatives Considered

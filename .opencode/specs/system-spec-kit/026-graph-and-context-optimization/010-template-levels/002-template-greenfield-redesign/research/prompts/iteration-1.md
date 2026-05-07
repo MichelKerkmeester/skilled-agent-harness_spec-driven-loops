@@ -19,14 +19,14 @@ Focus Area: **PARSER CONTRACT PROBE (Q4) + IRREDUCIBLE CORE INVENTORY (Q1).** Bu
 Two sub-tasks for this iteration:
 
 1. **Parser contract probe (Q4):** Read these files end-to-end and extract the EXACT parser expectations:
-   - `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
-   - `.opencode/skill/system-spec-kit/shared/parsing/spec-doc-health.ts`
-   - `.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts`
-   - `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh`
+   - `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
+   - `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts`
+   - `.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts`
+   - `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh`
 
    For EACH parser, document:
    - The EXACT frontmatter fields it reads (e.g., `title`, `description`, `_memory.continuity.last_updated_at`)

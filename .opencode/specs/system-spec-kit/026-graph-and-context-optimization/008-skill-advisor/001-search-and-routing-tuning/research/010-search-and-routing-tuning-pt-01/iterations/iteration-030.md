@@ -4,9 +4,9 @@
 Read `ARCHITECTURE.md` and `mcp_server/configs/README.md` against the shipped code and identify any post-implementation drift.
 
 ## Findings
-1. Both docs correctly describe the implemented continuity weight profile, the `MIN_RESULTS_FOR_RERANK = 4` gate, the no-op length-penalty behavior, and the existence of cache telemetry on `getRerankerStatus()`. [SOURCE: .opencode/skill/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skill/system-spec-kit/ARCHITECTURE.md:152] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:49] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:53]
-2. The same two docs overstate the Stage 3 continuity story. They present the continuity lambda as if continuity-oriented reranking is live, but the code still drives Stage 3 MMR from `config.detectedIntent`, not from the continuity-specific `adaptiveFusionIntent`. [SOURCE: .opencode/skill/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:50] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:830] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209]
-3. The wording gap is larger than it first appears because the canonical resume surface bypasses `handleMemorySearch()` entirely. So the docs are not just slightly optimistic; they currently blur a search-profile hint with the operator-facing resume ladder. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
+1. Both docs correctly describe the implemented continuity weight profile, the `MIN_RESULTS_FOR_RERANK = 4` gate, the no-op length-penalty behavior, and the existence of cache telemetry on `getRerankerStatus()`. [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:152] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:49] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:53]
+2. The same two docs overstate the Stage 3 continuity story. They present the continuity lambda as if continuity-oriented reranking is live, but the code still drives Stage 3 MMR from `config.detectedIntent`, not from the continuity-specific `adaptiveFusionIntent`. [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:50] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:830] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209]
+3. The wording gap is larger than it first appears because the canonical resume surface bypasses `handleMemorySearch()` entirely. So the docs are not just slightly optimistic; they currently blur a search-profile hint with the operator-facing resume ladder. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
 
 ## Ruled Out
 - Treating `ARCHITECTURE.md` and `configs/README.md` as fully aligned just because the constants and weight values match the code.
@@ -15,11 +15,11 @@ Read `ARCHITECTURE.md` and `mcp_server/configs/README.md` against the shipped co
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
-- `.opencode/skill/system-spec-kit/mcp_server/configs/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts`
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/configs/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts`
 
 ## Assessment
 - New information ratio: 0.21

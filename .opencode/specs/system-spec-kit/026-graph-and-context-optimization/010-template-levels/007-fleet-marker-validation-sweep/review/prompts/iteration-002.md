@@ -37,12 +37,12 @@ Review Iteration: 2 of 5
 Mode: review
 Dimension: code-correctness
 Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep
-Review Scope Files: .opencode/skill/system-spec-kit/scripts/spec/create.sh, .opencode/skill/system-spec-kit/scripts/spec/validate.sh, .opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh, .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh, .opencode/skill/system-spec-kit/scripts/rules/check-files.sh, .opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh, .opencode/skill/system-spec-kit/scripts/rules/check-placeholders.sh, .opencode/skill/system-spec-kit/scripts/rules/check-sections.sh, .opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh, .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh, .opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh, .opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md
+Review Scope Files: .opencode/skills/system-spec-kit/scripts/spec/create.sh, .opencode/skills/system-spec-kit/scripts/spec/validate.sh, .opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh, .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh, .opencode/skills/system-spec-kit/scripts/rules/check-files.sh, .opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh, .opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh, .opencode/skills/system-spec-kit/scripts/rules/check-sections.sh, .opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh, .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh, .opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh, .opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts, .opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/spec.md, .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep/plan.md
 Prior Findings: P1-001 target packet scaffold placeholders; P1-002 graph metadata disconnected.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/references/review_core.md` before final severity calls.
+Load `.opencode/skills/sk-code-review/references/review_core.md` before final severity calls.
 
 ## Iteration Task
 
@@ -50,11 +50,11 @@ Review code correctness for marker emission and related validator assumptions. F
 
 Required checks:
 
-- Inspect `.opencode/skill/system-spec-kit/scripts/spec/create.sh` marker append logic around `SCAFFOLD_VALIDATION_COUNTS` and `SCAFFOLD_AI_PROTOCOL_MARKERS`.
+- Inspect `.opencode/skills/system-spec-kit/scripts/spec/create.sh` marker append logic around `SCAFFOLD_VALIDATION_COUNTS` and `SCAFFOLD_AI_PROTOCOL_MARKERS`.
 - Inspect validator consumers that may count or ignore those markers, especially `check-ai-protocols.sh` and placeholder/template validation rules.
 - Check whether marker comments can make validators pass on comment-only content when real executable sections are missing.
 - Check whether marker emission is idempotent and scoped to the intended Level documents.
-- Use `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts. Do not use `.claude/skills/...` script mirrors.
+- Use `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` if refreshing reducer-owned artifacts. Do not use `.claude/skills/...` script mirrors.
 - If no `claim_adjudication` event exists after iteration 001, append a command-owned event with `passed:true`, `activeP0P1:2`, and `missingPackets:[]` before appending iteration 002, because iteration 001 contains typed claim-adjudication JSON blocks for both P1 findings.
 
 ## Writable State Files

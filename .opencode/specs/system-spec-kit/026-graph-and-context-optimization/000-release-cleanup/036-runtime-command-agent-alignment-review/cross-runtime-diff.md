@@ -15,7 +15,7 @@ contextType: "audit"
 
 | Runtime | Agent Directory | Status |
 |---------|-----------------|--------|
-| OpenCode | `.opencode/agent/*.md` | Writable and remediated |
+| OpenCode | `.opencode/agents/*.md` | Writable and remediated |
 | Claude Code | `.claude/agents/*.md` | Writable and remediated |
 | Codex CLI | `.codex/agents/*.toml` | Present but write-blocked |
 | Gemini CLI | `.gemini/agents/*.md` | Writable and remediated |
@@ -38,7 +38,7 @@ contextType: "audit"
 
 ## Intentional Divergence
 
-- Runtime path convention lines differ by design: OpenCode uses `.opencode/agent/*.md`, Claude uses `.claude/agents/*.md`, Gemini uses `.gemini/agents/*.md`, and Codex should use `.codex/agents/*.toml`.
+- Runtime path convention lines differ by design: OpenCode uses `.opencode/agents/*.md`, Claude uses `.claude/agents/*.md`, Gemini uses `.gemini/agents/*.md`, and Codex should use `.codex/agents/*.toml`.
 - Codex agent files are TOML wrappers with `developer_instructions` strings, so they should not be byte-identical to Markdown agent definitions.
 - Claude/Gemini/OpenCode command usage differs from Codex and Copilot because Codex uses `.opencode` commands and Copilot has hook-only support.
 

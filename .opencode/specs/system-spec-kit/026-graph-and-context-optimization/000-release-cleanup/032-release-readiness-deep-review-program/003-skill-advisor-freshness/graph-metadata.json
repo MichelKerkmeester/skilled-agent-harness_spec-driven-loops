@@ -57,7 +57,7 @@
       {
         "name": "Codex timeout fallback stale marker",
         "kind": "evidence",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
         "source": "manual"
       }
     ],

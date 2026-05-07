@@ -25,7 +25,7 @@ permission:
 
 Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, and convergence decisions.
 
@@ -75,7 +75,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skill/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`)
 
 ### Step 2: Determine Focus
 
@@ -212,7 +212,7 @@ These integration IDs are the machine-citable boundary for callers, tools, skill
 | ID | Surface | Named integration | Agent responsibility | Boundary |
 |----|---------|-------------------|----------------------|----------|
 | `DR-CALLER-001` | Caller agent | `orchestrate` | May dispatch `@deep-research` for one iteration with explicit packet paths, focus, and limits | `@deep-research` must not dispatch back to `orchestrate` or any other agent |
-| `DR-CMD-001` | Command | `/spec_kit:deep-research` (`.opencode/command/spec_kit/deep-research.md`) | Primary command-owned loop that invokes this agent once per iteration | Command/YAML owns loop, reducer, convergence, and final synthesis |
+| `DR-CMD-001` | Command | `/spec_kit:deep-research` (`.opencode/commands/spec_kit/deep-research.md`) | Primary command-owned loop that invokes this agent once per iteration | Command/YAML owns loop, reducer, convergence, and final synthesis |
 | `DR-CMD-002` | Referencing commands | `/spec_kit:plan` and `/spec_kit:complete` | May reference or route to deep-research workflow behavior | They are not evidence that this leaf agent may run the whole loop |
 | `DR-YAML-001` | YAML workflow | `spec_kit_deep-research_auto.yaml` / `spec_kit_deep-research_confirm.yaml` | Supplies dispatch context and later runs reducer sync | Agent writes iteration artifacts only |
 | `DR-SKILL-001` | Skill | `sk-deep-research` | Owns loop protocol, state machine, reducer semantics, convergence policy, and research packet layout | Agent follows the protocol but does not modify skill resources |
@@ -443,10 +443,10 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 | Command | Purpose | Path | Integration ID |
 |---------|---------|------|----------------|
-| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/command/spec_kit/deep-research.md` | `DR-CMD-001` |
-| `/memory:save` | Save research context after the workflow decides to preserve continuity | `.opencode/command/memory/save.md` | downstream command, not invoked by this agent |
-| `/spec_kit:plan` | May reference deep-research routing during planning workflows | `.opencode/command/spec_kit/plan.md` | `DR-CMD-002` |
-| `/spec_kit:complete` | May reference deep-research routing during completion workflows | `.opencode/command/spec_kit/complete.md` | `DR-CMD-002` |
+| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/commands/spec_kit/deep-research.md` | `DR-CMD-001` |
+| `/memory:save` | Save research context after the workflow decides to preserve continuity | `.opencode/commands/memory/save.md` | downstream command, not invoked by this agent |
+| `/spec_kit:plan` | May reference deep-research routing during planning workflows | `.opencode/commands/spec_kit/plan.md` | `DR-CMD-002` |
+| `/spec_kit:complete` | May reference deep-research routing during completion workflows | `.opencode/commands/spec_kit/complete.md` | `DR-CMD-002` |
 
 ### Skills
 

@@ -14,7 +14,7 @@ _memory:
 ## Section A verdicts (detect-changes adversarial coverage)
 
 - **A1:** The 3 new 011 adversarial cases are:
-  - `rejects diff path that escapes canonicalRootDir via ../../` at `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts:185`, using `--- a/../../etc/passwd` and `+++ b/../../etc/passwd` at `:187`.
+  - `rejects diff path that escapes canonicalRootDir via ../../` at `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts:185`, using `--- a/../../etc/passwd` and `+++ b/../../etc/passwd` at `:187`.
   - `rejects absolute path that resolves outside the workspace` at `detect-changes.test.ts:198`, using `--- a/etc/passwd` and `+++ b/etc/passwd` at `:201`.
   - `accepts a legitimate workspace-relative path (negative control)` at `detect-changes.test.ts:220`, using `src/legitimate.ts` at `:223`.
 - **A2:** NO, these do not cover the F1/F6 mixed-header bypass. Both the traversal test and the so-called absolute-path test give the same path shape on both old and new sides (`detect-changes.test.ts:187`, `:201`). The known bypass is old-side escape plus safe new-side, or safe old-side plus escaping new-side. The handler still selects only one candidate path at `detect-changes.ts:141-144` and returns `ok` after only that selected side passes containment.

@@ -66,22 +66,22 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/sk-skill.md` | Modify | Canonical command aligned to sk-doc/create command conventions and expanded to 523 lines |
-| `.opencode/command/create/assets/create_sk_skill_auto.yaml` | Modify | Unified autonomous workflow aligned to command ecosystem and expanded to 470 lines |
-| `.opencode/command/create/assets/create_sk_skill_confirm.yaml` | Modify | Unified interactive workflow aligned to command ecosystem and expanded to 519 lines |
-| .opencode/command/create/skill.md | Delete | Deprecated legacy command removed |
-| .opencode/command/create/skill_reference.md | Delete | Deprecated legacy command removed |
-| .opencode/command/create/skill_asset.md | Delete | Deprecated legacy command removed |
-| `.opencode/command/create/assets/create_skill_auto.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/assets/create_skill_confirm.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/assets/create_skill_reference_auto.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/assets/create_skill_reference_confirm.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/assets/create_skill_asset_auto.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/assets/create_skill_asset_confirm.yaml` | Delete | Deprecated legacy workflow removed |
-| `.opencode/command/create/prompt.md` | Modify | Replace old create:skill references with create:sk-skill variants |
+| `.opencode/commands/create/sk-skill.md` | Modify | Canonical command aligned to sk-doc/create command conventions and expanded to 523 lines |
+| `.opencode/commands/create/assets/create_sk_skill_auto.yaml` | Modify | Unified autonomous workflow aligned to command ecosystem and expanded to 470 lines |
+| `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` | Modify | Unified interactive workflow aligned to command ecosystem and expanded to 519 lines |
+| .opencode/commands/create/skill.md | Delete | Deprecated legacy command removed |
+| .opencode/commands/create/skill_reference.md | Delete | Deprecated legacy command removed |
+| .opencode/commands/create/skill_asset.md | Delete | Deprecated legacy command removed |
+| `.opencode/commands/create/assets/create_skill_auto.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/assets/create_skill_confirm.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/assets/create_skill_reference_auto.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/assets/create_skill_reference_confirm.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/assets/create_skill_asset_auto.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/assets/create_skill_asset_confirm.yaml` | Delete | Deprecated legacy workflow removed |
+| `.opencode/commands/create/prompt.md` | Modify | Replace old create:skill references with create:sk-skill variants |
 | `.agents/agents/write.md` | Modify | Synchronize active write-agent docs to canonical `/create:sk-skill` |
-| `.opencode/agent/write.md` | Modify | Synchronize runtime write-agent docs to canonical `/create:sk-skill` |
-| .opencode/agent/chatgpt/write.md | Modify | Synchronize ChatGPT runtime write-agent docs to canonical `/create:sk-skill` |
+| `.opencode/agents/write.md` | Modify | Synchronize runtime write-agent docs to canonical `/create:sk-skill` |
+| .opencode/agents/chatgpt/write.md | Modify | Synchronize ChatGPT runtime write-agent docs to canonical `/create:sk-skill` |
 | `.codex/agents/write.toml` | Modify | Synchronize Codex runtime write-agent config to canonical `/create:sk-skill` |
 | `.opencode/README.md` | Modify | Synchronize command documentation to canonical `/create:sk-skill` |
 | `README.md` | Modify | Synchronize root documentation to canonical `/create:sk-skill` |
@@ -98,8 +98,8 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Canonical command must be `/create:sk-skill` | `.opencode/command/create/sk-skill.md` exists and defines unified entrypoint contract |
-| REQ-002 | Mode support must include `:auto` and `:confirm` | Routing in `.opencode/command/create/sk-skill.md` targets `create_sk_skill_auto.yaml` and `create_sk_skill_confirm.yaml` |
+| REQ-001 | Canonical command must be `/create:sk-skill` | `.opencode/commands/create/sk-skill.md` exists and defines unified entrypoint contract |
+| REQ-002 | Mode support must include `:auto` and `:confirm` | Routing in `.opencode/commands/create/sk-skill.md` targets `create_sk_skill_auto.yaml` and `create_sk_skill_confirm.yaml` |
 | REQ-003 | Operation support must include all four operations | Command and YAML files document `full-create`, `full-update`, `reference-only`, `asset-only` |
 | REQ-004 | Deprecated command/workflow files must be removed | Listed legacy markdown and YAML files are absent from repository |
 
@@ -107,12 +107,12 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Related command references must point to canonical command | `.opencode/command/create/prompt.md` references `/create:sk-skill` variants and no longer points to removed command names |
-| REQ-006 | Migration mapping from old commands to new operation variants must be explicit | Deprecation map exists in `.opencode/command/create/sk-skill.md` |
-| REQ-007 | Canonical artifacts must align with command template conventions | `.opencode/command/create/sk-skill.md` and both unified YAMLs follow sk-doc-style command template and create-command structure patterns |
-| REQ-008 | Length expansion must be completed for canonical artifacts | `wc -l` reports 523 lines for `.opencode/command/create/sk-skill.md`, 470 for `create_sk_skill_auto.yaml`, and 519 for `create_sk_skill_confirm.yaml` |
+| REQ-005 | Related command references must point to canonical command | `.opencode/commands/create/prompt.md` references `/create:sk-skill` variants and no longer points to removed command names |
+| REQ-006 | Migration mapping from old commands to new operation variants must be explicit | Deprecation map exists in `.opencode/commands/create/sk-skill.md` |
+| REQ-007 | Canonical artifacts must align with command template conventions | `.opencode/commands/create/sk-skill.md` and both unified YAMLs follow sk-doc-style command template and create-command structure patterns |
+| REQ-008 | Length expansion must be completed for canonical artifacts | `wc -l` reports 523 lines for `.opencode/commands/create/sk-skill.md`, 470 for `create_sk_skill_auto.yaml`, and 519 for `create_sk_skill_confirm.yaml` |
 | REQ-009 | Spec-folder memory save and indexing must be completed | Latest `memory/*.md` artifact and `memory/metadata.json` exist; index status is `indexed` and `memory_index_scan` reports completion |
-| REQ-010 | Active cross-runtime docs must be synchronized to canonical command naming | `.agents/agents/write.md`, `.opencode/agent/write.md`, .opencode/agent/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, and `.opencode/install_guides/SET-UP - AGENTS.md` reference `/create:sk-skill` and no longer reference `/create:skill*` |
+| REQ-010 | Active cross-runtime docs must be synchronized to canonical command naming | `.agents/agents/write.md`, `.opencode/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, and `.opencode/install_guides/SET-UP - AGENTS.md` reference `/create:sk-skill` and no longer reference `/create:skill*` |
 | REQ-011 | Legacy `/create:skill*` references must be absent in key runtime directories | Directory verification returns no `/create:skill` matches in `.agents/agents`, `.codex`, and `.claude` |
 <!-- /ANCHOR:requirements -->
 
@@ -184,13 +184,13 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 
 ### Acceptance Scenarios
 
-1. **AS-001 - Canonical Entrypoint Present**: **Given** the command directory after merger completion, **When** `.opencode/command/create/sk-skill.md` is inspected, **Then** `/create:sk-skill` is the documented canonical entrypoint and legacy skill.md, skill_reference.md, and skill_asset.md are absent.
-2. **AS-002 - Deterministic Mode Routing**: **Given** canonical command execution in auto or confirm mode, **When** mode routing is evaluated in `.opencode/command/create/sk-skill.md`, **Then** `:auto` routes to `create_sk_skill_auto.yaml` and `:confirm` routes to `create_sk_skill_confirm.yaml`.
+1. **AS-001 - Canonical Entrypoint Present**: **Given** the command directory after merger completion, **When** `.opencode/commands/create/sk-skill.md` is inspected, **Then** `/create:sk-skill` is the documented canonical entrypoint and legacy skill.md, skill_reference.md, and skill_asset.md are absent.
+2. **AS-002 - Deterministic Mode Routing**: **Given** canonical command execution in auto or confirm mode, **When** mode routing is evaluated in `.opencode/commands/create/sk-skill.md`, **Then** `:auto` routes to `create_sk_skill_auto.yaml` and `:confirm` routes to `create_sk_skill_confirm.yaml`.
 3. **AS-003 - Full Operation Coverage**: **Given** operation selection for merged skill workflows, **When** command and workflow contracts are inspected, **Then** `full-create`, `full-update`, `reference-only`, and `asset-only` are all documented and supported.
-4. **AS-004 - Canonical Artifact Expansion Complete**: **Given** completion evidence for canonical artifacts, **When** line counts are checked, **Then** `.opencode/command/create/sk-skill.md` is 523 lines, `create_sk_skill_auto.yaml` is 470 lines, and `create_sk_skill_confirm.yaml` is 519 lines.
+4. **AS-004 - Canonical Artifact Expansion Complete**: **Given** completion evidence for canonical artifacts, **When** line counts are checked, **Then** `.opencode/commands/create/sk-skill.md` is 523 lines, `create_sk_skill_auto.yaml` is 470 lines, and `create_sk_skill_confirm.yaml` is 519 lines.
 5. **AS-005 - Cross-Runtime Docs Synced**: **Given** active runtime and onboarding documentation surfaces, **When** synchronized documentation files are reviewed, **Then** all eight listed files reference canonical `/create:sk-skill` naming and do not reference `/create:skill*`.
 6. **AS-006 - Directory-Level Legacy Reference Verification**: **Given** repository runtime directories, **When** searching `.agents/agents`, `.codex`, and `.claude` for `/create:skill`, **Then** zero matches are returned.
-7. **AS-007 - Migration + Memory Completion Verified**: **Given** post-merger validation state, **When** command references and spec memory artifacts are reviewed, **Then** `.opencode/command/create/prompt.md` references `/create:sk-skill` variants only and the latest `memory/*.md` plus `memory/metadata.json` are present with indexed status.
+7. **AS-007 - Migration + Memory Completion Verified**: **Given** post-merger validation state, **When** command references and spec memory artifacts are reviewed, **Then** `.opencode/commands/create/prompt.md` references `/create:sk-skill` variants only and the latest `memory/*.md` plus `memory/metadata.json` are present with indexed status.
 
 
 ---

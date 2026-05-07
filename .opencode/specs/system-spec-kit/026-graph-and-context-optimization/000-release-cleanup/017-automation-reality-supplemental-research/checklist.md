@@ -67,7 +67,7 @@ _memory:
 - [x] CHK-020 [P0] All acceptance criteria met. [EVIDENCE: research/research-report.md sections 1-7 + Convergence Report]
 - [x] CHK-021 [P0] Manual artifact check complete (5 iter + 5 delta files). [EVIDENCE: ls research/iterations/iteration-{001..005}.md + ls research/deltas/iter-{001..005}.jsonl all present]
 - [x] CHK-022 [P1] Convergence honesty — newInfoRatio sequence + stop reason recorded. [EVIDENCE: research-report.md:225 — 0.82 → 0.78 → 0.86 → 0.74 → 0.12; stop reason: converged]
-- [x] CHK-023 [P1] Strict validator exits 0. [EVIDENCE: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research --strict — RESULT: PASSED, 0 errors 0 warnings]
+- [x] CHK-023 [P1] Strict validator exits 0. [EVIDENCE: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research --strict — RESULT: PASSED, 0 errors 0 warnings]
 <!-- /ANCHOR:testing -->
 
 ---

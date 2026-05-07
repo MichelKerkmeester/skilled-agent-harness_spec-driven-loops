@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Continue Phase 3 — finish T029-T035"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
-      - .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+      - .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
+      - .opencode/skills/system-spec-kit/scripts/spec/validate.sh
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-01-spec-scaffold"
@@ -68,7 +68,7 @@ Spec scaffolding + parent registration. Establishes the `059-agent-implement-cod
 - [x] **T011 [P0]** Update parent 022 graph-metadata.json: `children_ids: ["059-agent-implement-code"]`, `derived.last_active_child_id` (`022-mcp-coco-integration/graph-metadata.json`)
 - [x] **T012 [P1]** Update parent 022 description.json: register child reference (`022-mcp-coco-integration/description.json`)
 - [x] **T013 [P1]** Author context-index.md at parent level documenting phase-parent transition (`022-mcp-coco-integration/context-index.md`)
-- [ ] **T014 [P0]** Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` (exit 0 expected). [BLOCKED on Phase-1 template-header drift; resolved during Phase 3 by canonical-header rewrite of this file + checklist.md + implementation-summary.md and `ADR-D#` → `ADR-#: D# —` rename in decision-record.md.]
+- [ ] **T014 [P0]** Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` (exit 0 expected). [BLOCKED on Phase-1 template-header drift; resolved during Phase 3 by canonical-header rewrite of this file + checklist.md + implementation-summary.md and `ADR-D#` → `ADR-#: D# —` rename in decision-record.md.]
 - [x] **T015 [P1]** No fallback needed: parent's heavy docs already moved out; validator requirement is canonical-header alignment only.
 
 ---
@@ -86,7 +86,7 @@ Research dispatch (3 parallel streams) + cross-stream synthesis + agent authorin
 - [x] **T017 [P0]** Verify cli-codex accepts `gpt-5.5 high fast` (one-shot smoke; superseded original cli-copilot plan after Phase-2 executor switch documented in handover.md)
 - [x] **T018 [P0]** Configure deep-research-config.json for stream-01 (target: oh-my-opencode-slim; executor: cli-codex gpt-5.5 high fast; max_iters: 8) (`stream-01-oh-my-opencode-slim/deep-research-config.json`)
 - [x] **T019 [P0]** Configure deep-research-config.json for stream-02 (target: opencode-swarm-main) (`stream-02-opencode-swarm-main/deep-research-config.json`)
-- [x] **T020 [P0]** Configure deep-research-config.json for stream-03 (target: .opencode/agent/) (`stream-03-internal-agent-inventory/deep-research-config.json`)
+- [x] **T020 [P0]** Configure deep-research-config.json for stream-03 (target: .opencode/agents/) (`stream-03-internal-agent-inventory/deep-research-config.json`)
 - [x] **T021 [P0]** Dispatch all 3 streams in parallel (background; per-stream sub-agents running cli-codex)
 - [x] **T022 [P0]** Monitor stream progress — all three converged on `all_questions_answered`/`zero-remaining-questions` strong stop signal (4, 5, 5 iterations of 8 budget)
 - [x] **T023 [P1]** Sequencing fallback NOT triggered — codex CLI handled 3 concurrent dispatches cleanly
@@ -96,8 +96,8 @@ Research dispatch (3 parallel streams) + cross-stream synthesis + agent authorin
 
 - [x] **T025 [P0]** Synthesize all 3 streams into `research/synthesis.md` — consensus per-question table, headline insights, finalized D3 diff text, canonical `code.md` skeleton, Phase 3 task order
 - [x] **T026 [P0]** Update decision-record.md ADR-3 (D3) with research-validated convention-floor mechanism — see synthesis §3 for canonical text
-- [x] **T027 [P0]** Author `.opencode/agent/code.md` per ADR-2 frontmatter + body sections §0–§3 mirroring `@write` and `@review` precedents (`.opencode/agent/code.md`)
-- [ ] **T028 [P0]** Update `.opencode/agent/orchestrate.md` §2 routing table: replace generic `@general` row with `@code` row; update Agent Files table (`.opencode/agent/orchestrate.md`)
+- [x] **T027 [P0]** Author `.opencode/agents/code.md` per ADR-2 frontmatter + body sections §0–§3 mirroring `@write` and `@review` precedents (`.opencode/agents/code.md`)
+- [ ] **T028 [P0]** Update `.opencode/agents/orchestrate.md` §2 routing table: replace generic `@general` row with `@code` row; update Agent Files table (`.opencode/agents/orchestrate.md`)
 - [ ] **T029 [P0]** Sync AGENTS.md canonical: add `@code` to §5 Agent Routing (`AGENTS.md`)
 - [ ] **T030 [P0]** Sync AGENTS_Barter.md: add `@code` to §5 (`AGENTS_Barter.md`)
 - [x] **T031 [P0]** ~~Sync AGENTS_example_fs_enterprises.md~~ — sibling file deleted from repo; T031 retired. AGENTS sync limited to canonical (T029) + Barter (T030).
@@ -129,11 +129,11 @@ Smoke tests + final strict validate + checklist closeout + canonical save + comm
 
 The packet is complete when ALL of the following are true:
 
-1. `.opencode/agent/code.md` exists with the canonical D2 permission profile and §0/§1/§2/§3 body sections.
-2. `.opencode/agent/orchestrate.md` §2 routing table includes a `@code` row.
+1. `.opencode/agents/code.md` exists with the canonical D2 permission profile and §0/§1/§2/§3 body sections.
+2. `.opencode/agents/orchestrate.md` §2 routing table includes a `@code` row.
 3. AGENTS.md siblings (canonical + Barter) reference `@code`.
 4. `decision-record.md` ADR-3 (D3) is in `Status: Accepted (post-research)` with the convention-floor finalization text from `research/synthesis.md` §3.
-5. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` exits 0.
+5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` exits 0.
 6. `checklist.md` is fully `[x]` with evidence for every gate.
 7. `implementation-summary.md` is filled with hook + impact-first paragraph + verification evidence + smoke-test prompts (since live behavioral execution requires post-merge orchestrator dispatch).
 8. `handover.md` reflects packet completion or hands off to a follow-on packet for any deferred items.
@@ -155,12 +155,12 @@ The packet is complete when ALL of the following are true:
 - **Handover:** `handover.md` (this packet)
 - **Research synthesis:** `research/synthesis.md` (Phase 2 canonical output)
 - **Per-stream evidence:** `research/stream-{01,02,03}-…/research.md`
-- **Authored agent:** `.opencode/agent/code.md`
-- **Routing entry:** `.opencode/agent/orchestrate.md` §2
+- **Authored agent:** `.opencode/agents/code.md`
+- **Routing entry:** `.opencode/agents/orchestrate.md` §2
 - **AGENTS.md siblings:** repo root `AGENTS.md` (canonical), `AGENTS_Barter.md` (symlink to separate Barter repo)
 - **External research sources:**
   - `.opencode/specs/z_future/improved-agent-orchestration/external/oh-my-opencode-slim/`
   - `.opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/`
-- **Internal anchors:** `.opencode/agent/{context,debug,deep-research,deep-review,improve-agent,improve-prompt,orchestrate,review,ultra-think,write}.md`, `.opencode/skill/sk-code/SKILL.md`, `.opencode/skill/cli-opencode/SKILL.md`, `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- **Internal anchors:** `.opencode/agents/{context,debug,deep-research,deep-review,improve-agent,improve-prompt,orchestrate,review,ultra-think,write}.md`, `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/cli-opencode/SKILL.md`, `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 
 <!-- /ANCHOR:cross-refs -->

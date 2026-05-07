@@ -3,9 +3,9 @@
   "profileId": "debug",
   "family": "debug",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/debug.md",
+  "target": ".opencode/agents/debug.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/002-agent-debug/improvement/candidates/iter-5-candidate-001.md",
-  "baseline": ".opencode/agent/debug.md",
+  "baseline": ".opencode/agents/debug.md",
   "score": 100,
   "baselineScore": 100,
   "delta": {

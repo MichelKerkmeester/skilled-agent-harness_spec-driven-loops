@@ -16,11 +16,11 @@ _memory:
     blockers: []
     key_files:
       - "implementation-summary.md"
-      - ".opencode/skill/sk-code/assets/motion_dev/snippets/layout_transition.js"
-      - ".opencode/skill/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js"
-      - ".opencode/skill/sk-code/assets/motion_dev/snippets/stagger_animation.js"
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code/assets/motion_dev/snippets/layout_transition.js"
+      - ".opencode/skills/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js"
+      - ".opencode/skills/sk-code/assets/motion_dev/snippets/stagger_animation.js"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -79,18 +79,18 @@ Phase 004 fixed all active Packet 069 deep-review findings from F-001, F-002, an
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `.opencode/skill/sk-code/SKILL.md` | 206 | Router pseudocode and Motion wording |
-| `.opencode/skill/sk-code/references/router/code_surface_detection.md` | 89 | Router detection documentation |
-| `.opencode/skill/sk-code/README.md` | 98 | Surface detection table and Motion peer-resource note |
-| `.opencode/skill/sk-code/references/motion_dev/animate_and_timelines.md` | 143 | Timeline URL remediation |
-| `.opencode/skill/sk-code/references/motion_dev/quick_start.md` | 114 | Timeline URL remediation |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/layout_transition.js` | 38 | Motion+ documented dynamic import |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js` | 62 | Dynamic ESM bootstrap pattern |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/stagger_animation.js` | 31 | New stagger snippet |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | 133 | Stagger cross-reference |
-| `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md` | 313 | `motion_dev` preconditions |
-| `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | 397 | MR local links and dividers |
-| `.opencode/skill/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | 293 | CB local links and dividers |
+| `.opencode/skills/sk-code/SKILL.md` | 206 | Router pseudocode and Motion wording |
+| `.opencode/skills/sk-code/references/router/code_surface_detection.md` | 89 | Router detection documentation |
+| `.opencode/skills/sk-code/README.md` | 98 | Surface detection table and Motion peer-resource note |
+| `.opencode/skills/sk-code/references/motion_dev/animate_and_timelines.md` | 143 | Timeline URL remediation |
+| `.opencode/skills/sk-code/references/motion_dev/quick_start.md` | 114 | Timeline URL remediation |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/layout_transition.js` | 38 | Motion+ documented dynamic import |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/es_module_bootstrap.js` | 62 | Dynamic ESM bootstrap pattern |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/stagger_animation.js` | 31 | New stagger snippet |
+| `.opencode/skills/sk-code/assets/motion_dev/playbook_entries.md` | 133 | Stagger cross-reference |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | 313 | `motion_dev` preconditions |
+| `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/*.md` | 397 | MR local links and dividers |
+| `.opencode/skills/sk-code/manual_testing_playbook/06--cross-browser-and-performance-gates/*.md` | 293 | CB local links and dividers |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/spec.md` | 170 | Parent status, phase map, open questions |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook/spec.md` | 184 | Child continuity block |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/spec.md` | 191 | Child continuity block |
@@ -134,16 +134,16 @@ I read the review report, final adversarial iteration, parent spec, Level 2 temp
 
 | Command | Exit | Result |
 |---------|------|--------|
-| `git diff --cached --numstat -- .opencode/skill/sk-code/references/webflow/` | 0 | No output; no cached Webflow deletion evidence |
-| `git diff --numstat -- .opencode/skill/sk-code/references/webflow/` | 0 | No output; no unstaged Webflow deletion evidence |
-| `grep -rn "motion\\.dev/docs/timeline" .opencode/skill/sk-code/` | 1 | Zero hits as expected |
-| `grep -n "from \\['\\\"]motion\\b\\|motion\\.dev" .opencode/skill/sk-code/SKILL.md .opencode/skill/sk-code/references/router/code_surface_detection.md` | 1 | Zero hits as expected |
-| `grep -A 2 "Global Preconditions" .opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md \| grep "motion_dev"` | 0 | `motion_dev` appears in setup gates |
-| `node --check .opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | 0 | All Motion snippets parse |
-| `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/sk-code` | 0 | PASS; 24 scanned files, 0 findings |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` | 0 | Parent phase validation passed |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation --strict --verbose` | 2 | Initial direct child validation caught missing summary/template headers; patched before final validation |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation --strict` | 0 | Phase 004 child validation passed after patching |
+| `git diff --cached --numstat -- .opencode/skills/sk-code/references/webflow/` | 0 | No output; no cached Webflow deletion evidence |
+| `git diff --numstat -- .opencode/skills/sk-code/references/webflow/` | 0 | No output; no unstaged Webflow deletion evidence |
+| `grep -rn "motion\\.dev/docs/timeline" .opencode/skills/sk-code/` | 1 | Zero hits as expected |
+| `grep -n "from \\['\\\"]motion\\b\\|motion\\.dev" .opencode/skills/sk-code/SKILL.md .opencode/skills/sk-code/references/router/code_surface_detection.md` | 1 | Zero hits as expected |
+| `grep -A 2 "Global Preconditions" .opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md \| grep "motion_dev"` | 0 | `motion_dev` appears in setup gates |
+| `node --check .opencode/skills/sk-code/assets/motion_dev/snippets/*.js` | 0 | All Motion snippets parse |
+| `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code` | 0 | PASS; 24 scanned files, 0 findings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` | 0 | Parent phase validation passed |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation --strict --verbose` | 2 | Initial direct child validation caught missing summary/template headers; patched before final validation |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation --strict` | 0 | Phase 004 child validation passed after patching |
 | `grep -A 25 "_memory:" specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/{spec.md,001-playbook/spec.md,002-motion-dev/spec.md,003-cross-ref-metadata-sync/spec.md}` | 0 | Parent and all three child specs show `completion_pct: 100` |
 
 ### External URL Verification

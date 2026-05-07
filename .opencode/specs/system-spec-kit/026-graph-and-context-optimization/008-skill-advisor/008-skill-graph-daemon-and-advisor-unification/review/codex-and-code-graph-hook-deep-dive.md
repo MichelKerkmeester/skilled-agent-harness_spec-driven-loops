@@ -39,11 +39,11 @@ Review target paths:
 - `.github/hooks/scripts/session-start.sh`
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
 - `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/`
 
@@ -82,8 +82,8 @@ The hooks README describes the same Claude lifecycle:
 
 Evidence:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:36-45`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:10-28`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:36-45`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:10-28`
 
 ### Codex
 
@@ -99,7 +99,7 @@ Codex has prompt-time hook wiring, but no startup lifecycle hook:
 
 Important correction:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md:19` says repo-local `.codex/settings.json` and `.codex/policy.json` registration was deferred.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md:19` says repo-local `.codex/settings.json` and `.codex/policy.json` registration was deferred.
 - That README is stale. `.codex/settings.json` and `.codex/policy.json` now exist and are populated.
 
 ### Copilot
@@ -108,8 +108,8 @@ Copilot has hook code and wrapper scripts, but the checked-in JSON does not poin
 
 Code exists:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
 - `.github/hooks/scripts/session-start.sh`
 - `.github/hooks/scripts/superset-notify.sh`
 
@@ -186,7 +186,7 @@ Command shape:
 
 ```bash
 printf '%s\n' '{"prompt":"review this TypeScript hook implementation","cwd":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js
 ```
 
 Observed stdout:
@@ -214,7 +214,7 @@ Command with exact listed deny pattern:
 
 ```bash
 printf '%s\n' '{"tool":"Bash","tool_input":{"command":"git reset --hard origin/main"}}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ```
 
 Observed stdout:
@@ -227,7 +227,7 @@ Command with unlisted shorter destructive form:
 
 ```bash
 printf '%s\n' '{"toolName":"Bash","toolInput":{"command":"git reset --hard"}}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/pre-tool-use.js
 ```
 
 Observed stdout:
@@ -248,7 +248,7 @@ Command shape:
 
 ```bash
 printf '%s\n' '{"source":"startup","session_id":"smoke"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
+  | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
 ```
 
 Observed startup banner excerpt:
@@ -279,9 +279,9 @@ Files:
 
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
 - `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`
 
 Evidence:
 
@@ -292,10 +292,10 @@ Evidence:
 - The plugin parser requires `data.opencodeTransport` and `plan.transportOnly === true`:
   - `.opencode/plugins/spec-kit-compact-code-graph.js:124-140`
 - The minimal `session_resume` branch returns early before building `payloadContract` or `opencodeTransport`:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:560-578`
-  - `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:318-335`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:560-578`
+  - `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:318-335`
 - `opencodeTransport` is built only later on the non-minimal path:
-  - `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:384-413`
+  - `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:384-413`
 
 Impact:
 
@@ -322,19 +322,19 @@ Severity: P1
 Files:
 
 - `.codex/settings.json`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts`
 
 Evidence:
 
 - `.codex/settings.json:3-13` registers `UserPromptSubmit`.
 - `handleCodexUserPromptSubmit()` builds a brief and returns `hookSpecificOutput.additionalContext` when rendering succeeds:
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:253-278`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:253-278`
 - The direct smoke command returned `{}` with diagnostic `SIGNAL_KILLED` after about 1012 ms.
 - The advisor subprocess default timeout is 1000 ms:
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts:63`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts:216`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts:63`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/subprocess.ts:216`
 
 Impact:
 
@@ -355,9 +355,9 @@ Severity: P1
 
 Files:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-hook-policy.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-hook-policy.vitest.ts`
 
 Evidence:
 
@@ -393,7 +393,7 @@ Files:
 
 - `.github/hooks/superset-notify.json`
 - `.github/hooks/scripts/session-start.sh`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring/implementation-summary.md`
 
 Evidence:
@@ -423,7 +423,7 @@ Severity: P1
 Files:
 
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/implementation-summary.md`
-- `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 - `.codex/agents/`
 
 Evidence:
@@ -451,7 +451,7 @@ Severity: P2
 
 Files:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md`
 - `.codex/settings.json`
 - `.codex/policy.json`
 
@@ -480,7 +480,7 @@ Severity: P2
 Files:
 
 - `.codex/policy.json`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`
 
 Evidence:
 
@@ -510,7 +510,7 @@ Severity: P2
 
 Files:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`
 
 Evidence:
 
@@ -533,9 +533,9 @@ Severity: P2
 
 Files:
 
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md`
 - `AGENTS.md`
-- `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 
 Evidence:
 
@@ -560,7 +560,7 @@ Severity: P2
 
 Files:
 
-- `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
 - `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs`
 
@@ -726,15 +726,15 @@ The most important correction for future work is to stop treating "has a Codex h
 
 | Finding | Status | Primary fix file | Regression test citation |
 | --- | --- | --- | --- |
-| HOOK-P1-001 | Closed | `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | `tests/session-resume.vitest.ts`, `tests/opencode-plugin.vitest.ts` |
-| HOOK-P1-002 | Closed | `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | `tests/codex-user-prompt-submit-hook.vitest.ts` |
-| HOOK-P1-003 | Closed | `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | `tests/codex-hook-policy.vitest.ts` |
+| HOOK-P1-001 | Closed | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | `tests/session-resume.vitest.ts`, `tests/opencode-plugin.vitest.ts` |
+| HOOK-P1-002 | Closed | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | `tests/codex-user-prompt-submit-hook.vitest.ts` |
+| HOOK-P1-003 | Closed | `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | `tests/codex-hook-policy.vitest.ts` |
 | HOOK-P1-004 | Closed | `.github/hooks/superset-notify.json` | `tests/copilot-hook-wiring.vitest.ts` |
 | HOOK-P1-005 | Closed | `.opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/implementation-summary.md` | active-doc `rg context-prime` returned no remaining target references |
-| HOOK-P2-001 | Closed | `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md` | `tests/codex-user-prompt-submit-hook.vitest.ts` compiled smoke |
-| HOOK-P2-002 | Closed with sandbox note | `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts` | `tests/codex-pre-tool-use.vitest.ts` |
-| HOOK-P2-003 | Closed | `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/setup.ts` | `tests/codex-pre-tool-use.vitest.ts` |
-| HOOK-P2-004 | Closed | `.opencode/skill/system-spec-kit/references/config/hook_system.md`, `AGENTS.md`, `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | doc line evidence in `phase-C-fix-summary.md` |
+| HOOK-P2-001 | Closed | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md` | `tests/codex-user-prompt-submit-hook.vitest.ts` compiled smoke |
+| HOOK-P2-002 | Closed with sandbox note | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts` | `tests/codex-pre-tool-use.vitest.ts` |
+| HOOK-P2-003 | Closed | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/pre-tool-use.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/setup.ts` | `tests/codex-pre-tool-use.vitest.ts` |
+| HOOK-P2-004 | Closed | `.opencode/skills/system-spec-kit/references/config/hook_system.md`, `AGENTS.md`, `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | doc line evidence in `phase-C-fix-summary.md` |
 | HOOK-P2-005 | Closed | `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs`, `.opencode/plugins/spec-kit-compact-code-graph.js` | `tests/opencode-plugin.vitest.ts` real bridge contract test |
 
 Sandbox note: direct writes to `.codex/policy.json` were denied with `EPERM` in this run. The runtime and setup defaults now include bare `git reset --hard`, so behavior is hardened even though the checked-in policy file could not be physically updated from this sandbox.

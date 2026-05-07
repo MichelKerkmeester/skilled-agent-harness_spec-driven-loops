@@ -119,7 +119,7 @@ _memory:
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/specs/system-spec-kit/024-compact-code-graph/.github/hooks/superset-notify.json` | Cited | OK | phase parent JSON artifact |
-| `.opencode/specs/system-spec-kit/024-compact-code-graph/.opencode/skill/.advisor-state/skill-graph-generation.json` | Cited | OK | phase parent JSON artifact |
+| `.opencode/specs/system-spec-kit/024-compact-code-graph/.opencode/skills/.advisor-state/skill-graph-generation.json` | Cited | OK | phase parent JSON artifact |
 | `.opencode/specs/system-spec-kit/024-compact-code-graph/research/deep-research-config.json` | Cited | OK | phase parent JSON artifact |
 | `.opencode/specs/system-spec-kit/024-compact-code-graph/review/**/*.json` | Cited | OK | 3 parent-scope JSON artifacts |
 | `.opencode/specs/system-spec-kit/024-compact-code-graph/*/external/**/*.json` | Cited | OK | 5 direct child JSON artifacts |

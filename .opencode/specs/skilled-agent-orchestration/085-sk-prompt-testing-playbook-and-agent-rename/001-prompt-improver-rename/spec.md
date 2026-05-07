@@ -71,7 +71,7 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 ### In Scope
 
 **Physical agent file renames (4 runtimes):**
-- `.opencode/agent/improve-prompt.md` → `.opencode/agent/prompt-improver.md`
+- `.opencode/agents/improve-prompt.md` → `.opencode/agents/prompt-improver.md`
 - `.claude/agents/improve-prompt.md` → `.claude/agents/prompt-improver.md`
 - `.codex/agents/improve-prompt.toml` → `.codex/agents/prompt-improver.toml`
 - `.gemini/agents/improve-prompt.md` → `.gemini/agents/prompt-improver.md`
@@ -82,7 +82,7 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 - Body self-references
 
 **Reference rotation across active scope (~31 files):**
-- Dispatcher command body: `.opencode/command/improve/prompt.md`, `.opencode/command/improve/README.txt`
+- Dispatcher command body: `.opencode/commands/improve/prompt.md`, `.opencode/commands/improve/README.txt`
 - 5 cli-* `prompt_quality_card.md` mirrors + their parent SKILL.md routing tables (cli-claude-code, cli-codex, cli-gemini, cli-opencode — and any cli-copilot residuals)
 - Cli-* manual_testing_playbook scenario files referencing the agent
 - `sk-prompt/SKILL.md` Section 7 (agent contract) + `sk-prompt/assets/cli_prompt_quality_card.md` + `sk-prompt/graph-metadata.json`
@@ -91,13 +91,13 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 - `system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` (if aliased)
 - Root: `README.md`, `AGENTS.md`, `.opencode/install_guides/SET-UP - AGENTS.md`, `.opencode/install_guides/README.md`
 - Active changelogs: `.opencode/changelog/agent-orchestration/v2.4.0.0.md`, `system-spec-kit/changelog/v3.4.0.0.md`
-- Agent runtime READMEs: `.opencode/agent/README.txt`, `.claude/agents/README.txt`, `.codex/agents/README.txt`, `.gemini/agents/README.txt`
+- Agent runtime READMEs: `.opencode/agents/README.txt`, `.claude/agents/README.txt`, `.codex/agents/README.txt`, `.gemini/agents/README.txt`
 - `.codex/config.toml`
 - `.opencode/specs/descriptions.json` (auto-regenerates on memory save)
 
 ### Out of Scope
 
-- Renaming the dispatcher command `/improve:prompt` or its file `.opencode/command/improve/prompt.md` — only body's agent ref changes
+- Renaming the dispatcher command `/improve:prompt` or its file `.opencode/commands/improve/prompt.md` — only body's agent ref changes
 - Renaming sibling agent `@improve-agent`
 - Frozen continuity scope (z_archive, z_future, completed packets, .git, barter/, .claude/CLAUDE.md global)
 - Behavior changes — pure semantic rename
@@ -106,7 +106,7 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 
 | File | Action | Refs | Type |
 |------|--------|------|------|
-| `.opencode/agent/improve-prompt.md` | Rename → `prompt-improver.md` + body | self | physical |
+| `.opencode/agents/improve-prompt.md` | Rename → `prompt-improver.md` + body | self | physical |
 | `.claude/agents/improve-prompt.md` | Rename → `prompt-improver.md` + body | self | physical |
 | `.codex/agents/improve-prompt.toml` | Rename → `prompt-improver.toml` + body | self | physical |
 | `.gemini/agents/improve-prompt.md` | Rename → `prompt-improver.md` + body | self | physical |
@@ -129,7 +129,7 @@ Phase scope is mechanical rename. Acceptance criteria captured in HANDOFF CRITER
 - All 4 runtime agent files renamed via `git mv` (or fallback `mv` per packet 082 sandbox precedent)
 - Frontmatter `name:` field rotated in all 4 renamed files
 - `rg -l '@improve-prompt|improve-prompt' .opencode .claude .codex .gemini *.md *.json` (active scope) returns 0 hits
-- `ls .opencode/agent/prompt-improver.md` succeeds; `ls .opencode/agent/improve-prompt.md` returns "No such file"
+- `ls .opencode/agents/prompt-improver.md` succeeds; `ls .opencode/agents/improve-prompt.md` returns "No such file"
 - Advisor probes still resolve correctly (`improve my prompt` → `sk-prompt` skill, agent dispatched is `prompt-improver`)
 - Strict validate on phase folder PASSES (0 errors, 0 warnings)
 <!-- /ANCHOR:success-criteria -->

@@ -16,8 +16,8 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/sk-code/references/motion_dev/"
-      - ".opencode/skill/sk-code/assets/motion_dev/"
+      - ".opencode/skills/sk-code/references/motion_dev/"
+      - ".opencode/skills/sk-code/assets/motion_dev/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -120,7 +120,7 @@ Operators start at `quick_start.md`, follow deeper references for API context, t
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Template validation | Child spec folder anchors and frontmatter | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Template validation | Child spec folder anchors and frontmatter | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Inventory check | Required files and snippet count | `ls`, `find`, `wc -l` |
 | Citation check | Placeholder and citation coverage | `rg "\\[VERIFY:"`, manual review |
 | Scope check | Allowed paths only | `git status --short` and changed-file review |
@@ -188,8 +188,8 @@ Source reads -> Reference/asset authoring -> Validation and inventory
 - [x] Packet 1 playbook and Packet 3 metadata surfaces are untouched.
 
 ### Rollback Procedure
-1. Delete `.opencode/skill/sk-code/references/motion_dev/` files created by Packet 2.
-2. Delete `.opencode/skill/sk-code/assets/motion_dev/` files created by Packet 2.
+1. Delete `.opencode/skills/sk-code/references/motion_dev/` files created by Packet 2.
+2. Delete `.opencode/skills/sk-code/assets/motion_dev/` files created by Packet 2.
 3. Delete or archive the Packet 2 child docs if the packet is cancelled.
 4. Re-run strict validation on the parent/child spec folders if docs remain.
 

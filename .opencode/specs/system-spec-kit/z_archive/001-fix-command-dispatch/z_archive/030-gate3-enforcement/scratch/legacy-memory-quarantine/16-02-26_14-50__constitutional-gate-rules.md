@@ -134,12 +134,12 @@ CONSTITUTIONAL RULES - ALWAYS ENFORCE
 
 ---
 importanceTier: deprecated
-deprecatedBy: ".opencode/skill/system-memory/constitutional/gate-enforcement.md"
+deprecatedBy: ".opencode/skills/system-memory/constitutional/gate-enforcement.md"
 deprecationDate: "2025-12-25"
 ---
 
 > **DEPRECATED**: This file has been superseded by the canonical version at:
-> `.opencode/skill/system-memory/constitutional/gate-enforcement.md`
+> `.opencode/skills/system-memory/constitutional/gate-enforcement.md`
 > 
 > This file is kept for reference only. Do not use for gate enforcement.
 
@@ -216,12 +216,12 @@ WAIT for user's answer. THEN proceed.
 ONLY use this command to save context:
 
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+node .opencode/skills/system-memory/scripts/generate-context.js [spec-folder-path]
 ```
 
 Or with JSON input for rich context:
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js /tmp/save-context-data.json
+node .opencode/skills/system-memory/scripts/generate-context.js /tmp/save-context-data.json
 ```
 
 ### VIOLATION = HARD BLOCK

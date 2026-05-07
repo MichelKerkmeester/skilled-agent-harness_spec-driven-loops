@@ -1,19 +1,19 @@
 Scope note
 
-- `.opencode/skill/system-spec-kit/mcp_server/database/` contains database artifacts and no `.ts` source files.
-- The effective storage-layer TypeScript implementation lives under `.opencode/skill/system-spec-kit/mcp_server/lib/storage/`; 13 `.ts` files were reviewed there.
+- `.opencode/skills/system-spec-kit/mcp_server/database/` contains database artifacts and no `.ts` source files.
+- The effective storage-layer TypeScript implementation lives under `.opencode/skills/system-spec-kit/mcp_server/lib/storage/`; 13 `.ts` files were reviewed there.
 - No confirmed SQL injection vector was identified in the reviewed TypeScript. The dynamic SQL sites in scope either use bound parameters or interpolate only internal constant identifiers / numerically coerced pagination values.
 
 ### C2-001: Schema Downgrade Utility Has Drifted Behind the Live Schema
 Severity: MEDIUM
 Category: architecture
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:34
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:34
 Description
 The downgrade helper is frozen at `v16 -> v15`, but the authoritative schema has advanced to `v23` and now includes newer columns and tables. The CLI still exposes the downgrade command, so the recovery path is operationally stale even though current databases are migrated beyond the version the utility accepts.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts
 const TARGET_FROM_VERSION = 16;
 const TARGET_TO_VERSION = 15;
 const REMOVED_COLUMNS = ['parent_id', 'chunk_index', 'chunk_label'] as const;
@@ -24,7 +24,7 @@ if (currentVersion !== TARGET_FROM_VERSION) {
 ```
 
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
 // V21: Add learned_triggers column (R11 learned feedback)
 // V22: Step 2 memory lineage tables + active projection support
 // V23: One-time spec_folder re-canonicalization + session_state migration
@@ -32,7 +32,7 @@ export const SCHEMA_VERSION = 23;
 ```
 
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/cli.ts
+// .opencode/skills/system-spec-kit/mcp_server/cli.ts
 const result = downgradeSchemaV16ToV15(db, { specFolder: specFolder || undefined });
 ```
 
@@ -45,13 +45,13 @@ Either remove/guard the CLI command until a current downgrade plan exists, or ex
 ### C2-002: Conflict Deprecation Can Commit Without Creating the Supersedes Edge
 Severity: HIGH
 Category: bug
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:336
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:336
 Description
 `executeConflict()` claims the deprecation update and `supersedes` edge insertion are atomic, but it never validates that `causalEdges.insertEdge()` succeeded. Because `insertEdge()` returns `null` for several failure modes instead of throwing, the transaction can commit a deprecated memory with no causal link to its replacement.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts
 db.transaction(() => {
   const updateResult = db.prepare(`
     UPDATE memory_index
@@ -76,7 +76,7 @@ db.transaction(() => {
 ```
 
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts
 if (!db) {
   console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
   return null;
@@ -99,13 +99,13 @@ Treat a `null` return from `insertEdge()` as a transaction-failing error. If the
 ### C2-003: "Atomic Save" Still Allows Cross-Resource Split-Brain State
 Severity: HIGH
 Category: architecture
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:203
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:203
 Description
 `executeAtomicSave()` writes the pending file, commits the database operation, and only then renames the file into place. If the rename fails, the function returns an error but leaves the database committed and the file stranded at the `_pending` path. The code documents this as a known limitation, so the inconsistency window is intentional and still present.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts
 // This function provides file-system-level atomicity (write-to-pending + rename),
 // NOT database transaction isolation.
 ...
@@ -129,19 +129,19 @@ Promote this to a real recovery protocol instead of a best-effort warning: eithe
 ### C2-004: Checkpoint Restore Commits Base Tables Before Derived Rebuilds and Swallows Failures
 Severity: MEDIUM
 Category: architecture
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1414
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1414
 Description
 `restoreCheckpoint()` commits the restore transaction and only then rebuilds derived state such as lineage, FTS, degree snapshots, and community assignments. Those rebuild steps are explicitly best-effort and their failures are logged as non-fatal, so restore can report success while leaving search and lineage artifacts stale.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
 restoreTx();
 runPostRestoreRebuilds(database, checkpointSpecFolder);
 ```
 
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
 // Each rebuild is best-effort — failures must not block restore success.
 for (const [name, fn] of rebuildSteps) {
   try {
@@ -161,13 +161,13 @@ Return a degraded restore status when any rebuild fails, and add an explicit fol
 ### C2-005: Refresh Queue Loads the Entire Pending Embedding Backlog Without a Bound
 Severity: MEDIUM
 Category: performance
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/index-refresh.ts:121
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/index-refresh.ts:121
 Description
 `getUnindexedDocuments()` returns every row whose `embedding_status` is not `success` or `failed`, with no `LIMIT`, batching, or cursoring. Any caller that uses this as a work queue will materialize the full backlog into memory in one shot.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/index-refresh.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/index-refresh.ts
 export function getUnindexedDocuments(): UnindexedDocument[] {
   assertDb();
 
@@ -196,13 +196,13 @@ Expose bounded batch retrieval with `LIMIT`/cursor semantics and keep the curren
 ### C2-006: Deleted-Path Cleanup Uses an N+1 Query Pattern Across SQLite and the Filesystem
 Severity: LOW
 Category: performance
-Location: .opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:311
+Location: .opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:311
 Description
 `listIndexedRecordIdsForDeletedPaths()` iterates every candidate path, performs a database lookup per path, and then performs filesystem existence checks per returned row. The memory-index scan path calls this directly for stale-path cleanup, so scan cost grows linearly with deleted alias count instead of using a set-based lookup.
 
 Evidence
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts
 for (const filePath of filePaths) {
   ...
   const rows = hasCanonicalPathColumn()

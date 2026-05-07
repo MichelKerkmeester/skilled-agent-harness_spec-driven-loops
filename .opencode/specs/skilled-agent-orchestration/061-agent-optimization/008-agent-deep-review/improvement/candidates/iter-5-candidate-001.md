@@ -24,7 +24,7 @@ permission:
 
 Executes ONE review iteration within an autonomous review loop. Reads externalized state, reviews one focused dimension, produces P0/P1/P2 findings with file:line evidence, records edge cases and integration touchpoints when relevant, and updates state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
 
@@ -214,12 +214,12 @@ Edge-case rules:
 - If two in-scope files or dimensions could satisfy the focus, prefer the one named by "Next Focus"; if absent, choose the first unchecked dimension and document the choice.
 - If ambiguity affects severity but not scope, keep the finding at the lower supported severity and include `downgradeTrigger`.
 - Implementation evidence beats stale prose when judging behavior, but stale prose may still be a traceability finding.
-- If `.opencode/skill/sk-code-review/references/review_core.md` cannot be loaded, do not invent severity definitions; report `error` if severity classification is required.
+- If `.opencode/skills/sk-code-review/references/review_core.md` cannot be loaded, do not invent severity definitions; report `error` if severity classification is required.
 - If failure occurs after writing begins, make all written artifacts agree on status, focus, counts, edge cases, and limitations.
 
 #### Step 6: Classify Findings
 
-Before assigning severity, load `.opencode/skill/sk-code-review/references/review_core.md`.
+Before assigning severity, load `.opencode/skills/sk-code-review/references/review_core.md`.
 
 Use the shared `P0` / `P1` / `P2` definitions and evidence requirements from `review_core.md`, then tag each finding with one primary review dimension: `correctness`, `security`, `traceability`, or `maintainability`.
 
@@ -253,7 +253,7 @@ Adversarial self-check:
 
 #### Step 7: Write Findings
 
-Create `review/iterations/iteration-NNN.md`. Use exactly one canonical template. The reducer at `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` reads both legacy section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`) and the live section names below. Inside findings, use `### P0 Findings`, `### P1 Findings`, and `### P2 Findings`. Findings use numbered bullets of the form `N. **Title** -- file:line -- Description`, each followed by claim-adjudication JSON for P0/P1.
+Create `review/iterations/iteration-NNN.md`. Use exactly one canonical template. The reducer at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` reads both legacy section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`) and the live section names below. Inside findings, use `### P0 Findings`, `### P1 Findings`, and `### P2 Findings`. Findings use numbered bullets of the form `N. **Title** -- file:line -- Description`, each followed by claim-adjudication JSON for P0/P1.
 
 ````markdown
 # Iteration [N] - [dimension] - [focus area]
@@ -419,9 +419,9 @@ If verification fails, fix the artifact if safe. If not safe, return `status: "e
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/command/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
+| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop and dispatches this agent once per iteration |
+| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -440,7 +440,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.opencode/skill/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -488,7 +488,7 @@ Deferred (reserved, not runtime-supported):
 - `fork`
 - `completed-continue`
 
-See `.opencode/skill/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
+See `.opencode/skills/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
 
 Treat these config fields as required read-only lineage metadata:
 
@@ -502,7 +502,7 @@ Treat these config fields as required read-only lineage metadata:
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is the reducer-owned canonical finding registry.
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh after each iteration.
+- `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh after each iteration.
 - This leaf agent may READ the registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 
@@ -719,23 +719,23 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/command/spec_kit/deep-review.md` |
-| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/commands/spec_kit/deep-review.md` |
+| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### YAML Workflows
 
 | Workflow | Purpose | Path |
 |----------|---------|------|
-| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
+| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
 
 ### Skills
 
 | Skill | Purpose | Path |
 |-------|---------|------|
-| `sk-deep-review` | Deep review loop orchestration, reducer, state format, convergence protocol | `.opencode/skill/sk-deep-review/SKILL.md` |
-| `sk-code-review` | Shared review doctrine via `references/review_core.md` | `.opencode/skill/sk-code-review/SKILL.md` |
-| `system-spec-kit` | Spec folders, memory, docs, packet validation | `.opencode/skill/system-spec-kit/SKILL.md` |
+| `sk-deep-review` | Deep review loop orchestration, reducer, state format, convergence protocol | `.opencode/skills/sk-deep-review/SKILL.md` |
+| `sk-code-review` | Shared review doctrine via `references/review_core.md` | `.opencode/skills/sk-code-review/SKILL.md` |
+| `system-spec-kit` | Spec folders, memory, docs, packet validation | `.opencode/skills/system-spec-kit/SKILL.md` |
 
 ### Agents
 
@@ -767,14 +767,14 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 |-----------|---------|
 | `references/state_format.md` | JSONL and config schema |
 | `references/convergence.md` | Convergence algorithm details |
-| `.opencode/skill/sk-code-review/references/review_core.md` | Severity definitions and evidence requirements |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Reducer-owned registry/dashboard/report refresh |
+| `.opencode/skills/sk-code-review/references/review_core.md` | Severity definitions and evidence requirements |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Reducer-owned registry/dashboard/report refresh |
 
 ---
 
 ## 9b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skill/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information.
+If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information.
 
 If hook context is absent, rebuild active review context from `handover.md`, then the active spec doc's `_memory.continuity`, then relevant spec docs. Widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` only when canonical packet sources are missing or insufficient.
 

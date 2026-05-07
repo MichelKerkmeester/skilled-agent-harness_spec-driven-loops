@@ -1,7 +1,7 @@
 ### Finding INV-001: Core numeric claims still hold — 33 tools, 6 commands confirmed
 - **Severity**: n/a (inventory pass — positive confirmation)
 - **Dimension**: correctness
-- **Evidence**: `tool-schemas.ts` has exactly 33 `name:` entries matching `TOOL_DEFINITIONS`. `.opencode/command/memory/` contains exactly 6 `.md` files (analyze, continue, learn, manage, save, shared). `/memory:analyze` exists. SKILL.md line 561 correctly states "6 slash commands cover all 33 tools."
+- **Evidence**: `tool-schemas.ts` has exactly 33 `name:` entries matching `TOOL_DEFINITIONS`. `.opencode/commands/memory/` contains exactly 6 `.md` files (analyze, continue, learn, manage, save, shared). `/memory:analyze` exists. SKILL.md line 561 correctly states "6 slash commands cover all 33 tools."
 - **Impact**: The spec's foundational truth claim (33 tools, 6 commands, retrieval in `/memory:analyze`) remains accurate.
 
 ### Finding INV-002: All "Files to Change" targets exist on disk

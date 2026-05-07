@@ -46,8 +46,8 @@ _memory:
 
 ### Phase 2 — Initial Deliverable Assets (later removed, see ADR-006/ADR-007)
 
-- [x] **T-07** — ~~Author `.opencode/skill/cli-codex/assets/codex_app_personalization.md`~~ — CREATED then REMOVED. Superseded by `<repo>/.codex/AGENTS.md` (ADR-007).
-- [x] **T-08** — ~~Author `.opencode/skill/cli-codex/assets/codex_voice_module.md`~~ — CREATED then REMOVED. Superseded — orchestrators govern their own voice; humans use shell wrappers or the global AGENTS.md (ADR-006).
+- [x] **T-07** — ~~Author `.opencode/skills/cli-codex/assets/codex_app_personalization.md`~~ — CREATED then REMOVED. Superseded by `<repo>/.codex/AGENTS.md` (ADR-007).
+- [x] **T-08** — ~~Author `.opencode/skills/cli-codex/assets/codex_voice_module.md`~~ — CREATED then REMOVED. Superseded — orchestrators govern their own voice; humans use shell wrappers or the global AGENTS.md (ADR-006).
 
 ### Phase 3 — SKILL.md Integration (3 sub-edits, later revised)
 

@@ -71,8 +71,8 @@ Comprehensive list of every file path that appeared in any iteration's findings.
 - `mcp_server/code_graph/`
 - `mcp_server/skill_advisor/`
 - `mcp_server/lib/` (other)
-- `.opencode/skill/`
-- `.opencode/command/`
+- `.opencode/skills/`
+- `.opencode/commands/`
 - `scripts/`
 - Other
 

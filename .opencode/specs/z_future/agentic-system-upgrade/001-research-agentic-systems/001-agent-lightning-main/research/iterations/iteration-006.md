@@ -16,9 +16,9 @@ I read Agent Lightning's public claims around selective optimization, the triple
 - The triplet adapter extracts agent identity from framework-specific span attributes such as `agent.name`, `recipient_agent_type`, `langchain.chain.type`, `executor.id`, and other normalized fallbacks. [SOURCE: external/agentlightning/adapter/triplet.py:317-359]
 - The adapter then uses `agent_match` to keep only spans within matching agent subtrees when selecting LLM calls for trajectory generation. [SOURCE: external/agentlightning/adapter/triplet.py:398-476] [SOURCE: external/agentlightning/adapter/triplet.py:702-733]
 - The SQL-agent guide shows the intended use directly: `agent_match` can target `"write"`, `"write|check"`, or `None`, allowing optimization of only the agents whose behavior matters for the chosen learning objective. [SOURCE: external/docs/how-to/train-sql-agent.md:234-239]
-- Public's orchestrator already distinguishes agent roles at the workflow layer, with explicit routing for `@context`, `@deep-research`, `@review`, `@speckit`, and others, plus single-hop depth rules. [SOURCE: .opencode/agent/orchestrate.md:24-36] [SOURCE: .opencode/agent/orchestrate.md:42-46] [SOURCE: .opencode/agent/orchestrate.md:95-117]
-- Public's deep-review loop is dimension-aware and structured, but its machine-owned outputs are centered on findings and dimension coverage rather than on stable agent-role identifiers. [SOURCE: .opencode/agent/deep-review.md:23-31] [SOURCE: .opencode/agent/deep-review.md:145-180]
-- Public's deep-research state model supports `focusTrack`, but that field is optional topical labeling, not a stable delegated-agent identity carried from orchestrator dispatch into evaluation surfaces. [SOURCE: .opencode/agent/deep-research.md:167-189]
+- Public's orchestrator already distinguishes agent roles at the workflow layer, with explicit routing for `@context`, `@deep-research`, `@review`, `@speckit`, and others, plus single-hop depth rules. [SOURCE: .opencode/agents/orchestrate.md:24-36] [SOURCE: .opencode/agents/orchestrate.md:42-46] [SOURCE: .opencode/agents/orchestrate.md:95-117]
+- Public's deep-review loop is dimension-aware and structured, but its machine-owned outputs are centered on findings and dimension coverage rather than on stable agent-role identifiers. [SOURCE: .opencode/agents/deep-review.md:23-31] [SOURCE: .opencode/agents/deep-review.md:145-180]
+- Public's deep-research state model supports `focusTrack`, but that field is optional topical labeling, not a stable delegated-agent identity carried from orchestrator dispatch into evaluation surfaces. [SOURCE: .opencode/agents/deep-research.md:167-189]
 
 ## Analysis
 Agent Lightning's selective optimization feature is not primarily about more sophisticated multi-agent scheduling. It is about preserving enough agent identity inside the trace so downstream learning logic can target only the relevant slices. Public already has strong role separation at the prompt and workflow layer, but it does not consistently project those roles into machine-readable evaluation artifacts.
@@ -31,7 +31,7 @@ confidence: high
 finding: Agent Lightning's selective optimization pattern is relevant to Public only at the identity-labeling layer. Public should not import new multi-agent orchestration machinery from this repo, but it should consider projecting stable agent-role identifiers from the orchestrator into downstream research, review, and future telemetry artifacts so targeted evaluation becomes possible later.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a stable agent-role label vocabulary and decide which packet artifacts should carry it

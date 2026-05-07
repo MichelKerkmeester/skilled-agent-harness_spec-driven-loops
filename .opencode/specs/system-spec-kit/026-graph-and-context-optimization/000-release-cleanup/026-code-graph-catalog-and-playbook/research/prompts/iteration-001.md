@@ -6,26 +6,26 @@ You are cli-codex (gpt-5.5 high fast) implementing **026-code-graph-catalog-and-
 
 Per the operator's explicit directive: code_graph needs a feature catalog AND a manual testing playbook, located at the runtime package source-of-truth path:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`
 
 Mirror the pattern already used for `skill_advisor/`:
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` (parent index — pattern reference)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` (per-feature file pattern)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` (parent index — pattern)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` (per-test entry pattern)
-- `.opencode/skill/sk-doc/SKILL.md` (template owner)
-- `.opencode/skill/sk-doc/assets/` (feature-catalog + manual-testing-playbook templates)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` (current state of the runtime package)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/` (every handler — discover features)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/` (helpers like ensure-ready.ts)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/` (MCP tool definitions)
-- `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/` (root skill catalog category — cross-link)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` (parent index — pattern reference)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` (per-feature file pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` (parent index — pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` (per-test entry pattern)
+- `.opencode/skills/sk-doc/SKILL.md` (template owner)
+- `.opencode/skills/sk-doc/assets/` (feature-catalog + manual-testing-playbook templates)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` (current state of the runtime package)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/` (every handler — discover features)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/` (helpers like ensure-ready.ts)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/` (MCP tool definitions)
+- `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/` (root skill catalog category — cross-link)
 - 013 + 035 packet docs for code_graph reality classifications (auto/half/manual surface)
 
 ### Implementation phases
@@ -35,10 +35,10 @@ Mirror the pattern already used for `skill_advisor/`:
 Walk through `mcp_server/code_graph/`:
 
 ```bash
-find .opencode/skill/system-spec-kit/mcp_server/code_graph -type f -name '*.ts' | head -30
-ls .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/
-ls .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/
-ls .opencode/skill/system-spec-kit/mcp_server/code_graph/tools/
+find .opencode/skills/system-spec-kit/mcp_server/code_graph -type f -name '*.ts' | head -30
+ls .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/
+ls .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/
+ls .opencode/skills/system-spec-kit/mcp_server/code_graph/tools/
 ```
 
 Identify code_graph features and group them. Reference grouping pattern from skill_advisor (8 groups). Suggested code_graph groups:
@@ -144,10 +144,10 @@ The parent `manual_testing_playbook.md` is an index linking to the 8 groups.
 
 #### Phase 4: Cross-link the new artifacts
 
-- Update `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` to reference the new feature_catalog/ and manual_testing_playbook/ subdirs
-- Update `.opencode/skill/system-spec-kit/mcp_server/README.md` to mention code_graph's new catalog/playbook (one line each)
-- Update root skill catalog at `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/` to cross-link the runtime catalog (mention "for runtime details, see mcp_server/code_graph/feature_catalog/")
-- Update root skill playbook at `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/` to cross-link the runtime playbook similarly
+- Update `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` to reference the new feature_catalog/ and manual_testing_playbook/ subdirs
+- Update `.opencode/skills/system-spec-kit/mcp_server/README.md` to mention code_graph's new catalog/playbook (one line each)
+- Update root skill catalog at `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/` to cross-link the runtime catalog (mention "for runtime details, see mcp_server/code_graph/feature_catalog/")
+- Update root skill playbook at `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/` to cross-link the runtime playbook similarly
 
 ### Packet structure to create (Level 2)
 

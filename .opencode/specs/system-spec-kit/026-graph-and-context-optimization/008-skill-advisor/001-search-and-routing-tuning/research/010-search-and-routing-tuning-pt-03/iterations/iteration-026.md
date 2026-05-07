@@ -16,8 +16,8 @@ Re-scan the active `.opencode/specs/` corpus after phases `001`-`003` and doc-al
 - None. The bash + jq rescan produced stable tables once the earlier per-entity jq fan-out was removed.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:102-120`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:562-667`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:102-120`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:562-667`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

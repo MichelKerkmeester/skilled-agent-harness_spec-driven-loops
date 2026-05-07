@@ -52,7 +52,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read root README (`README.md`)
-- [x] T002 Read evergreen packet-ID rule (`.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md`)
+- [x] T002 Read evergreen packet-ID rule (`.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md`)
 - [x] T003 [P] Read canonical tool and advisor schema sources
 - [x] T004 [P] Read runtime bindings and current system-spec-kit docs
 <!-- /ANCHOR:phase-1 -->

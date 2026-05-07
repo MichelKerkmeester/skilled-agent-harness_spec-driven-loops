@@ -84,11 +84,11 @@ Iterations 1-10 predate the formal domain labeling and act as a reconnaissance p
 **Representative exemplars:**
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179-192 — buildSessionContinuity() calls loadMostRecentState() with no scope
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:131-166 — poison-pill JSON.parse loop
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:283-317 — successful inline reindex keeps pre-refresh freshness
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:592-601 — missing/empty collapsed into stale
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:55-68 — Gemini compact replay drops provenance
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179-192 — buildSessionContinuity() calls loadMostRecentState() with no scope
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:131-166 — poison-pill JSON.parse loop
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:283-317 — successful inline reindex keeps pre-refresh freshness
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:592-601 — missing/empty collapsed into stale
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:55-68 — Gemini compact replay drops provenance
 ```
 
 **Open questions:**
@@ -572,7 +572,7 @@ R32-001 | mcp_server/hooks/claude/hook-state.ts:170-176,221-241           | P1 |
 R32-002 | mcp_server/hooks/claude/session-stop.ts:60-67,119-125,244-246,261-268,281-289,302-309 | P1 | (dup of R31-002)
 R32-003 | mcp_server/handlers/save/reconsolidation-bridge.ts:270-306 + reconsolidation.ts:611-656 | P1 | (dup+extension of R31-003) scope-retag between filter and commit not re-checked
 R32-004 | mcp_server/lib/graph/graph-metadata-parser.ts:969-989           | P2 | (dup of R31-004)
-R32-005 | .opencode/command/{memory/save.md, spec_kit/deep-research.md, spec_kit/deep-review.md} + generate-context.ts:61-82 | P2 | (dup+extension of R31-005) multiple command surfaces hardcode the shared path
+R32-005 | .opencode/commands/{memory/save.md, spec_kit/deep-research.md, spec_kit/deep-review.md} + generate-context.ts:61-82 | P2 | (dup+extension of R31-005) multiple command surfaces hardcode the shared path
 ```
 
 **End of interim synthesis. Total distinct findings: ~33. Total files flagged: 14. P1 volume: 39 raw / ~22 distinct. Next useful increment: complete Domain 3 (8 more passes), begin Domain 4 (new ground), and spawn Domain 5 as a dedicated pass rather than subsidiary evidence.**

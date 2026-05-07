@@ -93,5 +93,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Playbook source**: `.opencode/skill/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/`
+- **Playbook source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/`
 <!-- /ANCHOR:cross-refs -->

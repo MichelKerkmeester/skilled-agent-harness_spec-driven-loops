@@ -52,20 +52,20 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 | --- | --- |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | OpenCode threshold default parity |
 | `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs` | OpenCode threshold + render contract |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | OpenCode parity regression coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | Codex shared-builder normalization + durable diagnostics |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Codex fallback parity + durable diagnostics |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` | Shared threshold helpers |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts` | Shared render threshold options |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts` | Public workspace/threshold/telemetry schemas |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` | Public workspace + threshold outputs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts` | Threshold semantics + telemetry/outcomes |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md` | Public contract docs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts` | Durable diagnostics + outcomes |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` | Durable diagnostics sink wiring |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts` | Durable diagnostics sink wiring |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` | Durable diagnostics sink wiring |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Hook/operator contract docs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | OpenCode parity regression coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | Codex shared-builder normalization + durable diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Codex fallback parity + durable diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts` | Shared threshold helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts` | Shared render threshold options |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts` | Public workspace/threshold/telemetry schemas |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` | Public workspace + threshold outputs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts` | Threshold semantics + telemetry/outcomes |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md` | Public contract docs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts` | Durable diagnostics + outcomes |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` | Durable diagnostics sink wiring |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts` | Durable diagnostics sink wiring |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` | Durable diagnostics sink wiring |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Hook/operator contract docs |
 <!-- /ANCHOR:what-built -->
 
 ## How It Was Delivered
@@ -101,7 +101,7 @@ Packet 014 was delivered as the implementation follow-through for the packet-02 
 ## Known Limitations
 <!-- ANCHOR:limitations -->
 
-- The repository-wide `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` remains blocked by unrelated packet-external TypeScript errors, so full-package build parity could not be re-established inside this scope lock.
+- The repository-wide `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` remains blocked by unrelated packet-external TypeScript errors, so full-package build parity could not be re-established inside this scope lock.
 - The current workspace reports stale advisor freshness during direct hook/bridge smokes, so the verification evidence exercised prompt-safe stale/fallback behavior rather than a live daemon path.
 - The packet-local `applied/T-###.md` evidence set referenced by earlier closeout docs is not present in this checkout, so verification currently depends on `tasks.md`, this summary, and `checklist.md` rather than per-task reports.
 <!-- /ANCHOR:limitations -->

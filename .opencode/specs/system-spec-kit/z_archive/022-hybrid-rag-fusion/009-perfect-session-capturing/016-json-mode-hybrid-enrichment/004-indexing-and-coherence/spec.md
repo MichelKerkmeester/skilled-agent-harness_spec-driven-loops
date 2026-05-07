@@ -96,12 +96,12 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/tools/memory-health.ts` | Modify | Add RetryStats query and inclusion in health response |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Modify | Trigger phrase filter pipeline (lines 940-1018); toolCalls/exchanges context binding; pre-save overlap check |
-| `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts` | Modify | Remove 8 phantom placeholders; un-suppress 9 active-source placeholders |
-| `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` | Modify | Add multi-token path fragment pattern detection |
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Add observation array dedup at normalization time |
-| `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` | Modify | Verify toolCalls and exchanges field types match Mustache section expectations |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/tools/memory-health.ts` | Modify | Add RetryStats query and inclusion in health response |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify | Trigger phrase filter pipeline (lines 940-1018); toolCalls/exchanges context binding; pre-save overlap check |
+| `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts` | Modify | Remove 8 phantom placeholders; un-suppress 9 active-source placeholders |
+| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | Modify | Add multi-token path fragment pattern detection |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Add observation array dedup at normalization time |
+| `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` | Modify | Verify toolCalls and exchanges field types match Mustache section expectations |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -5,7 +5,7 @@ Determine whether non-JSON files are actually broken or still load through the p
 
 ## Findings
 1. Thirty-five files are stored in the older `Packet: ...` text format instead of JSON, which is 10.17% of the 344-file corpus. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-2. Those files are not necessarily runtime failures because `validateGraphMetadataContent()` falls back from `JSON.parse()` into `parseLegacyGraphMetadataContent()`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-163] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:172-203]
+2. Those files are not necessarily runtime failures because `validateGraphMetadataContent()` falls back from `JSON.parse()` into `parseLegacyGraphMetadataContent()`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-163] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:172-203]
 3. A representative legacy file under packet `024-compact-code-graph/013-correctness-boundary-repair` still carries packet identity, status, key topics, key files, and source docs, but does so without structured JSON arrays or derived entities. [SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair/graph-metadata.json:1-11]
 4. Treating raw JSON parse failures as "invalid metadata" would overstate risk; the better classification is "legacy-format but runtime-loadable." [INFERENCE: based on parser fallback logic and the live corpus sample]
 
@@ -16,7 +16,7 @@ Determine whether non-JSON files are actually broken or still load through the p
 - JSON-only validation as the main corpus quality lens.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-203`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-203`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair/graph-metadata.json:1-11`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

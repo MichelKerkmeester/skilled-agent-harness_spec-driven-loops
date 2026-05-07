@@ -33,14 +33,14 @@ Verify all 8 scripts work against the agent-improver target before running the f
 
 1. Verify all 8 `.cjs` scripts parse without errors (`node -c`)
 2. Run `scan-integration.cjs --agent=agent-improver` — capture integration report
-3. Run `generate-profile.cjs --agent=.opencode/agent/agent-improver.md` — capture dynamic profile
-4. Run `score-candidate.cjs --candidate=.opencode/agent/agent-improver.md --dynamic` — capture baseline 5D scores
+3. Run `generate-profile.cjs --agent=.opencode/agents/agent-improver.md` — capture dynamic profile
+4. Run `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` — capture baseline 5D scores
 
 ### D2: Execute Self-Improvement Loop
 
 Run the full `/improve:agent` command targeting agent-improver.md.
 
-- Target: `.opencode/agent/agent-improver.md`
+- Target: `.opencode/agents/agent-improver.md`
 - Mode: `:confirm` (interactive gates for observation at each iteration)
 - Scoring: Dynamic (5-dimension, no static profile exists for agent-improver)
 - Iterations: 3 maximum

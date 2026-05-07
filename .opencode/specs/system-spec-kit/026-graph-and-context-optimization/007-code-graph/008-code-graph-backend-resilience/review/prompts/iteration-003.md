@@ -14,11 +14,11 @@ You are running iteration 3 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit T09-T10 resolver capture + cross-file resolution:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:113-126` (RawCapture extension)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:485-502` (regex fallback)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:857-920, 1328-1381, 1403-1507` (cross-file resolver + tsconfig load)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:340-465` (import/export captures)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` (IndexerConfig path-alias fields)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:113-126` (RawCapture extension)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:485-502` (regex fallback)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:857-920, 1328-1381, 1403-1507` (cross-file resolver + tsconfig load)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:340-465` (import/export captures)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` (IndexerConfig path-alias fields)
 
 Compare against 007 iter-009 patch design.
 

@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -44,14 +44,14 @@ _memory:
 ### Delivered Artifacts
 
 The implementation added or updated:
-- `.opencode/command/create/testing-playbook.md`
-- `.opencode/command/create/assets/create_testing_playbook_auto.yaml`
-- `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`
+- `.opencode/commands/create/testing-playbook.md`
+- `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`
+- `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`
 - `.agents/commands/create/testing-playbook.toml`
-- `.opencode/command/create/README.txt`
-- `.opencode/command/README.txt`
+- `.opencode/commands/create/README.txt`
+- `.opencode/commands/README.txt`
 - `.opencode/README.md`
-- `.opencode/agent/write.md`
+- `.opencode/agents/write.md`
 - `.claude/agents/write.md`
 - `.codex/agents/write.toml`
 - `.agents/agents/write.md`
@@ -94,7 +94,7 @@ After the command family shipped, the broader create YAML suite was later normal
 
 | Check | Result |
 |-------|--------|
-| `validate_document.py .opencode/command/create/testing-playbook.md` | PASS |
+| `validate_document.py .opencode/commands/create/testing-playbook.md` | PASS |
 | YAML parse for `create_testing_playbook_auto.yaml` and `create_testing_playbook_confirm.yaml` | PASS |
 | `.agents/commands/create/testing-playbook.toml` mirror check | PASS |
 | Runtime discovery-doc sync checks | PASS |

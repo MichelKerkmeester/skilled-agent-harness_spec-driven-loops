@@ -10,8 +10,8 @@
 
 | Item | Path |
 |------|------|
-| **Primary** | `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` (1511 lines) |
-| **Sourced lib** | `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh` (55 lines) |
+| **Primary** | `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` (1511 lines) |
+| **Sourced lib** | `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` (55 lines) |
 | **Templates read** | `templates/core/spec-core.md`, `templates/core/plan-core.md` |
 | **Addendum files** | `level2-verify/{spec-level2,plan-level2,checklist}.md`, `level3-arch/{spec-level3-prefix,spec-level3-suffix,plan-level3,decision-record}.md`, `level3plus-govern/{spec-level3plus-suffix,plan-level3plus,checklist-extended}.md` |
 

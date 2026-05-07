@@ -6,23 +6,23 @@ Maintainability. This pass audited code clarity, pattern consistency, operator-f
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
-- `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md`
-- `.opencode/skill/system-spec-kit/scripts/memory/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/api/index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`
+- `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md`
+- `.opencode/skills/system-spec-kit/scripts/memory/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/api/index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants/decision-record.md`
 - 14 focused vitest files: `checkpoint-restore-invariant-enforcement.vitest.ts`, `cleanup-script-audit-emission.vitest.ts`, `exclusion-ssot-unification.vitest.ts`, `full-spec-doc-indexing.vitest.ts`, `gate-d-regression-constitutional-memory.vitest.ts`, `handler-memory-index.vitest.ts`, `index-scope.vitest.ts`, `memory-crud-update-constitutional-guard.vitest.ts`, `memory-governance.vitest.ts`, `memory-parser-extended.vitest.ts`, `memory-save-index-scope.vitest.ts`, `pe-orchestration.vitest.ts`, `symlink-realpath-hardening.vitest.ts`, `walker-dos-caps.vitest.ts`
 
@@ -38,13 +38,13 @@ No new P1 findings.
 
 ### P2-010 — Cleanup CLI duplicates the excluded-path policy instead of deriving it from the index-scope SSOT
 
-The main runtime surfaces consistently import `shouldIndexForMemory()`, `shouldIndexForCodeGraph()`, or `isConstitutionalPath()` from `lib/utils/index-scope.ts`; the one maintainability outlier is the cleanup CLI. The SSOT currently defines memory exclusions in `EXCLUDED_FOR_MEMORY` (`.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25`), but the cleanup script independently spells the same policy as SQL `LIKE` clauses for summaries and plans (`.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:111`, `.opencode/skill/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:130`). If a future invariant adds another excluded segment, normal scanners can inherit it from the helper while `--verify` and `--apply` can silently keep repairing only the old set.
+The main runtime surfaces consistently import `shouldIndexForMemory()`, `shouldIndexForCodeGraph()`, or `isConstitutionalPath()` from `lib/utils/index-scope.ts`; the one maintainability outlier is the cleanup CLI. The SSOT currently defines memory exclusions in `EXCLUDED_FOR_MEMORY` (`.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25`), but the cleanup script independently spells the same policy as SQL `LIKE` clauses for summaries and plans (`.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:111`, `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts:130`). If a future invariant adds another excluded segment, normal scanners can inherit it from the helper while `--verify` and `--apply` can silently keep repairing only the old set.
 
 Remediation: export a data-level excluded segment list, or a cleanup-specific SQL predicate builder, from the same policy module and consume it in `collectSummary()` / `buildPlan()`. Keep the regex predicate for runtime paths, but make the DB-repair path mechanically derive from the same segment list.
 
 ### P2-011 — Operator README lists stable action strings but does not give the cleanup and rollback flow at the invariant entry point
 
-The main operator section names the three invariants and action strings (`.opencode/skill/system-spec-kit/mcp_server/README.md:113`, `.opencode/skill/system-spec-kit/mcp_server/README.md:121`), but it stops before the practical repair path. The cleanup CLI exists in a separate scripts README (`.opencode/skill/system-spec-kit/scripts/memory/README.md:41`), and the target verify counts are documented in a utility README (`.opencode/skill/system-spec-kit/mcp_server/lib/utils/README.md:106`). An operator landing on the `Index Scope Invariants` section without packet context has the contract but not the dry-run, apply, verify, backup, or rollback story.
+The main operator section names the three invariants and action strings (`.opencode/skills/system-spec-kit/mcp_server/README.md:113`, `.opencode/skills/system-spec-kit/mcp_server/README.md:121`), but it stops before the practical repair path. The cleanup CLI exists in a separate scripts README (`.opencode/skills/system-spec-kit/scripts/memory/README.md:41`), and the target verify counts are documented in a utility README (`.opencode/skills/system-spec-kit/mcp_server/lib/utils/README.md:106`). An operator landing on the `Index Scope Invariants` section without packet context has the contract but not the dry-run, apply, verify, backup, or rollback story.
 
 Remediation: add a short "Repair / Verify / Rollback" subsection under `Index Scope Invariants` with the cleanup command, expected clean counts, DB backup/restore guidance, and where governance-audit action strings should appear after repair.
 
@@ -56,7 +56,7 @@ Remediation: add one alternatives table per ADR with the strongest rejected opti
 
 ### P2-013 — Invariant tests duplicate partial `memory_index` schemas instead of sharing a DB-shape fixture
 
-The focused invariant tests use local in-memory SQLite fixtures, but each file defines a different partial `memory_index` shape. Examples: cleanup audit tests define one schema (`.opencode/skill/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts:12`), update-guard tests define another plus `active_memory_projection` (`.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts:8`), checkpoint-restore tests define a larger checkpoint-specific shape (`.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-restore-invariant-enforcement.vitest.ts:10`), and governance tests create smaller ad hoc schemas inline (`.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:190`). There is no evident shared invariant DB fixture under `tests/fixtures/` or `tests/setup/`.
+The focused invariant tests use local in-memory SQLite fixtures, but each file defines a different partial `memory_index` shape. Examples: cleanup audit tests define one schema (`.opencode/skills/system-spec-kit/mcp_server/tests/cleanup-script-audit-emission.vitest.ts:12`), update-guard tests define another plus `active_memory_projection` (`.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts:8`), checkpoint-restore tests define a larger checkpoint-specific shape (`.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-restore-invariant-enforcement.vitest.ts:10`), and governance tests create smaller ad hoc schemas inline (`.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:190`). There is no evident shared invariant DB fixture under `tests/fixtures/` or `tests/setup/`.
 
 Remediation: add a small `tests/fixtures/memory-index-db.ts` helper with composable schema builders such as `createMemoryIndexDb({ governance: true, projection: true, checkpoints: true })`. Tests can still stay local and fast, but future schema changes get one fixture surface instead of several partial copies.
 

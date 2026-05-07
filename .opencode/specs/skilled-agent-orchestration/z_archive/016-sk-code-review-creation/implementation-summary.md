@@ -36,7 +36,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 
 ### Delivered Changes
 
-- Hard rename completed: `.opencode/skill/legacy-single-hyphen-review/` -> `.opencode/skill/sk-code-review/`.
+- Hard rename completed: `.opencode/skills/legacy-single-hyphen-review/` -> `.opencode/skills/sk-code-review/`.
 - Rebuilt SKILL.md as stack-agnostic review baseline with:
   - sk-doc-style smart routing structure,
   - weighted intent scoring,
@@ -53,7 +53,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 - Updated `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` so Codex runtime wrappers explicitly enforce the same baseline+overlay review contract while pointing to canonical chatgpt playbooks.
 - Updated all 18 review-dispatch YAML assets with `standards_contract` and consistent dispatch wording.
 - Updated `skill_advisor.py` review routing to prioritize `sk-code-review` for review intents while preserving git behavior and removing stale visual-skill claims from live docs.
-- Updated skill catalogs (`.opencode/skill/README.md`, `.opencode/README.md`) for new skill and 11-skill counts.
+- Updated skill catalogs (`.opencode/skills/README.md`, `.opencode/README.md`) for new skill and 11-skill counts.
 - Finalized Level 2 spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`).
 
 ---
@@ -108,15 +108,15 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code-review --json` | FAIL: `Name 'sk-code-review' cannot contain consecutive hyphens` |
-| `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-code-review` | FAIL: same validator rule |
-| `python3 .opencode/skill/sk-doc/scripts/quick_validate.py .opencode/skill/sk-code-web --json` | FAIL (same rule), confirming existing validator mismatch with established `sk-code-*` naming |
-| `python3 .opencode/skill/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` | PASS: top `sk-code-review` |
-| `python3 .opencode/skill/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` | PASS: top `sk-git` |
+| `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-code-review --json` | FAIL: `Name 'sk-code-review' cannot contain consecutive hyphens` |
+| `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-code-review` | FAIL: same validator rule |
+| `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-code-web --json` | FAIL (same rule), confirming existing validator mismatch with established `sk-code-*` naming |
+| `python3 .opencode/skills/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` | PASS: top `sk-code-review` |
+| `python3 .opencode/skills/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` | PASS: top `sk-git` |
 | Live-doc visual-skill claim cleanup in scoped spec files | PASS: removed stale target assertions from completion evidence |
-| `rg -n "sk-code-review|baseline\+overlay|overlay"` across `.opencode/agent/*.md`, `.opencode/agent/chatgpt/*.md`, `.gemini/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/{review,orchestrate}.toml` | PASS: baseline+overlay contract present in all runtime agent locations |
+| `rg -n "sk-code-review|baseline\+overlay|overlay"` across `.opencode/agents/*.md`, `.opencode/agents/chatgpt/*.md`, `.gemini/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/{review,orchestrate}.toml` | PASS: baseline+overlay contract present in all runtime agent locations |
 | `rg -n "standards_contract|baseline: \"sk-code-review\""` across 18 YAML assets | PASS: all target files matched |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill` | PASS (exit 0): all rules passed, no warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/016-code-review-skill` | PASS (exit 0): all rules passed, no warnings |
 
 ---
 

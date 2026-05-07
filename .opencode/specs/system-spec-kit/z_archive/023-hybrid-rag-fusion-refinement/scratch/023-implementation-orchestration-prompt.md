@@ -91,7 +91,7 @@ codex exec -p review -c model_reasoning_effort="high" \
 
 **Spec folder**: `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration/`
 **Run**: `/spec_kit:implement` on this phase folder
-**Package scope**: `.opencode/skill/system-spec-kit/shared/`
+**Package scope**: `.opencode/skills/system-spec-kit/shared/`
 
 #### Parallelization Strategy
 
@@ -107,7 +107,7 @@ codex exec -p review -c model_reasoning_effort="high" \
 ```bash
 npm run build --workspace=@spec-kit/shared
 # Verify: shared/dist/*.js contains import/export, not require/exports
-grep -r "require(" .opencode/skill/system-spec-kit/shared/dist/ | grep -v node_modules | wc -l
+grep -r "require(" .opencode/skills/system-spec-kit/shared/dist/ | grep -v node_modules | wc -l
 # Expected: 0
 ```
 
@@ -122,7 +122,7 @@ feat(shared): migrate @spec-kit/shared to native ESM (Phase 1/4)
 
 **Spec folder**: `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration/`
 **Run**: `/spec_kit:implement` on this phase folder
-**Package scope**: `.opencode/skill/system-spec-kit/mcp_server/`
+**Package scope**: `.opencode/skills/system-spec-kit/mcp_server/`
 
 #### Parallelization Strategy
 
@@ -159,7 +159,7 @@ Split these across 4 agents by directory, maintaining the same exclusive scopes 
 #### Handoff Gate (must pass before Phase 3)
 ```bash
 npm run build --workspace=@spec-kit/mcp-server
-node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js &
+node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js &
 SERVER_PID=$!; sleep 2; kill $SERVER_PID 2>/dev/null
 # Expected: server starts without "ERR_REQUIRE_ESM" or "ERR_MODULE_NOT_FOUND"
 ```
@@ -175,7 +175,7 @@ feat(mcp-server): migrate @spec-kit/mcp-server to native ESM (Phase 2/4)
 
 **Spec folder**: `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor/`
 **Run**: `/spec_kit:implement` on this phase folder
-**Package scope**: `.opencode/skill/system-spec-kit/scripts/`
+**Package scope**: `.opencode/skills/system-spec-kit/scripts/`
 
 #### Parallelization Strategy
 
@@ -195,7 +195,7 @@ Medium scope (20 consumer files), but the interop helper must be created FIRST. 
 First, audit which scripts files consume ESM siblings:
 ```bash
 grep -rn "require.*@spec-kit/shared\|require.*@spec-kit/mcp-server" \
-  .opencode/skill/system-spec-kit/scripts/ --include="*.ts"
+  .opencode/skills/system-spec-kit/scripts/ --include="*.ts"
 ```
 
 Split the results into 4 non-overlapping groups by directory. Assign 2 xhigh agents for complex files (workflow.ts, generate-context.ts) and 2 high agents for simpler consumer files.
@@ -214,10 +214,10 @@ Split the results into 4 non-overlapping groups by directory. Assign 2 xhigh age
 
 #### Handoff Gate (must pass before Phase 4)
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --help
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help
 npm run test --workspace=@spec-kit/scripts
 # NEW: Memory save end-to-end test
-echo '{"specFolder":"023-hybrid-rag-fusion-refinement","sessionSummary":"test save"}' | node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --stdin
+echo '{"specFolder":"023-hybrid-rag-fusion-refinement","sessionSummary":"test save"}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin
 ```
 
 #### Commit
@@ -264,8 +264,8 @@ npm run test --workspace=@spec-kit/scripts
 npx vitest run tests/cli.vitest.ts tests/regression-010-index-large-files.vitest.ts tests/continue-session.vitest.ts
 npx vitest run tests/modularization.vitest.ts tests/trigger-config-extended.vitest.ts
 npx vitest run scripts/tests/test-integration.vitest.ts scripts/tests/architecture-boundary-enforcement.vitest.ts
-node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --help
+node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --help
 ```
 
 #### Commit
@@ -316,7 +316,7 @@ After all 4 phases pass:
 | Phase 2 | `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration/` |
 | Phase 3 | `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor/` |
 | Phase 4 | `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/` |
-| shared package | `.opencode/skill/system-spec-kit/shared/` |
-| mcp_server package | `.opencode/skill/system-spec-kit/mcp_server/` |
-| scripts package | `.opencode/skill/system-spec-kit/scripts/` |
+| shared package | `.opencode/skills/system-spec-kit/shared/` |
+| mcp_server package | `.opencode/skills/system-spec-kit/mcp_server/` |
+| scripts package | `.opencode/skills/system-spec-kit/scripts/` |
 | Research (source of truth) | `specs/system-spec-kit/023-hybrid-rag-fusion-refinement/research/research.md` |

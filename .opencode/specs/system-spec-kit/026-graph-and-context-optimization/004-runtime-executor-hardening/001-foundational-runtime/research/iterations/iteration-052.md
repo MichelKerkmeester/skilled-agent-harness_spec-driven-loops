@@ -116,13 +116,13 @@ Token counts for `trustState|canonicalReadiness|lastPersistedAt|structuralTrust|
 ### R52-P1-001 | Code-graph family sibling-asymmetry: scan.ts + status.ts + ccc-* miss hardening while query.ts has it | sibling-asymmetry
 
 **File:line**:
-- Hardened: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:225-282` (17 tokens)
+- Hardened: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:225-282` (17 tokens)
 - Un-hardened:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (0 tokens)
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts` (0 tokens)
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts` (0 tokens)
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts` (0 tokens)
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts` (0 tokens)
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (0 tokens)
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts` (0 tokens)
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts` (0 tokens)
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts` (0 tokens)
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts` (0 tokens)
 
 **Hardened sibling**: `code-graph/query.ts` — the reference implementation from T-CGQ-09/10/11/12.
 
@@ -142,12 +142,12 @@ Token counts for `trustState|canonicalReadiness|lastPersistedAt|structuralTrust|
 
 **File:line**:
 - Hardened siblings:
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:403` (writes `trustState: 'cached'`)
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:70` (reads trustState from payloadContract)
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:174` (writes `trustState: 'cached'`)
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:77` (reads trustState from payloadContract)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:403` (writes `trustState: 'cached'`)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:70` (reads trustState from payloadContract)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:174` (writes `trustState: 'cached'`)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:77` (reads trustState from payloadContract)
 - Un-hardened sibling:
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:1-61` (no trustState read; no compact writer at all)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:1-61` (no trustState read; no compact writer at all)
 
 **Hardened sibling**: Claude (end-to-end writer + reader) and Gemini (end-to-end writer + reader, via differently-named `compact-cache.ts`).
 
@@ -166,8 +166,8 @@ Token counts for `trustState|canonicalReadiness|lastPersistedAt|structuralTrust|
 ### R52-P2-001 | Gemini shared.ts transitively couples to Claude's shared.ts for provenance escape | sibling-asymmetry (structural)
 
 **File:line**:
-- Hardened: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:125-129` (defines `wrapRecoveredCompactPayload` with trustState escaping)
-- Un-hardened: `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:7` (`import { hookLog } from '../claude/shared.js'` — imports hookLog only, inherits provenance escape transitively via downstream files)
+- Hardened: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:125-129` (defines `wrapRecoveredCompactPayload` with trustState escaping)
+- Un-hardened: `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:7` (`import { hookLog } from '../claude/shared.js'` — imports hookLog only, inherits provenance escape transitively via downstream files)
 
 **Hardened sibling**: `hooks/claude/shared.ts` — the canonical place for provenance envelope helpers.
 
@@ -187,7 +187,7 @@ Token counts for `trustState|canonicalReadiness|lastPersistedAt|structuralTrust|
 
 **File:line**:
 - Canonical vocabulary reference: `lib/context/shared-payload.ts` + `handlers/session-bootstrap.ts:52,181` (`readiness: 'ready'` as part of the full-payload contract, but wired to the structural context)
-- Drifted usage: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:200` (`readiness: 'ready'` as a literal-narrow in `StructuralRoutingNudgeMeta`) and `memory-context.ts:425` (construction of that advisory block)
+- Drifted usage: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:200` (`readiness: 'ready'` as a literal-narrow in `StructuralRoutingNudgeMeta`) and `memory-context.ts:425` (construction of that advisory block)
 
 **Hardened sibling**: none strictly — this is not a sibling-asymmetry but adjacent vocabulary drift flagged while sweeping for the pattern. Included because it confuses consumers reading `readiness` across surfaces.
 

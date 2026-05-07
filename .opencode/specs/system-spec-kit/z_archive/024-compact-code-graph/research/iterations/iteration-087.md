@@ -173,7 +173,7 @@ Comparing Gemini to the three repo runtimes:
 | Runtime | Current context mechanism | Determinism | Notes |
 | --- | --- | --- | --- |
 | **Claude Code** | Repo-wired hooks + `.claude/CLAUDE.md` fallback | **High** | Current strongest runtime in this repo: `PreCompact`, `SessionStart`, `Stop` are already wired |
-| **OpenCode** | Root framework + `.opencode/agent/*.md` + command workflows | **Medium** | No native lifecycle hooks; recovery is instruction/command-driven |
+| **OpenCode** | Root framework + `.opencode/agents/*.md` + command workflows | **Medium** | No native lifecycle hooks; recovery is instruction/command-driven |
 | **Codex CLI** | `CODEX.md` + `.codex/agents/*.toml` + config TOML | **Medium** | No repo-native hook equivalent; recovery is manual/instruction-driven |
 | **Gemini CLI (current repo state)** | Root `GEMINI.md` only | **Low-Medium** | Auto-loadable by Gemini, but no `.gemini/settings.json`, no agents, no hooks configured |
 | **Gemini CLI (upstream capability ceiling)** | Hierarchical `GEMINI.md` + `.gemini/settings.json` + native hooks | **High** | Can approach Claude much more closely than OpenCode/Codex once actually configured |
@@ -188,7 +188,7 @@ Important distinction:
 [SOURCE: CODEX.md:7-31]
 [SOURCE: .codex/config.toml:41-43]
 [SOURCE: .codex/config.toml:86-121]
-[SOURCE: .opencode/agent/context.md:1-23]
+[SOURCE: .opencode/agents/context.md:1-23]
 [SOURCE: opencode.json:10-56]
 [SOURCE: https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/cli/gemini-md.md]
 [SOURCE: https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/hooks/index.md]
@@ -245,7 +245,7 @@ So the final assessment is:
 - `.claude/CLAUDE.md`
 - `CODEX.md`
 - `.codex/config.toml`
-- `.opencode/agent/context.md`
+- `.opencode/agents/context.md`
 - `opencode.json`
 - https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/cli/gemini-md.md
 - https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/reference/configuration.md

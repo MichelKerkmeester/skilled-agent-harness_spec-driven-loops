@@ -66,7 +66,7 @@ End-to-end rename + improve flow:
 
 | Layer | Count | Examples |
 |---|---|---|
-| Runtime mirrors (rename + body) | 4 | `.opencode/agent/multi-ai-council.md` (647 lines), `.claude/`, `.gemini/`, `.codex/multi-ai-council.toml` |
+| Runtime mirrors (rename + body) | 4 | `.opencode/agents/multi-ai-council.md` (647 lines), `.claude/`, `.gemini/`, `.codex/multi-ai-council.toml` |
 | Cross-references swept | 46 | orchestrate.md (4 mirrors), README.txt (4 mirrors), CLI skills (cli-claude-code/cli-codex/cli-gemini/cli-opencode), system-spec-kit, install_guides, CLAUDE.md, AGENTS.md |
 | Filename renames | 4 | `004-ultra-think-profile.md` → `004-multi-ai-council-profile.md` (and 3 analogs in cli-* skills) |
 | Historical (left frozen) | 321 | `.opencode/specs/` + `.opencode/changelog/` retain `ultra-think` as accurate audit trail of original name |

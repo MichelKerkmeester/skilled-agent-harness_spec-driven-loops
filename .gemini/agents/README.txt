@@ -5,7 +5,7 @@ This directory contains agent definitions for the Gemini runtime.
 Each .md file defines one live agent surface with frontmatter (tools, permissions, model)
 and behavioral instructions.
 
-Sibling runtimes: .opencode/agent/ (.md), .claude/agents/ (.md), .codex/agents/ (.toml)
+Sibling runtimes: .opencode/agents/ (.md), .claude/agents/ (.md), .codex/agents/ (.toml)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
 Agents:

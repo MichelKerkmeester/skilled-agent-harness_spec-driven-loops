@@ -12,9 +12,9 @@ The architecture is sound, but the entry experience is too conceptual. Users nee
 I reviewed the template architecture, the `@speckit` agent contract, and the validator framing, then compared that with Xethryon's lighter documentation posture.
 
 ## Evidence
-- The template system explicitly layers CORE plus ADDENDUM files and asks users to think in terms of multiple levels and optional phase composition. [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:30-35] [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:66-73] [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:80-100]
-- The `@speckit` agent reinforces that mental model by making level selection and template filling a formal part of the workflow. [SOURCE: .opencode/agent/speckit.md:68-101] [SOURCE: .opencode/agent/speckit.md:147-156]
-- `validate.sh --strict` is strong and useful, but its rule/flag surface is dense for first-time operators. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:138-159]
+- The template system explicitly layers CORE plus ADDENDUM files and asks users to think in terms of multiple levels and optional phase composition. [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:30-35] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:66-73] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:80-100]
+- The `@speckit` agent reinforces that mental model by making level selection and template filling a formal part of the workflow. [SOURCE: .opencode/agents/speckit.md:68-101] [SOURCE: .opencode/agents/speckit.md:147-156]
+- `validate.sh --strict` is strong and useful, but its rule/flag surface is dense for first-time operators. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:138-159]
 - Xethryon shows the opposite extreme: lighter docs, fewer artifact types, and less obvious structure for proving provenance or completion. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_MODS.md:10-180]
 
 ## Analysis
@@ -48,7 +48,7 @@ finding: keep the Level 1/2/3+ spec-folder model, but add a guided chooser and f
 - **Migration path:** additive UX layer only; keep current templates and validator unchanged.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/speckit.md`
+- **Target file or module:** `.opencode/agents/speckit.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a compact chooser schema and stable language for recommended vs optional files

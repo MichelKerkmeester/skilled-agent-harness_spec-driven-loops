@@ -83,7 +83,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 - **002-skill-folder-rename** physically renames the skill folder via `git mv` and updates the skill-graph.json keys + signal references; runs advisor_rebuild immediately.
 - **003-opencode-internals** updates every reference inside the `.opencode/` tree: dispatcher command body (`/improve:prompt`), scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (31 refs), 5 cli-* prompt_quality_card.md mirrors, parent SKILL.md routing tables, advisor regression fixtures, observability docs.
 - **004-runtime-mirrors** updates `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md` (skill body refs only — agent file/name UNCHANGED).
-- **005-root-and-config** updates root-level docs (root README.md, AGENTS.md install guide, .opencode/skill/README.md, observability docs, changelog v3.4.0.0.md).
+- **005-root-and-config** updates root-level docs (root README.md, AGENTS.md install guide, .opencode/skills/README.md, observability docs, changelog v3.4.0.0.md).
 - **006-advisor-and-validate** rebuilds the skill-graph.sqlite, runs advisor probes confirming `sk-prompt` routes correctly, validates strict on parent + 6 children, and runs a final grep audit returning 0 hits in active scope.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level alongside `resource-map.md` and the canonical lean trio (`description.json`, `graph-metadata.json`). All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders 001..006.
@@ -95,10 +95,10 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 ## 3. SCOPE
 
 ### In Scope
-- Renaming `.opencode/skill/sk-improve-prompt/` → `.opencode/skill/sk-prompt/`
+- Renaming `.opencode/skills/sk-improve-prompt/` → `.opencode/skills/sk-prompt/`
 - Updating ALL active references to the old name throughout the repo, including:
   - SKILL.md frontmatter `name:` field, smart router pseudocode, internal self-references
-  - Dispatcher command body at `.opencode/command/improve/prompt.md` (loads the skill by name)
+  - Dispatcher command body at `.opencode/commands/improve/prompt.md` (loads the skill by name)
   - Agent body refs across 4 runtimes (.opencode, .claude, .codex, .gemini)
   - MCP server code: scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (TOKEN_BOOSTS, PHRASE_BOOSTS, aliases — 31 refs)
   - Skill graph: `skill-graph.json` (keys, signals, anti-signals, families, hub_skills, adjacency)
@@ -106,7 +106,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
   - Advisor regression fixtures: `routing-accuracy/labeled-prompts.jsonl`
   - Sync helper: `check-prompt-quality-card-sync.sh`
   - Observability: smart-router-measurement-results.jsonl / -report.md (forward-facing IDs only)
-  - Root docs: root README.md, AGENTS.md install guide, .opencode/skill/README.md
+  - Root docs: root README.md, AGENTS.md install guide, .opencode/skills/README.md
   - Changelog: system-spec-kit/changelog/v3.4.0.0.md (active changelog only)
 - Rebuilding `skill-graph.sqlite` via `advisor_rebuild` after JSON key edits
 - Verifying advisor probes route the new name correctly
@@ -161,7 +161,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001 | 002 | Inventory complete; canonical file ledger written; estimated counts accurate | grep counts match resource-map estimates within ±10% |
-| 002 | 003 | Skill folder renamed; `skill-graph.json` keys updated; `advisor_rebuild` reports live | `advisor_status` returns generation bumped; `ls .opencode/skill/sk-prompt/` succeeds |
+| 002 | 003 | Skill folder renamed; `skill-graph.json` keys updated; `advisor_rebuild` reports live | `advisor_status` returns generation bumped; `ls .opencode/skills/sk-prompt/` succeeds |
 | 003 | 004 | All `.opencode/` references updated; no regressions in advisor lookups | grep `.opencode/` (excluding historical scope) for old name returns 0 |
 | 004 | 005 | All runtime mirror refs updated | grep `.claude .codex .gemini` for old name returns 0 |
 | 005 | 006 | Root docs + active configs updated | grep root + active changelog for old name returns 0 |

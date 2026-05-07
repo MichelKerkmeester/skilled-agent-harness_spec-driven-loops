@@ -10,8 +10,8 @@ You are a LEAF deep-research agent (cli-codex, gpt-5.5 high fast). DO NOT dispat
 **Iteration:** 2 of 10
 **Focus (Q2):** Coder-side dispatch modes. Validate the suggested set (full-implementation, surgical-fix, refactor-only, test-add, scaffold-new-file, rename-move, dependency-bump) against:
 - @review.md §4 review modes (lines 101-111: 4 modes — PR Review / Pre-Commit / Focused File / Gate Validation)
-- sk-code Phase 0-3 lifecycle (`.opencode/skill/sk-code/SKILL.md:50-62`)
-- @write.md modes (`.opencode/agent/write.md:206-217` — 4 modes)
+- sk-code Phase 0-3 lifecycle (`.opencode/skills/sk-code/SKILL.md:50-62`)
+- @write.md modes (`.opencode/agents/write.md:206-217` — 4 modes)
 
 For EACH mode, specify:
 - Trigger (what dispatch task description looks like)
@@ -40,10 +40,10 @@ For EACH mode, specify:
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:101-111` (review modes table).
-2. Read `.opencode/agent/write.md:206-217` (4 documentation modes).
-3. Read `.opencode/agent/debug.md:95-105` (Fast Path & Context Package pattern).
-4. Read `.opencode/skill/sk-code/SKILL.md:50-62` (Phase 0-3 lifecycle).
+1. Read `.opencode/agents/review.md:101-111` (review modes table).
+2. Read `.opencode/agents/write.md:206-217` (4 documentation modes).
+3. Read `.opencode/agents/debug.md:95-105` (Fast Path & Context Package pattern).
+4. Read `.opencode/skills/sk-code/SKILL.md:50-62` (Phase 0-3 lifecycle).
 5. Synthesize the coder-side IMPLEMENTATION MODES table mirroring @review §4. Validate the suggested 7-mode set; collapse/refine if redundant. Output as a markdown table the parent can drop directly into the expanded code.md.
 
 ## OUTPUT CONTRACT

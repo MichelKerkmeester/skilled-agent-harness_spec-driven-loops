@@ -41,10 +41,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Rewrite `.opencode/skill/sk-improve-agent/SKILL.md` to the stricter `sk-doc` skill template family
-- [x] T002 Rewrite `.opencode/skill/sk-improve-agent/README.md` to the `sk-doc` README template family
-- [x] T003 Rewrite every markdown file under `.opencode/skill/sk-improve-agent/references/`
-- [x] T004 Rewrite markdown files under `.opencode/skill/sk-improve-agent/assets/`
+- [x] T001 Rewrite `.opencode/skills/sk-improve-agent/SKILL.md` to the stricter `sk-doc` skill template family
+- [x] T002 Rewrite `.opencode/skills/sk-improve-agent/README.md` to the `sk-doc` README template family
+- [x] T003 Rewrite every markdown file under `.opencode/skills/sk-improve-agent/references/`
+- [x] T004 Rewrite markdown files under `.opencode/skills/sk-improve-agent/assets/`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,7 +54,7 @@ _memory:
 
 - [x] T005 Rename the canonical mutator agent to `agent-improver`
 - [x] T006 Rename and align runtime agent mirrors for Claude, Gemini, `.agents`, and Codex
-- [x] T007 Align `.opencode/command/spec_kit/agent-improver.md` to the command template family
+- [x] T007 Align `.opencode/commands/spec_kit/agent-improver.md` to the command template family
 - [x] T008 Update YAML workflows to dispatch `@agent-improver`
 - [x] T009 Update command wrapper TOMLs to match the corrected command body
 <!-- /ANCHOR:phase-2 -->

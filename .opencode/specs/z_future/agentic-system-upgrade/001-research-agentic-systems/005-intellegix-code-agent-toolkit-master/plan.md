@@ -84,7 +84,7 @@ Prompt review -> source evidence gathering -> Phase 3 iterations -> JSONL append
 
 | Check | Tool |
 |-------|------|
-| Packet validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` |
+| Packet validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` |
 | Artifact spot reads | `sed`, `rg`, `tail` |
 | State consistency | direct comparison across iteration files, JSONL, dashboard, and synthesis |
 <!-- /ANCHOR:testing -->

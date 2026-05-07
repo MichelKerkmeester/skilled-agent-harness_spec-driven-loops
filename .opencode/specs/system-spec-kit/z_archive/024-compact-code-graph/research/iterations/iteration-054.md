@@ -270,13 +270,13 @@ This iteration answers the remaining API-level questions: the full parameter sch
   - explicitly states that `code_graph_context` should accept CocoIndex results as seeds for structural expansion
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md`
   - DR-010 locked the division of labor: CocoIndex for semantic retrieval, code graph for structural relationships
-- `.opencode/skill/mcp-coco-index/references/tool_reference.md`
+- `.opencode/skills/mcp-coco-index/references/tool_reference.md`
   - confirms CocoIndex MCP search returns `file`, `lines`, `snippet`, `score`, and `language`, which is the native seed shape the bridge should accept
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
   - shows current MCP tool-schema style: explicit JSON schema, strict `additionalProperties: false`, and separate orchestration vs focused retrieval tools
-- `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
   - shows the established response philosophy: profile-driven shaping for LLM consumers
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`
   - shows the existing envelope style with structured result payloads, trace metadata, and token-sensitive formatting
 
 ## New Information Ratio (0.0-1.0)

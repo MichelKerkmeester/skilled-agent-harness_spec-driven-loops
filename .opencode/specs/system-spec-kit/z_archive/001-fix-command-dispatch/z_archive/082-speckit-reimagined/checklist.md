@@ -576,7 +576,7 @@ Example: `- [x] CHK-001: Component renders correctly [E:screenshot-component.png
   - **Recommendation**: Create formal CHANGELOG.md for future releases
 - [x] CHK-117 [P2] Data handling compliant with privacy requirements
   - [E:review:2026-02-01] Data handling review:
-  - SQLite database stored locally only (.opencode/skill/system-spec-kit/mcp_server/database/)
+  - SQLite database stored locally only (.opencode/skills/system-spec-kit/mcp_server/database/)
   - No PII transmitted to external services (only query embeddings sent to API providers)
   - Embedding providers documented with privacy note (README.md:615-619 shows "HuggingFace Local" for privacy/offline use)
   - ENABLE_LOCAL_FALLBACK env var enables fully local operation (no external API calls)
@@ -752,15 +752,15 @@ Example: `- [x] CHK-001: Component renders correctly [E:screenshot-component.png
 
 | ID | Check | Priority | Status |
 |----|-------|----------|--------|
-| CHK-216 | /memory:continue command file created | P0 | ✅ [E:code] .opencode/command/memory/continue.md - 571 lines, includes: recovery mode detection (auto/manual), crash/compaction/timeout scenarios, CONTINUE_SESSION.md integration, state anchor support |
+| CHK-216 | /memory:continue command file created | P0 | ✅ [E:code] .opencode/commands/memory/continue.md - 571 lines, includes: recovery mode detection (auto/manual), crash/compaction/timeout scenarios, CONTINUE_SESSION.md integration, state anchor support |
 | CHK-217 | /memory:continue handles crash recovery | P0 | ✅ [E:code] continue.md:144-146,178-212,432-444 - Crash scenario defined (MCP restart detected), reads CONTINUE_SESSION.md, parses session state table |
 | CHK-218 | /memory:continue handles compaction recovery | P0 | ✅ [E:code] continue.md:144-148,185-194,448-462 - Compaction scenario defined, scans system messages for "continue from where we left off", uses memory files with state anchor |
-| CHK-219 | /memory:context command file created | P0 | ✅ [E:code] .opencode/command/memory/context.md - 503 lines, unified context retrieval with intent awareness, combines search+load in single operation |
+| CHK-219 | /memory:context command file created | P0 | ✅ [E:code] .opencode/commands/memory/context.md - 503 lines, unified context retrieval with intent awareness, combines search+load in single operation |
 | CHK-220 | /memory:context has intent awareness | P0 | ✅ [E:code] context.md:88-127,148-161,217-245 - 5 intent types (add_feature, fix_bug, refactor, security_audit, understand), keyword detection, intent-specific anchors with weight boosts |
-| CHK-221 | /memory:why command file created | P1 | ✅ [E:code] .opencode/command/memory/why.md - 971 lines, decision lineage tracing with multiple trace modes, output formats (tree/list/graph), graph statistics |
+| CHK-221 | /memory:why command file created | P1 | ✅ [E:code] .opencode/commands/memory/why.md - 971 lines, decision lineage tracing with multiple trace modes, output formats (tree/list/graph), graph statistics |
 | CHK-222 | /memory:why traces decision lineage | P1 | ✅ [E:code] why.md:62-73,140-198,321-398,401-493 - 6 relationship types (caused, enabled, supersedes, contradicts, derived_from, supports), depth-limited traversal (1-10 hops), cycle detection |
-| CHK-223 | /memory:correct command file created | P1 | ✅ [E:code] .opencode/command/memory/correct.md - 738 lines, includes: 4 correction types (superseded, deprecated, refined, merged), 0.5x stability penalty, 1.2x replacement boost, undo capability, history view, learning analytics |
-| CHK-224 | /memory:learn command file created | P1 | ✅ [E:code] .opencode/command/memory/learn.md - 779 lines, includes: 5 learning types (pattern, pitfall, insight, technique, reference), 4-phase workflow, auto-importance boosting, source context linking |
+| CHK-223 | /memory:correct command file created | P1 | ✅ [E:code] .opencode/commands/memory/correct.md - 738 lines, includes: 4 correction types (superseded, deprecated, refined, merged), 0.5x stability penalty, 1.2x replacement boost, undo capability, history view, learning analytics |
+| CHK-224 | /memory:learn command file created | P1 | ✅ [E:code] .opencode/commands/memory/learn.md - 779 lines, includes: 5 learning types (pattern, pitfall, insight, technique, reference), 4-phase workflow, auto-importance boosting, source context linking |
 
 ### Implementation Verification
 

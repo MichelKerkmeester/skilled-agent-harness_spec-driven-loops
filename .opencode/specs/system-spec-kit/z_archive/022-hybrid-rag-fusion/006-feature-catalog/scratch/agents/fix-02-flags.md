@@ -3,22 +3,22 @@
 I’m verifying each catalog entry against the actual implementation first, then I’ll patch only the incorrect claims and show the diffs.
 
 ● Read 01-1-search-pipeline-features-speckit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
   │ features-speckit.md
   └ 1 line read
 
 ● Read 03-3-mcp-configuration.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
   │ n.md
   └ 40 lines read
 
 ● Read 05-5-embedding-and-api.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
   │ i.md
   └ 39 lines read
 
 ● Read 06-6-debug-and-telemetry.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-teleme
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-teleme
   │ try.md
   └ 46 lines read
 
@@ -27,48 +27,48 @@ I’m verifying each catalog entry against the actual implementation first, then
   └ Path does not exist
 
 ● Read generate-context.js
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   └ L1:40 (40 lines read)
 
 ● Search (grep)
   │ "SPECKIT_TEMPORAL_CONTIGUITY|SPECKIT_HYDE_ACTIVE|SPECKIT_GRAPH_CONCEPT_ROUTING|MCP_MAX_MEMORY_TO
-  │ KENS|EMBEDDING_DIM|RERANKER_LOCAL|SPECKIT_CONSUMPTION_LOG" (.opencode/skill/system-spec-kit)
+  │ KENS|EMBEDDING_DIM|RERANKER_LOCAL|SPECKIT_CONSUMPTION_LOG" (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 I found the target tables; now I’m reading the exact implementation lines that back each flag so the fixes stay evidence-based.
 
 ✗ Read factory.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/shared/embeddings/factory.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/shared/embeddings/factory.ts
   └ Path does not exist
 
 ● Search (grep)
   │ "SPECKIT_TEMPORAL_CONTIGUITY|SPECKIT_HYDE_ACTIVE|SPECKIT_GRAPH_CONCEPT_ROUTING"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline
+  │ (.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline
   │ -features-speckit.md)
   └ 2 lines found
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L220:325 (106 lines read)
 
 ● Read hyde.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts
   └ L1:80 (80 lines read)
 
 ✗ Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/stage1-candidate-gen.ts
   └ Path does not exist
 
 ● Read preflight.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts
   └ L500:520 (21 lines read)
 
 ● Read local-reranker.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts
   └ L228:260 (33 lines read)
 
 ● Read consumption-logger.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
   └ L1:110 (110 lines read)
 
 ● Create session plan file (shell)
@@ -82,15 +82,15 @@ I found the target tables; now I’m reading the exact implementation lines that
 I’ve confirmed the token-budget and local-reranker behaviors. I’m locating the remaining source anchors now so the edits match the code exactly, including the new missing flags.
 
 ● Search (glob)
-  │ "**/factory.ts" in .opencode/skill/system-spec-kit
+  │ "**/factory.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Search (glob)
-  │ "**/stage1-candidate-gen.ts" in .opencode/skill/system-spec-kit
+  │ "**/stage1-candidate-gen.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Read 01-1-search-pipeline-features-speckit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
   │ features-speckit.md
   └ L60:98 (39 lines read)
 
@@ -100,51 +100,51 @@ I’ve confirmed the token-budget and local-reranker behaviors. I’m locating t
 
 ● Search (grep)
   │ "EMBEDDING_DIM|RERANKER_LOCAL|MCP_MAX_MEMORY_TOKENS|SPECKIT_CONSUMPTION_LOG"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference)
   └ 6 lines found
 
 I’ve got the exact spots now. Next step is patching the four docs, including the two missing rows in the search-pipeline catalog and the corrected fallback/error semantics elsewhere.
 
 ● Read factory.ts
-  │ .opencode/skill/system-spec-kit/shared/embeddings/factory.ts
+  │ .opencode/skills/system-spec-kit/shared/embeddings/factory.ts
   └ L150:180 (31 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L308:324 (17 lines read)
 
 ● Read 01-1-search-pipeline-features-speckit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
   │ features-speckit.md
   └ L44:60 (17 lines read)
 
 ● Read 01-1-search-pipeline-features-speckit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
   │ features-speckit.md
   └ L84:92 (9 lines read)
 
 ● Search (grep)
-  │ "EMBEDDING_DIM" (.opencode/skill/system-spec-kit)
+  │ "EMBEDDING_DIM" (.opencode/skills/system-spec-kit)
   └ 45 lines found
 
 One detail I’m checking before editing: whether the source-file columns should also be corrected, not just the prose. If the code proves that, I’ll update those anchors too so the catalog stays self-consistent.
 
 ● Read vector-index-store.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts
   └ L82:130 (49 lines read)
 
 ● Read feature-flag-reference-docs.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts
   └ L1:220 (174 lines read)
 
 ● Search (grep)
   │ "SPECKIT_TEMPORAL_CONTIGUITY|SPECKIT_HYDE_ACTIVE"
-  │ (.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference)
+  │ (.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference)
   └ 1 line found
 
 ● Search (grep)
   │ "03-3-mcp-configuration|05-5-embedding-and-api|06-6-debug-and-telemetry|01-1-search-pipeline-fea
-  │ tures-speckit" in *.ts (.opencode/skill/system-spec-kit)
+  │ tures-speckit" in *.ts (.opencode/skills/system-spec-kit)
   └ 9 lines found
 
 I found a targeted Vitest suite for these catalog docs, so I’m using that as the repo-native check before and after the edits rather than guessing at custom validation.
@@ -155,19 +155,19 @@ I found a targeted Vitest suite for these catalog docs, so I’m using that as t
 
 ● Run targeted feature flag docs tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/feature-flag-reference-docs.vitest.ts --reporter=verbose
   └ 36 lines...
 
 Baseline targeted docs tests are green. I’m editing the four rows now and keeping the table ordering sane so the catalog remains easy to diff and maintain.
 
 ● Search (grep)
-  │ "SPECKIT_TEMP|SPECKIT_TRACE|SPECKIT_TOKEN|SPECKIT_T" (.opencode/skill/system-spec-kit/feature_ca
+  │ "SPECKIT_TEMP|SPECKIT_TRACE|SPECKIT_TOKEN|SPECKIT_T" (.opencode/skills/system-spec-kit/feature_ca
   │ talog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md)
   └ 2 lines found
 
 ● Read 01-1-search-pipeline-features-speckit.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
   │ features-speckit.md
   └ L108:136 (28 lines read)
 
@@ -175,69 +175,69 @@ I’ve got the insertion points. I’m checking the actual temporal-contiguity a
 
 ● Search (grep)
   │ "TemporalContiguity|SPECKIT_TEMPORAL_CONTIGUITY|HYDE_ACTIVE|isHyDEActive|SPECKIT_HYDE_ACTIVE"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 18 lines found
 
 ● Read search-flags.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
   └ L330:360 (31 lines read)
 
 I confirmed both missing flags are real runtime toggles, not just comments. I’m pulling their usage sites too so the new descriptions reflect what the pipeline actually does.
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L660:716 (57 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L928:944 (17 lines read)
 
 ● Read hyde.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts
   └ L104:118 (15 lines read)
 
 ● Search (grep)
   │ "graphActivated|activation"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 3 lines found
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L324:342 (19 lines read)
 
 I’ve got enough evidence to patch cleanly now: one wording fix in MCP config, two in embedding/API, one in debug/telemetry, and three changes in the search-pipeline catalog including two new rows.
 
 ● Edit
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipe
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipe
   │ line-features-speckit.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configu
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configu
   │ ration.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-a
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-a
   │ nd-api.md
-  └ Edit .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-t
+  └ Edit .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-t
     elemetry.md
 
 The edits are in. I’m running the targeted Vitest suite again plus the markdown validator on the four touched files, then I’ll show the diffs.
 
 ● Show diffs for touched docs (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && git --no-pager diff --
-  │ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipelin
-  │ e-features-speckit.md .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-referen
-  │ ce/03-3-mcp-configuration.md .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-
-  │ reference/05-5-embedding-and-api.md .opencode/skill/system-spec-kit/feature_catalog/19--featur…
+  │ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipelin
+  │ e-features-speckit.md .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-referen
+  │ ce/03-3-mcp-configuration.md .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-
+  │ reference/05-5-embedding-and-api.md .opencode/skills/system-spec-kit/feature_catalog/19--featur…
   └ 73 lines...
 
 ● Validate touched markdown docs (shell)
   │ python3 '/Users/michelkerkmeester/MEGA/Development/Opencode
   │ Env/Public/.agents/skills/sk-doc/scripts/validate_document.py'
-  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit
+  │ '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit
   │ /feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md' --type
   │ reference && python3 '/Users/michelkerkmeester/MEGA/Development/Opencode …
   └ 27 lines...
 
 ● Re-run targeted feature flag docs tests (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/feature-flag-reference-docs.vitest.ts --reporter=verbose
   └ 36 lines...
 
@@ -345,7 +345,7 @@ Validation passed, so I’m surfacing the exact diffs next rather than just summ
   │        current session. Working memory context is injected during resume mode and influences
   │        session-boost scoring. |
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
+  └ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-
     features-speckit.md
 
 ● Show diff 03-3-mcp-configuration.md
@@ -376,7 +376,7 @@ Validation passed, so I’m surfacing the exact diffs next rather than just summ
   │       Fraction of `MCP_MAX_MEMORY_TOKENS` at which a token budget warning is emitted. At 0.8, a
   │       warning fires when estimated tokens exceed 80% of the max. |
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
+  └ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/03-3-mcp-configuratio
     n.md
 
 ● Show diff 05-5-embedding-and-api.md
@@ -421,7 +421,7 @@ Validation passed, so I’m surfacing the exact diffs next rather than just summ
   │ 26
   │ 27     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
+  └ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-ap
     i.md
 
 ● Show diff 06-6-debug-and-telemetry.md
@@ -451,7 +451,7 @@ Validation passed, so I’m surfacing the exact diffs next rather than just summ
   │ 33
   │ 34     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-teleme
+  └ .opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/06-6-debug-and-teleme
     try.md
 
 Done. I fixed all four requested catalog files after verifying each claim against the implementation.

@@ -25,13 +25,13 @@ The shared structural bootstrap contract already exists across:
 - `session_resume`
 - `session_health`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:209-267`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:65-79`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:475-486`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:120-141`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:120-143`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:90-137`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:209-267`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:65-79`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:475-486`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:120-141`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:120-143`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:90-137`]
 
 So the OpenCode packet should wrap that contract, not redefine it.
 
 ### Graph Ops Should Become A Public `code_graph_*` Extension
 
-The graph handler family is already a coherent public surface. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/README.md:7-17`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-45`]
+The graph handler family is already a coherent public surface. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/README.md:7-17`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-45`]
 
 That makes:
 

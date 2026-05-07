@@ -42,7 +42,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown documentation |
 | **Framework** | system-spec-kit templates |
-| **Storage** | Authored docs under `.opencode/skill/system-spec-kit/` and packet docs under `.opencode/specs/` |
+| **Storage** | Authored docs under `.opencode/skills/system-spec-kit/` and packet docs under `.opencode/specs/` |
 | **Testing** | Shell discovery, link/path checks, strict spec validator |
 
 ### Overview

@@ -2,24 +2,24 @@
 
 Resolver API contract finalization and performance budget closure.
 
-This iteration closes Q3 and Q7. The final generator implementation pick is: extend `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` and add a thin resolver wrapper. Do not rewrite the composer in TypeScript and do not introduce a JSON-driven generator for Phase 1-3.
+This iteration closes Q3 and Q7. The final generator implementation pick is: extend `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` and add a thin resolver wrapper. Do not rewrite the composer in TypeScript and do not introduce a JSON-driven generator for Phase 1-3.
 
 # Actions Taken
 
 1. Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/research/iterations/iteration-006.md` first and carried forward the Phase 1 punch list and 868-folder compatibility count.
 2. Read the deep-research quick reference to preserve the LEAF iteration contract.
 3. Re-read the iteration 5 consumer map and inspected active call sites in:
-   - `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`
-   - `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-   - `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
-   - `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh`
-   - `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-4. Re-timed `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` in `/tmp/template-experiment/`.
+   - `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`
+   - `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+   - `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
+   - `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh`
+   - `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+4. Re-timed `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` in `/tmp/template-experiment/`.
 5. Benchmarked shell resolver-style reads from `/tmp/template-experiment/templates/level_3/spec.md`.
 
 # Q3 Final Generator Pick
 
-Use `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` as the generator and add a thin resolver wrapper around its rendered output/cache. The composer already encodes the ANCHOR merge semantics, level addendum order, and shell portability constraints; replacing it with a TypeScript or JSON-driven implementation would duplicate those rules before parity is proven. A JSON manifest is still useful as level metadata, but not as the generator engine: the level rules are four simple manifests and the hard part is byte-equivalent rendering, not declarative configuration.
+Use `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` as the generator and add a thin resolver wrapper around its rendered output/cache. The composer already encodes the ANCHOR merge semantics, level addendum order, and shell portability constraints; replacing it with a TypeScript or JSON-driven implementation would duplicate those rules before parity is proven. A JSON manifest is still useful as level metadata, but not as the generator engine: the level rules are four simple manifests and the hard part is byte-equivalent rendering, not declarative configuration.
 
 Rejected options:
 
@@ -41,7 +41,7 @@ export type TemplateFormat = 'content' | 'path' | 'metadata';
 export interface ResolveTemplateOptions {
   /**
    * Root containing core/, addendum/, and optionally rendered level_N dirs.
-   * Default: .opencode/skill/system-spec-kit/templates resolved from the package root.
+   * Default: .opencode/skills/system-spec-kit/templates resolved from the package root.
    */
   templatesRoot?: string;
 
@@ -168,13 +168,13 @@ The shell wrapper must be cheap enough for `create.sh`. The preferred path is to
 
 ```bash
 # Source:
-# .opencode/skill/system-spec-kit/scripts/lib/template-resolver.sh
+# .opencode/skills/system-spec-kit/scripts/lib/template-resolver.sh
 
 # Prints a level_N-shaped directory containing rendered templates.
 # Usage: dir="$(ensure_template_level_dir "3" "$TEMPLATES_BASE")"
 ensure_template_level_dir() {
     local level="$1"
-    local templates_base="${2:-$REPO_ROOT/.opencode/skill/system-spec-kit/templates}"
+    local templates_base="${2:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
     local cache_root="${SPECKIT_TEMPLATE_CACHE_ROOT:-}"
 }
 
@@ -183,7 +183,7 @@ ensure_template_level_dir() {
 get_template_path() {
     local level="$1"
     local template_name="$2"
-    local templates_base="${3:-$REPO_ROOT/.opencode/skill/system-spec-kit/templates}"
+    local templates_base="${3:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
 }
 
 # Prints template content to stdout.
@@ -191,7 +191,7 @@ get_template_path() {
 get_template() {
     local level="$1"
     local template_name="$2"
-    local templates_base="${3:-$REPO_ROOT/.opencode/skill/system-spec-kit/templates}"
+    local templates_base="${3:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
     local path
     path="$(get_template_path "$level" "$template_name" "$templates_base")" || return $?
     cat "$path"
@@ -230,7 +230,7 @@ Shell error semantics:
 
 These are function-by-function migrations from the iteration 5 consumer map. Phase 2 migrates runtime helpers first; Phase 3 migrates YAML and agent docs after the shell/TS resolver exists.
 
-## 1. `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh::get_level_templates_dir`
+## 1. `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh::get_level_templates_dir`
 
 Before:
 
@@ -259,7 +259,7 @@ get_level_templates_dir() {
 }
 ```
 
-## 2. `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh::copy_template`
+## 2. `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh::copy_template`
 
 Before:
 
@@ -290,14 +290,14 @@ cp "$template_path" "$dest_path"
 printf '%s\n' "$dest_name"
 ```
 
-Canonical docs become hard errors when missing. Fallback remains only for explicit cross-cutting templates such as `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+Canonical docs become hard errors when missing. Fallback remains only for explicit cross-cutting templates such as `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 
-## 3. `.opencode/skill/system-spec-kit/scripts/spec/create.sh` subfolder mode
+## 3. `.opencode/skills/system-spec-kit/scripts/spec/create.sh` subfolder mode
 
 Before:
 
 ```bash
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
 LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
 CREATED_FILES=()
@@ -313,7 +313,7 @@ done
 After:
 
 ```bash
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
 LEVEL_TEMPLATES_DIR="$(ensure_template_level_dir "$DOC_LEVEL" "$TEMPLATES_BASE")"
 CREATED_FILES=()
@@ -326,7 +326,7 @@ for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
 done
 ```
 
-## 4. `.opencode/skill/system-spec-kit/scripts/spec/create.sh` main folder mode
+## 4. `.opencode/skills/system-spec-kit/scripts/spec/create.sh` main folder mode
 
 Before:
 
@@ -350,7 +350,7 @@ if [[ ! -d "$LEVEL_TEMPLATES_DIR" ]]; then
 fi
 ```
 
-## 5. `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js::resolveTemplatePath`
+## 5. `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js::resolveTemplatePath`
 
 Before:
 
@@ -382,7 +382,7 @@ async function resolveTemplatePath(level, basename, templatesRoot = getTemplates
 }
 ```
 
-## 6. `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` content readers
+## 6. `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` content readers
 
 Before:
 
@@ -399,7 +399,7 @@ const templateContent = await getTemplate(level, basename, { templatesRoot });
 
 The validator contract keeps the same header and anchor arrays; only the source of the content changes.
 
-## 7. `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh::get_current_template_version`
+## 7. `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh::get_current_template_version`
 
 Before:
 
@@ -417,15 +417,15 @@ template_spec="$(get_template_path "1" "spec.md" "$TEMPLATE_DIR")" || {
 }
 ```
 
-## 8. `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
+## 8. `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
 
 Before:
 
 ```yaml
 level_3:
-  tasks: .opencode/skill/system-spec-kit/templates/level_3/tasks.md
-  checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
-  implementation_summary: .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md
+  tasks: .opencode/skills/system-spec-kit/templates/level_3/tasks.md
+  checklist: .opencode/skills/system-spec-kit/templates/level_3/checklist.md
+  implementation_summary: .opencode/skills/system-spec-kit/templates/level_3/implementation-summary.md
 ```
 
 After:
@@ -437,7 +437,7 @@ level_3:
   implementation_summary: "get_template_path 3 implementation-summary.md"
 ```
 
-## 9. `.opencode/skill/system-spec-kit/scripts/tests/template-structure.vitest.ts`
+## 9. `.opencode/skills/system-spec-kit/scripts/tests/template-structure.vitest.ts`
 
 Before:
 
@@ -490,7 +490,7 @@ Conclusion: `<500ms` is credible for both warm cache and cold cache under curren
 
 # Updated Answers
 
-Q3: Finalized. Extend `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` and add a thin resolver wrapper. Do not rewrite in TypeScript and do not make JSON the generator engine.
+Q3: Finalized. Extend `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` and add a thin resolver wrapper. Do not rewrite in TypeScript and do not make JSON the generator engine.
 
 Q7: Finalized. Full compose is 430ms in `/tmp/template-experiment/`; warm resolver overhead is effectively single-digit milliseconds in the shell design. NFR-P01 remains under 500ms if cache rebuild is at most once per create operation and the hot path uses directory resolution.
 

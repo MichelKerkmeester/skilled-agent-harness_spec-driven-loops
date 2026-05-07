@@ -31,5 +31,5 @@ contextType: "deferred"
 
 | Finding | Action |
 |---------|--------|
-| 045/005-P1-1 | Run `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` from a normal, non-sandboxed shell and preserve `run-output/latest` live CLI verdicts |
+| 045/005-P1-1 | Run `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` from a normal, non-sandboxed shell and preserve `run-output/latest` live CLI verdicts |
 

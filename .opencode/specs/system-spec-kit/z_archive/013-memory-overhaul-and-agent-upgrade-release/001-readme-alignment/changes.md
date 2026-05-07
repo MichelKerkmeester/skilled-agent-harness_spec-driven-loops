@@ -38,7 +38,7 @@
 - Updated table column from `MCP` to `Component`
 - Clarified Chrome installer labeled as Chrome DevTools CLI
 
-### 3. `.opencode/skill/README.md`
+### 3. `.opencode/skills/README.md`
 **Priority**: P1
 **Changes**:
 - Updated system-spec-kit version to v2.2.9.0
@@ -48,7 +48,7 @@
 
 ## Agent A02: MCP Server READMEs (3 files)
 
-### 4. `.opencode/skill/system-spec-kit/mcp_server/lib/README.md`
+### 4. `.opencode/skills/system-spec-kit/mcp_server/lib/README.md`
 **Priority**: P0
 **Changes**:
 - Updated key stats to reflect:
@@ -58,14 +58,14 @@
 - Added feature-table coverage for document-type scoring and spec document indexing via includeSpecDocs
 - Added Spec 126 Hardening References subsection
 
-### 5. `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md`
+### 5. `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md`
 **Priority**: P0
 **Changes**:
 - Updated schema language to align with post-spec126 reality (v13-aware framing)
 - Expanded schema table to include v13 (document_type, spec_level)
 - Added spec126 hardening references section pointing to tests and handlers
 
-### 6. `.opencode/skill/system-spec-kit/mcp_server/tests/README.md`
+### 6. `.opencode/skills/system-spec-kit/mcp_server/tests/README.md`
 **Priority**: P1
 **Changes**:
 - Added feature coverage for 5-source indexing, 7 intents, schema v13, document-type scoring
@@ -79,15 +79,15 @@
 ### 7-15. MCP Server Module Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp_server/core/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/database/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/utils/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/configs/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/core/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/database/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/utils/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/configs/README.md`
 
 **Changes**:
 - Replaced long drifted docs with concise implemented-state snapshots
@@ -103,14 +103,14 @@
 ### 16-23. Lib Module Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/embeddings/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/interfaces/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/providers/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/embeddings/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/interfaces/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/providers/README.md`
 
 **Changes**:
 - Updated stale module descriptions to align with post-Spec 126 terminology
@@ -124,15 +124,15 @@
 ### 24-32. Lib Module Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/learning/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/response/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md` (overlap reconciled)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/learning/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/response/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md` (overlap reconciled)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md`
 
 **Changes**:
 - Updated 9 target files to align with spec126/127 behavior
@@ -148,7 +148,7 @@
 
 ### 33-41. Scripts Documentation
 **Priority**: P1
-**Files**: 9 README files under `.opencode/skill/system-spec-kit/scripts/`
+**Files**: 9 README files under `.opencode/skills/system-spec-kit/scripts/`
 
 **Changes**:
 - Updated to match current on-disk script inventory
@@ -177,15 +177,15 @@
 ### 48-56. Template Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/system-spec-kit/templates/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_1/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_2/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_3/README.md`
-- `.opencode/skill/system-spec-kit/templates/level_3+/README.md`
-- `.opencode/skill/system-spec-kit/templates/core/README.md`
-- `.opencode/skill/system-spec-kit/templates/addendum/README.md`
-- `.opencode/skill/system-spec-kit/templates/examples/README.md`
-- `.opencode/skill/system-spec-kit/templates/memory/README.md`
+- `.opencode/skills/system-spec-kit/templates/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_1/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_2/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_3/README.md`
+- `.opencode/skills/system-spec-kit/templates/level_3+/README.md`
+- `.opencode/skills/system-spec-kit/templates/core/README.md`
+- `.opencode/skills/system-spec-kit/templates/addendum/README.md`
+- `.opencode/skills/system-spec-kit/templates/examples/README.md`
+- `.opencode/skills/system-spec-kit/templates/memory/README.md`
 
 **Changes**:
 - Updated to align with current level architecture and workflow behavior
@@ -200,14 +200,14 @@
 ### 57-64. Workflow Skill Documentation
 **Priority**: P1
 **Files**:
-- `.opencode/skill/sk-doc/README.md`
-- `.opencode/skill/sk-code-opencode/README.md`
-- `.opencode/skill/workflows-code--web-dev/README.md`
-- `.opencode/skill/sk-code-full-stack/README.md`
-- `.opencode/skill/sk-git/README.md`
-- `.opencode/skill/mcp-chrome-devtools/README.md`
-- `.opencode/skill/mcp-code-mode/README.md`
-- `.opencode/skill/mcp-figma/README.md`
+- `.opencode/skills/sk-doc/README.md`
+- `.opencode/skills/sk-code-opencode/README.md`
+- `.opencode/skills/workflows-code--web-dev/README.md`
+- `.opencode/skills/sk-code-full-stack/README.md`
+- `.opencode/skills/sk-git/README.md`
+- `.opencode/skills/mcp-chrome-devtools/README.md`
+- `.opencode/skills/mcp-code-mode/README.md`
+- `.opencode/skills/mcp-figma/README.md`
 
 **Changes**:
 - Updated stale count wording and lifecycle counts
@@ -221,8 +221,8 @@
 ### 65-66. Core System Documentation
 **Priority**: P0
 **Files**:
-- `.opencode/skill/system-spec-kit/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
 
 **Changes**:
 - Added Spec 126 post-implementation hardening notes

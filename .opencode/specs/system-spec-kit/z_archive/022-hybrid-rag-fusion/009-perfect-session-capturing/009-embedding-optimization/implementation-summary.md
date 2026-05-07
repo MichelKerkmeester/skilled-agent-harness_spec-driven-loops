@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -82,13 +82,13 @@ Delivered as a narrow parity pass rather than a broad embedding refactor.
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/scripts && npm run check` | Passed |
-| `cd .opencode/skill/system-spec-kit/scripts && npm run build` | Passed |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run check` | Passed |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run build` | Passed |
 | `node mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts tests/memory-indexer-weighting.vitest.ts tests/semantic-signal-golden.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` | Passed: 3 files, 49 tests |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run lint` | Passed |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | Passed |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts tests/embedding-pipeline-weighting.vitest.ts tests/embeddings.vitest.ts tests/handler-memory-save.vitest.ts` | Passed: 4 files, 49 tests |
-| `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed: wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md`, refreshed `metadata.json`, and indexed memory #4374 |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run lint` | Passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | Passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts tests/embedding-pipeline-weighting.vitest.ts tests/embeddings.vitest.ts tests/handler-memory-save.vitest.ts` | Passed: 4 files, 49 tests |
+| `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization` | Passed: wrote `memory/16-03-26_20-38__implemented-weighted-document-embedding-input-for.md`, refreshed `metadata.json`, and indexed memory #4374 |
 <!-- /ANCHOR:verification -->
 
 ---

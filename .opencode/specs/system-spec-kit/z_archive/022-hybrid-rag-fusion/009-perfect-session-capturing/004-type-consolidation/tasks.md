@@ -98,7 +98,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] T021 Run `npm run typecheck` on the package with zero type errors (SC-001)
 - [x] T022 Review casts introduced during the closure pass and keep the implementation free of new `as any`/`as unknown` escapes (SC-001)
-- [x] T023 Run `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` with zero failures (`307` passed) (SC-002)
+- [x] T023 Run `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` with zero failures (`307` passed) (SC-002)
 - [x] T024 [P] Run `tests/spec-affinity.vitest.ts` with zero failures (`3` passed) and confirm the canonical subset path stays green (SC-002)
 - [x] T025 Verify strict phase validation/completion after final documentation reconciliation (SC-002) - March 17, 2026 reruns confirmed both `validate.sh --strict` and `check-completion.sh --strict` pass.
 <!-- /ANCHOR:phase-3 -->

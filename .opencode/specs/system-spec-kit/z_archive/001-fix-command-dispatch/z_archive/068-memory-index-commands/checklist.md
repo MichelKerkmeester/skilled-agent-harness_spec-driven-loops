@@ -77,7 +77,7 @@ Ensure the command separation preserves all functionality while properly isolati
 
 ### `/memory:database` Creation (Management)
 
-- [x] CHK030 [P0] File created at `.opencode/command/memory/database.md` | Evidence: File exists
+- [x] CHK030 [P0] File created at `.opencode/commands/memory/database.md` | Evidence: File exists
 - [x] CHK031 [P0] Frontmatter complete (description, argument-hint, allowed-tools) | Evidence: Lines 1-4
 - [x] CHK032 [P0] Gate 1 (Cleanup confirmation) implemented | Evidence: Lines 13-48
 - [x] CHK033 [P0] Gate 2 (Delete confirmation) implemented | Evidence: Lines 52-87

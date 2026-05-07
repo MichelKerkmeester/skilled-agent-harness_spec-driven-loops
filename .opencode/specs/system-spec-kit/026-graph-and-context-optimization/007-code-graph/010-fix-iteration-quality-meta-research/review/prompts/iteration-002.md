@@ -8,7 +8,7 @@ SessionId: 2026-05-02T21:41:11Z
 Iter 2 — security: deep audit of P1-B fix. Try adversarial scopeProof values (shell-shaped strings: bash -c, eval, curl|sh, etc.) — does the new detector catch them? Are there edge cases (case-sensitivity, unicode escaping, null bytes)?
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 Apply protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

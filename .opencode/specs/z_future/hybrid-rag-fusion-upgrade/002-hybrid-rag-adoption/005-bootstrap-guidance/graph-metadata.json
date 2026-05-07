@@ -37,10 +37,10 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,25 +50,25 @@
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "memory-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
         "source": "derived"
       },
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {

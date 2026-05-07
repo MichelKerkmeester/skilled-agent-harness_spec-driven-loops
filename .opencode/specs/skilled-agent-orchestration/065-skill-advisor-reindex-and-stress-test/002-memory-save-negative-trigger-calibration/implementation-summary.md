@@ -71,12 +71,12 @@ The advisor health fix treats `memory:save` and `create:agent` as tolerated grap
 - Control probe after calibration: `save context` still routes `memory:save` top-1 at confidence 0.9039.
 - `npx vitest run skill_advisor/tests/scorer/native-scorer.vitest.ts`: 17 passed.
 - `npx vitest run skill_advisor/tests/compat/shim.vitest.ts skill_advisor/tests/compat/python-compat.vitest.ts`: 7 passed.
-- `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py`: pass=57, fail=0.
+- `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/python/test_skill_advisor.py`: pass=57, fail=0.
 - `npx vitest run skill_advisor/tests/legacy/advisor-graph-health.vitest.ts`: 2 passed.
 - `npx vitest run skill_advisor/tests`: 40 files / 293 tests passed.
 - `npm run typecheck`: passed.
 - `npm run build`: passed.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict`: passed with 0 errors and 0 warnings.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test --strict`: passed with 0 errors and 0 warnings.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

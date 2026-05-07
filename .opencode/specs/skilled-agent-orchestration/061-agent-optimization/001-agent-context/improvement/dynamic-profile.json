@@ -1,7 +1,7 @@
 {
   "id": "context",
   "family": "derived",
-  "targetPath": ".opencode/agent/context.md",
+  "targetPath": ".opencode/agents/context.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

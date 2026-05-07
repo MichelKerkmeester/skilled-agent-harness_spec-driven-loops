@@ -1,7 +1,7 @@
 ---
 title: Naming conventions migration for opencode naming conventions 2026-02-06 [090-opencode-naming-conventions/06-02-26_18-46__opencode-naming-conventions]
 description: This memory captures a research session for opencode naming conventions
-  on 2026-02-06. Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/
+  on 2026-02-06. Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/
   from snake_case to camelCase naming conventions, aligning with JS ecosystem standards
   (MDN, Airbnb, Node.js). Update.
 trigger_phrases:
@@ -126,7 +126,7 @@ contextType: general
 
 **Decisions:** 5 decisions recorded
 
-**Summary:** Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Update...
+**Summary:** Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Update...
 
 ### Pending Work
 
@@ -149,11 +149,11 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/sk-code-opencode/SKILL.md, .opencode/.../javascript/style_guide.md, .opencode/.../javascript/quality_standards.md
+- Files modified: .opencode/skills/sk-code-opencode/SKILL.md, .opencode/.../javascript/style_guide.md, .opencode/.../javascript/quality_standards.md
 
 - Check: plan.md, tasks.md, checklist.md
 
-- Last: Completed full migration of all JavaScript code in .opencode/skill/system-spec-k
+- Last: Completed full migration of all JavaScript code in .opencode/skills/system-spec-k
 
 <!-- /ANCHOR:continue-session-session-1770400017446-6y3pw9nnj-003-memory-and-spec-kit/090-opencode-naming-conventions -->
 
@@ -166,7 +166,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/sk-code-opencode/SKILL.md |
+| Active File | .opencode/skills/sk-code-opencode/SKILL.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -199,13 +199,13 @@ Next: Continue implementation
 
 **What Was Built**:
 
-- **Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case...** - Completed full migration of all JavaScript code in .
+- **Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case...** - Completed full migration of all JavaScript code in .
 
 - **Technical Implementation Details** - rootCause: The sk-code-opencode skill enforced snake_case for JavaScript functions/params/exports, which is non-standard — JS ecosystem uses camelCase (MDN, Airbnb, Node.
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/sk-code-opencode/SKILL.md` - Documentation
+- `.opencode/skills/sk-code-opencode/SKILL.md` - Documentation
 
 - `.opencode/.../javascript/style_guide.md` - Documentation
 
@@ -219,7 +219,7 @@ Next: Continue implementation
 
 - `.opencode/.../checklists/javascript_checklist.md` - Documentation
 
-- `.opencode/skill/sk-code-opencode/CHANGELOG.md` - Documentation
+- `.opencode/skills/sk-code-opencode/CHANGELOG.md` - Documentation
 
 **How to Extend**:
 
@@ -244,10 +244,10 @@ Next: Continue implementation
 
 ## 2. OVERVIEW
 
-Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
+Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
 
 **Key Outcomes**:
-- Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case...
+- Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case...
 - Decision: Use camelCase for JS functions/params/exports because it aligns with M
 - Decision: Keep backward-compatible snake_case aliases in module.
 - Decision: Use segment-based parsing (CODE vs STRING vs COMMENT vs TEMPLATE) for
@@ -259,15 +259,15 @@ Completed full migration of all JavaScript code in .opencode/skill/system-spec-k
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/sk-code-opencode/SKILL.md` | File modified (description pending) |
+| `.opencode/skills/sk-code-opencode/SKILL.md` | File modified (description pending) |
 | `.opencode/.../javascript/style_guide.md` | File modified (description pending) |
 | `.opencode/.../javascript/quality_standards.md` | File modified (description pending) |
 | `.opencode/.../javascript/quick_reference.md` | File modified (description pending) |
 | `.opencode/.../shared/universal_patterns.md` | File modified (description pending) |
 | `.opencode/.../shared/code_organization.md` | File modified (description pending) |
 | `.opencode/.../checklists/javascript_checklist.md` | File modified (description pending) |
-| `.opencode/skill/sk-code-opencode/CHANGELOG.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/shared/trigger-extractor.js` | File modified (description pending) |
+| `.opencode/skills/sk-code-opencode/CHANGELOG.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/shared/trigger-extractor.js` | File modified (description pending) |
 | `.opencode/.../parsing/memory-parser.js` | File modified (description pending) |
 
 <!-- /ANCHOR:summary-session-1770400017446-6y3pw9nnj-003-memory-and-spec-kit/090-opencode-naming-conventions -->
@@ -280,9 +280,9 @@ Completed full migration of all JavaScript code in .opencode/skill/system-spec-k
 ## 3. DETAILED CHANGES
 
 <!-- ANCHOR:implementation-completed-full-migration-all-27276cfd-session-1770400017446-6y3pw9nnj -->
-### FEATURE: Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case...
+### FEATURE: Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case...
 
-Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
+Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
 
 **Details:** naming convention migration | snake_case to camelCase | JavaScript naming standards | module.exports camelCase | backward-compatible aliases | segment-based parser | MCP handler exports | sk-code-opencode skill | spec 090 | opencode naming conventions
 <!-- /ANCHOR:implementation-completed-full-migration-all-27276cfd-session-1770400017446-6y3pw9nnj -->
@@ -483,7 +483,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 > **User** | 2026-02-06 @ 18:46:57
 
-Completed full migration of all JavaScript code in .opencode/skill/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
+Completed full migration of all JavaScript code in .opencode/skills/system-spec-kit/ from snake_case to camelCase naming conventions, aligning with JS ecosystem standards (MDN, Airbnb, Node.js). Updated 9 skill documentation files in sk-code-opencode/ to reflect the new standard. Migrated ~2,980 unique identifiers across 163+ JS files using a segment-based parser that distinguishes CODE from STRING/COMMENT/TEMPLATE segments. Fixed multiple post-migration issues including stray backticks from template literal parser, self-referential const declarations, and broken module.exports blocks that still referenced old snake_case names. Added backward-compatible snake_case aliases in MCP handler exports and shared library files. Final verification: 206/206 syntax pass, 148/148 runtime pass, MCP server loads successfully. Created Level 3+ spec folder with full documentation.
 
 ---
 
@@ -513,7 +513,7 @@ Completed full migration of all JavaScript code in .opencode/skill/system-spec-k
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/090-opencode-naming-conventions", limit: 10 })
@@ -525,7 +525,7 @@ ls -la 003-memory-and-spec-kit/090-opencode-naming-conventions/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/090-opencode-naming-conventions --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/090-opencode-naming-conventions --force
 ```
 
 ### Recovery Priority
@@ -683,15 +683,15 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/sk-code-opencode/SKILL.md"
+  - ".opencode/skills/sk-code-opencode/SKILL.md"
   - ".opencode/.../javascript/style_guide.md"
   - ".opencode/.../javascript/quality_standards.md"
   - ".opencode/.../javascript/quick_reference.md"
   - ".opencode/.../shared/universal_patterns.md"
   - ".opencode/.../shared/code_organization.md"
   - ".opencode/.../checklists/javascript_checklist.md"
-  - ".opencode/skill/sk-code-opencode/CHANGELOG.md"
-  - ".opencode/skill/system-spec-kit/shared/trigger-extractor.js"
+  - ".opencode/skills/sk-code-opencode/CHANGELOG.md"
+  - ".opencode/skills/system-spec-kit/shared/trigger-extractor.js"
   - ".opencode/.../parsing/memory-parser.js"
 
 # Relationships

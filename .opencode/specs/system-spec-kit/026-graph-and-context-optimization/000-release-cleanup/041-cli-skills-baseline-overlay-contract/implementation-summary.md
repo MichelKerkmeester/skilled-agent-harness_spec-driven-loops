@@ -83,5 +83,5 @@ Pattern: lifted the canonical sentence form verbatim from `review.md` line 31 / 
 - **Specification**: spec.md
 - **Plan**: plan.md
 - **Tasks**: tasks.md
-- **Pattern donor**: `.opencode/agent/review.md`
+- **Pattern donor**: `.opencode/agents/review.md`
 - **External plan**: `/Users/michelkerkmeester/.claude/plans/not-all-manual-testing-prancy-biscuit.md`

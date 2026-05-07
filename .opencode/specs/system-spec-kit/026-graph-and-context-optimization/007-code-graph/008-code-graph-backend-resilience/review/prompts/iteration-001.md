@@ -14,9 +14,9 @@ You are running iteration 1 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit the hash-aware staleness predicate landed by T08:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:7-10` (imports)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:117-123` (getCurrentFileContentHash)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-425` (isFileStale + ensureFreshFiles)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:7-10` (imports)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:117-123` (getCurrentFileContentHash)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-425` (isFileStale + ensureFreshFiles)
 
 Compare against the design in 007 iter-008 Patch Surface section.
 

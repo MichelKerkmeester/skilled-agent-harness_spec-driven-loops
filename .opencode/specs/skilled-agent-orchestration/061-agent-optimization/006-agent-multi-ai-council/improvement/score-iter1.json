@@ -3,9 +3,9 @@
   "profileId": "multi-ai-council",
   "family": "multi-ai-council",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/ultra-think.md",
+  "target": ".opencode/agents/ultra-think.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council/improvement/candidates/iter-1-candidate-001.md",
-  "baseline": ".opencode/agent/ultra-think.md",
+  "baseline": ".opencode/agents/ultra-think.md",
   "score": 76,
   "baselineScore": 91,
   "delta": {

@@ -89,24 +89,24 @@ This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven co
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-review/SKILL.md` | Froze lifecycle, reducer, release-readiness, and runtime-parity guidance to the canonical review contract. |
-| `.opencode/skill/sk-deep-review/README.md` | Published canonical review packet names, lifecycle modes, and operator guidance. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Defined review packet schemas, reducer metrics, and operator-controlled sentinel behavior. |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Documented reducer sequencing, canonical reducer inputs and outputs, and lifecycle handling. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Tied convergence output to release-readiness states. |
-| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Published canonical state files, lifecycle modes, and readiness terminology. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Added canonical reducer metrics and sentinel protection metadata. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Marked reducer-owned sections and review boundaries. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Carried machine-owned metrics and readiness data. |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Established the canonical review-mode contract and output paths. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Froze lifecycle, reducer, release-readiness, and runtime-parity guidance to the canonical review contract. |
+| `.opencode/skills/sk-deep-review/README.md` | Published canonical review packet names, lifecycle modes, and operator guidance. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Defined review packet schemas, reducer metrics, and operator-controlled sentinel behavior. |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Documented reducer sequencing, canonical reducer inputs and outputs, and lifecycle handling. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Tied convergence output to release-readiness states. |
+| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Published canonical state files, lifecycle modes, and readiness terminology. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Added canonical reducer metrics and sentinel protection metadata. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Marked reducer-owned sections and review boundaries. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Carried machine-owned metrics and readiness data. |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Established the canonical review-mode contract and output paths. |
 
 ### Workflow and Runtime Mirrors
 
 | File | What changed |
 |------|--------------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Carried migration logic, lifecycle branches, reducer refresh, and synthesis guidance. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Mirrored the same contract for confirm mode. |
-| `.opencode/agent/deep-review.md` | Aligned the OpenCode runtime mirror to the canonical review packet contract. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Carried migration logic, lifecycle branches, reducer refresh, and synthesis guidance. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Mirrored the same contract for confirm mode. |
+| `.opencode/agents/deep-review.md` | Aligned the OpenCode runtime mirror to the canonical review packet contract. |
 | `.claude/agents/deep-review.md` | Aligned the Claude runtime mirror to the canonical review packet contract. |
 | `.gemini/agents/deep-review.md` | Aligned the Gemini runtime mirror to the canonical review packet contract. |
 | `.codex/agents/deep-review.toml` | Aligned the Codex runtime mirror to the canonical review packet contract. |
@@ -115,14 +115,14 @@ This phase brought `sk-deep-review` to the same lineage-aware, reducer-driven co
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/` | Removed stale review-mode `deep-research-*` references from operator scenarios. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/` | Removed stale review-mode `deep-research-*` references from operator scenarios. |
 
 ### Focused Verification
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Added parity coverage for docs, runtime mirrors, command assets, and migration boundaries. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Added reducer, lifecycle, severity, and release-readiness schema coverage. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Added parity coverage for docs, runtime mirrors, command assets, and migration boundaries. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Added reducer, lifecycle, severity, and release-readiness schema coverage. |
 
 ### Phase Packet
 

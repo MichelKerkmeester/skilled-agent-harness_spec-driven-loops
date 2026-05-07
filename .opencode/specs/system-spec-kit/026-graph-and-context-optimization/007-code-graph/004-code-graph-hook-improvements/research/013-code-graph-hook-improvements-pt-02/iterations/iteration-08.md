@@ -7,17 +7,17 @@ This round checked the surrounding docs and runtime ergonomics surfaces to see w
 ### Context Consumed
 
 - `iterations/iteration-07.md`
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
 
 ### Findings
 
-- The hook system reference still describes SessionStart as a cross-runtime shared capability, but the runtime matrix and fallback prose do not describe any structured startup graph payload contract, which leaves the builder's `sharedPayload` path undocumented at the transport layer [.opencode/skill/system-spec-kit/references/config/hook_system.md:35-45,64-78].
-- The Codex runtime README smoke check only asserts that stdout contains non-empty `hookSpecificOutput.additionalContext` with `Session Context`, reinforcing a text-only validation target for startup behavior [.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md:27-35].
-- Copilot's custom-instructions writer accepts only `startupSurface` and `advisorBrief` strings, so even if the builder emitted structured startup context, the current Copilot transport intentionally drops it at the writer boundary [.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:15-20,61-87].
+- The hook system reference still describes SessionStart as a cross-runtime shared capability, but the runtime matrix and fallback prose do not describe any structured startup graph payload contract, which leaves the builder's `sharedPayload` path undocumented at the transport layer [.opencode/skills/system-spec-kit/references/config/hook_system.md:35-45,64-78].
+- The Codex runtime README smoke check only asserts that stdout contains non-empty `hookSpecificOutput.additionalContext` with `Session Context`, reinforcing a text-only validation target for startup behavior [.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md:27-35].
+- Copilot's custom-instructions writer accepts only `startupSurface` and `advisorBrief` strings, so even if the builder emitted structured startup context, the current Copilot transport intentionally drops it at the writer boundary [.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:15-20,61-87].
 
 ### Evidence
 

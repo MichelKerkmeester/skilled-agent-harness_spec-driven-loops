@@ -7,7 +7,7 @@ Answer RQ-7 and RQ-8 with corpus-wide count distributions and `last_save_at` fre
 1. Trigger-phrase pressure is high: 216 folders exceed the intended 12-trigger-phrase ceiling, with the worst cases reaching 33. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 2. Key-file pressure is also high: 159 folders already sit at the 20-key-file cap, which suggests truncation is common rather than exceptional. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 3. Entity saturation is even stronger: 291 folders hit the 16-entity cap, confirming that downstream entity visibility is routinely clipped. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-4. `last_save_at` is stale in 130 folders when compared with current canonical-doc mtimes; legacy-format files are especially problematic because compatibility mode synthesizes epoch-like timestamps instead of preserving historical save times. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
+4. `last_save_at` is stale in 130 folders when compared with current canonical-doc mtimes; legacy-format files are especially problematic because compatibility mode synthesizes epoch-like timestamps instead of preserving historical save times. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 
 ## Ruled Out
 - Treating legacy synthetic timestamps as meaningful save history.
@@ -16,7 +16,7 @@ Answer RQ-7 and RQ-8 with corpus-wide count distributions and `last_save_at` fre
 - Looking only at median counts; cap-hit rates were more revealing.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

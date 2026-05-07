@@ -32,21 +32,21 @@ _memory:
 
 **What**: The canonical `agent-improver.md` line 156 has:
 ```
-| `/improve:agent-improver` | ... | `.opencode/command/spec_kit/agent-improver.md` |
+| `/improve:agent-improver` | ... | `.opencode/commands/spec_kit/agent-improver.md` |
 ```
 
 **Fix to**:
 ```
-| `/improve:agent` | ... | `.opencode/command/improve/agent.md` |
+| `/improve:agent` | ... | `.opencode/commands/improve/agent.md` |
 ```
 
 **Files**:
-- `.opencode/agent/agent-improver.md` — fix line 156
+- `.opencode/agents/agent-improver.md` — fix line 156
 - `.claude/agents/agent-improver.md` — sync mirror
 - `.agents/agents/agent-improver.md` — sync mirror
 - `.codex/agents/agent-improver.toml` — sync mirror (TOML format)
 
-**Verify**: `node score-candidate.cjs --candidate=.opencode/agent/agent-improver.md --dynamic` → systemFitness=100
+**Verify**: `node score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` → systemFitness=100
 
 ---
 
@@ -81,7 +81,7 @@ Cherry-pick the useful changes from candidates 001-003 into canonical `agent-imp
 
 This way the dashboard shows the actual profile identity instead of a misleading label.
 
-**File**: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` line 66
+**File**: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` line 66
 
 ---
 
@@ -92,9 +92,9 @@ This way the dashboard shows the actual profile identity instead of a misleading
 **Fix**: Read `stopRules.plateauWindow` from config (default `3` for backward compat). Use this value for both the `scores.length >= N` check and the `scores.slice(-N)` window.
 
 **Files**:
-- `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` lines 305-308
-- `.opencode/skill/sk-improve-agent/assets/improvement_config.json` — add `plateauWindow` field
-- `.opencode/skill/sk-improve-agent/assets/improvement_config_reference.md` — document new field
+- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` lines 305-308
+- `.opencode/skills/sk-improve-agent/assets/improvement_config.json` — add `plateauWindow` field
+- `.opencode/skills/sk-improve-agent/assets/improvement_config_reference.md` — document new field
 
 ---
 
@@ -104,7 +104,7 @@ This way the dashboard shows the actual profile identity instead of a misleading
 
 **Fix**: Also count records where `recommendation` is `candidate-acceptable` or `candidate-better` as accepted. Rejected = `candidate-worse` or `candidate-rejected`. This makes the dashboard counters meaningful for normal scoring runs.
 
-**File**: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` lines 207-215
+**File**: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` lines 207-215
 
 ---
 
@@ -132,10 +132,10 @@ D1+D2 are sequential (same files). D3, D4, D5 can be done in parallel.
 
 | File | Changes |
 | --- | --- |
-| `.opencode/agent/agent-improver.md` | D1: fix command path. D2: promote candidate improvements |
+| `.opencode/agents/agent-improver.md` | D1: fix command path. D2: promote candidate improvements |
 | `.claude/agents/agent-improver.md` | Mirror sync |
 | `.agents/agents/agent-improver.md` | Mirror sync |
 | `.codex/agents/agent-improver.toml` | Mirror sync (TOML format) |
-| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | D3: family fix (line 66). D4: plateau window (lines 305-308). D5: accepted counting (lines 207-215) |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | D4: add `plateauWindow` field |
-| `.opencode/skill/sk-improve-agent/references/improvement_config_reference.md` | D4: document new field |
+| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | D3: family fix (line 66). D4: plateau window (lines 305-308). D5: accepted counting (lines 207-215) |
+| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | D4: add `plateauWindow` field |
+| `.opencode/skills/sk-improve-agent/references/improvement_config_reference.md` | D4: document new field |

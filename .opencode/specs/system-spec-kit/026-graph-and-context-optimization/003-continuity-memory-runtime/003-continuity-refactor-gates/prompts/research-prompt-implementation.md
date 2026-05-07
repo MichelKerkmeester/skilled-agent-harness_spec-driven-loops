@@ -242,7 +242,7 @@ Halt the research loop when **any** of these are met:
 
 ### 6.5 NOT retargetable without schema change
 
-- **`UNIQUE(spec_folder, file_path, anchor_id)` constraint** blocks multiple memories per file (enforced by `.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:126`).
+- **`UNIQUE(spec_folder, file_path, anchor_id)` constraint** blocks multiple memories per file (enforced by `.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:126`).
 - **`atomicSaveMemory()` file I/O path** at `memory-save.ts:1521` assumes write to disk; new `atomicIndexMemory()` needed that skips file write and commits directly via SQLite transaction.
 - **Template contract validator** needs new rules for spec-doc structure (currently validates memory doc anchors).
 - **Memory parser** needs a spec-doc variant (currently parses memory-specific frontmatter shape).
@@ -250,17 +250,17 @@ Halt the research loop when **any** of these are met:
 
 ### 6.6 Key code paths (absolute)
 
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` (~610 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` (~1799 LOC; `atomicSaveMemory` at L1521)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` (~1378 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` (~1610 LOC)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` (for `findSpecDocuments()`)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts` (~787 LOC — the read-transform-write pattern model)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Templates root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/templates/`
-- Filled examples: `.opencode/skill/system-spec-kit/templates/examples/level_3/*.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (~610 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` (~1799 LOC; `atomicSaveMemory` at L1521)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` (~1378 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` (~1610 LOC)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts` (for `findSpecDocuments()`)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts` (~787 LOC — the read-transform-write pattern model)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Templates root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/templates/`
+- Filled examples: `.opencode/skills/system-spec-kit/templates/examples/level_3/*.md`
 
 ---
 
@@ -301,14 +301,14 @@ All written inside the phase 018 spec folder (`.opencode/specs/system-spec-kit/0
 
 Concrete reads/commands the loop must execute in iteration 1 before any design work:
 
-1. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` end-to-end (~610 LOC).
-2. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` end-to-end, focusing on `atomicSaveMemory` (L1521) and the write path (~1799 LOC).
-3. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts` end-to-end (~787 LOC) to internalize the read-transform-write anchor-append pattern.
+1. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` end-to-end (~610 LOC).
+2. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` end-to-end, focusing on `atomicSaveMemory` (L1521) and the write path (~1799 LOC).
+3. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts` end-to-end (~787 LOC) to internalize the read-transform-write anchor-append pattern.
 4. Read three filled spec-doc samples that have all 6 `implementation-summary.md` anchors populated — at minimum `templates/examples/level_3/implementation-summary.md` and two recent real packets from `.opencode/specs/` (recommend `022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/implementation-summary.md` and `023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes/implementation-summary.md`).
 5. Read all seven phase 017 deliverables listed in Section 6.1.
 6. Run `memory_search` with the `anchors` parameter against a real spec doc and capture the response shape in the iteration log.
 7. Run `memory_context` in `resume` mode against a known packet and capture the response shape in the iteration log.
-8. Open `.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts` around line 126 and record the exact `UNIQUE` constraint that blocks multi-memory-per-file.
+8. Open `.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts` around line 126 and record the exact `UNIQUE` constraint that blocks multi-memory-per-file.
 9. Produce the iteration-1 mental-model diagram described in Iteration 1 and write it to `research/research.md` under a new "Architecture Baseline" section. **No design proposals yet.**
 
 ---

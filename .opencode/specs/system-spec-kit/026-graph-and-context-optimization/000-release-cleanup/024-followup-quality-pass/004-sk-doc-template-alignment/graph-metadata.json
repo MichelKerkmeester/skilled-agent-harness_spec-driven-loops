@@ -41,14 +41,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
-      ".opencode/skill/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
+      ".opencode/skills/sk-doc/SKILL.md",
       "logs/iter-001.log",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment/audit-findings.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment/audit-target-list.md",
@@ -86,31 +86,31 @@
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
         "name": "hook_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
         "source": "derived"
       },
       {
         "name": "skill-advisor-hook.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/SKILL.md",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {

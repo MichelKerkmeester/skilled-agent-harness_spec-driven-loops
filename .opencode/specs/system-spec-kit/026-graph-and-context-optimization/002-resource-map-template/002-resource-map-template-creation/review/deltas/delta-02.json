@@ -6,24 +6,24 @@
   "reasoning_effort": "high",
   "timestamp": "2026-04-24T09:24:56.546Z",
   "files_reviewed": [
-    ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/spec/spec-level.ts"
+    ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/spec/spec-level.ts"
   ],
   "questions_answered": {
     "q1_consistent_registration": {
@@ -53,7 +53,7 @@
     },
     "q7_dist_mirror_rebuild": {
       "answer": "not_applicable",
-      "evidence": "A workspace glob for .opencode/skill/system-spec-kit/mcp_server/**/dist and for .opencode/skill/system-spec-kit/mcp_server/**/*.js returned no matches, so there is no checked-in dist mirror under mcp_server to rebuild."
+      "evidence": "A workspace glob for .opencode/skills/system-spec-kit/mcp_server/**/dist and for .opencode/skills/system-spec-kit/mcp_server/**/*.js returned no matches, so there is no checked-in dist mirror under mcp_server to rebuild."
     }
   },
   "findings": [
@@ -62,7 +62,7 @@
       "severity": "P2",
       "dimension": "MCP runtime code correctness",
       "title": "Add a direct regression test for resource-map path inference",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts",
       "line": 104,
       "evidence": "The canonical spec-document path inference cases cover spec.md, plan.md, decision-record.md, implementation-summary.md, and research.md at lines 104-120, but omit resource-map.md, leaving the new resource_map branch without a dedicated regression assertion."
     }

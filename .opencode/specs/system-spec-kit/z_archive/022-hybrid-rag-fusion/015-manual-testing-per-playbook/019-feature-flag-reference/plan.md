@@ -87,7 +87,7 @@ Manual feature-flag-reference test execution pipeline with review-gated evidence
 - [ ] Verify source documents are open: playbook, review protocol, and all linked feature-flag-reference catalog files.
 - [ ] Confirm MCP runtime access for `memory_search` and `memory_context`.
 - [ ] Verify that flag reference documentation is indexed; run `memory_index_scan({ force:true })` if flag docs are absent from search results.
-- [ ] Confirm the dist build at `.opencode/skill/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` is current for 125; run `npm run build` inside `mcp_server/` if in doubt.
+- [ ] Confirm the dist build at `.opencode/skills/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` is current for 125; run `npm run build` inside `mcp_server/` if in doubt.
 
 ### Phase 2: Non-Destructive Read-Only Tests
 - [ ] Run EX-028: `memory_search({ query:"SPECKIT flags active inert deprecated", limit:20 })` then `memory_context({ mode:"deep", prompt:"Classify SPECKIT flags as active, inert, or deprecated", sessionId:"ex028" })`. Capture output and classify flags. If 0 results, triage via feature catalog cross-reference.
@@ -100,7 +100,7 @@ Manual feature-flag-reference test execution pipeline with review-gated evidence
 - [ ] If any EX-028 through EX-034 search returns 0 results, run `memory_index_scan({ force:true })` and retry once; if still 0, triage via feature catalog and document EVIDENCE GAP in evidence bundle.
 
 ### Phase 3: Hydra Snapshot Test
-- [ ] Change to `.opencode/skill/system-spec-kit/mcp_server/` directory.
+- [ ] Change to `.opencode/skills/system-spec-kit/mcp_server/` directory.
 - [ ] Run 125 step 1: `SPECKIT_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-a')))"` and capture JSON output.
 - [ ] Run 125 step 2: `SPECKIT_HYDRA_PHASE=graph SPECKIT_HYDRA_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-b')))"` and capture JSON output.
 - [ ] Confirm step 1 shows `phase:"shared-rollout"` with `capabilities.graphUnified:true` (live flag did NOT alter roadmap).
@@ -142,7 +142,7 @@ Manual feature-flag-reference test execution pipeline with review-gated evidence
 | [`../../feature_catalog/19--feature-flag-reference/`](../../feature_catalog/19--feature-flag-reference/) | Internal | Green | Test-to-feature context and review triage lose their canonical reference |
 | MCP runtime for `memory_search` and `memory_context` | Internal | Yellow | EX-028 through EX-034 cannot be executed |
 | Indexed flag documentation corpus | Internal | Yellow | EX-028 through EX-034 return 0 results; triage via feature catalog if absent |
-| Dist build at `.opencode/skill/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` | Internal | Yellow | 125 cannot produce valid snapshot comparisons |
+| Dist build at `.opencode/skills/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` | Internal | Yellow | 125 cannot produce valid snapshot comparisons |
 <!-- /ANCHOR:dependencies -->
 
 ---

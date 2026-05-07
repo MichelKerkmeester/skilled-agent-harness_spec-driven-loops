@@ -49,10 +49,10 @@
       "mcp_server/lib/cognitive/rollout-policy.ts",
       "mcp_server/lib/search/learned-feedback.ts",
       "tests/adaptive-ranking.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -112,13 +112,13 @@
       {
         "name": "job-queue.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

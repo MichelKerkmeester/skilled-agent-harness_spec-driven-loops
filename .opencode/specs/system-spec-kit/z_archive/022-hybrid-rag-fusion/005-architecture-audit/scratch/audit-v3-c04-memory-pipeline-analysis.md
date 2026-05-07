@@ -1,14 +1,14 @@
 # C4 Memory Pipeline Audit
 
 Scope reviewed:
-- `.opencode/skill/system-spec-kit/scripts/memory/*.ts`
-- `.opencode/skill/system-spec-kit/scripts/core/*.ts`
+- `.opencode/skills/system-spec-kit/scripts/memory/*.ts`
+- `.opencode/skills/system-spec-kit/scripts/core/*.ts`
 
 Notes:
 - I reviewed all 18 TypeScript source files currently present in scope.
 - There are no `.js` source files in those two directories at this revision; runtime behavior was spot-checked through the compiled `dist/` CLIs where helpful.
 
-### C4-001: Filename de-duplication is not atomic, so concurrent saves can overwrite each other / High / File Naming Logic / Location: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:977`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1864`, `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:147`
+### C4-001: Filename de-duplication is not atomic, so concurrent saves can overwrite each other / High / File Naming Logic / Location: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:977`, `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1864`, `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:147`
 Description:
 The workflow computes a "unique" memory filename before the write phase, but that uniqueness check is only protected by an in-process promise lock. A second process can pick the same filename between `ensureUniqueMemoryFilename(...)` and the eventual rename, and `writeFilesAtomically(...)` explicitly overwrites an existing file instead of failing and re-resolving a new name.
 
@@ -24,7 +24,7 @@ Two overlapping saves for the same spec folder and same minute/slug can lose one
 Recommended Fix:
 Move uniqueness enforcement into the atomic write path. Open the final markdown target with `O_EXCL` semantics or fail on pre-existing targets, then regenerate a suffixed filename and retry. If cross-process concurrency is supported, add a filesystem lock or per-folder lockfile around filename allocation + rename.
 
-### C4-002: Vector index write failures are silently downgraded to "embedding unavailable" / High / Indexing Bugs / Location: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:148`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2376`
+### C4-002: Vector index write failures are silently downgraded to "embedding unavailable" / High / Indexing Bugs / Location: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:148`, `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2376`
 Description:
 `indexMemory(...)` catches vector-store write exceptions and returns `null`. The workflow interprets any `null` return as "embedding generation returned null" and records `skipped_embedding_unavailable`, even when the embedding succeeded and the actual failure was the database/vector write.
 
@@ -39,7 +39,7 @@ Real indexing failures are mislabeled as benign embedding unavailability. Operat
 Recommended Fix:
 Return a structured result from `indexMemory(...)` that distinguishes `embedding_null`, `embedding_error`, and `vector_write_error`, or rethrow vector-write failures so `workflow.ts` can persist a hard failure status with the real error class.
 
-### C4-003: Post-save HIGH findings are advisory only, so known-bad memories still get indexed / High / Error Recovery Gaps / Location: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2323`, `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:340`
+### C4-003: Post-save HIGH findings are advisory only, so known-bad memories still get indexed / High / Error Recovery Gaps / Location: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2323`, `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:340`
 Description:
 The post-save review is documented as requiring manual patching for HIGH-severity issues, but the workflow only prints the review result and then continues directly into semantic indexing. No branch aborts, no non-zero exit is produced, and no retry/rollback path exists.
 
@@ -54,7 +54,7 @@ Memories that the system itself has already identified as malformed or semantica
 Recommended Fix:
 Promote HIGH review issues to an actionable workflow state. Either abort before indexing with a non-zero exit, or write an explicit `needs_manual_patch` status and skip indexing until the saved file is repaired.
 
-### C4-004: Orphan cleanup cannot remove stale searchable rows for deleted or moved memory files / High / Indexing Bugs / Location: `.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:72`, `.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:153`
+### C4-004: Orphan cleanup cannot remove stale searchable rows for deleted or moved memory files / High / Indexing Bugs / Location: `.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:72`, `.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:153`
 Description:
 The cleanup CLI only deletes rows in `memory_history` and `vec_memories` that no longer have a matching `memory_index` row. It never checks whether the `memory_index` row still points at a real file on disk, so renamed/deleted markdown files remain as stale searchable records.
 
@@ -70,7 +70,7 @@ Search can continue surfacing memories whose markdown file no longer exists or h
 Recommended Fix:
 Add a stale-record pass that scans `memory_index.file_path`, validates the file on disk, and deletes or marks rows whose backing file is gone. If path canonicalization/aliasing matters, reuse the same canonical path logic as the MCP file-watcher removal path.
 
-### C4-005: `reindex-embeddings.js` reports success even when the scan reports failures / Medium / CLI Integration / Location: `.opencode/skill/system-spec-kit/scripts/memory/reindex-embeddings.ts:81`
+### C4-005: `reindex-embeddings.js` reports success even when the scan reports failures / Medium / CLI Integration / Location: `.opencode/skills/system-spec-kit/scripts/memory/reindex-embeddings.ts:81`
 Description:
 The reindex CLI treats "scan returned content" as success. It always prints `STATUS=OK` and exits 0 in that case, regardless of `data.status` or `data.failed`.
 
@@ -85,7 +85,7 @@ Automation can treat a partially failed reindex as healthy. Operators may miss t
 Recommended Fix:
 Map `data.status` and `data.failed` to explicit exit codes. At minimum, exit non-zero when failures are reported; optionally use a warning exit code for partial success and print the failure summary prominently.
 
-### C4-006: Interrupting `generate-context.js` returns exit code 0 / Medium / CLI Integration / Location: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:160`
+### C4-006: Interrupting `generate-context.js` returns exit code 0 / Medium / CLI Integration / Location: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:160`
 Description:
 Both `SIGTERM` and `SIGINT` handlers call `process.exit(0)`. That marks an interrupted run as successful even though the workflow may have been stopped before validation, write completion, or indexing.
 
@@ -99,7 +99,7 @@ Shell scripts, CI hooks, and supervising tools can record aborted saves as succe
 Recommended Fix:
 Exit with standard signal codes (`130` for `SIGINT`, `143` for `SIGTERM`) or throw an interrupt error that the top-level handler maps to a non-zero exit and an `interrupted` status.
 
-### C4-007: The post-save trigger validator misclassifies common short technical phrases as path fragments / Medium / Memory File Format Violations / Location: `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:151`, `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:213`
+### C4-007: The post-save trigger validator misclassifies common short technical phrases as path fragments / Medium / Memory File Format Violations / Location: `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:151`, `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:213`
 Description:
 The path-fragment heuristic marks any 1-4 letter lowercase token as suspicious. That catches real directory names, but it also catches legitimate memory triggers such as `api`, `auth`, `ux`, `sql`, and similar domain terms. Those become HIGH-severity review issues.
 
@@ -114,7 +114,7 @@ The review system generates noisy false positives on normal technical vocabulary
 Recommended Fix:
 Replace the length-only rule with context-aware checks: compare against actual path tokens from the file/spec context, add an allowlist for common technical abbreviations, and downgrade uncertain matches to MEDIUM unless there is corroborating path evidence.
 
-### C4-008: Folder-global `metadata.json` is rewritten even when the primary memory file is skipped as a duplicate / Medium / Error Recovery Gaps / Location: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2029`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2240`, `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2358`, `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:189`
+### C4-008: Folder-global `metadata.json` is rewritten even when the primary memory file is skipped as a duplicate / Medium / Error Recovery Gaps / Location: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2029`, `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2240`, `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2358`, `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:189`
 Description:
 Every workflow run rewrites a single `metadata.json` in the shared `memory/` folder. If the primary markdown is skipped as a duplicate, `metadata.json` is still written and then updated to `skipped_duplicate`, even though no new memory file was created.
 

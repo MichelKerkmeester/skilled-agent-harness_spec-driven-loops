@@ -475,7 +475,7 @@ If any phase introduces regressions that can't be quickly fixed:
 
 ```bash
 # Emergency rollback
-git checkout main -- .opencode/skill/system-spec-kit/scripts/generate-context.js
+git checkout main -- .opencode/skills/system-spec-kit/scripts/generate-context.js
 ```
 
 <!-- /ANCHOR:rollback -->

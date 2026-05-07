@@ -12,63 +12,63 @@
 Existing or easily-extended unit/contract suites:
 
 - **V1 — Tool schema/unit validation**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/review-fixes.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/review-fixes.vitest.ts`
   - Best for: schema strictness, error formatting, invalid-argument rejection.
 - **V2 — Search result formatter contract**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/search-results-format.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/search-results-format.vitest.ts`
   - Best for: `includeTrace` envelopes and score/source/trace shape assertions.
 - **V3 — Ingest queue + handler unit flow**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/job-queue.vitest.ts tests/handler-memory-ingest.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/job-queue.vitest.ts tests/handler-memory-ingest.vitest.ts`
   - Best for: queue state transitions, cancel behavior, persistence helpers.
 - **V4 — Context header injection**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hybrid-search-context-headers.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hybrid-search-context-headers.vitest.ts`
   - Best for: contextual header formatting and `includeContent: false` behavior.
 - **V5 — Local reranker guardrails**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/local-reranker.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/local-reranker.vitest.ts`
   - Best for: missing-model / low-memory fallback logic and cache behavior once assertions are expanded.
 - **V6 — File watcher unit behavior**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/file-watcher.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/file-watcher.vitest.ts`
   - Best for: debounce, `.md` filtering, disable flag, hash-dedup internals.
 - **V7 — Context server static/startup assertions**
-  - Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts`
+  - Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts`
   - Best for: tool exposure and startup-string assertions after adding explicit dynamic-init checks.
 
 ### Group 2: Benchmark Validation
 These are automatable, but they need timing/eval harnesses rather than ordinary assertion-only tests:
 
 - **B1 — Zod validation latency**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-tool-validation.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-tool-validation.mjs`
 - **B2 — Response-envelope serialization latency**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-search-envelope.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-search-envelope.mjs`
 - **B3 — Async ingest response/throughput**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-ingest-runtime.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-ingest-runtime.mjs`
 - **B4 — Local reranker latency**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-local-reranker.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-local-reranker.mjs`
 - **B5 — File watcher end-to-end latency/debounce**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-file-watcher.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-file-watcher.mjs`
 - **B6 — Eval regression / ablation**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/run-eval-ablation.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/run-eval-ablation.mjs`
 
 ### Group 3: MCP Integration
 Live server contract checks that should drive the built server over MCP stdio and assert on real envelopes:
 
 - **I1 — Tool parameter matrix**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/tool-matrix.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/tool-matrix.mjs`
   - Purpose: run one valid payload and one unknown-parameter payload per tool against a live MCP session.
 - **I2 — `memory_search` response-contract harness**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/search-contract.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/search-contract.mjs`
   - Purpose: compare `includeTrace` on/off envelopes against live search results.
 - **I3 — Ingest lifecycle harness**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/ingest-lifecycle.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/ingest-lifecycle.mjs`
   - Purpose: start/status/cancel/crash-recovery scenarios against real temp corpora.
 - **I4 — Dynamic init / handshake harness**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/dynamic-init-contract.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/dynamic-init-contract.mjs`
   - Purpose: capture MCP initialize handshake with feature flag on/off.
 - **I5 — File watcher end-to-end harness**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/file-watcher-e2e.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/file-watcher-e2e.mjs`
   - Purpose: save/delete/edit temp `.md` and non-`.md` files, then assert on reindex behavior.
 - **I6 — Local reranker end-to-end harness**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/local-reranker-e2e.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/local-reranker-e2e.mjs`
   - Purpose: run real searches with model-present/model-missing/low-memory variants.
 
 ### Group 4: Documentation/Manual
@@ -79,7 +79,7 @@ Live server contract checks that should drive the built server over MCP stdio an
 
 ### Group 5: Other
 - **O1 — Backward-compatibility snapshot regression**
-  - Proposed command: `cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/regression-snapshots.mjs`
+  - Proposed command: `cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/regression-snapshots.mjs`
   - Purpose: freeze a fixture corpus, run pre/post calls, and byte-compare normalized envelopes for legacy callers.
 
 ## Detailed Classification

@@ -16,7 +16,7 @@ new). FIX-010-cycle2 attempted another remediation — this is the fresh review 
 
 ## Apply R5 fix-completeness-checklist
 
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 Apply its protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

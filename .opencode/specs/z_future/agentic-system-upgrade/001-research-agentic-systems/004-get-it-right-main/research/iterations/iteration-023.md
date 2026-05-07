@@ -13,11 +13,11 @@ I compared the external repo's one workflow definition and compact README framin
 
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/workflow.yaml:1-24] The external repo keeps the public workflow framing and the executable loop tightly aligned in one compact definition.
-- [SOURCE: .opencode/command/spec_kit/plan.md:7-21] `/spec_kit:plan` explicitly says markdown owns setup while YAML owns execution.
-- [SOURCE: .opencode/command/spec_kit/plan.md:37-138] The same file then embeds a long first-message protocol and setup pseudo-workflow before the actual planning lifecycle description.
-- [SOURCE: .opencode/command/spec_kit/implement.md:7-18] `/spec_kit:implement` repeats the same markdown-versus-YAML ownership pattern.
-- [SOURCE: .opencode/command/spec_kit/implement.md:35-120] It then repeats another large setup block with near-identical execution-mode and dispatch handling.
-- [SOURCE: .opencode/command/spec_kit/complete.md:7-21] `/spec_kit:complete` repeats the same execution preamble again.
+- [SOURCE: .opencode/commands/spec_kit/plan.md:7-21] `/spec_kit:plan` explicitly says markdown owns setup while YAML owns execution.
+- [SOURCE: .opencode/commands/spec_kit/plan.md:37-138] The same file then embeds a long first-message protocol and setup pseudo-workflow before the actual planning lifecycle description.
+- [SOURCE: .opencode/commands/spec_kit/implement.md:7-18] `/spec_kit:implement` repeats the same markdown-versus-YAML ownership pattern.
+- [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] It then repeats another large setup block with near-identical execution-mode and dispatch handling.
+- [SOURCE: .opencode/commands/spec_kit/complete.md:7-21] `/spec_kit:complete` repeats the same execution preamble again.
 - [SOURCE: .opencode/README.md:52-60] The repo currently exposes 21 commands and 29 YAML assets, which means the command system itself has become a product surface.
 
 ## Analysis

@@ -35,12 +35,12 @@ All paths are relative to repo root.
 
 Focus Q2 — sk-code stack detection:
 
-1. Read `.opencode/skill/sk-code/SKILL.md` end-to-end. Identify:
+1. Read `.opencode/skills/sk-code/SKILL.md` end-to-end. Identify:
    - The "smart router" that detects stack
-   - The list of detection markers per stack (AGENTS.md table says: Webflow → src/2_javascript/, *.webflow.js, motion.dev/GSAP/Lenis/HLS/Swiper/FilePond, wrangler.toml; OpenCode → .opencode/skill/, .opencode/agent/, MCP server folders; Go → go.mod; Swift → Package.swift, *.xcodeproj; React Native → app.json + expo / package.json + react-native; React/Next.js → next.config.* / package.json + react/next; Node.js → package.json fallback)
+   - The list of detection markers per stack (AGENTS.md table says: Webflow → src/2_javascript/, *.webflow.js, motion.dev/GSAP/Lenis/HLS/Swiper/FilePond, wrangler.toml; OpenCode → .opencode/skills/, .opencode/agents/, MCP server folders; Go → go.mod; Swift → Package.swift, *.xcodeproj; React Native → app.json + expo / package.json + react-native; React/Next.js → next.config.* / package.json + react/next; Node.js → package.json fallback)
    - The detection ORDER and conflict-resolution policy
-2. List the directory contents of `.opencode/skill/sk-code/` — find any router script, references, or assets.
-3. Look at `.opencode/skill/sk-code/references/` for `router/stack_detection.md` (mentioned in iter 4) or similar. Is the detection logic implemented as a script or as docs only?
+2. List the directory contents of `.opencode/skills/sk-code/` — find any router script, references, or assets.
+3. Look at `.opencode/skills/sk-code/references/` for `router/stack_detection.md` (mentioned in iter 4) or similar. Is the detection logic implemented as a script or as docs only?
 4. Read whatever stack-detection logic exists — is it executable code, structured JSON markers, or prose? File:line cite each.
 5. What does sk-code return after detection? Is there a stack-aware resource list (e.g. `references/webflow/`, `references/nextjs/`, `references/go/`)? List them.
 6. UNKNOWN/disambiguation behavior: what does sk-code do when no markers match or multiple markers match? Cite.

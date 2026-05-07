@@ -9,8 +9,8 @@
  * Run with: node test-classifier.js
  */
 
-const classifier = require('../../../../.opencode/skill/system-spec-kit/lib/complexity/classifier');
-const features = require('../../../../.opencode/skill/system-spec-kit/lib/complexity/features');
+const classifier = require('../../../../.opencode/skills/system-spec-kit/lib/complexity/classifier');
+const features = require('../../../../.opencode/skills/system-spec-kit/lib/complexity/features');
 
 let passed = 0;
 let failed = 0;

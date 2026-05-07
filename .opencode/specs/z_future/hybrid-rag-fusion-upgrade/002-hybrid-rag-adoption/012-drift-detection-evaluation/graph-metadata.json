@@ -36,11 +36,11 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts",
-      ".opencode/skill/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,31 +50,31 @@
       {
         "name": "memory-crud-health.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "validate-memory-quality.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
         "source": "derived"
       },
       {
         "name": "validation_rules.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/validation/validation_rules.md",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
         "source": "derived"
       },
       {

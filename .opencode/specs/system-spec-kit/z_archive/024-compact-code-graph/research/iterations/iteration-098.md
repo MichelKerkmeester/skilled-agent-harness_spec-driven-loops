@@ -17,7 +17,7 @@ Staleness detection is fragmented today:
 
 Non-hook CLIs therefore never auto-index. They can be told to check `code_graph_status`, but nothing automatically repairs an empty or stale graph.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts`]
 
 ### Problem
 
@@ -29,9 +29,9 @@ Non-hook CLIs never auto-index, so code graph quality is often empty or stale un
 - Description: Trigger code graph indexing during MCP server initialization. Best variant is not "always full scan," but a startup preflight that decides whether to launch a scan.
 - LOC estimate: 80-160
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
   - tests around startup/init behavior
 - Dependencies:
   - single-flight scan guard / "scan in progress" metadata
@@ -43,10 +43,10 @@ Non-hook CLIs never auto-index, so code graph quality is often empty or stale un
 - Description: Use existing `file_mtime_ms` storage to compare current workspace mtimes against indexed mtimes, then selectively reindex only stale/new/deleted files. This should become the canonical freshness signal, not `indexed_at` age alone.
 - LOC estimate: 90-180
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts`
   - tests for stale/new/deleted files
 - Dependencies:
   - candidate file discovery walk
@@ -58,9 +58,9 @@ Non-hook CLIs never auto-index, so code graph quality is often empty or stale un
 - Description: On `code_graph_context` or `code_graph_query`, auto-index when the graph is empty or stale. Best form is "lazy + selective": if seeds/subject resolve to files, reindex those first; if the graph is empty, do an initial workspace scan once.
 - LOC estimate: 70-150
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
   - likely new helper such as `lib/code-graph/ensure-ready.ts`
 - Dependencies:
   - shared freshness/auto-index helper

@@ -42,10 +42,10 @@
     "status": "complete",
     "key_files": [
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -69,25 +69,25 @@
       {
         "name": "claude-transcript.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
         "source": "derived"
       },
       {
         "name": "session-analytics-db.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
         "source": "derived"
       },
       {
         "name": "session-analytics-db.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
         "source": "derived"
       },
       {
         "name": "session-stop-replay.jsonl",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
         "source": "derived"
       },
       {

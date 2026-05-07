@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Apply five fixes, extend test, validate, stress, commit, push"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts"
-      - ".opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+      - ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-002-deep-loop-state"
@@ -50,20 +50,20 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P1] Add halt/cancel lock cleanup directive to `step_acquire_lock` (F-010-B5-01) (`.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
-- [ ] T004 [P1] Emit canonical fallback iteration record in `step_evaluate_results.on_missing_outputs` (F-010-B5-02) (`.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
-- [ ] T005 [P1] Emit canonical fallback iteration record in `step_evaluate_results.on_missing_outputs` (F-010-B5-03) (`.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
-- [ ] T006 [P2] Thread `--no-resource-map` flag through `step_create_config` and `step_create_state_log` in both YAMLs (F-010-B5-04) (`.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
-- [ ] T007 [P1] Refresh parent `children_ids` and `last_save_at` on child save (F-019-D4-01) (`.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`)
-- [ ] T008 [P1] Extend `phase-parent-pointer.vitest.ts` with children_ids refresh assertion (F-019-D4-01) (`.opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts`)
+- [ ] T003 [P1] Add halt/cancel lock cleanup directive to `step_acquire_lock` (F-010-B5-01) (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
+- [ ] T004 [P1] Emit canonical fallback iteration record in `step_evaluate_results.on_missing_outputs` (F-010-B5-02) (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
+- [ ] T005 [P1] Emit canonical fallback iteration record in `step_evaluate_results.on_missing_outputs` (F-010-B5-03) (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
+- [ ] T006 [P2] Thread `--no-resource-map` flag through `step_create_config` and `step_create_state_log` in both YAMLs (F-010-B5-04) (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
+- [ ] T007 [P1] Refresh parent `children_ids` and `last_save_at` on child save (F-019-D4-01) (`.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`)
+- [ ] T008 [P1] Extend `phase-parent-pointer.vitest.ts` with children_ids refresh assertion (F-019-D4-01) (`.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
 - [ ] T009 [P1] Run extended phase-parent-pointer vitest — must pass
-- [ ] T010 [P1] Build TS to refresh `scripts/dist/` (`tsc -p .opencode/skill/system-spec-kit/scripts/tsconfig.json` or equivalent)
-- [ ] T011 [P1] Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <sub-phase-folder> --strict` — exit 0 (or warnings-only)
+- [ ] T010 [P1] Build TS to refresh `scripts/dist/` (`tsc -p .opencode/skills/system-spec-kit/scripts/tsconfig.json` or equivalent)
+- [ ] T011 [P1] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <sub-phase-folder> --strict` — exit 0 (or warnings-only)
 - [ ] T012 [P1] Run `npm run stress` — must remain 56+ files / 163+ tests / exit 0
 - [ ] T013 [P1] Confirm git diff shows only the four product files plus this packet's spec docs
 - [ ] T014 [P1] Commit + push to origin main with finding IDs in message body

@@ -17,12 +17,12 @@ _memory:
     next_safe_action: "Commit + push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "iter-001-daemon-fixes"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -76,12 +76,12 @@ Every acquisition of `acquireGenerationLock()` now writes a 32-character random 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modified | Add `flushPromise` + `drainPending()` while-loop, `suppressGenerationPublication` flag, expose `flush()` and `suppressGenerationPublication()` on the public interface, gate `processSkill()`'s generation-publish behind the flag |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | Modified | Reverse `shutdown()` ordering: suppress + flush + close watcher BEFORE publishing terminal `unavailable` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modified | Token-tagged lock acquisition (`crypto.randomBytes(16)`), owner-checked release, CAS stale reclamation; export `__testables` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts` | Modified | Drop events whose `generation` is strictly older than `lastInvalidation.generation` before listener fan-out |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts` | Modified | Add `sa-003b` describe block: 2 mutex tests (timer drain serialization, close-awaits-flush) for F-001-A1-01 |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts` | Modified | Add `sa-007b` describe block: 2 token-ownership tests for F-001-A1-03 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modified | Add `flushPromise` + `drainPending()` while-loop, `suppressGenerationPublication` flag, expose `flush()` and `suppressGenerationPublication()` on the public interface, gate `processSkill()`'s generation-publish behind the flag |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | Modified | Reverse `shutdown()` ordering: suppress + flush + close watcher BEFORE publishing terminal `unavailable` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modified | Token-tagged lock acquisition (`crypto.randomBytes(16)`), owner-checked release, CAS stale reclamation; export `__testables` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts` | Modified | Drop events whose `generation` is strictly older than `lastInvalidation.generation` before listener fan-out |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts` | Modified | Add `sa-003b` describe block: 2 mutex tests (timer drain serialization, close-awaits-flush) for F-001-A1-01 |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts` | Modified | Add `sa-007b` describe block: 2 token-ownership tests for F-001-A1-03 |
 | `.opencode/specs/.../048-iter-001-daemon-concurrency-fixes/` | Created | Level 2 packet (spec, plan, tasks, checklist, implementation-summary, README) |
 <!-- /ANCHOR:what-built -->
 
@@ -138,5 +138,5 @@ I read each finding from `iteration-001.md` end-to-end, read the four product fi
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

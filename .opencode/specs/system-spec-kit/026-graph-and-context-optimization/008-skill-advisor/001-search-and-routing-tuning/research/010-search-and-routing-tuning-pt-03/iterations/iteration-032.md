@@ -16,7 +16,7 @@ Measure the full active-corpus entity output after the basename de-duplication p
 - None. The global entity table answered the de-duplication question directly.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:474-559`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:474-559`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

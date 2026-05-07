@@ -18,16 +18,16 @@ The 5 supported runtimes:
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md` (the hook contract reference; recently updated)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/README.md` (per-runtime hook docs)
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md` (the hook contract reference; recently updated)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/README.md` (per-runtime hook docs)
 - `.opencode/plugins/spec-kit-skill-advisor.js` (OpenCode plugin entry)
 - The per-runtime CLI skills:
-  - `.opencode/skill/cli-codex/SKILL.md` (how to invoke codex)
-  - `.opencode/skill/cli-copilot/SKILL.md` (how to invoke copilot)
-  - `.opencode/skill/cli-gemini/SKILL.md` (how to invoke gemini)
-  - `.opencode/skill/cli-claude-code/SKILL.md` (how to invoke claude)
-  - `.opencode/skill/cli-opencode/SKILL.md` (how to invoke opencode)
-- `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-*.ts` — the per-CLI dispatch helpers (build-on-top reference)
+  - `.opencode/skills/cli-codex/SKILL.md` (how to invoke codex)
+  - `.opencode/skills/cli-copilot/SKILL.md` (how to invoke copilot)
+  - `.opencode/skills/cli-gemini/SKILL.md` (how to invoke gemini)
+  - `.opencode/skills/cli-claude-code/SKILL.md` (how to invoke claude)
+  - `.opencode/skills/cli-opencode/SKILL.md` (how to invoke opencode)
+- `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-*.ts` — the per-CLI dispatch helpers (build-on-top reference)
 - 035 findings.md (which already showed F11 hooks failing for copilot/native/inline)
 
 ### Implementation

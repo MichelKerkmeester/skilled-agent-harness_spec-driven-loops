@@ -18,10 +18,10 @@ _memory:
     blockers:
       - "Live MCP probe under induced DB lock requires daemon restart before rebuilt dist is loaded"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts"
       - "spec.md"
       - "plan.md"
       - "tasks.md"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -68,10 +68,10 @@ Closed the F-001 + F-003 P1 findings (CONDITIONAL → PASS gate) plus the F-002 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified (+50 / -3 lines) | Block read path on freshness === 'error'; emit shared degraded envelope with rg fallback (F-001) |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified (+72 / -10 lines) | Snapshot-first ordering; isolated stats try/catch; preserved snapshot on stats / post-stats failure (F-003) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts` | Modified (+42 / -2 lines) | 4 new fixtures pinning error → missing/unavailable + buildQueryGraphMetadata short-circuit (F-009) |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts` | Added (~330 lines) | F-001 + F-003 contract + cross-handler parity sweep (F-008 proof) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified (+50 / -3 lines) | Block read path on freshness === 'error'; emit shared degraded envelope with rg fallback (F-001) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified (+72 / -10 lines) | Snapshot-first ordering; isolated stats try/catch; preserved snapshot on stats / post-stats failure (F-003) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/readiness-contract.vitest.ts` | Modified (+42 / -2 lines) | 4 new fixtures pinning error → missing/unavailable + buildQueryGraphMetadata short-circuit (F-009) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts` | Added (~330 lines) | F-001 + F-003 contract + cross-handler parity sweep (F-008 proof) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity/spec.md` | Added | Packet spec (Level 2) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity/plan.md` | Added | Packet plan |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity/tasks.md` | Added | Packet tasks |
@@ -117,7 +117,7 @@ No new abstraction layer was introduced. The shared vocabulary primitives (`cano
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors) |
 | `npx vitest run tests/readiness-contract.vitest.ts` | PASS — 1 file, 19 tests passed (was 13/13) |
 | `npx vitest run tests/code-graph-degraded-readiness-envelope-parity.vitest.ts` | PASS — 1 file, 7 tests passed |
 | `npx vitest run tests/code-graph-status-readiness-snapshot.vitest.ts` | PASS — 1 file, 10 tests passed (packet 014 invariant) |
@@ -132,7 +132,7 @@ No new abstraction layer was introduced. The shared vocabulary primitives (`cano
 | F-003 #2 (snapshot crash AND stats throws) | PASS: `trustState === 'unavailable'` (NOT 'absent') |
 | F-003 #3 (healthy path regression) | PASS: `status: 'ok'`, no degraded markers |
 | Cross-handler parity sweep (F-008 verification) | PASS: context + status crash agree on `canonicalReadiness: 'missing'`, `trustState: 'unavailable'`, `fallbackDecision.nextTool: 'rg'` |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity --strict` | RAN: Errors=0, Warnings=3 (PASSED WITH WARNINGS without --strict; FAILED (strict) is purely warning-elevation, identical pattern to packet 014 invariant). Warnings: EVIDENCE_CITED (46 completed items without evidence — author-time vs driver-time gap, expected), ANCHORS_VALID (extra `scope-discipline` anchor in checklist.md, intentional), TEMPLATE_HEADERS (2 extra section headers — `Scope Discipline` in checklist.md and `Post-Review Fixes` in implementation-summary.md, both intentional and matching 014's pattern). |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/016-degraded-readiness-envelope-parity --strict` | RAN: Errors=0, Warnings=3 (PASSED WITH WARNINGS without --strict; FAILED (strict) is purely warning-elevation, identical pattern to packet 014 invariant). Warnings: EVIDENCE_CITED (46 completed items without evidence — author-time vs driver-time gap, expected), ANCHORS_VALID (extra `scope-discipline` anchor in checklist.md, intentional), TEMPLATE_HEADERS (2 extra section headers — `Scope Discipline` in checklist.md and `Post-Review Fixes` in implementation-summary.md, both intentional and matching 014's pattern). |
 | Live `code_graph_status` + `code_graph_context` probe under induced DB lock | DEFERRED: requires daemon restart per packet 008 |
 <!-- /ANCHOR:verification -->
 

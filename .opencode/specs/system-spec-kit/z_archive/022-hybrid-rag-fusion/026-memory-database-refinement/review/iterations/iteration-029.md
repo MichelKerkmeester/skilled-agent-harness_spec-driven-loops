@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Response profiles silently discard non-results payload fields, including in `debug` mode
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
 
 **Issue** `applyProfileToEnvelope()` rebuilds formatter input from `data.results` plus top-level `summary`, `hints`, and `meta`, then replaces `envelope.data` with the formatted payload. Any original `data` fields outside `results` are dropped without notification. That is especially problematic for pagination or continuation fields such as `count`, `cursor`, query metadata, or trace payloads, and it directly contradicts the `debug` profile's "full trace, no omission" contract.
 
@@ -12,7 +12,7 @@
 **Fix** Pass the full original `data` object into the formatter layer and make each profile explicitly preserve or announce dropped fields. For `debug`, return the original `data` unchanged and attach diagnostics alongside it instead of reconstructing a subset.
 
 ### [P1] Server-side exception responses bypass the standard envelope factory and lose required metadata guarantees
-**File** `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
 
 **Issue** The top-level `CallToolRequestSchema` catch path manually serializes `buildErrorResponse()` into a text content item instead of routing through the response helpers in `lib/response/envelope.ts`. That bypass means the standardized response metadata path is not applied to tool-level failures, so required envelope metadata such as `tokenCount` and `cacheHit` is no longer guaranteed on error responses.
 
@@ -21,7 +21,7 @@
 **Fix** Route server-thrown tool errors through `createMCPErrorResponse()` or a shared helper that computes the same standardized metadata before serialization. If `buildErrorResponse()` must remain in the path, normalize its output through the envelope factory before returning it to the MCP transport.
 
 ### [P2] Base envelope `tokenCount` undercounts the actual MCP payload that clients receive
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts`
 
 **Issue** `createResponse()` estimates tokens from `JSON.stringify(data)` only, but `wrapForMCP()` sends the fully serialized envelope text to the client. Large `summary`, `hints`, or metadata additions are therefore invisible to `meta.tokenCount` unless some later caller re-synchronizes the count. That makes the core envelope contract internally inconsistent and can hide oversize responses from any caller that uses these helpers directly.
 
@@ -30,7 +30,7 @@
 **Fix** Compute `tokenCount` from the final serialized envelope text, or centralize serialization in one helper that produces both the text payload and its exact token count. If partial counting is intentional, rename the field to something like `dataTokenCount` so callers do not treat it as total response size.
 
 ### [P2] `autoSurfacedContext` creates a second, out-of-envelope response contract at the MCP result top level
-**File** `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
 
 **Issue** Successful responses are mutated after dispatch to add `autoSurfacedContext` as a top-level property on the MCP result object, even though the response module standardizes the tool payload inside the serialized envelope text. This creates two parallel response contracts: one inside `content[0].text` and another on the outer result object. Clients that only parse the envelope will never see the surfaced context, while strict consumers of the outer result shape may reject or ignore the non-standard field.
 

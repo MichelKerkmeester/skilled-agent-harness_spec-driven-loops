@@ -70,7 +70,7 @@ For each of the 6 findings below, do exactly this:
 
 For each of the 5 packets that PASSED clean in the original review (005, 006, 007, 008, 010):
 
-1. Run the packet's strict validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/{packet}"` — must PASS with errors=0 warnings=0
+1. Run the packet's strict validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/{packet}"` — must PASS with errors=0 warnings=0
 2. Confirm the packet's test files still PASS (covered in the verification commands below)
 3. **Critical**: confirm that none of the lane fixes from this remediation accidentally weakened the contracts those packets shipped:
    - 005: `CertaintyStatus` vocabulary still in shared-payload.ts, `canPublishMultiplier` still exported
@@ -84,7 +84,7 @@ If any of these contracts have been weakened by the remediation, that is a NEW_R
 ## VERIFICATION COMMANDS (run all, all must PASS)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 TMPDIR=./.tmp/tsc-tmp npm run typecheck
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/hook-state.vitest.ts \
@@ -101,7 +101,7 @@ TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/publication-gate.vitest.ts
 cd -
 
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/session-cached-consumer.vitest.ts.test.ts \
   tests/warm-start-bundle-benchmark.vitest.ts.test.ts \
@@ -118,7 +118,7 @@ for pkt in 005-provisional-measurement-contract \
            011-graph-payload-validator-and-trust-preservation \
            012-cached-sessionstart-consumer-gated \
            013-warm-start-bundle-conditional-validation; do
-  bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict --quiet \
+  bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict --quiet \
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/$pkt" \
     | sed "s/^/[$pkt] /"
 done

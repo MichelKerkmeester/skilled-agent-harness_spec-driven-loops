@@ -44,8 +44,8 @@ This phase gave the coverage-graph runtime the verification layer it needed afte
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
-| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
+| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
 | Research graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
 | Review graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
 | Improve-agent graph playbooks (`022`-`024`) | Validated / cross-referenced | Reuse the existing operator scenarios for mutation coverage, trade-off detection, and candidate lineage as phase evidence |
@@ -79,12 +79,12 @@ The work followed the verification surface itself. First, the CommonJS and TypeS
 
 | Check | Result |
 |-------|--------|
-| Graph integration suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
-| Graph stress suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
-| Research graph playbooks present | PASS - `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
-| Review graph playbooks present | PASS - `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
-| Improve-agent graph playbooks present | PASS - `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
-| README graph references captured | PASS - `.opencode/skill/sk-deep-research/README.md`, `.opencode/skill/sk-deep-review/README.md`, and `.opencode/skill/sk-improve-agent/README.md` cited in the packet |
+| Graph integration suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
+| Graph stress suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
+| Research graph playbooks present | PASS - `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
+| Review graph playbooks present | PASS - `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
+| Improve-agent graph playbooks present | PASS - `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
+| README graph references captured | PASS - `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-review/README.md`, and `.opencode/skills/sk-improve-agent/README.md` cited in the packet |
 | Strict phase validation | PASS after packet rewrite |
 <!-- /ANCHOR:verification -->
 

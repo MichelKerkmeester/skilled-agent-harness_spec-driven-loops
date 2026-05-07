@@ -27,7 +27,7 @@ Second, session continuity data exists in `session-manager.ts` (`specFolder`, `c
 
 Also, `WorkingSetTracker` exists and is useful for recency-aware enrichment, but appears not yet wired into dispatch (`lib/code-graph/working-set-tracker.ts:16-153`).
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts`]
 
 ### Problem
 

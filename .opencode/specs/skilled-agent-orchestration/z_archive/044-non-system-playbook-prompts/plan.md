@@ -37,11 +37,11 @@ _memory:
     next_safe_action: "Implement target-by-target prompt modernization with parity checks after each batch"
     blockers: []
     key_files:
-      - ".opencode/skill/mcp-coco-index/manual_testing_playbook/"
-      - ".opencode/skill/sk-improve-agent/manual_testing_playbook/"
-      - ".opencode/skill/sk-deep-research/manual_testing_playbook/"
-      - ".opencode/skill/sk-deep-review/manual_testing_playbook/"
-      - ".opencode/skill/sk-doc/assets/documentation/testing_playbook/"
+      - ".opencode/skills/mcp-coco-index/manual_testing_playbook/"
+      - ".opencode/skills/sk-improve-agent/manual_testing_playbook/"
+      - ".opencode/skills/sk-deep-research/manual_testing_playbook/"
+      - ".opencode/skills/sk-deep-review/manual_testing_playbook/"
+      - ".opencode/skills/sk-doc/assets/documentation/testing_playbook/"
     session_dedup:
       fingerprint: "sha256:044-plan-non-system-playbook-prompts"
       session_id: "044-plan-non-system-playbook-prompts"
@@ -147,7 +147,7 @@ Start from the `sk-doc` template contract and newer rich-style playbooks, then i
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Internal | Green | Without template alignment, future playbooks will regress to older wording |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Internal | Green | Without template alignment, future playbooks will regress to older wording |
 | Existing playbook roots and scenario files in the four skill targets | Internal | Green | Without stable source docs, wording cannot be modernized safely |
 | Rich-style reference patterns already present in newer non-system playbooks | Internal | Green | Provide the target wording model for older packages |
 <!-- /ANCHOR:dependencies -->

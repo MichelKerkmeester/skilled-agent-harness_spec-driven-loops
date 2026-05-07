@@ -16,7 +16,7 @@ For each finding:
    - `.claude/settings.local.json` if cwd resolution needs hardening (likely just doc note, not code change)
    - hook-related README/docs for R3-P2-001
 3. Preserve unrelated content
-4. Run `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` after edit
+4. Run `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` after edit
 
 Output report: `<spec-folder>/applied/B4.md`. Closes 2 P1 + 1 P2.
 

@@ -8,18 +8,18 @@ You are producing two artifacts for spec-kit packet 042. Repository root: `/User
 
 ## Inputs (read-only)
 
-1. **Code-graph feature catalog** — `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md` (master index) and every per-feature file under `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/`. Total: **17 features** in 8 groups (Read-path Freshness, Manual Scan/Verify/Status, Detect-Changes Preflight, Context Retrieval, Coverage Graph, MCP Tool Surface, CCC Integration, Doctor Code Graph).
-2. **Skill-advisor feature catalog** — `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` and every per-feature file under that folder. Total: **37 features** in 7 groups (Daemon & Freshness, Auto-Indexing, Lifecycle Routing, Scorer Fusion, MCP Surface, Hooks & Plugin, Python Compat).
-3. **Stress-test directory** — `.opencode/skill/system-spec-kit/mcp_server/stress_test/`. Subdirs:
+1. **Code-graph feature catalog** — `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md` (master index) and every per-feature file under `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/`. Total: **17 features** in 8 groups (Read-path Freshness, Manual Scan/Verify/Status, Detect-Changes Preflight, Context Retrieval, Coverage Graph, MCP Tool Surface, CCC Integration, Doctor Code Graph).
+2. **Skill-advisor feature catalog** — `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` and every per-feature file under that folder. Total: **37 features** in 7 groups (Daemon & Freshness, Auto-Indexing, Lifecycle Routing, Scorer Fusion, MCP Surface, Hooks & Plugin, Python Compat).
+3. **Stress-test directory** — `.opencode/skills/system-spec-kit/mcp_server/stress_test/`. Subdirs:
    - `code-graph/` (3 files)
    - `skill-advisor/` (2 files)
    - `memory/` (3 files)
    - `session/` (3 files)
    - `search-quality/` (~17 files, W3-W13 harness)
    - `matrix/` (1 file)
-4. **Vitest unit tests** — `.opencode/skill/system-spec-kit/mcp_server/code_graph/__tests__/` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/__tests__/` (or wherever the subsystem-local tests live — search to confirm).
-5. **Manual playbook** — `.opencode/skill/system-spec-kit/mcp_server/manual_testing_playbook/` (scenario folders such as `01--native-mcp-tools/`, `02--manual-scan-verify-status/`).
-6. **Stress runner config** — `.opencode/skill/system-spec-kit/mcp_server/package.json` and `vitest.stress.config.ts`.
+4. **Vitest unit tests** — `.opencode/skills/system-spec-kit/mcp_server/code_graph/__tests__/` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/__tests__/` (or wherever the subsystem-local tests live — search to confirm).
+5. **Manual playbook** — `.opencode/skills/system-spec-kit/mcp_server/manual_testing_playbook/` (scenario folders such as `01--native-mcp-tools/`, `02--manual-scan-verify-status/`).
+6. **Stress runner config** — `.opencode/skills/system-spec-kit/mcp_server/package.json` and `vitest.stress.config.ts`.
 
 ## Output 1: `coverage-matrix.csv`
 

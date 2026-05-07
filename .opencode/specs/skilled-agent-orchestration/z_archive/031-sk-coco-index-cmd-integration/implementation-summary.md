@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -91,7 +91,7 @@ The summary was derived from the existing draft spec, plan, and task ledger, the
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime integration yet** This packet still needs a later implementation pass to inspect `.opencode/skill/mcp-coco-index/` and the eventual command entrypoints.
+1. **No runtime integration yet** This packet still needs a later implementation pass to inspect `.opencode/skills/mcp-coco-index/` and the eventual command entrypoints.
 <!-- /ANCHOR:limitations -->
 
 ---

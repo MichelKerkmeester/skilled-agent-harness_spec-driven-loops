@@ -19,12 +19,12 @@
 
 ### P1
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:226-227` with `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:377-395` — verifier symbol matching is case-insensitive because both discovered symbols and expected symbols are normalized with `toLowerCase()` before comparison. That is the wrong contract for JS/TS identifiers and fully-qualified names, which are case-sensitive. A regression from `handleVerify` to `handleverify` would still pass the gold battery, so the verifier can miss real API/name drift instead of flagging it. Fix: compare exact `name` / `fqName` strings by default, or make case-folding an explicit opt-in rather than the hard-coded behavior.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:36-49` with `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:298-325` and `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:98-104` — failed probe records are under-specified before persistence. `ProbeResult` only retains `queryId`, `category`, `probe`, `matchedSymbols`, `missingSymbols`, `status`, and `reason`, so `handleCodeGraphVerify()` persists a result that omits the original `query`, `expected_top_K_symbols`, and `source_file:line` context called for by the iteration-012 partial-failure contract. That makes `last_gold_verification` harder to consume from `code_graph_status` or self-heal surfaces because a downstream reader cannot tell which battery row failed without reopening the asset file. Fix: include the original query metadata in each probe result, ideally preserving the battery field names (`id`, `query`, `expected_top_K_symbols`, `source_file:line`).
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:226-227` with `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:377-395` — verifier symbol matching is case-insensitive because both discovered symbols and expected symbols are normalized with `toLowerCase()` before comparison. That is the wrong contract for JS/TS identifiers and fully-qualified names, which are case-sensitive. A regression from `handleVerify` to `handleverify` would still pass the gold battery, so the verifier can miss real API/name drift instead of flagging it. Fix: compare exact `name` / `fqName` strings by default, or make case-folding an explicit opt-in rather than the hard-coded behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:36-49` with `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:298-325` and `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:98-104` — failed probe records are under-specified before persistence. `ProbeResult` only retains `queryId`, `category`, `probe`, `matchedSymbols`, `missingSymbols`, `status`, and `reason`, so `handleCodeGraphVerify()` persists a result that omits the original `query`, `expected_top_K_symbols`, and `source_file:line` context called for by the iteration-012 partial-failure contract. That makes `last_gold_verification` harder to consume from `code_graph_status` or self-heal surfaces because a downstream reader cannot tell which battery row failed without reopening the asset file. Fix: include the original query metadata in each probe result, ideally preserving the battery field names (`id`, `query`, `expected_top_K_symbols`, `source_file:line`).
 
 ### P2
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:205-213` — unsupported v2 probe warnings are emitted once per query row, not once per battery load. The spec only requires “warning + ignore” behavior for pre-adapter v2 entries; under a mixed battery, the current implementation will spam identical warnings linearly with query count and bury the first actionable signal. Fix: emit a single battery-level warning that summarizes the affected query IDs or count.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:205-213` — unsupported v2 probe warnings are emitted once per query row, not once per battery load. The spec only requires “warning + ignore” behavior for pre-adapter v2 entries; under a mixed battery, the current implementation will spam identical warnings linearly with query count and bury the first actionable signal. Fix: emit a single battery-level warning that summarizes the affected query IDs or count.
 
 ## Files Reviewed
 
@@ -32,15 +32,15 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-012.md:28-46,61-64`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/spec.md:103-104,136,204`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience/implementation-summary.md:68,155`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:1-460`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:1-112`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-655,944`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-91`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:219-223,287-301`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:281-288`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:99-323`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts:1-460`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts:1-112`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:638-655,944`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-91`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:219-223,287-301`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:281-288`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-verify.vitest.ts:99-323`
 
 ## Convergence Signals
 

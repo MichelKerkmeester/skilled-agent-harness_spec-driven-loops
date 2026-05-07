@@ -40,7 +40,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + YAML frontmatter |
 | **Framework** | sk-doc testing-playbook contract (template + validator) |
-| **Storage** | `.opencode/skill/sk-code-review/manual_testing_playbook/` |
+| **Storage** | `.opencode/skills/sk-code-review/manual_testing_playbook/` |
 | **Testing** | `validate_document.py` + manual structural sweep + @review DQI |
 
 ### Overview
@@ -92,12 +92,12 @@ Doc-as-code with template-driven generation. cli-codex follows canonical sk-doc 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Not applicable - this is a documentation-creation packet, not a fix. No producer/consumer surfaces are modified; only `.opencode/skill/sk-code-review/manual_testing_playbook/**` is created.
+Not applicable - this is a documentation-creation packet, not a fix. No producer/consumer surfaces are modified; only `.opencode/skills/sk-code-review/manual_testing_playbook/**` is created.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | sk-code-review skill content (SKILL.md, references/*, README.md) | producer of review doctrine being tested | unchanged | grep diff: no edits outside `manual_testing_playbook/` |
-| @review and @deep-review agents | consumers that already use sk-code-review | unchanged | grep diff: no edits to `.opencode/agent/review.md` or `.opencode/agent/deep-review.md` |
+| @review and @deep-review agents | consumers that already use sk-code-review | unchanged | grep diff: no edits to `.opencode/agents/review.md` or `.opencode/agents/deep-review.md` |
 | sk-doc validator | policy enforcer | unchanged | invocation only; no edits |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -164,7 +164,7 @@ Not applicable - this is a documentation-creation packet, not a fix. No producer
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: cli-codex output fails validate_document.py and cannot be repaired in ≤2 follow-up dispatches; or @review reports >2 P0 findings without clear remediation path.
-- **Procedure**: `git rm -rf .opencode/skill/sk-code-review/manual_testing_playbook/`; revert child 001 spec docs to draft state; document blocker in implementation-summary.md.
+- **Procedure**: `git rm -rf .opencode/skills/sk-code-review/manual_testing_playbook/`; revert child 001 spec docs to draft state; document blocker in implementation-summary.md.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -207,7 +207,7 @@ Phase 1 (Setup)──────► Phase 2 (Implement)──────► Ph
 - [ ] Working directory is `main` branch (not a worktree)
 
 ### Rollback Procedure
-1. If cli-codex partially completed and output is broken: `git restore --staged .opencode/skill/sk-code-review/manual_testing_playbook/` then `rm -rf` the partial output.
+1. If cli-codex partially completed and output is broken: `git restore --staged .opencode/skills/sk-code-review/manual_testing_playbook/` then `rm -rf` the partial output.
 2. If cli-codex completed but verification fails: dispatch a follow-up cli-codex run with the specific findings to resolve.
 3. If verification still fails after 2 follow-ups: revert the entire playbook directory and document the blocker.
 

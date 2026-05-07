@@ -151,7 +151,7 @@ Prior work context from memory: The 026 spec folder represents a completed major
 | implementation-summary.md | - | - | - | pending |
 | review/review-report.md | - | - | - | pending |
 
-### Implementation Files (MCP Server — .opencode/skill/system-spec-kit/mcp_server/)
+### Implementation Files (MCP Server — .opencode/skills/system-spec-kit/mcp_server/)
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
 | handlers/memory-save.ts | - | - | - | pending |

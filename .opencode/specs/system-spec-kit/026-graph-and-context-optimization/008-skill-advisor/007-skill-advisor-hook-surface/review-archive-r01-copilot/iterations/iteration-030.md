@@ -4,8 +4,8 @@
 Checked the manual playbook’s scenario 14 measurement claims against the actual static harness and test coverage.
 
 ## Evidence read
-- `.opencode/skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md:285-306` -> scenario 14 claims a full 200-prompt corpus run, a 56% baseline, and UNKNOWN-fallback tracking.
-- `.opencode/skill/skill-advisor/feature_catalog/feature_catalog.md:627-641` -> current-reality section for the measurement harness repeats the 200-prompt run, 56.00% baseline, and output artifact paths.
+- `.opencode/skills/skill-advisor/manual_testing_playbook/manual_testing_playbook.md:285-306` -> scenario 14 claims a full 200-prompt corpus run, a 56% baseline, and UNKNOWN-fallback tracking.
+- `.opencode/skills/skill-advisor/feature_catalog/feature_catalog.md:627-641` -> current-reality section for the measurement harness repeats the 200-prompt run, 56.00% baseline, and output artifact paths.
 - `smart-router-measurement.vitest.ts:93-147` -> shipped tests cover subset execution, report formatting, and graceful fallback when SMART ROUTING metadata is absent.
 
 ## Findings

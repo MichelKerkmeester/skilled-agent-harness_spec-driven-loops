@@ -100,8 +100,8 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | File | Role |
 |------|------|
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/README` | Section index for stress testing |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Canonical feature reference |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Section index for stress testing |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Canonical feature reference |
 
 - Define a stress test cycle as structured manual evaluation across packets, scored on a frozen rubric.
 - Document release-readiness, post-remediation, and regression-hunting use cases.
@@ -112,8 +112,8 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | File | Role |
 |------|------|
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Section index for stress-testing playbooks |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Operational guide for running a cycle |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Section index for stress-testing playbooks |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Operational guide for running a cycle |
 
 - State preconditions for baseline stability and prior rubric availability.
 - Provide the ten requested steps from corpus freeze through parent PHASE MAP update.
@@ -125,9 +125,9 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | File | Role |
 |------|------|
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Placeholder sidecar template |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.schema` | Field-by-field schema documentation |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings.template` | Narrative findings skeleton |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Placeholder sidecar template |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema` | Field-by-field schema documentation |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings.template` | Narrative findings skeleton |
 
 - Keep JSON parseable: no JSONC comments in the actual `.json` template.
 - Constrain v1 dimensions to `correctness`, `robustness`, `telemetry`, and `regression-safety`.
@@ -142,7 +142,7 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | Test Type | Scope | Tool |
 |-----------|-------|------|
-| Validator | Packet docs and metadata | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Validator | Packet docs and metadata | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 | JSON parse | Template sidecar | `node -e 'JSON.parse(...)'` |
 | File existence | Seven A/B/C artifacts | `test -f` loop |
 | Markdown spot check | One new markdown artifact | `sed`/manual inspection |

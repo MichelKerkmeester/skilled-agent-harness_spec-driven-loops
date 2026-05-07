@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -53,9 +53,9 @@ The phase-016 spec, plan, tasks, checklist, and implementation summary were rewr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/tests/phase-classification.vitest.ts` | Modified | Prove Copilot `View` aliases to canonical research scoring. |
-| `.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
-| `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | Modified | Prove CLI-derived `FILES` keep `_provenance: 'tool'` and `view` titles render as `Read ...`. |
+| `.opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts` | Modified | Prove Copilot `View` aliases to canonical research scoring. |
+| `.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts` | Created | Lock Copilot lifecycle, Codex reasoning, and XML wrapper markers to the shared noise filter. |
+| `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | Modified | Prove CLI-derived `FILES` keep `_provenance: 'tool'` and `view` titles render as `Read ...`. |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/spec.md` | Modified | Reconcile scope, requirements, success criteria, and final status. |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/plan.md` | Modified | Add technical context and the reopened hardening delivery plan. |
 | `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/tasks.md` | Modified | Return the phase to the standard Setup / Implementation / Verification structure. |
@@ -72,7 +72,7 @@ Three fixes from deferred deep research findings (Q1, Q3, Q5) plus an ALIGNMENT_
 | `scripts/types/session-types.ts` | Modified | Add `TECHNICAL_CONTEXT` and `HAS_TECHNICAL_CONTEXT` to `SessionData` interface (Q3). |
 | `scripts/extractors/collect-session-data.ts` | Modified | Pass through `TECHNICAL_CONTEXT` from collected data to SessionData (Q3). |
 | `scripts/lib/simulation-factory.ts` | Modified | Add simulation defaults for `TECHNICAL_CONTEXT` fields (Q3). |
-| `.opencode/skill/system-spec-kit/templates/context_template.md` | Modified | Add mustache section rendering Technical Context as a key-value table (Q3). |
+| `.opencode/skills/system-spec-kit/templates/context_template.md` | Modified | Add mustache section rendering Technical Context as a key-value table (Q3). |
 | `scripts/extractors/decision-extractor.ts` | Modified | Parse confidence regex, choice verbs, and rationale indicators from string-form decisions (Q5). |
 | `scripts/tests/workflow-e2e.vitest.ts` | Modified | Updated test to expect success when Block A downgrades to warning. |
 | `scripts/tests/task-enrichment.vitest.ts` | Modified | Updated test to expect Block B throw (file-path overlap) instead of Block A. |
@@ -109,10 +109,10 @@ Three fixes from deferred deep research findings (Q1, Q3, Q5) plus an ALIGNMENT_
 | Check | Result |
 |-------|--------|
 | Focused Vitest parity stack | PASS (`4` files, `45` tests) |
-| `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` | PASS (`307` passed, `0` failed, `0` skipped) |
+| `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` | PASS (`307` passed, `0` failed, `0` skipped) |
 | `npm run typecheck` | PASS |
 | `npm run build` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity` | PASS (`0` errors, `0` warnings) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity` | PASS (`0` errors, `0` warnings) |
 | Full script test suite (2026-03-18) | PASS (`36` files, `385` tests) |
 | MCP server tests (2026-03-18) | PASS (`1` file, `20` tests) |
 | Parallel review agent (2026-03-18) | APPROVE (82/100, 0 P0, 0 P1) |

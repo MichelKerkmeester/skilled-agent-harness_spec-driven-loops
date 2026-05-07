@@ -15,7 +15,7 @@ Research Topic: Investigate consolidating the system-spec-kit templates folder: 
 
 Iteration: 1 of 10
 
-Focus Area: **Inventory the current template system.** Catalog every file in `.opencode/skill/system-spec-kit/templates/` with size and purpose. Map the consumer chain: `create.sh` → `template-utils.sh::copy_template` → which level directory. Identify all files in `.opencode/skill/system-spec-kit/scripts/` that read template paths. Produce a baseline file/LOC count to anchor later delta calculations. Begin answering Q1 (dependencies) and Q2 (minimum source-of-truth set).
+Focus Area: **Inventory the current template system.** Catalog every file in `.opencode/skills/system-spec-kit/templates/` with size and purpose. Map the consumer chain: `create.sh` → `template-utils.sh::copy_template` → which level directory. Identify all files in `.opencode/skills/system-spec-kit/scripts/` that read template paths. Produce a baseline file/LOC count to anchor later delta calculations. Begin answering Q1 (dependencies) and Q2 (minimum source-of-truth set).
 
 Remaining Key Questions:
 - Q1. Can level_1 … level_3+ directories be eliminated entirely? Exhaustive list of dependencies?
@@ -79,10 +79,10 @@ All three artifacts are REQUIRED.
 ## RESEARCH GUIDANCE
 
 For iteration 1 specifically, prioritize:
-1. **File inventory:** `find .opencode/skill/system-spec-kit/templates -type f | wc -l` ; `find .opencode/skill/system-spec-kit/templates -type f -name "*.md" | xargs wc -l | tail -1` ; per-subdirectory file counts.
-2. **Consumer map:** `grep -rn "templates/level_" .opencode/skill/system-spec-kit/scripts/ .opencode/command/ .opencode/agent/ .opencode/skill/ AGENTS.md CLAUDE.md`
-3. **Composition logic:** read `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` and `.opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.ts` end-to-end; document the exact algorithm.
-4. **Validator hooks:** read `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` and identify how required-file-per-level rules are encoded.
+1. **File inventory:** `find .opencode/skills/system-spec-kit/templates -type f | wc -l` ; `find .opencode/skills/system-spec-kit/templates -type f -name "*.md" | xargs wc -l | tail -1` ; per-subdirectory file counts.
+2. **Consumer map:** `grep -rn "templates/level_" .opencode/skills/system-spec-kit/scripts/ .opencode/commands/ .opencode/agents/ .opencode/skills/ AGENTS.md CLAUDE.md`
+3. **Composition logic:** read `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` and `.opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.ts` end-to-end; document the exact algorithm.
+4. **Validator hooks:** read `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` and identify how required-file-per-level rules are encoded.
 5. **Marker prevalence:** `grep -rn "SPECKIT_TEMPLATE_SOURCE" .opencode/specs/ | wc -l` to validate the "~800 existing spec folders" claim.
 
 Document baseline numbers in `iteration-001.md` so subsequent iterations can compute deltas.

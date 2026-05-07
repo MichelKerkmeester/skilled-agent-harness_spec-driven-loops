@@ -13,12 +13,12 @@
 ### P0 (Critical)
 1. **Fail-fast on missing `shell-common.sh` in upgrade script**
    - Change: add guarded source with explicit `error_exit`.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` (near source call at line 29 in report).
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` (near source call at line 29 in report).
    - Evidence: `context-124-audit.md:151`, `context-124-audit.md:155`, `context-124-audit.md:557`.
 
 2. **Backup must include subdirectory markdown files (`memory/` risk)**
    - Change: recursive backup for `*.md` (preserve relative paths), not root-only glob.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh` (backup logic around lines 299-315 in report).
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` (backup logic around lines 299-315 in report).
    - Evidence: `context-124-audit.md:381`, `context-124-audit.md:389`, `context-124-audit.md:564`.
 
 3. **Resolve Spec 121 orphaned memory/filesystem mismatch**
@@ -38,15 +38,15 @@
 
 ### P1 (High)
 1. Add warning path when OPEN QUESTIONS heading is not found during insertion.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`.
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`.
    - Evidence: `context-124-audit.md:345`, `context-124-audit.md:672`.
 
 2. Tighten L2->L3 Multi-Agent row detection to table context only.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`.
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`.
    - Evidence: `context-124-audit.md:423`, `context-124-audit.md:702`.
 
 3. Add safety valve/iteration guard in backward comment scan.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`.
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`.
    - Evidence: `context-124-audit.md:735`.
 
 4. Reconcile Spec 123 process/documentation contradictions (tasks/checklist/summary).
@@ -62,17 +62,17 @@
 
 ### P2 (Quality)
 1. Add `scripts/spec/README.md` for `upgrade-level.sh` usage.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/README.md`.
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/README.md`.
    - Evidence: `context-124-audit.md:758`.
 
 2. Optional memory auto-save post-upgrade enhancement.
-   - Target: `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`.
+   - Target: `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`.
    - Evidence: `context-124-audit.md:763`.
 
 3. Minor TypeScript clarity enhancements for subfolder work (comments/@throws/perf notes).
    - Targets:
-     - `.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts`
-     - `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts`
+     - `.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts`
+     - `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts`
    - Evidence: `context-123-audit.md:275`, `context-123-audit.md:333`, `context-123-audit.md:336`.
 
 4. No action for typo-path report (confirmed non-propagated typo).
@@ -82,7 +82,7 @@
 ## 2) Exact Paths: Code Changes vs Documentation-Only
 
 ### Code changes required
-1. `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`
+1. `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`
 
 ### Documentation-only updates required
 1. `.opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/checklist.md`
@@ -109,30 +109,30 @@
 
 ### For `upgrade-level.sh` P0/P1
 ```bash
-bash -n .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh
+bash -n .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh
 ```
 
 ```bash
 # P0-1 fail-fast on missing shell-common.sh
-mv .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh.bak && bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder L2 --json; test $? -eq 2; mv .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh.bak .opencode/skill/system-spec-kit/scripts/lib/shell-common.sh
+mv .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh.bak && bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder L2 --json; test $? -eq 2; mv .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh.bak .opencode/skills/system-spec-kit/scripts/lib/shell-common.sh
 ```
 
 ```bash
 # P0-2 recursive backup coverage for memory/*.md
-mkdir -p /tmp/spec-backup-test/memory && printf "x\n" > /tmp/spec-backup-test/spec.md && printf "y\n" > /tmp/spec-backup-test/memory/session.md && bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh /tmp/spec-backup-test L2 --dry-run
+mkdir -p /tmp/spec-backup-test/memory && printf "x\n" > /tmp/spec-backup-test/spec.md && printf "y\n" > /tmp/spec-backup-test/memory/session.md && bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh /tmp/spec-backup-test L2 --dry-run
 ```
 
 ### For Spec 123 verification closure
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && tsc --build
+cd .opencode/skills/system-spec-kit/scripts && tsc --build
 ```
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && node scripts/tests/test-subfolder-resolution.js
+cd .opencode/skills/system-spec-kit/scripts && node scripts/tests/test-subfolder-resolution.js
 ```
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && node scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder && node scripts/dist/memory/generate-context.js 123-generate-context-subfolder && node scripts/dist/memory/generate-context.js specs/system-spec-kit/z_archive/006-generate-context-subfolder
+cd .opencode/skills/system-spec-kit/scripts && node scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder && node scripts/dist/memory/generate-context.js 123-generate-context-subfolder && node scripts/dist/memory/generate-context.js specs/system-spec-kit/z_archive/006-generate-context-subfolder
 ```
 
 ## Counts

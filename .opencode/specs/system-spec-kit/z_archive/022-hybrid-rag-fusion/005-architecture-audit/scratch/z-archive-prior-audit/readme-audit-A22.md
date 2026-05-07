@@ -2,7 +2,7 @@
 
 **Auditor:** Claude Opus 4.6
 **Date:** 2026-03-08
-**Base path:** `.opencode/skill/system-spec-kit/shared/`
+**Base path:** `.opencode/skills/system-spec-kit/shared/`
 
 ---
 
@@ -118,6 +118,6 @@
 
 **Files modified:**
 
-- `.opencode/skill/system-spec-kit/shared/README.md`
-- `.opencode/skill/system-spec-kit/shared/embeddings/README.md`
-- `.opencode/skill/system-spec-kit/shared/utils/README.md`
+- `.opencode/skills/system-spec-kit/shared/README.md`
+- `.opencode/skills/system-spec-kit/shared/embeddings/README.md`
+- `.opencode/skills/system-spec-kit/shared/utils/README.md`

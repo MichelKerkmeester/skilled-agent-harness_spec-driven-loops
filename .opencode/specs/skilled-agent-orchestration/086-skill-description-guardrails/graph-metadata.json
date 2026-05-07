@@ -41,21 +41,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md",
-      ".opencode/skill/sk-doc/assets/skill/skill_md_template.md",
-      ".opencode/skill/sk-doc/references/specific/skill_creation.md",
-      ".opencode/skill/sk-doc/assets/agent_template.md",
-      ".opencode/skill/sk-doc/assets/command_template.md",
-      ".opencode/skill/sk-doc/scripts/quick_validate.py",
-      ".opencode/skill/sk-doc/scripts/tests/test_quick_validate_086.py",
-      ".opencode/command/create/assets/create_sk_skill_confirm.yaml",
-      ".opencode/command/create/assets/create_agent_confirm.yaml",
-      ".opencode/command/doctor/skill-budget.md",
-      ".opencode/command/doctor/assets/doctor_skill-budget_auto.yaml",
-      ".opencode/command/doctor/assets/doctor_skill-budget_confirm.yaml",
-      ".opencode/command/doctor/scripts/audit_descriptions.py",
-      ".opencode/command/create/sk-skill.md",
-      ".opencode/command/create/agent.md",
+      ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+      ".opencode/skills/sk-doc/references/specific/skill_creation.md",
+      ".opencode/skills/sk-doc/assets/agent_template.md",
+      ".opencode/skills/sk-doc/assets/command_template.md",
+      ".opencode/skills/sk-doc/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
+      ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/doctor/skill-budget.md",
+      ".opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml",
+      ".opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml",
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/create/agent.md",
       ".claude/commands/doctor/skill-budget.md",
       "spec.md",
       "plan.md",
@@ -66,91 +66,91 @@
       {
         "name": "frontmatter_templates.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md",
         "source": "derived"
       },
       {
         "name": "skill_md_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/skill/skill_md_template.md",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
         "source": "derived"
       },
       {
         "name": "skill_creation.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/specific/skill_creation.md",
+        "path": ".opencode/skills/sk-doc/references/specific/skill_creation.md",
         "source": "derived"
       },
       {
         "name": "agent_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/agent_template.md",
+        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
         "source": "derived"
       },
       {
         "name": "command_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/command_template.md",
+        "path": ".opencode/skills/sk-doc/assets/command_template.md",
         "source": "derived"
       },
       {
         "name": "quick_validate.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-doc/scripts/quick_validate.py",
+        "path": ".opencode/skills/sk-doc/scripts/quick_validate.py",
         "source": "derived"
       },
       {
         "name": "test_quick_validate_086.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-doc/scripts/tests/test_quick_validate_086.py",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
         "source": "derived"
       },
       {
         "name": "create_sk_skill_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_sk_skill_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "create_agent_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_agent_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "skill-budget.md",
         "kind": "doc",
-        "path": ".opencode/command/doctor/skill-budget.md",
+        "path": ".opencode/commands/doctor/skill-budget.md",
         "source": "derived"
       },
       {
         "name": "doctor_skill-budget_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/doctor/assets/doctor_skill-budget_auto.yaml",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml",
         "source": "derived"
       },
       {
         "name": "doctor_skill-budget_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/doctor/assets/doctor_skill-budget_confirm.yaml",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "audit_descriptions.py",
         "kind": "file",
-        "path": ".opencode/command/doctor/scripts/audit_descriptions.py",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
         "source": "derived"
       },
       {
         "name": "sk-skill.md",
         "kind": "doc",
-        "path": ".opencode/command/create/sk-skill.md",
+        "path": ".opencode/commands/create/sk-skill.md",
         "source": "derived"
       },
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/create/agent.md",
+        "path": ".opencode/commands/create/agent.md",
         "source": "derived"
       },
       {

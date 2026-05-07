@@ -7,15 +7,15 @@ Q14 — How can code graph + CocoIndex be utilized automatically without explici
 
 ### 1. Existing Auto-Surface Architecture Provides the Blueprint
 The MCP server already has a mature auto-surface pattern in `memory-surface.ts` that fires at two lifecycle points: **tool dispatch** (`autoSurfaceAtToolDispatch`) and **compaction** (`autoSurfaceAtCompaction`). Both extract a context hint from the current operation and surface relevant memories. The code graph and CocoIndex can follow this exact same pattern — intercept tool dispatch, extract file paths or symbol names from tool arguments, and inject structural/semantic context alongside the memory auto-surface.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:254-277]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:254-277]
 
 ### 2. Tool Dispatch Interception Is Already Wired in context-server.ts
 The `context-server.ts` (line ~326-395) already runs auto-surface on every non-memory-aware tool call. The interception happens in the MCP call handler: it extracts a `contextHint` from args, calls `autoSurfaceAtToolDispatch`, and appends results via `appendAutoSurfaceHints`. Adding code graph context here would require a parallel `autoSurfaceCodeGraph(filePath)` call that runs alongside memory auto-surface, with results merged into the same response envelope.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:326-395]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:326-395]
 
 ### 3. SessionStart Hook Already Does Stale Index Detection
 The `session-prime.ts` hook already imports `code-graph-db.js` dynamically and checks if the code graph index is >24h old (lines 18-24, 101-117). On startup, it warns the AI to run `code_graph_scan`. This pattern can be extended to **auto-trigger** a background incremental scan rather than just warning. The hook could spawn a background `code_graph_scan({ incremental: true })` call and similarly trigger `ccc_reindex({ full: false })` for CocoIndex if available.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:18-24, 101-117]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:18-24, 101-117]
 
 ### 4. File-Path-Aware Auto-Enrichment Pattern
 When the AI calls Read/Edit/Write tools on a file, the MCP server sees the `file_path` argument in tool dispatch. A code graph auto-enrichment hook could:
@@ -28,7 +28,7 @@ This would give the AI structural understanding of any file it opens, automatica
 
 ### 5. Session Working Set Enables Proactive Preloading
 The session-prime hook already tracks a `workingSet` of recently active files (lines 119-132). On session start or compaction recovery, this working set could be fed to code_graph_context in "neighborhood" mode to preload the structural context for files the AI was recently working with. This creates a warm-start effect where the AI re-enters a session with its previous structural neighborhood already in context.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:119-132]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:119-132]
 
 ### 6. Three-Tier Auto-Enrichment Architecture
 Based on analysis of the existing hooks, a three-tier automatic enrichment system emerges:
@@ -73,7 +73,7 @@ For automatic re-indexing without explicit tool calls:
 
 ### 9. Token Budget Integration with Existing Allocator
 The 3-source budget allocator designed in iteration 049 already has slots for code graph (floor: 1200 tokens) and CocoIndex (floor: 900 tokens). Auto-enrichment at tool dispatch should use a separate, smaller budget (200-400 tokens) to avoid stealing from the main context pipeline. The enrichment budget should be configurable via environment variable (e.g., `SPECKIT_AUTO_ENRICH_BUDGET=400`) and respect the same pressure-aware scaling that session-prime.ts already implements (lines 28-36 of session-prime.ts).
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:28-36]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:28-36]
 [SOURCE: iteration-049.md — 3-source allocator design]
 
 ### 10. Non-Hook Runtime Fallback: MCP-Native Auto-Enrichment
@@ -93,10 +93,10 @@ The MCP-native path (Tier 2 + 3) provides ~70% of the auto-enrichment value with
 None identified this iteration — the approaches investigated are all viable and build on proven patterns.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts` (full file, auto-surface patterns)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, session lifecycle hooks)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:326-395` (tool dispatch interception)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` (exports)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts` (full file, auto-surface patterns)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, session lifecycle hooks)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:326-395` (tool dispatch interception)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` (exports)
 - Prior iterations 049 (budget allocator), 052 (3-source merger), 053 (working set tracking)
 
 ## Assessment

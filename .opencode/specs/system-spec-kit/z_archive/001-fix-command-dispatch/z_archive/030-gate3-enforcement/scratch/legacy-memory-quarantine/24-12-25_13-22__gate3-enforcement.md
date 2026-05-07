@@ -154,9 +154,9 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `AGENTS.md` - Documentation
 
-- `.opencode/skill/system-memory/README.md` - Documentation
+- `.opencode/skills/system-memory/README.md` - Documentation
 
-- `.opencode/skill/system-memory/SKILL.md` - Documentation
+- `.opencode/skills/system-memory/SKILL.md` - Documentation
 
 **How to Extend**:
 
@@ -211,9 +211,9 @@ The semantic memory system has a
 | `specs/005-memory/018-gate3-enforcement/tasks.md` | Updated tasks |
 | `specs/005-memory/018-gate3-enforcement/checklist.md` | Updated checklist |
 | `AGENTS.md` | Updated agents |
-| `.opencode/skill/system-memory/README.md` | Updated readme |
-| `.opencode/skill/system-memory/SKILL.md` | .opencode/skill/system-memory/SKILL.md |
-| `.opencode/skill/system-spec-kit/SKILL.md` | .opencode/skill/system-spec-kit/SKILL.md |
+| `.opencode/skills/system-memory/README.md` | Updated readme |
+| `.opencode/skills/system-memory/SKILL.md` | .opencode/skills/system-memory/SKILL.md |
+| `.opencode/skills/system-spec-kit/SKILL.md` | .opencode/skills/system-spec-kit/SKILL.md |
 | `specs/005-memory/018-gate3-enforcement/test-suite.md` | Updated test suite |
 
 <!-- /ANCHOR:summary-session-1766578921408-dz3iulvaa-005-memory/018-gate3-enforcement -->
@@ -610,18 +610,18 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-read-16dbdc60-2-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/README.md
+.opencode/skills/system-memory/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/README.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-16dbdc60-2-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-read-16dbdc60-3-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/SKILL.md
+.opencode/skills/system-memory/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/SKILL.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-16dbdc60-3-session-1766578921408-dz3iulvaa -->
 
@@ -825,54 +825,54 @@ Executed semantic_memory_memory_update
 <!-- ANCHOR:implementation-tool-read-16dbdc60-10-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/README.md
+.opencode/skills/system-memory/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/README.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-16dbdc60-10-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-read-16dbdc60-11-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/SKILL.md
+.opencode/skills/system-memory/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/SKILL.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-16dbdc60-11-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-read-16dbdc60-12-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/SKILL.md
+.opencode/skills/system-spec-kit/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-16dbdc60-12-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-edit-961226f3-8-session-1766578921408-dz3iulvaa -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-memory/README.md
+.opencode/skills/system-memory/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-961226f3-8-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-edit-961226f3-9-session-1766578921408-dz3iulvaa -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-memory/SKILL.md
+.opencode/skills/system-memory/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/SKILL.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-961226f3-9-session-1766578921408-dz3iulvaa -->
 
 <!-- ANCHOR:implementation-tool-edit-961226f3-10-session-1766578921408-dz3iulvaa -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/SKILL.md
+.opencode/skills/system-spec-kit/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-961226f3-10-session-1766578921408-dz3iulvaa -->
 
@@ -987,9 +987,9 @@ specs/005-memory/018-gate3-enforcement/test-suite.md
 <!-- ANCHOR:implementation-tool-read-595eae90-3-session-1766578921408-dz3iulvaa -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/handover.md
+.opencode/skills/system-spec-kit/templates/handover.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/handover.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/handover.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-595eae90-3-session-1766578921408-dz3iulvaa -->
 
@@ -1652,9 +1652,9 @@ key_files:
   - "specs/005-memory/018-gate3-enforcement/tasks.md"
   - "specs/005-memory/018-gate3-enforcement/checklist.md"
   - "AGENTS.md"
-  - ".opencode/skill/system-memory/README.md"
-  - ".opencode/skill/system-memory/SKILL.md"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-memory/README.md"
+  - ".opencode/skills/system-memory/SKILL.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
   - "specs/005-memory/018-gate3-enforcement/test-suite.md"
 
 # Relationships

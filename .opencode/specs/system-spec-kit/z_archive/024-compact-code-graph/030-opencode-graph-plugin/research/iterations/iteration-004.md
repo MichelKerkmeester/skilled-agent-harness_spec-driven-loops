@@ -22,7 +22,7 @@ Build a **thin OpenCode adapter plugin** that copies LCM's insertion points, but
 4. `experimental.session.compacting`:
    - inject a packet-024 resume note with spec folder, graph freshness, recent files, and next-step guidance
 
-This keeps our current stores as the source of truth and uses the plugin only as an OpenCode transport shell. [SOURCE: `external/opencode-lcm-master/src/index.ts:14-220`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:665-712`] [SOURCE: `decision-record.md:39-99`]
+This keeps our current stores as the source of truth and uses the plugin only as an OpenCode transport shell. [SOURCE: `external/opencode-lcm-master/src/index.ts:14-220`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:665-712`] [SOURCE: `decision-record.md:39-99`]
 
 ### Broader Memory-System Improvements Worth Porting
 

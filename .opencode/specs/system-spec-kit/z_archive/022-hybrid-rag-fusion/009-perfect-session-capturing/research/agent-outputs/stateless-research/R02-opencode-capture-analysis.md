@@ -2,9 +2,9 @@
 
 ## Scope
 Analyzed:
-- `.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts`
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (`transformOpencodeCapture`)
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` for fallback behavior
+- `.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts`
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (`transformOpencodeCapture`)
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` for fallback behavior
 
 ## 1. What `captureConversation()` returns
 

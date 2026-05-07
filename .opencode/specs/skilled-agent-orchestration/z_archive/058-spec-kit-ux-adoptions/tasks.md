@@ -139,10 +139,10 @@ _memory:
 - [ ] T046 Verify all SP3 cross-links resolve
 - [ ] T047 Verify INVENTORY.md and source-manifest.yaml parse cleanly
 - [ ] T048 Verify all 7 persona fixture files load as plain markdown without YAML errors
-- [ ] T049 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/058-spec-kit-ux-adoptions --strict`
+- [ ] T049 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/058-spec-kit-ux-adoptions --strict`
 - [ ] T050 Confirm exit code 0 or 1 (warnings ok)
 - [ ] T051 Author `implementation-summary.md` with per-phase outcomes and link to research source
-- [ ] T052 Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` to refresh continuity
+- [ ] T052 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` to refresh continuity
 - [ ] T053 Verify checklist.md items marked with evidence
 <!-- /ANCHOR:phase-3 -->
 

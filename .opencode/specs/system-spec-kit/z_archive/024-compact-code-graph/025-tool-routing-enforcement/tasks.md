@@ -86,7 +86,7 @@ Template compliance shim anchor for cross-refs.
 
 ### Layer 4: Instruction File Updates
 
-- [x] T-016: Create constitutional memory `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md` with search decision tree (already existed with richer content)
+- [x] T-016: Create constitutional memory `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md` with search decision tree (already existed with richer content)
 - [x] T-017: Update root `CLAUDE.md` -- replace passive "MUST use" with active decision tree
 - [x] T-018: Keep Claude-aware routing reinforcement consolidated in `../../../../../CLAUDE.md`
 - [x] T-019: Update `../../../../../AGENTS.md` with non-hook routing enforcement
@@ -94,11 +94,11 @@ Template compliance shim anchor for cross-refs.
 
 ### Layer 5: Agent Updates
 
-- [x] T-021: Update `.opencode/agent/context.md` with routing rules in output
+- [x] T-021: Update `.opencode/agents/context.md` with routing rules in output
 - [x] T-022: Update `.claude/agents/context.md` with routing rules
 - [x] T-023: Update `.codex/agents/context-prime.toml` with routing rules
 - [x] T-024: Update `.gemini/agents/context.md` with routing rules
-- [x] T-025: Update `.opencode/agent/context.md` with routing rules
+- [x] T-025: Update `.opencode/agents/context.md` with routing rules
 
 ### Validation
 

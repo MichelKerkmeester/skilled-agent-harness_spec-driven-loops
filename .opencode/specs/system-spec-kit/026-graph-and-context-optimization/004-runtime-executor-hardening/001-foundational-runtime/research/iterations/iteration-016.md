@@ -6,7 +6,7 @@ I re-ran the five requested runtime seams against Iterations 001-015 and the Pha
 ## Findings
 
 ### Finding R16-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `417-436, 547-548`
 - **Severity:** P1
 - **Description:** Trigger: a caller sends `includeTransitive: true` with an unsupported `operation` string that still resolves a subject. Caller perception: invalid operations should be rejected with the same `Unknown operation` error used by the one-hop path. Reality: the transitive branch runs before the switch-level validation, derives direction from `operation.endsWith('from')`, defaults the edge type to `CALLS` when none is recognized, and returns `status: "ok"` with a synthetic traversal instead of surfacing invalid input.
@@ -14,7 +14,7 @@ I re-ran the five requested runtime seams against Iterations 001-015 and the Pha
 - **Downstream Impact:** MCP clients, agents, or stale callers can get a plausible-looking transitive graph answer for an operation the API does not support. The blast radius is every structural workflow that treats `status: "ok"` as proof the query contract was honored; unsupported operations can silently degrade into `CALLS` traversals and drive wrong dependency or impact conclusions.
 
 ### Finding R16-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `295-305`
 - **Severity:** P2
 - **Description:** Trigger: `vectorSearch()` returns a candidate row with malformed or missing structural fields such as `id`, `similarity`, or `content_text`. Caller perception: reconsolidation examined a real candidate set and correctly decided there was no actionable duplicate. Reality: the bridge silently coerces malformed rows into sentinel values (`id: 0`, `file_path: ''`, `content_text: null`, `similarity: 0`), then hands them to reconsolidation, where `determineAction(0)` routes to the complement/no-op path and lets the normal create flow continue.

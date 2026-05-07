@@ -5,7 +5,7 @@ Dimension: correctness
 SessionId: 2026-05-03T04:12:23Z
 
 ## Focus
-Iter 5 — cross-cutting: end-to-end. Run code_graph_scan({includeSkills: ['sk-code-review'], includeAgents: true}) → does the resulting DB contain only sk-code-review files + all .opencode/agent/** files + zero from other 4 default-excluded dirs? Does code_graph_status.activeScope show the correct values? Does fingerprint v2 round-trip cleanly?
+Iter 5 — cross-cutting: end-to-end. Run code_graph_scan({includeSkills: ['sk-code-review'], includeAgents: true}) → does the resulting DB contain only sk-code-review files + all .opencode/agents/** files + zero from other 4 default-excluded dirs? Does code_graph_status.activeScope show the correct values? Does fingerprint v2 round-trip cleanly?
 
 ## What 011 modified
 
@@ -28,7 +28,7 @@ Docs:
 - mcp_server/ENV_REFERENCE.md (5 env vars)
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 
 ## Output
 Write narrative to: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills/review/iterations/iteration-005.md`

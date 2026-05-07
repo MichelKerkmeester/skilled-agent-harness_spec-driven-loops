@@ -7,7 +7,7 @@ Deep investigation of the RRF fusion algorithm, adaptive fusion layer, query rou
 
 ### F1: RRF Formula and K Parameter
 The core RRF formula is standard SIGIR 2009: `score = weight * 1/(K + rank + 1)` where K defaults to 60. The K value has three-level precedence: (1) caller-provided, (2) `SPECKIT_RRF_K` env override, (3) DEFAULT_K=60. K validation allows zero (explicit support for k=0 noted in code) but rejects negative values. This is well-implemented with clear documentation.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:36,129-143]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:36,129-143]
 
 ### F2: Channel Weight Architecture — Three Conflicting Weight Systems
 There are **three separate channel weight systems** that interact in non-obvious ways:
@@ -17,25 +17,25 @@ There are **three separate channel weight systems** that interact in non-obvious
 3. **Adaptive fusion weights** (in adaptive-fusion.ts): 7 intent-specific weight profiles mapping semantic/keyword/recency/graph/causalBias dimensions
 
 The conflict: hybrid-search.ts passes `weight: 0.5` for graph results, which **overrides** the 1.5x graph boost in rrf-fusion.ts (the boost only applies when `weight` is undefined). So the graph boost constant `GRAPH_WEIGHT_BOOST=1.5` is effectively dead for the main hybrid-search pipeline.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:658-661]
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:243]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:658-661]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:243]
 
 ### F3: Convergence Bonus Mechanism
 A +0.10 convergence bonus is applied when a result appears in 2+ channels. In `fuseResultsMulti`, the bonus scales linearly: `bonus = 0.10 * (uniqueSourceCount - 1)`. So a result in 3 channels gets +0.20, in 5 channels gets +0.40. This is significant -- a result in all 5 channels gets a 0.40 bonus on top of its RRF scores, which could dominate over rank-based scoring for lower-ranked items.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:266-276]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:266-276]
 
 ### F4: Cross-Variant Fusion (Multi-Query RAG)
 `fuseResultsCrossVariant` supports multi-dimensional fusion: multiple query variants each produce multiple channel lists. It fuses per-variant first, then merges across variants with an additional cross-variant convergence bonus. This is a sophisticated multi-query RAG pattern (C138-P3). The implementation correctly avoids double-counting the convergence bonus by resetting it during merge.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:366-447]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:366-447]
 
 ### F5: Adaptive Fusion is Default-ON but Only Uses 2 of 5 Channels
 The `hybridAdaptiveFuse` function only accepts `semanticResults` and `keywordResults` (2 inputs), not all 5 channels. The adaptive weights map to: semantic->vector, keyword->keyword, with recency as a post-fusion boost. **Graph, BM25, FTS, and degree channels are not part of adaptive fusion.** The adaptive layer has separate `graphWeight` and `graphCausalBias` fields in its weight profiles, but these are never consumed by `adaptiveFuse()` -- they exist in the interface but are unused in the fusion function itself.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:191-238]
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:17-28]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:191-238]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:17-28]
 
 ### F6: Adaptive Fusion FusionWeights.graphWeight is Declared but Unused
 The `FusionWeights` interface declares `graphWeight?: number` and `graphCausalBias?: number`, and all 7 intent profiles set values for these (ranging from 0.10 to 0.50 for graphWeight). However, the `adaptiveFuse()` function only processes `semanticWeight` and `keywordWeight` lists. The graphWeight values are computed and returned in the result but never applied to any channel scoring. This is a significant design gap -- the intent-specific graph weights have no effect on fusion.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60-68,196-217]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60-68,196-217]
 
 ### F7: Query Router Channel Pruning Strategy
 The query router maps complexity tiers to channel subsets with a clear graduated approach:
@@ -44,15 +44,15 @@ The query router maps complexity tiers to channel subsets with a clear graduated
 - **complex**: all 5 channels (full pipeline)
 
 This is governed by `SPECKIT_COMPLEXITY_ROUTER` feature flag. When disabled, all 5 channels always run. There's a 2-channel minimum invariant with vector+fts fallback. The router integrates cleanly into hybrid-search.ts at line 561-565, converting the channel list to a Set for O(1) gating.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:57-61,119-142]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:57-61,119-142]
 
 ### F8: Ablation Override Correctly Intersects with Router
 The ablation framework can force-disable channels via `useVector/useBm25/useFts=false` options. This was a bug fix (BUG-1): previously, the ablation framework's channel disable was a no-op because only routeQuery() controlled activeChannels. The fix deletes channels from the activeChannels set after routing.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:567-573]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:567-573]
 
 ### F9: Score Normalization is Default-ON
 Min-max normalization of RRF scores to [0,1] is applied by default (unless `SPECKIT_SCORE_NORMALIZATION=false`). This happens in both `fuseResultsMulti` and `fuseResultsCrossVariant`. The implementation handles edge cases: NaN/Infinity scores are sanitized to 0, equal scores normalize to 1.0, and the large-array stack overflow risk from `Math.max(...spread)` is avoided via a loop.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:462-511]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:462-511]
 
 ### F10: Pipeline Improvement Opportunity — Weight Coherence Gap (Q1)
 The biggest architectural improvement opportunity is **weight coherence**. Currently:
@@ -66,13 +66,13 @@ A unified weight system that passes all 5 channel weights through the adaptive f
 
 ### F11: Dark-Run Mode for A/B Comparison
 Adaptive fusion includes a dark-run mode that computes both standard and adaptive results, calculates an `orderDifferences` diff, and tracks whether the top result changed. This is production-ready A/B infrastructure but relies on the caller passing `darkRun: true` -- there's no automatic dark-run sampling.
-[SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:300-328,406-413]
+[SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:300-328,406-413]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts` (full file, 540 lines)
-- `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts` (full file, 430 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts` (full file, 167 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (lines 1-120, 550-700)
+- `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts` (full file, 540 lines)
+- `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts` (full file, 430 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts` (full file, 167 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (lines 1-120, 550-700)
 
 ## Assessment
 - New information ratio: 0.82

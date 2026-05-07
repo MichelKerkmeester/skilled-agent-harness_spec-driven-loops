@@ -32,7 +32,7 @@ Codex (OpenAI's coding agent) misinterprets agent routing metadata in `/create` 
 
 **Key Decisions**: Reuse spec 010 three-pronged approach for consistency; bundle emoji cleanup to avoid revisiting 14 YAML files in a separate pass.
 
-**Critical Dependencies**: Write access to `.opencode/command/create/` and `.opencode/command/create/assets/` directories. Symlink `.claude/commands/create` covers both locations.
+**Critical Dependencies**: Write access to `.opencode/commands/create/` and `.opencode/commands/create/assets/` directories. Symlink `.claude/commands/create` covers both locations.
 
 
 ---
@@ -72,8 +72,8 @@ Prevent Codex from prematurely dispatching agents when reading create command fi
 ## 3. SCOPE
 
 ### In Scope
-- 6 `.md` command files in `.opencode/command/create/`
-- 14 `.yaml` workflow files in `.opencode/command/create/assets/`
+- 6 `.md` command files in `.opencode/commands/create/`
+- 14 `.yaml` workflow files in `.opencode/commands/create/assets/`
 - Three-pronged Codex compatibility approach (strip, constrain, restructure)
 - Emoji optionality language cleanup (Change D, aligned with spec 011)
 
@@ -87,26 +87,26 @@ Prevent Codex from prematurely dispatching agents when reading create command fi
 
 | # | File Path | Change Type | Description |
 |---|-----------|-------------|-------------|
-| 1 | .opencode/command/create/skill.md | Modify | Strip 3-agent routing, remove guards, add CONSTRAINTS |
-| 2 | `.opencode/command/create/agent.md` | Modify | Strip 3-agent routing, remove guards, add CONSTRAINTS |
-| 3 | `.opencode/command/create/folder_readme.md` | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS, emoji cleanup |
-| 4 | .opencode/command/create/install_guide.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
-| 5 | .opencode/command/create/skill_asset.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
-| 6 | .opencode/command/create/skill_reference.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
-| 7 | `.opencode/command/create/assets/create_skill_auto.yaml` | Modify | 3 agent_routing blocks restructured |
-| 8 | `.opencode/command/create/assets/create_skill_confirm.yaml` | Modify | 3 agent_routing blocks restructured |
-| 9 | `.opencode/command/create/assets/create_agent_auto.yaml` | Modify | 3 agent_routing blocks restructured |
-| 10 | `.opencode/command/create/assets/create_agent_confirm.yaml` | Modify | 3 agent_routing blocks restructured |
-| 11 | `.opencode/command/create/assets/create_folder_readme_auto.yaml` | Modify | 1 block restructured + emoji cleanup + emoji_conventions rename |
-| 12 | `.opencode/command/create/assets/create_folder_readme_confirm.yaml` | Modify | 1 block restructured + emoji cleanup + emoji_conventions rename |
-| 13 | `.opencode/command/create/assets/create_install_guide_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 14 | `.opencode/command/create/assets/create_install_guide_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 15 | `.opencode/command/create/assets/create_skill_asset_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 16 | `.opencode/command/create/assets/create_skill_asset_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 17 | `.opencode/command/create/assets/create_skill_reference_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 18 | `.opencode/command/create/assets/create_skill_reference_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
-| 19 | `.opencode/command/create/assets/create_skill_auto.yaml` | Modify | (included in #7) |
-| 20 | `.opencode/command/create/assets/create_skill_confirm.yaml` | Modify | (included in #8) |
+| 1 | .opencode/commands/create/skill.md | Modify | Strip 3-agent routing, remove guards, add CONSTRAINTS |
+| 2 | `.opencode/commands/create/agent.md` | Modify | Strip 3-agent routing, remove guards, add CONSTRAINTS |
+| 3 | `.opencode/commands/create/folder_readme.md` | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS, emoji cleanup |
+| 4 | .opencode/commands/create/install_guide.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
+| 5 | .opencode/commands/create/skill_asset.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
+| 6 | .opencode/commands/create/skill_reference.md | Modify | Strip 1-agent routing, remove guards, add CONSTRAINTS |
+| 7 | `.opencode/commands/create/assets/create_skill_auto.yaml` | Modify | 3 agent_routing blocks restructured |
+| 8 | `.opencode/commands/create/assets/create_skill_confirm.yaml` | Modify | 3 agent_routing blocks restructured |
+| 9 | `.opencode/commands/create/assets/create_agent_auto.yaml` | Modify | 3 agent_routing blocks restructured |
+| 10 | `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modify | 3 agent_routing blocks restructured |
+| 11 | `.opencode/commands/create/assets/create_folder_readme_auto.yaml` | Modify | 1 block restructured + emoji cleanup + emoji_conventions rename |
+| 12 | `.opencode/commands/create/assets/create_folder_readme_confirm.yaml` | Modify | 1 block restructured + emoji cleanup + emoji_conventions rename |
+| 13 | `.opencode/commands/create/assets/create_install_guide_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 14 | `.opencode/commands/create/assets/create_install_guide_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 15 | `.opencode/commands/create/assets/create_skill_asset_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 16 | `.opencode/commands/create/assets/create_skill_asset_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 17 | `.opencode/commands/create/assets/create_skill_reference_auto.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 18 | `.opencode/commands/create/assets/create_skill_reference_confirm.yaml` | Modify | 1 block restructured + emoji cleanup |
+| 19 | `.opencode/commands/create/assets/create_skill_auto.yaml` | Modify | (included in #7) |
+| 20 | `.opencode/commands/create/assets/create_skill_confirm.yaml` | Modify | (included in #8) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -170,7 +170,7 @@ All 7 verification checks must pass:
 | Risk | Missed agent_routing in nested YAML | Low | Comprehensive grep across all asset files |
 | Risk | Breaking command functionality | Low | Changes are metadata-only, no logic changes |
 | Dependency | Spec 010 approach proven | Green | Spec 010 already completed and verified |
-| Dependency | Symlink covers both locations | Green | `.claude/commands/create` symlinks to `.opencode/command/create` |
+| Dependency | Symlink covers both locations | Green | `.claude/commands/create` symlinks to `.opencode/commands/create` |
 <!-- /ANCHOR:risks -->
 
 ---

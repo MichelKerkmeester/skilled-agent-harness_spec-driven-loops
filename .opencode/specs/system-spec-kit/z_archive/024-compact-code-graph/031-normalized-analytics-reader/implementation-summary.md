@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -84,7 +84,7 @@ The packet shipped in three passes. First, the transcript parser was tightened s
 |-------|--------|
 | `TMPDIR=$PWD/.tmp/tsc-tmp npm run typecheck` | PASS |
 | `TMPDIR=$PWD/.tmp/vitest-tmp npx vitest run tests/session-analytics-db.vitest.ts tests/hook-session-stop-replay.vitest.ts tests/hook-stop-token-tracking.vitest.ts` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

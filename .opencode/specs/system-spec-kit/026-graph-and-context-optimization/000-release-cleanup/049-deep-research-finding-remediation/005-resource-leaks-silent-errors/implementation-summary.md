@@ -19,10 +19,10 @@ _memory:
     next_safe_action: "Commit and push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-005-resource-leaks-silent-errors"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

@@ -16,13 +16,13 @@ Provisional hasAdvisories: true
 
 1. **Adversarial self-check** on P1-001:
    - **Hunter**: Re-verify P1-001 finding by re-reading the cited evidence at:
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25`
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50`
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967`
-     - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223`
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313`
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335`
-     - `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967`
+     - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335`
+     - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449`
    - **Skeptic**: Challenge severity. Could P1-001 actually be a P2 (theoretical bypass with no observed exploit) given that constitutional README rows have to ALREADY exist in the DB or be smuggled in via a poisoned checkpoint? Or is it correctly P1 (silent invariant violation at storage boundary)?
    - **Referee**: Final call — confirm P1, downgrade to P2, or mark false_positive.
 

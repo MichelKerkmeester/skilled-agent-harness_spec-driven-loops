@@ -104,13 +104,13 @@ Make memory operations policy-aware, auditable, and safe across all relevant sco
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Enforce provenance and policy checks on ingest |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` | Modify | Apply hierarchical scope predicates to retrieval |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Extend schema for scope, provenance, and lifecycle metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/` | Create | Central policy, retention, audit, and deletion modules |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts` | Modify | Execute retention and deletion jobs safely |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Create/Modify | Add isolation, deletion, and audit verification coverage |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add governance and deletion validation procedures |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Enforce provenance and policy checks on ingest |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` | Modify | Apply hierarchical scope predicates to retrieval |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Extend schema for scope, provenance, and lifecycle metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/` | Create | Central policy, retention, audit, and deletion modules |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts` | Modify | Execute retention and deletion jobs safely |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/` | Create/Modify | Add isolation, deletion, and audit verification coverage |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add governance and deletion validation procedures |
 <!-- /ANCHOR:scope -->
 
 ---

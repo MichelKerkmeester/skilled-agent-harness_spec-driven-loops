@@ -40,7 +40,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,11 +65,11 @@ You can now run `/doctor:code-graph:auto` to audit your code-graph index health 
 
 ### `/doctor:code-graph` slash command
 
-The command markdown lives at `.opencode/command/doctor/code-graph.md` and follows the established sk-doc Mode-Based template plus the spec_kit family convention used by `/doctor:skill-advisor`. Frontmatter declares `argument-hint: "[:auto|:confirm] [--scope=stale|missed|bloat|all]"` and the `allowed-tools` list includes the `code_graph_*` MCP tools (status, query, context, detect_changes) plus standard Read / Bash / Grep / Glob.
+The command markdown lives at `.opencode/commands/doctor/code-graph.md` and follows the established sk-doc Mode-Based template plus the spec_kit family convention used by `/doctor:skill-advisor`. Frontmatter declares `argument-hint: "[:auto|:confirm] [--scope=stale|missed|bloat|all]"` and the `allowed-tools` list includes the `code_graph_*` MCP tools (status, query, context, detect_changes) plus standard Read / Bash / Grep / Glob.
 
 ### Auto and confirm YAML workflows
 
-Both YAML files in `.opencode/command/doctor/assets/` describe the same 3-phase pipeline. The `_confirm.yaml` adds one approval gate at `pre_phase_2 (Proposal)` so the user can review the analysis before the report is generated; `_auto.yaml` runs end-to-end with self-validation. Both files declare `mutation_boundaries.allowed_targets: []` (the empty list) — a structural assertion that Phase A produces zero mutations outside packet scratch.
+Both YAML files in `.opencode/commands/doctor/assets/` describe the same 3-phase pipeline. The `_confirm.yaml` adds one approval gate at `pre_phase_2 (Proposal)` so the user can review the analysis before the report is generated; `_auto.yaml` runs end-to-end with self-validation. Both files declare `mutation_boundaries.allowed_targets: []` (the empty list) — a structural assertion that Phase A produces zero mutations outside packet scratch.
 
 ### User-facing install guide
 
@@ -83,9 +83,9 @@ Both YAML files in `.opencode/command/doctor/assets/` describe the same 3-phase 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/doctor/code-graph.md` | Created | Command markdown definition |
-| `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` | Created | Autonomous 3-phase diagnostic workflow |
-| `.opencode/command/doctor/assets/doctor_code-graph_confirm.yaml` | Created | Interactive workflow with one pre_phase_2 approval gate |
+| `.opencode/commands/doctor/code-graph.md` | Created | Command markdown definition |
+| `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` | Created | Autonomous 3-phase diagnostic workflow |
+| `.opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml` | Created | Interactive workflow with one pre_phase_2 approval gate |
 | `.opencode/install_guides/SET-UP - Code Graph.md` | Created | User-facing diagnostic guide |
 | `.opencode/README.md` | Modified | Doctor Commands section: 3 → 4 commands; counts 22/30 → 23/32 |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/spec.md` | Modified | Initial create + checkbox completion + reference path normalization |
@@ -156,5 +156,5 @@ Authoring happened in parallel with the sibling research packet 007 deep-researc
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

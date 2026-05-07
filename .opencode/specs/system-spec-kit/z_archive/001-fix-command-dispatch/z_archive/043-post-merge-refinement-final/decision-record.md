@@ -37,8 +37,8 @@ There is a structural "parity gap" between SKILL.md documentation and the YAML e
 - Document which files need to stay in sync
 
 ### Files Affected
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/command/spec_kit/assets/*.yaml`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/commands/spec_kit/assets/*.yaml`
 
 ---
 
@@ -101,7 +101,7 @@ Level 0 could include:
 ## DR-012: YAML Quote Escaping Fix (P3-002)
 
 ### Context
-Three YAML files in `.opencode/command/create/assets/` had invalid syntax due to nested double quotes in `command:` values. The pattern `"Read(".opencode/...")"` caused YAML parse errors.
+Three YAML files in `.opencode/commands/create/assets/` had invalid syntax due to nested double quotes in `command:` values. The pattern `"Read(".opencode/...")"` caused YAML parse errors.
 
 ### Decision
 **FIXED** - Changed outer quotes from double to single quotes.
@@ -114,10 +114,10 @@ Three YAML files in `.opencode/command/create/assets/` had invalid syntax due to
 ### Change Applied
 ```yaml
 # Before (invalid):
-command: "Read(".opencode/skill/system-memory/SKILL.md")"
+command: "Read(".opencode/skills/system-memory/SKILL.md")"
 
 # After (valid):
-command: 'Read(".opencode/skill/system-memory/SKILL.md")'
+command: 'Read(".opencode/skills/system-memory/SKILL.md")'
 ```
 
 ### Verification
@@ -128,7 +128,7 @@ All YAML files now pass `python3 -c "import yaml; yaml.safe_load(...)"`
 ## DR-013: P3 Code Issues Assessment
 
 ### P3-001: Deprecated substr() Call
-**Status:** NOT FOUND - No `substr()` calls exist in `.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.js`. The file uses `substring()` and `slice()` correctly.
+**Status:** NOT FOUND - No `substr()` calls exist in `.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.js`. The file uses `substring()` and `slice()` correctly.
 
 ### P3-003, P3-004, P3-005: Search Result Enrichment
 **Status:** ALREADY IMPLEMENTED - The `memory_stats` handler at `context-server.js:1134-1135` already includes:

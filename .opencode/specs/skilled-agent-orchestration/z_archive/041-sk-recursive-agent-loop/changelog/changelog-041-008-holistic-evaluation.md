@@ -52,7 +52,7 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 
 **Problem:** The command markdown was minimal and lacked the quality level of other spec_kit commands.
 
-**Fix:** Rewrote `.opencode/command/improve/agent.md` to 430+ lines with Phase 0 verification, unified setup prompt, 5-dimension reference, workflow steps, and violation self-detection.
+**Fix:** Rewrote `.opencode/commands/improve/agent.md` to 430+ lines with Phase 0 verification, unified setup prompt, 5-dimension reference, workflow steps, and violation self-detection.
 
 ### YAML workflow rewrite
 
@@ -64,7 +64,7 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 
 **Problem:** The canonical agent definition lacked callout formatting, clear dividers, and integration-aware workflow steps.
 
-**Fix:** Updated `.opencode/agent/agent-improver.md` with title rename, CRITICAL/IMPORTANT callouts, dividers, ASCII summary box, and integration-aware workflow step.
+**Fix:** Updated `.opencode/agents/agent-improver.md` with title rename, CRITICAL/IMPORTANT callouts, dividers, ASCII summary box, and integration-aware workflow step.
 
 ### sk-code-opencode script alignment
 
@@ -106,9 +106,9 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 | `sk-improve-agent/scripts/score-candidate.cjs` | 5-dimension framework with `--dynamic` flag. |
 | `sk-improve-agent/scripts/reduce-state.cjs` | Per-dimension tracking, dimensional dashboard, plateau stop. |
 | `sk-improve-agent/scripts/run-benchmark.cjs` | `--integration-report` flag for integration consistency scoring. |
-| `.opencode/agent/agent-improver.md` | Title, callouts, dividers, ASCII summary box, integration-aware workflow. |
-| `.opencode/command/improve/agent.md` | Full rewrite to 430+ lines. |
-| `.opencode/command/improve/assets/*.yaml` | Both workflows rewritten to spec_kit gold standard. |
+| `.opencode/agents/agent-improver.md` | Title, callouts, dividers, ASCII summary box, integration-aware workflow. |
+| `.opencode/commands/improve/agent.md` | Full rewrite to 430+ lines. |
+| `.opencode/commands/improve/assets/*.yaml` | Both workflows rewritten to spec_kit gold standard. |
 | `sk-improve-agent/SKILL.md` | 5D framework, emoji rule markers, integration scanning. |
 | `sk-improve-agent/README.md` | Expanded from 231 to 416 lines. |
 | `sk-improve-agent/references/*.md` | All 11 references enriched. |

@@ -1,12 +1,12 @@
 ### Finding 2: Engram deliberately keeps prompt memory separate from its main retrieval lane
-- **Source**: [external/internal/mcp/mcp.go:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:170), [external/internal/mcp/mcp.go:375](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:375), [external/internal/store/store.go:1181](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1181), [external/internal/store/store.go:1462](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1462), [external/internal/store/store.go:1624](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1624), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325)
+- **Source**: [external/internal/mcp/mcp.go:170](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:170), [external/internal/mcp/mcp.go:375](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:375), [external/internal/store/store.go:1181](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1181), [external/internal/store/store.go:1462](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1462), [external/internal/store/store.go:1624](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:1624), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325)
 - **What it does**: Engram stores prompt records in searchable form (`SearchPrompts()` exists) but does not mix them into `mem_search`, which only hits observation records. Prompts instead feed `mem_context` as continuity scaffolding. So prompt memory is a parallel substrate for intent reconstruction, not a blind merge into the main relevance-ranked memory corpus.
 - **Why it matters for us**: If Public adopts prompt memory, it should not dump prompts into `memory_search` and destabilize hybrid ranking. The better fit is additive continuity: use prompt records to enrich `session_resume`, `session_bootstrap`, or resume-mode `memory_context`, while keeping `memory_search` focused on curated memory artifacts. That preserves Public’s stronger semantic, causal, and graph-aware retrieval stack.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: The pattern is worth borrowing, but Engram’s project-scoped trust model is not
-- **Source**: [external/internal/mcp/mcp.go:857](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:857), [external/internal/mcp/mcp.go:515](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:515), [external/internal/store/store.go:754](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:754), [external/internal/store/store.go:2459](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:2459), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [memory-context.ts:821](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:821), [session-manager.ts:1079](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1079)
+- **Source**: [external/internal/mcp/mcp.go:857](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:857), [external/internal/mcp/mcp.go:515](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:515), [external/internal/store/store.go:754](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:754), [external/internal/store/store.go:2459](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:2459), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [memory-context.ts:821](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:821), [session-manager.ts:1079](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1079)
 - **What it does**: Engram’s prompt/session flow relies on normalized project names, explicit session start/end tools, and project consolidation when names drift. That is operationally clean, but trust is still mostly “session id + project name + normalization hygiene.” Public’s equivalent path is stricter: `resolveTrustedSession()` rejects caller-supplied sessions that are not server-managed and identity-correlated, and completed sessions clear working memory immediately.
 - **Why it matters for us**: The prompt-memory idea ports well; the trust model does not. If Public adds a first-class prompt lane, it should bind prompts to trusted server sessions and governed tenant/user/agent/shared-space scope, not to project names as the primary isolation primitive. Otherwise we would weaken a system that is already stronger than Engram on multi-actor safety.
 - **Recommendation**: reject
@@ -19,14 +19,14 @@
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/README.md)
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
-- [session-lifecycle.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [session-lifecycle.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts)
 
 ## Assessment
 - New information ratio: 0.62
@@ -82,7 +82,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 4. Use `@speckit` for markdown authoring when the runtime supports agent routing. If routing is unavailable, preserve existing Spec Kit Level 3 structure manually without creating side-channel docs outside the phase folder.
 5. Validate the phase folder with this exact command before the main research pass:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder first. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md` before continuing.
 7. Run `spec_kit:deep-research` with this exact topic:
@@ -98,7 +98,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 14. When research is complete, update `checklist.md`, create `implementation-summary.md`, and make sure the report explicitly distinguishes `adopt now`, `prototype later`, and `reject`.
 15. Save memory for this phase folder with:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
    ```
 
 ## 6. Research Questions
@@ -333,15 +333,15 @@ When working on this project, load the relevant skill(s) BEFORE writing any code
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -421,7 +421,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -449,7 +449,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, memory file creation
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
@@ -494,7 +494,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -521,7 +521,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'rg -n "engram|hybrid-rag-fusion|001-engram-main|prompt|topic_key|session lifecycle|ProfileAgent|ProfileAdmin" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -541,7 +541,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -778,7 +778,7 @@ Save --> generate-context.js --> verify memory artifact
 946:- ~/.codex/prompts, readlink ~/.codex/prompts, .codex/prompts, spec_kit-plan.md, memory-save.md, create-component.md, agent_router.md, .opencode/command
 950:- when the user asked “update symlink to /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex,” they expected prompt discovery to work without extra manual steps -> first align `~/.codex/prompts` to the active workspace `.codex/prompts` before deeper troubleshooting [Task 1]
 954:- Codex command prompts are discovered via `~/.codex/prompts`; for this checkout the symlink must resolve to `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/prompts` (not the `.codex` root) [Task 1]
-955:- Some builds/autocomplete paths still expect flat files like `spec_kit-plan.md` and `memory-save.md`; keep compatibility symlinks from `.codex/prompts/<group>-<command>.md` to `.opencode/command/<group>/<command>.md` [Task 1]
+955:- Some builds/autocomplete paths still expect flat files like `spec_kit-plan.md` and `memory-save.md`; keep compatibility symlinks from `.codex/prompts/<group>-<command>.md` to `.opencode/commands/<group>/<command>.md` [Task 1]
 956:- If slash commands vanish, verify both `readlink ~/.codex/prompts` and presence of `spec_kit-*.md`/`memory-*.md` compatibility files before restarting Codex [Task 1]
 960:- symptom: typing `/spec_kit` shows blank command list; cause: `~/.codex/prompts` linked to `/Users/.../.codex` instead of `/Users/.../.codex/prompts`; fix: repoint global symlink to the actual prompts subfolder and re-list prompt files [Task 1]
 1106:- symptom: CLI audit flow stalls or fails fast; cause: unsupported `codex exec --ask-for-approval`; fix: use supported codex flags only and keep single-hop depth constraints in prompt text [Task 6]
@@ -809,7 +809,7 @@ drwxr-xr-x   3 michelkerkmeester  staff     96 Apr 10 21:06 memory
 drwxr-xr-x   4 michelkerkmeester  staff    128 Apr 10 21:16 research
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
@@ -830,7 +830,7 @@ user cancelled MCP tool call
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -1174,322 +1174,322 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store_test.go:4103:	results, err := s.Search("normalize test", SearchOptions{
 
 exec
-/bin/zsh -lc "rg -n \"systemPromptContext|memory_context|memory_search|session_resume|session_bootstrap|resolveTrustedSession|user_prompts|working memory|workingMemory|resume|profile: \\\"resume\\\"|mode: \\\"resume\\\"\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"systemPromptContext|memory_context|memory_search|session_resume|session_bootstrap|resolveTrustedSession|user_prompts|working memory|workingMemory|resume|profile: \\\"resume\\\"|mode: \\\"resume\\\"\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:97:    "user_prompts": [...],
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:10:import * as workingMemory from '../cognitive/working-memory.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:78:  workingMemoryDeleted: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:317:  return workingMemory.sessionExists(normalizedSessionId)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385:function resolveTrustedSession(
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:773:    return { success: false, workingMemoryDeleted: 0, sentMemoriesDeleted: 0, sessionStateDeleted: 0, errors: ['Database not initialized'] };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:777:  let workingMemoryDeleted = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:786:    workingMemoryDeleted = wmResult.changes;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:821:  const totalDeleted = workingMemoryDeleted + sentMemoriesDeleted + sessionStateDeleted;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:824:      `[session-manager] Stale session cleanup: removed ${workingMemoryDeleted} working_memory, ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:836:    workingMemoryDeleted,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:852:    // Immediately clear working memory for cleared session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:854:      workingMemory.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090:    // Immediately clear working memory for completed session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1092:      workingMemory.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1260:  const resumeCommand = specFolder
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1261:    ? `/spec_kit:resume ${specFolder}`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1304:${resumeCommand}
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1413:  resolveTrustedSession,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:93:1. User queries memory_search
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:125:- Quick resume command
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:200:| Recover state | `recoverState(sessionId)` | On session resume |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:25:import * as workingMemory from '../lib/cognitive/working-memory.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:208:  // manager to prevent IDOR. Callers cannot read/write working memory for
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:212:    const trustedSession = sessionManager.resolveTrustedSession(rawSessionId, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:275:    workingMemory.isEnabled() &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:370:        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:398:    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:7:import * as workingMemory from '../cognitive/working-memory.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:  const inserted = workingMemory.upsertExtractedEntry({
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:80:type SessionResumeModule = typeof import('./session-resume.js');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:208:    sessionResumeModule = loadHandlerModule<SessionResumeModule>('session-resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:331:// Session resume handler
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:104:| **Recency** | 0.40 | Days since last update (primary for "resume work") |
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:7:import { handleSessionResume } from './session-resume.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:8:import type { CachedSessionSummaryDecision } from './session-resume.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:46:  resume: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:95:  resumeData: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101:  if (resumeData.error) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:169:  let resumeData: Record<string, unknown> = {};
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:171:    const resumeResponse = await handleSessionResume({
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:174:    resumeData = extractData(resumeResponse);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:175:    allHints.push(...extractHints(resumeData));
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:178:    resumeData = { error: message };
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:202:  const cachedSummary = extractCachedSummary(resumeData);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:219:  const resumeCertainty: SharedPayloadCertainty = resumeData.error ? 'unknown' : 'estimated';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:228:  if (!resumeData.error && !resumeStructuralTrust) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:238:  const resumeWithTrust = resumeData.error
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:239:    ? resumeData
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:241:      resumeData,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:242:      resumeStructuralTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:248:      key: 'resume-surface',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:250:      content: summarizeUnknown(resumeData),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:280:      // which remains valid even when the remote resume surface fails closed.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:324:    resume: resumeWithTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:338:    // Keep advisory routing guidance out of nextActions so bootstrap and resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md:132:const budget = getTokenBudget('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md:139:const enhanced = enhanceDescription('memory_search', 'Search memories');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:179:  workingMemoryRestored: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:204:  workingMemory: Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:846:  if (Array.isArray(snapshot.workingMemory)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:848:      columns: Object.keys(snapshot.workingMemory[0] ?? {}),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:849:      rows: snapshot.workingMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1453:      const workingMemorySnapshot = tables.working_memory?.rows ?? [];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1464:        workingMemory: workingMemorySnapshot,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606:    workingMemoryRestored: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1874:            result.workingMemoryRestored += restoredCount;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1889:        result.workingMemoryRestored = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1908:    console.error(`[checkpoints] Restored ${result.restored} memories, ${result.workingMemoryRestored} working memory entries from "${checkpoint.name}"`);
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:475:  const hasRestoredData = result.restored > 0 || result.workingMemoryRestored > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:482:  if (result.restored > 0 || result.workingMemoryRestored > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:508:        workingMemoryRestored: result.workingMemoryRestored,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:529:        workingMemoryRestored: result.workingMemoryRestored,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:132:  return buildErrorResponse('memory_search', error, { query });
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:142:const hint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:32:import * as workingMemory from '../lib/cognitive/working-memory.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:97:  resumed: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:99:  resumedContextCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:146:  resumed: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:155:  resumeHeuristicApplied: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:674:  resume: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:677:    strategy: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:784:  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:787:    query: input || 'resume work continue session',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:798:    anchors: resumeAnchors,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:810:    strategy: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:811:    mode: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:812:    resumeAnchors: resumeAnchors,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:828:  const trustedSession = sessionManager.resolveTrustedSession(args.sessionId ?? null, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:837:      resumed: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:846:  const resumed = trustedSession.trusted;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:847:  const priorMode = resumed
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:848:    ? workingMemory.getSessionInferredMode(effectiveSessionId)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:850:  const counter = resumed
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:851:    ? workingMemory.getSessionEventCounter(effectiveSessionId)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:857:    resumed,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:883:  let resumeHeuristicApplied = false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:898:    const hasResumeKeywords = /\b(resume|continue|pick up|where was i|what(?:'s| is) next)\b/i.test(normalizedInput);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:900:      session.resumed ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:901:      session.priorMode === 'resume' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:909:      effectiveMode = 'resume';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:910:      resumeHeuristicApplied = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:942:      resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:986:    case 'resume':
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1142:  if (requested_mode !== 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1224:    resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1244:    resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1246:    resumedContextCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1305:      resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1314:    resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1338:    resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1343:    queryHeuristicApplied: resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1415:    workingMemory.setSessionInferredMode(effectiveSessionId, effectiveMode);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1425:  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1434:  if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1436:    if (resumeContextItems.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1437:      sessionLifecycle.resumedContextCount = resumeContextItems.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1497:        resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:469:      'Consider using /spec_kit:resume for session recovery'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:30:      "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:75:      "query": "what is the relationship between the working memory system and event decay",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:85:      "query": "memory_context returns wrong results when token pressure is high",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:231:      "notes": "From T007b Pattern 2: session resume always uses \"session state\" as the input string."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:251:      "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:415:      "query": "the memory_search tool returns stale results after index rebuild",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:425:      "query": "what is the difference between memory_context and memory_search for context retrieval",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:430:      "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:585:      "query": "SPECKIT_SESSION_BOOST working memory attention",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:725:      "query": "when should I use memory_search versus memory_context",
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:90:- Purpose: Owns the memory-science side of the system: decay, retrievability, working memory, co-activation, pressure monitoring, archival movement, and adaptive ranking inputs. It is the main "how memory behaves over time" module family.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:96:    : 'startup summary only (resume on demand)';
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:191:Bootstrap and resume remain the authority surfaces for structural context. Packet `006` only adds the shared trust contract beside packet `005`'s certainty contract; it does not create a new graph-only owner surface.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:306:- Preserve the three axes distinctly through bootstrap or resume-facing payloads. Do not merge them into a single "graph trust" label during transport.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:311:- Current owner surfaces remain authoritative: shared payload sections, session bootstrap or resume consumers, and bridge-facing graph payloads.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:25:/** Complete transport-only plan derived from shared startup/resume payloads. */
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:85:  resumePayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:93:    args.resumePayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:98:  const systemPayload = args.bootstrapPayload ?? args.startupPayload ?? args.resumePayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:99:  const messagePayloads = [args.resumePayload, args.healthPayload].filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:43:| Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:55:| **Cognitive Memory** | Human-like memory features including attention decay, working memory and co-activation |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:175:│   ├── working-memory.ts       # Session working memory
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:390:// HOT (R >= 0.80)      - Active working memory, full content
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:723:| [Cognitive Modules](./cognitive/) | Attention decay, working memory, co-activation |
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:181:const key = generateCacheKey('memory_search', { query: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:184:set(key, searchResults, { toolName: 'memory_search', ttlMs: 30000 });
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:196:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:9:  | 'resume'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:13://   resume   — state + nextSteps + blockers
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:29:export type ResponseProfile = 'quick' | 'research' | 'resume' | 'debug';
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86:/** Output of the `resume` profile formatter. */
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:111:  | { profile: 'resume'; data: ResumeProfile }
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:352: * Format results as the `resume` profile.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:402: * @param profile       - Profile name ('quick' | 'research' | 'resume' | 'debug')
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:423:    case 'resume':
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:424:      return { profile: 'resume', data: formatResume(safeInput) };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:15:// Feature catalog: Tool-result extraction to working memory
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:514: * Enforce working memory capacity limit by LRU eviction.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/README.md:33:| `profile-formatters.ts` | Profile reducers for `quick`, `research`, `resume`, and `debug` response shapes |
-.opencode/skill/system-spec-kit/mcp_server/lib/response/README.md:41:- `profile-formatters.ts` exports `applyResponseProfile()` and `applyProfileToEnvelope()` plus the public profile types for `quick`, `research`, `resume`, and `debug`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:194:    keywords: ['memory', 'context', 'session', 'previous session', 'prior work', 'last time', 'continue', 'resume', 'recover', 'continuation'],
-.opencode/skill/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:6:// session-resume.ts, and other consumers.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:4:// Feature catalog: Tool-result extraction to working memory
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:4:// Feature catalog: Tool-result extraction to working memory
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:7:  'session-resume',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:26:  resumedSession: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:49:    case 'session-resume':
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:50:      return `resumed session inferred ${effectiveMode} mode`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:71:  if (args.resumedSession) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:72:    activeSignals.push('session-resume');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:89:    if (!args.resumedSession && !args.pressureOverrideApplied && args.requestedMode === 'auto' && !args.queryHeuristicApplied) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:597:// Add/update memory in working memory
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:600:// Get working memory entries
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:751:import * as workingMemory from './working-memory';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:760:workingMemory.init(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1052:| `SPECKIT_WORKING_MEMORY`  | true    | Enable working memory sessions          |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:175:Packet `026-graph-and-context-optimization/010-fts-capability-cascade-floor` freezes the lexical capability contract that packet `002-implement-cache-warning-hooks` now consumes. `memory_search` responses expose:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:15:// Session/working memory   → Linear decay (working-memory.ts) — separate domain
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:671: * (quick, research, resume, debug) when no explicit profile is specified by the caller.
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:97:    "user_prompts": [...],
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:10:import * as workingMemory from '../cognitive/working-memory.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:78:  workingMemoryDeleted: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:317:  return workingMemory.sessionExists(normalizedSessionId)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385:function resolveTrustedSession(
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:773:    return { success: false, workingMemoryDeleted: 0, sentMemoriesDeleted: 0, sessionStateDeleted: 0, errors: ['Database not initialized'] };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:777:  let workingMemoryDeleted = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:786:    workingMemoryDeleted = wmResult.changes;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:821:  const totalDeleted = workingMemoryDeleted + sentMemoriesDeleted + sessionStateDeleted;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:824:      `[session-manager] Stale session cleanup: removed ${workingMemoryDeleted} working_memory, ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:836:    workingMemoryDeleted,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:852:    // Immediately clear working memory for cleared session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:854:      workingMemory.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090:    // Immediately clear working memory for completed session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1092:      workingMemory.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1260:  const resumeCommand = specFolder
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1261:    ? `/spec_kit:resume ${specFolder}`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1304:${resumeCommand}
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1413:  resolveTrustedSession,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:93:1. User queries memory_search
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:125:- Quick resume command
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:200:| Recover state | `recoverState(sessionId)` | On session resume |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:25:import * as workingMemory from '../lib/cognitive/working-memory.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:208:  // manager to prevent IDOR. Callers cannot read/write working memory for
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:212:    const trustedSession = sessionManager.resolveTrustedSession(rawSessionId, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:275:    workingMemory.isEnabled() &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:281:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:370:        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:398:    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:7:import * as workingMemory from '../cognitive/working-memory.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:  const inserted = workingMemory.upsertExtractedEntry({
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:80:type SessionResumeModule = typeof import('./session-resume.js');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:208:    sessionResumeModule = loadHandlerModule<SessionResumeModule>('session-resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:331:// Session resume handler
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:104:| **Recency** | 0.40 | Days since last update (primary for "resume work") |
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:7:import { handleSessionResume } from './session-resume.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:8:import type { CachedSessionSummaryDecision } from './session-resume.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:46:  resume: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:95:  resumeData: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101:  if (resumeData.error) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:169:  let resumeData: Record<string, unknown> = {};
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:171:    const resumeResponse = await handleSessionResume({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:174:    resumeData = extractData(resumeResponse);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:175:    allHints.push(...extractHints(resumeData));
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:178:    resumeData = { error: message };
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:202:  const cachedSummary = extractCachedSummary(resumeData);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:219:  const resumeCertainty: SharedPayloadCertainty = resumeData.error ? 'unknown' : 'estimated';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:228:  if (!resumeData.error && !resumeStructuralTrust) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:238:  const resumeWithTrust = resumeData.error
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:239:    ? resumeData
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:241:      resumeData,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:242:      resumeStructuralTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:248:      key: 'resume-surface',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:250:      content: summarizeUnknown(resumeData),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:280:      // which remains valid even when the remote resume surface fails closed.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:324:    resume: resumeWithTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:338:    // Keep advisory routing guidance out of nextActions so bootstrap and resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md:132:const budget = getTokenBudget('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md:139:const enhanced = enhanceDescription('memory_search', 'Search memories');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:179:  workingMemoryRestored: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:204:  workingMemory: Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:846:  if (Array.isArray(snapshot.workingMemory)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:848:      columns: Object.keys(snapshot.workingMemory[0] ?? {}),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:849:      rows: snapshot.workingMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1453:      const workingMemorySnapshot = tables.working_memory?.rows ?? [];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1464:        workingMemory: workingMemorySnapshot,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606:    workingMemoryRestored: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1874:            result.workingMemoryRestored += restoredCount;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1889:        result.workingMemoryRestored = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1908:    console.error(`[checkpoints] Restored ${result.restored} memories, ${result.workingMemoryRestored} working memory entries from "${checkpoint.name}"`);
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:475:  const hasRestoredData = result.restored > 0 || result.workingMemoryRestored > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:482:  if (result.restored > 0 || result.workingMemoryRestored > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:508:        workingMemoryRestored: result.workingMemoryRestored,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:529:        workingMemoryRestored: result.workingMemoryRestored,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:132:  return buildErrorResponse('memory_search', error, { query });
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:142:const hint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:32:import * as workingMemory from '../lib/cognitive/working-memory.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:97:  resumed: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:99:  resumedContextCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:146:  resumed: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:155:  resumeHeuristicApplied: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:674:  resume: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:677:    strategy: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:784:  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:787:    query: input || 'resume work continue session',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:798:    anchors: resumeAnchors,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:810:    strategy: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:811:    mode: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:812:    resumeAnchors: resumeAnchors,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:828:  const trustedSession = sessionManager.resolveTrustedSession(args.sessionId ?? null, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:837:      resumed: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:846:  const resumed = trustedSession.trusted;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:847:  const priorMode = resumed
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:848:    ? workingMemory.getSessionInferredMode(effectiveSessionId)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:850:  const counter = resumed
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:851:    ? workingMemory.getSessionEventCounter(effectiveSessionId)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:857:    resumed,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:883:  let resumeHeuristicApplied = false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:898:    const hasResumeKeywords = /\b(resume|continue|pick up|where was i|what(?:'s| is) next)\b/i.test(normalizedInput);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:900:      session.resumed ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:901:      session.priorMode === 'resume' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:909:      effectiveMode = 'resume';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:910:      resumeHeuristicApplied = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:942:      resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:986:    case 'resume':
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1142:  if (requested_mode !== 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1224:    resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1244:    resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1246:    resumedContextCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1305:      resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1314:    resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1338:    resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1343:    queryHeuristicApplied: resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1415:    workingMemory.setSessionInferredMode(effectiveSessionId, effectiveMode);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1425:  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1434:  if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1436:    if (resumeContextItems.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1437:      sessionLifecycle.resumedContextCount = resumeContextItems.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1497:        resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:469:      'Consider using /spec_kit:resume for session recovery'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:30:      "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:75:      "query": "what is the relationship between the working memory system and event decay",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:85:      "query": "memory_context returns wrong results when token pressure is high",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:231:      "notes": "From T007b Pattern 2: session resume always uses \"session state\" as the input string."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:240:      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:241:      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:251:      "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:415:      "query": "the memory_search tool returns stale results after index rebuild",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:425:      "query": "what is the difference between memory_context and memory_search for context retrieval",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:430:      "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:585:      "query": "SPECKIT_SESSION_BOOST working memory attention",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:725:      "query": "when should I use memory_search versus memory_context",
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:90:- Purpose: Owns the memory-science side of the system: decay, retrievability, working memory, co-activation, pressure monitoring, archival movement, and adaptive ranking inputs. It is the main "how memory behaves over time" module family.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:96:    : 'startup summary only (resume on demand)';
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:191:Bootstrap and resume remain the authority surfaces for structural context. Packet `006` only adds the shared trust contract beside packet `005`'s certainty contract; it does not create a new graph-only owner surface.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:306:- Preserve the three axes distinctly through bootstrap or resume-facing payloads. Do not merge them into a single "graph trust" label during transport.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:311:- Current owner surfaces remain authoritative: shared payload sections, session bootstrap or resume consumers, and bridge-facing graph payloads.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:25:/** Complete transport-only plan derived from shared startup/resume payloads. */
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:85:  resumePayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:93:    args.resumePayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:98:  const systemPayload = args.bootstrapPayload ?? args.startupPayload ?? args.resumePayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:99:  const messagePayloads = [args.resumePayload, args.healthPayload].filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:43:| Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:55:| **Cognitive Memory** | Human-like memory features including attention decay, working memory and co-activation |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:175:│   ├── working-memory.ts       # Session working memory
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:390:// HOT (R >= 0.80)      - Active working memory, full content
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:723:| [Cognitive Modules](./cognitive/) | Attention decay, working memory, co-activation |
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:181:const key = generateCacheKey('memory_search', { query: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:184:set(key, searchResults, { toolName: 'memory_search', ttlMs: 30000 });
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:196:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:9:  | 'resume'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:13://   resume   — state + nextSteps + blockers
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:29:export type ResponseProfile = 'quick' | 'research' | 'resume' | 'debug';
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86:/** Output of the `resume` profile formatter. */
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:111:  | { profile: 'resume'; data: ResumeProfile }
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:352: * Format results as the `resume` profile.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:402: * @param profile       - Profile name ('quick' | 'research' | 'resume' | 'debug')
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:423:    case 'resume':
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:424:      return { profile: 'resume', data: formatResume(safeInput) };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:15:// Feature catalog: Tool-result extraction to working memory
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:514: * Enforce working memory capacity limit by LRU eviction.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/README.md:33:| `profile-formatters.ts` | Profile reducers for `quick`, `research`, `resume`, and `debug` response shapes |
+.opencode/skills/system-spec-kit/mcp_server/lib/response/README.md:41:- `profile-formatters.ts` exports `applyResponseProfile()` and `applyProfileToEnvelope()` plus the public profile types for `quick`, `research`, `resume`, and `debug`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:194:    keywords: ['memory', 'context', 'session', 'previous session', 'prior work', 'last time', 'continue', 'resume', 'recover', 'continuation'],
+.opencode/skills/system-spec-kit/mcp_server/lib/utils/cocoindex-path.ts:6:// session-resume.ts, and other consumers.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:4:// Feature catalog: Tool-result extraction to working memory
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:4:// Feature catalog: Tool-result extraction to working memory
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:7:  'session-resume',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:26:  resumedSession: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:49:    case 'session-resume':
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:50:      return `resumed session inferred ${effectiveMode} mode`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:71:  if (args.resumedSession) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:72:    activeSignals.push('session-resume');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:89:    if (!args.resumedSession && !args.pressureOverrideApplied && args.requestedMode === 'auto' && !args.queryHeuristicApplied) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:597:// Add/update memory in working memory
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:600:// Get working memory entries
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:751:import * as workingMemory from './working-memory';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:760:workingMemory.init(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1052:| `SPECKIT_WORKING_MEMORY`  | true    | Enable working memory sessions          |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:175:Packet `026-graph-and-context-optimization/010-fts-capability-cascade-floor` freezes the lexical capability contract that packet `002-implement-cache-warning-hooks` now consumes. `memory_search` responses expose:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:15:// Session/working memory   → Linear decay (working-memory.ts) — separate domain
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:671: * (quick, research, resume, debug) when no explicit profile is specified by the caller.
 
 codex
 I’ve got the index map now: Engram clearly has a separate `SearchPrompts()` lane and `FormatContext()` composes prompts into startup context rather than `mem_search`. I’m drilling into the exact handlers and store queries next so the final write-up stays grounded in implementation, not interpretation.
@@ -2317,7 +2317,7 @@ exec
 				backoff_until        TEXT,
 
 exec
-/bin/zsh -lc "sed -n '420,470p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '420,470p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
         publishable: false,
         exclusionReason: gateResult.exclusionReason,
@@ -2372,7 +2372,7 @@ function applySessionDedup(results: MemorySearchRow[], sessionId: string, enable
   };
 
 exec
-/bin/zsh -lc "sed -n '780,860p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '780,860p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   };
 }
@@ -2457,7 +2457,7 @@ function resolveSessionLifecycle(
   };
 
 exec
-/bin/zsh -lc "sed -n '1420,1454p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1420,1454p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
   // T205: Determine effective token budget from mode or layer definitions
@@ -2496,7 +2496,7 @@ exec
   if (graphContextResult) {
 
 exec
-/bin/zsh -lc "sed -n '380,440p' .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '380,440p' .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   storedIdentity: { tenantId: string | null; userId: string | null; agentId: string | null } | null,
 ): storedIdentity is { tenantId: string | null; userId: string | null; agentId: string | null } {
@@ -2561,7 +2561,7 @@ function resolveTrustedSession(
 
 
 exec
-/bin/zsh -lc "sed -n '88,118p' .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '88,118p' .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   - Explicit CLI targets still outrank payload specFolder values in every structured-input mode.
 
@@ -2596,9 +2596,9 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
       "uncertaintyScore": 25,
 
 exec
-/bin/zsh -lc "sed -n '320,336p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '320,336p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '480,520p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '480,520p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
   };
@@ -2662,7 +2662,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     includeArchived: includeArchived = false, // REQ-206: exclude archived by default
 
 exec
-/bin/zsh -lc "sed -n '300,350p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '300,350p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
   try {
@@ -2717,7 +2717,7 @@ function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR,
     return [];
 
 exec
-/bin/zsh -lc "sed -n '1080,1100p' .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1080,1100p' .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   if (!db || !sessionId) return { success: false, error: 'Database or sessionId not available' };
 
@@ -2831,7 +2831,7 @@ func TestStoreErrorBranchesWithClosedDatabase(t *testing.T) {
 codex
 The comparison boundary is sharp now: Engram’s prompt lane has its own schema, FTS table, and API, while `mem_search` still routes only to observations; Public’s equivalent continuity signal is working-memory-derived prompt context injected only during resume. I’m grabbing the remaining handler glue and a couple of support lines so I can state that cleanly and not over-claim.
 exec
-/bin/zsh -lc "rg -n \"func handleSearch|handleSearch\\(|SearchPrompts\\(|FormatContext\\(|getSessionPromptContext|systemPromptContextInjected\" .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"func handleSearch|handleSearch\\(|SearchPrompts\\(|FormatContext\\(|getSessionPromptContext|systemPromptContextInjected\" .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '700,770p' .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
@@ -2930,11 +2930,11 @@ func handleSuggestTopicKey() server.ToolHandlerFunc {
 			return mcp.NewToolResultError("provide title or content to suggest a topic_key"), nil
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:349:    console.warn(`[working-memory] getSessionPromptContext error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:739:  getSessionPromptContext,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:349:    console.warn(`[working-memory] getSessionPromptContext error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:739:  getSessionPromptContext,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:197:			handleSearch(s, cfg),
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:625:func handleSearch(s *store.Store, cfg MCPConfig) server.ToolHandlerFunc {
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:894:		context, err := s.FormatContext(project, scope)
@@ -3086,35 +3086,35 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/cmd/engram/main_extra_test.go:129:		return s.FormatContext(project, scope)
 
 exec
-/bin/zsh -lc 'rg -n "user_prompts|systemPromptContext|prompt context|getSessionPromptContext|session prompt" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "user_prompts|systemPromptContext|prompt context|getSessionPromptContext|session prompt" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:80:    user_prompts: [],
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:95:      getSessionPromptContext: vi.fn(() => []),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:94:    systemPromptContextInjected?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:95:    systemPromptContext?: Array<{ memoryId: number }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:592:      expect(parsed.data.systemPromptContextInjected).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:593:      expect(parsed.data.systemPromptContext!.length).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:594:      expect(parsed.data.systemPromptContext![0].memoryId).toBe(101);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:679:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:699:      expect(parsed.data.systemPromptContextInjected).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:700:      expect(parsed.data.systemPromptContext!.length).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:701:      expect(parsed.data.systemPromptContext![0].memoryId).toBe(201);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:710:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:730:      expect(parsed.data.systemPromptContextInjected).not.toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:731:      expect(parsed.data.systemPromptContext ?? []).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:65:    const promptContext = workingMemory.getSessionPromptContext('resume-session', 0.05, 5);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:349:    console.warn(`[working-memory] getSessionPromptContext error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:739:  getSessionPromptContext,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1444:      (tracedResult0 as Record<string, unknown>).systemPromptContextInjected = true;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:80:    user_prompts: [],
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:95:      getSessionPromptContext: vi.fn(() => []),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:94:    systemPromptContextInjected?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:95:    systemPromptContext?: Array<{ memoryId: number }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:592:      expect(parsed.data.systemPromptContextInjected).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:593:      expect(parsed.data.systemPromptContext!.length).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:594:      expect(parsed.data.systemPromptContext![0].memoryId).toBe(101);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:679:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:699:      expect(parsed.data.systemPromptContextInjected).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:700:      expect(parsed.data.systemPromptContext!.length).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:701:      expect(parsed.data.systemPromptContext![0].memoryId).toBe(201);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:710:      vi.spyOn(workingMemory, 'getSessionPromptContext').mockReturnValue([
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:730:      expect(parsed.data.systemPromptContextInjected).not.toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:731:      expect(parsed.data.systemPromptContext ?? []).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:65:    const promptContext = workingMemory.getSessionPromptContext('resume-session', 0.05, 5);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:349:    console.warn(`[working-memory] getSessionPromptContext error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:739:  getSessionPromptContext,
 
 exec
-/bin/zsh -lc "sed -n '56,74p' .opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '56,74p' .opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '556,606p' .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '556,606p' .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     expect(workingMemory.getSessionEventCounter('resume-session')).toBe(1);
 
@@ -3873,7 +3873,7 @@ exec
   1654			b.WriteString("\n")
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '784,856p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '784,856p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    784	  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
    785	
@@ -3950,7 +3950,7 @@ exec
    856	    effectiveSessionId,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1425,1450p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1425,1450p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1425	  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
   1426	  // so the final response respects the advertised token budget.
@@ -3980,7 +3980,7 @@ exec
   1450	  const tracedResult = budgetedResult;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '385,429p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '385,429p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    385	function resolveTrustedSession(
    386	  requestedSessionId: string | null = null,
@@ -4029,9 +4029,9 @@ exec
    429	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '1084,1096p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts | sed -n '1084,1096p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '325,347p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '325,347p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1084	      UPDATE session_state
   1085	      SET status = 'completed', updated_at = ?
@@ -4073,7 +4073,7 @@ exec
    347	  } catch (error: unknown) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,500p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,500p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    482	/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
    483	 * @param args - Search arguments (query, concepts, mode, specFolder, etc.)
@@ -4096,7 +4096,7 @@ exec
    500	    agentId,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '94,108p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '94,108p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     94	
     95	JSON Data Format (with preflight/postflight, session/git, and tool/exchange enrichment):
@@ -4115,7 +4115,7 @@ exec
    108	      "knowledgeScore": 40,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts | sed -n '562,596p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts | sed -n '562,596p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    562	      mockTrustedSession('session-abc');
    563	      vi.spyOn(workingMemory, 'sessionExists').mockReturnValue(true);
@@ -4245,7 +4245,7 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - **Impact**: medium
 
 ### Finding 5: Public already implements the principle, but only as transient resume-time scaffolding
-- **Source**: [memory-context.ts:784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:784), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [session-manager.ts:1090](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482), [generate-context.js:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:97), [handler-memory-context.vitest.ts:565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565)
+- **Source**: [memory-context.ts:784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:784), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [session-manager.ts:1090](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482), [generate-context.js:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:97), [handler-memory-context.vitest.ts:565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565)
 - **What it does**: Public’s resume path runs `memory_search` with anchored content, then optionally injects `systemPromptContext` from high-attention working-memory items when the session is trusted and resumed. Tests verify that injection only in resume conditions. The save script accepts `user_prompts`, but live runtime retrieval does not yet persist or search them as first-class entities.
 - **Why it matters for us**: Public has the right behavioral boundary already: prompt-like context is additive continuity, not ranking input. The missing piece is durability beyond working-memory lifetime, especially because completed sessions clear working memory immediately.
 - **Recommendation**: prototype later
@@ -4260,12 +4260,12 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - [external/internal/store/store_test.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store_test.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/README.md)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
-- [handler-memory-context.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [handler-memory-context.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts)
 
 ## Assessment
 - New information ratio: 0.58
@@ -4319,7 +4319,7 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - **Impact**: medium
 
 ### Finding 5: Public already implements the principle, but only as transient resume-time scaffolding
-- **Source**: [memory-context.ts:784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:784), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [session-manager.ts:1090](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482), [generate-context.js:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:97), [handler-memory-context.vitest.ts:565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565)
+- **Source**: [memory-context.ts:784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:784), [memory-context.ts:1435](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435), [working-memory.ts:325](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:385), [session-manager.ts:1090](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1090), [memory-search.ts:482](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482), [generate-context.js:97](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:97), [handler-memory-context.vitest.ts:565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:565)
 - **What it does**: Public’s resume path runs `memory_search` with anchored content, then optionally injects `systemPromptContext` from high-attention working-memory items when the session is trusted and resumed. Tests verify that injection only in resume conditions. The save script accepts `user_prompts`, but live runtime retrieval does not yet persist or search them as first-class entities.
 - **Why it matters for us**: Public has the right behavioral boundary already: prompt-like context is additive continuity, not ranking input. The missing piece is durability beyond working-memory lifetime, especially because completed sessions clear working memory immediately.
 - **Recommendation**: prototype later
@@ -4334,12 +4334,12 @@ DEEP DIVE - SECOND PATTERN: Go deep on the second most impactful pattern. Full i
 - [external/internal/store/store_test.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store_test.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/README.md)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
-- [handler-memory-context.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [handler-memory-context.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts)
 
 ## Assessment
 - New information ratio: 0.58

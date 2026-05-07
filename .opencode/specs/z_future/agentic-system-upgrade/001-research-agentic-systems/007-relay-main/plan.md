@@ -25,7 +25,7 @@ contextType: "planning"
 | **Language/Stack** | Markdown research artifacts, JSONL state, shell validation |
 | **Framework** | `system-spec-kit` Level 3 packet workflow |
 | **Storage** | Phase-local docs under `007-relay-main/`, `research/iterations/`, `research/*.md`, `research/deep-research-state.jsonl` |
-| **Testing** | JSONL parse checks and `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
+| **Testing** | JSONL parse checks and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
 
 ### Overview
 
@@ -110,7 +110,7 @@ Prior artifacts -> external/Public evidence gathering -> iteration files `011-02
 |-----------|-------|-------|
 | Artifact presence | Iteration files and packet docs exist where expected | `rg --files`, `find` |
 | State integrity | JSONL append is parseable, sequential, and Phase 2 rows are tagged | `python3` JSON parse |
-| Packet validation | Level, links, required files, and packet integrity | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
+| Packet validation | Level, links, required files, and packet integrity | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
 | Manual review | Totals, verdicts, and non-goals are consistent across report and dashboard | `sed`, diff inspection |
 <!-- /ANCHOR:testing -->
 
@@ -123,7 +123,7 @@ Prior artifacts -> external/Public evidence gathering -> iteration files `011-02
 |------------|------|--------|-------------------|
 | `phase-research-prompt.md` | Internal | Green | Phase framing drifts |
 | Packet-local Relay snapshot under `external/` | Internal | Green | No research substrate |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Packet cannot be closed cleanly |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Packet cannot be closed cleanly |
 | Existing Phase 1 artifacts | Internal | Green | Phase 2 cannot build cumulatively |
 | Local shell/JSON parsing tools | Internal | Green | Verification becomes weaker |
 <!-- /ANCHOR:dependencies -->

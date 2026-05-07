@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "verify_or_complete_remaining_063a_scope"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/agents/agent_template.md"
+      - ".opencode/skills/sk-doc/assets/agents/agent_template.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-063-2026-05-03"
@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-- Updated `.opencode/skill/sk-doc/assets/agents/agent_template.md` from the stale 692-line template to a 765-line post-063 alignment template.
-- Added current production patterns from `.opencode/agent/context.md`, `.opencode/agent/deep-review.md`, `.opencode/agent/multi-ai-council.md`, and `.opencode/skill/sk-deep-review/SKILL.md`.
+- Updated `.opencode/skills/sk-doc/assets/agents/agent_template.md` from the stale 692-line template to a 765-line post-063 alignment template.
+- Added current production patterns from `.opencode/agents/context.md`, `.opencode/agents/deep-review.md`, `.opencode/agents/multi-ai-council.md`, and `.opencode/skills/sk-deep-review/SKILL.md`.
 - Removed the legacy standalone related-resource section pattern, the stale retired documentation-agent reference, and the standalone intro-paragraph section.
 - Refreshed the production examples table to the current 10-agent fleet: `code`, `context`, `debug`, `deep-research`, `deep-review`, `improve-agent`, `improve-prompt`, `multi-ai-council`, `orchestrate`, and `review`.
 <!-- /ANCHOR:what-built -->
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:verification -->
 ## 5. VERIFICATION
 
-- `wc -l .opencode/skill/sk-doc/assets/agents/agent_template.md` -> 765 lines.
-- `rg -n "RELATED RESOURCES|@write|write\\.md|INTRO PARAGRAPH PATTERNS|@general|\\(built-in\\)" .opencode/skill/sk-doc/assets/agents/agent_template.md || true` -> no matches.
-- `rg -n "^## [0-9]+\\.|mcpServers|BINDING:|REFUSE:|HOOK-INJECTED|ILLEGAL NESTING|PRODUCTION EXAMPLES|VALIDATION CHECKLIST|Last Updated" .opencode/skill/sk-doc/assets/agents/agent_template.md` -> confirmed required anchors and contracts are present.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/063-sk-doc-agent-template-alignment --strict` initially failed because this implementation summary was still scaffolded; this summary update provides concrete artifact and verification evidence.
+- `wc -l .opencode/skills/sk-doc/assets/agents/agent_template.md` -> 765 lines.
+- `rg -n "RELATED RESOURCES|@write|write\\.md|INTRO PARAGRAPH PATTERNS|@general|\\(built-in\\)" .opencode/skills/sk-doc/assets/agents/agent_template.md || true` -> no matches.
+- `rg -n "^## [0-9]+\\.|mcpServers|BINDING:|REFUSE:|HOOK-INJECTED|ILLEGAL NESTING|PRODUCTION EXAMPLES|VALIDATION CHECKLIST|Last Updated" .opencode/skills/sk-doc/assets/agents/agent_template.md` -> confirmed required anchors and contracts are present.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/063-sk-doc-agent-template-alignment --strict` initially failed because this implementation summary was still scaffolded; this summary update provides concrete artifact and verification evidence.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

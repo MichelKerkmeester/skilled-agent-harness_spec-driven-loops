@@ -55,7 +55,7 @@ _memory:
 - [x] T005 Create the phase-local handover candidate used for promotion verification
 - [x] T006 Generate handover repeatability artifacts in the new phase
 - [x] T007 Generate context-prime repeatability artifacts in the new phase
-- [x] T008 Run the guarded promotion path against `.opencode/agent/handover.md`
+- [x] T008 Run the guarded promotion path against `.opencode/agents/handover.md`
 - [x] T009 Validate the promoted canonical handover file
 - [x] T010 Roll back the canonical handover file to the archived backup
 - [x] T011 Record direct backup-match proof after rollback

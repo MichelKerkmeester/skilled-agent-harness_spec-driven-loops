@@ -78,9 +78,9 @@ Stabilize the Spec Kit Memory system by fixing all critical bugs, resolving sign
 ## 2. SCOPE
 
 ### In Scope
-- `.opencode/skill/system-spec-kit/` - All files including scripts, templates, references
-- `.opencode/command/spec_kit/` - All Spec Kit slash commands
-- `.opencode/command/memory/` - All Memory slash commands
+- `.opencode/skills/system-spec-kit/` - All files including scripts, templates, references
+- `.opencode/commands/spec_kit/` - All Spec Kit slash commands
+- `.opencode/commands/memory/` - All Memory slash commands
 - `AGENTS.md` - Spec Kit and Memory documentation sections
 - Database schema and migration scripts
 - Validation scripts in `scripts/` folder
@@ -90,7 +90,7 @@ Stabilize the Spec Kit Memory system by fixing all critical bugs, resolving sign
 - LEANN MCP (separate semantic search system) - different codebase
 - Narsil MCP (code analysis system) - different codebase
 - Other skills (workflows-code, sk-git, sk-doc) - unrelated
-- Agent definitions in `.opencode/agent/` - unless directly related to Spec Kit
+- Agent definitions in `.opencode/agents/` - unless directly related to Spec Kit
 - New feature development beyond fixing identified issues
 - Performance optimization beyond identified issues
 - UI/UX redesign of commands
@@ -341,8 +341,8 @@ As a developer using the memory system, I need improved search quality and bette
   - `analysis.md` - Comprehensive 10-agent findings
   - `recommendations.md` - Prioritized action items
 - **Source Code**:
-  - `.opencode/skill/system-spec-kit/scripts/generate-context.js`
-  - `.opencode/skill/system-spec-kit/mcp-server/`
+  - `.opencode/skills/system-spec-kit/scripts/generate-context.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/`
 
 ### Component Impact Map
 

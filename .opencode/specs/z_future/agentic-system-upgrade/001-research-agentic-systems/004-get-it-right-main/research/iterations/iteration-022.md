@@ -14,12 +14,12 @@ I compared the external repo's lean context boundary model with the internal `me
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:59-76] The external repo treats cross-iteration context as one narrow bridge: only reviewer feedback is saved across attempts.
 - [SOURCE: .opencode/README.md:161-177] `system-spec-kit` exposes four `/memory:*` commands as a top-level peer surface to the eight `/spec_kit:*` commands.
-- [SOURCE: .opencode/command/memory/search.md:53-92] `/memory:search` combines retrieval with epistemic baselines, causal graph operations, ablation, dashboards, and learning history.
-- [SOURCE: .opencode/command/memory/manage.md:33-62] `/memory:manage` is a second large management product covering scan, cleanup, tier changes, delete flows, checkpoints, ingest jobs, and shared-memory rollout.
-- [SOURCE: .opencode/command/memory/save.md:51-76] `/memory:save` has its own folder-resolution contract, script protocol, and validation rules.
-- [SOURCE: .opencode/command/memory/learn.md:43-65] `/memory:learn` is a dedicated constitutional-memory manager with separate lifecycle rules.
-- [SOURCE: .opencode/command/spec_kit/implement.md:195-205] Implementation already treats context save as a built-in step of the lifecycle.
-- [SOURCE: .opencode/command/spec_kit/complete.md:215-217] Completion also owns "Save Context" as an in-band lifecycle step.
+- [SOURCE: .opencode/commands/memory/search.md:53-92] `/memory:search` combines retrieval with epistemic baselines, causal graph operations, ablation, dashboards, and learning history.
+- [SOURCE: .opencode/commands/memory/manage.md:33-62] `/memory:manage` is a second large management product covering scan, cleanup, tier changes, delete flows, checkpoints, ingest jobs, and shared-memory rollout.
+- [SOURCE: .opencode/commands/memory/save.md:51-76] `/memory:save` has its own folder-resolution contract, script protocol, and validation rules.
+- [SOURCE: .opencode/commands/memory/learn.md:43-65] `/memory:learn` is a dedicated constitutional-memory manager with separate lifecycle rules.
+- [SOURCE: .opencode/commands/spec_kit/implement.md:195-205] Implementation already treats context save as a built-in step of the lifecycle.
+- [SOURCE: .opencode/commands/spec_kit/complete.md:215-217] Completion also owns "Save Context" as an in-band lifecycle step.
 
 ## Analysis
 The memory platform is real infrastructure and deserves administrative tooling, but the operator experience is split between "do the work" and "manually understand the memory product." For normal feature work, save, resume, and lightweight search should feel like built-in affordances of the spec-kit lifecycle, not a separate command family the operator must consciously switch into. The external repo shows the opposite design instinct: context transfer is a workflow detail, not a top-level mode system. `system-spec-kit` can preserve its deep memory capabilities while demoting most of them from everyday operator consciousness.

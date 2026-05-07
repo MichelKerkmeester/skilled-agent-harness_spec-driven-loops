@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-smart-router-remediation-and-opencode-plugin/spec.md"
       - ".opencode/plugins/spec-kit-compact-code-graph.js"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts"
     completion_pct: 5
     open_questions: []
     answered_questions:
@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify |
 |--------|-------|
 | **Language/Stack** | Markdown, Bash, TypeScript, JavaScript, Node.js |
 | **Framework** | OpenCode plugin API, Vitest, Spec Kit Memory MCP server |
-| **Storage** | JSONL telemetry under `.opencode/skill/.smart-router-telemetry/` |
+| **Storage** | JSONL telemetry under `.opencode/skills/.smart-router-telemetry/` |
 | **Testing** | Vitest, `tsc --noEmit`, static router check, spec validation |
 
 ### Overview

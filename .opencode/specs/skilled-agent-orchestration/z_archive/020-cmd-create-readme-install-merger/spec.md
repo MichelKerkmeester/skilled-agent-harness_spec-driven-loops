@@ -63,18 +63,18 @@ Define a canonical merged command/workflow family that consolidates shared orche
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/folder_readme.md` | Update | Preferred unified user-facing command for README/install workflows |
+| `.opencode/commands/create/folder_readme.md` | Update | Preferred unified user-facing command for README/install workflows |
 | compatibility/internal workflow kernel entrypoint | Update | Legacy internal wrapper retired after implementation; behavior folded into the canonical command |
 | install-guide compatibility alias | Update | Legacy install-guide wrapper retired after implementation; install behavior now routes through the canonical command |
 | `.agents/commands/create/folder_readme.toml` | Update | Preferred unified `.agents` wrapper |
 | `.agents/commands/create/doc.toml` | Update | Compatibility/internal `.agents` wrapper |
 | `.agents/commands/create/install_guide.toml` | Update | Converted to compatibility alias wrapper |
-| `.opencode/command/create/README.txt` | Update | Command catalog references canonical command |
+| `.opencode/commands/create/README.txt` | Update | Command catalog references canonical command |
 | `.opencode/README.md` | Update | Runtime command references updated |
 | `README.md` | Update | Public command references updated |
 | `.opencode/install_guides/README.md` | Update | Install guide references updated |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Update | Setup reference updated for canonical path |
-| `.opencode/agent/write.md` | Update | Writer agent references updated |
+| `.opencode/agents/write.md` | Update | Writer agent references updated |
 | `.claude/agents/write.md` | Update | Claude runtime writer references updated |
 | `.agents/agents/write.md` | Update | `.agents` writer references updated |
 | `.codex/agents/write.toml` | Update | Codex writer references updated |
@@ -115,7 +115,7 @@ Define a canonical merged command/workflow family that consolidates shared orche
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Preferred unified command wrapper exists at `.opencode/command/create/folder_readme.md`, supports README/install workflows, and defaults to README when operation is omitted.
+- **SC-001**: Preferred unified command wrapper exists at `.opencode/commands/create/folder_readme.md`, supports README/install workflows, and defaults to README when operation is omitted.
 - **SC-002**: Legacy markdown and `.agents` command entrypoints are preserved as compatibility aliases to canonical command.
 - **SC-003**: Command catalog/runtime reference files are updated to canonical naming across OpenCode and agent surfaces.
 - **SC-004**: Markdown doc validation passes for canonical + legacy aliases, and TOML wrappers parse without errors.

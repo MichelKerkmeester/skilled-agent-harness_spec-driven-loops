@@ -35,7 +35,7 @@ Packet `024/031` is the reader-side follow-on to the completed Stop-hook produce
 
 - `TMPDIR=$PWD/.tmp/tsc-tmp npm run typecheck`
 - `TMPDIR=$PWD/.tmp/vitest-tmp npx vitest run tests/session-analytics-db.vitest.ts tests/hook-session-stop-replay.vitest.ts tests/hook-stop-token-tracking.vitest.ts`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict`
 
 ## Follow-On Packets
 

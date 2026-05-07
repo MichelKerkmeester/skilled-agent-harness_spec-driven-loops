@@ -18,12 +18,12 @@ Use this prompt to launch the research via the sk-deep-research workflow.
 - Focus on classification accuracy, confusion pairs, escalation rates, and merge-mode correctness.
 
 **Key Files (read these first):**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts` - full 3-tier router, thresholds, confidence bands
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json` - Tier2 prototype vectors (if exists)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/merge/anchor-merge-operation.ts` - 5 merge modes
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` - router integration with save handler
-- `.opencode/skill/system-spec-kit/mcp_server/tests/content-router.vitest.ts` - existing test coverage
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` - CROSS_ANCHOR_CONTAMINATION rule
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts` - full 3-tier router, thresholds, confidence bands
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json` - Tier2 prototype vectors (if exists)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/merge/anchor-merge-operation.ts` - 5 merge modes
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` - router integration with save handler
+- `.opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts` - existing test coverage
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` - CROSS_ANCHOR_CONTAMINATION rule
 
 **Research Questions (6):**
 1. What is the classification accuracy of Tier1 hard rules? Which fire most often, any false positives?

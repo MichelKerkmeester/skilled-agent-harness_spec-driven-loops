@@ -5,128 +5,128 @@
 "dedup|description|Created|Modified|Deleted|Read|Renamed|preflight|postflight|delta|RESEARCH|total
 tools|overlap ratio|quality abort|score < 15|stateless alignment|alignment" in
 {extractors/*.ts,core/workflow.ts} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
   └ 1 line read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
   └ 351 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
   └ 473 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ 1 line read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-260
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-260
   └ 260 lines read
 
 ● Grep "preflight|postflight|delta|alignment|overlap|quality|score < 15|throw|stateless"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Grep "preflight|postflight|delta|type guard|partial|session delta|learning delta"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
   └ 5 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 198-340
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 198-340
   └ 143 lines read
 
 ● Grep "overlap ratio|overlapRatio|alignment check|stateless alignment|0\.05|warning"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 60 lines found
 
 ● Grep "score < 15|quality abort|quality gate|throw new Error|score"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 443-470
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 443-470
   └ 28 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 876-892
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 876-892
   └ 17 lines read
 
 ● Grep "ACTION|action|semanticFileChanges|filesModified|renamed|deleted|read|created" in **/*.ts
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Grep "qualityResult\.score|QUALITY_ABORT_THRESHOLD|quality score"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 40 lines found
 
 ● Grep "semanticFileChanges|new
 Map<.*SemanticFileInfo|ACTION:|action:|normalizeFileAction|ACTION_MAP" in **/*.ts
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Grep "filesModified|FILES\]|FILES\?|FILE_PATH|DESCRIPTION|ACTION\??"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts)
   └ 99 lines found
 
 ● Grep "changes_summary|filesModified|FILES\s*[:=].*ACTION|action\)?"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
   └ 9 lines found
 
 ● Grep "semanticFileChanges" in **/*.ts (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 53 lines found
 
 ● Grep "action\s*:\s*['"](created|modified|deleted|read|renamed)|ACTION\s*[:=]" in **/*.ts
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 111 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 240-340
+● Read .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 240-340
   └ 101 lines read
 
 ● Grep "function extractFileChanges|export .*extractFileChanges|action =|action: '"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts)
   └ 55 lines found
 
 ● Inspect history for project phase guard
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && git --no-pager blame -L
-  173,192 .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts | cat
+  173,192 .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts | cat
   └ 21 lines...
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 192-240
+● Read .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 192-240
   └ 49 lines read
 
 ● View prior project phase logic
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && git --no-pager show
-  5206e4cd7b^:.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n
+  5206e4cd7b^:.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts | sed -n
   '173,192p'
   └ 21 lines...
 
 ● View prior delta guard logic
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && git --no-pager show
-  5206e4cd7b^:.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n
+  5206e4cd7b^:.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n
   '198,289p'
   └ 93 lines...
 
 ● Todo completed: verify-fixes
 
 ● Grep "renamed|rename|mv\s" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts)
   └ No matches found
 
 ● Grep "messageCount" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts)
   └ 19 lines found
 
 ### FINDING-08: File Description Dedup — CORRECT
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:120-123`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:120-123`
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** On duplicate file paths, the code replaces the existing description only when the new one is valid and either the old one is invalid or the new one is longer. For equal-length descriptions, it keeps the first one seen.
@@ -136,7 +136,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-09: 5-Value File Action Mapping — INCOMPLETE
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:67-76,198-227; .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts:195-200,227-235,275-276,284-297`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:67-76,198-227; .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts:195-200,227-235,275-276,284-297`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** `file-extractor.ts` can normalize five labels (`Created/Modified/Deleted/Read/Renamed`), but the upstream semantic source only emits `created`, `modified`, `deleted`, and `read`; then it drops `read` entirely with `if (action === 'read') continue;`, and there is no `renamed` detection at all. In practice, only `Created`, `Modified`, and `Deleted` can currently reach `ACTION`.
@@ -146,7 +146,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Postflight Delta Type Guards — INCOMPLETE
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:213-221,265-288`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:213-221,265-288`
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `HAS_POSTFLIGHT_DELTA` is only true when all three numeric metrics exist on both sides, but `deltaData` is still computed whenever both sides have only `knowledgeScore`. Missing uncertainty/context scores are coerced to `0`, so partial data can still produce non-null deltas and a learning index.
@@ -156,7 +156,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: No-Tool Session Phase — CORRECT
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:178-190`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:178-190`
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** The zero-tool guard now returns `RESEARCH` before any ratio/division logic runs.
@@ -166,7 +166,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-12: workflow.ts Step 1.5 Stateless Alignment Check — INCORRECT
-- **File:** `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:443-469`
+- **File:** `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:443-469`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** When overlap ratio is below `0.05`, the code logs a warning message and then throws an error, aborting the workflow.
@@ -176,7 +176,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: workflow.ts Step 8.7 Quality Abort Gate — INCORRECT
-- **File:** `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:881-888`
+- **File:** `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:881-888`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** The workflow aborts when `qualityResult.score < 25` (and not simulation).

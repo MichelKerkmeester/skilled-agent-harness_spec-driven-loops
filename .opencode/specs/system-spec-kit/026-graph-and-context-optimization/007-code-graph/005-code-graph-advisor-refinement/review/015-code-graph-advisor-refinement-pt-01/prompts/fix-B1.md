@@ -13,7 +13,7 @@ For each finding:
 1. Read the JSONL record's `evidence`, `reproduce`, and `fix` fields
 2. Apply the surgical fix to the cited file:line
 3. Preserve unrelated content
-4. Run `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` after each edit; halt if any new tsc error
+4. Run `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` after each edit; halt if any new tsc error
 
 Output report: `<spec-folder>/applied/B1.md` with structure: Source / Target Files Modified / Evidence of Change (before/after) / Verification (tsc exit) / Deferred.
 

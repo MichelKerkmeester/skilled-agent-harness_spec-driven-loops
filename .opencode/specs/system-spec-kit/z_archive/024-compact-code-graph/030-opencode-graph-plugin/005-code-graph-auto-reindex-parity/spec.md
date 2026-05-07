@@ -95,12 +95,12 @@ Bring code graph on-use freshness behavior closer to CocoIndex while preserving 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts` | Modify | Tune bounded auto-reindex decisions and return metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts` | Modify | Allow safe inline refresh behavior on read |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts` | Modify | Allow safe inline refresh behavior on structural queries |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts` | Modify | Cover bounded inline refresh decisions |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` | Modify | Verify query path behavior when graph is stale |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts*.vitest.ts` | Modify | Verify context path behavior when graph is stale |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts` | Modify | Tune bounded auto-reindex decisions and return metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts` | Modify | Allow safe inline refresh behavior on read |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts` | Modify | Allow safe inline refresh behavior on structural queries |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts` | Modify | Cover bounded inline refresh decisions |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` | Modify | Verify query path behavior when graph is stale |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts*.vitest.ts` | Modify | Verify context path behavior when graph is stale |
 | `../spec.md` | Modify | Record Phase 5 as the completed bounded follow-on |
 | `../plan.md` | Modify | Add the new follow-on implementation track |
 | `../tasks.md` | Modify | Close the Phase 5 packet tasks after implementation |

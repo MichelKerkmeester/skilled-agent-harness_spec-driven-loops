@@ -61,12 +61,12 @@ Record the completed research outcome, document the explicit user override, and 
 - Update the existing Level 1 packet docs in this spec folder.
 - Keep the research record honest that the minimal recommendation was a four-command shortlist.
 - Record the approved expanded all-commands short list for the downstream quick reference.
-- Preserve the rule that the quick reference is the primary surface and `.opencode/skill/system-spec-kit/SKILL.md` should only point to it.
+- Preserve the rule that the quick reference is the primary surface and `.opencode/skills/system-spec-kit/SKILL.md` should only point to it.
 - Reflect that downstream quick-reference and skill-pointer updates are now the intended implementation scope.
 
 ### Out of Scope
 - Creating new command docs or a new command registry.
-- Duplicating the full quick-reference matrix inside `.opencode/skill/system-spec-kit/SKILL.md`.
+- Duplicating the full quick-reference matrix inside `.opencode/skills/system-spec-kit/SKILL.md`.
 - Changing command behavior or command semantics.
 - Creating new files in this packet.
 
@@ -99,7 +99,7 @@ Record the completed research outcome, document the explicit user override, and 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | The docs must identify the primary downstream target file and the secondary pointer rule | The recommendation names the system-spec-kit quick reference as primary and states that `.opencode/skill/system-spec-kit/SKILL.md` should only point to it, not duplicate the whole matrix |
+| REQ-005 | The docs must identify the primary downstream target file and the secondary pointer rule | The recommendation names the system-spec-kit quick reference as primary and states that `.opencode/skills/system-spec-kit/SKILL.md` should only point to it, not duplicate the whole matrix |
 | REQ-006 | The docs must reflect that downstream docs updates are now in scope without overstating completion | `spec.md`, `plan.md`, `implementation-summary.md`, and `research/research.md` all distinguish packet updates from downstream execution |
 | REQ-007 | The files must stay validator-friendly and free of placeholders | The existing Level 1 files remain present, contain real content, and pass spec validation with no placeholder or missing-file errors |
 <!-- /ANCHOR:requirements -->
@@ -110,7 +110,7 @@ Record the completed research outcome, document the explicit user override, and 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: A reader can open this folder and immediately understand both the original research recommendation and the later user override.
-- **SC-002**: The recommended downstream change is unambiguous: the quick reference becomes the primary all-commands short list surface, while `.opencode/skill/system-spec-kit/SKILL.md` stays a pointer only.
+- **SC-002**: The recommended downstream change is unambiguous: the quick reference becomes the primary all-commands short list surface, while `.opencode/skills/system-spec-kit/SKILL.md` stays a pointer only.
 - **SC-003**: The minimal four-command recommendation is still recorded exactly as `/spec_kit:resume`, `/spec_kit:plan`, `/memory:search`, and `/memory:save`.
 - **SC-004**: The approved expanded command surface is recorded exactly as the eight `spec_kit` commands and four `memory` commands listed in REQ-004.
 - **SC-005**: The folder validates as a complete Level 1 packet.
@@ -119,7 +119,7 @@ Record the completed research outcome, document the explicit user override, and 
 
 **Given** a future implementer opens this spec folder, **when** they read the Level 1 docs, **then** they can identify the exact minimal research recommendation, the exact approved all-commands list, and the fact that the quick reference remains the primary downstream target.
 
-**Given** a reviewer checks whether this packet overreaches, **when** they inspect the scope and requirements, **then** they see that the work stays limited to this packet update and does not invent new command docs or duplicate the full matrix inside `.opencode/skill/system-spec-kit/SKILL.md`.
+**Given** a reviewer checks whether this packet overreaches, **when** they inspect the scope and requirements, **then** they see that the work stays limited to this packet update and does not invent new command docs or duplicate the full matrix inside `.opencode/skills/system-spec-kit/SKILL.md`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -131,7 +131,7 @@ Record the completed research outcome, document the explicit user override, and 
 |------|------|--------|------------|
 | Dependency | The existing research packet remains the source of truth for the completed investigation | If it changes later, these summary docs can drift | Keep the packet aligned with the recorded research finding and decision update |
 | Risk | The expanded all-commands short list becomes too verbose to scan quickly | The quick reference can lose first-touch clarity | Keep each command description to one short line and group commands by surface |
-| Risk | The skill-file pointer turns into duplicated command inventory | Discoverability docs drift over time | Limit `.opencode/skill/system-spec-kit/SKILL.md` to a short pointer back to the quick reference |
+| Risk | The skill-file pointer turns into duplicated command inventory | Discoverability docs drift over time | Limit `.opencode/skills/system-spec-kit/SKILL.md` to a short pointer back to the quick reference |
 <!-- /ANCHOR:risks -->
 
 ---

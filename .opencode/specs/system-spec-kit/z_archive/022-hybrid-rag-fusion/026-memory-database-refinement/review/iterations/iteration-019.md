@@ -4,20 +4,20 @@
 
 ### [P1] Dashboard metric summaries collapse distinct channels into one blended value
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
 
 **Issue**
 The dashboard groups metric snapshots only by `metric_name`, ignoring the `channel` column that is present on each snapshot row. For ablation output, that means values such as `ablation_recall@20_delta` for `vector`, `bm25`, `fts5`, `graph`, and `trigger` are averaged together into one synthetic metric summary. The reported `latest` value for that metric is then whichever channel happened to write the newest row, not the latest run-level value for a stable series.
 
 **Evidence**
-`SnapshotRow` includes `channel` at lines 128-137, and `queryMetricSnapshots()` selects that column from `eval_metric_snapshots` at lines 185-208. But `buildSprintReport()` keys `metricGroups` and `metricLatest` only by `snap.metric_name` at lines 322-347, so all rows sharing a metric name are merged regardless of channel. This directly conflicts with how ablation storage writes one snapshot per metric per channel in `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:728-765`.
+`SnapshotRow` includes `channel` at lines 128-137, and `queryMetricSnapshots()` selects that column from `eval_metric_snapshots` at lines 185-208. But `buildSprintReport()` keys `metricGroups` and `metricLatest` only by `snap.metric_name` at lines 322-347, so all rows sharing a metric name are merged regardless of channel. This directly conflicts with how ablation storage writes one snapshot per metric per channel in `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:728-765`.
 
 **Fix**
 Group dashboard metrics by `(metric_name, channel)` instead of `metric_name` alone, or encode the channel into the display key when `channel` is non-null. If the desired report shape is both per-metric and per-channel, keep the current high-level metric rollups separate from a channel-sliced section instead of silently blending them.
 
 ### [P1] Ablation runs never enforce the ground-truth alignment guard, so Recall@K can be computed against the wrong ID universe
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
 
 **Issue**
 The file defines a strict parent-memory alignment check for static ground truth, but `runAblation()` never calls it. If the active DB still contains chunk-backed or stale/missing memory IDs in `GROUND_TRUTH_RELEVANCES`, the ablation loop will still compute recall and significance on mismatched IDs, producing systematically incorrect results instead of failing fast.
@@ -30,7 +30,7 @@ Call `assertGroundTruthAlignment(getDb(), ...)` once at the start of `runAblatio
 
 ### [P2] Missing token-usage data is persisted as a measured zero, contaminating stored metrics
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
 
 **Issue**
 The ablation runner never records `tokenUsage` for baseline or ablated queries, but `buildAggregatedMetrics()` still manufactures a `token_usage` metric entry with `baseline=0`, `ablated=0`, and `delta=0`. `storeAblationResults()` then persists that synthetic zero as if token usage had actually been measured, so dashboards and later analyses cannot distinguish "no token data collected" from "exactly zero token change."
@@ -43,7 +43,7 @@ Treat token usage as optional: omit `token_usage` from `AblationMetrics` when no
 
 ### [P2] Sprint ordering and trend comparisons are based on first-seen time, not most recent activity
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
 
 **Issue**
 The dashboard sorts sprint groups by each group's earliest snapshot timestamp, then treats the last group as the "latest sprint" and computes trends across that order. A long-lived sprint that started earlier but received newer snapshots later will still sort before a newer-starting sprint, so the summary and trend comparisons can report the wrong sprint as current and compare runs in the wrong temporal sequence.
@@ -56,7 +56,7 @@ Order sprint groups by `lastSeen` when the report semantics are "most recent fir
 
 ### [P2] `groundTruthQueryIds` silently drops unknown IDs, which changes the sample size without warning
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`
 
 **Issue**
 When callers pass a subset of `groundTruthQueryIds`, the framework quietly filters to the IDs present in `GROUND_TRUTH_QUERIES` and discards the rest. A typo or partially stale query ID list therefore shrinks the evaluated sample without any warning, which can change mean recall and suppress significance testing while the caller still believes the full requested subset ran.

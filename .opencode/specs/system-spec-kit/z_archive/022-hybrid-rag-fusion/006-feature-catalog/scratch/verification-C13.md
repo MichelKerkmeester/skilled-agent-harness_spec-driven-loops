@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-4bc3-73c0-9f99-3f071b59e6dc
 --------
 user
-You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/ (6 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/ (6 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,15 +37,15 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m verifying the six feature snippets in `12--query-intelligence` against the actual `mcp_server` code, path by path. I’ll first inventory the snippet files and read their `Current Reality` and `Source Files` sections, then I’ll trace those paths in the codebase and note any mismatches or missing implementation files.
 exec
-/bin/zsh -lc "pwd && rg --files '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "pwd && rg --files '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg --files -g 'AGENTS.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representation.md
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-router.md
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representation.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-router.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
  succeeded in 52ms:
 AGENTS.md
 .opencode/specs/03--commands-and-skills/sk-mcp/001-mcp-clickup-creation/context/clickup-cli-main/AGENTS.md
@@ -54,12 +54,12 @@ AGENTS.md
 codex
 I’ve confirmed the six target snippet files and there isn’t a deeper `AGENTS.md` governing that feature catalog subtree. Next I’m reading the snippets themselves so I can extract each feature’s claimed behavior and listed source files before checking the implementation.
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-router.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/01-query-complexity-router.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/03-channel-min-representation.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # Query complexity router
 
 ## Current Reality
@@ -188,58 +188,58 @@ When R15 classifies a query as "simple", expansion is suppressed because expandi
 codex
 I’ve pulled the six snippet definitions. The next pass is the code reality check: reading the actual implementation files and tracing where these features are wired into hybrid search, so I can tell the difference between “exists in isolation” and “is really part of the pipeline.”
 exec
-/bin/zsh -lc "rg --files '.opencode/skill/system-spec-kit/mcp_server/lib/search' '.opencode/skill/system-spec-kit/mcp_server/shared' '.opencode/skill/system-spec-kit/mcp_server/tests' | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"queryComplexity|complexity|confidence truncation|channel min|min representation|RSF|relative score|embedding expansion|dynamic token|token budget|query expansion|query router|query classifier|routeResult|includeTrace|SPECKIT_\" '.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-rg: .opencode/skill/system-spec-kit/mcp_server/shared: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-enforcement.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/context-budget.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/encoding-intent.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-relevance.ts
+/bin/zsh -lc "rg --files '.opencode/skills/system-spec-kit/mcp_server/lib/search' '.opencode/skills/system-spec-kit/mcp_server/shared' '.opencode/skills/system-spec-kit/mcp_server/tests' | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"queryComplexity|complexity|confidence truncation|channel min|min representation|RSF|relative score|embedding expansion|dynamic token|token budget|query expansion|query router|query classifier|routeResult|includeTrace|SPECKIT_\" '.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+rg: .opencode/skills/system-spec-kit/mcp_server/shared: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-enforcement.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/context-budget.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/encoding-intent.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-relevance.ts
  succeeded in 50ms:
 Total output lines: 1640
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:221:  if (process.env.SPECKIT_DYNAMIC_INIT === 'false') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:384:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:391:        // Non-JSON response, skip token budget injection
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:704:  // Skip validation if SPECKIT_SKIP_API_VALIDATION=true (for testing/CI)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:705:  if (process.env.SPECKIT_SKIP_API_VALIDATION !== 'true') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:723:        console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:738:    console.warn('[context-server] API key validation skipped (SPECKIT_SKIP_API_VALIDATION=true)');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:743:  // Set SPECKIT_EAGER_WARMUP=true for legacy eager warmup behavior
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:783:    console.error('[context-server] Set SPECKIT_EAGER_WARMUP=true to restore eager warmup');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:989:  if (process.env.SPECKIT_DYNAMIC_INIT !== 'false') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:33:// AI-TRACE: T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:35:// AI-TRACE: T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:63:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:142:   Enforces per-layer/per-mode token budgets by estimating the
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:148: * T205: Enforce token budget on strategy results.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:221:  if (process.env.SPECKIT_DYNAMIC_INIT === 'false') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:384:                envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:391:        // Non-JSON response, skip token budget injection
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:704:  // Skip validation if SPECKIT_SKIP_API_VALIDATION=true (for testing/CI)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:705:  if (process.env.SPECKIT_SKIP_API_VALIDATION !== 'true') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:723:        console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:738:    console.warn('[context-server] API key validation skipped (SPECKIT_SKIP_API_VALIDATION=true)');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:743:  // Set SPECKIT_EAGER_WARMUP=true for legacy eager warmup behavior
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:783:    console.error('[context-server] Set SPECKIT_EAGER_WARMUP=true to restore eager warmup');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:989:  if (process.env.SPECKIT_DYNAMIC_INIT !== 'false') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:33:// AI-TRACE: T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:35:// AI-TRACE: T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:63:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:142:   Enforces per-layer/per-mode token budgets by estimating the
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:148: * T205: Enforce token budget on strategy results.
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Query Classifier
 // ---------------------------------------------------------------
@@ -408,9 +408,9 @@ function escapeRegExp(str: string): string {
  * Domain vocabulary map for server-side synonym expansion.
  * No LLM calls — purely rule-based template substitution.
 exec
-/bin/zsh -lc "sed -n '260,520p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,420p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"routeQuery|queryComplexity|traceMetadata|includeTrace|analyzeChannelRepresentation|truncateByConfidence|getDynamicTokenBudget|expandQueryWithEmbeddings|expandQuery\\(|fuseResultsRsf|kendall|SPECKIT_EMBEDDING_EXPANSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|SPECKIT_COMPLEXITY_ROUTER\" '.opencode/skill/system-spec-kit/mcp_server/lib/search' '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "sed -n '260,520p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,420p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"routeQuery|queryComplexity|traceMetadata|includeTrace|analyzeChannelRepresentation|truncateByConfidence|getDynamicTokenBudget|expandQueryWithEmbeddings|expandQuery\\(|fuseResultsRsf|kendall|SPECKIT_EMBEDDING_EXPANSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|SPECKIT_COMPLEXITY_ROUTER\" '.opencode/skills/system-spec-kit/mcp_server/lib/search' '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
     // FTS and embedding re-encoding without requiring a separator token.
     const combinedQuery = `${query} ${expanded.join(' ')}`;
 
@@ -453,35 +453,35 @@ exec
 }
 
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:136:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:283:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:310:  includeTrace = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:335:    includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:617:    includeTrace: includeTraceArg = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:619:  const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:620:  const includeTrace = includeTraceByFlag || includeTraceArg === true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:757:    includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:881:          includeTrace
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:30:import { routeQuery } from './query-router';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:32:import { truncateByConfidence } from './confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:33:import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:121:  /** Query complexity routing result (SPECKIT_COMPLEXITY_ROUTER). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:125:  /** Channel enforcement result (SPECKIT_CHANNEL_MIN_REP). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:127:  /** Confidence truncation result (SPECKIT_CONFIDENCE_TRUNCATION). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:129:  /** Dynamic token budget result (SPECKIT_DYNAMIC_TOKEN_BUDGET). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:539:    // AI-WHY: -- Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) --
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:542:    const routeResult = routeQuery(query, options.triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:551:    // channel disable was a no-op because only routeQuery() controlled activeChannels.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:566:    // AI-WHY: -- Sprint 3 Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:136:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:283:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:310:  includeTrace = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:335:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:617:    includeTrace: includeTraceArg = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:619:  const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:620:  const includeTrace = includeTraceByFlag || includeTraceArg === true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:757:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:881:          includeTrace
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:30:import { routeQuery } from './query-router';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:32:import { truncateByConfidence } from './confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:33:import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:121:  /** Query complexity routing result (SPECKIT_COMPLEXITY_ROUTER). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:125:  /** Channel enforcement result (SPECKIT_CHANNEL_MIN_REP). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:127:  /** Confidence truncation result (SPECKIT_CONFIDENCE_TRUNCATION). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:129:  /** Dynamic token budget result (SPECKIT_DYNAMIC_TOKEN_BUDGET). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:539:    // AI-WHY: -- Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) --
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:542:    const routeResult = routeQuery(query, options.triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:551:    // channel disable was a no-op because only routeQuery() controlled activeChannels.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:566:    // AI-WHY: -- Sprint 3 Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
 🌐 Searching the web...
 🌐 Searched the web
 codex
 The code trace is already surfacing one important distinction: several of these features have standalone modules, but I’m checking whether they’re actually wired into `hybrid-search` or the stage pipeline, since the snippets describe runtime behavior rather than just library availability. I’m also validating whether the listed “shared/*” paths are real in this skill tree or stale references.
 exec
-/bin/zsh -lc "sed -n '520,1040p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-enforcement.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,420p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "find '.opencode/skill/system-spec-kit' -maxdepth 3 -type d \\( -name shared -o -name mcp_server \\) | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '520,1040p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-enforcement.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,420p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "find '.opencode/skills/system-spec-kit' -maxdepth 3 -type d \\( -name shared -o -name mcp_server \\) | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Channel Enforcement
 // ---------------------------------------------------------------
@@ -545,15 +545,15 @@ async function hybridSearchEnhanced(
 
     // AI-WHY: -- Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) --
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server
-.opencode/skill/system-spec-kit/shared
-.opencode/skill/system-spec-kit/shared/mcp_server
+.opencode/skills/system-spec-kit/mcp_server
+.opencode/skills/system-spec-kit/shared
+.opencode/skills/system-spec-kit/shared/mcp_server
 exec
-/bin/zsh -lc "sed -n '720,980p' '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/query-router-channel-interaction.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"_s3meta|queryComplexity|traceMetadata|format.*trace|includeTrace|budgetTruncated|routing|tokenBudget|truncation|enforcement\" '.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '720,980p' '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/query-router-channel-interaction.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"_s3meta|queryComplexity|traceMetadata|format.*trace|includeTrace|budgetTruncated|routing|tokenBudget|truncation|enforcement\" '.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     } else {
       console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
     }
@@ -640,30 +640,30 @@ import {
  succeeded in 50ms:
 Total output lines: 486
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:331:    // token-budget enforcement so metadata reflects the final envelope.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:337:    // Token Budget Hybrid: Inject tokenBudget into response metadata (CHK-072)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:353:          meta.tokenBudget = budget;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:378:              meta.tokenBudgetTruncated = true;
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:917:| v2.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. |
-.opencode/skill/system-spec-kit/mcp_server/README.md:234:| **Orchestration**        | 1     | Unified entry point with intent-aware routing          |
-.opencode/skill/system-spec-kit/mcp_server/README.md:248:| `memory_context` | Unified entry with intent-aware routing (L1 Orchestration). START HERE for most retrieval tasks | ~500ms  |
-.opencode/skill/system-spec-kit/mcp_server/README.md:358:Specs 137-139 expanded the pipeline from 3 to 4 primary retrieval channels. Sprint 1 (spec 140) added a 5th degree channel with typed-weighted graph degree computation. Sprint 3 added RSF fusion, query complexity routing, confidence truncation, channel min-representation and dynamic token budgets. Post-fusion enhancements are applied after retrieval and are not counted as separate channels:
-.opencode/skill/system-spec-kit/mcp_server/README.md:751:| `SPECKIT_COMPLEXITY_ROUTER`     | `true`  | Query complexity routing |
-.opencode/skill/system-spec-kit/mcp_server/README.md:753:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true`  | Low-confidence tail truncation |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:19:// AI-TRACE:C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:20:import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:46:import type { RoutingResult, WeightedResult } from '../lib/search/artifact-routing';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:136:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:283:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:310:  includeTrace = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:335:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:331:    // token-budget enforcement so metadata reflects the final envelope.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:337:    // Token Budget Hybrid: Inject tokenBudget into response metadata (CHK-072)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:338:    // T205: Enforce per-layer token budgets with actual truncation
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:353:          meta.tokenBudget = budget;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:378:              meta.tokenBudgetTruncated = true;
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:917:| v2.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. |
+.opencode/skills/system-spec-kit/mcp_server/README.md:234:| **Orchestration**        | 1     | Unified entry point with intent-aware routing          |
+.opencode/skills/system-spec-kit/mcp_server/README.md:248:| `memory_context` | Unified entry with intent-aware routing (L1 Orchestration). START HERE for most retrieval tasks | ~500ms  |
+.opencode/skills/system-spec-kit/mcp_server/README.md:358:Specs 137-139 expanded the pipeline from 3 to 4 primary retrieval channels. Sprint 1 (spec 140) added a 5th degree channel with typed-weighted graph degree computation. Sprint 3 added RSF fusion, query complexity routing, confidence truncation, channel min-representation and dynamic token budgets. Post-fusion enhancements are applied after retrieval and are not counted as separate channels:
+.opencode/skills/system-spec-kit/mcp_server/README.md:751:| `SPECKIT_COMPLEXITY_ROUTER`     | `true`  | Query complexity routing |
+.opencode/skills/system-spec-kit/mcp_server/README.md:753:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true`  | Low-confidence tail truncation |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:19:// AI-TRACE:C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:20:import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:46:import type { RoutingResult, WeightedResult } from '../lib/search/artifact-routing';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:136:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:283:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:310:  includeTrace = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:335:    includeTrace,
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '180,320p' '.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/channel.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/dynamic-token-budget.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/channel-representation.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '180,320p' '.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/channel.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/dynamic-token-budget.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 function extractAnchorDetails(rawResult: RawSearchResult): { anchorIds: string[]; anchorTypes: string[] } {
   const metadata = Array.isArray(rawResult.anchorMetadata)
     ? rawResult.anchorMetadata as Array<Record<string, unknown>>
@@ -771,31 +771,31 @@ import type {
 codex
 I’ve confirmed the runtime wiring for the router, truncation, enforcement, and token-budget pieces in `hybrid-search`, plus the formatter fallback that surfaces `queryComplexity` in trace output. I’m now closing the loop on RSF and query expansion specifically, because those are the two snippets most likely to overstate what’s active in production versus what exists as library code or evaluation support.
 exec
-/bin/zsh -lc "rg -n \"rsf-fusion|fuseResultsRsf|rsf|kendall|tau|shadow mode|shadow\" '.opencode/skill/system-spec-kit/mcp_server' '.opencode/skill/system-spec-kit/shared'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/rsf-fusion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/mcp_server/tests/rsf-fusion-edge-cases.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"rsf-fusion|fuseResultsRsf|rsf|kendall|tau|shadow mode|shadow\" '.opencode/skills/system-spec-kit/mcp_server' '.opencode/skills/system-spec-kit/shared'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/rsf-fusion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/mcp_server/tests/rsf-fusion-edge-cases.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 Total output lines: 570
 
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:84:    expect(() => validateFilePathLocal('/home/user/../../../etc/shadow')).toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:38:  kendallTau,
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:293:      expect(analysis.results[k].kendallTau).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:303:  it('K=60 has kendallTau = 1.0 (correlation with itself)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:305:    expect(analysis.results[60].kendallTau).toBeCloseTo(1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:320:  it('Kendall tau is in [-1, 1] range for all K values', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:324:      expect(analysis.results[k].kendallTau).toBeGreaterThanOrEqual(-1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:325:      expect(analysis.results[k].kendallTau).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:368:  it('identical rankings have tau = 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:369:    expect(kendallTau([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])).toBeCloseTo(1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:372:  it('reversed rankings have tau = -1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:373:    expect(kendallTau([1, 2, 3, 4, 5], [5, 4, 3, 2, 1])).toBeCloseTo(-1.0, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:376:  it('single element has tau = 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:377:    expect(kendallTau([1], [1])).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:380:  it('empty rankings have tau = 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:381:    expect(kendallTau([], [])).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:384:  it('partially shuffled ranking has 0 < tau < 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:385:    const tau = kendallTau([1, 2, 3, 4, 5], [1, 3, 2, 4, 5]);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:84:    expect(() => validateFilePathLocal('/home/user/../../../etc/shadow')).toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:38:  kendallTau,
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:293:      expect(analysis.results[k].kendallTau).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:303:  it('K=60 has kendallTau = 1.0 (correlation with itself)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:305:    expect(analysis.results[60].kendallTau).toBeCloseTo(1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:320:  it('Kendall tau is in [-1, 1] range for all K values', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:324:      expect(analysis.results[k].kendallTau).toBeGreaterThanOrEqual(-1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:325:      expect(analysis.results[k].kendallTau).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:368:  it('identical rankings have tau = 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:369:    expect(kendallTau([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])).toBeCloseTo(1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:372:  it('reversed rankings have tau = -1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:373:    expect(kendallTau([1, 2, 3, 4, 5], [5, 4, 3, 2, 1])).toBeCloseTo(-1.0, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:376:  it('single element has tau = 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:377:    expect(kendallTau([1], [1])).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:380:  it('empty rankings have tau = 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:381:    expect(kendallTau([], [])).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:384:  it('partially shuffled ranking has 0 < tau < 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:385:    const tau = kendallTau([1, 2, 3, 4, 5], [1, 3, 2, 4, 5]);
  succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Test — RSF Fusion
@@ -966,9 +966,9 @@ exec
 'mcp_server/tests/unit-tier-classifier-types.vitest.ts' \\
 'mcp_server/tests/unit-transaction-metrics-types.vitest.ts' \\
 'mcp_server/tests/vector-index-impl.vitest.ts'; do \\
-  if [ -e \".opencode/skill/system-spec-kit/"'$p" ]; then echo "OK $p"; else echo "MISSING $p"; fi; '"\\
+  if [ -e \".opencode/skills/system-spec-kit/"'$p" ]; then echo "OK $p"; else echo "MISSING $p"; fi; '"\\
 done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"expandQueryWithEmbeddings|isExpansionActive|buildDeepQueryVariants|expandQuery\\(|queryComplexity|routeQuery\\(|enforceChannelRepresentation\\(|truncateByConfidence\\(|getDynamicTokenBudget\\(|formatSearchResults\\(|rsfShadow|fuseResultsRsfMulti|fuseResultsRsfCrossVariant\" '.opencode/skill/system-spec-kit/mcp_server/tests' '.opencode/skill/system-spec-kit/mcp_server/lib' '.opencode/skill/system-spec-kit/mcp_server/formatters'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"expandQueryWithEmbeddings|isExpansionActive|buildDeepQueryVariants|expandQuery\\(|queryComplexity|routeQuery\\(|enforceChannelRepresentation\\(|truncateByConfidence\\(|getDynamicTokenBudget\\(|formatSearchResults\\(|rsfShadow|fuseResultsRsfMulti|fuseResultsRsfCrossVariant\" '.opencode/skills/system-spec-kit/mcp_server/tests' '.opencode/skills/system-spec-kit/mcp_server/lib' '.opencode/skills/system-spec-kit/mcp_server/formatters'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 OK mcp_server/lib/search/query-classifier.ts
 OK mcp_server/lib/search/query-router.ts
 OK mcp_server/tests/query-classifier.vitest.ts
@@ -990,30 +990,30 @@ OK mcp_server/tests/dynamic-token-budget.vitest.ts
 OK mcp_server/tests/token-budget.vitest.ts
 OK mcp_server/configs/cognitive.ts
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:102:  queryComplexity: string | null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:235:  let queryComplexity: string | null = null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:261:    if (typeof meta.queryComplexity === 'string' && meta.queryComplexity.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:262:      queryComplexity = meta.queryComplexity;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:283:  // CHK-038: Fallback — read queryComplexity from traceMetadata if not found in stages
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:284:  if (!queryComplexity) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:286:    if (typeof tm?.queryComplexity === 'string' && (tm.queryComplexity as string).length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:287:      queryComplexity = tm.queryComplexity as string;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:295:    queryComplexity,
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:306:export async function formatSearchResults(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:124:  rsfShadow?: { resultCount: number; topRsfScore: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:542:    const routeResult = routeQuery(query, options.triggerPhrases);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:551:    // channel disable was a no-op because only routeQuery() controlled activeChannels.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:569:    const budgetResult = getDynamicTokenBudget(routeResult.tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:789:        const enforcementResult: EnforcementResult = enforceChannelRepresentation(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:812:        const truncationResult: TruncationResult = truncateByConfidence(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:995:            // AI-TRACE: CHK-038: Wire queryComplexity from router classification into trace
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:996:            queryComplexity: routeResult.tier,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:119:    const res = await formatSearchResults(null, 'semantic');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:126:    const res = await formatSearchResults([], 'trigger');
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:102:  queryComplexity: string | null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:235:  let queryComplexity: string | null = null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:261:    if (typeof meta.queryComplexity === 'string' && meta.queryComplexity.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:262:      queryComplexity = meta.queryComplexity;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:283:  // CHK-038: Fallback — read queryComplexity from traceMetadata if not found in stages
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:284:  if (!queryComplexity) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:286:    if (typeof tm?.queryComplexity === 'string' && (tm.queryComplexity as string).length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:287:      queryComplexity = tm.queryComplexity as string;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:295:    queryComplexity,
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:306:export async function formatSearchResults(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:124:  rsfShadow?: { resultCount: number; topRsfScore: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:542:    const routeResult = routeQuery(query, options.triggerPhrases);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:551:    // channel disable was a no-op because only routeQuery() controlled activeChannels.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:569:    const budgetResult = getDynamicTokenBudget(routeResult.tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:789:        const enforcementResult: EnforcementResult = enforceChannelRepresentation(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:812:        const truncationResult: TruncationResult = truncateByConfidence(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:995:            // AI-TRACE: CHK-038: Wire queryComplexity from router classification into trace
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:996:            queryComplexity: routeResult.tier,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:119:    const res = await formatSearchResults(null, 'semantic');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:126:    const res = await formatSearchResults([], 'trigger');
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '90,130p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '220,460p' '.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '90,130p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '220,460p' '.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
   return isFeatureEnabled('SPECKIT_NEGATIVE_FEEDBACK');
 }
 
@@ -1077,9 +1077,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
     // When R15 complexity router is explicitly disabled, its fallback is "complex" for all queries.
     // R12 should therefore run on all queries (flag is on, not "simple").
 exec
-/bin/zsh -lc "sed -n '330,390p' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '100,140p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '180,270p' '.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '330,390p' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '100,140p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '180,270p' '.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
       }
     });
 
@@ -1143,9 +1143,9 @@ function computeRankCorrelation(
   shadow: ScoredResult[],
 ): number {
 exec
-/bin/zsh -lc "rg -n \"queryComplexity|budgetTruncated\" '.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '300,360p' '.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+/bin/zsh -lc "rg -n \"queryComplexity|budgetTruncated\" '.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '300,360p' '.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
 
  succeeded in 51ms:
       contentSource: 'reassembled_chunks',
@@ -1190,30 +1190,30 @@ describe('Contextual tree injection', () => {
       id: 1,
       score: 1,
 exec
-/bin/zsh -lc "rg -n \"queryComplexity|budgetTruncated\" '.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
+/bin/zsh -lc "rg -n \"queryComplexity|budgetTruncated\" '.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
 
 exec
-/bin/zsh -lc "rg -n \"cutoffIndex|medianGap|cutoffGap|originalCount|truncatedCount\" '.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:362:              const originalCount = innerResults.length;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:379:              meta.originalResultCount = originalCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:184:        const originalCount = innerResults.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:216:            originalResultCount: originalCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:941:      const originalCount = existingResults.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:943:      const filteredCount = originalCount - dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:946:      const savingsPercent = originalCount > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:947:        ? Math.round((filteredCount / originalCount) * 100)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:956:        originalCount: originalCount,
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:112:    expect(out.truncatedCount).toBe(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:113:    expect(out.originalCount).toBe(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:120:    expect(out.medianGap).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:121:    expect(out.cutoffGap).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:138:    // gap[2] = 0.72 > 0.08 → cutoffIndex = 2 (keep 0,1,2)
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:144:    expect(out.truncatedCount).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:145:    expect(out.cutoffIndex).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:163:  it('T10: originalCount reflects pre-truncation count', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:166:    expect(out.originalCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:167:    expect(out.truncatedCount).toBe(3);
+/bin/zsh -lc "rg -n \"cutoffIndex|medianGap|cutoffGap|originalCount|truncatedCount\" '.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:362:              const originalCount = innerResults.length;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:376:                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:379:              meta.originalResultCount = originalCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:184:        const originalCount = innerResults.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:216:            originalResultCount: originalCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:941:      const originalCount = existingResults.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:943:      const filteredCount = originalCount - dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:946:      const savingsPercent = originalCount > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:947:        ? Math.round((filteredCount / originalCount) * 100)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:956:        originalCount: originalCount,
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:112:    expect(out.truncatedCount).toBe(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:113:    expect(out.originalCount).toBe(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:120:    expect(out.medianGap).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:121:    expect(out.cutoffGap).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:138:    // gap[2] = 0.72 > 0.08 → cutoffIndex = 2 (keep 0,1,2)
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:144:    expect(out.truncatedCount).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:145:    expect(out.cutoffIndex).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:163:  it('T10: originalCount reflects pre-truncation count', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:166:    expect(out.originalCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:167:    expect(out.truncatedCount).toBe(3);
 codex
 ---
 FEATURE: 01-query-complexity-router.md

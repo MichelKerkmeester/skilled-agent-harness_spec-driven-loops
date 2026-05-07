@@ -46,7 +46,7 @@
       "mcp_server/tests/phase-parent-health.vitest.ts",
       "mcp_server/skill_advisor/tests/compat/plugin-bridge-smoke.vitest.ts",
       "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-      ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
       "mcp_server/lib/spec/is-phase-parent.ts",
       "scripts/spec/is-phase-parent.ts",
       "scripts/rules/check-phase-parent-content.sh",
@@ -91,7 +91,7 @@
       {
         "name": "spec_kit_implement_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
         "source": "derived"
       },
       {

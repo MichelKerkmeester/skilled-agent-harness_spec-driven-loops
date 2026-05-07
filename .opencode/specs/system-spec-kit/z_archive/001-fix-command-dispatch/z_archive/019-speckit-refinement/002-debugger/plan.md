@@ -16,7 +16,7 @@ contextType: "planning"
 
 <!-- ANCHOR:summary -->
 ## Phase 1: Command Creation
-- Create `.opencode/command/spec_kit/debug.md`
+- Create `.opencode/commands/spec_kit/debug.md`
 - 5-phase workflow: Context → Model Selection → Report → Dispatch → Integration
 - Model options: Sonnet, Opus, o1/o3, Other
 

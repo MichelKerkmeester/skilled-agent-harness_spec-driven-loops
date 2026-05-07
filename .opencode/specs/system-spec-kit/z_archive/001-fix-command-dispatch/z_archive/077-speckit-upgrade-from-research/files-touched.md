@@ -80,7 +80,7 @@
 
 ### 3. resume.md
 
-**Path:** `.opencode/command/spec_kit/resume.md`
+**Path:** `.opencode/commands/spec_kit/resume.md`
 **Feature:** Enhanced resume detection - 4-tier semantic priority using memory search with decay scoring
 
 **Section Modified:** Session Detection Priority (Section 6)
@@ -102,7 +102,7 @@
 
 ### 4. context_template.md
 
-**Path:** `.opencode/skill/system-spec-kit/templates/context_template.md`
+**Path:** `.opencode/skills/system-spec-kit/templates/context_template.md`
 **Feature:** Learning measurement templates - PREFLIGHT baseline capture and POSTFLIGHT delta calculation with ANCHOR tags
 
 **Sections Added:**
@@ -124,7 +124,7 @@
 
 ### 5. decision-record.md (Level 3)
 
-**Path:** `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md`
+**Path:** `.opencode/skills/system-spec-kit/templates/level_3/decision-record.md`
 **Feature:** Five Checks framework integration - structured evaluation table for significant architectural decisions
 
 **Section Added:** Five Checks Evaluation (after Alternatives Considered)
@@ -148,7 +148,7 @@
 
 ### 6. decision-record.md (Level 3+)
 
-**Path:** `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md`
+**Path:** `.opencode/skills/system-spec-kit/templates/level_3+/decision-record.md`
 **Feature:** Enhanced decision journaling - Five Checks + Session Decision Log for audit trail
 
 **Sections Added:**
@@ -188,7 +188,7 @@
 
 ### 2. session-learning.js (MCP Handler)
 
-**Path:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.js`
+**Path:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.js`
 **Feature:** MCP learning tools - task_preflight(), task_postflight(), memory_get_learning_history() with Learning Index calculation
 
 **Purpose:** MCP tool handlers for learning measurement
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 3. epistemic-vectors.md (Reference Doc)
 
-**Path:** `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md`
+**Path:** `.opencode/skills/system-spec-kit/references/memory/epistemic-vectors.md`
 **Feature:** Uncertainty tracking reference - 4-factor assessment, thresholds, "confident ignorance" anti-pattern
 
 **Purpose:** Document the Uncertainty Tracking framework
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 4. five-checks.md (Reference Doc)
 
-**Path:** `.opencode/skill/system-spec-kit/references/validation/five-checks.md`
+**Path:** `.opencode/skills/system-spec-kit/references/validation/five-checks.md`
 **Feature:** Five Checks reference - evaluation criteria for >100 LOC or architectural decisions
 
 **Purpose:** Document the Five Checks evaluation framework
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 5. decision-format.md (Reference Doc)
 
-**Path:** `.opencode/skill/system-spec-kit/references/templates/decision-format.md`
+**Path:** `.opencode/skills/system-spec-kit/references/templates/decision-format.md`
 **Feature:** Gate decision format reference - GATE/DECISION/CONFIDENCE/UNCERTAINTY/EVIDENCE structure
 
 **Purpose:** Document the Structured Gate Decision Format
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 7. context-server.js
 
-**Path:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+**Path:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 **Feature:** MCP tool registration - task_preflight, task_postflight, memory_get_learning_history tools
 
 **Changes:**
@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 8. handlers/index.js
 
-**Path:** `.opencode/skill/system-spec-kit/mcp_server/handlers/index.js`
+**Path:** `.opencode/skills/system-spec-kit/mcp_server/handlers/index.js`
 **Feature:** Handler exports - session-learning module integration for learning tools
 
 **Changes:**
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 9. collect-session-data.js
 
-**Path:** `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.js`
+**Path:** `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.js`
 **Feature:** PREFLIGHT/POSTFLIGHT utilities - Learning Index calculation, delta extraction, trend indicators
 
 **Functions Added:**
@@ -337,7 +337,7 @@ CREATE TABLE IF NOT EXISTS session_learning (
 
 ### 10. implement.md
 
-**Path:** `.opencode/command/spec_kit/implement.md`
+**Path:** `.opencode/commands/spec_kit/implement.md`
 **Feature:** Implementation workflow hooks - Step 5.5 PREFLIGHT baseline, Step 7.5 POSTFLIGHT learning delta
 
 **Changes:**
@@ -418,28 +418,28 @@ $ python3 skill_advisor.py "spec folder creation" --threshold 0.0
 
 | File | Path | Type | Changes |
 |------|------|------|---------|
-| `sub_folder_versioning.md` | `.opencode/skill/system-spec-kit/references/structure/` | Created | Sub-folder versioning rules (001-xxx, 002-xxx pattern) |
-| `folder_routing.md` | `.opencode/skill/system-spec-kit/references/structure/` | Created | Folder selection decision tree |
-| `execution_methods.md` | `.opencode/skill/system-spec-kit/references/workflows/` | Created | Execution method reference (skill tool, /spec_kit, explicit load) |
-| `environment_variables.md` | `.opencode/skill/system-spec-kit/references/config/` | Created | Environment variable documentation |
+| `sub_folder_versioning.md` | `.opencode/skills/system-spec-kit/references/structure/` | Created | Sub-folder versioning rules (001-xxx, 002-xxx pattern) |
+| `folder_routing.md` | `.opencode/skills/system-spec-kit/references/structure/` | Created | Folder selection decision tree |
+| `execution_methods.md` | `.opencode/skills/system-spec-kit/references/workflows/` | Created | Execution method reference (skill tool, /spec_kit, explicit load) |
+| `environment_variables.md` | `.opencode/skills/system-spec-kit/references/config/` | Created | Environment variable documentation |
 
 ### Template Updates
 
 | File | Path | Changes |
 |------|------|---------|
-| `tasks.md` | `.opencode/skill/system-spec-kit/templates/level_3+/` | Updated | Added UNCERTAINTY_THRESHOLD variable documentation |
+| `tasks.md` | `.opencode/skills/system-spec-kit/templates/level_3+/` | Updated | Added UNCERTAINTY_THRESHOLD variable documentation |
 
 ### Constitutional Updates
 
 | File | Path | Changes |
 |------|------|---------|
-| `gate-enforcement.md` | `.opencode/skill/system-spec-kit/constitutional/` | Updated | Added dual-threshold validation rules |
+| `gate-enforcement.md` | `.opencode/skills/system-spec-kit/constitutional/` | Updated | Added dual-threshold validation rules |
 
 ### Handler Documentation
 
 | File | Path | Changes |
 |------|------|---------|
-| `README.md` | `.opencode/skill/system-spec-kit/mcp_server/handlers/` | Updated | Documented session-learning.js handler |
+| `README.md` | `.opencode/skills/system-spec-kit/mcp_server/handlers/` | Updated | Documented session-learning.js handler |
 
 ### External Repository Syncs
 

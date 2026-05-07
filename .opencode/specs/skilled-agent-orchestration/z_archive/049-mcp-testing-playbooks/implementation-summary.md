@@ -17,10 +17,10 @@ _memory:
     blockers: []
     key_files:
       - "implementation-summary.md"
-      - "../../../../.opencode/skill/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md"
-      - "../../../../.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md"
-      - "../../../../.opencode/skill/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md"
-      - "../../../../.opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md"
+      - "../../../../.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md"
+      - "../../../../.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md"
+      - "../../../../.opencode/skills/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md"
+      - "../../../../.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-impl-2026-04-26"
@@ -121,13 +121,13 @@ Appends are at the next free numeric slot in matching existing categories. CCC r
 
 **Created:**
 - `.opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/` — 9 spec files (spec, plan, tasks, checklist, decision-record, research, implementation-summary, description.json, graph-metadata.json)
-- `.opencode/skill/mcp-code-mode/manual_testing_playbook/` — 27 files (1 root + 26 per-feature)
-- `.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/` — 23 files (1 root + 22 per-feature)
-- `.opencode/skill/mcp-clickup/manual_testing_playbook/` — 28 files (1 root + 27 per-feature)
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/` — 3 appended per-feature files (MCP-008, CFG-004, DMN-003)
+- `.opencode/skills/mcp-code-mode/manual_testing_playbook/` — 27 files (1 root + 26 per-feature)
+- `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/` — 23 files (1 root + 22 per-feature)
+- `.opencode/skills/mcp-clickup/manual_testing_playbook/` — 28 files (1 root + 27 per-feature)
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/` — 3 appended per-feature files (MCP-008, CFG-004, DMN-003)
 
 **Modified (append-only):**
-- `.opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` — appended scenario summaries in §8, §9, §10 plus FEATURE FILE INDEX entries in §15. No existing entries modified.
+- `.opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` — appended scenario summaries in §8, §9, §10 plus FEATURE FILE INDEX entries in §15. No existing entries modified.
 - `.opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/research.md` — §5 CCC Audit findings populated.
 
 **Total markdown files authored/appended in this packet: 90 (9 spec + 27 CM + 23 BDG + 28 CU + 3 CCC).**

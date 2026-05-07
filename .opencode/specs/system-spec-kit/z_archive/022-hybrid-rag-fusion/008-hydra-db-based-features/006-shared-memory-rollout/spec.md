@@ -104,13 +104,13 @@ Deliver shared memory as an opt-in, policy-guarded capability that operators can
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/collab/` | Create | Shared-space, membership, and conflict modules |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/` | Create/Modify | Add shared-memory handlers and rollout entry points |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/` | Modify | Reuse and enforce Phase 5 policy checks for shared spaces |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/` | Modify | Capture collaboration adoption, conflict, and rollback signals |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Create/Modify | Add shared-space, conflict, and rollout coverage |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add collaboration rollout and rollback procedures |
-| `.opencode/skill/system-spec-kit/feature_catalog/` | Modify | Document shared-memory capabilities once shipped |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/collab/` | Create | Shared-space, membership, and conflict modules |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/` | Create/Modify | Add shared-memory handlers and rollout entry points |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/` | Modify | Reuse and enforce Phase 5 policy checks for shared spaces |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/` | Modify | Capture collaboration adoption, conflict, and rollback signals |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/` | Create/Modify | Add shared-space, conflict, and rollout coverage |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add collaboration rollout and rollback procedures |
+| `.opencode/skills/system-spec-kit/feature_catalog/` | Modify | Document shared-memory capabilities once shipped |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -3,16 +3,16 @@
 I’m mapping the 18 catalog files against the actual `mcp_server` and `scripts` implementations, then I’ll turn that into a per-file alignment report with severity counts.
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/*.md"
   └ 18 files found
 
 ● memory_context
   └ {"summary":"Context retrieved via focused mode (focused strategy) [truncated ...
 
 ● Run skill advisor and create session plan (shell)
-  │ python3 '.opencode/skill/scripts/skill_advisor.py' 'Review ALL .md files in
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts against
-  │ .opencode/skill/system-spec-kit/mcp_server and .opencode/skill/system-spec-kit/scripts; for
+  │ python3 '.opencode/skills/scripts/skill_advisor.py' 'Review ALL .md files in
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts against
+  │ .opencode/skills/system-spec-kit/mcp_server and .opencode/skills/system-spec-kit/scripts; for
   │ each file read it, search for described features in both codebases, and report mismatches with
   │ ALIGNED/MISALIGNED/PARTIAL and P0/P1/P2 summary.' --threshold 0.8 && cat > …
   └ 53 lines...
@@ -40,7 +40,7 @@ While the batch reviewers run, I’m doing a quick independent pass over the cat
 ● Extract titles and referenced paths from tooling catalog docs (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ root = Path('.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts')
+  │ root = Path('.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts')
   │ for path in sorted(root.glob('*.md')):
   │ text = path.read_text()…
   └ 166 lines...
@@ -53,16 +53,16 @@ While the batch reviewers run, I’m doing a quick independent pass over the cat
 
 I’m also building a quick evidence matrix from the repo itself so I can verify any borderline cases instead of just trusting the batch reviewers’ summaries.
 
-● List directory .opencode/skill/system-spec-kit/mcp_server
+● List directory .opencode/skills/system-spec-kit/mcp_server
   └ 33 files found
 
-● List directory .opencode/skill/system-spec-kit/scripts
+● List directory .opencode/skills/system-spec-kit/scripts
   └ 34 files found
 
 ● Search (grep)
   │ "applyTreeThinning|progressive-validate|check-architecture-boundaries|check-source-dist-alignmen
   │ t|generate-context|memory:learn|chokidar|template-structure|MODULE_MAP\.md" in *.{ts,js,sh,md}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774459005292-kcpnmr.txt
@@ -72,89 +72,89 @@ I’m also building a quick evidence matrix from the repo itself so I can verify
 I’ve identified a few likely drift hotspots from the catalog metadata itself, so I’m spot-checking those directly in source before I finalize statuses.
 
 ● Read 05-code-standards-alignment.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/05-code-standards-alignm
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/05-code-standards-alignm
   │ ent.md
   └ 125 lines read
 
 ● Read 11-feature-catalog-code-references.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-
   │ references.md
   └ 56 lines read
 
 ● Read 13-constitutional-memory-manager-command.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory
   │ -manager-command.md
   └ 70 lines read
 
 ● Read 15-module-boundary-map.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/15-module-boundary-map.m
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/15-module-boundary-map.m
   │ d
   └ 58 lines read
 
 ● Read 17-json-primary-deprecation-posture.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecat
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecat
   │ ion-posture.md
   └ 96 lines read
 
 ● Read 18-template-compliance-contract-enforcement.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-c
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-c
   │ ontract-enforcement.md
   └ 61 lines read
 
 ● Read MODULE_MAP.md
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md
   └ L1:220 (220 lines read)
 
 ● Read learn.md
-  │ .opencode/command/memory/learn.md
+  │ .opencode/commands/memory/learn.md
   └ 523 lines read
 
 ● Read generate-context.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
   └ L1:220 (220 lines read)
 
 ● Read template-structure.js
-  │ .opencode/skill/system-spec-kit/scripts/utils/template-structure.js
+  │ .opencode/skills/system-spec-kit/scripts/utils/template-structure.js
   └ L1:260 (260 lines read)
 
 ● Compute catalog comment coverage and lib subdir count (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ import re
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ # Feature catalog comment coverage…
   └ 61 lines...
 
 ● Search (grep)
   │ "Direct positional mode|reject|structured-input|stdin|--json|dataFile|collectSessionData\(|loadC
   │ ollectedData\(|positional|Direct CLI target rule"
-  │ (.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts)
   └ 41 lines found
 
 ● Search (grep)
   │ "validate\.sh --strict|fix loop|3
   │ attempts|template_compliance_contract|loadTemplateContract|SECTION_COUNTS|content minimum" in
-  │ *.{md,ts,js,sh,toml} (.opencode/skill/system-spec-kit)
+  │ *.{md,ts,js,sh,toml} (.opencode/skills/system-spec-kit)
   └ 62 lines found
 
 ● Check speckit agent defs for embedded compliance contract cues (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ from collections import Counter
-  │ base = Path('.opencode/skill/system-spec-kit')
-  │ files = [base/'.claude/agents/speckit.md', base/'.opencode/agent/speckit.md', …
+  │ base = Path('.opencode/skills/system-spec-kit')
+  │ files = [base/'.claude/agents/speckit.md', base/'.opencode/agents/speckit.md', …
   └ 17 lines...
 
 I found one concrete drift already: the raw feature-catalog annotation coverage is materially lower than the document claims, so I’m tightening a few more source checks around command behavior and agent-contract references.
 
 ● Read generate-context.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
   └ L395:435 (41 lines read)
 
 ● List migration checkpoint scripts (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ p = Path('.opencode/skill/system-spec-kit/mcp_server/scripts/migrations')
+  │ p = Path('.opencode/skills/system-spec-kit/mcp_server/scripts/migrations')
   │ print('exists', p.exists())
   │ if p.exists():…
   └ 7 lines...
@@ -162,7 +162,7 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 ● Count module map inventory entries (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ p = Path('.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md')
+  │ p = Path('.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md')
   │ text = p.read_text()
   │ count = sum(1 for line in text.splitlines() if line.startswith('### `') and …
   └ 10 lines...
@@ -172,7 +172,7 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
   │ from pathlib import Path
   │ paths = [
   │ Path('.claude/agents/speckit.md'),
-  │ Path('.opencode/agent/speckit.md'),…
+  │ Path('.opencode/agents/speckit.md'),…
   └ 28 lines...
 
 ● Listing background agents
@@ -185,12 +185,12 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
   └ L1:220 (219 lines read)
 
 ● Read speckit.md
-  │ .opencode/agent/speckit.md
+  │ .opencode/agents/speckit.md
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "AI-(WHY|TRACE|GUARD)|purposeful-comment|MODULE:|COMPONENT:|SECTION_COUNTS|validate\.sh
-  │ --strict|3 attempts|anchor-to-H2|required anchors" (.opencode/agent/speckit.md)
+  │ --strict|3 attempts|anchor-to-H2|required anchors" (.opencode/agents/speckit.md)
   └ 5 lines found
 
 ● Search (grep)
@@ -199,12 +199,12 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
   └ 2 lines found
 
 ● Read speckit.md
-  │ .opencode/agent/speckit.md
+  │ .opencode/agents/speckit.md
   └ L300:390 (91 lines read)
 
 ● Search (grep)
   │ "required anchors|ANCHOR:|H2|header hierarchy|Level 1.*spec\.md|spec\.md.*required"
-  │ (.opencode/agent/speckit.md)
+  │ (.opencode/agents/speckit.md)
   └ 9 lines found
 
 ● Search (grep)
@@ -214,49 +214,49 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 
 ● Search (grep)
   │ "##\s+3\.|##\s+4\.|##\s+5\.|Feature Catalog|Dependency Directions|Canonical Locations"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md)
   └ 12 lines found
 
 ● Search (grep)
-  │ "191 of 257|74%|Feature catalog:" (.opencode/skill/system-spec-kit/feature_catalog/16--tooling-a
+  │ "191 of 257|74%|Feature catalog:" (.opencode/skills/system-spec-kit/feature_catalog/16--tooling-a
   │ nd-scripts/11-feature-catalog-code-references.md)
   └ 6 lines found
 
 ● Search (grep)
-  │ "Feature catalog:" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "Feature catalog:" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 files found
 
 ● Search (grep)
-  │ "Feature catalog:" in *.ts (.opencode/skill/system-spec-kit/shared)
+  │ "Feature catalog:" in *.ts (.opencode/skills/system-spec-kit/shared)
   └ 9 files found
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ 1 line read
 
 ● Read 10-schema-compatibility-validation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/10-schema-compatibility-
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/10-schema-compatibility-
   │ validation.md
   └ 52 lines read
 
 ● Read 14-source-dist-alignment-enforcement.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/14-source-dist-alignment
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/14-source-dist-alignment
   │ -enforcement.md
   └ 53 lines read
 
 ● Read 16-json-mode-hybrid-enrichment.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enri
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enri
   │ chment.md
   └ 184 lines read
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ L1:220 (220 lines read)
 
 ● Read 12-session-capturing-pipeline-quality.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
+  │ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pip
   │ eline-quality.md
   └ L221:420 (55 lines read)
 
@@ -264,23 +264,23 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
   │ "direct positional saves now exit non-zero|sole save contract|file-backed
   │ JSON|sessionSummary|toolCalls|exchanges|decision_count|post-save
   │ review|memory_learn_command_docs|validateBackwardCompatibility|check-source-dist-alignment" in
-  │ *.{ts,md,sh,js} (.opencode/skill/system-spec-kit)
+  │ *.{ts,md,sh,js} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
   │ "allowlist|owner|date|reason|dist/lib|lib/.*\.ts|orphan"
-  │ (.opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts)
   └ 27 lines found
 
 ● Search (grep)
   │ "validateBackwardCompatibility|schema_version|memory_index|memory_history|checkpoints|memory_con
-  │ flicts|warning" (.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
+  │ flicts|warning" (.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "toolCalls|exchanges|sessionSummary|triggerPhrases|keyDecisions|contextType|getEmbeddingRetrySta
   │ ts|embeddingRetry|git_changed_file_count|pre-save overlap|SHA1" in *.{ts,js}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774459157863-hsns7c.txt
@@ -289,22 +289,22 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 
 ● Search (grep)
   │ "startFileWatcher|getWatcherMetrics|RETRY_DELAYS_MS|DEFAULT_DEBOUNCE_MS|unlink|chokidar"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "isRsfEnabled|isShadowScoringEnabled|fuseResultsRsf|rsfShadow|_s4shadow|specFolderLocks\b" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 6 lines found
 
 ● Search (grep)
   │ "applyTreeThinning\(|mergeThreshold|memoryThinThreshold|max.*children|overflow" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/core)
+  │ (.opencode/skills/system-spec-kit/scripts/core)
   └ 10 lines found
 
 ● Search (grep)
   │ "check-architecture-boundaries|shared/ must not import|wrapper|scripts/dist|child_process|50
-  │ substantive" in *.{ts,md} (.opencode/skill/system-spec-kit/scripts)
+  │ substantive" in *.{ts,md} (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774459177777-9pkpte.txt
@@ -313,35 +313,35 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 
 ● Search (grep)
   │ "runStats|runBulkDelete|runReindex|runSchemaDowngrade|--dry-run|--skip-checkpoint|--confirm|crea
-  │ teCheckpoint|schema-downgrade" (.opencode/skill/system-spec-kit/mcp_server/cli.ts)
+  │ teCheckpoint|schema-downgrade" (.opencode/skills/system-spec-kit/mcp_server/cli.ts)
   └ 20 lines found
 
 ● Search (grep)
   │ "validateBackwardCompatibility|validate_backward_compatibility"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
   └ 4 lines found
 
 ● Search (grep)
   │ "list\)|edit <filename>|remove <filename>|budget|memory_save\(|memory_search\(|importanceTier:
-  │ constitutional|always-surface" (.opencode/command/memory/learn.md)
+  │ constitutional|always-surface" (.opencode/commands/memory/learn.md)
   └ 31 lines found
 
 ● Listing background agents
 
 ● Read vector-index-schema.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
   └ L1173:1248 (76 lines read)
 
 ● Search (grep)
   │ "INSUFFICIENT_CONTEXT_ABORT|abort_write|write_skip_index|write_and_index|toolCalls|exchanges|ses
   │ sionSummary|triggerPhrases|keyDecisions|contextType" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "memory_search\(|importanceTier: constitutional|document_type =
   │ 'constitutional'|includeConstitutional|boost|never decay|constitutional" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
@@ -361,7 +361,7 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 
 ● Search (grep)
   │ "3 attempts|up to 3|three attempts|fix all errors before proceeding|required ANCHOR IDs"
-  │ (.opencode/agent/chatgpt/speckit.md)
+  │ (.opencode/agents/chatgpt/speckit.md)
   └ 2 lines found
 
 ● Read (General-purpose agent — Review first tooling batch)
@@ -375,17 +375,17 @@ I’ve got enough direct repo evidence now; I’m just filling a couple of remai
 ● Search (grep)
   │ "validateBackwardCompatibility|memory_history table missing|checkpoints table
   │ missing|memory_conflicts table missing"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
   └ 6 lines found
 
 ● Search (grep)
   │ "toolCalls|exchanges|sessionSummary|triggerPhrases|keyDecisions|contextType|git_changed_file_cou
   │ nt|computeReviewScorePenalty|getEmbeddingRetryStats|embeddingRetry" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
-  │ "getEmbeddingRetryStats|embeddingRetry" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "getEmbeddingRetryStats|embeddingRetry" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 20 lines found
 
 ● Read copilot-tool-output-1774459253931-wpiv2n.txt
@@ -394,31 +394,31 @@ I’ve got enough direct repo evidence now; I’m just filling a couple of remai
 
 ● Search (grep)
   │ "Feature catalog:|MODULE:|header"
-  │ (.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py)
+  │ (.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py)
   └ 5 lines found
 
 ● Compute current non-test TS coverage metrics (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ root = Path('.opencode/skill/system-spec-kit')
+  │ root = Path('.opencode/skills/system-spec-kit')
   │ files=[]
   │ for base in [root/'mcp_server', root/'shared']:…
   └ 16 lines...
 
 ● Search (grep)
   │ "AI-(WHY|TRACE|GUARD)|MODULE:"
-  │ (.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py)
+  │ (.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py)
   └ 3 lines found
 
 ● Search (grep)
-  │ "AI-(WHY|TRACE|GUARD):" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "AI-(WHY|TRACE|GUARD):" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ No matches found
 
 ● Search (grep)
   │ "AI-(WHY|TRACE|GUARD)|purposeful comments|MODULE:" (.agents/skills/sk-code-opencode/SKILL.md)
   └ 3 lines found
 
-Reviewed all 18 files against both `.opencode/skill/system-spec-kit/mcp_server/` and `.opencode/skill/system-spec-kit/scripts/`.
+Reviewed all 18 files against both `.opencode/skills/system-spec-kit/mcp_server/` and `.opencode/skills/system-spec-kit/scripts/`.
 
 - `01-tree-thinning-for-spec-folder-consolidation.md | ALIGNED |` Implemented in `scripts/core/tree-thinning.ts` and integrated in `scripts/core/workflow.ts:1029`; mcp_server only has related test/docs surfaces, which matches the catalog.
 - `02-architecture-boundary-enforcement.md | ALIGNED |` `scripts/evals/check-architecture-boundaries.ts` enforces GAP A/B; `scripts/tests/architecture-boundary-enforcement.vitest.ts` covers wrapper/neutrality cases; no separate mcp_server runtime expected.
@@ -432,7 +432,7 @@ Reviewed all 18 files against both `.opencode/skill/system-spec-kit/mcp_server/`
 - `10-schema-compatibility-validation.md | ALIGNED |` `mcp_server/lib/search/vector-index-schema.ts:1173+` implements non-throwing `validateBackwardCompatibility` with hard-required tables/columns and warning-only optional tables; no scripts-side runtime version.
 - `11-feature-catalog-code-references.md | PARTIAL |` **P1**: `MODULE:` headers are universal (raw scan: `280/280` non-test TS files), but feature-catalog comments are not at the documented coverage/contract level. Raw scan found `192/280` files with `// Feature catalog:` and `verify_alignment_drift.py` checks `MODULE:` only, not feature-comment presence. scripts files mostly follow header convention, not this annotation convention.
 - `12-session-capturing-pipeline-quality.md | PARTIAL |` Most pipeline features exist across scripts+mcp_server, but **P1**: the doc overstates save-path posture. `scripts/memory/generate-context.ts` still accepts positional JSON file input (`dataFile` path), so `--stdin` / `--json` are not literally the only supported paths.
-- `13-constitutional-memory-manager-command.md | ALIGNED |` `.opencode/command/memory/learn.md` defines create/list/edit/remove/budget flows; scripts has `memory-learn-command-docs.vitest.ts`; mcp_server has constitutional-tier indexing/retrieval support.
+- `13-constitutional-memory-manager-command.md | ALIGNED |` `.opencode/commands/memory/learn.md` defines create/list/edit/remove/budget flows; scripts has `memory-learn-command-docs.vitest.ts`; mcp_server has constitutional-tier indexing/retrieval support.
 - `14-source-dist-alignment-enforcement.md | ALIGNED |` `scripts/evals/check-source-dist-alignment.ts` scans `dist/lib` -> `lib`, supports typed allowlist fields (`reason`, `owner`, `date`), and reports orphans; no mcp_server duplicate expected.
 - `15-module-boundary-map.md | ALIGNED |` `mcp_server/lib/MODULE_MAP.md` exists with `28` module inventory entries plus feature mapping, dependency directions, and canonical locations; scripts tree has no conflicting implementation.
 - `16-json-mode-hybrid-enrichment.md | ALIGNED |` Claimed structured fields/hardening are present across `scripts/types/session-types.ts`, `collect-session-data.ts`, `post-save-review`, and mcp_server embedding-retry health surfaces (`retry-manager.ts`, `memory-crud-health.ts`).
@@ -450,21 +450,21 @@ I found an unintended side effect from a validation subtask: it changed one sour
 
 ● Check for unintended file changes and diff (shell)
   │ git --no-pager status --short && echo '---DIFF---' && git --no-pager diff --
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ 19 lines...
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ L190:215 (26 lines read)
 
 ● Edit
-  └ Edit .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  └ Edit .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
 
 I reverted the stray lint-only rename, so the review stays non-invasive. I’m doing one quick check to make sure only the pre-existing unrelated workspace changes remain.
 
 ● Verify unintended checkpoint edit was reverted (shell)
   │ git --no-pager status --short && echo '---CHECKPOINTS DIFF---' && git --no-pager diff --
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts
   └ 6 lines...
 
 Quick follow-up: the validation runner came back clean for the reviewed features (`scripts/check`, `mcp_server/check`, and the targeted watcher/CLI/progressive-validation/tree-thinning suites all passed).

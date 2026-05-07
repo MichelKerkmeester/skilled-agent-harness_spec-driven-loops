@@ -99,20 +99,20 @@ Phase 009 performs the missing schema migration. The work updates the family tax
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/009-family-schema-migration/graph-metadata.json` | Create/Update | Canonical graph metadata |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/graph-metadata.json` | Update | Add Phase 009 child ID for strict validation |
 | `.opencode/specs/skilled-agent-orchestration/070-sk-deep-rename/graph-metadata.json` | Update | Add Phase 009 child ID in mirrored parent metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Rename family key to `deep-loop` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Update | Allow `deep-loop` instead of `sk-deep` |
-| `.opencode/skill/deep-review/graph-metadata.json` | Update | Set family to `deep-loop` |
-| `.opencode/skill/deep-research/graph-metadata.json` | Update | Set family to `deep-loop` |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Update | Update `SkillFamily`, allow-list, and SQL `CHECK` |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js` | Update | Update generated runtime allow-list and SQL `CHECK` mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts` | Update | Update generated type union mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Update | Update family enum mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js` | Update | Update family enum mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Update | Update zod family enum mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js` | Update | Update zod family enum mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts` | Update | Update query handler family allow-list |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/handlers/skill-graph/query.js` | Update | Update query handler family allow-list mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite*` | Delete | Remove stale SQLite database and sidecars |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Rename family key to `deep-loop` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Update | Allow `deep-loop` instead of `sk-deep` |
+| `.opencode/skills/deep-review/graph-metadata.json` | Update | Set family to `deep-loop` |
+| `.opencode/skills/deep-research/graph-metadata.json` | Update | Set family to `deep-loop` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Update | Update `SkillFamily`, allow-list, and SQL `CHECK` |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js` | Update | Update generated runtime allow-list and SQL `CHECK` mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts` | Update | Update generated type union mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Update | Update family enum mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js` | Update | Update family enum mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Update | Update zod family enum mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js` | Update | Update zod family enum mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts` | Update | Update query handler family allow-list |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/handlers/skill-graph/query.js` | Update | Update query handler family allow-list mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite*` | Delete | Remove stale SQLite database and sidecars |
 <!-- /ANCHOR:scope -->
 
 ---

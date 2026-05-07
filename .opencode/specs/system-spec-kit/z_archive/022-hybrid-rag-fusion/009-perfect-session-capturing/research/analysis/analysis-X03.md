@@ -13,12 +13,12 @@ user
 You are auditing the session-capturing pipeline of a Spec Kit Memory system. Your focus: ERROR HANDLING & EDGE CASES.
 
 TASK: Systematically test error handling across the entire pipeline. Read ALL .ts files in these directories:
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/ (11 files)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/ (9 files)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/ (2 files)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/ (2 files)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/ (12 files)
-- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/ (11 files)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/ (9 files)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/ (2 files)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/ (2 files)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/ (12 files)
+- /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
 
 For each file, analyze what happens when:
 1. Session has 0 messages (empty conversation)
@@ -71,29 +71,29 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m treating this as a read-only code audit of the entire session-capturing pipeline, with emphasis on error paths, edge cases, and every `try/catch` boundary. I’ll first route the task through the local skill system, then enumerate and read all targeted `.ts` files so the findings are grounded in exact code paths and line references.
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts/extractors .opencode/skill/system-spec-kit/scripts/core .opencode/skill/system-spec-kit/scripts/loaders .opencode/skill/system-spec-kit/scripts/renderers .opencode/skill/system-spec-kit/scripts/utils .opencode/skill/system-spec-kit/scripts/memory | rg '\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
-.opencode/skill/system-spec-kit/scripts/memory/ast-parser.ts
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
-.opencode/skill/system-spec-kit/scripts/memory/reindex-embeddings.ts
-.opencode/skill/system-spec-kit/scripts/memory/rank-memories.ts
-.opencode/skill/system-spec-kit/scripts/memory/backfill-frontmatter.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-.opencode/skill/system-spec-kit/scripts/core/config.ts
-.opencode/skill/system-spec-kit/scripts/core/index.ts
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-.opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts/extractors .opencode/skills/system-spec-kit/scripts/core .opencode/skills/system-spec-kit/scripts/loaders .opencode/skills/system-spec-kit/scripts/renderers .opencode/skills/system-spec-kit/scripts/utils .opencode/skills/system-spec-kit/scripts/memory | rg '\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
+.opencode/skills/system-spec-kit/scripts/memory/ast-parser.ts
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
+.opencode/skills/system-spec-kit/scripts/memory/reindex-embeddings.ts
+.opencode/skills/system-spec-kit/scripts/memory/rank-memories.ts
+.opencode/skills/system-spec-kit/scripts/memory/backfill-frontmatter.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+.opencode/skills/system-spec-kit/scripts/core/config.ts
+.opencode/skills/system-spec-kit/scripts/core/index.ts
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+.opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Audit the Spec Kit Memory session-capturing pipeline for error handling and edge cases across extractors, core, loaders, renderers, utils, and memory/generate-context.ts; map all try/catch blocks and produce findings-first review output." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 653ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Audit the Spec Kit Memory session-capturing pipeline for error handling and edge cases across extractors, core, loaders, renderers, utils, and memory/generate-context.ts; map all try/catch blocks and produce findings-first review output." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 653ms:
 [
   {
     "skill": "sk-code-review",
@@ -117,7 +117,7 @@ exec
 codex
 SKILL ROUTING: `sk-code-review` (confidence `0.95`). I’m loading that review guidance now, then I’ll read the targeted TypeScript files in manageable batches and build a try/catch map with exact file/line evidence.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -147,8 +147,8 @@ Findings-first audit of the Spec Kit Memory session-capturing pipeline, focused 
   • Analyze the 10 requested edge cases against each relevant code path and identify concrete findings with severity
   • Assemble final findings report with file:line evidence and summary counts
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "printf 'extractors\\n'; rg --files .opencode/skill/system-spec-kit/scripts/extractors -g '*.ts'; printf '\\ncore\\n'; rg --files .opencode/skill/system-spec-kit/scripts/core -g '*.ts'; printf '\\nloaders\\n'; rg --files .opencode/skill/system-spec-kit/scripts/loaders -g '*.ts'; printf '\\nrenderers\\n'; rg --files .opencode/skill/system-spec-kit/scripts/renderers -g '*.ts'; printf '\\nutils\\n'; rg --files .opencode/skill/system-spec-kit/scripts/utils -g '*.ts'; printf '\\nmemory\\n'; printf '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts\\n'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "printf 'extractors\\n'; rg --files .opencode/skills/system-spec-kit/scripts/extractors -g '*.ts'; printf '\\ncore\\n'; rg --files .opencode/skills/system-spec-kit/scripts/core -g '*.ts'; printf '\\nloaders\\n'; rg --files .opencode/skills/system-spec-kit/scripts/loaders -g '*.ts'; printf '\\nrenderers\\n'; rg --files .opencode/skills/system-spec-kit/scripts/renderers -g '*.ts'; printf '\\nutils\\n'; rg --files .opencode/skills/system-spec-kit/scripts/utils -g '*.ts'; printf '\\nmemory\\n'; printf '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts\\n'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: sk-code-opencode
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
@@ -171,52 +171,52 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 
  succeeded in 52ms:
 extractors
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/index.ts
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/index.ts
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts
 
 core
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-.opencode/skill/system-spec-kit/scripts/core/config.ts
-.opencode/skill/system-spec-kit/scripts/core/index.ts
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-.opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+.opencode/skills/system-spec-kit/scripts/core/config.ts
+.opencode/skills/system-spec-kit/scripts/core/index.ts
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+.opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
 codex
 I’ve got the exact 37 files in scope now. To keep this rigorous without drowning in raw output, I’m building a structural inventory first: line counts, filesystem/JSON/timestamp touchpoints, and every `try/catch` location, then I’ll open the higher-risk files around those hotspots and backfill the lower-risk modules to ensure all files were read.
 exec
-/bin/zsh -lc "rg -n \"\\btry\\b|\\bcatch\\b|JSON\\.parse|JSON\\.stringify|readFile|writeFile|mkdir|stat\\(|lstat\\(|realpath|symlink|rename\\(|rm\\(|unlink\\(|new Date\\(|Date\\.parse|parseISO|Promise\\.all|await \" .opencode/skill/system-spec-kit/scripts/extractors .opencode/skill/system-spec-kit/scripts/core .opencode/skill/system-spec-kit/scripts/loaders .opencode/skill/system-spec-kit/scripts/renderers .opencode/skill/system-spec-kit/scripts/utils .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const files=[...process.argv.slice(1)]; for (const f of files){ const txt=fs.readFileSync(f,'utf8'); const lines=txt.split(/\\r?\\n/); console.log('FILE',f,lines.length); lines.forEach((line,i)=>{ if(/\\btry\\b|\\bcatch\\b|JSON\\.parse|JSON\\.stringify|readFile|writeFile|mkdir|stat\\(|lstat\\(|realpath|symlink|rename\\(|rm\\(|unlink\\(|new Date\\(|Date\\.parse|parseISO|Promise\\.all|await /.test(line)) console.log(String(i+1).padStart(4,' ')+': '+line);}); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/extractors/*.ts .opencode/skill/system-spec-kit/scripts/core/*.ts .opencode/skill/system-spec-kit/scripts/loaders/*.ts .opencode/skill/system-spec-kit/scripts/renderers/*.ts .opencode/skill/system-spec-kit/scripts/utils/*.ts .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:293:  // --- Subfolder support: before failing, try to find the folder as a child ---
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:313:    try {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:330:          try {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:345:                try {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:354:                } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:361:          } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:380:    } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:455:  try {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:460:    await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:466:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:487:  main().catch((error: unknown) => {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:134:          return firstKey ? String((item as Record<string, unknown>)[firstKey]) : JSON.stringify(item);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:142:      return firstKey ? String((value as Record<string, unknown>)[firstKey]) : JSON.stringify(value);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:164:  try {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:166:    await fs.access(templatePath);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:167:  } catch (_accessError: unknown) {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:178:  try {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179:    template = await fs.readFile(templatePath, 'utf-8');
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:180:  } catch (readError: unknown) {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:54:    try {
+/bin/zsh -lc "rg -n \"\\btry\\b|\\bcatch\\b|JSON\\.parse|JSON\\.stringify|readFile|writeFile|mkdir|stat\\(|lstat\\(|realpath|symlink|rename\\(|rm\\(|unlink\\(|new Date\\(|Date\\.parse|parseISO|Promise\\.all|await \" .opencode/skills/system-spec-kit/scripts/extractors .opencode/skills/system-spec-kit/scripts/core .opencode/skills/system-spec-kit/scripts/loaders .opencode/skills/system-spec-kit/scripts/renderers .opencode/skills/system-spec-kit/scripts/utils .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); const files=[...process.argv.slice(1)]; for (const f of files){ const txt=fs.readFileSync(f,'utf8'); const lines=txt.split(/\\r?\\n/); console.log('FILE',f,lines.length); lines.forEach((line,i)=>{ if(/\\btry\\b|\\bcatch\\b|JSON\\.parse|JSON\\.stringify|readFile|writeFile|mkdir|stat\\(|lstat\\(|realpath|symlink|rename\\(|rm\\(|unlink\\(|new Date\\(|Date\\.parse|parseISO|Promise\\.all|await /.test(line)) console.log(String(i+1).padStart(4,' ')+': '+line);}); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/extractors/*.ts .opencode/skills/system-spec-kit/scripts/core/*.ts .opencode/skills/system-spec-kit/scripts/loaders/*.ts .opencode/skills/system-spec-kit/scripts/renderers/*.ts .opencode/skills/system-spec-kit/scripts/utils/*.ts .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:293:  // --- Subfolder support: before failing, try to find the folder as a child ---
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:313:    try {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:330:          try {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:345:                try {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:354:                } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:361:          } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:380:    } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:455:  try {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:460:    await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:466:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:487:  main().catch((error: unknown) => {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:134:          return firstKey ? String((item as Record<string, unknown>)[firstKey]) : JSON.stringify(item);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:142:      return firstKey ? String((value as Record<string, unknown>)[firstKey]) : JSON.stringify(value);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:164:  try {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:166:    await fs.access(templatePath);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:167:  } catch (_accessError: unknown) {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:178:  try {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179:    template = await fs.readFile(templatePath, 'utf-8');
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:180:  } catch (readError: unknown) {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:54:    try {
  succeeded in 51ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts 837
+FILE .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts 837
  577:     ? new Date(lastPrompt.timestamp).toISOString()
  578:     : new Date().toISOString();
  618:   const now = new Date();
@@ -225,9 +225,9 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts 
  731:       SPEC_FILES = await detectRelatedDocs(specFolderPath) as SpecFileEntry[];
  732:     } catch (docError: unknown) {
 
-FILE .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts 91
+FILE .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts 91
 
-FILE .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts 254
+FILE .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts 254
   80:     const rawTimestamp: string = userPrompt.timestamp || new Date().toISOString();
   89:     const userTime = new Date(rawTimestamp);
   96:         const obsTime = new Date(obs.timestamp || '');
@@ -237,33 +237,33 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.t
  170:     const timeA = new Date(a.TIMESTAMP.replace(' @ ', 'T')).getTime();
  171:     const timeB = new Date(b.TIMESTAMP.replace(' @ ', 'T')).getTime();
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/extractors/*.ts .opencode/skill/system-spec-kit/scripts/core/*.ts .opencode/skill/system-spec-kit/scripts/loaders/*.ts .opencode/skill/system-spec-kit/scripts/renderers/*.ts .opencode/skill/system-spec-kit/scripts/utils/*.ts .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     836 .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-      90 .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-     253 .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts
-     400 .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
-     236 .opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts
-     338 .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts
-     400 .opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts
-      37 .opencode/skill/system-spec-kit/scripts/extractors/index.ts
-     539 .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-     127 .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
-     479 .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
-     287 .opencode/skill/system-spec-kit/scripts/core/config.ts
-      97 .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-      35 .opencode/skill/system-spec-kit/scripts/core/index.ts
-     155 .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-     146 .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-     352 .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-      96 .opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
-     248 .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
-     950 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/extractors/*.ts .opencode/skills/system-spec-kit/scripts/core/*.ts .opencode/skills/system-spec-kit/scripts/loaders/*.ts .opencode/skills/system-spec-kit/scripts/renderers/*.ts .opencode/skills/system-spec-kit/scripts/utils/*.ts .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     836 .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+      90 .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+     253 .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts
+     400 .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
+     236 .opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts
+     338 .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts
+     400 .opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts
+      37 .opencode/skills/system-spec-kit/scripts/extractors/index.ts
+     539 .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+     127 .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
+     479 .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+     287 .opencode/skills/system-spec-kit/scripts/core/config.ts
+      97 .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+      35 .opencode/skills/system-spec-kit/scripts/core/index.ts
+     155 .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+     146 .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+     352 .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+      96 .opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
+     248 .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
+     950 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
 codex
 I’ve mapped the likely fault boundaries. The next pass is a direct source read, split into chunks so I can inspect full implementations instead of relying on grep alone; I’m starting with the shared utilities and the smaller core/loader/renderer modules, because those define most of the normalization and path/error contracts the larger pipeline files build on.
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/loaders/index.ts .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skill/system-spec-kit/scripts/renderers/index.ts .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skill/system-spec-kit/scripts/core/index.ts .opencode/skill/system-spec-kit/scripts/core/file-writer.ts .opencode/skill/system-spec-kit/scripts/core/config.ts .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/utils/index.ts .opencode/skill/system-spec-kit/scripts/utils/data-validator.ts .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/utils/logger.ts .opencode/skill/system-spec-kit/scripts/utils/message-utils.ts .opencode/skill/system-spec-kit/scripts/utils/path-utils.ts .opencode/skill/system-spec-kit/scripts/utils/prompt-utils.ts .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts .opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts .opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts .opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/loaders/index.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/loaders/index.ts .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/renderers/index.ts .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skills/system-spec-kit/scripts/core/index.ts .opencode/skills/system-spec-kit/scripts/core/file-writer.ts .opencode/skills/system-spec-kit/scripts/core/config.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/utils/index.ts .opencode/skills/system-spec-kit/scripts/utils/data-validator.ts .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/utils/logger.ts .opencode/skills/system-spec-kit/scripts/utils/message-utils.ts .opencode/skills/system-spec-kit/scripts/utils/path-utils.ts .opencode/skills/system-spec-kit/scripts/utils/prompt-utils.ts .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts .opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts .opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+FILE .opencode/skills/system-spec-kit/scripts/loaders/index.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Index
    3: // ---------------------------------------------------------------
@@ -274,7 +274,7 @@ FILE .opencode/skill/system-spec-kit/scripts/loaders/index.ts
    8: export type { DataSource, LoadedData } from './data-loader';
    9: 
 
-FILE .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+FILE .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Data Loader
    3: // ---------------------------------------------------------------
@@ -284,7 +284,7 @@ FILE .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
    7: 
    8: import fs from 'fs/promises';
  succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/utils/index.ts
+FILE .opencode/skills/system-spec-kit/scripts/utils/index.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Index
    3: // ---------------------------------------------------------------
@@ -307,9 +307,9 @@ FILE .opencode/skill/system-spec-kit/scripts/utils/index.ts
 codex
 A few of the larger shared modules were truncated in the first pass, especially `input-normalizer`, `message-utils`, `path-utils`, and `file-writer`. I’m reopening those directly now because they sit on the validation, timestamp, and write-path boundaries that determine whether bad input gets contained or leaks deeper into the pipeline.
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/core/file-writer.ts .opencode/skill/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/utils/message-utils.ts .opencode/skill/system-spec-kit/scripts/utils/path-utils.ts .opencode/skill/system-spec-kit/scripts/utils/logger.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-FILE .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/core/file-writer.ts .opencode/skills/system-spec-kit/scripts/core/config.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/utils/message-utils.ts .opencode/skills/system-spec-kit/scripts/utils/path-utils.ts .opencode/skills/system-spec-kit/scripts/utils/logger.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+FILE .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: File Writer
    3: // ---------------------------------------------------------------
@@ -330,7 +330,7 @@ FILE .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
   18:     .replace(/^#+\s*.*$/gm, '')                // empty headings
   19:     .replace(/^\|.*\|$/gm, '')                 // table rows (template structure)
  succeeded in 50ms:
-FILE .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+FILE .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Input Normalizer
    3: // ---------------------------------------------------------------
@@ -351,9 +351,9 @@ FILE .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
   18:   files?: string[];
   19:   _manualDecision?: {
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-FILE .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+FILE .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Subfolder Utils
    3: // ---------------------------------------------------------------
@@ -374,7 +374,7 @@ FILE .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
   18: export const CATEGORY_FOLDER_PATTERN: RegExp = /^\d{2}--[a-z][a-z0-9-]*$/;
   19: 
  succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+FILE .opencode/skills/system-spec-kit/scripts/core/workflow.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Workflow
    3: // ---------------------------------------------------------------
@@ -395,9 +395,9 @@ FILE .opencode/skill/system-spec-kit/scripts/core/workflow.ts
   18:   enhanceFilesWithSemanticDescriptions,
   19: } from '../extractors';
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/extractors/index.ts .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/extractors/index.ts .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+FILE .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Session Extractor
    3: // ---------------------------------------------------------------
@@ -418,7 +418,7 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
   18: } from '../lib/topic-keywords';
   19: 
  succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/index.ts
+FILE .opencode/skills/system-spec-kit/scripts/extractors/index.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Index
    3: // ---------------------------------------------------------------
@@ -441,9 +441,9 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/index.ts
 codex
 The extractor pass surfaced the main risk zones: timestamp parsing in `conversation-extractor`, broad fallback behavior in `data-loader`/`workflow`, and a lot of “best effort” filesystem handling in the OpenCode capture path. I’m drilling into the remaining truncated modules now, plus the CLI entrypoint and collection code, because that’s where malformed input and partial filesystem failures are most likely to get misclassified instead of stopped.
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); for (const f of process.argv.slice(1)) { console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line)); console.log(''); }\" .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+FILE .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Decision Extractor
    3: // ---------------------------------------------------------------
@@ -464,7 +464,7 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
   18:    1. INTERFACES
   19: ------------------------------------------------------------------*/
  succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+FILE .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Opencode Capture
    3: // ---------------------------------------------------------------
@@ -485,9 +485,9 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
   18:   input: string;
   19:   timestamp: string | null;
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); const f=process.argv[1]; console.log('FILE '+f); fs.readFileSync(f,'utf8').split(/\\r?\\n/).forEach((line,i)=>console.log(String(i+1).padStart(4,' ')+': '+line));\" .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+FILE .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Generate Context
    3: // ---------------------------------------------------------------
@@ -508,7 +508,7 @@ FILE .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
   18:   findChildFolderSync,
   19:   getPhaseFolderRejectionSync,
  succeeded in 52ms:
-FILE .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
+FILE .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
    1: // ---------------------------------------------------------------
    2: // MODULE: Collect Session Data
    3: // ---------------------------------------------------------------
@@ -529,75 +529,75 @@ FILE .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
   18:   detectSessionCharacteristics,
   19:   buildProjectStateSnapshot,
 exec
-/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; files=list(Path('.opencode/skill/system-spec-kit/scripts/extractors').glob('*.ts'))+list(Path('.opencode/skill/system-spec-kit/scripts/core').glob('*.ts'))+list(Path('.opencode/skill/system-spec-kit/scripts/loaders').glob('*.ts'))+list(Path('.opencode/skill/system-spec-kit/scripts/renderers').glob('*.ts'))+list(Path('.opencode/skill/system-spec-kit/scripts/utils').glob('*.ts'))+[Path('.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts')]; total=0; per=[]; 
+/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; files=list(Path('.opencode/skills/system-spec-kit/scripts/extractors').glob('*.ts'))+list(Path('.opencode/skills/system-spec-kit/scripts/core').glob('*.ts'))+list(Path('.opencode/skills/system-spec-kit/scripts/loaders').glob('*.ts'))+list(Path('.opencode/skills/system-spec-kit/scripts/renderers').glob('*.ts'))+list(Path('.opencode/skills/system-spec-kit/scripts/utils').glob('*.ts'))+[Path('.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts')]; total=0; per=[]; 
 for f in files:
  txt=f.read_text(); c=len(re.findall(r'\\btry\\b',txt));
  if c: per.append((str(f),c)); total+=c
 print('total_try',total)
 for p,c in per: print(c,p)\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 691ms:
 total_try 55
-1 .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-8 .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-2 .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts
-6 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-3 .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
-5 .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-2 .opencode/skill/system-spec-kit/scripts/core/config.ts
-12 .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
-4 .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
-2 .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
-1 .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts
-4 .opencode/skill/system-spec-kit/scripts/utils/path-utils.ts
-5 .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+1 .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+8 .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+2 .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts
+6 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+3 .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
+5 .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+2 .opencode/skills/system-spec-kit/scripts/core/config.ts
+12 .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
+4 .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
+2 .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
+1 .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts
+4 .opencode/skills/system-spec-kit/scripts/utils/path-utils.ts
+5 .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
 exec
-/bin/zsh -lc "rg -n \"new Date\\(["'^)]*'"\\)\\.toISOString\\(|new Date\\(["'^)]*'"\\)\\.getTime\\(|new Date\\(["'^)]*'"\\)\" .opencode/skill/system-spec-kit/scripts/extractors .opencode/skill/system-spec-kit/scripts/utils .opencode/skill/system-spec-kit/scripts/loaders .opencode/skill/system-spec-kit/scripts/core .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:267:    timestamp: new Date().toISOString()
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:386:    timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString()
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:422:          timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:435:      timestamp: tool.timestamp ? new Date(tool.timestamp).toISOString() : new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:91:      timestamp: new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:325:      TIMESTAMP: obs.timestamp || new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts:79:function formatTimestamp(date: Date | string | number = new Date(), format: TimestampFormat = 'iso'): string {
-.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts:80:  const d: Date = date instanceof Date ? date : new Date(date);
-.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts:84:    return formatTimestamp(new Date(), format);
-.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts:88:  const adjustedDate: Date = new Date(d.getTime() + offsetMs);
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:28:    timestamp: new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:577:    ? new Date(lastPrompt.timestamp).toISOString()
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:578:    : new Date().toISOString();
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:618:  const now = new Date();
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:133:      generatedAt: new Date().toISOString()
-.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:446:    captured_at: new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:474:      const promptTime = new Date(p.timestamp || '').getTime();
-.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:157:        TIMESTAMP: obs.timestamp || new Date().toISOString(),
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:283:    const parsed = new Date(dateStr);
-.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:80:    const rawTimestamp: string = userPrompt.timestamp || new Date().toISOString();
+/bin/zsh -lc "rg -n \"new Date\\(["'^)]*'"\\)\\.toISOString\\(|new Date\\(["'^)]*'"\\)\\.getTime\\(|new Date\\(["'^)]*'"\\)\" .opencode/skills/system-spec-kit/scripts/extractors .opencode/skills/system-spec-kit/scripts/utils .opencode/skills/system-spec-kit/scripts/loaders .opencode/skills/system-spec-kit/scripts/core .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:267:    timestamp: new Date().toISOString()
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:386:    timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString()
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:422:          timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:435:      timestamp: tool.timestamp ? new Date(tool.timestamp).toISOString() : new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:91:      timestamp: new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:325:      TIMESTAMP: obs.timestamp || new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts:79:function formatTimestamp(date: Date | string | number = new Date(), format: TimestampFormat = 'iso'): string {
+.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts:80:  const d: Date = date instanceof Date ? date : new Date(date);
+.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts:84:    return formatTimestamp(new Date(), format);
+.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts:88:  const adjustedDate: Date = new Date(d.getTime() + offsetMs);
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:28:    timestamp: new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:577:    ? new Date(lastPrompt.timestamp).toISOString()
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:578:    : new Date().toISOString();
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:618:  const now = new Date();
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:133:      generatedAt: new Date().toISOString()
+.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:446:    captured_at: new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:474:      const promptTime = new Date(p.timestamp || '').getTime();
+.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:157:        TIMESTAMP: obs.timestamp || new Date().toISOString(),
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:283:    const parsed = new Date(dateStr);
+.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:80:    const rawTimestamp: string = userPrompt.timestamp || new Date().toISOString();
 exec
-/bin/zsh -lc "rg -n \"JSON\\.parse|SyntaxError|readJsonSafe|readJsonlTail|fs\\.readFile\\(|fsSync\\.readFileSync\\(|fs\\.writeFile\\(|fsSync\\.writeFileSync\\(|fs\\.rename\\(|fs\\.unlink\\(|fs\\.access\\(|fs\\.readdir\\(|fsSync\\.readdirSync\\(|fs\\.realpath\\(|fsSync\\.realpathSync\\(|process\\.exit\\(|withWorkflowRunLock|ensureUniqueMemoryFilename|checkForDuplicateContent|SIGINT|SIGTERM\" .opencode/skill/system-spec-kit/scripts/extractors .opencode/skill/system-spec-kit/scripts/core .opencode/skill/system-spec-kit/scripts/loaders .opencode/skill/system-spec-kit/scripts/renderers .opencode/skill/system-spec-kit/scripts/utils .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:105:  process.exit(0);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:112:process.on('SIGTERM', () => {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:113:  console.log('\nWarning: Received SIGTERM signal, shutting down gracefully...');
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:114:  process.exit(0);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:117:process.on('SIGINT', () => {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:118:  console.log('\nWarning: Received SIGINT signal, shutting down gracefully...');
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:119:  process.exit(0);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:314:      const available = fsSync.readdirSync(specsDir);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:332:            const topChildren = fsSync.readdirSync(topPath);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:347:                  const grandChildren = fsSync.readdirSync(midPath);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:386:  process.exit(1);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:478:    process.exit(1);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:493:    process.exit(1);
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:58:    return fsSync.readFileSync(filePath, 'utf8');
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:84:    return fsSync.readdirSync(parentPath).filter((entry) => {
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:180:    try { realRoot = fsSync.realpathSync(specsDir); } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:196:    try { realDir = fsSync.realpathSync(dir); } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:205:      dirents = fsSync.readdirSync(dir, { withFileTypes: true });
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:239:      try { return fsSync.realpathSync(m); } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:270:      await fs.access(specsDir);
+/bin/zsh -lc "rg -n \"JSON\\.parse|SyntaxError|readJsonSafe|readJsonlTail|fs\\.readFile\\(|fsSync\\.readFileSync\\(|fs\\.writeFile\\(|fsSync\\.writeFileSync\\(|fs\\.rename\\(|fs\\.unlink\\(|fs\\.access\\(|fs\\.readdir\\(|fsSync\\.readdirSync\\(|fs\\.realpath\\(|fsSync\\.realpathSync\\(|process\\.exit\\(|withWorkflowRunLock|ensureUniqueMemoryFilename|checkForDuplicateContent|SIGINT|SIGTERM\" .opencode/skills/system-spec-kit/scripts/extractors .opencode/skills/system-spec-kit/scripts/core .opencode/skills/system-spec-kit/scripts/loaders .opencode/skills/system-spec-kit/scripts/renderers .opencode/skills/system-spec-kit/scripts/utils .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:105:  process.exit(0);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:112:process.on('SIGTERM', () => {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:113:  console.log('\nWarning: Received SIGTERM signal, shutting down gracefully...');
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:114:  process.exit(0);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:117:process.on('SIGINT', () => {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:118:  console.log('\nWarning: Received SIGINT signal, shutting down gracefully...');
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:119:  process.exit(0);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:314:      const available = fsSync.readdirSync(specsDir);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:332:            const topChildren = fsSync.readdirSync(topPath);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:347:                  const grandChildren = fsSync.readdirSync(midPath);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:386:  process.exit(1);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:478:    process.exit(1);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:493:    process.exit(1);
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:58:    return fsSync.readFileSync(filePath, 'utf8');
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:84:    return fsSync.readdirSync(parentPath).filter((entry) => {
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:180:    try { realRoot = fsSync.realpathSync(specsDir); } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:196:    try { realDir = fsSync.realpathSync(dir); } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:205:      dirents = fsSync.readdirSync(dir, { withFileTypes: true });
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:239:      try { return fsSync.realpathSync(m); } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:270:      await fs.access(specsDir);
 codex
 Mapped 55 `try/catch` blocks across the 37 requested files. This is a source audit rather than a destructive runtime repro because the workspace is read-only. I did not find a clear top-level unhandled-promise-rejection path; the recurring problem is swallowed exceptions plus incorrect fallback behavior.
 
 ### FINDING-01: Malformed JSON Input Silently Downgrades To Capture/Simulation
-- **File:** [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L82>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L117>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L145>)
+- **File:** [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L82>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L117>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L145>)
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** If an explicit `dataFile` is unreadable, malformed, or fails validation, the catch logs a warning and then falls through to OpenCode capture and finally simulation mode.
@@ -607,17 +607,17 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Timestamp Handling Is Inconsistent And Can Either Crash Or Skew Ordering
-- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L384>), [collect-session-data.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L575>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L160>)
+- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L384>), [collect-session-data.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L575>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L160>)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(value).toISOString()` throws on malformed timestamps, while readable timestamps are later re-parsed as local time for sorting/duration, which can skew ordering around timezone/DST boundaries.
 - **Expected Behavior:** Bad timestamps should degrade per-record, not abort the run, and ordering should use preserved epoch values instead of display strings.
-- **Root Cause:** Multiple modules bypass [`formatTimestamp`](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L79>) and round-trip through raw `Date` parsing.
+- **Root Cause:** Multiple modules bypass [`formatTimestamp`](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L79>) and round-trip through raw `Date` parsing.
 - **Suggested Fix:** Add a shared `safeTimestamp()` helper returning `{ iso, epoch }`; use `epoch` for sort/duration and fallback to `Date.now()` only per bad record.
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Observation-Only / Zero-Message Sessions Lose Conversation History
-- **File:** [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L55>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>)
+- **File:** [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L55>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** When `userPrompts` is empty, the extractor only warns; it never converts observations into `MESSAGES`, so phases stay empty and duration becomes `N/A`.
@@ -627,7 +627,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Output Writes Are Not Transactionally Atomic
-- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L59>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L80>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L845>)
+- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L59>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L80>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L845>)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Each file is written atomically on its own, but a later `ENOSPC`/`EACCES` can leave earlier files already promoted, despite the rollback comment.
@@ -637,7 +637,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-05: Concurrent Processes Can Overwrite The Same Memory File
-- **File:** [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L359>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L651>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts#L136>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L72>)
+- **File:** [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L359>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L651>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts#L136>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L72>)
 - **Severity:** CRITICAL
 - **Category:** DESIGN
 - **Current Behavior:** The queue lock is process-local; two CLI processes can choose the same filename from a stale directory snapshot, and the writer will only warn before overwriting.
@@ -647,7 +647,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** LARGE (>2 hr)
 
 ### FINDING-06: Spec Folder Validation Does Not Verify Existence Or Symlink Safety
-- **File:** [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L137>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L217>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L389>)
+- **File:** [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L137>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L217>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L389>)
 - **Severity:** HIGH
 - **Category:** SECURITY
 - **Current Behavior:** Paths that merely look like `NNN-name` can be accepted even if the directory does not exist, and symlink targets are never canonicalized/rejected.
@@ -657,7 +657,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Corrupted Or Unreadable OpenCode Storage Is Treated As “No Data”
-- **File:** [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L127>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L205>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L242>)
+- **File:** [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L127>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L205>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L242>)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Malformed JSON, `EACCES`, and other read failures collapse to `null`/`[]`, so upstream logic treats corruption as an empty/missing session and may fall back to simulation.
@@ -667,7 +667,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Permission Errors Are Misclassified As “Directory Missing” During Safeguard Checks
-- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L35>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L72>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts#L136>)
+- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L35>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L72>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts#L136>)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `readdir`/`access` failures including `EACCES` are treated the same as `ENOENT`, disabling duplicate and uniqueness checks before the later write fails.
@@ -677,7 +677,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: There Are No Payload Size Or Message-Count Guards Before Expensive Work
-- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L291>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L705>), [memory-indexer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L42>)
+- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L291>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L705>), [memory-indexer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L42>)
 - **Severity:** MEDIUM
 - **Category:** PERFORMANCE
 - **Current Behavior:** 1000+ messages and 1MB+ fields pass validation unchanged, then flow into nested scans, full-template rendering, and embedding generation.
@@ -687,7 +687,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Missing Referenced Files Are Surfaced As Current Artifacts Without Annotation
-- **File:** [file-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts#L101>), [session-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts#L197>), [implementation-guide-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts#L162>)
+- **File:** [file-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts#L101>), [session-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts#L197>), [implementation-guide-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts#L162>)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Paths mentioned in the session are treated as live `FILES`, `ACTIVE_FILE`, and key-file roles even if the file no longer exists on disk.
@@ -705,7 +705,7 @@ tokens used
 Mapped 55 `try/catch` blocks across the 37 requested files. This is a source audit rather than a destructive runtime repro because the workspace is read-only. I did not find a clear top-level unhandled-promise-rejection path; the recurring problem is swallowed exceptions plus incorrect fallback behavior.
 
 ### FINDING-01: Malformed JSON Input Silently Downgrades To Capture/Simulation
-- **File:** [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L82>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L117>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L145>)
+- **File:** [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L82>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L117>), [data-loader.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L145>)
 - **Severity:** CRITICAL
 - **Category:** BUG
 - **Current Behavior:** If an explicit `dataFile` is unreadable, malformed, or fails validation, the catch logs a warning and then falls through to OpenCode capture and finally simulation mode.
@@ -715,17 +715,17 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Timestamp Handling Is Inconsistent And Can Either Crash Or Skew Ordering
-- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L384>), [collect-session-data.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L575>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L160>)
+- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L384>), [collect-session-data.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L575>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L160>)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(value).toISOString()` throws on malformed timestamps, while readable timestamps are later re-parsed as local time for sorting/duration, which can skew ordering around timezone/DST boundaries.
 - **Expected Behavior:** Bad timestamps should degrade per-record, not abort the run, and ordering should use preserved epoch values instead of display strings.
-- **Root Cause:** Multiple modules bypass [`formatTimestamp`](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/message-utils.ts#L79>) and round-trip through raw `Date` parsing.
+- **Root Cause:** Multiple modules bypass [`formatTimestamp`](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts#L79>) and round-trip through raw `Date` parsing.
 - **Suggested Fix:** Add a shared `safeTimestamp()` helper returning `{ iso, epoch }`; use `epoch` for sort/duration and fallback to `Date.now()` only per bad record.
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Observation-Only / Zero-Message Sessions Lose Conversation History
-- **File:** [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L55>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>)
+- **File:** [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L55>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** When `userPrompts` is empty, the extractor only warns; it never converts observations into `MESSAGES`, so phases stay empty and duration becomes `N/A`.
@@ -735,7 +735,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Output Writes Are Not Transactionally Atomic
-- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L59>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L80>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L845>)
+- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L59>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L80>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L845>)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Each file is written atomically on its own, but a later `ENOSPC`/`EACCES` can leave earlier files already promoted, despite the rollback comment.
@@ -745,7 +745,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-05: Concurrent Processes Can Overwrite The Same Memory File
-- **File:** [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L359>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L651>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts#L136>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L72>)
+- **File:** [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L359>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L651>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts#L136>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L72>)
 - **Severity:** CRITICAL
 - **Category:** DESIGN
 - **Current Behavior:** The queue lock is process-local; two CLI processes can choose the same filename from a stale directory snapshot, and the writer will only warn before overwriting.
@@ -755,7 +755,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** LARGE (>2 hr)
 
 ### FINDING-06: Spec Folder Validation Does Not Verify Existence Or Symlink Safety
-- **File:** [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L137>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L217>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L389>)
+- **File:** [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L137>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L217>), [generate-context.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L389>)
 - **Severity:** HIGH
 - **Category:** SECURITY
 - **Current Behavior:** Paths that merely look like `NNN-name` can be accepted even if the directory does not exist, and symlink targets are never canonicalized/rejected.
@@ -765,7 +765,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Corrupted Or Unreadable OpenCode Storage Is Treated As “No Data”
-- **File:** [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L127>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L205>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts#L242>)
+- **File:** [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L127>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L205>), [opencode-capture.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts#L242>)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Malformed JSON, `EACCES`, and other read failures collapse to `null`/`[]`, so upstream logic treats corruption as an empty/missing session and may fall back to simulation.
@@ -775,7 +775,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Permission Errors Are Misclassified As “Directory Missing” During Safeguard Checks
-- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L35>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L72>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts#L136>)
+- **File:** [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L35>), [file-writer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L72>), [slug-utils.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts#L136>)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `readdir`/`access` failures including `EACCES` are treated the same as `ENOENT`, disabling duplicate and uniqueness checks before the later write fails.
@@ -785,7 +785,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: There Are No Payload Size Or Message-Count Guards Before Expensive Work
-- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L291>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L705>), [memory-indexer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts#L42>)
+- **File:** [input-normalizer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L291>), [conversation-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts#L77>), [workflow.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L705>), [memory-indexer.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts#L42>)
 - **Severity:** MEDIUM
 - **Category:** PERFORMANCE
 - **Current Behavior:** 1000+ messages and 1MB+ fields pass validation unchanged, then flow into nested scans, full-template rendering, and embedding generation.
@@ -795,7 +795,7 @@ Mapped 55 `try/catch` blocks across the 37 requested files. This is a source aud
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: Missing Referenced Files Are Surfaced As Current Artifacts Without Annotation
-- **File:** [file-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts#L101>), [session-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts#L197>), [implementation-guide-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts#L162>)
+- **File:** [file-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts#L101>), [session-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts#L197>), [implementation-guide-extractor.ts](</Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts#L162>)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Paths mentioned in the session are treated as live `FILES`, `ACTIVE_FILE`, and key-file roles even if the file no longer exists on disk.

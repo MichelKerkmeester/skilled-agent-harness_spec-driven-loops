@@ -27,13 +27,13 @@ _memory:
     next_safe_action: "Validate strict; commit + push"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
       - ".opencode/plugins/spec-kit-skill-advisor.js"
-      - ".opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-007-topology-build-boundary"
@@ -46,7 +46,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -112,7 +112,7 @@ Close all six findings with surgical edits that keep behavior backward-compatibl
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | F-019-D4-02: add `phase_path_grammar` documentation block under `phase_folder_awareness` (additive, runtime parser unchanged). |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | F-019-D4-02: add `phase_path_grammar` documentation block under `phase_folder_awareness` (additive, runtime parser unchanged). |
 | `mcp_server/lib/spec/is-phase-parent.ts` | Modify | F-019-D4-03: export `assessPhaseParentHealth()` plus `PHASE_PARENT_WARNING_THRESHOLD` (20) and `PHASE_PARENT_ERROR_THRESHOLD` (40). |
 | `scripts/spec/is-phase-parent.ts` | Modify | F-019-D4-03: mirror the health helper export plus a CLI entrypoint (`health <folder>`) so shell rules can shell-out. |
 | `scripts/rules/check-phase-parent-content.sh` | Modify | F-019-D4-03: append manifest-size advisory using the dist `is-phase-parent.js` CLI. Soft-fails if node or the dist artifact is unavailable. |
@@ -200,7 +200,7 @@ Close all six findings with surgical edits that keep behavior backward-compatibl
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` D4 (phase topology) + D5 (build/dist boundary)
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies.
 <!-- /ANCHOR:risks -->
 

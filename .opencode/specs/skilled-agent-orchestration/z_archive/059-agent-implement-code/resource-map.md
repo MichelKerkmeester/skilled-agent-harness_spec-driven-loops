@@ -46,7 +46,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/agent/README.txt` | Updated | OK | Added `code` row to inventory list |
+| `.opencode/agents/README.txt` | Updated | OK | Added `code` row to inventory list |
 | `.claude/agents/README.txt` | Updated | OK | Added `code` row |
 | `.gemini/agents/README.txt` | Updated | OK | Added `code` row |
 | `.codex/agents/README.txt` | Updated | OK | Added `code` row |
@@ -62,7 +62,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Added CP-026 description block + index row |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Added CP-026 description block + index row |
 
 <!-- /ANCHOR:documents -->
 
@@ -71,27 +71,27 @@ _memory:
 <!-- ANCHOR:agents -->
 ## 4. Agents
 
-> `.opencode/agent/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`. Includes runtime mirrors for `@code` (4 surfaces) plus bloat-fix touches across `context.md` and `deep-research.md` per the conservative cli-codex bloat scan.
+> `.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`. Includes runtime mirrors for `@code` (4 surfaces) plus bloat-fix touches across `context.md` and `deep-research.md` per the conservative cli-codex bloat scan.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/agent/code.md` | Created | OK | NEW — 522 lines, mirrors `@review` §0-§13 from coder POV (source of truth) |
+| `.opencode/agents/code.md` | Created | OK | NEW — 522 lines, mirrors `@review` §0-§13 from coder POV (source of truth) |
 | `.claude/agents/code.md` | Created | OK | Mirror with `.claude/agents/*.md` Path Convention |
 | `.gemini/agents/code.md` | Created | OK | Mirror with `.gemini/agents/*.md` Path Convention |
 | `.codex/agents/code.toml` | Created | OK | Toml-wrapped (`sandbox_mode=workspace-write`, `model=gpt-5.4`, `model_reasoning_effort=high`) |
-| `.opencode/agent/orchestrate.md` | Updated | OK | §2 routing-table row 6 swapped `@general` → `@code`; LEAF list updated; Agent Files extended |
-| `.opencode/agent/context.md` | Updated | OK | Bloat-fix: deleted 3 stale orchestrator section refs (Section 7/10/16) |
+| `.opencode/agents/orchestrate.md` | Updated | OK | §2 routing-table row 6 swapped `@general` → `@code`; LEAF list updated; Agent Files extended |
+| `.opencode/agents/context.md` | Updated | OK | Bloat-fix: deleted 3 stale orchestrator section refs (Section 7/10/16) |
 | `.claude/agents/context.md` | Updated | OK | Bloat-fix mirror |
 | `.gemini/agents/context.md` | Updated | OK | Bloat-fix mirror |
 | `.codex/agents/context.toml` | Updated | OK | Bloat-fix mirror |
-| `.opencode/agent/deep-research.md` | Updated | OK | Bloat-fix: tool-table "Strategy update" → "research/research.md update when progressiveSynthesis is true"; write-safety bullet → "Strategy: Reducer-owned; do not edit directly" |
+| `.opencode/agents/deep-research.md` | Updated | OK | Bloat-fix: tool-table "Strategy update" → "research/research.md update when progressiveSynthesis is true"; write-safety bullet → "Strategy: Reducer-owned; do not edit directly" |
 | `.claude/agents/deep-research.md` | Updated | OK | Bloat-fix mirror |
 | `.gemini/agents/deep-research.md` | Updated | OK | Bloat-fix mirror |
 | `.codex/agents/deep-research.toml` | Updated | OK | Bloat-fix mirror |
-| `.opencode/agent/review.md` | Analyzed | OK | Structural template for `@code` body (§0-§13); cited heavily in `research/synthesis.md` and stream-04 |
-| `.opencode/agent/write.md` | Analyzed | OK | Closest write-capable LEAF analog; cited by stream-04 + ADR-2 rationale |
-| `.opencode/agent/debug.md` | Analyzed | OK | 5-phase methodology referenced for Builder/Critic/Verifier counter-evidence questions |
-| `.opencode/agent/improve-agent.md` | Cited | OK | Skills-table pattern precedent (stream-03 finding) |
+| `.opencode/agents/review.md` | Analyzed | OK | Structural template for `@code` body (§0-§13); cited heavily in `research/synthesis.md` and stream-04 |
+| `.opencode/agents/write.md` | Analyzed | OK | Closest write-capable LEAF analog; cited by stream-04 + ADR-2 rationale |
+| `.opencode/agents/debug.md` | Analyzed | OK | 5-phase methodology referenced for Builder/Critic/Verifier counter-evidence questions |
+| `.opencode/agents/improve-agent.md` | Cited | OK | Skills-table pattern precedent (stream-03 finding) |
 
 <!-- /ANCHOR:agents -->
 
@@ -100,12 +100,12 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**`. Per category-precedence rule, markdown inside `.opencode/skill/**` belongs here even when it looks like a general doc; the playbook root `manual_testing_playbook.md` is treated as a Document above only because it acts as the per-skill index page.
+> `.opencode/skills/**`. Per category-precedence rule, markdown inside `.opencode/skills/**` belongs here even when it looks like a general doc; the playbook root `manual_testing_playbook.md` is treated as a Document above only because it acts as the per-skill index page.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md` | Created | OK | NEW — CP-026 perf-comparison scenario (`@code` vs `@general` via copilot) |
-| `.opencode/skill/sk-code/SKILL.md` | Cited | OK | Stack detection delegated here per ADR-4; Iron Law canonical source line 62 |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/004-code-vs-general-agent-perf-comparison.md` | Created | OK | NEW — CP-026 perf-comparison scenario (`@code` vs `@general` via copilot) |
+| `.opencode/skills/sk-code/SKILL.md` | Cited | OK | Stack detection delegated here per ADR-4; Iron Law canonical source line 62 |
 
 <!-- /ANCHOR:skills -->
 
@@ -192,7 +192,7 @@ _memory:
 **Action and Status:** entries reflect state at commit `12f4d9f2cc` (2026-05-01). Subsequent edits to any of these files are NOT tracked here — re-author or amend the map at next commit if needed.
 
 **Categories deliberately omitted (zero entries):**
-- §3 Commands (no `.opencode/command/**` files modified)
+- §3 Commands (no `.opencode/commands/**` files modified)
 - §7 Scripts (no `.sh`/`.js`/`.ts`/`.py` runtime scripts modified)
 - §8 Tests (CP-026 sandbox lives in `/tmp/`, not the repo; no in-repo test files added)
 - §9 Config (all spec-folder JSON metadata lives under §6 Specs per precedence rule)
@@ -206,7 +206,7 @@ Per template instruction, omitted categories are NOT renumbered — §1, §2, §
 - `handover.md` — session continuity + Phase 3 final-pass commands
 
 **Reference reading:**
-- `.opencode/skill/system-spec-kit/templates/manifest/resource-map.md.tmpl` (canonical template)
-- `.opencode/skill/system-spec-kit/templates/README.md` (template architecture)
+- `.opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl` (canonical template)
+- `.opencode/skills/system-spec-kit/templates/README.md` (template architecture)
 
 <!-- /ANCHOR:author-instructions -->

@@ -16,9 +16,9 @@ Read Relay's workflow runner, builder, CLI resume flow, and workflow docs; then 
 - The builder also encodes `startFrom` and `previousRunId`, so restart behavior exists in the shared model, not as a one-off CLI hack. [SOURCE: external/packages/sdk/src/workflows/builder.ts:94-129] [SOURCE: external/packages/sdk/src/workflows/builder.ts:230-239]
 - The workflow docs make pause/resume/abort and failed-run resume part of the normal operational surface. [SOURCE: external/packages/sdk/src/workflows/README.md:530-537]
 - Relay's CLI persists run state to a file-backed JSONL store specifically so `--resume` can survive process restarts, and it also offers `--start-from` plus `--previous-run-id` as recovery guidance when full run state is missing. [SOURCE: external/packages/sdk/src/workflows/cli.ts:327-344] [SOURCE: external/packages/sdk/src/workflows/cli.ts:348-407] [SOURCE: external/packages/sdk/src/workflows/cli.ts:427-465]
-- Public's `deep-research` command documents loop phases and outputs but does not expose equivalent resume/start-from controls at the command surface. [SOURCE: .opencode/command/spec_kit/deep-research.md:147-186] [SOURCE: .opencode/command/spec_kit/deep-research.md:252-259]
-- Public's `deep-review` command similarly defines lifecycle and failure handling without first-class recovery flags. [SOURCE: .opencode/command/spec_kit/deep-review.md:162-228] [SOURCE: .opencode/command/spec_kit/deep-review.md:290-297]
-- Ironically, `sk-deep-review` already has richer lineage language (`resume`, `restart`, `fork`, `completed-continue`) than the public command contract exposes. [SOURCE: .opencode/skill/sk-deep-review/SKILL.md:257-285]
+- Public's `deep-research` command documents loop phases and outputs but does not expose equivalent resume/start-from controls at the command surface. [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-186] [SOURCE: .opencode/commands/spec_kit/deep-research.md:252-259]
+- Public's `deep-review` command similarly defines lifecycle and failure handling without first-class recovery flags. [SOURCE: .opencode/commands/spec_kit/deep-review.md:162-228] [SOURCE: .opencode/commands/spec_kit/deep-review.md:290-297]
+- Ironically, `sk-deep-review` already has richer lineage language (`resume`, `restart`, `fork`, `completed-continue`) than the public command contract exposes. [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:257-285]
 
 ## Analysis
 This is a narrower refactor than iteration 011. Even if Public keeps separate research and review loops, operators should not need folklore to recover a run after interruption. Relay's recovery surface is operationally legible: resume the run, or start from a specific step using cached prior outputs. Public already externalizes state; it should let users address that state explicitly.
@@ -28,7 +28,7 @@ confidence: high
 finding: Public should add explicit resume and partial-restart semantics to deep-loop commands. The state model already exists; the user-facing recovery surface is what is missing.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/deep-research.md`, `.opencode/command/spec_kit/deep-review.md`, deep-loop reducer/runner implementation
+- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, deep-loop reducer/runner implementation
 - **Change type:** modified existing + workflow refactor
 - **Blast radius:** medium
 - **Prerequisites:** standardize run identifiers, persisted loop metadata, and step/iteration naming across deep loops

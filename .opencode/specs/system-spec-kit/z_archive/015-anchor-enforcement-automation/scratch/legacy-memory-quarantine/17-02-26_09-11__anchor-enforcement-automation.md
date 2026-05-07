@@ -196,7 +196,7 @@ Next: Continue implementation
 
 - `.opencode/.../rules/check-evidence.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` - Script
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` - Script
 
 - `.opencode/.../rules/check-folder-naming.sh` - Script
 
@@ -245,11 +245,11 @@ Completed a strict-mode hardening pass for the system-spec-kit validation pipeli
 | `.opencode/.../rules/check-anchors.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-complexity.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-evidence.sh` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-folder-naming.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-frontmatter.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-level-match.sh` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-level.sh` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-level.sh` | File modified (description pending) |
 | `.opencode/.../rules/check-placeholders.sh` | File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
@@ -469,7 +469,7 @@ Completed a strict-mode hardening pass for the system-spec-kit validation pipeli
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "../.opencode/specs/system-spec-kit/z_archive/015-anchor-enforcement-automation", limit: 10 })
@@ -481,7 +481,7 @@ ls -la ../.opencode/specs/system-spec-kit/z_archive/015-anchor-enforcement-autom
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/z_archive/015-anchor-enforcement-automation --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/z_archive/015-anchor-enforcement-automation --force
 ```
 
 ### Recovery Priority
@@ -676,11 +676,11 @@ key_files:
   - ".opencode/.../rules/check-anchors.sh"
   - ".opencode/.../rules/check-complexity.sh"
   - ".opencode/.../rules/check-evidence.sh"
-  - ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh"
+  - ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh"
   - ".opencode/.../rules/check-folder-naming.sh"
   - ".opencode/.../rules/check-frontmatter.sh"
   - ".opencode/.../rules/check-level-match.sh"
-  - ".opencode/skill/system-spec-kit/scripts/rules/check-level.sh"
+  - ".opencode/skills/system-spec-kit/scripts/rules/check-level.sh"
   - ".opencode/.../rules/check-placeholders.sh"
 
 # Relationships

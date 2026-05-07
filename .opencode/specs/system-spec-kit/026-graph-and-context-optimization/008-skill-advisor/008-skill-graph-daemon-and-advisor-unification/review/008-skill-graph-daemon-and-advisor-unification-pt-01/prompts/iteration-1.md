@@ -76,6 +76,6 @@ Headings: `# Iteration 1 — Correctness + Inventory`, `## Dimension`, `## Files
 ### 3. Per-iteration delta
 Write to: `.../deltas/iter-001.jsonl`
 
-After completing, write strategy file at `.../deep-review-strategy.md` (use template at `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`) and point Next Focus at security with focus on cache corruption recovery, SIGKILL paths, and MCP error handling.
+After completing, write strategy file at `.../deep-review-strategy.md` (use template at `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`) and point Next Focus at security with focus on cache corruption recovery, SIGKILL paths, and MCP error handling.
 
 GO.

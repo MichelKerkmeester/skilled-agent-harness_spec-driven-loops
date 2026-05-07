@@ -1,63 +1,63 @@
 ● Search (grep)
   │ "abort|skip|return|throw|index|should"
-  │ (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 21 lines found
 
 ● Search (grep)
   │ "abort|skip|return|throw|validate|invalid"
-  │ (.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
   └ 27 lines found
 
 ● Search (grep)
-  │ "HARD_BLOCK|abort|skip|return" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ "HARD_BLOCK|abort|skip|return" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "abort|skip|return|throw|fallback|simulate|error"
-  │ (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 89 lines found
 
 ● Search (grep)
   │ "abort|skip|return|throw|invalid|normalize"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 110 lines found
 
 ● Search (grep)
   │ "abort|skip|return|throw|contamination|filter"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts)
   └ 14 lines found
 
 ● Search (grep)
   │ "throw new Error|return null|return false|continue; // skip|skip|abort|quality gate|duplicate"
-  │ (.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
   └ 18 lines found
 
 ● Search (grep)
   │ "status: 'skipped|skip|return null|throw|quality|policy|duplicate"
-  │ (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "hadContamination|maxSeverity|abort|skip|return \{ cleanedText|return
   │ \{.*hadContamination|severity"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts)
   └ 51 lines found
 
 ● Search (grep)
   │ "EXPLICIT_DATA_FILE_LOAD_FAILED|throw new Error|return null|fallback|simulate|capture
   │ failed|returned empty|security validation failed"
-  │ (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 41 lines found
 
 ● Search (grep)
   │ "Input validation failed|throw new Error|return null|continue; //
   │ skip|skip|invalid|required|must"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 26 lines found
 
 ● Search (grep)
   │ "HARD_BLOCK|hard block|abort|skip|quality|threshold|sufficien|return"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 I’ve got the first pass hits; now I’ll pinpoint exact decision branches with line-accurate context in each target file so the catalog is complete and defensible.
@@ -65,170 +65,170 @@ I’ve got the first pass hits; now I’ll pinpoint exact decision branches with
 ● Search (grep)
   │ "WorkflowIndexingStatus|skipped_|embedding generation returned null|qualityScore|index
   │ policy|return \{ status: 'skipped|throw"
-  │ (.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts)
   └ 9 lines found
 
 ● Search (grep)
   │ "HARD_BLOCK_RULES|hardBlock|abort|aborted|skip|skipped|quality|threshold|sufficien|insufficient|
   │ return \{ success: false|throw new Error"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "checkForDuplicateContent|validateContentSubstance|validateNoLeakedPlaceholders|validateAnchors|
   │ throw new Error|return existing|Skipping"
-  │ (.opencode/skill/system-spec-kit/scripts/core/file-writer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/file-writer.ts)
   └ 16 lines found
 
 ● Search (grep)
   │ "validateInputData|Input validation failed|throw new Error|return null|skip irrelevant
-  │ exchange|continue;" (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ exchange|continue;" (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 8 lines found
 
 ● Search (grep)
   │ "loadCollectedData|EXPLICIT_DATA_FILE_LOAD_FAILED|return null|throw new Error|capture returned
   │ empty data|capture failed|FALLBACK|SIMULATION"
-  │ (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 42 lines found
 
 ● Search (grep)
   │ "filterContamination|hadContamination|maxSeverity|severity|return \{ cleanedText|removedPhrases"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts)
   └ 57 lines found
 
 ● Search (grep)
   │ "HARD_BLOCK_RULES|HARD_BLOCK|hard block"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 1 line found
 
 ● Search (grep)
-  │ "skip|skipped|continue;" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ "skip|skipped|continue;" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 35 lines found
 
 ● Search (grep)
   │ "return \{ success: false|throw new Error\(|return null"
-  │ (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 15 lines found
 
 ● Search (grep)
-  │ "abort|aborted|abortReason|ABORT" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ "abort|aborted|abortReason|ABORT" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 14 lines found
 
 ● Search (grep)
-  │ "quality|threshold|sufficien|gate" (.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+  │ "quality|threshold|sufficien|gate" (.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 82 lines found
 
 ● Read file-writer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 231 lines read
 
 ● Read contamination-filter.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 199 lines read
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ 204 lines read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L140:230 (91 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2088:2435 (348 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1380:1685 (306 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L300:390 (91 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L390:490 (101 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L540:655 (116 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L180:230 (51 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L481:581 (101 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L930:1115 (186 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ 1 line read
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:140 (140 lines read)
 
 ● Search (grep)
   │ "determineValidationDisposition|ValidationDispositionResult|HARD_BLOCK_RULES|write_skip_index|ab
-  │ ort_write" (.opencode/skill/system-spec-kit/scripts)
+  │ ort_write" (.opencode/skills/system-spec-kit/scripts)
   └ 25 lines found
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L1:220 (220 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L220:520 (301 lines read)
 
 ● Read validate-memory-quality.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
   └ L520:760 (230 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L640:700 (60 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L430:520 (90 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L930:1005 (76 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1925:1975 (51 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L690:735 (46 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1235:1270 (36 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1145:1185 (41 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L160:280 (121 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2148:2260 (113 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L740:810 (71 lines read)
 
 Deep-dive result: **abort ownership is intentionally layered, but policy declaration is partially fragmented**.

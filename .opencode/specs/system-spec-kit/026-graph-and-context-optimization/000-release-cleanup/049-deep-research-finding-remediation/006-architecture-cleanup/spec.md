@@ -24,21 +24,21 @@ _memory:
     next_safe_action: "Apply 15 surgical refactors in D3 -> D2 -> D1 order; typecheck after each group"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/graph/community-summaries.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/community-summaries.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-006-architecture-cleanup"
@@ -51,7 +51,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -209,7 +209,7 @@ Close all fifteen findings with surgical refactors that preserve every public AP
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §16, §17, §18
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies.
 <!-- /ANCHOR:risks -->
 

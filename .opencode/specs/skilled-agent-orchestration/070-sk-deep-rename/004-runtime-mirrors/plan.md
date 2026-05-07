@@ -83,7 +83,7 @@ Scoped exact-string replacement across runtime mirror text files.
 - **Claude mirror**: `.claude/agents/*.md`.
 - **Codex mirror**: `.codex/agents/*.toml`.
 - **Gemini mirror**: `.gemini/agents/*.md` and the Phase 004-owned command mirror.
-- **Validator**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- **Validator**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 
 ### Data Flow
 Phase 001 inventory selects owned files. Exact replacement rewrites stale identifiers. Residual grep proves old-name absence. TOML parsing catches broken quoting in runtime definitions.
@@ -140,8 +140,8 @@ for path in [
 print("toml ok")
 PY
 find .claude .codex .gemini -name "*.bak" -o -name "*.backup"
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors --strict
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
 ```
 <!-- /ANCHOR:testing -->
 

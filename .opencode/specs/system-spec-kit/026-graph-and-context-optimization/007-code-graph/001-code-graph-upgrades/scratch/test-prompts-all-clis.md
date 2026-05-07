@@ -51,7 +51,7 @@ After running code_graph_scan, inspect the code_graph_scan response and tell me:
 
 ```
 Use code_graph_query to find all dependencies of 
-".opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts" 
+".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts" 
 with maxDepth=2. Verify that no nodes beyond depth 2 appear in the results. 
 Then try maxDepth=1 and confirm the result set is smaller.
 ```
@@ -165,7 +165,7 @@ copilot -p "After running code_graph_scan, inspect the scan response for the det
 ### T4-CP: Blast-Radius Depth Cap
 
 ```
-copilot -p "Use code_graph_query to find dependencies of .opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts with maxDepth=2, then again with maxDepth=1. Verify depth cap works by confirming fewer nodes at depth 1. Report both counts."
+copilot -p "Use code_graph_query to find dependencies of .opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts with maxDepth=2, then again with maxDepth=1. Verify depth cap works by confirming fewer nodes at depth 1. Report both counts."
 ```
 
 ### T5-CP: Multi-File Union
@@ -268,16 +268,16 @@ After running all prompts, fill in this matrix:
 
 ```bash
 # Direct (any CLI can run this)
-cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts
 
 # Via Codex
-codex exec -m gpt-5.4 -c service_tier="fast" "cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts && report pass/fail count"
+codex exec -m gpt-5.4 -c service_tier="fast" "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts && report pass/fail count"
 
 # Via Copilot
-copilot -p "Run the graph payload validator tests: cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts — report results"
+copilot -p "Run the graph payload validator tests: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts — report results"
 
 # Via Gemini
-gemini -p "Run: cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts — report pass/fail"
+gemini -p "Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/graph-payload-validator.vitest.ts — report pass/fail"
 ```
 
 ---

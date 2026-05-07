@@ -86,12 +86,12 @@ Execute all six evaluation scenarios from the manual testing playbook, producing
 
 | Scenario ID | Playbook File |
 |-------------|---------------|
-| EX-026 | `.opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md` |
-| EX-027 | `.opencode/skill/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md` |
-| EX-046 | `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md` |
-| EX-047 | `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md` |
-| EX-048 | `.opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md` |
-| EX-049 | `.opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md` |
+| EX-026 | `.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md` |
+| EX-027 | `.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md` |
+| EX-046 | `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md` |
+| EX-047 | `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md` |
+| EX-048 | `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md` |
+| EX-049 | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md` |
 <!-- /ANCHOR:scope -->
 
 ---

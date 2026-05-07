@@ -39,7 +39,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/memory/save.md",
+      ".opencode/commands/memory/save.md",
       "spec.md",
       "plan.md",
       "checklist.md"
@@ -48,7 +48,7 @@
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {

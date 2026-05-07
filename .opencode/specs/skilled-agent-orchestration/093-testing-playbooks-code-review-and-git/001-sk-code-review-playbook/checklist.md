@@ -93,7 +93,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets in any playbook content (scan `.opencode/skill/sk-code-review/manual_testing_playbook/**` for credential patterns)
+- [ ] CHK-030 [P0] No hardcoded secrets in any playbook content (scan `.opencode/skills/sk-code-review/manual_testing_playbook/**` for credential patterns)
 - [ ] CHK-031 [P0] Operator instructions never include "run with credentials inline"; secrets-in-diff scenario uses `<REDACTED>` placeholders
 - [ ] CHK-032 [P1] No paths leak local user info beyond what is already in the repo
 <!-- /ANCHOR:security -->

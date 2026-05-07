@@ -8,36 +8,36 @@ This round audited the MCP tool surface directly. I compared schemas and handler
 
 - `../deep-research-strategy.md`
 - `iteration-04.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 
 ### Findings
 
-- The public tool surface is asymmetric: `advisor_status` requires `workspaceRoot`, but `advisor_recommend` and `advisor_validate` do not accept it and instead infer the repo from process state or upward directory walking, which makes external/runtime parity less explicit than the docs imply [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:66-92] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:24-33] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:44-58].
-- `advisor_validate` exposes a required `confirmHeavyRun: true` input flag, but the implementation only parses it and then unconditionally runs the heavy validation bundle; the flag currently acts as an inert call-shape requirement rather than an actual control surface [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89-92] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:282-299].
-- `advisor_validate` is hard-wired to the packet-019 corpus path, so packet-local or runtime-specific parity checks cannot point the public tool at an alternate corpus without code changes [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:53-62].
+- The public tool surface is asymmetric: `advisor_status` requires `workspaceRoot`, but `advisor_recommend` and `advisor_validate` do not accept it and instead infer the repo from process state or upward directory walking, which makes external/runtime parity less explicit than the docs imply [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:66-92] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:24-33] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:44-58].
+- `advisor_validate` exposes a required `confirmHeavyRun: true` input flag, but the implementation only parses it and then unconditionally runs the heavy validation bundle; the flag currently acts as an inert call-shape requirement rather than an actual control surface [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89-92] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:282-299].
+- `advisor_validate` is hard-wired to the packet-019 corpus path, so packet-local or runtime-specific parity checks cannot point the public tool at an alternate corpus without code changes [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:53-62].
 
 ### Evidence
 
 > export const AdvisorStatusInputSchema = z.object({
 >   workspaceRoot: z.string().min(1),
 >   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
-> }).strict(); [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:66-69]
+> }).strict(); [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:66-69]
 
 > export const AdvisorValidateInputSchema = z.object({
 >   confirmHeavyRun: z.literal(true),
 >   skillSlug: z.string().min(1).nullable().optional(),
-> }).strict(); [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89-92]
+> }).strict(); [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts:89-92]
 
 > function computeRecommendationOutput(input: AdvisorRecommendInput): AdvisorRecommendOutput {
 >   const workspaceRoot = findWorkspaceRoot();
 >   const status = readAdvisorStatus({ workspaceRoot });
 >   ...
 >   const result = scoreAdvisorPrompt(input.prompt, {
->     workspaceRoot, [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:130-165]
+>     workspaceRoot, [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:130-165]
 
 ### Negative Knowledge
 

@@ -41,11 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs",
-      ".opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs",
-      ".opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs",
-      ".opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py",
-      ".opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py",
+      ".opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs",
+      ".opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs",
+      ".opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs",
+      ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py",
       "scratch/initial-inventory.md",
       "decision-record.md",
       "implementation-summary.md",
@@ -58,31 +58,31 @@
       {
         "name": "minify-webflow.mjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs",
+        "path": ".opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs",
         "source": "derived"
       },
       {
         "name": "test-minified-runtime.mjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs",
+        "path": ".opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs",
         "source": "derived"
       },
       {
         "name": "verify-minification.mjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs",
+        "path": ".opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs",
         "source": "derived"
       },
       {
         "name": "verify_alignment_drift.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       },
       {
         "name": "test_verify_alignment_drift.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py",
         "source": "derived"
       },
       {

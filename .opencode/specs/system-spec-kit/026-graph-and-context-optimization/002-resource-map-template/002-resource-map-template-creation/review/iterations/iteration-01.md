@@ -2,7 +2,7 @@
 
 ## Dimension & scope
 
-Deep-review of `.opencode/skill/system-spec-kit/templates/resource-map.md` as a reusable artifact. Compared against reference audit shape (`009-hook-package/path-references-audit.md`), peer cross-cutting templates (`handover.md`, `research.md`, `debug-delegation.md`), and the filled example at packet 012. Executor: `cli-copilot gpt-5.4 high` (exit 0, no retries).
+Deep-review of `.opencode/skills/system-spec-kit/templates/resource-map.md` as a reusable artifact. Compared against reference audit shape (`009-hook-package/path-references-audit.md`), peer cross-cutting templates (`handover.md`, `research.md`, `debug-delegation.md`), and the filled example at packet 012. Executor: `cli-copilot gpt-5.4 high` (exit 0, no retries).
 
 ## Findings
 
@@ -10,7 +10,7 @@ Deep-review of `.opencode/skill/system-spec-kit/templates/resource-map.md` as a 
 None. No issue prevents the template from being used immediately.
 
 ### P1 (required)
-- **IT01-P1-001 — Category taxonomy overlaps.** `Specs` (§6) and `Config` (§9) both claim `description.json`/`graph-metadata.json`. `Meta` (§10) claims root `README.md` while `READMEs` (§1) claims all READMEs. `Skills` (§5) claims `.opencode/skill/**` subtrees while `Scripts`/`Tests`/`Config` claim by file extension — any skill-local `.sh`/`.ts`/`.json` fits in two places. The filled example at 012 already double-lists `description.json`/`graph-metadata.json` in both Specs and Config (lines 97-100 and 119-120), proving this is a template defect, not user error. Need explicit precedence rule.
+- **IT01-P1-001 — Category taxonomy overlaps.** `Specs` (§6) and `Config` (§9) both claim `description.json`/`graph-metadata.json`. `Meta` (§10) claims root `README.md` while `READMEs` (§1) claims all READMEs. `Skills` (§5) claims `.opencode/skills/**` subtrees while `Scripts`/`Tests`/`Config` claim by file extension — any skill-local `.sh`/`.ts`/`.json` fits in two places. The filled example at 012 already double-lists `description.json`/`graph-metadata.json` in both Specs and Config (lines 97-100 and 119-120), proving this is a template defect, not user error. Need explicit precedence rule.
 - **IT01-P1-002 — Frontmatter/structure divergence from peers.** Peers expose a visible, ANCHOR-tagged `## WHEN TO USE THIS TEMPLATE` section (`handover.md:20-31`, `research.md:22-37`, `debug-delegation.md:21-32`). `resource-map.md` has no ANCHOR tags and buries guidance in prose (lines 18-22) plus a trailing HTML comment (lines 138-153). Breaks shape convention and hurts anchor-based discovery.
 - **IT01-P1-003 — Placeholder convention mismatch.** Peers use `[YOUR_VALUE_HERE: ...]` uniformly; `resource-map.md` uses bare hints (`[count]`, `[n]`, `[path to README.md]`, `[note]`). Users won't recognize these as fill-in slots and placeholder scanners won't find them.
 - **IT01-P1-004 — Renumbering after deletion is undocumented.** Line 145 says delete empty categories, but never says whether remaining sections renumber 1..N or retain original numbers. The 012 example silently renumbers 1→7 after dropping Commands/Agents/Tests. Ambiguity will produce inconsistent maps.

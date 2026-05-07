@@ -56,12 +56,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] **CHK-010** [P0] Agent body in `.opencode/agent/multi-ai-council.md` documents the new output protocol (§13-§16; 683 LOC)
+- [x] **CHK-010** [P0] Agent body in `.opencode/agents/multi-ai-council.md` documents the new output protocol (§13-§16; 683 LOC)
 - [x] **CHK-011** [P0] Agent body stays under 750 LOC (current 683)
 - [x] **CHK-012** [P0] Agent retains `write: deny` on source files; planning-only invariant preserved (orchestrator-level writes to `ai-council/` are a follow-on)
 - [x] **CHK-013** [P0] All 4 runtime mirrors (`.opencode`, `.claude`, `.codex`, `.gemini`) agree on output protocol (4 sections each)
 - [x] **CHK-014** [P1] Reference files under `system-spec-kit/references/multi-ai-council/` are concise (27-68 LOC each, under 300)
-- [x] **CHK-015** [P1] No new skill folder created at `.opencode/skill/multi-ai-council/` (verified absent)
+- [x] **CHK-015** [P1] No new skill folder created at `.opencode/skills/multi-ai-council/` (verified absent)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -113,7 +113,7 @@ _memory:
 
 - [x] **CHK-060** [P0] `ai-council/` subfolder convention documented in spec.md §3 Files-to-Change and references throughout
 - [x] **CHK-061** [P0] `system-spec-kit/references/multi-ai-council/` contains 4 reference files (folder-layout, seat-diversity-patterns, convergence-signals, state-format)
-- [x] **CHK-062** [P0] No new skill folder at `.opencode/skill/multi-ai-council/` (verified absent)
+- [x] **CHK-062** [P0] No new skill folder at `.opencode/skills/multi-ai-council/` (verified absent)
 - [x] **CHK-063** [P1] Reference files use lowercase-hyphen naming convention
 <!-- /ANCHOR:file-org -->
 

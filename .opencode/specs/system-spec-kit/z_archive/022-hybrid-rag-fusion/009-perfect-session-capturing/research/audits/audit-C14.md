@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-ca3e-7b01-81cb-d5a639017ecb
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts (146 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts (146 lines).
 
 This is the v1 (legacy) quality scorer with 6-dimension scoring.
 
@@ -56,17 +56,17 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m going to inspect the legacy scorer line by line first, then trace where v2 is used so we can assess conflicts and whether both should exist. I’ll start by dumping the full file with line numbers and then map each audit point to concrete findings.
 exec
-/bin/zsh -lc "wc -l '.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts' && nl -ba '.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files '.opencode/skill/system-spec-kit/scripts' | rg 'quality|scorer|v2'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script
-.opencode/skill/system-spec-kit/scripts/evals/run-quality-legacy-remediation.ts
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js
+/bin/zsh -lc "wc -l '.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts' && nl -ba '.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files '.opencode/skills/system-spec-kit/scripts' | rg 'quality|scorer|v2'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script
+.opencode/skills/system-spec-kit/scripts/evals/run-quality-legacy-remediation.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js
  succeeded in 51ms:
-     146 .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+     146 .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Scorer
      3	// ---------------------------------------------------------------
@@ -89,8 +89,8 @@ exec
 codex
 I confirmed the file is exactly 146 lines and read it fully. Next I’ll inspect the v2 scorer and its call sites to compare formulas, thresholds, and whether legacy/v2 overlap or conflict.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	#!/usr/bin/env node
      2	// ---------------------------------------------------------------
      3	// MODULE: Validate Memory Quality
@@ -133,29 +133,29 @@ exec
     19	  passed: boolean;
     20	}
 exec
-/bin/zsh -lc "rg -n \"core/quality-scorer|scoreMemoryQuality\\(|qualityScore|breakdown|warnings\" '.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:48:  const warnings: string[] = [];
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:52:      warnings.push(`Unclosed anchor: ${anchor} (missing <!-- /ANCHOR:${anchor} -->)`);
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:58:      warnings.push(`Orphaned closing anchor: ${anchor} (no matching opening tag)`);
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:62:  return warnings;
-.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts:68:    console.warn(`[generate-context] Anchor validation warnings in ${filename}:`);
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:27:  warnings: string[];
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:28:  breakdown: QualityBreakdown;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:47: * Score 0-100, with breakdown per criterion.
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:49:export function scoreMemoryQuality(
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:56:  const warnings: string[] = [];
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:57:  const breakdown: QualityBreakdown = {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:68:    breakdown.triggerPhrases = 20;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:70:    breakdown.triggerPhrases = 15;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:72:    breakdown.triggerPhrases = 10;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:74:    warnings.push('No trigger phrases extracted — memory will not surface via trigger matching');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:79:    breakdown.keyTopics = 15;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:81:    breakdown.keyTopics = 10;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:83:    breakdown.keyTopics = 5;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:85:    warnings.push('No key topics extracted — memory searchability reduced');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:92:    breakdown.fileDescriptions = 20; // No files = not applicable, full score
+/bin/zsh -lc "rg -n \"core/quality-scorer|scoreMemoryQuality\\(|qualityScore|breakdown|warnings\" '.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:48:  const warnings: string[] = [];
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:52:      warnings.push(`Unclosed anchor: ${anchor} (missing <!-- /ANCHOR:${anchor} -->)`);
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:58:      warnings.push(`Orphaned closing anchor: ${anchor} (no matching opening tag)`);
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:62:  return warnings;
+.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:68:    console.warn(`[generate-context] Anchor validation warnings in ${filename}:`);
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:27:  warnings: string[];
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:28:  breakdown: QualityBreakdown;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:47: * Score 0-100, with breakdown per criterion.
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:49:export function scoreMemoryQuality(
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:56:  const warnings: string[] = [];
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:57:  const breakdown: QualityBreakdown = {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:68:    breakdown.triggerPhrases = 20;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:70:    breakdown.triggerPhrases = 15;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:72:    breakdown.triggerPhrases = 10;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:74:    warnings.push('No trigger phrases extracted — memory will not surface via trigger matching');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:79:    breakdown.keyTopics = 15;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:81:    breakdown.keyTopics = 10;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:83:    breakdown.keyTopics = 5;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:85:    warnings.push('No key topics extracted — memory searchability reduced');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:92:    breakdown.fileDescriptions = 20; // No files = not applicable, full score
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,120p;350,430p;790,860p;900,960p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '1,120p;350,430p;790,860p;900,960p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Workflow
      3	// ---------------------------------------------------------------
@@ -177,7 +177,7 @@ exec
     19	} from '../extractors';
     20	import { detectSpecFolder, setupContextDirectory } from '../spec-folder';
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts' | sed -n '1,170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Indexer
      3	// ---------------------------------------------------------------
@@ -200,28 +200,28 @@ exec
     20	  try {
 exec
 /bin/zsh -lc "rg -n \"function extractQualityScore|extractQualityScore\\(\" -S" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 89ms:
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:136:  assertEqual(extractQualityScore(content), 0.42, 'multiline frontmatter score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:144:  assertEqual(extractQualityScore(content), 0.67, 'CRLF score');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:151:  assertEqual(extractQualityScore(content), 0.31, 'score with extra whitespace');
-.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21:export function extractQualityScore(content: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:178:  const qualityScore = extractQualityScore(content);
-.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:96:  const qualityScore = extractQualityScore(content);
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-feature-catalog/scratch/verification-C15.md:649:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-feature-catalog/scratch/verification-C15.md:654:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:136:  assertEqual(extractQualityScore(content), 0.42, 'multiline frontmatter score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:51:  assertEqual(extractQualityScore(content), 0.85, 'valid score 0.85');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:57:  assertEqual(extractQualityScore(content), 1, 'score clamp high');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:63:  assertEqual(extractQualityScore(content), 0, 'score clamp low (negative input)');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:71:  assertEqual(extractQualityScore(nanContent), 0, 'score NaN text returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:72:  assertEqual(extractQualityScore(textContent), 0, 'score non-numeric returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:84:  assertEqual(extractQualityScore(content), 0, 'score in body only returns 0');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:136:  assertEqual(extractQualityScore(content), 0.42, 'multiline frontmatter score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:144:  assertEqual(extractQualityScore(content), 0.67, 'CRLF score');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:151:  assertEqual(extractQualityScore(content), 0.31, 'score with extra whitespace');
+.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21:export function extractQualityScore(content: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:178:  const qualityScore = extractQualityScore(content);
+.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:96:  const qualityScore = extractQualityScore(content);
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-feature-catalog/scratch/verification-C15.md:649:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:44:  assertEqual(extractQualityScore(content), 0, 'no frontmatter score');
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-feature-catalog/scratch/verification-C15.md:654:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:136:  assertEqual(extractQualityScore(content), 0.42, 'multiline frontmatter score');
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C15.md:303:/bin/zsh -lc "rg -n \"function extractQualityScore|extractQualityScore\\(|quality_score\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' | head -n 80" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C08.md:249:/bin/zsh -lc "rg -n \"function extractQualityScore|extractQualityFlags|quality_score\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' | head -n 40" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C08.md:272:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:178:  const qualityScore = extractQualityScore(content);
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C08.md:274:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C08.md:272:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:178:  const qualityScore = extractQualityScore(content);
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/scratch/audit-C08.md:274:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.test.ts:31:  assertEqual(extractQualityScore(content), 0, 'empty input score');
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Quality Extractors
      3	// ---------------------------------------------------------------
@@ -243,28 +243,28 @@ exec
     19	 * Canonical shared implementation — replaces duplicates in memory-indexer.ts and memory-parser.ts.
     20	 */
 exec
-/bin/zsh -lc "rg --files '.opencode/skill/system-spec-kit' | rg 'dist/.*/quality-scorer\\.js|quality-scorer\\.js"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+/bin/zsh -lc "rg --files '.opencode/skills/system-spec-kit' | rg 'dist/.*/quality-scorer\\.js|quality-scorer\\.js"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
 
 exec
-/bin/zsh -lc "rg -n \"stats\\.qualityScore|qualityScore:\\s*qualityResult\\.score|runWorkflow\\(|Memory quality score\" '.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:460:    await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:400:async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResult> {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:495:        '  - If calling runWorkflow() directly, pass { collectSessionDataFn: yourFunction } in options\n' +
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:835:  log(`   Memory quality score: ${qualityResult.score}/100 (legacy), ${qualityV2.qualityScore.toFixed(2)} (v2)`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:937:          qualityScore: qualityResult.score,
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:184:      const result = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:240:      const result = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:302:      const result = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:566:      const result = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:617:    const fileBackedResult = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:623:    const statelessResult = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:676:    const firstRunPromise = runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:693:    const secondRunPromise = runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:759:      const result = await runWorkflow({
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:734:    if (typeof stats.totalProcessed === 'number' && typeof stats.qualityScore === 'number') {
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:735:      pass('T-010h: get_filter_stats returns stats', `Quality: ${stats.qualityScore}`);
+/bin/zsh -lc "rg -n \"stats\\.qualityScore|qualityScore:\\s*qualityResult\\.score|runWorkflow\\(|Memory quality score\" '.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:460:    await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:400:async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResult> {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:495:        '  - If calling runWorkflow() directly, pass { collectSessionDataFn: yourFunction } in options\n' +
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:835:  log(`   Memory quality score: ${qualityResult.score}/100 (legacy), ${qualityV2.qualityScore.toFixed(2)} (v2)`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:937:          qualityScore: qualityResult.score,
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:184:      const result = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:240:      const result = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:302:      const result = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:566:      const result = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:617:    const fileBackedResult = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:623:    const statelessResult = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:676:    const firstRunPromise = runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:693:    const secondRunPromise = runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:759:      const result = await runWorkflow({
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:734:    if (typeof stats.totalProcessed === 'number' && typeof stats.qualityScore === 'number') {
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:735:      pass('T-010h: get_filter_stats returns stats', `Quality: ${stats.qualityScore}`);
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' | sed -n '160,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' | sed -n '160,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    160	      workflowHarness.contextDir = contextDir;
    161	      CONFIG.TEMPLATE_DIR = templatesDir;
    162	
@@ -286,7 +286,7 @@ exec
    178	            files: ['scripts/core/workflow.ts'],
    179	          },
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '420,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | sed -n '420,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    420	      const candidate = path.join(specsDir, ...segments);
    421	      if (fsSync.existsSync(candidate)) {
    422	        return candidate;
@@ -310,7 +310,7 @@ exec
 codex
 I now have the v2 scorer and workflow integration loaded. I’ll do a precise edge-case walkthrough (empty/perfect/tool-only) from the v1 math and then package findings in your required template with line-specific evidence.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js' | sed -n '90,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js' | sed -n '90,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
     90	
     91	  assert(result.DECISION_COUNT >= 4, 'decision lexical cues should produce concrete decisions');
     92	
@@ -332,19 +332,19 @@ exec
    108	      { ruleId: 'V3', passed: false },
    109	      { ruleId: 'V4', passed: false },
 exec
-/bin/zsh -lc "rg -n \"core/quality-scorer|scoreMemoryQuality\\(\" '.opencode/skill/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:103:  const allBad = qualityScorer.scoreMemoryQuality({
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:119:  const allGood = qualityScorer.scoreMemoryQuality({
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:135:  const mixed = qualityScorer.scoreMemoryQuality({
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:151:  const empty = qualityScorer.scoreMemoryQuality({ content: '' });
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:154:  const bonusClamp = qualityScorer.scoreMemoryQuality({
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:112:vi.mock('../core/quality-scorer', () => ({
+/bin/zsh -lc "rg -n \"core/quality-scorer|scoreMemoryQuality\\(\" '.opencode/skills/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:103:  const allBad = qualityScorer.scoreMemoryQuality({
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:119:  const allGood = qualityScorer.scoreMemoryQuality({
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:135:  const mixed = qualityScorer.scoreMemoryQuality({
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:151:  const empty = qualityScorer.scoreMemoryQuality({ content: '' });
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:154:  const bonusClamp = qualityScorer.scoreMemoryQuality({
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:112:vi.mock('../core/quality-scorer', () => ({
 exec
-/bin/zsh -lc "rg -n \"\\.{2}/core/quality-scorer|from './quality-scorer'\" '.opencode/skill/system-spec-kit/scripts/tests' '.opencode/skill/system-spec-kit/scripts/core'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:22:import { scoreMemoryQuality } from './quality-scorer';
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:112:vi.mock('../core/quality-scorer', () => ({
+/bin/zsh -lc "rg -n \"\\.{2}/core/quality-scorer|from './quality-scorer'\" '.opencode/skills/system-spec-kit/scripts/tests' '.opencode/skills/system-spec-kit/scripts/core'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:22:import { scoreMemoryQuality } from './quality-scorer';
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:112:vi.mock('../core/quality-scorer', () => ({
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts' | sed -n '90,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts' | sed -n '90,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     90	
     91	vi.mock('../loaders/data-loader', () => ({
     92	  loadCollectedData: vi.fn(async (options?: { dataFile?: string | null; specFolderArg?: string | null }) => {
@@ -366,7 +366,7 @@ exec
    108	    };
    109	  }),
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script' | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script' | sed -n '1,130p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Run CHK-210 Quality Backfill
      3	// ---------------------------------------------------------------
@@ -388,7 +388,7 @@ exec
     19	  }
     20	  return { specFolderPrefix, dbPath };
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -411,7 +411,7 @@ exec
     20	/** Template data item that can be an object or primitive */
 codex
 ### FINDING-01: Empty Session Scores 50/100 (Inflated Baseline)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,102,132,133,144
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,102,132,133,144
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** An empty session (`content=''`, all arrays empty) scores **50/100** (`fileDescriptions=20`, `noLeakedTags=15`, `observationDedup=15`) with only warnings.
@@ -421,7 +421,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Non-Applicable Dimensions Award Full Credit
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,132,133
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,132,133
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** `files.length===0` gives 20/20 and `observations.length===0` gives 15/15.
@@ -431,7 +431,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Tool-Only Sessions Are Mis-Scored (No Tool Signal in v1)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:49,50,51,52,53,54,55
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:49,50,51,52,53,54,55
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** v1 does not ingest tool/message/decision counts; a tool-heavy but semantically sparse session can still land around ~50-55.
@@ -441,7 +441,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Trigger Phrases and Key Topics Double-Count Similar Signal
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:66,67,68,69,70,71,72,77,78,79,80,81,82,83
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:66,67,68,69,70,71,72,77,78,79,80,81,82,83
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Two dimensions independently score lexical extraction coverage.
@@ -451,7 +451,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: No Fail Threshold / Status Output in Legacy Scorer
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:56,74,85,110,124,127,140,145
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:56,74,85,110,124,127,140,145
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Only warnings are emitted; function never returns pass/warn/fail classification.
@@ -461,7 +461,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Content Length Metric Is Line-Count Based and Easily Gamed
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:101,102,103,105,107,110
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:101,102,103,105,107,110
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Score is based on raw `split('\n').length`, including blank lines.
@@ -471,7 +471,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: HTML Leak Detection Misses Most Tag Types
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:114
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:114
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Only checks opening `<summary|details|div|span|p|br|hr>` tags.
@@ -481,7 +481,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Code-Block Exclusion Is Incomplete
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:116,117,118,119
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:116,117,118,119
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Excludes tags only inside triple-backtick fences; misses `~~~` and indented code blocks.
@@ -491,7 +491,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Observation Dedup Gives Perfect Score When Titles Are Missing
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:135,137,138
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:135,137,138
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** If observations exist but all `TITLE` are empty, `dedupRatio` becomes 1 and score is 15/15.
@@ -501,7 +501,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Dedup Comparison Lacks Normalization (Case/Whitespace)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:135,136
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:135,136
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `"Fix bug"`, `"fix bug"`, `"Fix bug "` are treated as distinct titles.
@@ -511,7 +511,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: Warning Triggers Are Coarse and Weakly Actionable
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:74,85,97,110,124,127,140
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:74,85,97,110,124,127,140
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Warnings fire mostly at extreme states and lack concrete remediation targets.
@@ -521,7 +521,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: V1/V2 Coexistence Creates Conflicting Quality Sources
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:22,33,822,835,937; /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:64,110,113
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:22,33,822,835,937; /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:64,110,113
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Workflow computes both scores; v2 (0..1) is stored in metadata, v1 (0..100) is returned in workflow stats and logged side-by-side.
@@ -531,7 +531,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Test Mocks Show Unit Ambiguity Between Scorers
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:127,128,129
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:127,128,129
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** v2 scorer is mocked as `{ qualityScore: 100 }`, while implementation clamps to `0..1`.
@@ -541,7 +541,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-14: Description Quality Heuristic Is Brittle and Partly Redundant
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:36,37,41
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:36,37,41
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any description containing `description pending` is rejected; second check is redundant because first already covers it.
@@ -560,7 +560,7 @@ codex
 tokens used
 46,495
 ### FINDING-01: Empty Session Scores 50/100 (Inflated Baseline)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,102,132,133,144
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,102,132,133,144
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** An empty session (`content=''`, all arrays empty) scores **50/100** (`fileDescriptions=20`, `noLeakedTags=15`, `observationDedup=15`) with only warnings.
@@ -570,7 +570,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Non-Applicable Dimensions Award Full Credit
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,132,133
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:91,92,93,132,133
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** `files.length===0` gives 20/20 and `observations.length===0` gives 15/15.
@@ -580,7 +580,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Tool-Only Sessions Are Mis-Scored (No Tool Signal in v1)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:49,50,51,52,53,54,55
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:49,50,51,52,53,54,55
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** v1 does not ingest tool/message/decision counts; a tool-heavy but semantically sparse session can still land around ~50-55.
@@ -590,7 +590,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Trigger Phrases and Key Topics Double-Count Similar Signal
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:66,67,68,69,70,71,72,77,78,79,80,81,82,83
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:66,67,68,69,70,71,72,77,78,79,80,81,82,83
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Two dimensions independently score lexical extraction coverage.
@@ -600,7 +600,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: No Fail Threshold / Status Output in Legacy Scorer
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:56,74,85,110,124,127,140,145
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:56,74,85,110,124,127,140,145
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Only warnings are emitted; function never returns pass/warn/fail classification.
@@ -610,7 +610,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Content Length Metric Is Line-Count Based and Easily Gamed
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:101,102,103,105,107,110
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:101,102,103,105,107,110
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Score is based on raw `split('\n').length`, including blank lines.
@@ -620,7 +620,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: HTML Leak Detection Misses Most Tag Types
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:114
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:114
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Only checks opening `<summary|details|div|span|p|br|hr>` tags.
@@ -630,7 +630,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Code-Block Exclusion Is Incomplete
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:116,117,118,119
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:116,117,118,119
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Excludes tags only inside triple-backtick fences; misses `~~~` and indented code blocks.
@@ -640,7 +640,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-09: Observation Dedup Gives Perfect Score When Titles Are Missing
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:135,137,138
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:135,137,138
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** If observations exist but all `TITLE` are empty, `dedupRatio` becomes 1 and score is 15/15.
@@ -650,7 +650,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Dedup Comparison Lacks Normalization (Case/Whitespace)
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:135,136
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:135,136
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `"Fix bug"`, `"fix bug"`, `"Fix bug "` are treated as distinct titles.
@@ -660,7 +660,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: Warning Triggers Are Coarse and Weakly Actionable
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:74,85,97,110,124,127,140
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:74,85,97,110,124,127,140
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Warnings fire mostly at extreme states and lack concrete remediation targets.
@@ -670,7 +670,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: V1/V2 Coexistence Creates Conflicting Quality Sources
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:22,33,822,835,937; /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:64,110,113
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:22,33,822,835,937; /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:64,110,113
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Workflow computes both scores; v2 (0..1) is stored in metadata, v1 (0..100) is returned in workflow stats and logged side-by-side.
@@ -680,7 +680,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-13: Test Mocks Show Unit Ambiguity Between Scorers
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:127,128,129
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:127,128,129
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** v2 scorer is mocked as `{ qualityScore: 100 }`, while implementation clamps to `0..1`.
@@ -690,7 +690,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-14: Description Quality Heuristic Is Brittle and Partly Redundant
-- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:36,37,41
+- **File:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:36,37,41
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Any description containing `description pending` is rejected; second check is redundant because first already covers it.

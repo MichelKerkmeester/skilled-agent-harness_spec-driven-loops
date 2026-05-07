@@ -16,8 +16,8 @@ I compared the external repo's concise contributor contract with `system-spec-ki
 - The external repo does not impose a conversational, tool-by-tool gate protocol on contributors before normal work begins. [SOURCE: external/AGENTS.md:11-16] [SOURCE: external/AGENTS.md:27-31]
 - `system-spec-kit` requires gates before any tool use: context surfacing, intent classification, confidence thresholds, mandatory skill routing, and Gate 3 spec-folder binding. [SOURCE: AGENTS.md:159-186]
 - Gate 2 specifically requires running `skill_advisor.py` for non-trivial tasks. [SOURCE: AGENTS.md:174-179]
-- Constitutional memory reinforces the same gate protocol and trigger phrase model. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-69] [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:83-89]
-- The memory system is designed to auto-surface constitutional rules on every relevant search. [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:83-89] [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:488-509]
+- Constitutional memory reinforces the same gate protocol and trigger phrase model. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-69] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:83-89]
+- The memory system is designed to auto-surface constitutional rules on every relevant search. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:83-89] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:488-509]
 
 ## Analysis
 The external repo is not directly comparable in mission, but it still reveals an important UX truth: contributors are not asked to manually reenact every enforcement step as part of the everyday operator experience. The rules exist, yet they are mostly encoded as standard repo practices and tooling rather than as a conversational protocol exposed at every turn.

@@ -2,9 +2,9 @@
 
 ## Scope
 
-- Fixed causal-depth scoring drift in `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts`.
-- Added targeted cyclic-graph coverage in `.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts`.
-- Updated `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md` so docs describe the shipped graph-signal surface and rooted-cycle behavior.
+- Fixed causal-depth scoring drift in `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts`.
+- Added targeted cyclic-graph coverage in `.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts`.
+- Updated `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md` so docs describe the shipped graph-signal surface and rooted-cycle behavior.
 
 ## Implementation
 
@@ -21,7 +21,7 @@ This makes causal depth deterministic for rooted cycles while keeping the existi
 
 ## Tests and checks
 
-- `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root ".opencode/skill/system-spec-kit/mcp_server"` -> PASS
+- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root ".opencode/skills/system-spec-kit/mcp_server"` -> PASS
 - `npx vitest run tests/graph-signals.vitest.ts` -> PASS (38 tests)
 
 ## Notes

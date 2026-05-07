@@ -101,7 +101,7 @@ At the time this phase landed, the code graph and memory system worked well on C
 | `mcp_server/lib/code-graph/query-intent-classifier.ts` | New file: `classifyQueryIntent()` heuristic that routes structural, semantic, and ambiguous queries to the appropriate search backend |
 | `CODEX.md` | Session Start Protocol section: forces `memory_context()` and `code_graph_status()` on first turn |
 | `AGENTS.md` | Code graph auto-trigger instructions for Copilot CLI and Gemini CLI agents |
-| `.opencode/agent/context.md` | Code graph integration with tool reference table and graph health check in exploration workflow |
+| `.opencode/agents/context.md` | Code graph integration with tool reference table and graph health check in exploration workflow |
 | `GEMINI.md` | Session start protocol via symlink to AGENTS.md |
 | `CLAUDE.md` (root) | Universal recovery instructions consolidated from both CLAUDE.md files |
 | `.claude/CLAUDE.md` | Trimmed to Claude-specific hook-aware additions only |

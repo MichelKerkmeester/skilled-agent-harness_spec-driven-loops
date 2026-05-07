@@ -60,14 +60,14 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Area A: Scan all `.opencode/skill/*/SKILL.md` smart-router route paths and fix stale references.
-- [x] T020 Area D: Create `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh`.
+- [x] T010 Area A: Scan all `.opencode/skills/*/SKILL.md` smart-router route paths and fix stale references.
+- [x] T020 Area D: Create `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh`.
 - [x] T021 Area D: Run the static checker and confirm exit 0 on missing-path validation.
 - [x] T030 Area B: Measure baseline ON_DEMAND hit rate on the 200-prompt corpus.
 - [x] T031 Area B: Apply conservative ON_DEMAND keyword additions across smart-routing skills.
 - [x] T032 Area B: Re-measure ON_DEMAND hit rate and document actual result.
 - [x] T040 Area C: Update `cli-codex`, `cli-gemini`, and `cli-claude-code` zero-score fallbacks to UNKNOWN disambiguation.
-- [x] T050 Area E: Create `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts`.
+- [x] T050 Area E: Create `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts`.
 - [x] T051 Area E: Add telemetry Vitest coverage for compliance classes and JSONL roundtrip.
 - [x] T060 Area F: Create `.opencode/plugins/spec-kit-skill-advisor.js`.
 - [x] T061 Area F: Create `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`.
@@ -79,7 +79,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T100 Run `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` and record exit code. [Evidence: exit 0, no missing route paths, 5 informational bloat warnings.]
+- [x] T100 Run `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` and record exit code. [Evidence: exit 0, no missing route paths, 5 informational bloat warnings.]
 - [x] T101 Run Phase 020 advisor/hook regression tests and record pass count. [Evidence: 19 files / 118 tests passed.]
 - [x] T102 Run telemetry harness tests. [Evidence: `mcp_server/tests/smart-router-telemetry.vitest.ts` passed in 2-file 023 run.]
 - [x] T103 Run skill-advisor plugin tests. [Evidence: `mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` passed in 2-file 023 run.]

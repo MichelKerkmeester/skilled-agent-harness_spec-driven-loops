@@ -47,12 +47,12 @@
       "checklist.md",
       "implementation-summary.md",
       "schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/command/spec_kit/resume.md",
-      ".opencode/command/memory/search.md",
-      ".opencode/command/memory/manage.md",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/command/memory/README.txt",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/commands/memory/README.txt",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/spec.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/plan.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/tasks.md"
@@ -97,31 +97,31 @@
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
         "name": "manage.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/manage.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/memory/README.txt",
+        "path": ".opencode/commands/memory/README.txt",
         "source": "derived"
       },
       {

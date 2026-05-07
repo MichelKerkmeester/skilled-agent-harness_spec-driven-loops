@@ -13,9 +13,9 @@ _memory:
     next_safe_action: "root_final_validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -53,12 +53,12 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/sk-code/SKILL.md` | Checked | OK | Broad implementation route control |
-| `.opencode/skill/sk-code-review/SKILL.md` | Checked | OK | Review candidate |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Checked | OK | Deep-review candidate |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback ambiguous route parity |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Ambiguous code-problem signal |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` | Checked | OK | Lane calibration surface |
+| `.opencode/skills/sk-code/SKILL.md` | Checked | OK | Broad implementation route control |
+| `.opencode/skills/sk-code-review/SKILL.md` | Checked | OK | Review candidate |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Checked | OK | Deep-review candidate |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback ambiguous route parity |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Ambiguous code-problem signal |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` | Checked | OK | Lane calibration surface |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -66,5 +66,5 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-100 and implementation-control regressions |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-100 and implementation-control regressions |
 <!-- /ANCHOR:tests -->

@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
+  "description": "Execute all 18 sk-code-review manual_testing_playbook scenarios using opencode CLI with DeepSeek as provider; capture per-scenario verdict and aggregate into results table.",
+  "keywords": [
+    "spec",
+    "095",
+    "sk-code-review",
+    "playbook",
+    "execution",
+    "opencode",
+    "deepseek",
+    "code-review-baseline"
+  ],
+  "lastUpdated": "2026-05-07T13:00:00.000Z",
+  "specId": "095",
+  "folderSlug": "sk-code-review-playbook-execution",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 0,
+  "lastOutcome": "Spec packet scaffolded; awaiting dispatch loop."
+}

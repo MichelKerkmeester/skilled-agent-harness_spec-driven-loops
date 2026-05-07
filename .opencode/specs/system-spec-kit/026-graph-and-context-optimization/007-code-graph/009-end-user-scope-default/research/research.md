@@ -4,7 +4,7 @@
 
 ## 1. Executive summary
 
-Five iterations converged on a simple design: code graph scans should exclude `.opencode/skill/**` by default, while maintainers can opt in with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` or a one-call `includeSkills:true` override. The scope decision lives in two layers today: default scan globs in `code_graph/lib/indexer-types.ts` and a hard walker guard in `lib/utils/index-scope.ts` (`indexer-types.ts:137`, `index-scope.ts:31`). The live database is dominated by skill internals: 1,571/1,619 tracked files, 34,274/34,850 nodes, and 15,573/16,530 edges are under `.opencode/skill` or touch those nodes, based on the persisted tables defined in `code-graph-db.ts:55` and `code-graph-db.ts:86`. Migration must be loud: only explicit full scans prune existing tracked paths that still exist on disk (`scan.ts:241`, `scan.ts:247`).
+Five iterations converged on a simple design: code graph scans should exclude `.opencode/skills/**` by default, while maintainers can opt in with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` or a one-call `includeSkills:true` override. The scope decision lives in two layers today: default scan globs in `code_graph/lib/indexer-types.ts` and a hard walker guard in `lib/utils/index-scope.ts` (`indexer-types.ts:137`, `index-scope.ts:31`). The live database is dominated by skill internals: 1,571/1,619 tracked files, 34,274/34,850 nodes, and 15,573/16,530 edges are under `.opencode/skill` or touch those nodes, based on the persisted tables defined in `code-graph-db.ts:55` and `code-graph-db.ts:86`. Migration must be loud: only explicit full scans prune existing tracked paths that still exist on disk (`scan.ts:241`, `scan.ts:247`).
 
 ## 2. Research charter
 
@@ -22,7 +22,7 @@ Q2: Use a default-off env var plus one-call override. The scan schema is closed 
 
 Q3: End-user-only should be the default. Existing `excludeGlobs` are additive (`scan.ts:216`), so old behavior should not remain implicit. The measured live graph is mostly skill internals, which directly supports changing the default.
 
-Q4: Default exclude list should be the existing list plus `.opencode/skill/**`, while retaining the existing `mcp-coco-index/mcp_server` exclusion. Current defaults exclude common generated/vendor paths but not `.opencode/skill` broadly (`indexer-types.ts:138`, `index-scope.ts:31`).
+Q4: Default exclude list should be the existing list plus `.opencode/skills/**`, while retaining the existing `mcp-coco-index/mcp_server` exclusion. Current defaults exclude common generated/vendor paths but not `.opencode/skill` broadly (`indexer-types.ts:138`, `index-scope.ts:31`).
 
 Q5: Migration needs an explicit full scan. Full scan mode removes tracked files no longer present in current results (`scan.ts:243`, `scan.ts:247`), and `removeFile()` deletes touched edges before deleting the file row (`code-graph-db.ts:565`, `code-graph-db.ts:574`). Incremental scans only clean files that disappeared from disk, not files that became out-of-scope.
 
@@ -38,7 +38,7 @@ Q10: Workflow invariance holds if public spec workflow language stays unchanged.
 
 ## 5. Where the scope decision lives
 
-The scan entry point is `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`. It accepts `rootDir`, `includeGlobs`, `excludeGlobs`, `incremental`, `verify`, and `persistBaseline` (`scan.ts:25`) and creates defaults through `getDefaultConfig(resolvedRootDir)` (`scan.ts:214`). The default include and exclude lists live in `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` (`indexer-types.ts:137`, `indexer-types.ts:138`). The walker-level invariant lives in `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts`, and the walker applies it before glob rules (`structural-indexer.ts:1292`, `structural-indexer.ts:1298`). Implementation must update both the config defaults and the guard.
+The scan entry point is `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`. It accepts `rootDir`, `includeGlobs`, `excludeGlobs`, `incremental`, `verify`, and `persistBaseline` (`scan.ts:25`) and creates defaults through `getDefaultConfig(resolvedRootDir)` (`scan.ts:214`). The default include and exclude lists live in `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` (`indexer-types.ts:137`, `indexer-types.ts:138`). The walker-level invariant lives in `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`, and the walker applies it before glob rules (`structural-indexer.ts:1292`, `structural-indexer.ts:1298`). Implementation must update both the config defaults and the guard.
 
 ## 6. Flag surface recommendation
 
@@ -46,7 +46,7 @@ Chosen surface: `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` as the maintainer env opt
 
 ## 7. Default exclude path list
 
-Recommended default excludes: `node_modules`, `dist`, `.git`, `vendor`, `external`, `z_future`, `z_archive`, `mcp-coco-index/mcp_server`, and `.opencode/skill/**`. The existing list appears in both `getDefaultConfig()` and the shared scope guard (`indexer-types.ts:138`, `index-scope.ts:31`). The existing `mcp-coco-index/mcp_server` carve-out should remain even when `includeSkills:true` is used, unless a future packet intentionally broadens the maintainer scope.
+Recommended default excludes: `node_modules`, `dist`, `.git`, `vendor`, `external`, `z_future`, `z_archive`, `mcp-coco-index/mcp_server`, and `.opencode/skills/**`. The existing list appears in both `getDefaultConfig()` and the shared scope guard (`indexer-types.ts:138`, `index-scope.ts:31`). The existing `mcp-coco-index/mcp_server` carve-out should remain even when `includeSkills:true` is used, unless a future packet intentionally broadens the maintainer scope.
 
 ## 8. Default decision
 

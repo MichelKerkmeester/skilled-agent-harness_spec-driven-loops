@@ -62,56 +62,56 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/mcp-code-mode/references/workflows.md",
-      ".opencode/skill/sk-improve-agent/references/target_onboarding.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml",
-      ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+      ".opencode/skills/mcp-code-mode/references/workflows.md",
+      ".opencode/skills/sk-improve-agent/references/target_onboarding.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
       "tasks.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
-      ".opencode/skill/.smart-router-telemetry/compliance.jsonl",
+      ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
       ".opencode/plugins/spec-kit-skill-advisor.js",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/mcp-code-mode/SKILL.md",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-review/SKILL.md",
-      ".opencode/skill/sk-doc/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tsconfig.json"
+      ".opencode/skills/mcp-code-mode/SKILL.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-review/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tsconfig.json"
     ],
     "entities": [
       {
         "name": "workflows.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-code-mode/references/workflows.md",
+        "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
         "source": "derived"
       },
       {
         "name": "target_onboarding.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/references/target_onboarding.md",
+        "path": ".opencode/skills/sk-improve-agent/references/target_onboarding.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-review_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
         "source": "derived"
       },
       {
         "name": "feature_catalog_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md",
         "source": "derived"
       },
       {
@@ -123,19 +123,19 @@
       {
         "name": "check-smart-router.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
         "source": "derived"
       },
       {
         "name": "smart-router-telemetry.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
         "source": "derived"
       },
       {
         "name": "compliance.jsonl",
         "kind": "file",
-        "path": ".opencode/skill/.smart-router-telemetry/compliance.jsonl",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
         "source": "derived"
       },
       {
@@ -165,19 +165,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-code-mode/SKILL.md",
+        "path": ".opencode/skills/mcp-code-mode/SKILL.md",
         "source": "derived"
       },
       {
         "name": "smart-router-telemetry.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
         "source": "derived"
       },
       {
         "name": "tsconfig.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/scripts/tsconfig.json",
+        "path": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
         "source": "derived"
       },
       {

@@ -52,17 +52,17 @@
       "tests/hooks-codex-freshness.vitest.ts",
       "tests/advisor-rebuild.vitest.ts",
       "skill_advisor/tests/legacy/advisor-runtime-parity.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/index.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
     ],
     "entities": [
       {
@@ -122,55 +122,55 @@
       {
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md",
         "source": "derived"
       },
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
         "source": "derived"
       },
       {
         "name": "custom-instructions.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
         "name": "advisor-rebuild.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts",
         "source": "derived"
       },
       {
         "name": "advisor-status.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts",
         "source": "derived"
       },
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/index.ts",
         "source": "derived"
       },
       {
         "name": "advisor-tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts",
         "source": "derived"
       },
       {

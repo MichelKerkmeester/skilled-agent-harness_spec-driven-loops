@@ -6,25 +6,25 @@ Inventory intent-detection rules across the advisor, `memory_context`, tool sche
 
 ## Sources Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:47-55`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:572-589`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:266-340`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:843-867`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1040-1082`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:17-23`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:243-253`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:421-450`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:889-927`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:934-995`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1028-1073`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1122-1208`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1408-1478`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1639-1645`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1737-1774`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:11-19`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:23-82`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:123-185`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:47-55`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:572-589`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:266-340`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:843-867`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1040-1082`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:17-23`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:243-253`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:421-450`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:889-927`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:934-995`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1028-1073`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1122-1208`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1408-1478`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1639-1645`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1737-1774`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:11-19`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:23-82`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-intent-classifier.ts:123-185`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
 
 ## Findings
 

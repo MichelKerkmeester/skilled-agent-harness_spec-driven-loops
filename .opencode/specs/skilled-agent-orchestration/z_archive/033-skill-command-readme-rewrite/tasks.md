@@ -42,9 +42,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Lock the standards baseline from `.opencode/skill/sk-doc/references/specific/readme_creation.md`, `.opencode/skill/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skill/sk-doc/references/global/hvr_rules.md`
+- [x] T001 Lock the standards baseline from `.opencode/skills/sk-doc/references/specific/readme_creation.md`, `.opencode/skills/sk-doc/assets/documentation/readme_template.md`, and `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 - [x] T002 Group the skill README rewrite into five delivery batches
-- [x] T003 Identify the command README surfaces under `.opencode/command/`
+- [x] T003 Identify the command README surfaces under `.opencode/commands/`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -53,15 +53,15 @@ _memory:
 ## Phase 2: Implementation
 
 ### Skill README Batches
-- [x] T004 Rewrite the CLI skill READMEs under `.opencode/skill/cli-*/README.md`
-- [x] T005 Rewrite the MCP skill READMEs under `.opencode/skill/mcp-*/README.md`
-- [x] T006 Rewrite the sk-code and sk-doc READMEs under `.opencode/skill/sk-*/README.md`
-- [x] T007 Rewrite the remaining skill READMEs under `.opencode/skill/README.md`, `.opencode/skill/skill-advisor/README.md`, and related skill folders
+- [x] T004 Rewrite the CLI skill READMEs under `.opencode/skills/cli-*/README.md`
+- [x] T005 Rewrite the MCP skill READMEs under `.opencode/skills/mcp-*/README.md`
+- [x] T006 Rewrite the sk-code and sk-doc READMEs under `.opencode/skills/sk-*/README.md`
+- [x] T007 Rewrite the remaining skill READMEs under `.opencode/skills/README.md`, `.opencode/skills/skill-advisor/README.md`, and related skill folders
 
 ### Command and Follow-Up Work
-- [x] T008 Update the command README surfaces under `.opencode/command/README.txt`, `.opencode/command/create/README.txt`, `.opencode/command/memory/README.txt`, and `.opencode/command/spec_kit/README.txt`
+- [x] T008 Update the command README surfaces under `.opencode/commands/README.txt`, `.opencode/commands/create/README.txt`, `.opencode/commands/memory/README.txt`, and `.opencode/commands/spec_kit/README.txt`
 - [x] T009 Apply batch review fixes for links, TOC formatting, HVR wording, and anchor or divider cleanup
-- [x] T010 Record the root README follow-up additions from `.opencode/skill/system-spec-kit/mcp_server/README.md`
+- [x] T010 Record the root README follow-up additions from `.opencode/skills/system-spec-kit/mcp_server/README.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---

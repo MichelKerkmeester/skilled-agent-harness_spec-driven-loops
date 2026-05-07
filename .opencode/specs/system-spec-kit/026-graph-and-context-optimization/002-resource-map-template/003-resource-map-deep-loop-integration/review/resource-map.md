@@ -21,22 +21,22 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## 3. Commands
 
-> `.opencode/command/**` and any runtime-specific command surfaces.
+> `.opencode/commands/**` and any runtime-specific command surfaces.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/command/spec_kit/deep-review.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .opencode/commands/spec_kit/deep-review.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---
 
 ## 5. Skills
 
-> `.opencode/skill/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
+> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---
 

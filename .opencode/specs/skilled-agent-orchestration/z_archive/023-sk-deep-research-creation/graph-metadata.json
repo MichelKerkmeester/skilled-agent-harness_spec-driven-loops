@@ -44,17 +44,17 @@
       "checklist.md",
       "decision-record.md",
       ".claude/agents/deep-research.md",
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-research/README.md",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/state_format.md",
-      ".opencode/skill/sk-deep-research/references/convergence.md",
-      ".opencode/skill/sk-deep-research/references/quick_reference.md",
-      ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
-      ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-research/README.md",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/state_format.md",
+      ".opencode/skills/sk-deep-research/references/convergence.md",
+      ".opencode/skills/sk-deep-research/references/quick_reference.md",
+      ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
+      ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -84,61 +84,61 @@
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/README.md",
+        "path": ".opencode/skills/sk-deep-research/README.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/quick_reference.md",
+        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "deep_research_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_config.json",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_config.json",
         "source": "derived"
       },
       {
         "name": "deep_research_strategy.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/assets/deep_research_strategy.md",
+        "path": ".opencode/skills/sk-deep-research/assets/deep_research_strategy.md",
         "source": "derived"
       },
       {

@@ -50,10 +50,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
-      ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md",
+      ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
+      ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -65,25 +65,25 @@
       {
         "name": "manual_testing_playbook_snippet_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog_snippet_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md",
         "source": "derived"
       },
       {
         "name": "001-unified-context-retrieval-memory-context.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
         "source": "derived"
       },
       {
         "name": "01-unified-context-retrieval-memorycontext.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md",
         "source": "derived"
       },
       {

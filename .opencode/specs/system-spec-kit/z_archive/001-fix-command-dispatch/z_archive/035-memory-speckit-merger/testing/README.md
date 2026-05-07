@@ -128,7 +128,7 @@ Test 4: Database Integrity
 ## Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── mcp_server/
 │   ├── context-server.js    # Main MCP server
 │   └── lib/                  # 23 library modules

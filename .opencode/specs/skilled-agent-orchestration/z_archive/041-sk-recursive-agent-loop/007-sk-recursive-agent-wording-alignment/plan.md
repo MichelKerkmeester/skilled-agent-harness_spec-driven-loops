@@ -64,8 +64,8 @@ This phase cleans up wording across the current agent-improver program. It impro
 Wording-only cleanup across current source, mirror, and packet surfaces
 
 ### Key Components
-- **Source package**: `.opencode/skill/sk-improve-agent/`
-- **Canonical command**: `.opencode/command/spec_kit/agent-improver.md`
+- **Source package**: `.opencode/skills/sk-improve-agent/`
+- **Canonical command**: `.opencode/commands/spec_kit/agent-improver.md`
 - **Wrapper prompts**: `.agents/commands/spec_kit/agent-improver.toml` and `.gemini/commands/spec_kit/agent-improver.toml`
 - **Runtime mirrors**: agent-improver files under OpenCode, Claude, Gemini, `.agents`, and Codex
 - **Packet docs**: phase `007` plus root packet `041`

@@ -16,10 +16,10 @@ _memory:
     next_safe_action: "Open packet 087 to trim 6 untrimmed agent descriptions"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md"
-      - ".opencode/skill/sk-doc/scripts/quick_validate.py"
-      - ".opencode/command/doctor/skill-budget.md"
-      - ".opencode/command/doctor/scripts/audit_descriptions.py"
+      - ".opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md"
+      - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+      - ".opencode/commands/doctor/skill-budget.md"
+      - ".opencode/commands/doctor/scripts/audit_descriptions.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-086"
@@ -57,19 +57,19 @@ Three-tier guardrails preventing the packet 083 description-bloat regression: (T
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` | Modified | Resolved the 200/300 contradiction; added "Description Budget & Trim Style" subsection with constants, drop/keep rules, stack-agnostic rule, sk-code 545→125 before/after example |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Modified | Fixed line 75 "150-300 chars" to match Tier 1 numbers; cross-link callout |
-| `.opencode/skill/sk-doc/references/specific/skill_creation.md` | Modified | Updated frontmatter table at line 397; rewrote Pitfall 1 with bloated-description case + trim rules |
-| `.opencode/skill/sk-doc/assets/agent_template.md` | Modified | Cross-link callout for description budget |
-| `.opencode/skill/sk-doc/assets/command_template.md` | Modified | Cross-link callout for description budget + mode-suffix preservation note |
-| `.opencode/skill/sk-doc/scripts/quick_validate.py` | Modified | Added `DESCRIPTION_SOFT_TARGET_SKILL=130`, `DESCRIPTION_SOFT_TARGET_COMMAND=110`, `DESCRIPTION_HARD_CAP=1536`, `check_description_length()` helper, `--description-soft-target` CLI flag, auto-detect via parent path, soft-warn / hard-fail wired into `validate_skill()` |
-| `.opencode/skill/sk-doc/scripts/tests/test_quick_validate_086.py` | Created | 12-assertion test suite for description-length budget. Fixtures (under-target / at-target / over-soft / over-hard) are built in a `tempfile.TemporaryDirectory` at runtime — no persistent SKILL.md files under `.opencode/skill/` that runtime scanners (Codex, Claude Code, opencode) would treat as real skills. |
-| `.opencode/command/create/assets/create_sk_skill_confirm.yaml` | Modified | Step 4 now references description-budget check; added `description_soft_target_skill/command/hard_cap` thresholds + `description_length_warnings` output |
-| `.opencode/command/create/assets/create_agent_confirm.yaml` | Modified | Step 5b now runs quick_validate on agent frontmatter; added `description_budget` block + `description_length_warnings` output |
-| `.opencode/command/doctor/skill-budget.md` | Created | New `/doctor:skill-budget` entrypoint mirroring skill-advisor.md structure (read-only, 2 modes) |
-| `.opencode/command/doctor/assets/doctor_skill-budget_auto.yaml` | Created | Single-phase audit workflow |
-| `.opencode/command/doctor/assets/doctor_skill-budget_confirm.yaml` | Created | Audit + checkpoint workflow |
-| `.opencode/command/doctor/scripts/audit_descriptions.py` | Created | Walks 4 surfaces (skills, commands, opencode/claude/gemini agents YAML + codex agents TOML), reuses Tier 2 constants, emits text + JSON, supports `--fail-over=N` |
+| `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` | Modified | Resolved the 200/300 contradiction; added "Description Budget & Trim Style" subsection with constants, drop/keep rules, stack-agnostic rule, sk-code 545→125 before/after example |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modified | Fixed line 75 "150-300 chars" to match Tier 1 numbers; cross-link callout |
+| `.opencode/skills/sk-doc/references/specific/skill_creation.md` | Modified | Updated frontmatter table at line 397; rewrote Pitfall 1 with bloated-description case + trim rules |
+| `.opencode/skills/sk-doc/assets/agent_template.md` | Modified | Cross-link callout for description budget |
+| `.opencode/skills/sk-doc/assets/command_template.md` | Modified | Cross-link callout for description budget + mode-suffix preservation note |
+| `.opencode/skills/sk-doc/scripts/quick_validate.py` | Modified | Added `DESCRIPTION_SOFT_TARGET_SKILL=130`, `DESCRIPTION_SOFT_TARGET_COMMAND=110`, `DESCRIPTION_HARD_CAP=1536`, `check_description_length()` helper, `--description-soft-target` CLI flag, auto-detect via parent path, soft-warn / hard-fail wired into `validate_skill()` |
+| `.opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py` | Created | 12-assertion test suite for description-length budget. Fixtures (under-target / at-target / over-soft / over-hard) are built in a `tempfile.TemporaryDirectory` at runtime — no persistent SKILL.md files under `.opencode/skills/` that runtime scanners (Codex, Claude Code, opencode) would treat as real skills. |
+| `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` | Modified | Step 4 now references description-budget check; added `description_soft_target_skill/command/hard_cap` thresholds + `description_length_warnings` output |
+| `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modified | Step 5b now runs quick_validate on agent frontmatter; added `description_budget` block + `description_length_warnings` output |
+| `.opencode/commands/doctor/skill-budget.md` | Created | New `/doctor:skill-budget` entrypoint mirroring skill-advisor.md structure (read-only, 2 modes) |
+| `.opencode/commands/doctor/assets/doctor_skill-budget_auto.yaml` | Created | Single-phase audit workflow |
+| `.opencode/commands/doctor/assets/doctor_skill-budget_confirm.yaml` | Created | Audit + checkpoint workflow |
+| `.opencode/commands/doctor/scripts/audit_descriptions.py` | Created | Walks 4 surfaces (skills, commands, opencode/claude/gemini agents YAML + codex agents TOML), reuses Tier 2 constants, emits text + JSON, supports `--fail-over=N` |
 
 ### Runtime mirroring
 

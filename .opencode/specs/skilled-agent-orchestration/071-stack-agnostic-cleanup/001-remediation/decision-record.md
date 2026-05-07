@@ -16,10 +16,10 @@ _memory:
     next_safe_action: "Update implementation summary with verification evidence"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/.folder-list.txt"
-      - ".opencode/skill/system-spec-kit/scripts/.scan-lines.txt"
+      - ".opencode/skills/system-spec-kit/scripts/.folder-list.txt"
+      - ".opencode/skills/system-spec-kit/scripts/.scan-lines.txt"
       - "specs/skilled-agent-orchestration/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       session_id: "phase-071-001-remediation"
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-`.opencode/skill/system-spec-kit/scripts/.folder-list.txt` and `.scan-lines.txt` are tracked files introduced by `0d84e56212 chore: add cli-codex v1.4.0.0 changelog + spec-kit scan helper scripts`. They are scan outputs rather than source-of-truth code, but they are versioned and already had unrelated in-flight edits in this worktree.
+`.opencode/skills/system-spec-kit/scripts/.folder-list.txt` and `.scan-lines.txt` are tracked files introduced by `0d84e56212 chore: add cli-codex v1.4.0.0 changelog + spec-kit scan helper scripts`. They are scan outputs rather than source-of-truth code, but they are versioned and already had unrelated in-flight edits in this worktree.
 
 ### Constraints
 

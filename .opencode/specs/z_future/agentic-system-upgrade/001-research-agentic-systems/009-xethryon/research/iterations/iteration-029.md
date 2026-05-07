@@ -12,8 +12,8 @@ A generated "active workflow card" would have the highest leverage: one compact,
 I walked the common `system-spec-kit` lifecycle across planning, implementation, completion, memory, and recovery surfaces, then compared that to Xethryon's compact status-driven interaction model.
 
 ## Evidence
-- `system-spec-kit` spans multiple lifecycle docs and setup prompts across planning, implementation, completion, and recovery. [SOURCE: .opencode/command/spec_kit/plan.md:37-52] [SOURCE: .opencode/command/spec_kit/implement.md:35-120] [SOURCE: .opencode/command/spec_kit/complete.md:38-144] [SOURCE: .opencode/command/spec_kit/resume.md:177-215]
-- The current README already frames bootstrap/resume and validation as important surfaces, but not as one persistent operator summary. [SOURCE: .opencode/skill/system-spec-kit/README.md:137-149] [SOURCE: .opencode/skill/system-spec-kit/README.md:170-198]
+- `system-spec-kit` spans multiple lifecycle docs and setup prompts across planning, implementation, completion, and recovery. [SOURCE: .opencode/commands/spec_kit/plan.md:37-52] [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/complete.md:38-144] [SOURCE: .opencode/commands/spec_kit/resume.md:177-215]
+- The current README already frames bootstrap/resume and validation as important surfaces, but not as one persistent operator summary. [SOURCE: .opencode/skills/system-spec-kit/README.md:137-149] [SOURCE: .opencode/skills/system-spec-kit/README.md:170-198]
 - Xethryon's UX compression comes partly from visible, compact status and mode cues rather than from fewer underlying subsystems. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_MODS.md:47-68] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/README.md:181-205]
 
 ## Analysis
@@ -47,7 +47,7 @@ finding: add a single active workflow card that travels across bootstrap, resume
 - **Migration path:** additive only; no existing artifact needs to be removed.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- **Target file or module:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a stable minimal schema for status, blockers, validation, and next action

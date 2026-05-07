@@ -28,7 +28,7 @@ status: Draft
 
 ### P0 — Critical blockers
 1. **Missing validate-spec.sh script**
-   - Location: Referenced extensively in system-spec-kit/SKILL.md (Gate 6) but absent under `.opencode/skill/system-spec-kit/scripts/`.
+   - Location: Referenced extensively in system-spec-kit/SKILL.md (Gate 6) but absent under `.opencode/skills/system-spec-kit/scripts/`.
    - Impact: Completion workflow cannot execute automated validation, leaving checklist enforcement and evidence collection unverified.
    - Action: Implement the script with documented exit codes, rule evaluations, and strict-mode options; integrate into Gate 6 path immediately.
 

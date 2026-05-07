@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Review remediation diff and rerun targeted validation"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/references/opencode/"
-      - ".opencode/skill/sk-code-review/SKILL.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/references/opencode/"
+      - ".opencode/skills/sk-code-review/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
       - ".opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md"
     session_dedup:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660660"
@@ -87,7 +87,7 @@ Document the implementation and verification path for the merger, including what
 
 ### In Scope
 
-- Analyze `.opencode/skill/sk-code-opencode` and `.opencode/skill/sk-code`.
+- Analyze `.opencode/skills/sk-code-opencode` and `.opencode/skills/sk-code`.
 - Remove Go and React/NextJS placeholder branches from `sk-code`.
 - Merge OpenCode standards resources, checklists, and verifier scripts into `sk-code`.
 - Identify every active file path that was affected or checked during implementation.
@@ -170,7 +170,7 @@ Document the implementation and verification path for the merger, including what
 | Dependency | `sk-code-review` overlay contract | Formal review may continue looking for a non-existent overlay | Replace baseline plus overlay language with single `sk-code` plus detected route evidence |
 | Risk | Historical changelogs and telemetry contain old names | Exact searches will still show old references | Changelogs deleted with obsolete skill; telemetry rewritten/regenerated; remaining spec history classified |
 | Risk | Removing Go/React from `sk-code` changes agent behavior | `@code` currently treats GO/NEXTJS as supported stacks | Rewrite supported-stack docs and UNKNOWN escalation language at the same time |
-| Risk | Verifier path changes break docs | Existing docs call `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` | Move script into `sk-code/scripts/` and update every command example |
+| Risk | Verifier path changes break docs | Existing docs call `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` | Move script into `sk-code/scripts/` and update every command example |
 <!-- /ANCHOR:risks -->
 
 ---

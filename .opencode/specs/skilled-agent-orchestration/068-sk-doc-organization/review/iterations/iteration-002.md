@@ -22,13 +22,13 @@ model: "claude-opus-4.7"
 | `.gemini/commands` | (real dir) | real dir | ✅ |
 
 ### 2. Command tree byte-identity
-- `diff -rq .opencode/command/create/ .claude/commands/create/` → empty (exit 0) ✅
-- `diff -rq .opencode/command/create/ .codex/prompts/create/` → empty (exit 0) ✅
+- `diff -rq .opencode/commands/create/ .claude/commands/create/` → empty (exit 0) ✅
+- `diff -rq .opencode/commands/create/ .codex/prompts/create/` → empty (exit 0) ✅
 - Both mirrors are the *same inode* via the parent symlink, so byte-identity is trivially guaranteed. No drift possible.
 
 ### 3. @create agent byte-identity (real-dir copies)
-- `diff -q .opencode/agent/create.md .claude/agents/create.md` → identical ✅
-- `diff -q .opencode/agent/create.md .gemini/agents/create.md` → identical ✅
+- `diff -q .opencode/agents/create.md .claude/agents/create.md` → identical ✅
+- `diff -q .opencode/agents/create.md .gemini/agents/create.md` → identical ✅
 
 ### 4. `.codex/agents/create.toml` body preservation
 | Marker | Expected | Observed |
@@ -74,8 +74,8 @@ None.
 **PASS** — Cross-runtime mirror parity is structurally bulletproof and TOML integrity is intact across all 5 wrapper files.
 
 Key observations strengthening the verdict:
-1. `.claude/commands` and `.codex/prompts` resolve to the same inode as `.opencode/command/create/` via symlink, so byte-identity is enforced by the filesystem rather than by a copy job that could silently drift.
-2. The two real-dir agent mirrors (`.claude/agents/create.md`, `.gemini/agents/create.md`) are byte-identical to the canonical `.opencode/agent/create.md` (matches the implementation-summary "cp byte-identical" claim).
+1. `.claude/commands` and `.codex/prompts` resolve to the same inode as `.opencode/commands/create/` via symlink, so byte-identity is enforced by the filesystem rather than by a copy job that could silently drift.
+2. The two real-dir agent mirrors (`.claude/agents/create.md`, `.gemini/agents/create.md`) are byte-identical to the canonical `.opencode/agents/create.md` (matches the implementation-summary "cp byte-identical" claim).
 3. `.codex/agents/create.toml` retains its TOML wrapper (workspace-write sandbox, Path Convention block, COMMAND TEMPLATE MAP heading) while still receiving the path substitutions, validating the "sed substitution preserves structure" decision recorded in the implementation summary.
 4. The .gemini TOML mirror successfully transitioned old paths → new paths with zero residue and zero parse breakage.
 

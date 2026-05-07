@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 017 of 20. The packet root is
 
 **Angle D2 — Module dependency graph health**
 
-Map the dependency graph for `.opencode/skill/system-spec-kit/mcp_server/` (excluding tests). Are there circular imports? Dead exports (declared but never imported)? Hot-spot modules with 50+ dependents? What's the longest dependency chain depth? Use ripgrep on `import` / `require` patterns. Cite file:line examples.
+Map the dependency graph for `.opencode/skills/system-spec-kit/mcp_server/` (excluding tests). Are there circular imports? Dead exports (declared but never imported)? Hot-spot modules with 50+ dependents? What's the longest dependency chain depth? Use ripgrep on `import` / `require` patterns. Cite file:line examples.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

@@ -1,6 +1,6 @@
 ---
 title: "Verific [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/058-generate-context-modularization/checklist]"
-description: "find .opencode/skill/system-spec-kit/scripts -name \"*.js\" -exec wc -l {} \\\\\\\\; | sort -n"
+description: "find .opencode/skills/system-spec-kit/scripts -name \"*.js\" -exec wc -l {} \\\\\\\\; | sort -n"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -130,23 +130,23 @@ contextType: "implementation"
 
 ```bash
 # Check all modules under 300 lines
-find .opencode/skill/system-spec-kit/scripts -name "*.js" -exec wc -l {} \; | sort -n
+find .opencode/skills/system-spec-kit/scripts -name "*.js" -exec wc -l {} \; | sort -n
 
 # Check for circular dependencies (requires madge)
-npx madge --circular .opencode/skill/system-spec-kit/scripts/
+npx madge --circular .opencode/skills/system-spec-kit/scripts/
 
 # Run snapshot tests
 ./scripts/test-snapshot.sh
 
 # Verify no changes to lib/
-git diff --stat .opencode/skill/system-spec-kit/scripts/lib/
+git diff --stat .opencode/skills/system-spec-kit/scripts/lib/
 
 # Count total lines before/after
-wc -l .opencode/skill/system-spec-kit/scripts/generate-context.js
-find .opencode/skill/system-spec-kit/scripts -name "*.js" -exec cat {} \; | wc -l
+wc -l .opencode/skills/system-spec-kit/scripts/generate-context.js
+find .opencode/skills/system-spec-kit/scripts -name "*.js" -exec cat {} \; | wc -l
 
 # Benchmark execution time
-time node .opencode/skill/system-spec-kit/scripts/generate-context.js test-fixture.json > /dev/null
+time node .opencode/skills/system-spec-kit/scripts/generate-context.js test-fixture.json > /dev/null
 ```
 
 ---
@@ -162,5 +162,5 @@ If any of these occur, STOP and rollback:
 
 Rollback command:
 ```bash
-git checkout main -- .opencode/skill/system-spec-kit/scripts/
+git checkout main -- .opencode/skills/system-spec-kit/scripts/
 ```

@@ -15,10 +15,10 @@ contextType: "implementation"
 <!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Critical Commands
-- [ ] Refactor `.opencode/command/spec_kit/resume.md` (7 refs) @critical
-- [ ] Clean up `.opencode/command/spec_kit/research/research/research.md` (2 refs - creates marker!) @critical
-- [ ] Update `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` (7 refs) @high
-- [ ] Update `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` (7 refs) @high
+- [ ] Refactor `.opencode/commands/spec_kit/resume.md` (7 refs) @critical
+- [ ] Clean up `.opencode/commands/spec_kit/research/research/research.md` (2 refs - creates marker!) @critical
+- [ ] Update `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` (7 refs) @high
+- [ ] Update `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` (7 refs) @high
 
 <!-- /ANCHOR:notation -->
 <!-- ANCHOR:phase-2 -->
@@ -29,8 +29,8 @@ contextType: "implementation"
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Supporting Commands
-- [ ] Update `.opencode/command/memory/save.md` (line 111) @medium
-- [ ] Update `.opencode/command/prompt/assets/improve_prompt.yaml` (2 refs) @low
+- [ ] Update `.opencode/commands/memory/save.md` (line 111) @medium
+- [ ] Update `.opencode/commands/prompt/assets/improve_prompt.yaml` (2 refs) @low
 <!-- /ANCHOR:phase-3 -->
 
 ## Phase 4: system-spec-kit Docs

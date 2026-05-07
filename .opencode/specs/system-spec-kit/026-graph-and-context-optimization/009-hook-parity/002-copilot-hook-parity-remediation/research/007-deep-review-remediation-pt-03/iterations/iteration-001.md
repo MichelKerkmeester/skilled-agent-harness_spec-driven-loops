@@ -33,10 +33,10 @@ Ground-truth the current Copilot CLI 1.0.34 hook-config schema from primary sour
    - The command reference says event payload format is selected by the configured event name: camelCase names get camelCase fields; PascalCase names get VS Code-compatible snake_case fields. Source: same page lines 924-930.
 
 5. Inspected system-spec-kit hook scripts:
-   - `.github/hooks/scripts/session-start.sh:17-21` calls `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js` and falls back only if that script fails.
-   - `.github/hooks/scripts/user-prompt-submitted.sh:17-23` calls `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`, then prints `{}`.
-   - `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:168-190` writes `$HOME/.copilot/copilot-instructions.md` with source `system-spec-kit copilot sessionStart hook`.
-   - `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-129` writes the same managed instructions file with source `system-spec-kit copilot userPromptSubmitted hook`.
+   - `.github/hooks/scripts/session-start.sh:17-21` calls `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js` and falls back only if that script fails.
+   - `.github/hooks/scripts/user-prompt-submitted.sh:17-23` calls `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`, then prints `{}`.
+   - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:168-190` writes `$HOME/.copilot/copilot-instructions.md` with source `system-spec-kit copilot sessionStart hook`.
+   - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-129` writes the same managed instructions file with source `system-spec-kit copilot userPromptSubmitted hook`.
    - `$HOME/.copilot/copilot-instructions.md:5-6` currently shows `Refreshed: 2026-04-22T11:08:14.595Z` and `Source: system-spec-kit copilot sessionStart hook`, proving the session-start writer ran before the current inspection.
 
 ## Findings
@@ -71,7 +71,7 @@ Conclusion: KQ-4 is mostly answered. `~/.copilot/config.json` is not the hook so
 
 `.github/hooks/superset-notify.json:4-30` contains flat `bash` fields, so it is not missing `bash` on disk. However, its current content calls `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh ...` directly for all events. That script only emits `{}` and posts Superset notifications; it does not refresh `$HOME/.copilot/copilot-instructions.md`. Sources: `.github/hooks/superset-notify.json:4-30`, `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:15-40`.
 
-The intended per-prompt refresh path appears to be `.github/hooks/scripts/user-prompt-submitted.sh:17-23`, which calls `user-prompt-submit.js`; that compiled hook writes source `system-spec-kit copilot userPromptSubmitted hook` via `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-129`.
+The intended per-prompt refresh path appears to be `.github/hooks/scripts/user-prompt-submitted.sh:17-23`, which calls `user-prompt-submit.js`; that compiled hook writes source `system-spec-kit copilot userPromptSubmitted hook` via `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:120-129`.
 
 Conclusion: KQ-10 cannot pass with the currently inspected root config, even if the missing-`bash` error is resolved, because the userPromptSubmitted event no longer invokes the system-spec-kit writer.
 

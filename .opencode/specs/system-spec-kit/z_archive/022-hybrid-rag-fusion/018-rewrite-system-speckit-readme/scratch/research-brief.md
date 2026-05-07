@@ -1,6 +1,6 @@
 # Research Brief: System Spec Kit README Rewrite (D3)
 
-> Compiled from primary source investigation. All citations reference files in `.opencode/skill/system-spec-kit/` unless otherwise noted.
+> Compiled from primary source investigation. All citations reference files in `.opencode/skills/system-spec-kit/` unless otherwise noted.
 
 ---
 
@@ -78,7 +78,7 @@ Mandatory for ALL file modifications: code files, documentation, configuration, 
 ### Top-Level Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 +-- SKILL.md                    # AI workflow instructions (788 lines)
 +-- README.md                   # Human-oriented documentation (873 lines, this rewrite target)
 +-- ARCHITECTURE.md             # Boundary contract between scripts/ and mcp_server/
@@ -190,14 +190,14 @@ specs/<###-feature-name>/
 
 | # | Command | Steps | Purpose | Source |
 |---|---|---|---|---|
-| 1 | `/spec_kit:complete` | 14 | Full end-to-end workflow (supports :auto, :confirm, :with-research, :auto-debug) | `.opencode/command/spec_kit/complete.md` |
-| 2 | `/spec_kit:plan` | 7 | Planning only, no implementation (supports :auto, :confirm) | `.opencode/command/spec_kit/plan.md` |
-| 3 | `/spec_kit:implement` | 9 | Execute pre-planned work with PREFLIGHT/POSTFLIGHT (requires existing plan.md) | `.opencode/command/spec_kit/implement.md` |
-| 4 | `/spec_kit:research` | 9 | Technical investigation and documentation | `.opencode/command/spec_kit/research/research/research.md` |
-| 5 | `/spec_kit:resume` | 4 | Resume previous session on existing spec folder | `.opencode/command/spec_kit/resume.md` |
-| 6 | `/spec_kit:handover` | 4 | Create session handover document | `.opencode/command/spec_kit/handover.md` |
-| 7 | `/spec_kit:debug` | 5 | Delegate debugging to specialized sub-agent | `.opencode/command/spec_kit/debug.md` |
-| 8 | `/spec_kit:phase` | N/A | Create and manage phase decomposition for complex spec folders | `.opencode/command/spec_kit/phase.md` |
+| 1 | `/spec_kit:complete` | 14 | Full end-to-end workflow (supports :auto, :confirm, :with-research, :auto-debug) | `.opencode/commands/spec_kit/complete.md` |
+| 2 | `/spec_kit:plan` | 7 | Planning only, no implementation (supports :auto, :confirm) | `.opencode/commands/spec_kit/plan.md` |
+| 3 | `/spec_kit:implement` | 9 | Execute pre-planned work with PREFLIGHT/POSTFLIGHT (requires existing plan.md) | `.opencode/commands/spec_kit/implement.md` |
+| 4 | `/spec_kit:research` | 9 | Technical investigation and documentation | `.opencode/commands/spec_kit/research/research/research.md` |
+| 5 | `/spec_kit:resume` | 4 | Resume previous session on existing spec folder | `.opencode/commands/spec_kit/resume.md` |
+| 6 | `/spec_kit:handover` | 4 | Create session handover document | `.opencode/commands/spec_kit/handover.md` |
+| 7 | `/spec_kit:debug` | 5 | Delegate debugging to specialized sub-agent | `.opencode/commands/spec_kit/debug.md` |
+| 8 | `/spec_kit:phase` | N/A | Create and manage phase decomposition for complex spec folders | `.opencode/commands/spec_kit/phase.md` |
 
 [SOURCE: README.md:543-553, command file frontmatter verified]
 
@@ -205,13 +205,13 @@ specs/<###-feature-name>/
 
 | # | Command | Purpose | Source |
 |---|---|---|---|
-| 1 | `/memory:save [folder]` | Save conversation context to spec folder memory/ with semantic indexing via generate-context.js | `.opencode/command/memory/save.md` |
-| 2 | `/memory:context <query>` | Unified intent-aware context retrieval. Auto-detects task intent from 7 types and applies task-specific weights | `.opencode/command/memory/context.md` |
-| 3 | `/memory:manage` | Database management: stats, scan, cleanup, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest | `.opencode/command/memory/manage.md` |
-| 4 | `/memory:continue` | Session recovery from crash, compaction, or timeout via resume-mode memory retrieval | `.opencode/command/memory/continue.md` |
-| 5 | `/memory:learn` | Constitutional memory manager: create, list, edit, remove, budget. Manages always-surface rules with 3.0x boost | `.opencode/command/memory/learn.md` |
-| 6 | `/memory:analyze` | Analysis and evaluation: preflight, postflight, causal graph, ablation, dashboard, learning history | `.opencode/command/memory/analyze.md` |
-| 7 | `/memory:shared` | Shared-memory space lifecycle: create spaces, manage memberships, inspect rollout status | `.opencode/command/memory/shared.md` |
+| 1 | `/memory:save [folder]` | Save conversation context to spec folder memory/ with semantic indexing via generate-context.js | `.opencode/commands/memory/save.md` |
+| 2 | `/memory:context <query>` | Unified intent-aware context retrieval. Auto-detects task intent from 7 types and applies task-specific weights | `.opencode/commands/memory/context.md` |
+| 3 | `/memory:manage` | Database management: stats, scan, cleanup, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest | `.opencode/commands/memory/manage.md` |
+| 4 | `/memory:continue` | Session recovery from crash, compaction, or timeout via resume-mode memory retrieval | `.opencode/commands/memory/continue.md` |
+| 5 | `/memory:learn` | Constitutional memory manager: create, list, edit, remove, budget. Manages always-surface rules with 3.0x boost | `.opencode/commands/memory/learn.md` |
+| 6 | `/memory:analyze` | Analysis and evaluation: preflight, postflight, causal graph, ablation, dashboard, learning history | `.opencode/commands/memory/analyze.md` |
+| 7 | `/memory:shared` | Shared-memory space lifecycle: create spaces, manage memberships, inspect rollout status | `.opencode/commands/memory/shared.md` |
 
 [SOURCE: command file frontmatter verified directly]
 
@@ -467,7 +467,7 @@ For full API reference, tool signatures, parameters, and configuration, see `mcp
 
 Shared-memory tools (`shared_space_upsert`, `shared_space_membership_set`, `shared_memory_status`, `shared_memory_enable`) are referenced in `/memory:shared` command but are rollout-dependent governance extensions.
 
-[SOURCE: `.opencode/command/memory/shared.md` frontmatter]
+[SOURCE: `.opencode/commands/memory/shared.md` frontmatter]
 
 ---
 
@@ -536,7 +536,7 @@ Based on the `sk-doc` README template (`readme_template.md`), the target structu
 | 8 | **FAQ** | Answer common questions | Q&A format, general + technical |
 | 9 | **RELATED DOCUMENTS** | Guide to more info | Internal docs, external resources |
 
-[SOURCE: `.opencode/skill/sk-doc/assets/documentation/readme_template.md`:113-128]
+[SOURCE: `.opencode/skills/sk-doc/assets/documentation/readme_template.md`:113-128]
 
 ### Style Requirements (from template)
 

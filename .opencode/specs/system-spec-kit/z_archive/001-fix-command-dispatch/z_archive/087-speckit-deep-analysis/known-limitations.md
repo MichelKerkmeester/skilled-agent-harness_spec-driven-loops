@@ -146,9 +146,9 @@ CREATE TABLE memory_conflicts_new (
 7. **Remove error swallowing** from both INSERT callers — errors should now surface properly
 
 **Files to modify:**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.js`
 
 #### Option B: Drop and Recreate (If Conflict Audit Data Is Disposable)
 
@@ -166,7 +166,7 @@ Add migration v12 that drops and recreates with unified schema. Simpler but lose
 #### Option C: Delete Database File (Nuclear Option)
 
 ```bash
-rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite*
+rm .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite*
 # Or if project-local:
 rm .opencode-local/database/context-index.sqlite*
 # Then trigger re-index via MCP: memory_index_scan({})
@@ -212,16 +212,16 @@ The file `SET-UP - AGENTS.md` uses a legacy 7-gate system (Gates 0-6) that no lo
 
 | File | Line | Current (Stale) | Correct |
 |------|------|-----------------|---------|
-| `.opencode/agent/orchestrate.md` | 231 | `Gate 4` | `Gate 3` |
+| `.opencode/agents/orchestrate.md` | 231 | `Gate 4` | `Gate 3` |
 | `AGENTS.md` (project root) | 503 | `Gate 4 Option B` | `Gate 3 Option B` |
 
 #### Priority 2 — Active scripts and config
 
 | File | Line(s) | Current (Stale) | Correct |
 |------|---------|-----------------|---------|
-| `.opencode/skill/system-spec-kit/scripts/scripts-registry.json` | 45, 54 | `Gate 6` | `Completion Verification Rule` |
-| `.opencode/skill/system-spec-kit/scripts/README.md` | 136, 244, 325 | `Gate 6` | `Completion Verification Rule` |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh` | 44 | `Gate 6` | `Completion Verification Rule` |
+| `.opencode/skills/system-spec-kit/scripts/scripts-registry.json` | 45, 54 | `Gate 6` | `Completion Verification Rule` |
+| `.opencode/skills/system-spec-kit/scripts/README.md` | 136, 244, 325 | `Gate 6` | `Completion Verification Rule` |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | 44 | `Gate 6` | `Completion Verification Rule` |
 
 #### Priority 3 — Legacy install guide documentation
 
@@ -257,24 +257,24 @@ The file `SET-UP - AGENTS.md` uses a legacy 7-gate system (Gates 0-6) that no lo
 
 ```bash
 # orchestrate.md line 231
-sed -i '' 's/Gate 4/Gate 3/' .opencode/agent/orchestrate.md
+sed -i '' 's/Gate 4/Gate 3/' .opencode/agents/orchestrate.md
 
 # AGENTS.md line 503 (project root)
 sed -i '' 's/Gate 4 Option B/Gate 3 Option B/' AGENTS.md
 
 # scripts-registry.json lines 45, 54
 sed -i '' 's/Gate 6 (Completion Verification)/Completion Verification Rule/g' \
-    .opencode/skill/system-spec-kit/scripts/scripts-registry.json
+    .opencode/skills/system-spec-kit/scripts/scripts-registry.json
 sed -i '' 's/Gate 6 enforcement/Completion Verification Rule enforcement/g' \
-    .opencode/skill/system-spec-kit/scripts/scripts-registry.json
+    .opencode/skills/system-spec-kit/scripts/scripts-registry.json
 
 # scripts/README.md lines 136, 244, 325
 sed -i '' 's/Gate 6/Completion Verification Rule/g' \
-    .opencode/skill/system-spec-kit/scripts/README.md
+    .opencode/skills/system-spec-kit/scripts/README.md
 
 # check-completion.sh line 44
 sed -i '' 's/Gate 6 Enforcement/Completion Verification Rule/g' \
-    .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh
+    .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh
 ```
 
 **Phase 2 — Update legacy install guide (Priority 3):**
@@ -285,8 +285,8 @@ Rewrite the gate system section (lines 123-168) to reflect the current 3-gate pr
 
 ```bash
 # After Phase 1
-grep -rn "Gate 4" .opencode/agent/ AGENTS.md  # Expected: 0 matches (except speckit.md internal numbering)
-grep -rn "Gate 6" .opencode/skill/system-spec-kit/scripts/  # Expected: 0 matches
+grep -rn "Gate 4" .opencode/agents/ AGENTS.md  # Expected: 0 matches (except speckit.md internal numbering)
+grep -rn "Gate 6" .opencode/skills/system-spec-kit/scripts/  # Expected: 0 matches
 
 # After Phase 2
 grep -n "Gate [456]" ".opencode/install_guides/SET-UP - AGENTS.md"  # Expected: 0 matches
@@ -306,9 +306,9 @@ Three spec management scripts exist but are not listed in speckit.md's Capabilit
 
 | Script | Path | Lines | Purpose |
 |--------|------|-------|---------|
-| `archive.sh` | `.opencode/skill/system-spec-kit/scripts/spec/archive.sh` | 294 | Archive completed spec folders to `z_archive/`. Modes: `archive <folder>`, `--list`, `--restore <folder>`. Checks >=90% completeness before archiving. |
-| `check-completion.sh` | `.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh` | 319 | Completion Verification Rule enforcement. Parses `checklist.md` for `[x]`/`[ ]` items. Counts P0/P1/P2. Exit codes: 0=complete, 1=incomplete, 2=error. Has `--strict` mode. |
-| `recommend-level.sh` | `.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh` | 534 | Automated level recommendation replacing manual LOC estimation. 4-dimension scoring: LOC (35%), files (20%), risk (25%), complexity (20%). Level mapping: <25=L0, 25-44=L1, 45-69=L2, 70+=L3. |
+| `archive.sh` | `.opencode/skills/system-spec-kit/scripts/spec/archive.sh` | 294 | Archive completed spec folders to `z_archive/`. Modes: `archive <folder>`, `--list`, `--restore <folder>`. Checks >=90% completeness before archiving. |
+| `check-completion.sh` | `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | 319 | Completion Verification Rule enforcement. Parses `checklist.md` for `[x]`/`[ ]` items. Counts P0/P1/P2. Exit codes: 0=complete, 1=incomplete, 2=error. Has `--strict` mode. |
+| `recommend-level.sh` | `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | 534 | Automated level recommendation replacing manual LOC estimation. 4-dimension scoring: LOC (35%), files (20%), risk (25%), complexity (20%). Level mapping: <25=L0, 25-44=L1, 45-69=L2, 70+=L3. |
 
 ### Where They Should Be Listed
 
@@ -332,8 +332,8 @@ Three spec management scripts exist but are not listed in speckit.md's Capabilit
 
 ### Files to Modify
 
-- `.opencode/agent/speckit.md` — Capability Scan table
-- `.opencode/skill/system-spec-kit/SKILL.md` — Key Scripts table
+- `.opencode/agents/speckit.md` — Capability Scan table
+- `.opencode/skills/system-spec-kit/SKILL.md` — Key Scripts table
 
 ---
 
@@ -388,8 +388,8 @@ Source: `context-server.js:296-312`
 
 ### Files to Modify
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js` — Add toolCache cleanup
-- `.opencode/skill/system-spec-kit/mcp_server/lib/access-tracker.js` — Remove duplicate handlers
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js` — Add toolCache cleanup
+- `.opencode/skills/system-spec-kit/mcp_server/lib/access-tracker.js` — Remove duplicate handlers
 
 ---
 

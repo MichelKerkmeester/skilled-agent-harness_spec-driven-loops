@@ -111,7 +111,7 @@ Preflight artifacts established baseline -> ordered path migration executed -> f
   - Result: PASS (no non-zero rows).
 - **PC-002 Path migration integrity check**
   - Commands:
-    - `test -d "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/sk-doc"`
+    - `test -d "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/sk-doc"`
       - `wc -l .opencode/specs/03--commands-and-skills/010-doc-rename/scratch/path-rename-map.tsv .opencode/specs/03--commands-and-skills/010-doc-rename/scratch/path-rename-log.txt`
   - Result: PASS (`sk-doc` path present; map/log parity 17/17; live docs no longer assert a removed visual target).
 - **PC-003 Symlink integrity check**
@@ -125,8 +125,8 @@ Preflight artifacts established baseline -> ordered path migration executed -> f
   - Result: PASS (0 matches; no external edit).
 - **PC-006 Documentation validation and completion gates**
   - Commands:
-    - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/010-doc-rename`
-    - `bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh .opencode/specs/03--commands-and-skills/010-doc-rename --strict`
+    - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/010-doc-rename`
+    - `bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/specs/03--commands-and-skills/010-doc-rename --strict`
   - Result: PASS.
 <!-- /ANCHOR:testing -->
 

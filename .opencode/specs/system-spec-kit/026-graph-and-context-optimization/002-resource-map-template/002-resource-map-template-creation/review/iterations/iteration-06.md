@@ -8,7 +8,7 @@
 
 **Q1 — Grammar of AGENTS.md:330.** Sentence is grammatically valid, no run-ons or double negatives. However it is semantically overloaded: one bullet now carries general rule + deep-research exemption + `@deep-research` / `@debug` ownership + the new `resource-map.md` optionality clause. Readable but dense.
 
-**Q2 — Flow of the tacked-on clause.** The "`resource-map.md` is optional at any level — copy it from `.opencode/skill/system-spec-kit/templates/resource-map.md` …" clause switches register from enforcement to usage guidance, which reads as bolted on. The information duplicates what the cross-cutting note at AGENTS.md:268 already states. See F-01.
+**Q2 — Flow of the tacked-on clause.** The "`resource-map.md` is optional at any level — copy it from `.opencode/skills/system-spec-kit/templates/resource-map.md` …" clause switches register from enforcement to usage guidance, which reads as bolted on. The information duplicates what the cross-cutting note at AGENTS.md:268 already states. See F-01.
 
 **Q3 — Exemptions preserved.** Yes. `research/iterations/*.md`, `research/deep-research-*.md`, and `research/research.md` (progressive loop updates) remain in the workflow-owned exemption list, and `@deep-research` + `@debug` exclusive-write clauses are intact.
 

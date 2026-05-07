@@ -15,7 +15,7 @@ _memory:
     recent_action: "Completed Phase 002 folder rename and graph source update"
     next_safe_action: "Start Phase 003"
     blockers:
-      - "Advisor rebuild script missing at .opencode/skill/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js; orchestrator should run advisor_rebuild({force: true}) via MCP."
+      - "Advisor rebuild script missing at .opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js; orchestrator should run advisor_rebuild({force: true}) via MCP."
       - "git mv was blocked by sandbox Git index permissions; filesystem rename produced the requested folder end-state."
     key_files:
       - "spec.md"
@@ -24,9 +24,9 @@ _memory:
       - "checklist.md"
       - "graph-metadata.json"
       - "implementation-summary.md"
-      - ".opencode/skill/deep-review"
-      - ".opencode/skill/deep-research"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/deep-review"
+      - ".opencode/skills/deep-research"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-002"
@@ -39,7 +39,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -62,13 +62,13 @@ Phase 002 now has the two deep loop skill folders at their new canonical paths a
 
 ### Folder Rename
 
-`.opencode/skill/deep-review/` and `.opencode/skill/deep-research/` now exist. The old `.opencode/skill/sk-deep-review/` and `.opencode/skill/sk-deep-research/` folder roots are absent.
+`.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` now exist. The old `.opencode/skills/sk-deep-review/` and `.opencode/skills/sk-deep-research/` folder roots are absent.
 
 `git mv` was attempted first as requested, but the sandbox blocked Git index writes with `Unable to create ... .git/index.lock: Operation not permitted`. A filesystem rename was used to produce the requested working-tree state, and this limitation is recorded as a blocker for the orchestrator.
 
 ### Advisor Graph Source
 
-`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` had 11 quoted old skill ID occurrences replaced:
+`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` had 11 quoted old skill ID occurrences replaced:
 
 - `sk-deep-review` -> `deep-review`
 - `sk-deep-research` -> `deep-research`
@@ -77,7 +77,7 @@ The JSON parser passed and the `signals` key assertion confirmed the new keys ex
 
 ### Internal Renamed-Folder Content
 
-Internal files under `.opencode/skill/deep-review/` and `.opencode/skill/deep-research/` were updated so old self-references and cross-references use the new names. The pre-update grep found 159 files with old identifiers under the two renamed folders; the final grep returned no rows.
+Internal files under `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/` were updated so old self-references and cross-references use the new names. The pre-update grep found 159 files with old identifiers under the two renamed folders; the final grep returned no rows.
 
 ### Files Changed
 
@@ -89,9 +89,9 @@ Internal files under `.opencode/skill/deep-review/` and `.opencode/skill/deep-re
 | `checklist.md` | Created/Updated | Level 2 verification checklist with evidence |
 | `graph-metadata.json` | Created/Updated | Canonical phase graph metadata |
 | `implementation-summary.md` | Created | Closeout summary |
-| `.opencode/skill/deep-review/` | Renamed/Updated | Canonical review skill folder and internal references |
-| `.opencode/skill/deep-research/` | Renamed/Updated | Canonical research skill folder and internal references |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Advisor graph source IDs |
+| `.opencode/skills/deep-review/` | Renamed/Updated | Canonical review skill folder and internal references |
+| `.opencode/skills/deep-research/` | Renamed/Updated | Canonical research skill folder and internal references |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Advisor graph source IDs |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -123,7 +123,7 @@ The work followed the requested order: B.1 folder rename, B.2 graph JSON replace
 | Check | Result |
 |-------|--------|
 | Folder old roots absent | PASS: `OK: old folders gone` |
-| New folders exist | PASS: `ls` showed `.opencode/skill/deep-review` and `.opencode/skill/deep-research` |
+| New folders exist | PASS: `ls` showed `.opencode/skills/deep-review` and `.opencode/skills/deep-research` |
 | `skill-graph.json` parse | PASS: Python JSON parse printed `valid` |
 | Advisor graph signal keys | PASS: keys include `deep-review` and `deep-research`; old signal keys absent |
 | Internal old-name grep | PASS: grep returned no rows under both renamed folders |

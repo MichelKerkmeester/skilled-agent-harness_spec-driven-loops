@@ -60,9 +60,9 @@ Harmonize structural surface across 5 cli-* skills using cli-opencode (post-051)
 - **Post-edit grep gate** (per skill): re-run identical greps; assert each term still ≥1 occurrence.
 - **Section-header diff**: extract `^## [0-9]\+\.` lines from each SKILL.md; assert identical order/titles across all 5.
 - **Subsection presence**: `grep -E '^### (Default Invocation|Error Handling|Provider Auth Pre-Flight|Reasoning-Effort)' <skill>/SKILL.md` returns ≥1 per pattern across all 5.
-- **Strict validate**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict` exits 0.
+- **Strict validate**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/052-cli-skill-patterns --strict` exits 0.
 - **Advisor re-index** (post-edit): `doctor:skill-advisor :auto` to refresh TOKEN_BOOSTS / PHRASE_BOOSTS; diff each skill's `graph-metadata.json` to confirm no regression.
-- **Anchor cross-link audit**: `grep -rn '<!-- ANCHOR:' .opencode/skill/cli-*/SKILL.md` and per-skill `manual_testing_playbook/manual_testing_playbook.md`; ensure no rot from any subsection adds.
+- **Anchor cross-link audit**: `grep -rn '<!-- ANCHOR:' .opencode/skills/cli-*/SKILL.md` and per-skill `manual_testing_playbook/manual_testing_playbook.md`; ensure no rot from any subsection adds.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -82,9 +82,9 @@ Harmonize structural surface across 5 cli-* skills using cli-opencode (post-051)
 <!-- ANCHOR:rollback -->
 ## 6. ROLLBACK PLAN
 
-Per-skill rollback: `git checkout main -- .opencode/skill/<skill>/SKILL.md .opencode/skill/<skill>/graph-metadata.json` reverts that skill to its pre-052 state. The 052 spec folder can stay as documentation of the attempt or be removed via `git clean -fd specs/052-cli-skill-patterns/`.
+Per-skill rollback: `git checkout main -- .opencode/skills/<skill>/SKILL.md .opencode/skills/<skill>/graph-metadata.json` reverts that skill to its pre-052 state. The 052 spec folder can stay as documentation of the attempt or be removed via `git clean -fd specs/052-cli-skill-patterns/`.
 
-Atomic rollback (all 5 skills + spec folder): `git checkout main -- .opencode/skill/cli-*/ specs/052-cli-skill-patterns/` (only safe if no other 051 edits are in working tree — they are; consider per-skill rollback only).
+Atomic rollback (all 5 skills + spec folder): `git checkout main -- .opencode/skills/cli-*/ specs/052-cli-skill-patterns/` (only safe if no other 051 edits are in working tree — they are; consider per-skill rollback only).
 <!-- /ANCHOR:rollback -->
 
 ---

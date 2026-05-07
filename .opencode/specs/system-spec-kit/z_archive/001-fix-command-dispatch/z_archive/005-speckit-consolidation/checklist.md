@@ -70,7 +70,7 @@ Quality assurance checklist for verifying the SpecKit consolidation migration.
 - [x] **CHK-020**: Zero `.opencode/speckit/` references remain in skill files
   - *Evidence: grep -r returned 0 matches in .opencode/skills/*
 - [x] **CHK-021**: Zero `.opencode/speckit/` references remain in command YAML files
-  - *Evidence: grep -r returned 0 matches in .opencode/command/*.yaml*
+  - *Evidence: grep -r returned 0 matches in .opencode/commands/*.yaml*
 
 ---
 

@@ -22,7 +22,7 @@ Three root-cause clusters dominate the remediation backlog: **Cluster A** (scope
 
 ### CONDITIONAL
 
-**Rationale** (per `.opencode/skill/sk-code-review/references/review_core.md` §Verdicts):
+**Rationale** (per `.opencode/skills/sk-code-review/references/review_core.md` §Verdicts):
 - **0 active P0 findings** → FAIL is NOT triggered.
 - **10 active P1 findings** → PASS is NOT reachable without remediation.
 - **18 active P2 findings** → informational; `hasAdvisories=true` flag should accompany any PASS re-evaluation after P1 remediation.
@@ -31,7 +31,7 @@ Three root-cause clusters dominate the remediation backlog: **Cluster A** (scope
 
 To move from CONDITIONAL to PASS:
 1. Address all 10 P1 findings (Section 5 provides a prioritized remediation backlog).
-2. Re-run a reduced-scope deep-review targeting just the remediated surfaces, OR run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after the remediation spec folder closes.
+2. Re-run a reduced-scope deep-review targeting just the remediated surfaces, OR run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after the remediation spec folder closes.
 3. Update `description.json.lastUpdated` across all 16 sibling 026-tree folders (R5-P1-001) after the generate-context.js fix lands (R4-P1-002).
 
 ### Binary quality gates
@@ -86,7 +86,7 @@ To move from CONDITIONAL to PASS:
 | R6-P2-001 | B | `mcp_server/handlers/save/post-insert.ts:344-369`, `handlers/save/response-builder.ts:136-201` | Undocumented intentional rollup divergence between `post-insert.ts` executionStatus (failure-with-recovery) and `response-builder.ts` postInsertEnrichment (MCP-client nuance) — T-RBD-01 intent visible only in commit notes |
 | CP-002-note | Standalone | `research/.../closing-pass-notes.md:84-86` | Pre-existing closing-pass finding now RESOLVED by T-PIN-08; see R3-P1-001 for the stale-documentation upgrade |
 | CP-003 | Standalone | `mcp_server/lib/search/entity-linker.ts:1129-1133` | Whole-corpus escalation on incremental-pipeline failure; bounded by `extractionRan` gate; iter 6 confirmed stays at P2 |
-| CP-004 | Standalone | `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:1099` | Prose `when:` string escapes the typed YAML predicate grammar from S7 refactor; still present (not covered by `f9478670c`) |
+| CP-004 | Standalone | `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:1099` | Prose `when:` string escapes the typed YAML predicate grammar from S7 refactor; still present (not covered by `f9478670c`) |
 
 ### Finding distribution by cluster
 
@@ -140,7 +140,7 @@ To move from CONDITIONAL to PASS:
 **Recommended remediation** (coordinated Phase 018 task set):
 - Extend `generate-context.js` to write `description.json.lastUpdated` during canonical saves.
 - Add backfill step to `generate-context.js` that creates `description.json` + `graph-metadata.json` for research folders under `research/` when missing.
-- Add evidence-marker lint to `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict`.
+- Add evidence-marker lint to `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict`.
 - Back-port T-CGQ-09/10/11/12 readiness+trustState to `handlers/code-graph/context.ts`.
 - Add design-intent comment blocks at both rollup sites (`post-insert.ts:344-369` + `response-builder.ts:136-201`) citing T-RBD-01.
 - After all the above land, re-run canonical save across all 16 sibling 026-tree folders to restore freshness.
@@ -174,13 +174,13 @@ Prioritized recommended tasks grouped by cluster. Effort estimates: S (≤2h), M
 | ID | Sev | Effort | File target | Acceptance criteria |
 |----|-----|--------|-------------|---------------------|
 | T-SCP-01 | P1 | M | `mcp_server/handlers/save/reconsolidation-bridge.ts:228-234`, `lib/storage/lineage-state.ts:198-204`, `handlers/save/types.ts:348-352`, `lib/validation/preflight.ts:440-444` | Replace 4 local `normalizeScopeValue`/`normalizeScopeMatchValue` variants with imports of canonical `normalizeScopeContext` from `lib/governance/scope-governance.ts`. Vitest asserts semantic equivalence for full input matrix. R1-P1-001 + R4-P1-001 resolve together. |
-| T-SCP-02 | P2 | S | `.eslintrc.js` or `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Add lint rule that rejects any new file declaring a local `normalizeScope*` or `getOptionalString` helper. Rule exempts `scope-governance.ts` canonical file. |
+| T-SCP-02 | P2 | S | `.eslintrc.js` or `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Add lint rule that rejects any new file declaring a local `normalizeScope*` or `getOptionalString` helper. Rule exempts `scope-governance.ts` canonical file. |
 
 ### Cluster B tasks (7 tasks covering 7 findings — HIGHEST PRIORITY)
 
 | ID | Sev | Effort | File target | Acceptance criteria |
 |----|-----|--------|-------------|---------------------|
-| T-CNS-01 | P1 | M | `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` | Extend `generate-context.js` to write `description.json.lastUpdated` during canonical saves. Must be idempotent. R4-P1-002 resolves. |
+| T-CNS-01 | P1 | M | `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | Extend `generate-context.js` to write `description.json.lastUpdated` during canonical saves. Must be idempotent. R4-P1-002 resolves. |
 | T-CNS-02 | P1 | M | `generate-context.js` + new `backfill-research-metadata.js` | Add backfill routine that creates `description.json` + `graph-metadata.json` for any directory matching `research/<phase-name>/` that is missing either file. R3-P1-002 resolves. |
 | T-CNS-03 | P1 | L | all 16 sibling 026-tree folders | After T-CNS-01 lands, run canonical save against each 026/NNN-*/ folder. Verify 16/16 fresh via `jq '.lastUpdated' description.json`. R5-P1-001 + R3-P2-001 resolve together. |
 | T-CGC-01 | P1 | M | `mcp_server/handlers/code-graph/context.ts:87-210` | Back-port T-CGQ-09/10/11/12: add `canonicalReadiness`, `trustState`, `lastPersistedAt` emission matching `query.ts:238-282`. Emit 4-state vocabulary (`live`/`stale`/`absent`/`unavailable`). R6-P1-001 resolves. |
@@ -203,7 +203,7 @@ Prioritized recommended tasks grouped by cluster. Effort estimates: S (≤2h), M
 | T-PIN-RET-01 | P1 | M | `mcp_server/handlers/save/post-insert.ts:159-173`, consumer of `runEnrichmentBackfill` | Add retry-exhaustion counter to `runEnrichmentBackfill` driver for `partial_causal_link_unresolved` outcomes, keyed on `(memoryId, step, reason)`. Skip after N retries. R1-P1-002 resolves. |
 | T-SRS-BND-01 | P1 | L | `mcp_server/handlers/session-resume.ts:443-456`, `tools/lifecycle-tools.ts:67` | Bind `handleSessionResume` session-ID authentication to the caller's runtime-identity at the MCP transport layer. Reject `args.sessionId` that does not match the caller's active session. R2-P1-001 resolves. |
 | T-CPN-01 | P2 | S | `research/.../closing-pass-notes.md:72-88` | Amend CP-002 section to mark it RESOLVED by T-PIN-08 / `e774eef07`. Add status tag `[STATUS: RESOLVED 2026-04-17]`. R3-P1-001 resolves. |
-| T-YML-CP4-01 | P2 | M | `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:1099` | Replace prose `when:` string with typed predicate matching S7 YAML grammar. CP-004 resolves. |
+| T-YML-CP4-01 | P2 | M | `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:1099` | Replace prose `when:` string with typed predicate matching S7 YAML grammar. CP-004 resolves. |
 
 ### Standalone P2 tasks (3 high-leverage P2s)
 
@@ -242,7 +242,7 @@ Based on iter 3 (traceability) + iter 5 (test re-verification) + iter 6 (rollup 
 
 ## 7. Adversarial Self-Check
 
-Following `.opencode/skill/sk-code-review/references/review_core.md` §Adversarial Self-Check, this section documents Hunter/Skeptic/Referee outcomes for the significant classification decisions.
+Following `.opencode/skills/sk-code-review/references/review_core.md` §Adversarial Self-Check, this section documents Hunter/Skeptic/Referee outcomes for the significant classification decisions.
 
 ### Refuted compound hypotheses (iter 5)
 
@@ -255,7 +255,7 @@ Following `.opencode/skill/sk-code-review/references/review_core.md` §Adversari
 
 ### Confirmed via evidence (iter 4-6)
 
-- **R4-P1-002 zero-grep confirmation**: `grep -n 'lastUpdated' .opencode/skill/system-spec-kit/scripts/dist/memory/*.js` returns zero hits across all 9 dist scripts. `.git/hooks/` contains only `.sample` files; no `.husky/`, no `.githooks/`. No `lint-staged` config. Auto-repair mechanism confirmed absent. Confidence 0.90.
+- **R4-P1-002 zero-grep confirmation**: `grep -n 'lastUpdated' .opencode/skills/system-spec-kit/scripts/dist/memory/*.js` returns zero hits across all 9 dist scripts. `.git/hooks/` contains only `.sample` files; no `.husky/`, no `.githooks/`. No `lint-staged` config. Auto-repair mechanism confirmed absent. Confidence 0.90.
 - **R5-P1-001 tree-wide sweep**: 16/16 sibling phase folders in `026-graph-and-context-optimization/` confirmed stale or missing `description.json.lastUpdated` via `jq` inspection. Breakdown: 11 stale, 4 missing field, 1 no graph timestamp. Confidence 0.92.
 - **R6-P1-001 sibling-asymmetry**: Direct code comparison of `context.ts:87-210` vs `query.ts:238-282` shows `query.ts` emits `canonicalReadiness` + `trustState` + `lastPersistedAt` per T-CGQ-09/10/11/12 while `context.ts` does not. tasks.md confirms T-CGQ tasks target `query.ts` exclusively. Confidence 0.85.
 
@@ -361,7 +361,7 @@ If concerned about undiscovered infrastructure gaps similar to Cluster B:
 /spec_kit:deep-review :auto
 ```
 
-Target: `generate-context.js` + `scripts/dist/memory/*.js` + `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` as a focused maintainability-and-infrastructure review. Scope: detect other "manual-dispatch bypass" surfaces, other "no auto-refresh" gaps, and other "canonical-save incomplete" patterns.
+Target: `generate-context.js` + `scripts/dist/memory/*.js` + `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` as a focused maintainability-and-infrastructure review. Scope: detect other "manual-dispatch bypass" surfaces, other "no auto-refresh" gaps, and other "canonical-save incomplete" patterns.
 
 ### Save context before closing loop
 

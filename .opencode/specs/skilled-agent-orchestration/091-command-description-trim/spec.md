@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Apply trims"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/command/improve/agent.md"
-      - ".opencode/command/doctor/code-graph.md"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/commands/improve/agent.md"
+      - ".opencode/commands/doctor/code-graph.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-091"
@@ -66,7 +66,7 @@ Pull the cluster cleanly under the soft target with ~10-25 chars margin per item
 ## 3. SCOPE
 
 ### In Scope
-- 1 skill: `.opencode/skill/sk-prompt/SKILL.md`
+- 1 skill: `.opencode/skills/sk-prompt/SKILL.md`
 - 7 commands: `create/changelog`, `create/sk-skill`, `doctor/code-graph`, `improve/agent`, `improve/prompt`, `memory/manage`, `memory/search`
 - Edit `description:` field only; preserve all other frontmatter
 
@@ -79,14 +79,14 @@ Pull the cluster cleanly under the soft target with ~10-25 chars margin per item
 
 | File | Current | Target | Trim text |
 |------|--------:|-------:|-----------|
-| `.opencode/skill/sk-prompt/SKILL.md` | 132 | 100 | `Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring.` |
-| `.opencode/command/create/changelog.md` | 114 | 97 | `Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.` |
-| `.opencode/command/create/sk-skill.md` | 112 | 96 | `Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.` |
-| `.opencode/command/doctor/code-graph.md` | 119 | 101 | `Diagnose and fix code-graph index health (stale, missed, bloat). :auto/:confirm/:apply/:apply-confirm.` |
-| `.opencode/command/improve/agent.md` | 122 | 99 | `Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm.` |
-| `.opencode/command/improve/prompt.md` | 112 | 97 | `Create or improve AI prompts via sk-prompt: frameworks, DEPTH thinking, CLEAR; optional dispatch.` |
-| `.opencode/command/memory/manage.md` | 116 | 97 | `Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.` |
-| `.opencode/command/memory/search.md` | 112 | 94 | `Unified continuity retrieval: spec-doc search, baselines, causal graph, ablations, dashboards.` |
+| `.opencode/skills/sk-prompt/SKILL.md` | 132 | 100 | `Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring.` |
+| `.opencode/commands/create/changelog.md` | 114 | 97 | `Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.` |
+| `.opencode/commands/create/sk-skill.md` | 112 | 96 | `Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.` |
+| `.opencode/commands/doctor/code-graph.md` | 119 | 101 | `Diagnose and fix code-graph index health (stale, missed, bloat). :auto/:confirm/:apply/:apply-confirm.` |
+| `.opencode/commands/improve/agent.md` | 122 | 99 | `Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm.` |
+| `.opencode/commands/improve/prompt.md` | 112 | 97 | `Create or improve AI prompts via sk-prompt: frameworks, DEPTH thinking, CLEAR; optional dispatch.` |
+| `.opencode/commands/memory/manage.md` | 116 | 97 | `Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.` |
+| `.opencode/commands/memory/search.md` | 112 | 94 | `Unified continuity retrieval: spec-doc search, baselines, causal graph, ablations, dashboards.` |
 
 <!-- /ANCHOR:scope -->
 

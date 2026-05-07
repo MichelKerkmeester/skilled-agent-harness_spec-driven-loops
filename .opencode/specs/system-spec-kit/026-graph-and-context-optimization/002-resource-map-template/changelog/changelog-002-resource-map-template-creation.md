@@ -57,18 +57,18 @@ This phase promoted that shape to a first-class cross-cutting template. The temp
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` (NEW) | The cross-cutting template with ten category sections. |
-| `.opencode/skill/system-spec-kit/templates/README.md` | Modified: structure row + workflow notes + related. |
-| `.opencode/skill/system-spec-kit/templates/level_1/README.md` | Modified: optional files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_2/README.md` | Modified: optional files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3/README.md` | Modified: optional files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3+/README.md` | Modified: optional files subsection. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified: canonical spec docs + cross-cutting templates + governance. |
-| `.opencode/skill/system-spec-kit/README.md` | Modified: template architecture section. |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Modified: cross-cutting row + per-level mentions. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modified: added filename to SPEC_DOCUMENT_FILENAMES. |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` (NEW) | Feature catalog entry. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` (NEW) | Playbook scenario. |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` (NEW) | The cross-cutting template with ten category sections. |
+| `.opencode/skills/system-spec-kit/templates/README.md` | Modified: structure row + workflow notes + related. |
+| `.opencode/skills/system-spec-kit/templates/level_1/README.md` | Modified: optional files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_2/README.md` | Modified: optional files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3/README.md` | Modified: optional files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3+/README.md` | Modified: optional files subsection. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified: canonical spec docs + cross-cutting templates + governance. |
+| `.opencode/skills/system-spec-kit/README.md` | Modified: template architecture section. |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Modified: cross-cutting row + per-level mentions. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modified: added filename to SPEC_DOCUMENT_FILENAMES. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` (NEW) | Feature catalog entry. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` (NEW) | Playbook scenario. |
 | `CLAUDE.md` | Modified: documentation levels cross-cutting note. |
 
 Commits: `30024e3bed` (fleet marker + validation), `083f74c814` (test playbooks), `b2edaa4cfc` (rename 010 to 009), `79ea13374c` (bulk WIP commit).

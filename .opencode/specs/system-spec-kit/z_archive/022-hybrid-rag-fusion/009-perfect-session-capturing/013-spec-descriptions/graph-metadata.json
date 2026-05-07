@@ -50,7 +50,7 @@
       "mcp_server/tests/folder-discovery.vitest.ts",
       "mcp_server/tests/folder-discovery-integration.vitest.ts",
       "spec.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
@@ -114,7 +114,7 @@
       {
         "name": "04-spec-folder-description-discovery.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md",
         "source": "derived"
       },
       {

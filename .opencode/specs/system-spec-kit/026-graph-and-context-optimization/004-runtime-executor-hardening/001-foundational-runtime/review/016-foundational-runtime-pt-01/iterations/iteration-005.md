@@ -9,16 +9,16 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts` (full re-read)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/p0-b-reconsolidation-composite.vitest.ts` (full re-read)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/p0-d-toctou-cleanup-regression.vitest.ts` (full re-read)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts` (full re-read)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts` (full re-read)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:220-300`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:484-604, 872-932`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts` (full re-read)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/p0-b-reconsolidation-composite.vitest.ts` (full re-read)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/p0-d-toctou-cleanup-regression.vitest.ts` (full re-read)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts` (full re-read)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts` (full re-read)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:220-300`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:484-604, 872-932`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/*/description.json` (16 sibling phase folders, timestamp sweep)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/*/graph-metadata.json` (16 sibling phase folders, timestamp sweep)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/opencode/` (glob: no files found — OpenCode hook directory does not exist)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/opencode/` (glob: no files found — OpenCode hook directory does not exist)
 
 ## Investigation Thread
 
@@ -41,7 +41,7 @@ Iteration 5 pivoted to three cross-cutting tasks, per the iter 4 recommendation:
 ### B. P0 attack-scenario re-verification
 
 **P0-A test (`p0-a-cross-runtime-tempdir-poisoning.vitest.ts`)**:
-- Test imports `handleClaudeStartup` (line 9) + `handleGeminiCompact` (line 11). **Zero OpenCode imports**. `.opencode/skill/system-spec-kit/mcp_server/hooks/opencode/` does not exist as a directory — there is no OpenCode-specific hook module to import. The `it()` name claim of "Claude, Gemini, and OpenCode consumers" is **factually incorrect** at the name level: OpenCode has no distinct hook module; coverage is by tmpdir-path-schema extension only, not by exercising a specific OpenCode code path. R3-P2-003 correctly flagged this but under-stated the issue — the "OpenCode coverage" is structural (schema-shared) but there is literally no OpenCode code artifact to import. This is not a new finding (R3-P2-003 stands) but is worth noting: if Claude/Gemini/OpenCode ever diverge in hook-state access (e.g., OpenCode grows its own prime/compact module), the test has zero coverage against that regression by construction.
+- Test imports `handleClaudeStartup` (line 9) + `handleGeminiCompact` (line 11). **Zero OpenCode imports**. `.opencode/skills/system-spec-kit/mcp_server/hooks/opencode/` does not exist as a directory — there is no OpenCode-specific hook module to import. The `it()` name claim of "Claude, Gemini, and OpenCode consumers" is **factually incorrect** at the name level: OpenCode has no distinct hook module; coverage is by tmpdir-path-schema extension only, not by exercising a specific OpenCode code path. R3-P2-003 correctly flagged this but under-stated the issue — the "OpenCode coverage" is structural (schema-shared) but there is literally no OpenCode code artifact to import. This is not a new finding (R3-P2-003 stands) but is worth noting: if Claude/Gemini/OpenCode ever diverge in hook-state access (e.g., OpenCode grows its own prime/compact module), the test has zero coverage against that regression by construction.
 
 **P0-B test (`p0-b-reconsolidation-composite.vitest.ts`)**:
 - 3 independent `it()` blocks, each mapping 1:1 to B1 (CAS conflict-stale-predecessor), B2 (complement window TOCTOU), B3 (batched governed-scope read). Coverage is phase-accurate and each phase is a distinct test, not a compound. **Pass — no new finding.**
@@ -112,16 +112,16 @@ None. Cluster analysis confirms no P0 escalation. R1-P1-001's iter 2 narrowing h
 
 ### P2 Findings
 
-1. **`p0-a-cross-runtime-tempdir-poisoning.vitest.ts` OpenCode coverage is zero because no OpenCode hook module exists to import** — `.opencode/skill/system-spec-kit/mcp_server/hooks/opencode/` (glob result: no files), `.opencode/skill/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:11,67,152-154` — This refines R3-P2-003 with a concrete structural observation: the test's `it()` name claims "Claude, Gemini, and OpenCode consumers" but glob for `hooks/opencode/*.ts` returns zero files. There is no distinct OpenCode hook module to import or assert against. OpenCode coverage is purely structural-by-extension (OpenCode consumers of hook-state share the same tmpdir path schema as Claude/Gemini). If OpenCode ever gains its own `hooks/opencode/session-prime.ts` module, the test will have zero coverage against it by construction — the name promise cannot be honored because the thing it promises to test does not exist. Classified P2 because the current cross-runtime tmpdir schema IS shared (so the test coverage is structurally sound for today's codebase), but the test name overclaims and the overclaim is now anchored to a real absence, not a typo. Recommended action for a future iteration: either rename the test to "Claude and Gemini consumers" + note that OpenCode inherits coverage by schema-share, OR create a minimal OpenCode hook stub so the assertion can be literal. Reinforces R3-P2-003 without re-flagging it.
+1. **`p0-a-cross-runtime-tempdir-poisoning.vitest.ts` OpenCode coverage is zero because no OpenCode hook module exists to import** — `.opencode/skills/system-spec-kit/mcp_server/hooks/opencode/` (glob result: no files), `.opencode/skills/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:11,67,152-154` — This refines R3-P2-003 with a concrete structural observation: the test's `it()` name claims "Claude, Gemini, and OpenCode consumers" but glob for `hooks/opencode/*.ts` returns zero files. There is no distinct OpenCode hook module to import or assert against. OpenCode coverage is purely structural-by-extension (OpenCode consumers of hook-state share the same tmpdir path schema as Claude/Gemini). If OpenCode ever gains its own `hooks/opencode/session-prime.ts` module, the test will have zero coverage against it by construction — the name promise cannot be honored because the thing it promises to test does not exist. Classified P2 because the current cross-runtime tmpdir schema IS shared (so the test coverage is structurally sound for today's codebase), but the test name overclaims and the overclaim is now anchored to a real absence, not a typo. Recommended action for a future iteration: either rename the test to "Claude and Gemini consumers" + note that OpenCode inherits coverage by schema-share, OR create a minimal OpenCode hook stub so the assertion can be literal. Reinforces R3-P2-003 without re-flagging it.
 
     ```json
     {
       "type": "claim-adjudication",
-      "claim": "The P0-A regression test names three consumers (Claude, Gemini, OpenCode) but no OpenCode hook module exists under .opencode/skill/system-spec-kit/mcp_server/hooks/opencode/, so OpenCode coverage is by schema-share only, not by explicit assertion.",
+      "claim": "The P0-A regression test names three consumers (Claude, Gemini, OpenCode) but no OpenCode hook module exists under .opencode/skills/system-spec-kit/mcp_server/hooks/opencode/, so OpenCode coverage is by schema-share only, not by explicit assertion.",
       "evidenceRefs": [
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/opencode/ (glob: no matches)",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:9,11 (only Claude+Gemini imports)",
-        ".opencode/skill/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:67 (test name claims 3 runtimes)"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/opencode/ (glob: no matches)",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:9,11 (only Claude+Gemini imports)",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/p0-a-cross-runtime-tempdir-poisoning.vitest.ts:67 (test name claims 3 runtimes)"
       ],
       "counterevidenceSought": "Searched for any hooks/opencode/*.ts file — none. Searched for an OpenCode-specific handleStartup or handleCompact export in the shared/ directory — none. Searched the Phase 017 commit log for 'opencode/session-prime' or 'opencode/hook' — no commits match.",
       "alternativeExplanation": "The team may have intentionally decided OpenCode uses the Claude path directly (shared runtime). If documented, renaming the test would suffice. No such documentation was found in CLAUDE.md, system-spec-kit SKILL.md, or closing-pass-notes.md.",

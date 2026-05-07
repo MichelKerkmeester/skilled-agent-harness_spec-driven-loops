@@ -32,7 +32,7 @@ contextType: "planning"
 
 ### Overview
 
-This plan defines a Memory Dashboard Visual Design System — a shared set of output components (headers, dividers, tables, status bars, box frames, metric displays) — and keeps the packet aligned with the current 4-command memory surface: `/memory:search`, `/memory:save`, `/memory:manage`, and `/memory:learn`. Shared-memory lifecycle output is treated as part of `/memory:manage shared`, not as a standalone command. No runtime code is modified; this active packet now serves as the truthful current-state reference for the output template sections within `.opencode/command/memory/`.
+This plan defines a Memory Dashboard Visual Design System — a shared set of output components (headers, dividers, tables, status bars, box frames, metric displays) — and keeps the packet aligned with the current 4-command memory surface: `/memory:search`, `/memory:save`, `/memory:manage`, and `/memory:learn`. Shared-memory lifecycle output is treated as part of `/memory:manage shared`, not as a standalone command. No runtime code is modified; this active packet now serves as the truthful current-state reference for the output template sections within `.opencode/commands/memory/`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -112,9 +112,9 @@ Components to define:
 
 Apply the design system to each live command doc. Update the output template sections within each file to use the shared components.
 
-- [ ] **2A. Update `/memory:search`** — Treat `.opencode/command/memory/search.md` as the live retrieval and analysis surface and keep its output templates aligned with the shared design system.
+- [ ] **2A. Update `/memory:search`** — Treat `.opencode/commands/memory/search.md` as the live retrieval and analysis surface and keep its output templates aligned with the shared design system.
 - [ ] **2B. Update `/memory:save`** — Replace ad-hoc header and dividers with COMMAND HEADER. Replace key-value display with KEY-VALUE PAIR component. Replace post-save menu with ACTION MENU component.
-- [ ] **2C. Update `/memory:manage`** — Apply design system to all subcommand outputs in `.opencode/command/memory/manage.md`: stats dashboard, scan output, cleanup table, tier change, trigger edit, validate, delete, health check, checkpoint operations, and `/memory:manage shared` flows.
+- [ ] **2C. Update `/memory:manage`** — Apply design system to all subcommand outputs in `.opencode/commands/memory/manage.md`: stats dashboard, scan output, cleanup table, tier change, trigger edit, validate, delete, health check, checkpoint operations, and `/memory:manage shared` flows.
 - [ ] **2D. Update `/memory:learn`** — Apply design system to learning capture output, correction preview, and history listing.
 
 ### Phase 3: Verification
@@ -211,7 +211,7 @@ Phase 1 must be fully stable before Phase 2 begins. Changes to the design system
 
 ### Rollback Procedure
 
-1. Run `git log --oneline .opencode/command/memory/` to identify the commit(s) to revert
+1. Run `git log --oneline .opencode/commands/memory/` to identify the commit(s) to revert
 2. Run `git revert <commit-hash>` to restore affected command files to their prior state
 3. Verify rollback by reading each file and confirming the previous output templates are restored
 4. No stakeholder notification required — changes are internal CLI formatting only

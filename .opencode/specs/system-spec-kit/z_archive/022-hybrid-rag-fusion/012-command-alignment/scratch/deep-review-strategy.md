@@ -84,7 +84,7 @@ Synthesis — all dimensions reviewed, adversarial check complete
 
 ## 13. KNOWN CONTEXT
 - This session reviews the 012 spec folder itself for alignment with current reality.
-- Live reality confirmed: 33 MCP tools in `tool-schemas.ts`, 6 commands in `.opencode/command/memory/`, and no standalone `context.md` or `ingest.md` command files.
+- Live reality confirmed: 33 MCP tools in `tool-schemas.ts`, 6 commands in `.opencode/commands/memory/`, and no standalone `context.md` or `ingest.md` command files.
 - The canonical 012 docs remain factually accurate as of 2026-03-25.
 - Residual stale references remain in indexed historical `memory/*.md` artifacts under the same spec folder, not in the five canonical docs.
 - Traceability gaps found in D3 are about checklist evidence quality, not about REQ-to-code drift.

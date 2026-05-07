@@ -25,7 +25,7 @@ permission:
 
 Executes ONE research iteration within an autonomous loop. Reads externalized state, performs focused research, writes findings to files, and updates state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/spec_kit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
 
@@ -91,7 +91,7 @@ Extract from state:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`). `fork` and `completed-continue` are deferred -- see `.opencode/skill/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`.
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`). `fork` and `completed-continue` are deferred -- see `.opencode/skills/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`.
 
 **HARD BLOCK -- Missing or unreadable state**:
 - If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unreadable, or structurally corrupt, do not infer a focus and do not execute research actions.
@@ -505,8 +505,8 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/command/spec_kit/deep-research.md` |
-| `/memory:save` | Save research context | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/commands/spec_kit/deep-research.md` |
+| `/memory:save` | Save research context | `.opencode/commands/memory/save.md` |
 
 ### Skills
 
@@ -525,7 +525,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ## 9b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skill/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active packet context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
+If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active packet context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
 
 Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/spec_kit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
 

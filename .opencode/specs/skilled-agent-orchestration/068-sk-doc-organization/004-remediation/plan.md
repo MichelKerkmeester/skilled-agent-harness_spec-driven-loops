@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown (doc-only edits) |
 | **Framework** | Edit tool (surgical line-level changes) |
-| **Storage** | Filesystem (`.opencode/skill/sk-doc/`) |
+| **Storage** | Filesystem (`.opencode/skills/sk-doc/`) |
 | **Testing** | validate.sh --strict + manual rg residual + file-existence check |
 
 ### Overview
@@ -99,13 +99,13 @@ read review-report.md
 - [x] Read each target's relevant section to understand exact line-level context
 
 ### Phase 2: Core Implementation
-- [x] Edit `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770` — fix broken link
-- [x] Edit `.opencode/skill/sk-doc/references/global/quick_reference.md:174-189` — rewrite ASCII tree
-- [x] Edit `.opencode/skill/sk-doc/assets/skill/skill_md_template.md:593` — remove `assets/agents/` from illustrative example
-- [x] Edit `.opencode/skill/sk-doc/references/specific/skill_creation.md:56` — remove `assets/agents/` from illustrative example
+- [x] Edit `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770` — fix broken link
+- [x] Edit `.opencode/skills/sk-doc/references/global/quick_reference.md:174-189` — rewrite ASCII tree
+- [x] Edit `.opencode/skills/sk-doc/assets/skill/skill_md_template.md:593` — remove `assets/agents/` from illustrative example
+- [x] Edit `.opencode/skills/sk-doc/references/specific/skill_creation.md:56` — remove `assets/agents/` from illustrative example
 
 ### Phase 3: Verification
-- [x] `test -f .opencode/skill/sk-doc/assets/command_template.md` (P1 link target exists) — OK
+- [x] `test -f .opencode/skills/sk-doc/assets/command_template.md` (P1 link target exists) — OK
 - [x] `rg -c "assets/agents/" <each fixed file>` returns 0 — OK
 - [x] `bash validate.sh --strict` on parent 068 → exit 0
 - [x] Active-scope residual rg → 0 hits

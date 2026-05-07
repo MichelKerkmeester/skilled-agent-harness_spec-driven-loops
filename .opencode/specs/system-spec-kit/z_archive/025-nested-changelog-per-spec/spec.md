@@ -79,14 +79,14 @@ Ship a packet-aware changelog workflow that can derive a nested changelog for a 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts` | Create | Generate nested changelog payloads and markdown for packet roots and child phases |
-| `.opencode/skill/system-spec-kit/templates/changelog/root.md` | Create | Canonical packet-root changelog template |
-| `.opencode/skill/system-spec-kit/templates/changelog/phase.md` | Create | Canonical phase changelog template |
-| `.opencode/command/create/changelog.md` | Modify | Add nested spec/phase changelog mode beside global release-note mode |
-| `.opencode/command/spec_kit/implement.md` | Modify | Instruct nested changelog generation when target folder is packet-aware |
-| `.opencode/command/spec_kit/complete.md` | Modify | Instruct nested changelog generation during closeout for packet roots and phases |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Document nested changelog workflow in core skill guidance |
-| `.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md` | Create | Canonical workflow reference for packet-local changelogs |
+| `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts` | Create | Generate nested changelog payloads and markdown for packet roots and child phases |
+| `.opencode/skills/system-spec-kit/templates/changelog/root.md` | Create | Canonical packet-root changelog template |
+| `.opencode/skills/system-spec-kit/templates/changelog/phase.md` | Create | Canonical phase changelog template |
+| `.opencode/commands/create/changelog.md` | Modify | Add nested spec/phase changelog mode beside global release-note mode |
+| `.opencode/commands/spec_kit/implement.md` | Modify | Instruct nested changelog generation when target folder is packet-aware |
+| `.opencode/commands/spec_kit/complete.md` | Modify | Instruct nested changelog generation during closeout for packet roots and phases |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Document nested changelog workflow in core skill guidance |
+| `.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md` | Create | Canonical workflow reference for packet-local changelogs |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -83,7 +83,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-022 [P1] New observation types (test, documentation, performance) correctly recognized and classified [Evidence: `phase-classification.vitest.ts` and `test-extractors-loaders.js` both pass the new observation-type fixtures.]
 - [x] CHK-023 [P1] `FLOW_PATTERN` correctly derived from known cluster structures [Evidence: `phase-classification.vitest.ts` covers all 4 flow-pattern outcomes.]
-- [x] CHK-024 [P1] Existing phase classification tests still pass with updated scoring [Evidence: `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passed (307 passed, 0 failed) after rebuilding `scripts/dist`.]
+- [x] CHK-024 [P1] Existing phase classification tests still pass with updated scoring [Evidence: `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` passed (307 passed, 0 failed) after rebuilding `scripts/dist`.]
 - [x] CHK-025 [P2] Document vector construction produces consistent weighted maps [Evidence: `phase-classification.vitest.ts` exercises weighted signal construction indirectly across compatibility, clustering, and low-signal fallback cases.]
 <!-- /ANCHOR:testing -->
 
@@ -112,7 +112,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [Evidence: this phase did not add scratch artifacts outside the normal build/test outputs.]
 - [x] CHK-051 [P1] scratch/ cleaned before completion [Evidence: no `scratch/` artifacts were required for this implementation.]
-- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/007-phase-classification` refreshed `memory/metadata.json` for this phase.]
+- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/007-phase-classification` refreshed `memory/metadata.json` for this phase.]
 <!-- /ANCHOR:file-org -->
 
 ---

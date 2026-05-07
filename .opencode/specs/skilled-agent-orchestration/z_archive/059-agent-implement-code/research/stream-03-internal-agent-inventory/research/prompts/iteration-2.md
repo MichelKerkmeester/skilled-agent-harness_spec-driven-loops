@@ -4,7 +4,7 @@
 
 Iteration 2 of 8. Iteration 1 answered Q3 (caller-restriction) with high confidence: NO machine-readable frontmatter field, NO harness validator. Caller restriction is convention-only at present. Iteration 1 newInfoRatio = 0.86.
 
-Research Topic: Inventory existing internal `.opencode/agent/*` ecosystem and harness governance for design of `.opencode/agent/code.md`.
+Research Topic: Inventory existing internal `.opencode/agents/*` ecosystem and harness governance for design of `.opencode/agents/code.md`.
 
 Iteration: 2 of 8
 Focus Area: Q4 write-capable safety guarantees - how existing write-capable agents bound their writes.
@@ -16,7 +16,7 @@ Remaining Key Questions:
 - Q5 (open): Sub-agent dispatch contracts and depth/nesting rules
 
 Last 3 Iterations Summary:
-- Iter 1: Q3 caller-restriction inventory found NO harness-level mechanism. Convention-only via prose, workflow ownership, tool permissions, NDP-prompt instructions. ratio=0.86. (.opencode/agent/orchestrate.md:42, AGENTS.md:223,329, cli-opencode/SKILL.md:296)
+- Iter 1: Q3 caller-restriction inventory found NO harness-level mechanism. Convention-only via prose, workflow ownership, tool permissions, NDP-prompt instructions. ratio=0.86. (.opencode/agents/orchestrate.md:42, AGENTS.md:223,329, cli-opencode/SKILL.md:296)
 
 ## STATE FILES
 
@@ -39,15 +39,15 @@ All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Developme
 
 Focus Q4: Write-capable safety guarantees. The packet's decision-record D3 already proposes `task: deny` for `@code`. We need to know what BOUNDS write-capable agents beyond raw permission grants.
 
-1. Read `.opencode/agent/write.md` end-to-end. This is the closest analog to the proposed `@code`. Extract:
+1. Read `.opencode/agents/write.md` end-to-end. This is the closest analog to the proposed `@code`. Extract:
    - Frontmatter (permissions, allowed_paths if any, leaf/task fields)
    - Body sections: scope rules, write boundaries, escalation rules, file-path allowlists/blocklists, validation hooks
-2. Read `.opencode/agent/debug.md` end-to-end. It has exclusive write access to `debug-delegation.md` (per AGENTS.md). Find:
+2. Read `.opencode/agents/debug.md` end-to-end. It has exclusive write access to `debug-delegation.md` (per AGENTS.md). Find:
    - How is "exclusive write access for debug-delegation.md" expressed? Frontmatter? Body? AGENTS.md only?
-3. Read `.opencode/agent/deep-research.md` end-to-end. It has exclusive write access to `research/research.md`. Find:
+3. Read `.opencode/agents/deep-research.md` end-to-end. It has exclusive write access to `research/research.md`. Find:
    - Same questions as @debug
-4. Read `.opencode/agent/improve-agent.md` and `.opencode/agent/improve-prompt.md` for additional write-bound patterns (orchestrator-only journal emissions, proposal-only rules).
-5. Search for any post-write validation hook: `bash .../validate.sh`, `Distributed Governance Rule` enforcement at write time, scope-lock implementations. Look in `.opencode/skill/system-spec-kit/scripts/` and `.opencode/skill/system-spec-kit/shared/`.
+4. Read `.opencode/agents/improve-agent.md` and `.opencode/agents/improve-prompt.md` for additional write-bound patterns (orchestrator-only journal emissions, proposal-only rules).
+5. Search for any post-write validation hook: `bash .../validate.sh`, `Distributed Governance Rule` enforcement at write time, scope-lock implementations. Look in `.opencode/skills/system-spec-kit/scripts/` and `.opencode/skills/system-spec-kit/shared/`.
 6. Search for any "scope-lock" / "spec.md scope is FROZEN" enforcement code, not just CLAUDE.md prose.
 7. Note especially: AGENTS.md §5 "Distributed Governance Rule" — does it specify allowed_paths or just templates?
 

@@ -35,7 +35,7 @@ All three READMEs follow the established pattern from existing READMEs (`shared/
 ## Files Created
 
 ```
-.opencode/skill/system-spec-kit/shared/parsing/README.md
-.opencode/skill/system-spec-kit/shared/embeddings/providers/README.md
-.opencode/skill/system-spec-kit/shared/mcp_server/database/README.md
+.opencode/skills/system-spec-kit/shared/parsing/README.md
+.opencode/skills/system-spec-kit/shared/embeddings/providers/README.md
+.opencode/skills/system-spec-kit/shared/mcp_server/database/README.md
 ```

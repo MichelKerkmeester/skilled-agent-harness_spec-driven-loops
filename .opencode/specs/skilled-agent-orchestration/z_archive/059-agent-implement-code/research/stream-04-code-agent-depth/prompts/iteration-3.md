@@ -39,10 +39,10 @@ Suggested categories:
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:156-231` (Universal Checks + PR-Specific + Project-Specific patterns).
-2. Read `.opencode/skill/sk-code/SKILL.md:395-475` (Phase 1.5 Code Quality Gate + universal checklist patterns).
-3. Read `.opencode/skill/sk-code/references/universal/code_quality_standards.md:36-130` (severity model, P0/P1/P2 examples).
-4. Read `.opencode/agent/code.md:70-101` (current SCOPE BOUNDARIES + ESCALATION contract — confirm what the new checklists need to enforce).
+1. Read `.opencode/agents/review.md:156-231` (Universal Checks + PR-Specific + Project-Specific patterns).
+2. Read `.opencode/skills/sk-code/SKILL.md:395-475` (Phase 1.5 Code Quality Gate + universal checklist patterns).
+3. Read `.opencode/skills/sk-code/references/universal/code_quality_standards.md:36-130` (severity model, P0/P1/P2 examples).
+4. Read `.opencode/agents/code.md:70-101` (current SCOPE BOUNDARIES + ESCALATION contract — confirm what the new checklists need to enforce).
 5. Synthesize three coder-side checklists. Make sure NO stack rules are embedded — every stack-specific item should be phrased as "load applicable checklist via sk-code" or similar.
 
 ## OUTPUT CONTRACT

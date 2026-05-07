@@ -30,7 +30,7 @@ Reviewed source packets and remediation sub-phases:
 | A1/A2 status survey | `graph-metadata.json` for 005, 011, 008/008, and remediation 001-004 |
 | A3 parent traceability | `026/spec.md:105` and `000-release-cleanup/spec.md:84` phase maps |
 | A4 validator hygiene | Strict validator runs against 005 and 011 |
-| B1 helper consistency | Six SSOT helper files under `.opencode/skill/system-spec-kit/mcp_server/` |
+| B1 helper consistency | Six SSOT helper files under `.opencode/skills/system-spec-kit/mcp_server/` |
 | B2 fixture consistency | `tests/fixtures/memory-index-db.ts` and `tests/fixtures/skill-graph-db.ts` |
 | B3 inter-test health | Combined 18-file Vitest regression sweep |
 | D1 summary drift | Remediation `implementation-summary.md` files under 001-004 |

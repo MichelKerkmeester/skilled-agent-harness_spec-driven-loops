@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run final validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/matrix_runners"
+      - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -64,7 +64,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T004 Attempt git-aware rename. [EVIDENCE: `git mv` failed on `.git/index.lock` sandbox permission]
-- [x] T005 Move runtime directory with filesystem fallback. [EVIDENCE: only `.opencode/skill/system-spec-kit/mcp_server/matrix_runners` remains]
+- [x] T005 Move runtime directory with filesystem fallback. [EVIDENCE: only `.opencode/skills/system-spec-kit/mcp_server/matrix_runners` remains]
 - [x] T006 Replace literal old folder references. [EVIDENCE: 301 references replaced across 57 text files before packet docs]
 - [x] T007 Update matrix adapter test imports. [EVIDENCE: imports now use `../matrix_runners/...`]
 - [x] T008 Update runner README self-reference. [EVIDENCE: `mcp_server/matrix_runners/README.md` references `matrix_runners/`]

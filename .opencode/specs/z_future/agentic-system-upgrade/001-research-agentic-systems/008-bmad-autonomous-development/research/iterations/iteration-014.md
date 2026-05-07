@@ -11,8 +11,8 @@ Compared BAD's planning assumptions and module scope with the local level and ph
 
 ## Evidence
 - BAD assumes BMad Method planning artifacts, sprint backlog structure, and `sprint-status.yaml` already exist. It automates execution on top of that substrate rather than defining a multi-level documentation lifecycle of its own. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:25-32] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/docs/index.md:13-18]
-- `system-spec-kit` explicitly separates documentation depth from work decomposition: Level 1-3+ controls required artifacts, while phases are a behavioral overlay for decomposition. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-27] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:51-57] [SOURCE: .opencode/skill/system-spec-kit/references/structure/phase_definitions.md:15-23] [SOURCE: .opencode/skill/system-spec-kit/references/structure/phase_definitions.md:53-56]
-- The local model encodes why those levels exist: Level 2 adds verification, Level 3 adds architectural decisions, and Level 3+ adds governance, rather than simply adding length. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:183-206] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:300-324] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:385-403]
+- `system-spec-kit` explicitly separates documentation depth from work decomposition: Level 1-3+ controls required artifacts, while phases are a behavioral overlay for decomposition. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-27] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:51-57] [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:15-23] [SOURCE: .opencode/skills/system-spec-kit/references/structure/phase_definitions.md:53-56]
+- The local model encodes why those levels exist: Level 2 adds verification, Level 3 adds architectural decisions, and Level 3+ adds governance, rather than simply adding length. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:183-206] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:300-324] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:385-403]
 
 ## Analysis
 BAD does not disprove the local level system because BAD is not solving the same class of problem. It presumes planning and documentation were already done elsewhere. `system-spec-kit` is the planning/documentation framework. If anything, BAD shows how much lighter an execution module can be when another layer already owns the documentation burden. That supports the current local boundary more than it undermines it.
@@ -34,7 +34,7 @@ confidence: high
 finding: BAD is not evidence that Level 1/2/3+ is the wrong model. It is evidence that specialized execution modules can stay thin when a separate framework already owns planning and documentation. `system-spec-kit` should keep its level/phase architecture.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 - **Change type:** rejected
 - **Blast radius:** architectural
 - **Prerequisites:** none

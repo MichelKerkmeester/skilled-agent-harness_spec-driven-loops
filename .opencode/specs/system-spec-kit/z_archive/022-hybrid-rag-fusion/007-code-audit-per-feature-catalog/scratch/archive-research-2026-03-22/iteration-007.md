@@ -26,7 +26,7 @@ Investigated whether the 321 test files in the MCP server test suite test behavi
 7. **The test-to-catalog gap (97.2% unreferenced) is a structural design consequence, not an oversight.** The catalog was designed as a feature registry (documenting "what exists"), while the test suite was designed for behavioral verification (testing "what works correctly"). These are complementary but different scopes. The audit's charter was to verify catalog features against source code -- it was never scoped to verify catalog features against test coverage. However, this means the audit provides no assurance about: (a) whether test-verified behaviors match catalog descriptions, (b) whether test-only behaviors represent undocumented production capabilities, (c) whether the test suite is itself complete relative to the catalog.
 
 ## Sources Consulted
-- Test directory listing: `.opencode/skill/system-spec-kit/mcp_server/tests/` (321 .vitest.ts files)
+- Test directory listing: `.opencode/skills/system-spec-kit/mcp_server/tests/` (321 .vitest.ts files)
 - Committed catalog content: `git ls-tree -r --name-only HEAD` + `git show HEAD:$f` for all catalog files
 - Test file describe blocks: head -30 of 15 high-interest test files
 - Prior iterations: iteration-002 (32 unreferenced source files), iteration-004 (cross-cutting blind spots)

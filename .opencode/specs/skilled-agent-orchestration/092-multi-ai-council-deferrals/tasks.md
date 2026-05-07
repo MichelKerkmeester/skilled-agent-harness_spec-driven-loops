@@ -52,7 +52,7 @@ _memory:
 
 - [x] T201 Read packet 092 spec, plan, tasks, checklist, and decision record
 - [x] T202 Read packet 089 helper, output-schema/state-format references, tests, and agent mirrors
-- [x] T203 Confirm no new `.opencode/skill/multi-ai-council/` folder is required
+- [x] T203 Confirm no new `.opencode/skills/multi-ai-council/` folder is required
 <!-- /ANCHOR:phase-1 -->
 
 ---

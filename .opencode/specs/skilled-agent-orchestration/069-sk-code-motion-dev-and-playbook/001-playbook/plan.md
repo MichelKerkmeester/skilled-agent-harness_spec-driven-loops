@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-05"
@@ -62,7 +62,7 @@ Extend the current sk-code manual testing playbook without changing its architec
 - [x] New scenario files have frontmatter and five required sections. Evidence: section-count check returned 5 required sections for each new scenario file.
 - [x] Root playbook counts, TOC, category summaries, and cross-reference sections are synchronized. Evidence: root playbook now reports 17 deterministic scenarios across 6 categories and indexes MR/CB scenarios.
 - [x] Strict spec validation exits 0. Evidence: `validate.sh 001-playbook --strict --verbose` returned exit 0.
-- [x] Changed files remain inside approved scope. Evidence: Packet 1 edits are limited to `001-playbook/` and `.opencode/skill/sk-code/manual_testing_playbook/`.
+- [x] Changed files remain inside approved scope. Evidence: Packet 1 edits are limited to `001-playbook/` and `.opencode/skills/sk-code/manual_testing_playbook/`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -115,7 +115,7 @@ Operators start at the root playbook, choose a scenario from the category summar
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Template validation | Child spec folder anchors and frontmatter | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Template validation | Child spec folder anchors and frontmatter | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Structural review | Playbook package shape and per-feature section order | `find`, `rg`, manual read |
 | Scope review | Ensure no edits outside allowed directories | `git status --short` |
 | Alignment review | sk-doc playbook contract and deterministic prompt quality | sk-doc templates and examples |

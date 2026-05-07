@@ -6,7 +6,7 @@ I re-read the five requested state-honesty seams, then filtered out source-local
 ## Findings
 
 ### Finding R21-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts`
 - **Lines:** `311-322, 569-573`
 - **Severity:** P1
 - **Description:** The public `memory_save` response collapses post-insert truth even further than `post-insert.ts` does. `memory-save.ts` still has both `enrichmentStatus` and `executionStatus`, but `response-builder.ts` serializes only the coarse `postInsertEnrichment` execution status and converts all step-level nuance into at most one generic warning string. Once the response leaves the server, callers can no longer tell whether enrichment was deferred, partially failed, skipped by a guard, or produced a zero-work no-op.
@@ -14,7 +14,7 @@ I re-read the five requested state-honesty seams, then filtered out source-local
 - **Downstream Impact:** MCP clients and follow-up automation lose the exact failure/skip reason for each enrichment lane, so they cannot distinguish "run backfill," "retry a failed stage," and "accept a legitimate no-op" without scraping logs or re-running work.
 
 ### Finding R21-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `83-87`
 - **Severity:** P1
 - **Description:** `hook-state.ts` treats any parseable JSON blob as a valid `HookState`, and that unvalidated object feeds two different downstream control paths: prompt replay and autosave routing. A syntactically valid but schema-drifted state file therefore does not just poison cached context quality; it becomes authoritative input for both what Claude shows the model after compaction and where the stop hook writes continuity.
@@ -22,7 +22,7 @@ I re-read the five requested state-honesty seams, then filtered out source-local
 - **Downstream Impact:** One malformed temp-state file can both forge prompt-visible provenance during compact recovery and redirect end-of-session continuity saves into the wrong packet, turning an unvalidated cache artifact into a control-plane input.
 
 ### Finding R21-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `223-233, 264-275, 1015-1019`
 - **Severity:** P1
 - **Description:** The schema-invalid-as-legacy collapse is not confined to validation. Once a malformed modern `graph-metadata.json` is accepted through the legacy fallback, the explicit refresh path treats that payload as ordinary existing metadata, merges against it, and writes it back out as canonical current JSON. That launders a broken modern file into a clean-looking refreshed artifact with no legacy or repair marker.

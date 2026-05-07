@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 # Implementation Summary
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Changes to `.opencode/skill/system-spec-kit/scripts/spec/create.sh`:
+Changes to `.opencode/skills/system-spec-kit/scripts/spec/create.sh`:
 
 1. **`--parent|--phase-parent` merged parser**: Single case block with `phase_parent_flag` tracking which flag was used. Duplicate code eliminated. Conflict check rejects both flags simultaneously.
 2. **`allow_nested_parent` validation mode**: Third parameter to `resolve_and_validate_spec_path()`. When `"true"`, validates leaf basename against `^[0-9]{2,3}[-]+[A-Za-z0-9._-]+$` — accepts both spec folders (`NNN-name`) and track folders (`NN--name`) while rejecting non-spec directories like `z_archive/` or `scratch/`.

@@ -96,7 +96,7 @@ Convert all three into hard guarantees:
 ### In Scope
 
 - `.opencode/plugins/spec-kit-skill-advisor.js`: convert module-global `let`/`const` state to per-instance closure variables; wire all helper functions through closure-captured state; add `inFlight` Map for dedup; add `MAX_PROMPT_BYTES`, `MAX_BRIEF_CHARS`, `MAX_CACHE_ENTRIES` constants and apply at the right boundaries.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`: extend existing 23 tests with cases for two-instance independence, in-flight dedup with `Promise.all`, prompt clamp, brief clamp, and LRU eviction.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`: extend existing 23 tests with cases for two-instance independence, in-flight dedup with `Promise.all`, prompt clamp, brief clamp, and LRU eviction.
 - This packet's own docs.
 
 ### Out of Scope
@@ -109,7 +109,7 @@ Convert all three into hard guarantees:
 | Path | Change Type | Description |
 |------|-------------|-------------|
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | State refactor + in-flight dedup + size caps + LRU eviction |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Modify | New test cases for the 3 hardening items |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Modify | New test cases for the 3 hardening items |
 | Parent docs (`009-hook-parity/`) | Modify | Record phase outcome |
 <!-- /ANCHOR:scope -->
 
@@ -202,5 +202,5 @@ None remaining at spec time. ADR-005 in packet 007 enumerated the three deferral
 
 - Sibling packet (source of deferrals): `../../009-hook-parity/005-opencode-plugin-loader-remediation/decision-record.md` ADR-005
 - Plugin file: `.opencode/plugins/spec-kit-skill-advisor.js` lines 28-36 (module-global state), 298-322 (`getAdvisorContext`), 348-405 (`appendAdvisorBrief`)
-- Existing test file: `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`
+- Existing test file: `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`
 - Compact plugin reference: `.opencode/plugins/spec-kit-compact-code-graph.js` (similar plugin, can be consulted for closure-state pattern if needed)

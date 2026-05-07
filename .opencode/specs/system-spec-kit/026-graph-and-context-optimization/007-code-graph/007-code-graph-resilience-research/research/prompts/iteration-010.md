@@ -17,10 +17,10 @@ Iteration 6 found edge weights are hard-coded (CONTAINS=1.0, IMPORTS=1.0, EXTEND
 
 ## Required reads
 1. `research/iterations/iteration-006.md`
-2. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` — `IndexerConfig` interface, edge type enum, weight constants
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — focus on edge-emission functions (lines 895-1071, 1357-1377)
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` — `code_graph_metadata` table schema (line 95-115)
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` — current status response shape
+2. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` — `IndexerConfig` interface, edge type enum, weight constants
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — focus on edge-emission functions (lines 895-1071, 1357-1377)
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` — `code_graph_metadata` table schema (line 95-115)
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` — current status response shape
 
 ## What to look for
 - Where `IndexerConfig` is defined and what fields it has

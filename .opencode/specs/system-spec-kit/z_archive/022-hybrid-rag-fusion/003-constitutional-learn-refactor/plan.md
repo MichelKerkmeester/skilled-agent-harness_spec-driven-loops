@@ -8,7 +8,7 @@ trigger_phrases:
   - "constitutional"
 importance_tier: "important"
 contextType: "planning"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/plan.md -->"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/plan.md -->"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor"
@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["plan.md"]
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/plan.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/plan.md -->
 ---
 title: "Implementation Plan: Refactor /memory:learn → Constitutional Memory Manager"
 status: done
@@ -36,8 +36,8 @@ updated: 2026-03-08
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown command spec (AI prompt engineering) |
-| **Framework** | OpenCode command system (`.opencode/command/`) |
-| **Storage** | Constitutional memory files in `.opencode/skill/system-spec-kit/constitutional/` |
+| **Framework** | OpenCode command system (`.opencode/commands/`) |
+| **Storage** | Constitutional memory files in `.opencode/skills/system-spec-kit/constitutional/` |
 | **Testing** | Manual grep verification + cross-reference checks |
 
 The `/memory:learn` command is a markdown-based AI instruction file that defines behavior for the `memory:learn` skill invocation. The refactor replaces the generic learning classifier with a focused constitutional memory manager. No TypeScript/JavaScript code changes are required — only markdown command definitions and their cross-references.
@@ -67,13 +67,13 @@ The `/memory:learn` command is a markdown-based AI instruction file that defines
 The refactor is contained entirely within the OpenCode command layer — no runtime code changes:
 
 ```
-.opencode/command/memory/learn.md  ← primary rewrite target
-.opencode/command/memory/README.txt ← cross-ref update
+.opencode/commands/memory/learn.md  ← primary rewrite target
+.opencode/commands/memory/README.txt ← cross-ref update
 CLAUDE.md                           ← quick-reference update
-.opencode/skill/system-spec-kit/README.md ← description update
+.opencode/skills/system-spec-kit/README.md ← description update
 ```
 
-The constitutional memory files themselves live in `.opencode/skill/system-spec-kit/constitutional/` and are managed by the MCP server's `memory_save()` handler for indexing.
+The constitutional memory files themselves live in `.opencode/skills/system-spec-kit/constitutional/` and are managed by the MCP server's `memory_save()` handler for indexing.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -83,7 +83,7 @@ The constitutional memory files themselves live in `.opencode/skill/system-spec-
 
 ### Phase 1: Core Command Rewrite
 
-### Step 1: Rewrite `.opencode/command/memory/learn.md`
+### Step 1: Rewrite `.opencode/commands/memory/learn.md`
 
 Complete replacement of the 620-line generic learning capture with a ~250-line constitutional memory manager.
 
@@ -103,7 +103,7 @@ Complete replacement of the 620-line generic learning capture with a ~250-line c
 
 ### Phase 2: Cross-Reference Updates and Verification
 
-### Step 2: Update `.opencode/command/memory/README.txt`
+### Step 2: Update `.opencode/commands/memory/README.txt`
 
 - Update learn command description in table (line 50)
 - Replace learn subcommands table (lines 66-73)
@@ -114,7 +114,7 @@ Complete replacement of the 620-line generic learning capture with a ~250-line c
 - Quick Reference table: "Learn from mistakes" → "Create constitutional memory"
 - Any other references to old learning types
 
-### Step 4: Update `.opencode/skill/system-spec-kit/README.md`
+### Step 4: Update `.opencode/skills/system-spec-kit/README.md`
 
 - Line 525 area: update /memory:learn description
 
@@ -168,5 +168,5 @@ Complete replacement of the 620-line generic learning capture with a ~250-line c
 ### Risk and Dependencies
 
 - **Risk**: Existing users may expect old `/memory:learn` behavior — mitigated by updating all cross-references
-- **Dependency**: `.opencode/skill/system-spec-kit/constitutional/` directory must exist (already does)
+- **Dependency**: `.opencode/skills/system-spec-kit/constitutional/` directory must exist (already does)
 - **Dependency**: `memory_save()` MCP handler must support constitutional tier (already does)

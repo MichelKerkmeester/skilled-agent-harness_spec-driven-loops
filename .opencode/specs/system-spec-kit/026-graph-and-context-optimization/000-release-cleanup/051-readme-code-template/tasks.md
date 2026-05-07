@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Use checklist.md for verification"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/readme_template.md"
-      - ".opencode/skill/sk-doc/assets/documentation/readme_code_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_code_template.md"
     session_dedup:
       fingerprint: "sha256:0510000000000000000000000000000000000000000000000000000000000003"
       session_id: "task-10-readme-code-template-diagram-evidence"
@@ -75,7 +75,7 @@ _memory:
 - [x] T014 Record directory trees as intentional tree blocks, not diagrams requiring box drawing style [Evidence: implementation-summary.md]
 - [x] T016 Record code-folder README P1 batches complete [Evidence: implementation-summary.md]
 - [x] T017 Record code-folder README P2 batches 01-22 complete [Evidence: implementation-summary.md]
-- [x] T018 Record final fix for `.opencode/skill/system-spec-kit/shared/README.md` [Evidence: checklist.md and implementation-summary.md]
+- [x] T018 Record final fix for `.opencode/skills/system-spec-kit/shared/README.md` [Evidence: checklist.md and implementation-summary.md]
 - [x] T019 Record batch validation summaries [Evidence: checklist.md and implementation-summary.md]
 - [x] T020 Record known exceptions and final-review notes [Evidence: checklist.md and implementation-summary.md]
 - [x] T022 Record explicit README sweep target manifest [Evidence: implementation-summary.md]

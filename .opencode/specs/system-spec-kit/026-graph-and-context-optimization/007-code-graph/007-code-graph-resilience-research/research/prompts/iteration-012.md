@@ -16,8 +16,8 @@ You are running iteration 12 of 12 in a deep-research loop on code-graph resilie
 ## Required reads
 1. `research/iterations/iteration-008.md` (content-hash) through `iteration-011.md` (self-healing)
 2. `assets/code-graph-gold-queries.json` — the schema you're going to execute
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (locate via grep — it's the handler for code_graph_query MCP tool)
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/index.ts` or wherever MCP tools are registered
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` (locate via grep — it's the handler for code_graph_query MCP tool)
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/index.ts` or wherever MCP tools are registered
 
 ## What to look for
 - The exact `code_graph_query` MCP tool signature today (input/output shape)

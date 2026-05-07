@@ -189,11 +189,11 @@ Major artifacts created/modified:
 - `handlers/memory-context.js` - Context handler with progressive disclosure
 
 **New Commands**:
-- `.opencode/command/memory/continue.md` - Resume session context
-- `.opencode/command/memory/context.md` - Get current context
-- `.opencode/command/memory/why.md` - Explain memory decisions
-- `.opencode/command/memory/correct.md` - Correct memory entries
-- `.opencode/command/memory/learn.md` - Learn from corrections
+- `.opencode/commands/memory/continue.md` - Resume session context
+- `.opencode/commands/memory/context.md` - Get current context
+- `.opencode/commands/memory/why.md` - Explain memory decisions
+- `.opencode/commands/memory/correct.md` - Correct memory entries
+- `.opencode/commands/memory/learn.md` - Learn from corrections
 
 <!-- /ANCHOR:artifacts -->
 
@@ -286,13 +286,13 @@ Next: Production deployment or further enhancements
 
 ```bash
 # Check core libraries exist
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/session/
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/search/
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/architecture/
+ls -la .opencode/skills/system-spec-kit/mcp_server/lib/session/
+ls -la .opencode/skills/system-spec-kit/mcp_server/lib/search/
+ls -la .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/
+ls -la .opencode/skills/system-spec-kit/mcp_server/lib/architecture/
 
 # Check new commands exist
-ls -la .opencode/command/memory/
+ls -la .opencode/commands/memory/
 ```
 
 <!-- /ANCHOR:recovery-hints -->
@@ -422,17 +422,17 @@ trigger_phrases:
   - "self-improving memory"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.js"
-  - ".opencode/command/memory/continue.md"
-  - ".opencode/command/memory/context.md"
-  - ".opencode/command/memory/why.md"
-  - ".opencode/command/memory/correct.md"
-  - ".opencode/command/memory/learn.md"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.js"
+  - ".opencode/commands/memory/continue.md"
+  - ".opencode/commands/memory/context.md"
+  - ".opencode/commands/memory/why.md"
+  - ".opencode/commands/memory/correct.md"
+  - ".opencode/commands/memory/learn.md"
 
 # Relationships
 related_sessions:

@@ -155,7 +155,7 @@ contextType: "implementation"
 
 ### Task 3D: Update Memory Commands
 - [x] **Status:** Complete
-- **Files:** `.opencode/command/memory/*.md`
+- **Files:** `.opencode/commands/memory/*.md`
 - **Changes:**
   - [x] save.md: Lines 135, 275, 316, 485
   - [x] search.md: Line 586
@@ -163,7 +163,7 @@ contextType: "implementation"
 
 ### Task 3E: Update SpecKit Command YAMLs
 - [x] **Status:** Complete
-- **Files:** `.opencode/command/spec_kit/assets/*.yaml`
+- **Files:** `.opencode/commands/spec_kit/assets/*.yaml`
 - **Changes:**
   - [x] spec_kit_complete_auto.yaml: 6 refs
   - [x] spec_kit_complete_confirm.yaml: 6 refs
@@ -176,7 +176,7 @@ contextType: "implementation"
 
 ### Task 3F: Update Create Commands
 - [x] **Status:** Complete
-- **Files:** `.opencode/command/create/assets/*.yaml`, `.opencode/command/create/*.md`
+- **Files:** `.opencode/commands/create/assets/*.yaml`, `.opencode/commands/create/*.md`
 - **Changes:**
   - [x] create_skill.yaml: 2 refs
   - [x] create_skill_asset.yaml: 2 refs
@@ -203,7 +203,7 @@ contextType: "implementation"
 
 ### Task 3H: Update Orchestrator Agent
 - [x] **Status:** Complete
-- **File:** `.opencode/agent/orchestrator.md`
+- **File:** `.opencode/agents/orchestrator.md`
 - **Changes:**
   - [x] Line 88: Skill routing table
   - [x] Line 152: Agent assignments

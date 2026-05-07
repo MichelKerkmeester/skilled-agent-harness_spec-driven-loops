@@ -7,7 +7,7 @@ Analyze the gap between Claude hooks and Gemini hooks, and determine the strateg
 
 ### Current State
 
-Claude already has three project-wired context-preservation hooks: `SessionStart -> session-prime.js`, `PreCompact -> compact-inject.js`, and `Stop -> session-stop.js`. They handle startup/resume priming, pre-compaction cache generation, and per-turn/session state capture. [SOURCE: .claude/settings.local.json] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts]
+Claude already has three project-wired context-preservation hooks: `SessionStart -> session-prime.js`, `PreCompact -> compact-inject.js`, and `Stop -> session-stop.js`. They handle startup/resume priming, pre-compaction cache generation, and per-turn/session state capture. [SOURCE: .claude/settings.local.json] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts]
 
 Gemini in this repo has MCP servers, agents, and instruction-file config, but no `hooks` section at all, so none of that runtime-specific preservation exists today. [SOURCE: .gemini/settings.json]
 
@@ -23,9 +23,9 @@ Gemini CLI is no longer missing hooks as a platform; this project is missing Gem
 
 Relevant Claude event families for this gap:
 
-- `SessionStart` -- startup/resume/clear/compact entry point; can inject context. This project uses it for priming and compact recovery. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts]
-- `PreCompact` -- fires before compaction; this project uses it to build and cache a merged recovery brief. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts]
-- `Stop` -- post-turn lifecycle hook; this project uses it for token snapshots, spec-folder detection, summary extraction, and auto-save hints. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts]
+- `SessionStart` -- startup/resume/clear/compact entry point; can inject context. This project uses it for priming and compact recovery. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts]
+- `PreCompact` -- fires before compaction; this project uses it to build and cache a merged recovery brief. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts]
+- `Stop` -- post-turn lifecycle hook; this project uses it for token snapshots, spec-folder detection, summary extraction, and auto-save hints. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts]
 - Broader Claude surface also includes prompt, tool, notification, session-end, and subagent lifecycle hooks; those matter for general parity, but not for the current preservation port.
 
 ### Gemini Hook Events
@@ -68,7 +68,7 @@ Important Gemini contract differences:
 
 - Description: Port the three Claude behaviors into Gemini-native hook files without refactoring Claude. Because compaction needs a deferred injection point, this is really a 4-hook Gemini setup: `SessionStart`, `PreCompress`, `BeforeAgent`/`BeforeModel`, `AfterAgent` (+ optional `AfterModel`).
 - LOC estimate: 180-320
-- Files to change: `.gemini/settings.json`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts`
+- Files to change: `.gemini/settings.json`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts`
 - Dependencies: Gemini JSON-output adapter, Gemini-specific state dir, build output under `dist/hooks/gemini`, usage handling via `AfterModel` or Gemini transcript format
 - Risk: MEDIUM — fastest path, but duplicates logic and still must solve the compaction mismatch cleanly
 
@@ -115,7 +115,7 @@ That should deliver most of the value without destabilizing Claude.
 1. Add a `hooks` block to `.gemini/settings.json`; Gemini registration lives there, not in `.claude/settings.local.json`.
 2. Port `session-prime` first. This is the highest-confidence win because `SessionStart` maps directly for `startup`, `resume`, and `clear`.
 3. Split `compact-inject` into two Gemini phases: `PreCompress` cache writer and `BeforeAgent` one-shot injector.
-4. Rebuild `session-stop` as `AfterAgent` + `AfterModel`, not as a direct transcript-parser clone. The current `claude-transcript.ts` is Claude-specific and should not be reused as-is. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts]
+4. Rebuild `session-stop` as `AfterAgent` + `AfterModel`, not as a direct transcript-parser clone. The current `claude-transcript.ts` is Claude-specific and should not be reused as-is. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts]
 5. If the Gemini port proves stable, then extract shared core helpers so Claude and Gemini stop drifting.
 
 ## Metadata

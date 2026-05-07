@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       "checklist.md",
       "tests/crash-recovery.vitest.ts",
       "spec.md",
@@ -54,7 +54,7 @@
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {

@@ -51,7 +51,7 @@ _memory:
 
 - [x] CHK-010 [P0] Research auto and confirm workflows use the `research/` packet root and `research/iterations/` consistently [EVIDENCE: user-provided implementation evidence states commands migrated to the canonical `research/` contract across the touched repo surfaces in this session]
 - [x] CHK-011 [P0] Review auto and confirm workflows normalize iteration files into `review/iterations/` [EVIDENCE: user-provided implementation evidence states commands migrated to the canonical `review/iterations/` contract across the touched repo surfaces in this session]
-- [x] CHK-012 [P1] Canonical runtime packet guidance and mirrored runtime agents describe the same packet layout for the touched surfaces [EVIDENCE: user-provided implementation evidence confirms runtime parity fixes landed, including `.opencode/agent/speckit.md` and `.claude/agents/speckit.md`, alongside the broader command or skill or runtime contract migration]
+- [x] CHK-012 [P1] Canonical runtime packet guidance and mirrored runtime agents describe the same packet layout for the touched surfaces [EVIDENCE: user-provided implementation evidence confirms runtime parity fixes landed, including `.opencode/agents/speckit.md` and `.claude/agents/speckit.md`, alongside the broader command or skill or runtime contract migration]
 - [x] CHK-013 [P1] `system-spec-kit` helper logic resolves the new packet paths and excludes iteration folders from canonical indexing [EVIDENCE: helper and runtime updates landed in `mcp_server/lib/config/spec-doc-paths.ts`, `mcp_server/lib/parsing/memory-parser.ts`, `mcp_server/handlers/memory-index-discovery.ts`, `scripts/lib/frontmatter-migration.ts`, and `shared/scoring/folder-scoring.ts`]
 <!-- /ANCHOR:code-quality -->
 
@@ -72,8 +72,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] Migration logic moves only the approved deep-research packet whitelist [EVIDENCE: the landed migration support includes `.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts`, and the corpus run completed with `Skipped conflicts: 0` while zero-count sweeps confirmed only the targeted legacy packet paths were eliminated]
-- [x] CHK-031 [P1] Unrelated `scratch/` temp files remain untouched during corpus migration [EVIDENCE: migration support was implemented as packet-path-specific logic in `.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts` rather than a broad scratch-folder rewrite]
+- [x] CHK-030 [P0] Migration logic moves only the approved deep-research packet whitelist [EVIDENCE: the landed migration support includes `.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts`, and the corpus run completed with `Skipped conflicts: 0` while zero-count sweeps confirmed only the targeted legacy packet paths were eliminated]
+- [x] CHK-031 [P1] Unrelated `scratch/` temp files remain untouched during corpus migration [EVIDENCE: migration support was implemented as packet-path-specific logic in `.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts` rather than a broad scratch-folder rewrite]
 - [x] CHK-032 [P1] Legacy recognition remains bounded and does not silently create duplicate canonical packet roots [EVIDENCE: intentional helper tolerance remains in the landed path logic, while post-migration packet sweeps show zero residual duplicate canonical research or review iteration paths in `.opencode/specs`]
 <!-- /ANCHOR:security -->
 
@@ -84,7 +84,7 @@ _memory:
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, and `decision-record.md` are synchronized for the migration packet [EVIDENCE: packet authored in this task]
 - [x] CHK-041 [P1] The packet explicitly names the canonical runtime reference convention and mirrored runtime parity requirement [EVIDENCE: `spec.md` and `plan.md`]
-- [x] CHK-042 [P2] First-party command and skill docs are updated to the new packet contract [EVIDENCE: `.opencode/command/spec_kit/deep-research.md`, `.opencode/skill/sk-deep-research/SKILL.md`, `.opencode/skill/sk-deep-research/README.md`, `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-research/references/quick_reference.md`, manual playbook files under `.opencode/skill/sk-deep-research/manual_testing_playbook/`, `.agents/commands/spec_kit/plan.toml`, `.agents/commands/spec_kit/complete.toml`, `.agents/commands/spec_kit/phase.toml`, and `.agents/workflows/spec_kit_research.md` were aligned to `/spec_kit:deep-research` and `@deep-research`; `.opencode/skill/sk-deep-research/SKILL.md` is now version `1.2.2.0`, and `.opencode/changelog/12--sk-deep-research/v1.2.2.0.md` was added for this migration]
+- [x] CHK-042 [P2] First-party command and skill docs are updated to the new packet contract [EVIDENCE: `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/quick_reference.md`, manual playbook files under `.opencode/skills/sk-deep-research/manual_testing_playbook/`, `.agents/commands/spec_kit/plan.toml`, `.agents/commands/spec_kit/complete.toml`, `.agents/commands/spec_kit/phase.toml`, and `.agents/workflows/spec_kit_research.md` were aligned to `/spec_kit:deep-research` and `@deep-research`; `.opencode/skills/sk-deep-research/SKILL.md` is now version `1.2.2.0`, and `.opencode/changelog/12--sk-deep-research/v1.2.2.0.md` was added for this migration]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -138,7 +138,7 @@ _memory:
 
 - [x] CHK-120 [P0] Rollback approach is documented in `plan.md` [EVIDENCE: rollback sections]
 - [x] CHK-121 [P1] Verification commands and evidence are captured after implementation [EVIDENCE: this checklist and `implementation-summary.md` now record the build, typecheck, targeted Vitest, CLI, command-workflow, migration, sweep results, the post-closeout `.agents` parity sync evidence, and the final release-housekeeping evidence for `sk-deep-research` version `1.2.2.0` plus changelog `v1.2.2.0`]
-- [x] CHK-122 [P1] Representative migrated packets validate cleanly after the corpus migration [EVIDENCE: after fixing the migration utility rewrite regression, `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/023-esm-module-compliance' --strict` passed with `0` errors and `0` warnings]
+- [x] CHK-122 [P1] Representative migrated packets validate cleanly after the corpus migration [EVIDENCE: after fixing the migration utility rewrite regression, `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/023-esm-module-compliance' --strict` passed with `0` errors and `0` warnings]
 <!-- /ANCHOR:deploy-ready -->
 
 ---

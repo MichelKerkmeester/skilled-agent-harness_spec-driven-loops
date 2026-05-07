@@ -98,7 +98,7 @@ _memory:
 
 - [x] CHK-030 [P0] No secrets or credentials added; verify `rg "SPECKIT_CODE_GRAPH_INDEX_SKILLS=.*[A-Za-z0-9]{20}"` returns no matches.
 - [x] CHK-031 [P0] Tool input validation remains strict; verify unknown property rejection still passes in `tool-input-schema.vitest.ts`.
-- [x] CHK-032 [P1] Path filtering stays deny-by-default for skill internals; verify `.opencode/skill/**` is excluded unless opt-in is true.
+- [x] CHK-032 [P1] Path filtering stays deny-by-default for skill internals; verify `.opencode/skills/**` is excluded unless opt-in is true.
 <!-- /ANCHOR:security -->
 
 ---
@@ -209,10 +209,10 @@ _memory:
 ### Gate 1 (Phase 1): scope helpers + tests
 
 - [x] CHK-G1-01 [P0] Live import paths checked before helper placement; evidence: `index-scope-policy.ts` was created to avoid coupling `index-scope.ts` to `indexer-types.ts`.
-- [x] CHK-G1-02 [P0] `index-scope.ts` rejects `.opencode/skill/**` by default and accepts explicit opt-in; evidence: `shouldIndexForCodeGraph()` takes `scopePolicy`, tested in `code-graph-indexer.vitest.ts`.
-- [x] CHK-G1-03 [P0] `indexer-types.ts` default excludes include `.opencode/skill/**` and omit it only with opt-in; evidence: `getDefaultConfig()` tests cover default, env, per-call, and `mcp-coco-index` carve-out.
+- [x] CHK-G1-02 [P0] `index-scope.ts` rejects `.opencode/skills/**` by default and accepts explicit opt-in; evidence: `shouldIndexForCodeGraph()` takes `scopePolicy`, tested in `code-graph-indexer.vitest.ts`.
+- [x] CHK-G1-03 [P0] `indexer-types.ts` default excludes include `.opencode/skills/**` and omit it only with opt-in; evidence: `getDefaultConfig()` tests cover default, env, per-call, and `mcp-coco-index` carve-out.
 - [x] CHK-G1-04 [P0] `scan.ts` reads `SPECKIT_CODE_GRAPH_INDEX_SKILLS` and `includeSkills`; evidence: `resolveIndexScopePolicy()` is called from `scan.ts` and `code-graph-scan.vitest.ts` verifies per-call opt-in.
-- [x] CHK-G1-05 [P0] `structural-indexer.ts` applies the same policy during candidate walking; evidence: fixture test skips `.opencode/skill/**` before parse by default and includes it with opt-in.
+- [x] CHK-G1-05 [P0] `structural-indexer.ts` applies the same policy during candidate walking; evidence: fixture test skips `.opencode/skills/**` before parse by default and includes it with opt-in.
 - [x] CHK-G1-06 [P0] Strict tool schema accepts `includeSkills` and rejects unknown fields; evidence: `tool-input-schema.vitest.ts` accepts boolean `includeSkills` and rejects non-boolean/unknown fields.
 - [x] CHK-G1-07 [P1] Focused Phase 1 Vitest command passes; evidence: 2 files and 125 tests passed.
 - [x] CHK-G1-08 [P1] Tests restore process env after env opt-in cases; evidence: `afterEach()` deletes `SPECKIT_CODE_GRAPH_INDEX_SKILLS` and repeated focused run passed.
@@ -228,7 +228,7 @@ _memory:
 
 ### Gate 3 (Phase 3): docs + verification
 
-- [x] CHK-G3-01 [P1] Code graph README documents default `.opencode/skill/**` exclusion; evidence: `code_graph/README.md` section 8 lists default exclusions.
+- [x] CHK-G3-01 [P1] Code graph README documents default `.opencode/skills/**` exclusion; evidence: `code_graph/README.md` section 8 lists default exclusions.
 - [x] CHK-G3-02 [P1] ENV reference documents `SPECKIT_CODE_GRAPH_INDEX_SKILLS=false` default; evidence: `ENV_REFERENCE.md` Graph table includes the default-off row.
 - [x] CHK-G3-03 [P0] README documents full-scan migration for existing databases; evidence: `code_graph/README.md` shows `{ "incremental": false }` migration.
 - [x] CHK-G3-04 [P0] Startup/status copy avoids changing Gate 3 or spec-level workflow text; evidence: workflow-invariance Vitest passed with 1 file and 2 tests.

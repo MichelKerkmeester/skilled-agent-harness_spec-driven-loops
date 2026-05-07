@@ -32,7 +32,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -69,7 +69,7 @@ The findings packet was extended in-place to land the three P0 cluster fixes:
   - Files: `mcp_server/lib/search/intent-classifier.ts` and `mcp_server/handlers/memory-context.ts`.
 
 - **Cluster 3 — Output Rendering Vocabulary (REQ-003)**:
-  - Added a "Forbidden Phrase Enforcement" subsection to the canonical command spec at `.opencode/command/memory/search.md` §4A Step 4b. The subsection is a literal substitution table covering "Auto-triggered memories", "Triggered memories", "Constitutional memories", and the standalone "Memories" header; spells out a mandatory pre-render gate the assistant runs before emitting; and provides a regression-safe `grep -Eci` verification command.
+  - Added a "Forbidden Phrase Enforcement" subsection to the canonical command spec at `.opencode/commands/memory/search.md` §4A Step 4b. The subsection is a literal substitution table covering "Auto-triggered memories", "Triggered memories", "Constitutional memories", and the standalone "Memories" header; spells out a mandatory pre-render gate the assistant runs before emitting; and provides a regression-safe `grep -Eci` verification command.
   - Source-side runtime is rendered by the assistant, so the only correct repair surface was the spec — server-side renderer was rejected to keep the change surgical.
 
 ### Verification
@@ -81,7 +81,7 @@ The findings packet was extended in-place to land the three P0 cluster fixes:
   - `classifyIntent("fix the login bug")` → `fix_bug` (single-keyword regression-safe)
   - `enforceTokenBudget` under-budget → `truncated:false`, full results preserved
   - `enforceTokenBudget` true over-budget → `returnedResultCount` matches `data.results.length`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` → PASSED (0 errors, 0 warnings).
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` → PASSED (0 errors, 0 warnings).
 
 ### Out of Scope This Packet
 
@@ -113,7 +113,7 @@ Clusters 4-7 (P1 / P2) remain deferred per the original plan. Boundary respected
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-1. Read the canonical command spec at `.opencode/command/memory/search.md` to establish the contract.
+1. Read the canonical command spec at `.opencode/commands/memory/search.md` to establish the contract.
 2. Reviewed the conversation transcript for observable defects.
 3. Ran live MCP probes (`memory_context`, `memory_causal_stats`) to confirm and expand the defect set with hard evidence.
 4. Cross-referenced each defect against the spec to separate contract violations from undocumented gaps.

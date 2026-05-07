@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,7 +53,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

@@ -8,28 +8,28 @@ Audit all newly-created code from packets 033, 034, and 036 against sk-code-open
 
 ### Read these first
 
-- `.opencode/skill/sk-code-opencode/SKILL.md` (the skill standards)
-- `.opencode/skill/sk-code-opencode/references/` (any embedded standard files — typescript.md, javascript.md, python.md, shell.md, jsonc.md if present)
-- `.opencode/skill/sk-code-opencode/assets/` (any quality checklists)
+- `.opencode/skills/sk-code-opencode/SKILL.md` (the skill standards)
+- `.opencode/skills/sk-code-opencode/references/` (any embedded standard files — typescript.md, javascript.md, python.md, shell.md, jsonc.md if present)
+- `.opencode/skills/sk-code-opencode/assets/` (any quality checklists)
 
 ### Files to audit (all NEW or MODIFIED by 033/034/036)
 
 From 033 (memory-retention-sweep):
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`
 - Modifications to: `lib/session/session-manager.ts`, `lib/governance/scope-governance.ts`, `handlers/index.ts`, `schemas/tool-input-schemas.ts`, `tool-schemas.ts`, `tools/memory-tools.ts`, `tools/types.ts`
 
 From 034 (half-auto upgrades):
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts`
 - Modifications to: `hooks/codex/user-prompt-submit.ts`, `hooks/copilot/custom-instructions.ts`, `skill_advisor/handlers/advisor-status.ts`, `skill_advisor/handlers/index.ts`, `skill_advisor/tools/index.ts`, `tool-schemas.ts`, `tools/index.ts`
 
 From 036 (CLI matrix adapter runners) — discover via git diff:
-- `git --no-pager diff --name-only $(git --no-pager log --grep '036' --format='%H' -1)~1 HEAD -- .opencode/skill/system-spec-kit/mcp_server/`
+- `git --no-pager diff --name-only $(git --no-pager log --grep '036' --format='%H' -1)~1 HEAD -- .opencode/skills/system-spec-kit/mcp_server/`
 
 If 036 hasn't merged yet at audit-time, audit only 033 + 034. Note 036 in audit-findings.md as "deferred to next audit cycle" if absent.
 
@@ -91,8 +91,8 @@ For each VIOLATION in the findings: apply the minimal fix using Edit. Re-audit t
 
 #### Phase 3: Verify
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` — must pass
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep advisor-rebuild hooks-codex-freshness` — all tests must still pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run memory-retention-sweep advisor-rebuild hooks-codex-freshness` — all tests must still pass
 
 ### Packet structure to create (Level 2)
 

@@ -101,6 +101,6 @@ _memory:
 - Successor: None — final phase of 078
 - 077 findings closed: F-001-001, F-002-002 (specifically), F-003-001, F-004-001, F-004-002, F-008-003
 - Findings partially-addressed (existing graph-metadata rule covers shape): F-002-001, F-002-003, F-002-004
-- Changelog: `.opencode/skill/mcp-coco-index/changelog/v1.3.1.0.md`
+- Changelog: `.opencode/skills/mcp-coco-index/changelog/v1.3.1.0.md`
 - New validator rules: check-graph-metadata-shape.sh + check-description-shape.sh
 <!-- /ANCHOR:cross-refs -->

@@ -24,14 +24,14 @@ The parser and discovery code treat `constitutional/README.md` as non-indexable,
 
 Evidence:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25` excludes `z_future`, `external`, and `z_archive`, but not constitutional README paths.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50` implements `isConstitutionalPath()` as a segment-only check.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967` shows intended behavior by requiring constitutional markdown files to have `basename !== 'readme.md'`.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223` applies the same README exclusion during constitutional file discovery.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313` rejects only `shouldIndexForMemory()` failures, then `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335` downgrades only when `!isConstitutionalPath(resolvedPath)`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449` uses `canonical_file_path || file_path` with `!isConstitutionalPath(guardPath)` as the downgrade gate.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25` excludes `z_future`, `external`, and `z_archive`, but not constitutional README paths.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50` implements `isConstitutionalPath()` as a segment-only check.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967` shows intended behavior by requiring constitutional markdown files to have `basename !== 'readme.md'`.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223` applies the same README exclusion during constitutional file discovery.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313` rejects only `shouldIndexForMemory()` failures, then `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335` downgrades only when `!isConstitutionalPath(resolvedPath)`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449` uses `canonical_file_path || file_path` with `!isConstitutionalPath(guardPath)` as the downgrade gate.
 
-Impact: a poisoned checkpoint or existing DB row at `.../.opencode/skill/<skill>/constitutional/README.md` can remain indexed as constitutional even though normal parser/discovery entry points exclude that file. This breaks the documented constitutional README invariant at the storage boundary.
+Impact: a poisoned checkpoint or existing DB row at `.../.opencode/skills/<skill>/constitutional/README.md` can remain indexed as constitutional even though normal parser/discovery entry points exclude that file. This breaks the documented constitutional README invariant at the storage boundary.
 
 Fix: move the README distinction into the shared SSOT, for example `isIndexableConstitutionalMemoryPath()`, and use it in parser, discovery, checkpoint restore, SQL update guards, and save-time tier validation. Add regressions for checkpoint restore and `memory_update` with `constitutional/README.md` fixtures.
 
@@ -75,13 +75,13 @@ Fix: add at least one concrete `path:line` citation to each completed `CHK-*` it
 {
   "claim": "Constitutional README can survive storage-layer checkpoint restore or SQL update as a constitutional memory even though parser/discovery exclude README files.",
   "evidenceRefs": [
-    ".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967",
-    ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335",
-    ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449"
+    ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:25",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:50",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:967",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:223",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1313",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1335",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:449"
   ],
   "counterevidenceSought": "Looked for README-specific exclusion in index-scope.ts, checkpoint restore validation, vector-index update guard, and focused tests. Parser/discovery have the exclusion, but storage-layer guards and tests do not.",
   "alternativeExplanation": "The team may intentionally rely on parser/discovery to prevent README rows. That does not cover restore/update paths, which operate on already-materialized database/checkpoint rows.",

@@ -50,7 +50,7 @@
       "implementation-summary.md",
       "research/deep-research-dashboard.md",
       "research/deep-research-state.jsonl",
-      ".opencode/agent/orchestrate.md"
+      ".opencode/agents/orchestrate.md"
     ],
     "entities": [
       {
@@ -110,7 +110,7 @@
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {

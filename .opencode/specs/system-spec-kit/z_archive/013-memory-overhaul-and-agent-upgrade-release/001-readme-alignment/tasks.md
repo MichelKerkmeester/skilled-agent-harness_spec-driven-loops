@@ -36,8 +36,8 @@ contextType: "implementation"
 ## Phase 1: P0 High-Priority READMEs
 
 - [ ] T001 Audit `.opencode/README.md` statistics table (counts: agents, skills, commands, templates, tests)
-- [ ] T002 Audit `.opencode/skill/system-spec-kit/README.md` (5 sources, 7 intents, schema v13, document-type scoring, check-placeholders.sh, upgrade-level.sh)
-- [ ] T003 Audit `.opencode/skill/system-spec-kit/mcp_server/README.md` (same as T002 + includeSpecDocs parameter)
+- [ ] T002 Audit `.opencode/skills/system-spec-kit/README.md` (5 sources, 7 intents, schema v13, document-type scoring, check-placeholders.sh, upgrade-level.sh)
+- [ ] T003 Audit `.opencode/skills/system-spec-kit/mcp_server/README.md` (same as T002 + includeSpecDocs parameter)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,7 +71,7 @@ contextType: "implementation"
 - [ ] T048-T050 Audit remaining 3 shared/ sub-directory READMEs
 
 ### Global skill READMEs
-- [ ] T051 Audit `.opencode/skill/README.md` (9 skills, cross-references current)
+- [ ] T051 Audit `.opencode/skills/README.md` (9 skills, cross-references current)
 - [ ] T052 Audit `.opencode/install_guides/README.md` (Node modules relocation spec 120)
 
 ### Workflow skill READMEs (6 files)

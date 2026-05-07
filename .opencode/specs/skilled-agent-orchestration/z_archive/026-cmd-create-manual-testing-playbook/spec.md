@@ -31,7 +31,7 @@ This packet defines the implementation contract for `/create:testing-playbook`, 
 
 **Key Decisions**: Keep the requested command name `/create:testing-playbook` while generating the canonical `manual_testing_playbook/` folder; require the playbook creation reference and both testing-playbook templates as source inputs.
 
-**Critical Dependencies**: `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`, `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`, and spec `021-sk-doc-feature-catalog-testing-playbook`.
+**Critical Dependencies**: `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`, `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`, and spec `021-sk-doc-feature-catalog-testing-playbook`.
 
 ---
 
@@ -66,10 +66,10 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 ## 3. SCOPE
 
 ### In Scope
-- Add a canonical command entrypoint at `.opencode/command/create/testing-playbook.md`.
+- Add a canonical command entrypoint at `.opencode/commands/create/testing-playbook.md`.
 - Add paired workflow assets:
-  - `.opencode/command/create/assets/create_testing_playbook_auto.yaml`
-  - `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`
+  - `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`
+  - `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`
 - Add the runtime mirror `.agents/commands/create/testing-playbook.toml`.
 - Define command setup flow for:
   - target skill name
@@ -78,9 +78,9 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
   - `:auto|:confirm` execution mode
   - source strategy based on an existing feature catalog or manual scenario inventory
 - Require the command to load:
-  - `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
+  - `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
 - Define output contract for `<skill-root>/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` plus numbered root-level category folders and per-feature files.
 - Require the output to follow the integrated root-guidance model and explicitly forbid canonical sidecar playbook files.
 - Scope the implementation to existing create-command patterns, runtime mirrors, and command-advertising docs that list live create commands.
@@ -95,14 +95,14 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/testing-playbook.md` | Create | Canonical command definition for `/create:testing-playbook` |
-| `.opencode/command/create/assets/create_testing_playbook_auto.yaml` | Create | Auto-mode workflow |
-| `.opencode/command/create/assets/create_testing_playbook_confirm.yaml` | Create | Confirm-mode workflow |
+| `.opencode/commands/create/testing-playbook.md` | Create | Canonical command definition for `/create:testing-playbook` |
+| `.opencode/commands/create/assets/create_testing_playbook_auto.yaml` | Create | Auto-mode workflow |
+| `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml` | Create | Confirm-mode workflow |
 | `.agents/commands/create/testing-playbook.toml` | Create | Runtime mirror for the command |
-| `.opencode/command/create/README.txt` | Modify | Add the new command to the create-command inventory |
-| `.opencode/command/README.txt` | Modify | Keep top-level command catalog aligned |
+| `.opencode/commands/create/README.txt` | Modify | Add the new command to the create-command inventory |
+| `.opencode/commands/README.txt` | Modify | Keep top-level command catalog aligned |
 | `.opencode/README.md` | Modify | Reflect the new create command in runtime-facing docs |
-| `.opencode/agent/write.md` | Modify | Add the command to write-agent guidance where create commands are enumerated |
+| `.opencode/agents/write.md` | Modify | Add the command to write-agent guidance where create commands are enumerated |
 | `.claude/agents/write.md` | Modify | Keep ChatGPT runtime write guidance aligned |
 | `.codex/agents/write.toml` | Modify | Keep Codex runtime create-command inventory aligned |
 | `.agents/agents/write.md` | Modify | Keep `.agents` runtime guidance aligned |
@@ -117,7 +117,7 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Canonical command entrypoints exist | `.opencode/command/create/testing-playbook.md`, the paired YAML assets, and `.agents/commands/create/testing-playbook.toml` all exist and refer to the same command |
+| REQ-001 | Canonical command entrypoints exist | `.opencode/commands/create/testing-playbook.md`, the paired YAML assets, and `.agents/commands/create/testing-playbook.toml` all exist and refer to the same command |
 | REQ-002 | The command uses the shipped testing-playbook contract | The command loads the playbook creation reference plus both testing-playbook templates and scaffolds the root playbook file under `manual_testing_playbook/` plus numbered category folders of per-feature files |
 | REQ-003 | The generated playbook follows the integrated root-guidance model | Output contains root-owned review/orchestration guidance and does not create legacy review/ledger sidecars or a `snippets/` subtree |
 | REQ-004 | Setup flow captures the required routing decisions | The command supports `<skill-name> [create|update] [--path <dir>] [:auto|:confirm]` and explicitly collects target path, operation, source strategy, and execution mode |
@@ -150,7 +150,7 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 2. **Given** a maintainer runs `/create:testing-playbook my-skill update :confirm`, **when** an existing playbook is present, **then** the workflow routes through an update-aware flow and preserves the canonical package naming.
 3. **Given** the generated package is inspected, **when** reviewers look for sidecar review docs or a `snippets/` subtree, **then** neither exists because the guidance lives in the root playbook and the per-feature files live in root-level numbered folders.
 4. **Given** runtime consumers inspect command menus, **when** they look for testing-playbook generation support, **then** `/create:testing-playbook` appears consistently across the live create-command inventories.
-5. **Given** the command is invoked with `--path custom/skills`, **when** the workflow resolves the skill root, **then** output still lands in that custom parent instead of silently falling back to `.opencode/skill/`.
+5. **Given** the command is invoked with `--path custom/skills`, **when** the workflow resolves the skill root, **then** output still lands in that custom parent instead of silently falling back to `.opencode/skills/`.
 6. **Given** a feature catalog already exists, **when** the workflow derives scenario inventory from it, **then** the generated playbook still preserves integrated root guidance and realistic prompt scaffolding.
 <!-- /ANCHOR:success-criteria -->
 
@@ -194,7 +194,7 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 ### Data Boundaries
 - A skill may have a feature catalog already; the command should use that as the preferred input source for scenario inventory.
 - A skill may have no catalog; the command should still support manual scenario inventory capture.
-- A custom `--path` may target a non-default skill root parent and must not silently fall back to `.opencode/skill/`.
+- A custom `--path` may target a non-default skill root parent and must not silently fall back to `.opencode/skills/`.
 
 ### Error Scenarios
 - Existing `manual_testing_playbook/` content is present during `create`; the command should stop or switch to the documented update path.

@@ -70,7 +70,7 @@ The second question was effectively answered by implementation (staged with allo
 
 ### 2.5 [MEDIUM] CI Workflow Only Triggers on spec-kit Path Changes
 
-**Finding:** The CI workflow at `.github/workflows/system-spec-kit-boundary-enforcement.yml` only triggers on changes to `.opencode/skill/system-spec-kit/**`. This means:
+**Finding:** The CI workflow at `.github/workflows/system-spec-kit-boundary-enforcement.yml` only triggers on changes to `.opencode/skills/system-spec-kit/**`. This means:
 
 - If someone modifies files outside this path that somehow affect the boundary (unlikely but possible with symlinks or tooling changes), the checks won't run.
 - The workflow does not run on a schedule (e.g., weekly cron), so allowlist expiry (once wired in) would only be caught when code changes happen to touch the spec-kit path.

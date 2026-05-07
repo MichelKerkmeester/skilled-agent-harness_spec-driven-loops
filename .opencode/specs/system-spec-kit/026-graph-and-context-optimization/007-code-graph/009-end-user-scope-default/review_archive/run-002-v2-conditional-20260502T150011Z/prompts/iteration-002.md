@@ -36,24 +36,24 @@ Your dimension this iter: **maintainability**.
 
 ## REVIEW SCOPE FILES (in-scope)
 
-- .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
-- .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
-- .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/README.md
-- .opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md
+- .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+- .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/README.md
+- .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md
 
 ## SPEC DOCS (read for traceability ONLY — not in-scope for findings)
 

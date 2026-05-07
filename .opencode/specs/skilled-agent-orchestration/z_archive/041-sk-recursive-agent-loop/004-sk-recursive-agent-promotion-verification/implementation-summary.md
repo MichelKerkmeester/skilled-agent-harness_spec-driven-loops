@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -43,11 +43,11 @@ This phase turned the remaining agent-improver verification claims into packet-l
 
 What changed:
 - `score-candidate.cjs` now recognizes a small set of extra handover structure signals so a materially clearer handover agent can beat the baseline
-- `.opencode/skill/sk-improve-agent/references/evaluator_contract.md` now reflects that operator-facing verification and related-resource structure can contribute to operability scoring
+- `.opencode/skills/sk-improve-agent/references/evaluator_contract.md` now reflects that operator-facing verification and related-resource structure can contribute to operability scoring
 - a new phase-local `improvement/` runtime was created under `004-sk-improve-agent-promotion-verification/`
 - a stronger handover verification candidate was created and validated
 - repeatability artifacts were created for both `handover` and `context-prime`
-- the guarded promotion path was executed successfully for `.opencode/agent/handover.md`
+- the guarded promotion path was executed successfully for `.opencode/agents/handover.md`
 - the promoted handover file was validated and then rolled back to the archived pre-promotion backup
 <!-- /ANCHOR:what-built -->
 
@@ -82,16 +82,16 @@ The phase was delivered in five steps:
 ## Verification
 
 Verification completed:
-- `node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=.../handover-candidate-002.md --baseline=.opencode/agent/handover.md --manifest=.../target-manifest.jsonc --target=.opencode/agent/handover.md --profile=handover --output=.../score-handover-candidate-002.json`
-- `node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` twice for `handover`
-- `node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` twice for `context-prime`
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .../handover-candidate-002.md --type agent`
-- `node .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs ... --approve`
-- `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/agent/handover.md --type agent`
-- `node .opencode/skill/sk-improve-agent/scripts/rollback-candidate.cjs ...`
-- `cmp -s .opencode/agent/handover.md .../archive/handover.md...bak`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop --strict`
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/004-sk-improve-agent-promotion-verification --strict`
+- `node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate=.../handover-candidate-002.md --baseline=.opencode/agents/handover.md --manifest=.../target-manifest.jsonc --target=.opencode/agents/handover.md --profile=handover --output=.../score-handover-candidate-002.json`
+- `node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` twice for `handover`
+- `node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` twice for `context-prime`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .../handover-candidate-002.md --type agent`
+- `node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs ... --approve`
+- `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/handover.md --type agent`
+- `node .opencode/skills/sk-improve-agent/scripts/rollback-candidate.cjs ...`
+- `cmp -s .opencode/agents/handover.md .../archive/handover.md...bak`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop --strict`
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/004-sk-improve-agent-promotion-verification --strict`
 
 Evidence produced:
 - `improvement/score-handover-candidate-002.json`

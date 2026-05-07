@@ -13,9 +13,9 @@ _memory:
     next_safe_action: "Dispatch cli-codex to implement"
     blockers: []
     key_files:
-      - .opencode/skill/sk-code/assets/opencode/checklists/
-      - .opencode/skill/sk-code/SKILL.md
-      - .opencode/skill/sk-code/references/opencode/shared/universal_patterns.md
+      - .opencode/skills/sk-code/assets/opencode/checklists/
+      - .opencode/skills/sk-code/SKILL.md
+      - .opencode/skills/sk-code/references/opencode/shared/universal_patterns.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-001-final"
@@ -65,15 +65,15 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 ## 3. SCOPE
 
 ### In Scope
-- Create `.opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md`
-- Create `.opencode/skill/sk-code/assets/opencode/checklists/agent_authoring.md`
-- Create `.opencode/skill/sk-code/assets/opencode/checklists/command_authoring.md`
-- Create `.opencode/skill/sk-code/assets/opencode/checklists/mcp_server_authoring.md`
-- Create `.opencode/skill/sk-code/assets/opencode/checklists/spec_folder_authoring.md`
-- Create `.opencode/skill/sk-code/assets/opencode/recipes/spec_folder_write.md` (new dir + file)
-- Update `.opencode/skill/sk-code/SKILL.md`: restore machine-readable STACK_FOLDERS contract; update OpenCode resource map to point to 5 new authoring checklists + 1 recipe
+- Create `.opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md`
+- Create `.opencode/skills/sk-code/assets/opencode/checklists/agent_authoring.md`
+- Create `.opencode/skills/sk-code/assets/opencode/checklists/command_authoring.md`
+- Create `.opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md`
+- Create `.opencode/skills/sk-code/assets/opencode/checklists/spec_folder_authoring.md`
+- Create `.opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md` (new dir + file)
+- Update `.opencode/skills/sk-code/SKILL.md`: restore machine-readable STACK_FOLDERS contract; update OpenCode resource map to point to 5 new authoring checklists + 1 recipe
 - Fix `references/opencode/shared/universal_patterns.md:551-554` stale relative link
-- Update `.opencode/skill/sk-code/description.json` keywords if needed
+- Update `.opencode/skills/sk-code/description.json` keywords if needed
 - Bump SKILL.md frontmatter version 3.1.0.0 → 3.2.0.0
 
 ### Out of Scope
@@ -92,10 +92,10 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 | `assets/opencode/checklists/mcp_server_authoring.md` | Create | Authoring checklist for new MCP servers |
 | `assets/opencode/checklists/spec_folder_authoring.md` | Create | Authoring checklist for spec folder writes |
 | `assets/opencode/recipes/spec_folder_write.md` | Create (incl. parent dir) | Recipe for spec-folder write workflow |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | Add STACK_FOLDERS contract; update OpenCode resource map; bump version |
-| `.opencode/skill/sk-code/description.json` | Modify | Add new keyword tokens; bump version |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | Add STACK_FOLDERS contract; update OpenCode resource map; bump version |
+| `.opencode/skills/sk-code/description.json` | Modify | Add new keyword tokens; bump version |
 | `references/opencode/shared/universal_patterns.md` | Modify | Fix stale relative link line 551-554 |
-| `.opencode/skill/sk-code/changelog/v3.2.0.0.md` | Create | Changelog entry per template |
+| `.opencode/skills/sk-code/changelog/v3.2.0.0.md` | Create | Changelog entry per template |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,7 +114,7 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 | REQ-005 | F-001-005 stale link fixed | grep `assets/opencode/checklists/universal_checklist.md` in `references/opencode/shared/universal_patterns.md` returns ≥1 hit | F-001-005 |
 | REQ-006 | SKILL.md frontmatter version bumped 3.1.0.0 → 3.2.0.0 | grep `version: 3.2.0.0` SKILL.md | — |
 | REQ-007 | description.json version bumped 3.1.0.0 → 3.2.0.0 | grep `"version": "3.2.0.0"` description.json | — |
-| REQ-008 | Changelog v3.2.0.0.md created using compact format | File present at `.opencode/skill/sk-code/changelog/v3.2.0.0.md`; header matches template | — |
+| REQ-008 | Changelog v3.2.0.0.md created using compact format | File present at `.opencode/skills/sk-code/changelog/v3.2.0.0.md`; header matches template | — |
 | REQ-009 | validate.sh --strict on 078/001 exits 0 | Validator returns 0/0 | — |
 | REQ-010 | One commit on main + pushed | `git push origin main` exit 0 | — |
 
@@ -136,7 +136,7 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 
 ### Given/When/Then Verification Scenarios
 
-**Given** sk-code is loaded by `/spec_kit:complete` (after Phase 2 ships), **When** the implementation target is under `.opencode/skill/`, **Then** the relevant authoring checklist is one of the loaded resources.
+**Given** sk-code is loaded by `/spec_kit:complete` (after Phase 2 ships), **When** the implementation target is under `.opencode/skills/`, **Then** the relevant authoring checklist is one of the loaded resources.
 
 **Given** a maintainer reads SKILL.md OpenCode resource map, **When** they look for "how do I author a new skill", **Then** they see `skill_authoring.md` listed and pointed-to.
 
@@ -160,7 +160,7 @@ Add 5 authoring checklists + 1 recipe asset + 1 SKILL.md surface refresh + 1 sta
 | Risk | STACK_FOLDERS dict may break sk-code router runtime if format changes | Med | Restore the dict but keep the inline string fallback for compatibility; verify smart router still loads via existing test scenarios |
 | Risk | Adding 6 new files inflates skill load on every prompt | Low | All new files are CONDITIONAL or ON_DEMAND in the resource map (loaded only on intent match) |
 | Dependency | sk-code SKILL.md current state (post-069 v3.1.0.0) | Green | Just shipped; baseline is clean |
-| Dependency | sk-doc changelog template for the v3.2.0.0.md authoring | Green | At `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` |
+| Dependency | sk-doc changelog template for the v3.2.0.0.md authoring | Green | At `.opencode/skills/sk-doc/assets/documentation/changelog_template.md` |
 <!-- /ANCHOR:risks -->
 
 ---

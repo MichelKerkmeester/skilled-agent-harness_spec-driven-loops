@@ -44,8 +44,8 @@ Six stages, executed in dependency order per 060/003 research §9 hand-off. Tota
 
 ## 3. STAGE 2 — STATIC BENCHMARK ASSETS + MATERIALIZER
 
-1. Create `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json` with real `benchmark.fixtureDir`, `outputsDir`, fixture refs
-2. Create 2-3 fixture JSON files at `.opencode/skill/sk-improve-agent/assets/benchmark-fixtures/*.json`
+1. Create `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/default.json` with real `benchmark.fixtureDir`, `outputsDir`, fixture refs
+2. Create 2-3 fixture JSON files at `.opencode/skills/sk-improve-agent/assets/benchmark-fixtures/*.json`
 3. Author `materialize-benchmark-fixtures.cjs` in `scripts/` — reads profile, locates fixtures, writes `{outputsDir}/{fixture.id}.md` before `run-benchmark.cjs` consumes them
 
 ## 4. STAGE 3 — RUN-BENCHMARK + YAML LOCKSTEP

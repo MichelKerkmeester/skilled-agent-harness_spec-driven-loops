@@ -177,11 +177,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `specs/.../039-node-modules-consolidation/checklist.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/package.json` - .opencode/skill/system-spec-kit/package.json
+- `.opencode/skills/system-spec-kit/package.json` - .opencode/skills/system-spec-kit/package.json
 
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` - .opencode/skill/system-spec-kit/mcp_server/package.json
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` - .opencode/skills/system-spec-kit/mcp_server/package.json
 
-- `.opencode/skill/system-spec-kit/scripts/package.json` - .opencode/skill/system-spec-kit/scripts/package.json
+- `.opencode/skills/system-spec-kit/scripts/package.json` - .opencode/skills/system-spec-kit/scripts/package.json
 
 - `/tmp/save-context-data.json` - ../../../../../../tmp/save-context-data.json
 
@@ -251,9 +251,9 @@ The conversation is about **node_modules consolidation** for the system-spec-kit
 | `specs/.../039-node-modules-consolidation/plan.md` | Updated plan |
 | `specs/.../039-node-modules-consolidation/tasks.md` | Specs/003-memory-and-spec-kit/039-node-modules-consolidat... |
 | `specs/.../039-node-modules-consolidation/checklist.md` | Specs/003-memory-and-spec-kit/039-node-modules-consolidat... |
-| `.opencode/skill/system-spec-kit/package.json` | .opencode/skill/system-spec-kit/package.json |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | .opencode/skill/system-spec-kit/mcp_server/package.json |
-| `.opencode/skill/system-spec-kit/scripts/package.json` | .opencode/skill/system-spec-kit/scripts/package.json |
+| `.opencode/skills/system-spec-kit/package.json` | .opencode/skills/system-spec-kit/package.json |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | .opencode/skills/system-spec-kit/mcp_server/package.json |
+| `.opencode/skills/system-spec-kit/scripts/package.json` | .opencode/skills/system-spec-kit/scripts/package.json |
 | `/tmp/save-context-data.json` | Updated save context data |
 | `specs/.../036-post-merge-refinement/checklist.md` | Modified during session |
 | `specs/.../036-post-merge-refinement/tasks.md` | Modified during session |
@@ -322,9 +322,9 @@ Good question. Let me investigate these node_modules directories in **read-only 
 
 ### 1. Comprehensive System Analysis (5 Parallel Agents)
 Analyzed the memory and spec-kit system post-merger (035-memory-speckit-merger), identifying **29 issues** across:
-- `.opencode/skill/system-spec-kit/` (SKILL.md, scripts, templates, MCP server)
-- `.opencode/command/spec_kit/` (8 command files)
-- `.opencode/command/memory/` (3 command files)
+- `.opencode/skills/system-spec-kit/` (SKILL.md, scripts, templates, MCP server)
+- `.opencode/commands/spec_kit/` (8 command files)
+- `.opencode/commands/memory/` (3 command files)
 
 ### 2. Created Spec Folder 036
 **Location:** `specs/003-memory-and-spec-ki
@@ -465,18 +465,18 @@ Check node_modules sizes
 <!-- ANCHOR:integration-tool-read-6f655be9-session-1766685315391-kjh9hf9uu -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/package.json
+.opencode/skills/system-spec-kit/scripts/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/package.json
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:integration-tool-read-6f655be9-session-1766685315391-kjh9hf9uu -->
 
 <!-- ANCHOR:integration-tool-read-6f655be9-2-session-1766685315391-kjh9hf9uu -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/package.json
+.opencode/skills/system-spec-kit/mcp_server/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/package.json
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:integration-tool-read-6f655be9-2-session-1766685315391-kjh9hf9uu -->
 
@@ -655,9 +655,9 @@ Document baseline sizes
 <!-- ANCHOR:integration-tool-write-2ab1da6c-session-1766685315391-kjh9hf9uu -->
 ### IMPLEMENTATION: Tool: write
 
-.opencode/skill/system-spec-kit/package.json
+.opencode/skills/system-spec-kit/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/package.json
 **Details:** Tool: write | Status: completed
 <!-- /ANCHOR:integration-tool-write-2ab1da6c-session-1766685315391-kjh9hf9uu -->
 
@@ -672,27 +672,27 @@ Document baseline sizes
 <!-- ANCHOR:integration-tool-read-6f655be9-3-session-1766685315391-kjh9hf9uu -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/package.json
+.opencode/skills/system-spec-kit/mcp_server/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/package.json
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:integration-tool-read-6f655be9-3-session-1766685315391-kjh9hf9uu -->
 
 <!-- ANCHOR:integration-tool-write-2ab1da6c-2-session-1766685315391-kjh9hf9uu -->
 ### IMPLEMENTATION: Tool: write
 
-.opencode/skill/system-spec-kit/mcp_server/package.json
+.opencode/skills/system-spec-kit/mcp_server/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/package.json
 **Details:** Tool: write | Status: completed
 <!-- /ANCHOR:integration-tool-write-2ab1da6c-2-session-1766685315391-kjh9hf9uu -->
 
 <!-- ANCHOR:integration-tool-write-2ab1da6c-3-session-1766685315391-kjh9hf9uu -->
 ### IMPLEMENTATION: Tool: write
 
-.opencode/skill/system-spec-kit/scripts/package.json
+.opencode/skills/system-spec-kit/scripts/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/package.json
 **Details:** Tool: write | Status: completed
 <!-- /ANCHOR:integration-tool-write-2ab1da6c-3-session-1766685315391-kjh9hf9uu -->
 
@@ -1410,9 +1410,9 @@ key_files:
   - "specs/.../039-node-modules-consolidation/plan.md"
   - "specs/.../039-node-modules-consolidation/tasks.md"
   - "specs/.../039-node-modules-consolidation/checklist.md"
-  - ".opencode/skill/system-spec-kit/package.json"
-  - ".opencode/skill/system-spec-kit/mcp_server/package.json"
-  - ".opencode/skill/system-spec-kit/scripts/package.json"
+  - ".opencode/skills/system-spec-kit/package.json"
+  - ".opencode/skills/system-spec-kit/mcp_server/package.json"
+  - ".opencode/skills/system-spec-kit/scripts/package.json"
   - "/tmp/save-context-data.json"
   - "specs/.../036-post-merge-refinement/checklist.md"
   - "specs/.../036-post-merge-refinement/tasks.md"

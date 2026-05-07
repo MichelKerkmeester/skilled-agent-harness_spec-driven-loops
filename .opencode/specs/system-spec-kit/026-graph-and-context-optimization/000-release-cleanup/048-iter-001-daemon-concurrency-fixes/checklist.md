@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "iter-001-daemon-fixes"

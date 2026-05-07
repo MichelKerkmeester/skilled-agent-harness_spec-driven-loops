@@ -28,13 +28,13 @@ I’ve loaded the review baseline and OpenCode overlay. Next I’m mapping the a
 ● Search (grep)
   │ "register|hook|before|after|onSuccess|onError|memory_search|memory_context|memory_match_triggers
   │ |memory_save|memory_ingest|memory_bulk_delete|memory_index" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/hooks)
+  │ (.opencode/skills/system-spec-kit/mcp_server/hooks)
   └ 38 lines found
 
 ● Search (grep)
   │ "create[A-Za-z]+Handler|export (async )?function|fire|hook|logger|console\.|safeParse|parse\(|z\
   │ .object|resultToToolResponse|toolResponse|callTool|withHooks|before|after|onSuccess|onError" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 ● Read (Review agent — Audit MCP handlers)
@@ -42,395 +42,395 @@ I’ve loaded the review baseline and OpenCode overlay. Next I’m mapping the a
 
 ● Count target file lines (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && wc -l
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts …
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts …
   └ 28 lines...
 
 The large handler files are big enough that I’m switching to structural slices: shared types/utils and hooks in full, then targeted handler sections around schemas, exported handlers, and catch/return paths.
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts
   └ 18 lines read
 
 ● Read handler-utils.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts
   └ 71 lines read
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/types.ts
   └ 26 lines read
 
 ● Search (grep)
   │ "export (async )?function|export const|catch \(|throw new
   │ Error|logger\.|safeParse\(|parse\(|z\.object|return
   │ \{|toolResponse|responseHints|mutationFeedback|hook"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
   └ 89 lines found
 
 ● Search (grep)
   │ "export (async )?function|export const|catch \(|throw new
   │ Error|logger\.|safeParse\(|parse\(|z\.object|return
   │ \{|toolResponse|responseHints|mutationFeedback|hook"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
   └ 59 lines found
 
 ● Read response-hints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts
   └ 113 lines read
 
 ● Search (grep)
   │ "export (async )?function|export const|catch \(|throw new
   │ Error|logger\.|safeParse\(|parse\(|z\.object|return
   │ \{|toolResponse|responseHints|mutationFeedback|hook"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
   └ 63 lines found
 
 ● Read mutation-feedback.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts
   └ 61 lines read
 
 ● Read memory-surface.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "export (async )?function|export const|catch \(|throw new
   │ Error|logger\.|safeParse\(|parse\(|z\.object|return
   │ \{|toolResponse|responseHints|mutationFeedback|hook"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 138 lines found
 
 ● Search (grep)
   │ "export (async )?function|export const|catch \(|throw new
   │ Error|logger\.|safeParse\(|parse\(|z\.object|return
   │ \{|toolResponse|responseHints|mutationFeedback|hook"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ 5 lines found
 
 ● Read memory-surface.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts
   └ L221:336 (116 lines read)
 
 ● Search (grep)
   │ "export (async )?function [A-Za-z0-9_]+|export const [A-Za-z0-9_]+|export \{"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "export (async )?function [A-Za-z0-9_]+|export const [A-Za-z0-9_]+|export \{"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "export (async )?function [A-Za-z0-9_]+|export const [A-Za-z0-9_]+|export \{"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ 15 lines found
 
 ● Search (grep)
   │ "export (async )?function [A-Za-z0-9_]+|export const [A-Za-z0-9_]+|export \{"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "export (async )?function [A-Za-z0-9_]+|export const [A-Za-z0-9_]+|export \{"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "appendAutoSurfaceHints|buildMutationHookFeedback|runPostMutationHooks|autoSurfaceMemories|autoS
   │ urfaceAtToolDispatch|syncEnvelopeTokenCount|serializeEnvelopeWithTokenCount" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemoryMatchTriggers|const handleMemoryMatchTriggers|async function
   │ handleMemoryMatchTriggers"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemoryIndexAlias|const handleMemoryIndexAlias|async function
   │ handleMemoryIndexAlias|function handleMemoryIndexDiscovery|const
   │ handleMemoryIndexDiscovery|async function handleMemoryIndexDiscovery" in memory-index-*.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ No matches found
 
 ● Search (grep)
   │ "function handleMemoryBulkDelete|const handleMemoryBulkDelete|async function
   │ handleMemoryBulkDelete"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemorySave|const handleMemorySave|async function handleMemorySave"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemoryIndexScan|const handleMemoryIndexScan|async function
-  │ handleMemoryIndexScan" (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts)
+  │ handleMemoryIndexScan" (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemoryIngest|const handleMemoryIngest|async function handleMemoryIngest"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts)
   └ 17 lines found
 
 ● Search (grep)
   │ "function handleMemoryContext|const handleMemoryContext|async function handleMemoryContext"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "function handleMemorySearch|const handleMemorySearch|async function handleMemorySearch"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ 5 lines found
 
 ● Read memory-bulk-delete.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
   └ 285 lines read
 
 ● Read memory-index-discovery.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
   └ 197 lines read
 
 ● Read memory-ingest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts
   └ 332 lines read
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1:220 (220 lines read)
 
 ● Read memory-index-alias.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
   └ 333 lines read
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:220 (219 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L1:220 (220 lines read)
 
 ● Read memory-triggers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
   └ L1:220 (220 lines read)
 
 ● Read memory-index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
   └ L1:220 (220 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L728:1040 (313 lines read)
 
 ● Read memory-index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
   └ L147:620 (474 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1041:1239 (199 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L547:944 (398 lines read)
 
 ● Read memory-triggers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
   └ L175:486 (312 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L706:1234 (528 lines read)
 
 ● Search (grep)
   │ "createMCPErrorResponse\(|throw new Error\(|throw new preflight\.PreflightError"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
   └ 40 lines found
 
 ● Search (grep)
   │ "createMCPErrorResponse\(|throw new Error\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
   └ 5 lines found
 
 ● Search (grep)
-  │ "buildMutationHookFeedback" in *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ "buildMutationHookFeedback" in *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 127 lines found
 
 ● Search (grep)
-  │ "appendAutoSurfaceHints" in *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ "appendAutoSurfaceHints" in *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ No matches found
 
 ● Search (grep)
-  │ "runPostMutationHooks" in *.ts (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ "runPostMutationHooks" in *.ts (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 108 lines found
 
 ● Search (grep)
   │ "autoSurfaceMemories|autoSurfaceAtToolDispatch|autoSurfaceAtCompaction|extractContextHint" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 One thing stands out already: the response-hint and memory-surface hooks exist, but I haven’t found them attached inside the audited handlers yet. I’m now verifying whether that’s a real wiring gap or handled elsewhere.
 
 ● Read mutation-hooks.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts
   └ 106 lines read
 
 ● Search (grep)
   │ "appendAutoSurfaceHints|autoSurfaceAtToolDispatch|autoSurfaceAtCompaction|autoSurfaceMemories"
-  │ in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 8 files found
 
 ● Search (grep)
   │ "handleMemoryBulkDelete|handleMemoryIngestStart|handleMemoryIngestStatus|handleMemoryIngestCance
   │ l|handleMemorySave|handleMemoryIndexScan|handleMemoryContext|handleMemoryMatchTriggers|handleMem
-  │ orySearch" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ orySearch" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "appendAutoSurfaceHints|autoSurfaceAtToolDispatch|autoSurfaceAtCompaction|autoSurfaceMemories"
-  │ in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read (Review agent — Audit MCP handlers)
   └ Running
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "autoSurfaceAtToolDispatch|appendAutoSurfaceHints|syncEnvelopeTokenCount|serializeEnvelopeWithTo
   │ kenCount|buildMutationHookFeedback"
-  │ (.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
   └ 51 lines found
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L280:410 (131 lines read)
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/index.ts
   └ L1:220 (35 lines read)
 
 ● Search (grep)
   │ "try \{|catch \(|buildErrorResponse|dispatchTool\(" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools)
   └ 5 lines found
 
 ● Read memory-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts
   └ L1:260 (57 lines read)
 
 ● Search (grep)
   │ "safeParse|parse\(|createMCPErrorResponse|try \{|catch
   │ \(|handleMemorySearch\(|handleMemoryContext\(|handleMemoryMatchTriggers\(|handleMemoryIndexScan\
   │ (|handleMemorySave\(|handleMemoryIngestStart\(|handleMemoryBulkDelete\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts)
   └ 13 lines found
 
 ● Read context-tools.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts
   └ L1:240 (18 lines read)
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tools/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tools/types.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "memory_context|memory_index_scan|memory_ingest_start|memory_ingest_status|memory_ingest_cancel|
-  │ validateToolArgs" (.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts)
+  │ validateToolArgs" (.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts)
   └ 16 lines found
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/index.ts
   └ L1:260 (40 lines read)
 
 ● Read tool-input-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "validateToolArgs\(|zod|schema"
-  │ (.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
   └ 47 lines found
 
 ● Search (grep)
   │ "export function buildErrorResponse|function buildErrorResponse|const buildErrorResponse" in
-  │ *.ts (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ *.ts (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 7 lines found
 
 ● Read core.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts
   └ L220:360 (102 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L1235:1310 (76 lines read)
 
 ● Search (grep)
   │ "handleMemoryIngestStart|handleMemoryIngestStatus|handleMemoryIngestCancel" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "throw new Error\(|createMCPErrorResponse\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
   └ 35 lines found
 
 ● Search (grep)
   │ "memory_ingest_start|memory_ingest_status|memory_ingest_cancel" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools)
   └ 15 lines found
 
 ● Search (grep)
   │ "throw new Error\(|createMCPErrorResponse\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts)
   └ 31 lines found
 
 ● Search (grep)
-  │ "memory_index_scan" in *.ts (.opencode/skill/system-spec-kit/mcp_server/tools)
+  │ "memory_index_scan" in *.ts (.opencode/skills/system-spec-kit/mcp_server/tools)
   └ 11 lines found
 
 I found a concrete contract mismatch now: some handlers support governance/scope fields, but the Zod schemas on the dispatch boundary appear not to admit them. I’m checking whether that affects just `memory_save` or also `memory_search` and related lifecycle tools.
 
 ● Search (grep)
   │ "tenantId|userId|agentId|sharedSpaceId|provenanceSource|provenanceActor|governedAt|retentionPoli
-  │ cy|deleteAfter" (.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
+  │ cy|deleteAfter" (.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
   └ 21 lines found
 
 ● Search (grep)
   │ "export interface SearchArgs|export interface SaveArgs|export interface IngestStartArgs|export
   │ interface IngestStatusArgs|export interface IngestCancelArgs"
-  │ (.opencode/skill/system-spec-kit/mcp_server/tools/types.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tools/types.ts)
   └ 48 lines found
 
 ● Search (grep)
   │ "const memorySaveSchema|const memorySearchSchema|const memoryIndexScanSchema|const
   │ memoryIngestStartSchema|const memoryIngestStatusSchema|const memoryIngestCancelSchema"
-  │ (.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts)
   └ 78 lines found
 
 ● Search (grep)
   │ "interface SearchArgs|interface SaveArgs|interface ContextArgs" in memory-*.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 27 lines found
 
 ● Read (Review agent — Audit MCP handlers)
   └ Running
 
 ● Read response-builder.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts
   └ L220:320 (101 lines read)
 
 ● Search (grep)
   │ "buildSaveResponse|runPostMutationHooks|buildMutationHookFeedback|return createMCP"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
   └ 63 lines found
 
 ● Read (Review agent — Audit MCP handlers)

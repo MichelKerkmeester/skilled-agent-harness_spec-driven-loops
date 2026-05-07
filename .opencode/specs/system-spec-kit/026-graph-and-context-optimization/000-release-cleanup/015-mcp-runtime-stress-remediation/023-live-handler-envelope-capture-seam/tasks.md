@@ -19,7 +19,7 @@ _memory:
     blockers:
       - "Current memory_search handler does not pass degradedReadiness into buildSearchDecisionEnvelope"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 Create live handler envelope test file (`.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts`)
+- [x] T006 Create live handler envelope test file (`.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts`)
 - [x] T007 Add leading layer-disclosure comment (`handler-memory-search-live-envelope.vitest.ts`)
 - [x] T008 Mock `executePipeline` with deterministic candidates and metadata (`handler-memory-search-live-envelope.vitest.ts`)
 - [x] T009 Stub audit env path and cleanup temp files (`handler-memory-search-live-envelope.vitest.ts`)

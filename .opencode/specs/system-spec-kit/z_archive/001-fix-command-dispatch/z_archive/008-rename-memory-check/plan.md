@@ -41,7 +41,7 @@ Parallel agent delegation with domain isolation:
 ## Agent Assignments
 
 ### Agent 1: Command Files
-**Domain:** `.opencode/command/memory/`
+**Domain:** `.opencode/commands/memory/`
 - Rename `memory.md` → `check.md`
 - Update internal refs in `check.md`
 - Update `save.md` Related Commands

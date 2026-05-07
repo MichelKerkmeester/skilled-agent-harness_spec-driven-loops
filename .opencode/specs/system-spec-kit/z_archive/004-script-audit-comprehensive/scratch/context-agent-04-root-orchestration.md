@@ -2,7 +2,7 @@
 
 **Audit Date:** 2026-02-15
 **Spec Kit Version:** 2.2.8.0 (SKILL.md) vs 1.7.2 (package.json)
-**Scope:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit
+**Scope:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit
 
 ## Findings Summary
 
@@ -35,8 +35,8 @@
 - Session recovery and breakpoint restoration depend on version metadata
 
 **Evidence:**
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md:5`
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/package.json:3`
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md:5`
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/package.json:3`
 
 **Remediation Direction:**
 Align versions. The package.json 1.7.2 likely reflects shared module version. SKILL.md 2.2.8.0 appears to be skill wrapper version. Establish clear versioning strategy:
@@ -66,8 +66,8 @@ Align versions. The package.json 1.7.2 likely reflects shared module version. SK
 - Command routing (e.g., `/spec_kit:debug`, `/spec_kit:complete :auto-debug`) depends on Task tool
 
 **Evidence:**
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md:4` (allowed-tools line)
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md:161-171` (agent dispatch section)
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md:4` (allowed-tools line)
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md:161-171` (agent dispatch section)
 - `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/AGENTS.md:7` (orchestrate agent definition)
 
 **Remediation Direction:**
@@ -91,7 +91,7 @@ Update SKILL.md line 4 to clarify:
 - Memory system expects `trigger_phrases:` frontmatter and `<!-- ANCHOR_EXAMPLE:* -->` tags (per memory_system.md)
 
 **Suspected Issue:**
-Constitutional files at `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/constitutional/` may not have:
+Constitutional files at `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/constitutional/` may not have:
 - YAML frontmatter with `trigger_phrases:` array
 - ANCHOR tags for section-level retrieval
 
@@ -120,7 +120,7 @@ Validate constitutional files have proper frontmatter and anchor tags. If missin
 **Issue:**
 All documentation references use identical path pattern:
 ```
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
 ```
 
 This path is **hardcoded relative to project root** (.opencode/) but documentation does not clearly state:
@@ -134,7 +134,7 @@ This path is **hardcoded relative to project root** (.opencode/) but documentati
 
 **Evidence:**
 - Grep results: 90 matches across all .md files in system-spec-kit
-- All references consistent: `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- All references consistent: `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 - SKILL.md line 421, 685; AGENTS.md line 52, 62, 221
 - No alternative path patterns found (no $PROJECT_ROOT, no relative ../../../ patterns)
 
@@ -164,8 +164,8 @@ Add to generate-context.js documentation:
 - Gap between script discovery mechanism and documented routing
 
 **Evidence:**
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/README.md:20-37`
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md:187-200` (routing section)
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/README.md:20-37`
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md:187-200` (routing section)
 - Registry loader not mentioned in: line 200 "scripts" keyword routing, line 231-240 "Key Scripts" table
 
 **Remediation Direction:**
@@ -196,8 +196,8 @@ Add to SKILL.md:
 - Operators may reference outdated version in runbooks
 
 **Evidence:**
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/SKILL.md:204,453`
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/package.json:3`
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/SKILL.md:204,453`
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/package.json:3`
 
 **Remediation Direction:**
 1. Replace hardcoded versions in SKILL.md with dynamic references: `(see package.json for current version)`
@@ -221,7 +221,7 @@ Add to SKILL.md:
 - **SKILL.md never references workflows-code--opencode for code quality**
 
 **Evidence:**
-- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/workflows-code--opencode/SKILL.md` (exists, v1.0.5.0)
+- `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/workflows-code--opencode/SKILL.md` (exists, v1.0.5.0)
 - System-spec-kit scripts/ directory contains: TypeScript, JavaScript, Shell, JSON (per README.md line 69-75)
 - SKILL.md has NO section on code standards or cross-reference to workflows-code--opencode
 

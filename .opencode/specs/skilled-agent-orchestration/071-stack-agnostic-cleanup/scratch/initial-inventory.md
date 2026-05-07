@@ -10,7 +10,7 @@ Date: 2026-05-05
 ## Command
 
 ```bash
-grep -rEi "webflow|motion\.dev|motion_dev|a_nobel|anobel|\bGSAP\b|\bLenis\b|\bHLS\b|\bSwiper\b|\bFilePond\b|BEM CSS|snake_case JS" .opencode/skill/ --include='*.md' --include='*.json' --include='*.toml' 2>/dev/null | grep -v "/sk-code/" | grep -v "/changelog/"
+grep -rEi "webflow|motion\.dev|motion_dev|a_nobel|anobel|\bGSAP\b|\bLenis\b|\bHLS\b|\bSwiper\b|\bFilePond\b|BEM CSS|snake_case JS" .opencode/skills/ --include='*.md' --include='*.json' --include='*.toml' 2>/dev/null | grep -v "/sk-code/" | grep -v "/changelog/"
 ```
 
 ## Counts
@@ -38,7 +38,7 @@ Vendored dependency matches were observed under skill-local dependency directori
 | `cli-gemini` | 1 |
 | `cli-codex` | 1 |
 | `cli-claude-code` | 1 |
-| root `.opencode/skill/README.md` | 4 |
+| root `.opencode/skills/README.md` | 4 |
 
 ## Representative Matches
 

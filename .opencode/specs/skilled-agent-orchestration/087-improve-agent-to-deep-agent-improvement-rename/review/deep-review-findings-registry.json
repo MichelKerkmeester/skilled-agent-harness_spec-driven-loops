@@ -34,7 +34,7 @@
     {
       "findingId": "F002",
       "severity": "P1",
-      "title": "Active manual-testing playbook commands still load the removed agent path -- `.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77` -- The CP-041 playbook builds its `@deep-agent-improvement` prompt by running `cat .opencode/agent/improve-agent.md`, but the active agent file was renamed to `.opencode/agent/deep-agent-improvement.md` and old active paths are absent. The same stale path appears in CP-042, so these active verification commands fail before exercising the renamed agent.",
+      "title": "Active manual-testing playbook commands still load the removed agent path -- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77` -- The CP-041 playbook builds its `@deep-agent-improvement` prompt by running `cat .opencode/agents/improve-agent.md`, but the active agent file was renamed to `.opencode/agents/deep-agent-improvement.md` and old active paths are absent. The same stale path appears in CP-042, so these active verification commands fail before exercising the renamed agent.",
       "file": null,
       "line": null,
       "description": "",
@@ -94,7 +94,7 @@
     {
       "findingId": "F005",
       "severity": "P1",
-      "title": "Resource map marks active stale-reference surfaces OK -- specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57 -- The resource map marks `.gemini/commands/improve/README.txt` and `.gemini/commands/improve/improve-agent.toml` as `Updated | OK`, and also marks the CP-041/CP-042 playbooks as `Updated | OK`, but active evidence still shows Gemini README/TOML referencing obsolete `improve_improve-agent_{auto,confirm}.yaml` names and the playbooks still `cat .opencode/agent/improve-agent.md`. This means the packet's coverage inventory incorrectly certifies the active F001/F002 stale-reference surfaces as OK.",
+      "title": "Resource map marks active stale-reference surfaces OK -- specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md:57 -- The resource map marks `.gemini/commands/improve/README.txt` and `.gemini/commands/improve/improve-agent.toml` as `Updated | OK`, and also marks the CP-041/CP-042 playbooks as `Updated | OK`, but active evidence still shows Gemini README/TOML referencing obsolete `improve_improve-agent_{auto,confirm}.yaml` names and the playbooks still `cat .opencode/agents/improve-agent.md`. This means the packet's coverage inventory incorrectly certifies the active F001/F002 stale-reference surfaces as OK.",
       "file": null,
       "line": null,
       "description": "",
@@ -114,7 +114,7 @@
     {
       "findingId": "F006",
       "severity": "P1",
-      "title": "Active skill catalog and benchmark defaults still publish the removed proposal-agent/YAML identity -- .opencode/skill/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:18 -- The maintainability drift is broader than the already-recorded Gemini command and CP-041/CP-042 playbook surfaces: active feature-catalog docs still say candidate generation is delegated to `.opencode/agent/improve-agent.md`, list obsolete `improve_improve-agent_{auto,confirm}.yaml` workflows, and the default benchmark profile still targets `.opencode/agent/improve-agent.md` even though the active agent inventory contains `.opencode/agent/deep-agent-improvement.md` instead.",
+      "title": "Active skill catalog and benchmark defaults still publish the removed proposal-agent/YAML identity -- .opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:18 -- The maintainability drift is broader than the already-recorded Gemini command and CP-041/CP-042 playbook surfaces: active feature-catalog docs still say candidate generation is delegated to `.opencode/agents/improve-agent.md`, list obsolete `improve_improve-agent_{auto,confirm}.yaml` workflows, and the default benchmark profile still targets `.opencode/agents/improve-agent.md` even though the active agent inventory contains `.opencode/agents/deep-agent-improvement.md` instead.",
       "file": null,
       "line": null,
       "description": "",

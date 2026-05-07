@@ -84,14 +84,14 @@ Add a privacy-preserving affordance normalizer so sanitized tool and resource hi
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts` | Create | Allowlist and privacy normalizer |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts` | Modify | Add affordance input option |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Modify | Normalize affordances before lane execution |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` | Modify | Consume sanitized triggers in `derived_generated` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` | Modify | Consume sanitized edges with existing multipliers |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Modify | Compile `derived.affordances[]` without new entity kinds |
-| `.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Create | Document the capability |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Create | Document manual verification |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/affordance-normalizer.ts` | Create | Allowlist and privacy normalizer |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts` | Modify | Add affordance input option |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Modify | Normalize affordances before lane execution |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts` | Modify | Consume sanitized triggers in `derived_generated` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts` | Modify | Consume sanitized edges with existing multipliers |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Modify | Compile `derived.affordances[]` without new entity kinds |
+| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Create | Document the capability |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Create | Document manual verification |
 <!-- /ANCHOR:scope -->
 
 ---

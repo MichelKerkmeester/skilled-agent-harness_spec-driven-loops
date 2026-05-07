@@ -41,8 +41,8 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -59,13 +59,13 @@
       {
         "name": "sqlite-fts.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md",
         "source": "derived"
       },
       {

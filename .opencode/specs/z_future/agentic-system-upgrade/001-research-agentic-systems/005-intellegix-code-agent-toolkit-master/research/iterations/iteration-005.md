@@ -18,9 +18,9 @@ I compared the external multi-agent coordination modules and tests with `system-
 - `[SOURCE: external/automated-loop/file_locking.py:26-33]` The lock system exists to make shared-file coordination safe across synced folders.
 - `[SOURCE: external/automated-loop/file_locking.py:95-169]` Lock acquisition retries and verifies state after a sync delay instead of trusting a single write.
 - `[SOURCE: external/automated-loop/tests/test_multi_agent.py:261-340]` Tests cover workspace setup, dashboard generation, and lock counts, confirming this is a first-class runtime subsystem.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:159-175]` The current deep-research dispatch contract is leaf-only and explicitly says not to dispatch sub-agents from an iteration.
-- `[SOURCE: .opencode/agent/orchestrate.md:40-46]` Orchestration rules enforce single-hop delegation.
-- `[SOURCE: .opencode/agent/orchestrate.md:110-127]` Depth 1 agents are always leaf agents and may not dispatch further.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:159-175]` The current deep-research dispatch contract is leaf-only and explicitly says not to dispatch sub-agents from an iteration.
+- `[SOURCE: .opencode/agents/orchestrate.md:40-46]` Orchestration rules enforce single-hop delegation.
+- `[SOURCE: .opencode/agents/orchestrate.md:110-127]` Depth 1 agents are always leaf agents and may not dispatch further.
 
 ## Analysis
 The external repo is solving a different class of problem: concurrent implementation workers editing overlapping trees. `system-spec-kit`'s deep-research loop is intentionally closer to a serial evidence engine, and the user explicitly requested no sub-agents for this phase. Importing manifest-and-lock machinery into the current research loop would overfit to a capability the workflow is designed to avoid. There is still a useful lesson here: if a future sibling workflow introduces parallel research waves, it should borrow manifest discipline before it borrows lock complexity. But for today's deep-research skill, the external subsystem is mostly the wrong abstraction.
@@ -31,7 +31,7 @@ confidence: high
 finding: The external multi-agent manifest and locking model should be rejected for the current `system-spec-kit` deep-research loop. It solves a real coordination problem, but not one the present leaf-only design should absorb.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.opencode/agent/orchestrate.md`
+- **Target file or module:** `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/agents/orchestrate.md`
 - **Change type:** rejected
 - **Blast radius:** large
 - **Prerequisites:** none

@@ -32,7 +32,7 @@ This phase closes the documentation gap around a skill-folder rename that had al
 
 **Key Decisions**: Canonical `sk-improve-*` skill naming (ADR-001), runtime-agent filename boundary left at `improve-agent` (ADR-002), historical spec-folder slugs preserved as archival identity (ADR-003)
 
-**Critical Dependencies**: Live renamed skill folders at `.opencode/skill/sk-improve-agent/` and `.opencode/skill/sk-improve-prompt/`; renamed changelog directories; live `improve-agent` runtime-agent files across `.opencode/`, `.claude/`, `.gemini/`, and `.codex/`
+**Critical Dependencies**: Live renamed skill folders at `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/`; renamed changelog directories; live `improve-agent` runtime-agent files across `.opencode/`, `.claude/`, `.gemini/`, and `.codex/`
 
 ---
 
@@ -72,14 +72,14 @@ Capture the completed rename as a clean Level 3 phase packet so the phase valida
 ## 3. SCOPE
 
 ### In Scope
-- Document the completed rename of `.opencode/skill/sk-agent-improver/` to `.opencode/skill/sk-improve-agent/`.
-- Document the completed rename of `.opencode/skill/sk-prompt-improver/` to `.opencode/skill/sk-improve-prompt/`.
+- Document the completed rename of `.opencode/skills/sk-agent-improver/` to `.opencode/skills/sk-improve-agent/`.
+- Document the completed rename of `.opencode/skills/sk-prompt-improver/` to `.opencode/skills/sk-improve-prompt/`.
 - Document the completed changelog-folder renames for the two skills.
 - Verify that active references in commands, agents, README files, descriptions, and advisor routing now use the new names.
 - Bring the phase packet itself into current Level 3 template alignment.
 
 ### Out of Scope
-- Renaming runtime agent filenames such as `.opencode/agent/improve-agent.md` or `.codex/agents/improve-agent.toml` - those already use the current runtime naming convention (see ADR-002).
+- Renaming runtime agent filenames such as `.opencode/agents/improve-agent.md` or `.codex/agents/improve-agent.toml` - those already use the current runtime naming convention (see ADR-002).
 - Changing behavior in the improver skills - this phase is documentation and rename closeout only.
 - Renaming historical spec-folder slugs - historical packet identities stay stable (see ADR-003).
 
@@ -107,7 +107,7 @@ Capture the completed rename as a clean Level 3 phase packet so the phase valida
 |----|-------------|---------------------|
 | REQ-001 | The packet must describe the shipped skill-folder renames using the new canonical names. | `spec.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` point to `sk-improve-agent` and `sk-improve-prompt` rather than the retired folder names. |
 | REQ-002 | The packet must describe the shipped changelog-folder renames. | The documentation names `.opencode/changelog/14--sk-improve-prompt/` and `.opencode/changelog/15--sk-improve-agent/` as the canonical changelog locations. |
-| REQ-003 | Runtime-agent references must point to current files. | The phase references `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` instead of missing `agent-improver` paths. |
+| REQ-003 | Runtime-agent references must point to current files. | The phase references `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` instead of missing `agent-improver` paths. |
 | REQ-004 | The phase packet must satisfy the current Level 3 template contract. | All required template markers, anchors, and section headers exist and validate under `validate.sh --strict`. |
 
 ### P1 - Required (complete OR user-approved deferral)

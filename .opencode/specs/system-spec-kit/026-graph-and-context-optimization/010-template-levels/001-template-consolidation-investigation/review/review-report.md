@@ -89,8 +89,8 @@
 
 #### Dimension: cross-runtime-mirror-consistency (2 P1)
 
-**P1-005-001**: Code agent terminology drift — `.opencode/agent/code.md` canonical uses "resolved route"/"router-selected guidance set"; `.claude/agents/code.md` and `.gemini/agents/code.md` use "detected stack"/"overlay" at the same line positions. This could cause divergent `@code` agent behavior on CLAUDE/GEMINI runtimes.
-- [SOURCE: .opencode/agent/code.md:179,311 vs .claude/agents/code.md:179,311 vs .gemini/agents/code.md:179,311]
+**P1-005-001**: Code agent terminology drift — `.opencode/agents/code.md` canonical uses "resolved route"/"router-selected guidance set"; `.claude/agents/code.md` and `.gemini/agents/code.md` use "detected stack"/"overlay" at the same line positions. This could cause divergent `@code` agent behavior on CLAUDE/GEMINI runtimes.
+- [SOURCE: .opencode/agents/code.md:179,311 vs .claude/agents/code.md:179,311 vs .gemini/agents/code.md:179,311]
 
 **P1-005-002**: Stale `templates/level_1/` paths in `create_agent_auto.yaml` and `create_agent_confirm.yaml`. Both command YAMLs reference `templates/level_1/spec.md` and `templates/level_1/plan.md` which no longer exist in the manifest-based template system.
 - [SOURCE: create_agent_auto.yaml, create_agent_confirm.yaml]
@@ -134,7 +134,7 @@ None — no P0 findings.
 2. **Fix template rendering bugs** (P1-003-001 through P1-003-004): Add missing ANCHOR wrappers in `spec.md.tmpl` L3/3+ blocks, fix misplaced `/ANCHOR:questions`, add dedicated `level:3` gates to `tasks.md.tmpl` and `implementation-summary.md.tmpl`.
 3. **Fix code-correctness defects** (P1-002-001 through P1-002-003): Fix `copy_templates_batch` error handling (capture exit code before `!` flip), escape all JSON special characters in `create_graph_metadata_file`, add fallback path resolution to `getManifestPath`.
 4. **Add validator cross-reference** (P1-004-001, P1-004-002): Implement sectionGate-to-template cross-validation so the validator catches ANCHOR omissions and mismatched level gates.
-5. **Synchronize runtime mirrors** (P1-005-001): Align `.claude/agents/code.md` and `.gemini/agents/code.md` terminology with `.opencode/agent/code.md` canonical.
+5. **Synchronize runtime mirrors** (P1-005-001): Align `.claude/agents/code.md` and `.gemini/agents/code.md` terminology with `.opencode/agents/code.md` canonical.
 6. **Remove stale paths** (P1-005-002): Update `create_agent_auto.yaml` and `create_agent_confirm.yaml` to remove `templates/level_1/` references.
 
 ### Advisory (P2)

@@ -2,22 +2,22 @@
 
 ## Focus
 
-This iteration validated coder-side implementation modes for the proposed expanded `.opencode/agent/code.md`. The target was a drop-in mode-selection table mirroring `@review` section 4, but from the implementation side: what dispatch wording selects the mode, what the coder may skip from the standard six-step workflow, and what return signals the orchestrator receives.
+This iteration validated coder-side implementation modes for the proposed expanded `.opencode/agents/code.md`. The target was a drop-in mode-selection table mirroring `@review` section 4, but from the implementation side: what dispatch wording selects the mode, what the coder may skip from the standard six-step workflow, and what return signals the orchestrator receives.
 
 ## Actions Taken
 
-1. Read `.opencode/agent/review.md:101-111` to mirror the four-column mode-selection structure used by `@review`: Mode, Trigger, Focus, Output.
-2. Read `.opencode/agent/write.md:206-217` to compare another write-capable LEAF agent's mode table and completion threshold rule.
-3. Read `.opencode/agent/debug.md:95-105` to reuse the Fast Path and Context Package pattern for safe workflow compression.
-4. Read `.opencode/skill/sk-code/SKILL.md:50-62` to bind every implementation mode to the Phase 0-3 lifecycle and the Iron Law.
+1. Read `.opencode/agents/review.md:101-111` to mirror the four-column mode-selection structure used by `@review`: Mode, Trigger, Focus, Output.
+2. Read `.opencode/agents/write.md:206-217` to compare another write-capable LEAF agent's mode table and completion threshold rule.
+3. Read `.opencode/agents/debug.md:95-105` to reuse the Fast Path and Context Package pattern for safe workflow compression.
+4. Read `.opencode/skills/sk-code/SKILL.md:50-62` to bind every implementation mode to the Phase 0-3 lifecycle and the Iron Law.
 5. Synthesized and validated the seven proposed coder modes against those sources.
 
 ## Findings
 
-- F-iter002-001 (P1): `@code` should expose explicit implementation modes rather than relying on prose-only dispatch interpretation - citation: `.opencode/agent/review.md:101-111` - evidence: `@review` uses a compact mode-selection table with Trigger, Focus, and Output, giving orchestrators predictable dispatch and return shapes.
-- F-iter002-002 (P1): The coder mode table should mirror the `@write` pattern of mode-specific key steps and per-mode validation expectations - citation: `.opencode/agent/write.md:206-217` - evidence: `@write` has four documentation modes, each selected by trigger and tied to different steps and delivery thresholds.
-- F-iter002-003 (P1): Mode-specific skips must be limited to compression, not skipping `sk-code`, quality gates, verification, or return reporting - citation: `.opencode/skill/sk-code/SKILL.md:50-62` - evidence: `sk-code` owns Phase 1 implementation, Phase 1.5 quality gate, Phase 2 debugging, Phase 3 verification, and the Iron Law against completion claims without fresh verification evidence.
-- F-iter002-004 (P2): The debug agent provides the safest precedent for skips: low-complexity work may compress formal phases, and a Context Package may skip memory/context reconstruction, but the agent still performs the work and reports results - citation: `.opencode/agent/debug.md:95-101` - evidence: the Fast Path compresses methodology into one pass and Context Package dispatch skips Layer 1 memory checks only.
+- F-iter002-001 (P1): `@code` should expose explicit implementation modes rather than relying on prose-only dispatch interpretation - citation: `.opencode/agents/review.md:101-111` - evidence: `@review` uses a compact mode-selection table with Trigger, Focus, and Output, giving orchestrators predictable dispatch and return shapes.
+- F-iter002-002 (P1): The coder mode table should mirror the `@write` pattern of mode-specific key steps and per-mode validation expectations - citation: `.opencode/agents/write.md:206-217` - evidence: `@write` has four documentation modes, each selected by trigger and tied to different steps and delivery thresholds.
+- F-iter002-003 (P1): Mode-specific skips must be limited to compression, not skipping `sk-code`, quality gates, verification, or return reporting - citation: `.opencode/skills/sk-code/SKILL.md:50-62` - evidence: `sk-code` owns Phase 1 implementation, Phase 1.5 quality gate, Phase 2 debugging, Phase 3 verification, and the Iron Law against completion claims without fresh verification evidence.
+- F-iter002-004 (P2): The debug agent provides the safest precedent for skips: low-complexity work may compress formal phases, and a Context Package may skip memory/context reconstruction, but the agent still performs the work and reports results - citation: `.opencode/agents/debug.md:95-101` - evidence: the Fast Path compresses methodology into one pass and Context Package dispatch skips Layer 1 memory checks only.
 - F-iter002-005 (P1): Keep the seven suggested modes, with minor naming normalization. None are redundant enough to collapse because each changes either the skipped workflow surface or the orchestrator's expected RETURN signals.
 
 ## Questions Answered

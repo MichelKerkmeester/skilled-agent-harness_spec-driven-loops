@@ -51,10 +51,10 @@ _memory:
 
 ### Problem Statement
 
-The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses. It treated `.opencode/agent/*.md` as a single canonical source copied directly to every runtime, but the live repo has split lineage:
+The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses. It treated `.opencode/agents/*.md` as a single canonical source copied directly to every runtime, but the live repo has split lineage:
 
-- `.opencode/agent/*.md` is the base markdown family for the default OpenCode or Copilot profile and the closest markdown lineage for Claude and Gemini.
-- `.opencode/agent/chatgpt/*.md` is a distinct ChatGPT markdown family.
+- `.opencode/agents/*.md` is the base markdown family for the default OpenCode or Copilot profile and the closest markdown lineage for Claude and Gemini.
+- `.opencode/agents/chatgpt/*.md` is a distinct ChatGPT markdown family.
 - `.codex/agents/*.toml` is generated from the ChatGPT family, not from the base markdown family.
 - `.gemini/agents/*.md` is the runtime-facing Gemini path, while `.gemini -> .agents` exposes the backing storage at `.agents/agents/*.md`.
 
@@ -128,8 +128,8 @@ Reconcile the `013` packet so it accurately documents the current runtime lineag
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The packet must describe two source families, not one (legacy `AA-001`) | The active docs distinguish the base markdown family from the ChatGPT family |
-| REQ-002 | The packet must document `.opencode/agent/*.md` as the base markdown family for OpenCode/Copilot and the closest markdown lineage for Claude/Gemini (legacy `AA-002`) | The packet names the base family and its downstream relationship explicitly |
-| REQ-003 | The packet must document `.opencode/agent/chatgpt/*.md` as the ChatGPT family that feeds `.codex/agents/*.toml` (legacy `AA-003`) | Codex lineage is described as generated from the ChatGPT family |
+| REQ-002 | The packet must document `.opencode/agents/*.md` as the base markdown family for OpenCode/Copilot and the closest markdown lineage for Claude/Gemini (legacy `AA-002`) | The packet names the base family and its downstream relationship explicitly |
+| REQ-003 | The packet must document `.opencode/agents/chatgpt/*.md` as the ChatGPT family that feeds `.codex/agents/*.toml` (legacy `AA-003`) | Codex lineage is described as generated from the ChatGPT family |
 | REQ-004 | The packet must use `deep-research` naming consistently (legacy `AA-004`) | No active packet docs rely on the older `research` naming for this scope |
 | REQ-005 | The packet must document `.gemini/agents/*.md` as the runtime-facing path and `.gemini -> .agents` as the storage detail (legacy `AA-005`) | Gemini runtime-facing and storage-facing paths are both described without ambiguity |
 
@@ -157,7 +157,7 @@ Reconcile the `013` packet so it accurately documents the current runtime lineag
 
 **Given** the packet is read as the source of truth for runtime lineage, **when** a reviewer compares the described families, **then** they see separate base and ChatGPT authoring families rather than one flat canonical-copy model.
 
-**Given** a reviewer checks Codex lineage, **when** they read the packet, **then** `.codex/agents/*.toml` is described as downstream of `.opencode/agent/chatgpt/*.md`.
+**Given** a reviewer checks Codex lineage, **when** they read the packet, **then** `.codex/agents/*.toml` is described as downstream of `.opencode/agents/chatgpt/*.md`.
 
 **Given** a reviewer checks Gemini path guidance, **when** they read the packet, **then** `.gemini/agents/*.md` is presented as the runtime-facing path and `.gemini -> .agents` is presented as the storage detail.
 

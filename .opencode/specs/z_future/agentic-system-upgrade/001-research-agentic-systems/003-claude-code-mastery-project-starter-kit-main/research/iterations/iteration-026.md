@@ -10,9 +10,9 @@ The local skill substrate will remain useful, but the external repo will show th
 Compared the local skill roster, with special attention to the code-family skills and `system-spec-kit`, to the external repo's flatter command-plus-instruction packaging.
 
 ## Evidence
-- `system-spec-kit` is already a wide umbrella skill covering spec folders, memory, validation, and lifecycle rules. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:18-60]
-- The local repo also exposes multiple adjacent code skills: `sk-code-opencode`, `sk-code-web`, `sk-code-full-stack`, and `sk-code-review`, each with overlapping workflow framing and stack-specific overlays. [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:21-29] [SOURCE: .opencode/skill/sk-code-web/SKILL.md:21-37] [SOURCE: .opencode/skill/sk-code-full-stack/SKILL.md:21-32] [SOURCE: .opencode/skill/sk-code-review/SKILL.md:19-39]
-- Additional specialist skills such as `sk-doc`, `sk-git`, `sk-deep-research`, `sk-deep-review`, `sk-improve-prompt`, and `sk-improve-agent` create a broad catalog that maintainers can understand, but everyday operators may not need to name directly. [SOURCE: .opencode/skill/sk-doc/SKILL.md:24-63] [SOURCE: .opencode/skill/sk-deep-research/SKILL.md:137-221] [SOURCE: .opencode/skill/sk-improve-agent/SKILL.md:28-55]
+- `system-spec-kit` is already a wide umbrella skill covering spec folders, memory, validation, and lifecycle rules. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:18-60]
+- The local repo also exposes multiple adjacent code skills: `sk-code-opencode`, `sk-code-web`, `sk-code-full-stack`, and `sk-code-review`, each with overlapping workflow framing and stack-specific overlays. [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:21-29] [SOURCE: .opencode/skills/sk-code-web/SKILL.md:21-37] [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:21-32] [SOURCE: .opencode/skills/sk-code-review/SKILL.md:19-39]
+- Additional specialist skills such as `sk-doc`, `sk-git`, `sk-deep-research`, `sk-deep-review`, `sk-improve-prompt`, and `sk-improve-agent` create a broad catalog that maintainers can understand, but everyday operators may not need to name directly. [SOURCE: .opencode/skills/sk-doc/SKILL.md:24-63] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:137-221] [SOURCE: .opencode/skills/sk-improve-agent/SKILL.md:28-55]
 - The external repo packages equivalent help more implicitly through commands, repo instructions, and a smaller set of role surfaces rather than a large user-visible skill catalog. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/CLAUDE.md:11-72] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/help.md:31-107]
 
 ## Analysis
@@ -51,7 +51,7 @@ finding: `system-spec-kit` should merge its visible skill taxonomy into fewer pu
 - **Priority:** should-have
 
 ## Counter-evidence sought
-I looked for evidence that users truly benefit from naming each code-family skill separately, but the skills mostly read like layered overlays within one broader coding capability. [SOURCE: .opencode/skill/sk-code-full-stack/SKILL.md:41-60]
+I looked for evidence that users truly benefit from naming each code-family skill separately, but the skills mostly read like layered overlays within one broader coding capability. [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:41-60]
 
 ## Follow-up questions for next iteration
 If the visible skill taxonomy shrinks, is the mandatory Gate 2 skill-routing ceremony still worth its current operator cost?

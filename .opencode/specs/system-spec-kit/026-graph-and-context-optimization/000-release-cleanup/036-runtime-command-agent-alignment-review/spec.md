@@ -70,8 +70,8 @@ Make command and agent definitions reflect current runtime reality, with a durab
 
 ### In Scope
 
-- Audit `.opencode/command/**/*.md` plus relevant YAML assets.
-- Audit `.opencode/agent/*.md`, `.claude/agents/*.md`, `.codex/agents/*`, and `.gemini/agents/*.md`.
+- Audit `.opencode/commands/**/*.md` plus relevant YAML assets.
+- Audit `.opencode/agents/*.md`, `.claude/agents/*.md`, `.codex/agents/*`, and `.gemini/agents/*.md`.
 - Apply minimal documentation fixes for stale tool, path, count, hook, evergreen, and capability references.
 - Record cross-runtime equivalence and intentional divergence.
 
@@ -85,8 +85,8 @@ Make command and agent definitions reflect current runtime reality, with a durab
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/**` | Modify | Refresh command docs and YAML text claims |
-| `.opencode/agent/*.md` | Modify | Align hook/runtime/evergreen guidance |
+| `.opencode/commands/**` | Modify | Refresh command docs and YAML text claims |
+| `.opencode/agents/*.md` | Modify | Align hook/runtime/evergreen guidance |
 | `.claude/agents/*.md` | Modify | Align equivalent agent claims |
 | `.gemini/agents/*.md` | Modify | Align equivalent agent claims |
 | `.codex/agents/*.toml` | Audit | Drift recorded; writes blocked by sandbox |

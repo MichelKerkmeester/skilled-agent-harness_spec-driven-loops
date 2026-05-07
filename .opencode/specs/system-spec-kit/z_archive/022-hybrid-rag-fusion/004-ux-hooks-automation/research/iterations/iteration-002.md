@@ -129,14 +129,14 @@ The 250ms p95 guard on the pre-dispatch path is appropriate because `autoSurface
 **DEFERRED to future iteration** -- Would require reading the context-server.ts callback registration code and tracing whether the `result` object passed to `appendAutoSurfaceHints` is shared with other consumers.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` (lines 450-550, 960-1180)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts` (full file, 266 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts` (full file, 379 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts` (full file, 93 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` (full file, 19 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` (full file, 55 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts` (full file, 113 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts` (lines 66-105, 258-335)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` (lines 450-550, 960-1180)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts` (full file, 266 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` (full file, 379 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts` (full file, 93 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` (full file, 19 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` (full file, 55 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts` (full file, 113 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts` (lines 66-105, 258-335)
 
 ## Assessment
 - New information ratio: 0.75

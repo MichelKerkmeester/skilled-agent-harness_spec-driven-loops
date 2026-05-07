@@ -18,9 +18,9 @@ _memory:
     blockers:
       - "Live MCP probe requires daemon restart before rebuilt dist is loaded"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts"
       - "spec.md"
       - "plan.md"
       - "tasks.md"
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -67,9 +67,9 @@ Implemented the read-only readiness snapshot from research §5.3 / Option #1:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified (+58 lines) | Added `GraphReadinessSnapshot` type and `getGraphReadinessSnapshot()` export |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified (+12 / -5 lines) | Use snapshot helper; surface action and reason on readiness block |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts` | Added (~270 lines) | Coverage for criteria A–E + trust-state regression + error path |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified (+58 lines) | Added `GraphReadinessSnapshot` type and `getGraphReadinessSnapshot()` export |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modified (+12 / -5 lines) | Use snapshot helper; surface action and reason on readiness block |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts` | Added (~270 lines) | Coverage for criteria A–E + trust-state regression + error path |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot/spec.md` | Added | Packet spec |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot/plan.md` | Added | Packet plan |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot/tasks.md` | Added | Packet tasks |
@@ -110,8 +110,8 @@ The change is additive metadata on a read-only MCP tool response. The new helper
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-status-readiness-snapshot.vitest.ts` | PASS — 1 file, 9 tests passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-status-readiness-snapshot.vitest.ts` | PASS — 1 file, 9 tests passed |
 | Test A (fresh → none) | PASS: `readiness.action === "none"`, `reason === "all tracked files are up-to-date"` |
 | Test B (empty → full_scan) | PASS: `readiness.action === "full_scan"`, `reason` matches `/empty/i` |
 | Test C (broad stale → full_scan) | PASS: `readiness.action === "full_scan"`, `reason` matches `/exceed selective threshold/` |
@@ -119,9 +119,9 @@ The change is additive metadata on a read-only MCP tool response. The new helper
 | Test E (side-effect freedom — most important) | PASS: NO call to `setCodeGraphMetadata`, `setLastGitHead`, `setLastDetectorProvenance`, `setLastDetectorProvenanceSummary`, `setLastGraphEdgeEnrichmentSummary`, `clearLastGraphEdgeEnrichmentSummary`, `setLastGoldVerification`, `upsertFile`, `replaceNodes`, `replaceEdges`, `removeFile`, or `cleanupOrphans`; NO call to `ensureCodeGraphReady`; `getGraphReadinessSnapshot` invoked with `process.cwd()` |
 | Trust-state mapping (empty → missing/absent) | PASS: `data.canonicalReadiness === "missing"`, `data.trustState === "absent"` |
 | Error path (probe crash) | PASS: `freshness: "error"`, `action: "none"`, `reason: "readiness probe crashed: ..."` |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/file-watcher.vitest.ts` | PASS — 1 file, 21 tests passed (`DEFAULT_DEBOUNCE_MS=2000` unchanged) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-query-fallback-decision.vitest.ts tests/readiness-contract.vitest.ts` | PASS — 2 files, 21 tests passed (regression check on related handlers) |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot --strict` | DEFERRED: driver runs |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/file-watcher.vitest.ts` | PASS — 1 file, 21 tests passed (`DEFAULT_DEBOUNCE_MS=2000` unchanged) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/code-graph-query-fallback-decision.vitest.ts tests/readiness-contract.vitest.ts` | PASS — 2 files, 21 tests passed (regression check on related handlers) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/014-graph-status-readiness-snapshot --strict` | DEFERRED: driver runs |
 | Live `code_graph_status` probe | DEFERRED: requires daemon restart per packet 008 |
 <!-- /ANCHOR:verification -->
 

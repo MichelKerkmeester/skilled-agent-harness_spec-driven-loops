@@ -76,11 +76,11 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 ```
 
 ### Path Conventions
-- **Skill files**: `.opencode/skill/system-spec-kit/`
-- **Scripts**: `.opencode/skill/system-spec-kit/scripts/`
-- **Templates**: `.opencode/skill/system-spec-kit/templates/`
-- **MCP Server**: `.opencode/skill/system-spec-kit/mcp_server/`
-- **Commands**: `.opencode/command/`
+- **Skill files**: `.opencode/skills/system-spec-kit/`
+- **Scripts**: `.opencode/skills/system-spec-kit/scripts/`
+- **Templates**: `.opencode/skills/system-spec-kit/templates/`
+- **MCP Server**: `.opencode/skills/system-spec-kit/mcp_server/`
+- **Commands**: `.opencode/commands/`
 - **Agents**: `.opencode/agents/`
 
 ### Task Completion Criteria
@@ -134,7 +134,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 15 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/SKILL.md:133`
+- **File(s):** `.opencode/skills/system-spec-kit/SKILL.md:133`
 - **Requirement:** REQ-FUNC-010 (spec.md#template-requirements)
 - **Description:** SKILL.md claims "Templates (11)" but only 10 exist
 - **Acceptance Criteria:**
@@ -149,7 +149,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 2 hours
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+- **File(s):** `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
 - **Requirement:** REQ-FUNC-011, REQ-FUNC-013 (spec.md#script-requirements)
 - **Description:** Script referenced in SKILL.md:537-636 but doesn't exist
 - **Acceptance Criteria:**
@@ -168,7 +168,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/scripts/recommend-level.sh`
+- **File(s):** `.opencode/skills/system-spec-kit/scripts/recommend-level.sh`
 - **Requirement:** REQ-FUNC-012, REQ-FUNC-013 (spec.md#script-requirements)
 - **Description:** Script referenced in SKILL.md:172 but doesn't exist
 - **Acceptance Criteria:**
@@ -186,7 +186,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/mcp_server/context-server.js:588-595`
+- **File(s):** `.opencode/skills/system-spec-kit/mcp_server/context-server.js:588-595`
 - **Requirement:** REQ-FUNC-004, REQ-FUNC-005 (spec.md#memory-system-requirements)
 - **Description:** memory_search allows empty string queries which produce invalid embeddings
 - **Acceptance Criteria:**
@@ -202,7 +202,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/scripts/generate-context.js:1318-1322`
+- **File(s):** `.opencode/skills/system-spec-kit/scripts/generate-context.js:1318-1322`
 - **Requirement:** REQ-FUNC-006 (spec.md#memory-system-requirements)
 - **Description:** Simulation fallback creates searchable placeholder memories without clear warning
 - **Acceptance Criteria:**
@@ -218,7 +218,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/scripts/generate-context.js:3086`
+- **File(s):** `.opencode/skills/system-spec-kit/scripts/generate-context.js:3086`
 - **Requirement:** REQ-FUNC-007, NFR-R01 (spec.md#reliability)
 - **Description:** Non-interactive mode throws error instead of using defaults
 - **Acceptance Criteria:**
@@ -267,7 +267,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **File(s):** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Requirement:** REQ-FUNC-019 (spec.md#ux-requirements)
 - **Description:** Malformed anchor pairs fail silently, creating unindexable memories
 - **Acceptance Criteria:**
@@ -284,7 +284,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P0
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/command/memory/search.md`, `context-server.js`
+- **File(s):** `.opencode/commands/memory/search.md`, `context-server.js`
 - **Requirement:** REQ-FUNC-020 (spec.md#ux-requirements)
 - **Description:** Cleanup deletes memories without undo capability
 - **Acceptance Criteria:**
@@ -334,7 +334,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
   - [ ] All version numbers updated to v16.0.0
   - [ ] No outdated version references remain
   - [ ] Version number grep returns consistent results
-- **Approach:** `grep -r "v[0-9]" .opencode/skill/system-spec-kit/` and update all
+- **Approach:** `grep -r "v[0-9]" .opencode/skills/system-spec-kit/` and update all
 - **Verification:** All version strings show v16.0.0
 
 ---
@@ -358,7 +358,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** Multiple command files in `.opencode/command/`
+- **File(s):** Multiple command files in `.opencode/commands/`
 - **Requirement:** REQ-FUNC-016 (spec.md#documentation-requirements)
 - **Description:** Inconsistent tool naming (spec_kit_memory_memory_* vs memory_*)
 - **Acceptance Criteria:**
@@ -404,7 +404,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/command/spec_kit/*.md`
+- **File(s):** `.opencode/commands/spec_kit/*.md`
 - **Requirement:** REQ-FUNC-015 (spec.md#documentation-requirements)
 - **Description:** Multiple command files have step count mismatches
 - **Acceptance Criteria:**
@@ -418,7 +418,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/references/quick_reference.md`
+- **File(s):** `.opencode/skills/system-spec-kit/references/quick_reference.md`
 - **Description:** Quick reference missing recent commands and tools
 - **Acceptance Criteria:**
   - [ ] All 8 spec_kit commands listed
@@ -432,7 +432,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 30 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/references/troubleshooting.md`
+- **File(s):** `.opencode/skills/system-spec-kit/references/troubleshooting.md`
 - **Description:** Troubleshooting guide references deprecated error codes
 - **Acceptance Criteria:**
   - [ ] All error codes current and accurate
@@ -446,7 +446,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 15 minutes
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/skill/system-spec-kit/README.md`
+- **File(s):** `.opencode/skills/system-spec-kit/README.md`
 - **Description:** README counts don't match actual file counts
 - **Acceptance Criteria:**
   - [ ] Template count accurate
@@ -575,7 +575,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** `.opencode/command/memory/save.md`
+- **File(s):** `.opencode/commands/memory/save.md`
 - **Requirement:** REQ-FUNC-018 (spec.md#ux-requirements)
 - **Description:** Current save requires 5+ steps for simple context preservation
 - **Acceptance Criteria:**
@@ -591,7 +591,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 - **Priority:** P1
 - **Effort:** 1 hour
 - **Status:** ⬜ Pending
-- **File(s):** All command files in `.opencode/command/`
+- **File(s):** All command files in `.opencode/commands/`
 - **Requirement:** NFR-U03 (spec.md#usability)
 - **Description:** Commands require reading full docs for basic usage
 - **Acceptance Criteria:**

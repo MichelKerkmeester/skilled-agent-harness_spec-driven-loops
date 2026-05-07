@@ -6,7 +6,7 @@ I audited the save-time reconsolidation bridge, with emphasis on the assistive l
 ## Findings
 
 ### Finding R6-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `66-73`, `243-255`, `446-454`
 - **Severity:** P1
 - **Description:** The file documents assistive reconsolidation as a separate, default-on advisory feature, but the runtime gates it behind the same planner/full-auto switch used for save-time reconsolidation. In the default planner-first runtime, assistive review never executes unless the caller explicitly enables full-auto mode or the opt-in save-time reconsolidation flag.
@@ -14,7 +14,7 @@ I audited the save-time reconsolidation bridge, with emphasis on the assistive l
 - **Downstream Impact:** Default `memory_save` calls never emit borderline review recommendations or high-similarity compatibility notes, so operators and agent flows receive no assistive dedup guidance unless they explicitly switch into the legacy mutation-first/full-auto path.
 
 ### Finding R6-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `55-66`, `80-83`, `478-482`
 - **Severity:** P1
 - **Description:** The exported assistive threshold contract promises "auto-merge" behavior for similarity `>= 0.96`, but the live runtime performs no merge, archive, or cleanup at that tier. It only logs a compatibility note and then falls through to the normal create path.

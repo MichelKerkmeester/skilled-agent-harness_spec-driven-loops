@@ -41,7 +41,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify
 
 ### Overview
 
-Build a shared evidence extractor under `.opencode/skill/system-spec-kit/scripts/resource-map/` that accepts an array of normalized per-iteration delta objects and emits a filled `resource-map.md` string. Wire the extractor into the convergence step of both `sk-deep-review/scripts/reduce-state.cjs` and `sk-deep-research/scripts/reduce-state.cjs`. Extend the four YAML workflow assets to expose an opt-out flag. Add SKILL/command/references doc updates and feature-catalog + playbook entries. No change to convergence math, LEAF agent contracts, or iteration semantics.
+Build a shared evidence extractor under `.opencode/skills/system-spec-kit/scripts/resource-map/` that accepts an array of normalized per-iteration delta objects and emits a filled `resource-map.md` string. Wire the extractor into the convergence step of both `sk-deep-review/scripts/reduce-state.cjs` and `sk-deep-research/scripts/reduce-state.cjs`. Extend the four YAML workflow assets to expose an opt-out flag. Add SKILL/command/references doc updates and feature-catalog + playbook entries. No change to convergence math, LEAF agent contracts, or iteration semantics.
 <!-- /ANCHOR:summary -->
 
 ---

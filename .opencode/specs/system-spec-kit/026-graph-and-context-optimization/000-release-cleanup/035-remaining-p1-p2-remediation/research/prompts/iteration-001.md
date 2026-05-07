@@ -14,7 +14,7 @@ Work through the 24 remaining P1 findings + 15 P2 findings from 046's synthesis 
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/033-release-readiness-synthesis-and-remediation/synthesis.md` (full P1 + P2 registries)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/033-release-readiness-synthesis-and-remediation/remediation-log.md` (what 046 already fixed; do NOT re-do)
-- `.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md` (honor)
+- `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor)
 - All 10 review-reports under `032-release-readiness-deep-review-program/00X-*/review-report.md` for full context
 
 ### Already fixed in 046 (do NOT re-do)
@@ -85,7 +85,7 @@ Per item, edit code surgically. Add tests where indicated. Run affected vitest f
 Walk P2 list; apply safe ones; document deferred ones.
 
 #### Phase 6: Verification
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` — must pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must pass
 - `npx vitest run <affected test files>` — must pass
 - Strict validators on touched spec packets — must exit 0
 

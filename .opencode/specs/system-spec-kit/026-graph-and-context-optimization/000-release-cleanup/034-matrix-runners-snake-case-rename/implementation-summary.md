@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Commit via orchestrator"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/matrix_runners"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts"
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -57,7 +57,7 @@ The CLI matrix runner runtime folder now follows the same snake_case convention 
 
 ### Runtime Path Rename
 
-The runner source tree moved to `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/`. The contained adapters, manifest, meta-runner, prompt templates, and README were preserved without logic changes.
+The runner source tree moved to `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/`. The contained adapters, manifest, meta-runner, prompt templates, and README were preserved without logic changes.
 
 ### Reference Sweep
 
@@ -67,9 +67,9 @@ Imports, root docs, MCP server docs, manual testing docs, feature catalog entrie
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` | Renamed | Align runtime folder convention |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` | Modified | Update adapter imports |
-| `.opencode/skill/system-spec-kit/**/*.md` | Modified | Refresh evergreen docs and feature catalog references |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` | Renamed | Align runtime folder convention |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` | Modified | Update adapter imports |
+| `.opencode/skills/system-spec-kit/**/*.md` | Modified | Refresh evergreen docs and feature catalog references |
 | `specs/system-spec-kit/026-graph-and-context-optimization/**` | Modified | Refresh historical packet evidence references |
 | `README.md` | Modified | Refresh root README reference |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Created | Level 2 packet documentation |
@@ -104,7 +104,7 @@ Imports, root docs, MCP server docs, manual testing docs, feature catalog entrie
 
 | Check | Result |
 |-------|--------|
-| `npm run build` from `.opencode/skill/system-spec-kit/mcp_server` | PASS, TypeScript build exit 0 |
+| `npm run build` from `.opencode/skills/system-spec-kit/mcp_server` | PASS, TypeScript build exit 0 |
 | `npx vitest run matrix-adapter` | PASS, 5 files and 10 tests passed |
 | `grep -rln` old path over requested surfaces | PASS, no output |
 | `validate.sh --strict` for this packet | PASS, exit 0 |

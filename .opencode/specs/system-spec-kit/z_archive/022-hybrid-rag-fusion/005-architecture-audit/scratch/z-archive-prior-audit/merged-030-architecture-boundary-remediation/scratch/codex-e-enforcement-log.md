@@ -2,14 +2,14 @@
 
 - Timestamp (UTC): 2026-03-05 11:18:05 UTC
 - Agent: Codex-E Enforcement Suite
-- Scope: `.opencode/skill/system-spec-kit`
+- Scope: `.opencode/skills/system-spec-kit`
 
 ## 1) TypeScript Compilation
 
 Command:
 
 ```bash
-cd .opencode/skill/system-spec-kit && npx tsc --noEmit
+cd .opencode/skills/system-spec-kit && npx tsc --noEmit
 ```
 
 Result: PASS (exit 0)
@@ -25,7 +25,7 @@ Detected script:
 Command:
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && npm run check
+cd .opencode/skills/system-spec-kit/scripts && npm run check
 ```
 
 Result: FAILED (environment/runtime issue, not code assertion)
@@ -34,10 +34,10 @@ Result: FAILED (environment/runtime issue, not code assertion)
 Fallback executed:
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && npm run build
-cd .opencode/skill/system-spec-kit/scripts && node dist/evals/check-no-mcp-lib-imports.js
-cd .opencode/skill/system-spec-kit/scripts && bash check-api-boundary.sh
-cd .opencode/skill/system-spec-kit/scripts && node dist/evals/check-architecture-boundaries.js
+cd .opencode/skills/system-spec-kit/scripts && npm run build
+cd .opencode/skills/system-spec-kit/scripts && node dist/evals/check-no-mcp-lib-imports.js
+cd .opencode/skills/system-spec-kit/scripts && bash check-api-boundary.sh
+cd .opencode/skills/system-spec-kit/scripts && node dist/evals/check-architecture-boundaries.js
 ```
 
 Fallback results:
@@ -50,7 +50,7 @@ Fallback results:
 Requested command:
 
 ```bash
-cd .opencode/skill/system-spec-kit && npx tsx scripts/evals/check-allowlist-expiry.ts
+cd .opencode/skills/system-spec-kit && npx tsx scripts/evals/check-allowlist-expiry.ts
 ```
 
 Result: `tsx` unavailable (`sh: tsx: command not found`) in this runtime context.
@@ -58,7 +58,7 @@ Result: `tsx` unavailable (`sh: tsx: command not found`) in this runtime context
 Fallback run:
 
 ```bash
-cd .opencode/skill/system-spec-kit && node scripts/dist/evals/check-allowlist-expiry.js
+cd .opencode/skills/system-spec-kit && node scripts/dist/evals/check-allowlist-expiry.js
 ```
 
 Initial fallback failure:
@@ -73,8 +73,8 @@ Fix applied:
 Rebuild + rerun:
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts && npm run build
-cd .opencode/skill/system-spec-kit && node scripts/dist/evals/check-allowlist-expiry.js
+cd .opencode/skills/system-spec-kit/scripts && npm run build
+cd .opencode/skills/system-spec-kit && node scripts/dist/evals/check-allowlist-expiry.js
 ```
 
 Result after fix: PASS
@@ -85,7 +85,7 @@ Result after fix: PASS
 Command run:
 
 ```bash
-grep -r "escapeLikePattern" .opencode/skill/system-spec-kit/ --include="*.ts" -l
+grep -r "escapeLikePattern" .opencode/skills/system-spec-kit/ --include="*.ts" -l
 ```
 
 Import correctness verification:
@@ -95,12 +95,12 @@ Import correctness verification:
 Check command:
 
 ```bash
-rg -n "import\\s+\\{[^}]*escapeLikePattern[^}]*\\}\\s+from\\s+['\\\"][^'\\\"]*memory-save" .opencode/skill/system-spec-kit --glob "*.ts"
+rg -n "import\\s+\\{[^}]*escapeLikePattern[^}]*\\}\\s+from\\s+['\\\"][^'\\\"]*memory-save" .opencode/skills/system-spec-kit --glob "*.ts"
 ```
 
 Result: no matches.
 
 ## 5) Files Modified
 
-- `.opencode/skill/system-spec-kit/scripts/evals/check-allowlist-expiry.ts`
+- `.opencode/skills/system-spec-kit/scripts/evals/check-allowlist-expiry.ts`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit/scratch/merged-030-architecture-boundary-remediation/scratch/codex-e-enforcement-log.md`

@@ -6,8 +6,8 @@ description: Runtime strategy template for proposal-only agent improvement sessi
 # Agent Improvement Strategy
 
 ## 1. Target
-Primary canonical benchmark target: `.opencode/agent/handover.md`
-Bounded candidate-only profile: `.opencode/agent/context-prime.md`
+Primary canonical benchmark target: `.opencode/agents/handover.md`
+Bounded candidate-only profile: `.opencode/agents/context-prime.md`
 
 ## 1.1 Target Profile
 Packet-level run covering `handover` as the benchmark seed and `context-prime` as the second structured profile.

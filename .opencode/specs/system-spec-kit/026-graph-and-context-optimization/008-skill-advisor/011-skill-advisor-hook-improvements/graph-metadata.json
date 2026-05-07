@@ -47,19 +47,19 @@
       "plan.md",
       "tasks.md",
       ".opencode/plugins/spec-kit-skill-advisor.js",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
-      ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       "tests/codex-user-prompt-submit-hook.vitest.ts",
       "tests/codex-prompt-wrapper.vitest.ts",
       "hooks/claude/hook-state.ts",
       "lib/context/shared-payload.ts",
       "checklist.md",
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       "implementation-summary.md",
       "hooks/codex/user-prompt-submit.ts",
       "hooks/codex/prompt-wrapper.ts"
@@ -92,19 +92,19 @@
       {
         "name": "user-prompt-submit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts",
         "source": "derived"
       },
       {
         "name": "prompt-wrapper.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts",
         "source": "derived"
       },
       {
         "name": "skill-advisor-hook.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
@@ -146,7 +146,7 @@
       {
         "name": "hook_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
         "source": "derived"
       },
       {

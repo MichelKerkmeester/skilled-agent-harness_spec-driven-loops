@@ -65,6 +65,6 @@ _memory:
 ## Cross-References
 
 - Deep review findings P1-001, P1-002, and P1-003 from `../review/review-report.md`
-- Runtime implementation in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
-- Focused verification in `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
+- Runtime implementation in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
+- Focused verification in `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
 <!-- /ANCHOR:cross-refs -->

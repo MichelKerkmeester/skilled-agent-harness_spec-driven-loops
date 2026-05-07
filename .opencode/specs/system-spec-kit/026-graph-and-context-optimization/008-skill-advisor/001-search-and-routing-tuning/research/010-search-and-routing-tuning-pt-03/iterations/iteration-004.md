@@ -4,7 +4,7 @@
 Answer RQ-2 and RQ-3 by validating `children_ids` against actual child directories and checking the resolved dependency graph for cycles.
 
 ## Findings
-1. `children_ids` are derived by enumerating direct numeric child directories and serializing them as specs-root-relative paths, not as paths relative to the current folder on disk. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393]
+1. `children_ids` are derived by enumerating direct numeric child directories and serializing them as specs-root-relative paths, not as paths relative to the current folder on disk. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393]
 2. Once the scan used that same path base, all 290 declared child links resolved correctly. Ghost-child rate: 0.0%. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13] [SOURCE: .opencode/specs/00--ai-systems/001-global-shared/graph-metadata.json:6-12]
 3. The dependency graph contains no cycles, but that result is mostly a reflection of graph sparsity because only four `depends_on` edges currently exist. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 
@@ -15,7 +15,7 @@ Answer RQ-2 and RQ-3 by validating `children_ids` against actual child directori
 - The first shell prototype that treated every child id as a folder-local relative path.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393`
 - `.opencode/specs/00--ai-systems/001-global-shared/graph-metadata.json:6-12`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

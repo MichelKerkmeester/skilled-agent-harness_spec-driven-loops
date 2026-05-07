@@ -89,7 +89,7 @@ However, all of this is YAML workflow + agent prompt instructions. There is no T
 
 **Comparison with pi-autoresearch**: pi-autoresearch enforces error handling in TypeScript code that the AI CANNOT bypass. Our system relies on the AI following instructions, which is the same approach as AGR and autoresearch-opencode.
 
-[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md (local)]
+[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md (local)]
 
 ### Finding 6: Three-tier architecture pattern emerges across all repos
 
@@ -107,7 +107,7 @@ Only pi-autoresearch operates at all 3 tiers. The other 3 systems (including our
 - https://github.com/JoaquinMulet/Artificial-General-Research (repo root, skills/agr/ listing, SKILL.md)
 - https://github.com/davebcn87/pi-autoresearch (repo root, extensions/pi-autoresearch/index.ts full source)
 - https://github.com/dabiggm0e/autoresearch-opencode (repo root, autoresearch.sh full source)
-- .opencode/skill/sk-deep-research/references/loop_protocol.md (local, 459 lines)
+- .opencode/skills/sk-deep-research/references/loop_protocol.md (local, 459 lines)
 
 ## Assessment
 - New information ratio: 0.75

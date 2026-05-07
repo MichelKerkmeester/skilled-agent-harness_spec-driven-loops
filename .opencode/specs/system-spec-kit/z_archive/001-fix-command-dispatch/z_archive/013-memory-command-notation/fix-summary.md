@@ -116,7 +116,7 @@ All file paths were correctly preserved:
 - `specs/###-feature/memory/*.md` - Memory file storage paths
 - `.opencode/memory/database/` - Database paths
 - `.opencode/memory/scripts/` - Script paths
-- `.opencode/command/memory/` - Command definition paths
+- `.opencode/commands/memory/` - Command definition paths
 - `specs/*/memory/` - Spec folder memory directories
 
 ---
@@ -131,7 +131,7 @@ All file paths were correctly preserved:
 | Agent 4 | Root markdown | No matches |
 | Agent 5 | JSON configs | Only path comments |
 | Agent 6 | JavaScript src/ | No matches |
-| Agent 7 | .opencode/command/ | 35+ files analyzed, command definitions |
+| Agent 7 | .opencode/commands/ | 35+ files analyzed, command definitions |
 | Agent 8 | .opencode/speckit/ | **2 COMMAND refs** updated |
 | Agent 9 | z_install_guides/ | 34 occurrences, all paths |
 | Agent 10 | Full workspace | Comprehensive verification |
@@ -153,5 +153,5 @@ The following contained `/memory/` but were PATH references (correctly unchanged
 
 - `z_install_guides/MCP - Semantic Memory.md` - 34 path references
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/*/memory/*.md` - Historical documentation
-- `.opencode/command/memory/*.md` - Command definition folder paths
+- `.opencode/commands/memory/*.md` - Command definition folder paths
 - All `*.json` config files - Database path comments only

@@ -52,7 +52,7 @@ The accepted decision set for Phase 005 is:
 #### Decision Set 2: Reuse graph-style coverage tracking for improve-agent
 
 - **Why**: improvement sessions needed explainable coverage without inventing an entirely separate persistence model.
-- **Evidence**: `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
+- **Evidence**: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
 
 #### Decision Set 3: Treat trajectory as a first-class convergence input
 
@@ -62,7 +62,7 @@ The accepted decision set for Phase 005 is:
 #### Decision Set 4: Keep parallel candidates opt-in
 
 - **Why**: branching candidate exploration increases complexity and should not become the default path for every improve-agent run.
-- **Evidence**: `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
+- **Evidence**: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
 
 #### Decision Set 5: Preserve backward compatibility through additive config defaults
 

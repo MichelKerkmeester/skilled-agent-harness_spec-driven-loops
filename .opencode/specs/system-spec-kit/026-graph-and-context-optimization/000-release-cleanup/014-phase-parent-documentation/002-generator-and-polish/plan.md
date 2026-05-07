@@ -137,9 +137,9 @@ Layered policy enforcement, additive: generator emits pointer → resume reads p
 
 > **Sub-phase C.** Closes the loop end-to-end and adds reviewer guardrails.
 
-- [ ] T012 Patch `.opencode/command/spec_kit/resume.md` step 3b: pointer-first redirect when fresh (<24h), list-fallback when stale/missing, `--no-redirect` bypass
+- [ ] T012 Patch `.opencode/commands/spec_kit/resume.md` step 3b: pointer-first redirect when fresh (<24h), list-fallback when stale/missing, `--no-redirect` bypass
 - [ ] T013 Patch resume YAML asset (`assets/spec_kit_resume_*.yaml`) to mirror the redirect logic
-- [ ] T014 Patch `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`: brief assembler honors phase-parent redirect
+- [ ] T014 Patch `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`: brief assembler honors phase-parent redirect
 - [ ] T015 [P] Create `scripts/rules/check-phase-parent-content.sh` (severity warn, code-fence aware) scanning forbidden narrative tokens
 - [ ] T016 [P] Register `PHASE_PARENT_CONTENT` rule in `scripts/lib/validator-registry.json`
 - [ ] T017 Manual end-to-end test: `/spec_kit:plan :with-phases --phases 2 "test-feature"`, edit a child, save, resume parent. Confirm pointer redirect lands in child. Trace stored under `scratch/e2e-trace.txt`

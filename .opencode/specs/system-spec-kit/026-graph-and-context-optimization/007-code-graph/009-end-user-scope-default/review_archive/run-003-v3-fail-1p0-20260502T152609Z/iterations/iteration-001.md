@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts`: 5-10, 27-38, 65-74
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`: 5-12, 49-61, 63-84
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`: 79-100
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts`: 11-19, 248-265
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`: 196-198, 207-231, 237-240, 263-303, 334-350
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`: 162-175, 261-280
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts`: 50-56, 103-112, 259-295, 311-331
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts`: 99-104, 198-202, 293-319, 321-379, 381-461, 486-512
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts`: 27-28, 59-70, 73-120
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts`: searched for scope env mutation terms; no `CODE_GRAPH_INDEX_SKILLS_ENV` or `process.env` scope-policy matches.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md`: 36-42, 82-102
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md`: 35-40, 84-105
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts`: 5-10, 27-38, 65-74
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`: 5-12, 49-61, 63-84
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`: 79-100
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts`: 11-19, 248-265
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`: 196-198, 207-231, 237-240, 263-303, 334-350
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`: 162-175, 261-280
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts`: 50-56, 103-112, 259-295, 311-331
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts`: 99-104, 198-202, 293-319, 321-379, 381-461, 486-512
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts`: 27-28, 59-70, 73-120
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts`: searched for scope env mutation terms; no `CODE_GRAPH_INDEX_SKILLS_ENV` or `process.env` scope-policy matches.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md`: 36-42, 82-102
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md`: 35-40, 84-105
 
 ## Findings by Severity
 

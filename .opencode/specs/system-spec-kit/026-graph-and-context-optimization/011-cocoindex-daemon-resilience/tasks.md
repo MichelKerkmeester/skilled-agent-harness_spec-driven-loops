@@ -100,7 +100,7 @@ _memory:
 - [ ] All tasks T001-T013 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] checklist.md P0 items 100 percent verified with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0
 - [ ] `implementation-summary.md` filled (post-implementation per Rule 13)
 - [ ] T010 operator recovery action recorded as a separate operator log entry
 <!-- /ANCHOR:completion -->
@@ -114,10 +114,10 @@ _memory:
 - **Plan**: See `plan.md` (7 patches)
 - **Research**: See `research/research.md` (5 iterations, 21 findings, 17 sections)
 - **Source files**:
-  - `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py`
-  - `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
+  - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py`
+  - `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py`
 - **Test files (CREATE NEW)**:
-  - `.opencode/skill/mcp-coco-index/mcp_server/tests/test_daemon.py`
-  - `.opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
+  - `.opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py`
+  - `.opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py`
 - **Live evidence**: `/Users/michelkerkmeester/.cocoindex_code/daemon.log` (23 MB, 564 BrokenPipeError lines, severance event at 2026-04-27 17:08:49)
 <!-- /ANCHOR:cross-refs -->

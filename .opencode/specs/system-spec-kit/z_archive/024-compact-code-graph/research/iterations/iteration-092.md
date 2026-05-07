@@ -6,10 +6,10 @@ Compile a single verification scorecard across iterations 076-091 (with iteratio
 ## Method
 I re-read iterations 076-091, excluding 090 because the markdown artifact is still absent locally, then re-checked the live source for the three unverified review findings in:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
 
 For the tally below, I counted **top-level adjudicated claims only** from the explicit verification iterations (`076-083`, `088`, `089`, `091`) plus the three review checks completed here for `092`. I treated `084-087` as **new verification-wave discoveries / runtime-deepening passes**, not as prior-claim verdict rows, so the aggregate does not mix brand-new design findings with old-claim adjudication.
 
@@ -84,17 +84,17 @@ These are the most important net-new discoveries that emerged only during the ve
 ### P1-7: Stale inbound edges after re-indexing
 **Verdict: CONFIRMED**
 
-The review finding still matches current code. `replaceNodes(fileId, nodes)` deletes the file's prior nodes, but `replaceEdges(sourceIds, edges)` deletes only edges whose `source_id` belongs to the newly indexed file. During a normal incremental scan, `handleCodeGraphScan()` calls `upsertFile()` -> `replaceNodes()` -> `replaceEdges()` and never calls `cleanupOrphans()` afterward. That means inbound edges from unchanged files can continue to point at removed symbol IDs until a later cleanup pass happens.[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:127-169][SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:283-297][SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-74][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-003.md:30-36]
+The review finding still matches current code. `replaceNodes(fileId, nodes)` deletes the file's prior nodes, but `replaceEdges(sourceIds, edges)` deletes only edges whose `source_id` belongs to the newly indexed file. During a normal incremental scan, `handleCodeGraphScan()` calls `upsertFile()` -> `replaceNodes()` -> `replaceEdges()` and never calls `cleanupOrphans()` afterward. That means inbound edges from unchanged files can continue to point at removed symbol IDs until a later cleanup pass happens.[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:127-169][SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:283-297][SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:47-74][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-003.md:30-36]
 
 ### P1-8: JavaScript/TypeScript methods never indexed
 **Verdict: CONFIRMED**
 
-`parseJsTs()` still recognizes top-level functions, const-assigned arrows, classes, interfaces, types, enums, imports, and exports, but it has no branch that emits `kind: 'method'` for JS/TS class bodies. Meanwhile, `extractEdges()` still expects `method` nodes for `CONTAINS` edges. The mismatch remains unchanged, so JS/TS class methods are still missing from the primary-language graph surface.[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-107][SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:210-223][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-003.md:38-44]
+`parseJsTs()` still recognizes top-level functions, const-assigned arrows, classes, interfaces, types, enums, imports, and exports, but it has no branch that emits `kind: 'method'` for JS/TS class bodies. Meanwhile, `extractEdges()` still expects `method` nodes for `CONTAINS` edges. The mismatch remains unchanged, so JS/TS class methods are still missing from the primary-language graph surface.[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-107][SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:210-223][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-003.md:38-44]
 
 ### P1-9: Spec/checklist overstate the "3-source hook merge"
 **Verdict: CONFIRMED**
 
-The nuance remains the same as the earlier D3 review: the hook *does* call `mergeCompactBrief()`, but the inputs are still not a real retrieval-backed Memory + Code Graph + CocoIndex merge. `constitutional` and `triggered` are still hardcoded to empty strings, `codeGraph` is built from transcript-derived active file paths, and `cocoIndex` is still only a literal advisory sentence telling the agent to run CocoIndex later. So the review finding stands: the docs overstate what the current hook path actually does.[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:141-203][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-004.md:7-11]
+The nuance remains the same as the earlier D3 review: the hook *does* call `mergeCompactBrief()`, but the inputs are still not a real retrieval-backed Memory + Code Graph + CocoIndex merge. `constitutional` and `triggered` are still hardcoded to empty strings, `codeGraph` is built from transcript-derived active file paths, and `cocoIndex` is still only a literal advisory sentence telling the agent to run CocoIndex later. So the review finding stands: the docs overstate what the current hook path actually does.[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:141-203][SOURCE: .opencode/specs/system-spec-kit/024-compact-code-graph/review/iterations/iteration-004.md:7-11]
 
 ## Consolidated Scorecard
 - **Still-valid core**: structural correctness bugs and most review P1 findings remain real.

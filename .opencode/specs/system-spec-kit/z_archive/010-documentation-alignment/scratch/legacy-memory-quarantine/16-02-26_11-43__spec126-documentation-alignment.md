@@ -150,7 +150,7 @@ Next: Created spec 128 for upgrade auto-populate feature fix
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../handlers/memory-context.ts, .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/.../search/intent-classifier.ts
+- Files modified: .opencode/.../handlers/memory-context.ts, .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/.../search/intent-classifier.ts
 
 - Last: general-session-summary-127
 
@@ -165,7 +165,7 @@ Next: Created spec 128 for upgrade auto-populate feature fix
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/command/memory/context.md |
+| Active File | .opencode/commands/memory/context.md |
 | Last Action | files-modified-127 |
 | Next Action | Created spec 128 for upgrade auto-populate feature fix |
 | Blockers | ADR-003: Expand scope beyond docs-only to include code, tests, and command files because half-measur |
@@ -189,7 +189,7 @@ Next: Created spec 128 for upgrade auto-populate feature fix
 
 - `.opencode/.../handlers/memory-context.ts` - React context provider
 
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` - Added find_spec and find_decision to intent enum
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` - Added find_spec and find_decision to intent enum
 
 - `.opencode/.../search/intent-classifier.ts` - Updated comment to reflect 7 intent types
 
@@ -199,9 +199,9 @@ Next: Created spec 128 for upgrade auto-populate feature fix
 
 - `.opencode/.../tests/integration-readme-sources.vitest.ts` - Updated integration tests for 5 source pipeline
 
-- `.opencode/skill/system-spec-kit/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
 **How to Extend**:
 
@@ -238,14 +238,14 @@ Session implemented spec 127 — a comprehensive documentation alignment update 
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../handlers/memory-context.ts` | True and changing to false would defeat spec 126 purpose |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | True and changing to false would defeat spec 126 purpose |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | True and changing to false would defeat spec 126 purpose |
 | `.opencode/.../search/intent-classifier.ts` | True and changing to false would defeat spec 126 purpose |
 | `.opencode/.../tests/memory-context.vitest.ts` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
 | `.opencode/.../tests/handler-helpers.vitest.ts` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
 | `.opencode/.../tests/integration-readme-sources.vitest.ts` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
-| `.opencode/skill/system-spec-kit/README.md` | Sources.vitest.ts) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Sources.vitest.ts) |
+| `.opencode/skills/system-spec-kit/README.md` | Sources.vitest.ts) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Sources.vitest.ts) |
 | `.opencode/.../memory/memory_system.md` | Spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for fi... |
 
 <!-- /ANCHOR:summary -->
@@ -270,7 +270,7 @@ Session implemented spec 127 — a comprehensive documentation alignment update 
 
 Implemented 10 parallel work items for spec 127. WI-1: Code fixes (INTENT_TO_MODE routing for find_spec/find_decision, intent enum additions in tool-schemas.ts, comment update in intent-classifier.ts). WI-2/3/4: Test updates (memory-context.vitest.ts, handler-helpers.vitest.ts, integration-readme-sources.vitest.ts). WI-5/6: Documentation updates (includeSpecDocs default false to true, 5 to 7 intents, 4 to 5 sources across README.md, SKILL.md, mcp_server/README.md, memory_system.md, readme_indexing.md, save_workflow.md, search/README.md, plus decision-record.md). WI-7/8/9/10: Command file updates (context.md, manage.md, learn.md, save.md). Also upgraded spec folder from L1 to L3+ and moved from root specs/ to .opencode/specs/.
 
-**Files:** .opencode/command/memory/context.md, .opencode/command/memory/learn.md, .opencode/command/memory/manage.md, .opencode/command/memory/save.md, .opencode/skill/system-spec-kit/README.md, .opencode/skill/system-spec-kit/SKILL.md, .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts, .opencode/skill/system-spec-kit/mcp_server/lib/search/README.md, .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts, .opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tests/integration-readme-sources.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/skill/system-spec-kit/references/memory/memory_system.md, .opencode/skill/system-spec-kit/references/memory/readme_indexing.md, .opencode/skill/system-spec-kit/references/memory/save_workflow.md
+**Files:** .opencode/commands/memory/context.md, .opencode/commands/memory/learn.md, .opencode/commands/memory/manage.md, .opencode/commands/memory/save.md, .opencode/skills/system-spec-kit/README.md, .opencode/skills/system-spec-kit/SKILL.md, .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts, .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md, .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts, .opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tests/integration-readme-sources.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/skills/system-spec-kit/references/memory/memory_system.md, .opencode/skills/system-spec-kit/references/memory/readme_indexing.md, .opencode/skills/system-spec-kit/references/memory/save_workflow.md
 **Details:** 10 parallel work items dispatched via sub-agents covering code, tests, docs, and commands | Pattern: Parallel agent dispatch for independent work items | Pattern: Post-implementation grep sweep for stale references | Pattern: upgrade-level.sh chain upgrade L1 to L2 to L3 to L3+ | Root cause: Spec 126 shipped code for full spec doc indexing but no docs/tests/commands were updated
 <!-- /ANCHOR:implementation-10workitems127-f2bc3b3c -->
 
@@ -279,7 +279,7 @@ Implemented 10 parallel work items for spec 127. WI-1: Code fixes (INTENT_TO_MOD
 
 Discovered that upgrade-level.sh has a false positive on EXECUTIVE SUMMARY detection, which causes it to skip the L2 to L3 spec.md injection step. This was logged as spec 128 for future resolution. The workaround was to chain the upgrade through all levels: L1 to L2 to L3 to L3+.
 
-**Files:** .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh, .opencode/specs/system-spec-kit/z_archive/011-upgrade-auto-populate/spec.md
+**Files:** .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh, .opencode/specs/system-spec-kit/z_archive/011-upgrade-auto-populate/spec.md
 **Details:** Bug: upgrade-level.sh has false positive on EXECUTIVE SUMMARY detection | Effect: Skips L2 to L3 spec.md injection when EXECUTIVE SUMMARY text exists in any form | Workaround: Chain upgrade through all levels sequentially | Follow-up: Created spec 128 for upgrade auto-populate feature fix
 <!-- /ANCHOR:discovery-upgradescriptbug127-d4530148 -->
 
@@ -288,8 +288,8 @@ Discovered that upgrade-level.sh has a false positive on EXECUTIVE SUMMARY detec
 
 Complete list of 20 files modified during spec 127 implementation: memory-context.ts (INTENT_TO_MODE routing), tool-schemas.ts (intent enums), intent-classifier.ts (comment), memory-context.vitest.ts (tests), handler-helpers.vitest.ts (tests), integration-readme-sources.vitest.ts (tests), system-spec-kit README.md, SKILL.md, mcp_server README.md, memory_system.md, readme_indexing.md, save_workflow.md, search README.md, context.md command, manage.md command, learn.md command, save.md command, decision-record.md, checklist.md, and spec 128 spec.md.
 
-**Files:** .opencode/command/memory/context.md, .opencode/command/memory/learn.md, .opencode/command/memory/manage.md, .opencode/command/memory/save.md, .opencode/skill/system-spec-kit/README.md, .opencode/skill/system-spec-kit/SKILL.md, .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts, .opencode/skill/system-spec-kit/mcp_server/lib/search/README.md, .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts, .opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tests/integration-readme-sources.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts, .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/skill/system-spec-kit/references/memory/memory_system.md, .opencode/skill/system-spec-kit/references/memory/readme_indexing.md, .opencode/skill/system-spec-kit/references/memory/save_workflow.md, .opencode/specs/system-spec-kit/127-spec126-documentation-alignment/checklist.md, .opencode/specs/system-spec-kit/127-spec126-documentation-alignment/decision-record.md, .opencode/specs/system-spec-kit/z_archive/011-upgrade-auto-populate/spec.md
-**Details:** 20 files modified total across code, tests, docs, commands, and spec folder documents | 3 code files in mcp_server (handlers, tool-schemas, intent-classifier) | 3 test files in mcp_server/tests | 8 documentation files (7 skill docs + 1 search README) | 4 command files in .opencode/command/memory/ | 2 spec folder documents (decision-record.md, checklist.md) plus spec 128 creation
+**Files:** .opencode/commands/memory/context.md, .opencode/commands/memory/learn.md, .opencode/commands/memory/manage.md, .opencode/commands/memory/save.md, .opencode/skills/system-spec-kit/README.md, .opencode/skills/system-spec-kit/SKILL.md, .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts, .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md, .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts, .opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tests/integration-readme-sources.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts, .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts, .opencode/skills/system-spec-kit/references/memory/memory_system.md, .opencode/skills/system-spec-kit/references/memory/readme_indexing.md, .opencode/skills/system-spec-kit/references/memory/save_workflow.md, .opencode/specs/system-spec-kit/127-spec126-documentation-alignment/checklist.md, .opencode/specs/system-spec-kit/127-spec126-documentation-alignment/decision-record.md, .opencode/specs/system-spec-kit/z_archive/011-upgrade-auto-populate/spec.md
+**Details:** 20 files modified total across code, tests, docs, commands, and spec folder documents | 3 code files in mcp_server (handlers, tool-schemas, intent-classifier) | 3 test files in mcp_server/tests | 8 documentation files (7 skill docs + 1 search README) | 4 command files in .opencode/commands/memory/ | 2 spec folder documents (decision-record.md, checklist.md) plus spec 128 creation
 <!-- /ANCHOR:implementation-filesmodified127-1879aaed -->
 
 <!-- /ANCHOR:detailed-changes -->
@@ -360,9 +360,9 @@ Complete list of 20 files modified during spec 127 implementation: memory-contex
              │  │  ADR-001: Set includeSpecDocs d        │
              │  │                                        │
              │  │  Evidence:                             │
-             │  │  • .opencode/skill/system-spec-kit/mc  │
-             │  │  • .opencode/skill/system-spec-kit/mc  │
-             │  │  • .opencode/skill/system-spec-kit/mc  │
+             │  │  • .opencode/skills/system-spec-kit/mc  │
+             │  │  • .opencode/skills/system-spec-kit/mc  │
+             │  │  • .opencode/skills/system-spec-kit/mc  │
              │  └────────────────────────────────────────┘
              │           │
              └─────┬─────┘
@@ -387,9 +387,9 @@ Complete list of 20 files modified during spec 127 implementation: memory-contex
 #### Trade-offs
 
 **Supporting Evidence**:
-- .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
-- .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts
-- .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
+- .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts
+- .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 
 **Confidence**: 75%
 <!-- /ANCHOR:decision-intentrouting127-79bf4763 -->
@@ -451,7 +451,7 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "../.opencode/specs/system-spec-kit/127-spec126-documentation-alignment", limit: 10 })
@@ -463,7 +463,7 @@ ls -la ../.opencode/specs/system-spec-kit/127-spec126-documentation-alignment/me
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/127-spec126-documentation-alignment --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/127-spec126-documentation-alignment --force
 ```
 
 ### Recovery Priority
@@ -655,14 +655,14 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../handlers/memory-context.ts"
-  - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
+  - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
   - ".opencode/.../search/intent-classifier.ts"
   - ".opencode/.../tests/memory-context.vitest.ts"
   - ".opencode/.../tests/handler-helpers.vitest.ts"
   - ".opencode/.../tests/integration-readme-sources.vitest.ts"
-  - ".opencode/skill/system-spec-kit/README.md"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
-  - ".opencode/skill/system-spec-kit/mcp_server/README.md"
+  - ".opencode/skills/system-spec-kit/README.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-spec-kit/mcp_server/README.md"
   - ".opencode/.../memory/memory_system.md"
 
 # Relationships

@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/agent/deep-research.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/agents/deep-research.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "reconsolidation-bridge.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {

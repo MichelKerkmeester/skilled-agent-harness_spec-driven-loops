@@ -79,9 +79,9 @@ This phase was delivered inside the existing MCP server and then re-verified wit
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
-| `npx tsc --noEmit` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
+| `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | `npx vitest run tests/memory-lineage-state.vitest.ts tests/memory-lineage-backfill.vitest.ts` | PASS |
 | Consolidated roadmap suite (`15` files, `159` tests) | PASS |
 | Six-phase validation sweep (`001`-`006` `validate.sh`) | PASS |

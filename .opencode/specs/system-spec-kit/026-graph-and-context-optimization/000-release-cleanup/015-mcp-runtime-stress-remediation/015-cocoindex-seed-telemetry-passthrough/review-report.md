@@ -25,7 +25,7 @@ Per the dispatch contract, the orchestrator independently verified the "no secon
 ```text
 Command:
   grep -rE 'path_class|pathClass|raw_score|rawScore|rankingSignals' \
-    .opencode/skill/system-spec-kit/mcp_server/lib/search/
+    .opencode/skills/system-spec-kit/mcp_server/lib/search/
 
 Pre-dispatch hits: 11 lines (3 files)
 Post-dispatch hits: 11 lines (3 files) — IDENTICAL
@@ -39,7 +39,7 @@ Tokens hit by packet 015: NONE (path_class, pathClass, raw_score, rankingSignals
 Tokens hit pre-existing:  rawScore (local-variable name only)
 
 Diff verification:
-  git diff HEAD -- .opencode/skill/system-spec-kit/mcp_server/lib/search/
+  git diff HEAD -- .opencode/skills/system-spec-kit/mcp_server/lib/search/
   → EMPTY (zero changes from packet 015)
 ```
 
@@ -48,7 +48,7 @@ Diff verification:
 **CocoIndex fork verification:**
 
 ```text
-git status --short --untracked-files=all -- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/
+git status --short --untracked-files=all -- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/
 → EMPTY (fork untouched, byte-equal to origin/main)
 ```
 
@@ -120,8 +120,8 @@ Separate assertions cover ordering at `:337-340` and `score`/`confidence`/`resol
 **Status:** PASS
 **Severity:** N/A
 **Evidence:**
-- `git status --short --untracked-files=all -- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/` → empty
-- `git diff --name-only origin/main -- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/` → empty
+- `git status --short --untracked-files=all -- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` → empty
+- `git diff --name-only origin/main -- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` → empty
 - Fork telemetry source remains untouched in `schema.py:24-36` and `query.py:21-37`, `:192-217`
 
 **Finding:** CocoIndex fork is byte-equal to origin/main. (Independently re-verified by orchestrator.)
@@ -170,12 +170,12 @@ Resolver assigns anchor score from `seed.score` at `seed-resolver.ts:120` and `r
 
 ```text
 git diff HEAD -- \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts \
-  .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts \
+  .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
 → shows packet 015's intended modifications (3 files, M)
 
-ls .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts
+ls .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts
 → exists (untracked, intended new test)
 
 ls .opencode/specs/.../015-cocoindex-seed-telemetry-passthrough/

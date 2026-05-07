@@ -41,14 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts",
       "mcp_server/tests/integration-causal-graph.vitest.ts",
       "mcp_server/tests/integration-error-recovery.vitest.ts",
       "mcp_server/tests/learning-stats-filters.vitest.ts",
@@ -65,49 +65,49 @@
       {
         "name": "integration-causal-graph.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
         "source": "derived"
       },
       {
         "name": "integration-error-recovery.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts",
         "source": "derived"
       },
       {
         "name": "learning-stats-filters.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts",
         "source": "derived"
       },
       {
         "name": "transaction-manager-recovery.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
         "source": "derived"
       },
       {
         "name": "stdio-logging-safety.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts",
         "source": "derived"
       },
       {
         "name": "modularization.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
         "name": "crash-recovery.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts",
         "source": "derived"
       },
       {

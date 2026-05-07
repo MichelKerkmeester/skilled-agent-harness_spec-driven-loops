@@ -41,7 +41,7 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/memory/search.md",
+      ".opencode/commands/memory/search.md",
       "handlers/memory-context.ts",
       "handlers/memory-search.ts",
       "handlers/memory-triggers.ts",
@@ -55,9 +55,9 @@
       "lib/search/graph-flags.ts",
       "formatters/search-results.ts",
       "shared/contracts/retrieval-trace.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
@@ -66,7 +66,7 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -150,19 +150,19 @@
       {
         "name": "memory-tools.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
         "name": "memory-tools.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
         "source": "derived"
       },
       {

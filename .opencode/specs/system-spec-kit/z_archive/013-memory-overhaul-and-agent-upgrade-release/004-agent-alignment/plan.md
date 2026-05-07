@@ -1,6 +1,6 @@
 ---
 title: "Implementatio [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-04-agent-alignment/plan]"
-description: "agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella. Systematic review of .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md to ensure a..."
+description: "agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella. Systematic review of .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md to ensure a..."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -30,7 +30,7 @@ contextType: "planning"
 | **Testing** | Manual verification, validation scripts |
 
 ### Overview
-agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella. Systematic review of .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md to ensure alignment with post-implementation state of specs 014-016 and 122-129.
+agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella. Systematic review of .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md to ensure alignment with post-implementation state of specs 014-016 and 122-129.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -59,7 +59,7 @@ agent configs across OpenCode/Claude/Codex audit/creation for spec 130 umbrella.
 Systematic file-by-file audit/creation
 
 ### Key Components
-- **Target Files**: .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md
+- **Target Files**: .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md
 - **Output**: changes.md with before/after text
 
 ### Data Flow
@@ -205,7 +205,7 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Audit
-**Files**: .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md
+**Files**: .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md
 **Duration**: 2-4 hours
 **Agent**: Primary
 
@@ -229,7 +229,7 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 
 | ID | Name | Owner | Files | Status |
 |----|------|-------|-------|--------|
-| W-AUDIT | Audit/Creation | Primary | .opencode/agent/*.md + .claude/agents/*.md + .codex/agents/*.md | Active |
+| W-AUDIT | Audit/Creation | Primary | .opencode/agents/*.md + .claude/agents/*.md + .codex/agents/*.md | Active |
 | W-DOC | Documentation | Primary | changes.md | Blocked on W-AUDIT |
 | W-VERIFY | Verification | Primary | checklist.md | Blocked on W-DOC |
 

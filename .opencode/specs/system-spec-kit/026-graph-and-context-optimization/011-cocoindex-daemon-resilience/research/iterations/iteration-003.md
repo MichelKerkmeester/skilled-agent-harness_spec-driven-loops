@@ -29,8 +29,8 @@ Evidence:
 
 **Implication for the spec:** Q7 framed as "LMDB corruption risk" is RESOLVED with negative result. Update spec.md known-context to drop the LMDB framing and replace it with the SQLite-per-project model. See *LMDB Lock Analysis* below for the full reasoning, including why even the SQLite write path was not at risk for PID 98364.
 
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/project.py:10,33,94-102]
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:272]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py:10,33,94-102]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:272]
 [SOURCE: bash:find ~/.cocoindex_code -name '*.mdb' -o -name '*.db' (zero .mdb hits)]
 
 ### P0-8 — RULED OUT: PID 98364 was quiescent. Even if SQLite cross-process locking failed, PID 98364 had no live request path to drive a write transaction.
@@ -47,7 +47,7 @@ PID 98364 was at **0.0% CPU** at packet creation (per spec.md known-context: "PI
 
 **Conclusion: zero data-corruption risk from the dual-daemon situation.** P0-2's "leaked zombie" framing remains correct: PID 98364 was a fd-leak and CPU non-issue, not a correctness threat. Q7 closes with no patch needed.
 
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:148,432,495,615,619,655]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:148,432,495,615,619,655]
 [INFERENCE: PID 98364 0.0% CPU + lost socket binding + request-driven write path → no write txns from PID 98364]
 
 ### P0-9 — Cross-platform `fcntl.flock` recommendation translates cleanly to Windows `msvcrt.locking`. Existing Win32 paths in client.py + daemon.py already establish the abstraction pattern.
@@ -95,8 +95,8 @@ The proposed P0-4 patch (advisory `fcntl.flock(daemon.pid, LOCK_EX|LOCK_NB)` in 
 
 5. **AF_PIPE Listener does NOT have an analogous unlink hazard.** Windows named pipes use namespace registration, not filesystem inodes. A second `Listener(AF_PIPE)` on the same pipe name will fail with `ERROR_PIPE_BUSY` (231) instead of silently rebinding (which is what happens on AF_UNIX with the unconditional `unlink` at `daemon.py:615`). **Therefore the spec.md "guarded unlink" patch (Patch 4) only applies to the Unix branch (`if sys.platform != "win32"`).**
 
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:91,96,588,613,649]
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:180,207,234,244-256,319,332,347,373]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:91,96,588,613,649]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:180,207,234,244-256,319,332,347,373]
 [SOURCE: https://docs.python.org/3/library/msvcrt.html#msvcrt.locking]
 [SOURCE: https://learn.microsoft.com/en-us/windows/win32/ipc/named-pipes ERROR_PIPE_BUSY semantics]
 
@@ -130,7 +130,7 @@ Log composition forensics on the live `~/.cocoindex_code/daemon.log` (23 MB, 250
 
 The P0-3 fix alone is necessary but not sufficient: the unrotated handler is a latent risk independent of the BrokenPipeError loop.
 
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:572-575]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:572-575]
 [SOURCE: bash:wc -l + grep -cE BrokenPipeError + grep -cvE composition (250,485 / 564 / 215,840)]
 [SOURCE: ls -la ~/.cocoindex_code/daemon.log mtime span: May 1 17:27 → May 7 08:00 = 5d14h33m]
 
@@ -142,7 +142,7 @@ The P0-3 fix alone is necessary but not sufficient: the unrotated handler is a l
 
 **Both are per-project**, not shared across projects. Two daemons indexing the **same** project would each open both files, but as established in P0-8, PID 98364 has no live request path. The cocoindex Rust binding's internal locking (whatever it is — probably SQLite's WAL mode) is out of spec scope for this packet. Flag for future investigation if a project sees concurrent indexers in production (e.g., someone running `ccc daemon-start` and `ccc index .` directly in parallel).
 
-[SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/project.py:94-102]
+[SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py:94-102]
 
 ## LMDB Lock Analysis
 
@@ -273,9 +273,9 @@ logging.basicConfig(
 
 ## Sources Consulted
 
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (lines 1–105, 240–360, 565–675)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py` (lines 240–280)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/project.py` (full file via grep on lmdb/sqlite/RotatingFileHandler)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py` (lines 1–105, 240–360, 565–675)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py` (lines 240–280)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py` (full file via grep on lmdb/sqlite/RotatingFileHandler)
 - `~/.cocoindex_code/` directory listing
 - `~/.cocoindex_code/daemon.log` (line counts, BrokenPipeError grep, mtime span)
 - Repo-local `<repo>/.cocoindex_code/` for `target_sqlite.db` + `cocoindex.db` confirmation

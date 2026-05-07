@@ -142,7 +142,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/mcp-code-context/assets/usage_examples.md` - Documentation
+- `.opencode/skills/mcp-code-context/assets/usage_examples.md` - Documentation
 
 - `specs/005-memory/017-comprehensive-bug-fix/spec.md` - Documentation
 
@@ -199,7 +199,7 @@ The semantic memory system has a
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/mcp-code-context/assets/usage_examples.md` | Updated usage examples |
+| `.opencode/skills/mcp-code-context/assets/usage_examples.md` | Updated usage examples |
 | `specs/005-memory/017-comprehensive-bug-fix/spec.md` | Specs/005-memory/017-comprehensive-bug-fix/spec.md |
 | `specs/005-memory/017-comprehensive-bug-fix/plan.md` | Specs/005-memory/017-comprehensive-bug-fix/plan.md |
 | `specs/005-memory/017-comprehensive-bug-fix/checklist.md` | Specs/005-memory/017-comprehensive-bug-fix/checklist.md |
@@ -447,63 +447,63 @@ Now I have all the context. Let me create a todo list and proceed with execution
 <!-- ANCHOR:implementation-tool-edit-b07df518-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-2-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-2-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-3-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-3-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-4-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-4-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-5-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-5-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-6-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-6-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-edit-b07df518-7-session-1766576671414-i3rit80cb -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/mcp-code-context/assets/usage_examples.md
+.opencode/skills/mcp-code-context/assets/usage_examples.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-code-context/assets/usage_examples.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/mcp-code-context/assets/usage_examples.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-b07df518-7-session-1766576671414-i3rit80cb -->
 
@@ -775,18 +775,18 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-read-d008981b-3-session-1766576671414-i3rit80cb -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/README.md
+.opencode/skills/system-memory/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/README.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d008981b-3-session-1766576671414-i3rit80cb -->
 
 <!-- ANCHOR:implementation-tool-read-d008981b-4-session-1766576671414-i3rit80cb -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-memory/SKILL.md
+.opencode/skills/system-memory/SKILL.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-memory/SKILL.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-memory/SKILL.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d008981b-4-session-1766576671414-i3rit80cb -->
 
@@ -1685,7 +1685,7 @@ key_topics:
   - "let"
 
 key_files:
-  - ".opencode/skill/mcp-code-context/assets/usage_examples.md"
+  - ".opencode/skills/mcp-code-context/assets/usage_examples.md"
   - "specs/005-memory/017-comprehensive-bug-fix/spec.md"
   - "specs/005-memory/017-comprehensive-bug-fix/plan.md"
   - "specs/005-memory/017-comprehensive-bug-fix/checklist.md"

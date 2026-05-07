@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -63,8 +63,8 @@ The implementation fixed the two known broken advisor metadata files first, then
 | `checklist.md` | Created | Tracks Level 2 verification evidence |
 | `graph-metadata.json` | Created | Records phase metadata for graph traversal |
 | `implementation-summary.md` | Created | Holds completion evidence after implementation |
-| `.opencode/skill/sk-code-review/graph-metadata.json` | Modified | Fixes prerequisite edge target to `deep-review` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modified | Fixes advisor enhancement edge targets to `deep-review` and `deep-research` |
+| `.opencode/skills/sk-code-review/graph-metadata.json` | Modified | Fixes prerequisite edge target to `deep-review` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modified | Fixes advisor enhancement edge targets to `deep-review` and `deep-research` |
 | `.opencode/agent`, `.opencode/command`, `.opencode/skill`, `.opencode/specs` | Modified | Replaces old active deep-loop skill IDs with canonical IDs |
 <!-- /ANCHOR:what-built -->
 
@@ -102,9 +102,9 @@ The work was delivered with a critical-edge-first patch, a scoped replacement pa
 | MCP server/scripts residual grep | PASS: `0` |
 | Changed JSON parse | PASS: `json_checked=96` |
 | Broad active `.opencode` residual sweep | PASS: `0` after exclusions |
-| `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit --root .opencode/agent --root .opencode/command/spec_kit` | PASS: 0 errors, 21 warnings |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals --strict` | PASS: exit 0 |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` | PASS: exit 0 |
+| `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit --root .opencode/agent --root .opencode/commands/spec_kit` | PASS: 0 errors, 21 warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals --strict` | PASS: exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict` | PASS: exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

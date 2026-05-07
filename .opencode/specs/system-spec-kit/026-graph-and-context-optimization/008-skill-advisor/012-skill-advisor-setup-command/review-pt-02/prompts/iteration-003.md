@@ -6,7 +6,7 @@ You are running iteration 3 of 5 in a CLOSURE re-review loop.
 1. `.opencode/specs/.../012-skill-advisor-setup-command/review-pt-02/deep-review-strategy.md`
 2. `.opencode/specs/.../012-skill-advisor-setup-command/review-pt-02/iterations/iteration-{001,002}.md`
 3. `.opencode/specs/.../012-skill-advisor-setup-command/review/iterations/iteration-005.md` (original F-TRACE findings)
-4. CURRENT packet docs + parent docs + `.opencode/README.md` + `.opencode/command/spec_kit/README.txt` + parent changelog
+4. CURRENT packet docs + parent docs + `.opencode/README.md` + `.opencode/commands/spec_kit/README.txt` + parent changelog
 
 ## What to verify
 

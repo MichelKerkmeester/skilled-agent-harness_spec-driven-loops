@@ -57,15 +57,15 @@ End-to-end Claude Code hook testing surfaced three defects. (A) The skill-adviso
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` | Export source-signature computation and reconcile with persisted signatures. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/generation.ts` | Preserve parsed `sourceSignature` in advisor generation snapshots. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Publish scan-time `sourceSignature` through the atomic writer. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Publish source signatures for context-server skill graph indexing. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts` | Publish source signatures for daemon reindex events. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Use persisted signature for status freshness reconciliation. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` | Export source-signature computation and reconcile with persisted signatures. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/generation.ts` | Preserve parsed `sourceSignature` in advisor generation snapshots. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Publish scan-time `sourceSignature` through the atomic writer. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Publish source signatures for context-server skill graph indexing. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts` | Publish source signatures for daemon reindex events. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Use persisted signature for status freshness reconciliation. |
 | `.claude/settings.local.json` | Normalize to Claude-canonical hook-group shape (removed Copilot-schema fields). |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Add section 9 with multi-turn stream-json harness. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Add section 9 cross-reference. |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Add section 9 with multi-turn stream-json harness. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Add section 9 cross-reference. |
 
 ### Follow-Ups
 

@@ -152,10 +152,10 @@ When marking items complete, include evidence:
 
 ```bash
 # Verify level folders
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Check for COMPLEXITY_GATE markers
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 
 # Run test suite
 bash .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests/run-tests.sh

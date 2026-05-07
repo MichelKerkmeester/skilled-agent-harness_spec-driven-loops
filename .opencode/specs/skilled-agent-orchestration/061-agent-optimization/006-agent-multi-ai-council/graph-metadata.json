@@ -39,7 +39,7 @@
     "promotion_decision": "campaign_intent",
     "promotion_rationale": "rename + improve completed atomically; integration recovered after mirror+reference sweep",
     "mirrors_synced": [
-      ".opencode/agent/multi-ai-council.md",
+      ".opencode/agents/multi-ai-council.md",
       ".claude/agents/multi-ai-council.md",
       ".gemini/agents/multi-ai-council.md",
       ".codex/agents/multi-ai-council.toml"

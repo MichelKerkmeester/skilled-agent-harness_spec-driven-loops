@@ -52,13 +52,13 @@ Evidence uses file paths, commit IDs, changelog entries, or strict validator res
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs]`
-- [x] CHK-011 [P0] `mutation-coverage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs]`
-- [x] CHK-012 [P0] `trade-off-detector.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs]`
-- [x] CHK-013 [P0] `candidate-lineage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs]`
-- [x] CHK-014 [P0] `benchmark-stability.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs]`
-- [x] CHK-015 [P1] Improve-agent config and strategy assets were expanded for runtime truth. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_config.json; improvement_strategy.md; improvement_charter.md]`
-- [x] CHK-016 [P1] The skill documentation published the runtime-truth contract. `[EVIDENCE: .opencode/skill/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
+- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs]`
+- [x] CHK-011 [P0] `mutation-coverage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs]`
+- [x] CHK-012 [P0] `trade-off-detector.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs]`
+- [x] CHK-013 [P0] `candidate-lineage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs]`
+- [x] CHK-014 [P0] `benchmark-stability.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs]`
+- [x] CHK-015 [P1] Improve-agent config and strategy assets were expanded for runtime truth. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_config.json; improvement_strategy.md; improvement_charter.md]`
+- [x] CHK-016 [P1] The skill documentation published the runtime-truth contract. `[EVIDENCE: .opencode/skills/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
 - [x] CHK-017 [P2] The packet closeout uses current dynamic-mode naming rather than stale static-profile wording. `[EVIDENCE: spec.md §2; REQ-010]`
 <!-- /ANCHOR:code-quality -->
 
@@ -67,14 +67,14 @@ Evidence uses file paths, commit IDs, changelog entries, or strict validator res
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
-- [x] CHK-021 [P0] Dedicated mutation-coverage tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
-- [x] CHK-022 [P0] Dedicated trade-off tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
-- [x] CHK-023 [P0] Dedicated lineage tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
-- [x] CHK-024 [P0] Dedicated stability tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
+- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
+- [x] CHK-021 [P0] Dedicated mutation-coverage tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
+- [x] CHK-022 [P0] Dedicated trade-off tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
+- [x] CHK-023 [P0] Dedicated lineage tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
+- [x] CHK-024 [P0] Dedicated stability tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
 - [x] CHK-025 [P1] Shipped release evidence records the broader verification result. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "31/31 PASS"; "10,335 passing, 0 failing"]`
-- [x] CHK-026 [P1] Runtime-truth manual scenarios exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
-- [x] CHK-027 [P1] End-to-end coverage, trade-off, and lineage scenarios exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
+- [x] CHK-026 [P1] Runtime-truth manual scenarios exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
+- [x] CHK-027 [P1] End-to-end coverage, trade-off, and lineage scenarios exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
 - [x] CHK-028 [P2] Later lifecycle wording correction was captured so test evidence is not overstated. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md]`
 <!-- /ANCHOR:testing -->
 
@@ -84,7 +84,7 @@ Evidence uses file paths, commit IDs, changelog entries, or strict validator res
 ## Security
 
 - [x] CHK-030 [P0] The phase packet does not introduce secrets or private runtime paths. `[EVIDENCE: phase-folder docs only reference repo paths and release artifacts]`
-- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`]`
+- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`]`
 - [x] CHK-032 [P1] Historical wording is framed as history, not current live contract. `[EVIDENCE: implementation-summary.md; decision-record.md; v1.2.1.0 citation]`
 <!-- /ANCHOR:security -->
 
@@ -133,9 +133,9 @@ Evidence uses file paths, commit IDs, changelog entries, or strict validator res
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [x] CHK-100 [P0] Journal ownership stayed outside the proposal agent. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 1]`
-- [x] CHK-101 [P0] Coverage graph reuse remained improvement-scoped rather than inventing a parallel system. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs; decision-record.md ADR set 2]`
+- [x] CHK-101 [P0] Coverage graph reuse remained improvement-scoped rather than inventing a parallel system. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs; decision-record.md ADR set 2]`
 - [x] CHK-102 [P1] Trajectory gating was treated as a first-class convergence input. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 3]`
-- [x] CHK-103 [P1] Optional parallel candidates were kept opt-in. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md; decision-record.md ADR set 4]`
+- [x] CHK-103 [P1] Optional parallel candidates were kept opt-in. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md; decision-record.md ADR set 4]`
 - [x] CHK-104 [P1] Backward-compatible config defaults remained part of the delivered design. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 5]`
 <!-- /ANCHOR:arch-verify -->
 

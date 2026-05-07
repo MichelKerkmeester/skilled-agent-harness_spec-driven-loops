@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation (verification gate)
 
-- [ ] T004 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict`; must exit 0
+- [ ] T004 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict`; must exit 0
 - [ ] T005 Dispatch `@review` agent (Opus 4.7, fresh context, read-only) with `sk-code-review` skill loaded
 - [ ] T006 Verifier reruns validate.sh + rg residual + diff -rq + tomllib parse-check IN FRESH SHELL
 - [ ] T007 Verifier samples 3 random updated files; confirms NEW path-strings present, no content drift
@@ -73,10 +73,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Closeout
 
-- [ ] T012 Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for parent 068 + 3 children
+- [ ] T012 Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for parent 068 + 3 children
 - [ ] T013 Verify graph-metadata.json `derived.last_known_status = "complete"` for each
 - [ ] T014 Author `003-verify-and-ship/implementation-summary.md` with verifier outcomes
-- [ ] T015 (Optional) Author `.opencode/skill/sk-doc/changelog/v<next>.md` documenting the reorg
+- [ ] T015 (Optional) Author `.opencode/skills/sk-doc/changelog/v<next>.md` documenting the reorg
 - [ ] T016 Stage Phase 3 changes (specific files)
 - [ ] T017 Commit: `feat(sk-doc): verify and ship sk-doc reorg (068/003)`
 - [ ] T018 Verify `git branch --show-current = main`; `git log --oneline -5` shows clean lineage

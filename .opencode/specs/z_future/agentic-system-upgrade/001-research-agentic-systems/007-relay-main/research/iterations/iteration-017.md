@@ -14,7 +14,7 @@ Read Relay's introduction docs and compared the top-level user framing with Publ
 ## Evidence
 - Relay starts with two user-comprehensible modes: `Orchestrate` for spawning/managing agents and `Communicate` for putting an existing framework agent on the relay. [SOURCE: external/docs/introduction.md:2-6] [SOURCE: external/docs/introduction.md:15-49]
 - Relay then uses three recognizable coordination verbs (`team`, `fan-out`, `pipeline`) to describe multi-agent behavior. [SOURCE: external/docs/introduction.md:67-89]
-- Public's orchestrator documentation foregrounds a large roster of specialist agents, tiering, routing rules, depth constraints, and dispatch protocol details. [SOURCE: .opencode/agent/orchestrate.md:91-118] [SOURCE: .opencode/agent/orchestrate.md:152-183] [SOURCE: .opencode/agent/orchestrate.md:191-212]
+- Public's orchestrator documentation foregrounds a large roster of specialist agents, tiering, routing rules, depth constraints, and dispatch protocol details. [SOURCE: .opencode/agents/orchestrate.md:91-118] [SOURCE: .opencode/agents/orchestrate.md:152-183] [SOURCE: .opencode/agents/orchestrate.md:191-212]
 - Public's top-level doctrine also names many workflow families and maintenance surfaces (`spec_kit:*`, `memory:*`, deep research/review, shared memory, constitutional memory, etc.), which is powerful but cognitively dense. [SOURCE: AGENTS.md:150-155] [SOURCE: AGENTS.md:233-252]
 
 ## Analysis

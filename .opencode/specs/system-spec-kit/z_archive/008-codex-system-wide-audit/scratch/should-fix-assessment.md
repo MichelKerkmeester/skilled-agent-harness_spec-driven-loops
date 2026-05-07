@@ -2,7 +2,7 @@
 
 **Source:** `scratch/audit-conflict-adjudication.md` items 3-10
 **Date:** 2026-02-15
-**Target file:** `.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh`
+**Target file:** `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh`
 
 ---
 

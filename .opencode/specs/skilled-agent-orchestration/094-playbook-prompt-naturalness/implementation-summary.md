@@ -14,8 +14,8 @@ _memory:
     next_safe_action: "Update track parent + final report"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
-      - ".opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -68,26 +68,26 @@ After the per-feature naturalization pass, `@review` flagged a P1: the root play
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` | Modified | Lines 67, 79: RCAF placeholder → flexible placeholder pointing to creation reference §5 |
-| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Modified | Lines 313, 333, 395: same |
-| `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Modified | §5: added "When to Use RCAF vs Natural-Human" subsection with rubric and voice guidelines |
-| `.opencode/command/create/testing-playbook.md` | Modified | Line 317: clarified both prompt voices are valid |
-| `.opencode/skill/cli-claude-code/manual_testing_playbook/**` | Modified | Per-feature canonicals naturalized where appropriate |
-| `.opencode/skill/cli-codex/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/cli-gemini/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/cli-opencode/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/deep-agent-improvement/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/deep-research/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/deep-review/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/mcp-chrome-devtools/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/sk-code/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/sk-doc/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/sk-git/manual_testing_playbook/**` | Modified | Same; P2-002 fix (22 RCAF prompt source: labels neutralized) |
-| `.opencode/skill/sk-prompt/manual_testing_playbook/**` | Modified | Same |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/**` | Modified | Same (split into 23 per-category dispatches; 318 per-feature files) |
+| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` | Modified | Lines 67, 79: RCAF placeholder → flexible placeholder pointing to creation reference §5 |
+| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Modified | Lines 313, 333, 395: same |
+| `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Modified | §5: added "When to Use RCAF vs Natural-Human" subsection with rubric and voice guidelines |
+| `.opencode/commands/create/testing-playbook.md` | Modified | Line 317: clarified both prompt voices are valid |
+| `.opencode/skills/cli-claude-code/manual_testing_playbook/**` | Modified | Per-feature canonicals naturalized where appropriate |
+| `.opencode/skills/cli-codex/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/cli-gemini/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/deep-agent-improvement/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/deep-research/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/deep-review/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/sk-code/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/sk-doc/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/sk-git/manual_testing_playbook/**` | Modified | Same; P2-002 fix (22 RCAF prompt source: labels neutralized) |
+| `.opencode/skills/sk-prompt/manual_testing_playbook/**` | Modified | Same |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/**` | Modified | Same (split into 23 per-category dispatches; 318 per-feature files) |
 | `.opencode/specs/skilled-agent-orchestration/graph-metadata.json` | Modified | Append 094 to children_ids; bump derived.last_active_child_id |
 <!-- /ANCHOR:what-built -->
 

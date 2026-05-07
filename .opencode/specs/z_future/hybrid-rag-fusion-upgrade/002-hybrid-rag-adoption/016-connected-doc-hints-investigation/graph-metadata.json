@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,37 +56,37 @@
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "fsrs.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts",
         "source": "derived"
       },
       {
         "name": "memory-search-integration.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts",
         "source": "derived"
       },
       {
         "name": "memory-search-ux-hooks.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts",
         "source": "derived"
       },
       {
         "name": "memory-search-quality-filter.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
         "source": "derived"
       },
       {

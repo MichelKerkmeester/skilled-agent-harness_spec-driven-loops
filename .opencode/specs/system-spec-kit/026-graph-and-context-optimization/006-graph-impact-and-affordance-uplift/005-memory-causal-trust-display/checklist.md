@@ -22,7 +22,7 @@ contextType: "implementation"
 ## P2 — Documentation
 - [x] feature_catalog entry in `13--memory-quality-and-indexing/` — `28-memory-causal-trust-display.md` created.
 - [x] manual_testing_playbook entry in same category — `203-memory-causal-trust-display.md` created.
-- [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. Original implementation reported feature catalog 87 and playbook 91 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel. Marked R-007-21 — premature PASS. Operator must re-run `python3 .opencode/skill/sk-doc/scripts/validate_document.py` for both entries to attest the numeric scores.
+- [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. Original implementation reported feature catalog 87 and playbook 91 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel. Marked R-007-21 — premature PASS. Operator must re-run `python3 .opencode/skills/sk-doc/scripts/validate_document.py` for both entries to attest the numeric scores.
 
 ## Phase Hand-off
 - [ ] `validate.sh --strict` passes — OPERATOR-PENDING-COSMETIC. Wave-3 canonical (010/007/T-B, 2026-04-25): FAILED on template-section conformance only (extra/non-canonical section headers from per-sub-phase scaffold). Cosmetic, NOT a contract violation: required Level-2 files present, anchors balanced, no `[TBD]` placeholders. Tracked as deferred P2 cleanup in 010/007. See `implementation-summary.md` §Verification for full canonical evidence.

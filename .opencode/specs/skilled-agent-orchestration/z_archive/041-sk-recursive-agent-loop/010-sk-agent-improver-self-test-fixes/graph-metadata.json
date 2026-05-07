@@ -38,10 +38,10 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/improve/agent.md",
-      ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skill/sk-improve-agent/assets/improvement_config_reference.md",
+      ".opencode/commands/improve/agent.md",
+      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
+      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
+      ".opencode/skills/sk-improve-agent/assets/improvement_config_reference.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,25 +51,25 @@
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "improvement_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
         "source": "derived"
       },
       {
         "name": "improvement_config_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_config_reference.md",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config_reference.md",
         "source": "derived"
       },
       {

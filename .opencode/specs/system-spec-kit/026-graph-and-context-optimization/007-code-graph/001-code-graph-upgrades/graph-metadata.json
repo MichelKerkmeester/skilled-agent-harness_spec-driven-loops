@@ -43,10 +43,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/implementation-summary.md",
       "plan.md",
       "tasks.md",
@@ -65,25 +65,25 @@
       {
         "name": "shared-payload.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
         "source": "derived"
       },
       {
         "name": "structural-trust-axis.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
         "source": "derived"
       },
       {
         "name": "graph-payload-validator.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts",
         "source": "derived"
       },
       {
         "name": "graph-upgrades-regression-floor.vitest.ts.test.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
         "source": "derived"
       },
       {

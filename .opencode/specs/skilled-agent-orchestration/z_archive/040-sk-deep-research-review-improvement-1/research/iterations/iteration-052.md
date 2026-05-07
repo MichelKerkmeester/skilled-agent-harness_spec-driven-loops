@@ -7,8 +7,8 @@ Reducer design for single source of truth per iteration.
 - How can reducer avoid clobbering analyst narrative while enforcing consistency?
 
 ## Evidence
-- `.opencode/skill/sk-deep-research/references/state_format.md:346-395`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md:419-434`
+- `.opencode/skills/sk-deep-research/references/state_format.md:346-395`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md:419-434`
 
 ## Analysis
 Machine-owned registry should track active/resolved/disproved findings and question status; analyst-owned iteration narratives remain write-once and descriptive.

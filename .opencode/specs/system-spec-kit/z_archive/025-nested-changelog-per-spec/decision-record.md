@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -90,7 +90,7 @@ We needed to add packet-local changelog support without breaking the existing Sp
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Users assume the changelog replaces the summary | Medium | Repeat additive language in command, skill, and packet docs |
-| Output path handling drifts across root and phase workflows | High | Keep path rules in `.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts` and point docs at the same generator |
+| Output path handling drifts across root and phase workflows | High | Keep path rules in `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts` and point docs at the same generator |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -115,8 +115,8 @@ We needed to add packet-local changelog support without breaking the existing Sp
 ### Implementation
 
 **What changes**:
-- Add `.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
-- Add `.opencode/skill/system-spec-kit/templates/changelog/root.md` and `.opencode/skill/system-spec-kit/templates/changelog/phase.md`
+- Add `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
+- Add `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `.opencode/skills/system-spec-kit/templates/changelog/phase.md`
 - Update commands and docs to explain additive packet-local changelog output and the root/phase path contract
 
 **How to roll back**: revert the nested generator, changelog templates, and command/documentation updates together, then return to implementation-summary-only packet closeout.

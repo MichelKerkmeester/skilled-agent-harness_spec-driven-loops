@@ -21,11 +21,11 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## 5. Skills
 
-> `.opencode/skill/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
+> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skill/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---
 

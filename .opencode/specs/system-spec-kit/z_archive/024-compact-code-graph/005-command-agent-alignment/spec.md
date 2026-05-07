@@ -88,13 +88,13 @@ Update commands and agent definitions across all runtimes to work with the new h
 
 ### What to Update
 
-### 1. Memory Commands (`.opencode/command/memory/`)
+### 1. Memory Commands (`.opencode/commands/memory/`)
 
 Audit all commands for compaction references:
 - `/memory:save` — Must document Stop-hook awareness truthfully (avoid double-save overclaims). The shipped guidance should acknowledge hook-aware recovery without claiming a dedicated `pendingStopSave.cachedAt` marker that does not exist in `hook-state.ts`.
 - `/memory:search`, `/memory:manage` — Likely no changes needed, but verify no compaction-specific assumptions.
 
-### 2. Spec Kit Commands (`.opencode/command/spec_kit/`)
+### 2. Spec Kit Commands (`.opencode/commands/spec_kit/`)
 
 - `/spec_kit:resume` — Must pass `profile: "resume"` to `memory_context()`. Currently missing this parameter, which causes search results instead of a compact recovery brief (iteration 012 gap).
 - `/spec_kit:handover` — Verify handover doc creation accounts for hook-based context snapshots.
@@ -107,7 +107,7 @@ Audit and update agent files that reference compaction recovery across all runti
 | Runtime | Agent Directory | Files to Check |
 |---------|----------------|---------------|
 | Claude | `.claude/agents/` | All agent `.md` files referencing compaction |
-| OpenCode (Copilot) | `.opencode/agent/` | All agent `.md` files referencing compaction |
+| OpenCode (Copilot) | `.opencode/agents/` | All agent `.md` files referencing compaction |
 | Codex | `.codex/agents/` | All agent `.toml` files referencing compaction |
 | Gemini | `.gemini/agents/` | All agent `.md` files referencing compaction |
 
@@ -151,11 +151,11 @@ Agents should be aware of the session working set when available:
 - [ ] No regression in command behavior for non-hook runtimes (Codex, Copilot, Gemini)
 
 ### Files Modified
-- EDIT: `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` (add `profile: "resume"` to `memory_context()` parameters)
-- EDIT: `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` (add `profile: "resume"` to `memory_context()` parameters)
-- EDIT: `.opencode/command/memory/save.md` (add Stop hook double-save check)
+- EDIT: `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` (add `profile: "resume"` to `memory_context()` parameters)
+- EDIT: `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` (add `profile: "resume"` to `memory_context()` parameters)
+- EDIT: `.opencode/commands/memory/save.md` (add Stop hook double-save check)
 - EDIT: `.claude/agents/*.md` (compaction-aware agents)
-- EDIT: `.opencode/agent/*.md` (compaction-aware agents)
+- EDIT: `.opencode/agents/*.md` (compaction-aware agents)
 - EDIT: `.codex/agents/*.toml` (compaction-aware agents)
 - EDIT: `.gemini/agents/*.md` (compaction-aware agents)
 

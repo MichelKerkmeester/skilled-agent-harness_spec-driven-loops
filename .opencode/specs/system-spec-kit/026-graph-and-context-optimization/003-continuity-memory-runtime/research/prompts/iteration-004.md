@@ -49,7 +49,7 @@ Produce severity-ranked findings with exact file:line evidence for every gate dr
    Read the first 80 lines of each to extract: what invariant is being asserted? Is there an equivalent live-runtime enforcer anywhere in the non-test code?
 
 4. **Check the gate runner / orchestrator.** Grep for a gate runner script / command:
-   - `find .opencode/skill/system-spec-kit/scripts -name '*gate*' -o -name '*continuity*'`
+   - `find .opencode/skills/system-spec-kit/scripts -name '*gate*' -o -name '*continuity*'`
    - Read any `validate-*.sh` or `run-gates-*.ts` entrypoints
    Does it enumerate A–F or only some? What does the reporter emit — what's the output schema, and does it match the documented reporter contract in the spec?
 

@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:59-64`, `:115-118`, `:219-232`, `:248-265`, `:600-615`, `:855-900`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-238`, `:296-302`, `:317-340`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:188-218`, `:261-299`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:268-332`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:321-379`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:73-120`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (scope/status/env grep sweep: no matching status-scope surface)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:250-278`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:59-64`, `:115-118`, `:219-232`, `:248-265`, `:600-615`, `:855-900`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-238`, `:296-302`, `:317-340`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:188-218`, `:261-299`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:268-332`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:321-379`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:73-120`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (scope/status/env grep sweep: no matching status-scope surface)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:250-278`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`
 
 ## Findings by Severity
 

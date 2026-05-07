@@ -2,22 +2,22 @@
 
 ## Scope
 - Reviewed current code in:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
 - Cross-checked against prior packet findings to avoid repeating already-fixed issues from review iterations 012, 014, 021, 030, and 036.
 
 ## Findings
 
 ### [P1] Checkpoint restore has no maintenance barrier against live saves or scans
 **Files**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
 
 **Issue**
 `restoreCheckpoint()` performs a large scoped restore transaction and then runs derived-table rebuilds afterward, but nothing blocks ordinary mutation traffic from entering during or immediately after that lifecycle step. `memory_save` and `memory_index_scan` only do `checkDatabaseUpdated()` at entry; they do not observe or honor a restore-in-progress flag. That leaves a window where one request can commit new rows while restore is still rebuilding auto-entities, lineage, degree snapshots, communities, and FTS from an older restore snapshot.
@@ -39,8 +39,8 @@ Introduce a process-visible maintenance barrier for checkpoint restore. At minim
 
 ### [P1] Concurrent `shared_space_upsert` calls can bootstrap extra owners
 **Files**
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts`
 
 **Issue**
 `handleSharedSpaceUpsert()` decides whether the operation is a create by doing a pre-upsert `SELECT`, then uses that stale boolean to decide whether to add the caller as owner. Because the actual write path uses `INSERT ... ON CONFLICT DO UPDATE`, two concurrent "create the same space" requests can both observe `existingSpace = undefined`, both report `created = true`, and both run the owner-bootstrap branch. The second caller is therefore upgraded to owner even if the first request already created the space.
@@ -61,7 +61,7 @@ Make creation detection depend on the write result, not on the pre-read snapshot
 
 ### [P1] Reconsolidation merge uses a stale predecessor snapshot across an async gap
 **File**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
 
 **Issue**
 `reconsolidate()` chooses `topMatch` from a similarity search, and `executeMerge()` then reads the predecessor row plus vector row before awaiting embedding generation. After that await, it archives `existingMemory.id` and inserts the merged successor using the stale pre-await row contents. If another writer updates, supersedes, or deletes that same memory during the embedding gap, the merge path can overwrite fresher metadata, archive an already-changed predecessor, or fork from a stale content snapshot without noticing.
@@ -83,8 +83,8 @@ Revalidate the predecessor inside the write transaction before mutating it. For 
 
 ### [P2] `memory_index_scan` cooldown is a TOCTOU check, so overlapping scans still start
 **Files**
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
 
 **Issue**
 The scan cooldown is implemented as a read of `last_index_scan` near the start of the request and a write of the new timestamp only at the end. Two concurrent callers can both read the same old value, both pass the cooldown gate, and both launch a full scan. Because `processBatches()` fans out work in parallel, this can turn one intended scan window into duplicated indexing traffic and overlapping stale-delete decisions.

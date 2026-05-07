@@ -3,7 +3,7 @@
 - Dimension: Traceability - Spec-code alignment
 - Iteration: 7 of 10
 - Scope checked: `spec.md:49-76` and `implementation-summary.md:40-56`
-- Review mode: Read-only verification against code under `.opencode/skill/system-spec-kit/mcp_server/`
+- Review mode: Read-only verification against code under `.opencode/skills/system-spec-kit/mcp_server/`
 
 The seven targeted claims are all in-scope for this spec packet: lineage/versioning, embedding lifecycle, checkpoint lifecycle, shared memory/governance, reconsolidation, hybrid search, and causal graph correctness are explicitly listed in `spec.md:53-76`.
 

@@ -18,17 +18,17 @@ _memory:
     next_safe_action: "Commit + push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-evidence.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh"
-      - ".opencode/skill/system-spec-kit/scripts/lib/check-priority-helper.sh"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh"
+      - ".opencode/skills/system-spec-kit/scripts/lib/check-priority-helper.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-004-validation-and-memory"
@@ -41,7 +41,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

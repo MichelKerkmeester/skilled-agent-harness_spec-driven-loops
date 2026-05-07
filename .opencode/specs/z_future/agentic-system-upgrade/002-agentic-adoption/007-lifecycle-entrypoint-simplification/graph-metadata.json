@@ -38,11 +38,11 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/command/spec_kit/README.txt",
-      ".opencode/command/spec_kit/plan.md",
-      ".opencode/command/spec_kit/implement.md",
-      ".opencode/command/spec_kit/complete.md",
-      ".opencode/command/spec_kit/resume.md",
+      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/commands/spec_kit/resume.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -52,25 +52,25 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/spec_kit/README.txt",
+        "path": ".opencode/commands/spec_kit/README.txt",
         "source": "derived"
       },
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/implement.md",
+        "path": ".opencode/commands/spec_kit/implement.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {

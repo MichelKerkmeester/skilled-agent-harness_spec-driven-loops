@@ -11,8 +11,8 @@ The `tools/index.ts` module exports `dispatchTool(name, args)` which iterates an
 
 **Design implication**: A new function `autoSurfaceCodeGraph(toolName, toolArgs)` must be called in `context-server.ts` in the same pre-dispatch block where `autoSurfaceAtToolDispatch` runs (lines 326-352), running in parallel via `Promise.allSettled`.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tools/index.ts:17-37]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:325-366]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tools/index.ts:17-37]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:325-366]
 
 ### 2. The MEMORY_AWARE_TOOLS Gate Has an Inverted Logic Pattern
 
@@ -29,8 +29,8 @@ if (MEMORY_AWARE_TOOLS.has(name)) {
 
 For graph enrichment, the new `GRAPH_AWARE_TOOLS` set should be checked inside `autoSurfaceAtToolDispatch` (or its parallel graph equivalent), not in the outer `context-server.ts` block. This keeps the same two-layer pattern and avoids complicating the top-level flow.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:331-352]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-50, 254-276]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:331-352]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-50, 254-276]
 
 ### 3. extractContextHint Already Extracts File Paths — Graph Enrichment Can Reuse It
 
@@ -51,7 +51,7 @@ function extractFilePathHint(args: Record<string, unknown>): string | null {
 
 This ensures graph enrichment fires on file operations (Read, Edit, Write, Grep results) but not on text queries.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:67-84]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:67-84]
 [INFERENCE: Based on the different signal requirements — memory needs semantic context from query strings, graph needs structural context from file paths]
 
 ### 4. The 250ms Latency Budget Is Already Strained — Graph Enrichment Must Be Async-Parallel
@@ -67,7 +67,7 @@ const [memoryResult, graphResult] = await Promise.allSettled([
 
 If graph enrichment takes too long, `allSettled` still returns the memory result. The graph result can be attached as supplementary metadata without blocking the tool response. A per-enrichment timeout of 150ms (configurable via `SPECKIT_GRAPH_ENRICH_TIMEOUT`) with `Promise.race` would cap worst-case latency.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:353-356]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:353-356]
 [INFERENCE: Standard async concurrency pattern applied to the observed latency constraint]
 
 ### 5. Session Working Set Is Already Tracked but Not Leveraged for Graph Preloading
@@ -87,7 +87,7 @@ if (getStats && workingSet.length > 0) {
 }
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:119-132]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:119-132]
 [INFERENCE: Gap analysis between current data availability and utilization]
 
 ### 6. appendAutoSurfaceHints Merges Into Existing JSON Envelope — Graph Context Can Piggyback
@@ -110,8 +110,8 @@ function appendGraphContextHints(result: MCPResponse, graphContext: GraphContext
 
 The existing `syncEnvelopeTokenCount` (line 399 of context-server.ts) would automatically account for the added graph context in the token budget calculation.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:59-113]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:397-399]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:59-113]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:397-399]
 
 ### 7. Code Graph Tools Dispatch Is Isolated — No Cross-Contamination Risk
 
@@ -132,7 +132,7 @@ async function autoSurfaceCodeGraph(toolName: string, toolArgs: Record<string, u
 
 Calling handlers directly (not through `dispatchTool`) avoids recursive auto-surface triggering entirely, making the `GRAPH_AWARE_TOOLS` check more of a safety net than a primary guard.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-55]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-55]
 
 ### 8. Stale Index Detection Already Exists — Can Be Upgraded to Auto-Refresh
 
@@ -144,7 +144,7 @@ Calling handlers directly (not through `dispatchTool`) avoids recursive auto-sur
 
 The key constraint is that hook scripts must exit quickly (HOOK_TIMEOUT_MS). A background `setTimeout(() => scan(), 0)` after writing stdout would allow the scan to run after the hook output is delivered, but only if the process stays alive. Since `session-prime.ts:222` calls `process.exit(0)` in the finally block, the background scan would be killed. Solution: the scan trigger must be a message passed to the main MCP server process (which is long-lived), not executed in the hook process itself.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:103-117, 220-224]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:103-117, 220-224]
 [INFERENCE: Process lifecycle constraint analysis — hooks are short-lived scripts, not long-lived servers]
 
 ## Ruled Out
@@ -156,12 +156,12 @@ The key constraint is that hook scripts must exit quickly (HOOK_TIMEOUT_MS). A b
 None — all investigated patterns are viable and build directly on proven existing architecture.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` (full file, 37 lines — dispatch architecture)
-- `.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts` (full file, 55 lines — graph tool dispatch)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:310-410` (auto-surface interception block)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:30-84, 136-276` (MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceAtToolDispatch)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:59-113` (appendAutoSurfaceHints envelope injection)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, 224 lines — session lifecycle)
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` (full file, 37 lines — dispatch architecture)
+- `.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts` (full file, 55 lines — graph tool dispatch)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:310-410` (auto-surface interception block)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:30-84, 136-276` (MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceAtToolDispatch)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:59-113` (appendAutoSurfaceHints envelope injection)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, 224 lines — session lifecycle)
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-057.md` (prior iteration conceptual architecture)
 
 ## Assessment

@@ -8,15 +8,15 @@ The user is implementing the C+F hybrid manifest-driven greenfield template-syst
 
 A binding constraint (ADR-005 in `002/decision-record.md`): **`Level 1/2/3/3+` is the SOLE public/AI-facing vocabulary**. Banned terms on every public/AI-facing surface: `preset`, `capability`, `kind`, `manifest`. Workflow-invariance CI test will fail the build if those leak.
 
-Three previous audits (A/B/C) covered `.opencode/agent/`, `.opencode/command/spec_kit/`, `system-spec-kit/SKILL.md`, `README.md`, `references/`, `assets/`. They surfaced 32 MODIFY targets (per `resource-map.md` §2.5).
+Three previous audits (A/B/C) covered `.opencode/agents/`, `.opencode/commands/spec_kit/`, `system-spec-kit/SKILL.md`, `README.md`, `references/`, `assets/`. They surfaced 32 MODIFY targets (per `resource-map.md` §2.5).
 
 ## Your task: audit these surfaces for impact
 
 Audit ALL files under:
-- `.opencode/skill/system-spec-kit/feature_catalog/` (~22 subdirs + master `feature_catalog.md`)
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/` (~24 subdirs + master `manual_testing_playbook.md`)
-- `.opencode/skill/system-spec-kit/templates/stress_test/` (4 files)
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/` (6 subdirs)
+- `.opencode/skills/system-spec-kit/feature_catalog/` (~22 subdirs + master `feature_catalog.md`)
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/` (~24 subdirs + master `manual_testing_playbook.md`)
+- `.opencode/skills/system-spec-kit/templates/stress_test/` (4 files)
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/` (6 subdirs)
 
 **Highest-impact candidates to check first** (read these end-to-end):
 - `feature_catalog/14--pipeline-architecture/` (likely describes template-system architecture)

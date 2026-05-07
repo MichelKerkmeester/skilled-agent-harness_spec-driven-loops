@@ -99,7 +99,7 @@ Review complete. The next focus is remediation, starting with root canonical fil
 ## 13. KNOWN CONTEXT
 - The root packet is marked `complete` and `level: 3`, but the review starts without a root `implementation-summary.md` or `decision-record.md`.
 - The child packet family contains six remediation phases that appear to represent downstream follow-up work.
-- The packet cites live routing code and tests under `.opencode/skill/system-spec-kit/mcp_server/`.
+- The packet cites live routing code and tests under `.opencode/skills/system-spec-kit/mcp_server/`.
 - The strict validator output has been preserved under `review/validation-strict.txt` for durable packet-local evidence.
 
 <!-- /ANCHOR:known-context -->

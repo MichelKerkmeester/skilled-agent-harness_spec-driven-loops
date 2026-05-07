@@ -19,7 +19,7 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/references/global/evergreen packet ID rule"
+      - ".opencode/skills/sk-doc/references/global/evergreen packet ID rule"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/027-evergreen-doc-packet-id-removal/audit findings"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -69,11 +69,11 @@ Rewrote targeted packet-history references in system-spec-kit runtime docs, code
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/references/global/evergreen packet ID rule` | Created | Canonical rule |
-| `.opencode/skill/sk-doc/sk-doc skill` | Modified | Route doc-quality work to the rule |
-| `.opencode/skill/sk-doc/assets/documentation/* markdown` | Modified | Add template reminders |
-| `.opencode/skill/system-spec-kit/**/* markdown` | Modified | Remove high-confidence packet-history references |
-| `.opencode/skill/cli-opencode/**/* markdown` | Modified | Replace example packet IDs |
+| `.opencode/skills/sk-doc/references/global/evergreen packet ID rule` | Created | Canonical rule |
+| `.opencode/skills/sk-doc/sk-doc skill` | Modified | Route doc-quality work to the rule |
+| `.opencode/skills/sk-doc/assets/documentation/* markdown` | Modified | Add template reminders |
+| `.opencode/skills/system-spec-kit/**/* markdown` | Modified | Remove high-confidence packet-history references |
+| `.opencode/skills/cli-opencode/**/* markdown` | Modified | Replace example packet IDs |
 | `audit findings` | Created | Record audit outcomes |
 <!-- /ANCHOR:what-built -->
 

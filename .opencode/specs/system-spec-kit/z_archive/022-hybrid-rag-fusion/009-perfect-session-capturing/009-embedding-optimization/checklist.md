@@ -66,7 +66,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:testing -->
 ## 4. TESTING
 
-- [x] CHK-020 [P0] Unit tests pass for weighted payload builder (concatenation, multipliers, truncation order) [Evidence: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts` passed.]
+- [x] CHK-020 [P0] Unit tests pass for weighted payload builder (concatenation, multipliers, truncation order) [Evidence: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/embedding-weighting.vitest.ts` passed.]
 - [x] CHK-021 [P0] Unit tests pass for indexer routing through `generateDocumentEmbedding` [Evidence: `node mcp_server/node_modules/vitest/vitest.mjs run tests/memory-indexer-weighting.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts` passed.]
 - [x] CHK-022 [P1] Integration test: decision-heavy memory produces improved top-k retrieval ranking [Evidence: `mcp_server/tests/embedding-weighting.vitest.ts` includes a deterministic ranking-oriented fixture that prefers the decision-rich memory.]
 - [x] CHK-023 [P1] Existing embedding and indexer test suites pass with no regressions [Evidence: scripts targeted run passed 3 files / 49 tests, and MCP targeted run passed 4 files / 49 tests as recorded in `implementation-summary.md`.]

@@ -239,10 +239,10 @@ As a SpecKit user, I need documentation to reference level-specific template pat
 ### Pre-Implementation
 ```bash
 # Verify level folders exist
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Verify markers in level_2/checklist.md
-grep "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+grep "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_2/checklist.md
 ```
 
 ### Post-Implementation

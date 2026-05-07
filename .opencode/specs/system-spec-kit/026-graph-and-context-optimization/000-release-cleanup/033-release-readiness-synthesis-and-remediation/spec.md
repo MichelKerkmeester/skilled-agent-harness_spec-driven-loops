@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "synthesis.md"
       - "remediation-log.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-release-readiness-synthesis-and-remediation"
@@ -84,9 +84,9 @@ Create the aggregate release verdict, rank the remediation backlog, and apply su
 |-----------|-------------|-------------|
 | `synthesis.md` | Create | Aggregate verdict and ranked backlog |
 | `remediation-log.md` | Create | Fix-by-fix evidence log |
-| `.opencode/skill/system-spec-kit/mcp_server/**` | Modify | Runtime schema, code graph, advisor, and tests |
-| `.opencode/command/spec_kit/assets/**` | Modify | Deep-loop hard-cap semantics |
-| `.opencode/skill/system-spec-kit/scripts/**` | Modify | Validator false positive/negative fixes |
+| `.opencode/skills/system-spec-kit/mcp_server/**` | Modify | Runtime schema, code graph, advisor, and tests |
+| `.opencode/commands/spec_kit/assets/**` | Modify | Deep-loop hard-cap semantics |
+| `.opencode/skills/system-spec-kit/scripts/**` | Modify | Validator false positive/negative fixes |
 | `.github/hooks/**` | Modify/Create | Copilot checked-in hook dispatch |
 <!-- /ANCHOR:scope -->
 

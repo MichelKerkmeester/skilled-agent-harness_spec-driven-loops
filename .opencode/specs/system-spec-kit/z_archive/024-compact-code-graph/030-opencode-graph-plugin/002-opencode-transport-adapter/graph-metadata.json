@@ -41,16 +41,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
       ".opencode/plugins/spec-kit-compact-code-graph.js",
       "dist/lib/context/opencode-transport.js",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -62,7 +62,7 @@
       {
         "name": "opencode-transport.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
         "source": "derived"
       },
       {
@@ -80,37 +80,37 @@
       {
         "name": "session-resume.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "opencode-transport.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
         "source": "derived"
       },
       {
         "name": "opencode-plugin.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
         "source": "derived"
       },
       {
         "name": "session-resume.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
         "source": "derived"
       },
       {

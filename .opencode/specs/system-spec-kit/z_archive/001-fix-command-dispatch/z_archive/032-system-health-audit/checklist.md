@@ -28,12 +28,12 @@ contextType: "implementation"
   - Verified: ✅
 
 - [x] **P0-002:** Add getDb() export to vector-index.js
-  - Location: `.opencode/skill/system-memory/scripts/lib/vector-index.js`
+  - Location: `.opencode/skills/system-memory/scripts/lib/vector-index.js`
   - Result: Already present
   - Verified: ✅
 
 - [x] **P0-003:** Fix includeConstitutional parameter
-  - Location: `.opencode/skill/system-memory/mcp_server/semantic-memory.js`
+  - Location: `.opencode/skills/system-memory/mcp_server/semantic-memory.js`
   - Result: Added filter logic
   - Verified: ✅
 
@@ -43,27 +43,27 @@ contextType: "implementation"
 ## P1: CRITICAL - Fix This Week 
 
 - [x] **P1-001:** Fix decay formula documentation
-  - Location: `.opencode/skill/system-memory/SKILL.md`
+  - Location: `.opencode/skills/system-memory/SKILL.md`
   - Result: Updated to exponential decay (~62-day half-life)
   - Verified: ✅
 
 - [x] **P1-002:** Fix promotion tier mismatch
-  - Location: `.opencode/skill/system-memory/mcp_server/lib/confidence-tracker.js`
+  - Location: `.opencode/skills/system-memory/mcp_server/lib/confidence-tracker.js`
   - Result: Changed constitutional → critical
   - Verified: ✅
 
 - [x] **P1-003:** Fix non-atomic metadata update
-  - Location: `.opencode/skill/system-memory/mcp_server/semantic-memory.js`
+  - Location: `.opencode/skills/system-memory/mcp_server/semantic-memory.js`
   - Result: Wrapped in transaction
   - Verified: ✅
 
 - [x] **P1-004:** Fix Windows path incompatibility
-  - Location: `.opencode/skill/system-memory/scripts/lib/opencode-capture.js`
+  - Location: `.opencode/skills/system-memory/scripts/lib/opencode-capture.js`
   - Result: Added USERPROFILE fallback
   - Verified: ✅
 
 - [x] **P1-005:** Implement auto-promotion
-  - Location: `.opencode/skill/system-memory/mcp_server/lib/confidence-tracker.js`
+  - Location: `.opencode/skills/system-memory/mcp_server/lib/confidence-tracker.js`
   - Result: Now promotes when eligible
   - Verified: ✅
 

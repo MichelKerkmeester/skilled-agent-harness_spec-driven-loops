@@ -43,14 +43,14 @@ Method note:
 
 | Path | Relevance | Category | Needs Update |
 | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` | Still points to the old plugin bridge path and `0.7` threshold wording, contradicting the live plugin helper path and the landed threshold pair. | docs | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md` | Still tells operators to run the old bridge path with `thresholdConfidence:0.7`. | manual-playbook | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md` | Omits the 014 public `workspaceRoot` and `effectiveThresholds` output contract. | docs | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md` | Does not validate the new recommend output fields that 014 made public. | manual-playbook | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md` | Omits `thresholdSemantics`, telemetry diagnostics, and outcome totals from the validate tool description. | docs | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md` | Validates only slice presence and baseline percentages, not the new 014 telemetry/threshold semantics contract. | manual-playbook | Y |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts` | The happy-path test does not assert `workspaceRoot` or `effectiveThresholds` even though the handler now always emits them. | tests | Maybe |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md` | Setup guide still uses a stale shorthand for the OpenCode bridge helper location. | docs | Maybe |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` | Still points to the old plugin bridge path and `0.7` threshold wording, contradicting the live plugin helper path and the landed threshold pair. | docs | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md` | Still tells operators to run the old bridge path with `thresholdConfidence:0.7`. | manual-playbook | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md` | Omits the 014 public `workspaceRoot` and `effectiveThresholds` output contract. | docs | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md` | Does not validate the new recommend output fields that 014 made public. | manual-playbook | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md` | Omits `thresholdSemantics`, telemetry diagnostics, and outcome totals from the validate tool description. | docs | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md` | Validates only slice presence and baseline percentages, not the new 014 telemetry/threshold semantics contract. | manual-playbook | Y |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts` | The happy-path test does not assert `workspaceRoot` or `effectiveThresholds` even though the handler now always emits them. | tests | Maybe |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md` | Setup guide still uses a stale shorthand for the OpenCode bridge helper location. | docs | Maybe |
 
 ## Why These Were Missed
 
@@ -64,14 +64,14 @@ Method note:
 
 Add these paths to packet 014's `resource-map.md` as `Analyzed` plus follow-up notes, because they are directly connected to the landed theme and were part of the gap investigation blast radius:
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md`
 
 ## Recommended Implementation Updates
 
@@ -91,19 +91,19 @@ Add these paths to packet 014's `resource-map.md` as `Analyzed` plus follow-up n
 - Landed code/source-of-truth anchors:
   - `.opencode/plugins/spec-kit-skill-advisor.js:37`
   - `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs:193-205`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:162-220`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:351-425`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md:75-77`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:46-50`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts:162-220`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:351-425`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md:75-77`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:46-50`
 - Missed downstream surfaces:
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:31-38`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:33-50`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md:29-31`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md:40-47`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md:29-42`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md:40-52`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts:99-118`
-  - `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md:111-117`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:31-38`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:33-50`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md:29-31`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md:40-47`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md:29-42`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md:40-52`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts:99-118`
+  - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md:111-117`
 
 ## Convergence Report
 
@@ -121,12 +121,12 @@ Add these paths to packet 014's `resource-map.md` as `Analyzed` plus follow-up n
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/research/014-skill-advisor-hook-improvements-pt-02/findings-registry.json`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
 - `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/06--mcp-surface/03-advisor-validate.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md`

@@ -4,7 +4,7 @@ Completion date: 2026-04-15
 
 Driver: cli-copilot `gpt-5.4` dispatched from Claude Code orchestrator
 
-Target file: `.opencode/skill/skill-advisor/scripts/skill_advisor.py` + fixture JSONL
+Target file: `.opencode/skills/skill-advisor/scripts/skill_advisor.py` + fixture JSONL
 
 ---
 
@@ -181,8 +181,8 @@ None. All multi-char keys in INTENT_BOOSTERS are now eliminated.
 ## Diff Stat
 
 ```
-.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl     |  8 ++++++
-.opencode/skill/skill-advisor/scripts/skill_advisor.py                                  | 55 +++++++++++++++++++++----------------
+.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl     |  8 ++++++
+.opencode/skills/skill-advisor/scripts/skill_advisor.py                                  | 55 +++++++++++++++++++++----------------
 2 files changed, 39 insertions(+), 24 deletions(-)
 ```
 

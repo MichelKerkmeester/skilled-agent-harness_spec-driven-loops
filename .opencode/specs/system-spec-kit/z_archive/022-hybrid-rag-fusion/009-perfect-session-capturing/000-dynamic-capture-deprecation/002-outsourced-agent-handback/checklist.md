@@ -50,10 +50,10 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:code-quality -->
 ## 3. CODE QUALITY
 
-- [x] CHK-010 [P0] Explicit missing-file failures hard-fail with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...` [Evidence: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`]
-- [x] CHK-011 [P0] Explicit invalid JSON and invalid-shape payloads do not fall back to OpenCode capture [Evidence: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`, `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]
-- [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`]
-- [x] CHK-013 [P1] First next step persists as `Next: ...`, remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`, `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]
+- [x] CHK-010 [P0] Explicit missing-file failures hard-fail with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...` [Evidence: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`]
+- [x] CHK-011 [P0] Explicit invalid JSON and invalid-shape payloads do not fall back to OpenCode capture [Evidence: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`, `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]
+- [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`]
+- [x] CHK-013 [P1] First next step persists as `Next: ...`, remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`, `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`, `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -61,12 +61,12 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:testing -->
 ## 4. TESTING
 
-- [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/SKILL.md`]
-- [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skill/cli-*/assets/prompt_templates.md`]
-- [x] CHK-022 [P0] Feature-catalog entry reflects phase `015` rather than stale `013` wording [Evidence: `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`, `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`]
+- [x] CHK-020 [P0] All 4 `cli-*` SKILL files include handback guidance with redact-and-scrub, rejection-code, and minimum-payload wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/SKILL.md`]
+- [x] CHK-021 [P0] All 4 `cli-*` prompt templates include richer `FILES` examples, accepted snake_case field names, and explicit failure wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts` plus repo reads of `.opencode/skills/cli-*/assets/prompt_templates.md`]
+- [x] CHK-022 [P0] Feature-catalog entry reflects phase `015` rather than stale `013` wording [Evidence: `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`, `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`]
 - [x] CHK-023 [P1] Targeted runtime-plus-doc verification passes - `npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts` returned `2` files and `32` tests [Evidence: current rerun output in this task]
-- [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts` returned `246` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
-- [x] CHK-025 [P1] TypeScript verification is presented as current acceptance proof only with a reproducible rerun artifact - `npm run lint` in `.opencode/skill/system-spec-kit/scripts` passed (`tsc --noEmit`) [Evidence: current rerun output in this task]
+- [x] CHK-024 [P1] Alignment drift passes for the scripts root - `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` returned `246` scanned files, `0` findings, and `0` warnings [Evidence: current rerun output in this task]
+- [x] CHK-025 [P1] TypeScript verification is presented as current acceptance proof only with a reproducible rerun artifact - `npm run lint` in `.opencode/skills/system-spec-kit/scripts` passed (`tsc --noEmit`) [Evidence: current rerun output in this task]
 - [x] CHK-026 [P2] Retained rich JSON-mode handback evidence preserved. `generate-context.js` previously wrote `memory/16-03-26_22-23__updated-the-outsourced-agent-handback-docs-so.md` (556 lines) for this phase folder [Evidence: the artifact remains present under this phase `memory/` folder.]
 - [x] CHK-027 [P2] Fresh thin JSON-mode handback payload rejected with `INSUFFICIENT_CONTEXT_ABORT` before file write [Evidence: current rerun output in this task]
 <!-- /ANCHOR:testing -->
@@ -78,7 +78,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-030 [P0] Redact-and-scrub guidance is reflected in the CLI handback docs [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
 - [x] CHK-031 [P1] Accepted next-step field names are documented as `nextSteps` or `next_steps` [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
-- [x] CHK-032 [P1] Path wording uses `.opencode/skill/cli-*` rather than `.opencode/skill/cli-copilot/` in the reconciled spec docs [Evidence: reconciled spec artifacts]
+- [x] CHK-032 [P1] Path wording uses `.opencode/skills/cli-*` rather than `.opencode/skills/cli-copilot/` in the reconciled spec docs [Evidence: reconciled spec artifacts]
 - [x] CHK-033 [P1] Rejection-code wording covers both `INSUFFICIENT_CONTEXT_ABORT` and `CONTAMINATION_GATE_ABORT` across the caller-facing docs [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
 - [x] CHK-034 [P1] Payload-richness wording recommends `DESCRIPTION`, `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` for `FILES` entries [Evidence: `outsourced-agent-handback-docs.vitest.ts`]
 <!-- /ANCHOR:security -->

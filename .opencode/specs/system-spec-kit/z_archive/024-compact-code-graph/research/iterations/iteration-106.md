@@ -2,9 +2,9 @@
 
 ## Current State
 
-`@context-prime` is a read-only bootstrap subagent designed to recover memory context, assess code-graph/CocoIndex health, score session health, and return a Prime Package. It is explicitly optimized for fast, best-effort execution: under 30 seconds, and if a tool fails it skips that step and reports it as unavailable. [SOURCE: `.opencode/agent/context-prime.md`]
+`@context-prime` is a read-only bootstrap subagent designed to recover memory context, assess code-graph/CocoIndex health, score session health, and return a Prime Package. It is explicitly optimized for fast, best-effort execution: under 30 seconds, and if a tool fails it skips that step and reports it as unavailable. [SOURCE: `.opencode/agents/context-prime.md`]
 
-The OpenCode orchestrator instructs itself to delegate to `@context-prime` "on the first user turn or after /clear" before proceeding with the user request. This is structurally feasible because `@orchestrate` allows single-hop delegation and `@context-prime` is exactly one hop away. [SOURCE: `.opencode/agent/orchestrate.md:18-20`]
+The OpenCode orchestrator instructs itself to delegate to `@context-prime` "on the first user turn or after /clear" before proceeding with the user request. This is structurally feasible because `@orchestrate` allows single-hop delegation and `@context-prime` is exactly one hop away. [SOURCE: `.opencode/agents/orchestrate.md:18-20`]
 
 However, this mechanism exists only in OpenCode/Copilot. Claude Code, Codex CLI, and Gemini CLI do not use the orchestrator; they instead have inline Session Start Protocols in their runtime instruction files. Separately, the MCP server already has first-call auto-priming, which is server-side and hookless.
 
@@ -151,10 +151,10 @@ This gives better latency, clearer guarantees, and less confusion about what act
 
 ## Implementation Plan
 
-1. Update `.opencode/agent/orchestrate.md` so first-turn bootstrap is **latency-aware**, not unconditional.
+1. Update `.opencode/agents/orchestrate.md` so first-turn bootstrap is **latency-aware**, not unconditional.
    Estimated change: 10-20 LOC.
 
-2. Update `.opencode/agent/context-prime.md` to make `session_resume()` the default fast path, with deeper checks only when budget allows.
+2. Update `.opencode/agents/context-prime.md` to make `session_resume()` the default fast path, with deeper checks only when budget allows.
    Estimated change: 5-15 LOC.
 
 3. Introduce a simple urgency rule in orchestrator guidance:

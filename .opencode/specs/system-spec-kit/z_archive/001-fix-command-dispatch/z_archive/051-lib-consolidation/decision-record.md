@@ -33,8 +33,8 @@ This document captures the architectural decisions made for consolidating shared
 ### Context
 
 The system-spec-kit currently has two separate `lib/` folders:
-- `.opencode/skill/system-spec-kit/scripts/shared/` - CLI script utilities
-- `.opencode/skill/system-spec-kit/mcp_server/shared/` - MCP server utilities
+- `.opencode/skills/system-spec-kit/scripts/shared/` - CLI script utilities
+- `.opencode/skills/system-spec-kit/mcp_server/shared/` - MCP server utilities
 
 Both folders contain modules that are used by *both* contexts (CLI and MCP), leading to:
 1. Re-export patterns with brittle relative paths (`../../scripts/shared/embeddings.js`)
@@ -44,11 +44,11 @@ Both folders contain modules that are used by *both* contexts (CLI and MCP), lea
 
 ### Decision
 
-Create a new shared library at `.opencode/skill/system-spec-kit/shared/` at the skill root level, containing only modules genuinely needed by both CLI scripts AND the MCP server.
+Create a new shared library at `.opencode/skills/system-spec-kit/shared/` at the skill root level, containing only modules genuinely needed by both CLI scripts AND the MCP server.
 
 **Resulting structure:**
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── lib/                    # NEW: Shared modules (CLI + MCP)
 │   ├── embeddings.js
 │   ├── trigger-extractor.js
@@ -479,7 +479,7 @@ const { generateEmbedding } = require('../shared/embeddings');
 ```bash
 # Find deprecated import patterns
 grep -r "scripts/shared/embeddings\|scripts/shared/retry-manager\|mcp_server/shared/embeddings\|mcp_server/shared/trigger-extractor" \
-  --include="*.js" .opencode/skill/system-spec-kit/
+  --include="*.js" .opencode/skills/system-spec-kit/
 ```
 
 ### Alternatives Considered

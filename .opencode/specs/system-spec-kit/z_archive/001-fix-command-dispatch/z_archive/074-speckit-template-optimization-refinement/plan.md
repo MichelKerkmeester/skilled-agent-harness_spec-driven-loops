@@ -224,7 +224,7 @@ Phase 5 (Release) ──────────────────┘ SYNC
 
 ### Rollback Procedure
 1. Immediate: `git stash` any work in progress
-2. Revert: `git checkout -- .opencode/skill/system-spec-kit/`
+2. Revert: `git checkout -- .opencode/skills/system-spec-kit/`
 3. Verify: Run `validate.sh` on all fixtures
 4. Notify: Update spec folder with rollback note
 

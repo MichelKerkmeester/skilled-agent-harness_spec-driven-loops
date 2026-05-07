@@ -43,7 +43,7 @@ SPECKIT_TEMPLATE_SOURCE: "decision-record | v2.2"
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-We need first-class memory lineage and temporal state queries, but the current platform already has mature schema, migration patterns, history tracking, and conflict journaling. A greenfield replacement would delay delivery and increase migration risk without proving incremental value first. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1300-1407] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts:17-204] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1238-1263]
+We need first-class memory lineage and temporal state queries, but the current platform already has mature schema, migration patterns, history tracking, and conflict journaling. A greenfield replacement would delay delivery and increase migration risk without proving incremental value first. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1300-1407] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:17-204] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1238-1263]
 
 HydraDB public guidance emphasizes versioned, append-style memory evolution, which can be translated into our existing schema evolution model. Reference: https://hydradb.com/manifesto and https://hydradb.com/blog/how-to-refresh-or-update-stored-llm-memory.
 
@@ -141,7 +141,7 @@ HydraDB public guidance emphasizes versioned, append-style memory evolution, whi
 
 ### Context
 
-Current code already contains causal traversal, hybrid candidate generation, weighted FTS/BM25, and access-based signals. Building an external graph service before integrating these existing modules would add operational overhead and delay learning cycles. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:13-218] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:217-319] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:16-114] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:13-220]
+Current code already contains causal traversal, hybrid candidate generation, weighted FTS/BM25, and access-based signals. Building an external graph service before integrating these existing modules would add operational overhead and delay learning cycles. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:13-218] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:217-319] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:16-114] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:13-220]
 
 HydraDB public material stresses integrated hybrid retrieval and adaptive behavior. Reference: https://hydradb.com/blog/how-to-design-llm-memory-systems-that-scale and https://hydradb.com/blog/why-cortex-outperforms-rag-only-memory-architectures.
 
@@ -217,7 +217,7 @@ HydraDB public material stresses integrated hybrid retrieval and adaptive behavi
 
 ### Context
 
-Shared-memory collaboration can deliver major multi-agent value, but without strict isolation and governance controls it introduces high risk of data leakage and policy violations. The existing schema and handlers are already scope-aware at a limited level (`spec_folder`, `session_id`) and must be expanded to tenant/user/agent boundaries first. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1300-1407] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:217-319] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:88-223]
+Shared-memory collaboration can deliver major multi-agent value, but without strict isolation and governance controls it introduces high risk of data leakage and policy violations. The existing schema and handlers are already scope-aware at a limited level (`spec_folder`, `session_id`) and must be expanded to tenant/user/agent boundaries first. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1300-1407] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:217-319] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:88-223]
 
 HydraDB public positioning consistently pairs shared memory with strict boundaries and enterprise governance controls. Reference: https://hydradb.com/blog/how-to-share-llm-memory-across-ai-agents and https://hydradb.com/.
 
@@ -293,9 +293,9 @@ HydraDB public positioning consistently pairs shared memory with strict boundari
 
 ### Context
 
-The lineage system needed a deterministic way to track memory version history without sacrificing auditability or temporal reconstruction. The implementation already records predecessor closure by setting `valid_to`, inserts a fresh lineage row for the successor, and updates a separate active projection instead of rewriting the original version in place. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:529-596]
+The lineage system needed a deterministic way to track memory version history without sacrificing auditability or temporal reconstruction. The implementation already records predecessor closure by setting `valid_to`, inserts a fresh lineage row for the successor, and updates a separate active projection instead of rewriting the original version in place. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:529-596]
 
-The same module exposes append-style backfill and active projection maintenance, which reinforces that lineage history is preserved as immutable versions while "current state" is derived separately. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:930-1060]
+The same module exposes append-style backfill and active projection maintenance, which reinforces that lineage history is preserved as immutable versions while "current state" is derived separately. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:930-1060]
 
 ### Constraints
 
@@ -307,7 +307,7 @@ The same module exposes append-style backfill and active projection maintenance,
 
 **We chose**: Make all lineage transitions append-only, where prior records are superseded rather than mutated or deleted.
 
-**How it works**: The `SUPERSEDE` path closes the predecessor by filling `valid_to`, inserts a new lineage row as the active successor, and updates `active_memory_projection` to point at the latest version. Existing lineage rows remain preserved for audit and temporal reconstruction. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:554-596]
+**How it works**: The `SUPERSEDE` path closes the predecessor by filling `valid_to`, inserts a new lineage row as the active successor, and updates `active_memory_projection` to point at the latest version. Existing lineage rows remain preserved for audit and temporal reconstruction. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:554-596]
 
 ### Alternatives Considered
 
@@ -371,9 +371,9 @@ The same module exposes append-style backfill and active projection maintenance,
 
 ### Context
 
-The `asOf` temporal resolver needed an unambiguous interval model so each timestamp maps to exactly one active version. The implementation already queries lineage rows with `valid_from <= timestamp` and `(valid_to IS NULL OR valid_to > timestamp)`, which is the standard half-open contract. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:823-832]
+The `asOf` temporal resolver needed an unambiguous interval model so each timestamp maps to exactly one active version. The implementation already queries lineage rows with `valid_from <= timestamp` and `(valid_to IS NULL OR valid_to > timestamp)`, which is the standard half-open contract. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:823-832]
 
-Integrity checks also show that overlap prevention is enforced operationally rather than by schema-level interval constraints: duplicate active rows are detected after the fact by `validateLineageIntegrity()`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:857-920]
+Integrity checks also show that overlap prevention is enforced operationally rather than by schema-level interval constraints: duplicate active rows are detected after the fact by `validateLineageIntegrity()`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:857-920]
 
 ### Constraints
 
@@ -385,7 +385,7 @@ Integrity checks also show that overlap prevention is enforced operationally rat
 
 **We chose**: Use half-open intervals for lineage validity, where `valid_from` is inclusive and `valid_to` is exclusive.
 
-**How it works**: A record with `valid_to = NULL` is the current version. `resolveLineageAsOf(timestamp)` returns the row where `valid_from <= timestamp < valid_to`, or the open-ended active row when `valid_to` is null. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:823-848]
+**How it works**: A record with `valid_to = NULL` is the current version. `resolveLineageAsOf(timestamp)` returns the row where `valid_from <= timestamp < valid_to`, or the open-ended active row when `valid_to` is null. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:823-848]
 
 ### Alternatives Considered
 
@@ -448,9 +448,9 @@ Integrity checks also show that overlap prevention is enforced operationally rat
 
 ### Context
 
-When lineage state was introduced, pre-existing `memory_index` rows had no lineage entries. The backfill process therefore had to construct synthetic lineage chains from legacy rows while remaining safe to rerun after partial execution, schema evolution, or metadata improvements. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:930-999]
+When lineage state was introduced, pre-existing `memory_index` rows had no lineage entries. The backfill process therefore had to construct synthetic lineage chains from legacy rows while remaining safe to rerun after partial execution, schema evolution, or metadata improvements. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:930-999]
 
-The implementation uses `ON CONFLICT(memory_id) DO UPDATE`, groups legacy rows by logical key, assigns version numbers in chronological order, and emits `BACKFILL` transitions so old memories become queryable by lineage and `asOf` resolution without duplicate inserts. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002-1055]
+The implementation uses `ON CONFLICT(memory_id) DO UPDATE`, groups legacy rows by logical key, assigns version numbers in chronological order, and emits `BACKFILL` transitions so old memories become queryable by lineage and `asOf` resolution without duplicate inserts. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002-1055]
 
 ### Constraints
 
@@ -462,7 +462,7 @@ The implementation uses `ON CONFLICT(memory_id) DO UPDATE`, groups legacy rows b
 
 **We chose**: Make `backfillLineageState()` idempotent by using conflict-upsert semantics for every legacy lineage row.
 
-**How it works**: Each legacy memory receives a synthetic `BACKFILL` transition with version ordering derived from chronological grouping under its logical key. Reruns update lineage metadata to the expected values rather than creating duplicate lineage rows. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002-1055]
+**How it works**: Each legacy memory receives a synthetic `BACKFILL` transition with version ordering derived from chronological grouping under its logical key. Reruns update lineage metadata to the expected values rather than creating duplicate lineage rows. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002-1055]
 
 ### Alternatives Considered
 
@@ -525,9 +525,9 @@ The implementation uses `ON CONFLICT(memory_id) DO UPDATE`, groups legacy rows b
 
 ### Context
 
-The Hydra roadmap needed a stable capability snapshot for telemetry and migration checkpoints, but production rollout posture is not identical across all delivered phases. The roadmap flag module explicitly describes itself as phase-tracking metadata, keeps those controls distinct from unrelated live runtime flags, and defaults adaptive ranking to dormant/off unless explicitly enabled. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:5-7] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:36-38] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:77-98] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:114-151]
+The Hydra roadmap needed a stable capability snapshot for telemetry and migration checkpoints, but production rollout posture is not identical across all delivered phases. The roadmap flag module explicitly describes itself as phase-tracking metadata, keeps those controls distinct from unrelated live runtime flags, and defaults adaptive ranking to dormant/off unless explicitly enabled. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:5-7] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:36-38] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:77-98] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:114-151]
 
-Phase 4 documentation also requires adaptive ranking to stay in shadow mode until promotion criteria are met, while Phase 6 documentation keeps shared memory opt-in and deny-by-default. The shared-memory handler separately supports an environment override, reinforcing that capability snapshots and live enablement posture are related but not identical concepts. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/spec.md:22-25] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout/spec.md:22-25] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:431-433]
+Phase 4 documentation also requires adaptive ranking to stay in shadow mode until promotion criteria are met, while Phase 6 documentation keeps shared memory opt-in and deny-by-default. The shared-memory handler separately supports an environment override, reinforcing that capability snapshots and live enablement posture are related but not identical concepts. [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/spec.md:22-25] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout/spec.md:22-25] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:431-433]
 
 ### Constraints
 
@@ -539,7 +539,7 @@ Phase 4 documentation also requires adaptive ranking to stay in shadow mode unti
 
 **We chose**: Treat roadmap capability flags surfaced by `getMemoryRoadmapDefaults()` as roadmap-state metadata, not as the single source of truth for live feature activation.
 
-**How it works**: Capability snapshots describe what has been delivered in the phased roadmap and the intended rollout posture. Live runtime behavior still depends on feature-specific controls such as shadow-mode guardrails, opt-in rollout policy, environment overrides, and database/governance state. Adaptive ranking remains dormant/default-off until explicitly promoted. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts:125-129] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/spec.md:22-25]
+**How it works**: Capability snapshots describe what has been delivered in the phased roadmap and the intended rollout posture. Live runtime behavior still depends on feature-specific controls such as shadow-mode guardrails, opt-in rollout policy, environment overrides, and database/governance state. Adaptive ranking remains dormant/default-off until explicitly promoted. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts:125-129] [SOURCE: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/004-adaptive-retrieval-loops/spec.md:22-25]
 
 ### Alternatives Considered
 
@@ -602,9 +602,9 @@ Phase 4 documentation also requires adaptive ranking to stay in shadow mode unti
 
 ### Context
 
-Lineage needed a stable identity for "the same logical memory" across content revisions so versions could be grouped, ordered, backfilled, and resolved over time. The storage layer builds a logical key as `spec_folder::canonical_path::anchor`, falling back to canonicalized path and `_` for missing anchors, then uses that key for grouping lineage and projection state. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:184-195] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:945-953]
+Lineage needed a stable identity for "the same logical memory" across content revisions so versions could be grouped, ordered, backfilled, and resolved over time. The storage layer builds a logical key as `spec_folder::canonical_path::anchor`, falling back to canonicalized path and `_` for missing anchors, then uses that key for grouping lineage and projection state. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:184-195] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:945-953]
 
-The implementation warns when any component already contains the `::` separator, which keeps ambiguous keys visible to operators without blocking current writes. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:191-195]
+The implementation warns when any component already contains the `::` separator, which keeps ambiguous keys visible to operators without blocking current writes. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:191-195]
 
 ### Constraints
 
@@ -616,7 +616,7 @@ The implementation warns when any component already contains the `::` separator,
 
 **We chose**: Define `logical_key` as `spec_folder::canonical_path::anchor`, generated by `buildLogicalKey()`, as the canonical lineage identity contract.
 
-**How it works**: Memories that share the same logical key are treated as versions of the same concept. The anchor component supports sub-document granularity, while path canonicalization reduces accidental drift from file-path variations. Separator collisions emit warnings rather than hard failures. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:184-195]
+**How it works**: Memories that share the same logical key are treated as versions of the same concept. The anchor component supports sub-document granularity, while path canonicalization reduces accidental drift from file-path variations. Separator collisions emit warnings rather than hard failures. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:184-195]
 
 ### Alternatives Considered
 

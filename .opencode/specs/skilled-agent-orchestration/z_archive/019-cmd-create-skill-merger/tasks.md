@@ -38,9 +38,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create canonical command entrypoint for merged skill operations (`.opencode/command/create/sk-skill.md`)
-- [x] T002 [P] Create autonomous unified workflow with 4 operation branches (`.opencode/command/create/assets/create_sk_skill_auto.yaml`)
-- [x] T003 [P] Create interactive unified workflow with checkpoints (`.opencode/command/create/assets/create_sk_skill_confirm.yaml`)
+- [x] T001 Create canonical command entrypoint for merged skill operations (`.opencode/commands/create/sk-skill.md`)
+- [x] T002 [P] Create autonomous unified workflow with 4 operation branches (`.opencode/commands/create/assets/create_sk_skill_auto.yaml`)
+- [x] T003 [P] Create interactive unified workflow with checkpoints (`.opencode/commands/create/assets/create_sk_skill_confirm.yaml`)
 
 ---
 
@@ -52,12 +52,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Delete deprecated legacy command entrypoint (.opencode/command/create/skill.md)
-- [x] T005 Delete deprecated legacy reference command (.opencode/command/create/skill_reference.md)
-- [x] T006 Delete deprecated legacy asset command (.opencode/command/create/skill_asset.md)
-- [x] T007 Delete deprecated legacy auto/confirm workflow pair (`.opencode/command/create/assets/create_skill_auto.yaml`, `.opencode/command/create/assets/create_skill_confirm.yaml`)
-- [x] T008 Delete deprecated legacy reference workflow pair (`.opencode/command/create/assets/create_skill_reference_auto.yaml`, `.opencode/command/create/assets/create_skill_reference_confirm.yaml`)
-- [x] T009 Delete deprecated legacy asset workflow pair (`.opencode/command/create/assets/create_skill_asset_auto.yaml`, `.opencode/command/create/assets/create_skill_asset_confirm.yaml`)
+- [x] T004 Delete deprecated legacy command entrypoint (.opencode/commands/create/skill.md)
+- [x] T005 Delete deprecated legacy reference command (.opencode/commands/create/skill_reference.md)
+- [x] T006 Delete deprecated legacy asset command (.opencode/commands/create/skill_asset.md)
+- [x] T007 Delete deprecated legacy auto/confirm workflow pair (`.opencode/commands/create/assets/create_skill_auto.yaml`, `.opencode/commands/create/assets/create_skill_confirm.yaml`)
+- [x] T008 Delete deprecated legacy reference workflow pair (`.opencode/commands/create/assets/create_skill_reference_auto.yaml`, `.opencode/commands/create/assets/create_skill_reference_confirm.yaml`)
+- [x] T009 Delete deprecated legacy asset workflow pair (`.opencode/commands/create/assets/create_skill_asset_auto.yaml`, `.opencode/commands/create/assets/create_skill_asset_confirm.yaml`)
 
 ---
 
@@ -73,18 +73,18 @@ contextType: "implementation"
 
 ### Phase 3: Reference Alignment and Verification
 
-- [x] T010 Update related command reference links to canonical variants (`.opencode/command/create/prompt.md`)
-- [x] T011 Verify operation support documented (`full-create`, `full-update`, `reference-only`, `asset-only`) in canonical command and mode workflows (`.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`)
-- [x] T012 Verify mode support documented (`:auto`, `:confirm`) in canonical command and mode workflows (`.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`)
+- [x] T010 Update related command reference links to canonical variants (`.opencode/commands/create/prompt.md`)
+- [x] T011 Verify operation support documented (`full-create`, `full-update`, `reference-only`, `asset-only`) in canonical command and mode workflows (`.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`)
+- [x] T012 Verify mode support documented (`:auto`, `:confirm`) in canonical command and mode workflows (`.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`)
 
 ---
 
 ### Phase 4: Canonical Alignment and Length Expansion
 
-- [x] T013 Align canonical command and unified YAMLs closer to sk-doc command template and existing create-command conventions (`.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`)
-- [x] T014 Verify canonical command expansion to 523 lines (`.opencode/command/create/sk-skill.md`)
-- [x] T015 Verify autonomous YAML expansion to 470 lines (`.opencode/command/create/assets/create_sk_skill_auto.yaml`)
-- [x] T016 Verify interactive YAML expansion to 519 lines (`.opencode/command/create/assets/create_sk_skill_confirm.yaml`)
+- [x] T013 Align canonical command and unified YAMLs closer to sk-doc command template and existing create-command conventions (`.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`)
+- [x] T014 Verify canonical command expansion to 523 lines (`.opencode/commands/create/sk-skill.md`)
+- [x] T015 Verify autonomous YAML expansion to 470 lines (`.opencode/commands/create/assets/create_sk_skill_auto.yaml`)
+- [x] T016 Verify interactive YAML expansion to 519 lines (`.opencode/commands/create/assets/create_sk_skill_confirm.yaml`)
 
 ---
 

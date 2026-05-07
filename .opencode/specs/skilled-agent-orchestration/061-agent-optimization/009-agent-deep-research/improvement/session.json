@@ -1,7 +1,7 @@
 {
   "session_id": "imp-deep-research-20260502T180803Z",
   "started_at": "2026-05-02T18:08:03Z",
-  "target_path": ".opencode/agent/deep-research.md",
+  "target_path": ".opencode/agents/deep-research.md",
   "agent_name": "deep-research",
   "spec_folder": "specs/skilled-agent-orchestration/061-agent-optimization/009-agent-deep-research",
   "executor": "cli-copilot",

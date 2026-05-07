@@ -95,7 +95,7 @@ sqlite3 ".opencode/memory/database/memory-index.sqlite" \
 
 ### 2. Memory Commands Consolidated
 
-**Location**: `.opencode/command/memory/`
+**Location**: `.opencode/commands/memory/`
 
 | Change | Files | Reason |
 |--------|-------|--------|
@@ -149,9 +149,9 @@ The `importanceTier` fix requires MCP server restart. Until restarted, `memory_u
 |------|-------------|
 | `semantic-memory/lib/vector-index.js` | Bug fix (lines 497-500) |
 | `semantic-memory/README.md` | Added Section 12, renumbered 13-18 |
-| `.opencode/command/memory/memory.md` | Created (consolidated) |
-| `.opencode/command/memory/save.md` | Updated |
-| `.opencode/command/memory/status.md` | Deleted |
-| `.opencode/command/memory/triggers.md` | Deleted |
-| `.opencode/command/memory/cleanup.md` | Deleted |
-| `.opencode/command/memory/search.md` | Deleted |
+| `.opencode/commands/memory/memory.md` | Created (consolidated) |
+| `.opencode/commands/memory/save.md` | Updated |
+| `.opencode/commands/memory/status.md` | Deleted |
+| `.opencode/commands/memory/triggers.md` | Deleted |
+| `.opencode/commands/memory/cleanup.md` | Deleted |
+| `.opencode/commands/memory/search.md` | Deleted |

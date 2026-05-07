@@ -38,7 +38,7 @@ Primary themes:
 | R21-P1-001 | Added absent-freshness fail-open behavior: return empty recommendations with freshness `absent` and do not score. | `handlers/advisor-recommend.ts`, `tests/handlers/advisor-recommend.vitest.ts` | `advisor-recommend.ts:83`, `advisor-recommend.ts:132`, `advisor-recommend.vitest.ts:232`. |
 | R21-P1-002 | Added `skillCount` and `lastScanAt` to advisor status output and schema. | `handlers/advisor-status.ts`, `schemas/advisor-tool-schemas.ts`, `tests/handlers/advisor-status.vitest.ts` | `advisor-status.ts:41`, `advisor-status.ts:84`, `advisor-tool-schemas.ts:80`, `advisor-status.vitest.ts:33`. |
 | R22-P1-001 | Confirmed R2 sanitizer fix also covers native redirect metadata at the original line-79 public-envelope path. | `handlers/advisor-recommend.ts`, `tests/handlers/advisor-recommend.vitest.ts` | `advisor-recommend.ts:101`, `advisor-recommend.ts:124`, `advisor-recommend.vitest.ts:174`. |
-| R25-P1-001 | Passed caller thresholds through the Python native shim into `advisor_recommend` options. | `.opencode/skill/skill-advisor/scripts/skill_advisor.py`, `tests/compat/shim.vitest.ts` | `skill_advisor.py:133`, `skill_advisor.py:360`, `skill_advisor.py:3210`; shim tests 4/4. |
+| R25-P1-001 | Passed caller thresholds through the Python native shim into `advisor_recommend` options. | `.opencode/skills/skill-advisor/scripts/skill_advisor.py`, `tests/compat/shim.vitest.ts` | `skill_advisor.py:133`, `skill_advisor.py:360`, `skill_advisor.py:3210`; shim tests 4/4. |
 | R29-P1-001 | Duplicate of R21-P1-001; fixed by the single absent-freshness fail-open implementation. | `handlers/advisor-recommend.ts` | `advisor-recommend.ts:132`. |
 | R29-P1-002 | Duplicate of R21-P1-002; fixed by the single status-envelope implementation. | `handlers/advisor-status.ts`, `schemas/advisor-tool-schemas.ts` | `advisor-status.ts:84`, `advisor-tool-schemas.ts:80`. |
 | R1-P2-001 | Extended MCP tool schemas with full status/trust envelope and measured validate-slice schema additions. | `schemas/advisor-tool-schemas.ts` | `advisor-tool-schemas.ts:46`, `advisor-tool-schemas.ts:70`, `advisor-tool-schemas.ts:102`. |
@@ -52,7 +52,7 @@ Primary themes:
 
 - Advisor vitest: `../scripts/node_modules/.bin/vitest run mcp_server/skill-advisor/tests/ --reporter=default` → 23 files / 167 tests passed.
 - Typecheck + build: `npm run typecheck && npm run build` → exit 0.
-- Python regression: `python3 .opencode/skill/skill-advisor/scripts/skill_advisor_regression.py --dataset .opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` → `overall_pass: true`, 52/52 passed.
+- Python regression: `python3 .opencode/skills/skill-advisor/scripts/skill_advisor_regression.py --dataset .opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` → `overall_pass: true`, 52/52 passed.
 - Code-graph regression: `../scripts/node_modules/.bin/vitest run mcp_server/code-graph/tests/ --reporter=default` → 7 files / 52 tests passed.
 
 ## Blockers

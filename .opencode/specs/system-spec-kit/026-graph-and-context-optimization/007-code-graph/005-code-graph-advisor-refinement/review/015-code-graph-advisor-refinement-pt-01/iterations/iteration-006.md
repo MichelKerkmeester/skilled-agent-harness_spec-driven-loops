@@ -30,13 +30,13 @@ Prior review artifacts:
 
 Implementation files rechecked for R5 and coverage:
 
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/package.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/`
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/package.json`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/`
 - `.github/hooks/`
 
 Checks performed:
@@ -123,7 +123,7 @@ Under-reviewed surfaces for iteration 7: PR 1 `scorer-bench.ts`, PR 6 lifecycle/
 
 Counterargument tested: perhaps benches are only explicit/manual and clean checkout always builds `dist` before tests.
 
-Evidence still supports the finding. `vitest.config.ts` includes `mcp_server/skill-advisor/bench/**/*.bench.ts` in the shared include list. `package.json` runs `test:core` as plain `vitest run --exclude tests/file-watcher.vitest.ts`, and `check:full` runs `check` plus `test`, not `build` plus `test`. The parse bench asserts existence for `.opencode/skill/system-spec-kit/mcp_server/dist/startup-checks.js`, and `git ls-files` returned no tracked file for that path. I found no first-party workflow file proving a build step always precedes default tests. Local generated files existing under `dist/` do not falsify the clean-checkout risk.
+Evidence still supports the finding. `vitest.config.ts` includes `mcp_server/skill-advisor/bench/**/*.bench.ts` in the shared include list. `package.json` runs `test:core` as plain `vitest run --exclude tests/file-watcher.vitest.ts`, and `check:full` runs `check` plus `test`, not `build` plus `test`. The parse bench asserts existence for `.opencode/skills/system-spec-kit/mcp_server/dist/startup-checks.js`, and `git ls-files` returned no tracked file for that path. I found no first-party workflow file proving a build step always precedes default tests. Local generated files existing under `dist/` do not falsify the clean-checkout risk.
 
 ### R5-P1-002 upheld but downgraded to P2
 

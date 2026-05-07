@@ -171,7 +171,7 @@ This maps cleanly onto packet 024's earlier floors-and-overflow budget thinking.
 
 #### Do not adopt a second long-memory backend as primary truth
 
-The plugin's SQLite archive is good engineering, but it would duplicate an existing memory platform. Spec Kit Memory already has memory retrieval, working-memory boosts, session bootstrap, and startup digests. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:642-712`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
+The plugin's SQLite archive is good engineering, but it would duplicate an existing memory platform. Spec Kit Memory already has memory retrieval, working-memory boosts, session bootstrap, and startup digests. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:642-712`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
 
 If we copied the whole LCM store into production as another main backend, we would create:
 
@@ -207,7 +207,7 @@ Build a new OpenCode plugin for packet 024 that does the following:
   - last spec folder
   - graph freshness
   - session quality
-  - recommended first action [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:665-712`]
+  - recommended first action [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:665-712`]
 
 #### `experimental.chat.messages.transform`
 
@@ -320,14 +320,14 @@ It gives a middle ground between:
 
 These LCM ideas are already covered, at least partially:
 
-- startup/system guidance [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:642-712`]
-- session recovery digests [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:665-712`]
-- tool-based auto-surfacing of important memories [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
-- working-memory attention boost [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:345-362`]
-- hook-capable lifecycle support for non-OpenCode runtimes [SOURCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:21-57`]
-- compact startup graph briefing [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
-- bounded structural bootstrap contracts [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
-- budget-aware compaction merge plus file-level deduplication [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+- startup/system guidance [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:642-712`]
+- session recovery digests [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:665-712`]
+- tool-based auto-surfacing of important memories [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:365-417`]
+- working-memory attention boost [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:345-362`]
+- hook-capable lifecycle support for non-OpenCode runtimes [SOURCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:21-57`]
+- compact startup graph briefing [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
+- bounded structural bootstrap contracts [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
+- budget-aware compaction merge plus file-level deduplication [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 
 ### Still Missing Or Weaker
 
@@ -437,10 +437,10 @@ The broad comparison did **not** show a need to replace our current compact-cont
 
 We should keep:
 
-- `buildStartupBrief()` for compact structural orientation [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
-- `buildStructuralBootstrapContract()` for bounded startup/recovery summaries [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
-- `session-prime.ts` as the hook-injection layer for hook-capable runtimes [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:99-155`]
-- `mergeCompactBrief()` as the token-budget and deduplication engine for compaction payloads [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+- `buildStartupBrief()` for compact structural orientation [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`]
+- `buildStructuralBootstrapContract()` for bounded startup/recovery summaries [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
+- `session-prime.ts` as the hook-injection layer for hook-capable runtimes [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:99-155`]
+- `mergeCompactBrief()` as the token-budget and deduplication engine for compaction payloads [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 
 The LCM comparison strengthens these design choices rather than undermining them.
 
@@ -454,7 +454,7 @@ Current startup and bootstrap logic is compact and useful, but it still mostly r
 - last session summary
 - recommended action
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:65-105`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:223-257`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:118-155`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:65-105`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:223-257`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:118-155`]
 
 `opencode-lcm` suggests making recovery payloads more provenance-rich without making them dramatically larger. The next upgrade should add signals such as:
 
@@ -474,11 +474,11 @@ Our current public graph MCP surface is intentionally narrow:
 - `code_graph_status`
 - `code_graph_context`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/README.md:5-13`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/README.md:5-13`]
 
-`code_graph_status` reports counts, freshness, schema version, parse health, and file sizes, but it does not repair anything. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
+`code_graph_status` reports counts, freshness, schema version, parse health, and file sizes, but it does not repair anything. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
 
-`ensureCodeGraphReady()` handles empty graphs, git-head drift, deleted tracked files, stale mtimes, and inline reindexing, but it is still a freshness helper rather than a full integrity-management surface. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:219-260`]
+`ensureCodeGraphReady()` handles empty graphs, git-head drift, deleted tracked files, stale mtimes, and inline reindexing, but it is still a freshness helper rather than a full integrity-management surface. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:219-260`]
 
 The plugin points toward three follow-on upgrades:
 
@@ -498,7 +498,7 @@ If we add any snapshot or artifact-preview flow, we should explicitly port two s
 - workspace-bounded path resolution [SOURCE: `external/opencode-lcm-master/src/workspace-path.ts:3-20`]
 - normalized worktree identity [SOURCE: `external/opencode-lcm-master/src/worktree-key.ts:1-4`]
 
-Today, our hook state is keyed by hashed cwd/session id and stored under tmpdir, which is good for one-session durability but not a full portable identity model. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:32-45`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:67-103`]
+Today, our hook state is keyed by hashed cwd/session id and stored under tmpdir, which is good for one-session durability but not a full portable identity model. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:32-45`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:67-103`]
 
 That means any future export/import or cross-worktree recovery feature should not reuse raw cwd strings or unconstrained paths as its only safety mechanism.
 
@@ -533,7 +533,7 @@ Those pieces already align with the right architecture:
 - file-level deduplication
 - compact structural orientation
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`]
 
 LCM helps us improve the **operational shell** around those pieces, not substitute for them.
 

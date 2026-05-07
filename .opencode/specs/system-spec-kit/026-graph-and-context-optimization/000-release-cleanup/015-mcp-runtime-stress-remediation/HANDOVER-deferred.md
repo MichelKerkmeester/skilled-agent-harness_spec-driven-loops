@@ -8,7 +8,7 @@
 
 ## 1. OVERVIEW
 
-The autonomous run shipped 6 of 7 remediation packets (003, 005, 006, 007, 008, 009 in current numbering) plus rubric v1.0.1 plus the 10-iter deep research synthesis. Packet 004 (cocoindex-overfetch-dedup) was deferred pending a vendor-vs-fork decision and closed on 2026-04-27 by vendoring `cocoindex-code` into `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/` as soft-fork `0.2.3+spec-kit-fork.0.2.0`. Item 2.1 (live MCP probes for packets 003/005/006/007/009) closed later on 2026-04-27 once a fresh Claude Code session restart picked up the rebuilt `dist/`.
+The autonomous run shipped 6 of 7 remediation packets (003, 005, 006, 007, 008, 009 in current numbering) plus rubric v1.0.1 plus the 10-iter deep research synthesis. Packet 004 (cocoindex-overfetch-dedup) was deferred pending a vendor-vs-fork decision and closed on 2026-04-27 by vendoring `cocoindex-code` into `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` as soft-fork `0.2.3+spec-kit-fork.0.2.0`. Item 2.1 (live MCP probes for packets 003/005/006/007/009) closed later on 2026-04-27 once a fresh Claude Code session restart picked up the rebuilt `dist/`.
 
 After live probes closed, the remaining work was the close-the-loop measurement: re-run the 30-cell sweep against the post-fix dist and produce v1.0.2 findings with per-packet verdicts. That work is now scaffolded as the new `010-stress-test-rerun-v1-0-2/` sibling packet at this folder root; sweep execution is downstream of the scaffold.
 
@@ -123,7 +123,7 @@ Items 2.2, 2.3, and 2.4 above remain deferred because they are product-tuning or
 git log --oneline --since="2026-04-26"
 
 # 2. Verify the cocoindex fork is live.
-.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc --version
+.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc --version
 # Expected: 0.2.3+spec-kit-fork.0.2.0
 
 # 3. (Optional spot-check) Re-run a single live MCP probe to confirm the

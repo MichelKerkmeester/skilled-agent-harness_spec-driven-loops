@@ -40,7 +40,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -146,5 +146,5 @@ Seven deep-research iterations using `cli-codex gpt-5.5 high fast` converged on 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/global/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/global/hvr_rules.md
 -->

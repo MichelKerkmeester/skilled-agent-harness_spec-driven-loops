@@ -186,7 +186,7 @@ No evidence of backdated or pre-fix artifacts being cited as post-fix proof.
 
 **Result:** No inappropriate evidence recycling detected. Evidence strings that appear similar (e.g., Phase 9 and Phase 10 both citing "27/27") are running different commands against different file sets. Each phase's evidence is contextually appropriate to that phase's scope.
 
-The closest thing to recycling is the repeated use of `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` as final closure proof for every phase, but this is expected and appropriate -- spec validation should be re-run after each phase's changes.
+The closest thing to recycling is the repeated use of `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` as final closure proof for every phase, but this is expected and appropriate -- spec validation should be re-run after each phase's changes.
 
 ---
 

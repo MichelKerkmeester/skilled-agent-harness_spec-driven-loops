@@ -53,10 +53,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] **CHK-101 [P0]** Skill folder physically deleted: `[ ! -d .opencode/skill/cli-copilot ]` returns true.
+- [ ] **CHK-101 [P0]** Skill folder physically deleted: `[ ! -d .opencode/skills/cli-copilot ]` returns true.
 - [ ] **CHK-102 [P0]** Global skill changelog folder physically deleted: `[ ! -d .opencode/changelog/cli-copilot ]` returns true.
-- [ ] **CHK-103 [P0]** Hooks deleted: `[ ! -f .github/hooks/spec-kit-copilot-hook.sh ] && [ ! -d .opencode/skill/system-spec-kit/mcp_server/hooks/copilot ]`.
-- [ ] **CHK-104 [P0]** Matrix adapter + smoke test deleted: `[ ! -f .opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ] && [ ! -f .opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts ]`.
+- [ ] **CHK-103 [P0]** Hooks deleted: `[ ! -f .github/hooks/spec-kit-copilot-hook.sh ] && [ ! -d .opencode/skills/system-spec-kit/mcp_server/hooks/copilot ]`.
+- [ ] **CHK-104 [P0]** Matrix adapter + smoke test deleted: `[ ! -f .opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ] && [ ! -f .opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts ]`.
 - [ ] **CHK-105 [P0]** Copilot-specific feature catalog + playbook docs deleted: `36-copilot-target-authority-helper.md`, `21-shared-provenance-and-copilot-compact-cache-parity.md`, `274-shared-provenance-and-copilot-compact-cache-parity.md`, `030-cli-copilot-target-authority-dispatch.md` (deep-research), `016-cli-copilot-target-authority-dispatch.md` (deep-review).
 - [ ] **CHK-106 [P0]** No `.bak`, `.old`, `.deprecated`, or `z_archive/` containing cli-copilot copies created during deletion (DELETE-not-archive policy).
 - [ ] **CHK-107 [P0]** No commented-out tombstone blocks left in skill_advisor.py, skill-graph.json, or other edited files.
@@ -107,7 +107,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] **CHK-401 [P0]** Routing docs (CLAUDE.md, AGENTS.md, README.md, DEPLOYMENT.md, .opencode/skill/README.md, both install_guides) contain zero cli-copilot references.
+- [ ] **CHK-401 [P0]** Routing docs (CLAUDE.md, AGENTS.md, README.md, DEPLOYMENT.md, .opencode/skills/README.md, both install_guides) contain zero cli-copilot references.
 - [ ] **CHK-402 [P0]** Sibling cli-* skill bodies (cli-claude-code, cli-codex, cli-gemini, cli-opencode — SKILL.md + README.md + graph-metadata.json + manual_testing_playbook + references + assets) contain zero cli-copilot references in current-state prose; historical changelog/v*.md mentions allowed.
 - [ ] **CHK-403 [P0]** Agent + command files (multi-ai-council × 4 runtimes; deep-research.md; deep-review.md; spec_kit_deep-research_auto.yaml) contain zero cli-copilot references.
 - [ ] **CHK-404 [P1]** Cross-skill manual-testing-playbook + feature-catalog references in sk-doc, sk-code, sk-improve-prompt, deep-research, deep-review, deep-agent-improvement, system-spec-kit/feature_catalog, system-spec-kit/manual_testing_playbook contain zero cli-copilot references in current-state prose.
@@ -120,7 +120,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] **CHK-501 [P0]** Mirror parity: `multi-ai-council` content matches across `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (allowing for runtime-specific format differences).
+- [ ] **CHK-501 [P0]** Mirror parity: `multi-ai-council` content matches across `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (allowing for runtime-specific format differences).
 - [ ] **CHK-502 [P1]** Matrix runner files (run-matrix.ts, matrix-manifest.json, README.md) cleanly drop the cli-copilot adapter; runtime tests still build (no orphaned imports of the deleted adapter file).
 - [ ] **CHK-503 [P1]** Skill advisor scoring is internally consistent: TOKEN_BOOSTS keys match PHRASE_BOOSTS keys, skill-graph.json node IDs are valid, no dangling references to a deleted node.
 - [ ] **CHK-504 [P2]** Workflow-invariance test (`workflow-invariance.vitest.ts`) passes; if a maintainer-doc legitimately retains "cli-copilot" vocabulary, the path is added to `isAllowedHit()`.

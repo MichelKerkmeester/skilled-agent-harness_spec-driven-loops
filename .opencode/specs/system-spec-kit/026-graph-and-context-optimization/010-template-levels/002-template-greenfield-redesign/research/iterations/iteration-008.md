@@ -4,7 +4,7 @@
 
 END-TO-END DRY-RUN - walk three hypothetical packet shapes through the proposed manifest-driven scaffold and validation pipeline before final synthesis.
 
-This iteration is a paper dry-run only. It does not run `.opencode/skill/system-spec-kit/scripts/spec/create.sh`, does not scaffold into `.opencode/specs/sample/`, and does not modify production templates or validator source files.
+This iteration is a paper dry-run only. It does not run `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, does not scaffold into `.opencode/specs/sample/`, and does not modify production templates or validator source files.
 
 ## Actions Taken
 
@@ -23,7 +23,7 @@ This iteration is a paper dry-run only. It does not run `.opencode/skill/system-
 Preset A command:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --preset simple-change --name "Sample" .opencode/specs/sample/
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --preset simple-change --name "Sample" .opencode/specs/sample/
 ```
 
 Step 1 - User invokes create.
@@ -39,7 +39,7 @@ Step 1 - User invokes create.
 
 Step 2 - `create.sh` reads manifest, resolves preset.
 
-- Input artifact: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- Input artifact: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Manifest lookup:
   - `presets[].name == "simple-change"`
   - `namespace` defaults to `core`
@@ -94,9 +94,9 @@ Step 3 - `create.sh` computes file list.
 Step 4 - `create.sh` calls `copy_template`, which calls the inline-gate renderer.
 
 - Input artifact: active authored docs and their templates:
-  - `.opencode/skill/system-spec-kit/templates/manifest/templates/spec.md.tmpl`
-  - `.opencode/skill/system-spec-kit/templates/manifest/templates/plan.md.tmpl`
-  - `.opencode/skill/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`
+  - `.opencode/skills/system-spec-kit/templates/manifest/templates/spec.md.tmpl`
+  - `.opencode/skills/system-spec-kit/templates/manifest/templates/plan.md.tmpl`
+  - `.opencode/skills/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`
 - Active gate atoms:
   - `kind:implementation`
   - `preset:core:simple-change`
@@ -218,7 +218,7 @@ Step 5 - `create.sh` emits `description.json` and `graph-metadata.json`.
 Step 6 - User runs strict validator.
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sample/ --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sample/ --strict
 ```
 
 - Input artifact: `.opencode/specs/sample/`.
@@ -232,7 +232,7 @@ Step 7 - Validator reads packet contract and manifest.
   - `.opencode/specs/sample/spec.md` frontmatter, if present.
   - `.opencode/specs/sample/graph-metadata.json`.
   - `.opencode/specs/sample/description.json`.
-  - `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+  - `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Output artifact: same resolved contract from Step 2.
 - What could go wrong: if the packet does not embed kind and capabilities in authored frontmatter, the validator depends on graph metadata. That works only if graph metadata exists and stays coherent.
 - Validator behavior: pass with warning only if it had to fall back to inferred `simple-change`; otherwise pass normally.
@@ -255,7 +255,7 @@ Step 8 - Validator runs inline-gate-aware section checks.
 Preset B command:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --preset arch-change --name "Sample" .opencode/specs/sample/
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --preset arch-change --name "Sample" .opencode/specs/sample/
 ```
 
 Step 1 - User invokes create.
@@ -271,7 +271,7 @@ Step 1 - User invokes create.
 
 Step 2 - `create.sh` reads manifest, resolves preset.
 
-- Input artifact: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- Input artifact: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Manifest lookup:
   - `presets[].name == "arch-change"`
   - `kind=implementation`
@@ -461,7 +461,7 @@ Step 8 - Validator runs inline-gate-aware section checks.
 Preset C command:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --preset phase-parent --name "Sample" .opencode/specs/sample/
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --preset phase-parent --name "Sample" .opencode/specs/sample/
 ```
 
 Step 1 - User invokes create.
@@ -477,7 +477,7 @@ Step 1 - User invokes create.
 
 Step 2 - `create.sh` reads manifest, resolves preset.
 
-- Input artifact: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- Input artifact: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Manifest lookup:
   - `presets[].name == "phase-parent"`
   - `kind=phase-parent`
@@ -527,7 +527,7 @@ Step 3 - `create.sh` computes file list.
 
 Step 4 - `create.sh` calls `copy_template`, which calls the inline-gate renderer.
 
-- Input artifact: `.opencode/skill/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl`.
+- Input artifact: `.opencode/skills/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl`.
 - Active gate atoms:
   - `kind:phase-parent`
   - `preset:core:phase-parent`
@@ -670,32 +670,32 @@ Step 8 - Validator runs inline-gate-aware section checks.
 1. Broken: Step 1 command surface is not fully represented in iteration 007's `create.sh` diff.
 
 - Evidence: the dry-run command uses `--name "Sample"` plus an explicit target `.opencode/specs/sample/`, while the iteration 007 diff still shows feature-description-oriented examples and no parser addition for `--name`.
-- Fix: update `.opencode/skill/system-spec-kit/scripts/spec/create.sh` argument parsing to support `--name NAME` and an optional explicit target directory. The direct target path should bypass branch-number folder derivation and set `FEATURE_DIR` after normalization.
+- Fix: update `.opencode/skills/system-spec-kit/scripts/spec/create.sh` argument parsing to support `--name NAME` and an optional explicit target directory. The direct target path should bypass branch-number folder derivation and set `FEATURE_DIR` after normalization.
 
 2. Broken: Step 4 says `copy_template` calls the inline-gate renderer, but iteration 007's bridge routes around `copy_template`.
 
 - Evidence: `scaffold_from_manifest` reads `doc.templateFile` and writes `render_active_inline_gates "$manifest_dir/$template_file" "$contract_json" > "$target_dir/$doc_path"` directly.
-- Fix: either rename the manifest path to `copy_manifest_template` and document it as the new copy primitive, or add a manifest-aware `copy_template "$doc_path" "$target_dir" "$manifest_path" "$contract_json"` branch in `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`.
+- Fix: either rename the manifest path to `copy_manifest_template` and document it as the new copy primitive, or add a manifest-aware `copy_template "$doc_path" "$target_dir" "$manifest_path" "$contract_json"` branch in `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`.
 
 3. Broken: packet frontmatter does not yet declare the template contract.
 
 - Evidence: Step 7 requires the validator to read packet frontmatter for kind and capabilities, but the iteration 007 helper first reads `graph-metadata.json.derived.template_contract`.
-- Fix: add a `templateContract` YAML frontmatter block to generated authored docs, at minimum `spec.md`. Implement in `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` as `render_template_contract_frontmatter "$contract_json"` and have `create.sh` or the template renderer prepend it. Then update `template_contract_for_folder` to read `spec.md` frontmatter before graph metadata.
+- Fix: add a `templateContract` YAML frontmatter block to generated authored docs, at minimum `spec.md`. Implement in `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` as `render_template_contract_frontmatter "$contract_json"` and have `create.sh` or the template renderer prepend it. Then update `template_contract_for_folder` to read `spec.md` frontmatter before graph metadata.
 
 4. Broken: `template-structure.js compare-manifest` is still missing.
 
 - Evidence: `check-template-headers.sh` proposed calling `node "$helper_script" compare-manifest "$manifest_path" "$contract_json" "$(basename "$file")" "$file" headers`, but iteration 007 explicitly names this as a follow-up.
-- Fix: implement `compare-manifest` in `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`. It should resolve the doc template from manifest, render active inline gates with the same renderer used by scaffold, extract expected headers, extract actual headers, and compare them.
+- Fix: implement `compare-manifest` in `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`. It should resolve the doc template from manifest, render active inline gates with the same renderer used by scaffold, extract expected headers, extract actual headers, and compare them.
 
 5. Broken: `description.json` and `graph-metadata.json` contract emission can diverge.
 
 - Evidence: iteration 007 adds `template_contract` to graph metadata, while the existing description generator remains a separate later call.
-- Fix: make `.opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js` accept `--template-contract-json` or read `graph-metadata.json.derived.template_contract`. `create.sh` should pass the same resolved contract to both metadata writers in one scaffold transaction.
+- Fix: make `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` accept `--template-contract-json` or read `graph-metadata.json.derived.template_contract`. `create.sh` should pass the same resolved contract to both metadata writers in one scaffold transaction.
 
 6. Broken: manifest contract version is not explicitly checked during validation.
 
 - Evidence: the resolved contract includes `manifestVersion`, but rule scripts in iteration 007 use current manifest definitions without a compatibility check.
-- Fix: add `assert_manifest_compatible "$manifest_path" "$contract_json"` in `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`. Rule scripts should fail with a clear message when the packet's `manifestVersion` is newer than the validator supports.
+- Fix: add `assert_manifest_compatible "$manifest_path" "$contract_json"` in `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`. Rule scripts should fail with a clear message when the packet's `manifestVersion` is newer than the validator supports.
 
 7. Broken: `check-section-counts.sh` dotted JSON lookup fails for file names containing dots.
 
@@ -710,7 +710,7 @@ Step 8 - Validator runs inline-gate-aware section checks.
 9. Broken: orphan authored docs are not covered in the dry-run validator path.
 
 - Evidence: if a packet changes from `arch-change` to `simple-change`, `decision-record.md` may remain. Iteration 006 says this should warn, but the iteration 007 file-check diff only checks required docs.
-- Fix: add `manifest_orphan_authored_docs "$manifest_path" "$contract_json" "$folder"` in `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` and have `check-files.sh` warn on author-owned docs not active under the current contract.
+- Fix: add `manifest_orphan_authored_docs "$manifest_path" "$contract_json" "$folder"` in `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` and have `check-files.sh` warn on author-owned docs not active under the current contract.
 
 ### Concretized Manifest JSON
 

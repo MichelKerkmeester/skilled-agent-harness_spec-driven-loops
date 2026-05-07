@@ -1,5 +1,5 @@
 {
-  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl",
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl",
   "mode": "both",
   "thresholds": {
     "confidence": 0.8,

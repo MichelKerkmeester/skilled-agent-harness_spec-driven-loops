@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -120,10 +120,10 @@ Phase 014 had three coupled failures in the stateless save path. Gate A in `work
 ### Implementation
 
 **What changes**:
-- `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts`: export `HARD_BLOCK_RULES` so the stateless abort contract is explicit.
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`: split hard-block and soft-warning stateless behavior, and pass `captureSource` into contamination filtering.
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`: support `--stdin` and `--json`, resolve the authoritative target, and hand curated payloads to `runWorkflow({ collectedData })`.
-- `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts`: accept optional `captureSource` and narrow the tool-title-with-path downgrade to Claude Code captures.
+- `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts`: export `HARD_BLOCK_RULES` so the stateless abort contract is explicit.
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts`: split hard-block and soft-warning stateless behavior, and pass `captureSource` into contamination filtering.
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`: support `--stdin` and `--json`, resolve the authoritative target, and hand curated payloads to `runWorkflow({ collectedData })`.
+- `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts`: accept optional `captureSource` and narrow the tool-title-with-path downgrade to Claude Code captures.
 
 **How to roll back**: restore the old Gate A abort line in `workflow.ts`, remove `HARD_BLOCK_RULES` from `validate-memory-quality.ts`, remove `--stdin` / `--json` handling from `generate-context.ts`, and drop the `captureSource` option from `contamination-filter.ts`, then rerun the targeted phase-014 lane plus the broader scripts baseline.
 <!-- /ANCHOR:adr-001-impl -->

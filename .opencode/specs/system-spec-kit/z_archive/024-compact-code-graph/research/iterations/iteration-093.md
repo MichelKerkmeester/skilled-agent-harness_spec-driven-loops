@@ -37,13 +37,13 @@ This replaces the earlier `654-932 LOC` framing by pulling more real bug work in
 **Why this is first:** these are the highest-confidence, highest-severity fixes with direct correctness or security impact.
 
 **Primary files now in scope:**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/utils/db-helpers.ts` (only if shared sanitization is centralized)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-endline-fix.vitest.ts` (**new**)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/utils/db-helpers.ts` (only if shared sanitization is centralized)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-endline-fix.vitest.ts` (**new**)
 
 **Concrete goals:**
 1. Fix `endLine` computation so multi-line bodies stop collapsing to declaration lines.
@@ -62,14 +62,14 @@ This replaces the earlier `654-932 LOC` framing by pulling more real bug work in
 **Why this moved up:** iterations 088, 089, and 091 show that the hook path still has durability, freshness, and accounting defects that were not central in the original roadmap.
 
 **Primary files now in scope:**
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hook-stop-token-tracking.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hook-stop-token-tracking.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
 
 **Concrete goals:**
 1. Stop reporting cache/persistence success when disk writes fail.
@@ -94,9 +94,9 @@ This replaces the earlier `654-932 LOC` framing by pulling more real bug work in
 - `CLAUDE.md`
 - `CODEX.md`
 - `GEMINI.md`
-- `.opencode/agent/context.md`
+- `.opencode/agents/context.md`
 - `.codex/agents/context.toml`
-- `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`
 - `.github/copilot-instructions.md` (**optional new file, if Copilot-specific reinforcement is wanted**)
 - `.gemini/settings.json` (**optional new file, if Gemini MCP parity is pursued**)
 
@@ -114,21 +114,21 @@ This replaces the earlier `654-932 LOC` framing by pulling more real bug work in
 **Why this moved last:** most of the original Phase B/Q14/Q15/Q16 roadmap items were verified as **future enhancements**, not current defects. They remain valuable, but they should ship behind a stabilization gate and feature flags.
 
 **Primary files now in scope if this phase proceeds:**
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/tree-sitter-parser.ts` (**new**)
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` (if tree-sitter dependencies are added)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-integration-e2e.vitest.ts` (**new**)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-edge-types.vitest.ts` (**new**)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/tree-sitter-parser.ts` (**new**)
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` (if tree-sitter dependencies are added)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-integration-e2e.vitest.ts` (**new**)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-edge-types.vitest.ts` (**new**)
 
 **Concrete goals:**
 1. If still desired, implement server-side first-call priming and graph-aware dispatch from the **verified** `context-server.ts` seam.

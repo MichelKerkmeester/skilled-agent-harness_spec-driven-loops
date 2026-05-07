@@ -6,7 +6,7 @@ I traced the planner-first save follow-up path for deferred enrichment: `memory-
 ## Findings
 
 ### Finding R7-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts`
 - **Lines:** `111-122`
 - **Severity:** P1
 - **Description:** The explicit `runEnrichmentBackfill` follow-up can be a no-op for the exact documents it claims to backfill. It only flips `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` and then calls `memory_index_scan` with `incremental: true` and `force: false`, so already-indexed unchanged files are fast-path skipped before they ever re-enter `indexMemoryFile()` and the post-insert enrichment pipeline.
@@ -14,7 +14,7 @@ I traced the planner-first save follow-up path for deferred enrichment: `memory-
 - **Downstream Impact:** A user can follow the advertised `runEnrichmentBackfill` action and still leave entity extraction, summaries, linking, and graph refresh unapplied until the file changes again or someone runs a forceful/manual reindex. The tool surface says “backfill deferred enrichment,” but the runtime can silently do nothing.
 
 ### Finding R7-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `116-125,159-173`
 - **Severity:** P1
 - **Description:** Entity extraction can soft-fail while still being recorded as a success, and the pipeline then proceeds into cross-document entity linking using whatever entity rows were already in the database. That means stale `memory_entities` data can drive new cross-document edges without any warning surfaced to the caller.

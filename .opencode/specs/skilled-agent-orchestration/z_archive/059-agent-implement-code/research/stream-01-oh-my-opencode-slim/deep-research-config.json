@@ -1,5 +1,5 @@
 {
-  "topic": "Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agent/ inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.",
+  "topic": "Identify reusable patterns from oh-my-opencode-slim multi-agent orchestration plugin that inform the design of a new @code LEAF agent for our .opencode/agents/ inventory. Focus on (1) skill auto-loading patterns, (2) stack-agnostic detection, (3) caller-restriction enforcement (highest priority), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts.",
   "maxIterations": 8,
   "convergenceThreshold": 0.05,
   "stuckThreshold": 3,
@@ -51,10 +51,10 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/stream-01-oh-my-opencode-slim/.deep-research-pause",
   "archiveRoot": "research_archive/stream-01-oh-my-opencode-slim",
   "migrationWindowDays": 28,

@@ -42,7 +42,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + JSON metadata |
 | **Framework** | sk-doc playbook templates (root + per-feature snippet) |
-| **Storage** | Filesystem at `.opencode/skill/<skill>/manual_testing_playbook/` |
+| **Storage** | Filesystem at `.opencode/skills/<skill>/manual_testing_playbook/` |
 | **Testing** | `validate_document.py` (sk-doc) + `validate.sh --strict` (system-spec-kit) |
 
 ### Overview
@@ -153,8 +153,8 @@ grades against Pass/Fail criteria → records verdict
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Validator | Each root playbook structure | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
-| Strict spec validate | Spec 049 metadata + structure | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Validator | Each root playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
+| Strict spec validate | Spec 049 metadata + structure | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Per-feature contract | Frontmatter + 5 H2 sections + ≥2 triage steps | Manual review + grep checks |
 | Cross-reference | `CM-NNN` references from BDG/CU resolve | Grep + lookup |
 | V7 smoke | One scenario per playbook end-to-end | Real environment (CM local, BDG Chrome, CU live ClickUp, CCC index) |
@@ -177,7 +177,7 @@ grades against Pass/Fail criteria → records verdict
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A playbook root validator fails repeatedly OR cross-reference resolution shows >5% broken links OR V7 smoke runs all FAIL
-- **Procedure**: Move authored playbook contents to `scratch/` inside spec 049, leave `.opencode/skill/<skill>/manual_testing_playbook/` empty, document rollback in implementation-summary.md, escalate to user before re-attempting
+- **Procedure**: Move authored playbook contents to `scratch/` inside spec 049, leave `.opencode/skills/<skill>/manual_testing_playbook/` empty, document rollback in implementation-summary.md, escalate to user before re-attempting
 
 ---
 

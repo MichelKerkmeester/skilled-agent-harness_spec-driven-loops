@@ -2,7 +2,7 @@
   "status": "benchmark-complete",
   "profileId": "handover",
   "family": "session-handover",
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "label": "handover-baseline-run-002",
   "aggregateScore": 100,
   "maxScore": 100,

@@ -64,11 +64,11 @@ Audit `phase-runner.ts` runtime guards:
 
 1. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/strategy.md`
 2. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/iterations/iteration-001.md`
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts`
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts`
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts`
-6. `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts`
-7. `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts`
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts`
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/diff-parser.ts`
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/phase-runner.ts`
+6. `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/detect-changes.test.ts`
+7. `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/phase-runner.test.ts`
 
 ## Output contract
 

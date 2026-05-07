@@ -154,7 +154,7 @@ interface PerFolderDescription {
 
 - [x] New TypeScript files must include the standard module header: `// --- MODULE: [Name] ---`
 - [x] Add `generate_description_json()` function in `create.sh`
-- [x] Call Node.js helper script: `node .opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js <folder-path>`
+- [x] Call Node.js helper script: `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js <folder-path>`
 - [x] Create `scripts/spec-folder/generate-description.ts` - thin CLI wrapper calling `generatePerFolderDescription()`
 - [x] MUST validate `folderPath` is within allowed specs base paths before any I/O operations
 - [x] Integrate into `create.sh` post-template-copy step
@@ -193,7 +193,7 @@ interface PerFolderDescription {
 ### Phase 5: Documentation & Testing Playbook
 **Goal**: Update all documentation
 
-- [x] Update feature catalog `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md`
+- [x] Update feature catalog `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md`
   - Add per-folder architecture section
   - Update source files table
   - Add uniqueness guarantee documentation

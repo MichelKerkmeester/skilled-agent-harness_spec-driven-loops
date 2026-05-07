@@ -40,7 +40,7 @@ I need to customize the AGENTS.md file for my project. Please guide me through a
 2. **MCP Servers**: What MCP servers are installed?
    (Please check my opencode.json and .utcp_config.json to verify)
 
-3. **Available Skills**: What skills exist in my .opencode/skill/ directory?
+3. **Available Skills**: What skills exist in my .opencode/skills/ directory?
    (Please list what you find)
 
 4. **AI Client**: Which AI client am I using?
@@ -68,7 +68,7 @@ My project is at: [your project path]
 **What the AI will do:**
 - Ask you questions one at a time to understand your setup
 - Audit your installed MCP servers by reading your config files
-- Check your available skills in `.opencode/skill/`
+- Check your available skills in `.opencode/skills/`
 - Generate customized AGENTS.md sections tailored to your project
 - Provide copy-paste ready configuration blocks
 
@@ -160,7 +160,7 @@ cat .utcp_config.json | jq '.manuals'
 
 ```bash
 # List all skills in the skill directory
-ls -la .opencode/skill/
+ls -la .opencode/skills/
 
 # Example output:
 # mcp-code-mode/
@@ -175,13 +175,13 @@ ls -la .opencode/skill/
 ```bash
 # All commands should succeed:
 cat opencode.json | jq '.mcp'         # → shows MCP server config
-ls .opencode/skill/                    # → lists skill directories
+ls .opencode/skills/                    # → lists skill directories
 ```
 
 **Checklist:**
 - [ ] `opencode.json` exists and contains MCP configuration?
 - [ ] `.utcp_config.json` exists (if using Code Mode)?
-- [ ] All skills in `.opencode/skill/` directory listed?
+- [ ] All skills in `.opencode/skills/` directory listed?
 - [ ] Project type identified: [ ] Front-end [ ] Backend [ ] Full-stack
 
 ❌ **STOP if validation fails** - Ensure `opencode.json` exists and the skills directory is populated before continuing.
@@ -544,7 +544,7 @@ When the runtime surfaces the automatic Skill Advisor Hook brief, Gate 2 uses th
 OpenCode has built-in skill discovery. No manual skills table is required.
 
 **Automatic Discovery:**
-- OpenCode scans `.opencode/skill/*/SKILL.md` on startup
+- OpenCode scans `.opencode/skills/*/SKILL.md` on startup
 - Skills are surfaced via `skills_*` functions (e.g., `skills_workflows_code`, `skills_system_spec_kit`)
 - Frontmatter fields (`name`, `description`, `allowed-tools`) provide metadata
 
@@ -556,9 +556,9 @@ OpenCode has built-in skill discovery. No manual skills table is required.
 Gate 2 uses the automatic Skill Advisor Hook brief when the runtime surfaces it. If the hook brief is unavailable, run `skill_advisor.py` as the compatibility fallback. When confidence > 0.8, you MUST invoke the recommended skill.
 
 **How to use skills:**
-- OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
+- OpenCode v1.0.190+ auto-discovers skills from `.opencode/skills/*/SKILL.md` frontmatter
 - Skills appear as `skills_*` functions in your available tools
-- When a task matches a skill, read the SKILL.md directly: `Read(".opencode/skill/<skill-name>/SKILL.md")`
+- When a task matches a skill, read the SKILL.md directly: `Read(".opencode/skills/<skill-name>/SKILL.md")`
 - Base directory provided for resolving bundled resources (`references/`, `scripts/`, `assets/`)
 
 **Usage notes:**
@@ -736,7 +736,7 @@ grep -i "project type\|front-end\|backend\|full-stack" AGENTS.md
 cat opencode.json | jq '.mcp | keys'
 
 # Confirm skill references match actual skills directory
-ls .opencode/skill/
+ls .opencode/skills/
 ```
 
 **Checklist:**
@@ -745,7 +745,7 @@ ls .opencode/skill/
 - [ ] Tool Routing Decision Tree updated (removed missing tools)?
 - [ ] Native MCP Tools Reference reflects installed tools only?
 - [ ] Code Mode Tools Reference reflects `.utcp_config.json` contents?
-- [ ] Skills table updated (removed skills not in `.opencode/skill/`)?
+- [ ] Skills table updated (removed skills not in `.opencode/skills/`)?
 - [ ] Commands list reflects `.opencode/command/` directory?
 - [ ] Project-specific conventions or patterns added?
 
@@ -766,15 +766,15 @@ Run these quick checks to confirm the configuration is sound:
 head -20 AGENTS.md
 
 # Verify CLI compatibility shim works
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "help me debug CSS"
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "help me debug CSS"
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "help me debug CSS"
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "help me debug CSS"
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "help me debug CSS"
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "help me debug CSS"
 
 # Verify MCP tools are configured
 cat opencode.json | jq '.mcp.servers | keys'
 
 # Verify skills directory
-ls .opencode/skill/
+ls .opencode/skills/
 
 # Verify commands directory
 ls .opencode/command/
@@ -795,10 +795,10 @@ If your runtime supports prompt hooks, start a fresh session and confirm the Ski
 ```bash
 # All commands should succeed:
 head -5 AGENTS.md                                   # -> H1 title visible
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "save context"  # -> native advisor path
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "save context"   # -> Python fallback path
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "save context"  # -> native advisor path
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "save context"   # -> Python fallback path
 cat opencode.json | python3 -m json.tool            # -> valid JSON
-ls .opencode/skill/                                 # -> skill directories listed
+ls .opencode/skills/                                 # -> skill directories listed
 ```
 
 ```text
@@ -831,7 +831,7 @@ What AGENTS.md file are you reading? What gates are defined? What skills are ava
 Expected responses:
 - Agent names the correct AGENTS.md location
 - Agent lists the gates (Understanding, Skill Routing, Spec Folder)
-- Agent lists only skills that exist in `.opencode/skill/`
+- Agent lists only skills that exist in `.opencode/skills/`
 - Agent does not reference tools that are not installed
 
 ### Success Criteria (`phase_5_complete`)
@@ -941,7 +941,7 @@ User Message
 **Memory Save Rule (HARD BLOCK)**
 - Trigger: "save context", "save memory", `/memory:save`, continuity support artifact refresh
 - If spec folder established at Gate 3, use it (do not re-ask)
-- Script: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+- Script: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
 - Violation: Manually authored continuity support artifact under `memory/` means DELETE and re-run via script
 
 **Completion Verification Rule (HARD BLOCK)**
@@ -1064,19 +1064,19 @@ Remove any tool references from AGENTS.md that do not appear in the output above
 
 ```bash
 # Verify skill_advisor.py exists
-ls .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py
+ls .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py
 
 # Test native delegation through the compat shim
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "save my context"
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-native "save my context"
 
 # Test local fallback explicitly
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "save my context"
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --force-local "save my context"
 
 # If rollback testing disabled hook-first behavior, restore it
 unset SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
 
 # List actual skills installed
-ls .opencode/skill/
+ls .opencode/skills/
 ```
 
 ```text
@@ -1236,10 +1236,10 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 | `AGENTS (Template).md`                        | Your saved reference copy                |
 | `opencode.json`                               | Native MCP server configuration          |
 | `.utcp_config.json`                           | Code Mode external tools configuration   |
-| `.opencode/skill/`                            | Installed skills directory               |
+| `.opencode/skills/`                            | Installed skills directory               |
 | `.opencode/command/`                          | Available slash commands directory       |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`    | Gate 2 compatibility shim and diagnostics |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md`             | Native advisor bootstrap, verification, and rollback |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`    | Gate 2 compatibility shim and diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md`             | Native advisor bootstrap, verification, and rollback |
 
 ### External Links
 

@@ -1,0 +1,158 @@
+// ───────────────────────────────────────────────────────────────
+// CONFIG: SPEC KIT SETTINGS
+// ───────────────────────────────────────────────────────────────
+// IMPORTANT: Only Section 1 (legacy settings) is ACTIVE.
+// All other sections are DOCUMENTATION ONLY.
+// Runtime values for those sections are hardcoded in MCP modules.
+{
+  // ─────────────────────────────────────────────────────────────
+  // 1. LEGACY SETTINGS
+  // ─────────────────────────────────────────────────────────────
+  "maxResultPreview": 500,
+  "maxConversationMessages": 100,
+  "maxToolOutputLines": 100,
+  "messageTimeWindow": 300000,
+  "contextPreviewHeadLines": 50,
+  "contextPreviewTailLines": 20,
+  "timezoneOffsetHours": 1, // CET (code fallback: 0/UTC if config fails to load)
+  // ─────────────────────────────────────────────────────────────
+  // 2. SEMANTIC SEARCH
+  // ─────────────────────────────────────────────────────────────
+  "semanticSearch": {
+    "enabled": true,
+    "minSimilarityScore": 50,
+    "maxResults": 10,
+    "embeddingModel": "voyage-4"
+  },
+  "memoryIndex": {
+    "databasePath": ".opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite",
+    "autoRebuildOnSave": true,
+    "verifyOnStartup": false
+  },
+  "triggerSurfacing": {
+    "enabled": true,
+    "minSimilarity": 70,
+    "maxResults": 3,
+    "performanceTargetMs": 50
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 3. MEMORY DECAY
+  // ─────────────────────────────────────────────────────────────
+  // Half-life ≈ 62 days with scaleDays=90
+  "memoryDecay": {
+    "enabled": true,
+    "scaleDays": 90,
+    "decayWeight": 0.3
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 4. IMPORTANCE TIERS
+  // ─────────────────────────────────────────────────────────────
+  "importanceTiers": {
+    "constitutional": {
+      "searchBoost": 3.0,
+      "decay": false,
+      "autoExpireDays": null,
+      "alwaysSurface": true
+    },
+    "critical": {
+      "searchBoost": 2.0,
+      "decay": false,
+      "autoExpireDays": null
+    },
+    "important": {
+      "searchBoost": 1.5,
+      "decay": false,
+      "autoExpireDays": null
+    },
+    "normal": {
+      "searchBoost": 1.0,
+      "decay": true,
+      "autoExpireDays": null
+    },
+    "temporary": {
+      "searchBoost": 0.5,
+      "decay": true,
+      "autoExpireDays": 7
+    },
+    "deprecated": {
+      "searchBoost": 0.0,
+      "decay": false,
+      "excludeFromSearch": true
+    }
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 5. HYBRID SEARCH
+  // ─────────────────────────────────────────────────────────────
+  // Uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
+  // ftsWeight/vectorWeight reserved for future weighted mode
+  "hybridSearch": {
+    "enabled": true,
+    "ftsWeight": 0.4,
+    "vectorWeight": 0.6,
+    "rrfK": 60,
+    "fallbackEnabled": true
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 6. CONTEXT TYPE DETECTION
+  // ─────────────────────────────────────────────────────────────
+  "contextTypeDetection": {
+    "enabled": true,
+    "rules": {
+      "research": {
+        "readToolsThreshold": 0.5,
+        "writeToolsMax": 0.1
+      },
+      "implementation": {
+        "writeToolsThreshold": 0.3
+      },
+      "decision": {
+        "requiresAskUser": true
+      },
+      "discovery": {
+        "webToolsThreshold": 0.3
+      }
+    },
+    "defaultType": "general"
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 7. ACCESS TRACKING
+  // ─────────────────────────────────────────────────────────────
+  "accessTracking": {
+    "enabled": true,
+    "boostPerAccess": 0.1,
+    "maxBoost": 0.5,
+    "threshold": 5
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 8. CHECKPOINTS
+  // ─────────────────────────────────────────────────────────────
+  "checkpoints": {
+    "enabled": true,
+    "maxCheckpoints": 10,
+    "autoCleanupDays": 30
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 9. CONSTITUTIONAL TIER
+  // ─────────────────────────────────────────────────────────────
+  "constitutionalTier": {
+    "enabled": true,
+    "maxTokens": 2000,
+    "alwaysSurface": true
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 10. CONFIDENCE TRACKING
+  // ─────────────────────────────────────────────────────────────
+  "confidenceTracking": {
+    "enabled": true,
+    "promotionThreshold": 0.9,
+    "minValidations": 5
+  },
+  // ─────────────────────────────────────────────────────────────
+  // 11. TEMPLATES
+  // ─────────────────────────────────────────────────────────────
+  // Controls which template set is used when creating spec folders
+  "templates": {
+    "styleFallback": "minimal", // Fallback if selected style not found
+    "minimalPath": "templates" // Path to minimal templates (default)
+  }
+}

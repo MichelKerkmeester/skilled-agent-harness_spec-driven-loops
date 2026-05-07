@@ -96,8 +96,8 @@ Decompose the rename into 6 sequential phases that minimize risk and parallelize
 ## 3. SCOPE
 
 ### In Scope
-- Renaming `.opencode/skill/sk-deep-review/` → `.opencode/skill/deep-review/`
-- Renaming `.opencode/skill/sk-deep-research/` → `.opencode/skill/deep-research/`
+- Renaming `.opencode/skills/sk-deep-review/` → `.opencode/skills/deep-review/`
+- Renaming `.opencode/skills/sk-deep-research/` → `.opencode/skills/deep-research/`
 - Updating ALL references to the old names throughout the repo, including:
   - SKILL.md routing tables, smart router pseudocode
   - Agent definitions across 4 runtimes (.opencode, .claude, .codex, .gemini)

@@ -106,7 +106,7 @@ _memory:
 - [x] T057 Confirm `workflow-e2e.vitest.ts` still hard-blocks foreign-spec contamination in stateless mode
 - [x] T058 Confirm `workflow-e2e.vitest.ts` still allows V10-only stateless saves to continue with a warning
 - [x] T059 Confirm `quality-scorer-calibration.vitest.ts` still preserves the capped non-Claude path
-- [x] T060 Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` on this phase folder and confirm zero validation errors
+- [x] T060 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` on this phase folder and confirm zero validation errors
 <!-- /ANCHOR:phase-3 -->
 
 ---

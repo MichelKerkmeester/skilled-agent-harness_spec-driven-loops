@@ -148,7 +148,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../spec/upgrade-level.sh, .opencode/skill/system-spec-kit/scripts/spec/README.md, .opencode/skill/system-spec-kit/scripts/core/index.ts
+- Files modified: .opencode/.../spec/upgrade-level.sh, .opencode/skills/system-spec-kit/scripts/spec/README.md, .opencode/skills/system-spec-kit/scripts/core/index.ts
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -204,9 +204,9 @@ Next: Continue implementation
 
 - `.opencode/.../spec/upgrade-level.sh` - Script
 
-- `.opencode/skill/system-spec-kit/scripts/spec/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/scripts/spec/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/scripts/core/index.ts` - Entry point / exports
+- `.opencode/skills/system-spec-kit/scripts/core/index.ts` - Entry point / exports
 
 - `.opencode/.../core/subfolder-utils.ts` - Utility functions
 
@@ -259,8 +259,8 @@ Completed all remaining work on Spec 124 (upgrade-level.sh) and Spec 122 (prose-
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../spec/upgrade-level.sh` | Updated upgrade level |
-| `.opencode/skill/system-spec-kit/scripts/spec/README.md` | Git commit |
-| `.opencode/skill/system-spec-kit/scripts/core/index.ts` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/scripts/spec/README.md` | Git commit |
+| `.opencode/skills/system-spec-kit/scripts/core/index.ts` | File modified (description pending) |
 | `.opencode/.../core/subfolder-utils.ts` | File modified (description pending) |
 | `.opencode/.../memory/generate-context.ts` | File modified (description pending) |
 | `.opencode/.../spec-folder/folder-detector.ts` | File modified (description pending) |
@@ -513,7 +513,7 @@ Completed all remaining work on Spec 124 (upgrade-level.sh) and Spec 122 (prose-
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/z_archive/007-upgrade-level-script", limit: 10 })
@@ -525,7 +525,7 @@ ls -la system-spec-kit/z_archive/007-upgrade-level-script/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/007-upgrade-level-script --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/007-upgrade-level-script --force
 ```
 
 ### Recovery Priority
@@ -716,8 +716,8 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../spec/upgrade-level.sh"
-  - ".opencode/skill/system-spec-kit/scripts/spec/README.md"
-  - ".opencode/skill/system-spec-kit/scripts/core/index.ts"
+  - ".opencode/skills/system-spec-kit/scripts/spec/README.md"
+  - ".opencode/skills/system-spec-kit/scripts/core/index.ts"
   - ".opencode/.../core/subfolder-utils.ts"
   - ".opencode/.../memory/generate-context.ts"
   - ".opencode/.../spec-folder/folder-detector.ts"

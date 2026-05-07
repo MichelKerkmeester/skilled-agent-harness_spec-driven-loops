@@ -68,9 +68,9 @@ Implement the backend logic to enable **targeted retrieval** of specific memory 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js` | Modify | Add `extract_anchors` function |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Modify | Update `memory_search` schema and handler |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/token-budget.js` | Modify | Add token calculation for anchor savings (if needed) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js` | Modify | Add `extract_anchors` function |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Modify | Update `memory_search` schema and handler |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/token-budget.js` | Modify | Add token calculation for anchor savings (if needed) |
 
 <!-- /ANCHOR:scope -->
 ---

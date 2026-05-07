@@ -9,7 +9,7 @@ completedAt: 2026-04-12T09:57:20Z
 
 # Deep Review Iteration 005 — correctness
 
-**Focus:** Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skill/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
+**Focus:** Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skills/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: correctness
-FOCUS: Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skill/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
+FOCUS: Phase 003 wave-executor: fan-out/join logic, segment identity determinism, activation gates in .opencode/skills/system-spec-kit/scripts/lib/wave-*.cjs (5 modules). Check wave-lifecycle.cjs for state transitions, wave-segment-planner.cjs for deterministic ordering, wave-convergence.cjs for per-segment convergence.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -72,7 +72,7 @@ exec
 exec
 /bin/zsh -lc "rg --files -g 'CLAUDE.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 5 for spec folder 042-sk-deep-research-review-improvement-2 focused on correctness in Phase 003 wave-executor wave-*.cjs modules" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 5 for spec folder 042-sk-deep-research-review-improvement-2 focused on correctness in Phase 003 wave-executor wave-*.cjs modules" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 175ms:
 CLAUDE.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest/external/CLAUDE.md
@@ -160,15 +160,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -249,7 +249,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -277,7 +277,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, continuity support artifact refresh
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - Use this for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs when only the doc-local continuity hints need updating.
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
@@ -323,7 +323,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -348,7 +348,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -572,7 +572,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
     text = _task_text(task)
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-review
@@ -591,7 +591,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -845,16 +845,16 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/README.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/implementation-summary.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/graph-metadata.json
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs
 
 codex
 I’ve got the packet and runtime surface mapped. Next I’m reading the 003-wave-executor spec plus the five `wave-*` modules side by side with the archived review notes so I can tell whether I’m seeing a true remaining bug, a regression, or an already-remediated path.
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-opencode
@@ -1098,7 +1098,7 @@ def route_opencode_resources(task):
     deduped = []
 
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/sk-code-review/references/review_core.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/sk-code-review/references/review_core.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: Review Core Doctrine
@@ -1309,30 +1309,30 @@ Define an orchestrator-layer wave execution model that segments large review and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-| `.opencode/command/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1565,27 +1565,27 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 | ID | Sev | Dimension | Title | Origin | Key evidence | First seen | Last seen | Status |
 |---|---|---|---|---|---|---:|---:|---|
-| F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agent/deep-review.md:147`; `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
-| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
-| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
-| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
-| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
-| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skill/sk-deep-research/references/state_format.md:145`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
-| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skill/sk-deep-review/references/state_format.md:621`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
-| F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skill/sk-deep-review/references/quick_reference.md:145`; `.opencode/skill/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
-| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skill/sk-deep-review/references/convergence.md:44`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
-| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
-| F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skill/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skill/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
-| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skill/sk-improve-agent/SKILL.md:292`; `.opencode/command/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
-| F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
+| F001 | P1 | correctness | Canonical deep-review agent still emits an unparseable iteration schema | `I001` (`iteration-001.md:18`) | `.opencode/agents/deep-review.md:147`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206` | 1 | 1 | active |
+| F002 | P1 | correctness | Claim-adjudication is documented as a hard stop gate but never participates in STOP eligibility | `I001` (`iteration-001.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:574`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:388-429` | 1 | 1 | active |
+| F003 | P2 | correctness | Review config JSONL collapses requested dimensions into one string element | `I001` (`iteration-001.md:22`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:260`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:259` | 1 | 1 | active |
+| F004 | P1 | security | Coverage-graph writes are not session-isolated when IDs collide | `I002` (`iteration-002.md:19`) | `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` | 2 | 2 | active |
+| F005 | P2 | security | Session-isolation regression omits the ID-collision path | `I002` (`iteration-002.md:22`) | `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376` | 2 | 2 | active |
+| F006 | P1 | security | Graph-event namespace contract is still undocumented on the visible path | `I003` (`iteration-003.md:19`) | `.opencode/skills/sk-deep-research/references/state_format.md:145`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:658-665` | 3 | 3 | active |
+| F007 | P1 | traceability | Claim-adjudication state format still documents a prose block instead of the typed packet the workflow enforces | `I004` (`iteration-004.md:18`) | `.opencode/skills/sk-deep-review/references/state_format.md:621`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:619-628` | 4 | 4 | active |
+| F008 | P1 | traceability | Deep-review quick reference teaches the wrong weighted convergence signal set | `I004` (`iteration-004.md:19`) | `.opencode/skills/sk-deep-review/references/quick_reference.md:145`; `.opencode/skills/sk-deep-review/references/convergence.md:165-171` | 4 | 4 | active |
+| F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:896` | 4 | 4 | active |
+| F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
+| F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
+| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
+| F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
 | F014 | P1 | traceability | Phase 008 closeout claims full requirement closure while open review P1s remain | `I009` (`iteration-009.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:157`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:35` | 9 | 9 | active |
-| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
+| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
 | F016 | P1 | traceability | Root packet completion surfaces still certify an obsolete four-phase "implemented" state | `I010` (`iteration-010.md:18`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md:60`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md:95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md:98`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md:23` | 10 | 10 | active |
 
 ### Finding Digests
 
 #### F001
-- **Risk**: a canonical reviewer following `.opencode/agent/deep-review.md` can produce markdown the reducer does not parse, which drops real findings out of the registry and dashboard.
+- **Risk**: a canonical reviewer following `.opencode/agents/deep-review.md` can produce markdown the reducer does not parse, which drops real findings out of the registry and dashboard.
 - **Carry-forward note**: fix the authoritative authoring contract before relying on any parser-driven closeout automation.
 
 #### F002
@@ -1654,7 +1654,7 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 - **Findings**: F002, F007
 - **Why first**: the loop can currently synthesize after a failed claim-adjudication packet, so the closing audit cannot trust required-stop behavior until this lane is fixed.
-- **Target surfaces**: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skill/sk-deep-review/references/state_format.md`, `.opencode/skill/sk-deep-review/references/loop_protocol.md`
+- **Target surfaces**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`, `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
 - **Required decision**: either wire `claim_adjudication_passed` into the legal-stop gate or explicitly downgrade the documentation so claim adjudication is no longer described as STOP-blocking.
 - **Exit condition**: a failed or missing typed adjudication packet demonstrably blocks STOP and the operator-facing schema shows the exact typed fields the workflow enforces.
 - **Validation proof**: add or extend static contract tests around STOP gating and packet schema parity, then re-run the targeted parity suite.
@@ -1663,7 +1663,7 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 - **Findings**: F004, F005, F006, F013
 - **Why second**: this is the only active security lane, and every release-facing REQ-024 claim depends on the storage contract actually being session-safe under collision.
-- **Target surfaces**: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-review/references/state_format.md`, phase 008 closeout docs
+- **Target surfaces**: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`, phase 008 closeout docs
 - **Required decision**: choose a stable storage namespace model such as composite primary keys or deterministic session-qualified IDs; then document that model on the visible graph-event contract.
 - **Exit condition**: shared-ID collisions no longer overwrite prior session rows, the isolation test fails on the pre-fix path and passes on the repaired path, and REQ-024 closeout language cites the repaired test coverage honestly.
 - **Validation proof**: targeted vitest for collision reuse plus any DB-level migration or query proof the packet introduces.
@@ -1681,7 +1681,7 @@ CONDITIONAL routes to `/spec_kit:plan` for remediation before the 042 bundle can
 
 - **Findings**: F001, F003, F008, F009
 - **Why fourth**: these are still serious, but they are safer to repair after the runtime and lifecycle decisions stop moving.
-- **Target surfaces**: `.opencode/agent/deep-review.md`, `sk-deep-review` references, the deep-review config JSONL writer in both workflow mirrors
+- **Target surfaces**: `.opencode/agents/deep-review.md`, `sk-deep-review` references, the deep-review config JSONL writer in both workflow mirrors
 - **Required decision**: pick one canonical iteration schema and one canonical persisted stop schema, then make every example and writer match it.
 - **Exit condition**: the canonical agent, workflow outputs, quick reference, convergence reference, and state-format reference all describe the same parser-accepted structures.
 - **Validation proof**: reducer-parity tests and a sample iteration file that round-trips into the registry without manual fixes.
@@ -1740,17 +1740,17 @@ Phase closeout summaries, packet-root completion artifacts, and reducer-owned da
 ## 6. Plan Seed
 
 1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-Target files: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
+Target files: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`  
 Findings: F002  
 REQ: REQ-026
 
 2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**  
-Target files: `.opencode/skill/sk-deep-review/references/state_format.md`, `.opencode/skill/sk-deep-review/references/loop_protocol.md`  
+Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
 Findings: F007  
 REQ: REQ-027
 
 3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**  
-Target files: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
+Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
 Findings: F004  
 REQ: REQ-028
 
@@ -1758,13 +1758,13 @@ mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs .opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs .opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-     436 .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
-     623 .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs
-     315 .opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs
-     455 .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
-     410 .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs
+     436 .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+     623 .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs
+     315 .opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs
+     455 .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+     410 .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs
     5777 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md
     8016 total
 
@@ -1782,7 +1782,7 @@ completedAt: 2026-04-12T09:53:22Z
 
 # Deep Review Iteration 004 — maintainability
 
-**Focus:** Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
+**Focus:** Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
 
 ---
 
@@ -1805,7 +1805,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: maintainability
-FOCUS: Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
+FOCUS: Phase 001-002 code structure: review 4 CJS shared libraries in .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs for module boundaries, error handling, function complexity, and export surface area. Check vitest coverage in scripts/tests/coverage-graph-*.vitest.ts files.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -1840,7 +1840,7 @@ mcp: spec_kit_memory/memory_match_triggers started
 mcp: spec_kit_memory/memory_match_triggers (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "deep review maintainability review of .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs and scripts/tests/coverage-graph-*.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "deep review maintainability review of .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs and scripts/tests/coverage-graph-*.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 457ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-IKzw201K' (errno=Operation not permitted)
 [
@@ -1889,7 +1889,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-IKzw201K' (errno=Opera
 codex
 Skill routing points strongly to `sk-code-review` and `sk-deep-review`, so I’m using those review standards for this pass. I’m also doing a quick memory lookup for prior packet context, then I’ll read the target libraries and their tests line-by-line before drafting findings.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -2071,7 +2071,7 @@ exec
 276:- packet 002 status/traceability must reflect real downstream readiness; once the 010 validator exists, document 002 as “Implemented — predecessor verified” instead of blocked to avoid traceability P1 findings [Task 1]
 280:- packet 013 benchmark evidence should cite `38/40` combined benchmark in checklist/report surfaces; stale `pass 28` wording is a known traceability finding trigger [Task 1]
 558:- 003-contextador, spec_kit:deep-research, maxIterations 20, deep-research-config.json, reduce-state.cjs, research-v2.md, recommendations-v2.md, findings-registry-v2.json, F-CROSS-089..F-CROSS-093
-636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 896:## Task 1: Extend deep-research wave to 90 iterations and author recommendation docs for sk-deep-research/sk-deep-review, outcome success
 904:- 90 iterations, recommendations-sk-deep-research.md, recommendations-sk-deep-review.md, deep-research-state.jsonl, synthesis_complete, external wave
 906:## Task 2: Complete phase `001-sk-deep-research-improvements` contract hardening and packet-local changelog, outcome success
@@ -2081,7 +2081,7 @@ exec
 1930:## Task 2: Build sk-deep-research manual testing playbook (index + per-feature snippets)
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 3 for spec folder 042-sk-deep-research-review-improvement-2 traceability focus on 001-runtime-truth-foundation spec.md vs reduce-state.cjs runtime-capabilities.cjs and referenced docs state_format.md loop_protocol.md convergence.md for sk-deep-research and sk-deep-review" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 3 for spec folder 042-sk-deep-research-review-improvement-2 traceability focus on 001-runtime-truth-foundation spec.md vs reduce-state.cjs runtime-capabilities.cjs and referenced docs state_format.md loop_protocol.md convergence.md for sk-deep-research and sk-deep-review" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 421ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-2VwJ4svQ' (errno=Operation not permitted)
 [
@@ -2122,7 +2122,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-2VwJ4svQ' (errno=Opera
 codex
 I’ve got the routing signal: `sk-deep-review` is the right review workflow here, with the earlier memory index pointing at prior remediation work around `reduce-state.cjs` and `runtime-capabilities.cjs`. Next I’m locating the exact spec and doc surfaces, then I’ll compare their claims against the live runtime code line by line.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '900,920p' /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -2166,7 +2166,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -2217,9 +2217,9 @@ Use this skill when:
 | Level | When to Load | Resources |
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    261	          // Keep higher severity
    262	          if (compareSeverity(finding.severity, existing.severity) > 0) {
@@ -2661,17 +2661,17 @@ exec
    260	        } else if (strategy === MERGE_STRATEGIES.PRIORITY) {
 
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts/tests | rg 'wave|deep-loop-wave'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts/tests | rg 'wave|deep-loop-wave'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '521,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '521,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    521	
    522	/* ---------------------------------------------------------------
@@ -2778,7 +2778,7 @@ exec
    623	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -3304,9 +3304,9 @@ exec
    520	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -3887,7 +3887,7 @@ exec
    315	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    261	        findingId: findingRecord.findingId,
    262	        duplicateSegment: findingRecord.segment,
@@ -4086,9 +4086,9 @@ exec
    455	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
      2	
@@ -4506,13 +4506,13 @@ exec
 codex
 I’ve finished the first code pass through the five shared modules. I’m on the validation step now: reading the wave Vitest suites to see which edge cases are actually covered and to confirm whether the suspicious paths I found are real gaps or intentionally constrained behavior.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -4525,7 +4525,7 @@ exec
      9	
     10	const lifecycle = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
     13	)) as {
     14	  canFanOut: (engine: any) => any;
     15	  createWaveContext: (target: string, loopType: 'review' | 'research', opts?: any) => any;
@@ -4537,7 +4537,7 @@ exec
     21	
     22	const planner = require(path.join(
     23	  WORKSPACE_ROOT,
-    24	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
+    24	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
     25	)) as {
     26	  shouldActivateReviewWave: (files: any[], metrics?: any) => any;
     27	  shouldActivateResearchWave: (domains: any[], metrics?: any) => any;
@@ -4547,7 +4547,7 @@ exec
     31	
     32	const board = require(path.join(
     33	  WORKSPACE_ROOT,
-    34	  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+    34	  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
     35	)) as {
     36	  createBoard: (opts: any) => any;
     37	  updateBoard: (board: any, results: any[]) => any;
@@ -4555,7 +4555,7 @@ exec
     39	
     40	const convergence = require(path.join(
     41	  WORKSPACE_ROOT,
-    42	  '.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs',
+    42	  '.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs',
     43	)) as {
     44	  evaluateWaveConvergence: (board: any, signals: any, threshold?: number) => any;
     45	  shouldPruneSegment: (segment: any, signals: any, threshold?: number) => any;
@@ -4564,7 +4564,7 @@ exec
     48	
     49	const segState = require(path.join(
     50	  WORKSPACE_ROOT,
-    51	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+    51	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
     52	)) as {
     53	  createSegmentState: (id: string, config: any) => any;
     54	  appendRecord: (state: any, record: any) => any;
@@ -4809,7 +4809,7 @@ exec
      9	
     10	const planner = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs',
     13	)) as {
     14	  REVIEW_FILE_THRESHOLD: number;
     15	  RESEARCH_DOMAIN_THRESHOLD: number;
@@ -5080,7 +5080,7 @@ exec
      9	
     10	const lifecycle = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs',
     13	)) as {
     14	  LIFECYCLE_PHASES: ReadonlyArray<string>;
     15	  SEGMENT_STATUSES: ReadonlyArray<string>;
@@ -5342,7 +5342,7 @@ exec
      9	
     10	const board = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
+    12	  '.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs',
     13	)) as {
     14	  BOARD_STATUSES: ReadonlyArray<string>;
     15	  FINDING_MERGE_STATES: ReadonlyArray<string>;
@@ -5358,7 +5358,7 @@ exec
     25	
     26	const segState = require(path.join(
     27	  WORKSPACE_ROOT,
-    28	  '.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs',
+    28	  '.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs',
     29	)) as {
     30	  MERGE_KEYS: ReadonlyArray<string>;
     31	  SEGMENT_STATE_STATUSES: ReadonlyArray<string>;
@@ -5733,7 +5733,7 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+| T-WE-NEW-1 | Completed | REQ-000, REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 
 - [x] T-WE-NEW-1 Prototype or implement workflow fan-out/join capability so wave execution has a proven orchestration path before any wave-mode runtime build proceeds.
 <!-- /ANCHOR:phase-1 -->
@@ -5747,13 +5747,13 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T001 | Completed | REQ-001 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skill/sk-deep-research/references/loop_protocol.md`; `.opencode/skill/sk-deep-review/references/loop_protocol.md` |
-| T002 | Completed | REQ-001, REQ-006 | `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`; `.opencode/skill/sk-deep-research/assets/deep_research_config.json`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json` |
-| T003 | Completed | REQ-003, REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-| T-WE-NEW-2 | Completed | REQ-007 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skill/sk-deep-review/references/state_format.md`; `.opencode/skill/sk-deep-review/references/loop_protocol.md` |
-| T-WE-NEW-3 | Completed | REQ-007 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-research/references/loop_protocol.md` |
-| T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
-| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skill/sk-deep-research/assets/deep_research_config.json`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+| T001 | Completed | REQ-001 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-research/references/loop_protocol.md`; `.opencode/skills/sk-deep-review/references/loop_protocol.md` |
+| T002 | Completed | REQ-001, REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json` |
+| T003 | Completed | REQ-003, REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+| T-WE-NEW-2 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-review/references/state_format.md`; `.opencode/skills/sk-deep-review/references/loop_protocol.md` |
+| T-WE-NEW-3 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-research/references/loop_protocol.md` |
+| T-WE-NEW-4 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
+| T-WE-NEW-5 | Completed | REQ-006 | `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 
 - [x] T001 Define v1 deterministic heuristic segmentation for review files and research domains, keeping segment identity and ordering reproducible.
 - [x] T002 Add segment-plan versioning, activation-gate configuration, and strategy surfaces for research and review.
@@ -5773,12 +5773,12 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T004 | Completed | REQ-002 | `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| T005 | Completed | REQ-005 | `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| T006 | Completed | REQ-003, REQ-008 | `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` |
-| T007 | Completed | REQ-006 | `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`; `.opencode/skill/sk-deep-research/assets/deep_research_config.json` |
-| T008 | Completed | REQ-006 | `.opencode/command/spec_kit/deep-review.md`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json`; `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` |
-| T009 | Completed | REQ-004, REQ-008 | `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skill/sk-deep-research/references/state_format.md`; `.opencode/skill/sk-deep-review/references/state_format.md` |
+| T004 | Completed | REQ-002 | `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T005 | Completed | REQ-005 | `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T006 | Completed | REQ-003, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`; `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`; `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` |
+| T007 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json` |
+| T008 | Completed | REQ-006 | `.opencode/commands/spec_kit/deep-review.md`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` |
+| T009 | Completed | REQ-004, REQ-008 | `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`; `.opencode/skills/sk-deep-research/references/state_format.md`; `.opencode/skills/sk-deep-review/references/state_format.md` |
 
 - [x] T004 Implement the shared wave lifecycle manager for fan-out, join, prune, promote, and merge transitions once T-WE-NEW-1 is proven.
 - [x] T005 Wrap Phase 002 graph signals for per-segment convergence, pruning, and v2 graph-enhanced segmentation.
@@ -5796,9 +5796,9 @@ contextType: "planning"
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T010 | Completed | REQ-009 | `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` |
-| T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
-| T012 | Completed | REQ-006, REQ-009 | `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| T010 | Completed | REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` |
+| T011 | Completed | REQ-004, REQ-008, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`; `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` |
+| T012 | Completed | REQ-006, REQ-009 | `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`; `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
 
 - [x] T010 Create planner and lifecycle tests for fan-out/join proof, deterministic v1 segmentation, and gated wave transitions.
 - [x] T011 Create merge tests that prove explicit-key provenance, dedupe, and conflict metadata survive repeated merges without trusting append order.
@@ -5844,7 +5844,7 @@ contextType: "planning"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -5951,125 +5951,125 @@ We needed a way to handle very large review and research targets without asking 
 <!-- /ANCHOR:adr-001 -->
 
 exec
-/bin/zsh -lc "rg -n \"dispatchWave|joinWave|advancePhase|isWaveComplete|evaluateWaveConvergence|shouldPruneSegment|evaluateSegmentConvergence|segmentForReview|segmentForResearch|shouldActivateReviewWave|shouldActivateResearchWave|updateBoard|mergeSegmentStates\" .opencode/command .opencode/skill/system-spec-kit/scripts .opencode/skill/sk-deep-review .opencode/skill/sk-deep-research | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"dispatchWave|joinWave|advancePhase|isWaveComplete|evaluateWaveConvergence|shouldPruneSegment|evaluateSegmentConvergence|segmentForReview|segmentForResearch|shouldActivateReviewWave|shouldActivateResearchWave|updateBoard|mergeSegmentStates\" .opencode/command .opencode/skills/system-spec-kit/scripts .opencode/skills/sk-deep-review .opencode/skills/sk-deep-research | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:402:  mergeSegmentStates,
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:172:function dispatchWave(segments, config) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:234:function joinWave(results, mergeStrategy) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:328:function advancePhase(waveContext, targetPhase) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:369: * @param {Array<object>} dispatches - Dispatch records from dispatchWave
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:372:function isWaveComplete(dispatches) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:428:  dispatchWave,
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:429:  joinWave,
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:431:  advancePhase,
-.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:432:  isWaveComplete,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:21:  joinWave: (results: object[], mergeStrategy?: string) => { merged: object[]; conflicts: object[]; stats: object };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:22:  advancePhase: (ctx: any, phase: string) => { success: boolean; previousPhase: string; currentPhase: string; error?: string };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:23:  isWaveComplete: (dispatches: object[]) => boolean;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:108:  describe('dispatchWave', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:115:      const result = lifecycle.dispatchWave(segments, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:127:      const result = lifecycle.dispatchWave(segments, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:141:      expect(lifecycle.dispatchWave([{ segmentId: 'x' }], null as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:145:  describe('joinWave', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:151:      const joined = lifecycle.joinWave(results);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:161:      const joined = lifecycle.joinWave(results, 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:172:      const joined = lifecycle.joinWave(results, 'priority');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:183:      const joined = lifecycle.joinWave(results, 'concat');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:188:      const joined = lifecycle.joinWave([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:194:  describe('advancePhase', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:197:      const r1 = lifecycle.advancePhase(ctx, 'plan');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:206:      lifecycle.advancePhase(ctx, 'fan-out');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:207:      const r2 = lifecycle.advancePhase(ctx, 'plan');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:214:      const r = lifecycle.advancePhase(ctx, 'invalid-phase');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:219:  describe('isWaveComplete', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:226:      expect(lifecycle.isWaveComplete(dispatches)).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:234:      expect(lifecycle.isWaveComplete(dispatches)).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:238:      expect(lifecycle.isWaveComplete([])).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:17:  updateBoard: (board: any, results: any[]) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:35:  mergeSegmentStates: (states: any[], strategy?: string) => { merged: any; conflicts: any[]; dedupeLog: any[] };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:69:  describe('updateBoard', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:224:  describe('mergeSegmentStates', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:21:  shouldActivateReviewWave: (files: object[], metrics?: { hotspotSpread?: number }) => { activate: boolean; reason: string; fileCount: number; hotspotSpread: number };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:22:  shouldActivateResearchWave: (domains: object[], metrics?: { clusterDiversity?: number }) => { activate: boolean; reason: string; domainCount: number; clusterDiversity: number };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:25:  segmentForReview: (inventory: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:26:  segmentForResearch: (ledger: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:84:      const result = planner.shouldActivateReviewWave(files);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:91:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.05 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:97:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.25 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:104:      const result = planner.shouldActivateResearchWave(domains);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:111:      const result = planner.shouldActivateResearchWave(domains, { clusterDiversity: 0.30 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:198:  describe('review segmentation (segmentForReview)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:200:      expect(planner.segmentForReview(null as any)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:205:      const segments = planner.segmentForReview(inv, { segmentSize: 100 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:214:      const segments = planner.segmentForReview(inv, { segmentSize: 100 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:222:      const seg1 = planner.segmentForReview(inv, { segmentSize: 100 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:223:      const seg2 = planner.segmentForReview(inv, { segmentSize: 100 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:230:  describe('research segmentation (segmentForResearch)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:232:      expect(planner.segmentForResearch(null as any)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:237:      const segments = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:246:      const seg1 = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:247:      const seg2 = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:64:function evaluateWaveConvergence(board, signals, threshold) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:180:function shouldPruneSegment(segment, signals, threshold) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:243:function evaluateSegmentConvergence(segmentState, options) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:310:  evaluateWaveConvergence,
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:312:  shouldPruneSegment,
-.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs:314:  evaluateSegmentConvergence,
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:445:  updateBoard,
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:16:  dispatchWave: (segments: any[], config: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:17:  joinWave: (results: any[], strategy?: string) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:18:  advancePhase: (ctx: any, phase: string) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:19:  isWaveComplete: (dispatches: any[]) => boolean;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:26:  shouldActivateReviewWave: (files: any[], metrics?: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:27:  shouldActivateResearchWave: (domains: any[], metrics?: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:29:  segmentForReview: (inv: any, config?: any) => any[];
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:37:  updateBoard: (board: any, results: any[]) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:44:  evaluateWaveConvergence: (board: any, signals: any, threshold?: number) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:45:  shouldPruneSegment: (segment: any, signals: any, threshold?: number) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:46:  evaluateSegmentConvergence: (state: any, opts?: any) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:55:  mergeSegmentStates: (states: any[], strategy?: string) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:98:      expect(lifecycle.isWaveComplete(dispatches)).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:125:      const result = convergence.evaluateWaveConvergence(b, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:140:      const result = convergence.evaluateWaveConvergence(b, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:157:      const pruneResult = convergence.shouldPruneSegment(segment, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:168:      const pruneResult = convergence.shouldPruneSegment(segment, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:179:      const pruneResult = convergence.shouldPruneSegment(segment, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:189:      const pruneResult = convergence.shouldPruneSegment(segment, {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:213:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.5 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:223:      const result = planner.shouldActivateResearchWave(domains, { clusterDiversity: 0.5 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:251:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.05 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:262:      const result = convergence.evaluateSegmentConvergence(state);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:277:      const result = convergence.evaluateSegmentConvergence(state, { threshold: 0.05 });
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69:function shouldActivateReviewWave(files, metrics) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:110:function shouldActivateResearchWave(domains, metrics) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:311:function segmentForReview(inventory, config) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:429:function segmentForResearch(domainLedger, config) {
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:611:  shouldActivateReviewWave,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:612:  shouldActivateResearchWave,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:617:  segmentForReview,
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:618:  segmentForResearch,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:185:function mergeSegmentStates(states, mergeStrategy) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:402:  mergeSegmentStates,
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:172:function dispatchWave(segments, config) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:234:function joinWave(results, mergeStrategy) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:328:function advancePhase(waveContext, targetPhase) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:369: * @param {Array<object>} dispatches - Dispatch records from dispatchWave
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:372:function isWaveComplete(dispatches) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:428:  dispatchWave,
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:429:  joinWave,
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:431:  advancePhase,
+.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:432:  isWaveComplete,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:21:  joinWave: (results: object[], mergeStrategy?: string) => { merged: object[]; conflicts: object[]; stats: object };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:22:  advancePhase: (ctx: any, phase: string) => { success: boolean; previousPhase: string; currentPhase: string; error?: string };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:23:  isWaveComplete: (dispatches: object[]) => boolean;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:108:  describe('dispatchWave', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:115:      const result = lifecycle.dispatchWave(segments, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:127:      const result = lifecycle.dispatchWave(segments, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:141:      expect(lifecycle.dispatchWave([{ segmentId: 'x' }], null as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:145:  describe('joinWave', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:151:      const joined = lifecycle.joinWave(results);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:161:      const joined = lifecycle.joinWave(results, 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:172:      const joined = lifecycle.joinWave(results, 'priority');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:183:      const joined = lifecycle.joinWave(results, 'concat');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:188:      const joined = lifecycle.joinWave([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:194:  describe('advancePhase', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:197:      const r1 = lifecycle.advancePhase(ctx, 'plan');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:206:      lifecycle.advancePhase(ctx, 'fan-out');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:207:      const r2 = lifecycle.advancePhase(ctx, 'plan');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:214:      const r = lifecycle.advancePhase(ctx, 'invalid-phase');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:219:  describe('isWaveComplete', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:226:      expect(lifecycle.isWaveComplete(dispatches)).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:234:      expect(lifecycle.isWaveComplete(dispatches)).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:238:      expect(lifecycle.isWaveComplete([])).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:17:  updateBoard: (board: any, results: any[]) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:35:  mergeSegmentStates: (states: any[], strategy?: string) => { merged: any; conflicts: any[]; dedupeLog: any[] };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:69:  describe('updateBoard', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:72:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:82:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:92:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:105:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:153:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:224:  describe('mergeSegmentStates', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:232:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:244:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:256:      const result = segState.mergeSegmentStates([s1, s2], 'dedupe');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:268:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:275:      const result = segState.mergeSegmentStates([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:21:  shouldActivateReviewWave: (files: object[], metrics?: { hotspotSpread?: number }) => { activate: boolean; reason: string; fileCount: number; hotspotSpread: number };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:22:  shouldActivateResearchWave: (domains: object[], metrics?: { clusterDiversity?: number }) => { activate: boolean; reason: string; domainCount: number; clusterDiversity: number };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:25:  segmentForReview: (inventory: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:26:  segmentForResearch: (ledger: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:84:      const result = planner.shouldActivateReviewWave(files);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:91:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.05 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:97:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.25 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:104:      const result = planner.shouldActivateResearchWave(domains);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:111:      const result = planner.shouldActivateResearchWave(domains, { clusterDiversity: 0.30 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:198:  describe('review segmentation (segmentForReview)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:200:      expect(planner.segmentForReview(null as any)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:205:      const segments = planner.segmentForReview(inv, { segmentSize: 100 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:214:      const segments = planner.segmentForReview(inv, { segmentSize: 100 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:222:      const seg1 = planner.segmentForReview(inv, { segmentSize: 100 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:223:      const seg2 = planner.segmentForReview(inv, { segmentSize: 100 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:230:  describe('research segmentation (segmentForResearch)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:232:      expect(planner.segmentForResearch(null as any)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:237:      const segments = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:246:      const seg1 = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:247:      const seg2 = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:64:function evaluateWaveConvergence(board, signals, threshold) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:180:function shouldPruneSegment(segment, signals, threshold) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:243:function evaluateSegmentConvergence(segmentState, options) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:310:  evaluateWaveConvergence,
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:312:  shouldPruneSegment,
+.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs:314:  evaluateSegmentConvergence,
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:118:function updateBoard(board, segmentResults) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:445:  updateBoard,
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:16:  dispatchWave: (segments: any[], config: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:17:  joinWave: (results: any[], strategy?: string) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:18:  advancePhase: (ctx: any, phase: string) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:19:  isWaveComplete: (dispatches: any[]) => boolean;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:26:  shouldActivateReviewWave: (files: any[], metrics?: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:27:  shouldActivateResearchWave: (domains: any[], metrics?: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:29:  segmentForReview: (inv: any, config?: any) => any[];
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:37:  updateBoard: (board: any, results: any[]) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:44:  evaluateWaveConvergence: (board: any, signals: any, threshold?: number) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:45:  shouldPruneSegment: (segment: any, signals: any, threshold?: number) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:46:  evaluateSegmentConvergence: (state: any, opts?: any) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:55:  mergeSegmentStates: (states: any[], strategy?: string) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:70:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:79:      board.updateBoard(b, [
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:98:      expect(lifecycle.isWaveComplete(dispatches)).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:115:      const result = segState.mergeSegmentStates([s1, s2]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:125:      const result = convergence.evaluateWaveConvergence(b, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:140:      const result = convergence.evaluateWaveConvergence(b, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:157:      const pruneResult = convergence.shouldPruneSegment(segment, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:168:      const pruneResult = convergence.shouldPruneSegment(segment, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:179:      const pruneResult = convergence.shouldPruneSegment(segment, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:189:      const pruneResult = convergence.shouldPruneSegment(segment, {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:213:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.5 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:223:      const result = planner.shouldActivateResearchWave(domains, { clusterDiversity: 0.5 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:251:      const result = planner.shouldActivateReviewWave(files, { hotspotSpread: 0.05 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:262:      const result = convergence.evaluateSegmentConvergence(state);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:277:      const result = convergence.evaluateSegmentConvergence(state, { threshold: 0.05 });
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69:function shouldActivateReviewWave(files, metrics) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:110:function shouldActivateResearchWave(domains, metrics) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:311:function segmentForReview(inventory, config) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:429:function segmentForResearch(domainLedger, config) {
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:611:  shouldActivateReviewWave,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:612:  shouldActivateResearchWave,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:617:  segmentForReview,
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:618:  segmentForResearch,
 
 codex
 I’ve isolated a few candidate correctness defects, and I’m sanity-checking them with tiny runtime probes now. This is the last pass before I write the findings, so I want the report to distinguish real behavioral bugs from merely underspecified helpers.
 2026-04-12T09:55:46.140967Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const planner = require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs');
+const planner = require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs');
 const sources = [
   { domain: 'alpha.example.com' },
   { domain: 'beta.vendor.com' },
@@ -6079,17 +6079,17 @@ const sources = [
 console.log(JSON.stringify(sources.map(s => ({ domain: s.domain, cluster: planner.generateDomainLedger([s]).domains[0].cluster })), null, 2));
 NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T09:55:46.141000Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const planner = require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs');
+const planner = require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs');
 const files = Array.from({length: 1000}, (_, i) => ({ path: "'`src/dir${i % 20}/file${i}.ts`, complexity: 1, churnRate: 0, issueCount: 0 }));
 console.log(JSON.stringify({ hotspotSpread: planner.computeHotspotSpread(files), activation: planner.shouldActivateReviewWave(files) }, null, 2));
 NODE'`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T09:55:46.143904Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const lifecycle = require('./.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs');
+const lifecycle = require('./.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs');
 const ctx = lifecycle.createWaveContext('target', 'review');
 console.log(JSON.stringify({before: ctx.phase, transition: lifecycle.advancePhase(ctx, 'merge'), after: ctx.phase}, null, 2));
 NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T09:55:46.159536Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const seg = require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs');
+const seg = require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs');
 const s1 = seg.createSegmentState('seg-1', { sessionId: 'sess', generation: 1, waveId: 'w1' });
 const s2 = seg.createSegmentState('seg-2', { sessionId: 'sess', generation: 1, waveId: 'w2' });
 s1.findings = [{ findingId: 'F-001', title: 'Bug A', severity: 'P1', segment: 'seg-1' }];
@@ -6097,7 +6097,7 @@ s2.findings = [{ findingId: 'F-001', title: 'Bug B', severity: 'P1', segment: 's
 console.log(JSON.stringify(seg.mergeSegmentStates([s1, s2], 'dedupe'), null, 2));
 NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 1, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"zsh:1: can't create temp file for here document: operation not permitted\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
 2026-04-12T09:55:46.159562Z ERROR codex_core::tools::router: error=exec_command failed for `/bin/zsh -lc "node - <<'NODE'
-const boardLib = require('./.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs');
+const boardLib = require('./.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs');
 const b = boardLib.createBoard({ sessionId: 'sess', generation: 1, loopType: 'review' });
 boardLib.updateBoard(b, [
   { segmentId: 'seg-1', waveId: 'w1', findings: [{ findingId: 'F-001', title: 'Bug A', severity: 'P1', evidence: 'a' }] },
@@ -6108,9 +6108,9 @@ NODE"`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOut
 codex
 The sandbox blocks here-doc execution, so I’m switching to single-line `node -e` probes instead of stopping there. I already have enough static evidence for the main issues; this is just to tighten a couple of examples before I finalize the report.
 exec
-/bin/zsh -lc "node -e \"const p=require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs');const sources=[{domain:'alpha.example.com'},{domain:'beta.vendor.com'},{domain:'gamma.docs.com'},{domain:'delta.api.org'}];console.log(JSON.stringify(sources.map(s=>({domain:s.domain,cluster:p.generateDomainLedger([s]).domains[0].cluster})),null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const p=require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs');const sources=[{domain:'alpha.example.com'},{domain:'beta.vendor.com'},{domain:'gamma.docs.com'},{domain:'delta.api.org'}];console.log(JSON.stringify(sources.map(s=>({domain:s.domain,cluster:p.generateDomainLedger([s]).domains[0].cluster})),null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "node -e \"const p=require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs');const files=Array.from({length:1000},(_,i)=>({path:'src/dir'+(i%20)+'/file'+i+'.ts',complexity:1,churnRate:0,issueCount:0}));console.log(JSON.stringify({hotspotSpread:p.computeHotspotSpread(files),activation:p.shouldActivateReviewWave(files)},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const p=require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs');const files=Array.from({length:1000},(_,i)=>({path:'src/dir'+(i%20)+'/file'+i+'.ts',complexity:1,churnRate:0,issueCount:0}));console.log(JSON.stringify({hotspotSpread:p.computeHotspotSpread(files),activation:p.shouldActivateReviewWave(files)},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 [
   {
@@ -6143,9 +6143,9 @@ exec
 }
 
 exec
-/bin/zsh -lc "node -e \"const bLib=require('./.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs');const b=bLib.createBoard({sessionId:'sess',generation:1,loopType:'review'});bLib.updateBoard(b,[{segmentId:'seg-1',waveId:'w1',findings:[{findingId:'F-001',title:'Bug A',severity:'P1',evidence:'a'}]},{segmentId:'seg-2',waveId:'w1',findings:[{findingId:'F-001',title:'Bug B',severity:'P1',evidence:'b'}]}]);console.log(JSON.stringify({findingCount:b.findings.length,conflictCount:b.conflicts.length,dedupeCount:b.dedupeLog.length,stored:b.findings[0]},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const bLib=require('./.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs');const b=bLib.createBoard({sessionId:'sess',generation:1,loopType:'review'});bLib.updateBoard(b,[{segmentId:'seg-1',waveId:'w1',findings:[{findingId:'F-001',title:'Bug A',severity:'P1',evidence:'a'}]},{segmentId:'seg-2',waveId:'w1',findings:[{findingId:'F-001',title:'Bug B',severity:'P1',evidence:'b'}]}]);console.log(JSON.stringify({findingCount:b.findings.length,conflictCount:b.conflicts.length,dedupeCount:b.dedupeLog.length,stored:b.findings[0]},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "node -e \"const l=require('./.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs');const ctx=l.createWaveContext('target','review');console.log(JSON.stringify({before:ctx.phase,transition:l.advancePhase(ctx,'merge'),after:ctx.phase},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const l=require('./.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs');const ctx=l.createWaveContext('target','review');console.log(JSON.stringify({before:ctx.phase,transition:l.advancePhase(ctx,'merge'),after:ctx.phase},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "findingCount": 1,
@@ -6186,7 +6186,7 @@ exec
 }
 
 exec
-/bin/zsh -lc "node -e \"const seg=require('./.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs');const s1=seg.createSegmentState('seg-1',{sessionId:'sess',generation:1,waveId:'w1'});const s2=seg.createSegmentState('seg-2',{sessionId:'sess',generation:1,waveId:'w2'});s1.findings=[{findingId:'F-001',title:'Bug A',severity:'P1',segment:'seg-1'}];s2.findings=[{findingId:'F-001',title:'Bug B',severity:'P1',segment:'seg-2'}];const r=seg.mergeSegmentStates([s1,s2],'dedupe');console.log(JSON.stringify({mergedCount:r.merged.findings.length,conflictCount:r.conflicts.length,dedupeCount:r.dedupeLog.length,stored:r.merged.findings[0]},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "node -e \"const seg=require('./.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs');const s1=seg.createSegmentState('seg-1',{sessionId:'sess',generation:1,waveId:'w1'});const s2=seg.createSegmentState('seg-2',{sessionId:'sess',generation:1,waveId:'w2'});s1.findings=[{findingId:'F-001',title:'Bug A',severity:'P1',segment:'seg-1'}];s2.findings=[{findingId:'F-001',title:'Bug B',severity:'P1',segment:'seg-2'}];const r=seg.mergeSegmentStates([s1,s2],'dedupe');console.log(JSON.stringify({mergedCount:r.merged.findings.length,conflictCount:r.conflicts.length,dedupeCount:r.dedupeLog.length,stored:r.merged.findings[0]},null,2));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "mergedCount": 1,
@@ -6215,7 +6215,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:86:- Add shared CommonJS planners for v1 deterministic review-file segmentation and research-domain segmentation.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:91:- Define segment-local JSONL or state artifacts and deterministic merge rules into the main packet lineage using explicit keys: `sessionId`, `generation`, `segment`, `wave`, and `findingId`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:93:- Add activation gates so wave execution only activates for review scopes with at least 1000 files plus hotspot spread, or research scopes with at least 50 domains plus cluster diversity; otherwise the default sequential path remains unchanged.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:130:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:130:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:144:| REQ-001 | The phase MUST define two segmentation versions for both large review scopes and large research scopes. | v1 uses deterministic heuristics such as file-count thresholds, directory grouping, simple hotspot ranking, domain counts, authority levels, and stable cluster assignment; v2 explicitly layers Phase 002 coverage-graph or cluster signals on top of v1 once the graph surfaces are operational. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:147:| REQ-004 | Segment-local JSONL and merge rules MUST preserve auditability when wave results are merged back into the main packet lineage. | Segment artifacts remain replayable on their own, merged records always include explicit keys `sessionId`, `generation`, `segment`, `wave`, and `findingId`, and merge logic never relies on append order as the source of truth. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:154:| REQ-006 | Deep-research and deep-review workflows MUST expose wave execution as a bounded mode for large targets while preserving the default small-target path. | Wave mode activates only when review targets have at least 1000 files with hotspot spread or research targets have at least 50 domains with cluster diversity; otherwise command docs, YAML workflows, and config surfaces keep the normal single-stream flow as the default path. |
@@ -6236,7 +6236,7 @@ exec
 codex
 ### F-005-001 [P1] Uniform review inventories can incorrectly activate wave mode
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69)
 - Line: `69-99`, `543-564`
 - Title: `computeHotspotSpread()` treats every median-complexity directory as a hotspot
 - Description: The review activation gate is supposed to stay off unless a large target also has meaningful hotspot spread. Instead, `computeHotspotSpread()` marks a directory as “hot” whenever any file has `complexity >= median`, and it ignores `churnRate`/`issueCount` entirely. On a flat 1000-file inventory where every file has the same low complexity and no churn/issues, the median equals every file, so every directory becomes hot and `shouldActivateReviewWave()` returns `activate: true`. That violates the Phase 003 contract that large targets without hotspot spread should remain on the sequential path.
@@ -6245,7 +6245,7 @@ codex
 
 ### F-005-002 [P1] Fallback research clustering collapses unrelated domains into one cluster
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:242)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:242)
 - Line: `242-253`, `589-594`
 - Title: `assignCluster()` uses the TLD, not a meaningful domain cluster
 - Description: When research sources arrive without a preassigned cluster, `generateDomainLedger()` falls back to `assignCluster()`. That helper returns the last domain label (`com`, `org`, etc.), even though the comment says it should use the “first meaningful segment.” In practice this collapses most web research sources into one cluster, drives `clusterDiversity` artificially low, and can either block wave activation or produce meaningless research segments.
@@ -6254,7 +6254,7 @@ codex
 
 ### F-005-003 [P1] Lifecycle helper allows illegal phase skips straight to merge
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:321)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:321)
 - Line: `321-364`
 - Title: `advancePhase()` enforces monotonicity but not the required phase order
 - Description: Phase 003 defines an explicit lifecycle order: `prepass -> plan -> fan-out -> prune -> promote -> join -> merge`. `advancePhase()` only checks `targetIndex > currentIndex`, so a fresh context can jump directly from `prepass` to `merge` and still return success. That makes the lifecycle contract unenforceable and allows callers to mark a wave as merged without any proven plan/fan-out/join path having occurred.
@@ -6263,7 +6263,7 @@ codex
 
 ### F-005-004 [P1] Merge helpers collapse distinct segment findings that reuse a local finding ID
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219)
 - Line: `219-279`
 - Title: Board merge deduplicates by `findingId` alone instead of the explicit 5-key contract
 - Description: Phase 003 requires merge lineage to be keyed by `sessionId`, `generation`, `segment`, `wave`, and `findingId`, but `mergeFinding()` looks up existing records with `f.findingId === findingRecord.findingId`. That means two different segment-local findings that both use `F-001` are treated as the same logical record even when their evidence differs. The same defect appears in segment-state merge logic (`wave-segment-state.cjs:199-247`), so cross-segment collisions can silently flatten lineage during board updates and replay merges.
@@ -6287,7 +6287,7 @@ tokens used
 149,022
 ### F-005-001 [P1] Uniform review inventories can incorrectly activate wave mode
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:69)
 - Line: `69-99`, `543-564`
 - Title: `computeHotspotSpread()` treats every median-complexity directory as a hotspot
 - Description: The review activation gate is supposed to stay off unless a large target also has meaningful hotspot spread. Instead, `computeHotspotSpread()` marks a directory as “hot” whenever any file has `complexity >= median`, and it ignores `churnRate`/`issueCount` entirely. On a flat 1000-file inventory where every file has the same low complexity and no churn/issues, the median equals every file, so every directory becomes hot and `shouldActivateReviewWave()` returns `activate: true`. That violates the Phase 003 contract that large targets without hotspot spread should remain on the sequential path.
@@ -6296,7 +6296,7 @@ tokens used
 
 ### F-005-002 [P1] Fallback research clustering collapses unrelated domains into one cluster
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:242)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:242)
 - Line: `242-253`, `589-594`
 - Title: `assignCluster()` uses the TLD, not a meaningful domain cluster
 - Description: When research sources arrive without a preassigned cluster, `generateDomainLedger()` falls back to `assignCluster()`. That helper returns the last domain label (`com`, `org`, etc.), even though the comment says it should use the “first meaningful segment.” In practice this collapses most web research sources into one cluster, drives `clusterDiversity` artificially low, and can either block wave activation or produce meaningless research segments.
@@ -6305,7 +6305,7 @@ tokens used
 
 ### F-005-003 [P1] Lifecycle helper allows illegal phase skips straight to merge
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs:321)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:321)
 - Line: `321-364`
 - Title: `advancePhase()` enforces monotonicity but not the required phase order
 - Description: Phase 003 defines an explicit lifecycle order: `prepass -> plan -> fan-out -> prune -> promote -> join -> merge`. `advancePhase()` only checks `targetIndex > currentIndex`, so a fresh context can jump directly from `prepass` to `merge` and still return success. That makes the lifecycle contract unenforceable and allows callers to mark a wave as merged without any proven plan/fan-out/join path having occurred.
@@ -6314,7 +6314,7 @@ tokens used
 
 ### F-005-004 [P1] Merge helpers collapse distinct segment findings that reuse a local finding ID
 - Dimension: correctness
-- File: [.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219)
+- File: [.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:219)
 - Line: `219-279`
 - Title: Board merge deduplicates by `findingId` alone instead of the explicit 5-key contract
 - Description: Phase 003 requires merge lineage to be keyed by `sessionId`, `generation`, `segment`, `wave`, and `findingId`, but `mergeFinding()` looks up existing records with `f.findingId === findingRecord.findingId`. That means two different segment-local findings that both use `F-001` are treated as the same logical record even when their evidence differs. The same defect appears in segment-state merge logic (`wave-segment-state.cjs:199-247`), so cross-segment collisions can silently flatten lineage during board updates and replay merges.

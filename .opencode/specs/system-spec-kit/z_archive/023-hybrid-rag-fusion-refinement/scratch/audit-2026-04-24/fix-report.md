@@ -68,7 +68,7 @@ The validator's evidence-marker-lint step tries to scan phase-child folders usin
 
 ```bash
 # Initial strict recursive validation
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement \
   --recursive --strict > scratch/audit-2026-04-24/validator-full.txt 2>&1
 
@@ -78,7 +78,7 @@ copilot -p "<audit+fix prompt>" --model gpt-5.4 --allow-all-tools \
   > scratch/audit-2026-04-24/copilot-run.log 2>&1
 
 # Re-validate after copilot partial work
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement \
   --recursive --strict > scratch/audit-2026-04-24/validator-after-copilot.txt 2>&1
 
@@ -86,15 +86,15 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
 python3 /tmp/compact-trigger-phrases.py
 
 # Final validation
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement \
   --recursive --strict > scratch/audit-2026-04-24/validator-final.txt 2>&1
 
 # Metadata refresh
-node .opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js \
+node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js \
   .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement .opencode/specs
 
-node .opencode/skill/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js \
+node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js \
   --root .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement
 
 # Commit + push

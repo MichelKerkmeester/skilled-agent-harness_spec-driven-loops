@@ -18,8 +18,8 @@ Design the quality scoring model for JSON-mode saves. The current V2 quality sco
 
 **Problem for JSON mode**: The `observation_dedup` dimension (15 points) scores observations by title uniqueness. JSON-mode observations are often empty because they come from `observations[]` which is transcript-sourced. The `content_length` dimension (15 points) requires `hasSpecificTitle()` which checks frontmatter/heading -- metadata that depends on the template renderer, not the input.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:73-223]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:127-320]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:73-223]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:127-320]
 
 ### 2. Proposed Scoring Dimensions for JSON-Mode
 
@@ -305,8 +305,8 @@ The `exchanges[].userInput` contains the actual commands/requests the user gave 
 
 The SemanticSignalExtractor already handles compound noun extraction and stopword filtering, so raw user input text will produce high-quality triggers without additional preprocessing.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1170-1237]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts:21-27]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1170-1237]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts:21-27]
 [INFERENCE: based on how trigger matching works in the MCP server -- user queries match against trigger phrases]
 
 ### 6. Concrete Scoring Examples
@@ -457,8 +457,8 @@ const qualityV2 = scoreMemoryQualityV2({
 });
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:206]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1473-1483]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:206]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1473-1483]
 
 ## Ruled Out
 
@@ -471,12 +471,12 @@ const qualityV2 = scoreMemoryQualityV2({
 None. The floor-based approach is compatible with the existing architecture.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts` (full file, 239 lines)
-- `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:127-320` (legacy scorer dimensions)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1170-1237` (trigger extraction)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1473-1483` (V2 scorer call site)
-- `.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts` (trigger API)
-- `.opencode/skill/system-spec-kit/scripts/types/session-types.ts:126-190` (CollectedDataBase)
+- `.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts` (full file, 239 lines)
+- `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:127-320` (legacy scorer dimensions)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1170-1237` (trigger extraction)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1473-1483` (V2 scorer call site)
+- `.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts` (trigger API)
+- `.opencode/skills/system-spec-kit/scripts/types/session-types.ts:126-190` (CollectedDataBase)
 
 ## Assessment
 - New information ratio: 0.90

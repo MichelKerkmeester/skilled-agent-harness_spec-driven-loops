@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-be5c-7652-bcde-a4c171d592b0
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts (236 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts (236 lines).
 
 This file extracts diagrams and flowcharts from conversation content.
 
@@ -56,7 +56,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m auditing that `diagram-extractor.ts` file line-by-line with a focus on the six areas you listed, starting by loading the full file with line numbers so we can reference exact issues precisely.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts' | sed -n '1,300p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts' | sed -n '1,300p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Diagram Extractor
      3	// ---------------------------------------------------------------
@@ -80,16 +80,16 @@ exec
 codex
 I’ve loaded all 236 lines and now I’m tracing how this output is consumed so we can assess integration and rendering validity, not just local logic in isolation.
 exec
-/bin/zsh -lc "rg -n \"DIAGRAMS|AUTO_DECISION_TREES|AUTO_CONVERSATION_FLOWCHART|DIAGRAM\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"extractDiagrams|AUTO_CONVERSATION_FLOWCHART|DIAGRAMS|PATTERN_SUMMARY|DIAGRAM_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:177:{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [WORKFLOW VISUALIZATION](#workflow-visualization)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:178:{{/HAS_WORKFLOW_DIAGRAM}}- [DECISIONS](#decisions)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:375:{{#HAS_WORKFLOW_DIAGRAM}}
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:443:{{/HAS_WORKFLOW_DIAGRAM}}
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:453:  - +1 if HAS_WORKFLOW_DIAGRAM (adds Workflow Visualization)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:467:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:554:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}6{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. CONVERSATION
+/bin/zsh -lc "rg -n \"DIAGRAMS|AUTO_DECISION_TREES|AUTO_CONVERSATION_FLOWCHART|DIAGRAM\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"extractDiagrams|AUTO_CONVERSATION_FLOWCHART|DIAGRAMS|PATTERN_SUMMARY|DIAGRAM_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:177:{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [WORKFLOW VISUALIZATION](#workflow-visualization)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:178:{{/HAS_WORKFLOW_DIAGRAM}}- [DECISIONS](#decisions)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:375:{{#HAS_WORKFLOW_DIAGRAM}}
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:443:{{/HAS_WORKFLOW_DIAGRAM}}
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:453:  - +1 if HAS_WORKFLOW_DIAGRAM (adds Workflow Visualization)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:467:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:554:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}6{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. CONVERSATION
  succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Flowchart Generator
@@ -112,32 +112,32 @@ exec
     19	  | 'Loop/Iteration'
     20	  | 'Multi-Stage Pipeline'
  succeeded in 50ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:128:async function extractDiagrams(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:142:  const DIAGRAMS: DiagramOutput[] = [];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:155:      DIAGRAMS.push({
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:173:  const AUTO_CONVERSATION_FLOWCHART: string = flowchartGen.generateConversationFlowchart(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:193:  for (const diagram of DIAGRAMS) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:203:  for (const diagram of DIAGRAMS) {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:208:  const PATTERN_SUMMARY: PatternSummaryEntry[] = Array.from(patternCounts.entries()).map(
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:213:    DIAGRAMS: DIAGRAMS.map((d) => validateDataStructure(d) as DiagramOutput),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:214:    DIAGRAM_COUNT: DIAGRAMS.length,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:217:    AUTO_CONVERSATION_FLOWCHART,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:222:    PATTERN_SUMMARY
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:232:  extractDiagrams,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:235:  extractDiagrams as extractDiagrams_alias
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:154:  DIAGRAMS: DiagramOutput[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:155:  DIAGRAM_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:158:  AUTO_CONVERSATION_FLOWCHART: string;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:163:  PATTERN_SUMMARY: PatternSummaryEntry[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/README.md:117:| `DiagramData` | `DIAGRAMS`, `AUTO_DECISION_TREES`, `DIAGRAM_TYPES`, `PATTERN_SUMMARY` | Aggregate diagram container |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:16:  extractDiagrams,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:521:      const result = await extractDiagrams(collectedData as Parameters<typeof extractDiagrams>[0]);
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:128:async function extractDiagrams(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:142:  const DIAGRAMS: DiagramOutput[] = [];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:155:      DIAGRAMS.push({
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:173:  const AUTO_CONVERSATION_FLOWCHART: string = flowchartGen.generateConversationFlowchart(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:193:  for (const diagram of DIAGRAMS) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:203:  for (const diagram of DIAGRAMS) {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:208:  const PATTERN_SUMMARY: PatternSummaryEntry[] = Array.from(patternCounts.entries()).map(
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:213:    DIAGRAMS: DIAGRAMS.map((d) => validateDataStructure(d) as DiagramOutput),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:214:    DIAGRAM_COUNT: DIAGRAMS.length,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:217:    AUTO_CONVERSATION_FLOWCHART,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:222:    PATTERN_SUMMARY
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:232:  extractDiagrams,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:235:  extractDiagrams as extractDiagrams_alias
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:154:  DIAGRAMS: DiagramOutput[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:155:  DIAGRAM_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:158:  AUTO_CONVERSATION_FLOWCHART: string;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:163:  PATTERN_SUMMARY: PatternSummaryEntry[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/README.md:117:| `DiagramData` | `DIAGRAMS`, `AUTO_DECISION_TREES`, `DIAGRAM_TYPES`, `PATTERN_SUMMARY` | Aggregate diagram container |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:16:  extractDiagrams,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:521:      const result = await extractDiagrams(collectedData as Parameters<typeof extractDiagrams>[0]);
 codex
 Next I’m checking the phase classifier and template wiring to verify whether extracted/generated diagrams land in the right output sections and whether phase labels are semantically accurate.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '680,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '680,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Tool Detection
      3	// ---------------------------------------------------------------
@@ -201,29 +201,29 @@ exec
    698	    log(`   Pre-extracted ${preExtractedTriggers.length} trigger phrases`);
    699	  } catch (e: unknown) {
 exec
-/bin/zsh -lc "rg -n \"HAS_WORKFLOW_DIAGRAM|WORKFLOW_FLOWCHART|PATTERN_TYPE|USE_CASE_TITLE|FEATURES|PHASES|PHASE_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:105:  PHASE_COUNT: number;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts:106:  PHASES: ConversationPhase[];
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/README.md:107:| `ConversationData` | `MESSAGES`, `PHASES`, `DURATION`, `FLOW_PATTERN`, `TOOL_COUNT` | Full conversation structure |
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:245:    PHASE_COUNT: 4,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:246:    PHASES: [
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:389:// 7. FLOWCHART AND PHASES
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts:277:// 6. PHASE DETAILS & FEATURES
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/setup/README.md:22:- [4. FEATURES](#4--features)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/setup/README.md:120:## 4. FEATURES
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/README.md:22:- [4. FEATURES](#4--features)
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/templates/README.md:148:## 4. FEATURES
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:187:  const PHASES: ConversationPhase[] = Array.from(phaseTimestamps.entries()).map(([PHASE_NAME, timestamps]) => {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:218:  const hasParallel = PHASES.length > 3;
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:228:    PHASES,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:237:    PHASE_COUNT: PHASES.length,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:238:    PHASES,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:536:        WORKFLOW_FLOWCHART: flowchartGen.generateWorkflowFlowchart(phases),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:537:        HAS_WORKFLOW_DIAGRAM: false,
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:538:        PATTERN_TYPE: patternType.charAt(0).toUpperCase() + patternType.slice(1),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:541:        PHASES: phaseDetails,
+/bin/zsh -lc "rg -n \"HAS_WORKFLOW_DIAGRAM|WORKFLOW_FLOWCHART|PATTERN_TYPE|USE_CASE_TITLE|FEATURES|PHASES|PHASE_COUNT\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:105:  PHASE_COUNT: number;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts:106:  PHASES: ConversationPhase[];
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/README.md:107:| `ConversationData` | `MESSAGES`, `PHASES`, `DURATION`, `FLOW_PATTERN`, `TOOL_COUNT` | Full conversation structure |
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:245:    PHASE_COUNT: 4,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:246:    PHASES: [
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:389:// 7. FLOWCHART AND PHASES
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts:277:// 6. PHASE DETAILS & FEATURES
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/setup/README.md:22:- [4. FEATURES](#4--features)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/setup/README.md:120:## 4. FEATURES
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/README.md:22:- [4. FEATURES](#4--features)
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/templates/README.md:148:## 4. FEATURES
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:187:  const PHASES: ConversationPhase[] = Array.from(phaseTimestamps.entries()).map(([PHASE_NAME, timestamps]) => {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:218:  const hasParallel = PHASES.length > 3;
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:228:    PHASES,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:237:    PHASE_COUNT: PHASES.length,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:238:    PHASES,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:536:        WORKFLOW_FLOWCHART: flowchartGen.generateWorkflowFlowchart(phases),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:537:        HAS_WORKFLOW_DIAGRAM: false,
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:538:        PATTERN_TYPE: patternType.charAt(0).toUpperCase() + patternType.slice(1),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:541:        PHASES: phaseDetails,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | sed -n '500,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | sed -n '500,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    500	    const [sessionData, conversations, decisions, diagrams, workflowData] = await Promise.all([
    501	    (async () => {
    502	      log('   Collecting session data...');
@@ -247,12 +247,12 @@ exec
 codex
 I found the workflow assembly path; I’m now validating whether the diagram flags are actually enabled downstream, because that directly affects section placement in the template.
 exec
-/bin/zsh -lc "rg -n \"HAS_WORKFLOW_DIAGRAM\\s*[:=]\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:537:        HAS_WORKFLOW_DIAGRAM: false,
+/bin/zsh -lc "rg -n \"HAS_WORKFLOW_DIAGRAM\\s*[:=]\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:537:        HAS_WORKFLOW_DIAGRAM: false,
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/decision-tree-generator.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts' | sed -n '120,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/data-validator.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/decision-tree-generator.ts' | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts' | sed -n '120,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/data-validator.ts' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    120	  DIAGRAM_TYPE: string;
    121	  PATTERN_NAME: string;
    122	  COMPLEXITY: string;
@@ -316,7 +316,7 @@ exec
     19	let padText: (text: string, width: number, align?: string) => string;
     20	let formatDecisionHeader: (title: string, context: string, confidence: number, timestamp: string) => string;
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts' | sed -n '150,270p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts' | sed -n '150,270p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    150	        CONTENT: summary.fullSummary,
    151	        TOOL_CALLS: TOOL_CALLS.slice(0, 10)
    152	      };
@@ -340,7 +340,7 @@ exec
 codex
 I’m now checking extractor tests to confirm intended behavior versus actual behavior, especially around diagram detection and dedup expectations.
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '930,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js' | sed -n '930,1015p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    930	    if (phases.length > 0) {
    931	      assertExists(phases[0].PHASE_NAME, 'EXT-Diag-004: Phase has PHASE_NAME');
    932	      assertExists(phases[0].DURATION, 'EXT-Diag-005: Phase has DURATION');
@@ -362,19 +362,19 @@ exec
    948	
    949	    assertArray(diagResult.DIAGRAMS, 'EXT-Diag-009: extractDiagrams returns DIAGRAMS array');
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/template-populator.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"populateTemplate|HAS_WORKFLOW_DIAGRAM|WORKFLOW_FLOWCHART|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/template-populator.ts: No such file or directory
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/template-populator.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"populateTemplate|HAS_WORKFLOW_DIAGRAM|WORKFLOW_FLOWCHART|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+nl: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/template-populator.ts: No such file or directory
  succeeded in 51ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:356:    DIAGRAMS: [
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:375:    AUTO_CONVERSATION_FLOWCHART: createSimulationFlowchart(),
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:376:    AUTO_DECISION_TREES: [],
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:356:    DIAGRAMS: [
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:375:    AUTO_CONVERSATION_FLOWCHART: createSimulationFlowchart(),
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:376:    AUTO_DECISION_TREES: [],
 exec
-/bin/zsh -lc "rg -n \"function populateTemplate|const populateTemplate|populateTemplate\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159:async function populateTemplate(templateName: string, data: TemplateContext): Promise<string> {
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:705:    [ctxFilename]: await populateTemplate('context', {
+/bin/zsh -lc "rg -n \"function populateTemplate|const populateTemplate|populateTemplate\\(\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159:async function populateTemplate(templateName: string, data: TemplateContext): Promise<string> {
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:705:    [ctxFilename]: await populateTemplate('context', {
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -396,7 +396,7 @@ exec
     19	
     20	/** Template data item that can be an object or primitive */
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' | sed -n '470,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' | sed -n '470,640p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    470
 <!-- /ANCHOR:detailed-changes -->
 	<!-- ANCHOR:{{DECISION_ANCHOR_ID}} -->
@@ -420,13 +420,13 @@ exec
    488	#### Options Considered
    489	{{#OPTIONS}}
 exec
-/bin/zsh -lc "rg -n \"\\{\\{DIAGRAM|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|PATTERN_SUMMARY|DIAGRAM_TYPES|DIAGRAM_COUNT\\}\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
+/bin/zsh -lc "rg -n \"\\{\\{DIAGRAM|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|PATTERN_SUMMARY|DIAGRAM_TYPES|DIAGRAM_COUNT\\}\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
 
 exec
-/bin/zsh -lc "rg -n \"DIAGRAMS|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|PATTERN_SUMMARY|DIAGRAM_TYPES|WORKFLOW_FLOWCHART\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:400:{{WORKFLOW_FLOWCHART}}
+/bin/zsh -lc "rg -n \"DIAGRAMS|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|PATTERN_SUMMARY|DIAGRAM_TYPES|WORKFLOW_FLOWCHART\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:400:{{WORKFLOW_FLOWCHART}}
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts' | sed -n '330,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts' | sed -n '330,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    330	}
    331	
    332	// ---------------------------------------------------------------
@@ -448,7 +448,7 @@ exec
    348	\u2514\u2500\u2500\u2500\u2500\u252C\u2500\u2500\u2500\u2500\u2518
    349	     \u2502
 exec
-/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/flowchart-generator.ts' | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/flowchart-generator.ts' | sed -n '320,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    320	  const useCaseMap: Record<string, string[]> = {
    321	    linear: [
    322	      'Sequential feature implementations',
@@ -473,7 +473,7 @@ codex
 I’ve completed the deep pass and identified concrete issues across phase extraction, ASCII detection, flowchart generation, dedup, rendering, and template integration; I’m now packaging them in the exact finding format you requested.
 codex
 ### FINDING-01: Phase “Duration” Is Not Time-Based
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):119
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):119
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `DURATION` is emitted as `"N actions"` (count of observations), not elapsed time.
@@ -483,7 +483,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Phase Sequence Collapses Repeated Phases
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):67
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):67
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** All occurrences of the same phase are merged in a `Map`, so phase transitions like Research → Implementation → Research are flattened.
@@ -493,7 +493,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Tool Signal Extraction Ignores Narrative Content
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):70
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):70
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Tool calls are detected only from `obs.facts`, not from `obs.narrative`.
@@ -503,7 +503,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Short Sessions Are Hard-Dropped From Phase Detection
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):61
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):61
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Sessions with `<= 2` observations always return `[]`.
@@ -513,7 +513,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: ASCII Detection Misses Plain ASCII Diagrams
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):140
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):140
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Detector only matches Unicode box-drawing/triangle chars; common `+ - | / \ > v` diagrams are not recognized.
@@ -523,7 +523,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: ASCII Detection Has High False-Positive Risk
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):148
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):148
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Any single matching symbol triggers “diagram found.”
@@ -533,7 +533,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Entire Narrative Is Treated As Diagram Text
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):149
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):149
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If one diagram char exists in narrative, the full narrative string is stored as `ASCII_ART`.
@@ -543,7 +543,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Diagram Truncation Can Corrupt Rendering
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):163
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):163
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `ASCII_ART` is cut at 1000 chars regardless of line/box boundaries.
@@ -553,7 +553,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: No Diagram Deduplication
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):144
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):144
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Duplicate diagrams are appended repeatedly.
@@ -563,7 +563,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Decision Option Extraction Is Case-Sensitive
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):180
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):180
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Only facts containing exact `Option` / `Alternative` are considered.
@@ -573,7 +573,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: Regex Bug Misparses “chose …” Decisions
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `match(/chose|selected:?\s+([^\.\n]+)/i)` only captures for `selected`, not `chose`.
@@ -583,7 +583,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-12: Silent Fallback to First Option Can Fabricate Choice
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If chosen text isn’t parsed, code defaults to `options[0]`.
@@ -593,7 +593,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: Generated “ASCII Art” Is Unicode, Not Strict ASCII
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):173
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):173
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Auto flowcharts use Unicode box/arrow glyphs via generator, not 7-bit ASCII.
@@ -603,7 +603,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-14: Diagram Extractor Output Is Not Effectively Integrated Into Template Sections
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):212
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):212
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Extractor returns `DIAGRAMS`, `AUTO_CONVERSATION_FLOWCHART`, `AUTO_DECISION_TREES`, but template section uses `WORKFLOW_FLOWCHART`/`HAS_WORKFLOW_DIAGRAM` from separate workflow data path; extracted diagram artifacts are not placed in a dedicated rendered section.
@@ -622,7 +622,7 @@ codex
 tokens used
 65,798
 ### FINDING-01: Phase “Duration” Is Not Time-Based
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):119
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):119
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `DURATION` is emitted as `"N actions"` (count of observations), not elapsed time.
@@ -632,7 +632,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: Phase Sequence Collapses Repeated Phases
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):67
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):67
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** All occurrences of the same phase are merged in a `Map`, so phase transitions like Research → Implementation → Research are flattened.
@@ -642,7 +642,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Tool Signal Extraction Ignores Narrative Content
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):70
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):70
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Tool calls are detected only from `obs.facts`, not from `obs.narrative`.
@@ -652,7 +652,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Short Sessions Are Hard-Dropped From Phase Detection
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):61
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):61
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Sessions with `<= 2` observations always return `[]`.
@@ -662,7 +662,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: ASCII Detection Misses Plain ASCII Diagrams
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):140
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):140
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** Detector only matches Unicode box-drawing/triangle chars; common `+ - | / \ > v` diagrams are not recognized.
@@ -672,7 +672,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: ASCII Detection Has High False-Positive Risk
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):148
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):148
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Any single matching symbol triggers “diagram found.”
@@ -682,7 +682,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Entire Narrative Is Treated As Diagram Text
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):149
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):149
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If one diagram char exists in narrative, the full narrative string is stored as `ASCII_ART`.
@@ -692,7 +692,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: Diagram Truncation Can Corrupt Rendering
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):163
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):163
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `ASCII_ART` is cut at 1000 chars regardless of line/box boundaries.
@@ -702,7 +702,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: No Diagram Deduplication
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):144
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):144
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Duplicate diagrams are appended repeatedly.
@@ -712,7 +712,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Decision Option Extraction Is Case-Sensitive
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):180
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):180
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Only facts containing exact `Option` / `Alternative` are considered.
@@ -722,7 +722,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-11: Regex Bug Misparses “chose …” Decisions
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `match(/chose|selected:?\s+([^\.\n]+)/i)` only captures for `selected`, not `chose`.
@@ -732,7 +732,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-12: Silent Fallback to First Option Can Fabricate Choice
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):183
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** If chosen text isn’t parsed, code defaults to `options[0]`.
@@ -742,7 +742,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: Generated “ASCII Art” Is Unicode, Not Strict ASCII
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):173
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):173
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Auto flowcharts use Unicode box/arrow glyphs via generator, not 7-bit ASCII.
@@ -752,7 +752,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-14: Diagram Extractor Output Is Not Effectively Integrated Into Template Sections
-- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts):212
+- **File:** [diagram-extractor.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts):212
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Extractor returns `DIAGRAMS`, `AUTO_CONVERSATION_FLOWCHART`, `AUTO_DECISION_TREES`, but template section uses `WORKFLOW_FLOWCHART`/`HAS_WORKFLOW_DIAGRAM` from separate workflow data path; extracted diagram artifacts are not placed in a dedicated rendered section.

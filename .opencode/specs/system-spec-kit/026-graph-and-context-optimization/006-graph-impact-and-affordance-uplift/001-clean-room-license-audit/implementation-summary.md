@@ -155,14 +155,14 @@ The audit ran as a single autonomous pass under the clean-room rule:
 | Fail-closed rule articulated | PASS — binding rule + 4-item enforcement mechanics. |
 | Sign-off recorded in this file | PASS — sub-phase governance agent APPROVED; orchestrator PENDING. |
 | Phase-root files untouched | PASS — `012/spec.md`, `012/plan.md`, `012/tasks.md`, `012/checklist.md`, `012/decision-record.md`, `012/implementation-summary.md` left unmodified. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ./001-clean-room-license-audit --strict` | FAILED — template-section conformance (cosmetic only; not a contract violation). Wave-3 canonical evidence captured 2026-04-25 by 010/007/T-B. See `Verification — validate.sh` section below. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ./001-clean-room-license-audit --strict` | FAILED — template-section conformance (cosmetic only; not a contract violation). Wave-3 canonical evidence captured 2026-04-25 by 010/007/T-B. See `Verification — validate.sh` section below. |
 
 ### Verification — validate.sh
 
 **Wave-3 canonical evidence (captured 2026-04-25 by 010/007/T-B):**
 
 ```
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/001-clean-room-license-audit \
   --strict
 → FAILED (template-section conformance)

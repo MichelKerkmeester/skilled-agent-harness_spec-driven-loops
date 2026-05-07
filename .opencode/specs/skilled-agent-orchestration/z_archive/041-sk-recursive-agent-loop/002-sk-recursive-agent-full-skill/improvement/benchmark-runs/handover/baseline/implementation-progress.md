@@ -23,7 +23,7 @@
 ### 2.3 Files Modified
 | File | Change Summary | Status |
 | --- | --- | --- |
-| `.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` | Added deterministic fixture runner | COMPLETE |
+| `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` | Added deterministic fixture runner | COMPLETE |
 | `spec.md` | Full-skill scope remains bounded | COMPLETE |
 
 ## 3. For Next Session

@@ -740,13 +740,13 @@ spec_creation_parallel:
 ### New Files (Create)
 
 ```
-.opencode/skill/system-spec-kit/templates/core/
+.opencode/skills/system-spec-kit/templates/core/
 ├── spec-core.md
 ├── plan-core.md
 ├── tasks-core.md
 └── impl-summary-core.md
 
-.opencode/skill/system-spec-kit/templates/addendum/
+.opencode/skills/system-spec-kit/templates/addendum/
 ├── level2-verify/
 │   ├── spec-verify.md
 │   ├── plan-verify.md
@@ -764,7 +764,7 @@ spec_creation_parallel:
 ### Existing Files (Regenerate)
 
 ```
-.opencode/skill/system-spec-kit/templates/
+.opencode/skills/system-spec-kit/templates/
 ├── level_1/*.md   (from core only)
 ├── level_2/*.md   (core + L2)
 ├── level_3/*.md   (core + L2 + L3)
@@ -774,7 +774,7 @@ spec_creation_parallel:
 ### Configuration Files (Update)
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── assets/parallel_dispatch_config.md
 ├── config/complexity-config.jsonc
 ├── scripts/spec/create.sh

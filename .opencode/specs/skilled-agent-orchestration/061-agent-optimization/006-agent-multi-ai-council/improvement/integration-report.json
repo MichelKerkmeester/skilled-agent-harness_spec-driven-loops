@@ -4,7 +4,7 @@
   "timestamp": "2026-05-02T17:00:37.491Z",
   "surfaces": {
     "canonical": {
-      "path": ".opencode/agent/ultra-think.md",
+      "path": ".opencode/agents/ultra-think.md",
       "exists": true,
       "frontmatter": {
         "name": "ultra-think",
@@ -49,19 +49,19 @@
     "yamlWorkflows": [],
     "skills": [
       {
-        "path": ".opencode/skill/cli-claude-code/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "referenceCount": 3
       },
       {
-        "path": ".opencode/skill/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-gemini/SKILL.md",
+        "path": ".opencode/skills/cli-gemini/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "referenceCount": 5
       }
     ],
@@ -72,7 +72,7 @@
       }
     ],
     "skillAdvisor": {
-      "path": ".opencode/skill/scripts/skill_advisor.py",
+      "path": ".opencode/skills/scripts/skill_advisor.py",
       "matched": false
     }
   },

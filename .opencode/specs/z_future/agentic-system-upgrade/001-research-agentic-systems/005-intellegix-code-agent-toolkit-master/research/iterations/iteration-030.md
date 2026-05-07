@@ -14,10 +14,10 @@ I compared the external repo's narrower orchestration contract with the local ho
 ## Evidence
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:130-146]` The external repo keeps project memory and standards in a lighter home-directory pattern system, reflecting a narrower operational scope.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:26-33]` The external single-loop model intentionally rejects decomposition and concurrent public modes for the main path.
-- `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:129-170]` The local startup hook can already inject memory status, code-graph state, recovery tools, structural context, and continuity hints.
-- `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105]` The local stop hook can already auto-save bounded context through `generate-context.js`.
-- `[SOURCE: .opencode/skill/system-spec-kit/SKILL.md:30-38]` The local platform explicitly targets file modification workflows across code, docs, configs, templates, and tooling files.
-- `[SOURCE: .opencode/skill/system-spec-kit/SKILL.md:61-73]` It also carries strong spec-folder exclusivity and artifact ownership constraints that the external repo does not try to match.
+- `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:129-170]` The local startup hook can already inject memory status, code-graph state, recovery tools, structural context, and continuity hints.
+- `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105]` The local stop hook can already auto-save bounded context through `generate-context.js`.
+- `[SOURCE: .opencode/skills/system-spec-kit/SKILL.md:30-38]` The local platform explicitly targets file modification workflows across code, docs, configs, templates, and tooling files.
+- `[SOURCE: .opencode/skills/system-spec-kit/SKILL.md:61-73]` It also carries strong spec-folder exclusivity and artifact ownership constraints that the external repo does not try to match.
 
 ## Analysis
 The external repo's simplicity is a useful design pressure, but not a full replacement model. `system-spec-kit` owns stricter documentation, broader context preservation, deeper packet workflows, and stronger recovery guarantees. Those things require more internal machinery. Deleting that machinery would not create a better version of the local system; it would create a narrower different product.
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should reject broad deletion of hooks, memory integration, and spec artifacts in pursuit of external-style minimalism. Thin the shell, keep the capabilities.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `CLAUDE.md`, `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- **Target file or module:** `CLAUDE.md`, `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
 - **Change type:** rejected
 - **Blast radius:** architectural
 - **Prerequisites:** none

@@ -40,4 +40,4 @@ Research upgrading Spec Kit Memory system with ideas and principles from the cla
 
 ## References
 - Source: https://github.com/GMaN1911/claude-cognitive
-- Current system: .opencode/skill/system-spec-kit/
+- Current system: .opencode/skills/system-spec-kit/

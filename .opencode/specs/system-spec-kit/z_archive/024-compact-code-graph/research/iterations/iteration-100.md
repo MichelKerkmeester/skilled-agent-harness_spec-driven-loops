@@ -7,7 +7,7 @@ Analyze what specific improvements to CODEX.md, AGENTS.md, and GEMINI.md would c
 
 ### Current State
 
-Claude gets automatic context transport from three repo-implemented hooks: `PreCompact`, `SessionStart`, and `Stop`, registered in `.claude/settings.local.json` and documented in the hook README. [SOURCE: .claude/settings.local.json:5-40] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:7-23]
+Claude gets automatic context transport from three repo-implemented hooks: `PreCompact`, `SessionStart`, and `Stop`, registered in `.claude/settings.local.json` and documented in the hook README. [SOURCE: .claude/settings.local.json:5-40] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:7-23]
 
 `CODEX.md` is a short supplement focused on manual recovery and tool routing, while `AGENTS.md` and `GEMINI.md` contain the full universal framework, including session-start recovery for Copilot/Gemini. [SOURCE: CODEX.md:1-40] [SOURCE: AGENTS.md:69-77] [SOURCE: GEMINI.md:69-77]
 
@@ -15,7 +15,7 @@ Gemini and Agents auto-load both `GEMINI.md` and `AGENTS.md` through `context.fi
 
 ### Problem
 
-Non-hook CLIs lack Claude's automatic lifecycle execution, so context preservation depends on the agent remembering to run recovery steps. That leaves the "same tools, weaker transport" gap: Claude auto-caches, auto-reinjects, and auto-snapshots; Codex/Copilot/Gemini mostly document those behaviors instead of enforcing them. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:16-31] [SOURCE: CODEX.md:5-21]
+Non-hook CLIs lack Claude's automatic lifecycle execution, so context preservation depends on the agent remembering to run recovery steps. That leaves the "same tools, weaker transport" gap: Claude auto-caches, auto-reinjects, and auto-snapshots; Codex/Copilot/Gemini mostly document those behaviors instead of enforcing them. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:16-31] [SOURCE: CODEX.md:5-21]
 
 ## Analysis
 

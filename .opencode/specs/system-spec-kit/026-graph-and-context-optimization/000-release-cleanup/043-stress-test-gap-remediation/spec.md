@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "../042-stress-coverage-audit-and-run/coverage-matrix.csv"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "043-spec-init"

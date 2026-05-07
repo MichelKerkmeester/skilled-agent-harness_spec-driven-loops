@@ -11,8 +11,8 @@ Compared BAD's fresh-context coordinator flow to local deep-research/deep-review
 
 ## Evidence
 - BAD intentionally keeps the coordinator thin and relies on fresh-context delegated work plus explicit continuation checks. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:16-25] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/references/pre-continuation-checks.md:3-24]
-- Local `deep-research` and `deep-review` agents are explicitly single-iteration LEAF agents that externalize markdown and JSONL state for progressive synthesis and safe continuation. [SOURCE: .opencode/agent/deep-research.md:24-32] [SOURCE: .opencode/agent/deep-research.md:167-212] [SOURCE: .opencode/agent/deep-review.md:21-31] [SOURCE: .opencode/agent/deep-review.md:45-57]
-- Local `context-prime` and `handover` are much more specialized bootstrap/continuation helpers that sit next to the main exploration and loop agents. [SOURCE: .opencode/agent/context-prime.md:24-45] [SOURCE: .opencode/agent/handover.md:24-58]
+- Local `deep-research` and `deep-review` agents are explicitly single-iteration LEAF agents that externalize markdown and JSONL state for progressive synthesis and safe continuation. [SOURCE: .opencode/agents/deep-research.md:24-32] [SOURCE: .opencode/agents/deep-research.md:167-212] [SOURCE: .opencode/agents/deep-review.md:21-31] [SOURCE: .opencode/agents/deep-review.md:45-57]
+- Local `context-prime` and `handover` are much more specialized bootstrap/continuation helpers that sit next to the main exploration and loop agents. [SOURCE: .opencode/agents/context-prime.md:24-45] [SOURCE: .opencode/agents/handover.md:24-58]
 
 ## Analysis
 This is a good place to resist over-simplification. BAD and local deep loops share the "fresh context" instinct, but `system-spec-kit` is carrying richer packet-local artifacts, cross-iteration synthesis, and stricter reproducibility requirements. The LEAF model earns its complexity. The part that still looks over-sliced is the bootstrap/handover adjacency around it, not the iteration core itself.
@@ -43,7 +43,7 @@ confidence: high
 finding: Do not replace the LEAF iteration pattern with a thinner coordinator-only loop. The local deep-loop architecture is still justified; the real UX cleanup is around how adjacent bootstrap and handover helpers are presented.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/deep-research.md`
+- **Target file or module:** `.opencode/agents/deep-research.md`
 - **Change type:** rejected simplification
 - **Blast radius:** architectural
 - **Prerequisites:** none

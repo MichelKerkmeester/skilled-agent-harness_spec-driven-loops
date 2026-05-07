@@ -4,18 +4,18 @@ Iteration 5 focused on the FIX-009 precedence remediation for `includeSkills` ve
 
 ## Files Reviewed (path:line list)
 
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:41-50
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166
-- .opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:26-34
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:233-236
-- .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:488-496
-- .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:615-622
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:248-309
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:253-309
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:252-264
-- .opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:41-50
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166
+- .opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:26-34
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:233-236
+- .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:488-496
+- .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:615-622
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:248-309
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:253-309
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:252-264
+- .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/spec.md:119-128
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/plan.md:98-107
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:162-181
@@ -37,8 +37,8 @@ None.
 
 - claim: `resolveIndexScopePolicy()` now implements the FIX-009 precedence rule correctly, but the required regression coverage is incomplete in `code-graph-indexer.vitest.ts`. The focused indexer block covers default/missing-arg behavior, env-enabled missing-arg behavior, one per-call true case with env false, and explicit false over env true; it does not cover `(env=undef, includeSkills=false)` or `(env=true, includeSkills=true)` in `code-graph-indexer.vitest.ts`, even though this review pass requires all six combinations there and classifies missing coverage as P1. The missing true-over-env-true case matters because source semantics should still be `scan-argument` when the env also enables skills, not `env`.
 - evidenceRefs:
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-300
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-300
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
   - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:168-180
   - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/plan.md:100-106
 - counterevidenceSought: I searched all in-scope `mcp_server` files for `resolveIndexScopePolicy`, `includeSkills`, and `SPECKIT_CODE_GRAPH_INDEX_SKILLS`. `code-graph-scan.vitest.ts` has integration coverage for one-call opt-in and explicit false over env true, and `tool-input-schema.vitest.ts` checks non-boolean rejection, but I found no `code-graph-indexer.vitest.ts` assertion for env-undefined plus explicit false or env-true plus explicit true. The production resolver itself uses `typeof input.includeSkills === 'boolean'`, so this finding is test coverage, not a behavior regression.

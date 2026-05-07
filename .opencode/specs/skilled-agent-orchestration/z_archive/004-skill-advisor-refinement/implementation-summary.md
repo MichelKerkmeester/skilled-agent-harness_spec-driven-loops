@@ -45,7 +45,7 @@ Discovery now uses in-process caching with mtime invalidation, frontmatter-only 
 
 ### Structural mode and long-term verification gates
 
-Structural batch mode support (`--batch-file`, `--batch-stdin`) is implemented to reduce subprocess overhead. Permanent harnesses were added for regression and benchmark validation with versioned fixtures and machine-readable outputs. Script docs were also synchronized to implementation reality in both `.opencode/skill/scripts/README.md` and `.opencode/skill/scripts/SET-UP_GUIDE.md`.
+Structural batch mode support (`--batch-file`, `--batch-stdin`) is implemented to reduce subprocess overhead. Permanent harnesses were added for regression and benchmark validation with versioned fixtures and machine-readable outputs. Script docs were also synchronized to implementation reality in both `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md`.
 
 ---
 
@@ -59,7 +59,7 @@ Structural batch mode support (`--batch-file`, `--batch-stdin`) is implemented t
 
 ### How It Was Delivered
 
-Delivery followed implementation then evidence-driven verification. First, core behavior and runtime helpers were updated in `skill_advisor.py` and `skill_advisor_runtime.py`. Next, permanent harnesses and fixtures were finalized in `skill_advisor_regression.py`, `skill_advisor_bench.py`, and `fixtures/skill_advisor_regression_cases.jsonl`. Finally, docs and operational commands were synced in `.opencode/skill/scripts/README.md`, `.opencode/skill/scripts/SET-UP_GUIDE.md`, and this Level 3 spec folder.
+Delivery followed implementation then evidence-driven verification. First, core behavior and runtime helpers were updated in `skill_advisor.py` and `skill_advisor_runtime.py`. Next, permanent harnesses and fixtures were finalized in `skill_advisor_regression.py`, `skill_advisor_bench.py`, and `fixtures/skill_advisor_regression_cases.jsonl`. Finally, docs and operational commands were synced in `.opencode/skills/scripts/README.md`, `.opencode/skills/scripts/SET-UP_GUIDE.md`, and this Level 3 spec folder.
 
 ---
 
@@ -94,10 +94,10 @@ Delivery followed implementation then evidence-driven verification. First, core 
 
 | Check | Result |
 |-------|--------|
-| `python3 -m py_compile .opencode/skill/scripts/skill_advisor.py .opencode/skill/scripts/skill_advisor_runtime.py .opencode/skill/scripts/skill_advisor_regression.py .opencode/skill/scripts/skill_advisor_bench.py` | PASS |
-| `python3 .opencode/skill/scripts/skill_advisor.py --health` | PASS (`skills_found=16`, `command_bridges_found=2`) |
-| `python3 .opencode/skill/scripts/skill_advisor_regression.py --dataset .opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl --out .opencode/skill/scripts/out/regression-report.json` | PASS (`overall_pass=true`, `total_cases=34`, `top1_accuracy=1.0`, `p0_pass_rate=1.0`, `command_bridge_fp_rate=0.0`) |
-| `python3 .opencode/skill/scripts/skill_advisor_bench.py --dataset .opencode/skill/scripts/fixtures/skill_advisor_regression_cases.jsonl --runs 7 --out .opencode/skill/scripts/out/benchmark-report.json` | PASS (`overall_pass=true`, `subprocess p95=46.9855 ms`, `inprocess warm p95=0.6081 ms`, `throughput_multiplier=25.8538x`) |
+| `python3 -m py_compile .opencode/skills/scripts/skill_advisor.py .opencode/skills/scripts/skill_advisor_runtime.py .opencode/skills/scripts/skill_advisor_regression.py .opencode/skills/scripts/skill_advisor_bench.py` | PASS |
+| `python3 .opencode/skills/scripts/skill_advisor.py --health` | PASS (`skills_found=16`, `command_bridges_found=2`) |
+| `python3 .opencode/skills/scripts/skill_advisor_regression.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --out .opencode/skills/scripts/out/regression-report.json` | PASS (`overall_pass=true`, `total_cases=34`, `top1_accuracy=1.0`, `p0_pass_rate=1.0`, `command_bridge_fp_rate=0.0`) |
+| `python3 .opencode/skills/scripts/skill_advisor_bench.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --runs 7 --out .opencode/skills/scripts/out/benchmark-report.json` | PASS (`overall_pass=true`, `subprocess p95=46.9855 ms`, `inprocess warm p95=0.6081 ms`, `throughput_multiplier=25.8538x`) |
 
 ---
 

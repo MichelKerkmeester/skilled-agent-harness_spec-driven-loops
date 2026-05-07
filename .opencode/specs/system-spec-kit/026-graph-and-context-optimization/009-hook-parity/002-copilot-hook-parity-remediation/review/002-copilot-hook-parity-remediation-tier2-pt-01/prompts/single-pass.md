@@ -15,7 +15,7 @@ Per the original 026 release-readiness program assessment:
 
 1. **Read inputs**:
    - `specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/{spec,plan,tasks,checklist,implementation-summary,decision-record}.md`
-   - The custom-instructions writer code (likely under `.opencode/skill/system-spec-kit/mcp_server/lib/hook/copilot/` or sibling)
+   - The custom-instructions writer code (likely under `.opencode/skills/system-spec-kit/mcp_server/lib/hook/copilot/` or sibling)
    - Focused test files cited
    - Sample `research/` if material
 

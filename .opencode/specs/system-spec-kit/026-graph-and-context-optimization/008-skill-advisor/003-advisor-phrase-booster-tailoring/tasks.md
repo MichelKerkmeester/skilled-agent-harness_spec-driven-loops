@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Migration + Additions
 
-- [ ] T010 Apply all `duplicate-remove` dispositions: delete from INTENT_BOOSTERS (keep PHRASE version intact) (.opencode/skill/skill-advisor/scripts/skill_advisor.py)
+- [ ] T010 Apply all `duplicate-remove` dispositions: delete from INTENT_BOOSTERS (keep PHRASE version intact) (.opencode/skills/skill-advisor/scripts/skill_advisor.py)
 - [ ] T011 Apply all `migrate` dispositions: delete from INTENT_BOOSTERS, add to PHRASE_INTENT_BOOSTERS as `"phrase": [(skill, weight)]` preserving original weight unless audit says otherwise (same file)
 - [ ] T012 Add 5+ new PHRASE_INTENT_BOOSTERS entries from T006 draft (same file)
 - [ ] T013 Add inline comment block near PHRASE_INTENT_BOOSTERS definition: role of each dict, anti-pattern warning not to re-add multi-word keys to INTENT_BOOSTERS (same file)

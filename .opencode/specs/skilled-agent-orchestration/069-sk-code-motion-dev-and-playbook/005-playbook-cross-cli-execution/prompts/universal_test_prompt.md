@@ -14,7 +14,7 @@ USER REQUEST: {USER_PROMPT}
 For the request above, REPORT:
 1. Run the skill-advisor probe (if available; otherwise infer the top-1 skill).
 2. Detect the code surface (WEBFLOW / OPENCODE / UNKNOWN) per sk-code rules.
-3. List exactly which references and assets you would load (verbatim relative paths under `.opencode/skill/sk-code/`).
+3. List exactly which references and assets you would load (verbatim relative paths under `.opencode/skills/sk-code/`).
 4. Identify any agent dispatch (or "none" for read-only).
 5. Provide the user-visible response you would give.
 

@@ -10,30 +10,30 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:63-78`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/implementation-summary.md:64-80`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/resource-map.md:56-90`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-38`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:141-157`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1470`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:242-251`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-303`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:531-563`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:229-233`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:216-219`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:287-295`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:168-278`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:562-577`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:488-496`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:683-746`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-289`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:302-325`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:252-277`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:217-223`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:302-319`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:534-545`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:615-628`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:236-270`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:256-265`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-38`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:141-157`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1305`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1470`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:242-251`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-303`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:531-563`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:229-233`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:216-219`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:287-295`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:168-278`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:562-577`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:488-496`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:683-746`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-289`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:302-325`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:252-277`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:217-223`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:302-319`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:534-545`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:615-628`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:236-270`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:256-265`
 
 ## Findings by Severity
 
@@ -47,10 +47,10 @@ None.
 
 - **claim**: The scope policy treats `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` as stronger than an explicit per-call `includeSkills:false`, so a maintainer process with the env enabled cannot perform a one-off default/end-user-only scan through `code_graph_scan({ includeSkills:false })`.
 - **evidenceRefs**:
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-38`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:216-219`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:266-289`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:252-277`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-38`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:216-219`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:266-289`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:252-277`
   - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/plan.md:144-154`
 - **evidence**: `resolveIndexScopePolicy()` computes `includeSkills` as `input.includeSkills === true || envIncludesSkills`; only `includeSkills === true` gets scan-argument source, while env true wins whenever the argument is false or absent. `handleCodeGraphScan()` passes `args.includeSkills` into that resolver. Tests cover default false, env true, and per-call true, but not env true plus explicit per-call false. The plan describes the per-call field as deterministic control before policy collapse.
 - **counterevidenceSought**: I checked the spec, README, env reference, implementation summary, and tests for language or cases saying `includeSkills` is intentionally a true-only opt-in and cannot disable an env-enabled process. The docs describe env and `includeSkills:true` opt-ins, but I did not find a statement that `includeSkills:false` is ignored by design.
@@ -66,10 +66,10 @@ None.
 
 ## Traceability Checks (which spec/checklist claims you verified)
 
-- **F1 default exclusion**: Verified default policy path excludes `.opencode/skill/**` through both `shouldIndexForCodeGraph()` and default `excludeGlobs`. Evidence: `spec.md:119`, `index-scope.ts:56-65`, `indexer-types.ts:141-157`, `code-graph-indexer.vitest.ts:257-264`.
+- **F1 default exclusion**: Verified default policy path excludes `.opencode/skills/**` through both `shouldIndexForCodeGraph()` and default `excludeGlobs`. Evidence: `spec.md:119`, `index-scope.ts:56-65`, `indexer-types.ts:141-157`, `code-graph-indexer.vitest.ts:257-264`.
 - **F2 documented opt-in**: Verified env and per-call true opt-ins are implemented and documented. Evidence: `spec.md:120`, `index-scope-policy.ts:30-38`, `tool-schemas.ts:562-577`, `README.md:250-260`, `ENV_REFERENCE.md:261`.
 - **CHK-022 edge cases**: Partially verified. Default false, env true, and per-call true are covered; env true plus explicit per-call false is missing. Evidence: `checklist.md:74-78`, `code-graph-indexer.vitest.ts:266-289`, `code-graph-scan.vitest.ts:252-277`.
-- **CHK-032 deny-by-default path filtering**: Verified for `.opencode/skill/example.ts` and `mcp-coco-index/mcp_server` under opt-in. Evidence: `checklist.md:85-88`, `code-graph-indexer.vitest.ts:257-295`.
+- **CHK-032 deny-by-default path filtering**: Verified for `.opencode/skills/example.ts` and `mcp-coco-index/mcp_server` under opt-in. Evidence: `checklist.md:85-88`, `code-graph-indexer.vitest.ts:257-295`.
 - **Resource map coverage**: Actual changed implementation files are listed in the map, including the added policy helper, but the map also lists several Phase 2 handler files that were not changed in the current HEAD diff. Evidence: `resource-map.md:56-90`.
 
 ## Verdict — CONDITIONAL

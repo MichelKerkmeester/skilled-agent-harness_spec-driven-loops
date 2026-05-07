@@ -38,8 +38,8 @@ and then delete out-of-scope rows while status/startup surfaces still present th
 The manual code_graph_scan path still bypasses the staged persistence discipline used by ensure-ready,
 so failed writes can mark broken files fresh and hide stale structural data.
 Target Files Modified
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts` |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts` |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` |
 ```
 
 ### Negative Knowledge

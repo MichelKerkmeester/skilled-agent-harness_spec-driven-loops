@@ -83,7 +83,7 @@ The phase was delivered by first reading all Phase 1 artifacts, then running a d
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon` | PASS |
 | `git diff --check -- .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon` | PASS |
 | `ls research/iterations/iteration-0{11,12,13,14,15,16,17,18,19,20}.md` | PASS |
 | `tail -n 12 research/deep-research-state.jsonl` | PASS, shows appended Phase 2 rows |

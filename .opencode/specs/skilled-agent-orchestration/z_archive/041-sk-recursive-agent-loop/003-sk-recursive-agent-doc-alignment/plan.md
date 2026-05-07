@@ -65,7 +65,7 @@ This phase closes the remaining structural debt after phases `001` and `002`: no
 Documentation truth-sync phase under an existing parent packet
 
 ### Key Components
-- **Skill package docs**: `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/skill/sk-improve-agent/README.md`, `references/`, `assets/`
+- **Skill package docs**: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/README.md`, `references/`, `assets/`
 - **Related runtime docs**: canonical loop command and canonical loop agent
 - **Parent packet docs**: root `041` phase map, tasks, checklist, and implementation summary
 - **Registry metadata**: `.opencode/specs/descriptions.json`
@@ -87,7 +87,7 @@ Normalize the package and related surfaces first, then update the packet docs to
 
 ### Phase 2: sk-doc Alignment
 
-- [x] Align `.opencode/skill/sk-improve-agent/SKILL.md` and `.opencode/skill/sk-improve-agent/README.md`
+- [x] Align `.opencode/skills/sk-improve-agent/SKILL.md` and `.opencode/skills/sk-improve-agent/README.md`
 - [x] Align all markdown references and markdown assets
 - [x] Align the canonical loop command and canonical loop agent
 - [x] Update packet-linked examples and metadata to point at the new phase
@@ -106,7 +106,7 @@ Normalize the package and related surfaces first, then update the packet docs to
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Packaging | `sk-improve-agent` package shape | `python3 .opencode/skill/sk-doc/scripts/package_skill.py --check` |
+| Packaging | `sk-improve-agent` package shape | `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check` |
 | Validation | README | `validate_document.py --type readme` |
 | Validation | Command and agent | `validate_document.py --type command` and `--type agent` |
 | Validation | References and markdown assets | `validate_document.py --type reference` and `--type asset` |

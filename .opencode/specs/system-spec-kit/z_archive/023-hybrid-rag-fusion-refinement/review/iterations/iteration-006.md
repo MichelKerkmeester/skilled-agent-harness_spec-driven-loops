@@ -16,13 +16,13 @@ D6 Reliability — context capture path
 ## Findings
 ### P1-023-007: CLI `--session-id` save path is wired through the surface but dropped before workflow capture
 - Dimension: D6 Reliability
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:398]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:562]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:265]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:589]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:791]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:832]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1431]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:398]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:562]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:265]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:589]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:791]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:832]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1431]
 - Impact: The operator-facing flag suggests deterministic session targeting, but the current workflow never consumes it and may save against a different synthesized session id.
 - Final severity: P1
 
@@ -31,10 +31,10 @@ D6 Reliability — context capture path
   "type": "claim-adjudication",
   "claim": "The explicit session-selection contract for generate-context is currently unreliable.",
   "evidenceRefs": [
-    ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:398",
-    ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:562",
-    ".opencode/skill/system-spec-kit/scripts/core/workflow.ts:265",
-    ".opencode/skill/system-spec-kit/scripts/core/workflow.ts:589"
+    ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:398",
+    ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:562",
+    ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:265",
+    ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:589"
   ],
   "counterevidenceSought": "Checked whether normalized payload ingestion or workflow options honor the forwarded session id; the cited workflow path ignores it.",
   "alternativeExplanation": "If session selection is intentionally best-effort, the CLI surface should not present it as a deterministic control.",
@@ -53,13 +53,13 @@ D6 Reliability — context capture path
 - Verified that memory-save recovery paths exist even though explicit session targeting is unreliable.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:265]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:589]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:791]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:832]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:398]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:562]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1431]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:265]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:589]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:791]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:832]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:398]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:562]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1431]
 
 ## Assessment
 - Confirmed findings: 1

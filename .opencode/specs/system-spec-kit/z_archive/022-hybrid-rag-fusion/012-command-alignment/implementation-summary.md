@@ -47,7 +47,7 @@ This reconciliation pass updated the canonical 012 pack so it reflects what is a
 
 **Key Metrics**
 - 33 MCP tools in `tool-schemas.ts`
-- 4 live memory commands in `.opencode/command/memory/`
+- 4 live memory commands in `.opencode/commands/memory/`
 - `/memory:search` owns retrieval, `memory_quick_search`, analysis/eval tooling, and `memory_get_learning_history`
 - `/spec_kit:resume` owns session recovery and crash/interrupted-session continuation
 - `/memory:manage ingest` owns async ingest workflows
@@ -102,8 +102,8 @@ This reconciliation pass updated the canonical 012 pack so it reflects what is a
 
 | Check | Result | Evidence |
 |-------|--------|----------|
-| Live tool count | PASS | Counted 33 tool definitions in `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` |
-| Live command count | PASS | `.opencode/command/memory/` contains `search`, `learn`, `manage`, and `save`, plus `README.txt`, and `.opencode/command/spec_kit/resume.md` owns recovery |
+| Live tool count | PASS | Counted 33 tool definitions in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` |
+| Live command count | PASS | `.opencode/commands/memory/` contains `search`, `learn`, `manage`, and `save`, plus `README.txt`, and `.opencode/commands/spec_kit/resume.md` owns recovery |
 | Retrieval ownership | PASS | search.md frontmatter and Appendix A include `memory_quick_search`; README maps retrieval tools to `/memory:search` |
 | Learning-history ownership | PASS | README maps `memory_get_learning_history` to `/memory:search`; command docs use `/memory:search history <specFolder>` |
 | Shared-lifecycle ownership | PASS | manage.md argument patterns and README map shared-memory lifecycle to `/memory:manage shared` |

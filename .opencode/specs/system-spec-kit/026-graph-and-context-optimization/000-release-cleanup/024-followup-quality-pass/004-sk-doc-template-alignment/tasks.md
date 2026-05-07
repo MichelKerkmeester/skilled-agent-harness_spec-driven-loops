@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read `.opencode/skill/sk-doc/SKILL.md`
+- [x] T001 Read `.opencode/skills/sk-doc/SKILL.md`
 - [x] T002 [P] Read sk-doc references and asset templates
 - [x] T003 [P] Read system-spec-kit Level 2 templates
 - [x] T004 Discover markdown/text docs touched by packets 031 through 036

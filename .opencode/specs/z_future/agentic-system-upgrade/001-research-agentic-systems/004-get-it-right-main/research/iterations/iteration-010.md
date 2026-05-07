@@ -15,9 +15,9 @@ I used the external "when to use" guidance and the phase brief's cross-phase bou
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:5-34] The external workflow is aimed at brownfield codebases where understanding is the bottleneck and where agents keep making the same category of mistakes.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/when-to-use.md:35-52] It is explicitly not for greenfield work, simple isolated changes, or speed-first tasks.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/phase-research-prompt.md:44-61] The phase brief says overlap with phase 001 should be noted only where retry feedback might later feed optimization systems, while keeping this phase focused on retry architecture and feedback transfer.
-- [SOURCE: .opencode/command/spec_kit/deep-research.md:147-173] Internal command design already supports specialized modes with their own YAML workflows rather than forcing one default path for every task.
-- [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-276] The internal deep-research loop already shows how a specialized opt-in controller can enforce its own convergence logic without taking over all workflows.
-- [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:62-69] Internal constitutional guidance already distinguishes different gate types and reinforces that workflow behavior is intentionally routed rather than globally uniform.
+- [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-173] Internal command design already supports specialized modes with their own YAML workflows rather than forcing one default path for every task.
+- [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-276] The internal deep-research loop already shows how a specialized opt-in controller can enforce its own convergence logic without taking over all workflows.
+- [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:62-69] Internal constitutional guidance already distinguishes different gate types and reinforces that workflow behavior is intentionally routed rather than globally uniform.
 
 ## Analysis
 The external repo is very clear that this loop is a tool for a specific failure class, not a universal default. That matters even more in `system-spec-kit`, where many tasks are documentation-heavy, validation-heavy, or intentionally narrow. The right adoption is an explicit mode or companion command for complex brownfield implementation retries. Phase 001 can later mine retry outcomes for optimization or training signal, but phase 004 should stop at defining the retry controller and its state boundaries.
@@ -27,7 +27,7 @@ confidence: high
 finding: A Get It Right-style retry loop should enter `system-spec-kit` only as an opt-in mode for high-friction brownfield work. It should not become the default implementation path, and it should not absorb the optimization concerns that belong to phase 001.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/implement.md`
+- **Target file or module:** `.opencode/commands/spec_kit/implement.md`
 - **Change type:** modified existing
 - **Blast radius:** small
 - **Prerequisites:** write clear fit/non-fit guidance and name the retry mode distinctly so operators know when to reach for it

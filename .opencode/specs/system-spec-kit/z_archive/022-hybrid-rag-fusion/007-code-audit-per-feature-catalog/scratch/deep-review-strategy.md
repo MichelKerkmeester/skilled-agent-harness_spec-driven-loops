@@ -13,8 +13,8 @@ Persistent brain for the deep review of 007-code-audit-per-feature-catalog. Trac
 
 ### Review Scope
 - **Target**: 22 child spec folders auditing 220+ features of the Spec Kit Memory MCP server
-- **Source Code**: 251 code files, 317 test files in `.opencode/skill/system-spec-kit/mcp_server/`
-- **Feature Catalog**: 19 categories in `.opencode/skill/system-spec-kit/feature_catalog/`
+- **Source Code**: 251 code files, 317 test files in `.opencode/skills/system-spec-kit/mcp_server/`
+- **Feature Catalog**: 19 categories in `.opencode/skills/system-spec-kit/feature_catalog/`
 - **Standards**: sk-code-opencode (JS/TS/Python/Shell), system-spec-kit architecture
 - **Prior Work**: Original audit (2026-03-22) found 178 MATCH, 39 PARTIAL, 0 MISMATCH. Re-audit (2026-03-23) found 133 MATCH, 84 PARTIAL, 5 MISMATCH including 4 P0 deprecated-as-active findings.
 

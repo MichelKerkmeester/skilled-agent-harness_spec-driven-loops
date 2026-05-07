@@ -37,7 +37,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Updated | OK | Deleted gate at former lines 927-932; reduced import on line 61 to `{ checkDatabaseUpdated }` |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Updated | OK | Deleted gate at former lines 927-932; reduced import on line 61 to `{ checkDatabaseUpdated }` |
 
 ---
 
@@ -58,4 +58,4 @@ _memory:
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../010/graph-metadata.json` | Created | OK | Graph rollout metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Analyzed | OK | Lines 1830-1835 referenced for T016-T019 lazy-loading context (NOT modified — out of scope) |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Analyzed | OK | Lines 1830-1835 referenced for T016-T019 lazy-loading context (NOT modified — out of scope) |

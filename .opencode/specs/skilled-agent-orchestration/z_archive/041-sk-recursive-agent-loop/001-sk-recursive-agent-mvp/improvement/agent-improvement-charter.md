@@ -11,7 +11,7 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 
 ## MVP Target
 
-- Canonical source under test: `.opencode/agent/handover.md`
+- Canonical source under test: `.opencode/agents/handover.md`
 - Reason: structured prompt surface, narrow scope, clear downstream artifact contract
 
 ## Policy

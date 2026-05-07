@@ -17,8 +17,8 @@ I read the external server launcher, focusing on launch modes, child events, hea
 - Startup waits for readiness, optionally probes a health endpoint, and can kill an unhealthy server after timeout. [SOURCE: external/agentlightning/utils/server_launcher.py:138-208]
 - Threaded and subprocess modes both wait for explicit ready/error events and treat missing startup signals as hard failures that trigger shutdown. [SOURCE: external/agentlightning/utils/server_launcher.py:845-889] [SOURCE: external/agentlightning/utils/server_launcher.py:911-1007]
 - Shutdown paths are also explicit, including graceful stop, join timeouts, escalation to kill, and queue cleanup. [SOURCE: external/agentlightning/utils/server_launcher.py:833-841] [SOURCE: external/agentlightning/utils/server_launcher.py:891-907] [SOURCE: external/agentlightning/utils/server_launcher.py:1009-1045]
-- `system-spec-kit`'s deep-research loop is documented as YAML-managed init/loop/synth/save phases with a simpler error table. [SOURCE: .opencode/command/spec_kit/deep-research.md:147-173] [SOURCE: .opencode/command/spec_kit/deep-research.md:252-259]
-- The deep-research agent appends JSONL records with statuses such as `complete`, `timeout`, `error`, `stuck`, `insight`, and `thought`, but the model is still centered on iteration summaries rather than active runtime events. [SOURCE: .opencode/agent/deep-research.md:167-200]
+- `system-spec-kit`'s deep-research loop is documented as YAML-managed init/loop/synth/save phases with a simpler error table. [SOURCE: .opencode/commands/spec_kit/deep-research.md:147-173] [SOURCE: .opencode/commands/spec_kit/deep-research.md:252-259]
+- The deep-research agent appends JSONL records with statuses such as `complete`, `timeout`, `error`, `stuck`, `insight`, and `thought`, but the model is still centered on iteration summaries rather than active runtime events. [SOURCE: .opencode/agents/deep-research.md:167-200]
 
 ## Analysis
 Phase 1 already showed that Agent Lightning's attempt lifecycle is useful. The deeper discovery here is why: the external runtime does not merely record terminal states. It has explicit startup contracts, active health probing, error/ready event channels, and disciplined shutdown semantics. That architecture gives operators much clearer answers about what the system is doing right now.
@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should refactor deep-loop runtime state around explicit attempt events and readiness transitions. Keep JSONL for durable history, but add a richer runtime state model so deep-research and deep-review can distinguish initialization, ready, running, blocked, timeout, failed, recovering, and finalized states in a first-class way.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/deep-research.md` and loop workflow assets
+- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md` and loop workflow assets
 - **Change type:** architectural refactor
 - **Blast radius:** large
 - **Prerequisites:** define a durable attempt-state schema, reducer ownership, and compatibility behavior for current JSONL consumers

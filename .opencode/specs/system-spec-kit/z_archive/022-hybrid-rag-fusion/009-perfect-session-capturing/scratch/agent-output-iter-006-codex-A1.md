@@ -19,8 +19,8 @@ Investigate template-data warnings in successful workflow runs.
 **Q10.** Do successful workflow runs still emit template-data warnings? Under what conditions?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts` — Full read, find all warning emissions
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` — Where template rendering is called, how warnings are handled
+- `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts` — Full read, find all warning emissions
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` — Where template rendering is called, how warnings are handled
 
 ## Deliverable
 1. Find every warning emission in template-renderer.ts (search for "warn", "Missing", "template data")
@@ -44,19 +44,19 @@ exec
 AGENTS.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Investigate template-data warnings in successful workflow runs by analyzing template-renderer.ts and workflow.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.27s:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Investigate template-data warnings in successful workflow runs by analyzing template-renderer.ts and workflow.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 1.27s:
 python3: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
 python3: error: couldn't create cache file '/tmp/xcrun_db-ABB7PPFX' (errno=Operation not permitted)
 []
 codex
 I found only one governing `AGENTS.md` in this repo scope. Next I’m reading the renderer and workflow source end-to-end, then I’ll extract each warning path and the exact runtime conditions that trigger it.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     221 .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
-    2477 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     221 .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
+    2477 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
     2698 total
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Workflow
 // ───────────────────────────────────────────────────────────────
@@ -78,7 +78,7 @@ import {
   extractDiagrams,
   extractPhasesFromData,
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Template Renderer
 // ---------------------------------------------------------------
@@ -102,7 +102,7 @@ import { structuredLog } from '../utils/logger';
 codex
 I’ve completed a full read of `template-renderer.ts` and identified the primary warning path; I’m now tracing every `populateTemplate` call in `workflow.ts` and then scanning tests for assertions about warning behavior.
 exec
-/bin/zsh -lc "rg -n \"populateTemplate|renderTemplate|template.*warn|warn\\(|structuredLog\\('warn'|Missing template data|template data|template contract\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"populateTemplate|renderTemplate|template.*warn|warn\\(|structuredLog\\('warn'|Missing template data|template data|template contract\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 24:import { populateTemplate } from '../renderers';
 168:      reason: 'Rendered memory failed the template contract, so semantic indexing was skipped.',
 1168:        console.warn(`[workflow] file-source enrichment degraded (spec): ${msg}`);
@@ -124,29 +124,29 @@ exec
 2199:      warn(`   Quality warning: ${warning}`);
 2209:    warn(insufficiencyAbortMsg);
 exec
-/bin/zsh -lc "rg -n \"Missing template data|structuredLog\\('warn'|template data|warn\" .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"Missing template data|structuredLog\\('warn'|template data|warn\" .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 31:// Suppress warnings for these to reduce noise until features are built
 47:  // in successful flows and should not emit false-positive template-data warnings.
 145:      // 084-fix: Only warn for non-optional placeholders
 147:        structuredLog('warn', `Missing template data for: {{${key}}}`);
 exec
-/bin/zsh -lc "rg -n \"template-renderer|populateTemplate|Missing template data|warning-free|structuredLog\\('warn'|template data\" .opencode/skill/system-spec-kit -g '*test*' -g '*.spec.ts' -g '*.test.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:13:import { populateTemplate } from '../renderers';
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:119:  populateTemplate: vi.fn(async (_templateName: string, data: Record<string, unknown>) => [
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1327:    const populateTemplateMock = vi.mocked(populateTemplate);
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1328:    const previousImplementation = populateTemplateMock.getMockImplementation();
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1329:    populateTemplateMock.mockImplementationOnce(async () => [
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1372:        populateTemplateMock.mockImplementation(previousImplementation);
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:391:    const { populateTemplate } = await import('../renderers');
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:397:      const rendered = await populateTemplate('context', {
-.opencode/skill/system-spec-kit/scripts/tests/test-export-contracts.js:203:    expectedKeys: ['populateTemplate', 'renderTemplate'],
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:429:    assertDoesNotThrow(() => structuredLog('warn', 'Test warning'),
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1242:  log('\n🔬 RENDERERS: template-renderer.js');
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1246:      populateTemplate,
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1251:    } = require(path.join(SCRIPTS_DIR, 'renderers', 'template-renderer'));
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      warnSpy.mock.calls.some(([message]) => String(message).includes('Missing template data for'))
+/bin/zsh -lc "rg -n \"template-renderer|populateTemplate|Missing template data|warning-free|structuredLog\\('warn'|template data\" .opencode/skills/system-spec-kit -g '*test*' -g '*.spec.ts' -g '*.test.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:13:import { populateTemplate } from '../renderers';
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:119:  populateTemplate: vi.fn(async (_templateName: string, data: Record<string, unknown>) => [
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1327:    const populateTemplateMock = vi.mocked(populateTemplate);
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1328:    const previousImplementation = populateTemplateMock.getMockImplementation();
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1329:    populateTemplateMock.mockImplementationOnce(async () => [
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:1372:        populateTemplateMock.mockImplementation(previousImplementation);
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:391:    const { populateTemplate } = await import('../renderers');
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:397:      const rendered = await populateTemplate('context', {
+.opencode/skills/system-spec-kit/scripts/tests/test-export-contracts.js:203:    expectedKeys: ['populateTemplate', 'renderTemplate'],
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:429:    assertDoesNotThrow(() => structuredLog('warn', 'Test warning'),
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1242:  log('\n🔬 RENDERERS: template-renderer.js');
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1246:      populateTemplate,
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1251:    } = require(path.join(SCRIPTS_DIR, 'renderers', 'template-renderer'));
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      warnSpy.mock.calls.some(([message]) => String(message).includes('Missing template data for'))
 exec
-/bin/zsh -lc "sed -n '360,520p' .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '360,520p' .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ──────────────────────────────────────────────────────────────── */
 
 afterEach(() => {
@@ -168,7 +168,7 @@ afterEach(() => {
     process.env.MEMORY_DB_PATH = originalEnv.MEMORY_DB_PATH;
   }
 exec
-/bin/zsh -lc "sed -n '340,520p' .opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '340,520p' .opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
       fs.writeFileSync(
         path.join(specFolderPath, 'spec.md'),
         ['---', 'title: "Spec: Session Source Validation"', '---', '# Spec'].join('\n'),
@@ -190,20 +190,20 @@ exec
           {
             SOURCE_TRANSCRIPT_PATH: '/tmp/.claude/projects/spec-kit/session-xyz.jsonl',
 exec
-/bin/zsh -lc "rg -n \"Missing template data for|template-data|template data|warning.*template|warnSpy|structuredLog\\('warn'\" .opencode/skill/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:429:    assertDoesNotThrow(() => structuredLog('warn', 'Test warning'),
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:423:    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      warnSpy.mock.calls.some(([message]) => String(message).includes('Missing template data for'))
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:513:    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:528:    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_WARN: Stateless save continuing despite soft validation failures: V10'));
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
-.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh:745:    run_test_with_flags "--strict mode: warnings become errors" "054-template-extra-header" "fail" "--strict"
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-extended.sh:808:    run_test_json "--json warning fixture produces valid JSON" "054-template-extra-header" "warn"
-.opencode/skill/system-spec-kit/scripts/tests/test-validation-extended.sh:817:    run_test_with_flags "--strict: warnings become errors" "054-template-extra-header" "fail" "--strict"
+/bin/zsh -lc "rg -n \"Missing template data for|template-data|template data|warning.*template|warnSpy|structuredLog\\('warn'\" .opencode/skills/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:429:    assertDoesNotThrow(() => structuredLog('warn', 'Test warning'),
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:423:    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444:      warnSpy.mock.calls.some(([message]) => String(message).includes('Missing template data for'))
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:513:    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:528:    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_WARN: Stateless save continuing despite soft validation failures: V10'));
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
+.opencode/skills/system-spec-kit/scripts/tests/test-validation.sh:745:    run_test_with_flags "--strict mode: warnings become errors" "054-template-extra-header" "fail" "--strict"
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh:808:    run_test_json "--json warning fixture produces valid JSON" "054-template-extra-header" "warn"
+.opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh:817:    run_test_with_flags "--strict: warnings become errors" "054-template-extra-header" "fail" "--strict"
 codex
 I’m now drilling into the exact `populateTemplate('context', …)` payload and the logger path to confirm whether missing placeholders become runtime warnings in successful runs or are suppressed/optional by design.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1880,2270p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1880,2270p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1880	  );
   1881	  // F-26: Load description.json to include memoryNameHistory in slug candidates
   1882	  let memoryNameHistoryForSlug: readonly string[] = [];
@@ -225,7 +225,7 @@ exec
   1898	  const memoryTitle = buildMemoryTitle(preferredMemoryTask, specFolderName, sessionData.DATE, contentSlug);
   1899	  // Keep dashboard titles stable across duplicate-save retries so content dedup
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/logger.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/logger.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Logger
      3	// ---------------------------------------------------------------
@@ -247,7 +247,7 @@ exec
     19	  message: string;
     20	  [key: string]: unknown;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1360,1665p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1360,1665p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1360	/**
   1361	 * Main workflow orchestrator: coordinates data loading, extraction, rendering,
   1362	 * quality scoring, and atomic file output to produce a memory context file.
@@ -271,9 +271,9 @@ exec
 codex
 I’ve confirmed the renderer has one real warning emitter; next I’m validating whether those warnings are merely logged or can cascade into quality/template-contract failures by checking the contract validator and the E2E assertions.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '500,570p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '500,570p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    500	            input: {
-   501	              filePath: '.opencode/skill/system-spec-kit/scripts/core/workflow.ts',
+   501	              filePath: '.opencode/skills/system-spec-kit/scripts/core/workflow.ts',
    502	            },
    503	            output: 'Inspected workflow gating behavior for validation testing.',
    504	          },
@@ -293,7 +293,7 @@ exec
    518	    const metadata = readMetadata(harness) as { embedding?: { status?: string; reason?: string } };
    519	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js | sed -n '1220,1315p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js | sed -n '1220,1315p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1220	────────────────────────────────────────────────────────────────
   1221	*/
   1222	
@@ -315,29 +315,29 @@ exec
   1238	  }
   1239	}
 exec
-/bin/zsh -lc "rg -n \"validateMemoryTemplateContract|missing_frontmatter|template contract|violations\" .opencode/skill/system-spec-kit -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:12:  | 'missing_frontmatter'
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:14:  | 'missing_frontmatter_key'
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:33:  violations: MemoryTemplateViolation[];
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:235:export function validateMemoryTemplateContract(content: string): MemoryTemplateContractResult {
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:236:  const violations: MemoryTemplateViolation[] = [];
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:242:    violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:243:      code: 'missing_frontmatter',
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:252:      violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:270:        violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:271:          code: 'missing_frontmatter_key',
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:279:      violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:291:    violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:299:    violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:307:    violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:315:    violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:326:        violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:338:      violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:346:      violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:354:      violations.push({
-.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:362:      violations.push({
+/bin/zsh -lc "rg -n \"validateMemoryTemplateContract|missing_frontmatter|template contract|violations\" .opencode/skills/system-spec-kit -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:12:  | 'missing_frontmatter'
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:14:  | 'missing_frontmatter_key'
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:33:  violations: MemoryTemplateViolation[];
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:235:export function validateMemoryTemplateContract(content: string): MemoryTemplateContractResult {
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:236:  const violations: MemoryTemplateViolation[] = [];
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:242:    violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:243:      code: 'missing_frontmatter',
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:252:      violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:270:        violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:271:          code: 'missing_frontmatter_key',
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:279:      violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:291:    violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:299:    violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:307:    violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:315:    violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:326:        violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:338:      violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:346:      violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:354:      violations.push({
+.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:362:      violations.push({
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts | sed -n '220,390p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts | sed -n '220,390p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    220	      count += 1;
    221	    }
    222	    if (index > headingIndex && (/^##\s+/.test(trimmed) || trimmed === '---' || trimmed.startsWith('*Generated by '))) {
@@ -359,7 +359,7 @@ exec
    238	  const unexpectedTemplateArtifacts: string[] = [];
    239	
 exec
-/bin/zsh -lc 'ls -1 .opencode/skill/system-spec-kit/templates' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'ls -1 .opencode/skills/system-spec-kit/templates' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 README.md
 addendum
 context_template.md
@@ -376,7 +376,7 @@ research/research.md
 scratch
 sharded
 exec
-/bin/zsh -lc "rg -n \"\\{\\{[#/"'^!]?|'"\\}\\}\" .opencode/skill/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"\\{\\{[#/"'^!]?|'"\\}\\}\" .opencode/skills/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 2:title: "{{MEMORY_DASHBOARD_TITLE}}"
 3:description: "{{MEMORY_DESCRIPTION}}"
 4:{{TRIGGER_PHRASES_YAML}}
@@ -398,7 +398,7 @@ exec
 131:| Context Type | {{CONTEXT_TYPE}} |
 132:| Total Messages | {{MESSAGE_COUNT}} |
 exec
-/bin/zsh -lc "rg -n \"const workflowData|workflowData\\s*=|buildMemoryClassificationContext|buildSessionDedupContext|buildCausalLinksContext\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"const workflowData|workflowData\\s*=|buildMemoryClassificationContext|buildSessionDedupContext|buildCausalLinksContext\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 823:function buildMemoryClassificationContext(
 873:function buildSessionDedupContext(
 929:function buildCausalLinksContext(collectedData: CollectedDataFull): CausalLinksContext {
@@ -406,7 +406,7 @@ exec
 1970:  const sessionDedup = buildSessionDedupContext(collectedData, sessionData, memoryTitle);
 1971:  const causalLinks = buildCausalLinksContext(collectedData);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1660,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1660,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1660	      throw new Error(
   1661	        'Missing session data collector function.\n' +
   1662	        '  - If calling runWorkflow() directly, pass { collectSessionDataFn: yourFunction } in options\n' +
@@ -428,8 +428,8 @@ exec
   1678	    });
   1679	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '780,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '980,1105p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '780,980p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '980,1105p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    980	    if (/^quality_score\s*:/i.test(trimmed)) {
    981	      continue;
    982	    }
@@ -472,7 +472,7 @@ exec
    798	  if (halfLifeDays <= 0) {
    799	    return 0;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts | sed -n '180,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts | sed -n '180,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    180	        path.join(specFolderPath, 'spec.md'),
    181	        [
    182	          '---',
@@ -494,7 +494,7 @@ exec
    198	            prompt: 'Development session',
    199	            timestamp: '2026-03-06T09:25:00Z',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Template Contract
      3	// ---------------------------------------------------------------
@@ -516,7 +516,7 @@ exec
     19	  | 'constitutional_guidance_comment'
     20	  | 'missing_section'
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts | sed -n '1,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts | sed -n '1,230p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -539,46 +539,46 @@ exec
     20	// ───────────────────────────────────────────────────────────────
 codex
 1. **Warning emissions in `template-renderer.ts`**
-- There is exactly one runtime warning emitter: `structuredLog('warn', \`Missing template data for: {{${key}}}\`)` at [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:147).
-- It is gated by `if (value === undefined || value === null)` plus `!OPTIONAL_PLACEHOLDERS.has(key)` at [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:144) and [template-renderer.ts:146](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:146).
-- Optional warning suppression list is defined at [template-renderer.ts:32](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:32).
-- `structuredLog('warn', ...)` goes directly to `console.warn` at [logger.ts:38](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/logger.ts:38).
+- There is exactly one runtime warning emitter: `structuredLog('warn', \`Missing template data for: {{${key}}}\`)` at [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:147).
+- It is gated by `if (value === undefined || value === null)` plus `!OPTIONAL_PLACEHOLDERS.has(key)` at [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:144) and [template-renderer.ts:146](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:146).
+- Optional warning suppression list is defined at [template-renderer.ts:32](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:32).
+- `structuredLog('warn', ...)` goes directly to `console.warn` at [logger.ts:38](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/logger.ts:38).
 
 2. **Warning conditions**
-- A warning fires when any rendered placeholder key is `undefined` or `null` and not in `OPTIONAL_PLACEHOLDERS` ([template-renderer.ts:141](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141), [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:144), [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:147)).
-- This includes missing top-level fields in the `populateTemplate('context', {...})` payload in [workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1974), or missing nested fields inside loop items.
-- Malformed-but-present values (object/array/boolean) do **not** trigger this warning; they are rendered via coercion/stringification ([template-renderer.ts:152](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:152), [template-renderer.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:162), [template-renderer.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:167)).
+- A warning fires when any rendered placeholder key is `undefined` or `null` and not in `OPTIONAL_PLACEHOLDERS` ([template-renderer.ts:141](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141), [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:144), [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:147)).
+- This includes missing top-level fields in the `populateTemplate('context', {...})` payload in [workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1974), or missing nested fields inside loop items.
+- Malformed-but-present values (object/array/boolean) do **not** trigger this warning; they are rendered via coercion/stringification ([template-renderer.ts:152](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:152), [template-renderer.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:162), [template-renderer.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:167)).
 
 3. **Cosmetic vs degraded output**
-- Not purely cosmetic. Missing data is replaced with `''` ([template-renderer.ts:149](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149)), so content can be structurally valid but semantically degraded.
-- Workflow does not treat renderer warnings as failures; it just awaits `populateTemplate` and continues ([workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1974)).
-- If missing values break template contract-required fields, run aborts later at contract gate ([workflow.ts:2158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2158), [memory-template-contract.ts:261](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:261)).
+- Not purely cosmetic. Missing data is replaced with `''` ([template-renderer.ts:149](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149)), so content can be structurally valid but semantically degraded.
+- Workflow does not treat renderer warnings as failures; it just awaits `populateTemplate` and continues ([workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1974)).
+- If missing values break template contract-required fields, run aborts later at contract gate ([workflow.ts:2158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2158), [memory-template-contract.ts:261](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:261)).
 - Conclusion for Q10: **Yes, successful runs can still emit template-data warnings** when missing fields are non-optional but not severe enough to fail contract/quality gates.
 
 4. **Do tests verify warning-free rendering?**
-- There is one explicit happy-path check asserting no `"Missing template data for"` warning in workflow E2E: [workflow-e2e.vitest.ts:444](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444).
-- That same test runs with `silent: true`, but still spies `console.warn`, which confirms renderer warnings are independent of workflow `silent` logging ([workflow.ts:1387](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1387), [workflow.ts:1388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1388)).
-- I did not find comprehensive tests enforcing warning-free rendering across all successful paths; most tests validate contract/quality/output, not absence of template-data warnings (for example [memory-render-fixture.vitest.ts:224](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:224), [test-scripts-modules.js:1241](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1241)).
+- There is one explicit happy-path check asserting no `"Missing template data for"` warning in workflow E2E: [workflow-e2e.vitest.ts:444](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444).
+- That same test runs with `silent: true`, but still spies `console.warn`, which confirms renderer warnings are independent of workflow `silent` logging ([workflow.ts:1387](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1387), [workflow.ts:1388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1388)).
+- I did not find comprehensive tests enforcing warning-free rendering across all successful paths; most tests validate contract/quality/output, not absence of template-data warnings (for example [memory-render-fixture.vitest.ts:224](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:224), [test-scripts-modules.js:1241](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1241)).
 tokens used
 78,151
 1. **Warning emissions in `template-renderer.ts`**
-- There is exactly one runtime warning emitter: `structuredLog('warn', \`Missing template data for: {{${key}}}\`)` at [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:147).
-- It is gated by `if (value === undefined || value === null)` plus `!OPTIONAL_PLACEHOLDERS.has(key)` at [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:144) and [template-renderer.ts:146](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:146).
-- Optional warning suppression list is defined at [template-renderer.ts:32](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:32).
-- `structuredLog('warn', ...)` goes directly to `console.warn` at [logger.ts:38](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/logger.ts:38).
+- There is exactly one runtime warning emitter: `structuredLog('warn', \`Missing template data for: {{${key}}}\`)` at [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:147).
+- It is gated by `if (value === undefined || value === null)` plus `!OPTIONAL_PLACEHOLDERS.has(key)` at [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:144) and [template-renderer.ts:146](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:146).
+- Optional warning suppression list is defined at [template-renderer.ts:32](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:32).
+- `structuredLog('warn', ...)` goes directly to `console.warn` at [logger.ts:38](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/logger.ts:38).
 
 2. **Warning conditions**
-- A warning fires when any rendered placeholder key is `undefined` or `null` and not in `OPTIONAL_PLACEHOLDERS` ([template-renderer.ts:141](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141), [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:144), [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:147)).
-- This includes missing top-level fields in the `populateTemplate('context', {...})` payload in [workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1974), or missing nested fields inside loop items.
-- Malformed-but-present values (object/array/boolean) do **not** trigger this warning; they are rendered via coercion/stringification ([template-renderer.ts:152](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:152), [template-renderer.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:162), [template-renderer.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:167)).
+- A warning fires when any rendered placeholder key is `undefined` or `null` and not in `OPTIONAL_PLACEHOLDERS` ([template-renderer.ts:141](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141), [template-renderer.ts:144](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:144), [template-renderer.ts:147](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:147)).
+- This includes missing top-level fields in the `populateTemplate('context', {...})` payload in [workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1974), or missing nested fields inside loop items.
+- Malformed-but-present values (object/array/boolean) do **not** trigger this warning; they are rendered via coercion/stringification ([template-renderer.ts:152](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:152), [template-renderer.ts:162](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:162), [template-renderer.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:167)).
 
 3. **Cosmetic vs degraded output**
-- Not purely cosmetic. Missing data is replaced with `''` ([template-renderer.ts:149](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149)), so content can be structurally valid but semantically degraded.
-- Workflow does not treat renderer warnings as failures; it just awaits `populateTemplate` and continues ([workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1974)).
-- If missing values break template contract-required fields, run aborts later at contract gate ([workflow.ts:2158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2158), [memory-template-contract.ts:261](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-template-contract.ts:261)).
+- Not purely cosmetic. Missing data is replaced with `''` ([template-renderer.ts:149](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149)), so content can be structurally valid but semantically degraded.
+- Workflow does not treat renderer warnings as failures; it just awaits `populateTemplate` and continues ([workflow.ts:1974](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1974)).
+- If missing values break template contract-required fields, run aborts later at contract gate ([workflow.ts:2158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2158), [memory-template-contract.ts:261](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:261)).
 - Conclusion for Q10: **Yes, successful runs can still emit template-data warnings** when missing fields are non-optional but not severe enough to fail contract/quality gates.
 
 4. **Do tests verify warning-free rendering?**
-- There is one explicit happy-path check asserting no `"Missing template data for"` warning in workflow E2E: [workflow-e2e.vitest.ts:444](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444).
-- That same test runs with `silent: true`, but still spies `console.warn`, which confirms renderer warnings are independent of workflow `silent` logging ([workflow.ts:1387](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1387), [workflow.ts:1388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1388)).
-- I did not find comprehensive tests enforcing warning-free rendering across all successful paths; most tests validate contract/quality/output, not absence of template-data warnings (for example [memory-render-fixture.vitest.ts:224](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:224), [test-scripts-modules.js:1241](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1241)).
+- There is one explicit happy-path check asserting no `"Missing template data for"` warning in workflow E2E: [workflow-e2e.vitest.ts:444](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:444).
+- That same test runs with `silent: true`, but still spies `console.warn`, which confirms renderer warnings are independent of workflow `silent` logging ([workflow.ts:1387](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1387), [workflow.ts:1388](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1388)).
+- I did not find comprehensive tests enforcing warning-free rendering across all successful paths; most tests validate contract/quality/output, not absence of template-data warnings (for example [memory-render-fixture.vitest.ts:224](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:224), [test-scripts-modules.js:1241](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1241)).

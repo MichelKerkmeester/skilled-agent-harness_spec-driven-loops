@@ -18,11 +18,11 @@ _memory:
     next_safe_action: "Review verification output and commit when ready"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0260070120040260070120040260070120040260070120040260070120040000"
       session_id: "026-007-012-004-remediation"
@@ -90,15 +90,15 @@ Make code graph persistence fail safe: unusable full scans must not wipe live gr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modify | Add zero-node promotion guard, metadata promotion gate, relaxed manifest recording, diagnostics summary response. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Preserve prior per-file graph rows for `parseHealth: "error"` and record diagnostics. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` | Modify | Add diagnostics schema/API, stale valid count, failed-scan records, orphan-edge filter and cleanup. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Surface parse diagnostics and stale-but-valid file count. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Expose `forceZeroNodeReset` on `code_graph_scan`. |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Validate and allow `forceZeroNodeReset`. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modify | Add regression tests for scan guard, manifest, diagnostics, status, and broad scan/read-path behavior. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-atomic-persistence.vitest.ts` | Modify | Add regression for per-file parse-error preservation. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` | Modify | Add regression for orphan-edge filtering in `replaceEdges()`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modify | Add zero-node promotion guard, metadata promotion gate, relaxed manifest recording, diagnostics summary response. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modify | Preserve prior per-file graph rows for `parseHealth: "error"` and record diagnostics. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` | Modify | Add diagnostics schema/API, stale valid count, failed-scan records, orphan-edge filter and cleanup. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts` | Modify | Surface parse diagnostics and stale-but-valid file count. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Expose `forceZeroNodeReset` on `code_graph_scan`. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Validate and allow `forceZeroNodeReset`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modify | Add regression tests for scan guard, manifest, diagnostics, status, and broad scan/read-path behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-atomic-persistence.vitest.ts` | Modify | Add regression for per-file parse-error preservation. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts` | Modify | Add regression for orphan-edge filtering in `replaceEdges()`. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/004-remediation/*` | Create | Level 2 planning, decision, checklist, metadata, and implementation summary artifacts. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/graph-metadata.json` | Modify | Add `004-remediation` to `children_ids`. |
 <!-- /ANCHOR:scope -->

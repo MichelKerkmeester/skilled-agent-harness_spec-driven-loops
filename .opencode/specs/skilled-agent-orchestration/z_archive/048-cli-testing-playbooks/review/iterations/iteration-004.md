@@ -17,13 +17,13 @@ description: "Maintainability audit of HVR residual classification, naming consi
 
 ### P0 (Blockers)
 
-- [P0] [.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/implementation-summary.md:149] The implementation summary says all remaining HVR residuals live in protected zones, but a deterministic 20-hit sample found a true body-text violation, and the full classifier found 29 non-protected body-text hits. One sampled miss is `.opencode/skill/cli-copilot/manual_testing_playbook/02--multi-model/001-explicit-model-selection-gpt54.md:32`, where the prose line contains an Oxford-style `errors, or bogus call exits 0` clause outside frontmatter, inline code, a 9-column table cell, or a parenthesized ID list. This makes the HVR residual classification claim false and leaves the cleanup pass incomplete. Remediation: rerun HVR cleanup on non-protected narrative body text, expand the residual classifier to distinguish fenced/table/code/frontmatter zones consistently, then update the implementation summary with current counts and a reproducible classifier command.
+- [P0] [.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/implementation-summary.md:149] The implementation summary says all remaining HVR residuals live in protected zones, but a deterministic 20-hit sample found a true body-text violation, and the full classifier found 29 non-protected body-text hits. One sampled miss is `.opencode/skills/cli-copilot/manual_testing_playbook/02--multi-model/001-explicit-model-selection-gpt54.md:32`, where the prose line contains an Oxford-style `errors, or bogus call exits 0` clause outside frontmatter, inline code, a 9-column table cell, or a parenthesized ID list. This makes the HVR residual classification claim false and leaves the cleanup pass incomplete. Remediation: rerun HVR cleanup on non-protected narrative body text, expand the residual classifier to distinguish fenced/table/code/frontmatter zones consistently, then update the implementation summary with current counts and a reproducible classifier command.
 
 ### P1 (Required)
 
-- [P1] [.opencode/command/create/assets/create_testing_playbook_auto.yaml:170] The section-rename pass did not fully update the future-update workflow: both create-testing-playbook YAML workflows still list `CURRENT REALITY` as a required feature-file section, while the sk-doc creation reference and snippet template now require `SCENARIO CONTRACT`. The auto workflow can therefore guide future update runs back toward the old section name even though the existing 115 target files have the new heading. Remediation: update the auto and confirm workflows' feature-file requirements from `CURRENT REALITY` to `SCENARIO CONTRACT`, then add a workflow-level validation check that rejects new playbook feature files with the old heading.
+- [P1] [.opencode/commands/create/assets/create_testing_playbook_auto.yaml:170] The section-rename pass did not fully update the future-update workflow: both create-testing-playbook YAML workflows still list `CURRENT REALITY` as a required feature-file section, while the sk-doc creation reference and snippet template now require `SCENARIO CONTRACT`. The auto workflow can therefore guide future update runs back toward the old section name even though the existing 115 target files have the new heading. Remediation: update the auto and confirm workflows' feature-file requirements from `CURRENT REALITY` to `SCENARIO CONTRACT`, then add a workflow-level validation check that rejects new playbook feature files with the old heading.
 - [P1] [.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/decision-record.md:63] ADR-001 claims categories `01--cli-invocation`, `06--integration-patterns`, and `07--prompt-templates` are cross-CLI invariants, but category `06--integration-patterns` no longer teaches a consistent lesson across CLIs. In the same invariant slot, cli-codex mixes generate-review-fix, web search, and image input; cli-copilot mixes generate-review-fix, MCP discovery, and shell-wrapper context injection; cli-opencode focuses on Codex handback and Memory Epilogue handback. The shared number is stable, but the content shape is broad enough that the invariant is partly cosmetic. Remediation: either split `06--integration-patterns` into named subpatterns with a per-CLI mapping table, or narrow the invariant to the common generate/review/fix and handback lesson with CLI-specific extras clearly labeled as non-invariant add-ons.
-- [P1] [.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md:158] The documented prompt-sync rule requires the SCENARIO CONTRACT prompt, the 9-column `Exact Prompt`, and any root summary prompt text to stay synchronized, but root playbooks manually duplicate prompt summaries and the sampled/root parser found 76 of 115 root prompts are not exact matches after normalization. The per-feature prompt and scenario-row prompt were synced in all 10 section spot-checks, but root summaries still require manual parallel maintenance and there is no validation gate for that third surface. Remediation: generate root prompt summaries from per-feature files, or change the root field to `Prompt summary` with an explicit non-equality rule and add a validator that checks semantic presence instead of byte-for-byte equality.
+- [P1] [.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md:158] The documented prompt-sync rule requires the SCENARIO CONTRACT prompt, the 9-column `Exact Prompt`, and any root summary prompt text to stay synchronized, but root playbooks manually duplicate prompt summaries and the sampled/root parser found 76 of 115 root prompts are not exact matches after normalization. The per-feature prompt and scenario-row prompt were synced in all 10 section spot-checks, but root summaries still require manual parallel maintenance and there is no validation gate for that third surface. Remediation: generate root prompt summaries from per-feature files, or change the root field to `Prompt summary` with an explicit non-equality rule and add a validator that checks semantic presence instead of byte-for-byte equality.
 
 ### P2 (Suggestions)
 
@@ -53,10 +53,10 @@ python3 - <<'PY'
 PY
 
 rg "CURRENT REALITY|SCENARIO CONTRACT" \
-  .opencode/command/create/assets/create_testing_playbook_auto.yaml \
-  .opencode/command/create/assets/create_testing_playbook_confirm.yaml \
-  .opencode/skill/sk-doc/assets/documentation/testing_playbook \
-  .opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md
+  .opencode/commands/create/assets/create_testing_playbook_auto.yaml \
+  .opencode/commands/create/assets/create_testing_playbook_confirm.yaml \
+  .opencode/skills/sk-doc/assets/documentation/testing_playbook \
+  .opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md
 ```
 
 Relevant output snippets:
@@ -73,7 +73,7 @@ sample_class_counts Counter({'protected:table-cell': 12, 'protected:inline-backt
 full_class_counts Counter({'protected:table-cell': 986, 'protected:inline-backtick-code': 579, 'VIOLATION:body-text': 29, 'protected:frontmatter-description': 21})
 
 sample body-text miss:
-oxford  VIOLATION:body-text  .opencode/skill/cli-copilot/manual_testing_playbook/02--multi-model/001-explicit-model-selection-gpt54.md:32
+oxford  VIOLATION:body-text  .opencode/skills/cli-copilot/manual_testing_playbook/02--multi-model/001-explicit-model-selection-gpt54.md:32
 ```
 
 ```text
@@ -135,10 +135,10 @@ No sampled prompt was a bare command paraphrase.
 
 ```text
 == Section source-of-truth drift ==
-.opencode/command/create/assets/create_testing_playbook_auto.yaml:170:    - CURRENT REALITY
-.opencode/command/create/assets/create_testing_playbook_confirm.yaml:184:    - CURRENT REALITY
-.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md:122:2. `## 2. SCENARIO CONTRACT`
-.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:61:## 2. SCENARIO CONTRACT
+.opencode/commands/create/assets/create_testing_playbook_auto.yaml:170:    - CURRENT REALITY
+.opencode/commands/create/assets/create_testing_playbook_confirm.yaml:184:    - CURRENT REALITY
+.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md:122:2. `## 2. SCENARIO CONTRACT`
+.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:61:## 2. SCENARIO CONTRACT
 ```
 
 ## newFindingsRatio

@@ -51,7 +51,7 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 ## 3. SCOPE
 
 ### In Scope
-- Delete the entire `.opencode/skill/mcp-clickup/` directory (37 files)
+- Delete the entire `.opencode/skills/mcp-clickup/` directory (37 files)
 - Delete `.opencode/changelog/mcp-clickup/` directory (1 file)
 - Strip `mcp-clickup` entries from skill advisor data (`skill_advisor.py`, `lexical.ts`, `explicit.ts`)
 - Strip `mcp-clickup` from skill graphs (`skill-graph.json`, `graph-metadata.json` for advisor + mcp-code-mode)
@@ -67,18 +67,18 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/mcp-clickup/**` | Delete | Whole skill tree (37 files) |
+| `.opencode/skills/mcp-clickup/**` | Delete | Whole skill tree (37 files) |
 | `.opencode/changelog/mcp-clickup/**` | Delete | Skill changelog (1 file) |
 | `README.md` | Modify | Remove single skill listing line (~809) |
-| `.opencode/skill/README.md` | Modify | 4 lines (counts, table, tree, runtime matrix) |
+| `.opencode/skills/README.md` | Modify | 4 lines (counts, table, tree, runtime matrix) |
 | `.opencode/install_guides/README.md` | Modify | 2 lines (install table + 18→17 skill count) |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Modify | 1 line (18→17 skill count) |
-| `.opencode/skill/mcp-code-mode/graph-metadata.json` | Modify | Drop one cross-skill link |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Drop 7 routing entries |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Decrement count, drop family + adjacency + signals |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modify | Drop one routing edge |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modify | Drop one phrase entry |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | Drop two routing entries |
+| `.opencode/skills/mcp-code-mode/graph-metadata.json` | Modify | Drop one cross-skill link |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Drop 7 routing entries |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Decrement count, drop family + adjacency + signals |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modify | Drop one routing edge |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modify | Drop one phrase entry |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | Drop two routing entries |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -90,9 +90,9 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Skill folder removed | `ls .opencode/skill/mcp-clickup` returns "No such file or directory" |
+| REQ-001 | Skill folder removed | `ls .opencode/skills/mcp-clickup` returns "No such file or directory" |
 | REQ-002 | Changelog folder removed | `ls .opencode/changelog/mcp-clickup` returns "No such file or directory" |
-| REQ-003 | Advisor scoring tables coherent | `grep -rn "mcp-clickup" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/` returns zero matches |
+| REQ-003 | Advisor scoring tables coherent | `grep -rn "mcp-clickup" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/` returns zero matches |
 | REQ-004 | Skill graph self-consistent | `skill-graph.json` parses as valid JSON; `skill_count` matches the number of populated `families.*` entries; no orphan adjacency targets |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -101,7 +101,7 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 |----|-------------|---------------------|
 | REQ-005 | All listed READMEs/install guides updated | `grep -rn "mcp-clickup"` across the 4 doc files returns zero matches |
 | REQ-006 | Service-level ClickUp references preserved | `grep "clickup\." mcp-code-mode/SKILL.md` still returns the UTCP examples |
-| REQ-007 | spec validates strict | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup --strict` exits 0 or 1 (warnings tolerated, errors not) |
+| REQ-007 | spec validates strict | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup --strict` exits 0 or 1 (warnings tolerated, errors not) |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -110,12 +110,12 @@ Remove the `mcp-clickup` skill folder, its changelog entry, and every repo-wide 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Repo-wide `grep -rn "mcp-clickup"` returns zero hits outside historical spec packets and observability reports.
-- **SC-002**: Skill advisor still loads (`python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "test"` exits cleanly) with mcp-clickup absent from outputs.
+- **SC-002**: Skill advisor still loads (`python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "test"` exits cleanly) with mcp-clickup absent from outputs.
 
 ### Acceptance Scenarios
 
-- **AS-001**: **Given** the `mcp-clickup` skill folder exists, **when** removal completes, **then** `ls .opencode/skill/mcp-clickup` exits non-zero with "No such file or directory".
-- **AS-002**: **Given** advisor scoring tables reference mcp-clickup, **when** removal completes, **then** `grep -rn "mcp-clickup" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/ scripts/` returns zero matches.
+- **AS-001**: **Given** the `mcp-clickup` skill folder exists, **when** removal completes, **then** `ls .opencode/skills/mcp-clickup` exits non-zero with "No such file or directory".
+- **AS-002**: **Given** advisor scoring tables reference mcp-clickup, **when** removal completes, **then** `grep -rn "mcp-clickup" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/ scripts/` returns zero matches.
 - **AS-003**: **Given** `skill-graph.json` declares `skill_count: 22` with mcp-clickup in `families.mcp`, **when** removal completes, **then** `skill_count` is `21` and `families.mcp` no longer contains mcp-clickup.
 - **AS-004**: **Given** install-guide skill counts read 18, **when** removal completes, **then** both install-guide tables read 17 and the name list excludes mcp-clickup.
 - **AS-005**: **Given** `mcp-code-mode/SKILL.md` contains `clickup.clickup_create_task(...)` examples, **when** removal completes, **then** those examples remain intact (service-vs-skill scope rule preserved).

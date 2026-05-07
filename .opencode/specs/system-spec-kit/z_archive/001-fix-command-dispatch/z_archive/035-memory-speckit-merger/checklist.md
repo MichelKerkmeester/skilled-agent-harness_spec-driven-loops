@@ -36,7 +36,7 @@ These items block completion. Cannot claim "done" until all pass.
 
 ### P0.1: MCP Server Starts
 - [x] **Server starts without errors from new location**
-- Validation: `node .opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- Validation: `node .opencode/skills/system-spec-kit/mcp_server/context-server.js`
 - Expected: Server starts, logs initialization message
 - Evidence: Server starts successfully, logs "Context MCP server running on stdio"
 
@@ -50,11 +50,11 @@ These items block completion. Cannot claim "done" until all pass.
 - [x] **Constitutional memories surface at top of search results**
 - Validation: `memory_search({ query: "anything", includeConstitutional: true })`
 - Expected: Constitutional tier memories appear first with `isConstitutional: true`
-- Evidence: Constitutional memories loaded from `.opencode/skill/system-spec-kit/constitutional/`
+- Evidence: Constitutional memories loaded from `.opencode/skills/system-spec-kit/constitutional/`
 
 ### P0.4: Generate Context Works
 - [x] **`generate-context.js` creates valid memory files from new path**
-- Validation: `node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger`
+- Validation: `node .opencode/skills/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger`
 - Expected: Memory file created with ANCHOR tags
 - Evidence: Script exists and creates memory files with proper ANCHOR format
 
@@ -75,13 +75,13 @@ Required for completion, but not hard blockers.
 
 ### P1.1: MCP Library Modules
 - [x] **MCP library modules present and functional**
-- Validation: File count in `.opencode/skill/system-spec-kit/mcp_server/lib/`
+- Validation: File count in `.opencode/skills/system-spec-kit/mcp_server/lib/`
 - Expected: Library modules exist in mcp_server/lib/
 - Evidence: `mcp_server/lib/` contains 23 JS modules
 
 ### P1.2: Database Integrity
 - [x] **Database operational with indexed memories**
-- Validation: `sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"`
+- Validation: `sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"`
 - Expected: Valid row count
 - Evidence: 109 valid entries after orphan cleanup (324 → 109)
 
@@ -93,7 +93,7 @@ Required for completion, but not hard blockers.
 
 ### P1.4: Path References - Commands
 - [x] **All 4 memory commands updated**
-- Validation: `grep -r "system-memory" .opencode/command/memory/`
+- Validation: `grep -r "system-memory" .opencode/commands/memory/`
 - Expected: Empty result
 - Evidence: Memory commands reference `system-spec-kit`
 
@@ -101,7 +101,7 @@ Required for completion, but not hard blockers.
 - [x] **opencode.json MCP path updated**
 - Validation: Check `mcpServers.semantic_memory.args` path
 - Expected: Contains `system-spec-kit`
-- Evidence: `"args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]`
+- Evidence: `"args": [".opencode/skills/system-spec-kit/mcp_server/context-server.js"]`
 
 ### P1.6: Command Execution
 - [x] **`/memory:save` command works**
@@ -123,7 +123,7 @@ Can defer without blocking completion.
 
 ### P2.1: Archive Created
 - [ ] **Old system-memory skill archived to z_archive/**
-- Validation: Check `.opencode/skill/z_archive/system-memory/` exists
+- Validation: Check `.opencode/skills/z_archive/system-memory/` exists
 - Expected: All original files preserved
 - Evidence: N/A - system-memory was replaced, not archived (different approach taken)
 
@@ -147,16 +147,16 @@ Quick reference for validation commands:
 
 ```bash
 # P0.1: Server start (will run and need Ctrl+C to stop)
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skills/system-spec-kit/mcp_server/context-server.js
 
 # P0.4: Generate context
-node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger
+node .opencode/skills/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger
 
 # P1.1: File count in mcp_server/lib
-find .opencode/skill/system-spec-kit/mcp_server/lib -type f -name "*.js" | wc -l
+find .opencode/skills/system-spec-kit/mcp_server/lib -type f -name "*.js" | wc -l
 
 # P1.2: Database row count
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
+sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
 
 # P1.3-P1.5: Path reference check
 grep -r "system-memory" .opencode/ --include="*.md" --include="*.js" --include="*.json" --include="*.py" | grep -v z_archive

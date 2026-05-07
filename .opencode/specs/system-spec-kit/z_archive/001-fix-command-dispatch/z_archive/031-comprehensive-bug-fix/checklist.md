@@ -108,4 +108,4 @@ contextType: "implementation"
 - [x] No console errors during operations *(Verified by Agent 8)*
 
 ## New Files Created
-- [x] `.opencode/skill/system-memory/lib/errors.js` - Centralized error handling *(Agent 8)*
+- [x] `.opencode/skills/system-memory/lib/errors.js` - Centralized error handling *(Agent 8)*

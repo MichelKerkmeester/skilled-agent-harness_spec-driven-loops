@@ -96,14 +96,14 @@ Design the simplest greenfield template backend that:
 
 | File Path | Role | Investigation Focus |
 |-----------|------|---------------------|
-| `.opencode/skill/system-spec-kit/templates/core/` | Source-of-truth candidate | What's irreducible? |
-| `.opencode/skill/system-spec-kit/templates/addendum/` | Today's "level extensions" | Map to capability flags |
-| `.opencode/skill/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}/` | Materialized outputs | Eliminate? |
-| `.opencode/skill/system-spec-kit/templates/{handover,debug-delegation,research,resource-map,context-index}.md` | Addon templates | Classify lifecycle |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Scaffolder | Refactor to read manifest |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | Validator | Refactor to read same manifest |
-| `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` | Parser | Document MINIMUM contract |
-| `.opencode/skill/system-spec-kit/shared/parsing/spec-doc-health.ts` | Parser | Document MINIMUM contract |
+| `.opencode/skills/system-spec-kit/templates/core/` | Source-of-truth candidate | What's irreducible? |
+| `.opencode/skills/system-spec-kit/templates/addendum/` | Today's "level extensions" | Map to capability flags |
+| `.opencode/skills/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}/` | Materialized outputs | Eliminate? |
+| `.opencode/skills/system-spec-kit/templates/{handover,debug-delegation,research,resource-map,context-index}.md` | Addon templates | Classify lifecycle |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Scaffolder | Refactor to read manifest |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Validator | Refactor to read same manifest |
+| `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | Parser | Document MINIMUM contract |
+| `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts` | Parser | Document MINIMUM contract |
 <!-- /ANCHOR:scope -->
 
 ---

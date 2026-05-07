@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Dispatch cli-codex"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-git/SKILL.md"
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
+      - ".opencode/skills/sk-git/SKILL.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -66,7 +66,7 @@ Author a `manual_testing_playbook/` package for sk-git covering ~21 realistic sc
 ## 3. SCOPE
 
 ### In Scope
-- Root playbook `.opencode/skill/sk-git/manual_testing_playbook/manual_testing_playbook.md`.
+- Root playbook `.opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md`.
 - 6 numbered category folders: `01--worktree-setup/`, `02--commit-formation/`, `03--safety-refusals/`, `04--integration-and-pr/`, `05--recovery-and-edge-cases/`, `06--cross-cli-orchestration/`.
 - ~21 per-feature snippet files following the canonical sk-doc template.
 - Cross-CLI category covering native + cli-codex + cli-opencode + cli-gemini/cli-copilot.
@@ -84,13 +84,13 @@ Author a `manual_testing_playbook/` package for sk-git covering ~21 realistic sc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-git/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook with 6 category summaries + integrated review/release-readiness logic |
-| `.opencode/skill/sk-git/manual_testing_playbook/01--worktree-setup/*.md` | Create | 3 per-feature files (fresh feature, current branch, stay-on-main) |
-| `.opencode/skill/sk-git/manual_testing_playbook/02--commit-formation/*.md` | Create | 4 per-feature files (conventional commit, scope inference, mixed concerns, Co-Authored-By footer) |
-| `.opencode/skill/sk-git/manual_testing_playbook/03--safety-refusals/*.md` | Create | 4 per-feature files (--no-verify refused, secrets refused, force-push refused, amend refused) |
-| `.opencode/skill/sk-git/manual_testing_playbook/04--integration-and-pr/*.md` | Create | 4 per-feature files (merge to main, PR with template, failing tests block, cleanup) |
-| `.opencode/skill/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/*.md` | Create | 4 per-feature files (merge conflict, accidental wrong branch, empty commit, rebase vs merge) |
-| `.opencode/skill/sk-git/manual_testing_playbook/06--cross-cli-orchestration/*.md` | Create | 2-3 per-feature files (native, cli-codex, cli-gemini/cli-copilot handback) |
+| `.opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md` | Create | Root playbook with 6 category summaries + integrated review/release-readiness logic |
+| `.opencode/skills/sk-git/manual_testing_playbook/01--worktree-setup/*.md` | Create | 3 per-feature files (fresh feature, current branch, stay-on-main) |
+| `.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/*.md` | Create | 4 per-feature files (conventional commit, scope inference, mixed concerns, Co-Authored-By footer) |
+| `.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/*.md` | Create | 4 per-feature files (--no-verify refused, secrets refused, force-push refused, amend refused) |
+| `.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/*.md` | Create | 4 per-feature files (merge to main, PR with template, failing tests block, cleanup) |
+| `.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/*.md` | Create | 4 per-feature files (merge conflict, accidental wrong branch, empty commit, rebase vs merge) |
+| `.opencode/skills/sk-git/manual_testing_playbook/06--cross-cli-orchestration/*.md` | Create | 2-3 per-feature files (native, cli-codex, cli-gemini/cli-copilot handback) |
 <!-- /ANCHOR:scope -->
 
 ---

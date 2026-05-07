@@ -4,9 +4,9 @@
 Evaluate the new cache counter interface from a dashboard/operator-monitoring perspective rather than a local-debugging perspective.
 
 ## Findings
-1. `evictions` currently conflates two different behaviors: capacity-pressure removal in `enforceCacheBound()` and stale-entry cleanup on expired cache hits. A dashboard cannot tell whether cache churn came from saturation or from natural expiry. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:140] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:442]
-2. `entries` is just raw `cache.size`, and stale rows are only deleted when the same key is revisited or when the cache hits its bound. That means occupancy can overstate the number of truly live entries because the status surface does not expose expired-entry count or last cleanup time. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:124] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:433] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:539]
-3. `resetSession()` zeroes cache counters, latency samples, and circuit-breaker state, but the status payload does not expose reset timestamp, provider-scoped counters, request volume, failure counts, or circuit-open state. Those omissions make it hard to interpret hit-rate changes or fallback behavior over time. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:171] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:551]
+1. `evictions` currently conflates two different behaviors: capacity-pressure removal in `enforceCacheBound()` and stale-entry cleanup on expired cache hits. A dashboard cannot tell whether cache churn came from saturation or from natural expiry. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:140] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:442]
+2. `entries` is just raw `cache.size`, and stale rows are only deleted when the same key is revisited or when the cache hits its bound. That means occupancy can overstate the number of truly live entries because the status surface does not expose expired-entry count or last cleanup time. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:124] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:433] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:539]
+3. `resetSession()` zeroes cache counters, latency samples, and circuit-breaker state, but the status payload does not expose reset timestamp, provider-scoped counters, request volume, failure counts, or circuit-open state. Those omissions make it hard to interpret hit-rate changes or fallback behavior over time. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:171] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:551]
 
 ## Ruled Out
 - Building a meaningful monitoring dashboard from `hits` and `misses` alone.
@@ -15,7 +15,7 @@ Evaluate the new cache counter interface from a dashboard/operator-monitoring pe
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
 
 ## Assessment
 - New information ratio: 0.23

@@ -1,7 +1,7 @@
 # Wave 2 - OPUS-A5: Duplicate Code & Technical Debt
 
 Date: 2026-03-21
-Scope: `.opencode/skill/system-spec-kit/scripts/` (lib/, utils/, renderers/, spec-folder/, cross-subsystem)
+Scope: `.opencode/skills/system-spec-kit/scripts/` (lib/, utils/, renderers/, spec-folder/, cross-subsystem)
 
 ---
 

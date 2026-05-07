@@ -54,13 +54,13 @@ status: done
 All checks executed on 2026-02-17:
 
 ```
-Check 1: grep -r "agent_routing:" .opencode/command/create/ → 0 matches
-Check 2: grep -r "agent_availability:" .opencode/command/create/assets/ → 20 matches
-Check 3: grep -r "dispatch:.*@" .opencode/command/create/assets/ → 0 matches
-Check 4: grep -r "## Agent Routing" .opencode/command/create/*.md → 0 matches
-Check 5: grep -r "## CONSTRAINTS" .opencode/command/create/*.md → 6 matches
-Check 6: grep -r "REFERENCE ONLY" .opencode/command/create/*.md → 0 matches
-Check 7: grep -ri "[Ee]moji" .opencode/command/create/ → 0 matches
+Check 1: grep -r "agent_routing:" .opencode/commands/create/ → 0 matches
+Check 2: grep -r "agent_availability:" .opencode/commands/create/assets/ → 20 matches
+Check 3: grep -r "dispatch:.*@" .opencode/commands/create/assets/ → 0 matches
+Check 4: grep -r "## Agent Routing" .opencode/commands/create/*.md → 0 matches
+Check 5: grep -r "## CONSTRAINTS" .opencode/commands/create/*.md → 6 matches
+Check 6: grep -r "REFERENCE ONLY" .opencode/commands/create/*.md → 0 matches
+Check 7: grep -ri "[Ee]moji" .opencode/commands/create/ → 0 matches
 ```
 
 All checks passed with expected values.
@@ -159,7 +159,7 @@ All 7 verification checks passed on 2026-02-17:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] All changes in `.opencode/command/create/` directory tree [EVIDENCE: documented in this checklist section]
+- [x] CHK-050 [P1] All changes in `.opencode/commands/create/` directory tree [EVIDENCE: documented in this checklist section]
 - [x] CHK-051 [P1] Symlink `.claude/commands/create` covers both access paths [EVIDENCE: documented in this checklist section]
 
 ---

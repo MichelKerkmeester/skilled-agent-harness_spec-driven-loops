@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "docPath": ".opencode/skills/deep-review/references/quick_reference.md",
+  "resolverScript": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "runtimes": [
+    {
+      "id": "opencode",
+      "label": "OpenCode / Copilot",
+      "mirrorPath": ".opencode/agents/deep-review.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "memory"
+      ],
+      "hookBootstrap": false,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    },
+    {
+      "id": "claude",
+      "label": "Claude",
+      "mirrorPath": ".claude/agents/deep-review.md",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "memory"
+      ],
+      "hookBootstrap": true,
+      "schemaAdaptation": "low",
+      "fallbackBridgeEligible": true
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "mirrorPath": ".codex/agents/deep-review.toml",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "memory"
+      ],
+      "hookBootstrap": true,
+      "schemaAdaptation": "medium",
+      "fallbackBridgeEligible": true
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini",
+      "mirrorPath": ".gemini/agents/deep-review.md",
+      "toolSurface": [
+        "read_file",
+        "write_file",
+        "replace",
+        "run_shell_command",
+        "grep_search",
+        "list_directory"
+      ],
+      "hookBootstrap": true,
+      "schemaAdaptation": "high",
+      "fallbackBridgeEligible": true
+    }
+  ]
+}

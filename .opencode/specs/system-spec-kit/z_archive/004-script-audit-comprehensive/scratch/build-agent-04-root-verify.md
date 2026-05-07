@@ -18,7 +18,7 @@ Scope: Validate C04 findings against repository files/command references (read-o
 
 ## Validated Commands/References
 
-- `rg -n "generate-context\\.js" .opencode/skill/system-spec-kit -g "*.md"` returned diverse command styles, disproving single-pattern assumption.
+- `rg -n "generate-context\\.js" .opencode/skills/system-spec-kit -g "*.md"` returned diverse command styles, disproving single-pattern assumption.
 - `grep` search equivalent via repository tooling showed no `registry-loader` nor `workflows-code--opencode` mentions in `system-spec-kit/SKILL.md`.
 - Direct file reads verified constitutional metadata/anchors and cited line references.
 

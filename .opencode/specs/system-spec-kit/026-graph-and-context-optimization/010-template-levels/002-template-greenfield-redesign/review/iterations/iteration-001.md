@@ -5,7 +5,7 @@
 **Date**: 2026-05-04T00:00:00Z  
 
 ## Scope
-Cross-referenced ADR-001, ADR-005, spec.md REQ-004/005, and plan.md Phases 1-4 against actual implementation files in `.opencode/skill/system-spec-kit/`.
+Cross-referenced ADR-001, ADR-005, spec.md REQ-004/005, and plan.md Phases 1-4 against actual implementation files in `.opencode/skills/system-spec-kit/`.
 
 ## Findings
 
@@ -24,7 +24,7 @@ Cross-referenced ADR-001, ADR-005, spec.md REQ-004/005, and plan.md Phases 1-4 a
 ### P1-002: Phase ordering violation — Phase 4 (delete) executed before Phase 3 (migrate validators)
 - **Severity**: P1
 - **Dimension**: implementation-spec-alignment
-- **Evidence**: `find .opencode/skill/system-spec-kit/templates/ -type d -name 'level_*'` returns 0 results. Legacy dirs, addendum/, phase_parent/, compose.sh all deleted.
+- **Evidence**: `find .opencode/skills/system-spec-kit/templates/ -type d -name 'level_*'` returns 0 results. Legacy dirs, addendum/, phase_parent/, compose.sh all deleted.
 - **Spec claim**: plan.md Phase ordering: Phase 1 (ADD manifest+loader+renderer) → Phase 2 (MODIFY scaffolder) → Phase 3 (MODIFY validators) → Phase 4 (DELETE legacy template trees)
 - **Reality**: Phases 1, 2, and 4 completed. Phase 3 not completed.
 - **Impact**: Validators using template-structure.js may still function (no hardcoded dir refs found in template-structure.js), but architectural debt exists. Phase-order dependency risk: deleting dirs before validators migrated creates a window where validator breakage would block rollback.

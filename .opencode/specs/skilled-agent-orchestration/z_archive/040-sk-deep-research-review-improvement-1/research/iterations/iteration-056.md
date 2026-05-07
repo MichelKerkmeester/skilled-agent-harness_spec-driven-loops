@@ -7,9 +7,9 @@ Hook/non-hook validation matrix design.
 - What evidence shape should each scenario produce?
 
 ## Evidence
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:209-214`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:305-310`
-- `.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md:14-31`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:209-214`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:305-310`
+- `.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md:14-31`
 
 ## Analysis
 Matrix must validate both startup contexts and lifecycle transitions with persisted packet-only state. Scenarios should include interrupted sessions, migrated legacy packets, and completed-session continuation.

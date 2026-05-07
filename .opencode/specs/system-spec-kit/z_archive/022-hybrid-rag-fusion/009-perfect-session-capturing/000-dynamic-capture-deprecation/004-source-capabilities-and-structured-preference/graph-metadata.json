@@ -37,11 +37,11 @@
       "scripts/utils/source-capabilities.ts",
       "scripts/extractors/contamination-filter.ts",
       "scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts",
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pipeline-quality.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pipeline-quality.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -69,13 +69,13 @@
       {
         "name": "12-session-capturing-pipeline-quality.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pipeline-quality.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/12-session-capturing-pipeline-quality.md",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

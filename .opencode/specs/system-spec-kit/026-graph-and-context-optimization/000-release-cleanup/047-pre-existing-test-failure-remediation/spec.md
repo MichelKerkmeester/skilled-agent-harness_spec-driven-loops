@@ -20,13 +20,13 @@ _memory:
     next_safe_action: "Apply minimal fixes to test files + 2 stale kebab literals, verify green, commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/manual-testing-playbook.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-corpus-parity.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/sk-code/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/manual-testing-playbook.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-corpus-parity.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-graph-health.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/sk-code/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "047-test-remediation"
@@ -94,7 +94,7 @@ Bring all five tests green via minimal, scoped fixes — update test assertions 
 | `mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts` | Modify | Assert against contract values, not inline string match |
 | `mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Modify (1 line) | Hardcoded `("skill-advisor", ...)` → `("skill_advisor", ...)` |
 | `mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify (1 line) | `GRAPH_ONLY_SKILL_IDS = {"skill-advisor"}` → `{"skill_advisor"}` |
-| `.opencode/skill/sk-code/graph-metadata.json` | Modify | Update `v1.3.0.0.md` → `v3.0.0.0.md`; remove 2 directory entries from `key_files` |
+| `.opencode/skills/sk-code/graph-metadata.json` | Modify | Update `v1.3.0.0.md` → `v3.0.0.0.md`; remove 2 directory entries from `key_files` |
 <!-- /ANCHOR:scope -->
 
 ---

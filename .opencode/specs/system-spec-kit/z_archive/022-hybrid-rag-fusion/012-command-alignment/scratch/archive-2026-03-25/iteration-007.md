@@ -11,7 +11,7 @@
 
 ### [F-039] [P1] Broken skill path in deep-review YAML assets
 - **File**: spec_kit_deep-research_review_auto.yaml:359, review_confirm.yaml:410
-- **Evidence**: References .opencode/skill/sk-code-review/references/review_core.md; actual path is .agents/skills/sk-code-review/references/review_core.md
+- **Evidence**: References .opencode/skills/sk-code-review/references/review_core.md; actual path is .agents/skills/sk-code-review/references/review_core.md
 - **Impact**: Review doctrine load path orphaned; traceability to review baseline broken.
 
 ### [F-040] [P1] Deep-research YAML hardcodes Claude agent paths, violating runtime path routing

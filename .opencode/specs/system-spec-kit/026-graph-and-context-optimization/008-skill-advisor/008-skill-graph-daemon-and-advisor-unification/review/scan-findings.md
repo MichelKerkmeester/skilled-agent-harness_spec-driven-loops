@@ -4,7 +4,7 @@ description: "Merged read-only multi-agent bug scan findings for the skill-advis
 importance_tier: "high"
 contextType: "review-findings"
 review_date: "2026-04-21"
-scope: ".opencode/skill/system-spec-kit/mcp_server/skill-advisor"
+scope: ".opencode/skills/system-spec-kit/mcp_server/skill-advisor"
 merged_from:
   - "scan-findings.md"
   - "skill-advisor-bug-scan-findings.md"
@@ -152,7 +152,7 @@ Primary risk themes:
 | MERGE-P1-005 | fixed | `lib/skill-graph/skill-graph-db.ts` | `skill-advisor/tests/skill-graph-db.vitest.ts`; Theme 6 gate: 241 vitest tests, Python 52/52 |
 | MERGE-P1-006 | fixed | `skill-advisor/lib/scorer/projection.ts` | `skill-advisor/tests/scorer/native-scorer.vitest.ts`; Theme 6 gate: 241 vitest tests, Python 52/52 |
 | MERGE-P1-007 | fixed | `skill-advisor/scripts/skill_advisor.py`; `init-skill-graph.sh` and `advisor-status.ts` were already correct | `skill-advisor/tests/python/test_skill_advisor.py`; Theme 7 gate: 245 vitest tests, Python 104/104 |
-| MERGE-P1-008 | fixed / legacy path superseded | Active file `skill-advisor/scripts/routing-accuracy/gate3-corpus-runner.mjs`; legacy `.opencode/skill/system-spec-kit/scripts/routing-accuracy/` path absent | Direct runner smoke check plus Theme 7 gate: 245 vitest tests, Python 104/104 |
+| MERGE-P1-008 | fixed / legacy path superseded | Active file `skill-advisor/scripts/routing-accuracy/gate3-corpus-runner.mjs`; legacy `.opencode/skills/system-spec-kit/scripts/routing-accuracy/` path absent | Direct runner smoke check plus Theme 7 gate: 245 vitest tests, Python 104/104 |
 | MERGE-P2-001 | fixed | `skill-advisor/tests/python/test_skill_advisor.py`, `skill-advisor/tests/compat/python-compat.vitest.ts` | `skill-advisor/tests/compat/python-compat.vitest.ts`; Theme 7 gate: 245 vitest tests, Python 104/104 |
 | MERGE-P2-002 | fixed | `skill-advisor/schemas/advisor-tool-schemas.ts`, `skill-advisor/handlers/advisor-status.ts` | `skill-advisor/tests/handlers/advisor-status.vitest.ts`; Theme 7 gate: 245 vitest tests, Python 104/104 |
 | MERGE-P2-003 | fixed | `skill-advisor/README.md`, `skill-advisor/INSTALL_GUIDE.md`, `skill-advisor/SET-UP_GUIDE.md` | Theme 7 gate: 245 vitest tests, Python 104/104 |

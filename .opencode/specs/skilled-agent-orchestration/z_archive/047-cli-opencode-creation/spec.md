@@ -42,7 +42,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Add `cli-opencode` as a fifth sibling under `.opencode/skill/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skill/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy "opencode" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.
+Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skills/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy "opencode" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.
 
 ---
 
@@ -88,9 +88,9 @@ Land the fifth sibling without breaking sibling symmetry, advisor scoring, or th
 
 ### In scope (3 streams)
 
-1. **Skill creation** — nine new files under `.opencode/skill/cli-opencode/` matching the universal cli-* blueprint exactly (3 root + 2 assets + 4 references). No scripts/ folder, no constitutional/ folder.
+1. **Skill creation** — nine new files under `.opencode/skills/cli-opencode/` matching the universal cli-* blueprint exactly (3 root + 2 assets + 4 references). No scripts/ folder, no constitutional/ folder.
 2. **Advisor + sibling graph integration** — add cli-opencode to the four existing cli-* graph-metadata.json sibling lists (weight 0.5 each), add an optional TOKEN_BOOSTS entry in `lib/scorer/lanes/explicit.ts:15`, run `init-skill-graph.sh` to validate + export the JSON fallback + reindex the SQLite catalog. Optionally invoke `/doctor:skill-advisor` for the full re-tune pass.
-3. **Changelog + READMEs** — open a new flat `.opencode/changelog/cli-opencode/` bucket (auto-created by `/create:changelog`) with a v1.0.0.0 changelog file initial release file, then patch the 8 specific edit points in `.opencode/skill/README.md` and the 2 in `.opencode/README.md` so skill counts, tables, tree diagrams, and feature tables include the new sibling.
+3. **Changelog + READMEs** — open a new flat `.opencode/changelog/cli-opencode/` bucket (auto-created by `/create:changelog`) with a v1.0.0.0 changelog file initial release file, then patch the 8 specific edit points in `.opencode/skills/README.md` and the 2 in `.opencode/README.md` so skill counts, tables, tree diagrams, and feature tables include the new sibling.
 
 ### Out of scope (deferred)
 
@@ -108,19 +108,19 @@ Land the fifth sibling without breaking sibling symmetry, advisor scoring, or th
 
 ### Functional
 
-- **REQ-001 (Skill folder layout):** `.opencode/skill/cli-opencode/` matches the universal cli-* blueprint — 3 root files (SKILL document, README, graph-metadata file), 2 asset files (assets prompt_quality_card, assets prompt_templates), 4 reference files (references cli_reference, references integration_patterns, references agent_delegation, references opencode_tools).
+- **REQ-001 (Skill folder layout):** `.opencode/skills/cli-opencode/` matches the universal cli-* blueprint — 3 root files (SKILL document, README, graph-metadata file), 2 asset files (assets prompt_quality_card, assets prompt_templates), 4 reference files (references cli_reference, references integration_patterns, references agent_delegation, references opencode_tools).
 - **REQ-002 (SKILL.md frontmatter):** `name: cli-opencode`, `description` in the 80–150 char band, `allowed-tools: [Bash, Read, Glob, Grep]`, `version: 1.0.0`. Inline `<!-- Keywords: ... -->` line directly after frontmatter.
 - **REQ-003 (SKILL.md body):** Eight anchored sections in canonical order — `## 1. WHEN TO USE`, `## 2. SMART ROUTING`, `## 3. HOW IT WORKS`, `## 4. RULES`, `## 5. REFERENCES`, `## 6. SUCCESS CRITERIA`, `## 7. INTEGRATION POINTS`, `## 8. RELATED RESOURCES`. Each section opens with the standard ANCHOR open/close marker pair. Length target ~550 lines.
 - **REQ-004 (Self-invocation guard):** Section 1 ("When NOT to use") and Section 2 (smart-router pseudocode) MUST detect when the orchestrator is already running inside OpenCode and refuse to dispatch — analog of cli-claude-code's `$CLAUDECODE` env detection. Detection signal selected per ADR-001.
 - **REQ-005 (graph-metadata.json):** schema_version=2, `skill_id: "cli-opencode"`, `family: "cli"`, `category: "cli-orchestrator"`, sibling edges (weight 0.5) to all four existing cli-* skills, domains include `["cli", "delegation", "cross-ai", "spec-kit-runtime", "parallel-sessions"]`, intent_signals include `["opencode cli", "opencode run", "delegate to opencode"]`, derived block populated post-daemon-reindex with trigger_phrases / key_topics / key_files / entities / source_docs.
 - **REQ-006 (Sibling parity edges):** All four existing cli-* graph-metadata.json files (`cli-claude-code/graph-metadata.json`, `cli-codex/graph-metadata.json`, `cli-copilot/graph-metadata.json`, `cli-gemini/graph-metadata.json`) MUST add a sibling edge to cli-opencode with weight 0.5 and context `"CLI orchestrator peer"`.
-- **REQ-007 (Optional TOKEN_BOOSTS entry):** `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:15` MAY gain `opencode: [['cli-opencode', W]]` with W decided in ADR-003. Skip if W cannot be set without false-positive risk on the noisy "opencode" token (which appears throughout the repo as the framework name).
-- **REQ-008 (Skill-graph reindex):** After step 1+2, run `bash .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` to validate every graph-metadata.json, regenerate `skill-graph.json` fallback, and reindex `skill-graph.sqlite` via daemon-watcher events.
+- **REQ-007 (Optional TOKEN_BOOSTS entry):** `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:15` MAY gain `opencode: [['cli-opencode', W]]` with W decided in ADR-003. Skip if W cannot be set without false-positive risk on the noisy "opencode" token (which appears throughout the repo as the framework name).
+- **REQ-008 (Skill-graph reindex):** After step 1+2, run `bash .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` to validate every graph-metadata.json, regenerate `skill-graph.json` fallback, and reindex `skill-graph.sqlite` via daemon-watcher events.
 - **REQ-009 (Doctor pass):** Run `/doctor:skill-advisor:auto` to retune scoring tables and confirm the new skill is discoverable across all five scoring lanes (explicit, lexical, derived, semantic, graph) with no regression on the existing four cli-* siblings.
 - **REQ-010 (Changelog bucket + initial release):** `/create:changelog cli-opencode --bump=major --release` creates the cli-opencode v1.0.0.0 changelog file using the sk-doc compact format (this is a single-skill initial release, <10 changes). The release notes follow the canonical changelog template and publish a GitHub release if the operator confirms.
-- **REQ-011 (`.opencode/skill/README.md` edits):** Eight specific patches at line 44 (count), line 54 (stats), line 57 (CLI count + list), line 134 ("five CLI skills"), insert after line 151 (table row), insert after line 201 (tree entry), insert after line 257 (signals row), insert after line 509 (related docs link).
+- **REQ-011 (`.opencode/skills/README.md` edits):** Eight specific patches at line 44 (count), line 54 (stats), line 57 (CLI count + list), line 134 ("five CLI skills"), insert after line 151 (table row), insert after line 201 (tree entry), insert after line 257 (signals row), insert after line 509 (related docs link).
 - **REQ-012 (`.opencode/README.md` edits):** Two specific patches at line 57 (count) and insert after line 141 (SKILLS OVERVIEW row).
-- **REQ-013 (Validation gate):** `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/047-cli-opencode-creation/ --strict` passes 0/0 against this packet. The skill itself does not have a strict validator, but `python3 skill_graph_compiler.py --validate-only` MUST pass.
+- **REQ-013 (Validation gate):** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/047-cli-opencode-creation/ --strict` passes 0/0 against this packet. The skill itself does not have a strict validator, but `python3 skill_graph_compiler.py --validate-only` MUST pass.
 
 ### Non-functional
 
@@ -162,7 +162,7 @@ Land the fifth sibling without breaking sibling symmetry, advisor scoring, or th
 #### Scenario 5: Changelog and READMEs reflect the new sibling
 
 **Given** the implementation is complete,
-**When** an operator reads `.opencode/skill/README.md` and `.opencode/README.md`,
+**When** an operator reads `.opencode/skills/README.md` and `.opencode/README.md`,
 **Then** the skill counts say "21 skill folders" / "Skills | 21", the CLI Orchestrator Skills table has 5 rows, the folder-tree diagram includes `cli-opencode/`, and the cli-opencode v1.0.0.0 changelog file is published with the canonical compact format.
 
 ---
@@ -181,9 +181,9 @@ Land the fifth sibling without breaking sibling symmetry, advisor scoring, or th
 
 - All 13 functional requirements (REQ-001 through REQ-013) verified against the implemented skill.
 - All 5 acceptance scenarios pass against the live skill + runtime.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/047-cli-opencode-creation/ --strict` exits 0 with 0 errors / 0 warnings.
-- `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --validate-only` exits 0.
-- `bash .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` completes without health failures.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/047-cli-opencode-creation/ --strict` exits 0 with 0 errors / 0 warnings.
+- `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --validate-only` exits 0.
+- `bash .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` completes without health failures.
 - `/doctor:skill-advisor:auto` retune produces a non-empty diff across cli-opencode entries and a "no regression" report on the existing four cli-* siblings.
 - Changelog v1.0.0.0.md published; GitHub release optional but the tag exists.
 - Both READMEs verified manually against the 10 specific edit points listed in REQ-011 + REQ-012.
@@ -305,8 +305,8 @@ Level 3 is required because (1) decision-record is mandatory (5 ADRs identified)
 - `checklist.md` — P0/P1/P2 verification gates
 - `decision-record.md` — 5 ADRs covering the architectural choices
 - `046-cli-codex-tone-of-voice/` — most recent cli-* sibling spec (patterns to copy)
-- `.opencode/skill/cli-claude-code/SKILL.md` — closest functional analog (also routes via env-var detection)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8-74` — TOKEN_BOOSTS table (REQ-007 patch site)
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` — REQ-008 reindex command
-- `.opencode/command/create/changelog.md` — REQ-010 changelog workflow
-- `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` — canonical changelog format
+- `.opencode/skills/cli-claude-code/SKILL.md` — closest functional analog (also routes via env-var detection)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8-74` — TOKEN_BOOSTS table (REQ-007 patch site)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh` — REQ-008 reindex command
+- `.opencode/commands/create/changelog.md` — REQ-010 changelog workflow
+- `.opencode/skills/sk-doc/assets/documentation/changelog_template.md` — canonical changelog format

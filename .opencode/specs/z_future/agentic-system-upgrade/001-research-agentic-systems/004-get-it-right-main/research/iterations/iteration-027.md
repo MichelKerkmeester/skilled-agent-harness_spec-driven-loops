@@ -12,14 +12,14 @@ Yes. The baseline-plus-overlay idea is sound, but the current public skill famil
 I compared the internal skill catalog and the overlapping role boundaries of the `sk-code-*` family against the external repo's simpler "small number of roles plus one workflow" packaging.
 
 ## Evidence
-- [SOURCE: .opencode/skill/README.md:42-70] The skills system emphasizes 20 skills, Gate 2 routing, and on-demand loading across many categories.
-- [SOURCE: .opencode/skill/README.md:121-129] The code-quality domain is explicitly described as multiple overlays with shared terminology.
-- [SOURCE: .opencode/skill/README.md:152-177] The catalog lists four code-quality skills plus the wider framework foundation.
-- [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:21-29] `sk-code-opencode` targets internal OpenCode system code and standards-only guidance.
-- [SOURCE: .opencode/skill/sk-code-opencode/SKILL.md:42-58] It explicitly excludes web work and full development lifecycle guidance.
-- [SOURCE: .opencode/skill/sk-code-full-stack/SKILL.md:21-33] `sk-code-full-stack` covers implementation, testing, debugging, and verification across many stacks.
-- [SOURCE: .opencode/skill/sk-code-web/SKILL.md:21-37] `sk-code-web` is another orchestrator covering frontend implementation, debugging, and verification.
-- [SOURCE: .opencode/skill/sk-code-review/SKILL.md:49-56] `sk-code-review` already frames the family as a baseline plus exactly one overlay skill.
+- [SOURCE: .opencode/skills/README.md:42-70] The skills system emphasizes 20 skills, Gate 2 routing, and on-demand loading across many categories.
+- [SOURCE: .opencode/skills/README.md:121-129] The code-quality domain is explicitly described as multiple overlays with shared terminology.
+- [SOURCE: .opencode/skills/README.md:152-177] The catalog lists four code-quality skills plus the wider framework foundation.
+- [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:21-29] `sk-code-opencode` targets internal OpenCode system code and standards-only guidance.
+- [SOURCE: .opencode/skills/sk-code-opencode/SKILL.md:42-58] It explicitly excludes web work and full development lifecycle guidance.
+- [SOURCE: .opencode/skills/sk-code-full-stack/SKILL.md:21-33] `sk-code-full-stack` covers implementation, testing, debugging, and verification across many stacks.
+- [SOURCE: .opencode/skills/sk-code-web/SKILL.md:21-37] `sk-code-web` is another orchestrator covering frontend implementation, debugging, and verification.
+- [SOURCE: .opencode/skills/sk-code-review/SKILL.md:49-56] `sk-code-review` already frames the family as a baseline plus exactly one overlay skill.
 
 ## Analysis
 There is a coherent architecture hiding inside the current skill family: one review baseline, one implementation baseline, and a small set of environment-specific overlays. But the public naming does not make that shape obvious. Operators instead see four similarly named skills that overlap in responsibilities and differ by context in ways they must infer. The external repo shows a better packaging instinct: keep the visible capability map smaller, then let the internals specialize. `system-spec-kit` should not delete specialized standards, but it should present them as one `sk-code` capability with context-aware submodes rather than a broad family of peer brands.

@@ -88,18 +88,18 @@ Ship the bounded code-graph upgrade lane that improves detector fidelity, graph 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Modify | Add detector provenance guards plus additive graph-edge enrichment and hot-file breadcrumb owner fields. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` | Modify | Persist detector-provenance summaries and expose file-degree plus graph-edge summary helpers for code-graph-local consumers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` | Modify | Ship blast-radius traversal, explicit multi-file union semantics, advisory hot-file breadcrumbs, and additive edge enrichment on the query owner surface. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` | Modify | Surface detector provenance metadata on code-graph context responses. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` | Modify | Serialize detector provenance and graph-edge enrichment summaries at scan time. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts` | Modify | Verify the detector provenance taxonomy stays separate from packet 006's trust-axis vocabulary. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts` | Modify | Verify detector provenance metadata on code-graph context responses. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts` | Modify | Verify detector provenance summaries persist through the scan handler. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts` | Modify | Verify blast-radius depth caps, explicit union mode, advisory breadcrumbs, and additive edge enrichment. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts` | Read-only verification | Confirm packet `011` trust surfaces remain unchanged while 014 stays graph-local. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts` | Modify | Verify numeric confidence validation on additive graph payload fields without claiming resume/bootstrap carriage. |
-| `.opencode/skill/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts` | Create | Add the packet-014 frozen regression floor for detector provenance and blast-radius depth behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Modify | Add detector provenance guards plus additive graph-edge enrichment and hot-file breadcrumb owner fields. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` | Modify | Persist detector-provenance summaries and expose file-degree plus graph-edge summary helpers for code-graph-local consumers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` | Modify | Ship blast-radius traversal, explicit multi-file union semantics, advisory hot-file breadcrumbs, and additive edge enrichment on the query owner surface. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` | Modify | Surface detector provenance metadata on code-graph context responses. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` | Modify | Serialize detector provenance and graph-edge enrichment summaries at scan time. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts` | Modify | Verify the detector provenance taxonomy stays separate from packet 006's trust-axis vocabulary. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts` | Modify | Verify detector provenance metadata on code-graph context responses. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts` | Modify | Verify detector provenance summaries persist through the scan handler. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts` | Modify | Verify blast-radius depth caps, explicit union mode, advisory breadcrumbs, and additive edge enrichment. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts` | Read-only verification | Confirm packet `011` trust surfaces remain unchanged while 014 stays graph-local. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts` | Modify | Verify numeric confidence validation on additive graph payload fields without claiming resume/bootstrap carriage. |
+| `.opencode/skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts` | Create | Add the packet-014 frozen regression floor for detector provenance and blast-radius depth behavior. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades/implementation-summary.md` | Modify | Replace the planning placeholder with the shipped runtime closeout and verification record. |
 <!-- /ANCHOR:scope -->
 

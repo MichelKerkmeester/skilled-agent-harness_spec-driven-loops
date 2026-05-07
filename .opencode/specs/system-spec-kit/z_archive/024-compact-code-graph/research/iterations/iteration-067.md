@@ -7,17 +7,17 @@ Design a concrete "stale-on-read" mechanism for the code graph system. Building 
 
 ### 1. Current content_hash mechanism is SHA-256 truncated to 12 hex chars
 The `generateContentHash()` in `indexer-types.ts:76` uses `createHash('sha256').update(content).digest('hex').slice(0, 12)`. This is a **file-level** hash -- the entire file content is hashed. Per-node content hashes are computed from line slices (`structural-indexer.ts:190`). The file-level hash is stored in `code_files.content_hash` and compared by `isFileStale()`. This means staleness detection requires reading the file from disk to recompute the hash, making it an I/O-bound operation.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:76-78]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:76-78]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
 
 ### 2. Current `isFileStale()` is a simple hash comparison with no mtime fast-path
 `code-graph-db.ts:172-177` shows that `isFileStale(filePath, currentHash)` performs a single DB lookup (`SELECT content_hash WHERE file_path = ?`) and compares strings. However, it requires the **caller to already have the currentHash**, which means the caller must have already read and hashed the file. There is no mtime-based fast path to skip the file read -- contrast with the memory system's `incremental-index.ts:20` which uses `MTIME_FAST_PATH_MS = 1000` to skip files whose mtime is within 1 second. This is a critical missing optimization: mtime comparison (one `statSync`) is ~100x cheaper than file read + SHA-256.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:20-28]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:171-177]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:20-28]
 
 ### 3. `computeFreshness()` is coarse-grained -- only checks MAX(indexed_at) across all files
 `code-graph-context.ts:164-177` shows the current freshness computation: it queries `SELECT MAX(indexed_at) FROM code_files` and classifies the entire graph as `fresh` (<5min), `recent` (<1hr), or `stale` (>1hr). This is a **global** metric -- it cannot detect that specific files are stale while others are fresh. The freshness is computed every time `buildContext()` or the empty-result fallback runs (lines 101 and 129), returning it as metadata but taking **no action** on staleness. This is the key gap: staleness is reported but never triggers auto-reindex.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177]
 
 ### 4. Concrete "stale-on-read" design with per-file granularity
 The design adds a `file_mtime_ms` column to `code_files` (parallel to the memory system's approach) and introduces a two-tier staleness check:
@@ -62,8 +62,8 @@ CREATE INDEX IF NOT EXISTS idx_files_mtime ON code_files(file_mtime_ms);
 ```
 The `upsertFile()` function needs an additional `mtimeMs` parameter. On initial scan, populate from `statSync(filePath).mtimeMs`. On staleness check, compare `statSync` result against DB value. This mirrors the memory system's `file_mtime_ms` column in `memory_index`.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:71 (memory system uses file_mtime_ms)]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:20-30 (code_files schema)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:71 (memory system uses file_mtime_ms)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:20-30 (code_files schema)]
 
 ### 7. CocoIndex freshness coordination design
 CocoIndex has its own `ccc_reindex` tool and `refresh_index` management. The two systems can coordinate without coupling:
@@ -84,7 +84,7 @@ if (isFirstCall && !sessionState.graphScanned) {
 }
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts (handleCodeGraphScan)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts (handleCodeGraphScan)]
 [INFERENCE: based on iteration 062's resolveTrustedSession session detection + iteration 059's auto-reindex triggers]
 
 ### 8. The `ensureFreshFiles()` function design
@@ -145,13 +145,13 @@ export async function ensureFreshFiles(
 None identified -- all approaches investigated are viable within their constraints.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file -- isFileStale, upsertFile, schema)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177` (computeFreshness)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:76-78` (generateContentHash)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (full file -- incremental scan flow)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts` (full file -- query handler insertion point)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts` (full file -- context handler insertion point)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:20-28` (memory system mtime fast-path pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file -- isFileStale, upsertFile, schema)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:164-177` (computeFreshness)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:76-78` (generateContentHash)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts` (full file -- incremental scan flow)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts` (full file -- query handler insertion point)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts` (full file -- context handler insertion point)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:20-28` (memory system mtime fast-path pattern)
 
 ## Assessment
 - New information ratio: 0.72

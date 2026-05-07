@@ -6,16 +6,16 @@ Evaluate advisor scoring fusion, ambiguity handling, freshness, and the path tow
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:24`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts:7`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:42`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:148`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:101`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:141`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:101`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:15`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:24`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts:7`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:42`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:148`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:101`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:141`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts:101`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:15`
 
 ## Findings
 

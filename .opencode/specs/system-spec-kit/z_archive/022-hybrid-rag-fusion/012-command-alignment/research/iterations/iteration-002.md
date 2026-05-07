@@ -19,10 +19,10 @@
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/tasks.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/checklist.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/implementation-summary.md
-- .opencode/command/memory/analyze.md
-- .opencode/command/memory/shared.md
-- .opencode/command/memory/manage.md
-- .opencode/command/memory/README.txt
+- .opencode/commands/memory/analyze.md
+- .opencode/commands/memory/shared.md
+- .opencode/commands/memory/manage.md
+- .opencode/commands/memory/README.txt
 - .opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/scratch/deep-review-strategy.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/research/deep-research-state.jsonl

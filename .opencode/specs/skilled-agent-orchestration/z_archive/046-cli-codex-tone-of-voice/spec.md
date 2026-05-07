@@ -23,8 +23,8 @@ _memory:
     blockers: []
     key_files:
       - ".codex/AGENTS.md"
-      - ".opencode/skill/cli-codex/SKILL.md"
-      - ".opencode/skill/cli-codex/README.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-codex/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "046-closeout-2026-04-19"
@@ -88,9 +88,9 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 ## 3. SCOPE
 
 ### In Scope
-- `codex_app_personalization.md` — asset in `.opencode/skill/cli-codex/assets/` containing three paste-ready tiers (tiny ~500 chars, compact ~1500 chars, extended ~3000 chars split across context + response fields) for the Codex APP custom instructions UI.
-- `codex_voice_module.md` — asset in `.opencode/skill/cli-codex/assets/` containing an appendable voice-shift block designed to be suffixed onto `codex exec` prompts when dispatched from `cli-codex`.
-- Surgical update to `.opencode/skill/cli-codex/SKILL.md` adding both assets to the resource map, ALWAYS-load list, and RULES section.
+- `codex_app_personalization.md` — asset in `.opencode/skills/cli-codex/assets/` containing three paste-ready tiers (tiny ~500 chars, compact ~1500 chars, extended ~3000 chars split across context + response fields) for the Codex APP custom instructions UI.
+- `codex_voice_module.md` — asset in `.opencode/skills/cli-codex/assets/` containing an appendable voice-shift block designed to be suffixed onto `codex exec` prompts when dispatched from `cli-codex`.
+- Surgical update to `.opencode/skills/cli-codex/SKILL.md` adding both assets to the resource map, ALWAYS-load list, and RULES section.
 - `description.json` and `graph-metadata.json` for this spec folder (auto-generated via `generate-context.js` at memory save).
 
 ### Out of Scope
@@ -104,9 +104,9 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 
 | File Path                                                                              | Change Type | Description                                                             |
 | -------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
-| `.opencode/skill/cli-codex/assets/codex_app_personalization.md`                        | Create      | Three-tier personalization snippet for Codex APP custom instructions    |
-| `.opencode/skill/cli-codex/assets/codex_voice_module.md`                               | Create      | Appendable voice-shift block for CLI dispatches                         |
-| `.opencode/skill/cli-codex/SKILL.md`                                                   | Modify      | Add both assets to resource map, ALWAYS-load list, and RULES §9         |
+| `.opencode/skills/cli-codex/assets/codex_app_personalization.md`                        | Create      | Three-tier personalization snippet for Codex APP custom instructions    |
+| `.opencode/skills/cli-codex/assets/codex_voice_module.md`                               | Create      | Appendable voice-shift block for CLI dispatches                         |
+| `.opencode/skills/cli-codex/SKILL.md`                                                   | Modify      | Add both assets to resource map, ALWAYS-load list, and RULES §9         |
 | `.opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice/*.md`         | Create      | Spec folder docs (spec, plan, tasks, checklist, decision-record, impl)  |
 | `.opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice/*.json`       | Create      | description.json + graph-metadata.json (via generate-context.js)        |
 <!-- /ANCHOR:scope -->
@@ -142,7 +142,7 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 
 - **SC-001**: A user with zero prior context can copy the compact tier into Codex APP custom instructions in under 30 seconds.
 - **SC-002**: When the voice module is appended to a `codex exec` prompt, Codex's first response drops filler ("Certainly!" etc.), hedges when uncertain, and surfaces assumptions — verified by qualitative A/B comparison on at least one representative prompt.
-- **SC-003**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` exits 0.
+- **SC-003**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/046-cli-codex-tone-of-voice --strict` exits 0.
 - **SC-004**: `generate-context.js` produces `description.json` and refreshes `graph-metadata.json` with no POST-SAVE QUALITY REVIEW HIGH issues.
 <!-- /ANCHOR:success-criteria -->
 
@@ -260,5 +260,5 @@ Produce Codex-specific personalization artifacts that shift its default voice to
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Asset (primary deliverable)**: `.opencode/skill/cli-codex/assets/codex_app_personalization.md`
-- **Asset (secondary deliverable)**: `.opencode/skill/cli-codex/assets/codex_voice_module.md`
+- **Asset (primary deliverable)**: `.opencode/skills/cli-codex/assets/codex_app_personalization.md`
+- **Asset (secondary deliverable)**: `.opencode/skills/cli-codex/assets/codex_voice_module.md`

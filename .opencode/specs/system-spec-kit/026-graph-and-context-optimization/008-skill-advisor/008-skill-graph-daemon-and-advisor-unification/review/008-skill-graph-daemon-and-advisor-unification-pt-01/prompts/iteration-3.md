@@ -42,7 +42,7 @@ Open `008-skill-graph-daemon-and-advisor-unification/spec.md` and enumerate REQ-
 Already-known: P2-001 says checklist evidence is vague. This iteration QUANTIFIES: how many `[x]` CHK-* items lack file:line citations? Enumerate at least 5 specific examples.
 
 ### T3. OVERLAY: feature_catalog_code
-Find any feature catalog entries for the skill-advisor / skill-graph capability (likely under `.opencode/skill/system-spec-kit/feature_catalog/` or sibling). Are catalog claims (e.g., "advisor returns recommendations within X ms", "scan reindexes the graph") consistent with the actual MCP tool surface?
+Find any feature catalog entries for the skill-advisor / skill-graph capability (likely under `.opencode/skills/system-spec-kit/feature_catalog/` or sibling). Are catalog claims (e.g., "advisor returns recommendations within X ms", "scan reindexes the graph") consistent with the actual MCP tool surface?
 
 ### T4. OVERLAY: playbook_capability
 Find manual testing playbook entries for skill-advisor / skill-graph. Are scenarios for: (a) corrupt DB recovery, (b) daemon restart, (c) advisor unavailable mode, (d) public scan from external caller — present? Iter-2's P2-001 (corruption recovery) and the new P1 should both have playbook coverage; if missing, that's a P2.

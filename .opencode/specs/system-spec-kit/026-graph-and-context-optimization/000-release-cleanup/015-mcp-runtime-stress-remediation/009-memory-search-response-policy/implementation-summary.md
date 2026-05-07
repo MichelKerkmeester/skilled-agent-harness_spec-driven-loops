@@ -17,10 +17,10 @@ _memory:
     blockers:
       - "Live runtime probes require user MCP daemon/client restart before they reflect rebuilt dist output"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts"
       - "implementation-summary.md"
     completion_pct: 90
     open_questions: []
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -62,10 +62,10 @@ Implemented the server-side refusal contract for `memory_search` weak retrieval:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts` | Modified | Added `deriveResponsePolicy`, `deriveCitationPolicy`, and response data fields |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts` | Modified | Extended `RecoveryAction`, mapped new actions, added safe suggestion synthesis |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts` | Modified | Added enum/action and `ask_user` suggestion coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts` | Modified | Added responsePolicy/citationPolicy contract cases |
+| `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | Modified | Added `deriveResponsePolicy`, `deriveCitationPolicy`, and response data fields |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts` | Modified | Extended `RecoveryAction`, mapped new actions, added safe suggestion synthesis |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts` | Modified | Added enum/action and `ask_user` suggestion coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts` | Modified | Added responsePolicy/citationPolicy contract cases |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/009-memory-search-response-policy/implementation-summary.md` | Modified | Recorded implementation and verification evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -97,12 +97,12 @@ Implemented directly against `spec.md`, `tasks.md`, and the 007 research anchors
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/d5-recovery-payload.vitest.ts tests/empty-result-recovery.vitest.ts` | PASS: 2 files passed, 48 tests passed |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS: `tsc --build` completed successfully |
-| `grep -l responsePolicy .opencode/skill/system-spec-kit/mcp_server/dist/formatters/search-results.js` | PASS: matched `dist/formatters/search-results.js` |
-| `grep -l citationPolicy .opencode/skill/system-spec-kit/mcp_server/dist/formatters/search-results.js` | PASS: matched `dist/formatters/search-results.js` |
-| `grep -l ask_disambiguation .opencode/skill/system-spec-kit/mcp_server/dist/lib/search/recovery-payload.js` | PASS: matched `dist/lib/search/recovery-payload.js` |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/009-memory-search-response-policy --strict` | PASS: Errors 0, Warnings 0 |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/d5-recovery-payload.vitest.ts tests/empty-result-recovery.vitest.ts` | PASS: 2 files passed, 48 tests passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS: `tsc --build` completed successfully |
+| `grep -l responsePolicy .opencode/skills/system-spec-kit/mcp_server/dist/formatters/search-results.js` | PASS: matched `dist/formatters/search-results.js` |
+| `grep -l citationPolicy .opencode/skills/system-spec-kit/mcp_server/dist/formatters/search-results.js` | PASS: matched `dist/formatters/search-results.js` |
+| `grep -l ask_disambiguation .opencode/skills/system-spec-kit/mcp_server/dist/lib/search/recovery-payload.js` | PASS: matched `dist/lib/search/recovery-payload.js` |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/009-memory-search-response-policy --strict` | PASS: Errors 0, Warnings 0 |
 | Live `memory_search({query:"find the spec for the cache warning hooks packet"})` probe | PASS (cite_results branch): recorded 2026-04-27T10:12:37.318Z; `data.citationPolicy:"cite_results"`, `requestQuality.label:"good"`, `intent.type:"find_spec"`, top hit is the `001-cache-warning-hooks` spec at similarity 84.07. `evidenceGapWarning` still surfaces (`Z=1.21`) per 007/Q4 contract. Weak-quality branch (`do_not_cite_results`/`responsePolicy.noCanonicalPathClaims`/`safeResponse`/`ask_disambiguation`) not exercised here — covered by `tests/d5-recovery-payload.vitest.ts` and `tests/empty-result-recovery.vitest.ts`; restart confirms cite_results path is live in production. |
 | 006/I2 weak-quality live repro after restart | DEFERRED: still requires the original 006/I2 query that yielded `requestQuality:"weak"`; this probe used a good-quality query to confirm cite_results path. Recommend running 006/I2 reproduction during item 2.2 sweep re-run. |
 <!-- /ANCHOR:verification -->

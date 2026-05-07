@@ -12,12 +12,12 @@ Axis 5 tool-discovery UX: compare SPAR's `.spar-kit/.local/tools.yaml` seed-once
    - `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/specs/completed/tools-check/tools-check_spec.md`
    - `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-init/SKILL.md`
 3. Compared internal discovery and routing surfaces:
-   - `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-   - `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
-   - `.opencode/command/doctor/skill-advisor.md`
-   - `.opencode/skill/mcp-code-mode/SKILL.md`
-   - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/tools/README.md`
+   - `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+   - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
+   - `.opencode/commands/doctor/skill-advisor.md`
+   - `.opencode/skills/mcp-code-mode/SKILL.md`
+   - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/tools/README.md`
 4. Checked live internal tool-schema count with `rg '^\\s*name:' .../tool-schemas.ts | wc -l`.
 
 # Findings

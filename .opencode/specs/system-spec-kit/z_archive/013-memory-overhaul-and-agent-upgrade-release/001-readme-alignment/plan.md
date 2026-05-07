@@ -78,8 +78,8 @@ Manual audit with systematic file-by-file review
 
 ### Phase 1: High-Priority READMEs (P0)
 - [ ] Audit `.opencode/README.md` statistics table
-- [ ] Audit `.opencode/skill/system-spec-kit/README.md` for 5 sources, 7 intents, schema v13
-- [ ] Audit `.opencode/skill/system-spec-kit/mcp_server/README.md` for same + includeSpecDocs
+- [ ] Audit `.opencode/skills/system-spec-kit/README.md` for 5 sources, 7 intents, schema v13
+- [ ] Audit `.opencode/skills/system-spec-kit/mcp_server/README.md` for same + includeSpecDocs
 
 ### Phase 2: Medium-Priority READMEs (P1)
 - [ ] Audit 17 mcp_server/lib/ READMEs
@@ -88,7 +88,7 @@ Manual audit with systematic file-by-file review
 - [ ] Audit 4 shared/ READMEs
 - [ ] Audit 6 workflow skill READMEs
 - [ ] Audit 2 MCP skill READMEs
-- [ ] Audit `.opencode/skill/README.md` and `.opencode/install_guides/README.md`
+- [ ] Audit `.opencode/skills/README.md` and `.opencode/install_guides/README.md`
 
 ### Phase 3: Low-Priority Compliance (P2)
 - [ ] Check 60+ READMEs for anchor tag pairs

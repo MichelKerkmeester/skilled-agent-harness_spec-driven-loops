@@ -1,5 +1,5 @@
 # Agent: improve-prompt
-# Converted from: .opencode/agent/improve-prompt.md
+# Converted from: .opencode/agents/improve-prompt.md
 name = "improve-prompt"
 description = "Improve-prompt specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
 profile = "default"
@@ -75,7 +75,7 @@ Incoming prompt-escalation request
 
 ### ALWAYS
 
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Keep scope, constraints, non-goals, and verification requirements explicit in the enhanced prompt.
 - Return the exact structured output contract with no extra wrapper prose inside the result block.
@@ -213,7 +213,7 @@ NEVER CLAIM COMPLETION WITHOUT A DISPATCH-READY PROMPT PACKAGE
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 

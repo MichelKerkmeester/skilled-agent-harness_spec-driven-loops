@@ -27,7 +27,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -61,9 +61,9 @@ The two missing intents are now exercised. SD-016 routes to OPTIMIZATION (loads 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md` | Created | SD-016 OPTIMIZATION scenario |
-| `.opencode/skill/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md` | Created | SD-017 INSTALL_GUIDE scenario |
-| `.opencode/skill/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Modified | Index updated for SD-016 + SD-017 |
+| `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md` | Created | SD-016 OPTIMIZATION scenario |
+| `.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md` | Created | SD-017 INSTALL_GUIDE scenario |
+| `.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md` | Modified | Index updated for SD-016 + SD-017 |
 | `076/scripts/run-matrix-076.sh` | Created | 071-derived dispatcher restricted to SD-016/017 |
 | `076/scripts/extract_metrics_v3.py` | Created | Bullet-aware metrics extractor |
 | `076/logs/{SD-016,SD-017}/{codex,copilot,opencode}.log` | Created | Raw CLI output (6 files) |

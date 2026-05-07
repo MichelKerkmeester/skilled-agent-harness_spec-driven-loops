@@ -10,7 +10,7 @@
 ### Finding 005-F1
 - **Severity**: P1
 - **Dimension**: security
-- **File**: `.opencode/skill/system-spec-kit/references/memory/save_workflow.md:320`
+- **File**: `.opencode/skills/system-spec-kit/references/memory/save_workflow.md:320`
 - **Title**: Full-dialogue snapshot guidance lacks redaction controls
 - **Evidence**: Requires `## Conversation Flow` with "Full dialogue with timestamps" as required
 - **Expected**: Redaction/sanitization of secrets before persistence; summary-first default
@@ -20,7 +20,7 @@
 ### Finding 005-F2
 - **Severity**: P1
 - **Dimension**: security
-- **File**: `.opencode/skill/system-spec-kit/references/memory/memory_system.md:161`
+- **File**: `.opencode/skills/system-spec-kit/references/memory/memory_system.md:161`
 - **Title**: Governance scope parameters omitted from memory_search() reference
 - **Evidence**: No tenantId, userId, agentId, sharedSpaceId in parameter list
 - **Expected**: Document governed retrieval parameters for shared/multi-actor deployments
@@ -30,7 +30,7 @@
 ### Finding 005-F3
 - **Severity**: P1
 - **Dimension**: security
-- **File**: `.opencode/skill/system-spec-kit/references/config/environment_variables.md:27`
+- **File**: `.opencode/skills/system-spec-kit/references/config/environment_variables.md:27`
 - **Title**: MEMORY_ALLOWED_PATHS default documentation understates actual read boundary
 - **Evidence**: Default shown as `specs/,.opencode/` only
 - **Expected**: Document effective default including runtime roots (process.cwd(), ~/.claude)
@@ -40,7 +40,7 @@
 ### Finding 005-F4
 - **Severity**: P2
 - **Dimension**: security
-- **File**: `.opencode/skill/system-spec-kit/references/config/environment_variables.md:339`
+- **File**: `.opencode/skills/system-spec-kit/references/config/environment_variables.md:339`
 - **Title**: Shared-memory governance env docs stale/incomplete
 - **Evidence**: SPECKIT_MEMORY_SHARED_MEMORY shown as ON; missing admin identity env vars
 - **Expected**: Reflect default-off state; document SPECKIT_SHARED_MEMORY_ADMIN_USER_ID/AGENT_ID
@@ -50,7 +50,7 @@
 ### Finding 005-F5
 - **Severity**: P2
 - **Dimension**: security
-- **File**: `.opencode/skill/system-spec-kit/references/memory/trigger_config.md:195`
+- **File**: `.opencode/skills/system-spec-kit/references/memory/trigger_config.md:195`
 - **Title**: Root-level fallback save location contradicts governed save boundary
 - **Evidence**: Fallback to `memory/ (workspace root)`
 - **Expected**: Spec/phase-folder scoped only

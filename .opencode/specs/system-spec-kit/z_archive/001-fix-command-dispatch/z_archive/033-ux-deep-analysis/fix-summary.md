@@ -35,10 +35,10 @@
 **Current (WRONG):** `mcp__semantic_memory__memory_search({...})`
 **Correct:** `semantic_memory_memory_search({...})`
 **Files Affected:**
-- `.opencode/command/memory/save.md:4,175-178,518-528` - allowed-tools and examples
-- `.opencode/command/memory/search.md:4,28-29,193-211,222-224,294-300,357-358,464-465` - allowed-tools and all MCP examples
-- `.opencode/command/memory/load.md:4,87-94,124-134` - allowed-tools and examples
-- `.opencode/command/memory/checkpoint.md:4,146-149,198-201,232-233,255-258,291-292,345-349` - allowed-tools and all checkpoint examples
+- `.opencode/commands/memory/save.md:4,175-178,518-528` - allowed-tools and examples
+- `.opencode/commands/memory/search.md:4,28-29,193-211,222-224,294-300,357-358,464-465` - allowed-tools and all MCP examples
+- `.opencode/commands/memory/load.md:4,87-94,124-134` - allowed-tools and examples
+- `.opencode/commands/memory/checkpoint.md:4,146-149,198-201,232-233,255-258,291-292,345-349` - allowed-tools and all checkpoint examples
 
 **Fix Required:**
 ```diff
@@ -80,11 +80,11 @@ Replace ALL instances of `mcp__semantic_memory__` with `semantic_memory_` throug
 **Impact:** Windows native users cannot run validation/creation scripts
 **Current:** All scripts use `#!/usr/bin/env bash` shebang
 **Affected Scripts:**
-- `.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh`
-- `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
-- `.opencode/skill/system-spec-kit/scripts/archive-spec.sh`
-- `.opencode/skill/system-spec-kit/scripts/recommend-level.sh`
-- `.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh`
+- `.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh`
+- `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
+- `.opencode/skills/system-spec-kit/scripts/archive-spec.sh`
+- `.opencode/skills/system-spec-kit/scripts/recommend-level.sh`
+- `.opencode/skills/system-spec-kit/scripts/calculate-completeness.sh`
 
 **Fix:** Document Git Bash/WSL requirement prominently in:
 - Root README.md
@@ -97,7 +97,7 @@ Replace ALL instances of `mcp__semantic_memory__` with `semantic_memory_` throug
 **Agent:** 4
 **Impact:** Script crashes when retry logic triggered
 **Current:** Calls `vectorIndex.getDb()` which is not exported
-**File:** `.opencode/skill/system-memory/scripts/lib/retry-manager.js`
+**File:** `.opencode/skills/system-memory/scripts/lib/retry-manager.js`
 **Lines:** 42, 99, 118, 151 (and potentially more)
 **Root Cause:** `vector-index.js` exports `initializeDb()` but the retry-manager calls `getDb()`
 
@@ -124,7 +124,7 @@ const db = initializeDb();
 **Agent:** 4
 **Impact:** Creates orphan `memory/` directories in non-existent spec folders
 **Current:** `setupContextDirectory()` doesn't validate spec folder exists before creating memory/ subdirectory
-**File:** `.opencode/skill/system-memory/scripts/generate-context.js:3053-3062`
+**File:** `.opencode/skills/system-memory/scripts/generate-context.js:3053-3062`
 
 **Fix:**
 ```javascript
@@ -177,7 +177,7 @@ async function setupContextDirectory(specFolder) {
 - Other templates use: `[YOUR_VALUE_HERE: description]` or `<placeholder>`
 
 **Files to Fix:**
-- `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
+- `.opencode/skills/system-spec-kit/templates/debug-delegation.md`
 
 **Standard to Adopt:** `[YOUR_VALUE_HERE: description]` (most common pattern)
 
@@ -187,7 +187,7 @@ async function setupContextDirectory(specFolder) {
 **Agent:** 7
 **Impact:** New users have no foundational understanding
 **Current:** The term "spec folder" is used 50+ times in SKILL.md but never defined
-**Location:** `.opencode/skill/system-spec-kit/SKILL.md`
+**Location:** `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Fix:** Add definition section at the start:
 ```markdown
@@ -210,13 +210,13 @@ Every conversation that modifies files MUST have a spec folder.
 **Impact:** Script invocation fails when following documentation
 **Current Example (WRONG):**
 ```bash
-.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh 007-feature-name 2
+.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh 007-feature-name 2
 ```
 **Correct Usage:**
 ```bash
-.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add feature" --short-name feature-name --level 2
+.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh "Add feature" --short-name feature-name --level 2
 ```
-**File:** `.opencode/skill/system-spec-kit/SKILL.md:694-695`
+**File:** `.opencode/skills/system-spec-kit/SKILL.md:694-695`
 
 **Fix:** Update documentation to match actual script interface
 
@@ -292,7 +292,7 @@ Every conversation that modifies files MUST have a spec folder.
 **Standard to Adopt:** `/memory:save` (colon notation with leading slash)
 
 **Files Requiring Updates:**
-- All command `.md` files in `.opencode/command/`
+- All command `.md` files in `.opencode/commands/`
 - SKILL.md files referencing commands
 - AGENTS.md command references
 
@@ -381,7 +381,7 @@ Content here...
 **Agent:** 20
 **Impact:** Resume command doesn't offer memory loading options per Gate 4
 **Current:** `resume.md` has memory loading but doesn't present explicit A/B/C/D options
-**Location:** `.opencode/command/spec_kit/resume.md`
+**Location:** `.opencode/commands/spec_kit/resume.md`
 
 **Fix:** Add explicit Gate 4 implementation:
 ```markdown
@@ -666,7 +666,7 @@ specs/007-auth/
 **Fix:** Add "Powered by" section to commands:
 ```markdown
 **Skill:** system-memory
-**Documentation:** .opencode/skill/system-memory/SKILL.md
+**Documentation:** .opencode/skills/system-memory/SKILL.md
 ```
 
 ---
@@ -802,20 +802,20 @@ specs/007-auth/
 
 | Priority | File | Issues | Changes Needed |
 |----------|------|--------|----------------|
-| **P0** | `.opencode/command/memory/save.md` | P0-1 | Replace 4+ MCP tool name instances |
-| **P0** | `.opencode/command/memory/search.md` | P0-1 | Replace 10+ MCP tool name instances |
-| **P0** | `.opencode/command/memory/load.md` | P0-1 | Replace 4+ MCP tool name instances |
-| **P0** | `.opencode/command/memory/checkpoint.md` | P0-1 | Replace 8+ MCP tool name instances |
+| **P0** | `.opencode/commands/memory/save.md` | P0-1 | Replace 4+ MCP tool name instances |
+| **P0** | `.opencode/commands/memory/search.md` | P0-1 | Replace 10+ MCP tool name instances |
+| **P0** | `.opencode/commands/memory/load.md` | P0-1 | Replace 4+ MCP tool name instances |
+| **P0** | `.opencode/commands/memory/checkpoint.md` | P0-1 | Replace 8+ MCP tool name instances |
 | **P0** | `README.md` (new) | P0-2, P0-11 | Create with intro + quickstart |
 | **P0** | `opencode.json` | P0-3 | Add Windows path documentation |
 | **P0** | `.gitattributes` (new) | P0-12 | Create for line ending control |
-| **P0** | `.opencode/skill/system-memory/scripts/lib/retry-manager.js` | P0-5 | Fix getDb() calls |
-| **P0** | `.opencode/skill/system-memory/scripts/generate-context.js` | P0-6 | Add spec folder validation |
-| **P0** | `.opencode/skill/system-spec-kit/SKILL.md` | P0-7, P0-9, P0-10 | Multiple documentation fixes |
-| **P0** | `.opencode/skill/system-spec-kit/templates/debug-delegation.md` | P0-8 | Standardize placeholders |
+| **P0** | `.opencode/skills/system-memory/scripts/lib/retry-manager.js` | P0-5 | Fix getDb() calls |
+| **P0** | `.opencode/skills/system-memory/scripts/generate-context.js` | P0-6 | Add spec folder validation |
+| **P0** | `.opencode/skills/system-spec-kit/SKILL.md` | P0-7, P0-9, P0-10 | Multiple documentation fixes |
+| **P0** | `.opencode/skills/system-spec-kit/templates/debug-delegation.md` | P0-8 | Standardize placeholders |
 | **P1** | `AGENTS.md` | P1-1, P1-9 | Fix decay formula, tool name |
-| **P1** | `.opencode/command/spec_kit/resume.md` | P1-8 | Add explicit Gate 4 |
-| **P1** | `.opencode/skill/system-spec-kit/references/template_guide.md` | P1-6 | Document missing templates |
+| **P1** | `.opencode/commands/spec_kit/resume.md` | P1-8 | Add explicit Gate 4 |
+| **P1** | `.opencode/skills/system-spec-kit/references/template_guide.md` | P1-6 | Document missing templates |
 
 ### Medium Priority (P2) - By Category
 

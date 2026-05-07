@@ -34,7 +34,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-001
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 - **Evidence:** context-server.js:209 AND 1111 - second definition shadows first, breaking caching
 - **Steps:**
   1. [ ] Locate cached version at line 209
@@ -55,7 +55,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-002
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`, `vector-index.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`, `vector-index.js`
 - **Evidence:** context-server.js:1696 calls undefined function
 - **Steps:**
   1. [ ] Locate call at context-server.js:1696
@@ -75,7 +75,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-003
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 - **Evidence:** context-server.js:1700 references non-existent function
 - **Steps:**
   1. [ ] Locate reference at context-server.js:1700
@@ -95,7 +95,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-004
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 - **Evidence:** vector-index.js:2241 uses `last_accessed_at` but schema has `last_accessed`
 - **Steps:**
   1. [ ] Find all references to last_accessed_at (lines 2366, 2379, 2387, 2470, 2481, 2528, 2549, 2676, 2680)
@@ -116,7 +116,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-005
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 - **Evidence:** linkRelatedOnSave() writes to undefined column - silent failure
 - **Steps:**
   1. [ ] Add migration function for related_memories column
@@ -137,7 +137,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P0-006
-- **Files:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` (new)
+- **Files:** `.opencode/skills/system-spec-kit/scripts/validate-spec.sh` (new)
 - **Evidence:** 100+ lines of docs reference script that doesn't exist at expected path
 - **Steps:**
   1. [ ] Review documentation references to understand expected behavior
@@ -150,7 +150,7 @@ contextType: "implementation"
   8. [ ] Test on existing spec folders (various levels)
   9. [ ] Make script executable (chmod +x)
 - **Acceptance Criteria:**
-  - Script exists at `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+  - Script exists at `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
   - Script is executable
   - Validates spec folders correctly per documentation
   - Returns appropriate exit codes
@@ -162,7 +162,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P0-007
-- **Files:** `.opencode/skill/system-spec-kit/scripts/recommend-level.sh` (new)
+- **Files:** `.opencode/skills/system-spec-kit/scripts/recommend-level.sh` (new)
 - **Evidence:** SKILL.md:172 references non-existent script for level selection
 - **Steps:**
   1. [ ] Review SKILL.md documentation for expected behavior
@@ -173,7 +173,7 @@ contextType: "implementation"
   6. [ ] Test on various input scenarios
   7. [ ] Make script executable (chmod +x)
 - **Acceptance Criteria:**
-  - Script exists at `.opencode/skill/system-spec-kit/scripts/recommend-level.sh`
+  - Script exists at `.opencode/skills/system-spec-kit/scripts/recommend-level.sh`
   - Script is executable
   - Returns correct level recommendations based on LOC
   - Output is parseable
@@ -185,7 +185,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P0-008
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/memory/*.md`, `.opencode/command/spec_kit/*.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/memory/*.md`, `.opencode/commands/spec_kit/*.md`
 - **Evidence:** Docs show `memory_save()` but actual is `spec_kit_memory_memory_save()`
 - **Steps:**
   1. [ ] Audit all tool name references in SKILL.md
@@ -213,7 +213,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-001
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** SKILL.md:187,189,205 says "Gate 3", AGENTS.md:101 says "Gate 4"
 - **Steps:**
   1. [ ] Find all "Gate 3" references for spec folder (lines 82, 187, 189, 205, 707)
@@ -233,7 +233,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-002
-- **Files:** `.opencode/command/spec_kit/complete.md`
+- **Files:** `.opencode/commands/spec_kit/complete.md`
 - **Evidence:** complete.md:389 says "13-step workflow" but table shows 14 steps
 - **Steps:**
   1. [ ] Locate line 389 reference to "13-step"
@@ -253,7 +253,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P1-003
-- **Files:** `AGENTS.md`, `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/skill/system-spec-kit/scripts/check-files.sh`
+- **Files:** `AGENTS.md`, `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/scripts/check-files.sh`
 - **Evidence:** AGENTS.md lacks implementation-summary.md requirement
 - **Steps:**
   1. [ ] Review AGENTS.md Level 1 requirements
@@ -274,7 +274,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P1-007
-- **Files:** `.opencode/skill/system-spec-kit/scripts/check-files.sh`
+- **Files:** `.opencode/skills/system-spec-kit/scripts/check-files.sh`
 - **Evidence:** check-files.sh:29 requires for Level 1 specs that shouldn't need it
 - **Steps:**
   1. [ ] Locate check at line 29 in check-files.sh
@@ -294,7 +294,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-008
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** SKILL.md:505-519 skips number 15
 - **Steps:**
   1. [ ] Locate ALWAYS list at lines 505-519
@@ -313,7 +313,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-009
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** generate-context.js not listed in Scripts section
 - **Steps:**
   1. [ ] Locate Scripts section in SKILL.md
@@ -333,7 +333,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-010
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** File exists in templates/ but not listed in documentation
 - **Steps:**
   1. [ ] Locate template table in SKILL.md
@@ -352,7 +352,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P1-011
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/spec_kit/*.md`, `.opencode/skill/system-spec-kit/templates/*.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/spec_kit/*.md`, `.opencode/skills/system-spec-kit/templates/*.md`
 - **Evidence:** Mixed terminology: "Last completed task" vs "Last Action" across files
 - **Steps:**
   1. [ ] Search for all variations of "Last task" / "Last Action" / "Last completed"
@@ -376,7 +376,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P1-004
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/hybrid-search.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/hybrid-search.js`
 - **Evidence:** Parameter extracted but never used in hybrid-search.js
 - **Steps:**
   1. [ ] Locate parameter extraction in hybrid-search.js
@@ -396,7 +396,7 @@ contextType: "implementation"
 - **Effort:** 1.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-005
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/trigger-matcher.js`, `context-server.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/trigger-matcher.js`, `context-server.js`
 - **Evidence:** No clearCache() calls after save/update/delete operations
 - **Steps:**
   1. [ ] Locate trigger cache implementation
@@ -416,7 +416,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-006
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js` or cache module
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js` or cache module
 - **Evidence:** Evicts first inserted entry, not least recently used
 - **Steps:**
   1. [ ] Locate cache implementation
@@ -436,7 +436,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-012
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/checkpoints.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/checkpoints.js`
 - **Evidence:** checkpoints.js sets status='pending', embeddings not preserved
 - **Steps:**
   1. [ ] Review checkpoint creation logic
@@ -457,7 +457,7 @@ contextType: "implementation"
 - **Effort:** 1.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P1-013
-- **Files:** `.opencode/command/help.md` (new)
+- **Files:** `.opencode/commands/help.md` (new)
 - **Evidence:** Users cannot discover available commands system-wide
 - **Steps:**
   1. [ ] Create help.md command file
@@ -478,7 +478,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P1-014
-- **Files:** `.opencode/command/memory/help.md` (new), `.opencode/command/search/help.md` (new)
+- **Files:** `.opencode/commands/memory/help.md` (new), `.opencode/commands/search/help.md` (new)
 - **Evidence:** Namespace-specific help commands don't exist
 - **Steps:**
   1. [ ] Create memory/help.md listing all memory commands
@@ -502,7 +502,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-001
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 - **Evidence:** Schema has no indexes - impacts query performance
 - **Steps:**
   1. [ ] Review common query patterns
@@ -523,7 +523,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-002
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 - **Evidence:** Mixed formats: TEXT dates vs INTEGER epoch in schema
 - **Steps:**
   1. [ ] Audit all timestamp columns
@@ -543,7 +543,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-003
-- **Files:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **Files:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Evidence:** generate-context.js:94-96 fails on `\\\"` patterns
 - **Steps:**
   1. [ ] Locate regex at lines 94-96
@@ -562,7 +562,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-004
-- **Files:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **Files:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Evidence:** detectSpecFolder() calls exit(1) - prevents graceful error handling
 - **Steps:**
   1. [ ] Locate process.exit(1) call in detectSpecFolder
@@ -581,7 +581,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-005
-- **Files:** `.opencode/skill/system-spec-kit/scripts/generate-context.js` or validation scripts
+- **Files:** `.opencode/skills/system-spec-kit/scripts/generate-context.js` or validation scripts
 - **Evidence:** Only matches exact table format, misses prose declarations
 - **Steps:**
   1. [ ] Locate level detection regex
@@ -601,7 +601,7 @@ contextType: "implementation"
 - **Effort:** 0.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-006
-- **Files:** `.opencode/skill/system-spec-kit/scripts/check-files.sh` or validation logic
+- **Files:** `.opencode/skills/system-spec-kit/scripts/check-files.sh` or validation logic
 - **Evidence:** Only checks for checkmarks at specific Unicode values
 - **Steps:**
   1. [ ] Identify all possible checkmark Unicode characters
@@ -619,7 +619,7 @@ contextType: "implementation"
 - **Effort:** 2 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-007
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/workflow/*.yaml`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/workflow/*.yaml`
 - **Evidence:** Rules in SKILL.md not reflected in workflow YAMLs
 - **Steps:**
   1. [ ] Identify rules in SKILL.md
@@ -639,7 +639,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-008
-- **Files:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** SKILL.md + AGENTS.md + YAMLs require manual sync
 - **Steps:**
   1. [ ] Create "Maintenance Guide" section in SKILL.md
@@ -658,7 +658,7 @@ contextType: "implementation"
 - **Effort:** 1.5 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-009
-- **Files:** `AGENTS.md`, `.opencode/skill/system-spec-kit/SKILL.md`
+- **Files:** `AGENTS.md`, `.opencode/skills/system-spec-kit/SKILL.md`
 - **Evidence:** <10 LOC changes require full spec folder
 - **Steps:**
   1. [ ] Define Level 0 criteria (<10 LOC, single file, no logic change)
@@ -678,7 +678,7 @@ contextType: "implementation"
 - **Effort:** 4 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-010
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/test/` (new)
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/test/` (new)
 - **Evidence:** Zero test coverage for context-server.js
 - **Steps:**
   1. [ ] Set up test framework (Jest or similar)
@@ -700,7 +700,7 @@ contextType: "implementation"
 - **Effort:** 3 hours
 - **Status:** [ ] Pending
 - **Issue:** P2-011
-- **Files:** `.opencode/skill/system-spec-kit/mcp-server/test/integration/` (new)
+- **Files:** `.opencode/skills/system-spec-kit/mcp-server/test/integration/` (new)
 - **Evidence:** No end-to-end workflow tests
 - **Steps:**
   1. [ ] Create integration test directory
@@ -720,7 +720,7 @@ contextType: "implementation"
 - **Effort:** 1 hour
 - **Status:** [ ] Pending
 - **Issue:** P2-012
-- **Files:** `.opencode/skill/system-spec-kit/CI-CD-REQUIREMENTS.md` (new)
+- **Files:** `.opencode/skills/system-spec-kit/CI-CD-REQUIREMENTS.md` (new)
 - **Evidence:** No automated testing on commit/PR
 - **Steps:**
   1. [ ] Document ideal CI/CD pipeline

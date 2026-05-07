@@ -16,12 +16,12 @@ _memory:
     next_safe_action: "Run validate.sh --strict, then commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/references/agent_delegation.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-codex/assets/prompt_templates.md"
-      - ".opencode/skill/cli-claude-code/assets/prompt_templates.md"
-      - ".opencode/skill/cli-gemini/assets/prompt_templates.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/agent_delegation.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-codex/assets/prompt_templates.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_templates.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_templates.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-010-cli-drift"
@@ -34,7 +34,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -45,7 +45,7 @@ Six surgical doc edits across five CLI orchestrator skills close findings F-007-
 
 ### Technical Context
 
-The five CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) live under `.opencode/skill/` and provide dispatch contracts plus prompt templates that downstream agents and humans copy into invocation. Drift across these files produces inconsistent behavior across runtimes. The fix is purely textual.
+The five CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) live under `.opencode/skills/` and provide dispatch contracts plus prompt templates that downstream agents and humans copy into invocation. Drift across these files produces inconsistent behavior across runtimes. The fix is purely textual.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -93,7 +93,7 @@ No automated tests for doc-only changes. Verification is:
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §6
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies. Sub-phase 010 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->
 

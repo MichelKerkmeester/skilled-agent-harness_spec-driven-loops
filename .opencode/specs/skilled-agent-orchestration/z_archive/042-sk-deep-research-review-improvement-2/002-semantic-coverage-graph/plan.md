@@ -75,7 +75,7 @@ This phase is a concrete build plan, not a moonshot placeholder. We already know
 - [x] `reduce-state.cjs` ingests `graphEvents`, performs MCP upsert/convergence when available, recalibrates inherited weights for coverage semantics, and preserves local fallback behavior.
 - [x] Deep-research and deep-review references and agent prompts document graph event emission and graph-aware convergence.
 - [x] The five named test files cover core logic, signals, convergence, DB behavior, and tool behavior.
-- [x] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict` passes for the phase folder.
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict` passes for the phase folder.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -134,10 +134,10 @@ iteration JSONL append
 **Goal**: Create a shared coverage-graph helper layer so research and review reuse one graph engine instead of each embedding their own logic.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs`
-- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs`
+- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
 
 **Implementation notes**:
 - Keep extraction seams narrow and distinguish direct-transfer primitives from adaptation-heavy semantics.
@@ -162,9 +162,9 @@ iteration JSONL append
 **Goal**: Create the dedicated graph store and server-side query/signal layer that persists the research and review ontologies exactly as defined in the phase spec.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
 
 **Implementation notes**:
 - Follow `code-graph-db.ts` conventions for schema versioning, index creation, and transaction safety.
@@ -187,11 +187,11 @@ iteration JSONL append
 **Goal**: Surface the coverage graph through four stable MCP tools on the existing Spec Kit Memory MCP server.
 
 **Files to change**:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 **Implementation notes**:
 - `deep_loop_graph_upsert` must be idempotent and reject self-loops.
@@ -215,7 +215,7 @@ iteration JSONL append
 **Goal**: Make graph state part of the canonical deep-research reducer lifecycle.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
 
 **Prerequisite sub-steps**:
 1. Define the reducer/MCP contract: payload shape, sync-vs-async behavior, latency budget, authority order, and replay semantics.
@@ -246,12 +246,12 @@ iteration JSONL append
 **Goal**: Make graph events and graph-aware convergence part of the human- and agent-facing loop contract.
 
 **Files to change**:
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-review/references/state_format.md`
-- `.opencode/skill/sk-deep-review/references/convergence.md`
-- `.opencode/agent/deep-research.md`
-- `.opencode/agent/deep-review.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-review/references/state_format.md`
+- `.opencode/skills/sk-deep-review/references/convergence.md`
+- `.opencode/agents/deep-research.md`
+- `.opencode/agents/deep-review.md`
 
 **Implementation notes**:
 - Both loop products must emit `graphEvents` in their JSONL state.
@@ -278,7 +278,7 @@ iteration JSONL append
 | Integration | SQLite bootstrap, schema rules, idempotent upsert, snapshot persistence | `coverage-graph-db.vitest.ts` |
 | MCP Tool | Input validation, query dispatch, status output, and convergence output contracts | `coverage-graph-tools.vitest.ts` |
 | Runtime Contract | Reducer graph-event ingestion and graph-aware stop behavior | Existing Phase 001 reducer/runtime suites if touched during implementation |
-| Documentation Validation | Spec folder structure, placeholders, frontmatter, phase links | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict` |
+| Documentation Validation | Spec folder structure, placeholders, frontmatter, phase links | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

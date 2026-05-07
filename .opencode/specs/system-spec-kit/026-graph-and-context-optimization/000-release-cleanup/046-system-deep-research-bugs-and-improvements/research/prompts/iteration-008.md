@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 008 of 20. The packet root is
 
 **Angle B3 — Memory MCP round-trip integrity**
 
-Audit `memory_save → memory_index_scan → memory_search → memory_context` flow. Look at `.opencode/skill/system-spec-kit/mcp_server/lib/memory/` and the relevant handlers. Does what gets saved actually become searchable? Are continuity blocks parsed correctly from frontmatter? Are causal links preserved across saves? Trace 1-2 example saves end-to-end (read the relevant handler code) and report inconsistencies with file:line.
+Audit `memory_save → memory_index_scan → memory_search → memory_context` flow. Look at `.opencode/skills/system-spec-kit/mcp_server/lib/memory/` and the relevant handlers. Does what gets saved actually become searchable? Are continuity blocks parsed correctly from frontmatter? Are causal links preserved across saves? Trace 1-2 example saves end-to-end (read the relevant handler code) and report inconsistencies with file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

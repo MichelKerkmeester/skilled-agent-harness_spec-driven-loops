@@ -34,7 +34,7 @@ git clone https://github.com/YOUR_USERNAME/opencode-dev-environment.git
 cd opencode-dev-environment
 
 # Install dependencies (if modifying MCP server)
-cd .opencode/skill/system-spec-kit
+cd .opencode/skills/system-spec-kit
 npm install
 ```
 
@@ -42,10 +42,10 @@ npm install
 
 ```bash
 # Test Spec Kit Memory MCP server
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skills/system-spec-kit/mcp_server/context-server.js
 
 # Test embedding providers
-node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js
+node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js
 ```
 
 ---

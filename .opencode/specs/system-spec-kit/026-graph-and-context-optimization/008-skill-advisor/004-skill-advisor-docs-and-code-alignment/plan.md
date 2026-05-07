@@ -19,7 +19,7 @@ _memory:
       - "../../../../skill/skill-advisor/README.md"
       - "../../../../skill/skill-advisor/feature_catalog/feature_catalog.md"
       - "../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/"
     completion_pct: 100
     open_questions: []
     answered_questions:

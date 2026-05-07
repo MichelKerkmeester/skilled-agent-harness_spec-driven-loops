@@ -55,9 +55,9 @@ _memory:
 ### 2.3 Files Modified
 
 **Created (this session):**
-- `.opencode/skill/*/graph-metadata.json` — 21 per-skill graph metadata files
-- `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py` — graph compiler
-- `.opencode/skill/skill-advisor/scripts/skill-graph.json` — compiled graph (4667 bytes)
+- `.opencode/skills/*/graph-metadata.json` — 21 per-skill graph metadata files
+- `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py` — graph compiler
+- `.opencode/skills/skill-advisor/scripts/skill-graph.json` — compiled graph (4667 bytes)
 - `011-skill-advisor-graph/` — spec folder with spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json
 - `011-skill-advisor-graph/001-research-findings-fixes/` — phase spec for P0/P1 fixes
 - `011-skill-advisor-graph/002-manual-testing-playbook/` — phase spec (placeholder)
@@ -65,8 +65,8 @@ _memory:
 - `011-skill-advisor-graph/research/` — 10 iteration deep research files + state
 
 **Modified (this session):**
-- `.opencode/skill/skill-advisor/scripts/skill_advisor.py` — added `_load_skill_graph()`, `_apply_graph_boosts()`, `_apply_family_affinity()`, `_apply_graph_conflict_penalty()`, ghost guard, evidence separation, health check extension (~120 lines added)
-- `.opencode/skill/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` — fixed 3 expectations, added 3 graph cases (44 total)
+- `.opencode/skills/skill-advisor/scripts/skill_advisor.py` — added `_load_skill_graph()`, `_apply_graph_boosts()`, `_apply_family_affinity()`, `_apply_graph_conflict_penalty()`, ghost guard, evidence separation, health check extension (~120 lines added)
+- `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` — fixed 3 expectations, added 3 graph cases (44 total)
 - 4 graph-metadata.json files with new edges (system-spec-kit, sk-doc, mcp-coco-index, sk-improve-prompt)
 - 2 graph-metadata.json files with removed siblings (sk-deep-review, sk-deep-research)
 
@@ -130,12 +130,12 @@ _memory:
 |------|---------|
 | `011-skill-advisor-graph/003-skill-advisor-packaging/spec.md` | Current phase spec with full scope |
 | `011-skill-advisor-graph/003-skill-advisor-packaging/tasks.md` | Task breakdown with completion status |
-| `.opencode/skill/skill-advisor/` | Skill folder (renamed from scripts/) |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` | Playbook template |
-| `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` | Catalog template |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | Reference playbook example |
-| `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` | Reference catalog example |
-| `.opencode/skill/skill-advisor/manual_testing_playbook/01--routing-accuracy/001-git-routing.md` | Already-aligned playbook example |
+| `.opencode/skills/skill-advisor/` | Skill folder (renamed from scripts/) |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` | Playbook template |
+| `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` | Catalog template |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | Reference playbook example |
+| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` | Reference catalog example |
+| `.opencode/skills/skill-advisor/manual_testing_playbook/01--routing-accuracy/001-git-routing.md` | Already-aligned playbook example |
 
 ---
 

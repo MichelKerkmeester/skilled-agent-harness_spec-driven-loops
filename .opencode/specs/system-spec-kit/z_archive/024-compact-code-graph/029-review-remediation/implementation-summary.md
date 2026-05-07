@@ -71,9 +71,9 @@ The implementation stayed inside the original review workstream surfaces. Runtim
 |-------|--------|
 | `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/session-bootstrap.vitest.ts tests/structural-contract.vitest.ts tests/hook-session-start.vitest.ts tests/hook-session-stop.vitest.ts` | PASS (4 files, 20 tests) |
 | `npm run typecheck` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation --strict` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity --strict` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --strict --no-recursive` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --strict --no-recursive` | PASS |
 | Focused post-remediation review sweep | PASS — no remaining mismatches found on the seven original finding surfaces after truth-sync |
 <!-- /ANCHOR:verification -->
 

@@ -76,11 +76,11 @@ Produce a severity-classified `review-report.md` for MCP schema governance with 
 
 ### In Scope
 
-- Audit `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` for canonical `TOOL_DEFINITIONS`.
-- Audit `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` for Zod input schemas and strict-mode behavior.
-- Audit `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts` for imported advisor schemas.
-- Audit `.opencode/skill/system-spec-kit/mcp_server/lib/governance/` for governed-ingest and scope-governance enforcement.
-- Audit `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` and `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for validation dispatch order.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` for canonical `TOOL_DEFINITIONS`.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` for Zod input schemas and strict-mode behavior.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts` for imported advisor schemas.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/lib/governance/` for governed-ingest and scope-governance enforcement.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` and `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for validation dispatch order.
 - Cross-check 042 README refresh, 033 `memory_retention_sweep`, and 034 `advisor_rebuild`.
 - Write packet-local docs and the final `review-report.md`.
 

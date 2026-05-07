@@ -42,20 +42,20 @@
     "status": "complete",
     "key_files": [
       "improvement/mirror-drift-report.md",
-      ".opencode/skill/sk-improve-agent/assets/target_manifest.jsonc",
-      ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
-      ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+      ".opencode/skills/sk-improve-agent/assets/target_manifest.jsonc",
+      ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
+      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
       ".opencode/specs/descriptions.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/skill/sk-improve-agent/README.md",
-      ".opencode/skill/sk-improve-agent/assets/improvement_charter.md",
-      ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/skills/sk-improve-agent/README.md",
+      ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
+      ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
       "improvement/agent-improvement-config.json",
       "improvement/agent-improvement-state.jsonl",
       "improvement/agent-improvement-dashboard.md",
@@ -72,25 +72,25 @@
       {
         "name": "target_manifest.jsonc",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/assets/target_manifest.jsonc",
+        "path": ".opencode/skills/sk-improve-agent/assets/target_manifest.jsonc",
         "source": "derived"
       },
       {
         "name": "improvement_config.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_config.json",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "score-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+        "path": ".opencode/skills/sk-improve-agent/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
@@ -132,25 +132,25 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/README.md",
+        "path": ".opencode/skills/sk-improve-agent/README.md",
         "source": "derived"
       },
       {
         "name": "improvement_charter.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_charter.md",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_charter.md",
         "source": "derived"
       },
       {
         "name": "improvement_strategy.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
+        "path": ".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",
         "source": "derived"
       },
       {

@@ -98,10 +98,10 @@ Close the real runtime gap instead of just refining wording. After this phase, C
 | `.github/hooks/superset-notify.json` | Modify | Route Copilot `sessionStart` through a repo-local wrapper |
 | `.github/hooks/scripts/session-start.sh` | Create | Emit the shared startup banner, then fan out to Superset silently |
 | `.github/hooks/scripts/superset-notify.sh` | Create | Provide a repo-local best-effort Superset notifier for non-banner events |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts` | Modify | Make Copilot hookPolicy depend on actual repo hook config |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts` | Modify | Cover enabled and missing-config Copilot branches |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts` | Modify | Align recovery expectations to dynamic Copilot hook policy |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts` | Create | Verify the repo hook wiring and wrapper output |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts` | Modify | Make Copilot hookPolicy depend on actual repo hook config |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts` | Modify | Cover enabled and missing-config Copilot branches |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts` | Modify | Align recovery expectations to dynamic Copilot hook policy |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts` | Create | Verify the repo hook wiring and wrapper output |
 | `../spec.md` | Modify | Record Phase 031 as the completed Copilot follow-on |
 | `../plan.md` | Modify | Add the new wiring repair to the packet execution history |
 | `../tasks.md` | Modify | Close the packet tasks for Phase 031 |
@@ -109,10 +109,10 @@ Close the real runtime gap instead of just refining wording. After this phase, C
 | `../decision-record.md` | Modify | Record the new follow-on under the same packet boundary |
 | `../implementation-summary.md` | Modify | Note the Copilot wiring repair and dynamic runtime detection |
 | `../004-cross-runtime-startup-surfacing-parity/*` | Modify | Remove stale “local/untracked Copilot config” wording |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Modify | Reflect dynamic Copilot/Gemini fallback rules |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md` | Modify | Reflect dynamic Copilot/Gemini hook policy detection |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` | Modify | Refresh the fallback feature summary |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md` | Modify | Refresh the runtime detection feature summary |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Modify | Reflect dynamic Copilot/Gemini fallback rules |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/253-runtime-detection.md` | Modify | Reflect dynamic Copilot/Gemini hook policy detection |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` | Modify | Refresh the fallback feature summary |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md` | Modify | Refresh the runtime detection feature summary |
 <!-- /ANCHOR:scope -->
 
 ---

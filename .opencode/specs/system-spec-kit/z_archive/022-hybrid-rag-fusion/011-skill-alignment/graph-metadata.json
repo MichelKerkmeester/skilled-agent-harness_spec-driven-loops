@@ -49,15 +49,15 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/references/memory/save_workflow.md",
-      ".opencode/skill/system-spec-kit/references/memory/embedding_resilience.md",
-      ".opencode/skill/system-spec-kit/references/memory/memory_system.md",
-      ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
-      ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/skill/system-spec-kit/assets/complexity_decision_matrix.md",
-      ".opencode/skill/system-spec-kit/assets/level_decision_matrix.md",
-      ".opencode/skill/system-spec-kit/assets/template_mapping.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+      ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
+      ".opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md",
+      ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
+      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
       "mcp_server/tool-schemas.ts",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/spec.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/plan.md",
@@ -99,55 +99,55 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "save_workflow.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/memory/save_workflow.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
         "source": "derived"
       },
       {
         "name": "embedding_resilience.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/memory/embedding_resilience.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
         "source": "derived"
       },
       {
         "name": "memory_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/memory/memory_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
         "source": "derived"
       },
       {
         "name": "environment_variables.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
         "source": "derived"
       },
       {
         "name": "parallel_dispatch_config.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
+        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
         "source": "derived"
       },
       {
         "name": "complexity_decision_matrix.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/complexity_decision_matrix.md",
+        "path": ".opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md",
         "source": "derived"
       },
       {
         "name": "level_decision_matrix.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/level_decision_matrix.md",
+        "path": ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
         "source": "derived"
       },
       {
         "name": "template_mapping.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/template_mapping.md",
+        "path": ".opencode/skills/system-spec-kit/assets/template_mapping.md",
         "source": "derived"
       },
       {

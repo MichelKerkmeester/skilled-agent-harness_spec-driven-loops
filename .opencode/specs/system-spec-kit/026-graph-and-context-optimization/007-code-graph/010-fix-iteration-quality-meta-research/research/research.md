@@ -245,7 +245,7 @@ A FIX prompt or reviewer should suspect this wrong pattern when the fix changes 
 Run a producer inventory, not a diff-only inspection:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 rg -n 'error:|errors:|errors\.push|warnings:|warnings\.push|throw new Error|JSON.stringify' "$SCAN"
 rg -n 'relativizeScan(Error|Warning|Message)|relativize\(' "$SCAN"
 ```
@@ -254,7 +254,7 @@ For wording or vocabulary fixes, search across response builders and schemas, no
 
 ```bash
 rg -n -i 'preset|capabilit(y|ies)|kind|manifest|candidate manifest' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts' --glob '*.md'
 ```
 
@@ -265,9 +265,9 @@ The wrong pattern is present if new or edited user-facing emitters are not accou
 Self-verifying 009 gate for the raw-path class:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 ! rg -n 'errors\.push\(`\$\{result\.filePath\}|parseErrors\.map\(e => `\$\{result\.filePath\}' "$SCAN"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'invalid rootDir|out-of-workspace rootDir|scan warnings|data.errors|relativizeScanError multi-path safety'
 ```
@@ -276,7 +276,7 @@ Self-verifying vocabulary-class gate:
 
 ```bash
 rg -n -i 'candidate manifest drift|preset|capabilities' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts' --glob '*.md'
 ```
 
@@ -336,7 +336,7 @@ For the 009 scope policy:
 
 ```bash
 rg -n 'resolveIndexScopePolicy|parseIndexScopePolicyFromFingerprint|setCodeGraphScope|getStoredCodeGraphScope|activeScope|storedScope|scopeMismatch' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts'
 ```
 
@@ -345,7 +345,7 @@ For any changed function:
 ```bash
 SYMBOL=resolveIndexScopePolicy
 rg -n "($SYMBOL|from '../lib/index-scope-policy|from \"../lib/index-scope-policy)" \
-  .opencode/skill/system-spec-kit/mcp_server \
+  .opencode/skills/system-spec-kit/mcp_server \
   --glob '*.ts'
 ```
 
@@ -356,10 +356,10 @@ The wrong pattern is present if the consumer list is larger than the test/fix li
 Self-verifying 009 gate:
 
 ```bash
-STATUS=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+STATUS=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
 ! rg -n 'activeScopePolicy\s*=\s*resolveIndexScopePolicy\(\)' "$STATUS"
 rg -n 'parseIndexScopePolicyFromFingerprint\(storedScope\).*resolveIndexScopePolicy' "$STATUS"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'reports status activeScope from the stored scan scope|lets includeSkills false override'
 ```
@@ -428,7 +428,7 @@ Concrete detection for the 009 wrong approach:
 
 ```bash
 rg -n 'replace\(/\\/\[\^|relativizeScan(Error|Warning)\(.*replace|PATH_DELIMITERS|split\(PATH_DELIMITERS\)' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 ```
 
 Wrong smell: regex replacement exists without a structural split/parser and without adversarial table coverage.
@@ -438,12 +438,12 @@ Wrong smell: regex replacement exists without a structural split/parser and with
 Self-verifying 009 gate:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
 ! rg -n 'relativizeScan(Error|Warning).*replace|replace\(/\\/\[\^' "$SCAN"
 rg -n 'PATH_DELIMITERS|split\(PATH_DELIMITERS\)' "$SCAN"
 rg -n 'colon-delimited|NUL-delimited|quoted path|bracketed path list|mixed delimiters|no abs paths' "$TEST"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'relativizeScanError multi-path safety'
 ```
@@ -511,7 +511,7 @@ The wrong pattern is present if a test name says "matrix" but row count is small
 Concrete 009 matrix-row check:
 
 ```bash
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
 sed -n '/resolveIndexScopePolicy precedence matrix/,/] as const/p' "$TEST"
 ```
 
@@ -529,10 +529,10 @@ Wrong smell: the review/checklist refers to `main~1..HEAD` or an unpinned branch
 Self-verifying 009 matrix gate:
 
 ```bash
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
 rows=$(sed -n '/resolveIndexScopePolicy precedence matrix/,/] as const/p' "$TEST" | rg -c "^\s*\[(undefined|'true')")
 test "$rows" -eq 6
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-indexer.vitest.ts \
     -t 'resolveIndexScopePolicy precedence matrix'
 ```
@@ -542,7 +542,7 @@ Self-verifying direct-coverage gate for REQ-heavy packets:
 ```bash
 PACKET=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience
 rg -n 'REQ-00[2-9]|REQ-01[0-5]' "$PACKET"/spec.md "$PACKET"/checklist.md "$PACKET"/implementation-summary.md
-rg -n 'REQ-00[2-9]|REQ-01[0-5]' .opencode/skill/system-spec-kit/mcp_server --glob '*.{vitest,test}.ts'
+rg -n 'REQ-00[2-9]|REQ-01[0-5]' .opencode/skills/system-spec-kit/mcp_server --glob '*.{vitest,test}.ts'
 ```
 
 Expected result: every claimed requirement has direct test evidence or the packet docs explicitly downgrade the claim from direct to indirect coverage.
@@ -595,7 +595,7 @@ Search for process-wide state writes in tests and bench files. Any write must ha
 
 ```bash
 rg -n 'process\.env(\[[^\]]+\]|\.[A-Z0-9_]+)\s*=|delete process\.env|speckitMetrics\.reset|vi\.stubEnv|vi\.unstubAllEnvs' \
-  .opencode/skill/system-spec-kit/mcp_server \
+  .opencode/skills/system-spec-kit/mcp_server \
   --glob '*.{vitest,test,bench}.ts'
 ```
 
@@ -606,7 +606,7 @@ Wrong smell: a test sets `process.env.X = ...` inside one case, or relies on def
 Self-verifying 009 isolation gate:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   SPECKIT_CODE_GRAPH_INDEX_SKILLS=true npx vitest run \
     code_graph/tests/code-graph-scan.vitest.ts \
     code_graph/tests/code-graph-indexer.vitest.ts \
@@ -617,9 +617,9 @@ Self-verifying source audit:
 
 ```bash
 rg -n 'original.*Env|beforeEach\(\(\) => \{|afterEach\(\(\) => \{|delete process\.env\[CODE_GRAPH_INDEX_SKILLS_ENV\]' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
 ```
 
 Generic global-state gate:
@@ -1023,9 +1023,9 @@ These recommendations synthesize iterations 001-004 into concrete workflow edits
 
 **WHAT to change**
 
-The requested target, `.opencode/skill/system-spec-kit/scripts/templates/level_*/`, is not the current Level template location. That directory owns only the inline gate renderer: `.opencode/skill/system-spec-kit/scripts/templates/README.md:21-37` lists `inline-gate-renderer.{ts,sh}` and no `level_*` folders exist. The canonical Level markdown templates are in `.opencode/skill/system-spec-kit/templates/manifest/*.md.tmpl`, rendered by that script.
+The requested target, `.opencode/skills/system-spec-kit/scripts/templates/level_*/`, is not the current Level template location. That directory owns only the inline gate renderer: `.opencode/skills/system-spec-kit/scripts/templates/README.md:21-37` lists `inline-gate-renderer.{ts,sh}` and no `level_*` folders exist. The canonical Level markdown templates are in `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl`, rendered by that script.
 
-Modify `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl`:
+Modify `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl`:
 
 - Insert this section after `## 3. ARCHITECTURE` and before `## 4. IMPLEMENTATION PHASES` in each Level block:
   - Level 1: after line 83, before line 87.
@@ -1066,12 +1066,12 @@ Expected cycle compression: for `009`-class work this should move remediation fr
 
 ```bash
 rg -n "FIX ADDENDUM: AFFECTED SURFACES|ANCHOR:affected-surfaces|Same-class producers|Consumers of changed symbols" \
-  .opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl
+  .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
 
 for level in 1 2 3 3+; do
-  .opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+  .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
     --level "$level" \
-    .opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl >/tmp/plan-"$level".md
+    .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl >/tmp/plan-"$level".md
   rg -n "AFFECTED SURFACES" /tmp/plan-"$level".md
 done
 ```
@@ -1080,7 +1080,7 @@ done
 
 **WHAT to change**
 
-Modify `.opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl`:
+Modify `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl`:
 
 - Level 2: insert after `## Testing` and before `## Security`, around lines 69-80.
 - Level 3: insert after `## Testing` and before `## Security`, around lines 198-209.
@@ -1120,12 +1120,12 @@ Expected cycle compression: it mainly prevents the high-cost second cycle. Itera
 
 ```bash
 rg -n "CHK-FIX-001|CHK-FIX-007|Fix Completeness" \
-  .opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl
+  .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl
 
 for level in 2 3 3+; do
-  .opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
+  .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
     --level "$level" \
-    .opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl >/tmp/checklist-"$level".md
+    .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl >/tmp/checklist-"$level".md
   rg -n "Fix Completeness|CHK-FIX" /tmp/checklist-"$level".md
 done
 ```
@@ -1136,9 +1136,9 @@ done
 
 Modify both plan workflow YAML files:
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:553` currently lists planning activities without an affected-surface output. Add `Generate Affected Surfaces table for fix_bug/remediation packets`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:602` has the same activities list; add the same item.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:562-566` and `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:611-615` score plan quality on approach, risk, dependency mapping, and pattern alignment. Add a fifth scoring factor:
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:553` currently lists planning activities without an affected-surface output. Add `Generate Affected Surfaces table for fix_bug/remediation packets`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:602` has the same activities list; add the same item.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:562-566` and `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:611-615` score plan quality on approach, risk, dependency mapping, and pattern alignment. Add a fifth scoring factor:
 
 ```yaml
 - { factor: "Affected surface coverage", weight: 0.20, assess: "For fix/remediation packets, are same-class producers, consumers, test matrices, docs/resource maps, and runtime variants enumerated?" }
@@ -1156,8 +1156,8 @@ Then rebalance the existing weights, for example:
 
 Also update the plan inline scaffold:
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:206-214`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:212-220`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:206-214`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:212-220`
 
 Add an optional custom section after the required seven anchors rather than renumbering existing required anchors:
 
@@ -1168,7 +1168,7 @@ Add an optional custom section after the required seven anchors rather than renu
 
 **WHY**
 
-This addresses research question 5 directly. Iteration 002 found that `004`, `005`, `008`, and `009` would each have benefited from explicit surface enumeration. The plan flow is the right choke point because deep-review verdicts route FAIL and CONDITIONAL to `/spec_kit:plan` (`.opencode/skill/sk-deep-review/references/convergence.md:473-479`). If plan.md does not require surfaces, the next implement/fix session starts with a narrow target by default.
+This addresses research question 5 directly. Iteration 002 found that `004`, `005`, `008`, and `009` would each have benefited from explicit surface enumeration. The plan flow is the right choke point because deep-review verdicts route FAIL and CONDITIONAL to `/spec_kit:plan` (`.opencode/skills/sk-deep-review/references/convergence.md:473-479`). If plan.md does not require surfaces, the next implement/fix session starts with a narrow target by default.
 
 Expected cycle compression: reduces the probability of a second failed fix+verify cycle. Iteration 004 estimated broad one-shot remediation at 31-45m active versus the actual post-run-1 path at 69m29s active and 149m15s elapsed.
 
@@ -1176,10 +1176,10 @@ Expected cycle compression: reduces the probability of a second failed fix+verif
 
 ```bash
 rg -n "Affected surface coverage|Generate Affected Surfaces|ANCHOR:affected-surfaces" \
-  .opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml
+  .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml
 
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research \
   --strict
 ```
@@ -1188,7 +1188,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
 
 **WHAT to change**
 
-Modify `.opencode/skill/sk-code-review/SKILL.md`:
+Modify `.opencode/skills/sk-code-review/SKILL.md`:
 
 - Add `references/fix-completeness-checklist.md` to the default resources at lines 120-125.
 - Add the new file to the Resource Loading table at lines 87-90, likely under ALWAYS for security/correctness reviews and CONDITIONAL for ordinary maintainability reviews.
@@ -1201,7 +1201,7 @@ Modify `.opencode/skill/sk-code-review/SKILL.md`:
    - Recommended fix
 ```
 
-Also modify `.opencode/skill/sk-code-review/references/review_core.md:75-87` so the shared finding schema includes:
+Also modify `.opencode/skills/sk-code-review/references/review_core.md:75-87` so the shared finding schema includes:
 
 | Field | Requirement |
 | --- | --- |
@@ -1218,18 +1218,18 @@ Expected cycle compression: this moves the broad-vs-narrow decision from the fix
 
 ```bash
 rg -n "findingClass|Finding class|scopeProof|Scope proof|fix-completeness-checklist" \
-  .opencode/skill/sk-code-review/SKILL.md \
-  .opencode/skill/sk-code-review/references/review_core.md
+  .opencode/skills/sk-code-review/SKILL.md \
+  .opencode/skills/sk-code-review/references/review_core.md
 
-python .opencode/skill/sk-doc/scripts/validate_document.py \
-  .opencode/skill/sk-code-review/SKILL.md
+python .opencode/skills/sk-doc/scripts/validate_document.py \
+  .opencode/skills/sk-code-review/SKILL.md
 ```
 
 ### R5 - Add the new fix completeness checklist reference
 
 **WHAT to change**
 
-Create `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md`.
+Create `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`.
 
 Minimum content:
 
@@ -1314,18 +1314,18 @@ Expected cycle compression: lower prompt overhead than embedding the full resear
 **HOW TO VERIFY**
 
 ```bash
-test -f .opencode/skill/sk-code-review/references/fix-completeness-checklist.md
+test -f .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
 rg -n "Finding class|Same-class producers|Consumers|Hostile env" \
-  .opencode/skill/sk-code-review/references/fix-completeness-checklist.md
-python .opencode/skill/sk-doc/scripts/validate_document.py \
-  .opencode/skill/sk-code-review/references/fix-completeness-checklist.md
+  .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
+python .opencode/skills/sk-doc/scripts/validate_document.py \
+  .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
 ```
 
 ### R6 - Make security-sensitive deep-review convergence require closed-gate replay
 
 **WHAT to change**
 
-Modify `.opencode/skill/sk-deep-review/references/convergence.md`:
+Modify `.opencode/skills/sk-deep-review/references/convergence.md`:
 
 - After Key Defaults (`lines 31-42`), add security-sensitive override defaults:
 
@@ -1353,8 +1353,8 @@ STOP is not legal until the review report contains a closed-gate replay table th
 
 Live enforcement should mirror the reference in:
 
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:474-480`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:482-488`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:474-480`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:482-488`
 
 Add `g) fixCompletenessReplayGate` to the legal-stop decision tree and include it in `blockedBy` plus `gateResults` in the `blocked_stop` JSONL append.
 
@@ -1368,13 +1368,13 @@ Expected cycle compression: should catch v2-style wrong abstractions before a PA
 
 ```bash
 rg -n "Security-Sensitive Fix Overrides|requiredClosedFindingReplay|fixCompletenessReplay" \
-  .opencode/skill/sk-deep-review/references/convergence.md \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/skills/sk-deep-review/references/convergence.md \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
 
 rg -n "blocked_stop.*fixCompletenessReplay|fix_completeness_replay_gate|fixCompletenessReplayGate" \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
 ```
 
 ### R7 - Put finding class and affected surfaces into the deep-review Planning Packet
@@ -1383,8 +1383,8 @@ rg -n "blocked_stop.*fixCompletenessReplay|fix_completeness_replay_gate|fixCompl
 
 Modify deep-review synthesis instructions:
 
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1035-1038`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1057-1060`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1035-1038`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1057-1060`
 
 The Planning Packet currently must include `triggered`, `verdict`, `hasAdvisories`, `activeFindings`, `remediationWorkstreams`, `specSeed`, and `planSeed`. Extend it:
 
@@ -1394,8 +1394,8 @@ The packet MUST include: `triggered`, `verdict`, `hasAdvisories`, `activeFinding
 
 Also update Active Finding Registry instructions:
 
-- Auto: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1040-1043`
-- Confirm: `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1062-1065`
+- Auto: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1040-1043`
+- Confirm: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1062-1065`
 
 Add `findingClass`, `scopeProofNeeded`, and `affectedSurfaceHints` to each active finding.
 
@@ -1409,15 +1409,15 @@ Expected cycle compression: prevents "review found it, plan forgot it" drift. Th
 
 ```bash
 rg -n "findingClasses|affectedSurfacesSeed|fixCompletenessRequired|scopeProofNeeded|affectedSurfaceHints" \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml
 ```
 
 ### R8 - Add an instance-only opt-out so the checklist does not become ceremony
 
 **WHAT to change**
 
-Add this rule to the new `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` and mirror it in `.opencode/skill/sk-code-review/SKILL.md` near the Phase 3 classification rule:
+Add this rule to the new `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` and mirror it in `.opencode/skills/sk-code-review/SKILL.md` near the Phase 3 classification rule:
 
 ```markdown
 ### Instance-Only Opt-Out
@@ -1442,8 +1442,8 @@ Expected cycle compression: prevents overuse of the broad prompt. That matters b
 
 ```bash
 rg -n "Instance-Only Opt-Out|full fix completeness checklist|narrow fix path" \
-  .opencode/skill/sk-code-review/SKILL.md \
-  .opencode/skill/sk-code-review/references/fix-completeness-checklist.md
+  .opencode/skills/sk-code-review/SKILL.md \
+  .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
 ```
 
 ## ADR-001 draft
@@ -1573,14 +1573,14 @@ Adopt R1 through R8 from iteration-005 as the implementation set.
 
 **What changes**:
 
-- `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl`: add `FIX ADDENDUM: AFFECTED SURFACES`.
-- `.opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl`: add `Fix Completeness` checklist items.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` and `_confirm.yaml`: require affected-surface generation and scoring.
-- `.opencode/skill/sk-code-review/SKILL.md`: add finding class and scope-proof contract.
-- `.opencode/skill/sk-code-review/references/review_core.md`: extend the shared finding schema.
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md`: new reusable checklist.
-- `.opencode/skill/sk-deep-review/references/convergence.md`: document security-sensitive closed-gate replay.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` and `_confirm.yaml`: add the live `fixCompletenessReplayGate` and Planning Packet fields.
+- `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl`: add `FIX ADDENDUM: AFFECTED SURFACES`.
+- `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl`: add `Fix Completeness` checklist items.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` and `_confirm.yaml`: require affected-surface generation and scoring.
+- `.opencode/skills/sk-code-review/SKILL.md`: add finding class and scope-proof contract.
+- `.opencode/skills/sk-code-review/references/review_core.md`: extend the shared finding schema.
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`: new reusable checklist.
+- `.opencode/skills/sk-deep-review/references/convergence.md`: document security-sensitive closed-gate replay.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` and `_confirm.yaml`: add the live `fixCompletenessReplayGate` and Planning Packet fields.
 
 **How to roll back**:
 
@@ -1596,26 +1596,26 @@ Revert the template/checklist/schema/convergence edits and remove `fix-completen
 3. Validate documentation and workflow surfaces:
 
 ```bash
-python .opencode/skill/sk-doc/scripts/validate_document.py \
-  .opencode/skill/sk-code-review/references/fix-completeness-checklist.md
+python .opencode/skills/sk-doc/scripts/validate_document.py \
+  .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
 
 rg -n "findingClass|affectedSurfacesSeed|fixCompletenessRequired|fixCompletenessReplay|AFFECTED SURFACES|CHK-FIX" \
-  .opencode/skill/sk-code-review \
-  .opencode/skill/sk-deep-review/references/convergence.md \
-  .opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml \
-  .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml \
-  .opencode/skill/system-spec-kit/templates/manifest
+  .opencode/skills/sk-code-review \
+  .opencode/skills/sk-deep-review/references/convergence.md \
+  .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml \
+  .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml \
+  .opencode/skills/system-spec-kit/templates/manifest
 
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research \
   --strict
 ```
 
 ## Open questions remaining
 
-1. Should the legacy/nonexistent `.opencode/skill/system-spec-kit/scripts/templates/level_*/` path be recreated as compatibility stubs, or should the implementation explicitly document that canonical content belongs in `.opencode/skill/system-spec-kit/templates/manifest/*.md.tmpl`?
+1. Should the legacy/nonexistent `.opencode/skills/system-spec-kit/scripts/templates/level_*/` path be recreated as compatibility stubs, or should the implementation explicitly document that canonical content belongs in `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl`?
 2. Should `fixCompletenessReplayGate` be doc-only in `sk-deep-review/references/convergence.md` first, or immediately wired into both `spec_kit_deep-review_{auto,confirm}.yaml`? My recommendation is immediate YAML enforcement because the reference already says the YAML workflow is authoritative for live stop behavior.
 3. Should P2-only security/path findings trigger the full checklist? My recommendation is yes for security/path/public-response classes, no for ordinary docs/resource-map P2 unless a consumer/matrix axis exists.
 

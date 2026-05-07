@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "plan.md"
-      - ".opencode/skill/sk-code-review/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
+      - ".opencode/skills/sk-code-review/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-003"
@@ -80,7 +80,7 @@ Critical-edge-first replacement followed by broad scoped text normalization and 
 ### Key Components
 - **Critical graph metadata**: two files with broken advisor edge targets surfaced by Phase 002.
 - **Skill internals**: other skills' docs, references, assets, playbooks, and graph metadata under `.opencode/skill`.
-- **Runtime-facing OpenCode surfaces**: `.opencode/agent` and `.opencode/command/spec_kit`.
+- **Runtime-facing OpenCode surfaces**: `.opencode/agent` and `.opencode/commands/spec_kit`.
 - **System code**: Spec Kit MCP server and scripts, including expected-output fixtures.
 - **Active spec artifacts**: `.opencode/specs` authored docs, descriptions, graph metadata, research, and review artifacts outside exclusions.
 
@@ -95,10 +95,10 @@ The replacement changes old skill IDs in source text only. Advisor and memory da
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/sk-code-review/graph-metadata.json` | Broken edge target | Replace old deep review edge target with `deep-review` | `grep -c` returns 0 |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Broken edge targets | Replace both old IDs | `grep -c` returns 0 |
+| `.opencode/skills/sk-code-review/graph-metadata.json` | Broken edge target | Replace old deep review edge target with `deep-review` | `grep -c` returns 0 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Broken edge targets | Replace both old IDs | `grep -c` returns 0 |
 | `.opencode/agent` | OpenCode agent definitions | Replace old skill IDs and paths | Recursive grep returns 0 |
-| `.opencode/command/spec_kit` | Command docs and YAML assets | Replace underlying skill references | Recursive grep returns 0 |
+| `.opencode/commands/spec_kit` | Command docs and YAML assets | Replace underlying skill references | Recursive grep returns 0 |
 | MCP server and scripts | Advisor/scorer/deep-loop implementation and fixtures | Replace literals and expected outputs | Recursive grep returns 0 outside exclusions |
 | `.opencode/specs` active artifacts | Spec metadata and active research/review docs | Replace active old-name refs | Excluded recursive grep returns 0 |
 <!-- /ANCHOR:affected-surfaces -->
@@ -113,8 +113,8 @@ The replacement changes old skill IDs in source text only. Advisor and memory da
 - [x] Render Level 2 templates and author Phase 003 artifacts.
 
 ### Phase 2: Critical Graph Metadata Fixes
-- [x] Patch `.opencode/skill/sk-code-review/graph-metadata.json`.
-- [x] Patch `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`.
+- [x] Patch `.opencode/skills/sk-code-review/graph-metadata.json`.
+- [x] Patch `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`.
 - [x] Parse both files as JSON and verify old-name absence.
 
 ### Phase 3: Broad Scoped Replacement
@@ -146,12 +146,12 @@ The replacement changes old skill IDs in source text only. Advisor and memory da
 Verification commands:
 
 ```bash
-grep -c "<old-review-id>" .opencode/skill/sk-code-review/graph-metadata.json
-grep -c "<old-research-id>|<old-review-id>" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json
+grep -c "<old-review-id>" .opencode/skills/sk-code-review/graph-metadata.json
+grep -c "<old-research-id>|<old-review-id>" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json
 grep -rln "<old-review-id>|<old-research-id>" .opencode/agent .opencode/command 2>/dev/null
-grep -rln "<old-review-id>|<old-research-id>" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/scripts 2>/dev/null | grep -v "test-fixtures/053-template-compliant\|database/.*\.sqlite"
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals --strict
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
+grep -rln "<old-review-id>|<old-research-id>" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts 2>/dev/null | grep -v "test-fixtures/053-template-compliant\|database/.*\.sqlite"
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/070-sk-deep-rename --strict
 ```
 <!-- /ANCHOR:testing -->
 

@@ -101,7 +101,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |-------|--------|-------|--------|
 | 1 | 001-sk-code-authoring/ | sk-code OpenCode authoring recipe foundation: 5 new authoring checklists (skill, agent, command, mcp-server, spec-folder), spec_folder_write recipe asset, machine-readable STACK_FOLDERS contract restored, SKILL.md OpenCode resource map updated, F-001-005 stale link fixed | Pending |
 | 2 | 002-spec-kit-load/ | `/spec_kit:complete` authoring-time sk-code load: modify auto/confirm YAMLs to load sk-code BEFORE code writes (not just review); detect `.opencode/` implementation targets and pre-load authoring recipe; document cross-skill load contract | Pending |
-| 3 | 003-coco-priority/ | CocoIndex canonical-priority + portability: add CANONICAL_RESOURCE_PATHS setting that outranks regular search; smoke test asserting `.opencode/skill/sk-code/assets/opencode/` is ingested on a fresh clone; explicit opt-in for canonical paths under `**/.*` defaults | Pending |
+| 3 | 003-coco-priority/ | CocoIndex canonical-priority + portability: add CANONICAL_RESOURCE_PATHS setting that outranks regular search; smoke test asserting `.opencode/skills/sk-code/assets/opencode/` is ingested on a fresh clone; explicit opt-in for canonical paths under `**/.*` defaults | Pending |
 | 4 | 004-validator-cleanup/ | system-spec-kit validator + MCP drift cleanup: graph-metadata JSON-schema validator + description.json shape check in `validate.sh --strict`; ROLLOUT_FLAGS audit; MCP tool registry sync with SKILL.md docs; refresh telemetry doc to match runtime fields | Pending |
 
 ### Phase Transition Rules

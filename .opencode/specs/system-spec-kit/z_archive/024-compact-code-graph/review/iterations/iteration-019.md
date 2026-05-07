@@ -5,7 +5,7 @@
 - Dimension: `traceability`
 - Reviewed surfaces:
   - `AGENTS.md`
-  - `.opencode/agent/context.md`
+  - `.opencode/agents/context.md`
   - `CLAUDE.md`
   - `CODEX.md`
   - `GEMINI.md`

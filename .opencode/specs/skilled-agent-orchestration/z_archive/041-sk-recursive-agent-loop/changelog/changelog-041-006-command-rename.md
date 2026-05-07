@@ -27,8 +27,8 @@ Renamed the command entrypoint to `/spec_kit:recursive-agent` (later renamed aga
 
 | File | What changed |
 | --- | --- |
-| `.opencode/command/spec_kit/recursive-agent.md` | Canonical command markdown moved to new path. |
-| `.opencode/command/spec_kit/assets/*.yaml` | YAML workflows renamed to match new command. |
+| `.opencode/commands/spec_kit/recursive-agent.md` | Canonical command markdown moved to new path. |
+| `.opencode/commands/spec_kit/assets/*.yaml` | YAML workflows renamed to match new command. |
 | `.codex/agents/*.toml` | Wrapper TOMLs updated with new command reference. |
 | Packet docs | Runtime docs and history updated to new command path. |
 

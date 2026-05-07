@@ -41,32 +41,32 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agent/multi-ai-council.md",
+      ".opencode/agents/multi-ai-council.md",
       ".claude/agents/multi-ai-council.md",
       ".gemini/agents/multi-ai-council.md",
       ".codex/agents/multi-ai-council.toml",
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/skill/README.md",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/skills/README.md",
       "matrix_runners/run-matrix.ts",
       "matrix_runners/matrix-manifest.json",
       "matrix_runners/README.md",
       "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
       "tests/deep-loop/executor-config.vitest.ts",
       "implementation-summary.md",
-      ".opencode/command/spec_kit/deep-review.md",
+      ".opencode/commands/spec_kit/deep-review.md",
       ".opencode/install_guides/README.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
       "resource-map.md",
       "checklist.md",
       "tasks.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
     ],
     "entities": [
       {
         "name": "multi-ai-council.md",
         "kind": "doc",
-        "path": ".opencode/agent/multi-ai-council.md",
+        "path": ".opencode/agents/multi-ai-council.md",
         "source": "derived"
       },
       {
@@ -78,19 +78,19 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -126,7 +126,7 @@
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-review.md",
+        "path": ".opencode/commands/spec_kit/deep-review.md",
         "source": "derived"
       },
       {
@@ -156,7 +156,7 @@
       {
         "name": "skill_advisor.py",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
         "source": "derived"
       },
       {

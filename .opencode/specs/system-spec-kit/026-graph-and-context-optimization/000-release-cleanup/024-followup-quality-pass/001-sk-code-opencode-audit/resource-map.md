@@ -45,36 +45,36 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
+> `.opencode/skills/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-gemini.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts` | Created | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-codex.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-gemini.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` | Updated | OK | CLI matrix runner surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hooks-codex-freshness.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-gemini.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts` | Created | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts` | Updated | OK | Automated test coverage touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -107,7 +107,7 @@ _memory:
 
 - Paths are repo-root relative and use the real `.opencode/specs` tree rather than the `specs` symlink.
 - This map was derived from packet commit history with shared commits split by packet-owned paths and commit-body scope.
-- Keep action/status vocabulary aligned with `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- Keep action/status vocabulary aligned with `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Preserve category precedence: Specs over Config, Meta over root READMEs, Skills over Documents, Tests over Scripts.
 - Refresh this map whenever the packet receives additional touched paths or a canonical save changes packet-local metadata.
 <!-- /ANCHOR:author-instructions -->

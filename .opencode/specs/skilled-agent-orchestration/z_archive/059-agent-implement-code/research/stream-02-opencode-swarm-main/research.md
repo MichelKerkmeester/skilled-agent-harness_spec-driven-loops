@@ -8,7 +8,7 @@ This packet investigates `.opencode/specs/z_future/improved-agent-orchestration/
 
 ## Topic
 
-Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory. Specifically:
+Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory. Specifically:
 
 1. Skill auto-loading patterns — how do swarm worker agents pick up skills/contexts based on architect dispatch?
 2. Stack-agnostic detection — does the swarm assume a stack, or do workers detect/probe?
@@ -95,13 +95,13 @@ All citations are relative to `.opencode/specs/z_future/improved-agent-orchestra
 - **Searching for a literal skill loader subsystem (Q1 iter 4)** — there is no skill loader; the analogue is the knowledge subsystem with phase-start architect injection and the scope-keyed coder context pack via `system-enhancer`.
 - **Assuming static worker prompts are stack-neutral (Q2 iter 5)** — `coder.ts` and `test-engineer.ts` contain TypeScript/Bun specifics. Stack-agnosticism lives at the tool/hook layer, not in prompts.
 
-## Recommendations for `.opencode/agent/code.md`
+## Recommendations for `.opencode/agents/code.md`
 
 These are concrete, diff-level recommendations the parent (059-agent-implement-code) can apply directly. Each is anchored to the cited swarm pattern.
 
 ### R1 — Caller-restriction at the harness level (P0, derived from Q3)
 
-**Mechanism for our `@code` agent:** rely on the OpenCode SDK agent-mode boundary, not on prompt language alone. In `.opencode/agent/code.md`:
+**Mechanism for our `@code` agent:** rely on the OpenCode SDK agent-mode boundary, not on prompt language alone. In `.opencode/agents/code.md`:
 
 - Frontmatter MUST set `mode: subagent`. Do NOT grant `permission.task: allow`.
 - Pick a name that does NOT match `^architect$|_architect$` to avoid the swarm-style suffix overmatch caveat (`architect-permission.adversarial.test.ts:123`). `code` and `agent-code` are safe; `code_architect`, `_architect`, `__architect` would be silently elevated by a swarm-style classifier. We don't currently use that classifier, but the principle generalizes — keep "primary"-implying tokens out of subagent names.
@@ -113,7 +113,7 @@ These are concrete, diff-level recommendations the parent (059-agent-implement-c
 
 **Pattern:** scope declaration + tool-name allowlist hook + role authority hook + post-hoc diff advisory + worker recovery protocol.
 
-For `.opencode/agent/code.md`:
+For `.opencode/agents/code.md`:
 
 - Require the orchestrator (`@orchestrate`) to provide an explicit `files: string[]` allowlist in the dispatch payload (analogue to `declare_scope`'s `files`). Make this a contract, not an option.
 - If the host runtime supports it, add a hook equivalent to `scope-guard` that intercepts Write/Edit (NOT Bash) and throws when the target is outside the dispatch `files` allowlist.
@@ -137,7 +137,7 @@ For our dispatch from `@orchestrate` → `@code`:
 
 **Pattern:** keep the static prompt small + orchestrator declares context explicitly + hook-injected scope-keyed knowledge + clearly labeled.
 
-For `.opencode/agent/code.md`:
+For `.opencode/agents/code.md`:
 
 - Keep the static prompt role-pure: identity, constraints, return format. No baked-in framework expertise.
 - Have `@orchestrate` provide concrete files + memory excerpts in the dispatch payload (the `technicalContext` analogue). This is cheap and explicit.
@@ -148,14 +148,14 @@ For `.opencode/agent/code.md`:
 
 **Pattern:** detect at tool/hook boundaries; keep worker prompt stack-neutral; rely on dispatch file paths as primary signal.
 
-For `.opencode/agent/code.md`:
+For `.opencode/agents/code.md`:
 
 - **Do NOT bake stack-specific rules** into the agent prompt. No mentions of `bun:test`, `npm`, `go test`, `pytest`, framework names, or language-specific safety rules. Keep the prompt at the "implementation contract" level.
 - Require dispatch payload to include concrete file paths; the agent uses paths as the primary stack signal (read `package.json` / `go.mod` / `pyproject.toml` if needed at runtime, but only after locating the relevant marker in the dispatched files' ancestor tree).
 - Defer language-specific guidance to `sk-code` (which already detects stack and loads stack-aware patterns per the project AGENTS.md). The smart-routing already exists; `@code` should call it rather than duplicating.
 - Return explicit `BLOCKED: stack <name> not supported by this dispatch (reason: ...)` rather than fabricating commands for an unrecognized stack — mirror swarm's "targeted-execution unsupported" reasons in `src/tools/test-runner.ts:870-885`.
 
-### Draft `.opencode/agent/code.md` skeleton
+### Draft `.opencode/agents/code.md` skeleton
 
 ```yaml
 ---

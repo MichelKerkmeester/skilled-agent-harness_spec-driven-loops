@@ -77,7 +77,7 @@ Failed: 0
 ```
 Test 1: validate_content_alignment with spec-kit work → 005-anobel.com
   📊 Phase 1B Alignment: 005-anobel.com (0% match)
-  ⚠️  INFRASTRUCTURE MISMATCH: Work is on .opencode/skill/system-spec-kit
+  ⚠️  INFRASTRUCTURE MISMATCH: Work is on .opencode/skills/system-spec-kit
   Better matching folders found:
     1. 003-memory-and-spec-kit (90% match)
 

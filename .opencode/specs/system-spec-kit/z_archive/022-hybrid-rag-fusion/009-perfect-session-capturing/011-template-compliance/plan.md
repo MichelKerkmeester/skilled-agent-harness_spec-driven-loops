@@ -97,7 +97,7 @@ Single-source template contract derivation with shared validator and prompt enfo
 - [x] Promote `TEMPLATE_HEADERS` structural failures to errors in `validate.sh`
 
 ### Phase 3: Runtime Prompt Hardening
-- [x] Update the shared/OpenCode runtime speckit agent docs under `.agents/agents/` and `.opencode/agent/`
+- [x] Update the shared/OpenCode runtime speckit agent docs under `.agents/agents/` and `.opencode/agents/`
 - [x] Update the Claude and Gemini runtime speckit agent docs
 - [x] Update `/spec_kit` plan, implement, and complete auto/confirm assets with inline scaffolds and strict post-write validation
 
@@ -115,9 +115,9 @@ Single-source template contract derivation with shared validator and prompt enfo
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Template path resolution, required header/anchor extraction, optional-template allowance, dynamic decision-record handling | `cd .opencode/skill/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts` |
-| Integration | Runtime agent and workflow prompt assertions | `node .opencode/skill/system-spec-kit/scripts/tests/test-phase-command-workflows.js` |
-| Integration | Compliant fixture strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` |
+| Unit | Template path resolution, required header/anchor extraction, optional-template allowance, dynamic decision-record handling | `cd .opencode/skills/system-spec-kit/scripts && npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/template-structure.vitest.ts` |
+| Integration | Runtime agent and workflow prompt assertions | `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js` |
+| Integration | Compliant fixture strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` |
 | Integration | Warning/failure fixtures and targeted shell suite categories | `test-validation.sh`, `test-validation-extended.sh` targeted categories |
 <!-- /ANCHOR:testing -->
 

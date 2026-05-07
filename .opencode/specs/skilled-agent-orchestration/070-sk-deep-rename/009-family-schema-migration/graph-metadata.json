@@ -39,13 +39,13 @@
       "implementation-summary.md",
       "description.json",
       "graph-metadata.json",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
-      ".opencode/skill/deep-review/graph-metadata.json",
-      ".opencode/skill/deep-research/graph-metadata.json"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
+      ".opencode/skills/deep-review/graph-metadata.json",
+      ".opencode/skills/deep-research/graph-metadata.json"
     ],
     "entities": [
       "deep-loop",

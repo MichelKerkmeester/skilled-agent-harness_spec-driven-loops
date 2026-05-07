@@ -33,7 +33,7 @@ _memory:
 | **Level** | 3 |
 | **Baseline** | Canonical review verdict `FAIL`; `012` local validate failing on stale packet truth |
 | **Current Scope** | Packet/spec truth-sync plus seven narrow remediation slices: one wrapper-alignment update, one modularization/test-budget update, three conservative causal-graph hygiene passes in the Spec Kit memory DB, and two case-by-case single-node cleanup passes; broader runtime and release-surface work remains open |
-| **Runtime Gate** | Fresh slice evidence: `npm run check --workspace=scripts`, `npx vitest run tests/modularization.vitest.ts`, `timeout 180 npm run test:core`, `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit`, `spec_kit_memory_memory_causal_stats`, and `spec_kit_memory_memory_health` all stayed healthy for the recorded narrow slices while `review/review-report.md` remains authoritative and overall verdict `FAIL` |
+| **Runtime Gate** | Fresh slice evidence: `npm run check --workspace=scripts`, `npx vitest run tests/modularization.vitest.ts`, `timeout 180 npm run test:core`, `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit`, `spec_kit_memory_memory_causal_stats`, and `spec_kit_memory_memory_health` all stayed healthy for the recorded narrow slices while `review/review-report.md` remains authoritative and overall verdict `FAIL` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet is no longer purely staging work. The broader remediation program remains incomplete, but seven narrow implementation slices have landed alongside the packet truth-sync updates without changing the canonical `FAIL` verdict: `.opencode/skill/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts` now acts as a thin compatibility wrapper over `../../scripts/dist/evals/map-ground-truth-ids.js`; `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` now reflects the landed `formatters/search-results.js` extended limit and actual-count note at `536`; the Spec Kit memory DB received an initial conservative causal-graph hygiene pass that pruned only qualifying deprecated-to-deprecated `supports` hubs after checkpointing; a second conservative pass then targeted archived deprecated supports-only hubs without claiming broader graph or review closure; a third, narrower pass then pruned only the outgoing `supports` fan-out from five targeted deprecated broadcaster nodes; and the next follow-up explicitly switched from broad pruning to case-by-case cleanup, executing single-node actions on deprecated nodes `24980` and `25027`.
+This packet is no longer purely staging work. The broader remediation program remains incomplete, but seven narrow implementation slices have landed alongside the packet truth-sync updates without changing the canonical `FAIL` verdict: `.opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts` now acts as a thin compatibility wrapper over `../../scripts/dist/evals/map-ground-truth-ids.js`; `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` now reflects the landed `formatters/search-results.js` extended limit and actual-count note at `536`; the Spec Kit memory DB received an initial conservative causal-graph hygiene pass that pruned only qualifying deprecated-to-deprecated `supports` hubs after checkpointing; a second conservative pass then targeted archived deprecated supports-only hubs without claiming broader graph or review closure; a third, narrower pass then pruned only the outgoing `supports` fan-out from five targeted deprecated broadcaster nodes; and the next follow-up explicitly switched from broad pruning to case-by-case cleanup, executing single-node actions on deprecated nodes `24980` and `25027`.
 
 ### Canonical Review Re-anchoring
 
@@ -101,7 +101,7 @@ The work was delivered as a focused spec-folder truth-sync pass plus seven narro
 6. Created safety checkpoints `pre-targeted-broadcaster-prune-global-20260328-0933` and `pre-targeted-broadcaster-prune-20260328-0933`, pruned only the outgoing `supports` fan-out from nodes `24743`, `24981`, `24982`, `24983`, and `24984`, and recorded the targeted pre-delete scope, post-delete health, and trace spot-check outcomes instead of broader closure.
 7. Switched the next graph-hygiene follow-up from broad pruning to case-by-case cleanup by creating checkpoints `pre-node-24980-prune-global-20260328-1009` and `pre-node-24980-prune-20260328-1009`, pruning only node `24980`'s `13` outgoing `supports` edges, removing the reappearing synthetic orphan test edges `5436`-`5441` as contamination cleanup, and recording the post-cleanup healthy state and disconnected `24980` trace.
 8. Continued the same case-by-case mode by creating checkpoints `pre-node-25027-prune-global-20260328-1043` and `pre-node-25027-prune-20260328-1043`, pruning only node `25027`'s `10` outgoing `supports` edges, and recording the post-cleanup healthy state and no-outgoing-fan-out trace.
-9. Verified the landed slices with `npm run check --workspace=scripts`, `npx vitest run tests/modularization.vitest.ts`, `timeout 180 npm run test:core`, `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit`, `spec_kit_memory_memory_causal_stats`, `spec_kit_memory_memory_health`, and `spec_kit_memory_memory_drift_why(24980)` plus `spec_kit_memory_memory_drift_why(25027)`.
+9. Verified the landed slices with `npm run check --workspace=scripts`, `npx vitest run tests/modularization.vitest.ts`, `timeout 180 npm run test:core`, `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit`, `spec_kit_memory_memory_causal_stats`, `spec_kit_memory_memory_health`, and `spec_kit_memory_memory_drift_why(24980)` plus `spec_kit_memory_memory_drift_why(25027)`.
 10. Updated the packet docs so they record partial progress without overstating broader closure.
 <!-- /ANCHOR:how-delivered -->
 
@@ -131,10 +131,10 @@ The work was delivered as a focused spec-folder truth-sync pass plus seven narro
 
 | Check | Result |
 |-------|--------|
-| `npm run check --workspace=scripts` in `.opencode/skill/system-spec-kit` | PASS |
-| `npx vitest run tests/modularization.vitest.ts` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `timeout 180 npm run test:core` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` | PASS |
+| `npm run check --workspace=scripts` in `.opencode/skills/system-spec-kit` | PASS |
+| `npx vitest run tests/modularization.vitest.ts` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `timeout 180 npm run test:core` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` | PASS |
 | `spec_kit_memory_memory_causal_stats` | HEALTHY: `3104` total edges, `2218` supports, `886` caused, `78.25%` coverage, `0` orphaned edges |
 | `spec_kit_memory_memory_causal_stats` after archived-supports pass | HEALTHY: `2956` total edges, `2070` supports, `886` caused, `77.04%` coverage, `0` orphaned edges |
 | `spec_kit_memory_memory_causal_stats` after targeted-broadcaster pass | HEALTHY: `2898` total edges, `2012` supports, `886` caused, `76.88%` coverage, `0` orphaned edges |

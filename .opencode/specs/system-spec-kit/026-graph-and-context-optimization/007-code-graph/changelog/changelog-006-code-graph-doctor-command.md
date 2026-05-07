@@ -26,9 +26,9 @@ Operators had no quick way to check the health of the code-graph system. The sta
 A `/doctor:code-graph` slash command was built following the same pattern as the existing `/doctor:skill-advisor` command. The command has two modes: `auto` (runs diagnostics and prints a summary) and `confirm` (requires operator confirmation before any action). Phase A shipped diagnostic-only. Phase B (apply mode with auto-fix operations) is explicitly gated on research packet 007 producing the verification battery, staleness model, recovery playbook, and exclude-rule confidence tiers.
 
 Phase A deliverables:
-- **Command markdown** at `.opencode/command/doctor-code-graph.md` with the full slash-command definition, description, argument schema, and mode descriptions.
-- **Auto workflow YAML** at `.opencode/command/doctor-code-graph/auto.yaml` that runs diagnostics (status, readiness, bloat-check) and prints a summary.
-- **Confirm workflow YAML** at `.opencode/command/doctor-code-graph/confirm.yaml` that runs diagnostics, prints the summary, and waits for operator confirmation before proceeding.
+- **Command markdown** at `.opencode/commands/doctor-code-graph.md` with the full slash-command definition, description, argument schema, and mode descriptions.
+- **Auto workflow YAML** at `.opencode/commands/doctor-code-graph/auto.yaml` that runs diagnostics (status, readiness, bloat-check) and prints a summary.
+- **Confirm workflow YAML** at `.opencode/commands/doctor-code-graph/confirm.yaml` that runs diagnostics, prints the summary, and waits for operator confirmation before proceeding.
 - **Install guide** documenting the command's installation, usage, and diagnostic output format.
 - **Doctor Commands section** in the README listing the new command alongside the existing skill-advisor doctor command.
 
@@ -36,9 +36,9 @@ The command mirrors the `/doctor:skill-advisor` pattern in structure, voice, and
 
 ### Added
 
-- `.opencode/command/doctor-code-graph.md` command markdown
-- `.opencode/command/doctor-code-graph/auto.yaml` diagnostic-only auto workflow
-- `.opencode/command/doctor-code-graph/confirm.yaml` diagnostic + confirmation workflow
+- `.opencode/commands/doctor-code-graph.md` command markdown
+- `.opencode/commands/doctor-code-graph/auto.yaml` diagnostic-only auto workflow
+- `.opencode/commands/doctor-code-graph/confirm.yaml` diagnostic + confirmation workflow
 - `docs/install-guide-doctor-code-graph.md` install guide
 - README Doctor Commands section entry for `/doctor:code-graph`
 
@@ -62,9 +62,9 @@ The command mirrors the `/doctor:skill-advisor` pattern in structure, voice, and
 
 | File | What changed |
 |------|--------------|
-| `.opencode/command/doctor-code-graph.md` (NEW) | Slash-command markdown definition |
-| `.opencode/command/doctor-code-graph/auto.yaml` (NEW) | Diagnostic-only auto workflow |
-| `.opencode/command/doctor-code-graph/confirm.yaml` (NEW) | Diagnostic + confirmation workflow |
+| `.opencode/commands/doctor-code-graph.md` (NEW) | Slash-command markdown definition |
+| `.opencode/commands/doctor-code-graph/auto.yaml` (NEW) | Diagnostic-only auto workflow |
+| `.opencode/commands/doctor-code-graph/confirm.yaml` (NEW) | Diagnostic + confirmation workflow |
 | `docs/install-guide-doctor-code-graph.md` (NEW) | Operator install guide |
 | `README.md` | Doctor Commands section expanded |
 

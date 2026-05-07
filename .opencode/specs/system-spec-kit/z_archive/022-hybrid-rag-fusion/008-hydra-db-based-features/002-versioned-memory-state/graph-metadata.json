@@ -47,10 +47,10 @@
       "mcp_server/handlers/save/create-record.ts",
       "tests/memory-lineage-state.vitest.ts",
       "tests/memory-lineage-backfill.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -98,13 +98,13 @@
       {
         "name": "history.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

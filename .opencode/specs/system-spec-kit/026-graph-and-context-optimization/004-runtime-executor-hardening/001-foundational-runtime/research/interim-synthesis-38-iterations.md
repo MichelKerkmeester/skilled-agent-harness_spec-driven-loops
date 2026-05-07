@@ -92,11 +92,11 @@ Iterations 1-10 predate the formal domain labeling and act as a reconnaissance p
 **Representative exemplars:**
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179-192 — buildSessionContinuity() calls loadMostRecentState() with no scope
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:131-166 — poison-pill JSON.parse loop
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:283-317 — successful inline reindex keeps pre-refresh freshness
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:592-601 — missing/empty collapsed into stale
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:55-68 — Gemini compact replay drops provenance
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179-192 — buildSessionContinuity() calls loadMostRecentState() with no scope
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:131-166 — poison-pill JSON.parse loop
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:283-317 — successful inline reindex keeps pre-refresh freshness
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:592-601 — missing/empty collapsed into stale
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:55-68 — Gemini compact replay drops provenance
 ```
 
 **Open questions:**
@@ -490,7 +490,7 @@ These should be prioritized ahead of other P1 work because their fix paths unloc
 3. **HookState schema versioning + runtime validation + unique temp paths** — touches `hook-state.ts`, `session-stop.ts`, `session-prime.ts` (Claude + Gemini), `session-resume.ts`. **[NEW since 32]** Should also absorb `touchedPaths` / `producerMetadataWritten` durability re-verification (R34-001, R35-002), identity-free-clear protection (R33-001), directory-level per-file degradation (R38-001, R38-002), and torn `statSync`/`readFileSync` fixes (R36-001) — the entire `hook-state.ts` surface is now in scope for one coherent pass. Medium → **[NEW since 32] Medium-to-Large** given the expanded scope.
 4. **Trust-state vocabulary expansion** — introduce `absent`/`unavailable` as distinct from `stale`; migrate `trustStateFromGraphState`, `trustStateFromStructuralStatus`, transport renderer, bootstrap/resume/health consumers, and test fixtures. Medium-to-Large.
 5. **Graph-metadata `migrated` flag propagation** — touches `graph-metadata-parser.ts`, `memory-parser.ts`, stage-1 candidate gen, tests. Medium.
-6. **[NEW since 32] `/tmp/save-context-data.json` coherent removal** — single coordinated edit across `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, `data-loader.ts`, command YAMLs in `.opencode/command/`, and the CLI authority tests that still assert the fixed filename. Not a refactor per se but needs to land as one commit to avoid one surface re-teaching the hazard. Medium (coordination cost, not line-count cost).
+6. **[NEW since 32] `/tmp/save-context-data.json` coherent removal** — single coordinated edit across `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, `data-loader.ts`, command YAMLs in `.opencode/commands/`, and the CLI authority tests that still assert the fixed filename. Not a refactor per se but needs to land as one commit to avoid one surface re-teaching the hazard. Medium (coordination cost, not line-count cost).
 7. **[NEW since 32] Stop-hook durability re-verification** — if structural refactor (3) is not possible short-term, a narrower alternative is to change `SessionStopProcessResult` to distinguish attempted-write from persisted signals: introduce `attemptedWrites: { producerMetadata: boolean; touchedPaths: string[] }` and `persistedWrites: { producerMetadata: boolean; persistedPaths: string[] }`, where the `persisted*` set is populated only after a post-write `loadState()` re-read. Touches `session-stop.ts`, `hook-state.ts`, the replay harness. Medium.
 
 ### 5.3 Test suite changes required [NEW since 32: +6 regression files]
@@ -674,7 +674,7 @@ R32-001 | mcp_server/hooks/claude/hook-state.ts:170-176,221-241           | P1 |
 R32-002 | mcp_server/hooks/claude/session-stop.ts:60-67,119-125,244-246,261-268,281-289,302-309 | P1 | (dup of R31-002)
 R32-003 | mcp_server/handlers/save/reconsolidation-bridge.ts:270-306 + reconsolidation.ts:611-656 | P1 | (dup+extension of R31-003) scope-retag between filter and commit not re-checked
 R32-004 | mcp_server/lib/graph/graph-metadata-parser.ts:969-989           | P2 | (dup of R31-004)
-R32-005 | .opencode/command/{memory/save.md, spec_kit/deep-research.md, spec_kit/deep-review.md} + generate-context.ts:61-82 | P2 | (dup+extension of R31-005) multiple command surfaces hardcode the shared path
+R32-005 | .opencode/commands/{memory/save.md, spec_kit/deep-research.md, spec_kit/deep-review.md} + generate-context.ts:61-82 | P2 | (dup+extension of R31-005) multiple command surfaces hardcode the shared path
 R33-001 | mcp_server/hooks/claude/hook-state.ts:184-217 + hooks/{claude,gemini}/session-prime + hooks/gemini/compact-inject | P1 | [NEW] clearCompactPrime() nulls pendingCompactPrime by session only; fresh precompact write between read and clear is silently deleted
 R33-002 | mcp_server/hooks/claude/session-stop.ts:119-125,244-268 + hook-state.ts:221-241 | P1 | [NEW] lastTranscriptOffset non-monotonic under overlapping stop hooks; no Math.max guard
 R33-003 | mcp_server/hooks/claude/hook-state.ts:170-180,221-241 + session-stop.ts:60-67,119-125,261-309 | P1 | [NEW] updateState returns in-memory merged even after saveState failure; runContextAutosave then reloads disk and proceeds anyway

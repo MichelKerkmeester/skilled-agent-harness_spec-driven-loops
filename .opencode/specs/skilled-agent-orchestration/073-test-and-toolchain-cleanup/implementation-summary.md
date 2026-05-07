@@ -12,7 +12,7 @@ _memory:
     recent_action: "073 final: 3 fixes shipped, 1 deferred"
     next_safe_action: "(packet final after commit + push)"
     blockers: []
-    key_files: [.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts]
+    key_files: [.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "073-complete"
@@ -25,7 +25,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -55,8 +55,8 @@ Fix #1 (test-alignment-validator.js ESM bug) is deferred to a 074 candidate. Ini
 | File | Action | Purpose |
 |------|--------|---------|
 | `071/002-matrix-execute/scripts/run-matrix.sh` | Modified | codex awk extractor + opencode JSONL extractor + 3× timeout 120→180 |
-| `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` | Modified | Directory + missing-file guard before fs.readFileSync |
-| `.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.js` | Regenerated | tsc --build |
+| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | Modified | Directory + missing-file guard before fs.readFileSync |
+| `.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js` | Regenerated | tsc --build |
 | `073/{spec,plan,tasks,implementation-summary}.md` | Created | Packet docs |
 <!-- /ANCHOR:what-built -->
 

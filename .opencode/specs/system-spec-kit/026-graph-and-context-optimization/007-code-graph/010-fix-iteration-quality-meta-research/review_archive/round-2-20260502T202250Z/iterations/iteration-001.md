@@ -2,26 +2,26 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12-85`
-- `.opencode/skill/sk-code-review/references/review_core.md:83-87`
-- `.opencode/agent/deep-review.md:149-185`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:783-785`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:760-762`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1070-1077`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:215-224`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
-- `.opencode/skill/sk-deep-review/SKILL.md:91-94`
-- `.opencode/skill/sk-deep-review/SKILL.md:423-425`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:317-322`
-- `.opencode/skill/sk-deep-review/references/state_format.md:185-219`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:74-79`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`
-- `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl:87-101`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:56-57`
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js:12-12`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-85`
+- `.opencode/skills/sk-code-review/references/review_core.md:83-87`
+- `.opencode/agents/deep-review.md:149-185`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:783-785`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:760-762`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1070-1077`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-224`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
+- `.opencode/skills/sk-deep-review/SKILL.md:91-94`
+- `.opencode/skills/sk-deep-review/SKILL.md:423-425`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:317-322`
+- `.opencode/skills/sk-deep-review/references/state_format.md:185-219`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:74-79`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`
+- `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:87-101`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:56-57`
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js:12-12`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/prompts/iteration-001.md:1-33`
 - `git diff --name-status` for FIX-010-v1 changed-file traceability
 
@@ -34,7 +34,7 @@ Applied R5 fix-completeness protocol:
 
 Traceability notes:
 
-- `git diff --name-status` confirms FIX-010-v1 touched the expected cross-cutting surfaces for the previously reported gap: `.opencode/agent/deep-review.md`, both deep-review command modes, both plan command modes, `sk-deep-review` docs/contracts, post-dispatch validation, template structure/validation, and the related packet review state.
+- `git diff --name-status` confirms FIX-010-v1 touched the expected cross-cutting surfaces for the previously reported gap: `.opencode/agents/deep-review.md`, both deep-review command modes, both plan command modes, `sk-deep-review` docs/contracts, post-dispatch validation, template structure/validation, and the related packet review state.
 - The current packet has archived/deleted the prior review iteration/report artifacts and started a fresh `2026-05-02T19:37:23Z` review state; this iteration restores the requested current `review/iterations/iteration-001.md`, `review/deltas/iter-001.jsonl`, and state append for the new lineage.
 
 Security notes:

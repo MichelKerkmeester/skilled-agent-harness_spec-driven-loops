@@ -704,7 +704,7 @@ The codebase has inconsistent naming conventions:
 ## 2. CONTEXT
 
 ### Problem Statement
-SKILL.md references `/memory:save` command extensively (lines 109, 421-426, 787-788) but the corresponding command file `.opencode/command/spec_kit/memory_save.md` does not exist.
+SKILL.md references `/memory:save` command extensively (lines 109, 421-426, 787-788) but the corresponding command file `.opencode/commands/spec_kit/memory_save.md` does not exist.
 
 ### Current Situation
 - Users are instructed to use `/memory:save`
@@ -723,7 +723,7 @@ SKILL.md references `/memory:save` command extensively (lines 109, 421-426, 787-
 
 ### Detailed Description
 
-Create `.opencode/command/spec_kit/memory_save.md` that:
+Create `.opencode/commands/spec_kit/memory_save.md` that:
 1. Documents the memory save workflow
 2. References `generate-context.js` as the implementation
 3. Provides consistent interface with other spec_kit commands
@@ -758,7 +758,7 @@ This is preferred over removing SKILL.md references because:
 ## 5. IMPLEMENTATION NOTES
 
 **Tasks**:
-1. Create `.opencode/command/spec_kit/memory_save.md`
+1. Create `.opencode/commands/spec_kit/memory_save.md`
 2. Model structure on existing commands (e.g., `checkpoint.md`)
 3. Reference `generate-context.js` as implementation
 4. Verify command is discoverable via skill system

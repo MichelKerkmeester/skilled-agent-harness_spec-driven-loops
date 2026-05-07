@@ -20,7 +20,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -77,7 +77,7 @@ The pass began with the strict-validator baseline for this folder. After the pac
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy --strict` | PASS after doc normalization and closeout-doc creation |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy --strict` | PASS after doc normalization and closeout-doc creation |
 | Downstream impact map review | PASS, packets `../../001-cache-warning-hooks/` through `../../z_archive/research-governance-contracts/013-warm-start-bundle-conditional-validation/` are all classified |
 <!-- /ANCHOR:verification -->
 

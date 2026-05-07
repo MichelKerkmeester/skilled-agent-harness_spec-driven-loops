@@ -6,7 +6,7 @@ I traced how Claude/Gemini hook state is written at session stop, recovered at s
 ## Findings
 
 ### Finding R1-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
 - **Lines:** `179-192`
 - **Severity:** P1
 - **Description:** `buildSessionContinuity()` is dead-on-arrival in production because it calls `loadMostRecentState()` without any scope, while `hook-state.ts` explicitly rejects scope-less reads. Claude startup mostly hides this because it separately calls `getCachedSessionSummaryDecision()`, but Gemini startup depends on `startupBrief.sessionContinuity`, so Gemini never receives prior session continuity from persisted hook state.
@@ -14,7 +14,7 @@ I traced how Claude/Gemini hook state is written at session stop, recovered at s
 - **Downstream Impact:** Gemini startup sessions lose the "Last session worked on..." continuity lane even when valid hook state exists, and any future caller that trusts `buildStartupBrief()` for continuity gets a false "startup summary only" outcome.
 
 ### Finding R1-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `60-105,240-309`
 - **Severity:** P1
 - **Description:** Missing `session_id` values collapse onto a shared temp-state identity. `session-stop`, Claude `session-prime`, and Gemini `session-prime` all substitute `'unknown'`, while `hook-state.ts` hashes only the provided session ID into the state filename. A malformed or partial hook payload therefore reads and writes the same shared bucket, allowing one session's `lastSpecFolder` or `sessionSummary` to bleed into another session's resume/startup flow or autosave target.

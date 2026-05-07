@@ -19,7 +19,7 @@ The release blocker is narrower: the public `advisor_rebuild` schema does not ac
 
 ## 2. Planning Trigger
 
-User requested Packet 045/003, read-only deep-review angle 3 for skill advisor freshness. The audit target was `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/` plus related status, rebuild, recommend, validate, daemon, scoring, feature catalog, and manual testing surfaces, with cross-reads from 026/008, 034, and 045/005.
+User requested Packet 045/003, read-only deep-review angle 3 for skill advisor freshness. The audit target was `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` plus related status, rebuild, recommend, validate, daemon, scoring, feature catalog, and manual testing surfaces, with cross-reads from 026/008, 034, and 045/005.
 
 Rubric applied:
 
@@ -37,10 +37,10 @@ Rubric applied:
 
 **Evidence.**
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:115-117` defines `AdvisorRebuildInputSchema` with only optional `force`.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts:11-17` exposes only `force` and sets `additionalProperties: false`.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:57-60` resolves the workspace from injected dependencies or `process.cwd()`, not from tool input.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:115-117` defines `AdvisorRebuildInputSchema` with only optional `force`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts:11-17` exposes only `force` and sets `additionalProperties: false`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:57-60` resolves the workspace from injected dependencies or `process.cwd()`, not from tool input.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
 
 **Fix.** Add `workspaceRoot?: string` to the rebuild input schema and tool descriptor, pass it into `rebuildAdvisorIndex`, and add a test that `advisor_status({ workspaceRoot })` followed by forced `advisor_rebuild({ workspaceRoot, force: true })` repairs that same workspace. If the intended contract is cwd-only rebuild, fix the playbook and status/rebuild docs instead.
 
@@ -50,12 +50,12 @@ Rubric applied:
 
 **Evidence.**
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3278-3298` tries the native advisor by default and prints native results when available.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3299-3309` makes `--force-native` fail hard if the native bridge is unavailable.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3311-3327` falls back to local Python scoring when native is not used.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:1184-1436` and `:1448-1620` contain separate Python booster tables and matching logic.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8-133` contains the native TS `TOKEN_BOOSTS` and `PHRASE_BOOSTS` tables used by the current scorer.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/parity/python-ts-parity.vitest.ts:99-162` checks that TS preserves Python-correct corpus decisions and improves accuracy; it does not prove forced/local Python parity with TS.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3278-3298` tries the native advisor by default and prints native results when available.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3299-3309` makes `--force-native` fail hard if the native bridge is unavailable.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:3311-3327` falls back to local Python scoring when native is not used.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:1184-1436` and `:1448-1620` contain separate Python booster tables and matching logic.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:8-133` contains the native TS `TOKEN_BOOSTS` and `PHRASE_BOOSTS` tables used by the current scorer.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/parity/python-ts-parity.vitest.ts:99-162` checks that TS preserves Python-correct corpus decisions and improves accuracy; it does not prove forced/local Python parity with TS.
 
 **Fix.** Label forced/local Python as a compatibility fallback with weaker parity guarantees, or add golden parity tests that compare forced-local Python and native TS for the supported corpus and fail on unacceptable divergence.
 
@@ -65,10 +65,10 @@ Rubric applied:
 
 **Evidence.**
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5-10` sets runtime weights to explicit 0.45, lexical 0.30, graph 0.15, derived 0.15, semantic 0.00.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md:139-145` documents derived as 0.10.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/08--scorer-fusion/001-five-lane-fusion.md:3` and `:26` document derived as 0.10.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31` documents derived as 0.15, matching code.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lane-registry.ts:5-10` sets runtime weights to explicit 0.45, lexical 0.30, graph 0.15, derived 0.15, semantic 0.00.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md:139-145` documents derived as 0.10.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/08--scorer-fusion/001-five-lane-fusion.md:3` and `:26` document derived as 0.10.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md:31` documents derived as 0.15, matching code.
 
 **Fix.** Update README and manual playbook to match `lane-registry.ts`, and add a lightweight doc check or generated snippet for the lane table.
 
@@ -126,18 +126,18 @@ Additional checks:
 
 ### Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-daemon*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**/*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
-- Related tests under `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/` and `.opencode/skill/system-spec-kit/mcp_server/tests/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-daemon*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**/*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/`
+- Related tests under `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/` and `.opencode/skills/system-spec-kit/mcp_server/tests/`
 - Related history under 026/008, 034, and 045/005.
 
 ### Non-Findings
@@ -150,5 +150,5 @@ Additional checks:
 
 ### Validation
 
-- Packet validator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/003-skill-advisor-freshness --strict`
+- Packet validator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/003-skill-advisor-freshness --strict`
 - Expected result: exit 0.

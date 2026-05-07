@@ -74,7 +74,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `rg \"mutation-feedback\" .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` 2) `rg \"response-hints\" .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` 3) `rg \"mutation-feedback\\"
+      "Command sequence is not expressible as direct handler calls: 1) `rg \"mutation-feedback\" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` 2) `rg \"response-hints\" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` 3) `rg \"mutation-feedback\\"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -414,7 +414,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hooks-mutation-wiring.vitest.ts tests/mutation-hooks.vitest.ts` 2) inspect assertions covering `save`, `update`, `delete`, `bulk-delete`, and `atomic-save` 3) inspect assertions proving thrown hook failures populate `errors` and emit warning telemetry"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hooks-mutation-wiring.vitest.ts tests/mutation-hooks.vitest.ts` 2) inspect assertions covering `save`, `update`, `delete`, `bulk-delete`, and `atomic-save` 3) inspect assertions proving thrown hook failures populate `errors` and emit warning telemetry"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -434,7 +434,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/handler-memory-health-edge.vitest.ts tests/memory-crud-extended.vitest.ts` 2) inspect assertions covering confirmation-only responses for `autoRepair:true` without `confirmed:true` 3) inspect assertions covering FTS rebuild, orphan cleanup, and partial-success repair metadata"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/handler-memory-health-edge.vitest.ts tests/memory-crud-extended.vitest.ts` 2) inspect assertions covering confirmation-only responses for `autoRepair:true` without `confirmed:true` 3) inspect assertions covering FTS rebuild, orphan cleanup, and partial-success repair metadata"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -454,7 +454,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering missing, mismatched, and matching `confirmName` payloads 3) inspect assertions covering shared mutation-hook result fields in hook wiring and save responses"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering missing, mismatched, and matching `confirmName` payloads 3) inspect assertions covering shared mutation-hook result fields in hook wiring and save responses"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -474,7 +474,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering `latencyMs`, cache-clear booleans, `toolCacheInvalidated`, and `errors` 3) inspect assertions proving UX feedback/hint builders surface the contract fields without dropping error context"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering `latencyMs`, cache-clear booleans, `toolCacheInvalidated`, and `errors` 3) inspect assertions proving UX feedback/hint builders surface the contract fields without dropping error context"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -494,7 +494,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering successful `memory_save` and `atomicSaveMemory` responses with typed `postMutationHooks` fields 3) inspect assertions covering duplicate-content and unchanged/no-op suppression of false UX payloads"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts` 2) inspect assertions covering successful `memory_save` and `atomicSaveMemory` responses with typed `postMutationHooks` fields 3) inspect assertions covering duplicate-content and unchanged/no-op suppression of false UX payloads"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -514,7 +514,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering successful atomic-save `postMutationHooks` contract parity 3) inspect assertions covering partial-indexing hints and duplicate or unchanged hook suppression 4) inspect assertions covering `structuredClone` snapshot isolation for after-tool callbacks"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering successful atomic-save `postMutationHooks` contract parity 3) inspect assertions covering partial-indexing hints and duplicate or unchanged hook suppression 4) inspect assertions covering `structuredClone` snapshot isolation for after-tool callbacks"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -534,7 +534,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering final serialized-envelope token-count recomputation in `appendAutoSurfaceHints` 3) inspect assertions covering final token-count correctness after success-path hint append and token-budget injection"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts` 2) inspect assertions covering final serialized-envelope token-count recomputation in `appendAutoSurfaceHints` 3) inspect assertions covering final token-count correctness after success-path hint append and token-budget injection"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -554,7 +554,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering success-path hint append 3) inspect assertions covering preserved `autoSurfacedContext` 4) inspect assertions covering final serialized-envelope token-count alignment"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts` 2) inspect assertions covering success-path hint append 3) inspect assertions covering preserved `autoSurfacedContext` 4) inspect assertions covering final serialized-envelope token-count alignment"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

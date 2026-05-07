@@ -31,7 +31,7 @@ contextType: "implementation"
 ## P1 Tasks (High Priority)
 - [x] P1-1: Fix decay formula to ~62-day half-life everywhere (12+ instances fixed)
 - [x] P1-2: Standardize command notation to colon format (already standardized - verified)
-- [x] P1-3: Create command index README (created .opencode/command/README.md)
+- [x] P1-3: Create command index README (created .opencode/commands/README.md)
 - [x] P1-4: Create QUICKSTART.md
 - [ ] P1-5: Add /memory:help, /search:help commands
 - [x] P1-6: Document missing templates (4 templates added to template_guide.md)

@@ -114,7 +114,7 @@ Both YAML workflow files reference the correct scripts with correct flags:
 
 Both YAML files also include `--parent` variant invocations for adding phases to existing specs (auto line 183, confirm line 220).
 
-**Note:** The script paths are relative in the YAML (e.g., `bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh`), which is correct for project-root execution context.
+**Note:** The script paths are relative in the YAML (e.g., `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`), which is correct for project-root execution context.
 
 ---
 
@@ -126,8 +126,8 @@ Both YAML files also include `--parent` variant invocations for adding phases to
 
 - **Glob search for `**/phase-system.md`:** No files found anywhere in the repository.
 - **Glob search for `**/nodes/**phase*`:** No files found.
-- **Directory check:** The `nodes/` directory does not exist at all under `.opencode/skill/system-spec-kit/`. The top-level listing of that directory (26 entries) contains no `nodes/` folder.
-- **Spec reference:** `spec.md` line 121: `| .opencode/skill/system-spec-kit/nodes/phase-system.md | Create | Graph mode node for phase workflow |`
+- **Directory check:** The `nodes/` directory does not exist at all under `.opencode/skills/system-spec-kit/`. The top-level listing of that directory (26 entries) contains no `nodes/` folder.
+- **Spec reference:** `spec.md` line 121: `| .opencode/skills/system-spec-kit/nodes/phase-system.md | Create | Graph mode node for phase workflow |`
 - **Spec requirement:** REQ-011 (line 155): `nodes/phase-system.md documents phase lifecycle, transitions, and boundary rules`
 
 **Conclusion:** Neither the file nor its parent directory exists. If task T031 claimed this was created, that claim is false.
@@ -139,7 +139,7 @@ Both YAML files also include `--parent` variant invocations for adding phases to
 **Verdict: MISSING**
 
 - **Glob search for `**/index.md` in system-spec-kit:** Found only 2 files, both inside deeply nested `node_modules/` dependencies (`napi-build-utils/index.md`). These are third-party package files, not the project's own `index.md`.
-- **Spec reference:** `spec.md` line 127: `| .opencode/skill/system-spec-kit/index.md | Modify | Add phase-system.md to MOC Workflow & Routing section |`
+- **Spec reference:** `spec.md` line 127: `| .opencode/skills/system-spec-kit/index.md | Modify | Add phase-system.md to MOC Workflow & Routing section |`
 
 **Conclusion:** No `index.md` exists in the system-spec-kit skill directory (outside of `node_modules`). If task T032 claimed it was updated, that claim is false — the file does not exist to be updated.
 
@@ -221,10 +221,10 @@ Both YAML files also include `--parent` variant invocations for adding phases to
 
 | File | Path | Lines |
 |------|------|-------|
-| recommend-level.sh | `.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh` | 776 |
-| phase_definitions.md | `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md` | 244 |
+| recommend-level.sh | `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | 776 |
+| phase_definitions.md | `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md` | 244 |
 | spec.md | `.opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md` | 404 |
-| spec_kit_phase_auto.yaml | `.opencode/command/spec_kit/assets/spec_kit_phase_auto.yaml` | 325 |
-| spec_kit_phase_confirm.yaml | `.opencode/command/spec_kit/assets/spec_kit_phase_confirm.yaml` | 401 |
-| FEATURE_CATALOG.md | `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` | (searched, not fully read — too large) |
-| MANUAL_TESTING_PLAYBOOK.md | `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | (searched, first 100 lines read + full grep) |
+| spec_kit_phase_auto.yaml | `.opencode/commands/spec_kit/assets/spec_kit_phase_auto.yaml` | 325 |
+| spec_kit_phase_confirm.yaml | `.opencode/commands/spec_kit/assets/spec_kit_phase_confirm.yaml` | 401 |
+| FEATURE_CATALOG.md | `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` | (searched, not fully read — too large) |
+| MANUAL_TESTING_PLAYBOOK.md | `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | (searched, first 100 lines read + full grep) |

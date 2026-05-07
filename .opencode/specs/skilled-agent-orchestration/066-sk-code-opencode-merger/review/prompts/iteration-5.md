@@ -22,7 +22,7 @@ Prior Findings: F001 P1 ADR stale, F002 P2 resource-map stale, F003 P1 spec/plan
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
 
 ## Review Focus
 

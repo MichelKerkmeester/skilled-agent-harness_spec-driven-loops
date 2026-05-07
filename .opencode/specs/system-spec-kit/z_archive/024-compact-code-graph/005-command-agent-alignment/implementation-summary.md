@@ -71,7 +71,7 @@ Commands and agent definitions across all four runtimes (Claude, OpenCode/Copilo
 
 ### Resume Command Profile Fix
 
-The resume workflow YAML assets at `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` and `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` previously called `memory_context({ mode: "resume" })` without the `profile` parameter, causing raw search results to be returned instead of a compact recovery brief. Adding `profile: "resume"` to those workflow definitions activates the condensed brief format identified as a gap in research iteration 012.
+The resume workflow YAML assets at `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` and `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` previously called `memory_context({ mode: "resume" })` without the `profile` parameter, causing raw search results to be returned instead of a compact recovery brief. Adding `profile: "resume"` to those workflow definitions activates the condensed brief format identified as a gap in research iteration 012.
 
 ### Memory Save Double-Save Reality
 
@@ -89,14 +89,14 @@ All spec_kit commands (resume, handover, complete, implement) and memory command
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | Modified | Add `profile: "resume"` to `memory_context()` parameters for autonomous resume |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` | Modified | Add `profile: "resume"` to `memory_context()` parameters for interactive resume |
-| `.opencode/command/memory/save.md` | Modified | Stop-hook save guidance corrected to avoid claiming a shipped `pendingStopSave` field |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | Modified | Add `profile: "resume"` to `memory_context()` parameters for autonomous resume |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | Modified | Add `profile: "resume"` to `memory_context()` parameters for interactive resume |
+| `.opencode/commands/memory/save.md` | Modified | Stop-hook save guidance corrected to avoid claiming a shipped `pendingStopSave` field |
 | `.claude/agents/*.md` | Modified | Hook-aware compaction recovery with tool fallback |
-| `.opencode/agent/*.md` | Modified | Hook-aware compaction recovery with tool fallback |
+| `.opencode/agents/*.md` | Modified | Hook-aware compaction recovery with tool fallback |
 | `.codex/agents/*.toml` | Modified | Hook-aware compaction recovery with tool fallback |
 | `.gemini/agents/*.md` | Modified | Hook-aware compaction recovery with tool fallback |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Hook System and Code Graph sections for command help |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Hook System and Code Graph sections for command help |
 <!-- /ANCHOR:what-built -->
 
 ---

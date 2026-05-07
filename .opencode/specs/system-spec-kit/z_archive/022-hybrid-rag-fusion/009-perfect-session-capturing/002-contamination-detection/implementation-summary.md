@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -82,12 +82,12 @@ The implementation stayed intentionally narrow:
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 1 file, 47 tests, 0 failures |
+| `cd .opencode/skills/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 1 file, 47 tests, 0 failures |
 | `node scripts/tests/test-memory-quality-lane.js` | Passed |
-| `cd .opencode/skill/system-spec-kit && npm run typecheck` | Passed |
-| `cd .opencode/skill/system-spec-kit && npm run build` | Passed |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` | Passed: 0 errors, 0 warnings |
-| `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` | Passed: refreshed `memory/metadata.json` and indexed memory #4371 |
+| `cd .opencode/skills/system-spec-kit && npm run typecheck` | Passed |
+| `cd .opencode/skills/system-spec-kit && npm run build` | Passed |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` | Passed: 0 errors, 0 warnings |
+| `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` | Passed: refreshed `memory/metadata.json` and indexed memory #4371 |
 <!-- /ANCHOR:verification -->
 
 ---

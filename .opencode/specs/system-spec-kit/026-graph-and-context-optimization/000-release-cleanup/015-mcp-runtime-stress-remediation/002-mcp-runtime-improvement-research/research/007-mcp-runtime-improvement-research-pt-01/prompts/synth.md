@@ -6,7 +6,7 @@
 
 ## TASK
 
-Compile the canonical `research.md` synthesis output from all iteration files plus deltas plus findings registry. Use the standard 17-section template at `.opencode/skill/system-spec-kit/templates/research.md` adapted for an MCP-runtime-improvement research packet (not a Webflow component, so adapt section content to match: API/Markup/CSS sections become protocol/handler/contract sections; etc.).
+Compile the canonical `research.md` synthesis output from all iteration files plus deltas plus findings registry. Use the standard 17-section template at `.opencode/skills/system-spec-kit/templates/research.md` adapted for an MCP-runtime-improvement research packet (not a Webflow component, so adapt section content to match: API/Markup/CSS sections become protocol/handler/contract sections; etc.).
 
 ## SOURCES (READ ALL)
 
@@ -23,7 +23,7 @@ Write to: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/00
 
 ## REQUIRED STRUCTURE
 
-Adapt the 17-section template from `.opencode/skill/system-spec-kit/templates/research.md` for runtime-systems research. Sections:
+Adapt the 17-section template from `.opencode/skills/system-spec-kit/templates/research.md` for runtime-systems research. Sections:
 
 1. Metadata (Research ID = RESEARCH-007, Status = Complete, Date = 2026-04-27)
 2. Investigation Report (Request Summary, Current Behavior, Key Findings × 8 = one per Q1-Q8, Recommendations summarized)

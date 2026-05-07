@@ -8,16 +8,16 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/memory/`
-- `.opencode/skill/system-spec-kit/mcp_server/db/`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/memory/`
+- `.opencode/skills/system-spec-kit/mcp_server/db/`
 
 ### Audit dimensions (standard 4) + integrity-specific questions
 

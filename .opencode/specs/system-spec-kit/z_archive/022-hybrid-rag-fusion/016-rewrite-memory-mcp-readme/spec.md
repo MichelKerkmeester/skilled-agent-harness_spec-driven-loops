@@ -64,7 +64,7 @@ Produce a complete rewrite grounded in the feature catalog that serves both newc
 
 | Category | Items |
 |----------|-------|
-| **Full rewrite** | `.opencode/skill/system-spec-kit/mcp_server/README.md` |
+| **Full rewrite** | `.opencode/skills/system-spec-kit/mcp_server/README.md` |
 | **Section structure** | Overview, Quick Start, Architecture, MCP Tools (all 33), Search System, Configuration, Usage Examples, Troubleshooting, FAQ, Related Resources |
 | **Content grounding** | Feature catalog (FEATURE_CATALOG.md) as authoritative source |
 | **Quality gates** | DQI >= 75, no banned HVR words, template alignment with the README template |
@@ -80,8 +80,8 @@ Produce a complete rewrite grounded in the feature catalog that serves both newc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Rewrite | Complete rewrite from scratch using research brief and readme template |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md.bak` | Create | Backup of current README before rewrite |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Rewrite | Complete rewrite from scratch using research brief and readme template |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md.bak` | Create | Backup of current README before rewrite |
 <!-- /ANCHOR:scope -->
 
 ---

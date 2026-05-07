@@ -13,7 +13,7 @@ For each of the 11 features in this category, determine whether the feature cata
 ## Files to Read
 
 ### Feature Catalog Entries (read ALL 11 files)
-Directory: `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/`
+Directory: `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/`
 - `01-unified-context-retrieval-memorycontext.md`
 - `02-semantic-and-lexical-search-memorysearch.md`
 - `03-trigger-phrase-matching-memorymatchtriggers.md`
@@ -27,7 +27,7 @@ Directory: `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/`
 - `11-session-recovery-memory-continue.md`
 
 ### MCP Server Source Code
-Root: `.opencode/skill/system-spec-kit/mcp_server/`
+Root: `.opencode/skills/system-spec-kit/mcp_server/`
 Read the source files referenced in each feature catalog entry. Focus on:
 - `handlers/` — tool handler implementations
 - `lib/search/` — search pipeline stages

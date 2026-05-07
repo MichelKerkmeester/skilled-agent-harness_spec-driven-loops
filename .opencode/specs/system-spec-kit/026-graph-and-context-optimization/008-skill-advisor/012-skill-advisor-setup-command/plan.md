@@ -48,7 +48,7 @@ _memory:
 | **Testing** | Vitest — `skill_advisor/tests/` suite (220 tests) |
 
 ### Overview
-Deliver a `/doctor:skill-advisor` slash command that follows the existing spec_kit command pattern: a markdown file with frontmatter + execution protocol header + consolidated prompt phase, backed by two YAML workflow assets (auto/confirm). The command analyzes all skills in `.opencode/skill/`, reads current scoring tables, detects gaps, proposes optimizations, applies them, re-indexes the skill graph, and validates with tests. A user-facing install guide wraps the command in a discoverable setup flow.
+Deliver a `/doctor:skill-advisor` slash command that follows the existing spec_kit command pattern: a markdown file with frontmatter + execution protocol header + consolidated prompt phase, backed by two YAML workflow assets (auto/confirm). The command analyzes all skills in `.opencode/skills/`, reads current scoring tables, detects gaps, proposes optimizations, applies them, re-indexes the skill graph, and validates with tests. A user-facing install guide wraps the command in a discoverable setup flow.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -79,7 +79,7 @@ Deliver a `/doctor:skill-advisor` slash command that follows the existing spec_k
 OpenCode Slash Command + YAML Workflow Orchestration (same pattern as `/spec_kit:resume`, `/spec_kit:plan`)
 
 ### Key Components
-- **Command Markdown** (`.opencode/command/doctor/skill-advisor.md`): Frontmatter with `allowed-tools`, execution protocol header, consolidated prompt phase, MCP tool usage reference
+- **Command Markdown** (`.opencode/commands/doctor/skill-advisor.md`): Frontmatter with `allowed-tools`, execution protocol header, consolidated prompt phase, MCP tool usage reference
 - **Auto YAML** (`doctor_skill-advisor_auto.yaml`): Autonomous workflow — reads skills, detects gaps, proposes optimizations, applies them, runs tests
 - **Confirm YAML** (`doctor_skill-advisor_confirm.yaml`): Interactive workflow — same as auto but pauses at approval gates before each mutation
 - **Install Guide** (`SET-UP - Skill Advisor.md`): AI-first prompt for users to invoke the command, with prerequisite checks and step-by-step flows
@@ -104,7 +104,7 @@ User invokes /doctor:skill-advisor [:auto|:confirm]
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Command Scaffolding
-- [ ] Create `.opencode/command/doctor/skill-advisor.md` with frontmatter, argument hint, allowed-tools
+- [ ] Create `.opencode/commands/doctor/skill-advisor.md` with frontmatter, argument hint, allowed-tools
 - [ ] Create `doctor_skill-advisor_auto.yaml` workflow definition
 - [ ] Create `doctor_skill-advisor_confirm.yaml` workflow definition
 - [ ] Follow existing command patterns (resume.md structure, YAML format)
@@ -146,7 +146,7 @@ User invokes /doctor:skill-advisor [:auto|:confirm]
 | `skill_graph_scan` MCP tool | Internal | Green | Can't re-index after changes |
 | Advisor test suite | Internal | Green | Can't validate scoring correctness |
 | TypeScript build (`tsc --build`) | Internal | Green | Dist won't reflect source changes |
-| `.opencode/skill/*/SKILL.md` files | Internal | Green | Nothing to analyze |
+| `.opencode/skills/*/SKILL.md` files | Internal | Green | Nothing to analyze |
 <!-- /ANCHOR:dependencies -->
 
 ---

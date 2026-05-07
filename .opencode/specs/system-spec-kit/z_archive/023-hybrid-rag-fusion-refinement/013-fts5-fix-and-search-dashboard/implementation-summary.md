@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: level_2/implementation-summ
 <!-- SPECKIT_TEMPLATE_SOURCE: level_2/implementation-summary.md | v2.2 -->
 
 # Implementation Summary: FTS5 Fix, Search Dashboard, and DB Path Drift Fix
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -48,7 +48,7 @@ Multi-word searches now return FTS5-backed results. A guard at `sqlite-fts.ts` l
 
 ### Item 2 — Search Dashboard Redesign
 
-The `/memory:search` output groups results by spec folder using leaf folder names (Design 10: folder-as-tree-group). Paths are no longer rendered at full length, making results scannable. Applied to both `.opencode/command/memory/search.md` and `.agents/commands/memory/search.toml`.
+The `/memory:search` output groups results by spec folder using leaf folder names (Design 10: folder-as-tree-group). Paths are no longer rendered at full length, making results scannable. Applied to both `.opencode/commands/memory/search.md` and `.agents/commands/memory/search.toml`.
 
 ### Item 3 — DB Path Drift Fix (4-layer defense-in-depth)
 
@@ -74,7 +74,7 @@ Root cause: `resolve_database_path()` in `vector-index-store.ts` drifted to empt
 | `mcp_server/lib/search/hybrid-search.ts` | Modified | 8+ warning logs on silent failure paths |
 | `mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` | Modified | 11+ warning logs on failure paths |
 | `mcp_server/lib/search/vector-index-queries.ts` | Modified | 12+ warning logs on failure paths |
-| `.opencode/command/memory/search.md` | Modified | Design 10 dashboard applied |
+| `.opencode/commands/memory/search.md` | Modified | Design 10 dashboard applied |
 | `.agents/commands/memory/search.toml` | Modified | Design 10 dashboard applied |
 | `mcp_server/handlers/memory-context.ts` | Modified | P0: folder discovery no longer promotes to specFolder filter |
 | `mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` | Modified | P0: sessionId removed from governance scope check; P1: activeChannels metric |
@@ -138,5 +138,5 @@ All fixes applied directly to TypeScript source, compiled with `bun run build` (
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

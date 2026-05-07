@@ -3,9 +3,9 @@
   "profileId": "context",
   "family": "context",
   "evaluationMode": "dynamic-5d",
-  "target": ".opencode/agent/context.md",
+  "target": ".opencode/agents/context.md",
   "candidate": "specs/skilled-agent-orchestration/061-agent-optimization/001-agent-context/improvement/candidates/iter-1-candidate-001.md",
-  "baseline": ".opencode/agent/context.md",
+  "baseline": ".opencode/agents/context.md",
   "score": 100,
   "baselineScore": 100,
   "delta": {

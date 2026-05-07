@@ -76,8 +76,8 @@ contextType: "implementation"
     5. Update tier-classifier.js to consider uncertainty
   - **Files**:
     - `AGENTS.md` (modify - Section 4)
-    - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` (modify)
-    - `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js` (modify)
+    - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.js` (modify)
+    - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js` (modify)
   - **Framework Addition**:
     ```markdown
     ## Uncertainty Tracking (NEW)
@@ -145,8 +145,8 @@ contextType: "implementation"
     3. Add fallback logic when memory files are stale/missing
     4. Document resume behavior in SKILL.md
   - **Files**:
-    - `.opencode/skill/system-spec-kit/references/workflows/resume.md` (modify)
-    - `.opencode/skill/system-spec-kit/SKILL.md` (modify)
+    - `.opencode/skills/system-spec-kit/references/workflows/resume.md` (modify)
+    - `.opencode/skills/system-spec-kit/SKILL.md` (modify)
   - **Priority Order**:
     ```markdown
     Resume Priority Order:
@@ -175,9 +175,9 @@ contextType: "implementation"
     3. Update generate-context.js to include PREFLIGHT data
     4. Add PREFLIGHT prompting to spec workflow initiation
   - **Files**:
-    - `.opencode/skill/system-spec-kit/templates/memory/context_v1.md` (modify)
-    - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` (modify)
-    - `.opencode/skill/system-spec-kit/references/workflows/complete.md` (modify)
+    - `.opencode/skills/system-spec-kit/templates/memory/context_v1.md` (modify)
+    - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.js` (modify)
+    - `.opencode/skills/system-spec-kit/references/workflows/complete.md` (modify)
   - **PREFLIGHT Format**:
     ```markdown
     ## PREFLIGHT BASELINE
@@ -211,9 +211,9 @@ contextType: "implementation"
     3. Implement learning_score calculation
     4. Store deltas in memory files for calibration feedback
   - **Files**:
-    - `.opencode/skill/system-spec-kit/templates/memory/context_v1.md` (modify)
-    - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` (modify)
-    - `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/learning-tracker.js` (NEW)
+    - `.opencode/skills/system-spec-kit/templates/memory/context_v1.md` (modify)
+    - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.js` (modify)
+    - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/learning-tracker.js` (NEW)
   - **POSTFLIGHT Format**:
     ```markdown
     ## POSTFLIGHT RESULTS
@@ -362,8 +362,8 @@ contextType: "implementation"
     4. Log memory save events
     5. Create journaling helper functions
   - **Files**:
-    - `.opencode/skill/system-spec-kit/templates/level-3/decision-record.md` (modify)
-    - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` (modify)
+    - `.opencode/skills/system-spec-kit/templates/level-3/decision-record.md` (modify)
+    - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.js` (modify)
   - **Enhanced Format**:
     ```markdown
     ## Session Decision Log
@@ -430,10 +430,10 @@ contextType: "implementation"
   - **Effort**: Medium
   - **Dependencies**: Task 1.4
   - **Files Created**:
-    - `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.js` (NEW)
+    - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.js` (NEW)
   - **Files Modified**:
-    - `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
-    - `.opencode/skill/system-spec-kit/mcp_server/handlers/index.js`
+    - `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
+    - `.opencode/skills/system-spec-kit/mcp_server/handlers/index.js`
   - **Done When**: ✅ Tool registered and handler implemented
 
 ### Task 3.2 - MCP task_postflight() Tool
@@ -467,7 +467,7 @@ contextType: "implementation"
   - **Effort**: Medium
   - **Dependencies**: Task 1.4
   - **Files Modified**:
-    - `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.js`
+    - `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.js`
   - **Features**:
     - `calculateLearningIndex()` function
     - `extractPreflightPostflightData()` function
@@ -481,9 +481,9 @@ contextType: "implementation"
   - **Effort**: Low
   - **Dependencies**: Tasks 1.1, 2.1, 2.2
   - **Files Created**:
-    - `.opencode/skill/system-spec-kit/references/epistemic/epistemic-vectors.md`
-    - `.opencode/skill/system-spec-kit/references/five-checks.md`
-    - `.opencode/skill/system-spec-kit/references/decision-format.md`
+    - `.opencode/skills/system-spec-kit/references/epistemic/epistemic-vectors.md`
+    - `.opencode/skills/system-spec-kit/references/five-checks.md`
+    - `.opencode/skills/system-spec-kit/references/decision-format.md`
   - **Done When**: ✅ All three docs created
 
 ### Task 3.6 - implement.md PREFLIGHT/POSTFLIGHT Hooks
@@ -493,7 +493,7 @@ contextType: "implementation"
   - **Effort**: Low
   - **Dependencies**: Task 3.1
   - **Files Modified**:
-    - `.opencode/command/spec_kit/implement.md`
+    - `.opencode/commands/spec_kit/implement.md`
   - **Changes**:
     - Step 5.5: PREFLIGHT Capture
     - Step 7.5: POSTFLIGHT Learning Delta

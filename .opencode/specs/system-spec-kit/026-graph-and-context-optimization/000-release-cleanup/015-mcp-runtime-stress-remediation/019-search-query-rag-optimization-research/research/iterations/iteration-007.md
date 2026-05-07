@@ -6,15 +6,15 @@ Decide where rerank layers make sense and where deterministic fusion remains the
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:6`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:126`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:161`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:215`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:42`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:206`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1446`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1455`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:6`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:126`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:161`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:215`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:42`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:206`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1446`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1455`
 
 ## Findings
 

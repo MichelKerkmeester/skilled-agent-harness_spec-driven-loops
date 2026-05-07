@@ -83,9 +83,9 @@ This phase was delivered inside the existing MCP server and then re-verified wit
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
-| `npx tsc --noEmit` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
-| `npm run build` in `.opencode/skill/system-spec-kit/mcp_server` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh [phase-folder]` | PASS |
+| `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
+| `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` | PASS |
 | `npx vitest run tests/memory-roadmap-flags.vitest.ts tests/retrieval-telemetry.vitest.ts tests/adaptive-ranking.vitest.ts tests/memory-governance.vitest.ts tests/shared-spaces.vitest.ts tests/handler-memory-save.vitest.ts` | PASS (`79` tests across `6` files) |
 | Manual dist roadmap smoke (`SPECKIT_GRAPH_UNIFIED=false` baseline snapshot + `SPECKIT_HYDRA_PHASE=graph SPECKIT_HYDRA_GRAPH_UNIFIED=true` graph snapshot) | PASS |
 | Consolidated roadmap suite (`15` files, `160` tests) | PASS |

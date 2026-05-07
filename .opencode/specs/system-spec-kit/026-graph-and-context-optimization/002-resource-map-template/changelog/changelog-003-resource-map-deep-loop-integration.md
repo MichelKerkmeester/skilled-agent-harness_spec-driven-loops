@@ -62,25 +62,25 @@ This phase built a shared evidence extractor under `scripts/resource-map/extract
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` (NEW) | Shared extractor and renderer for review and research maps. |
-| `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` (NEW) | Extractor input/output contract. |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` (NEW) | Vitest snapshot coverage for both evidence shapes. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resource_map config + emission step. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resource_map config + emission step. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modified: emitted output and opt-out documentation. |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modified: emitted output and opt-out documentation. |
-| `.opencode/command/spec_kit/deep-review.md` | Modified: brief mention of resource-map artifact. |
-| `.opencode/command/spec_kit/deep-research.md` | Modified: brief mention of resource-map artifact. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modified: notes synthesis-time emission step. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modified: notes synthesis-time emission step. |
-| `.opencode/skill/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Review-side catalog entry. |
-| `.opencode/skill/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Research-side catalog entry. |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` (NEW) | Review-side playbook scenario. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` (NEW) | Research-side playbook scenario. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` (NEW) | Shared extractor and renderer for review and research maps. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` (NEW) | Extractor input/output contract. |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` (NEW) | Vitest snapshot coverage for both evidence shapes. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified: `--emit-resource-map` + opt-out. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified: resource_map config + emission step. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified: same pattern. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified: resource_map config + emission step. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified: same pattern. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modified: emitted output and opt-out documentation. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modified: emitted output and opt-out documentation. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modified: brief mention of resource-map artifact. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modified: brief mention of resource-map artifact. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modified: notes synthesis-time emission step. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modified: notes synthesis-time emission step. |
+| `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Review-side catalog entry. |
+| `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Research-side catalog entry. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` (NEW) | Review-side playbook scenario. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` (NEW) | Research-side playbook scenario. |
 
 Commits: `083f74c814` (test playbooks), `79ea13374c` (bulk WIP commit).
 

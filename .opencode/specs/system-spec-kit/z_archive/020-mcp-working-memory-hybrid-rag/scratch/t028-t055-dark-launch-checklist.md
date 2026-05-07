@@ -67,7 +67,7 @@ Applicable flags (ALL must be OFF / false for dark launch):
 ### A3. Rollback Verification (Phase 1)
 
 [x] Rollback runbook is accessible
-    Location: .opencode/skill/system-spec-kit/references/workflows/rollback-runbook.md
+    Location: .opencode/skills/system-spec-kit/references/workflows/rollback-runbook.md
 
 [x] Rollback command tested in local/staging:
     unset SPECKIT_SESSION_BOOST SPECKIT_PRESSURE_POLICY SPECKIT_EVENT_DECAY SPECKIT_AUTO_RESUME
@@ -117,7 +117,7 @@ Assumes Phase 1 dark launch (T028) is already confirmed stable.
 [x] Phase 2 rollback: additionally unset SPECKIT_EXTRACTION and SPECKIT_CAUSAL_BOOST
 
 [x] Verify MRR baseline preserved post-rollback:
-    re-run: node .opencode/skill/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs
+    re-run: node .opencode/skills/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs
     .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag
     Expected: MRR ratio >= 0.95x (same as pre-launch baseline)
 
@@ -139,7 +139,7 @@ Phase 2 dark launch (T055):
   Flags confirmed OFF: [x]
   Smoke checks passed: [x]
   Rollback verified: [x]
-  Notes: Phase 2 closure metrics re-run passed (`node .opencode/skill/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`) with precision 100.00%, recall 88.89%, manual save ratio 24.00%, MRR ratio 0.9811x.
+  Notes: Phase 2 closure metrics re-run passed (`node .opencode/skills/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`) with precision 100.00%, recall 88.89%, manual save ratio 24.00%, MRR ratio 0.9811x.
 
 ---
 

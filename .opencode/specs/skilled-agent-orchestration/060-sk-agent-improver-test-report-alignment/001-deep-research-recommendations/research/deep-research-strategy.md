@@ -83,9 +83,9 @@ The 059 test-report.md (570 lines) at `.opencode/specs/skilled-agent-orchestrati
 
 ### Triad surface area
 
-- `.opencode/skill/sk-improve-agent/SKILL.md` (463 lines)
-- `.opencode/agent/improve-agent.md` (246 lines)
-- `.opencode/command/improve/agent.md` (456 lines)
+- `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
+- `.opencode/agents/improve-agent.md` (246 lines)
+- `.opencode/commands/improve/agent.md` (456 lines)
 - `references/` (12 docs: quick_reference, loop_protocol, evaluator_contract, benchmark_operator_guide, promotion_rules, rollback_runbook, mirror_drift_policy, no_go_conditions, target_onboarding, integration_scanning, README)
 - `scripts/` (14 .cjs: run-benchmark, score-candidate, reduce-state, promote-candidate, rollback-candidate, scan-integration, generate-profile, check-mirror-drift, improvement-journal, mutation-coverage, trade-off-detector, candidate-lineage, benchmark-stability)
 - `assets/` (6 items: improvement_charter, improvement_strategy, improvement_config (json + reference), target_manifest.jsonc)

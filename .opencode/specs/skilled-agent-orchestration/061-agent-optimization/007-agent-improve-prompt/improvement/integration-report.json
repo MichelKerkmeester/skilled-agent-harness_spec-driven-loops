@@ -4,7 +4,7 @@
   "timestamp": "2026-05-02T18:03:22.062Z",
   "surfaces": {
     "canonical": {
-      "path": ".opencode/agent/improve-prompt.md",
+      "path": ".opencode/agents/improve-prompt.md",
       "exists": true,
       "frontmatter": {
         "name": "improve-prompt",
@@ -46,7 +46,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/command/improve/prompt.md",
+        "path": ".opencode/commands/improve/prompt.md",
         "references": [
           "@improve-prompt"
         ]
@@ -55,27 +55,27 @@
     "yamlWorkflows": [],
     "skills": [
       {
-        "path": ".opencode/skill/cli-claude-code/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-copilot/SKILL.md",
+        "path": ".opencode/skills/cli-copilot/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-gemini/SKILL.md",
+        "path": ".opencode/skills/cli-gemini/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "referenceCount": 4
       },
       {
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "referenceCount": 5
       }
     ],
@@ -86,7 +86,7 @@
       }
     ],
     "skillAdvisor": {
-      "path": ".opencode/skill/scripts/skill_advisor.py",
+      "path": ".opencode/skills/scripts/skill_advisor.py",
       "matched": false
     }
   },

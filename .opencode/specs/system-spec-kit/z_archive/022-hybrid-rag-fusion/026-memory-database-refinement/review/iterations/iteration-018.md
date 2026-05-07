@@ -4,7 +4,7 @@
 
 ### [P1] Self-loop degrees are snapshotted twice but measured once for momentum
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts`
 
 **Issue**
 `snapshotDegrees()` and `getCurrentDegree()` use different degree semantics for self-referential edges. A `source_id = target_id` edge is counted twice in the historical snapshot path but only once in the live current-degree path, so `computeMomentum()` can report negative momentum even when the graph is unchanged.
@@ -17,7 +17,7 @@ Make current and historical degree computation use the same definition. If total
 
 ### [P1] Degree-cache invalidation only covers one mutation surface
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
 
 **Issue**
 The file documents cache invalidation as if all causal-edge mutations flow through `storage/causal-edges.ts`, but the codebase has several direct `causal_edges` writers outside that module. When those paths run, the per-DB degree cache can retain stale scores and continue feeding old degree rankings into fusion.
@@ -30,13 +30,13 @@ Centralize all `causal_edges` writes behind a shared mutation helper that always
 
 ### [P1] The advertised `0.15` degree cap does not cap fusion influence
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
 
 **Issue**
 `normalizeDegreeToBoostedScore()` presents degree as a bounded additive score in `[0, 0.15]`, but the downstream fusion pipeline does not use that magnitude as a final cap. It converts the degree results into a separate ranked RRF channel with fixed weight, so the bounded value only affects intra-channel ordering, not the channel's total contribution to fused ranking.
 
 **Evidence**
-This file documents the output as a bounded boost score at lines 352-368 and returns those values from `computeDegreeScores()` at lines 486-490. Hybrid search then takes those rows, sorts them, and pushes them into fusion as a `degree` list with fixed `weight: 0.4` in `hybrid-search.ts:942-960`. `fuseResultsMulti()` computes contributions from rank and list weight (`weight * (1 / (k + rank))`) rather than the raw `degreeScore` magnitude in `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:288-324`. The tests already encode the consequence: `feature-eval-graph-signals.vitest.ts:269-287` expects the top degree-only result to normalize to an `rrfScore` of `1.0`, not to stay under `0.15`. That means the "cap" does not actually prevent degree from becoming a strong extra fusion channel and convergence source.
+This file documents the output as a bounded boost score at lines 352-368 and returns those values from `computeDegreeScores()` at lines 486-490. Hybrid search then takes those rows, sorts them, and pushes them into fusion as a `degree` list with fixed `weight: 0.4` in `hybrid-search.ts:942-960`. `fuseResultsMulti()` computes contributions from rank and list weight (`weight * (1 / (k + rank))`) rather than the raw `degreeScore` magnitude in `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:288-324`. The tests already encode the consequence: `feature-eval-graph-signals.vitest.ts:269-287` expects the top degree-only result to normalize to an `rrfScore` of `1.0`, not to stay under `0.15`. That means the "cap" does not actually prevent degree from becoming a strong extra fusion channel and convergence source.
 
 **Fix**
 If the intent is a true bounded boost, apply the degree score after fusion as an additive adjustment, similar to `applyGraphSignals()`, instead of turning it into a full ranked channel. If degree must remain a channel, derive its list weight from the bounded score distribution or otherwise map the `0.15` cap into the fusion weight. At minimum, rename the helper/docs so they stop implying the current value is an end-to-end fusion cap.

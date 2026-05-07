@@ -473,7 +473,7 @@ Layer 3: Deep Memory Search (UNCHANGED)
 **Purpose**: Create proper OpenCode skill wrapper for CocoIndex
 
 ```
-.opencode/skill/mcp-coco-index/
+.opencode/skills/mcp-coco-index/
 ├── SKILL.md                     # 8-section documentation
 ├── README.md                    # Quick reference
 ├── references/
@@ -579,7 +579,7 @@ When the user's query is conceptual or fuzzy (not an exact pattern):
   "success": true,
   "results": [
     {
-      "file_path": ".opencode/skill/system-spec-kit/mcp_server/src/context-server.ts",
+      "file_path": ".opencode/skills/system-spec-kit/mcp_server/src/context-server.ts",
       "language": "typescript",
       "content": "// MCP server setup\nconst server = new Server({\n  name: 'spec-kit-memory',\n  version: '2.2.26.0'\n});\n\nserver.setRequestHandler(ListToolsRequestSchema, async () => ({\n  tools: [...memoryTools, ...searchTools]\n}));",
       "start_line": 15,
@@ -600,7 +600,7 @@ When the user's query is conceptual or fuzzy (not an exact pattern):
   "query": "database migration and schema changes",
   "limit": 5,
   "languages": ["typescript", "sql"],
-  "paths": [".opencode/skill/system-spec-kit/**"]
+  "paths": [".opencode/skills/system-spec-kit/**"]
 }
 ```
 

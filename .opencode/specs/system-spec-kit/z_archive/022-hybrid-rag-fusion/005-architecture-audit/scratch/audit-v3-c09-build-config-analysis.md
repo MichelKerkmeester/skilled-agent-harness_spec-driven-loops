@@ -1,6 +1,6 @@
 # C9 Build & Config Integrity Audit
 
-Scope: `.opencode/skill/system-spec-kit/`
+Scope: `.opencode/skills/system-spec-kit/`
 
 Configs inspected:
 - `tsconfig.json`
@@ -13,12 +13,12 @@ Configs inspected:
 - `scripts/package.json`
 
 Commands run:
-- `cd .opencode/skill/system-spec-kit && find . -name 'tsconfig*.json' -not -path '*/node_modules/*'`
-- `cd .opencode/skill/system-spec-kit && find . -name 'package.json' -not -path '*/node_modules/*'`
-- `cd .opencode/skill/system-spec-kit && npm run build`
-- `cd .opencode/skill/system-spec-kit && npm run typecheck`
-- `cd .opencode/skill/system-spec-kit && node scripts/dist/evals/check-source-dist-alignment.js`
-- `cd .opencode/skill/system-spec-kit && npm ls vitest typescript @modelcontextprotocol/sdk zod eslint globals typescript-eslint @huggingface/transformers onnxruntime-common better-sqlite3 sqlite-vec sqlite-vec-darwin-arm64 --all`
+- `cd .opencode/skills/system-spec-kit && find . -name 'tsconfig*.json' -not -path '*/node_modules/*'`
+- `cd .opencode/skills/system-spec-kit && find . -name 'package.json' -not -path '*/node_modules/*'`
+- `cd .opencode/skills/system-spec-kit && npm run build`
+- `cd .opencode/skills/system-spec-kit && npm run typecheck`
+- `cd .opencode/skills/system-spec-kit && node scripts/dist/evals/check-source-dist-alignment.js`
+- `cd .opencode/skills/system-spec-kit && npm ls vitest typescript @modelcontextprotocol/sdk zod eslint globals typescript-eslint @huggingface/transformers onnxruntime-common better-sqlite3 sqlite-vec sqlite-vec-darwin-arm64 --all`
 
 Quick status:
 - `npm run build`: FAIL
@@ -32,7 +32,7 @@ Severity: High
 Category: Build Pipeline
 Location: `mcp_server/tsconfig.json:17`
 Description: The `mcp_server` project compiles `**/*.ts`, which pulls the Vitest suite into the same `tsc --build` graph as production code. Only three individual test files are excluded, so the root build and typecheck pipelines are blocked by ordinary test-only strictness errors.
-Evidence: `mcp_server/tsconfig.json:17-24` includes all TypeScript files and excludes only three named tests. Running `npm run build` and `npm run typecheck` from `.opencode/skill/system-spec-kit/` both exit with code `2` on `mcp_server/tests/shared-memory-handlers.vitest.ts:129`, `:179`, `:191`, `:205`, and `:227` with `TS18048: 'envelope.data.details' is possibly 'undefined'`.
+Evidence: `mcp_server/tsconfig.json:17-24` includes all TypeScript files and excludes only three named tests. Running `npm run build` and `npm run typecheck` from `.opencode/skills/system-spec-kit/` both exit with code `2` on `mcp_server/tests/shared-memory-handlers.vitest.ts:129`, `:179`, `:191`, `:205`, and `:227` with `TS18048: 'envelope.data.details' is possibly 'undefined'`.
 Impact: The documented workspace build command does not succeed, CI or setup flows that rely on `tsc --build` are unstable, and production compilation is coupled to test-source typing details.
 Recommended Fix: Split production and test compilation boundaries. Exclude `tests/**/*.ts` from `mcp_server/tsconfig.json`, add a dedicated test tsconfig if needed for editor/Vitest typechecking, and keep `tsc --build` focused on shippable sources.
 

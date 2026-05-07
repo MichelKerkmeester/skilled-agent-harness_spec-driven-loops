@@ -13,17 +13,17 @@
     "What is the minimum viable JSON payload that should produce a >= 50/100 quality memory?"
   ],
   "codebaseScope": [
-    ".opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts",
-    ".opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts",
-    ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
-    ".opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts",
-    ".opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts",
-    ".opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts",
-    ".opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts",
-    ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-    ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts",
-    ".opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts",
-    ".opencode/skill/system-spec-kit/scripts/core/quality-gates.ts",
-    ".opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts"
+    ".opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts",
+    ".opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts",
+    ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+    ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
+    ".opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts",
+    ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
+    ".opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts",
+    ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+    ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
+    ".opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts",
+    ".opencode/skills/system-spec-kit/scripts/core/quality-gates.ts",
+    ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts"
   ]
 }

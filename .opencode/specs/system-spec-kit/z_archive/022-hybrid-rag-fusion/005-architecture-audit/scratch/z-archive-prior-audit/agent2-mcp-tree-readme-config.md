@@ -1,6 +1,6 @@
 # MCP Server Inventory: Tree, READMEs, Configs
 
-- Scope: `.opencode/skill/system-spec-kit/mcp_server/`
+- Scope: `.opencode/skills/system-spec-kit/mcp_server/`
 - Exclusions: `node_modules/`, `dist/`
 - Snapshot stats (excluded dirs omitted): `42` directories, `482` regular files, `33` README files, `2` symlinks.
 

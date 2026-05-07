@@ -52,7 +52,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-`@ultra-think` is consumed via the Task tool / orchestrator dispatch. Improvements ship as canonical `.opencode/agent/ultra-think.md` updates plus 3 mirror updates. Score profile is dynamic (generated per-target via `generate-profile.cjs`).
+`@ultra-think` is consumed via the Task tool / orchestrator dispatch. Improvements ship as canonical `.opencode/agents/ultra-think.md` updates plus 3 mirror updates. Score profile is dynamic (generated per-target via `generate-profile.cjs`).
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -63,7 +63,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 | Phase | Steps | Output |
 |---|---|---|
 | **P1** Profile | scan-integration.cjs + generate-profile.cjs | `<packet>/profile.json` |
-| **P2** Dispatch | `/improve:agent .opencode/agent/ultra-think.md` | `<packet>/candidate.md` |
+| **P2** Dispatch | `/improve:agent .opencode/agents/ultra-think.md` | `<packet>/candidate.md` |
 | **P3** Score+Bench | score-candidate.cjs + run-benchmark.cjs | score + benchmark JSONs |
 | **P4** Legal-stop | reduce-state.cjs verifies 5 gates | `<packet>/legal_stop_evaluated.json` |
 | **P5** Promote | promote-candidate.cjs --approve | canonical updated |
@@ -77,7 +77,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Smoke-test via re-running a representative scenario from `.opencode/skill/sk-improve-agent/manual_testing_playbook/`. For LEAF agents (@context, @deep-research, @deep-review), test via the dispatching command's flow.
+Smoke-test via re-running a representative scenario from `.opencode/skills/sk-improve-agent/manual_testing_playbook/`. For LEAF agents (@context, @deep-research, @deep-review), test via the dispatching command's flow.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -96,5 +96,5 @@ Smoke-test via re-running a representative scenario from `.opencode/skill/sk-imp
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-`rollback-candidate.cjs --target=.opencode/agent/ultra-think.md --backup=<pre-promote-backup>` reverts canonical. Mirror revert via git revert of the sync commit. Rename revert: git revert the rename commit + grep audit to ensure no stale `multi-ai-council` references remain.
+`rollback-candidate.cjs --target=.opencode/agents/ultra-think.md --backup=<pre-promote-backup>` reverts canonical. Mirror revert via git revert of the sync commit. Rename revert: git revert the rename commit + grep audit to ensure no stale `multi-ai-council` references remain.
 <!-- /ANCHOR:rollback -->

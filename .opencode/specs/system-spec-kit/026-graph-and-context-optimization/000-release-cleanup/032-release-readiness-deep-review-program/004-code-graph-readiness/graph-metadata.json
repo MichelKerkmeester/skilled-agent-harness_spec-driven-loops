@@ -59,7 +59,7 @@
       {
         "name": "code_graph degraded stress sweep",
         "kind": "evidence",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
         "source": "manual"
       }
     ],

@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - "decision-record.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
-      - ".opencode/skill/sk-code/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-code/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-008"

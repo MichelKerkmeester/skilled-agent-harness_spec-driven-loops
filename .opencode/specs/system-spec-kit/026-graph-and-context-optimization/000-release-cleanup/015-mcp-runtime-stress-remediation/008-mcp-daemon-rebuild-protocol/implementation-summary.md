@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -93,7 +93,7 @@ PLACEHOLDER. Documentation drafted directly by the orchestrator (Claude Opus). N
 |-------|--------|----------|
 | 4 reference docs exist | PASS | `ls references/` shows all 4 files (mcp-rebuild-restart-protocol.md, live-probe-template.md, dist-marker-grep-cheatsheet.md, implementation-verification-checklist.md) |
 | At least 1 sibling cite | PASS | Sibling packets 008 + 014 already cite packet 013 in their "Known Limitations" sections |
-| `validate.sh --strict` PASS | PASS | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol --strict` → Errors 0, Warnings 0 |
+| `validate.sh --strict` PASS | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/008-mcp-daemon-rebuild-protocol --strict` → Errors 0, Warnings 0 |
 <!-- /ANCHOR:verification -->
 
 ---

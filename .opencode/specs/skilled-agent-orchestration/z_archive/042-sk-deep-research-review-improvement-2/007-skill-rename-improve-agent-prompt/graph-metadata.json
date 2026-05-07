@@ -46,7 +46,7 @@
       "checklist.md",
       "implementation-summary.md",
       "decision-record.md",
-      ".opencode/agent/improve-agent.md",
+      ".opencode/agents/improve-agent.md",
       ".claude/agents/improve-agent.md",
       ".gemini/agents/improve-agent.md",
       ".codex/agents/improve-agent.toml"
@@ -91,7 +91,7 @@
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {

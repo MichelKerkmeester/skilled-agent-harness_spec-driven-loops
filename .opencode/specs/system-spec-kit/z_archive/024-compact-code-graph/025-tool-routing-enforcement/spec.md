@@ -187,7 +187,7 @@ Eliminate AI tool misjudgment by adding active enforcement at three MCP enforcem
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Constitutional memory for routing | `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md` constitutional memory exists and surfaces on code search queries |
+| REQ-005 | Constitutional memory for routing | `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md` constitutional memory exists and surfaces on code search queries |
 | REQ-006 | Runtime instruction files updated | All CLAUDE.md/CODEX.md/GEMINI.md files have active enforcement language, not just "MUST use" |
 | REQ-007 | Context-prime agent outputs routing rules | Prime Package output includes routing decision tree |
 

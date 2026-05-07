@@ -8,16 +8,16 @@ This iteration checked whether operator-facing docs and playbooks still match th
 
 - `../deep-research-strategy.md`
 - `iteration-08.md`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
 
 ### Findings
 
-- The public hook reference still tells operators to run the OpenCode bridge from `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`, which no longer matches the live helper location [.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:133-140].
-- The feature-catalog "current reality" section and the manual playbook repeat the same outdated `.opencode/plugins/` bridge path, so the doc drift is not isolated to one page [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:29-39] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:30-35] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:46-50].
-- The compat test suite uses `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs` as the real bridge path, which confirms the docs are behind the runtime rather than the other way around [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:11-14].
+- The public hook reference still tells operators to run the OpenCode bridge from `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`, which no longer matches the live helper location [.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:133-140].
+- The feature-catalog "current reality" section and the manual playbook repeat the same outdated `.opencode/plugins/` bridge path, so the doc drift is not isolated to one page [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:29-39] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:30-35] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md:46-50].
+- The compat test suite uses `.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs` as the real bridge path, which confirms the docs are behind the runtime rather than the other way around [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:11-14].
 
 ### Evidence
 
@@ -26,12 +26,12 @@ This iteration checked whether operator-facing docs and playbooks still match th
 > ```bash
 > printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.7}' | \
 >   node .opencode/plugins/spec-kit-skill-advisor-bridge.mjs
-> ``` [.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:133-138]
+> ``` [.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:133-138]
 
-> `.opencode/plugins/spec-kit-skill-advisor.js` exports the plugin. `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:29-31]
+> `.opencode/plugins/spec-kit-skill-advisor.js` exports the plugin. `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md:29-31]
 
 > const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..', '..');
-> const bridgePath = resolve(repoRoot, '.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs'); [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:12-13]
+> const bridgePath = resolve(repoRoot, '.opencode/plugin-helpers/spec-kit-skill-advisor-bridge.mjs'); [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts:12-13]
 
 ### Negative Knowledge
 

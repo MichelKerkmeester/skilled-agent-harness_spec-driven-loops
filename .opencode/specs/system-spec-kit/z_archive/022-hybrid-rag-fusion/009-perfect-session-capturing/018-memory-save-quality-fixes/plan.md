@@ -48,16 +48,16 @@ This phase treated the remaining save-quality defects as a focused root-cause re
 
 | File | Fixes | Why It Changed |
 |------|-------|----------------|
-| `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts` | 1 | Separate decision title, rationale, and chosen output |
-| `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` | 2 | Recover completion detection from observation-based Next Steps |
-| `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` | 3 | Replace broad blocker keywords with structural patterns |
-| `.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts` | 4 | Stop generic pattern filler and substring inflation |
-| `.opencode/skill/system-spec-kit/shared/trigger-extractor.ts` | 5 | Improve trigger quality filtering and preserve technical short words |
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | 6 | Parse more separator variants in `filesModified` |
-| `.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts` | 7 | Reduce over-merging and keep more useful file nodes |
-| `.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts` | 8 | Synthesize richer conversations from structured JSON |
-| `.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts` | 5 | Align the golden expectation with intentional new behavior |
-| `.opencode/skill/system-spec-kit/shared/dist/trigger-extractor.js` | 5 | Keep the shipped dist artifact in sync with source |
+| `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts` | 1 | Separate decision title, rationale, and chosen output |
+| `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` | 2 | Recover completion detection from observation-based Next Steps |
+| `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` | 3 | Replace broad blocker keywords with structural patterns |
+| `.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts` | 4 | Stop generic pattern filler and substring inflation |
+| `.opencode/skills/system-spec-kit/shared/trigger-extractor.ts` | 5 | Improve trigger quality filtering and preserve technical short words |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | 6 | Parse more separator variants in `filesModified` |
+| `.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts` | 7 | Reduce over-merging and keep more useful file nodes |
+| `.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts` | 8 | Synthesize richer conversations from structured JSON |
+| `.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts` | 5 | Align the golden expectation with intentional new behavior |
+| `.opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js` | 5 | Keep the shipped dist artifact in sync with source |
 <!-- /ANCHOR:summary -->
 
 ---

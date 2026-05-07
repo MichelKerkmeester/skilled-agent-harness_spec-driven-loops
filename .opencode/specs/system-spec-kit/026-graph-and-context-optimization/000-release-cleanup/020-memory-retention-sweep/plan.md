@@ -51,7 +51,7 @@ Implement one retention sweep core used by both manual MCP invocation and the sc
 
 - [x] Packet folder identified. [EVIDENCE: user requested `020-memory-retention-sweep`]
 - [x] Source research identified. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:149-161`]
-- [x] Deletion path identified. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:575-623`]
+- [x] Deletion path identified. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:575-623`]
 
 ### Definition of Done
 

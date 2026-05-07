@@ -182,8 +182,8 @@ Update copy command examples and cross-references.
 ### Agent 3.3: spec_kit_complete_*.yaml
 
 **Files**:
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` (~15 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` (~13 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` (~15 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` (~13 refs)
 
 **Total**: ~28 references
 
@@ -192,34 +192,34 @@ Pattern: `.opencode/skills/workflows-spec-kit/templates/` → `.opencode/skills/
 ### Agent 3.4: spec_kit_plan_*.yaml
 
 **Files**:
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` (~12 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` (~12 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` (~12 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` (~12 refs)
 
 **Total**: ~24 references
 
 ### Agent 3.5: spec_kit_research_*.yaml
 
 **Files**:
-- `.opencode/command/spec_kit/assets/spec_kit_research_auto.yaml` (~10 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_research_confirm.yaml` (~10 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_research_auto.yaml` (~10 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_research_confirm.yaml` (~10 refs)
 
 **Total**: ~20 references
 
 ### Agent 3.6: spec_kit_implement_*.yaml + resume_*.yaml
 
 **Files**:
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` (~5 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml` (~5 refs)
-- `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` (~1 ref)
-- `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` (~1 ref)
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` (~5 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` (~5 refs)
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` (~1 ref)
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` (~1 ref)
 
 **Total**: ~12 references
 
 ### Agent 3.7: create_*.yaml + Install Guide
 
 **Files**:
-- `.opencode/command/create/assets/create_skill.yaml` (2 refs)
-- `.opencode/command/create/assets/create_folder_readme.yaml` (1 ref)
+- `.opencode/commands/create/assets/create_skill.yaml` (2 refs)
+- `.opencode/commands/create/assets/create_folder_readme.yaml` (1 ref)
 - `z_install_guides/PLUGIN - Opencode Skills.md` (1 ref)
 
 **Total**: ~4 references
@@ -253,7 +253,7 @@ Pattern: `.opencode/skills/workflows-spec-kit/templates/` → `.opencode/skills/
 |-------|-------|---------|
 | 4.1 | .opencode/skills/ | `grep -r "workflows-spec-kit" .opencode/skills/` |
 | 4.2 | AGENTS files | `grep -r "workflows-spec-kit" AGENTS*.md` |
-| 4.3 | Command YAMLs | `grep -r "workflows-spec-kit" .opencode/command/` |
+| 4.3 | Command YAMLs | `grep -r "workflows-spec-kit" .opencode/commands/` |
 | 4.4 | Install guides | `grep -r "workflows-spec-kit" z_install_guides/` |
 | 4.5 | Root config | `grep -r "workflows-spec-kit" *.json` |
 

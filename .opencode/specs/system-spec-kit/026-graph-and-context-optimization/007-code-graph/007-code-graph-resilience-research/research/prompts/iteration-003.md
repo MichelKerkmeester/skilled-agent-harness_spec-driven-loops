@@ -7,7 +7,7 @@ You are running iteration 3 of 7 in a deep-research loop on code-graph resilienc
 
 ## Required reads
 1. Strategy + iterations 1 and 2 outputs
-2. Code-graph DB schema location and on-disk path (likely `.opencode/skill/system-spec-kit/mcp_server/data/...sqlite` or similar — locate via grep)
+2. Code-graph DB schema location and on-disk path (likely `.opencode/skills/system-spec-kit/mcp_server/data/...sqlite` or similar — locate via grep)
 3. `sqlite3` man pages / .recover documentation patterns
 4. Existing recovery hints in the mcp_server README or code-graph scan source
 

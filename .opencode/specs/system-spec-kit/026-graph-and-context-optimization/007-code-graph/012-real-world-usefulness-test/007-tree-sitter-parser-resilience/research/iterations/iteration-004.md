@@ -55,7 +55,7 @@ Specifically: indices [2-11] in cohort replay (the contiguous .ts block at the s
 
 ### F-4.6 [P2] Cohort ordering is approximate — `parse_diagnostics` lacks insert-order column
 
-The schema `(file_path PRIMARY KEY, error_message, error_count, last_seen_at)` has no `id` or `rowid`-equivalent that would preserve original-scan insertion order [SOURCE: `sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite ".schema parse_diagnostics"` shows only 4 columns plus `idx_parse_diagnostics_last_seen` index]. The replay used `ORDER BY last_seen_at, file_path` as the closest proxy. If the production scan order matters for B2 reproduction (cumulative-history hypothesis), this ordering may not match exactly. This is a **methodology caveat**, not a finding regression — but plan-input note: if the Phase 2 implementation wants reproducible B2 stress testing, the indexer should add an autoincrement insertion-order column to `parse_diagnostics`.
+The schema `(file_path PRIMARY KEY, error_message, error_count, last_seen_at)` has no `id` or `rowid`-equivalent that would preserve original-scan insertion order [SOURCE: `sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite ".schema parse_diagnostics"` shows only 4 columns plus `idx_parse_diagnostics_last_seen` index]. The replay used `ORDER BY last_seen_at, file_path` as the closest proxy. If the production scan order matters for B2 reproduction (cumulative-history hypothesis), this ordering may not match exactly. This is a **methodology caveat**, not a finding regression — but plan-input note: if the Phase 2 implementation wants reproducible B2 stress testing, the indexer should add an autoincrement insertion-order column to `parse_diagnostics`.
 
 ---
 
@@ -152,11 +152,11 @@ The schema `(file_path PRIMARY KEY, error_message, error_count, last_seen_at)` h
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/database/code-graph.sqlite` (`parse_diagnostics` table; cohort export)
-- `.opencode/skill/system-spec-kit/mcp_server/node_modules/web-tree-sitter/tree-sitter.js` (lines 1163-1180, 1180, 1429, 1894-1996 — proxy stub + reportUndefinedSymbols + dylink getter)
+- `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` (`parse_diagnostics` table; cohort export)
+- `.opencode/skills/system-spec-kit/mcp_server/node_modules/web-tree-sitter/tree-sitter.js` (lines 1163-1180, 1180, 1429, 1894-1996 — proxy stub + reportUndefinedSymbols + dylink getter)
 - `scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js` (lines 1506, 1927, 1944, 2268 — Language.load → loadWebAssemblyModule → getDylinkMetadata → failIf path)
-- `.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out/tree-sitter-{bash,javascript,python,typescript}.wasm` (dylink-string presence audit)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, 87, 99-106` (singleton + Language.load API shape used in production)
+- `.opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out/tree-sitter-{bash,javascript,python,typescript}.wasm` (dylink-string presence audit)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:42, 87, 99-106` (singleton + Language.load API shape used in production)
 - 10 OOB .ts files + 5 clean .ts samples (Hypothesis C surface scan)
 - `scratch/fixtures/iter-004-cohort-replay.mjs` (replay harness, this iteration)
 - `scratch/fixtures/iter-004-cohort-replay-output.txt` (replay output, 41 OK / 9 B1 / 0 B2)

@@ -24,13 +24,13 @@
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `.opencode/skill/system-spec-kit/scripts/rank-memories.js` | ~571 | Client-side folder scoring script for dashboard |
+| `.opencode/skills/system-spec-kit/scripts/rank-memories.js` | ~571 | Client-side folder scoring script for dashboard |
 
 ### Phase 2: Server-Side Ranking
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` | 375 | Server-side folder scoring library |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` | 375 | Server-side folder scoring library |
 
 ### Test Suite
 
@@ -47,14 +47,14 @@
 
 | File | Changes |
 |------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.js` | Added `folderScoring` import; enhanced `handle_memory_stats()` with new parameters |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Updated `memory_stats` tool schema (line 86) with new parameters |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.js` | Added `folderScoring` import; enhanced `handle_memory_stats()` with new parameters |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Updated `memory_stats` tool schema (line 86) with new parameters |
 
 ### Command Files
 
 | File | Changes |
 |------|---------|
-| `.opencode/command/memory/search.md` | Section 5 rewritten to use server-side scoring with fallback to client-side |
+| `.opencode/commands/memory/search.md` | Section 5 rewritten to use server-side scoring with fallback to client-side |
 
 ### Spec Folder Files
 
@@ -71,8 +71,8 @@
 ### New Files (Absolute Paths)
 
 ```
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/rank-memories.js
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/rank-memories.js
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test-results.md
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/implementation-summary.md
@@ -81,9 +81,9 @@
 ### Modified Files (Absolute Paths)
 
 ```
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.js
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.js
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/command/memory/search.md
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.js
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.js
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/commands/memory/search.md
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/spec.md
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/checklist.md
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/decision-record.md
@@ -114,8 +114,8 @@
 ### New Files
 
 ```
-.opencode/skill/system-spec-kit/scripts/rank-memories.js
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js
+.opencode/skills/system-spec-kit/scripts/rank-memories.js
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test-results.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/implementation-summary.md
@@ -124,9 +124,9 @@
 ### Modified Files
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.js
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
-.opencode/command/memory/search.md
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
+.opencode/commands/memory/search.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/spec.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/checklist.md
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/decision-record.md

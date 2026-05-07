@@ -23,7 +23,7 @@ The latest `hook-tests` evidence is not a normal-shell live verdict. All five li
 
 Route to remediation planning before release readiness. The P0 needs a packet that either wires the checked-in Copilot wrapper through the Spec Kit writer scripts or documents and tests a different live Copilot registration path that operators actually use.
 
-P1 work should update doc/runtime contract drift and capture a normal-shell `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` run. P2 work can be batched with doc polish.
+P1 work should update doc/runtime contract drift and capture a normal-shell `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` run. P2 work can be batched with doc polish.
 
 ## 3. Active Finding Registry
 
@@ -31,7 +31,7 @@ P1 work should update doc/runtime contract drift and capture a normal-shell `npm
 
 **Severity:** P0, silent feature gap.
 
-**Evidence:** The hook system reference says the current Copilot path runs Copilot-supported writer scripts and includes the checked-in `.github/hooks/superset-notify.json` wrapper where available `.opencode/skill/system-spec-kit/references/config/hook_system:37`. The checked-in wrapper routes `userPromptSubmitted` to `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh userPromptSubmitted` `.github/hooks/superset-notify.json:18`. That shell script drains stdin `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:8`, returns `{}` `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:27`, and only sends a Superset notification when Superset env vars exist `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:30`. It never calls `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`.
+**Evidence:** The hook system reference says the current Copilot path runs Copilot-supported writer scripts and includes the checked-in `.github/hooks/superset-notify.json` wrapper where available `.opencode/skills/system-spec-kit/references/config/hook_system:37`. The checked-in wrapper routes `userPromptSubmitted` to `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh userPromptSubmitted` `.github/hooks/superset-notify.json:18`. That shell script drains stdin `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:8`, returns `{}` `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:27`, and only sends a Superset notification when Superset env vars exist `/Users/michelkerkmeester/.superset/hooks/copilot-hook.sh:30`. It never calls `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js`.
 
 The passing Copilot direct smoke invoked the Spec Kit script directly and wrote an isolated managed instructions file, despite recording `.github/hooks/superset-notify.json` as config evidence `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/run-output/latest/copilot-user-prompt-submitted-next-prompt-direct-smoke.jsonl:1`. The actual live CLI cell was skipped because the run was sandboxed `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/run-output/latest/copilot-user-prompt-submitted-next-prompt-live-cli.jsonl:1`.
 
@@ -43,17 +43,17 @@ The passing Copilot direct smoke invoked the Spec Kit script directly and wrote 
 
 **Severity:** P1, release-readiness evidence gap.
 
-**Evidence:** The `hook-tests` script exists `.opencode/skill/system-spec-kit/mcp_server/package.json:27`, and 044 says the canonical live verdict requires a normal operator shell while sandbox mode is direct-smoke-only `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix/methodology-correction.md:35`. The latest live CLI outputs for Claude, Codex, Copilot, Gemini, and OpenCode all show `status:"SKIPPED_SANDBOX"` because `CODEX_SANDBOX` was present: Claude `.../claude-user-prompt-submit-live-cli.jsonl:1`, Codex `.../codex-user-prompt-submit-freshness-live-cli.jsonl:1`, Copilot `.../copilot-user-prompt-submitted-next-prompt-live-cli.jsonl:1`, Gemini `.../gemini-before-agent-additional-context-live-cli.jsonl:1`, OpenCode `.../opencode-plugin-system-transform-live-cli.jsonl:1`.
+**Evidence:** The `hook-tests` script exists `.opencode/skills/system-spec-kit/mcp_server/package.json:27`, and 044 says the canonical live verdict requires a normal operator shell while sandbox mode is direct-smoke-only `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix/methodology-correction.md:35`. The latest live CLI outputs for Claude, Codex, Copilot, Gemini, and OpenCode all show `status:"SKIPPED_SANDBOX"` because `CODEX_SANDBOX` was present: Claude `.../claude-user-prompt-submit-live-cli.jsonl:1`, Codex `.../codex-user-prompt-submit-freshness-live-cli.jsonl:1`, Copilot `.../copilot-user-prompt-submitted-next-prompt-live-cli.jsonl:1`, Gemini `.../gemini-before-agent-additional-context-live-cli.jsonl:1`, OpenCode `.../opencode-plugin-system-transform-live-cli.jsonl:1`.
 
 **Impact:** The audit can answer hook-code direct smoke parity, but it cannot honestly answer the user question "actual live verdict per runtime when run from a normal shell." Current live verdict is UNKNOWN for all five runtimes.
 
-**Concrete fix:** Run `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` from a normal shell, preserve `run-output/latest`, and update 043/045 evidence with the five live CLI statuses.
+**Concrete fix:** Run `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` from a normal shell, preserve `run-output/latest`, and update 043/045 evidence with the five live CLI statuses.
 
 ### P1-002: OpenCode output shape is documented as `additionalContext`, but the plugin actually mutates the system transform
 
 **Severity:** P1, contract drift.
 
-**Evidence:** The skill advisor hook reference lists OpenCode output shape as "plugin `additionalContext`" `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook:66`. The actual plugin implements `experimental.chat.system.transform` `.opencode/plugins/spec-kit-skill-advisor.js:663` and appends the advisor brief into `output.system` `.opencode/plugins/spec-kit-skill-advisor.js:627`. The hook system reference uses the correct transform vocabulary `.opencode/skill/system-spec-kit/references/config/hook_system:111`.
+**Evidence:** The skill advisor hook reference lists OpenCode output shape as "plugin `additionalContext`" `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook:66`. The actual plugin implements `experimental.chat.system.transform` `.opencode/plugins/spec-kit-skill-advisor.js:663` and appends the advisor brief into `output.system` `.opencode/plugins/spec-kit-skill-advisor.js:627`. The hook system reference uses the correct transform vocabulary `.opencode/skills/system-spec-kit/references/config/hook_system:111`.
 
 **Impact:** Operators and tests can look for the wrong OpenCode transport shape. That is not a runtime failure, but it is contract drift in the operator-facing hook reference.
 
@@ -63,7 +63,7 @@ The passing Copilot direct smoke invoked the Spec Kit script directly and wrote 
 
 **Severity:** P1, contract drift.
 
-**Evidence:** The Codex README labels a "Checked-in `.codex/settings.json` shape" and shows event entries with direct `type`, `command`, and `timeout` fields `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README:63`. The checked-in `.codex/settings.json` uses nested `hooks` arrays for `SessionStart`, `UserPromptSubmit`, and `PreToolUse` `.codex/settings.json:3`. The authoritative contract says `.codex/settings.json` is template-only and live native readiness requires `[features].codex_hooks = true` plus user/workspace `hooks.json` `.opencode/skill/system-spec-kit/references/config/hook_system:39`.
+**Evidence:** The Codex README labels a "Checked-in `.codex/settings.json` shape" and shows event entries with direct `type`, `command`, and `timeout` fields `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README:63`. The checked-in `.codex/settings.json` uses nested `hooks` arrays for `SessionStart`, `UserPromptSubmit`, and `PreToolUse` `.codex/settings.json:3`. The authoritative contract says `.codex/settings.json` is template-only and live native readiness requires `[features].codex_hooks = true` plus user/workspace `hooks.json` `.opencode/skills/system-spec-kit/references/config/hook_system:39`.
 
 **Impact:** A maintainer copying the Codex README snippet can create a config shape that differs from the repo template and may not reflect native Codex hook registration. This is not the same as a current live failure, because the real user-level hooks are wired in `~/.codex/hooks.json`, but the per-runtime README is stale.
 
@@ -73,7 +73,7 @@ The passing Copilot direct smoke invoked the Spec Kit script directly and wrote 
 
 **Severity:** P2, parity polish.
 
-**Evidence:** Gemini docs correctly say the advisor registers under `BeforeAgent` `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md:26`, but `GeminiHookSpecificOutput` hardcodes `hookEventName: 'UserPromptSubmit'` `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:46` and returns that value in the runtime output `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`.
+**Evidence:** Gemini docs correctly say the advisor registers under `BeforeAgent` `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md:26`, but `GeminiHookSpecificOutput` hardcodes `hookEventName: 'UserPromptSubmit'` `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:46` and returns that value in the runtime output `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`.
 
 **Impact:** Direct smoke still passes because the runtime-visible `additionalContext` exists. The mismatch makes observability and test naming less clean.
 
@@ -114,7 +114,7 @@ Requirements:
 
 1. Add or replace a Copilot hook wrapper that runs `dist/hooks/copilot/session-prime.js` for `sessionStart` and pipes prompt JSON into `dist/hooks/copilot/user-prompt-submit.js` for `userPromptSubmitted`, then calls Superset notification as a secondary side effect.
 2. Update 043 runners so Copilot live validation asserts the checked-in wrapper produces or refreshes the managed Spec Kit block.
-3. Run `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` from a normal shell and preserve results.
+3. Run `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` from a normal shell and preserve results.
 4. Patch the skill advisor hook reference OpenCode output shape and the Codex hooks README registration snippet.
 5. Add OpenCode no-prompt diagnostic coverage if time allows.
 
@@ -134,7 +134,7 @@ Answer: UNKNOWN. The latest live CLI cells are all `SKIPPED_SANDBOX`, so they ar
 
 Question: Is fallback documented and does actual fallback match?
 
-Answer: Claude, Gemini, and Codex fallback docs are broadly aligned. Codex timeout fallback is explicitly marked stale with `{"stale":true,"reason":"timeout-fallback"}` in source `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`. Copilot fallback documentation does not match the checked-in wrapper because the wrapper does not execute the managed-instructions writer. OpenCode fallback is documented, but missing-prompt skips should become observable.
+Answer: Claude, Gemini, and Codex fallback docs are broadly aligned. Codex timeout fallback is explicitly marked stale with `{"stale":true,"reason":"timeout-fallback"}` in source `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`. Copilot fallback documentation does not match the checked-in wrapper because the wrapper does not execute the managed-instructions writer. OpenCode fallback is documented, but missing-prompt skips should become observable.
 
 Question: Are there silent bypass paths?
 
@@ -142,7 +142,7 @@ Answer: Yes. Copilot's checked-in wrapper silently bypasses Spec Kit context, an
 
 Question: Is the 5-runtime feature parity table in AGENTS / SKILL accurate?
 
-Answer: It is accurate at the intended contract level: AGENTS says Copilot is next-prompt freshness and Codex requires `codex_hooks` plus hooks.json `AGENTS:96`, and the system-spec-kit skill says the same `.opencode/skill/system-spec-kit/SKILL:741`. It is not sufficient as release evidence because it does not expose the checked-in Copilot wrapper gap or the missing normal-shell live verdict.
+Answer: It is accurate at the intended contract level: AGENTS says Copilot is next-prompt freshness and Codex requires `codex_hooks` plus hooks.json `AGENTS:96`, and the system-spec-kit skill says the same `.opencode/skills/system-spec-kit/SKILL:741`. It is not sufficient as release evidence because it does not expose the checked-in Copilot wrapper gap or the missing normal-shell live verdict.
 
 ## 8. Deferred Items
 
@@ -156,10 +156,10 @@ Answer: It is accurate at the intended contract level: AGENTS says Copilot is ne
 ### Coverage
 
 Reviewed surfaces:
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,codex,copilot,gemini}/`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
-- `.opencode/skill/system-spec-kit/references/config/hook_system`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/references/config/hook_system`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 - `.claude/settings.local.json`, `.codex/settings.json`, `.gemini/settings.json`
 - 035 findings, 043 findings/run-output, and 044 methodology correction
 - AGENTS and `system-spec-kit/SKILL` parity tables

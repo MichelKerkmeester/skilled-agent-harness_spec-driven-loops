@@ -8,7 +8,7 @@ SessionId: 2026-05-02T21:41:11Z
 Iter 3 — traceability: did the claimed fixes actually land where claimed? Cross-check by file:line against the cycle-3 codex summary.
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 Apply protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

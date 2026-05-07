@@ -156,7 +156,7 @@ function expect(actual) {
 // 2. LOAD MODULES UNDER TEST
 // ─────────────────────────────────────────────────────────────────
 
-const BASE_PATH = path.resolve(__dirname, '../../../../.opencode/skill/system-spec-kit/mcp_server/lib');
+const BASE_PATH = path.resolve(__dirname, '../../../../.opencode/skills/system-spec-kit/mcp_server/lib');
 
 let compositeScoring, rrfFusion, hybridSearch, folderScoring, importanceTiers, accessTracker;
 

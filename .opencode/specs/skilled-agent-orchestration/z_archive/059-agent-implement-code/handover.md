@@ -11,8 +11,8 @@ _memory:
     next_safe_action: "User runs commit-on-main + (optional) live smoke tests"
     blockers: []
     key_files:
-      - .opencode/agent/code.md
-      - .opencode/agent/orchestrate.md
+      - .opencode/agents/code.md
+      - .opencode/agents/orchestrate.md
       - AGENTS.md
       - AGENTS_Barter.md
     session_dedup:
@@ -38,16 +38,16 @@ _memory:
 - Three parallel deep-research streams executed via cli-codex (gpt-5.5, reasoning=high, service_tier=fast):
   - **Stream-01** `oh-my-opencode-slim` — 4 iters, all_questions_answered, ~30 cited findings
   - **Stream-02** `opencode-swarm-main` — 5 iters, all_questions_resolved, ~44 cited findings (P0/P1/P2)
-  - **Stream-03** internal `.opencode/agent/` + AGENTS.md + sk-code — 5 iters, zero-remaining-questions, 56 cited findings
+  - **Stream-03** internal `.opencode/agents/` + AGENTS.md + sk-code — 5 iters, zero-remaining-questions, 56 cited findings
 - Per-stream `research.md` written under `research/stream-{NN}-…/`. Stream-03's nested `research/research.md` is intentional (reducer required `specFolder` match).
 - Cross-stream synthesis written: `research/synthesis.md` — reconciles findings, finalizes ADR-3 (D3), contains the canonical `code.md` skeleton and Phase 3 task order.
 - Earlier cli-copilot stream-01 init removed (per memory deletion rule, not archived).
 
 ### Phase 3 — Implementation (complete, 2026-05-01)
-- **T027** — `.opencode/agent/code.md` authored from synthesis §4 skeleton, then expanded post-stream-04 to ~522 lines mirroring `@review.md` §0-§13 depth from a coder perspective (rubric, modes, checklists, output verification with Builder/Critic/Verifier, anti-patterns, summary box).
+- **T027** — `.opencode/agents/code.md` authored from synthesis §4 skeleton, then expanded post-stream-04 to ~522 lines mirroring `@review.md` §0-§13 depth from a coder perspective (rubric, modes, checklists, output verification with Builder/Critic/Verifier, anti-patterns, summary box).
 - **Stream-04 follow-on research** — 8 iterations (cli-codex gpt-5.5 high fast), all 10 questions resolved, ~440-line drop-in body proposal authored at `research/stream-04-code-agent-depth/research.md`. Applied in full.
 - **T028** — Strict validate run; surfaced pre-existing template-header drift in tasks.md / checklist.md / implementation-summary.md / decision-record.md from Phase 1. Restructure executed (canonical Setup/Implementation/Verification phase headers, canonical 8-section checklist, canonical 6-section implementation-summary, `ADR-D#` → `ADR-#: D# —` rename for canonical regex match). Remaining strict-validate findings are pre-existing template-conformance gaps (TEMPLATE_SOURCE comment-position quirk; plan.md missing 7 canonical sections; ANCHOR tags missing in 4 spec docs; FRONTMATTER_MEMORY_BLOCK issues) that are NOT introduced by Phase 3 work and are documented as known limitations in `implementation-summary.md` §Known Limitations + this handover §Known Limitations.
-- **T029** — `.opencode/agent/orchestrate.md` updated: §2 routing-table row 6 replaced `@general` with `@code` (stack-agnostic phrasing — sk-code performs detection at dispatch time); LEAF Enforcement table updated; Agent Files table extended with `@code` row.
+- **T029** — `.opencode/agents/orchestrate.md` updated: §2 routing-table row 6 replaced `@general` with `@code` (stack-agnostic phrasing — sk-code performs detection at dispatch time); LEAF Enforcement table updated; Agent Files table extended with `@code` row.
 - **T030** — AGENTS.md siblings synced: canonical `AGENTS.md` and `AGENTS_Barter.md` (symlink to separate Barter repo) both list `@code` in §5 Agent Definitions with the same description (stack-aware via sk-code; orchestrator-only convention; `Depth: 1` marker required). T031 (the original third-sibling target) retired — that file was deleted from the repo.
 - **T031** — `decision-record.md` ADR-3 (D3) finalized: status `Accepted (post-research)`; full convention-floor decision text + reinforcing harness mechanism + anti-patterns + alternatives + consequences + validation + cross-stream citations.
 - **T032/T033** — Smoke-test prompts documented in `implementation-summary.md` §Verification (live behavioral execution requires post-merge orchestrator dispatch from a fresh session; not executable from this conversation's harness).
@@ -84,32 +84,32 @@ _memory:
 - Implementation Summary: `implementation-summary.md` (canonical 6-section structure)
 - **Research synthesis:** `research/synthesis.md` (Phase 2 canonical output)
 - Per-stream evidence: `research/stream-{01,02,03}-…/research.md`
-- **Authored agent:** `.opencode/agent/code.md`
-- **Routing entries:** `.opencode/agent/orchestrate.md` (§2 routing table + LEAF list + Agent Files)
+- **Authored agent:** `.opencode/agents/code.md`
+- **Routing entries:** `.opencode/agents/orchestrate.md` (§2 routing table + LEAF list + Agent Files)
 - **AGENTS triad:** `AGENTS.md` (canonical), `AGENTS_Barter.md` (symlink to Barter repo) — both updated.
 
 ## Phase 3 final-pass commands (user runs these)
 
 ```bash
 # 1. (Optional) Final strict validate — known to fail on pre-existing template drift; see Known Limitations §1
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/skilled-agent-orchestration/059-agent-implement-code --strict
 
 # 2. (Optional) Memory canonical save
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/save-context-data-059.json \
   specs/skilled-agent-orchestration/059-agent-implement-code
 
 # 3. Stage + commit on main (stay on main per memory rule)
 git status
-git add .opencode/agent/code.md \
-        .opencode/agent/orchestrate.md \
+git add .opencode/agents/code.md \
+        .opencode/agents/orchestrate.md \
         AGENTS.md \
         /Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/AGENTS.md \
         specs/skilled-agent-orchestration/059-agent-implement-code/
 git commit -m "feat(059): add @code agent with sk-code delegation and convention-floor caller restriction
 
-- New .opencode/agent/code.md (LEAF, write-capable, mode: subagent, task: deny)
+- New .opencode/agents/code.md (LEAF, write-capable, mode: subagent, task: deny)
 - Updated orchestrate.md routing (replaced @general row 6 with @code)
 - Synced AGENTS.md + AGENTS_Barter.md with @code agent description
 - Finalized ADR-3 caller-restriction as convention-floor with three layers

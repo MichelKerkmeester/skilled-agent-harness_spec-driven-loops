@@ -112,7 +112,7 @@ Our convergence.md already has GRACEFUL DEGRADATION (fewer signals active with f
 - https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mlp_training_curves.html -- scikit-learn MLPClassifier early stopping
 - https://optuna.readthedocs.io/en/stable/reference/pruners.html -- Optuna pruners module
 - https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc323.htm -- NIST CUSUM handbook
-- Local: .opencode/skill/sk-deep-research/references/convergence.md -- Our convergence algorithm (full)
+- Local: .opencode/skills/sk-deep-research/references/convergence.md -- Our convergence algorithm (full)
 - Wikipedia Early Stopping and Bayesian Optimization -- both returned 403, used first-principles reasoning from known ML literature
 
 ## Assessment

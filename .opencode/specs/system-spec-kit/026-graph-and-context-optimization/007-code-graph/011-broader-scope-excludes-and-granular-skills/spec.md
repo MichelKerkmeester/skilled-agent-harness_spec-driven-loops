@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Ready for final handoff"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
     session_dedup:
       fingerprint: "sha256:1111111111111111111111111111111111111111111111111111111111111111"
       session_id: "026-007-011"
@@ -56,7 +56,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 009 excluded `.opencode/skill/**` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.
+Packet 009 excluded `.opencode/skills/**` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.
 
 ### Purpose
 Default scans should stay end-user focused while maintainers can opt in agents, commands, specs, plugins, all skills, or a selected list of `sk-*` skill folders.
@@ -68,7 +68,7 @@ Default scans should stay end-user focused while maintainers can opt in agents, 
 ## 3. SCOPE
 
 ### In Scope
-- Add default excludes for `.opencode/agent/**`, `.opencode/command/**`, `.opencode/specs/**`, and `.opencode/plugins/**` while preserving `.opencode/skill/**`.
+- Add default excludes for `.opencode/agents/**`, `.opencode/commands/**`, `.opencode/specs/**`, and `.opencode/plugins/**` while preserving `.opencode/skills/**`.
 - Extend `includeSkills` to `boolean | string[]` and support csv skill lists in `SPECKIT_CODE_GRAPH_INDEX_SKILLS`.
 - Add per-folder env vars and scan args: agents, commands, specs, plugins.
 - Move the scope fingerprint to v2 and make v1 fingerprints return `null` so read paths require a full scan.

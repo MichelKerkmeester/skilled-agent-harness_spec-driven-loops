@@ -6,17 +6,17 @@ You are cli-codex (gpt-5.5 high fast) implementing remediation packet **018-doc-
 
 Closes the highest-leverage P1 findings from 013's automation reality research via doc-only fixes (no code changes). Specifically:
 
-1. **F5.CopilotDocs** — `.opencode/skill/system-spec-kit/references/config/hook_system.md:22` describes a stale `.claude/settings.local.json` wrapper for Copilot; conflicts with the authoritative `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`. Make the Copilot-local README authoritative; rewrite the hook_system.md Copilot section to defer to it.
-2. **F5.CodexConfig** — `.opencode/skill/system-spec-kit/references/config/hook_system.md:44` requires `[features].codex_hooks=true` + `hooks.json`; repo's `.codex/settings.json` uses settings.json shape without the flag. The user's actual runtime (`~/.codex/config.toml:42`) DOES have hooks.json + codex_hooks=true. Align the in-repo docs to:
+1. **F5.CopilotDocs** — `.opencode/skills/system-spec-kit/references/config/hook_system.md:22` describes a stale `.claude/settings.local.json` wrapper for Copilot; conflicts with the authoritative `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md:27-34`. Make the Copilot-local README authoritative; rewrite the hook_system.md Copilot section to defer to it.
+2. **F5.CodexConfig** — `.opencode/skills/system-spec-kit/references/config/hook_system.md:44` requires `[features].codex_hooks=true` + `hooks.json`; repo's `.codex/settings.json` uses settings.json shape without the flag. The user's actual runtime (`~/.codex/config.toml:42`) DOES have hooks.json + codex_hooks=true. Align the in-repo docs to:
    - State that `.codex/settings.json` is an example template, not the live registration point.
    - Document the user-level `~/.codex/config.toml` + `~/.codex/hooks.json` as authoritative.
    - List both legacy and current Codex hook contracts with dates / version notes.
-3. **F-013-011** — `.opencode/command/memory/README.txt:271-273` maps CCC tools to `/memory:manage`, but `.opencode/command/memory/manage.md:1-4` doesn't invoke them. Either:
+3. **F-013-011** — `.opencode/commands/memory/README.txt:271-273` maps CCC tools to `/memory:manage`, but `.opencode/commands/memory/manage.md:1-4` doesn't invoke them. Either:
    - Add CCC tool routing to `manage.md` (preferred if scope-light), OR
    - Update `README.txt` to say "CCC tools are MCP-only; use `mcp__spec_kit_memory__ccc_*` directly".
-4. **F-013-012** — `.opencode/skill/system-spec-kit/ARCHITECTURE.md:306-308` lists stale `handlers/ccc-*` paths; actual exports are at `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts:9-11`. Update ARCHITECTURE.md to point to the real paths.
-5. **F-013-018** — `AGENTS.md:334` and `.opencode/skill/system-spec-kit/SKILL.md:63` say post-write validation is required; no runtime hook fires it. Adjust wording from "auto-runs" to "workflow-required gate" with explicit `bash validate.sh --strict <packet>` invocation example.
-6. **F-013-019** — `AGENTS.md:146` says completion validation runs automatically; concrete surface is `.opencode/skill/system-spec-kit/scripts/spec/validate.sh:87`. Reword to "completion claim triggers validation requirement; operator must run validate.sh".
+4. **F-013-012** — `.opencode/skills/system-spec-kit/ARCHITECTURE.md:306-308` lists stale `handlers/ccc-*` paths; actual exports are at `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:9-11`. Update ARCHITECTURE.md to point to the real paths.
+5. **F-013-018** — `AGENTS.md:334` and `.opencode/skills/system-spec-kit/SKILL.md:63` say post-write validation is required; no runtime hook fires it. Adjust wording from "auto-runs" to "workflow-required gate" with explicit `bash validate.sh --strict <packet>` invocation example.
+6. **F-013-019** — `AGENTS.md:146` says completion validation runs automatically; concrete surface is `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:87`. Reword to "completion claim triggers validation requirement; operator must run validate.sh".
 7. **Add a "Trigger" column** to the broad automation claims in CLAUDE.md, SKILL.md, mcp_server/README.md, and references/config/hook_system.md. Use the 80-row reality map from `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research/research/research-report.md` (sections 2 & 5) as source-of-truth for which trigger to cite per claim.
 
 ### Read these first
@@ -48,7 +48,7 @@ You MUST create ALL of these files under `specs/system-spec-kit/026-graph-and-co
 
 1. **Phase 1: Setup** — Create all 7 packet files using template_source markers above. Initial completion_pct=5.
 2. **Phase 2: Implementation** — Apply the 7 doc fixes above. Use Edit/MultiEdit to be surgical. Each finding maps to specific file:line refs above.
-3. **Phase 3: Validation** — Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` and verify it exits 0. Update implementation-summary.md to "complete" state (completion_pct=100; recent_action="Doc truth pass complete"; next_safe_action="Plan packet 032 next").
+3. **Phase 3: Validation** — Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass --strict` and verify it exits 0. Update implementation-summary.md to "complete" state (completion_pct=100; recent_action="Doc truth pass complete"; next_safe_action="Plan packet 032 next").
 
 ### Constraints
 

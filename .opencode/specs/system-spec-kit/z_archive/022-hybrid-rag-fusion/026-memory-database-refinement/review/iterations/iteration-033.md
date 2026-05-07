@@ -278,7 +278,7 @@ This means children on the safe-swap path are inserted with NULL `parent_id`, ma
 ### P1-033-A — Embedding cache PRIMARY KEY excludes dimensions, enabling silent cross-dimension corruption
 
 **Severity: P1**
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:38-48`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:38-48`
 
 The `embedding_cache` table defines `PRIMARY KEY (content_hash, model_id)`. The `storeEmbedding()` function uses `INSERT OR REPLACE` (line 128), which replaces an existing `(content_hash, model_id)` entry regardless of the `dimensions` value. If a model ID is reused with a different dimension count (e.g., A/B model testing, silent provider config change), a store call with the new dimension will silently overwrite the correctly-dimensioned cached embedding. The `lookupEmbedding()` dimension filter protects reads, but the corrupt entry remains in the cache and blocks future correct-dimension lookups until eviction.
 
@@ -287,7 +287,7 @@ The `embedding_cache` table defines `PRIMARY KEY (content_hash, model_id)`. The 
 ### P1-033-B — Content-hash dedup check runs outside the write transaction (TOCTOU window)
 
 **Severity: P1**
-**File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:671-681`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:671-681`
 
 The comment at line 671 acknowledges that `checkContentHashDedup` runs outside the `writeTransaction` for performance reasons ("reads are safe outside the transaction"). However, without a unique index on `content_hash` in `memory_index`, two concurrent saves of identical content can both pass the dedup check before either acquires the write lock. The `writeTransaction.immediate()` at line 737 serializes DB writes across processes via SQLite's write-ahead-lock, but the dedup read is not covered. If `memory_index` has a unique constraint on `content_hash`, the second writer gets an SQLite constraint error inside the transaction, which is caught and handled. If not, a duplicate row is silently inserted.
 
@@ -296,7 +296,7 @@ The comment at line 671 acknowledges that `checkContentHashDedup` runs outside t
 ### P2-033-C — `forceAllChannels` in hybridSearchEnhanced populates full channel set before mask is applied
 
 **Severity: P2**
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:849-857`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:849-857`
 
 ```ts
 const activeChannels = options.forceAllChannels
@@ -316,7 +316,7 @@ The `forceAllChannels` branch fills `activeChannels` with all 5 channels, then t
 ### P2-033-D — Safe-swap orphan chunks lack recovery mechanism
 
 **Severity: P2**
-**File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:329-342`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:329-342`
 
 When `useSafeSwap` is true during re-chunking, child records are inserted with `parent_id = NULL`. If the process crashes before the parent-swap finalization step, these NULL-parent children become permanent orphans in `memory_index`. They consume storage, are included in BM25 index results (since BM25 rebuild reads all non-archived rows without filtering by `parent_id IS NOT NULL`), and cannot be garbage-collected by parent-cascade DELETE.
 
@@ -325,7 +325,7 @@ When `useSafeSwap` is true during re-chunking, child records are inserted with `
 ### P2-033-E — BM25 in-memory index can contain archived documents between restarts
 
 **Severity: P2**
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:354-383`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:354-383`
 
 `rebuildFromDatabase()` correctly filters `WHERE COALESCE(is_archived, 0) = 0`. However, `addDocument()` has no archive check. When `memory-save.ts` or the ingest path calls `bm25.addDocument()` for a record that is simultaneously being archived, the in-memory index is updated with the archived content and will continue returning it until the next server restart (which triggers a fresh rebuild). Queries against the BM25 index can therefore surface archived content within the same server session.
 

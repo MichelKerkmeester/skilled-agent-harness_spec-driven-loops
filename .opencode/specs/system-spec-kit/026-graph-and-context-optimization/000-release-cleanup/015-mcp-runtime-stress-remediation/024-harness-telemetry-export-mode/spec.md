@@ -83,8 +83,8 @@ Extend the harness so a runner can return optional telemetry fields, the result 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Edit | Extend types + add export-path option |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Create | New telemetry-mode test |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Edit | Extend types + add export-path option |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Create | New telemetry-mode test |
 <!-- /ANCHOR:scope -->
 
 ---

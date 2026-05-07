@@ -59,13 +59,13 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 - [x] Memory context saved via generate-context.js
 
 ### Implementation Phase 1: Foundation (100%)
-- [x] **Severity normalization**: P0-P3 → P0-P2 in `.opencode/skill/sk-code-review/references/quick_reference.md`
-- [x] **Canonical manifest**: Created `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml` (418 lines)
+- [x] **Severity normalization**: P0-P3 → P0-P2 in `.opencode/skills/sk-code-review/references/quick_reference.md`
+- [x] **Canonical manifest**: Created `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml` (418 lines)
   - 5 target types, 4 dimensions, 3 severities, 3 verdicts, 3 binary gates
   - 6 cross-reference protocols (2 core, 4 overlay)
   - Calibrated convergence with coverageAge gate
   - 9 render targets, 8 validation checks
-- [x] **sk-code-review split**: Created `.opencode/skill/sk-code-review/references/review_core.md` and `.opencode/skill/sk-code-review/references/review_ux_single_pass.md`, updated `.opencode/skill/sk-code-review/references/quick_reference.md` as the index, and updated `.opencode/skill/sk-code-review/SKILL.md`
+- [x] **sk-code-review split**: Created `.opencode/skills/sk-code-review/references/review_core.md` and `.opencode/skills/sk-code-review/references/review_ux_single_pass.md`, updated `.opencode/skills/sk-code-review/references/quick_reference.md` as the index, and updated `.opencode/skills/sk-code-review/SKILL.md`
 
 ### Implementation Phases 2-5: Dispatched via Codex
 - [x] Phase 4-5 agent completed (YAML workflows, agent definitions, command doc)
@@ -83,7 +83,7 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
    - Read output: temporary Phase 4-5 output artifact (not committed to the repo)
    - Verify edits in: review YAML workflows (auto + confirm), agent definitions (4 runtimes), command doc
 3. **Update deep_review_strategy.md template** — Still has 7 dimensions (D1-D7), needs update to 4
-   - File: `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`
+   - File: `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`
 4. **Run git diff** to review all changes holistically
 5. **Commit all changes** with appropriate message
 
@@ -127,29 +127,29 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 1. temporary Phase 2-3 output artifact (not committed to the repo) — Phase 2-3 codex output
 2. temporary Phase 4-5 output artifact (not committed to the repo) — Phase 4-5 codex output
 3. `git diff` — All uncommitted changes
-4. `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` — Needs 7→4 dimension update
+4. `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` — Needs 7→4 dimension update
 
 ### Context to Load
 - Research findings: `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/research.md`
-- Canonical manifest: `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml`
+- Canonical manifest: `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`
 - Memory: `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/memory/`
 
 ### Key Files Modified This Session
 | File | Change |
 |------|--------|
-| `.opencode/skill/sk-code-review/references/quick_reference.md` | P0-P3→P0-P2, converted to lightweight index |
-| `.opencode/skill/sk-code-review/references/review_core.md` | NEW — shared review doctrine |
-| `.opencode/skill/sk-code-review/references/review_ux_single_pass.md` | NEW — single-pass UX rules |
-| `.opencode/skill/sk-code-review/SKILL.md` | Updated references, default loads, resource map |
-| `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml` | NEW — canonical review-mode manifest |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Review convergence section (by Phase 2-3 agent) |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Review section updated (by Phase 2-3 agent) |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Review sections updated (by Phase 2-3 agent) |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Review JSONL schema updated (by Phase 2-3 agent) |
-| `.opencode/skill/sk-deep-research/README.md` | Review mode stats updated (by Phase 2-3 agent) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml` | Taxonomy migration (by Phase 4-5 agent) |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml` | Taxonomy migration (by Phase 4-5 agent) |
-| `.opencode/agent/deep-review.md` plus runtime variants | Taxonomy + integration (by Phase 4-5 agent) |
-| `.opencode/command/spec_kit/deep-research.md` | Updated review mode description (by Phase 4-5 agent) |
+| `.opencode/skills/sk-code-review/references/quick_reference.md` | P0-P3→P0-P2, converted to lightweight index |
+| `.opencode/skills/sk-code-review/references/review_core.md` | NEW — shared review doctrine |
+| `.opencode/skills/sk-code-review/references/review_ux_single_pass.md` | NEW — single-pass UX rules |
+| `.opencode/skills/sk-code-review/SKILL.md` | Updated references, default loads, resource map |
+| `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml` | NEW — canonical review-mode manifest |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Review convergence section (by Phase 2-3 agent) |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Review section updated (by Phase 2-3 agent) |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Review sections updated (by Phase 2-3 agent) |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Review JSONL schema updated (by Phase 2-3 agent) |
+| `.opencode/skills/sk-deep-research/README.md` | Review mode stats updated (by Phase 2-3 agent) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml` | Taxonomy migration (by Phase 4-5 agent) |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml` | Taxonomy migration (by Phase 4-5 agent) |
+| `.opencode/agents/deep-review.md` plus runtime variants | Taxonomy + integration (by Phase 4-5 agent) |
+| `.opencode/commands/spec_kit/deep-research.md` | Updated review mode description (by Phase 4-5 agent) |
 | `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/research.md` | Rewritten as v2 research |
 | `030-sk-deep-research-review-mode/scratch/*` | 8 new iteration files + archived v1 state |

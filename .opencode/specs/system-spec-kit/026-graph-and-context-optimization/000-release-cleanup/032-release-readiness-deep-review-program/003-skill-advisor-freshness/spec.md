@@ -76,7 +76,7 @@ Produce a severity-classified `review-report.md` for skill advisor freshness wit
 
 ### In Scope
 
-- Audit `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/` and the named status, rebuild, recommend, validate, daemon, scoring, feature catalog, and manual playbook surfaces.
+- Audit `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/` and the named status, rebuild, recommend, validate, daemon, scoring, feature catalog, and manual playbook surfaces.
 - Read packet history for 026/008, 034, and 045/005 where it affects advisor freshness and cross-runtime hook parity.
 - Answer the packet's six specific questions in the report.
 - Write packet-local docs and the final `review-report.md`.

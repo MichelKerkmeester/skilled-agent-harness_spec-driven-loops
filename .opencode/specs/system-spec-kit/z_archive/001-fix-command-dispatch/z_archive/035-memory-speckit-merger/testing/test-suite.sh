@@ -14,7 +14,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-SPEC_KIT_DIR=".opencode/skill/system-spec-kit"
+SPEC_KIT_DIR=".opencode/skills/system-spec-kit"
 MCP_SERVER="$SPEC_KIT_DIR/mcp_server/context-server.js"
 DATABASE="$SPEC_KIT_DIR/database/context-index.sqlite"
 CONSTITUTIONAL="$SPEC_KIT_DIR/constitutional"

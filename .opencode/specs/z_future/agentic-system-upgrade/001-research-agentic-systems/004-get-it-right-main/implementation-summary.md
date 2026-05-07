@@ -86,7 +86,7 @@ The phase was delivered by first re-reading the existing 20-iteration packet, th
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main --strict` | PASS |
 | `git diff --check -- .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main` | PASS |
 | `ls research/iterations/iteration-0{21,22,23,24,25,26,27,28,29,30}.md` | PASS |
 | `tail -n 10 research/deep-research-state.jsonl` | PASS, shows appended Phase 3 rows |

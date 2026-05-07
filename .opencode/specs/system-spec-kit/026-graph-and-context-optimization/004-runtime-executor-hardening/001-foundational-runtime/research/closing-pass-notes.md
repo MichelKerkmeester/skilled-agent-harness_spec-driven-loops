@@ -336,7 +336,7 @@ The pattern produces two points of potential collision:
 1. Two manuals registered with identical `name` — SDK rejects via `Manual '${...}' already registered` error at registration time (`@utcp/sdk/dist/index.js:1379`).
 2. Two manuals exposing same `{manual_name}_{tool_name}` signature — not observed in the current config, and the SDK namespaces each manual independently.
 
-The bridge layer at `.opencode/skill/mcp-code-mode/mcp_server/index.ts:127-156` delegates registration to `client.registerManual()` and returns the SDK's error/success envelope as JSON. If a user registers two manuals with identical `name`, they see a clear error — NOT silent overwrite.
+The bridge layer at `.opencode/skills/mcp-code-mode/mcp_server/index.ts:127-156` delegates registration to `client.registerManual()` and returns the SDK's error/success envelope as JSON. If a user registers two manuals with identical `name`, they see a clear error — NOT silent overwrite.
 
 **Verdict:** No new finding. §8.2 OQ is closed — collision handling is explicit (duplicate rejection at registration time). The stringly-typed pattern is documented in CLAUDE.md but not latent-silently-failing.
 

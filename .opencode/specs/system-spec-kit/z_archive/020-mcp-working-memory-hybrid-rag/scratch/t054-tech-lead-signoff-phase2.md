@@ -9,7 +9,7 @@ Blocking: T055 (Phase 2 dark launch)
 ## 1. Phase 2 Metrics Summary
 
 All metrics evaluated on 50-session deterministic test set
-(node .opencode/skill/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs).
+(node .opencode/skills/system-spec-kit/scripts/evals/run-phase2-closure-metrics.mjs).
 
 ### Extraction Quality
 

@@ -115,7 +115,7 @@ Root research and mapping artifacts define the target state first. The parent pa
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Packet validation | Root docs plus all six child phase folders | `./.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --recursive --strict` |
+| Packet validation | Root docs plus all six child phase folders | `./.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --recursive --strict` |
 | Gate verification | Schema, writer, reader, rollout, and archive-decision proofs | Child-phase tests, telemetry, SQL checks, and manual playbooks |
 | Cross-phase integrity | Sequencing, phase status, and packet closeout readiness | Parent packet review plus child checklist state |
 | Documentation truth | Root coordination docs stay aligned with live child folders | Diff review and packet-local validation sweeps |

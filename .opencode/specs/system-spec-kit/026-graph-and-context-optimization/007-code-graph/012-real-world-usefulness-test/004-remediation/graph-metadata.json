@@ -38,22 +38,22 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts"
     ],
     "entities": [
       {
         "name": "code_graph_scan",
         "kind": "tool",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts",
         "source": "manual"
       },
       {
         "name": "parse_diagnostics",
         "kind": "table",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
         "source": "manual"
       }
     ],

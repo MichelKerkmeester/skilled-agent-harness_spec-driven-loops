@@ -106,7 +106,7 @@
 **Evidence**: I1/cli-copilot took 576s, 2.1M tokens, edited an unrelated spec folder (`skilled-agent-orchestration/048-cli-testing-playbooks`), and returned a low-quality result. Copilot has spec_kit_memory MCP access AND `--allow-all-tools`, so when the prompt is "save the context" without scope, it picks an arbitrary recent packet and writes there.
 
 **Recommended fix**:
-- Document in `.opencode/skill/cli-copilot/SKILL.md` that copilot MUST receive a scoped spec-folder argument for save-style prompts (e.g., "save the context for spec-folder X"); never ambiguous "save the context."
+- Document in `.opencode/skills/cli-copilot/SKILL.md` that copilot MUST receive a scoped spec-folder argument for save-style prompts (e.g., "save the context for spec-folder X"); never ambiguous "save the context."
 - Consider `--effort medium` instead of `--effort high` for I-tier scenarios where tool autonomy compounds risk.
 - For test playbooks like this one, use `--no-allow-all-tools` (read-only) on prompts that aren't explicitly write-actions.
 

@@ -44,11 +44,11 @@ This iteration is orientation: subsequent iterations will walk specific slices o
    - `.../004-memory-save-rewrite/implementation-summary.md`
 
 2. Run `git log --oneline --name-only --since=2026-01-01 -- <packet-touched-path>` for the most-implicated module roots:
-   - `.opencode/skill/sk-deep-research/`
-   - `.opencode/skill/sk-deep-review/`
-   - `.opencode/skill/system-spec-kit/mcp_server/`
-   - `.opencode/skill/system-spec-kit/scripts/memory/`
-   - `.opencode/skill/system-spec-kit/scripts/hooks/` (or wherever cache-warning hook scripts live — grep for "cache-warning" or "cacheWarn")
+   - `.opencode/skills/sk-deep-research/`
+   - `.opencode/skills/sk-deep-review/`
+   - `.opencode/skills/system-spec-kit/mcp_server/`
+   - `.opencode/skills/system-spec-kit/scripts/memory/`
+   - `.opencode/skills/system-spec-kit/scripts/hooks/` (or wherever cache-warning hook scripts live — grep for "cache-warning" or "cacheWarn")
 
 3. Grep for the distinctive markers of the four child phases:
    - `rg -n "planner-first|SPECKIT_MEMORY_SAVE_EXECUTE" --type md --type ts --type js --type json` — 004 surface

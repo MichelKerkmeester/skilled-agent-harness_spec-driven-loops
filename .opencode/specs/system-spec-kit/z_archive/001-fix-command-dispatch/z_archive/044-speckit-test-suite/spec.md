@@ -70,7 +70,7 @@ Create a comprehensive test suite covering all components of the Spec Kit ecosys
 ## 2. Scope
 
 ### In Scope
-- Unit tests for all shell scripts in `.opencode/skill/system-spec-kit/scripts/`
+- Unit tests for all shell scripts in `.opencode/skills/system-spec-kit/scripts/`
 - Unit tests for skill_advisor.py
 - Unit tests for all MCP server modules in `mcp_server/lib/`
 - Integration tests for MCP tools
@@ -98,9 +98,9 @@ Create a comprehensive test suite covering all components of the Spec Kit ecosys
 
 | Component | Location | Test Framework |
 |-----------|----------|----------------|
-| Spec Kit Scripts | `.opencode/skill/system-spec-kit/scripts/` | Bash/BATS |
+| Spec Kit Scripts | `.opencode/skills/system-spec-kit/scripts/` | Bash/BATS |
 | Skill Advisor | `.opencode/scripts/skill_advisor.py` | pytest |
-| Memory MCP Server | `.opencode/skill/system-spec-kit/mcp_server/` | Jest |
+| Memory MCP Server | `.opencode/skills/system-spec-kit/mcp_server/` | Jest |
 | Integration | Cross-component | Shell + assertions |
 
 ## 5. Dependencies

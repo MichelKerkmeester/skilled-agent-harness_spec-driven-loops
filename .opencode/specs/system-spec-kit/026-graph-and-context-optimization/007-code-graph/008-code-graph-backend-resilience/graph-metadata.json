@@ -43,10 +43,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts",
       "handlers/index.ts",
       "mcp_server/code_graph/lib/code-graph-db.ts",
       "mcp_server/code_graph/lib/gold-query-verifier.ts",
@@ -68,25 +68,25 @@
       {
         "name": "code-graph-db.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts",
         "source": "derived"
       },
       {
         "name": "structural-indexer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts",
         "source": "derived"
       },
       {
         "name": "edge-drift.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts",
         "source": "derived"
       },
       {
         "name": "gold-query-verifier.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts",
         "source": "derived"
       },
       {

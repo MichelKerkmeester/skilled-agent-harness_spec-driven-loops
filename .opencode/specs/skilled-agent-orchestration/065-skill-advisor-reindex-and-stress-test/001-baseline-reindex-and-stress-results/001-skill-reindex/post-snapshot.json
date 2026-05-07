@@ -24,7 +24,7 @@
         "indexedEdges": 73,
         "rejectedEdges": 0,
         "warnings": [
-          "NON-SKILL-METADATA: skipped .opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
+          "NON-SKILL-METADATA: skipped .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
         ]
       }
     },

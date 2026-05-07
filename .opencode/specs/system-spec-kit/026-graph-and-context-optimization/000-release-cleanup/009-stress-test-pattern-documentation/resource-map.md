@@ -35,8 +35,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/README.md` | Created | OK | Section index for new sk-doc 14 entry |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` | Created | OK | Section index for new manual-playbook 14 entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README.md` | Created | OK | Section index for new sk-doc 14 entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` | Created | OK | Section index for new manual-playbook 14 entry |
 
 ---
 
@@ -44,11 +44,11 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md` | Created | OK | Feature catalog A — concept reference |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | Created | OK | Manual playbook B — operational guide |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | OK | C — JSON rubric template |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.schema.md` | Created | OK | C — field-by-field schema doc |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings.template.md` | Created | OK | C — narrative skeleton |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md` | Created | OK | Feature catalog A — concept reference |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | Created | OK | Manual playbook B — operational guide |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | OK | C — JSON rubric template |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md` | Created | OK | C — field-by-field schema doc |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings.template.md` | Created | OK | C — narrative skeleton |
 | `spec.md` | Updated | OK | Added See-Also link to 14--stress-testing |
 | `spec.md` | Updated | OK | Added See-Also link |
 | `spec.md` | Updated | OK | Added See-Also link |
@@ -73,5 +73,5 @@ _memory:
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../009/graph-metadata.json` | Created | OK | Graph rollout metadata |
-| `.opencode/skill/sk-doc/SKILL.md` | Analyzed | OK | Reference for DQI rules |
-| `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/` | Analyzed | OK | Pattern reference |
+| `.opencode/skills/sk-doc/SKILL.md` | Analyzed | OK | Reference for DQI rules |
+| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/` | Analyzed | OK | Pattern reference |

@@ -84,10 +84,10 @@ A comprehensive 10-agent research sweep across all 42 specs with code verificati
 ### In Scope
 | Component | Files |
 |-----------|-------|
-| MCP Server | `.opencode/skill/system-spec-kit/mcp-server/src/*` |
-| Scripts | `.opencode/skill/system-spec-kit/scripts/*` |
-| SKILL.md | `.opencode/skill/system-spec-kit/SKILL.md` |
-| Commands | `.opencode/command/spec_kit/*`, `.opencode/command/memory/*` |
+| MCP Server | `.opencode/skills/system-spec-kit/mcp-server/src/*` |
+| Scripts | `.opencode/skills/system-spec-kit/scripts/*` |
+| SKILL.md | `.opencode/skills/system-spec-kit/SKILL.md` |
+| Commands | `.opencode/commands/spec_kit/*`, `.opencode/commands/memory/*` |
 | AGENTS.md | `AGENTS.md` (Spec Kit sections only) |
 
 ### Out of Scope

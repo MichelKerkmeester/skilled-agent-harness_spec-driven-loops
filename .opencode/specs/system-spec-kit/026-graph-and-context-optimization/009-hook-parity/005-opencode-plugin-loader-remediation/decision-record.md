@@ -55,7 +55,7 @@ Treat `.opencode/plugins/` as a flat plugin-entrypoint directory. In OpenCode 1.
 | Opt-out: filename prefix          | No documented opt-out found | Official docs list plugin directories and npm config; no filename-prefix exclusion documented |
 | Opt-out: opencode.json `plugins.exclude` | No documented opt-out found | Official config docs expose `plugin` package list, not local-folder exclude rules |
 | Opt-out: manifest file            | No documented manifest opt-out for local plugin folders | Installed package type contract and official docs do not define a local manifest exclusion |
-| Recommended helper-module location | Any sibling folder outside `{plugin,plugins}/` is safe; use `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` locally | Flat glob evidence plus the packet's Outcome A target layout |
+| Recommended helper-module location | Any sibling folder outside `{plugin,plugins}/` is safe; use `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` locally | Flat glob evidence plus the packet's Outcome A target layout |
 <!-- /ANCHOR:adr-001-decision -->
 ### Methodology
 
@@ -92,7 +92,7 @@ Choose **Outcome A: move helpers out of `.opencode/plugins/`**, with one compati
 
 | # | Outcome                                                                                | Mechanism                                                                                                                | Feasibility (depends on ADR-001) | Eng. cost | Runtime cost | Coverage / Risk |
 |---|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|----------------------------------|-----------|--------------|-----------------|
-| A | **Move helpers out of `.opencode/plugins/`**                                           | `git mv` 3 helper files to `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`; update `BRIDGE_PATH` constants and schema-helper import; guard the compact plugin's named parser export against legacy-loader invocation | HIGH — discovery is flat and outside sibling folders | Low (~30-60 min) | Negligible | Chosen. Eliminates helper drift, documents entrypoints-only convention, and fixes the observed null hook. |
+| A | **Move helpers out of `.opencode/plugins/`**                                           | `git mv` 3 helper files to `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`; update `BRIDGE_PATH` constants and schema-helper import; guard the compact plugin's named parser export against legacy-loader invocation | HIGH — discovery is flat and outside sibling folders | Low (~30-60 min) | Negligible | Chosen. Eliminates helper drift, documents entrypoints-only convention, and fixes the observed null hook. |
 | B | **Add no-op default exports to the 3 helper files**                                    | Append `export default async function() { return {}; }` to each helper                                                   | LOW benefit — installed 1.3.17 does not load `.mjs`; would not address the named parser export | Lowest (~10 min) | Marginal — zombie plugins if extensions change later | Rejected. Masks folder impurity and does not match the empirical crash source. |
 | C | **Use OpenCode opt-out mechanism (filename prefix or opencode.json exclude)**          | Rename helpers to `_<name>.mjs` or add `plugins.exclude: ["*-bridge.mjs", "*-schema.mjs"]` to opencode.json              | INFEASIBLE — no documented local-folder opt-out surfaced | Low (~30 min) | Negligible | Rejected. Depends on unsupported behavior. |
 
@@ -108,7 +108,7 @@ Choose **Outcome A: move helpers out of `.opencode/plugins/`**, with one compati
 - **Positive**: Future contributors cannot accidentally re-introduce the crash by adding a helper next to a plugin (regression test catches it).
 - **Positive**: Bridge subprocess architecture preserved — bridges still run as spawned `node` processes, just from a different parent path.
 - **Positive**: The compact plugin's test-only parser helper no longer creates a null hook if a legacy loader treats it as a plugin function.
-- **Negative**: One extra folder (`.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`) to know about. Mitigated by README convention doc.
+- **Negative**: One extra folder (`.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`) to know about. Mitigated by README convention doc.
 - **Negative**: Move breaks existing bridge path references — T-10 inventory governs which references are updated.
 
 ### References
@@ -139,7 +139,7 @@ Ship Outcome A with these implementation details:
 
 | Area | Outcome |
 |------|---------|
-| Helper location | `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` |
+| Helper location | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` |
 | Plugin folder convention | `.opencode/plugins/` contains only `spec-kit-skill-advisor.js`, `spec-kit-compact-code-graph.js`, and `README.md` |
 | Advisor bridge | `BRIDGE_PATH` now targets `../plugin-helpers/spec-kit-skill-advisor-bridge.mjs` |
 | Compact bridge | `BRIDGE_PATH` now targets `../plugin-helpers/spec-kit-compact-code-graph-bridge.mjs` |
@@ -150,7 +150,7 @@ Ship Outcome A with these implementation details:
 ### Evidence
 
 - `ls .opencode/plugins/` shows only `README.md`, `spec-kit-compact-code-graph.js`, and `spec-kit-skill-advisor.js`.
-- `ls .opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` shows the three relocated helper files.
+- `ls .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` shows the three relocated helper files.
 - `node --check` passed for both plugin entrypoint files.
 - Direct advisor bridge smoke returned a live advisor brief.
 - Direct compact bridge smoke returned transport JSON.
@@ -219,7 +219,7 @@ Add a focused vitest covering: the plugin returns the OpenCode-shaped hook keys;
 | Direct `experimental.chat.system.transform` smoke | PASS — minimal Node smoke imported the plugin, invoked `experimental.chat.system.transform`, and asserted `output.system[0]=Advisor: smoke brief landed.` |
 | Real OpenCode session shows advisor brief in conversation | NOT RUN — sandbox-friendly direct hook smoke plus focused vitest is accepted Phase 4 evidence; a real TUI smoke remains optional because the hook surface itself was invoked directly. |
 | Compact plugin behavior unchanged | PASS BY SCOPE — `.opencode/plugins/spec-kit-compact-code-graph.js` was read as the reference pattern only and not modified in Phase 4. |
-| Strict spec validation | PASS — `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation --strict` passed with 0 errors / 0 warnings. |
+| Strict spec validation | PASS — `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/005-opencode-plugin-loader-remediation --strict` passed with 0 errors / 0 warnings. |
 | `npm run build` in `mcp_server` | PASS — `tsc --build` completed successfully. |
 
 ### Consequences

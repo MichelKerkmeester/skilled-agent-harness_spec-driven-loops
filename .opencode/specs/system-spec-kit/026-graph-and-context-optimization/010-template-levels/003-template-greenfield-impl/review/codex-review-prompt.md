@@ -42,9 +42,9 @@ For context, also skim:
 ### P0 — Must-be-right (blocks "ready to implement")
 
 1. **Resource-map completeness.** Did the resource-map miss any file? Cross-check against:
-   - `find .opencode/skill/system-spec-kit/templates -type d` — every template subdirectory accounted for in resource-map §1, §3, or §4?
-   - `grep -rln "templates/level_\|templates/core\|templates/addendum\|templates/phase_parent\|copy_template\|compose\.sh" .opencode/skill/system-spec-kit/scripts/ .opencode/skill/system-spec-kit/mcp_server/` — every file that currently references the deleted paths covered in resource-map §2 (modifications) or §3 (deletions)?
-   - `ls .opencode/skill/system-spec-kit/scripts/rules/check-*.sh` — every validator either in §2 (modified) or §4 (untouched with reasoning)?
+   - `find .opencode/skills/system-spec-kit/templates -type d` — every template subdirectory accounted for in resource-map §1, §3, or §4?
+   - `grep -rln "templates/level_\|templates/core\|templates/addendum\|templates/phase_parent\|copy_template\|compose\.sh" .opencode/skills/system-spec-kit/scripts/ .opencode/skills/system-spec-kit/mcp_server/` — every file that currently references the deleted paths covered in resource-map §2 (modifications) or §3 (deletions)?
+   - `ls .opencode/skills/system-spec-kit/scripts/rules/check-*.sh` — every validator either in §2 (modified) or §4 (untouched with reasoning)?
 2. **Phase-ordering correctness.** Phase 1 claims to be purely additive (zero existing-file changes). Verify by reading plan.md Phase 1 step list — are there any modifications hiding in there?
 3. **Gate definitions completeness.** Each phase has a "GATE N" with checklist items. Do the gate items actually verify what the goal claims? E.g., does Gate 1 catch a workflow-invariance leak?
 4. **ADR inheritance integrity.** Does 012's decision-record.md correctly cite ADR-001 through ADR-005 from 011 without re-deciding anything? Does the implementation in plan.md honor each ADR?

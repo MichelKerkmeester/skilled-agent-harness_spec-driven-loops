@@ -55,7 +55,7 @@ This root packet only owns design + scaffolding tasks. Each sub-phase has its ow
 - [x] T001 Create root spec docs (spec.md, plan.md, tasks.md, implementation-summary.md)
 - [x] T002 [P] Create description.json + graph-metadata.json
 - [x] T003 [P] Create sub-phase folders (001-scenario-design/, 002-scenario-execution/)
-- [ ] T004 Pass `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <root> --strict`
+- [ ] T004 Pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <root> --strict`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -117,8 +117,8 @@ The actual dispatch and findings synthesis happens later, in a dedicated executi
 - **Sub-phase 002 (execution)**: `002-scenario-execution/`
 - **Sibling packet (defects)**: `../005-memory-search-runtime-bugs/`
 - **CLI skills under test**:
-  - `.opencode/skill/cli-codex/SKILL.md`
-  - `.opencode/skill/cli-copilot/SKILL.md`
-  - `.opencode/skill/cli-opencode/SKILL.md`
-- **Canonical command spec**: `.opencode/command/memory/search.md`
+  - `.opencode/skills/cli-codex/SKILL.md`
+  - `.opencode/skills/cli-copilot/SKILL.md`
+  - `.opencode/skills/cli-opencode/SKILL.md`
+- **Canonical command spec**: `.opencode/commands/memory/search.md`
 <!-- /ANCHOR:cross-refs -->

@@ -1,5 +1,5 @@
 {
-  "target": ".opencode/agent/agent-improver.md",
+  "target": ".opencode/agents/agent-improver.md",
   "targetProfile": "agent-improver",
   "targetKind": "canonical-agent",
   "maxIterations": 3,
@@ -28,8 +28,8 @@
     "manifest": "improvement/target-manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
-    "targetProfiles": ".opencode/skill/sk-improve-agent/assets/target-profiles",
-    "fixtureCatalog": ".opencode/skill/sk-improve-agent/assets/fixtures"
+    "targetProfiles": ".opencode/skills/sk-improve-agent/assets/target-profiles",
+    "fixtureCatalog": ".opencode/skills/sk-improve-agent/assets/fixtures"
   },
   "targets": {
     "activeProfile": "agent-improver",

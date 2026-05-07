@@ -63,12 +63,12 @@ _memory:
 
 ### In Scope (Umbrella docs)
 - `/README.md` (repo root) — features section update for new capabilities
-- `.opencode/skill/system-spec-kit/SKILL.md` — capability matrix update (new handlers, lanes, badges)
-- `.opencode/skill/system-spec-kit/README.md` — feature index
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` — handler list update (new `detect_changes`, enriched query/blast_radius)
-- `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — verification steps for new behaviors
-- `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` — top-level index reflecting new entries
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` — top-level index reflecting new entries
+- `.opencode/skills/system-spec-kit/SKILL.md` — capability matrix update (new handlers, lanes, badges)
+- `.opencode/skills/system-spec-kit/README.md` — feature index
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` — handler list update (new `detect_changes`, enriched query/blast_radius)
+- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — verification steps for new behaviors
+- `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` — top-level index reflecting new entries
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` — top-level index reflecting new entries
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` — record 012 as the External Project adoption phase
 
 ### Out of Scope (handled inline by 002-005)
@@ -80,12 +80,12 @@ _memory:
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `/README.md` | MODIFY | Features section (root) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | MODIFY | Capability matrix |
-| `.opencode/skill/system-spec-kit/README.md` | MODIFY | Feature index |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | MODIFY | Handler list |
-| `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | MODIFY | Verification steps |
-| `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` | MODIFY | Top-level index |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | MODIFY | Top-level index |
+| `.opencode/skills/system-spec-kit/SKILL.md` | MODIFY | Capability matrix |
+| `.opencode/skills/system-spec-kit/README.md` | MODIFY | Feature index |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | MODIFY | Handler list |
+| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | MODIFY | Verification steps |
+| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | MODIFY | Top-level index |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | MODIFY | Top-level index |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` | MODIFY | Add 012 entry |
 
 ---
@@ -121,4 +121,4 @@ _memory:
 - 012/decision-record.md ADR-012-007 (per-packet inline + trailing rollup)
 - pt-02 §11 (no specific packet — this sub-phase is user-requested addition)
 - Reference docs to update (paths above)
-- sk-doc skill: `.opencode/skill/sk-doc/`
+- sk-doc skill: `.opencode/skills/sk-doc/`

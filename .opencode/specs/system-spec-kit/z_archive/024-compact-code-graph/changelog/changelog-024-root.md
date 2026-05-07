@@ -218,7 +218,7 @@ These changes made the packet shippable and explainable, not just functional.
 | `mcp_server/tool-schemas.ts` | `ToolDefinition` interface, formal `outputSchema` for `session_bootstrap` |
 | `AGENTS.md` | Startup/recovery and tool-routing parity for hookless flows |
 | `CLAUDE.md` / `CODEX.md` / `GEMINI.md` | Cross-runtime recovery and routing instructions |
-| `.opencode/agent/context-prime.md` | Structural bootstrap and tool-routing output guidance |
+| `.opencode/agents/context-prime.md` | Structural bootstrap and tool-routing output guidance |
 
 </details>
 

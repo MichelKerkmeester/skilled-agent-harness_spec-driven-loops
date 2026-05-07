@@ -4,16 +4,16 @@
 This iteration reviewed the Phase-025 D4 maintainability surfaces inside `mcp_server/lib/skill-advisor`, with emphasis on the newly-added cache bound, the deprecated normalizer alias, and the public API documentation sweep. The goal was to confirm DR-P2-001 is closed in code and tests, and to look for residual sk-code-opencode alignment gaps on the touched exports.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:8-12` -> the advisor prompt cache now exposes an explicit `MAX_CACHE_ENTRIES = 1000` bound alongside the token constants.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:103-125` -> `set()` sweeps expired rows before insert and only admits a new entry after running the overflow guard.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:163-170` -> `evictOldestUntilBelowLimit()` trims the oldest entry while the map is at or above the cap.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-prompt-cache.vitest.ts:84-100` -> the cache test fills `MAX_CACHE_ENTRIES + 1` rows and asserts the oldest row is evicted while the newest remains addressable.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:62-119` -> `normalizeRuntimeOutput()` remains the canonical helper and the legacy `normalizeAdapterOutput` export is retained as an explicit `@deprecated` alias.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/prompt-policy.ts:121-128` -> the prompt-policy public helpers now carry focused JSDoc describing diagnostics extraction and fire/no-fire decisions.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/source-cache.ts:57-84` -> the source-cache public API is documented and bounded by TTL plus `ADVISOR_SOURCE_CACHE_MAX_ENTRIES`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/generation.ts:151-186` -> the generation-counter public API (`getAdvisorGenerationPath`, `readAdvisorGeneration`, `incrementAdvisorGeneration`, `clearAdvisorGenerationMemory`) is documented and keeps typed recovery states.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:188-309` -> the metrics helpers and collector now expose JSDoc-backed, prompt-safe typed surfaces rather than ad hoc records.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:319-394` -> the public brief builder and cache-reset hook are documented, and the cached-return path still re-stamps generated timestamps without widening the surface.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:8-12` -> the advisor prompt cache now exposes an explicit `MAX_CACHE_ENTRIES = 1000` bound alongside the token constants.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:103-125` -> `set()` sweeps expired rows before insert and only admits a new entry after running the overflow guard.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:163-170` -> `evictOldestUntilBelowLimit()` trims the oldest entry while the map is at or above the cap.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-prompt-cache.vitest.ts:84-100` -> the cache test fills `MAX_CACHE_ENTRIES + 1` rows and asserts the oldest row is evicted while the newest remains addressable.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:62-119` -> `normalizeRuntimeOutput()` remains the canonical helper and the legacy `normalizeAdapterOutput` export is retained as an explicit `@deprecated` alias.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-policy.ts:121-128` -> the prompt-policy public helpers now carry focused JSDoc describing diagnostics extraction and fire/no-fire decisions.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/source-cache.ts:57-84` -> the source-cache public API is documented and bounded by TTL plus `ADVISOR_SOURCE_CACHE_MAX_ENTRIES`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/generation.ts:151-186` -> the generation-counter public API (`getAdvisorGenerationPath`, `readAdvisorGeneration`, `incrementAdvisorGeneration`, `clearAdvisorGenerationMemory`) is documented and keeps typed recovery states.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:188-309` -> the metrics helpers and collector now expose JSDoc-backed, prompt-safe typed surfaces rather than ad hoc records.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:319-394` -> the public brief builder and cache-reset hook are documented, and the cached-return path still re-stamps generated timestamps without widening the surface.
 
 ## Findings
 

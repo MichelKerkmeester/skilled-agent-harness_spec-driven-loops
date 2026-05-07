@@ -1,10 +1,10 @@
 # Focus
 
-Inventory the current template system and map the consumer chain for the proposed consolidation of `.opencode/skill/system-spec-kit/templates/`.
+Inventory the current template system and map the consumer chain for the proposed consolidation of `.opencode/skills/system-spec-kit/templates/`.
 
 # Actions Taken
 
-1. Counted all files and markdown LOC under `.opencode/skill/system-spec-kit/templates/`.
+1. Counted all files and markdown LOC under `.opencode/skills/system-spec-kit/templates/`.
 2. Cataloged every template file with LOC, byte size, and observed purpose.
 3. Traced `create.sh` template creation flow through `template-utils.sh::copy_template`.
 4. Read the composition, anchor-wrapping, and validator hooks that depend on level template paths.
@@ -123,7 +123,7 @@ The primary runtime chain is:
 
 Observed branches:
 
-- Normal spec creation: `create.sh` sets `TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"`, resolves `LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")`, loops over `"$LEVEL_TEMPLATES_DIR"/*.md`, then calls `copy_template` into the new feature folder.
+- Normal spec creation: `create.sh` sets `TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"`, resolves `LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")`, loops over `"$LEVEL_TEMPLATES_DIR"/*.md`, then calls `copy_template` into the new feature folder.
 - Subfolder creation: same level resolution and `copy_template` loop, but destination is `SUBFOLDER_PATH`.
 - Phase mode parent: uses `templates/phase_parent/spec.md` plus `addendum/phase/phase-parent-section.md`; it does not use the Level-N parent docs.
 - Phase mode children: hardcodes Level 1 child templates through `CHILD_LEVEL_DIR=$(get_level_templates_dir "1" "$TEMPLATES_BASE")`, then copies every child template via `copy_template`.
@@ -156,12 +156,12 @@ Test and registry consumers:
 
 Non-script hardcoded public API consumers:
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_{auto,confirm}.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_{auto,confirm}.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_{auto,confirm}.yaml`
-- `.opencode/command/create/assets/create_agent_{auto,confirm}.yaml`
-- `.opencode/command/create/assets/create_changelog_{auto,confirm}.yaml` for `templates/changelog`.
-- `.opencode/agent/orchestrate.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_{auto,confirm}.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_{auto,confirm}.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_{auto,confirm}.yaml`
+- `.opencode/commands/create/assets/create_agent_{auto,confirm}.yaml`
+- `.opencode/commands/create/assets/create_changelog_{auto,confirm}.yaml` for `templates/changelog`.
+- `.opencode/agents/orchestrate.md`
 - `AGENTS.md` and `CLAUDE.md`
 
 These references make the level directory paths part of the workflow contract, not merely an internal cache.

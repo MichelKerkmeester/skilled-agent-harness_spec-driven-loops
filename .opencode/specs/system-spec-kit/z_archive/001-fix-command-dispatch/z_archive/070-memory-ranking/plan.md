@@ -332,10 +332,10 @@ ranking:
 
 | Phase | File | Change Type |
 |-------|------|-------------|
-| 1 | `.opencode/command/memory-search.md` | Dashboard display logic |
-| 1 | `.opencode/command/memory-database.md` | Folder filtering |
+| 1 | `.opencode/commands/memory-search.md` | Dashboard display logic |
+| 1 | `.opencode/commands/memory-database.md` | Folder filtering |
 | 2 | MCP Server (external) | API parameters, schema |
-| 2 | `.opencode/command/memory-search.md` | Use new API params |
+| 2 | `.opencode/commands/memory-search.md` | Use new API params |
 | 3 | `.opencode/config/memory-preferences.yaml` | New config file |
 | 3 | MCP Server (external) | Contextual/learning logic |
 

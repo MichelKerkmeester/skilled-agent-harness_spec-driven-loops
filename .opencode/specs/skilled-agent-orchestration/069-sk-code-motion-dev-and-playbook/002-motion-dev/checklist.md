@@ -56,7 +56,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] Every Motion API claim is cited to an official Motion URL or a concrete in-repo source path. Evidence: docs use citations sections and source-path notes; no uncited API matrix remains.
-- [x] CHK-011 [P0] No fabricated Motion API details or unresolved `[VERIFY:]` placeholders remain. Evidence: `rg "\\[VERIFY:" .opencode/skill/sk-code/references/motion_dev .opencode/skill/sk-code/assets/motion_dev` returned no matches.
+- [x] CHK-011 [P0] No fabricated Motion API details or unresolved `[VERIFY:]` placeholders remain. Evidence: `rg "\\[VERIFY:" .opencode/skills/sk-code/references/motion_dev .opencode/skills/sk-code/assets/motion_dev` returned no matches.
 - [x] CHK-012 [P0] In-repo examples are runnable patterns, not invented examples. Evidence: reference docs cite real `window.Motion` and ESM patterns from `nav_dropdown.js`, `testimonial.js`, `link_grid.js`, and `link_hero.js`.
 - [x] CHK-013 [P1] Snippets guard missing APIs and document loading assumptions. Evidence: snippet headers include `@example` and runtime guards.
 <!-- /ANCHOR:code-quality -->
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Strict spec validation exits 0. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev --strict` returned exit 0.
+- [x] CHK-020 [P0] Strict spec validation exits 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev --strict` returned exit 0.
 - [x] CHK-021 [P0] Reference inventory is complete. Evidence: `ls references/motion_dev/` shows six `.md` files.
 - [x] CHK-022 [P0] Asset inventory is complete. Evidence: `ls assets/motion_dev/` shows `install_card.md`, `playbook_entries.md`, and `snippets/`.
 - [x] CHK-023 [P0] Snippet inventory is complete. Evidence: `ls assets/motion_dev/snippets/` shows eight `.js` files.
@@ -108,8 +108,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P0] Reference files live under `.opencode/skill/sk-code/references/motion_dev/`. Evidence: final `ls` inventory.
-- [x] CHK-051 [P0] Asset files live under `.opencode/skill/sk-code/assets/motion_dev/`. Evidence: final `ls` inventory.
+- [x] CHK-050 [P0] Reference files live under `.opencode/skills/sk-code/references/motion_dev/`. Evidence: final `ls` inventory.
+- [x] CHK-051 [P0] Asset files live under `.opencode/skills/sk-code/assets/motion_dev/`. Evidence: final `ls` inventory.
 - [x] CHK-052 [P1] No scratch files were left in the repo. Evidence: no temporary repo files were created.
 <!-- /ANCHOR:file-org -->
 

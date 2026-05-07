@@ -93,21 +93,21 @@ contextType: "implementation"
 ### P0 Critical Implementations
 
 - [x] T029 [W-B] REC-001: Document verbose template variant concept
-  - File: `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+  - File: `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
   - Action: Add verbose variant section for future implementation
 
 - [x] T030 [W-B] REC-002: Document compose script architecture
-  - File: `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md`
+  - File: `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md`
   - Action: Add compose script specification for future implementation
 
 ### P1 High Priority Implementations
 
 - [x] T031 [W-B] REC-003: Clarify template path conventions
-  - File: `.opencode/skill/system-spec-kit/SKILL.md`
+  - File: `.opencode/skills/system-spec-kit/SKILL.md`
   - Action: Add explicit path documentation table
 
 - [x] T032 [W-B] REC-005: Document template selection preference
-  - File: `.opencode/skill/system-spec-kit/config/config.jsonc`
+  - File: `.opencode/skills/system-spec-kit/config/config.jsonc`
   - Action: Add template style configuration option
 
 - [x] T033 [W-B] REC-006: Restore WHEN TO USE sections

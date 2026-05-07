@@ -19,7 +19,7 @@ Closes the highest-leverage gap surfaced by packet 035's CONDITIONAL verdict: **
 
 #### Phase 1: Discovery
 
-1. Determine adapter target location. Recommended: `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` (parallel to existing `mcp_server/handlers/`, `mcp_server/lib/`).
+1. Determine adapter target location. Recommended: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` (parallel to existing `mcp_server/handlers/`, `mcp_server/lib/`).
 2. Read 030's design completely. Confirm:
    - 14 features F1-F14
    - 5 CLI executors: cli-codex, cli-gemini, cli-claude-code, cli-opencode
@@ -112,8 +112,8 @@ CLI entry: `npx tsx mcp_server/matrix_runners/run-matrix.ts --output <dir> [--fi
 
 #### Phase 6: TS build + test verification
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` — must succeed
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run matrix-adapter` — all 5 smoke tests must pass
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must succeed
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run matrix-adapter` — all 5 smoke tests must pass
 - DO NOT run the full vitest suite
 
 #### Phase 7: Docs

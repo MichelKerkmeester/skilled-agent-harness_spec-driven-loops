@@ -14,7 +14,7 @@ _memory:
     recent_action: "Phase 003 source refs rotated; rebuild blocker documented"
     next_safe_action: "Resolve advisor metadata mismatch or proceed to Phase 004 with rebuild caveat"
     blockers:
-      - ".opencode/skill/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while folder is deep-agent-improvement; advisor_rebuild aborts before indexing"
+      - ".opencode/skills/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while folder is deep-agent-improvement; advisor_rebuild aborts before indexing"
     key_files:
       - "spec.md"
       - "implementation-summary.md"
@@ -53,7 +53,7 @@ _memory:
 
 - [x] T001 Read parent spec, resource map, Phase 003 spec, and Phase 001 inventory. Evidence: `sed`/`rg` reads confirmed Phase 003 path ledger and counts.
 - [x] T002 Confirm branch constraint. Evidence: `git branch --show-current` returned `main`.
-- [x] T003 Read target reference shapes before editing. Evidence: `rg -n 'sk-improve-prompt|\\.opencode/skill/sk-improve-prompt/'` over the Phase 003 targets showed markdown, Python, TypeScript, JSON, shell, and JSONL literal refs.
+- [x] T003 Read target reference shapes before editing. Evidence: `rg -n 'sk-improve-prompt|\\.opencode/skills/sk-improve-prompt/'` over the Phase 003 targets showed markdown, Python, TypeScript, JSON, shell, and JSONL literal refs.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Update dispatcher and OpenCode agent body refs. Evidence: `.opencode/agent/improve-prompt.md`, `.opencode/command/improve/prompt.md`, and `.opencode/command/improve/README.txt` now use `sk-prompt` for the prompt skill.
+- [x] T004 Update dispatcher and OpenCode agent body refs. Evidence: `.opencode/agents/improve-prompt.md`, `.opencode/commands/improve/prompt.md`, and `.opencode/commands/improve/README.txt` now use `sk-prompt` for the prompt skill.
 - [x] T005 Update advisor scoring code and fixtures. Evidence: `skill_advisor.py`, `explicit.ts`, `lexical.ts`, `fusion.ts`, advisor `graph-metadata.json`, sync script, labeled prompts JSONL, and regression JSONL have zero Phase 003-owned old-name hits.
 - [x] T006 Update cli-* prompt quality mirrors in existing Phase 003 scope. Evidence: cli-claude-code, cli-codex, cli-gemini, and cli-opencode mirror refs now use `sk-prompt`; cli-copilot files are absent/deleted in the working tree, so no content update was possible.
 - [x] T007 Update cross-skill refs. Evidence: `deep-agent-improvement` peer reference and sk-code advisor docs now use `sk-prompt`.

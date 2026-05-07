@@ -30,10 +30,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skill/sk-doc/assets/agent_template.md",
-      ".opencode/skill/sk-doc/assets/command_template.md",
-      ".opencode/skill/sk-doc/assets/feature_catalog/",
-      ".opencode/skill/sk-doc/assets/testing_playbook/"
+      ".opencode/skills/sk-doc/assets/agent_template.md",
+      ".opencode/skills/sk-doc/assets/command_template.md",
+      ".opencode/skills/sk-doc/assets/feature_catalog/",
+      ".opencode/skills/sk-doc/assets/testing_playbook/"
     ],
     "entities": [
       "sk-doc",

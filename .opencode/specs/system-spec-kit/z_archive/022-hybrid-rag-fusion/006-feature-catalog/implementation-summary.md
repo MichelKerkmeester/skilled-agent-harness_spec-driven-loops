@@ -67,9 +67,9 @@ Non-test source comments no longer rely on stale project-history labels. Comment
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/*.ts` | Modified | Added `// Feature catalog:` comments across all 40 handler `.ts` files |
-| `.opencode/skill/system-spec-kit/mcp_server/**/*.ts` | Modified | Added feature catalog comments where mapping was strong and removed stale project-history references in non-test source comments |
-| `.opencode/skill/system-spec-kit/shared/**/*.ts` | Modified | Added feature catalog comments where mapping was strong and removed stale project-history references in non-test source comments |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/*.ts` | Modified | Added `// Feature catalog:` comments across all 40 handler `.ts` files |
+| `.opencode/skills/system-spec-kit/mcp_server/**/*.ts` | Modified | Added feature catalog comments where mapping was strong and removed stale project-history references in non-test source comments |
+| `.opencode/skills/system-spec-kit/shared/**/*.ts` | Modified | Added feature catalog comments where mapping was strong and removed stale project-history references in non-test source comments |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,7 +100,7 @@ Implementation used a comment-only pass: map files to feature catalog names, app
 
 | Check | Result |
 |-------|--------|
-| `npm run typecheck` in `.opencode/skill/system-spec-kit` | PASS (exit 0) |
+| `npm run typecheck` in `.opencode/skills/system-spec-kit` | PASS (exit 0) |
 | Non-test source grep for stale refs | PASS (no matches) |
 | Handler coverage check (`handlers/*.ts` vs files with `// Feature catalog:`) | PASS (40 handler `.ts` files, 40 with `// Feature catalog:`) |
 | Script coverage check (`mcp_server/scripts/*.ts` vs files with `// Feature catalog:`) | PASS (3 TypeScript scripts, 3 annotated) |
@@ -145,10 +145,10 @@ Cross-validation: 124 unique annotation names in code, 0 invalid (all match cata
 
 ### Documentation
 
-- Created `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md` catalog snippet
-- Added H3 entry "Feature catalog code references" in main `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` under Tooling section
-- Added Code Conventions section (MODULE: header + Feature catalog annotation) to `.opencode/skill/system-spec-kit/mcp_server/README.md`
-- Added traceability mention to `.opencode/skill/system-spec-kit/README.md` component description
+- Created `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md` catalog snippet
+- Added H3 entry "Feature catalog code references" in main `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` under Tooling section
+- Added Code Conventions section (MODULE: header + Feature catalog annotation) to `.opencode/skills/system-spec-kit/mcp_server/README.md`
+- Added traceability mention to `.opencode/skills/system-spec-kit/README.md` component description
 - Added playbook scenarios 135 (grep traceability), 136 (name validity), 137 (multi-feature coverage), 138 (MODULE: compliance)
 - Updated playbook TOC range to 001..138 with coverage mappings
 
@@ -174,14 +174,14 @@ All provisional `NEW-NNN` markers were removed from both the feature catalog (19
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` | Modified | Removed 14 `[NEW-NNN]` playbook references, added entries for features 16/17 |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modified | Removed ~458 `NEW-` prefixes, renamed section 8, added entries 153/154 with cross-reference rows |
+| `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` | Modified | Removed 14 `[NEW-NNN]` playbook references, added entries for features 16/17 |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modified | Removed ~458 `NEW-` prefixes, renamed section 8, added entries 153/154 with cross-reference rows |
 | feature\_catalog 01--\* through 17--\* | Modified | Removed `NEW-NNN` from playbook cross-references (31 files modified) |
 | manual\_testing\_playbook 01--\* through 19--\* | Modified | Removed `NEW-NNN` from titles, frontmatter, headings, table rows, metadata (~75 files modified) |
-| `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md` | Created | Phase 016 feature catalog entry |
-| `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md` | Created | Phase 017 feature catalog entry |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md` | Created | Phase 016 playbook test scenarios |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md` | Created | Phase 017 playbook test scenarios |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md` | Created | Phase 016 feature catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md` | Created | Phase 017 feature catalog entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md` | Created | Phase 016 playbook test scenarios |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md` | Created | Phase 017 playbook test scenarios |
 
 ### Phase G Verification
 
@@ -206,22 +206,22 @@ All provisional `NEW-NNN` markers were removed from both the feature catalog (19
 
 | File | Category | Size |
 |------|----------|------|
-| `.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md` | Evaluation | 4.3KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md` | Pipeline | 4.4KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md` | Pipeline | 5.3KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md` | Governance | 5.1KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/17--governance/06-shared-memory-admin-identity-governance.md` | Governance | 4.8KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/17--governance/07-governance-audit-review-and-rollout-metrics.md` | Governance | 5.1KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md` | Feature Flags | 5.0KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md` | Feature Flags | 4.7KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` | Remediation | 4.8KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md` | Remediation | 4.5KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md` | Remediation | 4.8KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` | Deprecated | 4.4KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md` | Deprecated | 3.9KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/03-shadow-scoring-retirement.md` | Deprecated | 3.8KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/04-inert-scoring-flags-and-compatibility-shims.md` | Deprecated | 4.1KB |
-| `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/05-adaptive-fusion-flag-drift.md` | Deprecated | 3.9KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md` | Evaluation | 4.3KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md` | Pipeline | 4.4KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md` | Pipeline | 5.3KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md` | Governance | 5.1KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/06-shared-memory-admin-identity-governance.md` | Governance | 4.8KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/07-governance-audit-review-and-rollout-metrics.md` | Governance | 5.1KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md` | Feature Flags | 5.0KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md` | Feature Flags | 4.7KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` | Remediation | 4.8KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md` | Remediation | 4.5KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md` | Remediation | 4.8KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` | Deprecated | 4.4KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md` | Deprecated | 3.9KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/03-shadow-scoring-retirement.md` | Deprecated | 3.8KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/04-inert-scoring-flags-and-compatibility-shims.md` | Deprecated | 4.1KB |
+| `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/05-adaptive-fusion-flag-drift.md` | Deprecated | 3.9KB |
 
 ### Phase H Playbook Verification
 

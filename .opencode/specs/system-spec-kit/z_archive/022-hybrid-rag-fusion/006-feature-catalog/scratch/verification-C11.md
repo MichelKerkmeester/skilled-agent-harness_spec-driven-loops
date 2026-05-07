@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-3443-7353-a6fc-47847e699718
 --------
 user
-You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-auto-promotion-on-validation.md (files 05 through 10). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-auto-promotion-on-validation.md (files 05 through 10). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,13 +37,13 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m verifying the six feature snippets against the actual `system-spec-kit` MCP server code. First I’m checking the local instructions that apply here, then I’ll read the feature files and their referenced source files side by side so we can compare description, path validity, and any missing implementation files.
 exec
-/bin/zsh -lc "rg --files -g 'AGENTS.md' . .opencode/skill/system-spec-kit" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg --files -g 'AGENTS.md' . .opencode/skills/system-spec-kit" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ./AGENTS.md
 ./.opencode/specs/03--commands-and-skills/sk-mcp/001-mcp-clickup-creation/context/clickup-cli-main/AGENTS.md
 ./.opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 ./.opencode/specs/system-spec-kit/024-sqlite-to-turso/context/turso-main/AGENTS.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify feature catalog snippets 05 through 10 under system-spec-kit against actual mcp_server source files; check Current Reality accuracy, listed path existence, and missing important source files; produce structured per-feature report" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 656ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify feature catalog snippets 05 through 10 under system-spec-kit against actual mcp_server source files; check Current Reality accuracy, listed path existence, and missing important source files; produce structured per-feature report" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 656ms:
 [
   {
     "skill": "system-spec-kit",
@@ -89,8 +89,8 @@ exec
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "for f in .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/0{5,6,7,8,9}-*.md .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-*.md; do printf '===== %s =====\\n' \""'$f"; sed -n '"'1,260p' \""'$f"; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "for f in .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/0{5,6,7,8,9}-*.md .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/10-*.md; do printf '===== %s =====\\n' \""'$f"; sed -n '"'1,260p' \""'$f"; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -112,7 +112,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
  succeeded in 50ms:
-===== .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md =====
+===== .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md =====
 # Folder-level relevance scoring
 
 ## Current Reality
@@ -135,31 +135,31 @@ This scoring enables two-phase retrieval: first rank folders by aggregated score
 codex
 I’ve got the feature claims loaded. Next I’m checking which referenced files actually exist in `system-spec-kit`, then I’ll open the concrete implementation files and trace whether the described formulas, flags, tables, and pipeline behavior are really present.
 exec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md
-.opencode/skill/system-spec-kit/mcp_server/LICENSE
-.opencode/skill/system-spec-kit/mcp_server/README.md
-.opencode/skill/system-spec-kit/mcp_server/_pending
-.opencode/skill/system-spec-kit/mcp_server/api/README.md
-.opencode/skill/system-spec-kit/mcp_server/api/eval.ts
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts
-.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts
-.opencode/skill/system-spec-kit/mcp_server/api/providers.ts
-.opencode/skill/system-spec-kit/mcp_server/api/search.ts
-.opencode/skill/system-spec-kit/mcp_server/api/storage.ts
-.opencode/skill/system-spec-kit/mcp_server/cli.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/README.md
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts
-.opencode/skill/system-spec-kit/mcp_server/core/README.md
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts
-.opencode/skill/system-spec-kit/mcp_server/core/index.ts
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+.opencode/skills/system-spec-kit/mcp_server/LICENSE
+.opencode/skills/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/_pending
+.opencode/skills/system-spec-kit/mcp_server/api/README.md
+.opencode/skills/system-spec-kit/mcp_server/api/eval.ts
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts
+.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts
+.opencode/skills/system-spec-kit/mcp_server/api/providers.ts
+.opencode/skills/system-spec-kit/mcp_server/api/search.ts
+.opencode/skills/system-spec-kit/mcp_server/api/storage.ts
+.opencode/skills/system-spec-kit/mcp_server/cli.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/README.md
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts
+.opencode/skills/system-spec-kit/mcp_server/core/README.md
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts
+.opencode/skills/system-spec-kit/mcp_server/core/index.ts
 exec
-/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; root=Path('.opencode/skill/system-spec-kit'); files=sorted((root/'feature_catalog/11--scoring-and-calibration').glob('0[5-9]-*.md'))+sorted((root/'feature_catalog/11--scoring-and-calibration').glob('10-*.md'));\\nfor f in files:\\n text=f.read_text(); sec=text.split('## Source Files',1)[1]; paths=re.findall(r'"'`([''^`]+)`'"', sec); print('===', f.name, '===');\\n for p in paths: print(('OK   ' if (root/p).exists() else 'MISS ')+p)\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-relevance.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"SPECKIT_FOLDER_SCORING|DocScore|z_archive|prototype|scratch|0\\.40|0\\.30|0\\.20|0\\.10|computeFolderRelevance|folder relevance|folder score|archive multiplier\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/shared .opencode/skill/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
+/bin/zsh -lc "python3 -c \"from pathlib import Path; import re; root=Path('.opencode/skills/system-spec-kit'); files=sorted((root/'feature_catalog/11--scoring-and-calibration').glob('0[5-9]-*.md'))+sorted((root/'feature_catalog/11--scoring-and-calibration').glob('10-*.md'));\\nfor f in files:\\n text=f.read_text(); sec=text.split('## Source Files',1)[1]; paths=re.findall(r'"'`([''^`]+)`'"', sec); print('===', f.name, '===');\\n for p in paths: print(('OK   ' if (root/p).exists() else 'MISS ')+p)\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-relevance.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"SPECKIT_FOLDER_SCORING|DocScore|z_archive|prototype|scratch|0\\.40|0\\.30|0\\.20|0\\.10|computeFolderRelevance|folder relevance|folder score|archive multiplier\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/shared .opencode/skills/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 zsh:1: unmatched "
  succeeded in 50ms:
 // ---------------------------------------------------------------
@@ -183,28 +183,28 @@ export * from '@spec-kit/shared/scoring/folder-scoring';
 // References:
 //   - PI-A1: Folder-level relevance scoring via DocScore aggregation
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:121:        { path: 'specs/z_archive/old-project', expected: true },
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:122:        { path: 'specs/project/scratch/temp', expected: true },
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:134:      const archiveMultiplier = mod.getArchiveMultiplier('specs/z_archive/old');
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:143:        createMemory({ specFolder: 'z_archive/old', spec_folder: 'z_archive/old' }),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:114:  triggerQuality: 0.20,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:115:  lengthQuality: 0.20,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:117:  metadataQuality: 0.20,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:171:      const p = 'specs/003-feature/scratch/notes.md';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:285:      expect(mod.isMemoryFile('/project/specs/003-auth/scratch/notes.md')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:541:      // Write a file in scratch (not memory) that should be ignored
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:542:      const scratchDir = path.join(tmpRoot, 'specs', '030-find', 'scratch');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:543:      fs.mkdirSync(scratchDir, { recursive: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:544:      writeFile(scratchDir, 'temp.md', '# Temp');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:561:      const scratchFiles = files.filter((f: string) => f.includes('scratch'));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:562:      expect(scratchFiles).toHaveLength(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:54:    it('T207: R=0.10 => COLD', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:55:      expect(tierClassifier.classifyState(0.10, 0)).toBe('COLD');
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:219:    Object.setPrototypeOf(this, PreflightError.prototype);
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:638:  it('C138-T2: scratch tier has maximum decay multiplier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:639:    expect(TIER_MULTIPLIER.scratch).toBe(3.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:121:        { path: 'specs/z_archive/old-project', expected: true },
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:122:        { path: 'specs/project/scratch/temp', expected: true },
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:134:      const archiveMultiplier = mod.getArchiveMultiplier('specs/z_archive/old');
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:143:        createMemory({ specFolder: 'z_archive/old', spec_folder: 'z_archive/old' }),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:114:  triggerQuality: 0.20,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:115:  lengthQuality: 0.20,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:117:  metadataQuality: 0.20,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:171:      const p = 'specs/003-feature/scratch/notes.md';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:285:      expect(mod.isMemoryFile('/project/specs/003-auth/scratch/notes.md')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:541:      // Write a file in scratch (not memory) that should be ignored
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:542:      const scratchDir = path.join(tmpRoot, 'specs', '030-find', 'scratch');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:543:      fs.mkdirSync(scratchDir, { recursive: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:544:      writeFile(scratchDir, 'temp.md', '# Temp');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:561:      const scratchFiles = files.filter((f: string) => f.includes('scratch'));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:562:      expect(scratchFiles).toHaveLength(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:54:    it('T207: R=0.10 => COLD', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:55:      expect(tierClassifier.classifyState(0.10, 0)).toBe('COLD');
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:219:    Object.setPrototypeOf(this, PreflightError.prototype);
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:638:  it('C138-T2: scratch tier has maximum decay multiplier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:639:    expect(TIER_MULTIPLIER.scratch).toBe(3.0);
 exec
-/bin/zsh -lc "sed -n '261,420p' .opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '261,420p' .opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
   }).filter(t => !isNaN(t));
 
   if (timestamps.length === 0) {
@@ -226,28 +226,28 @@ export function computeFolderScores(memories: FolderMemoryInput[], options: Fold
     excludePatterns = [],
     includeArchived = false,
 exec
-/bin/zsh -lc 'rg -n "last_used_at|INSERT OR REPLACE|embedding_cache|sha256|model_id|cache hit|cache miss|LRU|evict|max entries|feature flag|no feature flag" .opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts .opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:28: * Create the embedding_cache table if it does not exist.
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:35:    CREATE TABLE IF NOT EXISTS embedding_cache (
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:37:      model_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:41:      last_used_at TEXT NOT NULL DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:42:      PRIMARY KEY (content_hash, model_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:51: * On hit: updates last_used_at and returns the embedding Buffer.
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:57: * @returns Embedding buffer on cache hit, null on miss
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:65:    'SELECT embedding, dimensions FROM embedding_cache WHERE content_hash = ? AND model_id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:72:  // Update last_used_at on cache hit
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:74:    "UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?",
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:84:// server processes. Eviction uses LRU (oldest last_used_at first).
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:89: * Uses INSERT OR REPLACE so duplicate (content_hash, model_id) pairs
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:110:  // Auto-evict oldest entries when cache exceeds size limit
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:112:    'SELECT COUNT(*) AS cnt FROM embedding_cache',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:118:      `DELETE FROM embedding_cache WHERE rowid IN (
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:119:         SELECT rowid FROM embedding_cache ORDER BY last_used_at ASC LIMIT ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:125:    `INSERT OR REPLACE INTO embedding_cache
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:126:       (content_hash, model_id, embedding, dimensions, last_used_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:131:/* --- 5. LRU EVICTION --- */
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:134: * Evict cache entries whose last_used_at is older than maxAgeDays.
+/bin/zsh -lc 'rg -n "last_used_at|INSERT OR REPLACE|embedding_cache|sha256|model_id|cache hit|cache miss|LRU|evict|max entries|feature flag|no feature flag" .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts .opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:28: * Create the embedding_cache table if it does not exist.
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:35:    CREATE TABLE IF NOT EXISTS embedding_cache (
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:37:      model_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:41:      last_used_at TEXT NOT NULL DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:42:      PRIMARY KEY (content_hash, model_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:51: * On hit: updates last_used_at and returns the embedding Buffer.
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:57: * @returns Embedding buffer on cache hit, null on miss
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:65:    'SELECT embedding, dimensions FROM embedding_cache WHERE content_hash = ? AND model_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:72:  // Update last_used_at on cache hit
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:74:    "UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?",
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:84:// server processes. Eviction uses LRU (oldest last_used_at first).
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:89: * Uses INSERT OR REPLACE so duplicate (content_hash, model_id) pairs
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:110:  // Auto-evict oldest entries when cache exceeds size limit
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:112:    'SELECT COUNT(*) AS cnt FROM embedding_cache',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:118:      `DELETE FROM embedding_cache WHERE rowid IN (
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:119:         SELECT rowid FROM embedding_cache ORDER BY last_used_at ASC LIMIT ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:125:    `INSERT OR REPLACE INTO embedding_cache
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:126:       (content_hash, model_id, embedding, dimensions, last_used_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:131:/* --- 5. LRU EVICTION --- */
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:134: * Evict cache entries whose last_used_at is older than maxAgeDays.
  succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Embedding Cache
@@ -270,50 +270,50 @@ interface EmbeddingCacheStats {
   totalEntries: number;
   totalSizeBytes: number;
 exec
-/bin/zsh -lc "rg -n \"lookupEmbedding|storeEmbedding|initEmbeddingCache|embedding_cache|generateOrCacheEmbedding\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:16:import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:251:        const cachedChunkBuf = lookupEmbedding(database, chunkHash, modelId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:260:            storeEmbedding(database, chunkHash, modelId, chunkBuf, chunkEmbedding.length);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:9:import { lookupEmbedding, storeEmbedding } from '../../lib/cache/embedding-cache';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:20:export async function generateOrCacheEmbedding(
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:37:      const cachedBuf = lookupEmbedding(database, parsed.contentHash, modelId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:52:          storeEmbedding(database, parsed.contentHash, modelId, embBuf, embedding.length);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:62:import { generateOrCacheEmbedding } from './save/embedding-pipeline';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:183:  const embeddingResult = await generateOrCacheEmbedding(database, parsed, filePath, asyncEmbedding);
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:10:import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache';
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:260:    const cachedEmbedding = lookupEmbedding(db, contentHash, modelId);
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:279:        storeEmbedding(
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:28: * Create the embedding_cache table if it does not exist.
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:33:function initEmbeddingCache(db: Database.Database): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:35:    CREATE TABLE IF NOT EXISTS embedding_cache (
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:59:function lookupEmbedding(
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:65:    'SELECT embedding, dimensions FROM embedding_cache WHERE content_hash = ? AND model_id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:74:    "UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?",
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:103:function storeEmbedding(
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:112:    'SELECT COUNT(*) AS cnt FROM embedding_cache',
+/bin/zsh -lc "rg -n \"lookupEmbedding|storeEmbedding|initEmbeddingCache|embedding_cache|generateOrCacheEmbedding\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:16:import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:251:        const cachedChunkBuf = lookupEmbedding(database, chunkHash, modelId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:260:            storeEmbedding(database, chunkHash, modelId, chunkBuf, chunkEmbedding.length);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:9:import { lookupEmbedding, storeEmbedding } from '../../lib/cache/embedding-cache';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:20:export async function generateOrCacheEmbedding(
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:37:      const cachedBuf = lookupEmbedding(database, parsed.contentHash, modelId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:52:          storeEmbedding(database, parsed.contentHash, modelId, embBuf, embedding.length);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:62:import { generateOrCacheEmbedding } from './save/embedding-pipeline';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:183:  const embeddingResult = await generateOrCacheEmbedding(database, parsed, filePath, asyncEmbedding);
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:10:import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache';
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:260:    const cachedEmbedding = lookupEmbedding(db, contentHash, modelId);
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:279:        storeEmbedding(
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:28: * Create the embedding_cache table if it does not exist.
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:33:function initEmbeddingCache(db: Database.Database): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:35:    CREATE TABLE IF NOT EXISTS embedding_cache (
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:59:function lookupEmbedding(
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:65:    'SELECT embedding, dimensions FROM embedding_cache WHERE content_hash = ? AND model_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:74:    "UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?",
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:103:function storeEmbedding(
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:112:    'SELECT COUNT(*) AS cnt FROM embedding_cache',
 exec
-/bin/zsh -lc 'rg -n "INTENT_WEIGHT_PROFILES|INTENT_WEIGHT_ADJUSTMENTS|isHybrid|hybrid|double-weight|double weighting|recency boost|adaptive fusion|intent weights|queryIntent" .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:327:        searchType: 'hybrid',
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:335:    expect(output.metadata.searchType).toBe('hybrid');
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:4:// Verifies that intent weights are applied correctly (not double-counted)
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:6://   System A: Channel fusion weights (adaptive-fusion.ts INTENT_WEIGHT_PROFILES)
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:7://   System B: Result scoring weights (intent-classifier.ts INTENT_WEIGHT_ADJUSTMENTS)
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:14:  hybridAdaptiveFuse,
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:15:  INTENT_WEIGHT_PROFILES,
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:85:      // System B: INTENT_WEIGHT_ADJUSTMENTS
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:86:      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent];
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:92:      // System A: INTENT_WEIGHT_PROFILES
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:93:      const systemA = INTENT_WEIGHT_PROFILES[intent];
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:106:      const systemA = INTENT_WEIGHT_PROFILES[intent] as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:107:      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent] as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:121:  it('System B weights (INTENT_WEIGHT_ADJUSTMENTS) sum to ~1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:124:      const w = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent];
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:144:  it('System A (adaptive fusion) uses channel weights, not attribute weights', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:149:    const result = hybridAdaptiveFuse(semantic, keyword, intent);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:157:    const profile = INTENT_WEIGHT_PROFILES[intent];
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:179:    const weights = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS['fix_bug'];
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:229:    const bugResult = hybridAdaptiveFuse(semantic, keyword, 'fix_bug');
+/bin/zsh -lc 'rg -n "INTENT_WEIGHT_PROFILES|INTENT_WEIGHT_ADJUSTMENTS|isHybrid|hybrid|double-weight|double weighting|recency boost|adaptive fusion|intent weights|queryIntent" .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:327:        searchType: 'hybrid',
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-v2.vitest.ts:335:    expect(output.metadata.searchType).toBe('hybrid');
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:4:// Verifies that intent weights are applied correctly (not double-counted)
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:6://   System A: Channel fusion weights (adaptive-fusion.ts INTENT_WEIGHT_PROFILES)
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:7://   System B: Result scoring weights (intent-classifier.ts INTENT_WEIGHT_ADJUSTMENTS)
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:14:  hybridAdaptiveFuse,
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:15:  INTENT_WEIGHT_PROFILES,
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:85:      // System B: INTENT_WEIGHT_ADJUSTMENTS
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:86:      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent];
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:92:      // System A: INTENT_WEIGHT_PROFILES
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:93:      const systemA = INTENT_WEIGHT_PROFILES[intent];
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:106:      const systemA = INTENT_WEIGHT_PROFILES[intent] as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:107:      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent] as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:121:  it('System B weights (INTENT_WEIGHT_ADJUSTMENTS) sum to ~1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:124:      const w = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent];
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:144:  it('System A (adaptive fusion) uses channel weights, not attribute weights', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:149:    const result = hybridAdaptiveFuse(semantic, keyword, intent);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:157:    const profile = INTENT_WEIGHT_PROFILES[intent];
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:179:    const weights = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS['fix_bug'];
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:229:    const bugResult = hybridAdaptiveFuse(semantic, keyword, 'fix_bug');
  succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Intent Classifier
@@ -336,7 +336,7 @@ interface IntentWeights {
   contextType: string | null;
 }
 exec
-/bin/zsh -lc "sed -n '460,740p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '460,740p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
  * This is the SINGLE authoritative point where all scoring signals are
  * applied. The ordering is fixed and must not be changed without updating
  * the architectural documentation (see types.ts Stage2 comment block).
@@ -358,7 +358,7 @@ exec
  * @param input - Stage 2 input containing candidates and pipeline config
  * @returns Stage 2 output with scored results and per-signal metadata
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Test — Intent Weighting
 // ---------------------------------------------------------------
@@ -380,7 +380,7 @@ import {
 import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
 import type { RrfItem, FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
 exec
-/bin/zsh -lc "sed -n '680,860p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '680,860p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
                 id: item.id,
                 degreeScore: item.degreeScore,
               })),
@@ -402,7 +402,7 @@ exec
     if (lists.length > 0) {
       // T008: Track multi-source and graph-only results
 exec
-/bin/zsh -lc "sed -n '320,430p' .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '320,430p' .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     adaptiveCount: adaptiveResults.length,
     orderDifferences,
     topResultChanged,
@@ -424,8 +424,8 @@ exec
  * @param options         - Optional: documentType, identity, darkRun
  */
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "K values|grid search|20|40|60|80|100|MRR@5|Kendall|kendall|tau|optimal K|convention|rrf k|sensitivity" .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts .opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "K values|grid search|20|40|60|80|100|MRR@5|Kendall|kendall|tau|optimal K|convention|rrf k|sensitivity" .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts .opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: K-Value Sensitivity Analysis (T004a)
 // ---------------------------------------------------------------
@@ -447,50 +447,50 @@ interface KValueMetrics {
   /** Kendall tau rank correlation with the baseline (K=60) ranking. */
   kendallTau: number;
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:250:  it('C138-CV4: ID appearing in 3 variants gets +0.20 cross-variant bonus', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:262:    // 3 variants - 1 = 2 => 2 * 0.10 = 0.20 cross-variant bonus
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:263:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:32:  it('T021: RRF fusion with default k=60 parameter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:33:    expect(DEFAULT_K).toBe(60);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:53:    const expectedDoc1Base = 1 / (60 + 0 + 1) + 1 / (60 + 1 + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:56:    const expectedDoc3 = 1 / (60 + 2 + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:103:    const baseRrf = 1 / (60 + 0 + 1) + 1 / (60 + 0 + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:116:    const expectedNoBonus = 1 / (60 + 0 + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:2:// MODULE: Test — RSF vs RRF Kendall Tau
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:7:// Decision criterion: tau < 0.4 = REJECT RSF (rankings too different)
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:18: * Compute Kendall tau-b rank correlation coefficient.
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:19: * Handles ties using the tau-b variant:
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:20: *   tau_b = (C - D) / sqrt((C + D + T1) * (C + D + T2))
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:29:function kendallTauB(rankingA: number[], rankingB: number[]): number {
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:47:        // Tied in both — ignored in tau-b
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:89:): { tau: number; commonIds: number; totalIds: number } {
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:109:  const tau = kendallTauB(rankVecA, rankVecB);
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:110:  return { tau, commonIds, totalIds: allIds.size };
-.opencode/skill/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:159:    results.push(makeItem(maxBaseId + 100 + i, Math.max(0, score)));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:250:  it('C138-CV4: ID appearing in 3 variants gets +0.20 cross-variant bonus', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:262:    // 3 variants - 1 = 2 => 2 * 0.10 = 0.20 cross-variant bonus
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:263:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:32:  it('T021: RRF fusion with default k=60 parameter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:33:    expect(DEFAULT_K).toBe(60);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:53:    const expectedDoc1Base = 1 / (60 + 0 + 1) + 1 / (60 + 1 + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:56:    const expectedDoc3 = 1 / (60 + 2 + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:103:    const baseRrf = 1 / (60 + 0 + 1) + 1 / (60 + 0 + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:116:    const expectedNoBonus = 1 / (60 + 0 + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:2:// MODULE: Test — RSF vs RRF Kendall Tau
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:7:// Decision criterion: tau < 0.4 = REJECT RSF (rankings too different)
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:18: * Compute Kendall tau-b rank correlation coefficient.
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:19: * Handles ties using the tau-b variant:
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:20: *   tau_b = (C - D) / sqrt((C + D + T1) * (C + D + T2))
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:29:function kendallTauB(rankingA: number[], rankingB: number[]): number {
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:47:        // Tied in both — ignored in tau-b
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:89:): { tau: number; commonIds: number; totalIds: number } {
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:109:  const tau = kendallTauB(rankVecA, rankVecB);
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:110:  return { tau, commonIds, totalIds: allIds.size };
+.opencode/skills/system-spec-kit/mcp_server/tests/rsf-vs-rrf-kendall.vitest.ts:159:    results.push(makeItem(maxBaseId + 100 + i, Math.max(0, score)));
 exec
-/bin/zsh -lc "rg -n \"analyzeKValueSensitivity|K_VALUES|BASELINE_K\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:37:  analyzeKValueSensitivity,
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:40:  K_VALUES,
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:41:  BASELINE_K,
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:287:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:290:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:299:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:304:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:309:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:315:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:321:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:323:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:330:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:332:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:339:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:341:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:347:    const analysis = analyzeKValueSensitivity(testLists, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:353:    const analysis = analyzeKValueSensitivity([], 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:355:    for (const k of K_VALUES) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:128:const K_VALUES = [20, 40, 60, 80, 100] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:131:const BASELINE_K = 60;
+/bin/zsh -lc "rg -n \"analyzeKValueSensitivity|K_VALUES|BASELINE_K\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:37:  analyzeKValueSensitivity,
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:40:  K_VALUES,
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:41:  BASELINE_K,
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:287:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:290:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:299:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:304:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:309:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:315:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:321:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:323:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:330:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:332:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:339:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:341:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:347:    const analysis = analyzeKValueSensitivity(testLists, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:353:    const analysis = analyzeKValueSensitivity([], 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:355:    for (const k of K_VALUES) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:128:const K_VALUES = [20, 40, 60, 80, 100] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:131:const BASELINE_K = 60;
 exec
-/bin/zsh -lc "sed -n '250,380p' .opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '250,380p' .opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 
   it('handles empty array', () => {
     process.env.SPECKIT_SCORE_NORMALIZATION = 'true';
@@ -512,8 +512,8 @@ exec
     process.env.SPECKIT_SCORE_NORMALIZATION = 'true';
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"negative_feedback_events|RECOVERY_HALF_LIFE_MS|RECOVERY_HALF_LIFE_DAYS|0\\.3|wasUseful|SPECKIT_NEGATIVE_FEEDBACK|applyNegativeFeedback|confidence multiplier|last_negative_feedback_at|confidence-tracker|memory_validate|feedback signals\" .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts .opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts .opencode/skill/system-spec-kit/mcp_server/handlers/*.ts .opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts && printf '\\n=====\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"negative_feedback_events|RECOVERY_HALF_LIFE_MS|RECOVERY_HALF_LIFE_DAYS|0\\.3|wasUseful|SPECKIT_NEGATIVE_FEEDBACK|applyNegativeFeedback|confidence multiplier|last_negative_feedback_at|confidence-tracker|memory_validate|feedback signals\" .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts .opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts .opencode/skills/system-spec-kit/mcp_server/handlers/*.ts .opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Confidence Tracker
 // ---------------------------------------------------------------
@@ -535,28 +535,28 @@ export interface ValidationResult {
 }
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:101:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:49:      FROM negative_feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100:export function recordValidation(db: Database, memoryId: number, wasUseful: boolean): ValidationResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:116:      if (wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:132:      const effectiveNegativeValidationCount = wasUseful
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:156:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:213:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:253:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:295:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:6:// memory's composite score via a confidence multiplier.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:9:// Floor: 0.3 (never suppress below 30% of original score)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:23:export const CONFIDENCE_MULTIPLIER_FLOOR = 0.3;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:34:export const RECOVERY_HALF_LIFE_MS = 30 * 24 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:38:  CREATE TABLE IF NOT EXISTS negative_feedback_events (
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:47:  CREATE INDEX IF NOT EXISTS idx_negative_feedback_events_memory
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:48:  ON negative_feedback_events(memory_id, created_at_ms DESC)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:101:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:49:      FROM negative_feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100:export function recordValidation(db: Database, memoryId: number, wasUseful: boolean): ValidationResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:116:      if (wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:132:      const effectiveNegativeValidationCount = wasUseful
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:156:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:213:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:253:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:295:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:6:// memory's composite score via a confidence multiplier.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:9:// Floor: 0.3 (never suppress below 30% of original score)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:23:export const CONFIDENCE_MULTIPLIER_FLOOR = 0.3;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:34:export const RECOVERY_HALF_LIFE_MS = 30 * 24 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:38:  CREATE TABLE IF NOT EXISTS negative_feedback_events (
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:47:  CREATE INDEX IF NOT EXISTS idx_negative_feedback_events_memory
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:48:  ON negative_feedback_events(memory_id, created_at_ms DESC)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
 exec
-/bin/zsh -lc "sed -n '300,430p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts && printf '\\n=====\\n' && sed -n '313,445p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '300,430p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts && printf '\\n=====\\n' && sed -n '313,445p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     // No boost; still re-sort for consistency
     return [...results].sort((a, b) => resolveBaseScore(b) - resolveBaseScore(a));
   }
@@ -578,28 +578,28 @@ exec
  * Apply feedback signals — learned trigger boosts and negative feedback demotions.
  *
 exec
-/bin/zsh -lc 'rg -n "autoPromotion|memory_promotion_audit|8-hour|8 hour|rolling window|3 per 8|promot|non-promotable|constitutional|critical|temporary|deprecated|5 positive|10 positive|important-tier|previousTier|newTier|validationCount|reason" .opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts .opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts .opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,280p' .opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts && printf '\\n=====\\n' && sed -n '333,430p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:14:import { executeAutoPromotion } from '../lib/search/auto-promotion';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:67:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  promotionEligible: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:344:  // T002a: Auto-promotion wiring on positive feedback.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:345:  let autoPromotion: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:347:    promoted: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:348:    previousTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:349:    newTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:350:    reason?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:354:    const promotionResult = executeAutoPromotion(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:355:    autoPromotion = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:357:      promoted: promotionResult.promoted,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:358:      previousTier: promotionResult.previousTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:359:      newTier: promotionResult.newTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:360:      reason: promotionResult.reason,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:374:    reason?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:398:        reason: learnResult.reason,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:405:        reason: 'missing_query_terms_or_rank',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:415:  if (result.promotionEligible) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:416:    hints.push('Memory eligible for promotion to critical tier');
+/bin/zsh -lc 'rg -n "autoPromotion|memory_promotion_audit|8-hour|8 hour|rolling window|3 per 8|promot|non-promotable|constitutional|critical|temporary|deprecated|5 positive|10 positive|important-tier|previousTier|newTier|validationCount|reason" .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,280p' .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts && printf '\\n=====\\n' && sed -n '333,430p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:14:import { executeAutoPromotion } from '../lib/search/auto-promotion';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:67:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:69:  promotionEligible: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:344:  // T002a: Auto-promotion wiring on positive feedback.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:345:  let autoPromotion: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:347:    promoted: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:348:    previousTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:349:    newTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:350:    reason?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:354:    const promotionResult = executeAutoPromotion(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:355:    autoPromotion = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:357:      promoted: promotionResult.promoted,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:358:      previousTier: promotionResult.previousTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:359:      newTier: promotionResult.newTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:360:      reason: promotionResult.reason,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:374:    reason?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:398:        reason: learnResult.reason,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:405:        reason: 'missing_query_terms_or_rank',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:415:  if (result.promotionEligible) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:416:    hints.push('Memory eligible for promotion to critical tier');
  succeeded in 50ms:
 // ---------------------------------------------------------------
 // MODULE: Auto Promotion
@@ -622,7 +622,7 @@ import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
 export type { Database };
 
 exec
-/bin/zsh -lc "sed -n '920,980p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts && printf '\\n=====\\n' && sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/folder-relevance.vitest.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '920,980p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts && printf '\\n=====\\n' && sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/folder-relevance.vitest.ts && printf '\\n=====\\n' && sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
           // are promoted to their correct position in the ranking
           reranked.sort((a, b) => ((b.score as number) ?? 0) - ((a.score as number) ?? 0));
         } catch (_err: unknown) {
@@ -646,9 +646,9 @@ exec
 codex
 I’ve finished the first pass on the code paths and I’m now checking the trickier behavior claims, especially where the snippets describe architecture decisions rather than simple constants. A few of these look like they’ve drifted from the implementation, so I’m tracing the exact runtime call paths before I lock in the report.
 exec
-/bin/zsh -lc "sed -n '430,620p' .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '220,420p' .opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '430,620p' .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '220,420p' .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
   for (const [intent, score] of Object.entries(scores)) {
     if (score > topScore) {
@@ -712,7 +712,7 @@ import {
   getDenylistSize,
 } from '../lib/search/feedback-denylist';
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"); const path=require(\"path\"); const root=path.resolve(\".opencode/skill/system-spec-kit\"); const dir=path.join(root,\"feature_catalog/11--scoring-and-calibration\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[5-9]-|''^10-/.test(f)).sort(); for (const f of files) { const text=fs.readFileSync(path.join(dir,f),"utf8"); const section=text.split("## Source Files")[1]||""; const paths=[...section.matchAll(/`([''^`]+)`/g)].map(m=>m[1]); console.log("=== "+f+" ==="); for (const p of paths) { const ok=fs.existsSync(path.join(root,p)); console.log((ok?"OK   ":"MISS ")+p); } }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"); const path=require(\"path\"); const root=path.resolve(\".opencode/skills/system-spec-kit\"); const dir=path.join(root,\"feature_catalog/11--scoring-and-calibration\"); const files=fs.readdirSync(dir).filter(f=>/"'^0[5-9]-|''^10-/.test(f)).sort(); for (const f of files) { const text=fs.readFileSync(path.join(dir,f),"utf8"); const section=text.split("## Source Files")[1]||""; const paths=[...section.matchAll(/`([''^`]+)`/g)].map(m=>m[1]); console.log("=== "+f+" ==="); for (const p of paths) { const ok=fs.existsSync(path.join(root,p)); console.log((ok?"OK   ":"MISS ")+p); } }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 === 05-folder-level-relevance-scoring.md ===
 OK   mcp_server/lib/scoring/folder-scoring.ts
 OK   mcp_server/lib/search/folder-relevance.ts

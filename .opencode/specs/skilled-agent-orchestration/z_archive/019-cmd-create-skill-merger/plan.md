@@ -61,11 +61,11 @@ This implementation replaced fragmented create-skill command entrypoints with on
 Command-router consolidation with explicit operation and mode contracts.
 
 ### Key Components
-- **Canonical Entrypoint** (`.opencode/command/create/sk-skill.md`): Defines setup, gate model, mode routing, and operation contract.
-- **Auto Workflow** (`.opencode/command/create/assets/create_sk_skill_auto.yaml`): Autonomous execution flow.
-- **Confirm Workflow** (`.opencode/command/create/assets/create_sk_skill_confirm.yaml`): Interactive execution flow with checkpoints.
-- **Reference Update** (`.opencode/command/create/prompt.md`): Points related command guidance to canonical command variants.
-- **Cross-Runtime Doc Sync** (`.agents/agents/write.md`, `.opencode/agent/write.md`, .opencode/agent/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`): Aligns active docs to canonical `/create:sk-skill` naming.
+- **Canonical Entrypoint** (`.opencode/commands/create/sk-skill.md`): Defines setup, gate model, mode routing, and operation contract.
+- **Auto Workflow** (`.opencode/commands/create/assets/create_sk_skill_auto.yaml`): Autonomous execution flow.
+- **Confirm Workflow** (`.opencode/commands/create/assets/create_sk_skill_confirm.yaml`): Interactive execution flow with checkpoints.
+- **Reference Update** (`.opencode/commands/create/prompt.md`): Points related command guidance to canonical command variants.
+- **Cross-Runtime Doc Sync** (`.agents/agents/write.md`, `.opencode/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`): Aligns active docs to canonical `/create:sk-skill` naming.
 - **Legacy Reference Verification** (`.agents/agents`, `.codex`, `.claude`): Directory-level check confirms no remaining `/create:skill*` references.
 - **Memory Artifacts** (`memory/*.md`, `memory/metadata.json`): Captures and indexes implementation context for retrieval.
 
@@ -92,10 +92,10 @@ User invokes `/create:sk-skill` -> command file validates setup and required fie
 - [x] Verify operation and mode support are represented in canonical docs.
 
 ### Phase 4: Canonical Alignment and Expansion
-- [x] Align `.opencode/command/create/sk-skill.md` with sk-doc command template and create-command conventions.
-- [x] Expand `.opencode/command/create/sk-skill.md` to 523 lines.
-- [x] Expand `.opencode/command/create/assets/create_sk_skill_auto.yaml` to 470 lines.
-- [x] Expand `.opencode/command/create/assets/create_sk_skill_confirm.yaml` to 519 lines.
+- [x] Align `.opencode/commands/create/sk-skill.md` with sk-doc command template and create-command conventions.
+- [x] Expand `.opencode/commands/create/sk-skill.md` to 523 lines.
+- [x] Expand `.opencode/commands/create/assets/create_sk_skill_auto.yaml` to 470 lines.
+- [x] Expand `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` to 519 lines.
 
 ### Phase 5: Cross-Runtime Documentation Sync
 - [x] Synchronize active cross-runtime docs to canonical `/create:sk-skill` naming in all eight listed files.
@@ -129,8 +129,8 @@ User invokes `/create:sk-skill` -> command file validates setup and required fie
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/create/` command docs | Internal | Green | Consolidation cannot be completed |
-| `.opencode/command/create/assets/` workflows | Internal | Green | Mode routing cannot be unified |
+| `.opencode/commands/create/` command docs | Internal | Green | Consolidation cannot be completed |
+| `.opencode/commands/create/assets/` workflows | Internal | Green | Mode routing cannot be unified |
 | Related prompt reference docs | Internal | Green | Users receive stale command guidance |
 | Runtime write-agent and README/install docs | Internal | Green | Canonical command naming drifts across runtimes |
 | `.opencode/specs/.../memory/` persistence artifacts | Internal | Green | Implementation context is not retrievable for continuation |

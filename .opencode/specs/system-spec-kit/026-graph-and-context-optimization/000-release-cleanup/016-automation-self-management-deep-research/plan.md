@@ -38,7 +38,7 @@ _memory:
 | **Language/Stack** | Markdown research artifacts, JSONL state, shell validator |
 | **Framework** | system-spec-kit deep research packet |
 | **Storage** | Packet-local `research/` tree and spec docs |
-| **Testing** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 
 ### Overview
 This plan turns the charter in `spec.md` into a 7-iteration, packet-local evidence loop. The work is research-only: read runtime sources and configs, classify automation claims with the Auto/Half/Manual/Aspirational taxonomy, then write iteration files, deltas, state events, and a 9-section synthesis report.

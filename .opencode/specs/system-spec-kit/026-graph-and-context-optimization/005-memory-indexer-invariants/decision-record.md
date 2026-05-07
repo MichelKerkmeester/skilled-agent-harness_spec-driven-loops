@@ -229,7 +229,7 @@ The parser accepts `importanceTier: constitutional` from frontmatter anywhere, a
 
 ### Context
 
-The first implementation pass backfilled `.opencode/skill/system-spec-kit/constitutional/README.md` into the live DB and adjusted runtime discovery/parser behavior to admit it. The user clarified that this README is a human-facing overview, not a constitutional rule surface, so it must stay out of the memory index even though other rule files in `/constitutional/` remain indexable.
+The first implementation pass backfilled `.opencode/skills/system-spec-kit/constitutional/README.md` into the live DB and adjusted runtime discovery/parser behavior to admit it. The user clarified that this README is a human-facing overview, not a constitutional rule surface, so it must stay out of the memory index even though other rule files in `/constitutional/` remain indexable.
 
 ### Constraints
 - Do not widen scanner logic or change the shared index-scope helper.

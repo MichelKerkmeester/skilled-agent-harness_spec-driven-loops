@@ -5,28 +5,28 @@ import { describe, expect, it } from 'vitest';
 import {
   SEARCH_QUALITY_EXTENDED_CORPUS,
   type SearchQualityCase,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts';
 import {
   runMeasurement,
   type MeasurementRecord,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts';
-import { routeQuery } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts';
+import { routeQuery } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts';
 import {
   createEmptyQueryPlan,
   type QueryPlan,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts';
-import { decideConditionalRerank } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts';
-import { calibrateCocoIndexOverfetch } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts';
+import { decideConditionalRerank } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts';
+import { calibrateCocoIndexOverfetch } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts';
 import {
   buildSearchDecisionEnvelope,
   type SearchDecisionEnvelope,
   type ShadowDeltaTelemetry,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts';
 import {
   computeSearchDecisionSlaMetrics,
   recordSearchDecision,
-} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts';
-import { recordShadowDelta } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts';
+} from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts';
+import { recordShadowDelta } from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts';
 
 const PACKET = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/021-stress-test-v1-0-3-with-w3-w13-wiring';
 const MEASUREMENTS = resolve(PACKET, 'measurements');

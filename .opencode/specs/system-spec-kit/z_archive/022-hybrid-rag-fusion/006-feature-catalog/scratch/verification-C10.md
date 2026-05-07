@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-287e-7fe3-9573-508a8c39881e
 --------
 user
-You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md (6 files), then /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md (4 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md (6 files), then /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md through /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md (4 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -42,29 +42,29 @@ Plan update
   • Inspect the relevant source code to judge description accuracy and identify missing important files
   • Produce the per-feature verification report in the requested format
 exec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-degree-channel.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/04-weight-history-audit-tracking.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/02-co-activation-boost-strength-increase.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/03-edge-density-measurement.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/09-negative-feedback-confidence-signal.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-degree-channel.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/04-weight-history-audit-tracking.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/02-co-activation-boost-strength-increase.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/03-edge-density-measurement.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/05-graph-momentum-scoring.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/09-negative-feedback-confidence-signal.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify feature catalog snippet descriptions and source file coverage against system-spec-kit mcp_server code" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 563ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify feature catalog snippet descriptions and source file coverage against system-spec-kit mcp_server code" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 563ms:
 [
   {
     "skill": "system-spec-kit",
@@ -88,16 +88,16 @@ exec
 codex
 Skill routing selected `system-spec-kit` for this verification because the request is about spec/feature catalog accuracy. I’m loading just the relevant guidance now, then I’ll continue the code-to-doc cross-check.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # ANCHOR tags as graph nodes
 
 ## Current Reality
@@ -310,7 +310,7 @@ The boost applies before FSRS decay and caps the composite score at 0.95 to prev
 codex
 I’ve got the feature summaries; next I’m tracing the exact implementation symbols and the listed paths inside `mcp_server` to separate real coverage from generic boilerplate file lists. That should let me flag both bad descriptions and over/under-inclusive source lists cleanly.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Graph and cognitive memory fixes
 
 ## Current Reality
@@ -332,216 +332,216 @@ Seven fixes (of 9 planned; 2 deferred) addressed graph integrity and cognitive s
 ### Implementation
 
 exec
-/bin/zsh -lc 'rg -n "temporal contiguity|temporal-contiguity|queryTemporalNeighbors|buildSpecFolderTimeline|0.15|0.50|1 hour|24 hours" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "computeCausalDepthScores|applyGraphSignals|computeGraphMomentumScores|SPECKIT_GRAPH_SIGNALS|computeCausalDepth" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "applyCausalBoost|SPECKIT_CAUSAL_BOOST|seed.*25%|weighted recursive CTE|session boost|0.20|2 hops|supersedes|leads_to|relates_to" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"calculateNoveltyBoost|noveltyBoost|SPECKIT_.*NOVELTY|exp\\(-elapsed_hours / 12\\)|0.15|48 hours|0.95|always returned 0|noveltyBoostApplied\" .opencode/skill/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "normalize|SPECKIT_SCORE_NORMALIZATION|min-max|single-result|equal-score|normalizeScores|normalizeCompositeScores|normalizeRrfScores|0-0.07|0-1" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "anchor|ANCHOR|graph node|retrieval trace" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "detectCommunities|storeCommunityAssignments|applyCommunityBoost|SPECKIT_COMMUNITY_DETECTION|community_assignments|Louvain|connected component" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "classification decay|SPECKIT_CLASSIFICATION_DECAY|Infinity|stability|constitutional|critical|important|temporary|deprecated|context axis|tier axis|FSRS" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "interference|Jaccard|0.75|SPECKIT_INTERFERENCE_SCORE|-0.08|threshold|same spec folder|neighbor" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:66:import { applyGraphSignals } from '../../graph/graph-signals';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:590:      const signaled = applyGraphSignals(results, db);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:138: * Default: TRUE (enabled). Set SPECKIT_GRAPH_SIGNALS=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:141:  return isFeatureEnabled('SPECKIT_GRAPH_SIGNALS');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:372:| `SPECKIT_GRAPH_SIGNALS`   | `true`  | Enable N2a momentum + N2b causal depth scoring |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:584:Graph-based scoring signals applied during Stage 2 fusion. Gated via `SPECKIT_GRAPH_SIGNALS` (N2a + N2b) and `SPECKIT_COMMUNITY_DETECTION` (N2c).
-.opencode/skill/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:52:  'SPECKIT_GRAPH_SIGNALS',
-.opencode/skill/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:76:  { flag: 'SPECKIT_GRAPH_SIGNALS', checker: isGraphSignalsEnabled },
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:4:// Deferred feature — gated via SPECKIT_GRAPH_SIGNALS
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:242:export function computeCausalDepthScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:326:    console.warn(`[graph-signals] computeCausalDepthScores failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:361:export function applyGraphSignals(
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:370:    const depthScores = computeCausalDepthScores(db, ids);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:391:    console.warn(`[graph-signals] applyGraphSignals failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:4://         computeCausalDepthScores, applyGraphSignals, clearGraphSignalsCache
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:13:  computeCausalDepthScores,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:14:  applyGraphSignals,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:274:  // 5. computeCausalDepthScores
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:276:  describe('computeCausalDepthScores', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:282:      const scores = computeCausalDepthScores(db, [1, 2, 3]);
+/bin/zsh -lc 'rg -n "temporal contiguity|temporal-contiguity|queryTemporalNeighbors|buildSpecFolderTimeline|0.15|0.50|1 hour|24 hours" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "computeCausalDepthScores|applyGraphSignals|computeGraphMomentumScores|SPECKIT_GRAPH_SIGNALS|computeCausalDepth" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "applyCausalBoost|SPECKIT_CAUSAL_BOOST|seed.*25%|weighted recursive CTE|session boost|0.20|2 hops|supersedes|leads_to|relates_to" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"calculateNoveltyBoost|noveltyBoost|SPECKIT_.*NOVELTY|exp\\(-elapsed_hours / 12\\)|0.15|48 hours|0.95|always returned 0|noveltyBoostApplied\" .opencode/skills/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "normalize|SPECKIT_SCORE_NORMALIZATION|min-max|single-result|equal-score|normalizeScores|normalizeCompositeScores|normalizeRrfScores|0-0.07|0-1" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "anchor|ANCHOR|graph node|retrieval trace" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "detectCommunities|storeCommunityAssignments|applyCommunityBoost|SPECKIT_COMMUNITY_DETECTION|community_assignments|Louvain|connected component" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "classification decay|SPECKIT_CLASSIFICATION_DECAY|Infinity|stability|constitutional|critical|important|temporary|deprecated|context axis|tier axis|FSRS" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "interference|Jaccard|0.75|SPECKIT_INTERFERENCE_SCORE|-0.08|threshold|same spec folder|neighbor" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:66:import { applyGraphSignals } from '../../graph/graph-signals';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:590:      const signaled = applyGraphSignals(results, db);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:138: * Default: TRUE (enabled). Set SPECKIT_GRAPH_SIGNALS=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:141:  return isFeatureEnabled('SPECKIT_GRAPH_SIGNALS');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:372:| `SPECKIT_GRAPH_SIGNALS`   | `true`  | Enable N2a momentum + N2b causal depth scoring |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:584:Graph-based scoring signals applied during Stage 2 fusion. Gated via `SPECKIT_GRAPH_SIGNALS` (N2a + N2b) and `SPECKIT_COMMUNITY_DETECTION` (N2c).
+.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:52:  'SPECKIT_GRAPH_SIGNALS',
+.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts:76:  { flag: 'SPECKIT_GRAPH_SIGNALS', checker: isGraphSignalsEnabled },
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:4:// Deferred feature — gated via SPECKIT_GRAPH_SIGNALS
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:242:export function computeCausalDepthScores(db: Database.Database, memoryIds: number[]): Map<number, number> {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:326:    console.warn(`[graph-signals] computeCausalDepthScores failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:361:export function applyGraphSignals(
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:370:    const depthScores = computeCausalDepthScores(db, ids);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:391:    console.warn(`[graph-signals] applyGraphSignals failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:4://         computeCausalDepthScores, applyGraphSignals, clearGraphSignalsCache
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:13:  computeCausalDepthScores,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:14:  applyGraphSignals,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:274:  // 5. computeCausalDepthScores
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:276:  describe('computeCausalDepthScores', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:282:      const scores = computeCausalDepthScores(db, [1, 2, 3]);
  succeeded in 51ms:
 Total output lines: 239
 
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:426:            // 'summary-session-1770903150838-...'). Prefers shortest match to
-.opencode/skill/system-spec-kit/mcp_server/README.md:462:| Cold-start N4 (S2)     | Novelty boost                  | 0.15 * exp(-elapsed/12)  | Boost recently indexed memories               |
-.opencode/skill/system-spec-kit/mcp_server/README.md:568:| **debug**          | 1 hour    | "Stack trace from crash"                |
-.opencode/skill/system-spec-kit/mcp_server/README.md:580:| 0.50-0.69  | LOW_MATCH    | Create new, note similarity                  |
-.opencode/skill/system-spec-kit/mcp_server/README.md:581:| < 0.50     | UNIQUE       | Create new memory normally                   |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:8:const SESSION_BOOST_MULTIPLIER = 0.15;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:47: * and allow the caller to skip full retrieval scatter (saves 30-50ms).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:76: * save 30-50 ms of latency.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:405:    let combined = (centroidScore * 0.5) + (keywordScore * 0.35) + (patternScore * 0.15);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:178:const STALE_CLEANUP_INTERVAL_MS = parseInt(process.env.STALE_CLEANUP_INTERVAL_MS as string, 10) || 60 * 60 * 1000; // 1 hour
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:179:const STALE_SESSION_THRESHOLD_MS = parseInt(process.env.STALE_SESSION_THRESHOLD_MS as string, 10) || 24 * 60 * 60 * 1000; // 24 hours
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:210:**Trade-off**: Adds 200-500ms latency but improves precision by 15-25%.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:598:Hub caps prevent high-degree nodes from dominating: `MAX_TYPED_DEGREE=15` (default max before normalization), `MAX_TOTAL_DEGREE=50` (hard cap on raw degree). Normalized boost capped at `DEGREE_BOOST_CAP=0.15`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:629:| 2. Content Quality | 5-dimension weighted signal density | Dimensions: title (0.25), triggers (0.20), length (0.20), anchors (0.15), metadata (0.20) |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:101:      "notes": "Graph-relationship query about architectural lineage. Tests find_decision intent routing with high graph weight (0.50 per adaptive-fusion profile)."
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:143:    it('T531: Novel content (sim=0.50) creates new memory', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:179:  //   i=1: mem:20 → rel=3 > 0 → RETURN 1/(1+1) = 1/2 = 0.500
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:182:  //   MRR@5 = 0.500
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:426:            // 'summary-session-1770903150838-...'). Prefers shortest match to
+.opencode/skills/system-spec-kit/mcp_server/README.md:462:| Cold-start N4 (S2)     | Novelty boost                  | 0.15 * exp(-elapsed/12)  | Boost recently indexed memories               |
+.opencode/skills/system-spec-kit/mcp_server/README.md:568:| **debug**          | 1 hour    | "Stack trace from crash"                |
+.opencode/skills/system-spec-kit/mcp_server/README.md:580:| 0.50-0.69  | LOW_MATCH    | Create new, note similarity                  |
+.opencode/skills/system-spec-kit/mcp_server/README.md:581:| < 0.50     | UNIQUE       | Create new memory normally                   |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:8:const SESSION_BOOST_MULTIPLIER = 0.15;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:47: * and allow the caller to skip full retrieval scatter (saves 30-50ms).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:76: * save 30-50 ms of latency.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:405:    let combined = (centroidScore * 0.5) + (keywordScore * 0.35) + (patternScore * 0.15);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:178:const STALE_CLEANUP_INTERVAL_MS = parseInt(process.env.STALE_CLEANUP_INTERVAL_MS as string, 10) || 60 * 60 * 1000; // 1 hour
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:179:const STALE_SESSION_THRESHOLD_MS = parseInt(process.env.STALE_SESSION_THRESHOLD_MS as string, 10) || 24 * 60 * 60 * 1000; // 24 hours
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:210:**Trade-off**: Adds 200-500ms latency but improves precision by 15-25%.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:598:Hub caps prevent high-degree nodes from dominating: `MAX_TYPED_DEGREE=15` (default max before normalization), `MAX_TOTAL_DEGREE=50` (hard cap on raw degree). Normalized boost capped at `DEGREE_BOOST_CAP=0.15`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:629:| 2. Content Quality | 5-dimension weighted signal density | Dimensions: title (0.25), triggers (0.20), length (0.20), anchors (0.15), metadata (0.20) |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:101:      "notes": "Graph-relationship query about architectural lineage. Tests find_decision intent routing with high graph weight (0.50 per adaptive-fusion profile)."
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:143:    it('T531: Novel content (sim=0.50) creates new memory', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:179:  //   i=1: mem:20 → rel=3 > 0 → RETURN 1/(1+1) = 1/2 = 0.500
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:182:  //   MRR@5 = 0.500
  succeeded in 50ms:
 Total output lines: 213
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:853:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:68:  'supersedes',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:44:  by_supersedes: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:95:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:139:      case 'supersedes': return result.by_supersedes;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:162:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:179:      case 'supersedes': merged.by_supersedes.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:226:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:313:        chain = forwardFlat || backwardFlat || { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:317:      chain = tree ? flattenCausalTree(tree, maxDepth, mappedDirection) : { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:378:    if (chain.by_supersedes.length > 0) relationSummary.push(`${chain.by_supersedes.length} supersedes`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:401:        supersedes: chain.by_supersedes,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:34:  budget: 0.20,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:236: *   - budget    × 0.20
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:77:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:323:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:324:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Memory ID to trace causal lineage for (required)' }, maxDepth: { type: 'number', default: 3, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', enum: ['outgoing', 'incoming', 'both'], default: 'both', description: 'Traversal direction: outgoing (what this caused), incoming (what caused this), or both' }, relations: { type: 'array', items: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'] }, description: 'Filter to specific relationship types' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:329:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:853:    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:68:  'supersedes',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:44:  by_supersedes: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:95:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:139:      case 'supersedes': return result.by_supersedes;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:162:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:179:      case 'supersedes': merged.by_supersedes.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:226:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:313:        chain = forwardFlat || backwardFlat || { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:317:      chain = tree ? flattenCausalTree(tree, maxDepth, mappedDirection) : { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:378:    if (chain.by_supersedes.length > 0) relationSummary.push(`${chain.by_supersedes.length} supersedes`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:401:        supersedes: chain.by_supersedes,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:34:  budget: 0.20,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:236: *   - budget    × 0.20
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:77:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:323:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:324:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Memory ID to trace causal lineage for (required)' }, maxDepth: { type: 'number', default: 3, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', enum: ['outgoing', 'incoming', 'both'], default: 'both', description: 'Traversal direction: outgoing (what this caused), incoming (what caused this), or both' }, relations: { type: 'array', items: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'] }, description: 'Filter to specific relationship types' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:329:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
  succeeded in 52ms:
 Total output lines: 389
 
-.opencode/skill/system-spec-kit/mcp_server/README.md:462:| Cold-start N4 (S2)     | Novelty boost                  | 0.15 * exp(-elapsed/12)  | Boost recently indexed memories               |
-.opencode/skill/system-spec-kit/mcp_server/README.md:577:| >= 0.95    | DUPLICATE    | Block save, reinforce existing               |
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:151:      { id: 'a', score: 0.95, meta: 'hello' },
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:350:      [1, 0.95], [2, 0.91], [3, 0.89], [4, 0.87],
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:351:      [5, 0.15], [6, 0.12], [7, 0.10], [8, 0.09], [9, 0.08], [10, 0.07],
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:229:      expect(determineAction(0.95)).toBe('merge');
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:6:  calculateNoveltyBoost,
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:33:// N4: calculateNoveltyBoost
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:36:describe('calculateNoveltyBoost — flag disabled (default)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:41:  it('returns 0 when SPECKIT_NOVELTY_BOOST is not set', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:42:    const boost = calculateNoveltyBoost(new Date(hoursAgo(0)).toISOString());
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:46:  it('returns 0 when SPECKIT_NOVELTY_BOOST is "false"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:47:    vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'false');
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:48:    const boost = calculateNoveltyBoost(new Date(hoursAgo(0)).toISOString());
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:53:describe('calculateNoveltyBoost — feature removed (always returns 0)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:55:    vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:64:    const boost = calculateNoveltyBoost(createdAt);
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:70:    const boost = calculateNoveltyBoost(createdAt);
+.opencode/skills/system-spec-kit/mcp_server/README.md:462:| Cold-start N4 (S2)     | Novelty boost                  | 0.15 * exp(-elapsed/12)  | Boost recently indexed memories               |
+.opencode/skills/system-spec-kit/mcp_server/README.md:577:| >= 0.95    | DUPLICATE    | Block save, reinforce existing               |
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:151:      { id: 'a', score: 0.95, meta: 'hello' },
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:350:      [1, 0.95], [2, 0.91], [3, 0.89], [4, 0.87],
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:351:      [5, 0.15], [6, 0.12], [7, 0.10], [8, 0.09], [9, 0.08], [10, 0.07],
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:229:      expect(determineAction(0.95)).toBe('merge');
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:6:  calculateNoveltyBoost,
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:33:// N4: calculateNoveltyBoost
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:36:describe('calculateNoveltyBoost — flag disabled (default)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:41:  it('returns 0 when SPECKIT_NOVELTY_BOOST is not set', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:42:    const boost = calculateNoveltyBoost(new Date(hoursAgo(0)).toISOString());
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:46:  it('returns 0 when SPECKIT_NOVELTY_BOOST is "false"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:47:    vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'false');
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:48:    const boost = calculateNoveltyBoost(new Date(hoursAgo(0)).toISOString());
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:53:describe('calculateNoveltyBoost — feature removed (always returns 0)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:55:    vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:64:    const boost = calculateNoveltyBoost(createdAt);
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:70:    const boost = calculateNoveltyBoost(createdAt);
  succeeded in 52ms:
 Total output lines: 988
 
-.opencode/skill/system-spec-kit/mcp_server/README.md:750:| `SPECKIT_SCORE_NORMALIZATION`   | `true`  | Normalize RRF/composite scores to [0,1] |
-.opencode/skill/system-spec-kit/mcp_server/README.md:964:// - normalizedPath (canonical key)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:23:  normalizedPath: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:45:  normalizedPath: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:108:    const normalizedPath = toNormalizedPath(row.file_path);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:109:    const aliasKey = toSpecAliasKey(normalizedPath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:121:    if (normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:124:    if (normalizedPath.includes(SPECS_SEGMENT) && !normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:127:    bucket.variants.add(normalizedPath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:146:  for (const [normalizedPath, bucket] of buckets.entries()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:172:        normalizedPath,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:216:  for (const [normalizedPath, bucket] of buckets.entries()) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:228:      normalizedPath,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:233:  return candidates.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:246:      normalizedPath: sample.normalizedPath,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:249:    .sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:285:        normalizedPath: sample.normalizedPath,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:300:      summary.errors.push(`[${sample.normalizedPath}] ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/README.md:750:| `SPECKIT_SCORE_NORMALIZATION`   | `true`  | Normalize RRF/composite scores to [0,1] |
+.opencode/skills/system-spec-kit/mcp_server/README.md:964:// - normalizedPath (canonical key)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:23:  normalizedPath: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:45:  normalizedPath: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:108:    const normalizedPath = toNormalizedPath(row.file_path);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:109:    const aliasKey = toSpecAliasKey(normalizedPath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:121:    if (normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:124:    if (normalizedPath.includes(SPECS_SEGMENT) && !normalizedPath.includes(DOT_OPENCODE_SPECS_SEGMENT)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:127:    bucket.variants.add(normalizedPath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:146:  for (const [normalizedPath, bucket] of buckets.entries()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:172:        normalizedPath,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:216:  for (const [normalizedPath, bucket] of buckets.entries()) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:228:      normalizedPath,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:233:  return candidates.sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:246:      normalizedPath: sample.normalizedPath,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:249:    .sort((a, b) => a.normalizedPath.localeCompare(b.normalizedPath));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:285:        normalizedPath: sample.normalizedPath,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:300:      summary.errors.push(`[${sample.normalizedPath}] ${message}`);
  succeeded in 52ms:
 Total output lines: 1558
 
-.opencode/skill/system-spec-kit/shared/README.md:16:<!-- ANCHOR:table-of-contents -->
-.opencode/skill/system-spec-kit/shared/README.md:28:<!-- /ANCHOR:table-of-contents -->
-.opencode/skill/system-spec-kit/shared/README.md:32:<!-- ANCHOR:overview -->
-.opencode/skill/system-spec-kit/shared/README.md:106:<!-- /ANCHOR:overview -->
-.opencode/skill/system-spec-kit/shared/README.md:121:<!-- ANCHOR:quick-start -->
-.opencode/skill/system-spec-kit/shared/README.md:164:<!-- /ANCHOR:quick-start -->
-.opencode/skill/system-spec-kit/shared/README.md:168:<!-- ANCHOR:structure -->
-.opencode/skill/system-spec-kit/shared/README.md:224:| `contracts/retrieval-trace.ts` | Typed retrieval trace and context envelope contracts |
-.opencode/skill/system-spec-kit/shared/README.md:229:<!-- /ANCHOR:structure -->
-.opencode/skill/system-spec-kit/shared/README.md:233:<!-- ANCHOR:features -->
-.opencode/skill/system-spec-kit/shared/README.md:309:<!-- /ANCHOR:features -->
-.opencode/skill/system-spec-kit/shared/README.md:313:<!-- ANCHOR:configuration -->
-.opencode/skill/system-spec-kit/shared/README.md:345:<!-- /ANCHOR:configuration -->
-.opencode/skill/system-spec-kit/shared/README.md:349:<!-- ANCHOR:usage-examples -->
-.opencode/skill/system-spec-kit/shared/README.md:441:<!-- /ANCHOR:usage-examples -->
-.opencode/skill/system-spec-kit/shared/README.md:445:<!-- ANCHOR:troubleshooting -->
-.opencode/skill/system-spec-kit/shared/README.md:520:<!-- /ANCHOR:troubleshooting -->
-.opencode/skill/system-spec-kit/shared/README.md:524:<!-- ANCHOR:related -->
+.opencode/skills/system-spec-kit/shared/README.md:16:<!-- ANCHOR:table-of-contents -->
+.opencode/skills/system-spec-kit/shared/README.md:28:<!-- /ANCHOR:table-of-contents -->
+.opencode/skills/system-spec-kit/shared/README.md:32:<!-- ANCHOR:overview -->
+.opencode/skills/system-spec-kit/shared/README.md:106:<!-- /ANCHOR:overview -->
+.opencode/skills/system-spec-kit/shared/README.md:121:<!-- ANCHOR:quick-start -->
+.opencode/skills/system-spec-kit/shared/README.md:164:<!-- /ANCHOR:quick-start -->
+.opencode/skills/system-spec-kit/shared/README.md:168:<!-- ANCHOR:structure -->
+.opencode/skills/system-spec-kit/shared/README.md:224:| `contracts/retrieval-trace.ts` | Typed retrieval trace and context envelope contracts |
+.opencode/skills/system-spec-kit/shared/README.md:229:<!-- /ANCHOR:structure -->
+.opencode/skills/system-spec-kit/shared/README.md:233:<!-- ANCHOR:features -->
+.opencode/skills/system-spec-kit/shared/README.md:309:<!-- /ANCHOR:features -->
+.opencode/skills/system-spec-kit/shared/README.md:313:<!-- ANCHOR:configuration -->
+.opencode/skills/system-spec-kit/shared/README.md:345:<!-- /ANCHOR:configuration -->
+.opencode/skills/system-spec-kit/shared/README.md:349:<!-- ANCHOR:usage-examples -->
+.opencode/skills/system-spec-kit/shared/README.md:441:<!-- /ANCHOR:usage-examples -->
+.opencode/skills/system-spec-kit/shared/README.md:445:<!-- ANCHOR:troubleshooting -->
+.opencode/skills/system-spec-kit/shared/README.md:520:<!-- /ANCHOR:troubleshooting -->
+.opencode/skills/system-spec-kit/shared/README.md:524:<!-- ANCHOR:related -->
  succeeded in 51ms:
 Total output lines: 167
 
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:373:| `SPECKIT_COMMUNITY_DETECTION`| `true`| Enable N2c BFS/Louvain community detection |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:584:Graph-based scoring signals applied during Stage 2 fusion. Gated via `SPECKIT_GRAPH_SIGNALS` (N2a + N2b) and `SPECKIT_COMMUNITY_DETECTION` (N2c).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:610:BFS connected-component labelling assigns community IDs. When the largest component contains >50% of all nodes, escalates to Louvain modularity optimization for finer-grained communities. Community co-members are injected into Stage 2 results before graph signal scoring. Gated via `SPECKIT_COMMUNITY_DETECTION`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:145: * N2c: Community detection (BFS connected components + Louvain escalation).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:146: * Default: TRUE (enabled). Set SPECKIT_COMMUNITY_DETECTION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:149:  return isFeatureEnabled('SPECKIT_COMMUNITY_DETECTION');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:33:// v19: degree_snapshots + community_assignments (N2 graph centrality)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:609:          CREATE TABLE IF NOT EXISTS community_assignments (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:617:        database.exec('CREATE INDEX IF NOT EXISTS idx_community_assignments_community ON community_assignments(community_id)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:618:        logger.info('Migration v19: Created community_assignments table (N2c)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:621:          console.warn('[VectorIndex] Migration v19 warning (community_assignments):', get_error_message(e));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:368:      'DELETE FROM community_assignments WHERE memory_id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:65:import { applyCommunityBoost } from '../../graph/community-detection';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:574:      const boosted = applyCommunityBoost(results, db);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:4:// Deferred feature — gated via SPECKIT_COMMUNITY_DETECTION
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:98:export function detectCommunitiesBFS(
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:140: * Check whether the largest connected component contains >50% of all nodes.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:141: * If true, the graph is poorly partitioned and Louvain should be attempted.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:373:| `SPECKIT_COMMUNITY_DETECTION`| `true`| Enable N2c BFS/Louvain community detection |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:584:Graph-based scoring signals applied during Stage 2 fusion. Gated via `SPECKIT_GRAPH_SIGNALS` (N2a + N2b) and `SPECKIT_COMMUNITY_DETECTION` (N2c).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:610:BFS connected-component labelling assigns community IDs. When the largest component contains >50% of all nodes, escalates to Louvain modularity optimization for finer-grained communities. Community co-members are injected into Stage 2 results before graph signal scoring. Gated via `SPECKIT_COMMUNITY_DETECTION`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:145: * N2c: Community detection (BFS connected components + Louvain escalation).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:146: * Default: TRUE (enabled). Set SPECKIT_COMMUNITY_DETECTION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:149:  return isFeatureEnabled('SPECKIT_COMMUNITY_DETECTION');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:33:// v19: degree_snapshots + community_assignments (N2 graph centrality)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:609:          CREATE TABLE IF NOT EXISTS community_assignments (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:617:        database.exec('CREATE INDEX IF NOT EXISTS idx_community_assignments_community ON community_assignments(community_id)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:618:        logger.info('Migration v19: Created community_assignments table (N2c)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:621:          console.warn('[VectorIndex] Migration v19 warning (community_assignments):', get_error_message(e));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:368:      'DELETE FROM community_assignments WHERE memory_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:65:import { applyCommunityBoost } from '../../graph/community-detection';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:574:      const boosted = applyCommunityBoost(results, db);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:4:// Deferred feature — gated via SPECKIT_COMMUNITY_DETECTION
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:98:export function detectCommunitiesBFS(
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:140: * Check whether the largest connected component contains >50% of all nodes.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:141: * If true, the graph is poorly partitioned and Louvain should be attempted.
  succeeded in 51ms:
 Total output lines: 807
 
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:77:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:93:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
-.opencode/skill/system-spec-kit/mcp_server/README.md:83:| **Duplicates**    | Index everything    | Prediction Error Gating (4-tier thresholds)              |
-.opencode/skill/system-spec-kit/mcp_server/README.md:461:| Interference (S2)      | TM-01 interference penalty     | -0.08 * score             | Penalize competing/contradictory memories     |
-.opencode/skill/system-spec-kit/mcp_server/README.md:522:| Chunking threshold | 50,000 characters                 |
-.opencode/skill/system-spec-kit/mcp_server/README.md:646:│   ├── chunking/           # Anchor-aware large-file chunker (50K threshold)
-.opencode/skill/system-spec-kit/mcp_server/README.md:659:│   ├── scoring/            # Composite scoring, tiers, folder scoring, interference scoring
-.opencode/skill/system-spec-kit/mcp_server/README.md:704:| `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0`                      | S5 density guard threshold for cross-document entity linking |
-.opencode/skill/system-spec-kit/mcp_server/README.md:706:S5 density guard behavior in `lib/search/entity-linker.ts`: if current global edge density (`causal_edges / memory_index`) is already above the threshold, entity linking is skipped for that run. During link creation, inserts that would push projected density above the threshold are skipped. Invalid values (non-numeric or non-finite) and negative values for `SPECKIT_ENTITY_LINKING_MAX_DENSITY` fall back to `1.0`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:734:| `SPECKIT_CAUSAL_BOOST`       | `true`  | Enable 2-hop causal-neighbor score boost                                              |
-.opencode/skill/system-spec-kit/mcp_server/README.md:748:| `SPECKIT_INTERFERENCE_SCORE`    | `true`  | TM-01 interference penalty |
-.opencode/skill/system-spec-kit/mcp_server/README.md:791:| `SPECKIT_EMBEDDING_EXPANSION`  | `true`  | Expands queries with semantic neighbors before search (R12) |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1181:| `lib/search/causal-boost.ts`             | 2-hop causal-neighbor score boost                |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1191:| `lib/chunking/anchor-chunker.ts`         | Large-file anchor-aware chunking (50K threshold) |
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:52: * thresholds are:
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:399: * Computes quality score, attempts auto-fix if below threshold,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:404: * @param options - threshold (default 0.6), maxRetries (default 2)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:410:  options?: { maxRetries?: number; threshold?: number },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:77:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:93:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
+.opencode/skills/system-spec-kit/mcp_server/README.md:83:| **Duplicates**    | Index everything    | Prediction Error Gating (4-tier thresholds)              |
+.opencode/skills/system-spec-kit/mcp_server/README.md:461:| Interference (S2)      | TM-01 interference penalty     | -0.08 * score             | Penalize competing/contradictory memories     |
+.opencode/skills/system-spec-kit/mcp_server/README.md:522:| Chunking threshold | 50,000 characters                 |
+.opencode/skills/system-spec-kit/mcp_server/README.md:646:│   ├── chunking/           # Anchor-aware large-file chunker (50K threshold)
+.opencode/skills/system-spec-kit/mcp_server/README.md:659:│   ├── scoring/            # Composite scoring, tiers, folder scoring, interference scoring
+.opencode/skills/system-spec-kit/mcp_server/README.md:704:| `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0`                      | S5 density guard threshold for cross-document entity linking |
+.opencode/skills/system-spec-kit/mcp_server/README.md:706:S5 density guard behavior in `lib/search/entity-linker.ts`: if current global edge density (`causal_edges / memory_index`) is already above the threshold, entity linking is skipped for that run. During link creation, inserts that would push projected density above the threshold are skipped. Invalid values (non-numeric or non-finite) and negative values for `SPECKIT_ENTITY_LINKING_MAX_DENSITY` fall back to `1.0`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:734:| `SPECKIT_CAUSAL_BOOST`       | `true`  | Enable 2-hop causal-neighbor score boost                                              |
+.opencode/skills/system-spec-kit/mcp_server/README.md:748:| `SPECKIT_INTERFERENCE_SCORE`    | `true`  | TM-01 interference penalty |
+.opencode/skills/system-spec-kit/mcp_server/README.md:791:| `SPECKIT_EMBEDDING_EXPANSION`  | `true`  | Expands queries with semantic neighbors before search (R12) |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1181:| `lib/search/causal-boost.ts`             | 2-hop causal-neighbor score boost                |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1191:| `lib/chunking/anchor-chunker.ts`         | Large-file anchor-aware chunking (50K threshold) |
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:52: * thresholds are:
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:399: * Computes quality score, attempts auto-fix if below threshold,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:404: * @param options - threshold (default 0.6), maxRetries (default 2)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:410:  options?: { maxRetries?: number; threshold?: number },
  succeeded in 51ms:
 Total output lines: 2065
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:128:interface AutoSurfaceResult { constitutional: unknown[]; triggered: unknown[]; }
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:430:    // Also scan constitutional directories (.opencode/skill/*/constitutional/)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:437:            const constDir = path.join(skillDir, entry.name, 'constitutional');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:445:      // Non-fatal: constitutional directory discovery failed
-.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:75:- Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
-.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json:17:    "constitutional": 2.0,
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:13:  constitutional?: unknown[];
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:79:    const constitutionalCount = Array.isArray(autoSurfacedContext?.constitutional)
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:80:      ? autoSurfacedContext.constitutional.length
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:86:    if (constitutionalCount > 0 || triggeredCount > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:91:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:96:      constitutionalCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:87:  constitutionalCacheCleared: boolean;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:27:  constitutional: ConstitutionalMemory[];
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:58:let constitutionalCache: ConstitutionalMemory[] | null = null;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:59:let constitutionalCacheTime = 0;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:91:  if (constitutionalCache && (now - constitutionalCacheTime) < CONSTITUTIONAL_CACHE_TTL) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:92:    return constitutionalCache;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:128:interface AutoSurfaceResult { constitutional: unknown[]; triggered: unknown[]; }
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:430:    // Also scan constitutional directories (.opencode/skills/*/constitutional/)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:437:            const constDir = path.join(skillDir, entry.name, 'constitutional');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:445:      // Non-fatal: constitutional directory discovery failed
+.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:75:- Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
+.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json:17:    "constitutional": 2.0,
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:13:  constitutional?: unknown[];
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:79:    const constitutionalCount = Array.isArray(autoSurfacedContext?.constitutional)
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:80:      ? autoSurfacedContext.constitutional.length
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:86:    if (constitutionalCount > 0 || triggeredCount > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:91:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:96:      constitutionalCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:87:  constitutionalCacheCleared: boolean;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:27:  constitutional: ConstitutionalMemory[];
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:58:let constitutionalCache: ConstitutionalMemory[] | null = null;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:59:let constitutionalCacheTime = 0;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:91:  if (constitutionalCache && (now - constitutionalCacheTime) < CONSTITUTIONAL_CACHE_TTL) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:92:    return constitutionalCache;
 codex
 The code picture is getting clearer: a few snippets look tightly aligned, while others appear to carry generic or stale source lists. I’m opening the key implementation files now so I can judge each feature against the actual functions, constants, flags, and integration points instead of relying on test names alone.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,460p' .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,620p' .opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,340p' .opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,380p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '430,620p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '560,640p' .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,460p' .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,620p' .opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,340p' .opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,380p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '430,620p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '560,640p' .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Graph Signals
 // ---------------------------------------------------------------
@@ -752,29 +752,29 @@ interface InterferenceResult {
   memoryId: number;
   interferenceScore: number; // count of similar memories in same folder
 exec
-/bin/zsh -lc "sed -n '540,710p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/mcp_server/lib | rg 'rollout-policy|search-flags|stage2-fusion|score-normalization|normalization|anchor-chunker|anchor-metadata|pipeline/types|access-tracker|scoring-observability|folder-scoring|importance-tiers|attention-decay|working-memory|memory-bulk-delete|causal-edges|memory-triggers|rollout-policy'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/shared/normalization.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/contracts/retrieval-trace.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
+/bin/zsh -lc "sed -n '540,710p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/mcp_server/lib | rg 'rollout-policy|search-flags|stage2-fusion|score-normalization|normalization|anchor-chunker|anchor-metadata|pipeline/types|access-tracker|scoring-observability|folder-scoring|importance-tiers|attention-decay|working-memory|memory-bulk-delete|causal-edges|memory-triggers|rollout-policy'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/shared/normalization.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/contracts/retrieval-trace.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/anchor-metadata.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
  succeeded in 52ms:
       if (topIds.length > 0) {
         const spreadResults: SpreadResult[] = spreadActivation(topIds);
@@ -860,7 +860,7 @@ function makeRow(createdAtMs: number, overrides: Record<string, unknown> = {}) {
     importance_tier: 'normal',
     importance_weight: 0.5,
  exited 1 in 51ms:
-sed: .opencode/skill/system-spec-kit/mcp_server/shared/normalization.ts: No such file or directory
+sed: .opencode/skills/system-spec-kit/mcp_server/shared/normalization.ts: No such file or directory
  succeeded in 50ms:
 // ---------------------------------------------------------------
 // MODULE: Anchor Metadata
@@ -948,16 +948,16 @@ export type RetrievalStage =
 🌐 Searching the web...
 🌐 Searched the web
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/shared | rg 'normalization|folder-scoring|types|retrieval-trace'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '660,760p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "normalizeCompositeScores|isCompositeNormalizationEnabled" .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "clearRelatedCache|co-activation|cache" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers | head -n 80' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/shared | rg 'normalization|folder-scoring|types|retrieval-trace'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '660,760p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "normalizeCompositeScores|isCompositeNormalizationEnabled" .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "clearRelatedCache|co-activation|cache" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers | head -n 80' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: RRF Fusion
 // ---------------------------------------------------------------
@@ -979,10 +979,10 @@ const SOURCE_TYPES = {
 // flattens rank differences, reducing the dominance of top-1 results. 60 balances
 // discrimination vs. stability for our typical 10-50 candidate lists.
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts
-.opencode/skill/system-spec-kit/shared/types.ts
-.opencode/skill/system-spec-kit/shared/normalization.ts
-.opencode/skill/system-spec-kit/shared/contracts/retrieval-trace.ts
+.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts
+.opencode/skills/system-spec-kit/shared/types.ts
+.opencode/skills/system-spec-kit/shared/normalization.ts
+.opencode/skills/system-spec-kit/shared/contracts/retrieval-trace.ts
  succeeded in 50ms:
   return scored.sort((a, b) => b.composite_score - a.composite_score);
 }
@@ -1114,61 +1114,61 @@ import { isFeatureEnabled } from './rollout-policy';
 interface WorkingMemoryConfigType {
   enabled: boolean;
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:83:/** Result returned by post-mutation hooks (cache invalidation, etc.). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:208:  // Invalidate caches
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:22:import * as workingMemory from '../lib/cache/cognitive/working-memory';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:23:import * as attentionDecay from '../lib/cache/cognitive/attention-decay';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:25:import type { TierInput, StateStats } from '../lib/cache/cognitive/tier-classifier';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as coActivation from '../lib/cache/cognitive/co-activation';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:11:import * as workingMemory from '../cache/cognitive/working-memory';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:10:import * as predictionErrorGate from '../../lib/cache/cognitive/prediction-error-gate';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:11:import * as fsrsScheduler from '../../lib/cache/cognitive/fsrs-scheduler';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:9:import { lookupEmbedding, storeEmbedding } from '../../lib/cache/embedding-cache';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:35:      // Check persistent embedding cache before calling provider
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:37:      const cachedBuf = lookupEmbedding(database, parsed.contentHash, modelId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:38:      if (cachedBuf) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:40:        embedding = new Float32Array(new Uint8Array(cachedBuf).buffer);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:42:        console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:50:          // Store in persistent cache for future re-index
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:53:          console.error(`[memory-save] Embedding cache MISS+STORE for ${path.basename(filePath)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:8:import * as predictionErrorGate from '../../lib/cache/cognitive/prediction-error-gate';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:292:    hints.push('Duplicate content matched an existing indexed memory, so caches were left unchanged');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:83:/** Result returned by post-mutation hooks (cache invalidation, etc.). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:208:  // Invalidate caches
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:22:import * as workingMemory from '../lib/cache/cognitive/working-memory';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:23:import * as attentionDecay from '../lib/cache/cognitive/attention-decay';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:25:import type { TierInput, StateStats } from '../lib/cache/cognitive/tier-classifier';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as coActivation from '../lib/cache/cognitive/co-activation';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:11:import * as workingMemory from '../cache/cognitive/working-memory';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:10:import * as predictionErrorGate from '../../lib/cache/cognitive/prediction-error-gate';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:11:import * as fsrsScheduler from '../../lib/cache/cognitive/fsrs-scheduler';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:9:import { lookupEmbedding, storeEmbedding } from '../../lib/cache/embedding-cache';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:35:      // Check persistent embedding cache before calling provider
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:37:      const cachedBuf = lookupEmbedding(database, parsed.contentHash, modelId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:38:      if (cachedBuf) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:40:        embedding = new Float32Array(new Uint8Array(cachedBuf).buffer);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:42:        console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:50:          // Store in persistent cache for future re-index
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:53:          console.error(`[memory-save] Embedding cache MISS+STORE for ${path.basename(filePath)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:8:import * as predictionErrorGate from '../../lib/cache/cognitive/prediction-error-gate';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:292:    hints.push('Duplicate content matched an existing indexed memory, so caches were left unchanged');
 exec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'ls -l .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'readlink .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/working-memory.ts || true' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'readlink .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/rollout-policy.ts || true' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/working-memory.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/tier-classifier.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/archival-manager.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/rollout-policy.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/pressure-monitor.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/attention-decay.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/prediction-error-gate.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/co-activation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/temporal-contiguity.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/fsrs-scheduler.ts
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'ls -l .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'readlink .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/working-memory.ts || true' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'readlink .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/rollout-policy.ts || true' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/working-memory.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/tier-classifier.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/archival-manager.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/rollout-policy.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/pressure-monitor.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/attention-decay.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/prediction-error-gate.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/co-activation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/temporal-contiguity.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/fsrs-scheduler.ts
  succeeded in 50ms:
 
  succeeded in 52ms:
-lrwxr-xr-x@ 1 michelkerkmeester  staff  12 Feb 16 19:41 .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive -> ../cognitive
+lrwxr-xr-x@ 1 michelkerkmeester  staff  12 Feb 16 19:41 .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive -> ../cognitive
  succeeded in 51ms:
 
 codex
 A couple of patterns are emerging: some entries point at the real code paths cleanly, and some seem to inherit broad “scoring bundle” path lists that don’t actually implement the named feature. I’m checking the shared modules now because normalization in particular appears to live partly outside the files the snippet cites.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/normalization.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '220,420p' .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/normalization.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '220,420p' .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Folder Scoring
 // ---------------------------------------------------------------
@@ -1381,16 +1381,16 @@ import {
 🌐 Searching the web...
 🌐 Searched the web
 exec
-/bin/zsh -lc 'rg -n "cleanupOrphanedEdges|orphaned|deleteEdgesForMemory|clearDegreeCache|weight_history" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "normalizeCompositeScores|isCompositeNormalizationEnabled|SPECKIT_SCORE_NORMALIZATION" .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "applyClassificationDecay|getClassificationDecayMultiplier|CONTEXT_TYPE_STABILITY_MULTIPLIER|IMPORTANCE_TIER_STABILITY_MULTIPLIER" .opencode/skill/system-spec-kit/mcp_server/lib' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/co-activation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"maxDepth|clamp.*10|Math.min\\(10|maxDepth.*1|handleMemoryDriftWhy\" .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '240,380p' .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '760,840p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc 'rg -n "cleanupOrphanedEdges|orphaned|deleteEdgesForMemory|clearDegreeCache|weight_history" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "normalizeCompositeScores|isCompositeNormalizationEnabled|SPECKIT_SCORE_NORMALIZATION" .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "applyClassificationDecay|getClassificationDecayMultiplier|CONTEXT_TYPE_STABILITY_MULTIPLIER|IMPORTANCE_TIER_STABILITY_MULTIPLIER" .opencode/skills/system-spec-kit/mcp_server/lib' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/co-activation.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"maxDepth|clamp.*10|Math.min\\(10|maxDepth.*1|handleMemoryDriftWhy\" .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '240,380p' .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '760,840p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 8:import { clearDegreeCache } from '../search/graph-search-fn';
 100:    clearDegreeCache();
 171:      // AI-WHY: Check if edge exists (for weight_history logging on conflict update).
@@ -1410,14 +1410,14 @@ exec
 756:  deleteEdgesForMemory,
 759:  cleanupOrphanedEdges,
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:413: * @returns True unless SPECKIT_SCORE_NORMALIZATION is explicitly 'false'.
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:416:  return process.env.SPECKIT_SCORE_NORMALIZATION !== 'false';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:774: * Default: TRUE (graduated Sprint 4). Set SPECKIT_SCORE_NORMALIZATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:778:export function isCompositeNormalizationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:779:  return process.env.SPECKIT_SCORE_NORMALIZATION?.toLowerCase() !== 'false';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:784: * Gated behind SPECKIT_SCORE_NORMALIZATION env var — returns unchanged when disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:793:export function normalizeCompositeScores(scores: number[]): number[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:795:  if (!isCompositeNormalizationEnabled()) return scores;
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:413: * @returns True unless SPECKIT_SCORE_NORMALIZATION is explicitly 'false'.
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:416:  return process.env.SPECKIT_SCORE_NORMALIZATION !== 'false';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:774: * Default: TRUE (graduated Sprint 4). Set SPECKIT_SCORE_NORMALIZATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:778:export function isCompositeNormalizationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:779:  return process.env.SPECKIT_SCORE_NORMALIZATION?.toLowerCase() !== 'false';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:784: * Gated behind SPECKIT_SCORE_NORMALIZATION env var — returns unchanged when disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:793:export function normalizeCompositeScores(scores: number[]): number[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:795:  if (!isCompositeNormalizationEnabled()) return scores;
  succeeded in 51ms:
 54:  maxDepth?: number;
 88:  maxDepth: number,
@@ -1461,26 +1461,26 @@ exec
 import type Database from 'better-sqlite3';
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:26:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:164:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:278:    if (fsrsScheduler?.applyClassificationDecay) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:279:      adjustedStability = fsrsScheduler.applyClassificationDecay(stability, contextType, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:281:      adjustedStability = applyClassificationDecayFallback(stability, contextType, tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:236: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: *   - IMPORTANCE_TIER_STABILITY_MULTIPLIER → used by getClassificationDecayMultiplier()
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:265:const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276: * Used exclusively by getClassificationDecayMultiplier() when
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:284:const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:309:function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:310:  const contextMult = CONTEXT_TYPE_STABILITY_MULTIPLIER[contextType] ?? 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311:  const tierMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:333:function applyClassificationDecay(
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:344:  const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:370:  CONTEXT_TYPE_STABILITY_MULTIPLIER,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:371:  IMPORTANCE_TIER_STABILITY_MULTIPLIER,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:372:  getClassificationDecayMultiplier,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:373:  applyClassificationDecay,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:26:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:164:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:278:    if (fsrsScheduler?.applyClassificationDecay) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:279:      adjustedStability = fsrsScheduler.applyClassificationDecay(stability, contextType, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:281:      adjustedStability = applyClassificationDecayFallback(stability, contextType, tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:236: * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:239: *   - IMPORTANCE_TIER_STABILITY_MULTIPLIER → used by getClassificationDecayMultiplier()
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:265:const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:276: * Used exclusively by getClassificationDecayMultiplier() when
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:284:const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:309:function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:310:  const contextMult = CONTEXT_TYPE_STABILITY_MULTIPLIER[contextType] ?? 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:311:  const tierMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:333:function applyClassificationDecay(
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:344:  const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:370:  CONTEXT_TYPE_STABILITY_MULTIPLIER,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:371:  IMPORTANCE_TIER_STABILITY_MULTIPLIER,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:372:  getClassificationDecayMultiplier,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:373:  applyClassificationDecay,
  succeeded in 51ms:
 
 /** Handle memory_drift_why tool - traces causal relationships for a given memory */
@@ -1587,7 +1587,7 @@ function getEdgesTo(targetId: string, limit: number = MAX_EDGES_LIMIT): CausalEd
     return (db.prepare(`
       SELECT * FROM causal_edges
 exec
-/bin/zsh -lc "sed -n '520,580p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '520,580p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     return [];
   }
 }
@@ -1609,10 +1609,10 @@ function cleanupOrphanedEdges(): { deleted: number } {
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path');const root=path.resolve('.opencode/skill/system-spec-kit');const features=['.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md','.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md','.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md','.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md','.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md','.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md','.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md','.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md','.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md','.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md'];for(const featurePath of features){const text=fs.readFileSync(featurePath,'utf8');const rels=[...text.matchAll(/\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(Boolean);const unique=[...new Set(rels)];console.log(path.basename(featurePath));for(const rel of unique){const abs=path.join(root,rel);console.log((fs.existsSync(abs)?'OK ':'MISSING ')+rel)}console.log('')}}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
+/bin/zsh -lc "node -e \"const fs=require('fs'),path=require('path');const root=path.resolve('.opencode/skills/system-spec-kit');const features=['.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md','.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md','.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md','.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md','.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md','.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md','.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md','.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md','.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md','.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md'];for(const featurePath of features){const text=fs.readFileSync(featurePath,'utf8');const rels=[...text.matchAll(/\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(Boolean);const unique=[...new Set(rels)];console.log(path.basename(featurePath));for(const rel of unique){const abs=path.join(root,rel);console.log((fs.existsSync(abs)?'OK ':'MISSING ')+rel)}console.log('')}}\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
 zsh:1: unmatched "
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\"); const root=path.resolve(\".opencode/skill/system-spec-kit\"); const features=[\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md\",\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md\",\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md\",\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md\",\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md\",\".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md\",\".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md\",\".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md\",\".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md\",\".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md\"]; for (const featurePath of features) { const text=fs.readFileSync(featurePath,\"utf8\"); const rels=[...text.matchAll(/\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(Boolean); const unique=[...new Set(rels)]; console.log(path.basename(featurePath)); for (const rel of unique) { const abs=path.join(root, rel); console.log((fs.existsSync(abs)?\"OK \":\"MISSING \")+rel); } console.log(\"\"); }'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"),path=require(\"path\"); const root=path.resolve(\".opencode/skills/system-spec-kit\"); const features=[\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md\",\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/07-community-detection.md\",\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md\",\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/09-anchor-tags-as-graph-nodes.md\",\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md\",\".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md\",\".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md\",\".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md\",\".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/03-interference-scoring.md\",\".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md\"]; for (const featurePath of features) { const text=fs.readFileSync(featurePath,\"utf8\"); const rels=[...text.matchAll(/\\|\\s*"'`([''^`]+)`'"\\s*\\|/g)].map(m=>m[1]).filter(Boolean); const unique=[...new Set(rels)]; console.log(path.basename(featurePath)); for (const rel of unique) { const abs=path.join(root, rel); console.log((fs.existsSync(abs)?\"OK \":\"MISSING \")+rel); } console.log(\"\"); }'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 06-causal-depth-signal.md
 OK mcp_server/lib/cognitive/rollout-policy.ts
 OK mcp_server/lib/graph/graph-signals.ts
@@ -1634,7 +1634,7 @@ OK mcp_server/lib/cognitive/working-memory.ts
 OK mcp_server/lib/graph/graph-signals.ts
 OK mcp_server/lib/scoring/composite-scoring.ts
 exec
-/bin/zsh -lc 'rg -n "applyCausalBoost|causal boost|causalBoost" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc 'rg -n "applyCausalBoost|causal boost|causalBoost" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 53:import * as causalBoost from '../causal-boost';
 487:    causalBoostApplied: false,
 520:      const { results: boosted, metadata: cbMeta } = causalBoost.applyCausalBoost(results);
@@ -1642,7 +1642,7 @@ exec
 525:      console.warn(`[stage2-fusion] causal boost failed: ${message}`);
 712:        causalBoostApplied: metadata.causalBoostApplied,
 exec
-/bin/zsh -lc "sed -n '500,550p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '500,550p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
   // when the full hybrid result set is available for ordering.
   if (isHybrid && config.enableSessionBoost && config.sessionId) {
     try {
@@ -1664,29 +1664,29 @@ exec
   if (isHybrid && config.enableCausalBoost) {
     try {
 exec
-/bin/zsh -lc "rg -n \"DECAY_FLOOR|mention|Math.min\\(1\\.0|Math.max\\(DECAY_FLOOR|turnDecayFactor|attentionScore|clamp\" .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:33:const DECAY_FLOOR = 0.05;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:36:// AI-WHY: Cap mention_count to prevent unbounded integer growth in long-lived
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:37:// sessions. The mention boost formula (mention_count * MENTION_BOOST_FACTOR)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:53:    mention_count INTEGER NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:80:  mention_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:90:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:118:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:145:    if (!wmColumns.includes('mention_count')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:146:      db.exec('ALTER TABLE working_memory ADD COLUMN mention_count INTEGER NOT NULL DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:274:        wm.attention_score AS attentionScore
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:292:function calculateTier(attentionScore: number): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:293:  if (attentionScore >= 0.8) return 'focused';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:294:  if (attentionScore >= 0.5) return 'active';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:295:  if (attentionScore >= 0.2) return 'peripheral';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:310:  const clampedScore = Math.max(0, Math.min(1, score));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:            mention_count = MIN(mention_count + 1, ${MAX_MENTION_COUNT}),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:328:      `) as Database.Statement).run(clampedScore, currentEventCounter, sessionId, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:334:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:336:      `) as Database.Statement).run(sessionId, memoryId, clampedScore, currentEventCounter);
+/bin/zsh -lc "rg -n \"DECAY_FLOOR|mention|Math.min\\(1\\.0|Math.max\\(DECAY_FLOOR|turnDecayFactor|attentionScore|clamp\" .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:33:const DECAY_FLOOR = 0.05;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:36:// AI-WHY: Cap mention_count to prevent unbounded integer growth in long-lived
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:37:// sessions. The mention boost formula (mention_count * MENTION_BOOST_FACTOR)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:53:    mention_count INTEGER NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:80:  mention_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:90:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:118:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:145:    if (!wmColumns.includes('mention_count')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:146:      db.exec('ALTER TABLE working_memory ADD COLUMN mention_count INTEGER NOT NULL DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:274:        wm.attention_score AS attentionScore
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:292:function calculateTier(attentionScore: number): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:293:  if (attentionScore >= 0.8) return 'focused';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:294:  if (attentionScore >= 0.5) return 'active';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:295:  if (attentionScore >= 0.2) return 'peripheral';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:310:  const clampedScore = Math.max(0, Math.min(1, score));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:325:            mention_count = MIN(mention_count + 1, ${MAX_MENTION_COUNT}),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:328:      `) as Database.Statement).run(clampedScore, currentEventCounter, sessionId, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:334:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:336:      `) as Database.Statement).run(sessionId, memoryId, clampedScore, currentEventCounter);
 exec
-/bin/zsh -lc "sed -n '300,345p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '300,345p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
             coActivatedMemories.push(...boosted);
           }
         } catch (err: unknown) {
@@ -1708,32 +1708,32 @@ exec
 
     const enrichedResults: EnrichedTriggerMatch[] = results.map((match: TriggerMatch) => {
 exec
-/bin/zsh -lc "rg -n \"normalizeCompositeScores\\(|normalizeRrfScores\\(|isCompositeNormalizationEnabled\\(|isScoreNormalizationEnabled\\(\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:230:  if (isScoreNormalizationEnabled()) {
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:231:    normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:393:  if (isScoreNormalizationEnabled()) {
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:394:    normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:415:function isScoreNormalizationEnabled(): boolean {
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:429:function normalizeRrfScores(results: FusionResult[]): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:91:      normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:107:      normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:118:      normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:127:      normalizeRrfScores(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:166:      expect(isScoreNormalizationEnabled()).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:172:      expect(isScoreNormalizationEnabled()).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:229:    const normalized = normalizeCompositeScores(scores);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:246:    const result = normalizeCompositeScores(scores);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:253:    expect(normalizeCompositeScores([])).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:260:    const normalized = normalizeCompositeScores(scores);
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:270:    const normalized = normalizeCompositeScores([0.42]);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:354:      const normalized = normalizeCompositeScores([scoreA, scoreB, scoreC]);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:575:      const emptyNorm = normalizeCompositeScores([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:580:      normalizeRrfScores(emptyFusionResults);
+/bin/zsh -lc "rg -n \"normalizeCompositeScores\\(|normalizeRrfScores\\(|isCompositeNormalizationEnabled\\(|isScoreNormalizationEnabled\\(\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:230:  if (isScoreNormalizationEnabled()) {
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:231:    normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:393:  if (isScoreNormalizationEnabled()) {
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:394:    normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:415:function isScoreNormalizationEnabled(): boolean {
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:429:function normalizeRrfScores(results: FusionResult[]): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:91:      normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:107:      normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:118:      normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:127:      normalizeRrfScores(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:166:      expect(isScoreNormalizationEnabled()).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:172:      expect(isScoreNormalizationEnabled()).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:229:    const normalized = normalizeCompositeScores(scores);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:246:    const result = normalizeCompositeScores(scores);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:253:    expect(normalizeCompositeScores([])).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:260:    const normalized = normalizeCompositeScores(scores);
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:270:    const normalized = normalizeCompositeScores([0.42]);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:354:      const normalized = normalizeCompositeScores([scoreA, scoreB, scoreC]);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:575:      const emptyNorm = normalizeCompositeScores([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:580:      normalizeRrfScores(emptyFusionResults);
 exec
-/bin/zsh -lc "rg -n \"normalizeCompositeScores\\(\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers | rg -v '/tests/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:793:export function normalizeCompositeScores(scores: number[]): number[] {
+/bin/zsh -lc "rg -n \"normalizeCompositeScores\\(\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers | rg -v '/tests/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:793:export function normalizeCompositeScores(scores: number[]): number[] {
 exec
-/bin/zsh -lc "sed -n '220,320p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '220,320p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
       let count = 0;
       for (const mem of allInFolder) {
@@ -1755,30 +1755,30 @@ exec
   for (const id of memoryIds) {
     if (!results.has(id)) {
 exec
-/bin/zsh -lc 'test -e .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts && echo yes || echo no' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc 'test -e .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts && echo yes || echo no' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 yes
 exec
-/bin/zsh -lc 'rg -n "anchorMetadata|anchor_id|chunkLargeFile|extractAnchorMetadata|enrichResultsWithAnchorMetadata|anchorIds|anchorTypes" .opencode/skill/system-spec-kit/mcp_server | head -n 120' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:92:  anchorIds: string[];
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:93:  anchorTypes: string[];
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:180:function extractAnchorDetails(rawResult: RawSearchResult): { anchorIds: string[]; anchorTypes: string[] } {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:181:  const metadata = Array.isArray(rawResult.anchorMetadata)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:182:    ? rawResult.anchorMetadata as Array<Record<string, unknown>>
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:184:  const anchorIds = metadata
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:187:  const anchorTypes = metadata
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:190:  return { anchorIds, anchorTypes };
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:379:        anchorIds: anchorsInfo.anchorIds,
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:380:        anchorTypes: anchorsInfo.anchorTypes,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:33:  anchor_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:294:    // AI-WHY: Support both anchor_id (snake_case) and anchorId (camelCase) — callers may pass either form (P4-16).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:295:    hashInput = `${memory.id}:${memory.anchor_id || memory.anchorId || ''}:${memory.file_path || ''}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:298:      // AI-WHY: Prefer anchor_id (canonical), fall back to anchorId for legacy callers (P4-16)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:299:      anchor: memory.anchor_id || memory.anchorId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:18:import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:129:  const chunkResult = chunkLargeFile(parsed.content);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:17:    anchor_id: 'auth-flow',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:119:    expect(row.anchor_id).toBe('auth-flow');
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:162:    row.anchor_id = null;
+/bin/zsh -lc 'rg -n "anchorMetadata|anchor_id|chunkLargeFile|extractAnchorMetadata|enrichResultsWithAnchorMetadata|anchorIds|anchorTypes" .opencode/skills/system-spec-kit/mcp_server | head -n 120' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:92:  anchorIds: string[];
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:93:  anchorTypes: string[];
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:180:function extractAnchorDetails(rawResult: RawSearchResult): { anchorIds: string[]; anchorTypes: string[] } {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:181:  const metadata = Array.isArray(rawResult.anchorMetadata)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:182:    ? rawResult.anchorMetadata as Array<Record<string, unknown>>
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:184:  const anchorIds = metadata
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:187:  const anchorTypes = metadata
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:190:  return { anchorIds, anchorTypes };
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:379:        anchorIds: anchorsInfo.anchorIds,
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:380:        anchorTypes: anchorsInfo.anchorTypes,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:33:  anchor_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:294:    // AI-WHY: Support both anchor_id (snake_case) and anchorId (camelCase) — callers may pass either form (P4-16).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:295:    hashInput = `${memory.id}:${memory.anchor_id || memory.anchorId || ''}:${memory.file_path || ''}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:298:      // AI-WHY: Prefer anchor_id (canonical), fall back to anchorId for legacy callers (P4-16)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:299:      anchor: memory.anchor_id || memory.anchorId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:18:import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:129:  const chunkResult = chunkLargeFile(parsed.content);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:17:    anchor_id: 'auth-flow',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:119:    expect(row.anchor_id).toBe('auth-flow');
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:162:    row.anchor_id = null;
 codex
 I’ve finished the code pass. The main pattern is that every listed path exists, but several snippets have stale “Current Reality” text or generic source lists that miss the real integration files where the feature is actually turned on, wired in, or persisted.
 Plan update

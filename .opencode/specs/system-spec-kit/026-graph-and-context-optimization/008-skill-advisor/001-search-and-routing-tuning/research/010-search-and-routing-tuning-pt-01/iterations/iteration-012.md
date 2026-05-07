@@ -4,8 +4,8 @@
 Identify which tests will fail when length-penalty behavior disappears and turn that into concrete implementation guidance for phase `001-remove-length-penalty`.
 
 ## Findings
-1. The length-penalty behavior is asserted directly in at least four suites: `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, `search-extended.vitest.ts`, and `search-limits-scoring.vitest.ts`. Those tests currently pin the exact thresholds (`50`, `2000`) and penalties (`0.9`, `0.95`) rather than merely verifying reranker behavior. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:8] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:74] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:199] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:178]
-2. `search-limits-scoring.vitest.ts` also performs source-analysis checks that explicitly search for `calculateLengthPenalty` and `applyLengthPenalty` strings in handler and Stage 3 source, so deleting those symbols without rewriting the tests will fail even if runtime behavior is correct. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:231] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:248] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:267]
+1. The length-penalty behavior is asserted directly in at least four suites: `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, `search-extended.vitest.ts`, and `search-limits-scoring.vitest.ts`. Those tests currently pin the exact thresholds (`50`, `2000`) and penalties (`0.9`, `0.95`) rather than merely verifying reranker behavior. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:8] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:74] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:199] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:178]
+2. `search-limits-scoring.vitest.ts` also performs source-analysis checks that explicitly search for `calculateLengthPenalty` and `applyLengthPenalty` strings in handler and Stage 3 source, so deleting those symbols without rewriting the tests will fail even if runtime behavior is correct. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:231] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:248] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:267]
 3. The safest phase-001 patch is:
    - delete `LENGTH_PENALTY`, `calculateLengthPenalty()`, and `applyLengthPenalty()` from `cross-encoder.ts`
    - keep the `applyLengthPenalty` option accepted and forwarded for one compatibility cycle, but make it a no-op
@@ -19,10 +19,10 @@ Identify which tests will fail when length-penalty behavior disappears and turn 
 - Keeping the constants in code "just for tests". That would preserve dead behavior rather than removing it.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
 
 ## Assessment
 - New information ratio: 0.67

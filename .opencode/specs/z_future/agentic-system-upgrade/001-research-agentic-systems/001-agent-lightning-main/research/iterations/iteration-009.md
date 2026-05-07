@@ -16,9 +16,9 @@ I reviewed Agent Lightning's core resource types, resource versioning rationale,
 - Agent Lightning's resource types formalize this model. `LLM`, `ProxyLLM`, and `PromptTemplate` are tunable resources, and `ResourcesUpdate` carries `resources_id`, timestamps, version, and the full named-resource payload. [SOURCE: external/agentlightning/types/resources.py:36-54] [SOURCE: external/agentlightning/types/resources.py:65-143] [SOURCE: external/agentlightning/types/resources.py:146-204]
 - The agent tutorials emphasize that algorithms send `NamedResources` to agents and that this design exists to support advanced features such as multi-resource tuning. [SOURCE: external/docs/tutorials/write-agents.md:132-145]
 - The training tutorial seeds an initial `prompt_template` resource directly into the Trainer, showing how prompt content participates in the same tunable resource lifecycle as the rest of the runtime. [SOURCE: external/docs/how-to/train-first-agent.md:188-196]
-- Public's template guidance describes an entirely different model: templates are copied from `templates/level_N/`, not generated from mutable runtime resources, and maintainers compose those templates from `core/` and `addendum/` sources. [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:27-34] [SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:49-71]
-- Public's level specification doubles down on that source-of-truth stance: `templates/level_N/` are the ready-to-use templates, while `core/` and `addendum/` are source components and should not be used directly for new specs. [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-18] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:38-47]
-- `system-spec-kit` also frames templates and scripts as operational sources of truth rather than as mutable optimization resources. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:102-118]
+- Public's template guidance describes an entirely different model: templates are copied from `templates/level_N/`, not generated from mutable runtime resources, and maintainers compose those templates from `core/` and `addendum/` sources. [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:27-34] [SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:49-71]
+- Public's level specification doubles down on that source-of-truth stance: `templates/level_N/` are the ready-to-use templates, while `core/` and `addendum/` are source components and should not be used directly for new specs. [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-18] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:38-47]
+- `system-spec-kit` also frames templates and scripts as operational sources of truth rather than as mutable optimization resources. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:102-118]
 
 ## Analysis
 Agent Lightning's resource model is excellent for environments where prompts, endpoints, and policies mutate as part of the optimization loop. Public is not that environment. Its templates are governance-bearing documentation assets with stable provenance and validation rules. Recasting them as immutable snapshots in a resource store would add machinery without solving a real current problem.
@@ -31,7 +31,7 @@ confidence: high
 finding: Agent Lightning's resource versioning should be rejected for `system-spec-kit`'s current template system. The external repo uses resources because prompts and endpoints are tunable training inputs. Public's templates are canonical documentation contracts, and turning them into runtime snapshots would complicate validation and provenance without adding equivalent value.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
 - **Change type:** rejected
 - **Blast radius:** large
 - **Prerequisites:** none for the rejection itself; any future tunable-prompt experiments should live outside the canonical template pipeline

@@ -43,7 +43,7 @@ A 10-iteration cli-codex (gpt-5.5 high fast) audit of the 012-015 integrated imp
 | Convergence threshold | 0.05 (default) |
 | Wall-clock | 31 min (2026-04-27T20:34:00Z → 21:05:25Z) |
 | Review dimensions | correctness, security, traceability, maintainability |
-| Sources read | 25+ files across mcp_server/, .opencode/command/spec_kit/assets/, and the 4 packet trees |
+| Sources read | 25+ files across mcp_server/, .opencode/commands/spec_kit/assets/, and the 4 packet trees |
 
 **newFindingsRatio trajectory**: 0.6 → (iter-2 missing) → 0.2 → 0.18 → (iter-5/6 missing) → 0 → 0 → 0 → 0. Iters 7-10 are stabilization passes (zero new findings; validation, prioritization, synthesis). Pre-iter-7 the loop discovered all 9 findings.
 

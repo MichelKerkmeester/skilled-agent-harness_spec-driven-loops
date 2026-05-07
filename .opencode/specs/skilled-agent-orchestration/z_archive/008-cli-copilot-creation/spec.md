@@ -68,16 +68,16 @@ Any AI assistant can invoke Copilot CLI for multi-model task execution, cloud-de
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-copilot/SKILL.md` | Create | Main orchestrator (8 sections) |
-| `.opencode/skill/cli-copilot/README.md` | Create | Companion guide |
-| `.opencode/skill/cli-copilot/references/cli_reference.md` | Create | CLI flags, 7+ models, auth, config |
-| `.opencode/skill/cli-copilot/references/agent_delegation.md` | Create | Built-in + custom agents |
-| `.opencode/skill/cli-copilot/references/copilot_tools.md` | Create | Unique capabilities, 4-way comparison |
-| `.opencode/skill/cli-copilot/references/integration_patterns.md` | Create | Cross-AI orchestration patterns |
-| `.opencode/skill/cli-copilot/assets/prompt_templates.md` | Create | Copy-paste templates |
-| `.opencode/skill/scripts/skill_advisor.py` | Modify | Add 3 booster sections |
+| `.opencode/skills/cli-copilot/SKILL.md` | Create | Main orchestrator (8 sections) |
+| `.opencode/skills/cli-copilot/README.md` | Create | Companion guide |
+| `.opencode/skills/cli-copilot/references/cli_reference.md` | Create | CLI flags, 7+ models, auth, config |
+| `.opencode/skills/cli-copilot/references/agent_delegation.md` | Create | Built-in + custom agents |
+| `.opencode/skills/cli-copilot/references/copilot_tools.md` | Create | Unique capabilities, 4-way comparison |
+| `.opencode/skills/cli-copilot/references/integration_patterns.md` | Create | Cross-AI orchestration patterns |
+| `.opencode/skills/cli-copilot/assets/prompt_templates.md` | Create | Copy-paste templates |
+| `.opencode/skills/scripts/skill_advisor.py` | Modify | Add 3 booster sections |
 | `.claude/skills/cli-copilot` | Create | Symlink to skill |
-| `.opencode/skill/README.md` | Modify | Add skill entry |
+| `.opencode/skills/README.md` | Modify | Add skill entry |
 | `.opencode/README.md` | Modify | Add skill entry |
 | `README.md` | Modify | Add skill entry |
 
@@ -118,7 +118,7 @@ Any AI assistant can invoke Copilot CLI for multi-model task execution, cloud-de
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `python3 skill_advisor.py "use copilot cli"` returns cli-copilot with confidence >= 0.8
-- **SC-002**: `readlink .claude/skills/cli-copilot` resolves to `../../.opencode/skill/cli-copilot`
+- **SC-002**: `readlink .claude/skills/cli-copilot` resolves to `../../.opencode/skills/cli-copilot`
 - **SC-003**: 4-way comparison table (Copilot vs Claude Code vs Gemini CLI vs Codex CLI) in copilot_tools.md
 - **SC-004**: Cloud delegation (`/delegate`) documented as unique capability
 - **SC-005**: All 7+ model IDs with provider attribution in cli_reference.md

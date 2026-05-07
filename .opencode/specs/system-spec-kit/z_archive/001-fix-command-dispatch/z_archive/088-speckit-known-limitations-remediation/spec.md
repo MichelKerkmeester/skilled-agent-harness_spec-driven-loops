@@ -68,19 +68,19 @@ All 4 known limitations resolved: conflict tracking data writes succeed, gate nu
 
 | File Path | Change Type | KL | Description |
 |-----------|-------------|-----|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js` | Modify | KL-1 | Add migration v12, update create_schema, bump SCHEMA_VERSION |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js` | Modify | KL-1 | Remove `ensure_conflicts_table()`, align `log_conflict()` INSERT columns |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.js` | Modify | KL-1 | Align INSERT columns, remove error swallowing |
-| `.opencode/agent/orchestrate.md` | Modify | KL-2 | Gate 4 → Gate 3 |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js` | Modify | KL-1 | Add migration v12, update create_schema, bump SCHEMA_VERSION |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js` | Modify | KL-1 | Remove `ensure_conflicts_table()`, align `log_conflict()` INSERT columns |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.js` | Modify | KL-1 | Align INSERT columns, remove error swallowing |
+| `.opencode/agents/orchestrate.md` | Modify | KL-2 | Gate 4 → Gate 3 |
 | `AGENTS.md` (project root) | Modify | KL-2 | Gate 4 Option B → Gate 3 Option B |
-| `.opencode/skill/system-spec-kit/scripts/scripts-registry.json` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
-| `.opencode/skill/system-spec-kit/scripts/README.md` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
+| `.opencode/skills/system-spec-kit/scripts/scripts-registry.json` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
+| `.opencode/skills/system-spec-kit/scripts/README.md` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | Modify | KL-2 | Gate 6 → Completion Verification Rule |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Modify | KL-2 | Rewrite Gates 0-6 section to current 3-gate scheme |
-| `.opencode/agent/speckit.md` | Modify | KL-3 | Add 3 scripts to Capability Scan table |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | KL-3 | Add 3 scripts to Key Scripts table |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Modify | KL-4 | Add toolCache cleanup to SIGINT/SIGTERM handlers |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/access-tracker.js` | Modify | KL-4 | Remove duplicate signal handlers |
+| `.opencode/agents/speckit.md` | Modify | KL-3 | Add 3 scripts to Capability Scan table |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | KL-3 | Add 3 scripts to Key Scripts table |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Modify | KL-4 | Add toolCache cleanup to SIGINT/SIGTERM handlers |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/access-tracker.js` | Modify | KL-4 | Remove duplicate signal handlers |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -101,8 +101,8 @@ All 4 known limitations resolved: conflict tracking data writes succeed, gate nu
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Fix Gate 4 references in active agent/project files | `grep -rn "Gate 4" .opencode/agent/ AGENTS.md` returns 0 matches (except speckit.md internal numbering) |
-| REQ-006 | Fix Gate 6 references in active scripts | `grep -rn "Gate 6" .opencode/skill/system-spec-kit/scripts/` returns 0 matches |
+| REQ-005 | Fix Gate 4 references in active agent/project files | `grep -rn "Gate 4" .opencode/agents/ AGENTS.md` returns 0 matches (except speckit.md internal numbering) |
+| REQ-006 | Fix Gate 6 references in active scripts | `grep -rn "Gate 6" .opencode/skills/system-spec-kit/scripts/` returns 0 matches |
 | REQ-007 | Update legacy install guide gate section | `grep -n "Gate [0456]" "SET-UP - AGENTS.md"` returns 0 matches |
 | REQ-008 | Add archive.sh, check-completion.sh, recommend-level.sh to capability tables | All 3 scripts listed in speckit.md Capability Scan AND SKILL.md Key Scripts |
 | REQ-009 | Add toolCache cleanup to shutdown handlers | `stopCleanupInterval()` called in SIGINT/SIGTERM handlers |

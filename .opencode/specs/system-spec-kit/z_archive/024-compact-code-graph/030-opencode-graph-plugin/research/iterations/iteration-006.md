@@ -18,8 +18,8 @@ Best next operational upgrade: add a graph-focused doctor tool that checks and o
 
 Why this matters:
 
-- today, `code_graph_status` reports health but does not repair it [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
-- `ensureCodeGraphReady()` repairs freshness through reindexing, but not deeper integrity issues [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`]
+- today, `code_graph_status` reports health but does not repair it [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`]
+- `ensureCodeGraphReady()` repairs freshness through reindexing, but not deeper integrity issues [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:93-166`]
 - LCM shows that an explicit doctor surface makes operational trust much higher. [SOURCE: `external/opencode-lcm-master/src/store.ts:1369-1605`]
 
 ### 2. Add Snapshot Export/Import For Graph-Adjacent Runtime State
@@ -49,7 +49,7 @@ Current startup and bootstrap output is compact and good, but still mostly says:
 - last session summary
 - recommended action
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:118-155`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47-115`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:204-260`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:118-155`]
 
 The next improvement should be provenance-rich recovery signals:
 
@@ -67,7 +67,7 @@ If we add any export/import or artifact-preview surface, we should explicitly po
 - workspace-bounded path resolution [SOURCE: `external/opencode-lcm-master/src/workspace-path.ts:3-20`]
 - normalized worktree keys [SOURCE: `external/opencode-lcm-master/src/worktree-key.ts:1-4`]
 
-Our current hook-state hashing by cwd is helpful, but it is not a replacement for explicit worktree identity in portable workflows. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:32-45`]
+Our current hook-state hashing by cwd is helpful, but it is not a replacement for explicit worktree identity in portable workflows. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:32-45`]
 
 ### 5. Add Metadata-Only Preview Support For Non-Text Artifacts
 
@@ -91,7 +91,7 @@ This would be especially useful for:
 
 ### 6. Keep Our Current Budgeting And Dedupe Model
 
-One thing we should **not** replace is the current compact-merge model. Our floor-plus-overflow budgeter and file-level deduplication already match the right design instinct for compaction payloads. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
+One thing we should **not** replace is the current compact-merge model. Our floor-plus-overflow budgeter and file-level deduplication already match the right design instinct for compaction payloads. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:106-197`]
 
 The external plugin strengthens the case for improving the **operational shell** around that merger, not for discarding the merger itself.
 

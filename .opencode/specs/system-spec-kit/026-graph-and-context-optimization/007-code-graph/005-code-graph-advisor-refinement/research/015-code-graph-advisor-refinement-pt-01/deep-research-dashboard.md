@@ -90,7 +90,7 @@ Reducer-generated observability surface for the active research packet.
 - **Not a `.opencode/plugin/` issue:** The directory does not exist in (iteration 4)
 - **Not a fix by adding more fields to the brief:** F21's maximal (iteration 4)
 - **Not a fix via a runtime-branching macro in the library:** F24 (iteration 4)
-- None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. (iteration 4)
+- None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. (iteration 4)
 - **Empirical lane-ablation table this iteration**: blocked by F33 (corpus-path mismatch). Did not retry by copying the corpus into the legacy path because that would be a code mutation outside the research scope; instead recorded the wiring defect as a finding and resolved RQ-02 from static structure. (iteration 7)
 - **Static-analysis-only confidence calibration**: tried, ruled out at F35 - confidence is rule-based but the only way to score calibration is empirical. (iteration 7)
 - Treating `semantic_shadow` as a meaningful lane to ablate against top-1 accuracy: it is structurally a noop in the live scorer (`weights-config.ts:44-48`, `fusion.ts:223-230`). Any future ablation suite should treat it as raw-evidence-only and not include it in accuracy-delta assertions. (iteration 7)

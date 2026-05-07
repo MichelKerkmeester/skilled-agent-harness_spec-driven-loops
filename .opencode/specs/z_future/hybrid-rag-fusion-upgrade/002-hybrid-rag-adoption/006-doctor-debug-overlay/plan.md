@@ -12,10 +12,10 @@ contextType: "planning"
 # Plan: 006-doctor-debug-overlay
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Implementation Order
 1. Freeze the overlay scope to summary, guidance, and redacted evidence.

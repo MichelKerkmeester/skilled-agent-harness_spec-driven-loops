@@ -41,11 +41,11 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/create/folder_readme.md",
-      ".opencode/command/create/assets/create_folder_readme_auto.yaml",
-      ".opencode/command/create/assets/create_folder_readme_confirm.yaml",
-      ".opencode/command/create/assets/create_agent_auto.yaml",
-      ".opencode/command/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/create/folder_readme.md",
+      ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
+      ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
+      ".opencode/commands/create/assets/create_agent_auto.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -57,31 +57,31 @@
       {
         "name": "folder_readme.md",
         "kind": "doc",
-        "path": ".opencode/command/create/folder_readme.md",
+        "path": ".opencode/commands/create/folder_readme.md",
         "source": "derived"
       },
       {
         "name": "create_folder_readme_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_folder_readme_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_folder_readme_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_folder_readme_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "create_agent_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_agent_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_agent_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_agent_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
         "source": "derived"
       },
       {

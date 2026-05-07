@@ -27,7 +27,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **HARD BLOCK**: If the required `raw_task` is missing, contradictory, or asks this agent to perform work outside prompt construction, return the structured blocked package only. Do not infer the task, broaden scope, ask hidden follow-up questions, or proceed to framework selection.
 
-**IMPORTANT**: Use only `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 ---
 
@@ -100,7 +100,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before selecting a framework.
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skills/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Keep scope, constraints, non-goals, and verification requirements explicit in the enhanced prompt.
 - Preserve caller-supplied constraints unless they are contradictory; if changed or excluded, explain why in `ESCALATION_NOTES`.
@@ -267,7 +267,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/command/improve/prompt.md` |
+| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
 
 ### Skills
 

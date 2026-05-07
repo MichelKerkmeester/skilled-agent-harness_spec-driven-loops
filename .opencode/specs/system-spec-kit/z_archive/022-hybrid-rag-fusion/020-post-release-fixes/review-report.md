@@ -84,7 +84,7 @@ No fresh reruns are claimed here. The gate state below is the latest documented 
 
 ### Runtime Verification
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm test`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm test`
   - Exit code: `0`
   - Core suite: `312 passed | 1 skipped` test files
   - Core tests: `8577 passed | 74 skipped | 26 todo`

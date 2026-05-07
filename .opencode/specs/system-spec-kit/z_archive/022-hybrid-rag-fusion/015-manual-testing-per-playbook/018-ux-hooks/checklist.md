@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Playbook source and review protocol loaded before execution begins [Evidence: all 11 playbook scenario files read from `.opencode/skill/system-spec-kit/manual_testing_playbook/18--ux-hooks/`]
+- [x] CHK-001 [P0] Playbook source and review protocol loaded before execution begins [Evidence: all 11 playbook scenario files read from `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/`]
 - [x] CHK-002 [P0] All 11 scenario prompts and command sequences verified against `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` [Evidence: each playbook file read and cross-referenced against spec.md scope table]
 - [x] CHK-003 [P0] vitest test files confirmed present and suite compiles without import errors [Evidence: `ls tests/` confirmed all 6 required files: `hooks-ux-feedback.vitest.ts`, `memory-save-ux-regressions.vitest.ts`, `context-server.vitest.ts`, `handler-checkpoints.vitest.ts`, `tool-input-schema.vitest.ts`, `mcp-input-validation.vitest.ts`]
 - [x] CHK-004 [P1] Feature flag support confirmed for all 6 flag-based scenarios (default OFF) [Evidence: `lib/search/search-flags.ts` lines 410, 420, 455, 463, 487, 495 wire all 6 flags; all default ON via `isFeatureEnabled` graduated rollout]

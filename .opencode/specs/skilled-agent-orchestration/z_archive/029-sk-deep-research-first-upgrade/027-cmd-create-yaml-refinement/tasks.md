@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Audit `.opencode/command/spec_kit/assets/*.yaml` as the style baseline
+- [x] T001 Audit `.opencode/commands/spec_kit/assets/*.yaml` as the style baseline
 - [x] T002 Inspect the create asset suite for missing shared top-level sections
 - [x] T003 Create the new `027-cmd-create-yaml-refinement` spec folder
 <!-- /ANCHOR:phase-1 -->
@@ -51,16 +51,16 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Rewrite `.opencode/command/create/assets/create_feature_catalog_auto.yaml`
-- [x] T011 Rewrite `.opencode/command/create/assets/create_feature_catalog_confirm.yaml`
-- [x] T012 Rewrite `.opencode/command/create/assets/create_testing_playbook_auto.yaml`
-- [x] T013 Rewrite `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`
-- [x] T014 Normalize `.opencode/command/create/assets/create_agent_auto.yaml`
-- [x] T015 Normalize `.opencode/command/create/assets/create_agent_confirm.yaml`
-- [x] T016 Normalize `.opencode/command/create/assets/create_changelog_auto.yaml`
-- [x] T017 Normalize `.opencode/command/create/assets/create_changelog_confirm.yaml`
-- [x] T018 Normalize `.opencode/command/create/assets/create_folder_readme_auto.yaml`
-- [x] T019 Normalize `.opencode/command/create/assets/create_folder_readme_confirm.yaml`
+- [x] T010 Rewrite `.opencode/commands/create/assets/create_feature_catalog_auto.yaml`
+- [x] T011 Rewrite `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`
+- [x] T012 Rewrite `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`
+- [x] T013 Rewrite `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`
+- [x] T014 Normalize `.opencode/commands/create/assets/create_agent_auto.yaml`
+- [x] T015 Normalize `.opencode/commands/create/assets/create_agent_confirm.yaml`
+- [x] T016 Normalize `.opencode/commands/create/assets/create_changelog_auto.yaml`
+- [x] T017 Normalize `.opencode/commands/create/assets/create_changelog_confirm.yaml`
+- [x] T018 Normalize `.opencode/commands/create/assets/create_folder_readme_auto.yaml`
+- [x] T019 Normalize `.opencode/commands/create/assets/create_folder_readme_confirm.yaml`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,9 +68,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T020 Parse every file in `.opencode/command/create/assets/`
-- [x] T021 Re-validate `.opencode/command/create/README.txt`
-- [x] T022 Re-validate `.opencode/command/README.txt`
+- [x] T020 Parse every file in `.opencode/commands/create/assets/`
+- [x] T021 Re-validate `.opencode/commands/create/README.txt`
+- [x] T022 Re-validate `.opencode/commands/README.txt`
 - [x] T023 Validate this spec folder with `validate.sh`
 - [x] T024 Update `implementation-summary.md` with the final verification evidence
 <!-- /ANCHOR:phase-3 -->

@@ -4,7 +4,7 @@
 
 ### Anti-pattern: `-v /tmp:/tmp` shared mount
 
-Running multiple MCP server containers with `-v /tmp:/tmp`, the same UID, and the same working directory shares the hook-state directory across containers. `getProjectHash()` in `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` hashes `process.cwd()` and does not add a UID salt, so two containers that start from the same directory can write to the same state path.
+Running multiple MCP server containers with `-v /tmp:/tmp`, the same UID, and the same working directory shares the hook-state directory across containers. `getProjectHash()` in `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` hashes `process.cwd()` and does not add a UID salt, so two containers that start from the same directory can write to the same state path.
 
 > **Warning**
 > This is **R53-P1w-001**: a deployment mistake that worsens isolation, not a framework bug. The segment-2 synthesis flagged it because one container can poison or overwrite another container's hook-state cache.
@@ -21,7 +21,7 @@ Running multiple MCP server containers with `-v /tmp:/tmp`, the same UID, and th
 
 ## MCP transport caller context
 
-Wave B4a landed AsyncLocalStorage-based caller identity propagation in `.opencode/skill/system-spec-kit/mcp_server/lib/context/caller-context.ts`.
+Wave B4a landed AsyncLocalStorage-based caller identity propagation in `.opencode/skills/system-spec-kit/mcp_server/lib/context/caller-context.ts`.
 
 Handlers read caller identity through `getCallerContext()`, so transport metadata now flows without widening handler signatures.
 

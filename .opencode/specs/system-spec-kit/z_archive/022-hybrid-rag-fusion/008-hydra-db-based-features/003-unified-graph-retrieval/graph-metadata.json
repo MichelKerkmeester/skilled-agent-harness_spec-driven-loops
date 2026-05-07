@@ -49,9 +49,9 @@
       "mcp_server/lib/graph/graph-signals.ts",
       "mcp_server/lib/graph/community-detection.ts",
       "tests/graph-roadmap-finalization.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -111,19 +111,19 @@
       {
         "name": "stage1-candidate-gen.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
         "source": "derived"
       },
       {
         "name": "causal-boost.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
         "source": "derived"
       },
       {
         "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {

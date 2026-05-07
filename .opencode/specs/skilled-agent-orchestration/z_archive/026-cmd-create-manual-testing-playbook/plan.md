@@ -64,13 +64,13 @@ Implementation is organized around one command family: canonical markdown entryp
 Reference-driven create command that scaffolds a multi-file documentation package with integrated root guidance and per-feature scenario files.
 
 ### Key Components
-- **Canonical command doc**: `.opencode/command/create/testing-playbook.md`
-- **Execution variants**: auto/confirm YAML assets under `.opencode/command/create/assets/`
+- **Canonical command doc**: `.opencode/commands/create/testing-playbook.md`
+- **Execution variants**: auto/confirm YAML assets under `.opencode/commands/create/assets/`
 - **Runtime mirror**: `.agents/commands/create/testing-playbook.toml`
 - **Authoring source inputs**:
-  - `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
-  - `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
+  - `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`
+  - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md`
 - **Discovery surfaces**: create-command READMEs plus runtime write-agent docs
 
 ### Data Flow
@@ -88,16 +88,16 @@ User invokes `/create:testing-playbook` -> command captures target skill path, o
 - [x] Freeze the naming translation `/create:testing-playbook` -> `manual_testing_playbook/`.
 
 ### Phase 2: Command family implementation
-- [x] Create `.opencode/command/create/testing-playbook.md`.
-- [x] Create `.opencode/command/create/assets/create_testing_playbook_auto.yaml`.
-- [x] Create `.opencode/command/create/assets/create_testing_playbook_confirm.yaml`.
+- [x] Create `.opencode/commands/create/testing-playbook.md`.
+- [x] Create `.opencode/commands/create/assets/create_testing_playbook_auto.yaml`.
+- [x] Create `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml`.
 - [x] Create `.agents/commands/create/testing-playbook.toml`.
 
 ### Phase 3: Runtime-discovery sync
-- [x] Update `.opencode/command/create/README.txt`.
-- [x] Update `.opencode/command/README.txt`.
+- [x] Update `.opencode/commands/create/README.txt`.
+- [x] Update `.opencode/commands/README.txt`.
 - [x] Update `.opencode/README.md`.
-- [x] Update `.opencode/agent/write.md`, `.claude/agents/write.md`, `.codex/agents/write.toml`, and `.agents/agents/write.md`.
+- [x] Update `.opencode/agents/write.md`, `.claude/agents/write.md`, `.codex/agents/write.toml`, and `.agents/agents/write.md`.
 
 ### Phase 4: Validation and closure
 - [x] Validate the command markdown doc.
@@ -114,13 +114,13 @@ User invokes `/create:testing-playbook` -> command captures target skill path, o
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Command-doc validation | `.opencode/command/create/testing-playbook.md` | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Command-doc validation | `.opencode/commands/create/testing-playbook.md` | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | YAML structure | `create_testing_playbook_auto.yaml`, `create_testing_playbook_confirm.yaml` | YAML parser or equivalent script check |
 | TOML structure | `.agents/commands/create/testing-playbook.toml` | `python3` with `tomllib` |
 | Discovery sync | Runtime-facing create-command listings | `rg`, targeted reads |
 | Scenario inspection | `create/update` plus `:auto/:confirm` command shapes | path and content review |
 | Contract inspection | Generated package rules for sidecars, root guidance, prompt scaffolds | targeted review against spec `021` |
-| Spec validation | This packet | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../026-cmd-create-manual-testing-playbook` |
+| Spec validation | This packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../026-cmd-create-manual-testing-playbook` |
 
 ### Planned Scenario Checks
 
@@ -139,7 +139,7 @@ User invokes `/create:testing-playbook` -> command captures target skill path, o
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Spec `021-sk-doc-feature-catalog-testing-playbook` | Internal | Available | Defines the playbook contract this command must generate |
-| `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Internal | Available | Defines when and how the command should scaffold the package |
+| `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Internal | Available | Defines when and how the command should scaffold the package |
 | Testing-playbook template bundle | Internal | Available | Provides the root and per-feature scaffold source |
 | Existing create-command conventions | Internal | Available | Needed to keep the new command consistent with live workflows |
 <!-- /ANCHOR:dependencies -->

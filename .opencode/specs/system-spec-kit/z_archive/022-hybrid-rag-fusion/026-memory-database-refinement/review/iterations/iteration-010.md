@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] YAML-looking text anywhere in the body can override parsed metadata
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
 
 **Issue**: `extractContextType()`, `extractImportanceTier()`, and the multiline branch of `extractTriggerPhrases()` search the entire document for YAML-shaped keys instead of parsing only a validated leading frontmatter block. That means fenced examples, inline documentation, or copied config snippets inside the body can silently overwrite the indexed `context_type`, `importance_tier`, and `trigger_phrases` for a memory.
 
@@ -16,7 +16,7 @@
 **Fix**: Parse frontmatter once from the top of the document only, preferably with a real YAML parser or a single bounded frontmatter extractor. Feed `extractContextType()`, `extractImportanceTier()`, and `extractTriggerPhrases()` from that parsed object instead of scanning the whole body.
 
 ### [P1] Anchor validation accepts malformed nesting and extraction returns corrupted sections
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
 
 **Issue**: `validateAnchors()` only checks whether a matching closing tag exists somewhere in the document, and `extractAnchors()` always takes the first matching closing tag after an opening tag. Crossed/nested anchors therefore validate as "good" while returning truncated or cross-contaminated anchor bodies. Duplicate anchor IDs also are not rejected and will overwrite earlier entries in the returned map.
 
@@ -29,7 +29,7 @@
 **Fix**: Replace the regex-pairing approach with a single-pass stack parser that enforces proper nesting, rejects duplicate IDs, and records structural errors before extraction. If malformed nesting is detected, treat anchor extraction as invalid instead of returning partial content.
 
 ### [P1] Normalization erases checklist state and can make pending/completed tasks share the same cache key
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts`
 
 **Issue**: `normalizeMarkdownLists()` removes both unchecked (`- [ ]`) and checked (`- [x]` / `- [X]`) prefixes, so pending and completed tasks normalize to identical text. In this codebase that is not just a retrieval-quality tradeoff: the normalized text is used for embedding cache keys and chunk cache keys, so flipping a task from incomplete to complete can reuse the same normalized hash and stale embedding even though the task state changed.
 
@@ -43,7 +43,7 @@
 **Fix**: Preserve checkbox state as text instead of deleting it, for example by rewriting to `unchecked pending task` / `checked completed task` or `[todo]` / `[done]`. That keeps retrieval and cache invalidation sensitive to task completion changes.
 
 ### [P2] Encoding detection silently misdecodes BOM-less UTF-16 files as UTF-8
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
 
 **Issue**: `readFileWithEncoding()` only recognizes UTF-16 when a BOM is present. If a UTF-16 LE/BE file is saved without a BOM, the function falls through to `buffer.toString('utf-8')` and returns a string full of embedded NULs/replacement data rather than failing fast or decoding correctly. That poisons downstream metadata extraction, hashing, and validation in a way that is hard to detect.
 

@@ -16,14 +16,14 @@
       "graph-metadata.json only"
     ],
     "codeFilesAudited": [
-      ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-      ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts"
     ]
   },
-  "verificationCommand": "cd .opencode/skill/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run tests/graph-metadata-schema.vitest.ts ../scripts/tests/graph-metadata-backfill.vitest.ts --reporter=default",
+  "verificationCommand": "cd .opencode/skills/system-spec-kit/mcp_server && ../scripts/node_modules/.bin/vitest run tests/graph-metadata-schema.vitest.ts ../scripts/tests/graph-metadata-backfill.vitest.ts --reporter=default",
   "convergence": {
     "severityWeightedNewFindingsRatioThreshold": 0.1,
     "requiredDimensionCoverage": [

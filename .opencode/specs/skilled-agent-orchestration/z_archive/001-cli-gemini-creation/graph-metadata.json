@@ -40,12 +40,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/cli-gemini/SKILL.md",
-      ".opencode/skill/cli-gemini/references/cli_reference.md",
-      ".opencode/skill/cli-gemini/references/integration_patterns.md",
-      ".opencode/skill/cli-gemini/references/gemini_tools.md",
-      ".opencode/skill/cli-gemini/assets/prompt_templates.md",
-      ".opencode/skill/cli-gemini/references/agent_delegation.md",
+      ".opencode/skills/cli-gemini/SKILL.md",
+      ".opencode/skills/cli-gemini/references/cli_reference.md",
+      ".opencode/skills/cli-gemini/references/integration_patterns.md",
+      ".opencode/skills/cli-gemini/references/gemini_tools.md",
+      ".opencode/skills/cli-gemini/assets/prompt_templates.md",
+      ".opencode/skills/cli-gemini/references/agent_delegation.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,37 +56,37 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/SKILL.md",
+        "path": ".opencode/skills/cli-gemini/SKILL.md",
         "source": "derived"
       },
       {
         "name": "cli_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/references/cli_reference.md",
+        "path": ".opencode/skills/cli-gemini/references/cli_reference.md",
         "source": "derived"
       },
       {
         "name": "integration_patterns.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/references/integration_patterns.md",
+        "path": ".opencode/skills/cli-gemini/references/integration_patterns.md",
         "source": "derived"
       },
       {
         "name": "gemini_tools.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/references/gemini_tools.md",
+        "path": ".opencode/skills/cli-gemini/references/gemini_tools.md",
         "source": "derived"
       },
       {
         "name": "prompt_templates.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/assets/prompt_templates.md",
+        "path": ".opencode/skills/cli-gemini/assets/prompt_templates.md",
         "source": "derived"
       },
       {
         "name": "agent_delegation.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-gemini/references/agent_delegation.md",
+        "path": ".opencode/skills/cli-gemini/references/agent_delegation.md",
         "source": "derived"
       },
       {

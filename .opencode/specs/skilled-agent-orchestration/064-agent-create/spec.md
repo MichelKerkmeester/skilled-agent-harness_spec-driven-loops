@@ -13,14 +13,14 @@ _memory:
     next_safe_action: "commit_if_requested"
     blockers: []
     key_files:
-      - ".opencode/agent/create.md"
+      - ".opencode/agents/create.md"
       - ".codex/agents/create.toml"
-      - ".opencode/command/create/agent.md"
-      - ".opencode/command/create/sk-skill.md"
-      - ".opencode/command/create/feature-catalog.md"
-      - ".opencode/command/create/testing-playbook.md"
-      - ".opencode/command/create/folder_readme.md"
-      - ".opencode/command/create/changelog.md"
+      - ".opencode/commands/create/agent.md"
+      - ".opencode/commands/create/sk-skill.md"
+      - ".opencode/commands/create/feature-catalog.md"
+      - ".opencode/commands/create/testing-playbook.md"
+      - ".opencode/commands/create/folder_readme.md"
+      - ".opencode/commands/create/changelog.md"
     session_dedup:
       fingerprint: "sha256:0640640640640640640640640640640640640640640640640640640640640640"
       session_id: "codex-064-create-2026-05-03"

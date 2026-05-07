@@ -6,14 +6,14 @@ Assess the semantic search fork for precision/recall controls and downstream fus
 
 ## Sources
 
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py:8`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:21`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:39`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:158`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:176`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py:253`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:52`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:194`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:8`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:21`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:39`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:158`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:176`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:253`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:52`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:194`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:46`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:243`
 

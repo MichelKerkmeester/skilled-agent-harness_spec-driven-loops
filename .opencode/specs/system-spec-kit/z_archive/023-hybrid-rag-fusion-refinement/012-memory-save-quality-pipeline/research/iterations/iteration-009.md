@@ -16,7 +16,7 @@ The validation system defines 14 rules (V1-V14) with a typed metadata registry `
 
 **Critical finding**: `appliesToSources` is set to `'all'` for every single rule. There is NO source-specific rule differentiation. This means JSON-mode saves (`_source: 'file'`) face the exact same validation gauntlet as captured-session saves, despite having fundamentally different data shapes.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:44-157]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:44-157]
 
 ### 2. Disposition Engine (lines 588-618)
 
@@ -30,7 +30,7 @@ Index-block rules (blockOnIndex=true, blockOnWrite=false): V2, V12
 
 The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) check `ruleAppliesToSource()` before blocking, BUT since all rules have `appliesToSources: 'all'`, this gate is effectively a no-op.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:588-618]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:588-618]
 
 ### 3. V1: Placeholder Leakage in Durable Fields (HIGH, blocks write+index)
 
@@ -38,7 +38,7 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 **Check**: Regex `^field:.*\[TBD\]` per field (line 642-645).
 **JSON-mode interaction**: When JSON-mode saves provide `keyDecisions` but the template renderer fails to populate the `decisions` frontmatter field (because the extractor returns empty data), the template may emit `[TBD]` placeholders. This is a **primary failure path** for JSON-mode.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:642-652]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:642-652]
 
 ### 4. V2: Placeholder with Tool Evidence (MEDIUM, blocks index only)
 
@@ -46,7 +46,7 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 **Check**: Regex `/\[N\/A\]/i` combined with tool count from frontmatter or markdown table (lines 654-661).
 **JSON-mode interaction**: If the JSON payload includes `toolCalls` data that gets counted, but the template renders `[N/A]` for sections where no conversation data was extracted, V2 fires. This is a **secondary failure path** -- the memory gets written but is invisible to search.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:654-661]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:654-661]
 
 ### 5. V3: Malformed spec_folder (HIGH, blocks write+index)
 
@@ -54,21 +54,21 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 **Check**: Regex on extracted spec_folder string (lines 663-669).
 **JSON-mode interaction**: Low risk for JSON-mode since `specFolder` comes from CLI argument or payload field, not from AI-generated conversation text. Rarely fires on structured input.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:663-669]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:663-669]
 
 ### 6. V4: Fallback Decision Text (LOW, soft diagnostic)
 
 **Trigger**: Content matches `/No (specific )?decisions were made/i`.
 **JSON-mode interaction**: HIGH relevance. When `keyDecisions` in JSON payload fails to flow through to the rendered template (due to extractor gaps), the template emits fallback text like "No specific decisions were made", triggering V4. While V4 itself is soft, it is a **canary signal** that the decision pipeline is broken for JSON-mode.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:672-677]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:672-677]
 
 ### 7. V5: Sparse Trigger Phrases (LOW, soft diagnostic)
 
 **Trigger**: `tool_count >= 5` AND `trigger_phrases` list in frontmatter is empty.
 **JSON-mode interaction**: Moderate risk. The trigger phrase extractor (`extractTriggerPhrases`) operates on rendered content. If the template produces thin content from JSON-mode data, the trigger extractor finds nothing to extract. However, V5 only fires when combined with high tool count.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:679-685]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:679-685]
 
 ### 8. V6: Template Placeholder Remnants (LOW, soft diagnostic)
 
@@ -84,14 +84,14 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 
 **JSON-mode interaction**: HIGH relevance. When the template renderer receives empty/null values from extractors that failed to process JSON-mode data, placeholder patterns leak into the rendered output. The `/100` and empty table cell patterns are the most common JSON-mode failures because preflight/postflight scores from JSON payload may not reach the template variables.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:178-187, 687-693]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:178-187, 687-693]
 
 ### 9. V7: Contradictory Tool State (LOW, soft diagnostic)
 
 **Trigger**: `tool_count === 0` in frontmatter/table BUT content contains execution signal patterns (`**Tool:`, `| Tool Executions | N |` with N>0, `tool_calls`).
 **JSON-mode interaction**: When JSON payload includes `toolCalls` array, the workflow patches `TOOL_COUNT` from the captured evidence count (workflow.ts line 1038-1043). This usually prevents V7 from firing. Low risk for JSON-mode.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:695-700]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:695-700]
 
 ### 10. V8: Foreign Spec Contamination (HIGH, blocks write+index)
 
@@ -104,7 +104,7 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 
 **JSON-mode interaction**: CRITICAL. When the JSON `sessionSummary` or `keyDecisions` reference related spec folders (common in cross-cutting work), those references pass through contamination cleaning but then appear in the rendered memory body. If the allowed set does not include them, V8 triggers a hard block. This is the single most reported failure mode for JSON-mode saves doing cross-phase work.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:701-775]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:701-775]
 
 ### 11. V9: Contaminated Title (HIGH, blocks write+index)
 
@@ -116,14 +116,14 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 
 **JSON-mode interaction**: Low risk. JSON-mode saves usually provide a `sessionSummary` that becomes the title candidate. The title builder has multiple fallback layers (preferredMemoryTask, specTitle, folderBase). Only fires if ALL title sources produce contaminated output.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:777-783, 194-199]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:777-783, 194-199]
 
 ### 12. V10: Session Source Mismatch (LOW, soft diagnostic)
 
 **Trigger**: `filesystem_file_count` and `captured_file_count` frontmatter values diverge by >= 2x ratio AND >= 5 absolute difference, with neither being 0.
 **JSON-mode interaction**: Minimal. JSON-mode saves don't typically produce both filesystem and captured file counts.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:785-794]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:785-794]
 
 ### 13. V11: API Error Content Leakage (HIGH, blocks write+index)
 
@@ -134,14 +134,14 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 
 **JSON-mode interaction**: Low risk for well-formed JSON input. Only fires if the AI accidentally includes API error messages in `sessionSummary` or `keyDecisions`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:796-816]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:796-816]
 
 ### 14. V12: Topical Coherence (MEDIUM, blocks index only)
 
 **Trigger**: Zero overlap between rendered memory content and the spec folder's `trigger_phrases` from `spec.md`. Skipped for files in `memory/` directories or known spec doc filenames.
 **JSON-mode interaction**: Moderate risk. If the spec's `spec.md` has well-defined trigger phrases but the JSON payload's content (after rendering) uses different terminology, V12 flags it. This is especially problematic for research-focused sessions that use broader vocabulary than the spec's trigger phrases.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:818-872]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:818-872]
 
 ### 15. V13: Frontmatter Integrity and Content Density (HIGH, blocks write+index)
 
@@ -151,14 +151,14 @@ The `shouldBlockWrite()` and `shouldBlockIndex()` functions (lines 578-586) chec
 
 **JSON-mode interaction**: HIGH relevance. When extractors fail to populate template variables from JSON data, the rendered body may contain only empty headings and whitespace, falling below the 50-character threshold. This is a **primary hard-block** for thin JSON-mode saves.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:874-895]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:874-895]
 
 ### 16. V14: Status/Percentage Contradiction (LOW, soft diagnostic)
 
 **Trigger**: `status` is "complete" but `percentage` is < 100 in frontmatter.
 **JSON-mode interaction**: Minimal. These fields come from session metadata, not from JSON payload content.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:897-916]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:897-916]
 
 ## Summary: JSON-Mode Failure Risk by Rule
 
@@ -186,8 +186,8 @@ None -- this iteration was pure code reading with no dead-end searches.
 None discovered.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts` (lines 1-998, complete file)
-- `.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts` (lines 8-18, KnownDataSource type)
+- `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` (lines 1-998, complete file)
+- `.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts` (lines 8-18, KnownDataSource type)
 
 ## Assessment
 - New information ratio: 1.0

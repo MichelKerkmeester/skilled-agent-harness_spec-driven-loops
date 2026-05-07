@@ -13,9 +13,9 @@ I compared Xethryon's fork documentation drift with Spec Kit's documented spec l
 
 ## Evidence
 - Xethryon's user-facing README and rebase checklist drift materially apart on what the fork actually changes and how those changes are verified. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_MODS.md:10-180] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/README.md:11-64]
-- Spec Kit explicitly frames spec folders as the paper trail for file-modifying conversations and memory as the cross-session continuation mechanism. [SOURCE: .opencode/skill/system-spec-kit/README.md:50-57]
-- Spec Kit's lifecycle intentionally scales documentation depth across Levels 1, 2, 3, and 3+ with required files and validation expectations. [SOURCE: .opencode/skill/system-spec-kit/README.md:235-245] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/create.sh:5-20] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/create.sh:225-245]
-- Validation is not cosmetic; `validate.sh` codifies 20 rules, strict mode, recursive phase validation, and explicit exit semantics. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:89-99] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:297-307]
+- Spec Kit explicitly frames spec folders as the paper trail for file-modifying conversations and memory as the cross-session continuation mechanism. [SOURCE: .opencode/skills/system-spec-kit/README.md:50-57]
+- Spec Kit's lifecycle intentionally scales documentation depth across Levels 1, 2, 3, and 3+ with required files and validation expectations. [SOURCE: .opencode/skills/system-spec-kit/README.md:235-245] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:5-20] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:225-245]
+- Validation is not cosmetic; `validate.sh` codifies 20 rules, strict mode, recursive phase validation, and explicit exit semantics. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:89-99] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:297-307]
 
 ## Analysis
 This is the strongest argument against a broad simplification pivot. Xethryon's lighter docs reduce ceremony, but they also make it harder to know what is true. Spec Kit's level system, required artifacts, and validation pipeline are expensive precisely because they are compensating for an otherwise common failure mode: AI-driven work that leaves weak provenance and drifty documentation. The more honest criticism is not that the lifecycle is unnecessary, but that its operator UX can feel heavy. The architecture still looks justified.
@@ -37,7 +37,7 @@ finding: Spec Kit should not pivot away from its spec-folder lifecycle or valida
 - **Migration path:** not recommended.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - **Change type:** no change
 - **Blast radius:** architectural
 - **Prerequisites:** none

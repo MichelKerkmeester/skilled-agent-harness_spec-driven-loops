@@ -37,9 +37,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,19 +49,19 @@
       {
         "name": "memory-search.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "fsrs-scheduler.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts",
         "source": "derived"
       },
       {

@@ -221,7 +221,7 @@ These extend (not replace) the v1.0.1 4-dim rubric. They live in each cell's sco
 
 ### See Also
 
-- Stress test cycle pattern: `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`.
+- Stress test cycle pattern: `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`.
 - Corpus source-of-truth: `../001-search-intelligence-stress-test/001-scenario-design/spec.md` §Scenario Corpus.
 - Dispatch script template: `../001-search-intelligence-stress-test/001-scenario-design/scripts/`.
 - Live-probe template (REQ-001): `../008-mcp-daemon-rebuild-protocol/references/live-probe-template.md`.
@@ -248,7 +248,7 @@ These extend (not replace) the v1.0.1 4-dim rubric. They live in each cell's sco
 - **Live-probe template**: `../008-mcp-daemon-rebuild-protocol/references/live-probe-template.md` — REQ-001 attestation source.
 - **Per-packet contract docs** (read for assertions REQ-008..013):
   - `../003-memory-context-truncation-contract/spec.md`
-  - `../004-cocoindex-overfetch-dedup/spec.md` + `.opencode/skill/mcp-coco-index/references/tool_reference.md` §7
+  - `../004-cocoindex-overfetch-dedup/spec.md` + `.opencode/skills/mcp-coco-index/references/tool_reference.md` §7
   - `../005-code-graph-fast-fail/spec.md`
   - `../006-causal-graph-window-metrics/spec.md`
   - `../007-intent-classifier-stability/spec.md`

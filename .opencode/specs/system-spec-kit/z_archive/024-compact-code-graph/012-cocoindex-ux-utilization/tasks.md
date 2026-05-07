@@ -66,7 +66,7 @@ Template compliance shim section. Legacy phase content continues below.
 ### Phase 1: Setup
 - [x] T001 Confirm hook build output is verified manually rather than by a dedicated script (`mcp_server`)
 - [x] T002 Confirm packet rewrite scope is limited to this phase folder (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`)
-- [x] T003 [P] Rebuild packet docs on the Level 2 scaffold (`.opencode/skill/system-spec-kit/templates/level_2/`)
+- [x] T003 [P] Rebuild packet docs on the Level 2 scaffold (`.opencode/skills/system-spec-kit/templates/level_2/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

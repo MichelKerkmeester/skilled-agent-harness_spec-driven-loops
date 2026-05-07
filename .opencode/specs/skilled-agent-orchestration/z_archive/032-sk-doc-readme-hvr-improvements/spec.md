@@ -59,7 +59,7 @@ Bring HVR rules, the README template and README creation guidance up to producti
 ### In Scope
 
 - **D1: HVR Rules upgrade** -- Improve `../../../skill/sk-doc/references/global/hvr_rules.md` with structural patterns, section-level rules, scoring calibration and additional banned patterns. Maintain `../../../skill/sk-doc/assets/skill/skill_reference_template.md` format (numbered H2 ALL CAPS, anchors, frontmatter).
-- **D2: README template upgrade** -- Upgrade `../../../skill/sk-doc/assets/documentation/readme_template.md` with patterns from `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, and `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md`: two-tier voice, numbered Feature subsections, comparison tables, analogy placement, `---` dividers between subsections.
+- **D2: README template upgrade** -- Upgrade `../../../skill/sk-doc/assets/documentation/readme_template.md` with patterns from `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, and `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md`: two-tier voice, numbered Feature subsections, comparison tables, analogy placement, `---` dividers between subsections.
 - **D3: New readme_creation reference** -- Create `../../../skill/sk-doc/references/specific/readme_creation.md` modeled on `../../../skill/sk-doc/references/specific/install_guide_creation.md`. Covers workflow, section standards, quality criteria, pre-publish checklist and cross-references.
 
 ### Out of Scope
@@ -73,9 +73,9 @@ Bring HVR rules, the README template and README creation guidance up to producti
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/references/global/hvr_rules.md` | Modify | Add structural patterns, section-level rules, scoring calibration |
-| `.opencode/skill/sk-doc/assets/documentation/readme_template.md` | Modify | Upgrade with two-tier voice, numbered subsections, comparison tables, dividers |
-| `.opencode/skill/sk-doc/references/specific/readme_creation.md` | Create | New reference file for README creation workflow and standards |
+| `.opencode/skills/sk-doc/references/global/hvr_rules.md` | Modify | Add structural patterns, section-level rules, scoring calibration |
+| `.opencode/skills/sk-doc/assets/documentation/readme_template.md` | Modify | Upgrade with two-tier voice, numbered subsections, comparison tables, dividers |
+| `.opencode/skills/sk-doc/references/specific/readme_creation.md` | Create | New reference file for README creation workflow and standards |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -91,7 +91,7 @@ Bring HVR rules, the README template and README creation guidance up to producti
 | REQ-002 | HVR rules maintain `../../../skill/sk-doc/assets/skill/skill_reference_template.md` format | Numbered H2 ALL CAPS sections, `ANCHOR:slug` markers, frontmatter with title/description |
 | REQ-003 | README template includes two-tier voice (narrative + reference) | Features section split into narrative subsection (3.1 HOW IT WORKS) and reference subsection (3.2 TECHNICAL REFERENCE) with clear guidance |
 | REQ-004 | README template includes numbered Feature subsections with `---` dividers | H3 numbered ALL CAPS (e.g., `### 3.1 TOPIC`), H4 numbered ALL CAPS (e.g., `#### 3.1.1 SUBTOPIC`), horizontal rules between subsections |
-| REQ-005 | `.opencode/skill/sk-doc/references/specific/readme_creation.md` follows `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md` format | Frontmatter, numbered H2 ALL CAPS sections, anchors, cross-references |
+| REQ-005 | `.opencode/skills/sk-doc/references/specific/readme_creation.md` follows `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` format | Frontmatter, numbered H2 ALL CAPS sections, anchors, cross-references |
 | REQ-006 | `../../../skill/sk-doc/references/specific/readme_creation.md` covers the full README creation workflow | Phase-based workflow with validation checkpoints, decision tree for README type, section-specific writing guidance |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -110,9 +110,9 @@ Bring HVR rules, the README template and README creation guidance up to producti
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All three deliverables pass `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md` format validation (frontmatter, anchors, numbered H2 ALL CAPS)
+- **SC-001**: All three deliverables pass `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` format validation (frontmatter, anchors, numbered H2 ALL CAPS)
 - **SC-002**: HVR rules cover both word-level AND structural-level AI tells
-- **SC-003**: README template, when followed, produces output matching the quality of `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, and `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md`
+- **SC-003**: README template, when followed, produces output matching the quality of `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, and `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md`
 - **SC-004**: `../../../skill/sk-doc/references/specific/readme_creation.md` provides a complete workflow from "decide to create README" through "pre-publish checklist"
 - **SC-005**: No regressions in `../../../skill/sk-doc/references/specific/install_guide_creation.md` or other sk-doc references
 <!-- /ANCHOR:success-criteria -->
@@ -126,8 +126,8 @@ Bring HVR rules, the README template and README creation guidance up to producti
 |------|------|--------|------------|
 | Risk | GPT-5.4 agents produce AI-sounding prose that needs heavy editing | Med | Claude reviews all agent output before acceptance. Agents handle structure/research, Claude handles voice refinement |
 | Risk | HVR rule changes could retroactively invalidate existing READMEs | Low | Changes are additive (new rules), not breaking. Existing docs grandfathered |
-| Dependency | `.opencode/skill/system-spec-kit/README.md`, `.opencode/skill/system-spec-kit/mcp_server/README.md`, and `.opencode/skill/system-spec-kit/SHARED_MEMORY_DATABASE.md` as exemplars | None (already committed) | Files exist and are stable |
-| Risk | `.opencode/skill/sk-doc/references/specific/readme_creation.md` overlaps with `.opencode/skill/sk-doc/assets/documentation/readme_template.md` content | Med | Clear separation: template = scaffold to fill, creation reference = workflow + standards + quality criteria |
+| Dependency | `.opencode/skills/system-spec-kit/README.md`, `.opencode/skills/system-spec-kit/mcp_server/README.md`, and `.opencode/skills/system-spec-kit/SHARED_MEMORY_DATABASE.md` as exemplars | None (already committed) | Files exist and are stable |
+| Risk | `.opencode/skills/sk-doc/references/specific/readme_creation.md` overlaps with `.opencode/skills/sk-doc/assets/documentation/readme_template.md` content | Med | Clear separation: template = scaffold to fill, creation reference = workflow + standards + quality criteria |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -142,7 +142,7 @@ Bring HVR rules, the README template and README creation guidance up to producti
 
 ### Maintainability
 
-- **NFR-M01**: `.opencode/skill/sk-doc/references/specific/readme_creation.md` cross-references `.opencode/skill/sk-doc/assets/documentation/readme_template.md` and `.opencode/skill/sk-doc/references/global/hvr_rules.md` without duplicating their content
+- **NFR-M01**: `.opencode/skills/sk-doc/references/specific/readme_creation.md` cross-references `.opencode/skills/sk-doc/assets/documentation/readme_template.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` without duplicating their content
 - **NFR-M02**: HVR rule additions use the same YAML/table/code-block patterns as existing rules
 
 ### Compatibility
@@ -162,7 +162,7 @@ Bring HVR rules, the README template and README creation guidance up to producti
 
 ### Template Usage
 
-- User fills the template without reading `.opencode/skill/sk-doc/references/specific/readme_creation.md`: template placeholders must be self-explanatory
+- User fills the template without reading `.opencode/skills/sk-doc/references/specific/readme_creation.md`: template placeholders must be self-explanatory
 - AI agent fills template: anchors and placeholder format must be parseable
 
 ### HVR Scoring

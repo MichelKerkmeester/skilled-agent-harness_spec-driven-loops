@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -61,9 +61,9 @@ Thirteen cli-codex (gpt-5.4, model_reasoning_effort=high) iterations executed th
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase ran the autonomous sk-deep-research loop with cli-codex (gpt-5.4 high) preferred for the primary research pass. Codex was invoked via `codex exec --model gpt-5.4 -c model_reasoning_effort="high" --sandbox workspace-write --skip-git-repo-check -` with prompts piped via stdin from temporary prompt files under `/tmp`. After each iteration, the reducer script `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs` synchronized findings-registry.json, the strategy file, and the dashboard file. The packet then received a local extension from 13 to 20 total iterations, closing every tracked question, refreshing reducer-owned artifacts, and updating the canonical synthesis. Zero internal `@deep-research` fallback was required across the full lineage.
+The phase ran the autonomous sk-deep-research loop with cli-codex (gpt-5.4 high) preferred for the primary research pass. Codex was invoked via `codex exec --model gpt-5.4 -c model_reasoning_effort="high" --sandbox workspace-write --skip-git-repo-check -` with prompts piped via stdin from temporary prompt files under `/tmp`. After each iteration, the reducer script `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs` synchronized findings-registry.json, the strategy file, and the dashboard file. The packet then received a local extension from 13 to 20 total iterations, closing every tracked question, refreshing reducer-owned artifacts, and updating the canonical synthesis. Zero internal `@deep-research` fallback was required across the full lineage.
 
-Validation guardrails ran before any research started: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` was executed and iterated until 0 errors and 0 warnings, after which the deep-research loop began. After synthesis, the same `validate.sh --strict` was re-run for final compliance.
+Validation guardrails ran before any research started: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` was executed and iterated until 0 errors and 0 warnings, after which the deep-research loop began. After synthesis, the same `validate.sh --strict` was re-run for final compliance.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -121,5 +121,5 @@ Validation guardrails ran before any research started: `bash .opencode/skill/sys
 
 <!--
 Final implementation summary for the 003-contextador research phase.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

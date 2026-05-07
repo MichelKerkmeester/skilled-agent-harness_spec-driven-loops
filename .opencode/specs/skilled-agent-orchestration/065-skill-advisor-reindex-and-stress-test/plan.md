@@ -52,10 +52,10 @@ The program uses phase-local remediation. Each child phase owns one router failu
 
 Expected affected runtime surfaces across the program:
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/**`
-- `.opencode/skill/system-spec-kit/**/graph-metadata.json` and related route metadata if calibration requires metadata changes
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/**`
+- `.opencode/skills/system-spec-kit/**/graph-metadata.json` and related route metadata if calibration requires metadata changes
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->

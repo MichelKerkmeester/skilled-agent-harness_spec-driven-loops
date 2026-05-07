@@ -35,7 +35,7 @@ After deduplication the full set compresses to approximately **44 distinct issue
 
 ### 1.2 Findings Per Source File (deduped, cumulative through iteration 41)
 
-| File (abbreviated path, all under `.opencode/skill/system-spec-kit/`) | Raw hits | Distinct issues | Dominant domains |
+| File (abbreviated path, all under `.opencode/skills/system-spec-kit/`) | Raw hits | Distinct issues | Dominant domains |
 | --------------------------------------------------------------------- | -------- | --------------- | ---------------- |
 | `mcp_server/hooks/claude/session-stop.ts`                             | 22       | 10              | D1, D2, D3       |
 | `mcp_server/hooks/claude/hook-state.ts`                               | 18       | 8               | D2, D3           |
@@ -54,8 +54,8 @@ After deduplication the full set compresses to approximately **44 distinct issue
 | `mcp_server/hooks/claude/shared.ts` / `hooks/gemini/session-prime.ts` | 2        | 2               | Foundational     |
 | `mcp_server/scripts/loaders/data-loader.ts` + command YAMLs           | 4        | 2               | D3               |
 | `AGENTS.md` / `CLAUDE.md` / `CODEX.md` / `GEMINI.md` [NEW since 38]  | 2        | 1               | D3, D4           |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` [NEW since 38] | 1   | 1               | D4               |
-| `.opencode/skill/skill-advisor/scripts/` [NEW since 38]               | 2        | 2               | D4               |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` [NEW since 38] | 1   | 1               | D4               |
+| `.opencode/skills/skill-advisor/scripts/` [NEW since 38]               | 2        | 2               | D4               |
 | `mcp_server/scripts/tests/manual-playbook-runner.ts` [NEW since 38]   | 1        | 1               | D4               |
 
 ---
@@ -438,7 +438,7 @@ Full domain should harvest the growing subsidiary evidence list into a concrete 
 | `mcp_server/hooks/claude/shared.ts:109-123` | Can a crafted `producer` string containing `]` or newline actually break the `[PROVENANCE:]` marker? (R10-002 identifies risk, not confirmed) |
 | `mcp_server/hooks/claude/compact-inject.ts` | Does it use the same unlocked `updateState()` pattern, or serialize on a different path? |
 | `skill_advisor.py` | Are the hand-maintained keyword/phrase tables generated from or synced against `SKILL.md` metadata, or fully manual? |
-| `.opencode/command/spec_kit/` (YAML assets) | Do emitted `folderState` events use the `populated` or `populated-folder` token — and are they tested? |
+| `.opencode/commands/spec_kit/` (YAML assets) | Do emitted `folderState` events use the `populated` or `populated-folder` token — and are they tested? |
 
 ---
 

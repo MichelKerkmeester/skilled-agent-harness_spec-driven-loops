@@ -63,19 +63,19 @@ rg -l 'sk-improve-prompt' .opencode .claude .codex .gemini *.md *.json \
 
 ### Advisor probe
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 ```
 **Result:** top-1 = `sk-prompt`, confidence 0.9262, score 0.7935, dominant_lane = `explicit_author`. Routing confirmed.
 
 ### Strict validate (parent)
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename --strict
 ```
 **Result: FAILED** — Errors: 1 (FRONTMATTER_MEMORY_BLOCK: 1 issue on resource-map.md). Warnings: 0.
 
 ### Skill folder rename
-- `.opencode/skill/sk-prompt/` exists (8 entries). ✓
-- `.opencode/skill/sk-improve-prompt` does NOT exist. ✓
+- `.opencode/skills/sk-prompt/` exists (8 entries). ✓
+- `.opencode/skills/sk-improve-prompt` does NOT exist. ✓
 - Changelog symlink: `.opencode/changelog/sk-prompt -> ../skill/sk-prompt/changelog`. ✓
 - `.opencode/changelog/sk-improve-prompt` does NOT exist. ✓
 
@@ -83,10 +83,10 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk
 
 | # | Edge Case | Result |
 |---|-----------|--------|
-| 1 | Filename embeds | `find . -name "*sk-improve-prompt*"` returns only `./barter/coder/.opencode/skill/sk-improve-prompt`, `./barter/coder/.opencode/changelog/14--sk-improve-prompt` (out of scope, separate Barter repo nested copy), and `./.opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename` (packet self, excluded from grep). ✓ |
+| 1 | Filename embeds | `find . -name "*sk-improve-prompt*"` returns only `./barter/coder/.opencode/skills/sk-improve-prompt`, `./barter/coder/.opencode/changelog/14--sk-improve-prompt` (out of scope, separate Barter repo nested copy), and `./.opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename` (packet self, excluded from grep). ✓ |
 | 2 | JSON keys in skill-graph.json | All 5 locations use `sk-prompt`. 0 residual `sk-improve-prompt`. ✓ |
 | 3 | Changelog symlink | Renamed to `.opencode/changelog/sk-prompt` pointing to `../skill/sk-prompt/changelog`. ✓ |
-| 4 | URL/path links | `rg '\.opencode/skill/sk-improve-prompt/'` in active scope returns 0 hits. ✓ |
+| 4 | URL/path links | `rg '\.opencode/skills/sk-improve-prompt/'` in active scope returns 0 hits. ✓ |
 | 5 | Hardcoded skill IDs (scorer lanes) | `explicit.ts`, `lexical.ts`, `fusion.ts`, `skill_advisor.py`: 0 `sk-improve-prompt` hits. ✓ |
 | 6 | Regression fixtures | `labeled-prompts.jsonl`, `skill_advisor_regression_cases.jsonl`: 0 `sk-improve-prompt` hits. ✓ |
 | 7 | Smart-router observability | `smart-router-measurement-results.jsonl`, `smart-router-measurement-report.md`: 0 `sk-improve-prompt` hits. ✓ |
@@ -116,7 +116,7 @@ All 4 mirror cards correctly reference `sk-prompt`. ✓
 |------|---------|
 | `README.md` | 4 `sk-prompt` hits |
 | `AGENTS.md` | 1 `sk-prompt` hit |
-| `.opencode/skill/README.md` | 4 `sk-prompt` hits |
+| `.opencode/skills/README.md` | 4 `sk-prompt` hits |
 | `.opencode/install_guides/README.md` | 3 `sk-prompt` hits |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | 2 `sk-prompt` hits |
 

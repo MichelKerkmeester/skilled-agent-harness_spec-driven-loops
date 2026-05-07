@@ -43,9 +43,9 @@ The full 25-iteration loop covered six layers:
 
 ### 1. `search-weights.json` is not the primary continuity-fusion control surface
 
-- The file only feeds vector smart-ranking with `relevance=0.5`, `recency=0.3`, and `access=0.2`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json:21] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:967]
-- The config README explicitly notes that `rrfFusion` and `crossEncoder` sections were removed as dead config. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:40]
-- Hybrid continuity ranking is assembled in `hybrid-search.ts` using adaptive intent weights and shared RRF. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1221]
+- The file only feeds vector smart-ranking with `relevance=0.5`, `recency=0.3`, and `access=0.2`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json:21] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:967]
+- The config README explicitly notes that `rrfFusion` and `crossEncoder` sections were removed as dead config. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:40]
+- Hybrid continuity ranking is assembled in `hybrid-search.ts` using adaptive intent weights and shared RRF. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1221]
 
 Practical result:
 
@@ -54,8 +54,8 @@ Practical result:
 
 ### 2. FSRS `0.2346` is canonical and should not be retuned here
 
-- The scheduler establishes FSRS long-term decay as `R(t) = (1 + 19/81 * t/S)^(-0.5)`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10]
-- Cognitive docs and search-time decay comments point back to the same invariant. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:121] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:7]
+- The scheduler establishes FSRS long-term decay as `R(t) = (1 + 19/81 * t/S)^(-0.5)`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:10]
+- Cognitive docs and search-time decay comments point back to the same invariant. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:121] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:7]
 
 Practical result:
 
@@ -64,9 +64,9 @@ Practical result:
 
 ### 3. Provider quality can be compared from fixtures, but live latency cannot
 
-- Static provider contracts exist for Voyage, Cohere, and local rerankers. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35]
-- The current reranker status surface only tracks in-memory latency `avg`, `p95`, and `count`; there is no persisted per-provider telemetry. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:458] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499]
-- Fixture-based comparison shows Cohere slightly ahead of Voyage on RR@5 in the current corpus. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:21]
+- Static provider contracts exist for Voyage, Cohere, and local rerankers. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:35]
+- The current reranker status surface only tracks in-memory latency `avg`, `p95`, and `count`; there is no persisted per-provider telemetry. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:458] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:499]
+- Fixture-based comparison shows Cohere slightly ahead of Voyage on RR@5 in the current corpus. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:21]
 
 Practical result:
 
@@ -78,7 +78,7 @@ Practical result:
 - Length penalties are hardcoded in `cross-encoder.ts`:
   - `<50` chars => `0.9`
   - `>2000` chars => `0.95`
-  [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62]
+  [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:62]
 - Packet-local corpus probing over `.opencode/specs/system-spec-kit/**/*.md` showed `78.6%` of markdown files exceed 2000 characters. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/017-research-search-fusion-tuning/research/iterations/iteration-008.md:7] [INFERENCE: packet-local corpus probe result reused in synthesis]
 
 Practical result:
@@ -89,8 +89,8 @@ Practical result:
 
 ### 5. Cache TTL should not be changed before observability exists
 
-- The reranker cache uses `CACHE_TTL=300000` and `MAX_CACHE_ENTRIES=200`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:116]
-- Cache hits are used internally but no hit/miss counters are recorded or exposed. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424]
+- The reranker cache uses `CACHE_TTL=300000` and `MAX_CACHE_ENTRIES=200`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:116]
+- Cache hits are used internally but no hit/miss counters are recorded or exposed. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:424]
 
 Practical result:
 
@@ -105,8 +105,8 @@ Practical result:
 
 The production scoring logic is localized in `cross-encoder.ts`, but the request contract is not:
 
-- `applyLengthPenalty` is a public argument in schemas, tool metadata, runtime types, handler defaults, pipeline config, cache-key construction, and shadow replay config. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:160] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:137] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tools/types.ts:69] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:643] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:50] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:235]
-- Four dedicated suites currently assert the exact penalty thresholds and helper names: `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, `search-extended.vitest.ts`, and `search-limits-scoring.vitest.ts`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:8] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:74] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:199] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:158]
+- `applyLengthPenalty` is a public argument in schemas, tool metadata, runtime types, handler defaults, pipeline config, cache-key construction, and shadow replay config. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:160] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:137] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tools/types.ts:69] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:643] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:50] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:235]
+- Four dedicated suites currently assert the exact penalty thresholds and helper names: `cross-encoder.vitest.ts`, `cross-encoder-extended.vitest.ts`, `search-extended.vitest.ts`, and `search-limits-scoring.vitest.ts`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:8] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:74] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-extended.vitest.ts:199] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:158]
 
 Safe implementation guidance for phase `001-remove-length-penalty`:
 
@@ -146,14 +146,14 @@ interface RerankerStatus {
 
 Why this shape:
 
-- It matches the current module-level status pattern in `cross-encoder.ts`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:100]
+- It matches the current module-level status pattern in `cross-encoder.ts`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:100]
 - It keeps cache telemetry process-scoped rather than polluting per-document results.
-- `resetSession()` already owns cache/latency/circuit-breaker cleanup, so the new counters can share the same reset boundary. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:525]
+- `resetSession()` already owns cache/latency/circuit-breaker cleanup, so the new counters can share the same reset boundary. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:525]
 
 Exposure guidance:
 
 - Canonical source: `getRerankerStatus()`.
-- Optional mirror surface: retrieval telemetry, because it already owns `rerankLatencyMs` and per-request observability. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:57]
+- Optional mirror surface: retrieval telemetry, because it already owns `rerankLatencyMs` and per-request observability. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:57]
 
 ### 8. The continuity profile can be narrow or broad, and the packet should choose explicitly
 
@@ -165,8 +165,8 @@ Minimal implementation scope:
 
 This works because:
 
-- `getAdaptiveWeights(intent: string)` is string-typed, not union-typed. [SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:137]
-- `hybrid-search.ts` also treats intent as a string before calling adaptive fusion. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1223]
+- `getAdaptiveWeights(intent: string)` is string-typed, not union-typed. [SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:137]
+- `hybrid-search.ts` also treats intent as a string before calling adaptive fusion. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1223]
 
 Broader public-intent scope:
 
@@ -174,7 +174,7 @@ Broader public-intent scope:
   - `IntentType`, intent keywords/patterns/centroids, weight adjustments, scores, descriptions, auto-profile mapping, lambda mapping in `intent-classifier.ts`
   - BM25-preserving behavior in `query-router.ts`
   - fallback artifact mapping in `artifact-routing.ts`
-  - intent-related tests that currently assert the 7-intent universe. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:115] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:209] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:53] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:321]
+  - intent-related tests that currently assert the 7-intent universe. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:115] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:209] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:53] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:321]
 
 Safe phase-003 guidance:
 
@@ -185,7 +185,7 @@ Safe phase-003 guidance:
 
 Key observation:
 
-- `MIN_RESULTS_FOR_RERANK` is enforced in Stage 3 only, not in `cross-encoder.rerankResults()`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:50] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321]
+- `MIN_RESULTS_FOR_RERANK` is enforced in Stage 3 only, not in `cross-encoder.rerankResults()`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:50] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:321]
 
 Why `4` is safer than `5`:
 
@@ -194,8 +194,8 @@ Why `4` is safer than `5`:
 
 Current test fallout:
 
-- The direct Stage 3 regression suite uses 2-row fixtures and currently expects reranking to apply. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:42] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93]
-- Direct `crossEncoder.rerankResults()` tests are not threshold-sensitive and can stay as-is. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:177] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:349]
+- The direct Stage 3 regression suite uses 2-row fixtures and currently expects reranking to apply. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:42] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:70] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:93]
+- Direct `crossEncoder.rerankResults()` tests are not threshold-sensitive and can stay as-is. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:177] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:349]
 
 Safe phase-004 guidance:
 
@@ -222,8 +222,8 @@ The repo has two useful K-evaluation paths:
 
 Evidence:
 
-- `IntentKOptimizationQuery` is string-typed. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:402]
-- `JudgedQuery.intent` is union-typed. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:339]
+- `IntentKOptimizationQuery` is string-typed. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:402]
+- `JudgedQuery.intent` is union-typed. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:339]
 
 Safe K-sweep guidance:
 
@@ -337,9 +337,9 @@ Bounded-confidence conclusions:
 
 ### 16. Continuity fusion is live for search-style calls, but continuity-specific Stage 3 MMR is not
 
-- `handleMemorySearch()` now carries two intent values: `detectedIntent` remains the public classifier result, while `adaptiveFusionIntent` is rewritten to `continuity` when `profile === 'resume'`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:816] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:830] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:900]
-- Stage 1 uses `adaptiveFusionIntent` when it hands intent into hybrid search, and hybrid fusion reads that string to load the continuity weights from `adaptive-fusion.ts`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:534] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1221] [SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:53]
-- Stage 3 still reads `config.detectedIntent` for the MMR lambda, and the orchestrator forwards the unchanged config object. So a `profile: 'resume'` search can fuse as `continuity` and still diversify as `understand` (or whatever public intent was detected). [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:153] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:113] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:206]
+- `handleMemorySearch()` now carries two intent values: `detectedIntent` remains the public classifier result, while `adaptiveFusionIntent` is rewritten to `continuity` when `profile === 'resume'`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:816] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:830] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:900]
+- Stage 1 uses `adaptiveFusionIntent` when it hands intent into hybrid search, and hybrid fusion reads that string to load the continuity weights from `adaptive-fusion.ts`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:534] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1221] [SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:53]
+- Stage 3 still reads `config.detectedIntent` for the MMR lambda, and the orchestrator forwards the unchanged config object. So a `profile: 'resume'` search can fuse as `continuity` and still diversify as `understand` (or whatever public intent was detected). [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:153] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:113] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:206]
 
 Practical result:
 
@@ -348,9 +348,9 @@ Practical result:
 
 ### 17. Canonical `/spec_kit:resume` does not use the search pipeline at all
 
-- `memory_context` treats `resume` as a dedicated ladder strategy and returns `handover.md -> _memory.continuity -> spec docs` directly. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:776] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:900] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1097]
-- The resume-mode regression test makes that contract explicit by failing if `handleMemorySearch()` is called. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
-- `session_resume` documents its first sub-call as `memory_context(mode=resume, profile=resume)`, so the operator-facing recovery surface inherits the direct-doc ladder rather than the 4-stage retrieval path. [SOURCE: .opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md:14]
+- `memory_context` treats `resume` as a dedicated ladder strategy and returns `handover.md -> _memory.continuity -> spec docs` directly. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:776] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:900] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1097]
+- The resume-mode regression test makes that contract explicit by failing if `handleMemorySearch()` is called. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/memory-context.resume-gate-d.vitest.ts:6]
+- `session_resume` documents its first sub-call as `memory_context(mode=resume, profile=resume)`, so the operator-facing recovery surface inherits the direct-doc ladder rather than the 4-stage retrieval path. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/18-session-resume-tool.md:14]
 
 Practical result:
 
@@ -359,9 +359,9 @@ Practical result:
 
 ### 18. The new reranker telemetry is inspection-grade, not dashboard-grade
 
-- `getRerankerStatus()` now exposes latency `avg`, `p95`, `count` and cache `hits`, `misses`, `staleHits`, `evictions`, `entries`, `maxEntries`, and `ttlMs`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:100] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:516]
-- The stale-cache path increments `misses`, `staleHits`, and `evictions` together before deleting the entry. Capacity-pressure eviction increments the same `evictions` counter. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:140] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:442]
-- `resetSession()` clears cache counters, latency samples, and circuit-breaker state, but the status payload does not expose reset time, provider-scoped counters, failure counts, or circuit-open status. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:171] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:551]
+- `getRerankerStatus()` now exposes latency `avg`, `p95`, `count` and cache `hits`, `misses`, `staleHits`, `evictions`, `entries`, `maxEntries`, and `ttlMs`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:100] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:516]
+- The stale-cache path increments `misses`, `staleHits`, and `evictions` together before deleting the entry. Capacity-pressure eviction increments the same `evictions` counter. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:140] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:442]
+- `resetSession()` clears cache counters, latency samples, and circuit-breaker state, but the status payload does not expose reset time, provider-scoped counters, failure counts, or circuit-open status. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:171] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:551]
 
 Practical result:
 
@@ -370,9 +370,9 @@ Practical result:
 
 ### 19. Documentation alignment is mixed rather than broadly stale
 
-- `SKILL.md` is accurate at the summary level: it correctly describes the 4-stage pipeline, the rerank minimum of `4`, the compatibility-only `applyLengthPenalty`, and the presence of cache telemetry. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:592]
-- `ARCHITECTURE.md` and `configs/README.md` get the constants right but overstate the continuity-lambda story by implying that continuity-oriented reranking is live end to end. [SOURCE: .opencode/skill/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:50]
-- The feature-catalog page for the 4-stage pipeline repeats the same stronger claim. [SOURCE: .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md:25]
+- `SKILL.md` is accurate at the summary level: it correctly describes the 4-stage pipeline, the rerank minimum of `4`, the compatibility-only `applyLengthPenalty`, and the presence of cache telemetry. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:592]
+- `ARCHITECTURE.md` and `configs/README.md` get the constants right but overstate the continuity-lambda story by implying that continuity-oriented reranking is live end to end. [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:50]
+- The feature-catalog page for the 4-stage pipeline repeats the same stronger claim. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md:25]
 
 Practical result:
 
@@ -383,9 +383,9 @@ Practical result:
 
 ### 20. The shipped changes are stable, but the subtle Stage 3 contract still matters
 
-- The length penalty is fully retired as a ranking behavior: `calculateLengthPenalty()` always returns `1.0`, `applyLengthPenalty()` returns a cloned result set unchanged, and the targeted no-op tests remain green. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:230] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:235] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:176]
-- Cache reuse now ignores the old length-penalty flag, so identical rerank calls no longer split across `applyLengthPenalty=true/false` buckets. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:431] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:482]
-- `MIN_RESULTS_FOR_RERANK = 4` is correctly test-covered for both cloud and local rerankers, but 2-3 result sets can still be reordered when MMR is enabled because `MMR_MIN_CANDIDATES` remains `2`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:49] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:206] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:136] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:164]
+- The length penalty is fully retired as a ranking behavior: `calculateLengthPenalty()` always returns `1.0`, `applyLengthPenalty()` returns a cloned result set unchanged, and the targeted no-op tests remain green. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:230] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:235] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:176]
+- Cache reuse now ignores the old length-penalty flag, so identical rerank calls no longer split across `applyLengthPenalty=true/false` buckets. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:431] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:482]
+- `MIN_RESULTS_FOR_RERANK = 4` is correctly test-covered for both cloud and local rerankers, but 2-3 result sets can still be reordered when MMR is enabled because `MMR_MIN_CANDIDATES` remains `2`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:49] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:206] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:136] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:164]
 
 Practical result:
 

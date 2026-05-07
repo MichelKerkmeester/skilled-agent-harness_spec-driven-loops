@@ -36,16 +36,16 @@ All paths are relative to repo root `/Users/michelkerkmeester/MEGA/Development/C
 
 Focus Q5 — Sub-agent dispatch contracts and depth/nesting rules:
 
-1. Find every `permission.task` declaration in `.opencode/agent/*.md`. Map each: which agents have `task: allow` vs `task: deny`. Especially:
-   - `.opencode/agent/orchestrate.md` — must be `task: allow`
-   - `.opencode/agent/context.md` — LEAF, expect `task: deny`
-   - `.opencode/agent/deep-research.md`, `deep-review.md` — LEAF, expect `task: deny`
-   - `.opencode/agent/improve-agent.md`, `improve-prompt.md`, `write.md`, `debug.md`, `review.md`, `ultra-think.md` — verify each
-2. Search runtime code for where `permission.task` is interpreted: `.opencode/skill/system-spec-kit/`, `.opencode/plugin/`, OpenCode binary. Probable place: how the harness loads agent frontmatter and gates Task tool calls. Use grep for `permission`, `task`, `denyTask`, `task: deny`, `agent.permission`. Also check `.opencode/skill/sk-code/`, `.opencode/skill/sk-deep-research/scripts/` for any per-agent permission validators.
+1. Find every `permission.task` declaration in `.opencode/agents/*.md`. Map each: which agents have `task: allow` vs `task: deny`. Especially:
+   - `.opencode/agents/orchestrate.md` — must be `task: allow`
+   - `.opencode/agents/context.md` — LEAF, expect `task: deny`
+   - `.opencode/agents/deep-research.md`, `deep-review.md` — LEAF, expect `task: deny`
+   - `.opencode/agents/improve-agent.md`, `improve-prompt.md`, `write.md`, `debug.md`, `review.md`, `ultra-think.md` — verify each
+2. Search runtime code for where `permission.task` is interpreted: `.opencode/skills/system-spec-kit/`, `.opencode/plugin/`, OpenCode binary. Probable place: how the harness loads agent frontmatter and gates Task tool calls. Use grep for `permission`, `task`, `denyTask`, `task: deny`, `agent.permission`. Also check `.opencode/skills/sk-code/`, `.opencode/skills/sk-deep-research/scripts/` for any per-agent permission validators.
 3. Identify all "leaf" markers: comments saying "LEAF agent", "LEAF constraint", "do not dispatch sub-agents", "Task tool", `leaf_only`, `agentConfig.leafOnly`. List file:line for each.
-4. Inspect `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` for `agent_config.leaf_only: true` (the prompt mentions this). Find the corresponding loader/dispatcher that reads `agent_config`.
-5. Inspect `.opencode/agent/orchestrate.md` body for the dispatch contract: how does it list sub-agents, are there explicit depth limits, retry policies?
-6. Are there any tests verifying LEAF enforcement? grep for `leaf` under `.opencode/skill/*/tests/`, `vitest`, etc.
+4. Inspect `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` for `agent_config.leaf_only: true` (the prompt mentions this). Find the corresponding loader/dispatcher that reads `agent_config`.
+5. Inspect `.opencode/agents/orchestrate.md` body for the dispatch contract: how does it list sub-agents, are there explicit depth limits, retry policies?
+6. Are there any tests verifying LEAF enforcement? grep for `leaf` under `.opencode/skills/*/tests/`, `vitest`, etc.
 
 Goal: produce a clear answer to "what enforces LEAF at runtime?" — is it (a) `permission.task: deny` interpreted by the OpenCode binary itself, (b) advisor/workflow steps refusing to dispatch, or (c) prose convention in agent body? Cite file:line.
 

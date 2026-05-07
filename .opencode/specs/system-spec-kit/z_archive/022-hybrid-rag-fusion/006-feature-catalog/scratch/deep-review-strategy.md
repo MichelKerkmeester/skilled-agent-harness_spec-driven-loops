@@ -30,7 +30,7 @@ Is the feature catalog 100% aligned with current reality and the changes made in
 <!-- ANCHOR:topic -->
 ## 2. TOPIC
 
-Feature catalog alignment review: `.opencode/skill/system-spec-kit/feature_catalog/` (224 files, 21 categories) vs current MCP server code and 022-hybrid-rag-fusion spec changes (19 child phases).
+Feature catalog alignment review: `.opencode/skills/system-spec-kit/feature_catalog/` (224 files, 21 categories) vs current MCP server code and 022-hybrid-rag-fusion spec changes (19 child phases).
 
 Key context:
 - Catalog started at 180 files (2026-03-08 audit), grew to 189 (2026-03-16), then 194 (2026-03-21), now 224 (2026-03-23)

@@ -93,11 +93,11 @@ Implement the packet-local graph/runtime hardening track that lands after the tr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts` | Create | Implement the graph operations hardening contract and preview helper |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts` | Modify | Emit graph ops output for health surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Emit graph ops output for resume surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Emit graph ops output for bootstrap surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-ops-hardening.vitest.ts` | Create | Verify the graph-ops hardening helper |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts` | Create | Implement the graph operations hardening contract and preview helper |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts` | Modify | Emit graph ops output for health surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modify | Emit graph ops output for resume surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modify | Emit graph ops output for bootstrap surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-ops-hardening.vitest.ts` | Create | Verify the graph-ops hardening helper |
 <!-- /ANCHOR:scope -->
 
 ---

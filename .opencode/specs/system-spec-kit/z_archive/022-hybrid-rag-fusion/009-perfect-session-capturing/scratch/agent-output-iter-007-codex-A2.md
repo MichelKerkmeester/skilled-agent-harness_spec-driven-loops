@@ -19,8 +19,8 @@ Investigate the handback protocol across CLIs.
 **Q15.** Memory Handback protocol — where does handback JSON fail minimum payload guidance?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` — How file/stdin data is loaded
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` — validateInputData, normalizeInputData
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` — How file/stdin data is loaded
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` — validateInputData, normalizeInputData
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/` — All files
 - Search for "handback", "outsourced", "delegated" in scripts/
 
@@ -42,7 +42,7 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’ll investigate this as a read-only analysis pass: first I’ll trace `validateInputData`/`normalizeInputData`, then map how each CLI feeds handback JSON through loaders into validation, and finally summarize gaps plus a minimal per-CLI test matrix. I’m starting by locating the exact files and relevant call sites.
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback | sed 's#"'^#/#'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback | sed 's#"'^#/#'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md
@@ -56,15 +56,15 @@ exec
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/metadata.json
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/17-03-26_19-49__outsourced-agent-handback-architecture.md
 /.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/16-03-26_22-23__updated-the-outsourced-agent-handback-docs-so.md
-/.opencode/skill/system-spec-kit/scripts/wrap-all-templates.sh
-/.opencode/skill/system-spec-kit/scripts/loaders/index.ts
-/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
-/.opencode/skill/system-spec-kit/scripts/loaders/README.md
-/.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts
-/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
-/.opencode/skill/system-spec-kit/scripts/extractors/index.ts
+/.opencode/skills/system-spec-kit/scripts/wrap-all-templates.sh
+/.opencode/skills/system-spec-kit/scripts/loaders/index.ts
+/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
+/.opencode/skills/system-spec-kit/scripts/loaders/README.md
+/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts
+/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
+/.opencode/skills/system-spec-kit/scripts/extractors/index.ts
 exec
-/bin/zsh -lc 'rg -n "handback|outsourced|delegated|validateInputData|normalizeInputData|data-loader|stdin|payload" .opencode/skill/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "handback|outsourced|delegated|validateInputData|normalizeInputData|data-loader|stdin|payload" .opencode/skills/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/description.json:2:  "specFolder": "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback",
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/description.json:7:    "outsourced",
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/description.json:9:    "handback",
@@ -83,12 +83,12 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:62:- **`input-normalizer.ts`**: Accepts `nextSteps` or `next_steps`, persists `Next: ...` / `Follow-up: ...`, and preserves mixed structured payload next steps when those facts are missing.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:65:- **`outsourced-agent-handback-docs.vitest.ts`**: Keeps the 8 CLI handback docs and the feature catalog aligned on post-010 save-gate guidance.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:66:- **4 `cli-*` skills + 4 prompt templates**: Tell the caller to extract handback data, redact and scrub it, include richer `FILES` metadata, and stop on explicit JSON-mode failures.
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:67:- **Feature catalog entry `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:67:- **Feature catalog entry `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md:76:  -> valid input normalizes nextSteps or next_steps (including mixed structured payloads)
 codex
 I found the key hotspots and test files; next I’m reading the loader/normalizer plus the handback spec docs to extract the actual enforced schema and where each CLI’s protocol can drift from it. I’ll also trace `generate-context` call paths so we can pinpoint exact validation gaps.
-tool cocoindex_code.search({"query":"validateInputData normalizeInputData handback payload nextSteps next_steps loadCollectedData generate-context","paths":[".opencode/skill/system-spec-kit/scripts/*"],"limit":10})
-cocoindex_code.search({"query":"validateInputData normalizeInputData handback payload nextSteps next_steps loadCollectedData generate-context","paths":[".opencode/skill/system-spec-kit/scripts/*"],"limit":10}) success in 6.81s:
+tool cocoindex_code.search({"query":"validateInputData normalizeInputData handback payload nextSteps next_steps loadCollectedData generate-context","paths":[".opencode/skills/system-spec-kit/scripts/*"],"limit":10})
+cocoindex_code.search({"query":"validateInputData normalizeInputData handback payload nextSteps next_steps loadCollectedData generate-context","paths":[".opencode/skills/system-spec-kit/scripts/*"],"limit":10}) success in 6.81s:
 {
   "content": [
     {
@@ -111,7 +111,7 @@ cocoindex_code.search({"query":"validateInputData normalizeInputData handback pa
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA2-C03-input-normalizer.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### P1 Required: 2 — manual-format field normalization and top-level shape validation still have correctness gaps\\n- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:233-235,298-300` `validateInputData()` explicitly accepts `SPEC_FOLDER`, but `normalizeInputData()` only copies `data.specFolder`. A manual payload that uses the accepted uppercase field normalizes into output with no `SPEC_FOLDER`, so a valid input shape silently loses its target spec-folder metadata.\\n- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:223-225,298-300,336-340` the pass-through gate treats any truthy `userPrompts`/`recentContext` as already normalized, but validation never checks those fields are arrays. Inputs like `{ \\\"userPrompts\\\": \\\"oops\\\" }` or `{ \\\"recentContext\\\": {} }` bypass normalization and ship invalid scalar/object shapes downstream.\",\n      \"start_line\": 6,\n      \"end_line\": 8,\n      \"score\": 0.5297653140891025\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Validation gap allows malformed “already-normalized” payloads\\n- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L291)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** `validateInputData` checks `observations` type but does not validate `userPrompts` or `recentContext` array types, while loader may skip normalization.\\n- **Expected Behavior:** All normalized-shape fields should be type-validated.\\n- **Root Cause:** Incomplete validation rules combined with heuristic format detection.\\n- **Suggested Fix:** Add strict type checks for `userPrompts` and `recentContext` (and item shape checks).\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 408,\n      \"end_line\": 416,\n      \"score\": 0.5044954246015134\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Validation gap allows malformed “already-normalized” payloads\\n- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L291)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** `validateInputData` checks `observations` type but does not validate `userPrompts` or `recentContext` array types, while loader may skip normalization.\\n- **Expected Behavior:** All normalized-shape fields should be type-validated.\\n- **Root Cause:** Incomplete validation rules combined with heuristic format detection.\\n- **Suggested Fix:** Add strict type checks for `userPrompts` and `recentContext` (and item shape checks).\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 322,\n      \"end_line\": 330,\n      \"score\": 0.5044954246015134\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-11-cross-cli.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- `015-outsourced-agent-handback/checklist.md:40` — hits: `.opencode/` x2 — - [x] CHK-011 [P0] Explicit invalid JSON and invalid-shape payloads do not fall back to OpenCode capture [Evidence: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`, `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]\\n- `015-outsourced-agent-handback/checklist.md:41` — hits: `.opencode/` — - [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`]\",\n      \"start_line\": 251,\n      \"end_line\": 252,\n      \"score\": 0.5030116251872538\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA8-O13-dataflow.md\",\n      \"language\": \"markdown\",\n      \"content\": \"```\\nCLI args (dataFile, specFolderArg)\\n    │\\n    ▼\\ndata-loader.ts ─── loadCollectedData()\\n    │  Priority 1: File → JSON parse → validateInputData → normalizeInputData\\n    │  Priority 2: OpenCode capture → transformOpencodeCapture()\\n    │  Priority 3: Simulation fallback { _isSimulation: true }\\n    │\",\n      \"start_line\": 12,\n      \"end_line\": 20,\n      \"score\": 0.4983198857589457\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/lib/search/validation-metadata.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"/**\\n * Enrich a batch of pipeline rows with validation metadata.\\n *\\n * For each row, `extractValidationMetadata` is called. When a non-null\\n * result is returned, it is attached to the row under the `validationMetadata`\\n * key. Rows with no signals pass through unchanged.\\n *\\n * Score fields are NEVER modified. This function is metadata-only.\\n *\\n * @param results - Array of PipelineRow values from the scoring pipeline.\\n * @returns New array with `validationMetadata` added where signals exist.\\n */\",\n      \"start_line\": 249,\n      \"end_line\": 260,\n      \"score\": 0.497142655067357\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`]\\n- [x] CHK-013 [P1] First next step persists as `Next: ...`, remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`, `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`, `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]\\n<!-- /ANCHOR:code-quality -->\\n\\n---\\n\\n<!-- ANCHOR:testing -->\",\n      \"start_line\": 44,\n      \"end_line\": 50,\n      \"score\": 0.49655633341964744\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X09.md\",\n      \"language\": \"markdown\",\n      \"content\": \".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:508:      metadata.sessionBoostApplied = sbMeta.applied;\\n.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:711:        sessionBoostApplied: metadata.sessionBoostApplied,\\n succeeded in 51ms:\\n110:function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {\\n114:    const metadata = row.validationMetadata as ValidationMetadataLike | undefined;\\n122:    const qualityFactor = 0.9 + (quality * 0.2); // [0.9, 1.1]\\n123:    const specLevelBonus = typeof metadata.specLevel === 'number' && Number.isFinite(metadata.specLevel)\\n127:    const completionBonus = metadata.completionStatus === 'complete'\\n133:    const checklistBonus = metadata.hasChecklist ? 0.01 : 0;\\n134:    const multiplier = clampMultiplier(qualityFactor + specLevelBonus + completionBonus + checklistBonus);\\n685:  // importance_tier, completion markers) and attach as `validationMetadata` key,\",\n      \"start_line\": 428,\n      \"end_line\": 438,\n      \"score\": 0.4893558967111673\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/scratch/legacy-memory-quarantine/24-12-25_14-51__modular-architecture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"> **User** | 2025-12-24 @ 13:31:05\\n\\nExecuting sequentially no parallel agents\\n\\n---\\n\\n> **User** | 2025-12-24 @ 13:46:00\\n\\nContinuing conversation\\n\\n---\\n\\n> **Assistant** | 2025-12-24 @ 13:46:00\\n\\nContinuing conversation → I need to add validation to Step 11 (Completion).\\n\\n---\\n\\n> **User** | 2025-12-24 @ 13:51:57\\n\\n[user message]\\n\\n---\\n\\n> **Assistant** | 2025-12-24 @ 13:51:57\\n\\n[user message] → # Session Summary: Path-Scoped Validation Rules Implementation\",\n      \"start_line\": 1118,\n      \"end_line\": 1144,\n      \"score\": 0.4881925646120351\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/tests/context-server.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"  // =================================================================\\n  // GROUP 8: Input Validation (validateInputLengths)\\n  // =================================================================\\n  describe('Group 8: Input Validation', () => {\\n    // T32: Source calls validateInputLengths before dispatch\\n    it('T32: validateInputLengths called before dispatchTool', () => {\\n      const validationOrder = /validateInputLengths\\\\(args\\\\)[\\\\s\\\\S]*?dispatchTool\\\\(name/\\n      expect(validationOrder.test(sourceCode)).toBe(true)\\n    })\\n\\n    it('T32a: Schema validation delegated to tool modules', () => {\\n      // Context-server validates only length pre-dispatch; schema checks occur in tool dispatch modules.\\n      expect(sourceCode).toMatch(/dispatchTool\\\\(name,\\\\s*args\\\\)/)\\n      expect(sourceCode).not.toMatch(/validateToolArgs\\\\(/)\\n    })\\n\\n    // T33: validateInputLengths direct tests\",\n      \"start_line\": 1446,\n      \"end_line\": 1462,\n      \"score\": 0.4837306142581994\n    }\n  ],\n  \"total_returned\": 10,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA2-C03-input-normalizer.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### P1 Required: 2 — manual-format field normalization and top-level shape validation still have correctness gaps\\n- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:233-235,298-300` `validateInputData()` explicitly accepts `SPEC_FOLDER`, but `normalizeInputData()` only copies `data.specFolder`. A manual payload that uses the accepted uppercase field normalizes into output with no `SPEC_FOLDER`, so a valid input shape silently loses its target spec-folder metadata.\\n- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:223-225,298-300,336-340` the pass-through gate treats any truthy `userPrompts`/`recentContext` as already normalized, but validation never checks those fields are arrays. Inputs like `{ \\\"userPrompts\\\": \\\"oops\\\" }` or `{ \\\"recentContext\\\": {} }` bypass normalization and ship invalid scalar/object shapes downstream.\",\n      \"start_line\": 6,\n      \"end_line\": 8,\n      \"score\": 0.5297653140891025\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Validation gap allows malformed “already-normalized” payloads\\n- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L291)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** `validateInputData` checks `observations` type but does not validate `userPrompts` or `recentContext` array types, while loader may skip normalization.\\n- **Expected Behavior:** All normalized-shape fields should be type-validated.\\n- **Root Cause:** Incomplete validation rules combined with heuristic format detection.\\n- **Suggested Fix:** Add strict type checks for `userPrompts` and `recentContext` (and item shape checks).\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 408,\n      \"end_line\": 416,\n      \"score\": 0.5044954246015134\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C04.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### FINDING-06: Validation gap allows malformed “already-normalized” payloads\\n- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L291)\\n- **Severity:** MEDIUM\\n- **Category:** BUG\\n- **Current Behavior:** `validateInputData` checks `observations` type but does not validate `userPrompts` or `recentContext` array types, while loader may skip normalization.\\n- **Expected Behavior:** All normalized-shape fields should be type-validated.\\n- **Root Cause:** Incomplete validation rules combined with heuristic format detection.\\n- **Suggested Fix:** Add strict type checks for `userPrompts` and `recentContext` (and item shape checks).\\n- **Effort:** SMALL (<30 min)\",\n      \"start_line\": 322,\n      \"end_line\": 330,\n      \"score\": 0.5044954246015134\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-11-cross-cli.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- `015-outsourced-agent-handback/checklist.md:40` — hits: `.opencode/` x2 — - [x] CHK-011 [P0] Explicit invalid JSON and invalid-shape payloads do not fall back to OpenCode capture [Evidence: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`, `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]\\n- `015-outsourced-agent-handback/checklist.md:41` — hits: `.opencode/` — - [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`]\",\n      \"start_line\": 251,\n      \"end_line\": 252,\n      \"score\": 0.5030116251872538\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA8-O13-dataflow.md\",\n      \"language\": \"markdown\",\n      \"content\": \"```\\nCLI args (dataFile, specFolderArg)\\n    │\\n    ▼\\ndata-loader.ts ─── loadCollectedData()\\n    │  Priority 1: File → JSON parse → validateInputData → normalizeInputData\\n    │  Priority 2: OpenCode capture → transformOpencodeCapture()\\n    │  Priority 3: Simulation fallback { _isSimulation: true }\\n    │\",\n      \"start_line\": 12,\n      \"end_line\": 20,\n      \"score\": 0.4983198857589457\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/lib/search/validation-metadata.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"/**\\n * Enrich a batch of pipeline rows with validation metadata.\\n *\\n * For each row, `extractValidationMetadata` is called. When a non-null\\n * result is returned, it is attached to the row under the `validationMetadata`\\n * key. Rows with no signals pass through unchanged.\\n *\\n * Score fields are NEVER modified. This function is metadata-only.\\n *\\n * @param results - Array of PipelineRow values from the scoring pipeline.\\n * @returns New array with `validationMetadata` added where signals exist.\\n */\",\n      \"start_line\": 249,\n      \"end_line\": 260,\n      \"score\": 0.497142655067357\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- [x] CHK-012 [P0] `nextSteps` and `next_steps` are both accepted [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`]\\n- [x] CHK-013 [P1] First next step persists as `Next: ...`, remaining steps persist as `Follow-up: ...`, `NEXT_ACTION` reads the first step, and mixed structured payloads preserve missing next-step facts without duplicate `Next:` / `Follow-up:` observations [Evidence: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`, `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`, `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`]\\n<!-- /ANCHOR:code-quality -->\\n\\n---\\n\\n<!-- ANCHOR:testing -->\",\n      \"start_line\": 44,\n      \"end_line\": 50,\n      \"score\": 0.49655633341964744\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X09.md\",\n      \"language\": \"markdown\",\n      \"content\": \".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:508:      metadata.sessionBoostApplied = sbMeta.applied;\\n.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:711:        sessionBoostApplied: metadata.sessionBoostApplied,\\n succeeded in 51ms:\\n110:function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {\\n114:    const metadata = row.validationMetadata as ValidationMetadataLike | undefined;\\n122:    const qualityFactor = 0.9 + (quality * 0.2); // [0.9, 1.1]\\n123:    const specLevelBonus = typeof metadata.specLevel === 'number' && Number.isFinite(metadata.specLevel)\\n127:    const completionBonus = metadata.completionStatus === 'complete'\\n133:    const checklistBonus = metadata.hasChecklist ? 0.01 : 0;\\n134:    const multiplier = clampMultiplier(qualityFactor + specLevelBonus + completionBonus + checklistBonus);\\n685:  // importance_tier, completion markers) and attach as `validationMetadata` key,\",\n      \"start_line\": 428,\n      \"end_line\": 438,\n      \"score\": 0.4893558967111673\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/scratch/legacy-memory-quarantine/24-12-25_14-51__modular-architecture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"> **User** | 2025-12-24 @ 13:31:05\\n\\nExecuting sequentially no parallel agents\\n\\n---\\n\\n> **User** | 2025-12-24 @ 13:46:00\\n\\nContinuing conversation\\n\\n---\\n\\n> **Assistant** | 2025-12-24 @ 13:46:00\\n\\nContinuing conversation → I need to add validation to Step 11 (Completion).\\n\\n---\\n\\n> **User** | 2025-12-24 @ 13:51:57\\n\\n[user message]\\n\\n---\\n\\n> **Assistant** | 2025-12-24 @ 13:51:57\\n\\n[user message] → # Session Summary: Path-Scoped Validation Rules Implementation\",\n      \"start_line\": 1118,\n      \"end_line\": 1144,\n      \"score\": 0.4881925646120351\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/mcp_server/tests/context-server.vitest.ts\",\n      \"language\": \"typescript\",\n      \"content\": \"  // =================================================================\\n  // GROUP 8: Input Validation (validateInputLengths)\\n  // =================================================================\\n  describe('Group 8: Input Validation', () => {\\n    // T32: Source calls validateInputLengths before dispatch\\n    it('T32: validateInputLengths called before dispatchTool', () => {\\n      const validationOrder = /validateInputLengths\\\\(args\\\\)[\\\\s\\\\S]*?dispatchTool\\\\(name/\\n      expect(validationOrder.test(sourceCode)).toBe(true)\\n    })\\n\\n    it('T32a: Schema validation delegated to tool modules', () => {\\n      // Context-server validates only length pre-dispatch; schema checks occur in tool dispatch modules.\\n      expect(sourceCode).toMatch(/dispatchTool\\\\(name,\\\\s*args\\\\)/)\\n      expect(sourceCode).not.toMatch(/validateToolArgs\\\\(/)\\n    })\\n\\n    // T33: validateInputLengths direct tests\",\n      \"start_line\": 1446,\n      \"end_line\": 1462,\n      \"score\": 0.4837306142581994\n    }\n  ],\n  \"total_returned\": 10,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -120,7 +120,7 @@ cocoindex_code.search({"query":"validateInputData normalizeInputData handback pa
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/agent-outputs/stateless-research/audit-QA2-C03-input-normalizer.md",
         "language": "markdown",
-        "content": "### P1 Required: 2 — manual-format field normalization and top-level shape validation still have correctness gaps\n- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:233-235,298-300` `validateInputData()` explicitly accepts `SPEC_FOLDER`, but `normalizeInputData()` only copies `data.specFolder`. A manual payload that uses the accepted uppercase field normalizes into output with no `SPEC_FOLDER`, so a valid input shape silently loses its target spec-folder metadata.\n- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:223-225,298-300,336-340` the pass-through gate treats any truthy `userPrompts`/`recentContext` as already normalized, but validation never checks those fields are arrays. Inputs like `{ \"userPrompts\": \"oops\" }` or `{ \"recentContext\": {} }` bypass normalization and ship invalid scalar/object shapes downstream.",
+        "content": "### P1 Required: 2 — manual-format field normalization and top-level shape validation still have correctness gaps\n- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:233-235,298-300` `validateInputData()` explicitly accepts `SPEC_FOLDER`, but `normalizeInputData()` only copies `data.specFolder`. A manual payload that uses the accepted uppercase field normalizes into output with no `SPEC_FOLDER`, so a valid input shape silently loses its target spec-folder metadata.\n- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:223-225,298-300,336-340` the pass-through gate treats any truthy `userPrompts`/`recentContext` as already normalized, but validation never checks those fields are arrays. Inputs like `{ \"userPrompts\": \"oops\" }` or `{ \"recentContext\": {} }` bypass normalization and ship invalid scalar/object shapes downstream.",
         "start_line": 6,
         "end_line": 8,
         "score": 0.5297653140891025
@@ -128,8 +128,8 @@ cocoindex_code.search({"query":"validateInputData normalizeInputData handback pa
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/audits/audit-C04.md",
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -172,8 +172,8 @@ exec
     19	// 2. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '340,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '340,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	
    261	  const normalized = rawValue.trim().toLowerCase();
    262	  if (normalized.length === 0) {
@@ -216,7 +216,7 @@ exec
    358	  const modificationMagnitude = (
    359	    file.MODIFICATION_MAGNITUDE === 'trivial'
 exec
-/bin/zsh -lc "rg -n \"function (transformOpencodeCapture|normalizeInputData|validateInputData)|export \\{|_source|SPEC_FOLDER|NEXT_ACTION|Next:\" .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function (transformOpencodeCapture|normalizeInputData|validateInputData)|export \\{|_source|SPEC_FOLDER|NEXT_ACTION|Next:\" .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 75:  SPEC_FOLDER?: string;
 111:  SPEC_FOLDER?: string;
 160:  _source: DataSource;
@@ -238,7 +238,7 @@ exec
 1120:    _source: source,
 1124:    _sourceTranscriptPath: typeof metadata?.file_summary === 'object' && metadata?.file_summary !== null
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '760,1165p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '760,1165p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    760	function extractSpecIds(value: string): string[] {
    761	  return Array.from(new Set((value.match(SPEC_ID_REGEX) || []).map((specId) => specId.toLowerCase())));
    762	}
@@ -262,10 +262,10 @@ exec
 codex
 I’ve extracted the exact validation/normalization logic. I’m now tracing `generate-context` argument modes (`--stdin`, `--json`, file path) and the post-normalization gates (`INSUFFICIENT_CONTEXT_ABORT`, contamination, quality) so we can locate where “minimum payload” guidance diverges from runtime behavior per CLI.
 exec
-/bin/zsh -lc 'rg -n "--stdin|--json|dataFile|loadCollectedData|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|specFolderArg|argv|parse" .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 0ms:
+/bin/zsh -lc 'rg -n "--stdin|--json|dataFile|loadCollectedData|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|specFolderArg|argv|parse" .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 0ms:
 rg: unrecognized flag --stdin|--json|dataFile|loadCollectedData|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|specFolderArg|argv|parse
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Generate Context
      3	// ---------------------------------------------------------------
@@ -287,7 +287,7 @@ exec
     19	  getSpecsDirectories,
     20	  SPEC_FOLDER_PATTERN,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	      const parentSegment = absoluteSegments.at(-2);
    261	
    262	      if (
@@ -309,7 +309,7 @@ exec
    278	    if (!resolvedNestedPath && explicitProjectScopedPath && fsSync.existsSync(explicitProjectScopedPath)) {
    279	      resolvedNestedPath = explicitProjectScopedPath;
 exec
-/bin/zsh -lc "rg -n -- '--stdin|--json|parseCliArguments|parse|readStdin|collectedData|loadCollectedData|runWorkflow|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL' .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n -- '--stdin|--json|parseCliArguments|parse|readStdin|collectedData|loadCollectedData|runWorkflow|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL' .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 8:// CLI entry point -- parses arguments, validates spec folder, and runs the memory workflow
 25:import { runWorkflow } from '../core/workflow';
 26:import { loadCollectedData } from '../loaders';
@@ -331,7 +331,7 @@ exec
 366:    throw new Error('--json requires an inline JSON string argument');
 369:  const payload = parseStructuredJson(rawJson ?? '', mode);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Workflow
      3	// ───────────────────────────────────────────────────────────────
@@ -353,30 +353,30 @@ exec
     19	  extractDiagrams,
     20	  extractPhasesFromData,
 exec
-/bin/zsh -lc 'rg -n "runWorkflow|collectedData|validateInputData|normalizeInputData|loadDataFn|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|MIN_|sufficiency|contamination" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/core/index.ts .opencode/skill/system-spec-kit/scripts/core/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:16:const MIN_SUBSTANCE_CHARS = 200;
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:72:  if (stripped.length < MIN_SUBSTANCE_CHARS) {
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:75:      `${stripped.length} chars substance (minimum ${MIN_SUBSTANCE_CHARS})`
-.opencode/skill/system-spec-kit/scripts/core/index.ts:10:// Import directly: import { runWorkflow } from './core/workflow';
-.opencode/skill/system-spec-kit/scripts/core/config.ts:60:  MIN_PROMPT_LENGTH: number;
-.opencode/skill/system-spec-kit/scripts/core/config.ts:299:  MIN_PROMPT_LENGTH: userConfig.minPromptLength,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:21:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:46:  | 'has_contamination'
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:73:export interface QualityInsufficiencySummary {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:90:  insufficiency: QualityInsufficiencySummary | null;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:170:  sufficiencyResult?: MemorySufficiencyResult,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:172:  contaminationSeverity: ContaminationSeverity | null = null,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:297:  const effectiveSeverity: ContaminationSeverity = contaminationSeverity || 'medium';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:300:    qualityFlags.add('has_contamination');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:304:      warnings.push('Low-severity contamination detected (preamble only) — minor penalty applied');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:308:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:312:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:316:  if (sufficiencyResult && !sufficiencyResult.pass) {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:318:    scoreCap = Math.min(scoreCap ?? 1, clamp01(sufficiencyResult.score * 0.4));
+/bin/zsh -lc 'rg -n "runWorkflow|collectedData|validateInputData|normalizeInputData|loadDataFn|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|MIN_|sufficiency|contamination" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/index.ts .opencode/skills/system-spec-kit/scripts/core/*.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:16:const MIN_SUBSTANCE_CHARS = 200;
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:72:  if (stripped.length < MIN_SUBSTANCE_CHARS) {
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:75:      `${stripped.length} chars substance (minimum ${MIN_SUBSTANCE_CHARS})`
+.opencode/skills/system-spec-kit/scripts/core/index.ts:10:// Import directly: import { runWorkflow } from './core/workflow';
+.opencode/skills/system-spec-kit/scripts/core/config.ts:60:  MIN_PROMPT_LENGTH: number;
+.opencode/skills/system-spec-kit/scripts/core/config.ts:299:  MIN_PROMPT_LENGTH: userConfig.minPromptLength,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:21:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:46:  | 'has_contamination'
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:73:export interface QualityInsufficiencySummary {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:90:  insufficiency: QualityInsufficiencySummary | null;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:170:  sufficiencyResult?: MemorySufficiencyResult,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:172:  contaminationSeverity: ContaminationSeverity | null = null,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:297:  const effectiveSeverity: ContaminationSeverity = contaminationSeverity || 'medium';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:300:    qualityFlags.add('has_contamination');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:304:      warnings.push('Low-severity contamination detected (preamble only) — minor penalty applied');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:308:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:312:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:316:  if (sufficiencyResult && !sufficiencyResult.pass) {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:318:    scoreCap = Math.min(scoreCap ?? 1, clamp01(sufficiencyResult.score * 0.4));
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1340,1495p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2088,2260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1340,1495p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2088,2260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2088	  log(`   Template populated (quality: ${filterStats.qualityScore}/100)\n`);
   2089	
   2090	  // Step 8.5: Content cleaning — strip leaked HTML tags from rendered content
@@ -419,29 +419,29 @@ exec
   1358	// ───────────────────────────────────────────────────────────────
   1359	
 exec
-/bin/zsh -lc 'rg -n "function formatSufficiencyAbort|MEMORY_SUFFICIENCY_REJECTION_CODE|evaluateMemorySufficiency|buildWorkflowMemoryEvidenceSnapshot|minimum payload|INSUFFICIENT_CONTEXT_ABORT" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/**/*.ts .opencode/skill/system-spec-kit/scripts/**/*.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:65:  evaluateMemorySufficiency,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:66:  MEMORY_SUFFICIENCY_REJECTION_CODE,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1067:function buildWorkflowMemoryEvidenceSnapshot(params: {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1142:function formatSufficiencyAbort(result: MemorySufficiencyResult): string {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1143:  return `${MEMORY_SUFFICIENCY_REJECTION_CODE}: Not enough context for a proper memory. `
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2114:  const sufficiencySnapshot = buildWorkflowMemoryEvidenceSnapshot({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2126:  const sufficiencyResult = evaluateMemorySufficiency(sufficiencySnapshot);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:65:  evaluateMemorySufficiency,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:66:  MEMORY_SUFFICIENCY_REJECTION_CODE,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1067:function buildWorkflowMemoryEvidenceSnapshot(params: {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1142:function formatSufficiencyAbort(result: MemorySufficiencyResult): string {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1143:  return `${MEMORY_SUFFICIENCY_REJECTION_CODE}: Not enough context for a proper memory. `
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2114:  const sufficiencySnapshot = buildWorkflowMemoryEvidenceSnapshot({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2126:  const sufficiencyResult = evaluateMemorySufficiency(sufficiencySnapshot);
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:3:import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:5:describe('evaluateMemorySufficiency', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:7:    const result = evaluateMemorySufficiency({
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:50:    const result = evaluateMemorySufficiency({
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:70:    expect(result.rejectionCode).toBe('INSUFFICIENT_CONTEXT_ABORT');
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:74:    const result = evaluateMemorySufficiency({
+/bin/zsh -lc 'rg -n "function formatSufficiencyAbort|MEMORY_SUFFICIENCY_REJECTION_CODE|evaluateMemorySufficiency|buildWorkflowMemoryEvidenceSnapshot|minimum payload|INSUFFICIENT_CONTEXT_ABORT" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/**/*.ts .opencode/skills/system-spec-kit/scripts/**/*.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:65:  evaluateMemorySufficiency,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:66:  MEMORY_SUFFICIENCY_REJECTION_CODE,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1067:function buildWorkflowMemoryEvidenceSnapshot(params: {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1142:function formatSufficiencyAbort(result: MemorySufficiencyResult): string {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1143:  return `${MEMORY_SUFFICIENCY_REJECTION_CODE}: Not enough context for a proper memory. `
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2114:  const sufficiencySnapshot = buildWorkflowMemoryEvidenceSnapshot({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2126:  const sufficiencyResult = evaluateMemorySufficiency(sufficiencySnapshot);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:65:  evaluateMemorySufficiency,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:66:  MEMORY_SUFFICIENCY_REJECTION_CODE,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1067:function buildWorkflowMemoryEvidenceSnapshot(params: {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1142:function formatSufficiencyAbort(result: MemorySufficiencyResult): string {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1143:  return `${MEMORY_SUFFICIENCY_REJECTION_CODE}: Not enough context for a proper memory. `
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2114:  const sufficiencySnapshot = buildWorkflowMemoryEvidenceSnapshot({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2126:  const sufficiencyResult = evaluateMemorySufficiency(sufficiencySnapshot);
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:3:import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:5:describe('evaluateMemorySufficiency', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:7:    const result = evaluateMemorySufficiency({
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:50:    const result = evaluateMemorySufficiency({
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:70:    expect(result.rejectionCode).toBe('INSUFFICIENT_CONTEXT_ABORT');
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:74:    const result = evaluateMemorySufficiency({
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1040,1170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1040,1170p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1040	
   1041	  return '';
   1042	}
@@ -483,12 +483,12 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/description.json:25:    "16-03-26_22-23__updated-the-outsourced-agent-handback-docs-so.md",
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/description.json:27:    "17-03-26_19-49__outsourced-agent-handback-architecture.md"
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:4:trigger_phrases: ["outsourced agent tasks", "memory handback tasks"]
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:36:- [x] T002 Hard-fail invalid JSON and invalid-shape explicit payloads without falling back to OpenCode capture (`.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`)
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:37:- [x] T003 Accept `nextSteps` and `next_steps`, then persist the first entry as `Next: ...` and later entries as `Follow-up: ...`, including mixed structured payload preservation when next-step facts are missing (`.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`)
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:39:- [x] T005 Add regression coverage for explicit JSON-mode failures and next-step persistence, including mixed structured payload behavior (`.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`)
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:36:- [x] T002 Hard-fail invalid JSON and invalid-shape explicit payloads without falling back to OpenCode capture (`.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`)
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:37:- [x] T003 Accept `nextSteps` and `next_steps`, then persist the first entry as `Next: ...` and later entries as `Follow-up: ...`, including mixed structured payload preservation when next-step facts are missing (`.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`)
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:39:- [x] T005 Add regression coverage for explicit JSON-mode failures and next-step persistence, including mixed structured payload behavior (`.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`)
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:47:- [x] T006 [P] Update all 4 `cli-*` SKILL files with redact-and-scrub, rejection-code, and minimum-payload guidance
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:48:- [x] T007 [P] Update all 4 `cli-*` prompt template files with accepted snake_case fields, richer `FILES` examples, and explicit JSON-mode hard-fail behavior
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:50:- [x] T009 Add doc-regression coverage for the 8 handback docs and the feature catalog (`.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`)
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:50:- [x] T009 Add doc-regression coverage for the 8 handback docs and the feature catalog (`.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`)
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:58:- [x] T010 Record current targeted Vitest evidence: `npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts` passed with `2` files and `32` tests
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:61:- [x] T013 Retained rich JSON-mode handback evidence: `memory/16-03-26_22-23__updated-the-outsourced-agent-handback-docs-so.md` exists at 556 lines with `generate-context.js` provenance
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:62:- [x] T014 Fresh thin JSON-mode handback verification: `generate-context.js` rejected the payload with `INSUFFICIENT_CONTEXT_ABORT` before file write
@@ -496,9 +496,9 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:74:- [x] All `cli-*` references use the real path layout and include redact-and-scrub, rejection-code, and minimum-payload guidance
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:75:- [x] The feature catalog and doc-regression test keep the caller-facing handback contract aligned
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:76:- [x] Fresh verification records one successful rich JSON-mode write and one thin-payload insufficiency rejection
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:91:- **Regression coverage**: `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`, `.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/tasks.md:91:- **Regression coverage**: `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts`, `.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts`
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
@@ -514,37 +514,37 @@ exec
     13	
     14	describe('outsourced agent handback docs', () => {
     15	  const skillDocs = [
-    16	    '.opencode/skill/cli-codex/SKILL.md',
-    17	    '.opencode/skill/cli-copilot/SKILL.md',
-    18	    '.opencode/skill/cli-claude-code/SKILL.md',
-    19	    '.opencode/skill/cli-gemini/SKILL.md',
+    16	    '.opencode/skills/cli-codex/SKILL.md',
+    17	    '.opencode/skills/cli-copilot/SKILL.md',
+    18	    '.opencode/skills/cli-claude-code/SKILL.md',
+    19	    '.opencode/skills/cli-gemini/SKILL.md',
     20	  ];
 exec
-/bin/zsh -lc 'rg -n "MEMORY_HANDBACK_START|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|minimum payload|nextSteps|next_steps|FILES|specFolder|save-context-data|generate-context.js|handback" .opencode/skill/cli-codex .opencode/skill/cli-copilot .opencode/skill/cli-gemini .opencode/skill/cli-claude-code' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/cli-copilot/assets/prompt_templates.md:340:Append this epilogue to any delegated prompt when the calling AI needs structured session memory back from Copilot CLI. The agent will include the delimited section in its output, enabling the calling AI to extract, parse, and save it via `generate-context.js`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-copilot/assets/prompt_templates.md:365:[spec-folder-name, e.g. 015-outsourced-agent-handback]
-.opencode/skill/cli-copilot/assets/prompt_templates.md:371:After receiving agent output, the calling AI extracts the handback section:
-.opencode/skill/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-copilot/assets/prompt_templates.md:382:cat > /tmp/save-context-data.json << 'JSONEOF'
-.opencode/skill/cli-copilot/assets/prompt_templates.md:386:  "FILES": [
-.opencode/skill/cli-copilot/assets/prompt_templates.md:402:  "nextSteps": ["<extracted remaining work>"],
-.opencode/skill/cli-copilot/assets/prompt_templates.md:403:  "specFolder": "<extracted or provided by calling AI>",
-.opencode/skill/cli-copilot/assets/prompt_templates.md:408:# Save via generate-context.js JSON mode
-.opencode/skill/cli-copilot/assets/prompt_templates.md:409:node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]
-.opencode/skill/cli-copilot/assets/prompt_templates.md:412:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:414:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:418:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
-.opencode/skill/cli-codex/assets/prompt_templates.md:527:Append this epilogue to any delegated prompt when the calling AI needs structured session memory back from Codex CLI. The agent will include the delimited section in its output, enabling the calling AI to extract, parse, and save it via `generate-context.js`.
-.opencode/skill/cli-codex/assets/prompt_templates.md:536:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-codex/assets/prompt_templates.md:552:[spec-folder-name, e.g. 015-outsourced-agent-handback]
-.opencode/skill/cli-codex/assets/prompt_templates.md:558:After receiving agent output, the calling AI extracts the handback section:
-.opencode/skill/cli-codex/assets/prompt_templates.md:561:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+/bin/zsh -lc 'rg -n "MEMORY_HANDBACK_START|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|minimum payload|nextSteps|next_steps|FILES|specFolder|save-context-data|generate-context.js|handback" .opencode/skills/cli-codex .opencode/skills/cli-copilot .opencode/skills/cli-gemini .opencode/skills/cli-claude-code' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/cli-copilot/assets/prompt_templates.md:340:Append this epilogue to any delegated prompt when the calling AI needs structured session memory back from Copilot CLI. The agent will include the delimited section in its output, enabling the calling AI to extract, parse, and save it via `generate-context.js`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-copilot/assets/prompt_templates.md:365:[spec-folder-name, e.g. 015-outsourced-agent-handback]
+.opencode/skills/cli-copilot/assets/prompt_templates.md:371:After receiving agent output, the calling AI extracts the handback section:
+.opencode/skills/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-copilot/assets/prompt_templates.md:382:cat > /tmp/save-context-data.json << 'JSONEOF'
+.opencode/skills/cli-copilot/assets/prompt_templates.md:386:  "FILES": [
+.opencode/skills/cli-copilot/assets/prompt_templates.md:402:  "nextSteps": ["<extracted remaining work>"],
+.opencode/skills/cli-copilot/assets/prompt_templates.md:403:  "specFolder": "<extracted or provided by calling AI>",
+.opencode/skills/cli-copilot/assets/prompt_templates.md:408:# Save via generate-context.js JSON mode
+.opencode/skills/cli-copilot/assets/prompt_templates.md:409:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]
+.opencode/skills/cli-copilot/assets/prompt_templates.md:412:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:414:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:418:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
+.opencode/skills/cli-codex/assets/prompt_templates.md:527:Append this epilogue to any delegated prompt when the calling AI needs structured session memory back from Codex CLI. The agent will include the delimited section in its output, enabling the calling AI to extract, parse, and save it via `generate-context.js`.
+.opencode/skills/cli-codex/assets/prompt_templates.md:536:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-codex/assets/prompt_templates.md:552:[spec-folder-name, e.g. 015-outsourced-agent-handback]
+.opencode/skills/cli-codex/assets/prompt_templates.md:558:After receiving agent output, the calling AI extracts the handback section:
+.opencode/skills/cli-codex/assets/prompt_templates.md:561:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
 codex
 I’ve confirmed the doc contract checks only for wording presence, not payload semantics. Next I’m reading runtime tests (`runtime-memory-inputs`, `generate-context-cli-authority`, `workflow-e2e`) to identify what is truly enforced versus what the docs imply as “minimum viable.”
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────────
      2	// MODULE: Runtime Memory Input Tests
      3	// ───────────────────────────────────────────────────────────────────
@@ -566,29 +566,29 @@ exec
     19	const captureGeminiConversation = vi.fn(async () => null);
     20	
 exec
-/bin/zsh -lc 'rg -n "validateInputData|normalizeInputData|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|nextSteps|next_steps|recentContext|FILES|specFolder|structured|stdin|--json|EXPLICIT_DATA_FILE_LOAD_FAILED|thin" .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:13:import { normalizeInputData, transformOpencodeCapture } from '../utils/input-normalizer';
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:79:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:80:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found/);
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:98:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:99:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Invalid JSON in data file/);
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:114:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:115:      nextSteps: 'not-an-array',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:123:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:124:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Failed to load data file/);
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:138:    await fs.writeFile(permFile, JSON.stringify({ specFolder: 'test' }), 'utf-8');
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:146:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:147:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Permission denied/);
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:170:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:172:      nextSteps: ['Update documentation.'],
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:179:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:219:        specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:224:      expect(result.recentContext?.[0]?.request).toContain('snake_case JSON input handling');
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:252:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:289:      specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:328:      specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
+/bin/zsh -lc 'rg -n "validateInputData|normalizeInputData|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|nextSteps|next_steps|recentContext|FILES|specFolder|structured|stdin|--json|EXPLICIT_DATA_FILE_LOAD_FAILED|thin" .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:13:import { normalizeInputData, transformOpencodeCapture } from '../utils/input-normalizer';
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:79:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:80:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found/);
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:98:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:99:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Invalid JSON in data file/);
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:114:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:115:      nextSteps: 'not-an-array',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:123:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:124:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Failed to load data file/);
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:138:    await fs.writeFile(permFile, JSON.stringify({ specFolder: 'test' }), 'utf-8');
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:146:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:147:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Permission denied/);
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:170:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:172:      nextSteps: ['Update documentation.'],
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:179:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:219:        specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:224:      expect(result.recentContext?.[0]?.request).toContain('snake_case JSON input handling');
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:252:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:289:      specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:328:      specFolderArg: '022-hybrid-rag-fusion/009-perfect-session-capturing',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '240,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '240,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    240	
    241	describe('path traversal security', () => {
    242	  beforeEach(() => {
@@ -610,7 +610,7 @@ exec
    258	    expect(captureCopilotConversation).not.toHaveBeenCalled();
    259	    expect(captureGeminiConversation).not.toHaveBeenCalled();
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '560,940p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '560,940p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    560	
    561	    expect(transformed.observations).toEqual(expect.arrayContaining([
    562	      expect.objectContaining({
@@ -632,7 +632,7 @@ exec
    578	    const normalized = normalizeInputData({
    579	      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// TEST: Generate Context CLI Authority
      2	// Ensures main() preserves explicit CLI targets into runWorkflow
      3	import path from 'node:path';
@@ -654,51 +654,51 @@ exec
     19	}));
     20	
 exec
-/bin/zsh -lc 'for f in .opencode/skill/cli-codex/SKILL.md .opencode/skill/cli-copilot/SKILL.md .opencode/skill/cli-claude-code/SKILL.md .opencode/skill/cli-gemini/SKILL.md; do echo "===== $f ====="; rg -n "MEMORY_HANDBACK|Minimum payload guidance|Post-010 save gates|Explicit JSON mode failures|Parse to JSON|Write JSON|generate-context.js" "$f"; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-===== .opencode/skill/cli-codex/SKILL.md =====
+/bin/zsh -lc 'for f in .opencode/skills/cli-codex/SKILL.md .opencode/skills/cli-copilot/SKILL.md .opencode/skills/cli-claude-code/SKILL.md .opencode/skills/cli-gemini/SKILL.md; do echo "===== $f ====="; rg -n "MEMORY_HANDBACK|Minimum payload guidance|Post-010 save gates|Explicit JSON mode failures|Parse to JSON|Write JSON|generate-context.js" "$f"; done' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+===== .opencode/skills/cli-codex/SKILL.md =====
 466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
 467:3. **Parse to JSON**: Map extracted fields to `{ sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps }` (the save flow also accepts documented snake_case keys such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`)
 469:5. **Write JSON**: Save the scrubbed payload to `/tmp/save-context-data.json`
-470:6. **Invoke generate-context.js**: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]`
+470:6. **Invoke generate-context.js**: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]`
 473:**Graceful degradation**: If agent output lacks `MEMORY_HANDBACK` delimiters, the calling AI manually constructs the JSON from agent output and saves via the same JSON mode path. The save flow normalizes `nextSteps` or `next_steps`; the first entry persists as `Next: ...` and drives `NEXT_ACTION`, and remaining entries persist as `Follow-up: ...`.
 475:**Explicit JSON mode failures**: If the explicit data file cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture in that case; surface the error and stop.
 477:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
 479:**Minimum payload guidance**: Include a specific `sessionSummary`, at least one meaningful `recentContext` entry or equivalent observation, and rich `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known so the saved memory carries durable evidence instead of bare filenames.
-===== .opencode/skill/cli-copilot/SKILL.md =====
+===== .opencode/skills/cli-copilot/SKILL.md =====
 310:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
 311:3. **Parse to JSON**: Map extracted fields to `{ sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps }` (the save flow also accepts documented snake_case keys such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`)
 313:5. **Write JSON**: Save the scrubbed payload to `/tmp/save-context-data.json`
-314:6. **Invoke generate-context.js**: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]`
+314:6. **Invoke generate-context.js**: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json [spec-folder]`
 317:**Graceful degradation**: If agent output lacks `MEMORY_HANDBACK` delimiters, the calling AI manually constructs the JSON from agent output and saves via the same JSON mode path. The save flow normalizes `nextSteps` or `next_steps`; the first entry persists as `Next: ...` and drives `NEXT_ACTION`, and remaining entries persist as `Follow-up: ...`.
 319:**Explicit JSON mode failures**: If the explicit data file cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture in that case; surface the error and stop.
 321:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
 323:**Minimum payload guidance**: Include a specific `sessionSummary`, at least one meaningful `recentContext` entry or equivalent observation, and rich `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known so the saved memory carries durable evidence instead of bare filenames.
-===== .opencode/skill/cli-claude-code/SKILL.md =====
+===== .opencode/skills/cli-claude-code/SKILL.md =====
 466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
 exec
-/bin/zsh -lc 'rg -n "handback|outsourced|delegated" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:117:  /** Basename of the spec folder (e.g., "015-outsourced-agent-handback"). */
-.opencode/skill/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:35:    const filePath = buildPath('013-outsourced-agent-memory', 'memory.md');
-.opencode/skill/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:344:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
-.opencode/skill/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:424:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
-.opencode/skill/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:512:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
-.opencode/skill/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:697:      buildPath('013-outsourced-agent-memory', 'repair.md'),
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:79:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:98:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:114:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:123:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:146:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:170:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:179:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:252:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:579:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:630:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:662:      sessionSummary: 'Stabilized delegated memory save runtime behavior.',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:671:        request: 'Stabilized delegated memory save runtime behavior.',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:672:        learning: 'Stabilized delegated memory save runtime behavior.',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:686:    expect(sessionData.SUMMARY).toBe('Stabilized delegated memory save runtime behavior.');
+/bin/zsh -lc 'rg -n "handback|outsourced|delegated" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:117:  /** Basename of the spec folder (e.g., "015-outsourced-agent-handback"). */
+.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:35:    const filePath = buildPath('013-outsourced-agent-memory', 'memory.md');
+.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:344:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
+.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:424:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
+.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:512:    const specFolder = path.join(tempRoot, '013-outsourced-agent-memory');
+.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:697:      buildPath('013-outsourced-agent-memory', 'repair.md'),
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:79:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:98:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:114:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:123:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:146:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:170:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:179:        specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:252:      specFolderArg: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:579:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:630:      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:662:      sessionSummary: 'Stabilized delegated memory save runtime behavior.',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:671:        request: 'Stabilized delegated memory save runtime behavior.',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:672:        learning: 'Stabilized delegated memory save runtime behavior.',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:686:    expect(sessionData.SUMMARY).toBe('Stabilized delegated memory save runtime behavior.');
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js | sed -n '250,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js | sed -n '250,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    250	    const basename = getPathBasename('/path/to/file.js');
    251	    assertEqual(basename, 'file.js', 'T-003f: getPathBasename extracts filename');
    252	
@@ -720,7 +720,7 @@ exec
    268	
    269	  try {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-codex/SKILL.md | sed -n '444,492p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/cli-codex/SKILL.md | sed -n '444,492p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    444	
    445	### ⚠️ ESCALATE IF
    446	
@@ -742,7 +742,7 @@ exec
    462	
    463	When the calling AI needs to preserve session context from a Codex CLI delegation:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-codex/assets/prompt_templates.md | sed -n '520,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/cli-codex/assets/prompt_templates.md | sed -n '520,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    520	
    521	<!-- ANCHOR:memory_epilogue -->
    522	
@@ -801,7 +801,7 @@ exec
     12	
     13	<!-- SPECKIT_LEVEL: 2 -->
     14	<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-    15	<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+    15	<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
     16	
     17	---
     18	
@@ -852,7 +852,7 @@ exec
     19	  - "sufficiency quality gate system"
     20	  - "quality gate system spec"
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import type { DataSource } from './input-normalizer';
      2	
      3	export type SourceInputMode = 'structured' | 'stateless';
@@ -874,7 +874,7 @@ exec
     19	  },
     20	  'opencode-capture': {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1838,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1838,1885p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1838	  }));
   1839	  const thinningResult = applyTreeThinning(thinFileInputs);
   1840	  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
@@ -896,7 +896,7 @@ exec
   1856	    const specTitle = extractSpecTitle(specFolder);
   1857	    const allowSpecTitleFallback = shouldEnrichTaskFromSpecTitle(
 exec
-/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|captureCapabilities|_source === 'file'|_source "'!== '"'file'|quality abort|skip.*QUALITY_GATE_ABORT\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"QUALITY_ABORT_THRESHOLD|captureCapabilities|_source === 'file'|_source "'!== '"'file'|quality abort|skip.*QUALITY_GATE_ABORT\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 1240:  if (collectedData._source === 'file') {
 1508:    const captureCapabilities = getSourceCapabilities(captureSource);
 1514:        captureSource ? { captureSource: captureCapabilities.source, sourceCapabilities: captureCapabilities } : undefined,
@@ -907,31 +907,31 @@ exec
 2252:  if (qualityResult.score01 < 0.6 && qualityResult.score01 >= QUALITY_ABORT_THRESHOLD) {
 2379:        qualityAbortThreshold: QUALITY_ABORT_THRESHOLD,
 exec
-/bin/zsh -lc "rg -n \"QUALITY_GATE_ABORT|file-backed|_source: 'file'|source.*file|skip.*index|write_skip_index|quality threshold\" .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:532:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:535:    const dataFile = writeInputFile(harness, 'write-skip-index.json', createExplicitJsonInput({
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:554:      status: 'skipped_index_policy',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:557:    expect(metadata.embedding?.status).toBe('skipped_index_policy');
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:330:  it('renders session-source provenance and split file counts into frontmatter', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:353:          _source: 'file',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:532:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:535:    const dataFile = writeInputFile(harness, 'write-skip-index.json', createExplicitJsonInput({
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:554:      status: 'skipped_index_policy',
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:557:    expect(metadata.embedding?.status).toBe('skipped_index_policy');
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:9:  loadCollectedData: vi.fn(async () => ({ _source: 'file' })),
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:124:        _source: 'file',
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:150:        _source: 'file',
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:183:        _source: 'file',
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:192:        _source: 'file',
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:210:      collectedData: { _source: 'file' },
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:49:      disposition: 'write_skip_index',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:182:      expect(result._source).toBe('file');
+/bin/zsh -lc "rg -n \"QUALITY_GATE_ABORT|file-backed|_source: 'file'|source.*file|skip.*index|write_skip_index|quality threshold\" .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:532:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:535:    const dataFile = writeInputFile(harness, 'write-skip-index.json', createExplicitJsonInput({
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:554:      status: 'skipped_index_policy',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:557:    expect(metadata.embedding?.status).toBe('skipped_index_policy');
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:330:  it('renders session-source provenance and split file counts into frontmatter', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:353:          _source: 'file',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:529:    expect(warnSpy).not.toHaveBeenCalledWith(expect.stringContaining('QUALITY_GATE_ABORT'));
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:532:  it('writes but skips indexing when validation metadata marks a failure as index-blocking only', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:535:    const dataFile = writeInputFile(harness, 'write-skip-index.json', createExplicitJsonInput({
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:554:      status: 'skipped_index_policy',
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:557:    expect(metadata.embedding?.status).toBe('skipped_index_policy');
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:9:  loadCollectedData: vi.fn(async () => ({ _source: 'file' })),
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:124:        _source: 'file',
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:150:        _source: 'file',
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:183:        _source: 'file',
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:192:        _source: 'file',
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:210:      collectedData: { _source: 'file' },
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:49:      disposition: 'write_skip_index',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:182:      expect(result._source).toBe('file');
 codex
 I found an important contradiction to verify: the CLI docs/spec say file-backed handbacks “skip `QUALITY_GATE_ABORT`”, but tests appear to assert `QUALITY_GATE_ABORT` can still fire for `_source: 'file'`. I’m checking that section now because it changes where minimum-payload failures actually appear.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1200,1335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1200,1335p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1200	    const contextDir = path.join(tempRoot, 'memory');
   1201	    fs.mkdirSync(specFolderPath, { recursive: true });
   1202	    fs.mkdirSync(contextDir, { recursive: true });
@@ -954,11 +954,11 @@ exec
   1219	        primary: 0,
 exec
 /bin/zsh -lc 'rg --files | rg "memory-sufficiency"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
+.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import { describe, expect, it } from 'vitest';
      2	
      3	import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';
@@ -1001,7 +1001,7 @@ exec
     19	  /^session context$/i,
     20	  /^implementation$/i,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '320,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    320	        supportEvidenceTexts.push(text);
    321	      }
    322	    }
@@ -1108,29 +1108,29 @@ exec
     19	
     20	| Priority | Handling | Completion Impact |
 exec
-/bin/zsh -lc 'rg -n "userPrompts|recentContext|observations|Array.isArray|NEXT_ACTION|extractNextAction|specFolder|SPEC_FOLDER" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:71:  observations: Observation[];
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:75:  specFolderPath: string | null;
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:76:  recentContext?: RecentContextEntry[];
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:116: * @param decisionCount - Number of decision observations recorded.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:158: * @param observations - Session observations containing type and fact data.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:164:  observations: Observation[],
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:172:  const obsTypes = observations.map((o) => o.type || 'observation');
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:184: * Identify the most recently active file from observations, preferring non-synthetic entries.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:185: * @param observations - Session observations that may reference files.
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:189:function extractActiveFile(observations: Observation[], files: FileEntry[] | undefined): string {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:190:  const prioritizedObservations = observations.some((observation) => !observation._synthetic)
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:191:    ? observations.filter((observation) => !observation._synthetic)
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:192:    : observations;
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:201:function getBehavioralObservations(observations: Observation[]): Observation[] {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:202:  const liveObservations = observations.filter((observation) => !observation._synthetic);
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:203:  return liveObservations.length > 0 ? liveObservations : observations;
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:206:function findFactByPattern(observations: Observation[], pattern: RegExp): string | null {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:207:  for (let i = observations.length - 1; i >= 0; i--) {
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:208:    const obs = observations[i];
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:250:function extractFromRecentContext(recentContext?: RecentContextEntry[]): string | null {
+/bin/zsh -lc 'rg -n "userPrompts|recentContext|observations|Array.isArray|NEXT_ACTION|extractNextAction|specFolder|SPEC_FOLDER" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:71:  observations: Observation[];
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:75:  specFolderPath: string | null;
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:76:  recentContext?: RecentContextEntry[];
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:116: * @param decisionCount - Number of decision observations recorded.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:158: * @param observations - Session observations containing type and fact data.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:164:  observations: Observation[],
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:172:  const obsTypes = observations.map((o) => o.type || 'observation');
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:184: * Identify the most recently active file from observations, preferring non-synthetic entries.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:185: * @param observations - Session observations that may reference files.
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:189:function extractActiveFile(observations: Observation[], files: FileEntry[] | undefined): string {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:190:  const prioritizedObservations = observations.some((observation) => !observation._synthetic)
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:191:    ? observations.filter((observation) => !observation._synthetic)
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:192:    : observations;
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:201:function getBehavioralObservations(observations: Observation[]): Observation[] {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:202:  const liveObservations = observations.filter((observation) => !observation._synthetic);
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:203:  return liveObservations.length > 0 ? liveObservations : observations;
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:206:function findFactByPattern(observations: Observation[], pattern: RegExp): string | null {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:207:  for (let i = observations.length - 1; i >= 0; i--) {
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:208:    const obs = observations[i];
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:250:function extractFromRecentContext(recentContext?: RecentContextEntry[]): string | null {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '700,790p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '700,790p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    700	    const detectedFolder = await detectSpecFolder();
    701	    const normalizedDetected = path.resolve(detectedFolder).replace(/\\/g, '/');
    702	
@@ -1152,7 +1152,7 @@ exec
    718	      specFolder: folderName,
    719	      channel: getChannel(),
 exec
-/bin/zsh -lc 'rg -n "sessionSummary|session_summary|filesModified|files_modified|triggerPhrases|trigger_phrases|nextSteps|next_steps|specFolder|spec_folder|keyDecisions|key_decisions" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "sessionSummary|session_summary|filesModified|files_modified|triggerPhrases|trigger_phrases|nextSteps|next_steps|specFolder|spec_folder|keyDecisions|key_decisions" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 358:    const hasSessionSummary = !!(collectedData as Record<string, unknown>).sessionSummary;
 359:    const hasKeyDecisions = Array.isArray((collectedData as Record<string, unknown>).keyDecisions) &&
 360:      ((collectedData as Record<string, unknown>).keyDecisions as unknown[]).length > 0;
@@ -1171,7 +1171,7 @@ exec
 876:      SPEC_FILES = await detectRelatedDocs(specFolderPath) as SpecFileEntry[];
 895:      specFolderPath,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '320,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '320,440p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    320	  }
    321	
    322	  let summary: string = parts.join('. ') + '.';
@@ -1193,7 +1193,7 @@ exec
    338	
    339	function determineSessionStatus(
 exec
-/bin/zsh -lc "rg -n \"sessionSummary|SUMMARY|summary =|generateContextSummary|QUICK_SUMMARY|hasSessionSummary\" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"sessionSummary|SUMMARY|summary =|generateContextSummary|QUICK_SUMMARY|hasSessionSummary\" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 100:  LEARNING_SUMMARY: string;
 112:  CONTEXT_SUMMARY: string;
 231:    LEARNING_SUMMARY: string;
@@ -1214,7 +1214,7 @@ exec
 936:    QUICK_SUMMARY: quickSummary,
 1003:  generateContextSummary,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '790,870p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '790,870p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    790	  const sourceSessionUpdated = typeof data._sourceSessionUpdated === 'number' && Number.isFinite(data._sourceSessionUpdated)
    791	    ? data._sourceSessionUpdated
    792	    : 0;
@@ -1236,7 +1236,7 @@ exec
    808	    if (!folderName || rawLearning.length === 0) return rawLearning.length > 0;
    809	    const segments = folderName.split('/').map(s => s.replace(/^\d+--?/, '').trim().toLowerCase()).filter(s => s.length > 2);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1150,1268p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1150,1268p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1150	/**
   1151	 * Selective enrichment for file-backed (JSON-mode) data.
   1152	 * Adds ONLY safe metadata (git provenance, spec-folder trigger phrases/decisions,
@@ -1258,7 +1258,7 @@ exec
   1168	        console.warn(`[workflow] file-source enrichment degraded (spec): ${msg}`);
   1169	        return null;
 exec
-/bin/zsh -lc 'rg -n "function extractFilesFromData|filesModified|files_modified|FILES" .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "function extractFilesFromData|filesModified|files_modified|FILES" .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 581:  FILES: FileChange[];
 582:  SPEC_FILES: SpecFileEntry[];
 596:    FILES, SPEC_FILES, summary, projectPhase, nextAction,
@@ -1280,7 +1280,7 @@ exec
 928:    HAS_FILES: FILES.length > 0,
 931:    FILESYSTEM_FILE_COUNT: filesystemFileCount,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Collect Session Data
      3	// ---------------------------------------------------------------
@@ -1302,7 +1302,7 @@ exec
     19	import { coerceFactsToText } from '../utils/fact-coercion';
     20	import { detectSpecFolder } from '../spec-folder';
 exec
-/bin/zsh -lc "rg -n \"function extractFilesFromData|filesModified|files_modified|FILES|path|description\" .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts && nl -ba .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '140,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function extractFilesFromData|filesModified|files_modified|FILES|path|description\" .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts && nl -ba .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts | sed -n '140,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 8:// Extracts file references, descriptions, and observation types from session data
 20:import { getPathBasename } from '../utils/path-utils';
 47:  description: string;
@@ -1324,7 +1324,7 @@ exec
 208:  if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
 209:    for (const fileInfo of collectedData.FILES) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '700,750p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '700,750p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    700	    });
    701	    const second = await workflowModule.runWorkflow({
    702	      dataFile: secondFile,
@@ -1346,7 +1346,7 @@ exec
    718	  });
    719	
 exec
-/bin/zsh -lc "rg -n \"function createExplicitJsonInput|buildRichSessionData|buildSparseSessionData\" .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts && nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '160,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"function createExplicitJsonInput|buildRichSessionData|buildSparseSessionData\" .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts && nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '160,250p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 12:import { buildRichSessionData, buildSparseSessionData, buildTreeThinningSessionData } from './fixtures/session-data-factory';
 161:function createExplicitJsonInput(overrides: Record<string, unknown> = {}): Record<string, unknown> {
 428:      collectSessionDataFn: async (_collectedData, specFolderName) => buildRichSessionData(specFolderName || harness.specRelativePath),
@@ -1368,7 +1368,7 @@ exec
    169	      'memory sequence tracking',
    170	    ],
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: "Data Loaders"
      3	description: "Data loader modules that normalize input from JSON files or native CLI capture, then hard-stop when no usable session data exists."
@@ -1390,7 +1390,7 @@ exec
     19	- [4. SECURITY AND PATH HANDLING](#4--security-and-path-handling)
     20	- [5. QUICK USAGE](#5--quick-usage)
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/README.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/README.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: "System Spec Kit Utilities"
      3	description: "Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging and input normalization across all system-spec-kit scripts."
@@ -1412,17 +1412,17 @@ exec
     19	- [1. OVERVIEW](#1--overview)
     20	- [2. QUICK START](#2--quick-start)
 exec
-/bin/zsh -lc 'npm run -s test -- --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts exited 1 in 327ms:
-file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:2170
+/bin/zsh -lc 'npm run -s test -- --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts exited 1 in 327ms:
+file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:2170
 			throw new Error(`Expected a single value for option "${command}", received [${received}]`);
 			      ^
 
 Error: Expected a single value for option "-c, --config <path>", received ["../mcp_server/vitest.config.ts", "../mcp_server/vitest.config.ts"]
-    at transform (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:2170:10)
-    at setDotProp (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:208:22)
-    at CAC.mri (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:592:9)
-    at CAC.parse (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:509:27)
-    at file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/vitest/dist/cli.js:29:13
+    at transform (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:2170:10)
+    at setDotProp (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:208:22)
+    at CAC.mri (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:592:9)
+    at CAC.parse (file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/chunks/cac.CWGDZnXT.js:509:27)
+    at file:///Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/vitest/dist/cli.js:29:13
     at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:655:26)
@@ -1432,9 +1432,9 @@ Node.js v25.6.1
 codex
 The first test run failed due duplicate `--config` injection from the npm script wrapper, not from the code under test. I’m rerunning with a direct `vitest` invocation so we can still validate the current behavior.
 exec
-/bin/zsh -lc 'npx vitest run --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts exited 1 in 427ms:
+/bin/zsh -lc 'npx vitest run --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts exited 1 in 427ms:
 
- RUN  v4.1.0 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
+ RUN  v4.1.0 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts
 
 No test files found, exiting with code 1
 
@@ -1443,9 +1443,9 @@ include: **/*.{test,spec}.?(c|m)[jt]s?(x)
 exclude:  **/node_modules/**, **/.git/**
 
 exec
-/bin/zsh -lc 'npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts exited 1 in 674ms:
+/bin/zsh -lc 'npx vitest run --config ../mcp_server/vitest.config.ts --root . tests/runtime-memory-inputs.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/outsourced-agent-handback-docs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts exited 1 in 674ms:
 
- RUN  v4.1.0 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
+ RUN  v4.1.0 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts
 
  ❯ tests/outsourced-agent-handback-docs.vitest.ts (0 test)
  ❯ tests/runtime-memory-inputs.vitest.ts (0 test)
@@ -1468,10 +1468,10 @@ codex
 `system-spec-kit` was used for this analysis (runtime + handback protocol tracing).
 
 1. Minimum handback JSON schema (from `validateInputData`)
-- Validation entrypoint: [`input-normalizer.ts#L551`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L551 )
+- Validation entrypoint: [`input-normalizer.ts#L551`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L551 )
 - Required root: non-null object only.
 - Conditional required field:
-  - If no CLI `specFolderArg`, then at least one truthy field among `specFolder|spec_folder|SPEC_FOLDER|userPrompts|user_prompts|observations|recentContext|recent_context` is required ([`#L558-L561`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L558 )).
+  - If no CLI `specFolderArg`, then at least one truthy field among `specFolder|spec_folder|SPEC_FOLDER|userPrompts|user_prompts|observations|recentContext|recent_context` is required ([`#L558-L561`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L558 )).
   - If `specFolderArg` is provided, even `{}` passes this check.
 - Typed optional fields enforced:
   - arrays: `triggerPhrases`, `trigger_phrases`, `keyDecisions`, `key_decisions`, `filesModified`, `files_modified`, `nextSteps`, `next_steps`, `FILES`, `observations`, `user_prompts`, `recent_context`
@@ -1481,25 +1481,25 @@ codex
 - Not enforced (important): `sessionSummary`, `recentContext` (camelCase), `userPrompts` (camelCase), item shapes inside arrays, meaningful `FILES.DESCRIPTION`.
 
 2. Per-CLI handback flow through pipeline
-- Codex: [`cli-codex/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L461 )
-- Copilot: [`cli-copilot/SKILL.md#L305`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-copilot/SKILL.md#L305 )
-- Claude Code: [`cli-claude-code/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-claude-code/SKILL.md#L461 )
-- Gemini: [`cli-gemini/SKILL.md#L408`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-gemini/SKILL.md#L408 )
+- Codex: [`cli-codex/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L461 )
+- Copilot: [`cli-copilot/SKILL.md#L305`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-copilot/SKILL.md#L305 )
+- Claude Code: [`cli-claude-code/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-claude-code/SKILL.md#L461 )
+- Gemini: [`cli-gemini/SKILL.md#L408`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-gemini/SKILL.md#L408 )
 
 All four use the same flow:
 1. Delegated CLI emits `MEMORY_HANDBACK` block.
 2. Caller extracts block and builds JSON.
 3. Caller writes `/tmp/save-context-data.json`.
 4. Caller runs `generate-context.js /tmp/save-context-data.json [spec-folder]`.
-5. File mode path calls loader validate+normalize ([`data-loader.ts#L520`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L520 ), [`#L523`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L523 )).
-6. Workflow applies sufficiency/contamination/quality gates ([`workflow.ts#L2207`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2207 ), [`#L2227`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2227 )).
+5. File mode path calls loader validate+normalize ([`data-loader.ts#L520`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L520 ), [`#L523`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L523 )).
+6. Workflow applies sufficiency/contamination/quality gates ([`workflow.ts#L2207`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2207 ), [`#L2227`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2227 )).
 
 3. Validation gaps letting malformed/thin payloads through
 - Gap A: Minimum-payload guidance is doc-level, not `validateInputData`-enforced. Thin payloads pass validation and fail later at sufficiency gate.
-- Gap B: With explicit CLI spec folder, `{}` is accepted in structured mode path (test proves pass-through): [`generate-context-cli-authority.vitest.ts#L199`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts#L199 ).
-- Gap C: `--stdin/--json` bypasses loader validation+normalization and sends raw payload to workflow ([`generate-context.ts#L356`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L356 ), [`#L565`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L565 ), [`workflow.ts#L1395`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1395 )).
+- Gap B: With explicit CLI spec folder, `{}` is accepted in structured mode path (test proves pass-through): [`generate-context-cli-authority.vitest.ts#L199`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts#L199 ).
+- Gap C: `--stdin/--json` bypasses loader validation+normalization and sends raw payload to workflow ([`generate-context.ts#L356`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L356 ), [`#L565`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L565 ), [`workflow.ts#L1395`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1395 )).
 - Gap D: SKILL step “Parse to JSON” lists only `{sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps}`, but minimum guidance later asks for `recentContext` + rich `FILES` metadata (same section in all 4 CLI SKILL docs).
-- Gap E: Doc regression test checks wording presence only, not behavioral adequacy of payload schema: [`outsourced-agent-handback-docs.vitest.ts#L29`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29 ).
+- Gap E: Doc regression test checks wording presence only, not behavioral adequacy of payload schema: [`outsourced-agent-handback-docs.vitest.ts#L29`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29 ).
 
 4. Minimum tests needed per CLI
 - T1 Contract-shape test: parse each CLI handback block into the currently documented step-3 JSON (without `recentContext`/`FILES`) and assert `INSUFFICIENT_CONTEXT_ABORT`.
@@ -1515,10 +1515,10 @@ tokens used
 `system-spec-kit` was used for this analysis (runtime + handback protocol tracing).
 
 1. Minimum handback JSON schema (from `validateInputData`)
-- Validation entrypoint: [`input-normalizer.ts#L551`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L551 )
+- Validation entrypoint: [`input-normalizer.ts#L551`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L551 )
 - Required root: non-null object only.
 - Conditional required field:
-  - If no CLI `specFolderArg`, then at least one truthy field among `specFolder|spec_folder|SPEC_FOLDER|userPrompts|user_prompts|observations|recentContext|recent_context` is required ([`#L558-L561`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L558 )).
+  - If no CLI `specFolderArg`, then at least one truthy field among `specFolder|spec_folder|SPEC_FOLDER|userPrompts|user_prompts|observations|recentContext|recent_context` is required ([`#L558-L561`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L558 )).
   - If `specFolderArg` is provided, even `{}` passes this check.
 - Typed optional fields enforced:
   - arrays: `triggerPhrases`, `trigger_phrases`, `keyDecisions`, `key_decisions`, `filesModified`, `files_modified`, `nextSteps`, `next_steps`, `FILES`, `observations`, `user_prompts`, `recent_context`
@@ -1528,25 +1528,25 @@ tokens used
 - Not enforced (important): `sessionSummary`, `recentContext` (camelCase), `userPrompts` (camelCase), item shapes inside arrays, meaningful `FILES.DESCRIPTION`.
 
 2. Per-CLI handback flow through pipeline
-- Codex: [`cli-codex/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L461 )
-- Copilot: [`cli-copilot/SKILL.md#L305`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-copilot/SKILL.md#L305 )
-- Claude Code: [`cli-claude-code/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-claude-code/SKILL.md#L461 )
-- Gemini: [`cli-gemini/SKILL.md#L408`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/cli-gemini/SKILL.md#L408 )
+- Codex: [`cli-codex/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L461 )
+- Copilot: [`cli-copilot/SKILL.md#L305`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-copilot/SKILL.md#L305 )
+- Claude Code: [`cli-claude-code/SKILL.md#L461`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-claude-code/SKILL.md#L461 )
+- Gemini: [`cli-gemini/SKILL.md#L408`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/cli-gemini/SKILL.md#L408 )
 
 All four use the same flow:
 1. Delegated CLI emits `MEMORY_HANDBACK` block.
 2. Caller extracts block and builds JSON.
 3. Caller writes `/tmp/save-context-data.json`.
 4. Caller runs `generate-context.js /tmp/save-context-data.json [spec-folder]`.
-5. File mode path calls loader validate+normalize ([`data-loader.ts#L520`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L520 ), [`#L523`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L523 )).
-6. Workflow applies sufficiency/contamination/quality gates ([`workflow.ts#L2207`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2207 ), [`#L2227`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2227 )).
+5. File mode path calls loader validate+normalize ([`data-loader.ts#L520`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L520 ), [`#L523`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L523 )).
+6. Workflow applies sufficiency/contamination/quality gates ([`workflow.ts#L2207`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2207 ), [`#L2227`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2227 )).
 
 3. Validation gaps letting malformed/thin payloads through
 - Gap A: Minimum-payload guidance is doc-level, not `validateInputData`-enforced. Thin payloads pass validation and fail later at sufficiency gate.
-- Gap B: With explicit CLI spec folder, `{}` is accepted in structured mode path (test proves pass-through): [`generate-context-cli-authority.vitest.ts#L199`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts#L199 ).
-- Gap C: `--stdin/--json` bypasses loader validation+normalization and sends raw payload to workflow ([`generate-context.ts#L356`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L356 ), [`#L565`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L565 ), [`workflow.ts#L1395`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1395 )).
+- Gap B: With explicit CLI spec folder, `{}` is accepted in structured mode path (test proves pass-through): [`generate-context-cli-authority.vitest.ts#L199`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts#L199 ).
+- Gap C: `--stdin/--json` bypasses loader validation+normalization and sends raw payload to workflow ([`generate-context.ts#L356`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L356 ), [`#L565`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L565 ), [`workflow.ts#L1395`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1395 )).
 - Gap D: SKILL step “Parse to JSON” lists only `{sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps}`, but minimum guidance later asks for `recentContext` + rich `FILES` metadata (same section in all 4 CLI SKILL docs).
-- Gap E: Doc regression test checks wording presence only, not behavioral adequacy of payload schema: [`outsourced-agent-handback-docs.vitest.ts#L29`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29 ).
+- Gap E: Doc regression test checks wording presence only, not behavioral adequacy of payload schema: [`outsourced-agent-handback-docs.vitest.ts#L29`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29 ).
 
 4. Minimum tests needed per CLI
 - T1 Contract-shape test: parse each CLI handback block into the currently documented step-3 JSON (without `recentContext`/`FILES`) and assert `INSUFFICIENT_CONTEXT_ABORT`.

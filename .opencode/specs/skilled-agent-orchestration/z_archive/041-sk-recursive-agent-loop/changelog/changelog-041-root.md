@@ -138,9 +138,9 @@ These phases handled template fidelity, command path changes, and wording consis
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/agent/agent-improver.md` | Canonical mutator agent, later 5D workflow and integration-aware steps |
-| `.opencode/command/improve/agent.md` | Command entrypoint, later full rewrite to 430+ lines |
-| `.opencode/command/improve/assets/*.yaml` | Auto and confirm YAML workflows |
+| `.opencode/agents/agent-improver.md` | Canonical mutator agent, later 5D workflow and integration-aware steps |
+| `.opencode/commands/improve/agent.md` | Command entrypoint, later full rewrite to 430+ lines |
+| `.opencode/commands/improve/assets/*.yaml` | Auto and confirm YAML workflows |
 
 ### Skill Package
 

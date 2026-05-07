@@ -51,10 +51,10 @@ A new `/create:changelog` slash command that automates changelog creation for th
 
 | File | Action | Description |
 |------|--------|-------------|
-| `.opencode/command/create/changelog.md` | Created | Mode-based command file (417 lines) |
-| `.opencode/command/create/assets/create_changelog_auto.yaml` | Created | Autonomous 7-step workflow (655 lines) |
-| `.opencode/command/create/assets/create_changelog_confirm.yaml` | Created | Interactive 7-step workflow with checkpoints (631 lines) |
-| `.opencode/command/create/README.txt` | Modified | Added changelog entry to command table, structure tree, examples, troubleshooting |
+| `.opencode/commands/create/changelog.md` | Created | Mode-based command file (417 lines) |
+| `.opencode/commands/create/assets/create_changelog_auto.yaml` | Created | Autonomous 7-step workflow (655 lines) |
+| `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Created | Interactive 7-step workflow with checkpoints (631 lines) |
+| `.opencode/commands/create/README.txt` | Modified | Added changelog entry to command table, structure tree, examples, troubleshooting |
 
 ---
 <!-- /ANCHOR:what-built -->

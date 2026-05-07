@@ -4,7 +4,7 @@
 
 **Generated:** 2026-02-01
 **Source:** 082-speckit-reimagined/tasks.md
-**Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+**Test Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
 
 ---
 
@@ -599,7 +599,7 @@
 
 ```bash
 # Run all tests
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm test
 
 # Run specific test file

@@ -62,7 +62,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] All 15 tasks marked [x] in tasks.md with (verified) evidence (verified)
-- [x] CHK-011 [P0] `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` passes 0 TS errors after every task (verified)
+- [x] CHK-011 [P0] `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` passes 0 TS errors after every task (verified)
 - [x] CHK-012 [P0] No new ESLint errors introduced (verified)
 - [x] CHK-013 [P1] Inline comments only where 007 patch design noted non-obvious invariants (verified)
 - [x] CHK-014 [P1] No backwards-incompat changes to `IndexerConfig` (new fields are optional with defaults) (verified)

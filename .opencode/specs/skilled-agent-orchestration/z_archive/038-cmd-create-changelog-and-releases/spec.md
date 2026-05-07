@@ -47,7 +47,7 @@ _memory:
 
 The `create:changelog` command generates changelog markdown files but stops there. Publishing a GitHub release requires separate manual steps: create a git tag, push it, then run `gh release create` with properly formatted release notes. Users must do this every time after running the changelog command, which is error-prone and creates a gap where a changelog exists locally but no GitHub release has been published.
 
-The sk-git `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 documents the full release creation procedure but currently has no automated link back to the `create:changelog` command — the two workflows are aware of the same problem but do not coordinate.
+The sk-git `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 documents the full release creation procedure but currently has no automated link back to the `create:changelog` command — the two workflows are aware of the same problem but do not coordinate.
 
 ### Purpose
 
@@ -61,9 +61,9 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 
 ### In Scope
 
-- Add release creation phases to `.opencode/command/create/changelog.md` (the command instruction document)
+- Add release creation phases to `.opencode/commands/create/changelog.md` (the command instruction document)
 - Mirror all additions to `changelog.toml` (the `.agents/` TOML mirror)
-- Update `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 to cross-reference `create:changelog` for release note sourcing
+- Update `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 to cross-reference `create:changelog` for release note sourcing
 - Two execution modes: `:auto` (autonomous, no prompts) and `:confirm` (interactive, confirm at each step)
 - Changelog file is always generated FIRST; release creation is an optional subsequent phase
 - Release notes formatted per PUBLIC_RELEASE.md Section 7 plain-English style
@@ -80,9 +80,9 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/changelog.md` | Modify | Add release creation phases (Phase R1–R4) after changelog generation |
+| `.opencode/commands/create/changelog.md` | Modify | Add release creation phases (Phase R1–R4) after changelog generation |
 | `.agents/commands/create/changelog.toml` | Modify | Mirror the markdown additions in the TOML prompt field |
-| `.opencode/skill/sk-git/references/finish_workflows.md` | Modify | Add cross-reference to `create:changelog` in Step 6 |
+| `.opencode/skills/sk-git/references/finish_workflows.md` | Modify | Add cross-reference to `create:changelog` in Step 6 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,13 +98,13 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 | REQ-002 | GitHub release body must NOT include local wrapper lines | Release notes sent to `gh release create --notes` never start with `# vX.X.X` or `> Part of ...` or `## [**X.X.X**]` |
 | REQ-003 | `gh release create` is mandatory — pushing a tag alone is not sufficient | The release phase always calls `gh release create`, never only `git tag` + `git push` |
 | REQ-004 | Release notes must follow PUBLIC_RELEASE.md Section 7 plain-English format | Notes explain "what was broken, what we did, why it matters" — no jargon-only bullets |
-| REQ-005 | `changelog.toml` mirrors all changes made to `.opencode/command/create/changelog.md` | The TOML `prompt` field contains an identical copy of the markdown instruction content |
+| REQ-005 | `changelog.toml` mirrors all changes made to `.opencode/commands/create/changelog.md` | The TOML `prompt` field contains an identical copy of the markdown instruction content |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 cross-references `create:changelog` as the preferred tool for generating release notes | Step 6 contains a note directing users to `/create:changelog` when a changelog file does not exist |
+| REQ-006 | `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 cross-references `create:changelog` as the preferred tool for generating release notes | Step 6 contains a note directing users to `/create:changelog` when a changelog file does not exist |
 | REQ-007 | Release phase must present a clear summary before tagging so users can verify the version and notes | In `:confirm` mode, the user sees the tag name and release notes preview before any git operations |
 | REQ-008 | Release phase handles the case where `gh` CLI is not authenticated or unavailable | Error message is clear, suggests `gh auth login`, and does not leave a dangling tag |
 <!-- /ANCHOR:requirements -->
@@ -116,8 +116,8 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 
 - **SC-001**: Running `/create:changelog [spec] :auto :release` generates a changelog file and publishes a GitHub release in a single uninterrupted flow
 - **SC-002**: The GitHub release page shows properly formatted plain-English notes with no local wrapper markup
-- **SC-003**: The `changelog.toml` prompt field is character-for-character identical to the `.opencode/command/create/changelog.md` instruction body
-- **SC-004**: `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 includes a cross-reference to `create:changelog` that a user following the finish workflow would encounter naturally
+- **SC-003**: The `changelog.toml` prompt field is character-for-character identical to the `.opencode/commands/create/changelog.md` instruction body
+- **SC-004**: `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 includes a cross-reference to `create:changelog` that a user following the finish workflow would encounter naturally
 - **SC-005**: All three modified files pass a manual read-through confirming no placeholder text remains and content is internally consistent
 <!-- /ANCHOR:success-criteria -->
 

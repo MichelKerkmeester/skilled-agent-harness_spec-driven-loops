@@ -16,7 +16,7 @@ Focus Area: **GROUND-TRUTH INTEGRATION PROBE under workflow-invariant lens.** Re
 
 For each of these surfaces, READ the actual current source code AND map the strings/messages emitted to user-visible channels (stdout, stderr, files written, log lines). Then verify the iter-11 revised diffs preserve level-only vocabulary on every channel.
 
-1. **`create.sh --help` text** (file: `.opencode/skill/system-spec-kit/scripts/spec/create.sh`)
+1. **`create.sh --help` text** (file: `.opencode/skills/system-spec-kit/scripts/spec/create.sh`)
    - Capture every line of `--help` output today
    - Verify proposed change keeps level vocabulary; flag any introduction of preset/capability/kind
 
@@ -36,7 +36,7 @@ For each of these surfaces, READ the actual current source code AND map the stri
    - Today: what's the warning text?
    - Proposed: preserve
 
-6. **`check-files.sh` error output** (file: `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`)
+6. **`check-files.sh` error output** (file: `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`)
    - Today's error messages: capture exact strings
    - Verify proposed error messages from iter-7-revised stay level-only
 

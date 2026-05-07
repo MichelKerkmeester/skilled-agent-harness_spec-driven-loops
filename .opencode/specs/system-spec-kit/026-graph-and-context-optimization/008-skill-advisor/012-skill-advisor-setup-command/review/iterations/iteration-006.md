@@ -15,12 +15,12 @@ The install guide refactor is mostly coherent: the AI-first prompt is copy-paste
 ### P1 (Required)
 
 - F-MAINT-001: `skill-advisor.md` does not fully comply with the sk-doc approved H2 vocabulary despite having a sequential 1-13 numbered spine.
-  - Evidence: `.opencode/command/spec_kit/skill-advisor.md:20`, `.opencode/command/spec_kit/skill-advisor.md:47`, `.opencode/command/spec_kit/skill-advisor.md:252`, `.opencode/skill/sk-doc/assets/agents/command_template.md:276-299`, `.opencode/skill/sk-doc/assets/agents/command_template.md:1127-1140`
+  - Evidence: `.opencode/commands/spec_kit/skill-advisor.md:20`, `.opencode/commands/spec_kit/skill-advisor.md:47`, `.opencode/commands/spec_kit/skill-advisor.md:252`, `.opencode/skills/sk-doc/assets/agents/command_template.md:276-299`, `.opencode/skills/sk-doc/assets/agents/command_template.md:1127-1140`
   - Impact: The command includes `## CONSTRAINTS`, `## 0. UNIFIED SETUP PHASE`, and `## 9. SCORING SYSTEM REFERENCE`, none of which appear in the approved command section vocabulary requested for this review. `## GATE 3 STATUS: EXEMPT` is template-supported and should remain, but the other extra H2s weaken cross-command consistency and make the template compliance claim harder to verify.
   - Remediation: Demote `CONSTRAINTS` and `0. UNIFIED SETUP PHASE` to H3 or merge them under `USER INPUT` / `INSTRUCTIONS`. Rename or fold `SCORING SYSTEM REFERENCE` into `REFERENCE` or another approved section name, while preserving the sequential 1-13 command spine.
 
 - F-MAINT-002: The mcp_server README Skill Advisor addendum says mutation boundaries are “enforced in YAML,” but prior iterations already showed the YAML only declares boundaries and lacks concrete pre-write enforcement.
-  - Evidence: `.opencode/skill/system-spec-kit/mcp_server/README.md:592`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-002.md:22-25`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-004.md:22-25`
+  - Evidence: `.opencode/skills/system-spec-kit/mcp_server/README.md:592`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-002.md:22-25`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-004.md:22-25`
   - Impact: Section 3.1.14 is otherwise accurate and links the correct command plus install guide, but this sentence upgrades a documented intent into an enforcement claim. That can mislead maintainers into believing path allowlist / denylist validation already exists.
   - Remediation: Change the addendum wording to “mutation boundaries declared in YAML” until the hard pre-apply target validation from F-CORR-006 / F-SEC-002 exists, or link to the exact enforcement step once implemented.
 
@@ -33,13 +33,13 @@ The install guide refactor is mostly coherent: the AI-first prompt is copy-paste
 
 ## Non-Findings / Confirmed Correct
 
-- DQI baselines still pass: command markdown scored 94/100 Excellent and install guide scored 99/100 Excellent with `python3 .opencode/skill/sk-doc/scripts/extract_structure.py`.
-- The required HVR grep found no matches in `.opencode/command/spec_kit/skill-advisor.md`, `.opencode/install_guides/SET-UP - Skill Advisor.md`, or the packet `implementation-summary.md`.
-- README Section 3.1.14 itself has no HVR banned-word matches. Whole-file README matches are substring false positives on `accurately` and `accurate` outside the addendum. Evidence: `.opencode/skill/system-spec-kit/mcp_server/README.md:428`, `.opencode/skill/system-spec-kit/mcp_server/README.md:500`, `.opencode/skill/system-spec-kit/mcp_server/README.md:570-604`.
+- DQI baselines still pass: command markdown scored 94/100 Excellent and install guide scored 99/100 Excellent with `python3 .opencode/skills/sk-doc/scripts/extract_structure.py`.
+- The required HVR grep found no matches in `.opencode/commands/spec_kit/skill-advisor.md`, `.opencode/install_guides/SET-UP - Skill Advisor.md`, or the packet `implementation-summary.md`.
+- README Section 3.1.14 itself has no HVR banned-word matches. Whole-file README matches are substring false positives on `accurately` and `accurate` outside the addendum. Evidence: `.opencode/skills/system-spec-kit/mcp_server/README.md:428`, `.opencode/skills/system-spec-kit/mcp_server/README.md:500`, `.opencode/skills/system-spec-kit/mcp_server/README.md:570-604`.
 - The install guide AI-first prompt includes prerequisite checks, a command invocation, approval-gate instructions, rollback, and rebuild commands. Evidence: `.opencode/install_guides/SET-UP - Skill Advisor.md:10-36`.
 - The install guide is 144 lines and includes the expected run, verification, rollback, troubleshooting, and resource sections. Evidence: `.opencode/install_guides/SET-UP - Skill Advisor.md:42-144`.
-- README Section 3.1.14 cites the correct command and links the end-user install guide. Evidence: `.opencode/skill/system-spec-kit/mcp_server/README.md:590-592`.
-- README Section 3.1.14 has one local architecture paragraph and one fusion-lane paragraph; no duplicate scoring architecture block was found inside the addendum. Evidence: `.opencode/skill/system-spec-kit/mcp_server/README.md:580-584`.
+- README Section 3.1.14 cites the correct command and links the end-user install guide. Evidence: `.opencode/skills/system-spec-kit/mcp_server/README.md:590-592`.
+- README Section 3.1.14 has one local architecture paragraph and one fusion-lane paragraph; no duplicate scoring architecture block was found inside the addendum. Evidence: `.opencode/skills/system-spec-kit/mcp_server/README.md:580-584`.
 
 ## Files Reviewed
 
@@ -50,19 +50,19 @@ The install guide refactor is mostly coherent: the AI-first prompt is copy-paste
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-003.log:170-316`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-004.md:1-85`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-005.md:1-102`
-- `.opencode/command/spec_kit/skill-advisor.md:1-320`
+- `.opencode/commands/spec_kit/skill-advisor.md:1-320`
 - `.opencode/install_guides/SET-UP - Skill Advisor.md:1-144`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md:1-162`
-- `.opencode/skill/sk-doc/assets/agents/command_template.md:276-299`
-- `.opencode/skill/sk-doc/assets/agents/command_template.md:720-829`
-- `.opencode/skill/sk-doc/assets/agents/command_template.md:1127-1140`
-- `.opencode/skill/sk-doc/references/global/hvr_rules.md:1-120`
-- `.opencode/skill/system-spec-kit/mcp_server/README.md:570-604`
+- `.opencode/skills/sk-doc/assets/agents/command_template.md:276-299`
+- `.opencode/skills/sk-doc/assets/agents/command_template.md:720-829`
+- `.opencode/skills/sk-doc/assets/agents/command_template.md:1127-1140`
+- `.opencode/skills/sk-doc/references/global/hvr_rules.md:1-120`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md:570-604`
 
 ## Verification Commands
 
-- `python3 .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/command/spec_kit/skill-advisor.md`
-- `python3 .opencode/skill/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'`
-- `grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' .opencode/command/spec_kit/skill-advisor.md '.opencode/install_guides/SET-UP - Skill Advisor.md' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md .opencode/skill/system-spec-kit/mcp_server/README.md`
+- `python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/commands/spec_kit/skill-advisor.md`
+- `python3 .opencode/skills/sk-doc/scripts/extract_structure.py '.opencode/install_guides/SET-UP - Skill Advisor.md'`
+- `grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' .opencode/commands/spec_kit/skill-advisor.md '.opencode/install_guides/SET-UP - Skill Advisor.md' .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md .opencode/skills/system-spec-kit/mcp_server/README.md`
 
 ## Convergence Signals

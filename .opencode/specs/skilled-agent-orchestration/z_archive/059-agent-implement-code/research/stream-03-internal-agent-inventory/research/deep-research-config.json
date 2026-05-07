@@ -1,5 +1,5 @@
 {
-  "topic": "Inventory the existing internal .opencode/agent/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agent/code.md design.",
+  "topic": "Inventory the existing internal .opencode/agents/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agents/code.md design.",
   "maxIterations": 8,
   "convergenceThreshold": 0.05,
   "stuckThreshold": 3,
@@ -51,10 +51,10 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/stream-03-internal-agent-inventory/.deep-research-pause",
   "archiveRoot": "research/stream-03-internal-agent-inventory/archive",
   "migrationWindowDays": 28,

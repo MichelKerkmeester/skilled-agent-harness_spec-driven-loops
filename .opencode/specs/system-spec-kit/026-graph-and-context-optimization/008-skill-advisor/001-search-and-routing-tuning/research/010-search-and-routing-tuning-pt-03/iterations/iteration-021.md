@@ -4,7 +4,7 @@
 Lock the exact safe filter for `key_files` sanitization and re-run it against the live 360-file corpus with explicit bash + jq checks.
 
 ## Findings
-1. `extractReferencedFilePaths()` still accepts almost any backticked token with a dotted suffix; the real sanitation point remains `deriveKeyFiles()` before `normalizeUnique(...)`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:318-334] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
+1. `extractReferencedFilePaths()` still accepts almost any backticked token with a dotted suffix; the real sanitation point remains `deriveKeyFiles()` before `normalizeUnique(...)`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:318-334] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
 2. The exact safe predicate for the current corpus is a narrow junk-token regex plus a structural bare-filename rule:
 
 ```ts
@@ -23,7 +23,7 @@ function keepKeyFile(candidate: string): boolean {
 
 3. The explicit bash + jq rerun over the active corpus now returns `2,207` unresolved `key_files`, with `108` junk-token hits, `1,412` unresolved bare-filename hits, and `1,498` combined removals (`67.9%`). [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 4. That rerun is slightly higher than the earlier `1,489 / 2,195` headline, so the implementation should follow the predicate itself rather than hard-coding the older aggregate count. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-5. The safest patch shape is: filter `referenced` and `fallbackRefs`, then append `docs.map((doc) => doc.relativePath)` unchanged so canonical packet docs are always preserved. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
+5. The safest patch shape is: filter `referenced` and `fallbackRefs`, then append `docs.map((doc) => doc.relativePath)` unchanged so canonical packet docs are always preserved. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
 
 ## Ruled Out
 - Broad slash-path rejection. It overreaches into unresolved but still file-shaped values such as `dist/index.js` and `memory/metadata.json`.
@@ -32,8 +32,8 @@ function keepKeyFile(candidate: string): boolean {
 - Reusing the earlier aggregate counts without re-running the exact predicate against the live corpus.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:318-334`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:318-334`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

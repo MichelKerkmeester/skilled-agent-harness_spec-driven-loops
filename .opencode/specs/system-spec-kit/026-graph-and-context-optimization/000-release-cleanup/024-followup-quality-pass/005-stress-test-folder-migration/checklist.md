@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Investigate broad npm test failures outside the moved stress suites"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/README"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/package.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/README"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/package.json"
       - "migration-plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

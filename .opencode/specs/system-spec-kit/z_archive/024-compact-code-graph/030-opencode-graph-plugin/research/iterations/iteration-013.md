@@ -44,7 +44,7 @@ That gives a better boundary than "plugin owns recovery":
 
 ### Operational Tools Should Stay In The Runtime
 
-Our runtime already organizes lifecycle and graph operations into coherent tool families. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:45-84`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-85`]
+Our runtime already organizes lifecycle and graph operations into coherent tool families. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:45-84`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:17-85`]
 
 So a future adapter should not clone:
 

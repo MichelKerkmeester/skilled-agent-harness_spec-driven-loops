@@ -50,7 +50,7 @@ Target: move all 6 packets from CONDITIONAL/FAIL → PASS. Move aggregate verdic
    - Change Status field from `Blocked — awaiting 010 predecessor verification` to `Complete` (or `Implemented` — match whichever Status vocabulary the sibling packets use)
    - Move the predecessor relationship into the Dependencies table OR a Known Limitations bullet, not the overall packet status
 2. Verify `002/implementation-summary.md` still has completion + verification evidence (do not edit it — just confirm alignment)
-3. Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks` — must PASS
+3. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks` — must PASS
 
 ---
 
@@ -69,7 +69,7 @@ Target: move all 6 packets from CONDITIONAL/FAIL → PASS. Move aggregate verdic
    - **Path A (preferred — honest state)**: Update `003/spec.md` roll-up to say 006 and 007 children are still in Draft. Update SC-001 wording to match. Leave child specs untouched.
    - **Path B**: Update `003/006-memory-duplication-reduction/spec.md:30` and `003/007-skill-catalog-sync/spec.md:30` Status fields from `Draft` to `Complete` IF their implementation-summary.md files confirm completion (read first; if implementation is genuinely complete, flip the child Status; if not, use Path A).
 3. If the 003 parent is intentionally bounded to the original 5-phase remediation train and the later phases (006, 007, 008, 009) are outside its scope, state that explicitly in `003/spec.md` and REMOVE the later-phase roll-up entries rather than leaving them half-current. Do NOT leave a half-current roll-up.
-4. Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues` — must PASS
+4. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues` — must PASS
 
 **Investigation first**: read `003/spec.md` §1 Metadata, §2 Phase Map, §SC-001, and `003/006/spec.md:30`, `003/007/spec.md:30` before editing. Determine which path (A or B) matches reality. Be honest.
 
@@ -132,7 +132,7 @@ The checklist line was copied from an older benchmark revision and never refresh
 2. Also verify `013/spec.md:98` — if it references the same stale number, update it too
 3. Check for other sibling doc references to `pass 28` via grep in the 013 folder + any consolidated review notes
 
-**Verification**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-warm-start-bundle-conditional-validation` must PASS
+**Verification**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-warm-start-bundle-conditional-validation` must PASS
 
 ---
 
@@ -175,7 +175,7 @@ This is the SAME class of overclaim as the earlier DR-026-I001 finding on 011 tr
 None of the 6 lanes above should touch `scripts/` directly (all runtime changes are in `mcp_server/`). BUT if Lane 4 (010 label) or Lane 5 (013 checklist) accidentally edits a file under `scripts/tests/` that is the benchmark or fts test, do NOT forget:
 
 ```bash
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 npm run build
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 ```
@@ -185,7 +185,7 @@ Without the rebuild, the compiled `dist/` stays stale and CLI-level verification
 ## VERIFICATION (run after all lanes + before printing the final result block)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 TMPDIR=./.tmp/tsc-tmp npm run typecheck
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/shared-payload-certainty.vitest.ts \
@@ -202,7 +202,7 @@ TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/session-token-resume.vitest.ts
 cd -
 
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 TMPDIR=./.tmp/vitest-tmp npx vitest run \
   tests/detector-regression-floor.vitest.ts.test.ts \
   tests/session-cached-consumer.vitest.ts.test.ts \
@@ -218,7 +218,7 @@ for pkt in 002-implement-cache-warning-hooks \
            013-warm-start-bundle-conditional-validation \
            005-code-graph-upgrades; do
   echo "=== $pkt ==="
-  bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict \
+  bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict \
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/$pkt"
 done
 ```

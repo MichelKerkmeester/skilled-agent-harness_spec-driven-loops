@@ -43,9 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh",
-      ".opencode/skill/system-spec-kit/templates/level_3/spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
+      ".opencode/skills/system-spec-kit/templates/level_3/spec.md",
       ".opencode/specs/system-spec-kit/z_archive/011-upgrade-auto-populate/spec.md",
       "research/research.md",
       "tasks.md",
@@ -69,13 +69,13 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "check-anchors.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
         "source": "derived"
       },
       {

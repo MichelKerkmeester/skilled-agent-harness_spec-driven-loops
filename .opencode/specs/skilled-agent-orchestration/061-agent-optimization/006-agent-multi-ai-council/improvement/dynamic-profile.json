@@ -1,7 +1,7 @@
 {
   "id": "ultra-think",
   "family": "derived",
-  "targetPath": ".opencode/agent/ultra-think.md",
+  "targetPath": ".opencode/agents/ultra-think.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

@@ -119,7 +119,7 @@ Make Phase 2 the durable review-mode contract by aligning docs, assets, workflow
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict` passes.
+- **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict` passes.
 - **SC-002**: The deep-review contract and reducer/schema Vitest files pass against the live workspace surfaces.
 - **SC-003**: Packet docs, implementation summary, and task tracking all show the phase as complete with no remaining unchecked tasks.
 

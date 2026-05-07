@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/references/memory/save_workflow.md",
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "save_workflow.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/memory/save_workflow.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
         "source": "derived"
       },
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {

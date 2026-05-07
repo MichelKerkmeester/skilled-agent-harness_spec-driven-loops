@@ -13,10 +13,10 @@ _memory:
     next_safe_action: "Dispatch cli-codex"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/SKILL.md
-      - .opencode/skill/system-spec-kit/scripts/rules/
-      - .opencode/skill/system-spec-kit/scripts/lib/validator-registry.json
-      - .opencode/skill/mcp-coco-index/SKILL.md
+      - .opencode/skills/system-spec-kit/SKILL.md
+      - .opencode/skills/system-spec-kit/scripts/rules/
+      - .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json
+      - .opencode/skills/mcp-coco-index/SKILL.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-004-final"

@@ -30,7 +30,7 @@
 
 1. `npm run build` (system-spec-kit workspace): PASS
 2. `TMPDIR=.tmp/vitest-tmp npx vitest run tests/hook-state.vitest.ts tests/hook-session-start.vitest.ts tests/startup-brief.vitest.ts tests/session-resume.vitest.ts tests/session-lifecycle.vitest.ts tests/session-state.vitest.ts tests/context-server.vitest.ts tests/startup-checks.vitest.ts tests/handler-memory-health-edge.vitest.ts`: PASS (9 files, 502 tests)
-3. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/026-session-start-injection-debug --strict`: PASS (0 errors, 0 warnings)
+3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/026-session-start-injection-debug --strict`: PASS (0 errors, 0 warnings)
 
 ## 5. Iteration Files
 

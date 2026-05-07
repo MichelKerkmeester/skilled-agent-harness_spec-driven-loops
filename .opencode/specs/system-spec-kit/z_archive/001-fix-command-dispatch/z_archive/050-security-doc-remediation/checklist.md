@@ -100,10 +100,10 @@ curl or MCP call memory_health()
 curl or MCP call memory_search({ query: "test" })
 
 # Test generate-context.js help
-node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
 
 # Test server loads correctly
-node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server'); console.log('OK')"
+node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server'); console.log('OK')"
 ```
 
 ---

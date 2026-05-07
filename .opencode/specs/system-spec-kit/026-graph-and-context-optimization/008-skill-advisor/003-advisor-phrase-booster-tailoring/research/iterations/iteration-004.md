@@ -6,15 +6,15 @@
 
 That is the semantically correct target for the bare phrase `code audit` in the advisor corpus:
 
-- `sk-code-review` is the **baseline findings-first review** skill. Its description emphasizes stack-agnostic code review, security/correctness minimums, merge readiness, and findings-first review; its activation triggers explicitly include `audit`, `code review`, `pr review`, `quality gate`, and `merge readiness`. [SOURCE: `.opencode/skill/sk-code-review/SKILL.md:1-39`] [SOURCE: `.opencode/skill/sk-code-review/graph-metadata.json:35-76,137-138`]
-- `sk-deep-review` is the **autonomous iterative review loop** skill. Its description emphasizes multi-round review, externalized state, convergence detection, release readiness, spec-folder validation, and iterative/dimension-driven review. It explicitly says **not** to use it for a simple single-pass code review. [SOURCE: `.opencode/skill/sk-deep-review/SKILL.md:1-57`] [SOURCE: `.opencode/skill/sk-deep-review/graph-metadata.json:19-58,133-139`]
-- The advisor scores description corpus terms from each loaded skill record via `corpus_terms = _normalize_terms(description)`, so the semantic distinction above is part of the runtime corpus, not just human documentation. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1150-1190,1713-1723`]
+- `sk-code-review` is the **baseline findings-first review** skill. Its description emphasizes stack-agnostic code review, security/correctness minimums, merge readiness, and findings-first review; its activation triggers explicitly include `audit`, `code review`, `pr review`, `quality gate`, and `merge readiness`. [SOURCE: `.opencode/skills/sk-code-review/SKILL.md:1-39`] [SOURCE: `.opencode/skills/sk-code-review/graph-metadata.json:35-76,137-138`]
+- `sk-deep-review` is the **autonomous iterative review loop** skill. Its description emphasizes multi-round review, externalized state, convergence detection, release readiness, spec-folder validation, and iterative/dimension-driven review. It explicitly says **not** to use it for a simple single-pass code review. [SOURCE: `.opencode/skills/sk-deep-review/SKILL.md:1-57`] [SOURCE: `.opencode/skills/sk-deep-review/graph-metadata.json:19-58,133-139`]
+- The advisor scores description corpus terms from each loaded skill record via `corpus_terms = _normalize_terms(description)`, so the semantic distinction above is part of the runtime corpus, not just human documentation. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1150-1190,1713-1723`]
 
 `code audit` also already aligns with the advisor's broader review normalization:
 
-- `INTENT_NORMALIZATION_RULES["review"]` boosts `sk-code-review` on `review`, `audit`, `regression`, `findings`, `readiness`, and `vulnerability`. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1086-1091`]
-- The PHRASE table already routes `"code audit"` to `sk-code-review` with a strong phrase weight. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:798-814`]
-- Deep-review remains the right home for **looped** review phrases such as `deep review`, `review loop`, `iterative review`, `code audit loop`, and `:review:auto`. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:883-898`]
+- `INTENT_NORMALIZATION_RULES["review"]` boosts `sk-code-review` on `review`, `audit`, `regression`, `findings`, `readiness`, and `vulnerability`. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1086-1091`]
+- The PHRASE table already routes `"code audit"` to `sk-code-review` with a strong phrase weight. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:798-814`]
+- Deep-review remains the right home for **looped** review phrases such as `deep review`, `review loop`, `iterative review`, `code audit loop`, and `:review:auto`. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:883-898`]
 
 ### Runtime routing change after resolution
 
@@ -22,11 +22,11 @@ There should be **no user-visible routing change** for the literal phrase `code 
 
 Why:
 
-1. `INTENT_BOOSTERS` only receives single tokens extracted by `all_tokens = re.findall(r'\b\w+\b', prompt_lower)`, so a whitespace key like `"code audit"` is unreachable there. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1634-1666`]
-2. `PHRASE_INTENT_BOOSTERS` is the only table that can match the raw multi-word substring via `if phrase in prompt_lower`. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1674-1680`]
-3. The live PHRASE target is already `sk-code-review`, so deleting the dead INTENT entry only removes conflicting source data; it does not remove an active runtime signal. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:560,807,1634-1680`]
+1. `INTENT_BOOSTERS` only receives single tokens extracted by `all_tokens = re.findall(r'\b\w+\b', prompt_lower)`, so a whitespace key like `"code audit"` is unreachable there. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1634-1666`]
+2. `PHRASE_INTENT_BOOSTERS` is the only table that can match the raw multi-word substring via `if phrase in prompt_lower`. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1674-1680`]
+3. The live PHRASE target is already `sk-code-review`, so deleting the dead INTENT entry only removes conflicting source data; it does not remove an active runtime signal. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:560,807,1634-1680`]
 
-**Concrete Phase 2 resolution:** delete `INTENT_BOOSTERS["code audit"] = ("sk-deep-review", 1.0)` and keep `PHRASE_INTENT_BOOSTERS["code audit"] = [("sk-code-review", 2.2)]` unchanged. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:557-561,798-814`]
+**Concrete Phase 2 resolution:** delete `INTENT_BOOSTERS["code audit"] = ("sk-deep-review", 1.0)` and keep `PHRASE_INTENT_BOOSTERS["code audit"] = [("sk-code-review", 2.2)]` unchanged. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:557-561,798-814`]
 
 ## 2. Weight preservation rules for the 23 non-violation entries
 
@@ -39,40 +39,40 @@ The 23 non-violation entries split cleanly into:
 
 | Key | Current INTENT entry | Current PHRASE entry | Migration rule |
 | --- | --- | --- | --- |
-| `proposal only` | `("sk-improve-agent", 1.4)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:545-546`] | none | `INTENT 1.4 -> PHRASE [("sk-improve-agent", 1.4)]` |
-| `5d scoring` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:549-551`] | none | `INTENT 1.8 -> PHRASE [("sk-improve-agent", 1.8)]` |
-| `integration scan` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:551-552`] | none | `INTENT 1.6 -> PHRASE [("sk-improve-agent", 1.6)]` |
-| `dynamic profile` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:552-553`] | none | `INTENT 1.6 -> PHRASE [("sk-improve-agent", 1.6)]` |
-| `vector search` | `("mcp-coco-index", 2.0)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:738-744`] | none | `INTENT 2.0 -> PHRASE [("mcp-coco-index", 2.0)]` |
-| `concept search` | `("mcp-coco-index", 2.0)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:742-744`] | none | `INTENT 2.0 -> PHRASE [("mcp-coco-index", 2.0)]` |
+| `proposal only` | `("sk-improve-agent", 1.4)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:545-546`] | none | `INTENT 1.4 -> PHRASE [("sk-improve-agent", 1.4)]` |
+| `5d scoring` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:549-551`] | none | `INTENT 1.8 -> PHRASE [("sk-improve-agent", 1.8)]` |
+| `integration scan` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:551-552`] | none | `INTENT 1.6 -> PHRASE [("sk-improve-agent", 1.6)]` |
+| `dynamic profile` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:552-553`] | none | `INTENT 1.6 -> PHRASE [("sk-improve-agent", 1.6)]` |
+| `vector search` | `("mcp-coco-index", 2.0)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:738-744`] | none | `INTENT 2.0 -> PHRASE [("mcp-coco-index", 2.0)]` |
+| `concept search` | `("mcp-coco-index", 2.0)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:742-744`] | none | `INTENT 2.0 -> PHRASE [("mcp-coco-index", 2.0)]` |
 
 ### 2B. `migrate-with-phrase-weight-kept`
 
 | Key | Current INTENT entry | Existing PHRASE entry kept as-is | Migration rule |
 | --- | --- | --- | --- |
-| `deep research` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
-| `research loop` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
-| `iterative research` | `("sk-deep-research", 1.2)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
-| `autonomous research` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
-| `agent improvement` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
-| `recursive agent` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
-| `improvement loop` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
-| `candidate scoring` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:547-549`] | `[("sk-improve-agent", 2.3)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:842-843`] | delete INTENT; PHRASE unchanged |
-| `promotion gate` | `("sk-improve-agent", 1.4)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:548-549`] | `[("sk-improve-agent", 2.0)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:842-843`] | delete INTENT; PHRASE unchanged |
-| `evaluate agent` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
-| `score agent` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
-| `agent evaluation` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
-| `deep review` | `("sk-deep-review", 1.5)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
-| `review mode` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.0)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:887-888`] | delete INTENT; PHRASE unchanged |
-| `iterative review` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
-| `review loop` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
-| `similar code` | `("mcp-coco-index", 1.8)` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:742-744`] | `[("mcp-coco-index", 2.0)]` [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:863-870`] | delete INTENT; PHRASE unchanged |
+| `deep research` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
+| `research loop` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
+| `iterative research` | `("sk-deep-research", 1.2)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
+| `autonomous research` | `("sk-deep-research", 1.5)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:536-541`] | `[("sk-deep-research", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:823-830`] | delete INTENT; PHRASE unchanged |
+| `agent improvement` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
+| `recursive agent` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
+| `improvement loop` | `("sk-improve-agent", 1.8)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:542-556`] | `[("sk-improve-agent", 2.8)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:834-861`] | delete INTENT; PHRASE unchanged |
+| `candidate scoring` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:547-549`] | `[("sk-improve-agent", 2.3)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:842-843`] | delete INTENT; PHRASE unchanged |
+| `promotion gate` | `("sk-improve-agent", 1.4)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:548-549`] | `[("sk-improve-agent", 2.0)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:842-843`] | delete INTENT; PHRASE unchanged |
+| `evaluate agent` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
+| `score agent` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
+| `agent evaluation` | `("sk-improve-agent", 1.6)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:553-556`] | `[("sk-improve-agent", 2.6)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:858-861`] | delete INTENT; PHRASE unchanged |
+| `deep review` | `("sk-deep-review", 1.5)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
+| `review mode` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.0)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:887-888`] | delete INTENT; PHRASE unchanged |
+| `iterative review` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
+| `review loop` | `("sk-deep-review", 1.2)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:557-561`] | `[("sk-deep-review", 2.5)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:883-888`] | delete INTENT; PHRASE unchanged |
+| `similar code` | `("mcp-coco-index", 1.8)` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:742-744`] | `[("mcp-coco-index", 2.0)]` [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:863-870`] | delete INTENT; PHRASE unchanged |
 
 ### Non-migrating nearby entries
 
 These are **not** part of the migration because they are still valid token keys:
 
-- single-token or hyphenated keys such as `autoresearch`, `proposal-only`, `evaluator-first`, `5-dimension`, `cocoindex`, `semantic`, and `audit` stay where they are. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:536,545,547,550,738-741,753`] 
+- single-token or hyphenated keys such as `autoresearch`, `proposal-only`, `evaluator-first`, `5-dimension`, `cocoindex`, `semantic`, and `audit` stay where they are. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:536,545,547,550,738-741,753`] 
 
 ## 3. Multi-skill phrase conversion rule
 
@@ -85,14 +85,14 @@ The exact shape rule for Phase 2 is:
 
 2. **Existing PHRASE list stays a list**
    - Do **not** collapse an existing PHRASE list back to a tuple.
-   - Do **not** change ordering for multi-target entries such as `"pr review"` or `"merge readiness"`; PHRASE values are always list-of-tuples, even when there is only one target. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:799,813`]
+   - Do **not** change ordering for multi-target entries such as `"pr review"` or `"merge readiness"`; PHRASE values are always list-of-tuples, even when there is only one target. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:799,813`]
 
 3. **Migration algorithm**
    - If the phrase does **not** already exist in `PHRASE_INTENT_BOOSTERS`, add `key: [(skill, weight)]`.
    - If the phrase already exists for the **same** skill, delete the INTENT entry and keep the existing PHRASE list unchanged.
-   - If the phrase already exists for a **different** skill, treat it as a schema violation and resolve the target first (`code audit` was the only current case). [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:560,807`]
+   - If the phrase already exists for a **different** skill, treat it as a schema violation and resolve the target first (`code audit` was the only current case). [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:560,807`]
 
-This rule matches the scoring loop exactly: token lookups expect a tuple from `INTENT_BOOSTERS[token]`, while phrase lookups expect an iterable list from `for skill, boost in boosts`. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1659-1677`]
+This rule matches the scoring loop exactly: token lookups expect a tuple from `INTENT_BOOSTERS[token]`, while phrase lookups expect an iterable list from `for skill, boost in boosts`. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1659-1677`]
 
 ## 4. Anti-pattern documentation block to add near `PHRASE_INTENT_BOOSTERS`
 
@@ -108,8 +108,8 @@ This rule matches the scoring loop exactly: token lookups expect a tuple from `I
 
 Why this exact wording:
 
-- It names the tokenizer contract directly (`re.findall(...)`). [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1634-1635`]
-- It names the phrase matcher directly (`if phrase in prompt_lower`). [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1674-1677`]
+- It names the tokenizer contract directly (`re.findall(...)`). [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1634-1635`]
+- It names the phrase matcher directly (`if phrase in prompt_lower`). [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1674-1677`]
 - It explains the failure mode that created the 24-key dead-code inventory from Iteration 1. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/iterations/iteration-001.md:13-18,54-70`]
 
 ## 5. Ordered migration script for Phase 2
@@ -137,7 +137,7 @@ PHRASE_INTENT_BOOSTERS = {
 PHRASE_INTENT_BOOSTERS = {
 ```
 
-- **Verification:** `rg -n 'NEVER add keys containing spaces to INTENT_BOOSTERS|PHRASE_INTENT_BOOSTERS = \{' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n 'NEVER add keys containing spaces to INTENT_BOOSTERS|PHRASE_INTENT_BOOSTERS = \{' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 2. Delete the dead deep-research multi-word INTENT keys
 
@@ -159,7 +159,7 @@ PHRASE_INTENT_BOOSTERS = {
 "convergence": ("sk-deep-research", 0.8),
 ```
 
-- **Verification:** `rg -n '"deep research"|"research loop"|"iterative research"|"autonomous research"' .opencode/skill/skill-advisor/scripts/skill_advisor.py` *(after patch, hits should remain only in the PHRASE section around `824-830`)*.
+- **Verification:** `rg -n '"deep research"|"research loop"|"iterative research"|"autonomous research"' .opencode/skills/skill-advisor/scripts/skill_advisor.py` *(after patch, hits should remain only in the PHRASE section around `824-830`)*.
 
 ### 3. Delete the dead improve-agent multi-word INTENT keys
 
@@ -190,7 +190,7 @@ PHRASE_INTENT_BOOSTERS = {
 "5-dimension": ("sk-improve-agent", 1.8),
 ```
 
-- **Verification:** `rg -n '"agent improvement"|"recursive agent"|"improvement loop"|"proposal only"|"candidate scoring"|"promotion gate"|"5d scoring"|"integration scan"|"dynamic profile"|"evaluate agent"|"score agent"|"agent evaluation"' .opencode/skill/skill-advisor/scripts/skill_advisor.py` *(after patch, hits should be PHRASE-only for the migrated keys, plus the untouched hyphenated token keys `proposal-only` and `5-dimension` in INTENT)*.
+- **Verification:** `rg -n '"agent improvement"|"recursive agent"|"improvement loop"|"proposal only"|"candidate scoring"|"promotion gate"|"5d scoring"|"integration scan"|"dynamic profile"|"evaluate agent"|"score agent"|"agent evaluation"' .opencode/skills/skill-advisor/scripts/skill_advisor.py` *(after patch, hits should be PHRASE-only for the migrated keys, plus the untouched hyphenated token keys `proposal-only` and `5-dimension` in INTENT)*.
 
 ### 4. Add the four same-weight improve-agent PHRASE entries
 
@@ -232,7 +232,7 @@ PHRASE_INTENT_BOOSTERS = {
 "dynamic profile": [("sk-improve-agent", 1.6)],
 ```
 
-- **Verification:** `rg -n '"proposal only"|"5d scoring"|"integration scan"|"dynamic profile"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"proposal only"|"5d scoring"|"integration scan"|"dynamic profile"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 5. Delete the dead deep-review INTENT keys and resolve the `code audit` conflict
 
@@ -255,7 +255,7 @@ PHRASE_INTENT_BOOSTERS = {
 # for deep-review loop phrases and for `code audit -> sk-code-review`
 ```
 
-- **Verification:** `rg -n '"deep review"|"review mode"|"iterative review"|"code audit"|"review loop"' .opencode/skill/skill-advisor/scripts/skill_advisor.py` *(after patch, `code audit` should only appear in the review PHRASE cluster, and the loop phrases should only appear in the deep-review PHRASE cluster)*.
+- **Verification:** `rg -n '"deep review"|"review mode"|"iterative review"|"code audit"|"review loop"' .opencode/skills/skill-advisor/scripts/skill_advisor.py` *(after patch, `code audit` should only appear in the review PHRASE cluster, and the loop phrases should only appear in the deep-review PHRASE cluster)*.
 
 ### 6. Delete the dead CocoIndex multi-word INTENT keys
 
@@ -277,7 +277,7 @@ PHRASE_INTENT_BOOSTERS = {
 "implementation": ("mcp-coco-index", 0.5),
 ```
 
-- **Verification:** `rg -n '"vector search"|"similar code"|"concept search"' .opencode/skill/skill-advisor/scripts/skill_advisor.py` *(after patch, `similar code` should remain in PHRASE, and `vector search` / `concept search` should move there)*.
+- **Verification:** `rg -n '"vector search"|"similar code"|"concept search"' .opencode/skills/skill-advisor/scripts/skill_advisor.py` *(after patch, `similar code` should remain in PHRASE, and `vector search` / `concept search` should move there)*.
 
 ### 7. Add the two same-weight CocoIndex PHRASE entries
 
@@ -311,7 +311,7 @@ PHRASE_INTENT_BOOSTERS = {
 "similar code": [("mcp-coco-index", 2.0)],
 ```
 
-- **Verification:** `rg -n '"vector search"|"concept search"|"similar code"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"vector search"|"concept search"|"similar code"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 8. Add the new system-spec-kit PHRASE entries
 
@@ -346,7 +346,7 @@ PHRASE_INTENT_BOOSTERS = {
 "constitutional memory": [("system-spec-kit", 1.7)],
 ```
 
-- **Verification:** `rg -n '"save conversation context"|"spec folder workflow"|"resume prior session context"|"validate spec packet"|"constitutional memory"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"save conversation context"|"spec folder workflow"|"resume prior session context"|"validate spec packet"|"constitutional memory"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 9. Add the new review PHRASE entry
 
@@ -367,7 +367,7 @@ PHRASE_INTENT_BOOSTERS = {
 "request changes": [("sk-code-review", 2.0)],
 ```
 
-- **Verification:** `rg -n '"quality gate"|"quality gate validation"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"quality gate"|"quality gate validation"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 10. Add the new web and code-mode PHRASE entries
 
@@ -402,7 +402,7 @@ PHRASE_INTENT_BOOSTERS = {
 "template level validation": [("system-spec-kit", 0.8)],
 ```
 
-- **Verification:** `rg -n '"browser verification checklist"|"webflow deployment guidance"|"external tool integration via code mode"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"browser verification checklist"|"webflow deployment guidance"|"external tool integration via code mode"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ### 11. Add the new sk-code-opencode and sk-code-full-stack PHRASE entries
 
@@ -430,32 +430,32 @@ PHRASE_INTENT_BOOSTERS = {
 "sk-code-review": [("sk-code-review", 2.8)],
 ```
 
-- **Verification:** `rg -n '"mcp server code"|"system code style guidance"|"python shell json standards"|"full stack development workflow"|"implementation testing verification flow"|"detect project stack automatically"|"full stack typescript"' .opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- **Verification:** `rg -n '"mcp server code"|"system code style guidance"|"python shell json standards"|"full stack development workflow"|"implementation testing verification flow"|"detect project stack automatically"|"full stack typescript"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ## 6. Hidden callsite check
 
 I checked the entire advisor codebase for direct `INTENT_BOOSTERS[...]` lookups and any iteration over the dict:
 
 ```bash
-rg -n 'INTENT_BOOSTERS\[|for\s+\w+\s+in\s+INTENT_BOOSTERS|INTENT_BOOSTERS\.items|PHRASE_INTENT_BOOSTERS\[|for\s+phrase,\s+boosts\s+in\s+PHRASE_INTENT_BOOSTERS' .opencode/skill/skill-advisor
+rg -n 'INTENT_BOOSTERS\[|for\s+\w+\s+in\s+INTENT_BOOSTERS|INTENT_BOOSTERS\.items|PHRASE_INTENT_BOOSTERS\[|for\s+phrase,\s+boosts\s+in\s+PHRASE_INTENT_BOOSTERS' .opencode/skills/skill-advisor
 ```
 
 Observed result:
 
 - `INTENT_BOOSTERS` is only consumed in `analyze_request()` at `skill_advisor.py:1660-1666`.
 - `PHRASE_INTENT_BOOSTERS` is only iterated in `analyze_request()` at `skill_advisor.py:1674-1680`.
-- No other files in `.opencode/skill/skill-advisor` directly index or iterate these dicts.
+- No other files in `.opencode/skills/skill-advisor` directly index or iterate these dicts.
 
-That means deleting the 24 multi-word INTENT keys does **not** break any hidden callsite contract; it only changes the data available to the single analyzer loop, and for whitespace keys those entries are already unreachable there. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1634-1680`] [SOURCE: `rg 'INTENT_BOOSTERS\\[|...|for\\s+phrase,\\s+boosts\\s+in\\s+PHRASE_INTENT_BOOSTERS' .opencode/skill/skill-advisor` run on 2026-04-15 in repo root; only hits were `skill_advisor.py:1660` and `skill_advisor.py:1674`]
+That means deleting the 24 multi-word INTENT keys does **not** break any hidden callsite contract; it only changes the data available to the single analyzer loop, and for whitespace keys those entries are already unreachable there. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1634-1680`] [SOURCE: `rg 'INTENT_BOOSTERS\\[|...|for\\s+phrase,\\s+boosts\\s+in\\s+PHRASE_INTENT_BOOSTERS' .opencode/skills/skill-advisor` run on 2026-04-15 in repo root; only hits were `skill_advisor.py:1660` and `skill_advisor.py:1674`]
 
 ## Strategy Updates
 
 ### New Findings to Propagate
 
-- The `code audit` schema violation is fully resolved: **keep `sk-code-review`** as the target and delete the dead INTENT declaration. The current PHRASE route is already the semantically correct runtime source of truth. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:560,807,1634-1680`]
-- Phase 2 can be implemented as a **data-only migration** in `skill_advisor.py`: one guard comment, four INTENT deletion clusters, and seven PHRASE insertion clusters. No caller code changes are required. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1634-1680`] [SOURCE: `rg 'INTENT_BOOSTERS\\[|...|PHRASE_INTENT_BOOSTERS' .opencode/skill/skill-advisor` run on 2026-04-15]
-- The tuple-to-list conversion rule is exact and simple: any migrated single-target INTENT entry becomes a singleton PHRASE list `[(skill, weight)]`; existing PHRASE lists are preserved unchanged. [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:1659-1677`]
-- All 15 Iteration 3 candidate additions fit cleanly into existing PHRASE clusters without requiring score-formula or tokenizer changes. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/iterations/iteration-003.md:45-95`] [SOURCE: `.opencode/skill/skill-advisor/scripts/skill_advisor.py:798-900`]
+- The `code audit` schema violation is fully resolved: **keep `sk-code-review`** as the target and delete the dead INTENT declaration. The current PHRASE route is already the semantically correct runtime source of truth. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:560,807,1634-1680`]
+- Phase 2 can be implemented as a **data-only migration** in `skill_advisor.py`: one guard comment, four INTENT deletion clusters, and seven PHRASE insertion clusters. No caller code changes are required. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1634-1680`] [SOURCE: `rg 'INTENT_BOOSTERS\\[|...|PHRASE_INTENT_BOOSTERS' .opencode/skills/skill-advisor` run on 2026-04-15]
+- The tuple-to-list conversion rule is exact and simple: any migrated single-target INTENT entry becomes a singleton PHRASE list `[(skill, weight)]`; existing PHRASE lists are preserved unchanged. [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:1659-1677`]
+- All 15 Iteration 3 candidate additions fit cleanly into existing PHRASE clusters without requiring score-formula or tokenizer changes. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/iterations/iteration-003.md:45-95`] [SOURCE: `.opencode/skills/skill-advisor/scripts/skill_advisor.py:798-900`]
 
 ### Updated Next Focus
 

@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Anchor-mode indexing drops all meaningful text outside matched anchor pairs
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
 
 **Issue**: Once `chunkLargeFile()` sees at least two matched anchor sections, it switches to anchor mode and emits chunks only from `extractAnchorSections()`. Any intro, interstitial, or trailing text outside `<!-- ANCHOR:... --> ... <!-- /ANCHOR:... -->` pairs is never chunked, never embedded, and never recoverable through chunk reassembly. The parent row only keeps `content.slice(0, 500)`, so most of that dropped text is not even preserved in the fallback summary.
 
@@ -16,7 +16,7 @@
 **Fix**: Preserve non-anchor regions as first-class chunks when anchor mode is selected, or only choose anchor mode when the entire document is covered by matched anchor ranges. At minimum, merge uncovered text into adjacent anchor chunks so search/reassembly does not silently lose content.
 
 ### [P1] Structure fallback can split fenced code blocks into separate chunks
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts`
 
 **Issue**: The fallback chunker is not actually structure-aware. It starts with a raw regex split on lines matching `^#{1,2}\\s`, so any fenced code line that begins with `# ` is treated like a markdown heading. When the preceding chunk is already near the target size, the subsequent flush splits the code fence across chunk boundaries, leaving the opening fence in one chunk and the code body/closing fence in the next.
 
@@ -29,7 +29,7 @@
 **Fix**: Replace the fallback implementation with the shared AST-aware markdown chunker (`@spec-kit/shared/lib/structure-aware-chunker`), or at least pre-tokenize fenced code/table regions so heading detection cannot split inside atomic markdown blocks.
 
 ### [P1] Partial child-write failures can leave orphaned chunk rows behind
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
 
 **Issue**: Child rows are inserted before the metadata write that assigns `parent_id`, `chunk_index`, `chunk_label`, and the rest of the chunk identity. If `applyMetadata()` throws after `indexMemory()` or `indexMemoryDeferred()` succeeds, the catch block only logs the error. Because the row ID is pushed into `childIds` after metadata succeeds, rollback paths never see that partially written child, so it can remain in `memory_index` as an orphan or half-populated staged row.
 
@@ -43,7 +43,7 @@
 **Fix**: Make child insert plus metadata assignment atomic. Wrap each child write in a transaction, assign `parent_id` and chunk metadata in the same unit as the insert, and delete `childId` immediately inside the catch path whenever a partial insert has already occurred.
 
 ### [P2] Thinning cannot discard anchor-only noise because anchor weight alone clears the threshold
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts`
 
 **Issue**: The default score formula makes any anchored chunk automatically retainable, even when it has zero meaningful content. With `ANCHOR_WEIGHT = 0.6`, `DENSITY_WEIGHT = 0.4`, and `DEFAULT_THINNING_THRESHOLD = 0.3`, a chunk that contains only anchor tags/comments still scores `0.6` and is always kept. That defeats the stated goal of dropping low-value chunks before indexing.
 

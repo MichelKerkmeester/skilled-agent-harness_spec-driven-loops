@@ -1,5 +1,5 @@
 ### Finding 5: We should add reverse coverage audits that detect live repo knowledge missing from memory/spec surfaces
-- **Source**: [external/src/drift/checkers/script-coverage.ts:26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [external/src/drift/checkers/command.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L5), [external/src/drift/checkers/dependency.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [post-save-review.ts:807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts:873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873), [memory-crud-health.ts:382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382)
+- **Source**: [external/src/drift/checkers/script-coverage.ts:26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [external/src/drift/checkers/command.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L5), [external/src/drift/checkers/dependency.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [post-save-review.ts:807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts:873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873), [memory-crud-health.ts:382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382)
 - **What it does**: Mex checks the opposite direction from most doc lint: not just “does the scaffold claim something false,” but also “does the live repo expose scripts/commands/dependencies that the scaffold never mentions.” Our current quality checks are strong on saved-memory metadata, trigger drift, alias divergence, and DB integrity, but not on repo-to-knowledge coverage.
 - **Why it matters for us**: This would catch silent knowledge debt: new operational commands, dependencies, or repo affordances that exist in reality but never become retrievable memory or documentation. That gap is operationally expensive because nothing looks broken until someone needs the missing knowledge.
 - **Recommendation**: NEW FEATURE
@@ -33,13 +33,13 @@
 - [external/src/sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts)
 - [external/src/pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
 - [external/patterns/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/patterns/README.md)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [startup-brief.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
-- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [startup-brief.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
+- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 
 ## Assessment
 - New information ratio: 0.84
@@ -99,7 +99,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
 12. Compare Mex directly against current `Code_Environment/Public` capabilities: Spec Kit validation, memory frontmatter, documented memory/index structure, and other repo guidance files. Be precise about where Mex adds new capability versus where it overlaps with systems already covered by phases `001`, `003`, or `004`.
 13. Before any deep-research run, ensure this phase folder contains the expected spec-kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -107,7 +107,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every finding must cite exact file paths, describe what Mex actually does, why it matters for `Code_Environment/Public`, whether it should be `adopt now`, `prototype later`, or `reject`, what subsystem it would affect, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
     ```
 
 ## 6. Research Questions
@@ -3061,167 +3061,167 @@ last_updated: ${today}
 codex
 I’ve got the Mex execution model mapped now: scanner brief, static drift pass, grouped repair briefs, and manual pattern growth. Next I’m reading our own memory and startup surfaces to see where we already overlap and where the right move is actually a refactor of existing workflows instead of adding another standalone feature.
 exec
-/bin/zsh -lc "rg -n \"function |export async function|export function|class |const .* = async|const .* = \\(\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"function |export async function|export function|class |const .* = async|const .* = \\(\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:219:function isYamlMapping(value: unknown): value is Record<string, unknown> {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:223:function describeYamlParseError(error: unknown): string {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:238:function loadYamlValue(raw: string): unknown {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:242:function parseYamlMapping(raw: string): Record<string, unknown> | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:255:function validateFrontMatterSyntax(raw: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:268:function extractFrontMatter(content: string): string {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:284:function extractAndValidateFrontMatter(content: string): { raw: string; parseError: string | null } {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:299:function stripCodeSegments(content: string): string {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:305:function extractYamlValue(frontMatter: string, key: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:317:function extractYamlValueFromContent(content: string, key: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:336:function parseYamlList(frontMatter: string, key: string): string[] {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:410:function parseYamlListFromContent(content: string, key: string): string[] {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:429:function parseToolCount(content: string): number {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:444:function parseYamlIntegerFromContent(content: string, key: string): number | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:454:function hasSignificantFileCountDivergence(
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:480:function isValidSpecIdCandidate(candidate: string): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:507:export function extractSpecIdCandidates(content: string): string[] {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:511:function countDistinctSpecIds(content: string): Map<string, number> {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:522:function countSpecIdsInValues(values: string[]): Map<string, number> {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:526:function extractCurrentSpecId(specFolder: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:531:function resolveSpecFolderPath(specFolder: string): string | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:573:function extractAllowedSpecIds(specFolder: string): Set<string> {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:629:function extractFirstHeading(content: string): string {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:634:function ruleAppliesToSource(
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:646:function buildTopicalMatchVariants(phrase: string): string[] {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:659:function getRuleMetadata(ruleId: QualityRuleId): ValidationRuleMetadata {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:663:function shouldBlockWrite(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:668:function shouldBlockIndex(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:673:function determineValidationDisposition(
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:705:function hasExecutionSignals(content: string): boolean {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:709:function validateMemoryQualityContent(content: string, options?: { filePath?: string; source?: DataSource | string | null }): ValidationResult {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:973:    const nonWhitespaceCount = (bodyText.match(/\S/g) ?? []).length;
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1047:function validateMemoryQualityFile(filePath: string): ValidationResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:53:function isFiniteNumber(value: unknown): value is number {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:57:function clampStrength(strength: number): number | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:118:function invalidateDegreeCache(): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:138:function init(database: Database.Database): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:158:function insertEdge(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:217:      const existing = (database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:230:      const row = (database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:258:function insertEdgesBatch(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:302:function bulkInsertEdges(edges: Array<Record<string, unknown>>): { inserted: number; failed: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:310:    const edgeColumns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:357:function createEdgeQueryResult(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:368:function getEdgesFrom(sourceId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:372:    const rows = (db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:393:function getEdgesTo(targetId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:397:    const rows = (db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:418:function getAllEdges(limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:422:    const rows = (db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:441:function getCausalChain(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:459:  function traverse(node: CausalChainNode, depth: number, path: Set<string>): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:504:function updateEdge(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:542:        const existing = (database.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:550:      const result = (database.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:554:      const changed = (result as { changes: number }).changes > 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:578:function deleteEdge(edgeId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:582:    const result = (db.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:599:function deleteEdgesForMemory(memoryId: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:602:  const result = (db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:616:function getGraphStats(): GraphStats {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:622:    const total = (db.prepare('SELECT COUNT(*) as count FROM causal_edges') as Database.Statement).get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:623:    const byRelation = (db.prepare('SELECT relation, COUNT(*) as count FROM causal_edges GROUP BY relation') as Database.Statement).all() as Array<{ relation: string; count: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:624:    const avgStrength = (db.prepare('SELECT AVG(strength) as avg FROM causal_edges') as Database.Statement).get() as { avg: number | null };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:625:    const sources = (db.prepare('SELECT COUNT(DISTINCT source_id) as count FROM causal_edges') as Database.Statement).get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:626:    const targets = (db.prepare('SELECT COUNT(DISTINCT target_id) as count FROM causal_edges') as Database.Statement).get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:647:function findOrphanedEdges(): CausalEdge[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:664:function cleanupOrphanedEdges(): { deleted: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:694:function createSpecDocumentChain(documentIds: Record<string, number>): { inserted: number; failed: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:738:function logWeightChange(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:752:function getWeightHistory(edgeId: number, limit: number = 50): WeightHistoryEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768:function rollbackWeights(edgeId: number, toTimestamp: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:775:      const current = (database.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:810:      const result = (database.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:836:function countEdgesForNode(nodeId: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:839:    const row = (db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:851:function touchEdgeAccess(edgeId: number): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:858:function getStaleEdges(thresholdDays: number = STALENESS_THRESHOLD_DAYS): CausalEdge[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:145:function normalizeInputMode(inputMode: string | undefined, saveMode: SaveMode): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:152:function parseFrontmatter(content: string): Record<string, string> {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:173:function extractMemoryMetadataYaml(content: string): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:178:function parseMemoryMetadataBlock(content: string): Record<string, string> {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:206:function normalizeScalarValue(value: string | undefined): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:214:function parseFrontmatterArray(content: string, fieldName: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:261:function extractYamlListEntries(yamlBlock: string, fieldName: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:295:function extractSection(content: string, sectionName: string): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:319:function stripSectionScaffolding(sectionContent: string): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:327:function extractOverviewAnchorState(content: string): AnchorState {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:341:function extractSupersedesEntries(content: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:361:function extractMetadataTriggerPhrases(content: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:365:function normalizeProposition(text: string): string {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:375:function extractOverviewOutcomes(overviewSection: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:389:function extractDecisionTitles(decisionsSection: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:393:function extractDecisionRationales(decisionsSection: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:397:function extractCompletedClosureCandidates(content: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:406:function extractLastContextLines(content: string): string[] {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:410:function countMergedFromClauses(text: string): number {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:414:function isGenericTitle(title: string): boolean {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:419:function buildD3Counts(triggerPhrases: string[]): Record<D3Reason, number> {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:437:function buildManualTriggerKeySet(triggerPhrases: string[] | undefined): Set<string> {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:446:function buildD3CountsWithSource(
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:468:function countGuardrailSeverities(issues: ReviewIssue[]): {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:495:function emitD3Metrics(counts: Record<D3Reason, number>, labels: Record<string, string>): void {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:516:function emitGuardrailTelemetry(
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:591:export function reviewPostSaveQuality(input: PostSaveReviewInput): PostSaveReviewResult {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:639:    const payloadSummary = (collectedData.sessionSummary || '').trim();
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:732:    const placeholderObservationCount = (fileContent.match(/^### OBSERVATION:\s*(?:Observation)?\s*$/gim) ?? []).length;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:867:    const overviewCore = (
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1068:export function computeReviewScorePenalty(issues: ReviewIssue[]): number {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1080:export function printPostSaveReview(result: PostSaveReviewResult): void {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:68:function extractData(response: MCPResponse): Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:79:function extractHints(data: Record<string, unknown>): string[] {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:84:function extractCachedSummary(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94:function buildNextActions(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:129:function extractStructuralTrustFromPayload(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143:function buildStructuralRoutingNudge(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:164:export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:39:function truncateInline(text: string, maxChars: number): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47:function compactPath(filePath: string): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:55:function formatHighlight(highlight: StartupHighlight): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:60:function formatCompactNumber(value: number): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:67:function describeLastScan(lastScan: string | null): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:88:function buildStartupSurface(args: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:131:function buildGraphOutline(highlightCount: number = 5): Pick<StartupBriefResult, 'graphOutline' | 'graphSummary' | 'graphState'> {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179:function buildSessionContinuity(): string | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:196:export function buildStartupBrief(highlightCount?: number): StartupBriefResult {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:34:function sanitizeErrorForHint(msg: string): string {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:45:function redactPath(absolutePath: string): string {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:64:const SERVER_VERSION: string = (() => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:118:function toNormalizedPath(filePath: string): string {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:122:function toSpecAliasKey(filePath: string): string {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:129:function isSpecsAliasPath(filePath: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:139:function isDotOpencodeVariantPath(normalizedPath: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:143:function isSpecsVariantPath(normalizedPath: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:150:function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): DivergentAliasGroup[] {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223:async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:396:  const trackRepairOutcome = (succeeded: boolean): void => {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:21:var __importStar = (this && this.__importStar) || (function () {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:23:        ownKeys = Object.getOwnPropertyNames || function (o) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:30:    return function (mod) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:144:function handleSignalShutdown(signal) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:158:function installSignalHandlers() {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:169:function isUnderApprovedSpecsRoot(normalizedInput) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:172:function isValidSpecFolder(folderPath) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:227:function resolveCliSpecFolderReference(rawArg) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:265:                const activeDir = (0, core_1.findActiveSpecsDir)();
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:275:    const isSpecFolderPath = (rawArg.startsWith('specs/') ||
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:280:function extractPayloadSpecFolder(data) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:289:async function readAllStdin(stdin = process.stdin) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:300:function parseStructuredJson(rawJson, sourceLabel) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:317:async function parseStructuredModeArguments(mode, args, stdinReader) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:355:async function parseArguments(argv = process.argv.slice(2), stdinReader = readAllStdin) {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:406:        const resolved = (0, core_1.findChildFolderSync)(inputBaseName);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:417:    const specsDir = (0, core_1.findActiveSpecsDir)() || path.join(core_1.CONFIG.PROJECT_ROOT, 'specs');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:499:async function main(argv = process.argv.slice(2), stdinReader = readAllStdin) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:219:function isYamlMapping(value: unknown): value is Record<string, unknown> {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:223:function describeYamlParseError(error: unknown): string {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:238:function loadYamlValue(raw: string): unknown {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:242:function parseYamlMapping(raw: string): Record<string, unknown> | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:255:function validateFrontMatterSyntax(raw: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:268:function extractFrontMatter(content: string): string {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:284:function extractAndValidateFrontMatter(content: string): { raw: string; parseError: string | null } {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:299:function stripCodeSegments(content: string): string {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:305:function extractYamlValue(frontMatter: string, key: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:317:function extractYamlValueFromContent(content: string, key: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:336:function parseYamlList(frontMatter: string, key: string): string[] {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:410:function parseYamlListFromContent(content: string, key: string): string[] {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:429:function parseToolCount(content: string): number {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:444:function parseYamlIntegerFromContent(content: string, key: string): number | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:454:function hasSignificantFileCountDivergence(
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:480:function isValidSpecIdCandidate(candidate: string): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:507:export function extractSpecIdCandidates(content: string): string[] {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:511:function countDistinctSpecIds(content: string): Map<string, number> {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:522:function countSpecIdsInValues(values: string[]): Map<string, number> {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:526:function extractCurrentSpecId(specFolder: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:531:function resolveSpecFolderPath(specFolder: string): string | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:573:function extractAllowedSpecIds(specFolder: string): Set<string> {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:629:function extractFirstHeading(content: string): string {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:634:function ruleAppliesToSource(
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:646:function buildTopicalMatchVariants(phrase: string): string[] {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:659:function getRuleMetadata(ruleId: QualityRuleId): ValidationRuleMetadata {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:663:function shouldBlockWrite(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:668:function shouldBlockIndex(ruleId: QualityRuleId, source?: DataSource | string | null): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:673:function determineValidationDisposition(
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:705:function hasExecutionSignals(content: string): boolean {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:709:function validateMemoryQualityContent(content: string, options?: { filePath?: string; source?: DataSource | string | null }): ValidationResult {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:973:    const nonWhitespaceCount = (bodyText.match(/\S/g) ?? []).length;
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1047:function validateMemoryQualityFile(filePath: string): ValidationResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:53:function isFiniteNumber(value: unknown): value is number {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:57:function clampStrength(strength: number): number | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:118:function invalidateDegreeCache(): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:138:function init(database: Database.Database): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:158:function insertEdge(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:217:      const existing = (database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:230:      const row = (database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:258:function insertEdgesBatch(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:302:function bulkInsertEdges(edges: Array<Record<string, unknown>>): { inserted: number; failed: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:310:    const edgeColumns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:357:function createEdgeQueryResult(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:368:function getEdgesFrom(sourceId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:372:    const rows = (db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:393:function getEdgesTo(targetId: string, limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:397:    const rows = (db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:418:function getAllEdges(limit: number = MAX_EDGES_LIMIT): EdgeQueryResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:422:    const rows = (db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:441:function getCausalChain(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:459:  function traverse(node: CausalChainNode, depth: number, path: Set<string>): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:504:function updateEdge(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:542:        const existing = (database.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:550:      const result = (database.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:554:      const changed = (result as { changes: number }).changes > 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:578:function deleteEdge(edgeId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:582:    const result = (db.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:599:function deleteEdgesForMemory(memoryId: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:602:  const result = (db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:616:function getGraphStats(): GraphStats {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:622:    const total = (db.prepare('SELECT COUNT(*) as count FROM causal_edges') as Database.Statement).get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:623:    const byRelation = (db.prepare('SELECT relation, COUNT(*) as count FROM causal_edges GROUP BY relation') as Database.Statement).all() as Array<{ relation: string; count: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:624:    const avgStrength = (db.prepare('SELECT AVG(strength) as avg FROM causal_edges') as Database.Statement).get() as { avg: number | null };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:625:    const sources = (db.prepare('SELECT COUNT(DISTINCT source_id) as count FROM causal_edges') as Database.Statement).get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:626:    const targets = (db.prepare('SELECT COUNT(DISTINCT target_id) as count FROM causal_edges') as Database.Statement).get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:647:function findOrphanedEdges(): CausalEdge[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:664:function cleanupOrphanedEdges(): { deleted: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:694:function createSpecDocumentChain(documentIds: Record<string, number>): { inserted: number; failed: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:738:function logWeightChange(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:752:function getWeightHistory(edgeId: number, limit: number = 50): WeightHistoryEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768:function rollbackWeights(edgeId: number, toTimestamp: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:775:      const current = (database.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:810:      const result = (database.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:836:function countEdgesForNode(nodeId: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:839:    const row = (db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:851:function touchEdgeAccess(edgeId: number): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:858:function getStaleEdges(thresholdDays: number = STALENESS_THRESHOLD_DAYS): CausalEdge[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:145:function normalizeInputMode(inputMode: string | undefined, saveMode: SaveMode): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:152:function parseFrontmatter(content: string): Record<string, string> {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:173:function extractMemoryMetadataYaml(content: string): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:178:function parseMemoryMetadataBlock(content: string): Record<string, string> {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:206:function normalizeScalarValue(value: string | undefined): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:214:function parseFrontmatterArray(content: string, fieldName: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:261:function extractYamlListEntries(yamlBlock: string, fieldName: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:295:function extractSection(content: string, sectionName: string): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:319:function stripSectionScaffolding(sectionContent: string): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:327:function extractOverviewAnchorState(content: string): AnchorState {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:341:function extractSupersedesEntries(content: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:361:function extractMetadataTriggerPhrases(content: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:365:function normalizeProposition(text: string): string {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:375:function extractOverviewOutcomes(overviewSection: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:389:function extractDecisionTitles(decisionsSection: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:393:function extractDecisionRationales(decisionsSection: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:397:function extractCompletedClosureCandidates(content: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:406:function extractLastContextLines(content: string): string[] {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:410:function countMergedFromClauses(text: string): number {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:414:function isGenericTitle(title: string): boolean {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:419:function buildD3Counts(triggerPhrases: string[]): Record<D3Reason, number> {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:437:function buildManualTriggerKeySet(triggerPhrases: string[] | undefined): Set<string> {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:446:function buildD3CountsWithSource(
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:468:function countGuardrailSeverities(issues: ReviewIssue[]): {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:495:function emitD3Metrics(counts: Record<D3Reason, number>, labels: Record<string, string>): void {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:516:function emitGuardrailTelemetry(
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:591:export function reviewPostSaveQuality(input: PostSaveReviewInput): PostSaveReviewResult {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:639:    const payloadSummary = (collectedData.sessionSummary || '').trim();
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:732:    const placeholderObservationCount = (fileContent.match(/^### OBSERVATION:\s*(?:Observation)?\s*$/gim) ?? []).length;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:867:    const overviewCore = (
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1068:export function computeReviewScorePenalty(issues: ReviewIssue[]): number {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1080:export function printPostSaveReview(result: PostSaveReviewResult): void {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:68:function extractData(response: MCPResponse): Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:79:function extractHints(data: Record<string, unknown>): string[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:84:function extractCachedSummary(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94:function buildNextActions(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:129:function extractStructuralTrustFromPayload(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:143:function buildStructuralRoutingNudge(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:164:export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:39:function truncateInline(text: string, maxChars: number): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:47:function compactPath(filePath: string): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:55:function formatHighlight(highlight: StartupHighlight): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:60:function formatCompactNumber(value: number): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:67:function describeLastScan(lastScan: string | null): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:88:function buildStartupSurface(args: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:131:function buildGraphOutline(highlightCount: number = 5): Pick<StartupBriefResult, 'graphOutline' | 'graphSummary' | 'graphState'> {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:179:function buildSessionContinuity(): string | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:196:export function buildStartupBrief(highlightCount?: number): StartupBriefResult {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:34:function sanitizeErrorForHint(msg: string): string {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:45:function redactPath(absolutePath: string): string {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:64:const SERVER_VERSION: string = (() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:118:function toNormalizedPath(filePath: string): string {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:122:function toSpecAliasKey(filePath: string): string {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:129:function isSpecsAliasPath(filePath: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:139:function isDotOpencodeVariantPath(normalizedPath: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:143:function isSpecsVariantPath(normalizedPath: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:150:function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): DivergentAliasGroup[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223:async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:396:  const trackRepairOutcome = (succeeded: boolean): void => {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:21:var __importStar = (this && this.__importStar) || (function () {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:23:        ownKeys = Object.getOwnPropertyNames || function (o) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:30:    return function (mod) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:144:function handleSignalShutdown(signal) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:158:function installSignalHandlers() {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:169:function isUnderApprovedSpecsRoot(normalizedInput) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:172:function isValidSpecFolder(folderPath) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:227:function resolveCliSpecFolderReference(rawArg) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:265:                const activeDir = (0, core_1.findActiveSpecsDir)();
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:275:    const isSpecFolderPath = (rawArg.startsWith('specs/') ||
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:280:function extractPayloadSpecFolder(data) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:289:async function readAllStdin(stdin = process.stdin) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:300:function parseStructuredJson(rawJson, sourceLabel) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:317:async function parseStructuredModeArguments(mode, args, stdinReader) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:355:async function parseArguments(argv = process.argv.slice(2), stdinReader = readAllStdin) {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:391:function validateArguments() {
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:406:        const resolved = (0, core_1.findChildFolderSync)(inputBaseName);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:417:    const specsDir = (0, core_1.findActiveSpecsDir)() || path.join(core_1.CONFIG.PROJECT_ROOT, 'specs');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:499:async function main(argv = process.argv.slice(2), stdinReader = readAllStdin) {
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts && printf '\\n---startup---\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts && printf '\\n---bootstrap---\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts && printf '\\n---startup---\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts && printf '\\n---bootstrap---\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ────────────────────────────────────────────────────────────────
 // MODULE: Memory Crud Health
@@ -4001,7 +4001,7 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
         cachedSummary.cachedSummary.continuityText,
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts && printf '\\n---post-save---\\n' && sed -n '760,940p' .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts && printf '\\n---validate---\\n' && sed -n '820,980p' .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts && printf '\\n---generate---\\n' && sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts && printf '\\n---post-save---\\n' && sed -n '760,940p' .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts && printf '\\n---validate---\\n' && sed -n '820,980p' .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts && printf '\\n---generate---\\n' && sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Causal Edges
@@ -4873,9 +4873,9 @@ function resolveCliSpecFolderReference(rawArg) {
                     resolvedNestedPath = candidate;
 
 exec
-/bin/zsh -lc "sed -n '223,470p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '223,470p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
         cachedSummary.cachedSummary.continuityText,
         `Cache tokens: create=${cachedSummary.cachedSummary.cacheCreationInputTokens}; read=${cachedSummary.cachedSummary.cacheReadInputTokens}`,
@@ -5220,76 +5220,76 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
             triggerMatcher.refreshTriggerCache();
 
 exec
-/bin/zsh -lc "rg -n \"export async function handleSessionResume|buildStructuralBootstrapContract|memory_context\\(|memory_search\\(|session_resume|resume\" .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-retrieve.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"export async function handleSessionResume|buildStructuralBootstrapContract|memory_context\\(|memory_search\\(|session_resume|resume\" .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-retrieve.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-retrieve.ts: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:210:export function buildStructuralBootstrapContract(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:14:import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:401:export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:97:  resumed: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:99:  resumedContextCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:146:  resumed: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:155:  resumeHeuristicApplied: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:674:  resume: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:677:    strategy: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:784:  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:787:    query: input || 'resume work continue session',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:798:    anchors: resumeAnchors,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:810:    strategy: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:811:    mode: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:812:    resumeAnchors: resumeAnchors,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:837:      resumed: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:846:  const resumed = trustedSession.trusted;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:847:  const priorMode = resumed
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:850:  const counter = resumed
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:857:    resumed,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:883:  let resumeHeuristicApplied = false;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:898:    const hasResumeKeywords = /\b(resume|continue|pick up|where was i|what(?:'s| is) next)\b/i.test(normalizedInput);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:900:      session.resumed ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:901:      session.priorMode === 'resume' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:909:      effectiveMode = 'resume';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:910:      resumeHeuristicApplied = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:942:      resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:986:    case 'resume':
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1142:  if (requested_mode !== 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1224:    resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1244:    resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1246:    resumedContextCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1305:      resumed: resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1314:    resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1338:    resumedSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1343:    queryHeuristicApplied: resumeHeuristicApplied,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1425:  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1434:  if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1436:    if (resumeContextItems.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1437:      sessionLifecycle.resumedContextCount = resumeContextItems.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1497:        resumeHeuristicApplied,
+rg: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-retrieve.ts: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:210:export function buildStructuralBootstrapContract(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:14:import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:401:export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:97:  resumed: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:99:  resumedContextCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:146:  resumed: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:155:  resumeHeuristicApplied: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:674:  resume: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:677:    strategy: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:784:  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:787:    query: input || 'resume work continue session',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:798:    anchors: resumeAnchors,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:810:    strategy: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:811:    mode: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:812:    resumeAnchors: resumeAnchors,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:837:      resumed: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:846:  const resumed = trustedSession.trusted;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:847:  const priorMode = resumed
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:850:  const counter = resumed
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:857:    resumed,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:883:  let resumeHeuristicApplied = false;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:898:    const hasResumeKeywords = /\b(resume|continue|pick up|where was i|what(?:'s| is) next)\b/i.test(normalizedInput);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:900:      session.resumed ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:901:      session.priorMode === 'resume' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:909:      effectiveMode = 'resume';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:910:      resumeHeuristicApplied = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:942:      resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:986:    case 'resume':
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1142:  if (requested_mode !== 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1224:    resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1244:    resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1246:    resumedContextCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1305:      resumed: resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1314:    resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1338:    resumedSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1343:    queryHeuristicApplied: resumeHeuristicApplied,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1425:  // M1 FIX: Inject auto-resume context BEFORE budget enforcement
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1434:  if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1435:    const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1436:    if (resumeContextItems.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1437:      sessionLifecycle.resumedContextCount = resumeContextItems.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1438:      (tracedResult0 as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1497:        resumeHeuristicApplied,
 
 exec
-/bin/zsh -lc "sed -n '400,620p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '400,620p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 /** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
 export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
@@ -5356,10 +5356,10 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
   const cocoIndex: CocoIndexStatus = {
     available: isCocoIndexAvailable(),
-    binaryPath: '.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc',
+    binaryPath: '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc',
   };
   if (!cocoIndex.available) {
-    hints.push('CocoIndex not installed. Install: `bash .opencode/skill/mcp-coco-index/scripts/install.sh`');
+    hints.push('CocoIndex not installed. Install: `bash .opencode/skills/mcp-coco-index/scripts/install.sh`');
   }
 
   // Phase 027: Structural bootstrap contract for resume surface
@@ -5508,9 +5508,9 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
 }
 
 exec
-/bin/zsh -lc "sed -n '210,320p' .opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '210,320p' .opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '760,860p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts && printf '\\n---\\n' && sed -n '1420,1465p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '760,860p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts && printf '\\n---\\n' && sed -n '1420,1465p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 export function buildStructuralBootstrapContract(
   sourceSurface: StructuralBootstrapContract['sourceSurface']
@@ -5744,327 +5744,327 @@ function resolveSessionLifecycle(
 codex
 A clearer pattern is emerging: Mex’s strongest value is not just more checks, it’s that the checks are organized into an operator loop with authoritative markdown surfaces at the center. I’m checking our freshness and repair paths now, because the likely recommendation is a shift in architecture around health/bootstrapping rather than a pile of isolated new validators.
 exec
-/bin/zsh -lc "rg -n \"stale|staleness|freshness|last_updated|git history|commits since|days since|drift score|repair|autoRepair|checklist\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/scripts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"stale|staleness|freshness|last_updated|git history|commits since|days since|drift score|repair|autoRepair|checklist\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:118:// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:175:    codeGraphStatus: 'fresh' | 'stale' | 'empty';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:194:  staleCount: number;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:379:// Safe for stdio (single client). TTL in query-flow-tracker bounds staleness.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:712:      return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:734:    return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:751:  const staleWarning = stats.staleCount > 10
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:757:    `Active memories: ${stats.activeCount}. Stale memories: ${stats.staleCount}.`,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:761:    staleWarning.trim(),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:798:    if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1191:    // P1 FIX: Wire isCommittedInDb callback so stale pending files are detected at startup.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1313:          staleDeleted: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1314:          staleDeleteFailed: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1561:  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1843:                    staleDeleted: 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1844:                    staleDeleteFailed: 0,
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/scripts/wrap-all-templates.sh:23:  for template in spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md; do
-.opencode/skill/system-spec-kit/scripts/common.sh:152:    printf 'CHECKLISTS_DIR=%q\n' "$feature_dir/checklists"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:55:  autoRepair?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:122:  if (healthStatus === 'warning' || healthStatus === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:318:        ? 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:632:  // Otherwise stale trigger/tool-cache entries persist until next non-chunked save.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:37: * Finds spec.md, plan.md, tasks.md, checklist.md, decision-record.md,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:148:      const hasChecklist = siblings.includes('checklist.md');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:197:// Track stale session cleanup interval (runs hourly)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:198:let staleCleanupInterval: ReturnType<typeof setInterval> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:234:  // Run stale session cleanup on startup and set up hourly interval
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:239:    console.warn(`[session-manager] Initial stale session cleanup failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:242:  if (staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:243:    clearInterval(staleCleanupInterval);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:245:  staleCleanupInterval = setInterval(() => {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:250:      console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:253:  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:254:    staleCleanupInterval.unref();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:758: * T302: Clean up stale sessions across all session-related tables.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:782:  // 1. Clean stale working_memory entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1382:  if (staleCleanupInterval) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1383:    clearInterval(staleCleanupInterval);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1384:    staleCleanupInterval = null;
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:31:  --repair-failures <n>          Fail repair step n times before success
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:53:            --repair-failures)
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:54:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:86:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:101:        "node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay" || exit 1
-.opencode/skill/system-spec-kit/scripts/utils/README.md:57:| **Validation Utilities** | Path-scoped rule validation and checklist verification |
-.opencode/skill/system-spec-kit/scripts/utils/README.md:147:├── validation-utils.ts        # Path-scoped validation and checklist verification
-.opencode/skill/system-spec-kit/scripts/utils/README.md:200:| `validation-utils.ts` | Validates spec folders against path-scoped rules. Verifies checklist completeness |
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:471:    { name: 'checklist.md', role: 'QA checklist' },
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:6:# against the current template version. Reports stale folders.
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:9:#   check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:13:#   1 - stale folders found
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:42:check-template-staleness.sh — Detect spec folders with outdated template versions
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:44:Usage: check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:48:  --auto-upgrade   Apply safe auto-fixes to stale folders (update version comment)
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:124:    local current_count=0 stale_count=0 none_count=0 missing_count=0
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:125:    local stale_folders=()
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:154:            "none") ((none_count++)) || true; stale_folders+=("$folder_name ($version)") ;;
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:156:            *) ((stale_count++)) || true; stale_folders+=("$folder_name ($version)")
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:164:                           spec.md|plan.md|tasks.md|checklist.md|decision-record.md|implementation-summary.md)
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:179:        local stale_json="["
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:181:        for s in "${stale_folders[@]+"${stale_folders[@]}"}"; do
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:182:            $first && first=false || stale_json+=","
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:183:            stale_json+="\"$s\""
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:185:        stale_json+="]"
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:198:{"current_version":"$current_version","total":$total,"current":$current_count,"stale":$stale_count,"no_version":$none_count,"missing_spec":$missing_count,"versions":$versions_json,"stale_folders":$stale_json}
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:220:        if [[ ${#stale_folders[@]} -gt 0 ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:222:            for s in "${stale_folders[@]}"; do
-.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh:234:    [[ $stale_count -gt 0 || $none_count -gt 0 ]] && exit 1
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:992:    // Data integrity: clean stale auto-entities before re-extraction on update
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:998:        console.error(`[memory-save] Cleaned stale auto-entities for superseded memory #${existing.id}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1007:        console.error(`[memory-save] Cleaned stale auto-entities for PE-superseded memory #${peResult.supersededId}`);
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:124:count_checklist_items() {
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:125:    local checklist_file="$1"
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:201:    done < "$checklist_file"
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:322:        echo -e "    ${GREEN}✓${NC} Priority context present for all checklist items"
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:357:            echo -e "  Missing priority context on checklist items. Add P0/P1/P2 headers or inline tags." >&2
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:375:    local checklist_file="$FOLDER_PATH/checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:377:    if [[ ! -f "$checklist_file" ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:379:            echo '{"error": "checklist.md not found", "folder": "'"$FOLDER_PATH"'"}'
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:381:            echo -e "${YELLOW}⚠${NC} No checklist.md found in $FOLDER_PATH"
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:382:            echo "  This may be a Level 1 spec (checklist not required)."
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:383:            echo "  Create checklist.md for Level 2+ enforcement."
-.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:388:    count_checklist_items "$checklist_file"
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:5:// Aggregates metrics, graph freshness, and priming status into a
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:25:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:152:  // Graph freshness
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:218:  } else if (graphFreshness === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:240:  } else if (status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:243:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes (stale — structural reads may refresh inline or recommend code_graph_scan)`;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:245:      summary = 'Code graph data is stale — structural context may be outdated';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:254:  } else if (status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:273:      lastUpdated: status === 'ready' || status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:5:// readiness, code graph freshness, and priming status.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33:type SessionStatus = 'ok' | 'warning' | 'stale';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:38:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:76:  // Determine graph freshness
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:92:        graphFreshness = 'stale';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:110:    status = 'stale';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:111:  } else if (graphFreshness === 'stale' || graphFreshness === 'empty' || lastToolCallAgoMs > FIFTEEN_MINUTES_MS) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:122:  if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:158:    summary: `Session health is ${status}; graph freshness is ${graphFreshness}; structural status is ${structuralContext.status}`,
-.opencode/skill/system-spec-kit/scripts/ops/heal-index-drift.sh:31:  --repair-failures <n>          Fail repair step n times before success
-.opencode/skill/system-spec-kit/scripts/ops/heal-index-drift.sh:57:            --repair-failures)
-.opencode/skill/system-spec-kit/scripts/ops/heal-index-drift.sh:58:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
-.opencode/skill/system-spec-kit/scripts/ops/heal-index-drift.sh:90:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:288:function determineSessionPhase(taskStats: TaskStats, checklistStats: ChecklistStats, planPhase: string, status: string): string {
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:290:  if (taskStats?.percent === 100 && (!checklistStats || checklistStats.passed === checklistStats.total)) return 'complete';
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:291:  if ((checklistStats && checklistStats.total > 0 && checklistStats.passed < checklistStats.total) || taskStats?.percent === 100) return 'testing';
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:314:  const checklist = parseChecklistDoc(readDoc(specFolderPath, 'checklist.md'));
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:359:    ...(checklist ? [{
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:362:      narrative: `Checklist progress P0 ${checklist.p0}, P1 ${checklist.p1}, P2 ${checklist.p2}.`,
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:364:      facts: [`passed=${checklist.passed}`, `total=${checklist.total}`],
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:370:  const structuralTypes = ['progress', 'checklist', 'phase', 'status'];
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:392:    sessionPhase: determineSessionPhase(tasks, checklist, plan.phaseTitle, String(description.status || '')),
-.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh:29:  'checklist.md'
-.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh:118:    checklist) echo "$MIN_WORDS_CHECKLIST" ;;
-.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh:159:    checklist) required_sections=("\- \[ \]") ;;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:34:    graphFreshness: number; // 1.0 fresh, 0.5 stale, 0.0 empty
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:84:// Matches the session-snapshot graph staleness threshold.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:178:/** Compute graph freshness: 1.0 fresh, 0.5 stale, 0.0 empty/error. */
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:217:  //   recency (0.35)       — Highest weight because stale sessions are the primary
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:228:  //   graphFreshness (0.20) — A stale code graph means structural queries return
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:30:// Feature catalog: Memory health autoRepair metadata
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:245:    autoRepair = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:267:  if (typeof autoRepair !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:270:      error: 'autoRepair must be a boolean',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:348:    if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:384:  const repair = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:385:    requested: autoRepair,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:387:    repaired: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:397:    repair.attempted = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419:  const repairActions = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426:  if (autoRepair && !confirmed) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:429:      summary: 'Confirmation required before auto-repair actions are executed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:433:        autoRepairRequested: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:435:        actions: repairActions,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:465:        if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:468:            repair.actions.push('fts_rebuild');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:473:            const repairedFtsCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_fts').get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:474:            if (memoryCountRow.count === repairedFtsCountRow.count) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:476:              repair.actions.push('fts_consistency_verified');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:480:              const warning = `Post-repair mismatch persists: memory_index=${memoryCountRow.count}, memory_fts=${repairedFtsCountRow.count}`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:481:              repair.warnings.push(warning);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:482:              hints.push(`Auto-repair attempted, but mismatch remains (${warning}).`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:484:          } catch (repairError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:485:            const message = toErrorMessage(repairError);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:487:            repair.errors.push(sanitizeErrorForHint(message));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:488:            hints.push(`Auto-repair failed: ${sanitizeErrorForHint(message)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:495:      if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:497:        repair.errors.push(`Consistency check failed before repair: ${sanitizeErrorForHint(message)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:502:  // Never invoked at runtime. Wire it into autoRepair so orphaned causal edges
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:504:  if (autoRepair && database) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:511:        repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:512:        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516:      repair.errors.push(`Orphan edge cleanup failed: ${sanitizeErrorForHint(toErrorMessage(orphanError))}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:520:  if (autoRepair && database) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:528:        repair.actions.push(`orphan_vectors_cleaned:${cleanedVectors}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:529:        hints.push(`Auto-repair: removed ${cleanedVectors} orphaned vector(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:534:        repair.actions.push(`orphan_chunks_cleaned:${cleanedChunks}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:535:        hints.push(`Auto-repair: removed ${cleanedChunks} orphaned chunk(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:545:        repair.warnings.push(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:546:          `Post-repair integrity still degraded: orphanedVectors=${postRepairReport.orphanedVectors}, ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:553:      repair.errors.push(`Integrity cleanup failed: ${sanitizeErrorForHint(toErrorMessage(integrityError))}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:557:  if (repair.attempted) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:558:    repair.repaired = failedRepairCount === 0 && successfulRepairCount > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:559:    repair.partialSuccess = failedRepairCount > 0 && successfulRepairCount > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:582:      repair,
-.opencode/skill/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:38:  --repair-failures <n>          Fail repair step n times before success
-.opencode/skill/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:60:            --repair-failures)
-.opencode/skill/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:61:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
-.opencode/skill/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:93:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:9:#   L1 → L2:  Add checklist.md, NFR/Edge/Complexity sections to spec.md, plan.md sections
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:11:#   L3 → L3+: Add governance sections to spec.md, plan.md, checklist.md
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:114:  L1 → L2:   Adds checklist.md, NFR/Edge/Complexity sections, effort estimation
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:116:  L3 → L3+:  Adds governance sections, extended checklist, AI execution framework
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:241:    [[ -f "$folder/checklist.md" ]] && { CURRENT_LEVEL=2; LEVEL_METHOD="inferred"; return; }
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:619:upgrade_checklist() {
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:625:        verbose "No checklist extension needed for L${from_level} → L${to_level}"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:629:    local checklist_file="$SPEC_FOLDER/checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:630:    local fragment_path="${ADDENDUM_L3PLUS}/checklist-extended.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:632:    if [[ ! -f "$checklist_file" ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:633:        warn "checklist.md not found in $SPEC_FOLDER — skipping checklist upgrade"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:643:    if grep -qF "## L3+: ARCHITECTURE VERIFICATION" "$checklist_file" 2>/dev/null; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:644:        info "checklist.md already contains L3+ sections — skipping"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:649:        info "DRY RUN: Would append checklist-extended.md to checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:653:    verbose "Appending extended checklist sections to checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:665:    local tmp_file="${checklist_file}.tmp"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:667:    insert_before_line=$(find_insert_point "$checklist_file")
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:672:            head -n $((insert_before_line - 1)) "$checklist_file"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:674:            tail -n +"${insert_before_line}" "$checklist_file"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:677:        verbose "Appending to end of checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:679:            cat "$checklist_file"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:684:    mv "$tmp_file" "$checklist_file"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:685:    MODIFIED_FILES+=("checklist.md")
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:686:    verbose "checklist.md upgraded successfully"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:700:            # L1→L2: Create checklist.md from full template
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:701:            local checklist_src="${ADDENDUM_L2}/checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:702:            local checklist_dest="$SPEC_FOLDER/checklist.md"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:704:            if [[ -f "$checklist_dest" ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:705:                info "checklist.md already exists — skipping creation"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:709:            if [[ ! -f "$checklist_src" ]]; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:710:                warn "Checklist template not found: $checklist_src"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:715:                info "DRY RUN: Would create checklist.md from template"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:719:            verbose "Creating checklist.md from template"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:720:            cp "$checklist_src" "$checklist_dest"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:721:            CREATED_FILES+=("checklist.md")
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:1398:    # Step 1: Create new files (checklist.md for L1→L2, decision-record.md for L2→L3)
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:1419:    # Step 4: Upgrade checklist.md (only meaningful for L3→L3+)
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:1420:    verbose "Step 4/5: Upgrading checklist.md for L${from_level} → L${to_level}"
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:1421:    if ! upgrade_checklist "$from_level" "$to_level"; then
-.opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh:1422:        warn "checklist.md upgrade failed for L${from_level} → L${to_level}"
-.opencode/skill/system-spec-kit/scripts/ops/README.md:137:- `--repair-failures <n>`
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:134:function repairBm25Document(args: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:155:    const repairMessage = toErrorMessage(repairErr);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:156:    console.warn(`[memory-save] Immediate BM25 repair failed (${args.contextLabel}): ${repairMessage}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:157:    return `BM25 repair failed after ${args.contextLabel} for memory ${args.memoryId}: ${repairMessage}`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:287:                    const bm25Warning = repairBm25Document({
-.opencode/skill/system-spec-kit/scripts/extractors/README.md:40:- `git-context-extractor.ts` - Mines git history for captured-session enrichment (spec 013)
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:16:#   L2: +Quality gates, verification - checklist.md
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:231:            echo "    Adds: checklist.md, NFRs, edge cases, effort estimation"
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:1195:           echo "    ✓ +Verify: checklist.md, NFRs, edge cases, effort estimation"
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:1198:           echo "    ✓ +Verify: checklist.md, NFRs, edge cases"
-.opencode/skill/system-spec-kit/scripts/spec/create.sh:1215:    [[ "${DOC_LEVEL/+/}" -ge 2 ]] && echo "    4. Add verification items to checklist.md"
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:131:  autoRepair?: boolean;
-.opencode/skill/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:31:  --repair-failures <n>          Fail repair step n times before success
-.opencode/skill/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:53:            --repair-failures)
-.opencode/skill/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:54:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
-.opencode/skill/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:86:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:103:      // Data integrity: clean stale auto-entities before re-extraction on update
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:20:// Artifact-class routing (spec/plan/tasks/checklist/memory)
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:62:  if (readiness.freshness === 'fresh') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:66:      freshnessAuthority: 'live',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:70:  if (readiness.freshness === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:74:      freshnessAuthority: 'stale',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:81:    freshnessAuthority: 'unknown',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:320:    freshness: 'empty' as const,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:333:    // Non-blocking: continue with potentially stale data
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
-.opencode/skill/system-spec-kit/scripts/spec/README.md:40:- `calculate-completeness.sh` - compute checklist completion metrics
-.opencode/skill/system-spec-kit/scripts/spec/README.md:42:- `archive.sh` - archive completed or stale specs
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:118:// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:175:    codeGraphStatus: 'fresh' | 'stale' | 'empty';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:194:  staleCount: number;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:379:// Safe for stdio (single client). TTL in query-flow-tracker bounds staleness.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:712:      return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:731:      staleCount: pending + failed + retry,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:734:    return { totalMemories: 0, specFolderCount: 0, activeCount: 0, staleCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:751:  const staleWarning = stats.staleCount > 10
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:757:    `Active memories: ${stats.activeCount}. Stale memories: ${stats.staleCount}.`,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:761:    staleWarning.trim(),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:798:    if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1191:    // P1 FIX: Wire isCommittedInDb callback so stale pending files are detected at startup.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1313:          staleDeleted: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1314:          staleDeleteFailed: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1561:  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1843:                    staleDeleted: 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1844:                    staleDeleteFailed: 0,
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/scripts/wrap-all-templates.sh:23:  for template in spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md; do
+.opencode/skills/system-spec-kit/scripts/common.sh:152:    printf 'CHECKLISTS_DIR=%q\n' "$feature_dir/checklists"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:55:  autoRepair?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:122:  if (healthStatus === 'warning' || healthStatus === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:318:        ? 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:70:- `memory-index.ts` and `mutation-hooks.ts` work together so index, update, and stale-delete flows clear trigger, constitutional, graph, co-activation, and degree caches.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:632:  // Otherwise stale trigger/tool-cache entries persist until next non-chunked save.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:37: * Finds spec.md, plan.md, tasks.md, checklist.md, decision-record.md,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:148:      const hasChecklist = siblings.includes('checklist.md');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:197:// Track stale session cleanup interval (runs hourly)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:198:let staleCleanupInterval: ReturnType<typeof setInterval> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:234:  // Run stale session cleanup on startup and set up hourly interval
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:239:    console.warn(`[session-manager] Initial stale session cleanup failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:242:  if (staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:243:    clearInterval(staleCleanupInterval);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:245:  staleCleanupInterval = setInterval(() => {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:250:      console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:253:  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:254:    staleCleanupInterval.unref();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:758: * T302: Clean up stale sessions across all session-related tables.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:782:  // 1. Clean stale working_memory entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1382:  if (staleCleanupInterval) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1383:    clearInterval(staleCleanupInterval);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1384:    staleCleanupInterval = null;
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:31:  --repair-failures <n>          Fail repair step n times before success
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:53:            --repair-failures)
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:54:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:86:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:101:        "node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay" || exit 1
+.opencode/skills/system-spec-kit/scripts/utils/README.md:57:| **Validation Utilities** | Path-scoped rule validation and checklist verification |
+.opencode/skills/system-spec-kit/scripts/utils/README.md:147:├── validation-utils.ts        # Path-scoped validation and checklist verification
+.opencode/skills/system-spec-kit/scripts/utils/README.md:200:| `validation-utils.ts` | Validates spec folders against path-scoped rules. Verifies checklist completeness |
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:471:    { name: 'checklist.md', role: 'QA checklist' },
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:6:# against the current template version. Reports stale folders.
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:9:#   check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:13:#   1 - stale folders found
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:42:check-template-staleness.sh — Detect spec folders with outdated template versions
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:44:Usage: check-template-staleness.sh [--json] [--auto-upgrade] [--root <path>]
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:48:  --auto-upgrade   Apply safe auto-fixes to stale folders (update version comment)
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:124:    local current_count=0 stale_count=0 none_count=0 missing_count=0
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:125:    local stale_folders=()
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:154:            "none") ((none_count++)) || true; stale_folders+=("$folder_name ($version)") ;;
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:156:            *) ((stale_count++)) || true; stale_folders+=("$folder_name ($version)")
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:164:                           spec.md|plan.md|tasks.md|checklist.md|decision-record.md|implementation-summary.md)
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:179:        local stale_json="["
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:181:        for s in "${stale_folders[@]+"${stale_folders[@]}"}"; do
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:182:            $first && first=false || stale_json+=","
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:183:            stale_json+="\"$s\""
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:185:        stale_json+="]"
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:198:{"current_version":"$current_version","total":$total,"current":$current_count,"stale":$stale_count,"no_version":$none_count,"missing_spec":$missing_count,"versions":$versions_json,"stale_folders":$stale_json}
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:220:        if [[ ${#stale_folders[@]} -gt 0 ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:222:            for s in "${stale_folders[@]}"; do
+.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh:234:    [[ $stale_count -gt 0 || $none_count -gt 0 ]] && exit 1
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:992:    // Data integrity: clean stale auto-entities before re-extraction on update
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:998:        console.error(`[memory-save] Cleaned stale auto-entities for superseded memory #${existing.id}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1007:        console.error(`[memory-save] Cleaned stale auto-entities for PE-superseded memory #${peResult.supersededId}`);
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:124:count_checklist_items() {
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:125:    local checklist_file="$1"
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:201:    done < "$checklist_file"
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:322:        echo -e "    ${GREEN}✓${NC} Priority context present for all checklist items"
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:357:            echo -e "  Missing priority context on checklist items. Add P0/P1/P2 headers or inline tags." >&2
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:375:    local checklist_file="$FOLDER_PATH/checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:377:    if [[ ! -f "$checklist_file" ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:379:            echo '{"error": "checklist.md not found", "folder": "'"$FOLDER_PATH"'"}'
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:381:            echo -e "${YELLOW}⚠${NC} No checklist.md found in $FOLDER_PATH"
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:382:            echo "  This may be a Level 1 spec (checklist not required)."
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:383:            echo "  Create checklist.md for Level 2+ enforcement."
+.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:388:    count_checklist_items "$checklist_file"
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:5:// Aggregates metrics, graph freshness, and priming status into a
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:25:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:152:  // Graph freshness
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:218:  } else if (graphFreshness === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:240:  } else if (status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:243:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes (stale — structural reads may refresh inline or recommend code_graph_scan)`;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:245:      summary = 'Code graph data is stale — structural context may be outdated';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:254:  } else if (status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:273:      lastUpdated: status === 'ready' || status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:5:// readiness, code graph freshness, and priming status.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:33:type SessionStatus = 'ok' | 'warning' | 'stale';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:38:  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:76:  // Determine graph freshness
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:92:        graphFreshness = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:110:    status = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:111:  } else if (graphFreshness === 'stale' || graphFreshness === 'empty' || lastToolCallAgoMs > FIFTEEN_MINUTES_MS) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:122:  if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:158:    summary: `Session health is ${status}; graph freshness is ${graphFreshness}; structural status is ${structuralContext.status}`,
+.opencode/skills/system-spec-kit/scripts/ops/heal-index-drift.sh:31:  --repair-failures <n>          Fail repair step n times before success
+.opencode/skills/system-spec-kit/scripts/ops/heal-index-drift.sh:57:            --repair-failures)
+.opencode/skills/system-spec-kit/scripts/ops/heal-index-drift.sh:58:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
+.opencode/skills/system-spec-kit/scripts/ops/heal-index-drift.sh:90:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:288:function determineSessionPhase(taskStats: TaskStats, checklistStats: ChecklistStats, planPhase: string, status: string): string {
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:290:  if (taskStats?.percent === 100 && (!checklistStats || checklistStats.passed === checklistStats.total)) return 'complete';
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:291:  if ((checklistStats && checklistStats.total > 0 && checklistStats.passed < checklistStats.total) || taskStats?.percent === 100) return 'testing';
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:314:  const checklist = parseChecklistDoc(readDoc(specFolderPath, 'checklist.md'));
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:359:    ...(checklist ? [{
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:362:      narrative: `Checklist progress P0 ${checklist.p0}, P1 ${checklist.p1}, P2 ${checklist.p2}.`,
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:364:      facts: [`passed=${checklist.passed}`, `total=${checklist.total}`],
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:370:  const structuralTypes = ['progress', 'checklist', 'phase', 'status'];
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:392:    sessionPhase: determineSessionPhase(tasks, checklist, plan.phaseTitle, String(description.status || '')),
+.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh:29:  'checklist.md'
+.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh:118:    checklist) echo "$MIN_WORDS_CHECKLIST" ;;
+.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh:159:    checklist) required_sections=("\- \[ \]") ;;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:34:    graphFreshness: number; // 1.0 fresh, 0.5 stale, 0.0 empty
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:84:// Matches the session-snapshot graph staleness threshold.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:178:/** Compute graph freshness: 1.0 fresh, 0.5 stale, 0.0 empty/error. */
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:217:  //   recency (0.35)       — Highest weight because stale sessions are the primary
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:228:  //   graphFreshness (0.20) — A stale code graph means structural queries return
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:30:// Feature catalog: Memory health autoRepair metadata
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:245:    autoRepair = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:267:  if (typeof autoRepair !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:270:      error: 'autoRepair must be a boolean',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:348:    if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:384:  const repair = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:385:    requested: autoRepair,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:387:    repaired: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:397:    repair.attempted = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419:  const repairActions = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426:  if (autoRepair && !confirmed) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:429:      summary: 'Confirmation required before auto-repair actions are executed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:433:        autoRepairRequested: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:435:        actions: repairActions,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:465:        if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:468:            repair.actions.push('fts_rebuild');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:473:            const repairedFtsCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_fts').get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:474:            if (memoryCountRow.count === repairedFtsCountRow.count) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:476:              repair.actions.push('fts_consistency_verified');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:480:              const warning = `Post-repair mismatch persists: memory_index=${memoryCountRow.count}, memory_fts=${repairedFtsCountRow.count}`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:481:              repair.warnings.push(warning);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:482:              hints.push(`Auto-repair attempted, but mismatch remains (${warning}).`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:484:          } catch (repairError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:485:            const message = toErrorMessage(repairError);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:487:            repair.errors.push(sanitizeErrorForHint(message));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:488:            hints.push(`Auto-repair failed: ${sanitizeErrorForHint(message)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:495:      if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:497:        repair.errors.push(`Consistency check failed before repair: ${sanitizeErrorForHint(message)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:502:  // Never invoked at runtime. Wire it into autoRepair so orphaned causal edges
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:504:  if (autoRepair && database) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:511:        repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:512:        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516:      repair.errors.push(`Orphan edge cleanup failed: ${sanitizeErrorForHint(toErrorMessage(orphanError))}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:520:  if (autoRepair && database) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:528:        repair.actions.push(`orphan_vectors_cleaned:${cleanedVectors}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:529:        hints.push(`Auto-repair: removed ${cleanedVectors} orphaned vector(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:534:        repair.actions.push(`orphan_chunks_cleaned:${cleanedChunks}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:535:        hints.push(`Auto-repair: removed ${cleanedChunks} orphaned chunk(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:545:        repair.warnings.push(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:546:          `Post-repair integrity still degraded: orphanedVectors=${postRepairReport.orphanedVectors}, ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:553:      repair.errors.push(`Integrity cleanup failed: ${sanitizeErrorForHint(toErrorMessage(integrityError))}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:557:  if (repair.attempted) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:558:    repair.repaired = failedRepairCount === 0 && successfulRepairCount > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:559:    repair.partialSuccess = failedRepairCount > 0 && successfulRepairCount > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:582:      repair,
+.opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:38:  --repair-failures <n>          Fail repair step n times before success
+.opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:60:            --repair-failures)
+.opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:61:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
+.opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh:93:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:9:#   L1 → L2:  Add checklist.md, NFR/Edge/Complexity sections to spec.md, plan.md sections
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:11:#   L3 → L3+: Add governance sections to spec.md, plan.md, checklist.md
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:114:  L1 → L2:   Adds checklist.md, NFR/Edge/Complexity sections, effort estimation
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:116:  L3 → L3+:  Adds governance sections, extended checklist, AI execution framework
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:241:    [[ -f "$folder/checklist.md" ]] && { CURRENT_LEVEL=2; LEVEL_METHOD="inferred"; return; }
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:619:upgrade_checklist() {
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:625:        verbose "No checklist extension needed for L${from_level} → L${to_level}"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:629:    local checklist_file="$SPEC_FOLDER/checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:630:    local fragment_path="${ADDENDUM_L3PLUS}/checklist-extended.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:632:    if [[ ! -f "$checklist_file" ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:633:        warn "checklist.md not found in $SPEC_FOLDER — skipping checklist upgrade"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:643:    if grep -qF "## L3+: ARCHITECTURE VERIFICATION" "$checklist_file" 2>/dev/null; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:644:        info "checklist.md already contains L3+ sections — skipping"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:649:        info "DRY RUN: Would append checklist-extended.md to checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:653:    verbose "Appending extended checklist sections to checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:665:    local tmp_file="${checklist_file}.tmp"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:667:    insert_before_line=$(find_insert_point "$checklist_file")
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:672:            head -n $((insert_before_line - 1)) "$checklist_file"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:674:            tail -n +"${insert_before_line}" "$checklist_file"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:677:        verbose "Appending to end of checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:679:            cat "$checklist_file"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:684:    mv "$tmp_file" "$checklist_file"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:685:    MODIFIED_FILES+=("checklist.md")
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:686:    verbose "checklist.md upgraded successfully"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:700:            # L1→L2: Create checklist.md from full template
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:701:            local checklist_src="${ADDENDUM_L2}/checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:702:            local checklist_dest="$SPEC_FOLDER/checklist.md"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:704:            if [[ -f "$checklist_dest" ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:705:                info "checklist.md already exists — skipping creation"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:709:            if [[ ! -f "$checklist_src" ]]; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:710:                warn "Checklist template not found: $checklist_src"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:715:                info "DRY RUN: Would create checklist.md from template"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:719:            verbose "Creating checklist.md from template"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:720:            cp "$checklist_src" "$checklist_dest"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:721:            CREATED_FILES+=("checklist.md")
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:1398:    # Step 1: Create new files (checklist.md for L1→L2, decision-record.md for L2→L3)
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:1419:    # Step 4: Upgrade checklist.md (only meaningful for L3→L3+)
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:1420:    verbose "Step 4/5: Upgrading checklist.md for L${from_level} → L${to_level}"
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:1421:    if ! upgrade_checklist "$from_level" "$to_level"; then
+.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:1422:        warn "checklist.md upgrade failed for L${from_level} → L${to_level}"
+.opencode/skills/system-spec-kit/scripts/ops/README.md:137:- `--repair-failures <n>`
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:134:function repairBm25Document(args: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:155:    const repairMessage = toErrorMessage(repairErr);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:156:    console.warn(`[memory-save] Immediate BM25 repair failed (${args.contextLabel}): ${repairMessage}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:157:    return `BM25 repair failed after ${args.contextLabel} for memory ${args.memoryId}: ${repairMessage}`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:287:                    const bm25Warning = repairBm25Document({
+.opencode/skills/system-spec-kit/scripts/extractors/README.md:40:- `git-context-extractor.ts` - Mines git history for captured-session enrichment (spec 013)
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:16:#   L2: +Quality gates, verification - checklist.md
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:231:            echo "    Adds: checklist.md, NFRs, edge cases, effort estimation"
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:1195:           echo "    ✓ +Verify: checklist.md, NFRs, edge cases, effort estimation"
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:1198:           echo "    ✓ +Verify: checklist.md, NFRs, edge cases"
+.opencode/skills/system-spec-kit/scripts/spec/create.sh:1215:    [[ "${DOC_LEVEL/+/}" -ge 2 ]] && echo "    4. Add verification items to checklist.md"
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:131:  autoRepair?: boolean;
+.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:31:  --repair-failures <n>          Fail repair step n times before success
+.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:53:            --repair-failures)
+.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:54:                [[ $# -lt 2 ]] && { echo "ERROR: --repair-failures requires a value" >&2; exit 2; }
+.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh:86:    ops_require_uint "repair_failures" "$REPAIR_FAILURES"
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:103:      // Data integrity: clean stale auto-entities before re-extraction on update
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:20:// Artifact-class routing (spec/plan/tasks/checklist/memory)
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:62:  if (readiness.freshness === 'fresh') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:66:      freshnessAuthority: 'live',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:70:  if (readiness.freshness === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:74:      freshnessAuthority: 'stale',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:81:    freshnessAuthority: 'unknown',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:320:    freshness: 'empty' as const,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:333:    // Non-blocking: continue with potentially stale data
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:453:        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
+.opencode/skills/system-spec-kit/scripts/spec/README.md:40:- `calculate-completeness.sh` - compute checklist completion metrics
+.opencode/skills/system-spec-kit/scripts/spec/README.md:42:- `archive.sh` - archive completed or stale specs
 
 exec
-/bin/zsh -lc "rg -n \"pattern|patterns/|INDEX.md|Current Project State|router|ROUTER.md|AGENTS.md\" .opencode/skill/system-spec-kit .opencode/command .codex/agents .opencode/agent | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"pattern|patterns/|INDEX.md|Current Project State|router|ROUTER.md|AGENTS.md\" .opencode/skills/system-spec-kit .opencode/command .codex/agents .opencode/agent | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .codex/agents/debug.toml:130:3. Identify related patterns in codebase
 .codex/agents/debug.toml:257:| Find similar patterns    | `Grep`                | Glob + Read         |
 .codex/agents/debug.toml:270:    ├─► Find working examples → Grep(similar pattern)
-.opencode/agent/orchestrate.md:93:| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
-.opencode/agent/orchestrate.md:235:| **low**    | Single file, < 50 LOC, no dependencies, well-understood pattern | FAST PATH: Skip ceremony, minimal tool calls, direct output |
-.opencode/agent/orchestrate.md:236:| **medium** | 2-5 files, 50-300 LOC, some dependencies, standard patterns     | Normal workflow with all steps                              |
-.opencode/agent/orchestrate.md:237:| **high**   | 6+ files, 300+ LOC, cross-cutting concerns, novel patterns      | Full process with PDR, verification, evidence               |
-.opencode/agent/orchestrate.md:312:├─ Scope: Build new system using patterns from Task #1
-.opencode/agent/orchestrate.md:326:**Action:** MUST delegate to `@context` first to gather context and patterns.
-.opencode/agent/orchestrate.md:333:   - Spec folder path matches `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
-.opencode/agent/orchestrate.md:343:4. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
-.opencode/agent/orchestrate.md:352:**Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
-.opencode/agent/orchestrate.md:524:2. Re-read AGENTS.md and any project configuration files
-.opencode/agent/orchestrate.md:581:| **Agent dispatches** | **5+**          | **Enforce CWB (§8), use collection patterns (§8)** |
-.opencode/agent/orchestrate.md:657:| Grep search       | 1          | `Grep("pattern")`           |
-.opencode/agent/orchestrate.md:705:| System overhead           | ~25K tokens      | System prompt, AGENTS.md, etc.              |
-.opencode/agent/orchestrate.md:761:- Lost context leads to incorrect assumptions. Stop, re-read AGENTS.md, summarize state, and wait for confirmation before proceeding. See §6 Session Recovery Protocol.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:309:  if (NON_STRUCTURAL_SUPPRESS_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:313:  if (!STRUCTURAL_MISFIRE_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
+.opencode/agents/orchestrate.md:93:| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
+.opencode/agents/orchestrate.md:235:| **low**    | Single file, < 50 LOC, no dependencies, well-understood pattern | FAST PATH: Skip ceremony, minimal tool calls, direct output |
+.opencode/agents/orchestrate.md:236:| **medium** | 2-5 files, 50-300 LOC, some dependencies, standard patterns     | Normal workflow with all steps                              |
+.opencode/agents/orchestrate.md:237:| **high**   | 6+ files, 300+ LOC, cross-cutting concerns, novel patterns      | Full process with PDR, verification, evidence               |
+.opencode/agents/orchestrate.md:312:├─ Scope: Build new system using patterns from Task #1
+.opencode/agents/orchestrate.md:326:**Action:** MUST delegate to `@context` first to gather context and patterns.
+.opencode/agents/orchestrate.md:333:   - Spec folder path matches `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
+.opencode/agents/orchestrate.md:343:4. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
+.opencode/agents/orchestrate.md:352:**Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
+.opencode/agents/orchestrate.md:524:2. Re-read AGENTS.md and any project configuration files
+.opencode/agents/orchestrate.md:581:| **Agent dispatches** | **5+**          | **Enforce CWB (§8), use collection patterns (§8)** |
+.opencode/agents/orchestrate.md:657:| Grep search       | 1          | `Grep("pattern")`           |
+.opencode/agents/orchestrate.md:705:| System overhead           | ~25K tokens      | System prompt, AGENTS.md, etc.              |
+.opencode/agents/orchestrate.md:761:- Lost context leads to incorrect assumptions. Stop, re-read AGENTS.md, summarize state, and wait for confirmation before proceeding. See §6 Session Recovery Protocol.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:309:  if (NON_STRUCTURAL_SUPPRESS_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:313:  if (!STRUCTURAL_MISFIRE_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
 .codex/agents/write.toml:117:- ALL H2 headers match pattern `## N. [emoji] TITLE` with sequential numbering
 .codex/agents/write.toml:197:| **3: ASCII Flowcharts**   | Creating diagrams                 | 7 patterns (linear, decision, parallel, nested, approval, loop, pipeline) → Validate with validate_flowchart.sh | N/A             |
 .codex/agents/write.toml:290:**SELF-VALIDATION**: Re-read all created files before reporting. Compare H2 headers against template (emoji verification). Scan for placeholders: `Grep({ pattern: "\[INSERT|\[TODO|TBD|Coming soon", path: "/path/to/file.md" })`.
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:218:| `SPECKIT_COACTIVATION` | `true` | boolean | Co-activation pattern matching for related memory surfacing. Graduated ON. | `lib/cognitive/co-activation.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:220:| `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` | (built-in) | string | Custom regex pattern for co-activation matching. Validated for safety. | `configs/cognitive.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:221:| `SPECKIT_COGNITIVE_COACTIVATION_FLAGS` | (built-in) | string | Regex flags for the co-activation pattern (e.g., `gi`). Validated. | `configs/cognitive.ts` |
-.opencode/agent/review.md:3:description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
-.opencode/agent/review.md:24:Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
-.opencode/agent/review.md:49:   - Content search: Use `Grep` to find patterns and keywords
-.opencode/agent/review.md:50:   - File discovery: Use `Glob` to locate files by pattern
-.opencode/agent/review.md:52:   - Manual security review: Check for common vulnerability patterns
-.opencode/agent/review.md:85:| `Grep` | Pattern search      | Find code patterns, keywords, TODOs  |
-.opencode/agent/review.md:86:| `Glob` | File discovery      | Locate files by extension or pattern |
-.opencode/agent/review.md:106:| **2: Pre-Commit**      | Local changes (git diff, uncommitted) | Quick validation, pattern compliance, P0 blocker identification          | Commit Readiness Report |
-.opencode/agent/review.md:120:| **Patterns**        | 20     | Project pattern compliance, style guide adherence |
-.opencode/agent/review.md:138:| **P1**   | REQUIRED   | Logic error, pattern violation         | Must fix to pass |
-.opencode/agent/review.md:146:| **Security** (25)        | No vulnerabilities, follows patterns      | Minor exposure, mitigatable | Moderate vulnerabilities                     | Critical (injection, auth bypass)    |
-.opencode/agent/review.md:174:[ ] Follows project initialization patterns
-.opencode/agent/review.md:178:[ ] Event handling follows project patterns
-.opencode/agent/review.md:188:[ ] No N+1 query patterns
-.opencode/agent/review.md:220:After loading `sk-code` baseline, load one overlay skill and apply project-specific patterns:
-.opencode/agent/review.md:224:[ ] Code follows project initialization patterns
-.opencode/agent/review.md:228:[ ] State management follows established patterns
-.opencode/agent/review.md:243:**Output**: pass (bool), score (0-100), breakdown (correctness/security/patterns/maintainability/performance), blockers (P0), required (P1), suggestions (P2), revision_guidance, confidence (HIGH/MEDIUM/LOW)
-.opencode/agent/review.md:249:| **pre_execution**  | Before task starts | Scope validation, pattern check   |
-.opencode/agent/review.md:256:- Report pattern to orchestrator
-.opencode/agent/review.md:291:- Adapt to project-specific patterns when discoverable
-.opencode/agent/review.md:300:- Ignore project patterns in favor of general best practices (when patterns exist)
-.opencode/agent/review.md:309:- Pattern compliance unclear (request pattern documentation)
-.opencode/agent/review.md:323:- Pattern violations cite actual project patterns (not generic claims)
-.opencode/agent/review.md:331:| **P1**   | File:line + pattern reference              |
-.opencode/agent/review.md:376:- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
-.opencode/agent/review.md:418:- Project patterns override general best practices
-.opencode/agent/review.md:420:- Ask for pattern documentation if unclear
-.opencode/agent/review.md:455:│  ├─► Read-only quality, security, and pattern review                    │
-.opencode/agent/review.md:466:│  ├─► 2. Analyze code, risks, and pattern compliance                     │
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:218:| `SPECKIT_COACTIVATION` | `true` | boolean | Co-activation pattern matching for related memory surfacing. Graduated ON. | `lib/cognitive/co-activation.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:220:| `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` | (built-in) | string | Custom regex pattern for co-activation matching. Validated for safety. | `configs/cognitive.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:221:| `SPECKIT_COGNITIVE_COACTIVATION_FLAGS` | (built-in) | string | Regex flags for the co-activation pattern (e.g., `gi`). Validated. | `configs/cognitive.ts` |
+.opencode/agents/review.md:3:description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
+.opencode/agents/review.md:24:Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
+.opencode/agents/review.md:49:   - Content search: Use `Grep` to find patterns and keywords
+.opencode/agents/review.md:50:   - File discovery: Use `Glob` to locate files by pattern
+.opencode/agents/review.md:52:   - Manual security review: Check for common vulnerability patterns
+.opencode/agents/review.md:85:| `Grep` | Pattern search      | Find code patterns, keywords, TODOs  |
+.opencode/agents/review.md:86:| `Glob` | File discovery      | Locate files by extension or pattern |
+.opencode/agents/review.md:106:| **2: Pre-Commit**      | Local changes (git diff, uncommitted) | Quick validation, pattern compliance, P0 blocker identification          | Commit Readiness Report |
+.opencode/agents/review.md:120:| **Patterns**        | 20     | Project pattern compliance, style guide adherence |
+.opencode/agents/review.md:138:| **P1**   | REQUIRED   | Logic error, pattern violation         | Must fix to pass |
+.opencode/agents/review.md:146:| **Security** (25)        | No vulnerabilities, follows patterns      | Minor exposure, mitigatable | Moderate vulnerabilities                     | Critical (injection, auth bypass)    |
+.opencode/agents/review.md:174:[ ] Follows project initialization patterns
+.opencode/agents/review.md:178:[ ] Event handling follows project patterns
+.opencode/agents/review.md:188:[ ] No N+1 query patterns
+.opencode/agents/review.md:220:After loading `sk-code` baseline, load one overlay skill and apply project-specific patterns:
+.opencode/agents/review.md:224:[ ] Code follows project initialization patterns
+.opencode/agents/review.md:228:[ ] State management follows established patterns
+.opencode/agents/review.md:243:**Output**: pass (bool), score (0-100), breakdown (correctness/security/patterns/maintainability/performance), blockers (P0), required (P1), suggestions (P2), revision_guidance, confidence (HIGH/MEDIUM/LOW)
+.opencode/agents/review.md:249:| **pre_execution**  | Before task starts | Scope validation, pattern check   |
+.opencode/agents/review.md:256:- Report pattern to orchestrator
+.opencode/agents/review.md:291:- Adapt to project-specific patterns when discoverable
+.opencode/agents/review.md:300:- Ignore project patterns in favor of general best practices (when patterns exist)
+.opencode/agents/review.md:309:- Pattern compliance unclear (request pattern documentation)
+.opencode/agents/review.md:323:- Pattern violations cite actual project patterns (not generic claims)
+.opencode/agents/review.md:331:| **P1**   | File:line + pattern reference              |
+.opencode/agents/review.md:376:- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
+.opencode/agents/review.md:418:- Project patterns override general best practices
+.opencode/agents/review.md:420:- Ask for pattern documentation if unclear
+.opencode/agents/review.md:455:│  ├─► Read-only quality, security, and pattern review                    │
+.opencode/agents/review.md:466:│  ├─► 2. Analyze code, risks, and pattern compliance                     │
 .codex/agents/orchestrate.toml:100:| 1        | LEAF-only retrieval agent for all codebase exploration, file search, pattern discovery, and context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                       | `"general"`   |
 .codex/agents/orchestrate.toml:175:| @context     | `.codex/agents/context.toml`     | LEAF-only retrieval agent for all codebase exploration, file search, pattern discovery, and context loading |
 .codex/agents/orchestrate.toml:242:| **low**    | Single file, < 50 LOC, no dependencies, well-understood pattern | FAST PATH: Skip ceremony, minimal tool calls, direct output |
@@ -6082,8 +6082,8 @@ exec
 .codex/agents/orchestrate.toml:678:| Grep search       | 1          | `Grep("pattern")`           |
 .codex/agents/orchestrate.toml:726:| System overhead           | ~25K tokens      | System prompt, AGENTS.md, etc.              |
 .codex/agents/orchestrate.toml:785:- Lost context leads to incorrect assumptions. Stop, re-read AGENTS.md, summarize state, and wait for confirmation before proceeding. See §6 Session Recovery Protocol.
-.opencode/agent/deep-research.md:105:| Grep | Find code patterns in codebase | Search for implementation examples |
-.opencode/agent/deep-research.md:227:| Grep | Code pattern search | 1-2 calls |
+.opencode/agents/deep-research.md:105:| Grep | Find code patterns in codebase | Search for implementation examples |
+.opencode/agents/deep-research.md:227:| Grep | Code pattern search | 1-2 calls |
 .codex/agents/deep-research.toml:92:| Grep | Find code patterns in codebase | Search for implementation examples |
 .codex/agents/deep-research.toml:214:| Grep | Code pattern search | 1-2 calls |
 .codex/agents/review.toml:11:Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
@@ -6115,9 +6115,9 @@ exec
 .codex/agents/review.toml:408:- Ask for pattern documentation if unclear
 .codex/agents/review.toml:443:│  ├─► Read-only quality, security, and pattern review                    │
 .codex/agents/review.toml:454:│  ├─► 2. Analyze code, risks, and pattern compliance                     │
-.opencode/agent/debug.md:143:3. Identify related patterns in codebase
-.opencode/agent/debug.md:270:| Find similar patterns    | `Grep`                | Glob + Read         |
-.opencode/agent/debug.md:283:    ├─► Find working examples → Grep(similar pattern)
+.opencode/agents/debug.md:143:3. Identify related patterns in codebase
+.opencode/agents/debug.md:270:| Find similar patterns    | `Grep`                | Glob + Read         |
+.opencode/agents/debug.md:283:    ├─► Find working examples → Grep(similar pattern)
 .codex/agents/deep-review.toml:90:| Grep | Find patterns indicating issues | Search for auth patterns, error handling |
 .codex/agents/deep-review.toml:96:- **Correctness**: Read logic flows, grep for error handling patterns, and test edge cases against observable intent.
 .codex/agents/deep-review.toml:97:- **Security**: Grep for auth patterns, input validation, data exposure, and sensitive state transitions.
@@ -6125,54 +6125,54 @@ exec
 .codex/agents/deep-review.toml:396:- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
 .codex/agents/speckit.toml:36:This agent is typically invoked from **Gate 3 Option B** ("Create new spec folder") or **Gate 3 Option E** ("Phase folder") in AGENTS.md.
 .codex/agents/speckit.toml:54:- Spec folder path doesn't match `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
-.opencode/agent/speckit.md:48:This agent is typically invoked from **Gate 3 Option B** ("Create new spec folder") or **Gate 3 Option E** ("Phase folder") in AGENTS.md.
-.opencode/agent/speckit.md:66:- Spec folder path doesn't match `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
-.opencode/agent/ultra-think.md:80:| `Grep`                  | Pattern search                 | Finding relevant code patterns         |
-.opencode/agent/ultra-think.md:85:| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
-.opencode/agent/ultra-think.md:229:| Integration  | 15%    | Fits existing codebase patterns          | 15=seamless, 10=compatible, 5=minor friction, 0=conflicts |
-.opencode/agent/ultra-think.md:293:- Run identical subagent attempts (the Multi-Think anti-pattern)
-.opencode/agent/ultra-think.md:456:| **Subjective Picking**       | Bias toward familiar patterns, ignores scoring            | Apply the 5-dimension rubric to ALL strategies     |
-.opencode/agent/context.md:27:Read-only context retrieval agent. The **exclusive entry point for ALL exploration tasks** — every codebase search, file discovery, pattern analysis, and context retrieval routes through this agent. Gathers structured Context Packages before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, creates, or deletes files.
-.opencode/agent/context.md:63:| `Glob`                  | Codebase    | File discovery by pattern | Find files matching name/extension   |
-.opencode/agent/context.md:64:| `Grep`                  | Codebase    | Text/code pattern search  | Find keywords, function calls, usage |
-.opencode/agent/context.md:83:    │   └─► Glob → find files by pattern
-.opencode/agent/context.md:86:    │   └─► Grep → search for text patterns
-.opencode/agent/context.md:121:**Tool Sequence**: `memory_match_triggers` → `memory_context(deep)` → `code_graph_status()` → `memory_search(includeContent)` → `code_graph_query/context` for structural questions → `CocoIndex search` (1-3 concept queries) → `Glob` (5-10 patterns) → `Grep` (3-5 patterns) → `Read` (5-8 key files) → spec folder analysis → `memory_list(specFolder)`
-.opencode/agent/context.md:123:**Returns**: Full memory context (prior decisions, patterns, session history), comprehensive file map with dependency relationships, detailed code pattern analysis, spec folder status (documentation state, task completion), related spec folders, cross-references between memory and codebase findings.
-.opencode/agent/context.md:137:**Why First**: Costs almost nothing (~2 tool calls, <5 seconds). Immediately surfaces prior decisions, saved patterns, session context from previous work, and constitutional rules.
-.opencode/agent/context.md:151:- **CocoIndex** — Semantic search for concept-based discovery. Use 1-3 short queries (3-5 words). Examples: `ccc search "authentication middleware"`, `ccc search "error handling patterns"`. Set `refresh_index=false` after first query.
-.opencode/agent/context.md:152:- **Glob** — Cast a wide net for file discovery. Use 5-10 patterns. Examples: `src/**/*auth*`, `**/*.config.*`, `*.md`
-.opencode/agent/context.md:156:**Output**: File map, pattern locations, and summarized key file contents.
-.opencode/agent/context.md:209:[File locations, patterns found, code structure]
-.opencode/agent/context.md:210:- `path/to/file.ext` — [Purpose/relevance, key patterns at lines X-Y]
-.opencode/agent/context.md:212:- Pattern: [Convention or architecture pattern detected]
-.opencode/agent/context.md:215:[Conventions detected, architecture patterns, naming schemes]
-.opencode/agent/context.md:217:- Architecture: [e.g., "middleware pattern, service layer separation"]
-.opencode/agent/context.md:266:| Rule 2: Spec Folder       | New spec folder needed          | Discover patterns for new spec       |
-.opencode/agent/context.md:274:Explore everything related to the authentication system — codebase patterns,
-.opencode/agent/context.md:307:| NEVER claim patterns/findings without a cited source                       | HARD BLOCK  |
-.opencode/agent/context.md:349:| **Implementation Advice**    | Report what exists: "Current pattern uses X at file:line"                             |
-.opencode/agent/context.md:361:When the query intent is semantic (find code by concept, understand implementations, discover patterns), ALWAYS try CocoIndex FIRST before falling back to Grep/Glob:
-.opencode/agent/context.md:434:│  ├─► 3. Discover files/patterns and read key sources                     │
-.opencode/command/create/assets/changelog_template.md:82:**Problem:** {Same pattern...}
-.opencode/command/create/assets/changelog_template.md:84:**Fix:** {Same pattern...}
-.opencode/command/create/assets/create_sk_skill_auto.yaml:43:  principle: "One entrypoint, one router, one quality contract"
-.opencode/command/create/assets/create_sk_skill_auto.yaml:73:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_sk_skill_auto.yaml:125:operation_router:
-.opencode/command/create/assets/create_sk_skill_auto.yaml:148:    - patterns
-.opencode/command/create/assets/create_sk_skill_auto.yaml:326:          workflow: { filename_pattern: "[topic]_workflow.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:327:          patterns: { filename_pattern: "[topic]_patterns.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:328:          debugging: { filename_pattern: "[topic]_debugging.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:329:          tools: { filename_pattern: "[tool]_guide.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:330:          quick_ref: { filename_pattern: "quick_reference.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:341:          template: { filename_pattern: "[topic]_templates.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:342:          lookup: { filename_pattern: "[topic]_lookup.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:343:          example: { filename_pattern: "[topic]_examples.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:344:          guide: { filename_pattern: "[topic]_guide.md" }
-.opencode/command/create/assets/create_sk_skill_auto.yaml:434:    - "Re-run operation router"
-.opencode/command/create/assets/create_sk_skill_auto.yaml:485:  - "Use canonical operation router"
-.opencode/command/create/folder_readme.md:447:- **README operation**: AI-optimized README.md with proper structure, table of contents, and comprehensive documentation following the patterns from SpecKit, Memory System, and Code Environment READMEs.
-.opencode/command/create/folder_readme.md:484:- `.opencode/skill/system-spec-kit/README.md` (SpecKit + Memory pattern)
+.opencode/agents/speckit.md:48:This agent is typically invoked from **Gate 3 Option B** ("Create new spec folder") or **Gate 3 Option E** ("Phase folder") in AGENTS.md.
+.opencode/agents/speckit.md:66:- Spec folder path doesn't match `specs/[###-name]/` or `.opencode/specs/[###-name]/` pattern
+.opencode/agents/ultra-think.md:80:| `Grep`                  | Pattern search                 | Finding relevant code patterns         |
+.opencode/agents/ultra-think.md:85:| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
+.opencode/agents/ultra-think.md:229:| Integration  | 15%    | Fits existing codebase patterns          | 15=seamless, 10=compatible, 5=minor friction, 0=conflicts |
+.opencode/agents/ultra-think.md:293:- Run identical subagent attempts (the Multi-Think anti-pattern)
+.opencode/agents/ultra-think.md:456:| **Subjective Picking**       | Bias toward familiar patterns, ignores scoring            | Apply the 5-dimension rubric to ALL strategies     |
+.opencode/agents/context.md:27:Read-only context retrieval agent. The **exclusive entry point for ALL exploration tasks** — every codebase search, file discovery, pattern analysis, and context retrieval routes through this agent. Gathers structured Context Packages before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, creates, or deletes files.
+.opencode/agents/context.md:63:| `Glob`                  | Codebase    | File discovery by pattern | Find files matching name/extension   |
+.opencode/agents/context.md:64:| `Grep`                  | Codebase    | Text/code pattern search  | Find keywords, function calls, usage |
+.opencode/agents/context.md:83:    │   └─► Glob → find files by pattern
+.opencode/agents/context.md:86:    │   └─► Grep → search for text patterns
+.opencode/agents/context.md:121:**Tool Sequence**: `memory_match_triggers` → `memory_context(deep)` → `code_graph_status()` → `memory_search(includeContent)` → `code_graph_query/context` for structural questions → `CocoIndex search` (1-3 concept queries) → `Glob` (5-10 patterns) → `Grep` (3-5 patterns) → `Read` (5-8 key files) → spec folder analysis → `memory_list(specFolder)`
+.opencode/agents/context.md:123:**Returns**: Full memory context (prior decisions, patterns, session history), comprehensive file map with dependency relationships, detailed code pattern analysis, spec folder status (documentation state, task completion), related spec folders, cross-references between memory and codebase findings.
+.opencode/agents/context.md:137:**Why First**: Costs almost nothing (~2 tool calls, <5 seconds). Immediately surfaces prior decisions, saved patterns, session context from previous work, and constitutional rules.
+.opencode/agents/context.md:151:- **CocoIndex** — Semantic search for concept-based discovery. Use 1-3 short queries (3-5 words). Examples: `ccc search "authentication middleware"`, `ccc search "error handling patterns"`. Set `refresh_index=false` after first query.
+.opencode/agents/context.md:152:- **Glob** — Cast a wide net for file discovery. Use 5-10 patterns. Examples: `src/**/*auth*`, `**/*.config.*`, `*.md`
+.opencode/agents/context.md:156:**Output**: File map, pattern locations, and summarized key file contents.
+.opencode/agents/context.md:209:[File locations, patterns found, code structure]
+.opencode/agents/context.md:210:- `path/to/file.ext` — [Purpose/relevance, key patterns at lines X-Y]
+.opencode/agents/context.md:212:- Pattern: [Convention or architecture pattern detected]
+.opencode/agents/context.md:215:[Conventions detected, architecture patterns, naming schemes]
+.opencode/agents/context.md:217:- Architecture: [e.g., "middleware pattern, service layer separation"]
+.opencode/agents/context.md:266:| Rule 2: Spec Folder       | New spec folder needed          | Discover patterns for new spec       |
+.opencode/agents/context.md:274:Explore everything related to the authentication system — codebase patterns,
+.opencode/agents/context.md:307:| NEVER claim patterns/findings without a cited source                       | HARD BLOCK  |
+.opencode/agents/context.md:349:| **Implementation Advice**    | Report what exists: "Current pattern uses X at file:line"                             |
+.opencode/agents/context.md:361:When the query intent is semantic (find code by concept, understand implementations, discover patterns), ALWAYS try CocoIndex FIRST before falling back to Grep/Glob:
+.opencode/agents/context.md:434:│  ├─► 3. Discover files/patterns and read key sources                     │
+.opencode/commands/create/assets/changelog_template.md:82:**Problem:** {Same pattern...}
+.opencode/commands/create/assets/changelog_template.md:84:**Fix:** {Same pattern...}
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:43:  principle: "One entrypoint, one router, one quality contract"
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:73:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:125:operation_router:
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:148:    - patterns
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:326:          workflow: { filename_pattern: "[topic]_workflow.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:327:          patterns: { filename_pattern: "[topic]_patterns.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:328:          debugging: { filename_pattern: "[topic]_debugging.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:329:          tools: { filename_pattern: "[tool]_guide.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:330:          quick_ref: { filename_pattern: "quick_reference.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:341:          template: { filename_pattern: "[topic]_templates.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:342:          lookup: { filename_pattern: "[topic]_lookup.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:343:          example: { filename_pattern: "[topic]_examples.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:344:          guide: { filename_pattern: "[topic]_guide.md" }
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:434:    - "Re-run operation router"
+.opencode/commands/create/assets/create_sk_skill_auto.yaml:485:  - "Use canonical operation router"
+.opencode/commands/create/folder_readme.md:447:- **README operation**: AI-optimized README.md with proper structure, table of contents, and comprehensive documentation following the patterns from SpecKit, Memory System, and Code Environment READMEs.
+.opencode/commands/create/folder_readme.md:484:- `.opencode/skills/system-spec-kit/README.md` (SpecKit + Memory pattern)
 .codex/agents/context.toml:11:Read-only context retrieval agent. The **exclusive entry point for ALL exploration tasks** — every codebase search, file discovery, pattern analysis, and context retrieval routes through this agent. Gathers structured Context Packages before implementation begins. Executes retrieval directly and NEVER performs nested delegation. NEVER writes, edits, creates, or deletes files.
 .codex/agents/context.toml:31:3. **CODEBASE SCAN** → Glob (5-10 patterns) → Grep (3-5 patterns) → Read (5-8 key files)
 .codex/agents/context.toml:46:| `Glob`                  | Codebase    | File discovery by pattern | Find files matching name/extension   |
@@ -6196,80 +6196,80 @@ exec
 .codex/agents/context.toml:325:| **Implementation Advice**    | Report what exists: "Current pattern uses X at file:line"                             |
 .codex/agents/context.toml:337:When the query intent is semantic (find code by concept, understand implementations, discover patterns), ALWAYS try CocoIndex FIRST before falling back to Grep/Glob:
 .codex/agents/context.toml:410:│  ├─► 3. Discover files/patterns and read key sources                     │
-.opencode/command/create/assets/create_testing_playbook_auto.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_testing_playbook_auto.yaml:132:operation_router:
-.opencode/command/create/assets/create_agent_confirm.yaml:81:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_agent_confirm.yaml:86:  - "Validate Choice: Follow patterns, maintainable"
-.opencode/command/create/assets/create_agent_confirm.yaml:297:      rule_reference: "AGENTS.md Rule 4 — exploration"
-.opencode/command/create/assets/create_agent_confirm.yaml:304:    - "Context Package returns: similar agents, reusable patterns, duplicates"
-.opencode/command/create/assets/create_agent_confirm.yaml:310:    - reusable_patterns: patterns_to_consider
-.opencode/command/create/assets/create_agent_confirm.yaml:334:    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
-.opencode/command/create/assets/create_agent_confirm.yaml:337:      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
-.opencode/command/create/assets/create_agent_confirm.yaml:602:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
-.opencode/command/create/assets/create_agent_confirm.yaml:674:      pattern: "[context-type]-[keywords]-[spec-number]"
-.opencode/command/create/assets/create_agent_confirm.yaml:707:      rationale: "Agent creation captures significant patterns and decisions for future reference"
-.opencode/agent/deep-review.md:101:| Grep | Find patterns indicating issues | Search for auth patterns, error handling |
-.opencode/agent/deep-review.md:107:- **Correctness**: Read logic flows, grep for error handling patterns, and test edge cases against observable intent.
-.opencode/agent/deep-review.md:108:- **Security**: Grep for auth patterns, input validation, data exposure, and sensitive state transitions.
-.opencode/agent/deep-review.md:110:- **Maintainability**: Read for pattern drift, documentation clarity, and ease of safe follow-on changes.
-.opencode/agent/deep-review.md:402:- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:118:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_folder_readme_auto.yaml:123:  - "Validate Choice: Follow patterns, maintainable"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:443:# Points to readme_template.md sections for patterns not embedded here.
-.opencode/command/create/assets/create_folder_readme_auto.yaml:448:  writing_patterns: "readme_template.md §6 (Writing Patterns)"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:452:  before_after_patterns: "readme_template.md §6.4 (Before/After)"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:527:    core_pattern:
-.opencode/command/create/assets/create_folder_readme_auto.yaml:616:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:669:      pattern: "[context-type]-[keywords]-[spec-number]"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:1071:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
-.opencode/command/create/assets/create_folder_readme_auto.yaml:1126:      pattern: "[context-type]-[keywords]-[spec-number]"
-.opencode/agent/write.md:130:- ALL H2 headers match pattern `## N. [emoji] TITLE` with sequential numbering
-.opencode/agent/write.md:210:| **3: ASCII Flowcharts**   | Creating diagrams                 | 7 patterns (linear, decision, parallel, nested, approval, loop, pipeline) → Validate with validate_flowchart.sh | N/A             |
-.opencode/agent/write.md:303:**SELF-VALIDATION**: Re-read all created files before reporting. Compare H2 headers against template (emoji verification). Scan for placeholders: `Grep({ pattern: "\[INSERT|\[TODO|TBD|Coming soon", path: "/path/to/file.md" })`.
+.opencode/commands/create/assets/create_testing_playbook_auto.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_testing_playbook_auto.yaml:132:operation_router:
+.opencode/commands/create/assets/create_agent_confirm.yaml:81:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_agent_confirm.yaml:86:  - "Validate Choice: Follow patterns, maintainable"
+.opencode/commands/create/assets/create_agent_confirm.yaml:297:      rule_reference: "AGENTS.md Rule 4 — exploration"
+.opencode/commands/create/assets/create_agent_confirm.yaml:304:    - "Context Package returns: similar agents, reusable patterns, duplicates"
+.opencode/commands/create/assets/create_agent_confirm.yaml:310:    - reusable_patterns: patterns_to_consider
+.opencode/commands/create/assets/create_agent_confirm.yaml:334:    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
+.opencode/commands/create/assets/create_agent_confirm.yaml:337:      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
+.opencode/commands/create/assets/create_agent_confirm.yaml:602:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+.opencode/commands/create/assets/create_agent_confirm.yaml:674:      pattern: "[context-type]-[keywords]-[spec-number]"
+.opencode/commands/create/assets/create_agent_confirm.yaml:707:      rationale: "Agent creation captures significant patterns and decisions for future reference"
+.opencode/agents/deep-review.md:101:| Grep | Find patterns indicating issues | Search for auth patterns, error handling |
+.opencode/agents/deep-review.md:107:- **Correctness**: Read logic flows, grep for error handling patterns, and test edge cases against observable intent.
+.opencode/agents/deep-review.md:108:- **Security**: Grep for auth patterns, input validation, data exposure, and sensitive state transitions.
+.opencode/agents/deep-review.md:110:- **Maintainability**: Read for pattern drift, documentation clarity, and ease of safe follow-on changes.
+.opencode/agents/deep-review.md:402:- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:118:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:123:  - "Validate Choice: Follow patterns, maintainable"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:443:# Points to readme_template.md sections for patterns not embedded here.
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:448:  writing_patterns: "readme_template.md §6 (Writing Patterns)"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:452:  before_after_patterns: "readme_template.md §6.4 (Before/After)"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:527:    core_pattern:
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:616:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:669:      pattern: "[context-type]-[keywords]-[spec-number]"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:1071:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+.opencode/commands/create/assets/create_folder_readme_auto.yaml:1126:      pattern: "[context-type]-[keywords]-[spec-number]"
+.opencode/agents/write.md:130:- ALL H2 headers match pattern `## N. [emoji] TITLE` with sequential numbering
+.opencode/agents/write.md:210:| **3: ASCII Flowcharts**   | Creating diagrams                 | 7 patterns (linear, decision, parallel, nested, approval, loop, pipeline) → Validate with validate_flowchart.sh | N/A             |
+.opencode/agents/write.md:303:**SELF-VALIDATION**: Re-read all created files before reporting. Compare H2 headers against template (emoji verification). Scan for placeholders: `Grep({ pattern: "\[INSERT|\[TODO|TBD|Coming soon", path: "/path/to/file.md" })`.
 .codex/agents/ultra-think.toml:74:| `Grep`                  | Pattern search                 | Finding relevant code patterns         |
 .codex/agents/ultra-think.toml:79:| `memory_search`         | Hybrid memory search           | Finding prior decisions and patterns   |
 .codex/agents/ultra-think.toml:223:| Integration  | 15%    | Fits existing codebase patterns          | 15=seamless, 10=compatible, 5=minor friction, 0=conflicts |
 .codex/agents/ultra-think.toml:287:- Run identical subagent attempts (the Multi-Think anti-pattern)
 .codex/agents/ultra-think.toml:451:| **Subjective Picking**       | Bias toward familiar patterns, ignores scoring            | Apply the 5-dimension rubric to ALL strategies     |
-.opencode/command/create/assets/create_feature_catalog_confirm.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_feature_catalog_confirm.yaml:146:operation_router:
-.opencode/command/create/assets/create_agent_auto.yaml:80:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_agent_auto.yaml:85:  - "Validate Choice: Follow patterns, maintainable"
-.opencode/command/create/assets/create_agent_auto.yaml:273:      rule_reference: "AGENTS.md Rule 4 — exploration"
-.opencode/command/create/assets/create_agent_auto.yaml:280:    - "Context Package returns: similar agents, reusable patterns, duplicates"
-.opencode/command/create/assets/create_agent_auto.yaml:286:    - reusable_patterns: patterns_to_consider
-.opencode/command/create/assets/create_agent_auto.yaml:301:    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
-.opencode/command/create/assets/create_agent_auto.yaml:304:      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
-.opencode/command/create/assets/create_agent_auto.yaml:530:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
-.opencode/command/create/assets/create_agent_auto.yaml:586:      pattern: "[context-type]-[keywords]-[spec-number]"
-.opencode/command/create/assets/create_agent_auto.yaml:619:      rationale: "Agent creation captures significant patterns and decisions for future reference"
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:24:/** Escape special SQL LIKE pattern characters (% and _) for safe queries */
-.opencode/command/create/testing-playbook.md:185:**Status patterns:**
-.opencode/command/create/testing-playbook.md:370:Recovery loop pattern:
-.opencode/command/create/assets/create_feature_catalog_auto.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_feature_catalog_auto.yaml:132:operation_router:
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:73:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:149:operation_router:
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:162:      - patterns
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:343:          workflow: { filename_pattern: "[topic]_workflow.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:344:          patterns: { filename_pattern: "[topic]_patterns.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:345:          debugging: { filename_pattern: "[topic]_debugging.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:346:          tools: { filename_pattern: "[tool]_guide.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:347:          quick_ref: { filename_pattern: "quick_reference.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:358:          template: { filename_pattern: "[topic]_templates.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:359:          lookup: { filename_pattern: "[topic]_lookup.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:360:          example: { filename_pattern: "[topic]_examples.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:361:          guide: { filename_pattern: "[topic]_guide.md" }
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:480:      - "Re-run operation router"
-.opencode/command/create/assets/create_sk_skill_confirm.yaml:533:    - "Use canonical operation router"
-.opencode/command/create/assets/create_testing_playbook_confirm.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_testing_playbook_confirm.yaml:146:operation_router:
-.opencode/command/create/assets/create_changelog_auto.yaml:81:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
-.opencode/command/create/assets/create_changelog_auto.yaml:167:# Maps file path patterns to changelog component folders.
-.opencode/command/create/assets/create_changelog_auto.yaml:169:# When a changed file matches multiple patterns, use the FIRST match.
-.opencode/command/create/assets/create_changelog_auto.yaml:197:    folder_pattern: "^(\\d+)--(.*)"
-.opencode/command/create/assets/create_changelog_auto.yaml:380:          Run: git log --oneline --since="7 days ago" -- {component_file_patterns}
-.opencode/command/create/assets/create_changelog_auto.yaml:412:          Parse folder names using NN--component-name pattern
+.opencode/commands/create/assets/create_feature_catalog_confirm.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_feature_catalog_confirm.yaml:146:operation_router:
+.opencode/commands/create/assets/create_agent_auto.yaml:80:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_agent_auto.yaml:85:  - "Validate Choice: Follow patterns, maintainable"
+.opencode/commands/create/assets/create_agent_auto.yaml:273:      rule_reference: "AGENTS.md Rule 4 — exploration"
+.opencode/commands/create/assets/create_agent_auto.yaml:280:    - "Context Package returns: similar agents, reusable patterns, duplicates"
+.opencode/commands/create/assets/create_agent_auto.yaml:286:    - reusable_patterns: patterns_to_consider
+.opencode/commands/create/assets/create_agent_auto.yaml:301:    - "Dispatch @speckit for spec.md and plan.md creation (AGENTS.md Rule 5)"
+.opencode/commands/create/assets/create_agent_auto.yaml:304:      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
+.opencode/commands/create/assets/create_agent_auto.yaml:530:      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+.opencode/commands/create/assets/create_agent_auto.yaml:586:      pattern: "[context-type]-[keywords]-[spec-number]"
+.opencode/commands/create/assets/create_agent_auto.yaml:619:      rationale: "Agent creation captures significant patterns and decisions for future reference"
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:24:/** Escape special SQL LIKE pattern characters (% and _) for safe queries */
+.opencode/commands/create/testing-playbook.md:185:**Status patterns:**
+.opencode/commands/create/testing-playbook.md:370:Recovery loop pattern:
+.opencode/commands/create/assets/create_feature_catalog_auto.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_feature_catalog_auto.yaml:132:operation_router:
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:73:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:149:operation_router:
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:162:      - patterns
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:343:          workflow: { filename_pattern: "[topic]_workflow.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:344:          patterns: { filename_pattern: "[topic]_patterns.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:345:          debugging: { filename_pattern: "[topic]_debugging.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:346:          tools: { filename_pattern: "[tool]_guide.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:347:          quick_ref: { filename_pattern: "quick_reference.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:358:          template: { filename_pattern: "[topic]_templates.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:359:          lookup: { filename_pattern: "[topic]_lookup.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:360:          example: { filename_pattern: "[topic]_examples.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:361:          guide: { filename_pattern: "[topic]_guide.md" }
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:480:      - "Re-run operation router"
+.opencode/commands/create/assets/create_sk_skill_confirm.yaml:533:    - "Use canonical operation router"
+.opencode/commands/create/assets/create_testing_playbook_confirm.yaml:70:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_testing_playbook_confirm.yaml:146:operation_router:
+.opencode/commands/create/assets/create_changelog_auto.yaml:81:  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+.opencode/commands/create/assets/create_changelog_auto.yaml:167:# Maps file path patterns to changelog component folders.
+.opencode/commands/create/assets/create_changelog_auto.yaml:169:# When a changed file matches multiple patterns, use the FIRST match.
+.opencode/commands/create/assets/create_changelog_auto.yaml:197:    folder_pattern: "^(\\d+)--(.*)"
+.opencode/commands/create/assets/create_changelog_auto.yaml:380:          Run: git log --oneline --since="7 days ago" -- {component_file_patterns}
+.opencode/commands/create/assets/create_changelog_auto.yaml:412:          Parse folder names using NN--component-name pattern
 
 codex
 I’m at the point where the interesting questions are mostly about boundaries and trust: what Mex treats as authoritative, what it only heuristically infers, and where our current system mixes those layers together. I’m pulling exact line references now so the recommendations stay concrete and don’t drift back into generic “we should add X” territory.
@@ -7376,7 +7376,7 @@ exec
    225	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '223,590p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '223,590p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    223	async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
    224	  const startTime = Date.now();
@@ -7748,7 +7748,7 @@ exec
    590	      embeddingRetry,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '400,610p'; printf '\\n---\\n'; nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '94,360p'; printf '\\n---\\n'; nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts | sed -n '210,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '400,610p'; printf '\\n---\\n'; nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '94,360p'; printf '\\n---\\n'; nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts | sed -n '210,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    400	/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
    401	export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
@@ -7815,10 +7815,10 @@ exec
    462	  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
    463	  const cocoIndex: CocoIndexStatus = {
    464	    available: isCocoIndexAvailable(),
-   465	    binaryPath: '.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc',
+   465	    binaryPath: '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc',
    466	  };
    467	  if (!cocoIndex.available) {
-   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skill/mcp-coco-index/scripts/install.sh`');
+   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skills/mcp-coco-index/scripts/install.sh`');
    469	  }
    470	
    471	  // Phase 027: Structural bootstrap contract for resume surface
@@ -8301,7 +8301,7 @@ exec
    286	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '784,835p'; printf '\\n---\\n'; nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1425,1465p'; printf '\\n---\\n'; nl -ba .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts | sed -n '800,930p'; printf '\\n---\\n'; nl -ba .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '873,1015p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '784,835p'; printf '\\n---\\n'; nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1425,1465p'; printf '\\n---\\n'; nl -ba .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts | sed -n '800,930p'; printf '\\n---\\n'; nl -ba .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '873,1015p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    784	  const resumeAnchors = options.anchors || ['state', 'next-steps', 'summary', 'blockers'];
    785	
@@ -9409,42 +9409,42 @@ GAP ANALYSIS - REFACTORS: Should we refactor or change direction on any existing
 
 ## Findings
 ### Finding 1: We should split our current “health” surface into storage health and knowledge-drift health
-- **Source**: [external/src/drift/index.ts#L17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [external/src/types.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/types.ts#L31), [memory-crud-health.ts#L223](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L223), [memory-crud-health.ts#L382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873)
+- **Source**: [external/src/drift/index.ts#L17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [external/src/types.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/types.ts#L31), [memory-crud-health.ts#L223](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L223), [memory-crud-health.ts#L382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873)
 - **What it does**: Mex runs one explicit drift pipeline: discover scaffold files, extract typed claims, run per-file and cross-file checkers, then emit a single issue set with codes and severities. Our current architecture is split three ways: `memory_health` checks DB/provider/index integrity and auto-repair actions; `post-save-review` checks rendered-memory self-consistency; `validate-memory-quality` checks contamination and quality rules. Those are valuable, but they are not one coherent “knowledge truth” audit plane.
 - **Why it matters for us**: Right now a repo can be “healthy” at the storage layer while still having stale or incomplete operational knowledge. Mex’s strongest architectural lesson is not any single checker, but the separation of “is the store healthy?” from “is the knowledge still true?” We should stop stretching `memory_health` to imply both.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: We should add a separate repo-activity freshness signal instead of overloading session/code-graph freshness
-- **Source**: [external/src/drift/checkers/staleness.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [external/src/git.ts#L10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L10), [session-resume.ts#L437](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L437), [session-snapshot.ts#L210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210), [memory-context.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L784), [memory-context.ts#L1434](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L1434)
+- **Source**: [external/src/drift/checkers/staleness.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [external/src/git.ts#L10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L10), [session-resume.ts#L437](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L437), [session-snapshot.ts#L210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210), [memory-context.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L784), [memory-context.ts#L1434](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L1434)
 - **What it does**: Mex marks scaffold files stale on two axes: elapsed days and commits since last change. Our freshness story today is different: `session_resume` and `session_bootstrap` reason about code-graph freshness, availability, and resume context, while `memory_context` resume mode pulls memory search plus working-memory prompt context. None of those signals answer “has repo reality changed materially since this knowledge artifact was last touched?”
 - **Why it matters for us**: This is a genuine refactor opportunity for our existing freshness model. Code-graph freshness is about structural index currency; session freshness is about conversational continuity. Neither should be treated as a proxy for documentation or memory freshness relative to repo churn.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 3: Our repair architecture should emit structured issue bundles, not just hints plus internal auto-repair actions
-- **Source**: [external/src/sync/brief-builder.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [external/src/sync/brief-builder.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L41), [external/src/sync/index.ts#L29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L29), [memory-crud-health.ts#L419](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L419), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [session-bootstrap.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L94)
+- **Source**: [external/src/sync/brief-builder.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [external/src/sync/brief-builder.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L41), [external/src/sync/index.ts#L29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L29), [memory-crud-health.ts#L419](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L419), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [session-bootstrap.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L94)
 - **What it does**: Mex does not stop at “warning” strings. It groups issues by target file, includes the current file content, the issue list, nearby filesystem evidence, and optional git diff context, then re-runs verification after repair. Our existing repair surfaces are mostly storage-oriented actions like FTS rebuild, trigger cache refresh, orphan cleanup, and generic next-step hints.
 - **Why it matters for us**: This is the deeper architectural version of the earlier repair-packet idea. The refactor is to make our diagnostics produce machine-usable repair context for knowledge surfaces, while keeping low-level auto-repair for storage problems. That would let bootstrap/health tools escalate from “here are hints” to “here is the bounded repair contract.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: We should reject Mex’s heuristic markdown-claim extraction as a primary authority model
-- **Source**: [external/src/drift/claims.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L7), [external/src/drift/claims.ts#L48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L48), [external/src/drift/checkers/command.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L21), [external/src/drift/checkers/dependency.ts#L38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [external/src/drift/checkers/script-coverage.ts#L26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [post-save-review.ts#L862](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L862), [validate-memory-quality.ts#L904](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L904)
+- **Source**: [external/src/drift/claims.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L7), [external/src/drift/claims.ts#L48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L48), [external/src/drift/checkers/command.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L21), [external/src/drift/checkers/dependency.ts#L38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [external/src/drift/checkers/script-coverage.ts#L26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [post-save-review.ts#L862](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L862), [validate-memory-quality.ts#L904](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L904)
 - **What it does**: Mex infers paths from inline code, commands from inline/code blocks, and dependencies from bold text under matching headings. That is clever and cheap, but it is still heuristic parsing of prose. Our current system already has more structured authorities: frontmatter, anchors, spec-folder linkage, and explicit rendered metadata checks.
 - **Why it matters for us**: If we copy Mex’s architecture too literally, we would move our strongest validation surfaces from structured metadata toward prose mining. That would be a step backward for a system that already depends on exact anchors, spec IDs, and render-path consistency.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: If we add a pattern layer, it must be provenance-backed and quality-gated from creation time
-- **Source**: [external/src/pattern/index.ts#L6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L6), [external/src/pattern/index.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L21), [external/src/pattern/index.ts#L58](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L58), [external/ROUTER.md#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/ROUTER.md#L64), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L962](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L962)
+- **Source**: [external/src/pattern/index.ts#L6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L6), [external/src/pattern/index.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L21), [external/src/pattern/index.ts#L58](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L58), [external/ROUTER.md#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/ROUTER.md#L64), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L962](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L962)
 - **What it does**: Mex’s `pattern add` creates a pattern file with placeholders, appends an `INDEX.md` row with `[description]`, and relies on later human/AI cleanup. That matches Mex’s lightweight scaffold philosophy, but it also means the system can knowingly create incomplete artifacts that immediately need another pass.
 - **Why it matters for us**: Earlier iterations already pointed toward a reusable task-pattern layer for Spec Kit Memory. The deeper conclusion here is that we should not copy Mex’s placeholder-first creation model. Our system already has stronger save-time and validation expectations, so any pattern subsystem should inherit those guarantees instead of bypassing them.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 6: A single numeric “knowledge health score” could help operators, but only as a secondary surface
-- **Source**: [external/src/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scoring.ts), [external/src/reporter.ts#L16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L16), [external/src/reporter.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L41), [session-resume.ts#L499](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L499), [session-bootstrap.ts#L219](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219)
+- **Source**: [external/src/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scoring.ts), [external/src/reporter.ts#L16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L16), [external/src/reporter.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L41), [session-resume.ts#L499](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L499), [session-bootstrap.ts#L219](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219)
 - **What it does**: Mex reduces heterogeneous drift into a top-line score and then still shows grouped issues by file. Our current system is richer on certainty labeling (`exact`, `estimated`, `defaulted`, `unknown`) and operational hints, but it lacks one fast “how bad is it?” number for knowledge drift.
 - **Why it matters for us**: This is worth considering, but only after the health split above. A score without a clean issue taxonomy would be noisy. Once storage health and knowledge health are separate, a score could help triage large audits or CI summaries.
 - **Recommendation**: prototype later
@@ -9479,13 +9479,13 @@ GAP ANALYSIS - REFACTORS: Should we refactor or change direction on any existing
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts)
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts)
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
 
 ## Assessment
 - New information ratio: 0.78
@@ -9509,42 +9509,42 @@ GAP ANALYSIS - REFACTORS: Should we refactor or change direction on any existing
 
 ## Findings
 ### Finding 1: We should split our current “health” surface into storage health and knowledge-drift health
-- **Source**: [external/src/drift/index.ts#L17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [external/src/types.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/types.ts#L31), [memory-crud-health.ts#L223](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L223), [memory-crud-health.ts#L382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873)
+- **Source**: [external/src/drift/index.ts#L17](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L17), [external/src/types.ts#L31](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/types.ts#L31), [memory-crud-health.ts#L223](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L223), [memory-crud-health.ts#L382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L382), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L873](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L873)
 - **What it does**: Mex runs one explicit drift pipeline: discover scaffold files, extract typed claims, run per-file and cross-file checkers, then emit a single issue set with codes and severities. Our current architecture is split three ways: `memory_health` checks DB/provider/index integrity and auto-repair actions; `post-save-review` checks rendered-memory self-consistency; `validate-memory-quality` checks contamination and quality rules. Those are valuable, but they are not one coherent “knowledge truth” audit plane.
 - **Why it matters for us**: Right now a repo can be “healthy” at the storage layer while still having stale or incomplete operational knowledge. Mex’s strongest architectural lesson is not any single checker, but the separation of “is the store healthy?” from “is the knowledge still true?” We should stop stretching `memory_health` to imply both.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: We should add a separate repo-activity freshness signal instead of overloading session/code-graph freshness
-- **Source**: [external/src/drift/checkers/staleness.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [external/src/git.ts#L10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L10), [session-resume.ts#L437](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L437), [session-snapshot.ts#L210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210), [memory-context.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L784), [memory-context.ts#L1434](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L1434)
+- **Source**: [external/src/drift/checkers/staleness.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [external/src/git.ts#L10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L10), [session-resume.ts#L437](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L437), [session-snapshot.ts#L210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210), [memory-context.ts#L784](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L784), [memory-context.ts#L1434](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L1434)
 - **What it does**: Mex marks scaffold files stale on two axes: elapsed days and commits since last change. Our freshness story today is different: `session_resume` and `session_bootstrap` reason about code-graph freshness, availability, and resume context, while `memory_context` resume mode pulls memory search plus working-memory prompt context. None of those signals answer “has repo reality changed materially since this knowledge artifact was last touched?”
 - **Why it matters for us**: This is a genuine refactor opportunity for our existing freshness model. Code-graph freshness is about structural index currency; session freshness is about conversational continuity. Neither should be treated as a proxy for documentation or memory freshness relative to repo churn.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 3: Our repair architecture should emit structured issue bundles, not just hints plus internal auto-repair actions
-- **Source**: [external/src/sync/brief-builder.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [external/src/sync/brief-builder.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L41), [external/src/sync/index.ts#L29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L29), [memory-crud-health.ts#L419](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L419), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [session-bootstrap.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L94)
+- **Source**: [external/src/sync/brief-builder.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L7), [external/src/sync/brief-builder.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts#L41), [external/src/sync/index.ts#L29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts#L29), [memory-crud-health.ts#L419](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L419), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [session-bootstrap.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L94)
 - **What it does**: Mex does not stop at “warning” strings. It groups issues by target file, includes the current file content, the issue list, nearby filesystem evidence, and optional git diff context, then re-runs verification after repair. Our existing repair surfaces are mostly storage-oriented actions like FTS rebuild, trigger cache refresh, orphan cleanup, and generic next-step hints.
 - **Why it matters for us**: This is the deeper architectural version of the earlier repair-packet idea. The refactor is to make our diagnostics produce machine-usable repair context for knowledge surfaces, while keeping low-level auto-repair for storage problems. That would let bootstrap/health tools escalate from “here are hints” to “here is the bounded repair contract.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: We should reject Mex’s heuristic markdown-claim extraction as a primary authority model
-- **Source**: [external/src/drift/claims.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L7), [external/src/drift/claims.ts#L48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L48), [external/src/drift/checkers/command.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L21), [external/src/drift/checkers/dependency.ts#L38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [external/src/drift/checkers/script-coverage.ts#L26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [post-save-review.ts#L862](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L862), [validate-memory-quality.ts#L904](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L904)
+- **Source**: [external/src/drift/claims.ts#L7](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L7), [external/src/drift/claims.ts#L48](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts#L48), [external/src/drift/checkers/command.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts#L21), [external/src/drift/checkers/dependency.ts#L38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts#L38), [external/src/drift/checkers/script-coverage.ts#L26](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts#L26), [post-save-review.ts#L862](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L862), [validate-memory-quality.ts#L904](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L904)
 - **What it does**: Mex infers paths from inline code, commands from inline/code blocks, and dependencies from bold text under matching headings. That is clever and cheap, but it is still heuristic parsing of prose. Our current system already has more structured authorities: frontmatter, anchors, spec-folder linkage, and explicit rendered metadata checks.
 - **Why it matters for us**: If we copy Mex’s architecture too literally, we would move our strongest validation surfaces from structured metadata toward prose mining. That would be a step backward for a system that already depends on exact anchors, spec IDs, and render-path consistency.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: If we add a pattern layer, it must be provenance-backed and quality-gated from creation time
-- **Source**: [external/src/pattern/index.ts#L6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L6), [external/src/pattern/index.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L21), [external/src/pattern/index.ts#L58](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L58), [external/ROUTER.md#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/ROUTER.md#L64), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L962](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L962)
+- **Source**: [external/src/pattern/index.ts#L6](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L6), [external/src/pattern/index.ts#L21](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L21), [external/src/pattern/index.ts#L58](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts#L58), [external/ROUTER.md#L64](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/ROUTER.md#L64), [post-save-review.ts#L807](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L807), [validate-memory-quality.ts#L962](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L962)
 - **What it does**: Mex’s `pattern add` creates a pattern file with placeholders, appends an `INDEX.md` row with `[description]`, and relies on later human/AI cleanup. That matches Mex’s lightweight scaffold philosophy, but it also means the system can knowingly create incomplete artifacts that immediately need another pass.
 - **Why it matters for us**: Earlier iterations already pointed toward a reusable task-pattern layer for Spec Kit Memory. The deeper conclusion here is that we should not copy Mex’s placeholder-first creation model. Our system already has stronger save-time and validation expectations, so any pattern subsystem should inherit those guarantees instead of bypassing them.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 6: A single numeric “knowledge health score” could help operators, but only as a secondary surface
-- **Source**: [external/src/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scoring.ts), [external/src/reporter.ts#L16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L16), [external/src/reporter.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L41), [session-resume.ts#L499](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L499), [session-bootstrap.ts#L219](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219)
+- **Source**: [external/src/scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scoring.ts), [external/src/reporter.ts#L16](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L16), [external/src/reporter.ts#L41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/reporter.ts#L41), [session-resume.ts#L499](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L499), [session-bootstrap.ts#L219](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219)
 - **What it does**: Mex reduces heterogeneous drift into a top-line score and then still shows grouped issues by file. Our current system is richer on certainty labeling (`exact`, `estimated`, `defaulted`, `unknown`) and operational hints, but it lacks one fast “how bad is it?” number for knowledge drift.
 - **Why it matters for us**: This is worth considering, but only after the health split above. A score without a clean issue taxonomy would be noisy. Once storage health and knowledge health are separate, a score could help triage large audits or CI summaries.
 - **Recommendation**: prototype later
@@ -9579,13 +9579,13 @@ GAP ANALYSIS - REFACTORS: Should we refactor or change direction on any existing
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts)
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts)
 - [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
 
 ## Assessment
 - New information ratio: 0.78

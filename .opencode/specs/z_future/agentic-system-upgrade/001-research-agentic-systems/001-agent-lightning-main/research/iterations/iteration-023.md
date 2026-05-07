@@ -12,11 +12,11 @@ Yes. Public's memory layer is powerful, but too much of it is exposed as an oper
 I compared Public's four primary memory entrypoints with `resume`/`complete` lifecycle integration, then contrasted that with Agent Lightning's integrated store-and-trainer usage in docs and examples.
 
 ## Evidence
-- Public exposes separate commands for memory save, search, manage, and constitutional learn flows. [SOURCE: .opencode/command/memory/save.md:2-4] [SOURCE: .opencode/command/memory/search.md:2-4] [SOURCE: .opencode/command/memory/manage.md:2-4] [SOURCE: .opencode/command/memory/learn.md:2-4]
-- `memory:search` is not a small read helper; it is a unified knowledge retrieval and analysis surface with epistemic, causal, and evaluation subcommands. [SOURCE: .opencode/command/memory/search.md:53-106]
-- `memory:manage` is likewise an administration surface spanning stats, scan, cleanup, bulk delete, checkpoints, ingest, and shared memory operations. [SOURCE: .opencode/command/memory/manage.md:33-65]
-- `resume` already depends on handover, `session_bootstrap()`, `memory_context()`, `tasks.md`, and `implementation-summary.md` to recover the next safe action. [SOURCE: .opencode/command/spec_kit/resume.md:258-304] [SOURCE: .opencode/command/spec_kit/resume.md:359-407]
-- `complete` already links to `memory:save`, `handover`, and `resume` as adjacent lifecycle actions. [SOURCE: .opencode/command/spec_kit/complete.md:487-491]
+- Public exposes separate commands for memory save, search, manage, and constitutional learn flows. [SOURCE: .opencode/commands/memory/save.md:2-4] [SOURCE: .opencode/commands/memory/search.md:2-4] [SOURCE: .opencode/commands/memory/manage.md:2-4] [SOURCE: .opencode/commands/memory/learn.md:2-4]
+- `memory:search` is not a small read helper; it is a unified knowledge retrieval and analysis surface with epistemic, causal, and evaluation subcommands. [SOURCE: .opencode/commands/memory/search.md:53-106]
+- `memory:manage` is likewise an administration surface spanning stats, scan, cleanup, bulk delete, checkpoints, ingest, and shared memory operations. [SOURCE: .opencode/commands/memory/manage.md:33-65]
+- `resume` already depends on handover, `session_bootstrap()`, `memory_context()`, `tasks.md`, and `implementation-summary.md` to recover the next safe action. [SOURCE: .opencode/commands/spec_kit/resume.md:258-304] [SOURCE: .opencode/commands/spec_kit/resume.md:359-407]
+- `complete` already links to `memory:save`, `handover`, and `resume` as adjacent lifecycle actions. [SOURCE: .opencode/commands/spec_kit/complete.md:487-491]
 - In Agent Lightning, the store is presented as part of the same operating story as the CLI, trainer, and examples, rather than as a separate operator-facing product family. [SOURCE: external/docs/reference/cli.md:59-98] [SOURCE: external/docs/how-to/train-first-agent.md:149-187]
 
 ## Analysis

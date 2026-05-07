@@ -1,6 +1,6 @@
 Directory listing first:
 ```text
-.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/
+.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/
   01-graph-channel-id-fix.md
   02-chunk-collapse-deduplication.md
   03-co-activation-fan-effect-divisor.md

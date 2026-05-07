@@ -32,7 +32,7 @@ I found the generic memory command docs, but not the exact `preflight` syntax ye
   └ 7 lines found
 
 ● Read search.md
-  │ .opencode/command/memory/search.md
+  │ .opencode/commands/memory/search.md
   └ L1:220 (220 lines read)
 
 ● Search (grep)
@@ -81,7 +81,7 @@ I have the command contract now: `preflight <specFolder> <taskId>` maps to `task
 
 ● Search (grep)
   │ "Preflight|task_preflight|knowledgeScore|uncertaintyScore|contextScore" in
-  │ *.md (.opencode/command/memory/search.md,
+  │ *.md (.opencode/commands/memory/search.md,
   │ .claude/skills/system-spec-kit/references/memory,
   │ .claude/skills/system-spec-kit/feature_catalog/06--analysis)
   └ 23 lines found
@@ -97,7 +97,7 @@ I have the command contract now: `preflight <specFolder> <taskId>` maps to `task
   └ L1:220 (220 lines read)
 
 ● Read search.md
-  │ .opencode/command/memory/search.md
+  │ .opencode/commands/memory/search.md
   └ L460:540 (81 lines read)
 
 ● Read epistemic_vectors.md
@@ -113,11 +113,11 @@ I’ve resolved `specs/026/003/005` to the real packet: `specs/system-spec-kit/0
 
 ● Search (grep)
   │ "enforceTokenBudget|fallbackToStructuredBudget" in **/memory-context.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L430:560 (131 lines read)
 
 ● Read plan.md

@@ -72,12 +72,12 @@ Mirror, do not re-coin. Each edit copies wording verbatim or near-verbatim from 
 
 - `AGENTS.md` §3 Documentation Levels — Phase Parent row + Phase Parent Mode block (most comprehensive single source)
 - `CLAUDE.md` §1 Session Start & Recovery — phase-parent branch in fallback ladder
-- `.opencode/skill/system-spec-kit/SKILL.md` Phase Parent Mode paragraph (line ~370)
-- `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md` content-discipline comment block (lines 14–23)
-- `.opencode/command/spec_kit/resume.md` step 3b (pointer-first redirect logic)
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` (already updated for phase-parent redirect)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh` (forbidden-token list + code-fence/HTML-comment skip)
-- `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json` (PHASE_PARENT_CONTENT rule entry)
+- `.opencode/skills/system-spec-kit/SKILL.md` Phase Parent Mode paragraph (line ~370)
+- `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md` content-discipline comment block (lines 14–23)
+- `.opencode/commands/spec_kit/resume.md` step 3b (pointer-first redirect logic)
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` (already updated for phase-parent redirect)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh` (forbidden-token list + code-fence/HTML-comment skip)
+- `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` (PHASE_PARENT_CONTENT rule entry)
 
 ### Edit Scope Per File
 
@@ -125,8 +125,8 @@ LOW (2 files)
 - [ ] T007 [P] Patch `references/intake-contract.md` §1 + §14: phase-parent note + REFERENCE table row pointing to `templates/phase_parent/spec.md`
 - [ ] T008 [P] Patch `references/workflows/quick_reference.md` after line 507: add Phase-Parent Resume Ladder block with pointer-first behavior
 - [ ] T009 [P] Patch `assets/template_mapping.md` Required Templates by Level (around lines 99–104): add Phase Parent block
-- [ ] T010 Patch `.opencode/command/spec_kit/plan.md` `:with-phases` workflow: name `templates/phase_parent/spec.md` as the parent template
-- [ ] T011 Patch `.opencode/command/spec_kit/complete.md` `:with-phases` workflow: same lean-parent statement
+- [ ] T010 Patch `.opencode/commands/spec_kit/plan.md` `:with-phases` workflow: name `templates/phase_parent/spec.md` as the parent template
+- [ ] T011 Patch `.opencode/commands/spec_kit/complete.md` `:with-phases` workflow: same lean-parent statement
 
 ### Phase 3: Verification — Low Clarifications + Final Sweep
 
@@ -134,7 +134,7 @@ LOW (2 files)
 
 - [ ] T012 [P] Patch `references/structure/folder_routing.md`: explicit-target-priority footnote
 - [ ] T013 [P] Patch `references/config/hook_system.md` SessionStart hook description: add phase-parent redirect mention near line 44
-- [ ] T014 Run grep sweeps for stale phrases (SC-001 + SC-002): `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skill/system-spec-kit/references/` should return zero matches
+- [ ] T014 Run grep sweeps for stale phrases (SC-001 + SC-002): `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skills/system-spec-kit/references/` should return zero matches
 - [ ] T015 Run `validate.sh --strict` against `003-references-and-readme-sync/` — confirm L2 contract passes modulo SPEC_DOC_INTEGRITY forward-reference noise
 - [ ] T016 Run `validate.sh --strict` regression on `026-graph-and-context-optimization/` — confirm parent error rules unchanged from current baseline
 - [ ] T017 `/memory:save` against this packet — confirm `010/graph-metadata.json` `derived.last_active_child_id` updates to `.../003-references-and-readme-sync` (dogfood the pointer mechanism)

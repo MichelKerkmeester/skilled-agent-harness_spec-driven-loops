@@ -4,7 +4,7 @@ You are generating Vitest stress tests under spec-kit packet 044. Repository roo
 
 ## Output location
 
-`.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/`
+`.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/`
 
 ## Consolidation guidance
 

@@ -15,7 +15,7 @@ The real missing concept is not only "more provenance", but two different proven
 2. **data provenance**
    - whether the payload is live, cached, imported, rebuilt, or rehomed
 
-Our current system already records the emitting surface and, on the compact-recovery path, a cache marker, but it does not model the second plane in a first-class way. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:33-39`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:108-115`]
+Our current system already records the emitting surface and, on the compact-recovery path, a cache marker, but it does not model the second plane in a first-class way. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:33-39`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:108-115`]
 
 ### Imported State Should Not Be Treated As Ready Until Rebuilt
 
@@ -65,7 +65,7 @@ Our current startup and resume outputs mostly stop at:
 - graph freshness/counts
 - generic next actions
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:91-105`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-87`] [SOURCE: `external/opencode-lcm-master/src/store.ts:3242-3273`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:91-105`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-87`] [SOURCE: `external/opencode-lcm-master/src/store.ts:3242-3273`]
 
 ## Recommendations
 

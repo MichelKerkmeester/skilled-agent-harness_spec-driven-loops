@@ -10,8 +10,8 @@ The external repo will show that lightweight dynamic help and progress surfaces 
 Compared local command documentation and status-oriented surfaces to the external repo's help and progress commands plus user guide framing.
 
 ## Evidence
-- The local command ecosystem is documented through several static READMEs and command documents, which are informative but require manual navigation. [SOURCE: .opencode/command/README.txt:36-60] [SOURCE: .opencode/command/spec_kit/README.txt:41-45] [SOURCE: .opencode/command/memory/README.txt:36-52]
-- Some local status or health capabilities exist, but they are specialized and split across memory management, resume, dashboards, and validator outputs. [SOURCE: .opencode/command/memory/manage.md:33-61] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:113-210]
+- The local command ecosystem is documented through several static READMEs and command documents, which are informative but require manual navigation. [SOURCE: .opencode/commands/README.txt:36-60] [SOURCE: .opencode/commands/spec_kit/README.txt:41-45] [SOURCE: .opencode/commands/memory/README.txt:36-52]
+- Some local status or health capabilities exist, but they are specialized and split across memory management, resume, dashboards, and validator outputs. [SOURCE: .opencode/commands/memory/manage.md:33-61] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:113-210]
 - The external repo exposes dynamic help and progress as first-class commands that explain available workflows and current state in plain language. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/help.md:31-107] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/commands/progress.md:11-60]
 - The external user guide works because those dynamic surfaces complement the static docs instead of forcing users to rely on documentation alone. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/USER_GUIDE.md:26-62]
 
@@ -51,7 +51,7 @@ finding: `system-spec-kit` should add dynamic help, progress, and session-status
 - **Priority:** nice-to-have
 
 ## Counter-evidence sought
-I looked for evidence that the current static docs already provide the same just-in-time guidance, but the existing materials are reference-oriented rather than state-aware. [SOURCE: .opencode/command/README.txt:142-168]
+I looked for evidence that the current static docs already provide the same just-in-time guidance, but the existing materials are reference-oriented rather than state-aware. [SOURCE: .opencode/commands/README.txt:142-168]
 
 ## Follow-up questions for next iteration
 No further iterations remain in Phase 3. The next step is synthesis across all 30 iterations.

@@ -18,11 +18,11 @@ _memory:
     next_safe_action: "Review and commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0260070120050260070120050260070120050260070120050260070120050000"
       session_id: "026-007-012-005-scope-guard"
@@ -87,11 +87,11 @@ Protect populated code graphs from accidental scope replacement by blocking full
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modify | Add `scopeChangePromotionBlocked` and blocked response before the zero-node guard. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Expose `forceScopeChange` on `code_graph_scan`. |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Validate and allow `forceScopeChange`. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modify | Add F-002 scope-change guard regression tests. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modify | Add schema acceptance coverage for `forceScopeChange`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modify | Add `scopeChangePromotionBlocked` and blocked response before the zero-node guard. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Expose `forceScopeChange` on `code_graph_scan`. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Validate and allow `forceScopeChange`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modify | Add F-002 scope-change guard regression tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modify | Add schema acceptance coverage for `forceScopeChange`. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/005-scope-guard/*` | Create | Level 2 packet docs, metadata, ADR, and implementation summary. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/graph-metadata.json` | Modify | Add `005-scope-guard` to `children_ids`. |
 <!-- /ANCHOR:scope -->

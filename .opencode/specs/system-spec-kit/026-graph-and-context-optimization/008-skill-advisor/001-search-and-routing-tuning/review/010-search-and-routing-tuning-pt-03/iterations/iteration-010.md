@@ -12,7 +12,7 @@ Run the closing traceability pass across the packet tree and validation summarie
 ### P2
 
 ## Ruled Out
-- Hidden late-cycle P0 across the reviewed runtime and doc surfaces: the final pass did not surface any data-loss, auth-bypass, or hard-gate defect beyond the already active P1 set. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209`]
+- Hidden late-cycle P0 across the reviewed runtime and doc surfaces: the final pass did not surface any data-loss, auth-bypass, or hard-gate defect beyond the already active P1 set. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:209`]
 - Phase `005-doc-surface-alignment` verification failure: phase `005` remains the only strict-clean child packet in the tree. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/001-search-fusion-tuning/005-doc-surface-alignment/checklist.md:11`]
 
 ## Dead Ends

@@ -51,7 +51,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [x] T001 Create packet folder
 - [x] T002 Author spec.md, plan.md, tasks.md, implementation-summary.md
 - [x] T003 [P] Generate description.json + graph-metadata.json
-- [ ] T004 Pass `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict`
+- [ ] T004 Pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict`
 - [ ] T005 Commit + push scaffold
 <!-- /ANCHOR:phase-1 -->
 

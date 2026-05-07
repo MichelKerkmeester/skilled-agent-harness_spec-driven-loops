@@ -102,18 +102,18 @@ STOP candidate — all 4 dimensions covered. Loop manager should evaluate STOP g
 | `implementation-summary.md` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
 | `tasks.md` | D1 | 1 | 0 P0, 0 P1, 1 P2 | partial |
 | `checklist.md` | D1 | 1 | 0 P0, 0 P1, 2 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | D1 | 1 | 0 P0, 0 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | D1 | 1 | 0 P0, 0 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts` | D1 | 1 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | D1 | 1 | 0 P0, 0 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | D1 | 1 | 0 P0, 0 P1, 0 P2 | partial |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | D1 | 1 | 0 P0, 0 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | D2 | 2 | 0 P0, 1 P1, 1 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts` | D2 | 2 | 0 P0, 0 P1, 2 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | D2 | 2 | 0 P0, 0 P1, 1 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | D2 | 2 | 0 P0, 1 P1, 1 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts` | D2 | 2 | 0 P0, 1 P1, 0 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts` | D2 | 2 | 0 P0, 0 P1, 2 P2 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | D2 | 2 | 0 P0, 0 P1, 1 P2 | partial |
 <!-- MACHINE-OWNED: END -->
 
 ## 16. REVIEW BOUNDARIES

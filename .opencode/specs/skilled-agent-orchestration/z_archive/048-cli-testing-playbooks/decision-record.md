@@ -31,7 +31,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 <!-- ANCHOR:adr-001 -->
@@ -393,7 +393,7 @@ The work could be done either by hand-crafting all root + per-feature files in t
 
 ### Constraints
 
-- The canonical command exists and is documented at `.opencode/command/create/testing-playbook.md`.
+- The canonical command exists and is documented at `.opencode/commands/create/testing-playbook.md`.
 - Hand-craft and dispatch produce the same shipped contract output.
 - Hand-craft drifts faster than the command if templates change.
 

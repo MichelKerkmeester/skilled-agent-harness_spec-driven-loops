@@ -79,10 +79,10 @@ Conduct thorough quality review of Spec 073 implementation through parallel rese
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Version bump, documentation updates |
-| `.opencode/skill/system-spec-kit/templates/**/*.md` | Modify | Template refinements |
-| `.opencode/skill/system-spec-kit/references/templates/*.md` | Modify | Updated path references |
-| `.opencode/skill/system-spec-kit/assets/*.md` | Modify | Enhanced guidance |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Version bump, documentation updates |
+| `.opencode/skills/system-spec-kit/templates/**/*.md` | Modify | Template refinements |
+| `.opencode/skills/system-spec-kit/references/templates/*.md` | Modify | Updated path references |
+| `.opencode/skills/system-spec-kit/assets/*.md` | Modify | Enhanced guidance |
 | `specs/074-*/analysis.md` | Create | Comprehensive analysis document |
 | `specs/074-*/review.md` | Create | Quality assessment document |
 | `specs/074-*/refinement-recommendations.md` | Create | Actionable recommendations |

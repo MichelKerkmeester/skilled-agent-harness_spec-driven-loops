@@ -36,9 +36,9 @@
       "checklist.md",
       "description.json",
       "graph-metadata.json",
-      ".opencode/skill/deep-review",
-      ".opencode/skill/deep-research",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      ".opencode/skills/deep-review",
+      ".opencode/skills/deep-research",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     ],
     "entities": [
       "deep-review",

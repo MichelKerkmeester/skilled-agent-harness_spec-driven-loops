@@ -32,7 +32,7 @@ contextType: "implementation"
 
 ## P0 — Core SKILL.md + References
 
-- [x] CHK-001 [P0] `.opencode/skill/system-spec-kit/SKILL.md` version and features verified [Evidence: Agent A10 updated with post-spec126 hardening coverage]
+- [x] CHK-001 [P0] `.opencode/skills/system-spec-kit/SKILL.md` version and features verified [Evidence: Agent A10 updated with post-spec126 hardening coverage]
 - [x] CHK-002 [P0] `references/memory/memory_system.md` — 5 sources, 7 intents, schema v13 [Evidence: Agent A11 updated baseline wording and hardening notes]
 - [x] CHK-003 [P0] `references/memory/readme_indexing.md` — 5-source pipeline [Evidence: Agent A11 updated source naming and schema v13 notes]
 - [x] CHK-004 [P0] `references/memory/save_workflow.md` — spec docs row present [Evidence: Agent A11 updated to show all 5 indexed sources]

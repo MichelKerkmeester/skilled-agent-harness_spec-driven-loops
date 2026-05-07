@@ -72,7 +72,7 @@ contextType: "implementation"
 | File | Changes |
 |------|---------|
 | `AGENTS.md` | Gate 5 expanded with PRE-SAVE VALIDATION section |
-| `.opencode/command/memory/save.md` | Added Phase 1B: Content Alignment Check |
+| `.opencode/commands/memory/save.md` | Added Phase 1B: Content Alignment Check |
 | `.opencode/skills/system-memory/scripts/generate-context.js` | Added `validateFolderAlignment()`, `WARNING_THRESHOLD` config |
 
 ### Key Thresholds (ALIGNMENT_CONFIG)

@@ -21,18 +21,18 @@
       ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md"
     ],
     "code_paths": [
-      ".opencode/skill/system-spec-kit/shared/package.json",
-      ".opencode/skill/system-spec-kit/shared/tsconfig.json",
-      ".opencode/skill/system-spec-kit/shared/**/*.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
-      ".opencode/skill/system-spec-kit/mcp_server/tsconfig.json",
-      ".opencode/skill/system-spec-kit/mcp_server/**/*.ts",
-      ".opencode/skill/system-spec-kit/scripts/**/*.ts"
+      ".opencode/skills/system-spec-kit/shared/package.json",
+      ".opencode/skills/system-spec-kit/shared/tsconfig.json",
+      ".opencode/skills/system-spec-kit/shared/**/*.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
+      ".opencode/skills/system-spec-kit/mcp_server/**/*.ts",
+      ".opencode/skills/system-spec-kit/scripts/**/*.ts"
     ],
     "test_paths": [
-      ".opencode/skill/system-spec-kit/mcp_server/tests/**/*.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/**/*.vitest.ts",
-      ".opencode/skill/system-spec-kit/shared/**/*.test.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/**/*.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/**/*.vitest.ts",
+      ".opencode/skills/system-spec-kit/shared/**/*.test.ts"
     ]
   },
   "severityThreshold": "P2",

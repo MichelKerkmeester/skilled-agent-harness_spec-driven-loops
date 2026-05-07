@@ -57,7 +57,7 @@ _memory:
 - [x] T006 Remove stale Codex startup acceptance language and keep `session_bootstrap` as the recovery path (`spec.md:77`, `decision-record.md:100`, `implementation-summary.md:43`).
 - [x] T007 Add OpenCode plugin diagnostic for absent or unparsable transport plan (`.opencode/plugins/spec-kit-compact-code-graph.js:145`, `.opencode/plugins/spec-kit-compact-code-graph.js:170`, `.opencode/plugins/spec-kit-compact-code-graph.js:237`).
 - [x] T008 Confirm bridge stderr diagnostic for missing `opencodeTransport` remains active (`.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs:89`, `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs:93`, `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs:96`).
-- [x] T009 Add vitest coverage for the diagnostic path (`.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:254`, `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:267`, `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:271`).
+- [x] T009 Add vitest coverage for the diagnostic path (`.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:254`, `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:267`, `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:271`).
 - [x] T010 Refresh continuity and graph metadata for parent 009 and children 001, 002, 003 (`../implementation-summary.md:12`, `../../008-skill-advisor/007-skill-advisor-hook-surface/implementation-summary.md:13`, `../../008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/implementation-summary.md:12`, `implementation-summary.md:12`, `../graph-metadata.json:71`).
 <!-- /ANCHOR:phase-2 -->
 
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 `cd .opencode/skill/system-spec-kit/mcp_server && npm run typecheck` exits 0 (`../review/remediation-summary.md:18`).
-- [x] T012 `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` exits 0 (`../review/remediation-summary.md:21`).
+- [x] T011 `cd .opencode/skills/system-spec-kit/mcp_server && npm run typecheck` exits 0 (`../review/remediation-summary.md:18`).
+- [x] T012 `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` exits 0 (`../review/remediation-summary.md:21`).
 - [x] T013 Targeted vitest command exits 0 for `tests/opencode-plugin.vitest.ts` and `tests/session-resume.vitest.ts` (`../review/remediation-summary.md:24`).
 - [x] T014 Strict validation exits 0 for Phase 003 (`../review/remediation-summary.md:29`).
 - [x] T015 Strict validation exits 0 for parent 009, child 001, and child 002 (`../review/remediation-summary.md:34`, `../review/remediation-summary.md:39`, `../review/remediation-summary.md:44`).

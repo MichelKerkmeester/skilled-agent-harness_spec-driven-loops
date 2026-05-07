@@ -146,9 +146,9 @@ Make fix remediations prove breadth up front:
 
 ### Dependencies
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
 - `review/iterations/iteration-005.md`
 <!-- /ANCHOR:risks -->
 

@@ -2,7 +2,7 @@
 
 I’m mapping the eval subsystem first, then I’ll audit the statistical logic and architecture boundaries for concrete findings.
 
-● List directory .opencode/skill/system-spec-kit/mcp_server/lib/eval
+● List directory .opencode/skills/system-spec-kit/mcp_server/lib/eval
   └ 18 files found
 
 ● Read security_checklist.md
@@ -18,7 +18,7 @@ I’m mapping the eval subsystem first, then I’ll audit the statistical logic 
   └ 162 lines read
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/evals/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/evals/*.ts"
   └ 18 files found
 
 ● Create session plan file (shell)
@@ -30,32 +30,32 @@ I’m mapping the eval subsystem first, then I’ll audit the statistical logic 
 
 I’ve got the file inventory. Next I’m checking import boundaries, dataset locations, and whether scripts duplicate the MCP-side eval implementations.
 
-● List directory .opencode/skill/system-spec-kit/mcp_server/lib/eval/data
+● List directory .opencode/skills/system-spec-kit/mcp_server/lib/eval/data
   └ 1 file found
 
 ● Search (grep)
   │ "ground.?truth|ablation|bm25|shadow|dashboard|benchmark" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/evals)
+  │ (.opencode/skills/system-spec-kit/scripts/evals)
   └ 43 lines found
 
 ● Search (grep)
-  │ "lib/eval|eval/" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ "lib/eval|eval/" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 79 lines found
 
 ● Search (grep)
   │ "SPECKIT_ABLATION|eval_metric_snapshots|ground_truth_queries|ground_truth_results|shadow" in
-  │ **/*.{ts,json,md,sql} (.opencode/skill/system-spec-kit)
+  │ **/*.{ts,json,md,sql} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Explore Exploring eval architecture
   │ Check quality proxy constants (shell)
   │   │ cd "/Users/michelkerkmeester/MEGA/Development/Opencode
-  │   │ Env/Public/.opencode/skill/system-spec-kit" && grep -n "const.*="
+  │   │ Env/Public/.opencode/skills/system-spec-kit" && grep -n "const.*="
   │   │ mcp_server/lib/eval/eval-quality-proxy.ts | head -20
   │   └ 12 lines...
   └ Find hardcoded thresholds (shell)
       │ cd "/Users/michelkerkmeester/MEGA/Development/Opencode
-      │ Env/Public/.opencode/skill/system-spec-kit" && grep -n
+      │ Env/Public/.opencode/skills/system-spec-kit" && grep -n
       │ "HIGH_MRR_THRESHOLD\|DENSE_THRESHOLD\|MODERATE_THRESHOLD" mcp_server/lib/eval/*.ts
       └ 12 lines...
 
@@ -63,23 +63,23 @@ I’ve confirmed eval hooks are on live handler paths, so I’m now drilling int
 
 ● Search (grep)
   │ "^(export\s+)?(async\s+)?function\s|^export\s+(const|class|type|interface)\s" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/eval)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/eval)
   └ 5 lines found
 
 ● Search (grep)
   │ "from '../lib/eval|from '../../mcp_server/lib/eval|initEvalDb|getEvalDb|closeEvalDb|recordMetric
   │ Snapshot|loadGroundTruth|runAblation|runBm25" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/evals)
+  │ (.opencode/skills/system-spec-kit/scripts/evals)
   └ 10 lines found
 
 ● Search (grep)
   │ "GROUND_TRUTH|groundTruth|relevance|MRR|NDCG|precision|recall|DCG|confidence|p95|median|percenti
-  │ le|variance|std|wilson|bootstrap" in *.ts (.opencode/skill/system-spec-kit/mcp_server/lib/eval)
+  │ le|variance|std|wilson|bootstrap" in *.ts (.opencode/skills/system-spec-kit/mcp_server/lib/eval)
   └ 5 lines found
 
 ● Get eval file line counts (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval' && wc -l *.ts
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval' && wc -l *.ts
   │ data/ground-truth.json
   └ 19 lines...
 
@@ -98,158 +98,158 @@ I’ve confirmed eval hooks are on live handler paths, so I’m now drilling int
 I found one important nuance: eval code is not fully isolated from runtime. Some handler paths call eval logging/feedback directly, so I’m verifying whether those hooks are properly gated and cheap enough.
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1:220 (220 lines read)
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L1:180 (180 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:220 (219 lines read)
 
 ● Read eval-db.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts
   └ L1:220 (195 lines read)
 
 ● Read eval-logger.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts
   └ L1:260 (252 lines read)
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L1:120 (120 lines read)
 
 ● Read eval-metrics.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
   └ L1:260 (260 lines read)
 
 ● Read eval-metrics.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
   └ L261:620 (345 lines read)
 
 ● Read ground-truth-data.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts
   └ L1:140 (78 lines read)
 
 ● Read ground-truth-feedback.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
   └ L1:220 (220 lines read)
 
 ● Read ground-truth-generator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
   └ L1:220 (220 lines read)
 
 ● Read ground-truth.json
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json
   └ L1:180 (180 lines read)
 
 ● Read ground-truth-feedback.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
   └ L220:560 (333 lines read)
 
 ● Read ablation-framework.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
   └ L281:620 (340 lines read)
 
 ● Read ablation-framework.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
   └ L1:280 (280 lines read)
 
 ● Read ablation-framework.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
   └ L621:820 (152 lines read)
 
 ● Read bm25-baseline.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
   └ L261:620 (344 lines read)
 
 ● Read bm25-baseline.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
   └ L1:260 (260 lines read)
 
 ● Read shadow-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
   └ L1:260 (260 lines read)
 
 ● Read k-value-analysis.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts
   └ L1:240 (208 lines read)
 
 ● Read reporting-dashboard.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
   └ L1:280 (280 lines read)
 
 ● Read shadow-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts
   └ L261:520 (184 lines read)
 
 ● Read eval-quality-proxy.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts
   └ L1:240 (214 lines read)
 
 ● Read reporting-dashboard.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts
   └ L281:720 (381 lines read)
 
 I’m on the script side now. The key question there is whether the scripts are just thin runners over the MCP eval lib or whether they fork behavior and become a maintenance burden.
 
 ● Read run-ablation.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts
   └ L1:240 (179 lines read)
 
 ● Read run-bm25-baseline.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/run-bm25-baseline.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts
   └ L1:220 (184 lines read)
 
 ● Read map-ground-truth-ids.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
   └ L1:260 (260 lines read)
 
 ● Read run-performance-benchmarks.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/run-performance-benchmarks.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/run-performance-benchmarks.ts
   └ L1:220 (220 lines read)
 
 ● Read check-architecture-boundaries.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts
   └ L1:220 (220 lines read)
 
 ● Read deleted-phase3-telemetry-dashboard-script
-  │ .opencode/skill/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
+  │ .opencode/skills/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
   └ L1:240 (240 lines read)
 
 ● Read memory-state-baseline.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts
   └ L1:260 (224 lines read)
 
 ● Read edge-density.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/edge-density.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/edge-density.ts
   └ L1:240 (213 lines read)
 
 ● Read eval-ceiling.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts
   └ L241:460 (170 lines read)
 
 ● Read eval-ceiling.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-ceiling.ts
   └ L1:240 (240 lines read)
 
 ● Read channel-attribution.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
   └ L1:280 (252 lines read)
 
 ● Read eval.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/api/eval.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/api/eval.ts
   └ L1:200 (30 lines read)
 
 ● Read check-no-mcp-lib-imports.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "run-performance-benchmarks|allowlist|expiry|2026-06-04|@spec-kit/mcp-server/lib" in
-  │ *.{ts,json,md} (.opencode/skill/system-spec-kit/scripts/evals)
+  │ *.{ts,json,md} (.opencode/skills/system-spec-kit/scripts/evals)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774015100398-obdl80.txt
@@ -257,26 +257,26 @@ I’m on the script side now. The key question there is whether the scripts are 
   └ L1:160 (97 lines read)
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/evals/*allowlist*.json"
+  │ ".opencode/skills/system-spec-kit/scripts/evals/*allowlist*.json"
   └ 1 file found
 
 ● Read import-policy-allowlist.json
-  │ .opencode/skill/system-spec-kit/scripts/evals/import-policy-allowlist.json
+  │ .opencode/skills/system-spec-kit/scripts/evals/import-policy-allowlist.json
   └ L1:120 (55 lines read)
 
 ● Search (grep)
   │ "logSearchQuery|logChannelResult|logFinalResult|recordUserSelection" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 13 lines found
 
 ● Search (grep)
   │ "compareShadowResults|getShadowStats|runShadowScoring" in **/*.{ts,md}
-  │ (.opencode/skill/system-spec-kit)
+  │ (.opencode/skills/system-spec-kit)
   └ 46 lines found
 
 ● Search (grep)
   │ "computeQualityProxy|computeCeilingFromGroundTruth|analyzeKValueSensitivity|measureEdgeDensity|g
-  │ etChannelAttribution" in **/*.{ts,md} (.opencode/skill/system-spec-kit)
+  │ etChannelAttribution" in **/*.{ts,md} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774015125202-acjvsh.txt
@@ -286,112 +286,112 @@ I’m on the script side now. The key question there is whether the scripts are 
 I found a potentially important split-brain issue: the “quality proxy” exists both as an eval module and as separate logic inside retrieval telemetry. I’m verifying whether they’re actually the same metric or drifting copies.
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L820:1240 (421 lines read)
 
 ● Read retrieval-telemetry.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
   └ L460:540 (81 lines read)
 
 ● Read retrieval-telemetry.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
   └ L260:340 (81 lines read)
 
 ● Search (grep)
-  │ "baselineRunId" (.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts)
+  │ "baselineRunId" (.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts)
   └ 1 line found
 
 ● Search (grep)
-  │ "computeQualityProxy\(" in **/*.ts (.opencode/skill/system-spec-kit)
+  │ "computeQualityProxy\(" in **/*.ts (.opencode/skills/system-spec-kit)
   └ 21 lines found
 
 ● Search (grep)
   │ "computeQualityProxy\(|DEFAULT_LATENCY_TARGET_MS|WEIGHTS"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "QUALITY_PROXY_COUNT_SATURATION_THRESHOLD|QUALITY_PROXY_LATENCY_CEILING_MS"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts)
   └ 7 lines found
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md
   └ L1:220 (152 lines read)
 
 ● Search (grep)
   │ "reporting-dashboard|eval-metrics|ground-truth-feedback|ablation-framework|bm25-baseline|shadow-
-  │ scoring" in *.vitest.ts (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ scoring" in *.vitest.ts (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 14 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/mcp_server/tests/*{eval,ablation,bm25,ground-truth,shadow,edge-
+  │ ".opencode/skills/system-spec-kit/mcp_server/tests/*{eval,ablation,bm25,ground-truth,shadow,edge-
   │ density,channel,ceiling,reporting}*.vitest.ts"
   └ 32 files found
 
 I’ve got enough static evidence for the architecture, but I’m doing one more pass through the existing eval tests so I can tell you whether the subsystem is merely well-designed on paper or actually exercised.
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/mcp_server/package.json
+  │ .opencode/skills/system-spec-kit/mcp_server/package.json
   └ L1:120 (59 lines read)
 
 ● Run eval-focused vitest suite (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/mcp_server' && npx vitest run
+  │ Env/Public/.opencode/skills/system-spec-kit/mcp_server' && npx vitest run
   │ tests/eval-metrics.vitest.ts tests/bm25-baseline.vitest.ts tests/ablation-framework.vitest.ts
   │ tests/reporting-dashboard.vitest.ts tests/ground-truth.vitest.ts
   │ tests/ground-truth-feedback.vitest.ts tests/ceiling-quality.vitest.ts tests/channel.vitest.ts …
   └ 20 lines...
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/scripts/evals/README.md
+  │ .opencode/skills/system-spec-kit/scripts/evals/README.md
   └ L1:180 (87 lines read)
 
 ● Search (grep)
   │ "shadow|telemetry dashboard|reporting dashboard|ablation|BM25 baseline|ground truth" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/evals)
+  │ (.opencode/skills/system-spec-kit/scripts/evals)
   └ 18 lines found
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L360:440 (81 lines read)
 
 ● Search (grep)
   │ "ground-truth.json|groundTruthData|ground-truth-data.ts"
-  │ (.opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts)
   └ 2 lines found
 
 ● Search (grep)
-  │ "useTrigger" in **/*.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "useTrigger" in **/*.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 8 lines found
 
 ● Read eval-reporting.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts
   └ L60:130 (71 lines read)
 
 ● Search (grep)
-  │ "hybridSearchEnhanced\(" in **/*.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ "hybridSearchEnhanced\(" in **/*.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 76 lines found
 
 ● Read eval-reporting.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts
   └ L84:98 (15 lines read)
 
 ● Read run-ablation.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts
   └ L108:128 (21 lines read)
 
 ● Read retrieval-telemetry.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
   └ L35:50 (16 lines read)
 
 ● Read deleted-phase3-telemetry-dashboard-script
-  │ .opencode/skill/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
+  │ .opencode/skills/system-spec-kit/scripts/evals/deleted-phase3-telemetry-dashboard-script
   └ L95:160 (66 lines read)
 
 ● Search (grep)
   │ "runShadowScoring|compareShadowResults|logShadowComparison|getShadowStats" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/evals)
+  │ (.opencode/skills/system-spec-kit/scripts/evals)
   └ No matches found
 
 ## Assessment

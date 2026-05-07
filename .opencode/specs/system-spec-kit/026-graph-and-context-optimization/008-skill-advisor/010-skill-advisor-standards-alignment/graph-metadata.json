@@ -44,8 +44,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/plugins/spec-kit-skill-advisor.js",
-      ".opencode/skill/sk-code-opencode/references/javascript/quality_standards.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md",
+      ".opencode/skills/sk-code-opencode/references/javascript/quality_standards.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
       ".opencode/plugins/spec-kit-compact-code-graph.js",
       "implementation-summary.md",
       "spec.md",
@@ -62,13 +62,13 @@
       {
         "name": "quality_standards.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/references/javascript/quality_standards.md",
+        "path": ".opencode/skills/sk-code-opencode/references/javascript/quality_standards.md",
         "source": "derived"
       },
       {
         "name": "javascript_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
         "source": "derived"
       },
       {

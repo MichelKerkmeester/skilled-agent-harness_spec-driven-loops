@@ -49,8 +49,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read resource-map template (`.opencode/skill/system-spec-kit/templates/resource-map.md`)
-- [x] T002 Read evergreen packet-ID rule (`.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md`)
+- [x] T001 Read resource-map template (`.opencode/skills/system-spec-kit/templates/resource-map.md`)
+- [x] T002 Read evergreen packet-ID rule (`.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md`)
 - [x] T003 [P] Read reference resource map (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/resource-map.md`)
 <!-- /ANCHOR:phase-1 -->
 

@@ -23,9 +23,9 @@
     ".opencode/specs/skilled-agent-orchestration/056-sk-code-fullstack-branch/tasks.md",
     ".opencode/specs/skilled-agent-orchestration/056-sk-code-fullstack-branch/checklist.md",
     ".opencode/specs/skilled-agent-orchestration/056-sk-code-fullstack-branch/implementation-summary.md",
-    ".opencode/skill/sk-code/SKILL.md",
-    ".opencode/skill/sk-code/references/router/cross_stack_pairing.md",
-    ".opencode/skill/sk-code/changelog/v1.3.0.0.md"
+    ".opencode/skills/sk-code/SKILL.md",
+    ".opencode/skills/sk-code/references/router/cross_stack_pairing.md",
+    ".opencode/skills/sk-code/changelog/v1.3.0.0.md"
   ],
   "specFolder": "skilled-agent-orchestration/056-sk-code-fullstack-branch",
   "description": "Feature Specification: sk-code multi-stack scaffolding",

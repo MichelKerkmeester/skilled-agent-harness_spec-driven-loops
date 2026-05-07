@@ -68,10 +68,10 @@ Manual verification and runtime testing included in acceptance criteria.
 ```
 
 ### Path Conventions
-- **MCP Server**: `.opencode/skill/system-spec-kit/mcp-server/src/`
-- **Scripts**: `.opencode/skill/system-spec-kit/scripts/`
-- **Commands**: `.opencode/command/spec_kit/*.md` and `.opencode/command/memory/*.md`
-- **Documentation**: `.opencode/skill/system-spec-kit/SKILL.md`
+- **MCP Server**: `.opencode/skills/system-spec-kit/mcp-server/src/`
+- **Scripts**: `.opencode/skills/system-spec-kit/scripts/`
+- **Commands**: `.opencode/commands/spec_kit/*.md` and `.opencode/commands/memory/*.md`
+- **Documentation**: `.opencode/skills/system-spec-kit/SKILL.md`
 
 ---
 
@@ -105,7 +105,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-01 (analysis.md#cb-01-function-redefinition-shadow-bug)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Locate duplicate function definition at line 1111
@@ -131,7 +131,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-03 (analysis.md#cb-03-missing-database-column-last_accessed_at)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Find all references to `last_accessed_at` in codebase
@@ -155,7 +155,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-02 (analysis.md#cb-02-missing-database-column-related_memories)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Locate `linkRelatedOnSave()` function
@@ -179,8 +179,8 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-05 (analysis.md#cb-05-missing-verifyintegritywithpaths-function)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Locate call to `verifyIntegrityWithPaths()` at line 1696
@@ -205,7 +205,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MEM-01 (analysis.md#mem-01)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.js`
+  - `.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.js`
 
 **Steps:**
 - [ ] Analyze why extraction fails on generated (non-human) content
@@ -230,7 +230,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-06 (analysis.md#cb-06-embedding-loss-during-restore)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/checkpoints.js`
 
 **Steps:**
 - [ ] Modify `createCheckpoint` to query `vec_memories` table
@@ -257,7 +257,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** SR-01 (analysis.md#sr-01)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] Locate `handleMemorySearch` function at line 652
@@ -291,9 +291,9 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-07, SK-01 (analysis.md#cb-07-gate-numbering-inconsistency)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md`
-  - `.opencode/command/spec_kit/*.md`
-  - `.opencode/command/memory/*.md`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
+  - `.opencode/commands/spec_kit/*.md`
+  - `.opencode/commands/memory/*.md`
   - `AGENTS.md`
 
 **Steps:**
@@ -319,7 +319,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CMD-01 (analysis.md#cmd-01)
 - **Files:**
-  - `.opencode/command/spec_kit/complete.md`
+  - `.opencode/commands/spec_kit/complete.md`
 
 **Steps:**
 - [ ] Find "13-step workflow" references
@@ -344,7 +344,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Requirement:** INT-02 (analysis.md#int-02)
 - **Files:**
   - `AGENTS.md`
-  - `.opencode/skill/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Steps:**
 - [ ] Compare Level 1 requirements in both files
@@ -369,7 +369,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Requirement:** INT-03 (analysis.md#int-03)
 - **Files:**
   - Database queries
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Query for files with `importanceTier='constitutional'` in DB
@@ -393,7 +393,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** DB-11 (analysis.md#db-11)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Locate cache implementation at line 2158 (approx)
@@ -417,7 +417,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MEM-02 (analysis.md#mem-02)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] In `handleMemoryIndexScan`, get stored content hash from DB
@@ -441,8 +441,8 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MCP-06 (analysis.md#mcp-06)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/trigger-matcher.js`
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/trigger-matcher.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] Locate memory save/update/delete handlers in context-server.js
@@ -466,7 +466,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** VAL-01, VAL-13 (analysis.md#val-01)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
 
 **Steps:**
 - [ ] Locate `implementation-summary.md` check at line 29
@@ -500,7 +500,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** DB-01, DB-04 (analysis.md#db-01)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/vector-index.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/vector-index.js`
 
 **Steps:**
 - [ ] Add index on `file_path` column
@@ -524,7 +524,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** Cross-cutting concern (analysis.md#2-error-handling-patterns)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/*.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/*.js`
 
 **Steps:**
 - [ ] Audit silent failures (8+ locations identified)
@@ -548,7 +548,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MCP-07 (analysis.md#mcp-07)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/hybrid-search.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/hybrid-search.js`
 
 **Steps:**
 - [ ] Locate FTS5 query construction at lines 51-58
@@ -572,7 +572,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MCP-05 (analysis.md#mcp-05)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/checkpoints.js`
 
 **Steps:**
 - [ ] Locate checkpoint decompression at lines 163-173
@@ -596,7 +596,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** SK-07, SK-08 (analysis.md#sk-07)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Steps:**
 - [ ] Inventory all scripts in scripts/ directory
@@ -622,7 +622,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** SR-03 (analysis.md#sr-03)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/hybrid-search.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/hybrid-search.js`
 
 **Steps:**
 - [ ] Locate decay calculation with `boost * 100`
@@ -646,7 +646,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CB-04, GC-01 (analysis.md#cb-04-cwd-vs-project_root-path-resolution)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+  - `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 
 **Steps:**
 - [ ] Locate `detectSpecFolder()` at line 2599
@@ -670,7 +670,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** VAL-11 (analysis.md#val-11)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/scripts/validation/`
+  - `.opencode/skills/system-spec-kit/scripts/validation/`
 
 **Steps:**
 - [ ] Create check-memory-format.sh script
@@ -695,7 +695,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** MCP-04 (analysis.md#mcp-04)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] Locate embedding model warmup at lines 1684-1691
@@ -719,8 +719,8 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CP-10 (analysis.md#cp-10)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/checkpoints.js`
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] Add `dryRun` parameter to checkpoint_restore tool
@@ -798,8 +798,8 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** CMD-05 through CMD-09 (analysis.md#cmd-05)
 - **Files:**
-  - `.opencode/command/spec_kit/`
-  - `.opencode/command/memory/`
+  - `.opencode/commands/spec_kit/`
+  - `.opencode/commands/memory/`
 
 **Steps:**
 - [ ] Create /spec_kit:validate command
@@ -824,7 +824,7 @@ Manual verification and runtime testing included in acceptance criteria.
 - **Status:** [ ] Pending
 - **Requirement:** INT-09 (analysis.md#int-09)
 - **Files:**
-  - `.opencode/skill/system-spec-kit/mcp-server/src/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp-server/src/context-server.js`
 
 **Steps:**
 - [ ] Add `searchType` field to search results

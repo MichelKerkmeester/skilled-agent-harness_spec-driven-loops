@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -132,5 +132,5 @@ The 003-contextador phase folder is part of a five-phase external systems resear
 <!--
 Level 3 Decision Record - tailored to research-only phase 003-contextador
 ADR-001 covers scope and iteration delegation jointly. The cli-codex preference is captured inside ADR-001 Implementation rather than as a separate ADR-002 to keep the decision record aligned with the active template's single-ADR shape.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

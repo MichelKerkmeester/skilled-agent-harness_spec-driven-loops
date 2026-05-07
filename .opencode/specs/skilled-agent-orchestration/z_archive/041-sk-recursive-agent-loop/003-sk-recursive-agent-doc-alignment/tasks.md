@@ -51,12 +51,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Align `.opencode/skill/sk-improve-agent/SKILL.md` with `sk-doc` packaging rules
-- [x] T005 Align `.opencode/skill/sk-improve-agent/README.md` with `sk-doc` README rules
-- [x] T006 Align all markdown files under `.opencode/skill/sk-improve-agent/references/`
-- [x] T007 Align markdown assets under `.opencode/skill/sk-improve-agent/assets/`
-- [x] T008 Align `.opencode/command/spec_kit/agent-improver.md` with `sk-doc`
-- [x] T009 Align `.opencode/agent/agent-improver.md` with `sk-doc`
+- [x] T004 Align `.opencode/skills/sk-improve-agent/SKILL.md` with `sk-doc` packaging rules
+- [x] T005 Align `.opencode/skills/sk-improve-agent/README.md` with `sk-doc` README rules
+- [x] T006 Align all markdown files under `.opencode/skills/sk-improve-agent/references/`
+- [x] T007 Align markdown assets under `.opencode/skills/sk-improve-agent/assets/`
+- [x] T008 Align `.opencode/commands/spec_kit/agent-improver.md` with `sk-doc`
+- [x] T009 Align `.opencode/agents/agent-improver.md` with `sk-doc`
 - [x] T010 Update packet-linked usage examples and metadata to the new phase path
 <!-- /ANCHOR:phase-2 -->
 

@@ -27,7 +27,7 @@
 - **Severity**: CRITICAL
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P0-002 through CHK-P0-006), verified via filesystem
-- **Location**: `.opencode/skill/system-spec-kit/scripts/dist/evals/`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/dist/evals/`
 - **Description**: Stale `.d.ts.map` and `.js.map` files remain for 3 deleted eval scripts: `run-chk210-quality-backfill`, `run-phase1-5-shadow-eval`, `run-phase3-telemetry-dashboard`. Additionally, full stale artifacts (`.d.ts`, `.d.ts.map`, `.js`, `.js.map`) remain for `run-quality-legacy-remediation`.
 - **Evidence**: `ls scripts/dist/evals/run-quality-legacy-remediation.*` returns 4 files. `ls scripts/dist/evals/run-chk210-quality-backfill.*` returns 2 stale map files. Similarly for the other two deleted scripts.
 - **Impact**: Confuses tooling and developers about what's actually available; dist may drift from source.
@@ -38,7 +38,7 @@
 - **Severity**: CRITICAL
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P0-006), verified via filesystem
-- **Location**: `.opencode/skill/system-spec-kit/scripts/dist/lib/structure-aware-chunker.*`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/dist/lib/structure-aware-chunker.*`
 - **Description**: Four stale dist files remain at `scripts/dist/lib/structure-aware-chunker.*` even though the module now lives at `shared/lib/structure-aware-chunker.ts`.
 - **Evidence**: `ls scripts/dist/lib/structure-aware-chunker.*` returns 4 files (`.d.ts`, `.d.ts.map`, `.js`, `.js.map`).
 - **Impact**: Consumers may accidentally import from the wrong dist location.
@@ -75,7 +75,7 @@
 - **Severity**: HIGH
 - **Category**: tech-debt
 - **Source**: Phase 019 audit (OPUS-A1-007, OPUS-A1-008), verified via `wc -l`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts`
 - **Description**: `workflow.ts` is 2,472 lines with 7 direct file imports from `extractors/` bypassing the barrel.
 - **Evidence**: `wc -l workflow.ts` = 2472. `grep -c "from '../extractors/" workflow.ts` = 7.
 - **Impact**: Difficult to test, maintain, and reason about. High cognitive load for contributors.
@@ -86,7 +86,7 @@
 - **Severity**: HIGH
 - **Category**: tech-debt
 - **Source**: `modularization.vitest.ts` line 19 TODO comment, verified via `wc -l`
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 - **Description**: Code comment explicitly states: "TODO: Extract quality gate, reconsolidation, chunked-indexing from memory-save (2,553 LOC source)." Current LOC is 1,402 after some extraction, but the file remains a monolith.
 - **Evidence**: `wc -l memory-save.ts` = 1402. TODO comment persists in test file.
 - **Impact**: Inhibits testability of individual save pipeline stages. High merge conflict risk.
@@ -97,7 +97,7 @@
 - **Severity**: HIGH
 - **Category**: bug
 - **Source**: Phase 019 checklist (CHK-P1-020), verified via grep
-- **Location**: `.opencode/skill/system-spec-kit/scripts/ops/heal-session-ambiguity.sh`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/ops/heal-session-ambiguity.sh`
 - **Description**: The script explicitly logs: "ERROR: Deprecated session-quality verifier was removed; wire a supported verification command before using this remediation script" — then halts. The ops script is effectively broken.
 - **Evidence**: Line 103 contains the deprecation error message.
 - **Impact**: Ops runbook cannot auto-remediate session ambiguity issues until a replacement verifier is wired.
@@ -108,7 +108,7 @@
 - **Severity**: HIGH
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P1-002), verified via `ls`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/utils/phase-classifier.ts`, `.opencode/skill/system-spec-kit/scripts/utils/memory-frontmatter.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/utils/phase-classifier.ts`, `.opencode/skills/system-spec-kit/scripts/utils/memory-frontmatter.ts`
 - **Description**: These files exist as re-export shims forwarding to `lib/` paths. They were supposed to be deleted in Sprint S4 so importers use `lib/` paths directly.
 - **Evidence**: Both files exist. `ls scripts/utils/phase-classifier.ts scripts/utils/memory-frontmatter.ts` succeeds.
 - **Impact**: Unclear import paths. Developers may import from the wrong location.
@@ -119,7 +119,7 @@
 - **Severity**: HIGH
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P1-018), verified via `ls`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/extractors/session-activity-signal.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/extractors/session-activity-signal.ts`
 - **Description**: This file exists as a re-export shim forwarding to `../lib/session-activity-signal`. It should be deleted and importers updated.
 - **Evidence**: `ls scripts/extractors/session-activity-signal.ts` succeeds.
 - **Impact**: Import path confusion.
@@ -156,7 +156,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P1-006), verified via grep
-- **Location**: `.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts:32`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts:32`
 - **Description**: `tool-detection.ts` re-exports `ConversationPhase` as an alias for `ConversationPhaseLabel` from `session-types.ts`. This creates a naming collision with the canonical type.
 - **Evidence**: Line 32: `export type ConversationPhase = ConversationPhaseLabel;`
 - **Impact**: Consumers may import from the wrong module and get confused about which type to use.
@@ -178,7 +178,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Source code comment
-- **Location**: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:123`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:123`
 - **Description**: `// TODO(O3-12): Remove index signature once all dynamic fields are explicitly declared`
 - **Evidence**: Line 123 of the file.
 - **Impact**: Open `[key: string]: unknown` index signatures weaken type safety and allow any field to be set without validation.
@@ -189,7 +189,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P2-017), verified via grep
-- **Location**: `.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts`
 - **Description**: `toolCallIndexById` appears 2 times in the file. It may be constructed (`.set()`) but never read (`.get()`), making it dead code.
 - **Evidence**: `grep -c "toolCallIndexById" gemini-cli-capture.ts` = 2.
 - **Impact**: Dead code adds cognitive overhead.
@@ -200,7 +200,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P1-016), verified via `ls`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts`
 - **Description**: The legacy quality scorer still exists alongside the canonical `extractors/quality-scorer.ts`. This creates dual `scoreMemoryQuality` naming confusion.
 - **Evidence**: `ls scripts/core/quality-scorer.ts` succeeds.
 - **Impact**: Developers may call the wrong scorer. Two implementations doing similar things diverge over time.
@@ -211,7 +211,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P1-028), verified via grep
-- **Location**: `.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js`
 - **Description**: The test file references 17 internal/private exports (`ensureArrayOfObjects`, `hasArrayContent`, `ARRAY_FLAG_MAPPINGS`, etc.) that may no longer be exported from their modules.
 - **Evidence**: `grep -c "ensureArrayOfObjects\|hasArrayContent\|ARRAY_FLAG_MAPPINGS" test-scripts-modules.js` = 17.
 - **Impact**: Tests may silently pass by checking stale exports or fail on refactoring.
@@ -222,7 +222,7 @@
 - **Severity**: MEDIUM
 - **Category**: tech-debt
 - **Source**: Phase 019 checklist (CHK-P2-035), verified via `ls`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/lib/index.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/lib/index.ts`
 - **Description**: No barrel export file exists for `scripts/lib/`. Consumers must import individual files directly, making refactoring difficult.
 - **Evidence**: `ls scripts/lib/index.ts` returns no file.
 - **Impact**: No single API surface for `lib/`. Harder to maintain and refactor.
@@ -237,7 +237,7 @@
 - **Severity**: LOW
 - **Category**: skipped-test
 - **Source**: Source code scan
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts`
 - **Description**: 15 tests use `it.skipIf(!hybridSearch)` and conditionally skip when the hybrid search module is not loaded. These tests run only when the full integration environment is available.
 - **Evidence**: Lines 439-554, 15 `it.skipIf` occurrences.
 - **Impact**: Reduced test coverage in CI environments where hybrid search is not configured.
@@ -248,7 +248,7 @@
 - **Severity**: LOW
 - **Category**: skipped-test
 - **Source**: Source code scan
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:19`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:19`
 - **Description**: `it.todo('should create session_state table and indexes -- needs SQLite fixture to inspect sqlite_master and index metadata')`
 - **Evidence**: Line 19 of the file.
 - **Impact**: Missing test coverage for session_state table creation.
@@ -259,7 +259,7 @@
 - **Severity**: LOW
 - **Category**: skipped-test
 - **Source**: Source code scan
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:41`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:41`
 - **Description**: `const t124Describe = collectSessionDataLoaded ? describe : describe.skip;` -- the entire test suite is skipped when `collectSessionData` cannot be loaded.
 - **Evidence**: Line 41 of the file.
 - **Impact**: Full test suite for session continuation may be silently skipped.
@@ -270,7 +270,7 @@
 - **Severity**: LOW
 - **Category**: tech-debt
 - **Source**: Source code scan
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:101,161`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:101,161`
 - **Description**: Two `TODO(P6-05)` comments mark intentional test casts that exercise edge cases. These are tracked for future cleanup.
 - **Evidence**: Lines 101 and 161 with `// TODO(P6-05): Intentional test cast` comments.
 - **Impact**: Minor -- these are intentional and tracked.
@@ -281,7 +281,7 @@
 - **Severity**: LOW
 - **Category**: deferred
 - **Source**: Phase 019 checklist (CHK-P0-014), verified via `ls`
-- **Location**: `.opencode/skill/system-spec-kit/scripts/lib/cli-capture-shared.ts`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/lib/cli-capture-shared.ts`
 - **Description**: The file exists. The Phase 019 audit asked whether it is wired into the CLI capture extractors or is dead code. This needs verification.
 - **Evidence**: `ls scripts/lib/cli-capture-shared.ts` succeeds.
 - **Impact**: Potentially dead code if not imported by any extractor.
@@ -303,7 +303,7 @@
 - **Severity**: LOW
 - **Category**: deferred
 - **Source**: Phase 019 checklist (CHK-P1-020 through CHK-P1-022)
-- **Location**: `.opencode/skill/system-spec-kit/scripts/ops/heal-telemetry-drift.sh`, `.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh`
+- **Location**: `.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh`, `.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh`
 - **Description**: Unlike `heal-session-ambiguity.sh` which explicitly errors about a removed verifier, these two scripts may have working verifiers or may be similarly broken. `heal-ledger-mismatch.sh` references `cleanup-orphaned-vectors.js --check-ledger --strict`. Status needs verification.
 - **Evidence**: grep shows different verification approaches in each script.
 - **Impact**: Ops runbook may contain non-functional remediation scripts.

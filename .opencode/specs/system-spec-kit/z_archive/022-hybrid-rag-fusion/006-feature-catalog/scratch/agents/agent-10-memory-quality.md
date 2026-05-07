@@ -19,16 +19,16 @@ I’m going to inventory the 24 catalog files, load the review guidance, and ins
   └ L1:220 (162 lines read)
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/*.md"
   └ 24 files found
 
 ● List directory ~/.copilot/session-state/9b9f7fc0-9e9b-422e-b475-204699327ff8
   └ 7 files found
 
-● List directory .opencode/skill/system-spec-kit/mcp_server
+● List directory .opencode/skills/system-spec-kit/mcp_server
   └ 32 files found
 
-● List directory .opencode/skill/system-spec-kit/scripts
+● List directory .opencode/skills/system-spec-kit/scripts
   └ 34 files found
 
 I’ve got the file inventory. Next I’m splitting the 24 docs into parallel review batches and capturing a short working plan so I can keep the alignment pass systematic.
@@ -60,20 +60,20 @@ The batch reviewers are running. I’m spot-checking the catalog and codebase di
 ● Search (grep)
   │ "dryRun|preflight|token budget|duplicate|empty content|entity|intent|reconsolid|quality
   │ gate|post-save|feedback|decay|anchor|chunk|description\.json|filename|outsourced|agent
-  │ memory|alignment guard" (.opencode/skill/system-spec-kit/scripts)
+  │ memory|alignment guard" (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "dryRun|preflight|token budget|duplicate|empty content|entity|intent|reconsolid|quality
   │ gate|post-save|feedback|decay|anchor|chunk|description\.json|filename|outsourced|agent
-  │ memory|alignment guard" (.opencode/skill/system-spec-kit/mcp_server)
+  │ memory|alignment guard" (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Summarize catalog files (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ root = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing')
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing')
   │ for p in sorted(root.glob('*.md')):…
   └ 33 lines...
 
@@ -102,44 +102,44 @@ The parallel review batches finished. I’m pulling their results together now a
 The batch results are surprisingly clean, so I’m sanity-checking the more complex claims directly in code before I call the whole set aligned.
 
 ● Read 14-quality-gate-timer-persistence.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/14-quality-gate-
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/14-quality-gate-
   │ timer-persistence.md
   └ L1:220 (96 lines read)
 
 ● Read 17-outsourced-agent-memory-capture.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-ag
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-ag
   │ ent-memory-capture.md
   └ L1:240 (66 lines read)
 
 ● Read 20-weekly-batch-feedback-learning.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/20-weekly-batch-
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/20-weekly-batch-
   │ feedback-learning.md
   └ L1:240 (53 lines read)
 
 ● Read 21-assistive-reconsolidation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/21-assistive-rec
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/21-assistive-rec
   │ onsolidation.md
   └ L1:240 (55 lines read)
 
 ● Search (grep)
   │ "qualityGateActivatedAt|persistActivationTimestampToDb|config
   │ table|QUALITY_GATE_WARN_ONLY_PERIOD_MS"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
   └ 18 lines found
 
 ● Search (grep)
   │ "EXPLICIT_DATA_FILE_LOAD_FAILED|nextSteps|NEXT_ACTION|Follow-up:|Next:"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 83 lines found
 
 ● Search (grep)
   │ "MIN_SUPPORT_SESSIONS|MAX_BOOST_DELTA|CONFIDENCE_WEIGHTS|batch_learning_log|SPECKIT_BATCH_LEARNE
-  │ D_FEEDBACK" (.opencode/skill/system-spec-kit/mcp_server)
+  │ D_FEEDBACK" (.opencode/skills/system-spec-kit/mcp_server)
   └ 84 lines found
 
 ● Search (grep)
   │ "ASSISTIVE_AUTO_MERGE_THRESHOLD|ASSISTIVE_REVIEW_THRESHOLD|assistiveRecommendation|SPECKIT_ASSIS
-  │ TIVE_RECONSOLIDATION|shadow-only|is_archived" (.opencode/skill/system-spec-kit/mcp_server)
+  │ TIVE_RECONSOLIDATION|shadow-only|is_archived" (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Read copilot-tool-output-1774457932031-mkuo9f.txt
@@ -147,47 +147,47 @@ The batch results are surprisingly clean, so I’m sanity-checking the more comp
   └ L1:120 (99 lines read)
 
 ● Read batch-learning.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
   └ L1:180 (180 lines read)
 
 ● Read save-quality-gate.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts
   └ L150:310 (161 lines read)
 
 ● Read 15-deferred-lexical-only-indexing.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/15-deferred-lexi
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/15-deferred-lexi
   │ cal-only-indexing.md
   └ L1:220 (47 lines read)
 
 ● Search (grep)
   │ "embedding_status|pending|index_memory_deferred|BM25|FTS5|retry" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib)
   └ 5 lines found
 
 ● Read 09-encoding-intent-capture-at-index-time.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-inte
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/09-encoding-inte
   │ nt-capture-at-index-time.md
   └ L1:180 (44 lines read)
 
 ● Search (grep)
   │ "classifyEncodingIntent|encoding_intent|SPECKIT_ENCODING_INTENT"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 86 lines found
 
 I found one likely doc-quality drift already: `14-quality-gate-timer-persistence.md` has a correct feature description, but its source-file table appears massively over-inclusive. I’m checking whether that’s an outlier or a pattern across the set.
 
 ● Read 04-spec-folder-description-discovery.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-d
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-d
   │ escription-discovery.md
   └ L1:220 (101 lines read)
 
 ● Read 05-pre-storage-quality-gate.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-pre-storage-q
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/05-pre-storage-q
   │ uality-gate.md
   └ L1:220 (121 lines read)
 
 ● Read 24-save-quality-gate-exceptions.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/24-save-quality-
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/24-save-quality-
   │ gate-exceptions.md
   └ L1:220 (49 lines read)
 
@@ -195,52 +195,52 @@ I found one likely doc-quality drift already: `14-quality-gate-timer-persistence
   │ python3 - <<'PY'
   │ from pathlib import Path
   │ root = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing')
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing')
   │ for p in sorted(root.glob('*.md')):…
   └ 42 lines...
 
 There’s a clear secondary pattern: several docs accurately describe the feature but have bloated “Source Files” sections that pull in lots of unrelated dependencies/tests. I’m treating that as doc drift rather than implementation drift.
 
 ● Read 02-signal-vocabulary-expansion.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-signal-vocabu
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/02-signal-vocabu
   │ lary-expansion.md
   └ L1:180 (98 lines read)
 
 ● Read 06-reconsolidation-on-save.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-reconsolidati
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/06-reconsolidati
   │ on-on-save.md
   └ L1:220 (158 lines read)
 
 ● Read 12-generation-time-duplicate-and-empty-content-prevention.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/12-generation-ti
+  │ .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/12-generation-ti
   │ me-duplicate-and-empty-content-prevention.md
   └ L1:220 (147 lines read)
 
 ● Search (grep)
   │ "CORRECTION|PREFERENCE|trigger-matcher|quality-loop|reconsolidation|writeFilesAtomically|duplica
-  │ te|contentSubstance" in **/*.{ts,js,sh} (.opencode/skill/system-spec-kit)
+  │ te|contentSubstance" in **/*.{ts,js,sh} (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 I found a stronger issue in `12-generation-time-duplicate-and-empty-content-prevention.md`: its narrative points at `scripts/core/file-writer.ts`, but the formal “Source Files” table doesn’t include that file at all and instead lists a large mcp_server bundle. That one looks more than cosmetic.
 
 ● Search (grep)
-  │ "file-writer\.ts" (.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexi
+  │ "file-writer\.ts" (.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexi
   │ ng/12-generation-time-duplicate-and-empty-content-prevention.md)
   └ 1 line found
 
 ● Search (grep)
   │ "scripts/core/file-writer\.ts|validateContentSubstance|checkForDuplicateContent|writeFilesAtomic
-  │ ally" (.opencode/skill/system-spec-kit/scripts)
+  │ ally" (.opencode/skills/system-spec-kit/scripts)
   └ 17 lines found
 
 ● Search (grep)
   │ "trigger-matcher\.ts|CORRECTION_KEYWORDS|PREFERENCE_KEYWORDS"
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 26 lines found
 
 ● Search (grep)
   │ "handlers/save/reconsolidation-bridge\.ts|lib/storage/reconsolidation\.ts|SPECKIT_RECONSOLIDATIO
-  │ N" (.opencode/skill/system-spec-kit/mcp_server)
+  │ N" (.opencode/skills/system-spec-kit/mcp_server)
   └ 56 lines found
 
 ● Listing background agents

@@ -16,12 +16,12 @@ contextType: "planning"
 # Plan: 016-connected-doc-hints-investigation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts`
 
 ## Investigation Order
 1. Baseline current result presentation, graph neighbors, and causal context.

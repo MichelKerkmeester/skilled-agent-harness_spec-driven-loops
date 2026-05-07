@@ -1,5 +1,5 @@
 # Agent: create
-# Converted from: .opencode/agent/create.md
+# Converted from: .opencode/agents/create.md
 name = "create"
 description = "Dedicated LEAF executor for /create:* documentation commands; loads sk-doc templates and refuses non-create callers"
 profile = "default"
@@ -13,7 +13,7 @@ developer_instructions = '''
 
 Dedicated LEAF executor for `/create:*` commands. This agent loads `sk-doc` on every invocation, reads the command-appropriate template before writing, creates or updates the requested documentation artifact, and returns one deterministic status line.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent may execute only `/create:*` command workflows. If invoked directly, by another agent, or for a non-create task, refuse before reading or writing targets.
 
@@ -118,7 +118,7 @@ Each binding line must appear on its own line, grep-checkable verbatim. Missing 
 1. **RECEIVE** -> Parse the `/create:*` command, caller marker, setup values, active spec folder, and output contract.
 2. **VERIFY CALLER** -> Run the Phase 0 caller gate. Refuse non-`/create:*` invocations before touching targets.
 3. **SCOPE LOCK** -> Resolve writable output paths, read-only evidence paths, overwrite policy, and command mode.
-4. **LOAD sk-doc** -> Read `.opencode/skill/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
+4. **LOAD sk-doc** -> Read `.opencode/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
 5. **LOAD TEMPLATE** -> Read the selected template before writing any artifact.
 6. **EXECUTE DIRECTLY** -> Create or update the requested artifact using only allowed tools and command-owned setup values.
 7. **VERIFY** -> Check template alignment, required sections, frontmatter when applicable, DQI score, line/path expectations, and command status contract.
@@ -173,12 +173,12 @@ Read `sk-doc` first, then read the matching template before writing.
 
 | Command | Output | Template |
 | --- | --- | --- |
-| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skill/sk-doc/assets/agent_template.md` |
-| `/create:sk-skill` | New skill `SKILL.md` or doc-only skill resource | `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md` |
-| `/create:feature-catalog` | `feature_catalog/` package | `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md` |
-| `/create:testing-playbook` | `manual_testing_playbook/` package | `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` |
-| `/create:folder_readme` | `README.md` or install-guide markdown | `.opencode/skill/sk-doc/assets/documentation/readme_template.md` |
-| `/create:changelog` | Versioned changelog markdown | `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` |
+| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/assets/agent_template.md` |
+| `/create:sk-skill` | New skill `SKILL.md` or doc-only skill resource | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
+| `/create:feature-catalog` | `feature_catalog/` package | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` |
+| `/create:testing-playbook` | `manual_testing_playbook/` package | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` |
+| `/create:folder_readme` | `README.md` or install-guide markdown | `.opencode/skills/sk-doc/assets/documentation/readme_template.md` |
+| `/create:changelog` | Versioned changelog markdown | `.opencode/skills/sk-doc/assets/documentation/changelog_template.md` |
 
 If the command asks for a template not listed here, return:
 
@@ -268,13 +268,13 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 
 | Resource | Purpose |
 | --- | --- |
-| `.opencode/skill/sk-doc/SKILL.md` | Required skill routing and documentation creation standards |
-| `.opencode/skill/sk-doc/assets/agent_template.md` | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Skill creation template for `/create:sk-skill` |
-| `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Feature catalog package template |
-| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template |
-| `.opencode/skill/sk-doc/assets/documentation/readme_template.md` | README template for `/create:folder_readme` |
-| `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` | Changelog template for `/create:changelog` |
+| `.opencode/skills/sk-doc/SKILL.md` | Required skill routing and documentation creation standards |
+| `.opencode/skills/sk-doc/assets/agent_template.md` | Production agent structure, BINDING, REFUSE, and summary contracts |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Skill creation template for `/create:sk-skill` |
+| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Feature catalog package template |
+| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template |
+| `.opencode/skills/sk-doc/assets/documentation/readme_template.md` | README template for `/create:folder_readme` |
+| `.opencode/skills/sk-doc/assets/documentation/changelog_template.md` | Changelog template for `/create:changelog` |
 
 ---
 

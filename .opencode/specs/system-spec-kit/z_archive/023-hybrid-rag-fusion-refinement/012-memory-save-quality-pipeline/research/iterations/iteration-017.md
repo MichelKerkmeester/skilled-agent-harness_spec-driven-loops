@@ -16,7 +16,7 @@ Map the existing test suite for the generate-context pipeline to identify: (a) w
 
 ### 1. Comprehensive Vitest Test Suite Exists (30+ test files)
 
-The `scripts/tests/` directory contains approximately 30 Vitest test files covering different aspects of the pipeline. The test runner is configured via `vitest` (v4.1.0) using `../mcp_server/vitest.config.ts` as the shared config. Tests run via `npm test` in the scripts workspace. There are also approximately 15 legacy `.js` test files that run separately via `npm run test:legacy`. [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:13-14]
+The `scripts/tests/` directory contains approximately 30 Vitest test files covering different aspects of the pipeline. The test runner is configured via `vitest` (v4.1.0) using `../mcp_server/vitest.config.ts` as the shared config. Tests run via `npm test` in the scripts workspace. There are also approximately 15 legacy `.js` test files that run separately via `npm run test:legacy`. [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:13-14]
 
 ### 2. Transcript-Mode Coverage is Strong via workflow-e2e.vitest.ts
 
@@ -31,7 +31,7 @@ The `workflow-e2e.vitest.ts` file provides full end-to-end save pipeline coverag
 7. **Embedding failure resilience** -- markdown and description tracking commit even when indexing fails
 8. **Tree-thinning merge notes** -- renders tree-thinning merge annotations correctly
 
-However, all tests use `collectSessionDataFn` which bypasses the input normalization and conversation extraction layers. The tests inject pre-built SessionData directly. This means the transcript->SessionData path is tested at the workflow output level, but the extractor layer (conversation-extractor, session-extractor) is tested separately or not at all. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:384-640]
+However, all tests use `collectSessionDataFn` which bypasses the input normalization and conversation extraction layers. The tests inject pre-built SessionData directly. This means the transcript->SessionData path is tested at the workflow output level, but the extractor layer (conversation-extractor, session-extractor) is tested separately or not at all. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:384-640]
 
 ### 3. JSON-Mode Input Normalization Has Dedicated Coverage
 
@@ -45,27 +45,27 @@ The `runtime-memory-inputs.vitest.ts` file tests the JSON-mode input path throug
 - **Observation truncation priority**: followup observations preserved when exceeding MAX_OBSERVATIONS
 - **extractNextAction regex fallback**: extracts from recentContext.learning, truncates at 100 chars
 
-This is the most comprehensive JSON-mode test file. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:1-624]
+This is the most comprehensive JSON-mode test file. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:1-624]
 
 ### 4. No Test Exists for extractConversations() with JSON-Synthesized Data
 
-The `collect-session-data.vitest.ts` tests `determineSessionStatus()` and `estimateCompletionPercent()` on already-normalized data. There is NO test that feeds raw JSON input (e.g., `{ sessionSummary, keyDecisions, observations }`) through the full chain `normalizeInputData()` -> `collectSessionData()` -> `extractConversations()` to verify that the conversation extractor produces meaningful MESSAGES from JSON-sourced data rather than the empty/synthetic fallback path documented in iteration 001. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:1-100]
+The `collect-session-data.vitest.ts` tests `determineSessionStatus()` and `estimateCompletionPercent()` on already-normalized data. There is NO test that feeds raw JSON input (e.g., `{ sessionSummary, keyDecisions, observations }`) through the full chain `normalizeInputData()` -> `collectSessionData()` -> `extractConversations()` to verify that the conversation extractor produces meaningful MESSAGES from JSON-sourced data rather than the empty/synthetic fallback path documented in iteration 001. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts:1-100]
 
 ### 5. Quality Scorer Tests Use Pre-Rendered Content Only
 
-The `quality-scorer-calibration.vitest.ts` tests `scoreMemoryQuality()` with pre-rendered content strings. It validates V-rule penalty application, contamination severity caps (low: no cap, medium: 0.85, high: 0.60), and score01/score100 consistency. It does NOT test the score produced when the pipeline renders JSON-mode input, meaning a regression where JSON-mode produces thin rendered content would go undetected by these scorer tests. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:1-212]
+The `quality-scorer-calibration.vitest.ts` tests `scoreMemoryQuality()` with pre-rendered content strings. It validates V-rule penalty application, contamination severity caps (low: no cap, medium: 0.85, high: 0.60), and score01/score100 consistency. It does NOT test the score produced when the pipeline renders JSON-mode input, meaning a regression where JSON-mode produces thin rendered content would go undetected by these scorer tests. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:1-212]
 
 ### 6. Contamination Filter Has No V8 Same-Parent Phase Test
 
-The `contamination-filter.vitest.ts` tests severity tracking (low/medium/high), pattern matching (API error prefix, JSON error payload, request_id leak), and source-capability-aware downgrades for `tool title with path` patterns. It does NOT test the V8 same-parent phase reference scenario critical for JSON-mode saves where the AI explicitly provides cross-phase spec folder references. V8 lives in `validate-memory-quality.ts`, not `contamination-filter.ts` (per iteration 003 finding), but there is no unit test for V8's allowlist behavior either. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts:1-128] [SOURCE: iteration-003 finding on V8 location]
+The `contamination-filter.vitest.ts` tests severity tracking (low/medium/high), pattern matching (API error prefix, JSON error payload, request_id leak), and source-capability-aware downgrades for `tool title with path` patterns. It does NOT test the V8 same-parent phase reference scenario critical for JSON-mode saves where the AI explicitly provides cross-phase spec folder references. V8 lives in `validate-memory-quality.ts`, not `contamination-filter.ts` (per iteration 003 finding), but there is no unit test for V8's allowlist behavior either. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts:1-128] [SOURCE: iteration-003 finding on V8 location]
 
 ### 7. Memory Sufficiency Tests Are Post-Render Only
 
-The `memory-sufficiency.vitest.ts` tests `evaluateMemorySufficiency()` with pre-constructed memory content. It verifies: rich evidence passes, single-anchor prompt fails, rendered sections not counted as evidence, generic title fails, placeholder descriptions not counted, spec-specific tool evidence passes. This is post-render validation -- it catches thin JSON-mode output but only after the pipeline has already run. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:1-170]
+The `memory-sufficiency.vitest.ts` tests `evaluateMemorySufficiency()` with pre-constructed memory content. It verifies: rich evidence passes, single-anchor prompt fails, rendered sections not counted as evidence, generic title fails, placeholder descriptions not counted, spec-specific tool evidence passes. This is post-render validation -- it catches thin JSON-mode output but only after the pipeline has already run. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:1-170]
 
 ### 8. The Session Data Factory Provides Realistic Fixtures But Only for Transcript Mode
 
-The `fixtures/session-data-factory.ts` provides `buildRichSessionData()`, `buildSparseSessionData()`, and `buildTreeThinningSessionData()` which construct complete SessionData objects. These factories populate all fields (TITLE, SUMMARY, FILES, OUTCOMES, OBSERVATIONS, DECISIONS, TOOL_COUNTS, etc.) with realistic transcript-mode values. There is NO equivalent factory for JSON-mode-derived SessionData (data that would come from the normalizer fast/slow paths with synthesized MESSAGES). [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:1-100]
+The `fixtures/session-data-factory.ts` provides `buildRichSessionData()`, `buildSparseSessionData()`, and `buildTreeThinningSessionData()` which construct complete SessionData objects. These factories populate all fields (TITLE, SUMMARY, FILES, OUTCOMES, OBSERVATIONS, DECISIONS, TOOL_COUNTS, etc.) with realistic transcript-mode values. There is NO equivalent factory for JSON-mode-derived SessionData (data that would come from the normalizer fast/slow paths with synthesized MESSAGES). [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts:1-100]
 
 ### Additional Test Files Reviewed
 
@@ -129,19 +129,19 @@ None -- this was a mapping exercise, not an exploratory search.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/scripts/package.json` (test configuration)
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` (E2E save pipeline)
-- `.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` (JSON input normalization)
-- `.opencode/skill/system-spec-kit/scripts/tests/collect-session-data.vitest.ts` (session data extraction)
-- `.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts` (quality scoring)
-- `.opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` (contamination patterns)
-- `.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts` (sufficiency evaluation)
-- `.opencode/skill/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts` (V-rule validation)
-- `.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts` (template contract)
-- `.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` (CLI argument passing)
-- `.opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts` (FILE_PATH normalization)
-- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts` (SessionData fixture builders)
-- `.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts` (title truncation, trigger filtering)
+- `.opencode/skills/system-spec-kit/scripts/package.json` (test configuration)
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` (E2E save pipeline)
+- `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` (JSON input normalization)
+- `.opencode/skills/system-spec-kit/scripts/tests/collect-session-data.vitest.ts` (session data extraction)
+- `.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts` (quality scoring)
+- `.opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` (contamination patterns)
+- `.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts` (sufficiency evaluation)
+- `.opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality.vitest.ts` (V-rule validation)
+- `.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts` (template contract)
+- `.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` (CLI argument passing)
+- `.opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts` (FILE_PATH normalization)
+- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/session-data-factory.ts` (SessionData fixture builders)
+- `.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts` (title truncation, trigger filtering)
 - Prior iteration findings (iterations 001, 003, 005, 006, 015, 016)
 
 ## Assessment

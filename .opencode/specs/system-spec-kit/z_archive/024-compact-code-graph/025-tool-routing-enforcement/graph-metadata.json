@@ -46,12 +46,12 @@
       "mcp_server/hooks/memory-surface.ts",
       "mcp_server/tool-schemas.ts",
       "mcp_server/lib/session/session-snapshot.ts",
-      ".opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
       "hooks/memory-surface.ts",
       "lib/session/session-snapshot.ts",
-      ".opencode/agent/context.md",
+      ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
       "constitutional/gate-tool-routing.md",
       "tests/context-server.vitest.ts",
       "hooks/claude/session-prime.ts",
@@ -96,13 +96,13 @@
       {
         "name": "gate-tool-routing.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "source": "derived"
       },
       {
         "name": "267-tool-routing-enforcement.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
         "source": "derived"
       },
       {

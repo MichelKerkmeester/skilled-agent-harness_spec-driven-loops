@@ -134,8 +134,8 @@ Task #36 target entries are normalized into `spec.md`, then converted into the g
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Spec validation | Phase folder template compliance | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase> --strict` |
-| README validation | Target README format compliance | `python3 .opencode/skill/sk-doc/scripts/validate_document.py <README.md>` |
+| Spec validation | Phase folder template compliance | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase> --strict` |
+| README validation | Target README format compliance | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <README.md>` |
 | Manifest verification | Exact target coverage | Existence check across all 65 target `README.md` files |
 | Manual review | Boundary compliance and audit facts | Read phase docs |
 <!-- /ANCHOR:testing -->

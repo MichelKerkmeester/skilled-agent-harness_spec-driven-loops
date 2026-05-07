@@ -42,20 +42,20 @@
     "status": "complete",
     "key_files": [
       ".gemini/settings.json",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skill/system-spec-kit/references/memory/memory_system.md",
-      ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
-      ".opencode/skill/mcp-coco-index/README.md",
-      ".opencode/skill/mcp-coco-index/SKILL.md",
-      ".opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      ".opencode/skills/mcp-coco-index/README.md",
+      ".opencode/skills/mcp-coco-index/SKILL.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md",
       "lib/architecture/layer-definitions.ts",
       "mcp_server/schemas/tool-input-schemas.ts",
       "mcp_server/tool-schemas.ts",
@@ -72,13 +72,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
@@ -90,43 +90,43 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
         "name": "memory_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/memory/memory_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
         "source": "derived"
       },
       {
         "name": "environment_variables.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/environment_variables.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
         "name": "hook_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
         "source": "derived"
       },
       {
         "name": "263-session-resume.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/263-session-resume.md",
         "source": "derived"
       },
       {

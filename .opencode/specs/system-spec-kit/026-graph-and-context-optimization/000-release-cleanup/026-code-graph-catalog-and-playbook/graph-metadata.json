@@ -37,56 +37,56 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/02-query-self-heal.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/01-code-graph-scan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/03--detect-changes/01-detect-changes-preflight.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/01-code-graph-context.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/02-context-handler.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md",
-      ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md"
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/02-query-self-heal.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/01-code-graph-scan.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/03--detect-changes/01-detect-changes-preflight.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/01-code-graph-context.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/02-context-handler.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md",
+      ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md"
     ],
     "entities": [
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/README.md",
         "source": "derived"
       },
       {
         "name": "01-category-overview.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md",
         "source": "derived"
       },
       {
         "name": "254-code-graph-scan-query.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -104,73 +104,73 @@
       {
         "name": "01-ensure-code-graph-ready.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md",
         "source": "derived"
       },
       {
         "name": "02-query-self-heal.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/02-query-self-heal.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/01--read-path-freshness/02-query-self-heal.md",
         "source": "derived"
       },
       {
         "name": "01-code-graph-scan.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/01-code-graph-scan.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/01-code-graph-scan.md",
         "source": "derived"
       },
       {
         "name": "02-code-graph-verify.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md",
         "source": "derived"
       },
       {
         "name": "03-code-graph-status.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md",
         "source": "derived"
       },
       {
         "name": "01-detect-changes-preflight.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/03--detect-changes/01-detect-changes-preflight.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/03--detect-changes/01-detect-changes-preflight.md",
         "source": "derived"
       },
       {
         "name": "01-code-graph-context.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/01-code-graph-context.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/01-code-graph-context.md",
         "source": "derived"
       },
       {
         "name": "02-context-handler.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/02-context-handler.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/04--context-retrieval/02-context-handler.md",
         "source": "derived"
       },
       {
         "name": "01-deep-loop-graph-query.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md",
         "source": "derived"
       },
       {
         "name": "02-deep-loop-graph-status.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md",
         "source": "derived"
       },
       {
         "name": "03-deep-loop-graph-upsert.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md",
         "source": "derived"
       },
       {
         "name": "04-deep-loop-graph-convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md",
         "source": "derived"
       },
       {

@@ -46,9 +46,9 @@
       "decision-record.md",
       "implementation-summary.md",
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -80,19 +80,19 @@
       {
         "name": "hook-state.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
         "name": "session-stop.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
         "source": "derived"
       },
       {
         "name": "session-prime.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {

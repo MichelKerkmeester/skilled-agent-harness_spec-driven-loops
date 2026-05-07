@@ -49,15 +49,15 @@
       "references/validation/phase_checklists.md",
       "templates/level_2/checklist.md",
       "templates/level_2/spec.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/references/templates/level_specifications.md",
-      ".opencode/skill/system-spec-kit/references/templates/template_guide.md",
-      ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skill/system-spec-kit/assets/template_mapping.md",
-      ".opencode/skill/system-spec-kit/references/validation/validation_rules.md",
-      ".opencode/skill/system-spec-kit/references/validation/phase_checklists.md",
-      ".opencode/skill/system-spec-kit/templates/level_2/checklist.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+      ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
+      ".opencode/skills/system-spec-kit/templates/level_2/checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -102,13 +102,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

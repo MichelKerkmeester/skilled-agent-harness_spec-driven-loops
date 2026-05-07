@@ -62,8 +62,8 @@ opencode run \
 <!-- ANCHOR:testing -->
 ## 4. TESTING STRATEGY
 
-- Static verification: `grep -ri "github-copilot" .opencode/skill/cli-opencode/` must return zero hits (REQ-001)
-- Static verification: `grep -ri "deepseek" .opencode/skill/cli-opencode/` must still return hits across SKILL.md, README.md, cli_reference.md, agent_delegation.md (REQ-003)
+- Static verification: `grep -ri "github-copilot" .opencode/skills/cli-opencode/` must return zero hits (REQ-001)
+- Static verification: `grep -ri "deepseek" .opencode/skills/cli-opencode/` must still return hits across SKILL.md, README.md, cli_reference.md, agent_delegation.md (REQ-003)
 - Manual review: re-read SKILL.md §3 Default Invocation block end-to-end to confirm copy-paste invocation is internally consistent
 - Manual review: re-read SKILL.md §3 Provider Auth Pre-Flight section end-to-end to confirm the decision tree is unambiguous and the user-prompt templates are copy-paste ready
 <!-- /ANCHOR:testing -->
@@ -81,7 +81,7 @@ opencode run \
 <!-- ANCHOR:rollback -->
 ## 6. ROLLBACK PLAN
 
-`git checkout main -- .opencode/skill/cli-opencode/` reverts the skill to its pre-051 state. Spec folder `specs/051-cli-opencode-providers/` can stay (it's documentation of the change attempt) or be removed via `git clean -fd specs/051-cli-opencode-providers/` if the change is abandoned before merge.
+`git checkout main -- .opencode/skills/cli-opencode/` reverts the skill to its pre-051 state. Spec folder `specs/051-cli-opencode-providers/` can stay (it's documentation of the change attempt) or be removed via `git clean -fd specs/051-cli-opencode-providers/` if the change is abandoned before merge.
 <!-- /ANCHOR:rollback -->
 
 ---

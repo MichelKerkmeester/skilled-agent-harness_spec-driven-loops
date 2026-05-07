@@ -48,10 +48,10 @@
     "emit": true,
     "present": false
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research_archive",
   "migrationWindowDays": 28,
@@ -66,7 +66,7 @@
   },
   "_optimizerManaged": {
     "description": "Fields managed by the offline loop optimizer (042.004).",
-    "manifestPath": ".opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
     "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
     "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status"],
     "promotionMode": "advisory-only"

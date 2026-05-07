@@ -65,7 +65,7 @@ _memory:
 
 - [x] CHK-020 [P0] `hooks-codex-freshness.vitest.ts` passes. [EVIDENCE: targeted Vitest run]
 - [x] CHK-021 [P0] `advisor-rebuild.vitest.ts` passes. [EVIDENCE: targeted Vitest run]
-- [x] CHK-022 [P0] TypeScript build succeeds. [EVIDENCE: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`]
+- [x] CHK-022 [P0] TypeScript build succeeds. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`]
 - [x] CHK-023 [P0] Strict validator exits 0. [EVIDENCE: final `validate.sh --strict` run]
 - [x] CHK-024 [P1] Legacy runtime parity expectation updated for new Codex marker. [EVIDENCE: test fixture expectation patched]
 <!-- /ANCHOR:testing -->

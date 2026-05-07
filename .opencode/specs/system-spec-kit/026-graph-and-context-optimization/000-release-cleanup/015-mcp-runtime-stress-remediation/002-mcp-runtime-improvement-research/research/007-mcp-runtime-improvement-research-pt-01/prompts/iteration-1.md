@@ -52,9 +52,9 @@ Sibling packets you can read for ground truth:
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/decision-record.md (if present)
 
 MCP source code locations:
-- .opencode/skill/system-spec-kit/mcp_server/lib/ (TypeScript source)
-- .opencode/skill/system-spec-kit/mcp_server/dist/ (compiled output the daemon serves)
-- .opencode/skill/system-spec-kit/mcp_server/package.json (build scripts)
+- .opencode/skills/system-spec-kit/mcp_server/lib/ (TypeScript source)
+- .opencode/skills/system-spec-kit/mcp_server/dist/ (compiled output the daemon serves)
+- .opencode/skills/system-spec-kit/mcp_server/package.json (build scripts)
 - ~/.opencode/mcp.log or similar daemon log path (if discoverable)
 
 ## TASK FOR THIS ITERATION
@@ -67,7 +67,7 @@ Investigate Q1 with the following sub-steps:
 
 3. If dist/ is older than src/, that is direct evidence of a missing rebuild. Document which files have stale dist/.
 
-4. Identify how the MCP daemon is started and how to restart it. Look in .opencode/skill/system-spec-kit/mcp_server/package.json scripts, opencode.json mcp section, and any process management tooling.
+4. Identify how the MCP daemon is started and how to restart it. Look in .opencode/skills/system-spec-kit/mcp_server/package.json scripts, opencode.json mcp section, and any process management tooling.
 
 5. Document the canonical "fix-and-verify" protocol that should be enforced going forward (rebuild + restart + live probe + recorded evidence) so this phantom-fix class cannot recur.
 

@@ -105,7 +105,7 @@ Produce a merged 20-iteration research packet that preserves all Phase 1 finding
 |----|-------------|---------------------|
 | REQ-006 | At least 4 of the 10 new iterations must address refactor, pivot, simplification, architecture, or UX questions | Phase 2 includes explicit refactor or pivot sections and verdicts |
 | REQ-007 | Refresh the dashboard to cover all 20 iterations | `research/deep-research-dashboard.md` reports both phase-specific and combined totals |
-| REQ-008 | Validate the phase packet after writing | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <phase>` reports success |
+| REQ-008 | Validate the phase packet after writing | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <phase>` reports success |
 
 ### Acceptance Scenarios
 

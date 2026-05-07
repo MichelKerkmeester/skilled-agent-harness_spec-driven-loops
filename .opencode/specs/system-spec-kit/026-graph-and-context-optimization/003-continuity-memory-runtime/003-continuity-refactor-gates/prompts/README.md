@@ -176,11 +176,11 @@ Once the loop runs, outputs land inside the phase 018 spec folder:
 - **Phase 017 research** (decided Option C): `../../z_archive/z_archive/017-memory-refactor-or-deprecation/`
 - **Phase 017 recommendation**: `../../z_archive/z_archive/017-memory-refactor-or-deprecation/recommendation.md`
 - **Phase 017 phase-018 proposal**: `../../z_archive/z_archive/017-memory-refactor-or-deprecation/phase-018-proposal.md`
-- **sk-deep-research skill**: `.opencode/skill/sk-deep-research/SKILL.md`
-- **Loop protocol reference**: `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- **Strategy template**: `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md`
-- **Config template**: `.opencode/skill/sk-deep-research/assets/deep_research_config.json`
-- **Convergence reference**: `.opencode/skill/sk-deep-research/references/convergence.md`
+- **sk-deep-research skill**: `.opencode/skills/sk-deep-research/SKILL.md`
+- **Loop protocol reference**: `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- **Strategy template**: `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md`
+- **Config template**: `.opencode/skills/sk-deep-research/assets/deep_research_config.json`
+- **Convergence reference**: `.opencode/skills/sk-deep-research/references/convergence.md`
 
 ## Lifecycle
 

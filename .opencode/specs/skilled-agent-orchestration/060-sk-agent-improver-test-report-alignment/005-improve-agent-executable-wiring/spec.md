@@ -19,18 +19,18 @@ _memory:
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
-      - .opencode/command/improve/assets/improve_improve-agent_auto.yaml
-      - .opencode/command/improve/assets/improve_improve-agent_confirm.yaml
-      - .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs
-      - .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs
-      - .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
-      - .opencode/skill/sk-improve-agent/SKILL.md
+      - .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+      - .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+      - .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
+      - .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
+      - .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
+      - .opencode/skills/sk-improve-agent/SKILL.md
     completion_pct: 5
     open_questions:
       - "Does 062 include the GREEN cli-copilot rerun or defer to optional 063?"
     answered_questions:
-      - "Benchmark assets location → static skill assets at .opencode/skill/sk-improve-agent/assets/benchmark-profiles/ + assets/benchmark-fixtures/"
-      - "Materializer location → alongside run-benchmark.cjs in .opencode/skill/sk-improve-agent/scripts/"
+      - "Benchmark assets location → static skill assets at .opencode/skills/sk-improve-agent/assets/benchmark-profiles/ + assets/benchmark-fixtures/"
+      - "Materializer location → alongside run-benchmark.cjs in .opencode/skills/sk-improve-agent/scripts/"
       - "Auto + confirm YAML parity → patch in lockstep"
 ---
 
@@ -45,7 +45,7 @@ _memory:
 
 Packet 060/003 research synthesized 10 cli-copilot iterations and identified the executable producers + consumers that must be wired before sk-improve-agent's command-flow pipeline can produce honest GREEN evidence. 062 lands those wirings.
 
-The decisions are locked from research.md §5: benchmark assets live as **static skill assets** under `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` (versioned with the skill, reused across runs); the materializer ships **alongside `run-benchmark.cjs`**; auto + confirm YAML are patched in lockstep; legal-stop emits **nested `details.gateResults`**; stop-reason vocabulary is reconciled across SKILL/helper/tests/docs.
+The decisions are locked from research.md §5: benchmark assets live as **static skill assets** under `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` (versioned with the skill, reused across runs); the materializer ships **alongside `run-benchmark.cjs`**; auto + confirm YAML are patched in lockstep; legal-stop emits **nested `details.gateResults`**; stop-reason vocabulary is reconciled across SKILL/helper/tests/docs.
 
 This packet does NOT include the cli-copilot stress rerun (that's packet 004 (was 061)'s job — restructure CP-040..045 to invoke the command flow and verify GREEN against this packet's wiring). 062 ships executable wiring + native-RT validation only. If scope grows, the GREEN cli-copilot rerun spills to optional 063.
 
@@ -98,8 +98,8 @@ Land all executable wirings so the command-flow pipeline produces evidence that 
 
 ### In Scope
 
-- **Benchmark static assets** at `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json` (versioned with skill)
-- **Benchmark materializer helper** at `.opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` (writes `{outputsDir}/{fixture.id}.md` before `run-benchmark.cjs` runs)
+- **Benchmark static assets** at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json` (versioned with skill)
+- **Benchmark materializer helper** at `.opencode/skills/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` (writes `{outputsDir}/{fixture.id}.md` before `run-benchmark.cjs` runs)
 - **`run-benchmark.cjs` wiring** — actual node invocation in YAML with required CLI args (`--profile`, `--outputs-dir`, etc.); emit `benchmark_completed` only AFTER report file exists
 - **Auto + confirm YAML parity in lockstep** — both emit `benchmark_completed`, both emit nested `legal_stop_evaluated.details.gateResults`, both emit `blocked_stop.failedGates`
 - **Legal-stop nested shape** — change YAML emission from flat `gateName/gateResult` to nested `details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}`
@@ -122,17 +122,17 @@ Land all executable wirings so the command-flow pipeline produces evidence that 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json` | Create | Static benchmark profile JSON |
-| `.opencode/skill/sk-improve-agent/assets/benchmark-fixtures/*.json` | Create | Static fixture JSON files (2-3 minimum) |
-| `.opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` | Create | Materializer helper (writes outputsDir/fixture.id.md before run-benchmark.cjs) |
-| `.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` | Modify | Accept materialized fixture inputs; produce report.json with status:"benchmark-complete" |
-| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Modify | Accept nested `details.gateResults` validation |
-| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Modify | Consume `details.gateResults`; render in dashboard |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Modify | Replace flat `gate_evaluation` with nested `legal_stop_evaluated.details.gateResults`; wire materialize+run-benchmark; emit benchmark_completed after report exists |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same as auto (lockstep parity) |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modify | Document static-asset benchmark location, materializer ownership, nested gateResults shape, stop-reason enum truth |
-| `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/` (or new path) | Modify if needed | Native RT-028/RT-032 fixture alignment if these reference 062-specific shapes |
-| `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-018*.md` | Modify | Update expected signal shapes for CP-040..045 to match 062's new shapes |
+| `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/default.json` | Create | Static benchmark profile JSON |
+| `.opencode/skills/sk-improve-agent/assets/benchmark-fixtures/*.json` | Create | Static fixture JSON files (2-3 minimum) |
+| `.opencode/skills/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` | Create | Materializer helper (writes outputsDir/fixture.id.md before run-benchmark.cjs) |
+| `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` | Modify | Accept materialized fixture inputs; produce report.json with status:"benchmark-complete" |
+| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Modify | Accept nested `details.gateResults` validation |
+| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modify | Consume `details.gateResults`; render in dashboard |
+| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Modify | Replace flat `gate_evaluation` with nested `legal_stop_evaluated.details.gateResults`; wire materialize+run-benchmark; emit benchmark_completed after report exists |
+| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same as auto (lockstep parity) |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Document static-asset benchmark location, materializer ownership, nested gateResults shape, stop-reason enum truth |
+| `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/` (or new path) | Modify if needed | Native RT-028/RT-032 fixture alignment if these reference 062-specific shapes |
+| `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-018*.md` | Modify | Update expected signal shapes for CP-040..045 to match 062's new shapes |
 | Existing test files (journal, reducer, score-candidate) | Modify | Match new shapes |
 <!-- /ANCHOR:scope -->
 
@@ -176,7 +176,7 @@ Land all executable wirings so the command-flow pipeline produces evidence that 
 
 | Decision | Choice | Source |
 |---|---|---|
-| Benchmark assets location | **Static skill assets** at `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` | 060/003/research §5 (user-confirmed) |
+| Benchmark assets location | **Static skill assets** at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/` | 060/003/research §5 (user-confirmed) |
 | Materializer location | **Alongside `run-benchmark.cjs`** in scripts/ | 060/003/research §5 |
 | Auto + confirm YAML | **Lockstep parity** | 060/003/research §5 |
 | Legal-stop emission shape | **Nested `details.gateResults`** | 060/003/research §5 |

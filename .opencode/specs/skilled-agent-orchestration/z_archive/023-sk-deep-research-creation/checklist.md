@@ -114,7 +114,7 @@ _memory:
 - [x] CHK-055 [P1] Spec_kit YAML workflows updated (plan/complete, auto/confirm) -- Evidence: agent_availability references deep-research.md
 - [x] CHK-056 [P1] Install guides updated (3 files) -- Evidence: research agent removed from registration tables
 - [x] CHK-057 [P1] .codex/config.toml updated -- Evidence: [agents.research] replaced with [agents.deep-research]
-- [x] CHK-058 [P0] Live runtime/docs paths are clean of stale references -- Evidence: active runtime and maintained docs no longer reference `@research` or `/spec_kit:research`; remaining matches are limited to archived `*.bak` files (`README.md.bak`, `.opencode/skill/system-spec-kit/README.md.bak`)
+- [x] CHK-058 [P0] Live runtime/docs paths are clean of stale references -- Evidence: active runtime and maintained docs no longer reference `@research` or `/spec_kit:research`; remaining matches are limited to archived `*.bak` files (`README.md.bak`, `.opencode/skills/system-spec-kit/README.md.bak`)
 - [x] CHK-059 [P1] spec_kit command README.txt updated -- Evidence: all 7 locations updated (trigger phrase, command table, dependencies table, file listing, workflow diagram, agent delegation table, usage example); independent review scored 100/100
 
 <!-- /ANCHOR:security -->

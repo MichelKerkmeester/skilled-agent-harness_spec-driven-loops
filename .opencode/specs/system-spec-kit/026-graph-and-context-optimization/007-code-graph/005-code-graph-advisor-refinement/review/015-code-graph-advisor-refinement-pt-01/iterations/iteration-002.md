@@ -12,25 +12,25 @@ Second-pass review covering PRs not reviewed in iteration 1, plus adversarial se
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/cache/listener-uniqueness.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/cache/listener-uniqueness.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
 - `.claude/settings.local.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/scorer-bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.baseline.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/scorer-bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-parse-latency.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/hook-brief-signal-noise.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.baseline.json`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
 
 Validation/evidence checks:
 
-- `stat` confirms the repaired corpus exists at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`.
+- `stat` confirms the repaired corpus exists at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`.
 - `stat` confirms the legacy spec-subfolder corpus path is missing.
 - `stat` confirms `code-graph-query-latency.baseline.json` exists.
 - Targeted source reads were used instead of running broad suites; this iteration is a read-only review and did not execute the bench suite.
@@ -47,7 +47,7 @@ None.
 
 Dimension: correctness. PR source: PR-1.
 
-The new corpus path exists, and `python-ts-parity.vitest.ts` now resolves it through `SPECKIT_BENCH_CORPUS_PATH` at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts:40-41`. However, that constant is a local `const`, not an exported constant. More importantly, another test file still points at the old spec-subfolder corpus path: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts:27-33`. A direct `stat` of that old path returns `No such file or directory`.
+The new corpus path exists, and `python-ts-parity.vitest.ts` now resolves it through `SPECKIT_BENCH_CORPUS_PATH` at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/parity/python-ts-parity.vitest.ts:40-41`. However, that constant is a local `const`, not an exported constant. More importantly, another test file still points at the old spec-subfolder corpus path: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts:27-33`. A direct `stat` of that old path returns `No such file or directory`.
 
 Impact: the PR-1 fix is incomplete relative to the iteration contract: not all test references moved off the dead corpus path, and the named constant is not exported for reuse. Running the legacy parity suite still fails before exercising scorer behavior.
 
@@ -59,7 +59,7 @@ Fix: export a single shared corpus-path constant or helper, repoint the legacy p
 
 Dimension: correctness. PR source: PR-9.
 
-`runQueryLatencyBench()` catches every thrown error and returns `skip(...)` at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:153-154`. The test then treats any skipped report as success at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:164-168`. This catch-all includes not just environment-dependent DB init failures, but also missing baseline JSON, malformed baseline JSON, fixture seeding defects, and sample extraction regressions. For example, the explicit baseline check at `:125-127` is inside the catch-all.
+`runQueryLatencyBench()` catches every thrown error and returns `skip(...)` at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:153-154`. The test then treats any skipped report as success at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/code-graph-query-latency.bench.ts:164-168`. This catch-all includes not just environment-dependent DB init failures, but also missing baseline JSON, malformed baseline JSON, fixture seeding defects, and sample extraction regressions. For example, the explicit baseline check at `:125-127` is inside the catch-all.
 
 Impact: the PR-9 release gate can pass while the benchmark never validates the baseline or emits samples. That defeats the planned delta-vs-baseline assertion and can hide exactly the regressions PR-9 is meant to catch.
 
@@ -71,7 +71,7 @@ Fix: fail on invariant failures such as missing/malformed baseline, zero samples
 
 Dimension: correctness. PR sources: PR-4 / PR-5 cross-PR interaction.
 
-`computeFreshness()` returns four local staleness values: `fresh`, `recent`, `stale`, and `unknown` at `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:263-272`. PR-5 then maps that value into the PR-4 trust vocabulary for `spec_kit.graph.query_latency_ms` at `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:175-177`, but only handles `fresh`, `stale`, and `unknown` explicitly. The remaining `recent` branch falls through to `absent`.
+`computeFreshness()` returns four local staleness values: `fresh`, `recent`, `stale`, and `unknown` at `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:263-272`. PR-5 then maps that value into the PR-4 trust vocabulary for `spec_kit.graph.query_latency_ms` at `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:175-177`, but only handles `fresh`, `stale`, and `unknown` explicitly. The remaining `recent` branch falls through to `absent`.
 
 Impact: a graph indexed 5 minutes to 1 hour ago is reported in metrics as `freshness_state=absent`, even though the graph exists and is merely recent. This is a cross-PR vocabulary drift: the label uses the unified PR-4 vocabulary strings, but the mapping gives one valid source state the wrong semantic bucket.
 

@@ -37,7 +37,7 @@ _memory:
     next_safe_action: "Execute Phase 2 file moves and reference updates"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/changelog_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/changelog_template.md"
     session_dedup:
       fingerprint: "sha256:045-sk-doc-changelog-template"
       session_id: "045-sk-doc-changelog-template"
@@ -75,7 +75,7 @@ Move one markdown asset from the create-command asset folder into the sk-doc doc
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Target path agreed: `.opencode/skill/sk-doc/assets/documentation/changelog_template.md`
+- [x] Target path agreed: `.opencode/skills/sk-doc/assets/documentation/changelog_template.md`
 - [x] Reference inventory complete (2 YAMLs + 1 command md + 1 spec-kit reference + sk-doc SKILL.md)
 - [x] sk-git impact ruled out (commands not template path)
 
@@ -122,7 +122,7 @@ User invokes `/create:changelog` -> command markdown runs Setup Phase -> selects
 - [ ] Add CHANGELOG intent + RESOURCE_MAP entry + use-case mention + references entry in sk-doc SKILL.md
 
 ### Phase 3: Verification
-- [ ] grep verification: zero hits for the old path under `.opencode/command/` and `.opencode/skill/`
+- [ ] grep verification: zero hits for the old path under `.opencode/commands/` and `.opencode/skills/`
 - [ ] Read-back the moved template to confirm content parity
 - [ ] Read-back sk-doc SKILL.md to confirm router wiring
 - [ ] Author implementation-summary.md with the Files Changed table and verification block

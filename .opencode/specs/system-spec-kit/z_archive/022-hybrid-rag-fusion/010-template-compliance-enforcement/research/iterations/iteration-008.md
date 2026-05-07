@@ -7,7 +7,7 @@ Draft the exact changes needed for each enforcement layer. This is a pure synthe
 
 ### Finding 1: Layer 1 -- Shared Compliance Reference File (CREATE)
 
-**File**: `.opencode/skill/system-spec-kit/references/template-compliance-contract.md`
+**File**: `.opencode/skills/system-spec-kit/references/template-compliance-contract.md`
 **Action**: Create new file
 
 This file serves as the canonical single-source-of-truth for template compliance contracts. All 4 CLI @speckit agent definitions reference it. The file contains:
@@ -36,7 +36,7 @@ last_synced: 2026-03-22
 ## Enforcement Rule
 
 After writing ANY spec folder .md file, immediately run:
-`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict`
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER> --strict`
 Fix ALL errors before proceeding to the next file or workflow step.
 
 ## Level 2 Contract (All 5 Document Types)
@@ -67,8 +67,8 @@ When templates in `templates/level_N/` change:
 
 **Files** (all 4 must be changed identically):
 - `.claude/agents/speckit.md`
-- `.opencode/agent/speckit.md`
-- `.opencode/agent/chatgpt/speckit.md`
+- `.opencode/agents/speckit.md`
+- `.opencode/agents/chatgpt/speckit.md`
 - `.codex/agents/speckit.toml` (TOML-escaped version)
 
 **Exact diff for `.claude/agents/speckit.md`**:
@@ -104,7 +104,7 @@ When drafting or updating `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `dec
 ```
 ### Template Compliance Contract
 
-> Full reference: `.opencode/skill/system-spec-kit/references/template-compliance-contract.md`
+> Full reference: `.opencode/skills/system-spec-kit/references/template-compliance-contract.md`
 
 #### Template Compliance Contract (Level 2)
 
@@ -142,7 +142,7 @@ After writing or editing ANY `.md` file inside a spec folder:
 
 1. Run validation:
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER_PATH> --strict
+   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <SPEC_FOLDER_PATH> --strict
    ```
 
 2. Parse the exit code:
@@ -165,30 +165,30 @@ This replaces the 3 conflicting directives with a single unambiguous protocol. T
 
 ### Finding 4: Layer 3 -- Pre-Commit Hook Installation (Zero Code Changes)
 
-The pre-commit hook at `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` is **fully functional** (251 lines, 5 sections: config loading, staged file detection, folder age check, validation, main). The `.speckit-enforce.yaml` config exists with sensible defaults.
+The pre-commit hook at `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh` is **fully functional** (251 lines, 5 sections: config loading, staged file detection, folder age check, validation, main). The `.speckit-enforce.yaml` config exists with sensible defaults.
 
 **Installation method** (choose one):
 
 **Option A: Git hooks path (recommended)**
 ```bash
-git config core.hooksPath .opencode/skill/system-spec-kit/scripts/spec/hooks
+git config core.hooksPath .opencode/skills/system-spec-kit/scripts/spec/hooks
 ```
 Then create the hooks directory with a symlink:
 ```bash
-mkdir -p .opencode/skill/system-spec-kit/scripts/spec/hooks
-ln -sf ../pre-commit-spec-validate.sh .opencode/skill/system-spec-kit/scripts/spec/hooks/pre-commit
+mkdir -p .opencode/skills/system-spec-kit/scripts/spec/hooks
+ln -sf ../pre-commit-spec-validate.sh .opencode/skills/system-spec-kit/scripts/spec/hooks/pre-commit
 ```
 
 **Option B: Direct symlink into .git/hooks**
 ```bash
-ln -sf ../../.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh .git/hooks/pre-commit
+ln -sf ../../.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh .git/hooks/pre-commit
 ```
 
 **Option C: Wrapper script in .git/hooks**
 ```bash
 cat > .git/hooks/pre-commit << 'HOOK'
 #!/usr/bin/env bash
-exec "$(git rev-parse --show-toplevel)/.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh" "$@"
+exec "$(git rev-parse --show-toplevel)/.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh" "$@"
 HOOK
 chmod +x .git/hooks/pre-commit
 ```
@@ -214,7 +214,7 @@ enforcement:
   created_after: "2026-03-22"
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh:1-251 + .speckit-enforce.yaml:1-23]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh:1-251 + .speckit-enforce.yaml:1-23]
 
 ### Finding 5: validate.sh --fix Mode Feasibility Assessment
 
@@ -239,7 +239,7 @@ enforcement:
 
 If a `--fix` mode is desired in the future, scope it to anchor injection only (the safest and most mechanical fix), and keep header renaming/reordering as agent-assisted.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/progressive-validate.sh:293-458 (auto-fix helpers) + iteration-002.md gap taxonomy]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh:293-458 (auto-fix helpers) + iteration-002.md gap taxonomy]
 
 ### Finding 6: Implementation Sequence with Effort Estimates
 
@@ -268,9 +268,9 @@ After implementing all layers, verify:
 
 ## Sources Consulted
 - `.claude/agents/speckit.md`:109,238,318-339,325 (timing directives, current scaffold)
-- `.opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh`:1-251 (full hook source)
+- `.opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh`:1-251 (full hook source)
 - `.speckit-enforce.yaml`:1-23 (enforcement config)
-- `.opencode/skill/system-spec-kit/scripts/spec/progressive-validate.sh`:293-458 (auto-fix helpers)
+- `.opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh`:293-458 (auto-fix helpers)
 - research/research.md Sections 3.5, 6.1-6.5 (prior iteration synthesis)
 - Iterations 1-7 findings (accumulated research base)
 
@@ -286,5 +286,5 @@ After implementing all layers, verify:
 
 ## Recommended Next Focus
 Two options for iteration 9:
-1. **If convergence is near**: Draft the actual file content for the shared reference file (`.opencode/skill/system-spec-kit/references/template-compliance-contract.md`) as a complete, copy-pasteable artifact. This makes the research immediately actionable.
+1. **If convergence is near**: Draft the actual file content for the shared reference file (`.opencode/skills/system-spec-kit/references/template-compliance-contract.md`) as a complete, copy-pasteable artifact. This makes the research immediately actionable.
 2. **If more depth is needed**: Investigate the Codex TOML agent format specifically, and explore whether a `generate-compliance-contract.sh` script could auto-generate the shared reference file from template-structure.js output (eliminating manual sync).

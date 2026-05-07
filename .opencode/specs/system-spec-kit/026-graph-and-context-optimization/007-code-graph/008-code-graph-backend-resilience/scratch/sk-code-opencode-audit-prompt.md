@@ -11,7 +11,7 @@ Audit the TypeScript files touched across the 007 + 008 phases plus remediation 
 
 ## Files to audit
 
-Production code (under `.opencode/skill/system-spec-kit/mcp_server/`):
+Production code (under `.opencode/skills/system-spec-kit/mcp_server/`):
 
 - `code_graph/lib/code-graph-db.ts`
 - `code_graph/lib/gold-query-verifier.ts` (new)
@@ -45,7 +45,7 @@ Tests:
 
 ## Standards to apply
 
-Read `.opencode/skill/sk-code-opencode/SKILL.md` and the bundled references for:
+Read `.opencode/skills/sk-code-opencode/SKILL.md` and the bundled references for:
 
 - TypeScript checklist (interfaces, strict tsconfig, type guards, no `any` unless escape-hatch is documented)
 - General quality lenses (CLARITY, SYSTEMS, BIAS, SUSTAINABILITY, VALUE, SCOPE)

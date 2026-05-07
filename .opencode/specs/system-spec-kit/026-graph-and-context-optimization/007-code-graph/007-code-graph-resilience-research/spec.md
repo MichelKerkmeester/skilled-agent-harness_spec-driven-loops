@@ -65,7 +65,7 @@ Without research:
 - We have no quantitative model for "how stale is too stale" — the threshold to warn vs require re-scan is intuition only
 - We have no verification battery (gold-set queries) to detect closure regressions when exclude rules change
 - We have no recovery playbook for corrupted SQLite indexes
-- We have no confidence model for proposing exclude rules — `node_modules/` is an obvious candidate, but `.opencode/skill/system-spec-kit/mcp_server/dist/` is sometimes useful and sometimes noise
+- We have no confidence model for proposing exclude rules — `node_modules/` is an obvious candidate, but `.opencode/skills/system-spec-kit/mcp_server/dist/` is sometimes useful and sometimes noise
 
 The `/doctor:code-graph` command (sibling packet 006) cannot ship Phase B (apply mode) until these gaps are closed. Phase A (diagnostic-only) ships independently; Phase B is gated on this research packet.
 
@@ -87,7 +87,7 @@ These outputs feed back into the 006 doctor command as Phase B's verification su
 
 ### In Scope
 
-- Investigate code_graph_scan, code_graph_query, detect_changes implementations under `.opencode/skill/system-spec-kit/mcp_server/`
+- Investigate code_graph_scan, code_graph_query, detect_changes implementations under `.opencode/skills/system-spec-kit/mcp_server/`
 - Investigate the SQLite schema and on-disk storage layout
 - Survey existing scan logs (under recent specs/.../research/iteration-*.log) for patterns of failure
 - Catalog all current scanner config / exclude-rule surfaces (where do rules live, how are they read)
@@ -134,7 +134,7 @@ These outputs feed back into the 006 doctor command as Phase B's verification su
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Research findings cite file:line evidence from current code_graph_scan implementation | research.md (output) includes >= 10 evidence citations under `.opencode/skill/system-spec-kit/mcp_server/lib/...` |
+| REQ-005 | Research findings cite file:line evidence from current code_graph_scan implementation | research.md (output) includes >= 10 evidence citations under `.opencode/skills/system-spec-kit/mcp_server/lib/...` |
 | REQ-006 | Decision record explains threshold choices | decision-record.md (output) explains why N1 / N2 staleness thresholds were chosen (with citations) |
 | REQ-007 | Verification battery includes regression-detection queries | At least 5 queries are designed to fail when canonical symbols are dropped by an over-aggressive exclude rule |
 | REQ-008 | Research output references concrete operational scenarios | At least 3 scenarios include real evidence from existing `*-pt-NN/iteration-*.log` files |

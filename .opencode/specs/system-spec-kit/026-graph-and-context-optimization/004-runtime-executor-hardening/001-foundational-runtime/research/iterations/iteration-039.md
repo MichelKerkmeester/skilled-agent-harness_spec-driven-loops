@@ -6,7 +6,7 @@ I filtered out the temp-path and generic last-writer-wins races already captured
 ## Findings
 
 ### Finding R39-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `60-67`, `108-117`, `299-318`
 - **Severity:** P1
 - **Description:** The stop hook's result surface reports only the configured autosave mode, not whether autosave actually ran, skipped, or failed after the write-then-read handoff. `runContextAutosave()` re-loads hook state from disk, silently returns if either `lastSpecFolder` or `sessionSummary` is missing, and logs failures internally, but `processStopHook()` never captures that outcome before returning `SessionStopProcessResult`.
@@ -14,7 +14,7 @@ I filtered out the temp-path and generic last-writer-wins races already captured
 - **Downstream Impact:** A lost or interleaved `updateState()` write can cause autosave to no-op or fail while the stop hook still reports an apparently normal completion path. Callers and operators have no structured signal that the continuity save was skipped after state reread, so packet freshness can silently regress under exactly the concurrency seam this domain is auditing.
 
 ### Finding R39-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `203-237`, `282-306`
 - **Severity:** P1
 - **Description:** Governed reconsolidation filtering does not evaluate candidates against a single snapshot. The bridge first gets a vector-search result set, then performs a separate `SELECT tenant_id, user_id, agent_id, session_id FROM memory_index WHERE id = ?` for each candidate during `results.filter(...)`. Without a transaction, concurrent scope updates or deletes can make one planning pass mix candidate scopes from different moments in time.

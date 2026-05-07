@@ -8,10 +8,10 @@
       "class": "path alias resolver gap",
       "summary": "The current scanner does not read tsconfig paths or preserve import module specifiers, so @spec-kit/shared/* imports cannot be resolved to files.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/tsconfig.json:12-15",
-        ".opencode/skill/system-spec-kit/mcp_server/context-server.ts:70-74",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:340-397"
+        ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json:12-15",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:70-74",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:340-397"
       ]
     },
     {
@@ -19,10 +19,10 @@
       "class": "type-only import edge design",
       "summary": "Type-only imports need parser tagging plus a new TYPE_ONLY edge class weighted like TYPE_OF but kept separate from runtime IMPORTS.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:483-488",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:485-502",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1048-1069"
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:12-16",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:483-488",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:485-502",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1048-1069"
       ]
     },
     {
@@ -30,10 +30,10 @@
       "class": "barrel chain resolution",
       "summary": "Star and named re-exports need source-module capture and a bounded re-export chain resolver that maps barrel imports back to original symbols.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:399-465",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:504-517",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index.ts:4-15",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11"
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:399-465",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:504-517",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index.ts:4-15",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11"
       ]
     },
     {

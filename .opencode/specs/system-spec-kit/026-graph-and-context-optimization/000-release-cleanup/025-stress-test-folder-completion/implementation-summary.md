@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - "migration-plan.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -63,15 +63,15 @@ Packet 038 turns the stress folder into the real owner of MCP stress coverage. T
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/` | Moved | Full harness, corpus, metrics, telemetry, and W-cell cases |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/` | Moved | Memory search and trigger benchmarks |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/` | Moved | Session-manager stress and resume benchmarks |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/` | Moved | Skill graph rebuild concurrency coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/` | Moved | Degraded graph and walker cap coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/matrix/` | Moved | Synthetic matrix comparison suite |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` | Modified | Exclude stress from default tests |
-| `.opencode/skill/system-spec-kit/mcp_server/vitest.stress.config.ts` | Created | Run only stress tests |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modified | Add stress script routing |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/` | Moved | Full harness, corpus, metrics, telemetry, and W-cell cases |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/` | Moved | Memory search and trigger benchmarks |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/` | Moved | Session-manager stress and resume benchmarks |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/` | Moved | Skill graph rebuild concurrency coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/` | Moved | Degraded graph and walker cap coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/matrix/` | Moved | Synthetic matrix comparison suite |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` | Modified | Exclude stress from default tests |
+| `.opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts` | Created | Run only stress tests |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Add stress script routing |
 | `migration-plan.md` | Created | Preserve classification rationale |
 <!-- /ANCHOR:what-built -->
 

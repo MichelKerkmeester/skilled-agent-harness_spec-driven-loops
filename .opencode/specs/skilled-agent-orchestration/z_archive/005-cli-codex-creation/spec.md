@@ -62,11 +62,11 @@ Consolidate `cli-gemini` around a single model reference and create a parallel `
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-gemini/*` | Modify | Replace multi-model guidance with single-model references |
-| `.opencode/skill/cli-codex/SKILL.md` | Create | Main skill definition |
-| `.opencode/skill/cli-codex/references/*.md` | Create | Codex reference set |
-| `.opencode/skill/cli-codex/assets/prompt_templates.md` | Create | Prompt template library |
-| `.opencode/skill/scripts/skill_advisor.py` | Modify | Register `cli-codex` |
+| `.opencode/skills/cli-gemini/*` | Modify | Replace multi-model guidance with single-model references |
+| `.opencode/skills/cli-codex/SKILL.md` | Create | Main skill definition |
+| `.opencode/skills/cli-codex/references/*.md` | Create | Codex reference set |
+| `.opencode/skills/cli-codex/assets/prompt_templates.md` | Create | Prompt template library |
+| `.opencode/skills/scripts/skill_advisor.py` | Modify | Register `cli-codex` |
 | `README.md` and related skill catalogs | Modify | Add `cli-codex` documentation |
 <!-- /ANCHOR:scope -->
 

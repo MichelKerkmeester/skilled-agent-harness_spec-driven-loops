@@ -161,7 +161,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/checklist.md; origi
 
 - [x] CHK-040 [P0] `smart-router-measurement-report.md` line 26: DELETE_LINE — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
 - [x] CHK-041 [P0] root `README.md`: 4 edits applied (DELETE subsection 825-829, DELETE line 1173, PATCH 642 + 1187) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
-- [x] CHK-042 [P0] `.opencode/skill/README.md`: 6 edits applied (PATCH counts at 54+58, DELETE 4 rows at 161, 204, 258 + entry in line 58) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
+- [x] CHK-042 [P0] `.opencode/skills/README.md`: 6 edits applied (PATCH counts at 54+58, DELETE 4 rows at 161, 204, 258 + entry in line 58) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
 
 ### File Edits — mcp-code-mode (D1 strip pattern, P0)
 
@@ -173,8 +173,8 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/checklist.md; origi
 
 ### Skill Folder Deletion (P0)
 
-- [x] CHK-060 [P0] `rm -rf .opencode/skill/mcp-figma/` executed — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
-- [x] CHK-061 [P0] `test ! -d .opencode/skill/mcp-figma/` returns true (folder gone) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
+- [x] CHK-060 [P0] `rm -rf .opencode/skills/mcp-figma/` executed — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
+- [x] CHK-061 [P0] `test ! -d .opencode/skills/mcp-figma/` returns true (folder gone) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
 - [x] CHK-062 [P0] No z_archive marker, no .bak, no commented-out code (memory rule: physical delete) — EVIDENCE: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; implementation-summary.md verification section
 
 ### Commit 4 (P0)

@@ -31,7 +31,7 @@ contextType: "implementation"
 ### T001: Make EMBEDDING_DIM Dynamic
 - **Priority:** P0 (CRITICAL)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Status:** [x] Complete
 
 **Existing Infrastructure:**
@@ -50,7 +50,7 @@ contextType: "implementation"
 ### T002: Update Schema Creation for Dynamic Dimension
 - **Priority:** P0 (CRITICAL)
 - **Estimate:** 1 hour
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Depends On:** T001
 - **Status:** [x] Complete
 
@@ -64,7 +64,7 @@ contextType: "implementation"
 ### T003: Update Validation in indexMemory/updateMemory
 - **Priority:** P0 (CRITICAL)
 - **Estimate:** 1 hour
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Depends On:** T001
 - **Status:** [x] Complete
 
@@ -78,7 +78,7 @@ contextType: "implementation"
 ### T004: Add Pre-flight Dimension Check
 - **Priority:** P0 (CRITICAL)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 - **Depends On:** T001
 - **Status:** [x] Complete
 
@@ -96,7 +96,7 @@ contextType: "implementation"
 ### T005: Add Folder Naming Validation Rule
 - **Priority:** P1 (HIGH)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-folder-naming.sh` (new)
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh` (new)
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -109,7 +109,7 @@ contextType: "implementation"
 ### T006: Fix Implementation-Summary Logic
 - **Priority:** P1 (HIGH)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -122,7 +122,7 @@ contextType: "implementation"
 ### T007: Update Help Text
 - **Priority:** P1 (HIGH)
 - **Estimate:** 0.5 hours
-- **File:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+- **File:** `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -134,7 +134,7 @@ contextType: "implementation"
 ### T008: Add Frontmatter Validation Rule
 - **Priority:** P1 (HIGH)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh` (new)
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh` (new)
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -151,7 +151,7 @@ contextType: "implementation"
 ### T009: Fix Broken Link in folder_routing.md
 - **Priority:** P2 (MEDIUM)
 - **Estimate:** 0.25 hours
-- **File:** `.opencode/skill/system-spec-kit/references/folder_routing.md`
+- **File:** `.opencode/skills/system-spec-kit/references/folder_routing.md`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -181,7 +181,7 @@ contextType: "implementation"
 ### T011: Document context_template.md
 - **Priority:** P2 (MEDIUM)
 - **Estimate:** 0.5 hours
-- **File:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **File:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -194,7 +194,7 @@ contextType: "implementation"
 ### T012: Fix Table Formatting in implementation-summary.md
 - **Priority:** P2 (MEDIUM)
 - **Estimate:** 0.25 hours
-- **File:** `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
+- **File:** `.opencode/skills/system-spec-kit/templates/implementation-summary.md`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -222,7 +222,7 @@ contextType: "implementation"
 ### T014: Add --help Flag to generate-context.js
 - **Priority:** P2 (LOW)
 - **Estimate:** 1 hour
-- **File:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **File:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -235,7 +235,7 @@ contextType: "implementation"
 ### T015: Add Error Handling for mkdir
 - **Priority:** P2 (LOW)
 - **Estimate:** 0.5 hours
-- **File:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **File:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -247,7 +247,7 @@ contextType: "implementation"
 ### T016: Document test-embeddings-factory.js
 - **Priority:** P2 (LOW)
 - **Estimate:** 0.25 hours
-- **File:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **File:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**
@@ -259,7 +259,7 @@ contextType: "implementation"
 ### T017: Create Template Style Guide
 - **Priority:** P3 (OPTIONAL)
 - **Estimate:** 2 hours
-- **File:** `.opencode/skill/system-spec-kit/references/template_style_guide.md` (new)
+- **File:** `.opencode/skills/system-spec-kit/references/template_style_guide.md` (new)
 - **Status:** [x] Complete
 
 **Acceptance Criteria:**

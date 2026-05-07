@@ -60,16 +60,16 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] **T101** Append `CopilotTargetAuthority` type + `buildCopilotPromptArg` + `buildTargetAuthorityPreamble` + `buildMissingAuthorityGate3Prompt` to `executor-config.ts`. Existing `resolveCopilotPromptArg` body is byte-stable.
-  - **File**: `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+  - **File**: `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
   - **Acceptance**: `grep -n "export function buildCopilotPromptArg" mcp_server/lib/deep-loop/executor-config.ts` returns 1 hit.
 - [x] **T102** Replace `if_cli_copilot.command` in `spec_kit_deep-research_auto.yaml` with the helper-routed Node script. Resolves `targetAuthority` from `{spec_folder}` template; falls back to Gate-3 enforcement when absent. Adds 2 explanatory `notes` entries.
-  - **File**: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+  - **File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
   - **Acceptance**: `grep -n "buildCopilotPromptArg" spec_kit_deep-research_auto.yaml` returns ≥2 hits (import + call).
 - [x] **T103** Replace `if_cli_copilot.command` in `spec_kit_deep-review_auto.yaml` with the helper-routed Node script. Unifies on Node-based dispatch (away from prior bash/`wc -c` shape). Adds 2 explanatory `notes` entries.
-  - **File**: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+  - **File**: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
   - **Acceptance**: `grep -n "buildCopilotPromptArg" spec_kit_deep-review_auto.yaml` returns ≥2 hits.
 - [x] **T104** Author vitest at `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` covering 3 behavior-matrix branches + override resistance + large-prompt fallback + exported helpers. 13 cases across 6 describe blocks.
-  - **File**: `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
+  - **File**: `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
   - **Acceptance**: File compiles (vitest discovery picks it up via `mcp_server/tests/**/*.vitest.ts`).
 <!-- /ANCHOR:phase-2 -->
 
@@ -86,7 +86,7 @@ _memory:
   - **Acceptance**: `Tests 24 passed (24)`; exit 0.
 - [x] **T203** Run combined executor-config test surface (37 total).
   - **Acceptance**: `Tests 37 passed (37)`; exit 0.
-- [x] **T204** Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. Expect 0 structural errors; SPEC_DOC_INTEGRITY false-positives accepted as known noise (matching 010 + 011 baseline).
+- [x] **T204** Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. Expect 0 structural errors; SPEC_DOC_INTEGRITY false-positives accepted as known noise (matching 010 + 011 baseline).
   - **Acceptance**: same accepted-noise pattern as predecessor packets.
 - [x] **T205** Author `implementation-summary.md` with verification table, decisions, known limitations, next steps.
   - **File**: `implementation-summary.md`

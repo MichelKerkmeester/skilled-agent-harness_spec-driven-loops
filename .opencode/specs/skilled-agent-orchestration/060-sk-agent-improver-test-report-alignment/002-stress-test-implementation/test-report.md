@@ -19,8 +19,8 @@ _memory:
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
-      - .opencode/command/improve/agent.md
-      - .opencode/agent/improve-agent.md
+      - .opencode/commands/improve/agent.md
+      - .opencode/agents/improve-agent.md
     completion_pct: 100
     open_questions:
       - "Follow-on packet should rerun CP-040..CP-045 through the /improve:agent command workflow instead of prepending only the agent body."
@@ -34,7 +34,7 @@ _memory:
 
 | | |
 |---|---|
-| **Subject** | sk-improve-agent triad (`.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/agent/improve-agent.md`, `.opencode/command/improve/agent.md`) |
+| **Subject** | sk-improve-agent triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`) |
 | **Window** | 2026-05-02 |
 | **Executor** | `cli-copilot --model gpt-5.5` (high reasoning via `~/.copilot/settings.json`) |
 | **Scenarios** | CP-040..CP-045 (6 stress tests authored from `001/research/research.md` §4 sketches) |
@@ -48,7 +48,7 @@ _memory:
 
 R1 surfaced a methodology-level gap, not a per-scenario design gap. The 060/002 scenarios copied packet 059's same-task A/B shape: Call A is a generic task, Call B prepends the agent body, adds `Depth: 1`, and dispatches the same task. That worked for `@code` because `@code`'s discipline lives in the agent body. It does not translate cleanly to `@improve-agent`, where the discipline under test lives in the `/improve:agent` command orchestrator.
 
-Stages 1-3 still landed cleanly. The implementation changed 9 source files by +257 / -77, applied all 6 diff sketches, added CP-040 through CP-045, built the 060 fixture under `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/`, updated the root playbook index, and kept the improve-agent mirrors aligned across `.opencode`, `.claude`, `.gemini`, and `.codex`.
+Stages 1-3 still landed cleanly. The implementation changed 9 source files by +257 / -77, applied all 6 diff sketches, added CP-040 through CP-045, built the 060 fixture under `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`, updated the root playbook index, and kept the improve-agent mirrors aligned across `.opencode`, `.claude`, `.gemini`, and `.codex`.
 
 R1 did not prove the command discipline held. The final score was **PASS 0 / PARTIAL 2 / FAIL 4**. CP-040 and CP-041 were partial; CP-042 through CP-045 failed. The tripwire-dirty signals in CP-041, CP-044, and CP-045 are false positives: they reflect parallel-track `description.json` indexing chatter from the user's other work, not scenario-induced project mutation. Per the worktree-cleanliness memory rule, that is not a blocker.
 
@@ -77,13 +77,13 @@ The premise was sound. The invocation mode was not. The scenarios assumed `@impr
 Each scenario sent the same task twice:
 
 - **Call A** — `As @Task: <task body>` against the sandbox.
-- **Call B** — the same task body, but with the full `.opencode/agent/improve-agent.md` body prepended, followed by `Depth: 1`.
+- **Call B** — the same task body, but with the full `.opencode/agents/improve-agent.md` body prepended, followed by `Depth: 1`.
 
 Both calls used `copilot --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-NNN-sandbox`. The sandbox was reset between A and B.
 
 ### Sandbox discipline
 
-Each scenario seeded `/tmp/cp-NNN-sandbox/` from `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/`, captured `/tmp/cp-NNN-sandbox-baseline/`, and wrote scenario-specific spec artifacts under `/tmp/cp-NNN-spec/` when available. Project tripwires used `git status --porcelain` pre/post; sandbox checks used `diff`, file existence, and transcript grep.
+Each scenario seeded `/tmp/cp-NNN-sandbox/` from `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`, captured `/tmp/cp-NNN-sandbox-baseline/`, and wrote scenario-specific spec artifacts under `/tmp/cp-NNN-spec/` when available. Project tripwires used `git status --porcelain` pre/post; sandbox checks used `diff`, file existence, and transcript grep.
 
 ### Pass/fail signals
 
@@ -179,7 +179,7 @@ So R1 mostly tested the wrong layer. It proved the thin mutator does not do orch
 
 R2 would only be meaningful if it changed the invocation mode. Re-running the same prepended-agent-body pattern after editing scenario wording would likely reproduce the same outcome: the mutator checks required inputs, refuses to score or benchmark, and stops.
 
-The honest path is ADR-4's "document honest gaps" route. The packet has already delivered the Stage 1-3 source/scenario work. The failed R1 is valuable because it identifies the exact design flaw in the test harness: Call B must invoke `/improve:agent`, not merely prepend `.opencode/agent/improve-agent.md`.
+The honest path is ADR-4's "document honest gaps" route. The packet has already delivered the Stage 1-3 source/scenario work. The failed R1 is valuable because it identifies the exact design flaw in the test harness: Call B must invoke `/improve:agent`, not merely prepend `.opencode/agents/improve-agent.md`.
 
 That rework is not a small round. It needs command-owned setup: packet-local `improvement/` directories, charter/control/profile files, YAML workflow invocation, helper-script evidence capture, journal inspection, and stop-condition assertions. That is enough surface area for a separate packet.
 <!-- /ANCHOR:r2 -->
@@ -212,15 +212,15 @@ The source implementation landed as scoped changes to 9 files:
 
 | File | + | - | Purpose |
 |---|---:|---:|---|
-| `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` | 1 | 1 | Fix stale `.agents/agents` mirror path to `.gemini/agents/{name}.md`. |
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | 94 | 1 | Add baseline/current scoring, `delta`, `thresholdDelta`, and candidate-better vs acceptable recommendation. |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | 10 | 3 | Emit `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` boundaries. |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | 10 | 3 | Mirror the command-boundary event emissions for confirm mode. |
-| `.opencode/agent/improve-agent.md` | 13 | 6 | Add active `CRITIC PASS` challenge points and journal-boundary wording. |
+| `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` | 1 | 1 | Fix stale `.agents/agents` mirror path to `.gemini/agents/{name}.md`. |
+| `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` | 94 | 1 | Add baseline/current scoring, `delta`, `thresholdDelta`, and candidate-better vs acceptable recommendation. |
+| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | 10 | 3 | Emit `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` boundaries. |
+| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | 10 | 3 | Mirror the command-boundary event emissions for confirm mode. |
+| `.opencode/agents/improve-agent.md` | 13 | 6 | Add active `CRITIC PASS` challenge points and journal-boundary wording. |
 | `.claude/agents/improve-agent.md` | 25 | 18 | Runtime mirror of the improve-agent body. |
 | `.gemini/agents/improve-agent.md` | 25 | 18 | Runtime mirror with `.gemini/agents/*.md` path convention. |
 | `.codex/agents/improve-agent.toml` | 58 | 18 | TOML-wrapped runtime mirror after manual regeneration. |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | 21 | 9 | Clarify skill load versus protocol execution, legal-stop gates, and mirror evidence. |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | 21 | 9 | Clarify skill load versus protocol execution, legal-stop gates, and mirror evidence. |
 
 **Total:** 257 insertions, 77 deletions.
 
@@ -228,14 +228,14 @@ The source implementation landed as scoped changes to 9 files:
 
 | Runtime surface | Path | Status |
 |---|---|---|
-| OpenCode | `.opencode/agent/improve-agent.md` | Updated |
+| OpenCode | `.opencode/agents/improve-agent.md` | Updated |
 | Claude | `.claude/agents/improve-agent.md` | Updated |
 | Gemini | `.gemini/agents/improve-agent.md` | Updated |
 | Codex | `.codex/agents/improve-agent.toml` | Updated after manual TOML regeneration |
 
 ### Scenario and fixture artifacts
 
-The six scenario files exist at `.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-...md` through `018-...md`. The fixture exists at `.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/` with `.opencode`, `.claude`, `.gemini`, `.codex`, README, and `benchmark/sentinel.js` surfaces. The root playbook index names CP-040 through CP-045 in both the routing section and the cross-reference index.
+The six scenario files exist at `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-...md` through `018-...md`. The fixture exists at `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/` with `.opencode`, `.claude`, `.gemini`, `.codex`, README, and `benchmark/sentinel.js` surfaces. The root playbook index names CP-040 through CP-045 in both the routing section and the cross-reference index.
 <!-- /ANCHOR:diff -->
 
 ---
@@ -323,7 +323,7 @@ The six scenario files exist at `.opencode/skill/sk-improve-agent/manual_testing
 ### Scenario specs
 
 ```
-.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/
+.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/
 ├── 013-skill-load-not-protocol.md
 ├── 014-proposal-only-boundary.md
 ├── 015-active-critic-overfit.md
@@ -335,8 +335,8 @@ The six scenario files exist at `.opencode/skill/sk-improve-agent/manual_testing
 ### Fixture
 
 ```
-.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/
-├── .opencode/agent/cp-improve-target.md
+.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/
+├── .opencode/agents/cp-improve-target.md
 ├── .claude/agents/cp-improve-target.md
 ├── .gemini/agents/cp-improve-target.md
 ├── .codex/agents/cp-improve-target.toml
@@ -347,15 +347,15 @@ The six scenario files exist at `.opencode/skill/sk-improve-agent/manual_testing
 ### Modified source paths
 
 ```
-.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml
-.opencode/agent/improve-agent.md
+.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+.opencode/agents/improve-agent.md
 .claude/agents/improve-agent.md
 .gemini/agents/improve-agent.md
 .codex/agents/improve-agent.toml
-.opencode/skill/sk-improve-agent/SKILL.md
+.opencode/skills/sk-improve-agent/SKILL.md
 ```
 <!-- /ANCHOR:artifacts -->
 

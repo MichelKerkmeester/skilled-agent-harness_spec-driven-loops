@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-001 [P0] [P] Read sk-doc playbook creation reference (`.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`)
-- [x] T-002 [P0] [P] Read sk-doc root and snippet templates (`.opencode/skill/sk-doc/assets/documentation/testing_playbook/`)
-- [x] T-003 [P0] [P] Read existing sk-code root playbook and representative scenario files (`.opencode/skill/sk-code/manual_testing_playbook/`)
+- [x] T-001 [P0] [P] Read sk-doc playbook creation reference (`.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`)
+- [x] T-002 [P0] [P] Read sk-doc root and snippet templates (`.opencode/skills/sk-doc/assets/documentation/testing_playbook/`)
+- [x] T-003 [P0] [P] Read existing sk-code root playbook and representative scenario files (`.opencode/skills/sk-code/manual_testing_playbook/`)
 - [x] T-004 [P1] [P] Read parent spec and in-repo motion.dev usage anchors (`../spec.md`, `a_nobel_en_zn/2_javascript/`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -101,5 +101,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Parent Spec**: See `../spec.md`
-- **Root Playbook**: See `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
+- **Root Playbook**: See `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 <!-- /ANCHOR:cross-refs -->

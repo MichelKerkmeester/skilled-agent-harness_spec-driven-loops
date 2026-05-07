@@ -121,11 +121,11 @@ Comprehensive test suite for the Spec Kit ecosystem, executed via 10 parallel te
 ### Modified
 
 **Bug Fixes:**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` - P0 null check fix
-- `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js` - P2 isConstitutional fix (6 locations)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` - P0 null check fix
+- `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` - P2 isConstitutional fix (6 locations)
 
 **Documentation:**
-- `.opencode/skill/system-spec-kit/SKILL.md` - Checkpoint usage clarifications
+- `.opencode/skills/system-spec-kit/SKILL.md` - Checkpoint usage clarifications
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md` - Evidence annotations
 
 <!-- ANCHOR:decisions -->

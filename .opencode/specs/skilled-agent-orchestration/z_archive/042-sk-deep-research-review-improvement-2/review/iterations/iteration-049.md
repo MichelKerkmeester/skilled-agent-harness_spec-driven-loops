@@ -31,15 +31,15 @@ I’m checking the README against the live skill docs and catalog metadata now, 
   └ L1:260 (260 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-deep-research/SKILL.md
+  │ .opencode/skills/sk-deep-research/SKILL.md
   └ L1:260 (259 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-deep-review/SKILL.md
+  │ .opencode/skills/sk-deep-review/SKILL.md
   └ L1:260 (260 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-improve-agent/SKILL.md
+  │ .opencode/skills/sk-improve-agent/SKILL.md
   └ L1:260 (259 lines read)
 
 I’ve got the core skill docs loaded. Next I’m cross-checking the exact README sections and the source-of-truth catalog/command files for lifecycle modes and version strings.
@@ -72,11 +72,11 @@ I’ve got the core skill docs loaded. Next I’m cross-checking the exact READM
   └ L906:955 (50 lines read)
 
 ● Read deep-research.md
-  │ .opencode/command/spec_kit/deep-research.md
+  │ .opencode/commands/spec_kit/deep-research.md
   └ L1:260 (259 lines read)
 
 ● Read deep-review.md
-  │ .opencode/command/spec_kit/deep-review.md
+  │ .opencode/commands/spec_kit/deep-review.md
   └ L1:260 (260 lines read)
 
 ● Search (glob)
@@ -88,11 +88,11 @@ I’ve got the core skill docs loaded. Next I’m cross-checking the exact READM
   └ No matches found
 
 ● Read improve-agent.md
-  │ .opencode/agent/improve-agent.md
+  │ .opencode/agents/improve-agent.md
   └ L1:220 (220 lines read)
 
 ● Read agent.md
-  │ .opencode/command/improve/agent.md
+  │ .opencode/commands/improve/agent.md
   └ L1:260 (259 lines read)
 
 I’ve found one likely stale area already: the README’s top-level count blurbs disagree with each other. I’m verifying those counts against the actual repo layout so the report stays grounded.
@@ -122,27 +122,27 @@ I’ve found one likely stale area already: the README’s top-level count blurb
   └ 4 lines...
 
 ● Search (grep)
-  │ "version:\s" (.opencode/skill/sk-deep-research/SKILL.md)
+  │ "version:\s" (.opencode/skills/sk-deep-research/SKILL.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "version:\s" (.opencode/skill/sk-deep-review/SKILL.md)
+  │ "version:\s" (.opencode/skills/sk-deep-review/SKILL.md)
   └ 1 line found
 
 ● Search (grep)
-  │ "version:\s" (.opencode/skill/sk-improve-agent/SKILL.md)
+  │ "version:\s" (.opencode/skills/sk-improve-agent/SKILL.md)
   └ 1 line found
 
 ● Search (glob)
-  │ ".opencode/agent/*.md"
+  │ ".opencode/agents/*.md"
   └ 12 files found
 
 ● Search (glob)
-  │ ".opencode/skill/*/SKILL.md"
+  │ ".opencode/skills/*/SKILL.md"
   └ 20 files found
 
 ● Search (glob)
-  │ ".opencode/command/**/*.md"
+  │ ".opencode/commands/**/*.md"
   └ 24 files found
 
 I’m validating the “fancy” capability bullets now—the ones most likely to drift from reality—rather than just trusting the section summaries.
@@ -150,37 +150,37 @@ I’m validating the “fancy” capability bullets now—the ones most likely t
 ● Search (grep)
   │ "sourceDiversity|evidenceDepth|graphEvents|blendedScore|quality
   │ guards|weak-source|progressiveSynthesis|completed-continue|fork" in
-  │ **/*.{md,ts,js,cjs,json,yaml,yml} (.opencode/skill/sk-deep-research)
+  │ **/*.{md,ts,js,cjs,json,yaml,yml} (.opencode/skills/sk-deep-research)
   └ 7 lines found
 
 ● Search (grep)
   │ "stale STOP|stale stop|finalSeverity|Hunter|Skeptic|Referee|graphEvents|legal-stop|quality
   │ gates|PASS|CONDITIONAL|FAIL" in **/*.{md,ts,js,cjs,json,yaml,yml}
-  │ (.opencode/skill/sk-deep-review)
+  │ (.opencode/skills/sk-deep-review)
   └ 7 lines found
 
 ● Search (grep)
   │ "plateau|session-boundary|legal_stop_evaluated|blocked_stop|dynamic mode|static
   │ mode|generate-profile|no hardcoded profiles|repeatability|approval" in
-  │ **/*.{md,ts,js,cjs,json,yaml,yml} (.opencode/skill/sk-improve-agent)
+  │ **/*.{md,ts,js,cjs,json,yaml,yml} (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ✗ Search (grep)
   │ "permission:|read-only|NEVER modifies|proposal-only|packet-local|canonical target"
-  │ (.opencode/agent/{deep-research.md,deep-review.md,improve-agent.md})
-  └ rg: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/{deep-rese
+  │ (.opencode/agents/{deep-research.md,deep-review.md,improve-agent.md})
+  └ rg: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/{deep-rese
     arch.md,deep-review.md,improve-agent.md}: IO error for operation on
-    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/{deep-research
+    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/{deep-research
     .md,deep-review.md,improve-agent.md}: No such file or directory (os error 2)
 
 ● Search (grep)
   │ "plateau|session-boundary|legal_stop_evaluated|blocked_stop|dynamic|static"
-  │ (.opencode/command/improve/agent.md)
+  │ (.opencode/commands/improve/agent.md)
   └ 20 lines found
 
 ● Search (grep)
   │ "fork|completed-continue|resume|restart" in
-  │ deep-research.md,assets/spec_kit_deep-research_*.yaml (.opencode/command/spec_kit)
+  │ deep-research.md,assets/spec_kit_deep-research_*.yaml (.opencode/commands/spec_kit)
   └ No matches found
 
 ● Search (grep)
@@ -191,30 +191,30 @@ I’m validating the “fancy” capability bullets now—the ones most likely t
 ● Search (grep)
   │ "plateau|sessionBoundary|session-boundary|repeatability|approval|dynamic mode|static
   │ mode|generate-profile|hardcoded profiles" in **/*.{md,js,cjs,json,yaml,yml}
-  │ (.opencode/skill/sk-improve-agent)
+  │ (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Read improvement_config.json
-  │ .opencode/skill/sk-improve-agent/assets/improvement_config.json
+  │ .opencode/skills/sk-improve-agent/assets/improvement_config.json
   └ L1:220 (121 lines read)
 
 ● Search (grep)
   │ "static|handover|context-prime|profile=ID|promot|approval|repeatability|plateauWindow|sessionBou
   │ ndary|legal_stop_evaluated|blocked_stop" in **/*.{js,cjs,ts,py}
-  │ (.opencode/skill/sk-improve-agent/scripts)
+  │ (.opencode/skills/sk-improve-agent/scripts)
   └ 48 lines found
 
 ● Search (grep)
   │ "fork|completed-continue|sourceDiversity|evidenceDepth|blendedScore|graphEvents|synthesis_comple
-  │ te" in **/*.{md,yaml,yml,json} (.opencode/command/spec_kit)
+  │ te" in **/*.{md,yaml,yml,json} (.opencode/commands/spec_kit)
   └ 36 lines found
 
 ● Read deep-research.md
-  │ .opencode/agent/deep-research.md
+  │ .opencode/agents/deep-research.md
   └ L1:120 (120 lines read)
 
 ● Read deep-review.md
-  │ .opencode/agent/deep-review.md
+  │ .opencode/agents/deep-review.md
   └ L1:120 (119 lines read)
 
 ● Read README.md
@@ -222,7 +222,7 @@ I’m validating the “fancy” capability bullets now—the ones most likely t
 
 ● Search (grep)
   │ "supportedProfiles|promotionEligibleProfiles|targetProfile|dynamicProfileEnabled|static" in
-  │ **/*.{json,jsonc,md,cjs,js} (.opencode/skill/sk-improve-agent)
+  │ **/*.{json,jsonc,md,cjs,js} (.opencode/skills/sk-improve-agent)
   └ 30 lines found
 
 ● Search (grep)
@@ -230,23 +230,23 @@ I’m validating the “fancy” capability bullets now—the ones most likely t
   └ 7 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/sk-improve-agent/assets/target-profiles/*"
+  │ ".opencode/skills/sk-improve-agent/assets/target-profiles/*"
   └ No matches found
 
-One more drift surfaced while checking the count mismatch: the README still documents a **Prompt** create command, but I don’t see a corresponding `.opencode/command/create/prompt.md` entrypoint. I’m verifying that before I include it.
+One more drift surfaced while checking the count mismatch: the README still documents a **Prompt** create command, but I don’t see a corresponding `.opencode/commands/create/prompt.md` entrypoint. I’m verifying that before I include it.
 
 ● Search (grep)
   │ "stale STOP veto|auto-clearing|finalSeverity|Hunter/Skeptic/Referee|Hunter|Skeptic|Referee|relea
-  │ seReadinessState" in **/*.{md,js,cjs,json,yaml,yml} (.opencode/skill/sk-deep-review)
+  │ seReadinessState" in **/*.{md,js,cjs,json,yaml,yml} (.opencode/skills/sk-deep-review)
   └ 46 lines found
 
 ● Search (grep)
   │ "session-boundary|fresh-session|session boundary|plateau|coverage|journal|lineage" in
-  │ **/*.{md,js,cjs,json} (.opencode/skill/sk-improve-agent)
+  │ **/*.{md,js,cjs,json} (.opencode/skills/sk-improve-agent)
   └ 6 lines found
 
 ● Search (glob)
-  │ ".opencode/command/create/*.md"
+  │ ".opencode/commands/create/*.md"
   └ 6 files found
 
 ● Search (grep)
@@ -261,7 +261,7 @@ One more drift surfaced while checking the count mismatch: the README still docu
 ● Search (grep)
   │ "session-boundary|fresh-session|coverage graph|mutation-coverage|journal|lineage" in
   │ README.md,SKILL.md,assets/*.md,assets/*.json,references/*.md,scripts/*.cjs
-  │ (.opencode/skill/sk-improve-agent)
+  │ (.opencode/skills/sk-improve-agent)
   └ No matches found
 
 ● Search (grep)
@@ -272,19 +272,19 @@ One more drift surfaced while checking the count mismatch: the README still docu
 I’ve narrowed it down to documentation drift rather than capability drift in the three requested skill entries themselves. I’m grabbing the exact source lines for the contradictory command/docs surfaces before I write the findings.
 
 ● Read evaluator_contract.md
-  │ .opencode/skill/sk-improve-agent/references/evaluator_contract.md
+  │ .opencode/skills/sk-improve-agent/references/evaluator_contract.md
   └ L30:50 (21 lines read)
 
 ● Read improvement_config_reference.md
-  │ .opencode/skill/sk-improve-agent/assets/improvement_config_reference.md
+  │ .opencode/skills/sk-improve-agent/assets/improvement_config_reference.md
   └ L30:55 (26 lines read)
 
 ● Read agent.md
-  │ .opencode/command/improve/agent.md
+  │ .opencode/commands/improve/agent.md
   └ L229:235 (6 lines read)
 
 ● Read agent.md
-  │ .opencode/command/improve/agent.md
+  │ .opencode/commands/improve/agent.md
   └ L405:412 (8 lines read)
 
 ● Read README.md
@@ -296,51 +296,51 @@ I’ve narrowed it down to documentation drift rather than capability drift in t
 ● Search (grep)
   │ "read-only|review target files are strictly READ-ONLY|finalSeverity|stale
   │ STOP|PASS/CONDITIONAL/FAIL" in README.md,SKILL.md,references/*.md,assets/*.yaml,assets/*.json
-  │ (.opencode/skill/sk-deep-review)
+  │ (.opencode/skills/sk-deep-review)
   └ No matches found
 
 ● Search (grep)
   │ "session-boundary|fresh-session|boundary gate|fresh-session
   │ isolation|legal_stop_evaluated|blocked_stop|coverage graph|mutation-coverage" in
-  │ **/*.{md,json,cjs,js} (.opencode/skill/sk-improve-agent)
+  │ **/*.{md,json,cjs,js} (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Search (grep)
   │ "sourceDiversity|evidenceDepth|graph convergence|progressive synthesis|negative
   │ knowledge|synthesis_complete" in README.md,SKILL.md,references/*.md,assets/*.md,assets/*.json
-  │ (.opencode/skill/sk-deep-research)
+  │ (.opencode/skills/sk-deep-research)
   └ No matches found
 
 ● Search (grep)
   │ "read-only|READ-ONLY|finalSeverity|stale STOP|PASS/CONDITIONAL/FAIL"
-  │ (.opencode/skill/sk-deep-review)
+  │ (.opencode/skills/sk-deep-review)
   └ 45 lines found
 
 ● Search (grep)
   │ "session-boundary|fresh-session|legal_stop_evaluated|blocked_stop|mutation-coverage|coverage
-  │ graph" (.opencode/skill/sk-improve-agent)
+  │ graph" (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Search (grep)
   │ "sourceDiversity|evidenceDepth|progressive synthesis|negative knowledge|synthesis_complete"
-  │ (.opencode/skill/sk-deep-research)
+  │ (.opencode/skills/sk-deep-research)
   └ 38 lines found
 
 ● Search (grep)
-  │ "session-boundary|fresh-session isolation|session boundary" (.opencode/skill/sk-improve-agent)
+  │ "session-boundary|fresh-session isolation|session boundary" (.opencode/skills/sk-improve-agent)
   └ 1 line found
 
 ● Search (grep)
-  │ "journal|lineage|coverage" (.opencode/skill/sk-improve-agent/README.md)
+  │ "journal|lineage|coverage" (.opencode/skills/sk-improve-agent/README.md)
   └ 5 lines found
 
 ## Findings
 
 ### P1
 - **F-049-001 — README still advertises a `Prompt` create command that is not shipped.**  
-  `README.md:743-746` documents a `**Prompt**` entry under **CREATE**, but the shipped create entrypoints are only the six files under `.opencode/command/create/` (`agent.md`, `changelog.md`, `feature-catalog.md`, `folder_readme.md`, `sk-skill.md`, `testing-playbook.md`). This means a reader following the README to `/create:prompt` will hit a dead end.  
+  `README.md:743-746` documents a `**Prompt**` entry under **CREATE**, but the shipped create entrypoints are only the six files under `.opencode/commands/create/` (`agent.md`, `changelog.md`, `feature-catalog.md`, `folder_readme.md`, `sk-skill.md`, `testing-playbook.md`). This means a reader following the README to `/create:prompt` will hit a dead end.  
   **Risk:** release-facing docs direct users to a nonexistent command.  
-  **Recommended fix:** either restore a real `.opencode/command/create/prompt.md` entrypoint or remove/rename the README entry.
+  **Recommended fix:** either restore a real `.opencode/commands/create/prompt.md` entrypoint or remove/rename the README entry.
 
 ### P2
 - **F-049-002 — Root README count badges and summary lines are internally inconsistent.**  
@@ -349,7 +349,7 @@ I’ve narrowed it down to documentation drift rather than capability drift in t
   **Recommended fix:** normalize the hero blurb, “At a Glance” table, and footer to one audited set of counts.
 
 - **F-049-003 — Improve Agent traceability is split-brain between the README and the command entrypoint.**  
-  The root README describes Improve Agent as a dynamic, any-agent workflow with “no hardcoded profiles needed” (`README.md:760-771`). That matches the current skill/reference truth: dynamic mode is the only supported scoring path in `sk-improve-agent/references/evaluator_contract.md:36-38` and `sk-improve-agent/assets/improvement_config_reference.md:35,50`. But the user-facing `/improve:agent` command still documents a legacy **Static** mode and “only handover target with static profile is promotion-eligible” in `.opencode/command/improve/agent.md:229-235` and `.opencode/command/improve/agent.md:408-410`.  
+  The root README describes Improve Agent as a dynamic, any-agent workflow with “no hardcoded profiles needed” (`README.md:760-771`). That matches the current skill/reference truth: dynamic mode is the only supported scoring path in `sk-improve-agent/references/evaluator_contract.md:36-38` and `sk-improve-agent/assets/improvement_config_reference.md:35,50`. But the user-facing `/improve:agent` command still documents a legacy **Static** mode and “only handover target with static profile is promotion-eligible” in `.opencode/commands/improve/agent.md:229-235` and `.opencode/commands/improve/agent.md:408-410`.  
   **Risk:** operators get contradictory instructions depending on whether they start from the README or the command doc.  
   **Recommended fix:** remove the stale static-mode/handover-only promotion language from `/improve:agent`, or explicitly downgrade the README if static mode is still intentionally live.
 

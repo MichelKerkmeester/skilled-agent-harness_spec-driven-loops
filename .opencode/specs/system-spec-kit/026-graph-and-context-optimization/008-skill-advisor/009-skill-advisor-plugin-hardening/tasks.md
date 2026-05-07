@@ -36,7 +36,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ## Phase 1: Setup
 
 - [x] **T-01** Read `.opencode/plugins/spec-kit-skill-advisor.js` end-to-end. Identified original module-global state declarations at lines 28-36 and final state references at lines 297-308, 315, 355-387, 400-430, 436-452, 464, 527-540, and 561-581. [EVIDENCE: `nl -ba` and `rg -n "state\.|advisorCache|inFlight|runtimeReady|lastBridgeStatus|lastErrorCode|lastDurationMs|bridgeInvocations|cacheHits|cacheMisses|advisorLookups|disabledReason" .opencode/plugins/spec-kit-skill-advisor.js`.]
-- [x] **T-02** Run baseline `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` and confirm 23/23 pass before any changes. [EVIDENCE: `Tests 23 passed (23)` at 2026-04-23T08:06Z.]
+- [x] **T-02** Run baseline `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` and confirm 23/23 pass before any changes. [EVIDENCE: `Tests 23 passed (23)` at 2026-04-23T08:06Z.]
 <!-- /ANCHOR:phase-1 -->
 
 ---

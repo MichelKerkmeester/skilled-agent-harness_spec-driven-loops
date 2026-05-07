@@ -16,8 +16,8 @@ Stale references fall into two categories:
 
 | # | File | Line | Current Text | Fix |
 |---|------|------|-------------|-----|
-| 1 | `.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` | 3 | `// Enforces two rules from ARCHITECTURE_BOUNDARIES.md that were` | Change to `ARCHITECTURE.md` |
-| 2 | `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/02-architecture-boundary-enforcement.md` | 5 | `Two architecture rules in \`ARCHITECTURE_BOUNDARIES.md\` were previously...` | Change to `ARCHITECTURE.md` |
+| 1 | `.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` | 3 | `// Enforces two rules from ARCHITECTURE_BOUNDARIES.md that were` | Change to `ARCHITECTURE.md` |
+| 2 | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/02-architecture-boundary-enforcement.md` | 5 | `Two architecture rules in \`ARCHITECTURE_BOUNDARIES.md\` were previously...` | Change to `ARCHITECTURE.md` |
 
 ### Impact Assessment — Actionable Files
 
@@ -66,7 +66,7 @@ These files contain ARCHITECTURE_BOUNDARIES.md references but are historical aud
   4. `scripts/core/workflow.ts` — `@spec-kit/mcp-server/lib/search/folder-discovery`
 
 ### allowlist.json Entries
-- **Location:** `.opencode/skill/system-spec-kit/scripts/evals/import-policy-allowlist.json`
+- **Location:** `.opencode/skills/system-spec-kit/scripts/evals/import-policy-allowlist.json`
 - **Count: 4 entries**
 - Entries:
   1. `scripts/evals/run-performance-benchmarks.ts` — `@spec-kit/mcp-server/lib/*`
@@ -87,9 +87,9 @@ The three consumer READMEs already reference the correct filename:
 
 ## Recommended Fix Order
 
-1. **`.opencode/skill/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` line 3** — Update comment from `ARCHITECTURE_BOUNDARIES.md` to `ARCHITECTURE.md`. This is a live source file in the enforcement tooling. Low risk (comment only), high discoverability value.
+1. **`.opencode/skills/system-spec-kit/scripts/evals/check-architecture-boundaries.ts` line 3** — Update comment from `ARCHITECTURE_BOUNDARIES.md` to `ARCHITECTURE.md`. This is a live source file in the enforcement tooling. Low risk (comment only), high discoverability value.
 
-2. **`.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/02-architecture-boundary-enforcement.md` line 5** — Update reference from `ARCHITECTURE_BOUNDARIES.md` to `ARCHITECTURE.md`. This is a feature catalog entry that describes the enforcement tooling.
+2. **`.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/02-architecture-boundary-enforcement.md` line 5** — Update reference from `ARCHITECTURE_BOUNDARIES.md` to `ARCHITECTURE.md`. This is a feature catalog entry that describes the enforcement tooling.
 
 3. **No changes to scratch/, memory/, or historical review files** — These are archival artifacts. The 009-spec-descriptions audit (audit-A09.md) already correctly identifies this drift as issue ISS-A09-STALE and recommends reconciliation of the canonical document path.
 

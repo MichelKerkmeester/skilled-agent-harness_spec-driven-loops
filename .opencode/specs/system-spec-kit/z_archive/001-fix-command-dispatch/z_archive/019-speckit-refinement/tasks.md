@@ -51,8 +51,8 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
 - ID format: `T###`
 
 ### Path Conventions
-- Templates: `.opencode/skill/system-spec-kit/templates/`
-- Commands: `.opencode/command/`
+- Templates: `.opencode/skills/system-spec-kit/templates/`
+- Commands: `.opencode/commands/`
 - Config: `AGENTS.md`
 
 ---
@@ -75,7 +75,7 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
 **Goal**: Enable quick session branching with ~10 line handoff
 
 - [ ] T001 [P] Create `quick-continue.md` template
-  - **File:** `.opencode/skill/system-spec-kit/templates/quick-continue.md`
+  - **File:** `.opencode/skills/system-spec-kit/templates/quick-continue.md`
   - **Requirement:** plan.md Section 6.1
   - **Acceptance:** Template includes:
     - SPECKIT_TEMPLATE_SOURCE header comment
@@ -95,7 +95,7 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
 **Goal**: Single command creates quick-continue.md in active spec folder
 
 - [ ] T002 Create `/handover` command
-  - **File:** `.opencode/command/handover/handover.md` (folder auto-created with file)
+  - **File:** `.opencode/commands/handover/handover.md` (folder auto-created with file)
   - **Requirement:** plan.md Section 6.2
   - **Acceptance:** Command with YAML frontmatter containing:
     - description, argument-hint, allowed-tools
@@ -162,9 +162,9 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
 
 - [ ] T005 Update /spec_kit:resume to prioritize quick-continue.md
   - **Files:** 
-    - `.opencode/command/spec_kit/resume.md` (main command)
-    - `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` (auto mode workflow)
-    - `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` (confirm mode workflow)
+    - `.opencode/commands/spec_kit/resume.md` (main command)
+    - `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` (auto mode workflow)
+    - `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` (confirm mode workflow)
   - **Requirement:** plan.md Section 9.3 (Integration with Existing Workflows)
   - **Changes needed:**
     1. In resume.md Phase 2 (ARTIFACT VALIDATION): Add quick-continue.md to artifact check list
@@ -176,7 +176,7 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
   - **LOC:** ~15 (small additions to 3 files)
 
 - [ ] T006 [P] Add quick-continue.md to SKILL.md template list
-  - **File:** `.opencode/skill/system-spec-kit/SKILL.md`
+  - **File:** `.opencode/skills/system-spec-kit/SKILL.md`
   - **Requirement:** Template discoverability
   - **Changes needed:** Add quick-continue.md to templates section with:
     - Template name
@@ -187,7 +187,7 @@ Tasks grouped by component for Phase 1 MVP (~140 LOC total).
   - **LOC:** ~5
 
 - [ ] T007 [P] Add /handover to SKILL.md command routing
-  - **File:** `.opencode/skill/system-spec-kit/SKILL.md` Section 2 (SMART ROUTING)
+  - **File:** `.opencode/skills/system-spec-kit/SKILL.md` Section 2 (SMART ROUTING)
   - **Requirement:** Command discoverability in skill documentation
   - **Changes needed:** Add row to SpecKit Commands table:
     - Command: `/handover`

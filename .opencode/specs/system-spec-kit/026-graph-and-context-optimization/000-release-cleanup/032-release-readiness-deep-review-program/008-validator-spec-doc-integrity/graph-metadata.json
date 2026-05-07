@@ -41,44 +41,44 @@
       "checklist.md",
       "implementation-summary.md",
       "review-report.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-links.sh",
-      ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
-      ".opencode/skill/system-spec-kit/scripts/lib/shell-common.sh",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-      ".opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.js"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-links.sh",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js"
     ],
     "entities": [
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "review"
       },
       {
         "name": "check-spec-doc-integrity.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
         "source": "review"
       },
       {
         "name": "template-structure.js",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
         "source": "review"
       },
       {
         "name": "is_phase_parent",
         "kind": "function",
-        "path": ".opencode/skill/system-spec-kit/scripts/lib/shell-common.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
         "source": "review"
       },
       {
         "name": "isPhaseParent",
         "kind": "function",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
         "source": "review"
       }
     ],

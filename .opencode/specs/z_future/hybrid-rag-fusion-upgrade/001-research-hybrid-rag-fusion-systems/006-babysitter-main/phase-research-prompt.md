@@ -101,7 +101,7 @@ Every iteration MUST append a JSONL record to `research/deep-research-state.json
 
 Respect the quality guards before claiming convergence: **source_diversity** (≥2 sources per question), **focus_alignment** (new findings align with original key questions), **single_weak_source_dominance** (block STOP if any question depends on a single tentative source).
 
-Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs`.
+Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs`.
 
 ### 5.2 Research topic
 
@@ -116,7 +116,7 @@ Research the external repository at /Users/michelkerkmeester/MEGA/Development/Co
 Save memory for this phase folder when research is complete with:
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/006-babysitter-main"
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/006-babysitter-main"
 ```
 
 ## 6. Research Questions
@@ -137,7 +137,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - Do trace the journal implementation end-to-end in `packages/sdk/src/storage/journal.ts` — the checksum logic is the core contribution.
 - Do examine the replay cache validation path from cache-read to journal-head check.
 - Do study `nextActions` as a durable queue, not a chat prompt artifact.
-- Do map every strong finding to a concrete target file in Public (`.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, etc.).
+- Do map every strong finding to a concrete target file in Public (`.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, etc.).
 - Do identify where Babysitter overlaps with existing Public guarantees (append-only JSONL, fault-tolerant parsing, reducer ownership) and where it extends them.
 - Do keep the operational-vs-durable memory split as the primary architectural lens.
 
@@ -160,7 +160,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: Every append to the event journal is content-hashed, and the journal head includes a rolling checksum that later readers validate before trusting any cached summary derived from the journal.
 - Why it matters: Public's `deep-research-state.jsonl` is append-only and fault-tolerant but has no integrity guarantee — a truncated or corrupted JSONL would silently produce a partial state reconstruction. Adding a rolling checksum would let the reducer and recovery paths detect corruption deterministically.
 - Recommendation: prototype later
-- Affected area: `.opencode/skill/sk-deep-research/references/state_format.md` (schema), `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` (reader)
+- Affected area: `.opencode/skills/sk-deep-research/references/state_format.md` (schema), `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` (reader)
 - Impact: medium (additive integrity field, backward-compatible if optional)
 - Source strength: primary
 ```
@@ -173,7 +173,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: Babysitter persists `nextActions` as a structured queue in the journal — each entry is an object with trigger, context, and expected handler. Resume always reads `nextActions` before any new work and clears entries as they are completed.
 - Why it matters: Public's `sk-deep-research` uses `keyQuestions` and `answeredQuestions` as the closest analog, but these represent research questions, not pending actions. A separate `nextActions` queue would let Public capture "resume must check this specific file first" style resumption hints without overloading the question model.
 - Recommendation: NEW FEATURE
-- Affected area: `.opencode/skill/sk-deep-research/references/state_format.md` (new field in iteration JSONL), `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` (new section)
+- Affected area: `.opencode/skills/sk-deep-research/references/state_format.md` (new field in iteration JSONL), `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` (new section)
 - Impact: medium-high (enables deterministic resume for interrupted loops)
 - Source strength: primary
 ```

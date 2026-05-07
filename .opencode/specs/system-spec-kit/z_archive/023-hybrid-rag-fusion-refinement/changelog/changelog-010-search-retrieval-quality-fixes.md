@@ -84,9 +84,9 @@ This phase changed three source files and completed the structural spec-doc clea
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | Forwarded explicit intent into deeper strategies, added zero-result recovery after folder discovery, improved token-budget truncation, and kept metadata-only fallback entries when content budget is exhausted. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Added the low-confidence intent fallback and applied folder-boost ranking behavior after pipeline execution. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` | Supported the discovered-folder signal that the handlers now use as a ranking and recovery hint. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Forwarded explicit intent into deeper strategies, added zero-result recovery after folder discovery, improved token-budget truncation, and kept metadata-only fallback entries when content budget is exhausted. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Added the low-confidence intent fallback and applied folder-boost ranking behavior after pipeline execution. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` | Supported the discovered-folder signal that the handlers now use as a ranking and recovery hint. |
 
 ### Tests (0 files)
 

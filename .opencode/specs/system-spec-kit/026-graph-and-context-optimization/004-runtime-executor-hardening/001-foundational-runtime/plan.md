@@ -142,7 +142,7 @@ Blocks everything downstream. No parallelism within this wave (all tasks touch f
 
 ### 2.1 T-CNS-01 + T-W1-CNS-04 — Canonical save metadata writer (MERGED PR, 6h, M+M)
 
-**Files**: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1259, 1333`, `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:415`
+**Files**: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1259, 1333`, `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:415`
 
 **Changes**:
 1. Remove `const ctxFileWritten = false` stub at workflow.ts:1259. Wire in actual `savePerFolderDescription` return value.
@@ -156,7 +156,7 @@ Blocks everything downstream. No parallelism within this wave (all tasks touch f
 
 ### 2.2 T-CGC-01 — Extract lib/code-graph/readiness-contract.ts (4h, M)
 
-**Files**: Create `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/readiness-contract.ts` (new); refactor `handlers/code-graph/query.ts:225-300` to consume it.
+**Files**: Create `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/readiness-contract.ts` (new); refactor `handlers/code-graph/query.ts:225-300` to consume it.
 
 **Changes**:
 1. Extract `canonicalReadinessFromFreshness()`, `queryTrustStateFromFreshness()`, `buildQueryGraphMetadata()`, `buildReadinessBlock()` functions from `query.ts:225-300` into the new shared module.
@@ -170,7 +170,7 @@ Blocks everything downstream. No parallelism within this wave (all tasks touch f
 
 ### 2.3 T-W1-HOK-02 — Extract hooks/shared-provenance.ts (4h, M)
 
-**Files**: Create `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts` (new); refactor `hooks/claude/shared.ts:125-129` + `hooks/gemini/shared.ts:7`.
+**Files**: Create `.opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts` (new); refactor `hooks/claude/shared.ts:125-129` + `hooks/gemini/shared.ts:7`.
 
 **Changes**:
 1. Move `wrapRecoveredCompactPayload` + related provenance helpers from `hooks/claude/shared.ts` to `hooks/shared-provenance.ts`.
@@ -219,7 +219,7 @@ Depends on Wave A merged. Runs 3 parallel lanes.
 
 #### 3.1.1 T-CNS-02 — Research folder backfill (4h, M)
 
-**Files**: New `.opencode/skill/system-spec-kit/scripts/memory/backfill-research-metadata.ts`; wire into `generate-context.js`.
+**Files**: New `.opencode/skills/system-spec-kit/scripts/memory/backfill-research-metadata.ts`; wire into `generate-context.js`.
 
 **Changes**:
 1. Walk `research/NNN-*/iterations/` directories.
@@ -437,7 +437,7 @@ Non-urgent. Can land in parallel with later phases.
 
 ### 5.5 T-YML-CP4-01 — Typed YAML predicate (4h, M)
 
-**Files**: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:1099`.
+**Files**: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:1099`.
 
 **Changes**: Replace prose `when:` string with typed predicate matching S7 YAML grammar (`shared/predicates/boolean-expr.ts`).
 
@@ -445,7 +445,7 @@ Non-urgent. Can land in parallel with later phases.
 
 ### 5.6 T-W1-HST-02 — Docker deployment note (2h, S)
 
-**Files**: Deployment docs (find `.opencode/skill/system-spec-kit/README.md` or create `DEPLOYMENT` docs).
+**Files**: Deployment docs (find `.opencode/skills/system-spec-kit/README.md` or create `DEPLOYMENT` docs).
 
 **Changes**: Warn against `-v /tmp:/tmp` across Copilot MCP containers (R53-P1w-001). OPTIONAL: `getProjectHash()` incorporates `process.getuid?.()` for defense-in-depth.
 

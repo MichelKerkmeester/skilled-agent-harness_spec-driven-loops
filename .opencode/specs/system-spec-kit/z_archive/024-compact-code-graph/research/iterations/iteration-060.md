@@ -48,7 +48,7 @@ function estimateEndLine(lines: string[], startIdx: number): number {
 ```
 For Python: use indentation-based end detection (scan until a line with equal or less indentation that is not blank/comment).
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:41,57,67,73,79,122,131,165,190,291]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:41,57,67,73,79,122,131,165,190,291]
 
 ### Finding 2: Missing Edge Types — Concrete Regex Patterns
 
@@ -114,8 +114,8 @@ export type EdgeType =
   | 'DECORATES' | 'OVERRIDES' | 'TYPE_OF';  // NEW
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:39-104 (parseJsTs regex patterns)]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:13-15 (EdgeType definition)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:39-104 (parseJsTs regex patterns)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:13-15 (EdgeType definition)]
 
 ### Finding 3: Tree-Sitter WASM Migration Path
 
@@ -282,7 +282,7 @@ sourceRegistry.set('codeGraph', { floor: 1200, priority: 90 });
 // Future: sourceRegistry.set('memorySearch', { floor: 500, priority: 80 });
 ```
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:1-132]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:1-132]
 
 ### Finding 5: SymbolKind Gaps and Query API Gaps (from iteration 56, deepened)
 
@@ -308,7 +308,7 @@ Missing operations that would be valuable:
 
 These can be added by extending the `code_graph_query` handler to accept these operation names and filter edges by the corresponding `EdgeType`.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10 (SymbolKind)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10 (SymbolKind)]
 [INFERENCE: based on comparison of SymbolKind type with actual regex extraction logic in structural-indexer.ts]
 
 ## Ruled Out
@@ -318,9 +318,9 @@ These can be added by extending the `code_graph_query` handler to accept these o
 None identified this iteration. All four investigation areas produced substantive findings.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file, 474 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts` (full file, 132 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts` (full file, 107 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (full file, 474 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts` (full file, 132 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts` (full file, 107 lines)
 - tree-sitter.github.io documentation (partial, limited WASM detail)
 
 ## Assessment

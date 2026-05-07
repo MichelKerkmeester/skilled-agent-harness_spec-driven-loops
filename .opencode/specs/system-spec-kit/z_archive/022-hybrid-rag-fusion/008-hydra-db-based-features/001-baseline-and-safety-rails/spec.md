@@ -108,15 +108,15 @@ Create a trustworthy Phase 1 foundation so later Hydra phases can build on repro
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modify | Add buildable runtime packaging path |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts` | Modify | Align roadmap capability metadata with the default-on rollout baseline while preserving explicit opt-out controls |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts` | Modify | Stabilize baseline snapshot storage behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts` | Modify | Export reusable checkpoint helpers and harden CLI path |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` | Modify | Mirror checkpoint hardening for restore flow |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Add schema compatibility validation surface |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts` | Create/Modify | Add targeted Phase 1 verification |
-| `.opencode/skill/system-spec-kit/feature_catalog/**` | Modify/Create | Document delivered baseline features and flags |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add baseline validation playbook entries |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Add buildable runtime packaging path |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` | Modify | Align roadmap capability metadata with the default-on rollout baseline while preserving explicit opt-out controls |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts` | Modify | Stabilize baseline snapshot storage behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts` | Modify | Export reusable checkpoint helpers and harden CLI path |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts` | Modify | Mirror checkpoint hardening for restore flow |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Add schema compatibility validation surface |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts` | Create/Modify | Add targeted Phase 1 verification |
+| `.opencode/skills/system-spec-kit/feature_catalog/**` | Modify/Create | Document delivered baseline features and flags |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add baseline validation playbook entries |
 
 <!-- /ANCHOR:scope -->
 

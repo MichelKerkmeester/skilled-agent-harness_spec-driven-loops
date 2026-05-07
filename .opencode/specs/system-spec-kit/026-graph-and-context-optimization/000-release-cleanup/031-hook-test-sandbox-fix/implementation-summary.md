@@ -71,7 +71,7 @@ adapters.
 | `../030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` | Modified | Pass sandbox detection to runtime adapters and print verdict. |
 | `../030-hook-plugin-per-runtime-testing/runners/test-*.ts` | Modified | Split direct-smoke and live-cli cells. |
 | `../030-hook-plugin-per-runtime-testing/runners/README.md` | Modified | Document normal-shell live mode and sandbox partial mode. |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modified | Add `hook-tests` script. |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Add `hook-tests` script. |
 | `../030-hook-plugin-per-runtime-testing/findings.md` | Modified | Add corrected classification amendment. |
 | `methodology-correction.md` | Created | Explain root cause and operator path. |
 <!-- /ANCHOR:what-built -->
@@ -107,9 +107,9 @@ inside the current sandbox.
 
 | Command | Result |
 |---------|--------|
-| `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` | PASS: 5 direct-smoke PASS cells, 5 live-cli `SKIPPED_SANDBOX` cells. |
-| `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | PASS |
+| `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` | PASS: 5 direct-smoke PASS cells, 5 live-cli `SKIPPED_SANDBOX` cells. |
+| `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

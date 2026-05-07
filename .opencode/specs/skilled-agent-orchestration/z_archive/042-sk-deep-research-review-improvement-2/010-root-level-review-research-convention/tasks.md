@@ -30,7 +30,7 @@ status: complete
 
 ## Phase 1: Shared Path Resolver
 
-- [x] T001 Create `review-research-paths.cjs` in `.opencode/skill/system-spec-kit/shared/`
+- [x] T001 Create `review-research-paths.cjs` in `.opencode/skills/system-spec-kit/shared/`
 - [x] T002 Implement `resolveArtifactRoot(specFolder, mode)` with parent-walk logic
 - [x] T003 Add fallback for standalone specs (no parent spec.md above)
 - [x] T004 Add boundary check: stop walking at `specs/` directory level
@@ -49,8 +49,8 @@ status: complete
 - [x] T023 Update `spec_kit_deep-research_confirm.yaml` same changes
 
 ### 2c. Agent Definitions (4 runtimes x 2 skills = 8 files)
-- [x] T030 Update `.opencode/agent/deep-review.md` dispatch paths + output instructions
-- [x] T031 Update `.opencode/agent/deep-research.md` dispatch paths + output instructions
+- [x] T030 Update `.opencode/agents/deep-review.md` dispatch paths + output instructions
+- [x] T031 Update `.opencode/agents/deep-research.md` dispatch paths + output instructions
 - [x] T032 Update `.claude/agents/deep-review.md` (mirror)
 - [x] T033 Update `.claude/agents/deep-research.md` (mirror)
 - [x] T034 Update `.gemini/agents/deep-review.md` (mirror)
@@ -69,6 +69,6 @@ status: complete
 ## Verification
 
 - [x] T050 Verify resolver returns correct paths for all test cases
-- [x] T051 Verify `grep -r '{spec_folder}/review/' .opencode/command/` returns 0
+- [x] T051 Verify `grep -r '{spec_folder}/review/' .opencode/commands/` returns 0
 - [x] T052 Verify all 8 agent files are consistent
 - [x] T053 Run `npx tsc --noEmit`

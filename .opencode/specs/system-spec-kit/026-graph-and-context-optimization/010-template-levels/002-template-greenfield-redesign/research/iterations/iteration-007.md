@@ -11,25 +11,25 @@ This iteration turns the iteration-005 pseudo-code and iteration-006 stress-test
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-005.md` first, preserving the pseudo-code refactor plan.
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-006.md` second, preserving the inline-gate, manifest evolution, and edge mitigation decisions.
 - Read the current full shell sources with line numbers:
-  - `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
-  - `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`
+  - `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
+  - `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/description.json` and `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/graph-metadata.json` to decide naming style.
 
 ## Findings
 
 ### Diff: create.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/spec/create.sh` still parses `--level`, copies `level_N/*.md`, emits `DOC_LEVEL` output, creates graph metadata before normal templates are copied, and uses Level 1 children in phase mode.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/spec/create.sh` still parses `--level`, copies `level_N/*.md`, emits `DOC_LEVEL` output, creates graph metadata before normal templates are copied, and uses Level 1 children in phase mode.
 
 Proposed patch. This keeps backward compatibility by accepting `--level` as an alias where possible, but the primary contract becomes `--preset`.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/spec/create.sh
-+++ .opencode/skill/system-spec-kit/scripts/spec/create.sh
+--- .opencode/skills/system-spec-kit/scripts/spec/create.sh
++++ .opencode/skills/system-spec-kit/scripts/spec/create.sh
 @@ -30,9 +30,9 @@ JSON_MODE=false
  SHORT_NAME=""
  BRANCH_NUMBER=""
@@ -134,7 +134,7 @@ Proposed patch. This keeps backward compatibility by accepting `--level` as an a
  }
 @@ -538,19 +540,13 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
 -    # Copy templates based on documentation level from level-specific folder
-     TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+     TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 -    # Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
 -    DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
 -    LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
@@ -161,7 +161,7 @@ Proposed patch. This keeps backward compatibility by accepting `--level` as an a
 -        echo "  DOC_LEVEL:      Level $DOC_LEVEL"
 +        echo "  PRESET:         $PRESET"
 @@ -663,9 +659,9 @@ if [[ "$PHASE_MODE" = true ]]; then
-     TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+     TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 +    MANIFEST_PATH="$TEMPLATES_BASE/manifest/spec-kit-docs.json"
      readonly PHASE_ADDENDUM_DIR="$TEMPLATES_BASE/addendum/phase"
 -    readonly LEAN_PHASE_PARENT_TEMPLATE="$TEMPLATES_BASE/phase_parent/spec.md"
@@ -199,7 +199,7 @@ Proposed patch. This keeps backward compatibility by accepting `--level` as an a
 -        echo "  DOC_LEVEL:    Level $DOC_LEVEL (parent)"
 +        echo "  PRESET:       phase-parent (parent), simple-change (children)"
 @@ -1146,38 +1137,25 @@ FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
- TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+ TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 +MANIFEST_PATH="$TEMPLATES_BASE/manifest/spec-kit-docs.json"
  
 -# Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
@@ -280,15 +280,15 @@ Proposed patch. This keeps backward compatibility by accepting `--level` as an a
      echo ""
 ```
 
-Integration note: this diff intentionally assumes helper functions added to `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`: `legacy_level_to_preset`, `scaffold_from_manifest`, `template_contract_for_preset`, `template_contract_docs_json`, `preset_supports_feature`, and `print_template_contract_summary`.
+Integration note: this diff intentionally assumes helper functions added to `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`: `legacy_level_to_preset`, `scaffold_from_manifest`, `template_contract_for_preset`, `template_contract_docs_json`, `preset_supports_feature`, and `print_template_contract_summary`.
 
 ### Diff: check-files.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` hardcodes required files by numeric level and special-cases implementation-summary after work starts. The manifest contract should own required docs.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` hardcodes required files by numeric level and special-cases implementation-summary after work starts. The manifest contract should own required docs.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/rules/check-files.sh
-+++ .opencode/skill/system-spec-kit/scripts/rules/check-files.sh
+--- .opencode/skills/system-spec-kit/scripts/rules/check-files.sh
++++ .opencode/skills/system-spec-kit/scripts/rules/check-files.sh
 @@ -7,12 +7,12 @@
  set -euo pipefail
 +source "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/lib/template-utils.sh"
@@ -296,7 +296,7 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
      local missing=()
 -    # T501 FIX: Strip non-numeric suffix (e.g. "3+" -> "3") for arithmetic comparisons
 -    local numeric_level="${level//[^0-9]/}"
-+    local manifest_path="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json"
++    local manifest_path="$REPO_ROOT/.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
 @@ -39,52 +38,35 @@ run_check() {
 -    # Phase-parent early branch: if folder is a phase parent, only spec.md is required
 -    # at the parent level. Plan, tasks, checklist, decision-record, and
@@ -388,7 +388,7 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
          RULE_DETAILS=("${missing[@]}")
          local missing_list
          missing_list=$(IFS=', '; echo "${missing[*]}")
--        RULE_REMEDIATION="Create missing files: $missing_list. Use templates from .opencode/skill/system-spec-kit/templates/"
+-        RULE_REMEDIATION="Create missing files: $missing_list. Use templates from .opencode/skills/system-spec-kit/templates/"
 +        RULE_REMEDIATION="Create missing files: $missing_list. Use the active manifest preset templates."
      fi
  }
@@ -396,11 +396,11 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
 
 ### Diff: check-sections.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` checks fixed section names by level. Manifest `sectionProfiles[].requiredAnchors` should replace the hardcoded array.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` checks fixed section names by level. Manifest `sectionProfiles[].requiredAnchors` should replace the hardcoded array.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/rules/check-sections.sh
-+++ .opencode/skill/system-spec-kit/scripts/rules/check-sections.sh
+--- .opencode/skills/system-spec-kit/scripts/rules/check-sections.sh
++++ .opencode/skills/system-spec-kit/scripts/rules/check-sections.sh
 @@ -7,6 +7,7 @@
  set -euo pipefail
 +source "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/lib/template-utils.sh"
@@ -408,7 +408,7 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
      local -a missing=()
 -    # T501 FIX: Strip non-numeric suffix (e.g. "3+" -> "3") for arithmetic comparisons
 -    local numeric_level="${level//[^0-9]/}"
-+    local manifest_path="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json"
++    local manifest_path="$REPO_ROOT/.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
 @@ -39,13 +36,12 @@ run_check() {
 -    local -a file_sections=(
 -        "spec.md:Problem Statement,Requirements,Scope"
@@ -430,11 +430,11 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
 
 ### Diff: check-template-headers.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` calls `template-structure.js compare "$level"` and always checks the same six docs. The manifest contract should choose active authored docs and the helper should compare against post-gate templates.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` calls `template-structure.js compare "$level"` and always checks the same six docs. The manifest contract should choose active authored docs and the helper should compare against post-gate templates.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh
-+++ .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh
+--- .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh
++++ .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh
 @@ -7,6 +7,7 @@
  set -euo pipefail
 +source "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/lib/template-utils.sh"
@@ -442,7 +442,7 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
      local rule_dir
      rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
      local helper_script="$rule_dir/../utils/template-structure.js"
-+    local manifest_path="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json"
++    local manifest_path="$REPO_ROOT/.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
 +    local contract_json
 +    contract_json="$(template_contract_for_folder "$manifest_path" "$folder")"
 @@ -59,7 +64,7 @@ run_check() {
@@ -469,11 +469,11 @@ Integration note: `template-structure.js compare-manifest` is outside this itera
 
 ### Diff: check-section-counts.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh` extracts level from `spec.md`, maps levels to count thresholds, and repeats file-existence checks. The manifest should provide merged `minimumCounts` from active section profiles.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` extracts level from `spec.md`, maps levels to count thresholds, and repeats file-existence checks. The manifest should provide merged `minimumCounts` from active section profiles.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh
-+++ .opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh
+--- .opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh
++++ .opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh
 @@ -7,26 +7,13 @@
  set -euo pipefail
 +source "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/lib/template-utils.sh"
@@ -494,7 +494,7 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
 @@ -104,9 +91,9 @@ run_check() {
      local warnings=()
      local errors=()
-+    local manifest_path="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json"
++    local manifest_path="$REPO_ROOT/.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
 +    local contract_json counts_json
 +    contract_json="$(template_contract_for_folder "$manifest_path" "$folder")"
 +    counts_json="$(manifest_minimum_counts "$manifest_path" "$contract_json")"
@@ -589,11 +589,11 @@ Current integration point: `.opencode/skill/system-spec-kit/scripts/rules/check-
 
 ### Diff: template-utils.sh
 
-Current integration point: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` only resolves level folders and copies with `cp`. This is the natural shell boundary for manifest resolution until the TypeScript manifest-loader is wired.
+Current integration point: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` only resolves level folders and copies with `cp`. This is the natural shell boundary for manifest resolution until the TypeScript manifest-loader is wired.
 
 ```diff
---- .opencode/skill/system-spec-kit/scripts/lib/template-utils.sh
-+++ .opencode/skill/system-spec-kit/scripts/lib/template-utils.sh
+--- .opencode/skills/system-spec-kit/scripts/lib/template-utils.sh
++++ .opencode/skills/system-spec-kit/scripts/lib/template-utils.sh
 @@ -9,7 +9,9 @@
 -# Get_level_templates_dir()  - Resolve template directory for a given level
 -# Copy_template()            - Copy template file with level-specific fallback
@@ -850,7 +850,7 @@ Chosen manifest spellings:
 - `directories`, not `dirs`.
 - `supportsKinds`, not `supported_kinds`.
 - `conflictsWith`, not `conflicts_with`.
-- Presets stay inside `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` under `presets[]`.
+- Presets stay inside `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` under `presets[]`.
 - Presets get `namespace`, defaulting to `core`; canonical identity is `core:simple-change`.
 
 Reasoning:
@@ -862,7 +862,7 @@ Reasoning:
 ## Questions Answered
 
 - Concrete integration diffs are now available for all six requested files.
-- `create.sh` should replace level-driven scaffold selection with `--preset` and a manifest path at `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- `create.sh` should replace level-driven scaffold selection with `--preset` and a manifest path at `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - `check-files.sh` should use `graph-metadata.json.derived.template_contract` when present, with fallback preset resolution.
 - `check-sections.sh` should validate active post-gate required anchors from section profiles.
 - `check-template-headers.sh` should call a manifest-aware helper command, `compare-manifest`, rather than `compare "$level"`.
@@ -872,7 +872,7 @@ Reasoning:
 
 ## Questions Remaining
 
-- The proposed shell helper embeds Node snippets as an integration bridge. The final implementation should decide whether those snippets are temporary or replaced immediately by `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts` plus compiled JS.
+- The proposed shell helper embeds Node snippets as an integration bridge. The final implementation should decide whether those snippets are temporary or replaced immediately by `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts` plus compiled JS.
 - `template-structure.js compare-manifest` remains a necessary follow-up diff because `check-template-headers.sh` depends on it.
 - `generate-description.js` and graph metadata generation should eventually converge so `description.json` and `graph-metadata.json` receive one coherent template-contract snapshot in the same command path.
 - The proposed `render_active_inline_gates` bridge only handles simple `OR` atoms. It is enough to show integration points, but the implementation must use the full iteration-006 EBNF renderer.

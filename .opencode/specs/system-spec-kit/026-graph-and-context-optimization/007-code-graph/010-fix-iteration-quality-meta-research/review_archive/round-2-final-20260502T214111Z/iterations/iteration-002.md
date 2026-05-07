@@ -2,8 +2,8 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12-35`
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:36-85`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-35`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:36-85`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/prompts/iteration-002.md:7-21`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/iterations/iteration-001.md:28-40`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-1-20260502T193723Z/iterations/iteration-002.md:49-59`
@@ -23,10 +23,10 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/graph-metadata.json:1-22`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-20260502T202250Z/deep-review-strategy.md:1-14`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-20260502T202250Z/deep-review-strategy.md:92-130`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:192-230`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:198-228`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:192-230`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:198-228`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
 
 ## Findings by Severity
 

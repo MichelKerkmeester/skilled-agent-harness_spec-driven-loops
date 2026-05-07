@@ -72,7 +72,7 @@ This is **Phase 3** of the sk-doc asset reorganization — terminal phase. Phase
 - One terminal commit on main: `feat(sk-doc): verify and ship sk-doc reorg (068/003)`
 
 **Changelog**:
-- Phase 3 closeout writes `.opencode/skill/sk-doc/changelog/v<next>.md` documenting the reorg.
+- Phase 3 closeout writes `.opencode/skills/sk-doc/changelog/v<next>.md` documenting the reorg.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -93,7 +93,7 @@ Get an independent fresh-context verifier (`@review` with `sk-code-review`) to v
 ## 3. SCOPE
 
 ### In Scope
-- Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict` (must exit 0)
+- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict` (must exit 0)
 - Dispatch `@review` (Opus 4.7, fresh context, read-only) with `sk-code-review` skill loaded
 - Verifier reruns `rg` residual + `validate.sh --strict` + `diff -rq` checks IN FRESH SHELL (never trust prior reported output)
 - Verifier samples 3 random updated files for content drift check
@@ -119,7 +119,7 @@ Get an independent fresh-context verifier (`@review` with `sk-code-review`) to v
 | `068-sk-doc-organization/graph-metadata.json` | Modify | `derived.last_known_status` + `derived.last_save_at` refresh |
 | `068-sk-doc-organization/description.json` | Modify | metadata refresh |
 | `068-sk-doc-organization/00{1,2,3}-*/graph-metadata.json` | Modify | child metadata refresh |
-| `.opencode/skill/sk-doc/changelog/v<next>.md` | Create (optional) | Document the reorg in sk-doc's changelog |
+| `.opencode/skills/sk-doc/changelog/v<next>.md` | Create (optional) | Document the reorg in sk-doc's changelog |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -156,13 +156,13 @@ Get an independent fresh-context verifier (`@review` with `sk-code-review`) to v
 
 ### Given/When/Then Verification Scenarios
 
-**Given** Phase 1 and Phase 2 commits landed, **When** running `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict`, **Then** exit code is 0 and no `[ERR]` lines appear.
+**Given** Phase 1 and Phase 2 commits landed, **When** running `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict`, **Then** exit code is 0 and no `[ERR]` lines appear.
 
 **Given** the residual sweep filter from Phase 2, **When** running `rg --no-config --no-ignore-vcs --glob '!**/specs/**' --glob '!**/z_archive/**' ... 'assets/(documentation/...|agents/...)' .opencode .claude .codex .gemini`, **Then** rg exits 1 (no matches).
 
 **Given** @review dispatched with sk-code-review skill in fresh context, **When** verifier reruns validate.sh + rg + diff -rq + tomllib parse + 3-file sample read, **Then** all checks pass and verifier returns "VERDICT: PASS".
 
-**Given** verifier returns PASS, **When** running `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, **Then** parent 068 + 3 children have refreshed graph-metadata.json with `derived.last_known_status = "complete"`.
+**Given** verifier returns PASS, **When** running `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, **Then** parent 068 + 3 children have refreshed graph-metadata.json with `derived.last_known_status = "complete"`.
 
 **Given** all REQs satisfied, **When** committing with `feat(sk-doc): verify and ship sk-doc reorg (068/003)`, **Then** commit lands on main and `git status --porcelain` is clean.
 

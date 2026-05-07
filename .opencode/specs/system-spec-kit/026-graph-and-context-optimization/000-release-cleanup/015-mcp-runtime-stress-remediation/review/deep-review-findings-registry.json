@@ -23,7 +23,7 @@
       "severity": "P2",
       "dimension": "maintainability",
       "summary": "core/README.md still documents embedding-readiness ownership after 026 removed the scaffold.",
-      "evidence": ".opencode/skill/system-spec-kit/mcp_server/core/README.md:40",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/core/README.md:40",
       "status": "open"
     },
     {
@@ -47,7 +47,7 @@
       "severity": "P2",
       "dimension": "maintainability",
       "summary": "folder_structure.md's illustrated child-phase layout still teaches a pt-01 default before the post-028 flat-first rule.",
-      "evidence": ".opencode/skill/system-spec-kit/references/structure/folder_structure.md:196",
+      "evidence": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md:196",
       "status": "open"
     }
   ],

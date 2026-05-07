@@ -12,9 +12,9 @@ The packet-local JSONL/state-file pattern is still right for Public. The compari
 I compared Public's deep-loop state contracts with Agent Lightning's artifact-rich example flows and trainer/store coordination surfaces.
 
 ## Evidence
-- The deep-research workflow declares explicit state paths for config, JSONL state log, strategy, registry, dashboard, iteration files, and the final `research.md`. [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:79-89]
-- The deep-research agent is built around externalized state: read JSONL plus strategy, execute one cycle, then append one line to `deep-research-state.jsonl`. [SOURCE: .opencode/agent/deep-research.md:53-57] [SOURCE: .opencode/agent/deep-research.md:168-168] [SOURCE: .opencode/agent/deep-research.md:291-331]
-- The deep-review agent follows the same reducer-owned, append-only pattern for review JSONL and iteration artifacts. [SOURCE: .opencode/agent/deep-review.md:45-68] [SOURCE: .opencode/agent/deep-review.md:232-232] [SOURCE: .opencode/agent/deep-review.md:384-451]
+- The deep-research workflow declares explicit state paths for config, JSONL state log, strategy, registry, dashboard, iteration files, and the final `research.md`. [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:79-89]
+- The deep-research agent is built around externalized state: read JSONL plus strategy, execute one cycle, then append one line to `deep-research-state.jsonl`. [SOURCE: .opencode/agents/deep-research.md:53-57] [SOURCE: .opencode/agents/deep-research.md:168-168] [SOURCE: .opencode/agents/deep-research.md:291-331]
+- The deep-review agent follows the same reducer-owned, append-only pattern for review JSONL and iteration artifacts. [SOURCE: .opencode/agents/deep-review.md:45-68] [SOURCE: .opencode/agents/deep-review.md:232-232] [SOURCE: .opencode/agents/deep-review.md:384-451]
 - Agent Lightning's Claude Code example also treats outputs as explicit artifacts: span streams, HuggingFace datasets, container logs, and evaluation reports. [SOURCE: external/examples/claude_code/README.md:5-12] [SOURCE: external/examples/claude_code/README.md:108-112]
 - The `tinker` hello example supports both distributed execution and an integrated `oneclick` mode that still revolves around explicit store, runner, and trainer coordination. [SOURCE: external/examples/tinker/hello.py:22-29] [SOURCE: external/examples/tinker/hello.py:154-185]
 

@@ -8,17 +8,17 @@ Re-test the converged C+F hybrid manifest-driven greenfield design against the n
 
 - Re-read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-009.md` first, as required.
 - Audited level, preset, capability, phase-parent, and `SPECKIT_LEVEL` references across:
-  - `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts`
-  - `.opencode/skill/system-spec-kit/SKILL.md`
-  - `.opencode/skill/sk-doc/`
+  - `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
+  - `.opencode/skills/sk-doc/`
   - `CLAUDE.md`
   - `AGENTS.md`
-  - `.opencode/command/spec_kit/*.md`
-  - `.opencode/agent/*.md`
-  - `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-  - `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
+  - `.opencode/commands/spec_kit/*.md`
+  - `.opencode/agents/*.md`
+  - `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
 - Re-read the iteration-007 proposed diffs for `create.sh`, `check-files.sh`, `check-sections.sh`, `check-template-headers.sh`, and adjacent `check-section-counts.sh` notes.
 - Checked generated/template marker usage for `<!-- SPECKIT_LEVEL: N -->` and existing parser expectations.
 
@@ -28,21 +28,21 @@ Re-test the converged C+F hybrid manifest-driven greenfield design against the n
 
 | Surface | Category | Evidence | Invariant result |
 | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts` | STRICTLY INVISIBLE TO USER | Classifies write/resume/read-only triggers. It has no documentation-level or preset selection logic. | Leave byte-identical unless Gate 3 triggers change for unrelated reasons. The C+F design must not require classifier changes. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | AI-facing prompt text | Tells the AI: "When user selects B) New, AI estimates complexity and recommends a level", then runs `create.sh --level N`. Rules require determining level and using `templates/level_N/`. | Must keep level vocabulary. Replace implementation details only if phrased as "resolve the Level-N template contract internally", never "choose preset/capability". |
+| `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` | STRICTLY INVISIBLE TO USER | Classifies write/resume/read-only triggers. It has no documentation-level or preset selection logic. | Leave byte-identical unless Gate 3 triggers change for unrelated reasons. The C+F design must not require classifier changes. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | AI-facing prompt text | Tells the AI: "When user selects B) New, AI estimates complexity and recommends a level", then runs `create.sh --level N`. Rules require determining level and using `templates/level_N/`. | Must keep level vocabulary. Replace implementation details only if phrased as "resolve the Level-N template contract internally", never "choose preset/capability". |
 | `CLAUDE.md` | AI-facing and user-facing root policy | Documents Documentation Levels 1/2/3/3+, phase parent, Level 1 completion skip, checklist Level 2+, and `templates/level_N/`. | Must remain level-only. This is one of the strongest invariance anchors. |
 | `AGENTS.md` | AI-facing and user-facing root policy | Same level system as `CLAUDE.md`; also says the classifier module is authoritative for Gate 3. | Must remain level-only. |
-| `.opencode/command/spec_kit/plan.md` | AI-facing slash command text and user-facing command help | Argument hint includes `--level=1|2|3|3+`; setup binds `selected_level`; intake asks about documentation level; phase flow says children receive Level-N templates. | Must keep `selected_level`, `--level`, and documentation-level language. |
-| `.opencode/command/spec_kit/complete.md` | AI-facing slash command text and user-facing command help | Intake asks documentation level; workflow binds `selected_level`; completion and checklist gates are keyed to Level 1+ and Level 2+. | Must keep level language. No preset/capability terms in setup, prompts, or command docs. |
-| `.opencode/command/spec_kit/resume.md` | AI-facing slash command text | Resume focuses on folder selection, phase-child redirect, canonical continuity, and artifacts. It does not ask about documentation level except by reading existing docs. | Safe if unchanged. Resume must not start interpreting presets or capabilities in visible prompt text. |
-| Other `.opencode/command/spec_kit/*.md` | Mixed AI-facing command docs | `implement.md` uses Level 2+ checklist prerequisites. Deep-research/deep-review "reasoning-effort level" mentions are unrelated. | Keep doc-level mentions as levels; unrelated "level" usage is out of scope. |
-| `.opencode/agent/orchestrate.md` | AI-facing agent prompt text | Requires "Level selection (1, 2, 3, 3+)" and `templates/level_N/` for spec docs; rejects "Level Not Determined". | Must keep level vocabulary. If orchestrator ever receives internal contract details, they must be rendered as the original level. |
-| Other `.opencode/agent/*.md` | AI-facing agent prompt text | Mentions are mostly confidence level, memory tool level, nesting depth, or top-level. | No spec-level taxonomy issue except `orchestrate.md`. |
-| `.opencode/skill/sk-doc/` | AI-facing docs skill text | No active prompt tells AI to choose spec-kit levels. It references system-spec-kit templates and one HVR rule points at `templates/level_3*/decision-record.md`. | No new taxonomy should be introduced. Existing level path references can remain or be hidden behind unchanged examples. |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh --help` | USER-facing and AI-visible CLI surface | Help says "documentation level", exposes only `--level`, and examples use `--level`. Stdout prints `DOC_LEVEL: Level N` and "Level N Documentation". JSON includes `"DOC_LEVEL"`. | Must remain level-only. Iteration-007's `--preset` primary contract violates the invariant. |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | USER-facing and AI-visible validator output | Current pass message says "All required files present for Level $level"; remediation is taxonomy-neutral templates path. | Keep level or taxonomy-neutral messages. Do not mention manifest contract. |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` | USER-facing and AI-visible validator output | Current messages are taxonomy-neutral: required sections found/missing. | Safe if manifest-backed validation keeps messages taxonomy-neutral. |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` | USER-facing and AI-visible validator output | Current messages mention phase parent and template headers, not preset/capability. | Safe if helper errors do not expose manifest/preset/capability. |
+| `.opencode/commands/spec_kit/plan.md` | AI-facing slash command text and user-facing command help | Argument hint includes `--level=1|2|3|3+`; setup binds `selected_level`; intake asks about documentation level; phase flow says children receive Level-N templates. | Must keep `selected_level`, `--level`, and documentation-level language. |
+| `.opencode/commands/spec_kit/complete.md` | AI-facing slash command text and user-facing command help | Intake asks documentation level; workflow binds `selected_level`; completion and checklist gates are keyed to Level 1+ and Level 2+. | Must keep level language. No preset/capability terms in setup, prompts, or command docs. |
+| `.opencode/commands/spec_kit/resume.md` | AI-facing slash command text | Resume focuses on folder selection, phase-child redirect, canonical continuity, and artifacts. It does not ask about documentation level except by reading existing docs. | Safe if unchanged. Resume must not start interpreting presets or capabilities in visible prompt text. |
+| Other `.opencode/commands/spec_kit/*.md` | Mixed AI-facing command docs | `implement.md` uses Level 2+ checklist prerequisites. Deep-research/deep-review "reasoning-effort level" mentions are unrelated. | Keep doc-level mentions as levels; unrelated "level" usage is out of scope. |
+| `.opencode/agents/orchestrate.md` | AI-facing agent prompt text | Requires "Level selection (1, 2, 3, 3+)" and `templates/level_N/` for spec docs; rejects "Level Not Determined". | Must keep level vocabulary. If orchestrator ever receives internal contract details, they must be rendered as the original level. |
+| Other `.opencode/agents/*.md` | AI-facing agent prompt text | Mentions are mostly confidence level, memory tool level, nesting depth, or top-level. | No spec-level taxonomy issue except `orchestrate.md`. |
+| `.opencode/skills/sk-doc/` | AI-facing docs skill text | No active prompt tells AI to choose spec-kit levels. It references system-spec-kit templates and one HVR rule points at `templates/level_3*/decision-record.md`. | No new taxonomy should be introduced. Existing level path references can remain or be hidden behind unchanged examples. |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh --help` | USER-facing and AI-visible CLI surface | Help says "documentation level", exposes only `--level`, and examples use `--level`. Stdout prints `DOC_LEVEL: Level N` and "Level N Documentation". JSON includes `"DOC_LEVEL"`. | Must remain level-only. Iteration-007's `--preset` primary contract violates the invariant. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | USER-facing and AI-visible validator output | Current pass message says "All required files present for Level $level"; remediation is taxonomy-neutral templates path. | Keep level or taxonomy-neutral messages. Do not mention manifest contract. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` | USER-facing and AI-visible validator output | Current messages are taxonomy-neutral: required sections found/missing. | Safe if manifest-backed validation keeps messages taxonomy-neutral. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` | USER-facing and AI-visible validator output | Current messages mention phase parent and template headers, not preset/capability. | Safe if helper errors do not expose manifest/preset/capability. |
 | Authored spec docs and parser health | USER-facing and AI-readable packet files | Templates and tests rely on `<!-- SPECKIT_LEVEL: N -->`, `| **Level** | N |`, and parser warnings for missing `SPECKIT_LEVEL`. | Preserve these markers. Do not replace them with capability declarations. |
 
 ### Stress-Test Results 1-5
@@ -166,7 +166,7 @@ If an internal manifest contract must be persisted, it should not be authored in
 5. Preserve `<!-- SPECKIT_LEVEL: N -->`, `| **Level** | N |`, `level: N`, and `spec_level` fields for backward readability.
 6. Validator output must be level-shaped or taxonomy-neutral. Manifest, preset, capability, and kind are implementation terms and must not appear in errors, warnings, remediations, or summary lines.
 7. `graph-metadata.json` needs an ADR-level decision. Iteration 9 recommended `derived.template_contract` with preset/kind/capabilities. Under this invariant, that exact shape is too visible for a file the AI may read during resume. Either derive contracts from `SPECKIT_LEVEL` at runtime, or persist only a public level-shaped contract.
-8. All AI/user-facing documentation remains level-only: `CLAUDE.md`, `AGENTS.md`, `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/spec_kit/*.md`, `.opencode/agent/orchestrate.md`, and relevant sk-doc references.
+8. All AI/user-facing documentation remains level-only: `CLAUDE.md`, `AGENTS.md`, `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/spec_kit/*.md`, `.opencode/agents/orchestrate.md`, and relevant sk-doc references.
 9. Internal source names may still use kind/capabilities if they are not rendered into help, logs, generated docs, validator output, slash-command prompts, or AI-facing skill text.
 
 ### Updated Recommendation Delta

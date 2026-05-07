@@ -83,8 +83,8 @@ Define a research-aligned Level 3 packet that captures the producer-side continu
 
 - Confirm and document the predecessor dependency on the FTS capability helper plus truthful forced-degrade tests.
 - Build or refine replay-safe hook validation that isolates `TMPDIR`, stubs autosave where needed, and detects out-of-bound writes.
-- Extend `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` with additive producer metadata needed for later continuity and analytics packets.
-- Extend `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` to persist bounded metadata after transcript parsing without turning Stop into an analytics reader.
+- Extend `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` with additive producer metadata needed for later continuity and analytics packets.
+- Extend `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` to persist bounded metadata after transcript parsing without turning Stop into an analytics reader.
 - Prove idempotent replay behavior for the producer patch before any later cached-summary consumer or warning surface is considered.
 - Keep long-form packet meaning in `decision-record.md` and `implementation-summary.md` when those docs exist, while the producer artifact remains a compact continuity wrapper.
 
@@ -101,11 +101,11 @@ Define a research-aligned Level 3 packet that captures the producer-side continu
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Modify | Add bounded producer metadata while keeping `claudeSessionId` primary and `speckitSessionId` nullable. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Modify | Persist bounded transcript identity and cache-token carry-forward fields after transcript parsing. |
-| `.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` | Create or refine | Isolated replay harness with side-effect detection for producer verification. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modify | Add replay and idempotency coverage for the producer patch. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Read-only verification | Confirm no consumer fast path is introduced in this packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Modify | Add bounded producer metadata while keeping `claudeSessionId` primary and `speckitSessionId` nullable. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Modify | Persist bounded transcript identity and cache-token carry-forward fields after transcript parsing. |
+| `.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts` | Create or refine | Isolated replay harness with side-effect detection for producer verification. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modify | Add replay and idempotency coverage for the producer patch. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Read-only verification | Confirm no consumer fast path is introduced in this packet. |
 <!-- /ANCHOR:scope -->
 
 ---

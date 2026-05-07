@@ -114,30 +114,30 @@ Define an orchestrator-layer wave execution model that segments large review and
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
-| `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-| `.opencode/command/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+| `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
 <!-- /ANCHOR:scope -->
 
 ---

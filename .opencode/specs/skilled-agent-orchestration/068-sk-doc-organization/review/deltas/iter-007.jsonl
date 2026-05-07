@@ -1,12 +1,12 @@
 {"type":"iteration","iteration":7,"timestamp":"2026-05-05T11:46:30+02:00","executor":"cli-copilot/claude-opus-4.7","focus":"skeptic-pass-cross-reference-verification","dimensions":["all"],"newFindings":{"P0":0,"P1":0,"P2":0},"verdict":"PASS","convergenceStreakInScope":3,"notes":"Every verifiable claim across 3 implementation-summaries re-executed in fresh shell; 0 claim/reality drift"}
 {"type":"verification","iteration":7,"check":"validate.sh --strict on parent 068","result":"PASS","exitCode":0,"errors":0,"warnings":0}
-{"type":"verification","iteration":7,"check":"diff .opencode/agent/create.md vs .claude/agents/create.md","result":"PASS","output":"empty"}
-{"type":"verification","iteration":7,"check":"diff .opencode/agent/create.md vs .gemini/agents/create.md","result":"PASS","output":"empty"}
+{"type":"verification","iteration":7,"check":"diff .opencode/agents/create.md vs .claude/agents/create.md","result":"PASS","output":"empty"}
+{"type":"verification","iteration":7,"check":"diff .opencode/agents/create.md vs .gemini/agents/create.md","result":"PASS","output":"empty"}
 {"type":"verification","iteration":7,"check":"readlink .claude/commands","result":"PASS","value":"../.opencode/command"}
 {"type":"verification","iteration":7,"check":"readlink .codex/prompts","result":"PASS","value":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command"}
-{"type":"verification","iteration":7,"check":"stat -L inode parity .claude/commands/create/agent.md vs .opencode/command/create/agent.md","result":"PASS","inode":32374636}
+{"type":"verification","iteration":7,"check":"stat -L inode parity .claude/commands/create/agent.md vs .opencode/commands/create/agent.md","result":"PASS","inode":32374636}
 {"type":"verification","iteration":7,"check":"tomllib.load() x 5 toml files","result":"PASS","files":[".gemini/commands/create/agent.toml",".gemini/commands/create/changelog.toml",".gemini/commands/create/feature-catalog.toml",".gemini/commands/create/testing-playbook.toml",".codex/agents/create.toml"]}
-{"type":"verification","iteration":7,"check":"4 promoted assets resolve at new paths","result":"PASS","paths":[".opencode/skill/sk-doc/assets/agent_template.md",".opencode/skill/sk-doc/assets/command_template.md",".opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md",".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"]}
+{"type":"verification","iteration":7,"check":"4 promoted assets resolve at new paths","result":"PASS","paths":[".opencode/skills/sk-doc/assets/agent_template.md",".opencode/skills/sk-doc/assets/command_template.md",".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"]}
 {"type":"verification","iteration":7,"check":"graph-metadata derived.status across parent + 3 children","result":"PASS","values":["complete","complete","complete","complete"]}
 {"type":"verification","iteration":7,"check":"Phase 1 commit ccd73ef55 has 6 R-lines","result":"PASS","note":"4 git mv expanded to 6 renames (feature_catalog/ 2 inner + testing_playbook/ 2 inner + 2 templates)"}
 {"type":"verification","iteration":7,"check":"TODO/FIXME/placeholder/in-progress in active spec scope","result":"PASS","hits":0}

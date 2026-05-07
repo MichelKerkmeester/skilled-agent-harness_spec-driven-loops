@@ -53,7 +53,7 @@ contextType: "implementation"
 ### C1: Fix Duplicate Entries on Checkpoint Restore
 - **Priority:** P0 CRITICAL
 - **Effort:** 2h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 - **Lines:** 405-479
 - **Dependencies:** None
 
@@ -87,7 +87,7 @@ if (existing) {
 ### C2: Add Orphaned File Detection
 - **Priority:** P0 CRITICAL
 - **Effort:** 3h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Lines:** 2824-2848
 - **Dependencies:** None
 
@@ -127,21 +127,21 @@ async checkOrphanedFiles() {
 - **Priority:** P0 CRITICAL
 - **Effort:** 30m
 - **Files:**
-  - `.opencode/command/create/assets/create_skill_reference.yaml:430`
-  - `.opencode/command/create/assets/create_skill_asset.yaml:318`
-  - `.opencode/command/create/assets/create_folder_readme.yaml:413,197`
+  - `.opencode/commands/create/assets/create_skill_reference.yaml:430`
+  - `.opencode/commands/create/assets/create_skill_asset.yaml:318`
+  - `.opencode/commands/create/assets/create_folder_readme.yaml:413,197`
 - **Dependencies:** None
 
 **Description:**
-Commands reference non-existent skill `.opencode/skill/system-memory/SKILL.md`. Should reference `system-spec-kit`.
+Commands reference non-existent skill `.opencode/skills/system-memory/SKILL.md`. Should reference `system-spec-kit`.
 
 **Implementation:**
 ```yaml
 # Before:
-- path: .opencode/skill/system-memory/SKILL.md
+- path: .opencode/skills/system-memory/SKILL.md
 
 # After:
-- path: .opencode/skill/system-spec-kit/SKILL.md
+- path: .opencode/skills/system-spec-kit/SKILL.md
 ```
 
 **Acceptance Criteria:**
@@ -154,7 +154,7 @@ Commands reference non-existent skill `.opencode/skill/system-memory/SKILL.md`. 
 ### C4: Standardize Gate Numbering
 - **Priority:** P0 CRITICAL
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/SKILL.md`
+- **File:** `.opencode/skills/system-spec-kit/SKILL.md`
 - **Lines:** 82, 253, 255, 271, 409, 447, 606, 620, 685, 797, 798, 854
 - **Dependencies:** None
 
@@ -210,7 +210,7 @@ Narsil binary and workspace paths are hardcoded to `/Users/michelkerkmeester/...
 ### C6: Add Transaction to recordValidation
 - **Priority:** P0 CRITICAL
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/confidence-tracker.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/confidence-tracker.js`
 - **Lines:** 49-79
 - **Dependencies:** None
 
@@ -253,9 +253,9 @@ recordValidation(memoryId, wasUseful) {
 - **Priority:** P1 HIGH
 - **Effort:** 2h
 - **Files:**
-  - `.opencode/skill/system-spec-kit/scripts/validate-spec-folder.js` (create)
-  - `.opencode/skill/system-spec-kit/scripts/validate-memory-file.js` (create)
-  - `.opencode/skill/system-spec-kit/SKILL.md:187-188` (update)
+  - `.opencode/skills/system-spec-kit/scripts/validate-spec-folder.js` (create)
+  - `.opencode/skills/system-spec-kit/scripts/validate-memory-file.js` (create)
+  - `.opencode/skills/system-spec-kit/SKILL.md:187-188` (update)
 - **Dependencies:** None
 
 **Description:**
@@ -293,7 +293,7 @@ module.exports = { validateSpecFolder };
 ### H2: Fix Anchor Links in workflows-code
 - **Priority:** P1 HIGH
 - **Effort:** 1h
-- **File:** `.opencode/skill/workflows-code/SKILL.md`
+- **File:** `.opencode/skills/workflows-code/SKILL.md`
 - **Lines:** 91-107
 - **Dependencies:** None
 
@@ -320,7 +320,7 @@ Anchor links to reference files have incorrect section numbers (off by 1).
 - **Priority:** P1 HIGH
 - **Effort:** 1h
 - **Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md` (document limitation)
+  - `.opencode/skills/system-spec-kit/SKILL.md` (document limitation)
   - `AGENTS.md` (add note about manual sync)
 - **Dependencies:** None
 
@@ -343,7 +343,7 @@ Add documentation noting:
 ### H4: Implement Embedding Failure Rollback
 - **Priority:** P1 HIGH
 - **Effort:** 2h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 - **Lines:** 981-1004
 - **Dependencies:** C6 (transaction pattern)
 
@@ -380,7 +380,7 @@ const result = db.transaction(() => {
 ### H5: Add Missing idx_history_timestamp Index
 - **Priority:** P1 HIGH
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Lines:** 714 (add migration)
 - **Dependencies:** None
 
@@ -414,7 +414,7 @@ const migrateLegacyIndexes = () => {
 ### H6: Standardize Timestamp Format
 - **Priority:** P1 HIGH
 - **Effort:** 2h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Lines:** 2329 (recordAccess), schema definitions
 - **Dependencies:** H5
 
@@ -445,7 +445,7 @@ recordAccess(memoryId) {
 ### H7: Implement Cascade Delete for memory_history
 - **Priority:** P1 HIGH
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Lines:** 923-939
 - **Dependencies:** None
 
@@ -485,7 +485,7 @@ deleteMemory(id) {
 - **Effort:** 1h
 - **Files:**
   - `AGENTS.md:482`
-  - `.opencode/skill/mcp-code-mode/SKILL.md:480`
+  - `.opencode/skills/mcp-code-mode/SKILL.md:480`
 - **Dependencies:** None
 
 **Description:**
@@ -506,7 +506,7 @@ Some documentation uses `leann_search()` while actual tool name is `leann_leann_
 ### H9: Preserve Error Codes in MCP Response
 - **Priority:** P1 HIGH
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 - **Lines:** 568-578
 - **Dependencies:** None
 
@@ -583,7 +583,7 @@ Both timeout and other Botpoison errors silently return null without logging.
 ### M1: Fix Step Count Mismatch
 - **Priority:** P2 MEDIUM
 - **Effort:** 15m
-- **File:** `.opencode/command/spec_kit/implement.md`
+- **File:** `.opencode/commands/spec_kit/implement.md`
 - **Lines:** 227, 268-280
 - **Dependencies:** None
 
@@ -598,8 +598,8 @@ Both timeout and other Botpoison errors silently return null without logging.
 - **Priority:** P2 MEDIUM
 - **Effort:** 30m
 - **Files:**
-  - `.opencode/skill/mcp-chrome-devtools/SKILL.md`
-  - `.opencode/skill/sk-git/SKILL.md`
+  - `.opencode/skills/mcp-chrome-devtools/SKILL.md`
+  - `.opencode/skills/sk-git/SKILL.md`
 - **Dependencies:** None
 
 **Task:** Replace `mcp-code-mode` (skill name) with actual tool names like `call_tool_chain`.
@@ -629,7 +629,7 @@ Both timeout and other Botpoison errors silently return null without logging.
 ### M4: Add Cross-Platform stat Commands
 - **Priority:** P2 MEDIUM
 - **Effort:** 1h
-- **File:** `.opencode/command/search/index.md`
+- **File:** `.opencode/commands/search/index.md`
 - **Lines:** 86-89
 - **Dependencies:** None
 
@@ -651,7 +651,7 @@ fi
 ### M5: Optimize LRU Cache Eviction
 - **Priority:** P2 MEDIUM
 - **Effort:** 2h
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Lines:** 2363-2398
 - **Dependencies:** None
 
@@ -667,7 +667,7 @@ fi
 ### M6: Add Temp File Cleanup
 - **Priority:** P2 MEDIUM
 - **Effort:** 30m
-- **File:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+- **File:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 - **Lines:** 2409
 - **Dependencies:** None
 
@@ -687,7 +687,7 @@ fi
 ### M7: Fix Priority Tags False Positives
 - **Priority:** P2 MEDIUM
 - **Effort:** 1h
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-priority-tags.sh`
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh`
 - **Dependencies:** None
 
 **Task:** Update regex to recognize `**P0**` bold format as valid priority marker.
@@ -701,8 +701,8 @@ fi
 - **Priority:** P2 MEDIUM
 - **Effort:** 30m
 - **Files:**
-  - `.opencode/skill/sk-git/SKILL.md:39, 128`
-  - `.opencode/skill/sk-git/references/finish_workflows.md:198`
+  - `.opencode/skills/sk-git/SKILL.md:39, 128`
+  - `.opencode/skills/sk-git/references/finish_workflows.md:198`
 - **Dependencies:** None
 
 **Task:** Remove/update references to Docker requirement for GitHub MCP (uses npx).
@@ -739,7 +739,7 @@ fi
 | ID | Description | File | Effort |
 |----|-------------|------|--------|
 | L1 | Standardize allowed-tools array formatting | Multiple SKILL.md | 1h |
-| L2 | Add command index README | .opencode/command/README.md | 30m |
+| L2 | Add command index README | .opencode/commands/README.md | 30m |
 | L3 | Document scripts/lib/ contents | SKILL.md | 30m |
 | L4 | Document scripts/rules/ contents | SKILL.md | 30m |
 | L5 | Add `// intentionally empty` to catch blocks | Multiple | 2h |

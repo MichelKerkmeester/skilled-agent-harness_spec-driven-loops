@@ -18,9 +18,9 @@ _memory:
     blockers: []
     key_files:
       - "implementation-summary.md"
-      - ".opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle"
-      - ".opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json"
+      - ".opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle"
+      - ".opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json"
     completion_pct: 90
     open_questions: []
     answered_questions:
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -71,13 +71,13 @@ The stress test cycle is now a reusable documentation pattern instead of three h
 | `plan.md` | Created | Level 2 implementation plan with A/B/C authoring sections. |
 | `tasks.md` | Created | Task ledger for catalog, playbook, templates, cross-links, and verification. |
 | `checklist.md` | Created | DQI verification checklist per artifact. |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/README` | Created | Feature catalog section index. |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Created | Canonical stress test cycle reference. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Created | Manual playbook section index. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Created | Operational guide for running a stress cycle. |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | Parseable JSON sidecar template. |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings-rubric.schema` | Created | Field-by-field sidecar schema. |
-| `.opencode/skill/system-spec-kit/templates/stress-test/findings.template` | Created | Narrative findings skeleton. |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Created | Feature catalog section index. |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Created | Canonical stress test cycle reference. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Created | Manual playbook section index. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Created | Operational guide for running a stress cycle. |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.template.json` | Created | Parseable JSON sidecar template. |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema` | Created | Field-by-field sidecar schema. |
+| `.opencode/skills/system-spec-kit/templates/stress-test/findings.template` | Created | Narrative findings skeleton. |
 | v1.0.1 stress baseline spec | Modified | Added one-line pointer to the reusable pattern. |
 | v1.0.2 stress rerun spec | Modified | Added one-line pointer to the reusable pattern. |
 | v1.0.3 stress wiring spec | Modified | Added one-line pointer to the reusable pattern. |

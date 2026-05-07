@@ -83,23 +83,23 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Add shared post-mutation hook wiring and atomic-save coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modify | Apply shared post-mutation hook behavior to update mutations |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modify | Apply shared post-mutation hook behavior to delete mutations |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modify | Apply shared post-mutation hook behavior to bulk delete mutations |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modify | Add optional `autoRepair` and repair metadata output |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts` | Modify | Add `confirmName` safety parameter and response metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` | Add | Centralize mutation feedback metadata builder |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts` | Add | Centralize UX hint generation and append helpers |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts` | Modify | Export new hook modules from barrel |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md` | Modify | Document hook contracts and usage |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts` | Modify | Extend `MutationHookResult` with latency/cache-clear booleans |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modify | Append success-path UX hints before returning responses |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Add schema validation for new parameters |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Sync tool schema definitions |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts` | Modify | Sync MCP tool type contracts |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts` | Add | Validate hook module behavior and payload shape |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Modify | Validate auto-surface hint appending on success responses |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Add shared post-mutation hook wiring and atomic-save coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts` | Modify | Apply shared post-mutation hook behavior to update mutations |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modify | Apply shared post-mutation hook behavior to delete mutations |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modify | Apply shared post-mutation hook behavior to bulk delete mutations |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modify | Add optional `autoRepair` and repair metadata output |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts` | Modify | Add `confirmName` safety parameter and response metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` | Add | Centralize mutation feedback metadata builder |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts` | Add | Centralize UX hint generation and append helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts` | Modify | Export new hook modules from barrel |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` | Modify | Document hook contracts and usage |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts` | Modify | Extend `MutationHookResult` with latency/cache-clear booleans |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modify | Append success-path UX hints before returning responses |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | Add schema validation for new parameters |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | Sync tool schema definitions |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` | Modify | Sync MCP tool type contracts |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts` | Add | Validate hook module behavior and payload shape |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | Modify | Validate auto-surface hint appending on success responses |
 | manual test playbook document in folder 015-manual-testing-per-playbook | Modify | Add NEW-103+ manual scenarios for UX hooks |
 <!-- /ANCHOR:scope -->
 

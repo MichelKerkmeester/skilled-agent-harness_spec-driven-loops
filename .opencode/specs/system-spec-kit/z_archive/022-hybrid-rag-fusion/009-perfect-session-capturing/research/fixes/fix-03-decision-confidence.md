@@ -1,22 +1,22 @@
 ● SQL: Create fix todo
   └ 1 row(s) inserted. Last inserted row ID: 1.
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
   └ 402 lines read
 
 ● Grep "CONFIDENCE\s*:\s*80|80" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts)
   └ 6 lines found
 
-● Edit .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Edit .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
 
 ● Grep "CONFIDENCE\s*:\s*80" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts)
   └ No matches found
 
 ● Grep "computeEvidenceBasedConfidence|explicitRationale|baseConfidence"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts)
   └ 8 lines found
 
 ● Todo completed: fix-decision-confidence

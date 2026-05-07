@@ -6,7 +6,7 @@ I stayed on the hook-state/read-side seam and looked for additive downstream fal
 ## Findings
 
 ### Finding R29-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
 - **Lines:** `174-208`
 - **Severity:** P1
 - **Description:** The cached-summary schema check is effectively dead for real hook-state inputs. `buildCachedSessionSummaryCandidate(...)` fabricates `schemaVersion: CACHED_SESSION_SUMMARY_SCHEMA_VERSION` for every loaded `HookState`, but `HookState` itself has no schema-version field and is still loaded from temp-state JSON via unchecked `JSON.parse(...)`. That means parseable persisted state can never surface as `schema_version_mismatch`; it is always treated as current-schema continuity data.
@@ -14,7 +14,7 @@ I stayed on the hook-state/read-side seam and looked for additive downstream fal
 - **Downstream Impact:** `getCachedSessionSummaryDecision()` can accept or further classify schema-drifted temp-state as if it were current cached continuity, so both `session_resume` and Claude startup reuse are making trust decisions on unversioned state while advertising that a schema-mismatch guard exists.
 
 ### Finding R29-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
 - **Lines:** `130-143`
 - **Severity:** P2
 - **Description:** Claude startup collapses all cached-summary rejection reasons into the same user-facing "no cached continuity" state. It only distinguishes `accepted` from `rejected`; every rejected reason becomes `sessionContinuity = null` and the memory line is rewritten to `startup summary only (resume on demand)`. Combined with R29-001, hook-state schema drift is surfaced to operators exactly like an ordinary cache miss.

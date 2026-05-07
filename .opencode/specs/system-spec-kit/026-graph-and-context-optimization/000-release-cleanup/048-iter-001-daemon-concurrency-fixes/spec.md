@@ -22,12 +22,12 @@ _memory:
     next_safe_action: "Validate strict + commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "iter-001-daemon-fixes"
@@ -91,12 +91,12 @@ Apply localized fixes to the four code paths so that (a) the watcher serializes 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modify | Add `flushPromise` + drain loop, `suppress` flag, `flush()`/`suppressGenerationPublication()` on the public interface |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | Modify | Reverse shutdown ordering: watcher.suppress + flush + close BEFORE final `unavailable` publication |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modify | Token-tagged lock acquisition, owner-checked release, CAS stale reclamation; expose `__testables` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts` | Modify | Drop stale events whose `generation` is older than `lastInvalidation.generation` |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts` | Modify | Add `sa-003b` describe block: 2 mutex tests for F-001-A1-01 |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts` | Modify | Add `sa-007b` describe block: 2 token-ownership tests for F-001-A1-03 |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modify | Add `flushPromise` + drain loop, `suppress` flag, `flush()`/`suppressGenerationPublication()` on the public interface |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts` | Modify | Reverse shutdown ordering: watcher.suppress + flush + close BEFORE final `unavailable` publication |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts` | Modify | Token-tagged lock acquisition, owner-checked release, CAS stale reclamation; expose `__testables` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts` | Modify | Drop stale events whose `generation` is older than `lastInvalidation.generation` |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/daemon-lifecycle-stress.vitest.ts` | Modify | Add `sa-003b` describe block: 2 mutex tests for F-001-A1-01 |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/generation-cache-invalidation-stress.vitest.ts` | Modify | Add `sa-007b` describe block: 2 token-ownership tests for F-001-A1-03 |
 <!-- /ANCHOR:scope -->
 
 ---

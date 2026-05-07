@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/agent/orchestrate.md",
-      ".opencode/skill/system-spec-kit/scripts/scripts-registry.json",
-      ".opencode/skill/system-spec-kit/scripts/README.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/check-completion.sh",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/README.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/check-completion.sh",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "scripts/README.md",
       "scripts/spec/check-completion.sh",
       "spec.md",
@@ -59,25 +59,25 @@
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "scripts-registry.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/scripts/scripts-registry.json",
+        "path": ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/README.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "check-completion.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/check-completion.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/check-completion.sh",
         "source": "derived"
       },
       {
@@ -89,7 +89,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

@@ -10,7 +10,7 @@
 ### Finding 001-F1
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/SKILL.md:336`
+- **File**: `.opencode/skills/system-spec-kit/SKILL.md:336`
 - **Title**: Gate 3 options missing phase-folder routing (Option E)
 - **Evidence**: `"**Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip"`
 - **Expected**: Include Option E for phase-folder routing aligned to 022 direct-child phase workflow (parent link + neighboring phase references)
@@ -21,7 +21,7 @@
 ### Finding 001-F2
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/SKILL.md:20`
+- **File**: `.opencode/skills/system-spec-kit/SKILL.md:20`
 - **Title**: Spec-folder definition too narrow for normalized parent/child packet topology
 - **Evidence**: `"contains all documentation for a single feature or task"` and `"Always under specs/ directory with format ###-short-name/"`
 - **Expected**: Support coordination-root + nested packet forms used by 022 (e.g., `022-hybrid-rag-fusion/011-skill-alignment/002-child/`)
@@ -31,7 +31,7 @@
 ### Finding 001-F3
 - **Severity**: P2
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/SKILL.md:22`
+- **File**: `.opencode/skills/system-spec-kit/SKILL.md:22`
 - **Title**: Core guidance omits ADR-001 coordination-document and snapshot truth model
 - **Evidence**: Section 1 describes generic spec tracking, no "coordination document" / "point-in-time snapshot" / "current tree truth" language
 - **Expected**: Reflect ADR-001: root packet as coordination document with tree truth and point-in-time snapshots

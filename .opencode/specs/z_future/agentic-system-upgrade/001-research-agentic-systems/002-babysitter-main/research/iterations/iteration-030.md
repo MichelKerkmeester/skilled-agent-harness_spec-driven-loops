@@ -12,7 +12,7 @@ Babysitter will show that first-run setup plus explicit execution modes can redu
 I compared a typical Spec Kit feature workflow with Babysitter's user/project install plus mode-based orchestration surface.
 
 ## Evidence
-- Spec Kit's flow begins with Gate 1, Gate 2, and Gate 3 before ordinary execution, then ties file modifications to a mandatory spec-folder workflow and documentation level selection. [SOURCE: AGENTS.md:159-186] [SOURCE: AGENTS.md:233-252] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:32-59]
+- Spec Kit's flow begins with Gate 1, Gate 2, and Gate 3 before ordinary execution, then ties file modifications to a mandatory spec-folder workflow and documentation level selection. [SOURCE: AGENTS.md:159-186] [SOURCE: AGENTS.md:233-252] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:10-13] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:32-59]
 - The command quick reference in AGENTS describes separate plan, implement, complete, resume, handover, memory, deep-research, and deep-review flows as distinct user journeys. [SOURCE: AGENTS.md:138-155]
 - Babysitter explicitly separates one-time setup from daily execution: `/babysitter:user-install` creates a personal profile, and `/babysitter:project-install` creates a project profile so future runs can ask fewer questions and make better default decisions. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:160-201]
 - Daily execution then mostly reduces to choosing a mode such as `call`, `yolo`, `forever`, or `plan`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:13-31] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:41-62] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:66-88] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:127-150]
@@ -40,7 +40,7 @@ finding: `system-spec-kit` should add execution profiles and stored defaults so 
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Repeated gate-and-artifact ceremony on substantial tasks. [SOURCE: AGENTS.md:159-229] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:32-59]
+- **Current system-spec-kit approach:** Repeated gate-and-artifact ceremony on substantial tasks. [SOURCE: AGENTS.md:159-229] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:32-59]
 - **External repo's approach:** One-time user/project install plus mode-based daily orchestration. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:160-201] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/docs/user-guide/reference/slash-commands.md:13-31]
 - **Why the external approach might be better:** It amortizes complexity across many tasks instead of charging it every time.
 - **Why system-spec-kit's approach might still be correct:** High-governance workflows may still need explicit confirmations when risk is high.
@@ -50,7 +50,7 @@ finding: `system-spec-kit` should add execution profiles and stored defaults so 
 - **Migration path:** start with opt-in execution profiles for recurring users/projects, then expand once the routing and policy layers are simpler.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/command/spec_kit/`, `.opencode/skill/system-spec-kit/`, profile/config helpers
+- **Target file or module:** `AGENTS.md`, `.opencode/commands/spec_kit/`, `.opencode/skills/system-spec-kit/`, profile/config helpers
 - **Change type:** new module + modified existing
 - **Blast radius:** medium
 - **Prerequisites:** first simplify lifecycle, continuity, routing, and operator-policy surfaces

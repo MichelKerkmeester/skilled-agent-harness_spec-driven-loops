@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Validate strict + commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "iter-001-daemon-fixes"
@@ -60,7 +60,7 @@ Four localized fixes against `mcp_server/skill_advisor/lib/{daemon,freshness}/`.
 ### Definition of Ready
 - [x] Findings enumerated by packet 046 iteration-001 (4 findings: 3 P1 + 1 P2)
 - [x] Source-of-truth files read in full and current line numbers verified
-- [x] Templates copied from `.opencode/skill/system-spec-kit/templates/level_2/`
+- [x] Templates copied from `.opencode/skills/system-spec-kit/templates/level_2/`
 
 ### Definition of Done
 - [x] All 4 findings addressed with comments citing the finding ID in product code
@@ -196,7 +196,7 @@ Phase 1 (Read findings + files) ──► Phase 2 (Apply 4 fixes) ──► Phas
 
 ### Rollback Procedure
 1. `git revert <commit-sha>` on `main` — reverses all 4 product file edits and both new stress test blocks atomically
-2. `cd .opencode/skill/system-spec-kit/mcp_server && npm run build && npm run stress` — confirm pre-fix baseline restored
+2. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build && npm run stress` — confirm pre-fix baseline restored
 3. No data reversal required — no database migrations or persisted state changes (lock file format change is forward-compatible: new code accepts legacy `pid:ts` locks as un-owned and reclaims them)
 
 ### Data Reversal

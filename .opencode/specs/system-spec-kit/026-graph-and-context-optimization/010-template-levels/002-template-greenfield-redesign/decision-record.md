@@ -29,7 +29,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -326,5 +326,5 @@ Existing fixtures under `scripts/tests/fixtures/` are rewritten as part of Phase
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

@@ -8,7 +8,7 @@ trigger_phrases:
   - "constitutional"
 importance_tier: "normal"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/implementation-summary.md -->"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/implementation-summary.md -->"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/003-constitutional-learn-refactor"
@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["implementation-summary.md"]
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/implementation-summary.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/implementation-summary.md -->
 ---
 title: "Implementation Summary: Refactor /memory:learn → Constitutional Memory Manager"
 status: done
@@ -66,20 +66,20 @@ During final verification, active documentation drift was identified outside the
 ### Phase 2: Verification Remediation
 
 - Fixed stale active `/memory:learn` wording in:
-  - `.opencode/command/README.txt`
-  - `.opencode/command/spec_kit/debug.md`
-  - `.opencode/command/spec_kit/complete.md`
+  - `.opencode/commands/README.txt`
+  - `.opencode/commands/spec_kit/debug.md`
+  - `.opencode/commands/spec_kit/complete.md`
   - `README.md`
   - `.opencode/README.md`
-  - `.opencode/agent/speckit.md`
-  - .opencode/agent/chatgpt/speckit.md
-- Fixed command-contract drift in `.opencode/command/memory/learn.md`:
+  - `.opencode/agents/speckit.md`
+  - .opencode/agents/chatgpt/speckit.md
+- Fixed command-contract drift in `.opencode/commands/memory/learn.md`:
   - Removed contradictory qualification text.
   - Removed dead "save as critical instead" branch.
 - Added documentation and testing for closure:
-  - Feature catalog entry: `.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`
+  - Feature catalog entry: `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md`
   - Manual playbook scenario: `NEW-147`
-  - Regression test: `.opencode/skill/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts`
+  - Regression test: `.opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts`
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -112,7 +112,7 @@ This produced a scope-complete closure: command behavior, active documentation, 
 
 | Check | Result |
 |-------|--------|
-| `npm run typecheck` in `.opencode/skill/system-spec-kit` | PASS |
+| `npm run typecheck` in `.opencode/skills/system-spec-kit` | PASS |
 | `memory-learn-command-docs.vitest.ts` | PASS (2/2) |
 | Targeted MCP test suite | PASS (581/581) |
 | Legacy `/memory:learn` wording in active command/workspace/agent docs | PASS — no stale matches remain |

@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Apply Phase A sk-doc edits"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
-      - ".opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
-      - ".opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
+      - ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -70,7 +70,7 @@ Naturalize the canonical Prompt: field across all 16 playbooks. Apply RCAF only 
 
 ### In Scope
 - 4 sk-doc files: snippet template (lines 67, 79), root template (lines 313, 395+), creation reference §5 (add heuristic subsection), `/create:testing-playbook` command line 317.
-- 16 `manual_testing_playbook/` directories under `.opencode/skill/*/` (~498 per-feature files).
+- 16 `manual_testing_playbook/` directories under `.opencode/skills/*/` (~498 per-feature files).
 - Both prompt-equality locations per per-feature file: SCENARIO CONTRACT `Prompt:` line + 9-col table Exact Prompt cell.
 - `decision-record.md` ADR documenting the natural-human-vs-RCAF heuristic.
 - Validation: `validate_document.py` clean on every root playbook + structural sweep + prompt-sync audit + RCAF retention rate sanity check + naturalness spot-check.
@@ -86,11 +86,11 @@ Naturalize the canonical Prompt: field across all 16 playbooks. Apply RCAF only 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Modify | Lines 313, 333+ - replace RCAF placeholder with natural-human exemplar + heuristic note |
-| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` | Modify | Lines 67, 79 - same |
-| `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Modify | §5 Prompt Quality Rules - add "When to use RCAF vs natural-human" subsection |
-| `.opencode/command/create/testing-playbook.md` | Modify | Line 317 - clarify realism > format |
-| `.opencode/skill/*/manual_testing_playbook/**` | Modify | Refactor canonical Prompt: field per heuristic; preserve prompt-equality |
+| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Modify | Lines 313, 333+ - replace RCAF placeholder with natural-human exemplar + heuristic note |
+| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md` | Modify | Lines 67, 79 - same |
+| `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Modify | §5 Prompt Quality Rules - add "When to use RCAF vs natural-human" subsection |
+| `.opencode/commands/create/testing-playbook.md` | Modify | Line 317 - clarify realism > format |
+| `.opencode/skills/*/manual_testing_playbook/**` | Modify | Refactor canonical Prompt: field per heuristic; preserve prompt-equality |
 <!-- /ANCHOR:scope -->
 
 ---

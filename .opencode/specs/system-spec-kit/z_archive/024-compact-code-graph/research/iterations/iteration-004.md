@@ -196,11 +196,11 @@ Bottom line:
 ## Sources
 
 - [SOURCE: specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-001.md] — prior repo-level Dual-Graph analysis
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts] — current multi-channel retrieval/fusion architecture
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts] — active retrieval channel set (`vector`, `fts`, `bm25`, `graph`, `degree`)
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts] — current graph channel is causal-memory graph, not code graph
-- [SOURCE: .opencode/skill/system-spec-kit/shared/lib/structure-aware-chunker.ts] — existing AST-aware structural parsing precedent
-- [SOURCE: .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md] — documented AST parsing direction already exists in product planning
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts] — current multi-channel retrieval/fusion architecture
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts] — active retrieval channel set (`vector`, `fts`, `bm25`, `graph`, `degree`)
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts] — current graph channel is causal-memory graph, not code graph
+- [SOURCE: .opencode/skills/system-spec-kit/shared/lib/structure-aware-chunker.ts] — existing AST-aware structural parsing precedent
+- [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md] — documented AST parsing direction already exists in product planning
 - [SOURCE: https://pypi.org/project/graperoot/] — package existence, release metadata, license metadata, classifier, and distribution format
 - [SOURCE: https://graperoot.dev/] — public product claims for code map, action graph, dependency awareness, and impact analysis
 - [SOURCE: https://tree-sitter.github.io/tree-sitter/using-parsers/1-getting-started.html] — cross-language syntax-tree foundation

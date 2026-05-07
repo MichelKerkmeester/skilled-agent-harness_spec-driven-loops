@@ -111,7 +111,7 @@ Phase 001 produces the canonical exhaustive impact map for the rename without ch
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Inventory covers all requested text file extensions | Search includes `*.md`, `*.json`, `*.toml`, `*.ts`, `*.js`, `*.py`, `*.sh`, `*.yaml`, `*.yml`, `*.txt`, and `*.tmpl` across the requested roots |
-| REQ-002 | Inventory excludes frozen and generated/binary surfaces correctly | `z_archive/`, `.git/`, `node_modules/`, non-included `dist/`, `.cocoindex_code/*.db`, and SQLite database binaries are excluded, while checked-in `.opencode/skill/system-spec-kit/scripts/dist/*.js` is included |
+| REQ-002 | Inventory excludes frozen and generated/binary surfaces correctly | `z_archive/`, `.git/`, `node_modules/`, non-included `dist/`, `.cocoindex_code/*.db`, and SQLite database binaries are excluded, while checked-in `.opencode/skills/system-spec-kit/scripts/dist/*.js` is included |
 | REQ-003 | Edge cases are enumerated | `edge-cases.md` includes filename embeds, MCP TS/JS constants, SQLite indexed entries or binary database notes, snapshot fixtures, and code graph database notes |
 | REQ-004 | Machine-readable inventory is complete | `inventory.tsv` contains one row per active file with old-name references and the required columns: `file_path`, `match_count`, `area`, `phase` |
 | REQ-005 | Human-readable inventory gives downstream phase ownership | `inventory.md` includes total counts, category breakdown, top files per area, edge cases, and recommended 002-005 phase ordering |

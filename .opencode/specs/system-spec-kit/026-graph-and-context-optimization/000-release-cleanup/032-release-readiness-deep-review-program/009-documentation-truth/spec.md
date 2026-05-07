@@ -21,7 +21,7 @@ _memory:
       - "review-report.md"
       - "README.md"
       - "AGENTS.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
     session_dedup:
       fingerprint: "sha256:045009documentationtruth000000000000000000000000000000000000"
       session_id: "045-009-documentation-truth"

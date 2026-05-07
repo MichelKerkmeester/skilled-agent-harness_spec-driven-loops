@@ -286,8 +286,8 @@ Week 4: Phase 3 - Gate Enhancement
 | File | Purpose |
 |------|---------|
 | `AGENTS.md` | Primary agent instructions (update for Five Checks) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | SpecKit skill definition |
-| `.opencode/skill/system-spec-kit/templates/` | Spec folder templates |
+| `.opencode/skills/system-spec-kit/SKILL.md` | SpecKit skill definition |
+| `.opencode/skills/system-spec-kit/templates/` | Spec folder templates |
 
 ---
 

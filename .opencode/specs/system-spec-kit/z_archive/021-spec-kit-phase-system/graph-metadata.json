@@ -46,12 +46,12 @@
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh",
-      ".opencode/skill/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/scripts/templates/compose.sh",
-      ".opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh"
+      ".opencode/skills/system-spec-kit/scripts/templates/compose.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh"
     ],
     "entities": [
       {
@@ -87,19 +87,19 @@
       {
         "name": "recommend-level.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
         "source": "derived"
       },
       {
         "name": "create.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/create.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -111,13 +111,13 @@
       {
         "name": "compose.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/templates/compose.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/templates/compose.sh",
         "source": "derived"
       },
       {
         "name": "check-phase-links.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh",
         "source": "derived"
       },
       {

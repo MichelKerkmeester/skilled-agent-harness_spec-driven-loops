@@ -35,7 +35,7 @@ Establish the current GitHub Copilot CLI hooks surface from official docs, compa
    - Those settings files are for general CLI configuration and plugin settings, not for hook registration.
 
 4. Local repo evidence matches the official model: this repo uses `.github/hooks/*.json`, and the `cli-copilot` skill itself does not mention hooks.
-   - `.opencode/skill/cli-copilot/SKILL.md` contains no `hook` or `hooks` references.
+   - `.opencode/skills/cli-copilot/SKILL.md` contains no `hook` or `hooks` references.
    - At repo root, `.github/hooks/superset-notify.json` exists and uses the documented JSON format with `version: 1`.
    - That file currently registers `command` hooks for `sessionStart`, `sessionEnd`, `userPromptSubmitted`, and `postToolUse`.
    - Root-level `.github/copilot/settings.json` and `.github/copilot/settings.local.json` do not exist.
@@ -134,8 +134,8 @@ Establish the current GitHub Copilot CLI hooks surface from official docs, compa
   - https://code.claude.com/docs/en/hooks-guide
     - practical examples showing stdout-based context injection and broader hook usage
 - Local repo evidence:
-  - `.opencode/skill/cli-copilot/SKILL.md`
-    - no hook references found via `rg -n "hook|hooks" .opencode/skill/cli-copilot/SKILL.md`
+  - `.opencode/skills/cli-copilot/SKILL.md`
+    - no hook references found via `rg -n "hook|hooks" .opencode/skills/cli-copilot/SKILL.md`
   - `.github/hooks/superset-notify.json`
     - real repo hook config using Copilot's `version: 1` JSON structure and `command` handlers
   - `.vscode/settings.json`

@@ -2,13 +2,13 @@
   // Full-skill surface classification for sk-improve-agent.
   "version": 2,
   "defaultMode": "proposal-first",
-  "profileCatalog": ".opencode/skill/sk-improve-agent/assets/target-profiles",
+  "profileCatalog": ".opencode/skills/sk-improve-agent/assets/target-profiles",
   "targets": [
     {
       "id": "handover-canonical",
       "profileId": "handover",
       "family": "session-handover",
-      "path": ".opencode/agent/handover.md",
+      "path": ".opencode/agents/handover.md",
       "classification": "canonical",
       "mutableInPhase1": false,
       "candidateOnly": false,
@@ -20,7 +20,7 @@
         "tasks.md",
         "checklist.md",
         "memory/",
-        ".opencode/skill/system-spec-kit/templates/handover.md"
+        ".opencode/skills/system-spec-kit/templates/handover.md"
       ]
     },
     {
@@ -59,7 +59,7 @@
       "id": "context-prime-candidate-only",
       "profileId": "context-prime",
       "family": "session-bootstrap",
-      "path": ".opencode/agent/context-prime.md",
+      "path": ".opencode/agents/context-prime.md",
       "classification": "candidate-only",
       "mutableInPhase1": false,
       "candidateOnly": true,
@@ -76,16 +76,16 @@
     }
   ],
   "fixed": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "forbidden": [
-    ".opencode/command/spec_kit/handover.md",
+    ".opencode/commands/spec_kit/handover.md",
     ".agents/commands/spec_kit/handover.toml",
     ".gemini/commands/spec_kit/handover.toml",
-    ".opencode/skill/system-spec-kit/templates/handover.md"
+    ".opencode/skills/system-spec-kit/templates/handover.md"
   ],
   "packaging": {
     "mirrorSyncMode": "downstream-only",

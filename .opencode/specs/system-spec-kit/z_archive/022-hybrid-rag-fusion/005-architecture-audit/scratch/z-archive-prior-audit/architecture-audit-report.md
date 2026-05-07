@@ -2,8 +2,8 @@
 
 Date: 2026-03-04
 Scope:
-- `.opencode/skill/system-spec-kit/` (all depths, excluding `node_modules/`, `dist/`)
-- `.opencode/skill/system-spec-kit/mcp_server/` (all depths, excluding `node_modules/`, `dist/`)
+- `.opencode/skills/system-spec-kit/` (all depths, excluding `node_modules/`, `dist/`)
+- `.opencode/skills/system-spec-kit/mcp_server/` (all depths, excluding `node_modules/`, `dist/`)
 
 ## Phase 1 - Inventory and Mapping
 
@@ -16,7 +16,7 @@ Complete trees are captured in:
 Top-level excerpts:
 
 ```text
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 |-- assets/
 |-- config/
 |-- constitutional/
@@ -30,7 +30,7 @@ Top-level excerpts:
 ```
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/
+.opencode/skills/system-spec-kit/mcp_server/
 |-- api/
 |-- configs/
 |-- core/
@@ -91,21 +91,21 @@ Artifacts:
 
 1. Create boundary contract doc
 - WHY: No single ownership contract exists, so boundary decisions are implicit and inconsistent.
-- WHAT: Create `.opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md`.
+- WHAT: Create `.opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md`.
 - Effort: Low
 - Risk: Low
 - DX Impact: High
 
 2. Document public API consumer contract
 - WHY: `mcp_server/api/*` is intended as boundary but insufficiently discoverable.
-- WHAT: Create `.opencode/skill/system-spec-kit/mcp_server/api/README.md` and `.opencode/skill/system-spec-kit/scripts/evals/README.md` policy section.
+- WHAT: Create `.opencode/skills/system-spec-kit/mcp_server/api/README.md` and `.opencode/skills/system-spec-kit/scripts/evals/README.md` policy section.
 - Effort: Low
 - Risk: Low
 - DX Impact: High
 
 3. Enforce API-first imports for scripts
 - WHY: Internal `lib/*` imports from scripts create brittle coupling and refactor risk.
-- WHAT: Add scripts import-policy checker and allowlist (`.opencode/skill/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts`, `.opencode/skill/system-spec-kit/scripts/evals/import-policy-allowlist.json`), then wire it into `.opencode/skill/system-spec-kit/scripts/package.json` checks.
+- WHAT: Add scripts import-policy checker and allowlist (`.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts`, `.opencode/skills/system-spec-kit/scripts/evals/import-policy-allowlist.json`), then wire it into `.opencode/skills/system-spec-kit/scripts/package.json` checks.
 - Effort: Medium
 - Risk: Medium
 - DX Impact: High
@@ -126,14 +126,14 @@ Artifacts:
 
 6. Consolidate duplicate helper logic
 - WHY: Duplicate token/quality helper logic increases behavior drift risk.
-- WHAT: Create `.opencode/skill/system-spec-kit/shared/utils/token-estimate.ts` and `.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts`; update callsites in `.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts`, `.opencode/skill/system-spec-kit/mcp_server/formatters/token-metrics.ts`, `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`.
+- WHAT: Create `.opencode/skills/system-spec-kit/shared/utils/token-estimate.ts` and `.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts`; update callsites in `.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts`, `.opencode/skills/system-spec-kit/mcp_server/formatters/token-metrics.ts`, `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`.
 - Effort: Medium
 - Risk: Medium
 - DX Impact: High
 
 7. Break handler cycle
 - WHY: Cycle increases maintenance risk and hidden orchestration coupling.
-- WHAT: Create `.opencode/skill/system-spec-kit/mcp_server/handlers/orchestration-common.ts` and refactor `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts` / `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts` / `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` / `.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts` so the documented cycle is broken.
+- WHAT: Create `.opencode/skills/system-spec-kit/mcp_server/handlers/orchestration-common.ts` and refactor `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts` / `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts` / `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` / `.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts` so the documented cycle is broken.
 - Effort: Medium
 - Risk: High
 - DX Impact: High

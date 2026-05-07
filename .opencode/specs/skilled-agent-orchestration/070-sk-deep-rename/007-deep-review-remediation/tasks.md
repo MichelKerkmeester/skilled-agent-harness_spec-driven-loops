@@ -55,7 +55,7 @@ _memory:
 - [x] T001 Read deep review report (`../review/review-report.md`)
 - [x] T002 Read Phase 002/003/004 target files before editing (`../002-skill-folder-rename`, `../003-opencode-internals`, `../004-runtime-mirrors`)
 - [x] T003 Read changelog symlink state (`.opencode/changelog`)
-- [x] T004 Read advisor graph JSON source (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`)
+- [x] T004 Read advisor graph JSON source (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`)
 - [x] T005 Author Phase 007 planning artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `graph-metadata.json`)
 <!-- /ANCHOR:phase-1 -->
 

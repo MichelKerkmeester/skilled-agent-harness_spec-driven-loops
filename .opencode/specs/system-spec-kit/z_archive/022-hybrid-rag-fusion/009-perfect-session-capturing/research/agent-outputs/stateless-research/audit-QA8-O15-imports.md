@@ -1,7 +1,7 @@
 # Import Chain Audit: QA8-O15 — Circular Dependencies & Barrel Export Correctness
 
 **Date:** 2026-03-09
-**Scope:** All `.ts` source files in `.opencode/skill/system-spec-kit/scripts/`
+**Scope:** All `.ts` source files in `.opencode/skills/system-spec-kit/scripts/`
 **Focus:** Circular dependency detection, barrel export correctness, dynamic imports
 
 ---
@@ -411,5 +411,5 @@ Layer 3 (Orchestration): core/workflow.ts, memory/generate-context.ts
 
 ## 9. CONCLUSION
 
-The import graph of `.opencode/skill/system-spec-kit/scripts/` is **acyclic** at both the static-import and runtime levels. The intentional exclusion of `workflow.ts` from `core/index.ts` is the key architectural decision that prevents cycles, and the comment documenting this is accurate. All 6 barrel export files correctly re-export the symbols their consumers depend on. The 2 dynamic `import()` calls create no runtime cycles.
+The import graph of `.opencode/skills/system-spec-kit/scripts/` is **acyclic** at both the static-import and runtime levels. The intentional exclusion of `workflow.ts` from `core/index.ts` is the key architectural decision that prevents cycles, and the comment documenting this is accurate. All 6 barrel export files correctly re-export the symbols their consumers depend on. The 2 dynamic `import()` calls create no runtime cycles.
 

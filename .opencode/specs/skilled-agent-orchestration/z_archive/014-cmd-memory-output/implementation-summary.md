@@ -40,7 +40,7 @@ This active packet now reflects the live memory command surface instead of a rem
 
 ### Packet Normalization
 
-The specification and plan now describe the current memory dashboard surface in slash-command terms. They point at the live command directory under `.opencode/command/memory/` and treat shared-memory lifecycle as part of the live `/memory:manage` surface.
+The specification and plan now describe the current memory dashboard surface in slash-command terms. They point at the live command directory under `.opencode/commands/memory/` and treat shared-memory lifecycle as part of the live `/memory:manage` surface.
 
 ### Files Changed
 
@@ -64,7 +64,7 @@ The specification and plan now describe the current memory dashboard surface in 
 
 ### How It Was Delivered
 
-I read the active packet docs, checked the live command directory under `.opencode/command/memory/`, and then normalized only the active packet docs requested by the task. After that, I ran focused stale-string checks against the updated packet docs and used the strict packet validator to catch structural drift that predated this edit, including the missing `tasks.md` and non-template checklist and summary shapes.
+I read the active packet docs, checked the live command directory under `.opencode/commands/memory/`, and then normalized only the active packet docs requested by the task. After that, I ran focused stale-string checks against the updated packet docs and used the strict packet validator to catch structural drift that predated this edit, including the missing `tasks.md` and non-template checklist and summary shapes.
 
 ---
 
@@ -100,7 +100,7 @@ I read the active packet docs, checked the live command directory under `.openco
 | Check | Result |
 |-------|--------|
 | Focused stale-string sweep against active packet docs | PASS for active-truth uses of removed command files; remaining historical mentions were rewritten or removed |
-| Live command directory check | PASS: `.opencode/command/memory/` contains the live 4-command memory surface and no deleted legacy command docs |
+| Live command directory check | PASS: `.opencode/commands/memory/` contains the live 4-command memory surface and no deleted legacy command docs |
 | Strict packet validation | PASS: `validate.sh --strict` passed on 2026-03-27 with Errors: 0, Warnings: 0 |
 
 ---

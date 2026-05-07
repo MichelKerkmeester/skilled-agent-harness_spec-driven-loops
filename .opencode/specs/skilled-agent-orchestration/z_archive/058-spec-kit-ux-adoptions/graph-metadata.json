@@ -41,10 +41,10 @@
       "tasks.md",
       "checklist.md",
       "../057-cmd-spec-kit-ux-upgrade/research/research.md",
-      ".opencode/command/spec_kit/plan.md",
-      ".opencode/command/spec_kit/README.txt",
-      ".opencode/skill/system-spec-kit/templates",
-      ".opencode/skill/system-spec-kit/SKILL.md"
+      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/skills/system-spec-kit/templates",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "causal_summary": "Implement 5 approved UX adoptions from packet 057 deep-research: gate copy split, phase boundary headers, four-axis command taxonomy doc, template inventory plus source manifest, and persona evaluation fixtures.",
     "created_at": "2026-05-01T11:00:00Z",

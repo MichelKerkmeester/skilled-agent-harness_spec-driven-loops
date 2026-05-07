@@ -10,29 +10,29 @@ This is the penultimate iteration. It closes the remaining design question aroun
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-004.md` first to preserve the manifest schema, six presets, and golden-test contract.
 - Loaded the `sk-deep-research` workflow instructions to preserve the LEAF iteration contract.
-- Read the current level-based scaffold path in `.opencode/skill/system-spec-kit/scripts/spec/create.sh`.
-- Read the current level-based validator paths in `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`, `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`, and `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`.
-- Confirmed `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` exists and still carries a hardcoded spec-doc basename set.
-- Listed the current `.opencode/skill/system-spec-kit/templates/` tree to produce a concrete legacy deletion list.
+- Read the current level-based scaffold path in `.opencode/skills/system-spec-kit/scripts/spec/create.sh`.
+- Read the current level-based validator paths in `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`, `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`, and `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`.
+- Confirmed `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` exists and still carries a hardcoded spec-doc basename set.
+- Listed the current `.opencode/skills/system-spec-kit/templates/` tree to produce a concrete legacy deletion list.
 
 ## Findings
 
 ### Refactor Plan - File-by-File Changes
 
-#### `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
+#### `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
 
 Current behavior:
 
 - Parses `--level` into `DOC_LEVEL`.
 - Resolves `LEVEL_TEMPLATES_DIR` through `get_level_templates_dir`.
-- Copies every Markdown file from `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, or `.opencode/skill/system-spec-kit/templates/level_3+`.
-- Special-cases phase parents through `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md`.
+- Copies every Markdown file from `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, or `.opencode/skills/system-spec-kit/templates/level_3+`.
+- Special-cases phase parents through `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md`.
 - Emits `description.json` after copying templates and emits `graph-metadata.json` before the final template set is known.
 
 Required change:
 
 - Replace `--level` with `--preset`, defaulting to `simple-change`.
-- Resolve `preset -> kind + capabilities` from `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- Resolve `preset -> kind + capabilities` from `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Scaffold only author-owned docs from `kind.requiredCoreDocs + capabilities[].addsAuthoredDocs`.
 - Generate runtime docs from `kind.requiredRuntimeDocs`, specifically `description.json` and `graph-metadata.json`.
 - Record the resolved template contract in generated metadata: `templatePreset`, `templateKind`, and `templateCapabilities`.
@@ -56,7 +56,7 @@ case "$arg" in
     ;;
 esac
 
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
 LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
 CREATED_FILES=()
@@ -94,7 +94,7 @@ case "$arg" in
     ;;
 esac
 
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
 MANIFEST_PATH="$TEMPLATES_BASE/manifest/spec-kit-docs.json"
 CREATED_FILES=()
 
@@ -114,9 +114,9 @@ create_graph_metadata_file \
 CREATED_FILES+=("description.json" "graph-metadata.json")
 ```
 
-The phase-parent block should shrink. Today it manually renders `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md` and then separately creates children from Level 1. After the refactor, phase mode should call `scaffold_from_manifest "$MANIFEST_PATH" "phase-parent" "$FEATURE_DIR" "$FEATURE_DESCRIPTION"` for the parent and `scaffold_from_manifest "$MANIFEST_PATH" "simple-change" "$_child_path" "$FEATURE_DESCRIPTION"` for each child before injecting phase rows/back-references.
+The phase-parent block should shrink. Today it manually renders `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md` and then separately creates children from Level 1. After the refactor, phase mode should call `scaffold_from_manifest "$MANIFEST_PATH" "phase-parent" "$FEATURE_DIR" "$FEATURE_DESCRIPTION"` for the parent and `scaffold_from_manifest "$MANIFEST_PATH" "simple-change" "$_child_path" "$FEATURE_DESCRIPTION"` for each child before injecting phase rows/back-references.
 
-#### `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`
+#### `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`
 
 Add one shell entry point that the scaffolder can call from normal, subfolder, and phase-child paths.
 
@@ -165,7 +165,7 @@ NODE
 
 This function intentionally emits only created author-doc paths on stdout. Runtime metadata remains the responsibility of `create.sh`, because it already owns branch naming, packet IDs, parent-child links, and generated timestamps.
 
-#### `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
+#### `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
 
 Current behavior:
 
@@ -179,7 +179,7 @@ Required change:
 
 - Remove numeric-level parsing.
 - Infer the packet template contract from `graph-metadata.json.derived.templatePreset`, `graph-metadata.json.derived.templateKind`, and `graph-metadata.json.derived.templateCapabilities`, with a fallback of preset `simple-change` when metadata is missing in a greenfield packet created before the metadata write completed.
-- Load `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+- Load `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 - Required docs are `kind.requiredCoreDocs + kind.requiredRuntimeDocs + capabilities[].addsAuthoredDocs`.
 - For each candidate doc, look up `docTemplates[path]`.
 - If `absenceBehavior=silent-skip`, do not fail when absent. This covers command-owned-lazy, agent-owned-lazy, and workflow-owned-packet docs such as `handover.md`, `debug-delegation.md`, and `research/research.md`.
@@ -218,7 +218,7 @@ After, manifest-driven requirements lookup:
 
 ```bash
 missing=()
-manifest_path="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json"
+manifest_path="$REPO_ROOT/.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
 contract_json="$(_template_contract_for_folder "$manifest_path" "$folder")"
 
 mapfile -t required_docs < <(
@@ -249,7 +249,7 @@ done
 
 `implementation-summary.md` should no longer be conditional after implementation starts. Iteration 1 and iteration 4 established it as an authored core doc for implementation/investigation packets, so the manifest should require it for those kinds from creation time.
 
-#### `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
+#### `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
 
 Current behavior:
 
@@ -291,7 +291,7 @@ Manifest schema extension:
 }
 ```
 
-#### `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
+#### `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
 
 Current behavior:
 
@@ -322,11 +322,11 @@ min_scenarios="$(json_get "$counts_json" 'acceptanceScenarios' 0)"
 [[ "$scenarios" -lt "$min_scenarios" ]] && warnings+=("Found $scenarios acceptance scenarios, expected at least $min_scenarios")
 ```
 
-#### `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
+#### `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
 
 Current behavior:
 
-- Calls `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js compare "$level" "$(basename "$file")" "$file" headers`.
+- Calls `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js compare "$level" "$(basename "$file")" "$file" headers`.
 - The JS helper has `TEMPLATE_PATHS` hardcoded for Level 1, Level 2, Level 3, and Level 3+.
 - The shell script always attempts the same six authored docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md`.
 
@@ -338,7 +338,7 @@ Required change:
 - Inline gates must be evaluated against the active capability set before extracting expected H2 headers.
 - The shell loop should compare only manifest-active authored docs, plus generated runtime docs if a runtime doc gains a markdown template in the future.
 
-#### `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
+#### `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
 
 Although not named in the prompt, this file is the actual header-comparison dependency behind `check-template-headers.sh`.
 
@@ -362,7 +362,7 @@ function renderInlineGates(content, activeCapabilities) {
 }
 ```
 
-#### `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts`
+#### `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts`
 
 Current behavior:
 
@@ -371,7 +371,7 @@ Current behavior:
 
 Required change:
 
-- Consume the same manifest through a new module at `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`.
+- Consume the same manifest through a new module at `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`.
 - Replace hardcoded `SPEC_DOC_BASENAMES` and optional docs with manifest-derived docs:
   - required authored docs for the active kind/capabilities,
   - runtime docs where relevant,
@@ -379,7 +379,7 @@ Required change:
 - Export `loadManifest()` and `getRequiredDocs(kind, capabilities)` from the loader and import them here.
 - This file should never decide whether `decision-record.md` exists because the level is 3; it should ask the manifest whether capability `architecture-decisions` is active.
 
-#### `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`
+#### `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`
 
 Add a typed TS loader used by MCP validation and by any JS/TS test harness.
 
@@ -428,119 +428,119 @@ export function getScaffoldDocs(
 The proposed 15-file source inventory is correct for the greenfield design:
 
 ```text
-.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json
-.opencode/skill/system-spec-kit/templates/manifest/spec.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/tasks.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/implementation-summary.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/checklist.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/decision-record.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/resource-map.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/context-index.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/handover.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/debug-delegation.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/research.md.tmpl
-.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh
-.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts
+.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json
+.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/context-index.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/debug-delegation.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh
+.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts
 ```
 
-One caveat: this is the functional source inventory. Existing README, hash, changelog, stress-test, or scratch assets either need deletion, relocation outside `.opencode/skill/system-spec-kit/templates/`, or explicit classification as non-source assets. Leaving them under `templates/` makes "exactly 15 files" false on disk.
+One caveat: this is the functional source inventory. Existing README, hash, changelog, stress-test, or scratch assets either need deletion, relocation outside `.opencode/skills/system-spec-kit/templates/`, or explicit classification as non-source assets. Leaving them under `templates/` makes "exactly 15 files" false on disk.
 
 #### Concrete Legacy Template Deletion List
 
-Delete these current template-source files after their content is ported into `.opencode/skill/system-spec-kit/templates/manifest/*.tmpl` and covered by golden snapshots:
+Delete these current template-source files after their content is ported into `.opencode/skills/system-spec-kit/templates/manifest/*.tmpl` and covered by golden snapshots:
 
 ```text
-.opencode/skill/system-spec-kit/templates/.hashes
-.opencode/skill/system-spec-kit/templates/README.md
-.opencode/skill/system-spec-kit/templates/addendum/README.md
-.opencode/skill/system-spec-kit/templates/addendum/level2-verify/checklist.md
-.opencode/skill/system-spec-kit/templates/addendum/level2-verify/plan-level2.md
-.opencode/skill/system-spec-kit/templates/addendum/level2-verify/spec-level2.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/decision-record.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/plan-level3.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3-guidance.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3-prefix.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/checklist-extended.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/plan-level3plus.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-guidance.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md
-.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus.md
-.opencode/skill/system-spec-kit/templates/addendum/phase/phase-child-header.md
-.opencode/skill/system-spec-kit/templates/addendum/phase/phase-parent-section.md
-.opencode/skill/system-spec-kit/templates/changelog/README.md
-.opencode/skill/system-spec-kit/templates/changelog/phase.md
-.opencode/skill/system-spec-kit/templates/changelog/root.md
-.opencode/skill/system-spec-kit/templates/context-index.md
-.opencode/skill/system-spec-kit/templates/core/README.md
-.opencode/skill/system-spec-kit/templates/core/impl-summary-core.md
-.opencode/skill/system-spec-kit/templates/core/plan-core.md
-.opencode/skill/system-spec-kit/templates/core/spec-core.md
-.opencode/skill/system-spec-kit/templates/core/tasks-core.md
-.opencode/skill/system-spec-kit/templates/debug-delegation.md
-.opencode/skill/system-spec-kit/templates/examples/README.md
-.opencode/skill/system-spec-kit/templates/examples/level_1/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/examples/level_1/plan.md
-.opencode/skill/system-spec-kit/templates/examples/level_1/spec.md
-.opencode/skill/system-spec-kit/templates/examples/level_1/tasks.md
-.opencode/skill/system-spec-kit/templates/examples/level_2/checklist.md
-.opencode/skill/system-spec-kit/templates/examples/level_2/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/examples/level_2/plan.md
-.opencode/skill/system-spec-kit/templates/examples/level_2/spec.md
-.opencode/skill/system-spec-kit/templates/examples/level_2/tasks.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/checklist.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/decision-record.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/plan.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/spec.md
-.opencode/skill/system-spec-kit/templates/examples/level_3/tasks.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/checklist.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/decision-record.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/plan.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/spec.md
-.opencode/skill/system-spec-kit/templates/examples/level_3+/tasks.md
-.opencode/skill/system-spec-kit/templates/handover.md
-.opencode/skill/system-spec-kit/templates/level_1/README.md
-.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/level_1/plan.md
-.opencode/skill/system-spec-kit/templates/level_1/spec.md
-.opencode/skill/system-spec-kit/templates/level_1/tasks.md
-.opencode/skill/system-spec-kit/templates/level_2/README.md
-.opencode/skill/system-spec-kit/templates/level_2/checklist.md
-.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/level_2/plan.md
-.opencode/skill/system-spec-kit/templates/level_2/spec.md
-.opencode/skill/system-spec-kit/templates/level_2/tasks.md
-.opencode/skill/system-spec-kit/templates/level_3/README.md
-.opencode/skill/system-spec-kit/templates/level_3/checklist.md
-.opencode/skill/system-spec-kit/templates/level_3/decision-record.md
-.opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/level_3/plan.md
-.opencode/skill/system-spec-kit/templates/level_3/spec.md
-.opencode/skill/system-spec-kit/templates/level_3/tasks.md
-.opencode/skill/system-spec-kit/templates/level_3+/README.md
-.opencode/skill/system-spec-kit/templates/level_3+/checklist.md
-.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md
-.opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md
-.opencode/skill/system-spec-kit/templates/level_3+/plan.md
-.opencode/skill/system-spec-kit/templates/level_3+/spec.md
-.opencode/skill/system-spec-kit/templates/level_3+/tasks.md
-.opencode/skill/system-spec-kit/templates/phase_parent/spec.md
-.opencode/skill/system-spec-kit/templates/research.md
-.opencode/skill/system-spec-kit/templates/resource-map.md
-.opencode/skill/system-spec-kit/templates/scratch/.gitkeep
-.opencode/skill/system-spec-kit/templates/scratch/README.md
-.opencode/skill/system-spec-kit/templates/stress_test/README.md
-.opencode/skill/system-spec-kit/templates/stress_test/findings-rubric.schema.md
-.opencode/skill/system-spec-kit/templates/stress_test/findings-rubric.template.json
-.opencode/skill/system-spec-kit/templates/stress_test/findings.template.md
+.opencode/skills/system-spec-kit/templates/.hashes
+.opencode/skills/system-spec-kit/templates/README.md
+.opencode/skills/system-spec-kit/templates/addendum/README.md
+.opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md
+.opencode/skills/system-spec-kit/templates/addendum/level2-verify/plan-level2.md
+.opencode/skills/system-spec-kit/templates/addendum/level2-verify/spec-level2.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/decision-record.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/plan-level3.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3-guidance.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3-prefix.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/checklist-extended.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/plan-level3plus.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-guidance.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md
+.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus.md
+.opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md
+.opencode/skills/system-spec-kit/templates/addendum/phase/phase-parent-section.md
+.opencode/skills/system-spec-kit/templates/changelog/README.md
+.opencode/skills/system-spec-kit/templates/changelog/phase.md
+.opencode/skills/system-spec-kit/templates/changelog/root.md
+.opencode/skills/system-spec-kit/templates/context-index.md
+.opencode/skills/system-spec-kit/templates/core/README.md
+.opencode/skills/system-spec-kit/templates/core/impl-summary-core.md
+.opencode/skills/system-spec-kit/templates/core/plan-core.md
+.opencode/skills/system-spec-kit/templates/core/spec-core.md
+.opencode/skills/system-spec-kit/templates/core/tasks-core.md
+.opencode/skills/system-spec-kit/templates/debug-delegation.md
+.opencode/skills/system-spec-kit/templates/examples/README.md
+.opencode/skills/system-spec-kit/templates/examples/level_1/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/examples/level_1/plan.md
+.opencode/skills/system-spec-kit/templates/examples/level_1/spec.md
+.opencode/skills/system-spec-kit/templates/examples/level_1/tasks.md
+.opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md
+.opencode/skills/system-spec-kit/templates/examples/level_2/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/examples/level_2/plan.md
+.opencode/skills/system-spec-kit/templates/examples/level_2/spec.md
+.opencode/skills/system-spec-kit/templates/examples/level_2/tasks.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/checklist.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/decision-record.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/plan.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/spec.md
+.opencode/skills/system-spec-kit/templates/examples/level_3/tasks.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/checklist.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/decision-record.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/plan.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/spec.md
+.opencode/skills/system-spec-kit/templates/examples/level_3+/tasks.md
+.opencode/skills/system-spec-kit/templates/handover.md
+.opencode/skills/system-spec-kit/templates/level_1/README.md
+.opencode/skills/system-spec-kit/templates/level_1/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/level_1/plan.md
+.opencode/skills/system-spec-kit/templates/level_1/spec.md
+.opencode/skills/system-spec-kit/templates/level_1/tasks.md
+.opencode/skills/system-spec-kit/templates/level_2/README.md
+.opencode/skills/system-spec-kit/templates/level_2/checklist.md
+.opencode/skills/system-spec-kit/templates/level_2/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/level_2/plan.md
+.opencode/skills/system-spec-kit/templates/level_2/spec.md
+.opencode/skills/system-spec-kit/templates/level_2/tasks.md
+.opencode/skills/system-spec-kit/templates/level_3/README.md
+.opencode/skills/system-spec-kit/templates/level_3/checklist.md
+.opencode/skills/system-spec-kit/templates/level_3/decision-record.md
+.opencode/skills/system-spec-kit/templates/level_3/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/level_3/plan.md
+.opencode/skills/system-spec-kit/templates/level_3/spec.md
+.opencode/skills/system-spec-kit/templates/level_3/tasks.md
+.opencode/skills/system-spec-kit/templates/level_3+/README.md
+.opencode/skills/system-spec-kit/templates/level_3+/checklist.md
+.opencode/skills/system-spec-kit/templates/level_3+/decision-record.md
+.opencode/skills/system-spec-kit/templates/level_3+/implementation-summary.md
+.opencode/skills/system-spec-kit/templates/level_3+/plan.md
+.opencode/skills/system-spec-kit/templates/level_3+/spec.md
+.opencode/skills/system-spec-kit/templates/level_3+/tasks.md
+.opencode/skills/system-spec-kit/templates/phase_parent/spec.md
+.opencode/skills/system-spec-kit/templates/research.md
+.opencode/skills/system-spec-kit/templates/resource-map.md
+.opencode/skills/system-spec-kit/templates/scratch/.gitkeep
+.opencode/skills/system-spec-kit/templates/scratch/README.md
+.opencode/skills/system-spec-kit/templates/stress_test/README.md
+.opencode/skills/system-spec-kit/templates/stress_test/findings-rubric.schema.md
+.opencode/skills/system-spec-kit/templates/stress_test/findings-rubric.template.json
+.opencode/skills/system-spec-kit/templates/stress_test/findings.template.md
 ```
 
-If stress-test templates are still needed, move them to `.opencode/skill/system-spec-kit/assets/stress_test/` before deleting the old `templates/stress_test/` paths. They are useful assets, but they should not live under the manifest-driven spec-document template root.
+If stress-test templates are still needed, move them to `.opencode/skills/system-spec-kit/assets/stress_test/` before deleting the old `templates/stress_test/` paths. They are useful assets, but they should not live under the manifest-driven spec-document template root.
 
 ### Q10 Decision: Inline Gates vs Fragments
 
@@ -570,8 +570,8 @@ Generator behavior:
 
 | Rank | ID | Description | Impact | Likelihood | Mitigation | Owner |
 |---:|---|---|---|---|---|---|
-| 1 | R-001 | False simplicity: replacing levels with presets can hide a new matrix if every command grows its own preset mapping. | H | M | Make `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` the only mapping source; reject hardcoded preset maps in code review and golden-test every preset. | Spec Kit maintainer |
-| 2 | R-002 | Parser fragility: shell validators and TS validators may parse the manifest differently. | H | M | Put canonical parsing in `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`; shell callers either consume its compiled output or use a shared JSON emission contract tested by Vitest. | Validation owner |
+| 1 | R-001 | False simplicity: replacing levels with presets can hide a new matrix if every command grows its own preset mapping. | H | M | Make `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` the only mapping source; reject hardcoded preset maps in code review and golden-test every preset. | Spec Kit maintainer |
+| 2 | R-002 | Parser fragility: shell validators and TS validators may parse the manifest differently. | H | M | Put canonical parsing in `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`; shell callers either consume its compiled output or use a shared JSON emission contract tested by Vitest. | Validation owner |
 | 3 | R-003 | Addon ownership confusion: authors may scaffold command-owned lazy docs like `handover.md` or workflow-owned `research/research.md`. | H | M | Enforce `owner` and `absenceBehavior` in `scaffold_from_manifest()`; golden snapshots must assert lazy docs are declared but not scaffolded. | Scaffolder owner |
 | 4 | R-004 | Section-only traits, especially governance, get lost because no file appears in `addsAuthoredDocs`. | H | M | Require every section-only capability to add at least one `sectionProfile` or `addsValidationRules` entry; schema validation fails empty no-op capabilities. | Manifest owner |
 | 5 | R-005 | Command-owned-lazy semantics silently mask a genuinely missing author doc if `absenceBehavior` is set too broadly. | H | M | Allow `silent-skip` only for `owner=command`, `owner=agent`, or `owner=workflow`; schema rejects `owner=author` plus `silent-skip` unless explicitly marked optional. | Validation owner |
@@ -579,14 +579,14 @@ Generator behavior:
 | 7 | R-007 | Preset sprawl recreates Level 1/2/3 confusion under friendlier names. | M | M | Keep six canonical presets in v1; require a design note and golden snapshot for each added preset; periodically prune aliases that differ only by name. | Product/workflow owner |
 | 8 | R-008 | Inline gates become hard to read if deeply nested or repeated across many docs. | M | L | Support only one-level `<!-- IF capability:x -->` blocks; lint templates for nested gates and duplicate gated anchors. | Template owner |
 | 9 | R-009 | Generated runtime metadata drifts from rendered docs, causing validators to read the wrong preset/kind/capabilities. | H | L | Write `description.json` and `graph-metadata.json` after scaffold resolution; add a post-create validation that reads metadata and recomputes the expected file set. | Scaffolder owner |
-| 10 | R-010 | Legacy template files remain in `.opencode/skill/system-spec-kit/templates/`, so future patches accidentally edit deleted architecture. | M | H | Delete or relocate all legacy template files in the same PR that adds manifest templates; add a test that fails when `templates/level_1`, `templates/level_2`, `templates/level_3`, or `templates/level_3+` exists. | Migration owner |
+| 10 | R-010 | Legacy template files remain in `.opencode/skills/system-spec-kit/templates/`, so future patches accidentally edit deleted architecture. | M | H | Delete or relocate all legacy template files in the same PR that adds manifest templates; add a test that fails when `templates/level_1`, `templates/level_2`, `templates/level_3`, or `templates/level_3+` exists. | Migration owner |
 | 11 | R-011 | Golden tests snapshot file paths but not section-gate rendering, so Q10 regressions slip through. | M | M | Add one snapshot per gated capability that asserts included and excluded anchors after rendering. | Test owner |
 | 12 | R-012 | Phase-parent handling remains a manual branch in `create.sh` and drifts from manifest semantics. | M | M | Make `phase-parent` a normal preset for parent scaffolding; keep only phase-row injection as special behavior. | Phase workflow owner |
 
 ## Questions Answered
 
 - Q10 is answered: use inline gates, not fragment files.
-- The candidate inventory is verified as exactly 15 functional source files, with the caveat that existing non-manifest assets under `.opencode/skill/system-spec-kit/templates/` must be deleted or relocated if the disk tree must also contain exactly 15 files.
+- The candidate inventory is verified as exactly 15 functional source files, with the caveat that existing non-manifest assets under `.opencode/skills/system-spec-kit/templates/` must be deleted or relocated if the disk tree must also contain exactly 15 files.
 - The refactor plan is now concrete enough for a follow-on implementation packet:
   - `create.sh` stops copying level folders and calls `scaffold_from_manifest()`.
   - `check-files.sh` derives required docs from the manifest.

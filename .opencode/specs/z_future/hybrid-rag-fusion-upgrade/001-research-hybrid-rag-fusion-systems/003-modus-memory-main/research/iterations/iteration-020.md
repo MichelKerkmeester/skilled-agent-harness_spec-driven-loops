@@ -8,35 +8,35 @@ FINAL SYNTHESIS: Classify EVERY finding as adopt-now / prototype-later / new-fea
 ## Findings
 
 ### Finding 1: Explicit graded review is the best immediate transfer
-- **Source**: `external/internal/mcp/vault.go:885-897`; `external/internal/vault/facts.go:160-217`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,65-71,197-215`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298-316`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
+- **Source**: `external/internal/mcp/vault.go:885-897`; `external/internal/vault/facts.go:160-217`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,65-71,197-215`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298-316`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
 - **What it does**: Modus exposes `memory_reinforce`, but only as a success-only reinforce action. Public already has the stronger primitive: graded FSRS review (`AGAIN/HARD/GOOD/EASY`) plus computed `nextReviewDate`, yet the exposed adjacent tool is only `memory_validate(wasUseful)`, which adjusts confidence rather than recording a real review event.
 - **Why it matters for us**: This closes the clearest control-plane gap without changing retrieval architecture. It also makes any later review queue trustworthy because review history would record hard recalls and lapses, not only “useful / not useful.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: A doctor-style summary should ship beside review
-- **Source**: `external/cmd/modus-memory/doctor.go:13-242`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:378-594`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-273`
+- **Source**: `external/cmd/modus-memory/doctor.go:13-242`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:378-594`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:236-273`
 - **What it does**: Modus’s `doctor` turns vault health into a one-screen operator report. Public already has deeper health and repair machinery—FTS rebuild, orphan cleanup, degraded/healthy state, confirmation-gated repair—but exposes it as a richer technical envelope.
 - **Why it matters for us**: This is mostly presentation work, not backend work. It improves operator trust immediately while preserving Public’s stronger repair semantics underneath.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 3: Keep one retrieval core; Modus’s split fact-search paths are a warning
-- **Source**: `external/internal/index/indexer.go:287-340`; `external/internal/vault/facts.go:290-337`; `external/internal/mcp/vault.go:273-317`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:771-809`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:1-32`
+- **Source**: `external/internal/index/indexer.go:287-340`; `external/internal/vault/facts.go:290-337`; `external/internal/mcp/vault.go:273-317`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:771-809`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:1-32`
 - **What it does**: Modus has multiple fact-search contracts for the same memory objects: `Index.SearchFacts`, a separate in-memory `factStore`, and `Vault.SearchFacts` fallback behavior. Public routes `memory_search` through one pipeline contract via `executePipeline`.
 - **Why it matters for us**: This is the strongest architectural lesson from Modus’s weaknesses. Public should keep specialized search surfaces as thin wrappers over the canonical pipeline instead of growing parallel ranking rules that will drift.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: `memory_due` is real product value, but it needs an authoritative due-state contract first
-- **Source**: `external/internal/mcp/vault.go:273-317,856-897`; `external/internal/vault/facts.go:64-157,160-217`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:65-71,177-215`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`
+- **Source**: `external/internal/mcp/vault.go:273-317,856-897`; `external/internal/vault/facts.go:64-157,160-217`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:65-71,177-215`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`
 - **What it does**: Modus visibly ties search recall, reinforce, decay, and archive to one fact state. Public already stores `stability`, `difficulty`, `last_review`, `review_count`, and opt-in access effects, and computes `nextReviewDate`, but does not expose an operator-facing due queue.
 - **Why it matters for us**: This is the biggest missing workflow surface in Public. But it should not ship until “due” is defined as either persisted state (`next_review_at`) or a deterministic derivation from existing FSRS fields.
 - **Recommendation**: NEW FEATURE
 - **Impact**: high
 
 ### Finding 5: Durable proposal inboxes are the best non-retrieval idea Modus has
-- **Source**: `external/internal/vault/prs.go:10-118`; `external/internal/mcp/vault.go:681-777`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-452`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681-790`
+- **Source**: `external/internal/vault/prs.go:10-118`; `external/internal/mcp/vault.go:681-777`; `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-452`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681-790`
 - **What it does**: Modus persists risky knowledge changes as markdown PR artifacts, then merge/reject outcomes reinforce or weaken linked beliefs. Public already produces advisory reconsolidation recommendations and confidence feedback, but the recommendation is transient and not stored as a durable review object.
 - **Why it matters for us**: Public’s next gap is operator workflow, not mutation safety. A persistent inbox for reconsolidation, supersession, promotion, and deprecation proposals would let existing confidence and mutation systems work as a real review loop.
 - **Recommendation**: NEW FEATURE
@@ -50,35 +50,35 @@ FINAL SYNTHESIS: Classify EVERY finding as adopt-now / prototype-later / new-fea
 - **Impact**: medium
 
 ### Finding 7: Lexical-only expansion belongs only in weak-result recovery
-- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
+- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
 - **What it does**: Modus asks the Librarian for 3-5 keyword variants, searches each, deduplicates, and caps results. It is lightweight, but ungrounded and union-first.
 - **Why it matters for us**: Public already has a more complex retrieval pipeline, so copying this as a mainline branch would mostly add noise and latency. The only credible transfer is a tightly bounded fallback when hybrid retrieval is weak.
 - **Recommendation**: prototype later
 - **Impact**: low
 
 ### Finding 8: Content-level contradiction and duplicate-fact linting is still worth a prototype
-- **Source**: `external/cmd/modus-memory/doctor.go:42-158`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:455-555`
+- **Source**: `external/cmd/modus-memory/doctor.go:42-158`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:455-555`
 - **What it does**: Modus’s `doctor` explicitly flags missing `subject`/`predicate`, duplicate `subject+predicate` pairs, and contradictory values for the same pair. Public’s current health surface is stronger on infrastructure integrity than on fact-content linting.
 - **Why it matters for us**: This complements Public’s existing infra health checks instead of replacing them. It is one of the few Modus hygiene ideas that adds net-new value.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 9: Reject Modus’s fuzzy Jaccard result-cache contract
-- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
+- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
 - **What it does**: Modus reuses cached result sets on exact hash hits or Jaccard-similar query term sets. Public’s search surface has too many scoring knobs—scope, archived filtering, session/causal boost, rerank, quality thresholds, trace/profile flags—for fuzzy query reuse to be safe.
 - **Why it matters for us**: This is the wrong cache contract for Public. Similar text is not enough to guarantee equivalent retrieval intent or scoring context.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 10: Reject Modus’s permissive markdown parse/write contract
-- **Source**: `external/internal/markdown/parser.go:98-159,161-186`; `external/internal/markdown/writer.go:10-52`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220-220`
+- **Source**: `external/internal/markdown/parser.go:98-159,161-186`; `external/internal/markdown/writer.go:10-52`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220-220`
 - **What it does**: Modus treats malformed YAML as body, skips parse failures during scans, and writes markdown directly with minimal validation. That is good for a personal vault, but it optimizes for permissiveness over authoritative ingestion.
 - **Why it matters for us**: Public’s memory layer is intentionally more governed. Regressing to Modus’s permissive storage contract would weaken memory integrity for little gain.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 11: Reject default write-on-read as Public’s default policy
-- **Source**: `external/internal/mcp/vault.go:311-317`; `external/internal/vault/facts.go:188-217`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520,797-802`
+- **Source**: `external/internal/mcp/vault.go:311-317`; `external/internal/vault/facts.go:188-217`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520,797-802`
 - **What it does**: Modus treats every returned fact as a successful recall and asynchronously reinforces it. Public already supports access effects, but keeps them explicit with `trackAccess=false` by default.
 - **Why it matters for us**: Public’s graded FSRS model is stronger than Modus’s success-only reinforce loop. Default write-on-read would blur retrieval and review, inflate successful-recall history, and make future due-state less trustworthy.
 - **Recommendation**: reject
@@ -110,13 +110,13 @@ FINAL SYNTHESIS: Classify EVERY finding as adopt-now / prototype-later / new-fea
 - `external/internal/vault/vault.go`
 - `external/cmd/modus-memory/doctor.go`
 - `external/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - `research/iterations/iteration-010.md`
 - `research/iterations/iteration-012.md`
 - `research/iterations/iteration-013.md`

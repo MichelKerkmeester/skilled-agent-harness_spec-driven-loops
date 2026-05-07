@@ -55,13 +55,13 @@
       {
         "name": "SearchDecisionEnvelope",
         "kind": "contract",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts",
         "source": "manual"
       },
       {
         "name": "recordSearchDecision",
         "kind": "function",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
         "source": "manual"
       }
     ],

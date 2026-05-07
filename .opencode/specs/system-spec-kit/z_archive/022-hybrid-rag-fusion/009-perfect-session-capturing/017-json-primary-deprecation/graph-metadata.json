@@ -37,11 +37,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts",
-      ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/command/memory/save.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts",
+      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/commands/memory/save.md",
       "scripts/memory/generate-context.ts",
       "scripts/loaders/data-loader.ts",
       "scripts/types/session-types.ts",
@@ -57,31 +57,31 @@
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
         "name": "data-loader.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts",
         "source": "derived"
       },
       {
         "name": "session-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {

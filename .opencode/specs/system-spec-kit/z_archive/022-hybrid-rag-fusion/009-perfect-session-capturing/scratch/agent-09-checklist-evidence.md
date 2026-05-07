@@ -111,7 +111,7 @@ For contrast, here are example evidence tags from properly documented phases:
 - **002**: `[Evidence: npm run test:task-enrichment passed — 1 file, 43 tests, 0 failures.]`
 - **007**: `[Evidence: node mcp_server/node_modules/vitest/vitest.mjs run tests/phase-classification.vitest.ts ... passed.]`
 - **013**: `[Evidence: Fix 1 implemented; 7/7 tests pass]`
-- **Root**: `[Evidence: node .opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js -> 384 passed, 0 failed, 5 skipped, 389 total.]`
+- **Root**: `[Evidence: node .opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js -> 384 passed, 0 failed, 5 skipped, 389 total.]`
 
 These provide specific commands, file paths, test counts, and dates.
 

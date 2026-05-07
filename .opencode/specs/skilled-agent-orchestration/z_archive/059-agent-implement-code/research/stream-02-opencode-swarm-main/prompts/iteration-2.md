@@ -10,7 +10,7 @@ state_summary:
 - Last newInfoRatio: 0.86 (insight)
 - Convergence score: low (only one iteration done)
 
-Research Topic: Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory.
+Research Topic: Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory.
 
 Iteration: 2 of 8
 

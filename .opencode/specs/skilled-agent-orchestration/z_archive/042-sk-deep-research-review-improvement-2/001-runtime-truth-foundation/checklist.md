@@ -100,8 +100,8 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Planned runtime artifacts stay inside existing `research/` or `review/` packet boundaries unless the packet explicitly creates an optional advanced-mode artifact there [EVIDENCE: file-path review in spec/tasks] [TESTS: parity suites]
-- [x] CHK-051 [P1] New behavior-test files remain under `.opencode/skill/system-spec-kit/scripts/tests/` as planned [EVIDENCE: test file paths present in repo and referenced in docs] [TESTS: `rg --files` plus `pnpm vitest`]
-- [x] CHK-052 [P1] Strict packet validation passes after the documentation and implementation work are complete [EVIDENCE: validator PASS output] [TESTS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 --strict`]
+- [x] CHK-051 [P1] New behavior-test files remain under `.opencode/skills/system-spec-kit/scripts/tests/` as planned [EVIDENCE: test file paths present in repo and referenced in docs] [TESTS: `rg --files` plus `pnpm vitest`]
+- [x] CHK-052 [P1] Strict packet validation passes after the documentation and implementation work are complete [EVIDENCE: validator PASS output] [TESTS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 --strict`]
 <!-- /ANCHOR:file-org -->
 
 ---

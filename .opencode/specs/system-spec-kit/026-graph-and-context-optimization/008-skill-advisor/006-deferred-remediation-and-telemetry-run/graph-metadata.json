@@ -63,32 +63,32 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/.smart-router-telemetry/compliance.jsonl",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
       ".codex/settings.json",
       ".codex/policy.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-      ".opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts",
-      ".opencode/skill/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts",
-      ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
+      ".opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts",
+      ".opencode/skills/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts",
       "scripts/observability/smart-router-measurement.ts",
       "scripts/observability/live-session-wrapper.ts",
       "scripts/observability/smart-router-analyze.ts",
-      ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md"
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md"
     ],
     "entities": [
       {
         "name": "compliance.jsonl",
         "kind": "file",
-        "path": ".opencode/skill/.smart-router-telemetry/compliance.jsonl",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
         "source": "derived"
       },
       {
@@ -130,61 +130,61 @@
       {
         "name": "smart-router-measurement.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts",
         "source": "derived"
       },
       {
         "name": "smart-router-measurement-report.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
         "source": "derived"
       },
       {
         "name": "smart-router-measurement-results.jsonl",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
         "source": "derived"
       },
       {
         "name": "live-session-wrapper.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts",
         "source": "derived"
       },
       {
         "name": "LIVE_SESSION_WRAPPER_SETUP.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md",
         "source": "derived"
       },
       {
         "name": "smart-router-analyze.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts",
         "source": "derived"
       },
       {
         "name": "smart-router-analyze-report-2026-04-19T17-57-07-192Z.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md",
         "source": "derived"
       },
       {
         "name": "smart-router-measurement.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts",
         "source": "derived"
       },
       {
         "name": "smart-router-analyze.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts",
         "source": "derived"
       },
       {
         "name": "skill-advisor-hook.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {

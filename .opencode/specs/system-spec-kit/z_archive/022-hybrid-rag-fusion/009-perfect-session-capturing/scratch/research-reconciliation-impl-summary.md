@@ -42,13 +42,13 @@ I’ve got the summary and task checklist. Next I’m pulling just the research 
 
 ● Grep "check-template-headers|TEMPLATE_HEADERS|CHK-|frontmatter|H1|YAML leak|anchor id|required
 anchor" in **/*.{sh,ts,js,md} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit)
+Env/Public/.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Grep "AUTO_DECISION_TREES|word-boundary|json-mode|trigger phrase|semantic summary file
 extraction|tree thinning|medium-quality warning|agent files|SPECKIT_RULES|date
 format|bullet-metadata" in **/*.{ts,js,sh,md,yaml,yml}
-(/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit)
+(/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Read .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/resear
@@ -74,115 +74,115 @@ I found the exact R-12 passage, the seven themes, and the phased implementation 
   └ 43 lines read
 
 ● Glob "**/check-template-headers.sh" in /Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit
+Env/Public/.opencode/skills/system-spec-kit
   └ 1 file found
 
 ● Grep "TEMPLATE_HEADERS|required_anchors|CHK-NNN|Verification Checklist|SPECKIT_TEMPLATE_SOURCE" in
  **/*.sh (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/spec)
+Env/Public/.opencode/skills/system-spec-kit/scripts/spec)
   └ 8 lines found
 
 ● Grep "AUTO_DECISION_TREES|truncate.*word|json-mode|stopword|semantic summary|tree
 thinning|medium-quality|agent files|SPECKIT_RULES|date format|bullet-metadata" in **/*.{ts,js,sh}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 40 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/spec/validate.sh lines 300-390
+● Read .opencode/skills/system-spec-kit/scripts/spec/validate.sh lines 300-390
   └ 91 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh lines 1-220
+● Read .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh lines 1-220
   └ 144 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh lines 1-260
+● Read .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh lines 1-260
   └ 231 lines read
 
 ● Grep "CG-0[1-8]|SE-0[1-5]" in **/*.{ts,js,sh} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 12 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh lines 35-80
+● Read .opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh lines 35-80
   └ 46 lines read
 
 ● Grep "CG-02|word-boundary-aware|truncateTo|truncate.*boundary" in **/*.{ts,js}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 13 lines found
 
 ● Grep "CG-05|semantic summary file extraction|file paths in any message|semantic summarizer" in
 **/*.{ts,js} (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Grep "CG-08|agent files|implementation-guide-extractor" in **/*.{ts,js}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 8 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/spec/validate.sh lines 140-162
+● Read .opencode/skills/system-spec-kit/scripts/spec/validate.sh lines 140-162
   └ 22 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts lines 176-190
+● Read .opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts lines 176-190
   └ 15 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts lines 382-446
+● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 382-446
   └ 65 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1336-1360
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1336-1360
   └ 25 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 1588-1605
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1588-1605
   └ 18 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts lines 110-150
+● Read .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts lines 110-150
   └ 41 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/spec/validate.sh lines 248-264
+● Read .opencode/skills/system-spec-kit/scripts/spec/validate.sh lines 248-264
   └ 17 lines read
 
 ✗ Grep "CG-05|file path" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/semantic-summarizer.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/semantic-summarizer.ts)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/core/semantic-summarizer.ts: IO error for
+  Env/Public/.opencode/skills/system-spec-kit/scripts/core/semantic-summarizer.ts: IO error for
   operation on /Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/core/semantic-summarizer.ts: No such file or
+  Env/Public/.opencode/skills/system-spec-kit/scripts/core/semantic-summarizer.ts: No such file or
   directory (os error 2)
 
 ● Grep "agent|CG-08|classification" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts)
   └ 2 lines found
 
 ✗ Grep "word-boundary|lastSpace|truncate" in **/*.{ts,js}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/{utils,extractors})
+Env/Public/.opencode/skills/system-spec-kit/scripts/{utils,extractors})
   └ rg: /Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/{utils,extractors}: IO error for operation on
+  Env/Public/.opencode/skills/system-spec-kit/scripts/{utils,extractors}: IO error for operation on
   /Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/{utils,extractors}: No such file or directory
+  Env/Public/.opencode/skills/system-spec-kit/scripts/{utils,extractors}: No such file or directory
   (os error 2)
 
 Quick check: the R-12 implementation is definitely real code, not just research notes. I’ve verified the new validator script and the rule registration; I’m now spot-checking the omitted Phase 6 items the same way.
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts lines
+● Read .opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts lines
   170-205
   └ 36 lines read
 
 ● Glob "**/semantic-summarizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts
+Env/Public/.opencode/skills/system-spec-kit/scripts
   └ 1 file found
 
 ● Grep "lastSpace|truncate\(|truncate.*word|substring\(0, 77\)|substring\(0, 80\)" in **/*.{ts,js}
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts)
+Env/Public/.opencode/skills/system-spec-kit/scripts)
   └ 32 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 1-260
+● Read .opencode/skills/system-spec-kit/scripts/lib/semantic-summarizer.ts lines 1-260
   └ 260 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts lines 72-90
+● Read .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts lines 72-90
   └ 18 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts lines 308-322
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts lines 308-322
   └ 15 lines read
 
 I’ve finished the comparison. The main gaps are concentrated in one missing code-changes category, one omitted Phase 6 category, and the absence of any research-phase summary/traceability section.

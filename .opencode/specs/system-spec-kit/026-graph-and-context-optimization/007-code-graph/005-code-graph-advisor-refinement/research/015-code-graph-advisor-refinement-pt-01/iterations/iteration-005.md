@@ -10,10 +10,10 @@ formed.
 ## Actions Taken
 
 1. Re-read prior continuity in `research/015-code-graph-advisor-refinement-pt-01/iterations/iteration-004.md`.
-2. Read the scan driver in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`.
-3. Read the tree-sitter backend in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts`.
-4. Read persistence + freshness logic in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` and `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`.
-5. Read scan result accounting in `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`.
+2. Read the scan driver in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`.
+3. Read the tree-sitter backend in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts`.
+4. Read persistence + freshness logic in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` and `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`.
+5. Read scan result accounting in `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`.
 6. Grepped `code-graph` for `bench|benchmark|perf|latency|cache|query` and confirmed there is no `code-graph/bench/` harness in this tree; the only query-path files present are `handlers/query.ts`, `lib/query-intent-classifier.ts`, and `lib/ensure-ready.ts`.
 7. Read `code_graph_query` handler and the DB query helpers it calls.
 
@@ -30,9 +30,9 @@ file above 102,400 bytes, so the source-defined ceiling is "serial throughput
 over files <=100 KB" rather than a measured per-language files/sec budget.
 
 Sources:
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1368-1414`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1057-1079`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:113-120`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1368-1414`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1057-1079`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:113-120`
 
 ### F24 — RQ-05: incremental skip correctness is still mtime-only; stored content hashes do not protect against same-mtime content changes
 
@@ -45,10 +45,10 @@ path. `ensureFreshFiles()` uses the same stored-mtime comparison, so the same
 blind spot applies to the readiness detector.
 
 Sources:
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:55-66`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:380-388`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:396-424`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1397-1402`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:55-66`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:380-388`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:396-424`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1397-1402`
 
 ### F25 — RQ-05: partial-persist correctness was hardened; failed structural writes stay stale and retryable
 
@@ -61,9 +61,9 @@ So incremental correctness improved for partial persistence, but not for the
 same-mtime content-change case above.
 
 Sources:
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:284-303`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:183-218`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:221-242`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:284-303`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:183-218`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:221-242`
 
 ### F26 — RQ-05: the code records per-file parse duration, but there is no per-language benchmark harness or hard per-file timeout
 
@@ -76,12 +76,12 @@ this checkout. The only timeout guard is `AUTO_INDEX_TIMEOUT_MS = 10_000` inside
 in the handler itself.
 
 Sources:
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:622-676`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:673-724`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:41-45`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:183-200`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:127-131`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:247-255`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:622-676`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:673-724`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:41-45`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:183-200`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:127-131`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:247-255`
 
 ### F27 — RQ-06 groundwork: there is no query-result cache; the only cache-like layer is a 5s readiness debounce keyed only by workspace/options
 
@@ -97,12 +97,12 @@ cache exists; they only share the readiness precheck if they hit the same
 workspace + option tuple within five seconds.
 
 Sources:
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:757-771`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:899-920`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:942-1101`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:534-570`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:255-293`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:264-274`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:757-771`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:899-920`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:942-1101`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:534-570`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:255-293`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:264-274`
 
 ## Questions Answered
 

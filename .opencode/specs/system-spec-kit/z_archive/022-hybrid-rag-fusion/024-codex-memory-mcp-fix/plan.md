@@ -143,8 +143,8 @@ current remediation evidence
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Packet validation | Ensure the new Level 3 packet is template-compliant | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh --no-recursive` |
-| Runtime evidence check | Capture the root-cause fix and current-session verification evidence in packet docs | `npx vitest run tests/vector-index-store-remediation.vitest.ts tests/handler-memory-list-edge.vitest.ts tests/handler-memory-health-edge.vitest.ts tests/handler-memory-search.vitest.ts`; `npm run test:core`; `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server` |
+| Packet validation | Ensure the new Level 3 packet is template-compliant | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh --no-recursive` |
+| Runtime evidence check | Capture the root-cause fix and current-session verification evidence in packet docs | `npx vitest run tests/vector-index-store-remediation.vitest.ts tests/handler-memory-list-edge.vitest.ts tests/handler-memory-health-edge.vitest.ts tests/handler-memory-search.vitest.ts`; `npm run test:core`; `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` |
 | Future runtime verification | Re-run focused suites plus broader checks when later-wave implementation lands | focused `npx vitest`, `npm run test:core`, alignment drift, manual startup smoke as needed |
 | Metadata validation | Confirm `description.json` parses and matches packet slug | `jq empty` |
 <!-- /ANCHOR:testing -->

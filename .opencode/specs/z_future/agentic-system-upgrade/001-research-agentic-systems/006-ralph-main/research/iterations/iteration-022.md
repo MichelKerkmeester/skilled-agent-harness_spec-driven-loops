@@ -11,8 +11,8 @@ Compared Ralph's Create PRD -> Convert -> Run flow with the setup prompts and st
 
 ## Evidence
 - Ralph's README reduces the lifecycle to three simple actions with one main runtime step: create scope, convert to ordered stories, run the loop. [SOURCE: external/README.md:88-130]
-- `/spec_kit:plan` opens with a large consolidated setup prompt, multiple workflow modes, and explicit handoff to `/spec_kit:implement`. [SOURCE: .opencode/command/spec_kit/plan.md:31-145] [SOURCE: .opencode/command/spec_kit/plan.md:151-153]
-- `/spec_kit:implement` and `/spec_kit:complete` each repeat setup, mode, and validation logic instead of feeling like one continuous guided flow. [SOURCE: .opencode/command/spec_kit/implement.md:35-120] [SOURCE: .opencode/command/spec_kit/implement.md:171-205] [SOURCE: .opencode/command/spec_kit/complete.md:1-4]
+- `/spec_kit:plan` opens with a large consolidated setup prompt, multiple workflow modes, and explicit handoff to `/spec_kit:implement`. [SOURCE: .opencode/commands/spec_kit/plan.md:31-145] [SOURCE: .opencode/commands/spec_kit/plan.md:151-153]
+- `/spec_kit:implement` and `/spec_kit:complete` each repeat setup, mode, and validation logic instead of feeling like one continuous guided flow. [SOURCE: .opencode/commands/spec_kit/implement.md:35-120] [SOURCE: .opencode/commands/spec_kit/implement.md:171-205] [SOURCE: .opencode/commands/spec_kit/complete.md:1-4]
 
 ## Analysis
 Ralph's lifecycle is not "simpler because it does less work"; it is simpler because the user does not have to manually choose between sibling lifecycle commands as often. In `system-spec-kit`, the conceptual separation between planning, implementing, and completing is valuable for power users and packet governance, but forcing that split into the front door increases ceremony. A guided wrapper could preserve the stages without making them separate UX burdens.
@@ -23,7 +23,7 @@ confidence: medium
 finding: `system-spec-kit` should merge the visible lifecycle UX behind one guided front door while preserving `plan`, `implement`, and `complete` as expert-access subflows.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/plan.md`
+- **Target file or module:** `.opencode/commands/spec_kit/plan.md`
 - **Change type:** modified existing
 - **Blast radius:** architectural
 - **Prerequisites:** define how a guided front door decides whether to stop after planning or continue into implementation/completion
@@ -39,7 +39,7 @@ finding: `system-spec-kit` should merge the visible lifecycle UX behind one guid
 - **Net recommendation:** MERGE
 
 ## Counter-evidence sought
-I looked for evidence that the current split already feels like one guided flow through wrappers or quick-reference defaults, but the docs still present these as separate primary choices. [SOURCE: .opencode/skill/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/command/spec_kit/plan.md:31-145]
+I looked for evidence that the current split already feels like one guided flow through wrappers or quick-reference defaults, but the docs still present these as separate primary choices. [SOURCE: .opencode/skills/system-spec-kit/references/workflows/quick_reference.md:116-130] [SOURCE: .opencode/commands/spec_kit/plan.md:31-145]
 
 ## Follow-up questions for next iteration
 - If lifecycle stages become more guided, should memory actions also become subordinate to the same path rather than remain a parallel command family?

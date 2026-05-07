@@ -48,12 +48,12 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 cli-codex reads `.opencode/skill/sk-code-review/SKILL.md` end-to-end
-- [ ] T002 [P] cli-codex reads all 9 reference files in `.opencode/skill/sk-code-review/references/`
-- [ ] T003 [P] cli-codex reads `.opencode/agent/review.md` and `.opencode/agent/deep-review.md`
+- [ ] T001 cli-codex reads `.opencode/skills/sk-code-review/SKILL.md` end-to-end
+- [ ] T002 [P] cli-codex reads all 9 reference files in `.opencode/skills/sk-code-review/references/`
+- [ ] T003 [P] cli-codex reads `.opencode/agents/review.md` and `.opencode/agents/deep-review.md`
 - [ ] T004 [P] cli-codex reads sk-doc templates: `manual_testing_playbook_template.md`, `manual_testing_playbook_snippet_template.md`, `manual_testing_playbook_creation.md`
-- [ ] T005 [P] cli-codex reads reference playbook root: `.opencode/skill/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` + 1-2 per-feature files
-- [ ] T006 [P] cli-codex reads `.opencode/skill/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` for cross-CLI prompt voice
+- [ ] T005 [P] cli-codex reads reference playbook root: `.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md` + 1-2 per-feature files
+- [ ] T006 [P] cli-codex reads `.opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` for cross-CLI prompt voice
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T010 cli-codex runs `/create:testing-playbook sk-code-review create :auto` to scaffold root + 6 category folders (`.opencode/skill/sk-code-review/manual_testing_playbook/`)
+- [ ] T010 cli-codex runs `/create:testing-playbook sk-code-review create :auto` to scaffold root + 6 category folders (`.opencode/skills/sk-code-review/manual_testing_playbook/`)
 - [ ] T011 cli-codex authors 3 per-feature files in `01--baseline-review-flow/` (small PR, large refactor, multi-commit branch)
 - [ ] T012 cli-codex authors 3 per-feature files in `02--security-and-correctness-minimums/` (auth/security-sensitive, input-validation/injection, secrets/hardcoded-creds)
 - [ ] T013 cli-codex authors 3 per-feature files in `03--severity-and-evidence-discipline/` (P0 with file:line, class-of-bug vs instance-only, cross-consumer affected-surface)
@@ -69,7 +69,7 @@ _memory:
 - [ ] T015 cli-codex authors 3 per-feature files in `05--re-review-and-stale-context/` (re-review after fixes, stale architecture fresh pass, AI-generated suspect quality)
 - [ ] T016 cli-codex authors 2-3 per-feature files in `06--cross-cli-orchestration/` (native Claude Code, cli-codex delegation, cli-opencode/cli-gemini handback)
 - [ ] T017 cli-codex authors root `manual_testing_playbook.md`: category summaries + integrated review/release-readiness logic + sub-agent orchestration + AUTOMATED TEST CROSS-REFERENCE + FEATURE CATALOG INDEX
-- [ ] T018 cli-codex self-runs `python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` and reports
+- [ ] T018 cli-codex self-runs `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` and reports
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -77,7 +77,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 Orchestrator: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` returns exit 0
+- [ ] T020 Orchestrator: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` returns exit 0
 - [ ] T021 Orchestrator: `validate_document.py` clean on root playbook
 - [ ] T022 Orchestrator: per-feature structural sweep (frontmatter + 5 numbered H2 + 9-col table) on every category file
 - [ ] T023 Orchestrator: forbidden-sidecar sweep (`review_protocol.md`, `subagent_utilization_ledger.md`, `snippets/`) returns empty

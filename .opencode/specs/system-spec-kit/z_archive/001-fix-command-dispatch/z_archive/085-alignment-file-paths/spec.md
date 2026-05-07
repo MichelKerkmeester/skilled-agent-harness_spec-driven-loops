@@ -1,6 +1,6 @@
 ---
 title: "085: Alignment [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths/spec]"
-description: "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (.opencode/skill/system-spec-..."
+description: "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (.opencode/skills/system-spec-..."
 trigger_phrases:
   - "085"
   - "alignment"
@@ -18,14 +18,14 @@ contextType: "planning"
 <!-- ANCHOR:metadata -->
 ## Problem Statement
 
-Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (`.opencode/skill/system-spec-kit/`), the memory is saved to a project-specific folder (e.g., `005-anobel.com`) based on text matching alone.
+Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths. When work is done on shared infrastructure (`.opencode/skills/system-spec-kit/`), the memory is saved to a project-specific folder (e.g., `005-anobel.com`) based on text matching alone.
 
 <!-- /ANCHOR:metadata -->
 ## Root Cause
 
 ### Chain of Failure
 
-1. **Save Time**: Spec-kit work done (files in `.opencode/skill/system-spec-kit/`)
+1. **Save Time**: Spec-kit work done (files in `.opencode/skills/system-spec-kit/`)
 2. **Alignment Check**: `alignment-validator.js` extracts keywords from conversation text
 3. **Missing Signal**: File paths (`key_files`) are NOT analyzed for work domain
 4. **Non-Interactive**: Proceeds with folder despite mismatch
@@ -39,10 +39,10 @@ spec_folder: "005-anobel.com"
 key_files:
   - ".opencode/.../tests/test-bug-fixes.js"
   - ".opencode/.../tests/test-template-system.js"
-  - ".opencode/skill/system-spec-kit/CHANGELOG.md"
+  - ".opencode/skills/system-spec-kit/CHANGELOG.md"
 ```
 
-**100% of files are in `.opencode/skill/system-spec-kit/`** but filed under `005-anobel.com`.
+**100% of files are in `.opencode/skills/system-spec-kit/`** but filed under `005-anobel.com`.
 
 ## Solution
 
@@ -69,8 +69,8 @@ Add validation step in recovery that:
 
 ## Files to Modify
 
-1. `.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.js`
-2. `.opencode/command/memory/continue.md`
+1. `.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.js`
+2. `.opencode/commands/memory/continue.md`
 
 <!-- ANCHOR:success-criteria -->
 ## Success Criteria

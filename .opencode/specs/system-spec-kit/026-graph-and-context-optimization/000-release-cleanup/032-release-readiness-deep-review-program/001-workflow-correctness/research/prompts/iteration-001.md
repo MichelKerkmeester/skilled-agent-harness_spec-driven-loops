@@ -11,13 +11,13 @@ This is a READ-ONLY audit packet. Output: a `review-report.md` with severity-cla
 ### Target surface
 
 The 7 canonical commands and their YAML/markdown contracts:
-- `/spec_kit:plan` (`.opencode/command/spec_kit/plan.md` + `assets/spec_kit_plan_*.yaml`)
-- `/spec_kit:implement` (`.opencode/command/spec_kit/implement.md` + `assets/spec_kit_implement_*.yaml`)
-- `/spec_kit:complete` (`.opencode/command/spec_kit/complete.md` + `assets/spec_kit_complete_*.yaml`)
-- `/spec_kit:resume` (`.opencode/command/spec_kit/resume.md` + `assets/spec_kit_resume_*.yaml`)
-- `/memory:save` (`.opencode/command/memory/save.md` + `assets/memory_save_*.yaml`)
-- `/memory:search` (`.opencode/command/memory/search.md` + `assets/memory_search_*.yaml`)
-- `/memory:manage` (`.opencode/command/memory/manage.md` + `assets/memory_manage_*.yaml`)
+- `/spec_kit:plan` (`.opencode/commands/spec_kit/plan.md` + `assets/spec_kit_plan_*.yaml`)
+- `/spec_kit:implement` (`.opencode/commands/spec_kit/implement.md` + `assets/spec_kit_implement_*.yaml`)
+- `/spec_kit:complete` (`.opencode/commands/spec_kit/complete.md` + `assets/spec_kit_complete_*.yaml`)
+- `/spec_kit:resume` (`.opencode/commands/spec_kit/resume.md` + `assets/spec_kit_resume_*.yaml`)
+- `/memory:save` (`.opencode/commands/memory/save.md` + `assets/memory_save_*.yaml`)
+- `/memory:search` (`.opencode/commands/memory/search.md` + `assets/memory_search_*.yaml`)
+- `/memory:manage` (`.opencode/commands/memory/manage.md` + `assets/memory_manage_*.yaml`)
 
 ### Audit dimensions (standard 4)
 
@@ -41,10 +41,10 @@ For any "auto-fires" claim in the YAML, find the actual trigger and confirm it. 
 
 ### Read these first
 
-- `.opencode/command/spec_kit/*.md` and `.opencode/command/spec_kit/assets/*.yaml`
-- `.opencode/command/memory/*.md` and `.opencode/command/memory/assets/*.yaml`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/sk-deep-review/SKILL.md` (for review methodology + severity rubric)
+- `.opencode/commands/spec_kit/*.md` and `.opencode/commands/spec_kit/assets/*.yaml`
+- `.opencode/commands/memory/*.md` and `.opencode/commands/memory/assets/*.yaml`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/sk-deep-review/SKILL.md` (for review methodology + severity rubric)
 - 035 + 043 + 044 findings for prior knowledge of workflow integrity
 
 ### Output contract

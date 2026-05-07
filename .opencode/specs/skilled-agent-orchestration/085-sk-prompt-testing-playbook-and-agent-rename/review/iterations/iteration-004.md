@@ -29,7 +29,7 @@ None
 
 ### 1. Strict validate — parent + 2 children (recursive)
 ```
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../085-sk-prompt-testing-playbook-and-agent-rename --strict
 Auto-enabled recursive validation: phase child folders detected.
 Summary: Errors: 0  Warnings: 0
 RESULT: PASSED
@@ -53,22 +53,22 @@ No rotation leaked into frozen-continuity scope. Confirmed zero active-scope res
 
 ### 3. SKILL.md — exactly 1 `## RELATED PLAYBOOK` link
 ```
-$ grep -cE '^## RELATED PLAYBOOK$' .opencode/skill/sk-prompt/SKILL.md
+$ grep -cE '^## RELATED PLAYBOOK$' .opencode/skills/sk-prompt/SKILL.md
 1
-$ rg -n 'RELATED PLAYBOOK' .opencode/skill/sk-prompt/SKILL.md
+$ rg -n 'RELATED PLAYBOOK' .opencode/skills/sk-prompt/SKILL.md
 453:## RELATED PLAYBOOK
 ```
 Single link at line 453 in §10. No 28 inline backrefs. SKILL.md is 457 lines — well within the 500 LOC cap.
 
 ### 4. validate_document.py on root playbook
 ```
-$ python3 .opencode/skill/sk-doc/scripts/validate_document.py manual_testing_playbook.md
+$ python3 .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook.md
 VALID: Document type: readme, Total issues: 0
 ```
 
 ### 5. Scenario file count
 ```
-$ find .opencode/skill/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
+$ find .opencode/skills/sk-prompt/manual_testing_playbook -name "[0-9][0-9][0-9]-*.md" | wc -l
 28
 ```
 Matches spec: 4+4+6+4+4+4+2 = 28.
@@ -82,13 +82,13 @@ Clean — no forbidden surfaces created.
 
 ### 7. Advisor probe
 ```
-$ python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+$ python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 sk-prompt @ 0.9262 confidence — routes correctly.
 ```
 
 ### 8. Agent file existence (all 4 runtimes)
 ```
-$ ls .opencode/agent/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
+$ ls .opencode/agents/prompt-improver.md .claude/agents/prompt-improver.md .codex/agents/prompt-improver.toml .gemini/agents/prompt-improver.md
 All 4 paths exist and are readable.
 ```
 

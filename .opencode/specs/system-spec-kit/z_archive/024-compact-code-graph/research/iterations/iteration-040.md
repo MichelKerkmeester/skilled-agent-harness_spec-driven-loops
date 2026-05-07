@@ -130,8 +130,8 @@ This iteration also answers how existing code-analysis systems persist graph-lik
 - SourcetrailDB persistent database-file writer API, symbol/reference recording, and transaction support:
   - https://github.com/CoatiSoftware/SourcetrailDB
 - Repo-local context for the "separate database" recommendation:
-  - `.opencode/skill/system-spec-kit/mcp_server/database/README.md`
-  - `.opencode/skill/system-spec-kit/mcp_server/core/config.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/database/README.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/core/config.ts`
 
 ## New Information Ratio (0.0-1.0)
 

@@ -13,12 +13,12 @@ Audit maintainability:
 
 ## Required reads
 1. Strategy + prior iterations (1-5)
-2. `.opencode/command/spec_kit/skill-advisor.md`
+2. `.opencode/commands/spec_kit/skill-advisor.md`
 3. `.opencode/install_guides/SET-UP - Skill Advisor.md`
 4. `.opencode/specs/.../012-skill-advisor-setup-command/implementation-summary.md`
-5. `.opencode/skill/sk-doc/assets/agents/command_template.md`
-6. `.opencode/skill/sk-doc/references/global/hvr_rules.md`
-7. `.opencode/skill/system-spec-kit/mcp_server/README.md` (Section 3.1.14)
+5. `.opencode/skills/sk-doc/assets/agents/command_template.md`
+6. `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+7. `.opencode/skills/system-spec-kit/mcp_server/README.md` (Section 3.1.14)
 
 ## What to look for
 - HVR banned words: leverage, robust, seamless, ecosystem, utilize, holistic, curate, harness, elevate, foster, empower, landscape, groundbreaking, cutting-edge, delve, illuminate, innovative, remarkable
@@ -33,5 +33,5 @@ Same three artifacts pattern with `iteration-006` suffix. ID prefix `F-MAINT-`.
 
 ## Constraints
 - Read-only.
-- Run actual scripts where applicable: `python3 .opencode/skill/sk-doc/scripts/extract_structure.py <file>`, `grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' <files>`.
+- Run actual scripts where applicable: `python3 .opencode/skills/sk-doc/scripts/extract_structure.py <file>`, `grep -niE 'leverage|robust|seamless|ecosystem|utilize|holistic|curate|harness|elevate|foster|empower|landscape|groundbreaking|cutting-edge|delve|illuminate|innovative|remarkable' <files>`.
 - Cite file:line for every finding.

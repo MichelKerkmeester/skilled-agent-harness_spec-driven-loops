@@ -109,7 +109,7 @@ This section consolidates all P0-level bugs that break core functionality.
 
 ### 1. Generate-Context Script (Score: 7/10)
 
-**File:** `.opencode/skill/system-spec-kit/scripts/generate-context.js`
+**File:** `.opencode/skills/system-spec-kit/scripts/generate-context.js`
 
 #### Critical Bugs
 
@@ -237,7 +237,7 @@ This section consolidates all P0-level bugs that break core functionality.
 
 ### 4. SKILL.md and Templates (Score: 7/10)
 
-**Files:** `.opencode/skill/system-spec-kit/SKILL.md`, templates in `templates/`
+**Files:** `.opencode/skills/system-spec-kit/SKILL.md`, templates in `templates/`
 
 #### Critical Issues
 
@@ -267,7 +267,7 @@ This section consolidates all P0-level bugs that break core functionality.
 
 ### 5. Command Implementations (Score: 7/10)
 
-**Files:** `.opencode/skill/system-spec-kit/commands/*.md`
+**Files:** `.opencode/skills/system-spec-kit/commands/*.md`
 
 #### Critical Issues
 
@@ -301,7 +301,7 @@ This section consolidates all P0-level bugs that break core functionality.
 
 ### 6. Validation Scripts (Score: 7/10)
 
-**Files:** `.opencode/skill/system-spec-kit/scripts/validation/*.sh`
+**Files:** `.opencode/skills/system-spec-kit/scripts/validation/*.sh`
 
 #### Critical Bugs
 

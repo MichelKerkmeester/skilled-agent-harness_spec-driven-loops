@@ -60,11 +60,11 @@ All 4 relocated files trace cleanly through `ccd73ef557` (Phase 1) into pre-Phas
 | `.opencode/specs/**/research/**` | 0 | ✅ |
 | `.opencode/specs/**/logs/**` | 0 | ✅ |
 | `.opencode/specs/**/review/**` | 0 | ✅ |
-| `.opencode/skill/sk-doc/changelog/v1.1.3.0.md` | 0 | ✅ |
-| `.opencode/skill/sk-doc/changelog/v1.4.0.0.md` | 0 | ✅ |
-| `.opencode/skill/sk-doc/changelog/**` (entire dir) | 0 | ✅ |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/**` | 0 | ✅ |
-| `.opencode/skill/system-spec-kit/scripts/observability/**` | 0 | ✅ |
+| `.opencode/skills/sk-doc/changelog/v1.1.3.0.md` | 0 | ✅ |
+| `.opencode/skills/sk-doc/changelog/v1.4.0.0.md` | 0 | ✅ |
+| `.opencode/skills/sk-doc/changelog/**` (entire dir) | 0 | ✅ |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/**` | 0 | ✅ |
+| `.opencode/skills/system-spec-kit/scripts/observability/**` | 0 | ✅ |
 | `.tmp/**` | 0 | ✅ |
 
 Earlier broad `ccd73ef55^..HEAD` sweep returned 15 hits in `iterations/` and 1 in `dist/` — these are **post-068 commits** (`9f7b3c6d48`, `a4cb4e0a1c`, `7307e056d7`, `b03bf75630`, `bdb739d973`, all unrelated mcp-figma/067/sync work). Re-scoped to the 068 range, **all locked globs are zero hits**. ✅
@@ -75,9 +75,9 @@ Earlier broad `ccd73ef55^..HEAD` sweep returned 15 hits in `iterations/` and 1 i
 
 `git diff ccd73ef55^..98cc6b59c4 --name-only` produces exactly 60 paths, all confined to:
 
-- `.opencode/skill/sk-doc/{SKILL.md,assets/**,references/global/**,references/specific/**}` (15 paths)
-- `.opencode/command/create/**` (10 paths)
-- `.opencode/agent/create.md` + `.opencode/install_guides/SET-UP - Opencode Agents.md` (2 paths)
+- `.opencode/skills/sk-doc/{SKILL.md,assets/**,references/global/**,references/specific/**}` (15 paths)
+- `.opencode/commands/create/**` (10 paths)
+- `.opencode/agents/create.md` + `.opencode/install_guides/SET-UP - Opencode Agents.md` (2 paths)
 - Mirrors: `.claude/agents/create.md`, `.codex/agents/create.toml`, `.gemini/{commands/create/*.toml, agents/create.md}` (6 paths)
 - 068 spec packet: parent (3 lean-trio files) + 001/002/003 children (each 6 Level-1 files + 1 scratch) (24 paths)
 
@@ -85,7 +85,7 @@ No path leaks outside active scope. ✅
 
 ### 6. Phase 1 deletion confirmation
 
-`.opencode/skill/sk-doc/assets/agents/` no longer exists on disk; `assets/` root contains the 2 relocated `*_template.md` files plus `documentation/`, `feature_catalog/`, `testing_playbook/`, `flowcharts/`, `skill/`, `template_rules.json`. ✅ Matches the plan (rmdir `agents/` after `git mv`).
+`.opencode/skills/sk-doc/assets/agents/` no longer exists on disk; `assets/` root contains the 2 relocated `*_template.md` files plus `documentation/`, `feature_catalog/`, `testing_playbook/`, `flowcharts/`, `skill/`, `template_rules.json`. ✅ Matches the plan (rmdir `agents/` after `git mv`).
 
 ## Findings
 

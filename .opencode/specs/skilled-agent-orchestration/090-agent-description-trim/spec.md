@@ -16,12 +16,12 @@ _memory:
     next_safe_action: "Apply trims via Python script"
     blockers: []
     key_files:
-      - ".opencode/agent/debug.md"
-      - ".opencode/agent/code.md"
-      - ".opencode/agent/deep-review.md"
-      - ".opencode/agent/multi-ai-council.md"
-      - ".opencode/agent/prompt-improver.md"
-      - ".opencode/agent/orchestrate.md"
+      - ".opencode/agents/debug.md"
+      - ".opencode/agents/code.md"
+      - ".opencode/agents/deep-review.md"
+      - ".opencode/agents/multi-ai-council.md"
+      - ".opencode/agents/prompt-improver.md"
+      - ".opencode/agents/orchestrate.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-090"
@@ -56,7 +56,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by packet 083's skill+command trim because that packet's scope was deliberately limited. Project description total currently sits at **6,086 chars**, **486 chars over the 5,600 soft ceiling** (still well under Claude Code's 8,000 hard default, so no skills are being dropped today, but headroom is gone). The 6 over-soft agents are: `debug` (306), `multi-ai-council` (179), `code` (178), `deep-review` (158), `prompt-improver` (145), `orchestrate` (134). Each is mirrored across 4 runtime surfaces (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total.
+The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by packet 083's skill+command trim because that packet's scope was deliberately limited. Project description total currently sits at **6,086 chars**, **486 chars over the 5,600 soft ceiling** (still well under Claude Code's 8,000 hard default, so no skills are being dropped today, but headroom is gone). The 6 over-soft agents are: `debug` (306), `multi-ai-council` (179), `code` (178), `deep-review` (158), `prompt-improver` (145), `orchestrate` (134). Each is mirrored across 4 runtime surfaces (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total.
 
 ### Purpose
 Trim each agent description to ≤110 chars while preserving the agent name token, primary verb, primary domain noun, and any LEAF/dispatch-by routing-keyword anchors. Apply uniformly across all 4 runtime mirrors per the memory rule "New agents must mirror to all 4 runtimes". Land project total under the 5,600 soft ceiling with measurable headroom.
@@ -70,7 +70,7 @@ Trim each agent description to ≤110 chars while preserving the agent name toke
 
 ### In Scope
 - 6 agents × 4 runtime mirrors = 24 file edits
-- YAML frontmatter (`description: <text>`) for `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`
+- YAML frontmatter (`description: <text>`) for `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`
 - TOML frontmatter (`description = "<text>"`) for `.codex/agents/`
 - Trim targets: ≤110 chars per agent; aim for ~95 average
 - Verify post-trim project total is below 5,600 ceiling
@@ -86,7 +86,7 @@ Trim each agent description to ≤110 chars while preserving the agent name toke
 
 | Agent | Surfaces (4 each) |
 |-------|-------------------|
-| `debug` | `.opencode/agent/debug.md`, `.claude/agents/debug.md`, `.gemini/agents/debug.md`, `.codex/agents/debug.toml` |
+| `debug` | `.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.gemini/agents/debug.md`, `.codex/agents/debug.toml` |
 | `multi-ai-council` | same 4-tuple |
 | `code` | same 4-tuple |
 | `deep-review` | same 4-tuple |
@@ -104,7 +104,7 @@ Trim each agent description to ≤110 chars while preserving the agent name toke
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 6 agents trimmed to ≤110 chars | Each `.opencode/agent/<name>.md` description value (post-quote-strip) is ≤110 chars |
+| REQ-001 | All 6 agents trimmed to ≤110 chars | Each `.opencode/agents/<name>.md` description value (post-quote-strip) is ≤110 chars |
 | REQ-002 | All 4 runtime mirrors updated per agent | The same trim text appears in `.opencode/`, `.claude/`, `.gemini/` (YAML) and `.codex/` (TOML) |
 | REQ-003 | Project total below 5,600 soft ceiling | `audit_descriptions.py --json` reports `headroomChars >= 0` |
 | REQ-004 | All trims preserve agent name token | The agent's literal name token (e.g., `debug`, `orchestrate`, `deep-review`) appears in the trimmed text |

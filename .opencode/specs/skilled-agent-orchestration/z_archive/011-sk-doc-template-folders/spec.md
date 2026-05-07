@@ -55,7 +55,7 @@ Reorganize templates into `assets/skill/` (skill templates) and `assets/agents/`
 - Move 2 agent/command templates from `assets/opencode/` to `assets/agents/`
 - Delete empty `assets/opencode/` directory
 - Update all path references in sk-doc references/, SKILL.md
-- Update all path references in .opencode/command/ files
+- Update all path references in .opencode/commands/ files
 - Update self-references within moved template files
 
 ### Out of Scope
@@ -76,8 +76,8 @@ Reorganize templates into `assets/skill/` (skill templates) and `assets/agents/`
 | sk-doc/references/validation.md | Modify | Update 3 path references |
 | sk-doc/references/workflows.md | Modify | Update 2 path references |
 | sk-doc/references/skill_creation.md | Modify | Update 6 path references |
-| `.opencode/command/create/assets/*.yaml` | Modify | Update 8 YAML files |
-| `.opencode/command/create/*.md` | Modify | Update 4 markdown files |
+| `.opencode/commands/create/assets/*.yaml` | Modify | Update 8 YAML files |
+| `.opencode/commands/create/*.md` | Modify | Update 4 markdown files |
 
 ---
 <!-- /ANCHOR:scope -->

@@ -14,7 +14,7 @@ The save pipeline is modularly decomposed into 7 files exported via `save/index.
 - **post-insert.ts** -- 4-step post-insert enrichment pipeline
 - **response-builder.ts** -- Build MCP response objects
 - **db-helpers.ts** -- Post-insert metadata application utilities
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts:1-48]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts:1-48]
 
 ### 2. Dedup Has TWO Layers: Same-Path + Cross-Path
 **Layer 1 (same-path)**: `checkExistingRow()` finds existing memory by `canonical_file_path OR file_path` within the same spec_folder + scope (tenant/user/agent/session/shared_space). Returns `status: 'unchanged'` when content_hash matches, embedding status is valid (success|pending|partial), AND metadata is equivalent (trigger phrases, quality score, quality flags all compared). This prevents re-indexing identical files.
@@ -22,7 +22,7 @@ The save pipeline is modularly decomposed into 7 files exported via `save/index.
 **Layer 2 (cross-path)**: `checkContentHashDedup()` finds any memory with the same content_hash across different file paths (excluding the same-path match via `samePathExclusion`). Returns `status: 'duplicate'` and skips embedding generation entirely. Only considers rows with `embedding_status IN ('success', 'partial')`.
 
 **Gap**: Neither layer uses semantic (cosine) similarity for dedup. Content-hash dedup is exact-match only. Two files with 99% identical content but a single character difference will both be indexed. Semantic dedup is handled separately by the PE gate (Layer 3 below).
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:90-265]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:90-265]
 
 ### 3. Embedding Pipeline: Weighted Document Sections with Cache
 The embedding pipeline implements a 2-tier cache strategy:
@@ -34,7 +34,7 @@ The embedding pipeline implements a 2-tier cache strategy:
 **Async mode**: When `asyncEmbedding: true`, only checks cache. On cache miss, returns `status: 'pending'` with no API call. The memory is saved with pending status, creating a "lexical-only" index entry.
 
 **Cache key**: Uses `computeContentHash(normalizeContentForEmbedding(content))` -- the model parameter is accepted but voided (`void model`), meaning cache keys are NOT model-scoped. **BUG**: If the embedding model changes, stale embeddings from the old model will be served from cache without regeneration.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:96-203]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:96-203]
 
 ### 4. Prediction-Error (PE) Gate: 5-Action Arbitration System
 When an embedding exists and force=false, the save pipeline runs a PE arbitration:
@@ -51,8 +51,8 @@ When an embedding exists and force=false, the save pipeline runs a PE arbitratio
 **Mutation ledger**: REINFORCE and UPDATE actions record mutations via `appendMutationLedgerSafe()` for audit trail.
 
 **UPDATE uses append-only versioning**: Rather than modifying the existing row, UPDATE creates a NEW memory_index row, deprecates the old one, and records a lineage transition. This is an immutable append-only pattern.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:28-179]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:106-318]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:28-179]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:106-318]
 
 ### 5. Quality Loop: 4-Dimension Verify-Fix-Verify Gate
 The quality loop (`quality-loop.ts`, 700 LOC) implements a pre-storage quality gate with:
@@ -70,7 +70,7 @@ The quality loop (`quality-loop.ts`, 700 LOC) implements a pre-storage quality g
 **Feature gated**: Behind `SPECKIT_QUALITY_LOOP` env var. When disabled, score is computed but `passed: true` is always returned. The quality gate is advisory-only when disabled.
 
 **Eval integration**: Quality metrics are logged to `eval_metric_snapshots` table when `SPECKIT_EVAL_LOGGING=true`.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:1-700]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:1-700]
 
 ### 6. Post-Insert Enrichment: 4-Step Feature-Flagged Pipeline
 After a memory row is inserted, `runPostInsertEnrichment()` runs 4 sequential steps, each independently feature-gated and try/catch wrapped:
@@ -82,7 +82,7 @@ After a memory row is inserted, `runPostInsertEnrichment()` runs 4 sequential st
 **Isolation**: Each step is wrapped in its own try/catch, so one failure does not block subsequent steps. This is a strength -- the pattern matches the pipeline's defensive error handling philosophy.
 
 **Density guard**: Entity linking has a built-in density guard that skips linking when edge density exceeds a threshold, preventing graph explosion.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:48-127]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:48-127]
 
 ### 7. Document-Type-Aware Weighting: 10-Level Hierarchy
 The PE gating module implements document-type-aware importance weighting:
@@ -94,7 +94,7 @@ The PE gating module implements document-type-aware importance weighting:
 - scratch: 0.25
 
 Fallback: path-based heuristic -- `/scratch/` paths get 0.25, everything else 0.5. This weight is applied during both REINFORCE and UPDATE PE actions.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:74-98]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:74-98]
 
 ### 8. Scope-Aware Dedup: 5-Dimensional Tenant Isolation
 Both dedup layers enforce scope isolation across 5 dimensions: tenantId, userId, agentId, sessionId, sharedSpaceId. Each dimension uses `((? IS NULL AND col IS NULL) OR col = ?)` SQL pattern for NULL-safe matching. This means:
@@ -103,7 +103,7 @@ Both dedup layers enforce scope isolation across 5 dimensions: tenantId, userId,
 - Session-scoped memories only dedup within the same session
 
 This is production-grade multi-tenancy support.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:98-131, 169-240]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:98-131, 169-240]
 
 ### 9. Concurrency Gap: No Transaction Isolation in Dedup
 The dedup check (`checkExistingRow` and `checkContentHashDedup`) runs as a SELECT, then the caller proceeds to INSERT. There is no transaction wrapping around the check-then-insert sequence in the dedup module itself. If two concurrent saves for identical content arrive simultaneously:
@@ -114,25 +114,25 @@ The dedup check (`checkExistingRow` and `checkContentHashDedup`) runs as a SELEC
 **Mitigation**: SQLite's write lock provides serialization for single-process usage. This is only a concern in multi-process scenarios or if the MCP server runs multiple worker threads.
 
 **Contrast with UPDATE**: The `updateExistingMemory()` function uses `database.transaction()` for the append-version + deprecate-old + lineage-record sequence. This is correctly transactional. The initial dedup layer is not.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:90-160 (no transaction)]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:256-306 (has transaction)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:90-160 (no transaction)]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:256-306 (has transaction)]
 
 ### 10. Embedding Cache Key Bug: Model-Blind Cache
 The `computeCacheKey()` function accepts a `model` parameter but explicitly voids it: `void model`. The cache key is computed solely from content hash. If the embedding model is swapped (e.g., from text-embedding-3-small to text-embedding-3-large), all existing cache entries will be served as if they were from the new model, producing dimension mismatches or degraded similarity scores.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:111-114]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:111-114]
 
 ### 11. Quality Loop Has Content Mutation Side Effect
 When the quality loop applies auto-fixes (trigger phrase re-extraction, anchor normalization, content trimming), it returns `fixedContent` and `fixedTriggerPhrases`. The caller MUST use these mutated values for the final INSERT, and MUST recompute the content_hash. If the caller ignores the fixedContent, the stored content_hash will mismatch the actual stored content -- a data integrity violation.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:596-633]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:596-633]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts` (48 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts` (265 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts` (203 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts` (179 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts` (127 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts` (373 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts` (700 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts` (48 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts` (265 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts` (203 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts` (179 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts` (127 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts` (373 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts` (700 lines)
 
 ## Assessment
 - New information ratio: 0.91 (10 of 11 findings are fully new; finding 7 partially overlaps with iter-4 document type discussion)

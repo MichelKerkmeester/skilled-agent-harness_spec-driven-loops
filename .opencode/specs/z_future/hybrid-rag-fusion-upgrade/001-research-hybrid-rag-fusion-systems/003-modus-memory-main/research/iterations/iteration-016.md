@@ -41,7 +41,7 @@ EDGE CASES & FAILURE MODES: How does this system handle errors, corruption, migr
 - **Impact**: **high**
 
 ### Finding 6: **The strongest transferable pattern here is the operator-facing “doctor,” not Modus’s repair depth**
-- **Source**: `external/cmd/modus-memory/doctor.go:13-241`; `external/cmd/modus-memory/main.go:130-147`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222-499`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:479-520`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:43-180`
+- **Source**: `external/cmd/modus-memory/doctor.go:13-241`; `external/cmd/modus-memory/main.go:130-147`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222-499`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:479-520`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:43-180`
 - **What it does**: Modus gives operators a very readable `health`/`doctor` surface: counts, contradictions, duplicates, empty docs, directory distribution. But it is mostly advisory; it does not pair diagnosis with durable rollback or strong repair flows. Public already has deeper repair machinery—auto-repair for FTS drift, orphan-edge cleanup, restore barriers, checkpoint restore index rebuilds—but the surface is more technical and less “single-screen triage.”
 - **Why it matters for us**: The net-new idea is not Modus’s recovery engine; it is the usability of a compact operator diagnostic surface. Public could benefit from a friendlier “doctor summary” layered over existing `memory_health`, checkpoints, and mutation ledgers.
 - **Recommendation**: **NEW FEATURE**
@@ -67,13 +67,13 @@ EDGE CASES & FAILURE MODES: How does this system handle errors, corruption, migr
 - `external/internal/vault/facts.go`
 - `external/internal/vault/prs.go`
 - `external/internal/vault/trust.go`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`
 
 ## Assessment
 - New information ratio: **0.86**

@@ -106,7 +106,7 @@ rg -il 'improve-prompt' .opencode .claude .codex .gemini *.md *.json \
 | Agent file at all 4 old paths | ✅ does not exist |
 | Frontmatter `name: prompt-improver` in all 4 | ✅ |
 | Command `/improve:prompt` | ✅ unchanged |
-| Command file `.opencode/command/improve/prompt.md` | ✅ unchanged (only body refs rotated) |
+| Command file `.opencode/commands/improve/prompt.md` | ✅ unchanged (only body refs rotated) |
 | Agent runtime READMEs | ✅ all 4 reference `prompt-improver` |
 
 ### Playbook (Phase 002)

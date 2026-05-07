@@ -36,7 +36,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
+      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -47,7 +47,7 @@
       {
         "name": "gate-enforcement.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
         "source": "derived"
       },
       {

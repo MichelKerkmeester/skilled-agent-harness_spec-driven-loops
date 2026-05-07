@@ -22,7 +22,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -89,7 +89,7 @@ The delivery stayed inside the packet's narrowed boundary: producer metadata onl
 |-------|--------|
 | `TMPDIR=$PWD/.tmp/tsc-tmp npm run typecheck` | PASS |
 | `TMPDIR=$PWD/.tmp/vitest-tmp npx vitest run tests/sqlite-fts.vitest.ts tests/hook-state.vitest.ts tests/session-token-resume.vitest.ts tests/hook-session-start.vitest.ts tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts tests/hook-stop-token-tracking.vitest.ts` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks" --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks" --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,5 +110,5 @@ The delivery stayed inside the packet's narrowed boundary: producer metadata onl
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

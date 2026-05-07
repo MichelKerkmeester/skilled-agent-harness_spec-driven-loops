@@ -39,7 +39,7 @@ This plan addresses bugs and misalignments discovered during a comprehensive 20-
 **What's Broken:** Validation at lines 967 and 1083 uses hardcoded `EMBEDDING_DIM = 768` instead of profile dimension.
 
 #### 1.1 Make EMBEDDING_DIM Dynamic
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js`
 - **Change:** Replace hardcoded constant with function that queries profile
 - **Implementation:**
   ```javascript
@@ -74,13 +74,13 @@ This plan addresses bugs and misalignments discovered during a comprehensive 20-
 **Goal:** Ensure validate-spec.sh matches AGENTS.md requirements
 
 #### 2.1 Add Folder Naming Validation
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-folder-naming.sh` (new)
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh` (new)
 - **Pattern:** `[0-9]{3}-[a-z0-9-]+`
 - **Severity:** ERROR
 - **Note:** Currently no validation exists for folder naming convention
 
 #### 2.2 Fix Implementation-Summary Logic
-- **File:** `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
+- **File:** `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
 - **Current behavior:** Line 50 adds to `RULE_DETAILS` (warning), not `missing[]` (error)
 - **Change:** For Level 1 with completed tasks, add to `missing[]` instead of `RULE_DETAILS`
 - **Detection:** Check tasks.md for completed items `[x]` or `[X]`

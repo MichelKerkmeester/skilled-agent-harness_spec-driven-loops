@@ -107,7 +107,7 @@ User Request → SKILL.md (intent classification)
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Create .opencode/skill/sk-improve-prompt/ directory
+- [ ] Create .opencode/skills/sk-improve-prompt/ directory
 - [ ] Create references/ subdirectory
 
 ### Phase 2: Core Implementation
@@ -158,7 +158,7 @@ User Request → SKILL.md (intent classification)
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Validation failures or skill conflicts
-- **Procedure**: Delete .opencode/skill/sk-improve-prompt/ directory; revert skill_advisor.py changes
+- **Procedure**: Delete .opencode/skills/sk-improve-prompt/ directory; revert skill_advisor.py changes
 <!-- /ANCHOR:rollback -->
 
 ---

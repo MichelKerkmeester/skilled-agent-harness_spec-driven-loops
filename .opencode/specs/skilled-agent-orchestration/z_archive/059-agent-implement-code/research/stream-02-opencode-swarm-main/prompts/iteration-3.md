@@ -10,7 +10,7 @@ state_summary:
 - Rolling avg newInfoRatio (last 2): 0.82
 - Convergence score: still low (only 2 of 8 iterations).
 
-Research Topic: Identify reusable patterns from opencode-swarm-main that inform a new `@code` LEAF agent for `.opencode/agent/`.
+Research Topic: Identify reusable patterns from opencode-swarm-main that inform a new `@code` LEAF agent for `.opencode/agents/`.
 
 Iteration: 3 of 8
 

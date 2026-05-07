@@ -36,14 +36,14 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/cli-copilot/SKILL.md",
-      ".opencode/skill/cli-copilot/README.md",
-      ".opencode/skill/cli-copilot/references/cli_reference.md",
-      ".opencode/skill/cli-copilot/references/agent_delegation.md",
-      ".opencode/skill/cli-copilot/references/copilot_tools.md",
-      ".opencode/skill/cli-copilot/references/integration_patterns.md",
-      ".opencode/skill/cli-copilot/assets/prompt_templates.md",
-      ".opencode/skill/README.md",
+      ".opencode/skills/cli-copilot/SKILL.md",
+      ".opencode/skills/cli-copilot/README.md",
+      ".opencode/skills/cli-copilot/references/cli_reference.md",
+      ".opencode/skills/cli-copilot/references/agent_delegation.md",
+      ".opencode/skills/cli-copilot/references/copilot_tools.md",
+      ".opencode/skills/cli-copilot/references/integration_patterns.md",
+      ".opencode/skills/cli-copilot/assets/prompt_templates.md",
+      ".opencode/skills/README.md",
       ".opencode/README.md",
       "spec.md",
       "plan.md",
@@ -55,43 +55,43 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/SKILL.md",
+        "path": ".opencode/skills/cli-copilot/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/README.md",
+        "path": ".opencode/skills/cli-copilot/README.md",
         "source": "derived"
       },
       {
         "name": "cli_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/references/cli_reference.md",
+        "path": ".opencode/skills/cli-copilot/references/cli_reference.md",
         "source": "derived"
       },
       {
         "name": "agent_delegation.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/references/agent_delegation.md",
+        "path": ".opencode/skills/cli-copilot/references/agent_delegation.md",
         "source": "derived"
       },
       {
         "name": "copilot_tools.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/references/copilot_tools.md",
+        "path": ".opencode/skills/cli-copilot/references/copilot_tools.md",
         "source": "derived"
       },
       {
         "name": "integration_patterns.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/references/integration_patterns.md",
+        "path": ".opencode/skills/cli-copilot/references/integration_patterns.md",
         "source": "derived"
       },
       {
         "name": "prompt_templates.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/assets/prompt_templates.md",
+        "path": ".opencode/skills/cli-copilot/assets/prompt_templates.md",
         "source": "derived"
       },
       {

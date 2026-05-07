@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 012 of 20. The packet root is
 
 **Angle C2 — Scorer fusion accuracy on edge cases**
 
-Audit `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` (fusion.ts, projection.ts, lanes/). What edge cases does the current fusion mishandle? Ambiguity ties, near-duplicate skill projections, adversarial trigger phrases? Propose targeted improvements. Cite file:line.
+Audit `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` (fusion.ts, projection.ts, lanes/). What edge cases does the current fusion mishandle? Ambiguity ties, near-duplicate skill projections, adversarial trigger phrases? Propose targeted improvements. Cite file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

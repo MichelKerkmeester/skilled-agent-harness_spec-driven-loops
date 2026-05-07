@@ -6,11 +6,11 @@ Identify regression tests that would catch future precision, recall, latency, an
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:95`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:132`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:129`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:95`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:132`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:129`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/002-mcp-runtime-improvement-research/research/research.md:665`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md:135`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/findings.md:135`

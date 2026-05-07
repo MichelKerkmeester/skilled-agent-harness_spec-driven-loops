@@ -7,8 +7,8 @@ Input: `context-agent-08-error-handling.md`
 ## Scope and Filters
 
 - Validated all C08 findings (C08-F001..C08-F023) against current TypeScript sources under:
-  - `.opencode/skill/system-spec-kit/scripts/**`
-  - `.opencode/skill/system-spec-kit/mcp_server/**`
+  - `.opencode/skills/system-spec-kit/scripts/**`
+  - `.opencode/skills/system-spec-kit/mcp_server/**`
 - Explicitly excluded node_modules and migration-only noise from verdicting (for example migration-warning paths in vector index internals when assessing stderr usage quality).
 
 ## Overall Verdict

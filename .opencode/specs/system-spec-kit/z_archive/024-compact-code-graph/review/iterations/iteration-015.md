@@ -8,7 +8,7 @@
   - `CLAUDE.md`
   - `CODEX.md`
   - `GEMINI.md`
-  - `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`
 
 ## Findings
 

@@ -41,21 +41,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "references/workflows/quick_reference.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -91,13 +91,13 @@
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/workflows/quick_reference.md",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

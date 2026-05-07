@@ -177,7 +177,7 @@ The fix: stop trying to match multi-word keys in the tokenized path; rely on PHR
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: P0 fixture regression, top-1 accuracy < 0.92, or Python syntax failure
-- **Procedure**: `git checkout HEAD -- .opencode/skill/skill-advisor/scripts/skill_advisor.py scripts/fixtures/skill_advisor_regression_cases.jsonl`; re-run regression to confirm baseline restored
+- **Procedure**: `git checkout HEAD -- .opencode/skills/skill-advisor/scripts/skill_advisor.py scripts/fixtures/skill_advisor_regression_cases.jsonl`; re-run regression to confirm baseline restored
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -218,7 +218,7 @@ Strictly serial — each phase consumes output from the prior.
 
 ### Pre-work Checklist
 
-- [ ] Git HEAD is clean in `.opencode/skill/skill-advisor/` (no uncommitted drift)
+- [ ] Git HEAD is clean in `.opencode/skills/skill-advisor/` (no uncommitted drift)
 - [ ] Baseline regression snapshot exists in `scratch/baseline-regression.json`
 - [ ] Python AST parse succeeds on pre-change file
 

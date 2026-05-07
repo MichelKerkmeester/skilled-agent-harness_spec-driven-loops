@@ -15,15 +15,15 @@ Audit the live code-graph query, context, scan, and status handlers plus their f
 ## Files Reviewed
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-code-graph-package/001-code-graph-upgrades/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-code-graph-package/001-code-graph-upgrades/implementation-summary.md`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts`
 
 ## Findings
 

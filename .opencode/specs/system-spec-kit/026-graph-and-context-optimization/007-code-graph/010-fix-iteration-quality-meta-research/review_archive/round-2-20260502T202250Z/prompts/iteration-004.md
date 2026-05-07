@@ -12,7 +12,7 @@ introduced.
 
 ## Apply R5 fix-completeness-checklist
 
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md`.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md`.
 Apply its protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

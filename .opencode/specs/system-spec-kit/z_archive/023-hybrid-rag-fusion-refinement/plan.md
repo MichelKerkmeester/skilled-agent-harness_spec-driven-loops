@@ -65,9 +65,9 @@ This plan follows the completed 20-iteration research in `research/research.md`.
 Coordinated sibling-package ESM migration with an explicit CommonJS-to-ESM interoperability boundary
 
 ### Key Components
-- **Shared package boundary**: `.opencode/skill/system-spec-kit/shared/{package.json,tsconfig.json,src}`
-- **MCP server package boundary**: `.opencode/skill/system-spec-kit/mcp_server/{package.json,tsconfig.json,lib,handlers,tests}`
-- **Scripts CommonJS boundary**: `.opencode/skill/system-spec-kit/scripts/{package.json,dist,src,tests}`
+- **Shared package boundary**: `.opencode/skills/system-spec-kit/shared/{package.json,tsconfig.json,src}`
+- **MCP server package boundary**: `.opencode/skills/system-spec-kit/mcp_server/{package.json,tsconfig.json,lib,handlers,tests}`
+- **Scripts CommonJS boundary**: `.opencode/skills/system-spec-kit/scripts/{package.json,dist,src,tests}`
 - **Verification entrypoints**: `dist/context-server.js`, `scripts/dist/memory/generate-context.js`, module-sensitive Vitest suites, targeted scripts interop tests
 - **Deferred standards surfaces**: `sk-code-opencode` and any related standards docs outside this packet
 

@@ -53,7 +53,7 @@ Phase 2 closes the path-reference gap left by Phase 1. cli-codex applies 4 fixed
 
 ### Definition of Ready
 - [x] Phase 1 (001-relocate) complete (commit ccd73ef55)
-- [x] Pre-flight `diff -rq .opencode/command/create/ .claude/commands/create/` returns empty (3-way mirror parity preserved)
+- [x] Pre-flight `diff -rq .opencode/commands/create/ .claude/commands/create/` returns empty (3-way mirror parity preserved)
 - [x] On `main` branch with no feature branch surviving from Phase 1
 - [x] cli-codex reachable: `codex exec --sandbox workspace-write -c service_tier="fast" -c model="gpt-5.5" -c model_reasoning_effort="high" "..."`
 
@@ -62,7 +62,7 @@ Phase 2 closes the path-reference gap left by Phase 1. cli-codex applies 4 fixed
 - [ ] `.claude/commands/create/` and `.codex/prompts/create/` byte-identical to canonical (`diff -rq` empty)
 - [ ] 4 `.gemini/commands/create/*.toml` regenerated and parse cleanly (`tomllib.loads()` exits 0 each)
 - [ ] `.codex/agents/create.toml` regenerated with sandbox + Path Convention preserved
-- [ ] `.claude/agents/create.md` and `.gemini/agents/create.md` byte-identical to updated `.opencode/agent/create.md`
+- [ ] `.claude/agents/create.md` and `.gemini/agents/create.md` byte-identical to updated `.opencode/agents/create.md`
 - [ ] Residual `rg` returns ZERO hits in active scope
 - [ ] One commit on main with prescribed message
 <!-- /ANCHOR:quality-gates -->
@@ -77,7 +77,7 @@ Canonical-edit + mirror-replication. Single source of truth (`.opencode/`) gets 
 
 ### Key Components
 - **Fixed-string substitution** (4 patterns, executed via codex Edit tool or sed with literal flags): the 4 path-string transformations
-- **`rsync -a --delete`** (2×): bulk byte-copy from canonical `.opencode/command/create/` to `.claude/commands/create/` and `.codex/prompts/create/`
+- **`rsync -a --delete`** (2×): bulk byte-copy from canonical `.opencode/commands/create/` to `.claude/commands/create/` and `.codex/prompts/create/`
 - **TOML regeneration** (4×): `.gemini/commands/create/*.toml` rebuilt from updated `.md` content with triple-quoted prompt blocks, post-write `tomllib.loads()` parse-check
 - **TOML regeneration** (1× for codex agent): `.codex/agents/create.toml` rebuilt preserving sandbox + Path Convention
 
@@ -100,22 +100,22 @@ canonical .opencode/        rsync          .claude/.codex/  (byte-identical)
 
 ### Phase 1: Setup (cli-codex pre-flight)
 - [ ] Verify on `main` branch
-- [ ] `diff -rq .opencode/command/create/ .claude/commands/create/` returns empty
-- [ ] `diff -rq .opencode/command/create/ .codex/prompts/create/` returns empty
+- [ ] `diff -rq .opencode/commands/create/ .claude/commands/create/` returns empty
+- [ ] `diff -rq .opencode/commands/create/ .codex/prompts/create/` returns empty
 
 ### Phase 2: Core Implementation (cli-codex executes; halt on any failure)
 - [ ] Apply 4 fixed-string substitutions to 11 sk-doc internal files (B.1)
 - [ ] Apply 4 fixed-string substitutions to 11 /create:* canonical files (B.2)
 - [ ] Apply 4 fixed-string substitutions to 2 @create + install guide files (B.3)
-- [ ] `rsync -a --delete .opencode/command/create/ .claude/commands/create/`
-- [ ] `rsync -a --delete .opencode/command/create/ .codex/prompts/create/`
+- [ ] `rsync -a --delete .opencode/commands/create/ .claude/commands/create/`
+- [ ] `rsync -a --delete .opencode/commands/create/ .codex/prompts/create/`
 - [ ] Regenerate `.gemini/commands/create/agent.toml` (TOML triple-quoted prompt)
 - [ ] Regenerate `.gemini/commands/create/changelog.toml`
 - [ ] Regenerate `.gemini/commands/create/feature-catalog.toml`
 - [ ] Regenerate `.gemini/commands/create/testing-playbook.toml`
 - [ ] Regenerate `.codex/agents/create.toml` (preserve sandbox + Path Convention)
-- [ ] `cp .opencode/agent/create.md .claude/agents/create.md`
-- [ ] `cp .opencode/agent/create.md .gemini/agents/create.md`
+- [ ] `cp .opencode/agents/create.md .claude/agents/create.md`
+- [ ] `cp .opencode/agents/create.md .gemini/agents/create.md`
 
 ### Phase 3: Verification
 - [ ] Residual `rg` returns ZERO hits across active scope

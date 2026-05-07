@@ -4,7 +4,7 @@ You are generating Vitest stress tests under spec-kit packet 044. Repository roo
 
 ## Output location
 
-`.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/`
+`.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/`
 
 ## Consolidation guidance
 
@@ -53,7 +53,7 @@ Result: ~5 files covering 10 features.
 5 new files exist. Self-validate via:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run --config vitest.stress.config.ts \
   stress_test/code-graph/manual-diagnostics-stress.vitest.ts \
   stress_test/code-graph/detect-changes-preflight-stress.vitest.ts \

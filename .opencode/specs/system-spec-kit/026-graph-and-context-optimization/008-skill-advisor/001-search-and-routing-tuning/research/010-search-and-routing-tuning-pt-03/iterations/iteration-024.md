@@ -4,9 +4,9 @@
 Determine whether the 12-item `trigger_phrases` ceiling is enforced anywhere today and pin the exact layer that should own it.
 
 ## Findings
-1. The parser still builds `triggerPhrases` with `normalizeUnique(...)` and writes the unsliced array directly into `derived.trigger_phrases`. `key_topics` is sliced to 12, but `trigger_phrases` is not. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-545]
-2. The schema applies no max-length guard: `trigger_phrases` is only `z.array(z.string().min(1))`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts:32-44]
-3. The backfill layer also does not enforce the cap. It either calls `deriveGraphMetadata(specFolderPath, existing)` in dry-run mode or `refreshGraphMetadataForSpecFolder(specFolderPath)` in write mode, so it inherits whatever the parser generated. [SOURCE: .opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177]
+1. The parser still builds `triggerPhrases` with `normalizeUnique(...)` and writes the unsliced array directly into `derived.trigger_phrases`. `key_topics` is sliced to 12, but `trigger_phrases` is not. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-545]
+2. The schema applies no max-length guard: `trigger_phrases` is only `z.array(z.string().min(1))`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts:32-44]
+3. The backfill layer also does not enforce the cap. It either calls `deriveGraphMetadata(specFolderPath, existing)` in dry-run mode or `refreshGraphMetadataForSpecFolder(specFolderPath)` in write mode, so it inherits whatever the parser generated. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177]
 4. The live overflow remains exactly where the earlier wave left it: `185` folders exceed the intended 12-item ceiling, with `949` excess trigger phrases and a maximum stored count of `33`. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 5. The enforcement owner should be `deriveGraphMetadata()` itself:
 
@@ -23,9 +23,9 @@ An optional schema `.max(12)` can be added later as a validation backstop, but i
 - Looking for a hidden cap in the schema or backfill review flags. There is none.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-545`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts:32-44`
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:523-545`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts:32-44`
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:139-177`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

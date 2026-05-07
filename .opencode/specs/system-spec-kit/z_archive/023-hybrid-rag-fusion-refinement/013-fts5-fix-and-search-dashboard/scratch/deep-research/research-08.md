@@ -56,13 +56,13 @@ So the empty-file bug is explained by this chain:
 
 > once `initializeDb()` runs in a process where the lazy provider singleton has already been created for Voyage, DB resolution switches from legacy `context-index.sqlite` to `context-index__voyage__voyage-4__1024.sqlite`; that provider-specific DB has schema but no indexed data, so `vector_search` returns `0`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-838`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:12-18`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:384-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:839-844`]  
-[SOURCE: live SQLite probe on 2026-04-01 against `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` and `.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-838`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:12-18`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:384-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:839-844`]  
+[SOURCE: live SQLite probe on 2026-04-01 against `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` and `.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite`]  
 
 ## 1. Exact file-selection logic in `initialize_db()`
 
@@ -102,9 +102,9 @@ databasePath: path.join(resolved, 'context-index.sqlite')
 
 and that value is exported as `DATABASE_PATH`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-758`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/config.ts:44-83`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-758`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/config.ts:44-83`]  
 
 ## 2. Where the `context-index__...` filename is constructed
 
@@ -139,10 +139,10 @@ So for Voyage 4 at 1024 dims, the computed filename is exactly:
 
 This matches the live file on disk.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:12-18`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/database/README.md:34-35`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/database/README.md:66-68`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:12-18`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/database/README.md:34-35`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/database/README.md:66-68`]  
 
 ## 3. The critical nuance: path selection depends on whether the lazy provider singleton already exists
 
@@ -180,10 +180,10 @@ Once that happens, `getEmbeddingProfile()` becomes non-null, and later `initiali
 
 So the file switch is **not** based just on environment variables existing at startup. It depends on whether `initializeDb()` is called **before or after** the lazy provider singleton is created.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:364-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:478-503`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:684-723`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:838-844`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:364-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:478-503`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:684-723`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:838-844`]  
 
 ## 4. What `context-server.ts` passes to `initializeDb()`
 
@@ -213,9 +213,9 @@ Also important: startup sets `EMBEDDING_DIM` from `resolveStartupEmbeddingConfig
 
 So "startup knows the dimension is 1024" and "startup has an initialized profile object that can choose a suffixed DB path" are **not the same thing**.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:796-800`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1360-1368`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:258-280`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:796-800`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1360-1368`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:258-280`]  
 
 ## 5. How the server can later flip onto the provider-specific DB
 
@@ -257,11 +257,11 @@ So the strongest code-supported flip sequence is:
 
 I cannot prove from static code alone that this exact runtime sequence is the one that happened in the failing session, but it is the clearest built-in mechanism that explains **how the same server can reopen onto the empty provider-specific file after provider initialization**.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:399-403`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:218-228`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:245-303`]  
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:39-44`]  
-[SOURCE: `.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/17-cross-process-db-hot-rebinding.md:18`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:399-403`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:218-228`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:245-303`]  
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:39-44`]  
+[SOURCE: `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/17-cross-process-db-hot-rebinding.md:18`]  
 
 ## 6. Was a migration/backfill step supposed to copy legacy data into the profile DB?
 
@@ -295,9 +295,9 @@ inside the same DB connection.
 
 This means the provider-specific file is not "missing copied rows because a migration failed"; rather, it appears to be a freshly bootstrapped per-profile DB that was never populated.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1243-1289`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2264-2295`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1186-1206`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1243-1289`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2264-2295`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1186-1206`]  
 
 ## 7. The design docs suggest this is intentional isolation, not legacy-copy migration
 
@@ -315,7 +315,7 @@ So the operational bug is not "copy step crashed halfway through." The bug is:
 
 > the search pipeline can resolve onto a profile-specific DB that exists structurally but has never been indexed/backfilled, while the populated legacy DB still holds the real data.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/README.md:152-167`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/README.md:152-167`]  
 
 ## 8. Live on-disk evidence
 
@@ -349,7 +349,7 @@ Probe results:
 
 So the provider-specific DB is not malformed. It has the schema and embedding-dimension metadata. It is simply empty of indexed content.
 
-[SOURCE: live `ls -la` / `stat` probe on 2026-04-01 against `.opencode/skill/system-spec-kit/mcp_server/database/`]  
+[SOURCE: live `ls -la` / `stat` probe on 2026-04-01 against `.opencode/skills/system-spec-kit/mcp_server/database/`]  
 [SOURCE: live SQLite probe on 2026-04-01 against both DB files]  
 
 ## 9. Final conclusion

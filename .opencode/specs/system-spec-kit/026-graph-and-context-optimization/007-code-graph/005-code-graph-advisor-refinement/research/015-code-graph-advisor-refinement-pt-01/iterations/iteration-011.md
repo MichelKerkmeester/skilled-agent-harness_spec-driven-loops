@@ -24,7 +24,7 @@ Three orchestrator-ready deliverables plus a second-order soundness check on the
 
 ### F56 — Test fixture skeleton for `tests/hooks/settings-driven-invocation-parity.vitest.ts` (~60 LOC, Claude-runtime-only assertion shape)
 
-**File to create:** `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
+**File to create:** `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
 
 **Test contract (per F51 narrowing):**
 - Read `.claude/settings.local.json` directly from disk (no mock; this is a fixture-shape assertion, not a runtime behavior assertion).
@@ -47,7 +47,7 @@ There is no public Anthropic doc citing the hook interpreter's behavior at file:
 
 ### F57 — Promotion-orchestrate handler skeleton for `handlers/promotion-orchestrate.ts` (~80 LOC, with corrected `rollback.ts` signature)
 
-**File to create:** `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/promotion-orchestrate.ts`
+**File to create:** `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/promotion-orchestrate.ts`
 
 **Function signature:**
 
@@ -170,7 +170,7 @@ Iter-3 F15 claimed "X% of regression categories leak through the 7-gate promotio
 
 **Implication for severity tagging:** F15 stays P1 ("regression-protection-critical for the future production path") but is annotated with "**not currently exploitable in production; becomes exploitable when F57 lands**". This avoids both over- and under-stating its current risk.
 
-**Severity: F15 (re-framed) stays P1. F60 itself is a synthesis finding, no severity tag.** [SOURCE: grep over `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/` and `handlers/` for wiring-intent keywords; iter-3 F15; iter-10 F52; iter-11 F57]
+**Severity: F15 (re-framed) stays P1. F60 itself is a synthesis finding, no severity tag.** [SOURCE: grep over `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/` and `handlers/` for wiring-intent keywords; iter-3 F15; iter-10 F52; iter-11 F57]
 
 ## Edit-plan deltas (also written to `deltas/iter-011.jsonl`)
 
@@ -348,9 +348,9 @@ export const handle_promotion_orchestrate = handlePromotionOrchestrate;
 
 - `iterations/iteration-010.md` (full re-anchor of F51-F55)
 - `deep-research-strategy.md` (Sections 3, 9, 11)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/index.ts` (full read, 8 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` (lines 1-80)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts` (full read, 88 lines — corrected F55's reading)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/index.ts` (full read, 8 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts` (lines 1-80)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts` (full read, 88 lines — corrected F55's reading)
 - Grep results: `(TODO|FIXME|@todo|future|wire.*up|not.*yet|orchestrat|integration|deferred|placeholder)` across `lib/promotion/` and `handlers/`
 - Iter-3 F15 (regression-leak claim, re-framed by F60)
 - Iter-9 F46 (test-file shape recommendation)

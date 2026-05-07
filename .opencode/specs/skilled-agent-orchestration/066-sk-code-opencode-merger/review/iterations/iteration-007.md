@@ -17,18 +17,18 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-findings-registry.json`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-strategy.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json`
-- `.opencode/skill/sk-code-review/references/review_core.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`
-- `.opencode/agent/review.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- `.opencode/agents/review.md`
 
 ## Findings - New
 
@@ -56,7 +56,7 @@
    - Scope proof: Conflict spans the packet's primary spec and implementation plan against completed tasks/checklist/implementation-summary evidence; prior iterations did not find a distinct runtime defect.
    - Affected surface hints: [`spec.md`, `plan.md`, `checklist.md`, `implementation-summary.md`, `review-report synthesis`]
 
-3. **F004 remains active P1, not P0/P2/false-positive** -- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:213` -- Four command workflow assets still set the review `standards_contract.baseline` to `sk-code`, while adjacent phase labels and the review agent contract name `sk-code-review` as the review baseline and `sk-code` as router-selected overlay evidence. This is a must-fix workflow contract mismatch because it can mislead generated workflow metadata and future maintainers. It is not P0 because the YAML still points to the review agent and does not by itself create an exploitable or destructive path. [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agent/review.md:76`] [SOURCE: `.opencode/agent/review.md:77`]
+3. **F004 remains active P1, not P0/P2/false-positive** -- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213` -- Four command workflow assets still set the review `standards_contract.baseline` to `sk-code`, while adjacent phase labels and the review agent contract name `sk-code-review` as the review baseline and `sk-code` as router-selected overlay evidence. This is a must-fix workflow contract mismatch because it can mislead generated workflow metadata and future maintainers. It is not P0 because the YAML still points to the review agent and does not by itself create an exploitable or destructive path. [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/agents/review.md:76`] [SOURCE: `.opencode/agents/review.md:77`]
    - Finding class: cross-consumer
    - Scope proof: The same baseline inversion is evidenced in all four implement/complete workflow variants, while the canonical review agent contract states the opposite baseline/overlay order.
    - Affected surface hints: [`spec_kit_implement_auto.yaml`, `spec_kit_implement_confirm.yaml`, `spec_kit_complete_auto.yaml`, `spec_kit_complete_confirm.yaml`, `@review` contract]
@@ -68,10 +68,10 @@
 
 ## Traceability Checks
 
-- `review_doctrine_loaded`: pass. Severity definitions set P0 for exploitable security/auth/destructive data loss, P1 for correctness/spec/must-fix gate issues, and P2 for non-blocking polish. [SOURCE: `.opencode/skill/sk-code-review/references/review_core.md:20`]
-- `no_active_p0_supported`: pass. Active findings are stale packet/current-state documentation or workflow metadata contradictions; no cited evidence shows an exploitable security issue, auth bypass, or destructive data-loss path. [SOURCE: `.opencode/skill/sk-code-review/references/review_core.md:22`]
-- `active_p1_basis`: pass. F001/F003/F004 remain P1 because each is a required spec/workflow mismatch with concrete file:line evidence. [SOURCE: `.opencode/skill/sk-code-review/references/review_core.md:23`]
-- `active_p2_basis`: pass. F002 remains P2 because the stale resource-map continuity is non-blocking documentation/continuity polish after stronger stale-state issues are represented by F001/F003. [SOURCE: `.opencode/skill/sk-code-review/references/review_core.md:24`]
+- `review_doctrine_loaded`: pass. Severity definitions set P0 for exploitable security/auth/destructive data loss, P1 for correctness/spec/must-fix gate issues, and P2 for non-blocking polish. [SOURCE: `.opencode/skills/sk-code-review/references/review_core.md:20`]
+- `no_active_p0_supported`: pass. Active findings are stale packet/current-state documentation or workflow metadata contradictions; no cited evidence shows an exploitable security issue, auth bypass, or destructive data-loss path. [SOURCE: `.opencode/skills/sk-code-review/references/review_core.md:22`]
+- `active_p1_basis`: pass. F001/F003/F004 remain P1 because each is a required spec/workflow mismatch with concrete file:line evidence. [SOURCE: `.opencode/skills/sk-code-review/references/review_core.md:23`]
+- `active_p2_basis`: pass. F002 remains P2 because the stale resource-map continuity is non-blocking documentation/continuity polish after stronger stale-state issues are represented by F001/F003. [SOURCE: `.opencode/skills/sk-code-review/references/review_core.md:24`]
 - `configured_scope_public_surfaces`: pass/partial. Configured review scope includes packet docs, `sk-code`, `sk-code-review`, advisor artifacts, runtime agent mirrors, command assets, and deleted legacy route paths; prior iterations covered all configured dimensions and sampled these surfaces. [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json:43`] [SOURCE: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-strategy.md:17`]
 
 ## Integration Evidence

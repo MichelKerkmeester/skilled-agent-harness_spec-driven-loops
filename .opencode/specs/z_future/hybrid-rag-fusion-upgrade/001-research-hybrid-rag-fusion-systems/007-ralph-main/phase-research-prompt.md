@@ -96,7 +96,7 @@ Every iteration MUST append a JSONL record to `research/deep-research-state.json
 
 Respect the quality guards before claiming convergence: **source_diversity** (≥2 sources per question), **focus_alignment** (new findings align with original key questions), **single_weak_source_dominance** (block STOP if any question depends on a single tentative source).
 
-Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs`.
+Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs`.
 
 ### 5.2 Research topic
 
@@ -111,7 +111,7 @@ Research the external repository at /Users/michelkerkmeester/MEGA/Development/Co
 Save memory for this phase folder when research is complete with:
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/007-ralph-main"
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/007-ralph-main"
 ```
 
 ## 6. Research Questions
@@ -133,7 +133,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - Do verify every "git-as-memory" claim with an actual line reference in the shell script or prompt.
 - Do treat the bridge-vs-archive split as the main architectural question, not the shell-script ergonomics.
 - Do look for where git commands are invoked — what does Ralph actually capture from git per iteration?
-- Do map every finding to a concrete target file in Public (`.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `@handover` contract, etc.).
+- Do map every finding to a concrete target file in Public (`.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `@handover` contract, etc.).
 - Do keep the "is this novel vs already-owned" triage sharp — Ralph overlaps with several existing phases and with existing Public infrastructure.
 - Do note which recommendations are additive (new fields, new optional hooks) vs invasive (changing save authority).
 
@@ -156,7 +156,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: Ralph captures commit hash, branch, and diff summary at the start of every iteration and uses them as durable context markers.
 - Why it matters: Public's `generate-context.js` currently saves memories without standardized git lineage fields, which loses provenance when a memory is recalled across branches or worktrees.
 - Recommendation: adopt now
-- Affected area: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` FILES/META fields
+- Affected area: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` FILES/META fields
 - Impact: medium (additive metadata, no schema break)
 - Source strength: primary
 ```
@@ -169,7 +169,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: Ralph uses `progress.txt` as a lightweight execution bridge distinct from any durable memory — iteration agents read it first to orient, then append one line at end of turn.
 - Why it matters: Public's `sk-deep-research` already uses JSONL as the durable state log; a separate shorter bridge artifact could reduce the reader-side parse cost of full JSONL on every iteration.
 - Recommendation: prototype later
-- Affected area: `.opencode/skill/sk-deep-research/references/state_format.md` (potential new artifact)
+- Affected area: `.opencode/skills/sk-deep-research/references/state_format.md` (potential new artifact)
 - Impact: low-medium (optional additive artifact)
 - Source strength: primary
 ```

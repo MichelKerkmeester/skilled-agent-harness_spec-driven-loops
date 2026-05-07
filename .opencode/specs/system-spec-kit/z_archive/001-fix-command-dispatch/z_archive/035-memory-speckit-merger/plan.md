@@ -32,7 +32,7 @@ This merger is a **pure file migration** with path updates. No functional change
 ## Architecture: Final Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── SKILL.md                          # Merged: spec-kit + memory docs
 ├── package.json                      # MCP server dependencies
 ├── package-lock.json
@@ -98,11 +98,11 @@ This merger is a **pure file migration** with path updates. No functional change
 
 Create target directories in system-spec-kit:
 ```bash
-mkdir -p .opencode/skill/system-spec-kit/lib/tools
-mkdir -p .opencode/skill/system-spec-kit/lib/services
-mkdir -p .opencode/skill/system-spec-kit/lib/utils
-mkdir -p .opencode/skill/system-spec-kit/database
-mkdir -p .opencode/skill/system-spec-kit/constitutional
+mkdir -p .opencode/skills/system-spec-kit/lib/tools
+mkdir -p .opencode/skills/system-spec-kit/lib/services
+mkdir -p .opencode/skills/system-spec-kit/lib/utils
+mkdir -p .opencode/skills/system-spec-kit/database
+mkdir -p .opencode/skills/system-spec-kit/constitutional
 ```
 
 **Validation:** Directories exist
@@ -114,9 +114,9 @@ mkdir -p .opencode/skill/system-spec-kit/constitutional
 
 Copy all lib modules:
 ```bash
-cp -r .opencode/skill/system-memory/lib/* .opencode/skill/system-spec-kit/lib/
-cp .opencode/skill/system-memory/package.json .opencode/skill/system-spec-kit/
-cp .opencode/skill/system-memory/package-lock.json .opencode/skill/system-spec-kit/
+cp -r .opencode/skills/system-memory/lib/* .opencode/skills/system-spec-kit/lib/
+cp .opencode/skills/system-memory/package.json .opencode/skills/system-spec-kit/
+cp .opencode/skills/system-memory/package-lock.json .opencode/skills/system-spec-kit/
 ```
 
 **Validation:** 
@@ -131,14 +131,14 @@ cp .opencode/skill/system-memory/package-lock.json .opencode/skill/system-spec-k
 
 Copy database:
 ```bash
-cp .opencode/skill/system-memory/database/memory-index.sqlite \
-   .opencode/skill/system-spec-kit/database/
+cp .opencode/skills/system-memory/database/memory-index.sqlite \
+   .opencode/skills/system-spec-kit/database/
 ```
 
 Copy constitutional files:
 ```bash
-cp -r .opencode/skill/system-memory/constitutional/* \
-   .opencode/skill/system-spec-kit/constitutional/
+cp -r .opencode/skills/system-memory/constitutional/* \
+   .opencode/skills/system-spec-kit/constitutional/
 ```
 
 **Validation:**
@@ -153,8 +153,8 @@ cp -r .opencode/skill/system-memory/constitutional/* \
 
 Copy generate-context.js:
 ```bash
-cp .opencode/skill/system-memory/scripts/generate-context.js \
-   .opencode/skill/system-spec-kit/scripts/
+cp .opencode/skills/system-memory/scripts/generate-context.js \
+   .opencode/skills/system-spec-kit/scripts/
 ```
 
 **Validation:** Script exists and is executable
@@ -166,8 +166,8 @@ cp .opencode/skill/system-memory/scripts/generate-context.js \
 
 Copy reference files:
 ```bash
-cp .opencode/skill/system-memory/references/*.md \
-   .opencode/skill/system-spec-kit/references/
+cp .opencode/skills/system-memory/references/*.md \
+   .opencode/skills/system-spec-kit/references/
 ```
 
 **Validation:** Files exist
@@ -206,7 +206,7 @@ Update MCP server path in `opencode.json`:
   "mcpServers": {
     "semantic_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/lib/index.js"]
+      "args": [".opencode/skills/system-spec-kit/lib/index.js"]
     }
   }
 }
@@ -242,7 +242,7 @@ Update all references to `system-memory`:
 ### Phase 9: Update Memory Commands
 **Effort:** 20 min | **Risk:** Medium | **Rollback:** Git restore
 
-Update 4 command files in `.opencode/command/memory/`:
+Update 4 command files in `.opencode/commands/memory/`:
 
 | File | References to Update |
 |------|---------------------|
@@ -296,8 +296,8 @@ Test each gate:
 
 Move old skill to archive:
 ```bash
-mkdir -p .opencode/skill/z_archive
-mv .opencode/skill/system-memory .opencode/skill/z_archive/
+mkdir -p .opencode/skills/z_archive
+mv .opencode/skills/system-memory .opencode/skills/z_archive/
 ```
 
 **Validation:**
@@ -377,7 +377,7 @@ After Phase 12, run these final checks:
 1. **MCP Server Health**
    ```bash
    # Start server manually
-   node .opencode/skill/system-spec-kit/lib/index.js
+   node .opencode/skills/system-spec-kit/lib/index.js
    # Should output: "MCP server started"
    ```
 
@@ -395,7 +395,7 @@ After Phase 12, run these final checks:
 
 4. **Generate Context**
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger
+   node .opencode/skills/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger
    # Should create memory file
    ```
 

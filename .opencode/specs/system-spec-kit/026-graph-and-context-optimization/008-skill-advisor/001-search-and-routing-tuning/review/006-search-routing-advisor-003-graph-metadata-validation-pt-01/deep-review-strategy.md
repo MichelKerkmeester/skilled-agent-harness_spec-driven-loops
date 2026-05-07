@@ -115,7 +115,7 @@ Review complete. Remediate packet-root lineage drift (`F001`, `F002`) and missin
 ## 13. KNOWN CONTEXT
 - The packet was migrated from the older `010-search-and-routing-tuning` lineage into the current `001-search-and-routing-tuning` path on 2026-04-21.
 - The packet claims all five review findings were addressed and that the root packet plus phases `001` through `007` were refreshed.
-- The reviewed implementation references are the live parser/schema/backfill surfaces under `.opencode/skill/system-spec-kit/`.
+- The reviewed implementation references are the live parser/schema/backfill surfaces under `.opencode/skills/system-spec-kit/`.
 
 ---
 
@@ -148,9 +148,9 @@ Review complete. Remediate packet-root lineage drift (`F001`, `F002`) and missin
 | `implementation-summary.md` | security, traceability | 10 | 0 P0, 1 P1, 0 P2 | complete |
 | `description.json` | traceability, maintainability | 7 | 0 P0, 1 P1, 0 P2 | complete |
 | `graph-metadata.json` | security, traceability, maintainability, correctness | 10 | 0 P0, 2 P1, 1 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts` | traceability | 3 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | correctness, maintainability | 8 | 0 P0, 2 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | correctness | 5 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts` | traceability | 3 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | correctness, maintainability | 8 | 0 P0, 2 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | correctness | 5 | 0 P0, 1 P1, 0 P2 | complete |
 | `AGENTS.md` | maintainability | 4 | 0 P0, 1 P1, 0 P2 | complete |
 <!-- MACHINE-OWNED: END -->
 

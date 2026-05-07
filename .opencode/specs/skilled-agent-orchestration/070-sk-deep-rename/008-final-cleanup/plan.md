@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "plan.md"
       - "../review/review-report.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-008"
@@ -81,8 +81,8 @@ Source-of-truth metadata cleanup. The phase edits the graph source and per-skill
 
 ### Key Components
 - **Review evidence**: `../review/review-report.md`.
-- **Advisor source**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
-- **Compiler validation**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`.
+- **Advisor source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`.
+- **Compiler validation**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py`.
 - **Skill metadata**: `deep-review`, `deep-research`, and `sk-code` graph metadata.
 - **Decision record**: `decision-record.md`.
 
@@ -152,7 +152,7 @@ The review finding identifies the misrouting and metadata errors. Phase 008 patc
 
 - Phase 006/007 review context exists under the parent packet.
 - `/usr/bin/python3` is available.
-- The spec validator is available under `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- The spec validator is available under `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 - The orchestrator may run advisor rebuild after source edits if generated artifacts lag.
 <!-- /ANCHOR:dependencies -->
 

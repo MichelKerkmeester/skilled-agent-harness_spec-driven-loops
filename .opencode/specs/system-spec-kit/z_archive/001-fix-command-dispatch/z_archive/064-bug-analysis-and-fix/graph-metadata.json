@@ -57,10 +57,10 @@
       "spec.md",
       "decision-record.md",
       "mcp_server/configs/search-weights.json",
-      ".opencode/command/spec_kit/implement.md",
-      ".opencode/command/spec_kit/complete.md",
-      ".opencode/command/spec_kit/resume.md",
-      ".opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json"
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json"
     ],
     "entities": [
       {
@@ -144,19 +144,19 @@
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/implement.md",
+        "path": ".opencode/commands/spec_kit/implement.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {

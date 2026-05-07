@@ -8,7 +8,7 @@ Investigate whether the mass graduation of 22 feature flags from opt-in (OFF) to
 ### Finding 1: 22 Flags Graduated in a Single Commit Mid-Audit
 Commit 09acbe8ce ("graduate all Wave 1-4 feature flags to default ON", Mar 21 22:54) changed 22 feature flags from opt-in (`=== 'true'`) to default-ON (`isFeatureEnabled()`). This affected 22 implementation files and 18 test files. The audit's final commit was 4a477420d on Mar 22 19:08, meaning the graduation landed roughly 20 hours before audit completion.
 
-[SOURCE: git log 09acbe8ce, .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts]
+[SOURCE: git log 09acbe8ce, .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts]
 
 ### Finding 2: Behavioral Semantics Completely Reversed
 The `isFeatureEnabled()` function in rollout-policy.ts (line 42-57) treats `undefined` environment variables as ENABLED (returns true when SPECKIT_ROLLOUT_PERCENT >= 100, which is the default). Pre-graduation, each flag function used `process.env.FLAG?.toLowerCase().trim() === 'true'`, meaning undefined = DISABLED. This is a complete inversion of default runtime behavior for all 22 features.
@@ -18,7 +18,7 @@ The `isFeatureEnabled()` function in rollout-policy.ts (line 42-57) treats `unde
 
 This means any audit phase that verified a feature's behavior while the flag was opt-in may have verified the WRONG code path (the disabled/fallback path) which is no longer the active production path.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:42-57]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts:42-57]
 
 ### Finding 3: Graduated Flag Inventory by Domain
 All 22 graduated flags and their audit-relevant phases:
@@ -104,8 +104,8 @@ The spec.md explicitly identifies this risk (R-003: "Source code changes during 
 [SOURCE: spec.md section 6 (R-003), git log dates for audit commits]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts` (full file, 498 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts` (full file, 64 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` (full file, 498 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts` (full file, 64 lines)
 - `git show 09acbe8ce` (graduation commit diff + stat)
 - `git log` for audit window commits (Mar 16-23)
 - `spec.md` for audit phase structure and risk matrix

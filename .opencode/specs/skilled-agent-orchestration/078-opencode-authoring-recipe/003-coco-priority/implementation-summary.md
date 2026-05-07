@@ -13,10 +13,10 @@ _memory:
     next_safe_action: "Commit + push + start Phase 4"
     blockers: []
     key_files:
-      - .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py
-      - .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py
-      - .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py
-      - .opencode/skill/mcp-coco-index/changelog/v1.3.0.0.md
+      - .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py
+      - .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py
+      - .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py
+      - .opencode/skills/mcp-coco-index/changelog/v1.3.0.0.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-003-complete"
@@ -29,7 +29,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-mcp-coco-index 1.1.0 now ships canonical-resource-path opt-ins so explicit authoring assets and skill references survive `**/.*` hidden-directory exclusion AND outrank unrelated matches in semantic search. The default `CANONICAL_RESOURCE_PATHS` covers `.opencode/skill/*/assets/opencode/**` (sk-code OpenCode authoring checklists shipped in Phase 1), `.opencode/skill/*/assets/motion_dev/**` (cross-stack Motion.dev assets), and `.opencode/skill/*/references/**` (skill reference docs). A new `is_canonical_path()` helper uses `GitIgnoreSpec` for consistent glob semantics with the existing `exclude_patterns` infrastructure. Two enforcement points: (a) `indexer.py` `CanonicalResourceMatcher` lets canonical paths traverse `.opencode/` despite `**/.*`, closing the fresh-clone portability gap; (b) `query.py` `_ranked_result` adds +0.10 score boost and emits `canonical_resource_boost` ranking_signal, closing the rank-priority gap. mcp-coco-index/SKILL.md gains a new "Canonical Resource Paths" section documenting both behaviors plus opt-in/opt-out instructions.
+mcp-coco-index 1.1.0 now ships canonical-resource-path opt-ins so explicit authoring assets and skill references survive `**/.*` hidden-directory exclusion AND outrank unrelated matches in semantic search. The default `CANONICAL_RESOURCE_PATHS` covers `.opencode/skills/*/assets/opencode/**` (sk-code OpenCode authoring checklists shipped in Phase 1), `.opencode/skills/*/assets/motion_dev/**` (cross-stack Motion.dev assets), and `.opencode/skills/*/references/**` (skill reference docs). A new `is_canonical_path()` helper uses `GitIgnoreSpec` for consistent glob semantics with the existing `exclude_patterns` infrastructure. Two enforcement points: (a) `indexer.py` `CanonicalResourceMatcher` lets canonical paths traverse `.opencode/` despite `**/.*`, closing the fresh-clone portability gap; (b) `query.py` `_ranked_result` adds +0.10 score boost and emits `canonical_resource_boost` ranking_signal, closing the rank-priority gap. mcp-coco-index/SKILL.md gains a new "Canonical Resource Paths" section documenting both behaviors plus opt-in/opt-out instructions.
 
 ### Two-pronged canonical handling
 

@@ -74,18 +74,18 @@ The feature landed as the two-tier prompt-quality architecture planned in this p
 
 ### Delivered Surfaces
 
-- A canonical prompt-quality card now exists at `.opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md`.
+- A canonical prompt-quality card now exists at `.opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md`.
 - Four guard-safe mirror cards now exist under:
-  - `.opencode/skill/cli-claude-code/assets/prompt_quality_card.md`
-  - `.opencode/skill/cli-codex/assets/prompt_quality_card.md`
-  - `.opencode/skill/cli-copilot/assets/prompt_quality_card.md`
-  - `.opencode/skill/cli-gemini/assets/prompt_quality_card.md`
+  - `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md`
+  - `.opencode/skills/cli-codex/assets/prompt_quality_card.md`
+  - `.opencode/skills/cli-copilot/assets/prompt_quality_card.md`
+  - `.opencode/skills/cli-gemini/assets/prompt_quality_card.md`
 - Each CLI skill now documents the local card in Resource Domains, loads it through `LOADING_LEVELS["ALWAYS"]`, and requires the pre-dispatch prompt-quality check before prompt construction.
 - All four CLI prompt-template assets now carry `Framework:` annotations.
-- `.opencode/skill/sk-improve-prompt/SKILL.md` now documents the canonical card, the agent invocation contract, the fast-path asset, and the version bump to `1.3.0.0`.
-- `@improve-prompt` landed across `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
-- `.opencode/command/improve/prompt.md` now supports Inline versus Agent dispatch mode selection and documents the shared escalation surface.
-- The optional drift check landed as `.opencode/skill/skill-advisor/scripts/check-prompt-quality-card-sync.sh`.
+- `.opencode/skills/sk-improve-prompt/SKILL.md` now documents the canonical card, the agent invocation contract, the fast-path asset, and the version bump to `1.3.0.0`.
+- `@improve-prompt` landed across `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
+- `.opencode/commands/improve/prompt.md` now supports Inline versus Agent dispatch mode selection and documents the shared escalation surface.
+- The optional drift check landed as `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -119,11 +119,11 @@ The command surface was aligned with the same design: `/improve:prompt` now supp
 | Check | Result |
 |-------|--------|
 | Presence checks for canonical card, four mirrors, four runtime agents, and drift script | PASS |
-| Mirror sync check via `bash .opencode/skill/skill-advisor/scripts/check-prompt-quality-card-sync.sh` | PASS (`SYNC OK`) |
-| CLI skill card references via `grep -c 'prompt_quality_card.md' .opencode/skill/cli-*/SKILL.md` | PASS (`4` hits per file) |
-| Guard-safe routing check via `grep -H 'prompt_quality_card' .opencode/skill/cli-*/SKILL.md | grep '\\.\\.'` | PASS (`NO_DOTDOT_MATCHES`) |
-| Framework-tag counts via `grep -c '^Framework:' .opencode/skill/cli-*/assets/prompt_templates.md` | PASS (`25`, `34`, `20`, `24`) |
-| Final packet validation after closeout updates | PASS (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting`) |
+| Mirror sync check via `bash .opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh` | PASS (`SYNC OK`) |
+| CLI skill card references via `grep -c 'prompt_quality_card.md' .opencode/skills/cli-*/SKILL.md` | PASS (`4` hits per file) |
+| Guard-safe routing check via `grep -H 'prompt_quality_card' .opencode/skills/cli-*/SKILL.md | grep '\\.\\.'` | PASS (`NO_DOTDOT_MATCHES`) |
+| Framework-tag counts via `grep -c '^Framework:' .opencode/skills/cli-*/assets/prompt_templates.md` | PASS (`25`, `34`, `20`, `24`) |
+| Final packet validation after closeout updates | PASS (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting`) |
 <!-- /ANCHOR:verification -->
 
 ---

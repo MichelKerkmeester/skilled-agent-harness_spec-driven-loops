@@ -25,7 +25,7 @@ permission:
 
 Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, and convergence decisions.
 
@@ -73,7 +73,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skill/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`)
 
 ### Step 2: Determine Focus
 
@@ -404,8 +404,8 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/command/spec_kit/deep-research.md` |
-| `/memory:save` | Save research context | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-research` | Autonomous deep research loop | `.opencode/commands/spec_kit/deep-research.md` |
+| `/memory:save` | Save research context | `.opencode/commands/memory/save.md` |
 
 ### Skills
 

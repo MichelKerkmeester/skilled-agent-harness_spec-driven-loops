@@ -6,30 +6,30 @@ Evaluate flatten, discriminated union, and split-payload response shapes against
 
 ## Sources Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:27-37`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:426-456`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1079-1120`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1145-1182`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1185-1379`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1382-1497`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-result-adapter.ts:6-55`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/query-result-adapter.ts:209-247`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:738-820`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:893-990`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:1072-1106`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:162-182`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:370-389`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:80-139`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:16-35`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:10-17`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:60-107`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1010-1014`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1115-1160`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:38-53`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:137-179`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:229-245`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:91-116`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:27-37`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:426-456`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787-828`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1079-1120`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1145-1182`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1185-1379`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1382-1497`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-result-adapter.ts:6-55`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/query-result-adapter.ts:209-247`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:738-820`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:893-990`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1072-1106`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:162-182`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:370-389`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:80-139`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:16-35`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:10-17`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:60-107`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1010-1014`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1115-1160`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:38-53`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:137-179`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:229-245`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:91-116`
 
 ## Findings
 

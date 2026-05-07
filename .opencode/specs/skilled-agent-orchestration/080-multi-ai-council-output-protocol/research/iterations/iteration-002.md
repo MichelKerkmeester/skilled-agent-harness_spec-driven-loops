@@ -2,22 +2,22 @@
 
 ## Focus
 
-Answer Q2: decide whether the new §17 Caller Persistence Protocol belongs in `.opencode/agent/multi-ai-council.md`, in `.opencode/skill/system-spec-kit/references/multi-ai-council/`, or split across both surfaces.
+Answer Q2: decide whether the new §17 Caller Persistence Protocol belongs in `.opencode/agents/multi-ai-council.md`, in `.opencode/skills/system-spec-kit/references/multi-ai-council/`, or split across both surfaces.
 
 The upstream dependency is Q3: the §8 shared schema artifact should not be designed until the canonical location of caller-facing protocol language is clear.
 
 ## Actions Taken
 
 - Read current strategy/state to determine iteration number and avoid repeating iteration 1's Q1 helper-script work.
-- Inspected `.opencode/agent/multi-ai-council.md` headings and relevant body sections.
-- Inspected the four existing `.opencode/skill/system-spec-kit/references/multi-ai-council/*.md` files.
-- Inspected `.opencode/agent/orchestrate.md`, packet 080's `ai-council/council-report.md`, and `decision-record.md` for caller patterns, ADR constraints, and round-2 ADD requirements.
+- Inspected `.opencode/agents/multi-ai-council.md` headings and relevant body sections.
+- Inspected the four existing `.opencode/skills/system-spec-kit/references/multi-ai-council/*.md` files.
+- Inspected `.opencode/agents/orchestrate.md`, packet 080's `ai-council/council-report.md`, and `decision-record.md` for caller patterns, ADR constraints, and round-2 ADD requirements.
 
 ## Findings
 
 ### 1. §17 should be added to the agent body, but kept short
 
-The agent body is already the operator-facing contract surface for the council protocol. It contains §12 Output Protocol, §13 Invocation Contract, §14 State Schema, and §15 Convergence Signal at `.opencode/agent/multi-ai-council.md:579`, `.opencode/agent/multi-ai-council.md:607`, `.opencode/agent/multi-ai-council.md:617`, and `.opencode/agent/multi-ai-council.md:641`.
+The agent body is already the operator-facing contract surface for the council protocol. It contains §12 Output Protocol, §13 Invocation Contract, §14 State Schema, and §15 Convergence Signal at `.opencode/agents/multi-ai-council.md:579`, `.opencode/agents/multi-ai-council.md:607`, `.opencode/agents/multi-ai-council.md:617`, and `.opencode/agents/multi-ai-council.md:641`.
 
 That means a caller who loads the agent body before dispatch already sees the artifact folder contract, invocation lifecycle, state events, and convergence rule. A new §17 belongs beside those sections because it changes caller behavior after council output returns.
 
@@ -33,7 +33,7 @@ This avoids a hidden protocol that only exists in reference docs a caller may no
 
 ### 2. A reference-only §17 would conflict with ADR-001's "agent body is the source of truth" consequence
 
-ADR-001 explicitly keeps the convention lightweight by avoiding a dedicated `.opencode/skill/multi-ai-council/` folder, and says "all logic stays in the agent body plus 4 reference files" at `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md:57`.
+ADR-001 explicitly keeps the convention lightweight by avoiding a dedicated `.opencode/skills/multi-ai-council/` folder, and says "all logic stays in the agent body plus 4 reference files" at `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md:57`.
 
 The same ADR says the agent body must absorb folder-layout and protocol responsibilities, with detail spilled to references only if the body crosses roughly 750 LOC at `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md:71`. The current body is 689 LOC. A short §17 can fit below the threshold; a long, example-heavy §17 probably should not.
 
@@ -60,9 +60,9 @@ This pattern supports adding a new `caller-persistence-protocol.md` reference, o
 
 ### 5. Depth-1 behavior must be in the agent body
 
-The `@orchestrate` agent lists `@multi-ai-council` as a LEAF target at `.opencode/agent/orchestrate.md:97`, includes it in task format at `.opencode/agent/orchestrate.md:192`, and warns that LEAF agents must not dispatch sub-agents at `.opencode/agent/orchestrate.md:749`.
+The `@orchestrate` agent lists `@multi-ai-council` as a LEAF target at `.opencode/agents/orchestrate.md:97`, includes it in task format at `.opencode/agents/orchestrate.md:192`, and warns that LEAF agents must not dispatch sub-agents at `.opencode/agents/orchestrate.md:749`.
 
-The multi-ai-council body itself already switches behavior by depth: Depth 0 may dispatch seats, while Depth 1 uses inline sequential reasoning at `.opencode/agent/multi-ai-council.md:37` through `.opencode/agent/multi-ai-council.md:44`.
+The multi-ai-council body itself already switches behavior by depth: Depth 0 may dispatch seats, while Depth 1 uses inline sequential reasoning at `.opencode/agents/multi-ai-council.md:37` through `.opencode/agents/multi-ai-council.md:44`.
 
 Because Depth 1 agents cannot call a persistence helper after returning to their parent, the "parent owns helper invocation" rule must be visible in the agent body. The round-2 ADD-4 states exactly that at `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/ai-council/council-report.md:155` through `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/ai-council/council-report.md:157`.
 
@@ -78,4 +78,4 @@ Because Depth 1 agents cannot call a persistence helper after returning to their
 
 ## Next Focus
 
-Iteration 3 should answer Q3: define the §8 shared output-schema artifact. The starting recommendation is a markdown contract under `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`, with fixture coverage for the helper parser if packet 081 implements the helper.
+Iteration 3 should answer Q3: define the §8 shared output-schema artifact. The starting recommendation is a markdown contract under `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`, with fixture coverage for the helper parser if packet 081 implements the helper.

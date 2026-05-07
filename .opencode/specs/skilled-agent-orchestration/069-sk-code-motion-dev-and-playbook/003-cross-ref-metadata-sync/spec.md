@@ -21,11 +21,11 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/README.md"
-      - ".opencode/skill/sk-code/references/router/"
-      - ".opencode/skill/sk-code/references/webflow/"
-      - ".opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/README.md"
+      - ".opencode/skills/sk-code/references/router/"
+      - ".opencode/skills/sk-code/references/webflow/"
+      - ".opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -53,7 +53,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Packet** | `003-cross-ref-metadata-sync` |
-| **Implementation Surface** | `.opencode/skill/sk-code/` metadata, router docs, Webflow cross-reference docs/assets |
+| **Implementation Surface** | `.opencode/skills/sk-code/` metadata, router docs, Webflow cross-reference docs/assets |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -96,14 +96,14 @@ Add non-destructive "See also" pointers near every Webflow Motion mention, updat
 | `tasks.md` | Create | Packet 3 task ledger |
 | `checklist.md` | Create | Packet 3 verification checklist |
 | `implementation-summary.md` | Create | Completion summary and validation evidence |
-| `.opencode/skill/sk-code/references/webflow/**/*.md` | Modify | Additive cross-stack `motion_dev/` pointers in 10 Webflow docs |
-| `.opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js` | Modify | Additive JSDoc pointer for Motion wait helper |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | Resource domains, routing discussion, and Motion availability |
-| `.opencode/skill/sk-code/README.md` | Modify | Inventory and category description updates |
-| `.opencode/skill/sk-code/description.json` | Modify if exists | Capability, keyword, trigger, and timestamp refresh |
-| `.opencode/skill/sk-code/graph-metadata.json` | Refresh via tool | Derived metadata sync, no hand edits |
-| `.opencode/skill/sk-code/references/router/*.md` | Modify | Existing router docs expose `motion_dev/` as peer animation resource |
-| `.opencode/skill/sk-code/changelog/` | Modify | Add 069 changelog entry |
+| `.opencode/skills/sk-code/references/webflow/**/*.md` | Modify | Additive cross-stack `motion_dev/` pointers in 10 Webflow docs |
+| `.opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js` | Modify | Additive JSDoc pointer for Motion wait helper |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | Resource domains, routing discussion, and Motion availability |
+| `.opencode/skills/sk-code/README.md` | Modify | Inventory and category description updates |
+| `.opencode/skills/sk-code/description.json` | Modify if exists | Capability, keyword, trigger, and timestamp refresh |
+| `.opencode/skills/sk-code/graph-metadata.json` | Refresh via tool | Derived metadata sync, no hand edits |
+| `.opencode/skills/sk-code/references/router/*.md` | Modify | Existing router docs expose `motion_dev/` as peer animation resource |
+| `.opencode/skills/sk-code/changelog/` | Modify | Add 069 changelog entry |
 <!-- /ANCHOR:scope -->
 
 ---

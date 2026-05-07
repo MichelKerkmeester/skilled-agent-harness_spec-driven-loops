@@ -120,7 +120,7 @@ The audit follows runtime flow from handler entry point to readiness helper, the
 | Static | Runtime contract and side effects | `nl`, `rg`, direct file reads |
 | Coverage Review | Existing vitest and stress test coverage | `rg`, direct file reads |
 | Documentation | Watcher claim sweep and contract drift | `rg`, direct file reads |
-| Spec Validation | Packet structure and metadata | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Spec Validation | Packet structure and metadata | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

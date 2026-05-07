@@ -19,16 +19,16 @@ _memory:
       - "skill_advisor/tests parity/python-compat suites fail outside the changed advisor rebuild predicate."
       - "broad tests/ suite fails across unrelated dirty-worktree areas."
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md"
-      - ".opencode/skill/mcp-coco-index/references/tool_reference.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md"
+      - ".opencode/skills/mcp-coco-index/references/tool_reference.md"
     session_dedup:
       fingerprint: "sha256:6666666666666666666666666666666666666666666666666666666666666666"
       session_id: "026-007-012-006-cluster-a-to-e"
@@ -42,7 +42,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,20 +88,20 @@ Scope fingerprints now include sorted include/exclude glob dimensions when globs
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified | Add diagnostics and guarded full-scan readiness policy. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Modified | Enable guarded auto-rescan for query reads. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified | Enable guarded auto-rescan and normalize snake_case seed input. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` | Modified | Add scope-aware verify preflight. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Modified | Add v3 glob-aware fingerprints and legacy comparison. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` | Modified | Apply policy include/exclude glob dimensions to default config. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Pass globs into scope policy and use legacy-aware scope comparison. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Modified | Repair live-but-absent trust state. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modified | Assert post-index live publication before publishing live. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modified | Align session-prime docs with text output. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/README.md` | Modified | Add startup/compact/end registration and smoke examples. |
-| `.opencode/skill/mcp-coco-index/references/tool_reference.md` | Modified | Document live snake_case result protocol and interop note. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modified | Add read-path, verify, context, scan, and fingerprint regressions. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modified | Add ensure-ready, advisor rebuild, context-server, and query fallback regressions. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` | Modified | Add diagnostics and guarded full-scan readiness policy. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Modified | Enable guarded auto-rescan for query reads. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified | Enable guarded auto-rescan and normalize snake_case seed input. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` | Modified | Add scope-aware verify preflight. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts` | Modified | Add v3 glob-aware fingerprints and legacy comparison. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` | Modified | Apply policy include/exclude glob dimensions to default config. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Pass globs into scope policy and use legacy-aware scope comparison. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts` | Modified | Repair live-but-absent trust state. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modified | Assert post-index live publication before publishing live. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modified | Align session-prime docs with text output. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md` | Modified | Add startup/compact/end registration and smoke examples. |
+| `.opencode/skills/mcp-coco-index/references/tool_reference.md` | Modified | Document live snake_case result protocol and interop note. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/*.vitest.ts` | Modified | Add read-path, verify, context, scan, and fingerprint regressions. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/*.vitest.ts` | Modified | Add ensure-ready, advisor rebuild, context-server, and query fallback regressions. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e/*` | Created/updated | Add Phase 006 planning and completion artifacts. |
 <!-- /ANCHOR:what-built -->
 

@@ -40,11 +40,11 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/sk-code/SKILL.md",
-      ".opencode/skill/sk-code/references/router/code_surface_detection.md",
-      ".opencode/skill/sk-code/references/router/intent_classification.md",
-      ".opencode/skill/sk-code/references/router/resource_loading.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/references/router/code_surface_detection.md",
+      ".opencode/skills/sk-code/references/router/intent_classification.md",
+      ".opencode/skills/sk-code/references/router/resource_loading.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     ],
     "entities": [
       "F-001",

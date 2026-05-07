@@ -108,7 +108,7 @@ The workflow YAML initializes or resumes a `review/` packet, dispatches a single
 |-----------|-------|-------|
 | Parity contract test | Canonical naming, lifecycle terms, and mirror parity | `npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-contract-parity.vitest.ts` |
 | Reducer/schema contract test | Reducer inputs/outputs, release-readiness, severity schema, and synthesis guidance | `npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-reducer-schema.vitest.ts` |
-| Packet validation | This phase folder only | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` |
+| Packet validation | This phase folder only | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` |
 | Integrity sweeps | Named review surfaces only | `rg` stale-name audit and `git diff --check` |
 <!-- /ANCHOR:testing -->
 

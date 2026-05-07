@@ -14,7 +14,7 @@ This summary records the final delivered scope after the original playbook refac
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/global/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
 
 ---
 
@@ -38,26 +38,26 @@ The repo now has one coherent documentation contract for feature catalogs and ma
 ### Delivered Changes
 
 - `system-spec-kit/manual_testing_playbook/` was converted into an integrated root-playbook package with numbered root-level category folders, richer orchestrator-led per-feature files, and root-owned review/orchestration guidance instead of separate canonical sidecar docs.
-- `system-spec-kit/feature_catalog/` and `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` were aligned to the final feature-catalog header/frontmatter conventions, and per-feature files were updated to carry frontmatter like the root docs.
+- `system-spec-kit/feature_catalog/` and `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` were aligned to the final feature-catalog header/frontmatter conventions, and per-feature files were updated to carry frontmatter like the root docs.
 - `mcp-coco-index/manual_testing_playbook/` was aligned to the same integrated root-playbook contract and its obsolete sidecar docs were removed.
 - `.claude/skills/system-spec-kit/manual_testing_playbook/` was reshaped to mirror the 19-folder feature-catalog taxonomy.
 - `sk-doc` now ships dedicated template bundles under `assets/documentation/testing_playbook/` and `assets/documentation/feature_catalog/`.
 - `sk-doc` now includes standards/workflow references for manual testing playbooks, feature catalogs, install guides, and agent creation, with references regrouped into `references/global/` and `references/specific/`.
-- Downstream consumers in `.opencode/command/create/` and `.opencode/agent/write.md` were updated so grouped-reference paths resolve correctly.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts` was updated to read NEW-125 summary content from the root playbook and detailed contract content from the per-feature file.
+- Downstream consumers in `.opencode/commands/create/` and `.opencode/agents/write.md` were updated so grouped-reference paths resolve correctly.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts` was updated to read NEW-125 summary content from the root playbook and detailed contract content from the per-feature file.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/` | Updated | Final integrated playbook contract with per-feature files under numbered category folders |
-| `.opencode/skill/system-spec-kit/feature_catalog/` | Updated | Final feature-catalog header, TOC, and per-feature-file conventions |
-| `.opencode/skill/mcp-coco-index/manual_testing_playbook/` | Updated | Same integrated playbook contract as `system-spec-kit` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/` | Updated | Final integrated playbook contract with per-feature files under numbered category folders |
+| `.opencode/skills/system-spec-kit/feature_catalog/` | Updated | Final feature-catalog header, TOC, and per-feature-file conventions |
+| `.opencode/skills/mcp-coco-index/manual_testing_playbook/` | Updated | Same integrated playbook contract as `system-spec-kit` |
 | `.claude/skills/system-spec-kit/manual_testing_playbook/` | Updated | Folder taxonomy mirrored to the feature-catalog layout |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Updated | Root and per-feature playbook templates bundled under a dedicated folder |
-| `.opencode/skill/sk-doc/assets/documentation/feature_catalog/` | Created | Root and per-feature feature-catalog template bundle |
-| `.opencode/skill/sk-doc/references/global/` and `references/specific/` | Updated | Grouped standards/workflow references plus new creation guides |
-| `.opencode/command/create/` and `.opencode/agent/write.md` | Updated | Runtime consumers aligned to grouped `sk-doc` reference paths |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Updated | Root and per-feature playbook templates bundled under a dedicated folder |
+| `.opencode/skills/sk-doc/assets/documentation/feature_catalog/` | Created | Root and per-feature feature-catalog template bundle |
+| `.opencode/skills/sk-doc/references/global/` and `references/specific/` | Updated | Grouped standards/workflow references plus new creation guides |
+| `.opencode/commands/create/` and `.opencode/agents/write.md` | Updated | Runtime consumers aligned to grouped `sk-doc` reference paths |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Updated | Packet renamed and synchronized to the full delivered scope |
 <!-- /ANCHOR:what-built -->
 
@@ -90,14 +90,14 @@ The implementation landed in layers. First, the shipped playbook packages were c
 
 | Check | Result |
 |-------|--------|
-| `python3 .opencode/skill/sk-doc/scripts/validate_document.py` on targeted `sk-doc` docs and references, including `.opencode/skill/sk-doc/references/specific/agent_creation.md` | PASS |
-| `python3 -m json.tool .opencode/skill/sk-doc/assets/template_rules.json` | PASS |
+| `python3 .opencode/skills/sk-doc/scripts/validate_document.py` on targeted `sk-doc` docs and references, including `.opencode/skills/sk-doc/references/specific/agent_creation.md` | PASS |
+| `python3 -m json.tool .opencode/skills/sk-doc/assets/template_rules.json` | PASS |
 | Playbook count audit | PASS: `system-spec-kit 195/195`, `mcp-coco-index 20/20` |
 | Playbook root-link resolution | PASS: zero missing links for both playbook packages |
 | Frontmatter coverage audit for aligned per-feature files | PASS on the touched feature-catalog and playbook trees |
-| Grouped-reference path sweep across `sk-doc`, create commands, and `.opencode/agent/write.md` | PASS |
-| `npx vitest run tests/feature-flag-reference-docs.vitest.ts tests/hydra-spec-pack-consistency.vitest.ts` in `.opencode/skill/system-spec-kit/mcp_server` | PASS: 15 tests passed |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/021-sk-doc-feature-catalog-testing-playbook` | Re-run during packet refresh |
+| Grouped-reference path sweep across `sk-doc`, create commands, and `.opencode/agents/write.md` | PASS |
+| `npx vitest run tests/feature-flag-reference-docs.vitest.ts tests/hydra-spec-pack-consistency.vitest.ts` in `.opencode/skills/system-spec-kit/mcp_server` | PASS: 15 tests passed |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/021-sk-doc-feature-catalog-testing-playbook` | Re-run during packet refresh |
 <!-- /ANCHOR:verification -->
 
 ---

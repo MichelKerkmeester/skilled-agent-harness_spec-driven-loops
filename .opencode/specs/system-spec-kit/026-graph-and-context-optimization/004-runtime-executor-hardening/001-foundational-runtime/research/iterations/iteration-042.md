@@ -6,7 +6,7 @@ I followed the string contracts one layer deeper than iteration 41: the boolean 
 ## Findings
 
 ### Finding R42-001
-- **File:** `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`; `.opencode/command/spec_kit/plan.md`; `.opencode/skill/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
+- **File:** `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`; `.opencode/commands/spec_kit/plan.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
 - **Lines:** `spec_kit_plan_auto.yaml:375-392`; `spec_kit_plan_confirm.yaml:400-416`; `plan.md:96-98`; `transcript-planner-export.vitest.ts:146-217`
 - **Severity:** P2
 - **Description:** The `/spec_kit:plan` intake-only gate is still an interpreter-dependent string DSL. Both workflow assets bind `intake_only` and branch on the literal expressions `intake_only == TRUE` and `intake_only == FALSE`, but there is no mechanically shared enum/boolean contract proving that the command runner normalizes CLI flags to those uppercase tokens.
@@ -14,7 +14,7 @@ I followed the string contracts one layer deeper than iteration 41: the boolean 
 - **Downstream Impact:** A runner or prompt-engine change that emits `true/false`, `True/False`, or any non-`TRUE/FALSE` representation can silently invert the intake-only branch: operators will see the documented gate, but `/spec_kit:plan --intake-only` can either continue into planning or halt unexpectedly depending on string normalization outside the asset.
 
 ### Finding R42-002
-- **File:** `.opencode/skill/skill-advisor/scripts/skill_advisor_runtime.py`; `.opencode/skill/skill-advisor/scripts/skill_advisor.py`; `.opencode/skill/skill-advisor/graph-metadata.json`; `.opencode/skill/skill-advisor/feature_catalog/04--testing/02-health-check.md`; `.opencode/skill/skill-advisor/tests/test_skill_advisor.py`
+- **File:** `.opencode/skills/skill-advisor/scripts/skill_advisor_runtime.py`; `.opencode/skills/skill-advisor/scripts/skill_advisor.py`; `.opencode/skills/skill-advisor/graph-metadata.json`; `.opencode/skills/skill-advisor/feature_catalog/04--testing/02-health-check.md`; `.opencode/skills/skill-advisor/tests/test_skill_advisor.py`
 - **Lines:** `skill_advisor_runtime.py:93-97,165-203`; `skill_advisor.py:1185-1200,1841-1888`; `graph-metadata.json:1-37`; `02-health-check.md:18-20`; `test_skill_advisor.py:141-165`
 - **Severity:** P2
 - **Description:** The skill-routing authority is split across two unsynchronized inventories: runtime discovery only scans top-level `*/SKILL.md` files, while the compiled skill graph includes `graph-metadata.json` nodes such as `skill-advisor`. Health stays green even when those inventories disagree.
@@ -22,7 +22,7 @@ I followed the string contracts one layer deeper than iteration 41: the boolean 
 - **Downstream Impact:** Gate 2 can report a healthy routing stack while the direct recommendation catalog and the graph overlay disagree about the skill universe. That makes missing direct routes, stale graph-only nodes, and inventory drift hard to distinguish from intentional design, especially for operators relying on `--health` as the readiness signal.
 
 ### Finding R42-003
-- **File:** `.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
+- **File:** `.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
 - **Lines:** `manual-playbook-runner.ts:319-375,983-1016`
 - **Severity:** P2
 - **Description:** Manual playbook automation eligibility is governed by filename substrings and prose-shaped command parsing, not declared scenario metadata. The runner hard-codes path fragments that force scenarios to `UNAUTOMATABLE`, then applies a second early-exit rule when parsed commands look like shell or narrative text.

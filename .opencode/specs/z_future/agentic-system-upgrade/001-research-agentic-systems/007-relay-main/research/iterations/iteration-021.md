@@ -12,11 +12,11 @@ Relay's operator surface is smaller and easier to memorize because it exposes a 
 Compared Public's command index, workflow progression, and step counts with Relay's Claude plugin entrypoints and SDK quick-start surfaces.
 
 ## Evidence
-- Public's `spec_kit` surface advertises 8 commands, with separate `plan`, `implement`, `resume`, `handover`, `debug`, `deep-research`, `deep-review`, and `complete` entrypoints. [SOURCE: .opencode/command/spec_kit/README.txt:43-63]
-- Public's documented lifecycle explicitly chains `deep-research -> plan -> phase -> implement -> debug -> handover -> resume`, while `complete` separately combines multiple phases into one invocation. [SOURCE: .opencode/command/spec_kit/README.txt:121-145]
-- `complete` alone is a 14-step workflow with extra flags for research, phases, and auto-debug. [SOURCE: .opencode/command/spec_kit/complete.md:175-228]
-- `plan` is a separate 7-step workflow that ends by telling the operator to call `/spec_kit:implement`. [SOURCE: .opencode/command/spec_kit/plan.md:173-221]
-- `implement` is another 9-step workflow with its own save-context and handover phases. [SOURCE: .opencode/command/spec_kit/implement.md:173-225]
+- Public's `spec_kit` surface advertises 8 commands, with separate `plan`, `implement`, `resume`, `handover`, `debug`, `deep-research`, `deep-review`, and `complete` entrypoints. [SOURCE: .opencode/commands/spec_kit/README.txt:43-63]
+- Public's documented lifecycle explicitly chains `deep-research -> plan -> phase -> implement -> debug -> handover -> resume`, while `complete` separately combines multiple phases into one invocation. [SOURCE: .opencode/commands/spec_kit/README.txt:121-145]
+- `complete` alone is a 14-step workflow with extra flags for research, phases, and auto-debug. [SOURCE: .opencode/commands/spec_kit/complete.md:175-228]
+- `plan` is a separate 7-step workflow that ends by telling the operator to call `/spec_kit:implement`. [SOURCE: .opencode/commands/spec_kit/plan.md:173-221]
+- `implement` is another 9-step workflow with its own save-context and handover phases. [SOURCE: .opencode/commands/spec_kit/implement.md:173-225]
 - Relay's Claude plugin presents three primary coordination shapes, plus natural-language invocation: `/relay-team`, `/relay-fanout`, `/relay-pipeline`, or plain-English requests. [SOURCE: external/docs/plugin-claude-code.md:3-9] [SOURCE: external/docs/plugin-claude-code.md:27-63]
 - Relay's SDK quick start similarly centers one workflow builder and one high-level facade instead of many top-level lifecycle commands. [SOURCE: external/packages/sdk/README.md:11-31]
 
@@ -28,7 +28,7 @@ confidence: high
 finding: Public should merge the visible lifecycle front door into fewer operator-facing modes, keeping the underlying packet and verification machinery but demoting the current `plan` / `implement` / `complete` split from the primary mental model.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/README.txt`, top-level command docs, wrapper/help surfaces
+- **Target file or module:** `.opencode/commands/spec_kit/README.txt`, top-level command docs, wrapper/help surfaces
 - **Change type:** command UX merger
 - **Blast radius:** high
 - **Prerequisites:** decide the new front-door verbs and map current commands to them without losing advanced control paths

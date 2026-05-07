@@ -52,9 +52,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P] Create `.opencode/command/doctor/skill-advisor.md` — command markdown with frontmatter, argument-hint, allowed-tools, execution protocol header, consolidated prompt phase
-- [x] T002 [P] Create `doctor_skill-advisor_auto.yaml` — autonomous workflow definition with discovery, analysis, proposal, apply, verify phases (`.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml`)
-- [x] T003 [P] Create `doctor_skill-advisor_confirm.yaml` — interactive workflow with approval gates between phases (`.opencode/command/doctor/assets/doctor_skill-advisor_confirm.yaml`)
+- [x] T001 [P] Create `.opencode/commands/doctor/skill-advisor.md` — command markdown with frontmatter, argument-hint, allowed-tools, execution protocol header, consolidated prompt phase
+- [x] T002 [P] Create `doctor_skill-advisor_auto.yaml` — autonomous workflow definition with discovery, analysis, proposal, apply, verify phases (`.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml`)
+- [x] T003 [P] Create `doctor_skill-advisor_confirm.yaml` — interactive workflow with approval gates between phases (`.opencode/commands/doctor/assets/doctor_skill-advisor_confirm.yaml`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Update `README.txt` — add skill-advisor row to command table, update structure tree, add usage example (`.opencode/command/spec_kit/README.txt`)
+- [x] T004 Update `README.txt` — add skill-advisor row to command table, update structure tree, add usage example (`.opencode/commands/spec_kit/README.txt`)
 - [x] T005 Create `SET-UP - Skill Advisor.md` — user-facing install guide with AI-first prompt, prerequisite check, interactive flow, troubleshooting (`.opencode/install_guides/SET-UP - Skill Advisor.md`)
 - [x] T006 Update parent `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md` — add 012 row to child phase map and key implementation summary
 - [x] T007 Update parent `spec.md` — add 012 row to phase documentation map (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md`)
@@ -76,7 +76,7 @@ _memory:
 
 - [x] T009 Validate command markdown loads correctly — check frontmatter parsing, argument-hint, allowed-tools format
 - [x] T010 Validate YAML workflow syntax — parse both YAML files, check for required keys (operating_mode, workflow steps)
-- [x] T011 Run parent strict validation (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T011 Run parent strict validation (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 - [x] T012 Verify new command appears in `/doctor:skill-advisor` invocation surface
 <!-- /ANCHOR:phase-3 -->
 
@@ -87,7 +87,7 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Command file exists at `.opencode/command/doctor/skill-advisor.md`
+- [x] Command file exists at `.opencode/commands/doctor/skill-advisor.md`
 - [x] Both YAML assets exist in `assets/`
 - [x] README.txt updated
 - [x] Install guide exists at `.opencode/install_guides/SET-UP - Skill Advisor.md`

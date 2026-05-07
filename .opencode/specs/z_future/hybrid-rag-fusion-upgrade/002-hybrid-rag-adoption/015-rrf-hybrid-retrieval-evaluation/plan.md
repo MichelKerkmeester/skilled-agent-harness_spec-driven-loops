@@ -11,13 +11,13 @@ contextType: "planning"
 # Plan: 015-rrf-hybrid-retrieval-evaluation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts`
 
 ## Investigation Order
 1. Baseline current Public hybrid retrieval and current RRF tests.

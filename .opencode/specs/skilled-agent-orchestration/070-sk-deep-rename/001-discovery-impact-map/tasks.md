@@ -79,7 +79,7 @@ _memory:
 
 - [x] T011 [P] Run filename embed audit for files matching `*sk-deep-*`
 - [x] T012 [P] Run folder embed audit for directories matching `sk-deep-*`
-- [x] T013 [P] Run MCP TS/JS string literal grep in `.opencode/skill/system-spec-kit/mcp_server`
+- [x] T013 [P] Run MCP TS/JS string literal grep in `.opencode/skills/system-spec-kit/mcp_server`
 - [x] T014 [P] Run SQLite/database name audit without editing binary database files
 - [x] T015 [P] Run snapshot fixture audit for `*.snap` and `*-snapshots`
 - [x] T016 [P] Run active graph metadata audit for `.opencode/specs/**/graph-metadata.json`

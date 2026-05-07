@@ -33,15 +33,15 @@ contextType: "implementation"
 
 | File | Change | LOC |
 |------|--------|-----|
-| `.opencode/skill/cli-gemini/SKILL.md` | Created | 421 |
-| `.opencode/skill/cli-gemini/references/cli_reference.md` | Created | 450 |
-| `.opencode/skill/cli-gemini/references/integration_patterns.md` | Created | 636 |
-| `.opencode/skill/cli-gemini/references/gemini_tools.md` | Created | 474 |
-| `.opencode/skill/cli-gemini/assets/prompt_templates.md` | Created | 351 |
-| `.opencode/skill/cli-gemini/references/agent_delegation.md` | Created | 280 |
-| `.opencode/skill/cli-gemini/SKILL.md` | Rewritten | ~350 |
-| `.opencode/skill/scripts/skill_advisor.py` (Public) | Updated | +20 |
-| `.opencode/skill/scripts/skill_advisor.py` (Barter) | Updated | +20 |
+| `.opencode/skills/cli-gemini/SKILL.md` | Created | 421 |
+| `.opencode/skills/cli-gemini/references/cli_reference.md` | Created | 450 |
+| `.opencode/skills/cli-gemini/references/integration_patterns.md` | Created | 636 |
+| `.opencode/skills/cli-gemini/references/gemini_tools.md` | Created | 474 |
+| `.opencode/skills/cli-gemini/assets/prompt_templates.md` | Created | 351 |
+| `.opencode/skills/cli-gemini/references/agent_delegation.md` | Created | 280 |
+| `.opencode/skills/cli-gemini/SKILL.md` | Rewritten | ~350 |
+| `.opencode/skills/scripts/skill_advisor.py` (Public) | Updated | +20 |
+| `.opencode/skills/scripts/skill_advisor.py` (Barter) | Updated | +20 |
 
 **Total**: 6 skill files created/rewritten, 2 advisor scripts updated, ~3000 lines
 
@@ -69,7 +69,7 @@ User request → Gate 2 (skill_advisor.py) → SKILL.md loads
 ### File Structure
 
 ```
-.opencode/skill/cli-gemini/
+.opencode/skills/cli-gemini/
 ├── SKILL.md                              # Main orchestrator (v1.1.0, 8 sk-doc sections)
 ├── references/
 │   ├── cli_reference.md                  # CLI flags, commands, config

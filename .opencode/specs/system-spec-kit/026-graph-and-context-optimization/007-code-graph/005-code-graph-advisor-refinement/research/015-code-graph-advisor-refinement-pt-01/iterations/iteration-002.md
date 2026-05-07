@@ -54,7 +54,7 @@ iter 1 is structural, not a wiring bug.
   `RawCapture[]` with `kind ∈ { 'function' | 'method' | 'class' | 'interface'
   | 'type_alias' | 'enum' | 'import' | 'export' | 'variable' | 'parameter' }`
   — observe all call sites of `captures.push(...)` in the file.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:350-358,416-424,436-445,451-460,520-533,555-566`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:350-358,416-424,436-445,451-460,520-533,555-566`]
 - There is **no `call_expression` branch** in `visit(...)` and **no capture
   `kind` for call sites**. Grep for `call_expression` returns 0 hits; grep for
   `'call'` returns 0 hits in capture-emitting paths (only in error-string
@@ -66,7 +66,7 @@ iter 1 is structural, not a wiring bug.
   call sites, `extractEdges` has no AST evidence to draw from for CALLS —
   the regex fallback is the ONLY source of CALLS edges regardless of parser
   backend.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:16,645-648`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:16,645-648`]
 - **Implication:** The iter 1 hypothesis "tree-sitter queries are defined but
   bypassed" is FALSE. There is no `call_expression` query/capture at the AST
   level at all. Remediation is net-new: add a `'call'` `RawCapture.kind`,
@@ -89,7 +89,7 @@ iter 1 is structural, not a wiring bug.
   `'heuristic'` provenance. A consumer that filters on provenance (e.g. a
   scorer lane that trusts only `'ast'`/`'treesitter'` edges) will discard
   100% of CALLS edges even on successful tree-sitter parses.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:614-648`
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:614-648`
    + iter 1 F2 cross-ref]
 
 ### F10 — RQ-03 depth: 5th state is `'unavailable'` and it short-circuits ALL other checks
@@ -113,7 +113,7 @@ machine:
   calls `createTrustState` with `daemonAvailable: false`, forcing
   `'unavailable'` with explicit generation 0. This is the "fail open" route
   used when rebuild fails catastrophically.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:26-82`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:26-82`]
 - **Five states confirmed:** `'live' | 'stale' | 'absent' | 'unavailable'`
   (the type alias) plus the recovered-generation downgrade path from iter 1
   INV-F4 that maps `'live' → 'stale'`. The recovered-downgrade path lives in
@@ -132,7 +132,7 @@ The actual cache-invalidation primitive is different:
   `onCacheInvalidation`, and `invalidateSkillGraphCaches(event)` fans the
   event out to ALL listeners with a `generation`, `changedPaths`, and
   `invalidatedAt` timestamp.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:5-48`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:5-48`]
 - The only persisted state is `lastInvalidation: CacheInvalidationEvent | null`
   (a module-level `let`). There is no lock around the `listeners: Set` or
   `lastInvalidation`.
@@ -164,7 +164,7 @@ The actual cache-invalidation primitive is different:
      MDN-guarantees insertion order but not stability under concurrent
      modification). A new listener added during dispatch may miss the current
      event.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:14-39`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/cache-invalidation.ts:14-39`]
 - `rebuild-from-source.ts` (95 lines) has NO lock primitives (grep
   `lock|mutex|concurrent|acquire|release` returns 0 hits). Rebuilds rely on
   single-writer discipline at the process level rather than in-code locking.
@@ -202,7 +202,7 @@ Depth read confirms iter 1 F7 + extends it:
   `deltaVsLive` are **optional**. The eligibility check at
   `consecutivePasses(...)` reads ONLY `entry.passed` (a boolean), ignoring
   the optional magnitude fields entirely.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:7-41`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:7-41`]
 - **RQ-04 angle:** Two consecutive `passed=true` cycles are sufficient for
   eligibility regardless of margin. A cycle passing with `deltaVsLive=+0.01`
   counts the same as `deltaVsLive=+0.15`. This magnifies the iter 1 F7 concern
@@ -221,7 +221,7 @@ Direct confirmation of iter 1 F7's booleanization concern:
   `readonly ambiguityStable: boolean`
   `readonly derivedLaneAttributionComplete: boolean`
   `readonly stuffingRejected: boolean`
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:49-56`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/gate-bundle.ts:49-56`]
 - The gate evaluator passes each through as the gate's `passed` value
   directly [`gate-bundle.ts:123,129,135`]. No numeric threshold, no scoring.
 - The other nine gates DO use numeric thresholds

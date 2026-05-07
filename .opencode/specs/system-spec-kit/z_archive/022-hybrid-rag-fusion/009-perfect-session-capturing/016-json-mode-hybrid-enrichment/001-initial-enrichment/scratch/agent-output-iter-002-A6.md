@@ -23,7 +23,7 @@ The `normalizeInputData()` function in `input-normalizer.ts:414-530` has TWO dis
 
 **Q11 CONFIRMED**: When both `userPrompts` AND `filesModified` are present in JSON input, the fast path takes over and `filesModified` is **silently dropped**. The raw `filesModified` strings never become `FILES` entries. Only pre-formatted `FILES` array entries survive the fast path.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:414-530]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:414-530]
 
 ### Finding 2: Fast Path Field Propagation Inventory
 
@@ -50,7 +50,7 @@ Fields that are SILENTLY DROPPED on fast path:
 
 **Important nuance for `sessionSummary`**: Although the fast path does not explicitly convert `sessionSummary` into an observation, because the clone is a full copy of the input object and `NormalizedData` has an index signature (`[key: string]: unknown`), the raw `sessionSummary` string DOES survive on the cloned object. It is later consumed by `collect-session-data.ts` which reads `collectedData.sessionSummary` directly (line 411, 447). So `sessionSummary` is NOT truly dropped -- it just bypasses the observation conversion.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:437-491]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:437-491]
 
 ### Finding 3: Enrichment Phase Priority Chain (workflow.ts:268-390)
 
@@ -68,7 +68,7 @@ For captured sessions, the merge priorities are:
 | `recentContext` | **APPEND** -- spec-folder recent context appended | Existing first, enrichment appended |
 | `headRef`, `commitRef`, `repositoryState`, `isDetachedHead` | **OVERWRITE** from git context | Git enrichment wins (no prior value) |
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:268-390]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:268-390]
 
 ### Finding 4: Template Assembly Priority Chain (workflow.ts:1031-1099)
 
@@ -98,7 +98,7 @@ This means **later spreads override earlier ones**. The full priority chain (low
 
 **Critical bug exposed**: `conversations` spread at line 1033 includes `TOOL_COUNT: 0` which silently overwrites `sessionData.TOOL_COUNT`. This is only fixed for captured-session mode (line 1040 re-asserts `patchedToolCount`). For non-captured sessions, if `conversations.TOOL_COUNT` is 0 and `sessionData.TOOL_COUNT` is non-zero, the conversations value wins incorrectly. The comment at lines 1035-1039 documents this as intentional for non-captured flows, but it may still lose legitimate tool count data.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1031-1099]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1031-1099]
 
 ### Finding 5: sessionSummary Propagation Through collect-session-data.ts
 
@@ -111,7 +111,7 @@ The `sessionSummary` field from JSON input has this lifecycle:
 
 So `sessionSummary` feeds into: (a) memory title candidate, (b) session status heuristic, (c) completion percentage. It does NOT directly become the `SUMMARY` template field -- that comes from `collectSessionData()` which synthesizes its own `SUMMARY` from observations.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:354,411,447,990]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:354,411,447,990]
 
 ### Finding 6: JSON File Mode Bypasses All Enrichment
 
@@ -130,7 +130,7 @@ All template data comes EXCLUSIVELY from:
 
 This is by design -- JSON file input is considered "authoritative" and should not be diluted with enrichment. But it means JSON-mode memories may lack git context, spec-folder context, and auto-discovered trigger phrases that captured-session memories get for free.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:273-274]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:273-274]
 
 ### Finding 7: SUMMARY Field Priority (Complex Three-Way Merge)
 
@@ -144,12 +144,12 @@ The `SUMMARY` field has the most complex priority chain:
 
 The implication: `collectedData.SUMMARY` mutations from enrichment DO propagate because `collectSessionData()` receives the enriched `collectedData` object (line 757). The enriched SUMMARY flows into narrative synthesis.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:332-369,597-602,724-728,757,1032]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:332-369,597-602,724-728,757,1032]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1-1100` -- Main workflow, enrichment, template assembly
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1-530` -- Two-path architecture, field propagation
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:351-991` -- sessionSummary consumption, _JSON_SESSION_SUMMARY
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1-1100` -- Main workflow, enrichment, template assembly
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1-530` -- Two-path architecture, field propagation
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:351-991` -- sessionSummary consumption, _JSON_SESSION_SUMMARY
 
 ## Assessment
 - New information ratio: 0.85

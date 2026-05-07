@@ -13,12 +13,12 @@ _memory:
     next_safe_action: "Commit + push placeholder fix"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh
-      - .opencode/skill/system-spec-kit/scripts/rules/check-description-shape.sh
-      - .opencode/skill/system-spec-kit/scripts/lib/validator-registry.json
-      - .opencode/skill/system-spec-kit/SKILL.md
-      - .opencode/skill/mcp-coco-index/SKILL.md
-      - .opencode/skill/mcp-coco-index/changelog/v1.3.1.0.md
+      - .opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh
+      - .opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh
+      - .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json
+      - .opencode/skills/system-spec-kit/SKILL.md
+      - .opencode/skills/mcp-coco-index/SKILL.md
+      - .opencode/skills/mcp-coco-index/changelog/v1.3.1.0.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-004-complete"
@@ -31,7 +31,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 

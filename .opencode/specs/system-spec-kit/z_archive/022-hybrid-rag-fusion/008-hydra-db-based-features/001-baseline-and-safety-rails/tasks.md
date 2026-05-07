@@ -59,12 +59,12 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 
 ### Track B: Runtime and Tooling Hardening
 
-- [x] T010 Add a working build script in `.opencode/skill/system-spec-kit/mcp_server/package.json`
-- [x] T011 Isolate Hydra roadmap capability flags in `.opencode/skill/system-spec-kit/mcp_server/lib/config/capability-flags.ts`
-- [x] T012 Stabilize baseline snapshot behavior in `.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts`
-- [x] T013 Export reusable helpers in `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts`
-- [x] T014 Export reusable helpers in `.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts`
-- [x] T015 Add schema compatibility validation in `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
+- [x] T010 Add a working build script in `.opencode/skills/system-spec-kit/mcp_server/package.json`
+- [x] T011 Isolate Hydra roadmap capability flags in `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts`
+- [x] T012 Stabilize baseline snapshot behavior in `.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts`
+- [x] T013 Export reusable helpers in `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts`
+- [x] T014 Export reusable helpers in `.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts`
+- [x] T015 Add schema compatibility validation in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`
 
 
 ---

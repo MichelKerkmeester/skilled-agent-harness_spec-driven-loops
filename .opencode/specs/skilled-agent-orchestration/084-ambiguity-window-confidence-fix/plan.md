@@ -40,9 +40,9 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | TypeScript (Node.js, ESM, vitest) |
-| **Module** | `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts` |
-| **Build** | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` |
-| **Test** | `npx vitest run --root .opencode/skill/system-spec-kit/mcp_server` (focused on scorer suites) |
+| **Module** | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts` |
+| **Build** | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` |
+| **Test** | `npx vitest run --root .opencode/skills/system-spec-kit/mcp_server` (focused on scorer suites) |
 
 ### Overview
 Replace the single-margin (score-only) ambiguity check with a dual-margin OR: a candidate is in the ambiguity cluster if the score gap to the top OR the confidence gap to the top is within 0.05. Score margin keeps ranking-alignment (F-012-C2-04 invariant). Confidence margin restores feature-catalog-documented behavior and resolves the SAD-002 calibration gap.
@@ -157,7 +157,7 @@ The widening at step 2 propagates to step 3 automatically; no other call sites c
 
 - **Trigger**: Vitest regression beyond the two updated suites, or SAD-002 still reports `ambiguous: false` after the change
 - **Procedure**:
-  1. `git checkout HEAD -- .opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts`
+  1. `git checkout HEAD -- .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts`
   2. Revert the test + catalog edits
   3. Rebuild and re-run vitest to confirm baseline
   4. Open follow-on packet to investigate the deeper interaction

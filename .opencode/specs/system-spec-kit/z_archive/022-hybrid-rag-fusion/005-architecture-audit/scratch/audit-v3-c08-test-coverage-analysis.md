@@ -1,9 +1,9 @@
 # C8 Test Coverage & Quality Audit
 
-Scope: first-party tests and test configuration under `.opencode/skill/system-spec-kit/`, including `mcp_server/tests`, `scripts/tests`, `shared/*.test.ts`, and Vitest/package configuration.
+Scope: first-party tests and test configuration under `.opencode/skills/system-spec-kit/`, including `mcp_server/tests`, `scripts/tests`, `shared/*.test.ts`, and Vitest/package configuration.
 
 Command snapshot:
-- Requested raw count: `find .opencode/skill/system-spec-kit -name '*.test.ts' -o -name '*.spec.ts' | wc -l` => `161`
+- Requested raw count: `find .opencode/skills/system-spec-kit -name '*.test.ts' -o -name '*.spec.ts' | wc -l` => `161`
 - First-party count excluding `node_modules`: `.test.ts`/`.spec.ts` => `2`
 - First-party count excluding `node_modules`: `.vitest.ts` => `332`
 - `__tests__/` directories found: none

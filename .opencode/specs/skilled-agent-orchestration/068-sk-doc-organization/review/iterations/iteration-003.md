@@ -39,11 +39,11 @@ Targeted regex `assets/(documentation/(feature_catalog|testing_playbook)|agents/
 **ZERO hits.** ✓
 
 ### 8. Broader sweep (sk-doc only, excluding changelog)
-- `rg "agents/(agent|command)_template" .opencode/skill/sk-doc/` ⇒ **1 active hit:**
-  - `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770` →
+- `rg "agents/(agent|command)_template" .opencode/skills/sk-doc/` ⇒ **1 active hit:**
+  - `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770` →
     `- [command_template.md](../agents/command_template.md) - Command file templates`
   - Resolved path `assets/agents/command_template.md` does **not exist** (Phase 1 `git rm -r assets/agents/`); current location is `assets/command_template.md`.
-- `rg "assets/agents/" .opencode/skill/sk-doc/` ⇒ 2 hits, both **illustrative examples** in skill-creation guidance (`assets/skill/skill_md_template.md`, `references/specific/skill_creation.md`) — they describe a generic `assets/<category>/` convention for arbitrary skills, not references to the relocated files. Not broken refs.
+- `rg "assets/agents/" .opencode/skills/sk-doc/` ⇒ 2 hits, both **illustrative examples** in skill-creation guidance (`assets/skill/skill_md_template.md`, `references/specific/skill_creation.md`) — they describe a generic `assets/<category>/` convention for arbitrary skills, not references to the relocated files. Not broken refs.
 
 ### 9. Scripts hits (`assets` token in `sk-doc/scripts/`)
 All hits are generic scaffolding (`init_skill.py`, `package_skill.py`, `extract_structure.py`, `validate_document.py`). The only resolved path used at runtime is `assets/template_rules.json`, which still exists. No regressions. ✓
@@ -55,9 +55,9 @@ All hits are generic scaffolding (`init_skill.py`, `package_skill.py`, `extract_
 ### P1 — 1 finding (NEW)
 
 **P1-003-A: Broken cross-link in `frontmatter_templates.md` to relocated agent template**
-- File: `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md:770`
+- File: `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:770`
 - Current: `- [command_template.md](../agents/command_template.md) - Command file templates`
-- Resolves to: `.opencode/skill/sk-doc/assets/agents/command_template.md` (does not exist; `assets/agents/` rmdir'd in Phase 1)
+- Resolves to: `.opencode/skills/sk-doc/assets/agents/command_template.md` (does not exist; `assets/agents/` rmdir'd in Phase 1)
 - Correct path post-reorg: `../command_template.md` (now at `assets/command_template.md`)
 - Dimension: traceability + correctness
 - Impact: in-skill doc cross-link is dead; readers following the link from frontmatter guidance get a 404. Not runtime-breaking (no script consumes this link), but it is a real broken reference inside active documentation that escaped Phase 2's substring substitution sweep — pattern `agents/command_template` was apparently not in the substitution set, or the file was filtered out.
@@ -66,7 +66,7 @@ All hits are generic scaffolding (`init_skill.py`, `package_skill.py`, `extract_
 ### P2 — 1 finding (NEW, advisory)
 
 **P2-003-A: Illustrative `assets/agents/` examples may mislead skill authors**
-- Files: `.opencode/skill/sk-doc/assets/skill/skill_md_template.md`, `.opencode/skill/sk-doc/references/specific/skill_creation.md`
+- Files: `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`, `.opencode/skills/sk-doc/references/specific/skill_creation.md`
 - These are template/example listings of common `assets/<category>/` subdirs. They are not broken refs (they don't resolve to a path), but post-reorg sk-doc itself no longer uses an `assets/agents/` subdir, so the example is now inconsistent with sk-doc's own layout. Cosmetic — fix opportunistically.
 
 ## Verdict

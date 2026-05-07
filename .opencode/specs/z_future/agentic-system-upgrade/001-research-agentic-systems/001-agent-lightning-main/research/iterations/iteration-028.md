@@ -12,10 +12,10 @@ It should become mostly automatic. Gate 2 is important as a routing policy, but 
 I compared Gate 2's written contract, the advisor script's stated role, and skill-loading mechanics with the external repo's contributor flow.
 
 ## Evidence
-- AGENTS requires Gate 2 on non-trivial tasks and explicitly says to run `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`. [SOURCE: AGENTS.md:175-179]
+- AGENTS requires Gate 2 on non-trivial tasks and explicitly says to run `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`. [SOURCE: AGENTS.md:175-179]
 - `CLAUDE.md` repeats the same Gate 2 requirement and threshold. [SOURCE: CLAUDE.md:123-130]
-- The skill advisor script identifies itself as the mechanism used by Gate 2 for skill routing. [SOURCE: .opencode/skill/scripts/skill_advisor.py:8-10]
-- The script also codifies a stricter routing threshold than Gate 1 readiness. [SOURCE: .opencode/skill/scripts/skill_advisor.py:1252-1253]
+- The skill advisor script identifies itself as the mechanism used by Gate 2 for skill routing. [SOURCE: .opencode/skills/scripts/skill_advisor.py:8-10]
+- The script also codifies a stricter routing threshold than Gate 1 readiness. [SOURCE: .opencode/skills/scripts/skill_advisor.py:1252-1253]
 - Public's skill model expects explicit activation and resource-loading behavior after routing. [SOURCE: AGENTS.md:328-341]
 - Agent Lightning's contributor guidance does not expose a comparable routing ceremony before ordinary work; contributors read the repo rules and proceed with normal commands, docs, and examples. [SOURCE: external/AGENTS.md:3-16]
 

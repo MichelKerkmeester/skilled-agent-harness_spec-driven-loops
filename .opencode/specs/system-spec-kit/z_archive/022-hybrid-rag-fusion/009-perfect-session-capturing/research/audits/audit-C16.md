@@ -10,8 +10,8 @@ reasoning summaries: none
 session id: 019ccec9-e1c5-7332-b9fa-d80703e51d30
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts (201 lines).
-Also read /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md to understand what the renderer targets.
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts (201 lines).
+Also read /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md to understand what the renderer targets.
 
 Audit specifically:
 1. MUSTACHE RENDERING: Is the Mustache rendering configured correctly? Escaping?
@@ -55,9 +55,9 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 Review focus is clear: I’ll read both files line-by-line first, then run a point-by-point audit against your 6 criteria and report every finding in your exact format. I’m starting by loading the full renderer and template with line numbers for precise references.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-     201 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+     201 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
      1	// ---------------------------------------------------------------
      2	// MODULE: Template Renderer
      3	// ---------------------------------------------------------------
@@ -78,7 +78,7 @@ exec
     18	export type TemplateContext = Record<string, unknown>;
     19	
  succeeded in 51ms:
-     904 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md
+     904 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md
      1	---
      2	title: "{{MEMORY_DASHBOARD_TITLE}}"
      3	description: "Session context memory template for Spec Kit indexing."
@@ -101,7 +101,7 @@ exec
 codex
 I’ve finished reading both files fully and I’m now validating edge cases against the actual template usage (especially YAML/table placeholders and conditional blocks) so each finding is concrete and line-referenced.
 exec
-/bin/zsh -lc "rg -o \"\\{\\{[#\\"'^/]?([A-Z0-9_'"\\.]+)\\}\\}\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md' | sed -E 's/.*\\{\\{[#\\"'^/]?([A-Z0-9_'"\\.]+)\\}\\}/\\1/' | sort | uniq -c | sort -nr | head -120" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -o \"\\{\\{[#\\"'^/]?([A-Z0-9_'"\\.]+)\\}\\}\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md' | sed -E 's/.*\\{\\{[#\\"'^/]?([A-Z0-9_'"\\.]+)\\}\\}/\\1/' | sort | uniq -c | sort -nr | head -120" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
   36 HAS_WORKFLOW_DIAGRAM
   28 HAS_OBSERVATIONS
   24 HAS_IMPLEMENTATION_GUIDE
@@ -126,7 +126,7 @@ codex
 I hit a sandbox limitation on inline script execution (temp-file creation is blocked in read-only mode), so I’m continuing with direct static analysis from the loaded source and template content. I have enough line-level evidence to finalize the audit now.
 codex
 ### FINDING-01: Custom Regex Engine Is Not Mustache-Compliant
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** The renderer advertises “Mustache-based” but implements a regex subset.
@@ -136,7 +136,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: No Escaping for `{{...}}` Values
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149)
 - **Severity:** HIGH
 - **Category:** SECURITY
 - **Current Behavior:** Values are injected with `String(value)`; no HTML/Markdown/YAML escaping.
@@ -146,7 +146,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Truthiness Rules Differ from Mustache
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:49`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:49), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:53`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:53)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:49`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:49), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:53`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:53)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `0`, empty strings, and `"false"` are treated as falsy.
@@ -156,7 +156,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Object Section Context Is Not Entered
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:93`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:93), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:94`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:94)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:93`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:93), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:94`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:94)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{#OBJ}}...{{/OBJ}}` renders with `mergedData`, not `OBJ` as the active context.
@@ -166,7 +166,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Dotted Names Are Not Resolved as Paths
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:120`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:120)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:120`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:120)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{a.b}}` is looked up as literal key `"a.b"`.
@@ -176,7 +176,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Optional Placeholder Suppression Only Silences Warnings
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:29`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:29), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:124`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:124), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:654`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:654), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:733`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:733)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:29`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:29), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:124`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:124), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:654`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:654), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:733`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:733)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Missing optional fields become empty strings but their rows/keys remain.
@@ -186,7 +186,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Whitespace Cleanup Misses CRLF and Space-Only Blank Lines
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:59`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:59), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:70)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:59`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:59), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:70)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Only `\n{3,}` is collapsed.
@@ -196,7 +196,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Section Key Pattern Is Overly Restrictive
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:82`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:82), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:110`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:110)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:82`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:82), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:110`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:110)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Section names allow `\w+` only.
@@ -206,7 +206,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Comment Stripping Can Remove Legitimate Content
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:64`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:64), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:69)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:64`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:64), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:69)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Broad regexes remove matching HTML comment blocks anywhere in rendered output.
@@ -216,7 +216,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Template Read Path Does Not Cache
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179)
 - **Severity:** LOW
 - **Category:** PERFORMANCE
 - **Current Behavior:** Template file is read from disk on every call.
@@ -226,7 +226,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Access Errors Are Misreported as “Not Found”
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:164`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:164), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:171`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:171)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:164`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:164), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:171`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:171)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any `fs.access` failure is converted to “Template not found.”
@@ -236,7 +236,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: TOCTOU Between `access()` and `readFile()`
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:166`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:166), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:166`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:166), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** File is checked, then read in separate operations.
@@ -246,7 +246,7 @@ codex
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: Object/Array Scalar Rendering Is Lossy
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:130`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:130), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:130`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:130), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** For object values in scalar placeholders, only first key is rendered.
@@ -265,7 +265,7 @@ codex
 tokens used
 25,434
 ### FINDING-01: Custom Regex Engine Is Not Mustache-Compliant
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:4), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:4), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** The renderer advertises “Mustache-based” but implements a regex subset.
@@ -275,7 +275,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: No Escaping for `{{...}}` Values
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:149)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:149)
 - **Severity:** HIGH
 - **Category:** SECURITY
 - **Current Behavior:** Values are injected with `String(value)`; no HTML/Markdown/YAML escaping.
@@ -285,7 +285,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-03: Truthiness Rules Differ from Mustache
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:49`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:49), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:53`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:53)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:49`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:49), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:53`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:53)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `0`, empty strings, and `"false"` are treated as falsy.
@@ -295,7 +295,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Object Section Context Is Not Entered
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:93`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:93), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:94`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:94)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:93`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:93), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:94`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:94)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{#OBJ}}...{{/OBJ}}` renders with `mergedData`, not `OBJ` as the active context.
@@ -305,7 +305,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Dotted Names Are Not Resolved as Paths
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:120`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:120)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:119), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:120`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:120)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** `{{a.b}}` is looked up as literal key `"a.b"`.
@@ -315,7 +315,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Optional Placeholder Suppression Only Silences Warnings
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:29`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:29), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:124`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:124), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:654`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:654), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:733`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:733)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:29`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:29), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:124`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:124), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:654`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:654), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:733`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:733)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Missing optional fields become empty strings but their rows/keys remain.
@@ -325,7 +325,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Whitespace Cleanup Misses CRLF and Space-Only Blank Lines
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:59`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:59), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:70)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:59`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:59), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:70`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:70)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Only `\n{3,}` is collapsed.
@@ -335,7 +335,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Section Key Pattern Is Overly Restrictive
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:82`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:82), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:110`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:110)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:82`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:82), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:110`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:110)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** Section names allow `\w+` only.
@@ -345,7 +345,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Comment Stripping Can Remove Legitimate Content
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:64`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:64), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:69)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:64`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:64), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:69`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:69)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** Broad regexes remove matching HTML comment blocks anywhere in rendered output.
@@ -355,7 +355,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-10: Template Read Path Does Not Cache
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179)
 - **Severity:** LOW
 - **Category:** PERFORMANCE
 - **Current Behavior:** Template file is read from disk on every call.
@@ -365,7 +365,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-11: Access Errors Are Misreported as “Not Found”
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:164`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:164), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:171`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:171)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:164`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:164), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:171`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:171)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Any `fs.access` failure is converted to “Template not found.”
@@ -375,7 +375,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: TOCTOU Between `access()` and `readFile()`
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:166`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:166), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:179)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:166`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:166), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:179)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** File is checked, then read in separate operations.
@@ -385,7 +385,7 @@ tokens used
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-13: Object/Array Scalar Rendering Is Lossy
-- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:130`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:130), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:141)
+- **File:** [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:130`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:130), [`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141`](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:141)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** For object values in scalar placeholders, only first key is rendered.

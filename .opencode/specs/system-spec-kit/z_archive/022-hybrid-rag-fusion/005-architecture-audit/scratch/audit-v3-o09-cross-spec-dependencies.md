@@ -57,7 +57,7 @@ The epic contains 19 numbered folders on disk (18 unique phase numbers, with `01
 | 009 (session-capturing) | None explicit | None explicit |
 | 010 (skill-alignment) | 011 (command-alignment, completed) | None explicit |
 | 011 (command-alignment) | `tool-schemas.ts` (MCP tools = 32) | 010 (skill alignment references its completion), 013 (AGENTS.md references 7-command suite) |
-| 012 (agents-alignment) | Canonical `.opencode/agent/` definitions | None explicit |
+| 012 (agents-alignment) | Canonical `.opencode/agents/` definitions | None explicit |
 | 013 (agents-md-alignment) | 011 (7-command suite as source of truth) | None explicit |
 | 014 (manual-testing) | Feature catalog, playbook | None explicit |
 | 015 (MCP README) | 006 (feature catalog), 011 (command alignment) | 017a (links to MCP README), 018 (links to MCP README) |

@@ -90,7 +90,7 @@ Restore reliable, visible hook behavior across OpenCode, Codex, and Copilot whil
 |-----------|-------------|-------------|
 | `.opencode/plugins/spec-kit-compact-code-graph.js` | Modify | Emit visible diagnostics when transport parsing fails. |
 | `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs` | Modify | Emit stderr diagnostics when `opencodeTransport` is missing. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Modify | Assert the diagnostic path fires. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Modify | Assert the diagnostic path fires. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/**` | Modify | Repair validation, evidence, continuity, metadata, and remediation summary. |
 | Command debug doc | Create if required | Restore an intentional referenced command doc only if validation proves the reference is current. |
 <!-- /ANCHOR:scope -->

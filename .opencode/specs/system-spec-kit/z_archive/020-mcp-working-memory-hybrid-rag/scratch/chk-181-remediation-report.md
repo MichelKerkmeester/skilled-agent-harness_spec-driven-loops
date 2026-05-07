@@ -11,7 +11,7 @@
 1. Requirement source: `spec.md` (SC-002: context errors <= 25% baseline).
 2. Verification gate: `checklist.md` CHK-181.
 3. Consolidated status: `scratch/final-metrics.md`.
-4. Metric producer: `.opencode/skill/system-spec-kit/scripts/evals/deleted-phase1-5-shadow-eval-script`.
+4. Metric producer: `.opencode/skills/system-spec-kit/scripts/evals/deleted-phase1-5-shadow-eval-script`.
 5. Input dataset: `scratch/eval-dataset-1000.json`.
 6. Output artifacts: `scratch/phase1-5-eval-results.md`, `scratch/phase1-5-context-error-telemetry.json`.
 
@@ -40,7 +40,7 @@
 ## Commands Executed
 
 - `npx tsx scripts/evals/deleted-phase1-5-shadow-eval-script ../../specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`
 
 ## Validation Notes
 

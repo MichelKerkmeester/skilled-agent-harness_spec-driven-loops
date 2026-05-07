@@ -58,20 +58,20 @@ From direct template inspection, the complete Level 2 contracts are:
 - `verification` -> `## Verification`
 - `limitations` -> `## Known Limitations`
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/level_2/*.md -- all 5 files]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/level_2/*.md -- all 5 files]
 
 ### 3. Level 3 decision-record.md Uses Dynamic ADR Anchors
 Unlike the other doc types, decision-record.md uses a parametric anchor pattern: `adr-NNN` wraps each ADR, with sub-anchors `adr-NNN-context`, `adr-NNN-decision`, `adr-NNN-alternatives`, `adr-NNN-consequences`, `adr-NNN-five-checks`, `adr-NNN-impl`. The template ships with ADR-001 as an example. This means the contract cannot be a fixed table -- it must specify the PATTERN (e.g., "each ADR must have these 6 sub-anchors in this order") rather than fixed anchor names.
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/level_3/decision-record.md:21-118]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/level_3/decision-record.md:21-118]
 
 ### 4. Shared Reference File vs. Duplication: Analysis
 All 4 CLIs have @speckit agent definitions:
 - `.claude/agents/speckit.md` (Claude Code)
-- `.opencode/agent/speckit.md` (Copilot / OpenCode default)
+- `.opencode/agents/speckit.md` (Copilot / OpenCode default)
 - `.codex/agents/speckit.toml` (Codex CLI -- TOML format, different structure)
 - `.gemini/agents/speckit.md` (Gemini CLI)
 
-**Arguments for shared reference file** (e.g., `.opencode/skill/system-spec-kit/references/template-compliance-contract.md`):
+**Arguments for shared reference file** (e.g., `.opencode/skills/system-spec-kit/references/template-compliance-contract.md`):
 - Single source of truth -- update once, all CLIs benefit
 - Templates already live in the skill folder; the contract is a derivative
 - Claude Code, Copilot, and Gemini can all `Read()` a shared file at runtime
@@ -166,9 +166,9 @@ Phase folders (e.g., `specs/NNN-name/001-phase/`) use `inferPhaseSpecAddenda()` 
 [INFERENCE: based on template-structure.js architecture from iteration 3 + phase workflow knowledge]
 
 ### 7. Implementation Sequence for Deploying the Contract
-1. **Create shared reference file**: `.opencode/skill/system-spec-kit/references/template-compliance-contract.md` with full contract + examples
+1. **Create shared reference file**: `.opencode/skills/system-spec-kit/references/template-compliance-contract.md` with full contract + examples
 2. **Update `.claude/agents/speckit.md`**: Replace "Quick Reference: Level 2 spec.md scaffold" (lines 327-339) with the full 49-line contract
-3. **Update `.opencode/agent/speckit.md`**: Same replacement (Copilot)
+3. **Update `.opencode/agents/speckit.md`**: Same replacement (Copilot)
 4. **Update `.gemini/agents/speckit.md`**: Same replacement
 5. **Update `.codex/agents/speckit.toml`**: Embed contract in the agent instruction field (may need reformatting for TOML string format)
 6. **Collapse timing directives**: In all agent definitions, replace the 3 conflicting timing directives with one: "After writing ANY spec folder .md file, run `validate.sh [SPEC_FOLDER] --strict`. Fix ALL errors before proceeding."
@@ -177,13 +177,13 @@ Phase folders (e.g., `specs/NNN-name/001-phase/`) use `inferPhaseSpecAddenda()` 
 
 ## Sources Consulted
 - `.claude/agents/speckit.md` (lines 317-339, 231-237) -- existing scaffold and rules
-- `.opencode/skill/system-spec-kit/templates/level_2/spec.md` -- anchors and headers
-- `.opencode/skill/system-spec-kit/templates/level_2/plan.md` -- anchors and headers
-- `.opencode/skill/system-spec-kit/templates/level_2/tasks.md` -- anchors and headers
-- `.opencode/skill/system-spec-kit/templates/level_2/checklist.md` -- anchors and headers
-- `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md` -- anchors and headers
-- `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md` -- ADR anchor pattern
-- `.opencode/agent/speckit.md`, `.codex/agents/speckit.toml`, `.gemini/agents/speckit.md` -- cross-CLI agent definitions
+- `.opencode/skills/system-spec-kit/templates/level_2/spec.md` -- anchors and headers
+- `.opencode/skills/system-spec-kit/templates/level_2/plan.md` -- anchors and headers
+- `.opencode/skills/system-spec-kit/templates/level_2/tasks.md` -- anchors and headers
+- `.opencode/skills/system-spec-kit/templates/level_2/checklist.md` -- anchors and headers
+- `.opencode/skills/system-spec-kit/templates/level_2/implementation-summary.md` -- anchors and headers
+- `.opencode/skills/system-spec-kit/templates/level_3/decision-record.md` -- ADR anchor pattern
+- `.opencode/agents/speckit.md`, `.codex/agents/speckit.toml`, `.gemini/agents/speckit.md` -- cross-CLI agent definitions
 
 ## Assessment
 - New information ratio: 0.71

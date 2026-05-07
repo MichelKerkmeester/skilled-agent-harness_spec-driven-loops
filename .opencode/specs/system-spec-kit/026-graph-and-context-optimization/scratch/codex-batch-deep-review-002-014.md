@@ -34,9 +34,9 @@ Each phase gets its own review packet under `.opencode/specs/system-spec-kit/026
 ## MANDATORY READS (read once at start)
 
 1. The skill protocol you're executing (informational context):
-   - `.opencode/skill/sk-deep-review/SKILL.md` (sections §1 Purpose, §2 Contract, §3 Phases)
-   - `.opencode/skill/sk-deep-review/assets/deep_review_config.json` (config schema)
-   - `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` (strategy template)
+   - `.opencode/skills/sk-deep-review/SKILL.md` (sections §1 Purpose, §2 Contract, §3 Phases)
+   - `.opencode/skills/sk-deep-review/assets/deep_review_config.json` (config schema)
+   - `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` (strategy template)
 
 2. A reference example of a completed iteration file (to match format):
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/iterations/iteration-001.md` (from the earlier 15-iter parent review)

@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - "tasks.md"
-      - ".opencode/skill/deep-review"
-      - ".opencode/skill/deep-research"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/deep-review"
+      - ".opencode/skills/deep-research"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-002"
@@ -64,8 +64,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Rename `.opencode/skill/sk-deep-review/` to `.opencode/skill/deep-review/` (evidence: `git mv` attempted first and failed on `.git/index.lock`; filesystem rename completed)
-- [x] T006 Rename `.opencode/skill/sk-deep-research/` to `.opencode/skill/deep-research/` (evidence: filesystem rename completed after Git index write was blocked)
+- [x] T005 Rename `.opencode/skills/sk-deep-review/` to `.opencode/skills/deep-review/` (evidence: `git mv` attempted first and failed on `.git/index.lock`; filesystem rename completed)
+- [x] T006 Rename `.opencode/skills/sk-deep-research/` to `.opencode/skills/deep-research/` (evidence: filesystem rename completed after Git index write was blocked)
 - [x] T007 Verify new folders exist and old folders are gone (evidence: `OK: old folders gone`; `ls` shows both new roots)
 <!-- /ANCHOR:phase-2 -->
 
@@ -85,8 +85,8 @@ _memory:
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: B.3 Internal Content Updates
 
-- [x] T012 Replace old self-references inside `.opencode/skill/deep-review/` (evidence: internal grep clean)
-- [x] T013 Replace old self-references inside `.opencode/skill/deep-research/` (evidence: internal grep clean)
+- [x] T012 Replace old self-references inside `.opencode/skills/deep-review/` (evidence: internal grep clean)
+- [x] T013 Replace old self-references inside `.opencode/skills/deep-research/` (evidence: internal grep clean)
 - [x] T014 Replace cross-references between the renamed folders (evidence: both renamed folders grep clean for both old IDs)
 - [x] T015 Remove replacement backup files (evidence: `find ... -name "*.bak*"` returned no rows)
 - [x] T016 Verify no `sk-deep-review` or `sk-deep-research` strings remain in the renamed folders (evidence: grep returned no rows)

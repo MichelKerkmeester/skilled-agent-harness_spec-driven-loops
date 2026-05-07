@@ -4,28 +4,28 @@
 - **Impact**: high
 
 ### Finding 2: Engram’s `mem_context` is a deterministic recent-history formatter; Public’s recovery stack is richer, but heavier and less lifecycle-specific
-- **Source**: [external/internal/mcp/mcp.go:375](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L375), [external/internal/mcp/mcp.go:883](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L883), [external/internal/store/store.go:1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613), [session-resume.ts:400](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L400), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [session-snapshot.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210)
+- **Source**: [external/internal/mcp/mcp.go:375](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L375), [external/internal/mcp/mcp.go:883](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L883), [external/internal/store/store.go:1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613), [session-resume.ts:400](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L400), [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163), [session-snapshot.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L210)
 - **What it does**: Engram’s context path is simple: fetch recent sessions, prompts, and observations, then format them into one readable startup block. Public’s recovery path is composite: `session_resume` calls `memory_context(mode="resume")`, adds graph/CocoIndex status and cached continuity, and `session_bootstrap` adds health plus next actions.
 - **Why it matters for us**: Engram is weaker overall, but its lifecycle lane is easier to invoke and predict. Public could benefit from a cheap deterministic “recent session digest” inside bootstrap/resume without sacrificing the richer structural and trust-aware recovery layers.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 3: Engram’s end-of-session model is fragmented; we should not copy it as-is
-- **Source**: [external/internal/mcp/mcp.go:460](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [external/internal/mcp/mcp.go:1030](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1030), [external/internal/mcp/mcp.go:1084](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1084), [external/internal/mcp/mcp.go:1097](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1097), [session-stop.ts:60](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts#L60), [generate-context.ts:562](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L562)
+- **Source**: [external/internal/mcp/mcp.go:460](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [external/internal/mcp/mcp.go:1030](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1030), [external/internal/mcp/mcp.go:1084](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1084), [external/internal/mcp/mcp.go:1097](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1097), [session-stop.ts:60](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts#L60), [generate-context.ts:562](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L562)
 - **What it does**: In Engram, `mem_session_summary` writes a summary observation and quietly creates the session if needed, while `mem_session_end` separately marks `ended_at`; `mem_capture_passive` can also auto-create/default a session and append learnings. The lifecycle close path is therefore split across multiple independent tools. Public’s close path is different: hooks collect session summary state, then `generate-context.js` runs one authoritative save workflow for the target spec folder.
 - **Why it matters for us**: Engram’s model is flexible, but it can leave lifecycle status and saved narrative out of sync. If we add explicit lifecycle tools, they should be atomic over our own state model rather than copying Engram’s separate “summary”, “end”, and “passive capture” verbs.
 - **Recommendation**: NEW FEATURE
 - **Impact**: high
 
 ### Finding 4: Public’s session identity model is much safer than Engram’s lifecycle identity model
-- **Source**: [external/internal/mcp/mcp.go:518](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L518), [external/internal/mcp/mcp.go:545](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L545), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts#L385), [memory-context.ts:827](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L827)
+- **Source**: [external/internal/mcp/mcp.go:518](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L518), [external/internal/mcp/mcp.go:545](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L545), [session-manager.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts#L385), [memory-context.ts:827](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L827)
 - **What it does**: Engram accepts caller-supplied session IDs and project names directly for start/end operations. Public rejects invented session IDs unless they match a server-managed session and corroborated identity scope, and it binds reuse to tenant/user/agent identity before allowing resume semantics.
 - **Why it matters for us**: This is the main lifecycle safety gap between the two systems. Engram’s explicit lifecycle API is appealing, but its identity model is too trusting for our multi-scope/session-dedup environment.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Our continuity authority is spec-folder-first; Engram’s is session-row-first
-- **Source**: [generate-context.ts:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L75), [generate-context.ts:368](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L368), [generate-context.ts:423](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L423), [workflow.ts:697](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L697), [collect-session-data.ts:1231](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L1231), [external/internal/store/store.go:1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613)
+- **Source**: [generate-context.ts:75](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L75), [generate-context.ts:368](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L368), [generate-context.ts:423](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L423), [workflow.ts:697](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L697), [collect-session-data.ts:1231](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L1231), [external/internal/store/store.go:1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613)
 - **What it does**: Public’s `generate-context.js` explicitly prefers structured JSON input, requires a target spec folder, treats an explicit CLI spec folder as authoritative over payload values, and blocks cross-spec contamination in workflow alignment checks. Engram’s continuity model centers the session row plus project/directory strings, and `FormatContext()` reconstructs startup context from recent sessions/prompts/observations under that project lens.
 - **Why it matters for us**: For Public, the durable continuity anchor is the spec folder and its memory artifact, not just a session row. Engram’s model is a better fit for a generic personal memory server than for our spec-scoped continuity contract.
 - **Recommendation**: reject
@@ -37,17 +37,17 @@
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
-- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts)
-- [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
-- [collect-session-data.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts)
-- [session-stop.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [session-snapshot.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts)
+- [working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts)
+- [workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
+- [collect-session-data.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts)
+- [session-stop.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts)
 
 ## Assessment
 - New information ratio: 0.63
@@ -103,7 +103,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 4. Use `@speckit` for markdown authoring when the runtime supports agent routing. If routing is unavailable, preserve existing Spec Kit Level 3 structure manually without creating side-channel docs outside the phase folder.
 5. Validate the phase folder with this exact command before the main research pass:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder first. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md` before continuing.
 7. Run `spec_kit:deep-research` with this exact topic:
@@ -119,7 +119,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 14. When research is complete, update `checklist.md`, create `implementation-summary.md`, and make sure the report explicitly distinguishes `adopt now`, `prototype later`, and `reject`.
 15. Save memory for this phase folder with:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
    ```
 
 ## 6. Research Questions
@@ -349,15 +349,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -437,7 +437,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -465,7 +465,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, memory file creation
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
@@ -510,7 +510,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -720,28 +720,28 @@ exec
 /bin/zsh -lc "sed -n '1,240p' .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/iterations/iteration-009.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ### Finding 2: Engram’s progressive disclosure is better at “show me the surrounding session” than Public’s current pagination
-- **Source**: [external/internal/mcp/mcp.go#L415](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L415), [external/internal/mcp/mcp.go#L441](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L441), [external/docs/ARCHITECTURE.md#L74](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md#L74), [progressive-disclosure.ts#L346](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L346), [progressive-disclosure.ts#L432](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L432), [memory-search.ts#L1023](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L1023)
+- **Source**: [external/internal/mcp/mcp.go#L415](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L415), [external/internal/mcp/mcp.go#L441](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L441), [external/docs/ARCHITECTURE.md#L74](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md#L74), [progressive-disclosure.ts#L346](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L346), [progressive-disclosure.ts#L432](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L432), [memory-search.ts#L1023](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L1023)
 - **What it does**: Engram’s retrieval path is `mem_search` preview -> `mem_timeline` around one observation -> `mem_get_observation` full body. Public already has summary/snippet/cursor progressive disclosure, but its follow-up step is pagination, not chronology around a chosen hit.
 - **Why it matters for us**: Public is more token-efficient at scale, but it still lacks a dedicated “local timeline around result X” retrieval affordance. That would pair well with session continuity and make hit-followup more precise than generic continuation pages.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 3: Engram’s core search is a useful lexical safety baseline, but it is not strong enough to replace Public’s hybrid retrieval stack
-- **Source**: [external/internal/store/store.go#L1518](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1518), [external/internal/store/store.go#L3382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3382), [pipeline/README.md#L34](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L34), [hybrid-search.ts#L450](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L450), [hybrid-search.ts#L972](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L972)
+- **Source**: [external/internal/store/store.go#L1518](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1518), [external/internal/store/store.go#L3382](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3382), [pipeline/README.md#L34](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md#L34), [hybrid-search.ts#L450](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L450), [hybrid-search.ts#L972](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L972)
 - **What it does**: Engram sanitizes user input into quoted FTS5 terms and orders results by `fts.rank`, with the `topic_key` shortcut as the only strong override. Public’s `memory_search` runs a staged pipeline with hybrid candidate generation, signal fusion, reranking, evidence-gap annotation, and weighted FTS/BM25 alongside vector and graph channels.
 - **Why it matters for us**: Engram’s search is easier to reason about, but it would be a downgrade for Public’s memory retrieval quality. The right import is its deterministic key shortcut and input-hardening mindset, not its ranking model.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 4: Public’s retrieval architecture is intentionally split across memory, semantic code search, and structural graph search; Engram should not collapse that separation
-- **Source**: [external/internal/mcp/mcp.go#L124](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L124), [context-server.ts#L755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L755), [context-server.ts#L790](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L790), [memory-context.ts#L1452](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L1452), [code-graph/query.ts#L326](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts#L326)
+- **Source**: [external/internal/mcp/mcp.go#L124](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L124), [context-server.ts#L755](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L755), [context-server.ts#L790](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L790), [memory-context.ts#L1452](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L1452), [code-graph/query.ts#L326](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts#L326)
 - **What it does**: Engram presents one memory-oriented MCP surface. Public explicitly routes semantic code questions toward CocoIndex, structural dependency/caller questions toward `code_graph_query`, and session/memory recall toward `memory_search` and `memory_context`.
 - **Why it matters for us**: This split is one of Public’s biggest retrieval advantages. Engram’s model is good for persistent memory, but it has no equivalent to our semantic code lane or graph lane, so its single-surface simplicity should not become a design target for code retrieval.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Public’s retrieval safety boundaries are materially stronger than Engram’s project-scoped filtering
-- **Source**: [external/internal/mcp/mcp.go#L625](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L625), [external/internal/store/store.go#L1462](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1462), [memory-search.ts#L531](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L531), [progressive-disclosure.ts#L367](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L367), [memory-triggers.ts#L207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L207), [memory-triggers.ts#L291](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L291)
+- **Source**: [external/internal/mcp/mcp.go#L625](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L625), [external/internal/store/store.go#L1462](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1462), [memory-search.ts#L531](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L531), [progressive-disclosure.ts#L367](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts#L367), [memory-triggers.ts#L207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L207), [memory-triggers.ts#L291](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L291)
 - **What it does**: Engram narrows retrieval with normalized `project` and optional `scope`. Public binds search continuation to a serialized scope key, validates caller-supplied session IDs against server-trusted sessions, and fail-closes trigger matches when scope filtering cannot be enforced.
 - **Why it matters for us**: Once retrieval includes cursors, dedup, and multi-agent continuity, string-level project scoping is not enough. Engram’s ergonomics are fine, but its retrieval boundary model is weaker than Public’s tenant/user/agent/shared-space discipline.
 - **Recommendation**: reject
@@ -753,14 +753,14 @@ exec
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [code-graph/query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts)
-- [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts)
-- [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
-- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [code-graph/query.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts)
+- [progressive-disclosure.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts)
+- [hybrid-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts)
+- [pipeline/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md)
 
 ## Assessment
 - New information ratio: 0.68
@@ -816,7 +816,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 4. Use `@speckit` for markdown authoring when the runtime supports agent routing. If routing is unavailable, preserve existing Spec Kit Level 3 structure manually without creating side-channel docs outside the phase folder.
 5. Validate the phase folder with this exact command before the main research pass:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder first. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md` before continuing.
 7. Run `spec_kit:deep-research` with this exact topic:
@@ -832,7 +832,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 14. When research is complete, update `checklist.md`, create `implementation-summary.md`, and make sure the report explicitly distinguishes `adopt now`, `prototype later`, and `reject`.
 15. Save memory for this phase folder with:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
    ```
 
 ## 6. Research Questions
@@ -2339,896 +2339,896 @@ Duplicates are automatically detected and skipped — safe to call multiple time
 					mcp.Required(),
 
 exec
-/bin/zsh -lc 'rg -n "trigger|co-activation|trigger phrases|fail-close|scope filter|attention|tiered" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts .opencode/skill/system-spec-kit/scripts/memory/post-save-review.ts .opencode/skill/system-spec-kit/scripts/memory/memory-metadata.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "trigger|co-activation|trigger phrases|fail-close|scope filter|attention|tiered" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts .opencode/skills/system-spec-kit/scripts/memory/post-save-review.ts .opencode/skills/system-spec-kit/scripts/memory/memory-metadata.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/scripts/memory/post-save-review.ts: No such file or directory (os error 2)
-rg: .opencode/skill/system-spec-kit/scripts/memory/memory-metadata.ts: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:4:// Session-based attention management
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:50:    attention_score REAL DEFAULT 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:79:  attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:94:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:122:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:195:      attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:210:      attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:288:      ORDER BY attention_score DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:303:      SELECT m.*, wm.attention_score, wm.focus_count, wm.last_focused
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:307:      ORDER BY wm.attention_score DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:338:        wm.attention_score AS attentionScore
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:343:        AND wm.attention_score > ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:344:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:369: * Calculate attention tier for an entry.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:371:function calculateTier(attentionScore: number): string {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:372:  if (attentionScore >= 0.8) return 'focused';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:373:  if (attentionScore >= 0.5) return 'active';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:374:  if (attentionScore >= 0.2) return 'peripheral';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:401:        SET attention_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:433:    attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:444:  const clampedScore = Math.max(0, Math.min(1, attentionScore));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:453:        attention_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:462:        attention_score = CASE
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:463:          WHEN excluded.attention_score > working_memory.attention_score THEN excluded.attention_score
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:464:          ELSE working_memory.attention_score
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:550: * Batch update attention scores with decay.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:571:      SELECT id, attention_score, event_counter, mention_count
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:577:      attention_score: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:588:      SET attention_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:602:        const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:686:        AVG(attention_score) as avgAttention,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:687:        MAX(attention_score) as maxAttention,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:688:        MIN(attention_score) as minAttention,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:8:// Feature catalog: BM25 trigger phrase re-index gate
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:29:import * as coActivation from '../lib/cognitive/co-activation.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:41:// C2 FIX: Import DB access for scope filtering
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:158:  memoryInfo: { filePath: string; title: string | null; triggerPhrases: string[] },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:171:    console.warn('[memory-triggers] getTieredContent failed', {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:243:  // Eval logger — capture trigger query at entry (fail-safe)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:249:      intent: 'trigger_match',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:263:          scores: memoryIds.map(() => 1.0), // trigger matches are binary
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:264:          fusionMethod: 'trigger',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:288:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:289:  let results: TriggerMatch[] = triggerMatchResult.matches;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:329:  const detectedSignals = Array.isArray(triggerMatchResult.stats?.signals)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:330:    ? triggerMatchResult.stats.signals
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:339:        matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:444:    const tieredResults = tierClassifier.filterAndLimitByState(enrichedResults, null, limit);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:446:    formattedResults = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:450:        triggerPhrases: r.matchedPhrases
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:510:  const _triggersResponse = createMCPSuccessResponse({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:514:      matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:524:      triggerSignals: detectedSignals,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:529:  // Consumption instrumentation — log triggers event (fail-safe, never throws)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:536:        event_type: 'triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:546:  // Eval logger — capture final trigger results at exit (fail-safe)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:547:  const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:550:  return _triggersResponse;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+rg: .opencode/skills/system-spec-kit/scripts/memory/post-save-review.ts: No such file or directory (os error 2)
+rg: .opencode/skills/system-spec-kit/scripts/memory/memory-metadata.ts: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:4:// Session-based attention management
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:50:    attention_score REAL DEFAULT 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:79:  attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:94:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:122:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:195:      attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:210:      attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:288:      ORDER BY attention_score DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:303:      SELECT m.*, wm.attention_score, wm.focus_count, wm.last_focused
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:307:      ORDER BY wm.attention_score DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:338:        wm.attention_score AS attentionScore
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:343:        AND wm.attention_score > ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:344:      ORDER BY wm.attention_score DESC, wm.last_focused DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:369: * Calculate attention tier for an entry.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:371:function calculateTier(attentionScore: number): string {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:372:  if (attentionScore >= 0.8) return 'focused';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:373:  if (attentionScore >= 0.5) return 'active';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:374:  if (attentionScore >= 0.2) return 'peripheral';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:379: * Set or update the attention score for a memory in working memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:401:        SET attention_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:433:    attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:444:  const clampedScore = Math.max(0, Math.min(1, attentionScore));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:453:        attention_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:462:        attention_score = CASE
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:463:          WHEN excluded.attention_score > working_memory.attention_score THEN excluded.attention_score
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:464:          ELSE working_memory.attention_score
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:550: * Batch update attention scores with decay.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:571:      SELECT id, attention_score, event_counter, mention_count
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:577:      attention_score: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:588:      SET attention_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:602:        const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:686:        AVG(attention_score) as avgAttention,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:687:        MAX(attention_score) as maxAttention,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:688:        MIN(attention_score) as minAttention,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:8:// Feature catalog: BM25 trigger phrase re-index gate
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:24:import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:26:import * as attentionDecay from '../lib/cognitive/attention-decay.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:29:import * as coActivation from '../lib/cognitive/co-activation.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:41:// C2 FIX: Import DB access for scope filtering
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:61:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:74:  attentionScore?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:90:  attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:111:  // C2 FIX: Scope fields to prevent cross-scope trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:122:/** Per-turn decay rate for attention scoring. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:135:  const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:158:  memoryInfo: { filePath: string; title: string | null; triggerPhrases: string[] },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:171:    console.warn('[memory-triggers] getTieredContent failed', {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:243:  // Eval logger — capture trigger query at entry (fail-safe)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:249:      intent: 'trigger_match',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:263:          scores: memoryIds.map(() => 1.0), // trigger matches are binary
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:264:          fusionMethod: 'trigger',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:269:      /* eval logging must never break triggers handler */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:276:    attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:288:  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:289:  let results: TriggerMatch[] = triggerMatchResult.matches;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:291:  // C2 FIX: Post-filter by scope to prevent cross-tenant trigger leaks
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:329:  const detectedSignals = Array.isArray(triggerMatchResult.stats?.signals)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:330:    ? triggerMatchResult.stats.signals
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:339:        matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:368:        attentionDecay.activateMemory(match.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:369:        // T209: Persist max attention boost for matched memories.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:399:      .map(wm => ({ memoryId: (wm.id as number) || 0, attentionScore: (wm.attention_score as number) || 1.0 }));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:409:      let attentionScore: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:418:          effectiveRetrievability = Math.min(effectiveRetrievability, wmEntry.attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:423:        attentionScore = effectiveRetrievability;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:427:        const baseScore = wmEntry ? wmEntry.attentionScore : 1.0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:428:        attentionScore = wmEntry ? baseScore : baseScore * turnDecayFactor;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:429:        tier = tierClassifier.classifyState(attentionScore);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:434:      attentionScore = Math.max(0, Math.min(1, attentionScore));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:438:        attentionScore: attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:444:    const tieredResults = tierClassifier.filterAndLimitByState(enrichedResults, null, limit);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:446:    formattedResults = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:450:        triggerPhrases: r.matchedPhrases
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:461:        attentionScore: r.attentionScore,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:510:  const _triggersResponse = createMCPSuccessResponse({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:514:      matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:524:      triggerSignals: detectedSignals,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:529:  // Consumption instrumentation — log triggers event (fail-safe, never throws)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:531:    const db = attentionDecay.getDb();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:536:        event_type: 'triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:546:  // Eval logger — capture final trigger results at exit (fail-safe)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:547:  const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:550:  return _triggersResponse;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
 
 exec
-/bin/zsh -lc "rg -n \"causal|derived_from|supports|supersedes|contradicts|memory_causal|causal edges|clampStrength|edge\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"causal|derived_from|supports|supersedes|contradicts|memory_causal|causal edges|clampStrength|edge\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:75:/** Valid mutation types for the CRUD ledger. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:78:/** Input parameters for recording a mutation in the ledger. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:79:interface MutationLedgerInput {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:114:  MutationLedgerInput,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:177:  lastAction: 'Implemented causal edges',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:230:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes, ${stats.totalEdges} edges (fresh)`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:10:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:11:import * as causalEdges from '../lib/storage/causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:17:import { appendMutationLedgerSafe } from './memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:183:  // Fetch IDs for deletion (needed for causal edge cleanup and ledger)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:208:  causalEdges.init(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:229:        // Clean up causal edges
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:230:        // F-27 — Propagate edge-cleanup errors to fail the transaction.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:231:        // Previously errors were caught and logged, leaving orphan causal edges
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:232:        // When memory rows were successfully deleted but edge cleanup failed.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:233:        causalEdges.deleteEdgesForMemory(String(memory.id));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:240:  // Record in mutation ledger (single entry for bulk operation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:241:  const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:245:    newHash: mutationLedger.computeHash(`bulk-delete-tier:${tier}:${deletedCount}:${Date.now()}`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:246:    linkedMemoryIds: deletedIds.slice(0, 50), // Cap at 50 to avoid bloating ledger
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288:  if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:289:    hints.push('Mutation ledger append failed; audit trail may be incomplete.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:307:  if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:308:    data.warning = 'Mutation ledger append failed; audit trail may be incomplete.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:12:import * as causalEdges from '../../lib/storage/causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:38:  causalSupersedesMemoryId: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:49:      causalSupersedesMemoryId: samePathExistingId === peDecision.existingMemoryId
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:59:      causalSupersedesMemoryId: null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:66:    causalSupersedesMemoryId: null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:80:  causalEdges.init(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:84:  causalEdges.insertEdge(
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:87:    causalEdges.RELATION_TYPES.SUPERSEDES,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:261:      lineageRouting.causalSupersedesMemoryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:74:  causalLinks?: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/redaction-gate.ts:4:// Feature catalog: Guards and edge cases
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:41:| `pe-orchestration.ts`       | Prediction-error (PE) gate orchestration. Finds similar memories, evaluates via `predictionErrorGate`, and applies REINFORCE, SUPERSEDE, UPDATE or CREATE_LINKED actions with mutation ledger logging. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:45:| `post-insert.ts`            | Post-insert enrichment pipeline. Runs causal links processing, R10 entity extraction, R8 summary generation and S5 cross-document entity linking. Each step is feature-flag gated and independently error-guarded. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:46:| `response-builder.ts`       | Final response assembly. `buildIndexResult` constructs the `IndexResult` with PE actions, causal links and warnings. `buildSaveResponse` wraps it in a standard MCP success envelope with hints, triggers post-mutation hooks and runs N3-lite consolidation. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:60:8. post-insert    -- Enrich with entities, summaries, causal links
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:71:- **Mutation Ledger** -- Every create/update action appends to the mutation ledger for audit trail.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:77:- `../memory-crud-utils.ts` -- mutation ledger helpers used by PE orchestration and reconsolidation
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:24:import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:238:              // Single transaction for atomicity. better-sqlite3 supports nested transactions
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:320:          const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:340:            ...(!ledgerRecorded ? ['Mutation ledger append failed; audit trail may be incomplete.'] : []),
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:119:| **Edge Density Check** | `computeEdgeDensity()` returns the ratio of causal edges to total memories |
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:129:| `computeEdgeDensity` | `(db) => number` | Calculate edge-to-memory ratio |
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:239:| `lib/graph/` | Graph signals (N2) and community detection, consume entity and causal edge data |
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:7:// entities from polluting the causal graph.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:35: * Default ontology schema — matches the causal_edges CHECK constraint
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:44:    'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:8:import { processCausalLinks } from '../causal-links-processor.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:38:  causalLinks: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:46:  causalLinksResult: CausalLinksResult | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:53: * Sequentially executes: causal links processing, entity extraction (R10),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:61: * @returns PostInsertEnrichmentResult with causal links outcome.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:70:    causalLinks: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:78:  let causalLinksResult: CausalLinksResult | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:79:  if (parsed.hasCausalLinks && parsed.causalLinks) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:81:      causalLinksResult = processCausalLinks(database, id, parsed.causalLinks);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:82:      enrichmentStatus.causalLinks = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:83:      if (causalLinksResult.inserted > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:84:        console.error(`[causal-links] Processed ${causalLinksResult.inserted} causal edges for memory #${id}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:86:      if (causalLinksResult.unresolved.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:87:        console.warn(`[causal-links] ${causalLinksResult.unresolved.length} references could not be resolved`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:89:    } catch (causal_err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:90:      const message = toErrorMessage(causal_err);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:94:    // No causal links to process — not a failure
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:95:    enrichmentStatus.causalLinks = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:148:        const density = typeof linkResult.edgeDensity === 'number'
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:149:          ? linkResult.edgeDensity.toFixed(3)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:176:        if (indexResult.edgesCreated > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:177:          console.error(`[graph-lifecycle] Created ${indexResult.edgesCreated} typed edges for memory #${id}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:193:  return { causalLinksResult, enrichmentStatus };
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:13:import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:56:  causalLinksResult: CausalLinksResult | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:124:  causalLinksResult,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:141:  const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:178:  if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:180:    result.warnings.push('Mutation ledger append failed; audit trail may be incomplete.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:224:  if (causalLinksResult) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:225:    result.causalLinks = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:226:      processed: causalLinksResult.processed,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:227:      inserted: causalLinksResult.inserted,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:228:      resolved: causalLinksResult.resolved,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:229:      unresolved_count: causalLinksResult.unresolved.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:231:    if (causalLinksResult.errors.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:232:      (result.causalLinks as Record<string, unknown>).errors = causalLinksResult.errors;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:423:  if (result.causalLinks) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:424:    response.causalLinks = result.causalLinks;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:425:    if ((result.causalLinks as Record<string, unknown>).inserted as number > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:426:      hints.push(`Created ${(result.causalLinks as Record<string, unknown>).inserted} causal graph edge(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:428:    if ((result.causalLinks as Record<string, unknown>).unresolved_count as number > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:429:      hints.push(`${(result.causalLinks as Record<string, unknown>).unresolved_count} causal link reference(s) could not be resolved`);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:82: * the stored knowledge.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:9:// This intentionally supports ONLY v16 -> v15.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:247:    throw new Error(`Downgrade supports only v${TARGET_FROM_VERSION} -> v${TARGET_TO_VERSION}. Current schema is v${currentVersion}.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:8:import { getMemoryHashSnapshot, appendMutationLedgerSafe } from '../memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:86:          const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:101:          if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:104:              'Mutation ledger append failed; audit trail may be incomplete.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:138:        const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:153:        if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:156:            'Mutation ledger append failed; audit trail may be incomplete.',
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/README.md:37:| `memory-parser.ts` | Parses titles, trigger phrases, tiers, document type, causal links, anchors, and content hashes from markdown files |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:12:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:13:import * as causalEdges from '../lib/storage/causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:18:import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:83:  let mutationLedgerWarning: string | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:94:    // T2-5 transaction wrapper — wraps single-delete path (memory delete, causal edge
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:95:    // Cleanup, ledger append) in a transaction for atomicity on error.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:115:        causalEdges.init(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:116:        causalEdges.deleteEdgesForMemory(String(numericId));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:120:        const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:124:          newHash: mutationLedger.computeHash(`delete:${numericId}:${Date.now()}`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:135:        if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:136:          mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:157:        // Non-fatal — bulk delete proceeds without per-memory hash snapshots; ledger entries will lack prior hashes.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:191:    causalEdges.init(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:211:          causalEdges.deleteEdgesForMemory(String(memory.id));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:215:      // Mutation ledger entries written inside bulk transaction for atomicity with deletes.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:218:        const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:222:          newHash: mutationLedger.computeHash(`bulk-delete:${deletedId}:${Date.now()}`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:234:        if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:235:          mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:273:  if (mutationLedgerWarning) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:274:    hints.push(mutationLedgerWarning);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:285:  if (mutationLedgerWarning) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:286:    data.warning = mutationLedgerWarning;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:5:// Strengthening, staleness detection, edge bounds enforcement.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:19:} from './causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:20:import type { CausalEdge } from './causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:56:  edgeBounds: { rejected: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:286: * (via causal edges) to surface the full context for resolution.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:297:    // Expand cluster via causal edges (1-hop neighbors)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:301:          SELECT CAST(target_id AS INTEGER) as neighbor_id FROM causal_edges WHERE source_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:303:          SELECT CAST(source_id AS INTEGER) as neighbor_id FROM causal_edges WHERE target_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:331: * Hebbian strengthening: increase edge strength for recently co-accessed edges.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:333: * 30-day decay: edges not accessed in 30 days lose 0.1 strength.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:344:      // Strengthen: edges accessed in the last cycle period (7 days)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:346:        SELECT id, strength, last_accessed, created_by FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:352:      for (const edge of recentEdges) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:353:        const increase = Math.min(MAX_STRENGTH_INCREASE_PER_CYCLE, 1.0 - edge.strength);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:355:          const newStrength = Math.min(1.0, edge.strength + increase);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:356:          // Auto edges cannot exceed MAX_AUTO_STRENGTH
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:357:          const cappedStrength = edge.created_by === 'auto'
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:361:          if (cappedStrength > edge.strength) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:362:            updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:368:      // Decay: edges not accessed in DECAY_PERIOD_DAYS
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:370:        SELECT id, strength, last_accessed, created_by FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:375:      for (const edge of staleDecayEdges) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:376:        const newStrength = Math.max(0, edge.strength - DECAY_STRENGTH_AMOUNT);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:377:        if (newStrength < edge.strength) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:378:          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:396: * Detect stale edges (not accessed in 90+ days).
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:408: * Enforce edge bounds for a node:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:410: * - Auto edges capped at strength = 0.5
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:412: * Returns count of edges that would be rejected.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:454:        SELECT source_id AS node_id FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:456:        SELECT target_id AS node_id FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:472:    edgeBounds: { rejected: rejectedCount },
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:33:  supersedes: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:34:  derived_from: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:61:  causalLinks: CausalLinks;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:240: * This supports atomic-save flows that need to index content before promoting the
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:269:  // Extract causal_links for relationship tracking (CHK-231)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:270:  const causalLinks = extractCausalLinks(content);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:288:    causalLinks: causalLinks,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:289:    hasCausalLinks: hasCausalLinks(causalLinks),
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:675: * Extract causal_links from memory content YAML metadata block (T126)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:678:  const causalLinks: CausalLinks = {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:680:    supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:681:    derived_from: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:686:  // Find the causal_links block in YAML metadata
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:687:  const causalBlockMatch = content.match(/(?:^|\n)\s*causalLinks:\s*\n((?:\s+[a-z_]+:[\s\S]*?)*)(?=\n[a-z_]+:|\n```|\n---|\n\n|\n#|$)/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:689:  if (!causalBlockMatch) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:690:    return causalLinks;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:693:  const block = causalBlockMatch[1];
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:700:    const keyMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*$/);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:707:    const inlineMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*\[(.*)\]\s*$/);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:716:            if (cleaned && currentKey && !causalLinks[currentKey].includes(cleaned)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:717:              causalLinks[currentKey].push(cleaned);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:731:        if (value && value !== '[]' && !causalLinks[currentKey].includes(value)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:732:          causalLinks[currentKey].push(value);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:740:  return causalLinks;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:744: * Check if causalLinks has any non-empty arrays
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:746:export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:747:  if (!causalLinks) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:748:  return Object.values(causalLinks).some((arr: string[]) => Array.isArray(arr) && arr.length > 0);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:17:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:23:import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:92:  let mutationLedgerWarning: string | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:139:  // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:201:      const ledgerRecorded = appendMutationLedgerSafe(database, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:205:        newHash: mutationLedger.computeHash(JSON.stringify({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:222:      if (!ledgerRecorded) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:223:        mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:268:  if (mutationLedgerWarning) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:269:    hints.push(mutationLedgerWarning);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:284:  if (mutationLedgerWarning) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:285:    data.mutationLedgerWarning = mutationLedgerWarning;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity in [0.75, 0.88): CONFLICT (supersede prior memory via causal 'supersedes' edge)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:18:import * as causalEdges from './causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:93:  causalEdgeId: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:346:      // Create supersedes causal edge
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:348:        INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, extracted_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:349:        VALUES (?, ?, 'supersedes', 1.0, datetime('now'))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:465: * - Create a 'supersedes' causal edge from new -> existing
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:469: * - Skip edge creation (avoids self-referential edges)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:482:    // Add causal 'supersedes' edge only when caller provides a distinct new ID.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:483:    // Prevent self-referential supersedes edges (source == target).
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:484:    let edgeId: number | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:491:      // Atomic transaction: deprecate + edge must succeed or fail together.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:502:          console.warn('[reconsolidation] Deprecate target not found, skipping edge insert');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:508:        edgeId = causalEdges.insertEdge(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:511:          'supersedes',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:515:        if (edgeId == null) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:517:            `Failed to insert supersedes edge (${sourceId} -> ${targetId}) — aborting reconsolidation`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:547:      causalEdgeId: edgeId,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:654:        // TM-06 live-save path: materialize memory + supersede edge together
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:673:          // Memory so we don't leave dangling rows with no supersedes edge.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:148: * Requires SQLite 3.35.0+ which supports ALTER TABLE DROP COLUMN.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:97:  edgeCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:442:    edgeCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:452:      edgeCount: stats.totalEdges,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:458:    codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:535:      content: `status=${codeGraph.status}; files=${codeGraph.fileCount}; nodes=${codeGraph.nodeCount}; edges=${codeGraph.edgeCount}; lastScan=${codeGraph.lastScan ?? 'unknown'}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:27:import { deleteEdgesForMemory } from './causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:71:    'causal_edges',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:74:    'mutation_ledger',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:113:  'causal_edges',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:116:  'mutation_ledger',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:135:  CREATE TRIGGER IF NOT EXISTS prevent_ledger_update BEFORE UPDATE ON mutation_ledger
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:136:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:137:  CREATE TRIGGER IF NOT EXISTS prevent_ledger_delete BEFORE DELETE ON mutation_ledger
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:138:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:206:  causalEdges?: Array<Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:311:  'memory_index', 'memory_fts', 'vec_memories', 'vec_metadata', 'causal_edges',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:313:  'memory_summaries', 'mutation_ledger',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:541:function getEdgeIds(edges: Array<Record<string, unknown>>): number[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:75:/** Valid mutation types for the CRUD ledger. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:78:/** Input parameters for recording a mutation in the ledger. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:79:interface MutationLedgerInput {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:114:  MutationLedgerInput,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:177:  lastAction: 'Implemented causal edges',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:230:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes, ${stats.totalEdges} edges (fresh)`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:10:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:11:import * as causalEdges from '../lib/storage/causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:17:import { appendMutationLedgerSafe } from './memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:183:  // Fetch IDs for deletion (needed for causal edge cleanup and ledger)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:208:  causalEdges.init(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:229:        // Clean up causal edges
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:230:        // F-27 — Propagate edge-cleanup errors to fail the transaction.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:231:        // Previously errors were caught and logged, leaving orphan causal edges
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:232:        // When memory rows were successfully deleted but edge cleanup failed.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:233:        causalEdges.deleteEdgesForMemory(String(memory.id));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:240:  // Record in mutation ledger (single entry for bulk operation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:241:  const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:245:    newHash: mutationLedger.computeHash(`bulk-delete-tier:${tier}:${deletedCount}:${Date.now()}`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:246:    linkedMemoryIds: deletedIds.slice(0, 50), // Cap at 50 to avoid bloating ledger
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288:  if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:289:    hints.push('Mutation ledger append failed; audit trail may be incomplete.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:307:  if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:308:    data.warning = 'Mutation ledger append failed; audit trail may be incomplete.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:12:import * as causalEdges from '../../lib/storage/causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:38:  causalSupersedesMemoryId: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:49:      causalSupersedesMemoryId: samePathExistingId === peDecision.existingMemoryId
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:59:      causalSupersedesMemoryId: null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:66:    causalSupersedesMemoryId: null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:80:  causalEdges.init(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:84:  causalEdges.insertEdge(
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:87:    causalEdges.RELATION_TYPES.SUPERSEDES,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:261:      lineageRouting.causalSupersedesMemoryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:74:  causalLinks?: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/redaction-gate.ts:4:// Feature catalog: Guards and edge cases
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:41:| `pe-orchestration.ts`       | Prediction-error (PE) gate orchestration. Finds similar memories, evaluates via `predictionErrorGate`, and applies REINFORCE, SUPERSEDE, UPDATE or CREATE_LINKED actions with mutation ledger logging. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:45:| `post-insert.ts`            | Post-insert enrichment pipeline. Runs causal links processing, R10 entity extraction, R8 summary generation and S5 cross-document entity linking. Each step is feature-flag gated and independently error-guarded. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:46:| `response-builder.ts`       | Final response assembly. `buildIndexResult` constructs the `IndexResult` with PE actions, causal links and warnings. `buildSaveResponse` wraps it in a standard MCP success envelope with hints, triggers post-mutation hooks and runs N3-lite consolidation. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:60:8. post-insert    -- Enrich with entities, summaries, causal links
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:71:- **Mutation Ledger** -- Every create/update action appends to the mutation ledger for audit trail.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:77:- `../memory-crud-utils.ts` -- mutation ledger helpers used by PE orchestration and reconsolidation
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:24:import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:238:              // Single transaction for atomicity. better-sqlite3 supports nested transactions
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:320:          const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:340:            ...(!ledgerRecorded ? ['Mutation ledger append failed; audit trail may be incomplete.'] : []),
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:119:| **Edge Density Check** | `computeEdgeDensity()` returns the ratio of causal edges to total memories |
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:129:| `computeEdgeDensity` | `(db) => number` | Calculate edge-to-memory ratio |
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:239:| `lib/graph/` | Graph signals (N2) and community detection, consume entity and causal edge data |
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:7:// entities from polluting the causal graph.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:35: * Default ontology schema — matches the causal_edges CHECK constraint
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:44:    'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:8:import { processCausalLinks } from '../causal-links-processor.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:38:  causalLinks: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:46:  causalLinksResult: CausalLinksResult | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:53: * Sequentially executes: causal links processing, entity extraction (R10),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:61: * @returns PostInsertEnrichmentResult with causal links outcome.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:70:    causalLinks: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:78:  let causalLinksResult: CausalLinksResult | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:79:  if (parsed.hasCausalLinks && parsed.causalLinks) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:81:      causalLinksResult = processCausalLinks(database, id, parsed.causalLinks);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:82:      enrichmentStatus.causalLinks = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:83:      if (causalLinksResult.inserted > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:84:        console.error(`[causal-links] Processed ${causalLinksResult.inserted} causal edges for memory #${id}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:86:      if (causalLinksResult.unresolved.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:87:        console.warn(`[causal-links] ${causalLinksResult.unresolved.length} references could not be resolved`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:89:    } catch (causal_err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:90:      const message = toErrorMessage(causal_err);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:94:    // No causal links to process — not a failure
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:95:    enrichmentStatus.causalLinks = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:148:        const density = typeof linkResult.edgeDensity === 'number'
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:149:          ? linkResult.edgeDensity.toFixed(3)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:176:        if (indexResult.edgesCreated > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:177:          console.error(`[graph-lifecycle] Created ${indexResult.edgesCreated} typed edges for memory #${id}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:193:  return { causalLinksResult, enrichmentStatus };
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:13:import { appendMutationLedgerSafe } from '../memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:56:  causalLinksResult: CausalLinksResult | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:124:  causalLinksResult,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:141:  const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:178:  if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:180:    result.warnings.push('Mutation ledger append failed; audit trail may be incomplete.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:224:  if (causalLinksResult) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:225:    result.causalLinks = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:226:      processed: causalLinksResult.processed,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:227:      inserted: causalLinksResult.inserted,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:228:      resolved: causalLinksResult.resolved,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:229:      unresolved_count: causalLinksResult.unresolved.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:231:    if (causalLinksResult.errors.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:232:      (result.causalLinks as Record<string, unknown>).errors = causalLinksResult.errors;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:423:  if (result.causalLinks) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:424:    response.causalLinks = result.causalLinks;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:425:    if ((result.causalLinks as Record<string, unknown>).inserted as number > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:426:      hints.push(`Created ${(result.causalLinks as Record<string, unknown>).inserted} causal graph edge(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:428:    if ((result.causalLinks as Record<string, unknown>).unresolved_count as number > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:429:      hints.push(`${(result.causalLinks as Record<string, unknown>).unresolved_count} causal link reference(s) could not be resolved`);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:82: * the stored knowledge.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:9:// This intentionally supports ONLY v16 -> v15.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:247:    throw new Error(`Downgrade supports only v${TARGET_FROM_VERSION} -> v${TARGET_TO_VERSION}. Current schema is v${currentVersion}.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:8:import { getMemoryHashSnapshot, appendMutationLedgerSafe } from '../memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:86:          const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:101:          if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:104:              'Mutation ledger append failed; audit trail may be incomplete.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:138:        const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:153:        if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:156:            'Mutation ledger append failed; audit trail may be incomplete.',
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/README.md:37:| `memory-parser.ts` | Parses titles, trigger phrases, tiers, document type, causal links, anchors, and content hashes from markdown files |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:12:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:13:import * as causalEdges from '../lib/storage/causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:18:import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:83:  let mutationLedgerWarning: string | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:94:    // T2-5 transaction wrapper — wraps single-delete path (memory delete, causal edge
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:95:    // Cleanup, ledger append) in a transaction for atomicity on error.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:115:        causalEdges.init(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:116:        causalEdges.deleteEdgesForMemory(String(numericId));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:120:        const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:124:          newHash: mutationLedger.computeHash(`delete:${numericId}:${Date.now()}`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:135:        if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:136:          mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:157:        // Non-fatal — bulk delete proceeds without per-memory hash snapshots; ledger entries will lack prior hashes.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:191:    causalEdges.init(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:211:          causalEdges.deleteEdgesForMemory(String(memory.id));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:215:      // Mutation ledger entries written inside bulk transaction for atomicity with deletes.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:218:        const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:222:          newHash: mutationLedger.computeHash(`bulk-delete:${deletedId}:${Date.now()}`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:234:        if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:235:          mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:273:  if (mutationLedgerWarning) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:274:    hints.push(mutationLedgerWarning);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:285:  if (mutationLedgerWarning) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:286:    data.warning = mutationLedgerWarning;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:5:// Strengthening, staleness detection, edge bounds enforcement.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:19:} from './causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:20:import type { CausalEdge } from './causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:56:  edgeBounds: { rejected: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:286: * (via causal edges) to surface the full context for resolution.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:297:    // Expand cluster via causal edges (1-hop neighbors)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:301:          SELECT CAST(target_id AS INTEGER) as neighbor_id FROM causal_edges WHERE source_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:303:          SELECT CAST(source_id AS INTEGER) as neighbor_id FROM causal_edges WHERE target_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:331: * Hebbian strengthening: increase edge strength for recently co-accessed edges.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:333: * 30-day decay: edges not accessed in 30 days lose 0.1 strength.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:344:      // Strengthen: edges accessed in the last cycle period (7 days)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:346:        SELECT id, strength, last_accessed, created_by FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:352:      for (const edge of recentEdges) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:353:        const increase = Math.min(MAX_STRENGTH_INCREASE_PER_CYCLE, 1.0 - edge.strength);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:355:          const newStrength = Math.min(1.0, edge.strength + increase);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:356:          // Auto edges cannot exceed MAX_AUTO_STRENGTH
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:357:          const cappedStrength = edge.created_by === 'auto'
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:361:          if (cappedStrength > edge.strength) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:362:            updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:368:      // Decay: edges not accessed in DECAY_PERIOD_DAYS
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:370:        SELECT id, strength, last_accessed, created_by FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:375:      for (const edge of staleDecayEdges) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:376:        const newStrength = Math.max(0, edge.strength - DECAY_STRENGTH_AMOUNT);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:377:        if (newStrength < edge.strength) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:378:          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:396: * Detect stale edges (not accessed in 90+ days).
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:408: * Enforce edge bounds for a node:
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:410: * - Auto edges capped at strength = 0.5
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:412: * Returns count of edges that would be rejected.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:454:        SELECT source_id AS node_id FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:456:        SELECT target_id AS node_id FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:472:    edgeBounds: { rejected: rejectedCount },
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:33:  supersedes: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:34:  derived_from: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:61:  causalLinks: CausalLinks;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:240: * This supports atomic-save flows that need to index content before promoting the
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:269:  // Extract causal_links for relationship tracking (CHK-231)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:270:  const causalLinks = extractCausalLinks(content);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:288:    causalLinks: causalLinks,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:289:    hasCausalLinks: hasCausalLinks(causalLinks),
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:675: * Extract causal_links from memory content YAML metadata block (T126)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:678:  const causalLinks: CausalLinks = {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:680:    supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:681:    derived_from: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:686:  // Find the causal_links block in YAML metadata
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:687:  const causalBlockMatch = content.match(/(?:^|\n)\s*causalLinks:\s*\n((?:\s+[a-z_]+:[\s\S]*?)*)(?=\n[a-z_]+:|\n```|\n---|\n\n|\n#|$)/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:689:  if (!causalBlockMatch) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:690:    return causalLinks;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:693:  const block = causalBlockMatch[1];
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:700:    const keyMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*$/);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:707:    const inlineMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*\[(.*)\]\s*$/);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:716:            if (cleaned && currentKey && !causalLinks[currentKey].includes(cleaned)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:717:              causalLinks[currentKey].push(cleaned);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:731:        if (value && value !== '[]' && !causalLinks[currentKey].includes(value)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:732:          causalLinks[currentKey].push(value);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:740:  return causalLinks;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:744: * Check if causalLinks has any non-empty arrays
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:746:export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:747:  if (!causalLinks) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:748:  return Object.values(causalLinks).some((arr: string[]) => Array.isArray(arr) && arr.length > 0);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:17:import * as mutationLedger from '../lib/storage/mutation-ledger.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:23:import { appendMutationLedgerSafe, getMemoryHashSnapshot } from './memory-crud-utils.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:92:  let mutationLedgerWarning: string | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:139:  // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:201:      const ledgerRecorded = appendMutationLedgerSafe(database, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:205:        newHash: mutationLedger.computeHash(JSON.stringify({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:222:      if (!ledgerRecorded) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:223:        mutationLedgerWarning = 'Mutation ledger append failed; audit trail may be incomplete.';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:268:  if (mutationLedgerWarning) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:269:    hints.push(mutationLedgerWarning);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:284:  if (mutationLedgerWarning) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:285:    data.mutationLedgerWarning = mutationLedgerWarning;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:9:// - similarity in [0.75, 0.88): CONFLICT (supersede prior memory via causal 'supersedes' edge)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:18:import * as causalEdges from './causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:93:  causalEdgeId: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:346:      // Create supersedes causal edge
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:348:        INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, extracted_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:349:        VALUES (?, ?, 'supersedes', 1.0, datetime('now'))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:465: * - Create a 'supersedes' causal edge from new -> existing
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:469: * - Skip edge creation (avoids self-referential edges)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:482:    // Add causal 'supersedes' edge only when caller provides a distinct new ID.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:483:    // Prevent self-referential supersedes edges (source == target).
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:484:    let edgeId: number | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:491:      // Atomic transaction: deprecate + edge must succeed or fail together.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:502:          console.warn('[reconsolidation] Deprecate target not found, skipping edge insert');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:508:        edgeId = causalEdges.insertEdge(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:511:          'supersedes',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:515:        if (edgeId == null) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:517:            `Failed to insert supersedes edge (${sourceId} -> ${targetId}) — aborting reconsolidation`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:547:      causalEdgeId: edgeId,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:654:        // TM-06 live-save path: materialize memory + supersede edge together
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:673:          // Memory so we don't leave dangling rows with no supersedes edge.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:148: * Requires SQLite 3.35.0+ which supports ALTER TABLE DROP COLUMN.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:97:  edgeCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:442:    edgeCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:452:      edgeCount: stats.totalEdges,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:458:    codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:535:      content: `status=${codeGraph.status}; files=${codeGraph.fileCount}; nodes=${codeGraph.nodeCount}; edges=${codeGraph.edgeCount}; lastScan=${codeGraph.lastScan ?? 'unknown'}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:27:import { deleteEdgesForMemory } from './causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:71:    'causal_edges',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:74:    'mutation_ledger',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:113:  'causal_edges',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:116:  'mutation_ledger',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:135:  CREATE TRIGGER IF NOT EXISTS prevent_ledger_update BEFORE UPDATE ON mutation_ledger
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:136:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:137:  CREATE TRIGGER IF NOT EXISTS prevent_ledger_delete BEFORE DELETE ON mutation_ledger
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:138:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:206:  causalEdges?: Array<Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:311:  'memory_index', 'memory_fts', 'vec_memories', 'vec_metadata', 'causal_edges',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:313:  'memory_summaries', 'mutation_ledger',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:541:function getEdgeIds(edges: Array<Record<string, unknown>>): number[] {
 
 exec
-/bin/zsh -lc "rg -n \"memory_health|health|verifyIntegrity|divergent_aliases|orphan|autoRepair|repair|quality review|validation\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/scripts/memory .opencode/skill/system-spec-kit/mcp_server/lib | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"memory_health|health|verifyIntegrity|divergent_aliases|orphan|autoRepair|repair|quality review|validation\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/scripts/memory .opencode/skills/system-spec-kit/mcp_server/lib | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:8:// Database maintenance — removes orphaned vector embeddings and history entries
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:36:cleanup-orphaned-vectors — Remove orphaned vector embeddings and history entries
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:38:Usage: node cleanup-orphaned-vectors.js [options]
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:45:  node cleanup-orphaned-vectors.js                # Run cleanup
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:46:  node cleanup-orphaned-vectors.js --dry-run      # Preview only
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:71:    // STEP 1: Discover orphaned entries across all tables
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:72:    console.log('\n[Step 1] Finding orphaned memory_history entries...');
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:73:    let orphanedHistoryCount = 0;
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:76:      const orphanedHistory = database.prepare(`
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:83:      orphanedHistoryCount = orphanedHistory.count;
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:85:      if (orphanedHistoryCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:86:        console.log(`Found ${orphanedHistoryCount} orphaned history entries`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:88:        console.log('No orphaned history entries found');
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:99:    console.log('\n[Step 2] Finding orphaned vector entries...');
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:100:    const orphanedVectors = database.prepare(`
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:107:    const orphanedVectorCount = orphanedVectors.count;
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:108:    console.log(`Found ${orphanedVectorCount} orphaned vectors`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:110:    // STEP 2: Delete all orphans in a single atomic transaction
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:114:      if (orphanedHistoryCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:115:        console.log(`[DRY-RUN] Would delete ${orphanedHistoryCount} orphaned history entries`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:116:        totalCleaned += orphanedHistoryCount;
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:118:      if (orphanedVectorCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:119:        console.log(`[DRY-RUN] Would delete ${orphanedVectorCount} orphaned vectors`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:120:        totalCleaned += orphanedVectorCount;
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:122:    } else if (orphanedHistoryCount > 0 || orphanedVectorCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:123:      console.log('\n[Step 3] Deleting all orphans in a single atomic transaction...');
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:128:        // Delete orphaned history entries
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:129:        if (hasHistoryTable && orphanedHistoryCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:134:          console.log(`Deleted ${historyDeleteResult.changes} orphaned history entries`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:138:        // Delete orphaned vector entries
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:139:        if (orphanedVectorCount > 0) {
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:144:          console.log(`Deleted ${vectorDeleteResult.changes} orphaned vectors`);
-.opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:178:    console.error('[cleanup-orphaned-vectors] Error:', errMsg);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:229:    throwSharedMemoryAuthError('Shared-memory admin validation failed.', adminResult.response);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:249:  // transport principal, so the trusted-session validation used by
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:443:  const validation = isValidSpecFolder(specFolderArg);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:445:  if (validation.warning) {
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:446:    console.warn(`   Warning: ${validation.warning}`);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:449:  if (validation.valid) return;
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:466:  console.error(`   Reason: ${validation.reason}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:52:  reportMode?: 'full' | 'divergent_aliases';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:55:  autoRepair?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:64:  healthy?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:90:/** Result returned by post-mutation hooks (cache invalidation, etc.). */
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:27:  sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:197:      // Fall back to resolvedPath during pre-validation when target does not yet exist.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:26:export type QualityLevel = 'healthy' | 'degraded' | 'critical';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:200: * session-health.ts should use this instead of the memory-surface duplicate.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:241:  if (score > 0.7) level = 'healthy';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:231:        // Previously errors were caught and logged, leaving orphan causal edges
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:43:// T73: Import session manager for trusted session validation (IDOR prevention)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:194:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
-.opencode/skill/system-spec-kit/scripts/memory/README.md:8:  - "cleanup orphaned vectors"
-.opencode/skill/system-spec-kit/scripts/memory/README.md:40:- `cleanup-orphaned-vectors.ts` - remove stale vector rows not linked to active memories
-.opencode/skill/system-spec-kit/scripts/memory/README.md:78:node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
-.opencode/skill/system-spec-kit/scripts/memory/README.md:92:- Produces ANCHOR-structured markdown expected by downstream validation and indexing.
-.opencode/skill/system-spec-kit/scripts/memory/README.md:97:- Runs post-render memory quality validation so contaminated headings or fallback-decision leaks are caught after template population. The post-save quality pipeline includes 3-layer gates (structure, semantic sufficiency, duplicate detection), heuristic calibration for scoring thresholds, and trigger sanitization to prevent noisy or over-broad trigger phrases from persisting in the index.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:9:import { handleMemoryHealth } from './memory-crud-health.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
-.opencode/skill/system-spec-kit/scripts/memory/fix-memory-h1.mjs:2:// One-shot repair script: Fix H1 headings in all memory files.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:3:description: "Pre-flight quality gates for memory operations: anchor validation, duplicate detection and token budget verification."
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:5:  - "validation"
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:12:> Pre-flight quality gates for memory operations: anchor validation, duplicate detection, token budget verification and content size checks.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:30:The validation subsystem provides pre-flight checks that run before expensive operations like embedding generation or database writes. It prevents invalid data from entering the system and provides actionable feedback for resolution.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:50:| **Save Quality Gate** | 3-layer pre-storage validation (structural, content quality scoring, semantic dedup). Behind `SPECKIT_SAVE_QUALITY_GATE` flag |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:58:validation/
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:59: preflight.ts         # Pre-flight validation before expensive operations
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:68:| `preflight.ts` | All validation logic: anchors, duplicates, tokens, content size, unified preflight |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:69:| `save-quality-gate.ts` | 3-layer pre-storage quality gate: structural validation, content quality scoring (title, triggers, length, anchors, metadata, signal density), and semantic dedup. Behind `SPECKIT_SAVE_QUALITY_GATE` flag with 14-day warn-only graduation period |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:173:| `validateStructural(params)` | Layer 1: structural validation |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:246:// result.dry_run_would_pass shows actual validation result
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:274:| Full validation | `runPreflight()` | Before memory_save |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:279:| Structural check | `validateStructural()` | Quick pre-save structural validation |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:281:| Recursive phase validation | `validate.sh --recursive` | Validate phase-based spec hierarchies (spec 139) |
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/README.md:293:| [../../context-server.ts](../../context-server.ts) | MCP server using validation |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:30:// Feature catalog: Memory health autoRepair metadata
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86:const DIVERGENT_ALIAS_REPORT_MODE = 'divergent_aliases';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:231:    console.error(`[memory-health] Database refresh failed [requestId=${requestId}]: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:245:    autoRepair = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:267:  if (typeof autoRepair !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:270:      error: 'autoRepair must be a boolean',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:331:      console.error(`[memory-health] Schema missing [requestId=${requestId}]:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:340:    console.warn(`[memory-health] Failed to get memory count [requestId=${requestId}]:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:348:    if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:363:        status: isEmbeddingModelReady() && database ? 'healthy' : 'degraded',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:380:  const status = isEmbeddingModelReady() && database ? 'healthy' : 'degraded';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:384:  const repair = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:385:    requested: autoRepair,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:387:    repaired: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:397:    repair.attempted = true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:407:      // Resolve the lazy profile so health reflects the active runtime provider
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419:  const repairActions = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:422:    'orphan_edges_cleanup',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:423:    'orphan_vector_cleanup',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426:  if (autoRepair && !confirmed) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:429:      summary: 'Confirmation required before auto-repair actions are executed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:433:        autoRepairRequested: true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:435:        actions: repairActions,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:465:        if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:468:            repair.actions.push('fts_rebuild');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:473:            const repairedFtsCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_fts').get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:474:            if (memoryCountRow.count === repairedFtsCountRow.count) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:476:              repair.actions.push('fts_consistency_verified');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:480:              const warning = `Post-repair mismatch persists: memory_index=${memoryCountRow.count}, memory_fts=${repairedFtsCountRow.count}`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:481:              repair.warnings.push(warning);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:482:              hints.push(`Auto-repair attempted, but mismatch remains (${warning}).`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:484:          } catch (repairError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:485:            const message = toErrorMessage(repairError);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:487:            repair.errors.push(sanitizeErrorForHint(message));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:488:            hints.push(`Auto-repair failed: ${sanitizeErrorForHint(message)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:495:      if (autoRepair) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:497:        repair.errors.push(`Consistency check failed before repair: ${sanitizeErrorForHint(message)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:502:  // Never invoked at runtime. Wire it into autoRepair so orphaned causal edges
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:503:  // (referencing deleted memories) are cleaned up during health checks.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:504:  if (autoRepair && database) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:506:      // Fix F8 — ensure causal-edges DB init before orphan cleanup.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:508:      const orphanResult = causalEdges.cleanupOrphanedEdges();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:509:      if (orphanResult.deleted > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:511:        repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:512:        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:514:    } catch (orphanError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516:      repair.errors.push(`Orphan edge cleanup failed: ${sanitizeErrorForHint(toErrorMessage(orphanError))}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:520:  if (autoRepair && database) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:522:      const integrityReport = vectorIndex.verifyIntegrity({ autoClean: true });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:528:        repair.actions.push(`orphan_vectors_cleaned:${cleanedVectors}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:529:        hints.push(`Auto-repair: removed ${cleanedVectors} orphaned vector(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:534:        repair.actions.push(`orphan_chunks_cleaned:${cleanedChunks}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:535:        hints.push(`Auto-repair: removed ${cleanedChunks} orphaned chunk(s)`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:538:      const postRepairReport = vectorIndex.verifyIntegrity({ autoClean: false });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:540:        postRepairReport.orphanedVectors > 0 ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:542:        postRepairReport.orphanedFiles.length > 0 ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:543:        postRepairReport.orphanedChunks > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:545:        repair.warnings.push(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:546:          `Post-repair integrity still degraded: orphanedVectors=${postRepairReport.orphanedVectors}, ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:547:          `missingVectors=${postRepairReport.missingVectors}, orphanedFiles=${postRepairReport.orphanedFiles.length}, ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:548:          `orphanedChunks=${postRepairReport.orphanedChunks}`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:553:      repair.errors.push(`Integrity cleanup failed: ${sanitizeErrorForHint(toErrorMessage(integrityError))}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:557:  if (repair.attempted) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:558:    repair.repaired = failedRepairCount === 0 && successfulRepairCount > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:559:    repair.partialSuccess = failedRepairCount > 0 && successfulRepairCount > 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:582:      repair,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:587:        healthy: providerMetadata.healthy !== false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts:68:} from './validation-responses.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:6:// 3-layer validation before storing memories:
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:7:// - Layer 1: Structural validation (existing checks, formalized)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:29:/** Result from Layer 1: Structural validation */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:106:/** Minimum content length for structural validation */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:143:/** Spec folder path validation pattern */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:797:  // Layer 1: Structural validation
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:38:  anchor_validation_strict: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:52:/** Result of anchor format validation */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:87:/** Result of content size validation */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:251:  // Anchor validation
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:252:  anchor_validation_strict: process.env.MCP_ANCHOR_STRICT === 'true',
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:301:  const { strict = PREFLIGHT_CONFIG.anchor_validation_strict } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:311:    result.warnings.push('No content provided for anchor validation');
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:386:  // In strict mode, throw on any validation errors
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:390:      `Anchor validation failed: ${result.errors.length} error(s)`,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:798:  // 1. Content size validation (fast, do first)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:812:  // 2. Anchor format validation
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:39:| `dedup.ts`                  | Pre-save deduplication. `checkExistingRow` matches by file path but returns `unchanged` only for healthy rows (`success`, `pending`, `partial`); `checkContentHashDedup` matches by content hash and accepts chunked parents only when their status is valid `partial`. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/README.md:11:| `status.ts` | `code_graph_status` | Report graph health and statistics |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:134:function repairBm25Document(args: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:155:    const repairMessage = toErrorMessage(repairErr);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:156:    console.warn(`[memory-save] Immediate BM25 repair failed (${args.contextLabel}): ${repairMessage}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:157:    return `BM25 repair failed after ${args.contextLabel} for memory ${args.memoryId}: ${repairMessage}`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:287:                    const bm25Warning = repairBm25Document({
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:51:| **Ontology Hooks** | Schema-guided extraction validation: loads OntologySchema (entity types + relation types) and validates entity/relation pairs against allowed lists. Gated by `SPECKIT_ONTOLOGY_HOOKS` |
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:66: ontology-hooks.ts        # Schema-guided extraction validation (SPECKIT_ONTOLOGY_HOOKS)
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:51:  validation: ValidationResult;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:119:  validation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:174:    warnings: [...validation.warnings, ...reconWarnings],
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:98:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:786:      validationCount: result.validationCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:312:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:320:  // T304: Consolidated score validation
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:470:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:478:  // T304: Consolidated score validation
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:669:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:40:- `shared-memory.ts` - Shared-memory lifecycle handlers plus caller/admin auth validation.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:51:- `memory-crud-delete.ts`, `memory-crud-update.ts`, `memory-crud-list.ts`, `memory-crud-stats.ts`, `memory-crud-health.ts` - Focused CRUD implementations behind `memory-crud.ts`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:55:- `mutation-hooks.ts` - Post-mutation cache invalidation and feedback wiring.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:58:- `v-rule-bridge.ts` - Runtime bridge to validation scripts for memory quality checks.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:71:- `memory-crud-health.ts` surfaces embedding retry stats and FTS/index sync diagnostics as part of the health response.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:5:// from validation outcomes. No side effects or DB access.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:34:  validation: ParsedMemoryValidation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:47:    warnings: validation.warnings,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:57:  validation: ParsedMemoryValidation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:71:    warnings: validation.warnings,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:72:    rejectionReason: `Template contract validation failed: ${violationSummary}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:94:  return 'Dry-run validation passed';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:9:import { handleSessionHealth } from './session-health.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:47:  health: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:96:  healthData: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:105:  if (healthData.error) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:121:  const healthStatus = typeof healthData.status === 'string' ? healthData.status : null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:122:  if (healthStatus === 'warning' || healthStatus === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:183:  let healthData: Record<string, unknown> = {};
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:185:    const healthResponse = await handleSessionHealth();
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:186:    healthData = extractData(healthResponse);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:187:    allHints.push(...extractHints(healthData));
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:190:    healthData = { error: message };
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:220:  const healthCertainty: SharedPayloadCertainty = healthData.error ? 'unknown' : 'estimated';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:225:  const healthPayload = coerceSharedPayloadEnvelope(healthData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:270:      key: 'health-surface',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:272:      content: summarizeUnknown(healthData),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:274:      certainty: healthCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:300:      { label: 'health', certainty: healthCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:325:    health: healthData,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:333:      healthPayload,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:139:  // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:7:// Multiplier: starts at 1.0, decreases with each negative validation
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:25:/** Per-negative-validation penalty applied to the multiplier. */
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:30: * After 30 days since the last negative validation, the penalty
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:36:/** Persistence table for negative-validation history. */
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:57: * and time since last negative validation.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:60: * for each negative validation, but never drops below CONFIDENCE_MULTIPLIER_FLOOR (0.3).
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:63: * the last negative validation. This means:
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:69: * @param negativeCount - Number of negative (wasUseful=false) validations
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:70: * @param lastNegativeAt - Timestamp (ms epoch) of the most recent negative validation.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:110: * @param negativeCount - Number of negative validations on the memory
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:111: * @param lastNegativeAt - Timestamp (ms epoch) of the most recent negative validation
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:129:/** Record one negative validation event for a memory. */
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:8:// Database maintenance — removes orphaned vector embeddings and history entries
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:36:cleanup-orphaned-vectors — Remove orphaned vector embeddings and history entries
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:38:Usage: node cleanup-orphaned-vectors.js [options]
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:45:  node cleanup-orphaned-vectors.js                # Run cleanup
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:46:  node cleanup-orphaned-vectors.js --dry-run      # Preview only
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:71:    // STEP 1: Discover orphaned entries across all tables
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:72:    console.log('\n[Step 1] Finding orphaned memory_history entries...');
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:73:    let orphanedHistoryCount = 0;
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:76:      const orphanedHistory = database.prepare(`
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:83:      orphanedHistoryCount = orphanedHistory.count;
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:85:      if (orphanedHistoryCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:86:        console.log(`Found ${orphanedHistoryCount} orphaned history entries`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:88:        console.log('No orphaned history entries found');
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:99:    console.log('\n[Step 2] Finding orphaned vector entries...');
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:100:    const orphanedVectors = database.prepare(`
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:107:    const orphanedVectorCount = orphanedVectors.count;
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:108:    console.log(`Found ${orphanedVectorCount} orphaned vectors`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:110:    // STEP 2: Delete all orphans in a single atomic transaction
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:114:      if (orphanedHistoryCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:115:        console.log(`[DRY-RUN] Would delete ${orphanedHistoryCount} orphaned history entries`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:116:        totalCleaned += orphanedHistoryCount;
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:118:      if (orphanedVectorCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:119:        console.log(`[DRY-RUN] Would delete ${orphanedVectorCount} orphaned vectors`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:120:        totalCleaned += orphanedVectorCount;
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:122:    } else if (orphanedHistoryCount > 0 || orphanedVectorCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:123:      console.log('\n[Step 3] Deleting all orphans in a single atomic transaction...');
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:128:        // Delete orphaned history entries
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:129:        if (hasHistoryTable && orphanedHistoryCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:134:          console.log(`Deleted ${historyDeleteResult.changes} orphaned history entries`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:138:        // Delete orphaned vector entries
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:139:        if (orphanedVectorCount > 0) {
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:144:          console.log(`Deleted ${vectorDeleteResult.changes} orphaned vectors`);
+.opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts:178:    console.error('[cleanup-orphaned-vectors] Error:', errMsg);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:229:    throwSharedMemoryAuthError('Shared-memory admin validation failed.', adminResult.response);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:249:  // transport principal, so the trusted-session validation used by
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:443:  const validation = isValidSpecFolder(specFolderArg);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:445:  if (validation.warning) {
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:446:    console.warn(`   Warning: ${validation.warning}`);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:449:  if (validation.valid) return;
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:466:  console.error(`   Reason: ${validation.reason}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:52:  reportMode?: 'full' | 'divergent_aliases';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:55:  autoRepair?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:64:  healthy?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:90:/** Result returned by post-mutation hooks (cache invalidation, etc.). */
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:27:  sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:197:      // Fall back to resolvedPath during pre-validation when target does not yet exist.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:26:export type QualityLevel = 'healthy' | 'degraded' | 'critical';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:200: * session-health.ts should use this instead of the memory-surface duplicate.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:241:  if (score > 0.7) level = 'healthy';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:231:        // Previously errors were caught and logged, leaving orphan causal edges
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:43:// T73: Import session manager for trusted session validation (IDOR prevention)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:194:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
+.opencode/skills/system-spec-kit/scripts/memory/README.md:8:  - "cleanup orphaned vectors"
+.opencode/skills/system-spec-kit/scripts/memory/README.md:40:- `cleanup-orphaned-vectors.ts` - remove stale vector rows not linked to active memories
+.opencode/skills/system-spec-kit/scripts/memory/README.md:78:node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
+.opencode/skills/system-spec-kit/scripts/memory/README.md:92:- Produces ANCHOR-structured markdown expected by downstream validation and indexing.
+.opencode/skills/system-spec-kit/scripts/memory/README.md:97:- Runs post-render memory quality validation so contaminated headings or fallback-decision leaks are caught after template population. The post-save quality pipeline includes 3-layer gates (structure, semantic sufficiency, duplicate detection), heuristic calibration for scoring thresholds, and trigger sanitization to prevent noisy or over-broad trigger phrases from persisting in the index.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:9:import { handleMemoryHealth } from './memory-crud-health.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
+.opencode/skills/system-spec-kit/scripts/memory/fix-memory-h1.mjs:2:// One-shot repair script: Fix H1 headings in all memory files.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:3:description: "Pre-flight quality gates for memory operations: anchor validation, duplicate detection and token budget verification."
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:5:  - "validation"
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:12:> Pre-flight quality gates for memory operations: anchor validation, duplicate detection, token budget verification and content size checks.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:30:The validation subsystem provides pre-flight checks that run before expensive operations like embedding generation or database writes. It prevents invalid data from entering the system and provides actionable feedback for resolution.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:50:| **Save Quality Gate** | 3-layer pre-storage validation (structural, content quality scoring, semantic dedup). Behind `SPECKIT_SAVE_QUALITY_GATE` flag |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:58:validation/
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:59: preflight.ts         # Pre-flight validation before expensive operations
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:68:| `preflight.ts` | All validation logic: anchors, duplicates, tokens, content size, unified preflight |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:69:| `save-quality-gate.ts` | 3-layer pre-storage quality gate: structural validation, content quality scoring (title, triggers, length, anchors, metadata, signal density), and semantic dedup. Behind `SPECKIT_SAVE_QUALITY_GATE` flag with 14-day warn-only graduation period |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:173:| `validateStructural(params)` | Layer 1: structural validation |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:246:// result.dry_run_would_pass shows actual validation result
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:274:| Full validation | `runPreflight()` | Before memory_save |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:279:| Structural check | `validateStructural()` | Quick pre-save structural validation |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:281:| Recursive phase validation | `validate.sh --recursive` | Validate phase-based spec hierarchies (spec 139) |
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/README.md:293:| [../../context-server.ts](../../context-server.ts) | MCP server using validation |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:30:// Feature catalog: Memory health autoRepair metadata
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:86:const DIVERGENT_ALIAS_REPORT_MODE = 'divergent_aliases';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:231:    console.error(`[memory-health] Database refresh failed [requestId=${requestId}]: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:245:    autoRepair = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:267:  if (typeof autoRepair !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:270:      error: 'autoRepair must be a boolean',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:331:      console.error(`[memory-health] Schema missing [requestId=${requestId}]:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:340:    console.warn(`[memory-health] Failed to get memory count [requestId=${requestId}]:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:348:    if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:349:      hints.push('autoRepair is only applied in reportMode="full"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:363:        status: isEmbeddingModelReady() && database ? 'healthy' : 'degraded',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:380:  const status = isEmbeddingModelReady() && database ? 'healthy' : 'degraded';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:384:  const repair = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:385:    requested: autoRepair,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:387:    repaired: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:397:    repair.attempted = true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:407:      // Resolve the lazy profile so health reflects the active runtime provider
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:419:  const repairActions = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:422:    'orphan_edges_cleanup',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:423:    'orphan_vector_cleanup',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426:  if (autoRepair && !confirmed) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:429:      summary: 'Confirmation required before auto-repair actions are executed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:433:        autoRepairRequested: true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:435:        actions: repairActions,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:465:        if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:468:            repair.actions.push('fts_rebuild');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:471:            repair.actions.push('trigger_cache_refresh');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:473:            const repairedFtsCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_fts').get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:474:            if (memoryCountRow.count === repairedFtsCountRow.count) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:476:              repair.actions.push('fts_consistency_verified');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:477:              hints.push('Auto-repair completed: FTS5 index rebuilt and trigger cache refreshed.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:480:              const warning = `Post-repair mismatch persists: memory_index=${memoryCountRow.count}, memory_fts=${repairedFtsCountRow.count}`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:481:              repair.warnings.push(warning);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:482:              hints.push(`Auto-repair attempted, but mismatch remains (${warning}).`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:484:          } catch (repairError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:485:            const message = toErrorMessage(repairError);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:487:            repair.errors.push(sanitizeErrorForHint(message));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:488:            hints.push(`Auto-repair failed: ${sanitizeErrorForHint(message)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:495:      if (autoRepair) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:497:        repair.errors.push(`Consistency check failed before repair: ${sanitizeErrorForHint(message)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:502:  // Never invoked at runtime. Wire it into autoRepair so orphaned causal edges
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:503:  // (referencing deleted memories) are cleaned up during health checks.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:504:  if (autoRepair && database) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:506:      // Fix F8 — ensure causal-edges DB init before orphan cleanup.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:508:      const orphanResult = causalEdges.cleanupOrphanedEdges();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:509:      if (orphanResult.deleted > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:511:        repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:512:        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:514:    } catch (orphanError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:516:      repair.errors.push(`Orphan edge cleanup failed: ${sanitizeErrorForHint(toErrorMessage(orphanError))}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:520:  if (autoRepair && database) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:522:      const integrityReport = vectorIndex.verifyIntegrity({ autoClean: true });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:528:        repair.actions.push(`orphan_vectors_cleaned:${cleanedVectors}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:529:        hints.push(`Auto-repair: removed ${cleanedVectors} orphaned vector(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:534:        repair.actions.push(`orphan_chunks_cleaned:${cleanedChunks}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:535:        hints.push(`Auto-repair: removed ${cleanedChunks} orphaned chunk(s)`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:538:      const postRepairReport = vectorIndex.verifyIntegrity({ autoClean: false });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:540:        postRepairReport.orphanedVectors > 0 ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:542:        postRepairReport.orphanedFiles.length > 0 ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:543:        postRepairReport.orphanedChunks > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:545:        repair.warnings.push(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:546:          `Post-repair integrity still degraded: orphanedVectors=${postRepairReport.orphanedVectors}, ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:547:          `missingVectors=${postRepairReport.missingVectors}, orphanedFiles=${postRepairReport.orphanedFiles.length}, ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:548:          `orphanedChunks=${postRepairReport.orphanedChunks}`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:553:      repair.errors.push(`Integrity cleanup failed: ${sanitizeErrorForHint(toErrorMessage(integrityError))}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:557:  if (repair.attempted) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:558:    repair.repaired = failedRepairCount === 0 && successfulRepairCount > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:559:    repair.partialSuccess = failedRepairCount > 0 && successfulRepairCount > 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:582:      repair,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:587:        healthy: providerMetadata.healthy !== false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts:68:} from './validation-responses.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:6:// 3-layer validation before storing memories:
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:7:// - Layer 1: Structural validation (existing checks, formalized)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:29:/** Result from Layer 1: Structural validation */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:106:/** Minimum content length for structural validation */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:143:/** Spec folder path validation pattern */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:797:  // Layer 1: Structural validation
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:38:  anchor_validation_strict: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:52:/** Result of anchor format validation */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:87:/** Result of content size validation */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:251:  // Anchor validation
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:252:  anchor_validation_strict: process.env.MCP_ANCHOR_STRICT === 'true',
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:301:  const { strict = PREFLIGHT_CONFIG.anchor_validation_strict } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:311:    result.warnings.push('No content provided for anchor validation');
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:386:  // In strict mode, throw on any validation errors
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:390:      `Anchor validation failed: ${result.errors.length} error(s)`,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:798:  // 1. Content size validation (fast, do first)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:812:  // 2. Anchor format validation
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:39:| `dedup.ts`                  | Pre-save deduplication. `checkExistingRow` matches by file path but returns `unchanged` only for healthy rows (`success`, `pending`, `partial`); `checkContentHashDedup` matches by content hash and accepts chunked parents only when their status is valid `partial`. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/README.md:11:| `status.ts` | `code_graph_status` | Report graph health and statistics |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:134:function repairBm25Document(args: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:155:    const repairMessage = toErrorMessage(repairErr);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:156:    console.warn(`[memory-save] Immediate BM25 repair failed (${args.contextLabel}): ${repairMessage}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:157:    return `BM25 repair failed after ${args.contextLabel} for memory ${args.memoryId}: ${repairMessage}`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:287:                    const bm25Warning = repairBm25Document({
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:51:| **Ontology Hooks** | Schema-guided extraction validation: loads OntologySchema (entity types + relation types) and validates entity/relation pairs against allowed lists. Gated by `SPECKIT_ONTOLOGY_HOOKS` |
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:66: ontology-hooks.ts        # Schema-guided extraction validation (SPECKIT_ONTOLOGY_HOOKS)
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:51:  validation: ValidationResult;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:119:  validation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:174:    warnings: [...validation.warnings, ...reconWarnings],
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:98:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:786:      validationCount: result.validationCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:312:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:320:  // T304: Consolidated score validation
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:470:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:478:  // T304: Consolidated score validation
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:669:  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:40:- `shared-memory.ts` - Shared-memory lifecycle handlers plus caller/admin auth validation.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:51:- `memory-crud-delete.ts`, `memory-crud-update.ts`, `memory-crud-list.ts`, `memory-crud-stats.ts`, `memory-crud-health.ts` - Focused CRUD implementations behind `memory-crud.ts`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:55:- `mutation-hooks.ts` - Post-mutation cache invalidation and feedback wiring.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:58:- `v-rule-bridge.ts` - Runtime bridge to validation scripts for memory quality checks.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:71:- `memory-crud-health.ts` surfaces embedding retry stats and FTS/index sync diagnostics as part of the health response.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:80:- Post-mutation invalidation clears `clearDegreeCache()` alongside trigger and constitutional caches so graph-derived retrieval signals cannot serve stale data after mutations.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:5:// from validation outcomes. No side effects or DB access.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:34:  validation: ParsedMemoryValidation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:47:    warnings: validation.warnings,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:57:  validation: ParsedMemoryValidation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:71:    warnings: validation.warnings,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:72:    rejectionReason: `Template contract validation failed: ${violationSummary}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:94:  return 'Dry-run validation passed';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:9:import { handleSessionHealth } from './session-health.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:47:  health: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:96:  healthData: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:105:  if (healthData.error) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:121:  const healthStatus = typeof healthData.status === 'string' ? healthData.status : null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:122:  if (healthStatus === 'warning' || healthStatus === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:183:  let healthData: Record<string, unknown> = {};
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:185:    const healthResponse = await handleSessionHealth();
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:186:    healthData = extractData(healthResponse);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:187:    allHints.push(...extractHints(healthData));
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:190:    healthData = { error: message };
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:220:  const healthCertainty: SharedPayloadCertainty = healthData.error ? 'unknown' : 'estimated';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:225:  const healthPayload = coerceSharedPayloadEnvelope(healthData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:270:      key: 'health-surface',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:272:      content: summarizeUnknown(healthData),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:274:      certainty: healthCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:300:      { label: 'health', certainty: healthCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:325:    health: healthData,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:333:      healthPayload,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:139:  // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:7:// Multiplier: starts at 1.0, decreases with each negative validation
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:25:/** Per-negative-validation penalty applied to the multiplier. */
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:30: * After 30 days since the last negative validation, the penalty
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:36:/** Persistence table for negative-validation history. */
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:57: * and time since last negative validation.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:60: * for each negative validation, but never drops below CONFIDENCE_MULTIPLIER_FLOOR (0.3).
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:63: * the last negative validation. This means:
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:69: * @param negativeCount - Number of negative (wasUseful=false) validations
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:70: * @param lastNegativeAt - Timestamp (ms epoch) of the most recent negative validation.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:110: * @param negativeCount - Number of negative validations on the memory
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:111: * @param lastNegativeAt - Timestamp (ms epoch) of the most recent negative validation
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:129:/** Record one negative validation event for a memory. */
 
 exec
-/bin/zsh -lc "rg -n \"topic_key|revision_count|duplicate_count|deleted_at|soft-delete|upsert|dedupe|duplicate\" .opencode/skill/system-spec-kit -g '*.ts' -g '*.js' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"topic_key|revision_count|duplicate_count|deleted_at|soft-delete|upsert|dedupe|duplicate\" .opencode/skills/system-spec-kit -g '*.ts' -g '*.js' | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:16:  upsertSharedMembership,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:17:  upsertSharedSpace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:285:    operation: 'space_upsert' | 'membership_set';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:353:        ? 'Create the space first with shared_space_upsert.'
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:454:        tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:461:      tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:496:              operation: 'space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:505:              msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:517:          operation: 'space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:526:          msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:544:        upsertSharedSpace(db, definition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:551:          upsertSharedSpace(db, definition);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:556:        upsertSharedMembership(db, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:576:        operation: 'space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:598:      return createSharedSpaceAuthError('shared_space_upsert', result.error, result.msg);
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:602:      tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:621:      'shared_space_upsert',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:622:      'Shared space upsert failed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:695:      upsertSharedMembership(db, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:230:  const deduplicatedPaths: string[] = [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:232:  let duplicatePathCount = 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:236:      duplicatePathCount++;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:241:    deduplicatedPaths.push(normalizedPath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:244:  paths = deduplicatedPaths;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:264:      ...(duplicatePathCount > 0 ? { duplicatePathCount } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:270:      ...(duplicatePathCount > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:271:        ? ['Duplicate input paths were deduplicated before queueing']
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:272: * Extracted from duplicate blocks in handleTaskPreflight and handleTaskPostflight.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:593:        // Check + mark + cap enforcement stay in one transaction to avoid duplicate injection races.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:211:  // Deduplicate hints
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:797:    const duplicatePrecheck = checkContentHashDedup(database, parsed, force, validation.warnings, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:801:    if (duplicatePrecheck) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:802:      return duplicatePrecheck;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1293:        check_duplicates: !force,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1738:      ? 'Memory skipped (duplicate content)'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:112:    duplicatesSkipped: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:358:      duplicatesSkipped: dedupDuplicatesSkipped,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:429:          result.status === 'duplicate' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:447:        } else if (result.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:603:  if (results.dedup.duplicatesSkipped > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:604:    hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:426:function upsertExtractedEntry(input: ExtractedEntryInput): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:485:    // If focus_count is still 1 after the upsert, this row was newly inserted.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:497:    console.warn(`[working-memory] upsertExtractedEntry error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:744:  upsertExtractedEntry,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:201: * Deduplicates edges by direction+from+to+relation key.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:573:      : ['Restore merged with existing data - duplicates may exist', 'Search indexes rebuilt'],
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:267:    if (!msg.includes('duplicate column')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:333:    const upsert = db.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:340:      upsert.run('totalScanned', String(archivalStats.totalScanned));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:341:      upsert.run('totalArchived', String(archivalStats.totalArchived));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:343:      upsert.run('lastScanTime', archivalStats.lastScanTime ?? '');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:487: * @returns Deduplicated array of merged results sorted by score descending.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:497:  // CanonicalResultId() prevents duplicate rows when one channel emits
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:615:  const deduped = new Map<string, HybridSearchResult>();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:645:      deduped.set(key, mergeRawCandidate(deduped.get(key), candidate));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:650:    Array.from(deduped.values()).sort((a, b) => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:953:  // Deduplicate by ID (keep highest normalized score)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:958:  const deduped = new Map<string, HybridSearchResult>();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:    const existing = deduped.get(canonicalId);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:963:      deduped.set(canonicalId, r);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:967:  return Array.from(deduped.values())
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:44: * Similarity threshold above which two memories are considered near-duplicates
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:101:        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:142:/** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:4:// MCP tool handler for deep_loop_graph_upsert — idempotent
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:5:// node/edge upsert with self-loop rejection and weight clamping.
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:8:  upsertNode,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:9:  upsertEdge,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:67:/** Handle deep_loop_graph_upsert tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:155:    // Execute batch upsert
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:200: * session-health.ts should use this instead of the memory-surface duplicate.
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:214:  it('does not duplicate nodes or children', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:225:    // Root should have exactly one child, not duplicated
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:211:      const fileId = graphDb.upsertFile(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:226:  // Deduplicate
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:389:      // Prevent duplicate insertions from repeated terms in a single call.
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/index.ts:4:export { handleCoverageGraphUpsert } from './upsert.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:12:// Feature catalog: Generation-time duplicate and empty content prevention
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:226:  // P1-4 FIX: Check content hash even during force reindex to prevent duplicate
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:228:  // not change either, so re-indexing provides no value and creates duplicates.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:262:    const duplicateParams: Array<string> = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:271:      duplicateParams.push(samePathExclusion.filePath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:273:      duplicateParams.push(samePathExclusion.canonicalFilePath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:276:    const duplicateByHash = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:282:    `).get(...duplicateParams) as DuplicateLookupRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:284:    if (duplicateByHash) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:286:        duplicateByHash.content_text,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:287:        duplicateByHash.file_path,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:291:        console.warn(`[memory-save] Hash match for memory #${duplicateByHash.id} failed secondary content verification; continuing save`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:294:      console.error(`[memory-save] T054: Duplicate content detected (hash match id=${duplicateByHash.id}), skipping embedding`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:297:        id: duplicateByHash.id,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:299:        title: parsed.title ?? duplicateByHash.title ?? '',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:304:        message: `Duplicate content detected: identical to existing memory #${duplicateByHash.id} (${duplicateByHash.file_path}). Skipping embedding generation.`,
-.opencode/skill/system-spec-kit/mcp_server/lib/interfaces/vector-store.ts:18:  async upsert(_id: string, _embedding: unknown, _metadata: Record<string, unknown>): Promise<number> {
-.opencode/skill/system-spec-kit/mcp_server/lib/interfaces/vector-store.ts:19:    throw new Error('Method upsert() must be implemented by subclass');
-.opencode/skill/system-spec-kit/mcp_server/handlers/types.ts:5:// Previously declared duplicates locally — now imports from the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:415:    // Deduplicate by ID, keeping the higher similarity score
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:406:    hints.push('Existing memory was reinforced instead of creating duplicate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:397:    throw new Error(`[session-analytics-db] Session row missing after upsert for ${claudeSessionId}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:472:function upsertSessionRow(
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:595:  upsertSessionRow(db, state);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:143:  it('G1: deduplicates when source_id equals target_id (same numeric value)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:154:    expect(uniqueIds.size).toBe(ids.length); // no duplicate entries
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:262:  it('deduplicates FTS results using the highest composite score', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:330:  it('T002-3: duplicate sibling chunks (same parent_id) are collapsed to one row', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:366:  it('T012-1: duplicate chunk dedup is identical for includeContent=false and includeContent=true', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:103:/** Semantic dedup similarity threshold: above this, reject as near-duplicate */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:686: * Layer 3: Check for semantic near-duplicates using vector similarity.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:690: * memory, the new memory is rejected as a near-duplicate.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:729:        ? `Near-duplicate detected: memory #${bestMatch.id} (similarity: ${(bestMatch.similarity * 100).toFixed(1)}% >= ${SEMANTIC_DEDUP_THRESHOLD * 100}%)`
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:230:  it('T005b-Q9: enqueueIngestJob ignores duplicate enqueues for the same job ID', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:237:    const filePath = createTempFile('duplicate-enqueue');
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:239:      id: 'job_duplicate_enqueue',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:113: *   2. Lowercase and deduplicate.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:36:  exact_duplicate_enabled: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:37:  similar_duplicate_threshold: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:60:/** Result of duplicate detection */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:63:  duplicate_type: 'exact' | 'similar' | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:95:/** Parameters for duplicate checking */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:109:/** Options for duplicate checking */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:134:  check_duplicates?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:248:  exact_duplicate_enabled: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:249:  similar_duplicate_threshold: parseFloat(process.env.MCP_DUPLICATE_THRESHOLD || '0.95'),
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:327:  // Track seen anchor IDs for duplicate detection
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:333:    // Check for duplicate anchor IDs
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:340:        suggestion: `Rename one of the duplicate anchors to a unique ID`,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:432:    check_exact = PREFLIGHT_CONFIG.exact_duplicate_enabled,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:434:    similarity_threshold = PREFLIGHT_CONFIG.similar_duplicate_threshold,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:439:    duplicate_type: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:467:    duplicate: {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:504:    if (typeof duplicate.file_path === 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:505:      result.existing_path = duplicate.file_path;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:513:  // Check 1: Exact duplicate via content hash (fast)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:554:        result.duplicate_type = 'exact';
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:562:      console.warn('[preflight] Exact duplicate check failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:566:  // Check 2: Similar duplicate via vector similarity (requires embedding)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:592:          result.duplicate_type = 'similar';
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:601:      console.warn('[preflight] Similar duplicate check failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:768:    check_duplicates = true,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:851:  if (check_duplicates && content) {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:856:    addCheck('duplicate_check', dupResult);
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:859:      // Exact duplicates block save
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:860:      if (dupResult.duplicate_type === 'exact') {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:864:          message: `Exact duplicate found: memory #${dupResult.existingId}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:870:      // Similar duplicates are warnings (PE-gating handles them)
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:871:      else if (dupResult.duplicate_type === 'similar') {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:145:  it('deduplicates by normalized text', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:150:    // Should be deduplicated to a single entry
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:155:  it('sums frequencies for duplicate entities', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:444:    expect(result.upserted).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:507:  it('returns upserted count matching entity count', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:514:    expect(result.upserted).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:725:// 9. __testables.deduplicateEntities (internal helper)
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:728:describe('__testables.deduplicateEntities', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:735:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:744:    const result = __testables.deduplicateEntities([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:754:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:759:  it('treats differently-cased text as duplicates via normalization', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:764:    const result = __testables.deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:431:    it('deduplicates user selections by query_id:memory_id', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:77: * Results are deduplicated by normalized text with summed frequencies.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:80: * @returns Array of extracted entities, deduplicated and frequency-counted.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:120:  // Deduplicate by normalized text (lowercase, trimmed), summing frequencies
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:121:  return deduplicateEntities(raw);
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:258: * @returns Count of entities upserted.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:263:): { upserted: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:265:    let upserted = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:310:        upserted++;
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:315:    return { upserted };
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:319:    return { upserted: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:491: * Deduplicate raw extraction results by normalized text.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:495:function deduplicateEntities(
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:517:  deduplicateEntities,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:95: * @returns Deduplicated array of extracted aliases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:275: * @returns Array of 2-5 deduplicated surrogate questions.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:  const inserted = workingMemory.upsertExtractedEntry({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:204: *   3. Return the deduplicated list.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:210: * @returns Merged, deduplicated, coverage-ranked result array.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:958:   * const id = await store.upsert('ignored', embedding, { spec_folder: 'specs/001-demo', file_path: 'spec.md' });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:961:  async upsert(_id: string, embedding: EmbeddingInput, metadata: JsonObject): Promise<number> {
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:62:function dedupeFallbackRationale(title: string, rationaleCandidate: string, authoredRationale: string): string {
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:337:        const rationale: string = dedupeFallbackRationale(title, rationaleCandidate, rationaleFromInput);
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:508:    const RATIONALE: string = dedupeFallbackRationale(obs.title || narrative, rationaleCandidate, '');
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:965:      // BUG-027 FIX: Skip symbolic links to prevent loops and duplicate scanning
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:549:  it('T005-01: computePrecision deduplicates repeated relevant IDs', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:555:  it('T005-02: computeF1 matches harmonic mean of deduped precision and recall', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:68:Continue validating the \`memory_save\` UX contract with a fixture that is rich enough to satisfy the durable-memory gate while still exercising duplicate no-op, deferred embedding, and post-mutation feedback behavior.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:76:- \`decision-record.md\` — UX contract and duplicate detection strategy
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:85:| \`mcp_server/handlers/memory-save.ts\` | Coordinates duplicate detection, sufficiency evaluation, template validation, and post-mutation feedback for \`memory_save\`. |
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:86:| \`mcp_server/handlers/save/response-builder.ts\` | Shapes successful save payloads, duplicate no-op hints, and deferred embedding response details. |
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:94:This regression fixture exists to prove that successful saves and duplicate no-op saves still report the correct UX payloads after the shared insufficiency gate and rendered-memory template contract were added to the save pipeline.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:102:- Validated duplicate no-op response shape
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:110:- Decided to keep duplicate no-op saves visible in the UX contract so callers can distinguish unchanged content from validation failures.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:116:- Verified duplicate no-op saves omit post-mutation hooks and leave caches unchanged.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:222:  it('does not emit postMutationHooks for duplicate-content no-op saves', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:224:    const duplicatePath = path.join(FIXTURE_ROOT, 'memory', 'duplicate.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:225:    const sharedContent = buildMemoryContent('Duplicate Seed', 'Shared duplicate body for regression coverage.');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:228:    fs.writeFileSync(duplicatePath, sharedContent, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:236:      filePath: duplicatePath,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:242:    expect(parsed.data.status).toBe('duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:305:  it('atomicSaveMemory duplicate no-op omits postMutationHooks and reports no-op status', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:306:    const indexedPath = path.join(FIXTURE_ROOT, 'memory', 'atomic-duplicate-seed.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:307:    const duplicatePath = path.join(FIXTURE_ROOT, 'memory', 'atomic-duplicate-copy.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:308:    const sharedContent = buildMemoryContent('Atomic Duplicate Seed', 'Atomic duplicate behavior regression fixture.');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:318:        file_path: duplicatePath,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:325:    expect(['duplicate', 'unchanged', 'no_change']).toContain(result.status);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:168: * @returns Array of candidate noun phrase tokens (lowercase, deduplicated).
-.opencode/skill/system-spec-kit/scripts/extractors/diagram-extractor.ts:187:  // fields via {{#HAS_DECISION_TREE}}. AUTO_DECISION_TREES would duplicate them.
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:170:function dedupe<T>(items: T[]): T[] {
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:182:  const triggerPhrases = dedupe([
-.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:387:    triggerPhrases: dedupe([
-.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts:13:// O3-2: Use canonical types from session-types (no local duplicates)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:6:// ClearExisting=true, duplicate file_path skip, edge cases.
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:292:  // 4.4 restoreCheckpoint duplicate file_path skip
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:320:    it('EXT-S9: duplicate checkpoint name handled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:626:      checkpointStorage.createCheckpoint({ name: 'anchor-aware-duplicate-test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:631:      const result = checkpointStorage.restoreCheckpoint('anchor-aware-duplicate-test', false);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:647:      checkpointStorage.deleteCheckpoint('anchor-aware-duplicate-test');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:386: * Deduplicate and validate a list of numeric IDs, truncating to integers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:561: * REQ-D4-005: Assistive reconsolidation for near-duplicate detection.
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:409:  it('runtime accepts exactly one actor identity for shared_space_upsert', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:411:      validateToolArgs('shared_space_upsert', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:420:  it('handler auth rejects shared_space_upsert when actor identity is omitted', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:425:        tool: 'shared_space_upsert',
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:382:  // Deduplicate observations: merge repeated tool calls on the same file
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:383:  const deduped = deduplicateObservations(observations || []);
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:385:  return deduped
-.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:426: * Deduplicate observations that represent repeated tool calls on the same file.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:16:  upsertSharedMembership,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:17:  upsertSharedSpace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:31:type SharedSpaceAdminTool = 'shared_space_upsert' | 'shared_space_membership_set';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:285:    operation: 'space_upsert' | 'membership_set';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:353:        ? 'Create the space first with shared_space_upsert.'
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:454:        tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:461:      tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:496:              operation: 'space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:505:              msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:517:          operation: 'space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:526:          msg: getSharedSpaceAccessErrorMessage('shared_space_upsert', args.spaceId, reason),
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:544:        upsertSharedSpace(db, definition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:551:          upsertSharedSpace(db, definition);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:556:        upsertSharedMembership(db, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:576:        operation: 'space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:598:      return createSharedSpaceAuthError('shared_space_upsert', result.error, result.msg);
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:602:      tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:621:      'shared_space_upsert',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:622:      'Shared space upsert failed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:695:      upsertSharedMembership(db, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:230:  const deduplicatedPaths: string[] = [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:232:  let duplicatePathCount = 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:236:      duplicatePathCount++;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:241:    deduplicatedPaths.push(normalizedPath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:244:  paths = deduplicatedPaths;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:264:      ...(duplicatePathCount > 0 ? { duplicatePathCount } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:270:      ...(duplicatePathCount > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:271:        ? ['Duplicate input paths were deduplicated before queueing']
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:272: * Extracted from duplicate blocks in handleTaskPreflight and handleTaskPostflight.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:593:        // Check + mark + cap enforcement stay in one transaction to avoid duplicate injection races.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:211:  // Deduplicate hints
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:89:  deduplicateResults as deduplicateWithSessionState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1062:      const deduped = deduplicateWithSessionState(existingResults, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1063:      data.results = deduped.results as SessionAwareResult[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1064:      data.count = deduped.results.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1065:      data.sessionDedup = deduped.metadata;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1088:    // Rather than silently falling through to the un-deduped response.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1101:      const { results: dedupedResults } = applySessionDedup(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1108:      const dedupedCount = dedupedResults.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1109:      const filteredCount = originalCount - dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1116:      data.results = dedupedResults;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1117:      data.count = dedupedCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1123:        returnedCount: dedupedCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1136:        resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:797:    const duplicatePrecheck = checkContentHashDedup(database, parsed, force, validation.warnings, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:801:    if (duplicatePrecheck) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:802:      return duplicatePrecheck;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1293:        check_duplicates: !force,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1738:      ? 'Memory skipped (duplicate content)'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:112:    duplicatesSkipped: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:358:      duplicatesSkipped: dedupDuplicatesSkipped,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:429:          result.status === 'duplicate' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:447:        } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:603:  if (results.dedup.duplicatesSkipped > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:604:    hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:426:function upsertExtractedEntry(input: ExtractedEntryInput): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:485:    // If focus_count is still 1 after the upsert, this row was newly inserted.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:497:    console.warn(`[working-memory] upsertExtractedEntry error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:744:  upsertExtractedEntry,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:201: * Deduplicates edges by direction+from+to+relation key.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:573:      : ['Restore merged with existing data - duplicates may exist', 'Search indexes rebuilt'],
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:267:    if (!msg.includes('duplicate column')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:333:    const upsert = db.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:340:      upsert.run('totalScanned', String(archivalStats.totalScanned));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:341:      upsert.run('totalArchived', String(archivalStats.totalArchived));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:343:      upsert.run('lastScanTime', archivalStats.lastScanTime ?? '');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:487: * @returns Deduplicated array of merged results sorted by score descending.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:497:  // CanonicalResultId() prevents duplicate rows when one channel emits
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:615:  const deduped = new Map<string, HybridSearchResult>();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:645:      deduped.set(key, mergeRawCandidate(deduped.get(key), candidate));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:650:    Array.from(deduped.values()).sort((a, b) => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:953:  // Deduplicate by ID (keep highest normalized score)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:958:  const deduped = new Map<string, HybridSearchResult>();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:    const existing = deduped.get(canonicalId);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:963:      deduped.set(canonicalId, r);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:967:  return Array.from(deduped.values())
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:44: * Similarity threshold above which two memories are considered near-duplicates
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:101:        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:142:/** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:4:// MCP tool handler for deep_loop_graph_upsert — idempotent
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:5:// node/edge upsert with self-loop rejection and weight clamping.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:8:  upsertNode,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:9:  upsertEdge,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:67:/** Handle deep_loop_graph_upsert tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:155:    // Execute batch upsert
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:200: * session-health.ts should use this instead of the memory-surface duplicate.
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:214:  it('does not duplicate nodes or children', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-hierarchy.vitest.ts:225:    // Root should have exactly one child, not duplicated
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:211:      const fileId = graphDb.upsertFile(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:226:  // Deduplicate
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:389:      // Prevent duplicate insertions from repeated terms in a single call.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/index.ts:4:export { handleCoverageGraphUpsert } from './upsert.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:12:// Feature catalog: Generation-time duplicate and empty content prevention
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:226:  // P1-4 FIX: Check content hash even during force reindex to prevent duplicate
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:228:  // not change either, so re-indexing provides no value and creates duplicates.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:262:    const duplicateParams: Array<string> = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:271:      duplicateParams.push(samePathExclusion.filePath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:273:      duplicateParams.push(samePathExclusion.canonicalFilePath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:276:    const duplicateByHash = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:282:    `).get(...duplicateParams) as DuplicateLookupRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:284:    if (duplicateByHash) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:286:        duplicateByHash.content_text,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:287:        duplicateByHash.file_path,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:291:        console.warn(`[memory-save] Hash match for memory #${duplicateByHash.id} failed secondary content verification; continuing save`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:294:      console.error(`[memory-save] T054: Duplicate content detected (hash match id=${duplicateByHash.id}), skipping embedding`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:297:        id: duplicateByHash.id,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:299:        title: parsed.title ?? duplicateByHash.title ?? '',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:304:        message: `Duplicate content detected: identical to existing memory #${duplicateByHash.id} (${duplicateByHash.file_path}). Skipping embedding generation.`,
+.opencode/skills/system-spec-kit/mcp_server/lib/interfaces/vector-store.ts:18:  async upsert(_id: string, _embedding: unknown, _metadata: Record<string, unknown>): Promise<number> {
+.opencode/skills/system-spec-kit/mcp_server/lib/interfaces/vector-store.ts:19:    throw new Error('Method upsert() must be implemented by subclass');
+.opencode/skills/system-spec-kit/mcp_server/handlers/types.ts:5:// Previously declared duplicates locally — now imports from the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:415:    // Deduplicate by ID, keeping the higher similarity score
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:406:    hints.push('Existing memory was reinforced instead of creating duplicate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:397:    throw new Error(`[session-analytics-db] Session row missing after upsert for ${claudeSessionId}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:472:function upsertSessionRow(
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:595:  upsertSessionRow(db, state);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:143:  it('G1: deduplicates when source_id equals target_id (same numeric value)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:154:    expect(uniqueIds.size).toBe(ids.length); // no duplicate entries
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:262:  it('deduplicates FTS results using the highest composite score', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:330:  it('T002-3: duplicate sibling chunks (same parent_id) are collapsed to one row', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:366:  it('T012-1: duplicate chunk dedup is identical for includeContent=false and includeContent=true', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:103:/** Semantic dedup similarity threshold: above this, reject as near-duplicate */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:686: * Layer 3: Check for semantic near-duplicates using vector similarity.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:690: * memory, the new memory is rejected as a near-duplicate.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:729:        ? `Near-duplicate detected: memory #${bestMatch.id} (similarity: ${(bestMatch.similarity * 100).toFixed(1)}% >= ${SEMANTIC_DEDUP_THRESHOLD * 100}%)`
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:230:  it('T005b-Q9: enqueueIngestJob ignores duplicate enqueues for the same job ID', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:237:    const filePath = createTempFile('duplicate-enqueue');
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:239:      id: 'job_duplicate_enqueue',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:113: *   2. Lowercase and deduplicate.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:36:  exact_duplicate_enabled: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:37:  similar_duplicate_threshold: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:60:/** Result of duplicate detection */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:63:  duplicate_type: 'exact' | 'similar' | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:95:/** Parameters for duplicate checking */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:109:/** Options for duplicate checking */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:134:  check_duplicates?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:248:  exact_duplicate_enabled: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:249:  similar_duplicate_threshold: parseFloat(process.env.MCP_DUPLICATE_THRESHOLD || '0.95'),
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:327:  // Track seen anchor IDs for duplicate detection
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:333:    // Check for duplicate anchor IDs
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:340:        suggestion: `Rename one of the duplicate anchors to a unique ID`,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:432:    check_exact = PREFLIGHT_CONFIG.exact_duplicate_enabled,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:434:    similarity_threshold = PREFLIGHT_CONFIG.similar_duplicate_threshold,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:439:    duplicate_type: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:467:    duplicate: {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:477:      tenantId: duplicate.tenant_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:478:      userId: duplicate.user_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:479:      agentId: duplicate.agent_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:480:      sharedSpaceId: duplicate.shared_space_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:504:    if (typeof duplicate.file_path === 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:505:      result.existing_path = duplicate.file_path;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:513:  // Check 1: Exact duplicate via content hash (fast)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:554:        result.duplicate_type = 'exact';
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:562:      console.warn('[preflight] Exact duplicate check failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:566:  // Check 2: Similar duplicate via vector similarity (requires embedding)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:592:          result.duplicate_type = 'similar';
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:601:      console.warn('[preflight] Similar duplicate check failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:768:    check_duplicates = true,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:851:  if (check_duplicates && content) {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:856:    addCheck('duplicate_check', dupResult);
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:859:      // Exact duplicates block save
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:860:      if (dupResult.duplicate_type === 'exact') {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:864:          message: `Exact duplicate found: memory #${dupResult.existingId}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:870:      // Similar duplicates are warnings (PE-gating handles them)
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:871:      else if (dupResult.duplicate_type === 'similar') {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:145:  it('deduplicates by normalized text', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:150:    // Should be deduplicated to a single entry
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:155:  it('sums frequencies for duplicate entities', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:444:    expect(result.upserted).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:507:  it('returns upserted count matching entity count', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:514:    expect(result.upserted).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:725:// 9. __testables.deduplicateEntities (internal helper)
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:728:describe('__testables.deduplicateEntities', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:735:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:744:    const result = __testables.deduplicateEntities([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:754:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:759:  it('treats differently-cased text as duplicates via normalization', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-extractor.vitest.ts:764:    const result = __testables.deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:431:    it('deduplicates user selections by query_id:memory_id', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:77: * Results are deduplicated by normalized text with summed frequencies.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:80: * @returns Array of extracted entities, deduplicated and frequency-counted.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:120:  // Deduplicate by normalized text (lowercase, trimmed), summing frequencies
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:121:  return deduplicateEntities(raw);
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:258: * @returns Count of entities upserted.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:263:): { upserted: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:265:    let upserted = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:310:        upserted++;
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:315:    return { upserted };
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:319:    return { upserted: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:491: * Deduplicate raw extraction results by normalized text.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:495:function deduplicateEntities(
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:517:  deduplicateEntities,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:95: * @returns Deduplicated array of extracted aliases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:275: * @returns Array of 2-5 deduplicated surrogate questions.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:  const inserted = workingMemory.upsertExtractedEntry({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:204: *   3. Return the deduplicated list.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:210: * @returns Merged, deduplicated, coverage-ranked result array.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:958:   * const id = await store.upsert('ignored', embedding, { spec_folder: 'specs/001-demo', file_path: 'spec.md' });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:961:  async upsert(_id: string, embedding: EmbeddingInput, metadata: JsonObject): Promise<number> {
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:62:function dedupeFallbackRationale(title: string, rationaleCandidate: string, authoredRationale: string): string {
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:337:        const rationale: string = dedupeFallbackRationale(title, rationaleCandidate, rationaleFromInput);
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:508:    const RATIONALE: string = dedupeFallbackRationale(obs.title || narrative, rationaleCandidate, '');
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:965:      // BUG-027 FIX: Skip symbolic links to prevent loops and duplicate scanning
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:549:  it('T005-01: computePrecision deduplicates repeated relevant IDs', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:555:  it('T005-02: computeF1 matches harmonic mean of deduped precision and recall', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:68:Continue validating the \`memory_save\` UX contract with a fixture that is rich enough to satisfy the durable-memory gate while still exercising duplicate no-op, deferred embedding, and post-mutation feedback behavior.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:76:- \`decision-record.md\` — UX contract and duplicate detection strategy
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:85:| \`mcp_server/handlers/memory-save.ts\` | Coordinates duplicate detection, sufficiency evaluation, template validation, and post-mutation feedback for \`memory_save\`. |
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:86:| \`mcp_server/handlers/save/response-builder.ts\` | Shapes successful save payloads, duplicate no-op hints, and deferred embedding response details. |
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:94:This regression fixture exists to prove that successful saves and duplicate no-op saves still report the correct UX payloads after the shared insufficiency gate and rendered-memory template contract were added to the save pipeline.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:102:- Validated duplicate no-op response shape
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:110:- Decided to keep duplicate no-op saves visible in the UX contract so callers can distinguish unchanged content from validation failures.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:116:- Verified duplicate no-op saves omit post-mutation hooks and leave caches unchanged.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:222:  it('does not emit postMutationHooks for duplicate-content no-op saves', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:224:    const duplicatePath = path.join(FIXTURE_ROOT, 'memory', 'duplicate.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:225:    const sharedContent = buildMemoryContent('Duplicate Seed', 'Shared duplicate body for regression coverage.');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:228:    fs.writeFileSync(duplicatePath, sharedContent, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:236:      filePath: duplicatePath,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:242:    expect(parsed.data.status).toBe('duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:305:  it('atomicSaveMemory duplicate no-op omits postMutationHooks and reports no-op status', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:306:    const indexedPath = path.join(FIXTURE_ROOT, 'memory', 'atomic-duplicate-seed.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:307:    const duplicatePath = path.join(FIXTURE_ROOT, 'memory', 'atomic-duplicate-copy.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:308:    const sharedContent = buildMemoryContent('Atomic Duplicate Seed', 'Atomic duplicate behavior regression fixture.');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:318:        file_path: duplicatePath,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:325:    expect(['duplicate', 'unchanged', 'no_change']).toContain(result.status);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:168: * @returns Array of candidate noun phrase tokens (lowercase, deduplicated).
+.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts:187:  // fields via {{#HAS_DECISION_TREE}}. AUTO_DECISION_TREES would duplicate them.
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:170:function dedupe<T>(items: T[]): T[] {
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:182:  const triggerPhrases = dedupe([
+.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts:387:    triggerPhrases: dedupe([
+.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts:13:// O3-2: Use canonical types from session-types (no local duplicates)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:6:// ClearExisting=true, duplicate file_path skip, edge cases.
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:292:  // 4.4 restoreCheckpoint duplicate file_path skip
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:320:    it('EXT-S9: duplicate checkpoint name handled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:626:      checkpointStorage.createCheckpoint({ name: 'anchor-aware-duplicate-test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:631:      const result = checkpointStorage.restoreCheckpoint('anchor-aware-duplicate-test', false);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:647:      checkpointStorage.deleteCheckpoint('anchor-aware-duplicate-test');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:386: * Deduplicate and validate a list of numeric IDs, truncating to integers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:561: * REQ-D4-005: Assistive reconsolidation for near-duplicate detection.
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:409:  it('runtime accepts exactly one actor identity for shared_space_upsert', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:411:      validateToolArgs('shared_space_upsert', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:420:  it('handler auth rejects shared_space_upsert when actor identity is omitted', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:425:        tool: 'shared_space_upsert',
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:382:  // Deduplicate observations: merge repeated tool calls on the same file
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:383:  const deduped = deduplicateObservations(observations || []);
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:385:  return deduped
+.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:426: * Deduplicate observations that represent repeated tool calls on the same file.
 
 exec
-/bin/zsh -lc "sed -n '184,360p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '184,360p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 /** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
 async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse> {
@@ -3409,7 +3409,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   let formattedResults: FormattedResult[];
 
 exec
-/bin/zsh -lc "sed -n '222,430p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '222,430p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 /** Handle memory_health tool -- returns system health status and diagnostics. */
 async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
@@ -3622,9 +3622,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       data: {
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '797,910p' .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '797,910p' .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   // Layer 1: Structural validation
   // REQ-D4-003: Pass contextType so validateStructural can apply the short-critical exception
@@ -3930,9 +3930,9 @@ function insertEdge(
 codex
 I’ve got the key Engram hygiene primitives in hand now. I’m pulling one more comparison layer from our side: the save-quality gate, memory health auto-repair surface, and causal-edge invariants, because those are where the strongest “don’t copy this literally” and “here’s the actually useful import” conclusions will come from.
 exec
-/bin/zsh -lc "sed -n '430,610p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '430,610p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '226,330p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '226,330p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
       data: {
         status,
@@ -4208,12 +4208,12 @@ export { handleMemoryHealth };
 export { handleMemoryBulkDelete };
 
 exec
-/bin/zsh -lc "sed -n '36,120p' .opencode/skill/system-spec-kit/mcp_server/scripts/memory/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '36,120p' .opencode/skills/system-spec-kit/mcp_server/scripts/memory/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-sed: .opencode/skill/system-spec-kit/mcp_server/scripts/memory/README.md: No such file or directory
+sed: .opencode/skills/system-spec-kit/mcp_server/scripts/memory/README.md: No such file or directory
 
 exec
-/bin/zsh -lc "sed -n '540,680p' .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '540,680p' .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 /** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
@@ -4358,58 +4358,58 @@ export function extractCausalLinks(content: string): CausalLinks {
     supersedes: [],
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/extractors/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/extractors/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
-sed: .opencode/skill/system-spec-kit/scripts/extractors/input-normalizer.ts: No such file or directory
+sed: .opencode/skills/system-spec-kit/scripts/extractors/input-normalizer.ts: No such file or directory
 
 exec
-/bin/zsh -lc "rg -n \"sanitize trigger|trigger sanit|PSR-2|over-broad|short folder-like|numeric prefix|filterTriggerPhrases|trigger phrase omission\" .opencode/skill/system-spec-kit -g '*.ts' -g '*.js'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"sanitize trigger|trigger sanit|PSR-2|over-broad|short folder-like|numeric prefix|filterTriggerPhrases|trigger phrase omission\" .opencode/skills/system-spec-kit -g '*.ts' -g '*.js'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:311:  it('S1-H-05: strips numeric prefix without section numbering', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:315:  it('S1-H-06: handles heading without numeric prefix', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:396:  it('S1-E-09: strips heading hashes and numeric prefixes', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:165: * The numeric prefix (e.g. "3.") is also stripped because section
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:607:          // Also allow the display name without numeric prefix (e.g., "memory-save-quality-pipeline")
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1000:  it('strips numeric prefix and slugifies', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1004:  it('handles no numeric prefix', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1055:    // Create a folder without numeric prefix
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1075:    // F-36 upgrade-on-read: empty specId should stay empty (no numeric prefix on folder name)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:612: * Slugify a spec folder name: strip numeric prefix, replace non-alphanumeric
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:662:  // Extract numeric prefix (e.g. "010" from "009-spec-descriptions")
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:37:  | 'PSR-2'
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:671:          checkId: 'PSR-2',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:685:          checkId: 'PSR-2',
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:138:function filterTriggerPhrases(
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1344:    preExtractedTriggers = filterTriggerPhrases(mergedTriggers, manualTriggerKeys);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2182:  filterTriggerPhrases,
-.opencode/skill/system-spec-kit/scripts/tests/test-subfolder-resolution.js:103:      { input: 'abc-def', reason: 'non-numeric prefix' },
-.opencode/skill/system-spec-kit/scripts/tests/test-subfolder-resolution.js:218:      { input: 'abc-def', reason: 'non-numeric prefix' },
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:2:// TEST: filterTriggerPhrases — 3-stage trigger phrase filter pipeline
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:7:import { filterTriggerPhrases } from '../core/workflow';
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:13:describe('filterTriggerPhrases', () => {
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:18:      const result = filterTriggerPhrases(['system/spec-kit', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:23:      const result = filterTriggerPhrases(['system\\spec-kit', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:27:    it('removes phrases with leading numeric prefix', () => {
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:28:      const result = filterTriggerPhrases(['022 hybrid rag fusion', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:34:      const result = filterTriggerPhrases(
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:43:      const result = filterTriggerPhrases(
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:52:      const result = filterTriggerPhrases(input);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:64:      const result = filterTriggerPhrases(['a', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:69:      const result = filterTriggerPhrases(['of', 'to', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:75:      const result = filterTriggerPhrases(allowListed);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:81:      const result = filterTriggerPhrases(input);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:86:      const result = filterTriggerPhrases(['of to by']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:98:      const result = filterTriggerPhrases(['memory', 'memory pipeline architecture']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:104:      const result = filterTriggerPhrases(input);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:109:      const result = filterTriggerPhrases(['Memory', 'memory pipeline']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:122:      const result = filterTriggerPhrases(input);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:131:      const result = filterTriggerPhrases(['a/b', 'of']);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:136:      const result = filterTriggerPhrases([]);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:142:      const first = filterTriggerPhrases(input);
-.opencode/skill/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:143:      const second = filterTriggerPhrases(first);
+.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:311:  it('S1-H-05: strips numeric prefix without section numbering', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:315:  it('S1-H-06: handles heading without numeric prefix', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-normalizer.vitest.ts:396:  it('S1-E-09: strips heading hashes and numeric prefixes', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts:165: * The numeric prefix (e.g. "3.") is also stripped because section
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:607:          // Also allow the display name without numeric prefix (e.g., "memory-save-quality-pipeline")
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1000:  it('strips numeric prefix and slugifies', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1004:  it('handles no numeric prefix', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1055:    // Create a folder without numeric prefix
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:1075:    // F-36 upgrade-on-read: empty specId should stay empty (no numeric prefix on folder name)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:612: * Slugify a spec folder name: strip numeric prefix, replace non-alphanumeric
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:662:  // Extract numeric prefix (e.g. "010" from "009-spec-descriptions")
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:37:  | 'PSR-2'
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:671:          checkId: 'PSR-2',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:685:          checkId: 'PSR-2',
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:138:function filterTriggerPhrases(
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1344:    preExtractedTriggers = filterTriggerPhrases(mergedTriggers, manualTriggerKeys);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2182:  filterTriggerPhrases,
+.opencode/skills/system-spec-kit/scripts/tests/test-subfolder-resolution.js:103:      { input: 'abc-def', reason: 'non-numeric prefix' },
+.opencode/skills/system-spec-kit/scripts/tests/test-subfolder-resolution.js:218:      { input: 'abc-def', reason: 'non-numeric prefix' },
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:2:// TEST: filterTriggerPhrases — 3-stage trigger phrase filter pipeline
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:7:import { filterTriggerPhrases } from '../core/workflow';
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:13:describe('filterTriggerPhrases', () => {
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:18:      const result = filterTriggerPhrases(['system/spec-kit', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:23:      const result = filterTriggerPhrases(['system\\spec-kit', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:27:    it('removes phrases with leading numeric prefix', () => {
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:28:      const result = filterTriggerPhrases(['022 hybrid rag fusion', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:34:      const result = filterTriggerPhrases(
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:43:      const result = filterTriggerPhrases(
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:52:      const result = filterTriggerPhrases(input);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:64:      const result = filterTriggerPhrases(['a', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:69:      const result = filterTriggerPhrases(['of', 'to', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:75:      const result = filterTriggerPhrases(allowListed);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:81:      const result = filterTriggerPhrases(input);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:86:      const result = filterTriggerPhrases(['of to by']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:98:      const result = filterTriggerPhrases(['memory', 'memory pipeline architecture']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:104:      const result = filterTriggerPhrases(input);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:109:      const result = filterTriggerPhrases(['Memory', 'memory pipeline']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:122:      const result = filterTriggerPhrases(input);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:131:      const result = filterTriggerPhrases(['a/b', 'of']);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:136:      const result = filterTriggerPhrases([]);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:142:      const first = filterTriggerPhrases(input);
+.opencode/skills/system-spec-kit/scripts/tests/trigger-phrase-filter.vitest.ts:143:      const second = filterTriggerPhrases(first);
 
 exec
-/bin/zsh -lc 'rg -n "cleanupOrphanedEdges|deleteEdgesForMemory|orphan" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "cleanupOrphanedEdges|deleteEdgesForMemory|orphan" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 599:function deleteEdgesForMemory(memoryId: string): number {
 663:// Automated orphan edge cleanup
@@ -4524,9 +4524,9 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go:3137:		SELECT id, title, content, tool_name, type, project, topic_key
 
 exec
-/bin/zsh -lc "sed -n '138,240p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '138,240p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '640,710p' .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '640,710p' .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 function filterTriggerPhrases(
   phrases: string[],
@@ -4706,7 +4706,7 @@ const FALLBACK_RETRY_MANAGER: WorkflowRetryManagerAdapter = {
         issues.push({
 
 exec
-/bin/zsh -lc "sed -n '599,690p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '599,690p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 function deleteEdgesForMemory(memoryId: string): number {
   if (!db) return 0;
@@ -4802,7 +4802,7 @@ function cleanupOrphanedEdges(): { deleted: number } {
  * Also: checklist SUPPORTS spec, decision-record SUPPORTS plan, research SUPPORTS spec
 
 exec
-/bin/zsh -lc "sed -n '664,705p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '664,705p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 function cleanupOrphanedEdges(): { deleted: number } {
   if (!db) return { deleted: 0 };
@@ -4848,7 +4848,7 @@ function createSpecDocumentChain(documentIds: Record<string, number>): { inserte
   const ids = documentIds;
 
 exec
-/bin/zsh -lc "sed -n '240,340p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '240,340p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   }
 
@@ -4923,7 +4923,7 @@ export function checkContentHashDedup(
 }
 
 exec
-/bin/zsh -lc "sed -n '450,540p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '450,540p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     return existing;
   }
@@ -5018,9 +5018,9 @@ export function executeConflict(
       })();
 
 exec
-/bin/zsh -lc "sed -n '648,705p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '648,705p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '340,430p' .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '340,430p' .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
     case 'conflict':
@@ -5422,7 +5422,7 @@ func handleUpdate(s *store.Store) server.ToolHandlerFunc {
 			msg += fmt.Sprintf("\n⚠ WARNING: Content was truncated from %d to %d chars. Consider splitting into smaller observations.", contentLen, s.MaxObservationLength())
 
 exec
-/bin/zsh -lc "sed -n '118,170p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '118,170p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 function toNormalizedPath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -5487,9 +5487,9 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go:773:		topicKey := suggestTopicKey(typ, title, content)
 
 exec
-/bin/zsh -lc "sed -n '1,140p' .opencode/skill/system-spec-kit/scripts/memory/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,140p' .opencode/skills/system-spec-kit/scripts/memory/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '360,470p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '360,470p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Memory Scripts"
@@ -5549,7 +5549,7 @@ Runtime files are compiled into `../dist/memory/`.
 Routine JSON mode:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
 ```
 
 Explicit CLI targets are authoritative, including policy-defined phase folders. Direct positional saves now reject and must be replaced with structured JSON input.
@@ -5557,7 +5557,7 @@ Explicit CLI targets are authoritative, including policy-defined phase folders. 
 JSON input mode:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"sessionSummary":"...","specFolder":"..."}' specs/NNN-name
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"sessionSummary":"...","specFolder":"..."}' specs/NNN-name
 ```
 
 
@@ -5567,11 +5567,11 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --j
 
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json
-node .opencode/skill/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
-node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
-node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
-node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json
+node .opencode/skills/system-spec-kit/scripts/dist/memory/rank-memories.js /tmp/memories.json
+node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js
+node .opencode/skills/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive
+node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json
 ```
 
 
@@ -5607,20 +5607,20 @@ Typical migration workflow:
 
 ```bash
 # Dry-run first (strict mode by default: malformed frontmatter fails)
-node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
 
 # Apply once dry-run output is clean
-node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --apply --include-archive --report /tmp/frontmatter-apply.json
 
 # Reindex embeddings so dashboard/search reflects updated metadata
-node .opencode/skill/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
+node .opencode/skills/system-spec-kit/scripts/dist/memory/reindex-embeddings.js
 
 To target specific roots, pass `--roots`:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js \
   --dry-run --roots ./.opencode/specs,./specs --report /tmp/frontmatter-targeted.json
 ```
 
@@ -5897,7 +5897,7 @@ exec
 3490:	result.Extracted = len(learnings)
 
 exec
-/bin/zsh -lc "sed -n '560,640p' .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '560,640p' .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     validateArguments();
 
@@ -6007,7 +6007,7 @@ func handleCapturePassive(s *store.Store, cfg MCPConfig) server.ToolHandlerFunc 
 }
 
 exec
-/bin/zsh -lc "sed -n '130,140p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '130,140p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ] as const;
 
@@ -6022,7 +6022,7 @@ const MUTATION_LEDGER_TRIGGER_SQL = `
 
 
 exec
-/bin/zsh -lc "sed -n '130,210p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '130,210p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     resultStatus = 'updated';
   } else if (embeddingStatus !== 'success') {
@@ -6107,7 +6107,7 @@ exec
     setImmediate(() => {
 
 exec
-/bin/zsh -lc "sed -n '820,880p' .opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '820,880p' .opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '3199,3255p' .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -6235,37 +6235,37 @@ func inferTopicFamily(typ, title, content string) string {
 codex
 I’m at synthesis now, and I’m sanity-checking one last thing before I write: whether any Public retrieval surface already exposes the kind of revision/duplicate counters Engram puts directly into search results. If not, that becomes a clean hygiene finding instead of a vague one.
 exec
-/bin/zsh -lc "rg -n \"revision_count|duplicate_count|last_seen_at|topic_key\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skill/system-spec-kit/mcp_server/lib/search -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"revision_count|duplicate_count|last_seen_at|topic_key\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skills/system-spec-kit/mcp_server/lib/search -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'rg -n "mutation ledger|append-only|audit trail|decisionMeta|memory_save" .opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "mutation ledger|append-only|audit trail|decisionMeta|memory_save" .opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:136:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:138:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:144:      ? 'memory_save: updated indexed memory entry'
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:145:      : 'memory_save: created new indexed memory entry',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:149:    decisionMeta: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:150:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:160:    actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:180:    result.warnings.push('Mutation ledger append failed; audit trail may be incomplete.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:251:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:269:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:285:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:462:    tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:136:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:138:  BEGIN SELECT RAISE(ABORT, 'mutation_ledger is append-only'); END
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:144:      ? 'memory_save: updated indexed memory entry'
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:145:      : 'memory_save: created new indexed memory entry',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:149:    decisionMeta: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:150:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:160:    actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:180:    result.warnings.push('Mutation ledger append failed; audit trail may be incomplete.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:251:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:269:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:285:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:462:    tool: 'memory_save',
 
 exec
-/bin/zsh -lc 'rg -n "session_summary|passive|quality gate|trigger sanitization|post-save" .opencode/skill/system-spec-kit/scripts/memory/README.md .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_summary|passive|quality gate|trigger sanitization|post-save" .opencode/skills/system-spec-kit/scripts/memory/README.md .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:63:/** Combined result from all quality gate layers */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:77:/** Parameters for running the quality gate */
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:113:// REQ-D4-003: Short-critical quality gate exception
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:225: * Check if the quality gate feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:235: * Check if the quality gate is in warn-only mode.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:262: * Called when the quality gate is first enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:305: * REQ-D4-003: Check whether the save quality gate exceptions feature is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:752: * Run the full 3-layer quality gate for a memory save operation.
-.opencode/skill/system-spec-kit/scripts/memory/README.md:41:- `validate-memory-quality.ts` - validates post-render memory quality against scoring thresholds before indexing/reporting; includes post-save quality gates (structure, semantic sufficiency, duplicate detection), heuristic calibration, and trigger sanitization
-.opencode/skill/system-spec-kit/scripts/memory/README.md:97:- Runs post-render memory quality validation so contaminated headings or fallback-decision leaks are caught after template population. The post-save quality pipeline includes 3-layer gates (structure, semantic sufficiency, duplicate detection), heuristic calibration for scoring thresholds, and trigger sanitization to prevent noisy or over-broad trigger phrases from persisting in the index.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:63:/** Combined result from all quality gate layers */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:77:/** Parameters for running the quality gate */
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:113:// REQ-D4-003: Short-critical quality gate exception
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:225: * Check if the quality gate feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:235: * Check if the quality gate is in warn-only mode.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:262: * Called when the quality gate is first enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:305: * REQ-D4-003: Check whether the save quality gate exceptions feature is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:752: * Run the full 3-layer quality gate for a memory save operation.
+.opencode/skills/system-spec-kit/scripts/memory/README.md:41:- `validate-memory-quality.ts` - validates post-render memory quality against scoring thresholds before indexing/reporting; includes post-save quality gates (structure, semantic sufficiency, duplicate detection), heuristic calibration, and trigger sanitization
+.opencode/skills/system-spec-kit/scripts/memory/README.md:97:- Runs post-render memory quality validation so contaminated headings or fallback-decision leaks are caught after template population. The post-save quality pipeline includes 3-layer gates (structure, semantic sufficiency, duplicate detection), heuristic calibration for scoring thresholds, and trigger sanitization to prevent noisy or over-broad trigger phrases from persisting in the index.
 
 exec
 /bin/zsh -lc "rg -n \"mem_stats|mem_merge_projects|MergeProjects|Stats\\(|PassiveCapture|mem_capture_passive\" .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -6315,42 +6315,42 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 
 ## Findings
 ### Finding 1: Engram’s `topic_key` upsert is a strong anti-spam primitive, but it is flatter than our causal-link hygiene model
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
 - **What it does**: Engram’s `AddObservation()` first tries a same-`project`+`scope`+`topic_key` upsert, increments `revision_count`, and refreshes `last_seen_at`; only after that does it run exact duplicate suppression. Public instead preserves separate rows, then expresses replacement/conflict through `supersedes` edges and reconsolidation transactions, with self-loop rejection and bounded edge strength.
 - **Why it matters for us**: Engram is better at keeping one evolving thread compact; Public is better at preserving lineage and explainability. The useful import is an optional thread-key compaction hint layered on top of causal links, not a replacement for them.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 2: Engram exposes hygiene telemetry directly in retrieval; Public’s hygiene signals are stronger, but mostly operational rather than conversational
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts), [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts), [mcp_server/handlers/memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts), [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts), [mcp_server/handlers/memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
 - **What it does**: Engram’s `Search()` returns `topic_key`, `revision_count`, `duplicate_count`, and `last_seen_at` with both direct key hits and FTS hits. Public has stronger hygiene decisions before and during save, including exact-duplicate blocking and similar-duplicate warning/routing, but those coarse hygiene counters are not surfaced in current retrieval handlers.
 - **Why it matters for us**: Operators can see immediately whether an Engram hit is a stable thread, a repeatedly duplicated memory, or a recently refreshed record. Public already has the deeper logic; it just does not summarize that state as cheaply at retrieval time.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 3: Public’s trigger system is a materially stronger hygiene layer than anything Engram currently has
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts), [mcp_server/lib/parsing/memory-parser.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts), [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts), [mcp_server/lib/parsing/memory-parser.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts), [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
 - **What it does**: Engram’s hygiene is lexical: `sanitizeFTS()`, direct `topic_key` lookup, and duplicate suppression. Public adds a separate trigger plane with authored phrase extraction, path/numeric/shingle filtering, trusted-session enforcement, fail-closed scope filtering, and attention-tier working memory with decay/co-activation.
 - **Why it matters for us**: For compaction survival and fast recovery, explicit trigger hygiene is a real advantage. Engram’s topic families are useful, but they do not replace a controlled trigger surface.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 4: Engram’s admin hygiene surface is observability-light; Public’s health tooling is the stronger operational model
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 - **What it does**: Engram’s `mem_stats` is basically totals plus project list. Public’s `memory_health` checks DB/provider readiness, FTS parity, alias divergence, vector integrity, and can repair FTS, refresh trigger cache, and clean orphan causal edges/vectors/chunks with explicit confirmation.
 - **Why it matters for us**: Once memory hygiene includes vectors, triggers, and causal edges, simple counts are not enough. Engram has curation tools; Public has an actual repair plane.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Engram’s project-merge cleanup is useful for drift repair, but too coarse for our provenance and audit expectations
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts), [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts), [mcp_server/handlers/memory-bulk-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts), [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts), [mcp_server/handlers/memory-bulk-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
 - **What it does**: Engram’s `MergeProjects()` rewrites `project` across observations, sessions, and prompts in one transaction, then backfills sync mutations. Public destructive or mutating paths keep an append-only mutation ledger, checkpoint guardrails, and transactional cleanup of graph residue.
 - **Why it matters for us**: Engram’s merge is practical for local naming drift, but it rewrites scope history in place. In Public, that would weaken auditability and make causal/shared-scope provenance harder to trust unless we added much stricter lineage recording.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 6: Engram’s session-summary and passive-capture writes are convenient, but they bypass the intake hygiene standards Public already enforces
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts), [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts), [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 - **What it does**: `mem_session_summary` auto-creates a session if needed and saves a `session_summary` observation; `PassiveCapture()` extracts the last “Key Learnings” section and writes each item unless an exact content hash already exists. Public’s authority path is much stricter: 3-layer quality gate, duplicate checks, post-save review, and trigger sanitization before durable indexing.
 - **Why it matters for us**: Engram makes low-friction capture easy, but it also makes noisy or weak observations easier to admit. If we add passive capture, it should feed our existing quality-gated pipeline as a low-trust draft lane, not stand beside `generate-context.js` as an equal source of truth.
 - **Recommendation**: NEW FEATURE
@@ -6363,18 +6363,18 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
-- [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
-- [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts)
-- [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts)
-- [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
-- [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
-- [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
-- [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
+- [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
+- [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts)
+- [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts)
+- [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
+- [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
+- [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
+- [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 
 ## Assessment
 - New information ratio: 0.74
@@ -6400,42 +6400,42 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 
 ## Findings
 ### Finding 1: Engram’s `topic_key` upsert is a strong anti-spam primitive, but it is flatter than our causal-link hygiene model
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
 - **What it does**: Engram’s `AddObservation()` first tries a same-`project`+`scope`+`topic_key` upsert, increments `revision_count`, and refreshes `last_seen_at`; only after that does it run exact duplicate suppression. Public instead preserves separate rows, then expresses replacement/conflict through `supersedes` edges and reconsolidation transactions, with self-loop rejection and bounded edge strength.
 - **Why it matters for us**: Engram is better at keeping one evolving thread compact; Public is better at preserving lineage and explainability. The useful import is an optional thread-key compaction hint layered on top of causal links, not a replacement for them.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 2: Engram exposes hygiene telemetry directly in retrieval; Public’s hygiene signals are stronger, but mostly operational rather than conversational
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts), [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts), [mcp_server/handlers/memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts), [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts), [mcp_server/handlers/memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
 - **What it does**: Engram’s `Search()` returns `topic_key`, `revision_count`, `duplicate_count`, and `last_seen_at` with both direct key hits and FTS hits. Public has stronger hygiene decisions before and during save, including exact-duplicate blocking and similar-duplicate warning/routing, but those coarse hygiene counters are not surfaced in current retrieval handlers.
 - **Why it matters for us**: Operators can see immediately whether an Engram hit is a stable thread, a repeatedly duplicated memory, or a recently refreshed record. Public already has the deeper logic; it just does not summarize that state as cheaply at retrieval time.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 3: Public’s trigger system is a materially stronger hygiene layer than anything Engram currently has
-- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts), [mcp_server/lib/parsing/memory-parser.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts), [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- **Source**: [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts), [mcp_server/lib/parsing/memory-parser.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts), [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
 - **What it does**: Engram’s hygiene is lexical: `sanitizeFTS()`, direct `topic_key` lookup, and duplicate suppression. Public adds a separate trigger plane with authored phrase extraction, path/numeric/shingle filtering, trusted-session enforcement, fail-closed scope filtering, and attention-tier working memory with decay/co-activation.
 - **Why it matters for us**: For compaction survival and fast recovery, explicit trigger hygiene is a real advantage. Engram’s topic families are useful, but they do not replace a controlled trigger surface.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 4: Engram’s admin hygiene surface is observability-light; Public’s health tooling is the stronger operational model
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 - **What it does**: Engram’s `mem_stats` is basically totals plus project list. Public’s `memory_health` checks DB/provider readiness, FTS parity, alias divergence, vector integrity, and can repair FTS, refresh trigger cache, and clean orphan causal edges/vectors/chunks with explicit confirmation.
 - **Why it matters for us**: Once memory hygiene includes vectors, triggers, and causal edges, simple counts are not enough. Engram has curation tools; Public has an actual repair plane.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Engram’s project-merge cleanup is useful for drift repair, but too coarse for our provenance and audit expectations
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts), [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts), [mcp_server/handlers/memory-bulk-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts), [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts), [mcp_server/handlers/memory-bulk-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts)
 - **What it does**: Engram’s `MergeProjects()` rewrites `project` across observations, sessions, and prompts in one transaction, then backfills sync mutations. Public destructive or mutating paths keep an append-only mutation ledger, checkpoint guardrails, and transactional cleanup of graph residue.
 - **Why it matters for us**: Engram’s merge is practical for local naming drift, but it rewrites scope history in place. In Public, that would weaken auditability and make causal/shared-scope provenance harder to trust unless we added much stricter lineage recording.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 6: Engram’s session-summary and passive-capture writes are convenient, but they bypass the intake hygiene standards Public already enforces
-- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts), [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- **Source**: [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go), [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go), [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts), [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 - **What it does**: `mem_session_summary` auto-creates a session if needed and saves a `session_summary` observation; `PassiveCapture()` extracts the last “Key Learnings” section and writes each item unless an exact content hash already exists. Public’s authority path is much stricter: 3-layer quality gate, duplicate checks, post-save review, and trigger sanitization before durable indexing.
 - **Why it matters for us**: Engram makes low-friction capture easy, but it also makes noisy or weak observations easier to admit. If we add passive capture, it should feed our existing quality-gated pipeline as a low-trust draft lane, not stand beside `generate-context.js` as an equal source of truth.
 - **Recommendation**: NEW FEATURE
@@ -6448,18 +6448,18 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
-- [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
-- [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
-- [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts)
-- [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts)
-- [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
-- [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
-- [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
-- [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/README.md)
+- [mcp_server/handlers/memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [mcp_server/lib/cognitive/working-memory.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts)
+- [mcp_server/handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [mcp_server/lib/storage/causal-edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts)
+- [mcp_server/lib/storage/reconsolidation.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts)
+- [mcp_server/handlers/save/dedup.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts)
+- [mcp_server/lib/validation/preflight.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts)
+- [mcp_server/lib/validation/save-quality-gate.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts)
+- [mcp_server/handlers/save/response-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts)
+- [scripts/core/workflow.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
+- [scripts/core/post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [scripts/memory/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/README.md)
 
 ## Assessment
 - New information ratio: 0.74

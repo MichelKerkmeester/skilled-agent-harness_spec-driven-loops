@@ -4,15 +4,15 @@
 Inspect durable telemetry error handling, especially how corrupted JSONL sink data affects `advisor_validate`.
 
 ### Files Audited
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:338-346`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:391-418`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:301-326`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:338-346`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:391-418`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:301-326`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-49`
 
 ### Findings
-- P1 `error-path` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:400-406`: `readAdvisorHookOutcomeRecords(...)` blindly `JSON.parse`s every retained line and performs no validation or recovery, so a single truncated or malformed outcome record in the durable tmpdir sink turns outcome reading into a hard exception.
-- P1 `observability` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:338-346`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:409-418`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:325-326`: diagnostics records are corruption-tolerant because invalid lines are filtered, but outcome records are not. `advisor_validate` reads the outcome summary unguarded, so one bad line can abort the entire validation surface even though the packet markets durable telemetry as resilient cross-process state.
-- P2 `coverage` `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-34`: the validator suite only checks output schema and prompt privacy; it does not exercise corrupted diagnostics or outcomes files, so this failure mode is currently untested.
+- P1 `error-path` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:400-406`: `readAdvisorHookOutcomeRecords(...)` blindly `JSON.parse`s every retained line and performs no validation or recovery, so a single truncated or malformed outcome record in the durable tmpdir sink turns outcome reading into a hard exception.
+- P1 `observability` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:338-346`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:409-418`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:325-326`: diagnostics records are corruption-tolerant because invalid lines are filtered, but outcome records are not. `advisor_validate` reads the outcome summary unguarded, so one bad line can abort the entire validation surface even though the packet markets durable telemetry as resilient cross-process state.
+- P2 `coverage` `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts:10-34`: the validator suite only checks output schema and prompt privacy; it does not exercise corrupted diagnostics or outcomes files, so this failure mode is currently untested.
 
 ### Evidence
 ```ts

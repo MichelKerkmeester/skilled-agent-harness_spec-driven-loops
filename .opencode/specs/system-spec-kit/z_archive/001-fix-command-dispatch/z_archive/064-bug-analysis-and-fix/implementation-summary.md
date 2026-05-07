@@ -144,7 +144,7 @@ Phase 4 (P2 Polish) -> 8 tasks -> 5 parallel agents (2 skipped)
 | T101 | Missing `await` in formatSearchResults() | Added await at lines 1085, 1140, 1161 | context-server.js |
 | T001 | Unused config-loader.js causing confusion | Deleted file, reduced search-weights.json to used sections | 2 files |
 | T003 | Debug threshold inconsistency ("2-3" vs "3+") | Standardized to "3+" across 5 files | 5 files |
-| T004 | Missing /memory:save command | Verified exists at .opencode/command/memory/save.md | N/A |
+| T004 | Missing /memory:save command | Verified exists at .opencode/commands/memory/save.md | N/A |
 | T103 | Undefined E429 error code | Added to errors.js and troubleshooting.md | 2 files |
 | T002 | False ANCHOR "93%" accuracy claims | Updated to "planned feature" in 5 files | 5 files |
 | T102 | CHANGELOG version inconsistency | Already consistent (1.7.1) | N/A |

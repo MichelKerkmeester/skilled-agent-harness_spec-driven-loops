@@ -29,7 +29,7 @@ Eight phases shipped between 2026-05-01 and 2026-05-02 that together replaced th
 
 ## How to read these
 
-Each phase changelog follows the canonical nested-changelog template at `.opencode/skill/system-spec-kit/templates/changelog/phase.md`. Sections are:
+Each phase changelog follows the canonical nested-changelog template at `.opencode/skills/system-spec-kit/templates/changelog/phase.md`. Sections are:
 
 - **Summary**: what changed and why it matters, in plain language
 - **Added**: new capabilities or surfaces

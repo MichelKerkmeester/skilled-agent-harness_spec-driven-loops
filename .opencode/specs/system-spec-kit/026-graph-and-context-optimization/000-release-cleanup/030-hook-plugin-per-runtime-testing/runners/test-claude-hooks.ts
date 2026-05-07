@@ -36,7 +36,7 @@ export async function runClaudeHookTests(sandbox: SandboxDetection = detectSandb
 
   const hook = await runCommand({
     command: 'node',
-    args: ['.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'],
+    args: ['.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'],
     stdin: JSON.stringify({
       session_id: 'packet-043-claude',
       hook_event_name: 'UserPromptSubmit',
@@ -61,7 +61,7 @@ export async function runClaudeHookTests(sandbox: SandboxDetection = detectSandb
         [CONFIG_PATH]: readSnippet(CONFIG_PATH),
       },
     },
-    ['.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186'],
+    ['.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186'],
     CONFIG_PATH,
   );
 

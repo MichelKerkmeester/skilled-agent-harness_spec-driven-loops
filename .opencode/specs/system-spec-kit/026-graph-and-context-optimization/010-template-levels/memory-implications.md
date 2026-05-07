@@ -182,16 +182,16 @@ The code graph (separate from the causal graph) indexes source files. It doesn't
 ### New TypeScript modules to index
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts
-.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts
+.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts
 ```
 
 ### Deletions to clean from the index
 
 ```
-.opencode/skill/system-spec-kit/scripts/templates/compose.sh
-.opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.{ts,sh}
+.opencode/skills/system-spec-kit/scripts/templates/compose.sh
+.opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.{ts,sh}
 ... and 50+ template files under templates/level_N/, core/, addendum/, phase_parent/
 ```
 

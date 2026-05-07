@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 016 of 20. The packet root is
 
 **Angle D1 — mcp_server/lib/ boundary discipline**
 
-Audit module boundaries across `.opencode/skill/system-spec-kit/mcp_server/lib/` and `mcp_server/skill_advisor/lib/` (freshness/, derived/, lifecycle/, scorer/, daemon/, corpus/, handlers/). Are responsibilities clean? Where do modules reach across boundaries (e.g. lifecycle importing scorer internals)? Recommend module re-organization where it'd reduce coupling. Cite import file:line offenders.
+Audit module boundaries across `.opencode/skills/system-spec-kit/mcp_server/lib/` and `mcp_server/skill_advisor/lib/` (freshness/, derived/, lifecycle/, scorer/, daemon/, corpus/, handlers/). Are responsibilities clean? Where do modules reach across boundaries (e.g. lifecycle importing scorer internals)? Recommend module re-organization where it'd reduce coupling. Cite import file:line offenders.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

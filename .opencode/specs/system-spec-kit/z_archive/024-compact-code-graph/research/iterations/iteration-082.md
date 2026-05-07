@@ -3,10 +3,10 @@
 ## Focus
 Verify the five performance claims recorded in iteration 070 against the **current** timing code in:
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
 
 Cross-check only enough adjacent code (`code-graph-context.ts`, `code-graph-db.ts`, `hook-state.ts`) to determine whether the prior latency numbers are actually measured in the current implementation or were architectural inference.
 
@@ -25,9 +25,9 @@ The `1800ms` constant is still real: `HOOK_TIMEOUT_MS` remains `1800` in `shared
 
 So iteration 070's statement that the `1800ms` budget covers the **entire** hook execution is no longer precise for current code. Also, the current source does **not** measure end-to-end hook time, so the "~10-50ms current usage" and "~1700ms headroom" figures are **not directly verifiable from the present timing code**.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:5-6]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:205-241]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:79-95]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:5-6]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:205-241]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:79-95]
 
 ### 2. Claim: SQLite 1-hop neighborhood costs ~1-9ms
 **Status: NOT DIRECTLY VERIFIABLE FROM CURRENT TIMING CODE.**
@@ -38,10 +38,10 @@ The separate code graph path still exists in `code-graph-context.ts`: `expandAnc
 
 So the low-latency conclusion remains architecturally plausible, but the specific `1-9ms` number is currently an **inference**, not a live measured value in the checked source.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:10-18]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:179-249]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:204-238]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:10-18]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:179-249]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:204-238]
 
 ### 3. Claim: token estimation uses `Math.ceil(text.length / 4)` with ~15-25% error margin
 **Status: PARTIALLY VERIFIED.**
@@ -62,8 +62,8 @@ So iteration 070 correctly identified the current token-estimation formula.
 
 What is **not** verified by current code is the "~15-25% error margin." Neither file documents, measures, nor tests that range. The code confirms the heuristic, but the accuracy band remains an external inference rather than something encoded in the implementation.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:83-89]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:45-55]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:83-89]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:45-55]
 
 ### 4. Claim: CocoIndex costs ~100-500ms and cannot be used in the hook path
 **Status: MODIFIED.**
@@ -76,8 +76,8 @@ That string is then passed into `mergeCompactBrief()` as one of the merge inputs
 
 This supports the practical conclusion that the current hook path cannot rely on live CocoIndex results. But the numeric `~100-500ms` roundtrip estimate is **not verifiable from current timing code**, because no such request is made here.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:152-155]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:183-189]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:152-155]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:183-189]
 
 ### 5. Claim: full hook-path pipeline is ~11-74ms (regex) or ~11-209ms (tree-sitter)
 **Status: FALSE AS A DESCRIPTION OF THE CURRENT HOOK PATH.**
@@ -94,9 +94,9 @@ The only explicit timing in `compact-inject.ts` is around `mergeCompactBrief()` 
 
 That means the earlier `~11-74ms` / `~11-209ms` numbers should now be treated as **future-state architecture estimates**, not verified measurements of the live hook implementation.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:191-202]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-184]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:191-202]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:107-184]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
 
 ### 6. Claim: budget allocation timing was part of the verified latency picture
 **Status: NOT TIMED IN CURRENT CODE.**
@@ -109,8 +109,8 @@ The current `budget-allocator.ts` does not use `performance.now()` or any other 
 
 Because the current implementation uses four default sources, this routine is bounded and likely very cheap, but the repository does **not** currently record any measured timing for it. So any precise budget-allocation latency claim remains inferred rather than instrumented.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:31-42]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:31-42]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
 
 ## Synthesis
 
@@ -148,13 +148,13 @@ None. The checked files were sufficient to verify which claims are direct code f
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-070.md`
 
 ## Assessment

@@ -13,7 +13,7 @@ The current runtime already has:
 - a compact hook cache (`pendingCompactPrime`)
 - durable tool-based recovery via `session_resume` / `session_bootstrap`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:299-317`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-75`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:59-143`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:299-317`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-75`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:59-143`]
 
 If we add LCM-style persisted resume snapshots on top, we risk three conflicting truths about the same session.
 
@@ -21,7 +21,7 @@ If we add LCM-style persisted resume snapshots on top, we risk three conflicting
 
 `opencode-lcm` snapshot export/import is session/worktree-oriented. [SOURCE: `external/opencode-lcm-master/src/store-snapshot.ts:148-218`]
 
-The live runtime already has scoped checkpoint snapshots keyed by spec folder and governance scope. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:423-535`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1419-1529`]
+The live runtime already has scoped checkpoint snapshots keyed by spec folder and governance scope. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:423-535`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1419-1529`]
 
 Over-porting both models would create overlapping restore and repair semantics.
 
@@ -29,7 +29,7 @@ Over-porting both models would create overlapping restore and repair semantics.
 
 The plugin normalizes worktree identity as a lowercased path string. [SOURCE: `external/opencode-lcm-master/src/worktree-key.ts:1-4`]
 
-Our current graph safety depends on canonical realpath-based enforcement. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65-95`]
+Our current graph safety depends on canonical realpath-based enforcement. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65-95`]
 
 Copying the lexical worktree key straight into the graph runtime could alias symlink/case variants.
 
@@ -49,7 +49,7 @@ Over-porting summary DAG maintenance or archive repair into prompt-time hooks wo
 
 LCM privacy can redact paths and exclude whole tool outputs. [SOURCE: `external/opencode-lcm-master/src/privacy.ts:81-123`]
 
-That is safe for archive storage, but dangerous if copied into the shared graph/runtime core where structural context depends on concrete anchors. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:40-56`]
+That is safe for archive storage, but dangerous if copied into the shared graph/runtime core where structural context depends on concrete anchors. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:40-56`]
 
 ## Recommendations
 

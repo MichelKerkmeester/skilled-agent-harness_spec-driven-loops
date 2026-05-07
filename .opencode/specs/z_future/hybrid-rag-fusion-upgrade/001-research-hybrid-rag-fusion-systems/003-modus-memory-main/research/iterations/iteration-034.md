@@ -14,7 +14,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: **primary**
 
 ### Finding 2: Modus’s fuzzy Jaccard cache is only safe because its query contract is narrow; Public’s exact-key cache is the correct boundary
-- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go:10-17,39-120`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-809,1042-1049,1071-1129` [SOURCE: paths above]
+- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go:10-17,39-120`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-809,1042-1049,1071-1129` [SOURCE: paths above]
 - **What it does**: Modus reuses results for exact query matches and Jaccard-similar term sets across a small BM25-only retrieval surface. Public caches by a much larger parameter set: scopes, limits, decay, content inclusion, anchors, rerank, session state, boosts, and trace settings.
 - **Why it matters**: In Public, fuzzy cache reuse would blur materially different retrieval intents and response shapes. The current exact-key cache plus post-cache session dedup is slower than Modus’s fuzzy reuse, but it preserves correctness across a much wider control surface.
 - **Recommendation**: **reject**
@@ -30,7 +30,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: **primary**
 
 ### Finding 4: Public already has the right performance pattern: explicit latency tiers, not one universal retrieval path
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-807`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-240`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:752-768`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:914-947`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:128-168` [SOURCE: paths above]
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700-807`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-240`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:752-768`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:914-947`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:128-168` [SOURCE: paths above]
 - **What it does**: Public routes `memory_context` quick mode to trigger matching, while focused/deep/resume modes route to the heavier hybrid `memory_search` path. Cache hits skip the embedding wait, but cache misses may block on embedding readiness; the server also performs DB freshness and auto-surface prechecks before dispatch.
 - **Why it matters**: Public’s performance story is not “make everything as cheap as Modus BM25.” It is “use the cheap lane when the task allows it, and pay for richer retrieval only when necessary.” That is the transferable pattern worth strengthening.
 - **Recommendation**: **adopt now**
@@ -38,7 +38,7 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - **Source strength**: **primary**
 
 ### Finding 5: Public’s bigger storage footprint buys lower steady-state churn by pushing work into incremental and async maintenance surfaces
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-240,367-387,486-623`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:600-616,728-735`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-205`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-44` [SOURCE: paths above]
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-240,367-387,486-623`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:600-616,728-735`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-205`; `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-44` [SOURCE: paths above]
 - **What it does**: Public exposes incremental memory scans with fast-path mtime skips, deferred stale cleanup, post-success mtime updates, optional async embedding on save, incremental code-graph indexing, and explicit CocoIndex reindex commands.
 - **Why it matters**: Compared with Modus, Public stores more derived state and operational metadata, so disk growth is higher. But the payoff is that write/index cost can be spread across explicit maintenance operations instead of forcing every process to rebuild the whole retrieval stack at startup.
 - **Recommendation**: **adopt now**
@@ -54,15 +54,15 @@ PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Se
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go:17-23,35-81`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:21-45,75-103,273-331`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:31,53,58,308,316,421-427,456,462`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-809,1042-1049,1071-1129`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-807`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-240`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-240,367-387,486-623`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:600-616,728-735`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-205`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-44`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:892-947`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:128-168`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-809,1042-1049,1071-1129`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:700-807`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-240`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-240,367-387,486-623`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:600-616,728-735`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123-205`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:15-44`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:892-947`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:128-168`
 
 ## Assessment
 - **New information ratio**: **0.24**

@@ -6,7 +6,7 @@ Ran a final parity recheck across the OpenCode plugin bridge and the runtime par
 ## Evidence read
 - `.opencode/plugins/spec-kit-skill-advisor.js:13-18` and `:35-55` → plugin still defaults `thresholdConfidence` to `0.7`.
 - `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs:86-113` → bridge forwards that threshold into `buildSkillAdvisorBrief()` without sharing the hook default constant.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-runtime-parity.vitest.ts:21-24` and `:119-136` → parity harness remains scoped to Claude, Gemini, Copilot, Codex, and Copilot wrapper, not the plugin path.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-runtime-parity.vitest.ts:21-24` and `:119-136` → parity harness remains scoped to Claude, Gemini, Copilot, Codex, and Copilot wrapper, not the plugin path.
 
 ## Findings
 

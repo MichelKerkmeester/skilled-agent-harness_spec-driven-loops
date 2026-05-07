@@ -23,7 +23,7 @@ permission:
 
 Read-only code review specialist for quality scoring, pattern validation, security assessment, and standards enforcement across PRs, local changes, focused file reviews, and orchestrator quality gates.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. Reviewers observe and evaluate; they do not implement fixes.
 
@@ -131,8 +131,8 @@ Use this table as the machine-citable integration contract for caller agents, co
 | `@orchestrate` | Caller agent | May request pre/mid/post execution gate validation and consume pass/fail, score, blockers, required fixes, suggestions, revision guidance, and confidence. Review returns results only; it does not dispatch follow-up work. |
 | `@context` | Context provider | May supply a Context Package. When present, consume it and skip Layer 1 memory tools; never call `@context` from this LEAF agent. |
 | `@general` | Downstream implementer | May receive revision guidance from the caller after review. Review must not invoke, patch for, or supervise `@general`. |
-| `/spec_kit:implement` | `.opencode/command/spec_kit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, blocking status, and confidence in output. |
-| `/spec_kit:complete` | `.opencode/command/spec_kit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates remain deterministic. |
+| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Command-level caller for implementation quality gates and post-change review. Include gate type, task id, artifact, score, blocking status, and confidence in output. |
+| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Command-level caller for completion validation. Include unresolved P0/P1 blockers and confidence so completion gates remain deterministic. |
 | `sk-code` | Skill baseline | Load first on every non-fast-path review. Baseline security/correctness minimums are mandatory and cannot be weakened by overlays. |
 | `sk-code-*` | Stack overlay skills | Load exactly one matching overlay after `sk-code`. Overlay style/process guidance overrides generic baseline style only for the active stack. |
 | `gh pr view` | GitHub CLI via `Bash` | Read-only PR metadata and diff context retrieval. Do not use `gh` to edit PRs, labels, branches, comments, or files from this agent. |
@@ -309,7 +309,7 @@ When invoked by orchestrator or a command workflow for quality gate validation:
 
 ### Command Caller Contract
 
-For `.opencode/command/spec_kit/implement.md` and `.opencode/command/spec_kit/complete.md`, include a compact machine-citable line in gate outputs:
+For `.opencode/commands/spec_kit/implement.md` and `.opencode/commands/spec_kit/complete.md`, include a compact machine-citable line in gate outputs:
 
 ```markdown
 Integration Contract: caller_surface=<@orchestrate|/spec_kit:implement|/spec_kit:complete|not delegated>; artifact=<path>; gate_type=<pre_execution|mid_execution|post_execution>; threshold=<number>; decision=<PASS|FAIL|PARTIAL|BLOCKED>
@@ -581,8 +581,8 @@ See Section 3 for available tools and skills.
 
 | Command | Path | Purpose |
 | --- | --- | --- |
-| `/spec_kit:implement` | `.opencode/command/spec_kit/implement.md` | Implementation workflow gate caller |
-| `/spec_kit:complete` | `.opencode/command/spec_kit/complete.md` | Completion workflow gate caller |
+| `/spec_kit:implement` | `.opencode/commands/spec_kit/implement.md` | Implementation workflow gate caller |
+| `/spec_kit:complete` | `.opencode/commands/spec_kit/complete.md` | Completion workflow gate caller |
 
 ### MCP Tools
 

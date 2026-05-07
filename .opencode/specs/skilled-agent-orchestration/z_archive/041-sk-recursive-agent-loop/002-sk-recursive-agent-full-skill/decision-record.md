@@ -106,7 +106,7 @@ Accepted
 The packet needed one more target to prove runtime reuse, but broad orchestration or research agents would have expanded scope too quickly.
 
 ### Decision
-Use `.opencode/agent/context-prime.md` as the second target because it has a compact, read-only Prime Package contract and can stay candidate-only in this packet.
+Use `.opencode/agents/context-prime.md` as the second target because it has a compact, read-only Prime Package contract and can stay candidate-only in this packet.
 
 ### Alternatives Considered
 
@@ -130,7 +130,7 @@ Accepted
 We needed reusable fixture definitions for the skill and packet-local output evidence for verification.
 
 ### Decision
-Store reusable fixture definitions under `.opencode/skill/sk-improve-agent/assets/fixtures/` and store actual benchmark outputs and reports under this packet's `improvement/benchmark-runs/`.
+Store reusable fixture definitions under `.opencode/skills/sk-improve-agent/assets/fixtures/` and store actual benchmark outputs and reports under this packet's `improvement/benchmark-runs/`.
 
 ### Alternatives Considered
 

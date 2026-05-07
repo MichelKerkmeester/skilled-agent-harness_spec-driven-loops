@@ -4,8 +4,8 @@ You are generating Vitest stress tests under spec-kit packet 044. Repository roo
 
 ## Output locations
 
-- 3 files to `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/`
-- 3 files to `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/`
+- 3 files to `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/`
+- 3 files to `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/`
 
 ## Reference patterns (READ FIRST)
 
@@ -67,7 +67,7 @@ Imports must reference real product source. If the exact export name is unclear,
 - Self-validate by running:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run --config vitest.stress.config.ts \
   stress_test/code-graph/code-graph-scan-stress.vitest.ts \
   stress_test/code-graph/code-graph-context-stress.vitest.ts \

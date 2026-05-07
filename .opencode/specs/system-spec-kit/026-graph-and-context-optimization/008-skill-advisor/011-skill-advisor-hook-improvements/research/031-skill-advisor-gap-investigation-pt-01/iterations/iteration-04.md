@@ -7,8 +7,8 @@ Run the setup/readme-family cross-check, verify exclusions against packet-owned 
 ### Search Strategy
 
 - Grep patterns:
-  - `rg -n "OpenCode \\| .*spec-kit-skill-advisor-bridge|plugin-helpers/spec-kit-skill-advisor-bridge|spec-kit-skill-advisor-bridge\\.mjs" .opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md .opencode/skill/system-spec-kit/mcp_server/skill-advisor/INSTALL_GUIDE.md .opencode/README.md .opencode/plugins/README.md`
-  - `rg -n "workspaceRoot|effectiveThresholds|AdvisorRecommendOutputSchema" .opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
+  - `rg -n "OpenCode \\| .*spec-kit-skill-advisor-bridge|plugin-helpers/spec-kit-skill-advisor-bridge|spec-kit-skill-advisor-bridge\\.mjs" .opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md .opencode/skills/system-spec-kit/mcp_server/skill-advisor/INSTALL_GUIDE.md .opencode/README.md .opencode/plugins/README.md`
+  - `rg -n "workspaceRoot|effectiveThresholds|AdvisorRecommendOutputSchema" .opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
 - Code-graph traversals:
   - Reused the local graph metadata and landed-file-set path scans to confirm no new unlisted runtime files sat between the plugin entrypoint and helper.
 - Exclusion check:
@@ -19,7 +19,7 @@ Run the setup/readme-family cross-check, verify exclusions against packet-owned 
 
 | Path | Why It's Relevant | Category | Confidence | Why It Was Missed | Needs Update |
 | --- | --- | --- | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md` | The runtime matrix still describes OpenCode as `.opencode/plugins/spec-kit-skill-advisor.js` plus bare `spec-kit-skill-advisor-bridge.mjs` [`SET-UP_GUIDE.md:111-117`], while the actual plugin resolves the helper under `.opencode/plugin-helpers/` [`plugins/spec-kit-skill-advisor.js:37`]. This is a lighter doc drift than the feature catalog/playbook, but it is still an operator-facing stale reference outside the resource map. | docs | Medium | Packet 014 updated the narrow hook reference, not the broader setup guide family. | Maybe |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/SET-UP_GUIDE.md` | The runtime matrix still describes OpenCode as `.opencode/plugins/spec-kit-skill-advisor.js` plus bare `spec-kit-skill-advisor-bridge.mjs` [`SET-UP_GUIDE.md:111-117`], while the actual plugin resolves the helper under `.opencode/plugin-helpers/` [`plugins/spec-kit-skill-advisor.js:37`]. This is a lighter doc drift than the feature catalog/playbook, but it is still an operator-facing stale reference outside the resource map. | docs | Medium | Packet 014 updated the narrow hook reference, not the broader setup guide family. | Maybe |
 
 ### Already-Covered
 

@@ -16,10 +16,10 @@ I compared the external orchestrator agent and command with the local deep-resea
 - `[SOURCE: external/agents/orchestrator.md:52-67]` It explicitly does not decompose tasks, delegate to specialist agents, run quality gates, or read source code directly.
 - `[SOURCE: external/agents/orchestrator.md:69-109]` Its operational flow is centered on instruction writing, one background loop, anomaly response, and reporting.
 - `[SOURCE: external/agents/orchestrator.md:111-122]` Its interaction model is defined around loop exit codes, state inspection, and relaunch behavior.
-- `[SOURCE: .opencode/command/spec_kit/deep-research.md:136-154]` The local deep-research command is a packet-local iterative investigation workflow with initialization, repeated iterations, synthesis, and optional preserve/export.
-- `[SOURCE: .opencode/command/spec_kit/deep-research.md:263-269]` It explicitly treats fresh-context leaf dispatch, externalized state, convergence detection, and persistent dashboarding as defining features.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:15-16]` The local loop architecture is intentionally split between YAML lifecycle management, a leaf research agent, and reducer synchronization.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:159-175]` Each iteration dispatches a constrained leaf agent that reads packet state and writes one new evidence artifact.
+- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:136-154]` The local deep-research command is a packet-local iterative investigation workflow with initialization, repeated iterations, synthesis, and optional preserve/export.
+- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:263-269]` It explicitly treats fresh-context leaf dispatch, externalized state, convergence detection, and persistent dashboarding as defining features.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:15-16]` The local loop architecture is intentionally split between YAML lifecycle management, a leaf research agent, and reducer synchronization.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:159-175]` Each iteration dispatches a constrained leaf agent that reads packet state and writes one new evidence artifact.
 
 ## Analysis
 The external orchestrator solves implementation supervision. It is designed for a human or high-level manager to keep one long-running automation loop aligned with a project task. That is a different job than `system-spec-kit` deep research. The local research loop is trying to preserve evidence quality under fresh context, not maintain one instruction file while a worker loop mutates the project. The write-once iteration files and reducer-owned packet state are advantages here, not liabilities.
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should reject replacing deep-research/deep-review with an external-style single-loop orchestrator manager. Keep the fresh-context leaf iteration model and improve its controller, testing, and observability instead.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/deep-research.md`, `.opencode/command/spec_kit/deep-review.md`, `.opencode/skill/sk-deep-research/references/loop_protocol.md`
+- **Target file or module:** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`
 - **Change type:** rejected
 - **Blast radius:** architectural
 - **Prerequisites:** none

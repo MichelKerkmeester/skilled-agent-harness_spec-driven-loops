@@ -8,7 +8,7 @@ Determine how a query-intent router should distinguish structural code questions
 
 1. The existing `query-router.ts` is a complexity router, not a code-intent router.
 
-   Today, `query-router.ts` outputs only three categories: `simple`, `moderate`, and `complex`. It delegates classification to `classifyQueryComplexity()`, which uses term count, exact trigger-phrase match, and stop-word ratio. The router then maps those tiers to channel subsets: `simple -> [vector, fts]`, `moderate -> [vector, fts, bm25]`, `complex -> [vector, fts, bm25, graph, degree]`. The only intent-aware behavior inside `query-router.ts` is a BM25-preservation escape hatch for `find_spec`, `find_decision`, or artifact classes like `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, and `research`. In other words, the current router decides "how much retrieval effort" to spend, not "which retrieval system understands this question best." [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:23-47`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:68-72`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:113-121`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:8-19`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:165-196`]
+   Today, `query-router.ts` outputs only three categories: `simple`, `moderate`, and `complex`. It delegates classification to `classifyQueryComplexity()`, which uses term count, exact trigger-phrase match, and stop-word ratio. The router then maps those tiers to channel subsets: `simple -> [vector, fts]`, `moderate -> [vector, fts, bm25]`, `complex -> [vector, fts, bm25, graph, degree]`. The only intent-aware behavior inside `query-router.ts` is a BM25-preservation escape hatch for `find_spec`, `find_decision`, or artifact classes like `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, and `research`. In other words, the current router decides "how much retrieval effort" to spend, not "which retrieval system understands this question best." [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:23-47`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:68-72`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:113-121`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:8-19`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:165-196`]
 
 2. We need a second classifier layer for code-query intent, and its categories should align to the three context systems rather than to generic task verbs.
 
@@ -28,7 +28,7 @@ Determine how a query-intent router should distinguish structural code questions
    - CocoIndex answers resemblance and concept similarity
    - memory answers rationale, prior work, and session continuity
 
-   This also matches prior packet research: structural context, semantic context, and session context are separate layers and should not be collapsed into one blob. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7-21`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:42-128`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:42-57`]
+   This also matches prior packet research: structural context, semantic context, and session context are separate layers and should not be collapsed into one blob. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7-21`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:42-128`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:42-57`]
 
 3. Intent detection should start as a deterministic hybrid: high-precision patterns first, scored heuristics second, session-state resolution third; not LLM-first.
 
@@ -45,7 +45,7 @@ Determine how a query-intent router should distinguish structural code questions
    - Stage E: ranked-intent output
      Return top 2 intents with confidence and gap, not just one label
 
-   Recommendation: do not use an LLM in the request path for v1 routing. If we want smarter routing later, run an LLM or learned classifier in shadow mode offline, compare against heuristic labels, and only graduate it after eval evidence. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:130-195`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:614-622`]
+   Recommendation: do not use an LLM in the request path for v1 routing. If we want smarter routing later, run an LLM or learned classifier in shadow mode offline, compare against heuristic labels, and only graduate it after eval evidence. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:130-195`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:614-622`]
 
 4. The routing table should choose a primary system and an augmentation policy, not just a winner.
 
@@ -61,7 +61,7 @@ Determine how a query-intent router should distinguish structural code questions
    | `mixed_code_lookup` | CocoIndex | Code Graph | Memory | Two-stage semantic-to-graph cascade |
    | `session_followup` | Prior route inherits | One additional system if needed | Memory | Continue prior anchor unless confidence drops |
 
-   Important implementation detail: the existing 5-channel hybrid search remains the retrieval engine only for the memory system. A future code graph should not be squeezed into today's `graph` lane, because the current `graph` and `degree` lanes are explicitly causal-memory features, not code-structure features. Prior packet work already recommended that if code graph ever becomes a fused search lane, it should be a sixth lane named `code_graph`, not a reinterpretation of `graph`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:204-216`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-6`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:18-24`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:35-58`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:50-58`]
+   Important implementation detail: the existing 5-channel hybrid search remains the retrieval engine only for the memory system. A future code graph should not be squeezed into today's `graph` lane, because the current `graph` and `degree` lanes are explicitly causal-memory features, not code-structure features. Prior packet work already recommended that if code graph ever becomes a fused search lane, it should be a sixth lane named `code_graph`, not a reinterpretation of `graph`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:204-216`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-6`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:18-24`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:35-58`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:50-58`]
 
 5. Routing should be selective-soft, not always-hard and not always-query-everything.
 
@@ -79,7 +79,7 @@ Determine how a query-intent router should distinguish structural code questions
    - soft-two-stage if confidence is 0.55-0.79 or gap < 0.20
    - memory augmentation when decision/history terms appear, or when the conversation is clearly continuing prior packet work
 
-   This matches the repo's existing bias toward deterministic routing with safe fallbacks and ranked intents, while avoiding "blast all channels" as the default. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:126-199`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:379-485`]
+   This matches the repo's existing bias toward deterministic routing with safe fallbacks and ranked intents, while avoiding "blast all channels" as the default. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:126-199`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:379-485`]
 
 6. Cody and Cursor both behave like hybrid context routers, but mostly through context-system composition and explicit anchors rather than a documented public "intent router."
 
@@ -106,7 +106,7 @@ Determine how a query-intent router should distinguish structural code questions
    - Layer 2c: memory request via existing `memory_context` / `memory_search`
    - Layer 3: result merger / explanation formatter
 
-   For MVP, memory remains internally powered by `vector + fts5 + bm25 + graph + degree`. Code graph stays external to that fusion stack. Only after we have a normalized code-artifact result model should we consider adding a `code_graph` lane to RRF. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1043`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1168`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1211-1243`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-145`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:50-58`]
+   For MVP, memory remains internally powered by `vector + fts5 + bm25 + graph + degree`. Code graph stays external to that fusion stack. Only after we have a normalized code-artifact result model should we consider adding a `code_graph` lane to RRF. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1043`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1168`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1211-1243`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-145`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:50-58`]
 
 8. Ambiguous queries should route by anchor acquisition: semantic first when the target is fuzzy, structural first when the target is explicit.
 
@@ -126,7 +126,7 @@ Determine how a query-intent router should distinguish structural code questions
    4. run code graph on those anchors for callers, import path, placement in request flow
    5. optionally query memory if packet/session context suggests prior auth decisions or known incidents
 
-   By contrast, `what calls verifyJwtToken` should go graph-first because the target symbol is already explicit. So ambiguity should not mean "query everything"; it should mean "acquire anchor, then switch systems." The existing ranked-intent pattern in `intent-classifier.ts` is useful here because it already returns more than one plausible intent. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:379-485`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`]
+   By contrast, `what calls verifyJwtToken` should go graph-first because the target symbol is already explicit. So ambiguity should not mean "query everything"; it should mean "acquire anchor, then switch systems." The existing ranked-intent pattern in `intent-classifier.ts` is useful here because it already returns more than one plausible intent. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:379-485`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`]
 
 9. Follow-up queries should inherit route state, anchors, and unresolved ambiguity from the previous turn.
 
@@ -188,27 +188,27 @@ Determine how a query-intent router should distinguish structural code questions
    - whether anchors were found
    - whether the user reformulated the query
 
-   That gives us enough signal to tune the heuristic thresholds or later train a smarter classifier. Inference from the sources: the highest-value graduation path is not "replace heuristics with an LLM." It is "keep heuristics as the fast path, then use eval evidence to decide whether a learned reranker or shadow classifier is worth the added complexity." [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1043`]
+   That gives us enough signal to tune the heuristic thresholds or later train a smarter classifier. Inference from the sources: the highest-value graduation path is not "replace heuristics with an LLM." It is "keep heuristics as the fast path, then use eval evidence to decide whether a learned reranker or shadow classifier is worth the added complexity." [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1043`]
 
 ## Evidence
 
 - Existing router and classifier internals:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:23-163`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:8-199`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7-22`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:42-205`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:10-39`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:52-125`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:156-301`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:23-163`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:8-199`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:7-22`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:42-205`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:404-485`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:10-39`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:52-125`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:156-301`
 
 - Existing hybrid search and graph behavior:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1265`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-58`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-145`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-257`
-  - `.opencode/skill/system-spec-kit/mcp_server/README.md:204-276`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:999-1265`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-58`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:88-145`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-257`
+  - `.opencode/skills/system-spec-kit/mcp_server/README.md:204-276`
 
 - Relevant prior packet research:
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:50-58`

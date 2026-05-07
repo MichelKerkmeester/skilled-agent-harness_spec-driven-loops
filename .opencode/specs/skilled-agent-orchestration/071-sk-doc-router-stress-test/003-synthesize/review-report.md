@@ -42,7 +42,7 @@ Score: 1 P0 (methodology bug, already fixed inline), 2 P1 (copilot accuracy gap,
 
 - **Root cause**: scenarios as initially authored used imperative prompts ("Help me create…", "Generate…", "Author…"). When fed to CLIs with file-write tools (codex `--sandbox workspace-write`, copilot `--allow-all-tools`, opencode `--agent general`), the CLIs interpreted them as REAL invocations and started executing the work.
 - **Symptoms observed during first matrix run**:
-  - 7 empty skeleton dirs created at `.opencode/skill/sk-doc/feature_catalog/` (a CLI started `/create:feature-catalog` work, hit 120s timeout before populating)
+  - 7 empty skeleton dirs created at `.opencode/skills/sk-doc/feature_catalog/` (a CLI started `/create:feature-catalog` work, hit 120s timeout before populating)
   - Multiple 120s timeouts on SD-002 (skill-creation) and SD-003 (agent-command) — CLIs trying to actually create files
   - User flagged the methodology bug: "i see sk-graph-rag was generated? shouldnt happen"
 - **Resolution**: All 15 scenarios patched with reflective-framing prefix (commit db8668f52). Each Setup now wraps the imperative prompt in a "DO NOT execute. Describe routing trace only" instruction. Re-run produced ZERO side-effects (verified by `find .opencode/skill -newer scripts/run-matrix.sh -type d` returning only expected entries).
@@ -135,7 +135,7 @@ For follow-up router work, recommend deep-review iteration of the router pseudoc
 ## 7. Files
 
 - **Strategy + Plan**: `071-sk-doc-router-stress-test/spec.md` + child plans
-- **Playbook (15 scenarios + index)**: `.opencode/skill/sk-doc/manual_testing_playbook/`
+- **Playbook (15 scenarios + index)**: `.opencode/skills/sk-doc/manual_testing_playbook/`
 - **Matrix dispatcher**: `002-matrix-execute/scripts/run-matrix.sh`
 - **Per-CLI delta JSONL**: `002-matrix-execute/deltas/{codex,copilot,opencode}.jsonl` (45 entries total)
 - **Per-cell logs**: `002-matrix-execute/logs/SD-NNN/{codex,copilot,opencode}.log` (45 files)

@@ -40,7 +40,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Audit the active packet for stale references to removed memory command docs
-- [x] T002 Confirm the live memory command surface in `.opencode/command/memory/`
+- [x] T002 Confirm the live memory command surface in `.opencode/commands/memory/`
 - [x] T003 [P] Identify where `/memory:manage shared` must be treated as nested under the live `/memory:manage` surface
 
 ---

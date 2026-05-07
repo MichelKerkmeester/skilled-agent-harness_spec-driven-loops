@@ -24,7 +24,7 @@ The `reconsolidate()` function in `lib/storage/reconsolidation.ts` performs thes
 - The auto-checkpoint design from iteration 11 (create checkpoint on first activation) remains the correct approach
 - The archive operation is reversible (not DELETE, just `is_archived = 1`)
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:1-300]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:1-300]
 
 ### 2. QUALITY_LOOP Is Purely Algorithmic -- CONFIRMED, No External I/O
 **Verdict: SAFE to enable by default.**
@@ -45,8 +45,8 @@ The `reconsolidate()` function in `lib/storage/reconsolidation.ts` performs thes
 
 The quality loop is used at save-time only (not search-time), and its output is consumed by the caller (`memory-save.ts`) to decide whether to proceed with the save. The `maxRetries` parameter (default 2) means it may re-run its internal scoring up to 2 times, but each retry is the same pure computation.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:576-586]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:261-271]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:576-586]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:261-271]
 
 ### 3. Stage 2 Recency Injection Point -- VERIFIED at Step 1a (Before Session Boost)
 **Verdict: Prior claim CONFIRMED with precise location.**
@@ -63,7 +63,7 @@ The proposed recency signal injection at "step 1a" (between session boost and ca
 
 **CORRECTION to prior iterations**: The step numbering "1a" in iteration 11 was described as being between the existing step 1 (session boost) and step 2 (causal boost). Looking at the actual code, this is accurate -- the recency bonus would be a new block inserted after the session boost block but before the causal boost block, around line 780-790 (after sessionBoost application ends).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:715-750]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:715-750]
 
 ### 4. GRAPH_WEIGHT_CAP = 0.05 -- CONFIRMED
 **Verdict: Exact match with prior claim.**
@@ -78,7 +78,7 @@ The env var override path is at line 379: `parseEnvFloat('SPECKIT_GRAPH_WEIGHT_C
 
 The prior claim that raising GRAPH_WEIGHT_CAP from 0.05 to 0.15 is safe is validated: Layer A (0.03) per-mechanism caps still provide per-signal guards, and 0.15 is just below the theoretical max contribution (0.03+0.05+0.05+0.03=0.16 becomes 0.03+0.15+0.15+0.03 theoretical, capped at 0.15).
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:25,37,146,155,316-324,362-380]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:25,37,146,155,316-324,362-380]
 
 ### 5. NOVELTY_BOOST Always Returns 0 -- CONFIRMED, Code Is Dead
 **Verdict: Exact match with prior claim. Dead code, safe to remove.**
@@ -97,7 +97,7 @@ export function calculateNoveltyBoost(_createdAt: string | undefined): number {
 
 The function signature uses `_createdAt` (underscore prefix = intentionally unused parameter). The JSDoc explicitly states "Eval complete. Marginal value confirmed." and "Always returns 0." The exported constants (`NOVELTY_BOOST_MAX`, `NOVELTY_BOOST_HALF_LIFE_HOURS`, `NOVELTY_BOOST_SCORE_CAP`) are only consumed by tests in `cold-start.vitest.ts` -- no production code uses them.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:519-531]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:519-531]
 
 ### 6. Missed Features Check -- No Additional Features Found
 **Verdict: No missed features that should be enabled by default.**
@@ -114,7 +114,7 @@ The assistive reconsolidation (`SPECKIT_ASSISTIVE_RECONSOLIDATION`) is already g
 
 No additional features were found in this verification pass that should be enabled but are not covered by the roadmap.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:56-62]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:56-62]
 [INFERENCE: Cross-reference of iteration 1 inventory + iteration 10 verdicts + this verification pass]
 
 ### 7. Phase A Safety for Existing Users -- VERIFIED SAFE
@@ -134,13 +134,13 @@ Phase A proposes two changes:
 None -- this was a verification iteration, not an exploratory one.
 
 ## Sources Consulted
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` (lines 1-300)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` (lines 1-80)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts` (line 576-586)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` (lines 261-271)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts` (lines 519-531)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts` (line 25, 37, 146, 155, 316-380)
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts` (lines 700-750)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` (lines 1-300)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` (lines 1-80)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts` (line 576-586)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` (lines 261-271)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts` (lines 519-531)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts` (line 25, 37, 146, 155, 316-380)
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts` (lines 700-750)
 - Prior iterations 1, 10, 11, 12 (cross-referenced for consistency)
 
 ## Assessment

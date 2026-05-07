@@ -34,12 +34,12 @@
     "key_files": [
       ".opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring/spec.md",
       ".opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md",
-      ".opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/reduce-state.cjs",
-      ".opencode/command/improve/assets/improve_improve-agent_auto.yaml",
-      ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml",
-      ".opencode/skill/sk-improve-agent/SKILL.md"
+      ".opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
+      ".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",
+      ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml",
+      ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml",
+      ".opencode/skills/sk-improve-agent/SKILL.md"
     ],
     "entities": [],
     "causal_summary": "Executable wiring follow-on to 060 trilogy: lands benchmark materializer (static skill assets), nested legal_stop_evaluated.details.gateResults, stop-reason enum reconciliation, auto+confirm YAML lockstep parity, native RT-028/RT-032 alignment. Produces real producer/consumer compatibility so 061 command-flow stress tests can return GREEN against fixed code.",

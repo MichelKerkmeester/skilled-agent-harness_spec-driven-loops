@@ -79,7 +79,7 @@ Layer A (AI Gate) → Layer C (Content Analysis) → Layer B (Script Safety Net)
 | File | Change |
 |------|--------|
 | `AGENTS.md` | Gate 5 enforcement update |
-| `.opencode/command/memory/save.md` | Phase 1 HARD BLOCK |
+| `.opencode/commands/memory/save.md` | Phase 1 HARD BLOCK |
 | `.opencode/skills/system-memory/scripts/generate-context.js` | Alignment check + suggestion |
 
 ## Thresholds

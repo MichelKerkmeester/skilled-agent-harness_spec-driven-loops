@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Run final validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/matrix_runners"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/matrix_runners"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-codex.vitest.ts"
       - "rename-log.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -58,7 +58,7 @@ _memory:
 The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snake_case. That naming mismatch made the runtime tree inconsistent and left imports, docs, tests, feature catalog entries, and prior packet evidence pointing at the outlier path.
 
 ### Purpose
-Rename the runtime folder to `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` and update every path reference without changing behavior.
+Rename the runtime folder to `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` and update every path reference without changing behavior.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,9 +81,9 @@ Rename the runtime folder to `.opencode/skill/system-spec-kit/mcp_server/matrix_
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` | Rename | Runtime folder moves to snake_case |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` | Modify | Import paths point to `matrix_runners` |
-| `.opencode/skill/system-spec-kit/**/*.md` | Modify | Evergreen docs and catalog references use the new path |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` | Rename | Runtime folder moves to snake_case |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` | Modify | Import paths point to `matrix_runners` |
+| `.opencode/skills/system-spec-kit/**/*.md` | Modify | Evergreen docs and catalog references use the new path |
 | `specs/system-spec-kit/026-graph-and-context-optimization/**` | Modify | Prior packet evidence references use the new path |
 | `README.md` | Modify | Root README points at the renamed folder |
 | `rename-log.md` | Create | File ledger and replacement count |
@@ -115,8 +115,8 @@ Rename the runtime folder to `.opencode/skill/system-spec-kit/mcp_server/matrix_
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `find .opencode/skill/system-spec-kit/mcp_server -maxdepth 1 -type d -name 'matrix*'` shows `matrix_runners`.
-- **SC-002**: `npm run build` passes from `.opencode/skill/system-spec-kit/mcp_server`.
+- **SC-001**: `find .opencode/skills/system-spec-kit/mcp_server -maxdepth 1 -type d -name 'matrix*'` shows `matrix_runners`.
+- **SC-002**: `npm run build` passes from `.opencode/skills/system-spec-kit/mcp_server`.
 - **SC-003**: `npx vitest run matrix-adapter` passes all smoke tests.
 - **SC-004**: `grep -rln` over the requested surfaces returns no old-path content references.
 - **SC-005**: Strict validator exits 0 for this packet.

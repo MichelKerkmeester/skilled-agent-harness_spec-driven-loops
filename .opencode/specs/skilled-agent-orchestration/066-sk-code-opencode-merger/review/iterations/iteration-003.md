@@ -17,7 +17,7 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-findings-registry.json`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-strategy.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json`
-- `.opencode/skill/sk-code-review/references/review_core.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/tasks.md`
@@ -25,12 +25,12 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md`
-- `.opencode/agent/code.md`
-- `.opencode/agent/review.md`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`
-- `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl`
+- `.opencode/agents/code.md`
+- `.opencode/agents/review.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`
+- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl`
 
 ## Findings - New
 
@@ -75,7 +75,7 @@
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Review doctrine loaded | pass | `.opencode/skill/sk-code-review/references/review_core.md:20` defines P0/P1/P2 handling. |
+| Review doctrine loaded | pass | `.opencode/skills/sk-code-review/references/review_core.md:20` defines P0/P1/P2 handling. |
 | Packet current state | fail | `spec.md` and `plan.md` retain plan-only/incomplete state while `tasks.md` and `implementation-summary.md` show completion. |
 | Prior finding dedupe | pass | Registry already carries ADR current-state drift and resource-map continuity drift; F003 covers separate spec/plan surfaces. |
 | Resource map moved/deleted path ledger | partial | Resource map lists moved/deleted paths and policies, but prior resource-map continuity drift remains carried forward rather than duplicated. |
@@ -86,11 +86,11 @@
 
 ## Integration Evidence
 
-- `.opencode/agent/code.md` uses the single `sk-code` router contract and points to `.opencode/skill/sk-code/SKILL.md` for route selection.
-- `.opencode/agent/review.md` uses `sk-code-review` baseline plus `sk-code` router-selected standards evidence.
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` and `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` reference `sk-code router-selected evidence` rather than the deleted sibling skill.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` generated graph excludes the old `sk-code-opencode` skill ID.
-- `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` scoped search found no `sk-code-opencode` measurement label.
+- `.opencode/agents/code.md` uses the single `sk-code` router contract and points to `.opencode/skills/sk-code/SKILL.md` for route selection.
+- `.opencode/agents/review.md` uses `sk-code-review` baseline plus `sk-code` router-selected standards evidence.
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` and `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` reference `sk-code router-selected evidence` rather than the deleted sibling skill.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` generated graph excludes the old `sk-code-opencode` skill ID.
+- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` scoped search found no `sk-code-opencode` measurement label.
 
 ## Edge Cases
 

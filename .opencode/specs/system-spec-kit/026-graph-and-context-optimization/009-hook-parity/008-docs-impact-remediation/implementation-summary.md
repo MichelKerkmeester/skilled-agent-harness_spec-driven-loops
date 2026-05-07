@@ -14,11 +14,11 @@ _memory:
     recent_action: "13/13 flagged files updated, applied reports written, cross-consistency gates verified"
     next_safe_action: "Commit and push"
     key_files:
-      - ".opencode/skill/system-spec-kit/references/config/hook_system.md"
-      - ".opencode/skill/system-spec-kit/SKILL.md"
-      - ".opencode/skill/system-spec-kit/ARCHITECTURE.md"
+      - ".opencode/skills/system-spec-kit/references/config/hook_system.md"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/ARCHITECTURE.md"
       - "AGENTS.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md"
     blockers: []
     completion_pct: 100
     status: "complete"
@@ -57,7 +57,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 - **Change:** Gate 2 anchored on hook brief primary with `skill_advisor.py` as fallback; Codex post-05 native `SessionStart` parity note; OpenCode plugin ESM exemption in `sk-code-opencode` language table.
 - **Done by:** cli-codex slot 10 (PID 6932)
 
-### T-003 — `.opencode/skill/system-spec-kit/SKILL.md` (Skill, HIGH)
+### T-003 — `.opencode/skills/system-spec-kit/SKILL.md` (Skill, HIGH)
 
 - **Flagged by:** 009/01, 03, 04, 06, 10 (5 sub-packets)
 - **Applied report:** `applied/05-_opencode_skill_system-spec-kit_SKILL_md.md`
@@ -65,7 +65,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 - **Change:** Startup/recovery split: Claude four-event + `UserPromptSubmit`; Codex post-05 native `SessionStart`; Copilot `.claude/settings.local.json` startup surface.
 - **Done by:** cli-codex slot 05 (PID 6871)
 
-### T-004 — `.opencode/skill/system-spec-kit/ARCHITECTURE.md` (Skill, HIGH)
+### T-004 — `.opencode/skills/system-spec-kit/ARCHITECTURE.md` (Skill, HIGH)
 
 - **Flagged by:** 009/04, 08, 09
 - **Applied report:** `applied/03-_opencode_skill_system-spec-kit_ARCHITECTURE_md.md`
@@ -81,7 +81,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 - **Change:** Gate 2 prose + directory-structure updated; advisor surface pointer corrected to `mcp_server/skill-advisor/`; hook-primary routing with `skill_advisor.py` described as compatibility/scripted fallback.
 - **Done by:** cli-codex slot 01 (PID 6836)
 
-### T-006 — `.opencode/skill/system-spec-kit/README.md` (Readme, HIGH)
+### T-006 — `.opencode/skills/system-spec-kit/README.md` (Readme, HIGH)
 
 - **Flagged by:** 009/01, 02, 03, 04
 - **Applied report:** `applied/04-_opencode_skill_system-spec-kit_README_md.md`
@@ -159,7 +159,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 
 ### T-017 (P2) — Post-05 Codex reconciliation sweep
 
-- **Prompt-embedded guard applied in all 13 agent prompts.** The dispatcher's POST-05 CODEX RECONCILIATION RULE instructed every agent to write the post-05 state (`codex_hooks`-gated native `SessionStart` + `UserPromptSubmit`, `/spec_kit:resume` as fallback) wherever its target file discusses Codex runtime hook capability. Drift check: `grep -n "no lifecycle hook" .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/system-spec-kit/references/config/hook_system.md AGENTS.md` returns no results (verified post-edit).
+- **Prompt-embedded guard applied in all 13 agent prompts.** The dispatcher's POST-05 CODEX RECONCILIATION RULE instructed every agent to write the post-05 state (`codex_hooks`-gated native `SessionStart` + `UserPromptSubmit`, `/spec_kit:resume` as fallback) wherever its target file discusses Codex runtime hook capability. Drift check: `grep -n "no lifecycle hook" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/references/config/hook_system.md AGENTS.md` returns no results (verified post-edit).
 
 ---
 

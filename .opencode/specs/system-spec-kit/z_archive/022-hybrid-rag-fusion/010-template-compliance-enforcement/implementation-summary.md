@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -46,10 +46,10 @@ The 2-layer enforcement implementation is partially delivered. Shared contract i
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md` | Created | Canonical contract source for Levels 1-3 template structure and sync guidance |
+| `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md` | Created | Canonical contract source for Levels 1-3 template structure and sync guidance |
 | `.claude/agents/speckit.md` | Modified | Injected compact inline contract and explicit post-write validation protocol |
-| `.opencode/agent/speckit.md` | Modified | Mirrored compact inline contract and validation protocol for OpenCode/Copilot |
-| .opencode/agent/chatgpt/speckit.md | Modified | Mirrored compact inline contract and validation protocol for ChatGPT profile |
+| `.opencode/agents/speckit.md` | Modified | Mirrored compact inline contract and validation protocol for OpenCode/Copilot |
+| .opencode/agents/chatgpt/speckit.md | Modified | Mirrored compact inline contract and validation protocol for ChatGPT profile |
 | `.codex/agents/speckit.toml` | Modified | Mirrored compact inline contract and validation protocol in TOML agent format |
 <!-- /ANCHOR:what-built -->
 

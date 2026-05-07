@@ -23,8 +23,8 @@ _memory:
 
 - [x] T001: Verify all 8 .cjs scripts parse (`node -c`)
 - [x] T002: Run `scan-integration.cjs --agent=agent-improver` standalone, capture output
-- [x] T003: Run `generate-profile.cjs --agent=.opencode/agent/agent-improver.md` standalone, capture output
-- [x] T004: Run `score-candidate.cjs --candidate=.opencode/agent/agent-improver.md --dynamic` standalone, capture baseline
+- [x] T003: Run `generate-profile.cjs --agent=.opencode/agents/agent-improver.md` standalone, capture output
+- [x] T004: Run `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` standalone, capture baseline
 
 ## Loop Execution
 

@@ -49,14 +49,14 @@ Verify that all Phase 1 MVP components are correctly implemented, integrated, an
 ### Files to Verify
 | File | Task | Type |
 |------|------|------|
-| `.opencode/skill/system-spec-kit/templates/quick-continue.md` | T001 | New |
-| `.opencode/command/handover/handover.md` | T002 | New |
+| `.opencode/skills/system-spec-kit/templates/quick-continue.md` | T001 | New |
+| `.opencode/commands/handover/handover.md` | T002 | New |
 | `AGENTS.md` (Gate 0) | T003 | Modified |
 | `AGENTS.md` (Gate 7) | T004 | Modified |
-| `.opencode/command/spec_kit/resume.md` | T005 | Modified |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | T005 | Modified |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` | T005 | Modified |
-| `.opencode/skill/system-spec-kit/SKILL.md` | T006, T007 | Modified |
+| `.opencode/commands/spec_kit/resume.md` | T005 | Modified |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | T005 | Modified |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | T005 | Modified |
+| `.opencode/skills/system-spec-kit/SKILL.md` | T006, T007 | Modified |
 
 ---
 
@@ -64,8 +64,8 @@ Verify that all Phase 1 MVP components are correctly implemented, integrated, an
 
 ### 3.1 File Existence
 
-- [ ] CHK001 [P0] `quick-continue.md` template exists at `.opencode/skill/system-spec-kit/templates/quick-continue.md`
-- [ ] CHK002 [P0] `/handover` command exists at `.opencode/command/handover/handover.md`
+- [ ] CHK001 [P0] `quick-continue.md` template exists at `.opencode/skills/system-spec-kit/templates/quick-continue.md`
+- [ ] CHK002 [P0] `/handover` command exists at `.opencode/commands/handover/handover.md`
 - [ ] CHK003 [P0] `AGENTS.md` contains Gate 7 section (search for "GATE 7")
 - [ ] CHK004 [P0] `AGENTS.md` Gate 0 contains enhanced branch protocol
 
@@ -349,7 +349,7 @@ These features are intentionally NOT implemented in Phase 1. Do NOT report as bu
 When marking items complete, include evidence:
 
 ```markdown
-- [x] CHK001 [P0] Template exists | Evidence: `ls -la .opencode/skill/system-spec-kit/templates/quick-continue.md`
+- [x] CHK001 [P0] Template exists | Evidence: `ls -la .opencode/skills/system-spec-kit/templates/quick-continue.md`
 - [x] CHK010 [P0] Valid YAML frontmatter | Evidence: Verified description, argument-hint, allowed-tools present
 - [ ] CHK052 [P2] Output formatting | Deferred: Functional priority over visual polish
 ```

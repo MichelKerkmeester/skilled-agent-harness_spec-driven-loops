@@ -87,10 +87,10 @@ Make every per-feature file in the six real feature catalogs present the same fo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-review/feature_catalog/**/*.md` | Modify | Remove redundant per-file TOCs where present |
-| `.opencode/skill/system-spec-kit/feature_catalog/**/*.md` | Modify | Fix lint-discovered per-feature shape drift |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
+| `.opencode/skills/sk-deep-review/feature_catalog/**/*.md` | Modify | Remove redundant per-file TOCs where present |
+| `.opencode/skills/system-spec-kit/feature_catalog/**/*.md` | Modify | Fix lint-discovered per-feature shape drift |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/**/*.md` | Modify | Rebuild per-feature files into canonical shape |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment/*` | Create | Packet docs, audit findings, remediation log, and lint results |
 <!-- /ANCHOR:scope -->
 

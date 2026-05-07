@@ -51,7 +51,7 @@ coverage-matrix.md maps 166 scoped catalog entries. New tests cover budget alloc
 ### Files Changed
 | File | Action | Purpose |
 |---|---|---|
-| .opencode/skill/system-spec-kit/mcp_server/stress_test/**/*.ts | Modified/Created | Alignment fixes and new stress tests. |
+| .opencode/skills/system-spec-kit/mcp_server/stress_test/**/*.ts | Modified/Created | Alignment fixes and new stress tests. |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/039-stress-test-expansion-and-alignment/ | Created | Packet docs, logs, and reports. |
 <!-- /ANCHOR:what-built -->
 

@@ -23,12 +23,12 @@ Evidence-first. Enumerate ALL real dispatchers of `@multi-ai-council` via grep a
 
 Per grep evidence:
 
-- `.opencode/agent/orchestrate.md` (line 97, 192, 749) — `@orchestrate` LEAF-dispatches `@multi-ai-council`. **Not a `/spec_kit:*` command.**
-- `.opencode/skill/cli-claude-code/SKILL.md` (line 32, 275), `references/agent_delegation.md` (lines 26, 68, 94, 111), `README.md` (line 55, 181), `manual_testing_playbook/04--agent-routing/004-*.md` — direct dispatch via `claude -p "..." --agent multi-ai-council` documented and tested.
-- `.opencode/skill/cli-codex/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/`, `assets/prompt_templates.md` — Codex CLI direct dispatch documented.
-- `.opencode/skill/cli-opencode/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/04--agent-routing/005-*.md`, `changelog/v1.1.0.0.md` — opencode CLI direct dispatch documented.
-- `.opencode/skill/sk-doc/assets/agent_template.md` — referenced as template example.
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/` — folder-layout, state-format, seat-diversity-patterns, convergence-signals. Consumer-facing reference docs implying many callers.
+- `.opencode/agents/orchestrate.md` (line 97, 192, 749) — `@orchestrate` LEAF-dispatches `@multi-ai-council`. **Not a `/spec_kit:*` command.**
+- `.opencode/skills/cli-claude-code/SKILL.md` (line 32, 275), `references/agent_delegation.md` (lines 26, 68, 94, 111), `README.md` (line 55, 181), `manual_testing_playbook/04--agent-routing/004-*.md` — direct dispatch via `claude -p "..." --agent multi-ai-council` documented and tested.
+- `.opencode/skills/cli-codex/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/`, `assets/prompt_templates.md` — Codex CLI direct dispatch documented.
+- `.opencode/skills/cli-opencode/SKILL.md`, `references/agent_delegation.md`, `manual_testing_playbook/04--agent-routing/005-*.md`, `changelog/v1.1.0.0.md` — opencode CLI direct dispatch documented.
+- `.opencode/skills/sk-doc/assets/agent_template.md` — referenced as template example.
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/` — folder-layout, state-format, seat-diversity-patterns, convergence-signals. Consumer-facing reference docs implying many callers.
 
 ### Falsification of round-1's central assumption
 
@@ -38,7 +38,7 @@ Round-1 stated: *"callers are concentrated (`/spec_kit:*` commands)"* — relied
 - (a) Top-level user via Task tool (Depth 0 default case)
 - (b) `@orchestrate` agent (Depth 1, codified in agent body)
 - (c) Direct CLI invocations documented in 3+ cli-skill manual_testing_playbooks (4 runtimes × ~1 playbook each)
-- (d) **Zero current `/spec_kit:*` command YAMLs explicitly call `@multi-ai-council`** (grep of `.opencode/command/` returned no hits)
+- (d) **Zero current `/spec_kit:*` command YAMLs explicitly call `@multi-ai-council`** (grep of `.opencode/commands/` returned no hits)
 
 The "concentrated to `/spec_kit:*`" assumption is empirically wrong — `/spec_kit:*` commands don't even dispatch the council currently.
 

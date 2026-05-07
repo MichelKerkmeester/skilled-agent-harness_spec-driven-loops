@@ -35,7 +35,7 @@ This checklist gates release readiness for spec 049. All P0 items MUST pass; P1 
 
 ### Per-skill structure (CM, BDG, CU)
 
-- [ ] CM: `.opencode/skill/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` exists and validates (`validate_document.py` exit 0)
+- [ ] CM: `.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` exists and validates (`validate_document.py` exit 0)
 - [ ] CM: 7 category folders present (`01--core-tools` through `07--recovery-and-config`)
 - [ ] CM: per-feature file count == ID count in root FEATURE FILE INDEX (~26 files)
 - [ ] CM: every CM-NNN ID is unique (no dupes across categories)
@@ -54,7 +54,7 @@ This checklist gates release readiness for spec 049. All P0 items MUST pass; P1 
 - [ ] Every per-feature file has all 5 H2 sections: OVERVIEW, CURRENT REALITY, TEST EXECUTION, SOURCE FILES, SOURCE METADATA
 - [ ] Every per-feature file has a deterministic prompt formatted "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED}. Return {OUTPUT}."
 - [ ] Every per-feature file has ≥2 ordered failure-triage steps with specific file paths, command names, or signal references
-- [ ] Vague-prompt grep returns empty: `grep -rE "(test it|run it|check stuff|validate it)\b" .opencode/skill/mcp-{code-mode,chrome-devtools,clickup}/manual_testing_playbook/`
+- [ ] Vague-prompt grep returns empty: `grep -rE "(test it|run it|check stuff|validate it)\b" .opencode/skills/mcp-{code-mode,chrome-devtools,clickup}/manual_testing_playbook/`
 
 ### Cross-skill references
 
@@ -65,7 +65,7 @@ This checklist gates release readiness for spec 049. All P0 items MUST pass; P1 
 ### Spec governance
 
 - [ ] All 9 spec files present (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, research.md, implementation-summary.md, description.json, graph-metadata.json)
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks --strict` exits 0
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks --strict` exits 0
 - [ ] All P0 requirements (REQ-001..REQ-005) marked complete in spec.md with evidence
 
 ---
@@ -92,7 +92,7 @@ This checklist gates release readiness for spec 049. All P0 items MUST pass; P1 
 
 - [ ] `description.json` contains the spec's title, description, status, and phase pointers
 - [ ] `graph-metadata.json` has `derived_status` matching `implementation-summary.md` presence + checklist completion
-- [ ] Memory save executed: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ... .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/`
+- [ ] Memory save executed: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ... .opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/`
 - [ ] `memory_search({query: "mcp testing playbook"})` returns this spec in results (post-indexing)
 
 ---

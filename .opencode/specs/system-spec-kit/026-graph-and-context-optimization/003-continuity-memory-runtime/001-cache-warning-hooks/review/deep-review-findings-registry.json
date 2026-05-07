@@ -11,9 +11,9 @@
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/tasks.md:69",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/checklist.md:61",
         ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks/implementation-summary.md:63",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85",
-        ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308"
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:85",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:308"
       ]
     }
   ],

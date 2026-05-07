@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Run progressive Vitest reproduction matrix"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/tests"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests"
       - "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:012-broad-suite-vitest-honesty-plan"
@@ -96,7 +96,7 @@ Vitest output feeds the classification table in `implementation-summary.md`; tha
 - [x] Read F-005 registry finding
 
 ### Phase 2: Investigation
-- [ ] Run requested Vitest subgroups from `.opencode/skill/system-spec-kit/mcp_server`
+- [ ] Run requested Vitest subgroups from `.opencode/skills/system-spec-kit/mcp_server`
 - [ ] Bisect full-suite hang if reproduced
 - [ ] Classify every failed or hanging test file
 

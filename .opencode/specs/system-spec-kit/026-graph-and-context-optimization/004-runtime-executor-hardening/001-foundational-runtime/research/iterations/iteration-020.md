@@ -6,7 +6,7 @@ I re-read the five requested seams against Iterations 011-017 and the Phase 015 
 ## Findings
 
 ### Finding R20-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `199-218, 248-268`
 - **Severity:** P1
 - **Description:** Producer metadata can silently describe a different transcript state than the one that was actually parsed. Trigger: the transcript file is appended to or touched after `parseTranscript(...)` finishes but before `buildProducerMetadata(...)` runs. Caller perception: `producerMetadataWritten === true` means the stored transcript fingerprint, `lastClaudeTurnAt`, and cache-token evidence describe the same stop-event snapshot as the parsed token totals and offset. Reality: `usage` / `newOffset` come from the earlier parse, while `buildProducerMetadata()` re-stats the live file and stamps `lastClaudeTurnAt`, `sizeBytes`, `modifiedAt`, and `fingerprint` from the later filesystem state.
@@ -14,7 +14,7 @@ I re-read the five requested seams against Iterations 011-017 and the Phase 015 
 - **Downstream Impact:** A valid cached summary can be rejected as `summary_precedes_producer_turn` or `transcript_identity_mismatch`, and analytics consumers can ingest a producer snapshot whose identity no longer matches the token/cursor state that was actually parsed. The blast radius is the entire Claude stop-hook continuity lane plus any analytics or resume flow that trusts `producerMetadata` as a coherent snapshot.
 
 ### Finding R20-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `167-205, 223-233`
 - **Severity:** P2
 - **Description:** Legacy fallback silently re-dates obsolete graph metadata as freshly saved current metadata. Trigger: modern JSON validation fails, but `parseLegacyGraphMetadataContent(...)` succeeds. Caller perception: `validateGraphMetadataContent()` returned a normal current-schema payload, so the packet's derived timestamps reflect real packet history. Reality: the legacy parser fabricates `created_at` and `last_save_at` from `new Date().toISOString()` at validation time, then `validateGraphMetadataContent()` returns `{ ok: true, metadata, errors: [] }` with no migration marker.
@@ -22,7 +22,7 @@ I re-read the five requested seams against Iterations 011-017 and the Phase 015 
 - **Downstream Impact:** Stale legacy packets can be surfaced as if they were freshly saved today, which distorts packet recency signals and erases the original age of the metadata during indexing, review triage, and any tooling that treats validated graph metadata as an authoritative freshness surface.
 
 ### Finding R20-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `94-105, 551-564`
 - **Severity:** P2
 - **Description:** Payload-level detector provenance silently overstates how trustworthy a specific query result is. Trigger: any query result is wrapped by `buildGraphQueryPayload(...)` after the graph DB's global `last_detector_provenance` was set by a previous scan, including empty, dangling-edge, or otherwise degraded results. Caller perception: `data.graphMetadata.detectorProvenance` describes the provenance of the returned outline/edge set. Reality: the handler injects a global database-level provenance marker, not result-specific provenance, so a degraded or empty query can still advertise `structured` or `ast`.

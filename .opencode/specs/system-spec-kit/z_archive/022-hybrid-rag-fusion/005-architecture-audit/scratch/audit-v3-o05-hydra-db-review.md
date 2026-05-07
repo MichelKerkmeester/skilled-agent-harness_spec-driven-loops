@@ -27,7 +27,7 @@ Cross-referencing the roadmap specs against actual runtime code reveals that the
 - **Severity**: MEDIUM
 - **Category**: alignment
 - **Location**: `008-hydra-db-based-features/004-adaptive-retrieval-loops/spec.md` (line 98)
-- **Description**: The Phase 4 spec lists `.opencode/skill/system-spec-kit/mcp_server/lib/cache/cognitive/` as a file to change for adaptive-ranking policy helpers. This directory does not exist. The actual adaptive-ranking module lives at `lib/cognitive/adaptive-ranking.ts`.
+- **Description**: The Phase 4 spec lists `.opencode/skills/system-spec-kit/mcp_server/lib/cache/cognitive/` as a file to change for adaptive-ranking policy helpers. This directory does not exist. The actual adaptive-ranking module lives at `lib/cognitive/adaptive-ranking.ts`.
 - **Evidence**: `ls lib/cache/cognitive/` returns "No cognitive cache directory". The actual file is `lib/cognitive/adaptive-ranking.ts` which contains `AdaptiveShadowProposal`, `AdaptiveSignalEvent`, and bounded threshold types.
 - **Impact**: Spec references mislead maintainers trying to trace Phase 4 deliverables. The path discrepancy suggests the spec was written before the module was placed, and never corrected.
 - **Recommended Fix**: Update Phase 4 spec to reference `lib/cognitive/adaptive-ranking.ts` instead of `lib/cache/cognitive/`.

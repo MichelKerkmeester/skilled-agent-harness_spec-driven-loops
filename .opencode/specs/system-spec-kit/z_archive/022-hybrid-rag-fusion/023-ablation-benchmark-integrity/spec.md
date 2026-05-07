@@ -73,15 +73,15 @@ Restore a benchmark path that either runs against an aligned parent-memory datas
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modify | Add ground-truth alignment auditing and fail-fast validation helpers. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts` | Modify | Validate DB provenance and use eval-safe search options for MCP ablation runs. |
-| `.opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` | Modify | Validate repo DB alignment, bypass eval-time truncation, and normalize parent IDs. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modify | Add evaluation-only mode that bypasses confidence and token-budget truncation. |
-| `.opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts` | Modify | Allow deterministic `ground-truth.json` refresh against the active repo DB. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json` | Modify | Refresh relevance IDs to the live parent-memory universe for the repo DB. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts` | Modify | Cover alignment auditing and fail-fast benchmark validation. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts` | Modify | Cover eval-mode search options and parent-ID normalization. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts` | Modify | Cover evaluation-mode truncation bypass behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modify | Add ground-truth alignment auditing and fail-fast validation helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts` | Modify | Validate DB provenance and use eval-safe search options for MCP ablation runs. |
+| `.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` | Modify | Validate repo DB alignment, bypass eval-time truncation, and normalize parent IDs. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modify | Add evaluation-only mode that bypasses confidence and token-budget truncation. |
+| `.opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts` | Modify | Allow deterministic `ground-truth.json` refresh against the active repo DB. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json` | Modify | Refresh relevance IDs to the live parent-memory universe for the repo DB. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts` | Modify | Cover alignment auditing and fail-fast benchmark validation. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts` | Modify | Cover eval-mode search options and parent-ID normalization. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts` | Modify | Cover evaluation-mode truncation bypass behavior. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -134,7 +134,7 @@ Restore a benchmark path that either runs against an aligned parent-memory datas
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Repo DB at `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Benchmark cannot be trusted if reruns silently switch to another DB. | Validate alignment against the active DB before every ablation run and log the path used. |
+| Dependency | Repo DB at `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` | Benchmark cannot be trusted if reruns silently switch to another DB. | Validate alignment against the active DB before every ablation run and log the path used. |
 | Dependency | `VOYAGE_API_KEY` embeddings availability | Full reruns need live embeddings for the production search path. | Verify env presence before reruns and stop if embedding generation fails. |
 | Risk | Ground-truth mapping heuristics choose the wrong parent memory | Refreshed dataset could still be clean but semantically wrong. | Use the existing deterministic mapper, keep preview artifact, and validate parent-only alignment after writing. |
 | Risk | Evaluation-only bypass diverges too far from live retrieval behavior | Benchmark could stop measuring the real ranking pipeline. | Scope the bypass narrowly to truncation layers only and keep the rest of the live fusion/reranking stack intact. |

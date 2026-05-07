@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce97-be3c-7e41-a789-1a810465d07d
 --------
 user
-You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/ (9 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read each feature snippet file in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/ (9 files). For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,7 +37,7 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m treating this as a read-only verification pass: I’ll inspect the 9 feature snippets, trace each `## Source Files` section into the `mcp_server` code, and then compare the documented “Current Reality” against what the code actually does.
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify 9 feature catalog snippet files under .opencode/skill/system-spec-kit/feature_catalog/01--retrieval by checking Current Reality against source code, validating listed source file paths under mcp_server, and identifying missing important source files. Read-only review; no edits." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 639ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify 9 feature catalog snippet files under .opencode/skills/system-spec-kit/feature_catalog/01--retrieval by checking Current Reality against source code, validating listed source file paths under mcp_server, and identifying missing important source files. Read-only review; no edits." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 639ms:
 [
   {
     "skill": "system-spec-kit",
@@ -68,9 +68,9 @@ Read-only verification across 9 feature catalog files and their referenced mcp_s
 codex
 I’m pulling the feature list and a small slice of the two relevant skill docs now so the verification stays aligned with the repo’s own review rules before I trace code paths.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg --files .opencode/skill/system-spec-kit/feature_catalog/01--retrieval' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg --files .opencode/skills/system-spec-kit/feature_catalog/01--retrieval' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -92,15 +92,15 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/06-bm25-trigger-phrase-re-index-gate.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/08-quality-aware-3-tier-search-fallback.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/06-bm25-trigger-phrase-re-index-gate.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/08-quality-aware-3-tier-search-fallback.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md
  succeeded in 51ms:
 ---
 name: sk-code-review
@@ -125,41 +125,41 @@ Use this skill when:
 codex
 I have the feature set and the review rules. Next I’m extracting each snippet’s `Current Reality` and `Source Files`, then I’ll cross-check those claims against the actual `mcp_server` implementation and search for unlisted implementation files.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/*.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/mcp_server -maxdepth 2 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     274 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md
-     242 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md
-     158 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md
-     161 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md
-     210 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md
-      29 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/06-bm25-trigger-phrase-re-index-gate.md
-      17 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md
-      29 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/08-quality-aware-3-tier-search-fallback.md
-      30 .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/*.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/mcp_server -maxdepth 2 -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     274 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md
+     242 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md
+     158 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md
+     161 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md
+     210 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md
+      29 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/06-bm25-trigger-phrase-re-index-gate.md
+      17 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md
+      29 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/08-quality-aware-3-tier-search-fallback.md
+      30 .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md
     1150 total
  succeeded in 51ms:
 Total output lines: 362
 
-.opencode/skill/system-spec-kit/mcp_server/.node-version-marker
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md
-.opencode/skill/system-spec-kit/mcp_server/LICENSE
-.opencode/skill/system-spec-kit/mcp_server/README.md
-.opencode/skill/system-spec-kit/mcp_server/_pending
-.opencode/skill/system-spec-kit/mcp_server/api/README.md
-.opencode/skill/system-spec-kit/mcp_server/api/eval.ts
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts
-.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts
-.opencode/skill/system-spec-kit/mcp_server/api/providers.ts
-.opencode/skill/system-spec-kit/mcp_server/api/search.ts
-.opencode/skill/system-spec-kit/mcp_server/api/storage.ts
-.opencode/skill/system-spec-kit/mcp_server/cli.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/README.md
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts
-.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts
-.opencode/skill/system-spec-kit/mcp_server/core/README.md
+.opencode/skills/system-spec-kit/mcp_server/.node-version-marker
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+.opencode/skills/system-spec-kit/mcp_server/LICENSE
+.opencode/skills/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/_pending
+.opencode/skills/system-spec-kit/mcp_server/api/README.md
+.opencode/skills/system-spec-kit/mcp_server/api/eval.ts
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts
+.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts
+.opencode/skills/system-spec-kit/mcp_server/api/providers.ts
+.opencode/skills/system-spec-kit/mcp_server/api/search.ts
+.opencode/skills/system-spec-kit/mcp_server/api/storage.ts
+.opencode/skills/system-spec-kit/mcp_server/cli.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/README.md
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts
+.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts
+.opencode/skills/system-spec-kit/mcp_server/core/README.md
 exec
-/bin/zsh -lc "for f in .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/*.md; do printf 'FILE: %s\\n' \""'${f##*/}"; awk '"'BEGIN{section=\"\"} /"'^## /{section=$0} section=="## Current Reality" || section=="## Source Files" {print} '"' \""'$f"; printf '"'\\n'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "for f in .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/*.md; do printf 'FILE: %s\\n' \""'${f##*/}"; awk '"'BEGIN{section=\"\"} /"'^## /{section=$0} section=="## Current Reality" || section=="## Source Files" {print} '"' \""'$f"; printf '"'\\n'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 Total output lines: 1104
 
 FILE: 01-unified-context-retrieval-memorycontext.md
@@ -183,75 +183,75 @@ Retrieval telemetry records mode selection and pressure-override fallbacks for o
 codex
 The catalog docs look much broader than the current runtime surface, so I’m checking the real source tree depth now before I judge accuracy. That should separate “outdated path inventory” issues from true behavior mismatches.
 exec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/mcp_server/lib -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/shared -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/mcp_server/handlers -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/mcp_server/lib -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/shared -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/mcp_server/handlers -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/chunk-thinning.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/shared/README.md
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts
-.opencode/skill/system-spec-kit/shared/algorithms/index.ts
-.opencode/skill/system-spec-kit/shared/algorithms/mmr-reranker.ts
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts
-.opencode/skill/system-spec-kit/shared/chunking.ts
-.opencode/skill/system-spec-kit/shared/config.ts
-.opencode/skill/system-spec-kit/shared/contracts/retrieval-trace.ts
-.opencode/skill/system-spec-kit/shared/dist/algorithms/adaptive-fusion.d.ts
-.opencode/skill/system-spec-kit/shared/dist/algorithms/adaptive-fusion.d.ts.map
-.opencode/skill/system-spec-kit/shared/dist/algorithms/adaptive-fusion.js
-.opencode/skill/system-spec-kit/shared/dist/algorithms/adaptive-fusion.js.map
-.opencode/skill/system-spec-kit/shared/dist/algorithms/index.d.ts
-.opencode/skill/system-spec-kit/shared/dist/algorithms/index.d.ts.map
-.opencode/skill/system-spec-kit/shared/dist/algorithms/index.js
-.opencode/skill/system-spec-kit/shared/dist/algorithms/index.js.map
-.opencode/skill/system-spec-kit/shared/dist/algorithms/mmr-reranker.d.ts
-.opencode/skill/system-spec-kit/shared/dist/algorithms/mmr-reranker.d.ts.map
-.opencode/skill/system-spec-kit/shared/dist/algorithms/mmr-reranker.js
-.opencode/skill/system-spec-kit/shared/dist/algorithms/mmr-reranker.js.map
+.opencode/skills/system-spec-kit/shared/README.md
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts
+.opencode/skills/system-spec-kit/shared/algorithms/index.ts
+.opencode/skills/system-spec-kit/shared/algorithms/mmr-reranker.ts
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts
+.opencode/skills/system-spec-kit/shared/chunking.ts
+.opencode/skills/system-spec-kit/shared/config.ts
+.opencode/skills/system-spec-kit/shared/contracts/retrieval-trace.ts
+.opencode/skills/system-spec-kit/shared/dist/algorithms/adaptive-fusion.d.ts
+.opencode/skills/system-spec-kit/shared/dist/algorithms/adaptive-fusion.d.ts.map
+.opencode/skills/system-spec-kit/shared/dist/algorithms/adaptive-fusion.js
+.opencode/skills/system-spec-kit/shared/dist/algorithms/adaptive-fusion.js.map
+.opencode/skills/system-spec-kit/shared/dist/algorithms/index.d.ts
+.opencode/skills/system-spec-kit/shared/dist/algorithms/index.d.ts.map
+.opencode/skills/system-spec-kit/shared/dist/algorithms/index.js
+.opencode/skills/system-spec-kit/shared/dist/algorithms/index.js.map
+.opencode/skills/system-spec-kit/shared/dist/algorithms/mmr-reranker.d.ts
+.opencode/skills/system-spec-kit/shared/dist/algorithms/mmr-reranker.d.ts.map
+.opencode/skills/system-spec-kit/shared/dist/algorithms/mmr-reranker.js
+.opencode/skills/system-spec-kit/shared/dist/algorithms/mmr-reranker.js.map
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
 codex
 The sandbox won’t let me use heredocs, so I’m switching to inline `node -e`/`rg` calls. Same inspection, just a more sandbox-friendly path.
 exec
-/bin/zsh -lc "node -e 'const fs=require(\"fs\"), path=require(\"path\"); const root=path.resolve(\".opencode/skill/system-spec-kit\"); const dir=path.join(root,\"feature_catalog/01--retrieval\"); for (const name of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()) { const text=fs.readFileSync(path.join(dir,name),\"utf8\"); const lines=text.split(/\\r?\\n/); let inSource=false; const paths=[]; for (const line of lines) { if (line.startsWith(\"## Source Files\")) { inSource=true; continue; } if (inSource && line.startsWith(\"## \") && "'!line.startsWith("## Source Files")) break; if (!inSource) continue; const m=line.match(/`([''^`]+)`/g); if (m) for (const token of m) paths.push(token.slice(1,-1)); } const uniq=[...new Set(paths)]; const invalid=uniq.filter(p=>!fs.existsSync(path.join(root,p))); console.log("FILE",name); console.log("PATH_COUNT",uniq.length); console.log("INVALID",invalid.length?invalid.join(" | "):"NONE"); console.log("---"); }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "node -e 'const fs=require(\"fs\"), path=require(\"path\"); const root=path.resolve(\".opencode/skills/system-spec-kit\"); const dir=path.join(root,\"feature_catalog/01--retrieval\"); for (const name of fs.readdirSync(dir).filter(f=>f.endsWith(\".md\")).sort()) { const text=fs.readFileSync(path.join(dir,name),\"utf8\"); const lines=text.split(/\\r?\\n/); let inSource=false; const paths=[]; for (const line of lines) { if (line.startsWith(\"## Source Files\")) { inSource=true; continue; } if (inSource && line.startsWith(\"## \") && "'!line.startsWith("## Source Files")) break; if (!inSource) continue; const m=line.match(/`([''^`]+)`/g); if (m) for (const token of m) paths.push(token.slice(1,-1)); } const uniq=[...new Set(paths)]; const invalid=uniq.filter(p=>!fs.existsSync(path.join(root,p))); console.log("FILE",name); console.log("PATH_COUNT",uniq.length); console.log("INVALID",invalid.length?invalid.join(" | "):"NONE"); console.log("---"); }'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 FILE 01-unified-context-retrieval-memorycontext.md
 PATH_COUNT 241
 INVALID mcp_server/tests/retry.vitest.ts
@@ -275,75 +275,75 @@ INVALID mcp_server/tests/retry.vitest.ts
 codex
 I’ve confirmed the path inventory is mostly real, with one repeated invalid test path already showing up. Now I’m reading the handler and pipeline code itself so I can separate “path list issue” from “description issue” feature by feature.
 exec
-/bin/zsh -lc 'rg -n "memory_context|detectIntent|quick|focused|deep|resume|enforceTokenBudget|tokenUsage|SPECKIT_PRESSURE_POLICY|SPECKIT_FOLDER_DISCOVERY|autoResumeEnabled|systemPromptContext|retrieval telemetry|sessionId" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skill/system-spec-kit/mcp_server/lib/search .opencode/skill/system-spec-kit/mcp_server/lib/cognitive .opencode/skill/system-spec-kit/mcp_server/lib/telemetry .opencode/skill/system-spec-kit/mcp_server/lib/session .opencode/skill/system-spec-kit/mcp_server/tools .opencode/skill/system-spec-kit/mcp_server/schemas .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "4-stage|stage 1|stage 2|stage 3|stage 4|Stage4ReadonlyRow|captureScoreSnapshot|verifyScoreInvariant|isPipelineV2Enabled|postSearchPipeline|expandQuery|SPECKIT_PIPELINE_V2|searchWithFallbackTiered|checkDegradation|_degradation|minSimilarity|structural SQL fallback|ORDER BY importance_tier|quality threshold|RRF|MPAB|cross-encoder|minState|trackAccess" .opencode/skill/system-spec-kit/mcp_server/lib/search .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "trigger phrase|memory_match_triggers|matchedTriggers|triggerPhrases|bm25|re-index|reindex|read_spec_section|remark|AST|working memory|working_memory|tool-result|checkpoint|event-distance|0.85|0.05|0.01|extract.*result|salient" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/tools .opencode/skill/system-spec-kit/mcp_server/tests .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:29:  name: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:30:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 2000.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:31:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, limit: { type: 'number', description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Caller-supplied session identifier. If omitted, server generates an ephemeral UUID for this call only (not persisted across requests).' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:53:      sessionId: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:60:        description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:114:        description: 'Apply length-based penalty during reranking. Penalizes very long memories to favor concise, focused results. Only effective when rerank is true.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:150:        enum: ['auto', 'deep'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:152:        description: 'Search mode. "auto" uses standard retrieval. "deep" enables multi-query expansion for broader recall.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:258:      sessionId: { type: 'string', description: 'Optional session identifier for selection telemetry' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:311:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:397:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:60:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:71:  resumed: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:73:  resumedContextCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:91:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:95:  tokenUsage?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:154:function enforceTokenBudget(result: ContextResult, budgetTokens: number): { result: ContextResult; enforcement: TokenBudgetEnforcement } {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:253:  quick: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:261:  deep: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:269:  focused: {
+/bin/zsh -lc 'rg -n "memory_context|detectIntent|quick|focused|deep|resume|enforceTokenBudget|tokenUsage|SPECKIT_PRESSURE_POLICY|SPECKIT_FOLDER_DISCOVERY|autoResumeEnabled|systemPromptContext|retrieval telemetry|sessionId" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts .opencode/skills/system-spec-kit/mcp_server/lib/search .opencode/skills/system-spec-kit/mcp_server/lib/cognitive .opencode/skills/system-spec-kit/mcp_server/lib/telemetry .opencode/skills/system-spec-kit/mcp_server/lib/session .opencode/skills/system-spec-kit/mcp_server/tools .opencode/skills/system-spec-kit/mcp_server/schemas .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "4-stage|stage 1|stage 2|stage 3|stage 4|Stage4ReadonlyRow|captureScoreSnapshot|verifyScoreInvariant|isPipelineV2Enabled|postSearchPipeline|expandQuery|SPECKIT_PIPELINE_V2|searchWithFallbackTiered|checkDegradation|_degradation|minSimilarity|structural SQL fallback|ORDER BY importance_tier|quality threshold|RRF|MPAB|cross-encoder|minState|trackAccess" .opencode/skills/system-spec-kit/mcp_server/lib/search .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "trigger phrase|memory_match_triggers|matchedTriggers|triggerPhrases|bm25|re-index|reindex|read_spec_section|remark|AST|working memory|working_memory|tool-result|checkpoint|event-distance|0.85|0.05|0.01|extract.*result|salient" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/tools .opencode/skills/system-spec-kit/mcp_server/tests .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:29:  name: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:30:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 2000.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:31:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, limit: { type: 'number', description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Caller-supplied session identifier. If omitted, server generates an ephemeral UUID for this call only (not persisted across requests).' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:53:      sessionId: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:60:        description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:114:        description: 'Apply length-based penalty during reranking. Penalizes very long memories to favor concise, focused results. Only effective when rerank is true.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:150:        enum: ['auto', 'deep'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:152:        description: 'Search mode. "auto" uses standard retrieval. "deep" enables multi-query expansion for broader recall.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:258:      sessionId: { type: 'string', description: 'Optional session identifier for selection telemetry' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:311:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:397:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:60:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:71:  resumed: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:73:  resumedContextCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:91:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:95:  tokenUsage?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:154:function enforceTokenBudget(result: ContextResult, budgetTokens: number): { result: ContextResult; enforcement: TokenBudgetEnforcement } {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:253:  quick: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:261:  deep: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:269:  focused: {
  succeeded in 51ms:
 Total output lines: 563
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:15:// Sprint 5 (R6): 4-stage pipeline architecture
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  minState?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:129:  trackAccess?: boolean; // AI-TRACE:P3-09: opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:277:  minState: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:304:  minState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    minState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:544:// The V2 4-stage pipeline handles state filtering (Stage 4), testing effect, and
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:575:// shouldApplyPostSearchIntentWeighting, postSearchPipeline) removed in
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:577:// path. The V2 4-stage pipeline handles all equivalent functionality.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:606:    minState: minState = 'WARM',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:610:    trackAccess: trackAccess = false, // AI-TRACE:P3-09: opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:    minState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:793:          minState,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:802:          trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:64:  minSimilarity?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:100:/** Normalize a fused RRF result to the HybridSearchResult contract. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:157: * AI-WHY: Raw RRF scores are typically small decimals (often <0.05), so a
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:397: * min-max normalization which produces different orderings than the RRF pipeline in hybridSearchEnhanced().
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:15:// Sprint 5 (R6): 4-stage pipeline architecture
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  minState?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:129:  trackAccess?: boolean; // AI-TRACE:P3-09: opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:277:  minState: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:304:  minState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:329:    minState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:544:// The V2 4-stage pipeline handles state filtering (Stage 4), testing effect, and
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:575:// shouldApplyPostSearchIntentWeighting, postSearchPipeline) removed in
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:577:// path. The V2 4-stage pipeline handles all equivalent functionality.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:606:    minState: minState = 'WARM',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:610:    trackAccess: trackAccess = false, // AI-TRACE:P3-09: opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:    minState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:793:          minState,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:802:          trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:64:  minSimilarity?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:100:/** Normalize a fused RRF result to the HybridSearchResult contract. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:157: * AI-WHY: Raw RRF scores are typically small decimals (often <0.05), so a
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:397: * min-max normalization which produces different orderings than the RRF pipeline in hybridSearchEnhanced().
  succeeded in 52ms:
 Total output lines: 2263
 
-.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:10:import * as checkpointTools from './checkpoint-tools';
-.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:13:export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools };
-.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:22:  checkpointTools,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:524: *   - working_memory: entries with last_focused older than threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:545:  // 1. Clean stale working_memory entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:547:    const wmStmt = db.prepare('DELETE FROM working_memory WHERE last_focused < ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:554:      errors.push(`working_memory cleanup: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:587:      `[session-manager] Stale session cleanup: removed ${workingMemoryDeleted} working_memory, ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:615:    // AI-TRACE T302: Immediately clear working memory for cleared session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:815:    // AI-TRACE T302: Immediately clear working memory for completed session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1019:*This file is auto-generated on session checkpoint. It provides a human-readable recovery mechanism alongside SQLite persistence.*
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1055:function checkpointSession(
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1131:  checkpointSession,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:20:  triggerPhrases?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:69:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:153:      triggerPhrases: '["hello","world"]',
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:166:  it('C4: triggerPhrases parsed from JSON string', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:172:      triggerPhrases: '["phrase1","phrase2"]'
+.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:10:import * as checkpointTools from './checkpoint-tools';
+.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:13:export { contextTools, memoryTools, causalTools, checkpointTools, lifecycleTools };
+.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:22:  checkpointTools,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:524: *   - working_memory: entries with last_focused older than threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:545:  // 1. Clean stale working_memory entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:547:    const wmStmt = db.prepare('DELETE FROM working_memory WHERE last_focused < ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:554:      errors.push(`working_memory cleanup: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:587:      `[session-manager] Stale session cleanup: removed ${workingMemoryDeleted} working_memory, ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:615:    // AI-TRACE T302: Immediately clear working memory for cleared session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:815:    // AI-TRACE T302: Immediately clear working memory for completed session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1019:*This file is auto-generated on session checkpoint. It provides a human-readable recovery mechanism alongside SQLite persistence.*
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1055:function checkpointSession(
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1131:  checkpointSession,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:20:  triggerPhrases?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:69:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:153:      triggerPhrases: '["hello","world"]',
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:166:  it('C4: triggerPhrases parsed from JSON string', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:172:      triggerPhrases: '["phrase1","phrase2"]'
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '520,820p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '520,820p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Memory Context
 // ---------------------------------------------------------------
@@ -407,9 +407,9 @@ import { createMCPErrorResponse, createMCPResponse } from '../lib/response/envel
     name: 'Resume',
     description: 'Resume previous work with state and next-steps anchors',
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,620p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '620,980p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,620p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '620,980p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Memory Search
 // ---------------------------------------------------------------
@@ -475,9 +475,9 @@ import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact
 codex
 I’ve got the main orchestration paths open now. The important pattern so far is that several docs describe the right general behavior, but the real implementation also depends on tool registration and session/flag modules that some snippets don’t list.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Memory Triggers
 // ---------------------------------------------------------------
@@ -541,7 +541,7 @@ import { toErrorMessage } from '../../utils/db-helpers';
 
 const MAX_CHECKPOINTS = 10;
 exec
-/bin/zsh -lc 'rg -n "workingMemory|working_memory|checkpoint|restore|snapshot|includeEmbeddings" .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc 'rg -n "workingMemory|working_memory|checkpoint|restore|snapshot|includeEmbeddings" .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 4:// Gzip-compressed database checkpoints with embedding preservation
 32:  memory_snapshot: Buffer | null;
 33:  file_snapshot: Buffer | null;
@@ -563,9 +563,9 @@ exec
 349: * backwards compatibility with older checkpoint formats.
 385:    name = `checkpoint-${Date.now()}`,
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '520,760p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '520,760p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Working Memory
 // ---------------------------------------------------------------
@@ -629,31 +629,31 @@ function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR,
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
 exec
-/bin/zsh -lc "rg -n \"upsertExtractedEntry|getSessionPromptContext\\(|systemPromptContext|sourceCallId|extractionRuleId|memory-surface|working memory\" .opencode/skill/system-spec-kit/mcp_server -g '"'!dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:7:import { clearConstitutionalCache } from '../hooks/memory-surface';
-.opencode/skill/system-spec-kit/mcp_server/README.md:551:| **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
-.opencode/skill/system-spec-kit/mcp_server/README.md:641:│   └── memory-surface.ts   # Memory surfacing hook
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:614:    const resumeContextItems = workingMemory.getSessionPromptContext(requestedSessionId, workingMemory.DECAY_FLOOR, 5);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:617:      (budgetedResult as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:623:      (budgetedResult as Record<string, unknown>).systemPromptContextInjected = true;
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:55:        description: 'Session identifier for working memory and session deduplication (REQ-001). When provided with enableDedup=true, prevents duplicate memories from being returned in the same session (~50% token savings on follow-up queries).'
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:5:export * from './memory-surface';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:615:    // AI-TRACE T302: Immediately clear working memory for cleared session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:815:    // AI-TRACE T302: Immediately clear working memory for completed session (GAP 2).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:75:      "query": "what is the relationship between the working memory system and event decay",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:585:      "query": "SPECKIT_SESSION_BOOST working memory attention",
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:248:  const inserted = workingMemory.upsertExtractedEntry({
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:253:    sourceCallId: callId,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:254:    extractionRuleId: matched.rule.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:234:| `hooks/memory-surface.ts` | Triggers extraction pipeline post-tool |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:92:  sourceCallId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:93:  extractionRuleId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:300: * Set or update the attention score for a memory in working memory.
+/bin/zsh -lc "rg -n \"upsertExtractedEntry|getSessionPromptContext\\(|systemPromptContext|sourceCallId|extractionRuleId|memory-surface|working memory\" .opencode/skills/system-spec-kit/mcp_server -g '"'!dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:7:import { clearConstitutionalCache } from '../hooks/memory-surface';
+.opencode/skills/system-spec-kit/mcp_server/README.md:551:| **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
+.opencode/skills/system-spec-kit/mcp_server/README.md:641:│   └── memory-surface.ts   # Memory surfacing hook
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:614:    const resumeContextItems = workingMemory.getSessionPromptContext(requestedSessionId, workingMemory.DECAY_FLOOR, 5);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:617:      (budgetedResult as Record<string, unknown>).systemPromptContext = resumeContextItems.map((item) => ({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:623:      (budgetedResult as Record<string, unknown>).systemPromptContextInjected = true;
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:55:        description: 'Session identifier for working memory and session deduplication (REQ-001). When provided with enableDedup=true, prevents duplicate memories from being returned in the same session (~50% token savings on follow-up queries).'
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:5:export * from './memory-surface';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:615:    // AI-TRACE T302: Immediately clear working memory for cleared session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:815:    // AI-TRACE T302: Immediately clear working memory for completed session (GAP 2).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:75:      "query": "what is the relationship between the working memory system and event decay",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:585:      "query": "SPECKIT_SESSION_BOOST working memory attention",
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:248:  const inserted = workingMemory.upsertExtractedEntry({
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:253:    sourceCallId: callId,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:254:    extractionRuleId: matched.rule.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:234:| `hooks/memory-surface.ts` | Triggers extraction pipeline post-tool |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:92:  sourceCallId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:93:  extractionRuleId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:function getSessionPromptContext(sessionId: string, floor: number = DECAY_FLOOR, limit: number = 5): SessionPromptContextEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:300: * Set or update the attention score for a memory in working memory.
 exec
-/bin/zsh -lc "sed -n '200,320p' .opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '200,320p' .opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
       .get(`%${pathMatch[0]}`) as { id: number } | undefined;
     if (row?.id) {
       return row.id;
@@ -717,18 +717,18 @@ export {
   autoSurfaceAtToolDispatch,
   autoSurfaceAtCompaction,
 exec
-/bin/zsh -lc 'rg -n "read_spec_section|remark|markdown AST|AST parsing|section retrieval|structure-aware-chunker" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/shared/README.md:197:│   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
-.opencode/skill/system-spec-kit/mcp_server/README.md:78:| **Context**       | Full documents      | ANCHOR-based section retrieval (93% token savings)       |
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:3:// AST-based markdown chunking using remark-gfm that keeps
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:9:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:163:├── structure-aware-chunker.vitest.ts      # Structure-aware document chunking
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/README.md:218:| Anchor-only | `extractAnchors(content)` | Targeted section retrieval |
+/bin/zsh -lc 'rg -n "read_spec_section|remark|markdown AST|AST parsing|section retrieval|structure-aware-chunker" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/shared/README.md:197:│   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
+.opencode/skills/system-spec-kit/mcp_server/README.md:78:| **Context**       | Full documents      | ANCHOR-based section retrieval (93% token savings)       |
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:3:// AST-based markdown chunking using remark-gfm that keeps
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:9:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:163:├── structure-aware-chunker.vitest.ts      # Structure-aware document chunking
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/README.md:218:| Anchor-only | `extractAnchors(content)` | Targeted section retrieval |
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Orchestrator
 // ---------------------------------------------------------------
@@ -792,7 +792,7 @@ import type {
       } else {
         // expandQuery returned only the original; treat as standard hybrid
 exec
-/bin/zsh -lc "sed -n '520,760p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '520,760p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
         if (summaryEmbedding) {
           const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit);
           if (summaryResults.length > 0) {
@@ -814,9 +814,9 @@ exec
                   });
                   existingIds.add(sr.memoryId);
 exec
-/bin/zsh -lc "sed -n '430,760p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,320p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,360p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '430,760p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,320p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,360p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Stage3 Rerank
 // ---------------------------------------------------------------
@@ -880,9 +880,9 @@ exec
 //     - final contains only rows at or above config.minState priority
 //   Side effects:
 exec
-/bin/zsh -lc "sed -n '1000,1075p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1320,1505p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1000,1075p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1320,1505p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
       if (isContextHeadersEnabled() && reranked.length > 0) {
         const descriptionCache = buildDescriptionTailMap();
@@ -946,7 +946,7 @@ export function isMMREnabled(): boolean {
 /**
  * Transparent Reasoning Module (evidence-gap detection).
 exec
-/bin/zsh -lc 'rg -n "DEGRADATION_QUALITY_THRESHOLD|DEGRADATION_MIN_RELATIVE_GAP|DEGRADATION_MIN_RESULTS|structuralSearch|calibrateTier3Scores|importance_tier, importance_weight" .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc 'rg -n "DEGRADATION_QUALITY_THRESHOLD|DEGRADATION_MIN_RELATIVE_GAP|DEGRADATION_MIN_RESULTS|structuralSearch|calibrateTier3Scores|importance_tier, importance_weight" .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 161:const DEGRADATION_QUALITY_THRESHOLD = 0.02;
 164:const DEGRADATION_MIN_RELATIVE_GAP = 0.2;
 167:const DEGRADATION_MIN_RESULTS = 3;
@@ -964,7 +964,7 @@ exec
 1690:  DEGRADATION_QUALITY_THRESHOLD,
 1691:  DEGRADATION_MIN_RESULTS,
 exec
-/bin/zsh -lc "sed -n '1088,1322p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1088,1322p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
  *
  * @param options - Search options (specFolder for filtering, limit for cap).
  * @returns Array of HybridSearchResult with source='structural'.
@@ -986,9 +986,9 @@ function structuralSearch(
     if (options.specFolder) {
       conditions.push(`spec_folder = ?`);
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Trigger Matcher
 // ---------------------------------------------------------------
@@ -1052,7 +1052,7 @@ import {
 } from '../handlers';
 import { validateToolArgs } from '../schemas/tool-input-schemas';
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # Trigger phrase matching (memory_match_triggers)
 
 ## Current Reality
@@ -1074,7 +1074,7 @@ The cognitive path fetches 2x the requested limit from the trigger matcher to gi
 | `mcp_server/configs/cognitive.ts` | Core | Cognitive configuration |
 | `mcp_server/core/config.ts` | Core | Server configuration |
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
           decayApplied: decayStats ? decayStats.decayedCount : 0
         } : null
       },
@@ -1096,13 +1096,13 @@ exec
     // Step 3: ACTIVATE (T209)
     const activatedMemories: number[] = [];
 exec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/mcp_server/lib/cache -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/mcp_server/lib/cache -type f | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/pressure-monitor.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Pressure Monitor
 // ---------------------------------------------------------------
@@ -1124,7 +1124,7 @@ interface PressureMonitorResult {
 
 const FOCUSED_THRESHOLD = 0.6;
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Folder Discovery
 // ---------------------------------------------------------------
@@ -1146,9 +1146,9 @@ export interface FolderDescription {
 
 /**
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Semantic and lexical search (memory_search)
 
 ## Current Reality
@@ -1212,31 +1212,31 @@ The pipeline is the sole runtime path. `SPECKIT_PIPELINE_V2` is deprecated — `
 ## Source Files
 
 exec
-/bin/zsh -lc "rg -n \"hybridAdaptiveFuse|fuseResultsMulti|adaptive fusion|query-router|SPECKIT_COMPLEXITY_ROUTER|SPECKIT_RSF_FUSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|INTENT_LAMBDA_MAP|computeDegreeScores|0.005|50\\b|ENABLE_BM25|forceAllChannels|vector search|ftsSearch|bm25Search|graphSearch|degree\" .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts .opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:177:/** Whether causal-edge degree-based re-ranking is enabled (SPECKIT_DEGREE_BOOST). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:19:type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:36:const ALL_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:57:  complex: ['vector', 'fts', 'bm25', 'graph', 'degree'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:109: * When the SPECKIT_COMPLEXITY_ROUTER feature flag is disabled, returns all 5 channels
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:14:  DEGREE: 'degree',
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:20:// discrimination vs. stability for our typical 10-50 candidate lists.
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:175:function fuseResultsMulti(
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:310:  return fuseResultsMulti(lists, options);
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:339:    fuseResultsMulti(lists, options)
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:473:  fuseResultsMulti,
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:5:import { fuseResultsMulti } from './rrf-fusion';
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:14:  /** Weight for semantic/vector search results (0-1) */
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:38:/** Represents adaptive fusion result. */
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:63:  find_decision:   { semanticWeight: 0.3, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.50, graphCausalBias: 0.15 },
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:111: * Check whether adaptive fusion is enabled via the feature flag and rollout policy.
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:114: * @returns True if adaptive fusion is enabled
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:123: * Compute adaptive fusion weights based on intent and optional document type.
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:178: * passing to `fuseResultsMulti`. The semanticWeight/keywordWeight map
-.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:215:  const fused = fuseResultsMulti(lists);
+/bin/zsh -lc "rg -n \"hybridAdaptiveFuse|fuseResultsMulti|adaptive fusion|query-router|SPECKIT_COMPLEXITY_ROUTER|SPECKIT_RSF_FUSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|INTENT_LAMBDA_MAP|computeDegreeScores|0.005|50\\b|ENABLE_BM25|forceAllChannels|vector search|ftsSearch|bm25Search|graphSearch|degree\" .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts .opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:177:/** Whether causal-edge degree-based re-ranking is enabled (SPECKIT_DEGREE_BOOST). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:19:type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:36:const ALL_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:57:  complex: ['vector', 'fts', 'bm25', 'graph', 'degree'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:109: * When the SPECKIT_COMPLEXITY_ROUTER feature flag is disabled, returns all 5 channels
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:14:  DEGREE: 'degree',
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:20:// discrimination vs. stability for our typical 10-50 candidate lists.
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:175:function fuseResultsMulti(
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:310:  return fuseResultsMulti(lists, options);
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:339:    fuseResultsMulti(lists, options)
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:473:  fuseResultsMulti,
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:5:import { fuseResultsMulti } from './rrf-fusion';
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:14:  /** Weight for semantic/vector search results (0-1) */
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:38:/** Represents adaptive fusion result. */
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:63:  find_decision:   { semanticWeight: 0.3, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.50, graphCausalBias: 0.15 },
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:111: * Check whether adaptive fusion is enabled via the feature flag and rollout policy.
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:114: * @returns True if adaptive fusion is enabled
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:123: * Compute adaptive fusion weights based on intent and optional document type.
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:178: * passing to `fuseResultsMulti`. The semanticWeight/keywordWeight map
+.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:215:  const fused = fuseResultsMulti(lists);
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '520,900p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '520,900p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 // ---------------------------------------------------------------
 // MODULE: Query Router
 // ---------------------------------------------------------------
@@ -1300,29 +1300,29 @@ async function hybridSearchEnhanced(
 
     // AI-WHY: -- Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) --
 exec
-/bin/zsh -lc 'rg -n "ENABLE_BM25|SPECKIT_COMPLEXITY_ROUTER|SPECKIT_RSF_FUSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|isBm25Enabled|hard cap of 50|logarithmic normalization|0.005" .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:42: * Default: TRUE (graduated). Set SPECKIT_CONFIDENCE_TRUNCATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:44: * @returns True when SPECKIT_CONFIDENCE_TRUNCATION is not explicitly disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:47:  const raw = process.env.SPECKIT_CONFIDENCE_TRUNCATION?.toLowerCase()?.trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:103: * When SPECKIT_CONFIDENCE_TRUNCATION is disabled, passes results through unchanged.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:39: * Default: TRUE (graduated Sprint 4). Set SPECKIT_COMPLEXITY_ROUTER=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:41: * @returns True when SPECKIT_COMPLEXITY_ROUTER is not explicitly disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:44:  const raw = process.env.SPECKIT_COMPLEXITY_ROUTER?.toLowerCase()?.trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:132: * When the SPECKIT_COMPLEXITY_ROUTER feature flag is disabled (default),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:7: * AI-WHY: QUALITY_FLOOR changed from 0.2 to 0.005 (Sprint 10, D3). The original 0.2
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:10: * The 0.005 floor prevents promoting genuinely irrelevant results while remaining
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:12:export const QUALITY_FLOOR = 0.005;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:15:const FEATURE_FLAG = 'SPECKIT_CHANNEL_MIN_REP';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:63: * Default: TRUE (graduated). Set SPECKIT_CHANNEL_MIN_REP=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:65: * @returns True when SPECKIT_CHANNEL_MIN_REP is not explicitly disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:82: *  - Promotion only occurs for results with score >= QUALITY_FLOOR (0.005).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:51: * Default: TRUE (graduated). Set SPECKIT_DYNAMIC_TOKEN_BUDGET=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:53: * @returns True when SPECKIT_DYNAMIC_TOKEN_BUDGET is not explicitly disabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:56:  const raw = process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET?.toLowerCase()?.trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:65: * When SPECKIT_DYNAMIC_TOKEN_BUDGET is disabled (default), returns the DEFAULT_BUDGET
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:56:function isBm25Enabled(): boolean {
+/bin/zsh -lc 'rg -n "ENABLE_BM25|SPECKIT_COMPLEXITY_ROUTER|SPECKIT_RSF_FUSION|SPECKIT_CHANNEL_MIN_REP|SPECKIT_CONFIDENCE_TRUNCATION|SPECKIT_DYNAMIC_TOKEN_BUDGET|isBm25Enabled|hard cap of 50|logarithmic normalization|0.005" .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:42: * Default: TRUE (graduated). Set SPECKIT_CONFIDENCE_TRUNCATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:44: * @returns True when SPECKIT_CONFIDENCE_TRUNCATION is not explicitly disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:47:  const raw = process.env.SPECKIT_CONFIDENCE_TRUNCATION?.toLowerCase()?.trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:103: * When SPECKIT_CONFIDENCE_TRUNCATION is disabled, passes results through unchanged.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:39: * Default: TRUE (graduated Sprint 4). Set SPECKIT_COMPLEXITY_ROUTER=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:41: * @returns True when SPECKIT_COMPLEXITY_ROUTER is not explicitly disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:44:  const raw = process.env.SPECKIT_COMPLEXITY_ROUTER?.toLowerCase()?.trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:132: * When the SPECKIT_COMPLEXITY_ROUTER feature flag is disabled (default),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:7: * AI-WHY: QUALITY_FLOOR changed from 0.2 to 0.005 (Sprint 10, D3). The original 0.2
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:10: * The 0.005 floor prevents promoting genuinely irrelevant results while remaining
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:12:export const QUALITY_FLOOR = 0.005;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:15:const FEATURE_FLAG = 'SPECKIT_CHANNEL_MIN_REP';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:63: * Default: TRUE (graduated). Set SPECKIT_CHANNEL_MIN_REP=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:65: * @returns True when SPECKIT_CHANNEL_MIN_REP is not explicitly disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:82: *  - Promotion only occurs for results with score >= QUALITY_FLOOR (0.005).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:51: * Default: TRUE (graduated). Set SPECKIT_DYNAMIC_TOKEN_BUDGET=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:53: * @returns True when SPECKIT_DYNAMIC_TOKEN_BUDGET is not explicitly disabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:56:  const raw = process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET?.toLowerCase()?.trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:65: * When SPECKIT_DYNAMIC_TOKEN_BUDGET is disabled (default), returns the DEFAULT_BUDGET
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:56:function isBm25Enabled(): boolean {
 exec
-/bin/zsh -lc "rg -n \"computeDegreeScores|Math\\.log|50|cap\" .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"computeDegreeScores|Math\\.log|50|cap\" .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 37:/** Hard cap on raw typed degree before normalization */
 38:const MAX_TOTAL_DEGREE = 50;
 194:  const escaped = query.replace(/[%_]/g, '\\$&');
@@ -1334,7 +1334,7 @@ exec
 369:function computeDegreeScores(
 472:  computeDegreeScores,
 exec
-/bin/zsh -lc "sed -n '280,360p' .opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '280,360p' .opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
  * weighting each edge by its relation type weight * edge strength.
  *
  * Formula: typed_degree(node) = SUM(weight_t * strength) for all connected edges
@@ -1356,7 +1356,7 @@ function computeTypedDegree(
   for (const row of rows) {
     const weight = EDGE_TYPE_WEIGHTS[row.relation] ?? 0;
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 // ---------------------------------------------------------------
 // MODULE: Dynamic Token Budget
 // ---------------------------------------------------------------
@@ -1378,7 +1378,7 @@ interface TokenBudgetConfig {
   /** Moderate query budget: 2500 tokens. */
   moderate: number;
 exec
-/bin/zsh -lc "sed -n '900,1010p' .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '900,1010p' .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
       // C138: Co-activation spreading — enrich with temporal neighbors
       const topIds = reranked
         .slice(0, SPREAD_ACTIVATION_TOP_N)
@@ -1400,27 +1400,27 @@ exec
           }
           // AI-TRACE: P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
 exec
-/bin/zsh -lc 'rg -n "truncateToBudget|context-budget|getDynamicTokenBudget|RSF|shadow" .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/context-budget.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:2:// MODULE: RSF Fusion
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:8:/** Result of RSF fusion: an RrfItem augmented with normalized fused score and source tracking. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/context-budget.ts:30: * A single search result eligible for context-budget selection.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:33:import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:123:  /** RSF shadow fusion result (SPECKIT_RSF_FUSION) — shadow-mode only, not used for ranking. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:568:    // When disabled, getDynamicTokenBudget returns the default 4000 budget with applied=false.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:569:    const budgetResult = getDynamicTokenBudget(routeResult.tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:953:      const s4shadowMeta = (reranked as unknown as Record<string, unknown>)['_s4shadow'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:967:      if (s4shadowMeta !== undefined && reranked.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:968:        Object.defineProperty(reranked, '_s4shadow', {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:969:          value: s4shadowMeta,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:985:      // non-enumerable array shadow properties.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:986:      if ((s4shadowMeta !== undefined || s4attributionMeta !== undefined || degradationMeta !== undefined) && reranked.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:990:            stage4: s4shadowMeta ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1686:  getDynamicTokenBudget,
+/bin/zsh -lc 'rg -n "truncateToBudget|context-budget|getDynamicTokenBudget|RSF|shadow" .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/context-budget.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:2:// MODULE: RSF Fusion
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:8:/** Result of RSF fusion: an RrfItem augmented with normalized fused score and source tracking. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/context-budget.ts:30: * A single search result eligible for context-budget selection.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:33:import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:123:  /** RSF shadow fusion result (SPECKIT_RSF_FUSION) — shadow-mode only, not used for ranking. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:568:    // When disabled, getDynamicTokenBudget returns the default 4000 budget with applied=false.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:569:    const budgetResult = getDynamicTokenBudget(routeResult.tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:953:      const s4shadowMeta = (reranked as unknown as Record<string, unknown>)['_s4shadow'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:961:      const budgeted = truncateToBudget(reranked, adjustedBudget, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:967:      if (s4shadowMeta !== undefined && reranked.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:968:        Object.defineProperty(reranked, '_s4shadow', {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:969:          value: s4shadowMeta,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:985:      // non-enumerable array shadow properties.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:986:      if ((s4shadowMeta !== undefined || s4attributionMeta !== undefined || degradationMeta !== undefined) && reranked.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:990:            stage4: s4shadowMeta ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1583:function truncateToBudget(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680:  truncateToBudget,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1686:  getDynamicTokenBudget,
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
 // ---------------------------------------------------------------
 // MODULE: Query Classifier
 // ---------------------------------------------------------------
@@ -1442,7 +1442,7 @@ interface ClassificationResult {
 /** Config-driven thresholds */
 const SIMPLE_TERM_THRESHOLD = 3;
 exec
-/bin/zsh -lc 'rg -n "collapseAndReassembleChunkResults|bestChunk|parentId|mpabScore|reassembled_chunks|file_read_fallback" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc 'rg -n "collapseAndReassembleChunkResults|bestChunk|parentId|mpabScore|reassembled_chunks|file_read_fallback" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 21://     - contentSource is set to 'reassembled_chunks' or 'file_read_fallback'
 88:  parentId: number;
 91:  bestChunk: PipelineRow;
@@ -1464,7 +1464,7 @@ exec
 547:      ...bestChunk,
 549:      id: parentId,
 exec
-/bin/zsh -lc "sed -n '360,620p' .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '360,620p' .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
     return { rows: rerankedRows, applied: true };
   } catch (err: unknown) {
     // AI-WHY: Graceful degradation — return original results on any reranker failure
@@ -1486,45 +1486,45 @@ exec
  * @param row - A pipeline result row.
  * @returns Content string for the cross-encoder.
 exec
-/bin/zsh -lc "rg -n \"0\\.8|1\\.2|validation\" .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:5:// PURPOSE: Extract validation signals from spec document metadata
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:13://   4. content          → validation completion markers
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:17:// adds the `validationMetadata` key to enriched rows.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:45: * Markers that indicate a completed validation pass in the content.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:73:  /** ISO date string of the most recent validation, if present in content. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:74:  validationDate?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:116: * Scan content for validation completion markers.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:118: * 'partial' when validation-related content exists but no completion marker,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:129:  // Partial signal: content mentions validation-related keywords.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:144: * Attempt to extract a validation date from a content string.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:157: * Extract validation signals from a single memory pipeline row.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:164: *   4. `content` → completion markers (completionStatus, validationDate).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:167: * Returns null when the row carries no extractable validation signals
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:222:      const validationDate = extractValidationDate(effectiveContent);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:223:      if (validationDate !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:224:        result.validationDate = validationDate;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:250: * Enrich a batch of pipeline rows with validation metadata.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:253: * result is returned, it is attached to the row under the `validationMetadata`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:259: * @returns New array with `validationMetadata` added where signals exist.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:272:      validationMetadata: metadata,
+/bin/zsh -lc "rg -n \"0\\.8|1\\.2|validation\" .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:5:// PURPOSE: Extract validation signals from spec document metadata
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:13://   4. content          → validation completion markers
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:17:// adds the `validationMetadata` key to enriched rows.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:45: * Markers that indicate a completed validation pass in the content.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:73:  /** ISO date string of the most recent validation, if present in content. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:74:  validationDate?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:116: * Scan content for validation completion markers.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:118: * 'partial' when validation-related content exists but no completion marker,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:129:  // Partial signal: content mentions validation-related keywords.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:144: * Attempt to extract a validation date from a content string.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:157: * Extract validation signals from a single memory pipeline row.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:164: *   4. `content` → completion markers (completionStatus, validationDate).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:167: * Returns null when the row carries no extractable validation signals
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:222:      const validationDate = extractValidationDate(effectiveContent);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:223:      if (validationDate !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:224:        result.validationDate = validationDate;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:250: * Enrich a batch of pipeline rows with validation metadata.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:253: * result is returned, it is attached to the row under the `validationMetadata`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:259: * @returns New array with `validationMetadata` added where signals exist.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:272:      validationMetadata: metadata,
 exec
-/bin/zsh -lc 'rg -n "initExtractionAdapter|registerAfterTool|after tool|memory-surface|autoSurfaceAtToolDispatch" .opencode/skill/system-spec-kit/mcp_server/context-server.ts .opencode/skill/system-spec-kit/mcp_server/lib/extraction .opencode/skill/system-spec-kit/mcp_server/hooks .opencode/skill/system-spec-kit/mcp_server/tools .opencode/skill/system-spec-kit/mcp_server/handlers' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:48:  autoSurfaceAtToolDispatch,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:94:import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:244:export function registerAfterToolCallback(fn: AfterToolCallback): void {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:304:        autoSurfacedContext = await autoSurfaceAtToolDispatch(name, args);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:880:      initExtractionAdapter(database, registerAfterToolCallback);
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:function initExtractionAdapter(database: Database.Database, registerCallback: RegisterAfterToolCallback): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:285:  initExtractionAdapter,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/README.md:234:| `hooks/memory-surface.ts` | Triggers extraction pipeline post-tool |
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:178: * autoSurfaceAtToolDispatch
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:196:async function autoSurfaceAtToolDispatch(
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:278:  autoSurfaceAtToolDispatch,
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:5:export * from './memory-surface';
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:42:- `autoSurfaceAtToolDispatch(toolName, toolArgs, options)`
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:7:import { clearConstitutionalCache } from '../hooks/memory-surface';
+/bin/zsh -lc 'rg -n "initExtractionAdapter|registerAfterTool|after tool|memory-surface|autoSurfaceAtToolDispatch" .opencode/skills/system-spec-kit/mcp_server/context-server.ts .opencode/skills/system-spec-kit/mcp_server/lib/extraction .opencode/skills/system-spec-kit/mcp_server/hooks .opencode/skills/system-spec-kit/mcp_server/tools .opencode/skills/system-spec-kit/mcp_server/handlers' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:48:  autoSurfaceAtToolDispatch,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:94:import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:244:export function registerAfterToolCallback(fn: AfterToolCallback): void {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:304:        autoSurfacedContext = await autoSurfaceAtToolDispatch(name, args);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:880:      initExtractionAdapter(database, registerAfterToolCallback);
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:266:function initExtractionAdapter(database: Database.Database, registerCallback: RegisterAfterToolCallback): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:285:  initExtractionAdapter,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/README.md:234:| `hooks/memory-surface.ts` | Triggers extraction pipeline post-tool |
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:178: * autoSurfaceAtToolDispatch
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:196:async function autoSurfaceAtToolDispatch(
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:278:  autoSurfaceAtToolDispatch,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:5:export * from './memory-surface';
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:42:- `autoSurfaceAtToolDispatch(toolName, toolArgs, options)`
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:7:import { clearConstitutionalCache } from '../hooks/memory-surface';
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "sed -n '1,120p' .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 # Unified context retrieval (memory_context)
 
 ## Current Reality

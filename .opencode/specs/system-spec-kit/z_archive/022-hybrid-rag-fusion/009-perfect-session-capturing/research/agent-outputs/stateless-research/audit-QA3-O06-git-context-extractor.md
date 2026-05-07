@@ -1,6 +1,6 @@
 # Audit: QA3-O06 — git-context-extractor.ts
 
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts`
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts`
 **LOC:** 187
 **Auditor:** @review (Claude Opus 4.6)
 **Date:** 2026-03-09

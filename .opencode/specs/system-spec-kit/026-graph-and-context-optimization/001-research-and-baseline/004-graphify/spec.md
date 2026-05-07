@@ -31,7 +31,7 @@ Phase 4 of `001-research-graph-context-systems` is a read-only audit of the grap
 
 **Key Decisions**: Use a 20-iteration two-wave deep-research loop; preserve K1 to K42 finding lineage across the original run plus completed-continue wave; keep Code Graph MCP and CocoIndex as the platform while translating graphify patterns into additive rollout guidance for Public.
 
-**Critical Dependencies**: cli-codex CLI installed; `external/graphify/` accessible at the spec folder root; reducer script at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`.
+**Critical Dependencies**: cli-codex CLI installed; `external/graphify/` accessible at the spec folder root; reducer script at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
 ---
 

@@ -52,7 +52,7 @@ Recommend Option A since the V2.2 verification feature may be implemented later.
 
 ## Files to Modify
 
-1. `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js`
+1. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js`
    - Add snake_case export aliases
 
 ## Risk Assessment

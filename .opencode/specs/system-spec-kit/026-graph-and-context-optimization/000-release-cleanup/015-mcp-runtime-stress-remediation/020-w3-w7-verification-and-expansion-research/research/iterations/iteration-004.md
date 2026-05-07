@@ -13,17 +13,17 @@ Determine whether duplicate-density telemetry actually fires in runtime paths an
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:31` reads `SPECKIT_COCOINDEX_ADAPTIVE_OVERFETCH`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36` implements `calibrateCocoIndexOverfetch`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:39` applies adaptive overfetch only when the flag is enabled and duplicate density is at least `0.35`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:41` uses multiplier `4` when applied.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:76` counts path classes.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3` imports the helper in tests.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:7` asserts flagged and unflagged behavior.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27` preserves CocoIndex raw/path telemetry as additive metadata only.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:131` copies raw score/path class/ranking signals into artifact refs.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:242` normalizes snake-case and camelCase CocoIndex telemetry.
-- `rg "calibrateCocoIndexOverfetch|cocoindex-calibration" .opencode/skill/system-spec-kit/mcp_server` found only the module itself and `stress_test/search-quality/w6-cocoindex-calibration.vitest.ts`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:31` reads `SPECKIT_COCOINDEX_ADAPTIVE_OVERFETCH`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:36` implements `calibrateCocoIndexOverfetch`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:39` applies adaptive overfetch only when the flag is enabled and duplicate density is at least `0.35`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:41` uses multiplier `4` when applied.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:76` counts path classes.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:3` imports the helper in tests.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts:7` asserts flagged and unflagged behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:27` preserves CocoIndex raw/path telemetry as additive metadata only.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:131` copies raw score/path class/ranking signals into artifact refs.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:242` normalizes snake-case and camelCase CocoIndex telemetry.
+- `rg "calibrateCocoIndexOverfetch|cocoindex-calibration" .opencode/skills/system-spec-kit/mcp_server` found only the module itself and `stress_test/search-quality/w6-cocoindex-calibration.vitest.ts`.
 
 ## Findings
 

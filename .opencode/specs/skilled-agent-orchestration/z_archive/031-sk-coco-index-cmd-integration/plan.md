@@ -66,8 +66,8 @@ Draft-first discovery plan.
 
 ### Key Components
 - **Packet docs**: `spec.md`, `plan.md`, `tasks.md`
-- **Likely skill surface**: `.opencode/skill/mcp-coco-index/`
-- **Likely command surfaces**: `.opencode/command/` paths that may expose the integration
+- **Likely skill surface**: `.opencode/skills/mcp-coco-index/`
+- **Likely command surfaces**: `.opencode/commands/` paths that may expose the integration
 
 ### Data Flow
 This draft packet captures the planning baseline now so later discovery can update the packet with confirmed scope, implementation steps, and validation evidence.
@@ -98,7 +98,7 @@ This draft packet captures the planning baseline now so later discovery can upda
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Packet structure | This spec folder | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Packet structure | This spec folder | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Surface discovery | Command and skill files | Manual inspection |
 | Feature verification | Future integration behavior | To be defined after implementation scope is known |
 <!-- /ANCHOR:testing -->
@@ -110,8 +110,8 @@ This draft packet captures the planning baseline now so later discovery can upda
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/mcp-coco-index/` | Internal | Unknown | Feature scope cannot be finalized |
-| Relevant `.opencode/command/` paths | Internal | Unknown | Integration path stays speculative |
+| `.opencode/skills/mcp-coco-index/` | Internal | Unknown | Feature scope cannot be finalized |
+| Relevant `.opencode/commands/` paths | Internal | Unknown | Integration path stays speculative |
 | Future implementation evidence | Internal | Pending | Checklist and summary remain incomplete |
 <!-- /ANCHOR:dependencies -->
 

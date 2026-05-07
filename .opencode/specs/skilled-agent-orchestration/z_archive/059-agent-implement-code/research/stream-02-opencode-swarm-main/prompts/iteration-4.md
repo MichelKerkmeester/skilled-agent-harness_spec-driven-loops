@@ -10,7 +10,7 @@ state_summary:
 - Rolling avg (last 3): 0.79
 - Convergence score: still rising; stop signals not yet met.
 
-Research Topic: Identify reusable patterns from opencode-swarm-main that inform a new `@code` LEAF agent for `.opencode/agent/`.
+Research Topic: Identify reusable patterns from opencode-swarm-main that inform a new `@code` LEAF agent for `.opencode/agents/`.
 
 Iteration: 4 of 8
 

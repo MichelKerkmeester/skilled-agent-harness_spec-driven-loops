@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "Keep packet docs synced with any future deep-review or advisor adjustments"
     blockers: []
     key_files:
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/sk-deep-review/graph-metadata.json"
-      - ".opencode/skill/sk-deep-research/graph-metadata.json"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/sk-deep-review/graph-metadata.json"
+      - ".opencode/skills/sk-deep-research/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:036-sk-deep-research-review-split"
       session_id: "036-sk-deep-research-review-split"

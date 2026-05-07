@@ -16,10 +16,10 @@
 const path = require('path');
 
 // Import modules under test
-const detector = require('../../../../.opencode/skill/system-spec-kit/lib/complexity/detector');
-const classifier = require('../../../../.opencode/skill/system-spec-kit/lib/complexity/classifier');
-const markerParser = require('../../../../.opencode/skill/system-spec-kit/lib/expansion/marker-parser');
-const preprocessor = require('../../../../.opencode/skill/system-spec-kit/lib/expansion/preprocessor');
+const detector = require('../../../../.opencode/skills/system-spec-kit/lib/complexity/detector');
+const classifier = require('../../../../.opencode/skills/system-spec-kit/lib/complexity/classifier');
+const markerParser = require('../../../../.opencode/skills/system-spec-kit/lib/expansion/marker-parser');
+const preprocessor = require('../../../../.opencode/skills/system-spec-kit/lib/expansion/preprocessor');
 
 // =============================================================================
 // Test Framework

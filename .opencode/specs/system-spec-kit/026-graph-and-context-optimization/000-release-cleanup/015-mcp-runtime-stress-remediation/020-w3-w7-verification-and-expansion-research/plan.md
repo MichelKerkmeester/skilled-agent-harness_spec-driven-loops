@@ -127,7 +127,7 @@ Spec charter and predecessor evidence feed iteration-specific source reads. Each
 |------------|------|--------|-------------------|
 | Phase C report | Internal spec packet | Available | Would reduce predecessor context |
 | Phase D/E packets | Internal spec packets | Available | Would block built-vs-planned comparison |
-| `.opencode/skill/system-spec-kit/mcp_server/` | Runtime source | Available read-only | Would block W3-W7 wiring audit |
+| `.opencode/skills/system-spec-kit/mcp_server/` | Runtime source | Available read-only | Would block W3-W7 wiring audit |
 | Spec validator | Local script | Available | Needed for completion claim |
 <!-- /ANCHOR:dependencies -->
 

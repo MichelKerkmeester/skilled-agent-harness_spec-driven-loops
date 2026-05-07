@@ -18,9 +18,9 @@ _memory:
     next_safe_action: "Dispatch /spec_kit:deep-research:auto with cli-copilot/gpt-5.5/10-iter"
     blockers: []
     key_files:
-      - .opencode/skill/sk-improve-agent/SKILL.md
-      - .opencode/agent/improve-agent.md
-      - .opencode/command/improve/agent.md
+      - .opencode/skills/sk-improve-agent/SKILL.md
+      - .opencode/agents/improve-agent.md
+      - .opencode/commands/improve/agent.md
       - .opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md
     completion_pct: 5
     open_questions:
@@ -46,7 +46,7 @@ _memory:
 
 Packet 059 produced a stress-test methodology that surfaced two real design gaps in `@code` after a single round of failure-path scenarios — gaps that the pre-merge structural smoke test (CP-026) had missed entirely. The methodology is reusable: same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative edits with measurable score progression, and a smart-router audit asking "does the skill *actually fire its routing logic*, or does the agent just read SKILL.md and stop?"
 
-This packet (060) takes that methodology and points it at a meta-target: the **`sk-improve-agent` triad** — `.opencode/skill/sk-improve-agent/SKILL.md` (463 lines), `.opencode/agent/improve-agent.md` (246 lines), and `.opencode/command/improve/agent.md` (456 lines). The triad exists *to improve other agents*. The premise is reflexive: if the 059 lens revealed gaps in `@code`, it should reveal analogous gaps in the agent-improver itself.
+This packet (060) takes that methodology and points it at a meta-target: the **`sk-improve-agent` triad** — `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines), `.opencode/agents/improve-agent.md` (246 lines), and `.opencode/commands/improve/agent.md` (456 lines). The triad exists *to improve other agents*. The premise is reflexive: if the 059 lens revealed gaps in `@code`, it should reveal analogous gaps in the agent-improver itself.
 
 **This packet is research-only.** Its deliverable is `research/research.md` synthesizing 10 deep-research iterations into: (a) gap analysis mapped to 059's transferable lessons, (b) 6-10 sketched stress-test scenarios in CP-XXX format, (c) prioritized diff sketches for the 3 target files, (d) a recommended fixture-target design. *Implementation* of those recommendations is explicitly deferred to a follow-on packet (061) that will reuse the 059 stress-test pattern against the improved triad.
 
@@ -78,7 +78,7 @@ This packet (060) takes that methodology and points it at a meta-target: the **`
 
 ### Problem Statement
 
-The `sk-improve-agent` triad is the system's *self-improvement engine*: it scaffolds candidates, scores them across 5 integration-aware dimensions, runs benchmarks, and gates promotion through 5 legal-stop conditions (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate). It owns 14 orchestration scripts under `.opencode/skill/sk-improve-agent/scripts/` and 12 reference docs.
+The `sk-improve-agent` triad is the system's *self-improvement engine*: it scaffolds candidates, scores them across 5 integration-aware dimensions, runs benchmarks, and gates promotion through 5 legal-stop conditions (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate). It owns 14 orchestration scripts under `.opencode/skills/sk-improve-agent/scripts/` and 12 reference docs.
 
 Despite that surface area, the triad has never been stress-tested end-to-end. Its claims about candidate-scoring determinism, journal contract enforcement, mirror-drift detection, and trade-off detection are validated only by code-level unit/integration tests — not by the kind of failure-path A/B differential that surfaced gaps in `@code` (059). The exploration-agent report flagged six concrete weaknesses against the 059 lens:
 
@@ -139,12 +139,12 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 
 | File Path | Role |
 |-----------|------|
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
-| `.opencode/agent/improve-agent.md` | Primary research target (246 lines) |
-| `.opencode/command/improve/agent.md` | Primary research target (456 lines) |
-| `.opencode/skill/sk-improve-agent/references/` | Secondary surface (12 docs) |
-| `.opencode/skill/sk-improve-agent/scripts/` | Secondary surface (14 .cjs scripts) |
-| `.opencode/skill/sk-improve-agent/assets/` | Secondary surface (6 items) |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
+| `.opencode/agents/improve-agent.md` | Primary research target (246 lines) |
+| `.opencode/commands/improve/agent.md` | Primary research target (456 lines) |
+| `.opencode/skills/sk-improve-agent/references/` | Secondary surface (12 docs) |
+| `.opencode/skills/sk-improve-agent/scripts/` | Secondary surface (14 .cjs scripts) |
+| `.opencode/skills/sk-improve-agent/assets/` | Secondary surface (6 items) |
 | `.opencode/specs/.../059-agent-implement-code/test-report.md` | Methodology reference (570 lines) |
 <!-- /ANCHOR:scope -->
 
@@ -157,7 +157,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Spec folder validates strict | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict` exits 0 |
+| REQ-001 | Spec folder validates strict | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict` exits 0 |
 | REQ-002 | Deep-research dispatch succeeds | `/spec_kit:deep-research:auto` with cli-copilot/gpt-5.5/10-iter runs to completion (convergence or 10 iters) |
 | REQ-003 | research/research.md contains gap analysis | Sections present: gap-analysis, scenario-sketches, diff-sketches, fixture-design |
 | REQ-004 | Each of the 7 research questions has an answer | RQ-1 through RQ-7 (§5 below) addressed in research.md, each with evidence citations |
@@ -244,10 +244,10 @@ A successful 060 produces:
 
 - **Methodology source:** `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md` (570 lines, lessons-learned in §9)
 - **Target triad:**
-  - `.opencode/skill/sk-improve-agent/SKILL.md` (463 lines)
-  - `.opencode/agent/improve-agent.md` (246 lines)
-  - `.opencode/command/improve/agent.md` (456 lines)
-- **Deep-research wiring:** `.opencode/skill/sk-deep-research/changelog/v1.9.0.0.md` (cli-copilot integration); `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:32-38` (flag-support map)
+  - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
+  - `.opencode/agents/improve-agent.md` (246 lines)
+  - `.opencode/commands/improve/agent.md` (456 lines)
+- **Deep-research wiring:** `.opencode/skills/sk-deep-research/changelog/v1.9.0.0.md` (cli-copilot integration); `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:32-38` (flag-support map)
 - **Memory rules** consulted:
   - `feedback_implementation_summary_placeholders.md` — placeholders OK during planning
   - `feedback_new_agent_mirror_all_runtimes.md` — 4-runtime mirror discipline (relevant to RQ-6)

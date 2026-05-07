@@ -8,7 +8,7 @@ Synthesize the prior packet research on hooks, resume flows, tree-sitter, repo m
 
 1. A code graph can improve context compaction by turning "what the AI touched" into a ranked structural working set instead of a flat text summary.
 
-   The current packet already proves that our compaction path needs a concise, budgeted payload rather than raw search output: `context-server.ts` treats `memory_context(mode:"resume")` as a compaction lifecycle call, routes it through `autoSurfaceAtCompaction()`, and stores surfaced context in response metadata before budget enforcement. `autoSurfaceAtCompaction()` itself is already a bounded preservation hook with a dedicated 4,000-token budget. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:325-399`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:52-55`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:283-317`]
+   The current packet already proves that our compaction path needs a concise, budgeted payload rather than raw search output: `context-server.ts` treats `memory_context(mode:"resume")` as a compaction lifecycle call, routes it through `autoSurfaceAtCompaction()`, and stores surfaced context in response metadata before budget enforcement. `autoSurfaceAtCompaction()` itself is already a bounded preservation hook with a dedicated 4,000-token budget. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:325-399`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:52-55`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:283-317`]
 
    A code graph fits this need because it can compress many lines of code into a smaller structure: "active symbol `X` in file `A` depends on symbol `Y` in file `B`; failing test `T` exercises both." That is exactly the kind of high-value information that survives compaction better than raw file snippets. Prior packet research on aider shows the same pattern: a repository map is useful because it preserves important classes, functions, signatures, and dependency-ranked files while staying inside a token budget. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-032.md`] [SOURCE: https://aider.chat/docs/repomap.html]
 
@@ -27,7 +27,7 @@ Synthesize the prior packet research on hooks, resume flows, tree-sitter, repo m
 
 3. Structural code understanding helps prioritize what to keep after compaction because it answers "what is adjacent to the current work?" better than semantic search alone.
 
-   Semantic retrieval is strong at "find code related to this concept." Structural retrieval is stronger at "what must I keep so the model can continue this exact implementation thread?" The packet's own search internals already separate these concerns: the current `graph` channel is a causal-memory graph over memories, not a code-structure graph, while CocoIndex is a chunk-embedding semantic channel. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:23-72`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:1-220`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-033.md`]
+   Semantic retrieval is strong at "find code related to this concept." Structural retrieval is stronger at "what must I keep so the model can continue this exact implementation thread?" The packet's own search internals already separate these concerns: the current `graph` channel is a causal-memory graph over memories, not a code-structure graph, while CocoIndex is a chunk-embedding semantic channel. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:23-72`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:1-220`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-033.md`]
 
    A code graph adds ranking signals that semantic search usually misses:
    - Direct import/export relationships
@@ -211,10 +211,10 @@ Synthesize the prior packet research on hooks, resume flows, tree-sitter, repo m
 ## Evidence
 
 - Live repo compaction path and budgets:
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
 
 - Packet architecture and prior synthesis:
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/001-precompact-hook/spec.md`

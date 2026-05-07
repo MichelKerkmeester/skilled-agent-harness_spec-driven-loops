@@ -32,7 +32,7 @@ level: 2
 ## Implementation
 
 - [x] **IMPL.1**: Root package.json created with workspaces config
-  - Created: .opencode/skill/system-spec-kit/package.json
+  - Created: .opencode/skills/system-spec-kit/package.json
   - Workspaces: ["mcp_server", "scripts"]
 - [x] **IMPL.2**: mcp_server/package.json updated (name + versions)
   - Name: @spec-kit/mcp-server
@@ -48,7 +48,7 @@ level: 2
   - 194 packages installed
   - 0 vulnerabilities
 - [x] **IMPL.6**: Single node_modules at root level
-  - Location: .opencode/skill/system-spec-kit/node_modules/
+  - Location: .opencode/skills/system-spec-kit/node_modules/
   - No node_modules in subdirectories
 
 ## Verification

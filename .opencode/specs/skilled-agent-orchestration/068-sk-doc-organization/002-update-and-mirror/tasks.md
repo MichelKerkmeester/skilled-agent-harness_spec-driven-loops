@@ -49,8 +49,8 @@ _memory:
 ## Phase 1: Setup (pre-flight)
 
 - [ ] T001 Verify on `main` branch (`git branch --show-current`)
-- [ ] T002 Pre-flight `diff -rq .opencode/command/create/ .claude/commands/create/` returns empty
-- [ ] T003 Pre-flight `diff -rq .opencode/command/create/ .codex/prompts/create/` returns empty
+- [ ] T002 Pre-flight `diff -rq .opencode/commands/create/ .claude/commands/create/` returns empty
+- [ ] T003 Pre-flight `diff -rq .opencode/commands/create/ .codex/prompts/create/` returns empty
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,36 +59,36 @@ _memory:
 ## Phase 2: Implementation
 
 ### B.1 — sk-doc internal substring sweep (11 files)
-- [ ] T004 Apply 4 fixed-string substitutions to `.opencode/skill/sk-doc/SKILL.md`
-- [ ] T005 Apply 4 substitutions to 6 `.opencode/skill/sk-doc/references/global/*.md` files
-- [ ] T006 Apply 4 substitutions to 3 `.opencode/skill/sk-doc/references/specific/*.md` files
-- [ ] T007 Apply 4 substitutions to `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md`
+- [ ] T004 Apply 4 fixed-string substitutions to `.opencode/skills/sk-doc/SKILL.md`
+- [ ] T005 Apply 4 substitutions to 6 `.opencode/skills/sk-doc/references/global/*.md` files
+- [ ] T006 Apply 4 substitutions to 3 `.opencode/skills/sk-doc/references/specific/*.md` files
+- [ ] T007 Apply 4 substitutions to `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md`
 
 ### B.2 — /create:* command canonical substring sweep (11 files)
-- [ ] T008 Apply 4 substitutions to 4 `.opencode/command/create/{agent,changelog,feature-catalog,testing-playbook}.md`
-- [ ] T009 Apply 4 substitutions to `.opencode/command/create/README.txt`
-- [ ] T010 Apply 4 substitutions to 6 `.opencode/command/create/assets/create_*_{auto,confirm}.yaml`
+- [ ] T008 Apply 4 substitutions to 4 `.opencode/commands/create/{agent,changelog,feature-catalog,testing-playbook}.md`
+- [ ] T009 Apply 4 substitutions to `.opencode/commands/create/README.txt`
+- [ ] T010 Apply 4 substitutions to 6 `.opencode/commands/create/assets/create_*_{auto,confirm}.yaml`
 
 ### B.3 — @create + install guide substring sweep (2 files)
-- [ ] T011 Apply 4 substitutions to `.opencode/agent/create.md`
+- [ ] T011 Apply 4 substitutions to `.opencode/agents/create.md`
 - [ ] T012 Apply 4 substitutions to `.opencode/install_guides/SET-UP - Opencode Agents.md`
 
 ### Mirror replication (`.claude/.codex/`)
-- [ ] T013 `rsync -a --delete .opencode/command/create/ .claude/commands/create/`
-- [ ] T014 `rsync -a --delete .opencode/command/create/ .codex/prompts/create/`
-- [ ] T015 Verify byte-identity: `diff -rq .opencode/command/create/ .claude/commands/create/` empty
-- [ ] T016 Verify byte-identity: `diff -rq .opencode/command/create/ .codex/prompts/create/` empty
+- [ ] T013 `rsync -a --delete .opencode/commands/create/ .claude/commands/create/`
+- [ ] T014 `rsync -a --delete .opencode/commands/create/ .codex/prompts/create/`
+- [ ] T015 Verify byte-identity: `diff -rq .opencode/commands/create/ .claude/commands/create/` empty
+- [ ] T016 Verify byte-identity: `diff -rq .opencode/commands/create/ .codex/prompts/create/` empty
 
 ### .gemini TOML regeneration (4 files)
-- [ ] T017 Regenerate `.gemini/commands/create/agent.toml` (re-escape from updated `.opencode/command/create/agent.md`)
+- [ ] T017 Regenerate `.gemini/commands/create/agent.toml` (re-escape from updated `.opencode/commands/create/agent.md`)
 - [ ] T018 Regenerate `.gemini/commands/create/changelog.toml`
 - [ ] T019 Regenerate `.gemini/commands/create/feature-catalog.toml`
 - [ ] T020 Regenerate `.gemini/commands/create/testing-playbook.toml`
 - [ ] T021 `tomllib.loads()` parse-check on all 4 `.gemini/*.toml` (each exits 0)
 
 ### @create runtime mirrors (4 files)
-- [ ] T022 `cp .opencode/agent/create.md .claude/agents/create.md`
-- [ ] T023 `cp .opencode/agent/create.md .gemini/agents/create.md`
+- [ ] T022 `cp .opencode/agents/create.md .claude/agents/create.md`
+- [ ] T023 `cp .opencode/agents/create.md .gemini/agents/create.md`
 - [ ] T024 Regenerate `.codex/agents/create.toml` (preserve sandbox + Path Convention; rebuild body)
 - [ ] T025 `tomllib.loads()` parse-check on `.codex/agents/create.toml` exits 0
 <!-- /ANCHOR:phase-2 -->

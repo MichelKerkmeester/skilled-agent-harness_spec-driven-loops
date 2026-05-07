@@ -115,7 +115,7 @@ Codex `UserPromptSubmit` still calls the advisor builder. If it times out, the e
 |-----------|-------|-------|
 | Codex fallback | Timeout marker, warning, stale diagnostic, smoke helper | `hooks-codex-freshness.vitest.ts` |
 | Advisor rebuild | Stale rebuild path and live skip path | `advisor-rebuild.vitest.ts` |
-| TypeScript | Schema exports, tool registration, imports | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` |
+| TypeScript | Schema exports, tool registration, imports | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` |
 | Packet validation | Required docs, anchors, metadata | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 

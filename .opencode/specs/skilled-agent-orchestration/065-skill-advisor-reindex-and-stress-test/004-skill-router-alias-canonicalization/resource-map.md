@@ -13,9 +13,9 @@ _memory:
     next_safe_action: "root_final_validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -53,11 +53,11 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/command/spec_kit/deep-review.md` | Checked | OK | Command id side of alias |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Checked | OK | Skill id side of alias |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python alias parity |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Created | OK | Canonical alias groups and helpers |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` | Checked | OK | Native scorer integration surface |
+| `.opencode/commands/spec_kit/deep-review.md` | Checked | OK | Command id side of alias |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Checked | OK | Skill id side of alias |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python alias parity |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Created | OK | Canonical alias groups and helpers |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/` | Checked | OK | Native scorer integration surface |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -65,5 +65,5 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added alias-aware regression |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added alias-aware regression |
 <!-- /ANCHOR:tests -->

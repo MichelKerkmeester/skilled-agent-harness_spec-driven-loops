@@ -19,7 +19,7 @@ This pass answers four concrete questions:
 
 1. The current implementation still gives the full `4000` tokens to Memory only.
 
-   `memory-surface.ts` hard-codes `COMPACTION_TOKEN_BUDGET = 4000`, and `autoSurfaceAtCompaction()` always routes that full budget into `autoSurfaceMemories(...)`. The current enforcement logic trims `triggered` items first, then `constitutional` items, and drops the whole payload if it still does not fit. The separate `dynamic-token-budget.ts` module is real, but it is advisory and lives in the hybrid-search path, not in compaction. Right now there is no multi-source allocator at all. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:53-55`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-89`]
+   `memory-surface.ts` hard-codes `COMPACTION_TOKEN_BUDGET = 4000`, and `autoSurfaceAtCompaction()` always routes that full budget into `autoSurfaceMemories(...)`. The current enforcement logic trims `triggered` items first, then `constitutional` items, and drops the whole payload if it still does not fit. The separate `dynamic-token-budget.ts` module is real, but it is advisory and lives in the hybrid-search path, not in compaction. Right now there is no multi-source allocator at all. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:53-55`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-89`]
 
 2. Fixed-only allocation is acceptable as a fallback, but the target design should be dynamic late fusion with source floors plus a shared overflow pool.
 
@@ -79,7 +79,7 @@ This pass answers four concrete questions:
    6. Semantic neighbors
    7. Two-hop graph leaves and weak semantic tail
 
-   This resolves an apparent tension in the research. Some packet text puts "active files and symbols" first in the final brief, while the current Memory hook gives constitutional items hard protection. The clean way to reconcile those is: pin a small durable-memory floor, then rank the remaining budget around active structural continuity. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:332-337`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:159-173`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:15-29`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:64-85`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`]
+   This resolves an apparent tension in the research. Some packet text puts "active files and symbols" first in the final brief, while the current Memory hook gives constitutional items hard protection. The clean way to reconcile those is: pin a small durable-memory floor, then rank the remaining budget around active structural continuity. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:332-337`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:159-173`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:15-29`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:64-85`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`]
 
 5. Budget overflow should be handled by ranking and redistribution, not by spending every source's quota.
 
@@ -109,18 +109,18 @@ This pass answers four concrete questions:
    - `moderate` outer budget `2500` -> apply the same percentages
    - `complex` outer budget `4000` -> apply the same percentages
 
-   But for v1 of compaction specifically, keeping the existing `4000` outer cap is still the safest move because the current hook and resume behavior are already documented around that size. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:18-25`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:69-74`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:85-85`]
+   But for v1 of compaction specifically, keeping the existing `4000` outer cap is still the safest move because the current hook and resume behavior are already documented around that size. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:18-25`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:69-74`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-052.md:85-85`]
 
 ## Evidence
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:18-25`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-89`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:53-55`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:18-25`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-89`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:53-55`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:69-74`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-105`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:320-339`

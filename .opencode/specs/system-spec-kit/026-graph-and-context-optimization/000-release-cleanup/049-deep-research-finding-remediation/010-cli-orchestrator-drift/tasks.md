@@ -16,12 +16,12 @@ _memory:
     next_safe_action: "validate, commit, push"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/references/agent_delegation.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-codex/assets/prompt_templates.md"
-      - ".opencode/skill/cli-claude-code/assets/prompt_templates.md"
-      - ".opencode/skill/cli-gemini/assets/prompt_templates.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/agent_delegation.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-codex/assets/prompt_templates.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_templates.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_templates.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-010-cli-drift"
@@ -51,12 +51,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 [P1] Edit cli-opencode/SKILL.md subagent table to clarify single-hop dispatch (F-007-B2-01) (`.opencode/skill/cli-opencode/SKILL.md`)
-- [x] T004 [P1] Replace deep-loop direct-dispatch rows with command-only routing (F-007-B2-02) (`.opencode/skill/cli-opencode/references/agent_delegation.md`)
-- [x] T005 [P1] Reconcile effort-flag prose with example, document precedence (F-007-B2-03) (`.opencode/skill/cli-copilot/SKILL.md`)
-- [x] T006 [P2] Pin model+effort, fix `--full-auto` description, mark service_tier opt-in (F-007-B2-04) (`.opencode/skill/cli-codex/assets/prompt_templates.md`)
-- [x] T007 [P2] Add `--model claude-sonnet-4-6` to single-file template (F-007-B2-05) (`.opencode/skill/cli-claude-code/assets/prompt_templates.md`)
-- [x] T008 [P2] Split safe vs `--yolo`-approved write templates (F-007-B2-06) (`.opencode/skill/cli-gemini/assets/prompt_templates.md`)
+- [x] T003 [P1] Edit cli-opencode/SKILL.md subagent table to clarify single-hop dispatch (F-007-B2-01) (`.opencode/skills/cli-opencode/SKILL.md`)
+- [x] T004 [P1] Replace deep-loop direct-dispatch rows with command-only routing (F-007-B2-02) (`.opencode/skills/cli-opencode/references/agent_delegation.md`)
+- [x] T005 [P1] Reconcile effort-flag prose with example, document precedence (F-007-B2-03) (`.opencode/skills/cli-copilot/SKILL.md`)
+- [x] T006 [P2] Pin model+effort, fix `--full-auto` description, mark service_tier opt-in (F-007-B2-04) (`.opencode/skills/cli-codex/assets/prompt_templates.md`)
+- [x] T007 [P2] Add `--model claude-sonnet-4-6` to single-file template (F-007-B2-05) (`.opencode/skills/cli-claude-code/assets/prompt_templates.md`)
+- [x] T008 [P2] Split safe vs `--yolo`-approved write templates (F-007-B2-06) (`.opencode/skills/cli-gemini/assets/prompt_templates.md`)
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

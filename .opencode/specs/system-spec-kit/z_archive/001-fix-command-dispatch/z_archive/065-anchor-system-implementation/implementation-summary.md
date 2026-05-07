@@ -33,12 +33,12 @@ Implemented the **Anchor System** backend logic, enabling targeted retrieval of 
 ## 3. Files Created & Modified
 
 ### Core System
-- `Modified` .opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js
-- `Modified` .opencode/skill/system-spec-kit/mcp_server/context-server.js
+- `Modified` .opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js
+- `Modified` .opencode/skills/system-spec-kit/mcp_server/context-server.js
 
 ### Test Infrastructure (Fixes)
-- `Modified` .opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
-- `Modified` .opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+- `Modified` .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
+- `Modified` .opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
 
 ### Spec Documentation
 - `Created` .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation/spec.md

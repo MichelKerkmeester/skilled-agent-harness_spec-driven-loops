@@ -130,7 +130,7 @@ Template compliance scaffold for 001-barter-figma-agent/plan.md; original author
 | **Target repo** | `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter` |
 
 ### Overview
-This phase authors a complete Figma MCP Agent at `Barter/MCP Agents/Figma/` mirroring `Barter/MCP Agents/ClickUp/` exactly. cli-codex (gpt-5.5 high, fast tier) authors all heavy markdown content (~150K total) in parallel dispatches; Claude orchestrates and runs an opus subagent for verification before the single `Figma MCP` commit. Source content lives in `Code_Environment/Public/.opencode/skill/mcp-figma/` (SKILL.md, README.md, INSTALL_GUIDE.md, references/, nodes/, assets/, changelog/).
+This phase authors a complete Figma MCP Agent at `Barter/MCP Agents/Figma/` mirroring `Barter/MCP Agents/ClickUp/` exactly. cli-codex (gpt-5.5 high, fast tier) authors all heavy markdown content (~150K total) in parallel dispatches; Claude orchestrates and runs an opus subagent for verification before the single `Figma MCP` commit. Source content lives in `Code_Environment/Public/.opencode/skills/mcp-figma/` (SKILL.md, README.md, INSTALL_GUIDE.md, references/, nodes/, assets/, changelog/).
 
 ---
 
@@ -186,7 +186,7 @@ This phase authors a complete Figma MCP Agent at `Barter/MCP Agents/Figma/` mirr
    - `git -C "<barter-path>" commit -m "Figma MCP"`
 
 ### Branch strategy
-Stay on Barter `main`. Don't auto-branch. `Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/create.sh` only auto-branches inside the Public skill repo, not the Barter repo, so this phase is safe.
+Stay on Barter `main`. Don't auto-branch. `Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/create.sh` only auto-branches inside the Public skill repo, not the Barter repo, so this phase is safe.
 
 ---
 

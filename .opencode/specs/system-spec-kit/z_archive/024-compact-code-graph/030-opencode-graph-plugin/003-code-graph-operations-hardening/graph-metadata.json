@@ -41,11 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -57,31 +57,31 @@
       {
         "name": "session-health.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts",
         "source": "derived"
       },
       {
         "name": "session-resume.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
         "source": "derived"
       },
       {
         "name": "session-resume.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
         "source": "derived"
       },
       {

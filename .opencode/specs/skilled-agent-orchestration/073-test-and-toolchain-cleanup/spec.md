@@ -13,7 +13,7 @@ _memory:
     next_safe_action: "Commit + push"
     blockers: []
     key_files:
-      - .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts
+      - .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts
       - .opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/scripts/run-matrix.sh
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -83,8 +83,8 @@ Apply 3 bounded fixes that reduce friction for future router-stress + memory-sav
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `071/002-matrix-execute/scripts/run-matrix.sh` | Modify | Token regex (codex), jq parser (opencode), 3 timeouts 120→180 |
-| `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` | Modify | Directory + missing-file guard |
-| `.opencode/skill/system-spec-kit/scripts/dist/core/post-save-review.js` | Regenerate | tsc --build |
+| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | Modify | Directory + missing-file guard |
+| `.opencode/skills/system-spec-kit/scripts/dist/core/post-save-review.js` | Regenerate | tsc --build |
 | `073/{spec,plan,tasks,implementation-summary}.md` | Create | Spec docs |
 <!-- /ANCHOR:scope -->
 

@@ -92,7 +92,7 @@ Four updates to instruction files and agent definitions that serve as the final 
 
 **Problem:** The `@context-prime` agent (which runs on session start to bootstrap context) produced a Prime Package output with no routing guidance. The AI received information about available tools but no indication of when to use each one.
 
-**Fix:** Added a "Tool Routing" table to four context-prime agent files (`.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.agents/agents/`). Each table maps query types to tools with concrete examples. The `.gemini/agents/context-prime.md` update was deferred because the file does not exist yet (T-024).
+**Fix:** Added a "Tool Routing" table to four context-prime agent files (`.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.agents/agents/`). Each table maps query types to tools with concrete examples. The `.gemini/agents/context-prime.md` update was deferred because the file does not exist yet (T-024).
 
 ---
 
@@ -137,7 +137,7 @@ Four updates to instruction files and agent definitions that serve as the final 
 
 | File | Changes |
 |------|---------|
-| `.opencode/agent/context-prime.md` | Added Tool Routing table to Prime Package output |
+| `.opencode/agents/context-prime.md` | Added Tool Routing table to Prime Package output |
 | `.claude/agents/context-prime.md` | Added Tool Routing table to Prime Package output |
 | `.codex/agents/context-prime.md` | Added Tool Routing table to Prime Package output |
 | `.agents/agents/context-prime.md` | Added Tool Routing table to Prime Package output |

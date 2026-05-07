@@ -71,8 +71,8 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 ## Phase 3: Verification
 
 - [x] T008 Close follow-up fixes: required `confirmName`, duplicate-save no-op feedback, atomic-save feedback parity/hints, token metadata recomputation before token-budget enforcement, hooks README/export drift, and end-to-end appended-envelope assertion coverage
-- [x] T009 Run TypeScript build verification: `npx tsc -b` in `.opencode/skill/system-spec-kit` (PASS)
-- [x] T010 Run lint verification: `npm run lint` in `.opencode/skill/system-spec-kit/mcp_server` (PASS)
+- [x] T009 Run TypeScript build verification: `npx tsc -b` in `.opencode/skills/system-spec-kit` (PASS)
+- [x] T010 Run lint verification: `npm run lint` in `.opencode/skills/system-spec-kit/mcp_server` (PASS)
 - [x] T016 Add and pass the combined regression rerun: `npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts tests/memory-crud-extended.vitest.ts tests/memory-save-ux-regressions.vitest.ts tests/embeddings.vitest.ts tests/stdio-logging-safety.vitest.ts` (PASS, 9 files / 525 tests)
 - [x] T017 Confirm split playbook verification also passes for the same suite coverage (PASS, 7 files / 510 tests and 2 files / 15 tests)
 - [x] T018 Pass real MCP SDK stdio smoke test against `node dist/context-server.js` (PASS, 28 tools listed)

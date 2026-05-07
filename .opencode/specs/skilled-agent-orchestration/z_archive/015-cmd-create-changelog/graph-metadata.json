@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/create/changelog.md",
-      ".opencode/command/create/assets/create_changelog_auto.yaml",
-      ".opencode/command/create/assets/create_changelog_confirm.yaml",
-      ".opencode/command/create/README.txt",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/commands/create/assets/create_changelog_auto.yaml",
+      ".opencode/commands/create/assets/create_changelog_confirm.yaml",
+      ".opencode/commands/create/README.txt",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -55,25 +55,25 @@
       {
         "name": "changelog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/changelog.md",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
         "name": "create_changelog_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_changelog_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_changelog_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_changelog_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_changelog_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_changelog_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/create/README.txt",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {

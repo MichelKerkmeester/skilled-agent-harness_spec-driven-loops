@@ -14,7 +14,7 @@ I compared the local gate system in `AGENTS.md` and constitutional files with th
 ## Evidence
 - `[SOURCE: AGENTS.md:165-186]` The local pre-execution gate system requires context surfacing, skill routing, and a hard spec-folder gate for file-modifying work.
 - `[SOURCE: AGENTS.md:198-209]` The post-execution rules also impose a specific memory-save workflow once that path is triggered.
-- `[SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:62-69]` Constitutional guidance reinforces Gate 3 as a universal hard override.
+- `[SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:62-69]` Constitutional guidance reinforces Gate 3 as a universal hard override.
 - `[SOURCE: external/commands/orchestrator.md:36-43]` The external orchestrator uses an explicit activation mode that persists until turned off.
 - `[SOURCE: external/commands/orchestrator.md:83-97]` Activation writes a sentinel file describing the active project and orchestrator context.
 - `[SOURCE: external/hooks/orchestrator-guard.py:56-83]` The guard reads that sentinel and silently does nothing when the mode is inactive.
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should pivot from one universal conversational gate sequence to a small set of operating profiles, including a packet-bound continuation profile where scope, routing, and some save behavior are pre-resolved.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`
+- **Target file or module:** `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define the allowed operating profiles and which gates become implicit in each

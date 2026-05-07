@@ -69,12 +69,12 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:testing -->
 ## 4. TESTING
 
-- [x] CHK-020 [P0] Unit test: V8 frontmatter foreign-spec detection passes (REQ-001) [Evidence: `cd .opencode/skill/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` passed with the frontmatter V8 regression case on 2026-03-17.]
+- [x] CHK-020 [P0] Unit test: V8 frontmatter foreign-spec detection passes (REQ-001) [Evidence: `cd .opencode/skills/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` passed with the frontmatter V8 regression case on 2026-03-17.]
 - [x] CHK-021 [P0] Unit test: V8 non-dominant signal detection passes (REQ-002) [Evidence: the same focused task-enrichment rerun passed with the scattered foreign-spec V8 regression case on 2026-03-17.]
 - [x] CHK-022 [P1] Unit test: V9 expanded patterns with zero false positives on golden memories (REQ-003) [Evidence: the focused task-enrichment rerun passed with the generic-stub V9 case while the “practical generated memory” case still passed on 2026-03-17.]
 - [x] CHK-023 [P1] Unit test: `noise.patterns` config wiring passes (REQ-005) [Evidence: the focused task-enrichment rerun passed with the config-driven content-filter regression case on 2026-03-17.]
 - [x] CHK-024 [P1] Integration test: end-to-end audit trail across 3 stages passes (REQ-004) [Evidence: the focused task-enrichment rerun passed with the workflow `metadata.json` audit aggregation case on 2026-03-17.]
-- [x] CHK-025 [P1] Full Vitest suite passes with zero failures [Evidence: `cd .opencode/skill/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` passed: 1 file, 47 tests, 0 failures.]
+- [x] CHK-025 [P1] Full Vitest suite passes with zero failures [Evidence: `cd .opencode/skills/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/task-enrichment.vitest.ts --config ../mcp_server/vitest.config.ts` passed: 1 file, 47 tests, 0 failures.]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -102,7 +102,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [Evidence: no new temp artifacts were introduced outside the generated phase memory output.]
 - [x] CHK-051 [P1] scratch/ cleaned before completion [Evidence: this implementation did not leave scratch artifacts behind.]
-- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` completed on 2026-03-17, refreshed `memory/metadata.json`, and indexed memory #4371.]
+- [x] CHK-052 [P2] Findings saved to memory/ [Evidence: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/002-contamination-detection` completed on 2026-03-17, refreshed `memory/metadata.json`, and indexed memory #4371.]
 <!-- /ANCHOR:file-org -->
 
 ---

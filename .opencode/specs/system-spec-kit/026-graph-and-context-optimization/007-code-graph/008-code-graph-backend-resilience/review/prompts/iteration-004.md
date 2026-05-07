@@ -14,11 +14,11 @@ You are running iteration 4 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit T11-T12 edge-weight tuning + drift detection:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` (edgeWeights + DEFAULT_EDGE_WEIGHTS)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:895-1071, 1357-1377` (weight resolution)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts` (NEW — PSI, JSD, share computation)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-245` (baseline persistence)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` (drift surfacing)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:73-80` (edgeWeights + DEFAULT_EDGE_WEIGHTS)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:895-1071, 1357-1377` (weight resolution)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/edge-drift.ts` (NEW — PSI, JSD, share computation)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:230-245` (baseline persistence)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` (drift surfacing)
 
 ## Look For
 

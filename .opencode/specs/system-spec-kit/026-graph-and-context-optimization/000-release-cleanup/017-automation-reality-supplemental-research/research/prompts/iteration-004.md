@@ -18,7 +18,7 @@ You are deep-research agent dispatched for iteration 4 of 5. Iters 1-3 completed
 For EACH of 012's 4 P1 aspirational findings, run a hostile re-test:
 
 ##### P1-1: Code-graph watcher overclaim
-- 012 cited: `.opencode/skill/system-spec-kit/mcp_server/README.md:515-518` claims real-time watching; no watcher under `code_graph/`
+- 012 cited: `.opencode/skills/system-spec-kit/mcp_server/README.md:515-518` claims real-time watching; no watcher under `code_graph/`
 - Hunter (challenge): Is there a chokidar/fs.watch path 012 missed under `mcp_server/`? Check `lib/`, `core/`, `handlers/`. Is there a test fixture that exercises a watcher? Is there a documented-but-disabled feature flag?
 - Skeptic (counter-evidence): If a watcher path exists, does it auto-fire OR is it only available behind a feature flag?
 - Referee verdict: validated (still P1) / demoted (P2 with rationale) / promoted (P0) / reclassified (half-automated with new evidence)
@@ -57,15 +57,15 @@ Hunt for gaps in surfaces 012 didn't reach:
 ### Source files to read (representative)
 
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research/research/research-report.md` (012's findings)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session-manager.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/` (entire dir for watcher hunt)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill_graph_*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-{drift-why,get-learning-history,health}.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code_graph_context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` (for P1-3 retest)
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md` (for P1-3 retest)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session-manager.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/` (entire dir for watcher hunt)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill_graph_*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-{drift-why,get-learning-history,health}.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code_graph_context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` (for P1-3 retest)
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md` (for P1-3 retest)
 - `.codex/settings.json`, `.codex/hooks.json` (for P1-4 retest)
 
 ### Constraints

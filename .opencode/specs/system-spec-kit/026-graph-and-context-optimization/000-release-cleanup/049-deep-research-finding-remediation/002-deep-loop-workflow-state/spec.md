@@ -21,9 +21,9 @@ _memory:
     next_safe_action: "Apply five surgical fixes then validate strict and run stress"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-002-deep-loop-state"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -90,10 +90,10 @@ Land five surgical fixes so the deep-loop state machine is internally consistent
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | F-010-B5-01: lock cleanup on halt/cancel; F-010-B5-02: canonical fallback iteration record; F-010-B5-04: thread `resource_map.emit` from `--no-resource-map` flag through config |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | F-010-B5-03: canonical fallback iteration record; F-010-B5-04: same `--no-resource-map` plumbing |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | F-019-D4-01: when bubbling a child save up to the parent, refresh `parent_id`-side `children_ids` and `last_save_at` so derived metadata stays current |
-| `.opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Modify | Add a test that verifies parent `children_ids` is updated when a child saves |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | F-010-B5-01: lock cleanup on halt/cancel; F-010-B5-02: canonical fallback iteration record; F-010-B5-04: thread `resource_map.emit` from `--no-resource-map` flag through config |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | F-010-B5-03: canonical fallback iteration record; F-010-B5-04: same `--no-resource-map` plumbing |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | F-019-D4-01: when bubbling a child save up to the parent, refresh `parent_id`-side `children_ids` and `last_save_at` so derived metadata stays current |
+| `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Modify | Add a test that verifies parent `children_ids` is updated when a child saves |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,8 +146,8 @@ Land five surgical fixes so the deep-loop state machine is internally consistent
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §B5 (deep-loop workflow) and `019-*/research/research.md` §D4 (graph metadata)
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Test harness: `.opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Test harness: `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts`
 - No other packet dependencies. Sub-phase 002 is independent within Wave 1.
 <!-- /ANCHOR:risks -->
 

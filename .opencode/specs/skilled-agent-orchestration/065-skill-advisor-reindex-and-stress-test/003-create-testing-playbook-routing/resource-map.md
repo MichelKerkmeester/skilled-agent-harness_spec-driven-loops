@@ -13,11 +13,11 @@ _memory:
     next_safe_action: "root_final_validation"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -55,13 +55,13 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/sk-doc/SKILL.md` | Checked | OK | Generic doc routing control |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback route parity |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Command bridge for `create:testing-playbook` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Testing-playbook creation phrase boosts |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Primary intent bonus and competitor dampening |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Checked | OK | Canonical alias support used by related phase |
-| `.opencode/skill/system-spec-kit/**/graph-metadata.json` | Checked | OK | No route graph metadata edits required |
+| `.opencode/skills/sk-doc/SKILL.md` | Checked | OK | Generic doc routing control |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Updated | OK | Python fallback route parity |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts` | Updated | OK | Command bridge for `create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Updated | OK | Testing-playbook creation phrase boosts |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts` | Updated | OK | Primary intent bonus and competitor dampening |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/aliases.ts` | Checked | OK | Canonical alias support used by related phase |
+| `.opencode/skills/system-spec-kit/**/graph-metadata.json` | Checked | OK | No route graph metadata edits required |
 <!-- /ANCHOR:skills -->
 
 <!-- ANCHOR:tests -->
@@ -69,5 +69,5 @@ _memory:
 
 | Path | Action | Status | Note |
 |---|---|---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-105 regression |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts` | Updated | OK | Added CP-105 regression |
 <!-- /ANCHOR:tests -->

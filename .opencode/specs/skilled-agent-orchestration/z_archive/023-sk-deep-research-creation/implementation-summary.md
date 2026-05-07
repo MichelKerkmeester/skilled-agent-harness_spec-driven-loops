@@ -78,17 +78,17 @@ The v1 loop shipped in coordinated phases: the spec folder established the contr
 | File | LOC | Purpose |
 |------|-----|---------|
 | `.claude/agents/deep-research.md` | ~400 | LEAF agent definition |
-| `.opencode/command/spec_kit/deep-research.md` | ~310 | Command spec |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | ~400 | Auto mode workflow |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | ~470 | Confirm mode workflow |
-| `.opencode/skill/sk-deep-research/SKILL.md` | ~430 | 8-section skill protocol |
-| `.opencode/skill/sk-deep-research/README.md` | ~160 | Skill overview |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | ~180 | Loop lifecycle spec |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | ~130 | JSONL/strategy format spec |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | ~140 | Convergence algorithm spec |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | ~100 | One-page cheat sheet |
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | ~20 | Config template |
-| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | ~50 | Strategy file template |
+| `.opencode/commands/spec_kit/deep-research.md` | ~310 | Command spec |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | ~400 | Auto mode workflow |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | ~470 | Confirm mode workflow |
+| `.opencode/skills/sk-deep-research/SKILL.md` | ~430 | 8-section skill protocol |
+| `.opencode/skills/sk-deep-research/README.md` | ~160 | Skill overview |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | ~180 | Loop lifecycle spec |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | ~130 | JSONL/strategy format spec |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | ~140 | Convergence algorithm spec |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | ~100 | One-page cheat sheet |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | ~20 | Config template |
+| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | ~50 | Strategy file template |
 | `.agents/commands/spec_kit/deep-research.toml` | ~15 | TOML registration |
 
 ---

@@ -67,7 +67,7 @@ _memory:
 - [x] CHK-014 [P0] All `@improve-agent` references in active code migrated (REQ-005 / T-014)
 - [x] CHK-015 [P0] All `name: improve-agent` and `name = "improve-agent"` in active scope cleared (REQ-006 / T-019 verification)
 - [x] CHK-016 [P1] Root governance updated (REQ-009 / T-015): AGENTS.md line 324, README.md line 1097
-- [x] CHK-017 [P1] Runtime READMEs updated (T-016): .opencode/agent/README.txt
+- [x] CHK-017 [P1] Runtime READMEs updated (T-016): .opencode/agents/README.txt
 - [x] CHK-018 [P1] New changelog entry `v1.5.0.0.md` authored (REQ-008 / T-017)
 <!-- /ANCHOR:code-quality -->
 

@@ -270,42 +270,42 @@ Consolidated from iter 53 (7), iter 55 (5), iter 56 (2):
 ## 10. Evidence citations (all file:line references)
 
 Canonical-save surface:
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1235-1353` (dead-code guard, plan-only skip)
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:402-415` (`plannerMode = 'plan-only'` default)
-- `.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts:79` (create-time `lastUpdated`)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1050-1190` (refresh path)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:660-760` (discovery-time repair)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:513-555` (continuity read)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:361-372` (resume read)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1235-1353` (dead-code guard, plan-only skip)
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:402-415` (`plannerMode = 'plan-only'` default)
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:79` (create-time `lastUpdated`)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1050-1190` (refresh path)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:660-760` (discovery-time repair)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:513-555` (continuity read)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:361-372` (resume read)
 
 Code-graph sibling asymmetry:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:225-300` (hardened reference; 17 tokens)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/{scan,status,context,ccc-status,ccc-reindex,ccc-feedback}.ts` (0 tokens each)
-- `.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:55-85` (dispatcher — no caller composes handlers)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:225-300` (hardened reference; 17 tokens)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/{scan,status,context,ccc-status,ccc-reindex,ccc-feedback}.ts` (0 tokens each)
+- `.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:55-85` (dispatcher — no caller composes handlers)
 
 Hooks runtime parity:
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/{compact-inject.ts:403, session-prime.ts:70, shared.ts:125-129}`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/{compact-cache.ts:174, session-prime.ts:77, shared.ts:7}`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:1-61` (no trustState read; absent compact-cache.ts)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/{compact-inject.ts:403, session-prime.ts:70, shared.ts:125-129}`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/{compact-cache.ts:174, session-prime.ts:77, shared.ts:7}`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:1-61` (no trustState read; absent compact-cache.ts)
 
 Security bound (R53):
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:161-167, 179, 275-278` (0o700/0o600 + cwd-hashed dir)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:161-167, 179, 275-278` (0o700/0o600 + cwd-hashed dir)
 
 Typed-union exhaustiveness:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:636-682` (SharedPayloadTrustState, safe)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:302-316` (OnIndexSkipReason weak-typed lookup)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:128-140` (OnIndexSkipReason declaration)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:636-682` (SharedPayloadTrustState, safe)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:302-316` (OnIndexSkipReason weak-typed lookup)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:128-140` (OnIndexSkipReason declaration)
 
 P2-masking audit:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:133-376` (5 try/catch blocks)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:507-605` (executeConflict duplicate txn)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/storage/importance-tiers.ts:149` (canonical predicate helper)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/boolean-expr.ts:249-261, 316-340, 372-379` (scalarsEqual + parseScalarLiteral)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:133-376` (5 try/catch blocks)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:507-605` (executeConflict duplicate txn)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/storage/importance-tiers.ts:149` (canonical predicate helper)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/boolean-expr.ts:249-261, 316-340, 372-379` (scalarsEqual + parseScalarLiteral)
 
 Handlers side-audit:
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:200,425` (non-canonical readiness literal)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-{resume,bootstrap,health}.ts` (M8 parity confirmed)
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:165-202` (traversal-check + allow-list)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:200,425` (non-canonical readiness literal)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-{resume,bootstrap,health}.ts` (M8 parity confirmed)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:165-202` (traversal-check + allow-list)
 
 ---
 

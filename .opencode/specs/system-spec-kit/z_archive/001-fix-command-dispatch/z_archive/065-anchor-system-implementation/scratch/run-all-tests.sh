@@ -9,14 +9,14 @@ echo "---------------------------------------------------" >> "$OUTPUT_FILE"
 
 # 1. Setup Environment for test-validation.sh
 echo ">>> Setting up validation tests..." >> "$OUTPUT_FILE"
-SCRIPT_ROOT="../../../../.opencode/skill/system-spec-kit/scripts"
+SCRIPT_ROOT="../../../../.opencode/skills/system-spec-kit/scripts"
 TEST_DIR="$SCRIPT_ROOT/tests"
 
 # Navigate to scratch dir context
 cd "$(dirname "$0")"
 
 # Adjust paths relative to scratch dir
-SCRIPT_ROOT="../../../../.opencode/skill/system-spec-kit/scripts"
+SCRIPT_ROOT="../../../../.opencode/skills/system-spec-kit/scripts"
 TEST_DIR="$SCRIPT_ROOT/tests"
 
 if [ -d "$SCRIPT_ROOT/test-fixtures" ] && [ ! -d "$TEST_DIR/test-fixtures" ]; then

@@ -14,14 +14,14 @@ The template-renderer.ts (lines 32-53) maintains a hardcoded `OPTIONAL_PLACEHOLD
 
 However, the Memory Classification and Session Deduplication placeholders ARE now populated by `buildMemoryClassificationContext()` and `buildSessionDedupContext()` in memory-metadata.ts, and are spread into the template context at workflow.ts:1088-1090. **These 9 placeholders (MEMORY_TYPE, HALF_LIFE_DAYS, BASE_DECAY_RATE, ACCESS_BOOST_FACTOR, RECENCY_WEIGHT, IMPORTANCE_MULTIPLIER, MEMORIES_SURFACED_COUNT, DEDUP_SAVINGS_TOKENS, FINGERPRINT_HASH) should be REMOVED from OPTIONAL_PLACEHOLDERS** because their warnings are now suppressed when they actually have data sources. If the data source fails silently, the developer will never know because the warning is suppressed.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:32-53]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:121-225]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1088-1090]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:32-53]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:121-225]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1088-1090]
 
 ### F2: 8 Session Integrity Check Placeholders Have NO Data Source Whatsoever
 The first group of OPTIONAL_PLACEHOLDERS -- `MEMORY_FILE_EXISTS`, `MEMORY_FILE_PATH`, `INDEX_ENTRY_VALID`, `LAST_INDEXED`, `CHECKSUMS_MATCH`, `CHECKSUM_DETAILS`, `NO_DEDUP_CONFLICTS`, `DEDUP_CONFLICT_DETAILS` -- are tagged `@planned(V2.2)` and have zero construction sites anywhere in the codebase. No function builds these values, no workflow spreads them into template context. These are phantom placeholders in the template that will always render as empty strings.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:36-38]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:36-38]
 [INFERENCE: Grep for these identifiers across scripts/ returned zero hits outside the OPTIONAL_PLACEHOLDERS definition]
 
 ### F3: CollectedDataBase Has 15+ Fields With No Template Consumption Path
@@ -37,8 +37,8 @@ Cross-referencing CollectedDataBase (session-types.ts:126-186) against SessionDa
 
 The most significant gap: `toolCalls` and `exchanges` are AI-composed rich session data that the pipeline accepts but silently discards during rendering. This is a semantic quality loss.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/types/session-types.ts:140-143]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1031-1099]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/types/session-types.ts:140-143]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1031-1099]
 
 ### F4: Cross-Session Dedup Is Entirely AI-Dependent With No Automated Verification
 The `buildSessionDedupContext()` function (memory-metadata.ts:171-225) constructs dedup metadata purely from AI-provided JSON input:
@@ -54,8 +54,8 @@ The `buildSessionDedupContext()` function (memory-metadata.ts:171-225) construct
 
 The `SIMILAR_MEMORIES` array is passed to the template but the template section for it is in OPTIONAL_PLACEHOLDERS (`NO_DEDUP_CONFLICTS`, `DEDUP_CONFLICT_DETAILS`), meaning even if populated, no dedup conflict information renders.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:171-225]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:38]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:171-225]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:38]
 
 ### F5: Causal Links Are Pass-Through With No Graph Validation
 The `buildCausalLinksContext()` function (memory-metadata.ts:227-237) reads five causal relationship arrays from AI-provided JSON:
@@ -69,23 +69,23 @@ These are string arrays of memory identifiers. No validation checks:
 
 The pipeline captures the intent for causal links but doesn't connect to the MCP `memory_causal_link` tool or the causal_edges table in the database. The template renders these links as text, but there's no mechanism to ensure they're actionable.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:227-237]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:227-237]
 
 ### F6: Observation Dedup Only Operates Within a Single Memory File
 The quality-scorer.ts (lines 233-248) includes an `observation_dedup` dimension that checks for duplicate observation titles within a single memory file's observations array. However, this does NOT check across memory files. Two separate saves for the same spec folder can produce memories with identical observations, and no mechanism detects or merges them. The `dedupRatio` calculation is purely intra-document.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:233-248]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:233-248]
 
 ### F7: V12 Topical Coherence Validation Is the Only Cross-Reference Check
 The `validate-memory-quality.ts` (line 611) implements a V12 "topical coherence" rule that compares memory content against the spec folder's `spec.md` trigger phrases. This is the sole automated check that connects a new memory to existing spec-folder context. But it only validates topical alignment -- it does NOT check for contradictions with existing memories, nor does it detect redundancy.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:611-628]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:611-628]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` (full file, 639 lines)
-- `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts` (full file, 224 lines)
-- `.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts` (full file, 331 lines)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 1020-1099, template context construction)
+- `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` (full file, 639 lines)
+- `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts` (full file, 224 lines)
+- `.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts` (full file, 331 lines)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 1020-1099, template context construction)
 - Grep for dedup/causal/coherence across scripts/ directory
 
 ## Assessment

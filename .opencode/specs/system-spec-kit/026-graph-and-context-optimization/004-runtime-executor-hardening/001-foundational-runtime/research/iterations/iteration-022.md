@@ -6,7 +6,7 @@ I re-checked the five requested seams against Iterations 001-020 and the Phase 0
 ## Findings
 
 ### Finding R22-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `61-83, 94-99, 319-364, 551-564`
 - **Severity:** P1
 - **Description:** `code_graph_query` can emit a self-contradictory success payload when readiness preflight fails or is indistinguishable from a truly empty graph. The handler seeds `readiness` with `freshness: 'empty'` / `reason: 'readiness check not run'`, swallows every `ensureCodeGraphReady(...)` exception, and still serializes `status: "ok"` payloads. At the same time, `buildGraphQueryPayload(...)` injects the DB-global `last_detector_provenance`, so the same payload can simultaneously say "empty / preflight not run" and `graphMetadata.detectorProvenance = "structured"`.
@@ -14,7 +14,7 @@ I re-checked the five requested seams against Iterations 001-020 and the Phase 0
 - **Downstream Impact:** Query consumers cannot reliably distinguish "run an initial/full scan" from "readiness preflight failed before query execution," and they can over-trust the result as AST/structured output because the top-level provenance field still advertises the last successful detector. That makes the MCP payload dishonest on exactly the boundary agents use to decide whether structural evidence is usable or whether they need to repair the graph first.
 
 ### Finding R22-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts`
 - **Lines:** `293-330`
 - **Severity:** P1
 - **Description:** Once `graph-metadata` content survives `validateGraphMetadataContent(...)` — including via the already-documented legacy/schema-recovery path — `memory-parser` upgrades it to a perfect-quality artifact with `qualityScore: 1` and `qualityFlags: []`. Downstream save, ranking, and graph-lifecycle code then treats that recovered metadata as high-confidence evidence rather than as migrated or degraded state.

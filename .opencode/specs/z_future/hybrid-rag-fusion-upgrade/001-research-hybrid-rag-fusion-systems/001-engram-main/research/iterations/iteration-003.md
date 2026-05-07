@@ -4,21 +4,21 @@
 - **Impact**: high
 
 ### Finding 2: Engram’s memory hygiene is row-level and overwrite-first; Public’s is lineage-first and append-first
-- **Source**: [store.go#L948](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L948); [store.go#L3201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3201); [memory-save.ts#L937](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L937); [lineage-state.ts#L806](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts#L806)
+- **Source**: [store.go#L948](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L948); [store.go#L3201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3201); [memory-save.ts#L937](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L937); [lineage-state.ts#L806](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts#L806)
 - **What it does**: In Engram, `AddObservation()` checks `topic_key` first and updates the same row in place with `revision_count++`; only if that misses does it do normalized-hash duplicate suppression via `duplicate_count++`. Public instead creates a new append-only row when content changes and wires it into lineage/projection state.
 - **Why it matters for us**: The useful part is the stable thread identity, not the overwrite semantics. Engram optimizes for compactness inside one row; Public optimizes for provenance and recoverable version history.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 3: Engram makes session and prompt history first-class durable data, which gives it a simpler continuity story than our split recovery path
-- **Source**: [store.go#L441](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L441); [store.go#L754](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L754); [store.go#L1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613); [mcp.go#L1030](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1030); [session-resume.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L4); [generate-context.ts#L71](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L71)
+- **Source**: [store.go#L441](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L441); [store.go#L754](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L754); [store.go#L1613](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L1613); [mcp.go#L1030](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1030); [session-resume.ts#L4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L4); [generate-context.ts#L71](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L71)
 - **What it does**: Engram stores `sessions.summary`, saves `session_summary` as a searchable observation, stores prompts in `user_prompts`, and builds startup context directly from recent sessions, prompts, and observations. Public recovery is more composite: `session_resume` merges memory context, code-graph state, CocoIndex status, cached hook summaries, and file-backed memories generated through `generate-context`.
 - **Why it matters for us**: Public is stronger overall, but continuity is split across more layers. A small durable session/prompt ledger could reduce resume fragility after compaction or hook loss without replacing the current file-first save model.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 4: Passive capture in Engram is intentionally lightweight and storage-native
-- **Source**: [store.go#L3394](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3394); [mcp.go#L565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L565); [mcp.go#L1097](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1097); [generate-context.ts#L85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L85)
+- **Source**: [store.go#L3394](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go#L3394); [mcp.go#L565](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L565); [mcp.go#L1097](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L1097); [generate-context.ts#L85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L85)
 - **What it does**: Engram looks only for the last `## Key Learnings`-style section, normalizes each item, dedupes by normalized hash, and saves each surviving learning as a `passive` observation. It does not run a separate review pipeline or build a special passive-memory schema.
 - **Why it matters for us**: This is a good example of a low-complexity adjunct rather than a new subsystem. Public could add a narrow passive-ingest helper for subagent outputs or closeout text, but it should feed into the existing `generate-context` and quality-governed save path instead of bypassing it.
 - **Recommendation**: prototype later
@@ -40,14 +40,14 @@
 - [external/internal/mcp/mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
 - [external/cmd/engram/main.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/cmd/engram/main.go)
-- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts)
-- [mcp_server/lib/search/vector-index-schema.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
-- [mcp_server/lib/storage/lineage-state.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts)
-- [mcp_server/lib/session/session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts)
-- [mcp_server/handlers/memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts)
+- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts)
+- [mcp_server/lib/search/vector-index-schema.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts)
+- [mcp_server/lib/storage/lineage-state.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts)
+- [mcp_server/lib/session/session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [mcp_server/lib/storage/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts)
+- [mcp_server/handlers/memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts)
 
 ## Assessment
 - New information ratio: 0.86
@@ -103,7 +103,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 4. Use `@speckit` for markdown authoring when the runtime supports agent routing. If routing is unavailable, preserve existing Spec Kit Level 3 structure manually without creating side-channel docs outside the phase folder.
 5. Validate the phase folder with this exact command before the main research pass:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder first. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md` before continuing.
 7. Run `spec_kit:deep-research` with this exact topic:
@@ -119,7 +119,7 @@ Engram also has a strong opinion on memory hygiene. `AddObservation()` supports 
 14. When research is complete, update `checklist.md`, create `implementation-summary.md`, and make sure the report explicitly distinguishes `adopt now`, `prototype later`, and `reject`.
 15. Save memory for this phase folder with:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
    ```
 
 ## 6. Research Questions
@@ -317,15 +317,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -405,7 +405,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -433,7 +433,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, memory file creation
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
@@ -478,7 +478,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -559,10 +559,10 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 ### Tools & Search
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** — research tasks, context recovery, finding prior work. Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` — NEVER manually create memory files.
+- **Spec Kit Memory MCP** — research tasks, context recovery, finding prior work. Memory saves MUST use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` — NEVER manually create memory files.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
-- **CocoIndex Code MCP** — semantic code search. MUST use when exploring unfamiliar code, finding implementations by concept/intent, or when Grep/Glob exact matching is insufficient. Skill: `.opencode/skill/mcp-coco-index/`
-- **Git (sk-git)** — worktree setup, conventional commits, PR creation. Full details: `.opencode/skill/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
+- **CocoIndex Code MCP** — semantic code search. MUST use when exploring unfamiliar code, finding implementations by concept/intent, or when Grep/Glob exact matching is insufficient. Skill: `.opencode/skills/mcp-coco-index/`
+- **Git (sk-git)** — worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
 **CODE SEARCH DECISION TREE:**
 
@@ -682,7 +682,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -711,7 +711,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, memory file creation
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
@@ -774,7 +774,7 @@ user cancelled MCP tool call
 codex
 I’ve got the governing repo and external instructions loaded. Next I’m pulling just the relevant skill guidance and then tracing the actual Engram surfaces in `internal/mcp`, `cmd`, and the project/server packages so the findings stay code-backed and tool-surface focused.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -792,7 +792,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -998,7 +998,7 @@ Save --> generate-context.js --> verify memory artifact
 | **Findings registry** | Reducer-owned open/resolved questions, key findings, and ruled-out directions |
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: mcp-coco-index
@@ -1354,7 +1354,7 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/iterations/iteration-005.md
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1483ms:
 
 ───────────────────────────────────────────────────────────────
@@ -1369,7 +1369,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -3549,7 +3549,7 @@ export const Engram: Plugin = async (ctx) => {
 codex
 I’m at the comparison stage now: Engram’s code makes the profile split, deferred loading, and transport surfaces pretty explicit. I’m pulling the matching Public MCP schema and session-save surfaces next so the recommendations stay concrete instead of turning into generic “could be nice” ideas.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Tool Schemas
@@ -3770,7 +3770,7 @@ const memoryMatchTriggers: ToolDefinition = {
 const memorySave: ToolDefinition = {
   name: 'memory_save',
   description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
 };
 
 // L3: Discovery - Browse and explore (Token Budget: 800)
@@ -3813,2308 +3813,2308 @@ const memoryHealth: ToolDefinition = {
       autoRepair: {
 
 exec
-/bin/zsh -lc "rg -n \"export const|toolSchemas|schema|session_bootstrap|session_resume|memory_context|memory_search|memory_match_triggers|memory_save|memory_index_scan|shared_memory|code_graph|session_\" .opencode/skill/system-spec-kit/mcp_server -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"export const|toolSchemas|schema|session_bootstrap|session_resume|memory_context|memory_search|memory_match_triggers|memory_save|memory_index_scan|shared_memory|code_graph|session_\" .opencode/skills/system-spec-kit/mcp_server -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:4:// T303: Decomposed — tool schemas in tool-schemas.ts, dispatch
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:29:// T303: Tool schemas and dispatch
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:30:import { TOOL_DEFINITIONS } from './tool-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:848:   4. TOOL DEFINITIONS (T303: from tool-schemas.ts)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1349:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:32:type SharedAdminTool = SharedSpaceAdminTool | 'shared_memory_enable';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:108:        details: { reason: 'shared_memory_admin_unconfigured' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:123:        details: { reason: 'shared_memory_admin_ambiguous' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:214:  if (args.tool !== 'shared_memory_enable' && normalizedTenantId.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:239:        reason: 'shared_memory_trusted_binding_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:363:    tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:385:    details: { reason: 'shared_memory_internal_error' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:805:      tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:811:        'shared_memory_enable_admin_required',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:823:        .get('shared_memory_enabled') as { value: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:834:        tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:850:      tool: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:866:      'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:11:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:14:import { MAX_INGEST_PATHS } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:30:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:16:import { MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:108:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:291:  hints.push(`Run memory_index_scan({ force: true }) to re-index if needed`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:108:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:189:    session_id: rawSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:540:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:6:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:221:export const handleMemorySearch = lazyFunction(getMemorySearchModule, 'handleMemorySearch');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:225:export const handleMemoryMatchTriggers = lazyFunction(getMemoryTriggersModule, 'handleMemoryMatchTriggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:229:export const handleMemorySave = lazyFunction(getMemorySaveModule, 'handleMemorySave');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:230:export const indexMemoryFile = lazyFunction(getMemorySaveModule, 'indexMemoryFile');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:231:export const atomicSaveMemory = lazyFunction(getMemorySaveModule, 'atomicSaveMemory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:232:export const getAtomicityMetrics = lazyFunction(getMemorySaveModule, 'getAtomicityMetrics');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:233:export const handle_memory_save = lazyFunction(getMemorySaveModule, 'handle_memory_save');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:234:export const index_memory_file = lazyFunction(getMemorySaveModule, 'index_memory_file');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:235:export const atomic_save_memory = lazyFunction(getMemorySaveModule, 'atomic_save_memory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:236:export const get_atomicity_metrics = lazyFunction(getMemorySaveModule, 'get_atomicity_metrics');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:239:export const calculateDocumentWeight = lazyFunction(getPeGatingModule, 'calculateDocumentWeight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:240:export const isSpecDocumentType = lazyFunction(getPeGatingModule, 'isSpecDocumentType');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:241:export const findSimilarMemories = lazyFunction(getPeGatingModule, 'findSimilarMemories');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:242:export const reinforceExistingMemory = lazyFunction(getPeGatingModule, 'reinforceExistingMemory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:243:export const markMemorySuperseded = lazyFunction(getPeGatingModule, 'markMemorySuperseded');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:244:export const updateExistingMemory = lazyFunction(getPeGatingModule, 'updateExistingMemory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:245:export const logPeDecision = lazyFunction(getPeGatingModule, 'logPeDecision');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:248:export const handleMemoryIngestStart = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestStart');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:249:export const handleMemoryIngestStatus = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestStatus');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:250:export const handleMemoryIngestCancel = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestCancel');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:251:export const handle_memory_ingest_start = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_start');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:252:export const handle_memory_ingest_status = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_status');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:253:export const handle_memory_ingest_cancel = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_cancel');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:256:export const handleMemoryDelete = lazyFunction(getMemoryCrudModule, 'handleMemoryDelete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:257:export const handleMemoryUpdate = lazyFunction(getMemoryCrudModule, 'handleMemoryUpdate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:258:export const handleMemoryList = lazyFunction(getMemoryCrudModule, 'handleMemoryList');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:259:export const handleMemoryStats = lazyFunction(getMemoryCrudModule, 'handleMemoryStats');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:260:export const handleMemoryHealth = lazyFunction(getMemoryCrudModule, 'handleMemoryHealth');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:261:export const setEmbeddingModelReady = lazyFunction(getMemoryCrudModule, 'setEmbeddingModelReady');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:262:export const isEmbeddingModelReady = lazyFunction(getMemoryCrudModule, 'isEmbeddingModelReady');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:263:export const handle_memory_delete = lazyFunction(getMemoryCrudModule, 'handle_memory_delete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:264:export const handle_memory_update = lazyFunction(getMemoryCrudModule, 'handle_memory_update');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:265:export const handle_memory_list = lazyFunction(getMemoryCrudModule, 'handle_memory_list');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:266:export const handle_memory_stats = lazyFunction(getMemoryCrudModule, 'handle_memory_stats');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:268:export const set_embedding_model_ready = lazyFunction(getMemoryCrudModule, 'set_embedding_model_ready');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:269:export const is_embedding_model_ready = lazyFunction(getMemoryCrudModule, 'is_embedding_model_ready');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:272:export const handleMemoryIndexScan = lazyFunction(getMemoryIndexModule, 'handleMemoryIndexScan');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:273:export const indexSingleFile = lazyFunction(getMemoryIndexModule, 'indexSingleFile');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:274:export const findConstitutionalFiles = lazyFunction(getMemoryIndexModule, 'findConstitutionalFiles');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:275:export const handle_memory_index_scan = lazyFunction(getMemoryIndexModule, 'handle_memory_index_scan');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:276:export const index_single_file = lazyFunction(getMemoryIndexModule, 'index_single_file');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:277:export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'find_constitutional_files');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:280:export const handleMemoryBulkDelete = lazyFunction(getMemoryBulkDeleteModule, 'handleMemoryBulkDelete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:283:export const handleCheckpointCreate = lazyFunction(getCheckpointsModule, 'handleCheckpointCreate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:284:export const handleCheckpointList = lazyFunction(getCheckpointsModule, 'handleCheckpointList');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:285:export const handleCheckpointRestore = lazyFunction(getCheckpointsModule, 'handleCheckpointRestore');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:286:export const handleCheckpointDelete = lazyFunction(getCheckpointsModule, 'handleCheckpointDelete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:287:export const handleMemoryValidate = lazyFunction(getCheckpointsModule, 'handleMemoryValidate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:288:export const handle_checkpoint_create = lazyFunction(getCheckpointsModule, 'handle_checkpoint_create');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:289:export const handle_checkpoint_list = lazyFunction(getCheckpointsModule, 'handle_checkpoint_list');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:290:export const handle_checkpoint_restore = lazyFunction(getCheckpointsModule, 'handle_checkpoint_restore');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:291:export const handle_checkpoint_delete = lazyFunction(getCheckpointsModule, 'handle_checkpoint_delete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:295:export const handleTaskPreflight = lazyFunction(getSessionLearningModule, 'handleTaskPreflight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:296:export const handleTaskPostflight = lazyFunction(getSessionLearningModule, 'handleTaskPostflight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:297:export const handleGetLearningHistory = lazyFunction(getSessionLearningModule, 'handleGetLearningHistory');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:298:export const handle_task_preflight = lazyFunction(getSessionLearningModule, 'handle_task_preflight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:299:export const handle_task_postflight = lazyFunction(getSessionLearningModule, 'handle_task_postflight');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:300:export const handle_get_learning_history = lazyFunction(getSessionLearningModule, 'handle_get_learning_history');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:303:export const handleEvalRunAblation = lazyFunction(getEvalReportingModule, 'handleEvalRunAblation');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:304:export const handleEvalReportingDashboard = lazyFunction(getEvalReportingModule, 'handleEvalReportingDashboard');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:309:export const handleMemoryDriftWhy = lazyFunction(getCausalGraphModule, 'handleMemoryDriftWhy');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:310:export const handleMemoryCausalLink = lazyFunction(getCausalGraphModule, 'handleMemoryCausalLink');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:311:export const handleMemoryCausalStats = lazyFunction(getCausalGraphModule, 'handleMemoryCausalStats');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:312:export const handleMemoryCausalUnlink = lazyFunction(getCausalGraphModule, 'handleMemoryCausalUnlink');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:313:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:315:export const handle_memory_causal_stats = lazyFunction(getCausalGraphModule, 'handle_memory_causal_stats');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:316:export const handle_memory_causal_unlink = lazyFunction(getCausalGraphModule, 'handle_memory_causal_unlink');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:319:export const handleMemoryContext = lazyFunction(getMemoryContextModule, 'handleMemoryContext');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:323:export const handleSharedMemoryEnable = lazyFunction(getSharedMemoryModule, 'handleSharedMemoryEnable');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:324:export const handleSharedMemoryStatus = lazyFunction(getSharedMemoryModule, 'handleSharedMemoryStatus');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:325:export const handleSharedSpaceMembershipSet = lazyFunction(getSharedMemoryModule, 'handleSharedSpaceMembershipSet');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:326:export const handleSharedSpaceUpsert = lazyFunction(getSharedMemoryModule, 'handleSharedSpaceUpsert');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:329:export const handleSessionHealth = lazyFunction(getSessionHealthModule, 'handleSessionHealth');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:332:export const handleSessionResume = lazyFunction(getSessionResumeModule, 'handleSessionResume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:335:export const handleSessionBootstrap = lazyFunction(getSessionBootstrapModule, 'handleSessionBootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:338:export const memorySave = lazyModule(getMemorySaveModule);
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:339:export const memoryIndex = lazyModule(getMemoryIndexModule);
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:340:export const memoryBulkDelete = lazyModule(getMemoryBulkDeleteModule);
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:341:export const checkpoints = lazyModule(getCheckpointsModule);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:53:    preferredTool: 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:153:    preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:154:    message: 'Advisory only: when the next question is about callers, imports, dependencies, or outline, prefer `code_graph_query` before Grep or Glob.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:24:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:6:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:19:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:8:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:10:// Feature catalog: Dry-run preflight for memory_save
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:60:      hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:61:      actions: ['Restart the MCP server', 'Call memory_index_scan()'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:18:// Feature catalog: Dry-run preflight for memory_save
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:144:      ? 'memory_save: updated indexed memory entry'
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:145:      : 'memory_save: created new indexed memory entry',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:150:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:160:    actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:251:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:269:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:285:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:462:    tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:17:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/index.ts:7:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:26:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:117:      AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:254:      actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:284:      recordHistory(memory_id, 'ADD', null, parsed.title ?? filePath, 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:291:          'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:236:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:237:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:263:    hints.push('Run memory_index_scan() to regenerate embeddings');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:36:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:47:export const ASSISTIVE_AUTO_MERGE_THRESHOLD = 0.96;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:54:export const ASSISTIVE_REVIEW_THRESHOLD = 0.88;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:124: * Result payload from reconsolidation pre-checks during memory_save.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:301:                recordHistory(id, 'ADD', null, memory.title ?? memory.filePath ?? null, 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:322:            reason: `memory_save: reconsolidation ${reconResult.action}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:329:              tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:335:            actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:17:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:18:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:88:            reason: 'memory_save: reinforced existing memory via prediction-error gate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:93:              tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:99:            actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:140:          reason: 'memory_save: updated existing memory via prediction-error gate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:145:            tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:151:          actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:201:  preferredTool: 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:323:    preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:324:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:709:    session_id: options.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:741:    // minState omitted — memoryState column not yet in schema
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:772:    // minState omitted — memoryState column not yet in schema
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:806:    // minState omitted — memoryState column not yet in schema
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1530:        session_id: effectiveSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:70:            schemaVersion: stats.schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:41:export const CACHED_SESSION_SUMMARY_SCHEMA_VERSION = 1;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:42:export const CACHED_SESSION_SUMMARY_MAX_AGE_MS = 30 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:45:  schemaVersion: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:54:  schemaVersion: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:73:    | 'schema_version_mismatch'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:182:    schemaVersion: CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:203:  if (candidate.schemaVersion !== CACHED_SESSION_SUMMARY_SCHEMA_VERSION) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:206:      'schema_version_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:207:      `Expected schema version ${CACHED_SESSION_SUMMARY_SCHEMA_VERSION} but received ${String(candidate.schemaVersion)}.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:333:      schemaVersion: candidate.schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:459:    hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:10:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:11:// Feature catalog: Dry-run preflight for memory_save
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:4:// Centralized strict Zod validation schemas for MCP tool inputs.
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:13:// Feature catalog: Strict Zod schema validation
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:26:export const getSchema = <T extends z.ZodRawShape>(shape: T): z.ZodObject<T> => {
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:55:  let schema = z.string();
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:57:    schema = schema.min(minLength);
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:59:  return schema.refine(isSafePath, { message: PATH_TRAVERSAL_MESSAGE });
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:63:/** Shared max paths constant — used by both schema and handler. */
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:64:export const MAX_INGEST_PATHS = 50;
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:65:export const MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS = 1;
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:155:// E3: Simplified search schema — 3 params only
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:174:  session_id: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:185:  // Governance args — accepted by tool-schemas.ts tool definition and
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:231:export const memoryBulkDeleteSchema = getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:396:export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:401:  memory_save: memorySaveSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:421:  memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445:  shared_memory_status: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:  shared_memory_enable: getSchema({}) as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:451:  session_bootstrap: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:454:  session_health: getSchema({}) as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455:  session_resume: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:486:  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:494:  shared_memory_enable: [],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:495:  session_bootstrap: ['specFolder'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:496:  session_health: [],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:497:  session_resume: ['specFolder', 'minimal'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:567:  const schema = getToolSchema(toolName);
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:568:  if (!schema) {
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:569:    throw new ToolSchemaValidationError(toolName, `Unknown tool: "${toolName}". No schema registered.`, {
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:578:    return schema.parse(rawInput);
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583:      console.error(`[schema-validation] ${toolName}: ${formatted.message}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:99:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:113:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:130:  CREATE TABLE IF NOT EXISTS session_learning (
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:135:    session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:161:  CREATE INDEX IF NOT EXISTS idx_session_learning_spec_folder
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:162:  ON session_learning(spec_folder)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:166:  CREATE INDEX IF NOT EXISTS idx_session_learning_task_lookup
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:167:  ON session_learning(spec_folder, task_id, session_id, phase, updated_at, id)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:175:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:194:// M2 FIX: Track schema init per database instance, not as a process-global boolean.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:196:const schemaInitializedDbs = new WeakSet<Database>();
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:210:    WHERE type = 'table' AND name = 'session_learning'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:217:  const tempTableName = 'session_learning_legacy_migration';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:221:    database.exec(`ALTER TABLE session_learning RENAME TO ${tempTableName}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:224:      INSERT INTO session_learning (${SESSION_LEARNING_COLUMNS})
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:240:      'Failed to migrate session_learning schema',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:246:/** Initialize the session_learning table schema if not already created */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:248:  if (schemaInitializedDbs.has(database)) return;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:257:    schemaInitializedDbs.add(database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:264:      'Failed to initialize session_learning schema',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:309:    sessionId: session_id = null
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:334:  const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:340:     FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:344:       AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:351:      UPDATE session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:352:      SET session_id = ?, pre_knowledge_score = ?, pre_uncertainty_score = ?, pre_context_score = ?, knowledge_gaps = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:398:    INSERT INTO session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:399:    (spec_folder, task_id, phase, session_id, pre_knowledge_score, pre_uncertainty_score, pre_context_score, knowledge_gaps, created_at, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:467:    sessionId: session_id = null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:491:  const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:495:    FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:501:    query += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:538:        : `No preflight record found for spec_folder="${spec_folder}", task_id="${taskId}", session_id="${normalizedSessionId}". Call task_preflight first.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:568:      UPDATE session_learning SET
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:615:          sessionId: (preflightRecord.session_id as string | null) ?? normalizedSessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:663:    sessionId: session_id,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:686:    const normalizedSessionId = normalizeSessionId(session_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:688:      SELECT * FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:694:      sql += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:719:        sessionId: (row.session_id as string | null) ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:772:        FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:778:        summarySql += ' AND session_id = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:875:const ensure_schema = ensureSchema;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:881:  ensure_schema,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:18:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:61:export const TOOL_NAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:62:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:65:  'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:78:    case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:80:      // E3: Delegate to memory_search with sensible defaults
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:100:    case 'memory_save':           return handleMemorySave(parseArgs<SaveArgs>(validateToolArgs('memory_save', args)));
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:33:export const SERVER_DIR: string = path.join(import.meta.dirname, '..');
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:34:export const NODE_MODULES: string = path.join(SERVER_DIR, 'node_modules');
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:35:export const LIB_DIR: string = path.join(import.meta.dirname, '..', 'lib');
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:36:export const SHARED_DIR: string = path.join(SERVER_DIR, '..', 'shared');
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:81:export const DATABASE_DIR: string = resolvedDatabasePaths.databaseDir;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:82:export const DATABASE_PATH: string = resolvedDatabasePaths.databasePath;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:83:export const DB_UPDATED_FILE: string = resolvedDatabasePaths.dbUpdatedFile;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:91:export const BATCH_SIZE: number = Number.isFinite(parsedBatchSize) && parsedBatchSize > 0 ? parsedBatchSize : 5;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:93:export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && parsedBatchDelayMs > 0 ? parsedBatchDelayMs : 100;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:100:export const INDEX_SCAN_COOLDOWN: number = 60000;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:107:export const MAX_QUERY_LENGTH: number = 10000;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:109:export const INPUT_LIMITS: Readonly<InputLimitsConfig> = {
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:124:export const DEFAULT_BASE_PATH: string = process.env.MEMORY_BASE_PATH || process.cwd();
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:126:export const ALLOWED_BASE_PATHS: string[] = [
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:139:export const CONSTITUTIONAL_CACHE_TTL: number = 60000;
-.opencode/skill/system-spec-kit/mcp_server/core/config.ts:176:export const COGNITIVE_CONFIG: CognitiveConfig = COGNITIVE_CONFIG_LAZY;
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:6:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:11:export const TOOL_NAMES = new Set(['memory_context']);
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:16:    case 'memory_context': return handleMemoryContext(parseArgs<ContextArgs>(validateToolArgs('memory_context', args)));
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:4:// T018: MCP tool handler for session_health — reports session
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:65:/** Handle session_health tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:102:  const structuralContext = buildStructuralBootstrapContract('session_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:160:      producer: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:161:      sourceSurface: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:170:    sourceSurface: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:377:    'schemaVersion',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:408:      schemaVersion: result.schemaVersion as string | null | undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:515:    minState,  // No default — memoryState column not yet in schema; defaulting to 'WARM' filters all rows
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:542:  // Validate at least one search input is provided (moved from schema superRefine for GPT compatibility)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1360:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:18:export const TOOL_NAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:19:  'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:20:  'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:21:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:22:  'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:58:    case 'code_graph_scan':
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:60:    case 'code_graph_query': {
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:67:    case 'code_graph_status':
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:69:    case 'code_graph_context':
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/formatters/token-metrics.ts:36:export const estimateTokens = estimateTokenCount;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:48:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148:/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:153:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:157:        hint: 'Retry memory_index_scan after checkpoint_restore maintenance completes.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:176:      console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${profile.dim}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:180:    console.warn('[memory_index_scan] Could not verify embedding dimension:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:195:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:271:              'mcp:memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:312:      tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:631:    tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:671:const handle_memory_index_scan = handleMemoryIndexScan;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:680:  handle_memory_index_scan,
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:5:// Create a point-in-time SQLite checkpoint before schema migrations.
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:25:  schemaVersion: number | null;
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:141: * Read the current schema version from a SQLite database.
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:151:    const row = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:187:  const schemaVersion = getSchemaVersion(args.dbPath);
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:194:    schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:208:    schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:230:  console.log(`Schema version: ${result.schemaVersion ?? 'unknown'}`);
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:24:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:46:export const TOOL_NAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:47:  'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:58:  'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:59:  'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:60:  'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:61:  'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:62:  'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:68:    case 'memory_index_scan':          return handleMemoryIndexScan(parseArgs<ScanArgs>(validateToolArgs('memory_index_scan', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:79:    case 'shared_memory_status':       return handleSharedMemoryStatus(parseArgs<SharedMemoryStatusArgs>(validateToolArgs('shared_memory_status', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:80:    case 'shared_memory_enable':       return handleSharedMemoryEnable(parseArgs<Record<string, unknown>>(validateToolArgs('shared_memory_enable', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:81:    case 'session_health':             return handleSessionHealth();
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:82:    case 'session_resume':             return handleSessionResume(parseArgs<SessionResumeArgs>(validateToolArgs('session_resume', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:83:    case 'session_bootstrap':          return handleSessionBootstrap(parseArgs<SessionBootstrapArgs>(validateToolArgs('session_bootstrap', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:334:        error: `Schema missing: ${sanitizeErrorForHint(message)}. Run memory_index_scan() to create the database schema, or restart the MCP server.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:462:          `Run memory_index_scan with force:true to rebuild FTS5 index.`
-.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:17:export const ALL_DISPATCHERS = [
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:4:import type { ToolDefinition } from '../tool-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:79:function validateProperty(field: string, value: unknown, schema: JsonSchemaProperty): void {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:80:  if (schema.const !== undefined && value !== schema.const) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:81:    throw new Error(`Invalid value for '${field}': expected constant ${String(schema.const)}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:84:  if (Array.isArray(schema.enum) && !schema.enum.includes(value)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:85:    throw new Error(`Invalid value for '${field}': must be one of ${schema.enum.join(', ')}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:88:  if (schema.type) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:89:    validateType(field, value, schema.type);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:92:  if (schema.type === 'array' && schema.items && Array.isArray(value)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:94:      validateProperty(field, item, schema.items);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:98:  if (schema.type === 'string' && typeof value === 'string') {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:99:    if (schema.minLength !== undefined && value.length < schema.minLength) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:100:      throw new Error(`Invalid value for '${field}': length must be >= ${schema.minLength}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:102:    if (schema.maxLength !== undefined && value.length > schema.maxLength) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:103:      throw new Error(`Invalid value for '${field}': length must be <= ${schema.maxLength}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:107:  if (schema.type === 'array' && Array.isArray(value)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:108:    if (schema.minItems !== undefined && value.length < schema.minItems) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:109:      throw new Error(`Invalid value for '${field}': must contain at least ${schema.minItems} item(s)`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:111:    if (schema.maxItems !== undefined && value.length > schema.maxItems) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:112:      throw new Error(`Invalid value for '${field}': must contain at most ${schema.maxItems} item(s)`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:117:    schema.type === 'number' &&
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:119:    (schema.minimum !== undefined || schema.maximum !== undefined)
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:122:    if (schema.minimum !== undefined && numericValue < schema.minimum) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:123:      throw new Error(`Invalid value for '${field}': must be >= ${schema.minimum}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:125:    if (schema.maximum !== undefined && numericValue > schema.maximum) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:126:      throw new Error(`Invalid value for '${field}': must be <= ${schema.maximum}`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:174: * Validate tool arguments against the declared MCP input schema.
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:181: * Unknown tools or missing schemas are skipped to preserve legacy behavior.
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:193:  const schema = toolDefinition.inputSchema as InputSchema;
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:194:  if (schema.type === 'object' && (args === null || typeof args !== 'object' || Array.isArray(args))) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:198:  const required = schema.required ?? [];
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:204:  if (Array.isArray(schema['x-requiredAnyOf']) && schema['x-requiredAnyOf'].length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:205:    const branchMatched = schema['x-requiredAnyOf'].some((fields) =>
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:209:      throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:213:  if (!schema.properties) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:214:    if (!matchesSchemaConstraint(args, schema)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:215:      throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:221:    if (schema.additionalProperties === false && !Object.prototype.hasOwnProperty.call(schema.properties, field)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:227:    const propertySchema = schema.properties[field];
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:234:  if (!matchesSchemaConstraint(args, schema)) {
-.opencode/skill/system-spec-kit/mcp_server/utils/tool-input-schema.ts:235:    throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:19:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:52:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:13://   Node .opencode/skill/system-spec-kit/mcp_server/dist/cli.js schema-downgrade --to 15 --confirm
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:28:type SchemaDowngradeModule = Awaited<typeof import('./lib/storage/schema-downgrade.js')>;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:39:let _schema_downgrade: SchemaDowngradeModule | null = null;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:78:  return _schema_downgrade ??= await import('./lib/storage/schema-downgrade.js');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:118:  schema-downgrade --to 15 --confirm
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:119:                                 Downgrade schema from v16 to v15 (targeted, destructive)
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:133:  spec-kit-cli schema-downgrade --to 15 --confirm
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:205:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:212:      const legacyVersion = db.prepare("SELECT value FROM config WHERE key = 'schema_version'").get() as { value: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:217:      // No schema version metadata available
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:520:    console.error('ERROR: --confirm is required for schema-downgrade.');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:577:    case 'schema-downgrade':
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:12:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:24:export const TOOL_NAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:84:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:243: * Map tool schema direction values to getCausalChain direction values.
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:244: * Tool schema: 'outgoing' | 'incoming' | 'both'
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:69:  const schemaResult = envSchema.safeParse(env);
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:70:  if (!schemaResult.success) {
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:71:    const errors: CognitiveConfigParseError[] = schemaResult.error.issues.map((issue) => {
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:80:  const source = schemaResult.data.SPECKIT_COGNITIVE_COACTIVATION_PATTERN;
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:81:  const flags = schemaResult.data.SPECKIT_COGNITIVE_COACTIVATION_FLAGS;
-.opencode/skill/system-spec-kit/mcp_server/configs/cognitive.ts:114:export const COGNITIVE_CONFIG: CognitiveConfig = loadCognitiveConfigFromEnv(process.env);
-.opencode/skill/system-spec-kit/mcp_server/utils/index.ts:59:} from './tool-input-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:384:  it('C13: Response meta.tool is memory_search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:388:    expect(envelope.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tools/checkpoint-tools.ts:12:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/checkpoint-tools.ts:24:export const TOOL_NAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:28:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:613:    reason: `memory_save: chunked indexing (${chunkResult.strategy}, ${chunkResult.chunks.length} chunks)`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:618:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:628:    actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:39:        'handle_memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:4:// MCP tool handler for code_graph_query — queries structural relationships.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:317:/** Handle code_graph_query tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:361:          }, readiness, 'code_graph_query outline payload'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:400:          }, readiness, 'code_graph_query blast_radius payload'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:433:          }, readiness, `code_graph_query ${operation} payload`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:559:          }, readiness, `code_graph_query ${operation} payload`, result.edges[0]
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:15:    session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:27:    session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/utils/batch-processor.ts:40:export const MAX_BATCH_SIZE = 100;
-.opencode/skill/system-spec-kit/mcp_server/utils/batch-processor.ts:43:export const DEFAULT_RETRY_OPTIONS: Readonly<RetryDefaults> = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:4:// MCP tool handler for code_graph_scan — indexes workspace files.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123:/** Handle code_graph_scan tool call */
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:14:import { TOOL_DEFINITIONS, getSchema, validateToolArgs } from '../tool-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:15:import { validateToolInputSchema } from '../utils/tool-input-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:47:  it('public tool schemas do not publish top-level combinators', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:49:      const schema = tool.inputSchema as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:50:      expect(schema).not.toHaveProperty('oneOf');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:51:      expect(schema).not.toHaveProperty('not');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:52:      expect(schema).not.toHaveProperty('allOf');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:53:      expect(schema).not.toHaveProperty('anyOf');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:57:  it('all tool schemas have type: object at top level', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:59:      const schema = tool.inputSchema as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:60:      expect(schema.type).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:83:      validateToolInputSchema('memory_context', {}, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:95:    const schema = getSchema({
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:99:    const parsed = schema.safeParse({ query: 'valid query', unexpected: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:109:    const schema = getSchema({
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:113:    const parsed = schema.parse({ query: 'valid query', unexpected: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:119:      validateToolInputSchema('memory_context', { input: 'resume', mode: 'invalid-mode' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:129:  it('logs schema validation failures to stderr for auditability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:133:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:137:    expect(errorSpy.mock.calls.some((call) => String(call[0]).includes('[schema-validation] memory_search:'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:163:describe('memory_delete schema (oneOf removed, handler-validated)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:191:    }).toThrow(/required schema constraints/);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:213:describe('memory_bulk_delete schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:220:  it('rejects confirm=false at schema level', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:240:   4. memory_search LIMIT CONTRACT (schema + runtime alignment)
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:243:describe('memory_search limit contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:244:  it('public schema accepts cursor-only continuation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:246:      validateToolInputSchema('memory_search', { cursor: 'opaque-cursor-token' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:250:  it('runtime schema accepts cursor-only continuation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:252:      validateToolArgs('memory_search', { cursor: 'opaque-cursor-token' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:256:  it('public schema accepts concepts-only search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:258:      validateToolInputSchema('memory_search', { concepts: ['alpha', 'beta'] }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:262:  it('public schema rejects requests without query or concepts', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:264:      validateToolInputSchema('memory_search', {}, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:265:    }).toThrow(/required schema constraints/);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:270:      validateToolArgs('memory_search', { query: 'ab', limit: 100 });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:276:      validateToolArgs('memory_search', { query: 'ab', limit: 101 });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:280:  it('public schema rejects limit above 100', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:282:      validateToolInputSchema('memory_search', { query: 'ab', limit: 101 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:288:      validateToolArgs('memory_search', { concepts: ['solo'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:292:  it('public schema rejects unknown memory_search parameters', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:294:      validateToolInputSchema('memory_search', { query: 'valid query', unexpected: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:298:  it('public schema enforces query minimum length', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:300:      validateToolInputSchema('memory_search', { query: 'a' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:304:  it('runtime rejects unknown memory_search parameters', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:306:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:312:      validateToolArgs('memory_search', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:322:  it('public and runtime schemas accept response profiles for memory_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:329:      validateToolInputSchema('memory_search', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:331:    expect(validateToolArgs('memory_search', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:335:describe('governed retrieval schema propagation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:346:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:348:    expect(validateToolArgs('memory_context', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:351:  it('public and runtime schemas accept response profiles for memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:358:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:360:    expect(validateToolArgs('memory_context', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:363:  it('public and runtime schemas accept governed scope fields for memory_quick_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:395:describe('shared-memory admin actor schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:396:  it('public schemas expose actor identity fields without top-level exclusivity combinators', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:399:      const schema = tool?.inputSchema as { properties?: Record<string, unknown> } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:400:      expect(schema?.properties).toMatchObject({
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:404:      expect(schema).not.toHaveProperty('oneOf');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:405:      expect(schema).not.toHaveProperty('not');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:442:  it('handler requires caller identity for shared_memory_status', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:454:  it('runtime accepts shared_memory_status with one actor identity', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:456:      validateToolArgs('shared_memory_status', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:463:  it('public causal tool schemas expose string memory identifiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:480:  it('public schema rejects divergent_aliases limit above 200', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:486:  it('public schema accepts autoRepair confirmation payloads', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:492:  it('runtime schema preserves confirmed for handler execution', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:498:describe('checkpoint_delete schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:499:  it('public checkpoint_list schema rejects limit above 100', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:505:  it('requires confirmName at schema level', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:519:describe('schema validation performance (CHK-024)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:525:      const schema = tool.inputSchema as { properties?: Record<string, unknown>; required?: string[] };
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:526:      for (const key of schema.required ?? []) {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:527:        const prop = (schema.properties ?? {})[key] as { type?: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:41:export const INPUT_LIMITS: Readonly<InputLimits> = {
-.opencode/skill/system-spec-kit/mcp_server/utils/validators.ts:52:export const MAX_QUERY_LENGTH: number = 10000;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:106:    // Create memory_index table matching production schema
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:16:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:23:      'SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:30:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:143:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(deleteSessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:148:        WHERE session_id = ? AND attention_score < ?
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:103:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:105:// Feature catalog: Dry-run preflight for memory_save
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:945:            actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:972:        actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1078:/** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1086:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1093:        hint: 'Retry memory_save after checkpoint_restore maintenance completes.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1151:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1174:        action: 'memory_save_shared_space',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1213:      tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1310:            tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1316:              actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1345:        tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1441:        tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1447:          actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1462:        action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1490:            actor: provenanceActor ?? 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1703:        'Retry memory_save({ filePath, force: true }) once dependencies are healthy',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1789:const handle_memory_save = handleMemorySave;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1796:  handle_memory_save,
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:12:  // T018: Session tracking for session_health tool
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:49:      schemaVersion: number;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:87:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:91:  'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:92:  'memory_index_scan'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:110:// T018: Session-level tracking for prime package and session_health
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:232:        schemaVersion: stats.schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:457:    recommendedCalls.push('code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:471:    toolRoutingRules.push('structural queries (callers, deps) → code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:482:      graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:497:    ?? (typeof toolArgs.session_id === 'string' ? toolArgs.session_id : null);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:680:  // T018: Session tracking for session_health tool
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:16: * Create an in-memory SQLite DB with the memory_index schema
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:17: * matching the production schema from vector-index-impl.js.
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:49:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:15:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:62:      session_id: input.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:47:description: "Durable regression fixture for memory_save UX contract coverage."
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:68:Continue validating the \`memory_save\` UX contract with a fixture that is rich enough to satisfy the durable-memory gate while still exercising duplicate no-op, deferred embedding, and post-mutation feedback behavior.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:85:| \`mcp_server/handlers/memory-save.ts\` | Coordinates duplicate detection, sufficiency evaluation, template validation, and post-mutation feedback for \`memory_save\`. |
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:132:session_id: "${titleSlug}-fixture"
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:248:  it('memory_save success response exposes postMutationHooks contract fields and types', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:59:    it('T516-2: handle_memory_search alias is exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:60:      expect(typeof handler.handle_memory_search).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:220:            schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:226:            schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:233:            schemaVersion: '',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:240:            schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:247:            schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:254:            schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:276:    expect(byId.get(303)).toMatchObject({ publishable: false, exclusionReason: 'missing_schema_version' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:4:// MCP tool handler for code_graph_context — LLM-oriented graph neighborhoods.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:87:/** Handle code_graph_context tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:204:          error: 'code_graph_context failed',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:10:import { memoryBulkDeleteSchema } from '../schemas/tool-input-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:307:      const id = mod.recordHistory(1, 'ADD', null, 'reconsolidation test', 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:314:      expect(entry!.actor).toBe('mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:353:      'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:359:      'mcp:memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:405:    it('T508-08f: confirm=false fails schema validation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:67:    // Create memory_index table (matches production schema)
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:50:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:61:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:77:      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:113:  input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:140:        '- `memory_context({ input, mode })` — unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:142:        '- `memory_search({ query })` — semantic search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:143:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:155:      content: 'Code graph index is empty. Run `code_graph_scan` to build structural context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:169:      content: 'Code graph freshness is stale. The first structural read may refresh inline when safe; run `code_graph_scan` for broader stale states.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:185:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:190:      content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:216:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9:/** Handle code_graph_status tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:28:            schemaVersion: stats.schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:28:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:60:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:64:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:69:      SELECT id, tenant_id, user_id, session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:91:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:95:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, agent_id, session_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:100:      SELECT id, tenant_id, user_id, agent_id, session_id
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:10:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:69:export const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:51:    'understand the database schema',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:482:describe('T059: autoDetectIntent Parameter (memory_search)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:35:    query: 'schema validation for tool inputs',
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:78:    { id: 202, content: 'Tool schemas define optional fields, defaults, and shared validation helpers. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:116:    const b = 'database migration schema upgrade';
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:166:      title: 'database migration schema upgrade version',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:352:      title: 'database migration schema upgrade version',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:6:export const HOOK_TIMEOUT_MS = 1800;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:8:export const COMPACTION_TOKEN_BUDGET = 4000;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:10:export const SESSION_PRIME_TOKEN_BUDGET = 2000;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:14:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:17:// Feature catalog: Memory indexing (memory_save)
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:297:      actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:303:      recordHistory(nextMemoryId, 'ADD', null, parsed.title ?? parsed.filePath, 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:304:      recordHistory(memoryId, 'UPDATE', previous.title, parsed.title ?? parsed.filePath, 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:32:    session_id: 'sess-abc123',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:63:    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:128:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:123:    expect(envelope.data.details?.reason).toBe('shared_memory_admin_unconfigured');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:140:    expect(envelope.data.details?.reason).toBe('shared_memory_trusted_binding_required');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:711:    expect(envelope.data.details?.reason).toBe('shared_memory_enable_admin_required');
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:240:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:569:      metadata: { conflictKind: 'schema_mismatch' },
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:597:          conflictKind: 'schema_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:599:          strategyReason: 'high_risk:schema_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:630:          conflictKind: 'schema_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:632:          strategyReason: 'high_risk:schema_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:835:      .get('shared_memory_enabled') as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:9://   { session_id, transcript_path, cwd, hook_event_name, timestamp, source }
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:51:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:62:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:73:      content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:106:        '- `memory_context({ input, mode })` - unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:108:        '- `memory_search({ query })` - semantic search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:109:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:121:      content: 'Code graph index is empty. Run `code_graph_scan` to build structural context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:135:      content: 'Code graph freshness is stale. The first structural read may refresh inline when safe; run `code_graph_scan` for broader stale states.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:149:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:155:    content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:176:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:48:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:84:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:118:      if (normalizedSql.includes('CREATE TABLE IF NOT EXISTS session_sent_memories')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:119:        tables.add('session_sent_memories');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:122:      if (normalizedSql.includes('CREATE TABLE IF NOT EXISTS session_state')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:123:        tables.add('session_state');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:129:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN tenant_id')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:132:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN user_id')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:135:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN agent_id')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:148:          if (normalizedSql === 'DELETE FROM session_sent_memories WHERE sent_at < ?') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:152:          if (normalizedSql === "DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:164:          if (normalizedSql.startsWith('INSERT INTO session_state (')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:224:          if (normalizedSql === "UPDATE session_state SET status = 'interrupted', updated_at = ? WHERE status = 'active'") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:256:          if (normalizedSql === 'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:261:          if (normalizedSql === 'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:270:          if (normalizedSql === 'SELECT tenant_id, user_id, agent_id FROM session_state WHERE session_id = ? LIMIT 1') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:286:          if (normalizedSql === 'PRAGMA table_info(session_state)') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:295:                session_id: row.session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:308:          if (normalizedSql === "SELECT name FROM sqlite_master WHERE type='index' AND tbl_name='session_state'") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:310:              .filter((statement) => statement.includes('CREATE INDEX IF NOT EXISTS idx_session_state_'))
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:317:          if (normalizedSql === "SELECT name FROM sqlite_master WHERE type='table' AND name='session_state'") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:318:            return tables.has('session_state') ? [{ name: 'session_state' }] : [];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:397:    it('should create session_state table and indexes', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:401:      expect(database.execStatements.some((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:402:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_status'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:403:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_updated'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:404:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_identity_scope'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:424:        session_id: 'session-state-save',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:569:    it('should create session_state table with correct columns', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:580:        'session_id',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:593:      const createTableSql = database.execStatements.find((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'));
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:892:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:897:  it('schema versioning detection', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:901:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:909:    fs.writeFileSync(trackedFile, 'export const value = 1;\n');
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:64:    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:378:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:75:    it('T209-5: setAttentionScore called with (session_id, match.memoryId, score)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:136:  it('initializes schema with v16 chunk columns and parent indexes', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:138:    const tempDir = makeTempDir('spec-kit-schema-v16-');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:153:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:405:  it('downgrades schema from v16 to v15 and removes chunk columns', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:406:    const tempDir = makeTempDir('spec-kit-schema-downgrade-');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:412:    const downgrade = await import('../lib/storage/schema-downgrade');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:419:    const beforeVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:422:    // Set schema to v16 for the v16→v15 downgrade test (v17+ migrations are independent of chunk columns)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:423:    db.prepare('UPDATE schema_version SET version = 16 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:430:    const afterVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:517:    expect(cliSource).toContain('schema-downgrade');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:518:    expect(cliSource).toContain('--confirm is required for schema-downgrade');
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/shared.ts:11:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:35:  const row = db.prepare('SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?')
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:93:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:98:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:104:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:112:        SELECT session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:114:        ORDER BY session_id ASC
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:115:      `).all() as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:116:      const remainingSessionIds = remainingRows.map(row => row.session_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:30:              producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:31:              sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:61:    recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:62:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77:  it('uses the full session_resume payload and records full bootstrap telemetry', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:86:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:97:      'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:98:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:107:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:108:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:120:    expect(parsed.data.hints.some((hint: string) => hint.includes('Run code_graph_scan'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:121:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:185:  it('schema-downgrade fails safely when current schema is newer than v16', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:186:    const sandbox = createSandbox('spec-kit-cli-schema-downgrade-');
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:193:    const downgradeResult = runCli(['schema-downgrade', '--to', '15', '--confirm'], {
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:219:    const missingConfirm = runCli(['schema-downgrade', '--to', '15'], {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:386:        errors: ['session_state: merge restore rolled back after pre-clear because reinsertion failed'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:389:        rolledBackTables: ['session_state'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:396:        expect(parsed.data?.details?.rolledBackTables).toEqual(['session_state']);
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:11:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:93:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:209:  const schemaResult = ensureSchema();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:210:  if (!schemaResult.success) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:211:    return schemaResult;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:278:  if (!db || !hasTable('session_state')) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:282:      'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:293:  if (!db || !hasTable('session_sent_memories')) return false;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:297:      'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:335:  if (!db || !hasTable('session_state')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:341:    FROM session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:342:    WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:442:  CREATE TABLE IF NOT EXISTS session_sent_memories (
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:443:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:447:    PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:452:  'CREATE INDEX IF NOT EXISTS idx_session_sent_session ON session_sent_memories(session_id);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:453:  'CREATE INDEX IF NOT EXISTS idx_session_sent_time ON session_sent_memories(sent_at);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:522:      SELECT 1 FROM session_sent_memories
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:523:      WHERE session_id = ? AND memory_hash = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:565:      SELECT memory_hash FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:568:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:647:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:678:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:713:      SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:722:      DELETE FROM session_sent_memories
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:723:      WHERE session_id = ? AND rowid IN (
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:724:        SELECT rowid FROM session_sent_memories
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:725:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:745:      DELETE FROM session_sent_memories WHERE sent_at < ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:762: *   - session_sent_memories: entries with sent_at older than threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:763: *   - session_state: completed/interrupted sessions older than threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:766: *   - session_learning records (permanent, never cleaned)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:767: *   - Active sessions (session_state with status='active')
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:797:    const smStmt = db.prepare('DELETE FROM session_sent_memories WHERE sent_at < ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:803:      errors.push(`session_sent_memories cleanup: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:807:  // 3. Clean completed/interrupted session_state entries (NEVER clean active sessions)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:810:      `DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:817:      errors.push(`session_state cleanup: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:825:      `${sentMemoriesDeleted} sent_memories, ${sessionStateDeleted} session_state entries ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:848:      DELETE FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:877:      FROM session_sent_memories
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:878:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:889:    console.warn(`[session-manager] get_session_stats failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:959:  CREATE TABLE IF NOT EXISTS session_state (
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:960:    session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:974:  'CREATE INDEX IF NOT EXISTS idx_session_state_status ON session_state(status);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:975:  'CREATE INDEX IF NOT EXISTS idx_session_state_updated ON session_state(updated_at);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:976:  'CREATE INDEX IF NOT EXISTS idx_session_state_identity_scope ON session_state(tenant_id, user_id, agent_id);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:980:  { column: 'tenant_id', sql: 'ALTER TABLE session_state ADD COLUMN tenant_id TEXT;' },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:981:  { column: 'user_id', sql: 'ALTER TABLE session_state ADD COLUMN user_id TEXT;' },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:982:  { column: 'agent_id', sql: 'ALTER TABLE session_state ADD COLUMN agent_id TEXT;' },
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1003:    const existingColumns = getTableColumns('session_state');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1015:    console.error(`[session-manager] Session state schema creation failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1035:      INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1042:      ON CONFLICT(session_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1044:        spec_folder = COALESCE(excluded.spec_folder, session_state.spec_folder),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1045:        current_task = COALESCE(excluded.current_task, session_state.current_task),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1046:        last_action = COALESCE(excluded.last_action, session_state.last_action),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1047:        context_summary = COALESCE(excluded.context_summary, session_state.context_summary),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1048:        pending_work = COALESCE(excluded.pending_work, session_state.pending_work),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1049:        state_data = COALESCE(excluded.state_data, session_state.state_data),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1050:        tenant_id = COALESCE(excluded.tenant_id, session_state.tenant_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1051:        user_id = COALESCE(excluded.user_id, session_state.user_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1052:        agent_id = COALESCE(excluded.agent_id, session_state.agent_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1074:    console.error(`[session-manager] save_session_state failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1084:      UPDATE session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1086:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1112:      UPDATE session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1140:      FROM session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1141:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1178:        UPDATE session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1180:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1199:      SELECT session_id, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1202:      FROM session_state
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1349:    console.error(`[session-manager] write_continue_session_md failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:30:import { MAX_INGEST_PATHS } from '../schemas/tool-input-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:20:        ? 'session_bootstrap'
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:22:          ? 'session_resume'
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:23:          : 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/response-profile-formatters.vitest.ts:23:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:32:export const DEFAULT_FLOORS = {
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:34:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:63:    'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:11:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:17:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:49:      INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:74:      INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:188:    routingParts.push('structural queries (callers, deps) → code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:243:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes (stale — structural reads may refresh inline or recommend code_graph_scan)`;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:253:    recommendedAction = 'Structural context available. Use code_graph_query for structural lookups.';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:269:      producer: 'session_snapshot',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:269:      session_id: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:429:        FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:4:// All MCP tool definitions (names, descriptions, input schemas).
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:9:} from './schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:12: * Re-export schema validation helpers used by the MCP tool entry points.
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:20:} from './schemas/tool-input-schemas.js';
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:27: * Normalized definition for a single MCP tool and its JSON schema.
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:218:  name: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:444:  name: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:459:  name: 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:562:  name: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:658:  description: '[L7:Maintenance] Report code graph index health: file count, node/edge counts by type, parse health summary, last scan timestamp, DB file size, schema version. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:733:  name: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:845:  description: '[L9:CoverageGraph] Report deep-loop coverage graph health: node/edge counts grouped by kind and relation, current convergence signal values, momentum (signal deltas between snapshots), last iteration, schema version, and DB file size. Suitable for dashboards and synthesis surfaces.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:878:export const TOOL_DEFINITIONS: ToolDefinition[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:42:  | 'code_graph_query'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:104:    case 'code_graph_query':
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:17:    schemaVersion: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:34:      text: 'Aligned structural bootstrap contract across auto-prime and session_* handlers.',
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:90:      schemaVersion: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:97:    expect(brief.startupSurface).toContain('- Code Graph: empty -- run `code_graph_scan`');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:181:  it('T022: memory_search has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:182:    expect(TOOL_SPECIFIC_HINTS.memory_search).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:183:    expect(typeof TOOL_SPECIFIC_HINTS.memory_search).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:191:  it('T024: memory_save has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:192:    expect(TOOL_SPECIFIC_HINTS.memory_save).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:193:    expect(typeof TOOL_SPECIFIC_HINTS.memory_save).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:196:  it('T025: memory_index_scan has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:197:    expect(TOOL_SPECIFIC_HINTS.memory_index_scan).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:198:    expect(typeof TOOL_SPECIFIC_HINTS.memory_index_scan).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:221:  it('T029: memory_search EMBEDDING_FAILED has contextual hint', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:224:      TOOL_SPECIFIC_HINTS.memory_search?.[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:229:  it('T030: memory_save FILE_NOT_FOUND has contextual guidance', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:231:      TOOL_SPECIFIC_HINTS.memory_save?.[ERROR_CODES.FILE_NOT_FOUND];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:244:    const searchHint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:246:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:292:    const fullHint = getRecoveryHint('memory_save', ERROR_CODES.VALIDATION_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:299:    const saveEmbedHint = getRecoveryHint('memory_save', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:301:      'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:315:    const hasSearch = hasSpecificHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:356:    const searchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:362:    const searchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:365:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:713:    const toolSpecific = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:718:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED]
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:725:    const allSearchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:5:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:6:  { tool: 'memory_context', handler: 'handleMemoryContext', layer: 'L1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:7:  { tool: 'memory_search', handler: 'handleMemorySearch', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:9:  { tool: 'memory_save', handler: 'handleMemorySave', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:28:  { tool: 'memory_index_scan', handler: 'handleMemoryIndexScan', layer: 'L7' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:33:  { camel: 'handleMemorySearch', snake: 'handle_memory_search' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:35:  { camel: 'handleMemorySave', snake: 'handle_memory_save' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:55:  { camel: 'handleMemoryIndexScan', snake: 'handle_memory_index_scan' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:56:  { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:62:      testDb.exec('DELETE FROM session_sent_memories');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:235:        SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:265:        SELECT session_id FROM session_sent_memories ORDER BY session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:266:      `).all() as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:268:      const sessions: Set<string> = new Set(entries.map((e) => e.session_id));
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:82:      const key1 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:83:      const key2 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:88:      const key1 = generateCacheKey('memory_search', { query: 'auth' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:89:      const key2 = generateCacheKey('memory_search', { query: 'login' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:95:      const key1 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:96:      const key2 = generateCacheKey('memory_save', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:352:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:353:      const key2 = generateCacheKey('memory_search', { query: 'test2' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:354:      const key3 = generateCacheKey('memory_save', { query: 'test3' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:355:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:356:      set(key2, 'value2', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:357:      set(key3, 'value3', { toolName: 'memory_save' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:358:      const invalidated = invalidateByTool('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:366:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:367:      const key2 = generateCacheKey('memory_save', { query: 'test2' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:369:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:370:      set(key2, 'value2', { toolName: 'memory_save' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:380:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:381:      const key2 = generateCacheKey('memory_save', { query: 'test2' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:383:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:384:      set(key2, 'value2', { toolName: 'memory_save' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:394:      const searchKey = generateCacheKey('memory_search', { query: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:396:      set(searchKey, 'search_result', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:423:      const key = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:427:        'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:436:      expect(invalidateByTool('memory_search')).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:439:      const second = withCache('memory_search', args, async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:589:      const key = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:593:        'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:603:      const second = withCache('memory_search', args, async () => 'fresh-after-shutdown');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:20:    dbFileSize: 2048, schemaVersion: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:66:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:82:      lastScanTimestamp: null, dbFileSize: 0, schemaVersion: 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:4:// Feature catalog: Database and schema safety
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:60:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:94:    .prepare('SELECT version FROM schema_version WHERE id = 1')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:136:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:247:    throw new Error(`Downgrade supports only v${TARGET_FROM_VERSION} -> v${TARGET_TO_VERSION}. Current schema is v${currentVersion}.`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:252:  const checkpointName = options.checkpointName || `pre-schema-downgrade-v16-to-v15-${nowTimestampForName()}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:257:      reason: 'schema downgrade v16->v15',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:296:        INSERT OR REPLACE INTO schema_version (id, version, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:25:        preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:89:describe('memory_context advisory metadata', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:140:        nextActions: ['Use code_graph_query'],
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:151:      preferredTool: 'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:154:    expect(parsed.data.structuralRoutingNudge.message).toContain('Prefer `code_graph_query`');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:212:describe('session_bootstrap authority preservation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:249:                  producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:250:                  sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:280:        recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:281:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:291:      preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:295:      'Structural context available. Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:296:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:144:    .run(5, 'specs/003-data', 'data/schema.md', 'Database Schema');
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:16:export const SESSION_ANALYTICS_DB_FILENAME = 'speckit-session-analytics.db';
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:92:    claude_session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:93:    speckit_session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:117:    claude_session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:136:    UNIQUE(claude_session_id, transcript_path, byte_start)
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:160:    ON analytics_turns (claude_session_id, transcript_path, line_no);
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:167:  claude_session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:168:  speckit_session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:192:  claude_session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:393:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:422:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:453:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:480:      claude_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:481:      speckit_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:502:    ON CONFLICT(claude_session_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:503:      speckit_session_id = excluded.speckit_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:533:      claude_session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:614:    ORDER BY claude_session_id ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:625:    WHERE claude_session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:15: * Phases 1 (schema) and 3 (discovery) require live DB/filesystem and are
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:871:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:914:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:1000:   Phase 1 schema migration and Phase 3 discovery (findSpecDocuments,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:57:      WHERE session_id = 's1'
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:76:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:81:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:88:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s2', 3) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:100:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:104:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:108:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:118:      WHERE session_id = 's5'
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:135:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:139:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:145:    const deleted = db.prepare('SELECT COUNT(*) AS count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 5) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:150:    const floored = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 6) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:161:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:167:    const wrapped = db.prepare('SELECT event_counter, mention_count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 7) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:175:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:181:    const decayed = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 8) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:193:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:207:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:214:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-disabled', 13) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:40:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:41:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:42:      { id: 3, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:55:      { tenant_id: 'a', user_id: 'u1', agent_id: null, session_id: null, shared_space_id: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:56:      { tenant_id: 'b', user_id: 'u2', agent_id: null, session_id: null, shared_space_id: null },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:66:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:67:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:82:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:88:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:103:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:125:      session_id: 'session-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:127:    expect(ALLOWED_POST_INSERT_COLUMNS.has('session_id')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:137:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:143:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:152:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:170:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:176:    expect(review.summary.byAction).toEqual({ memory_save: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:181:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:189:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:202:        session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:207:      action: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:232:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:233:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:234:      { id: 3, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:235:      { id: 4, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:531:    it('EXT-S14: restore preserves extended memory_index columns when schema supports them', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:532:      // Add modern schema columns to this fixture DB if missing.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:5:// Provides the code_graph_context MCP tool implementation.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:125:    textBrief: 'No anchors resolved. Try `code_graph_scan` first, or provide a `subject` or `seeds[]`.',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:127:    nextActions: ['Run `code_graph_scan` to index the workspace', 'Provide `subject` parameter with a symbol name'],
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:153:    actions.push('Run `code_graph_scan` to improve resolution (file anchors found)');
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:859:   8. EXPORTS (re-export constants for testing)
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:39:        'handle_memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:          'session_id: "atomic-save-fi"',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:680:        actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:687:          actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:522:describe('T009 PerFolderDescription schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:778:  it('returns null for schema violation (memorySequence as string)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:27: * Create a minimal in-memory DB with the memory_index schema
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:50:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:93:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:39:      session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:113:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:39:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:54:export const ALLOWED_POST_INSERT_COLUMNS = new Set<string>([
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:60:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:116:    codeGraphLine = 'empty -- run `code_graph_scan`';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:157:      lines.push('Freshness: stale — first structural read may trigger bounded inline refresh or recommend code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:234:        sourceSurface: 'session_start',
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:8:// Feature catalog: Dry-run preflight for memory_save
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:221:export const PreflightErrorCodes: Readonly<PreflightErrorCodes> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/preflight.ts:237:export const PREFLIGHT_CONFIG: PreflightConfig = {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:52:      FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:53:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:58:      FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:59:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:142:      FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:143:      WHERE spec_folder = ? AND task_id = ? AND session_id = ? AND phase = 'complete'
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:14:} from '../lib/telemetry/trace-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:220:  // 7. Telemetry trace schema validation
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:221:  it('telemetry schema exports expected canonical retrieval stages', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:457:    expect(row.session_count).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:26:} from '../lib/storage/learned-triggers-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:101:  // Create the FTS5 table matching the real schema (NO learned_triggers!)
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:34:  // Minimal memory_index schema
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:49:  // Causal_edges schema
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:73:    ? 'Use code_graph_query for structural lookups and keep transport shells thin.'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:17:    schemaVersion: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:62:    expect(contract.recommendedAction).toContain('code_graph_query');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:64:    expect(contract.provenance?.producer).toBe('session_snapshot');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:80:    const contract = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:86:    expect(contract.sourceSurface).toBe('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:103:    const contract = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:108:    expect(contract.recommendedAction).toContain('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:109:    expect(contract.sourceSurface).toBe('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:123:    const contract = buildStructuralBootstrapContract('session_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:126:    expect(contract.sourceSurface).toBe('session_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:164:    const contract = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:407:  it('clears adaptive shadow state during rollback drills without reversing schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:516:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:51:export const SCHEMA_VERSION = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:53:/** SQL schema for code graph tables */
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:95:  CREATE TABLE IF NOT EXISTS schema_version (
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:99:  CREATE TABLE IF NOT EXISTS code_graph_metadata (
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:136:    CREATE TABLE IF NOT EXISTS code_graph_metadata (
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:157:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:159:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:161:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:191:  const row = d.prepare('SELECT value FROM code_graph_metadata WHERE key = ?').get(key) as { value: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:199:    INSERT INTO code_graph_metadata (key, value, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:623:  schemaVersion: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:655:    lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion: SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:7:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:164:    expect(api.LAYER_DEFINITIONS.L5.tools).toContain('shared_memory_status');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:165:    expect(api.TOOL_LAYER_MAP.shared_memory_status).toBe('L5');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:166:    expect(api.getLayerForTool('shared_memory_status')).toBe('L5');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:167:    expect(api.getLayerTokenBudget('shared_memory_status')).toBe(1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:38:    // Create causal_edges table matching production schema (+created_by, +last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:414:      // But unique: A→B, B→A → if schema allows, 2 edges, 2 nodes → 1.0
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:15:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:21:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:78:        session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:84:        UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:120:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:125:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:148:      expect(entry.session_id).toBe('session-alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:176:      expect(entry1.session_id).toBe('session-alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:186:        INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:195:        "SELECT * FROM working_memory WHERE session_id = 'session-beta'"
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:80:    'session_learning',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:85:    'session_state',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:86:    'session_sent_memories',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:102:    'schema_version',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:122:  'session_learning',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:127:  'session_state',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:128:  'session_sent_memories',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:315:  'working_memory', 'session_state', 'session_sent_memories', 'session_learning',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:443:    || columns.has('session_id')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1109:        session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1121:        UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1147:    // Best-effort schema preparation only.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1332:    'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1654:    // Reject the entire restore on schema violations to prevent
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1696:    // Ensure working_memory table schema is ready BEFORE the transaction.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:56:    toolPattern: /^(bash|memory_save|memory_update)$/i,
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:27:    // Create causal_edges table matching production schema
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:142:            session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:148:            UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:186:            session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:192:            UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:203:          INSERT INTO working_memory (session_id, memory_id, attention_score)
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:213:          WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:331:    session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:389:        session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:397:      WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:409:        'idx_wm_session_focus_lru',
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:410:        'idx_wm_session_attention_focus',
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:460:        if (sql.includes('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ? AND memory_id = ?')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:491:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:533:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:5:// operations. Validates tool input/output schemas, error handling,
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:15: * implemented in Phase 3; these tests verify schema expectations
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:19:// --- Tool schema validation ---
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:46:  describe('graph_upsert tool schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:87:  describe('graph_query tool schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:121:  describe('graph_signals output schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:20:    it('CREATE TABLE schema includes learned_triggers column', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:25:      const schemaFilePath = path.resolve(
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:27:        '../lib/search/vector-index-schema.ts'
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:29:      const source = fs.readFileSync(schemaFilePath, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:35:    it('CREATE TABLE schema includes interference_score column', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:36:      // P1-10 found interference_score only in migration, not base schema.
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:40:      const schemaFilePath = path.resolve(
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:42:        '../lib/search/vector-index-schema.ts'
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:44:      const source = fs.readFileSync(schemaFilePath, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:51:      // (e.g., when running against a fresh schema that already has it).
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:54:      const schemaFilePath = path.resolve(
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:56:        '../lib/search/vector-index-schema.ts'
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:58:      const source = fs.readFileSync(schemaFilePath, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:6:// pairs against a configurable schema. Prevents out-of-vocabulary
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:35: * Default ontology schema — matches the causal_edges CHECK constraint
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:50: * Load ontology schema from environment or default.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:52: * Returns null if no schema configured and no default is appropriate.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:53: * Returns the default schema when no env override is set.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:55:export function loadOntologySchema(schemaPath?: string): OntologySchema | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:61:    if (schemaPath && schemaPath.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:62:      const resolvedPath = path.resolve(schemaPath);
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:87:    console.warn('[ontology-hooks] Invalid ontology schema — falling back to default');
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:117: * Validate that an entity/relation pair is allowed by the schema.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:119: * Returns true if both the entity type and relation type are in the schema.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:124:  schema: OntologySchema,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:133:  const entityAllowed = schema.entityTypes.some(
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:136:  const relationAllowed = schema.relationTypes.some(
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:144:  if (!Array.isArray(schema.extractionRules) || schema.extractionRules.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:148:  return schema.extractionRules.some((rule) =>
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:12:import { ensureLineageTables } from '../search/vector-index-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:37:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:212:    ['session', normalizeScopeValue(row.session_id)],
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:538:    recordHistory(memoryId, 'ADD', null, parsed.title ?? filePath, params.actor ?? 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:816:      actor: params.actor ?? 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:49:        'ensure_schema',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:149:        CREATE TABLE IF NOT EXISTS session_learning (
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:154:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:175:        "INSERT INTO session_learning (spec_folder, task_id, phase, pre_knowledge_score, pre_uncertainty_score, pre_context_score) VALUES (?, ?, 'complete', 50, 30, 40)"
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:195:          FROM session_learning
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/entity-denylist.ts:51:export const ENTITY_DENYLIST: Set<string> = new Set<string>([
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2453:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:13:      CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:22:        session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:28:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:32:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:36:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:74:    expect(snapshot.metrics['isolation.missing_session_scope_rows']).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:76:    expect(snapshot.metrics['schema.version']).toBe(21);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:103:    expect(snapshot.metrics['schema.version']).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:18:        memory_context: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:        memory_search: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:20:        memory_save: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:35:        memory_index_scan: 1000,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:922:    session_id: existingRow.session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:62:  it('T030/T031: rule schema is valid and first match wins', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:88:      SELECT session_id, memory_id, attention_score, source_tool, source_call_id, extraction_rule_id, redaction_applied
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:133:    expect(matchRule('memory_search', 'spec.md error context')).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:134:    expect(matchRule('memory_context', 'spec.md metadata')).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:135:    expect(matchRule('memory_save', 'git commit -m "x"')).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:40:    session_id: 'sess-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:70:    expect(names).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:82:    expect(entry.session_id).toBe('sess-001');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:180:      session_id: 'sess-merge-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:190:    expect(entry.session_id).toBe('sess-merge-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:14:    schemaVersion: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:60:    it('increments codeGraphQueries on code_graph_query event', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:62:      recordMetricEvent({ kind: 'code_graph_query' });
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:20:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:46:        tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:51:      expect(envelope.meta.tool).toBe('memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:58:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:97:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:108:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:135:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:143:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:152:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:176:        tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:186:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:196:        tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:206:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:254:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:312:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:352:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:363:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:373:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:384:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:409:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:41:export const PROMOTE_TO_IMPORTANT_THRESHOLD = 5;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:44:export const PROMOTE_TO_CRITICAL_THRESHOLD = 10;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:47:export const PROMOTION_PATHS: Readonly<Record<string, { target: string; threshold: number }>> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:53:export const PROMOTION_WINDOW_HOURS = 8;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:56:export const MAX_PROMOTIONS_PER_WINDOW = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:59:export const PROMOTION_WINDOW_MS = PROMOTION_WINDOW_HOURS * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:62:export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1:// TEST: memory_context per-channel eval logging (T056)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:88:describe('T056: memory_context emits per-strategy channel eval rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:11:// H5 — additionalProperties: false on all schemas
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:12:// M5 — ingest schema minItems/minLength constraints
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:17:} from '../schemas/tool-input-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:19:import { TOOL_DEFINITIONS } from '../tool-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:41:    const result = validateToolArgs('memory_search', {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:101:describe('H5: all tool schemas have additionalProperties: false', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:105:      const schema = tool.inputSchema as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:106:      if (schema.additionalProperties !== false) {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:114:    // Ensures no schema was accidentally dropped during bulk edit
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:119:describe('M5: ingest schema has minItems and minLength constraints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:120:  it('memory_ingest_start schema has path constraints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:126:    const schema = ingestTool!.inputSchema as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:127:    const properties = schema.properties as Record<string, Record<string, unknown>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:16:const TOOL_SCHEMAS_FILE = path.join(SERVER_DIR, 'tool-schemas.ts')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:22:let toolSchemasCode = ''
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:68:    toolSchemasCode = fs.readFileSync(TOOL_SCHEMAS_FILE, 'utf8')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:159:      'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:160:      'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:163:      'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:177:      'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:178:      'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:187:      'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:192:      'code_graph_scan',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:193:      'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:194:      'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:195:      'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:199:      'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:200:      'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:201:      'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:210:      expect(toolSchemasCode).toMatch(/export\s+const\s+TOOL_DEFINITIONS/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:218:      const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:228:        const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:238:      const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:250:        expect(toolDefRegex.test(toolSchemasCode)).toBe(true)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:257:        const schemaRegex = new RegExp(`name:\\s*'${tool}'[\\s\\S]*?inputSchema:\\s*\\{`)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:258:        expect(schemaRegex.test(toolSchemasCode)).toBe(true)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:301:      'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:320:    it('T16d: only session_health is excluded from tool-call tracking', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:321:      expect(sourceCode).toMatch(/if \(name !== 'session_health'\) \{/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:381:      '../tool-schemas',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:411:      '../lib/storage/learned-triggers-schema',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:578:          setRequestHandler(schema: unknown, handler: (request: unknown, extra: unknown) => Promise<unknown>): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:579:            handlers.set(schema, handler)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:617:      vi.doMock('../tool-schemas', () => ({ TOOL_DEFINITIONS: options?.toolDefinitions ?? [] }))
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:699:      vi.doMock('../lib/storage/learned-triggers-schema', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:927:        { id: 'call-1', params: { name: 'memory_search', arguments: {} } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:944:      expect(callArgs[0]).toBe('memory_search')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1054:              name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1103:        memoryAwareTools: new Set<string>(['memory_search']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1113:        { id: 'call-5', params: { name: 'memory_search', arguments: { query: 'hook validation' } } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1123:    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1131:        memoryAwareTools: new Set<string>(['memory_context']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1144:          params: { name: 'memory_context', arguments: { input: 'session resume context', mode: 'resume' } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1157:    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1164:        memoryAwareTools: new Set<string>(['memory_context']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1177:          params: { name: 'memory_context', arguments: { input: 'focused retrieval context', mode: 'focused' } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1376:      expect(instructions).toContain('Warning: 12 stale memories detected. Consider running memory_index_scan.')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1461:      { name: 'ToolDefinition', requiredFields: ['name', 'description', 'inputSchema'], source: 'toolSchemas' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1494:          toolSchemas: toolSchemasCode,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1563:      const response = errorsModule!.buildErrorResponse!('memory_search', testError, { query: 'test' })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1581:      const hint = errorsModule!.getRecoveryHint!('memory_search', 'UNKNOWN_TOOL')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1614:    it('T28: L1 budget = 3500 (memory_context)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1619:      expect(layerDefs!.getTokenBudget!('memory_context')).toBe(3500)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1622:    it('T28b: L2 budget = 3500 (memory_search)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1627:      expect(layerDefs!.getTokenBudget!('memory_search')).toBe(3500)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1670:    it('T28h: L7 budget = 1000 (memory_index_scan)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1675:      expect(layerDefs!.getTokenBudget!('memory_index_scan')).toBe(1000)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1812:      // Context-server validates only length pre-dispatch; schema checks occur in tool dispatch modules.
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2084:      'memory_context': '[L1:Orchestration]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2085:      'memory_search': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2087:      'memory_save': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2106:      'memory_index_scan': '[L7:Maintenance]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2117:        const match = toolSchemasCode.match(descRegex)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2126:      const budgetMatches = toolSchemasCode.match(budgetPattern)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2131:    it('T000e: memory_context supports optional tokenUsage (0.0-1.0)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2132:      expect(toolSchemasCode).toMatch(/name:\s*'memory_context'[\s\S]*?tokenUsage:\s*\{\s*type:\s*'number'/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2133:      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?minimum:\s*0\.0/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2134:      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?maximum:\s*1\.0/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2142:    it('T103: checkpoint_delete requires confirmName in schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2143:      expect(toolSchemasCode).toMatch(/checkpoint_delete[\s\S]*?required.*confirmName/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2239:      { module: './tool-schemas.js', name: 'Tool schemas (T303)' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2308:        ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2341:      expect(result).toContain('memory_context')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2342:      expect(result).toContain('memory_search')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2343:      expect(result).toContain('memory_save')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2365:      expect(atBoundary).not.toContain('Consider running memory_index_scan')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2375:      expect(aboveBoundary).toContain('Consider running memory_index_scan')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2448:      // Warning text must suggest memory_index_scan
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2449:      expect(fnBody).toMatch(/memory_index_scan/)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:24:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:31:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:77:    // Init session manager (creates session_sent_memories, session_state, sets up intervals)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:115:      // Save session state first (completeSession updates session_state)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:145:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:159:        'SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:189:  describe('T002: Working memory schema migration compatibility', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:205:          session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:211:          UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:215:        INSERT INTO working_memory (session_id, memory_id, attention_score, focus_count)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:229:        WHERE session_id = 'legacy-session' AND memory_id = 1
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:116:            'code_graph_query outline payload rejects collapsed scalar fields: trust.',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:144:  it('preserves separate trust axes through real session_resume and session_bootstrap outputs', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:189:        recommendedAction: 'Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:190:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:40:export const LEARNED_TRIGGERS_COLUMN = 'learned_triggers';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:43:export const LEARNED_TRIGGERS_DEFAULT = '[]';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:76:    console.warn('[learned-triggers-schema] Migration complete: learned_triggers column added');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:84:    console.error(`[learned-triggers-schema] Migration failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:137:    console.error(`[learned-triggers-schema] FTS5 isolation check failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:164:    console.warn('[learned-triggers-schema] Rollback complete: learned_triggers column removed');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:168:    console.error(`[learned-triggers-schema] Rollback failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:31:} from '../storage/learned-triggers-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:72:export const FEATURE_FLAG = 'SPECKIT_LEARN_FROM_SELECTION';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:75:export const LEARNED_TRIGGER_WEIGHT = 0.7;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:78:export const MAX_TERMS_PER_SELECTION = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:81:export const MAX_TERMS_PER_MEMORY = 8;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:84:export const LEARNED_TERM_TTL_MS = 30 * 24 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:87:export const LEARNED_TERM_TTL_SECONDS = 30 * 24 * 60 * 60;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:90:export const MIN_MEMORY_AGE_MS = 72 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:93:export const TOP_N_EXCLUSION = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:96:export const MIN_TERM_LENGTH = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:118:export const CONFIG: TriggerMatcherConfig = {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:500:export const CORRECTION_KEYWORDS: string[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:511:export const PREFERENCE_KEYWORDS: string[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:522:export const REINFORCEMENT_KEYWORDS: string[] = [
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:287:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:296:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:302:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:310:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:311:    expect(resp.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:318:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:328:  it('F7: Tool-specific hints included for memory_search + E001', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:330:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:353:    const err = createErrorWithHint('E040', 'fail', {}, 'memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:469:  it('K2: Has memory_search, checkpoint_restore, memory_save', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:470:    expect('memory_search' in TOOL_SPECIFIC_HINTS).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:472:    expect('memory_save' in TOOL_SPECIFIC_HINTS).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:476:    const searchHints = TOOL_SPECIFIC_HINTS['memory_search'];
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:492:  it('L1: Returns tool-specific hint for memory_search + E001', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:493:    const hint = getRecoveryHint('memory_search', 'E001');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:512:    const hint = getRecoveryHint('memory_search', 'E040');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:524:  it('M1: Returns true for known tool+code (memory_search, E001)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:525:    expect(hasSpecificHint('memory_search', 'E001')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:543:    const hints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:550:    const hints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:3:import { TOOL_DEFINITIONS } from '../tool-schemas';
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_context: 'L1',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_search: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:119:        memory_save: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:137:        memory_index_scan: 'L7',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:161:    it('shared_memory_status appears in exactly one layer and is mapped to that layer', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:162:      const matchingLayers = Object.values(LD).filter((layer) => layer.tools.includes('shared_memory_status'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:166:      expect(mod.TOOL_LAYER_MAP['shared_memory_status']).toBe(matchingLayers[0].id);
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:194:        { tool: 'memory_context', expected: '[L1:Orchestration]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:195:        { tool: 'memory_search', expected: '[L2:Core]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:200:        { tool: 'memory_index_scan', expected: '[L7:Maintenance]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:221:      const result = mod.enhanceDescription('memory_context', 'Some description text');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:227:        { tool: 'memory_search', desc: 'Search memories', prefix: '[L2:Core]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:242:      expect(mod.enhanceDescription('memory_context', '')).toBe('[L1:Orchestration] ');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:252:        { tool: 'memory_context', expected: 3500 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:253:        { tool: 'memory_search', expected: 3500 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:258:        { tool: 'memory_index_scan', expected: 1000 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:270:      expect(typeof mod.getTokenBudget('memory_context')).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:280:      const info = expectLayerInfo(mod.getLayerInfo('memory_context'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:287:      expect(info.tools).toContain('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:291:      const info1 = mod.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:292:      const info2 = mod.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:301:      const info = expectLayerInfo(mod.getLayerInfo('memory_search'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:430:      const toolSamples = ['memory_context', 'memory_search', 'memory_list',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:432:                           'memory_index_scan'];
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:19:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:27:  session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:38:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:44:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:74:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:100:    session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:108:  CREATE INDEX IF NOT EXISTS idx_ledger_session ON mutation_ledger(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:150:    INSERT INTO mutation_ledger (mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:162:    entry.session_id ?? null
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:187:  if (opts.session_id) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:188:    conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:189:    params.push(opts.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:395:        session_id: input.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:431:      session_id: input.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-relevance.ts:8:// Pure scoring addition — NO schema changes, NO new tables.
-.opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:71:      lastScanTimestamp: null, dbFileSize: null, schemaVersion: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:8:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:35:  'session_learning',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:40:  'session_state',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:41:  'session_sent_memories',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:57:  'schema_version',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:89:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:101:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:114:      session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:144:    CREATE TABLE IF NOT EXISTS session_learning (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:146:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:152:    CREATE TABLE IF NOT EXISTS session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:153:      session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:165:    CREATE TABLE IF NOT EXISTS session_sent_memories (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:166:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:170:      PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:215:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:263:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:301:      id, session_id, memory_id, attention_score, added_at, last_focused, focus_count,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:304:  `).run(1, 'sess-1', 1, 0.9, now, later, 2, 1, 1, 'memory_search', 'call-1', 'rule-1', 0);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:323:      id, timestamp, mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:357:    INSERT INTO session_learning (id, session_id, memory_id, insight, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:363:      id, action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id, shared_space_id, reason, metadata, created_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:384:    INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:390:    INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:10:  schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:12:  provenance: ['session_resume'],
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:41:      schemaVersion: '',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:44:    })).toThrow('schemaVersion');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:52:        schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:54:        provenance: ['session_resume', 'session_resume'],
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:60:describe('session_resume certainty contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:88:        schemaVersion: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:117:        recommendedAction: 'Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:118:        sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:150:describe('session_bootstrap certainty contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:187:                  producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:188:                  sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:218:        recommendedAction: 'Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:219:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:102:export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.(?:md|txt)$/i;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:107:export const MAX_CONTENT_LENGTH: number = Number.isFinite(_parsedMaxLen) && _parsedMaxLen > 0 ? _parsedMaxLen : 250000;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:112:export const CONTEXT_TYPE_MAP: Record<string, ContextType> = {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:226:session_id: "pipeline-enforcement-fixture"
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:175:        recommendedAction: 'Use code_graph_query for structural lookups.',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:176:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:446:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:127:  it('returns null for memory_context (prevents recursive surfacing)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:128:    const result = await autoSurfaceAtToolDispatch('memory_context', { input: 'some context' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:132:  it('returns null for memory_search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:133:    const result = await autoSurfaceAtToolDispatch('memory_search', { query: 'some query' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:147:  it('returns null for memory_save', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:148:    const result = await autoSurfaceAtToolDispatch('memory_save', { filePath: '/some/path.md' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:152:  it('returns null for memory_index_scan', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:153:    const result = await autoSurfaceAtToolDispatch('memory_index_scan', { specFolder: 'specs/001' });
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:22:  'tool-schemas.js': 780,           // actual: 755 — Expanded MCP schema set + Sprint 019: Zod schema integration, ingest tools + Phase 024 session_bootstrap
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:101:    'tool-schemas.js',
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:151:    { label: 'tool schemas', pattern: /import\s*\{[\s\S]*?\}\s*from\s*['"]\.\/tool-schemas\.js['"]/ },
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:8:  schemaVersion: 'measurement-contract/v1',
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:27:  it('excludes rows missing schema version', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:30:      schemaVersion: '   ',
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:33:      exclusionReason: 'missing_schema_version',
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:29:    // Create memory_index table matching the expected schema
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:47:        producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:48:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:4:// SCHEMA_VERSION is now canonical in vector-index-schema.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:6:export const MAX_TRIGGERS_PER_MEMORY = 10;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:12:export const VectorIndexErrorCode = {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:32:  handle_memory_context,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:238:   T021-T030: handle_memory_context MAIN HANDLER TESTS
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:242:  it('T021: handle_memory_context is a function', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:289:  it('T029: handleMemoryContext is alias for handle_memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:290:    expect(handleMemoryContext).toBe(handle_memory_context);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:847:  it('T101: handle_memory_context is exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:868:  it('T105: handleMemoryContext is same as handle_memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:869:    expect(handleMemoryContext).toBe(handle_memory_context);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:902:      meta: { tool: 'memory_search' }
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:156:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:173:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:185:      UNIQUE(session_id, memory_id)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:200:    CREATE TABLE IF NOT EXISTS session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:201:      session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:216:    CREATE TABLE IF NOT EXISTS session_sent_memories (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:217:      session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:221:      PRIMARY KEY (session_id, memory_hash)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:270:      session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:277:    INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:291:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-a', 'session-a');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:292:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-b', 'session-b');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:623:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:627:        INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:632:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:647:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:651:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:652:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('other-live-task', 'session-other');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:653:      database.prepare('DELETE FROM session_sent_memories WHERE memory_id = ?').run(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:655:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:658:      database.prepare('UPDATE session_sent_memories SET sent_at = ? WHERE memory_id = ?').run('other-live-sent', 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:671:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:672:      ).toEqual({ session_id: 'session-test', attention_score: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:674:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:675:      ).toEqual({ session_id: 'session-other', attention_score: 8 });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:677:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:680:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-other')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:683:        database.prepare('SELECT memory_hash FROM session_sent_memories WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:686:        database.prepare('SELECT memory_hash, sent_at FROM session_sent_memories WHERE memory_id = ?').get(2)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:705:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:709:        INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:714:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:723:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:724:      database.prepare('DELETE FROM session_sent_memories WHERE memory_id = ?').run(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:726:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:735:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:739:        INSERT INTO session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:744:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:762:        (database.prepare('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:765:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:768:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-extra')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:771:        database.prepare('SELECT memory_hash FROM session_sent_memories WHERE memory_id = ?').get(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:774:        (database.prepare('SELECT COUNT(*) as cnt FROM session_sent_memories WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:888:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-a')
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:891:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-b')
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:519:    const signals = detectSignals('Show me the database schema');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:3:import { SCHEMA_VERSION, validateBackwardCompatibility } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:5:describe('Vector index schema compatibility validator', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:11:      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:18:  it('accepts a minimally compatible schema footprint', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:22:        CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:27:        INSERT INTO schema_version (id, version, updated_at) VALUES (1, ${SCHEMA_VERSION}, datetime('now'));
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:35:          session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:66:            session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:109:      expect(report.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:33:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:59:    event.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:103:    expect(columnNames).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:121:  it('T001-D: creates indexes on event_type, session_id, timestamp', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:129:    expect(indexNames).toContain('idx_consumption_log_session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:157:      session_id: 'session-abc',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:169:    expect(row.session_id).toBe('session-abc');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:182:      session_id: 'session-xyz',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:200:      session_id: 'session-triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:217:      session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:225:    expect(row.session_id).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:318:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:319:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:320:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-B', result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:423:      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query_text: `q${i}`, result_count: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:425:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query_text: 'only one', result_count: 3 });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:123:      claude_session_id: 'analytics-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:124:      speckit_session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:52:        (2, 'Database Schema', 'schema db', 'Database migration and schema design', '/specs/db.md', 'db-spec', 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:4:import { createSchema, ensureSchemaVersion, validateLineageSchemaSupport } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:54:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:99:    recordHistory(1, 'ADD', null, 'Version 1', 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:103:      actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:113:    recordHistory(2, 'ADD', null, 'Version 2', 'mcp:memory_save');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:118:      actor: 'mcp:memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:156:  it('validates lineage schema support for phase 2 tables', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:78:export const DENYLIST: Set<string> = new Set<string>([
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:55:  session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:126:    session_id TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:143:/** Track which DB handles have had the schema initialized. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:258:      conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:342:   8. EXPORTS (schema constants for testing)
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:108:  it('adds schema-aligned synthetic text parts and avoids duplicates', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:145:          tool: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:199:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:205:    expect(status).toContain('messages_transform_mode=schema_aligned');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:227:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
-.opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts:420:  describe('T142: memory_corrections table schema (v9 migration)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:40:const VECTOR_INDEX_SCHEMA_SOURCE = fs.readFileSync(path.join(SERVER_ROOT, 'lib', 'search', 'vector-index-schema.ts'), 'utf-8');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:261:    it('T641: review_count column exists in schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:10:} from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:22:describe('vector-index schema migration refinements', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:32:  it('keeps schema_version unchanged when a required migration index build fails', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:37:    database.prepare('UPDATE schema_version SET version = 14 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:49:    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:67:      CREATE TABLE IF NOT EXISTS session_state (
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:68:        session_id TEXT PRIMARY KEY,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:100:    database.prepare('INSERT INTO session_state (session_id, spec_folder) VALUES (?, ?)').run('session-1', staleSpecFolder);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:102:    database.prepare('UPDATE schema_version SET version = 22 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:107:    const sessionRow = database.prepare('SELECT spec_folder FROM session_state WHERE session_id = ?').get('session-1') as { spec_folder: string };
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:126:    database.prepare('UPDATE schema_version SET version = 23 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:139:  it('fails fast on legacy memory_index schemas that cannot store constitutional tier values', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:150:        session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:159:  it('preserves legacy memory_conflicts audit rows when upgrading to the unified v12 schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:98:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:59:    it('T531-3: session_id parameter accepted by triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:64:            session_id: 'dedup-session-003',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:71:        expect(getErrorMessage(error)).not.toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:1:// TEST: memory_search per-channel eval logging (T056)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:106:describe('T056: memory_search emits per-channel eval rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:11:    it('T701: Database initialized with full schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:389:    it('schema created with memory_index table', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:398:    it('schema version is >= 12', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:400:      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:52:  // Also ensure session_state table exists for state management tests
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:65:  try { testDb.exec('DELETE FROM session_sent_memories'); } catch (_: unknown) {}
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:66:  try { testDb.exec('DELETE FROM session_state'); } catch (_: unknown) {}
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:82:    `INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at) VALUES (?, ?, ?, ?)`
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:199:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories').get() as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:228:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get('other-session') as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:373:    it('creates session_state table', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:376:          "SELECT name FROM sqlite_master WHERE type='table' AND name='session_state'"
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:407:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-1') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:425:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-2') as SessionStateRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:626:      expect(md).toContain('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:702:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-1') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:725:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-2') as SessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:754:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:771:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:797:          'SELECT memory_hash FROM session_sent_memories WHERE session_id = ? ORDER BY sent_at ASC'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:71:export const EVIDENCE_GAP_DETECTOR_PROVENANCE = {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:57:  memory_save: ERROR_CODES.MEMORY_SAVE_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:75:export const ErrorCodes = {
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:38:        session_id: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:123:describe('memory_search UX hook integration', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:59: * Creates an in-memory SQLite database with the required schema.
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:65:      // Should not throw an input validation error about session_id/turnNumber.
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:70:          session_id: 'sess-test-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:76:        expect(message).not.toMatch(/session_id/);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:12:    content: [{ type: 'text', text: JSON.stringify({ data: { results: [], count: 0 }, meta: { tool: 'memory_search' } }) }],
-.opencode/skill/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:13:      CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
-.opencode/skill/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:64:    expect(result.schemaVersion).toBe(21);
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:45:export const ERROR_CODES = {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:142:export const RECOVERY_HINTS: RecoveryHintMap = {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:157:      'Run memory_index_scan with force=true to rebuild index',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:162:    toolTip: 'memory_index_scan({ force: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:264:    hint: 'Database schema migration failed.',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:278:      'If no checkpoint available, rebuild index: memory_index_scan({ force: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:298:      'Check parameter type matches expected schema',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:307:      'Check the tool schema for required parameters',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:509:      'Use memory_save({ dryRun: true }) to validate first',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:513:    toolTip: 'memory_save({ dryRun: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:528:      'Check parameter types match schema',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:542:    toolTip: 'memory_save({ force: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:549:      'Run memory_save({ dryRun: true }) for detailed validation report',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:554:    toolTip: 'memory_save({ dryRun: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:674:export const DEFAULT_HINT: RecoveryHint = {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:692:export const TOOL_SPECIFIC_HINTS: ToolSpecificHintMap = {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:709:        'Run memory_index_scan() to rebuild if needed',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:713:      toolTip: 'memory_index_scan()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:742:  memory_save: {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:747:        'Create the memory file before calling memory_save',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:770:      toolTip: 'memory_save({ dryRun: true })'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:775:  memory_index_scan: {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:104:    expect(events.every((event) => event.session_id === 'sess-e')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:14:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:22:/** Create in-memory DB with memory_index schema for archival-manager */
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:51:/** Create in-memory DB with working_memory + memory_index schema */
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:389:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('old-session', 1, 0.5, '${oldTime}')`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:390:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:395:    const remaining = db.prepare('SELECT session_id, memory_id FROM working_memory').all() as WorkingMemoryRow[];
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    expect(remaining[0].session_id).toBe('fresh-session');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:418:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', 1, 0.9)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:437:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, ${score})`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:457:        INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused)
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:464:    const remaining = db.prepare('SELECT memory_id FROM working_memory WHERE session_id = ? ORDER BY memory_id').all('s1') as Array<Pick<WorkingMemoryRow, 'memory_id'>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:487:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:489:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 1}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:490:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 2}, 0.5)`);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:50:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:68:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:83:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:91:    expect(getDefaultErrorCodeForTool('memory_save')).toBe('E081');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:29:export const DEFAULT_HOLDOUT_PERCENT = 0.20;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:32:export const PROMOTION_THRESHOLD_WEEKS = 2;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:35:export const EVALUATION_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:186:/** Track which DB handles have had the shadow-scoring schema initialized. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:707:   12. EXPORTS (schema constants for testing)
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:86:    expect(envelope.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:27:export const GRAPH_WEIGHT_CAP = parseFloat(process.env.SPECKIT_GRAPH_WEIGHT_CAP || '') || 0.15;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:30:export const COMMUNITY_SCORE_CAP = 0.03;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:147:export const DEFAULT_PROFILE: CalibrationProfile = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:156:export const AGGRESSIVE_PROFILE: CalibrationProfile = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:171:export const isGraphCalibrationEnabled = isGraphCalibrationProfileEnabled;
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:90:    expect(names).toContain('session_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:227:    expect(row.session_id).toBe('session-XYZ');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:230:  it('allows null session_id', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:234:    expect(events[0].session_id).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:334:    expect(forSess1[0].session_id).toBe('sess-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:457:    // Verify the schema does not touch ranking columns
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:30:    tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:37:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:49:    tool: 'memory_save',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:162:    tool: 'memory_index_scan',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:176:  { tool: 'memory_context', handler: 'handleMemoryContext' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:177:  { tool: 'memory_search', handler: 'handleMemorySearch' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:178:  { tool: 'memory_save', handler: 'handleMemorySave' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:129:    session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:205: * Reset the schema-ensured flag (for testing only).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:238:         total_results_shown, session_id, notes)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:281:             selected_rank, total_results_shown, session_id, notes,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:295:      session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:309:        sessionId: row.session_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:34:export const MIN_SUPPORT_SESSIONS = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:41:export const MAX_BOOST_DELTA = 0.10;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:44:export const BATCH_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:47:export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:82:  session_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:141:    session_count   INTEGER NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:155:/** Track which DB handles have had the batch-learning schema initialized. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:212:      // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:213:      const sessionKey = ev.session_id ?? `__null_${ev.id}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:366:        (memory_id, batch_run_at, session_count, weighted_score, computed_boost, shadow_rank_delta, promoted)
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:145:     Table column schemas
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/index.ts:27:  ensure_schema,
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:502:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:48:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:60:    UNIQUE(session_id, memory_id),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:66:  CREATE INDEX IF NOT EXISTS idx_wm_session ON working_memory(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:69:  CREATE INDEX IF NOT EXISTS idx_wm_session_focus_lru ON working_memory(session_id, last_focused ASC, id ASC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:77:  session_id: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:128:let schemaEnsured = false;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:135:  schemaEnsured = false;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:140:  if (!db || schemaEnsured) return;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:168:    schemaEnsured = true;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:193:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:208:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:242:      'DELETE FROM working_memory WHERE session_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:      "SELECT DISTINCT session_id FROM working_memory WHERE datetime(last_focused) < datetime(?, '-' || ? || ' seconds')"
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:262:    ) as Database.Statement).all(nowIso, timeoutSeconds) as Array<{ session_id: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:267:      sessionModeRegistry.delete(row.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:286:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:306:      WHERE wm.session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:341:      WHERE wm.session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:395:      'SELECT id FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:406:        WHERE session_id = ? AND memory_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:451:        session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:461:      ON CONFLICT(session_id, memory_id) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:488:      'SELECT focus_count FROM working_memory WHERE session_id = ? AND memory_id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:524:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ? AND memory_id IS NOT NULL'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:534:        WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:573:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:644:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:691:      WHERE session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:57:export const MEMORY_TYPES = {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:118:export const HALF_LIVES_DAYS: Readonly<Record<string, number | null>> = Object.fromEntries(
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:141:export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:201:export const KEYWORD_TYPE_MAP: Readonly<Record<string, MemoryTypeName>> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:390:export const SPEC_DOCUMENT_CONFIGS: readonly SpecDocumentConfig[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:160:export const CORRECTION_TYPES: CorrectionTypes = Object.freeze({
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:177:export const CORRECTION_STABILITY_PENALTY: number = 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:181:export const REPLACEMENT_STABILITY_BOOST: number = 1.2;
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:227:  return ensure_schema();
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:293: * Provides the ensure_schema helper.
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:295:export function ensure_schema(): SchemaResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/learning/corrections.ts:962:  ensure_schema as ensureSchema,
-.opencode/skill/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:50:    expect(preflightCode).toContain('FROM session_learning');
-.opencode/skill/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:70:    expect(preflightCode).toMatch(/INSERT\s+INTO\s+session_learning/);
-.opencode/skill/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:71:    expect(preflightCode).not.toMatch(/INSERT\s+OR\s+REPLACE\s+INTO\s+session_learning/);
-.opencode/skill/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:80:    expect(preflightCode).toContain('UPDATE session_learning');
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-detection.ts:705:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:649:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts:16:  | 'missing_schema_version'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts:27:  schemaVersion?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts:66:  if (!isNonEmptyString(row.schemaVersion)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts:69:      exclusionReason: 'missing_schema_version',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts:82:    schemaVersion: row.schemaVersion.trim(),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:548: * `memory_index_scan` picks up the gap and re-embeds the memory. This avoids blocking
-.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:148:export const DEFAULT_HINTS: DefaultHints = {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:5:export const SPEC_DOCUMENT_FILENAMES = new Set([
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:389:  // T11: Trace payload schema + serialization redaction
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:634:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:22:export const SHARED_PAYLOAD_CERTAINTY_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:31:export const DETECTOR_PROVENANCE_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:40:export const PARSER_PROVENANCE_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:49:export const EVIDENCE_STATUS_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:58:export const FRESHNESS_AUTHORITY_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:67:export const MEASUREMENT_AUTHORITY_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:76:export const PUBLICATION_METHODOLOGY_STATUSES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:83:export const MULTIPLIER_REQUIRED_FIELDS = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:93:  schemaVersion: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:117:export const EDGE_EVIDENCE_CLASS_VALUES = [
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:156:    | 'session_snapshot'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:158:    | 'session_health'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:313:  if (!isNonEmptyString(metadata.schemaVersion)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:314:    throw new Error('Publication methodology metadata requires a non-empty schemaVersion.');
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:336:    schemaVersion: metadata.schemaVersion.trim(),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts:16:export const DEFAULT_WINDOW = 3600;   // 1 hour in seconds
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts:17:export const MAX_WINDOW = 86400;      // 24 hours in seconds
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:8:export const WARM_START_BUNDLE_TOGGLE = 'SPECKIT_WARM_START_BUNDLE';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:17:export const WARM_START_VARIANTS: readonly WarmStartVariant[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:141:      return 'code_graph_query';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:158:    if (resolution === 'code_graph_query') {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:254:        sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:283:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:238:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:6:// Follows code-graph-db.ts patterns for schema versioning and transaction safety.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:105:export const SCHEMA_VERSION = 1;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114:export const RESEARCH_WEIGHTS: Record<ResearchRelation, number> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:125:export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:137:export const VALID_KINDS: Record<LoopType, readonly string[]> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:143:export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:171:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:185:    session_id TEXT NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:    UNIQUE(spec_folder, loop_type, session_id, iteration)
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:194:  CREATE TABLE IF NOT EXISTS schema_version (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:200:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:206:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:207:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:228:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:230:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:232:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:266:    parts.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:      id, spec_folder, loop_type, session_id, kind, name,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:      id, spec_folder, loop_type, session_id, source_id, target_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:454:      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:457:    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:517:  schemaVersion: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:558:    schemaVersion: SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:605:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:621:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:636:    sessionId: r.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts:244:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:7:// - vector-index-schema.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:535:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/ranking-contract.ts:14:export const STAGE2_GRAPH_BONUS_CAP = 0.03;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:362:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1386:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts:61:export const CHUNKING_THRESHOLD = 50000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-cache.ts:40:export const DEFAULT_TTL_MS = 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-cache.ts:209:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:22:export const MAX_FACETS = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:290:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:715:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:382:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1417:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:35:  | 'session_boosted'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:127:    signals.push('session_boosted');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:207:    if (signal === 'session_boosted') return 'session attention';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/result-explainability.ts:359:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:4:// Feature catalog: Evaluation database and schema
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:142: *   - Structured JSON output schema minimises parsing failures
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:319:export const llm = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:435:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:4:// Split from vector-index-store.ts — contains ALL schema creation,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:22:// Feature catalog: Database and schema safety
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:31:  schemaVersion: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:41:  schemaVersion: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:51:const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:74:  'session_id',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:129:    session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:424:// V23: One-time spec_folder re-canonicalization + session_state migration
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:426:/** Current schema version for vector-index migrations. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:427:export const SCHEMA_VERSION = 25;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:429:// Run schema migrations from one version to another
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:433: * Runs schema migrations between two schema versions.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:435: * @param from_version - The current schema version.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:436: * @param to_version - The target schema version.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:442:      // V0 -> v1: Initial schema (already exists via create_schema)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:487:      // Use the canonical helper so later schema refinements only update one DDL definition.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1126:    // P1-3 fix: Migrate session_state.spec_folder using old→new mapping
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1243:// Ensure schema version table exists and run any pending migrations
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1245: * Ensures the schema version table is current.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1247: * @returns The previous schema version.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1249:export function ensure_schema_version(database: Database.Database): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1251:    CREATE TABLE IF NOT EXISTS schema_version (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1258:  const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1263:    logger.info(`Migrating schema from v${current_version} to v${SCHEMA_VERSION}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1272:      INSERT OR REPLACE INTO schema_version (id, version, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1281:      'Backward-compatibility validation detected schema gaps',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1449:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1467:        ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1528: * Validates backward compatibility expectations for the current schema.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1581:    const schemaVersion = safe_get_schema_version(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1589:      schemaVersion,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1599:      schemaVersion: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1639:      schemaVersion: safe_get_schema_version(database),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1651:      schemaVersion: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1661:function safe_get_schema_version(database: Database.Database): number | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1663:    if (!hasTable(database, 'schema_version')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1666:    const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1765:  if (!column_names.includes('session_id')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1767:      database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1768:      console.warn('[vector-index] Migration: Added session_id column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1773:      logDuplicateColumnMigrationSkip('session_id', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2172: * Migrate session_state.spec_folder values using the old→new mapping
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2179:  if (!hasTable(database, 'session_state')) return;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2190:    'UPDATE session_state SET spec_folder = ? WHERE session_id = ? AND spec_folder = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2194:    `SELECT session_id, spec_folder FROM session_state WHERE spec_folder IS NOT NULL`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2195:  ).all() as Array<{ session_id: string; spec_folder: string }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2202:      updateStmt.run(canonical, row.session_id, row.spec_folder);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2205:      logger.warn(`Migration v23: Ambiguous session_state mapping for "${row.spec_folder}". Skipping.`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2210:    logger.info(`Migration v23: Updated spec_folder for ${updated} session_state rows`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2257:// Create database schema
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2259: * Creates or upgrades the vector-index schema.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2264:export function create_schema(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2287:        'Existing schema is not fully backward-compatible after bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2325:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2461:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2483:export { ensure_schema_version as ensureSchemaVersion };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2485:export { create_schema as createSchema };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/channel-representation.ts:16:export const QUALITY_FLOOR = 0.005;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:24:export const EXPLICIT_ONLY_EVIDENCE = 'explicit_only';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:52:export const DETERMINISTIC_EXTRACTOR_PROVENANCE = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:37:  create_schema,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:38:  ensure_schema_version,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:39:} from './vector-index-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:83:export const search_weights: SearchWeightsConfig = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:121:export const EMBEDDING_DIM = 768;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:167:  const schema_row = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:171:  if (!schema_row) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:176:      reason: 'No existing schema',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:222:    reason: 'No stored vector dimension found for existing schema',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:247:      const source_label = existing.source === 'vec_metadata' ? 'vec_metadata' : 'vec_memories schema';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:281:export const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:819:  create_schema(new_db, { sqlite_vec_available: vec_available, get_embedding_dim });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:820:  ensure_schema_version(new_db);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:24:  ensure_schema_version,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:30:  create_schema,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:38:} from './vector-index-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:6:export const SESSION_TRANSITION_SIGNAL_ORDER = [
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts:23:export const DOMAIN_VOCABULARY_MAP: Record<string, string[]> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:169:  // No-op: schema creation is now idempotently attempted on every access.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:211:   5. EXPORTS (re-export constants for test convenience)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:270:    // entity_catalog may not have an alias column — check schema first
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:279:      // Fall back to entity_text as both alias and canonical when schema differs
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:1146:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:112:    metrics['isolation.missing_session_scope_rows'] = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:114:    metrics['schema.version'] = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:130:  metrics['isolation.missing_session_scope_rows'] = safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:132:    "SELECT COUNT(*) AS value FROM memory_index WHERE session_id IS NULL OR TRIM(session_id) = ''",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:138:  metrics['schema.version'] = safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:140:    'SELECT version AS value FROM schema_version WHERE id = 1',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:20:export const CONFIDENCE_MULTIPLIER_BASE = 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:23:export const CONFIDENCE_MULTIPLIER_FLOOR = 0.3;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:26:export const NEGATIVE_PENALTY_PER_VALIDATION = 0.1;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:34:export const RECOVERY_HALF_LIFE_MS = 30 * 24 * 60 * 60 * 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:573:export const __testables = {
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:11:} from '../search/vector-index-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:94:  'schema_mismatch',
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:182: * Tier 2: Database config persistence — `shared_memory_enabled` key in `config` table.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:200:        .get('shared_memory_enabled') as { value: string } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:204:      console.warn(`[shared-spaces] Failed to resolve shared_memory_enabled config: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:219:    .run('shared_memory_enabled', 'true');
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:223: * Ensure shared-space schema is available before collab operations run.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:603:    return deny('shared_memory_disabled');
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:10:} from './trace-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:13:} from './trace-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:83:export const CONFIDENCE_BASE: number = 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:84:export const CONFIDENCE_POSITIVE_INCREMENT: number = 0.1;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:85:export const CONFIDENCE_NEGATIVE_DECREMENT: number = 0.05;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:86:export const CONFIDENCE_MAX: number = 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:87:export const CONFIDENCE_MIN: number = 0.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:89:export const PROMOTION_CONFIDENCE_THRESHOLD: number = 0.9;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:90:export const PROMOTION_VALIDATION_THRESHOLD: number = 5;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:51:export const GROUND_TRUTH_QUERIES: GroundTruthQuery[] = queries;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:52:export const GROUND_TRUTH_RELEVANCES: GroundTruthRelevance[] = relevances;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:65:export const QUERY_DISTRIBUTION = {
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:42:export const LAYER_DEFINITIONS: Record<LayerId, LayerDefinition> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:104:      'code_graph_query',
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:105:      'code_graph_context'
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:115:    tools: ['memory_index_scan', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'code_graph_scan', 'code_graph_status', 'ccc_status', 'ccc_reindex', 'ccc_feedback']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:128:export const TOOL_LAYER_MAP: Record<string, LayerId> = {} as Record<string, LayerId>;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts:60:export const MPAB_BONUS_COEFFICIENT = 0.3;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:4:// Feature catalog: Evaluation database and schema
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:55:export const ALL_CHANNELS: AblationChannel[] = [
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:161:export const FIVE_FACTOR_WEIGHTS: FiveFactorWeights = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:170:export const DEFAULT_WEIGHTS: LegacyWeights = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:180:export const RECENCY_SCALE_DAYS: number = 1 / DECAY_RATE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:184:export const FSRS_FACTOR: number = 19 / 81;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:185:export const FSRS_DECAY: number = -0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:226:export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:236:export const CITATION_DECAY_RATE: number = 0.1;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:237:export const CITATION_MAX_DAYS: number = 90;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:242:export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:256:export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:362:export const calculateTemporalScore = calculateRetrievabilityScore;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:32:export const IMPORTANCE_TIERS: Readonly<Record<ImportanceTier, TierConfig>> = {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:80:export const VALID_TIERS: readonly ImportanceTier[] = Object.keys(IMPORTANCE_TIERS) as ImportanceTier[];
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:81:export const DEFAULT_TIER: ImportanceTier = 'normal';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:24:export const INTERFERENCE_SIMILARITY_THRESHOLD = 0.75;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:31:export const INTERFERENCE_PENALTY_COEFFICIENT = -0.08;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:8:import { ensureGovernanceTables, ensureSharedSpaceTables } from '../search/vector-index-schema.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:294:    session_id: decision.normalized.sessionId || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:337:      action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:422:    clauses.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:492:      && matchesExactScope(row.session_id, normalized.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:538:      session_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:556:    session_id: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:609:      sessionId: row.session_id ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:33:  session_id?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:44:  session_id?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:106:      session_id TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:116:    CREATE INDEX IF NOT EXISTS idx_consumption_log_session_id
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:117:      ON consumption_log (session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:157:      event.session_id ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:197:    if (options.session_id) {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:198:      conditions.push('session_id = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:199:      params.push(options.session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:239:    // Unique sessions (add session_id IS NOT NULL to existing conditions)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:240:    const sessionConditions = [...conditions, 'session_id IS NOT NULL'];
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:243:      SELECT COUNT(DISTINCT session_id) as cnt
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:407:        SELECT session_id, COUNT(*) as query_count
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:409:        WHERE session_id IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:410:        GROUP BY session_id
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:414:      `).all(exampleLimit) as Array<{ session_id: string; query_count: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:421:          const sid = r.session_id.length > 36 ? r.session_id.substring(0, 36) + '...' : r.session_id;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:20:export const SAMPLING_RATE = 0.05;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:80:    // Only set _db after successful schema creation
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:5:// Canonical schema + runtime validation for retrieval trace payloads
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:472:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:4:// T303: Decomposed — tool schemas in tool-schemas.ts, dispatch
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:29:// T303: Tool schemas and dispatch
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:30:import { TOOL_DEFINITIONS } from './tool-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:125:import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:213:  'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:214:  'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:215:  'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:254:  preferredTool: 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:255:  secondaryTool: 'code_graph_context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:320:    preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:321:    secondaryTool: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:365:    : typeof args.session_id === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:366:      ? args.session_id
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:752:    ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:771:        snap.graphFreshness === 'empty' ? 'run code_graph_scan' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:799:      routingRules.push('Structural queries (callers, imports, deps) → code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:848:   4. TOOL DEFINITIONS (T303: from tool-schemas.ts)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:885:    if (name.startsWith('code_graph_')) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:886:      recordMetricEvent({ kind: 'code_graph_query' });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1243:      console.error('[context-server] Run memory_index_scan manually after model loads');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1349:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:32:type SharedAdminTool = SharedSpaceAdminTool | 'shared_memory_enable';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:108:        details: { reason: 'shared_memory_admin_unconfigured' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:123:        details: { reason: 'shared_memory_admin_ambiguous' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:214:  if (args.tool !== 'shared_memory_enable' && normalizedTenantId.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:239:        reason: 'shared_memory_trusted_binding_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:363:    tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:385:    details: { reason: 'shared_memory_internal_error' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:805:      tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:811:        'shared_memory_enable_admin_required',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:823:        .get('shared_memory_enabled') as { value: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:834:        tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:850:      tool: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:866:      'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:11:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:14:import { MAX_INGEST_PATHS } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:30:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:16:import { MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:108:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:109:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:291:  hints.push(`Run memory_index_scan({ force: true }) to re-index if needed`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:108:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:189:    session_id: rawSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:540:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:6:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:221:export const handleMemorySearch = lazyFunction(getMemorySearchModule, 'handleMemorySearch');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:225:export const handleMemoryMatchTriggers = lazyFunction(getMemoryTriggersModule, 'handleMemoryMatchTriggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:229:export const handleMemorySave = lazyFunction(getMemorySaveModule, 'handleMemorySave');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:230:export const indexMemoryFile = lazyFunction(getMemorySaveModule, 'indexMemoryFile');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:231:export const atomicSaveMemory = lazyFunction(getMemorySaveModule, 'atomicSaveMemory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:232:export const getAtomicityMetrics = lazyFunction(getMemorySaveModule, 'getAtomicityMetrics');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:233:export const handle_memory_save = lazyFunction(getMemorySaveModule, 'handle_memory_save');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:234:export const index_memory_file = lazyFunction(getMemorySaveModule, 'index_memory_file');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:235:export const atomic_save_memory = lazyFunction(getMemorySaveModule, 'atomic_save_memory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:236:export const get_atomicity_metrics = lazyFunction(getMemorySaveModule, 'get_atomicity_metrics');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:239:export const calculateDocumentWeight = lazyFunction(getPeGatingModule, 'calculateDocumentWeight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:240:export const isSpecDocumentType = lazyFunction(getPeGatingModule, 'isSpecDocumentType');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:241:export const findSimilarMemories = lazyFunction(getPeGatingModule, 'findSimilarMemories');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:242:export const reinforceExistingMemory = lazyFunction(getPeGatingModule, 'reinforceExistingMemory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:243:export const markMemorySuperseded = lazyFunction(getPeGatingModule, 'markMemorySuperseded');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:244:export const updateExistingMemory = lazyFunction(getPeGatingModule, 'updateExistingMemory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:245:export const logPeDecision = lazyFunction(getPeGatingModule, 'logPeDecision');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:248:export const handleMemoryIngestStart = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestStart');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:249:export const handleMemoryIngestStatus = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestStatus');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:250:export const handleMemoryIngestCancel = lazyFunction(getMemoryIngestModule, 'handleMemoryIngestCancel');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:251:export const handle_memory_ingest_start = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_start');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:252:export const handle_memory_ingest_status = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_status');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:253:export const handle_memory_ingest_cancel = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_cancel');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:256:export const handleMemoryDelete = lazyFunction(getMemoryCrudModule, 'handleMemoryDelete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:257:export const handleMemoryUpdate = lazyFunction(getMemoryCrudModule, 'handleMemoryUpdate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:258:export const handleMemoryList = lazyFunction(getMemoryCrudModule, 'handleMemoryList');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:259:export const handleMemoryStats = lazyFunction(getMemoryCrudModule, 'handleMemoryStats');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:260:export const handleMemoryHealth = lazyFunction(getMemoryCrudModule, 'handleMemoryHealth');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:261:export const setEmbeddingModelReady = lazyFunction(getMemoryCrudModule, 'setEmbeddingModelReady');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:262:export const isEmbeddingModelReady = lazyFunction(getMemoryCrudModule, 'isEmbeddingModelReady');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:263:export const handle_memory_delete = lazyFunction(getMemoryCrudModule, 'handle_memory_delete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:264:export const handle_memory_update = lazyFunction(getMemoryCrudModule, 'handle_memory_update');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:265:export const handle_memory_list = lazyFunction(getMemoryCrudModule, 'handle_memory_list');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:266:export const handle_memory_stats = lazyFunction(getMemoryCrudModule, 'handle_memory_stats');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:268:export const set_embedding_model_ready = lazyFunction(getMemoryCrudModule, 'set_embedding_model_ready');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:269:export const is_embedding_model_ready = lazyFunction(getMemoryCrudModule, 'is_embedding_model_ready');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:272:export const handleMemoryIndexScan = lazyFunction(getMemoryIndexModule, 'handleMemoryIndexScan');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:273:export const indexSingleFile = lazyFunction(getMemoryIndexModule, 'indexSingleFile');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:274:export const findConstitutionalFiles = lazyFunction(getMemoryIndexModule, 'findConstitutionalFiles');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:275:export const handle_memory_index_scan = lazyFunction(getMemoryIndexModule, 'handle_memory_index_scan');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:276:export const index_single_file = lazyFunction(getMemoryIndexModule, 'index_single_file');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:277:export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'find_constitutional_files');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:280:export const handleMemoryBulkDelete = lazyFunction(getMemoryBulkDeleteModule, 'handleMemoryBulkDelete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:283:export const handleCheckpointCreate = lazyFunction(getCheckpointsModule, 'handleCheckpointCreate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:284:export const handleCheckpointList = lazyFunction(getCheckpointsModule, 'handleCheckpointList');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:285:export const handleCheckpointRestore = lazyFunction(getCheckpointsModule, 'handleCheckpointRestore');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:286:export const handleCheckpointDelete = lazyFunction(getCheckpointsModule, 'handleCheckpointDelete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:287:export const handleMemoryValidate = lazyFunction(getCheckpointsModule, 'handleMemoryValidate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:288:export const handle_checkpoint_create = lazyFunction(getCheckpointsModule, 'handle_checkpoint_create');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:289:export const handle_checkpoint_list = lazyFunction(getCheckpointsModule, 'handle_checkpoint_list');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:290:export const handle_checkpoint_restore = lazyFunction(getCheckpointsModule, 'handle_checkpoint_restore');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:291:export const handle_checkpoint_delete = lazyFunction(getCheckpointsModule, 'handle_checkpoint_delete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:295:export const handleTaskPreflight = lazyFunction(getSessionLearningModule, 'handleTaskPreflight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:296:export const handleTaskPostflight = lazyFunction(getSessionLearningModule, 'handleTaskPostflight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:297:export const handleGetLearningHistory = lazyFunction(getSessionLearningModule, 'handleGetLearningHistory');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:298:export const handle_task_preflight = lazyFunction(getSessionLearningModule, 'handle_task_preflight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:299:export const handle_task_postflight = lazyFunction(getSessionLearningModule, 'handle_task_postflight');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:300:export const handle_get_learning_history = lazyFunction(getSessionLearningModule, 'handle_get_learning_history');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:303:export const handleEvalRunAblation = lazyFunction(getEvalReportingModule, 'handleEvalRunAblation');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:304:export const handleEvalReportingDashboard = lazyFunction(getEvalReportingModule, 'handleEvalReportingDashboard');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:309:export const handleMemoryDriftWhy = lazyFunction(getCausalGraphModule, 'handleMemoryDriftWhy');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:310:export const handleMemoryCausalLink = lazyFunction(getCausalGraphModule, 'handleMemoryCausalLink');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:311:export const handleMemoryCausalStats = lazyFunction(getCausalGraphModule, 'handleMemoryCausalStats');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:312:export const handleMemoryCausalUnlink = lazyFunction(getCausalGraphModule, 'handleMemoryCausalUnlink');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:313:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:315:export const handle_memory_causal_stats = lazyFunction(getCausalGraphModule, 'handle_memory_causal_stats');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:316:export const handle_memory_causal_unlink = lazyFunction(getCausalGraphModule, 'handle_memory_causal_unlink');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:319:export const handleMemoryContext = lazyFunction(getMemoryContextModule, 'handleMemoryContext');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:323:export const handleSharedMemoryEnable = lazyFunction(getSharedMemoryModule, 'handleSharedMemoryEnable');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:324:export const handleSharedMemoryStatus = lazyFunction(getSharedMemoryModule, 'handleSharedMemoryStatus');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:325:export const handleSharedSpaceMembershipSet = lazyFunction(getSharedMemoryModule, 'handleSharedSpaceMembershipSet');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:326:export const handleSharedSpaceUpsert = lazyFunction(getSharedMemoryModule, 'handleSharedSpaceUpsert');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:329:export const handleSessionHealth = lazyFunction(getSessionHealthModule, 'handleSessionHealth');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:332:export const handleSessionResume = lazyFunction(getSessionResumeModule, 'handleSessionResume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:335:export const handleSessionBootstrap = lazyFunction(getSessionBootstrapModule, 'handleSessionBootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:338:export const memorySave = lazyModule(getMemorySaveModule);
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:339:export const memoryIndex = lazyModule(getMemoryIndexModule);
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:340:export const memoryBulkDelete = lazyModule(getMemoryBulkDeleteModule);
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:341:export const checkpoints = lazyModule(getCheckpointsModule);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:53:    preferredTool: 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:153:    preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:154:    message: 'Advisory only: when the next question is about callers, imports, dependencies, or outline, prefer `code_graph_query` before Grep or Glob.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:24:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:6:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:19:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:8:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:10:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:60:      hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:61:      actions: ['Restart the MCP server', 'Call memory_index_scan()'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:18:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:144:      ? 'memory_save: updated indexed memory entry'
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:145:      : 'memory_save: created new indexed memory entry',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:150:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:160:    actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:251:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:269:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:285:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:462:    tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:17:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/index.ts:7:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:26:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:117:      AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:254:      actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:284:      recordHistory(memory_id, 'ADD', null, parsed.title ?? filePath, 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:291:          'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:236:        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:237:        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:263:    hints.push('Run memory_index_scan() to regenerate embeddings');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:36:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:47:export const ASSISTIVE_AUTO_MERGE_THRESHOLD = 0.96;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:54:export const ASSISTIVE_REVIEW_THRESHOLD = 0.88;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:124: * Result payload from reconsolidation pre-checks during memory_save.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:301:                recordHistory(id, 'ADD', null, memory.title ?? memory.filePath ?? null, 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:322:            reason: `memory_save: reconsolidation ${reconResult.action}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:329:              tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:335:            actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:17:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:18:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:88:            reason: 'memory_save: reinforced existing memory via prediction-error gate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:93:              tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:99:            actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:140:          reason: 'memory_save: updated existing memory via prediction-error gate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:145:            tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:151:          actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:201:  preferredTool: 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:323:    preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:324:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:709:    session_id: options.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:741:    // minState omitted — memoryState column not yet in schema
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:772:    // minState omitted — memoryState column not yet in schema
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:806:    // minState omitted — memoryState column not yet in schema
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1530:        session_id: effectiveSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:70:            schemaVersion: stats.schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:41:export const CACHED_SESSION_SUMMARY_SCHEMA_VERSION = 1;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:42:export const CACHED_SESSION_SUMMARY_MAX_AGE_MS = 30 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:45:  schemaVersion: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:54:  schemaVersion: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:73:    | 'schema_version_mismatch'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:182:    schemaVersion: CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:203:  if (candidate.schemaVersion !== CACHED_SESSION_SUMMARY_SCHEMA_VERSION) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:206:      'schema_version_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:207:      `Expected schema version ${CACHED_SESSION_SUMMARY_SCHEMA_VERSION} but received ${String(candidate.schemaVersion)}.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:333:      schemaVersion: candidate.schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:459:    hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:10:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:11:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:4:// Centralized strict Zod validation schemas for MCP tool inputs.
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:13:// Feature catalog: Strict Zod schema validation
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:26:export const getSchema = <T extends z.ZodRawShape>(shape: T): z.ZodObject<T> => {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:55:  let schema = z.string();
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:57:    schema = schema.min(minLength);
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:59:  return schema.refine(isSafePath, { message: PATH_TRAVERSAL_MESSAGE });
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:63:/** Shared max paths constant — used by both schema and handler. */
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:64:export const MAX_INGEST_PATHS = 50;
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:65:export const MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS = 1;
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:155:// E3: Simplified search schema — 3 params only
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:174:  session_id: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:185:  // Governance args — accepted by tool-schemas.ts tool definition and
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:231:export const memoryBulkDeleteSchema = getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:396:export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:401:  memory_save: memorySaveSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:421:  memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445:  shared_memory_status: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:  shared_memory_enable: getSchema({}) as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:451:  session_bootstrap: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:454:  session_health: getSchema({}) as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455:  session_resume: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:486:  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:494:  shared_memory_enable: [],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:495:  session_bootstrap: ['specFolder'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:496:  session_health: [],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:497:  session_resume: ['specFolder', 'minimal'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:567:  const schema = getToolSchema(toolName);
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:568:  if (!schema) {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:569:    throw new ToolSchemaValidationError(toolName, `Unknown tool: "${toolName}". No schema registered.`, {
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:578:    return schema.parse(rawInput);
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583:      console.error(`[schema-validation] ${toolName}: ${formatted.message}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:99:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:113:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:130:  CREATE TABLE IF NOT EXISTS session_learning (
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:135:    session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:161:  CREATE INDEX IF NOT EXISTS idx_session_learning_spec_folder
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:162:  ON session_learning(spec_folder)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:166:  CREATE INDEX IF NOT EXISTS idx_session_learning_task_lookup
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:167:  ON session_learning(spec_folder, task_id, session_id, phase, updated_at, id)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:175:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:194:// M2 FIX: Track schema init per database instance, not as a process-global boolean.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:196:const schemaInitializedDbs = new WeakSet<Database>();
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:210:    WHERE type = 'table' AND name = 'session_learning'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:217:  const tempTableName = 'session_learning_legacy_migration';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:221:    database.exec(`ALTER TABLE session_learning RENAME TO ${tempTableName}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:224:      INSERT INTO session_learning (${SESSION_LEARNING_COLUMNS})
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:240:      'Failed to migrate session_learning schema',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:246:/** Initialize the session_learning table schema if not already created */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:248:  if (schemaInitializedDbs.has(database)) return;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:257:    schemaInitializedDbs.add(database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:264:      'Failed to initialize session_learning schema',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:309:    sessionId: session_id = null
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:334:  const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:340:     FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:344:       AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:351:      UPDATE session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:352:      SET session_id = ?, pre_knowledge_score = ?, pre_uncertainty_score = ?, pre_context_score = ?, knowledge_gaps = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:398:    INSERT INTO session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:399:    (spec_folder, task_id, phase, session_id, pre_knowledge_score, pre_uncertainty_score, pre_context_score, knowledge_gaps, created_at, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:467:    sessionId: session_id = null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:491:  const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:495:    FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:501:    query += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:538:        : `No preflight record found for spec_folder="${spec_folder}", task_id="${taskId}", session_id="${normalizedSessionId}". Call task_preflight first.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:568:      UPDATE session_learning SET
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:615:          sessionId: (preflightRecord.session_id as string | null) ?? normalizedSessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:663:    sessionId: session_id,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:686:    const normalizedSessionId = normalizeSessionId(session_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:688:      SELECT * FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:694:      sql += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:719:        sessionId: (row.session_id as string | null) ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:772:        FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:778:        summarySql += ' AND session_id = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:875:const ensure_schema = ensureSchema;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:881:  ensure_schema,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:18:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:61:export const TOOL_NAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:62:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:65:  'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:78:    case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:80:      // E3: Delegate to memory_search with sensible defaults
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:100:    case 'memory_save':           return handleMemorySave(parseArgs<SaveArgs>(validateToolArgs('memory_save', args)));
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:33:export const SERVER_DIR: string = path.join(import.meta.dirname, '..');
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:34:export const NODE_MODULES: string = path.join(SERVER_DIR, 'node_modules');
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:35:export const LIB_DIR: string = path.join(import.meta.dirname, '..', 'lib');
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:36:export const SHARED_DIR: string = path.join(SERVER_DIR, '..', 'shared');
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:81:export const DATABASE_DIR: string = resolvedDatabasePaths.databaseDir;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:82:export const DATABASE_PATH: string = resolvedDatabasePaths.databasePath;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:83:export const DB_UPDATED_FILE: string = resolvedDatabasePaths.dbUpdatedFile;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:91:export const BATCH_SIZE: number = Number.isFinite(parsedBatchSize) && parsedBatchSize > 0 ? parsedBatchSize : 5;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:93:export const BATCH_DELAY_MS: number = Number.isFinite(parsedBatchDelayMs) && parsedBatchDelayMs > 0 ? parsedBatchDelayMs : 100;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:100:export const INDEX_SCAN_COOLDOWN: number = 60000;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:107:export const MAX_QUERY_LENGTH: number = 10000;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:109:export const INPUT_LIMITS: Readonly<InputLimitsConfig> = {
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:124:export const DEFAULT_BASE_PATH: string = process.env.MEMORY_BASE_PATH || process.cwd();
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:126:export const ALLOWED_BASE_PATHS: string[] = [
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:139:export const CONSTITUTIONAL_CACHE_TTL: number = 60000;
+.opencode/skills/system-spec-kit/mcp_server/core/config.ts:176:export const COGNITIVE_CONFIG: CognitiveConfig = COGNITIVE_CONFIG_LAZY;
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:6:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:11:export const TOOL_NAMES = new Set(['memory_context']);
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:16:    case 'memory_context': return handleMemoryContext(parseArgs<ContextArgs>(validateToolArgs('memory_context', args)));
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:4:// T018: MCP tool handler for session_health — reports session
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:65:/** Handle session_health tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:102:  const structuralContext = buildStructuralBootstrapContract('session_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:160:      producer: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:161:      sourceSurface: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:170:    sourceSurface: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:377:    'schemaVersion',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:408:      schemaVersion: result.schemaVersion as string | null | undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:515:    minState,  // No default — memoryState column not yet in schema; defaulting to 'WARM' filters all rows
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:542:  // Validate at least one search input is provided (moved from schema superRefine for GPT compatibility)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1208:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1360:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:18:export const TOOL_NAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:19:  'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:20:  'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:21:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:22:  'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:58:    case 'code_graph_scan':
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:60:    case 'code_graph_query': {
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:67:    case 'code_graph_status':
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:69:    case 'code_graph_context':
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/formatters/token-metrics.ts:36:export const estimateTokens = estimateTokenCount;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:48:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:148:/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:153:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:157:        hint: 'Retry memory_index_scan after checkpoint_restore maintenance completes.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:176:      console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${profile.dim}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:180:    console.warn('[memory_index_scan] Could not verify embedding dimension:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:195:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:271:              'mcp:memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:312:      tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:631:    tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:671:const handle_memory_index_scan = handleMemoryIndexScan;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:680:  handle_memory_index_scan,
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:5:// Create a point-in-time SQLite checkpoint before schema migrations.
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:25:  schemaVersion: number | null;
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:141: * Read the current schema version from a SQLite database.
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:151:    const row = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:187:  const schemaVersion = getSchemaVersion(args.dbPath);
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:194:    schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:208:    schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:230:  console.log(`Schema version: ${result.schemaVersion ?? 'unknown'}`);
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:24:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:46:export const TOOL_NAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:47:  'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:58:  'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:59:  'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:60:  'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:61:  'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:62:  'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:68:    case 'memory_index_scan':          return handleMemoryIndexScan(parseArgs<ScanArgs>(validateToolArgs('memory_index_scan', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:79:    case 'shared_memory_status':       return handleSharedMemoryStatus(parseArgs<SharedMemoryStatusArgs>(validateToolArgs('shared_memory_status', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:80:    case 'shared_memory_enable':       return handleSharedMemoryEnable(parseArgs<Record<string, unknown>>(validateToolArgs('shared_memory_enable', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:81:    case 'session_health':             return handleSessionHealth();
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:82:    case 'session_resume':             return handleSessionResume(parseArgs<SessionResumeArgs>(validateToolArgs('session_resume', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:83:    case 'session_bootstrap':          return handleSessionBootstrap(parseArgs<SessionBootstrapArgs>(validateToolArgs('session_bootstrap', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:334:        error: `Schema missing: ${sanitizeErrorForHint(message)}. Run memory_index_scan() to create the database schema, or restart the MCP server.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:462:          `Run memory_index_scan with force:true to rebuild FTS5 index.`
+.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:17:export const ALL_DISPATCHERS = [
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:4:import type { ToolDefinition } from '../tool-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:79:function validateProperty(field: string, value: unknown, schema: JsonSchemaProperty): void {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:80:  if (schema.const !== undefined && value !== schema.const) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:81:    throw new Error(`Invalid value for '${field}': expected constant ${String(schema.const)}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:84:  if (Array.isArray(schema.enum) && !schema.enum.includes(value)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:85:    throw new Error(`Invalid value for '${field}': must be one of ${schema.enum.join(', ')}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:88:  if (schema.type) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:89:    validateType(field, value, schema.type);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:92:  if (schema.type === 'array' && schema.items && Array.isArray(value)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:94:      validateProperty(field, item, schema.items);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:98:  if (schema.type === 'string' && typeof value === 'string') {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:99:    if (schema.minLength !== undefined && value.length < schema.minLength) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:100:      throw new Error(`Invalid value for '${field}': length must be >= ${schema.minLength}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:102:    if (schema.maxLength !== undefined && value.length > schema.maxLength) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:103:      throw new Error(`Invalid value for '${field}': length must be <= ${schema.maxLength}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:107:  if (schema.type === 'array' && Array.isArray(value)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:108:    if (schema.minItems !== undefined && value.length < schema.minItems) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:109:      throw new Error(`Invalid value for '${field}': must contain at least ${schema.minItems} item(s)`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:111:    if (schema.maxItems !== undefined && value.length > schema.maxItems) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:112:      throw new Error(`Invalid value for '${field}': must contain at most ${schema.maxItems} item(s)`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:117:    schema.type === 'number' &&
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:119:    (schema.minimum !== undefined || schema.maximum !== undefined)
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:122:    if (schema.minimum !== undefined && numericValue < schema.minimum) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:123:      throw new Error(`Invalid value for '${field}': must be >= ${schema.minimum}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:125:    if (schema.maximum !== undefined && numericValue > schema.maximum) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:126:      throw new Error(`Invalid value for '${field}': must be <= ${schema.maximum}`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:174: * Validate tool arguments against the declared MCP input schema.
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:181: * Unknown tools or missing schemas are skipped to preserve legacy behavior.
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:193:  const schema = toolDefinition.inputSchema as InputSchema;
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:194:  if (schema.type === 'object' && (args === null || typeof args !== 'object' || Array.isArray(args))) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:198:  const required = schema.required ?? [];
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:204:  if (Array.isArray(schema['x-requiredAnyOf']) && schema['x-requiredAnyOf'].length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:205:    const branchMatched = schema['x-requiredAnyOf'].some((fields) =>
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:209:      throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:213:  if (!schema.properties) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:214:    if (!matchesSchemaConstraint(args, schema)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:215:      throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:221:    if (schema.additionalProperties === false && !Object.prototype.hasOwnProperty.call(schema.properties, field)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:227:    const propertySchema = schema.properties[field];
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:234:  if (!matchesSchemaConstraint(args, schema)) {
+.opencode/skills/system-spec-kit/mcp_server/utils/tool-input-schema.ts:235:    throw new Error(`Arguments for '${toolName}' do not satisfy required schema constraints`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:19:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:52:      error: 'Database not initialized. Run memory_index_scan() to trigger schema creation, or restart the MCP server.',
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:13://   Node .opencode/skills/system-spec-kit/mcp_server/dist/cli.js schema-downgrade --to 15 --confirm
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:28:type SchemaDowngradeModule = Awaited<typeof import('./lib/storage/schema-downgrade.js')>;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:39:let _schema_downgrade: SchemaDowngradeModule | null = null;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:78:  return _schema_downgrade ??= await import('./lib/storage/schema-downgrade.js');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:118:  schema-downgrade --to 15 --confirm
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:119:                                 Downgrade schema from v16 to v15 (targeted, destructive)
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:133:  spec-kit-cli schema-downgrade --to 15 --confirm
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:205:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:212:      const legacyVersion = db.prepare("SELECT value FROM config WHERE key = 'schema_version'").get() as { value: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:217:      // No schema version metadata available
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:520:    console.error('ERROR: --confirm is required for schema-downgrade.');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:577:    case 'schema-downgrade':
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:12:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:24:export const TOOL_NAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:84:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:243: * Map tool schema direction values to getCausalChain direction values.
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:244: * Tool schema: 'outgoing' | 'incoming' | 'both'
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:69:  const schemaResult = envSchema.safeParse(env);
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:70:  if (!schemaResult.success) {
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:71:    const errors: CognitiveConfigParseError[] = schemaResult.error.issues.map((issue) => {
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:80:  const source = schemaResult.data.SPECKIT_COGNITIVE_COACTIVATION_PATTERN;
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:81:  const flags = schemaResult.data.SPECKIT_COGNITIVE_COACTIVATION_FLAGS;
+.opencode/skills/system-spec-kit/mcp_server/configs/cognitive.ts:114:export const COGNITIVE_CONFIG: CognitiveConfig = loadCognitiveConfigFromEnv(process.env);
+.opencode/skills/system-spec-kit/mcp_server/utils/index.ts:59:} from './tool-input-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:384:  it('C13: Response meta.tool is memory_search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:388:    expect(envelope.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tools/checkpoint-tools.ts:12:import { validateToolArgs } from '../schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/checkpoint-tools.ts:24:export const TOOL_NAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:28:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:613:    reason: `memory_save: chunked indexing (${chunkResult.strategy}, ${chunkResult.chunks.length} chunks)`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:618:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:628:    actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts:39:        'handle_memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:4:// MCP tool handler for code_graph_query — queries structural relationships.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:317:/** Handle code_graph_query tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:361:          }, readiness, 'code_graph_query outline payload'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:400:          }, readiness, 'code_graph_query blast_radius payload'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:433:          }, readiness, `code_graph_query ${operation} payload`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:559:          }, readiness, `code_graph_query ${operation} payload`, result.edges[0]
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:15:    session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/pe-gating.vitest.ts:27:    session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts:40:export const MAX_BATCH_SIZE = 100;
+.opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts:43:export const DEFAULT_RETRY_OPTIONS: Readonly<RetryDefaults> = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:4:// MCP tool handler for code_graph_scan — indexes workspace files.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:123:/** Handle code_graph_scan tool call */
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:14:import { TOOL_DEFINITIONS, getSchema, validateToolArgs } from '../tool-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:15:import { validateToolInputSchema } from '../utils/tool-input-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:47:  it('public tool schemas do not publish top-level combinators', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:49:      const schema = tool.inputSchema as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:50:      expect(schema).not.toHaveProperty('oneOf');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:51:      expect(schema).not.toHaveProperty('not');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:52:      expect(schema).not.toHaveProperty('allOf');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:53:      expect(schema).not.toHaveProperty('anyOf');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:57:  it('all tool schemas have type: object at top level', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:59:      const schema = tool.inputSchema as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:60:      expect(schema.type).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:83:      validateToolInputSchema('memory_context', {}, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:95:    const schema = getSchema({
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:99:    const parsed = schema.safeParse({ query: 'valid query', unexpected: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:109:    const schema = getSchema({
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:113:    const parsed = schema.parse({ query: 'valid query', unexpected: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:119:      validateToolInputSchema('memory_context', { input: 'resume', mode: 'invalid-mode' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:129:  it('logs schema validation failures to stderr for auditability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:133:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:137:    expect(errorSpy.mock.calls.some((call) => String(call[0]).includes('[schema-validation] memory_search:'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:163:describe('memory_delete schema (oneOf removed, handler-validated)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:191:    }).toThrow(/required schema constraints/);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:213:describe('memory_bulk_delete schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:220:  it('rejects confirm=false at schema level', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:240:   4. memory_search LIMIT CONTRACT (schema + runtime alignment)
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:243:describe('memory_search limit contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:244:  it('public schema accepts cursor-only continuation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:246:      validateToolInputSchema('memory_search', { cursor: 'opaque-cursor-token' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:250:  it('runtime schema accepts cursor-only continuation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:252:      validateToolArgs('memory_search', { cursor: 'opaque-cursor-token' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:256:  it('public schema accepts concepts-only search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:258:      validateToolInputSchema('memory_search', { concepts: ['alpha', 'beta'] }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:262:  it('public schema rejects requests without query or concepts', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:264:      validateToolInputSchema('memory_search', {}, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:265:    }).toThrow(/required schema constraints/);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:270:      validateToolArgs('memory_search', { query: 'ab', limit: 100 });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:276:      validateToolArgs('memory_search', { query: 'ab', limit: 101 });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:280:  it('public schema rejects limit above 100', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:282:      validateToolInputSchema('memory_search', { query: 'ab', limit: 101 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:288:      validateToolArgs('memory_search', { concepts: ['solo'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:292:  it('public schema rejects unknown memory_search parameters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:294:      validateToolInputSchema('memory_search', { query: 'valid query', unexpected: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:298:  it('public schema enforces query minimum length', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:300:      validateToolInputSchema('memory_search', { query: 'a' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:304:  it('runtime rejects unknown memory_search parameters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:306:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:312:      validateToolArgs('memory_search', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:322:  it('public and runtime schemas accept response profiles for memory_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:329:      validateToolInputSchema('memory_search', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:331:    expect(validateToolArgs('memory_search', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:335:describe('governed retrieval schema propagation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:346:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:348:    expect(validateToolArgs('memory_context', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:351:  it('public and runtime schemas accept response profiles for memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:358:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:360:    expect(validateToolArgs('memory_context', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:363:  it('public and runtime schemas accept governed scope fields for memory_quick_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:395:describe('shared-memory admin actor schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:396:  it('public schemas expose actor identity fields without top-level exclusivity combinators', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:399:      const schema = tool?.inputSchema as { properties?: Record<string, unknown> } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:400:      expect(schema?.properties).toMatchObject({
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:404:      expect(schema).not.toHaveProperty('oneOf');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:405:      expect(schema).not.toHaveProperty('not');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:442:  it('handler requires caller identity for shared_memory_status', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:454:  it('runtime accepts shared_memory_status with one actor identity', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:456:      validateToolArgs('shared_memory_status', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:463:  it('public causal tool schemas expose string memory identifiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:480:  it('public schema rejects divergent_aliases limit above 200', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:486:  it('public schema accepts autoRepair confirmation payloads', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:492:  it('runtime schema preserves confirmed for handler execution', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:498:describe('checkpoint_delete schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:499:  it('public checkpoint_list schema rejects limit above 100', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:505:  it('requires confirmName at schema level', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:519:describe('schema validation performance (CHK-024)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:525:      const schema = tool.inputSchema as { properties?: Record<string, unknown>; required?: string[] };
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:526:      for (const key of schema.required ?? []) {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:527:        const prop = (schema.properties ?? {})[key] as { type?: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:41:export const INPUT_LIMITS: Readonly<InputLimits> = {
+.opencode/skills/system-spec-kit/mcp_server/utils/validators.ts:52:export const MAX_QUERY_LENGTH: number = 10000;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:106:    // Create memory_index table matching production schema
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:16:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:23:      'SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:30:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:143:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(deleteSessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:148:        WHERE session_id = ? AND attention_score < ?
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:103:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:105:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:945:            actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:972:        actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1078:/** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1086:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1093:        hint: 'Retry memory_save after checkpoint_restore maintenance completes.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1151:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1174:        action: 'memory_save_shared_space',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1213:      tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1310:            tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1316:              actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1345:        tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1441:        tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1447:          actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1462:        action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1490:            actor: provenanceActor ?? 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1703:        'Retry memory_save({ filePath, force: true }) once dependencies are healthy',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1789:const handle_memory_save = handleMemorySave;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1796:  handle_memory_save,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:12:  // T018: Session tracking for session_health tool
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:49:      schemaVersion: number;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:87:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:91:  'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:92:  'memory_index_scan'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:110:// T018: Session-level tracking for prime package and session_health
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:232:        schemaVersion: stats.schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:457:    recommendedCalls.push('code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:471:    toolRoutingRules.push('structural queries (callers, deps) → code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:482:      graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:497:    ?? (typeof toolArgs.session_id === 'string' ? toolArgs.session_id : null);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:680:  // T018: Session tracking for session_health tool
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:16: * Create an in-memory SQLite DB with the memory_index schema
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:17: * matching the production schema from vector-index-impl.js.
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:49:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:15:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:62:      session_id: input.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:47:description: "Durable regression fixture for memory_save UX contract coverage."
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:68:Continue validating the \`memory_save\` UX contract with a fixture that is rich enough to satisfy the durable-memory gate while still exercising duplicate no-op, deferred embedding, and post-mutation feedback behavior.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:85:| \`mcp_server/handlers/memory-save.ts\` | Coordinates duplicate detection, sufficiency evaluation, template validation, and post-mutation feedback for \`memory_save\`. |
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:132:session_id: "${titleSlug}-fixture"
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:248:  it('memory_save success response exposes postMutationHooks contract fields and types', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:59:    it('T516-2: handle_memory_search alias is exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:60:      expect(typeof handler.handle_memory_search).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:220:            schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:226:            schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:233:            schemaVersion: '',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:240:            schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:247:            schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:254:            schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:276:    expect(byId.get(303)).toMatchObject({ publishable: false, exclusionReason: 'missing_schema_version' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:4:// MCP tool handler for code_graph_context — LLM-oriented graph neighborhoods.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:87:/** Handle code_graph_context tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:204:          error: 'code_graph_context failed',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:10:import { memoryBulkDeleteSchema } from '../schemas/tool-input-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:307:      const id = mod.recordHistory(1, 'ADD', null, 'reconsolidation test', 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:314:      expect(entry!.actor).toBe('mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:353:      'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:359:      'mcp:memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:405:    it('T508-08f: confirm=false fails schema validation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:67:    // Create memory_index table (matches production schema)
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:50:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:61:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:77:      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:113:  input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:140:        '- `memory_context({ input, mode })` — unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:142:        '- `memory_search({ query })` — semantic search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:143:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:155:      content: 'Code graph index is empty. Run `code_graph_scan` to build structural context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:169:      content: 'Code graph freshness is stale. The first structural read may refresh inline when safe; run `code_graph_scan` for broader stale states.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:185:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:190:      content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:216:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9:/** Handle code_graph_status tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:28:            schemaVersion: stats.schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:28:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:56:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:60:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:64:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:69:      SELECT id, tenant_id, user_id, session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:91:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, user_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:95:      INSERT INTO memory_index (id, spec_folder, file_path, tenant_id, agent_id, session_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:100:      SELECT id, tenant_id, user_id, agent_id, session_id
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:10:// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:69:export const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:51:    'understand the database schema',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:482:describe('T059: autoDetectIntent Parameter (memory_search)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:35:    query: 'schema validation for tool inputs',
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:78:    { id: 202, content: 'Tool schemas define optional fields, defaults, and shared validation helpers. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:116:    const b = 'database migration schema upgrade';
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:166:      title: 'database migration schema upgrade version',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:352:      title: 'database migration schema upgrade version',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:6:export const HOOK_TIMEOUT_MS = 1800;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:8:export const COMPACTION_TOKEN_BUDGET = 4000;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:10:export const SESSION_PRIME_TOKEN_BUDGET = 2000;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:14:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:17:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:297:      actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:303:      recordHistory(nextMemoryId, 'ADD', null, parsed.title ?? parsed.filePath, 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:304:      recordHistory(memoryId, 'UPDATE', previous.title, parsed.title ?? parsed.filePath, 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:32:    session_id: 'sess-abc123',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:63:    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:128:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:123:    expect(envelope.data.details?.reason).toBe('shared_memory_admin_unconfigured');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:140:    expect(envelope.data.details?.reason).toBe('shared_memory_trusted_binding_required');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:711:    expect(envelope.data.details?.reason).toBe('shared_memory_enable_admin_required');
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:240:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:569:      metadata: { conflictKind: 'schema_mismatch' },
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:597:          conflictKind: 'schema_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:599:          strategyReason: 'high_risk:schema_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:630:          conflictKind: 'schema_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:632:          strategyReason: 'high_risk:schema_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:835:      .get('shared_memory_enabled') as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:9://   { session_id, transcript_path, cwd, hook_event_name, timestamp, source }
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:51:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:62:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:73:      content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:106:        '- `memory_context({ input, mode })` - unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:108:        '- `memory_search({ query })` - semantic search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:109:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:121:      content: 'Code graph index is empty. Run `code_graph_scan` to build structural context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:135:      content: 'Code graph freshness is stale. The first structural read may refresh inline when safe; run `code_graph_scan` for broader stale states.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:149:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:155:    content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:176:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:48:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:84:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:118:      if (normalizedSql.includes('CREATE TABLE IF NOT EXISTS session_sent_memories')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:119:        tables.add('session_sent_memories');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:122:      if (normalizedSql.includes('CREATE TABLE IF NOT EXISTS session_state')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:123:        tables.add('session_state');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:129:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN tenant_id')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:132:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN user_id')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:135:      if (normalizedSql.includes('ALTER TABLE session_state ADD COLUMN agent_id')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:148:          if (normalizedSql === 'DELETE FROM session_sent_memories WHERE sent_at < ?') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:152:          if (normalizedSql === "DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:164:          if (normalizedSql.startsWith('INSERT INTO session_state (')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:224:          if (normalizedSql === "UPDATE session_state SET status = 'interrupted', updated_at = ? WHERE status = 'active'") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:256:          if (normalizedSql === 'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:261:          if (normalizedSql === 'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:270:          if (normalizedSql === 'SELECT tenant_id, user_id, agent_id FROM session_state WHERE session_id = ? LIMIT 1') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:286:          if (normalizedSql === 'PRAGMA table_info(session_state)') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:295:                session_id: row.session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:308:          if (normalizedSql === "SELECT name FROM sqlite_master WHERE type='index' AND tbl_name='session_state'") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:310:              .filter((statement) => statement.includes('CREATE INDEX IF NOT EXISTS idx_session_state_'))
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:317:          if (normalizedSql === "SELECT name FROM sqlite_master WHERE type='table' AND name='session_state'") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:318:            return tables.has('session_state') ? [{ name: 'session_state' }] : [];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:397:    it('should create session_state table and indexes', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:401:      expect(database.execStatements.some((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:402:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_status'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:403:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_updated'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:404:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_identity_scope'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:424:        session_id: 'session-state-save',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:569:    it('should create session_state table with correct columns', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:580:        'session_id',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:593:      const createTableSql = database.execStatements.find((sql) => sql.includes('CREATE TABLE IF NOT EXISTS session_state'));
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:892:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:897:  it('schema versioning detection', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:901:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:909:    fs.writeFileSync(trackedFile, 'export const value = 1;\n');
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:64:    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:378:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:75:    it('T209-5: setAttentionScore called with (session_id, match.memoryId, score)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:136:  it('initializes schema with v16 chunk columns and parent indexes', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:138:    const tempDir = makeTempDir('spec-kit-schema-v16-');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:153:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:405:  it('downgrades schema from v16 to v15 and removes chunk columns', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:406:    const tempDir = makeTempDir('spec-kit-schema-downgrade-');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:412:    const downgrade = await import('../lib/storage/schema-downgrade');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:419:    const beforeVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:422:    // Set schema to v16 for the v16→v15 downgrade test (v17+ migrations are independent of chunk columns)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:423:    db.prepare('UPDATE schema_version SET version = 16 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:430:    const afterVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:517:    expect(cliSource).toContain('schema-downgrade');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:518:    expect(cliSource).toContain('--confirm is required for schema-downgrade');
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts:11:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:35:  const row = db.prepare('SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?')
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:93:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:98:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:104:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:112:        SELECT session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:114:        ORDER BY session_id ASC
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:115:      `).all() as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:116:      const remainingSessionIds = remainingRows.map(row => row.session_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:30:              producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:31:              sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:61:    recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:62:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77:  it('uses the full session_resume payload and records full bootstrap telemetry', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:86:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:97:      'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:98:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:107:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:108:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:120:    expect(parsed.data.hints.some((hint: string) => hint.includes('Run code_graph_scan'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:121:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:185:  it('schema-downgrade fails safely when current schema is newer than v16', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:186:    const sandbox = createSandbox('spec-kit-cli-schema-downgrade-');
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:193:    const downgradeResult = runCli(['schema-downgrade', '--to', '15', '--confirm'], {
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:219:    const missingConfirm = runCli(['schema-downgrade', '--to', '15'], {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:386:        errors: ['session_state: merge restore rolled back after pre-clear because reinsertion failed'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:389:        rolledBackTables: ['session_state'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:396:        expect(parsed.data?.details?.rolledBackTables).toEqual(['session_state']);
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:11:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts:93:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:209:  const schemaResult = ensureSchema();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:210:  if (!schemaResult.success) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:211:    return schemaResult;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:278:  if (!db || !hasTable('session_state')) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:282:      'SELECT 1 FROM session_state WHERE session_id = ? LIMIT 1'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:293:  if (!db || !hasTable('session_sent_memories')) return false;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:297:      'SELECT 1 FROM session_sent_memories WHERE session_id = ? LIMIT 1'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:335:  if (!db || !hasTable('session_state')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:341:    FROM session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:342:    WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:442:  CREATE TABLE IF NOT EXISTS session_sent_memories (
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:443:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:447:    PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:452:  'CREATE INDEX IF NOT EXISTS idx_session_sent_session ON session_sent_memories(session_id);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:453:  'CREATE INDEX IF NOT EXISTS idx_session_sent_time ON session_sent_memories(sent_at);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:522:      SELECT 1 FROM session_sent_memories
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:523:      WHERE session_id = ? AND memory_hash = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:565:      SELECT memory_hash FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:568:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:647:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:678:      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:713:      SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:722:      DELETE FROM session_sent_memories
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:723:      WHERE session_id = ? AND rowid IN (
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:724:        SELECT rowid FROM session_sent_memories
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:725:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:745:      DELETE FROM session_sent_memories WHERE sent_at < ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:762: *   - session_sent_memories: entries with sent_at older than threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:763: *   - session_state: completed/interrupted sessions older than threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:766: *   - session_learning records (permanent, never cleaned)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:767: *   - Active sessions (session_state with status='active')
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:795:  // 2. Clean stale session_sent_memories entries
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:797:    const smStmt = db.prepare('DELETE FROM session_sent_memories WHERE sent_at < ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:803:      errors.push(`session_sent_memories cleanup: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:807:  // 3. Clean completed/interrupted session_state entries (NEVER clean active sessions)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:810:      `DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:817:      errors.push(`session_state cleanup: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:825:      `${sentMemoriesDeleted} sent_memories, ${sessionStateDeleted} session_state entries ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:848:      DELETE FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:877:      FROM session_sent_memories
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:878:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:889:    console.warn(`[session-manager] get_session_stats failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:959:  CREATE TABLE IF NOT EXISTS session_state (
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:960:    session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:974:  'CREATE INDEX IF NOT EXISTS idx_session_state_status ON session_state(status);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:975:  'CREATE INDEX IF NOT EXISTS idx_session_state_updated ON session_state(updated_at);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:976:  'CREATE INDEX IF NOT EXISTS idx_session_state_identity_scope ON session_state(tenant_id, user_id, agent_id);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:980:  { column: 'tenant_id', sql: 'ALTER TABLE session_state ADD COLUMN tenant_id TEXT;' },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:981:  { column: 'user_id', sql: 'ALTER TABLE session_state ADD COLUMN user_id TEXT;' },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:982:  { column: 'agent_id', sql: 'ALTER TABLE session_state ADD COLUMN agent_id TEXT;' },
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1003:    const existingColumns = getTableColumns('session_state');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1015:    console.error(`[session-manager] Session state schema creation failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1035:      INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1042:      ON CONFLICT(session_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1044:        spec_folder = COALESCE(excluded.spec_folder, session_state.spec_folder),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1045:        current_task = COALESCE(excluded.current_task, session_state.current_task),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1046:        last_action = COALESCE(excluded.last_action, session_state.last_action),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1047:        context_summary = COALESCE(excluded.context_summary, session_state.context_summary),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1048:        pending_work = COALESCE(excluded.pending_work, session_state.pending_work),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1049:        state_data = COALESCE(excluded.state_data, session_state.state_data),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1050:        tenant_id = COALESCE(excluded.tenant_id, session_state.tenant_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1051:        user_id = COALESCE(excluded.user_id, session_state.user_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1052:        agent_id = COALESCE(excluded.agent_id, session_state.agent_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1074:    console.error(`[session-manager] save_session_state failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1084:      UPDATE session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1086:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1112:      UPDATE session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1140:      FROM session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1141:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1178:        UPDATE session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1180:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1199:      SELECT session_id, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1202:      FROM session_state
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1349:    console.error(`[session-manager] write_continue_session_md failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:30:import { MAX_INGEST_PATHS } from '../schemas/tool-input-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:20:        ? 'session_bootstrap'
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:22:          ? 'session_resume'
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:23:          : 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/response-profile-formatters.vitest.ts:23:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:32:export const DEFAULT_FLOORS = {
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:9:// Gemini stdin: { session_id, transcript_path, cwd, hook_event_name,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:34:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:63:    'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:11:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:17:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:49:      INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-boost.vitest.ts:74:      INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:188:    routingParts.push('structural queries (callers, deps) → code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:243:      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes (stale — structural reads may refresh inline or recommend code_graph_scan)`;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:253:    recommendedAction = 'Structural context available. Use code_graph_query for structural lookups.';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:255:    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:269:      producer: 'session_snapshot',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:269:      session_id: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:429:        FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:4:// All MCP tool definitions (names, descriptions, input schemas).
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:9:} from './schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:12: * Re-export schema validation helpers used by the MCP tool entry points.
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:20:} from './schemas/tool-input-schemas.js';
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:27: * Normalized definition for a single MCP tool and its JSON schema.
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:43:  description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most memory operations. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:212:  description: '[L2:Core] Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turnNumber for cognitive features. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:218:  name: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:444:  name: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:459:  name: 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:562:  name: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:624:  name: 'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:639:  name: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:658:  description: '[L7:Maintenance] Report code graph index health: file count, node/edge counts by type, parse health summary, last scan timestamp, DB file size, schema version. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:663:  name: 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:733:  name: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:845:  description: '[L9:CoverageGraph] Report deep-loop coverage graph health: node/edge counts grouped by kind and relation, current convergence signal values, momentum (signal deltas between snapshots), last iteration, schema version, and DB file size. Suitable for dashboards and synthesis surfaces.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:878:export const TOOL_DEFINITIONS: ToolDefinition[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:42:  | 'code_graph_query'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:104:    case 'code_graph_query':
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:17:    schemaVersion: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:34:      text: 'Aligned structural bootstrap contract across auto-prime and session_* handlers.',
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:90:      schemaVersion: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:97:    expect(brief.startupSurface).toContain('- Code Graph: empty -- run `code_graph_scan`');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:181:  it('T022: memory_search has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:182:    expect(TOOL_SPECIFIC_HINTS.memory_search).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:183:    expect(typeof TOOL_SPECIFIC_HINTS.memory_search).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:191:  it('T024: memory_save has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:192:    expect(TOOL_SPECIFIC_HINTS.memory_save).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:193:    expect(typeof TOOL_SPECIFIC_HINTS.memory_save).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:196:  it('T025: memory_index_scan has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:197:    expect(TOOL_SPECIFIC_HINTS.memory_index_scan).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:198:    expect(typeof TOOL_SPECIFIC_HINTS.memory_index_scan).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:221:  it('T029: memory_search EMBEDDING_FAILED has contextual hint', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:224:      TOOL_SPECIFIC_HINTS.memory_search?.[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:229:  it('T030: memory_save FILE_NOT_FOUND has contextual guidance', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:231:      TOOL_SPECIFIC_HINTS.memory_save?.[ERROR_CODES.FILE_NOT_FOUND];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:244:    const searchHint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:246:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:292:    const fullHint = getRecoveryHint('memory_save', ERROR_CODES.VALIDATION_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:299:    const saveEmbedHint = getRecoveryHint('memory_save', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:301:      'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:315:    const hasSearch = hasSpecificHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:356:    const searchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:362:    const searchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:365:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:713:    const toolSpecific = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:718:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED]
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:725:    const allSearchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:5:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:6:  { tool: 'memory_context', handler: 'handleMemoryContext', layer: 'L1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:7:  { tool: 'memory_search', handler: 'handleMemorySearch', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:9:  { tool: 'memory_save', handler: 'handleMemorySave', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:28:  { tool: 'memory_index_scan', handler: 'handleMemoryIndexScan', layer: 'L7' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:33:  { camel: 'handleMemorySearch', snake: 'handle_memory_search' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:35:  { camel: 'handleMemorySave', snake: 'handle_memory_save' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:55:  { camel: 'handleMemoryIndexScan', snake: 'handle_memory_index_scan' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:56:  { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:62:      testDb.exec('DELETE FROM session_sent_memories');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:235:        SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:265:        SELECT session_id FROM session_sent_memories ORDER BY session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:266:      `).all() as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:268:      const sessions: Set<string> = new Set(entries.map((e) => e.session_id));
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:82:      const key1 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:83:      const key2 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:88:      const key1 = generateCacheKey('memory_search', { query: 'auth' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:89:      const key2 = generateCacheKey('memory_search', { query: 'login' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:95:      const key1 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:96:      const key2 = generateCacheKey('memory_save', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:352:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:353:      const key2 = generateCacheKey('memory_search', { query: 'test2' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:354:      const key3 = generateCacheKey('memory_save', { query: 'test3' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:355:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:356:      set(key2, 'value2', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:357:      set(key3, 'value3', { toolName: 'memory_save' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:358:      const invalidated = invalidateByTool('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:366:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:367:      const key2 = generateCacheKey('memory_save', { query: 'test2' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:369:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:370:      set(key2, 'value2', { toolName: 'memory_save' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:380:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:381:      const key2 = generateCacheKey('memory_save', { query: 'test2' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:383:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:384:      set(key2, 'value2', { toolName: 'memory_save' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:394:      const searchKey = generateCacheKey('memory_search', { query: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:396:      set(searchKey, 'search_result', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:423:      const key = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:427:        'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:436:      expect(invalidateByTool('memory_search')).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:439:      const second = withCache('memory_search', args, async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:589:      const key = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:593:        'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:603:      const second = withCache('memory_search', args, async () => 'fresh-after-shutdown');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:20:    dbFileSize: 2048, schemaVersion: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:66:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:82:      lastScanTimestamp: null, dbFileSize: 0, schemaVersion: 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:4:// Feature catalog: Database and schema safety
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:60:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:94:    .prepare('SELECT version FROM schema_version WHERE id = 1')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:136:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:175:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:247:    throw new Error(`Downgrade supports only v${TARGET_FROM_VERSION} -> v${TARGET_TO_VERSION}. Current schema is v${currentVersion}.`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:252:  const checkpointName = options.checkpointName || `pre-schema-downgrade-v16-to-v15-${nowTimestampForName()}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:257:      reason: 'schema downgrade v16->v15',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:296:        INSERT OR REPLACE INTO schema_version (id, version, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:25:        preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:89:describe('memory_context advisory metadata', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:140:        nextActions: ['Use code_graph_query'],
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:151:      preferredTool: 'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:154:    expect(parsed.data.structuralRoutingNudge.message).toContain('Prefer `code_graph_query`');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:212:describe('session_bootstrap authority preservation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:249:                  producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:250:                  sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:280:        recommendedAction: 'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:281:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:291:      preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:295:      'Structural context available. Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:296:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:144:    .run(5, 'specs/003-data', 'data/schema.md', 'Database Schema');
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:16:export const SESSION_ANALYTICS_DB_FILENAME = 'speckit-session-analytics.db';
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:92:    claude_session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:93:    speckit_session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:117:    claude_session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:136:    UNIQUE(claude_session_id, transcript_path, byte_start)
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:160:    ON analytics_turns (claude_session_id, transcript_path, line_no);
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:167:  claude_session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:168:  speckit_session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:192:  claude_session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:393:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:422:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:453:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:480:      claude_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:481:      speckit_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:502:    ON CONFLICT(claude_session_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:503:      speckit_session_id = excluded.speckit_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:533:      claude_session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:614:    ORDER BY claude_session_id ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:625:    WHERE claude_session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:15: * Phases 1 (schema) and 3 (discovery) require live DB/filesystem and are
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:871:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:914:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:1000:   Phase 1 schema migration and Phase 3 discovery (findSpecDocuments,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:161:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:57:      WHERE session_id = 's1'
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:76:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:81:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:88:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s2', 3) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:100:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:104:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:108:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:118:      WHERE session_id = 's5'
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:135:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:139:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:145:    const deleted = db.prepare('SELECT COUNT(*) AS count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 5) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:150:    const floored = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s3', 6) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:161:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:167:    const wrapped = db.prepare('SELECT event_counter, mention_count FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 7) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:175:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:181:    const decayed = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s4', 8) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:193:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:207:      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory-event-decay.vitest.ts:214:    const row = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-disabled', 13) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:40:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:41:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:42:      { id: 3, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:55:      { tenant_id: 'a', user_id: 'u1', agent_id: null, session_id: null, shared_space_id: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:56:      { tenant_id: 'b', user_id: 'u2', agent_id: null, session_id: null, shared_space_id: null },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:66:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:67:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:82:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:88:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:103:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:110:  it('persists session_id as a queryable governance post-insert column', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:125:      session_id: 'session-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:127:    expect(ALLOWED_POST_INSERT_COLUMNS.has('session_id')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:137:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:143:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:152:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:170:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:176:    expect(review.summary.byAction).toEqual({ memory_save: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:181:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:189:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:202:        session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:207:      action: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:232:      { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:233:      { id: 2, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:234:      { id: 3, tenant_id: 'tenant-a', user_id: 'user-2', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:235:      { id: 4, tenant_id: 'tenant-b', user_id: 'user-1', session_id: 'session-1', shared_space_id: 'space-1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:531:    it('EXT-S14: restore preserves extended memory_index columns when schema supports them', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:532:      // Add modern schema columns to this fixture DB if missing.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:5:// Provides the code_graph_context MCP tool implementation.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:125:    textBrief: 'No anchors resolved. Try `code_graph_scan` first, or provide a `subject` or `seeds[]`.',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:127:    nextActions: ['Run `code_graph_scan` to index the workspace', 'Provide `subject` parameter with a symbol name'],
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:153:    actions.push('Run `code_graph_scan` to improve resolution (file anchors found)');
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:859:   8. EXPORTS (re-export constants for testing)
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:39:        'handle_memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:          'session_id: "atomic-save-fi"',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:680:        actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:687:          actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:522:describe('T009 PerFolderDescription schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:778:  it('returns null for schema violation (memorySequence as string)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:27: * Create a minimal in-memory DB with the memory_index schema
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:50:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:93:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-e2e.vitest.ts:39:      session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:113:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:39:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:54:export const ALLOWED_POST_INSERT_COLUMNS = new Set<string>([
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:60:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:116:    codeGraphLine = 'empty -- run `code_graph_scan`';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:157:      lines.push('Freshness: stale — first structural read may trigger bounded inline refresh or recommend code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts:234:        sourceSurface: 'session_start',
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:8:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:221:export const PreflightErrorCodes: Readonly<PreflightErrorCodes> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:237:export const PREFLIGHT_CONFIG: PreflightConfig = {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:52:      FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:53:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:58:      FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:59:      WHERE spec_folder = ? AND task_id = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:142:      FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:143:      WHERE spec_folder = ? AND task_id = ? AND session_id = ? AND phase = 'complete'
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:14:} from '../lib/telemetry/trace-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:220:  // 7. Telemetry trace schema validation
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:221:  it('telemetry schema exports expected canonical retrieval stages', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:457:    expect(row.session_count).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:26:} from '../lib/storage/learned-triggers-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:101:  // Create the FTS5 table matching the real schema (NO learned_triggers!)
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:34:  // Minimal memory_index schema
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:49:  // Causal_edges schema
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:73:    ? 'Use code_graph_query for structural lookups and keep transport shells thin.'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:17:    schemaVersion: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:62:    expect(contract.recommendedAction).toContain('code_graph_query');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:64:    expect(contract.provenance?.producer).toBe('session_snapshot');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:80:    const contract = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:86:    expect(contract.sourceSurface).toBe('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:103:    const contract = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:108:    expect(contract.recommendedAction).toContain('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:109:    expect(contract.sourceSurface).toBe('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:123:    const contract = buildStructuralBootstrapContract('session_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:126:    expect(contract.sourceSurface).toBe('session_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:164:    const contract = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:407:  it('clears adaptive shadow state during rollback drills without reversing schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:516:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:51:export const SCHEMA_VERSION = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:53:/** SQL schema for code graph tables */
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:95:  CREATE TABLE IF NOT EXISTS schema_version (
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:99:  CREATE TABLE IF NOT EXISTS code_graph_metadata (
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:136:    CREATE TABLE IF NOT EXISTS code_graph_metadata (
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:157:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:159:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:161:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:191:  const row = d.prepare('SELECT value FROM code_graph_metadata WHERE key = ?').get(key) as { value: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:199:    INSERT INTO code_graph_metadata (key, value, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:623:  schemaVersion: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:655:    lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion: SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:7:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:164:    expect(api.LAYER_DEFINITIONS.L5.tools).toContain('shared_memory_status');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:165:    expect(api.TOOL_LAYER_MAP.shared_memory_status).toBe('L5');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:166:    expect(api.getLayerForTool('shared_memory_status')).toBe('L5');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:167:    expect(api.getLayerTokenBudget('shared_memory_status')).toBe(1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:38:    // Create causal_edges table matching production schema (+created_by, +last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:414:      // But unique: A→B, B→A → if schema allows, 2 edges, 2 nodes → 1.0
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:15:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:21:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:78:        session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:84:        UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:120:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:125:        INSERT INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:148:      expect(entry.session_id).toBe('session-alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:176:      expect(entry1.session_id).toBe('session-alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:186:        INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:195:        "SELECT * FROM working_memory WHERE session_id = 'session-beta'"
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:80:    'session_learning',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:85:    'session_state',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:86:    'session_sent_memories',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:102:    'schema_version',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:122:  'session_learning',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:127:  'session_state',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:128:  'session_sent_memories',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:315:  'working_memory', 'session_state', 'session_sent_memories', 'session_learning',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:443:    || columns.has('session_id')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1109:        session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1121:        UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1147:    // Best-effort schema preparation only.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1332:    'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1654:    // Reject the entire restore on schema violations to prevent
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1696:    // Ensure working_memory table schema is ready BEFORE the transaction.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:56:    toolPattern: /^(bash|memory_save|memory_update)$/i,
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:27:    // Create causal_edges table matching production schema
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:142:            session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:148:            UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:186:            session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:192:            UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:203:          INSERT INTO working_memory (session_id, memory_id, attention_score)
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:213:          WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:331:    session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:389:        session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:397:      WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:409:        'idx_wm_session_focus_lru',
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:410:        'idx_wm_session_attention_focus',
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:460:        if (sql.includes('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ? AND memory_id = ?')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:491:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:533:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:5:// operations. Validates tool input/output schemas, error handling,
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:15: * implemented in Phase 3; these tests verify schema expectations
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:19:// --- Tool schema validation ---
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:46:  describe('graph_upsert tool schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:87:  describe('graph_query tool schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:121:  describe('graph_signals output schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:20:    it('CREATE TABLE schema includes learned_triggers column', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:25:      const schemaFilePath = path.resolve(
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:27:        '../lib/search/vector-index-schema.ts'
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:29:      const source = fs.readFileSync(schemaFilePath, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:35:    it('CREATE TABLE schema includes interference_score column', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:36:      // P1-10 found interference_score only in migration, not base schema.
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:40:      const schemaFilePath = path.resolve(
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:42:        '../lib/search/vector-index-schema.ts'
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:44:      const source = fs.readFileSync(schemaFilePath, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:51:      // (e.g., when running against a fresh schema that already has it).
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:54:      const schemaFilePath = path.resolve(
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:56:        '../lib/search/vector-index-schema.ts'
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:58:      const source = fs.readFileSync(schemaFilePath, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:6:// pairs against a configurable schema. Prevents out-of-vocabulary
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:35: * Default ontology schema — matches the causal_edges CHECK constraint
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:50: * Load ontology schema from environment or default.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:52: * Returns null if no schema configured and no default is appropriate.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:53: * Returns the default schema when no env override is set.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:55:export function loadOntologySchema(schemaPath?: string): OntologySchema | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:61:    if (schemaPath && schemaPath.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:62:      const resolvedPath = path.resolve(schemaPath);
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:87:    console.warn('[ontology-hooks] Invalid ontology schema — falling back to default');
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:117: * Validate that an entity/relation pair is allowed by the schema.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:119: * Returns true if both the entity type and relation type are in the schema.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:124:  schema: OntologySchema,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:133:  const entityAllowed = schema.entityTypes.some(
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:136:  const relationAllowed = schema.relationTypes.some(
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:144:  if (!Array.isArray(schema.extractionRules) || schema.extractionRules.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:148:  return schema.extractionRules.some((rule) =>
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:12:import { ensureLineageTables } from '../search/vector-index-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:37:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:212:    ['session', normalizeScopeValue(row.session_id)],
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:538:    recordHistory(memoryId, 'ADD', null, parsed.title ?? filePath, params.actor ?? 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:816:      actor: params.actor ?? 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:49:        'ensure_schema',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:149:        CREATE TABLE IF NOT EXISTS session_learning (
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:154:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:175:        "INSERT INTO session_learning (spec_folder, task_id, phase, pre_knowledge_score, pre_uncertainty_score, pre_context_score) VALUES (?, ?, 'complete', 50, 30, 40)"
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-session-learning.vitest.ts:195:          FROM session_learning
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-denylist.ts:51:export const ENTITY_DENYLIST: Set<string> = new Set<string>([
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2453:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:13:      CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:22:        session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:28:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:32:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:36:      INSERT INTO memory_index (id, spec_folder, session_id, context_type)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:74:    expect(snapshot.metrics['isolation.missing_session_scope_rows']).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:76:    expect(snapshot.metrics['schema.version']).toBe(21);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:103:    expect(snapshot.metrics['schema.version']).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:18:        memory_context: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:        memory_search: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:20:        memory_save: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:35:        memory_index_scan: 1000,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:922:    session_id: existingRow.session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:62:  it('T030/T031: rule schema is valid and first match wins', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:88:      SELECT session_id, memory_id, attention_score, source_tool, source_call_id, extraction_rule_id, redaction_applied
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:133:    expect(matchRule('memory_search', 'spec.md error context')).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:134:    expect(matchRule('memory_context', 'spec.md metadata')).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:135:    expect(matchRule('memory_save', 'git commit -m "x"')).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:40:    session_id: 'sess-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:70:    expect(names).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:82:    expect(entry.session_id).toBe('sess-001');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:180:      session_id: 'sess-merge-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:190:    expect(entry.session_id).toBe('sess-merge-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:14:    schemaVersion: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:60:    it('increments codeGraphQueries on code_graph_query event', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:62:      recordMetricEvent({ kind: 'code_graph_query' });
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:20:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:46:        tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:51:      expect(envelope.meta.tool).toBe('memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:58:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:97:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:108:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:135:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:143:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:152:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:176:        tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:186:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:196:        tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:206:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:254:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:312:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:352:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:363:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:373:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:384:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:409:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:41:export const PROMOTE_TO_IMPORTANT_THRESHOLD = 5;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:44:export const PROMOTE_TO_CRITICAL_THRESHOLD = 10;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:47:export const PROMOTION_PATHS: Readonly<Record<string, { target: string; threshold: number }>> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:53:export const PROMOTION_WINDOW_HOURS = 8;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:56:export const MAX_PROMOTIONS_PER_WINDOW = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:59:export const PROMOTION_WINDOW_MS = PROMOTION_WINDOW_HOURS * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:62:export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1:// TEST: memory_context per-channel eval logging (T056)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:88:describe('T056: memory_context emits per-strategy channel eval rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:11:// H5 — additionalProperties: false on all schemas
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:12:// M5 — ingest schema minItems/minLength constraints
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:17:} from '../schemas/tool-input-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:19:import { TOOL_DEFINITIONS } from '../tool-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:41:    const result = validateToolArgs('memory_search', {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:101:describe('H5: all tool schemas have additionalProperties: false', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:105:      const schema = tool.inputSchema as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:106:      if (schema.additionalProperties !== false) {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:114:    // Ensures no schema was accidentally dropped during bulk edit
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:119:describe('M5: ingest schema has minItems and minLength constraints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:120:  it('memory_ingest_start schema has path constraints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:126:    const schema = ingestTool!.inputSchema as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:127:    const properties = schema.properties as Record<string, Record<string, unknown>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:16:const TOOL_SCHEMAS_FILE = path.join(SERVER_DIR, 'tool-schemas.ts')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:22:let toolSchemasCode = ''
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:68:    toolSchemasCode = fs.readFileSync(TOOL_SCHEMAS_FILE, 'utf8')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:159:      'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:160:      'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:163:      'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:177:      'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:178:      'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:187:      'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:192:      'code_graph_scan',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:193:      'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:194:      'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:195:      'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:199:      'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:200:      'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:201:      'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:210:      expect(toolSchemasCode).toMatch(/export\s+const\s+TOOL_DEFINITIONS/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:218:      const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:228:        const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:238:      const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:250:        expect(toolDefRegex.test(toolSchemasCode)).toBe(true)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:257:        const schemaRegex = new RegExp(`name:\\s*'${tool}'[\\s\\S]*?inputSchema:\\s*\\{`)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:258:        expect(schemaRegex.test(toolSchemasCode)).toBe(true)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:301:      'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:320:    it('T16d: only session_health is excluded from tool-call tracking', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:321:      expect(sourceCode).toMatch(/if \(name !== 'session_health'\) \{/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:381:      '../tool-schemas',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:411:      '../lib/storage/learned-triggers-schema',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:578:          setRequestHandler(schema: unknown, handler: (request: unknown, extra: unknown) => Promise<unknown>): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:579:            handlers.set(schema, handler)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:617:      vi.doMock('../tool-schemas', () => ({ TOOL_DEFINITIONS: options?.toolDefinitions ?? [] }))
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:699:      vi.doMock('../lib/storage/learned-triggers-schema', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:927:        { id: 'call-1', params: { name: 'memory_search', arguments: {} } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:944:      expect(callArgs[0]).toBe('memory_search')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1054:              name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1103:        memoryAwareTools: new Set<string>(['memory_search']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1113:        { id: 'call-5', params: { name: 'memory_search', arguments: { query: 'hook validation' } } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1123:    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1131:        memoryAwareTools: new Set<string>(['memory_context']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1144:          params: { name: 'memory_context', arguments: { input: 'session resume context', mode: 'resume' } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1157:    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1164:        memoryAwareTools: new Set<string>(['memory_context']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1177:          params: { name: 'memory_context', arguments: { input: 'focused retrieval context', mode: 'focused' } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1376:      expect(instructions).toContain('Warning: 12 stale memories detected. Consider running memory_index_scan.')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1461:      { name: 'ToolDefinition', requiredFields: ['name', 'description', 'inputSchema'], source: 'toolSchemas' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1494:          toolSchemas: toolSchemasCode,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1563:      const response = errorsModule!.buildErrorResponse!('memory_search', testError, { query: 'test' })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1581:      const hint = errorsModule!.getRecoveryHint!('memory_search', 'UNKNOWN_TOOL')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1614:    it('T28: L1 budget = 3500 (memory_context)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1619:      expect(layerDefs!.getTokenBudget!('memory_context')).toBe(3500)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1622:    it('T28b: L2 budget = 3500 (memory_search)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1627:      expect(layerDefs!.getTokenBudget!('memory_search')).toBe(3500)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1670:    it('T28h: L7 budget = 1000 (memory_index_scan)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1675:      expect(layerDefs!.getTokenBudget!('memory_index_scan')).toBe(1000)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1812:      // Context-server validates only length pre-dispatch; schema checks occur in tool dispatch modules.
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2084:      'memory_context': '[L1:Orchestration]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2085:      'memory_search': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2087:      'memory_save': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2106:      'memory_index_scan': '[L7:Maintenance]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2117:        const match = toolSchemasCode.match(descRegex)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2126:      const budgetMatches = toolSchemasCode.match(budgetPattern)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2131:    it('T000e: memory_context supports optional tokenUsage (0.0-1.0)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2132:      expect(toolSchemasCode).toMatch(/name:\s*'memory_context'[\s\S]*?tokenUsage:\s*\{\s*type:\s*'number'/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2133:      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?minimum:\s*0\.0/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2134:      expect(toolSchemasCode).toMatch(/tokenUsage:[\s\S]*?maximum:\s*1\.0/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2142:    it('T103: checkpoint_delete requires confirmName in schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2143:      expect(toolSchemasCode).toMatch(/checkpoint_delete[\s\S]*?required.*confirmName/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2239:      { module: './tool-schemas.js', name: 'Tool schemas (T303)' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2308:        ? ` Warning: ${stats.staleCount} stale memories detected. Consider running memory_index_scan.`
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2341:      expect(result).toContain('memory_context')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2342:      expect(result).toContain('memory_search')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2343:      expect(result).toContain('memory_save')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2365:      expect(atBoundary).not.toContain('Consider running memory_index_scan')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2375:      expect(aboveBoundary).toContain('Consider running memory_index_scan')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2448:      // Warning text must suggest memory_index_scan
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2449:      expect(fnBody).toMatch(/memory_index_scan/)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:24:      INSERT OR REPLACE INTO working_memory (session_id, memory_id, attention_score, added_at, last_focused, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:31:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:77:    // Init session manager (creates session_sent_memories, session_state, sets up intervals)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:115:      // Save session state first (completeSession updates session_state)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:145:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:159:        'SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:189:  describe('T002: Working memory schema migration compatibility', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:205:          session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:211:          UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:215:        INSERT INTO working_memory (session_id, memory_id, attention_score, focus_count)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:229:        WHERE session_id = 'legacy-session' AND memory_id = 1
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:116:            'code_graph_query outline payload rejects collapsed scalar fields: trust.',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:144:  it('preserves separate trust axes through real session_resume and session_bootstrap outputs', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:189:        recommendedAction: 'Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:190:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:40:export const LEARNED_TRIGGERS_COLUMN = 'learned_triggers';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:43:export const LEARNED_TRIGGERS_DEFAULT = '[]';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:76:    console.warn('[learned-triggers-schema] Migration complete: learned_triggers column added');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:84:    console.error(`[learned-triggers-schema] Migration failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:137:    console.error(`[learned-triggers-schema] FTS5 isolation check failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:164:    console.warn('[learned-triggers-schema] Rollback complete: learned_triggers column removed');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:168:    console.error(`[learned-triggers-schema] Rollback failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:31:} from '../storage/learned-triggers-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:72:export const FEATURE_FLAG = 'SPECKIT_LEARN_FROM_SELECTION';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:75:export const LEARNED_TRIGGER_WEIGHT = 0.7;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:78:export const MAX_TERMS_PER_SELECTION = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:81:export const MAX_TERMS_PER_MEMORY = 8;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:84:export const LEARNED_TERM_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:87:export const LEARNED_TERM_TTL_SECONDS = 30 * 24 * 60 * 60;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:90:export const MIN_MEMORY_AGE_MS = 72 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:93:export const TOP_N_EXCLUSION = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:96:export const MIN_TERM_LENGTH = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:118:export const CONFIG: TriggerMatcherConfig = {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:500:export const CORRECTION_KEYWORDS: string[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:511:export const PREFERENCE_KEYWORDS: string[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:522:export const REINFORCEMENT_KEYWORDS: string[] = [
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:287:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:296:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:302:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:310:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:311:    expect(resp.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:318:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:328:  it('F7: Tool-specific hints included for memory_search + E001', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:330:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:353:    const err = createErrorWithHint('E040', 'fail', {}, 'memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:469:  it('K2: Has memory_search, checkpoint_restore, memory_save', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:470:    expect('memory_search' in TOOL_SPECIFIC_HINTS).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:472:    expect('memory_save' in TOOL_SPECIFIC_HINTS).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:476:    const searchHints = TOOL_SPECIFIC_HINTS['memory_search'];
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:492:  it('L1: Returns tool-specific hint for memory_search + E001', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:493:    const hint = getRecoveryHint('memory_search', 'E001');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:512:    const hint = getRecoveryHint('memory_search', 'E040');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:524:  it('M1: Returns true for known tool+code (memory_search, E001)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:525:    expect(hasSpecificHint('memory_search', 'E001')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:543:    const hints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:550:    const hints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:3:import { TOOL_DEFINITIONS } from '../tool-schemas';
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_context: 'L1',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_search: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:119:        memory_save: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:137:        memory_index_scan: 'L7',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:161:    it('shared_memory_status appears in exactly one layer and is mapped to that layer', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:162:      const matchingLayers = Object.values(LD).filter((layer) => layer.tools.includes('shared_memory_status'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:166:      expect(mod.TOOL_LAYER_MAP['shared_memory_status']).toBe(matchingLayers[0].id);
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:194:        { tool: 'memory_context', expected: '[L1:Orchestration]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:195:        { tool: 'memory_search', expected: '[L2:Core]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:200:        { tool: 'memory_index_scan', expected: '[L7:Maintenance]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:221:      const result = mod.enhanceDescription('memory_context', 'Some description text');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:227:        { tool: 'memory_search', desc: 'Search memories', prefix: '[L2:Core]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:242:      expect(mod.enhanceDescription('memory_context', '')).toBe('[L1:Orchestration] ');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:252:        { tool: 'memory_context', expected: 3500 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:253:        { tool: 'memory_search', expected: 3500 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:258:        { tool: 'memory_index_scan', expected: 1000 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:270:      expect(typeof mod.getTokenBudget('memory_context')).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:280:      const info = expectLayerInfo(mod.getLayerInfo('memory_context'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:287:      expect(info.tools).toContain('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:291:      const info1 = mod.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:292:      const info2 = mod.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:301:      const info = expectLayerInfo(mod.getLayerInfo('memory_search'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:430:      const toolSamples = ['memory_context', 'memory_search', 'memory_list',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:432:                           'memory_index_scan'];
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:19:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:27:  session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:38:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:44:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:74:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:100:    session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:108:  CREATE INDEX IF NOT EXISTS idx_ledger_session ON mutation_ledger(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:150:    INSERT INTO mutation_ledger (mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:162:    entry.session_id ?? null
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:187:  if (opts.session_id) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:188:    conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:189:    params.push(opts.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:395:        session_id: input.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:431:      session_id: input.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-relevance.ts:8:// Pure scoring addition — NO schema changes, NO new tables.
+.opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts:71:      lastScanTimestamp: null, dbFileSize: null, schemaVersion: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:8:import { createSchema, ensureSchemaVersion } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:35:  'session_learning',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:40:  'session_state',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:41:  'session_sent_memories',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:57:  'schema_version',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:89:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:101:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:114:      session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:144:    CREATE TABLE IF NOT EXISTS session_learning (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:146:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:152:    CREATE TABLE IF NOT EXISTS session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:153:      session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:165:    CREATE TABLE IF NOT EXISTS session_sent_memories (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:166:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:170:      PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:215:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:263:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:301:      id, session_id, memory_id, attention_score, added_at, last_focused, focus_count,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:304:  `).run(1, 'sess-1', 1, 0.9, now, later, 2, 1, 1, 'memory_search', 'call-1', 'rule-1', 0);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:323:      id, timestamp, mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:357:    INSERT INTO session_learning (id, session_id, memory_id, insight, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:363:      id, action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id, shared_space_id, reason, metadata, created_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:384:    INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:390:    INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:10:  schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:12:  provenance: ['session_resume'],
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:41:      schemaVersion: '',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:44:    })).toThrow('schemaVersion');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:52:        schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:54:        provenance: ['session_resume', 'session_resume'],
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:60:describe('session_resume certainty contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:88:        schemaVersion: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:117:        recommendedAction: 'Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:118:        sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:150:describe('session_bootstrap certainty contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:187:                  producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:188:                  sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:218:        recommendedAction: 'Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:219:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:102:export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.(?:md|txt)$/i;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:107:export const MAX_CONTENT_LENGTH: number = Number.isFinite(_parsedMaxLen) && _parsedMaxLen > 0 ? _parsedMaxLen : 250000;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:112:export const CONTEXT_TYPE_MAP: Record<string, ContextType> = {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:226:session_id: "pipeline-enforcement-fixture"
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:175:        recommendedAction: 'Use code_graph_query for structural lookups.',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:176:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:446:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:127:  it('returns null for memory_context (prevents recursive surfacing)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:128:    const result = await autoSurfaceAtToolDispatch('memory_context', { input: 'some context' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:132:  it('returns null for memory_search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:133:    const result = await autoSurfaceAtToolDispatch('memory_search', { query: 'some query' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:147:  it('returns null for memory_save', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:148:    const result = await autoSurfaceAtToolDispatch('memory_save', { filePath: '/some/path.md' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:152:  it('returns null for memory_index_scan', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:153:    const result = await autoSurfaceAtToolDispatch('memory_index_scan', { specFolder: 'specs/001' });
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:22:  'tool-schemas.js': 780,           // actual: 755 — Expanded MCP schema set + Sprint 019: Zod schema integration, ingest tools + Phase 024 session_bootstrap
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:101:    'tool-schemas.js',
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:151:    { label: 'tool schemas', pattern: /import\s*\{[\s\S]*?\}\s*from\s*['"]\.\/tool-schemas\.js['"]/ },
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:8:  schemaVersion: 'measurement-contract/v1',
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:27:  it('excludes rows missing schema version', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:30:      schemaVersion: '   ',
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:33:      exclusionReason: 'missing_schema_version',
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:29:    // Create memory_index table matching the expected schema
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:47:        producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:48:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:4:// SCHEMA_VERSION is now canonical in vector-index-schema.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:6:export const MAX_TRIGGERS_PER_MEMORY = 10;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:12:export const VectorIndexErrorCode = {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:32:  handle_memory_context,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:238:   T021-T030: handle_memory_context MAIN HANDLER TESTS
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:242:  it('T021: handle_memory_context is a function', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:289:  it('T029: handleMemoryContext is alias for handle_memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:290:    expect(handleMemoryContext).toBe(handle_memory_context);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:847:  it('T101: handle_memory_context is exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:868:  it('T105: handleMemoryContext is same as handle_memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:869:    expect(handleMemoryContext).toBe(handle_memory_context);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:902:      meta: { tool: 'memory_search' }
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:156:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:173:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:185:      UNIQUE(session_id, memory_id)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:200:    CREATE TABLE IF NOT EXISTS session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:201:      session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:216:    CREATE TABLE IF NOT EXISTS session_sent_memories (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:217:      session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:221:      PRIMARY KEY (session_id, memory_hash)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:270:      session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:277:    INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:291:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-a', 'session-a');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:292:  database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task-b', 'session-b');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:623:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:627:        INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:632:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:647:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:651:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:652:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('other-live-task', 'session-other');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:653:      database.prepare('DELETE FROM session_sent_memories WHERE memory_id = ?').run(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:655:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:658:      database.prepare('UPDATE session_sent_memories SET sent_at = ? WHERE memory_id = ?').run('other-live-sent', 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:671:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:672:      ).toEqual({ session_id: 'session-test', attention_score: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:674:        database.prepare('SELECT session_id, attention_score FROM working_memory WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:675:      ).toEqual({ session_id: 'session-other', attention_score: 8 });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:677:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:680:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-other')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:683:        database.prepare('SELECT memory_hash FROM session_sent_memories WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:686:        database.prepare('SELECT memory_hash, sent_at FROM session_sent_memories WHERE memory_id = ?').get(2)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:705:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:709:        INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:714:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:723:      database.prepare('UPDATE session_state SET current_task = ? WHERE session_id = ?').run('live-task', 'session-test');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:724:      database.prepare('DELETE FROM session_sent_memories WHERE memory_id = ?').run(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:726:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:735:          session_id, memory_id, attention_score, added_at, last_focused, focus_count
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:739:        INSERT INTO session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:744:        INSERT INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:762:        (database.prepare('SELECT COUNT(*) as cnt FROM working_memory WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:765:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-test')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:768:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-extra')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:771:        database.prepare('SELECT memory_hash FROM session_sent_memories WHERE memory_id = ?').get(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:774:        (database.prepare('SELECT COUNT(*) as cnt FROM session_sent_memories WHERE session_id = ?').get('session-extra') as { cnt: number }).cnt
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:888:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-a')
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:891:        database.prepare('SELECT current_task FROM session_state WHERE session_id = ?').get('session-b')
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:519:    const signals = detectSignals('Show me the database schema');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:3:import { SCHEMA_VERSION, validateBackwardCompatibility } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:5:describe('Vector index schema compatibility validator', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:11:      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:18:  it('accepts a minimally compatible schema footprint', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:22:        CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:27:        INSERT INTO schema_version (id, version, updated_at) VALUES (1, ${SCHEMA_VERSION}, datetime('now'));
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:35:          session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:66:            session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:109:      expect(report.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:33:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:59:    event.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:103:    expect(columnNames).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:121:  it('T001-D: creates indexes on event_type, session_id, timestamp', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:129:    expect(indexNames).toContain('idx_consumption_log_session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:157:      session_id: 'session-abc',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:169:    expect(row.session_id).toBe('session-abc');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:182:      session_id: 'session-xyz',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:200:      session_id: 'session-triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:217:      session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:225:    expect(row.session_id).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:318:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:319:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-A', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:320:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'ses-B', result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:423:      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query_text: `q${i}`, result_count: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:425:    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query_text: 'only one', result_count: 3 });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:123:      claude_session_id: 'analytics-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts:124:      speckit_session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:52:        (2, 'Database Schema', 'schema db', 'Database migration and schema design', '/specs/db.md', 'db-spec', 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:4:import { createSchema, ensureSchemaVersion, validateLineageSchemaSupport } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:54:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:99:    recordHistory(1, 'ADD', null, 'Version 1', 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:103:      actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:113:    recordHistory(2, 'ADD', null, 'Version 2', 'mcp:memory_save');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:118:      actor: 'mcp:memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:156:  it('validates lineage schema support for phase 2 tables', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:78:export const DENYLIST: Set<string> = new Set<string>([
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:55:  session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:126:    session_id TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:143:/** Track which DB handles have had the schema initialized. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:258:      conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:342:   8. EXPORTS (schema constants for testing)
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:108:  it('adds schema-aligned synthetic text parts and avoids duplicates', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:145:          tool: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:199:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:205:    expect(status).toContain('messages_transform_mode=schema_aligned');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:227:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+.opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts:420:  describe('T142: memory_corrections table schema (v9 migration)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:40:const VECTOR_INDEX_SCHEMA_SOURCE = fs.readFileSync(path.join(SERVER_ROOT, 'lib', 'search', 'vector-index-schema.ts'), 'utf-8');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:261:    it('T641: review_count column exists in schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:10:} from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:22:describe('vector-index schema migration refinements', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:32:  it('keeps schema_version unchanged when a required migration index build fails', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:37:    database.prepare('UPDATE schema_version SET version = 14 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:49:    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:67:      CREATE TABLE IF NOT EXISTS session_state (
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:68:        session_id TEXT PRIMARY KEY,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:100:    database.prepare('INSERT INTO session_state (session_id, spec_folder) VALUES (?, ?)').run('session-1', staleSpecFolder);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:102:    database.prepare('UPDATE schema_version SET version = 22 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:107:    const sessionRow = database.prepare('SELECT spec_folder FROM session_state WHERE session_id = ?').get('session-1') as { spec_folder: string };
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:126:    database.prepare('UPDATE schema_version SET version = 23 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:139:  it('fails fast on legacy memory_index schemas that cannot store constitutional tier values', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:150:        session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:159:  it('preserves legacy memory_conflicts audit rows when upgrading to the unified v12 schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:98:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:59:    it('T531-3: session_id parameter accepted by triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:64:            session_id: 'dedup-session-003',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:71:        expect(getErrorMessage(error)).not.toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:1:// TEST: memory_search per-channel eval logging (T056)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:106:describe('T056: memory_search emits per-channel eval rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:11:    it('T701: Database initialized with full schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:389:    it('schema created with memory_index table', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:398:    it('schema version is >= 12', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:400:      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:52:  // Also ensure session_state table exists for state management tests
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:65:  try { testDb.exec('DELETE FROM session_sent_memories'); } catch (_: unknown) {}
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:66:  try { testDb.exec('DELETE FROM session_state'); } catch (_: unknown) {}
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:82:    `INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at) VALUES (?, ?, ?, ?)`
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:199:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories').get() as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:228:        const remaining = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get('other-session') as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:373:    it('creates session_state table', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:376:          "SELECT name FROM sqlite_master WHERE type='table' AND name='session_state'"
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:407:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-1') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:425:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('save-2') as SessionStateRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:626:      expect(md).toContain('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:702:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-1') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:725:        const row = testDb!.prepare('SELECT * FROM session_state WHERE session_id = ?').get('cp-2') as SessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:754:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:771:          const count = testDb!.prepare('SELECT COUNT(*) as c FROM session_sent_memories WHERE session_id = ?').get(sid) as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:797:          'SELECT memory_hash FROM session_sent_memories WHERE session_id = ? ORDER BY sent_at ASC'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:71:export const EVIDENCE_GAP_DETECTOR_PROVENANCE = {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:57:  memory_save: ERROR_CODES.MEMORY_SAVE_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:75:export const ErrorCodes = {
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:38:        session_id: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:123:describe('memory_search UX hook integration', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:59: * Creates an in-memory SQLite database with the required schema.
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:65:      // Should not throw an input validation error about session_id/turnNumber.
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:70:          session_id: 'sess-test-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:76:        expect(message).not.toMatch(/session_id/);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:12:    content: [{ type: 'text', text: JSON.stringify({ data: { results: [], count: 0 }, meta: { tool: 'memory_search' } }) }],
+.opencode/skills/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:13:      CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
+.opencode/skills/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:64:    expect(result.schemaVersion).toBe(21);
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:45:export const ERROR_CODES = {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:142:export const RECOVERY_HINTS: RecoveryHintMap = {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:157:      'Run memory_index_scan with force=true to rebuild index',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:162:    toolTip: 'memory_index_scan({ force: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:264:    hint: 'Database schema migration failed.',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:278:      'If no checkpoint available, rebuild index: memory_index_scan({ force: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:298:      'Check parameter type matches expected schema',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:307:      'Check the tool schema for required parameters',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:509:      'Use memory_save({ dryRun: true }) to validate first',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:513:    toolTip: 'memory_save({ dryRun: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:528:      'Check parameter types match schema',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:542:    toolTip: 'memory_save({ force: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:549:      'Run memory_save({ dryRun: true }) for detailed validation report',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:554:    toolTip: 'memory_save({ dryRun: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:674:export const DEFAULT_HINT: RecoveryHint = {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:692:export const TOOL_SPECIFIC_HINTS: ToolSpecificHintMap = {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:709:        'Run memory_index_scan() to rebuild if needed',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:713:      toolTip: 'memory_index_scan()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:742:  memory_save: {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:747:        'Create the memory file before calling memory_save',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:770:      toolTip: 'memory_save({ dryRun: true })'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:775:  memory_index_scan: {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:104:    expect(events.every((event) => event.session_id === 'sess-e')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:14:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:22:/** Create in-memory DB with memory_index schema for archival-manager */
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:51:/** Create in-memory DB with working_memory + memory_index schema */
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:389:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('old-session', 1, 0.5, '${oldTime}')`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:390:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:395:    const remaining = db.prepare('SELECT session_id, memory_id FROM working_memory').all() as WorkingMemoryRow[];
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    expect(remaining[0].session_id).toBe('fresh-session');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:418:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', 1, 0.9)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:437:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, ${score})`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:457:        INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused)
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:464:    const remaining = db.prepare('SELECT memory_id FROM working_memory WHERE session_id = ? ORDER BY memory_id').all('s1') as Array<Pick<WorkingMemoryRow, 'memory_id'>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:487:      db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s1', ${i}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:489:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 1}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:490:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score) VALUES ('s2', ${maxCap + 2}, 0.5)`);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:50:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:68:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:83:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:91:    expect(getDefaultErrorCodeForTool('memory_save')).toBe('E081');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:29:export const DEFAULT_HOLDOUT_PERCENT = 0.20;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:32:export const PROMOTION_THRESHOLD_WEEKS = 2;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:35:export const EVALUATION_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:186:/** Track which DB handles have had the shadow-scoring schema initialized. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:707:   12. EXPORTS (schema constants for testing)
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:86:    expect(envelope.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:27:export const GRAPH_WEIGHT_CAP = parseFloat(process.env.SPECKIT_GRAPH_WEIGHT_CAP || '') || 0.15;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:30:export const COMMUNITY_SCORE_CAP = 0.03;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:147:export const DEFAULT_PROFILE: CalibrationProfile = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:156:export const AGGRESSIVE_PROFILE: CalibrationProfile = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-calibration.ts:171:export const isGraphCalibrationEnabled = isGraphCalibrationProfileEnabled;
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:90:    expect(names).toContain('session_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:227:    expect(row.session_id).toBe('session-XYZ');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:230:  it('allows null session_id', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:234:    expect(events[0].session_id).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:334:    expect(forSess1[0].session_id).toBe('sess-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:457:    // Verify the schema does not touch ranking columns
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:30:    tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:37:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:49:    tool: 'memory_save',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:162:    tool: 'memory_index_scan',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:176:  { tool: 'memory_context', handler: 'handleMemoryContext' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:177:  { tool: 'memory_search', handler: 'handleMemorySearch' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:178:  { tool: 'memory_save', handler: 'handleMemorySave' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:129:    session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:205: * Reset the schema-ensured flag (for testing only).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:238:         total_results_shown, session_id, notes)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:281:             selected_rank, total_results_shown, session_id, notes,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:295:      session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:309:        sessionId: row.session_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:34:export const MIN_SUPPORT_SESSIONS = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:41:export const MAX_BOOST_DELTA = 0.10;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:44:export const BATCH_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:47:export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:82:  session_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:141:    session_count   INTEGER NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:155:/** Track which DB handles have had the batch-learning schema initialized. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:212:      // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:213:      const sessionKey = ev.session_id ?? `__null_${ev.id}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:366:        (memory_id, batch_run_at, session_count, weighted_score, computed_boost, shadow_rank_delta, promoted)
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:145:     Table column schemas
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/index.ts:27:  ensure_schema,
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:502:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:48:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:60:    UNIQUE(session_id, memory_id),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:66:  CREATE INDEX IF NOT EXISTS idx_wm_session ON working_memory(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:67:  CREATE INDEX IF NOT EXISTS idx_wm_attention ON working_memory(session_id, attention_score DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:69:  CREATE INDEX IF NOT EXISTS idx_wm_session_focus_lru ON working_memory(session_id, last_focused ASC, id ASC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:70:  CREATE INDEX IF NOT EXISTS idx_wm_session_attention_focus ON working_memory(session_id, attention_score DESC, last_focused DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:77:  session_id: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:128:let schemaEnsured = false;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:135:  schemaEnsured = false;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:140:  if (!db || schemaEnsured) return;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:168:    schemaEnsured = true;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:193:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:208:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:242:      'DELETE FROM working_memory WHERE session_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:261:      "SELECT DISTINCT session_id FROM working_memory WHERE datetime(last_focused) < datetime(?, '-' || ? || ' seconds')"
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:262:    ) as Database.Statement).all(nowIso, timeoutSeconds) as Array<{ session_id: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:267:      sessionModeRegistry.delete(row.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:286:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:306:      WHERE wm.session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:341:      WHERE wm.session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:395:      'SELECT id FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:406:        WHERE session_id = ? AND memory_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:413:        INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:451:        session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:461:      ON CONFLICT(session_id, memory_id) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:488:      'SELECT focus_count FROM working_memory WHERE session_id = ? AND memory_id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:524:      'SELECT COUNT(*) as count FROM working_memory WHERE session_id = ? AND memory_id IS NOT NULL'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:534:        WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:573:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:644:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:691:      WHERE session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:57:export const MEMORY_TYPES = {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:118:export const HALF_LIVES_DAYS: Readonly<Record<string, number | null>> = Object.fromEntries(
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:141:export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:201:export const KEYWORD_TYPE_MAP: Readonly<Record<string, MemoryTypeName>> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:390:export const SPEC_DOCUMENT_CONFIGS: readonly SpecDocumentConfig[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:160:export const CORRECTION_TYPES: CorrectionTypes = Object.freeze({
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:177:export const CORRECTION_STABILITY_PENALTY: number = 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:181:export const REPLACEMENT_STABILITY_BOOST: number = 1.2;
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:227:  return ensure_schema();
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:293: * Provides the ensure_schema helper.
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:295:export function ensure_schema(): SchemaResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:962:  ensure_schema as ensureSchema,
+.opencode/skills/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:50:    expect(preflightCode).toContain('FROM session_learning');
+.opencode/skills/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:70:    expect(preflightCode).toMatch(/INSERT\s+INTO\s+session_learning/);
+.opencode/skills/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:71:    expect(preflightCode).not.toMatch(/INSERT\s+OR\s+REPLACE\s+INTO\s+session_learning/);
+.opencode/skills/system-spec-kit/mcp_server/tests/protect-learning.vitest.ts:80:    expect(preflightCode).toContain('UPDATE session_learning');
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-detection.ts:705:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:649:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts:16:  | 'missing_schema_version'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts:27:  schemaVersion?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts:66:  if (!isNonEmptyString(row.schemaVersion)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts:69:      exclusionReason: 'missing_schema_version',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts:82:    schemaVersion: row.schemaVersion.trim(),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:548: * `memory_index_scan` picks up the gap and re-embeds the memory. This avoids blocking
+.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:148:export const DEFAULT_HINTS: DefaultHints = {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:5:export const SPEC_DOCUMENT_FILENAMES = new Set([
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:389:  // T11: Trace payload schema + serialization redaction
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-signals.ts:634:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:22:export const SHARED_PAYLOAD_CERTAINTY_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:31:export const DETECTOR_PROVENANCE_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:40:export const PARSER_PROVENANCE_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:49:export const EVIDENCE_STATUS_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:58:export const FRESHNESS_AUTHORITY_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:67:export const MEASUREMENT_AUTHORITY_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:76:export const PUBLICATION_METHODOLOGY_STATUSES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:83:export const MULTIPLIER_REQUIRED_FIELDS = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:93:  schemaVersion: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:117:export const EDGE_EVIDENCE_CLASS_VALUES = [
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:156:    | 'session_snapshot'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:158:    | 'session_health'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:313:  if (!isNonEmptyString(metadata.schemaVersion)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:314:    throw new Error('Publication methodology metadata requires a non-empty schemaVersion.');
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:336:    schemaVersion: metadata.schemaVersion.trim(),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts:16:export const DEFAULT_WINDOW = 3600;   // 1 hour in seconds
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/temporal-contiguity.ts:17:export const MAX_WINDOW = 86400;      // 24 hours in seconds
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:8:export const WARM_START_BUNDLE_TOGGLE = 'SPECKIT_WARM_START_BUNDLE';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:17:export const WARM_START_VARIANTS: readonly WarmStartVariant[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:141:      return 'code_graph_query';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:158:    if (resolution === 'code_graph_query') {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:254:        sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:283:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:238:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:6:// Follows code-graph-db.ts patterns for schema versioning and transaction safety.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:105:export const SCHEMA_VERSION = 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:114:export const RESEARCH_WEIGHTS: Record<ResearchRelation, number> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:125:export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:137:export const VALID_KINDS: Record<LoopType, readonly string[]> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:143:export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:171:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:185:    session_id TEXT NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:    UNIQUE(spec_folder, loop_type, session_id, iteration)
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:194:  CREATE TABLE IF NOT EXISTS schema_version (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:200:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:206:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:207:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:228:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:230:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:232:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:266:    parts.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:308:      id, spec_folder, loop_type, session_id, kind, name,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:      id, spec_folder, loop_type, session_id, source_id, target_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:454:      spec_folder, loop_type, session_id, iteration, metrics, node_count, edge_count
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:457:    ON CONFLICT(spec_folder, loop_type, session_id, iteration) DO UPDATE SET
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:      WHERE spec_folder = ? AND loop_type = ? AND session_id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:517:  schemaVersion: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:558:    schemaVersion: SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:605:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:621:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:636:    sessionId: r.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts:244:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-impl.ts:7:// - vector-index-schema.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:535:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/ranking-contract.ts:14:export const STAGE2_GRAPH_BONUS_CAP = 0.03;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:362:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1386:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/anchor-chunker.ts:61:export const CHUNKING_THRESHOLD = 50000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-cache.ts:40:export const DEFAULT_TTL_MS = 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-cache.ts:209:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:22:export const MAX_FACETS = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:290:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:715:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:382:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1417:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:35:  | 'session_boosted'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:127:    signals.push('session_boosted');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:207:    if (signal === 'session_boosted') return 'session attention';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts:359:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:4:// Feature catalog: Evaluation database and schema
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:142: *   - Structured JSON output schema minimises parsing failures
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:319:export const llm = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:435:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:4:// Split from vector-index-store.ts — contains ALL schema creation,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:22:// Feature catalog: Database and schema safety
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:31:  schemaVersion: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:41:  schemaVersion: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:51:const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:74:  'session_id',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:129:    session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:424:// V23: One-time spec_folder re-canonicalization + session_state migration
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:426:/** Current schema version for vector-index migrations. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:427:export const SCHEMA_VERSION = 25;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:429:// Run schema migrations from one version to another
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:433: * Runs schema migrations between two schema versions.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:435: * @param from_version - The current schema version.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:436: * @param to_version - The target schema version.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:442:      // V0 -> v1: Initial schema (already exists via create_schema)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:487:      // Use the canonical helper so later schema refinements only update one DDL definition.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1126:    // P1-3 fix: Migrate session_state.spec_folder using old→new mapping
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1243:// Ensure schema version table exists and run any pending migrations
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1245: * Ensures the schema version table is current.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1247: * @returns The previous schema version.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1249:export function ensure_schema_version(database: Database.Database): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1251:    CREATE TABLE IF NOT EXISTS schema_version (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1258:  const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1263:    logger.info(`Migrating schema from v${current_version} to v${SCHEMA_VERSION}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1272:      INSERT OR REPLACE INTO schema_version (id, version, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1281:      'Backward-compatibility validation detected schema gaps',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1449:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1461:      ON governance_audit(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1467:        ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1528: * Validates backward compatibility expectations for the current schema.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1581:    const schemaVersion = safe_get_schema_version(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1589:      schemaVersion,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1599:      schemaVersion: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1639:      schemaVersion: safe_get_schema_version(database),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1651:      schemaVersion: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1661:function safe_get_schema_version(database: Database.Database): number | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1663:    if (!hasTable(database, 'schema_version')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1666:    const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1765:  if (!column_names.includes('session_id')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1767:      database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1768:      console.warn('[vector-index] Migration: Added session_id column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1773:      logDuplicateColumnMigrationSkip('session_id', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2172: * Migrate session_state.spec_folder values using the old→new mapping
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2179:  if (!hasTable(database, 'session_state')) return;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2190:    'UPDATE session_state SET spec_folder = ? WHERE session_id = ? AND spec_folder = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2194:    `SELECT session_id, spec_folder FROM session_state WHERE spec_folder IS NOT NULL`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2195:  ).all() as Array<{ session_id: string; spec_folder: string }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2202:      updateStmt.run(canonical, row.session_id, row.spec_folder);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2205:      logger.warn(`Migration v23: Ambiguous session_state mapping for "${row.spec_folder}". Skipping.`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2210:    logger.info(`Migration v23: Updated spec_folder for ${updated} session_state rows`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2257:// Create database schema
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2259: * Creates or upgrades the vector-index schema.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2264:export function create_schema(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2287:        'Existing schema is not fully backward-compatible after bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2325:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2435:    CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2436:    CREATE INDEX IF NOT EXISTS idx_memories_governed_scope ON memory_index(tenant_id, user_id, agent_id, session_id, shared_space_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2461:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2483:export { ensure_schema_version as ensureSchemaVersion };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2485:export { create_schema as createSchema };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/channel-representation.ts:16:export const QUALITY_FLOOR = 0.005;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:24:export const EXPLICIT_ONLY_EVIDENCE = 'explicit_only';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/deterministic-extractor.ts:52:export const DETERMINISTIC_EXTRACTOR_PROVENANCE = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:37:  create_schema,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:38:  ensure_schema_version,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:39:} from './vector-index-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:83:export const search_weights: SearchWeightsConfig = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:121:export const EMBEDDING_DIM = 768;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:167:  const schema_row = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:171:  if (!schema_row) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:176:      reason: 'No existing schema',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:222:    reason: 'No stored vector dimension found for existing schema',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:247:      const source_label = existing.source === 'vec_metadata' ? 'vec_metadata' : 'vec_memories schema';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:281:export const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:819:  create_schema(new_db, { sqlite_vec_available: vec_available, get_embedding_dim });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:820:  ensure_schema_version(new_db);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:24:  ensure_schema_version,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:30:  create_schema,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:38:} from './vector-index-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:6:export const SESSION_TRANSITION_SIGNAL_ORDER = [
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts:23:export const DOMAIN_VOCABULARY_MAP: Record<string, string[]> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts:169:  // No-op: schema creation is now idempotently attempted on every access.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:211:   5. EXPORTS (re-export constants for test convenience)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:270:    // entity_catalog may not have an alias column — check schema first
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:279:      // Fall back to entity_text as both alias and canonical when schema differs
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:1146:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:112:    metrics['isolation.missing_session_scope_rows'] = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:114:    metrics['schema.version'] = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:130:  metrics['isolation.missing_session_scope_rows'] = safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:132:    "SELECT COUNT(*) AS value FROM memory_index WHERE session_id IS NULL OR TRIM(session_id) = ''",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:138:  metrics['schema.version'] = safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:140:    'SELECT version AS value FROM schema_version WHERE id = 1',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:20:export const CONFIDENCE_MULTIPLIER_BASE = 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:23:export const CONFIDENCE_MULTIPLIER_FLOOR = 0.3;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:26:export const NEGATIVE_PENALTY_PER_VALIDATION = 0.1;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:34:export const RECOVERY_HALF_LIFE_MS = 30 * 24 * 60 * 60 * 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:573:export const __testables = {
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:11:} from '../search/vector-index-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:94:  'schema_mismatch',
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:182: * Tier 2: Database config persistence — `shared_memory_enabled` key in `config` table.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:200:        .get('shared_memory_enabled') as { value: string } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:204:      console.warn(`[shared-spaces] Failed to resolve shared_memory_enabled config: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:219:    .run('shared_memory_enabled', 'true');
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:223: * Ensure shared-space schema is available before collab operations run.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:603:    return deny('shared_memory_disabled');
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:10:} from './trace-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:13:} from './trace-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:83:export const CONFIDENCE_BASE: number = 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:84:export const CONFIDENCE_POSITIVE_INCREMENT: number = 0.1;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:85:export const CONFIDENCE_NEGATIVE_DECREMENT: number = 0.05;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:86:export const CONFIDENCE_MAX: number = 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:87:export const CONFIDENCE_MIN: number = 0.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:89:export const PROMOTION_CONFIDENCE_THRESHOLD: number = 0.9;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:90:export const PROMOTION_VALIDATION_THRESHOLD: number = 5;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:51:export const GROUND_TRUTH_QUERIES: GroundTruthQuery[] = queries;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:52:export const GROUND_TRUTH_RELEVANCES: GroundTruthRelevance[] = relevances;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:65:export const QUERY_DISTRIBUTION = {
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:42:export const LAYER_DEFINITIONS: Record<LayerId, LayerDefinition> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:104:      'code_graph_query',
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:105:      'code_graph_context'
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:115:    tools: ['memory_index_scan', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'code_graph_scan', 'code_graph_status', 'ccc_status', 'ccc_reindex', 'ccc_feedback']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:128:export const TOOL_LAYER_MAP: Record<string, LayerId> = {} as Record<string, LayerId>;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts:60:export const MPAB_BONUS_COEFFICIENT = 0.3;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:4:// Feature catalog: Evaluation database and schema
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:55:export const ALL_CHANNELS: AblationChannel[] = [
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:161:export const FIVE_FACTOR_WEIGHTS: FiveFactorWeights = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:170:export const DEFAULT_WEIGHTS: LegacyWeights = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:180:export const RECENCY_SCALE_DAYS: number = 1 / DECAY_RATE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:184:export const FSRS_FACTOR: number = 19 / 81;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:185:export const FSRS_DECAY: number = -0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:226:export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:236:export const CITATION_DECAY_RATE: number = 0.1;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:237:export const CITATION_MAX_DAYS: number = 90;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:242:export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:256:export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:362:export const calculateTemporalScore = calculateRetrievabilityScore;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:32:export const IMPORTANCE_TIERS: Readonly<Record<ImportanceTier, TierConfig>> = {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:80:export const VALID_TIERS: readonly ImportanceTier[] = Object.keys(IMPORTANCE_TIERS) as ImportanceTier[];
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:81:export const DEFAULT_TIER: ImportanceTier = 'normal';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:24:export const INTERFERENCE_SIMILARITY_THRESHOLD = 0.75;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:31:export const INTERFERENCE_PENALTY_COEFFICIENT = -0.08;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:8:import { ensureGovernanceTables, ensureSharedSpaceTables } from '../search/vector-index-schema.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:294:    session_id: decision.normalized.sessionId || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:337:      action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:422:    clauses.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:492:      && matchesExactScope(row.session_id, normalized.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:538:      session_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:556:    session_id: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:609:      sessionId: row.session_id ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:33:  session_id?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:44:  session_id?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:106:      session_id TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:116:    CREATE INDEX IF NOT EXISTS idx_consumption_log_session_id
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:117:      ON consumption_log (session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:157:      event.session_id ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:197:    if (options.session_id) {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:198:      conditions.push('session_id = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:199:      params.push(options.session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:239:    // Unique sessions (add session_id IS NOT NULL to existing conditions)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:240:    const sessionConditions = [...conditions, 'session_id IS NOT NULL'];
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:243:      SELECT COUNT(DISTINCT session_id) as cnt
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:407:        SELECT session_id, COUNT(*) as query_count
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:409:        WHERE session_id IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:410:        GROUP BY session_id
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:414:      `).all(exampleLimit) as Array<{ session_id: string; query_count: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:421:          const sid = r.session_id.length > 36 ? r.session_id.substring(0, 36) + '...' : r.session_id;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:20:export const SAMPLING_RATE = 0.05;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:80:    // Only set _db after successful schema creation
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:5:// Canonical schema + runtime validation for retrieval trace payloads
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:472:export const __testables = {
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Resume Handler
@@ -6338,9 +6338,9 @@ export function evaluateCachedSessionSummaryCandidate(
   const producerMetadata = candidate.producerMetadata;
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory Save Handler
@@ -8103,7 +8103,7 @@ engram version            Show version
 ```
 
 exec
-/bin/zsh -lc "rg -n \"name: 'session_bootstrap'|name: 'session_resume'|name: 'session_health'|name: 'code_graph_query'|name: 'shared_memory_enable'|TOOL_DEFINITIONS\" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"name: 'session_bootstrap'|name: 'session_resume'|name: 'session_health'|name: 'code_graph_query'|name: 'shared_memory_enable'|TOOL_DEFINITIONS\" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 459:  name: 'shared_memory_enable',
 639:  name: 'code_graph_query',
@@ -8113,7 +8113,7 @@ exec
 878:export const TOOL_DEFINITIONS: ToolDefinition[] = [
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Layer Definitions
@@ -8337,7 +8337,7 @@ export function getRecommendedLayers(taskType: TaskType): LayerId[] {
     modify: ['L4', 'L3'],
 
 exec
-/bin/zsh -lc "sed -n '520,760p' .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '520,760p' .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
       channels: {
         type: 'array',
@@ -8383,7 +8383,7 @@ const evalReportingDashboard: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed memory files and index them. Useful for bulk indexing after creating multiple memory files. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -8582,7 +8582,7 @@ const sessionBootstrap: ToolDefinition = {
     properties: {
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/context-server.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/context-server.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Context Server
@@ -10594,7 +10594,7 @@ exec
    220	   */
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Layer Definitions
@@ -10778,7 +10778,7 @@ exec
    180	 */
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '720,930p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '720,930p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    720	    type: 'object', additionalProperties: false,
    721	    properties: {
@@ -10993,7 +10993,7 @@ exec
    930	  cccFeedback,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Tool Schemas
@@ -11214,10 +11214,10 @@ exec
    217	const memorySave: ToolDefinition = {
    218	  name: 'memory_save',
    219	  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Session Resume Handler
@@ -12142,7 +12142,7 @@ mcp: spec_kit_memory/memory_context started
 mcp: spec_kit_memory/memory_context (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Generate Context
@@ -12266,7 +12266,7 @@ exec
    120	  Learning Delta Calculation:
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Save Handler
@@ -12390,7 +12390,7 @@ exec
    120	  finalizedFileContent: string | null;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts | sed -n '780,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts | sed -n '780,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    780	        rootMemoryId,
    781	        activeMemoryId: memoryId,
@@ -12475,99 +12475,99 @@ exec
    860	 * @returns Aggregated lineage summary when one exists.
 
 exec
-/bin/zsh -lc 'rg -n "createAppendOnlyMemoryRecord|recordLineageVersion|append-only|lineage" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "createAppendOnlyMemoryRecord|recordLineageVersion|append-only|lineage" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:36:import { createAppendOnlyMemoryRecord, recordLineageVersion } from '../lib/storage/lineage-state.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:938:        ? createAppendOnlyMemoryRecord({
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:967:      recordLineageVersion(database, {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:4:// Provides append-first lineage transitions, active projection reads,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:136:  lineageRowCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:262:      `[lineage-state] Logical key component contains '::'; using hashed structured key for spec_folder=${row.spec_folder}, path=${canonicalPath}, anchor=${anchorId}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:281:    FROM memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:299:    FROM memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:319:    FROM memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:339:    && message.includes('memory_lineage.logical_key')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:340:    && message.includes('memory_lineage.version_number')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:350:  // during lineage inspection, but the full metadata provides forensic context
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:375:    logger.warn(`Invalid lineage metadata shape for memory ${row.memory_id}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:378:    logger.warn(`Failed to parse lineage metadata for memory ${row.memory_id}: ${error instanceof Error ? error.message : String(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:547:// R1: Shared early-return helper for lineage functions.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:592: * Seed lineage state from an existing memory row when no lineage entry exists yet.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:594: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:595: * @param memoryId - Memory version to seed into lineage tables.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:597: * @returns Seeded lineage state for the requested memory version.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:620:      INSERT INTO memory_lineage (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:659: * Seed or append a lineage transition for a memory version.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:661: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:664: * @returns Recorded lineage state for the requested memory version.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:678:    // A1/B14: Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:741:          UPDATE memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:750:        INSERT INTO memory_lineage (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:796:        `Retrying lineage insert for memory ${memoryId} after logical_key/version_number conflict ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:802:  throw new Error(`E_LINEAGE: exhausted retries while recording lineage for memory ${memoryId}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:806: * Create a new append-only memory row and wire it into lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:808: * @param params - Parsed memory payload and append-only lineage metadata.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811:export function createAppendOnlyMemoryRecord(params: CreateAppendOnlyMemoryRecordParams): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:838: * Return the full ordered lineage chain for the logical key behind a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:840: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:842: * @returns Ordered lineage snapshots from oldest to newest version.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:847:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:848:  if (!lineage) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:852:  return lineage.rows.map((row) => resolveSnapshotFromLineageRow(database, row));
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:856: * Build a compact operator-facing summary for the lineage behind a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:858: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:860: * @returns Aggregated lineage summary when one exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:868:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:869:  if (!lineage) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:872:  const { logicalKey, projection, rows } = lineage;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:933: * Resolve the currently active lineage snapshot for a memory logical key.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:935: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:937: * @returns Active lineage snapshot when one exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:944:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:945:  if (!lineage) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:948:  const { projection, rows } = lineage;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:960: * Resolve the lineage snapshot visible at a specific point in time.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:962: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:973:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:974:  if (!lineage) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:979:  const row = [...lineage.rows].reverse().find((candidate) => (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:988: * Validate lineage chains and active projections for structural drift.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:990: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002:    FROM memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1004:      AND predecessor_memory_id NOT IN (SELECT memory_id FROM memory_lineage)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1016:    FROM memory_lineage
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1030:    LEFT JOIN memory_lineage l
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1044:  const lineageRowCount = (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1045:    database.prepare('SELECT COUNT(*) AS total FROM memory_lineage').get() as { total: number }
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1052:    lineageRowCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1060: * Backfill lineage state from existing memory rows in append-only order.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1062: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1073:  const actor = options.actor ?? 'memory-lineage:backfill';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1152:          INSERT INTO memory_lineage (
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1218: * Resolve the active projection row for the lineage that owns a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1220: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1228:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1229:  if (!lineage) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1232:  return lineage.projection;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1236: * Resolve the latest lineage row for the logical key behind a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1238: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1240: * @returns Latest lineage row when one exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1243:  const lineage = loadLineageRowsForMemory(database, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1244:  if (!lineage || lineage.rows.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1247:  return lineage.rows[lineage.rows.length - 1] ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1251: * Compatibility wrapper used by roadmap tests and save flows for lineage writes.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1253: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1255: * @returns Recorded lineage transition for the requested memory version.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1257:export function recordLineageVersion(
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1291: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1293: * @returns Active lineage snapshot when one exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1305: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1317: * Compatibility wrapper that executes the lineage backfill workflow.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1319: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1331: * Benchmark append-first lineage writes across an ordered chain of memory ids.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1333: * @param database - Database connection that stores lineage state.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1359:  const actor = options.actor ?? 'memory-lineage:benchmark';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1393: * Public lineage result types exposed to tests and compatibility helpers.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:36:import { createAppendOnlyMemoryRecord, recordLineageVersion } from '../lib/storage/lineage-state.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:938:        ? createAppendOnlyMemoryRecord({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:967:      recordLineageVersion(database, {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:4:// Provides append-first lineage transitions, active projection reads,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:136:  lineageRowCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:262:      `[lineage-state] Logical key component contains '::'; using hashed structured key for spec_folder=${row.spec_folder}, path=${canonicalPath}, anchor=${anchorId}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:281:    FROM memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:299:    FROM memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:319:    FROM memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:339:    && message.includes('memory_lineage.logical_key')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:340:    && message.includes('memory_lineage.version_number')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:350:  // during lineage inspection, but the full metadata provides forensic context
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:375:    logger.warn(`Invalid lineage metadata shape for memory ${row.memory_id}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:378:    logger.warn(`Failed to parse lineage metadata for memory ${row.memory_id}: ${error instanceof Error ? error.message : String(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:547:// R1: Shared early-return helper for lineage functions.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:592: * Seed lineage state from an existing memory row when no lineage entry exists yet.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:594: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:595: * @param memoryId - Memory version to seed into lineage tables.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:597: * @returns Seeded lineage state for the requested memory version.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:620:      INSERT INTO memory_lineage (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:659: * Seed or append a lineage transition for a memory version.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:661: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:664: * @returns Recorded lineage state for the requested memory version.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:678:    // A1/B14: Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:741:          UPDATE memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:750:        INSERT INTO memory_lineage (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:796:        `Retrying lineage insert for memory ${memoryId} after logical_key/version_number conflict ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:802:  throw new Error(`E_LINEAGE: exhausted retries while recording lineage for memory ${memoryId}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:806: * Create a new append-only memory row and wire it into lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:808: * @param params - Parsed memory payload and append-only lineage metadata.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:811:export function createAppendOnlyMemoryRecord(params: CreateAppendOnlyMemoryRecordParams): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:838: * Return the full ordered lineage chain for the logical key behind a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:840: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:842: * @returns Ordered lineage snapshots from oldest to newest version.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:847:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:848:  if (!lineage) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:852:  return lineage.rows.map((row) => resolveSnapshotFromLineageRow(database, row));
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:856: * Build a compact operator-facing summary for the lineage behind a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:858: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:860: * @returns Aggregated lineage summary when one exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:868:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:869:  if (!lineage) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:872:  const { logicalKey, projection, rows } = lineage;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:933: * Resolve the currently active lineage snapshot for a memory logical key.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:935: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:937: * @returns Active lineage snapshot when one exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:944:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:945:  if (!lineage) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:948:  const { projection, rows } = lineage;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:960: * Resolve the lineage snapshot visible at a specific point in time.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:962: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:973:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:974:  if (!lineage) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:979:  const row = [...lineage.rows].reverse().find((candidate) => (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:988: * Validate lineage chains and active projections for structural drift.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:990: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1002:    FROM memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1004:      AND predecessor_memory_id NOT IN (SELECT memory_id FROM memory_lineage)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1016:    FROM memory_lineage
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1030:    LEFT JOIN memory_lineage l
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1044:  const lineageRowCount = (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1045:    database.prepare('SELECT COUNT(*) AS total FROM memory_lineage').get() as { total: number }
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1052:    lineageRowCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1060: * Backfill lineage state from existing memory rows in append-only order.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1062: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1073:  const actor = options.actor ?? 'memory-lineage:backfill';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1152:          INSERT INTO memory_lineage (
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1218: * Resolve the active projection row for the lineage that owns a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1220: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1228:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1229:  if (!lineage) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1232:  return lineage.projection;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1236: * Resolve the latest lineage row for the logical key behind a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1238: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1240: * @returns Latest lineage row when one exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1243:  const lineage = loadLineageRowsForMemory(database, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1244:  if (!lineage || lineage.rows.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1247:  return lineage.rows[lineage.rows.length - 1] ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1251: * Compatibility wrapper used by roadmap tests and save flows for lineage writes.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1253: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1255: * @returns Recorded lineage transition for the requested memory version.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1257:export function recordLineageVersion(
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1291: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1293: * @returns Active lineage snapshot when one exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1305: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1317: * Compatibility wrapper that executes the lineage backfill workflow.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1319: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1331: * Benchmark append-first lineage writes across an ordered chain of memory ids.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1333: * @param database - Database connection that stores lineage state.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1359:  const actor = options.actor ?? 'memory-lineage:benchmark';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1393: * Public lineage result types exposed to tests and compatibility helpers.
 
 codex
 # Iteration 003: TOOL/API SURFACE
@@ -12577,7 +12577,7 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 
 ## Findings
 ### Finding 1: Engram’s profile split is enforced at registration time, while Public’s split is descriptive rather than executable
-- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L7), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L121), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L878)
+- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L7), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L121), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L878)
 - **What it does**: Engram resolves `agent` and `admin` profiles into an allowlist with `ResolveTools()`, then only registers matching tools with `shouldRegister()`. Within that set, it further marks non-core tools with `WithDeferLoading(true)`, so “profile” and “load timing” are both runtime behavior, not just docs. Public already has strong L1-L7 metadata and ordered tool definitions, but it still exposes one canonical server surface.
 - **Why it matters for us**: This is the clearest tool-surface gap. Public has the semantics needed for safe subsets, but not the runtime filtering. We could derive install-time or launch-time profiles from existing layer metadata instead of hand-maintaining separate lists.
 - **Recommendation**: adopt now
@@ -12591,7 +12591,7 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - **Impact**: medium
 
 ### Finding 3: Engram’s continuity contract lives partly in APIs, but heavily in duplicated setup-time prompt text
-- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L95), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L104), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L45), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L397), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L4), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L71)
+- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L95), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L104), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L45), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L397), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L4), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L71)
 - **What it does**: Engram writes large memory-protocol and compaction instructions into runtime-specific setup outputs, then the OpenCode plugin appends those instructions to system prompts and compaction context. The APIs exist, but host-specific instruction injection is doing a lot of the real continuity work. Public instead centralizes recovery in `session_resume` and `session_bootstrap`, and preserves save authority in JSON-primary `generate-context`.
 - **Why it matters for us**: Engram’s approach is portable, but brittle: the behavior depends on duplicated prose across setup layers. Public’s recovery surface is already stronger than this. The only useful borrowing here is small host-specific nudges that point back to canonical recovery tools.
 - **Recommendation**: reject
@@ -12605,14 +12605,14 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - **Impact**: medium
 
 ### Finding 5: Engram’s explicit session lifecycle APIs are good mutation primitives, but not a full recovery contract
-- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [server.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/server/server.go#L100), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L215), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L740), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L755)
+- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [server.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/server/server.go#L100), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L215), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L740), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
 - **What it does**: Engram has narrow session mutation surfaces: start, end, summary, plus idempotent `ensureSession()` in the plugin. That is clean. But startup recovery is still basically `mem_context` plus prompt injection, rather than one authoritative “resume everything” tool. Public already has that composite recovery contract in `session_resume` and `session_bootstrap`.
 - **Why it matters for us**: The part worth borrowing is the durable session mutation layer, not the overall recovery model. A lightweight session ledger or explicit checkpoint write could harden Public’s continuity without replacing `session_bootstrap`.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 6: Engram proves install-time agent-safe profiles are operationally valuable, and Public can implement them from metadata it already has
-- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L72), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L212), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L40), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42)
+- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L72), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L212), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L40), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42)
 - **What it does**: Engram setup consistently installs `engram mcp --tools=agent` into Codex and other runtimes, and even preloads Claude permissions for just that narrowed toolset. Public already has richer categorization than Engram, but it does not yet turn that metadata into installation-time or startup-time profiles.
 - **Why it matters for us**: This is the strongest concrete adoption candidate from the tool-surface pass. Public can expose derived profiles such as `agent-core`, `analysis`, `maintenance`, and `admin` using existing layer metadata, instead of cloning Engram’s exact two-profile maps.
 - **Recommendation**: adopt now
@@ -12631,10 +12631,10 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - [external/internal/project/similar.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/project/similar.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts)
-- [mcp_server/lib/architecture/layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts)
-- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts)
+- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts)
+- [mcp_server/lib/architecture/layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts)
+- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts)
 
 ## Assessment
 - New information ratio: 0.74
@@ -12658,7 +12658,7 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 
 ## Findings
 ### Finding 1: Engram’s profile split is enforced at registration time, while Public’s split is descriptive rather than executable
-- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L7), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L121), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L878)
+- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L7), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L121), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L878)
 - **What it does**: Engram resolves `agent` and `admin` profiles into an allowlist with `ResolveTools()`, then only registers matching tools with `shouldRegister()`. Within that set, it further marks non-core tools with `WithDeferLoading(true)`, so “profile” and “load timing” are both runtime behavior, not just docs. Public already has strong L1-L7 metadata and ordered tool definitions, but it still exposes one canonical server surface.
 - **Why it matters for us**: This is the clearest tool-surface gap. Public has the semantics needed for safe subsets, but not the runtime filtering. We could derive install-time or launch-time profiles from existing layer metadata instead of hand-maintaining separate lists.
 - **Recommendation**: adopt now
@@ -12672,7 +12672,7 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - **Impact**: medium
 
 ### Finding 3: Engram’s continuity contract lives partly in APIs, but heavily in duplicated setup-time prompt text
-- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L95), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L104), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L45), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L397), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L4), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L71)
+- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L95), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L104), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L45), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L397), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L4), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L71)
 - **What it does**: Engram writes large memory-protocol and compaction instructions into runtime-specific setup outputs, then the OpenCode plugin appends those instructions to system prompts and compaction context. The APIs exist, but host-specific instruction injection is doing a lot of the real continuity work. Public instead centralizes recovery in `session_resume` and `session_bootstrap`, and preserves save authority in JSON-primary `generate-context`.
 - **Why it matters for us**: Engram’s approach is portable, but brittle: the behavior depends on duplicated prose across setup layers. Public’s recovery surface is already stronger than this. The only useful borrowing here is small host-specific nudges that point back to canonical recovery tools.
 - **Recommendation**: reject
@@ -12686,14 +12686,14 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - **Impact**: medium
 
 ### Finding 5: Engram’s explicit session lifecycle APIs are good mutation primitives, but not a full recovery contract
-- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [server.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/server/server.go#L100), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L215), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L740), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L755)
+- **Source**: [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L460), [server.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/server/server.go#L100), [engram.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/plugin/opencode/engram.ts#L215), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L740), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L755)
 - **What it does**: Engram has narrow session mutation surfaces: start, end, summary, plus idempotent `ensureSession()` in the plugin. That is clean. But startup recovery is still basically `mem_context` plus prompt injection, rather than one authoritative “resume everything” tool. Public already has that composite recovery contract in `session_resume` and `session_bootstrap`.
 - **Why it matters for us**: The part worth borrowing is the durable session mutation layer, not the overall recovery model. A lightweight session ledger or explicit checkpoint write could harden Public’s continuity without replacing `session_bootstrap`.
 - **Recommendation**: prototype later
 - **Impact**: high
 
 ### Finding 6: Engram proves install-time agent-safe profiles are operationally valuable, and Public can implement them from metadata it already has
-- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L72), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L212), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L40), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42)
+- **Source**: [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L72), [setup.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/setup/setup.go#L212), [mcp.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/mcp/mcp.go#L50), [tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L40), [layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts#L42)
 - **What it does**: Engram setup consistently installs `engram mcp --tools=agent` into Codex and other runtimes, and even preloads Claude permissions for just that narrowed toolset. Public already has richer categorization than Engram, but it does not yet turn that metadata into installation-time or startup-time profiles.
 - **Why it matters for us**: This is the strongest concrete adoption candidate from the tool-surface pass. Public can expose derived profiles such as `agent-core`, `analysis`, `maintenance`, and `admin` using existing layer metadata, instead of cloning Engram’s exact two-profile maps.
 - **Recommendation**: adopt now
@@ -12712,10 +12712,10 @@ TOOL/API SURFACE: Analyze MCP tools, CLI commands, API endpoints, tool registrat
 - [external/internal/project/similar.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/project/similar.go)
 - [external/internal/store/store.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
 - [external/docs/ARCHITECTURE.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/docs/ARCHITECTURE.md)
-- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts)
-- [mcp_server/lib/architecture/layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts)
-- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts)
+- [mcp_server/tool-schemas.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts)
+- [mcp_server/lib/architecture/layer-definitions.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts)
+- [mcp_server/handlers/session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [scripts/memory/generate-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts)
 
 ## Assessment
 - New information ratio: 0.74

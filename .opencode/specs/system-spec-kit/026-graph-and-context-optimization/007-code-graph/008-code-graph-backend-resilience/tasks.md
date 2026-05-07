@@ -117,8 +117,8 @@ _memory:
 ## Completion Criteria
 
 - [x] All 15 tasks marked `[x]` with `(verified)` evidence (verified — all 15 in tasks.md marked [x])
-- [x] `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` passes 0 errors (verified — build PASS at end of every task per scratch/runner.log)
-- [x] `npm --prefix .opencode/skill/system-spec-kit/mcp_server test` passes 100% (verified — see implementation-summary.md Verification block)
+- [x] `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` passes 0 errors (verified — build PASS at end of every task per scratch/runner.log)
+- [x] `npm --prefix .opencode/skills/system-spec-kit/mcp_server test` passes 100% (verified — see implementation-summary.md Verification block)
 - [x] `/doctor:code-graph:auto` smoke test succeeds against modified backend (verified — doctor command + apply-mode YAMLs reference 008 outputs and operate against the modified backend)
 - [x] `code_graph_verify` MCP tool reachable + returns valid response shape (verified — registered in tool-schemas.ts, dispatched via code-graph-tools.ts, exported from handlers/index.ts)
 - [x] Strict spec validation passes 0/0 (verified — final validate.sh --strict run)

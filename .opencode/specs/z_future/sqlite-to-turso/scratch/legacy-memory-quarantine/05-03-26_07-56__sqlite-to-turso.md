@@ -3,7 +3,7 @@ title: Skill graph analysis notes for [024-sqlite-to-turso/05-03-26_07-56__sqlit
 description: 'This session captures research work for sqlite to turso on 2026-03-05.
   The recorded notes focus on analysis of the separate 036-skill-graphs implementation
   and its SGQS memory integration rather than the folder topic. It references .opencode/.../handlers/sgqs-query.ts,
-  .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts, .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts, .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   and records the current blocker: opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.'
 trigger_phrases:
 - sqlite to turso
@@ -150,7 +150,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../handlers/sgqs-query.ts, .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts, .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+- Files modified: .opencode/.../handlers/sgqs-query.ts, .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts, .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 
 - Last: Tool: bash
 
@@ -165,7 +165,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts |
+| Active File | /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts |
 | Last Action | Tool: bash |
 | Next Action | Continue implementation |
 | Blockers | opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate. |
@@ -185,25 +185,25 @@ Next: Continue implementation
 
 - **Based on an analysis of the `036-skill-graphs` implementation and its associated** - Based on an analysis of the 036-skill-graphs implementation and its associated scripts, the Skill Graph system and its memory integration consist of an elegant, entirely in-memory graph database (SGQS) that enriches the existing semantic memory pipeline without requiring external infrastructure like Neo4j.
 
-- **Tool: write** - .opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts
+- **Tool: write** - .opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts
 
-- **Tool: edit** - .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
+- **Tool: edit** - .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
 
-- **Tool: read** - .opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
+- **Tool: read** - .opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
 
 **Key Files and Their Roles**:
 
-- `.opencode/.../handlers/sgqs-query.ts` - .opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-...
+- `.opencode/.../handlers/sgqs-query.ts` - .opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-...
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts` - Entry point / exports
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts` - Entry point / exports
 
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` - .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` - .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 
-- `.opencode/.../tools/causal-tools.ts` - .opencode/skill/system-spec-kit/mcp_server/tools/causal-t...
+- `.opencode/.../tools/causal-tools.ts` - .opencode/skills/system-spec-kit/mcp_server/tools/causal-t...
 
-- `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts` - Type definitions
+- `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` - Type definitions
 
-- `.opencode/.../tests/prediction-error-gate.vitest.ts` - .opencode/skill/system-spec-kit/mcp_server/tests/predicti...
+- `.opencode/.../tests/prediction-error-gate.vitest.ts` - .opencode/skills/system-spec-kit/mcp_server/tests/predicti...
 
 - `.opencode/.../architecture/layer-definitions.ts` - Edited via edit tool
 
@@ -254,10 +254,10 @@ The core of the skill graph relies on an in-memory engine (SGQS - Ski
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../handlers/(merged-small-files)` | Tree-thinning merged 1 small files (sgqs-query.ts). sgqs-query.ts: Updated sgqs query |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/(merged-small-files)` | Tree-thinning merged 1 small files (index.ts). index.ts: .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts |
-| `.opencode/skill/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (tool-schemas.ts). tool-schemas.ts: Updated tool schemas |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/(merged-small-files)` | Tree-thinning merged 1 small files (index.ts). index.ts: .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts |
+| `.opencode/skills/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (tool-schemas.ts). tool-schemas.ts: Updated tool schemas |
 | `.opencode/.../tools/(merged-small-files)` | Tree-thinning merged 1 small files (causal-tools.ts). causal-tools.ts: Updated causal tools |
-| `.opencode/skill/system-spec-kit/mcp_server/tools/(merged-small-files)` | Tree-thinning merged 1 small files (types.ts). types.ts: Edited via edit tool |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/(merged-small-files)` | Tree-thinning merged 1 small files (types.ts). types.ts: Edited via edit tool |
 | `.opencode/.../tests/(merged-small-files)` | Tree-thinning merged 4 small files (prediction-error-gate.vitest.ts, layer-definitions.vitest.ts, context-server.vitest.ts, mcp-tool-dispatch.vitest.ts). prediction-error-gate.vitest.ts: Updated prediction error gate.vitest | layer-definitions.vitest.ts: Updated layer definitions.vitest |
 | `.opencode/.../architecture/(merged-small-files)` | Tree-thinning merged 1 small files (layer-definitions.ts). layer-definitions.ts: Updated layer definitions |
 
@@ -300,106 +300,106 @@ The core of the skill graph relies on an in-memory engine (SGQS - Ski
 
 SPECKIT_
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-d2346f2d -->
 
 <!-- ANCHOR:implementation-tool-glob-b7393dcb -->
 ### OBSERVATION: Tool: glob
 
-.opencode/skill/system-spec-kit/mcp_server
+.opencode/skills/system-spec-kit/mcp_server
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server
 **Details:** Tool: glob | Status: completed
 <!-- /ANCHOR:implementation-tool-glob-b7393dcb -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-2 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts (repeated 2 times)
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-2 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-3 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tools/index.ts
+.opencode/skills/system-spec-kit/mcp_server/tools/index.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/index.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/index.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-3 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-4 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts (repeated 3 times)
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts (repeated 3 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-4 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-5 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/sgqs/index.ts
+.opencode/skills/system-spec-kit/scripts/sgqs/index.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/sgqs/index.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/sgqs/index.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-5 -->
 
 <!-- ANCHOR:implementation-tool-write-3de48a44 -->
 ### IMPLEMENTATION: Tool: write
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts
 **Details:** Tool: write | Status: completed
 <!-- /ANCHOR:implementation-tool-write-3de48a44 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-6 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-6 -->
 
 <!-- ANCHOR:implementation-tool-edit-090cd1b7 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts (repeated 3 times)
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts (repeated 3 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7 -->
 
 <!-- ANCHOR:implementation-tool-edit-090cd1b7-2 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts (repeated 2 times)
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-2 -->
 
 <!-- ANCHOR:implementation-tool-edit-090cd1b7-3 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts (repeated 4 times)
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts (repeated 4 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-3 -->
 
@@ -408,16 +408,16 @@ SPECKIT_
 
 Executed edit (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/types.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/types.ts
 **Details:** Tool: edit | Status: error | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-4 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-7 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tools/types.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tools/types.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-7 -->
 
@@ -432,18 +432,18 @@ Build the mcp server to test compilation (repeated 9 times)
 <!-- ANCHOR:integration-tool-read-bf03ce05 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/package.json
+.opencode/skills/system-spec-kit/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/package.json
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:integration-tool-read-bf03ce05 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-8 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-8 -->
 
@@ -452,52 +452,52 @@ Build the mcp server to test compilation (repeated 9 times)
 
 from '\.\./\.\./scripts (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-d2346f2d-2 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-9 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/core/index.ts
+.opencode/skills/system-spec-kit/mcp_server/core/index.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/core/index.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/core/index.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-9 -->
 
 <!-- ANCHOR:implementation-tool-edit-090cd1b7-5 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts (repeated 3 times)
+.opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts (repeated 3 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/sgqs-query.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/sgqs-query.ts
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-5 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-10 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/shared/types.ts
+.opencode/skills/system-spec-kit/shared/types.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/shared/types.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/shared/types.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-10 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-11 -->
 ### BUGFIX: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-11 -->
 
 <!-- ANCHOR:implementation-tool-edit-090cd1b7-6 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-6 -->
 
@@ -506,7 +506,7 @@ from '\.\./\.\./scripts (repeated 2 times)
 
 memory_causal_unlink
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-d2346f2d-3 -->
 
@@ -515,16 +515,16 @@ memory_causal_unlink
 
 Executed edit (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
 **Details:** Tool: edit | Status: error | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-7 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-12 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-12 -->
 
@@ -533,7 +533,7 @@ Executed edit (repeated 2 times)
 
 memory_causal_unlink (repeated 2 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-d2346f2d-4 -->
 
@@ -542,7 +542,7 @@ memory_causal_unlink (repeated 2 times)
 
 Executed edit
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts
 **Details:** Tool: edit | Status: error
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-8 -->
 
@@ -551,7 +551,7 @@ Executed edit
 
 Executed edit (repeated 6 times)
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts
 **Details:** Tool: edit | Status: error | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-9 -->
 
@@ -560,7 +560,7 @@ Executed edit (repeated 6 times)
 
 Executed edit
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts
 **Details:** Tool: edit | Status: error
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-10 -->
 
@@ -569,16 +569,16 @@ Executed edit
 
 Executed edit
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts
 **Details:** Tool: edit | Status: error
 <!-- /ANCHOR:implementation-tool-edit-090cd1b7-11 -->
 
 <!-- ANCHOR:implementation-tool-read-bf03ce05-13 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts
+**Files:** /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-bf03ce05-13 -->
 
@@ -686,7 +686,7 @@ User initiated conversation
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/024-sqlite-to-turso", limit: 10 })
@@ -698,7 +698,7 @@ ls -la system-spec-kit/024-sqlite-to-turso/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/024-sqlite-to-turso --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/024-sqlite-to-turso --force
 ```
 
 ### Recovery Priority
@@ -888,10 +888,10 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../handlers/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/handlers/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/handlers/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/(merged-small-files)"
   - ".opencode/.../tools/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/tools/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/tools/(merged-small-files)"
   - ".opencode/.../tests/(merged-small-files)"
   - ".opencode/.../architecture/(merged-small-files)"
 

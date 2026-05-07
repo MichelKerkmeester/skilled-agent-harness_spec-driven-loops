@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P0] Merge reconsolidation can make the surviving memory unreachable and returns the wrong ID
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` and `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts` and `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 
 **Issue**: The merge path archives the old row and inserts a raw replacement row, but it never updates `active_memory_projection`, never runs the normal post-insert/indexing hooks, and the bridge reports the archived row ID back to the caller instead of the new merged row ID. Since vector retrieval joins through `active_memory_projection` and excludes archived rows, the merged survivor can disappear from search immediately after a successful merge.
 
@@ -17,7 +17,7 @@
 **Fix**: Make merge use the same append-only creation path as normal saves so the new record gets projection state, metadata, BM25/history updates, and the correct returned ID. At minimum, the merge transaction must upsert `active_memory_projection`, apply post-insert metadata, refresh interference/BM25 state, and have the bridge return `reconResult.newMemoryId` instead of the archived predecessor ID.
 
 ### [P1] Conflict-band saves on the same file path silently fall back to in-place overwrite and lose lineage
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
 
 **Issue**: The bridge stores conflict candidates through `vectorIndex.indexMemory()` without `appendOnly: true`. On a same-path save, `indexMemory()` updates the existing row instead of creating a new version. That makes `storedId === topMatch.id`, so reconsolidation drops into the legacy `executeConflict()` fallback that overwrites the existing row in place and skips the `supersedes` edge. Because `memory-save` returns early for reconsolidation hits, the normal append-only lineage path never runs.
 
@@ -31,7 +31,7 @@
 **Fix**: For save-handler callers, forbid the legacy in-place fallback. Conflict handling should always materialize a distinct successor row, preferably via the same append-only/versioned path used by normal saves, and then create the `supersedes` edge against the predecessor.
 
 ### [P1] Assistive auto-merge can archive the wrong memory because it skips scope filtering and TM-06 safety guards
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 
 **Issue**: The assistive reconsolidation path is default-on and directly archives the top match at `>= 0.96`, but unlike TM-06 reconsolidation it does not apply the caller's governance scope filter and does not require a pre-reconsolidation checkpoint. In shared-memory or governed deployments, a high-similarity match from another tenant/user/agent/shared space but the same `spec_folder` can therefore be shadow-archived by the wrong caller.
 
@@ -45,7 +45,7 @@
 **Fix**: Run assistive candidate selection through the same governance-scope filter as TM-06, and do not archive anything unless the same checkpoint/safety conditions are met. If that safety bar is not acceptable for assistive mode, keep the `>= 0.96` tier advisory-only instead of mutating records.
 
 ### [P2] Interference scoring keeps counting archived and deprecated memories after reconsolidation
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts` and `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
 
 **Issue**: Interference scoring computes redundancy from every non-chunk row in a folder, including archived rows and deprecated predecessors. Reconsolidation therefore leaves retired memories contributing penalty weight even though the search pipeline itself excludes archived/deprecated results. That creates a persistent scoring mismatch where active memories are demoted by siblings users can no longer retrieve.
 

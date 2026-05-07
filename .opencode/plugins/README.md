@@ -5,7 +5,7 @@ description: "Two plugin entrypoint files OpenCode auto-loads at startup. Helper
 
 # OpenCode Plugin Entrypoints
 
-OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session start. This folder is intentionally limited to those entrypoint files so helper modules cannot be mistaken for plugins. Helpers and bridges live alongside their owning skills under `.opencode/skill/.../mcp_server/`.
+OpenCode 1.3.17+ auto-loads JavaScript files in `.opencode/plugins/` at session start. This folder is intentionally limited to those entrypoint files so helper modules cannot be mistaken for plugins. Helpers and bridges live alongside their owning skills under `.opencode/skills/.../mcp_server/`.
 
 ---
 
@@ -47,7 +47,7 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 
 ## 4. BRIDGE MODULES
 
-Helper bridge modules are co-located with their owning skill at `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`, not in this folder:
+Helper bridge modules are co-located with their owning skill at `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, not in this folder:
 
 - `spec-kit-skill-advisor-bridge.mjs`
 - `spec-kit-compact-code-graph-bridge.mjs`
@@ -71,5 +71,5 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 
 ## 6. RELATED
 
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` — bridge module home
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` — bridge module home
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)

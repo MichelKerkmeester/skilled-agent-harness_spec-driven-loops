@@ -12,12 +12,12 @@ Yes. The local memory surfaces are powerful, but too many everyday context actio
 I compared the local `memory` command family and YAML-oriented command setup text with the external repo's orchestration model, where persistence and handoff concerns are mostly embedded in the orchestrator contract rather than surfaced as peer commands.
 
 ## Evidence
-- `[SOURCE: .opencode/command/spec_kit/plan.md:11-21]` The planning command explicitly teaches the operator that markdown owns setup and YAML owns execution.
-- `[SOURCE: .opencode/command/spec_kit/complete.md:11-21]` The same markdown-versus-YAML ownership model is repeated in the full lifecycle command.
-- `[SOURCE: .opencode/command/memory/save.md:7-25]` `/memory:save` has its own multi-tier folder-resolution ceremony before the actual save workflow starts.
-- `[SOURCE: .opencode/command/memory/search.md:1-5]` `/memory:search` is not just retrieval; it also exposes preflight, postflight, causal, ablation, and dashboard analysis as one large public command surface.
-- `[SOURCE: .opencode/command/memory/manage.md:33-62]` `/memory:manage` exposes a broad administration surface for scanning, cleanup, checkpointing, ingest, and shared-memory lifecycle.
-- `[SOURCE: .opencode/command/memory/learn.md:43-55]` `/memory:learn` creates a fourth public memory command for constitutional rules.
+- `[SOURCE: .opencode/commands/spec_kit/plan.md:11-21]` The planning command explicitly teaches the operator that markdown owns setup and YAML owns execution.
+- `[SOURCE: .opencode/commands/spec_kit/complete.md:11-21]` The same markdown-versus-YAML ownership model is repeated in the full lifecycle command.
+- `[SOURCE: .opencode/commands/memory/save.md:7-25]` `/memory:save` has its own multi-tier folder-resolution ceremony before the actual save workflow starts.
+- `[SOURCE: .opencode/commands/memory/search.md:1-5]` `/memory:search` is not just retrieval; it also exposes preflight, postflight, causal, ablation, and dashboard analysis as one large public command surface.
+- `[SOURCE: .opencode/commands/memory/manage.md:33-62]` `/memory:manage` exposes a broad administration surface for scanning, cleanup, checkpointing, ingest, and shared-memory lifecycle.
+- `[SOURCE: .opencode/commands/memory/learn.md:43-55]` `/memory:learn` creates a fourth public memory command for constitutional rules.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:123-136]` The external orchestrator folds handoff and memory-management patterns into its own operator contract instead of exposing a comparable parallel public command family.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:36-43]` The external public surface stays centered on mode activation and task execution, not on parallel persistence subcommands.
 
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should keep the memory platform and YAML workflow assets, but simplify the public surface by absorbing common memory actions into the main lifecycle and hiding YAML asset mechanics from operator-facing command docs.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/*.md`, `.opencode/command/memory/save.md`, `.opencode/command/memory/search.md`
+- **Target file or module:** `.opencode/commands/spec_kit/*.md`, `.opencode/commands/memory/save.md`, `.opencode/commands/memory/search.md`
 - **Change type:** should-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define which memory actions stay advanced and which become implicit lifecycle behavior

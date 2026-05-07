@@ -62,7 +62,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 - `indexer-types.ts` default excludes now include `**/z_future/**`, `**/z_archive/**`, and `**/mcp-coco-index/mcp_server/**` alongside the existing excludes.
 - `structural-indexer.ts` now honors `.gitignore` files during recursive walking. Parsed ignore matchers are cached per directory and applied additively with the existing default exclude globs.
 - `structural-indexer.ts` also logs a scan-scope one-liner: scanned file count plus default-excluded and gitignored entry counts.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/SURFACES.md` documents the MCP startup/bootstrap surface and OpenCode compact-code-graph minimal resume surface.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/SURFACES.md` documents the MCP startup/bootstrap surface and OpenCode compact-code-graph minimal resume surface.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -103,9 +103,9 @@ The implementation stayed inside the approved source/test/doc scope. I read the 
 | Red test proof | Temporarily reverted stale gate, ran `vitest run tests/structural-contract.vitest.ts -t 'returns stale highlights and freshness marker'` | Failed as expected, then passed after restoring |
 | Build | `npm run build` in `mcp_server` | Passed |
 | Focused Vitest | `./node_modules/.bin/vitest run tests/structural-contract.vitest.ts tests/tree-sitter-parser.vitest.ts` | 20 tests passed |
-| Surface doc | `.opencode/skill/system-spec-kit/mcp_server/code-graph/SURFACES.md` | Created |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../003-code-graph-context-and-scan-scope --strict` | Passed with 0 errors / 0 warnings |
-| Canonical save | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Exit 0; embedding calls deferred because network fetch failed, BM25/FTS indexing path used |
+| Surface doc | `.opencode/skills/system-spec-kit/mcp_server/code-graph/SURFACES.md` | Created |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../003-code-graph-context-and-scan-scope --strict` | Passed with 0 errors / 0 warnings |
+| Canonical save | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Exit 0; embedding calls deferred because network fetch failed, BM25/FTS indexing path used |
 <!-- /ANCHOR:verification -->
 
 ---

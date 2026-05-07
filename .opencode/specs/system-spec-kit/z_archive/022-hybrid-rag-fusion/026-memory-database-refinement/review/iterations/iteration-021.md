@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] BEGIN IMMEDIATE holds the DB write lock across async reconsolidation and file rewrite
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 
 **Issue** `processPreparedMemory()` opens `BEGIN IMMEDIATE` before it awaits reconsolidation and file finalization. In the hot path, one save can hold both the in-process spec-folder mutex and the SQLite writer lock while it waits on embedding-backed reconsolidation or filesystem writes. That turns a per-folder serialization primitive into head-of-line blocking, and in multi-process callers it increases `SQLITE_BUSY` and lock inversion risk even when the actual row insert is short.
 
@@ -12,7 +12,7 @@
 **Fix** Split the pipeline into a planning phase and a mutation phase. Do similarity search, reconsolidation classification, and file-content preparation before `BEGIN IMMEDIATE`; then start the transaction only for the dedup recheck, recon mutation, record creation, and lineage updates. Keep file finalization either before the transaction starts or after commit with an explicit compensating rollback path.
 
 ### [P1] Governance cleanup can delete the DB row after the auto-fixed file has already been committed
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 
 **Issue** The handler persists quality-loop fixes to disk before the main save transaction commits, but governance metadata is applied afterward in a separate transaction. If governance post-processing fails, the code deletes the saved memory from the DB yet leaves the rewritten file in place. The file now contains the auto-fixed version while the database no longer has the corresponding row, so file content and indexed state diverge.
 
@@ -21,7 +21,7 @@
 **Fix** Fold governance fields into the primary insert/update transaction so the save is all-or-nothing. If governance must stay post-commit, keep the file backup until governance succeeds and restore the original file whenever cleanup deletes the DB row.
 
 ### [P1] Large-file chunking silently skips the quality gate and reconsolidation stages
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 
 **Issue** The pipeline order makes chunking a structural escape hatch. Once `needsChunking(parsed.content)` returns true, the handler exits through `indexChunkedMemoryFile()` before it runs the TM-04 quality gate, content-hash dedup, PE gating, or reconsolidation. Save semantics therefore change based solely on content length: small memories get similarity-based gating and reconsolidation, but large memories do not.
 
@@ -30,7 +30,7 @@
 **Fix** Move the quality gate and reconsolidation decision ahead of the chunking fork, or introduce chunk-aware equivalents that run before `indexChunkedMemoryFile()` mutates storage. At minimum, make the skip explicit in the result payload and logs so operators know large saves are taking a weaker validation path.
 
 ### [P2] Parsed state can go stale between preflight, quality-loop preparation, and the locked save
-**File** `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 
 **Issue** The handler parses and mutates a `PreparedParsedMemory` object before it acquires the spec-folder lock, then reuses that object later without reparsing or revalidating the file. Any change to the file or relevant DB state while the request is waiting on preflight or the folder mutex can leave the locked phase operating on stale content, stale references, and stale auto-fix output.
 

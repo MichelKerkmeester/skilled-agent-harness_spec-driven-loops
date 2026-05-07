@@ -42,9 +42,9 @@
     "key_files": [
       "mcp_server/README.md",
       "scripts/rules/README.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -60,7 +60,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

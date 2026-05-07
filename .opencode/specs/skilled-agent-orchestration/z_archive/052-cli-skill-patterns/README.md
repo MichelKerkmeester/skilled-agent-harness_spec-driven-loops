@@ -99,8 +99,8 @@ Only use direct template copy when the canonical intake is unavailable or when e
 
 ```bash
 mkdir -p specs/###-feature-name
-cp .opencode/skill/system-spec-kit/templates/level_2/*.md specs/###-feature-name/
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
+cp .opencode/skills/system-spec-kit/templates/level_2/*.md specs/###-feature-name/
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 ```
 
 <!-- /ANCHOR:quick-start -->

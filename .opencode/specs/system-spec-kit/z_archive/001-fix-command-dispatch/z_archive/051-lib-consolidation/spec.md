@@ -50,10 +50,10 @@ Not obvious which folder "owns" which module. Some modules logically belong to b
 
 ## Proposed Solution
 
-Create a new shared lib folder at `.opencode/skill/system-spec-kit/shared/` containing only modules needed by both CLI scripts AND MCP server:
+Create a new shared lib folder at `.opencode/skills/system-spec-kit/shared/` containing only modules needed by both CLI scripts AND MCP server:
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── lib/                    # NEW: Shared modules
 │   ├── embeddings.js       # Multi-provider embedding system
 │   ├── trigger-extractor.js # Trigger phrase extraction
@@ -88,21 +88,21 @@ Create a new shared lib folder at `.opencode/skill/system-spec-kit/shared/` cont
 ## Files Affected
 
 ### New Files
-- `.opencode/skill/system-spec-kit/shared/embeddings.js`
-- `.opencode/skill/system-spec-kit/shared/trigger-extractor.js`
-- `.opencode/skill/system-spec-kit/shared/retry-utils.js`
-- `.opencode/skill/system-spec-kit/shared/README.md`
+- `.opencode/skills/system-spec-kit/shared/embeddings.js`
+- `.opencode/skills/system-spec-kit/shared/trigger-extractor.js`
+- `.opencode/skills/system-spec-kit/shared/retry-utils.js`
+- `.opencode/skills/system-spec-kit/shared/README.md`
 
 ### Modified Files (Import Updates)
-- `.opencode/skill/system-spec-kit/scripts/generate-context.js`
-- `.opencode/skill/system-spec-kit/scripts/shared/*.js` (remove re-exports)
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
-- `.opencode/skill/system-spec-kit/mcp_server/shared/vector-index.js`
+- `.opencode/skills/system-spec-kit/scripts/generate-context.js`
+- `.opencode/skills/system-spec-kit/scripts/shared/*.js` (remove re-exports)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
+- `.opencode/skills/system-spec-kit/mcp_server/shared/vector-index.js`
 
 ### Documentation Updates
-- `.opencode/skill/system-spec-kit/README.md`
-- `.opencode/skill/system-spec-kit/scripts/shared/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/shared/README.md`
+- `.opencode/skills/system-spec-kit/README.md`
+- `.opencode/skills/system-spec-kit/scripts/shared/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/shared/README.md`
 
 <!-- ANCHOR:success-criteria -->
 ## Success Criteria

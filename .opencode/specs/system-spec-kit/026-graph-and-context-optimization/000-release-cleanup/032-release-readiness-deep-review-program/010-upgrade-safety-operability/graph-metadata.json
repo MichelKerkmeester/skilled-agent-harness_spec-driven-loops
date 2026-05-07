@@ -54,12 +54,12 @@
       {
         "name": "mcp-doctor.sh",
         "type": "doctor-diagnostic",
-        "path": ".opencode/command/doctor/scripts/mcp-doctor.sh"
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh"
       },
       {
         "name": "vector-index-schema.ts",
         "type": "migration-source",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
       }
     ],
     "causal_summary": "Deep-review angle 10: upgrade safety + operability - DB migrations, install/upgrade flow, file relocations don't break imports, doctor commands diagnose, env var defaults sanity, backwards-compat.",

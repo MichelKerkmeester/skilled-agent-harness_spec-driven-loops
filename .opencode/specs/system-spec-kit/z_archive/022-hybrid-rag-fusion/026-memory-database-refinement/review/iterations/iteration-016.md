@@ -4,7 +4,7 @@
 
 ### [P1] Plain handler exceptions are misreported to MCP clients as `SEARCH_FAILED`
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts`
+`.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts`
 
 **Issue**
 The top-level MCP wrapper treats any thrown non-`MemoryError` as a generic `SEARCH_FAILED` error. Several handlers still throw plain `Error` objects for parameter validation and request-shape failures, so clients receive the wrong error code and the wrong recovery hint family.
@@ -17,7 +17,7 @@ Convert handler-thrown validation errors to `MemoryError` with explicit codes, o
 
 ### [P1] Internal exception text is returned directly to MCP clients
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts`
 
 **Issue**
 Multiple handlers serialize raw exception messages into client-facing MCP error payloads. The shared sanitizer only redacts credential-like tokens, so filesystem paths, SQL fragments, schema details, and other internal diagnostics can still leak to callers.
@@ -30,7 +30,7 @@ Stop returning raw exception strings to clients for internal failures. Use coars
 
 ### [P1] Causal-graph handlers use unrelated canonical error codes for generic failures
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts`
+`.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts`
 
 **Issue**
 The causal-graph catch paths hardcode canonical codes that do not match the failure class being reported. That misleads MCP clients and couples recovery hints to the wrong operational advice.
@@ -43,7 +43,7 @@ Replace these hardcoded catch-all codes with domain-appropriate canonical values
 
 ### [P2] Reconsolidation save path swallows BM25 indexing failure and commits a partially updated search state
 **File**
-`.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+`.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 
 **Issue**
 The reconsolidation callback commits the memory row and metadata even when the BM25 lexical index update fails. Because the BM25 error is only logged and not propagated, recovery leaves the database and lexical search index out of sync.

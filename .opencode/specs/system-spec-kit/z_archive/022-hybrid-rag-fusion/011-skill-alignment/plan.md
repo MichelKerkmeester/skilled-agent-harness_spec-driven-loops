@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown documentation only |
 | **Framework** | Spec Kit Level 2 spec-folder workflow |
-| **Source of Truth** | `mcp_server/tool-schemas.ts`, `.opencode/command/memory/`, current `system-spec-kit` docs |
+| **Source of Truth** | `mcp_server/tool-schemas.ts`, `.opencode/commands/memory/`, current `system-spec-kit` docs |
 | **Verification** | `validate.sh --strict`, targeted `rg`, live count checks |
 
 ### Overview
@@ -77,7 +77,7 @@ Live repo truth informs the reconciled spec pack. The reconciled pack then acts 
 
 ### Verification Methodology
 - Count live tools from `mcp_server/tool-schemas.ts`
-- Count live memory commands from `.opencode/command/memory/*.md`
+- Count live memory commands from `.opencode/commands/memory/*.md`
 - Confirm retrieval ownership in `/memory:search`
 - Remove any backlog item already covered in current `system-spec-kit` docs
 <!-- /ANCHOR:architecture -->
@@ -125,10 +125,10 @@ Live repo truth informs the reconciled spec pack. The reconciled pack then acts 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Strict spec validation | Entire `011-skill-alignment` folder | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Strict spec validation | Entire `011-skill-alignment` folder | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Stale-string audit | Canonical 011 docs only | Run a targeted grep for obsolete command-surface phrases, then manually confirm any hit is historical/negative rather than a current-state claim |
-| Live count verification | Memory tool and command surface | `node` against `tool-schemas.ts`, `find .opencode/command/memory -name '*.md'` |
-| Ownership verification | Retrieval command home | `rg` or `Read` on `.opencode/command/memory/search.md` |
+| Live count verification | Memory tool and command surface | `node` against `tool-schemas.ts`, `find .opencode/commands/memory -name '*.md'` |
+| Ownership verification | Retrieval command home | `rg` or `Read` on `.opencode/commands/memory/search.md` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,8 +138,8 @@ Live repo truth informs the reconciled spec pack. The reconciled pack then acts 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Internal | Green | Live tool count could not be verified |
-| `.opencode/command/memory/` | Internal | Green | Live command count and ownership could not be verified |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Internal | Green | Live tool count could not be verified |
+| `.opencode/commands/memory/` | Internal | Green | Live command count and ownership could not be verified |
 | Current `system-spec-kit` docs | Internal | Green | Remaining backlog could not be narrowed accurately |
 | `012-command-alignment` delivered docs | Internal | Green | 011 could drift back to the superseded command model |
 <!-- /ANCHOR:dependencies -->

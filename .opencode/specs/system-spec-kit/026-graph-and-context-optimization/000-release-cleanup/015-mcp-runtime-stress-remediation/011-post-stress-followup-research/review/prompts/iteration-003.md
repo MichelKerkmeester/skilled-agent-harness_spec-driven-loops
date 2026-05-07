@@ -30,14 +30,14 @@ You are iteration 3 of 10 in a deep-review loop auditing 012-015 + 28 catalog/pl
 **Source-of-evidence** (re-read selectively):
 - 4 implementation-summary.md files at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/{012,013,014,015}-*/implementation-summary.md`
 - 4 review-report.md files at the same packets
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/{status,context}.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
-- 28 catalog/playbook files at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/{feature_catalog,manual_testing_playbook}/` (recently committed in b227544ca)
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/{status,context}.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/{executor-config-copilot-target-authority,code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough}.vitest.ts
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_auto.yaml
+- 28 catalog/playbook files at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/{feature_catalog,manual_testing_playbook}/` (recently committed in b227544ca)
 
 ## Iteration 3 focus
 

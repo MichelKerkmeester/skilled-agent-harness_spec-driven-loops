@@ -48,19 +48,19 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The multi-ai-council convention could theoretically be packaged as a full skill folder under `.opencode/skill/multi-ai-council/`, mirroring deep-research and deep-review. That would carry a YAML workflow, command surface, iteration mechanics, and convergence math comparable to the deep skills. The user requirement was explicit: keep this lightweight; no dedicated skill folder.
+The multi-ai-council convention could theoretically be packaged as a full skill folder under `.opencode/skills/multi-ai-council/`, mirroring deep-research and deep-review. That would carry a YAML workflow, command surface, iteration mechanics, and convergence math comparable to the deep skills. The user requirement was explicit: keep this lightweight; no dedicated skill folder.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-The multi-ai-council convention will NOT have a dedicated skill folder. All logic stays in the agent body (`.opencode/agent/multi-ai-council.md`) plus 4 reference files under `system-spec-kit/references/multi-ai-council/`.
+The multi-ai-council convention will NOT have a dedicated skill folder. All logic stays in the agent body (`.opencode/agents/multi-ai-council.md`) plus 4 reference files under `system-spec-kit/references/multi-ai-council/`.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives
 
-- **Build a full `.opencode/skill/multi-ai-council/`** mirroring deep-research's structure. Rejected: feature creep; non-goal N1 in spec.md §3.
+- **Build a full `.opencode/skills/multi-ai-council/`** mirroring deep-research's structure. Rejected: feature creep; non-goal N1 in spec.md §3.
 - **Create a `/spec_kit:council` slash command**. Rejected: non-goal N2; council remains user-invoked via the agent.
 - **Hybrid (skill folder without YAML workflow)**. Rejected: still cargo-cult overhead; the lightweight bound is a design value, not a side effect.
 <!-- /ANCHOR:adr-001-alternatives -->

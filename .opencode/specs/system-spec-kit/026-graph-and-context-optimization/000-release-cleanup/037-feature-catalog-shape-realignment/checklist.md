@@ -124,5 +124,5 @@ _memory:
 - Six-root shape audit: PASS, no `DRIFT` lines.
 - Structural Node audit: PASS, no output.
 - Evergreen grep on touched feature catalog files: PASS after stable manual playbook IDs and one retained published filename false positive were classified.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment --strict`: PASS.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-feature-catalog-shape-realignment --strict`: PASS.
 <!-- /ANCHOR:summary -->

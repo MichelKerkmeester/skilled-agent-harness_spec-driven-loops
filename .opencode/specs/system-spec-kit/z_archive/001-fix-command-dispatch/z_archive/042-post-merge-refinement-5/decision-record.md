@@ -241,8 +241,8 @@ SKILL.md references "Gate 3" for spec folder question, but AGENTS.md defines it 
 #### Technical Approach
 
 Update all references in:
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/command/spec_kit/*.md` (all command files)
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/commands/spec_kit/*.md` (all command files)
 
 ```markdown
 <!-- BEFORE -->

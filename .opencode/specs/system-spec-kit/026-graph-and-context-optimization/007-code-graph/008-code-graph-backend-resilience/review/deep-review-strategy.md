@@ -2,7 +2,7 @@
 
 ## Review Target
 
-The 008-code-graph-backend-resilience packet implementation: 5 backend streams (hash predicate, resolver upgrades, edge-weight + drift, self-heal observability, gold-battery verifier + `code_graph_verify` MCP tool) landed across 17+ files in `.opencode/skill/system-spec-kit/mcp_server/code_graph/` plus tests and tool-schema registration.
+The 008-code-graph-backend-resilience packet implementation: 5 backend streams (hash predicate, resolver upgrades, edge-weight + drift, self-heal observability, gold-battery verifier + `code_graph_verify` MCP tool) landed across 17+ files in `.opencode/skills/system-spec-kit/mcp_server/code_graph/` plus tests and tool-schema registration.
 
 Recent commits to review against:
 - `87bf42a3d` — T01-T03 metadata helpers + gold-query-verifier scaffold

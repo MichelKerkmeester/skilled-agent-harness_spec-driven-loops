@@ -47,22 +47,22 @@ Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-cont
 | `007-fleet-marker-validation-sweep/graph-metadata.json` | implementation-spec-alignment | 001 | P1-002 | reviewed |
 | `003-template-greenfield-impl/resource-map.md` | implementation-spec-alignment | 001 | - | reviewed |
 | `003-template-greenfield-impl/implementation-summary.md` | implementation-spec-alignment | 001 | - | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | code-correctness, template-rendering-correctness | 001, 002, 003 | F003 | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-ai-protocols.sh` | code-correctness, validator-coverage | 002 | F003 | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | validator-coverage | 002, 004 | F004 | reviewed |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/validation/orchestrator.ts` | validator-coverage | 004 | F004 | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json` | validator-coverage | 004 | F004 | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-*.sh` | code-correctness, validator-coverage | 002, 004 | F003/F004 | reviewed |
-| `.opencode/skill/system-spec-kit/templates/manifest/*.tmpl` | template-rendering-correctness | 003 | - | reviewed |
-| `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` | template-rendering-correctness, validator-coverage | 003 | - | reviewed |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` | template-rendering-correctness | 003 | - | reviewed |
-| `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.*` | template-rendering-correctness | 003 | - | reviewed |
-| `.opencode/command/spec_kit/deep-review.md` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
-| `.opencode/agent/deep-review.md` and runtime mirrors | cross-runtime-mirror-consistency | 005 | - | reviewed |
-| `.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` | cross-runtime-mirror-consistency | 005 | carry-forward from packet 005 | reviewed |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | code-correctness, template-rendering-correctness | 001, 002, 003 | F003 | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh` | code-correctness, validator-coverage | 002 | F003 | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | validator-coverage | 002, 004 | F004 | reviewed |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts` | validator-coverage | 004 | F004 | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | validator-coverage | 004 | F004 | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-*.sh` | code-correctness, validator-coverage | 002, 004 | F003/F004 | reviewed |
+| `.opencode/skills/system-spec-kit/templates/manifest/*.tmpl` | template-rendering-correctness | 003 | - | reviewed |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | template-rendering-correctness, validator-coverage | 003 | - | reviewed |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` | template-rendering-correctness | 003 | - | reviewed |
+| `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.*` | template-rendering-correctness | 003 | - | reviewed |
+| `.opencode/commands/spec_kit/deep-review.md` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | cross-runtime-mirror-consistency | 005 | F005 | reviewed |
+| `.opencode/agents/deep-review.md` and runtime mirrors | cross-runtime-mirror-consistency | 005 | - | reviewed |
+| `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl` | cross-runtime-mirror-consistency | 005 | carry-forward from packet 005 | reviewed |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | cross-runtime-mirror-consistency | 005 | F005 context | reviewed |
 
 ## Cross-Reference Status
 
@@ -81,7 +81,7 @@ Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-cont
 - The target packet `007-fleet-marker-validation-sweep` is the approved authority and artifact owner.
 - `resource-map.md` is absent in the target; the workflow skips the resource-map coverage gate.
 - The target `implementation-summary.md` is scaffolded, so implementation scope must be derived from phase markers and the 010 implementation ledger.
-- The relevant implementation markers are emitted by `.opencode/skill/system-spec-kit/scripts/spec/create.sh`: `SCAFFOLD_VALIDATION_COUNTS` appended to `spec.md` and `SCAFFOLD_AI_PROTOCOL_MARKERS` appended to Level 3+ `plan.md`.
+- The relevant implementation markers are emitted by `.opencode/skills/system-spec-kit/scripts/spec/create.sh`: `SCAFFOLD_VALIDATION_COUNTS` appended to `spec.md` and `SCAFFOLD_AI_PROTOCOL_MARKERS` appended to Level 3+ `plan.md`.
 - Iteration 002 confirmed marker append is idempotent for normal reruns and Level-gated for AI-protocol markers, but `check-section-counts.sh` and `check-ai-protocols.sh` consume the marker comments as authored evidence.
 - Iteration 003 confirmed scaffold markers are absent from manifest template sources and are appended after inline-gate rendering plus `SPECKIT_TEMPLATE_SOURCE` normalization, so F003 remains a validator-consumer defect rather than a template-rendering defect.
 - Iteration 004 confirmed F003 has a distinct validator-coverage companion issue: default strict validation exits through the Node orchestrator before `SECTION_COUNTS` and `AI_PROTOCOLS` shell rules run, and the reviewed tests lack negative `SCAFFOLD_*` HTML-comment fixtures.

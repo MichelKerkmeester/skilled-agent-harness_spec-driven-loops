@@ -41,21 +41,21 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-research/README.md",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/state_format.md",
-      ".opencode/skill/sk-deep-research/references/quick_reference.md",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-research/README.md",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/state_format.md",
+      ".opencode/skills/sk-deep-research/references/quick_reference.md",
       ".opencode/changelog/12--sk-deep-research/v1.2.2.0.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
-      ".opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts",
-      ".opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts",
-      ".opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
+      ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
       ".codex/agents/deep-research.toml",
       ".codex/agents/deep-review.toml",
       "plan.md",
@@ -66,37 +66,37 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/README.md",
+        "path": ".opencode/skills/sk-deep-research/README.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/quick_reference.md",
+        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
         "source": "derived"
       },
       {
@@ -108,49 +108,49 @@
       {
         "name": "spec-doc-paths.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {
         "name": "memory-parser.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
         "source": "derived"
       },
       {
         "name": "memory-index-discovery.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
         "source": "derived"
       },
       {
         "name": "frontmatter-migration.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/lib/frontmatter-migration.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
         "source": "derived"
       },
       {
         "name": "folder-scoring.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts",
+        "path": ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
         "source": "derived"
       },
       {
         "name": "migrate-deep-research-paths.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research contract is now split across a former root research document, `research/iterations/iteration-*`, and a newer review packet that still has to normalize legacy `review/iterations/iteration-*` layouts. The migration defined here makes `research/` the canonical research packet, keeps `review/` as the canonical review packet, and standardizes iteration artifacts into dedicated `iterations/` folders with no `output/` folder. [SOURCE: .opencode/command/spec_kit/deep-research.md:211-242] [SOURCE: .opencode/skill/sk-deep-research/SKILL.md:187-201]",
+    "causal_summary": "The deep-research contract is now split across a former root research document, `research/iterations/iteration-*`, and a newer review packet that still has to normalize legacy `review/iterations/iteration-*` layouts. The migration defined here makes `research/` the canonical research packet, keeps `review/` as the canonical review packet, and standardizes iteration artifacts into dedicated `iterations/` folders with no `output/` folder. [SOURCE: .opencode/commands/spec_kit/deep-research.md:211-242] [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:187-201]",
     "created_at": "2026-04-12T09:02:50.179Z",
     "last_save_at": "2026-04-26T09:17:15.186Z",
     "save_lineage": "graph_only",

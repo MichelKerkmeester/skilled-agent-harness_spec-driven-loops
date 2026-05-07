@@ -22,9 +22,9 @@ _memory:
     blockers: []
     key_files:
       - "spec.md"
-      - ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md"
-      - ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md"
     completion_pct: 30
     open_questions:
       - "Does packet 016 ship fallbackDecision with nextTool rg or a differently named field for context readiness-crash"
@@ -60,9 +60,9 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ### Problem Statement
 Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that mislead readers reproducing degraded-state scenarios:
 
-- **F-005**: `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` lines 15-23 describe the `fallbackDecision` recovery routing as if `code_graph_query` and `code_graph_context` share one universal contract. In reality the routing payload is handler-local; the readiness-crash branch for context is being shipped by packet `016-degraded-readiness-envelope-parity` with a possibly different field path.
-- **F-007**: `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` lines 133-144 say `rankingSignals (object)` while the Zod schema at `mcp_server/schemas/tool-input-schemas.ts:482-492` accepts `rankingSignals: z.array(z.string()).optional()`. Operators following the playbook construct the wrong shape and waste a debugging cycle.
-- **F-008 (doc parts)**: `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` reads as if the readiness contract is one shared response type. The actual contract is **shared vocabulary, handler-local payload fields** — `code_graph_query`, `code_graph_context`, and `code_graph_status` each emit their own surface around the shared `readiness` / `canonicalReadiness` / `trustState` block.
+- **F-005**: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` lines 15-23 describe the `fallbackDecision` recovery routing as if `code_graph_query` and `code_graph_context` share one universal contract. In reality the routing payload is handler-local; the readiness-crash branch for context is being shipped by packet `016-degraded-readiness-envelope-parity` with a possibly different field path.
+- **F-007**: `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` lines 133-144 say `rankingSignals (object)` while the Zod schema at `mcp_server/schemas/tool-input-schemas.ts:482-492` accepts `rankingSignals: z.array(z.string()).optional()`. Operators following the playbook construct the wrong shape and waste a debugging cycle.
+- **F-008 (doc parts)**: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` reads as if the readiness contract is one shared response type. The actual contract is **shared vocabulary, handler-local payload fields** — `code_graph_query`, `code_graph_context`, and `code_graph_status` each emit their own surface around the shared `readiness` / `canonicalReadiness` / `trustState` block.
 
 ### Purpose
 Align the three catalog/playbook entries with shipped behavior so an operator reading them constructs correct payloads, sees the right fields on degraded-state probes, and understands that handler responses are NOT a single universal type. Packet 016 is the source of truth for the `code_graph_context` readiness-crash field name; this packet either references that source post-016-landing OR points readers at the binding expectation in the review-report §3 / §7 Packet A while 016 is in flight.
@@ -74,9 +74,9 @@ Align the three catalog/playbook entries with shipped behavior so an operator re
 ## 3. SCOPE
 
 ### In Scope
-- Edit `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md`. Split the single `fallbackDecision` bullet into per-handler bullets (query / context / status). Add a footnote pointing at 016's implementation-summary for the canonical field name on context readiness-crash. Reference review-report §3 / §7 Packet A as the binding expectation while 016 is in flight.
-- Edit `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md`. State the shared-vocabulary / handler-local-shape rule explicitly. List the concrete shape per handler. Cross-reference packet 016 for the context readiness-crash envelope.
-- Edit `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`. Change `rankingSignals (object)` to `rankingSignals (array of strings)`. Cite the Zod schema line range. Update the Pass/Fail criterion to assert `Array<string>` shape.
+- Edit `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md`. Split the single `fallbackDecision` bullet into per-handler bullets (query / context / status). Add a footnote pointing at 016's implementation-summary for the canonical field name on context readiness-crash. Reference review-report §3 / §7 Packet A as the binding expectation while 016 is in flight.
+- Edit `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md`. State the shared-vocabulary / handler-local-shape rule explicitly. List the concrete shape per handler. Cross-reference packet 016 for the context readiness-crash envelope.
+- Edit `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md`. Change `rankingSignals (object)` to `rankingSignals (array of strings)`. Cite the Zod schema line range. Update the Pass/Fail criterion to assert `Array<string>` shape.
 - Author the 7-file Level-1 packet (spec, plan, tasks, checklist, description.json, graph-metadata.json, implementation-summary).
 
 ### Out of Scope
@@ -84,15 +84,15 @@ Align the three catalog/playbook entries with shipped behavior so an operator re
 - ANY edit to packet 016 or 017 docs / code.
 - ANY edit to packets 003-015 (frozen).
 - Adding a new feature catalog entry for the readiness-crash envelope. If 016 ships a separately-named field, that page can be authored as a follow-on; here we only adjust the cross-references in the two existing pages.
-- Per-runtime copies of these files. The `stat -f %l` check confirms link count = 1 per file (NOT hardlinked across runtimes); only `.opencode/skill/system-spec-kit/` hosts them.
+- Per-runtime copies of these files. The `stat -f %l` check confirms link count = 1 per file (NOT hardlinked across runtimes); only `.opencode/skills/system-spec-kit/` hosts them.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` | Modify | Per-handler bullets + footnote referencing 016 implementation-summary |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modify | Shared-vocabulary / handler-local-shape rule with concrete per-handler shape |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | Modify | rankingSignals (array of strings) + schema line cite + Pass/Fail update |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/15-code-graph-auto-trigger.md` | Modify | Per-handler bullets + footnote referencing 016 implementation-summary |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modify | Shared-vocabulary / handler-local-shape rule with concrete per-handler shape |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | Modify | rankingSignals (array of strings) + schema line cite + Pass/Fail update |
 | `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `implementation-summary.md` | Create | Packet docs |
 | `description.json` / `graph-metadata.json` | Create | Spec metadata |
 <!-- /ANCHOR:scope -->
@@ -133,7 +133,7 @@ Align the three catalog/playbook entries with shipped behavior so an operator re
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All 6 REQs verified by direct re-read of the modified files.
-- **SC-002**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` PASS.
+- **SC-002**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/018-catalog-playbook-degraded-alignment --strict` PASS.
 - **SC-003**: `git diff --name-only` shows only the 3 catalog/playbook files + 7 packet docs.
 - **SC-004**: No `.ts` / `.js` / `.py` / `.sh` files appear in the diff.
 <!-- /ANCHOR:success-criteria -->

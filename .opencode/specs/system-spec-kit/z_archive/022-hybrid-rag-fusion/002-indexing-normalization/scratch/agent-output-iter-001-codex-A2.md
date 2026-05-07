@@ -15,9 +15,9 @@ You are a software architect performing a structural review of a TypeScript inde
 TASK: Analyze the architecture and modularity of these files:
 
 Primary files (READ ALL):
-1. .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts (1,157 lines)
-2. .opencode/skill/system-spec-kit/scripts/core/workflow.ts (2,482 lines)
-3. .opencode/skill/system-spec-kit/scripts/types/session-types.ts (534 lines)
+1. .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts (1,157 lines)
+2. .opencode/skills/system-spec-kit/scripts/core/workflow.ts (2,482 lines)
+3. .opencode/skills/system-spec-kit/scripts/types/session-types.ts (534 lines)
 
 Specific questions to answer:
 1. Does input-normalizer.ts violate SRP? It's 1,157 lines - what are the distinct responsibilities?
@@ -49,8 +49,8 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m treating this as a read-only architectural review: I’ll load the relevant review standards, inspect all three files in full, and build a concrete call/dependency map before making any claims.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
 description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
@@ -93,7 +93,7 @@ Multi-language code standards for OpenCode system code across JavaScript, TypeSc
 ### Activation Triggers
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Architectural review of TypeScript indexing/normalization system across input-normalizer.ts, workflow.ts, and session-types.ts; assess SRP, decomposition, cyclomatic complexity, circular dependencies, coupling, abstractions, and domain boundaries" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Architectural review of TypeScript indexing/normalization system across input-normalizer.ts, workflow.ts, and session-types.ts; assess SRP, decomposition, cyclomatic complexity, circular dependencies, coupling, abstractions, and domain boundaries" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 [
   {
     "skill": "system-spec-kit",
@@ -117,17 +117,17 @@ exec
 codex
 SKILL ROUTING: `system-spec-kit`, `sk-code-review`, and `sk-code-opencode` all passed threshold; I’m using the review baseline plus the OpenCode overlay, and I’ll pull only the spec-kit context I need for these session/workflow modules.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts/types/session-types.ts .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-    1217 .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-    2494 .opencode/skill/system-spec-kit/scripts/core/workflow.ts
-     534 .opencode/skill/system-spec-kit/scripts/types/session-types.ts
-     546 .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/types/session-types.ts .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+    1217 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+    2494 .opencode/skills/system-spec-kit/scripts/core/workflow.ts
+     534 .opencode/skills/system-spec-kit/scripts/types/session-types.ts
+     546 .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts
     4791 total
 exec
 /bin/zsh -lc "sed -n '1,200p' package.json" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 sed: package.json: No such file or directory
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -150,8 +150,8 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 codex
 I’ve confirmed the target sizes and loaded the review overlays. Next I’m mapping imports, exports, and cross-file references so the SRP and coupling conclusions are grounded in actual call paths rather than file length alone.
-tool cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skill/system-spec-kit/scripts/**/*.ts"],"languages":"typescript","limit":10,"refresh_index":true})
-cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skill/system-spec-kit/scripts/**/*.ts"],"languages":"typescript","limit":10,"refresh_index":true}) failed in 9ms:
+tool cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skills/system-spec-kit/scripts/**/*.ts"],"languages":"typescript","limit":10,"refresh_index":true})
+cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skills/system-spec-kit/scripts/**/*.ts"],"languages":"typescript","limit":10,"refresh_index":true}) failed in 9ms:
 {
   "content": [
     {
@@ -164,26 +164,26 @@ cocoindex_code.search({"query":"input normalization workflow session types spec 
 exec
 /bin/zsh -lc "rg --files -g 'package.json' -g 'tsconfig*.json' ." in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ./.opencode/package.json
-./.opencode/skill/mcp-code-mode/mcp_server/tsconfig.json
-./.opencode/skill/mcp-code-mode/mcp_server/package.json
-./.opencode/skill/system-spec-kit/mcp_server/tsconfig.json
+./.opencode/skills/mcp-code-mode/mcp_server/tsconfig.json
+./.opencode/skills/mcp-code-mode/mcp_server/package.json
+./.opencode/skills/system-spec-kit/mcp_server/tsconfig.json
 ./.opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/tsconfig.json
 ./.opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/package.json
-./.opencode/skill/system-spec-kit/scripts/tsconfig.json
-./.opencode/skill/system-spec-kit/tsconfig.json
-./.opencode/skill/system-spec-kit/package.json
-./.opencode/skill/system-spec-kit/mcp_server/package.json
-./.opencode/skill/system-spec-kit/shared/tsconfig.json
-./.opencode/skill/system-spec-kit/shared/package.json
-./.opencode/skill/system-spec-kit/scripts/package.json
+./.opencode/skills/system-spec-kit/scripts/tsconfig.json
+./.opencode/skills/system-spec-kit/tsconfig.json
+./.opencode/skills/system-spec-kit/package.json
+./.opencode/skills/system-spec-kit/mcp_server/package.json
+./.opencode/skills/system-spec-kit/shared/tsconfig.json
+./.opencode/skills/system-spec-kit/shared/package.json
+./.opencode/skills/system-spec-kit/scripts/package.json
 exec
 /bin/zsh -lc "node - <<'NODE'
 const fs=require('fs');
 const paths=[
-'.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts',
-'.opencode/skill/system-spec-kit/scripts/core/workflow.ts',
-'.opencode/skill/system-spec-kit/scripts/types/session-types.ts',
-'.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts'
+'.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts',
+'.opencode/skills/system-spec-kit/scripts/core/workflow.ts',
+'.opencode/skills/system-spec-kit/scripts/types/session-types.ts',
+'.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts'
 ];
 for (const p of paths){
   const s=fs.readFileSync(p,'utf8');
@@ -195,7 +195,7 @@ for (const p of paths){
 }
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
-FILE .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+FILE .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
 IMPORTS [
   "./logger"
 ]
@@ -216,8 +216,8 @@ EXPORTS [
 ]
 codex
 One quick correction: the first import/export scrape undercounted `input-normalizer.ts`, so I’m switching to AST-backed inspection for the dependency graph and complexity metrics. That should give us cleaner evidence for the review.
-tool cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skill/system-spec-kit/scripts/**/*.ts"],"languages":["typescript"],"limit":10,"refresh_index":true})
-cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skill/system-spec-kit/scripts/**/*.ts"],"languages":["typescript"],"limit":10,"refresh_index":true}) success in 1.12s:
+tool cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skills/system-spec-kit/scripts/**/*.ts"],"languages":["typescript"],"limit":10,"refresh_index":true})
+cocoindex_code.search({"query":"input normalization workflow session types spec affinity architecture normalization pipeline session","paths":[".opencode/skills/system-spec-kit/scripts/**/*.ts"],"languages":["typescript"],"limit":10,"refresh_index":true}) success in 1.12s:
 {
   "content": [
     {
@@ -235,7 +235,7 @@ cocoindex_code.search({"query":"input normalization workflow session types spec 
   "isError": false
 }
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/tsconfig.json" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/tsconfig.json" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
@@ -257,7 +257,7 @@ exec
     "core/**/*.ts",
     "evals/**/*.ts",
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/scripts/package.json" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/scripts/package.json" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 {
   "name": "@spec-kit/scripts",
   "version": "1.7.2",
@@ -287,11 +287,11 @@ exec
   }
 }
 exec
-/bin/zsh -lc "node -p \"require.resolve('tsx')\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scriptsexec
-/bin/zsh -lc "node -p \"require.resolve('typescript')\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts succeeded in 0ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript.js
+/bin/zsh -lc "node -p \"require.resolve('tsx')\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scriptsexec
+/bin/zsh -lc "node -p \"require.resolve('typescript')\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts succeeded in 0ms:
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js
  succeeded in 0ms:
-/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs
+/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs
 codex
 I’ve got local TypeScript tooling available, so I’m generating a proper structural report now: top-level declarations, import graph, per-function complexity estimates, and the internal call graph across the target files plus `spec-affinity.ts`.
 exec
@@ -301,10 +301,10 @@ const path = require('path');
 const fs = require('fs');
 
 const files = [
-  '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts',
-  '.opencode/skill/system-spec-kit/scripts/core/workflow.ts',
-  '.opencode/skill/system-spec-kit/scripts/types/session-types.ts',
-  '.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts',
+  '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts',
+  '.opencode/skills/system-spec-kit/scripts/core/workflow.ts',
+  '.opencode/skills/system-spec-kit/scripts/types/session-types.ts',
+  '.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts',
 ].map(f => path.resolve(f));
 const fileSet = new Set(files);
 
@@ -486,12 +486,12 @@ console.log('\\n=== DIRECT_DEPENDENCY_MATRIX ===');
 for(const item of summary){
   console.log(item.file, '->', item.targetDeps.join(', ') || '(none)');
 }
-NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts exited 1 in 44ms:
+NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts exited 1 in 44ms:
 node:fs:435
     return binding.readFileUtf8(path, stringToFlags(options.flag));
                    ^
 
-Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'
+Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'
     at Object.readFileSync (node:fs:435:20)
     at read ([stdin]:13:32)
     at parse ([stdin]:14:56)
@@ -505,21 +505,21 @@ Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/De
   errno: -2,
   code: 'ENOENT',
   syscall: 'open',
-  path: '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'
+  path: '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'
 }
 codex
 The AST script tripped over path resolution from the `scripts/` subdirectory. I’m rerunning it from the repo root so the file graph and complexity report line up with the real paths.
 exec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const path = require('path');
 const fs = require('fs');
 
 const relFiles = [
-  '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts',
-  '.opencode/skill/system-spec-kit/scripts/core/workflow.ts',
-  '.opencode/skill/system-spec-kit/scripts/types/session-types.ts',
-  '.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts',
+  '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts',
+  '.opencode/skills/system-spec-kit/scripts/core/workflow.ts',
+  '.opencode/skills/system-spec-kit/scripts/types/session-types.ts',
+  '.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts',
 ];
 const files = relFiles.map(f => path.resolve(f));
 const fileSet = new Set(files);
@@ -724,11 +724,11 @@ for (const item of summary) {
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 
 === FILE ===
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-TARGET_DEPS [".opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts"]
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+TARGET_DEPS [".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts"]
 IMPORTS
-  ./logger -> .opencode/skill/system-spec-kit/scripts/utils/logger.ts
-  ./spec-affinity -> .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts
+  ./logger -> .opencode/skills/system-spec-kit/scripts/utils/logger.ts
+  ./spec-affinity -> .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts
 EXPORTS TypeAliasDeclaration:DataSource, TypeAliasDeclaration:CaptureDataSource, InterfaceDeclaration:Observation, InterfaceDeclaration:UserPrompt, InterfaceDeclaration:RecentContext, InterfaceDeclaration:FileEntry, InterfaceDeclaration:RawInputData, InterfaceDeclaration:DecisionItemObject, InterfaceDeclaration:NormalizedData, InterfaceDeclaration:CaptureExchange, InterfaceDeclaration:CaptureToolCall, InterfaceDeclaration:OpencodeCapture, InterfaceDeclaration:TransformedCapture
 TOP_COMPLEXITY
   transformOpencodeCapture :: complexity=105 :: localCalls=["buildSpecRelevanceKeywords","getCurrentSpecId","containsRelevantKeyword","isSafeSpecFallback","containsRelevantKeyword","isSafeSpecFallback","containsRelevantKeyword","containsRelevantKeyword","buildToolObservationTitle","containsRelevantKeyword","isSafeSpecFallback"] :: importedCalls=["buildSpecAffinityTargets [import:./spec-affinity]","matchesSpecAffinityText [import:./spec-affinity]","matchesSpecAffinityFilePath [import:./spec-affinity]","matchesSpecAffinityFilePath [import:./spec-affinity]","matchesSpecAffinityFilePath [import:./spec-affinity]","matchesSpecAffinityText [import:./spec-affinity]","matchesSpecAffinityText [import:./spec-affinity]","structuredLog [import:./logger]","structuredLog [import:./logger]","matchesSpecAffinityText [import:./spec-affinity]","matchesSpecAffinityText [import:./spec-affinity]","matchesSpecAffinityText [import:./spec-affinity]"]
@@ -745,8 +745,8 @@ TOP_COMPLEXITY
 codex
 I have the first pass metrics now. The next step is line-level reading: I’m pulling the full source in chunks plus symbol outlines so I can tie each finding back to concrete responsibilities and boundaries in the code.
 exec
-/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 9:import { structuredLog } from './logger';
 10:import {
 22:export type DataSource =
@@ -789,30 +789,30 @@ exec
 39:import type { SemanticFileInfo } from '../extractors/file-extractor';
 40:import { filterContamination, getContaminationPatternLabels, SEVERITY_RANK, type ContaminationSeverity } from '../extractors/contamination-filter';
 exec
-/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skill/system-spec-kit/scripts/types/session-types.ts .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:12:import * as fs from 'fs';
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:13:import * as path from 'path';
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:14:import type { CollectedDataSubset } from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:65:export interface SpecAffinityTargets {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:74:export interface SpecAffinityEvaluation {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:83:type SpecAffinityCollectedData = CollectedDataSubset<'userPrompts' | 'recentContext' | 'observations' | 'FILES' | 'SUMMARY'>;
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:85:function normalizeText(value: string): string {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:93:function normalizePathLike(value: string): string {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:104:function uniqueStrings(values: Array<string | null | undefined>): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:125:function extractSpecIds(value: string): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:129:function resolveSpecFolderPathCandidates(specFolderHint: string): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:153:function readFileSafe(filePath: string): string | null {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:161:function parseFrontmatterValue(content: string | null, keyName: string): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:205:function extractFilesToChange(content: string | null): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:217:function readSpecMetadata(specFolderHint: string): {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:266:function buildSlugCandidates(specFolderHint: string): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:285:function buildStrongKeywordTokens(values: string[]): string[] {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:301:export function buildSpecAffinityTargets(specFolderHint?: string | null): SpecAffinityTargets {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:337:export function matchesSpecAffinityFilePath(filePath: string, targets: SpecAffinityTargets): boolean {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:350:function countKeywordMatches(normalizedText: string, strongKeywordTokens: string[]): string[] {
+/bin/zsh -lc 'rg -n "''^(import|export )|''^function |''^const [A-Za-z0-9_]+'"\\s*=\\s*(async\\s*)?\\(|"'^interface |''^type |''^class " .opencode/skills/system-spec-kit/scripts/types/session-types.ts .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:12:import * as fs from 'fs';
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:13:import * as path from 'path';
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:14:import type { CollectedDataSubset } from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:65:export interface SpecAffinityTargets {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:74:export interface SpecAffinityEvaluation {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:83:type SpecAffinityCollectedData = CollectedDataSubset<'userPrompts' | 'recentContext' | 'observations' | 'FILES' | 'SUMMARY'>;
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:85:function normalizeText(value: string): string {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:93:function normalizePathLike(value: string): string {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:104:function uniqueStrings(values: Array<string | null | undefined>): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:125:function extractSpecIds(value: string): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:129:function resolveSpecFolderPathCandidates(specFolderHint: string): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:153:function readFileSafe(filePath: string): string | null {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:161:function parseFrontmatterValue(content: string | null, keyName: string): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:205:function extractFilesToChange(content: string | null): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:217:function readSpecMetadata(specFolderHint: string): {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:266:function buildSlugCandidates(specFolderHint: string): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:285:function buildStrongKeywordTokens(values: string[]): string[] {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:301:export function buildSpecAffinityTargets(specFolderHint?: string | null): SpecAffinityTargets {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:337:export function matchesSpecAffinityFilePath(filePath: string, targets: SpecAffinityTargets): boolean {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:350:function countKeywordMatches(normalizedText: string, strongKeywordTokens: string[]): string[] {
 exec
-/bin/zsh -lc "sed -n '261,520p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '261,520p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Input Normalizer
 // ---------------------------------------------------------------
@@ -855,7 +855,7 @@ function buildSessionSummaryObservation(summary: string, triggerPhrases: string[
  */
 function buildTechnicalContextObservation(techContext: Record<string, unknown>): Observation {
 exec
-/bin/zsh -lc "sed -n '521,780p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '521,780p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   if (nextSteps.length > 0) {
     observations.push(buildNextStepsObservation(nextSteps));
   }
@@ -877,8 +877,8 @@ exec
   }
 
 exec
-/bin/zsh -lc "sed -n '781,1040p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1041,1217p' .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '781,1040p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1041,1217p' .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     '"rate_limit_error"',
     'internal server error',
   ];
@@ -921,7 +921,7 @@ exec
         keywords.add(token);
       }
 exec
-/bin/zsh -lc "sed -n '1,280p' .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,280p' .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Spec Affinity
 // ---------------------------------------------------------------
@@ -943,9 +943,9 @@ const KEYWORD_STOPWORDS = new Set([
   'after',
   'align',
 exec
-/bin/zsh -lc "sed -n '281,546p' .opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/types/session-types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '261,534p' .opencode/skill/system-spec-kit/scripts/types/session-types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '281,546p' .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/types/session-types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '261,534p' .opencode/skills/system-spec-kit/scripts/types/session-types.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     normalizedSlug,
   ]).filter((value) => normalizeText(value).length >= 6);
 }
@@ -1009,8 +1009,8 @@ export interface FileChange {
   HAS_DECISION_TREE: boolean;
   DECISION_ANCHOR_ID: string;
 exec
-/bin/zsh -lc "sed -n '521,780p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '521,780p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
 function truncateMemoryTitle(title: string, maxLength: number = 110): string {
   if (title.length <= maxLength) {
@@ -1053,7 +1053,7 @@ import {
   extractDiagrams,
   extractPhasesFromData,
 exec
-/bin/zsh -lc "sed -n '261,520p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '261,520p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
   return segments.map((segment) => {
     if (segment.startsWith('```')) {
@@ -1075,7 +1075,7 @@ exec
       .replace(WORKFLOW_ANY_HTML_TAG_RE, '')
       .replace(/[ \t]+\n/g, '\n')
 exec
-/bin/zsh -lc "sed -n '781,1040p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '781,1040p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   return 'episodic';
 }
 
@@ -1097,7 +1097,7 @@ function baseDecayRateFromHalfLife(halfLifeDays: number): number {
   if (halfLifeDays <= 0) {
     return 0;
 exec
-/bin/zsh -lc "sed -n '1041,1300p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1041,1300p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 
   return '';
 }
@@ -1119,7 +1119,7 @@ type WorkflowDecisionEvidence = {
   CHOSEN?: string;
   RATIONALE?: string;
 exec
-/bin/zsh -lc "sed -n '1301,1560p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1301,1560p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
         ];
       }
 
@@ -1141,8 +1141,8 @@ exec
         enriched.recentContext = [
           ...(enriched.recentContext || []),
 exec
-/bin/zsh -lc "sed -n '1561,1820p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1821,2080p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1561,1820p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1821,2080p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
           title: observation.title ? cleanContaminationText(observation.title) : observation.title,
           narrative: observation.narrative ? cleanContaminationText(observation.narrative) : observation.narrative,
           facts: observation.facts?.map((fact) => (
@@ -1185,7 +1185,7 @@ exec
   );
 
 exec
-/bin/zsh -lc "sed -n '2081,2340p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '2081,2340p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
         decisions: implSummary.decisions.length,
         messageStats: implSummary.messageStats
       },
@@ -1207,7 +1207,7 @@ exec
         dimensions: EMBEDDING_DIM
       }
 exec
-/bin/zsh -lc "sed -n '2341,2494p' .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '2341,2494p' .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   }
   log();
 
@@ -1230,10 +1230,10 @@ exec
   log(`  - Session duration: ${sessionData.DURATION}\n`);
 exec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/core/workflow.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/core/workflow.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 function decisionCount(node){let c=1; function visit(n){switch(n.kind){case ts.SyntaxKind.IfStatement: case ts.SyntaxKind.ForStatement: case ts.SyntaxKind.ForInStatement: case ts.SyntaxKind.ForOfStatement: case ts.SyntaxKind.WhileStatement: case ts.SyntaxKind.DoStatement: case ts.SyntaxKind.CaseClause: case ts.SyntaxKind.CatchClause: case ts.SyntaxKind.ConditionalExpression: c++; break; case ts.SyntaxKind.BinaryExpression:{const op=n.operatorToken.kind; if(op===ts.SyntaxKind.AmpersandAmpersandToken||op===ts.SyntaxKind.BarBarToken||op===ts.SyntaxKind.QuestionQuestionToken) c++; break;}} ts.forEachChild(n, visit);} if(node.body) ts.forEachChild(node.body, visit); return c; }
 const results=[];
@@ -1242,10 +1242,10 @@ results.sort((a,b)=>b.complexity-a.complexity);
 console.log(JSON.stringify({count:results.length, top:results.slice(0,20), buckets:{ge50:results.filter(r=>r.complexity>=50).length, ge20:results.filter(r=>r.complexity>=20).length, ge10:results.filter(r=>r.complexity>=10).length, lt10:results.filter(r=>r.complexity<10).length, total:results.length}}, null, 2));
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 function decisionCount(node){let c=1; function visit(n){switch(n.kind){case ts.SyntaxKind.IfStatement: case ts.SyntaxKind.ForStatement: case ts.SyntaxKind.ForInStatement: case ts.SyntaxKind.ForOfStatement: case ts.SyntaxKind.WhileStatement: case ts.SyntaxKind.DoStatement: case ts.SyntaxKind.CaseClause: case ts.SyntaxKind.CatchClause: case ts.SyntaxKind.ConditionalExpression: c++; break; case ts.SyntaxKind.BinaryExpression:{const op=n.operatorToken.kind; if(op===ts.SyntaxKind.AmpersandAmpersandToken||op===ts.SyntaxKind.BarBarToken||op===ts.SyntaxKind.QuestionQuestionToken) c++; break;}} ts.forEachChild(n, visit);} if(node.body) ts.forEachChild(node.body, visit); return c; }
 const results=[];
@@ -1298,10 +1298,10 @@ codex
 I’ve finished reading the full sources. I’m tightening the evidence now with call-graph slices and cross-file usage so the recommendations can be specific about what to extract and what to leave together.
 exec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 const imports = new Map();
 sf.forEachChild(node=>{ if(ts.isImportDeclaration(node)&&ts.isStringLiteral(node.moduleSpecifier)&&node.importClause?.namedBindings&&ts.isNamedImports(node.importClause.namedBindings)){ for(const el of node.importClause.namedBindings.elements){ imports.set(el.name.text,node.moduleSpecifier.text); } }});
@@ -1311,10 +1311,10 @@ function analyze(name){ let fn=null; sf.forEachChild(node=>{ if(ts.isFunctionDec
 ['normalizeInputData','validateInputData','transformOpencodeCapture'].forEach(analyze);
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/core/workflow.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/core/workflow.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 const imports = new Map();
 sf.forEachChild(node=>{ if(ts.isImportDeclaration(node)&&ts.isStringLiteral(node.moduleSpecifier.text?node.moduleSpecifier:node.moduleSpecifier)){ const spec=node.moduleSpecifier.text; const clause=node.importClause; if(clause?.name) imports.set(clause.name.text,spec); const nb=clause?.namedBindings; if(nb&&ts.isNamedImports(nb)){ for(const el of nb.elements){ imports.set(el.name.text,spec);} } if(nb&&ts.isNamespaceImport(nb)){ imports.set(nb.name.text,spec);} }});
@@ -1324,10 +1324,10 @@ function analyze(name){ let fn=null; sf.forEachChild(node=>{ if(ts.isFunctionDec
 ['runWorkflow','enrichStatelessData','enrichFileSourceData'].forEach(analyze);
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/types/session-types.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/types/session-types.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 const interfaces=[];
 sf.forEachChild(node=>{ if(ts.isInterfaceDeclaration(node)||ts.isTypeAliasDeclaration(node)){ const name=node.name.text; const members=[]; if(ts.isInterfaceDeclaration(node)){ for(const m of node.members){ if(m.name&&ts.isIdentifier(m.name)) members.push(m.name.text+(m.questionToken?'?':'')); } } interfaces.push({kind:ts.isInterfaceDeclaration(node)?'interface':'type',name,members}); }});
@@ -1396,38 +1396,38 @@ warn
 allFilePaths.filter
 matchesAlignmentTarget [local]
 exec
-/bin/zsh -lc "rg -n \"input-normalizer|spec-affinity|session-types|core/workflow\" .opencode/skill/system-spec-kit/scripts --glob '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:1:import type { DataSource } from './input-normalizer';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:22:import type { DescriptionProvenance } from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:24:} from '../utils/input-normalizer';
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:35:} from '../utils/input-normalizer';
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:40:// Re-export DataSource from input-normalizer for consumers importing from loaders
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:35:} from '../utils/spec-affinity';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:85:import type { FileChange, SessionData } from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:25:import { runWorkflow } from '../core/workflow';
-.opencode/skill/system-spec-kit/scripts/utils/tool-detection.ts:10:import type { ConversationPhaseLabel } from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:23:} from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:22:} from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/utils/phase-classifier.ts:15:} from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:14:import type { CollectedDataSubset } from '../types/session-types';
-.opencode/skill/system-spec-kit/scripts/core/index.ts:10:// Import directly: import { runWorkflow } from './core/workflow';
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:14:import type { DataSource } from '../utils/input-normalizer';
-.opencode/skill/system-spec-kit/scripts/utils/index.ts:32:} from './spec-affinity';
-.opencode/skill/system-spec-kit/scripts/utils/index.ts:36:} from './spec-affinity';
-.opencode/skill/system-spec-kit/scripts/utils/index.ts:55:} from './input-normalizer';
-.opencode/skill/system-spec-kit/scripts/utils/index.ts:68:} from './input-normalizer';
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:27:} from '../types/session-types';
+/bin/zsh -lc "rg -n \"input-normalizer|spec-affinity|session-types|core/workflow\" .opencode/skills/system-spec-kit/scripts --glob '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:1:import type { DataSource } from './input-normalizer';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:22:import type { DescriptionProvenance } from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:24:} from '../utils/input-normalizer';
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:35:} from '../utils/input-normalizer';
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:40:// Re-export DataSource from input-normalizer for consumers importing from loaders
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:35:} from '../utils/spec-affinity';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:85:import type { FileChange, SessionData } from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:25:import { runWorkflow } from '../core/workflow';
+.opencode/skills/system-spec-kit/scripts/utils/tool-detection.ts:10:import type { ConversationPhaseLabel } from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:23:} from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:22:} from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/utils/phase-classifier.ts:15:} from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:14:import type { CollectedDataSubset } from '../types/session-types';
+.opencode/skills/system-spec-kit/scripts/core/index.ts:10:// Import directly: import { runWorkflow } from './core/workflow';
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:14:import type { DataSource } from '../utils/input-normalizer';
+.opencode/skills/system-spec-kit/scripts/utils/index.ts:32:} from './spec-affinity';
+.opencode/skills/system-spec-kit/scripts/utils/index.ts:36:} from './spec-affinity';
+.opencode/skills/system-spec-kit/scripts/utils/index.ts:55:} from './input-normalizer';
+.opencode/skills/system-spec-kit/scripts/utils/index.ts:68:} from './input-normalizer';
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:27:} from '../types/session-types';
 exec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const root = path.resolve('.opencode/skill/system-spec-kit/scripts');
+const root = path.resolve('.opencode/skills/system-spec-kit/scripts');
 const targets = [
-  path.resolve('.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'),
-  path.resolve('.opencode/skill/system-spec-kit/scripts/core/workflow.ts'),
-  path.resolve('.opencode/skill/system-spec-kit/scripts/types/session-types.ts'),
-  path.resolve('.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts'),
+  path.resolve('.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'),
+  path.resolve('.opencode/skills/system-spec-kit/scripts/core/workflow.ts'),
+  path.resolve('.opencode/skills/system-spec-kit/scripts/types/session-types.ts'),
+  path.resolve('.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts'),
 ];
 const all=[];
 function walk(dir){ for(const ent of fs.readdirSync(dir,{withFileTypes:true})){ if(ent.name==='dist'||ent.name==='node_modules') continue; const p=path.join(dir,ent.name); if(ent.isDirectory()) walk(p); else if(ent.isFile()&&p.endsWith('.ts')) all.push(p);} }
@@ -1442,10 +1442,10 @@ for(const t of targets){ const incoming=[]; for(const [file,deps] of graph){ if(
  console.log(path.relative(process.cwd(),t)); console.log(incoming.sort().join('\\n') || '(none)'); }
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const file = path.resolve('.opencode/skill/system-spec-kit/scripts/types/session-types.ts');
+const file = path.resolve('.opencode/skills/system-spec-kit/scripts/types/session-types.ts');
 const sf = ts.createSourceFile(file, fs.readFileSync(file,'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 const typeRefs = [];
 function visit(n){ if(ts.isTypeReferenceNode(n)){ typeRefs.push(n.typeName.getText(sf)); } ts.forEachChild(n,visit); }
@@ -1476,62 +1476,62 @@ NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded
     2
  succeeded in 173ms:
 INCOMING
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-.opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/stateless-enrichment.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
-.opencode/skill/system-spec-kit/scripts/types/session-types.ts
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts
-.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+.opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/stateless-enrichment.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
+.opencode/skills/system-spec-kit/scripts/types/session-types.ts
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts
+.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts
 exec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-for (const rel of ['.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts','.opencode/skill/system-spec-kit/scripts/core/workflow.ts','.opencode/skill/system-spec-kit/scripts/types/session-types.ts']) {
+for (const rel of ['.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts','.opencode/skills/system-spec-kit/scripts/core/workflow.ts','.opencode/skills/system-spec-kit/scripts/types/session-types.ts']) {
  const file=path.resolve(rel); const sf=ts.createSourceFile(file,fs.readFileSync(file,'utf8'),ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
  let importCount=0; let namedBindings=0; sf.forEachChild(node=>{ if(ts.isImportDeclaration(node)){ importCount++; if(node.importClause?.namedBindings&&ts.isNamedImports(node.importClause.namedBindings)) namedBindings += node.importClause.namedBindings.elements.length; }});
  console.log(rel, JSON.stringify({importCount,namedBindings}));
 }
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const files=['.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts','.opencode/skill/system-spec-kit/scripts/core/workflow.ts'];
+const files=['.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts','.opencode/skills/system-spec-kit/scripts/core/workflow.ts'];
 for(const rel of files){ const file=path.resolve(rel); const sf=ts.createSourceFile(file,fs.readFileSync(file,'utf8'),ts.ScriptTarget.Latest,true,ts.ScriptKind.TS); let ifs=0, loops=0, catches=0, cond=0, binary=0; function visit(n){ switch(n.kind){ case ts.SyntaxKind.IfStatement: ifs++; break; case ts.SyntaxKind.ForStatement: case ts.SyntaxKind.ForInStatement: case ts.SyntaxKind.ForOfStatement: case ts.SyntaxKind.WhileStatement: case ts.SyntaxKind.DoStatement: loops++; break; case ts.SyntaxKind.CatchClause: catches++; break; case ts.SyntaxKind.ConditionalExpression: cond++; break; case ts.SyntaxKind.BinaryExpression: { const op=n.operatorToken.kind; if(op===ts.SyntaxKind.AmpersandAmpersandToken||op===ts.SyntaxKind.BarBarToken||op===ts.SyntaxKind.QuestionQuestionToken) binary++; break; } } ts.forEachChild(n,visit);} ts.forEachChild(sf,visit); console.log(rel, JSON.stringify({ifs,loops,catches,conditionalExpressions:cond,logicalOperators:binary})); }
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "node - <<'NODE'
-const ts = require('./.opencode/skill/system-spec-kit/node_modules/typescript/lib/typescript');
+const ts = require('./.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript');
 const fs = require('fs');
 const path = require('path');
-const rel='.opencode/skill/system-spec-kit/scripts/types/session-types.ts';
+const rel='.opencode/skills/system-spec-kit/scripts/types/session-types.ts';
 const file=path.resolve(rel); const sf=ts.createSourceFile(file,fs.readFileSync(file,'utf8'),ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
 let interfaces=0, types=0; sf.forEachChild(node=>{ if(ts.isInterfaceDeclaration(node)) interfaces++; if(ts.isTypeAliasDeclaration(node)) types++; });
 console.log(JSON.stringify({interfaces,types}));
 NODE" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 32ms:
 {"interfaces":40,"types":5}
  succeeded in 65ms:
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts {"ifs":113,"loops":9,"catches":0,"conditionalExpressions":64,"logicalOperators":164}
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts {"ifs":143,"loops":20,"catches":12,"conditionalExpressions":73,"logicalOperators":157}
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts {"ifs":113,"loops":9,"catches":0,"conditionalExpressions":64,"logicalOperators":164}
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts {"ifs":143,"loops":20,"catches":12,"conditionalExpressions":73,"logicalOperators":157}
  succeeded in 73ms:
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts {"importCount":2,"namedBindings":6}
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts {"importCount":43,"namedBindings":71}
-.opencode/skill/system-spec-kit/scripts/types/session-types.ts {"importCount":0,"namedBindings":0}
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts {"importCount":2,"namedBindings":6}
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts {"importCount":43,"namedBindings":71}
+.opencode/skills/system-spec-kit/scripts/types/session-types.ts {"importCount":0,"namedBindings":0}
 exec
-/bin/zsh -lc "sed -n '1,80p' .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,80p' .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 #!/usr/bin/env node
 // ---------------------------------------------------------------
 // MODULE: Validate Memory Quality
@@ -1553,7 +1553,7 @@ type QualityRuleId = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'V6' | 'V7' | 'V8' | 'V9
 type ValidationRuleSeverity = 'low' | 'medium' | 'high';
 type ValidationDisposition = 'abort_write' | 'write_skip_index' | 'write_and_index';
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,120p' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Data Loader
 // ---------------------------------------------------------------
@@ -1575,7 +1575,7 @@ import { structuredLog, sanitizePath } from '../utils';
 
 import {
 exec
-/bin/zsh -lc "sed -n '1,80p' .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,80p' .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 import type { DataSource } from './input-normalizer';
 
 export type SourceInputMode = 'structured' | 'stateless';
@@ -1599,91 +1599,91 @@ const SOURCE_CAPABILITIES: Record<DataSource, SourceCapabilities> = {
 codex
 **SRP-001**  
 Impact: HIGH  
-Description: [`input-normalizer.ts:22`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L22 ) does not have a single responsibility. Its call graph splits into at least four concerns: manual payload normalization in [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ), schema/domain validation in [`validateInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L576 ), capture transformation plus timestamp/file synthesis in [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ), and spec-relevance heuristics in [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ) and [`isSafeSpecFallback`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L833 ). The complexity profile reinforces that split: `transformOpencodeCapture=105`, `validateInputData=84`, `normalizeInputData=71`.  
+Description: [`input-normalizer.ts:22`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L22 ) does not have a single responsibility. Its call graph splits into at least four concerns: manual payload normalization in [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ), schema/domain validation in [`validateInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L576 ), capture transformation plus timestamp/file synthesis in [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ), and spec-relevance heuristics in [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ) and [`isSafeSpecFallback`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L833 ). The complexity profile reinforces that split: `transformOpencodeCapture=105`, `validateInputData=84`, `normalizeInputData=71`.  
 Recommendation: Treat this file as an overloaded facade and split by concern, not by line count.
 
 **SRP-002**  
 Impact: HIGH  
-Description: A clean decomposition falls out of the existing call graph. The manual path is centered on [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ); the capture path is centered on [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ); the decision/observation builders are separate helpers around [`transformKeyDecision`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L190 ); and relevance filtering is a separate policy cluster around [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ).  
+Description: A clean decomposition falls out of the existing call graph. The manual path is centered on [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ); the capture path is centered on [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ); the decision/observation builders are separate helpers around [`transformKeyDecision`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L190 ); and relevance filtering is a separate policy cluster around [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ).  
 Recommendation: Extract `types/source-types.ts` for `DataSource` and capture types, `normalizers/manual-input.ts` for `normalizeInputData` and file-entry helpers, `validators/input-schema.ts` for `validateInputData`, `transformers/opencode-capture.ts` for `transformOpencodeCapture` and `buildToolObservationTitle`, and `policies/capture-relevance.ts` for the fallback/relevance helpers. Keep `input-normalizer.ts` as a thin compatibility barrel.
 
 **ARCH-001**  
 Impact: HIGH  
-Description: [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts ) is too large primarily because [`runWorkflow`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1384 ) is a god function. AST-based cyclomatic complexity puts `runWorkflow` at `198`; the next highest functions are `29`, `29`, `19`, and `17`. The file also carries `43` imports and `71` named bindings. `runWorkflow` spans loading, alignment, contamination scrubbing, enrichment, parallel extraction, semantic summarization, tree thinning, template population, quality gates, writing, description tracking, indexing, and retry processing in one control flow.  
+Description: [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts ) is too large primarily because [`runWorkflow`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1384 ) is a god function. AST-based cyclomatic complexity puts `runWorkflow` at `198`; the next highest functions are `29`, `29`, `19`, and `17`. The file also carries `43` imports and `71` named bindings. `runWorkflow` spans loading, alignment, contamination scrubbing, enrichment, parallel extraction, semantic summarization, tree thinning, template population, quality gates, writing, description tracking, indexing, and retry processing in one control flow.  
 Recommendation: Keep `workflow.ts` only as the top-level use-case entrypoint and move stage logic into dedicated modules.
 
 **ARCH-002**  
 Impact: MEDIUM  
-Description: The file already advertises a pipeline with “Step 1” through “Step 12” log sections in [`workflow.ts:1406`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1406 ) through [`workflow.ts:2462`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2462 ), but the implementation is still monolithic. There are also obvious strategy seams: file-backed vs stateless enrichment in [`enrichFileSourceData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1169 ) and [`enrichStatelessData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1250 ), plus indexing policy in [`shouldIndexMemory`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L151 ).  
+Description: The file already advertises a pipeline with “Step 1” through “Step 12” log sections in [`workflow.ts:1406`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1406 ) through [`workflow.ts:2462`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2462 ), but the implementation is still monolithic. There are also obvious strategy seams: file-backed vs stateless enrichment in [`enrichFileSourceData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1169 ) and [`enrichStatelessData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1250 ), plus indexing policy in [`shouldIndexMemory`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L151 ).  
 Recommendation: Introduce a `WorkflowContext` plus pipeline stages like `load`, `align`, `enrich`, `extract`, `summarize`, `render`, `validate`, `persist`, and `index`. Use strategies for `EnrichmentStrategy`, `AlignmentPolicy`, and `IndexPolicy` instead of branching inside `runWorkflow`.
 
 **DEP-001**  
 Impact: LOW  
-Description: I found no circular dependency among the reviewed modules. The direct graph is acyclic: `input-normalizer -> spec-affinity`, `spec-affinity -> session-types` via `import type`, and `workflow -> spec-affinity` plus `workflow -> session-types` [`input-normalizer.ts:9`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L9 ) [`spec-affinity.ts:14`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L14 ) [`workflow.ts:33`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L33 ). I also checked reachability across the `scripts/` tree and did not find an indirect cycle among these four.  
+Description: I found no circular dependency among the reviewed modules. The direct graph is acyclic: `input-normalizer -> spec-affinity`, `spec-affinity -> session-types` via `import type`, and `workflow -> spec-affinity` plus `workflow -> session-types` [`input-normalizer.ts:9`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L9 ) [`spec-affinity.ts:14`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L14 ) [`workflow.ts:33`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L33 ). I also checked reachability across the `scripts/` tree and did not find an indirect cycle among these four.  
 Recommendation: No cycle fix is needed. Keep it that way by preventing `session-types.ts` or `spec-affinity.ts` from ever importing workflow-level orchestration code.
 
 **TYPES-001**  
 Impact: HIGH  
-Description: [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts ) is not really a type hierarchy; it is a flat schema dump. It contains `40` interfaces and `5` type aliases with almost no composition. It mixes ingestion contracts like [`CollectedDataBase`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L125 ), extractor outputs like [`DecisionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L286 ) and [`ConversationData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L365 ), render DTOs like [`SessionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L442 ), and analytics models like [`TopicCluster`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L341 ) in one namespace.  
+Description: [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts ) is not really a type hierarchy; it is a flat schema dump. It contains `40` interfaces and `5` type aliases with almost no composition. It mixes ingestion contracts like [`CollectedDataBase`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L125 ), extractor outputs like [`DecisionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L286 ) and [`ConversationData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L365 ), render DTOs like [`SessionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L442 ), and analytics models like [`TopicCluster`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L341 ) in one namespace.  
 Recommendation: Split by bounded context: `types/collected-data.ts`, `types/decisions.ts`, `types/conversation.ts`, `types/diagrams.ts`, `types/rendered-memory.ts`, and `types/shared.ts`.
 
 **TYPES-002**  
 Impact: MEDIUM  
-Description: There are redundant or overlapping interfaces. `FileChange`, `CollectedFileEntry`, `FileEntry`, and `SpecFileEntry` all model “a file” with slightly different casing and optionality [`session-types.ts:16`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L16 ) [`session-types.ts:26`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L26 ) [`session-types.ts:183`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L183 ) [`session-types.ts:190`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L190 ). The same duplication exists across files: `input-normalizer.ts` redeclares `Observation`, `UserPrompt`, `RecentContext`, and `FileEntry` instead of using the canonical shared types [`input-normalizer.ts:34`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L34 ).  
-Recommendation: Define one canonical domain shape per concept and use adapters for loose/raw inputs. Also move `DataSource` out of `input-normalizer.ts`; it is already used by unrelated modules like [`source-capabilities.ts:1`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts#L1 ) and [`validate-memory-quality.ts:12`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts#L12 ).
+Description: There are redundant or overlapping interfaces. `FileChange`, `CollectedFileEntry`, `FileEntry`, and `SpecFileEntry` all model “a file” with slightly different casing and optionality [`session-types.ts:16`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L16 ) [`session-types.ts:26`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L26 ) [`session-types.ts:183`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L183 ) [`session-types.ts:190`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L190 ). The same duplication exists across files: `input-normalizer.ts` redeclares `Observation`, `UserPrompt`, `RecentContext`, and `FileEntry` instead of using the canonical shared types [`input-normalizer.ts:34`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L34 ).  
+Recommendation: Define one canonical domain shape per concept and use adapters for loose/raw inputs. Also move `DataSource` out of `input-normalizer.ts`; it is already used by unrelated modules like [`source-capabilities.ts:1`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts#L1 ) and [`validate-memory-quality.ts:12`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts#L12 ).
 
 **COUPLING-001**  
 Impact: MEDIUM  
-Description: The coupling between `input-normalizer.ts` and `spec-affinity.ts` is conceptually warranted but implemented at the wrong level. It is warranted because stateless capture transformation really does need spec-scoping to avoid cross-spec contamination, and [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ) uses that policy directly. It is too intimate because `input-normalizer` imports five low-level affinity helpers [`input-normalizer.ts:10`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L10 ), redefines related concepts like `SPEC_ID_REGEX` and fallback heuristics locally, and becomes indirectly filesystem-aware because `buildSpecAffinityTargets` reads `spec.md` and `description.json` in [`spec-affinity.ts:217`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L217 ) and [`spec-affinity.ts:301`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L301 ).  
+Description: The coupling between `input-normalizer.ts` and `spec-affinity.ts` is conceptually warranted but implemented at the wrong level. It is warranted because stateless capture transformation really does need spec-scoping to avoid cross-spec contamination, and [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ) uses that policy directly. It is too intimate because `input-normalizer` imports five low-level affinity helpers [`input-normalizer.ts:10`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L10 ), redefines related concepts like `SPEC_ID_REGEX` and fallback heuristics locally, and becomes indirectly filesystem-aware because `buildSpecAffinityTargets` reads `spec.md` and `description.json` in [`spec-affinity.ts:217`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L217 ) and [`spec-affinity.ts:301`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L301 ).  
 Recommendation: Keep the dependency, but collapse it behind a single policy API such as `createCaptureAffinityPolicy(specFolderHint)` or `filterCaptureToSpec(capture, specFolderHint)`. That keeps normalization focused on transformation while `spec-affinity` owns all spec-matching logic.
 
 **BOUNDARY-001**  
 Impact: MEDIUM  
-Description: Module boundaries only partially align with domain concepts. [`spec-affinity.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts ) is cohesive and domain-shaped. [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts ) is a use-case orchestrator, but it has absorbed multiple subdomains. [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts ) is organized by “sharedness” rather than domain. [`input-normalizer.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts ) straddles ingestion, validation, capture transformation, and relevance policy.  
+Description: Module boundaries only partially align with domain concepts. [`spec-affinity.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts ) is cohesive and domain-shaped. [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts ) is a use-case orchestrator, but it has absorbed multiple subdomains. [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts ) is organized by “sharedness” rather than domain. [`input-normalizer.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts ) straddles ingestion, validation, capture transformation, and relevance policy.  
 Recommendation: Realign around domains: `ingestion`, `spec-affinity`, `workflow-orchestration`, `rendered-memory`, and `conversation/decision/diagram extraction`. That will make responsibilities discoverable and reduce the need for giant shared utility modules.
 tokens used
 260,983
 **SRP-001**  
 Impact: HIGH  
-Description: [`input-normalizer.ts:22`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L22 ) does not have a single responsibility. Its call graph splits into at least four concerns: manual payload normalization in [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ), schema/domain validation in [`validateInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L576 ), capture transformation plus timestamp/file synthesis in [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ), and spec-relevance heuristics in [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ) and [`isSafeSpecFallback`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L833 ). The complexity profile reinforces that split: `transformOpencodeCapture=105`, `validateInputData=84`, `normalizeInputData=71`.  
+Description: [`input-normalizer.ts:22`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L22 ) does not have a single responsibility. Its call graph splits into at least four concerns: manual payload normalization in [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ), schema/domain validation in [`validateInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L576 ), capture transformation plus timestamp/file synthesis in [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ), and spec-relevance heuristics in [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ) and [`isSafeSpecFallback`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L833 ). The complexity profile reinforces that split: `transformOpencodeCapture=105`, `validateInputData=84`, `normalizeInputData=71`.  
 Recommendation: Treat this file as an overloaded facade and split by concern, not by line count.
 
 **SRP-002**  
 Impact: HIGH  
-Description: A clean decomposition falls out of the existing call graph. The manual path is centered on [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ); the capture path is centered on [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ); the decision/observation builders are separate helpers around [`transformKeyDecision`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L190 ); and relevance filtering is a separate policy cluster around [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ).  
+Description: A clean decomposition falls out of the existing call graph. The manual path is centered on [`normalizeInputData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L386 ); the capture path is centered on [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ); the decision/observation builders are separate helpers around [`transformKeyDecision`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L190 ); and relevance filtering is a separate policy cluster around [`buildSpecRelevanceKeywords`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L780 ).  
 Recommendation: Extract `types/source-types.ts` for `DataSource` and capture types, `normalizers/manual-input.ts` for `normalizeInputData` and file-entry helpers, `validators/input-schema.ts` for `validateInputData`, `transformers/opencode-capture.ts` for `transformOpencodeCapture` and `buildToolObservationTitle`, and `policies/capture-relevance.ts` for the fallback/relevance helpers. Keep `input-normalizer.ts` as a thin compatibility barrel.
 
 **ARCH-001**  
 Impact: HIGH  
-Description: [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts ) is too large primarily because [`runWorkflow`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1384 ) is a god function. AST-based cyclomatic complexity puts `runWorkflow` at `198`; the next highest functions are `29`, `29`, `19`, and `17`. The file also carries `43` imports and `71` named bindings. `runWorkflow` spans loading, alignment, contamination scrubbing, enrichment, parallel extraction, semantic summarization, tree thinning, template population, quality gates, writing, description tracking, indexing, and retry processing in one control flow.  
+Description: [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts ) is too large primarily because [`runWorkflow`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1384 ) is a god function. AST-based cyclomatic complexity puts `runWorkflow` at `198`; the next highest functions are `29`, `29`, `19`, and `17`. The file also carries `43` imports and `71` named bindings. `runWorkflow` spans loading, alignment, contamination scrubbing, enrichment, parallel extraction, semantic summarization, tree thinning, template population, quality gates, writing, description tracking, indexing, and retry processing in one control flow.  
 Recommendation: Keep `workflow.ts` only as the top-level use-case entrypoint and move stage logic into dedicated modules.
 
 **ARCH-002**  
 Impact: MEDIUM  
-Description: The file already advertises a pipeline with “Step 1” through “Step 12” log sections in [`workflow.ts:1406`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1406 ) through [`workflow.ts:2462`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2462 ), but the implementation is still monolithic. There are also obvious strategy seams: file-backed vs stateless enrichment in [`enrichFileSourceData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1169 ) and [`enrichStatelessData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L1250 ), plus indexing policy in [`shouldIndexMemory`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L151 ).  
+Description: The file already advertises a pipeline with “Step 1” through “Step 12” log sections in [`workflow.ts:1406`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1406 ) through [`workflow.ts:2462`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2462 ), but the implementation is still monolithic. There are also obvious strategy seams: file-backed vs stateless enrichment in [`enrichFileSourceData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1169 ) and [`enrichStatelessData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L1250 ), plus indexing policy in [`shouldIndexMemory`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L151 ).  
 Recommendation: Introduce a `WorkflowContext` plus pipeline stages like `load`, `align`, `enrich`, `extract`, `summarize`, `render`, `validate`, `persist`, and `index`. Use strategies for `EnrichmentStrategy`, `AlignmentPolicy`, and `IndexPolicy` instead of branching inside `runWorkflow`.
 
 **DEP-001**  
 Impact: LOW  
-Description: I found no circular dependency among the reviewed modules. The direct graph is acyclic: `input-normalizer -> spec-affinity`, `spec-affinity -> session-types` via `import type`, and `workflow -> spec-affinity` plus `workflow -> session-types` [`input-normalizer.ts:9`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L9 ) [`spec-affinity.ts:14`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L14 ) [`workflow.ts:33`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L33 ). I also checked reachability across the `scripts/` tree and did not find an indirect cycle among these four.  
+Description: I found no circular dependency among the reviewed modules. The direct graph is acyclic: `input-normalizer -> spec-affinity`, `spec-affinity -> session-types` via `import type`, and `workflow -> spec-affinity` plus `workflow -> session-types` [`input-normalizer.ts:9`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L9 ) [`spec-affinity.ts:14`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L14 ) [`workflow.ts:33`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L33 ). I also checked reachability across the `scripts/` tree and did not find an indirect cycle among these four.  
 Recommendation: No cycle fix is needed. Keep it that way by preventing `session-types.ts` or `spec-affinity.ts` from ever importing workflow-level orchestration code.
 
 **TYPES-001**  
 Impact: HIGH  
-Description: [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts ) is not really a type hierarchy; it is a flat schema dump. It contains `40` interfaces and `5` type aliases with almost no composition. It mixes ingestion contracts like [`CollectedDataBase`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L125 ), extractor outputs like [`DecisionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L286 ) and [`ConversationData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L365 ), render DTOs like [`SessionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L442 ), and analytics models like [`TopicCluster`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L341 ) in one namespace.  
+Description: [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts ) is not really a type hierarchy; it is a flat schema dump. It contains `40` interfaces and `5` type aliases with almost no composition. It mixes ingestion contracts like [`CollectedDataBase`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L125 ), extractor outputs like [`DecisionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L286 ) and [`ConversationData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L365 ), render DTOs like [`SessionData`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L442 ), and analytics models like [`TopicCluster`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L341 ) in one namespace.  
 Recommendation: Split by bounded context: `types/collected-data.ts`, `types/decisions.ts`, `types/conversation.ts`, `types/diagrams.ts`, `types/rendered-memory.ts`, and `types/shared.ts`.
 
 **TYPES-002**  
 Impact: MEDIUM  
-Description: There are redundant or overlapping interfaces. `FileChange`, `CollectedFileEntry`, `FileEntry`, and `SpecFileEntry` all model “a file” with slightly different casing and optionality [`session-types.ts:16`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L16 ) [`session-types.ts:26`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L26 ) [`session-types.ts:183`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L183 ) [`session-types.ts:190`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts#L190 ). The same duplication exists across files: `input-normalizer.ts` redeclares `Observation`, `UserPrompt`, `RecentContext`, and `FileEntry` instead of using the canonical shared types [`input-normalizer.ts:34`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L34 ).  
-Recommendation: Define one canonical domain shape per concept and use adapters for loose/raw inputs. Also move `DataSource` out of `input-normalizer.ts`; it is already used by unrelated modules like [`source-capabilities.ts:1`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts#L1 ) and [`validate-memory-quality.ts:12`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts#L12 ).
+Description: There are redundant or overlapping interfaces. `FileChange`, `CollectedFileEntry`, `FileEntry`, and `SpecFileEntry` all model “a file” with slightly different casing and optionality [`session-types.ts:16`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L16 ) [`session-types.ts:26`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L26 ) [`session-types.ts:183`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L183 ) [`session-types.ts:190`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L190 ). The same duplication exists across files: `input-normalizer.ts` redeclares `Observation`, `UserPrompt`, `RecentContext`, and `FileEntry` instead of using the canonical shared types [`input-normalizer.ts:34`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L34 ).  
+Recommendation: Define one canonical domain shape per concept and use adapters for loose/raw inputs. Also move `DataSource` out of `input-normalizer.ts`; it is already used by unrelated modules like [`source-capabilities.ts:1`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts#L1 ) and [`validate-memory-quality.ts:12`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts#L12 ).
 
 **COUPLING-001**  
 Impact: MEDIUM  
-Description: The coupling between `input-normalizer.ts` and `spec-affinity.ts` is conceptually warranted but implemented at the wrong level. It is warranted because stateless capture transformation really does need spec-scoping to avoid cross-spec contamination, and [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ) uses that policy directly. It is too intimate because `input-normalizer` imports five low-level affinity helpers [`input-normalizer.ts:10`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L10 ), redefines related concepts like `SPEC_ID_REGEX` and fallback heuristics locally, and becomes indirectly filesystem-aware because `buildSpecAffinityTargets` reads `spec.md` and `description.json` in [`spec-affinity.ts:217`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L217 ) and [`spec-affinity.ts:301`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts#L301 ).  
+Description: The coupling between `input-normalizer.ts` and `spec-affinity.ts` is conceptually warranted but implemented at the wrong level. It is warranted because stateless capture transformation really does need spec-scoping to avoid cross-spec contamination, and [`transformOpencodeCapture`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L866 ) uses that policy directly. It is too intimate because `input-normalizer` imports five low-level affinity helpers [`input-normalizer.ts:10`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L10 ), redefines related concepts like `SPEC_ID_REGEX` and fallback heuristics locally, and becomes indirectly filesystem-aware because `buildSpecAffinityTargets` reads `spec.md` and `description.json` in [`spec-affinity.ts:217`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L217 ) and [`spec-affinity.ts:301`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts#L301 ).  
 Recommendation: Keep the dependency, but collapse it behind a single policy API such as `createCaptureAffinityPolicy(specFolderHint)` or `filterCaptureToSpec(capture, specFolderHint)`. That keeps normalization focused on transformation while `spec-affinity` owns all spec-matching logic.
 
 **BOUNDARY-001**  
 Impact: MEDIUM  
-Description: Module boundaries only partially align with domain concepts. [`spec-affinity.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts ) is cohesive and domain-shaped. [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts ) is a use-case orchestrator, but it has absorbed multiple subdomains. [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/types/session-types.ts ) is organized by “sharedness” rather than domain. [`input-normalizer.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts ) straddles ingestion, validation, capture transformation, and relevance policy.  
+Description: Module boundaries only partially align with domain concepts. [`spec-affinity.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts ) is cohesive and domain-shaped. [`workflow.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts ) is a use-case orchestrator, but it has absorbed multiple subdomains. [`session-types.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts ) is organized by “sharedness” rather than domain. [`input-normalizer.ts`]( /Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts ) straddles ingestion, validation, capture transformation, and relevance policy.  
 Recommendation: Realign around domains: `ingestion`, `spec-affinity`, `workflow-orchestration`, `rendered-memory`, and `conversation/decision/diagram extraction`. That will make responsibilities discoverable and reduce the need for giant shared utility modules.

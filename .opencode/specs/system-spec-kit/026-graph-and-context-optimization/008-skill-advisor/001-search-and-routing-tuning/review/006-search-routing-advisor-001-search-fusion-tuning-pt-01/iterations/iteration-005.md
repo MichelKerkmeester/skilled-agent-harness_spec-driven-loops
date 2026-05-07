@@ -4,10 +4,10 @@
 Re-read the shipped code and regression tests to verify that the packet's remaining issues are packet-governance drift rather than unreported runtime defects.
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts`
 
 ## Findings
 No new correctness finding was confirmed in this pass.

@@ -93,8 +93,8 @@ the packet scope.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/**` | Modify | Command contract and doctor workflow updates |
-| `.opencode/skill/system-spec-kit/**` | Modify/Create | Docs, validator, memory, schema, deep-loop, catalog, playbook updates |
+| `.opencode/commands/**` | Modify | Command contract and doctor workflow updates |
+| `.opencode/skills/system-spec-kit/**` | Modify/Create | Docs, validator, memory, schema, deep-loop, catalog, playbook updates |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | OpenCode missing-prompt diagnostic |
 | `README.md` | Modify | Broken local release-note link repair |
 | `specs/.../005-memory-indexer-invariants/graph-metadata.json` | Modify | Legacy grandfather flag |

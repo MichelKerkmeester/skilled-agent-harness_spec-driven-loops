@@ -39,84 +39,84 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md",
-      ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md",
-      ".opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
-      ".opencode/skill/sk-deep-research/README.md",
-      ".opencode/skill/sk-deep-review/README.md",
-      ".opencode/skill/sk-improve-agent/README.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md",
+      ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md",
+      ".opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
+      ".opencode/skills/sk-deep-research/README.md",
+      ".opencode/skills/sk-deep-review/README.md",
+      ".opencode/skills/sk-improve-agent/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts"
     ],
     "entities": [
       {
         "name": "coverage-graph-integration.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
         "source": "derived"
       },
       {
         "name": "coverage-graph-stress.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
         "source": "derived"
       },
       {
         "name": "031-graph-convergence-signals.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md",
         "source": "derived"
       },
       {
         "name": "029-graph-events-emission.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md",
         "source": "derived"
       },
       {
         "name": "021-graph-convergence-review.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md",
+        "path": ".opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md",
         "source": "derived"
       },
       {
         "name": "015-graph-events-review.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md",
+        "path": ".opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md",
         "source": "derived"
       },
       {
         "name": "022-mutation-coverage-graph-tracking.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md",
         "source": "derived"
       },
       {
         "name": "023-trade-off-detection.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",
         "source": "derived"
       },
       {
         "name": "024-candidate-lineage.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
+        "path": ".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/README.md",
+        "path": ".opencode/skills/sk-deep-research/README.md",
         "source": "derived"
       },
       {
@@ -152,7 +152,7 @@
       {
         "name": "coverage-graph-db.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",
         "source": "derived"
       },
       {

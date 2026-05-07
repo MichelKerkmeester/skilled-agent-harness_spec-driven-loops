@@ -13,7 +13,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 function findRepoRoot(startDir) {
   let dir = startDir;
   for (let i = 0; i < 12; i += 1) {
-    if (existsSync(resolve(dir, '.opencode/skill/system-spec-kit/mcp_server/package.json'))) return dir;
+    if (existsSync(resolve(dir, '.opencode/skills/system-spec-kit/mcp_server/package.json'))) return dir;
     const parent = dirname(dir);
     if (parent === dir) break;
     dir = parent;
@@ -25,8 +25,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const REPO = findRepoRoot(__dirname);
 
-const WTS_DIR = resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server/node_modules/web-tree-sitter');
-const WASMS_DIR = resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out');
+const WTS_DIR = resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/node_modules/web-tree-sitter');
+const WASMS_DIR = resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out');
 const COHORT_FILE = resolve(__dirname, 'iter-004-oob-cohort.txt');
 
 const VARIANT = (process.argv.find(a => a.startsWith('--variant=')) ?? '--variant=sh-only').slice('--variant='.length);

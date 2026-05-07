@@ -8,16 +8,16 @@ Iter-13 selected Option A (DELETE the promotion subsystem) with high confidence.
 
 ### F61. Cross-packet preflight PASSES — zero external imports
 
-Grep across `.opencode/skill/system-spec-kit/mcp_server/` (outside skill-advisor) and `.opencode/skill/system-spec-kit/scripts/` for any `from '...promotion/...'` or `from '...gate-bundle/shadow-cycle/semantic-lock/two-cycle-requirement/weight-delta-cap'` returned **zero hits**. The promotion modules are not imported anywhere outside `skill-advisor/lib/promotion/` and `skill-advisor/bench/`. [SOURCE: grep on `.opencode/skill/system-spec-kit/{mcp_server,scripts}/`, no matches]
+Grep across `.opencode/skills/system-spec-kit/mcp_server/` (outside skill-advisor) and `.opencode/skills/system-spec-kit/scripts/` for any `from '...promotion/...'` or `from '...gate-bundle/shadow-cycle/semantic-lock/two-cycle-requirement/weight-delta-cap'` returned **zero hits**. The promotion modules are not imported anywhere outside `skill-advisor/lib/promotion/` and `skill-advisor/bench/`. [SOURCE: grep on `.opencode/skills/system-spec-kit/{mcp_server,scripts}/`, no matches]
 
 ### F62. Bench callers confirmed at exactly 3 (matches iter-13 correction)
 
-`grep -l -E "from ['\"].*promotion|runShadowCycle|GateBundle..." .opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` returns precisely:
+`grep -l -E "from ['\"].*promotion|runShadowCycle|GateBundle..." .opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` returns precisely:
 - `bench/corpus-bench.ts`
 - `bench/holdout-bench.ts`
 - `bench/safety-bench.ts`
 
-Three other bench files (`latency-bench.ts`, `scorer-bench.ts`, `watcher-benchmark.ts`) do NOT import promotion modules and are out of scope for the delete. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` import scan]
+Three other bench files (`latency-bench.ts`, `scorer-bench.ts`, `watcher-benchmark.ts`) do NOT import promotion modules and are out of scope for the delete. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` import scan]
 
 ### F63. Test count CORRECTION: 14 `it()` blocks, not "17 tests"
 
@@ -91,11 +91,11 @@ None new this iteration. Confirmed and locked in:
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/*.ts` (6 files, ls + wc -l)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` (6 files, grep imports)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`
-- `.opencode/skill/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skill/system-spec-kit/scripts/` (cross-packet import grep, zero hits)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/*.ts` (6 files, ls + wc -l)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/*.ts` (6 files, grep imports)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/promotion/promotion-gates.vitest.ts` (line counts + describe/it grep)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/promotion-cycle.ts:1-82`
+- `.opencode/skills/system-spec-kit/mcp_server/{tools,scripts}` and `.opencode/skills/system-spec-kit/scripts/` (cross-packet import grep, zero hits)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/{spec.md,plan.md}` (sibling intent inspection)
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec.md` (false-positive verification)
 - `find .../skill-advisor -type f | xargs grep -l ...` (documentation surface inventory)
@@ -116,4 +116,4 @@ None new this iteration. Confirmed and locked in:
 
 ## Recommended Next Focus
 
-Iter-15: Validate the delete plan against `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/package.json` (bench/test scripts), `vitest.config.ts` (test-include patterns), and any tsconfig `paths` that might still resolve `lib/promotion/*`. Produce a final ratification record and prepare a `STOP_READY` signal if no surprises surface. We are within striking distance of convergence.
+Iter-15: Validate the delete plan against `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/package.json` (bench/test scripts), `vitest.config.ts` (test-include patterns), and any tsconfig `paths` that might still resolve `lib/promotion/*`. Produce a final ratification record and prepare a `STOP_READY` signal if no surprises surface. We are within striking distance of convergence.

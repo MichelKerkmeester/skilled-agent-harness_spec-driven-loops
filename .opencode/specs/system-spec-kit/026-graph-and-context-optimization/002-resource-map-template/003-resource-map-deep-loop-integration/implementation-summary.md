@@ -19,7 +19,7 @@ _memory:
     status: "conditional"
     open_questions: []
     answered_questions:
-      - "The shared extractor lives under .opencode/skill/system-spec-kit/scripts/resource-map/ and supports both review and research evidence shapes."
+      - "The shared extractor lives under .opencode/skills/system-spec-kit/scripts/resource-map/ and supports both review and research evidence shapes."
       - "Synthesis owns convergence-time emission; reducers only write the resource map artifact when explicitly invoked with --emit-resource-map."
       - "Review severity counts and research citation counts stay in the template Note column to preserve the phase-002 four-column shape."
       - "The exact T030 vitest command is blocked by an existing include/root mismatch in mcp_server/vitest.config.ts; the assertions themselves pass with an explicit root override."
@@ -29,7 +29,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -66,25 +66,25 @@ The skill docs, command entrypoints, convergence references, feature-catalog ent
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Created | Shared extractor and renderer for review and research resource maps. |
-| `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` | Created | Documents the extractor input/output contract and fallback behavior. |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Created | Focused Vitest coverage for both evidence shapes. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modified | Documents review-side emitted output and opt-out behavior. |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modified | Documents research-side emitted output and opt-out behavior. |
-| `.opencode/command/spec_kit/deep-review.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
-| `.opencode/command/spec_kit/deep-research.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modified | Notes synthesis-time emission for converged review loops. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modified | Notes synthesis-time emission for converged research loops. |
-| `.opencode/skill/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the review-side catalog entry for this feature. |
-| `.opencode/skill/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the research-side catalog entry for this feature. |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | Created | Adds the review-side manual validation scenario. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | Created | Adds the research-side manual validation scenario. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Created | Shared extractor and renderer for review and research resource maps. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | Created | Documents the extractor input/output contract and fallback behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Created | Focused Vitest coverage for both evidence shapes. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modified | Adds `--emit-resource-map` handling and clean opt-out behavior. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Adds resource-map config/output state and synthesis emission step. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Documents review-side emitted output and opt-out behavior. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modified | Documents research-side emitted output and opt-out behavior. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modified | Notes synthesis-time emission for converged review loops. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modified | Notes synthesis-time emission for converged research loops. |
+| `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the review-side catalog entry for this feature. |
+| `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the research-side catalog entry for this feature. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | Created | Adds the review-side manual validation scenario. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | Created | Adds the research-side manual validation scenario. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -102,7 +102,7 @@ The rollout stayed incremental. The shared extractor landed first, then the redu
 
 | Decision | Why |
 |----------|-----|
-| Keep the extractor under `.opencode/skill/system-spec-kit/scripts/resource-map/` | The packet explicitly scopes the shared logic there, and both deep-loop skills can consume it without introducing another shared package boundary. |
+| Keep the extractor under `.opencode/skills/system-spec-kit/scripts/resource-map/` | The packet explicitly scopes the shared logic there, and both deep-loop skills can consume it without introducing another shared package boundary. |
 | Make reducers emit only when `--emit-resource-map` is passed | The reducers already run every iteration. Keeping emission behind an explicit flag preserves the current steady-state reducer behavior and lets synthesis own convergence-time writes. |
 | Store counts in the `Note` column instead of introducing new table columns | The phase-002 template is a four-column contract. Keeping the counts in `Note` preserves the shared template shape while still exposing the per-file review and research signals the packet requires. |
 | Treat the exact T030 command as a harness mismatch, not an extractor failure | The test assertions pass when Vitest is rooted where `scripts/tests/**` actually matches. The failing command is blocked by the checked-in include/root config rather than the new feature code. |
@@ -115,13 +115,13 @@ The rollout stayed incremental. The shared extractor landed first, then the redu
 
 | Check | Result |
 |-------|--------|
-| `T030: cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run scripts/tests/resource-map-extractor.vitest.ts` | FAIL (exit 1). Vitest reported `No test files found` because the current config includes `scripts/tests/**` at the skill root, not `mcp_server/scripts/tests/**`. |
-| `T030 follow-up: cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run --config vitest.config.ts --root . scripts/tests/resource-map-extractor.vitest.ts` | PASS (exit 0). The new assertions passed once Vitest rooted `scripts/tests/**` inside `mcp_server/`. |
-| `T031: cd .opencode/skill/system-spec-kit/mcp_server && npm run typecheck` | PASS (exit 0). No stderr. |
+| `T030: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run scripts/tests/resource-map-extractor.vitest.ts` | FAIL (exit 1). Vitest reported `No test files found` because the current config includes `scripts/tests/**` at the skill root, not `mcp_server/scripts/tests/**`. |
+| `T030 follow-up: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run --config vitest.config.ts --root . scripts/tests/resource-map-extractor.vitest.ts` | PASS (exit 0). The new assertions passed once Vitest rooted `scripts/tests/**` inside `mcp_server/`. |
+| `T031: cd .opencode/skills/system-spec-kit/mcp_server && npm run typecheck` | PASS (exit 0). No stderr. |
 | `T032: review-shape dry run` | PASS (exit 0). Output contained `## 1. READMEs`, `## 5. Skills`, and review notes like `Findings P0=0 P1=1 P2=0`. |
 | `T033: research-shape dry run` | PASS (exit 0). Output contained `## 3. Commands`, `## 5. Skills`, and citation notes like `Citations=3; Iterations=3`. |
 | `T034: opt-out path` | PASS (exit 0). Reducer returned `resourceMapSkipped: true`, `resourceMapSkipReason: "config.resource_map.emit=false"`, and no file was written. |
-| `T035: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` | FAIL (exit 2). Validator still reports packet-doc integrity issues in `spec.md`, `plan.md`, and the packet's existing backticked task-text references, plus a strict-level section-count warning and a pre-existing uncited line in `research/research.md`. |
+| `T035: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` | FAIL (exit 2). Validator still reports packet-doc integrity issues in `spec.md`, `plan.md`, and the packet's existing backticked task-text references, plus a strict-level section-count warning and a pre-existing uncited line in `research/research.md`. |
 | `T036: grep -rn "resource-map" ...` | PASS (exit 0). All ten required surfaces contain `resource-map` coverage; `grep -rl ... | wc -l` returned `10`. |
 | `Additional: zero/max edge cases` | PASS (exit 0). Dry run returned `zeroTotal=0`, `zeroHasCategoryHeadings=false`, and `maxCitationNote=true`. |
 | `Additional: malformed-row degradation` | PASS (exit 0). Dry run returned `degraded=true` and `degradedRows=true`. |

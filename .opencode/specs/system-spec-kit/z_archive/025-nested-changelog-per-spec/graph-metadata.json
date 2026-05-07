@@ -43,21 +43,21 @@
       "implementation-summary.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/system-spec-kit/templates/changelog/root.md",
-      ".opencode/skill/system-spec-kit/templates/changelog/phase.md",
-      ".opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
-      ".opencode/command/create/changelog.md",
-      ".opencode/command/spec_kit/implement.md",
-      ".opencode/command/spec_kit/complete.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/references/workflows/nested_changelog.md",
+      ".opencode/skills/system-spec-kit/templates/changelog/root.md",
+      ".opencode/skills/system-spec-kit/templates/changelog/phase.md",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/commands/spec_kit/implement.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/workflows/nested_changelog.md",
       ".opencode/specs/system-spec-kit/025-nested-changelog-per-spec/implementation-summary.md",
       "plan.md",
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/scripts/spec-folder/index.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec-folder/README.md",
-      ".opencode/skill/system-spec-kit/scripts/scripts-registry.json",
-      ".opencode/skill/system-spec-kit/scripts/tests/nested-changelog.vitest.ts"
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/index.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/README.md",
+      ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts"
     ],
     "entities": [
       {
@@ -87,49 +87,49 @@
       {
         "name": "root.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/templates/changelog/root.md",
+        "path": ".opencode/skills/system-spec-kit/templates/changelog/root.md",
         "source": "derived"
       },
       {
         "name": "phase.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/templates/changelog/phase.md",
+        "path": ".opencode/skills/system-spec-kit/templates/changelog/phase.md",
         "source": "derived"
       },
       {
         "name": "nested-changelog.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts",
         "source": "derived"
       },
       {
         "name": "changelog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/changelog.md",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
         "name": "implement.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/implement.md",
+        "path": ".opencode/commands/spec_kit/implement.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "nested_changelog.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/workflows/nested_changelog.md",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/nested_changelog.md",
         "source": "derived"
       },
       {
@@ -147,25 +147,25 @@
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec-folder/index.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/index.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec-folder/README.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/README.md",
         "source": "derived"
       },
       {
         "name": "scripts-registry.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/scripts/scripts-registry.json",
+        "path": ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
         "source": "derived"
       },
       {
         "name": "nested-changelog.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/nested-changelog.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts",
         "source": "derived"
       },
       {

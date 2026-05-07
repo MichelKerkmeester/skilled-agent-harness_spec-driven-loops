@@ -69,7 +69,7 @@ After the research artifacts were written, the reducer files were updated in seq
 | JSONL integrity | PASS - 30 sequential rows with 10 new `phase: 3` entries |
 | Combined totals | PASS - must=6, should=14, nice=5, rejected=5 |
 | UX verdict totals | PASS - SIMPLIFY=2, ADD=1, MERGE=3, KEEP=2, REDESIGN=2 |
-| Strict packet validation | PASS - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
+| Strict packet validation | PASS - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
 | Scope control | PASS - edits stayed inside `006-ralph-main/`; `external/` untouched |
 | Memory save | SKIPPED - not performed in this turn |
 <!-- /ANCHOR:verification -->

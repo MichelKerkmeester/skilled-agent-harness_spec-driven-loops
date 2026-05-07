@@ -25,13 +25,13 @@ _memory:
     open_questions: []
     answered_questions:
       - "Where is CocoIndex source? Answer: ~/.local/pipx/venvs/cocoindex-code/lib/python3.11/site-packages/cocoindex_code"
-      - "Vendor or fork CocoIndex source? Answer: vendored soft-fork under .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code"
+      - "Vendor or fork CocoIndex source? Answer: vendored soft-fork under .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code"
 ---
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-LANDED in the vendored `cocoindex-code` soft-fork as version `0.2.3+spec-kit-fork.0.2.0`. The earlier Phase D vendor-vs-fork blocker is resolved by Phase 1 commit `3711ad221`, which moved the Python package source into `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/`.
+LANDED in the vendored `cocoindex-code` soft-fork as version `0.2.3+spec-kit-fork.0.2.0`. The earlier Phase D vendor-vs-fork blocker is resolved by Phase 1 commit `3711ad221`, which moved the Python package source into `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`.
 
 The current patch set implements the full 009 fix, replacing the earlier settings-only mitigation:
 
@@ -68,11 +68,11 @@ The runtime passthrough layer (`protocol.py`, `daemon.py`, `server.py`, `cli.py`
 | File | Action | Purpose |
 |------|--------|---------|
 | `.cocoindex_code/settings.yml` | LANDED | Excludes runtime spec mirror roots |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/indexer.py` | LANDED | Adds canonical identity, content hash, and path class per chunk |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py` | LANDED | Adds over-fetch, dedup, rerank, raw score, and ranking signals |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/schema.py` | LANDED | Extends chunk/result dataclasses with 009 fields |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/shared.py` | LANDED | Extends the actual CocoIndex table schema dataclass |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/{protocol.py,daemon.py,server.py,cli.py}` | LANDED | Passes result telemetry through daemon IPC, MCP, and CLI display |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py` | LANDED | Adds canonical identity, content hash, and path class per chunk |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py` | LANDED | Adds over-fetch, dedup, rerank, raw score, and ranking signals |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py` | LANDED | Extends chunk/result dataclasses with 009 fields |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py` | LANDED | Extends the actual CocoIndex table schema dataclass |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/{protocol.py,daemon.py,server.py,cli.py}` | LANDED | Passes result telemetry through daemon IPC, MCP, and CLI display |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,11 +101,11 @@ Delivered by patching the vendored soft-fork in place, bumping the fork version,
 
 | Check | Result | Evidence |
 |-------|--------|----------|
-| Source location identified | PASS | Vendored source at `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/` |
+| Source location identified | PASS | Vendored source at `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/` |
 | Vendor-vs-fork decision | LANDED | Phase 1 soft-fork commit `3711ad221` |
-| `ccc --version` | LANDED | `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc --version` -> `0.2.3+spec-kit-fork.0.2.0` |
-| Reinstall editable fork | LANDED | `bash .opencode/skill/mcp-coco-index/scripts/install.sh` completed; dependency resolution used no-deps fallback because sandbox network is unavailable |
-| `ccc reset` | LANDED | `.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc reset --force` deleted `cocoindex.db` and `target_sqlite.db`, preserving settings |
+| `ccc --version` | LANDED | `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc --version` -> `0.2.3+spec-kit-fork.0.2.0` |
+| Reinstall editable fork | LANDED | `bash .opencode/skills/mcp-coco-index/scripts/install.sh` completed; dependency resolution used no-deps fallback because sandbox network is unavailable |
+| `ccc reset` | LANDED | `.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc reset --force` deleted `cocoindex.db` and `target_sqlite.db`, preserving settings |
 | Reindex | BLOCKED in Codex sandbox | `ccc index` failed because daemon startup could not write/bind under sandbox: default dir -> `Operation not permitted: '/Users/michelkerkmeester/.cocoindex_code/daemon.log'`; workspace dir -> `AF_UNIX path too long`; temp dirs -> `Operation not permitted` on socket bind |
 | pytest | BLOCKED | `.venv/bin/python -m pytest ...` failed: `No module named pytest` |
 | Python syntax | PASS | `PYTHONPYCACHEPREFIX=/tmp/codex-pycache python3 -m py_compile ...` passed for patched Python files |

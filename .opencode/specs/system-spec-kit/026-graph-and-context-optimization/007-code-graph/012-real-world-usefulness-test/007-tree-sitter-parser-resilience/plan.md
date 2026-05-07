@@ -109,9 +109,9 @@ File enumeration → parser wrapper → tree-sitter call
 | `manual_testing_playbook/02--manual-scan-verify-status/` | Scenario library | Add broad-scope scenario | Playbook run captures pass |
 
 Required inventories:
-- Producer search: `rg -n 'tree[-_]?sitter|parseSync|parseAsync' .opencode/skill/system-spec-kit/mcp_server/code_graph/`
-- Consumer search: `rg -n 'parseDiagnostics|parseHealth|parseError' .opencode/skill/system-spec-kit/mcp_server/code_graph/`
-- Schema search: `rg -n 'CREATE TABLE|SCHEMA_VERSION' .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts`
+- Producer search: `rg -n 'tree[-_]?sitter|parseSync|parseAsync' .opencode/skills/system-spec-kit/mcp_server/code_graph/`
+- Consumer search: `rg -n 'parseDiagnostics|parseHealth|parseError' .opencode/skills/system-spec-kit/mcp_server/code_graph/`
+- Schema search: `rg -n 'CREATE TABLE|SCHEMA_VERSION' .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts`
 - Algorithm invariant: skip-list operations must be idempotent under concurrent scans; verify via Vitest with two scans racing on the same file.
 <!-- /ANCHOR:affected-surfaces -->
 

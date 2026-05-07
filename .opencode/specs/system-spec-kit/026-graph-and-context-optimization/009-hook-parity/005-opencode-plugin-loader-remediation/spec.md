@@ -143,7 +143,7 @@ Restore OpenCode TUI startup by hardening the named parser export against legacy
 - Modifying the actual plugin logic.
 - Cross-runtime hook parity (sibling-phase territory).
 - Upstream OpenCode contributions.
-- Reorganizing the rest of `.opencode/skill/` or `.opencode/skill/system-spec-kit/mcp_server/`.
+- Reorganizing the rest of `.opencode/skills/` or `.opencode/skills/system-spec-kit/mcp_server/`.
 
 ### Files Expected to Change
 
@@ -155,10 +155,10 @@ Restore OpenCode TUI startup by hardening the named parser export against legacy
 | `.opencode/plugins/spec-kit-skill-advisor.js`                                     | Modify (imports + hooks) | Update `BRIDGE_PATH` constant to point to relocated bridge; remap ignored Claude-style hooks to OpenCode `event` and `experimental.chat.system.transform` hooks |
 | `.opencode/plugins/spec-kit-compact-code-graph.js`                                | Modify (imports) | Update bridge path + schema-helper import                                   |
 | a new README inside `.opencode/plugins/`                                                     | Create or Modify | Document the "plugins folder = entrypoints only" convention                  |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts` | Create | Regression guard: fail if `.opencode/plugins/` contains files without a default export |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`       | Modify         | Updated to reflect helper relocation and parseTransportPlan guard behavior   |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Modify | Focused OpenCode hook-shape, system-transform injection, fail-open, event cleanup, and status-tool coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | Modify | Updated bridge import path to `../plugin-helpers/`                           |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugins-folder-purity.vitest.ts` | Create | Regression guard: fail if `.opencode/plugins/` contains files without a default export |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts`       | Modify         | Updated to reflect helper relocation and parseTransportPlan guard behavior   |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Modify | Focused OpenCode hook-shape, system-transform injection, fail-open, event cleanup, and status-tool coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts` | Modify | Updated bridge import path to `../plugin-helpers/`                           |
 | Parent docs (`009-hook-parity/`)     | Modify         | Record phase outcome                                                         |
 | `decision-record.md` (this packet)                                                | Create         | ADRs for discovery contract + chosen remediation path                        |
 <!-- /ANCHOR:scope -->
@@ -296,7 +296,7 @@ This is Level 3 because the change spans:
 1. What exact glob does OpenCode 1.3.17 use for plugin discovery? `.opencode/plugins/*.{js,mjs,ts}`? `.opencode/plugins/**/*.{js,mjs,ts}` (recursive)?
 2. Does OpenCode treat `*.mjs` and `*.js` identically, or filter on extension?
 3. Is there a documented opt-out mechanism (e.g., underscore prefix `_helper.mjs`, `opencode.json` `plugins.exclude` array, manifest file)?
-4. What is the upstream-recommended location for plugin helper modules that ship alongside plugins but are not themselves plugins? (e.g., `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/`, `.opencode/plugins/_internal/`, sibling to `.opencode/plugins/` entirely?)
+4. What is the upstream-recommended location for plugin helper modules that ship alongside plugins but are not themselves plugins? (e.g., `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/`, `.opencode/plugins/_internal/`, sibling to `.opencode/plugins/` entirely?)
 5. Does the OpenCode `@opencode-ai/plugin` package export a contract type that would let us add an explicit `isPluginModule` marker?
 6. What is the loader's behavior on `export default null` or `export default undefined` — does it skip silently or still crash?
 <!-- /ANCHOR:questions -->

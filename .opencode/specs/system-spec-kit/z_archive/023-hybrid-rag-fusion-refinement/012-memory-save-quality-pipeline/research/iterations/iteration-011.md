@@ -18,7 +18,7 @@ The fallback at lines 241-267 fires only when `userPrompts.length <= 1` AND `ses
 - quality scorer sees low MESSAGE_COUNT --> penalized
 - trigger extractor has thin conversation content --> few triggers
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:51-267]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:51-267]
 
 ### 2. JSON Payload Fields Available for Message Construction
 
@@ -35,7 +35,7 @@ From `CollectedDataBase` (session-types.ts lines 126-190), JSON-mode payloads ca
 
 The `exchanges` field (line 143 of session-types.ts) is the richest source: it contains `{ userInput, assistantResponse, timestamp }` triples composed by the AI agent. When present, these should be the primary JSON message source.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/types/session-types.ts:126-190]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/types/session-types.ts:126-190]
 
 ### 3. Dual-Source Activation Logic (Pseudocode)
 
@@ -242,7 +242,7 @@ export interface ConversationMessage {
 - `quality-scorer.ts` (core): The `observations.filter(o => !o._synthetic)` pattern already ignores simulation. JSON-sourced content should be treated as genuine.
 - `template-renderer.ts`: No special handling needed. JSON-sourced messages render identically.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:241-267 (existing _synthetic patterns)]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:241-267 (existing _synthetic patterns)]
 [INFERENCE: based on contamination-filter.ts and quality-scorer.ts filtering behavior]
 
 ### 6. Edge Cases
@@ -305,10 +305,10 @@ function extractSessionTopic(
 None identified. The dual-path approach is architecturally sound for this module.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts` (full file, 316 lines)
-- `.opencode/skill/system-spec-kit/scripts/types/session-types.ts:126-193` (CollectedDataBase interface)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:985-990` (extractConversations call site)
-- `.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts` (trigger extraction API)
+- `.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts` (full file, 316 lines)
+- `.opencode/skills/system-spec-kit/scripts/types/session-types.ts:126-193` (CollectedDataBase interface)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:985-990` (extractConversations call site)
+- `.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts` (trigger extraction API)
 
 ## Assessment
 - New information ratio: 0.85

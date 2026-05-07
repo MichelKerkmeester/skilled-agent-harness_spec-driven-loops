@@ -57,7 +57,7 @@ Five single-purpose changes across three concern areas: (A) extend highlights co
 
 ### Technical Context
 
-The code-graph subsystem lives under `.opencode/skill/system-spec-kit/mcp_server/code-graph/`. Source is TypeScript; compiled output goes to `dist/`. Three layers are touched:
+The code-graph subsystem lives under `.opencode/skills/system-spec-kit/mcp_server/code-graph/`. Source is TypeScript; compiled output goes to `dist/`. Three layers are touched:
 1. **Snapshot layer** (`lib/session/session-snapshot.ts`): builds the structural-context payload returned to OpenCode plugin and MCP clients.
 2. **Indexer config** (`code-graph/lib/indexer-types.ts`): default excludes that govern what gets walked.
 3. **Indexer walk** (`code-graph/lib/structural-indexer.ts`): the actual recursive directory walk that needs gitignore awareness.

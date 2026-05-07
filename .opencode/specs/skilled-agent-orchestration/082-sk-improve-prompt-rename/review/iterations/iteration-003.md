@@ -89,11 +89,11 @@ None (the pre-existing FRONTMATTER_MEMORY_BLOCK P1 from Iteration 1 persists but
 
 | Integration Surface | Type | Evidence |
 |---------------------|------|----------|
-| `validate.sh` (.opencode/skill/system-spec-kit/scripts/spec/validate.sh) | Command | Used to validate parent + 6 child phases; exits 1 with FRONTMATTER_MEMORY_BLOCK on parent |
-| `skill_advisor.py` (.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py) | Skill tool | Probe "improve my prompt" returns top-1 `sk-prompt` — routing confirmed |
-| `generate-context.js` (.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js) | Script | Referenced for auto-regeneration of `description.json` and `graph-metadata.json` |
-| `@improve-prompt` agent (.opencode/agent/improve-prompt.md) | Agent | Identity preserved; only loaded skill name changed |
-| `/improve:prompt` command (.opencode/command/improve/prompt.md) | Command | Identity preserved; only body refs changed |
+| `validate.sh` (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) | Command | Used to validate parent + 6 child phases; exits 1 with FRONTMATTER_MEMORY_BLOCK on parent |
+| `skill_advisor.py` (.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py) | Skill tool | Probe "improve my prompt" returns top-1 `sk-prompt` — routing confirmed |
+| `generate-context.js` (.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js) | Script | Referenced for auto-regeneration of `description.json` and `graph-metadata.json` |
+| `@improve-prompt` agent (.opencode/agents/improve-prompt.md) | Agent | Identity preserved; only loaded skill name changed |
+| `/improve:prompt` command (.opencode/commands/improve/prompt.md) | Command | Identity preserved; only body refs changed |
 
 ## Edge Cases
 
@@ -113,7 +113,7 @@ None (the pre-existing FRONTMATTER_MEMORY_BLOCK P1 from Iteration 1 persists but
 - All 7 spec folders have both `description.json` and `graph-metadata.json`.
 - Advisor probe routing confirms `sk-prompt` top-1.
 - Final scoped grep returns 0 hits in active scope.
-- Skill folder rename: `.opencode/skill/sk-prompt/` exists, `.opencode/skill/sk-improve-prompt` does not.
+- Skill folder rename: `.opencode/skills/sk-prompt/` exists, `.opencode/skills/sk-improve-prompt` does not.
 
 ## Ruled Out
 

@@ -17,15 +17,15 @@ _memory:
     next_safe_action: "Operator: run DBG-SCAF-001 manual rehearsal end-to-end against a synthetic spec to exercise the full y/manually/skip prompt branches; or commit and ship"
     blockers: []
     key_files:
-      - ".opencode/agent/debug.md"
-      - ".opencode/agent/orchestrate.md"
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/agents/debug.md"
+      - ".opencode/agents/orchestrate.md"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
       - ".claude/agents/debug.md"
       - ".codex/agents/debug.toml"
       - ".gemini/agents/debug.md"
-      - ".opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh"
-      - ".opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md"
+      - ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-04-27-debug-integration"
@@ -42,7 +42,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -75,15 +75,15 @@ The previous A/B/C/D menu in `spec_kit_implement_auto.yaml` and the autonomous `
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/agent/debug.md` | Modified | Description (L3) + lead paragraph (L24) + Related Resources orchestrate row rewritten to user-invoked semantics (REQ-001) |
-| `.opencode/agent/orchestrate.md` | Modified | Routing table L99, REASSIGN step L492, Debug Delegation Trigger L539, routing lookup L595 — all rewritten to prompted-offer (REQ-002) |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified | `agent_availability.debug` block (L210-217) renamed `failure_tracking` → `prompt_threshold`; `debug_delegation` block (L411-413) replaced with y/n/skip flow + scaffold invocation (REQ-003, REQ-004) |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | Mirror of implement_auto + removed autonomous `debug_dispatch.subagent_type: "debug"` block (REQ-003, REQ-005) |
+| `.opencode/agents/debug.md` | Modified | Description (L3) + lead paragraph (L24) + Related Resources orchestrate row rewritten to user-invoked semantics (REQ-001) |
+| `.opencode/agents/orchestrate.md` | Modified | Routing table L99, REASSIGN step L492, Debug Delegation Trigger L539, routing lookup L595 — all rewritten to prompted-offer (REQ-002) |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modified | `agent_availability.debug` block (L210-217) renamed `failure_tracking` → `prompt_threshold`; `debug_delegation` block (L411-413) replaced with y/n/skip flow + scaffold invocation (REQ-003, REQ-004) |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | Mirror of implement_auto + removed autonomous `debug_dispatch.subagent_type: "debug"` block (REQ-003, REQ-005) |
 | `.claude/agents/debug.md` | Modified | Description mirror (REQ-001) |
 | `.codex/agents/debug.toml` | Modified | Description mirror inside `developer_instructions` (REQ-001) |
 | `.gemini/agents/debug.md` | Modified | Description mirror (REQ-001) |
-| `.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Created | New helper that pre-fills `debug-delegation.md` from a synthetic or live failure-trail JSON, with versioned filenames on collision (REQ-004) |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` | Created | DBG-SCAF-001 manual rehearsal scenario for the scaffold generator + y/n/skip prompt (REQ-008) |
+| `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Created | New helper that pre-fills `debug-delegation.md` from a synthetic or live failure-trail JSON, with versioned filenames on collision (REQ-004) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` | Created | DBG-SCAF-001 manual rehearsal scenario for the scaffold generator + y/n/skip prompt (REQ-008) |
 
 #### Post-review fixes (deepseek-v4-pro ultra-think second pass)
 
@@ -91,18 +91,18 @@ A second-opinion review via `opencode-go/deepseek-v4-pro` `@ultra-think` found t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | **P0**: Removed the autonomous `debug_dispatch.subagent_type: "debug"` block that survived in the `_confirm.yaml` variant; mirrored the y/n/skip prompt + scaffold pattern from `_auto.yaml` |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified | **P0**: Same fix — `agent_availability.debug` block + `debug_delegation` block rewritten to match `_auto.yaml` |
-| `.claude/agents/orchestrate.md` | Modified | **P0**: Mirrored all 4 orchestrator edits (L99 routing table, L492 REASSIGN, L539 trigger, L595 routing lookup) from `.opencode/agent/orchestrate.md` |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | **P0**: Removed the autonomous `debug_dispatch.subagent_type: "debug"` block that survived in the `_confirm.yaml` variant; mirrored the y/n/skip prompt + scaffold pattern from `_auto.yaml` |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml` | Modified | **P0**: Same fix — `agent_availability.debug` block + `debug_delegation` block rewritten to match `_auto.yaml` |
+| `.claude/agents/orchestrate.md` | Modified | **P0**: Mirrored all 4 orchestrator edits (L99 routing table, L492 REASSIGN, L539 trigger, L595 routing lookup) from `.opencode/agents/orchestrate.md` |
 | `.gemini/agents/orchestrate.md` | Modified | **P0**: Same 4 orchestrator edits |
 | `.codex/agents/orchestrate.toml` | Modified | **P0**: Same 4 orchestrator edits at sibling line numbers (L91, L484, L531, L587) |
 | `.claude/agents/debug.md` | Modified | **P1**: Lead body paragraph (line 24), Commands table row, Related Resources orchestrate row — all updated to user-invoked semantics |
 | `.gemini/agents/debug.md` | Modified | **P1**: Same lead body + table row updates |
 | `.codex/agents/debug.toml` | Modified | **P1**: Commands + Related Resources table rows |
-| `.opencode/agent/debug.md` | Modified | **P1**: Commands table row at L465 (Related Resources orchestrate row was already updated; Commands row wasn't) |
-| `.opencode/command/spec_kit/implement.md` | Modified | **P1**: Guardrail line 24 rewritten to "DO NOT dispatch @debug autonomously under any condition; the workflow surfaces a prompted offer..." |
-| `.opencode/command/spec_kit/complete.md` | Modified | **P1**: Same guardrail update at line 27 |
-| `.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Modified | **P1**: Added `_sanitize_for_heredoc()` function that escapes backticks, dollar signs, and backslashes in user-supplied content (ERROR_MESSAGE, attempt fields, HYPOTHESIS) before heredoc interpolation. Injection probe with `` `whoami` `` and `$(id)` confirmed neutralized in test output |
+| `.opencode/agents/debug.md` | Modified | **P1**: Commands table row at L465 (Related Resources orchestrate row was already updated; Commands row wasn't) |
+| `.opencode/commands/spec_kit/implement.md` | Modified | **P1**: Guardrail line 24 rewritten to "DO NOT dispatch @debug autonomously under any condition; the workflow surfaces a prompted offer..." |
+| `.opencode/commands/spec_kit/complete.md` | Modified | **P1**: Same guardrail update at line 27 |
+| `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Modified | **P1**: Added `_sanitize_for_heredoc()` function that escapes backticks, dollar signs, and backslashes in user-supplied content (ERROR_MESSAGE, attempt fields, HYPOTHESIS) before heredoc interpolation. Injection probe with `` `whoami` `` and `$(id)` confirmed neutralized in test output |
 
 **Not fixed (acknowledged P1):**
 - TOCTOU race on the versioning file-existence check (L99-110 of scaffold script). Low-severity — operator-driven invocation pattern, collision unlikely. Would require an atomic `mkdir`-then-rename pattern.
@@ -137,7 +137,7 @@ Static-only verification. Manual rehearsal of the full `spec_kit:implement` fail
 | Single y/n/skip prompt instead of A/B/C/D menu | Audit showed operators consistently skip the buried menu; a direct ask is more legible. |
 | Removed `debug_dispatch.subagent_type: "debug"` block from `complete_auto.yaml` | This was the closest thing to autonomous routing: it would have fired the Task tool with `subagent_type: "debug"` immediately on user choice A. Per user constraint, even on opt-in the user dispatches via Task tool themselves — the workflow only generates the scaffold and instructs. |
 | Renamed YAML metadata `failure_tracking` → `prompt_threshold` | The original key implied auto-routing on hit. The new name makes its true role explicit: a threshold for surfacing the prompt, never for routing. |
-| Bash for the scaffold generator (not Node) | Matches existing helpers in `.opencode/skill/system-spec-kit/scripts/spec/` (`create.sh`, `validate.sh`). No new toolchain dependency. |
+| Bash for the scaffold generator (not Node) | Matches existing helpers in `.opencode/skills/system-spec-kit/scripts/spec/` (`create.sh`, `validate.sh`). No new toolchain dependency. |
 | `jq` is optional | If `jq` isn't installed the script gracefully falls back to placeholder content for attempt fields rather than failing — reduces friction for operators without `jq`. |
 <!-- /ANCHOR:decisions -->
 

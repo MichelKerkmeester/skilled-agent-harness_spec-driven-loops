@@ -10,8 +10,8 @@ Finalize all session spec folders by:
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/templates/resource-map.md` (the canonical template)
-- `.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md` (resource-maps are evergreen-class — packet ID in self-reference is OK; cross-refs to OTHER packets should use feature-name + path)
+- `.opencode/skills/system-spec-kit/templates/resource-map.md` (the canonical template)
+- `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (resource-maps are evergreen-class — packet ID in self-reference is OK; cross-refs to OTHER packets should use feature-name + path)
 - A reference resource-map example: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/resource-map.md`
 
 ### Target packets (17 total)
@@ -74,7 +74,7 @@ Classify each touched path into one of the 10 categories per the template:
 Honor the precedence rules from the template:
 - Specs > Config (for spec-folder JSON)
 - Meta > READMEs (for root-level README.md)
-- Skills > Documents (for `.opencode/skill/**` markdown)
+- Skills > Documents (for `.opencode/skills/**` markdown)
 - Tests > Scripts (for `*.vitest.ts` / `*.test.*` / `*.spec.*`)
 
 ### Phase 2: Author resource-map.md per packet
@@ -112,7 +112,7 @@ for PACKET_PATH in <list of 17>; do
     "completionPct": 100
   }
 EOF
-  node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-$BASENAME.json $PACKET_PATH
+  node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-$BASENAME.json $PACKET_PATH
 done
 ```
 

@@ -3,7 +3,7 @@ You are running iteration 2 of 7 in a deep-review loop.
 # Iteration 2 — Correctness: Auto YAML Workflow + Mutation Boundaries
 
 ## Focus
-Audit `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` for correctness:
+Audit `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` for correctness:
 - 5-phase workflow structure (Discovery → Analysis → Proposal → Apply → Verify)
 - mutation_boundaries section (allowed_targets, forbidden_targets, enforcement)
 - scoring_sources paths (must match real source file locations)
@@ -14,11 +14,11 @@ Audit `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml` for c
 ## Required reads
 1. `.opencode/specs/.../012-skill-advisor-setup-command/review/deep-review-strategy.md`
 2. `.opencode/specs/.../012-skill-advisor-setup-command/review/iterations/iteration-001.md` (prior findings)
-3. `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
-4. `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` (verify path)
-5. `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` (verify path)
-6. `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts` (verify path)
-7. Sample existing graph-metadata.json under `.opencode/skill/<any>/graph-metadata.json`
+3. `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml`
+4. `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` (verify path)
+5. `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` (verify path)
+6. `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts` (verify path)
+7. Sample existing graph-metadata.json under `.opencode/skills/<any>/graph-metadata.json`
 
 ## What to look for
 - mutation_boundaries.allowed_targets paths actually exist

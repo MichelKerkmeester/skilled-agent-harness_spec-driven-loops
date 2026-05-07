@@ -16,19 +16,19 @@ Answer Q10: define the concrete conditions under which ADR-001's lightweight bou
 
 ### 1. ADR-001 already defines a soft spill threshold, but not a promotion threshold
 
-ADR-001 explicitly rejects a dedicated `.opencode/skill/multi-ai-council/` folder because that would import YAML workflow, command surface, iteration mechanics, and convergence machinery comparable to deep-research/deep-review (`.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md:51`). The accepted decision keeps logic in `.opencode/agent/multi-ai-council.md` plus four short reference files (`decision-record.md:57`), and its consequence rule says that if the agent body crosses about 750 LOC, details should spill to references rather than create a skill (`decision-record.md:71`).
+ADR-001 explicitly rejects a dedicated `.opencode/skills/multi-ai-council/` folder because that would import YAML workflow, command surface, iteration mechanics, and convergence machinery comparable to deep-research/deep-review (`.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md:51`). The accepted decision keeps logic in `.opencode/agents/multi-ai-council.md` plus four short reference files (`decision-record.md:57`), and its consequence rule says that if the agent body crosses about 750 LOC, details should spill to references rather than create a skill (`decision-record.md:71`).
 
 That means LOC pressure alone is not enough to revisit ADR-001. It is first a reference-spill signal. Promotion only becomes justified when the added behavior cannot be honestly expressed as agent instructions plus shared references.
 
 ### 2. Current growth still fits the lightweight model
 
-The current agent body is 689 LOC, with the `ai-council/` protocol concentrated in sections 12 through 15 (`.opencode/agent/multi-ai-council.md:579` through `.opencode/agent/multi-ai-council.md:650`) and a planning-only summary boundary at `.opencode/agent/multi-ai-council.md:684` through `.opencode/agent/multi-ai-council.md:687`. The existing reference surface is small: four files totaling 168 lines under `.opencode/skill/system-spec-kit/references/multi-ai-council/`.
+The current agent body is 689 LOC, with the `ai-council/` protocol concentrated in sections 12 through 15 (`.opencode/agents/multi-ai-council.md:579` through `.opencode/agents/multi-ai-council.md:650`) and a planning-only summary boundary at `.opencode/agents/multi-ai-council.md:684` through `.opencode/agents/multi-ai-council.md:687`. The existing reference surface is small: four files totaling 168 lines under `.opencode/skills/system-spec-kit/references/multi-ai-council/`.
 
 Packet 081's likely additions from Q1-Q9 fit this model: a helper script, fixture tests, one `output-schema.md`, a short §17 caller protocol, and mirror parity checks. Those are shared support and documentation surfaces, not a dedicated council runtime.
 
 ### 3. The real promotion signal is lifecycle ownership, not artifact count
 
-Deep-research and deep-review are full skills because their command workflows own lifecycle, state, dispatch, convergence, and reducer-maintained artifacts. Deep-review states that YAML owns `deep-review-state.jsonl`, strategy, registry, dashboard, convergence, and stuck recovery at `.opencode/skill/deep-review/SKILL.md:87` through `.opencode/skill/deep-review/SKILL.md:91`. Deep-research's reducer is a 1022-line state writer with fail-closed CLI behavior and exported parsers/reducer functions at `.opencode/skill/deep-research/scripts/reduce-state.cjs:962` through `.opencode/skill/deep-research/scripts/reduce-state.cjs:1022`.
+Deep-research and deep-review are full skills because their command workflows own lifecycle, state, dispatch, convergence, and reducer-maintained artifacts. Deep-review states that YAML owns `deep-review-state.jsonl`, strategy, registry, dashboard, convergence, and stuck recovery at `.opencode/skills/deep-review/SKILL.md:87` through `.opencode/skills/deep-review/SKILL.md:91`. Deep-research's reducer is a 1022-line state writer with fail-closed CLI behavior and exported parsers/reducer functions at `.opencode/skills/deep-research/scripts/reduce-state.cjs:962` through `.opencode/skills/deep-research/scripts/reduce-state.cjs:1022`.
 
 By contrast, ADR-003 keeps `ai-council-state.jsonl` convention-only for v1 (`decision-record.md:137` through `decision-record.md:140`) and says to formalize a validator only if drift becomes a problem (`decision-record.md:155` through `decision-record.md:157`). ADR-004 similarly keeps `ai-council/` free-form inside strict validation (`decision-record.md:171` through `decision-record.md:184`). Promotion should be tied to crossing those boundaries.
 
@@ -50,7 +50,7 @@ These are behavioral thresholds. They are stronger evidence than file count or l
 
 Do not revisit ADR-001 for a standalone persistence helper, fixture tests, `output-schema.md`, short §17 caller protocol, manual invocation recipes, optional memory-save payloads, or reference-file expansion. ADR-001 already expects detail to spill to references before a skill is considered (`decision-record.md:71`), and Q8/Q9 kept memory save optional and downstream of persistence.
 
-The stale path named in the iteration prompt, `.opencode/skill/deep-review/scripts/reduce-review-state.cjs`, is not present in this checkout; the actual sibling reducer is `.opencode/skill/deep-review/scripts/reduce-state.cjs`. That mismatch does not change the conclusion, but it reinforces that promotion should be based on live repo evidence rather than assumed sibling shapes.
+The stale path named in the iteration prompt, `.opencode/skills/deep-review/scripts/reduce-review-state.cjs`, is not present in this checkout; the actual sibling reducer is `.opencode/skills/deep-review/scripts/reduce-state.cjs`. That mismatch does not change the conclusion, but it reinforces that promotion should be based on live repo evidence rather than assumed sibling shapes.
 
 ### 6. Git history supports a young, lightweight convention
 

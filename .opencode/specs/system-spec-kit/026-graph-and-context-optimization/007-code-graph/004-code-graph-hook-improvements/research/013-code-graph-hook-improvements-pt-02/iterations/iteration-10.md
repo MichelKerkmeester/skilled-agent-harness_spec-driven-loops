@@ -12,17 +12,17 @@ This final iteration checked convergence quality rather than searching for a bra
 - `iterations/iteration-05.md`
 - `iterations/iteration-06.md`
 - `iterations/iteration-07.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
 
 ### Findings
 
-- The packet has stabilized around six actionable buckets with concrete owners: read-path gating, seed fidelity, scan summary freshness, operator summary surfacing, startup structured transport, and deadline/truncation labeling [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:275-290; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:239-242; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245].
+- The packet has stabilized around six actionable buckets with concrete owners: read-path gating, seed fidelity, scan summary freshness, operator summary surfacing, startup structured transport, and deadline/truncation labeling [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:275-290; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:239-242; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245].
 - Late-stage review did not uncover a seventh production-grade finding; instead it reinforced that the remaining gaps are mostly contract and visibility issues downstream of earlier core fixes [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md:59-67].
-- The synthesis can stop at the iteration cap without sacrificing coverage because the final pass still improved recommendation shape and target-file precision even though `newInfoRatio` fell to `0.04` [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/spec.md:118-121; .opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:79-81].
+- The synthesis can stop at the iteration cap without sacrificing coverage because the final pass still improved recommendation shape and target-file precision even though `newInfoRatio` fell to `0.04` [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/spec.md:118-121; .opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:79-81].
 
 ### Evidence
 

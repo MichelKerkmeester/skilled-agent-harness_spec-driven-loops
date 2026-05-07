@@ -15,7 +15,7 @@ The validate.sh orchestrator (v2.0.0) executes modular rule scripts from `rules/
 
 Additional rules discovered: AI_PROTOCOLS, COMPLEXITY_MATCH, FOLDER_NAMING, FRONTMATTER_VALID, LEVEL_MATCH, SECTION_COUNTS, TEMPLATE_SOURCE
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:68-75, 316-323]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:68-75, 316-323]
 
 ### 2. TEMPLATE_HEADERS Is the Most Structurally Demanding Rule
 
@@ -32,8 +32,8 @@ Additionally, for checklist.md it enforces:
 - H1 must start with `# Verification Checklist:`
 - Items must use `CHK-NNN [P0/P1/P2]` format, not bare `**[P0]**`
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:39-94]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/template-structure.js:144-289]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:39-94]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/template-structure.js:144-289]
 
 ### 3. ANCHORS_VALID Enforces Both Syntax and Order
 
@@ -45,7 +45,7 @@ The anchor validation has 4 sub-checks:
 
 This is particularly problematic for agents because anchors are invisible structural metadata that agents tend to omit entirely or misspell.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh:17-252]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh:17-252]
 
 ### 4. template-structure.js Is the Central Contract Engine
 
@@ -57,7 +57,7 @@ The template-structure.js module powers both TEMPLATE_HEADERS and ANCHORS_VALID.
 - Supports addendum merging for phase folders and level upgrades
 - Normalizes headers by stripping number prefixes and placeholders before comparison
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/template-structure.js:18-48, 218-289]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/template-structure.js:18-48, 218-289]
 
 ### 5. The Template Files Define ~7 Required Sections and ~7 Required Anchors per Document
 
@@ -71,7 +71,7 @@ For spec.md at Level 1 (the core template), the required structure is:
 
 Agents typically fail by: (a) using different section names (e.g., "Overview" instead of "Problem & Purpose"), (b) omitting anchor tags entirely, (c) reordering sections, (d) omitting the SPECKIT_LEVEL comment.
 
-[SOURCE: .opencode/skill/system-spec-kit/templates/core/spec-core.md:1-120]
+[SOURCE: .opencode/skills/system-spec-kit/templates/core/spec-core.md:1-120]
 
 ### 6. The Known Context Confirms: 54 Errors Across 3 Categories in Real Agent Writes
 
@@ -94,16 +94,16 @@ The validate.sh script runs AFTER files are written. There is no mechanism to:
 
 The pre-commit hook (`pre-commit-spec-validate.sh`) exists but only gates commits, not initial writes. There is a `progressive-validate.sh` variant but it too runs after the fact.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh (file exists)]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:14-18 (skip flag)]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/pre-commit-spec-validate.sh (file exists)]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:14-18 (skip flag)]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` (full file, 642 lines)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` (full file, 129 lines)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh` (full file, 256 lines)
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` (320 lines read)
-- `.opencode/skill/system-spec-kit/templates/core/spec-core.md` (full file, 120 lines)
-- `.opencode/skill/system-spec-kit/templates/` (directory listing, 76 template files)
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` (full file, 642 lines)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` (full file, 129 lines)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` (full file, 256 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` (320 lines read)
+- `.opencode/skills/system-spec-kit/templates/core/spec-core.md` (full file, 120 lines)
+- `.opencode/skills/system-spec-kit/templates/` (directory listing, 76 template files)
 
 ## Assessment
 - New information ratio: 1.0

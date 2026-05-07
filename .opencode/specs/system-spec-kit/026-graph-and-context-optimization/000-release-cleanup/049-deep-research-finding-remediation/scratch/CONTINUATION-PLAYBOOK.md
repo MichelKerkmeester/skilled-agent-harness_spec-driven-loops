@@ -39,8 +39,8 @@ Steps (run sequentially, do NOT skip verification):
 2. Re-read each finding's cited file:line in the live codebase to confirm the bug still exists at the cited location. If line numbers drifted (likely if packets 047/048 also touched the file), locate the new line by surrounding context and document the drift in your implementation-summary.md.
 3. Author your sub-phase's full spec/plan/tasks/checklist (use sub-phase 010 as the template — see ../../010-cli-orchestrator-drift/ for the complete shape). Use Level 2 docs (5 spec files: spec, plan, tasks, checklist, implementation-summary).
 4. Apply each fix as a surgical edit. For P1 product-code findings, also add a stress test that would have failed against the pre-fix code. Mirror packet 048's `sa-NNNb` describe-block convention (add to an existing stress file, do NOT create new files unless you must).
-5. Run targeted vitest after each fix to confirm no regression: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run <changed-test-file>` 
-6. Once all your assigned findings are closed: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <your-packet-path> --strict` — must exit 0.
+5. Run targeted vitest after each fix to confirm no regression: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run <changed-test-file>` 
+6. Once all your assigned findings are closed: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <your-packet-path> --strict` — must exit 0.
 7. Update implementation-summary.md with a "Findings closed" table containing one row per finding (ID, file, line range, fix description, evidence reference).
 8. From repo root, commit with message format `fix(026/049/NNN): <category> remediation (M findings)` listing each finding ID in the body. Push to origin main immediately.
 9. Return a JSON summary: { "sub_phase": "NNN-<name>", "findings_closed": [...], "deferred": [{"id": "...", "reason": "..."}], "files_modified": [...], "commit_hash": "...", "stress_baseline": "<before>", "stress_after": "<after>" }.
@@ -62,7 +62,7 @@ When done, the orchestrator will run npm run stress to confirm no regression and
 - **Wave 2 (parallel, no overlap with Wave 1):** 001, 003, 005, 007 — four sub-phases. Sub-phases 001/005 share `mcp_server/skill_advisor/lib/daemon/watcher.ts` — sequence them within the wave or use a single agent for both
 - **Wave 3 (sequential after Waves 1-2):** 006 — architecture cleanup, biggest blast radius. Touches scorer files (003 territory) — must run after Wave 2
 
-Between waves: master orchestrator runs `cd .opencode/skill/system-spec-kit/mcp_server && npm run stress` to confirm no regression before dispatching the next wave.
+Between waves: master orchestrator runs `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress` to confirm no regression before dispatching the next wave.
 
 ## Final assembly
 
@@ -70,8 +70,8 @@ After Wave 3 completes:
 1. Update parent `049/spec.md` Phase Documentation Map status column to "Complete" for each sub-phase.
 2. Author parent-level summary (this can be a brief addendum to the parent spec.md or a new file in parent root — but lean-trio policy means heavy docs live in the children).
 3. Confirm `npm run stress` exit 0 / 56+ files / 163+ tests.
-4. Confirm `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <049-path> --strict` exits 0 across all 11 packets (parent + 10 children).
-5. Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` against the parent to refresh `description.json` and `graph-metadata.json`.
+4. Confirm `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <049-path> --strict` exits 0 across all 11 packets (parent + 10 children).
+5. Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` against the parent to refresh `description.json` and `graph-metadata.json`.
 6. Final push to origin main.
 
 ## Known concerns
@@ -84,7 +84,7 @@ After Wave 3 completes:
 ## Key file paths
 
 - Source of truth for findings: `046-system-deep-research-bugs-and-improvements/research/research.md`
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Stress script: `cd .opencode/skill/system-spec-kit/mcp_server && npm run stress`
-- Memory save: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<inline-json>' <spec-folder>`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Stress script: `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress`
+- Memory save: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<inline-json>' <spec-folder>`
 - Worked-pilot example: `049-.../010-cli-orchestrator-drift/` (full Level 2 doc set, six surgical edits, traceability markers)

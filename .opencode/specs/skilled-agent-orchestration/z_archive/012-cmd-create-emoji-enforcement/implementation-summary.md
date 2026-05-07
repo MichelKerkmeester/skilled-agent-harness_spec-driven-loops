@@ -43,8 +43,8 @@ contextType: "implementation"
 ### Targets Analyzed and Updated
 
 **Primary Targets:**
-1. `.opencode/command/create/` - Command documentation files
-2. `.opencode/command/create/assets/` - YAML template files
+1. `.opencode/commands/create/` - Command documentation files
+2. `.opencode/commands/create/assets/` - YAML template files
 
 **Files Changed:**
 
@@ -83,8 +83,8 @@ contextType: "implementation"
 ### Implementation Approach
 
 **Phase 1 - Analysis:**
-- Identified 3 main documentation files in `.opencode/command/create/`
-- Located 10 YAML template files in `.opencode/command/create/assets/`
+- Identified 3 main documentation files in `.opencode/commands/create/`
+- Located 10 YAML template files in `.opencode/commands/create/assets/`
 - Documented enforcement locations and language patterns
 
 **Phase 2 - Implementation:**
@@ -121,20 +121,20 @@ contextType: "implementation"
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/create/folder_readme.md` | Modified | Updated emoji guidance to "optional" |
-| .opencode/command/create/skill.md | Modified | Updated emoji guidance to "optional" |
-| .opencode/command/create/skill_asset.md | Modified | Updated emoji guidance to "optional" |
-| `.opencode/command/create/assets/create_folder_readme_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_folder_readme_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_install_guide_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_install_guide_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_skill_asset_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_skill_asset_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_skill_reference_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_skill_reference_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_agent_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_agent_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
-| `.opencode/command/create/assets/create_skill_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/folder_readme.md` | Modified | Updated emoji guidance to "optional" |
+| .opencode/commands/create/skill.md | Modified | Updated emoji guidance to "optional" |
+| .opencode/commands/create/skill_asset.md | Modified | Updated emoji guidance to "optional" |
+| `.opencode/commands/create/assets/create_folder_readme_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_folder_readme_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_install_guide_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_install_guide_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_skill_asset_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_skill_asset_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_skill_reference_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_skill_reference_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_agent_auto.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
+| `.opencode/commands/create/assets/create_skill_confirm.yaml` | Modified | Removed emoji requirement from user/assistant instructions |
 
 **Total:** 13 files modified (0 created, 0 deleted)
 

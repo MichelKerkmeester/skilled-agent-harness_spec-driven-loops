@@ -72,7 +72,7 @@ The agent definitions' core behavioral instructions, LEAF constraints, and memor
 **Effort**: Low (search-and-replace)
 
 ### Workstream B: Skill Path Correction (P1, F-003)
-**Scope**: Replace `sk-code` with `sk-code-review` in all orchestrate and review agents. Update `.opencode/skill/sk-code/` path references.
+**Scope**: Replace `sk-code` with `sk-code-review` in all orchestrate and review agents. Update `.opencode/skills/sk-code/` path references.
 **Files**: 10 agent files (5 orchestrate + 5 review)
 **Effort**: Low-Medium (need to verify overlay detection logic still works)
 
@@ -110,7 +110,7 @@ The agent definitions' core behavioral instructions, LEAF constraints, and memor
 3. **T-003**: Replace sk-code with sk-code-review in orchestrate and review agents
 4. **T-004**: Add all 6 memory commands to orchestrate command tables
 5. **T-005**: Add /memory:shared to speckit and other command surface listings
-6. **T-006**: Qualify template/script paths in speckit agents (prefix with `.opencode/skill/system-spec-kit/`)
+6. **T-006**: Qualify template/script paths in speckit agents (prefix with `.opencode/skills/system-spec-kit/`)
 7. **T-007**: Tighten memory/ exception in speckit to explicitly require generate-context.js
 8. **T-008**: Add @deep-review to orchestrate dispatch table (or document as command-only)
 9. **T-009**: Fix /memory:learn label in codex speckit.toml
@@ -165,7 +165,7 @@ The agent definitions' core behavioral instructions, LEAF constraints, and memor
 
 ### Sources
 - `tool-schemas.ts` — 33 MCP tool definitions
-- `.opencode/command/memory/` — 6 memory command definitions
-- `.opencode/skill/system-spec-kit/` — templates, scripts, validation
+- `.opencode/commands/memory/` — 6 memory command definitions
+- `.opencode/skills/system-spec-kit/` — templates, scripts, validation
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/` — sub-spec implementation summaries
 - 50 agent files across 5 runtimes

@@ -47,7 +47,7 @@ The code-graph is the SQLite-backed index of every symbol (functions, classes, v
 
 ## How to read these
 
-Each phase changelog follows the canonical nested-changelog template at `.opencode/skill/system-spec-kit/templates/changelog/phase.md`. The phase parent (012) follows the root template at `changelog/root.md`. Sections are:
+Each phase changelog follows the canonical nested-changelog template at `.opencode/skills/system-spec-kit/templates/changelog/phase.md`. The phase parent (012) follows the root template at `changelog/root.md`. Sections are:
 
 - **Summary**: what changed and why it matters, in plain language
 - **Added**: new capabilities or surfaces
@@ -59,7 +59,7 @@ Each phase changelog follows the canonical nested-changelog template at `.openco
 
 Research-only and review-only phases mark Added/Changed/Fixed as "None" and fill Verification with artifact paths.
 
-Voice rules per `.opencode/skill/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon includes a parenthetical definition on first use.
+Voice rules per `.opencode/skills/sk-doc/references/global/hvr_rules.md` apply throughout. Technical jargon includes a parenthetical definition on first use.
 
 ## Where to find the full story
 

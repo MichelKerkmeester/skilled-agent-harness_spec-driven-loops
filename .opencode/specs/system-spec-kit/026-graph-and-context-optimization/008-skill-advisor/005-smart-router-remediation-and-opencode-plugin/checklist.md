@@ -55,7 +55,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ## Code Quality
 
 - [x] CHK-010 [P0] Static smart-router checker exits 0 for missing route paths. [EVIDENCE: `check-smart-router.sh` exit 0; `--json` returned empty `errors`.]
-- [x] CHK-011 [P0] TypeScript compile check is clean. [EVIDENCE: `cd .opencode/skill/system-spec-kit && npm run typecheck` exit 0.]
+- [x] CHK-011 [P0] TypeScript compile check is clean. [EVIDENCE: `cd .opencode/skills/system-spec-kit && npm run typecheck` exit 0.]
 - [x] CHK-012 [P1] Plugin and bridge fail open without exposing prompts or secrets. [EVIDENCE: plugin tests cover env/config opt-out, bridge timeout, bridge error, and prompt-safe status fields.]
 - [x] CHK-013 [P1] Code follows existing OpenCode plugin and system-spec-kit script patterns. [EVIDENCE: plugin mirrors compact-code-graph default-export plus bridge shape; checker and telemetry live under existing `scripts/` areas.]
 <!-- /ANCHOR:code-quality -->
@@ -98,7 +98,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ## File Organization
 
 - [x] CHK-050 [P1] Temporary files are limited to `scratch/` or system temp locations. [EVIDENCE: packet notes are under `scratch/`; tests use OS temp directories.]
-- [x] CHK-051 [P1] Telemetry JSONL directory is ignored by git. [EVIDENCE: `.gitignore` includes `.opencode/skill/.smart-router-telemetry/`.]
+- [x] CHK-051 [P1] Telemetry JSONL directory is ignored by git. [EVIDENCE: `.gitignore` includes `.opencode/skills/.smart-router-telemetry/`.]
 <!-- /ANCHOR:file-org -->
 
 ---

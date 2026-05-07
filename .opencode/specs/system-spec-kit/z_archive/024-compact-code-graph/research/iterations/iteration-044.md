@@ -15,7 +15,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
    - `code_graph_context`: LLM-oriented orchestration that turns a task or question into a compact graph neighborhood
    - `code_graph_status`: freshness, coverage, errors, and active-job visibility
 
-   This fits the existing server taxonomy well: start-here orchestration at L1, focused query at L2/L3, and maintenance at L7. It also matches MCP's tool model, where each tool should expose a clear `inputSchema`, and structured results are best returned through `structuredContent` plus a text fallback. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-213`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: https://modelcontextprotocol.io/specification/2025-06-18/server/tools]
+   This fits the existing server taxonomy well: start-here orchestration at L1, focused query at L2/L3, and maintenance at L7. It also matches MCP's tool model, where each tool should expose a clear `inputSchema`, and structured results are best returned through `structuredContent` plus a text fallback. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-213`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: https://modelcontextprotocol.io/specification/2025-06-18/server/tools]
 
 2. Query patterns should follow the proven LSP vocabulary, because those are already the structural questions coding assistants and IDEs need most.
 
@@ -49,7 +49,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
 
 3. We should keep "direct code graph query" separate from "search channel integration" in the MVP.
 
-   The current server's `graph` and `degree` lanes are causal-memory signals, not code-structure signals. That is visible in the live docs and code: the server advertises channels `vector`, `fts5`, `bm25`, `graph`, and `degree`, and `graph-search-fn.ts` is built around `causal_edges` and typed memory-degree scoring. Overloading the existing `graph` name to also mean call graphs, import graphs, and class hierarchies would create ambiguity in telemetry, ablation, explainability, and user expectations. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:204-275`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:23-71`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-58`]
+   The current server's `graph` and `degree` lanes are causal-memory signals, not code-structure signals. That is visible in the live docs and code: the server advertises channels `vector`, `fts5`, `bm25`, `graph`, and `degree`, and `graph-search-fn.ts` is built around `causal_edges` and typed memory-degree scoring. Overloading the existing `graph` name to also mean call graphs, import graphs, and class hierarchies would create ambiguity in telemetry, ablation, explainability, and user expectations. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-257`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:204-275`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:23-71`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-58`]
 
    Recommendation:
 
@@ -57,7 +57,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
    - Future: add a sixth retrieval lane named `code_graph`, not `graph`, after we have a normalized result model for code artifacts
    - Future ablations should add `code_graph` beside the current `vector`, `bm25`, `fts5`, `graph`, and `trigger` set, not replace `graph`
 
-   This also aligns with earlier packet research that said the clean-room approach should live inside the existing MCP architecture while remaining distinct from the current memory graph. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-010.md:12-18`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-010.md:26-53`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/memory/29-03-26_10-28__deep-research-evaluating-codex-cli-compact-dual.md:114-120`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/memory/29-03-26_10-28__deep-research-evaluating-codex-cli-compact-dual.md:180-202`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:345-353`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:245-281`]
+   This also aligns with earlier packet research that said the clean-room approach should live inside the existing MCP architecture while remaining distinct from the current memory graph. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-010.md:12-18`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-010.md:26-53`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/memory/29-03-26_10-28__deep-research-evaluating-codex-cli-compact-dual.md:114-120`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/memory/29-03-26_10-28__deep-research-evaluating-codex-cli-compact-dual.md:180-202`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:345-353`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:245-281`]
 
 4. The ideal output format is compact, typed, and graph-shaped, not a raw AST dump.
 
@@ -83,7 +83,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
        "id": "sym:ts:/mcp_server/handlers/memory-context.ts#handleMemoryContext",
        "kind": "function",
        "name": "handleMemoryContext",
-       "filePath": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts",
+       "filePath": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
        "range": { "startLine": 976, "startColumn": 1, "endLine": 1372, "endColumn": 2 }
      },
      "nodes": [
@@ -122,7 +122,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
    - freshness metadata on every response
    - optional `warnings` instead of silently hiding partial results
 
-   The output should also support profile-style compaction similar to the existing memory response profiles: `quick`, `research`, and `debug` are enough for the graph tools. The current memory formatters already prove that profile-specific reduction is useful for LLM consumption and token control. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:66-112`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:432-498`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:463-469`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:433-478`]
+   The output should also support profile-style compaction similar to the existing memory response profiles: `quick`, `research`, and `debug` are enough for the graph tools. The current memory formatters already prove that profile-specific reduction is useful for LLM consumption and token control. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:66-112`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:432-498`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:463-469`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:433-478`]
 
 5. `code_graph_context` should combine graph context with memory context late, not by collapsing the two stores.
 
@@ -132,7 +132,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
    - keep code graph as structural code topology
    - combine them in an orchestration layer that knows the task intent
 
-   This is consistent with the current server shape. `memory_context` is already the start-here tool for intent-aware retrieval, while the search subsystem remains multi-channel and profile-aware. The code graph should become a sibling structural provider that can be fused with memory when the task is code-centric. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-187`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:1515-1547`]
+   This is consistent with the current server shape. `memory_context` is already the start-here tool for intent-aware retrieval, while the search subsystem remains multi-channel and profile-aware. The code graph should become a sibling structural provider that can be fused with memory when the task is code-centric. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-187`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:1515-1547`]
 
    Recommended orchestration behavior:
 
@@ -261,7 +261,7 @@ Design the public MCP API surface for adding code graph capabilities to the exis
    }
    ```
 
-   The key schema choice is that `code_graph_query` should be explicit and deterministic, while `code_graph_context` can accept natural language and perform orchestration. This mirrors `memory_search` versus `memory_context`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-213`] [SOURCE: https://modelcontextprotocol.io/specification/2025-06-18/server/tools]
+   The key schema choice is that `code_graph_query` should be explicit and deterministic, while `code_graph_context` can accept natural language and perform orchestration. This mirrors `memory_search` versus `memory_context`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-213`] [SOURCE: https://modelcontextprotocol.io/specification/2025-06-18/server/tools]
 
 7. Indexing should be hybrid: background-first for coverage, on-demand for freshness repair.
 
@@ -367,19 +367,19 @@ Design the public MCP API surface for adding code graph capabilities to the exis
 ## Evidence
 
 - Existing server tool layering and "start with memory_context" contract:
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/README.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - Current retrieval channels are memory-centric and already use `graph` / `degree` terminology:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts`
 - Existing response-shaping patterns for LLM-friendly envelopes:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts`
 - Prior packet direction:
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-010.md`
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-041.md`

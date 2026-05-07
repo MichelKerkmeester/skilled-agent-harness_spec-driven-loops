@@ -93,7 +93,7 @@ Produce a complete rewrite that serves as the top-level entry point to the OpenC
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | All 18 skills are listed (legacy `RR-001`) | Every skill in `.opencode/skill/` appears with name and brief description |
+| REQ-001 | All 18 skills are listed (legacy `RR-001`) | Every skill in `.opencode/skills/` appears with name and brief description |
 | REQ-002 | All 12 agents are documented (legacy `RR-002`) | Every agent definition appears with name, role, and capabilities summary |
 | REQ-003 | All 42 MCP tools are counted (legacy `RR-003`) | 33 memory + 7 code mode + 1 CocoIndex + 1 sequential thinking |
 

@@ -53,7 +53,7 @@ These 14 snippets were outside executed March 8 verification ranges and therefor
 - **Evidence:** Broad-glob SOURCE FILES entries and verifier alias path were replaced with canonical repo-resolved references; backticked markdown-path resolution check now returns 0 unresolved references.
 
 #### AD-002: `16--tooling-and-scripts/13-constitutional-memory-manager-command.md` — PATH-REMOVE/PATH-CORRECT (P1)
-- **Issue:** Lists `command/memory/context.md`, which is not present at `.opencode/command/memory/context.md`.
+- **Issue:** Lists `command/memory/context.md`, which is not present at `.opencode/commands/memory/context.md`.
 - **Fix:** Remove or replace with the valid command documentation path(s).
 - **Status:** Completed post-addendum.
 - **Evidence:** Invalid `command/memory/context.md` entry removed, command/agent doc references normalized to `.opencode/...` paths including CURRENT REALITY text, and backticked markdown-path resolution check now returns 0 unresolved references.

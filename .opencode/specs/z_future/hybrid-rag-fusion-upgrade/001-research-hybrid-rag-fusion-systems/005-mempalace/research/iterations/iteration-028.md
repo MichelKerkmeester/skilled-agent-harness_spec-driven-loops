@@ -1,5 +1,5 @@
 ### Finding 4: The right hybrid strategy is routed fusion, not equal-weight “run everything” retrieval
-- **Source**: [query-router.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts:1094](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1094), [hybrid-search.ts:1221](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1221), [hybrid-search.ts:2100](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L2100)
+- **Source**: [query-router.ts:62](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts#L62), [hybrid-search.ts:1094](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1094), [hybrid-search.ts:1221](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L1221), [hybrid-search.ts:2100](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts#L2100)
 - **What it does**: Public already routes by query complexity, keeps at least two channels alive, preserves BM25 for artifact-heavy simple queries, downweights FTS after ablation because lexical flooding hurt top-K, and widens only when degradation signals fire.
 - **Why it matters**: this is the strongest practical lesson from the comparison. Semantic and lexical are both valuable, but their value is query-dependent. Unconditional symmetric fusion is noisier than routed fusion.
 - **Recommendation**: `adopt now`
@@ -22,7 +22,7 @@
 --- Iteration 27 ---
 ## Findings
 ### Finding 1: Hook-driven preservation can create blocking saves without proof that good data was actually preserved
-- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
+- **Source**: [mempal_save_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_save_hook.sh#L129); [mempal_precompact_hook.sh](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/mempal_precompact_hook.sh#L64); [mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py#L326); [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L85); [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
 - **What it does**: MemPalace blocks every 15 user turns and always blocks before compaction, then tells the AI to save; optional auto-ingest is backgrounded in the stop hook and synchronous only if `MEMPAL_DIR` is configured. The write path itself is weakly protected: `mempalace_add_drawer` uses deterministic IDs, but it does not actually call the semantic duplicate checker before writing.
 - **Why it matters for us**: If we copy this pattern into Public, the biggest failure mode is a false sense of safety: the runtime is interrupted, but preservation quality still depends on the model following instructions correctly. That can yield duplicated memories, noisy categorization, partial saves, or blocked UX with no durable improvement. Public’s current compaction transport and JSON-primary `generate-context.js` path are much more deterministic.
 - **Recommendation**: prototype later
@@ -55,14 +55,14 @@ For EACH finding:
 - **Impact**: high
 
 ### Finding 3: `status` is not just health output, it is an embedded operator playbook
-- **Source**: [external/mempalace/mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L759)
+- **Source**: [external/mempalace/mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L759)
 - **What it does**: Source-confirmed. `mempalace_status` returns counts plus `PALACE_PROTOCOL` and `AAAK_SPEC`, so the first health call also teaches the agent when to search, verify, diary-write, and invalidate facts.
 - **Why it matters**: This is a strong DX pattern. Public already injects startup instructions and session-recovery guidance, but MemPalace is more direct about memory-specific behavior. The thing to steal is the compact “how to use memory correctly” contract, not the palace framing or AAAK baggage.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: Local debugging is better than average because there are concrete artifacts to inspect
-- **Source**: [external/mempalace/mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [external/hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [external/mempalace/cli.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/cli.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L1485)
+- **Source**: [external/mempalace/mcp_server.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/mcp_server.py), [external/hooks/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/hooks/README.md), [external/mempalace/cli.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/mempalace/cli.py), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L1485)
 - **What it does**: Source-confirmed. MemPalace logs MCP diagnostics to `stderr`, keeps a JSONL write-ahead log under `~/.mempalace/wal`, writes hook activity to `~/.mempalace/hook_state/hook.log`, and exposes explicit repair/migrate commands.
 - **Why it matters**: This is worth copying. Public already does strong `stderr` startup reporting, but MemPalace’s WAL-plus-hook-log pattern is a very usable local forensic surface for “what wrote this memory and when?” and “why did a save trigger?”
 - **Recommendation**: adopt now
@@ -131,10 +131,10 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
 9. Trace structural navigation next in `external/mempalace/palace_graph.py` and `external/mempalace/knowledge_graph.py`. Keep these separate in your notes: palace graph traversal is metadata-derived from ChromaDB rooms/halls/wings, while the knowledge graph is a separate SQLite temporal triple store with invalidation.
 10. Trace ingestion behavior next. Read `external/mempalace/miner.py`, `external/mempalace/convo_miner.py`, `external/mempalace/general_extractor.py`, and `external/mempalace/onboarding.py`. Focus on chunking strategy, room detection, no-summary posture, heuristic extraction, onboarding assumptions, and whether the system truly keeps everything or selectively restructures it during ingest.
 11. Read hook and benchmark artifacts after the implementation core: `external/hooks/README.md`, `external/hooks/mempal_save_hook.sh`, `external/hooks/mempal_precompact_hook.sh`, and `external/benchmarks/BENCHMARKS.md`. Treat these as crucial to the product story, but distinguish carefully between executable behavior, experimental behavior, and benchmark claims that require caution.
-12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
+12. Compare MemPalace directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, and `.opencode/plugins/spec-kit-compact-code-graph.js`. Be explicit about what Public already covers better and what MemPalace still contributes.
 13. Before the main research pass, validate the phase folder with this exact command:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace" --strict
     ```
 14. After validation passes, run `spec_kit:deep-research` with this exact topic:
     ```text
@@ -142,7 +142,7 @@ What it does **not** currently have is a raw-verbatim-by-default memory posture 
     ```
 15. Save all outputs inside `research/`, with `research/research.md` as the canonical report. Every meaningful finding must cite exact file paths, say whether the evidence is `source-confirmed`, `README-documented`, `benchmark-documented`, or mixed, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, identify the affected subsystem, and note migration or truthfulness risk. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace"
     ```
 
 ## 6. Research Questions
@@ -374,7 +374,7 @@ exec
 ## Task 3: Absorb Claudest continuation into master v2 execution-ready lane, outcome success
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/AGENTS.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -474,7 +474,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -1410,2399 +1410,2399 @@ def check_regression(current_report: str, baseline_report: str, threshold: float
     return regressions
 
 exec
-/bin/zsh -lc 'rg -n "eval_run_ablation|eval_reporting_dashboard|memory_validate|feedback_events|session_health|memory_health|memory_stats|queryId|search_shown|result_cited|Recall@|recall|precision|latency|p95|quality score|confidence" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/scripts/dist/memory .opencode/plugins/spec-kit-compact-code-graph.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "eval_run_ablation|eval_reporting_dashboard|memory_validate|feedback_events|session_health|memory_health|memory_stats|queryId|search_shown|result_cited|Recall@|recall|precision|latency|p95|quality score|confidence" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts/dist/memory .opencode/plugins/spec-kit-compact-code-graph.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:180:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:246:  latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:377:// Stores the last resolved session ID so non-search tools (e.g. memory_stats)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:499:): Omit<DispatchGraphContextMeta, 'latencyMs'> {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:632:          latencyMs: Date.now() - startedAt,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:640:          latencyMs: Date.now() - startedAt,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:654:        latencyMs: Date.now() - startedAt,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:939:      console.warn(`[context-server] Auto-surface precheck exceeded p95 target: ${autoSurfaceLatencyMs}ms`);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:156:| `SPECKIT_QUERY_SURROGATES` | `true` | boolean | Index-time surrogate metadata for recall improvement (REQ-D2-005). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:243:| `SPECKIT_IMPLICIT_FEEDBACK_LOG` | `true` | boolean | Implicit feedback event ledger for `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`. Shadow-only, no ranking side effects (REQ-D4-001). Graduated ON. | `lib/feedback/feedback-ledger.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:304:| `SPECKIT_EXTENDED_TELEMETRY` | `false` | boolean | Detailed retrieval metrics collection (latency breakdown, quality scores). Opt-in: set `true` to enable. | `lib/telemetry/retrieval-telemetry.ts` |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:41:/** Arguments for the memory_stats handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:92:  latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:252:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:256:  const logFinalTriggerEval = (memoryIds: number[], latencyMs: number): void => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:261:          queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:265:          latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:489:  const latencyMs = Date.now() - startTime;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:490:  if (latencyMs > 100) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:523:      latencyMs: latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:541:        latency_ms: latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:13:// Feature catalog: System statistics (memory_stats)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:35:const handle_memory_stats = handleMemoryStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:44:  handle_memory_stats,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:321:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:250:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:249:      latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:266:export const handle_memory_stats = lazyFunction(getMemoryCrudModule, 'handle_memory_stats');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:98:    latencyMs: Date.now() - startTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:652:    description: 'Fast trigger matching for real-time context (low latency)',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1215:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1531:        latency_ms: Date.now() - _contextStartTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1555:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1559:        latencyMs: Date.now() - _contextStartTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1567:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1572:        latencyMs: Date.now() - _contextStartTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:4:// T018: MCP tool handler for session_health — reports session
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:65:/** Handle session_health tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:102:  const structuralContext = buildStructuralBootstrapContract('session_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:133:  // Phase 023: Compute quality score from context metrics
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:160:      producer: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:161:      sourceSurface: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:170:    sourceSurface: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:86:  queryId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:105:  queryId?: string,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:107:  if (typeof queryId !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:111:  const normalizedQueryId = queryId.trim();
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:655:    queryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:677:  const normalizedQueryId = typeof queryId === 'string' && queryId.trim().length > 0
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:678:    ? queryId.trim()
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:690:        queryId: normalizedQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:736:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1209:        latency_ms: Date.now() - _searchStartTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1231:        queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1235:        latencyMs: Date.now() - _searchStartTime,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1241:          queryId: _evalQueryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1251:  // REQ-D4-001: Implicit feedback — log search_shown events for returned results
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1268:          const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1270:            type: 'search_shown',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1272:            queryId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1284:  // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1310:        const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:368: * Compute composite quality score for a memory file.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:570: * Computes quality score, attempts auto-fix if below threshold,
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:574: * retries keep ingestion latency predictable within a single request cycle.
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:104:        description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls. When implicit feedback logging is enabled, includeContent searches also emit shadow-only result_cited events for returned memories.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:120:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:179:        description: 'Search mode. "auto" uses standard retrieval. "deep" enables multi-query expansion for broader recall.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:231:  name: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:306:      queryId: { type: 'string', description: 'Optional query identifier to attach implicit feedback/ground-truth selection context' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:509:  name: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:510:  description: '[L6:Analysis] Run a controlled channel ablation study (R13-S3) and optionally persist Recall@20 deltas to eval_metric_snapshots. Requires SPECKIT_ABLATION=true. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:535:      recallK: { type: 'number', minimum: 1, maximum: 100, description: 'Recall cutoff K (default: 20).' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:544:  name: 'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:733:  name: 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:48:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:49:// Feature catalog: Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:56:  recallK?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223:/** Handle eval_run_ablation tool — runs ablation analysis or K-sensitivity sweep.
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:224: * @param args - Ablation arguments (channels, queries, recallK, mode)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:231:      limit: args.recallK,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:246:  const recallK = typeof args.recallK === 'number' && Number.isFinite(args.recallK)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:247:    ? Math.max(1, Math.floor(args.recallK))
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:254:        context: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:271:        limit: recallK,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:294:      recallK,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:297:      alignmentContext: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:314:    tool: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:333:  'context recall',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:377:    tool: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:402:    tool: 'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:418:const handle_eval_run_ablation = handleEvalRunAblation;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:419:const handle_eval_reporting_dashboard = handleEvalReportingDashboard;
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:423:  handle_eval_run_ablation,
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:424:  handle_eval_reporting_dashboard,
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:431:- `memory_stats` (system statistics)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:436:- `session_health` (session readiness check)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:577:### memory_stats: System Statistics
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:579:`memory_stats()` returns counts, dates and top-ranked folders for the memory system. Use it to confirm indexing is working and to inspect database health.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:611:- `latency`: End-to-end retrieval time (ms)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:726:**Behind the scenes:** Intent is classified as `understand`. Adaptive fusion applies a semantic-heavy weight profile, improving recall for conceptual queries over exact keyword matches.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1048:           memory_save, memory_index_scan, memory_stats
-.opencode/skill/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
-.opencode/skill/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
-.opencode/skill/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
-.opencode/skill/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
-.opencode/skill/system-spec-kit/mcp_server/README.md:322:Think of it like how your own brain works: things you reviewed recently are easy to recall, while things you have not thought about in months fade into the background.
-.opencode/skill/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
-.opencode/skill/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
-.opencode/skill/system-spec-kit/mcp_server/README.md:521:**Ablation study framework** -- turns off each search channel one at a time and measures quality degradation (Recall@20 delta). Identifies which components are critical.
-.opencode/skill/system-spec-kit/mcp_server/README.md:612:Complete session bootstrap in one call. This is the canonical first-call recovery step on session start or after `/clear`. It wraps the full `session_resume` payload plus `session_health` and returns context, health, structural readiness and recommended next actions. Startup/bootstrap surfaces are freshness-aware but non-mutating; use `code_graph_scan` when readiness shows an empty or broad full-scan state.
-.opencode/skill/system-spec-kit/mcp_server/README.md:749:##### `memory_stats`
-.opencode/skill/system-spec-kit/mcp_server/README.md:757:| `includeScores` | boolean | Include composite quality scores |
-.opencode/skill/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
-.opencode/skill/system-spec-kit/mcp_server/README.md:777:##### `session_health`
-.opencode/skill/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
-.opencode/skill/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
-.opencode/skill/system-spec-kit/mcp_server/README.md:824:| `queryId` | string | Query that retrieved this memory |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1030:##### `eval_run_ablation`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1038:| `recallK` | number | K value for Recall@K metric |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1042:The MCP handler scores chunk-backed hits against `parentMemoryId ?? row.id`, so eval rows stay attached to canonical parent memories. Before comparing runs after a DB rebuild or import, preview or refresh the live ground-truth mapping with `scripts/evals/map-ground-truth-ids.ts`; if token-budget overflow collapses a run below `recallK`, treat that run as investigation-only rather than a clean benchmark.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1046:##### `eval_reporting_dashboard`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1361:**What happens**: File is validated, embedded and indexed. Returns memory ID, quality score and duplicate check results.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1541:| See what is indexed | `memory_list` + `memory_stats` | Browse and count |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1558:**Common causes**: Stale BM25 index, divergent aliases in FTS5 or memories with low quality scores surfacing.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1607:**What you see**: `memory_stats` shows fewer memories than expected.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1699:A typical project with a few hundred memory files uses 10-50 MB. The vector table (1024-dimension float32 embeddings) is the largest contributor. Check with `memory_stats` using `includeScores: true`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1729:Set the flag to `false` or `0` in your environment, restart the server and the pipeline falls back to the last working configuration. The full procedure is in `../references/workflows/rollback_runbook.md`. Use `eval_reporting_dashboard` to verify metrics returned to baseline.
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:221:  queryId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:350:  recallK: positiveIntMax(100).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:403:  memory_stats: memoryStatsSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:419:  eval_run_ablation: evalRunAblationSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:420:  eval_reporting_dashboard: evalReportingDashboardSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:454:  session_health: getSchema({}) as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:468:  memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:484:  eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:485:  eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:496:  session_health: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:23:// Feature catalog: System statistics (memory_stats)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30:/** Handle memory_stats tool -- returns memory system statistics and folder rankings. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:40:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:51:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:70:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:80:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:89:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:98:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:107:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:116:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:159:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:283:      tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:302:    tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:15:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:114:      const latency = typeof autoSurfacedContext?.latencyMs === 'number'
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:115:        ? autoSurfacedContext.latencyMs
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:118:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
-.opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts:126:      latencyMs: typeof autoSurfacedContext?.latencyMs === 'number' ? autoSurfacedContext.latencyMs : 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1727:        latencyMs: 0, triggerCacheCleared: false,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:61:  latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:110:// T018: Session-level tracking for prime package and session_health
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:390:    const latencyMs = Date.now() - startTime;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:410:      latencyMs: latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:514:    const latencyMs = Date.now() - startTime;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:535:        latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:547:      latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:680:  // T018: Session tracking for session_health tool
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:12:  // T018: Session tracking for session_health tool
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:9:    latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:49:      latencyMs: hookResult.latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:65:- auto-surface output includes `constitutional`, `triggered`, `surfaced_at`, and `latencyMs`.
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:67:- `MutationHookResult` includes `latencyMs`, `triggerCacheCleared`, `constitutionalCacheCleared`, `graphSignalsCacheCleared`, `coactivationCacheCleared`, `toolCacheInvalidated`, and `errors`.
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:68:- public `postMutationHooks` data includes `operation`, `latencyMs`, `triggerCacheCleared`, `constitutionalCacheCleared`, `graphSignalsCacheCleared`, `coactivationCacheCleared`, and `toolCacheInvalidated`.
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:36:The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:366:**Hybrid Search**: Combines semantic and keyword search for better recall
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:429:  grade              // Performance grade (1-4): 1=forgot, 4=easy recall
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:139:  queryId?: string;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:331:  recallK?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:5:// Collects events during MCP tool dispatch and computes quality scores.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:206:/** Compute overall quality score and level. */
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:215:  // F065: Weight rationale for quality score factors:
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:298:    `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:67:  'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:102:    case 'memory_stats':          return handleMemoryStats(parseArgs<StatsArgs>(validateToolArgs('memory_stats', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1623:      queryId: `hybrid-${Date.now()}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1751:  // Primary 30 filters noise; fallback 17 widens recall for sparse corpora
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2209:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2339: * @param options - Optional includeContent flag and queryId for overflow logging.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2345:  options?: { includeContent?: boolean; queryId?: string }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2349:  const queryId = options?.queryId ?? `q-${Date.now()}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2382:      queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2418:      queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2435:    queryId,
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:54:  'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:55:  'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:60:  'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:75:    case 'eval_run_ablation':          return handleEvalRunAblation(parseArgs<EvalRunAblationArgs>(validateToolArgs('eval_run_ablation', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:76:    case 'eval_reporting_dashboard':   return handleEvalReportingDashboard(parseArgs<EvalReportingDashboardArgs>(validateToolArgs('eval_reporting_dashboard', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:81:    case 'session_health':             return handleSessionHealth();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:8://   2. Session continuity warning if quality score is degraded/critical
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:11://   - 250ms latency budget (aborts if exceeded)
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:27:  latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:161:    return { hints: [], tokenCount: 0, latencyMs: 0, skipped: true, skipReason: 'recursion_guard' };
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:192:    const latencyMs = Date.now() - startTime;
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:195:    if (latencyMs > deadlineMs) {
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:196:      console.warn(`[passive-enrichment] Exceeded deadline: ${latencyMs}ms > ${deadlineMs}ms`);
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:199:    return { hints, tokenCount: tokensUsed, latencyMs, skipped: false };
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:206:      latencyMs: Date.now() - startTime,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:73:      FROM negative_feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:42:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:250: * @param queryId - Unique identifier for the search query
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:258:  queryId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:322:    ).run(memoryId, 'add', JSON.stringify(terms), queryId, now, shadowMode ? 1 : 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:333:    const applied = applyLearnedTriggers(memoryId, terms, db, queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:16:// Gate logs quality scores and would-reject decisions but does
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:564: * Compute a lightweight quality score for backfilled rows.
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:594: * Layer 2: Compute content quality score across all dimensions.
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
-.opencode/skill/system-spec-kit/mcp_server/lib/search/local-reranker.ts:288:        // PERF(CHK-113): Sequential per-candidate inference. For 20 candidates, latency depends on
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:25:    queryId: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:28:      { queryId: 1, memoryId: 101, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:29:      { queryId: 1, memoryId: 102, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:30:      { queryId: 1, memoryId: 103, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:34:    queryId: 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:37:      { queryId: 2, memoryId: 201, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:38:      { queryId: 2, memoryId: 202, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:42:    queryId: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:45:      { queryId: 3, memoryId: 301, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:46:      { queryId: 3, memoryId: 302, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:50:    queryId: 4,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:53:      { queryId: 4, memoryId: 401, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:54:      { queryId: 4, memoryId: 402, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:55:      { queryId: 4, memoryId: 403, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:59:    queryId: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:62:      { queryId: 5, memoryId: 501, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:63:      { queryId: 5, memoryId: 502, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:101:    { id: 501, content: 'Ablation study compares channel contribution and recall changes across runs. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:107:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:113:    queryId: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:125:    queryId: 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:137:    queryId: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:149:    queryId: 4,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:161:    queryId: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:176:    queryId: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:188:    queryId: 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:200:    queryId: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:212:    queryId: 4,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:224:    queryId: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:287:    const corpusEntry = EVAL_CORPUS.find(entry => entry.queryId === fixture.queryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:291:    expect(payload.documents).toEqual(QUERY_DOCUMENTS[fixture.queryId].map(doc => doc.content));
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:327:      QUERY_DOCUMENTS[corpusEntry.queryId],
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:394:      metrics: ['MRR@5', 'NDCG@5', 'latency_p50'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1358:      queryId: 'p1-token-skip',
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1389:      queryId: 'p1-token-fallback',
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1415:      queryId: 't311-cache',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:113:      "confidence": 45,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:38:  CREATE TABLE IF NOT EXISTS negative_feedback_events (
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:47:  CREATE INDEX IF NOT EXISTS idx_negative_feedback_events_memory
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:48:  ON negative_feedback_events(memory_id, created_at_ms DESC)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:133:    'INSERT INTO negative_feedback_events (memory_id, created_at_ms) VALUES (?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:164:     FROM negative_feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:92: * Filter results by a minimum quality score threshold.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:99: * @param threshold - Minimum quality score in [0, 1] (inclusive).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:356: * expansion and the additional search channels add latency without recall gain.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:508:  // the query for the hybrid search channel, improving recall for alias-rich
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:717:          // F1: Wrap parallel variant searches with latency budget.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:789:      // The query as "simple", suppressing expansion with zero added latency.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:871:      // Phase B T016: Uses effectiveQuery (concept-expanded) for BM25 recall.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:45:  return { queryId: 1, memoryId, relevance };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:262:      latencyMs: expect.any(Number),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:270:    expect(typeof parsed.data.postMutationHooks.latencyMs).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:294:      latencyMs: expect.any(Number),
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:299:    // Accept strict equality or floating point precision
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:609:          queryId: `consumption:${queryLogId}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:624:          queryId: `consumption:${queryLogId}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:49:      FROM negative_feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:92: * save 30-50 ms of latency.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:332:    /** B1: Per-stage and total timing in milliseconds for latency observability. */
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:160:    it('handles very small score ranges with stable precision', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:163: *      retrieval; broadening them degrades precision without recall gain.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:194:  // Query as "simple", R12 expansion is suppressed to avoid latency overhead
-.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:195:  // On short, high-precision queries.
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:8:// T1-T5   : extractValidationMetadata — quality score signals
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:39:describe('extractValidationMetadata — quality score signals', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:78:  it('T5: maps all known importance tiers to expected quality scores', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:98:    it('retrieves all selections when no queryId filter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:107:    it('filters selections by queryId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:114:      expect(history.every(s => s.queryId === 'q1')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:149:      expect(sel.queryId).toBe('q1');
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:170:        { queryId: 'q1', memoryId: 42, queryText: 'test query', memoryContent: 'test content' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:171:        { queryId: 'q2', memoryId: 43, queryText: 'another query', memoryContent: 'another content' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:177:      expect(labels[0].queryId).toBe('q1');
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:227:        { queryId: 'q1', memoryId: 42, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:228:        { queryId: 'q2', memoryId: 43, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:229:        { queryId: 'q3', memoryId: 44, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:247:        { queryId: 'q1', memoryId: 42, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:248:        { queryId: 'q2', memoryId: 43, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:269:        { queryId: 'q1', memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:270:        { queryId: 'q2', memoryId: 2, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:271:        { queryId: 'q3', memoryId: 3, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:272:        { queryId: 'q4', memoryId: 4, relevance: 0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:273:        { queryId: 'q5', memoryId: 5, relevance: 0 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:292:        { queryId: 'q1', memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:293:        { queryId: 'q2', memoryId: 2, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:294:        { queryId: 'q3', memoryId: 3, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:295:        { queryId: 'q4', memoryId: 4, relevance: 0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:296:        { queryId: 'q5', memoryId: 5, relevance: 0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:312:        { queryId: 'q1', memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:313:        { queryId: 'q2', memoryId: 2, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:314:        { queryId: 'q3', memoryId: 3, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:330:        { queryId: 'q1', memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:331:        { queryId: 'q50', memoryId: 50, relevance: 2 }, // no LLM match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:346:        { queryId: 'q2', memoryId: 2, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:362:        { queryId: 'q1', memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:363:        { queryId: 'q2', memoryId: 2, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:785:Monitor query latency and adjust the candidate pool size.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:9:// Timing is recorded for latency observability.
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:140:  it('accepts eval_run_ablation mode and custom queries', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:142:      validateToolArgs('eval_run_ablation', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:145:        recallK: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:150:  it('rejects unknown eval_run_ablation modes', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:152:      validateToolArgs('eval_run_ablation', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:531: * The queryIdPrefix is the only difference between the two call sites.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:535: * @param queryIdPrefix  Short label identifying the scoring model ('5f' | 'cs')
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:541:  queryIdPrefix: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:564:        queryId: `${queryIdPrefix}-${Date.now()}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:5:// (before entering the scoring pipeline), reducing latency for
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:48:    const content = `## Problem & Purpose\n\nThis module improves retrieval precision.`;
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:49:    expect(extractDescription(content)).toBe('This module improves retrieval precision');
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:557:      queryId: 'consumption:1001',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:561:      queryId: 'consumption:1001',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:154:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 11, evalRunId: 22 });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:164:      queryId: 11,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:235:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 31, evalRunId: 32 });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:289:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 41, evalRunId: 42 });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:168:      'Check network latency to embedding provider',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:324:      'Use memory_stats() to see available spec folders',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:328:    toolTip: 'memory_stats()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:377:      'Check memory_stats() to see what content is indexed'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:380:    toolTip: 'memory_stats()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:24: * Importance tier → quality score mapping.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:71:  /** Normalised quality score in [0, 1] derived from quality_score or importance_tier. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:80: * Derive a normalised quality score from importance_tier, clamped to [0, 1].
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:162: *   2. `importance_tier` → tier quality score mapping.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:236:  // -- 4. Importance tier signal (even without quality score fallback above) --
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:76:        'handle_memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:14:// T10 No latency degradation for simple queries (< 5 ms)
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:143:      'how does the embedding based query expansion pipeline handle recall precision tradeoffs';
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:147:      makeMockMemory(1, 'recall precision tradeoff semantic retrieval pipeline'),
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:149:      makeMockMemory(3, 'hybrid retrieval fusion recall semantic candidates'),
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:226:    const complexQuery = 'how does embedding expansion affect recall and precision tradeoffs here';
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:291:  // -- T10: No latency degradation for simple queries -----------------------
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:277:      expect(hardNegIds.has(r.queryId)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:379:      expect(validIds.has(r.queryId)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:684:      expect(hardNegIds.has(r.queryId)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:8:// Generates surrogate metadata at index time to improve recall without
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:92: *   - Slash-separated synonyms: "recall/precision" → ["recall", "precision"]
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:11:  { tool: 'memory_stats', handler: 'handleMemoryStats', layer: 'L3' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:26:  { tool: 'eval_run_ablation', handler: 'handleEvalRunAblation', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:27:  { tool: 'eval_reporting_dashboard', handler: 'handleEvalReportingDashboard', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:37:  { camel: 'handleMemoryStats', snake: 'handle_memory_stats' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:53:  { camel: 'handleEvalRunAblation', snake: 'handle_eval_run_ablation' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:54:  { camel: 'handleEvalReportingDashboard', snake: 'handle_eval_reporting_dashboard' },
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:47:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:59:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:79:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:221: * @param queryId - Identifier for the query (can be eval_queries.id or a hash).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:227:  queryId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:241:      queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:264: * @param queryId - Optional filter by query ID. Omit for all selections.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:269:  queryId?: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:276:    const whereClause = queryId ? 'WHERE query_id = ?' : '';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:277:    const params = queryId ? [queryId, limit] : [limit];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:302:      queryId: row.query_id,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:342:  querySelectionPairs: Array<{ queryId: string; memoryId: number; queryText: string; memoryContent: string }>,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:353:          queryId: pair.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:379:        queryId: pair.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:413:          label.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:437: * Matches labels by (queryId, memoryId) pairs and computes:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:454:  // Build manual label lookup: "queryId:memoryId" → relevance
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:457:    const key = `${m.queryId}:${m.memoryId}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:468:    const key = `${llm.queryId}:${llm.memoryId}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:34:  return { queryId: 1, memoryId, relevance, tier, createdAt };
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:127:   CORE: Recall@20
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:130:describe('Recall@20', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:285:  it('T006-D13: Weighted recall ≠ unweighted recall when tiers differ', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:295:  it('T006-D14: All relevant found → weighted recall = 1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:301:  it('T006-D15: No relevant items → weighted recall = 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:315:  it('T006-D17: Duplicate memoryIds in results do not inflate weighted recall', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:449:      'recall',
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:450:      'precision',
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:508:  it('T006-F02: All items have relevance 0 — recall and MRR = 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:555:  it('T005-02: computeF1 matches harmonic mean of deduped precision and recall', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:559:    const precision = computePrecision(results, gt, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:560:    const recall = computeRecall(results, gt, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:561:    const expectedF1 = (2 * precision * recall) / (precision + recall);
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:12://   - Cap at MAX_FACETS (3) to bound latency
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:102:      'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:103:      'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:10:// Acceptance criterion: ablation run shows per-channel Recall@20 delta
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:83:function buildMockMetrics(recallDelta: number): AblationMetrics {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:88:    'MRR@5': entry(0.65, recallDelta * 0.8),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:89:    'precision@5': entry(0.5, recallDelta * 0.7),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:90:    'recall@5': entry(0.6, recallDelta),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:91:    'NDCG@5': entry(0.7, recallDelta * 0.9),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:92:    'MAP': entry(0.55, recallDelta * 0.6),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:93:    'hit_rate': entry(0.9, recallDelta * 0.3),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:94:    'latency_p50': entry(12, 0.5),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:95:    'latency_p95': entry(25, 1.2),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:403:  // 5. runAblation() — computes correct baseline and ablated recalls
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:414:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:419:        .filter(r => r.queryId === queryWithGT!.id && r.relevance > 0)
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:455:    it('computes baseline and ablated recalls with mock search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:466:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:473:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:489:        recallK: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:507:      // Each ablated channel should show reduced recall (delta < 0)
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:523:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:529:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:562:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:568:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:607:        queryId: queryWithGT!.id,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:623:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:629:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:656:        recallK: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:674:        expect(failure.queryId).toBe(queryWithGT!.id);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:720:      expect(md).toContain(`**Baseline Recall@20:** 0.8000`);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:738:      // Find the recall-delta table data rows (first table only — between first header and first blank line after it)
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:840:            queryId: 42,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:847:      expect(md).toContain('`graph` (queryId=42): Graph timeout');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:927:    // 1 baseline + 3 channels * (1 recall_delta + 8 metric deltas) = 28 total
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:931:    const baselineRow = rows.find(r => r.metric_name === 'ablation_baseline_recall@20');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:937:    const deltaRows = rows.filter(r => r.metric_name === 'ablation_recall@20_delta');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:983:        { channel: 'vector', error: 'vector outage', queryId: 1, query: 'q1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:984:        { channel: 'bm25', error: 'bm25 outage', queryId: 1, query: 'q1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:994:       WHERE metric_name = 'ablation_baseline_recall@20'
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1021:       WHERE metric_name = 'ablation_baseline_recall@20'
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1054:    // ACCEPTANCE CRITERION: ablation run shows per-channel Recall@20 delta
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1067:      GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1089:        r => r.queryId === matchedQuery.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1115:      recallK: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1147:    expect(md).toContain('Recall@20');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1150:  it('ablation report shows distinct per-channel Recall@20 deltas', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1156:      GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1162:      r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1206:    'MRR@5', 'precision@5', 'recall@5', 'NDCG@5', 'MAP',
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1207:    'hit_rate', 'latency_p50', 'latency_p95', 'token_usage',
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1225:  it('latency_p50 and latency_p95 are non-negative', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1228:      expect(result.metrics!['latency_p50'].baseline).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1229:      expect(result.metrics!['latency_p95'].baseline).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1230:      expect(result.metrics!['latency_p50'].ablated).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1231:      expect(result.metrics!['latency_p95'].ablated).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1275:    it('stores 9 additional metric rows per channel plus baseline + recall delta', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1286:      // 1 baseline + 3 channels * (1 recall_delta + 8 persisted metric deltas) = 1 + 27 = 28
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1291:        r => r.channel === 'vector' && r.metric_name.startsWith('ablation_') && r.metric_name !== 'ablation_recall@20_delta' && r.metric_name !== 'ablation_baseline_recall@20',
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1298:      expect(metricNames).toContain('ablation_precision@5_delta');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1299:      expect(metricNames).toContain('ablation_recall@5_delta');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1303:      expect(metricNames).toContain('ablation_latency_p50_delta');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1304:      expect(metricNames).toContain('ablation_latency_p95_delta');
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1319:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1324:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1367:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:9:      latencyMs: 9,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:20:      latencyMs: 9,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:36:      latencyMs: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:50:      latencyMs: 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:88:      latencyMs: 6,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:98:      latencyMs: 6,
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:123:    const contract = buildStructuralBootstrapContract('session_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:126:    expect(contract.sourceSurface).toBe('session_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:39:    const trace = createTrace('query', 'sess-123', 'recall');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:42:    expect(trace.intent).toBe('recall');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:830:      "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec about the indexing latency after save operations.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1101:      "notes": "Manual query targeting a specific quantitative formula documented in the system — tests factual precision retrieval."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1106:      "queryId": 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1111:      "queryId": 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1116:      "queryId": 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1121:      "queryId": 2,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1126:      "queryId": 2,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1131:      "queryId": 2,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1136:      "queryId": 3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1141:      "queryId": 3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1146:      "queryId": 3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1151:      "queryId": 4,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1156:      "queryId": 4,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1161:      "queryId": 4,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1166:      "queryId": 5,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1171:      "queryId": 5,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1176:      "queryId": 5,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1181:      "queryId": 6,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1186:      "queryId": 6,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1191:      "queryId": 6,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1196:      "queryId": 7,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1201:      "queryId": 7,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1206:      "queryId": 7,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1211:      "queryId": 8,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1216:      "queryId": 8,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1221:      "queryId": 8,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1226:      "queryId": 9,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1231:      "queryId": 9,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1236:      "queryId": 9,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1241:      "queryId": 10,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1246:      "queryId": 10,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1251:      "queryId": 10,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1256:      "queryId": 11,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1261:      "queryId": 11,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1266:      "queryId": 11,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1271:      "queryId": 12,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1276:      "queryId": 12,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1281:      "queryId": 12,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1286:      "queryId": 13,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1291:      "queryId": 13,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1296:      "queryId": 13,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1301:      "queryId": 14,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1306:      "queryId": 14,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1311:      "queryId": 14,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1316:      "queryId": 15,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1321:      "queryId": 15,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1326:      "queryId": 15,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1331:      "queryId": 16,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1336:      "queryId": 16,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1341:      "queryId": 16,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1346:      "queryId": 22,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1351:      "queryId": 22,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1356:      "queryId": 22,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1361:      "queryId": 23,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1366:      "queryId": 23,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1371:      "queryId": 23,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1376:      "queryId": 24,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1381:      "queryId": 24,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1386:      "queryId": 24,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1391:      "queryId": 25,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1396:      "queryId": 25,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1401:      "queryId": 25,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1406:      "queryId": 26,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1411:      "queryId": 26,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1416:      "queryId": 26,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1421:      "queryId": 27,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1426:      "queryId": 27,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1431:      "queryId": 27,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1436:      "queryId": 28,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1441:      "queryId": 28,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1446:      "queryId": 28,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1451:      "queryId": 29,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1456:      "queryId": 29,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1461:      "queryId": 29,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1466:      "queryId": 30,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1471:      "queryId": 30,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1476:      "queryId": 30,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1481:      "queryId": 31,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1486:      "queryId": 31,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1491:      "queryId": 31,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1496:      "queryId": 32,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1501:      "queryId": 32,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1506:      "queryId": 32,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1511:      "queryId": 33,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1516:      "queryId": 33,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1521:      "queryId": 33,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1526:      "queryId": 34,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1531:      "queryId": 34,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1536:      "queryId": 34,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1541:      "queryId": 35,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1546:      "queryId": 35,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1551:      "queryId": 35,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1556:      "queryId": 36,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1561:      "queryId": 36,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1566:      "queryId": 36,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1571:      "queryId": 37,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1576:      "queryId": 37,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1581:      "queryId": 37,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1586:      "queryId": 38,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1591:      "queryId": 38,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1596:      "queryId": 38,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1601:      "queryId": 39,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1606:      "queryId": 39,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1611:      "queryId": 39,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1616:      "queryId": 40,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1621:      "queryId": 40,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1626:      "queryId": 40,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1631:      "queryId": 41,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1636:      "queryId": 41,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1641:      "queryId": 41,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1646:      "queryId": 42,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1651:      "queryId": 42,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1656:      "queryId": 42,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1661:      "queryId": 43,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1666:      "queryId": 43,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1671:      "queryId": 43,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1676:      "queryId": 44,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1681:      "queryId": 44,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1686:      "queryId": 44,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1691:      "queryId": 45,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1696:      "queryId": 45,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1701:      "queryId": 45,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1706:      "queryId": 46,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1711:      "queryId": 46,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1716:      "queryId": 46,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1721:      "queryId": 47,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1726:      "queryId": 47,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1731:      "queryId": 47,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1736:      "queryId": 48,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1741:      "queryId": 48,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1746:      "queryId": 48,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1751:      "queryId": 49,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1756:      "queryId": 49,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1761:      "queryId": 49,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1766:      "queryId": 50,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1771:      "queryId": 50,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1776:      "queryId": 50,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1781:      "queryId": 51,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1786:      "queryId": 51,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1791:      "queryId": 51,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1796:      "queryId": 52,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1801:      "queryId": 52,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1806:      "queryId": 53,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1811:      "queryId": 53,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1816:      "queryId": 53,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1821:      "queryId": 54,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1826:      "queryId": 54,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1831:      "queryId": 54,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1836:      "queryId": 55,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1841:      "queryId": 55,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1846:      "queryId": 55,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1851:      "queryId": 56,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1856:      "queryId": 56,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1861:      "queryId": 56,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1866:      "queryId": 57,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1871:      "queryId": 57,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1876:      "queryId": 57,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1881:      "queryId": 58,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1886:      "queryId": 58,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1891:      "queryId": 58,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1896:      "queryId": 59,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1901:      "queryId": 59,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1906:      "queryId": 60,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1911:      "queryId": 60,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1916:      "queryId": 60,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1921:      "queryId": 61,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1926:      "queryId": 61,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1931:      "queryId": 61,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1936:      "queryId": 62,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1941:      "queryId": 62,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1946:      "queryId": 62,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1951:      "queryId": 63,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1956:      "queryId": 63,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1961:      "queryId": 64,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1966:      "queryId": 64,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1971:      "queryId": 64,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1976:      "queryId": 65,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1981:      "queryId": 65,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1986:      "queryId": 65,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1991:      "queryId": 66,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1996:      "queryId": 66,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2001:      "queryId": 66,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2006:      "queryId": 67,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2011:      "queryId": 67,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2016:      "queryId": 67,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2021:      "queryId": 68,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2026:      "queryId": 68,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2031:      "queryId": 68,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2036:      "queryId": 69,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2041:      "queryId": 69,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2046:      "queryId": 69,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2051:      "queryId": 70,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2056:      "queryId": 70,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2061:      "queryId": 70,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2066:      "queryId": 71,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2071:      "queryId": 71,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2076:      "queryId": 71,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2081:      "queryId": 72,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2086:      "queryId": 72,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2091:      "queryId": 72,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2096:      "queryId": 73,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2101:      "queryId": 73,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2106:      "queryId": 73,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2111:      "queryId": 74,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2116:      "queryId": 74,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2121:      "queryId": 74,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2126:      "queryId": 75,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2131:      "queryId": 75,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2136:      "queryId": 75,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2141:      "queryId": 76,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2146:      "queryId": 76,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2151:      "queryId": 76,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2156:      "queryId": 77,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2161:      "queryId": 77,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2166:      "queryId": 77,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2171:      "queryId": 78,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2176:      "queryId": 78,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2181:      "queryId": 79,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2186:      "queryId": 79,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2191:      "queryId": 79,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2196:      "queryId": 80,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2201:      "queryId": 80,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2206:      "queryId": 80,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2211:      "queryId": 81,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2216:      "queryId": 81,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2221:      "queryId": 81,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2226:      "queryId": 82,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2231:      "queryId": 82,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2236:      "queryId": 82,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2241:      "queryId": 83,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2246:      "queryId": 83,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2251:      "queryId": 83,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2256:      "queryId": 84,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2261:      "queryId": 84,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2266:      "queryId": 84,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2271:      "queryId": 85,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2276:      "queryId": 86,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2281:      "queryId": 86,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2286:      "queryId": 86,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2291:      "queryId": 87,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2296:      "queryId": 87,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2301:      "queryId": 87,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2306:      "queryId": 88,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2311:      "queryId": 88,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2316:      "queryId": 88,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2321:      "queryId": 89,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2326:      "queryId": 89,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2331:      "queryId": 89,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2336:      "queryId": 90,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2341:      "queryId": 90,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2346:      "queryId": 90,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2351:      "queryId": 91,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2356:      "queryId": 91,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2361:      "queryId": 91,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2366:      "queryId": 92,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2371:      "queryId": 92,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2376:      "queryId": 93,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2381:      "queryId": 93,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2386:      "queryId": 93,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2391:      "queryId": 94,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2396:      "queryId": 94,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2401:      "queryId": 94,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2406:      "queryId": 95,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2411:      "queryId": 95,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2416:      "queryId": 95,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2421:      "queryId": 96,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2426:      "queryId": 96,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2431:      "queryId": 96,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2436:      "queryId": 97,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2441:      "queryId": 97,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2446:      "queryId": 97,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2451:      "queryId": 98,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2456:      "queryId": 98,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2461:      "queryId": 98,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2466:      "queryId": 99,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2471:      "queryId": 99,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2476:      "queryId": 99,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2481:      "queryId": 100,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2486:      "queryId": 100,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2491:      "queryId": 100,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2496:      "queryId": 101,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2501:      "queryId": 101,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2506:      "queryId": 101,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2511:      "queryId": 102,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2516:      "queryId": 102,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2521:      "queryId": 102,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2526:      "queryId": 109,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2531:      "queryId": 109,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2536:      "queryId": 109,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2541:      "queryId": 110,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2546:      "queryId": 110,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2551:      "queryId": 110,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:23:          : 'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:492:  describe('7. rerankResults (latency tracking)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:493:    it('tracks latency after successful provider call', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:498:      await crossEncoder.rerankResults('latency-test', docs, { useCache: false });
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:501:      expect(status.latency.count).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:502:      expect(status.latency.avg).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-roadmap-finalization.vitest.ts:210:      const results = searchFn('graph latency probe', { limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/lib/chunking/README.md:81:| `scoreChunk` | chunk-thinning.ts | Function | Computes composite quality score for a single chunk |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:55:  /** Recall at configured K (default 20). Named recall20 for backwards compatibility. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:56:  recall20: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:109:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:416: * Inserts one row per metric (mrr@5, ndcg@10, recall@20, hit_rate@1) plus
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:446:    insertSnapshot.run(evalRunId, 'recall@20',    result.metrics.recall20,  channel, queryCount, null, createdAt);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:504:  const recallK = k ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:506:  const fetchLimit = Math.max(mrrK, ndcgK, recallK, 20);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:559:    recall20: totalRecall / safeCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:590:function buildQueryGroundTruth(queryId: number): GroundTruthEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:591:  const q = GROUND_TRUTH_QUERIES.find(g => g.id === queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:598:    .filter(r => r.queryId === queryId)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:600:      queryId: r.queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:88:      queryId: 'ctx-order-preservation',
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:128:      queryId: 'ctx-budget-overhead',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:99:Post-channel: constitutional memory injection, quality score filtering, tier/contextType filtering.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:231:**Trade-off**: Adds 200-500ms latency but improves precision by 15-25%.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:561:// Track P95 latency (last 100 searches)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:53:  expect(typeof result.latencyMs).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:54:  expect(result.latencyMs).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:21:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:147:  latency_ms: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:178:  // (e.g. inversion_rate, inversion-rate, latency_ms).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:180:  const lowerIsBetterPrefixes = ['inversion', 'latency'];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:243:               AVG(latency_ms) AS latency_ms,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:413:    const latencyTotals = rows.reduce(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:415:        if (row.latency_ms == null) return acc;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:417:          weightedLatency: acc.weightedLatency + (row.latency_ms * row.query_count),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:418:          latencySamples: acc.latencySamples + row.query_count,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:421:      { weightedLatency: 0, latencySamples: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:423:    const avgLatency = latencyTotals.latencySamples > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:424:      ? Math.round((latencyTotals.weightedLatency / latencyTotals.latencySamples) * 100) / 100
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:76: * Filter results by minimum quality score.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:3:// Validates latency ceiling, token budget, feature flag regression.
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:39:    latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:156:  const latencyMs = performance.now() - start;
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:162:      latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:189:  it('T1: end-to-end latency is under 120ms', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:192:    expect(response.metrics.latencyMs).toBeLessThan(120);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:240:    expect(response.metrics.latencyMs).toBeLessThan(120);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:260:    expect(fixBug.metrics.latencyMs).toBeLessThan(120);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:261:    expect(understand.metrics.latencyMs).toBeLessThan(120);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:269:    expect(response.metrics.latencyMs).toBeLessThan(120);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:279:    expect(response.metrics).toHaveProperty('latencyMs');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:126:      expect(result).toEqual({ queryId: 0, evalRunId: 0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:133:      logChannelResult({ evalRunId: 1, queryId: 1, channel: 'vector' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:143:      logFinalResult({ evalRunId: 1, queryId: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:165:      expect(result.queryId).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:170:      const row = db.prepare('SELECT id FROM eval_queries WHERE id = ?').get(result.queryId) as { id: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:172:      expect(row!.id).toBe(result.queryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:177:      const { queryId } = logSearchQuery({ query: 'unique-query-text-T005-9', intent: null });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:179:      const row = db.prepare('SELECT * FROM eval_queries WHERE id = ?').get(queryId) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:187:    it('T005-9b: logSearchQuery uses queryId as evalRunId for cross-process-safe correlation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:189:      const { queryId, evalRunId } = logSearchQuery({ query: 'run-id-from-query-id' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:192:      expect(evalRunId).toBe(queryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:197:      const { queryId, evalRunId } = logSearchQuery({ query: 'channel-log-test-T005-10' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:200:        queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:204:        latencyMs: 42,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:213:      ).get(evalRunId, queryId, 'bm25') as { id: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:219:      const { queryId, evalRunId } = logSearchQuery({ query: 'ids-serialisation-test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:222:        queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:230:      ).get(evalRunId, queryId) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:240:      const { queryId, evalRunId } = logSearchQuery({ query: 'final-result-test-T005-12' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:243:        queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:247:        latencyMs: 123,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:255:      ).get(evalRunId, queryId) as { id: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:261:      const { queryId, evalRunId } = logSearchQuery({ query: 'fusion-method-test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:262:      logFinalResult({ evalRunId, queryId, fusionMethod: 'rrf' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:266:      ).get(evalRunId, queryId) as { fusion_method: string };
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:294:      const { queryId, evalRunId } = logSearchQuery({ query: 'run-id-consistency' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:296:      logChannelResult({ evalRunId, queryId, channel: 'vector' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:297:      logFinalResult({ evalRunId, queryId, fusionMethod: 'rrf' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:302:      ).get(queryId, 'vector') as { eval_run_id: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:306:      ).get(queryId) as { eval_run_id: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:328:        expect(typeof r.queryId).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:339:        logChannelResult({ evalRunId: 0, queryId: 0, channel: 'vector' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:347:        logFinalResult({ evalRunId: 0, queryId: 0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:354:      const { queryId, evalRunId } = logSearchQuery({ query: 'optional-fields-test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:356:        logChannelResult({ evalRunId, queryId, channel: 'graph' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:369:   * Measure p95 latency for N iterations of a function.
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:370:   * Returns the p95 in milliseconds.
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:381:    const p95idx = Math.floor(times.length * 0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:382:    return times[p95idx];
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:385:  it('T004b-1: eval logging overhead (p95) is less than 10ms absolute', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:386:    // This is a loose guard: each individual log call should complete in < 10ms on p95.
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:401:      const { queryId, evalRunId } = logSearchQuery({ query: 'bench query', intent: 'understand' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:402:      logChannelResult({ evalRunId, queryId, channel: 'vector', resultMemoryIds: [1, 2, 3], scores: [0.9, 0.8, 0.7] });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:403:      logFinalResult({ evalRunId, queryId, resultMemoryIds: [1, 2, 3], scores: [0.9, 0.8, 0.7] });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:407:    // Assert absolute overhead < 10ms on p95
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:420:    const p95 = measureP95(() => {
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:422:      logChannelResult({ evalRunId: 1, queryId: 1, channel: 'vector' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:423:      logFinalResult({ evalRunId: 1, queryId: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:428:    // No-op path should be sub-millisecond on p95
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:429:    expect(p95).toBeLessThan(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:433:    // Simulate a representative "search baseline" time: 50ms (well within real search latency).
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:447:      const { queryId, evalRunId } = logSearchQuery({ query: 'overhead test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:448:      logChannelResult({ evalRunId, queryId, channel: 'hybrid', resultMemoryIds: [1, 2], scores: [0.9, 0.8] });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:449:      logFinalResult({ evalRunId, queryId, resultMemoryIds: [1, 2], scores: [0.9, 0.8] });
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:60:    latency_ms REAL,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:73:    latency_ms REAL,
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:63:    latency_ms REAL,
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:88:  latency_ms?: number | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:113:      (eval_run_id, query_id, channel, hit_count, latency_ms)
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:122:      r.latency_ms ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:347:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 12.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:348:        { eval_run_id: 1, query_id: 2, channel: 'vector', hit_count: 3, latency_ms: 15.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:349:        { eval_run_id: 1, query_id: 1, channel: 'bm25', hit_count: 4, latency_ms: 8.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:350:        { eval_run_id: 1, query_id: 2, channel: 'bm25', hit_count: 2, latency_ms: 6.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:354:    it('aggregates channel hits, latency, and query counts', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:374:    it('weights grouped channel latency by query volume across runs', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:386:        { eval_run_id: 2, query_id: 1, channel: 'vector', hit_count: 4, latency_ms: 100.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:455:        // Iteration 1: precision@5 = 0.50
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:458:          metric_name: 'precision@5',
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:463:        // Iteration 2: precision@5 = 0.50 (unchanged)
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:466:          metric_name: 'precision@5',
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:479:      expect(trendNames).toEqual(['mrr@5', 'ndcg@5', 'precision@5']);
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:508:      const precTrend = report.trends.find(t => t.metric === 'precision@5');
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:608:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 10.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:878:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 10.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:879:        { eval_run_id: 1, query_id: 1, channel: 'bm25', hit_count: 3, latency_ms: 5.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:880:        { eval_run_id: 1, query_id: 1, channel: 'fts', hit_count: 2, latency_ms: 3.0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:155: * Maximum number of concept aliases to resolve per query (bounding latency).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts:165: * latency and external dependencies.
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:143:        { queryId: 1, memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:144:        { queryId: 1, memoryId: 2, relevance: 2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:145:        { queryId: 1, memoryId: 3, relevance: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:165:        { queryId: 1, memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:166:        { queryId: 1, memoryId: 2, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:167:        { queryId: 1, memoryId: 3, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:189:        { queryId: 1, memoryId: 1, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:190:        { queryId: 1, memoryId: 2, relevance: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:204:      expect(computeNDCG([], [{ queryId: 1, memoryId: 1, relevance: 3 }], 10)).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:15:// T6:  all channels represented → top-3 unchanged (precision preserved)
-.opencode/skill/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:226:  // ---- T6: All channels represented → top-3 unchanged (precision preserved) ----
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:62:    type: 'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:64:    queryId: 'q-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:190:  it('initBatchLearning also initializes feedback_events', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:194:      "SELECT name FROM sqlite_master WHERE type='table' AND name='feedback_events'"
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:31:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:52:  recall: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:58:  precision: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:241: * Compute F1@K — harmonic mean of Precision@K and Recall@K.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:403: * Recall@K but each relevant item is weighted by its tier:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:606:    recall: computeRecall(results, groundTruth),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:607:    precision: computePrecision(results, groundTruth),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:78:    'negative_feedback_events',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:120:  'negative_feedback_events',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:317:  'weight_history', 'adaptive_signal_events', 'negative_feedback_events',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:125:        'network latency', 'packet routing', 'socket buffering',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:42: * 1500/2500/4000 tiers balance context window cost vs. recall —
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:10:// + countSaturation * 0.20 + latencyPenalty * 0.15
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:17:/** Default latency target in milliseconds. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:25:  latencyPenalty: 0.15,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:58:  /** Actual search latency in milliseconds. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:59:  latencyMs: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:62:   * Target latency in milliseconds.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:65:  latencyTargetMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:76:  /** latencyScore × 0.15 */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:77:  latencyPenalty: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:82:  /** Composite quality score in [0, 1]. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:115: * Compute the latency penalty component.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:116: * Returns max(0, 1 − latencyMs / latencyTargetMs).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:117: *   - 1.0 at latencyMs = 0 (perfect — full credit)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:118: *   - 0.0 at latencyMs ≥ latencyTargetMs (at or over target)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:119: * When latencyTargetMs ≤ 0 it is treated as DEFAULT_LATENCY_TARGET_MS.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:122:  latencyMs: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:123:  latencyTargetMs: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:126:    latencyTargetMs > 0 ? latencyTargetMs : DEFAULT_LATENCY_TARGET_MS;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:127:  return Math.max(0, 1 - latencyMs / safeTarget);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:158: *   latencyPenalty  — max(0, 1 − latencyMs / latencyTargetMs)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:174:    latencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:175:    latencyTargetMs = DEFAULT_LATENCY_TARGET_MS,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:184:  const rawLatencyScore = computeLatencyScore(latencyMs, latencyTargetMs);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:191:    latencyPenalty: rawLatencyScore * WEIGHTS.latencyPenalty,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:199:    components.latencyPenalty;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:23:        memory_stats: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:5:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:19:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:22:const mockLogSearchQuery = vi.fn<() => EvalSearchQueryResult>(() => ({ queryId: 77, evalRunId: 88 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:46:| `eval-metrics.ts` | MRR, NDCG, recall, precision, F1, MAP, hit-rate, inversion-rate, and constitutional metrics |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:47:| `eval-quality-proxy.ts` | Pure quality proxy formula for latency/result quality tradeoff scoring |
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:94:    'retrieval.avg_channel_latency_ms': safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:96:      'SELECT COALESCE(AVG(latency_ms), 0) AS value FROM eval_channel_results',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:102:    'retrieval.avg_final_latency_ms': safeScalarMetric(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:104:      'SELECT COALESCE(AVG(latency_ms), 0) AS value FROM eval_final_results',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:104:  latency: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:106:    p95: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:138:const latencyTracker: { durations: number[] } = { durations: [] };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:458:    // Track latency
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:460:    latencyTracker.durations.push(duration);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:461:    if (latencyTracker.durations.length > MAX_LATENCY_SAMPLES) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:462:      latencyTracker.durations.shift();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:501:  const durations = latencyTracker.durations;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:504:  let p95 = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:509:    // L3 FIX: Correct p95 percentile index with bounds clamping
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:510:    p95 = sorted[Math.min(Math.ceil(sorted.length * 0.95) - 1, sorted.length - 1)] || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:517:    latency: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:519:      p95: Math.round(p95),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:527:  latencyTracker.durations = [];
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:165:      'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:185:      'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:186:      'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:199:      'session_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:293:      'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:299:      'eval_run_ablation', 'eval_reporting_dashboard',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:320:    it('T16d: only session_health is excluded from tool-call tracking', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:321:      expect(sourceCode).toMatch(/if \(name !== 'session_health'\) \{/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:998:        { id: 'call-3', params: { name: 'memory_stats', arguments: {} } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1064:          { id: 'call-follow-2', params: { name: 'memory_stats', arguments: {} } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1201:        latencyMs: 7,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1231:        latencyMs: 7,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1249:        latencyMs: 11,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1334:        latencyMs: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2089:      'memory_stats': '[L3:Discovery]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2090:      'memory_health': '[L3:Discovery]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2104:      'eval_run_ablation': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2105:      'eval_reporting_dashboard': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:51:          { id: 'q-1', type: 'question_node', label: 'What causes latency?', iteration: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:10:const mockLogSearchQuery = vi.fn((_payload: unknown) => ({ queryId: 11, evalRunId: 22 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:181:  const budgetMs = remainingMs ?? 400; // 400ms default latency budget
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:143:      "Actual values may vary slightly between runs due to model precision",
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:175:        r.queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:122:        memory_stats: 'L3',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:123:        memory_health: 'L3',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:183:      { includeContent: true, queryId: 'test-q1' }
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:198:    expect(overflow!.queryId).toBe('test-q1');
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:229:    const { overflow } = truncateToBudget(results, 100, { queryId: 'eval-test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:233:    expect(log.queryId).toBe('eval-test');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:352: * D2 REQ-D2-005: Index-time surrogates for recall improvement.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4:// Feature catalog: Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:70:  recallK?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:126:  /** Number of queries where removing this channel decreased recall (channel was helpful). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:128:  /** Number of queries where removing this channel increased recall (channel was harmful). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:148:  'precision@5': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:149:  'recall@5': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:153:  'latency_p50': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:154:  'latency_p95': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:165:  queryId?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:182:  /** Baseline Recall@K across all queries (all channels enabled). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:220: * in the active DB. Chunk-backed or missing IDs make Recall@K comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:368:function getGroundTruthForQuery(queryId: number): GroundTruthEntry[] {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:370:    .filter(r => r.queryId === queryId)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:372:      queryId: r.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:445: * Compute mean Recall@K across a set of per-query recall values.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:447:function meanRecall(recalls: number[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:448:  if (recalls.length === 0) return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:449:  const sum = recalls.reduce((a, b) => a + b, 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:450:  return sum / recalls.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:459:): { mrr: number; precision: number; recall: number; ndcg: number; map: number; hitRate: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:462:    precision: computePrecision(results, gt, 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:463:    recall: computeRecall(results, gt, 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:487:  baselinePerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }>,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:488:  ablatedPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }>,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:503:  const bLatencies = bMetrics.map(m => m.latencyMs).sort((a, b) => a - b);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:504:  const aLatencies = aMetrics.map(m => m.latencyMs).sort((a, b) => a - b);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:516:    'precision@5': entry(bMetrics.map(m => m.metrics.precision), aMetrics.map(m => m.metrics.precision)),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:517:    'recall@5': entry(bMetrics.map(m => m.metrics.recall), aMetrics.map(m => m.metrics.recall)),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:521:    'latency_p50': {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:526:    'latency_p95': {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:543: * 3. Compute per-query Recall@K delta
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:562:  const recallK = config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:590:    const baselineMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }> = new Map();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:601:      const latencyMs = performance.now() - t0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:603:      const recall = computeRecall(results, gt, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:604:      baselineRecalls.set(q.id, recall);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:605:      baselineMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:617:      const ablatedMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }> = new Map();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:628:          const latencyMs = performance.now() - t0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:630:          const recall = computeRecall(results, gt, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:631:          ablatedRecalls.set(q.id, recall);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:632:          ablatedMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:641:        for (const [queryId, baselineR] of baselineRecalls) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:642:          const ablatedR = ablatedRecalls.get(queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:683:              queryId: failedQuery.id,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:690:        const querySuffix = failedQuery ? ` (queryId=${failedQuery.id})` : '';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:727: * - metric_name: 'ablation_recall@20_delta'
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:732: * Also stores the baseline recall as a separate row.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:755:    const recallK = report.config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:763:      // Store baseline recall
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:766:        `ablation_baseline_recall@${recallK}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:787:          `ablation_recall@${recallK}_delta`,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:863:  const recallK = report.config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:864:  lines.push(`- **Baseline Recall@${recallK}:** ${report.overallBaselineRecall.toFixed(4)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:908:  lines.push(`Ch. Helped = queries where channel was helpful (removing it decreased recall). * = significant at p<0.05.`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:915:      const queryInfo = failure.queryId !== undefined ? ` (queryId=${failure.queryId})` : '';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:926:    lines.push(`| Channel | MRR@5 | P@5 | R@5 | NDCG@5 | MAP | Hit Rate | Lat p50 | Lat p95 |`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:935:        `| ${m['precision@5'].delta >= 0 ? '+' : ''}${m['precision@5'].delta.toFixed(4)} ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:936:        `| ${m['recall@5'].delta >= 0 ? '+' : ''}${m['recall@5'].delta.toFixed(4)} ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:940:        `| ${m['latency_p50'].delta >= 0 ? '+' : ''}${m['latency_p50'].delta.toFixed(1)}ms ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:941:        `| ${m['latency_p95'].delta >= 0 ? '+' : ''}${m['latency_p95'].delta.toFixed(1)}ms |`,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:957:    lines.push(`${i + 1}. **${r.channel}** — contribution: ${contribution >= 0 ? '+' : ''}${contribution.toFixed(4)} Recall@${recallK}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:333:    expect(result).toHaveProperty('latencyMs');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:362:  it('result.latencyMs is a non-negative number', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:366:    expect(typeof result?.latencyMs).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:367:    expect(result?.latencyMs).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:516:    expect(result).toHaveProperty('latencyMs');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:530:  it('result.latencyMs is non-negative', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:534:    expect(result?.latencyMs).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:661:    expect(result).toHaveProperty('latencyMs');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:175:      expect(cols).toContain('latency_ms');
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:188:      expect(cols).toContain('latency_ms');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:41:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:12://   weak    — search_shown, same_topic_requery (passive exposure)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:23: *   result_cited | follow_on_tool_use > query_reformulated > same_topic_requery > search_shown
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:26:  | 'search_shown'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:27:  | 'result_cited'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:41:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:47:/** Row shape stored in feedback_events table. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:61:  queryId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:79:  result_cited:         'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:83:  search_shown:         'weak',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:116:  CREATE TABLE IF NOT EXISTS feedback_events (
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:119:                 'search_shown','result_cited','query_reformulated',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:131:  CREATE INDEX IF NOT EXISTS idx_feedback_type      ON feedback_events(type);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:132:  CREATE INDEX IF NOT EXISTS idx_feedback_memory_id ON feedback_events(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:133:  CREATE INDEX IF NOT EXISTS idx_feedback_query_id  ON feedback_events(query_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:135:  CREATE INDEX IF NOT EXISTS idx_feedback_timestamp  ON feedback_events(timestamp);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:147: * Ensure the feedback_events table and indices exist in the given database.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:188:      event.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:203: * Record a batch of feedback events (e.g., all search_shown results from
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:249:    if (opts.queryId !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:251:      params.push(opts.queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:275:    const sql = `SELECT * FROM feedback_events ${where} ORDER BY timestamp ASC ${effectiveLimit} ${offset}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:294:      const row = db.prepare('SELECT COUNT(*) as count FROM feedback_events WHERE type = ?')
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:298:    const row = db.prepare('SELECT COUNT(*) as count FROM feedback_events').get() as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:325:      FROM feedback_events
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:20:  latency?: { candidateLatencyMs?: number; totalLatencyMs?: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:110:    expect(t.latency.totalLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:111:    expect(t.latency.candidateLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:112:    expect(t.latency.fusionLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:113:    expect(t.latency.rerankLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:114:    expect(t.latency.boostLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:140:    expect(t.latency.candidateLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:167:    expect(t.latency.candidateLatencyMs).toBe(50);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:168:    expect(t.latency.fusionLatencyMs).toBe(30);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:169:    expect(t.latency.rerankLatencyMs).toBe(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:170:    expect(t.latency.boostLatencyMs).toBe(10);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:171:    expect(t.latency.totalLatencyMs).toBe(110);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:177:    expect(t.latency.candidateLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:178:    expect(t.latency.totalLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:184:    expect(t.latency.fusionLatencyMs).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:251:  it('T06c: quality proxy with max latency reduces score', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:261:    // With 5s latency, latency component = 0, reducing overall score
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:308:    expect((json as TelemetryJson).latency?.candidateLatencyMs).toBe(42);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:327:    expect(json.latency).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:364:  it('T10: re-recording a latency stage overwrites previous value', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:367:    expect(t.latency.totalLatencyMs).toBe(100);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:370:    expect(t.latency.candidateLatencyMs).toBe(50);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:371:    expect(t.latency.totalLatencyMs).toBe(50);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:156:      expect(status.latency).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:157:      expect(typeof status.latency.avg).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:158:      expect(typeof status.latency.p95).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:159:      expect(typeof status.latency.count).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:165:      expect(status.latency.count).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:169:  // Sanitize via shared tokenizer, then wrap each token in quotes and join with OR for recall
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:5:// Validates upsert, query, replay, and latency expectations
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:46:          { id: 'q-1', type: 'question_node', label: 'What causes latency?', iteration: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:123:  describe('latency budget contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:62:    tool: 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:31:    type: 'search_shown',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:33:    queryId: 'query-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:80:  it('creates feedback_events table with correct columns', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:82:    const columns = db.prepare('PRAGMA table_info(feedback_events)').all() as Array<{ name: string }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:93:  it('creates indices for feedback_events', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:96:      "SELECT name FROM sqlite_master WHERE type='index' AND tbl_name='feedback_events'"
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:112:    expect(FEEDBACK_SCHEMA_SQL).toContain('search_shown');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:113:    expect(FEEDBACK_SCHEMA_SQL).toContain('result_cited');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:125:    expect(resolveConfidence('search_shown', 'strong')).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:126:    expect(resolveConfidence('result_cited', 'weak')).toBe('weak');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:130:    expect(resolveConfidence('result_cited')).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:134:    expect(resolveConfidence('search_shown')).toBe('weak');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:139:      'search_shown',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:140:      'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:151:    expect(EVENT_TYPE_CONFIDENCE['result_cited']).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:160:    expect(EVENT_TYPE_CONFIDENCE['search_shown']).toBe('weak');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:184:      'search_shown',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:185:      'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:212:      type: 'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:214:      queryId: 'q-999',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:222:    expect(row.type).toBe('result_cited');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:243:      queryId: 'q-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:298:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:301:    const shown = getFeedbackEvents(db, { type: 'search_shown' });
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:303:    expect(shown[0].type).toBe('search_shown');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:359:    const results = getFeedbackEvents(db, { type: 'result_cited' });
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:446:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:447:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:449:    expect(getFeedbackEventCount(db, 'search_shown')).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:450:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:85:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:92:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:99:  /** Wall-clock latency for this channel in milliseconds. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:100:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:107:  queryId: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:114:  /** Total end-to-end latency in milliseconds. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:115:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:137: * context, triggers). Returns the queryId and evalRunId that
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:140: * Fail-safe: never throws. Returns { queryId: 0, evalRunId: 0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:144:  const noop: LogSearchQueryResult = { queryId: 0, evalRunId: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:160:    const queryId = typeof result.lastInsertRowid === 'bigint'
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:164:    // Use queryId as the canonical per-invocation run ID.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:166:    const evalRunId = queryId > 0 ? queryId : generateEvalRunId();
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:168:    return { queryId, evalRunId };
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:183:  if (!params.evalRunId || !params.queryId) return;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:189:        (eval_run_id, query_id, channel, result_memory_ids, scores, latency_ms, hit_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:193:      params.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:197:      params.latencyMs ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:213:  if (!params.evalRunId || !params.queryId) return;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:219:        (eval_run_id, query_id, result_memory_ids, scores, fusion_method, latency_ms)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:223:      params.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:227:      params.latencyMs ?? null
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:208:    it('T005-E3: handle_eval_reporting_dashboard alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:209:      expect(typeof evalReporting.handle_eval_reporting_dashboard).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:212:    it('T005-E4: handle_eval_run_ablation alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:213:      expect(typeof evalReporting.handle_eval_run_ablation).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:257:    it('T006-A4: recallK defaults to 20 when not provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:261:      expect(call[1].recallK).toBe(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:264:    it('T006-A5: recallK is clamped to >= 1', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:265:      await evalReporting.handleEvalRunAblation({ channels: ['vector'], recallK: 0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:268:      expect(call[1].recallK).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:325:          context: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:382:          context: 'eval_run_ablation',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:404:        recallK: 7,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:434:        recallK: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:460:        metricFilter: ['recall@20'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:468:        metricFilter: ['recall@20'],
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:350:  const queryIdToText = new Map<string, string>();
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:352:    const queryId = `consumption:${row.id}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:353:    queryIdToText.set(queryId, row.query_text);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:354:    return queryId;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:360:  for (const queryId of holdoutQueryIds) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:361:    const queryText = queryIdToText.get(queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:369:        replayed.set(queryId, ranks);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:373:      console.warn(`[shadow-evaluation-runtime] query replay failed for ${queryId}: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:440:      (queryId) => replayed.get(queryId)?.live ?? [],
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:441:      (queryId) => replayed.get(queryId)?.shadow ?? [],
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:762:        latencyMs: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:49:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:218: * @param queryId - Identifier for the query being evaluated
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:224:  queryId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:282:    queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:6:  - "latency metrics"
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:35:The telemetry module provides structured observability for the retrieval pipeline and scoring subsystem. It records per-stage latency, search mode selection, fallback triggers, composite quality scores, scoring observation samples, trace payload validation, and agent consumption events. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:53:| **QualityMetrics** | Composite 0-1 quality proxy derived from relevance, result count, and latency |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:94:| `SPECKIT_EXTENDED_TELEMETRY` | `false` | Enable extended metric collection (latency breakdown, quality scoring, trace payload validation, and architecture updates). Set to `true` to activate |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:118:| `latency` | `LatencyMetrics` | Per-stage timing breakdown |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:165:**Purpose**: Composite quality score for the retrieval run.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:346:const latency: LatencyMetrics = {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:378:  latency,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:391:  // Collect full latency breakdown and quality score
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:392:  telemetry.latency = collectLatencyMetrics(stages);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:393:  telemetry.quality = computeQualityScore(results, requestedLimit, telemetry.latency.totalLatencyMs);
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:408:    queryId: 'q-abc-123',
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:447:| Compare `latency.rerankLatencyMs` to `0` | Detect runs where reranking was skipped |
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:304:  describe('T154: meta.latencyMs measurement', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305:    it('should calculate latency when startTime provided', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:318:      expect(typeof envelope.meta.latencyMs).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:319:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(45);
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:322:    it('should not include latencyMs when startTime not provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:329:      expect(envelope.meta.latencyMs).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:332:    it('should measure latency in error responses', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:343:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:346:    it('should measure latency in empty responses', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:356:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:38:// CHK-064: Reranker latency benchmark — scorePrompt for 20 candidates < 500ms
-.opencode/skill/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:39:describe('local-reranker latency benchmark (CHK-064)', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:38:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:123:      previousQueryId: previous.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:132:      previousQueryId: previous.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:153: * @param queryId - Opaque query identifier for event correlation
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:161:  queryId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:179:  entries.push({ tokens, timestamp, queryId, shownMemoryIds });
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:189:        queryId: detection.previousQueryId ?? queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:202: * Log `result_cited` events for memories whose content was loaded.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:208:  queryId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:217:      type: 'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:219:      queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:252:      queryId: latest.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:5:// Captures latency, mode selection, fallback, and quality-proxy
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:41:/** Maximum latency value (ms) for quality proxy normalization.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:42: *  Latencies at or above this ceiling map to a 0.0 quality score component. */
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:160:  latency: LatencyMetrics;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:185:    latency: {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:239:  t.latency[stage] = clamped;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:241:  t.latency.totalLatencyMs =
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:242:    t.latency.candidateLatencyMs +
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:243:    t.latency.fusionLatencyMs +
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:244:    t.latency.rerankLatencyMs +
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:245:    t.latency.boostLatencyMs;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:481: * constants (latency ceiling, count saturation) are passed as parameters.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:489:    latencyMs: t.latency.totalLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:490:    latencyTargetMs: QUALITY_PROXY_LATENCY_CEILING_MS,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:654:    latency: {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:655:      totalLatencyMs: t.latency.totalLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:656:      candidateLatencyMs: t.latency.candidateLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:657:      fusionLatencyMs: t.latency.fusionLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:658:      rerankLatencyMs: t.latency.rerankLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:659:      boostLatencyMs: t.latency.boostLatencyMs,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:5:// To full pipeline (all 5 channels) while reducing simulated latency.
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:9:// - Use channel count as latency proxy (linear model: channelCount * baseMs)
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:105:/** Simulated base latency per channel (ms). */
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:146:/** Simulate query processing latency (channel count as proxy). */
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:231:  it('T11: simple queries simulated latency is ~60% faster than full pipeline', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:240:  it('T12: moderate queries simulated latency is between simple and full', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:249:  it('T13: p95 latency for simple queries (2 channels) is <30ms', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:255:    const p95Index = Math.floor(sorted.length * 0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:256:    const p95 = sorted[p95Index];
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:257:    expect(p95).toBeLessThan(30);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:260:  it('T14: latency scales linearly with channel count', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:857:      logger.info('Migration v15: Created quality score index');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:231: * @param queryIds - Full set of available query IDs
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:236:  queryIds: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:242:  if (queryIds.length === 0) return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:244:  if (holdoutPercent >= 1) return [...queryIds];
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:246:  const targetCount = Math.max(1, Math.round(queryIds.length * holdoutPercent));
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:250:    return stratifiedSample(queryIds, opts.intentClasses, targetCount, seed);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:255:  const tagged = queryIds.map(id => ({ id, sortKey: rng() }));
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:264:  queryIds: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:275:  for (const qid of queryIds) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:295:  const totalItems = queryIds.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:352:        comparison.queryId,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:381:  opts: { queryId?: string; cycleId?: string; limit?: number } = {}
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:389:    if (opts.queryId) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:391:      params.push(opts.queryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:596:  computeLiveRanks: (queryId: string) => RankedItem[],
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:597:  computeShadowRanks: (queryId: string) => RankedItem[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:92: * latency minimal and the ≤2 LLM calls per deep query budget intact.
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:63:    expect(result.latencyMs).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:34:  latency_ms?: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:55:  avg_latency_ms: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:108:      latency_ms REAL,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:159:      event.latency_ms ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:184:    avg_latency_ms: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:230:        AVG(latency_ms) as avg_latency
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:232:    `).get(...params) as { avg_results: number | null; avg_latency: number | null };
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:251:      avg_latency_ms: Number((avgRow?.avg_latency ?? 0).toFixed(2)),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:196:      'culinary arts require precision and creativity',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:387:      'The dimensionality of embeddings affects search precision.',
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:17://   - All reads and writes use the existing feedback_events table
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:160: * Also calls initFeedbackLedger to guarantee feedback_events exists.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:173:  const queryIds = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:176:    const holdout = selectHoldoutQueries(queryIds);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:182:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 0.50 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:187:    const h1 = selectHoldoutQueries(queryIds, { seed: 42 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:188:    const h2 = selectHoldoutQueries(queryIds, { seed: 42 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:194:    const h1 = selectHoldoutQueries(queryIds, { seed: 42, holdoutPercent: 0.50 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:195:    const h2 = selectHoldoutQueries(queryIds, { seed: 7777, holdoutPercent: 0.50 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:205:    expect(selectHoldoutQueries(queryIds, { holdoutPercent: 0 })).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:209:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 1.0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:210:    expect(holdout.length).toBe(queryIds.length);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:212:    for (const q of queryIds) {
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:224:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 0.50 });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:226:      expect(queryIds).toContain(q);
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:489:    expect(result.queryId).toBe('q1');
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:684:        queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:703:      const history = getShadowScoringHistory(db, { queryId: 'q1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:719:        queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:739:        queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:761:        queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:768:        queryId: 'q2',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:791:        queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:1394:      queryId: 'q1',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:1402:    const allHistory = getShadowScoringHistory(db, { queryId: 'q1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:430:  it('rejects content with quality score below 0.6 when quality loop enabled', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:96:  it('logs result_cited for each cited memory id', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:101:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:102:    const events = getFeedbackEvents(db, { type: 'result_cited' });
-.opencode/skill/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:141:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:33:    latencyMs: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:163:      latencyMs: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:29:  queryId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:127:      obs.queryId,
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:94:      recall20: mrr5 * 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:357:  it('T008.7b: metric row names are correct (mrr@5, ndcg@10, recall@20, hit_rate@1)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:367:    expect(metricNames).toContain('recall@20');
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:404:    expect(typeof result.metrics.recall20).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:472:      if (relevance.queryId <= 3 && relevance.relevance > 0 && !relevantMemoryByQueryId.has(relevance.queryId)) {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:473:        relevantMemoryByQueryId.set(relevance.queryId, relevance.memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:495:    expect(withKOverride.metrics.recall20).not.toBeCloseTo(baseline.metrics.recall20, 10);
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:315:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:338:    expect(resumed.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:354:    expect(explicit.confidence).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:407:  it('T033: Quick mode description mentions low latency', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:409:    expect(desc.includes('low latency') || desc.includes('fast')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:195:      queryId: 'test-q-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:215:      queryId: 'age-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:250:      queryId: 'tm01-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:270:      queryId: 'tm01-not-applied',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:290:      queryId: 'delta-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:335:        queryId: `q${i}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:352:      memoryId: 1, queryId: 'q1', timestamp: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:358:      memoryId: 2, queryId: 'q2', timestamp: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:387:      queryId: 'safe-test',
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:435:        queryId: 'no-table',
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:118:      logSearchQuery: vi.fn(() => ({ queryId: 0, evalRunId: 0 })),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:105:  logSearchQuery: vi.fn(() => ({ queryId: 11, evalRunId: 22 })),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:33:  'negative_feedback_events',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:128:    CREATE TABLE IF NOT EXISTS negative_feedback_events (
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:347:    INSERT INTO negative_feedback_events (id, memory_id, created_at_ms)
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:6:// Pattern detection, fail-safe behavior, latency tracking.
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:34:  latency_ms?: number | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:60:    event.latency_ms ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:105:    expect(columnNames).toContain('latency_ms');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:158:      latency_ms: 42.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:170:    expect(row.latency_ms).toBe(42.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:183:      latency_ms: 150.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:201:      latency_ms: 5.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:218:      latency_ms: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:272:    expect(stats.avg_latency_ms).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:302:  it('T003-E: calculates avg_latency_ms', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:303:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 100 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:304:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 200 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:306:    expect(stats.avg_latency_ms).toBe(150);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:568:describe('T006: latency tracking', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:579:  it('T006-A: latency_ms is stored as a float', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:580:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 123.456 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:581:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:582:    expect(typeof row.latency_ms).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:583:    expect(row.latency_ms).toBeCloseTo(123.456);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:586:  it('T006-B: latency_ms is null when not provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:588:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number | null };
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:589:    expect(row.latency_ms).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:592:  it('T006-C: avg_latency_ms in stats reflects stored latencies', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:593:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:594:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 20 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:595:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 30 });
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:597:    expect(stats.avg_latency_ms).toBe(20);
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:600:  it('T006-D: latency can be measured via Date.now() diff', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:607:      latency_ms: fakeLatency,
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:611:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:612:    expect(row.latency_ms).toBe(fakeLatency);
-.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:20:  latencyMs?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:179:  // Calculate latency if start time provided
-.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:180:  const latencyMs = startTime ? Date.now() - startTime : null;
-.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts:186:    ...(latencyMs !== null && { latencyMs }),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:18: * this to 0.25 for better discovery recall. The R17 fan-effect divisor (sqrt scaling)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:93:| **Testing Effect**           | Low retrievability = greater boost on success                                         | Harder recalls strengthen more       |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:307:  GRADE_GOOD,   // grade (3 = successful recall)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:323:- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.2
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:324:- `GRADE_HARD (2)`: Difficult recall → gradeFactor 0.8
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:325:- `GRADE_GOOD (3)`: Successful recall → gradeFactor 1.0
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:326:- `GRADE_EASY (4)`: Easy recall → gradeFactor 1.3
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:970:A: FSRS is validated on 100M+ real human memory data from Anki. Exponential decay (`e^(-t/τ)`) decays too fast initially and too slow later. FSRS power-law decay `(1 + (19/81) × t/S)^(-0.5)` matches how human memory actually works, with a "desirable difficulty" effect where harder recalls strengthen memories more.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:976:A: **Retrievability** (R) is the FSRS-calculated probability of recall (0.0 to 1.0), based on stability and elapsed time. **Attention score** is the session-specific activation level in `working_memory`, which starts at 1.0 when a memory enters the session and decays at 0.95 per cycle.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:158:    | 'session_health'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:180:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:246:  latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:377:// Stores the last resolved session ID so non-search tools (e.g. memory_stats)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:499:): Omit<DispatchGraphContextMeta, 'latencyMs'> {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:632:          latencyMs: Date.now() - startedAt,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:640:          latencyMs: Date.now() - startedAt,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:654:        latencyMs: Date.now() - startedAt,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:874:    // T018: Track last tool call timestamp for all tools except session_health.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:875:    if (name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:939:      console.warn(`[context-server] Auto-surface precheck exceeded p95 target: ${autoSurfaceLatencyMs}ms`);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:156:| `SPECKIT_QUERY_SURROGATES` | `true` | boolean | Index-time surrogate metadata for recall improvement (REQ-D2-005). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:243:| `SPECKIT_IMPLICIT_FEEDBACK_LOG` | `true` | boolean | Implicit feedback event ledger for `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`. Shadow-only, no ranking side effects (REQ-D4-001). Graduated ON. | `lib/feedback/feedback-ledger.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:304:| `SPECKIT_EXTENDED_TELEMETRY` | `false` | boolean | Detailed retrieval metrics collection (latency breakdown, quality scores). Opt-in: set `true` to enable. | `lib/telemetry/retrieval-telemetry.ts` |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:41:/** Arguments for the memory_stats handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:92:  latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:268:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:252:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:256:  const logFinalTriggerEval = (memoryIds: number[], latencyMs: number): void => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:261:          queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:265:          latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:489:  const latencyMs = Date.now() - startTime;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:490:  if (latencyMs > 100) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:523:      latencyMs: latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:541:        latency_ms: latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:548:  logFinalTriggerEval(triggerMemoryIds, latencyMs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:13:// Feature catalog: System statistics (memory_stats)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:35:const handle_memory_stats = handleMemoryStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:44:  handle_memory_stats,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:321:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:250:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:249:      latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:266:export const handle_memory_stats = lazyFunction(getMemoryCrudModule, 'handle_memory_stats');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:305:export const handle_eval_run_ablation = lazyFunction(getEvalReportingModule, 'handle_eval_run_ablation');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:306:export const handle_eval_reporting_dashboard = lazyFunction(getEvalReportingModule, 'handle_eval_reporting_dashboard');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:5:// + session_health in one call, merging results with hints.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:106:    nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:182:  // Sub-call 2: session_health
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:191:    allHints.push('session_health failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:98:    latencyMs: Date.now() - startTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:652:    description: 'Fast trigger matching for real-time context (low latency)',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1215:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1531:        latency_ms: Date.now() - _contextStartTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1555:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1559:        latencyMs: Date.now() - _contextStartTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1567:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1572:        latencyMs: Date.now() - _contextStartTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:4:// T018: MCP tool handler for session_health — reports session
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:65:/** Handle session_health tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:102:  const structuralContext = buildStructuralBootstrapContract('session_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:133:  // Phase 023: Compute quality score from context metrics
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:160:      producer: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:161:      sourceSurface: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:170:    sourceSurface: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:86:  queryId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:105:  queryId?: string,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:107:  if (typeof queryId !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:111:  const normalizedQueryId = queryId.trim();
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:655:    queryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:677:  const normalizedQueryId = typeof queryId === 'string' && queryId.trim().length > 0
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:678:    ? queryId.trim()
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:690:        queryId: normalizedQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:736:    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:644:    _evalQueryId = evalEntry.queryId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1209:        latency_ms: Date.now() - _searchStartTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1231:        queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1235:        latencyMs: Date.now() - _searchStartTime,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1241:          queryId: _evalQueryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1251:  // REQ-D4-001: Implicit feedback — log search_shown events for returned results
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1268:          const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1270:            type: 'search_shown',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1272:            queryId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1283:  // REQ-014: Query flow tracking + result_cited for includeContent searches
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1284:  // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1310:        const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1314:          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1317:        // Log result_cited for includeContent searches (content was embedded = cited)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1319:          logResultCited(db, sessionId ?? null, queryId, shownIds);
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:368: * Compute composite quality score for a memory file.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:570: * Computes quality score, attempts auto-fix if below threshold,
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:574: * retries keep ingestion latency predictable within a single request cycle.
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50:  description: '[L2:Core] Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~2000 tokens max), regardless of query. Requires query (string), concepts (array of 2-5 strings), or cursor (string) for continuation pagination. Supports intent-aware retrieval (REQ-006) with task-specific weight adjustments. When implicit feedback logging is enabled, searches also emit shadow-only feedback signals such as search_shown and, for includeContent runs, result_cited. Token Budget: 3500. For code search by concept/intent, prefer mcp__cocoindex_code__search (CocoIndex). For structural code queries (callers, imports), prefer code_graph_query.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:104:        description: 'Include full file content in results. When true, each result includes a "content" field with the memory file contents. This embeds load logic directly in search, eliminating the need for separate load calls. When implicit feedback logging is enabled, includeContent searches also emit shadow-only result_cited events for returned memories.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:120:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:179:        description: 'Search mode. "auto" uses standard retrieval. "deep" enables multi-query expansion for broader recall.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:231:  name: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:306:      queryId: { type: 'string', description: 'Optional query identifier to attach implicit feedback/ground-truth selection context' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:509:  name: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:510:  description: '[L6:Analysis] Run a controlled channel ablation study (R13-S3) and optionally persist Recall@20 deltas to eval_metric_snapshots. Requires SPECKIT_ABLATION=true. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:535:      recallK: { type: 'number', minimum: 1, maximum: 100, description: 'Recall cutoff K (default: 20).' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:544:  name: 'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:733:  name: 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:48:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:49:// Feature catalog: Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:56:  recallK?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223:/** Handle eval_run_ablation tool — runs ablation analysis or K-sensitivity sweep.
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:224: * @param args - Ablation arguments (channels, queries, recallK, mode)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:231:      limit: args.recallK,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:246:  const recallK = typeof args.recallK === 'number' && Number.isFinite(args.recallK)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:247:    ? Math.max(1, Math.floor(args.recallK))
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:254:        context: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:271:        limit: recallK,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:294:      recallK,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:297:      alignmentContext: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:314:    tool: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:333:  'context recall',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:377:    tool: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:402:    tool: 'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:418:const handle_eval_run_ablation = handleEvalRunAblation;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:419:const handle_eval_reporting_dashboard = handleEvalReportingDashboard;
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:423:  handle_eval_run_ablation,
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:424:  handle_eval_reporting_dashboard,
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:431:- `memory_stats` (system statistics)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:436:- `session_health` (session readiness check)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:577:### memory_stats: System Statistics
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:579:`memory_stats()` returns counts, dates and top-ranked folders for the memory system. Use it to confirm indexing is working and to inspect database health.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:611:- `latency`: End-to-end retrieval time (ms)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:726:**Behind the scenes:** Intent is classified as `understand`. Adaptive fusion applies a semantic-heavy weight profile, improving recall for conceptual queries over exact keyword matches.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1048:           memory_save, memory_index_scan, memory_stats
+.opencode/skills/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
+.opencode/skills/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
+.opencode/skills/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
+.opencode/skills/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
+.opencode/skills/system-spec-kit/mcp_server/README.md:322:Think of it like how your own brain works: things you reviewed recently are easy to recall, while things you have not thought about in months fade into the background.
+.opencode/skills/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
+.opencode/skills/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
+.opencode/skills/system-spec-kit/mcp_server/README.md:521:**Ablation study framework** -- turns off each search channel one at a time and measures quality degradation (Recall@20 delta). Identifies which components are critical.
+.opencode/skills/system-spec-kit/mcp_server/README.md:612:Complete session bootstrap in one call. This is the canonical first-call recovery step on session start or after `/clear`. It wraps the full `session_resume` payload plus `session_health` and returns context, health, structural readiness and recommended next actions. Startup/bootstrap surfaces are freshness-aware but non-mutating; use `code_graph_scan` when readiness shows an empty or broad full-scan state.
+.opencode/skills/system-spec-kit/mcp_server/README.md:749:##### `memory_stats`
+.opencode/skills/system-spec-kit/mcp_server/README.md:757:| `includeScores` | boolean | Include composite quality scores |
+.opencode/skills/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
+.opencode/skills/system-spec-kit/mcp_server/README.md:777:##### `session_health`
+.opencode/skills/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
+.opencode/skills/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
+.opencode/skills/system-spec-kit/mcp_server/README.md:824:| `queryId` | string | Query that retrieved this memory |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1030:##### `eval_run_ablation`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1038:| `recallK` | number | K value for Recall@K metric |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1042:The MCP handler scores chunk-backed hits against `parentMemoryId ?? row.id`, so eval rows stay attached to canonical parent memories. Before comparing runs after a DB rebuild or import, preview or refresh the live ground-truth mapping with `scripts/evals/map-ground-truth-ids.ts`; if token-budget overflow collapses a run below `recallK`, treat that run as investigation-only rather than a clean benchmark.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1046:##### `eval_reporting_dashboard`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1361:**What happens**: File is validated, embedded and indexed. Returns memory ID, quality score and duplicate check results.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1541:| See what is indexed | `memory_list` + `memory_stats` | Browse and count |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1558:**Common causes**: Stale BM25 index, divergent aliases in FTS5 or memories with low quality scores surfacing.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1607:**What you see**: `memory_stats` shows fewer memories than expected.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1699:A typical project with a few hundred memory files uses 10-50 MB. The vector table (1024-dimension float32 embeddings) is the largest contributor. Check with `memory_stats` using `includeScores: true`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1729:Set the flag to `false` or `0` in your environment, restart the server and the pipeline falls back to the last working configuration. The full procedure is in `../references/workflows/rollback_runbook.md`. Use `eval_reporting_dashboard` to verify metrics returned to baseline.
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:221:  queryId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:350:  recallK: positiveIntMax(100).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:403:  memory_stats: memoryStatsSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:419:  eval_run_ablation: evalRunAblationSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:420:  eval_reporting_dashboard: evalReportingDashboardSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:454:  session_health: getSchema({}) as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:468:  memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:484:  eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:485:  eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:496:  session_health: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:23:// Feature catalog: System statistics (memory_stats)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30:/** Handle memory_stats tool -- returns memory system statistics and folder rankings. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:40:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:51:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:70:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:80:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:89:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:98:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:107:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:116:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:159:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:283:      tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:302:    tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:15:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:114:      const latency = typeof autoSurfacedContext?.latencyMs === 'number'
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:115:        ? autoSurfacedContext.latencyMs
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:118:        `Auto-surface hook: injected ${constitutionalCount} constitutional and ${triggeredCount} triggered memories (${latency}ms)`
+.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts:126:      latencyMs: typeof autoSurfacedContext?.latencyMs === 'number' ? autoSurfacedContext.latencyMs : 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1727:        latencyMs: 0, triggerCacheCleared: false,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:61:  latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:110:// T018: Session-level tracking for prime package and session_health
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:390:    const latencyMs = Date.now() - startTime;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:410:      latencyMs: latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:514:    const latencyMs = Date.now() - startTime;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:535:        latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:547:      latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:680:  // T018: Session tracking for session_health tool
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:12:  // T018: Session tracking for session_health tool
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:9:    latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts:49:      latencyMs: hookResult.latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:65:- auto-surface output includes `constitutional`, `triggered`, `surfaced_at`, and `latencyMs`.
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:67:- `MutationHookResult` includes `latencyMs`, `triggerCacheCleared`, `constitutionalCacheCleared`, `graphSignalsCacheCleared`, `coactivationCacheCleared`, `toolCacheInvalidated`, and `errors`.
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:68:- public `postMutationHooks` data includes `operation`, `latencyMs`, `triggerCacheCleared`, `constitutionalCacheCleared`, `graphSignalsCacheCleared`, `coactivationCacheCleared`, and `toolCacheInvalidated`.
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:36:The MCP Server Library provides the core functionality for the Spec Kit Memory MCP server. It implements cognitive memory features including semantic search, attention decay, importance scoring and intelligent context retrieval. These modules work together to provide AI assistants with human-like memory recall and context awareness.
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:366:**Hybrid Search**: Combines semantic and keyword search for better recall
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:429:  grade              // Performance grade (1-4): 1=forgot, 4=easy recall
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:139:  queryId?: string;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:331:  recallK?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:5:// Collects events during MCP tool dispatch and computes quality scores.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:206:/** Compute overall quality score and level. */
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:215:  // F065: Weight rationale for quality score factors:
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:298:    `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:67:  'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:102:    case 'memory_stats':          return handleMemoryStats(parseArgs<StatsArgs>(validateToolArgs('memory_stats', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1623:      queryId: `hybrid-${Date.now()}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1751:  // Primary 30 filters noise; fallback 17 widens recall for sparse corpora
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2209:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2339: * @param options - Optional includeContent flag and queryId for overflow logging.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2345:  options?: { includeContent?: boolean; queryId?: string }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2349:  const queryId = options?.queryId ?? `q-${Date.now()}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2382:      queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2418:      queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2435:    queryId,
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:54:  'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:55:  'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:60:  'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:75:    case 'eval_run_ablation':          return handleEvalRunAblation(parseArgs<EvalRunAblationArgs>(validateToolArgs('eval_run_ablation', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:76:    case 'eval_reporting_dashboard':   return handleEvalReportingDashboard(parseArgs<EvalReportingDashboardArgs>(validateToolArgs('eval_reporting_dashboard', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:81:    case 'session_health':             return handleSessionHealth();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:8://   2. Session continuity warning if quality score is degraded/critical
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:11://   - 250ms latency budget (aborts if exceeded)
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:27:  latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:161:    return { hints: [], tokenCount: 0, latencyMs: 0, skipped: true, skipReason: 'recursion_guard' };
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:192:    const latencyMs = Date.now() - startTime;
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:195:    if (latencyMs > deadlineMs) {
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:196:      console.warn(`[passive-enrichment] Exceeded deadline: ${latencyMs}ms > ${deadlineMs}ms`);
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:199:    return { hints, tokenCount: tokensUsed, latencyMs, skipped: false };
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:206:      latencyMs: Date.now() - startTime,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:73:      FROM negative_feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:42:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:250: * @param queryId - Unique identifier for the search query
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:258:  queryId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:322:    ).run(memoryId, 'add', JSON.stringify(terms), queryId, now, shadowMode ? 1 : 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:333:    const applied = applyLearnedTriggers(memoryId, terms, db, queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:16:// Gate logs quality scores and would-reject decisions but does
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:564: * Compute a lightweight quality score for backfilled rows.
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:594: * Layer 2: Compute content quality score across all dimensions.
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
+.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts:288:        // PERF(CHK-113): Sequential per-candidate inference. For 20 candidates, latency depends on
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:25:    queryId: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:28:      { queryId: 1, memoryId: 101, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:29:      { queryId: 1, memoryId: 102, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:30:      { queryId: 1, memoryId: 103, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:34:    queryId: 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:37:      { queryId: 2, memoryId: 201, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:38:      { queryId: 2, memoryId: 202, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:42:    queryId: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:45:      { queryId: 3, memoryId: 301, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:46:      { queryId: 3, memoryId: 302, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:50:    queryId: 4,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:53:      { queryId: 4, memoryId: 401, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:54:      { queryId: 4, memoryId: 402, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:55:      { queryId: 4, memoryId: 403, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:59:    queryId: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:62:      { queryId: 5, memoryId: 501, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:63:      { queryId: 5, memoryId: 502, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:101:    { id: 501, content: 'Ablation study compares channel contribution and recall changes across runs. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:107:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:113:    queryId: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:125:    queryId: 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:137:    queryId: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:149:    queryId: 4,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:161:    queryId: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:176:    queryId: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:188:    queryId: 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:200:    queryId: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:212:    queryId: 4,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:224:    queryId: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:287:    const corpusEntry = EVAL_CORPUS.find(entry => entry.queryId === fixture.queryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:291:    expect(payload.documents).toEqual(QUERY_DOCUMENTS[fixture.queryId].map(doc => doc.content));
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:327:      QUERY_DOCUMENTS[corpusEntry.queryId],
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:394:      metrics: ['MRR@5', 'NDCG@5', 'latency_p50'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1358:      queryId: 'p1-token-skip',
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1389:      queryId: 'p1-token-fallback',
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1415:      queryId: 't311-cache',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:113:      "confidence": 45,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:38:  CREATE TABLE IF NOT EXISTS negative_feedback_events (
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:47:  CREATE INDEX IF NOT EXISTS idx_negative_feedback_events_memory
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:48:  ON negative_feedback_events(memory_id, created_at_ms DESC)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:133:    'INSERT INTO negative_feedback_events (memory_id, created_at_ms) VALUES (?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:164:     FROM negative_feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:92: * Filter results by a minimum quality score threshold.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:99: * @param threshold - Minimum quality score in [0, 1] (inclusive).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:356: * expansion and the additional search channels add latency without recall gain.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:508:  // the query for the hybrid search channel, improving recall for alias-rich
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:717:          // F1: Wrap parallel variant searches with latency budget.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:789:      // The query as "simple", suppressing expansion with zero added latency.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:871:      // Phase B T016: Uses effectiveQuery (concept-expanded) for BM25 recall.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:45:  return { queryId: 1, memoryId, relevance };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:262:      latencyMs: expect.any(Number),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:270:    expect(typeof parsed.data.postMutationHooks.latencyMs).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:294:      latencyMs: expect.any(Number),
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:299:    // Accept strict equality or floating point precision
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:609:          queryId: `consumption:${queryLogId}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:624:          queryId: `consumption:${queryLogId}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:49:      FROM negative_feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:92: * save 30-50 ms of latency.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:332:    /** B1: Per-stage and total timing in milliseconds for latency observability. */
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:160:    it('handles very small score ranges with stable precision', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:163: *      retrieval; broadening them degrades precision without recall gain.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:194:  // Query as "simple", R12 expansion is suppressed to avoid latency overhead
+.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:195:  // On short, high-precision queries.
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:8:// T1-T5   : extractValidationMetadata — quality score signals
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:39:describe('extractValidationMetadata — quality score signals', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:78:  it('T5: maps all known importance tiers to expected quality scores', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:98:    it('retrieves all selections when no queryId filter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:107:    it('filters selections by queryId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:114:      expect(history.every(s => s.queryId === 'q1')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:149:      expect(sel.queryId).toBe('q1');
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:170:        { queryId: 'q1', memoryId: 42, queryText: 'test query', memoryContent: 'test content' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:171:        { queryId: 'q2', memoryId: 43, queryText: 'another query', memoryContent: 'another content' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:177:      expect(labels[0].queryId).toBe('q1');
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:227:        { queryId: 'q1', memoryId: 42, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:228:        { queryId: 'q2', memoryId: 43, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:229:        { queryId: 'q3', memoryId: 44, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:247:        { queryId: 'q1', memoryId: 42, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:248:        { queryId: 'q2', memoryId: 43, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:269:        { queryId: 'q1', memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:270:        { queryId: 'q2', memoryId: 2, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:271:        { queryId: 'q3', memoryId: 3, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:272:        { queryId: 'q4', memoryId: 4, relevance: 0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:273:        { queryId: 'q5', memoryId: 5, relevance: 0 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:292:        { queryId: 'q1', memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:293:        { queryId: 'q2', memoryId: 2, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:294:        { queryId: 'q3', memoryId: 3, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:295:        { queryId: 'q4', memoryId: 4, relevance: 0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:296:        { queryId: 'q5', memoryId: 5, relevance: 0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:312:        { queryId: 'q1', memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:313:        { queryId: 'q2', memoryId: 2, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:314:        { queryId: 'q3', memoryId: 3, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:330:        { queryId: 'q1', memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:331:        { queryId: 'q50', memoryId: 50, relevance: 2 }, // no LLM match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:346:        { queryId: 'q2', memoryId: 2, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:362:        { queryId: 'q1', memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:363:        { queryId: 'q2', memoryId: 2, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/query-surrogates.vitest.ts:785:Monitor query latency and adjust the candidate pool size.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:9:// Timing is recorded for latency observability.
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:140:  it('accepts eval_run_ablation mode and custom queries', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:142:      validateToolArgs('eval_run_ablation', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:145:        recallK: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:150:  it('rejects unknown eval_run_ablation modes', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:152:      validateToolArgs('eval_run_ablation', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:531: * The queryIdPrefix is the only difference between the two call sites.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:535: * @param queryIdPrefix  Short label identifying the scoring model ('5f' | 'cs')
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:541:  queryIdPrefix: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:564:        queryId: `${queryIdPrefix}-${Date.now()}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:5:// (before entering the scoring pipeline), reducing latency for
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:48:    const content = `## Problem & Purpose\n\nThis module improves retrieval precision.`;
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:49:    expect(extractDescription(content)).toBe('This module improves retrieval precision');
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:557:      queryId: 'consumption:1001',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-evaluation-runtime.vitest.ts:561:      queryId: 'consumption:1001',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:154:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 11, evalRunId: 22 });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:164:      queryId: 11,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:235:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 31, evalRunId: 32 });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:289:    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 41, evalRunId: 42 });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:168:      'Check network latency to embedding provider',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:324:      'Use memory_stats() to see available spec folders',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:328:    toolTip: 'memory_stats()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:377:      'Check memory_stats() to see what content is indexed'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:380:    toolTip: 'memory_stats()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:24: * Importance tier → quality score mapping.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:71:  /** Normalised quality score in [0, 1] derived from quality_score or importance_tier. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:80: * Derive a normalised quality score from importance_tier, clamped to [0, 1].
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:162: *   2. `importance_tier` → tier quality score mapping.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:236:  // -- 4. Importance tier signal (even without quality score fallback above) --
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:76:        'handle_memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:14:// T10 No latency degradation for simple queries (< 5 ms)
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:143:      'how does the embedding based query expansion pipeline handle recall precision tradeoffs';
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:147:      makeMockMemory(1, 'recall precision tradeoff semantic retrieval pipeline'),
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:149:      makeMockMemory(3, 'hybrid retrieval fusion recall semantic candidates'),
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:226:    const complexQuery = 'how does embedding expansion affect recall and precision tradeoffs here';
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-expansion.vitest.ts:291:  // -- T10: No latency degradation for simple queries -----------------------
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:277:      expect(hardNegIds.has(r.queryId)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:379:      expect(validIds.has(r.queryId)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth.vitest.ts:684:      expect(hardNegIds.has(r.queryId)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:8:// Generates surrogate metadata at index time to improve recall without
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:92: *   - Slash-separated synonyms: "recall/precision" → ["recall", "precision"]
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:11:  { tool: 'memory_stats', handler: 'handleMemoryStats', layer: 'L3' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:26:  { tool: 'eval_run_ablation', handler: 'handleEvalRunAblation', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:27:  { tool: 'eval_reporting_dashboard', handler: 'handleEvalReportingDashboard', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:37:  { camel: 'handleMemoryStats', snake: 'handle_memory_stats' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:53:  { camel: 'handleEvalRunAblation', snake: 'handle_eval_run_ablation' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:54:  { camel: 'handleEvalReportingDashboard', snake: 'handle_eval_reporting_dashboard' },
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:47:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:59:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:79:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:221: * @param queryId - Identifier for the query (can be eval_queries.id or a hash).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:227:  queryId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:241:      queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:264: * @param queryId - Optional filter by query ID. Omit for all selections.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:269:  queryId?: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:276:    const whereClause = queryId ? 'WHERE query_id = ?' : '';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:277:    const params = queryId ? [queryId, limit] : [limit];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:302:      queryId: row.query_id,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:342:  querySelectionPairs: Array<{ queryId: string; memoryId: number; queryText: string; memoryContent: string }>,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:353:          queryId: pair.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:379:        queryId: pair.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:413:          label.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:437: * Matches labels by (queryId, memoryId) pairs and computes:
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:454:  // Build manual label lookup: "queryId:memoryId" → relevance
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:457:    const key = `${m.queryId}:${m.memoryId}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:468:    const key = `${llm.queryId}:${llm.memoryId}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:34:  return { queryId: 1, memoryId, relevance, tier, createdAt };
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:127:   CORE: Recall@20
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:130:describe('Recall@20', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:285:  it('T006-D13: Weighted recall ≠ unweighted recall when tiers differ', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:295:  it('T006-D14: All relevant found → weighted recall = 1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:301:  it('T006-D15: No relevant items → weighted recall = 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:315:  it('T006-D17: Duplicate memoryIds in results do not inflate weighted recall', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:449:      'recall',
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:450:      'precision',
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:508:  it('T006-F02: All items have relevance 0 — recall and MRR = 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:555:  it('T005-02: computeF1 matches harmonic mean of deduped precision and recall', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:559:    const precision = computePrecision(results, gt, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:560:    const recall = computeRecall(results, gt, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-metrics.vitest.ts:561:    const expectedF1 = (2 * precision * recall) / (precision + recall);
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-decomposer.ts:12://   - Cap at MAX_FACETS (3) to bound latency
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:102:      'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:103:      'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:10:// Acceptance criterion: ablation run shows per-channel Recall@20 delta
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:83:function buildMockMetrics(recallDelta: number): AblationMetrics {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:88:    'MRR@5': entry(0.65, recallDelta * 0.8),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:89:    'precision@5': entry(0.5, recallDelta * 0.7),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:90:    'recall@5': entry(0.6, recallDelta),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:91:    'NDCG@5': entry(0.7, recallDelta * 0.9),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:92:    'MAP': entry(0.55, recallDelta * 0.6),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:93:    'hit_rate': entry(0.9, recallDelta * 0.3),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:94:    'latency_p50': entry(12, 0.5),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:95:    'latency_p95': entry(25, 1.2),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:403:  // 5. runAblation() — computes correct baseline and ablated recalls
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:414:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:419:        .filter(r => r.queryId === queryWithGT!.id && r.relevance > 0)
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:455:    it('computes baseline and ablated recalls with mock search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:466:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:473:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:489:        recallK: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:507:      // Each ablated channel should show reduced recall (delta < 0)
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:523:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:529:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:562:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:568:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:607:        queryId: queryWithGT!.id,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:623:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:629:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:656:        recallK: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:674:        expect(failure.queryId).toBe(queryWithGT!.id);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:720:      expect(md).toContain(`**Baseline Recall@20:** 0.8000`);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:738:      // Find the recall-delta table data rows (first table only — between first header and first blank line after it)
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:840:            queryId: 42,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:847:      expect(md).toContain('`graph` (queryId=42): Graph timeout');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:927:    // 1 baseline + 3 channels * (1 recall_delta + 8 metric deltas) = 28 total
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:931:    const baselineRow = rows.find(r => r.metric_name === 'ablation_baseline_recall@20');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:937:    const deltaRows = rows.filter(r => r.metric_name === 'ablation_recall@20_delta');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:983:        { channel: 'vector', error: 'vector outage', queryId: 1, query: 'q1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:984:        { channel: 'bm25', error: 'bm25 outage', queryId: 1, query: 'q1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:994:       WHERE metric_name = 'ablation_baseline_recall@20'
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1021:       WHERE metric_name = 'ablation_baseline_recall@20'
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1054:    // ACCEPTANCE CRITERION: ablation run shows per-channel Recall@20 delta
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1067:      GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1089:        r => r.queryId === matchedQuery.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1115:      recallK: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1147:    expect(md).toContain('Recall@20');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1150:  it('ablation report shows distinct per-channel Recall@20 deltas', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1156:      GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1162:      r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1206:    'MRR@5', 'precision@5', 'recall@5', 'NDCG@5', 'MAP',
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1207:    'hit_rate', 'latency_p50', 'latency_p95', 'token_usage',
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1225:  it('latency_p50 and latency_p95 are non-negative', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1228:      expect(result.metrics!['latency_p50'].baseline).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1229:      expect(result.metrics!['latency_p95'].baseline).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1230:      expect(result.metrics!['latency_p50'].ablated).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1231:      expect(result.metrics!['latency_p95'].ablated).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1275:    it('stores 9 additional metric rows per channel plus baseline + recall delta', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1286:      // 1 baseline + 3 channels * (1 recall_delta + 8 persisted metric deltas) = 1 + 27 = 28
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1291:        r => r.channel === 'vector' && r.metric_name.startsWith('ablation_') && r.metric_name !== 'ablation_recall@20_delta' && r.metric_name !== 'ablation_baseline_recall@20',
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1298:      expect(metricNames).toContain('ablation_precision@5_delta');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1299:      expect(metricNames).toContain('ablation_recall@5_delta');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1303:      expect(metricNames).toContain('ablation_latency_p50_delta');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1304:      expect(metricNames).toContain('ablation_latency_p95_delta');
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1319:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1324:        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1367:        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:9:      latencyMs: 9,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:20:      latencyMs: 9,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:36:      latencyMs: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:50:      latencyMs: 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:88:      latencyMs: 6,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:98:      latencyMs: 6,
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:123:    const contract = buildStructuralBootstrapContract('session_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:126:    expect(contract.sourceSurface).toBe('session_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:39:    const trace = createTrace('query', 'sess-123', 'recall');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:42:    expect(trace.intent).toBe('recall');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:830:      "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec about the indexing latency after save operations.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1101:      "notes": "Manual query targeting a specific quantitative formula documented in the system — tests factual precision retrieval."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1106:      "queryId": 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1111:      "queryId": 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1116:      "queryId": 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1121:      "queryId": 2,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1126:      "queryId": 2,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1131:      "queryId": 2,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1136:      "queryId": 3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1141:      "queryId": 3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1146:      "queryId": 3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1151:      "queryId": 4,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1156:      "queryId": 4,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1161:      "queryId": 4,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1166:      "queryId": 5,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1171:      "queryId": 5,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1176:      "queryId": 5,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1181:      "queryId": 6,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1186:      "queryId": 6,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1191:      "queryId": 6,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1196:      "queryId": 7,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1201:      "queryId": 7,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1206:      "queryId": 7,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1211:      "queryId": 8,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1216:      "queryId": 8,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1221:      "queryId": 8,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1226:      "queryId": 9,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1231:      "queryId": 9,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1236:      "queryId": 9,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1241:      "queryId": 10,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1246:      "queryId": 10,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1251:      "queryId": 10,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1256:      "queryId": 11,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1261:      "queryId": 11,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1266:      "queryId": 11,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1271:      "queryId": 12,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1276:      "queryId": 12,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1281:      "queryId": 12,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1286:      "queryId": 13,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1291:      "queryId": 13,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1296:      "queryId": 13,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1301:      "queryId": 14,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1306:      "queryId": 14,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1311:      "queryId": 14,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1316:      "queryId": 15,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1321:      "queryId": 15,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1326:      "queryId": 15,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1331:      "queryId": 16,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1336:      "queryId": 16,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1341:      "queryId": 16,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1346:      "queryId": 22,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1351:      "queryId": 22,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1356:      "queryId": 22,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1361:      "queryId": 23,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1366:      "queryId": 23,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1371:      "queryId": 23,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1376:      "queryId": 24,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1381:      "queryId": 24,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1386:      "queryId": 24,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1391:      "queryId": 25,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1396:      "queryId": 25,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1401:      "queryId": 25,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1406:      "queryId": 26,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1411:      "queryId": 26,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1416:      "queryId": 26,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1421:      "queryId": 27,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1426:      "queryId": 27,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1431:      "queryId": 27,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1436:      "queryId": 28,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1441:      "queryId": 28,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1446:      "queryId": 28,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1451:      "queryId": 29,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1456:      "queryId": 29,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1461:      "queryId": 29,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1466:      "queryId": 30,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1471:      "queryId": 30,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1476:      "queryId": 30,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1481:      "queryId": 31,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1486:      "queryId": 31,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1491:      "queryId": 31,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1496:      "queryId": 32,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1501:      "queryId": 32,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1506:      "queryId": 32,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1511:      "queryId": 33,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1516:      "queryId": 33,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1521:      "queryId": 33,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1526:      "queryId": 34,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1531:      "queryId": 34,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1536:      "queryId": 34,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1541:      "queryId": 35,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1546:      "queryId": 35,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1551:      "queryId": 35,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1556:      "queryId": 36,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1561:      "queryId": 36,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1566:      "queryId": 36,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1571:      "queryId": 37,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1576:      "queryId": 37,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1581:      "queryId": 37,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1586:      "queryId": 38,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1591:      "queryId": 38,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1596:      "queryId": 38,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1601:      "queryId": 39,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1606:      "queryId": 39,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1611:      "queryId": 39,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1616:      "queryId": 40,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1621:      "queryId": 40,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1626:      "queryId": 40,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1631:      "queryId": 41,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1636:      "queryId": 41,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1641:      "queryId": 41,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1646:      "queryId": 42,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1651:      "queryId": 42,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1656:      "queryId": 42,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1661:      "queryId": 43,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1666:      "queryId": 43,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1671:      "queryId": 43,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1676:      "queryId": 44,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1681:      "queryId": 44,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1686:      "queryId": 44,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1691:      "queryId": 45,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1696:      "queryId": 45,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1701:      "queryId": 45,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1706:      "queryId": 46,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1711:      "queryId": 46,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1716:      "queryId": 46,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1721:      "queryId": 47,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1726:      "queryId": 47,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1731:      "queryId": 47,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1736:      "queryId": 48,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1741:      "queryId": 48,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1746:      "queryId": 48,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1751:      "queryId": 49,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1756:      "queryId": 49,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1761:      "queryId": 49,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1766:      "queryId": 50,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1771:      "queryId": 50,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1776:      "queryId": 50,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1781:      "queryId": 51,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1786:      "queryId": 51,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1791:      "queryId": 51,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1796:      "queryId": 52,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1801:      "queryId": 52,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1806:      "queryId": 53,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1811:      "queryId": 53,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1816:      "queryId": 53,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1821:      "queryId": 54,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1826:      "queryId": 54,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1831:      "queryId": 54,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1836:      "queryId": 55,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1841:      "queryId": 55,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1846:      "queryId": 55,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1851:      "queryId": 56,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1856:      "queryId": 56,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1861:      "queryId": 56,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1866:      "queryId": 57,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1871:      "queryId": 57,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1876:      "queryId": 57,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1881:      "queryId": 58,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1886:      "queryId": 58,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1891:      "queryId": 58,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1896:      "queryId": 59,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1901:      "queryId": 59,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1906:      "queryId": 60,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1911:      "queryId": 60,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1916:      "queryId": 60,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1921:      "queryId": 61,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1926:      "queryId": 61,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1931:      "queryId": 61,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1936:      "queryId": 62,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1941:      "queryId": 62,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1946:      "queryId": 62,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1951:      "queryId": 63,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1956:      "queryId": 63,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1961:      "queryId": 64,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1966:      "queryId": 64,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1971:      "queryId": 64,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1976:      "queryId": 65,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1981:      "queryId": 65,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1986:      "queryId": 65,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1991:      "queryId": 66,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1996:      "queryId": 66,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2001:      "queryId": 66,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2006:      "queryId": 67,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2011:      "queryId": 67,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2016:      "queryId": 67,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2021:      "queryId": 68,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2026:      "queryId": 68,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2031:      "queryId": 68,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2036:      "queryId": 69,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2041:      "queryId": 69,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2046:      "queryId": 69,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2051:      "queryId": 70,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2056:      "queryId": 70,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2061:      "queryId": 70,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2066:      "queryId": 71,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2071:      "queryId": 71,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2076:      "queryId": 71,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2081:      "queryId": 72,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2086:      "queryId": 72,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2091:      "queryId": 72,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2096:      "queryId": 73,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2101:      "queryId": 73,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2106:      "queryId": 73,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2111:      "queryId": 74,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2116:      "queryId": 74,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2121:      "queryId": 74,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2126:      "queryId": 75,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2131:      "queryId": 75,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2136:      "queryId": 75,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2141:      "queryId": 76,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2146:      "queryId": 76,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2151:      "queryId": 76,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2156:      "queryId": 77,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2161:      "queryId": 77,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2166:      "queryId": 77,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2171:      "queryId": 78,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2176:      "queryId": 78,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2181:      "queryId": 79,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2186:      "queryId": 79,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2191:      "queryId": 79,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2196:      "queryId": 80,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2201:      "queryId": 80,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2206:      "queryId": 80,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2211:      "queryId": 81,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2216:      "queryId": 81,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2221:      "queryId": 81,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2226:      "queryId": 82,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2231:      "queryId": 82,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2236:      "queryId": 82,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2241:      "queryId": 83,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2246:      "queryId": 83,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2251:      "queryId": 83,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2256:      "queryId": 84,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2261:      "queryId": 84,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2266:      "queryId": 84,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2271:      "queryId": 85,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2276:      "queryId": 86,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2281:      "queryId": 86,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2286:      "queryId": 86,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2291:      "queryId": 87,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2296:      "queryId": 87,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2301:      "queryId": 87,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2306:      "queryId": 88,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2311:      "queryId": 88,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2316:      "queryId": 88,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2321:      "queryId": 89,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2326:      "queryId": 89,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2331:      "queryId": 89,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2336:      "queryId": 90,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2341:      "queryId": 90,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2346:      "queryId": 90,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2351:      "queryId": 91,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2356:      "queryId": 91,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2361:      "queryId": 91,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2366:      "queryId": 92,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2371:      "queryId": 92,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2376:      "queryId": 93,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2381:      "queryId": 93,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2386:      "queryId": 93,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2391:      "queryId": 94,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2396:      "queryId": 94,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2401:      "queryId": 94,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2406:      "queryId": 95,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2411:      "queryId": 95,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2416:      "queryId": 95,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2421:      "queryId": 96,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2426:      "queryId": 96,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2431:      "queryId": 96,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2436:      "queryId": 97,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2441:      "queryId": 97,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2446:      "queryId": 97,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2451:      "queryId": 98,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2456:      "queryId": 98,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2461:      "queryId": 98,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2466:      "queryId": 99,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2471:      "queryId": 99,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2476:      "queryId": 99,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2481:      "queryId": 100,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2486:      "queryId": 100,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2491:      "queryId": 100,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2496:      "queryId": 101,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2501:      "queryId": 101,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2506:      "queryId": 101,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2511:      "queryId": 102,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2516:      "queryId": 102,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2521:      "queryId": 102,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2526:      "queryId": 109,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2531:      "queryId": 109,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2536:      "queryId": 109,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2541:      "queryId": 110,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2546:      "queryId": 110,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:2551:      "queryId": 110,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:23:          : 'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:492:  describe('7. rerankResults (latency tracking)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:493:    it('tracks latency after successful provider call', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:498:      await crossEncoder.rerankResults('latency-test', docs, { useCache: false });
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:501:      expect(status.latency.count).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:502:      expect(status.latency.avg).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-roadmap-finalization.vitest.ts:210:      const results = searchFn('graph latency probe', { limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/lib/chunking/README.md:81:| `scoreChunk` | chunk-thinning.ts | Function | Computes composite quality score for a single chunk |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:55:  /** Recall at configured K (default 20). Named recall20 for backwards compatibility. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:56:  recall20: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:109:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:416: * Inserts one row per metric (mrr@5, ndcg@10, recall@20, hit_rate@1) plus
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:446:    insertSnapshot.run(evalRunId, 'recall@20',    result.metrics.recall20,  channel, queryCount, null, createdAt);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:504:  const recallK = k ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:506:  const fetchLimit = Math.max(mrrK, ndcgK, recallK, 20);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:559:    recall20: totalRecall / safeCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:590:function buildQueryGroundTruth(queryId: number): GroundTruthEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:591:  const q = GROUND_TRUTH_QUERIES.find(g => g.id === queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:598:    .filter(r => r.queryId === queryId)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:600:      queryId: r.queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:88:      queryId: 'ctx-order-preservation',
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-context-headers.vitest.ts:128:      queryId: 'ctx-budget-overhead',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:99:Post-channel: constitutional memory injection, quality score filtering, tier/contextType filtering.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:231:**Trade-off**: Adds 200-500ms latency but improves precision by 15-25%.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:561:// Track P95 latency (last 100 searches)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:53:  expect(typeof result.latencyMs).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:54:  expect(result.latencyMs).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:21:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:147:  latency_ms: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:178:  // (e.g. inversion_rate, inversion-rate, latency_ms).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:180:  const lowerIsBetterPrefixes = ['inversion', 'latency'];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:243:               AVG(latency_ms) AS latency_ms,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:413:    const latencyTotals = rows.reduce(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:415:        if (row.latency_ms == null) return acc;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:417:          weightedLatency: acc.weightedLatency + (row.latency_ms * row.query_count),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:418:          latencySamples: acc.latencySamples + row.query_count,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:421:      { weightedLatency: 0, latencySamples: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:423:    const avgLatency = latencyTotals.latencySamples > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:424:      ? Math.round((latencyTotals.weightedLatency / latencyTotals.latencySamples) * 100) / 100
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:76: * Filter results by minimum quality score.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:3:// Validates latency ceiling, token budget, feature flag regression.
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:39:    latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:156:  const latencyMs = performance.now() - start;
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:162:      latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:189:  it('T1: end-to-end latency is under 120ms', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:192:    expect(response.metrics.latencyMs).toBeLessThan(120);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:240:    expect(response.metrics.latencyMs).toBeLessThan(120);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:260:    expect(fixBug.metrics.latencyMs).toBeLessThan(120);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:261:    expect(understand.metrics.latencyMs).toBeLessThan(120);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:269:    expect(response.metrics.latencyMs).toBeLessThan(120);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:279:    expect(response.metrics).toHaveProperty('latencyMs');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:126:      expect(result).toEqual({ queryId: 0, evalRunId: 0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:133:      logChannelResult({ evalRunId: 1, queryId: 1, channel: 'vector' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:143:      logFinalResult({ evalRunId: 1, queryId: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:165:      expect(result.queryId).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:170:      const row = db.prepare('SELECT id FROM eval_queries WHERE id = ?').get(result.queryId) as { id: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:172:      expect(row!.id).toBe(result.queryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:177:      const { queryId } = logSearchQuery({ query: 'unique-query-text-T005-9', intent: null });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:179:      const row = db.prepare('SELECT * FROM eval_queries WHERE id = ?').get(queryId) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:187:    it('T005-9b: logSearchQuery uses queryId as evalRunId for cross-process-safe correlation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:189:      const { queryId, evalRunId } = logSearchQuery({ query: 'run-id-from-query-id' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:192:      expect(evalRunId).toBe(queryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:197:      const { queryId, evalRunId } = logSearchQuery({ query: 'channel-log-test-T005-10' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:200:        queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:204:        latencyMs: 42,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:213:      ).get(evalRunId, queryId, 'bm25') as { id: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:219:      const { queryId, evalRunId } = logSearchQuery({ query: 'ids-serialisation-test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:222:        queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:230:      ).get(evalRunId, queryId) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:240:      const { queryId, evalRunId } = logSearchQuery({ query: 'final-result-test-T005-12' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:243:        queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:247:        latencyMs: 123,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:255:      ).get(evalRunId, queryId) as { id: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:261:      const { queryId, evalRunId } = logSearchQuery({ query: 'fusion-method-test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:262:      logFinalResult({ evalRunId, queryId, fusionMethod: 'rrf' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:266:      ).get(evalRunId, queryId) as { fusion_method: string };
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:294:      const { queryId, evalRunId } = logSearchQuery({ query: 'run-id-consistency' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:296:      logChannelResult({ evalRunId, queryId, channel: 'vector' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:297:      logFinalResult({ evalRunId, queryId, fusionMethod: 'rrf' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:302:      ).get(queryId, 'vector') as { eval_run_id: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:306:      ).get(queryId) as { eval_run_id: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:328:        expect(typeof r.queryId).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:339:        logChannelResult({ evalRunId: 0, queryId: 0, channel: 'vector' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:347:        logFinalResult({ evalRunId: 0, queryId: 0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:354:      const { queryId, evalRunId } = logSearchQuery({ query: 'optional-fields-test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:356:        logChannelResult({ evalRunId, queryId, channel: 'graph' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:369:   * Measure p95 latency for N iterations of a function.
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:370:   * Returns the p95 in milliseconds.
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:381:    const p95idx = Math.floor(times.length * 0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:382:    return times[p95idx];
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:385:  it('T004b-1: eval logging overhead (p95) is less than 10ms absolute', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:386:    // This is a loose guard: each individual log call should complete in < 10ms on p95.
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:401:      const { queryId, evalRunId } = logSearchQuery({ query: 'bench query', intent: 'understand' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:402:      logChannelResult({ evalRunId, queryId, channel: 'vector', resultMemoryIds: [1, 2, 3], scores: [0.9, 0.8, 0.7] });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:403:      logFinalResult({ evalRunId, queryId, resultMemoryIds: [1, 2, 3], scores: [0.9, 0.8, 0.7] });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:407:    // Assert absolute overhead < 10ms on p95
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:420:    const p95 = measureP95(() => {
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:422:      logChannelResult({ evalRunId: 1, queryId: 1, channel: 'vector' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:423:      logFinalResult({ evalRunId: 1, queryId: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:428:    // No-op path should be sub-millisecond on p95
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:429:    expect(p95).toBeLessThan(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:433:    // Simulate a representative "search baseline" time: 50ms (well within real search latency).
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:447:      const { queryId, evalRunId } = logSearchQuery({ query: 'overhead test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:448:      logChannelResult({ evalRunId, queryId, channel: 'hybrid', resultMemoryIds: [1, 2], scores: [0.9, 0.8] });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-logger.vitest.ts:449:      logFinalResult({ evalRunId, queryId, resultMemoryIds: [1, 2], scores: [0.9, 0.8] });
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:60:    latency_ms REAL,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:73:    latency_ms REAL,
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:63:    latency_ms REAL,
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:88:  latency_ms?: number | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:113:      (eval_run_id, query_id, channel, hit_count, latency_ms)
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:122:      r.latency_ms ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:347:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 12.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:348:        { eval_run_id: 1, query_id: 2, channel: 'vector', hit_count: 3, latency_ms: 15.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:349:        { eval_run_id: 1, query_id: 1, channel: 'bm25', hit_count: 4, latency_ms: 8.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:350:        { eval_run_id: 1, query_id: 2, channel: 'bm25', hit_count: 2, latency_ms: 6.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:354:    it('aggregates channel hits, latency, and query counts', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:374:    it('weights grouped channel latency by query volume across runs', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:386:        { eval_run_id: 2, query_id: 1, channel: 'vector', hit_count: 4, latency_ms: 100.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:455:        // Iteration 1: precision@5 = 0.50
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:458:          metric_name: 'precision@5',
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:463:        // Iteration 2: precision@5 = 0.50 (unchanged)
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:466:          metric_name: 'precision@5',
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:479:      expect(trendNames).toEqual(['mrr@5', 'ndcg@5', 'precision@5']);
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:508:      const precTrend = report.trends.find(t => t.metric === 'precision@5');
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:608:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 10.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:878:        { eval_run_id: 1, query_id: 1, channel: 'vector', hit_count: 5, latency_ms: 10.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:879:        { eval_run_id: 1, query_id: 1, channel: 'bm25', hit_count: 3, latency_ms: 5.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/reporting-dashboard.vitest.ts:880:        { eval_run_id: 1, query_id: 1, channel: 'fts', hit_count: 2, latency_ms: 3.0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:155: * Maximum number of concept aliases to resolve per query (bounding latency).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts:165: * latency and external dependencies.
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:143:        { queryId: 1, memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:144:        { queryId: 1, memoryId: 2, relevance: 2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:145:        { queryId: 1, memoryId: 3, relevance: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:165:        { queryId: 1, memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:166:        { queryId: 1, memoryId: 2, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:167:        { queryId: 1, memoryId: 3, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:189:        { queryId: 1, memoryId: 1, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:190:        { queryId: 1, memoryId: 2, relevance: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:204:      expect(computeNDCG([], [{ queryId: 1, memoryId: 1, relevance: 3 }], 10)).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:15:// T6:  all channels represented → top-3 unchanged (precision preserved)
+.opencode/skills/system-spec-kit/mcp_server/tests/channel-enforcement.vitest.ts:226:  // ---- T6: All channels represented → top-3 unchanged (precision preserved) ----
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:62:    type: 'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:64:    queryId: 'q-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:190:  it('initBatchLearning also initializes feedback_events', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:194:      "SELECT name FROM sqlite_master WHERE type='table' AND name='feedback_events'"
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:31:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:52:  recall: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:58:  precision: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:241: * Compute F1@K — harmonic mean of Precision@K and Recall@K.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:403: * Recall@K but each relevant item is weighted by its tier:
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:606:    recall: computeRecall(results, groundTruth),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:607:    precision: computePrecision(results, groundTruth),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:78:    'negative_feedback_events',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:120:  'negative_feedback_events',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:317:  'weight_history', 'adaptive_signal_events', 'negative_feedback_events',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:125:        'network latency', 'packet routing', 'socket buffering',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:42: * 1500/2500/4000 tiers balance context window cost vs. recall —
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:10:// + countSaturation * 0.20 + latencyPenalty * 0.15
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:17:/** Default latency target in milliseconds. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:25:  latencyPenalty: 0.15,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:58:  /** Actual search latency in milliseconds. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:59:  latencyMs: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:62:   * Target latency in milliseconds.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:65:  latencyTargetMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:76:  /** latencyScore × 0.15 */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:77:  latencyPenalty: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:82:  /** Composite quality score in [0, 1]. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:115: * Compute the latency penalty component.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:116: * Returns max(0, 1 − latencyMs / latencyTargetMs).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:117: *   - 1.0 at latencyMs = 0 (perfect — full credit)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:118: *   - 0.0 at latencyMs ≥ latencyTargetMs (at or over target)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:119: * When latencyTargetMs ≤ 0 it is treated as DEFAULT_LATENCY_TARGET_MS.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:122:  latencyMs: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:123:  latencyTargetMs: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:126:    latencyTargetMs > 0 ? latencyTargetMs : DEFAULT_LATENCY_TARGET_MS;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:127:  return Math.max(0, 1 - latencyMs / safeTarget);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:158: *   latencyPenalty  — max(0, 1 − latencyMs / latencyTargetMs)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:174:    latencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:175:    latencyTargetMs = DEFAULT_LATENCY_TARGET_MS,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:184:  const rawLatencyScore = computeLatencyScore(latencyMs, latencyTargetMs);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:191:    latencyPenalty: rawLatencyScore * WEIGHTS.latencyPenalty,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-quality-proxy.ts:199:    components.latencyPenalty;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:23:        memory_stats: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:5:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:19:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:22:const mockLogSearchQuery = vi.fn<() => EvalSearchQueryResult>(() => ({ queryId: 77, evalRunId: 88 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:46:| `eval-metrics.ts` | MRR, NDCG, recall, precision, F1, MAP, hit-rate, inversion-rate, and constitutional metrics |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:47:| `eval-quality-proxy.ts` | Pure quality proxy formula for latency/result quality tradeoff scoring |
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:94:    'retrieval.avg_channel_latency_ms': safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:96:      'SELECT COALESCE(AVG(latency_ms), 0) AS value FROM eval_channel_results',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:102:    'retrieval.avg_final_latency_ms': safeScalarMetric(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:104:      'SELECT COALESCE(AVG(latency_ms), 0) AS value FROM eval_final_results',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:104:  latency: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:106:    p95: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:138:const latencyTracker: { durations: number[] } = { durations: [] };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:458:    // Track latency
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:460:    latencyTracker.durations.push(duration);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:461:    if (latencyTracker.durations.length > MAX_LATENCY_SAMPLES) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:462:      latencyTracker.durations.shift();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:501:  const durations = latencyTracker.durations;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:504:  let p95 = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:509:    // L3 FIX: Correct p95 percentile index with bounds clamping
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:510:    p95 = sorted[Math.min(Math.ceil(sorted.length * 0.95) - 1, sorted.length - 1)] || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:517:    latency: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:519:      p95: Math.round(p95),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:527:  latencyTracker.durations = [];
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:165:      'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:185:      'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:186:      'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:199:      'session_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:293:      'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:299:      'eval_run_ablation', 'eval_reporting_dashboard',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:320:    it('T16d: only session_health is excluded from tool-call tracking', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:321:      expect(sourceCode).toMatch(/if \(name !== 'session_health'\) \{/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:998:        { id: 'call-3', params: { name: 'memory_stats', arguments: {} } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1064:          { id: 'call-follow-2', params: { name: 'memory_stats', arguments: {} } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1201:        latencyMs: 7,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1231:        latencyMs: 7,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1249:        latencyMs: 11,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1334:        latencyMs: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2089:      'memory_stats': '[L3:Discovery]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2090:      'memory_health': '[L3:Discovery]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2104:      'eval_run_ablation': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2105:      'eval_reporting_dashboard': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:51:          { id: 'q-1', type: 'question_node', label: 'What causes latency?', iteration: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:10:const mockLogSearchQuery = vi.fn((_payload: unknown) => ({ queryId: 11, evalRunId: 22 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:181:  const budgetMs = remainingMs ?? 400; // 400ms default latency budget
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:143:      "Actual values may vary slightly between runs due to model precision",
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:175:        r.queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:122:        memory_stats: 'L3',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:123:        memory_health: 'L3',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:183:      { includeContent: true, queryId: 'test-q1' }
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:198:    expect(overflow!.queryId).toBe('test-q1');
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:229:    const { overflow } = truncateToBudget(results, 100, { queryId: 'eval-test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget.vitest.ts:233:    expect(log.queryId).toBe('eval-test');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:352: * D2 REQ-D2-005: Index-time surrogates for recall improvement.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4:// Feature catalog: Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:70:  recallK?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:126:  /** Number of queries where removing this channel decreased recall (channel was helpful). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:128:  /** Number of queries where removing this channel increased recall (channel was harmful). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:148:  'precision@5': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:149:  'recall@5': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:153:  'latency_p50': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:154:  'latency_p95': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:165:  queryId?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:182:  /** Baseline Recall@K across all queries (all channels enabled). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:220: * in the active DB. Chunk-backed or missing IDs make Recall@K comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:368:function getGroundTruthForQuery(queryId: number): GroundTruthEntry[] {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:370:    .filter(r => r.queryId === queryId)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:372:      queryId: r.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:445: * Compute mean Recall@K across a set of per-query recall values.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:447:function meanRecall(recalls: number[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:448:  if (recalls.length === 0) return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:449:  const sum = recalls.reduce((a, b) => a + b, 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:450:  return sum / recalls.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:459:): { mrr: number; precision: number; recall: number; ndcg: number; map: number; hitRate: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:462:    precision: computePrecision(results, gt, 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:463:    recall: computeRecall(results, gt, 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:487:  baselinePerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }>,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:488:  ablatedPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }>,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:503:  const bLatencies = bMetrics.map(m => m.latencyMs).sort((a, b) => a - b);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:504:  const aLatencies = aMetrics.map(m => m.latencyMs).sort((a, b) => a - b);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:516:    'precision@5': entry(bMetrics.map(m => m.metrics.precision), aMetrics.map(m => m.metrics.precision)),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:517:    'recall@5': entry(bMetrics.map(m => m.metrics.recall), aMetrics.map(m => m.metrics.recall)),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:521:    'latency_p50': {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:526:    'latency_p95': {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:543: * 3. Compute per-query Recall@K delta
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:562:  const recallK = config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:590:    const baselineMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }> = new Map();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:601:      const latencyMs = performance.now() - t0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:603:      const recall = computeRecall(results, gt, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:604:      baselineRecalls.set(q.id, recall);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:605:      baselineMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:617:      const ablatedMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }> = new Map();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:628:          const latencyMs = performance.now() - t0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:630:          const recall = computeRecall(results, gt, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:631:          ablatedRecalls.set(q.id, recall);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:632:          ablatedMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:641:        for (const [queryId, baselineR] of baselineRecalls) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:642:          const ablatedR = ablatedRecalls.get(queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:683:              queryId: failedQuery.id,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:690:        const querySuffix = failedQuery ? ` (queryId=${failedQuery.id})` : '';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:727: * - metric_name: 'ablation_recall@20_delta'
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:732: * Also stores the baseline recall as a separate row.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:755:    const recallK = report.config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:763:      // Store baseline recall
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:766:        `ablation_baseline_recall@${recallK}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:787:          `ablation_recall@${recallK}_delta`,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:863:  const recallK = report.config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:864:  lines.push(`- **Baseline Recall@${recallK}:** ${report.overallBaselineRecall.toFixed(4)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:908:  lines.push(`Ch. Helped = queries where channel was helpful (removing it decreased recall). * = significant at p<0.05.`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:915:      const queryInfo = failure.queryId !== undefined ? ` (queryId=${failure.queryId})` : '';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:926:    lines.push(`| Channel | MRR@5 | P@5 | R@5 | NDCG@5 | MAP | Hit Rate | Lat p50 | Lat p95 |`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:935:        `| ${m['precision@5'].delta >= 0 ? '+' : ''}${m['precision@5'].delta.toFixed(4)} ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:936:        `| ${m['recall@5'].delta >= 0 ? '+' : ''}${m['recall@5'].delta.toFixed(4)} ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:940:        `| ${m['latency_p50'].delta >= 0 ? '+' : ''}${m['latency_p50'].delta.toFixed(1)}ms ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:941:        `| ${m['latency_p95'].delta >= 0 ? '+' : ''}${m['latency_p95'].delta.toFixed(1)}ms |`,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:957:    lines.push(`${i + 1}. **${r.channel}** — contribution: ${contribution >= 0 ? '+' : ''}${contribution.toFixed(4)} Recall@${recallK}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:333:    expect(result).toHaveProperty('latencyMs');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:362:  it('result.latencyMs is a non-negative number', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:366:    expect(typeof result?.latencyMs).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:367:    expect(result?.latencyMs).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:516:    expect(result).toHaveProperty('latencyMs');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:530:  it('result.latencyMs is non-negative', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:534:    expect(result?.latencyMs).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:661:    expect(result).toHaveProperty('latencyMs');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:175:      expect(cols).toContain('latency_ms');
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-db.vitest.ts:188:      expect(cols).toContain('latency_ms');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts:41:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:12://   weak    — search_shown, same_topic_requery (passive exposure)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:23: *   result_cited | follow_on_tool_use > query_reformulated > same_topic_requery > search_shown
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:26:  | 'search_shown'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:27:  | 'result_cited'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:41:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:47:/** Row shape stored in feedback_events table. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:61:  queryId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:79:  result_cited:         'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:83:  search_shown:         'weak',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:116:  CREATE TABLE IF NOT EXISTS feedback_events (
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:119:                 'search_shown','result_cited','query_reformulated',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:131:  CREATE INDEX IF NOT EXISTS idx_feedback_type      ON feedback_events(type);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:132:  CREATE INDEX IF NOT EXISTS idx_feedback_memory_id ON feedback_events(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:133:  CREATE INDEX IF NOT EXISTS idx_feedback_query_id  ON feedback_events(query_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:135:  CREATE INDEX IF NOT EXISTS idx_feedback_timestamp  ON feedback_events(timestamp);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:136:  CREATE INDEX IF NOT EXISTS idx_feedback_session    ON feedback_events(session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:147: * Ensure the feedback_events table and indices exist in the given database.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:188:      event.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:203: * Record a batch of feedback events (e.g., all search_shown results from
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:249:    if (opts.queryId !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:251:      params.push(opts.queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:275:    const sql = `SELECT * FROM feedback_events ${where} ORDER BY timestamp ASC ${effectiveLimit} ${offset}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:294:      const row = db.prepare('SELECT COUNT(*) as count FROM feedback_events WHERE type = ?')
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:298:    const row = db.prepare('SELECT COUNT(*) as count FROM feedback_events').get() as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:325:      FROM feedback_events
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:20:  latency?: { candidateLatencyMs?: number; totalLatencyMs?: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:110:    expect(t.latency.totalLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:111:    expect(t.latency.candidateLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:112:    expect(t.latency.fusionLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:113:    expect(t.latency.rerankLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:114:    expect(t.latency.boostLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:140:    expect(t.latency.candidateLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:167:    expect(t.latency.candidateLatencyMs).toBe(50);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:168:    expect(t.latency.fusionLatencyMs).toBe(30);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:169:    expect(t.latency.rerankLatencyMs).toBe(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:170:    expect(t.latency.boostLatencyMs).toBe(10);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:171:    expect(t.latency.totalLatencyMs).toBe(110);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:177:    expect(t.latency.candidateLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:178:    expect(t.latency.totalLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:184:    expect(t.latency.fusionLatencyMs).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:251:  it('T06c: quality proxy with max latency reduces score', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:261:    // With 5s latency, latency component = 0, reducing overall score
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:308:    expect((json as TelemetryJson).latency?.candidateLatencyMs).toBe(42);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:327:    expect(json.latency).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:364:  it('T10: re-recording a latency stage overwrites previous value', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:367:    expect(t.latency.totalLatencyMs).toBe(100);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:370:    expect(t.latency.candidateLatencyMs).toBe(50);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:371:    expect(t.latency.totalLatencyMs).toBe(50);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:156:      expect(status.latency).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:157:      expect(typeof status.latency.avg).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:158:      expect(typeof status.latency.p95).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:159:      expect(typeof status.latency.count).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:165:      expect(status.latency.count).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:169:  // Sanitize via shared tokenizer, then wrap each token in quotes and join with OR for recall
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:5:// Validates upsert, query, replay, and latency expectations
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:46:          { id: 'q-1', type: 'question_node', label: 'What causes latency?', iteration: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:123:  describe('latency budget contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:62:    tool: 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:31:    type: 'search_shown',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:33:    queryId: 'query-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:80:  it('creates feedback_events table with correct columns', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:82:    const columns = db.prepare('PRAGMA table_info(feedback_events)').all() as Array<{ name: string }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:93:  it('creates indices for feedback_events', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:96:      "SELECT name FROM sqlite_master WHERE type='index' AND tbl_name='feedback_events'"
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:112:    expect(FEEDBACK_SCHEMA_SQL).toContain('search_shown');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:113:    expect(FEEDBACK_SCHEMA_SQL).toContain('result_cited');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:125:    expect(resolveConfidence('search_shown', 'strong')).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:126:    expect(resolveConfidence('result_cited', 'weak')).toBe('weak');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:130:    expect(resolveConfidence('result_cited')).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:134:    expect(resolveConfidence('search_shown')).toBe('weak');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:139:      'search_shown',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:140:      'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:151:    expect(EVENT_TYPE_CONFIDENCE['result_cited']).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:160:    expect(EVENT_TYPE_CONFIDENCE['search_shown']).toBe('weak');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:184:      'search_shown',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:185:      'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:212:      type: 'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:214:      queryId: 'q-999',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:222:    expect(row.type).toBe('result_cited');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:243:      queryId: 'q-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:298:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:301:    const shown = getFeedbackEvents(db, { type: 'search_shown' });
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:303:    expect(shown[0].type).toBe('search_shown');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:359:    const results = getFeedbackEvents(db, { type: 'result_cited' });
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:446:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:447:    logFeedbackEvent(db, makeEvent({ type: 'search_shown' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:449:    expect(getFeedbackEventCount(db, 'search_shown')).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:450:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:85:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:92:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:99:  /** Wall-clock latency for this channel in milliseconds. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:100:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:107:  queryId: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:114:  /** Total end-to-end latency in milliseconds. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:115:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:137: * context, triggers). Returns the queryId and evalRunId that
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:140: * Fail-safe: never throws. Returns { queryId: 0, evalRunId: 0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:144:  const noop: LogSearchQueryResult = { queryId: 0, evalRunId: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:160:    const queryId = typeof result.lastInsertRowid === 'bigint'
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:164:    // Use queryId as the canonical per-invocation run ID.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:166:    const evalRunId = queryId > 0 ? queryId : generateEvalRunId();
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:168:    return { queryId, evalRunId };
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:183:  if (!params.evalRunId || !params.queryId) return;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:189:        (eval_run_id, query_id, channel, result_memory_ids, scores, latency_ms, hit_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:193:      params.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:197:      params.latencyMs ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:213:  if (!params.evalRunId || !params.queryId) return;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:219:        (eval_run_id, query_id, result_memory_ids, scores, fusion_method, latency_ms)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:223:      params.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-logger.ts:227:      params.latencyMs ?? null
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:208:    it('T005-E3: handle_eval_reporting_dashboard alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:209:      expect(typeof evalReporting.handle_eval_reporting_dashboard).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:212:    it('T005-E4: handle_eval_run_ablation alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:213:      expect(typeof evalReporting.handle_eval_run_ablation).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:257:    it('T006-A4: recallK defaults to 20 when not provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:261:      expect(call[1].recallK).toBe(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:264:    it('T006-A5: recallK is clamped to >= 1', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:265:      await evalReporting.handleEvalRunAblation({ channels: ['vector'], recallK: 0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:268:      expect(call[1].recallK).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:325:          context: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:382:          context: 'eval_run_ablation',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:404:        recallK: 7,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:434:        recallK: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:460:        metricFilter: ['recall@20'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts:468:        metricFilter: ['recall@20'],
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:350:  const queryIdToText = new Map<string, string>();
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:352:    const queryId = `consumption:${row.id}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:353:    queryIdToText.set(queryId, row.query_text);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:354:    return queryId;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:360:  for (const queryId of holdoutQueryIds) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:361:    const queryText = queryIdToText.get(queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:369:        replayed.set(queryId, ranks);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:373:      console.warn(`[shadow-evaluation-runtime] query replay failed for ${queryId}: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:440:      (queryId) => replayed.get(queryId)?.live ?? [],
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:441:      (queryId) => replayed.get(queryId)?.shadow ?? [],
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:762:        latencyMs: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:49:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:218: * @param queryId - Identifier for the query being evaluated
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:224:  queryId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:282:    queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:6:  - "latency metrics"
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:35:The telemetry module provides structured observability for the retrieval pipeline and scoring subsystem. It records per-stage latency, search mode selection, fallback triggers, composite quality scores, scoring observation samples, trace payload validation, and agent consumption events. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:53:| **QualityMetrics** | Composite 0-1 quality proxy derived from relevance, result count, and latency |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:94:| `SPECKIT_EXTENDED_TELEMETRY` | `false` | Enable extended metric collection (latency breakdown, quality scoring, trace payload validation, and architecture updates). Set to `true` to activate |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:118:| `latency` | `LatencyMetrics` | Per-stage timing breakdown |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:165:**Purpose**: Composite quality score for the retrieval run.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:346:const latency: LatencyMetrics = {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:378:  latency,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:391:  // Collect full latency breakdown and quality score
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:392:  telemetry.latency = collectLatencyMetrics(stages);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:393:  telemetry.quality = computeQualityScore(results, requestedLimit, telemetry.latency.totalLatencyMs);
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:408:    queryId: 'q-abc-123',
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:447:| Compare `latency.rerankLatencyMs` to `0` | Detect runs where reranking was skipped |
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:304:  describe('T154: meta.latencyMs measurement', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305:    it('should calculate latency when startTime provided', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:318:      expect(typeof envelope.meta.latencyMs).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:319:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(45);
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:322:    it('should not include latencyMs when startTime not provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:329:      expect(envelope.meta.latencyMs).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:332:    it('should measure latency in error responses', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:343:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:346:    it('should measure latency in empty responses', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:356:      expect(envelope.meta.latencyMs).toBeGreaterThanOrEqual(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:38:// CHK-064: Reranker latency benchmark — scorePrompt for 20 candidates < 500ms
+.opencode/skills/system-spec-kit/mcp_server/tests/local-reranker.vitest.ts:39:describe('local-reranker latency benchmark (CHK-064)', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:38:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:123:      previousQueryId: previous.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:132:      previousQueryId: previous.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:153: * @param queryId - Opaque query identifier for event correlation
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:161:  queryId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:179:  entries.push({ tokens, timestamp, queryId, shownMemoryIds });
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:189:        queryId: detection.previousQueryId ?? queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:202: * Log `result_cited` events for memories whose content was loaded.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:208:  queryId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:217:      type: 'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:219:      queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:252:      queryId: latest.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:5:// Captures latency, mode selection, fallback, and quality-proxy
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:41:/** Maximum latency value (ms) for quality proxy normalization.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:42: *  Latencies at or above this ceiling map to a 0.0 quality score component. */
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:160:  latency: LatencyMetrics;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:185:    latency: {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:239:  t.latency[stage] = clamped;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:241:  t.latency.totalLatencyMs =
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:242:    t.latency.candidateLatencyMs +
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:243:    t.latency.fusionLatencyMs +
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:244:    t.latency.rerankLatencyMs +
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:245:    t.latency.boostLatencyMs;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:481: * constants (latency ceiling, count saturation) are passed as parameters.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:489:    latencyMs: t.latency.totalLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:490:    latencyTargetMs: QUALITY_PROXY_LATENCY_CEILING_MS,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:654:    latency: {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:655:      totalLatencyMs: t.latency.totalLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:656:      candidateLatencyMs: t.latency.candidateLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:657:      fusionLatencyMs: t.latency.fusionLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:658:      rerankLatencyMs: t.latency.rerankLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:659:      boostLatencyMs: t.latency.boostLatencyMs,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:5:// To full pipeline (all 5 channels) while reducing simulated latency.
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:9:// - Use channel count as latency proxy (linear model: channelCount * baseMs)
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:105:/** Simulated base latency per channel (ms). */
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:146:/** Simulate query processing latency (channel count as proxy). */
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:231:  it('T11: simple queries simulated latency is ~60% faster than full pipeline', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:240:  it('T12: moderate queries simulated latency is between simple and full', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:249:  it('T13: p95 latency for simple queries (2 channels) is <30ms', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:255:    const p95Index = Math.floor(sorted.length * 0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:256:    const p95 = sorted[p95Index];
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:257:    expect(p95).toBeLessThan(30);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:260:  it('T14: latency scales linearly with channel count', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:857:      logger.info('Migration v15: Created quality score index');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:231: * @param queryIds - Full set of available query IDs
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:236:  queryIds: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:242:  if (queryIds.length === 0) return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:244:  if (holdoutPercent >= 1) return [...queryIds];
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:246:  const targetCount = Math.max(1, Math.round(queryIds.length * holdoutPercent));
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:250:    return stratifiedSample(queryIds, opts.intentClasses, targetCount, seed);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:255:  const tagged = queryIds.map(id => ({ id, sortKey: rng() }));
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:264:  queryIds: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:275:  for (const qid of queryIds) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:295:  const totalItems = queryIds.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:352:        comparison.queryId,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:381:  opts: { queryId?: string; cycleId?: string; limit?: number } = {}
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:389:    if (opts.queryId) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:391:      params.push(opts.queryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:596:  computeLiveRanks: (queryId: string) => RankedItem[],
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:597:  computeShadowRanks: (queryId: string) => RankedItem[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:92: * latency minimal and the ≤2 LLM calls per deep query budget intact.
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:63:    expect(result.latencyMs).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:34:  latency_ms?: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:55:  avg_latency_ms: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:108:      latency_ms REAL,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:148:         session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:159:      event.latency_ms ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:184:    avg_latency_ms: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:230:        AVG(latency_ms) as avg_latency
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:232:    `).get(...params) as { avg_results: number | null; avg_latency: number | null };
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:251:      avg_latency_ms: Number((avgRow?.avg_latency ?? 0).toFixed(2)),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:196:      'culinary arts require precision and creativity',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:387:      'The dimensionality of embeddings affects search precision.',
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:17://   - All reads and writes use the existing feedback_events table
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:160: * Also calls initFeedbackLedger to guarantee feedback_events exists.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:173:  const queryIds = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:176:    const holdout = selectHoldoutQueries(queryIds);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:182:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 0.50 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:187:    const h1 = selectHoldoutQueries(queryIds, { seed: 42 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:188:    const h2 = selectHoldoutQueries(queryIds, { seed: 42 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:194:    const h1 = selectHoldoutQueries(queryIds, { seed: 42, holdoutPercent: 0.50 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:195:    const h2 = selectHoldoutQueries(queryIds, { seed: 7777, holdoutPercent: 0.50 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:205:    expect(selectHoldoutQueries(queryIds, { holdoutPercent: 0 })).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:209:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 1.0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:210:    expect(holdout.length).toBe(queryIds.length);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:212:    for (const q of queryIds) {
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:224:    const holdout = selectHoldoutQueries(queryIds, { holdoutPercent: 0.50 });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:226:      expect(queryIds).toContain(q);
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:489:    expect(result.queryId).toBe('q1');
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:684:        queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:703:      const history = getShadowScoringHistory(db, { queryId: 'q1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:719:        queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:739:        queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:761:        queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:768:        queryId: 'q2',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:791:        queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:1394:      queryId: 'q1',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:1402:    const allHistory = getShadowScoringHistory(db, { queryId: 'q1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:430:  it('rejects content with quality score below 0.6 when quality loop enabled', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:96:  it('logs result_cited for each cited memory id', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:101:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:102:    const events = getFeedbackEvents(db, { type: 'result_cited' });
+.opencode/skills/system-spec-kit/mcp_server/tests/query-flow-tracker.vitest.ts:141:    expect(getFeedbackEventCount(db, 'result_cited')).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:33:    latencyMs: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:163:      latencyMs: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:29:  queryId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:127:      obs.queryId,
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:94:      recall20: mrr5 * 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:357:  it('T008.7b: metric row names are correct (mrr@5, ndcg@10, recall@20, hit_rate@1)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:367:    expect(metricNames).toContain('recall@20');
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:404:    expect(typeof result.metrics.recall20).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:472:      if (relevance.queryId <= 3 && relevance.relevance > 0 && !relevantMemoryByQueryId.has(relevance.queryId)) {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:473:        relevantMemoryByQueryId.set(relevance.queryId, relevance.memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-baseline.vitest.ts:495:    expect(withKOverride.metrics.recall20).not.toBeCloseTo(baseline.metrics.recall20, 10);
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:315:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:338:    expect(resumed.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:354:    expect(explicit.confidence).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:407:  it('T033: Quick mode description mentions low latency', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:409:    expect(desc.includes('low latency') || desc.includes('fast')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:195:      queryId: 'test-q-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:215:      queryId: 'age-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:250:      queryId: 'tm01-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:270:      queryId: 'tm01-not-applied',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:290:      queryId: 'delta-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:335:        queryId: `q${i}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:352:      memoryId: 1, queryId: 'q1', timestamp: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:358:      memoryId: 2, queryId: 'q2', timestamp: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:387:      queryId: 'safe-test',
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:435:        queryId: 'no-table',
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:118:      logSearchQuery: vi.fn(() => ({ queryId: 0, evalRunId: 0 })),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:105:  logSearchQuery: vi.fn(() => ({ queryId: 11, evalRunId: 22 })),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:33:  'negative_feedback_events',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:128:    CREATE TABLE IF NOT EXISTS negative_feedback_events (
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:347:    INSERT INTO negative_feedback_events (id, memory_id, created_at_ms)
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:6:// Pattern detection, fail-safe behavior, latency tracking.
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:34:  latency_ms?: number | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:50:       session_id, timestamp, latency_ms, spec_folder_filter, metadata)
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:60:    event.latency_ms ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:105:    expect(columnNames).toContain('latency_ms');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:158:      latency_ms: 42.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:170:    expect(row.latency_ms).toBe(42.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:183:      latency_ms: 150.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:201:      latency_ms: 5.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:218:      latency_ms: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:272:    expect(stats.avg_latency_ms).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:302:  it('T003-E: calculates avg_latency_ms', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:303:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 100 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:304:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 200 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:306:    expect(stats.avg_latency_ms).toBe(150);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:568:describe('T006: latency tracking', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:579:  it('T006-A: latency_ms is stored as a float', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:580:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 123.456 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:581:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:582:    expect(typeof row.latency_ms).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:583:    expect(row.latency_ms).toBeCloseTo(123.456);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:586:  it('T006-B: latency_ms is null when not provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:588:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number | null };
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:589:    expect(row.latency_ms).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:592:  it('T006-C: avg_latency_ms in stats reflects stored latencies', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:593:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:594:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 20 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:595:    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 1, latency_ms: 30 });
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:597:    expect(stats.avg_latency_ms).toBe(20);
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:600:  it('T006-D: latency can be measured via Date.now() diff', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:607:      latency_ms: fakeLatency,
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:611:    const row = db.prepare(`SELECT latency_ms FROM consumption_log`).get() as { latency_ms: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:612:    expect(row.latency_ms).toBe(fakeLatency);
+.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:20:  latencyMs?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:179:  // Calculate latency if start time provided
+.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:180:  const latencyMs = startTime ? Date.now() - startTime : null;
+.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts:186:    ...(latencyMs !== null && { latencyMs }),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.ts:18: * this to 0.25 for better discovery recall. The R17 fan-effect divisor (sqrt scaling)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:93:| **Testing Effect**           | Low retrievability = greater boost on success                                         | Harder recalls strengthen more       |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:307:  GRADE_GOOD,   // grade (3 = successful recall)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:323:- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.2
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:324:- `GRADE_HARD (2)`: Difficult recall → gradeFactor 0.8
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:325:- `GRADE_GOOD (3)`: Successful recall → gradeFactor 1.0
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:326:- `GRADE_EASY (4)`: Easy recall → gradeFactor 1.3
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:970:A: FSRS is validated on 100M+ real human memory data from Anki. Exponential decay (`e^(-t/τ)`) decays too fast initially and too slow later. FSRS power-law decay `(1 + (19/81) × t/S)^(-0.5)` matches how human memory actually works, with a "desirable difficulty" effect where harder recalls strengthen memories more.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:976:A: **Retrievability** (R) is the FSRS-calculated probability of recall (0.0 to 1.0), based on stability and elapsed time. **Attention score** is the session-specific activation level in `working_memory`, which starts at 1.0 when a memory enters the session and decays at 0.95 per cycle.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:158:    | 'session_health'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:77: * Calculate retrievability (probability of recall) using FSRS v4 formula.
 
 codex
 The benchmark story is already getting clearer: MemPalace measures a lot more than the README headline suggests, but most of its operational metrics live in benchmark-only pytest lanes rather than default health or runtime telemetry. I’m now reading the exact files on both sides that define those metrics so I can separate “benchmark score,” “quality signal,” and “system health” cleanly in the final iteration write-up.
@@ -5262,7 +5262,7 @@ class TestBoostAtIncreasingScale:
             record_metric("boost_scaling", "trend_positive", trend_positive)
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ────────────────────────────────────────────────────────────────
 // MODULE: Eval Reporting
@@ -5526,7 +5526,7 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
         { dbPath },
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Feedback Event Ledger (REQ-D4-001)
@@ -5790,7 +5790,7 @@ export function getFeedbackEvents(
     }
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Health Handler
@@ -5989,7 +5989,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
 }
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ────────────────────────────────────────────────────────────────
 // MODULE: Memory Crud Health
@@ -6253,7 +6253,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       tool: 'memory_health',
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Ablation Framework (R13-S3)
@@ -6517,9 +6517,9 @@ export function inspectGroundTruthAlignment(
   const chunkMemoryIds = new Set<number>();
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Retrieval Telemetry (C136-12)
@@ -6887,223 +6887,223 @@ export {
 };
 
 exec
-/bin/zsh -lc 'rg -n "Recall@|recall|queryCoverage|precision|MRR|dashboard|metric snapshots|eval_metric_snapshots|storeAblationResults|generateDashboardReport|search_shown|result_cited|follow_on_tool_use|same_topic_requery|query_reformulated" .opencode/skill/system-spec-kit/mcp_server/lib/eval .opencode/skill/system-spec-kit/mcp_server/lib/feedback .opencode/skill/system-spec-kit/mcp_server/handlers/save' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "Recall@|recall|queryCoverage|precision|MRR|dashboard|metric snapshots|eval_metric_snapshots|storeAblationResults|generateDashboardReport|search_shown|result_cited|follow_on_tool_use|same_topic_requery|query_reformulated" .opencode/skills/system-spec-kit/mcp_server/lib/eval .opencode/skills/system-spec-kit/mcp_server/lib/feedback .opencode/skills/system-spec-kit/mcp_server/handlers/save' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:43:  type: 'query_reformulated' | 'same_topic_requery' | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:121:      type: 'same_topic_requery',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:130:      type: 'query_reformulated',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:202: * Log `result_cited` events for memories whose content was loaded.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:217:      type: 'result_cited',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:228: * Log `follow_on_tool_use` events for memories shown in a recent search.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:250:      type: 'follow_on_tool_use',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:10://   strong  — citation, follow_on_tool_use (result was used)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:11://   medium  — query_reformulated (implicit relevance dissatisfaction)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:12://   weak    — search_shown, same_topic_requery (passive exposure)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:23: *   result_cited | follow_on_tool_use > query_reformulated > same_topic_requery > search_shown
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:26:  | 'search_shown'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:27:  | 'result_cited'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:28:  | 'query_reformulated'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:29:  | 'same_topic_requery'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:30:  | 'follow_on_tool_use';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:79:  result_cited:         'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:80:  follow_on_tool_use:   'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:81:  query_reformulated:   'medium',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:82:  same_topic_requery:   'weak',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:83:  search_shown:         'weak',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:119:                 'search_shown','result_cited','query_reformulated',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:120:                 'same_topic_requery','follow_on_tool_use'
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:203: * Record a batch of feedback events (e.g., all search_shown results from
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:7:// Provides: Kendall tau, NDCG, MRR, rank comparison, and
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:37:  /** MRR delta: shadow MRR minus live MRR. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:190:   5. MRR
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:194: * Compute MRR (Mean Reciprocal Rank) for a single query.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:199:export function computeMRR(rankedItems: RankedItem[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:216: * Kendall tau correlation, NDCG delta, and MRR delta.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:276:  // MRR delta
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:277:  const liveMrr = computeMRR(liveJudged);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:278:  const shadowMrr = computeMRR(shadowJudged);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:90:  CREATE TABLE IF NOT EXISTS eval_metric_snapshots (
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts:102:    ON eval_metric_snapshots (eval_run_id, metric_name, created_at);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:33:- Reporting dashboard and read-only shadow comparison analysis.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:46:| `eval-metrics.ts` | MRR, NDCG, recall, precision, F1, MAP, hit-rate, inversion-rate, and constitutional metrics |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:53:| `reporting-dashboard.ts` | Sprint/channel aggregation and formatted dashboard output |
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:63:- `reporting-dashboard.ts` is the current reporting surface for sprint/channel aggregation.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:21:export { classifyDirection, computeKendallTau, computeNDCG, computeMRR, compareRanks } from './rank-metrics.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:61:  /** Mean MRR delta across holdout queries. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:6:// Can optionally persist snapshots into eval_metric_snapshots.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:150: * @param evalDb - Eval database that stores metric snapshots.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:151: * @returns Number of rows written to `eval_metric_snapshots`.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:155:    INSERT INTO eval_metric_snapshots (eval_run_id, metric_name, metric_value, channel, query_count, metadata)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:4:// the rollout: Full reporting dashboard for eval infrastructure.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:8:// Uses: eval-db.ts singleton, eval_metric_snapshots table,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:21:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:31:/** Configuration for dashboard report generation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:99:/** Complete dashboard report. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:105:  /** Total metric snapshots included in this report after filters/limit. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:124:// away from a non-default/test eval DB when generating a dashboard.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:130:/** Row shape from eval_metric_snapshots. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:185: * Query all metric snapshots, optionally filtered.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:192:             FROM eval_metric_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:567: * Generate the full dashboard report.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:569: * Queries the eval database for metric snapshots and channel results,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:576:export async function generateDashboardReport(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:643: * Format a dashboard report as human-readable text.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:656:  lines.push(`Total metric snapshots: ${report.totalSnapshots}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:732: * Format a dashboard report as indented JSON string.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:16:// - Results storage in eval_metric_snapshots table
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:25:  computeMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:70:  recallK?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:126:  /** Number of queries where removing this channel decreased recall (channel was helpful). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:128:  /** Number of queries where removing this channel increased recall (channel was harmful). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:147:  'MRR@5': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:148:  'precision@5': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:149:  'recall@5': AblationMetricEntry;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:182:  /** Baseline Recall@K across all queries (all channels enabled). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:220: * in the active DB. Chunk-backed or missing IDs make Recall@K comparisons
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:445: * Compute mean Recall@K across a set of per-query recall values.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:447:function meanRecall(recalls: number[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:448:  if (recalls.length === 0) return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:449:  const sum = recalls.reduce((a, b) => a + b, 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:450:  return sum / recalls.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:459:): { mrr: number; precision: number; recall: number; ndcg: number; map: number; hitRate: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:461:    mrr: computeMRR(results, gt, 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:462:    precision: computePrecision(results, gt, 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:463:    recall: computeRecall(results, gt, 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:515:    'MRR@5': entry(bMetrics.map(m => m.metrics.mrr), aMetrics.map(m => m.metrics.mrr)),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:516:    'precision@5': entry(bMetrics.map(m => m.metrics.precision), aMetrics.map(m => m.metrics.precision)),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:517:    'recall@5': entry(bMetrics.map(m => m.metrics.recall), aMetrics.map(m => m.metrics.recall)),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:543: * 3. Compute per-query Recall@K delta
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:562:  const recallK = config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:603:      const recall = computeRecall(results, gt, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:604:      baselineRecalls.set(q.id, recall);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:630:          const recall = computeRecall(results, gt, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:631:          ablatedRecalls.set(q.id, recall);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:724: * Store ablation results in the eval_metric_snapshots table.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:727: * - metric_name: 'ablation_recall@20_delta'
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:732: * Also stores the baseline recall as a separate row.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:739:export function storeAblationResults(report: AblationReport): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:750:      INSERT INTO eval_metric_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:755:    const recallK = report.config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:763:      // Store baseline recall
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:766:        `ablation_baseline_recall@${recallK}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:787:          `ablation_recall@${recallK}_delta`,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:842:    console.warn('[ablation] storeAblationResults failed (non-fatal):', msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:863:  const recallK = report.config.recallK ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:864:  lines.push(`- **Baseline Recall@${recallK}:** ${report.overallBaselineRecall.toFixed(4)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:908:  lines.push(`Ch. Helped = queries where channel was helpful (removing it decreased recall). * = significant at p<0.05.`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:926:    lines.push(`| Channel | MRR@5 | P@5 | R@5 | NDCG@5 | MAP | Hit Rate | Lat p50 | Lat p95 |`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:934:        `| ${m['MRR@5'].delta >= 0 ? '+' : ''}${m['MRR@5'].delta.toFixed(4)} ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:935:        `| ${m['precision@5'].delta >= 0 ? '+' : ''}${m['precision@5'].delta.toFixed(4)} ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:936:        `| ${m['recall@5'].delta >= 0 ? '+' : ''}${m['recall@5'].delta.toFixed(4)} ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:957:    lines.push(`${i + 1}. **${r.channel}** — contribution: ${contribution >= 0 ? '+' : ''}${contribution.toFixed(4)} Recall@${recallK}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:17://   - The contingency decision matrix turns the measured MRR@5
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:23:  computeMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:44:  /** Top-K cutoff for NDCG and Recall metrics. MRR always uses k=5 for contingency compatibility. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:55:  /** Recall at configured K (default 20). Named recall20 for backwards compatibility. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:56:  recall20: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:66:  /** Per-query MRR@5 values for bootstrap CI computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:67:  perQueryMRR?: number[];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:68:  /** Bootstrap 95% CI for MRR@5 (computed if perQueryMRR available). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:74:  /** The MRR@5 value used to derive the decision. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:75:  bm25MRR: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:84:  /** Hybrid MRR@5 used as reference (relative mode only). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:85:  hybridMRR?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:132: * Evaluate the BM25 MRR@5 value against the contingency decision matrix.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:135: *   MRR@5 >= 0.80 → PAUSE
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:140: *   MRR@5 0.50–0.79 → RATIONALIZE
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:145: *   MRR@5 < 0.50 → PROCEED
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:149: * @param bm25MRR - The measured MRR@5 value (must be in [0, 1]).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:152:export function evaluateContingency(bm25MRR: number): ContingencyDecision {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:153:  if (bm25MRR >= 0.80) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:155:      bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:167:  if (bm25MRR >= 0.50) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:169:      bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:176:        'positive delta in MRR@5 before adoption. Track per-channel contribution carefully.',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:181:    bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:194:   Compares BM25 MRR@5 as a percentage of hybrid MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:195:   Spec: "BM25 >= 80% of hybrid MRR@5" → PAUSE.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:199: * Evaluate BM25 performance relative to hybrid MRR@5 (spec-compliant).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:202: *   ratio = bm25MRR / hybridMRR
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:213: * @param bm25MRR   - BM25-only MRR@5 (must be in [0, 1]).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:214: * @param hybridMRR - Hybrid/multi-channel MRR@5 (must be in (0, 1]).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:218:  bm25MRR: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:219:  hybridMRR: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:221:  if (!Number.isFinite(bm25MRR) || !Number.isFinite(hybridMRR) || hybridMRR <= 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:223:      bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:224:      hybridMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:230:        'Hybrid/BM25 MRR@5 is non-finite, zero, or negative — cannot compute meaningful ratio. ' +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:235:  const ratio = bm25MRR / hybridMRR;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:239:      bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:240:      hybridMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:246:        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:247:        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:255:      bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:256:      hybridMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:262:        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:263:        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:265:        'in MRR@5. Track per-channel contribution and justify retained complexity.',
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:270:    bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:271:    hybridMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:277:      `BM25 achieves only ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:278:      `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:287:   Uses bootstrap resampling to compute 95% CI for MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:292:  /** Point estimate (mean MRR@5 across all queries). */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:318: * @param perQueryMRR - Array of per-query MRR@5 values (one per query).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:323:  perQueryMRR: number[],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:329:  const cleanMRR = perQueryMRR.filter(v => Number.isFinite(v));
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:330:  const n = cleanMRR.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:345:  const pointEstimate = cleanMRR.reduce((s, v) => s + v, 0) / n;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:365:      sum += cleanMRR[Math.floor(Math.random() * n)];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:414: * Record BM25 baseline metrics to the eval DB (eval_metric_snapshots table).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:416: * Inserts one row per metric (mrr@5, ndcg@10, recall@20, hit_rate@1) plus
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:433:    INSERT INTO eval_metric_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:446:    insertSnapshot.run(evalRunId, 'recall@20',    result.metrics.recall20,  channel, queryCount, null, createdAt);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:454:      result.contingencyDecision.bm25MRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:500:  // MRR always uses k=5 (contingency matrix is calibrated for MRR@5)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:504:  const recallK = k ?? 20;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:506:  const fetchLimit = Math.max(mrrK, ndcgK, recallK, 20);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:520:  let totalMRR    = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:525:  // Collect per-query MRR for bootstrap CI (REQ-S0-004)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:526:  const perQueryMRR: number[] = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:544:    const qMRR = computeMRR(evalResults, groundTruth, mrrK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:545:    perQueryMRR.push(qMRR);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:547:    totalMRR     += qMRR;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:557:    mrr5:     totalMRR    / safeCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:559:    recall20: totalRecall / safeCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:567:  const bootstrapCI = computeBootstrapCI(perQueryMRR);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:574:    perQueryMRR,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:23:// understate MRR/NDCG/MAP if used directly.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:52:  recall: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:58:  precision: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:115:export function computeMRR(
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:241: * Compute F1@K — harmonic mean of Precision@K and Recall@K.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:403: * Recall@K but each relevant item is weighted by its tier:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:604:    mrr: computeMRR(results, groundTruth),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:606:    recall: computeRecall(results, groundTruth),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:607:    precision: computePrecision(results, groundTruth),
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1101:      "notes": "Manual query targeting a specific quantitative formula documented in the system — tests factual precision retrieval."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:98: * ranking and compute 1/rank. MRR@5 is the mean of those reciprocal ranks.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:140: * 4. Computes MRR@5 against the K=60 baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:264: * - recommendation: which K to use based on MRR@5 vs the baseline
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:279:  // Recommendation: find K with highest MRR@5; if it equals baseline, recommend staying
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:293:      : `K=${bestK} yields the highest MRR@5 (${bestMrr.toFixed(4)}); consider switching from K=${analysis.baselineK}.`;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:336: * A judged query with explicit relevance labels for NDCG/MRR evaluation.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:344:  /** IDs considered relevant (binary relevance for MRR computation) */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:574: * Compute MRR@5 against judged relevant IDs (binary relevance).
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:578: * @returns MRR@5 in [0, 1]
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:611: * @returns Aggregate NDCG@10 and MRR@5 metrics across the query set
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:43:  type: 'query_reformulated' | 'same_topic_requery' | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:121:      type: 'same_topic_requery',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:130:      type: 'query_reformulated',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:202: * Log `result_cited` events for memories whose content was loaded.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:217:      type: 'result_cited',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:228: * Log `follow_on_tool_use` events for memories shown in a recent search.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:250:      type: 'follow_on_tool_use',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:10://   strong  — citation, follow_on_tool_use (result was used)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:11://   medium  — query_reformulated (implicit relevance dissatisfaction)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:12://   weak    — search_shown, same_topic_requery (passive exposure)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:23: *   result_cited | follow_on_tool_use > query_reformulated > same_topic_requery > search_shown
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:26:  | 'search_shown'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:27:  | 'result_cited'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:28:  | 'query_reformulated'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:29:  | 'same_topic_requery'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:30:  | 'follow_on_tool_use';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:79:  result_cited:         'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:80:  follow_on_tool_use:   'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:81:  query_reformulated:   'medium',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:82:  same_topic_requery:   'weak',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:83:  search_shown:         'weak',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:119:                 'search_shown','result_cited','query_reformulated',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:120:                 'same_topic_requery','follow_on_tool_use'
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:203: * Record a batch of feedback events (e.g., all search_shown results from
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:7:// Provides: Kendall tau, NDCG, MRR, rank comparison, and
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:37:  /** MRR delta: shadow MRR minus live MRR. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:190:   5. MRR
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:194: * Compute MRR (Mean Reciprocal Rank) for a single query.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:199:export function computeMRR(rankedItems: RankedItem[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:216: * Kendall tau correlation, NDCG delta, and MRR delta.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:276:  // MRR delta
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:277:  const liveMrr = computeMRR(liveJudged);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/rank-metrics.ts:278:  const shadowMrr = computeMRR(shadowJudged);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:90:  CREATE TABLE IF NOT EXISTS eval_metric_snapshots (
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:102:    ON eval_metric_snapshots (eval_run_id, metric_name, created_at);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:33:- Reporting dashboard and read-only shadow comparison analysis.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:46:| `eval-metrics.ts` | MRR, NDCG, recall, precision, F1, MAP, hit-rate, inversion-rate, and constitutional metrics |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:53:| `reporting-dashboard.ts` | Sprint/channel aggregation and formatted dashboard output |
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:63:- `reporting-dashboard.ts` is the current reporting surface for sprint/channel aggregation.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:21:export { classifyDirection, computeKendallTau, computeNDCG, computeMRR, compareRanks } from './rank-metrics.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:61:  /** Mean MRR delta across holdout queries. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:6:// Can optionally persist snapshots into eval_metric_snapshots.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:150: * @param evalDb - Eval database that stores metric snapshots.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:151: * @returns Number of rows written to `eval_metric_snapshots`.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:155:    INSERT INTO eval_metric_snapshots (eval_run_id, metric_name, metric_value, channel, query_count, metadata)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:4:// the rollout: Full reporting dashboard for eval infrastructure.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:8:// Uses: eval-db.ts singleton, eval_metric_snapshots table,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:21:// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:31:/** Configuration for dashboard report generation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:99:/** Complete dashboard report. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:105:  /** Total metric snapshots included in this report after filters/limit. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:124:// away from a non-default/test eval DB when generating a dashboard.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:130:/** Row shape from eval_metric_snapshots. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:185: * Query all metric snapshots, optionally filtered.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:192:             FROM eval_metric_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:567: * Generate the full dashboard report.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:569: * Queries the eval database for metric snapshots and channel results,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:576:export async function generateDashboardReport(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:643: * Format a dashboard report as human-readable text.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:656:  lines.push(`Total metric snapshots: ${report.totalSnapshots}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:732: * Format a dashboard report as indented JSON string.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:7:// Selectively disables one search channel at a time, measures Recall@20
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:14:// - Delta calculation (baseline vs ablated Recall@20)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:16:// - Results storage in eval_metric_snapshots table
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:25:  computeMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:70:  recallK?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:118:  /** Recall@K with all channels enabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:120:  /** Recall@K with this channel disabled. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:126:  /** Number of queries where removing this channel decreased recall (channel was helpful). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:128:  /** Number of queries where removing this channel increased recall (channel was harmful). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:147:  'MRR@5': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:148:  'precision@5': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:149:  'recall@5': AblationMetricEntry;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:182:  /** Baseline Recall@K across all queries (all channels enabled). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:220: * in the active DB. Chunk-backed or missing IDs make Recall@K comparisons
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:445: * Compute mean Recall@K across a set of per-query recall values.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:447:function meanRecall(recalls: number[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:448:  if (recalls.length === 0) return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:449:  const sum = recalls.reduce((a, b) => a + b, 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:450:  return sum / recalls.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:459:): { mrr: number; precision: number; recall: number; ndcg: number; map: number; hitRate: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:461:    mrr: computeMRR(results, gt, 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:462:    precision: computePrecision(results, gt, 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:463:    recall: computeRecall(results, gt, 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:515:    'MRR@5': entry(bMetrics.map(m => m.metrics.mrr), aMetrics.map(m => m.metrics.mrr)),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:516:    'precision@5': entry(bMetrics.map(m => m.metrics.precision), aMetrics.map(m => m.metrics.precision)),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:517:    'recall@5': entry(bMetrics.map(m => m.metrics.recall), aMetrics.map(m => m.metrics.recall)),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:543: * 3. Compute per-query Recall@K delta
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:562:  const recallK = config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:603:      const recall = computeRecall(results, gt, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:604:      baselineRecalls.set(q.id, recall);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:630:          const recall = computeRecall(results, gt, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:631:          ablatedRecalls.set(q.id, recall);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:724: * Store ablation results in the eval_metric_snapshots table.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:727: * - metric_name: 'ablation_recall@20_delta'
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:732: * Also stores the baseline recall as a separate row.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:739:export function storeAblationResults(report: AblationReport): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:750:      INSERT INTO eval_metric_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:755:    const recallK = report.config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:763:      // Store baseline recall
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:766:        `ablation_baseline_recall@${recallK}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:787:          `ablation_recall@${recallK}_delta`,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:842:    console.warn('[ablation] storeAblationResults failed (non-fatal):', msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:863:  const recallK = report.config.recallK ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:864:  lines.push(`- **Baseline Recall@${recallK}:** ${report.overallBaselineRecall.toFixed(4)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:908:  lines.push(`Ch. Helped = queries where channel was helpful (removing it decreased recall). * = significant at p<0.05.`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:926:    lines.push(`| Channel | MRR@5 | P@5 | R@5 | NDCG@5 | MAP | Hit Rate | Lat p50 | Lat p95 |`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:934:        `| ${m['MRR@5'].delta >= 0 ? '+' : ''}${m['MRR@5'].delta.toFixed(4)} ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:935:        `| ${m['precision@5'].delta >= 0 ? '+' : ''}${m['precision@5'].delta.toFixed(4)} ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:936:        `| ${m['recall@5'].delta >= 0 ? '+' : ''}${m['recall@5'].delta.toFixed(4)} ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:957:    lines.push(`${i + 1}. **${r.channel}** — contribution: ${contribution >= 0 ? '+' : ''}${contribution.toFixed(4)} Recall@${recallK}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:17://   - The contingency decision matrix turns the measured MRR@5
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:23:  computeMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:44:  /** Top-K cutoff for NDCG and Recall metrics. MRR always uses k=5 for contingency compatibility. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:55:  /** Recall at configured K (default 20). Named recall20 for backwards compatibility. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:56:  recall20: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:66:  /** Per-query MRR@5 values for bootstrap CI computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:67:  perQueryMRR?: number[];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:68:  /** Bootstrap 95% CI for MRR@5 (computed if perQueryMRR available). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:74:  /** The MRR@5 value used to derive the decision. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:75:  bm25MRR: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:84:  /** Hybrid MRR@5 used as reference (relative mode only). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:85:  hybridMRR?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:132: * Evaluate the BM25 MRR@5 value against the contingency decision matrix.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:135: *   MRR@5 >= 0.80 → PAUSE
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:140: *   MRR@5 0.50–0.79 → RATIONALIZE
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:145: *   MRR@5 < 0.50 → PROCEED
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:149: * @param bm25MRR - The measured MRR@5 value (must be in [0, 1]).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:152:export function evaluateContingency(bm25MRR: number): ContingencyDecision {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:153:  if (bm25MRR >= 0.80) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:155:      bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:167:  if (bm25MRR >= 0.50) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:169:      bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:176:        'positive delta in MRR@5 before adoption. Track per-channel contribution carefully.',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:181:    bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:194:   Compares BM25 MRR@5 as a percentage of hybrid MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:195:   Spec: "BM25 >= 80% of hybrid MRR@5" → PAUSE.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:199: * Evaluate BM25 performance relative to hybrid MRR@5 (spec-compliant).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:202: *   ratio = bm25MRR / hybridMRR
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:213: * @param bm25MRR   - BM25-only MRR@5 (must be in [0, 1]).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:214: * @param hybridMRR - Hybrid/multi-channel MRR@5 (must be in (0, 1]).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:218:  bm25MRR: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:219:  hybridMRR: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:221:  if (!Number.isFinite(bm25MRR) || !Number.isFinite(hybridMRR) || hybridMRR <= 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:223:      bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:224:      hybridMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:230:        'Hybrid/BM25 MRR@5 is non-finite, zero, or negative — cannot compute meaningful ratio. ' +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:235:  const ratio = bm25MRR / hybridMRR;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:239:      bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:240:      hybridMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:246:        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:247:        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:255:      bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:256:      hybridMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:262:        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:263:        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:265:        'in MRR@5. Track per-channel contribution and justify retained complexity.',
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:270:    bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:271:    hybridMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:277:      `BM25 achieves only ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:278:      `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:287:   Uses bootstrap resampling to compute 95% CI for MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:292:  /** Point estimate (mean MRR@5 across all queries). */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:318: * @param perQueryMRR - Array of per-query MRR@5 values (one per query).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:323:  perQueryMRR: number[],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:329:  const cleanMRR = perQueryMRR.filter(v => Number.isFinite(v));
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:330:  const n = cleanMRR.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:345:  const pointEstimate = cleanMRR.reduce((s, v) => s + v, 0) / n;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:365:      sum += cleanMRR[Math.floor(Math.random() * n)];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:414: * Record BM25 baseline metrics to the eval DB (eval_metric_snapshots table).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:416: * Inserts one row per metric (mrr@5, ndcg@10, recall@20, hit_rate@1) plus
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:433:    INSERT INTO eval_metric_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:446:    insertSnapshot.run(evalRunId, 'recall@20',    result.metrics.recall20,  channel, queryCount, null, createdAt);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:454:      result.contingencyDecision.bm25MRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:500:  // MRR always uses k=5 (contingency matrix is calibrated for MRR@5)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:504:  const recallK = k ?? 20;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:506:  const fetchLimit = Math.max(mrrK, ndcgK, recallK, 20);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:520:  let totalMRR    = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:525:  // Collect per-query MRR for bootstrap CI (REQ-S0-004)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:526:  const perQueryMRR: number[] = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:544:    const qMRR = computeMRR(evalResults, groundTruth, mrrK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:545:    perQueryMRR.push(qMRR);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:547:    totalMRR     += qMRR;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:549:    totalRecall  += computeRecall(evalResults, groundTruth, recallK);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:557:    mrr5:     totalMRR    / safeCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:559:    recall20: totalRecall / safeCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:567:  const bootstrapCI = computeBootstrapCI(perQueryMRR);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:574:    perQueryMRR,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:23:// understate MRR/NDCG/MAP if used directly.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:52:  recall: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:58:  precision: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:115:export function computeMRR(
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:241: * Compute F1@K — harmonic mean of Precision@K and Recall@K.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:403: * Recall@K but each relevant item is weighted by its tier:
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:604:    mrr: computeMRR(results, groundTruth),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:606:    recall: computeRecall(results, groundTruth),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:607:    precision: computePrecision(results, groundTruth),
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:1101:      "notes": "Manual query targeting a specific quantitative formula documented in the system — tests factual precision retrieval."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:98: * ranking and compute 1/rank. MRR@5 is the mean of those reciprocal ranks.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:140: * 4. Computes MRR@5 against the K=60 baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:264: * - recommendation: which K to use based on MRR@5 vs the baseline
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:279:  // Recommendation: find K with highest MRR@5; if it equals baseline, recommend staying
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:293:      : `K=${bestK} yields the highest MRR@5 (${bestMrr.toFixed(4)}); consider switching from K=${analysis.baselineK}.`;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:336: * A judged query with explicit relevance labels for NDCG/MRR evaluation.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:344:  /** IDs considered relevant (binary relevance for MRR computation) */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:574: * Compute MRR@5 against judged relevant IDs (binary relevance).
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:578: * @returns MRR@5 in [0, 1]
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/k-value-analysis.ts:611: * @returns Aggregate NDCG@10 and MRR@5 metrics across the query set
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "handle_memory_validate|wasUseful|validation_count|confidence_score|memory_validate|promoted to critical|queryTerms|resultRank|totalResultsShown" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/mcp_server/lib | head -n 120' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "handle_memory_validate|wasUseful|validation_count|confidence_score|memory_validate|promoted to critical|queryTerms|resultRank|totalResultsShown" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/mcp_server/lib | head -n 120' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ────────────────────────────────────────────────────────────────
 // MODULE: Checkpoints
@@ -7367,128 +7367,128 @@ function checkpointMatchesScope(rawMetadata: unknown, scope: CheckpointScopeArgs
     if (expected === undefined) {
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:35:  totalResultsShown?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:246:      selectionContext.totalResultsShown ?? null,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:308:        totalResultsShown: row.total_results_shown ?? undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:87:  queryTerms?: string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:89:  totalResultsShown?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:656:    queryTerms,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:658:    totalResultsShown,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:693:        totalResultsShown: typeof totalResultsShown === 'number' ? totalResultsShown : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:740:      totalResultsShown,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:745:    const normalizedTerms = Array.isArray(queryTerms)
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:746:      ? queryTerms.filter((term) => typeof term === 'string' && term.trim().length > 0).map((term) => term.trim())
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:66:  'validation_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:142:      validation_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1697:  if (!column_names.includes('validation_count')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1699:      database.exec(`ALTER TABLE memory_index ADD COLUMN validation_count INTEGER DEFAULT 0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1700:      console.warn('[vector-index] Migration: Added validation_count column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1705:      logDuplicateColumnMigrationSkip('validation_count', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2338:      validation_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:99:    validation_count INTEGER NOT NULL,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:134:      validation_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:149:    const totalValidationCount = memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:183:        reason: `below_threshold: positive_validation_count=${validationCount}/${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:192:      reason: `threshold_met: positive_validation_count=${validationCount}>=${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:251:          (memory_id, previous_tier, new_tier, validation_count, promoted_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:298:      SELECT id, importance_tier, validation_count
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:301:        AND validation_count >= ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:305:      validation_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:317:        row.validation_count ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:328:        reason: `threshold_met: positive_validation_count=${positiveValidationCount}>=${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:403:  const queryTerms = extractKeywords(query);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:404:  if (queryTerms.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:415:    for (const term of queryTerms) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:428:      const relevanceScore = matchCount / queryTerms.length;
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:44:  queryTerms: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:45:  resultRank: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:200: * @param queryTerms - Terms from the user's search query
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:206:  queryTerms: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:212:  const candidates = queryTerms
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:252: * @param queryTerms - Terms from the user's search query
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:253: * @param resultRank - The rank position of this result (1-based)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:260:  queryTerms: string[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:261:  resultRank: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:271:    if (resultRank <= TOP_N_EXCLUSION) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:307:    const terms = extractLearnableTerms(queryTerms, existingTriggers);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:467:    const queryTerms = query
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:472:    if (queryTerms.length === 0) return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:491:        .filter((entry) => queryTerms.some((qt) => entry.term.includes(qt) || qt.includes(entry.term)))
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:498:          weight: LEARNED_TRIGGER_WEIGHT * (matchedTerms.length / queryTerms.length),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:60:function scoreSummary(summary: string, queryTerms: string[]): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:61:  if (queryTerms.length === 0) return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:64:  for (const term of queryTerms) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:67:  return matches / queryTerms.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:121:    const queryTerms = extractQueryTerms(query);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:122:    if (queryTerms.length === 0) return emptyOutput;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/community-search.ts:140:      const matchScore = scoreSummary(row.summary, queryTerms);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1338:    'validation_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:57:  validation_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:69: * @param negativeCount - Number of negative (wasUseful=false) validations
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:40:  validation_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:102: * - For `wasUseful=false`, `handlers/checkpoints.ts` pairs this update with
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:108:export function recordValidation(db: Database, memoryId: number, wasUseful: boolean): ValidationResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:124:      if (wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:130:      const currentValidationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:140:      const effectiveNegativeValidationCount = wasUseful
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:155:      if (!wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:222:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:251:      const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:        `and positive_validation_count >= ${PROMOTION_VALIDATION_THRESHOLD} (current: ${positiveValidationCount})`
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:294:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:128:- HVR score = validated_useful_count / total_validation_count
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:260:> **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:261:> The code type-casts to include both `validationCount` and `validation_count` for safety,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:263:> `validation_count` is used at runtime. No bug, but the type cast is defensive/misleading.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:699: * Negative feedback: memories with wasUseful=false validations receive a
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:751:`wasUseful=false` validations apply a demotion multiplier to composite scores. Penalty: -0.1 per negative validation, floor at 0.3 (never suppress below 30%). 30-day half-life recovery: penalty halves over time if no further negative feedback. Gated via `SPECKIT_NEGATIVE_FEEDBACK` (default ON).
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:35:  totalResultsShown?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:246:      selectionContext.totalResultsShown ?? null,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:308:        totalResultsShown: row.total_results_shown ?? undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:87:  queryTerms?: string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:89:  totalResultsShown?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:656:    queryTerms,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:658:    totalResultsShown,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:693:        totalResultsShown: typeof totalResultsShown === 'number' ? totalResultsShown : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:740:      totalResultsShown,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:745:    const normalizedTerms = Array.isArray(queryTerms)
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:746:      ? queryTerms.filter((term) => typeof term === 'string' && term.trim().length > 0).map((term) => term.trim())
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:66:  'validation_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:142:      validation_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1697:  if (!column_names.includes('validation_count')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1699:      database.exec(`ALTER TABLE memory_index ADD COLUMN validation_count INTEGER DEFAULT 0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1700:      console.warn('[vector-index] Migration: Added validation_count column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1705:      logDuplicateColumnMigrationSkip('validation_count', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2338:      validation_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:99:    validation_count INTEGER NOT NULL,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:134:      validation_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:149:    const totalValidationCount = memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:183:        reason: `below_threshold: positive_validation_count=${validationCount}/${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:192:      reason: `threshold_met: positive_validation_count=${validationCount}>=${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:251:          (memory_id, previous_tier, new_tier, validation_count, promoted_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:298:      SELECT id, importance_tier, validation_count
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:301:        AND validation_count >= ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:305:      validation_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:317:        row.validation_count ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:328:        reason: `threshold_met: positive_validation_count=${positiveValidationCount}>=${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:403:  const queryTerms = extractKeywords(query);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:404:  if (queryTerms.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:415:    for (const term of queryTerms) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:428:      const relevanceScore = matchCount / queryTerms.length;
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:44:  queryTerms: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:45:  resultRank: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:200: * @param queryTerms - Terms from the user's search query
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:206:  queryTerms: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:212:  const candidates = queryTerms
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:252: * @param queryTerms - Terms from the user's search query
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:253: * @param resultRank - The rank position of this result (1-based)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:260:  queryTerms: string[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:261:  resultRank: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:271:    if (resultRank <= TOP_N_EXCLUSION) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:307:    const terms = extractLearnableTerms(queryTerms, existingTriggers);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:467:    const queryTerms = query
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:472:    if (queryTerms.length === 0) return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:491:        .filter((entry) => queryTerms.some((qt) => entry.term.includes(qt) || qt.includes(entry.term)))
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:498:          weight: LEARNED_TRIGGER_WEIGHT * (matchedTerms.length / queryTerms.length),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:60:function scoreSummary(summary: string, queryTerms: string[]): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:61:  if (queryTerms.length === 0) return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:64:  for (const term of queryTerms) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:67:  return matches / queryTerms.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:121:    const queryTerms = extractQueryTerms(query);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:122:    if (queryTerms.length === 0) return emptyOutput;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:140:      const matchScore = scoreSummary(row.summary, queryTerms);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1338:    'validation_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:57:  validation_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:69: * @param negativeCount - Number of negative (wasUseful=false) validations
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:40:  validation_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:102: * - For `wasUseful=false`, `handlers/checkpoints.ts` pairs this update with
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:108:export function recordValidation(db: Database, memoryId: number, wasUseful: boolean): ValidationResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:124:      if (wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:130:      const currentValidationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:140:      const effectiveNegativeValidationCount = wasUseful
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:155:      if (!wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:222:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:251:      const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:        `and positive_validation_count >= ${PROMOTION_VALIDATION_THRESHOLD} (current: ${positiveValidationCount})`
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:294:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:128:- HVR score = validated_useful_count / total_validation_count
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:260:> **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:261:> The code type-casts to include both `validationCount` and `validation_count` for safety,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:263:> `validation_count` is used at runtime. No bug, but the type cast is defensive/misleading.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:699: * Negative feedback: memories with wasUseful=false validations receive a
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:751:`wasUseful=false` validations apply a demotion multiplier to composite scores. Penalty: -0.1 per negative validation, floor at 0.3 (never suppress below 30%). 30-day half-life recovery: penalty halves over time if no further negative feedback. Gated via `SPECKIT_NEGATIVE_FEEDBACK` (default ON).
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Reporting Dashboard (R13-S3)
@@ -7752,9 +7752,9 @@ function queryChannelResults(
 /* ───────────────────────────────────────────────────────────────
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '100,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '100,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
  * - This function updates `memory_index.confidence` and `validation_count`,
  *   establishing durable feedback state for search-stage signal consumers.
@@ -8181,7 +8181,7 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
           recencyScore: folder.recencyScore,
 
 exec
-/bin/zsh -lc "sed -n '180,290p' .opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '180,290p' .opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   sessionQueries.set(sessionId, entries.slice(-MAX_QUERIES_PER_SESSION));
 
@@ -8278,9 +8278,9 @@ export function getSessionQueryCount(sessionId: string): number {
 }
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,120p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Eval Metrics
@@ -8582,7 +8582,7 @@ The current surface covers:
 <!-- /ANCHOR:related -->
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Memory State Baseline Metrics
@@ -8806,9 +8806,9 @@ function captureMemoryStateBaselineSnapshot(
 
 
 exec
-/bin/zsh -lc "sed -n '640,790p' .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '640,790p' .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '110,170p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '110,170p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 The scoring layer includes document-type multipliers for active document types (for example `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, `memory`, `constitutional`, `research`, `handover`, `scratch`). These multipliers are used by folder scoring and document retrieval ranking.
@@ -9026,7 +9026,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       learnedFeedback,
 
 exec
-/bin/zsh -lc "sed -n '880,980p' .opencode/skill/system-spec-kit/mcp_server/context-server.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '880,980p' .opencode/skills/system-spec-kit/mcp_server/context-server.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     }
     // Classify specific tool calls for finer-grained metrics
@@ -9131,7 +9131,7 @@ exec
       if (queryStr && codeSearchPattern.test(queryStr)) {
 
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Context Metrics
@@ -10309,21 +10309,21 @@ BENCHMARK & METRICS: What does this system measure? What metrics should we track
 - **Impact**: high
 
 ### Finding 4: Spec Kit Memory already has the richer retrieval-accuracy stack
-- **Source**: [lib/eval/eval-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts), [lib/eval/ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts), [lib/eval/reporting-dashboard.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts), [lib/eval/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md)
+- **Source**: [lib/eval/eval-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts), [lib/eval/ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts), [lib/eval/reporting-dashboard.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts), [lib/eval/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md)
 - **What it does**: Public computes `MRR`, `NDCG`, `recall`, `precision`, `F1`, `MAP`, `hit-rate`, inversion and constitutional metrics; ablation also tracks `Recall@20` contribution plus `MRR@5`, `P@5`, `R@5`, `NDCG@5`, `MAP`, `hit_rate`, `latency_p50`, `latency_p95`, and `token_usage`.
 - **Why it matters**: the immediate gap is not metric math, but routine visibility and consistent use. Public should treat this eval stack as the canonical retrieval-accuracy surface.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 5: Public already has the right raw ingredients for memory-quality metrics, but they need to be treated as first-class KPIs
-- **Source**: [handlers/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts), [lib/scoring/confidence-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts), [lib/scoring/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md), [lib/feedback/feedback-ledger.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts), [lib/feedback/query-flow-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts)
+- **Source**: [handlers/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts), [lib/scoring/confidence-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts), [lib/scoring/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md), [lib/feedback/feedback-ledger.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts), [lib/feedback/query-flow-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts)
 - **What it does**: `memory_validate` updates `confidence`, `validationCount`, `positiveValidationCount`, promotion eligibility, learned feedback, and negative feedback; the feedback ledger logs `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`; scoring docs define HVR as useful validations divided by total validations.
 - **Why it matters**: this is the right basis for memory quality because it measures whether a memory helped, not just whether it was retrieved.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 6: Structural and temporal subsystems need correctness metrics, not just counts and latency
-- **Source**: [tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py), [handlers/session-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts), [handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [lib/session/context-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts)
+- **Source**: [tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py), [handlers/session-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts), [handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [lib/session/context-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts)
 - **What it does**: MemPalace benchmarks KG insertion, latency, and concurrent failures, but its temporal “accuracy” test mainly logs result counts; Public health surfaces are better on readiness and freshness, but they do not yet expose judged correctness metrics for code-graph, causal-link, or temporal-answer quality.
 - **Why it matters**: for our system, system health should include not just “graph exists” or “latency is okay,” but “structural answers are still correct enough to trust.”
 - **Recommendation**: NEW FEATURE
@@ -10371,21 +10371,21 @@ BENCHMARK & METRICS: What does this system measure? What metrics should we track
 - **Impact**: high
 
 ### Finding 4: Spec Kit Memory already has the richer retrieval-accuracy stack
-- **Source**: [lib/eval/eval-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts), [lib/eval/ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts), [lib/eval/reporting-dashboard.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts), [lib/eval/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md)
+- **Source**: [lib/eval/eval-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts), [lib/eval/ablation-framework.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts), [lib/eval/reporting-dashboard.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts), [lib/eval/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md)
 - **What it does**: Public computes `MRR`, `NDCG`, `recall`, `precision`, `F1`, `MAP`, `hit-rate`, inversion and constitutional metrics; ablation also tracks `Recall@20` contribution plus `MRR@5`, `P@5`, `R@5`, `NDCG@5`, `MAP`, `hit_rate`, `latency_p50`, `latency_p95`, and `token_usage`.
 - **Why it matters**: the immediate gap is not metric math, but routine visibility and consistent use. Public should treat this eval stack as the canonical retrieval-accuracy surface.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 5: Public already has the right raw ingredients for memory-quality metrics, but they need to be treated as first-class KPIs
-- **Source**: [handlers/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts), [lib/scoring/confidence-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts), [lib/scoring/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md), [lib/feedback/feedback-ledger.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts), [lib/feedback/query-flow-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts)
+- **Source**: [handlers/checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts), [lib/scoring/confidence-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts), [lib/scoring/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md), [lib/feedback/feedback-ledger.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts), [lib/feedback/query-flow-tracker.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts)
 - **What it does**: `memory_validate` updates `confidence`, `validationCount`, `positiveValidationCount`, promotion eligibility, learned feedback, and negative feedback; the feedback ledger logs `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`; scoring docs define HVR as useful validations divided by total validations.
 - **Why it matters**: this is the right basis for memory quality because it measures whether a memory helped, not just whether it was retrieved.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 6: Structural and temporal subsystems need correctness metrics, not just counts and latency
-- **Source**: [tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py), [handlers/session-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts), [handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [lib/session/context-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts)
+- **Source**: [tests/benchmarks/test_knowledge_graph_bench.py](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/005-mempalace/external/tests/benchmarks/test_knowledge_graph_bench.py), [handlers/session-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts), [handlers/memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [lib/session/context-metrics.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts)
 - **What it does**: MemPalace benchmarks KG insertion, latency, and concurrent failures, but its temporal “accuracy” test mainly logs result counts; Public health surfaces are better on readiness and freshness, but they do not yet expose judged correctness metrics for code-graph, causal-link, or temporal-answer quality.
 - **Why it matters**: for our system, system health should include not just “graph exists” or “latency is okay,” but “structural answers are still correct enough to trust.”
 - **Recommendation**: NEW FEATURE

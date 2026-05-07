@@ -4,9 +4,9 @@
 Map the discovered fusion controls onto continuity-oriented query behavior and determine whether `search-weights.json` can materially improve canonical continuity retrieval.
 
 ## Findings
-1. Continuity-style queries align more closely with `find_spec` and `find_decision` than with the default profile, because those profiles keep recency low while materially increasing graph or source-of-truth bias. [SOURCE: .opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60] [INFERENCE: continuity asks for canonical packets, decision lineage, and spec docs rather than freshness]
-2. The Stage 2 recency contribution is already low (`0.07`, cap `0.10`), so raising recency would move continuity search in the wrong direction; the stronger tuning lever is graph/spec weighting plus intent-specific K. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:139]
-3. `search-weights.json` can still matter for vector-only smart ranking, but it is a secondary lever for this packet because hybrid fusion bypasses it. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:964] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/configs/README.md:43]
+1. Continuity-style queries align more closely with `find_spec` and `find_decision` than with the default profile, because those profiles keep recency low while materially increasing graph or source-of-truth bias. [SOURCE: .opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60] [INFERENCE: continuity asks for canonical packets, decision lineage, and spec docs rather than freshness]
+2. The Stage 2 recency contribution is already low (`0.07`, cap `0.10`), so raising recency would move continuity search in the wrong direction; the stronger tuning lever is graph/spec weighting plus intent-specific K. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:139]
+3. `search-weights.json` can still matter for vector-only smart ranking, but it is a secondary lever for this packet because hybrid fusion bypasses it. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:964] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:43]
 
 ## Ruled Out
 - Using `search-weights.json` as the primary continuity tuning surface.
@@ -15,10 +15,10 @@ Map the discovered fusion controls onto continuity-oriented query behavior and d
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:964`
-- `.opencode/skill/system-spec-kit/mcp_server/configs/README.md:43`
+- `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts:60`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:125`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:964`
+- `.opencode/skills/system-spec-kit/mcp_server/configs/README.md:43`
 
 ## Assessment
 - New information ratio: 0.46

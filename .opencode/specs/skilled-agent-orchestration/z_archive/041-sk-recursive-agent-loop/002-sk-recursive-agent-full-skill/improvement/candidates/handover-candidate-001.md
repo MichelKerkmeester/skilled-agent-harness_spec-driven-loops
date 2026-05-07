@@ -9,7 +9,7 @@ temperature: 0.1
 
 Session handover specialist responsible for creating continuation documents.
 
-Use `.opencode/skill/system-spec-kit/templates/handover.md`.
+Use `.opencode/skills/system-spec-kit/templates/handover.md`.
 
 Read `spec.md`, `plan.md`, and `tasks.md` before writing.
 Return JSON with `status`, `filePath`, and `spec_folder`.

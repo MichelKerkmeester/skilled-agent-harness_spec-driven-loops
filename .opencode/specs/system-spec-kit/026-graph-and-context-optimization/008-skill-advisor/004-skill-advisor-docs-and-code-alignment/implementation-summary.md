@@ -27,7 +27,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -83,14 +83,14 @@ Full ledger: [`scratch/audit-findings.md`](scratch/audit-findings.md).
 | ../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md | Modified | Add hook-routing category and cross-reference index entries |
 | ../../../../skill/skill-advisor/manual_testing_playbook/06--hook-routing/001-hook-routing-smoke.md | Created | Add manual hook-routing smoke playbook |
 | `../../../../skill/skill-advisor/SET-UP_GUIDE.md` | Modified | Align setup guide with hook-first invocation |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Modified | Rephrase parser-trust comment near advisor shared-payload additions |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/generation.ts` | Modified | Add explicit catch type and stronger generation payload error |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts` | Modified | Add child-process typing, explicit catch types, and field-path JSON errors |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts` | Modified | Improve diagnostic validation error messages |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts` | Modified | Remove packet-number comment wording |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Modified | Remove legacy-install wording |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` | Modified | Replace dated local-checkout comment with runtime SDK probing description |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Modified | Rename compatibility comment to fallback-path comment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Modified | Rephrase parser-trust comment near advisor shared-payload additions |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/generation.ts` | Modified | Add explicit catch type and stronger generation payload error |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts` | Modified | Add child-process typing, explicit catch types, and field-path JSON errors |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts` | Modified | Improve diagnostic validation error messages |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts` | Modified | Remove packet-number comment wording |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Modified | Remove legacy-install wording |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts` | Modified | Replace dated local-checkout comment with runtime SDK probing description |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts` | Modified | Rename compatibility comment to fallback-path comment |
 | `plan.md`, `checklist.md`, `implementation-summary.md`, `scratch/audit-findings.md` | Created | Complete Level 2 packet evidence and audit ledger |
 <!-- /ANCHOR:what-built -->
 

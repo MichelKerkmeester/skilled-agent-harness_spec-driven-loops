@@ -28,7 +28,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -576,5 +576,5 @@ Per memory rule "Stay on main, no feature branches" (feedback memory `feedback_s
 <!--
 Level 3 Decision Record (Addendum): Six ADRs covering all architectural decisions.
 Written in human voice: active, direct, specific.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

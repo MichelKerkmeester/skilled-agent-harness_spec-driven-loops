@@ -3,7 +3,7 @@
 **Date:** 2026-03-09
 **Scope:** All 17 Opus audit files (QA1 through QA8)
 **Synthesized by:** Claude Opus 4.6 (@review agent)
-**Pipeline:** `.opencode/skill/system-spec-kit/scripts/`
+**Pipeline:** `.opencode/skills/system-spec-kit/scripts/`
 
 ---
 

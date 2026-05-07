@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
-      ".opencode/command/spec_kit/README.txt",
+      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/commands/spec_kit/README.txt",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "gate-enforcement.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
         "source": "derived"
       },
       {
         "name": "hook_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/spec_kit/README.txt",
+        "path": ".opencode/commands/spec_kit/README.txt",
         "source": "derived"
       },
       {

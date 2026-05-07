@@ -19,9 +19,9 @@ Use this prompt to launch the research via the sk-deep-research workflow.
 - Use Bash scripting (jq, find, grep) for corpus-wide scans. Use Read for targeted file inspection.
 
 **Key Files (read these first):**
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` - Zod schema defining valid structure
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` - derivation logic, normalization, limits
-- `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts` - batch generation logic
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` - Zod schema defining valid structure
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` - derivation logic, normalization, limits
+- `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts` - batch generation logic
 
 **Corpus to scan:**
 - All `graph-metadata.json` files under `.opencode/specs/` (515+ files)

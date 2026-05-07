@@ -71,7 +71,7 @@
 
 ## Test Files in System-Spec-Kit
 
-### FILE: `.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js`
+### FILE: `.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js`
 **LAST MODIFIED:** 2026-01-06
 **TESTS:** Bug remediation verification (Spec 054) - validates fixes for 9 critical bugs
 **STATUS:** Related
@@ -91,7 +91,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Tier classification module (`tier-classifier.js`) - HOT/WARM/COLD tier system
 **STATUS:** Relevant
@@ -114,7 +114,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Working memory module (`working-memory.js`) - Session-based memory management
 **STATUS:** Relevant
@@ -135,7 +135,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Summary generation module (`summary-generator.js`) - WARM tier content summarization
 **STATUS:** Relevant
@@ -157,7 +157,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Attention decay module (`attention-decay.js`) - Temporal decay for attention scores
 **STATUS:** Related
@@ -173,7 +173,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Co-activation module (`co-activation.js`) - Memory co-occurrence tracking
 **STATUS:** Related
@@ -188,7 +188,7 @@
 
 ---
 
-### FILE: `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.test.js`
+### FILE: `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.test.js`
 **LAST MODIFIED:** 2026-01-15
 **TESTS:** Modularization verification (Spec 058) - Module structure and organization
 **STATUS:** Related
@@ -215,7 +215,7 @@
 │   └── test-folder-scoring.js          [PRIMARY - 61 tests]
 └── test-results.md                      [DOCUMENTATION]
 
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── scripts/tests/
 │   └── test-bug-fixes.js               [INFRASTRUCTURE - 9 bugs]
 └── mcp_server/tests/
@@ -328,16 +328,16 @@ Supporting Infrastructure:
 node .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js
 
 # Tier classifier tests
-node .opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js
 
 # Working memory tests
-node .opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js
 
 # Summary generator tests
-node .opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js
 
 # Bug fixes verification
-node .opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js
+node .opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js
 ```
 
 ---

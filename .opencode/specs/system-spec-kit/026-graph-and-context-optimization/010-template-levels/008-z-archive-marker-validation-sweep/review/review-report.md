@@ -59,7 +59,7 @@ None. No exploit, auth bypass, destructive data loss, or runtime corruption. The
 #### P1-003 — `validate.sh --strict` fails with TEMPLATE_HEADERS + ANCHORS_VALID errors (same defect as 003/006/007)
 - **Dimension**: validator-coverage
 - **Evidence**:
-  - Running `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <008> --strict` exits 2 with `Errors: 2  Warnings: 0`
+  - Running `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <008> --strict` exits 2 with `Errors: 2  Warnings: 0`
   - Failed rules: `TEMPLATE_HEADERS: 1 template headers issue(s) found`, `ANCHORS_VALID: 1 template anchors issue(s) found`
   - Identical errors observed on sibling 003/006/007 packets
 - **Impact**: Either (a) the four Level 3 phase children share an authoring defect (template-source headers wrong since scaffold), or (b) the validators have a false-positive on the Level 3 scaffold output. Either way, no Level 3 phase under 010 currently passes strict validation.

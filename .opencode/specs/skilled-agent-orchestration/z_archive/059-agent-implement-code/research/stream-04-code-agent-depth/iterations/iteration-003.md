@@ -6,32 +6,32 @@ Q3 — Build coder-side Pre-Implementation, During-Implementation, and Pre-Retur
 
 ## Actions
 
-1. Read `.opencode/agent/review.md:156-231` for review-side universal, PR-specific, and project-specific checklist patterns.
-2. Read `.opencode/skill/sk-code/SKILL.md:395-475` for the mandatory Phase 1.5 Code Quality Gate and stack-owned checklist routing.
-3. Read `.opencode/skill/sk-code/references/universal/code_quality_standards.md:36-130` for P0/P1/P2 handling and the stack overlay boundary.
-4. Read `.opencode/agent/code.md:70-101` for coder scope boundaries, Bash-bypass warning, fail-closed escalation, and RETURN contract.
+1. Read `.opencode/agents/review.md:156-231` for review-side universal, PR-specific, and project-specific checklist patterns.
+2. Read `.opencode/skills/sk-code/SKILL.md:395-475` for the mandatory Phase 1.5 Code Quality Gate and stack-owned checklist routing.
+3. Read `.opencode/skills/sk-code/references/universal/code_quality_standards.md:36-130` for P0/P1/P2 handling and the stack overlay boundary.
+4. Read `.opencode/agents/code.md:70-101` for coder scope boundaries, Bash-bypass warning, fail-closed escalation, and RETURN contract.
 
 ## Findings
 
 ### f-iter003-001 — important — Coder checklists should be lifecycle-gated, not category-only
 
-`@review.md` groups checks by review concerns: correctness, security, patterns, maintainability, performance, PR metadata, commit quality, and change scope (`.opencode/agent/review.md:157`, `.opencode/agent/review.md:197`, `.opencode/agent/review.md:220`). For `@code`, the same quality intent needs to be enforced at authoring time: before implementation, during edits, and before return. This keeps the checklist actionable for a leaf implementation agent instead of turning it into a second review report.
+`@review.md` groups checks by review concerns: correctness, security, patterns, maintainability, performance, PR metadata, commit quality, and change scope (`.opencode/agents/review.md:157`, `.opencode/agents/review.md:197`, `.opencode/agents/review.md:220`). For `@code`, the same quality intent needs to be enforced at authoring time: before implementation, during edits, and before return. This keeps the checklist actionable for a leaf implementation agent instead of turning it into a second review report.
 
 ### f-iter003-002 — blocker — Stack-specific quality belongs behind `sk-code`, not in the agent body
 
-`sk-code` owns stack identification and checklist loading before completion claims (`.opencode/skill/sk-code/SKILL.md:398`, `.opencode/skill/sk-code/SKILL.md:402`, `.opencode/skill/sk-code/SKILL.md:463`). The universal standards also state that stack overlays implement concrete rules (`.opencode/skill/sk-code/references/universal/code_quality_standards.md:86`, `.opencode/skill/sk-code/references/universal/code_quality_standards.md:97`). Therefore the coder-side checklist should say "load the applicable checklist via `sk-code`" and must not bake Webflow, Next.js, Go, or other stack rules into `code.md`.
+`sk-code` owns stack identification and checklist loading before completion claims (`.opencode/skills/sk-code/SKILL.md:398`, `.opencode/skills/sk-code/SKILL.md:402`, `.opencode/skills/sk-code/SKILL.md:463`). The universal standards also state that stack overlays implement concrete rules (`.opencode/skills/sk-code/references/universal/code_quality_standards.md:86`, `.opencode/skills/sk-code/references/universal/code_quality_standards.md:97`). Therefore the coder-side checklist should say "load the applicable checklist via `sk-code`" and must not bake Webflow, Next.js, Go, or other stack rules into `code.md`.
 
 ### f-iter003-003 — blocker — Pre-Return must be a fail-closed verification gate
 
-`sk-code` requires the agent to identify, run, verify, record, and only then claim status (`.opencode/skill/sk-code/SKILL.md:427`, `.opencode/skill/sk-code/SKILL.md:431`, `.opencode/skill/sk-code/SKILL.md:437`, `.opencode/skill/sk-code/SKILL.md:438`). P0 failures block completion (`.opencode/skill/sk-code/SKILL.md:413`; `.opencode/skill/sk-code/references/universal/code_quality_standards.md:40`). `code.md` already makes verification failures an escalation condition and defines the RETURN format (`.opencode/agent/code.md:82`, `.opencode/agent/code.md:89`). The Pre-Return checklist should force exit-code capture, edited-file read-back, correct file citations, and exact RETURN formatting.
+`sk-code` requires the agent to identify, run, verify, record, and only then claim status (`.opencode/skills/sk-code/SKILL.md:427`, `.opencode/skills/sk-code/SKILL.md:431`, `.opencode/skills/sk-code/SKILL.md:437`, `.opencode/skills/sk-code/SKILL.md:438`). P0 failures block completion (`.opencode/skills/sk-code/SKILL.md:413`; `.opencode/skills/sk-code/references/universal/code_quality_standards.md:40`). `code.md` already makes verification failures an escalation condition and defines the RETURN format (`.opencode/agents/code.md:82`, `.opencode/agents/code.md:89`). The Pre-Return checklist should force exit-code capture, edited-file read-back, correct file citations, and exact RETURN formatting.
 
 ### f-iter003-004 — important — During-Implementation needs explicit guardrails for harness gaps
 
-`code.md` states the implementation agent is scope-locked to named files and must not use Bash write workarounds such as shell redirection, `sed -i`, `eval`, interpreter writes, or network writes (`.opencode/agent/code.md:72`, `.opencode/agent/code.md:76`). This belongs in the During-Implementation checklist because it is an authoring-time hazard, not something that can be reliably repaired at return time.
+`code.md` states the implementation agent is scope-locked to named files and must not use Bash write workarounds such as shell redirection, `sed -i`, `eval`, interpreter writes, or network writes (`.opencode/agents/code.md:72`, `.opencode/agents/code.md:76`). This belongs in the During-Implementation checklist because it is an authoring-time hazard, not something that can be reliably repaired at return time.
 
 ### f-iter003-005 — important — P1/P2 handling should be visible but not overtake the coder role
 
-The universal quality model says P1 must be fixed or explicitly approved for deferral, while P2 can be deferred with a documented reason (`.opencode/skill/sk-code/references/universal/code_quality_standards.md:40`, `.opencode/skill/sk-code/references/universal/code_quality_standards.md:46`). `sk-code` is for author-side overlay compliance evidence, while formal findings-first review remains `sk-code-review` (`.opencode/skill/sk-code/references/universal/code_quality_standards.md:115`, `.opencode/skill/sk-code/references/universal/code_quality_standards.md:125`). The coder checklist should require evidence and deferral notes without asking `@code` to produce a full review report.
+The universal quality model says P1 must be fixed or explicitly approved for deferral, while P2 can be deferred with a documented reason (`.opencode/skills/sk-code/references/universal/code_quality_standards.md:40`, `.opencode/skills/sk-code/references/universal/code_quality_standards.md:46`). `sk-code` is for author-side overlay compliance evidence, while formal findings-first review remains `sk-code-review` (`.opencode/skills/sk-code/references/universal/code_quality_standards.md:115`, `.opencode/skills/sk-code/references/universal/code_quality_standards.md:125`). The coder checklist should require evidence and deferral notes without asking `@code` to produce a full review report.
 
 ## Questions Answered
 

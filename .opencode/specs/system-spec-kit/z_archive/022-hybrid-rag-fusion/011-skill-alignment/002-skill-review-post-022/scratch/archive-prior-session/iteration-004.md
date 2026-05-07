@@ -10,7 +10,7 @@
 ### Finding 004-F1
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/validation/validation_rules.md:888`
+- **File**: `.opencode/skills/system-spec-kit/references/validation/validation_rules.md:888`
 - **Title**: PHASE_LINKS documents obsolete `parent:` frontmatter instead of metadata-table navigation
 - **Evidence**: Uses `parent: specs/042-payment-system/` YAML frontmatter example
 - **Expected**: 022 pattern uses metadata-table navigation: `Parent Spec | ../spec.md`, `Predecessor | ...`, `Successor | ...`
@@ -20,7 +20,7 @@
 ### Finding 004-F2
 - **Severity**: P2
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:122`
+- **File**: `.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:122`
 - **Title**: Phase completion checklist omits recursive phase-link truth verification
 - **Evidence**: "Before Claiming Complete" only requires P0 evidence + browser test + save context
 - **Expected**: Require recursive validation, direct-child phase discovery, PHASE_LINKS warning review
@@ -30,7 +30,7 @@
 ### Finding 004-F3
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/validation/path_scoped_rules.md:57`
+- **File**: `.opencode/skills/system-spec-kit/references/validation/path_scoped_rules.md:57`
 - **Title**: Path-scoped rules only describe shallow `specs/*/`, not deep nested packet families
 - **Evidence**: Pattern table uses `specs/*/` for level-appropriate validation
 - **Expected**: Cover recursive paths like `specs/system-spec-kit/022-hybrid-rag-fusion/015-.../`
@@ -40,7 +40,7 @@
 ### Finding 004-F4
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/validation/decision_format.md:30`
+- **File**: `.opencode/skills/system-spec-kit/references/validation/decision_format.md:30`
 - **Title**: Decision format models gate logs, not ADR records
 - **Evidence**: Defines GATE/DECISION/CONFIDENCE format only, no ADR structure
 - **Expected**: Include ADR-style decisions like 022's ADR-001 with identifier, status, context, alternatives
@@ -50,7 +50,7 @@
 ### Finding 004-F5
 - **Severity**: P1
 - **Dimension**: traceability
-- **File**: `.opencode/skill/system-spec-kit/references/validation/five_checks.md:32`
+- **File**: `.opencode/skills/system-spec-kit/references/validation/five_checks.md:32`
 - **Title**: Five Checks wrongly exempt documentation-only coordination decisions
 - **Evidence**: "Not Required" includes "Documentation-only changes"
 - **Expected**: Narrow exemption to trivial copy/layout; require Five Checks for coordination contract changes

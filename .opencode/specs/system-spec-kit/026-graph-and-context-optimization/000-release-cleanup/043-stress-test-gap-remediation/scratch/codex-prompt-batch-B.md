@@ -4,15 +4,15 @@ You are generating Vitest stress tests under spec-kit packet 043. Repository roo
 
 ## Output locations
 
-- 2 files to `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/`
-- 1 file to `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/`
+- 2 files to `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/`
+- 1 file to `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/`
 
 ## Reference patterns to mimic (READ FIRST)
 
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/scorer-fusion-stress.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/budget-allocator-stress.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/scorer-fusion-stress.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/budget-allocator-stress.vitest.ts`
 - Any new files written by Batch A that landed in `stress_test/skill-advisor/` (use them for project-style consistency)
 
 ## Required structure for every new file
@@ -39,16 +39,16 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 1: `skill-advisor/anti-stuffing-cardinality-stress.vitest.ts` (sa-012)
 
-- **Catalog**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/05-anti-stuffing.md`
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/derived/anti-stuffing.ts` — exports `applyAntiStuffing` (or similarly-named function — discover by reading the file)
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/05-anti-stuffing.md`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/derived/anti-stuffing.ts` — exports `applyAntiStuffing` (or similarly-named function — discover by reading the file)
 - **Stress axes**:
   1. Build an adversarial skill metadata payload with 500 repeated trigger phrases — verify cardinality cap holds (output count ≤ documented limit, e.g. ~50-100)
   2. Build a payload where one phrase has high repetition density (>30% of total tokens) — verify it's demoted, not promoted, in the output
 
 ### File 2: `skill-advisor/df-idf-corpus-stress.vitest.ts` (sa-013)
 
-- **Catalog**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/06-df-idf-corpus.md`
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts` — exports `computeCorpusStats`, `createDebouncedCorpusUpdater` (or similar)
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/02--auto-indexing/06-df-idf-corpus.md`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts` — exports `computeCorpusStats`, `createDebouncedCorpusUpdater` (or similar)
 - **Stress axes**:
   1. Compute corpus stats over 1000 synthetic skills (each with 5-20 trigger phrases). Verify completion in <2s and IDF values are positive finite numbers
   2. Place skills under a `z_archive/` subfolder — verify they are EXCLUDED from active-only stats; the IDF for archived-only terms should not appear
@@ -56,9 +56,9 @@ describe('<feature_id> — <feature name>', () => {
 
 ### File 3: `code-graph/deep-loop-graph-convergence-stress.vitest.ts` (cg-012)
 
-- **Catalog**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md`
-- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` — exports `handleCoverageGraphConvergence` (handler) and `ConvergenceDecision` type union
-- Also relevant: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts` for signal computation
+- **Catalog**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md`
+- **Source**: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` — exports `handleCoverageGraphConvergence` (handler) and `ConvergenceDecision` type union
+- Also relevant: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts` for signal computation
 - **Stress axes**:
   1. Saturate the coverage graph with 5000+ nodes; verify `handleCoverageGraphConvergence` returns a decision in <500ms
   2. Inject conflicting CONTRADICTS edges; verify the decision becomes `STOP_BLOCKED` (not silent CONTINUE)
@@ -82,7 +82,7 @@ For convergence test: you may need to use an in-memory or temp SQLite to back th
 - Self-validate by running:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run --config vitest.stress.config.ts \
   stress_test/skill-advisor/anti-stuffing-cardinality-stress.vitest.ts \
   stress_test/skill-advisor/df-idf-corpus-stress.vitest.ts \

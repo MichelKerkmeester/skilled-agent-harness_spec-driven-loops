@@ -96,8 +96,8 @@ _memory:
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Finding class declared: this packet is `class-of-bug` (idempotency on spawn site) + `cross-consumer` (error-response path used elsewhere too)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed: `rg -n 'subprocess.Popen.*daemon|start_daemon\b' .opencode/skill/mcp-coco-index/`
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed: `rg -n 'send_bytes\(' .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/`
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed: `rg -n 'subprocess.Popen.*daemon|start_daemon\b' .opencode/skills/mcp-coco-index/`
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed: `rg -n 'send_bytes\(' .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`
 - [ ] CHK-FIX-004 [P0] Adversarial table tests: stale PID + corrupt PID + same-PID-self + permission-denied + race-on-double-spawn
 - [ ] CHK-FIX-005 [P1] Matrix axes: { existing daemon: alive | dead | corrupt-pid | no-pid-file } x { caller: first | second | concurrent } = 12 row coverage
 - [ ] CHK-FIX-006 [P1] Hostile env variant: caller without permission to read `daemon.pid` (graceful skip, log + continue)

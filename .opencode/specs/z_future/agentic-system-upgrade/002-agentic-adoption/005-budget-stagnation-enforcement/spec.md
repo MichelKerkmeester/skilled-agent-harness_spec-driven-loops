@@ -67,10 +67,10 @@ Turn the research synthesis for 005 budget and stagnation enforcement into one f
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

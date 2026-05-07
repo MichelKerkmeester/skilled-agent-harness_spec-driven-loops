@@ -4,13 +4,13 @@
 Determine how `@deep-review` should integrate with the existing `@review` agent and `sk-code-review` skill so the deep-review loop reuses the baseline reviewer contract without duplicating rubric, severity, and overlay logic. [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:32] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:135]
 
 ## Current Integration Snapshot
-1. `@review` is already the generic single-pass reviewer: it is read-only, LEAF-only, must load the `sk-code` baseline plus exactly one `sk-code-*` overlay, applies severity-ranked findings, and can feed orchestrator quality gates. [SOURCE: .opencode/agent/review.md:30-32] [SOURCE: .opencode/agent/review.md:38-40] [SOURCE: .opencode/agent/review.md:46-57] [SOURCE: .opencode/agent/review.md:75-80] [SOURCE: .opencode/agent/review.md:104-109]
-2. `@deep-review` is positioned as a hybrid of `@review` and `@deep-research`, but today it carries its own review workflow, scorecard schema, severity section, and scratch-state responsibilities instead of explicitly reusing the baseline review contract. [SOURCE: .opencode/agent/deep-review.md:28-32] [SOURCE: .opencode/agent/deep-review.md:46-58] [SOURCE: .opencode/agent/deep-review.md:122-146] [SOURCE: .opencode/agent/deep-review.md:149-213]
-3. `sk-code-review` is the intended stack-agnostic review baseline and already defines the baseline+overlay precedence model, but one of its always-loaded references still carries single-pass UX assumptions and a `P0-P3` severity table that diverges from the `P0-P2` model in `@review` and `@deep-review`. [SOURCE: .opencode/skill/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:29-52] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:88-98] [SOURCE: .opencode/agent/review.md:134-140] [SOURCE: .opencode/agent/deep-review.md:125-146]
+1. `@review` is already the generic single-pass reviewer: it is read-only, LEAF-only, must load the `sk-code` baseline plus exactly one `sk-code-*` overlay, applies severity-ranked findings, and can feed orchestrator quality gates. [SOURCE: .opencode/agents/review.md:30-32] [SOURCE: .opencode/agents/review.md:38-40] [SOURCE: .opencode/agents/review.md:46-57] [SOURCE: .opencode/agents/review.md:75-80] [SOURCE: .opencode/agents/review.md:104-109]
+2. `@deep-review` is positioned as a hybrid of `@review` and `@deep-research`, but today it carries its own review workflow, scorecard schema, severity section, and scratch-state responsibilities instead of explicitly reusing the baseline review contract. [SOURCE: .opencode/agents/deep-review.md:28-32] [SOURCE: .opencode/agents/deep-review.md:46-58] [SOURCE: .opencode/agents/deep-review.md:122-146] [SOURCE: .opencode/agents/deep-review.md:149-213]
+3. `sk-code-review` is the intended stack-agnostic review baseline and already defines the baseline+overlay precedence model, but one of its always-loaded references still carries single-pass UX assumptions and a `P0-P3` severity table that diverges from the `P0-P2` model in `@review` and `@deep-review`. [SOURCE: .opencode/skills/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:29-52] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:88-98] [SOURCE: .opencode/agents/review.md:134-140] [SOURCE: .opencode/agents/deep-review.md:125-146]
 
 ## Findings
 ### 1. The real overlap is review doctrine, not execution mode
-`@review` and `@deep-review` overlap on the parts that should be shared: findings-first output, evidence-backed severity classification, adversarial checking for serious findings, and baseline+overlay review standards. They complement each other on execution mode: `@review` is a single-pass reviewer for PR/pre-commit/file/gate use, while `@deep-review` is the per-iteration evidence collector inside an autonomous loop with externalized state. [SOURCE: .opencode/agent/review.md:46-57] [SOURCE: .opencode/agent/review.md:104-150] [SOURCE: .opencode/agent/deep-review.md:24-32] [SOURCE: .opencode/agent/deep-review.md:46-58]
+`@review` and `@deep-review` overlap on the parts that should be shared: findings-first output, evidence-backed severity classification, adversarial checking for serious findings, and baseline+overlay review standards. They complement each other on execution mode: `@review` is a single-pass reviewer for PR/pre-commit/file/gate use, while `@deep-review` is the per-iteration evidence collector inside an autonomous loop with externalized state. [SOURCE: .opencode/agents/review.md:46-57] [SOURCE: .opencode/agents/review.md:104-150] [SOURCE: .opencode/agents/deep-review.md:24-32] [SOURCE: .opencode/agents/deep-review.md:46-58]
 
 Recommended boundary:
 - Shared: severity semantics, evidence requirements, findings schema, baseline+overlay precedence, baseline security/correctness minimums.
@@ -18,7 +18,7 @@ Recommended boundary:
 - `@deep-review`-only: dimension queue execution, scratch artifact emission, convergence-facing metadata, and loop-specific traceability/adjudication extensions.
 
 ### 2. Direct agent-to-agent invocation is the wrong coupling point
-Neither agent should invoke the other. Both are explicitly LEAF-only, and wiring reuse through nested dispatch would turn a contract-sharing problem into a runtime orchestration dependency. The correct integration point is a shared review-core contract plus orchestrator-mediated handoff when one mode wants to reuse another mode's output. [SOURCE: .opencode/agent/review.md:36-40] [SOURCE: .opencode/agent/deep-review.md:36-42] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:20-23] [SOURCE: .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:68-77]
+Neither agent should invoke the other. Both are explicitly LEAF-only, and wiring reuse through nested dispatch would turn a contract-sharing problem into a runtime orchestration dependency. The correct integration point is a shared review-core contract plus orchestrator-mediated handoff when one mode wants to reuse another mode's output. [SOURCE: .opencode/agents/review.md:36-40] [SOURCE: .opencode/agents/deep-review.md:36-42] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:20-23] [SOURCE: .opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml:68-77]
 
 Recommended flow:
 - Optional preflight: orchestrator may run one `@review` pass before iteration 1 to seed hotspots and candidate findings.
@@ -26,7 +26,7 @@ Recommended flow:
 - Optional calibration: orchestrator may run a final `@review` comparator pass after convergence to catch any baseline-review misses.
 
 ### 3. `sk-code-review` should own the shared review-core contract, but not all of its current UX rules belong in deep review
-`sk-code-review` is already the baseline review skill and should become the source of truth for shared doctrine. However, its quick reference mixes reusable review rules with human-interaction behavior such as "ask user what to do next before writing code" and a `P0-P3` table. Those are fine for interactive single-pass review, but they should not leak unchanged into autonomous deep review. [SOURCE: .opencode/skill/sk-code-review/SKILL.md:12-13] [SOURCE: .opencode/skill/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:21-22] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:50-52] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:90-97]
+`sk-code-review` is already the baseline review skill and should become the source of truth for shared doctrine. However, its quick reference mixes reusable review rules with human-interaction behavior such as "ask user what to do next before writing code" and a `P0-P3` table. Those are fine for interactive single-pass review, but they should not leak unchanged into autonomous deep review. [SOURCE: .opencode/skills/sk-code-review/SKILL.md:12-13] [SOURCE: .opencode/skills/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:21-22] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:50-52] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:90-97]
 
 Recommended split inside `sk-code-review`:
 - `review-core`: machine- and agent-consumable contract for severities, evidence requirements, findings order, overlay precedence, and baseline checks.
@@ -34,7 +34,7 @@ Recommended split inside `sk-code-review`:
 - `review-risk-pack`: existing checklists and overlays consumed by both modes.
 
 ### 4. The current deep-review scorecard and severity text are duplication hot spots
-`@deep-review` currently embeds its own scorecard columns, dimension-specific strategies, and severity ladder, while `@review` already carries a general rubric and `sk-code-review` carries baseline review references. That is enough duplication to drift. The strongest example is severity: `@review` and `@deep-review` use `P0/P1/P2`, while the always-loaded quick reference still documents `P0/P1/P2/P3`. [SOURCE: .opencode/agent/review.md:113-150] [SOURCE: .opencode/agent/deep-review.md:106-146] [SOURCE: .opencode/agent/deep-review.md:162-190] [SOURCE: .opencode/skill/sk-code-review/references/quick_reference.md:88-98]
+`@deep-review` currently embeds its own scorecard columns, dimension-specific strategies, and severity ladder, while `@review` already carries a general rubric and `sk-code-review` carries baseline review references. That is enough duplication to drift. The strongest example is severity: `@review` and `@deep-review` use `P0/P1/P2`, while the always-loaded quick reference still documents `P0/P1/P2/P3`. [SOURCE: .opencode/agents/review.md:113-150] [SOURCE: .opencode/agents/deep-review.md:106-146] [SOURCE: .opencode/agents/deep-review.md:162-190] [SOURCE: .opencode/skills/sk-code-review/references/quick_reference.md:88-98]
 
 Recommended change:
 - Remove rubric/severity duplication from `@deep-review` where possible and replace it with "load review-core, then apply deep-review extensions."
@@ -42,7 +42,7 @@ Recommended change:
 - Normalize severity to one canonical ladder before wiring the systems together.
 
 ### 5. Deep-review dimensions should compose with overlays, not compete with them
-The baseline skill already says one overlay is selected for stack-specific style, build, test, and process conventions. Deep review should consume that same overlay selection once, then apply review-mode dimensions on top of it. In other words, overlays answer "what standards apply to this stack," while deep-review dimensions answer "which investigative lens is active in this iteration." [SOURCE: .opencode/skill/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/agent/review.md:48-49] [SOURCE: .opencode/agent/review.md:75-80] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:64-66]
+The baseline skill already says one overlay is selected for stack-specific style, build, test, and process conventions. Deep review should consume that same overlay selection once, then apply review-mode dimensions on top of it. In other words, overlays answer "what standards apply to this stack," while deep-review dimensions answer "which investigative lens is active in this iteration." [SOURCE: .opencode/skills/sk-code-review/SKILL.md:49-100] [SOURCE: .opencode/agents/review.md:48-49] [SOURCE: .opencode/agents/review.md:75-80] [SOURCE: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md:64-66]
 
 Recommended interaction model:
 - Baseline+overlay load once per review target.
@@ -83,11 +83,11 @@ Data flow recommendation:
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-state.jsonl`
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/deep-research-strategy.md`
 - `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/iterations/iteration-007.md`
-- `.opencode/agent/review.md`
-- `.opencode/agent/deep-review.md`
-- `.opencode/skill/sk-code-review/SKILL.md`
-- `.opencode/skill/sk-code-review/references/quick_reference.md`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/agents/review.md`
+- `.opencode/agents/deep-review.md`
+- `.opencode/skills/sk-code-review/SKILL.md`
+- `.opencode/skills/sk-code-review/references/quick_reference.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
 
 ## Assessment
 - `newInfoRatio`: `0.34`

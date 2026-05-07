@@ -7,7 +7,7 @@ Validate whether the root packet's `complete` status is supported by the root pa
 - `spec.md`
 - `tasks.md`
 - `checklist.md`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
 
 ## Findings
 | ID | Severity | Summary | Evidence |

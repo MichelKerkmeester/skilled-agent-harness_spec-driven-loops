@@ -4,8 +4,8 @@
 Write the exact safer-patch pseudo-code for status derivation so implementation can preserve the existing checklist contract instead of over-claiming completion.
 
 ## Findings
-1. `deriveStatus()` still does only two things today: honor an explicit override, then return the first non-empty frontmatter `status` from `implementation-summary.md`, `checklist.md`, `tasks.md`, `plan.md`, or `spec.md`; otherwise it falls back to `planned`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
-2. The existing checklist authority already lives in `check-completion.sh`: only `COMPLETE` means the checklist passes; `P0_INCOMPLETE`, `P1_INCOMPLETE`, `P2_INCOMPLETE`, `PRIORITY_CONTEXT_MISSING`, and `EVIDENCE_MISSING` are all non-complete states. [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:204-235]
+1. `deriveStatus()` still does only two things today: honor an explicit override, then return the first non-empty frontmatter `status` from `implementation-summary.md`, `checklist.md`, `tasks.md`, `plan.md`, or `spec.md`; otherwise it falls back to `planned`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
+2. The existing checklist authority already lives in `check-completion.sh`: only `COMPLETE` means the checklist passes; `P0_INCOMPLETE`, `P1_INCOMPLETE`, `P2_INCOMPLETE`, `PRIORITY_CONTEXT_MISSING`, and `EVIDENCE_MISSING` are all non-complete states. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:204-235]
 3. The live corpus still splits the currently `planned` folders this way: `340` total `planned`, `282` with `implementation-summary.md`, `180` with a `COMPLETE` checklist, `39` with no checklist, and `63` with an incomplete or otherwise non-complete checklist. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 4. The exact safer conditional logic is:
 
@@ -41,8 +41,8 @@ function deriveStatus(docs: ParsedSpecDoc[], override?: string | null): string {
 - Re-inventing completion semantics with ad-hoc regexes instead of mirroring the current checklist contract.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
-- `.opencode/skill/system-spec-kit/scripts/spec/check-completion.sh:204-235`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510`
+- `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh:204-235`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 
 ## Assessment

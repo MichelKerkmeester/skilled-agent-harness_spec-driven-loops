@@ -34,8 +34,8 @@ contextType: "planning"
 
 The current architecture has **two overlapping skill folders** for documentation and context management:
 
-1. **system-spec-kit** (`/.opencode/skill/system-spec-kit/`) - Documentation templates, spec folder structure, validation
-2. **system-memory** (`/.opencode/skill/system-memory/`) - MCP server, database, context preservation, constitutional memories
+1. **system-spec-kit** (`/.opencode/skills/system-spec-kit/`) - Documentation templates, spec folder structure, validation
+2. **system-memory** (`/.opencode/skills/system-memory/`) - MCP server, database, context preservation, constitutional memories
 
 This separation creates:
 - **Cognitive overhead**: Developers must remember which system handles what
@@ -140,7 +140,7 @@ This separation creates:
 
 ### Current State
 ```
-.opencode/skill/
+.opencode/skills/
 ├── system-spec-kit/           # Documentation templates
 │   ├── SKILL.md
 │   ├── templates/
@@ -159,7 +159,7 @@ This separation creates:
 
 ### Target State
 ```
-.opencode/skill/
+.opencode/skills/
 ├── system-spec-kit/           # UNIFIED: Documentation + Memory
 │   ├── SKILL.md               # Merged documentation
 │   ├── templates/             # Unchanged
@@ -196,8 +196,8 @@ This separation creates:
 ### File Dependencies
 - `opencode.json` - MCP server configuration
 - `AGENTS.md` - Gate enforcement references
-- `.opencode/command/memory/*.md` - 4 command files
-- `.opencode/skill/system-spec-kit/scripts/skill_advisor.py` - Skill routing
+- `.opencode/commands/memory/*.md` - 4 command files
+- `.opencode/skills/system-spec-kit/scripts/skill_advisor.py` - Skill routing
 
 ---
 
@@ -222,6 +222,6 @@ Each phase has a checkpoint. If any phase fails:
 ## References
 
 - Prior research: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/033-ux-deep-analysis`
-- system-memory SKILL.md: `.opencode/skill/system-memory/SKILL.md`
-- system-spec-kit SKILL.md: `.opencode/skill/system-spec-kit/SKILL.md`
-- Memory commands: `.opencode/command/memory/*.md`
+- system-memory SKILL.md: `.opencode/skills/system-memory/SKILL.md`
+- system-spec-kit SKILL.md: `.opencode/skills/system-spec-kit/SKILL.md`
+- Memory commands: `.opencode/commands/memory/*.md`

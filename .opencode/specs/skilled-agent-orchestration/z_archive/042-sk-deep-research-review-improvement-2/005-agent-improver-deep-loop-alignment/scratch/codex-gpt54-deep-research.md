@@ -20,11 +20,11 @@ Research question: How can the sk-improve-agent skill be optimized, refined, and
 
 Read these files for context:
 - The Phase 005 spec.md, plan.md, tasks.md
-- .opencode/skill/sk-improve-agent/SKILL.md (the current skill)
-- .opencode/skill/sk-improve-agent/assets/ (config, strategy, charter)
-- .opencode/skill/sk-improve-agent/scripts/ (existing scripts)
-- .opencode/agent/agent-improver.md (the LEAF agent)
-- .opencode/command/improve/agent.md (the orchestrator command)
+- .opencode/skills/sk-improve-agent/SKILL.md (the current skill)
+- .opencode/skills/sk-improve-agent/assets/ (config, strategy, charter)
+- .opencode/skills/sk-improve-agent/scripts/ (existing scripts)
+- .opencode/agents/agent-improver.md (the LEAF agent)
+- .opencode/commands/improve/agent.md (the orchestrator command)
 
 For each of 10 iterations, investigate a different aspect:
 1. Stop-reason taxonomy: what stop reasons does agent-improver currently use implicitly? What should the formal enum be?
@@ -52,12 +52,12 @@ exec
 397:- symptom: strict validation step in prompt cannot run; cause: phase lacks Level 3 docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`); fix: create/verify those docs before running `validate.sh --strict` or deep research loops [Task 1]
 425:- 008-bmad-autonomous-development, 009-xethryon, phase-research-prompt.md, skip spec folder, 001-research-agentic-systems, Level 3 docs before deep research
 440:- no failures observed; preserve the same gate order (Level 3 docs -> strict validate -> deep research) to avoid exploratory research before folder documentation is ready [Task 1]
-877:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agent/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
+877:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agents/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
 879:## Task 3: Apply direct `agent-improver` metadata hotfix after explicit skip-spec-folder choice, outcome success
 887:- fix malformed agent role definition of agent-improver, .codex/agents/agent-improver.toml, description key, python3.11 tomllib, direct fix option D
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -75,7 +75,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -360,7 +360,7 @@ applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Publi
 
 - in this repo `specs/` is a symlink to `.opencode/specs`; phase prompt/spec work should be applied under `.opencode/specs/...` paths [Task 1]
 - prompt artifact placement for this phase family is phase-root `phase-research-prompt.md` (not `scratch/`) and should reference that phase’s own `external/` tree [Task 1][Task 2]
-- gate sequence that worked: validate phase docs first with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
+- gate sequence that worked: validate phase docs first with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-path> --strict`, then run `spec_kit:deep-research`, then generate context/memory artifacts [Task 1][Task 2]
 
 ## Failures and how to do differently
 
@@ -424,7 +424,7 @@ The sk-improve-agent skill runs bounded improvement loops over agent packets, bu
 | **Branch** | `system-speckit/026-graph-and-context-optimization` |
 | **Parent Packet** | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/` |
 | **Predecessor Phases** | `001-runtime-truth-foundation`, `002-semantic-coverage-graph`, `003-wave-executor`, `004-offline-loop-optimizer` |
-| **Skill Target** | `.opencode/skill/sk-improve-agent/` |
+| **Skill Target** | `.opencode/skills/sk-improve-agent/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -473,22 +473,22 @@ Apply the same runtime truth contracts to agent-improver so that every improveme
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modify | Add stop-reason taxonomy, journal protocol, coverage graph, trajectory, trade-off, parallel wave, and weight-optimizer sections |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modify | Add config fields for journal path, coverage graph path, wave activation gate, weight optimizer settings (all optional with defaults) |
-| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
-| `.opencode/skill/sk-improve-agent/assets/improvement_charter.md` | Modify | Add audit trail requirements, legal-stop gate obligations |
-| `.opencode/agent/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-| `.opencode/command/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
-| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
-| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` | Create | Coverage graph reader/writer for explored dimensions and tried mutations |
-| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
-| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` | Create | Lineage graph for parallel candidate waves |
-| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Create | Benchmark replay stability measurement and reporting |
-| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
-| `.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts` | Create | Tests for coverage graph read/write and namespace isolation |
-| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Create | Tests for regression detection and threshold configuration |
-| `.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts` | Create | Tests for lineage graph construction and parent-child linkage |
-| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Create | Tests for stability scoring and replay consistency |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Add stop-reason taxonomy, journal protocol, coverage graph, trajectory, trade-off, parallel wave, and weight-optimizer sections |
+| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modify | Add config fields for journal path, coverage graph path, wave activation gate, weight optimizer settings (all optional with defaults) |
+| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
+| `.opencode/skills/sk-improve-agent/assets/improvement_charter.md` | Modify | Add audit trail requirements, legal-stop gate obligations |
+| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
+| `.opencode/commands/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
+| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
+| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` | Create | Coverage graph reader/writer for explored dimensions and tried mutations |
+| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
+| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` | Create | Lineage graph for parallel candidate waves |
+| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Create | Benchmark replay stability measurement and reporting |
+| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
+| `.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts` | Create | Tests for coverage graph read/write and namespace isolation |
+| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Create | Tests for regression detection and threshold configuration |
+| `.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts` | Create | Tests for lineage graph construction and parent-child linkage |
+| `.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Create | Tests for stability scoring and replay consistency |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -822,7 +822,7 @@ Add scoring weight optimizer using historical session data and benchmark replay 
 ### Rollback Procedure
 
 1. Revert SKILL.md, improvement_config.json, improvement_strategy.md, improvement_charter.md, agent-improver.md, and agent.md to pre-phase state using git revert or file restore
-2. Remove new scripts from `.opencode/skill/sk-improve-agent/scripts/` (they are not imported by existing code)
+2. Remove new scripts from `.opencode/skills/sk-improve-agent/scripts/` (they are not imported by existing code)
 3. Remove new test files from `scripts/tests/`
 4. Verify an existing improvement session runs without error
 
@@ -907,14 +907,14 @@ contextType: "planning"
 
 - [ ] T001 Read existing sk-improve-agent SKILL.md, improvement_config.json, improvement_charter.md, improvement_strategy.md and agent-improver.md to understand current state before modifying (all skill files)
 - [ ] T002 Read 042 Phase 1 journal schema from `../001-runtime-truth-foundation/` to confirm event type contract before writing journal script
-- [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skill/sk-improve-agent/SKILL.md`) (REQ-AI-001)
-- [ ] T004 Add legal-stop gate protocol to agent-improver.md orchestrator section: gate conditions for `converged` and `promoted` using 5-dimension stability + no regression + promotion criteria (`.opencode/agent/agent-improver.md`) (REQ-AI-002)
-- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/command/improve/agent.md`) (REQ-AI-003)
-- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
-- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
-- [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skill/sk-improve-agent/assets/improvement_charter.md`)
-- [ ] T009 Update improvement_config.json: add optional `journal.path`, `journal.sessionId`, `sessionResume.enabled` fields with documented defaults (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
+- [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skills/sk-improve-agent/SKILL.md`) (REQ-AI-001)
+- [ ] T004 Add legal-stop gate protocol to agent-improver.md orchestrator section: gate conditions for `converged` and `promoted` using 5-dimension stability + no regression + promotion criteria (`.opencode/agents/agent-improver.md`) (REQ-AI-002)
+- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/improve/agent.md`) (REQ-AI-003)
+- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
+- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
+- [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skills/sk-improve-agent/assets/improvement_charter.md`)
+- [ ] T009 Update improvement_config.json: add optional `journal.path`, `journal.sessionId`, `sessionResume.enabled` fields with documented defaults (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -926,13 +926,13 @@ contextType: "planning"
 *Depends on: T006 (journal emit for trade-off events).*
 
 - [ ] T011 [P] Read 042 Phase 2 coverage graph API from `../002-semantic-coverage-graph/` to confirm `loop_type` namespace parameter support before implementing mutation-coverage.cjs
-- [ ] T012 Create `mutation-coverage.cjs`: coverage graph reader/writer with `loop_type: "improvement"` namespace; tracks explored dimensions, tried mutation types per dimension, integration surfaces, exhausted mutation sets (`.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs`) (REQ-AI-006, REQ-AI-009)
+- [ ] T012 Create `mutation-coverage.cjs`: coverage graph reader/writer with `loop_type: "improvement"` namespace; tracks explored dimensions, tried mutation types per dimension, integration surfaces, exhausted mutation sets (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs`) (REQ-AI-006, REQ-AI-009)
 - [ ] T013 Add dimension trajectory writer to `mutation-coverage.cjs` or as a co-located module: time-ordered score vector per dimension, enforces minimum 3 data points before convergence claim (REQ-AI-007)
-- [ ] T014 Create `trade-off-detector.cjs`: reads current trajectory, computes per-dimension deltas, compares against configurable thresholds, returns structured trade-off report (`.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`) (REQ-AI-008)
-- [ ] T015 Update improvement_strategy.md: add trajectory-based convergence criteria (minimum 3 data points, stabilization threshold), mutation exhaustion guidance (skip exhausted types, annotate journal), trade-off resolution guidance (`.opencode/skill/sk-improve-agent/assets/improvement_strategy.md`)
-- [ ] T016 Update improvement_config.json: add optional `coverageGraph.path`, `trajectory.minDataPoints`, `tradeOff.thresholds` config block with documented defaults (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-- [ ] T017 Write `mutation-coverage.vitest.ts`: test namespace isolation, graph read/write round-trip, exhausted-mutations marking, trajectory append and minimum data-point enforcement (`.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`)
-- [ ] T018 Write `trade-off-detector.vitest.ts`: test threshold crossing detection, no-event-when-below-threshold, configurable threshold values, empty trajectory handling (`.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`)
+- [ ] T014 Create `trade-off-detector.cjs`: reads current trajectory, computes per-dimension deltas, compares against configurable thresholds, returns structured trade-off report (`.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`) (REQ-AI-008)
+- [ ] T015 Update improvement_strategy.md: add trajectory-based convergence criteria (minimum 3 data points, stabilization threshold), mutation exhaustion guidance (skip exhausted types, annotate journal), trade-off resolution guidance (`.opencode/skills/sk-improve-agent/assets/improvement_strategy.md`)
+- [ ] T016 Update improvement_config.json: add optional `coverageGraph.path`, `trajectory.minDataPoints`, `tradeOff.thresholds` config block with documented defaults (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+- [ ] T017 Write `mutation-coverage.vitest.ts`: test namespace isolation, graph read/write round-trip, exhausted-mutations marking, trajectory append and minimum data-point enforcement (`.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`)
+- [ ] T018 Write `trade-off-detector.vitest.ts`: test threshold crossing detection, no-event-when-below-threshold, configurable threshold values, empty trajectory handling (`.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -944,10 +944,10 @@ contextType: "planning"
 *Depends on: T006 (journal emit); T003 (SKILL.md updated).*
 *Can run in parallel with Sub-Phase 5b after 5a completes.*
 
-- [ ] T019 [P] Create `candidate-lineage.cjs`: directed graph of candidate proposals across parallel wave sessions; each node stores session-id, wave-index, spawning mutation type, and parent node reference (`.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs`) (REQ-AI-011)
-- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agent/agent-improver.md`) (REQ-AI-010)
-- [ ] T021 Update improvement_config.json: add `parallelWaves` config block with `enabled: false`, `activationThreshold`, `maxCandidates` fields and JSDoc comments (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-- [ ] T022 Write `candidate-lineage.vitest.ts`: test node creation, parent-child linkage, root-to-leaf traversal, wave-index assignment, session-id isolation (`.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`)
+- [ ] T019 [P] Create `candidate-lineage.cjs`: directed graph of candidate proposals across parallel wave sessions; each node stores session-id, wave-index, spawning mutation type, and parent node reference (`.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs`) (REQ-AI-011)
+- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
+- [ ] T021 Update improvement_config.json: add `parallelWaves` config block with `enabled: false`, `activationThreshold`, `maxCandidates` fields and JSDoc comments (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+- [ ] T022 Write `candidate-lineage.vitest.ts`: test node creation, parent-child linkage, root-to-leaf traversal, wave-index assignment, session-id isolation (`.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`)
 - [ ] T023 [P] Manual verification: run an improvement session with `parallelWaves.enabled: false` (default) and confirm single-wave behavior is unchanged; confirm no lineage graph is written when parallel mode is off
 <!-- /ANCHOR:phase-3 -->
 
@@ -959,11 +959,11 @@ contextType: "planning"
 *Delivers: scoring weight optimizer (recommendation only), benchmark replay stability measurement.*
 *Depends on: T006 (journal history), T013 (trajectory data).*
 
-- [ ] T024 Create `benchmark-stability.cjs`: accepts array of benchmark result sets from identical replays, computes per-dimension stability coefficient (1 - stddev/mean), emits stability report JSON, appends `stabilityWarning` to journal if any coefficient is below configured threshold (`.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs`) (REQ-AI-013)
+- [ ] T024 Create `benchmark-stability.cjs`: accepts array of benchmark result sets from identical replays, computes per-dimension stability coefficient (1 - stddev/mean), emits stability report JSON, appends `stabilityWarning` to journal if any coefficient is below configured threshold (`.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs`) (REQ-AI-013)
 - [ ] T025 Implement weight optimizer logic in `benchmark-stability.cjs` or co-located module: reads historical journal files after session count threshold, computes per-dimension performance patterns, emits weight-recommendation report file (not auto-applied) (REQ-AI-012)
-- [ ] T026 Update SKILL.md: add weight optimizer invocation guidance (when to run, what the report contains, how to apply recommendations manually), benchmark stability interpretation guide (`.opencode/skill/sk-improve-agent/SKILL.md`)
-- [ ] T027 Update improvement_config.json: add `weightOptimizer.sessionCountThreshold`, `weightOptimizer.reportPath`, `benchmarkStability.replayCount`, `benchmarkStability.warningThreshold` optional config fields (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-- [ ] T028 Write `benchmark-stability.vitest.ts`: test stability coefficient math (perfect stability = 1.0, high variance = low coefficient), stability warning threshold triggering, weight recommendation report format, multi-session history aggregation (`.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`)
+- [ ] T026 Update SKILL.md: add weight optimizer invocation guidance (when to run, what the report contains, how to apply recommendations manually), benchmark stability interpretation guide (`.opencode/skills/sk-improve-agent/SKILL.md`)
+- [ ] T027 Update improvement_config.json: add `weightOptimizer.sessionCountThreshold`, `weightOptimizer.reportPath`, `benchmarkStability.replayCount`, `benchmarkStability.warningThreshold` optional config fields (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+- [ ] T028 Write `benchmark-stability.vitest.ts`: test stability coefficient math (perfect stability = 1.0, high variance = low coefficient), stability warning threshold triggering, weight recommendation report format, multi-session history aggregation (`.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -1048,59 +1048,59 @@ exec
 codex
 The Phase 005 packet is explicit about the intended port: it wants Phase 1 journaling/stop contracts, Phase 2 coverage semantics, Phase 3 wave gating, and Phase 4 optimizer logic applied to `sk-improve-agent`. I’m now reading the current runtime surfaces to separate “already implicit today” from “missing and should be formalized,” which will make the 10 iteration recommendations concrete instead of theoretical.
 exec
-/bin/zsh -lc "printf '--- skill tree ---\\n'; find .opencode/skill/sk-improve-agent -maxdepth 3 -type f | sort; printf '\\n--- phase dirs ---\\n'; find .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 -maxdepth 2 -mindepth 1 -type d | sort" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '--- skill tree ---\\n'; find .opencode/skills/sk-improve-agent -maxdepth 3 -type f | sort; printf '\\n--- phase dirs ---\\n'; find .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 -maxdepth 2 -mindepth 1 -type d | sort" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 --- skill tree ---
-.opencode/skill/sk-improve-agent/README.md
-.opencode/skill/sk-improve-agent/SKILL.md
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md
-.opencode/skill/sk-improve-agent/assets/improvement_config.json
-.opencode/skill/sk-improve-agent/assets/improvement_config_reference.md
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md
-.opencode/skill/sk-improve-agent/assets/target-profiles/context-prime.json
-.opencode/skill/sk-improve-agent/assets/target-profiles/handover.json
-.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc
-.opencode/skill/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/01--integration-scanner/004-json-output-file.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/02--profile-generator/005-rules-extraction.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/02--profile-generator/006-output-checks.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/02--profile-generator/008-file-output.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/03--5d-scorer/009-dynamic-handover.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/03--5d-scorer/010-dynamic-arbitrary.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/03--5d-scorer/011-legacy-unchanged.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/03--5d-scorer/012-dimension-details.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/03--5d-scorer/013-missing-candidate.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/014-without-integration.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/015-with-integration.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/016-fixture-regression.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/017-no-dimensions.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/018-with-dimensions.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/020-full-pipeline.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/021-any-agent.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md
-.opencode/skill/sk-improve-agent/references/evaluator_contract.md
-.opencode/skill/sk-improve-agent/references/integration_scanning.md
-.opencode/skill/sk-improve-agent/references/loop_protocol.md
-.opencode/skill/sk-improve-agent/references/mirror_drift_policy.md
-.opencode/skill/sk-improve-agent/references/no_go_conditions.md
-.opencode/skill/sk-improve-agent/references/promotion_rules.md
-.opencode/skill/sk-improve-agent/references/quick_reference.md
-.opencode/skill/sk-improve-agent/references/rollback_runbook.md
-.opencode/skill/sk-improve-agent/references/second_target_evaluation.md
-.opencode/skill/sk-improve-agent/references/target_onboarding.md
-.opencode/skill/sk-improve-agent/scripts/check-mirror-drift.cjs
-.opencode/skill/sk-improve-agent/scripts/generate-profile.cjs
-.opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
-.opencode/skill/sk-improve-agent/scripts/rollback-candidate.cjs
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs
-.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs
+.opencode/skills/sk-improve-agent/README.md
+.opencode/skills/sk-improve-agent/SKILL.md
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md
+.opencode/skills/sk-improve-agent/assets/improvement_config.json
+.opencode/skills/sk-improve-agent/assets/improvement_config_reference.md
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md
+.opencode/skills/sk-improve-agent/assets/target-profiles/context-prime.json
+.opencode/skills/sk-improve-agent/assets/target-profiles/handover.json
+.opencode/skills/sk-improve-agent/assets/target_manifest.jsonc
+.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/004-json-output-file.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/02--profile-generator/005-rules-extraction.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/02--profile-generator/006-output-checks.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/02--profile-generator/008-file-output.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/03--5d-scorer/009-dynamic-handover.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/03--5d-scorer/010-dynamic-arbitrary.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/03--5d-scorer/011-legacy-unchanged.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/03--5d-scorer/012-dimension-details.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/03--5d-scorer/013-missing-candidate.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/014-without-integration.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/015-with-integration.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/04--benchmark-integration/016-fixture-regression.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/017-no-dimensions.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/018-with-dimensions.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/020-full-pipeline.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/021-any-agent.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/sk-improve-agent/references/benchmark_operator_guide.md
+.opencode/skills/sk-improve-agent/references/evaluator_contract.md
+.opencode/skills/sk-improve-agent/references/integration_scanning.md
+.opencode/skills/sk-improve-agent/references/loop_protocol.md
+.opencode/skills/sk-improve-agent/references/mirror_drift_policy.md
+.opencode/skills/sk-improve-agent/references/no_go_conditions.md
+.opencode/skills/sk-improve-agent/references/promotion_rules.md
+.opencode/skills/sk-improve-agent/references/quick_reference.md
+.opencode/skills/sk-improve-agent/references/rollback_runbook.md
+.opencode/skills/sk-improve-agent/references/second_target_evaluation.md
+.opencode/skills/sk-improve-agent/references/target_onboarding.md
+.opencode/skills/sk-improve-agent/scripts/check-mirror-drift.cjs
+.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs
+.opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
+.opencode/skills/sk-improve-agent/scripts/rollback-candidate.cjs
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
+.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
 
 --- phase dirs ---
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation
@@ -1120,7 +1120,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch
 
 exec
-/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agent/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/command/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 --- agent-improver.md ---
@@ -1151,7 +1151,7 @@ Proposal-only mutator for bounded agent-improver experiments. This agent writes 
 
 **CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
 
-**IMPORTANT**: Use `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
+**IMPORTANT**: Use `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
 
 ---
 
@@ -1296,7 +1296,7 @@ Fix the proposal boundary first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:agent` | Initializes and runs the bounded agent-improver workflow | `.opencode/command/improve/agent.md` |
+| `/improve:agent` | Initializes and runs the bounded agent-improver workflow | `.opencode/commands/improve/agent.md` |
 
 ### Skills
 
@@ -1420,7 +1420,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
 2. CHECK if $ARGUMENTS contains an agent path:
-   ├─ IF present (.opencode/agent/*.md) → target_path = detected value, omit Q0
+   ├─ IF present (.opencode/agents/*.md) → target_path = detected value, omit Q0
    └─ IF missing → include Q0 in prompt
 
 3. CHECK for --spec-folder flag:
@@ -1432,7 +1432,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF missing → max_iterations = 5 (default)
 
 5. List available agents for Q0:
-   $ ls .opencode/agent/*.md
+   $ ls .opencode/agents/*.md
 
 6. List recent spec folders for Q1:
    $ ls -d specs/*/ 2>/dev/null | tail -10
@@ -1460,7 +1460,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Static — legacy profile (handover/context-prime only)     │
    │                                                                │
    │ Reply format: "handover, A, A, A" or                           │
-   │ ".opencode/agent/debug.md, B, B, A"                            │
+   │ ".opencode/agents/debug.md, B, B, A"                            │
    └────────────────────────────────────────────────────────────────┘
 
 8. WAIT for user response (DO NOT PROCEED)
@@ -1583,13 +1583,13 @@ $ARGUMENTS
 ### Step 1: Load sk-improve-agent Skill
 
 ```
-Read(".opencode/skill/sk-improve-agent/SKILL.md")
+Read(".opencode/skills/sk-improve-agent/SKILL.md")
 ```
 
 ### Step 2: Run Integration Scan
 
 ```bash
-node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
+node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
 ```
 
 Review the integration report: mirror sync status, command coverage, skill references.
@@ -1598,12 +1598,12 @@ Review the integration report: mirror sync status, command coverage, skill refer
 
 **Dynamic mode (scoring_mode = dynamic):**
 ```bash
-node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
+node .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
 ```
 
 
 exec
-/bin/zsh -lc "printf '\\n--- SKILL.md ---\\n'; sed -n '1,260p' .opencode/skill/sk-improve-agent/SKILL.md; printf '\\n--- improvement_config.json ---\\n'; sed -n '1,260p' .opencode/skill/sk-improve-agent/assets/improvement_config.json; printf '\\n--- improvement_strategy.md ---\\n'; sed -n '1,260p' .opencode/skill/sk-improve-agent/assets/improvement_strategy.md; printf '\\n--- improvement_charter.md ---\\n'; sed -n '1,260p' .opencode/skill/sk-improve-agent/assets/improvement_charter.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '\\n--- SKILL.md ---\\n'; sed -n '1,260p' .opencode/skills/sk-improve-agent/SKILL.md; printf '\\n--- improvement_config.json ---\\n'; sed -n '1,260p' .opencode/skills/sk-improve-agent/assets/improvement_config.json; printf '\\n--- improvement_strategy.md ---\\n'; sed -n '1,260p' .opencode/skills/sk-improve-agent/assets/improvement_strategy.md; printf '\\n--- improvement_charter.md ---\\n'; sed -n '1,260p' .opencode/skills/sk-improve-agent/assets/improvement_charter.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 --- SKILL.md ---
@@ -1645,7 +1645,7 @@ Use this skill when:
 
 #### Bounded Agent Improvement
 
-Use this skill to set up a proposal-first loop for a single target such as `.opencode/agent/handover.md` or `.opencode/agent/context-prime.md`, write packet-local candidates, and record append-only evidence.
+Use this skill to set up a proposal-first loop for a single target such as `.opencode/agents/handover.md` or `.opencode/agents/context-prime.md`, write packet-local candidates, and record append-only evidence.
 
 #### Benchmark-Backed Evaluation
 
@@ -1870,7 +1870,7 @@ Dynamic profiles are generated on the fly from any agent file via `scripts/gener
 
 --- improvement_config.json ---
 {
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "targetProfile": "handover",
   "targetKind": "canonical-agent",
   "maxIterations": 5,
@@ -1904,8 +1904,8 @@ Dynamic profiles are generated on the fly from any agent file via `scripts/gener
     "manifest": "improvement/target-manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
-    "targetProfiles": ".opencode/skill/sk-improve-agent/assets/target-profiles",
-    "fixtureCatalog": ".opencode/skill/sk-improve-agent/assets/fixtures"
+    "targetProfiles": ".opencode/skills/sk-improve-agent/assets/target-profiles",
+    "fixtureCatalog": ".opencode/skills/sk-improve-agent/assets/fixtures"
   },
   "targets": {
     "activeProfile": "handover",
@@ -2117,12 +2117,12 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 
 ### Canonical Benchmark Seed
 
-- canonical source under test: `.opencode/agent/handover.md`
+- canonical source under test: `.opencode/agents/handover.md`
 - reason: structured prompt surface, narrow scope, clear downstream artifact contract
 
 ### Additional Bounded Target
 
-- candidate-only source under test: `.opencode/agent/context-prime.md`
+- candidate-only source under test: `.opencode/agents/context-prime.md`
 - reason: structured, read-only Prime Package contract with a smaller and safer output surface than broad orchestration agents
 
 ---
@@ -2184,26 +2184,26 @@ user cancelled MCP tool call
 exec
 /bin/zsh -lc 'rg -n "stop[- ]reason|session-ended|journal|jsonl|coverage graph|loop_type|parallel wave|weight optimizer|stability coefficient|trade-off|trajectory|plateau" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 .opencode/skill .opencode/command .opencode/agent | head -n 400' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/agent/deep-research.md:66:- `research/deep-research-state.jsonl` -- Understand iteration history
-.opencode/agent/deep-research.md:168:Append ONE line to `research/deep-research-state.jsonl`:
-.opencode/agent/deep-research.md:291:| State log | `research/deep-research-state.jsonl` | Read + Append |
-.opencode/agent/deep-research.md:331:- Overwrite deep-research-state.jsonl (append-only)
-.opencode/agent/deep-research.md:362:- research/deep-research-state.jsonl (appended)
-.opencode/agent/deep-research.md:389:[x] deep-research-state.jsonl appended with iteration record
+.opencode/agents/deep-research.md:66:- `research/deep-research-state.jsonl` -- Understand iteration history
+.opencode/agents/deep-research.md:168:Append ONE line to `research/deep-research-state.jsonl`:
+.opencode/agents/deep-research.md:291:| State log | `research/deep-research-state.jsonl` | Read + Append |
+.opencode/agents/deep-research.md:331:- Overwrite deep-research-state.jsonl (append-only)
+.opencode/agents/deep-research.md:362:- research/deep-research-state.jsonl (appended)
+.opencode/agents/deep-research.md:389:[x] deep-research-state.jsonl appended with iteration record
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:166:4. **Given** a candidate config improves convergence efficiency but harms accuracy, **when** rubric scoring runs, **then** the breakdown shows the trade-off explicitly instead of hiding it.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:218:- A candidate improves convergence efficiency but harms finding accuracy. Promotion must reject that trade-off unless the rubric explicitly preserves overall quality.
-.opencode/agent/ultra-think.md:166:3. Identify risks and trade-offs from YOUR perspective
-.opencode/agent/ultra-think.md:254:- Ask: "Is this a real weakness or an intentional trade-off?"
-.opencode/agent/ultra-think.md:274:| Contradictory approaches      | Present both to user with trade-off analysis     |
-.opencode/agent/ultra-think.md:445:  - Present both solutions with full trade-off analysis
-.opencode/agent/ultra-think.md:463:| **Convergence Sycophancy**   | All strategies artificially agree, masking real trade-offs | Run cross-critique (§6) when scores within 15 pts |
-.opencode/agent/deep-review.md:63:- `review/deep-review-state.jsonl` -- Understand iteration history
-.opencode/agent/deep-review.md:232:Append ONE line to `review/deep-review-state.jsonl`:
-.opencode/agent/deep-review.md:364:| State log | `review/deep-review-state.jsonl` | Read + Append |
-.opencode/agent/deep-review.md:384:- Only write to: `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`
-.opencode/agent/deep-review.md:451:9. Overwrite deep-review-state.jsonl (append-only)
-.opencode/agent/deep-review.md:483:[x] deep-review-state.jsonl appended with exactly ONE record
-.opencode/agent/deep-review.md:511:- review/deep-review-state.jsonl (appended)
+.opencode/agents/ultra-think.md:166:3. Identify risks and trade-offs from YOUR perspective
+.opencode/agents/ultra-think.md:254:- Ask: "Is this a real weakness or an intentional trade-off?"
+.opencode/agents/ultra-think.md:274:| Contradictory approaches      | Present both to user with trade-off analysis     |
+.opencode/agents/ultra-think.md:445:  - Present both solutions with full trade-off analysis
+.opencode/agents/ultra-think.md:463:| **Convergence Sycophancy**   | All strategies artificially agree, masking real trade-offs | Run cross-critique (§6) when scores within 15 pts |
+.opencode/agents/deep-review.md:63:- `review/deep-review-state.jsonl` -- Understand iteration history
+.opencode/agents/deep-review.md:232:Append ONE line to `review/deep-review-state.jsonl`:
+.opencode/agents/deep-review.md:364:| State log | `review/deep-review-state.jsonl` | Read + Append |
+.opencode/agents/deep-review.md:384:- Only write to: `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`
+.opencode/agents/deep-review.md:451:9. Overwrite deep-review-state.jsonl (append-only)
+.opencode/agents/deep-review.md:483:[x] deep-review-state.jsonl appended with exactly ONE record
+.opencode/agents/deep-review.md:511:- review/deep-review-state.jsonl (appended)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:302:   170	    │  deep-research-state.jsonl      │
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:320:   188	Init --> Create config.json, strategy.md, state.jsonl
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:331:   199	  |                                         6. Append state.jsonl
@@ -2213,7 +2213,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:586:87:- required per-phase packet set under `review/<phase-slug>/`: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, `iterations/iteration-NNN.md`, `review-report.md` [Task 1][Task 3][Task 4]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:594:649:- 90 iterations, recommendations-sk-deep-research.md, recommendations-sk-deep-review.md, deep-research-state.jsonl, synthesis_complete, external wave
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:663:    46	    "deep-review-state.jsonl": "append-only",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:978:.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:978:.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1411:    54	 * @param {string} jsonlContent - Newline-delimited JSON string
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1414:    57	function parseJsonl(jsonlContent) {
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:1417:    60	  for (const rawLine of jsonlContent.split('\n')) {
@@ -2229,8 +2229,8 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:2199:review state jsonl:        0
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:2206:research state jsonl:        0
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:2207:review state jsonl:        0
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3558:/bin/zsh -lc 'for f in .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3678:===== .opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3558:/bin/zsh -lc 'for f in .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/runtime-fixtures.ts .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json; do echo "===== $f ====="; nl -ba "$f" | sed -n '"'1,220p'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:3678:===== .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl =====
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:4599:    66	- `research/deep-research-state.jsonl` -- Understand iteration history
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:4701:   168	Append ONE line to `research/deep-research-state.jsonl`:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:4857:    63	- `review/deep-review-state.jsonl` -- Understand iteration history
@@ -2245,25 +2245,25 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6552:    53	The current deep-loop stack is functional, but it still treats "converged" as a mostly inferred state instead of a strongly explained runtime truth. Deep research and deep review already have JSONL state, dashboards, and reducer/parity coverage, yet the consolidated research shows clear gaps around stop-reason taxonomy, legal done gates, resume/start-from behavior, research claim verification, audit trails, richer dashboards, behavior-first test coverage, and large-run coordination.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6568:    69	- Real completion-gate planning for both deep-loop products, including named stop reasons, binary done checks, and resume-from-run semantics.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6571:    72	- Append-only audit-journal planning for both loops.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6594:    95	| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6595:    96	| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6596:    97	| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6597:    98	| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6599:   100	| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6602:   103	| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6603:   104	| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6604:   105	| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6605:   106	| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6606:   107	| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6608:   109	| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6609:   110	| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6610:   111	| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6628:   129	| `.opencode/agent/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6629:   130	| `.opencode/agent/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6642:   143	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6643:   144	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6646:   147	| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6647:   148	| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6594:    95	| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6595:    96	| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, and resume-from-run lifecycle steps. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6596:    97	| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define stop-reason taxonomy, binary done gate, liveness, blocked-stop handling, and semantic convergence signals. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6597:    98	| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, ledgers, replay snapshots, observability events, decomposition metadata, and coordination board data. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6599:   100	| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and optional-mode configuration keys. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6602:   103	| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Extend reducer outputs for delta replay, snapshot/compaction, dashboard metrics, observability rollups, ledger rollups, journal rollups, and resume/stop metadata. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6603:   104	| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Add the real done-gate contract, journal behavior, richer dashboard expectations, and behavior-test posture. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6604:   105	| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document legal stop flow, blocked-stop behavior, journal writes, start-from-run semantics, and large-target inventory/hotspot workflows. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6605:   106	| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define stop-reason taxonomy, all-dimensions-clean semantics, liveness, blocked-stop handling, and semantic convergence signals. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6606:   107	| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add fields and artifact contracts for stop reasons, journals, replay snapshots, observability events, decomposition metadata, time/token metrics, and coverage depth. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6608:   109	| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Make stop reasons, typed stop-decision events, done-gate conditions, reducer-owned machine sections, dashboard metrics, and audit-journal outputs canonical. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6609:   110	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6610:   111	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6628:   129	| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6629:   130	| `.opencode/agents/deep-review.md` | Modify | Update iteration instructions to emit the new journal, stop-reason, inventory/hotspot, semantic-convergence, coverage-depth, and timing/tokens data while leaving reducer-owned sections untouched. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6642:   143	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6643:   144	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Modify | Extend schema/contract coverage for stop reasons, journals, reducer-owned machine sections, snapshot/compaction, observability metrics, decomposition metadata, and resume cursor fields. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6646:   147	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6647:   148	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6660:   161	| REQ-001 | Both deep-loop products MUST use a shared named stop-reason taxonomy: `max_iterations`, `converged`, `all_dimensions_clean`, `insufficient_evidence`, `user_stopped`, and `error_budget_exhausted`. | Deep research and deep review state docs, YAML workflows, dashboards, and synthesis outputs all expose `stopReason` from the shared taxonomy; any legacy stop labels are either removed or mapped into this taxonomy. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6663:   164	| REQ-004 | Both loops MUST produce append-only audit journals that capture file reads, searches, evidence extraction, focus/dimension rotation decisions, and convergence-calculation inputs. | Runtime artifacts include a canonical journal file per session, it is append-only, reducer/dashboard flows can summarize it, and stop/recovery analysis can be reproduced from packet artifacts without hidden state. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6665:   166	| REQ-006 | The implementation plan MUST shift loop confidence from structure-only checks to behavior-first tests that exercise narrow questions, evidence citations, conclusion confidence, convergence, and stop-reason persistence. | The planned test stack includes dedicated behavioral suites for deep research and deep review plus extensions to reducer/parity tests; passing behavior tests becomes part of the done gate for these runtime changes. | `CF-004` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:102-111`], `Theme T-005` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:404-406`] |
@@ -2275,7 +2275,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6709:   210	1. **Given** either loop finishes, **When** an operator opens the dashboard or synthesis output, **Then** the packet shows a named stop reason from the shared taxonomy.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6809:    89	  -> add journals, snapshot/compaction, reducer durability, observability rollups, and decomposition scaffolding
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6894:   174	- Reducer fixtures prove append-only journal rollups, delta replay, snapshot/compaction equivalence, and dashboard regeneration remain idempotent.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6965:.opencode/skill/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:6965:.opencode/skills/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7062:/bin/zsh -lc "python3 -c \"import json,collections,pathlib; p=pathlib.Path('.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl'); records=[json.loads(line) for line in p.read_text().splitlines() if line.strip()]; iters=[r for r in records if r.get('type')=='iteration']; tracks=collections.Counter(r.get('focusTrack','<none>') for r in iters); status=collections.Counter(r.get('status','<none>') for r in iters); answered=sum(len(r.get('answeredQuestions',[])) for r in iters); ruled=sum(len(r.get('ruledOut',[])) for r in iters); ratios=[r.get('newInfoRatio',0) for r in iters]; print('iterations',len(iters)); print('statuses',dict(status)); print('tracks',dict(tracks)); print('unique_tracks',len(tracks)); print('answered_questions_total',answered); print('ruled_out_total',ruled); print('avg_newInfoRatio',round(sum(ratios)/len(ratios),3)); print('min_ratio',min(ratios)); print('max_ratio',max(ratios));\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7096:.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7244:    49	- State ledger: `research/deep-research-state.jsonl`
@@ -2285,11 +2285,11 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7551:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:174:- Reducer fixtures prove append-only journal rollups, delta replay, snapshot/compaction equivalence, and dashboard regeneration remain idempotent.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7565:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:230:- Research behavior tests should assert falsifiable question framing, citation presence, conclusion confidence, clustering, semantic convergence, and stop-reason persistence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7566:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:231:- Review behavior tests should assert dimension rotation, citation presence, hotspot ranking, claim-adjudication gate enforcement, reducer-owned machine sections, and stop-reason persistence.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7578:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7578:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:297:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7581:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:306:| Review all-dimensions-clean path | Prove review can stop only after dimension coverage and quality gates pass | JSONL stop reason, dashboard coverage section, behavior test fixture |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7583:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:309:| Audit-journal path | Prove reads/searches/evidence extraction and convergence math are recorded append-only | Journal artifact plus reducer summary |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7593:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/plan.md:341:  2. Roll back stop/journal/ledger changes by feature group, not as a single monolith, so trusted baseline behavior can be restored incrementally.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7643:.opencode/skill/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7643:.opencode/skills/sk-improve-agent/manual_testing_playbook/05--reducer-dimensions/019-plateau-detection.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7754:    41	      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-review-state.jsonl');
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7766:    53	      expect(content, `${docPath} should read the canonical state log`).toContain('review/deep-review-state.jsonl');
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:7775:    62	        'review/deep-research-state.jsonl',
@@ -2303,118 +2303,118 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8218:    64	      expect(content, `${docPath} should read the canonical state log`).toContain('research/deep-research-state.jsonl');
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8727:    48	    expect(contract.contract.outputs.jsonl.pathPattern).toContain('deep-review-state.jsonl');
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8753:    74	        '"{spec_folder}/review/deep-review-state.jsonl"',
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8912:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171).
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:9018:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/deep-research.md#L171).
-.opencode/command/improve/agent.md:201:6. Reduces evidence into a dimensional dashboard with plateau detection
-.opencode/command/improve/agent.md:202:7. Stops when improvement plateaus, max iterations reached, or operator decides
-.opencode/command/improve/agent.md:285:7. Check stop conditions (plateau, max iterations, infra failure)
-.opencode/command/improve/agent.md:299:- Plateau: `STATUS=OK REASON="all_dimensions_plateaued"`
-.opencode/command/improve/agent.md:352:Stop Reason: All dimensions plateaued after 3 iterations
-.opencode/command/improve/agent.md:359:STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
-.opencode/command/improve/agent.md:369:- **Stop rules**: Loop stops on dimension plateau (3+ identical scores), max iterations, or infra failure threshold.
-.opencode/command/spec_kit/plan.md:337:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
-.opencode/command/improve/README.txt:216:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
-.opencode/command/improve/README.txt:234:| All dimensions plateaued | Loop exhausted current hypothesis | Update `improvement_strategy.md` and restart |
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:16:  tracking: append_only_jsonl_ledger
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:24:    all dimensions plateau (3+ identical scores), infra failures exceed threshold, or reducer signals shouldStop.
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:105:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:146:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:175:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_confirm.yaml:197:        description: "Present final dashboard with per-dimension trends and stop reason"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:120:          - "{spec_folder}/research/state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:126:          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:180:        output: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:221:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:280:          - reason: "Human-readable stop reason"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:317:              State Log: {spec_folder}/research/deep-research-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:349:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:359:          append_jsonl: '{"type":"iteration","run":{current_iteration},"status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:364:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:393:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:408:          - reason: "Use the latest synthesis/recovery stop reason if present, else 'completed-continue'"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:444:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:484:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:518:    - overwrite_jsonl_state_log
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:528:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:16:  tracking: append_only_jsonl_ledger
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:22:    Stops when: max iterations reached, all dimensions plateau (3+ identical scores),
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:99:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:130:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:151:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:156:        description: "Evaluate stop conditions: dimension plateau, infra failure, weak benchmarks, max iterations"
-.opencode/command/improve/assets/improve_agent-improver_auto.yaml:163:        description: "Present final dashboard with per-dimension trends and stop reason"
-.opencode/command/spec_kit/complete.md:442:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:120:          - "{spec_folder}/research/state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:126:          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:179:        output: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:241:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:300:          - reason: "Human-readable stop reason"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:360:              State Log: {spec_folder}/research/deep-research-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:392:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:434:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:466:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:481:          - reason: "Use the latest synthesis/recovery stop reason if present, else 'completed-continue'"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:540:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:600:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:616:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:646:    - overwrite_jsonl_state_log
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:260:        output: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:327:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:392:          - reason: "Human-readable stop reason"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:472:              State Log: {spec_folder}/review/deep-review-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:489:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:517:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:631:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:642:          - reason: "Use the latest stop reason if present, else 'completed-continue'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:747:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:814:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:831:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:889:    - overwrite_jsonl_state_log
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:261:        output: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:303:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:368:          - reason: "Human-readable stop reason"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:425:              State Log: {spec_folder}/review/deep-review-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:442:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:455:          append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:471:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:480:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:567:          - reason: "Use the latest stop reason if present, else 'completed-continue'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:648:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:690:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:728:    - overwrite_jsonl_state_log
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:740:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
-.opencode/skill/cli-claude-code/README.md:74:| **Extended Thinking** | Deep chain-of-thought reasoning via `--effort high` with Opus for complex trade-off analysis |
-.opencode/skill/cli-claude-code/README.md:134:Extended thinking is the headline capability. When Opus receives a complex prompt with `--effort high`, it generates an internal chain-of-thought before responding. This matters for architecture trade-off analysis, root cause debugging, and multi-dimensional decision-making where surface-level pattern matching falls short. The reasoning is not just longer responses. It is a fundamentally different processing mode that considers alternatives, backtracks, and synthesizes before committing to an answer.
-.opencode/skill/cli-claude-code/README.md:242:claude -p "Analyze the trade-offs between microservices and monolith for this project. \
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8912:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:9018:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
+.opencode/commands/improve/agent.md:201:6. Reduces evidence into a dimensional dashboard with plateau detection
+.opencode/commands/improve/agent.md:202:7. Stops when improvement plateaus, max iterations reached, or operator decides
+.opencode/commands/improve/agent.md:285:7. Check stop conditions (plateau, max iterations, infra failure)
+.opencode/commands/improve/agent.md:299:- Plateau: `STATUS=OK REASON="all_dimensions_plateaued"`
+.opencode/commands/improve/agent.md:352:Stop Reason: All dimensions plateaued after 3 iterations
+.opencode/commands/improve/agent.md:359:STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
+.opencode/commands/improve/agent.md:369:- **Stop rules**: Loop stops on dimension plateau (3+ identical scores), max iterations, or infra failure threshold.
+.opencode/commands/spec_kit/plan.md:337:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
+.opencode/commands/improve/README.txt:216:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
+.opencode/commands/improve/README.txt:234:| All dimensions plateaued | Loop exhausted current hypothesis | Update `improvement_strategy.md` and restart |
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:16:  tracking: append_only_jsonl_ledger
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:24:    all dimensions plateau (3+ identical scores), infra failures exceed threshold, or reducer signals shouldStop.
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:105:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:146:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:175:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:197:        description: "Present final dashboard with per-dimension trends and stop reason"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:120:          - "{spec_folder}/research/state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:126:          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:180:        output: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:221:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:280:          - reason: "Human-readable stop reason"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:317:              State Log: {spec_folder}/research/deep-research-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:349:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:359:          append_jsonl: '{"type":"iteration","run":{current_iteration},"status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:364:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:393:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:408:          - reason: "Use the latest synthesis/recovery stop reason if present, else 'completed-continue'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:444:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:484:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:518:    - overwrite_jsonl_state_log
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:528:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:16:  tracking: append_only_jsonl_ledger
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:22:    Stops when: max iterations reached, all dimensions plateau (3+ identical scores),
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:99:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:130:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:151:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:156:        description: "Evaluate stop conditions: dimension plateau, infra failure, weak benchmarks, max iterations"
+.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:163:        description: "Present final dashboard with per-dimension trends and stop reason"
+.opencode/commands/spec_kit/complete.md:442:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:120:          - "{spec_folder}/research/state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:126:          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:179:        output: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:241:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:300:          - reason: "Human-readable stop reason"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:360:              State Log: {spec_folder}/research/deep-research-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:392:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:434:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:466:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:481:          - reason: "Use the latest synthesis/recovery stop reason if present, else 'completed-continue'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:540:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:600:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:616:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:646:    - overwrite_jsonl_state_log
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:260:        output: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:327:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:392:          - reason: "Human-readable stop reason"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:472:              State Log: {spec_folder}/review/deep-review-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:489:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:517:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:631:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:642:          - reason: "Use the latest stop reason if present, else 'completed-continue'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:747:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:814:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:831:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:889:    - overwrite_jsonl_state_log
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:261:        output: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:303:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:368:          - reason: "Human-readable stop reason"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:425:              State Log: {spec_folder}/review/deep-review-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:442:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:455:          append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:471:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:480:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:567:          - reason: "Use the latest stop reason if present, else 'completed-continue'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:648:        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:728:    - overwrite_jsonl_state_log
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:740:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
+.opencode/skills/cli-claude-code/README.md:74:| **Extended Thinking** | Deep chain-of-thought reasoning via `--effort high` with Opus for complex trade-off analysis |
+.opencode/skills/cli-claude-code/README.md:134:Extended thinking is the headline capability. When Opus receives a complex prompt with `--effort high`, it generates an internal chain-of-thought before responding. This matters for architecture trade-off analysis, root cause debugging, and multi-dimensional decision-making where surface-level pattern matching falls short. The reasoning is not just longer responses. It is a fundamentally different processing mode that considers alternatives, backtracks, and synthesizes before committing to an answer.
+.opencode/skills/cli-claude-code/README.md:242:claude -p "Analyze the trade-offs between microservices and monolith for this project. \
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/decision-record.md:21:**Context**: The agent-improver agent is deliberately proposal-only (LEAF constraint). Adding journal emission could blur this boundary.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/decision-record.md:30:**Context**: Phase 2 built a coverage graph in `deep-loop-graph.sqlite`. Agent-improver needs similar mutation tracking.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/decision-record.md:31:**Decision**: Reuse the same SQLite database with `loop_type: "improvement"` namespace. Node kinds: dimension, mutation_type, integration_surface, candidate.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/decision-record.md:41:**Consequences**: Richer convergence model than simple score plateau. Enables trade-off detection.
-.opencode/skill/cli-claude-code/SKILL.md:125:    "DEEP_REASONING":    {"weight": 4, "keywords": ["reason", "think", "analyze", "trade-off", "architecture", "extended thinking", "chain-of-thought"]},
-.opencode/skill/cli-claude-code/SKILL.md:348:claude -p "Analyze the trade-offs between microservices and monolith for this project. Consider scalability, team size, deployment complexity." \
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:153:claude -p "Analyze trade-offs between [option A] and [option B] for [context]. Evaluate across: [dimensions]. Recommend with confidence level and reasoning." \
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:160:claude -p "Analyze trade-offs between microservices and modular monolith for our e-commerce platform. Evaluate across: scalability, team autonomy, operational complexity, data consistency, deployment speed, debugging difficulty. Recommend with confidence level and reasoning." \
-.opencode/skill/cli-claude-code/references/integration_patterns.md:88:claude -p "We need to choose between event sourcing and CRUD for order management. Analyze trade-offs across: data consistency, query performance, team learning curve, operational complexity, and future scalability. Recommend with confidence level." \
+.opencode/skills/cli-claude-code/SKILL.md:125:    "DEEP_REASONING":    {"weight": 4, "keywords": ["reason", "think", "analyze", "trade-off", "architecture", "extended thinking", "chain-of-thought"]},
+.opencode/skills/cli-claude-code/SKILL.md:348:claude -p "Analyze the trade-offs between microservices and monolith for this project. Consider scalability, team size, deployment complexity." \
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:153:claude -p "Analyze trade-offs between [option A] and [option B] for [context]. Evaluate across: [dimensions]. Recommend with confidence level and reasoning." \
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:160:claude -p "Analyze trade-offs between microservices and modular monolith for our e-commerce platform. Evaluate across: scalability, team autonomy, operational complexity, data consistency, deployment speed, debugging difficulty. Recommend with confidence level and reasoning." \
+.opencode/skills/cli-claude-code/references/integration_patterns.md:88:claude -p "We need to choose between event sourcing and CRUD for order management. Analyze trade-offs across: data consistency, query performance, team learning curve, operational complexity, and future scalability. Recommend with confidence level." \
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:3:description: "Transfer the proven deep-loop runtime truth contracts from 042 Phases 1-4 to the sk-improve-agent skill, adding stop-reason taxonomy, audit journaling, mutation coverage tracking, trade-off detection, optional parallel candidates, and scoring weight optimization."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:8:  - "improvement journal"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:10:  - "trade-off detection"
@@ -2427,16 +2427,16 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:72:- Dimension trajectory tracking (per-dimension score trends across iterations)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:76:- Candidate lineage graph for parallel waves
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:77:- Scoring weight optimizer using historical session data
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:93:| `.opencode/skill/sk-improve-agent/SKILL.md` | Modify | Add stop-reason taxonomy, journal protocol, coverage graph, trajectory, trade-off, parallel wave, and weight-optimizer sections |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modify | Add config fields for journal path, coverage graph path, wave activation gate, weight optimizer settings (all optional with defaults) |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:95:| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agent/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:98:| `.opencode/command/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:101:| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:105:| `.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts` | Create | Tests for coverage graph read/write and namespace isolation |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:106:| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Create | Tests for regression detection and threshold configuration |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:93:| `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Add stop-reason taxonomy, journal protocol, coverage graph, trajectory, trade-off, parallel wave, and weight-optimizer sections |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modify | Add config fields for journal path, coverage graph path, wave activation gate, weight optimizer settings (all optional with defaults) |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:95:| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:98:| `.opencode/commands/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:101:| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:105:| `.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts` | Create | Tests for coverage graph read/write and namespace isolation |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:106:| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Create | Tests for regression detection and threshold configuration |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:120:| REQ-AI-001 | Stop-reason taxonomy: `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` | Every session termination emits exactly one stop-reason matching the taxonomy; no session ends without a logged stop-reason |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:122:| REQ-AI-003 | Resume/continuation semantics for improvement sessions | A session started with a prior session-id replays journal state and resumes from the last checkpoint without repeating completed iterations |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:123:| REQ-AI-004 | Audit journal (`improvement-journal.jsonl`) capturing all events (iteration-started, candidate-proposed, candidate-evaluated, promotion-gate-checked, session-ended) | All five event types appear in the journal for every completed session; file is append-only and survives process restart |
@@ -2479,11 +2479,11 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:317:- Should the improvement journal share the same file path convention as the deep-research/deep-review journals, or use a separate directory under the skill? Recommendation: use a skill-local path (`~/.agent-improver/sessions/{session-id}/`) consistent with the packet-local discipline.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:318:- What is the correct exploration-breadth score formula for the parallel wave activation gate? The 042 Phase 3 wave executor provides a reference; align or adapt?
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:319:- Should the weight optimizer write its recommendations into the journal or into a separate report file? Separate file is cleaner for human review; journal entry for machine auditability.
-.opencode/skill/cli-claude-code/references/cli_reference.md:211:| **Opus** | `claude-opus-4-6` | Deepest reasoning, highest quality | Highest | Architecture decisions, complex trade-offs, extended thinking |
-.opencode/skill/cli-claude-code/references/cli_reference.md:218:Is the task complex (architecture, trade-offs, multi-step reasoning)?
-.opencode/skill/cli-claude-code/references/claude_tools.md:43:- Complex trade-off analysis across multiple dimensions
-.opencode/skill/cli-claude-code/references/claude_tools.md:56:claude -p "Analyze the trade-offs of our current caching strategy" \
-.opencode/skill/cli-claude-code/references/claude_tools.md:66:**Compared to other CLIs:** Gemini CLI and Codex CLI have reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
+.opencode/skills/cli-claude-code/references/cli_reference.md:211:| **Opus** | `claude-opus-4-6` | Deepest reasoning, highest quality | Highest | Architecture decisions, complex trade-offs, extended thinking |
+.opencode/skills/cli-claude-code/references/cli_reference.md:218:Is the task complex (architecture, trade-offs, multi-step reasoning)?
+.opencode/skills/cli-claude-code/references/claude_tools.md:43:- Complex trade-off analysis across multiple dimensions
+.opencode/skills/cli-claude-code/references/claude_tools.md:56:claude -p "Analyze the trade-offs of our current caching strategy" \
+.opencode/skills/cli-claude-code/references/claude_tools.md:66:**Compared to other CLIs:** Gemini CLI and Codex CLI have reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:3:description: "4-sub-phase plan porting 042 runtime truth contracts to sk-improve-agent: stop-reason taxonomy, audit journal, mutation coverage graph, trade-off detection, optional parallel candidate waves, and scoring weight optimization."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:7:  - "improvement journal implementation"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:29:| **Storage** | JSONL files (journal, ledger), JSON files (coverage graph, lineage, trajectory) |
@@ -2562,26 +2562,26 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:7:  - "improvement journal tasks"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:39:*Delivers: stop-reason taxonomy, legal-stop gates, resume semantics, audit journal, hypothesis verification ledger.*
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:42:- [ ] T002 Read 042 Phase 1 journal schema from `../001-runtime-truth-foundation/` to confirm event type contract before writing journal script
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:43:- [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skill/sk-improve-agent/SKILL.md`) (REQ-AI-001)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:45:- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/command/improve/agent.md`) (REQ-AI-003)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:48:- [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skill/sk-improve-agent/assets/improvement_charter.md`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:49:- [ ] T009 Update improvement_config.json: add optional `journal.path`, `journal.sessionId`, `sessionResume.enabled` fields with documented defaults (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:50:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:43:- [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skills/sk-improve-agent/SKILL.md`) (REQ-AI-001)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:45:- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/improve/agent.md`) (REQ-AI-003)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:48:- [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skills/sk-improve-agent/assets/improvement_charter.md`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:49:- [ ] T009 Update improvement_config.json: add optional `journal.path`, `journal.sessionId`, `sessionResume.enabled` fields with documented defaults (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:50:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:58:*Delivers: mutation coverage graph, dimension trajectory tracking, trade-off detection, exhausted-mutations log.*
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:59:*Depends on: T006 (journal emit for trade-off events).*
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:61:- [ ] T011 [P] Read 042 Phase 2 coverage graph API from `../002-semantic-coverage-graph/` to confirm `loop_type` namespace parameter support before implementing mutation-coverage.cjs
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:62:- [ ] T012 Create `mutation-coverage.cjs`: coverage graph reader/writer with `loop_type: "improvement"` namespace; tracks explored dimensions, tried mutation types per dimension, integration surfaces, exhausted mutation sets (`.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs`) (REQ-AI-006, REQ-AI-009)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:62:- [ ] T012 Create `mutation-coverage.cjs`: coverage graph reader/writer with `loop_type: "improvement"` namespace; tracks explored dimensions, tried mutation types per dimension, integration surfaces, exhausted mutation sets (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs`) (REQ-AI-006, REQ-AI-009)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:63:- [ ] T013 Add dimension trajectory writer to `mutation-coverage.cjs` or as a co-located module: time-ordered score vector per dimension, enforces minimum 3 data points before convergence claim (REQ-AI-007)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:64:- [ ] T014 Create `trade-off-detector.cjs`: reads current trajectory, computes per-dimension deltas, compares against configurable thresholds, returns structured trade-off report (`.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`) (REQ-AI-008)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:65:- [ ] T015 Update improvement_strategy.md: add trajectory-based convergence criteria (minimum 3 data points, stabilization threshold), mutation exhaustion guidance (skip exhausted types, annotate journal), trade-off resolution guidance (`.opencode/skill/sk-improve-agent/assets/improvement_strategy.md`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:66:- [ ] T016 Update improvement_config.json: add optional `coverageGraph.path`, `trajectory.minDataPoints`, `tradeOff.thresholds` config block with documented defaults (`.opencode/skill/sk-improve-agent/assets/improvement_config.json`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:67:- [ ] T017 Write `mutation-coverage.vitest.ts`: test namespace isolation, graph read/write round-trip, exhausted-mutations marking, trajectory append and minimum data-point enforcement (`.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:68:- [ ] T018 Write `trade-off-detector.vitest.ts`: test threshold crossing detection, no-event-when-below-threshold, configurable threshold values, empty trajectory handling (`.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:64:- [ ] T014 Create `trade-off-detector.cjs`: reads current trajectory, computes per-dimension deltas, compares against configurable thresholds, returns structured trade-off report (`.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`) (REQ-AI-008)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:65:- [ ] T015 Update improvement_strategy.md: add trajectory-based convergence criteria (minimum 3 data points, stabilization threshold), mutation exhaustion guidance (skip exhausted types, annotate journal), trade-off resolution guidance (`.opencode/skills/sk-improve-agent/assets/improvement_strategy.md`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:66:- [ ] T016 Update improvement_config.json: add optional `coverageGraph.path`, `trajectory.minDataPoints`, `tradeOff.thresholds` config block with documented defaults (`.opencode/skills/sk-improve-agent/assets/improvement_config.json`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:67:- [ ] T017 Write `mutation-coverage.vitest.ts`: test namespace isolation, graph read/write round-trip, exhausted-mutations marking, trajectory append and minimum data-point enforcement (`.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:68:- [ ] T018 Write `trade-off-detector.vitest.ts`: test threshold crossing detection, no-event-when-below-threshold, configurable threshold values, empty trajectory handling (`.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:77:*Depends on: T006 (journal emit); T003 (SKILL.md updated).*
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:80:- [ ] T019 [P] Create `candidate-lineage.cjs`: directed graph of candidate proposals across parallel wave sessions; each node stores session-id, wave-index, spawning mutation type, and parent node reference (`.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs`) (REQ-AI-011)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:81:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agent/agent-improver.md`) (REQ-AI-010)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:80:- [ ] T019 [P] Create `candidate-lineage.cjs`: directed graph of candidate proposals across parallel wave sessions; each node stores session-id, wave-index, spawning mutation type, and parent node reference (`.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs`) (REQ-AI-011)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:81:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:92:*Delivers: scoring weight optimizer (recommendation only), benchmark replay stability measurement.*
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:93:*Depends on: T006 (journal history), T013 (trajectory data).*
 
@@ -2697,25 +2697,25 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:97:  -> start thin lifecycle/blocked-stop/replay harnesses immediately after the Phase 1 lock
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:98:  -> then expand into reducer/schema extensions, semantic convergence, and wider integration fixtures
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:118:**Why first**: Every later improvement depends on a trusted answer to four questions: why did the loop stop, was STOP legal, where can a session resume, and can the stop decision be replayed from packet-local state. The agent instructions also need to stop fighting the reducer contract before broader runtime work begins.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:123:- `.opencode/skill/sk-deep-research/references/convergence.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:128:- `.opencode/skill/sk-deep-review/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:123:- `.opencode/skills/sk-deep-research/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:128:- `.opencode/skills/sk-deep-review/references/convergence.md`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:146:- Add fixture-based cases that prove blocked-stop behavior and replayable stop-decision logging when convergence math passes but quality gates fail.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:153:**Why second**: Separate journal artifacts, compaction, observability, and large-target decomposition all build on the Phase 1 event schema and need to exist before trust surfaces or optional modes can be trusted at scale. Journals land here as their own packet-local append-only files; ledgers stay deferred to Phase 2b.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:178:- Reducer fixtures prove separate append-only journal artifacts, journal rollups, delta replay, snapshot/compaction equivalence, and dashboard regeneration remain idempotent.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:186:**Why third**: Once the substrate is durable and observable, we can safely layer the trust surfaces that decide what evidence is promoted, how ledger transitions work, what convergence means semantically, and which sections stay machine-owned.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:190:- `.opencode/skill/sk-deep-research/references/convergence.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:196:- `.opencode/skill/sk-deep-review/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:190:- `.opencode/skills/sk-deep-research/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:196:- `.opencode/skills/sk-deep-review/references/convergence.md`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:212:- Semantic convergence fixtures assert novelty, contradiction density, and citation overlap participate in typed stop-decision traces instead of scalar-only thresholds.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:219:**Why now**: This phase starts immediately after the Phase 1 lock so replay harnesses can protect substrate and trust-surface work while those phases are still being implemented. The first fixture slice stays narrow on lifecycle, blocked-stop, and replay before it expands into semantic convergence and richer trust-surface scenarios.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:226:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:227:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:228:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:226:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:227:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:228:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/042/`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:233:- Create thin end-to-end harnesses first for invalid-state, active resume, completed-continue, blocked-stop, and compaction-equivalence replay.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:234:- Research behavior tests should assert falsifiable question framing, citation presence, conclusion confidence, clustering, semantic convergence, and stop-reason persistence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:235:- Review behavior tests should assert dimension rotation, citation presence, hotspot ranking, claim-adjudication gate enforcement, reducer-owned machine sections, and stop-reason persistence.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:241:**Why after early verification**: Once the foundational and trust contracts have replay-backed coverage, parity and mirror alignment can move as one bounded follow-on without guessing at unstable interim surfaces.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:262:- Operator-facing command examples should remain compact while replay, observability, and advanced modes are discoverable.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:301:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skill/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:301:| Behavioral | Research/review runtime behavior, stop reasons, journals, snapshots, replay corpus, observability, decomposition, and semantic convergence | `pnpm vitest .opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/plan.md:302:| Integration | Auto and confirm YAML flows across resume/blocked-stop/optional-mode scenarios | Workflow fixtures plus targeted `pnpm vitest` integration cases added in this packet's implementation phase |
 
 ===== 002-semantic-coverage-graph spec anchors =====
@@ -2735,12 +2735,12 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:97:| `lib/storage/causal-edges.ts` | Edge insertion/update/delete, weight clamping, self-loop prevention, BFS traversal, cumulative path strength | `coverage-graph-core.cjs` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:109:  -> deep_loop_graph_convergence returns decision + blockers + trace
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:111:  -> status/convergence summaries feed dashboards and synthesis outputs
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:131:- `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:131:- `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:135:- Map existing memory relations to research/review relation enums inside the coverage layer, but treat current weight values as provisional inputs to later calibration.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:146:- `coverage-graph-convergence.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:171:- Targeted signal and convergence tests against persisted graph fixtures
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:178:**Goal**: Surface the coverage graph through four stable MCP tools on the existing Spec Kit Memory MCP server.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:184:- `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:184:- `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:190:- `deep_loop_graph_convergence` must return a typed `decision`, `signals`, `blockers`, and `trace`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:212:1. Define the reducer/MCP contract: payload shape, sync-vs-async behavior, latency budget, authority order, and replay semantics.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:213:2. Calibrate coverage-specific edge weights against reducer outputs and convergence behavior instead of blindly inheriting memory-causal values.
@@ -2752,8 +2752,8 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:226:- Fallback path is explicit, replay-safe, and ordered `JSONL -> local JSON -> SQLite projection`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:230:- Named coverage-graph convergence/tool suites
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:237:**Goal**: Make graph events and graph-aware convergence part of the human- and agent-facing loop contract.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:241:- `.opencode/skill/sk-deep-research/references/convergence.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:243:- `.opencode/skill/sk-deep-review/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:241:- `.opencode/skills/sk-deep-research/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:243:- `.opencode/skills/sk-deep-review/references/convergence.md`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:258:- Contract sanity checks through the named convergence/tool suites
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:268:| Unit | Edge manager behavior, traversal, signal math, contradiction handling, convergence helpers | `coverage-graph-core.vitest.ts`, `coverage-graph-signals.vitest.ts`, `coverage-graph-convergence.vitest.ts` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan.md:270:| MCP Tool | Input validation, query dispatch, status output, and convergence output contracts | `coverage-graph-tools.vitest.ts` |
@@ -2781,7 +2781,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:3:description: "Define the coverage-graph substrate for deep research and deep review by extracting reusable graph primitives from the Spec Kit Memory MCP server and applying them to deep-loop convergence."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:6:  - "semantic coverage graph"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:8:  - "deep_loop_graph_convergence"
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:22:Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skill/system-spec-kit/mcp_server/`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:22:Phase 002 turns semantic convergence from an abstract idea into a concrete implementation plan. The coverage graph is the fourth graph system in the existing Spec Kit Memory stack, following the causal graph, the code structural graph, and the graph-signal layer already present under `.opencode/skills/system-spec-kit/mcp_server/`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:24:The design target is explicit reuse, not greenfield invention. Research findings revise the reuse estimate to roughly 35-45% direct reuse, 25-30% adapted reuse, and the remainder genuinely new loop semantics. Edge management from `causal-edges.ts`, degree/depth metrics from `graph-signals.ts`, contradiction-reporting patterns from `contradiction-detection.ts`, and SQLite setup patterns from `code-graph-db.ts` transfer well, but contradiction adjudication, convergence design, and reducer/MCP integration are not plug-and-play. Phase 001 remains the legal stop-decision foundation. Phase 002 adds graph context so low novelty only permits STOP when coverage, verification, and contradiction state agree.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:40:| **Successor** | `../003-wave-executor/spec.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:41:| **Handoff Criteria** | Phase 003 can consume graph-backed coverage, contradiction, provenance, and convergence signals without introducing a second graph model. |
@@ -2798,13 +2798,13 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:97:- Add the listed unit and integration tests for graph core logic, signals, convergence, DB behavior, and tool behavior.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:101:- Phase 003 wave scheduling, segment partitioning, or multi-wave orchestration logic.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:102:- Phase 004 replay optimization, threshold tuning, or promotion heuristics derived from graph history.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:113:| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:116:| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Create | Research/review convergence-signal assembly and typed decision-trace helpers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:128:| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | Create | Handler for typed graph-aware convergence assessment and blocker reporting. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:135:| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Ingest iteration `graphEvents`, define the reducer/MCP contract, push graph deltas to MCP, query convergence, enforce the fallback authority chain, and keep a local JSON fallback path. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:137:| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Define graph-aware convergence language, decision interplay with `newInfoRatio`, and legal STOP semantics. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:139:| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:149:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Create | Verify research/review convergence signals and typed STOP decisions. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:113:| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:116:| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Create | Research/review convergence-signal assembly and typed decision-trace helpers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:128:| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | Create | Handler for typed graph-aware convergence assessment and blocker reporting. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:135:| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Ingest iteration `graphEvents`, define the reducer/MCP contract, push graph deltas to MCP, query convergence, enforce the fallback authority chain, and keep a local JSON fallback path. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:137:| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Define graph-aware convergence language, decision interplay with `newInfoRatio`, and legal STOP semantics. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:139:| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:149:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Create | Verify research/review convergence signals and typed STOP decisions. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:155:Research findings revise the original reuse estimate downward: Phase 002 is now planned as 35-45% direct reuse, 25-30% adapted reuse, and the remainder genuinely new loop semantics. Direct reuse is concentrated in graph primitives and DB lifecycle patterns; adapted work is concentrated in contradiction handling, convergence design, and reducer/MCP integration.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:166:The weights below are initial estimates inherited from memory-causal graph heuristics. They are implementation starting points, not final truth constants, and MUST be recalibrated for coverage semantics before convergence thresholds are considered stable.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md:180:These review weights are also initial estimates inherited from memory-causal graph behavior. Implementation MUST validate whether they should influence traversal only, convergence scoring, or both, and recalibrate them accordingly.
@@ -2874,23 +2874,23 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:90:  -> evaluate each segment with graph-backed convergence
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:93:  -> join segment waves
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:107:**Why first**: Wave execution is blocked until the system can prove a safe fan-out/join path. The current YAML engine has no native parallel dispatch, so this proof must land before any segmentation or merge design can be treated as buildable.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:110:- `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:110:- `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:120:- Prove one canonical replacement path, either helper-module orchestration or engine extension, can fan out and join without breaking reducer or resume contracts.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:131:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:132:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:133:- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:131:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:132:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:133:- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:141:- Prove `hotspot-inventory.json` and `domain-ledger.json` are emitted before dispatch.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:142:- Prove segment IDs and board row IDs remain stable across replay.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:154:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:155:- `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:154:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:155:- `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:171:**Why fourth**: Merge correctness, join safety, and resume behavior are the operational guardrails that make wave mode safe to trust after the prerequisite and segmentation layers are in place.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:174:- `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:175:- `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:176:- `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:186:- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:187:- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:188:- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:189:- `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:174:- `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:175:- `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:176:- `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:186:- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:187:- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:188:- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:189:- `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:192:- Prove segment-local lineage survives interruption and resume.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:206:| Unit | Segment planner, board helpers, convergence wrappers, keyed merge helpers | Vitest |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/plan.md:208:| State/Replay | Segment JSONL isolation, merge idempotence, keyed identity, and resume | Vitest |
@@ -2930,28 +2930,28 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:94:- Add workflow, config, and strategy surfaces for wave-aware execution without changing the default small-target path.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:95:- Add tests for lifecycle correctness, segment isolation, merge idempotence, and resume or recovery behavior.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:100:- Offline replay optimization, config search, and promotion gates from Phase 004.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:108:| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:109:| `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:110:| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:111:| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:113:| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:114:| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:115:| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:116:| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:117:| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:119:| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:120:| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:121:| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:122:| `.opencode/command/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:123:| `.opencode/command/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:124:| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:125:| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:127:| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:128:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:129:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:130:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:131:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:108:| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:109:| `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:110:| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:111:| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:113:| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:114:| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:115:| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:116:| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:117:| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:119:| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:120:| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:121:| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:122:| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:123:| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:124:| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:125:| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:127:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:128:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:129:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:130:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:131:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:143:| REQ-000 | Workflow fan-out/join capability MUST be proven before wave execution can be built. | The packet defines and verifies one canonical path for parallel dispatch plus join, either through helper-module orchestration or a YAML engine extension; until that proof exists, wave execution remains blocked and the default sequential path stays authoritative. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:146:| REQ-003 | The phase MUST define a packet-local coordination board that is reducer-owned and machine-first. | `board.json` is the canonical execution ledger for per-segment state, conflict notes, deduplication markers, and promotion outcomes; `dashboard.md` is a derived human-readable render and not a human-edited strategy surface. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md:147:| REQ-004 | Segment-local JSONL and merge rules MUST preserve auditability when wave results are merged back into the main packet lineage. | Segment artifacts remain replayable on their own, merged records always include explicit keys `sessionId`, `generation`, `segment`, `wave`, and `findingId`, and merge logic never relies on append order as the source of truth. |
@@ -2980,20 +2980,20 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:91:  -> replay candidates deterministically
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:95:  -> require replay fixtures + behavioral gates before any future production promotion
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:115:- Phase 1 replay fixtures for production-grade replay validation.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:127:- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:128:- `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:129:- `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:130:- `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:131:- `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:132:- `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:135:- `.opencode/skill/sk-deep-research/references/convergence.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:136:- `.opencode/skill/sk-deep-review/references/convergence.md`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:140:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:141:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:143:- `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:144:- `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:127:- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:128:- `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:129:- `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:130:- `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:131:- `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:132:- `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:135:- `.opencode/skills/sk-deep-research/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:136:- `.opencode/skills/sk-deep-review/references/convergence.md`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:139:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:140:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:141:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:142:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:143:- `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:144:- `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:148:- Prove rubric dimensions and weights produce stable, inspectable scores.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:149:- Prove replay outcomes remain deterministic for the same corpus and candidate config.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan.md:151:- Prove promotion stays advisory-only while prerequisite replay fixtures and behavioral suites are still missing.
@@ -3046,22 +3046,22 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:82:- Add a deterministic replay runner for reducer and convergence logic under alternate configs.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:83:- Add a canonical optimizer manifest that declares tunable fields, locked contract fields, and future prompt-pack entrypoints.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:93:- Direct mutation of canonical agent `.md` files during optimization. Agent markdown remains behavior documentation, not an optimizer template surface.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:102:| `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:104:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:105:| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:106:| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:107:| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:109:| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:114:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:116:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:117:| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:100:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:101:| `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:102:| `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs` | Create | Search bounded deterministic numeric config candidates. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:103:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:104:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:105:| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:106:| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:107:| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:108:| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:109:| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:113:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:114:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` | Create | Verify search-space handling and candidate bookkeeping. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:115:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:116:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:117:| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:129:| REQ-001 | Phase 4a MUST build a replay corpus with packet family `040` as the required source corpus. | Corpus inputs are tied to real `040` packet artifacts, normalized into a deterministic replay format, and traceable back to their source runs and metadata. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:131:| REQ-003 | The optimizer MUST define a rubric that scores run quality across finding accuracy, convergence efficiency, recovery success rate, and synthesis quality. | The rubric exposes explicit metric definitions, weighting, and score outputs; the phase does not rely on one opaque "goodness" number. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md:132:| REQ-004 | Phase 4a MUST provide a deterministic replay runner that can evaluate alternate configs without running live agent iterations. | Replay consumes stored traces and config candidates, produces repeatable outputs, and isolates replay from live network or human-in-the-loop variability. |
@@ -3086,10 +3086,10 @@ exec
 
 
 exec
-/bin/zsh -lc "printf '===== deep-research refs =====\\n'; for f in .opencode/skill/sk-deep-research/references/loop_protocol.md .opencode/skill/sk-deep-research/references/convergence.md .opencode/skill/sk-deep-research/references/state_format.md .opencode/skill/sk-deep-research/assets/deep_research_config.json .opencode/agent/deep-research.md; do echo \"--- "'$f ---"; rg -n "stop|reason|resume|journal|ledger|event|lifecycle|convergence|snapshot|replay|wave|parallel|optimizer|stability|coverage|inventory|question|blocked|synth|session" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '===== deep-research refs =====\\n'; for f in .opencode/skills/sk-deep-research/references/loop_protocol.md .opencode/skills/sk-deep-research/references/convergence.md .opencode/skills/sk-deep-research/references/state_format.md .opencode/skills/sk-deep-research/assets/deep_research_config.json .opencode/agents/deep-research.md; do echo \"--- "'$f ---"; rg -n "stop|reason|resume|journal|ledger|event|lifecycle|convergence|snapshot|replay|wave|parallel|optimizer|stability|coverage|inventory|question|blocked|synth|session" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ===== deep-research refs =====
---- .opencode/skill/sk-deep-research/references/loop_protocol.md ---
+--- .opencode/skills/sk-deep-research/references/loop_protocol.md ---
 3:description: Canonical specification for the deep research loop lifecycle with 4 phases, reference-only wave orchestration, and error handling.
 8:Canonical specification for the deep research loop lifecycle.
 15:The deep research loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle; the @deep-research agent executes individual iterations; the reducer synchronizes packet state after each iteration and lifecycle transition.
@@ -3197,7 +3197,7 @@ exec
 726:5. **Replay validation**: Recompute the convergence outcome from JSONL state before finalizing the report
 742:9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
 
---- .opencode/skill/sk-deep-research/references/convergence.md ---
+--- .opencode/skills/sk-deep-research/references/convergence.md ---
 3:description: Algorithms and protocols for determining when the deep research loop should stop.
 8:Algorithms and protocols for determining when the deep research loop should stop.
 15:Convergence detection prevents infinite loops and stops research when additional iterations yield diminishing returns. The algorithm evaluates multiple signals to make a stop/continue/recovery decision, while the reducer publishes the resulting `convergenceScore` and `coverageBySources` into the dashboard and findings registry after every iteration.
@@ -3319,7 +3319,7 @@ exec
 650:- If prior iterations were broad, narrow to a specific sub-question
 668:**Action**: Synthesize the two highest-newInfoRatio iterations into a new composite question.
 
---- .opencode/skill/sk-deep-research/references/state_format.md ---
+--- .opencode/skills/sk-deep-research/references/state_format.md ---
 22:| `deep-research-dashboard.md` | Markdown | Auto-generated session summary | Auto-generated (read-only) |
 23:| `findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings | Auto-generated (read-only) |
 25:| `research/research.md` | Markdown | Workflow-owned canonical synthesis output | Updated incrementally only when `progressiveSynthesis` is enabled |
@@ -3418,7 +3418,7 @@ exec
 766:    { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" },
 767:    { "iteration": 4, "from": "P2", "to": "P1", "reason": "Confirmed exploitable via boundary test" }
 
---- .opencode/skill/sk-deep-research/assets/deep_research_config.json ---
+--- .opencode/skills/sk-deep-research/assets/deep_research_config.json ---
 4:  "convergenceThreshold": 0.05,
 15:    "sessionId": "",
 20:      "resume",
@@ -3426,11 +3426,11 @@ exec
 36:      "answered-questions",
 60:  "_optimizerManaged": {
 61:    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
-62:    "manifestPath": ".opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+62:    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
 63:    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
 64:    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status"],
 
---- .opencode/agent/deep-research.md ---
+--- .opencode/agents/deep-research.md ---
 32:> **SPEC FOLDER PERMISSION:** @deep-research has explicit permission to write the `research/` packet, including `research/research.md`, inside spec folders. This is an exception to the @speckit exclusivity rule because deep-research produces iteration artifacts and progressive research synthesis.
 41:- If a research question requires delegation, document it in findings and recommend it for a future iteration.
 68:- `research/findings-registry.json` (if exists) -- Understand open/resolved questions and key findings
@@ -3462,10 +3462,10 @@ exec
 
 
 exec
-/bin/zsh -lc "printf '===== deep-review refs =====\\n'; for f in .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/convergence.md .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml .opencode/skill/sk-deep-review/assets/deep_review_config.json .opencode/agent/deep-review.md; do echo \"--- "'$f ---"; rg -n "stop|reason|resume|journal|event|lifecycle|convergence|snapshot|replay|wave|parallel|coverage|hotspot|inventory|finding|blocked|session" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '===== deep-review refs =====\\n'; for f in .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml .opencode/skills/sk-deep-review/assets/deep_review_config.json .opencode/agents/deep-review.md; do echo \"--- "'$f ---"; rg -n "stop|reason|resume|journal|event|lifecycle|convergence|snapshot|replay|wave|parallel|coverage|hotspot|inventory|finding|blocked|session" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ===== deep-review refs =====
---- .opencode/skill/sk-deep-review/references/loop_protocol.md ---
+--- .opencode/skills/sk-deep-review/references/loop_protocol.md ---
 3:description: Complete lifecycle specification for the autonomous deep review loop — initialization, iteration, convergence, synthesis, and save phases.
 8:Complete lifecycle specification for the autonomous deep review loop.
 15:The deep review loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle; the `@deep-review` agent (LEAF-only, no WebFetch) executes individual review iterations with fresh context each time.
@@ -3578,7 +3578,7 @@ exec
 734:| Loop Protocol (research) | `../sk-deep-research/references/loop_protocol.md` | Research loop lifecycle (this file adapts Section 9) |
 736:| Convergence | `../sk-deep-research/references/convergence.md` | `shouldContinue_review()` (Section 10), stuck recovery, quality guards |
 
---- .opencode/skill/sk-deep-review/references/convergence.md ---
+--- .opencode/skills/sk-deep-review/references/convergence.md ---
 15:Convergence detection determines when the autonomous review loop should stop iterating. After every iteration the orchestrator evaluates three possible outcomes:
 19:| **CONTINUE** | More review work is expected to yield meaningful new findings. Dispatch the next iteration. |
 23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
@@ -3700,7 +3700,7 @@ exec
 452:| **FAIL** | `activeP0 > 0` OR any legal-stop gate fails at terminal stop time | Does not meet quality standards. Blocks release. |
 477:| FAIL | `/spec_kit:plan` -- create remediation plan from findings |
 
---- .opencode/skill/sk-deep-review/references/state_format.md ---
+--- .opencode/skills/sk-deep-review/references/state_format.md ---
 21:| `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
 33:    deep-review-findings-registry.json
 59:  "sessionId": "rvw-2026-04-03T12-00-00Z",
@@ -3784,7 +3784,7 @@ exec
 601:All three gates must pass before STOP. Gate failure forces `verdict: "FAIL"` regardless of finding counts.
 605:<!-- /ANCHOR:finding-registry -->
 
---- .opencode/skill/sk-deep-review/assets/review_mode_contract.yaml ---
+--- .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml ---
 3:# convergence settings, cross-reference protocols, downstream render targets,
 97:  # Binary gates applied after convergence math votes STOP.
 105:      rule: Every active finding must be backed by concrete file:line evidence and may not rely only on inference.
@@ -3831,7 +3831,7 @@ exec
 367:        - convergence
 381:        - convergence
 448:    - id: review-contract-snapshot
-449:      path: .opencode/skill/sk-deep-review/assets/review_mode_contract_snapshot.md
+449:      path: .opencode/skills/sk-deep-review/assets/review_mode_contract_snapshot.md
 453:        begin: "<!-- BEGIN GENERATED: review-mode-contract/snapshot -->"
 454:        end: "<!-- END GENERATED: review-mode-contract/snapshot -->"
 462:        - convergence
@@ -3842,7 +3842,7 @@ exec
 487:    - id: runtime-coverage
 488:      description: Ensure every supported runtime deep-review agent has a declared render artifact and parity coverage.
 
---- .opencode/skill/sk-deep-review/assets/deep_review_config.json ---
+--- .opencode/skills/sk-deep-review/assets/deep_review_config.json ---
 3:  "sessionId": "",
 10:  "convergenceThreshold": 0.10,
 47:    "deep-review-findings-registry.json": "auto-generated",
@@ -3852,7 +3852,7 @@ exec
 78:    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
 79:    "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions"],
 
---- .opencode/agent/deep-review.md ---
+--- .opencode/agents/deep-review.md ---
 3:description: "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
 23:Executes ONE review iteration within an autonomous review loop. Reads externalized state, reviews code quality across one dimension, produces P0/P1/P2 findings with file:line evidence, and updates state for the next iteration.
 29:**IMPORTANT**: This agent is a hybrid of @review (quality rubric, severity classification, adversarial self-check) and the deep-review loop contract (state protocol, JSONL, lifecycle continuity). It reviews code but does NOT modify it.
@@ -3924,11 +3924,11 @@ exec
 
 
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/command/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,520p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 **Static mode (scoring_mode = static):**
-Load profile from `.opencode/skill/sk-improve-agent/assets/target-profiles/{target_profile}.json`
+Load profile from `.opencode/skills/sk-improve-agent/assets/target-profiles/{target_profile}.json`
 
 ### Step 4: Initialize Runtime
 
@@ -3975,19 +3975,19 @@ After loop exits, present:
 ### Evaluate Handover Agent (Static Profile, Interactive)
 
 ```
-/improve:agent ".opencode/agent/handover.md" :confirm --spec-folder=specs/041/008
+/improve:agent ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
 ```
 
 ### Evaluate Any Agent (Dynamic Profile, Autonomous)
 
 ```
-/improve:agent ".opencode/agent/debug.md" :auto --iterations=3
+/improve:agent ".opencode/agents/debug.md" :auto --iterations=3
 ```
 
 ### Quick Integration Health Check
 
 ```
-/improve:agent ".opencode/agent/review.md" :auto --iterations=1
+/improve:agent ".opencode/agents/review.md" :auto --iterations=1
 ```
 
 ### Prompt for Target Selection
@@ -4005,7 +4005,7 @@ Setup phase lists available agents and asks for selection.
 Agent Improvement Loop Complete
 ────────────────────────────────
 
-Target: .opencode/agent/handover.md
+Target: .opencode/agents/handover.md
 Profile: handover (static)
 Scoring: 5-dimension dynamic
 Iterations: 3
@@ -4032,7 +4032,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
 
 ## 7. NOTES
 
-- **Skill dependency**: Requires `sk-improve-agent` at `.opencode/skill/sk-improve-agent/`
+- **Skill dependency**: Requires `sk-improve-agent` at `.opencode/skills/sk-improve-agent/`
 - **Promotion**: Only handover target with static profile is promotion-eligible. Dynamic profiles produce assessment only.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on dimension plateau (3+ identical scores), max iterations, or infra failure threshold.
@@ -4089,10 +4089,10 @@ FOR WORKFLOW VIOLATIONS:
 **If ANY violation:** STOP -> State violation -> Return to correct step -> Complete properly
 
 exec
-/bin/zsh -lc "printf '===== improver scripts =====\\n'; for f in .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs .opencode/skill/sk-improve-agent/scripts/rollback-candidate.cjs; do echo \"--- "'$f ---"; sed -n '"'1,260p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '===== improver scripts =====\\n'; for f in .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs .opencode/skills/sk-improve-agent/scripts/rollback-candidate.cjs; do echo \"--- "'$f ---"; sed -n '"'1,260p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ===== improver scripts =====
---- .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Integration Surface Scanner for sk-improve-agent                      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -4113,7 +4113,7 @@ const MIRROR_TEMPLATES = [
   '.agents/agents/{name}.md',
 ];
 const GLOBAL_DOC_PATHS = ['CLAUDE.md', '.claude/CLAUDE.md'];
-const SKILL_ADVISOR_PATH = '.opencode/skill/skill-advisor/scripts/skill_advisor.py';
+const SKILL_ADVISOR_PATH = '.opencode/skills/skill-advisor/scripts/skill_advisor.py';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. UTILITIES
@@ -4192,7 +4192,7 @@ function checkMirrorSync(canonicalBody, mirrorContent) {
 // 5. SURFACE SCANNERS
 // ─────────────────────────────────────────────────────────────────────────────
 function scanCanonical(repoRoot, agentName) {
-  const relPath = `.opencode/agent/${agentName}.md`;
+  const relPath = `.opencode/agents/${agentName}.md`;
   const content = readOptional(path.join(repoRoot, relPath));
   return { path: relPath, exists: content !== null, frontmatter: content ? parseFrontmatter(content) : null };
 }
@@ -4334,7 +4334,7 @@ function main() {
 
 main();
 
---- .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Dynamic Target Profile Generator                                         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -4596,7 +4596,7 @@ function main() {
 
 main();
 
---- .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Candidate Scorer — 5-Dimension Evaluation Framework                     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -4761,7 +4761,7 @@ function createHandoverChecks() {
       {
         key: 'path-convention',
         weight: 10,
-        test: (content) => /path convention/i.test(content) && /\.opencode\/agent\/\*\.md/i.test(content),
+        test: (content) => /path convention/i.test(content) && /\.opencode\/agents\/\*\.md/i.test(content),
       },
       {
         key: 'structured-output',
@@ -4858,7 +4858,7 @@ function createContextPrimeChecks() {
         key: 'bootstrap-fallback',
         weight: 5,
 
---- .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Benchmark Runner — Fixture and Integration Scoring                       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -5063,7 +5063,7 @@ function main() {
   const outputPath = args.output;
   const stateLogPath = args['state-log'];
   const label = args.label || `${profileId}-benchmark`;
-  const profilesDir = args['profiles-dir'] || '.opencode/skill/sk-improve-agent/assets/target-profiles';
+  const profilesDir = args['profiles-dir'] || '.opencode/skills/sk-improve-agent/assets/target-profiles';
   const integrationReportPath = args['integration-report'] || null;
 
   if (!profileId || !outputsDir || !outputPath) {
@@ -5120,7 +5120,7 @@ function main() {
         label,
         outputDir: outputsDir,
 
---- .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Ledger Reducer — Dashboard and Registry Generator                        ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -5382,7 +5382,7 @@ function detectDriftAmbiguity(mirrorDriftReport) {
 function evaluateStopStatus(registry, config, mirrorDriftReport) {
   const stopRules = config?.stopRules || {};
 
---- .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Guarded Canonical Promotion Helper                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -5572,7 +5572,7 @@ function main() {
 
 main();
 
---- .opencode/skill/sk-improve-agent/scripts/rollback-candidate.cjs ---
+--- .opencode/skills/sk-improve-agent/scripts/rollback-candidate.cjs ---
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ Canonical Rollback Helper                                                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -5658,10 +5658,10 @@ main();
 
 
 exec
-/bin/zsh -lc "printf '===== improver references =====\\n'; for f in .opencode/skill/sk-improve-agent/references/loop_protocol.md .opencode/skill/sk-improve-agent/references/evaluator_contract.md .opencode/skill/sk-improve-agent/references/integration_scanning.md .opencode/skill/sk-improve-agent/references/no_go_conditions.md .opencode/skill/sk-improve-agent/references/promotion_rules.md .opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md; do echo \"--- "'$f ---"; rg -n "stop|plateau|tie|benchmark|promot|rollback|session|lineage|resume|state|append|registry|dashboard|dimension|integration|weak|failure|candidate|score" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '===== improver references =====\\n'; for f in .opencode/skills/sk-improve-agent/references/loop_protocol.md .opencode/skills/sk-improve-agent/references/evaluator_contract.md .opencode/skills/sk-improve-agent/references/integration_scanning.md .opencode/skills/sk-improve-agent/references/no_go_conditions.md .opencode/skills/sk-improve-agent/references/promotion_rules.md .opencode/skills/sk-improve-agent/references/benchmark_operator_guide.md; do echo \"--- "'$f ---"; rg -n "stop|plateau|tie|benchmark|promot|rollback|session|lineage|resume|state|append|registry|dashboard|dimension|integration|weak|failure|candidate|score" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ===== improver references =====
---- .opencode/skill/sk-improve-agent/references/loop_protocol.md ---
+--- .opencode/skills/sk-improve-agent/references/loop_protocol.md ---
 3:description: End-to-end agent-improver workflow from initialization through guarded promotion or stop decisions.
 8:End-to-end operator view of how the agent-improver command, mutator, scorer, benchmark runner, reducer, and approval gates fit together. Use it when you need the full lifecycle, not just a quick command reminder.
 17:Describes the normal agent-improver loop from packet initialization through reduction, stop decisions, and guarded promotion.
@@ -5696,14 +5696,14 @@ exec
 104:- `benchmark_operator_guide.md`
 105:- `rollback_runbook.md`
 
---- .opencode/skill/sk-improve-agent/references/evaluator_contract.md ---
+--- .opencode/skills/sk-improve-agent/references/evaluator_contract.md ---
 3:description: Deterministic scoring and benchmark contract for target-profiled agent-improver experiments.
 8:Contract for how `sk-improve-agent` scores candidates and benchmarks packet-local outputs. Use it when you need the exact evaluator inputs, outputs, rubric dimensions, and hard rejection behavior.
 17:Defines the input and output contract for the prompt-surface scorer and the output benchmark runner so agent-improver runs remain deterministic enough for bounded local experimentation.
 22:- Updating scoring logic or benchmark rules
 23:- Explaining why a candidate was kept, rejected, or marked infra-failure
 28:Weak candidates and infrastructure failures must be distinguishable. The contract exists so a broken tool path is not mistaken for a bad prompt and vice versa.
-43:Any agent file in `.opencode/agent/*.md` can be evaluated using `--dynamic` mode. The scorer generates a profile on the fly from the agent's own structure, rules, and permissions using `generate-profile.cjs`.
+43:Any agent file in `.opencode/agents/*.md` can be evaluated using `--dynamic` mode. The scorer generates a profile on the fly from the agent's own structure, rules, and permissions using `generate-profile.cjs`.
 53:The prompt scorer expects:
 54:- `--candidate=PATH`
 61:### Dynamic Mode (5-dimension)
@@ -5733,7 +5733,7 @@ exec
 173:- `../scripts/score-candidate.cjs`
 174:- `../scripts/scan-integration.cjs`
 
---- .opencode/skill/sk-improve-agent/references/integration_scanning.md ---
+--- .opencode/skills/sk-improve-agent/references/integration_scanning.md ---
 3:description: How the integration scanner discovers all surfaces an agent touches across the repo.
 8:How `scan-integration.cjs` discovers the full integration surface of any agent across the repository.
 17:Provides a complete inventory of every file and surface that references or depends on a given agent, so the evaluator can measure integration consistency rather than just prompt-file quality.
@@ -5742,7 +5742,7 @@ exec
 106:- `evaluator_contract.md` for the 5-dimension scoring rubric
 107:- `../scripts/scan-integration.cjs` for the implementation
 
---- .opencode/skill/sk-improve-agent/references/no_go_conditions.md ---
+--- .opencode/skills/sk-improve-agent/references/no_go_conditions.md ---
 8:Safety-brake reference for deciding when agent-improver must stop or refuse broader rollout. Use it when a packet is accumulating weak evidence, unstable repeatability, or blurred boundaries.
 17:Defines the conditions that force the loop to stop or refuse broader rollout.
 22:- checking reducer stop rules
@@ -5758,7 +5758,7 @@ exec
 58:- `promotion_rules.md`
 60:- `../scripts/reduce-state.cjs`
 
---- .opencode/skill/sk-improve-agent/references/promotion_rules.md ---
+--- .opencode/skills/sk-improve-agent/references/promotion_rules.md ---
 3:description: Keep, reject, and guarded promotion rules for agent-improver candidates.
 8:Policy reference for deciding whether a agent-improver candidate stays baseline-only, is rejected, or becomes promotion-eligible. Use it when score and benchmark evidence exist and you need the decision rule, not just the raw metrics.
 17:Defines the difference between an interesting candidate, an acceptable candidate, and a promotable candidate.
@@ -5787,13 +5787,13 @@ exec
 101:- `rollback_runbook.md`
 103:- `../scripts/promote-candidate.cjs`
 
---- .opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md ---
+--- .opencode/skills/sk-improve-agent/references/benchmark_operator_guide.md ---
 3:description: Step-by-step guide for running repeatable fixture benchmarks for sk-improve-agent target profiles.
 8:Operational guide for running agent-improver benchmarks against packet-local outputs. Use it when you need deterministic evidence that a target profile still behaves consistently across repeated runs.
 17:Explains how to run deterministic fixture benchmarks, where to store the resulting evidence, and how to interpret repeatability.
 22:- Running the benchmark runner for `handover` or `context-prime`
 23:- Building repeatability evidence for a promotion gate
-39:node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs \
+39:node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs \
 41:  --outputs-dir={spec_folder}/improvement/benchmark-runs/handover/baseline \
 42:  --output={spec_folder}/improvement/benchmark-runs/handover/run-001.json \
 43:  --state-log={spec_folder}/improvement/agent-improvement-state.jsonl \
@@ -5816,9 +5816,9 @@ exec
 codex
 The improver loop is more mature than its top-level docs suggest: there is already a reducer that tracks per-dimension histories and derives stop conditions, but the command/skill surface still exposes those as informal reasons like plateau, weak benchmarks, or infra failure instead of a typed contract. I’m drilling into those reducer branches now, because that’s where the “implicit taxonomy” and legal gate mapping really live.
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,520p' .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "evaluateStopStatus|shouldStop|plateau|weakBenchmark|infraFailure|maxIterations|reason|dimensionTrends|stopRules|tie" .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "evaluateStopStatus|shouldStop|plateau|weakBenchmark|infraFailure|maxIterations|reason|dimensionTrends|stopRules|tie" .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 87:    infraFailures: [],
 97:      tieCount: 0,
@@ -6080,8 +6080,8 @@ function renderDashboard(registry) {
 
 ## Guardrails
 
-- Canonical promotion target remains ".opencode/agent/handover.md"
-- Candidate-only target remains ".opencode/agent/context-prime.md"
+- Canonical promotion target remains ".opencode/agents/handover.md"
+- Candidate-only target remains ".opencode/agents/context-prime.md"
 - Mirror sync stays downstream packaging and is not counted as benchmark truth
 
 ## Stop Status
@@ -6129,45 +6129,45 @@ function main() {
 main();
 
 exec
-/bin/zsh -lc 'rg -n "recommendation|candidate-better|candidate-acceptable|candidate-worse|candidate-rejected|delta|dimensions|integrationScore|benchmark-pass|benchmark-fail|infra_failure|appendJsonl|type:" .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "recommendation|candidate-better|candidate-acceptable|candidate-worse|candidate-rejected|delta|dimensions|integrationScore|benchmark-pass|benchmark-fail|infra_failure|appendJsonl|type:" .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:38:function appendJsonl(filePath, value) {
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:177:  const integrationScore = Math.round(
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:182:    integrationScore,
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:223:    const recommendation =
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:225:        ? 'benchmark-pass'
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:226:        : 'benchmark-fail';
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:235:      recommendation,
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:247:      report.integrationScore = integration.integrationScore;
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:254:      appendJsonl(stateLogPath, {
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:255:        type: 'benchmark_run',
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:263:        recommendation,
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:269:      status: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:279:      appendJsonl(stateLogPath, {
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:280:        type: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs:283:        recommendation: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:380:    details.push({ id: rule.id, type: rule.type, rule: rule.rule, pass, matchRatio: keywords.length > 0 ? matchCount / keywords.length : 0 });
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:487:  const dimensions = [
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:496:    dimensions.reduce((sum, d) => sum + d.score * d.weight, 0),
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:499:  return { weightedScore, dimensions };
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:522:      status: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:544:        status: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:571:      dimensions: dynamicResult.dimensions,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:573:      recommendation: dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'needs-improvement',
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:574:      failureModes: dynamicResult.dimensions
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:587:      status: 'infra_failure',
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:616:  const delta = baselineTotal === null ? null : candidateTotal - baselineTotal;
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:618:  let recommendation = 'candidate-better';
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:620:    recommendation = 'reject-candidate';
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:621:  } else if (baselineTotal !== null && delta < 0) {
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:622:    recommendation = 'keep-baseline';
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:623:  } else if (baselineTotal !== null && delta === 0) {
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:624:    recommendation = 'tie';
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:640:    delta,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:641:    recommendation,
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:38:function appendJsonl(filePath, value) {
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:177:  const integrationScore = Math.round(
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:182:    integrationScore,
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:223:    const recommendation =
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:225:        ? 'benchmark-pass'
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:226:        : 'benchmark-fail';
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:235:      recommendation,
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:247:      report.integrationScore = integration.integrationScore;
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:254:      appendJsonl(stateLogPath, {
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:255:        type: 'benchmark_run',
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:263:        recommendation,
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:269:      status: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:279:      appendJsonl(stateLogPath, {
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:280:        type: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:283:        recommendation: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:380:    details.push({ id: rule.id, type: rule.type, rule: rule.rule, pass, matchRatio: keywords.length > 0 ? matchCount / keywords.length : 0 });
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:487:  const dimensions = [
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:496:    dimensions.reduce((sum, d) => sum + d.score * d.weight, 0),
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:499:  return { weightedScore, dimensions };
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:522:      status: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:544:        status: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:571:      dimensions: dynamicResult.dimensions,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:573:      recommendation: dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'needs-improvement',
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:574:      failureModes: dynamicResult.dimensions
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:587:      status: 'infra_failure',
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:616:  const delta = baselineTotal === null ? null : candidateTotal - baselineTotal;
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:618:  let recommendation = 'candidate-better';
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:620:    recommendation = 'reject-candidate';
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:621:  } else if (baselineTotal !== null && delta < 0) {
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:622:    recommendation = 'keep-baseline';
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:623:  } else if (baselineTotal !== null && delta === 0) {
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:624:    recommendation = 'tie';
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:640:    delta,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:641:    recommendation,
 
 exec
-/bin/zsh -lc "sed -n '470,660p' .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '470,660p' .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   const hasName = /^name:\s+\S/m.test(content);
   const hasMode = /^mode:\s+\S/m.test(content);
@@ -6210,7 +6210,7 @@ function main() {
   const candidatePath = args.candidate;
   const baselinePath = args.baseline;
   const manifestPath = args.manifest;
-  const targetPath = args.target || '.opencode/agent/handover.md';
+  const targetPath = args.target || '.opencode/agents/handover.md';
   const outputPath = args.output;
 
   if (!candidatePath) {
@@ -6362,7 +6362,7 @@ function main() {
 main();
 
 exec
-/bin/zsh -lc "sed -n '150,320p' .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '150,320p' .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   let mirrorScore = 100;
   for (const mirror of mirrors) {
@@ -6419,7 +6419,7 @@ function main() {
   const outputPath = args.output;
   const stateLogPath = args['state-log'];
   const label = args.label || `${profileId}-benchmark`;
-  const profilesDir = args['profiles-dir'] || '.opencode/skill/sk-improve-agent/assets/target-profiles';
+  const profilesDir = args['profiles-dir'] || '.opencode/skills/sk-improve-agent/assets/target-profiles';
   const integrationReportPath = args['integration-report'] || null;
 
   if (!profileId || !outputsDir || !outputPath) {
@@ -6727,7 +6727,7 @@ I’ve now got the Phase 1-4 implementation summaries alongside the live deep-re
 exec
 /bin/zsh -lc 'for f in .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/implementation-summary.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/decision-record.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary.md; do echo "--- $f ---"; rg -n "stopReason|legalStop|blockedStop|continuedFromRun|journal|ledger|snapshot|compaction|semantic convergence|optimizer|tunable|locked|advisory|replay corpus|rubric|audit trail" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'for f in .opencode/skill/sk-improve-agent/assets/improvement_config_reference.md .opencode/skill/sk-improve-agent/README.md .opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md; do echo "--- $f ---"; sed -n '"'1,240p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in .opencode/skills/sk-improve-agent/assets/improvement_config_reference.md .opencode/skills/sk-improve-agent/README.md .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md; do echo "--- $f ---"; sed -n '"'1,240p' \""'$f"; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 --- .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/implementation-summary.md ---
 3:description: "Deep-loop runtime contracts, stop-reason taxonomy, legal-stop gates, resume semantics, journals, dashboards, and behavior-first test coverage for sk-deep-research and sk-deep-review."
@@ -6814,7 +6814,7 @@ exec
 
 
  succeeded in 0ms:
---- .opencode/skill/sk-improve-agent/assets/improvement_config_reference.md ---
+--- .opencode/skills/sk-improve-agent/assets/improvement_config_reference.md ---
 ---
 title: Improvement Config Reference
 description: Field-level documentation for improvement_config.json runtime configuration.
@@ -6886,7 +6886,7 @@ Use this reference when:
 - `../references/evaluator_contract.md` — scoring rubric details
 - `../references/no_go_conditions.md` — stop condition reference
 
---- .opencode/skill/sk-improve-agent/README.md ---
+--- .opencode/skills/sk-improve-agent/README.md ---
 ---
 title: "sk-improve-agent"
 description: "Evaluator-first skill for bounded agent improvement with 5-dimension integration-aware scoring, dynamic profiling, packet-local candidates, and guarded promotion or rollback."
@@ -6928,7 +6928,7 @@ Evaluator-first workflow for improving agents across their full integration surf
 | --- | --- |
 | Primary mode | Proposal-only by default |
 | Evaluation | 5-dimension integration-aware scoring |
-| Target support | Any agent in `.opencode/agent/` (dynamic profiling) |
+| Target support | Any agent in `.opencode/agents/` (dynamic profiling) |
 | Static profiles | `handover` (promotion-eligible) |
 | Runtime area | `{spec_folder}/improvement/` |
 | Evidence style | Append-only JSONL ledger + reducer dashboard |
@@ -6959,7 +6959,7 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 - An existing spec folder for the improvement run
 - Node.js 18+ (for running `.cjs` scripts)
-- A target agent file in `.opencode/agent/` (any agent, not just handover)
+- A target agent file in `.opencode/agents/` (any agent, not just handover)
 - Packet-local runtime write access
 
 ---
@@ -6974,10 +6974,10 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 ```text
 # Evaluate handover agent (static profile)
-/improve:agent-improver ".opencode/agent/handover.md" :confirm --spec-folder={spec_folder}
+/improve:agent-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec_folder}
 
 # Evaluate any agent (dynamic profile)
-/improve:agent-improver ".opencode/agent/debug.md" :confirm --spec-folder={spec_folder}
+/improve:agent-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
 ### Standalone Script Usage
@@ -6986,16 +6986,16 @@ Run individual scripts without the full loop:
 
 ```text
 # Scan integration surfaces
-node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent=handover
+node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent=handover
 
 # Generate dynamic profile from any agent
-node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agent/debug.md
+node .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agents/debug.md
 
 # Score with 5 dimensions
-node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --dynamic
+node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --dynamic
 
 # Score with legacy profile (backward compatible)
-node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --profile=handover --target=.opencode/agent/handover.md
+node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --profile=handover --target=.opencode/agents/handover.md
 ```
 
 ### Verify the Runtime Area
@@ -7032,7 +7032,7 @@ The skill evaluates agents across their full system integration surface, not jus
 
 ### 3.2 DYNAMIC PROFILING
 
-Any agent in `.opencode/agent/` can be evaluated without writing a custom profile. The profile generator parses the agent's own frontmatter, ALWAYS/NEVER/ESCALATE IF rules, output verification checklist, capability scan, anti-patterns, and related resources to derive a scoring profile automatically.
+Any agent in `.opencode/agents/` can be evaluated without writing a custom profile. The profile generator parses the agent's own frontmatter, ALWAYS/NEVER/ESCALATE IF rules, output verification checklist, capability scan, anti-patterns, and related resources to derive a scoring profile automatically.
 
 ### 3.3 5-DIMENSION SCORING
 
@@ -7090,7 +7090,7 @@ A weighted score >= 70 produces a `candidate-acceptable` recommendation. Below 7
 ## 5. STRUCTURE
 
 ```text
-.opencode/skill/sk-improve-agent/
+.opencode/skills/sk-improve-agent/
 |-- SKILL.md                          Skill router and core instructions
 |-- README.md                         Human-facing overview (this file)
 |-- references/
@@ -7128,7 +7128,7 @@ A weighted score >= 70 produces a `candidate-acceptable` recommendation. Below 7
     |-- 01--integration-scanner/       Scanner test scenarios
     |-- 02--profile-generator/         Profile generator tests
 
---- .opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md ---
+--- .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md ---
 ---
 title: sk-improve-agent Manual Testing Playbook
 description: Operator-facing validation matrix for the sk-improve-agent skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, and end-to-end loop execution.
@@ -7162,7 +7162,7 @@ Validates that the sk-improve-agent skill correctly discovers integration surfac
 
 - Node.js available (v18+)
 - Working directory is the repo root
-- All 8 `.cjs` scripts in `.opencode/skill/sk-improve-agent/scripts/` parse without errors
+- All 8 `.cjs` scripts in `.opencode/skills/sk-improve-agent/scripts/` parse without errors
 - `package_skill.py --check` passes for sk-improve-agent
 
 ### How to Execute
@@ -7186,19 +7186,19 @@ Run each scenario command from the repo root. Compare output against expected si
 
 | ID | Scenario | Command | Expected Signals | Pass Criteria |
 | --- | --- | --- | --- | --- |
-| 02-001 | Profile with ALWAYS/NEVER rules | `node scripts/generate-profile.cjs --agent=.opencode/agent/handover.md` | `ruleCoherence` array has rules with type `always` and `never` | At least 3 always + 2 never rules extracted |
-| 02-002 | Profile with OUTPUT VERIFICATION | `node scripts/generate-profile.cjs --agent=.opencode/agent/debug.md` | `outputChecks` array non-empty | At least 5 output checklist items extracted |
-| 02-003 | Agent with no dedicated RULES section | `node scripts/generate-profile.cjs --agent=.opencode/agent/debug.md` | Falls back to inline NEVER extraction | At least 1 never-rule extracted from body scan |
-| 02-004 | Output to file | `node scripts/generate-profile.cjs --agent=.opencode/agent/review.md --output=/tmp/profile-test.json` | File written, valid JSON | File exists, has `id`, `derivedChecks`, `agentMeta` |
+| 02-001 | Profile with ALWAYS/NEVER rules | `node scripts/generate-profile.cjs --agent=.opencode/agents/handover.md` | `ruleCoherence` array has rules with type `always` and `never` | At least 3 always + 2 never rules extracted |
+| 02-002 | Profile with OUTPUT VERIFICATION | `node scripts/generate-profile.cjs --agent=.opencode/agents/debug.md` | `outputChecks` array non-empty | At least 5 output checklist items extracted |
+| 02-003 | Agent with no dedicated RULES section | `node scripts/generate-profile.cjs --agent=.opencode/agents/debug.md` | Falls back to inline NEVER extraction | At least 1 never-rule extracted from body scan |
+| 02-004 | Output to file | `node scripts/generate-profile.cjs --agent=.opencode/agents/review.md --output=/tmp/profile-test.json` | File written, valid JSON | File exists, has `id`, `derivedChecks`, `agentMeta` |
 
 ### 03 5-Dimension Scorer
 
 | ID | Scenario | Command | Expected Signals | Pass Criteria |
 | --- | --- | --- | --- | --- |
-| 03-001 | Dynamic mode on handover | `node scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --dynamic` | `evaluationMode: "dynamic-5d"`, 5 dimensions, `legacyScore` present | All 5 dimensions scored, weighted score >= 70 |
-| 03-002 | Dynamic mode on arbitrary agent | `node scripts/score-candidate.cjs --candidate=.opencode/agent/orchestrate.md --dynamic` | `evaluationMode: "dynamic-5d"`, `profileId` matches agent name | Produces valid score without hardcoded profile |
-| 03-003 | Legacy mode unchanged | `node scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --profile=handover --target=.opencode/agent/handover.md` | `evaluationMode: "prompt-surface"`, no `dimensions` field | Score identical to pre-refactor behavior |
-| 03-004 | Dimension breakdown meaningful | `node scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --dynamic` | Each dimension has `details` array with individual checks | Details show which checks passed/failed per dimension |
+| 03-001 | Dynamic mode on handover | `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --dynamic` | `evaluationMode: "dynamic-5d"`, 5 dimensions, `legacyScore` present | All 5 dimensions scored, weighted score >= 70 |
+| 03-002 | Dynamic mode on arbitrary agent | `node scripts/score-candidate.cjs --candidate=.opencode/agents/orchestrate.md --dynamic` | `evaluationMode: "dynamic-5d"`, `profileId` matches agent name | Produces valid score without hardcoded profile |
+| 03-003 | Legacy mode unchanged | `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --profile=handover --target=.opencode/agents/handover.md` | `evaluationMode: "prompt-surface"`, no `dimensions` field | Score identical to pre-refactor behavior |
+| 03-004 | Dimension breakdown meaningful | `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --dynamic` | Each dimension has `details` array with individual checks | Details show which checks passed/failed per dimension |
 | 03-005 | Missing candidate file | `node scripts/score-candidate.cjs --candidate=nonexistent.md --dynamic` | `status: "infra_failure"`, exit code 1 | Graceful error, not crash |
 
 ### 04 Benchmark Integration
@@ -7221,8 +7221,8 @@ Run each scenario command from the repo root. Compare output against expected si
 
 | ID | Scenario | Command | Expected Signals | Pass Criteria |
 | --- | --- | --- | --- | --- |
-| 06-001 | Full pipeline handover | `/improve:agent-improver ".opencode/agent/handover.md" :confirm --spec-folder={spec}` | Init creates runtime, scan runs, candidate generated, scored with dimensions | All phases complete without error |
-| 06-002 | Any-agent pipeline | `/improve:agent-improver ".opencode/agent/debug.md" :confirm --spec-folder={spec}` | Dynamic profile generated, 5-dimension scores produced | Non-hardcoded agent evaluates successfully |
+| 06-001 | Full pipeline handover | `/improve:agent-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec}` | Init creates runtime, scan runs, candidate generated, scored with dimensions | All phases complete without error |
+| 06-002 | Any-agent pipeline | `/improve:agent-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec}` | Dynamic profile generated, 5-dimension scores produced | Non-hardcoded agent evaluates successfully |
 
 ---
 
@@ -7307,15 +7307,15 @@ exec
 /bin/zsh -lc 'for f in .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/agent-improvement-state.jsonl .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/experiment-registry.json .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-improve-agent-self-test/improvement/agent-improvement-state.jsonl .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-improve-agent-self-test/improvement/experiment-registry.json; do echo "--- $f ---"; nl -ba "$f" | sed -n '"'1,120p'; echo; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 --- .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/agent-improvement-state.jsonl ---
-     1	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agent/handover.md","label":"handover-baseline-run-001","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-001.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
-     2	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agent/handover.md","label":"handover-baseline-run-002","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-002.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
-     3	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agent/handover.md","label":"handover-candidate-weak","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/candidate-weak","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-candidate-weak.json","aggregateScore":69,"recommendation":"benchmark-fail","failureModes":["forbidden-patterns","missing-headings","missing-required-patterns"]}
-     4	{"type":"benchmark_run","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agent/context-prime.md","label":"context-prime-baseline-run-001","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/run-001.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
-     5	{"type":"benchmark_run","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agent/context-prime.md","label":"context-prime-candidate-weak","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/candidate-weak","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/run-candidate-weak.json","aggregateScore":57,"recommendation":"benchmark-fail","failureModes":["forbidden-patterns","missing-headings","missing-required-patterns"]}
-     6	{"type":"baseline","profileId":"handover","family":"session-handover","target":".opencode/agent/handover.md","path":".opencode/agent/handover.md","score":100,"recommendation":"baseline-reference","failureModes":[]}
-     7	{"type":"candidate","profileId":"handover","family":"session-handover","target":".opencode/agent/handover.md","path":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/candidates/handover-candidate-001.md","score":50,"delta":-50,"recommendation":"keep-baseline","failureModes":["leaf-only","no-fabrication-rule","path-convention","structured-output","actual-source-reading","no-permissive-skip-context-language"]}
-     8	{"type":"baseline","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agent/context-prime.md","path":".opencode/agent/context-prime.md","score":100,"recommendation":"baseline-reference","failureModes":[]}
-     9	{"type":"rejected","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agent/context-prime.md","path":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/candidates/context-prime-candidate-001.md","score":0,"delta":-100,"recommendation":"reject-candidate","failureModes":["session-bootstrap-tools","read-only-contract","prime-package-format","urgency-skip","time-budget","graceful-failure","routing-guidance","no-indexing","writes-files","runs-indexing"]}
+     1	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agents/handover.md","label":"handover-baseline-run-001","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-001.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
+     2	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agents/handover.md","label":"handover-baseline-run-002","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-002.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
+     3	{"type":"benchmark_run","profileId":"handover","family":"session-handover","target":".opencode/agents/handover.md","label":"handover-candidate-weak","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/candidate-weak","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/handover/run-candidate-weak.json","aggregateScore":69,"recommendation":"benchmark-fail","failureModes":["forbidden-patterns","missing-headings","missing-required-patterns"]}
+     4	{"type":"benchmark_run","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agents/context-prime.md","label":"context-prime-baseline-run-001","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/baseline","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/run-001.json","aggregateScore":100,"recommendation":"benchmark-pass","failureModes":[]}
+     5	{"type":"benchmark_run","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agents/context-prime.md","label":"context-prime-candidate-weak","outputDir":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/candidate-weak","report":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/benchmark-runs/context-prime/run-candidate-weak.json","aggregateScore":57,"recommendation":"benchmark-fail","failureModes":["forbidden-patterns","missing-headings","missing-required-patterns"]}
+     6	{"type":"baseline","profileId":"handover","family":"session-handover","target":".opencode/agents/handover.md","path":".opencode/agents/handover.md","score":100,"recommendation":"baseline-reference","failureModes":[]}
+     7	{"type":"candidate","profileId":"handover","family":"session-handover","target":".opencode/agents/handover.md","path":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/candidates/handover-candidate-001.md","score":50,"delta":-50,"recommendation":"keep-baseline","failureModes":["leaf-only","no-fabrication-rule","path-convention","structured-output","actual-source-reading","no-permissive-skip-context-language"]}
+     8	{"type":"baseline","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agents/context-prime.md","path":".opencode/agents/context-prime.md","score":100,"recommendation":"baseline-reference","failureModes":[]}
+     9	{"type":"rejected","profileId":"context-prime","family":"session-bootstrap","target":".opencode/agents/context-prime.md","path":".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/candidates/context-prime-candidate-001.md","score":0,"delta":-100,"recommendation":"reject-candidate","failureModes":["session-bootstrap-tools","read-only-contract","prime-package-format","urgency-skip","time-budget","graceful-failure","routing-guidance","no-indexing","writes-files","runs-indexing"]}
 
 --- .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/experiment-registry.json ---
      1	{
@@ -7340,7 +7340,7 @@ exec
     20	        "type": "candidate",
     21	        "profileId": "handover",
     22	        "family": "session-handover",
-    23	        "target": ".opencode/agent/handover.md",
+    23	        "target": ".opencode/agents/handover.md",
     24	        "path": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/candidates/handover-candidate-001.md",
     25	        "score": 50,
     26	        "delta": -50,
@@ -7358,8 +7358,8 @@ exec
     38	        "type": "baseline",
     39	        "profileId": "handover",
     40	        "family": "session-handover",
-    41	        "target": ".opencode/agent/handover.md",
-    42	        "path": ".opencode/agent/handover.md",
+    41	        "target": ".opencode/agents/handover.md",
+    42	        "path": ".opencode/agents/handover.md",
     43	        "score": 100,
     44	        "recommendation": "baseline-reference",
     45	        "failureModes": []
@@ -7368,7 +7368,7 @@ exec
     48	        "type": "benchmark_run",
     49	        "profileId": "handover",
     50	        "family": "session-handover",
-    51	        "target": ".opencode/agent/handover.md",
+    51	        "target": ".opencode/agents/handover.md",
     52	        "label": "handover-baseline-run-001",
     53	        "outputDir": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/baseline",
     54	        "report": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/run-001.json",
@@ -7383,7 +7383,7 @@ exec
     63	          "type": "benchmark_run",
     64	          "profileId": "handover",
     65	          "family": "session-handover",
-    66	          "target": ".opencode/agent/handover.md",
+    66	          "target": ".opencode/agents/handover.md",
     67	          "label": "handover-baseline-run-001",
     68	          "outputDir": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/baseline",
     69	          "report": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/run-001.json",
@@ -7395,7 +7395,7 @@ exec
     75	          "type": "benchmark_run",
     76	          "profileId": "handover",
     77	          "family": "session-handover",
-    78	          "target": ".opencode/agent/handover.md",
+    78	          "target": ".opencode/agents/handover.md",
     79	          "label": "handover-baseline-run-002",
     80	          "outputDir": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/baseline",
     81	          "report": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/run-002.json",
@@ -7407,7 +7407,7 @@ exec
     87	          "type": "benchmark_run",
     88	          "profileId": "handover",
     89	          "family": "session-handover",
-    90	          "target": ".opencode/agent/handover.md",
+    90	          "target": ".opencode/agents/handover.md",
     91	          "label": "handover-candidate-weak",
     92	          "outputDir": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/candidate-weak",
     93	          "report": ".opencode/specs/skilled-agent-orchestration/041-sk-improve-agent-loop/002-sk-improve-agent-full-skill/improvement/benchmark-runs/handover/run-candidate-weak.json",
@@ -7591,8 +7591,8 @@ exec
 
 ## Guardrails
 
-- Canonical promotion target remains ".opencode/agent/handover.md"
-- Candidate-only target remains ".opencode/agent/context-prime.md"
+- Canonical promotion target remains ".opencode/agents/handover.md"
+- Candidate-only target remains ".opencode/agents/context-prime.md"
 - Mirror sync stays downstream packaging and is not counted as benchmark truth
 
 ## Stop Status
@@ -7671,8 +7671,8 @@ Fix repeated benchmark failures before broadening scope or promoting any target.
 
 ## Guardrails
 
-- Canonical promotion target remains ".opencode/agent/handover.md"
-- Candidate-only target remains ".opencode/agent/context-prime.md"
+- Canonical promotion target remains ".opencode/agents/handover.md"
+- Candidate-only target remains ".opencode/agents/context-prime.md"
 - Mirror sync stays downstream packaging and is not counted as benchmark truth
 
 ## Stop Status
@@ -7723,7 +7723,7 @@ exec
   "status": "benchmark-complete",
   "profileId": "handover",
   "family": "session-handover",
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "label": "handover-baseline-run-001",
   "aggregateScore": 100,
   "maxScore": 100,
@@ -7776,7 +7776,7 @@ exec
   "status": "benchmark-complete",
   "profileId": "handover",
   "family": "session-handover",
-  "target": ".opencode/agent/handover.md",
+  "target": ".opencode/agents/handover.md",
   "label": "handover-baseline-run-002",
   "aggregateScore": 100,
   "maxScore": 100,
@@ -7861,16 +7861,16 @@ exec
 76:This is not a missing-technology problem. The existing Spec Kit Memory MCP server already contains mature graph patterns for typed weighted edges, breadth-first traversal, contradiction detection, degree and depth signals, historical momentum, and SQLite-backed graph storage. What is missing is a loop-native graph ontology and persistence layer that applies those patterns to deep research and deep review.
 91:- Define research and review graph ontologies, including node kinds, relation types, initial weight estimates, metadata contracts, and convergence metrics.
 94:- Calibrate coverage-specific edge weights during implementation instead of treating inherited memory-causal weights as final.
-113:| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
-115:| `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs` | Create | CONTRADICTS-edge discovery and reporting helpers specialized for deep-loop semantics. |
-123:| `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts` | Create | Query engine for gap detection, provenance chains, contradiction lookup, and hot-node ranking. |
-125:| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` | Create | Handler for bulk node/edge upserts with idempotency, clamping, and self-loop rejection. |
-127:| `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts` | Create | Handler for graph health, counts, relation breakdowns, and signal summaries. |
-139:| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
-140:| `.opencode/agent/deep-research.md` | Modify | Require research iterations to emit graph nodes and edges into JSONL state. |
-141:| `.opencode/agent/deep-review.md` | Modify | Require review iterations to emit graph nodes and edges into JSONL state. |
-147:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts` | Create | Verify edge insertion, update, deletion, self-loop prevention, and provenance traversal. |
-150:| `.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` | Create | Verify schema creation, namespace isolation, idempotent upsert behavior, and snapshot persistence. |
+113:| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs` | Create | Shared edge manager, relation-weight maps, clamping, self-loop prevention, edge update history, and provenance traversal helpers extracted from `causal-edges.ts`. |
+115:| `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs` | Create | CONTRADICTS-edge discovery and reporting helpers specialized for deep-loop semantics. |
+123:| `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts` | Create | Query engine for gap detection, provenance chains, contradiction lookup, and hot-node ranking. |
+125:| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts` | Create | Handler for bulk node/edge upserts with idempotency, clamping, and self-loop rejection. |
+127:| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts` | Create | Handler for graph health, counts, relation breakdowns, and signal summaries. |
+139:| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Define graph-aware review convergence signals and contradiction handling. |
+140:| `.opencode/agents/deep-research.md` | Modify | Require research iterations to emit graph nodes and edges into JSONL state. |
+141:| `.opencode/agents/deep-review.md` | Modify | Require review iterations to emit graph nodes and edges into JSONL state. |
+147:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts` | Create | Verify edge insertion, update, deletion, self-loop prevention, and provenance traversal. |
+150:| `.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` | Create | Verify schema creation, namespace isolation, idempotent upsert behavior, and snapshot persistence. |
 155:Research findings revise the original reuse estimate downward: Phase 002 is now planned as 35-45% direct reuse, 25-30% adapted reuse, and the remainder genuinely new loop semantics. Direct reuse is concentrated in graph primitives and DB lifecycle patterns; adapted work is concentrated in contradiction handling, convergence design, and reducer/MCP integration.
 159:| Memory causal graph | `lib/storage/causal-edges.ts` | `coverage-graph-core.cjs` | Reuse typed edge insertion/update/delete, strength clamping, self-loop prevention, update history, and BFS traversal. |
 161:| Contradiction detector | `lib/graph/contradiction-detection.ts` | `coverage-graph-contradictions.cjs` | Reuse CONTRADICTS-edge scanning and paired reporting. |
@@ -7989,30 +7989,30 @@ rg: .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-impr
 94:- Add workflow, config, and strategy surfaces for wave-aware execution without changing the default small-target path.
 95:- Add tests for lifecycle correctness, segment isolation, merge idempotence, and resume or recovery behavior.
 100:- Offline replay optimization, config search, and promotion gates from Phase 004.
-108:| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
-109:| `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
-110:| `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
-111:| `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
-112:| `.opencode/skill/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
-113:| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
-114:| `.opencode/skill/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-115:| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-116:| `.opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-117:| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
-118:| `.opencode/skill/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
-119:| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
-120:| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
-121:| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
-122:| `.opencode/command/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
-123:| `.opencode/command/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
-124:| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
-125:| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
-126:| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
-127:| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
-128:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
-129:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
-130:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
-131:| `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
+108:| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs` | Create | Shared planner for v1 heuristic segmentation and v2 graph-enhanced review or research segments. |
+109:| `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs` | Create | Orchestrator lifecycle helpers for fan-out, join, prune, promote, merge, and resume state transitions. |
+110:| `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs` | Create | Reducer-owned `board.json` execution-ledger schema, status transitions, conflict tracking, and derived dashboard renderer helpers. |
+111:| `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs` | Create | Segment JSONL, lineage, and merge helpers keyed by explicit segment identifiers. |
+112:| `.opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs` | Create | Segment-level convergence helpers that wrap Phase 002 graph metrics and stop traces. |
+113:| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Modify | Document domain-ledger prepass, activation gates, v1/v2 segmentation, fan-out/join, prune or promote rules, and merge behavior for research. |
+114:| `.opencode/skills/sk-deep-research/references/state_format.md` | Modify | Add `domain-ledger.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+115:| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+116:| `.opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | Modify | Add segment plan, promoted findings, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+117:| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modify | Document `hotspot-inventory.json`, activation gates, v1/v2 segmentation, wave lifecycle, and merge behavior for review. |
+118:| `.opencode/skills/sk-deep-review/references/state_format.md` | Modify | Add `hotspot-inventory.json`, segment JSONL, `board.json`, derived dashboard, and keyed merge contracts. |
+119:| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add wave mode, activation gates, segment planner versioning, and board configuration fields. |
+120:| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add segment queues, conflict tracking, and merge checkpoints while keeping execution-ledger ownership machine-first. |
+121:| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modify | Define wave-aware review outputs and reducer-owned coordination sections. |
+122:| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for research. |
+123:| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document wave-mode legality, activation gates, and the prerequisite fan-out/join proof for review. |
+124:| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Add domain-ledger prepass, fan-out/join, prune, promote, and keyed merge steps for research. |
+125:| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Keep confirm-mode research flow aligned with activation-gated wave lifecycle rules. |
+126:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add hotspot-inventory prepass, fan-out/join, prune, promote, and keyed merge steps for review. |
+127:| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Keep confirm-mode review flow aligned with activation-gated wave lifecycle rules. |
+128:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts` | Create | Verify segment planning, ranking, and clustering behavior. |
+129:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts` | Create | Verify lifecycle transitions, prune rules, and promotion rules. |
+130:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts` | Create | Verify segment isolation, deterministic merge, and idempotent replay behavior. |
+131:| `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts` | Create | Verify wave interruption and resume behavior. |
 143:| REQ-000 | Workflow fan-out/join capability MUST be proven before wave execution can be built. | The packet defines and verifies one canonical path for parallel dispatch plus join, either through helper-module orchestration or a YAML engine extension; until that proof exists, wave execution remains blocked and the default sequential path stays authoritative. |
 144:| REQ-001 | The phase MUST define two segmentation versions for both large review scopes and large research scopes. | v1 uses deterministic heuristics such as file-count thresholds, directory grouping, simple hotspot ranking, domain counts, authority levels, and stable cluster assignment; v2 explicitly layers Phase 002 coverage-graph or cluster signals on top of v1 once the graph surfaces are operational. |
 146:| REQ-003 | The phase MUST define a packet-local coordination board that is reducer-owned and machine-first. | `board.json` is the canonical execution ledger for per-segment state, conflict notes, deduplication markers, and promotion outcomes; `dashboard.md` is a derived human-readable render and not a human-edited strategy surface. |
@@ -8099,22 +8099,22 @@ exec
 84:- Add an advisory-only promotion gate that never mutates production config directly while prerequisite fixtures and suites are still missing.
 85:- Record a full audit trail for every optimization attempt, including rejected candidates and patch-style recommendations.
 94:- Full prompt optimization, cross-packet meta-learning, and automatic production promotion in the current phase scope.
-100:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
-101:| `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
-103:| `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
-104:| `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
-105:| `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
-106:| `.opencode/skill/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-107:| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
-108:| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-109:| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
-110:| `.opencode/command/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-111:| `.opencode/command/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
-112:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
-113:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
-115:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
-116:| `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
-117:| `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
+100:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs` | Create | Build deterministic replay datasets from historical packet artifacts. |
+101:| `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs` | Create | Score runs across accuracy, convergence efficiency, recovery success, and synthesis quality. |
+103:| `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs` | Create | Replay reducer and convergence logic against alternate configurations. |
+104:| `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs` | Create | Compare candidate results to baseline and emit advisory-only candidate patches. |
+105:| `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json` | Create | Canonical manifest of tunable fields, locked contract fields, and future prompt-pack entrypoints. |
+106:| `.opencode/skills/sk-deep-research/assets/deep_research_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+107:| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Mark optimizer-managed fields and promotion-safe config boundaries. |
+108:| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+109:| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Clarify which thresholds and recovery policies are optimizer-tunable. |
+110:| `.opencode/commands/spec_kit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+111:| `.opencode/commands/spec_kit/deep-review.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
+112:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` | Create | Verify corpus extraction and fixture normalization. |
+113:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` | Create | Verify scoring rules and metric weighting behavior. |
+115:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` | Create | Verify deterministic replay under alternate configs. |
+116:| `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts` | Create | Verify advisory promotion gating, rollback behavior, and audit output. |
+117:| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/` | Create | Packet-family replay fixtures, optimization-result snapshots, and advisory patch artifacts. |
 129:| REQ-001 | Phase 4a MUST build a replay corpus with packet family `040` as the required source corpus. | Corpus inputs are tied to real `040` packet artifacts, normalized into a deterministic replay format, and traceable back to their source runs and metadata. |
 130:| REQ-002 | Packet family `028` MAY be ingested as an optional holdout corpus, but only with compatibility grading because it is older and structurally different; packet family `042` MUST NOT be treated as corpus input until it has real implementation traces. | Corpus ingestion records source-family compatibility, marks `028` as optional holdout only, and rejects `042` as a training corpus until live traces exist. |
 131:| REQ-003 | The optimizer MUST define a rubric that scores run quality across finding accuracy, convergence efficiency, recovery success rate, and synthesis quality. | The rubric exposes explicit metric definitions, weighting, and score outputs; the phase does not rely on one opaque "goodness" number. |
@@ -8178,408 +8178,408 @@ rg: .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-impr
 codex
 One important nuance is emerging: the 042 packet literature describes separate journals and ledgers as the desired runtime truth, but the currently shipped deep-research/deep-review references still lean heavily on the main state JSONL as the active event stream. That matters for Phase 005, because agent-improver should follow the mature contract direction without pretending every predecessor surface is already fully split out in live code.
 exec
-/bin/zsh -lc 'rg -n "journal|ledger|journalPath|claim-verification|verification ledger|state.jsonl|findings-registry|board.json|snapshot|compaction" .opencode/skill/sk-deep-research .opencode/skill/sk-deep-review .opencode/command/spec_kit .opencode/skill/system-spec-kit/scripts | head -n 400' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "journal|ledger|journalPath|claim-verification|verification ledger|state.jsonl|findings-registry|board.json|snapshot|compaction" .opencode/skills/sk-deep-research .opencode/skills/sk-deep-review .opencode/commands/spec_kit .opencode/skills/system-spec-kit/scripts | head -n 400' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/command/spec_kit/handover.md:293:On context compaction detection ("Please continue the conversation..."):
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:31:    "registryFile": "research/findings-registry.json",
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:53:    "deep-research-state.jsonl": "append-only",
-.opencode/skill/sk-deep-research/assets/deep_research_config.json:56:    "findings-registry.json": "auto-generated",
-.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md:17:2. **Recovery surface** — second recovery channel alongside JSONL after context compaction
-.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md:24:- **Data sources:** `deep-research-state.jsonl` + `findings-registry.json` + `deep-research-strategy.md`
-.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:176:  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
-.opencode/skill/sk-deep-review/assets/deep_review_strategy.md:82:[Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
-.opencode/skill/sk-deep-review/assets/deep_review_strategy.md:184:- Findings registry: `deep-review-findings-registry.json`
-.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml:243:  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:255:      pathPattern: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:306:      pathPattern: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:448:    - id: review-contract-snapshot
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:449:      path: .opencode/skill/sk-deep-review/assets/review_mode_contract_snapshot.md
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:453:        begin: "<!-- BEGIN GENERATED: review-mode-contract/snapshot -->"
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:454:        end: "<!-- END GENERATED: review-mode-contract/snapshot -->"
-.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:484:      description: Ensure reducer inputs, outputs, and findings-registry metrics are documented consistently across assets and runtime mirrors.
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:83:  registry: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:87:  synthesis_snapshot_pattern: "{spec_folder}/research/synthesis-v{generation}.md"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:120:          - "{spec_folder}/research/state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:180:        output: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:197:        output: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:221:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:317:              State Log: {spec_folder}/research/deep-research-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:319:              Registry: {spec_folder}/research/findings-registry.json
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:334:          priorReducedState: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:336:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:349:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:351:          - registry_updated: "Reducer refreshed findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:364:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:365:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:393:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:394:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:430:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:484:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:528:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
-.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md:17:2. **Recovery surface** — second recovery channel alongside JSONL after context compaction
-.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md:24:- **Data sources:** `deep-review-state.jsonl` + `deep-review-strategy.md` + `deep-review-findings-registry.json`
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:83:  registry: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:87:  synthesis_snapshot_pattern: "{spec_folder}/research/synthesis-v{generation}.md"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:120:          - "{spec_folder}/research/state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143:          ask: "Resume, restart (archive old state), fork (new angle from current state), or completed-continue (snapshot prior synthesis and reopen)?"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:179:        output: "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:196:        output: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:217:          Reducer-owned state will live in `{spec_folder}/research/findings-registry.json` and `{spec_folder}/research/deep-research-dashboard.md`.
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:241:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:360:              State Log: {spec_folder}/research/deep-research-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:362:              Registry: {spec_folder}/research/findings-registry.json
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:377:          priorReducedState: "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:379:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:392:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:394:          - registry_updated: "Reducer refreshed findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:434:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:435:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:466:          - "{spec_folder}/research/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:467:          - "{spec_folder}/research/findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:526:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:600:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:616:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:46:    "deep-review-state.jsonl": "append-only",
-.opencode/skill/sk-deep-review/assets/deep_review_config.json:47:    "deep-review-findings-registry.json": "auto-generated",
-.opencode/skill/sk-deep-review/SKILL.md:191:    │  deep-review-state.jsonl        │
-.opencode/skill/sk-deep-review/SKILL.md:207:  deep-review-state.jsonl            # Append-only review iteration log
-.opencode/skill/sk-deep-review/SKILL.md:223:Init --> Create config.json, strategy.md, state.jsonl
-.opencode/skill/sk-deep-review/SKILL.md:234:  |                                         6. Append deep-review-state.jsonl
-.opencode/skill/sk-deep-review/SKILL.md:261:- `deep-review-state.jsonl`
-.opencode/skill/sk-deep-review/SKILL.md:262:- `deep-review-findings-registry.json`
-.opencode/skill/sk-deep-review/SKILL.md:400:- All state files present and consistent (`config.json`, `state.jsonl`, `strategy.md`)
-.opencode/skill/sk-deep-review/SKILL.md:460:  Agent appends {spec_folder}/review/deep-review-state.jsonl
-.opencode/skill/sk-deep-review/SKILL.md:506:| JSONL state | pi-autoresearch | `deep-review-state.jsonl` (append-only audit log) |
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:68:/** Input parameters required to build a project state snapshot. */
-.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:616: * Assemble a complete project state snapshot from session parameters.
-.opencode/skill/system-spec-kit/scripts/README.md:18:- [2. INVENTORY SNAPSHOT](#2--inventory-snapshot)
-.opencode/skill/system-spec-kit/scripts/README.md:30:<!-- ANCHOR:inventory-snapshot -->
-.opencode/skill/system-spec-kit/scripts/README.md:69:<!-- /ANCHOR:inventory-snapshot -->
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:86:  findings_registry: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:123:            - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:156:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:261:        output: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:266:        output: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:303:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:304:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:425:              State Log: {spec_folder}/review/deep-review-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:426:              Findings Registry: {spec_folder}/review/deep-review-findings-registry.json
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:442:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:471:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:473:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:474:        write: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:480:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:481:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:557:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:643:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:690:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:740:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
-.opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts:5:// snapshot construction. Extracted from workflow.ts to reduce module size.
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:10:FAILURE_CLASS="ledger-mismatch"
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:21:heal-ledger-mismatch.sh - Deterministic auto-remediation for mutation ledger mismatch
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:24:  ./heal-ledger-mismatch.sh [OPTIONS]
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:97:    ops_run_step "$FAILURE_CLASS" "detect-ledger-divergence" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$DETECT_FAILURES" "$OWNER" \
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:98:        "node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict" || exit 1
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:100:    ops_run_step "$FAILURE_CLASS" "replay-ledger" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$REPAIR_FAILURES" "$OWNER" \
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:101:        "node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay" || exit 1
-.opencode/skill/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:103:    ops_emit_success "$FAILURE_CLASS" "$OWNER" "ledger replay consistency restored"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:86:  findings_registry: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:123:            - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:156:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167:          ask: "Resume, restart (archive old state), fork (new angle from current state), or completed-continue (snapshot prior review and reopen)?"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:260:        output: "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:265:        output: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:327:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:328:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:472:              State Log: {spec_folder}/review/deep-review-state.jsonl
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:473:              Findings Registry: {spec_folder}/review/deep-review-findings-registry.json
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:489:          - jsonl_appended: "New iteration record in state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:517:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:519:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:520:        write: "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:557:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:631:          - "{spec_folder}/review/deep-review-state.jsonl"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:632:          - "{spec_folder}/review/deep-review-findings-registry.json"
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:742:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:814:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
-.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:831:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
-.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts:15:  'deep-research-state.jsonl',
-.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts:83:    [/scratch\/deep-research-state\.jsonl/g, 'research/deep-research-state.jsonl'],
-.opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts:18://   - Records results to speckit-eval.db (eval_metric_snapshots)
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1475:  // Project state snapshot must run BEFORE distinguishing-evidence because
-.opencode/skill/system-spec-kit/scripts/ops/README.md:80:3. `ledger-mismatch`
-.opencode/skill/system-spec-kit/scripts/ops/README.md:96:| `heal-ledger-mismatch.sh` | Run ledger-mismatch remediation workflow |
-.opencode/command/spec_kit/resume.md:365:- If a context-compaction continuation prompt is detected, stop and present current task/state summary before taking actions.
-.opencode/skill/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:14:This scenario validates fresh review initialization creates canonical state files for `DRV-004`. The objective is to verify that a fresh session creates the canonical `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` directory from the shipped assets.
-.opencode/skill/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:28:- Orchestrator prompt: Validate the fresh-initialization contract for sk-deep-review. Confirm that initialization creates `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` from the live templates, then return a concise user-facing pass/fail verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:47:| DRV-004 | Fresh review initialization creates canonical state files | Verify that a fresh session creates the canonical config, JSONL, registry, strategy, and iteration directory from the shipped assets. | Validate the fresh-initialization contract for sk-deep-review. Confirm that initialization creates `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` from the live templates, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 2. `bash: sed -n '1,220p' .opencode/skill/sk-deep-review/assets/deep_review_config.json && sed -n '1,220p' .opencode/skill/sk-deep-review/assets/deep_review_strategy.md` -> 3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | The review/ directory is created, config comes from the shared config template, the findings registry comes from the reducer contract, strategy comes from the sk-deep-review strategy template, and the JSONL begins with a config record. | Capture the initialization step names, the live template files, and the state_paths contract in one evidence bundle. | PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles; FAIL if the artifact list or template sources drift. | Check both YAML variants, verify the JSONL init step writes a config record, confirm the reducer registry is created, and confirm the assets live under `assets/`. |
-.opencode/skill/system-spec-kit/scripts/evals/run-bm25-baseline.ts:19://   - Records results to speckit-eval.db (eval_metric_snapshots)
-.opencode/skill/system-spec-kit/scripts/evals/run-bm25-baseline.ts:73:  prodDb.pragma('journal_mode = WAL');
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:38:        ledger-mismatch) echo "${SCRIPT_DIR}/heal-ledger-mismatch.sh" ;;
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:64:        ledger-mismatch)
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:66:CLASS: ledger-mismatch
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:67:TRIGGER: mutation ledger parity mismatch or replay consistency failure
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:70:DRILL: ./runbook.sh drill ledger-mismatch --scenario success
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:105:        for failure_class in index-drift session-ambiguity ledger-mismatch telemetry-drift; do
-.opencode/skill/system-spec-kit/scripts/ops/runbook.sh:136:ledger-mismatch
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md:28:- Orchestrator prompt: Validate the resume-after-pause contract for sk-deep-review. Confirm that when the operator removes `review/.deep-review-pause`, the review loop re-reads `deep-review-state.jsonl` and `deep-review-strategy.md`, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md:47:| DRV-022 | Resume after pause sentinel removal | Verify removing pause sentinel lets review resume from read-state without re-running completed iterations. | Validate the resume-after-pause contract for sk-deep-review. Confirm that when the operator removes `review/.deep-review-pause`, the review loop re-reads `deep-review-state.jsonl` and `deep-review-strategy.md`, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations, then return a concise operator-facing verdict. | 1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .opencode/skill/sk-deep-review/references/loop_protocol.md .opencode/skill/sk-deep-review/references/state_format.md` -> 2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'resume|pause.*delete|pick up|restart|continue.*review' .opencode/skill/sk-deep-review/references/quick_reference.md .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/README.md .opencode/command/spec_kit/deep-review.md` | Removing sentinel triggers loop re-entry, JSONL re-read determines last iteration, strategy.md provides dimension state, no iterations re-run, and resume event logged. | Capture the resume flow from loop protocol, the YAML state re-read mechanism, and the user-facing resume instructions. | PASS if removing the sentinel resumes correctly from persisted state; FAIL if the loop restarts from iteration 1 or loses prior findings. | Privilege the loop protocol for resume flow and the state format reference for JSONL iteration counting; use YAML as enforcement confirmation. |
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:246:  status?: 'pending' | 'completed' | 'error' | 'snapshot' | 'unknown';
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1682:    // Exclude snapshot tool calls from FILES — they inflate capturedFileCount
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1684:    if (tool.status === 'snapshot') {
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:14:This scenario validates malformed JSONL lines are skipped with defaults for `DRV-023`. The objective is to verify that when the review state log (`deep-review-state.jsonl`) contains malformed or unparseable lines, they are skipped gracefully and sensible defaults are applied so the loop can continue.
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:28:- Orchestrator prompt: Validate the malformed JSONL handling contract for sk-deep-review. Confirm that when `review/deep-review-state.jsonl` contains unparseable lines, those lines are skipped without halting the loop, that sensible defaults (e.g., `newFindingsRatio = 1.0`) are used to prevent premature convergence, and that the skip is logged or visible in the state, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:47:| DRV-023 | Malformed JSONL lines are skipped with defaults | Verify malformed JSONL lines in review state are skipped gracefully with sensible defaults. | Validate the malformed JSONL handling contract for sk-deep-review. Confirm that unparseable lines in `review/deep-review-state.jsonl` are skipped without halting the loop, that sensible defaults (e.g., `newFindingsRatio = 1.0`) are used to prevent premature convergence, and that the skip is logged or visible, then return a concise operator-facing verdict. | 1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .opencode/skill/sk-deep-review/references/state_format.md .opencode/skill/sk-deep-review/references/convergence.md` -> 2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .opencode/skill/sk-deep-review/SKILL.md .opencode/skill/sk-deep-review/README.md .opencode/command/spec_kit/deep-review.md` | Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration count from valid lines, skip is observable. | Capture the JSONL parsing contract from state format, the error handling rules from YAML or loop protocol, and the default values applied on parse failure. | PASS if malformed lines are skipped with conservative defaults; FAIL if a bad line crashes the loop or causes false convergence. | Privilege the state format reference for JSONL schema rules and the convergence reference for default values on degraded input. |
-.opencode/skill/sk-deep-review/references/quick_reference.md:75:| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
-.opencode/skill/sk-deep-review/references/quick_reference.md:76:| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
-.opencode/skill/sk-deep-review/references/quick_reference.md:162:1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
-.opencode/skill/sk-deep-review/references/quick_reference.md:168:7. Append iteration record to `deep-review-state.jsonl`
-.opencode/skill/sk-deep-review/references/quick_reference.md:212:| Review-report missing sections | Verify synthesis phase completed (check state.jsonl for synthesis event) |
-.opencode/skill/system-spec-kit/scripts/utils/tool-sanitizer.ts:18:type ToolStatus = 'pending' | 'completed' | 'error' | 'snapshot' | 'unknown';
-.opencode/skill/system-spec-kit/scripts/utils/tool-sanitizer.ts:91:  'pending', 'completed', 'error', 'snapshot', 'unknown',
-.opencode/skill/system-spec-kit/scripts/core/README.md:40:- `memory-metadata.ts` - memory classification, session dedup, causal links, and evidence snapshot assembly
-.opencode/skill/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
-.opencode/skill/sk-deep-review/references/convergence.md:411:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
-.opencode/skill/sk-deep-review/references/convergence.md:587:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
-.opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts:30:  /^(?:modified during session|tracked file history snapshot)$/i,
-.opencode/skill/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md:18:The write-once iteration files serve as a redundant record of each review cycle. If `deep-review-state.jsonl` is lost or corrupted beyond what graceful degradation can handle, the iteration files provide the raw material to reconstruct the state log and resume the review without starting over.
-.opencode/skill/sk-deep-research/SKILL.md:53:- `completed-continue` — reopen a completed lineage only after immutable synthesis snapshotting
-.opencode/skill/sk-deep-research/SKILL.md:170:    │  deep-research-state.jsonl      │
-.opencode/skill/sk-deep-research/SKILL.md:172:    │  findings-registry.json          │
-.opencode/skill/sk-deep-research/SKILL.md:188:Init --> Create config.json, strategy.md, state.jsonl
-.opencode/skill/sk-deep-research/SKILL.md:199:  |                                         6. Append state.jsonl
-.opencode/skill/sk-deep-research/SKILL.md:357:  Agent appends research/deep-research-state.jsonl
-.opencode/skill/sk-deep-research/SKILL.md:358:  Workflow reducer updates research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
-.opencode/skill/sk-deep-research/SKILL.md:412:| JSONL state | pi-autoresearch | deep-research-state.jsonl |
-.opencode/skill/sk-deep-review/references/state_format.md:20:| `deep-review-state.jsonl` | JSON Lines | Append-only |
-.opencode/skill/sk-deep-review/references/state_format.md:21:| `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
-.opencode/skill/sk-deep-review/references/state_format.md:32:    deep-review-state.jsonl
-.opencode/skill/sk-deep-review/references/state_format.md:33:    deep-review-findings-registry.json
-.opencode/skill/sk-deep-review/references/state_format.md:80:    "deep-review-state.jsonl": "append-only",
-.opencode/skill/sk-deep-review/references/state_format.md:81:    "deep-review-findings-registry.json": "auto-generated",
-.opencode/skill/sk-deep-review/references/state_format.md:161:## 3. STATE LOG (deep-review-state.jsonl)
-.opencode/skill/sk-deep-review/references/state_format.md:333:<!-- ANCHOR:findings-registry -->
-.opencode/skill/sk-deep-review/references/state_format.md:334:## 5. FINDINGS REGISTRY (deep-review-findings-registry.json)
-.opencode/skill/sk-deep-review/references/state_format.md:367:<!-- /ANCHOR:findings-registry -->
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:146:    '<!-- ANCHOR:project-state-snapshot -->',
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs:241:    for (const record of (state.jsonlRecords || [])) {
-.opencode/skill/sk-deep-review/references/loop_protocol.md:108:7. **Initialize state log**: First line of `{spec_folder}/review/deep-review-state.jsonl` with config record including `mode: "review"` and the lineage fields.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:110:8. **Initialize reducer state**: Create `{spec_folder}/review/deep-review-findings-registry.json` with empty `openFindings`, `resolvedFindings`, `repeatedFindings`, `dimensionCoverage`, `findingsBySeverity`, and `convergenceScore`.
-.opencode/skill/sk-deep-review/references/loop_protocol.md:132:| State | `{spec_folder}/review/deep-review-state.jsonl` | Iteration log (1 initial line) |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:133:| Registry | `{spec_folder}/review/deep-review-findings-registry.json` | Reducer-owned findings state |
-.opencode/skill/sk-deep-review/references/loop_protocol.md:146:- Read `deep-review-state.jsonl` -- count iterations, extract `newFindingsRatio`, `findingsSummary`, `findingsNew`, `traceabilityChecks`, and lineage data
-.opencode/skill/sk-deep-review/references/loop_protocol.md:147:- Read `deep-review-findings-registry.json` -- extract `dimensionsCovered`, `findingsBySeverity`, `openFindings`, `resolvedFindings`, and `convergenceScore`
-.opencode/skill/sk-deep-review/references/loop_protocol.md:238:  - State: {spec_folder}/review/deep-review-state.jsonl
-.opencode/skill/sk-deep-review/references/loop_protocol.md:239:  - Registry: {spec_folder}/review/deep-review-findings-registry.json
-.opencode/skill/sk-deep-review/references/loop_protocol.md:407:1. Read `deep-review-state.jsonl` and select review-mode iteration records in run order
-.opencode/skill/sk-deep-review/references/loop_protocol.md:499:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
-.opencode/skill/sk-deep-review/README.md:134:Each `@deep-review` agent dispatch gets a clean context window. No compaction or memory degradation across iterations. Knowledge transfers through the strategy file and JSONL state on disk.
-.opencode/skill/sk-deep-review/README.md:196:├── deep-review-state.jsonl         # Append-only structured log of all iterations
-.opencode/skill/sk-deep-review/README.md:197:├── deep-review-findings-registry.json  # Reducer-owned canonical findings state
-.opencode/skill/sk-deep-review/README.md:202:├── review-report-v{generation}.md  # Immutable snapshot when completed-continue reopens a finished review
-.opencode/skill/sk-deep-review/README.md:412:| State log         | `review/deep-review-state.jsonl`                                                                                                     |
-.opencode/skill/sk-deep-review/README.md:413:| Findings registry | `review/deep-review-findings-registry.json`                                                                                          |
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:41:      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-review-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:42:      expect(content, `${docPath} should mention the findings registry`).toContain('deep-review-findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:53:      expect(content, `${docPath} should read the canonical state log`).toContain('review/deep-review-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:54:      expect(content, `${docPath} should mention the reducer-owned registry`).toContain('review/deep-review-findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:62:        'review/deep-research-state.jsonl',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:76:      expect(content, `${docPath} should write the canonical state log`).toContain('review/deep-review-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:77:      expect(content, `${docPath} should write the findings registry`).toContain('review/deep-review-findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:84:        'scratch/deep-research-state.jsonl',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:93:        'review/deep-research-state.jsonl',
-.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:181: * - Uses edge createdAt timestamps instead of degree_snapshots table
-.opencode/skill/sk-deep-research/README.md:41:The packet is also reducer-synchronized. The agent writes the iteration file plus the JSONL record. The workflow reducer then updates the machine-owned packet surfaces so `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, and synthesis metadata cannot drift apart.
-.opencode/skill/sk-deep-research/README.md:60:- `deep-research-state.jsonl`
-.opencode/skill/sk-deep-research/README.md:62:- `findings-registry.json`
-.opencode/skill/sk-deep-research/README.md:113:  deep-research-state.jsonl
-.opencode/skill/sk-deep-research/README.md:115:  findings-registry.json
-.opencode/skill/sk-deep-research/README.md:129:- Reducer-owned writes: `deep-research-strategy.md` machine-owned sections, `findings-registry.json`, `deep-research-dashboard.md`.
-.opencode/skill/sk-deep-research/README.md:130:- Workflow-owned output: `research.md` and lifecycle snapshot files such as `synthesis-v{generation}.md`.
-.opencode/skill/sk-deep-research/README.md:143:| `completed-continue` | Reopen a completed lineage only after snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. |
-.opencode/skill/sk-deep-research/README.md:172:| Packet resumes when you expected a new run | Inspect `config.lineage` and the latest lifecycle event in `deep-research-state.jsonl`. |
-.opencode/skill/sk-deep-research/README.md:173:| Strategy/dashboard drift | Confirm the reducer ran and regenerated `findings-registry.json` and `deep-research-dashboard.md`. |
-.opencode/skill/sk-deep-research/README.md:174:| JSONL parse failure | Run `cat research/deep-research-state.jsonl | jq .` and fall back to iteration-file reconstruction if needed. |
-.opencode/skill/sk-deep-research/README.md:188:A: `restart` begins a new generation from an active or inactive packet and archives prior state. `completed-continue` reopens a completed lineage after snapshotting the old synthesis boundary.
-.opencode/skill/sk-deep-research/references/quick_reference.md:76:| State | `research/deep-research-state.jsonl` | JSONL | Iteration log (append-only) |
-.opencode/skill/sk-deep-research/references/quick_reference.md:78:| Registry | `research/findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings |
-.opencode/skill/sk-deep-research/references/quick_reference.md:137:1. Read `deep-research-state.jsonl` and `deep-research-strategy.md`
-.opencode/skill/sk-deep-research/references/quick_reference.md:141:5. Append iteration record to `deep-research-state.jsonl`
-.opencode/skill/sk-deep-research/references/quick_reference.md:142:6. Let the workflow reducer update `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
-.opencode/skill/sk-deep-research/references/quick_reference.md:169:| State file corrupt | Validate JSONL: `cat research/deep-research-state.jsonl \| jq .` |
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:1027:      contextTemplate.includes('[PROJECT STATE SNAPSHOT](#project-state-snapshot)') &&
-.opencode/skill/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
-.opencode/skill/sk-deep-research/references/convergence.md:153:- `convergenceScore`: normalized stop-score surfaced in `findings-registry.json` and `deep-research-dashboard.md`
-.opencode/skill/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
-.opencode/skill/sk-deep-research/references/convergence.md:572:When reading `deep-research-state.jsonl`, parse defensively:
-.opencode/skill/sk-deep-research/references/convergence.md:1109:1. Read `deep-research-state.jsonl` and select review-mode iteration records in run order.
-.opencode/skill/system-spec-kit/scripts/tests/test-retry-manager-behavioral.js:75:  db.pragma('journal_mode = WAL');
-.opencode/skill/sk-deep-research/references/capability_matrix.md:25:2. Canonical packet paths under `{spec_folder}/research/`, especially `research/deep-research-state.jsonl` and `research/findings-registry.json`.
-.opencode/skill/sk-deep-research/references/state_format.md:20:| `deep-research-state.jsonl` | JSON Lines | Structured iteration log | Append-only |
-.opencode/skill/sk-deep-research/references/state_format.md:23:| `findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings | Auto-generated (read-only) |
-.opencode/skill/sk-deep-research/references/state_format.md:94:    "deep-research-state.jsonl": "append-only",
-.opencode/skill/sk-deep-research/references/state_format.md:116:## 3. STATE LOG (deep-research-state.jsonl)
-.opencode/skill/sk-deep-research/references/state_format.md:241:| completed_continue | workflow | active | Reopen a completed lineage after immutable snapshotting | sessionId, parentSessionId, generation, continuedFromRun, completedAt, reopenedAt, timestamp |
-.opencode/skill/sk-deep-research/references/state_format.md:314:When parsing `deep-research-state.jsonl`, apply defensive reading:
-.opencode/skill/sk-deep-research/references/state_format.md:463:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
-.opencode/skill/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
-.opencode/skill/sk-deep-research/references/state_format.md:509:    "findings-registry.json": "auto-generated"
-.opencode/skill/sk-deep-research/references/state_format.md:527:    deep-research-state.jsonl          # Structured iteration log
-.opencode/skill/sk-deep-research/references/state_format.md:530:    findings-registry.json             # Reducer-owned question/finding registry
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:46:    expect(contract.contract.outputs.findingsRegistry.pathPattern).toContain('deep-review-findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:48:    expect(contract.contract.outputs.jsonl.pathPattern).toContain('deep-review-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:60:    expect(config.fileProtection['deep-review-findings-registry.json']).toBe('auto-generated');
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:74:        '"{spec_folder}/review/deep-review-state.jsonl"',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:77:        '"{spec_folder}/review/deep-review-findings-registry.json"',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:80:        'write: "{spec_folder}/review/deep-review-findings-registry.json"',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:87:        'Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.',
-.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:97:    expect(stateFormat).toContain('deep-review-findings-registry.json');
-.opencode/skill/sk-deep-research/references/loop_protocol.md:57:5. **Initialize state log**: First line of `research/deep-research-state.jsonl` with config record
-.opencode/skill/sk-deep-research/references/loop_protocol.md:63:7. **Initialize findings registry**: `research/findings-registry.json` with empty `openQuestions`, `resolvedQuestions`, `keyFindings`, and `ruledOutDirections`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:74:- `research/deep-research-state.jsonl` (1 line)
-.opencode/skill/sk-deep-research/references/loop_protocol.md:91:- `completed-continue`: snapshot `research/research.md` to `research/synthesis-v{generation}.md`, record `completedAt` and `reopenedAt`, then reopen as a new segment with parent linkage
-.opencode/skill/sk-deep-research/references/loop_protocol.md:102:- Read `deep-research-state.jsonl` -- count iterations, get last newInfoRatio
-.opencode/skill/sk-deep-research/references/loop_protocol.md:171:  - State: {spec_folder}/research/deep-research-state.jsonl
-.opencode/skill/sk-deep-research/references/loop_protocol.md:195:4. Verify reducer refreshed `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
-.opencode/skill/sk-deep-research/references/loop_protocol.md:228:   git add research/deep-research-state.jsonl
-.opencode/skill/sk-deep-research/references/loop_protocol.md:230:   git add research/findings-registry.json
-.opencode/skill/sk-deep-research/references/loop_protocol.md:238:Checkpoint commits provide rollback points: `git log -- research/` shows the last good state for the research packet. If state corruption occurs, `git checkout HEAD~1 -- research/deep-research-state.jsonl` restores the previous version.
-.opencode/skill/sk-deep-research/references/loop_protocol.md:453:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
-.opencode/skill/sk-deep-research/references/loop_protocol.md:600:- `{spec_folder}/review/deep-research-state.jsonl` (1 line)
-.opencode/skill/sk-deep-research/references/loop_protocol.md:653:  - State: {spec_folder}/review/deep-research-state.jsonl
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-extractors.test.ts:220:    expect(countOccurrences(targetedSurface, 'Keep canonical evidence snapshots')).toBe(1);
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:480:  const stateLogPath = path.join(researchDir, 'deep-research-state.jsonl');
-.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:482:  const registryPath = path.join(researchDir, 'findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts:98:    expect(normalizeToolStatus('snapshot')).toBe('snapshot');
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:6:// Reducer-owned board.json execution ledger, status transitions,
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:9:// board.json is the canonical execution ledger.
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:56: * @returns {object} Board object (serializable to board.json)
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:271: * Generate dashboard.md content from board.json.
-.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs:284:  lines.push('> Auto-generated from board.json. Do not edit manually.');
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:136:        { path: 'scripts/utils/input-normalizer.ts', description: 'Tracked file history snapshot', specRelevant: true },
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:228: * Generate domain-ledger.json for research.
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:240: * @returns {object} Domain ledger artifact
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:421: * segment identities reproducible from the same ledger.
-.opencode/skill/system-spec-kit/scripts/lib/wave-segment-planner.cjs:423: * @param {object} domainLedger - Domain ledger from generateDomainLedger
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1832:    const snapshotInput = {
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1841:    const snapshot = sessionExtractor.buildProjectStateSnapshot(snapshotInput);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1842:    if (snapshot.projectPhase && snapshot.activeFile && snapshot.lastAction &&
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1843:        snapshot.nextAction && snapshot.blockers !== undefined && snapshot.fileProgress) {
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1844:      pass('T-027x: buildProjectStateSnapshot returns complete object', snapshot.projectPhase);
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:558:  it('prefers live observations over synthetic enrichment for project state snapshots', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:559:    const snapshot = buildProjectStateSnapshot({
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:584:    expect(snapshot.activeFile).toBe('scripts/core/workflow.ts');
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:585:    expect(snapshot.lastAction).toBe('Adjusted workflow alignment logic');
-.opencode/skill/sk-deep-research/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md:28:- Orchestrator prompt: Validate the fresh-initialization contract for sk-deep-research. Confirm that initialization creates deep-research-config.json, deep-research-state.jsonl, and deep-research-strategy.md from the live templates, then return a concise user-facing pass/fail verdict.
-.opencode/skill/sk-deep-research/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md:47:| DR-004 | Fresh initialization creates canonical state files | Verify that a fresh session creates the canonical config, JSONL, and strategy files from the shipped assets. | Validate the fresh-initialization contract for sk-deep-research. Confirm that initialization creates `deep-research-config.json`, `deep-research-state.jsonl`, and `deep-research-strategy.md` from the live templates, then return a concise user-facing pass/fail verdict. | 1. `bash: sed -n '1,220p' .opencode/skill/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` -> 3. `bash: sed -n '1,220p' .opencode/skill/sk-deep-research/assets/deep_research_config.json && sed -n '1,220p' .opencode/skill/sk-deep-research/assets/deep_research_strategy.md` | The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record. | Capture the initialization outputs, the explicit create steps, and the live template files in one evidence bundle. | PASS if protocol, YAML, and asset templates agree on the initial scratch artifacts and their roles; FAIL if the artifact list or template sources drift. | Check both YAML variants, verify the JSONL init step writes a config record, and confirm the assets live under `assets/`. |
-.opencode/skill/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:177:  describe('project state snapshot integration', () => {
-.opencode/skill/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:178:    it('honors explicit projectPhase overrides when building the snapshot', () => {
-.opencode/skill/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:179:      const snapshot = buildProjectStateSnapshot({
-.opencode/skill/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:189:      expect(snapshot.projectPhase).toBe('IMPLEMENTATION');
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:67:    path.join(specFolder, 'research', 'deep-research-state.jsonl'),
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:52:      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-research-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:53:      expect(content, `${docPath} should mention the findings registry`).toContain('findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:64:      expect(content, `${docPath} should read the canonical state log`).toContain('research/deep-research-state.jsonl');
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:65:      expect(content, `${docPath} should read the findings registry`).toContain('research/findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:78:      expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:53:    '- Removed project-state-snapshot, decisions, conversation',
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:219:    it('allows memory without project-state-snapshot (no longer mandatory)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:224:      expect(result.missingAnchors).not.toContain('project-state-snapshot');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:26:  segmentForResearch: (ledger: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:160:  describe('domain ledger (generateDomainLedger)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:161:    it('returns empty ledger for null input', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:162:      const ledger = planner.generateDomainLedger(null as any);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:163:      expect(ledger.domains).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:164:      expect(ledger.version).toBe('v1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:173:      const ledger = planner.generateDomainLedger(sources);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:174:      expect(ledger.domains.length).toBe(3);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:175:      expect((ledger.domains[0] as any).domain).toBe('high.example.com');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:184:      const ledger = planner.generateDomainLedger(sources);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:185:      expect(ledger.clusters.length).toBe(2);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:190:      const ledger1 = planner.generateDomainLedger(sources);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:191:      const ledger2 = planner.generateDomainLedger(sources);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:192:      const domains1 = ledger1.domains.map((d: any) => d.domain);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:193:      const domains2 = ledger2.domains.map((d: any) => d.domain);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:231:    it('returns empty array for null ledger', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:236:      const ledger = planner.generateDomainLedger(makeDomains(60, { diverse: true }));
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:237:      const segments = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:245:      const ledger = planner.generateDomainLedger(makeDomains(60, { diverse: true }));
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:246:      const seg1 = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:247:      const seg2 = planner.segmentForResearch(ledger, { segmentSize: 10 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:218:      expect(state.jsonlRecords.length).toBe(1);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:220:      expect(state.jsonlRecords[0].segment).toBe('seg-1');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:165:    const snapshotInput: Array<Record<string, unknown>> = [];
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:190:          snapshotInput.push(JSON.parse(JSON.stringify({
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:210:      expect(snapshotInput).toHaveLength(1);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:211:      expect(snapshotInput[0].headRef).toBe('HEAD');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:212:      expect(snapshotInput[0].commitRef).toBe('abc1234');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:213:      expect(snapshotInput[0].repositoryState).toBe('dirty');
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:214:      expect(snapshotInput[0].isDetachedHead).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:215:      expect(snapshotInput[0].SUMMARY).toBe(normalized.SUMMARY);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:216:      expect(snapshotInput[0].observations).toEqual(normalized.observations);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:217:      expect(snapshotInput[0]._manualDecisions).toEqual((normalized as Record<string, unknown>)._manualDecisions);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:310:    vi.doMock('../../mcp_server/lib/session/session-snapshot.js', () => ({
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:601:    const snapshot = buildProjectStateSnapshot({
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:610:    assertExists(snapshot.projectPhase, 'EXT-Session-054: Snapshot has projectPhase');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:611:    assertExists(snapshot.activeFile, 'EXT-Session-055: Snapshot has activeFile');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:612:    assertExists(snapshot.lastAction, 'EXT-Session-056: Snapshot has lastAction');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:613:    assertExists(snapshot.nextAction, 'EXT-Session-057: Snapshot has nextAction');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:614:    assertExists(snapshot.blockers, 'EXT-Session-058: Snapshot has blockers');
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:615:    assertArray(snapshot.fileProgress, 'EXT-Session-059: Snapshot has fileProgress array');
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md:28:- Orchestrator prompt: Validate the iteration write-back contract for sk-deep-research. Confirm that each iteration writes iteration-NNN.md, appends a JSONL iteration record, and triggers reducer-owned refresh of deep-research-strategy.md, findings-registry.json, and deep-research-dashboard.md, then return a concise operator-facing verdict.
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md:47:| DR-008 | Iteration writes iteration-NNN.md, JSONL record, and reducer refresh | Verify that each completed iteration writes the detailed iteration file, appends JSONL, and enables reducer-owned packet synchronization. | Validate the iteration write-back contract for sk-deep-research. Confirm that each iteration writes `iteration-NNN.md`, appends a JSONL iteration record, and refreshes reducer-owned `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`, then return a concise operator-facing verdict. | 1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .opencode/skill/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .opencode/skill/sk-deep-research/references/state_format.md .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects. | Capture the iteration artifact, the JSONL append, and the reducer-owned refresh surfaces. | PASS if all sources require the iteration file, JSONL append, and reducer refresh together; FAIL if any source treats one of them as optional. | Use the reducer script and runtime agent write contract as the lower-level source of truth when the overview docs are concise. |
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/checklist.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/decision-record.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/checklist.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json:21:      "title": "Keep canonical evidence snapshots",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json:41:      "decision": "Keep canonical evidence snapshots",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-005a-anchor-scaffolding.json:26:    "project-state-snapshot",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:14:      "FILE_PATH": "research/deep-research-state.jsonl",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:20:      "DESCRIPTION": "Deep research config snapshot.",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:39:        "path": "research/deep-research-state.jsonl",
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:56:          "research/deep-research-state.jsonl",
+.opencode/commands/spec_kit/handover.md:293:On context compaction detection ("Please continue the conversation..."):
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:31:    "registryFile": "research/findings-registry.json",
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:53:    "deep-research-state.jsonl": "append-only",
+.opencode/skills/sk-deep-research/assets/deep_research_config.json:56:    "findings-registry.json": "auto-generated",
+.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md:17:2. **Recovery surface** — second recovery channel alongside JSONL after context compaction
+.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md:24:- **Data sources:** `deep-research-state.jsonl` + `findings-registry.json` + `deep-research-strategy.md`
+.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:176:  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
+.opencode/skills/sk-deep-review/assets/deep_review_strategy.md:82:[Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
+.opencode/skills/sk-deep-review/assets/deep_review_strategy.md:184:- Findings registry: `deep-review-findings-registry.json`
+.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml:243:  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:255:      pathPattern: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:306:      pathPattern: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:448:    - id: review-contract-snapshot
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:449:      path: .opencode/skills/sk-deep-review/assets/review_mode_contract_snapshot.md
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:453:        begin: "<!-- BEGIN GENERATED: review-mode-contract/snapshot -->"
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:454:        end: "<!-- END GENERATED: review-mode-contract/snapshot -->"
+.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:484:      description: Ensure reducer inputs, outputs, and findings-registry metrics are documented consistently across assets and runtime mirrors.
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:83:  registry: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:87:  synthesis_snapshot_pattern: "{spec_folder}/research/synthesis-v{generation}.md"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:120:          - "{spec_folder}/research/state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:180:        output: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:197:        output: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:221:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:317:              State Log: {spec_folder}/research/deep-research-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:319:              Registry: {spec_folder}/research/findings-registry.json
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:334:          priorReducedState: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:336:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:349:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:351:          - registry_updated: "Reducer refreshed findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:364:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:365:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:393:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:394:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:430:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:484:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:528:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
+.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md:17:2. **Recovery surface** — second recovery channel alongside JSONL after context compaction
+.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md:24:- **Data sources:** `deep-review-state.jsonl` + `deep-review-strategy.md` + `deep-review-findings-registry.json`
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:83:  registry: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:87:  synthesis_snapshot_pattern: "{spec_folder}/research/synthesis-v{generation}.md"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:120:          - "{spec_folder}/research/state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:132:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:143:          ask: "Resume, restart (archive old state), fork (new angle from current state), or completed-continue (snapshot prior synthesis and reopen)?"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:179:        output: "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:196:        output: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:217:          Reducer-owned state will live in `{spec_folder}/research/findings-registry.json` and `{spec_folder}/research/deep-research-dashboard.md`.
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:241:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:360:              State Log: {spec_folder}/research/deep-research-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:362:              Registry: {spec_folder}/research/findings-registry.json
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:377:          priorReducedState: "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:379:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:392:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:394:          - registry_updated: "Reducer refreshed findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:434:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:435:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:466:          - "{spec_folder}/research/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:467:          - "{spec_folder}/research/findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:526:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:600:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:616:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:46:    "deep-review-state.jsonl": "append-only",
+.opencode/skills/sk-deep-review/assets/deep_review_config.json:47:    "deep-review-findings-registry.json": "auto-generated",
+.opencode/skills/sk-deep-review/SKILL.md:191:    │  deep-review-state.jsonl        │
+.opencode/skills/sk-deep-review/SKILL.md:207:  deep-review-state.jsonl            # Append-only review iteration log
+.opencode/skills/sk-deep-review/SKILL.md:223:Init --> Create config.json, strategy.md, state.jsonl
+.opencode/skills/sk-deep-review/SKILL.md:234:  |                                         6. Append deep-review-state.jsonl
+.opencode/skills/sk-deep-review/SKILL.md:261:- `deep-review-state.jsonl`
+.opencode/skills/sk-deep-review/SKILL.md:262:- `deep-review-findings-registry.json`
+.opencode/skills/sk-deep-review/SKILL.md:400:- All state files present and consistent (`config.json`, `state.jsonl`, `strategy.md`)
+.opencode/skills/sk-deep-review/SKILL.md:460:  Agent appends {spec_folder}/review/deep-review-state.jsonl
+.opencode/skills/sk-deep-review/SKILL.md:506:| JSONL state | pi-autoresearch | `deep-review-state.jsonl` (append-only audit log) |
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:68:/** Input parameters required to build a project state snapshot. */
+.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:616: * Assemble a complete project state snapshot from session parameters.
+.opencode/skills/system-spec-kit/scripts/README.md:18:- [2. INVENTORY SNAPSHOT](#2--inventory-snapshot)
+.opencode/skills/system-spec-kit/scripts/README.md:30:<!-- ANCHOR:inventory-snapshot -->
+.opencode/skills/system-spec-kit/scripts/README.md:69:<!-- /ANCHOR:inventory-snapshot -->
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:86:  findings_registry: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:123:            - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:156:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:261:        output: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:266:        output: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:303:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:304:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:425:              State Log: {spec_folder}/review/deep-review-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:426:              Findings Registry: {spec_folder}/review/deep-review-findings-registry.json
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:442:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:471:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:473:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:474:        write: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:480:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:481:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:557:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:643:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:690:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:740:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
+.opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts:5:// snapshot construction. Extracted from workflow.ts to reduce module size.
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:10:FAILURE_CLASS="ledger-mismatch"
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:21:heal-ledger-mismatch.sh - Deterministic auto-remediation for mutation ledger mismatch
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:24:  ./heal-ledger-mismatch.sh [OPTIONS]
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:97:    ops_run_step "$FAILURE_CLASS" "detect-ledger-divergence" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$DETECT_FAILURES" "$OWNER" \
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:98:        "node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict" || exit 1
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:100:    ops_run_step "$FAILURE_CLASS" "replay-ledger" "$MAX_ATTEMPTS" "$BACKOFF_SECONDS" "$REPAIR_FAILURES" "$OWNER" \
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:101:        "node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay" || exit 1
+.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh:103:    ops_emit_success "$FAILURE_CLASS" "$OWNER" "ledger replay consistency restored"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:85:  state_log: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:86:  findings_registry: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:122:            - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:123:            - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:127:            - "{spec_folder}/scratch/deep-research-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:136:            - "scratch/deep-research-config.json declares mode == 'review' OR scratch/deep-research-state.jsonl contains mode == 'review'"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:139:          - "{spec_folder}/scratch/deep-research-state.jsonl -> {spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:149:        command: "mkdir -p {spec_folder}/review/iterations && if [ ! -e {spec_folder}/review/deep-review-config.json ] && [ ! -e {spec_folder}/review/deep-review-state.jsonl ] && [ ! -e {spec_folder}/review/deep-review-strategy.md ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {spec_folder}/review/deep-review-config.json; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {spec_folder}/review/deep-review-state.jsonl; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {spec_folder}/review/deep-review-strategy.md; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {spec_folder}/review/deep-review-dashboard.md; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {spec_folder}/review/.deep-review-pause; [ -e {spec_folder}/review-report.md ] && mv {spec_folder}/review-report.md {spec_folder}/review/review-report.md; if [ -e {spec_folder}/review/deep-review-state.jsonl ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {spec_folder}/review/deep-review-state.jsonl; fi; fi; find {spec_folder}/review -maxdepth 1 -name 'iteration-*.md' -exec mv {} {spec_folder}/review/iterations/ \\; 2>/dev/null || true"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:155:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:156:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:167:          ask: "Resume, restart (archive old state), fork (new angle from current state), or completed-continue (snapshot prior review and reopen)?"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:260:        output: "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:265:        output: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:327:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:328:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:472:              State Log: {spec_folder}/review/deep-review-state.jsonl
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:473:              Findings Registry: {spec_folder}/review/deep-review-findings-registry.json
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:489:          - jsonl_appended: "New iteration record in state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:517:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:519:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:520:        write: "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:556:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:557:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:631:          - "{spec_folder}/review/deep-review-state.jsonl"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:632:          - "{spec_folder}/review/deep-review-findings-registry.json"
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:742:          Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:814:        - State files in review/: deep-review-config.json, deep-review-state.jsonl, deep-review-findings-registry.json, deep-review-strategy.md, deep-review-dashboard.md
+.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:831:      - "git add {spec_folder}/review/iterations/iteration-{NNN}.md {spec_folder}/review/deep-review-state.jsonl {spec_folder}/review/deep-review-findings-registry.json {spec_folder}/review/deep-review-strategy.md {spec_folder}/review/review-report.md"
+.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts:15:  'deep-research-state.jsonl',
+.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts:83:    [/scratch\/deep-research-state\.jsonl/g, 'research/deep-research-state.jsonl'],
+.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:18://   - Records results to speckit-eval.db (eval_metric_snapshots)
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1475:  // Project state snapshot must run BEFORE distinguishing-evidence because
+.opencode/skills/system-spec-kit/scripts/ops/README.md:80:3. `ledger-mismatch`
+.opencode/skills/system-spec-kit/scripts/ops/README.md:96:| `heal-ledger-mismatch.sh` | Run ledger-mismatch remediation workflow |
+.opencode/commands/spec_kit/resume.md:365:- If a context-compaction continuation prompt is detected, stop and present current task/state summary before taking actions.
+.opencode/skills/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:14:This scenario validates fresh review initialization creates canonical state files for `DRV-004`. The objective is to verify that a fresh session creates the canonical `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` directory from the shipped assets.
+.opencode/skills/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:28:- Orchestrator prompt: Validate the fresh-initialization contract for sk-deep-review. Confirm that initialization creates `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` from the live templates, then return a concise user-facing pass/fail verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md:47:| DRV-004 | Fresh review initialization creates canonical state files | Verify that a fresh session creates the canonical config, JSONL, registry, strategy, and iteration directory from the shipped assets. | Validate the fresh-initialization contract for sk-deep-review. Confirm that initialization creates `review/deep-review-config.json`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-strategy.md`, and `review/iterations/` from the live templates, then return a concise user-facing pass/fail verdict. | 1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 2. `bash: sed -n '1,220p' .opencode/skills/sk-deep-review/assets/deep_review_config.json && sed -n '1,220p' .opencode/skills/sk-deep-review/assets/deep_review_strategy.md` -> 3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | The review/ directory is created, config comes from the shared config template, the findings registry comes from the reducer contract, strategy comes from the sk-deep-review strategy template, and the JSONL begins with a config record. | Capture the initialization step names, the live template files, and the state_paths contract in one evidence bundle. | PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles; FAIL if the artifact list or template sources drift. | Check both YAML variants, verify the JSONL init step writes a config record, confirm the reducer registry is created, and confirm the assets live under `assets/`. |
+.opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts:19://   - Records results to speckit-eval.db (eval_metric_snapshots)
+.opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts:73:  prodDb.pragma('journal_mode = WAL');
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:38:        ledger-mismatch) echo "${SCRIPT_DIR}/heal-ledger-mismatch.sh" ;;
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:64:        ledger-mismatch)
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:66:CLASS: ledger-mismatch
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:67:TRIGGER: mutation ledger parity mismatch or replay consistency failure
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:70:DRILL: ./runbook.sh drill ledger-mismatch --scenario success
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:105:        for failure_class in index-drift session-ambiguity ledger-mismatch telemetry-drift; do
+.opencode/skills/system-spec-kit/scripts/ops/runbook.sh:136:ledger-mismatch
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md:28:- Orchestrator prompt: Validate the resume-after-pause contract for sk-deep-review. Confirm that when the operator removes `review/.deep-review-pause`, the review loop re-reads `deep-review-state.jsonl` and `deep-review-strategy.md`, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md:47:| DRV-022 | Resume after pause sentinel removal | Verify removing pause sentinel lets review resume from read-state without re-running completed iterations. | Validate the resume-after-pause contract for sk-deep-review. Confirm that when the operator removes `review/.deep-review-pause`, the review loop re-reads `deep-review-state.jsonl` and `deep-review-strategy.md`, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations, then return a concise operator-facing verdict. | 1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/state_format.md` -> 2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'resume|pause.*delete|pick up|restart|continue.*review' .opencode/skills/sk-deep-review/references/quick_reference.md .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md .opencode/commands/spec_kit/deep-review.md` | Removing sentinel triggers loop re-entry, JSONL re-read determines last iteration, strategy.md provides dimension state, no iterations re-run, and resume event logged. | Capture the resume flow from loop protocol, the YAML state re-read mechanism, and the user-facing resume instructions. | PASS if removing the sentinel resumes correctly from persisted state; FAIL if the loop restarts from iteration 1 or loses prior findings. | Privilege the loop protocol for resume flow and the state format reference for JSONL iteration counting; use YAML as enforcement confirmation. |
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:246:  status?: 'pending' | 'completed' | 'error' | 'snapshot' | 'unknown';
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1682:    // Exclude snapshot tool calls from FILES — they inflate capturedFileCount
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1684:    if (tool.status === 'snapshot') {
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:14:This scenario validates malformed JSONL lines are skipped with defaults for `DRV-023`. The objective is to verify that when the review state log (`deep-review-state.jsonl`) contains malformed or unparseable lines, they are skipped gracefully and sensible defaults are applied so the loop can continue.
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:28:- Orchestrator prompt: Validate the malformed JSONL handling contract for sk-deep-review. Confirm that when `review/deep-review-state.jsonl` contains unparseable lines, those lines are skipped without halting the loop, that sensible defaults (e.g., `newFindingsRatio = 1.0`) are used to prevent premature convergence, and that the skip is logged or visible in the state, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md:47:| DRV-023 | Malformed JSONL lines are skipped with defaults | Verify malformed JSONL lines in review state are skipped gracefully with sensible defaults. | Validate the malformed JSONL handling contract for sk-deep-review. Confirm that unparseable lines in `review/deep-review-state.jsonl` are skipped without halting the loop, that sensible defaults (e.g., `newFindingsRatio = 1.0`) are used to prevent premature convergence, and that the skip is logged or visible, then return a concise operator-facing verdict. | 1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/references/convergence.md` -> 2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` -> 3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .opencode/skills/sk-deep-review/SKILL.md .opencode/skills/sk-deep-review/README.md .opencode/commands/spec_kit/deep-review.md` | Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration count from valid lines, skip is observable. | Capture the JSONL parsing contract from state format, the error handling rules from YAML or loop protocol, and the default values applied on parse failure. | PASS if malformed lines are skipped with conservative defaults; FAIL if a bad line crashes the loop or causes false convergence. | Privilege the state format reference for JSONL schema rules and the convergence reference for default values on degraded input. |
+.opencode/skills/sk-deep-review/references/quick_reference.md:75:| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
+.opencode/skills/sk-deep-review/references/quick_reference.md:76:| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
+.opencode/skills/sk-deep-review/references/quick_reference.md:162:1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+.opencode/skills/sk-deep-review/references/quick_reference.md:168:7. Append iteration record to `deep-review-state.jsonl`
+.opencode/skills/sk-deep-review/references/quick_reference.md:212:| Review-report missing sections | Verify synthesis phase completed (check state.jsonl for synthesis event) |
+.opencode/skills/system-spec-kit/scripts/utils/tool-sanitizer.ts:18:type ToolStatus = 'pending' | 'completed' | 'error' | 'snapshot' | 'unknown';
+.opencode/skills/system-spec-kit/scripts/utils/tool-sanitizer.ts:91:  'pending', 'completed', 'error', 'snapshot', 'unknown',
+.opencode/skills/system-spec-kit/scripts/core/README.md:40:- `memory-metadata.ts` - memory classification, session dedup, causal links, and evidence snapshot assembly
+.opencode/skills/sk-deep-review/references/convergence.md:23:Convergence is checked **after** each iteration completes and **before** the next iteration is dispatched. The check consumes the full JSONL state history and the current dimension coverage snapshot.
+.opencode/skills/sk-deep-review/references/convergence.md:411:When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
+.opencode/skills/sk-deep-review/references/convergence.md:587:  replayInputs: [snapshot of ratios, coverage, and gate inputs]
+.opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts:30:  /^(?:modified during session|tracked file history snapshot)$/i,
+.opencode/skills/sk-deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md:18:The write-once iteration files serve as a redundant record of each review cycle. If `deep-review-state.jsonl` is lost or corrupted beyond what graceful degradation can handle, the iteration files provide the raw material to reconstruct the state log and resume the review without starting over.
+.opencode/skills/sk-deep-research/SKILL.md:53:- `completed-continue` — reopen a completed lineage only after immutable synthesis snapshotting
+.opencode/skills/sk-deep-research/SKILL.md:170:    │  deep-research-state.jsonl      │
+.opencode/skills/sk-deep-research/SKILL.md:172:    │  findings-registry.json          │
+.opencode/skills/sk-deep-research/SKILL.md:188:Init --> Create config.json, strategy.md, state.jsonl
+.opencode/skills/sk-deep-research/SKILL.md:199:  |                                         6. Append state.jsonl
+.opencode/skills/sk-deep-research/SKILL.md:357:  Agent appends research/deep-research-state.jsonl
+.opencode/skills/sk-deep-research/SKILL.md:358:  Workflow reducer updates research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
+.opencode/skills/sk-deep-research/SKILL.md:412:| JSONL state | pi-autoresearch | deep-research-state.jsonl |
+.opencode/skills/sk-deep-review/references/state_format.md:20:| `deep-review-state.jsonl` | JSON Lines | Append-only |
+.opencode/skills/sk-deep-review/references/state_format.md:21:| `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
+.opencode/skills/sk-deep-review/references/state_format.md:32:    deep-review-state.jsonl
+.opencode/skills/sk-deep-review/references/state_format.md:33:    deep-review-findings-registry.json
+.opencode/skills/sk-deep-review/references/state_format.md:80:    "deep-review-state.jsonl": "append-only",
+.opencode/skills/sk-deep-review/references/state_format.md:81:    "deep-review-findings-registry.json": "auto-generated",
+.opencode/skills/sk-deep-review/references/state_format.md:161:## 3. STATE LOG (deep-review-state.jsonl)
+.opencode/skills/sk-deep-review/references/state_format.md:333:<!-- ANCHOR:findings-registry -->
+.opencode/skills/sk-deep-review/references/state_format.md:334:## 5. FINDINGS REGISTRY (deep-review-findings-registry.json)
+.opencode/skills/sk-deep-review/references/state_format.md:367:<!-- /ANCHOR:findings-registry -->
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:146:    '<!-- ANCHOR:project-state-snapshot -->',
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs:241:    for (const record of (state.jsonlRecords || [])) {
+.opencode/skills/sk-deep-review/references/loop_protocol.md:108:7. **Initialize state log**: First line of `{spec_folder}/review/deep-review-state.jsonl` with config record including `mode: "review"` and the lineage fields.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:110:8. **Initialize reducer state**: Create `{spec_folder}/review/deep-review-findings-registry.json` with empty `openFindings`, `resolvedFindings`, `repeatedFindings`, `dimensionCoverage`, `findingsBySeverity`, and `convergenceScore`.
+.opencode/skills/sk-deep-review/references/loop_protocol.md:132:| State | `{spec_folder}/review/deep-review-state.jsonl` | Iteration log (1 initial line) |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:133:| Registry | `{spec_folder}/review/deep-review-findings-registry.json` | Reducer-owned findings state |
+.opencode/skills/sk-deep-review/references/loop_protocol.md:146:- Read `deep-review-state.jsonl` -- count iterations, extract `newFindingsRatio`, `findingsSummary`, `findingsNew`, `traceabilityChecks`, and lineage data
+.opencode/skills/sk-deep-review/references/loop_protocol.md:147:- Read `deep-review-findings-registry.json` -- extract `dimensionsCovered`, `findingsBySeverity`, `openFindings`, `resolvedFindings`, and `convergenceScore`
+.opencode/skills/sk-deep-review/references/loop_protocol.md:238:  - State: {spec_folder}/review/deep-review-state.jsonl
+.opencode/skills/sk-deep-review/references/loop_protocol.md:239:  - Registry: {spec_folder}/review/deep-review-findings-registry.json
+.opencode/skills/sk-deep-review/references/loop_protocol.md:407:1. Read `deep-review-state.jsonl` and select review-mode iteration records in run order
+.opencode/skills/sk-deep-review/references/loop_protocol.md:499:Enable review sessions to resume seamlessly from prior state when interrupted by context compaction, process termination, or intentional pause.
+.opencode/skills/sk-deep-review/README.md:134:Each `@deep-review` agent dispatch gets a clean context window. No compaction or memory degradation across iterations. Knowledge transfers through the strategy file and JSONL state on disk.
+.opencode/skills/sk-deep-review/README.md:196:├── deep-review-state.jsonl         # Append-only structured log of all iterations
+.opencode/skills/sk-deep-review/README.md:197:├── deep-review-findings-registry.json  # Reducer-owned canonical findings state
+.opencode/skills/sk-deep-review/README.md:202:├── review-report-v{generation}.md  # Immutable snapshot when completed-continue reopens a finished review
+.opencode/skills/sk-deep-review/README.md:412:| State log         | `review/deep-review-state.jsonl`                                                                                                     |
+.opencode/skills/sk-deep-review/README.md:413:| Findings registry | `review/deep-review-findings-registry.json`                                                                                          |
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:41:      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-review-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:42:      expect(content, `${docPath} should mention the findings registry`).toContain('deep-review-findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:53:      expect(content, `${docPath} should read the canonical state log`).toContain('review/deep-review-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:54:      expect(content, `${docPath} should mention the reducer-owned registry`).toContain('review/deep-review-findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:62:        'review/deep-research-state.jsonl',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:76:      expect(content, `${docPath} should write the canonical state log`).toContain('review/deep-review-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:77:      expect(content, `${docPath} should write the findings registry`).toContain('review/deep-review-findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:84:        'scratch/deep-research-state.jsonl',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:93:        'review/deep-research-state.jsonl',
+.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:181: * - Uses edge createdAt timestamps instead of degree_snapshots table
+.opencode/skills/sk-deep-research/README.md:41:The packet is also reducer-synchronized. The agent writes the iteration file plus the JSONL record. The workflow reducer then updates the machine-owned packet surfaces so `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, and synthesis metadata cannot drift apart.
+.opencode/skills/sk-deep-research/README.md:60:- `deep-research-state.jsonl`
+.opencode/skills/sk-deep-research/README.md:62:- `findings-registry.json`
+.opencode/skills/sk-deep-research/README.md:113:  deep-research-state.jsonl
+.opencode/skills/sk-deep-research/README.md:115:  findings-registry.json
+.opencode/skills/sk-deep-research/README.md:129:- Reducer-owned writes: `deep-research-strategy.md` machine-owned sections, `findings-registry.json`, `deep-research-dashboard.md`.
+.opencode/skills/sk-deep-research/README.md:130:- Workflow-owned output: `research.md` and lifecycle snapshot files such as `synthesis-v{generation}.md`.
+.opencode/skills/sk-deep-research/README.md:143:| `completed-continue` | Reopen a completed lineage only after snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. |
+.opencode/skills/sk-deep-research/README.md:172:| Packet resumes when you expected a new run | Inspect `config.lineage` and the latest lifecycle event in `deep-research-state.jsonl`. |
+.opencode/skills/sk-deep-research/README.md:173:| Strategy/dashboard drift | Confirm the reducer ran and regenerated `findings-registry.json` and `deep-research-dashboard.md`. |
+.opencode/skills/sk-deep-research/README.md:174:| JSONL parse failure | Run `cat research/deep-research-state.jsonl | jq .` and fall back to iteration-file reconstruction if needed. |
+.opencode/skills/sk-deep-research/README.md:188:A: `restart` begins a new generation from an active or inactive packet and archives prior state. `completed-continue` reopens a completed lineage after snapshotting the old synthesis boundary.
+.opencode/skills/sk-deep-research/references/quick_reference.md:76:| State | `research/deep-research-state.jsonl` | JSONL | Iteration log (append-only) |
+.opencode/skills/sk-deep-research/references/quick_reference.md:78:| Registry | `research/findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings |
+.opencode/skills/sk-deep-research/references/quick_reference.md:137:1. Read `deep-research-state.jsonl` and `deep-research-strategy.md`
+.opencode/skills/sk-deep-research/references/quick_reference.md:141:5. Append iteration record to `deep-research-state.jsonl`
+.opencode/skills/sk-deep-research/references/quick_reference.md:142:6. Let the workflow reducer update `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
+.opencode/skills/sk-deep-research/references/quick_reference.md:169:| State file corrupt | Validate JSONL: `cat research/deep-research-state.jsonl \| jq .` |
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:1027:      contextTemplate.includes('[PROJECT STATE SNAPSHOT](#project-state-snapshot)') &&
+.opencode/skills/sk-deep-research/references/convergence.md:71:- `replayInputs` snapshots the exact stop-decision inputs so the reducer and dashboards can replay the outcome from packet-local artifacts only.
+.opencode/skills/sk-deep-research/references/convergence.md:153:- `convergenceScore`: normalized stop-score surfaced in `findings-registry.json` and `deep-research-dashboard.md`
+.opencode/skills/sk-deep-research/references/convergence.md:307:1. Append a `stop_decision` snapshot with the attempted stop bundle.
+.opencode/skills/sk-deep-research/references/convergence.md:572:When reading `deep-research-state.jsonl`, parse defensively:
+.opencode/skills/sk-deep-research/references/convergence.md:1109:1. Read `deep-research-state.jsonl` and select review-mode iteration records in run order.
+.opencode/skills/system-spec-kit/scripts/tests/test-retry-manager-behavioral.js:75:  db.pragma('journal_mode = WAL');
+.opencode/skills/sk-deep-research/references/capability_matrix.md:25:2. Canonical packet paths under `{spec_folder}/research/`, especially `research/deep-research-state.jsonl` and `research/findings-registry.json`.
+.opencode/skills/sk-deep-research/references/state_format.md:20:| `deep-research-state.jsonl` | JSON Lines | Structured iteration log | Append-only |
+.opencode/skills/sk-deep-research/references/state_format.md:23:| `findings-registry.json` | JSON | Reducer-owned open/resolved questions and key findings | Auto-generated (read-only) |
+.opencode/skills/sk-deep-research/references/state_format.md:94:    "deep-research-state.jsonl": "append-only",
+.opencode/skills/sk-deep-research/references/state_format.md:116:## 3. STATE LOG (deep-research-state.jsonl)
+.opencode/skills/sk-deep-research/references/state_format.md:241:| completed_continue | workflow | active | Reopen a completed lineage after immutable snapshotting | sessionId, parentSessionId, generation, continuedFromRun, completedAt, reopenedAt, timestamp |
+.opencode/skills/sk-deep-research/references/state_format.md:314:When parsing `deep-research-state.jsonl`, apply defensive reading:
+.opencode/skills/sk-deep-research/references/state_format.md:463:- Mark machine-owned sections explicitly so `completed-continue` can snapshot prior synthesis before reopening
+.opencode/skills/sk-deep-research/references/state_format.md:495:1. Read `deep-research-state.jsonl`, `findings-registry.json`, and `deep-research-strategy.md` as canonical inputs
+.opencode/skills/sk-deep-research/references/state_format.md:509:    "findings-registry.json": "auto-generated"
+.opencode/skills/sk-deep-research/references/state_format.md:527:    deep-research-state.jsonl          # Structured iteration log
+.opencode/skills/sk-deep-research/references/state_format.md:530:    findings-registry.json             # Reducer-owned question/finding registry
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:46:    expect(contract.contract.outputs.findingsRegistry.pathPattern).toContain('deep-review-findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:48:    expect(contract.contract.outputs.jsonl.pathPattern).toContain('deep-review-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:60:    expect(config.fileProtection['deep-review-findings-registry.json']).toBe('auto-generated');
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:74:        '"{spec_folder}/review/deep-review-state.jsonl"',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:77:        '"{spec_folder}/review/deep-review-findings-registry.json"',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:80:        'write: "{spec_folder}/review/deep-review-findings-registry.json"',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:87:        'Preserve machine-owned markers so completed-continue can snapshot and reopen without mutating prior synthesis.',
+.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts:97:    expect(stateFormat).toContain('deep-review-findings-registry.json');
+.opencode/skills/sk-deep-research/references/loop_protocol.md:57:5. **Initialize state log**: First line of `research/deep-research-state.jsonl` with config record
+.opencode/skills/sk-deep-research/references/loop_protocol.md:63:7. **Initialize findings registry**: `research/findings-registry.json` with empty `openQuestions`, `resolvedQuestions`, `keyFindings`, and `ruledOutDirections`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:74:- `research/deep-research-state.jsonl` (1 line)
+.opencode/skills/sk-deep-research/references/loop_protocol.md:91:- `completed-continue`: snapshot `research/research.md` to `research/synthesis-v{generation}.md`, record `completedAt` and `reopenedAt`, then reopen as a new segment with parent linkage
+.opencode/skills/sk-deep-research/references/loop_protocol.md:102:- Read `deep-research-state.jsonl` -- count iterations, get last newInfoRatio
+.opencode/skills/sk-deep-research/references/loop_protocol.md:171:  - State: {spec_folder}/research/deep-research-state.jsonl
+.opencode/skills/sk-deep-research/references/loop_protocol.md:195:4. Verify reducer refreshed `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`
+.opencode/skills/sk-deep-research/references/loop_protocol.md:228:   git add research/deep-research-state.jsonl
+.opencode/skills/sk-deep-research/references/loop_protocol.md:230:   git add research/findings-registry.json
+.opencode/skills/sk-deep-research/references/loop_protocol.md:238:Checkpoint commits provide rollback points: `git log -- research/` shows the last good state for the research packet. If state corruption occurs, `git checkout HEAD~1 -- research/deep-research-state.jsonl` restores the previous version.
+.opencode/skills/sk-deep-research/references/loop_protocol.md:453:4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
+.opencode/skills/sk-deep-research/references/loop_protocol.md:600:- `{spec_folder}/review/deep-research-state.jsonl` (1 line)
+.opencode/skills/sk-deep-research/references/loop_protocol.md:653:  - State: {spec_folder}/review/deep-research-state.jsonl
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-extractors.test.ts:220:    expect(countOccurrences(targetedSurface, 'Keep canonical evidence snapshots')).toBe(1);
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:480:  const stateLogPath = path.join(researchDir, 'deep-research-state.jsonl');
+.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:482:  const registryPath = path.join(researchDir, 'findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts:98:    expect(normalizeToolStatus('snapshot')).toBe('snapshot');
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:6:// Reducer-owned board.json execution ledger, status transitions,
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:9:// board.json is the canonical execution ledger.
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:56: * @returns {object} Board object (serializable to board.json)
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:271: * Generate dashboard.md content from board.json.
+.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:284:  lines.push('> Auto-generated from board.json. Do not edit manually.');
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:136:        { path: 'scripts/utils/input-normalizer.ts', description: 'Tracked file history snapshot', specRelevant: true },
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:228: * Generate domain-ledger.json for research.
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:240: * @returns {object} Domain ledger artifact
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:421: * segment identities reproducible from the same ledger.
+.opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs:423: * @param {object} domainLedger - Domain ledger from generateDomainLedger
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1832:    const snapshotInput = {
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1841:    const snapshot = sessionExtractor.buildProjectStateSnapshot(snapshotInput);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1842:    if (snapshot.projectPhase && snapshot.activeFile && snapshot.lastAction &&
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1843:        snapshot.nextAction && snapshot.blockers !== undefined && snapshot.fileProgress) {
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1844:      pass('T-027x: buildProjectStateSnapshot returns complete object', snapshot.projectPhase);
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:558:  it('prefers live observations over synthetic enrichment for project state snapshots', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:559:    const snapshot = buildProjectStateSnapshot({
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:584:    expect(snapshot.activeFile).toBe('scripts/core/workflow.ts');
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:585:    expect(snapshot.lastAction).toBe('Adjusted workflow alignment logic');
+.opencode/skills/sk-deep-research/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md:28:- Orchestrator prompt: Validate the fresh-initialization contract for sk-deep-research. Confirm that initialization creates deep-research-config.json, deep-research-state.jsonl, and deep-research-strategy.md from the live templates, then return a concise user-facing pass/fail verdict.
+.opencode/skills/sk-deep-research/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md:47:| DR-004 | Fresh initialization creates canonical state files | Verify that a fresh session creates the canonical config, JSONL, and strategy files from the shipped assets. | Validate the fresh-initialization contract for sk-deep-research. Confirm that initialization creates `deep-research-config.json`, `deep-research-state.jsonl`, and `deep-research-strategy.md` from the live templates, then return a concise user-facing pass/fail verdict. | 1. `bash: sed -n '1,220p' .opencode/skills/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` -> 3. `bash: sed -n '1,220p' .opencode/skills/sk-deep-research/assets/deep_research_config.json && sed -n '1,220p' .opencode/skills/sk-deep-research/assets/deep_research_strategy.md` | The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record. | Capture the initialization outputs, the explicit create steps, and the live template files in one evidence bundle. | PASS if protocol, YAML, and asset templates agree on the initial scratch artifacts and their roles; FAIL if the artifact list or template sources drift. | Check both YAML variants, verify the JSONL init step writes a config record, and confirm the assets live under `assets/`. |
+.opencode/skills/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:177:  describe('project state snapshot integration', () => {
+.opencode/skills/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:178:    it('honors explicit projectPhase overrides when building the snapshot', () => {
+.opencode/skills/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:179:      const snapshot = buildProjectStateSnapshot({
+.opencode/skills/system-spec-kit/scripts/tests/project-phase-e2e.vitest.ts:189:      expect(snapshot.projectPhase).toBe('IMPLEMENTATION');
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:67:    path.join(specFolder, 'research', 'deep-research-state.jsonl'),
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:52:      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-research-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:53:      expect(content, `${docPath} should mention the findings registry`).toContain('findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:64:      expect(content, `${docPath} should read the canonical state log`).toContain('research/deep-research-state.jsonl');
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:65:      expect(content, `${docPath} should read the findings registry`).toContain('research/findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:78:      expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:53:    '- Removed project-state-snapshot, decisions, conversation',
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:219:    it('allows memory without project-state-snapshot (no longer mandatory)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:224:      expect(result.missingAnchors).not.toContain('project-state-snapshot');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:26:  segmentForResearch: (ledger: object, config?: { segmentSize?: number; maxSegments?: number }) => object[];
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:160:  describe('domain ledger (generateDomainLedger)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:161:    it('returns empty ledger for null input', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:162:      const ledger = planner.generateDomainLedger(null as any);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:163:      expect(ledger.domains).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:164:      expect(ledger.version).toBe('v1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:173:      const ledger = planner.generateDomainLedger(sources);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:174:      expect(ledger.domains.length).toBe(3);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:175:      expect((ledger.domains[0] as any).domain).toBe('high.example.com');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:184:      const ledger = planner.generateDomainLedger(sources);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:185:      expect(ledger.clusters.length).toBe(2);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:190:      const ledger1 = planner.generateDomainLedger(sources);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:191:      const ledger2 = planner.generateDomainLedger(sources);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:192:      const domains1 = ledger1.domains.map((d: any) => d.domain);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:193:      const domains2 = ledger2.domains.map((d: any) => d.domain);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:231:    it('returns empty array for null ledger', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:236:      const ledger = planner.generateDomainLedger(makeDomains(60, { diverse: true }));
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:237:      const segments = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:245:      const ledger = planner.generateDomainLedger(makeDomains(60, { diverse: true }));
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:246:      const seg1 = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts:247:      const seg2 = planner.segmentForResearch(ledger, { segmentSize: 10 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:218:      expect(state.jsonlRecords.length).toBe(1);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:220:      expect(state.jsonlRecords[0].segment).toBe('seg-1');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:165:    const snapshotInput: Array<Record<string, unknown>> = [];
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:190:          snapshotInput.push(JSON.parse(JSON.stringify({
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:210:      expect(snapshotInput).toHaveLength(1);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:211:      expect(snapshotInput[0].headRef).toBe('HEAD');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:212:      expect(snapshotInput[0].commitRef).toBe('abc1234');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:213:      expect(snapshotInput[0].repositoryState).toBe('dirty');
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:214:      expect(snapshotInput[0].isDetachedHead).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:215:      expect(snapshotInput[0].SUMMARY).toBe(normalized.SUMMARY);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:216:      expect(snapshotInput[0].observations).toEqual(normalized.observations);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase2-pr4.test.ts:217:      expect(snapshotInput[0]._manualDecisions).toEqual((normalized as Record<string, unknown>)._manualDecisions);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:310:    vi.doMock('../../mcp_server/lib/session/session-snapshot.js', () => ({
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:601:    const snapshot = buildProjectStateSnapshot({
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:610:    assertExists(snapshot.projectPhase, 'EXT-Session-054: Snapshot has projectPhase');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:611:    assertExists(snapshot.activeFile, 'EXT-Session-055: Snapshot has activeFile');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:612:    assertExists(snapshot.lastAction, 'EXT-Session-056: Snapshot has lastAction');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:613:    assertExists(snapshot.nextAction, 'EXT-Session-057: Snapshot has nextAction');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:614:    assertExists(snapshot.blockers, 'EXT-Session-058: Snapshot has blockers');
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:615:    assertArray(snapshot.fileProgress, 'EXT-Session-059: Snapshot has fileProgress array');
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md:28:- Orchestrator prompt: Validate the iteration write-back contract for sk-deep-research. Confirm that each iteration writes iteration-NNN.md, appends a JSONL iteration record, and triggers reducer-owned refresh of deep-research-strategy.md, findings-registry.json, and deep-research-dashboard.md, then return a concise operator-facing verdict.
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md:47:| DR-008 | Iteration writes iteration-NNN.md, JSONL record, and reducer refresh | Verify that each completed iteration writes the detailed iteration file, appends JSONL, and enables reducer-owned packet synchronization. | Validate the iteration write-back contract for sk-deep-research. Confirm that each iteration writes `iteration-NNN.md`, appends a JSONL iteration record, and refreshes reducer-owned `deep-research-strategy.md`, `findings-registry.json`, and `deep-research-dashboard.md`, then return a concise operator-facing verdict. | 1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .opencode/skills/sk-deep-research/references/loop_protocol.md` -> 2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .opencode/skills/sk-deep-research/references/state_format.md .codex/agents/deep-research.toml` -> 3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects. | Capture the iteration artifact, the JSONL append, and the reducer-owned refresh surfaces. | PASS if all sources require the iteration file, JSONL append, and reducer refresh together; FAIL if any source treats one of them as optional. | Use the reducer script and runtime agent write contract as the lower-level source of truth when the overview docs are concise. |
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/checklist.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/002-phase-2/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/001-phase-1/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-2phase-default/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/decision-record.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/checklist.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/003-verify/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/001-design/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/spec.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/plan.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/002-build/tasks.md:1:<!-- FIXTURE: Golden-file snapshot for create.sh --phase testing -->
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json:21:      "title": "Keep canonical evidence snapshots",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json:41:      "decision": "Keep canonical evidence snapshots",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-005a-anchor-scaffolding.json:26:    "project-state-snapshot",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:14:      "FILE_PATH": "research/deep-research-state.jsonl",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:20:      "DESCRIPTION": "Deep research config snapshot.",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:39:        "path": "research/deep-research-state.jsonl",
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-DUP-003-tree-thinning-files.json:56:          "research/deep-research-state.jsonl",
 
 exec
 /bin/zsh -lc "find .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2 -path '*scratch*' -type f | sort | head -n 60" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -8642,31 +8642,31 @@ Research pass is complete. I read the Phase 005 packet, current sk-improve-agent
 codex
 **Priority**
 
-P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md).
+P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
 
-P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
+P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
 
 P2: keep advanced exploration advisory and gated. Parallel candidates and weight optimization should stay off by default, reuse Phase 003/004 patterns, and never auto-promote.
 
 **10 Iterations**
 
-1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 
-2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
+2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
 
-3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
+3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
 
-4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
+4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 
 5. Mutation coverage graph. Reuse the Phase 002 namespace model from [042.002 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md): `spec_folder + loop_type + session_id`. For improver, use nodes like `TARGET`, `CANDIDATE`, `MUTATION`, `DIMENSION`, `INTEGRATION_SURFACE`, `BENCHMARK_FIXTURE`, `FAILURE_MODE`, and `HYPOTHESIS`, with edges like `MUTATES`, `TOUCHES`, `IMPROVES`, `REGRESSES`, `VALIDATES`, `BLOCKED_BY`, `DERIVED_FROM`, and `EXHAUSTS`; this graph is about mutation-space coverage, not research/review epistemic coverage.
 
-6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
+6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
 
 7. Trade-off detection. Weighted totals are not enough; agent-improver needs Pareto awareness. Add `trade-off-detector.cjs` that compares candidate vectors and emits `tradeoff_detected` when an improvement of `> +3` in one dimension causes a regression of `< -3` in hard dimensions (`structural`, `integration`, `systemFitness`) or `< -5` in soft ones, and block promotion for dominated candidates even if the weighted sum went up.
 
-8. Parallel candidates. Keep the agent LEAF-only and put branching in orchestration, following the Phase 003 pattern from [042.003 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md). Recommended activation gate: only enable 2-3 candidates when there are 3+ unresolved mutation families, 2 consecutive tie/plateau iterations, and a wide integration surface from [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs); persist a reducer-owned `candidate-board.json`, not ad hoc branch notes.
+8. Parallel candidates. Keep the agent LEAF-only and put branching in orchestration, following the Phase 003 pattern from [042.003 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md). Recommended activation gate: only enable 2-3 candidates when there are 3+ unresolved mutation families, 2 consecutive tie/plateau iterations, and a wide integration surface from [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs); persist a reducer-owned `candidate-board.json`, not ad hoc branch notes.
 
-9. Integration surface constraints. The scan already finds canonical, mirrors, commands, YAML, skills, global docs, and skill-advisor references in [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs). Use that output as a mutation allowlist and risk map: pin an `integrationReportHash` into score/benchmark/journal events, require rescan before scoring if the candidate changes routing or command-facing instructions, and treat missing coverage as a promotion block rather than benchmark truth.
+9. Integration surface constraints. The scan already finds canonical, mirrors, commands, YAML, skills, global docs, and skill-advisor references in [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs). Use that output as a mutation allowlist and risk map: pin an `integrationReportHash` into score/benchmark/journal events, require rescan before scoring if the candidate changes routing or command-facing instructions, and treat missing coverage as a promotion block rather than benchmark truth.
 
 10. Scoring weight optimization. Real historical data exists in `041` improvement artifacts like [002 state log](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/agent-improvement-state.jsonl), [009 state log](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-improve-agent-self-test/improvement/agent-improvement-state.jsonl), and the corresponding registries and benchmark runs, but it is sparse and inconsistent today. Follow Phase 004’s advisory-only optimizer model from [042.004 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md): keep `dimensionWeights` tunable, keep stop contract fields locked, build a replayable corpus first, and refuse auto-apply until there are at least 2 compatible target families and a materially larger run history.
 
@@ -8679,31 +8679,31 @@ tokens used
 167,721
 **Priority**
 
-P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md).
+P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
 
-P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
+P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
 
 P2: keep advanced exploration advisory and gated. Parallel candidates and weight optimization should stay off by default, reuse Phase 003/004 patterns, and never auto-promote.
 
 **10 Iterations**
 
-1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 
-2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
+2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
 
-3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
+3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
 
-4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
+4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 
 5. Mutation coverage graph. Reuse the Phase 002 namespace model from [042.002 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md): `spec_folder + loop_type + session_id`. For improver, use nodes like `TARGET`, `CANDIDATE`, `MUTATION`, `DIMENSION`, `INTEGRATION_SURFACE`, `BENCHMARK_FIXTURE`, `FAILURE_MODE`, and `HYPOTHESIS`, with edges like `MUTATES`, `TOUCHES`, `IMPROVES`, `REGRESSES`, `VALIDATES`, `BLOCKED_BY`, `DERIVED_FROM`, and `EXHAUSTS`; this graph is about mutation-space coverage, not research/review epistemic coverage.
 
-6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
+6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
 
 7. Trade-off detection. Weighted totals are not enough; agent-improver needs Pareto awareness. Add `trade-off-detector.cjs` that compares candidate vectors and emits `tradeoff_detected` when an improvement of `> +3` in one dimension causes a regression of `< -3` in hard dimensions (`structural`, `integration`, `systemFitness`) or `< -5` in soft ones, and block promotion for dominated candidates even if the weighted sum went up.
 
-8. Parallel candidates. Keep the agent LEAF-only and put branching in orchestration, following the Phase 003 pattern from [042.003 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md). Recommended activation gate: only enable 2-3 candidates when there are 3+ unresolved mutation families, 2 consecutive tie/plateau iterations, and a wide integration surface from [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs); persist a reducer-owned `candidate-board.json`, not ad hoc branch notes.
+8. Parallel candidates. Keep the agent LEAF-only and put branching in orchestration, following the Phase 003 pattern from [042.003 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/spec.md). Recommended activation gate: only enable 2-3 candidates when there are 3+ unresolved mutation families, 2 consecutive tie/plateau iterations, and a wide integration surface from [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs); persist a reducer-owned `candidate-board.json`, not ad hoc branch notes.
 
-9. Integration surface constraints. The scan already finds canonical, mirrors, commands, YAML, skills, global docs, and skill-advisor references in [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs). Use that output as a mutation allowlist and risk map: pin an `integrationReportHash` into score/benchmark/journal events, require rescan before scoring if the candidate changes routing or command-facing instructions, and treat missing coverage as a promotion block rather than benchmark truth.
+9. Integration surface constraints. The scan already finds canonical, mirrors, commands, YAML, skills, global docs, and skill-advisor references in [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs). Use that output as a mutation allowlist and risk map: pin an `integrationReportHash` into score/benchmark/journal events, require rescan before scoring if the candidate changes routing or command-facing instructions, and treat missing coverage as a promotion block rather than benchmark truth.
 
 10. Scoring weight optimization. Real historical data exists in `041` improvement artifacts like [002 state log](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill/improvement/agent-improvement-state.jsonl), [009 state log](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-improve-agent-self-test/improvement/agent-improvement-state.jsonl), and the corresponding registries and benchmark runs, but it is sparse and inconsistent today. Follow Phase 004’s advisory-only optimizer model from [042.004 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec.md): keep `dimensionWeights` tunable, keep stop contract fields locked, build a replayable corpus first, and refuse auto-apply until there are at least 2 compatible target families and a materially larger run history.
 

@@ -19,8 +19,8 @@ Deep dive into the P1-09 (file-format detection heuristic) finding and assess wh
 **Q2 (extended).** P1-09: file-format detection is heuristic and ambiguous — how bad is this in practice?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` — Full read of format detection logic
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` — How format detection feeds into data loading
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` — Full read of format detection logic
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` — How format detection feeds into data loading
 - Search for "format", "detect", "heuristic" in both files
 
 ## Known Context
@@ -47,7 +47,7 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m diving into Q2 now by reading both target files end-to-end and mapping the exact detection flow from `input-normalizer.ts` into `data-loader.ts`. Next I’ll extract line-level references, then pressure-test the heuristic with concrete misclassification scenarios.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -69,7 +69,7 @@ exec
     19	// 2. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -91,23 +91,23 @@ exec
     19	
     20	import {
 exec
-/bin/zsh -lc "rg -n \"format|detect|heuristic\" '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:8:// Validates, normalizes, and transforms raw input data into structured session format
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:33:/** A single observation record produced by transformation */
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:71:/** Raw input data that may be in manual or MCP-compatible format */
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:109:/** Normalized data in MCP-compatible format */
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:294: * Maps a technicalContext record to the structured TECHNICAL_CONTEXT array format.
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:382: * Normalizes raw input data from manual or mixed formats into the MCP-compatible NormalizedData structure.
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:384: * @returns A NormalizedData object with unified observations, userPrompts, recentContext, and FILES, or the backfilled input if already in MCP format.
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:414:    // F-16: Ensure FILES uses FileEntry format
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:446:  // F-16: Convert filesModified to FileEntry format with ACTION field
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:459:        // P0-2: Parse "path - description" compound format
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:538:  console.log('   \u2713 Transformed manual format to MCP-compatible structure');
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:699:  'configuration', 'core', 'create', 'data', 'debug', 'default', 'detection',
+/bin/zsh -lc "rg -n \"format|detect|heuristic\" '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:8:// Validates, normalizes, and transforms raw input data into structured session format
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:33:/** A single observation record produced by transformation */
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:71:/** Raw input data that may be in manual or MCP-compatible format */
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:109:/** Normalized data in MCP-compatible format */
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:294: * Maps a technicalContext record to the structured TECHNICAL_CONTEXT array format.
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:382: * Normalizes raw input data from manual or mixed formats into the MCP-compatible NormalizedData structure.
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:384: * @returns A NormalizedData object with unified observations, userPrompts, recentContext, and FILES, or the backfilled input if already in MCP format.
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:414:    // F-16: Ensure FILES uses FileEntry format
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:446:  // F-16: Convert filesModified to FileEntry format with ACTION field
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:459:        // P0-2: Parse "path - description" compound format
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:538:  console.log('   \u2713 Transformed manual format to MCP-compatible structure');
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:699:  'configuration', 'core', 'create', 'data', 'debug', 'default', 'detection',
 codex
 I’ve pulled both files and confirmed `data-loader.ts` itself doesn’t contain explicit format heuristics; it assumes JSON file or native capture. I’m now extracting the exact detection helpers inside `input-normalizer.ts` (the truncated section) so we can analyze misrouting risk precisely.
 exec
-/bin/zsh -lc "rg -n \"detect|format|stdin|manual|json|parse|source\" '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"detect|format|stdin|manual|json|parse|source\" '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 8:// Validates, normalizes, and transforms raw input data into structured session format
 21:/** Data source type indicating where loaded data came from */
 33:/** A single observation record produced by transformation */
@@ -129,8 +129,8 @@ exec
 414:    // F-16: Ensure FILES uses FileEntry format
 423:      cloned._manualTriggerPhrases = [...triggerPhrases];
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '520,760p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v520" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '520,760p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v520" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    520	  normalized.userPrompts = [{
    521	    prompt: sessionSummary || 'Manual context save',
    522	    timestamp: new Date().toISOString()
@@ -175,7 +175,7 @@ exec
 codex
 I found the normalization and capture routing logic, but I haven’t yet seen explicit stdin/manual/JSON “format detection” in these two files. I’m tracing where they are called to locate the actual heuristic function so we can evaluate P1-09 accurately instead of guessing.
 exec
-/bin/zsh -lc "sed -n '340,560p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v340" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '340,560p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v340" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    340	// ───────────────────────────────────────────────────────────────
    341	// 5. INPUT NORMALIZATION
    342	// ───────────────────────────────────────────────────────────────
@@ -197,54 +197,54 @@ exec
    358	  const modificationMagnitude = (
    359	    file.MODIFICATION_MAGNITUDE === 'trivial'
 exec
-/bin/zsh -lc "rg -n \"detect.*format|format.*detect|input format|stdin|manual|json mode|json\" '.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:573:    'write session data to /tmp/save-context-data.json, then run: node generate-context.js /tmp/save-context-data.json [spec-folder]'
-.opencode/skill/system-spec-kit/scripts/README.md:38:- `package.json`
-.opencode/skill/system-spec-kit/scripts/README.md:40:- `scripts-registry.json`
-.opencode/skill/system-spec-kit/scripts/README.md:41:- `tsconfig.json`
-.opencode/skill/system-spec-kit/scripts/README.md:111:node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
-.opencode/skill/system-spec-kit/scripts/tsconfig.json:2:  "extends": "../tsconfig.json",
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:34:  const jsonOutput: string = JSON.stringify(logEntry);
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:37:    console.error(jsonOutput);
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:39:    console.warn(jsonOutput);
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:41:    console.log(jsonOutput);
-.opencode/skill/system-spec-kit/scripts/utils/logger.ts:43:    console.log(jsonOutput);
-.opencode/skill/system-spec-kit/scripts/utils/prompt-utils.ts:36:  if (!process.stdout.isTTY || !process.stdin.isTTY) {
-.opencode/skill/system-spec-kit/scripts/utils/prompt-utils.ts:45:    input: process.stdin,
-.opencode/skill/system-spec-kit/scripts/utils/prompt-utils.ts:68:  if (!process.stdout.isTTY || !process.stdin.isTTY) {
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:234:  const descriptionDoc = readFileSafe(path.join(resolvedSpecFolderPath, 'description.json'));
-.opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts:251:      // Ignore malformed description.json for affinity hints.
-.opencode/skill/system-spec-kit/scripts/ops/README.md:113:```json
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:137:function buildLexicalDecisionObservations(collectedData: CollectedDataSubset<'_manualDecisions' | 'SPEC_FOLDER' | 'userPrompts' | 'observations'>): Array<{
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:183:  collectedData: CollectedDataSubset<'_manualDecisions' | 'SPEC_FOLDER' | 'userPrompts' | 'observations'> | null
-.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:185:  const manualDecisions = collectedData?._manualDecisions || [];
+/bin/zsh -lc "rg -n \"detect.*format|format.*detect|input format|stdin|manual|json mode|json\" '.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:573:    'write session data to /tmp/save-context-data.json, then run: node generate-context.js /tmp/save-context-data.json [spec-folder]'
+.opencode/skills/system-spec-kit/scripts/README.md:38:- `package.json`
+.opencode/skills/system-spec-kit/scripts/README.md:40:- `scripts-registry.json`
+.opencode/skills/system-spec-kit/scripts/README.md:41:- `tsconfig.json`
+.opencode/skills/system-spec-kit/scripts/README.md:111:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
+.opencode/skills/system-spec-kit/scripts/tsconfig.json:2:  "extends": "../tsconfig.json",
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:34:  const jsonOutput: string = JSON.stringify(logEntry);
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:37:    console.error(jsonOutput);
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:39:    console.warn(jsonOutput);
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:41:    console.log(jsonOutput);
+.opencode/skills/system-spec-kit/scripts/utils/logger.ts:43:    console.log(jsonOutput);
+.opencode/skills/system-spec-kit/scripts/utils/prompt-utils.ts:36:  if (!process.stdout.isTTY || !process.stdin.isTTY) {
+.opencode/skills/system-spec-kit/scripts/utils/prompt-utils.ts:45:    input: process.stdin,
+.opencode/skills/system-spec-kit/scripts/utils/prompt-utils.ts:68:  if (!process.stdout.isTTY || !process.stdin.isTTY) {
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:234:  const descriptionDoc = readFileSafe(path.join(resolvedSpecFolderPath, 'description.json'));
+.opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts:251:      // Ignore malformed description.json for affinity hints.
+.opencode/skills/system-spec-kit/scripts/ops/README.md:113:```json
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:137:function buildLexicalDecisionObservations(collectedData: CollectedDataSubset<'_manualDecisions' | 'SPEC_FOLDER' | 'userPrompts' | 'observations'>): Array<{
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:183:  collectedData: CollectedDataSubset<'_manualDecisions' | 'SPEC_FOLDER' | 'userPrompts' | 'observations'> | null
+.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:185:  const manualDecisions = collectedData?._manualDecisions || [];
 exec
-/bin/zsh -lc "rg -n \"loadCollectedData\\(|normalizeInputData\\(|validateInputData\\(|transformOpencodeCapture\\(\" '.opencode/skill/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:345:          return transformOpencodeCapture(conversation, specFolderArg, 'opencode-capture') as LoadedData;
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:377:          const data = transformOpencodeCapture(conversation, specFolderArg, 'claude-code-capture');
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:406:          const data = transformOpencodeCapture(conversation, specFolderArg, 'codex-cli-capture');
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:435:          const data = transformOpencodeCapture(conversation, specFolderArg, 'copilot-cli-capture');
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:464:          const data = transformOpencodeCapture(conversation, specFolderArg, 'gemini-cli-capture');
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:481:async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:520:      validateInputData(rawData, specFolderArg);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:523:      const data: NormalizedData | RawInputData = normalizeInputData(rawData);
-.opencode/skill/system-spec-kit/scripts/utils/README.md:223:**Symptom**: `normalizeInputData()` returns unexpected structure
-.opencode/skill/system-spec-kit/scripts/utils/README.md:232:const normalized = normalizeInputData({
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:386:function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:551:function validateInputData(data: RawInputData, specFolderArg: string | null = null): void {
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:806:function transformOpencodeCapture(
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:77:    await expect(loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:96:      await expect(loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:121:      await expect(loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:144:      await expect(loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:177:      const result = await loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:217:      const result = await loadCollectedData({
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:250:    await expect(loadCollectedData({
+/bin/zsh -lc "rg -n \"loadCollectedData\\(|normalizeInputData\\(|validateInputData\\(|transformOpencodeCapture\\(\" '.opencode/skills/system-spec-kit/scripts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:345:          return transformOpencodeCapture(conversation, specFolderArg, 'opencode-capture') as LoadedData;
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:377:          const data = transformOpencodeCapture(conversation, specFolderArg, 'claude-code-capture');
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:406:          const data = transformOpencodeCapture(conversation, specFolderArg, 'codex-cli-capture');
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:435:          const data = transformOpencodeCapture(conversation, specFolderArg, 'copilot-cli-capture');
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:464:          const data = transformOpencodeCapture(conversation, specFolderArg, 'gemini-cli-capture');
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:481:async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:520:      validateInputData(rawData, specFolderArg);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:523:      const data: NormalizedData | RawInputData = normalizeInputData(rawData);
+.opencode/skills/system-spec-kit/scripts/utils/README.md:223:**Symptom**: `normalizeInputData()` returns unexpected structure
+.opencode/skills/system-spec-kit/scripts/utils/README.md:232:const normalized = normalizeInputData({
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:386:function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:551:function validateInputData(data: RawInputData, specFolderArg: string | null = null): void {
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:806:function transformOpencodeCapture(
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:77:    await expect(loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:96:      await expect(loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:121:      await expect(loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:144:      await expect(loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:177:      const result = await loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:217:      const result = await loadCollectedData({
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:250:    await expect(loadCollectedData({
 codex
 I’ve confirmed one key point already: in these two files, the only real “format choice” heuristic is object-shape based (`normalizeInputData` fast-path vs manual transform). I’m doing one quick trace into `generate-context.ts` to verify where stdin-vs-file-vs-native capture is decided, so the risk call is complete.
 exec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"stdin|dataFile|JSON|manual|detect|format|loadCollectedData\\(\" '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"stdin|dataFile|JSON|manual|detect|format|loadCollectedData\\(\" '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 32:  dataFile: string | null;
 55:  <input>           Either a JSON data file path OR a spec folder path
 56:                    - JSON mode: node generate-context.js data.json [spec-folder]
@@ -287,7 +287,7 @@ exec
     19	  getSpecsDirectories,
     20	  SPEC_FOLDER_PATTERN,
 exec
-/bin/zsh -lc "sed -n '260,760p' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v260" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '260,760p' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v260" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	      const parentSegment = absoluteSegments.at(-2);
    261	
    262	      if (
@@ -311,8 +311,8 @@ exec
 codex
 I now have the main detection points and I’m validating them against the test suite to estimate real-world frequency rather than just theoretical risk. I’ll pull the relevant test cases for `parseArguments` and `normalizeInputData` next.
 exec
-/bin/zsh -lc "rg -n \"parseArguments|normalizeInputData|manual|MCP|stdin|--json|--stdin|data file|spec folder|P1-09|heuristic|format\" '.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"parseArguments|normalizeInputData|manual|MCP|stdin|--json|--stdin|data file|spec folder|P1-09|heuristic|format\" '.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 13:import { normalizeInputData, transformOpencodeCapture } from '../utils/input-normalizer';
 99:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Invalid JSON in data file/);
 124:      })).rejects.toThrow(/EXPLICIT_DATA_FILE_LOAD_FAILED: Failed to load data file/);
@@ -355,7 +355,7 @@ exec
     19	const captureGeminiConversation = vi.fn(async () => null);
     20	
 exec
-/bin/zsh -lc "sed -n '220,920p' '.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' | nl -ba -v220" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '220,920p' '.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' | nl -ba -v220" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    220	      });
    221	
    222	      expect(result._source).toBe('file');
@@ -377,39 +377,39 @@ exec
    238	  });
    239	});
 exec
-/bin/zsh -lc "sed -n '1,260p' '.opencode/skill/system-spec-kit/scripts/tests/generate-context-args.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-sed: .opencode/skill/system-spec-kit/scripts/tests/generate-context-args.vitest.ts: No such file or directory
+/bin/zsh -lc "sed -n '1,260p' '.opencode/skills/system-spec-kit/scripts/tests/generate-context-args.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+sed: .opencode/skills/system-spec-kit/scripts/tests/generate-context-args.vitest.ts: No such file or directory
 exec
-/bin/zsh -lc "rg -n \"parseArguments\\(|--stdin|--json|spec folder provided directly|dataFile|resolveCliSpecFolderReference|primaryArg\" '.opencode/skill/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:88:  dataFile: string;
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:139:  const dataFile = path.join(dataDir, 'phase-013.json');
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:140:  writeJson(dataFile, {
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:188:  return { root, specRelativePath, specFolderPath, contextDir, dataDir, dbDir, dataFile };
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:376:      dataFile: harness.dataFile,
-.opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh:88:json1=$(cd "$repo1" && bash "$create1" --json --phase --skip-branch --number 1 "Default phase count")
-.opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh:114:base_json=$(cd "$repo2" && bash "$create2" --json --phase --skip-branch --number 2 --phases 1 --phase-names "foundation" "Parent append base")
-.opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh:118:append_json=$(cd "$repo2" && bash "$create2" --json --phase --parent "$parent_rel" --phases 2 --phase-names "implementation,integration" "Parent append run")
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:65:      dataFile: undefined,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:73:    const dataFile = '/tmp/save-context-data.json';
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:75:    process.argv = ['node', path.join('scripts', 'dist', 'memory', 'generate-context.js'), dataFile, explicitSpecFolder];
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:82:      dataFile,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:99:      dataFile: undefined,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:115:    await main(['--stdin', explicitSpecFolder], async () => payload);
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:119:      dataFile: undefined,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:141:    await main(['--json', payload]);
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:145:      dataFile: undefined,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:158:  it('keeps target resolution and collectedData shape identical between --stdin and --json for the same payload', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:169:    await main(['--stdin'], async () => payload);
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:174:    await main(['--json', payload]);
+/bin/zsh -lc "rg -n \"parseArguments\\(|--stdin|--json|spec folder provided directly|dataFile|resolveCliSpecFolderReference|primaryArg\" '.opencode/skills/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:88:  dataFile: string;
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:139:  const dataFile = path.join(dataDir, 'phase-013.json');
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:140:  writeJson(dataFile, {
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:188:  return { root, specRelativePath, specFolderPath, contextDir, dataDir, dbDir, dataFile };
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:376:      dataFile: harness.dataFile,
+.opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh:88:json1=$(cd "$repo1" && bash "$create1" --json --phase --skip-branch --number 1 "Default phase count")
+.opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh:114:base_json=$(cd "$repo2" && bash "$create2" --json --phase --skip-branch --number 2 --phases 1 --phase-names "foundation" "Parent append base")
+.opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh:118:append_json=$(cd "$repo2" && bash "$create2" --json --phase --parent "$parent_rel" --phases 2 --phase-names "implementation,integration" "Parent append run")
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:65:      dataFile: undefined,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:73:    const dataFile = '/tmp/save-context-data.json';
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:75:    process.argv = ['node', path.join('scripts', 'dist', 'memory', 'generate-context.js'), dataFile, explicitSpecFolder];
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:82:      dataFile,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:99:      dataFile: undefined,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:115:    await main(['--stdin', explicitSpecFolder], async () => payload);
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:119:      dataFile: undefined,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:141:    await main(['--json', payload]);
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:145:      dataFile: undefined,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:158:  it('keeps target resolution and collectedData shape identical between --stdin and --json for the same payload', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:169:    await main(['--stdin'], async () => payload);
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:174:    await main(['--json', payload]);
 exec
-/bin/zsh -lc "ls '.opencode/skill/system-spec-kit/scripts/tests' | rg 'generate|args|cli'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "ls '.opencode/skills/system-spec-kit/scripts/tests' | rg 'generate|args|cli'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 codex-cli-capture.vitest.ts
 copilot-cli-capture.vitest.ts
 gemini-cli-capture.vitest.ts
 generate-context-cli-authority.vitest.ts
 exec
-/bin/zsh -lc "sed -n '1,320p' '.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"--stdin|--json|specFolder|dataFile|parseArguments|explicit|authoritative|target\" '.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 0ms:
+/bin/zsh -lc "sed -n '1,320p' '.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts' | nl -ba -v1" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"--stdin|--json|specFolder|dataFile|parseArguments|explicit|authoritative|target\" '.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 2 in 0ms:
 rg: unrecognized flag --stdin|--json|specFolder|dataFile|parseArguments|explicit|authoritative|target
  succeeded in 0ms:
      1	// TEST: Generate Context CLI Authority
@@ -433,32 +433,32 @@ rg: unrecognized flag --stdin|--json|specFolder|dataFile|parseArguments|explicit
     19	}));
     20	
 exec
-/bin/zsh -lc "rg -n \"heuristic\" '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:145:  - session.status: "IN_PROGRESS" | "COMPLETED" | "BLOCKED" (overrides heuristic)
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:146:  - session.completionPercent: 0-100 (overrides heuristic estimate)
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:148:  - session.messageCount/toolCount: overrides heuristic counts
+/bin/zsh -lc "rg -n \"heuristic\" '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:145:  - session.status: "IN_PROGRESS" | "COMPLETED" | "BLOCKED" (overrides heuristic)
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:146:  - session.completionPercent: 0-100 (overrides heuristic estimate)
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:148:  - session.messageCount/toolCount: overrides heuristic counts
 exec
-/bin/zsh -lc "rg -n \"P1-09|file-format detection|format detection|deferred|unclear scope\" '.opencode/specs' '.opencode/skill/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:155:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:588:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:638:    // P1-09 FIX: Close MCP transport on shutdown
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1020:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1052:  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
-.opencode/skill/system-spec-kit/references/validation/validation_rules.md:340:- [ ] [P2] This can be deferred
+/bin/zsh -lc "rg -n \"P1-09|file-format detection|format detection|deferred|unclear scope\" '.opencode/specs' '.opencode/skills/system-spec-kit'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:155:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:588:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:638:    // P1-09 FIX: Close MCP transport on shutdown
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1020:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1052:  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
+.opencode/skills/system-spec-kit/references/validation/validation_rules.md:340:- [ ] [P2] This can be deferred
 .opencode/specs/system-spec-kit/z_archive/019-readme-and-summary-with-hvr/decision-record.md:161:**Details**: Each template gets an HVR annotation block placed immediately after the SPECKIT_TEMPLATE_SOURCE line. The block uses HTML comment syntax (`<!-- ... -->`), which is visible in source but does not render in Markdown previews. It contains: a reference to the canonical `hvr_rules.md`, the top 10 hard-blocker words to avoid, the 4 most common AI structural patterns to eliminate, and one template-specific guidance note. Maximum 30 lines per block. Automated enforcement deferred to a future spec.
 .opencode/specs/system-spec-kit/z_archive/019-readme-and-summary-with-hvr/decision-record.md:235:The following decisions are deferred and will need their own ADRs when addressed:
-.opencode/skill/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:19:- Prompt: `Validate automatic archival subsystem vector/BM25 parity and protected tier behavior. Capture the evidence needed to prove Archived memory keeps metadata row with is_archived=1, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived. Return a concise user-facing pass/fail verdict with the main reason.`
-.opencode/skill/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:20:- Expected signals: Archived memory keeps metadata row with `is_archived=1`, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived
-.opencode/skill/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:21:- Pass/fail: PASS if archive/unarchive parity holds for metadata/BM25, vector deletion occurs on archive, deferred vector rebuild behavior is explicit on unarchive, and protected-tier safeguards hold
-.opencode/skill/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:29:| NEW-124 | Automatic archival lifecycle coverage | Verify archive/unarchive keeps metadata rows while syncing BM25 and vec_memories behavior | `Validate automatic archival subsystem vector/BM25 parity and protected tier behavior. Capture the evidence needed to prove Archived memory keeps metadata row with is_archived=1, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived. Return a concise user-facing pass/fail verdict with the main reason.` | 1) Seed a normal-tier dormant memory and run archival scan 2) Verify `is_archived=1`, BM25 document removed, and vector row removed from `vec_memories` while `memory_index` row remains 3) Unarchive and verify BM25 is restored while vector re-embedding is deferred (no immediate vec row recreation) 4) Seed constitutional/critical memory and confirm archival scan skips protected tiers | Archived memory keeps metadata row with `is_archived=1`, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived | Archival scan output + DB row checks (`memory_index`, `vec_memories`) + BM25 behavior evidence + unarchive deferred re-embedding log | PASS if archive/unarchive parity holds for metadata/BM25, vector deletion occurs on archive, deferred vector rebuild behavior is explicit on unarchive, and protected-tier safeguards hold | Inspect `archival-manager.ts` sync functions and protected-tier filtering logic |
+.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:19:- Prompt: `Validate automatic archival subsystem vector/BM25 parity and protected tier behavior. Capture the evidence needed to prove Archived memory keeps metadata row with is_archived=1, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived. Return a concise user-facing pass/fail verdict with the main reason.`
+.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:20:- Expected signals: Archived memory keeps metadata row with `is_archived=1`, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived
+.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:21:- Pass/fail: PASS if archive/unarchive parity holds for metadata/BM25, vector deletion occurs on archive, deferred vector rebuild behavior is explicit on unarchive, and protected-tier safeguards hold
+.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/124-automatic-archival-lifecycle-coverage.md:29:| NEW-124 | Automatic archival lifecycle coverage | Verify archive/unarchive keeps metadata rows while syncing BM25 and vec_memories behavior | `Validate automatic archival subsystem vector/BM25 parity and protected tier behavior. Capture the evidence needed to prove Archived memory keeps metadata row with is_archived=1, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived. Return a concise user-facing pass/fail verdict with the main reason.` | 1) Seed a normal-tier dormant memory and run archival scan 2) Verify `is_archived=1`, BM25 document removed, and vector row removed from `vec_memories` while `memory_index` row remains 3) Unarchive and verify BM25 is restored while vector re-embedding is deferred (no immediate vec row recreation) 4) Seed constitutional/critical memory and confirm archival scan skips protected tiers | Archived memory keeps metadata row with `is_archived=1`, BM25 artifacts are synchronized on archive/unarchive, vector rows are deleted on archive, and unarchive logs deferred vector re-embedding until next index scan; protected tiers are not auto-archived | Archival scan output + DB row checks (`memory_index`, `vec_memories`) + BM25 behavior evidence + unarchive deferred re-embedding log | PASS if archive/unarchive parity holds for metadata/BM25, vector deletion occurs on archive, deferred vector rebuild behavior is explicit on unarchive, and protected-tier safeguards hold | Inspect `archival-manager.ts` sync functions and protected-tier filtering logic |
 .opencode/specs/03--commands-and-skills/020-cmd-create-readme-install-merger/checklist.md:26:| **P1** | Required | Must pass or be deferred with explicit approval |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:108:    console.error(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:224:          : `[memory-save] BM25 indexing failed (deferred path): ${message}`);
-.opencode/skill/system-spec-kit/references/templates/level_specifications.md:282:- [ ] Rate limiting (deferred to next sprint)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:111:  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:40:| `embedding-pipeline.ts`     | Embedding generation with persistent cache. Cache keys hash normalized content, matching the main and chunked embedding paths. Checks the embedding cache first, falls back to the provider, and stores new embeddings for future re-index. Async/deferred mode is opt-in. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:43:| `create-record.ts`          | Core record creation. Inserts into vector index (or deferred index), applies post-insert metadata, links related memories and indexes into BM25 when enabled. |
-.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:608:5. DOCUMENT any deferred P2 items with reason
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:108:    console.error(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:224:          : `[memory-save] BM25 indexing failed (deferred path): ${message}`);
+.opencode/skills/system-spec-kit/references/templates/level_specifications.md:282:- [ ] Rate limiting (deferred to next sprint)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:111:  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:40:| `embedding-pipeline.ts`     | Embedding generation with persistent cache. Cache keys hash normalized content, matching the main and chunked embedding paths. Checks the embedding cache first, falls back to the provider, and stores new embeddings for future re-index. Async/deferred mode is opt-in. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:43:| `create-record.ts`          | Core record creation. Inserts into vector index (or deferred index), applies post-insert metadata, links related memories and indexes into BM25 when enabled. |
+.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:608:5. DOCUMENT any deferred P2 items with reason
 codex
 I’m now pulling the original P1-09 audit record from the spec artifacts so we can judge “deferred” against the documented rationale, not just the code.
 exec
@@ -490,17 +490,17 @@ exec
 /bin/zsh -lc "rg -n \"P1-09|format detection|heuristic\" '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion' | head -n 200" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C18.md:197:Four sub-components handle ongoing memory graph maintenance as a weekly batch cycle. Contradiction scanning finds memory pairs above 0.85 cosine similarity with keyword negation conflicts using a dual strategy: vector-based (cosine on sqlite-vec embeddings) plus heuristic fallback (word overlap). Both use a `hasNegationConflict()` keyword asymmetry check against approximately 20 negation terms (not, never, deprecated, replaced, and others). The system surfaces full contradiction clusters rather than isolated pairs via 1-hop causal edge neighbor expansion.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/decision-record.md:148:Audit found duplicated concerns in **token estimation** (`estimateTokenCount` / `estimateTokens` — `Math.ceil(text.length/4)` heuristic in tree-thinning.ts and token-metrics.ts) and **quality extraction** (`extractQualityScore` / `extractQualityFlags` in memory-indexer.ts and memory-parser.ts) logic across scripts and runtime modules. Duplicate implementations increase drift and inconsistent behavior risk.
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C08.md:895:.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:80:| `ground-truth-feedback.ts` | Collects implicit feedback from user selections; deterministic heuristic judge for relevance labeling |
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C08.md:898:.opencode/skill/system-spec-kit/mcp_server/lib/eval/README.md:118:Expands ground truth datasets via two mechanisms: (1) implicit feedback from user memory selections persisted to the eval DB, and (2) a deterministic heuristic judge that scores query-memory relevance using lexical overlap with 4-band classification. Designed for replacement with a model-backed judge without changing persistence or agreement APIs. Added in Sprint 4.
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C08.md:895:.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:80:| `ground-truth-feedback.ts` | Collects implicit feedback from user selections; deterministic heuristic judge for relevance labeling |
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C08.md:898:.opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:118:Expands ground truth datasets via two mechanisms: (1) implicit feedback from user memory selections persisted to the eval DB, and (2) a deterministic heuristic judge that scores query-memory relevance using lexical overlap with 4-band classification. Designed for replacement with a model-backed judge without changing persistence or agreement APIs. Added in Sprint 4.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C08.md:1200://   scores query-memory relevance using lexical overlap heuristics.
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:300:.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:262:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:893:.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:262:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:300:.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:262:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:893:.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:262:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C10.md:1367:// env var gating, batch computation, text similarity heuristic,
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout/spec.md:90:- Unreviewed conflict heuristics that cannot be explained or reversed.
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C06.md:257:.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:88:  // AI-WHY: Fallback: path-based heuristic (backward compatibility)
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C06.md:257:.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:88:  // AI-WHY: Fallback: path-based heuristic (backward compatibility)
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/spec.md:207:| 7b | `007-sprint-6-indexing-and-graph/` | N2, R10 (37-53h heuristic; **ESTIMATION WARNING**: production quality 80-150h — see child spec for N2c 40-80h and R10 30-50h warnings) | Sprint 6a gate + feasibility spike | Pending (GATED) |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/spec.md:357:| PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache a 1-sentence description per spec folder for search-time folder routing | At index time, generate `folder_description` = LLM summary of spec folder purpose; cache in spec folder index; use for pre-search folder routing. **LLM Fallback:** Spec-folder classification is async and fully decoupled from the save path. If LLM is unavailable (timeout >5s or error), fall back to folder-name-based heuristic classification. Classification results are cached per spec-folder with 24h TTL. | S3 | 4-8h | Low |
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X07.md:367:.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md:11:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X07.md:367:.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md:11:Five operational stages run between fusion and delivery. Stage A (query complexity routing, `SPECKIT_COMPLEXITY_ROUTER`) restricts active channels for simple queries to just vector and FTS, moderate queries add BM25, and complex queries get all five. Stage B (RSF shadow fusion, `SPECKIT_RSF_FUSION`) is historical and no longer active in runtime ranking; RSF artifacts are retained for compatibility/testing references only. Stage C (channel enforcement, `SPECKIT_CHANNEL_MIN_REP`) ensures every contributing channel has at least one result in top-k with a 0.005 quality floor. Stage D (confidence truncation, `SPECKIT_CONFIDENCE_TRUNCATION`) trims the irrelevant tail using a 2x-median gap elbow heuristic. Stage E (dynamic token budget, `SPECKIT_DYNAMIC_TOKEN_BUDGET`) computes tier-aware token limits (simple 1,500, moderate 2,500, complex 4,000).
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:88:An `encoding_intent` field classifies content type at index time as `document`, `code` or `structured_data` using heuristic scoring. The code path scores fenced code blocks, import/export/function keyword density and programming punctuation density. The structured data path scores YAML frontmatter, pipe tables and key-value patterns. The classification threshold is 0.4; anything below defaults to `document`.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/plan.md:558:| Sprint 6b: Graph Deepening (Sophistication, GATED) | Very High | 37-53h (heuristic) / 80-150h (production) |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/plan.md:561:| **Total (S0-S6a+S6b heuristic)** | | **348-523h** |
@@ -532,7 +532,7 @@ exec
     48	- [x] 4.4 Merge stopword lists — unify session-extractor and trigger-extractor sets (R-08 prep) [MEDIUM]
     49	- [x] 4.5 Add observation types: test, documentation, performance (R-07 C3) [LOW]
  succeeded in 0ms:
-     1	<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skill/system-spec-kit/templates/implementation-summary.md -->
+     1	<!-- SPECKIT_TEMPLATE_SOURCE: .opencode/skills/system-spec-kit/templates/implementation-summary.md -->
      2	<!-- anchor:implementation-summary:start -->
      3	
      4	# Implementation Summary: Research Remediation — Wave 1
@@ -580,7 +580,7 @@ exec
    300	- **Effort:** SMALL (<30 min)
    301	
    302	### FINDING-04: Valid OpenCode data can be dropped when `exchanges` is empty
-   303	- **File:** [data-loader.ts#L158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L158)
+   303	- **File:** [data-loader.ts#L158](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L158)
    304	- **Severity:** MEDIUM
    305	- **Category:** BUG
    306	- **Current Behavior:** Capture is accepted only if `conversation.exchanges.length > 0`; captures with useful `toolCalls` but no exchanges are treated as empty and fallback continues.
@@ -590,7 +590,7 @@ exec
    310	- **Effort:** TRIVIAL (<5 min)
    311	
    312	### FINDING-05: File-format detection is heuristic and ambiguous
-   313	- **File:** [input-normalizer.ts#L223](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L223)
+   313	- **File:** [input-normalizer.ts#L223](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L223)
    314	- **Severity:** HIGH
    315	- **Category:** DESIGN
    316	- **Current Behavior:** Presence of any one of `userPrompts`/`observations`/`recentContext` causes data to be treated as already normalized.
@@ -607,7 +607,7 @@ exec
    396	- **Effort:** TRIVIAL (<5 min)
    397	
    398	### FINDING-05: File-format detection is heuristic and ambiguous
-   399	- **File:** [input-normalizer.ts#L223](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L223)
+   399	- **File:** [input-normalizer.ts#L223](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L223)
    400	- **Severity:** HIGH
    401	- **Category:** DESIGN
    402	- **Current Behavior:** Presence of any one of `userPrompts`/`observations`/`recentContext` causes data to be treated as already normalized.
@@ -617,14 +617,14 @@ exec
    406	- **Effort:** MEDIUM (<2 hr)
    407	
    408	### FINDING-06: Validation gap allows malformed “already-normalized” payloads
-   409	- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L291)
-tool cocoindex_code.search({"query":"Where does the code decide whether input payload is already normalized vs manual format? Look for userPrompts observations recentContext checks.","paths":".opencode/skill/system-spec-kit/scripts/*","limit":5})
-cocoindex_code.search({"query":"Where does the code decide whether input payload is already normalized vs manual format? Look for userPrompts observations recentContext checks.","paths":".opencode/skill/system-spec-kit/scripts/*","limit":5}) failed in 7ms:
+   409	- **File:** [input-normalizer.ts#L291](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L291)
+tool cocoindex_code.search({"query":"Where does the code decide whether input payload is already normalized vs manual format? Look for userPrompts observations recentContext checks.","paths":".opencode/skills/system-spec-kit/scripts/*","limit":5})
+cocoindex_code.search({"query":"Where does the code decide whether input payload is already normalized vs manual format? Look for userPrompts observations recentContext checks.","paths":".opencode/skills/system-spec-kit/scripts/*","limit":5}) failed in 7ms:
 {
   "content": [
     {
       "type": "text",
-      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skill/system-spec-kit/scripts/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
+      "text": "Error executing tool search: 1 validation error for searchArguments\npaths\n  Input should be a valid list [type=list_type, input_value='.opencode/skills/system-spec-kit/scripts/*', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type"
     }
   ],
   "isError": true
@@ -674,7 +674,7 @@ cocoindex_code.search({"query":"How does generate-context parse CLI args to choo
       {
         "file_path": "specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/017-stateless-quality-gates/decision-record.md",
 exec
-/bin/zsh -lc "sed -n '1340,1525p' '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | nl -ba -v1340" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1340,1525p' '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | nl -ba -v1340" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1340	    }
   1341	
   1342	    const narrativeObservations = (enriched.observations || []).filter(
@@ -696,7 +696,7 @@ exec
   1358	// ───────────────────────────────────────────────────────────────
   1359	
 exec
-/bin/zsh -lc "rg -n \"collectedData|validateInputData|normalizeInputData|loadDataFn|loadCollectedData\" '.opencode/skill/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"collectedData|validateInputData|normalizeInputData|loadDataFn|loadCollectedData\" '.opencode/skills/system-spec-kit/scripts/core/workflow.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 81:import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader';
 99:  collectedData?: CollectedDataFull;
 101:  loadDataFn?: () => Promise<CollectedDataFull>;
@@ -718,7 +718,7 @@ exec
 1244:  const enriched: CollectedDataFull = { ...collectedData };
 1295:      // Use spec summary if collectedData summary is missing or generic
 exec
-/bin/zsh -lc "sed -n '1525,1705p' '.opencode/skill/system-spec-kit/scripts/core/workflow.ts' | nl -ba -v1525" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1525,1705p' '.opencode/skills/system-spec-kit/scripts/core/workflow.ts' | nl -ba -v1525" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1525	        for (const label of filtered.matchedPatterns) {
   1526	          extractorPatternCounts.set(label, (extractorPatternCounts.get(label) ?? 0) + 1);
   1527	        }
@@ -742,8 +742,8 @@ exec
 codex
 I’ve isolated the likely failure surface: the shape-based short-circuit in `normalizeInputData` plus validation gaps. I’m extracting a final set of tight line references now so the recommendation and status call are evidence-backed.
 exec
-/bin/zsh -lc "sed -n '380,438p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v380" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '442,540p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v442" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '380,438p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v380" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '442,540p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v442" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    380	
    381	/**
    382	 * Normalizes raw input data from manual or mixed formats into the MCP-compatible NormalizedData structure.
@@ -786,7 +786,7 @@ exec
    460	        const sepIdx = entry.indexOf(' - ');
    461	        if (sepIdx > 0 && (entry.substring(0, sepIdx).includes('.') || entry.substring(0, sepIdx).includes('/'))) {
 exec
-/bin/zsh -lc "sed -n '551,640p' '.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v551" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '551,640p' '.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' | nl -ba -v551" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    551	function validateInputData(data: RawInputData, specFolderArg: string | null = null): void {
    552	  const errors: string[] = [];
    553	
@@ -808,7 +808,7 @@ exec
    569	  }
    570	
 exec
-/bin/zsh -lc "sed -n '283,321p' '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | nl -ba -v283" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '283,321p' '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | nl -ba -v283" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    283	function inferPreferredCaptureSourceFromEnv(env: NodeJS.ProcessEnv = process.env): CaptureDataSource | null {
    284	  const explicit = normalizePreferredCaptureSource(env.SYSTEM_SPEC_KIT_CAPTURE_SOURCE);
    285	  if (explicit) {
@@ -830,8 +830,8 @@ exec
    301	  if (hasTruthyEnvKey(env, ['GEMINI_CLI', 'GEMINI_SESSION_ID'])) {
    302	    return 'gemini-cli-capture';
 exec
-/bin/zsh -lc "sed -n '481,575p' '.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts' | nl -ba -v481" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '394,441p' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v394" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '481,575p' '.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts' | nl -ba -v481" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '394,441p' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v394" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    481	async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
    482	  const dataFile = options?.dataFile !== undefined ? options.dataFile : CONFIG.DATA_FILE;
    483	  const specFolderArg = options?.specFolderArg !== undefined ? options.specFolderArg : CONFIG.SPEC_FOLDER_ARG;
@@ -874,7 +874,7 @@ exec
    412	    return { dataFile: null, specFolderArg: null, collectedData: null, sessionId };
    413	  }
 exec
-/bin/zsh -lc "sed -n '246,311p' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v246" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '246,311p' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v246" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    246	function resolveCliSpecFolderReference(rawArg: string): string | null {
    247	  const folderName = path.basename(rawArg);
    248	  const explicitProjectScopedPath = !rawArg.endsWith('.json') && (
@@ -896,7 +896,7 @@ exec
    264	        (parentSegment && lastSegment && SPEC_FOLDER_PATTERN.test(parentSegment) && SPEC_FOLDER_PATTERN.test(lastSegment))
    265	      ) {
 exec
-/bin/zsh -lc "sed -n '336,389p' '.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v336" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '336,389p' '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' | nl -ba -v336" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    336	function parseStructuredJson(rawJson: string, sourceLabel: '--stdin' | '--json'): Record<string, unknown> {
    337	  if (rawJson.trim().length === 0) {
    338	    throw new Error(`${sourceLabel} requires a non-empty JSON object`);
@@ -918,19 +918,19 @@ exec
    354	}
    355	
 exec
-/bin/zsh -lc "rg -n \"userPrompts.*not|recentContext.*not|Input validation failed|user_prompts must be an array|recent_context must be an array|normalizeInputData\\(\\{["'^'"\\n]*userPrompts\" '.opencode/skill/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
+/bin/zsh -lc "rg -n \"userPrompts.*not|recentContext.*not|Input validation failed|user_prompts must be an array|recent_context must be an array|normalizeInputData\\(\\{["'^'"\\n]*userPrompts\" '.opencode/skills/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 
 exec
-/bin/zsh -lc "rg -n \"userPrompts:\\s*'|userPrompts:\\s*\\{|recentContext:\\s*'|recentContext:\\s*\\{\" '.opencode/skill/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"user_prompts must be an array|recent_context must be an array|triggerPhrases must be an array|keyDecisions must be an array|Input validation failed\" '.opencode/skill/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
+/bin/zsh -lc "rg -n \"userPrompts:\\s*'|userPrompts:\\s*\\{|recentContext:\\s*'|recentContext:\\s*\\{\" '.opencode/skills/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"user_prompts must be an array|recent_context must be an array|triggerPhrases must be an array|keyDecisions must be an array|Input validation failed\" '.opencode/skills/system-spec-kit/scripts/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 
  exited 1 in 0ms:
 
 exec
-/bin/zsh -lc "rg -n \"normalizeInputData\\(\\{[\\s\\S]*?sessionSummary[\\s\\S]*?userPrompts\" '.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
+/bin/zsh -lc "rg -n \"normalizeInputData\\(\\{[\\s\\S]*?sessionSummary[\\s\\S]*?userPrompts\" '.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 
 exec
-/bin/zsh -lc "rg -n \"sessionSummary|session_summary|userPrompts|recentContext|user_prompts|recent_context|keyDecisions|key_decisions|filesModified\" '.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"sessionSummary|session_summary|userPrompts|recentContext|user_prompts|recent_context|keyDecisions|key_decisions|filesModified\" '.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 171:      sessionSummary: 'Completed runtime hardening.',
 199:      session_summary: 'Verified generated memory render quality in snake_case JSON mode.',
 201:      user_prompts: [
@@ -957,25 +957,25 @@ P1-09 should not stay deferred for production. The ambiguity is real, it can sil
 
 1. **Exact detection algorithm (with refs)**
 - CLI mode routing is decided before loader/normalizer:
-  - `--stdin` / `--json` => parse JSON object explicitly, require target spec folder, pass preloaded data (`_source: 'file'`): [generate-context.ts:336](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:336), [generate-context.ts:356](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:415)
-  - positional arg that looks like spec folder => stateless mode: [generate-context.ts:246](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:246), [generate-context.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:420)
-  - else => treat as `dataFile`: [generate-context.ts:435](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:435)
-- In loader, `dataFile` path does `read -> JSON.parse -> validateInputData -> normalizeInputData`: [data-loader.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:489), [data-loader.ts:520](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:520), [data-loader.ts:523](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:523)
+  - `--stdin` / `--json` => parse JSON object explicitly, require target spec folder, pass preloaded data (`_source: 'file'`): [generate-context.ts:336](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:336), [generate-context.ts:356](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:415)
+  - positional arg that looks like spec folder => stateless mode: [generate-context.ts:246](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:246), [generate-context.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:420)
+  - else => treat as `dataFile`: [generate-context.ts:435](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:435)
+- In loader, `dataFile` path does `read -> JSON.parse -> validateInputData -> normalizeInputData`: [data-loader.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:489), [data-loader.ts:520](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:520), [data-loader.ts:523](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:523)
 - The core heuristic is here:
-  - If **any one** of `userPrompts/user_prompts/observations/recentContext/recent_context` exists, treat as already structured (fast path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:409)
-  - Otherwise run manual transformation (`sessionSummary`, `keyDecisions`, `filesModified`, etc.): [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:446), [input-normalizer.ts:486](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:486), [input-normalizer.ts:494](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:494)
+  - If **any one** of `userPrompts/user_prompts/observations/recentContext/recent_context` exists, treat as already structured (fast path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:409)
+  - Otherwise run manual transformation (`sessionSummary`, `keyDecisions`, `filesModified`, etc.): [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:446), [input-normalizer.ts:486](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:486), [input-normalizer.ts:494](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:494)
 
 2. **Wrong-result scenarios**
-- Mixed payload (one structured key + manual fields) gets fast-pathed, so manual transforms can be skipped (notably `sessionSummary`, `keyDecisions`, `filesModified` conversion path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:409), [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:446)
-- `userPrompts` / `recentContext` camelCase are not validated in `validateInputData`, so malformed-but-truthy values can still influence routing: [input-normalizer.ts:551](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:551), [input-normalizer.ts:629](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:629)
-- Positional arg ambiguity: spec-folder-vs-data-file classification depends partly on `.endsWith('.json')`, so odd filenames can route wrong mode: [generate-context.ts:248](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:248), [generate-context.ts:304](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:304)
+- Mixed payload (one structured key + manual fields) gets fast-pathed, so manual transforms can be skipped (notably `sessionSummary`, `keyDecisions`, `filesModified` conversion path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:409), [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:446)
+- `userPrompts` / `recentContext` camelCase are not validated in `validateInputData`, so malformed-but-truthy values can still influence routing: [input-normalizer.ts:551](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:551), [input-normalizer.ts:629](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:629)
+- Positional arg ambiguity: spec-folder-vs-data-file classification depends partly on `.endsWith('.json')`, so odd filenames can route wrong mode: [generate-context.ts:248](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:248), [generate-context.ts:304](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:304)
 
 3. **How often in real CLI outputs**
 - Low for first-party “happy paths”:
   - explicit `--stdin` / `--json` is deterministic and bypasses loader normalization path.
   - native capture path does not rely on this manual/structured heuristic.
 - Medium for ad-hoc JSON-file integrations (AI-generated payloads), because partial/mixed shapes are common and current routing is permissive.
-- Current tests mainly cover pure manual or pure structured shapes, not ambiguous mixed-shape misroutes: [runtime-memory-inputs.vitest.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:167), [runtime-memory-inputs.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:195)
+- Current tests mainly cover pure manual or pure structured shapes, not ambiguous mixed-shape misroutes: [runtime-memory-inputs.vitest.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:167), [runtime-memory-inputs.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:195)
 
 4. **Deferred vs fix now**
 - Historical defer rationale exists (“unclear scope, dual-format support works”): [tasks.md:39](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/tasks.md:39), [implementation-summary.md:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/implementation-summary.md:47)
@@ -998,25 +998,25 @@ P1-09 should not stay deferred for production. The ambiguity is real, it can sil
 
 1. **Exact detection algorithm (with refs)**
 - CLI mode routing is decided before loader/normalizer:
-  - `--stdin` / `--json` => parse JSON object explicitly, require target spec folder, pass preloaded data (`_source: 'file'`): [generate-context.ts:336](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:336), [generate-context.ts:356](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:415)
-  - positional arg that looks like spec folder => stateless mode: [generate-context.ts:246](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:246), [generate-context.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:420)
-  - else => treat as `dataFile`: [generate-context.ts:435](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:435)
-- In loader, `dataFile` path does `read -> JSON.parse -> validateInputData -> normalizeInputData`: [data-loader.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:489), [data-loader.ts:520](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:520), [data-loader.ts:523](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:523)
+  - `--stdin` / `--json` => parse JSON object explicitly, require target spec folder, pass preloaded data (`_source: 'file'`): [generate-context.ts:336](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:336), [generate-context.ts:356](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:356), [generate-context.ts:415](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:415)
+  - positional arg that looks like spec folder => stateless mode: [generate-context.ts:246](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:246), [generate-context.ts:420](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:420)
+  - else => treat as `dataFile`: [generate-context.ts:435](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:435)
+- In loader, `dataFile` path does `read -> JSON.parse -> validateInputData -> normalizeInputData`: [data-loader.ts:489](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:489), [data-loader.ts:520](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:520), [data-loader.ts:523](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:523)
 - The core heuristic is here:
-  - If **any one** of `userPrompts/user_prompts/observations/recentContext/recent_context` exists, treat as already structured (fast path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:409)
-  - Otherwise run manual transformation (`sessionSummary`, `keyDecisions`, `filesModified`, etc.): [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:446), [input-normalizer.ts:486](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:486), [input-normalizer.ts:494](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:494)
+  - If **any one** of `userPrompts/user_prompts/observations/recentContext/recent_context` exists, treat as already structured (fast path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:409)
+  - Otherwise run manual transformation (`sessionSummary`, `keyDecisions`, `filesModified`, etc.): [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:446), [input-normalizer.ts:486](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:486), [input-normalizer.ts:494](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:494)
 
 2. **Wrong-result scenarios**
-- Mixed payload (one structured key + manual fields) gets fast-pathed, so manual transforms can be skipped (notably `sessionSummary`, `keyDecisions`, `filesModified` conversion path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:409), [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:446)
-- `userPrompts` / `recentContext` camelCase are not validated in `validateInputData`, so malformed-but-truthy values can still influence routing: [input-normalizer.ts:551](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:551), [input-normalizer.ts:629](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:629)
-- Positional arg ambiguity: spec-folder-vs-data-file classification depends partly on `.endsWith('.json')`, so odd filenames can route wrong mode: [generate-context.ts:248](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:248), [generate-context.ts:304](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:304)
+- Mixed payload (one structured key + manual fields) gets fast-pathed, so manual transforms can be skipped (notably `sessionSummary`, `keyDecisions`, `filesModified` conversion path): [input-normalizer.ts:409](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:409), [input-normalizer.ts:446](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:446)
+- `userPrompts` / `recentContext` camelCase are not validated in `validateInputData`, so malformed-but-truthy values can still influence routing: [input-normalizer.ts:551](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:551), [input-normalizer.ts:629](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:629)
+- Positional arg ambiguity: spec-folder-vs-data-file classification depends partly on `.endsWith('.json')`, so odd filenames can route wrong mode: [generate-context.ts:248](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:248), [generate-context.ts:304](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:304)
 
 3. **How often in real CLI outputs**
 - Low for first-party “happy paths”:
   - explicit `--stdin` / `--json` is deterministic and bypasses loader normalization path.
   - native capture path does not rely on this manual/structured heuristic.
 - Medium for ad-hoc JSON-file integrations (AI-generated payloads), because partial/mixed shapes are common and current routing is permissive.
-- Current tests mainly cover pure manual or pure structured shapes, not ambiguous mixed-shape misroutes: [runtime-memory-inputs.vitest.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:167), [runtime-memory-inputs.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:195)
+- Current tests mainly cover pure manual or pure structured shapes, not ambiguous mixed-shape misroutes: [runtime-memory-inputs.vitest.ts:167](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:167), [runtime-memory-inputs.vitest.ts:195](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:195)
 
 4. **Deferred vs fix now**
 - Historical defer rationale exists (“unclear scope, dual-format support works”): [tasks.md:39](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/tasks.md:39), [implementation-summary.md:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/022-research-remediation/implementation-summary.md:47)

@@ -17,7 +17,7 @@ Realign every per-feature snippet in the repo to the canonical sk-doc shape:
 ## 4. SOURCE METADATA
 ```
 
-Source of truth: `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
+Source of truth: `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
 
 ### Repo-wide audit (already complete; results below)
 
@@ -25,23 +25,23 @@ All 6 feature_catalog dirs were inventoried. **4 catalogs (350 per-feature files
 
 | Catalog | Per-feature files | Status |
 |---------|-------------------|--------|
-| `.opencode/skill/sk-deep-research/feature_catalog/` | 15 | ✓ CONFORMANT — lint only |
-| `.opencode/skill/sk-deep-review/feature_catalog/` | 20 | ✓ CONFORMANT (TOC inside Section 1 — minor; align if cheap) |
-| `.opencode/skill/sk-improve-agent/feature_catalog/` | 13 | ✓ CONFORMANT — lint only |
-| `.opencode/skill/system-spec-kit/feature_catalog/` | 302 | ✓ CONFORMANT — lint only (sample 5-10 to confirm; full 302 at risk if 040 evergreen-rule replaced any sections) |
-| **`.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/`** | **17** | **✗ REALIGN (uses SURFACE/TRIGGER/CLASS/CAVEATS/CROSS-REFS)** |
-| **`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`** | **37** | **✗ REALIGN (uses PURPOSE + TEST COVERAGE + RELATED)** |
+| `.opencode/skills/sk-deep-research/feature_catalog/` | 15 | ✓ CONFORMANT — lint only |
+| `.opencode/skills/sk-deep-review/feature_catalog/` | 20 | ✓ CONFORMANT (TOC inside Section 1 — minor; align if cheap) |
+| `.opencode/skills/sk-improve-agent/feature_catalog/` | 13 | ✓ CONFORMANT — lint only |
+| `.opencode/skills/system-spec-kit/feature_catalog/` | 302 | ✓ CONFORMANT — lint only (sample 5-10 to confirm; full 302 at risk if 040 evergreen-rule replaced any sections) |
+| **`.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/`** | **17** | **✗ REALIGN (uses SURFACE/TRIGGER/CLASS/CAVEATS/CROSS-REFS)** |
+| **`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/`** | **37** | **✗ REALIGN (uses PURPOSE + TEST COVERAGE + RELATED)** |
 
 Root-index files (`feature_catalog.md`) at all 6 catalog roots are conformant (TOC + OVERVIEW + per-category sections); leave them alone.
 
 ### Read these first
 
-- `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` (canonical 4-section per-feature shape)
-- `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` (root-index template — for context)
-- A reference example: `.opencode/skill/sk-improve-agent/feature_catalog/01--evaluation-loop/01-rubric-loader.md` (cleanly conformant)
-- `.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md` (honor in any new content)
-- `.opencode/skill/sk-doc/references/global/core_standards.md`
-- `.opencode/skill/sk-doc/references/global/hvr_rules.md`
+- `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` (canonical 4-section per-feature shape)
+- `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` (root-index template — for context)
+- A reference example: `.opencode/skills/sk-improve-agent/feature_catalog/01--evaluation-loop/01-rubric-loader.md` (cleanly conformant)
+- `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor in any new content)
+- `.opencode/skills/sk-doc/references/global/core_standards.md`
+- `.opencode/skills/sk-doc/references/global/hvr_rules.md`
 
 ### Phase 1: Lint pass on conformant catalogs (350 files; quick scan)
 

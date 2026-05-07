@@ -1,6 +1,6 @@
 # Audit QA1-O02: collect-session-data.ts
 
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` (853 LOC)
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` (853 LOC)
 **Auditor:** Claude Opus 4.6 (@review agent)
 **Date:** 2026-03-09
 **Focus:** SPEC_FOLDER backfill correctness, null safety on sparse stateless payloads, extractor orchestration order, data integrity through pipeline

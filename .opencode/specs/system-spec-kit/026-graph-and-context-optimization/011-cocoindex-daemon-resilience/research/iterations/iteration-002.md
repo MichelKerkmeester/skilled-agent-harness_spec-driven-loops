@@ -15,7 +15,7 @@ Quantify the TOCTOU race between the proposed `_pid_alive(pid)` pre-flight and t
     2. `_pid_alive(pid)` → `os.kill(pid, 0)` syscall, ~10 µs on macOS (`SOURCE: client.py:242-263`).
     3. Decision to spawn: ~1 µs Python.
     4. `subprocess.Popen(["ccc","run-daemon"], start_new_session=True, ...)` → `posix_spawn` ~1–3 ms cold; the *child returns immediately to the parent*, but the new daemon's own startup until it executes `Path(sock_path).unlink(missing_ok=True)` (`SOURCE: daemon.py:613-617`) and then `Listener(sock_path, family=...)` (`SOURCE: daemon.py:619`) takes **~5–60 ms** depending on Python interpreter cold-start, settings load (`load_user_settings()` at `daemon.py:556`), and embedder construction (`create_embedder` at `daemon.py:564`) — embedder construction in particular can stretch this to seconds for first-time model load.
-  - `multiprocessing.connection.Listener` on AF_UNIX calls `socket.bind(path)`. macOS `bind()` on AF_UNIX returns `EADDRINUSE` (errno 48) only if the path *currently has a bound socket file*. Because step 1 of `_async_daemon_main()` is `Path(sock_path).unlink(missing_ok=True)`, **collision detection at the `bind()` step is permanently disabled** — the previous daemon's socket file is removed before the new bind attempts, so the new bind always succeeds and the old daemon's `accept()` keeps polling a now-orphaned inode (its FD is still valid, but no client can reach it). [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:611-620]
+  - `multiprocessing.connection.Listener` on AF_UNIX calls `socket.bind(path)`. macOS `bind()` on AF_UNIX returns `EADDRINUSE` (errno 48) only if the path *currently has a bound socket file*. Because step 1 of `_async_daemon_main()` is `Path(sock_path).unlink(missing_ok=True)`, **collision detection at the `bind()` step is permanently disabled** — the previous daemon's socket file is removed before the new bind attempts, so the new bind always succeeds and the old daemon's `accept()` keeps polling a now-orphaned inode (its FD is still valid, but no client can reach it). [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:611-620]
   - **Stack-up scenario** (3 racing callers, all see PID dead because the previous daemon just exited):
     - Caller A: `os.kill(pid_dead, 0)` → ProcessLookupError, returns False, `Popen` (~1 ms). Daemon A starts at T+0.
     - Caller B: same, `Popen` ~200 µs later.
@@ -27,7 +27,7 @@ Quantify the TOCTOU race between the proposed `_pid_alive(pid)` pre-flight and t
 ### P0-5 (NEW) — `daemon.py:568` `pid_path.write_text(str(os.getpid()))` is unconditional and leaves no audit trail
 - **Severity**: P0 (necessary companion to P0-4's lock recommendation)
 - **Evidence**:
-  - `run_daemon()` writes the PID file with no check on existing content: `pid_path.write_text(str(os.getpid()))` [SOURCE: .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:567-568].
+  - `run_daemon()` writes the PID file with no check on existing content: `pid_path.write_text(str(os.getpid()))` [SOURCE: .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:567-568].
   - If two daemons race past `start_daemon()` and both reach `run_daemon()`, both blindly overwrite `daemon.pid`. The "winner" is whoever writes last. The previous daemon's PID is **lost from the file system** the moment the second daemon writes — there is no way to recover the orphaned PID short of `pgrep -f "ccc run-daemon"`. This is exactly why PID 98364 was untracked: PID 16404 overwrote `daemon.pid` at 17:08:49 on Apr 27.
   - There is **no `atexit` handler** registered to clean the PID file under abnormal exit (covered by the `try/finally` in `run_daemon()` at `daemon.py:583-602` only — bypassed on `SIGKILL`).
 - **Conclusion**: When the lock-based fix lands (P0-4), the PID write must move *inside* the lock-held region. Recommend: open `daemon.pid` with `O_CREAT | O_EXCL` first, fall back to `flock` + truncate + write on the existing file. Either way, only the lock holder may write the PID. This also gives operators an immediate "second daemon refused to start" signal in `daemon.log`.
@@ -169,8 +169,8 @@ This checklist covers transition states and explicitly mentions the still-open r
 - **Partial success**: None — three planned questions all answered with file:line evidence.
 
 ## Sources Consulted
-- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:180-263, 266-443
-- .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:540-675
+- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:180-263, 266-443
+- .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:540-675
 - ripgrep `resource_tracker|multiprocessing|fork|spawn\(|Process\(|daemon_pid_path|pid_path\.write_text|fcntl|flock` over `mcp_server/`
 - ripgrep `Process\(|SemLock|Pool\(|set_start_method|atexit` over `mcp_server/`
 - iter-001.md (P0-2 mechanism reference)

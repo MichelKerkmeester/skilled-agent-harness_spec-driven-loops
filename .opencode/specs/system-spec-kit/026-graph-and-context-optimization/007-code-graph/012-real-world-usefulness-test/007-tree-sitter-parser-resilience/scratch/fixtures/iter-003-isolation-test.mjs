@@ -27,24 +27,24 @@ import { createRequire } from 'node:module';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const localRequire = createRequire(import.meta.url);
 
-// Climb until we find .opencode/skill/system-spec-kit (more robust than counting ..)
+// Climb until we find .opencode/skills/system-spec-kit (more robust than counting ..)
 function findRepoRoot(start) {
   let dir = start;
   while (dir !== '/' && dir.length > 1) {
     try {
-      readFileSync(resolve(dir, '.opencode/skill/system-spec-kit/mcp_server/package.json'));
+      readFileSync(resolve(dir, '.opencode/skills/system-spec-kit/mcp_server/package.json'));
       return dir;
     } catch { dir = dirname(dir); }
   }
   throw new Error('Could not locate repo root from ' + start);
 }
 const REPO = findRepoRoot(__dirname);
-const MCP = resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server');
+const MCP = resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server');
 
 const FIXTURES = {
   vitestConfig: resolve(REPO, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/029-stress-test-v1-0-4/measurements/vitest.phase-k.config.ts'),
-  cleanTs: resolve(REPO, '.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts'),
-  bashScript: resolve(REPO, '.opencode/command/doctor/scripts/mcp-doctor-lib.sh'),
+  cleanTs: resolve(REPO, '.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts'),
+  bashScript: resolve(REPO, '.opencode/commands/doctor/scripts/mcp-doctor-lib.sh'),
   runnersCommon: resolve(REPO, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/common.ts'),
 };
 

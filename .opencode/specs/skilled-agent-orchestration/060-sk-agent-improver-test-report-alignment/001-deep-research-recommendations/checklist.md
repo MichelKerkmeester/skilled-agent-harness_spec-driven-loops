@@ -34,7 +34,7 @@ _memory:
 - [ ] **T-002 — description.json and graph-metadata.json exist**
   - Evidence: `ls .opencode/specs/.../060-.../description.json .opencode/specs/.../060-.../graph-metadata.json`
 - [ ] **T-003 — Strict-validate exits 0**
-  - Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict; echo $?` → `0`
+  - Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict; echo $?` → `0`
 <!-- /ANCHOR:phase-1-checklist -->
 
 ---

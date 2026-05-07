@@ -33,14 +33,14 @@ MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break durin
 [What to investigate next]
 
 ACCUMULATED FINDINGS SUMMARY:
-chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: Hard expiry should stay opt-in and explicitly ephemeral
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
 - **What it does**: Public supports explicit `retentionPolicy` and `deleteAfter`, and governed ingest rejects `ephemeral` saves without a future expiry. I found test/audit evidence for a `retention_sweep` action, but I did not locate a concrete runtime sweep implementation in this checkout.
 - **Why it matters**: This is the correct shape for hard expiry: explicit, narrow, and policy-driven. The gap is operational visibility, not the policy model itself.
 --
@@ -53,7 +53,7 @@ chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environmen
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 --- Iteration 28 ---
 ## Findings
@@ -62,7 +62,7 @@ chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environmen
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
@@ -81,14 +81,14 @@ chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environmen
 - **Impact**: high
 
 ### Finding 5: Public already measures index integrity and storage health
-- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: Public reports embedding readiness and retry stats, vector availability, FTS5 parity, alias conflicts, orphan-edge cleanup, by-status embedding counts, trigger totals, tier breakdown, database size, last indexed time, and startup projection health.
 --
 ## Findings
 - **Why it matters**: This is the right architecture for long-lived memory. Permanence, recall probability, and current-session salience should stay independent so we do not accidentally make durable rules feel “old” or recent noise feel “important.”
 - **Recommendation**: adopt now
 ### Finding 8: Reject re-platforming Public’s retrieval or mutation core around Mnemosyne
-- **Source**: [external/src/index.ts:104-135](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [memory-search.ts:771-809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts), [hybrid-search.ts:1530-1590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts), [mcp-coco-index/README.md:85-143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md), [archival-manager.ts:490-555](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts)
+- **Source**: [external/src/index.ts:104-135](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [memory-search.ts:771-809](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts), [hybrid-search.ts:1530-1590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts), [mcp-coco-index/README.md:85-143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md), [archival-manager.ts:490-555](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts)
 - **Evidence type**: both
 - **What it does**: Mnemosyne exposes a thin search/delete/store contract, while Public already has a deeper hybrid pipeline, confidence truncation, derived indexes, soft archival, and a separate semantic-code-search role for CocoIndex.
 - **Why it matters**: The transfer value is wrapper ergonomics and compaction behavior, not ranking math, hard-delete semantics, or system fusion.
@@ -102,7 +102,7 @@ chival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environmen
 - Best immediate moves: add the compaction memory action card, and formalize Public’s existing validation/archival/health telemetry as the benchmark baseline.
 - Best near-term builds: compaction continuity benchmarking and an audited inline `memory_remember` path.
 - Strongest rejections: basename-derived scope, `core=true` as a primary-surface shortcut, and any attempt to replace Public’s retrieval/mutation core with Mnemosyne’s thinner wrapper model.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; the same run emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; the same run emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - This was a static-analysis synthesis only. The sandbox is read-only, so I did not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or save memory artifacts in the phase folder.
 
 ## Recommended Next Focus
@@ -128,8 +128,8 @@ Open two packet-ready follow-ons first: one `P1` packet for the transport-owned 
 ## Findings
 ### Finding N: [Title]
 - **Source**: file path(s)
-- [memory-crud-stats.ts:126-175](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L126)
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` -> `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp warning.
+- [memory-crud-stats.ts:126-175](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L126)
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` -> `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp warning.
 
 ## Assessment
 - New information ratio: `0.08`
@@ -179,7 +179,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -195,11 +195,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -207,7 +207,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -238,7 +238,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -623,9 +623,9 @@ When to use memory:
 };
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "DEEP RESEARCH iteration 32 of 40 final extended run on external memory system; migration risk matrix for adopt-now patterns in Mnemosyne vs Spec Kit Memory" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "DEEP RESEARCH iteration 32 of 40 final extended run on external memory system; migration risk matrix for adopt-now patterns in Mnemosyne vs Spec Kit Memory" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1753ms:
 
 ───────────────────────────────────────────────────────────────
@@ -640,7 +640,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -874,7 +874,7 @@ MIT
 codex
 Skill routing is clear: `system-spec-kit` and `sk-deep-research` both pass strongly, with `mcp-coco-index` also relevant for unfamiliar-code discovery. I’m loading just the minimal skill instructions now, then I’ll finish source collection against Public’s migration-sensitive paths.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -892,7 +892,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -1098,7 +1098,7 @@ Save --> generate-context.js --> verify memory artifact
 | **Findings registry** | Reducer-owned open/resolved questions, key findings, and ruled-out directions |
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: system-spec-kit
@@ -1322,7 +1322,7 @@ COMMAND_BOOSTS = {
     "/spec_kit:complete": "COMPLETE",
 
 exec
-/bin/zsh -lc "sed -n '1,200p' .opencode/skill/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,200p' .opencode/skills/mcp-coco-index/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: mcp-coco-index
@@ -1534,1903 +1534,1903 @@ mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc "rg -n \"experimental\\.session\\.compacting|memory_validate|access_count|last_accessed|retentionPolicy|deleteAfter|includeArchived|unarchive|archiv|confidence|validationCount|positiveValidationCount|core=true|project\\|global|memory_recall_global|memory_store_global\" .opencode/plugins .opencode/skill/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"experimental\\.session\\.compacting|memory_validate|access_count|last_accessed|retentionPolicy|deleteAfter|includeArchived|unarchive|archiv|confidence|validationCount|positiveValidationCount|core=true|project\\|global|memory_recall_global|memory_store_global\" .opencode/plugins .opencode/skills/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:107:// T059: Archival manager for automatic archival of ARCHIVED state memories
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:108:import * as archivalManager from './lib/cognitive/archival-manager.js';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:707:      includeArchived: true,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1363:  runCleanupStep('archivalManager', () => archivalManager.cleanup());
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1576:      archivalManager,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1728:    // T059: Archival Manager for automatic archival of ARCHIVED state memories
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1730:      archivalManager.init(database);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1731:      // Start background archival job (scans every hour by default)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1732:      archivalManager.startBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1733:      if (archivalManager.isBackgroundJobRunning()) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1738:    } catch (archivalErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1739:      const message = archivalErr instanceof Error ? archivalErr.message : String(archivalErr);
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:46:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:76:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:369:  // shadow-only (auto-merge at >= 0.96 only archives old record).
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:396:          // Auto-merge: archive the older memory record (shadow operation —
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:397:          // we mark is_archived so it is excluded from future search results
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:415:            console.warn(`[reconsolidation-bridge] assistive auto-merge archive failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:535:        const archivePlaceholders = oldChildIds.map(() => '?').join(', ');
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:540:          WHERE id IN (${archivePlaceholders})
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:159:      includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:170:      includeArchived: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:173:        description: 'Include archived memories in search results. Default: false (archived excluded).'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:233:  inputSchema: { type: 'object', additionalProperties: false, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by memory count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:24:const SPEC_DOC_EXCLUDE_DIRS = new Set(['scratch', 'memory', 'node_modules', 'iterations', 'z_archive']);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:63:    includeArchived = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:105:  if (includeArchived !== undefined && typeof includeArchived !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:108:      error: 'includeArchived must be a boolean',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:182:      if (!includeArchived) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:214:        includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:240:          .filter(([folder]) => includeArchived || !folderScoring.isArchived(folder))
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:127:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:733:    includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:787:      includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:98:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:99:  positiveValidationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:786:      validationCount: result.validationCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:787:      positiveValidationCount: result.positiveValidationCount,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
-.opencode/skill/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
-.opencode/skill/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
-.opencode/skill/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
-.opencode/skill/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
-.opencode/skill/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
-.opencode/skill/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
-.opencode/skill/system-spec-kit/mcp_server/README.md:758:| `includeArchived` | boolean | Include ARCHIVED state memories in counts |
-.opencode/skill/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
-.opencode/skill/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:75:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:120:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:149:  includeArchived: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:253:  includeArchived: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:468:  memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:73:    { id: 905, content: 'Memory archival operations and retention policies for old sessions. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:57:  'access_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:58:  'last_accessed',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:72:  'is_archived',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:133:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:134:      last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:148:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:174:    CREATE INDEX IF NOT EXISTS idx_access_importance ON memory_index(access_count DESC, importance_weight DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:180:    CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:158:      SET access_count = access_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:159:          last_accessed = ?
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:84:      AND (m.is_archived IS NULL OR m.is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:123:        is_archived INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:148:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:421:      // F04-001: Append-only merge — old row (id=100) is archived, new row holds merged content.
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:422:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 100').get() as {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:423:        is_archived: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:425:      expect(oldRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:460:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 101').get() as {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:461:        is_archived: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:463:      expect(oldRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:496:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:497:        'SELECT is_archived FROM memory_index WHERE id = 102'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:498:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:499:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:514:    it('MP4: Keeps merged survivor reachable through active projection and hides archived predecessor', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:571:      const archivedRow = testDb.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:572:        SELECT is_archived
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:575:      `).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:576:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:701:        SELECT id, is_archived, content_text
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:704:      `).all() as Array<{ id: number; is_archived: number; content_text: string | null }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:706:        { id: 105, is_archived: 0, content_text: 'Concurrent writer content' },
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:744:      const archivedRow = testDb.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:745:        SELECT is_archived
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:748:      `).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:749:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:929:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:930:        'SELECT is_archived FROM memory_index WHERE id = 400'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:931:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:932:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1049:      const archivedRow = testDb.prepare(
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1050:        'SELECT is_archived FROM memory_index WHERE id = 450'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1051:      ).get() as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1052:      expect(archivedRow.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:346:        SELECT id, strength, last_accessed, created_by FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:347:        WHERE last_accessed IS NOT NULL
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:348:          AND last_accessed > datetime('now', '-7 days')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:370:        SELECT id, strength, last_accessed, created_by FROM causal_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:371:        WHERE (last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days'))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:372:           OR (last_accessed IS NOT NULL AND last_accessed < datetime('now', '-' || ? || ' days'))
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:27:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:43:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:45:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:238:  it('ignores archived and deprecated siblings that are no longer retrievable', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:246:      title: 'authentication login session token validation handler middleware security user access archived',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:364:  it('skips archived and deprecated rows during batch scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:377:      title: 'authentication login session token validation handler middleware security user access archived',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:478:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:502:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:529:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:552:      access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:107:// T059: Archival manager for automatic archival of ARCHIVED state memories
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:108:import * as archivalManager from './lib/cognitive/archival-manager.js';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:707:      includeArchived: true,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1363:  runCleanupStep('archivalManager', () => archivalManager.cleanup());
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1576:      archivalManager,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1728:    // T059: Archival Manager for automatic archival of ARCHIVED state memories
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1730:      archivalManager.init(database);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1731:      // Start background archival job (scans every hour by default)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1732:      archivalManager.startBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1733:      if (archivalManager.isBackgroundJobRunning()) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1738:    } catch (archivalErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1739:      const message = archivalErr instanceof Error ? archivalErr.message : String(archivalErr);
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:223:| `SPECKIT_ARCHIVAL` | `true` | boolean | Archival manager for aging out stale memories (90-day max age). Graduated ON. | `lib/cognitive/archival-manager.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:46:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:76:type CrudMutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:369:  // shadow-only (auto-merge at >= 0.96 only archives old record).
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:396:          // Auto-merge: archive the older memory record (shadow operation —
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:397:          // we mark is_archived so it is excluded from future search results
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:402:              SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:410:              `[reconsolidation-bridge] assistive auto-merge: archived older=${topId} ` +
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:415:            console.warn(`[reconsolidation-bridge] assistive auto-merge archive failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:535:        const archivePlaceholders = oldChildIds.map(() => '?').join(', ');
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:540:          WHERE id IN (${archivePlaceholders})
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:159:      includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:170:      includeArchived: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:173:        description: 'Include archived memories in search results. Default: false (archived excluded).'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:233:  inputSchema: { type: 'object', additionalProperties: false, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by memory count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:24:const SPEC_DOC_EXCLUDE_DIRS = new Set(['scratch', 'memory', 'node_modules', 'iterations', 'z_archive']);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:63:    includeArchived = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:105:  if (includeArchived !== undefined && typeof includeArchived !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:108:      error: 'includeArchived must be a boolean',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:182:      if (!includeArchived) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:214:        includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:240:          .filter(([folder]) => includeArchived || !folderScoring.isArchived(folder))
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:127:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:203:  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:520:    includeArchived: includeArchived = false, // REQ-206: exclude archived by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:733:    includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:787:      includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:98:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:99:  positiveValidationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:786:      validationCount: result.validationCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:787:      positiveValidationCount: result.positiveValidationCount,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
+.opencode/skills/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
+.opencode/skills/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
+.opencode/skills/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
+.opencode/skills/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
+.opencode/skills/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
+.opencode/skills/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
+.opencode/skills/system-spec-kit/mcp_server/README.md:758:| `includeArchived` | boolean | Include ARCHIVED state memories in counts |
+.opencode/skills/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
+.opencode/skills/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:75:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:120:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:149:  includeArchived: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:253:  includeArchived: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:468:  memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:73:    { id: 905, content: 'Memory archival operations and retention policies for old sessions. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:57:  'access_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:58:  'last_accessed',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:72:  'is_archived',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:133:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:134:      last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:148:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:174:    CREATE INDEX IF NOT EXISTS idx_access_importance ON memory_index(access_count DESC, importance_weight DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:180:    CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1281:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:158:      SET access_count = access_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:159:          last_accessed = ?
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:84:      AND (m.is_archived IS NULL OR m.is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:123:        is_archived INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:148:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:421:      // F04-001: Append-only merge — old row (id=100) is archived, new row holds merged content.
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:422:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 100').get() as {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:423:        is_archived: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:425:      expect(oldRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:460:      const oldRow = testDb.prepare('SELECT is_archived FROM memory_index WHERE id = 101').get() as {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:461:        is_archived: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:463:      expect(oldRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:496:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:497:        'SELECT is_archived FROM memory_index WHERE id = 102'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:498:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:499:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:514:    it('MP4: Keeps merged survivor reachable through active projection and hides archived predecessor', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:571:      const archivedRow = testDb.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:572:        SELECT is_archived
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:575:      `).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:576:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:701:        SELECT id, is_archived, content_text
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:704:      `).all() as Array<{ id: number; is_archived: number; content_text: string | null }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:706:        { id: 105, is_archived: 0, content_text: 'Concurrent writer content' },
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:744:      const archivedRow = testDb.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:745:        SELECT is_archived
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:748:      `).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:749:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:929:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:930:        'SELECT is_archived FROM memory_index WHERE id = 400'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:931:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:932:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1049:      const archivedRow = testDb.prepare(
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1050:        'SELECT is_archived FROM memory_index WHERE id = 450'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1051:      ).get() as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:1052:      expect(archivedRow.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:346:        SELECT id, strength, last_accessed, created_by FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:347:        WHERE last_accessed IS NOT NULL
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:348:          AND last_accessed > datetime('now', '-7 days')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:370:        SELECT id, strength, last_accessed, created_by FROM causal_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:371:        WHERE (last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days'))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:372:           OR (last_accessed IS NOT NULL AND last_accessed < datetime('now', '-' || ? || ' days'))
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:27:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:43:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:45:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:71:    INSERT INTO memory_index (title, trigger_phrases, spec_folder, parent_id, importance_tier, is_archived)
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:238:  it('ignores archived and deprecated siblings that are no longer retrievable', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:246:      title: 'authentication login session token validation handler middleware security user access archived',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:364:  it('skips archived and deprecated rows during batch scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:377:      title: 'authentication login session token validation handler middleware security user access archived',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:478:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:502:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:529:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:552:      access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
 .opencode/plugins/spec-kit-compact-code-graph.js:396:    'experimental.session.compacting': async (input, output) => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:114:  it('returns the merged survivor id instead of the archived predecessor id', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:152:  it('removes archived assistive auto-merge documents from the BM25 singleton', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:153:    const archiveRun = vi.fn();
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:155:      prepare: vi.fn(() => ({ run: archiveRun })),
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:192:    expect(archiveRun).toHaveBeenCalledWith(55);
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:45:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:46:      last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1329:    'access_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1330:    'last_accessed',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1344:    'is_archived',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:124:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:274:        '/archive/specs/002-feature/memory/implementation-notes.md.bak',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:275:        '/archive/specs/002-feature/memory/implementation-notes.md.bak',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:160:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:37:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:73:    it('T211: 89 days + low R => NOT archived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:171:    it('T226: Constitutional => never archive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:175:    it('T227: Critical => never archive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:179:    it('T228: Pinned => never archive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:183:    it('T229: Old low-stability normal => should archive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:187:    it('T230: Recent high-stability => should NOT archive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:19:    access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:37:      access_count: 100,
-.opencode/skill/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:49:      access_count: 100,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:349:  // D1: All fields are serialized for archival — only `.snapshot` is read back
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:212:      includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:61:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/usage-weighted-ranking.vitest.ts:23:      access_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/usage-weighted-ranking.vitest.ts:56:    expect(columns.filter((column) => column.name === 'access_count')).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:278:    it('Rejects spec.md in /z_archive/ directory', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:279:      expect(isMemoryFile('/p/.opencode/specs/003/100/z_archive/spec.md')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:427:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:473:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:497:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:776:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:868:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:869:        last_accessed: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:911:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:912:        last_accessed: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:24:    validationCount = 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:68:    expect(info.validationCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:69:    expect(info.positiveValidationCount).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:73:  it('recordValidation reports positiveValidationCount separately from total validationCount', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:77:    expect(negativeResult.validationCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:79:    expect(negativeResult.positiveValidationCount).toBe(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:86:    expect(positiveResult.validationCount).toBe(6);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:87:    expect(positiveResult.positiveValidationCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:92:    insertMemory(3, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:98:    expect(blocked.validationCount).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:101:    insertMemory(4, { tier: 'normal', validationCount: 7 });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:107:    expect(eligible.validationCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:118:    insertMemory(10, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:119:    insertMemory(11, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:15:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:16:  positiveValidationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:31:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:32:  positiveValidationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:41:  validationCount?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:69:  positiveValidationCount: number
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:76:    positiveValidationCount >= PROMOTION_VALIDATION_THRESHOLD;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:130:      const currentValidationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:143:      const positiveValidationCount = resolvePositiveValidationCount(
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:152:        positiveValidationCount
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:167:        validationCount: newValidationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:168:        positiveValidationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:222:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:224:    const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:251:      const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:253:      const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:        `and positive_validation_count >= ${PROMOTION_VALIDATION_THRESHOLD} (current: ${positiveValidationCount})`
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:294:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:296:    const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:301:      validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:302:      positiveValidationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:309:        validationsMet: positiveValidationCount >= PROMOTION_VALIDATION_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:289:      // Mark existing memory as archived (superseded)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:292:        SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:834:  const value = row.is_archived;
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:19:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:53:    expect(plan.compaction?.hook).toBe('experimental.session.compacting');
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:201:  access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:236:  { spec_folder: 'z_archive/001-old', updated_at: '2024-06-01', importance_tier: 'deprecated' },
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:239:const ranked = computeFolderScores(memories, { includeArchived: false });
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:260:> **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:261:> The code type-casts to include both `validationCount` and `validation_count` for safety,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:271:| Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:262:        access_count: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:277:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:293:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:324:        access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:343:        access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:353:        access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:372:        access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:411:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:456:        access_count: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:488:        access_count: 1e10,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:532:          access_count: -100,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:539:          access_count: Number.NEGATIVE_INFINITY,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:599:          access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:609:          access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:628:          access_count: 100,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:638:          access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:660:          access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:670:          access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:680:          access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:699:          access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:761:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:943:        access_count: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:965:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:983:        access_count: -50,
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:997:        { similarity: 50, access_count: 5 },
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:75:  last_accessed: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:854:    "UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?"
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:863:      WHERE (last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days'))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:864:         OR (last_accessed IS NOT NULL AND last_accessed < datetime('now', '-' || ? || ' days'))
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:865:      ORDER BY COALESCE(last_accessed, extracted_at) ASC
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:29:    access_count: 15,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:30:    last_accessed: 1706800000,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:78:    validationCount: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:214:    expect(memory.validationCount).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:194:    includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:357:          is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:391:      is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:428:          is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:439:          is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:477:          is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:491:          is_archived: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:53:    hasArchivedColumn: columnSet.has('is_archived'),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:62:    predicates.push(`COALESCE(${alias}.is_archived, 0) = 0`);
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:123:    includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:164:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:238:      const memory = { importance_tier: 'normal', access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:246:      const memory = { importance_tier: 'normal', access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:252:      const memory = { importance_tier: 'normal', access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:74:      includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:198:  it('T033-07: No last_accessed fallback — uncited memory scores 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:200:    const score = calculateCitationScore({ last_accessed: Date.now() });
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:275:      access_count: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:294:      calculateFiveFactorScore({ access_count: 10000 }, {}),
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:314:      { id: 1, access_count: 0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:315:      { id: 2, access_count: 10, lastReview: now.toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:322:    const results: BatchScoreInput[] = [{ id: 1, access_count: 5 }];
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:349:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:355:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:393:      access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:414:        access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:473:    const row = { title: 'authentication', similarity: 70, access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:482:    const recent = { lastCited: now.toISOString(), access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:483:    const old = { lastCited: oldDate.toISOString(), access_count: 5 };
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:494:      access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:503:      access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:803:  it('EDGE-COMP-02: Row with only access_count', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:804:    const score = calculateFiveFactorScore({ access_count: 10 }, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:810:    const row = { access_count: 10 };
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:823:      access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:838:      access_count: 100,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:875:      { id: 1, access_count: 5, created_at: now.toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:876:      { id: 2, access_count: 5, created_at: now.toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:887:      results.push({ id: i, access_count: i % 20 });
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:910:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:918:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:20:import * as archivalManager from '../lib/cognitive/archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:35:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:36:  access_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:46:  archivalManager.__setEmbeddingsModuleForTests(null);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:76:      last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:77:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:79:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:80:      archived_at TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:115:    data.last_accessed || 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:116:    data.access_count || 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:139:      expect(() => archivalManager.init(requireDb())).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:142:    it('T059-002: is_archived column exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:145:      expect(columns.map(column => column.name)).toContain('is_archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:149:      expect(archivalManager.ARCHIVAL_CONFIG).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:150:      expect(typeof archivalManager.ARCHIVAL_CONFIG.scanIntervalMs).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:154:      const config = archivalManager.ARCHIVAL_CONFIG;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:166:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:177:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:187:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:193:      const candidates = archivalManager.getArchivalCandidates(100);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:206:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:212:      const candidates = archivalManager.getArchivalCandidates(100);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:225:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:230:      const candidates = archivalManager.getArchivalCandidates(100);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:243:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:248:      const candidates = archivalManager.getArchivalCandidates(100);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:261:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:268:    it('T059-010: archiveMemory returns true on success', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:279:      const archiveResult = archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:280:      expect(archiveResult).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:283:    it('T059-011: is_archived flag set to 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:294:      archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:295:      const row = requireDb().prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id) as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:296:      expect(row.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:299:    it('T059-012: unarchiveMemory succeeds', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:310:      archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:311:      const unarchiveResult = archivalManager.unarchiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:312:      expect(unarchiveResult).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:314:      const row = requireDb().prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id) as { is_archived: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:315:      expect(row.is_archived).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:318:    it('T059-012c: archive and unarchive invalidate graph caches on success', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:329:      expect(archivalManager.archiveMemory(memory_id)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:330:      expect(archivalManager.unarchiveMemory(memory_id)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:336:    it('T059-013: Batch archive succeeds', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:350:      const batchResult = archivalManager.archiveBatch(idsToArchive);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:351:      expect(batchResult.archived).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:355:    it('T059-014: archiveMemory on already-archived returns false', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:366:      archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:367:      const alreadyArchived = archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:371:    it('T059-011b: archiveMemory removes vec_memories row but preserves memory_index archive state', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:392:      const archiveResult = archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:393:      expect(archiveResult).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:395:      const archivedRow = requireDb()
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:396:        .prepare('SELECT is_archived FROM memory_index WHERE id = ?')
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:397:        .get(memory_id) as { is_archived: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:398:      expect(archivedRow).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:399:      expect(archivedRow?.is_archived).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:407:    it('T059-012b: unarchiveMemory defers vector re-embedding to next index scan', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:413:        content_text: 'Rebuild vector content on unarchive',
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:425:      archivalManager.__setEmbeddingsModuleForTests({
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:432:      expect(archivalManager.archiveMemory(memory_id)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:434:      const archivedVector = requireDb()
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:437:      expect(archivedVector).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:439:      // Capture deferred-rebuild log emitted by syncVectorOnUnarchive
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:442:        expect(archivalManager.unarchiveMemory(memory_id)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:445:        const vectorAfterUnarchive = requireDb()
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:448:        expect(vectorAfterUnarchive).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:464:    it('T059-011c: archiveMemory suppresses vec_memories no-such-table cleanup errors', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:477:        const archiveResult = archivalManager.archiveMemory(memory_id);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:478:        expect(archiveResult).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:482:          return text.includes('Vector archive sync failed')
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:499:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:500:      archivalManager.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:507:    it('T059-015: Archival scan archives candidates', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:514:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:520:        access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:526:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:534:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:540:      const scanResult = archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:541:      expect(scanResult.archived).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:551:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:557:      const scanResult = archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:568:        access_count: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:574:      const scanResult = archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:575:      const scan2Result = archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:576:      expect(scan2Result.archived).toBeLessThanOrEqual(scanResult.archived);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:586:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:590:      archivalManager.stopBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:595:      expect(() => archivalManager.startBackgroundJob(60000)).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:599:      archivalManager.startBackgroundJob(60000);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:600:      expect(archivalManager.isBackgroundJobRunning()).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:604:      archivalManager.startBackgroundJob(60000);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:605:      expect(() => archivalManager.stopBackgroundJob()).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:609:      archivalManager.startBackgroundJob(60000);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:610:      archivalManager.stopBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:611:      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:621:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:622:      archivalManager.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:637:          access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:645:      archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:646:      const stats = archivalManager.getStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:658:          access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:666:      archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:667:      const stats = archivalManager.getStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:678:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:684:      archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:685:      const stats = archivalManager.getStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:690:      archivalManager.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:691:      const stats = archivalManager.getStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:702:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:717:      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:730:      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:735:      const missingStatus = archivalManager.checkMemoryArchivalStatus(99999);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:751:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:752:      archivalManager.startBackgroundJob(60000);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:753:      archivalManager.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:754:      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:759:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:760:      archivalManager.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:761:      const stats = archivalManager.getStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:769:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:770:      archivalManager.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:771:      const candidates = archivalManager.getArchivalCandidates();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:776:    it('T059-032: archiveMemory returns false without db', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:778:      archivalManager.init(requireDb());
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:779:      archivalManager.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:780:      const result = archivalManager.archiveMemory(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:90:      access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:100:      access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:132:      access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:230:        access_count: 20,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring.vitest.ts:240:        access_count: 20,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:15:type MutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:93:    mutation_type TEXT NOT NULL CHECK(mutation_type IN ('create','update','delete','merge','archive','restore','reindex')),
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:62:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:302:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:318:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:332:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:346:    // Set last_accessed to 31 days ago
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:347:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now', '-31 days') WHERE id = ?").run(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:362:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:376:      INSERT INTO causal_edges (source_id, target_id, relation, strength, created_by, last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:397:    // Set extracted_at to 91 days ago (no last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:409:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE source_id = '1'").run();
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:272: * Parse last_accessed value that may be:
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:392:  // Never fall back to last_accessed or updated_at — those conflate
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:614:  const usageScore = calculateUsageScore(row.access_count || 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:668:  const popularityScore = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:711:      usage: calculateUsageScore(row.access_count || 0),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:752:        popularity: calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:784:  const usage = calculateUsageScore(row.access_count || 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:832:  const popularity = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:374:            is_archived INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:391:            last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:97:      is_archived INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:122:  validationCount?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:130:    validationCount = 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:727:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:735:    insertMemory(testDb, 1, { tier: 'important', validationCount: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:743:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 3 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:751:    insertMemory(testDb, 1, { tier: 'important', validationCount: 7 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:758:    insertMemory(testDb, 1, { tier: 'critical', validationCount: 20 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:765:    insertMemory(testDb, 1, { tier: 'constitutional', validationCount: 100 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:772:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:781:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:790:    insertMemory(testDb, 1, { tier: 'critical', validationCount: 0 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:799:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:800:    insertMemory(testDb, 2, { tier: 'normal', validationCount: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:801:    insertMemory(testDb, 3, { tier: 'important', validationCount: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:814:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:815:    insertMemory(testDb, 2, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:816:    insertMemory(testDb, 3, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:817:    insertMemory(testDb, 4, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:855:    insertMemory(testDb, 5, { tier: 'normal', validationCount: 5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
-.opencode/skill/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:41:        last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:404:      '../lib/cognitive/archival-manager',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:707:      vi.doMock('../lib/cognitive/archival-manager', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1963:    // T44: Shutdown stops archival manager
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1964:    it('T44: Shutdown stops archival manager', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1965:      expect(sourceCode).toMatch(/archivalManager\.cleanup\(\)/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2257:      { module: './lib/cognitive/archival-manager.js', name: 'Archival manager' },
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:70:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:80:      "expectedResultDescription": "Should surface memories about SPECKIT_WORKING_MEMORY, SPECKIT_EVENT_DECAY, working-memory.ts, and archival-manager.ts. The relationship is that event decay reduces attention scores over time.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:630:      "expectedResultDescription": "Should surface importance-tiers.ts, tier-classifier.ts, archival-manager.ts, and any spec memories about the 5-tier state machine.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:705:      "query": "I want to understand how the memory system decides when to archive a memory",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:710:      "expectedResultDescription": "Should surface archival-manager.ts, tier-classifier.ts, and any spec about the archival lifecycle conditions.",
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:76:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:77:      last_accessed INTEGER,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:100:      includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:230:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:260:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:32:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:68:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:228:    includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:38:    // Create causal_edges table matching production schema (+created_by, +last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:51:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:109:          access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:110:          last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:20:  access_count: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:21:  last_accessed: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:40:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:41:      last_accessed TEXT DEFAULT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:84:      const row = requireTestDb().prepare('SELECT access_count, last_accessed FROM memory_index WHERE id = 1').get() as AccessRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:86:      expect(row.access_count).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:87:      expect(row.last_accessed).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:90:    it('flushAccessCounts increments access_count cumulatively', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:97:      const row = requireTestDb().prepare('SELECT access_count FROM memory_index WHERE id = 1').get() as Pick<AccessRow, 'access_count'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:98:      expect(row.access_count).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:240:      const row = requireTestDb().prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:241:      expect(row.access_count).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:278:      const firstDbRow = firstDb.prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:279:      const secondDbRow = secondDb.prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:282:      expect(firstDbRow.access_count).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:283:      expect(secondDbRow.access_count).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:324:        'SELECT id, access_count FROM memory_index WHERE id IN (1, 2) ORDER BY id'
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:325:      ).all() as Array<{ id: number; access_count: number }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:331:        { id: 1, access_count: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:332:        { id: 2, access_count: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:399:  describe('Composite scoring + archival integration', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:446:        { includeArchived: true }
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:457:    it('Archival paths are deprioritized by archive multipliers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:461:          { id: 201, spec_folder: 'specs/z_archive/legacy', updated_at: nowIso, created_at: nowIso, importance_tier: 'critical' },
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:464:        { includeArchived: true }
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:467:      const archivedFolder = folderScores.find(folder => folder.folder === 'specs/z_archive/legacy');
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:470:      expect(archivedFolder).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:472:      expect(archivedFolder?.score ?? 1).toBeLessThan(activeFolder?.score ?? 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:117:      const archiveTests = [
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:118:        { path: 'specs/z_archive/old-project', expected: true },
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:127:      for (const { path: p, expected } of archiveTests) {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:133:      const archiveMultiplier = mod.getArchiveMultiplier('specs/z_archive/old');
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:136:      expect(archiveMultiplier).toBeLessThan(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:142:        createMemory({ specFolder: 'z_archive/old', spec_folder: 'z_archive/old' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:146:      const withArchived = mod.computeFolderScores(memories, { includeArchived: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:126:      expect(result.validationCount).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:209:      expect(typeof info.validationCount).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:225:    // T-TC-15: Constitutional with extra fields still never archives
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:226:    it('T-TC-15: Constitutional never archives (with extras)', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:245:    it('should add access_count column to memory_index', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:250:      const row = db.prepare(`SELECT access_count FROM memory_index WHERE spec_folder = 'test'`).get() as { access_count: number | null };
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:251:      expect(row.access_count).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:2:// Converted from: t206-search-archival.test.ts (custom runner)
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:24:describe('T206 - vector_search accepts includeArchived [deferred - DB dependency]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:29:  it('T206-VS2: vectorSearch accepts includeArchived option', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:30:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function vector_search\([\s\S]*?includeArchived = false/);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:34:describe('T206 - multi_concept_search accepts includeArchived [deferred - DB dependency]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:39:  it('T206-MC2: multiConceptSearch accepts includeArchived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:40:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function multi_concept_search\([\s\S]*?includeArchived = false/);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:44:describe('T206 - keyword_search accepts includeArchived [deferred - DB dependency]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:49:  it('T206-KW2: keywordSearch accepts includeArchived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:50:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function keyword_search\([\s\S]*?includeArchived = false/);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:54:describe('T206 - getConstitutionalMemories accepts includeArchived [deferred - DB dependency]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:59:  it('T206-CM2: getConstitutionalMemories accepts includeArchived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:60:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function get_constitutional_memories_public\([\s\S]*?includeArchived = false/);
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:69:describe('T206 - Source code contains is_archived filter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:70:  it('T206-SRC1: vector-index-queries.ts has is_archived filters (>= 3)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:71:    const vsFilterCount = (VECTOR_INDEX_QUERIES_SOURCE.match(/is_archived IS NULL OR.*is_archived\s*=\s*0/g) || []).length;
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:75:  it('T206-SRC2: multi_concept_search uses archival_filter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:76:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('archival_filter');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:77:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('${archival_filter}');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:80:  it('T206-SRC3: hybrid-search has is_archived filter in ftsSearch', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:94:    expect(hsSource).toContain('is_archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:97:  it('T206-SRC4: HybridSearchOptions has includeArchived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:102:    expect(hsTs).toContain('includeArchived');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:105:  it('T206-SRC5: memory-search handler references includeArchived', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:110:    expect(handlerSource).toContain('includeArchived');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:111:    const count = (handlerSource.match(/includeArchived/g) || []).length;
-.opencode/skill/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:116:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('is_archived IS NULL OR is_archived = 0');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:73:    includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:30:        is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:49:      INSERT INTO memory_index (id, title, trigger_phrases, content_text, file_path, spec_folder, is_archived)
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:54:        (4, 'Archived Memory', 'old data', 'This memory is archived', '/specs/old.md', 'old-spec', 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:114:  it('T6: archived memories excluded by default', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:115:    const results = fts5Bm25Search(db, 'archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:120:  it('T6b: archived memories included when requested', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:121:    const results = fts5Bm25Search(db, 'archived', { includeArchived: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:194:        is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:34:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:188:      access_count: 50,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:651:    it('increments access_count and updates last_accessed', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:653:      const initialCount = before?.access_count || 0;
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:659:      expect(after?.access_count).toBe(initialCount + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:660:      expect(after?.last_accessed).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:721:        { similarity: 80, created_at: oldDate, access_count: 1, specFolder: 'a' },
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:722:        { similarity: 70, created_at: now, access_count: 10, specFolder: 'b' },
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:930:    it('returns entries sorted by access_count', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:931:      const stats = mod.getUsageStats({ sortBy: 'access_count', order: 'DESC', limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts:58:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:12:  access_count: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:34:        access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:35:        last_accessed INTEGER DEFAULT NULL,
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:91:      const row = requireDb().prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as AccessCountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:92:      expect(row.access_count).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:54:  access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:491:      { ...BASE_ROW, access_count: 100, similarity: 99 },
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:109:  it('T007a-S4: includeArchived=true can surface archived folders in count mode', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:112:      `specs/z_archive/${runId}-archived`,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:116:    const result = await handler.handleMemoryStats({ folderRanking: 'count', includeArchived: true, limit: 100 });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:118:    expect(parsed.data.topFolders.some((folder: { folder: string }) => folder.folder.includes(`${runId}-archived`))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:40:    access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:146:    it('T-FS-11: archive folder scoring works', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:148:      const score = computeSingleFolderScore('z_archive/old-stuff', memories);
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:415:    vi.mocked(folderScoringSourceMod.isArchived).mockImplementation((folder: string) => folder.includes('z_archive'));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1088:        { spec_folder: 'specs/z_archive/old', count: 3 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1091:    const result = await handler.handleMemoryStats({ folderRanking: 'count', includeArchived: false });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1093:    const hasArchived = parsed?.data?.topFolders?.some((f: any) => (f.folder || '').includes('z_archive'));
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:105:  it('includes deep-mode and archival/quality/state-limit controls in cache args', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:116:      includeArchived: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:133:    expect(args.includeArchived).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:149:      includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:74:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:159:      is_archived INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:348:        trigger_phrases: JSON.stringify([`background${index + 1} archive${index + 1}`]),
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:315:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:338:    expect(resumed.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:354:    expect(explicit.confidence).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:93:  it('clears folder-scoped constitutional cache entries for archived and non-archived keys', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:128:      db.prepare('UPDATE memory_index SET is_archived = 1 WHERE id = ?').run(4001);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:269:    it('T643: access_count column exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:270:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('access_count INTEGER DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:273:    it('T644: last_accessed column exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:274:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('last_accessed INTEGER DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:298:    it('T650: last_accessed stores epoch timestamp', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:300:      expect(ACCESS_TRACKER_SOURCE).toContain('last_accessed = ?');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:305:    it('updates stability, review_count, access_count, and last_accessed together', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:308:      expect(STAGE2_SOURCE).toContain('access_count = access_count + 1');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:309:      expect(STAGE2_SOURCE).toContain('last_accessed = ?');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:336:      expect(ACCESS_TRACKER_SOURCE).toContain('SET access_count = access_count + 1');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:89:      last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:103:        { id: 2, importance_tier: 'normal', access_count: 5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:136:          access_count: 10,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:45:      last_accessed TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:87:| `usage-tracking.ts` | Adds `access_count` column to `memory_index`, provides `incrementAccessCount()` and `getAccessCount()` | `SPECKIT_USAGE_RANKING` |
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:114:| `ensureUsageColumn` | usage-tracking.ts | Adds access_count column to memory_index |
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:142:| `memory_index` | usage-tracking.ts, community-detection.ts | access_count column, stale assignment cleanup |
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:117:    access_count: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:405:        access_count: 100,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:419:        access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:307:    INSERT INTO causal_edges (id, source_id, target_id, relation, strength, evidence, created_by, last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:79:        last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:900:    it('T001: touchEdgeAccess updates last_accessed timestamp on read', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:903:      // Before read, last_accessed should be null
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:904:      const before = (testDb.prepare('SELECT last_accessed FROM causal_edges WHERE id = ?').get(edgeId) as { last_accessed: string | null });
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:905:      expect(before.last_accessed).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:910:      const after = (testDb.prepare('SELECT last_accessed FROM causal_edges WHERE id = ?').get(edgeId) as { last_accessed: string | null });
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:911:      expect(after.last_accessed).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:950:        if (sql.includes("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?")) {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:59:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:17: * Add access_count column to memory_index if not present.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:26:    db.exec(`ALTER TABLE memory_index ADD COLUMN access_count INTEGER DEFAULT 0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:51:      UPDATE memory_index SET access_count = COALESCE(access_count, 0) + 1 WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:71:      SELECT COALESCE(access_count, 0) AS access_count FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:72:    `) as Database.Statement).get(memoryId) as { access_count: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:73:    return row?.access_count ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:90:- Purpose: Owns the memory-science side of the system: decay, retrievability, working memory, co-activation, pressure monitoring, archival movement, and adaptive ranking inputs. It is the main "how memory behaves over time" module family.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:96:  - `archival-manager.ts` — lifecycle transitions between active and archived memory states.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:43:| Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:179:│   ├── archival-manager.ts     # 5-state archival model
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:329:| `cognitive/archival-manager.ts` | 5-state archival model |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:394:// ARCHIVED (R < 0.02)  - Effectively forgotten, time-based archival
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:6:import * as archival from '../lib/cognitive/archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:22:/** Create in-memory DB with memory_index schema for archival-manager */
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:35:      last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:36:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:39:      archived_at TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:278:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:279:    archival.ensureArchivedColumn();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:280:    archival.ensureArchivedColumn();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:282:    expect(columns).toContain('is_archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:283:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:287:  it('E-02: adds is_archived column when missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:296:    expect(colsBefore).not.toContain('is_archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:298:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:300:    expect(colsAfter).toContain('is_archived');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:301:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:306:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:307:    expect(() => archival.ensureArchivedColumn()).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:318:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:319:    archival.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:320:    const errors = archival.getRecentErrors();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:323:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:329:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:330:    archival.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:331:    const errors = archival.getRecentErrors();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:333:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:339:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:340:    archival.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:341:    const errors = archival.getRecentErrors();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:343:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:349:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:350:    archival.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:351:    const errors = archival.getRecentErrors(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:353:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:359:    archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:360:    archival.resetStats();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:361:    const errors = archival.getRecentErrors();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:    archival.cleanup();
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:674:  it('T312: syncChangedRows removes archived or missing documents incrementally', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:41:          hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:168:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:169:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:186:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, { context: [] });
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/usage-ranking-signal.ts:5:// Computes a small log-scale score bonus from access_count so
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:35:        access_count: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:36:        last_accessed: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:64:    access_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:83:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:447: * @param options - Optional limit, specFolder filter, and includeArchived flag.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:452:  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:459:  const { limit = DEFAULT_LIMIT, specFolder, includeArchived = false } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:466:    const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:486: * @param options - Optional limit, specFolder filter, and includeArchived flag.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:491:  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:866:    includeArchived = false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:879:        includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:897:    const ftsResults = ftsSearch(query, { limit, specFolder, includeArchived });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1069:          includeArchived: options.includeArchived || false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1808:    // H13 FIX: Exclude archived rows unless explicitly requested
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1811:      `(is_archived IS NULL OR is_archived = 0)`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:152:        includeArchived: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:31:  validationCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:143:        validationCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:151:    const validationCount = resolvePositiveValidationCount(totalValidationCount, negativeValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:159:        validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:171:        validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:177:    if (validationCount < path.threshold) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:182:        validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:183:        reason: `below_threshold: positive_validation_count=${validationCount}/${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:191:      validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:192:      reason: `threshold_met: positive_validation_count=${validationCount}>=${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:201:      validationCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:240:          validationCount: check.validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:257:        check.validationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:269:        `(${check.validationCount} validations)`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:281:      validationCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:316:      const positiveValidationCount = resolvePositiveValidationCount(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:321:      if (positiveValidationCount < path.threshold) continue;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:327:        validationCount: positiveValidationCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:328:        reason: `threshold_met: positive_validation_count=${positiveValidationCount}>=${path.threshold}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:264:  const archivedOrCold = results.filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:267:  if (archivedOrCold.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:268:    blockers.push(`${archivedOrCold.length} result(s) are cold/archived — may be stale`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:619:            last_accessed TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:946:        database.exec('ALTER TABLE causal_edges ADD COLUMN last_accessed TEXT');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:947:        logger.info('Migration v18: Added last_accessed column to causal_edges');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:950:          console.warn('[VectorIndex] Migration v18 warning (last_accessed):', get_error_message(e));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1813:  if (!column_names.includes('last_accessed')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1815:      database.exec(`ALTER TABLE memory_index ADD COLUMN last_accessed INTEGER DEFAULT 0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1816:      console.warn('[vector-index] Migration: Added last_accessed column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1821:      logDuplicateColumnMigrationSkip('last_accessed', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2047:    database.exec(`CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2048:    logger.info('Created idx_last_accessed index');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2052:      index: 'idx_last_accessed',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2319:      access_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2320:      last_accessed INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2345:      is_archived INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2434:    CREATE INDEX IF NOT EXISTS idx_access_importance ON memory_index(access_count DESC, importance_weight DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2466:    CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:187:    includeArchived = false
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:218:    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:226:  if (!includeArchived) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:227:    where_clauses.push('(m.is_archived IS NULL OR m.is_archived = 0)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:292:  options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:295:  const { specFolder = null, maxTokens = 2000, includeArchived = false } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:297:  let results = get_constitutional_memories(database, specFolder, includeArchived);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:321:  options: { limit?: number; specFolder?: string | null; minSimilarity?: number; includeArchived?: boolean } = {}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:346:  const { limit = 10, specFolder = null, minSimilarity = 50, includeArchived = false } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:360:  const archival_filter = !includeArchived ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)' : '';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:383:        ${archival_filter}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:618:  options: { limit?: number; specFolder?: string | null; includeArchived?: boolean } = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:621:  const { limit = 20, specFolder = null, includeArchived = false } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:642:  if (!includeArchived) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:643:    where_clause += ' AND (is_archived IS NULL OR is_archived = 0)';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:995:    const usage_factor = Math.min(1.0, (r.access_count || 0) / 10);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1096:    sortBy = 'access_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1102:  const sort_field = valid_sort_fields.includes(sortBy) ? sortBy : 'access_count';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1108:    SELECT id, title, spec_folder, file_path, access_count,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1111:    WHERE access_count > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1119:    access_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1120:    last_accessed: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1158:      last_accessed,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1159:      access_count,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1165:      OR access_count <= ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1167:      OR (last_accessed IS NULL AND created_at < ?)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1169:      last_accessed ASC NULLS FIRST,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1170:      access_count ASC,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1192:      typeof row.last_accessed === 'number' ? new Date(row.last_accessed).toISOString() : null
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1199:    if ((row.access_count || 0) <= maxAccessCount) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1200:      const count = row.access_count || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1213:      lastAccessedAt: row.last_accessed,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1214:      accessCount: row.access_count || 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1274:    lastAccessedAt: memory.last_accessed,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1275:    accessCount: memory.access_count || 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1279:      typeof memory.last_accessed === 'number' ? new Date(memory.last_accessed).toISOString() : null
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:51:  archivedDaysThreshold: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:64:  archivedDaysThreshold: parseLimit('ARCHIVED_DAYS_THRESHOLD', ARCHIVED_DAYS_THRESHOLD),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:264:    const timestamp = mem.lastAccess || mem.last_accessed || mem.lastReview || mem.last_review || mem.created_at;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:277:  // (days > 90 AND r < 0.02). Using || here would incorrectly archive
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:279:  if (days > TIER_CONFIG.archivedDaysThreshold && r < STATE_THRESHOLDS.DORMANT) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:494: * Determine if a memory should be archived.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:499:  // Never archive constitutional or critical
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:504:  // Pinned memories are never archived
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:54:  access_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:55:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:85:  access_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:86:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:141:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:159:  access_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:4:// Feature catalog: Automatic archival subsystem
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:5:// Background archival job for dormant/archived memories
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:32:      console.warn(`[archival-manager] tier-classifier module unavailable: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:91:          `[archival-manager] bm25-index module unavailable. primary="${primaryError}" fallback="${fallbackMessage}"`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:147:          `[archival-manager] embeddings module unavailable. primary="${primaryError}" fallback="${fallbackMessage}"`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:214:  access_count: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:222:  totalUnarchived: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:234:const archivalStats: ArchivalStats = {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:237:  totalUnarchived: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:258:    const hasArchived = columns.some(c => c.name === 'is_archived');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:261:      db.exec('ALTER TABLE memory_index ADD COLUMN is_archived INTEGER DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:262:      db.exec('CREATE INDEX IF NOT EXISTS idx_archived ON memory_index(is_archived)');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:263:      console.error('[archival-manager] Added is_archived column');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:268:      console.warn(`[archival-manager] ensureArchivedColumn error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:274: * Ensure the archival_stats metadata table exists for persisting stats across restarts (P5-06).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:281:      CREATE TABLE IF NOT EXISTS archival_stats (
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:289:    console.warn(`[archival-manager] ensureArchivalStatsTable error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:294: * Load archival stats from the database on startup (P5-06).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:301:      'SELECT key, value FROM archival_stats'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:307:          archivalStats.totalScanned = parseInt(row.value, 10) || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:310:          archivalStats.totalArchived = parseInt(row.value, 10) || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:312:        case 'totalUnarchived':
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:313:          archivalStats.totalUnarchived = parseInt(row.value, 10) || 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:316:          archivalStats.lastScanTime = row.value === '' ? null : row.value || null;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:322:    console.warn(`[archival-manager] loadArchivalStats error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:327: * Persist archival stats to the database (P5-06).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:334:      INSERT INTO archival_stats (key, value, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:340:      upsert.run('totalScanned', String(archivalStats.totalScanned));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:341:      upsert.run('totalArchived', String(archivalStats.totalArchived));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:343:      upsert.run('lastScanTime', archivalStats.lastScanTime ?? '');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:349:    console.warn(`[archival-manager] saveArchivalStats error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:358: * Get archival candidates using SQL as a pre-filter, then FSRS tier classifier
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361: * Strategy: SQL query fetches broad candidates (unarchived, not protected, not pinned).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:362: * The FSRS-based tier classifier then determines which should actually be archived.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:363: * This unifies the dual archival paths (P5-05) — FSRS is primary, SQL is pre-filter.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371:    // Broad SQL pre-filter: get unarchived, non-protected, non-pinned memories
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:375:      WHERE (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:378:      ORDER BY last_accessed ASC NULLS FIRST, access_count ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:385:    // Use FSRS-based tier classifier as authoritative archival decision
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:403:          ((row.access_count as number) || 0) <= ARCHIVAL_CONFIG.maxAccessCount &&
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:416:          access_count: (row.access_count as number) || 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:428:    console.warn(`[archival-manager] getArchivalCandidates error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:438:  if ((row.access_count as number) <= ARCHIVAL_CONFIG.maxAccessCount) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:460:    const isArchived = (memory.is_archived as number) === 1;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:472:    console.warn(`[archival-manager] checkMemoryArchivalStatus error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:485:    console.warn(`[archival-manager] getMemoryIndexColumns failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:498:    console.warn(`[archival-manager] BM25 archive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:503:// Touching memory_index or ancillary tables. This preserves the archived row
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:504:// (is_archived=1) so unarchive can still find and restore it.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:514:      console.warn(`[archival-manager] Vector archive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:519:function syncBm25OnUnarchive(memoryId: number): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:530:    const query = `SELECT ${availableColumns.join(', ')} FROM memory_index WHERE id = ? AND is_archived = 0`;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:539:    console.warn(`[archival-manager] BM25 unarchive sync failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:546: * The playbook contract (scenario 124) requires that unarchive does NOT recreate the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:549: * the unarchive call on an async embedding generation round-trip and keeps the
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:550: * archive/unarchive path lightweight.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:552:function syncVectorOnUnarchive(memoryId: number): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:554:    `[archival-manager] Deferred vector re-embedding for memory ${memoryId} until next index scan`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:558:function archiveMemory(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:564:      SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:567:        AND (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:572:      archivalStats.totalArchived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:583:    archivalStats.errors.push(msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:584:    if (archivalStats.errors.length > MAX_ERROR_LOG) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:585:      archivalStats.errors = archivalStats.errors.slice(-MAX_ERROR_LOG);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:587:    console.warn(`[archival-manager] archiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:592:function archiveBatch(memoryIds: number[]): { archived: number; failed: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:593:  if (!db) return { archived: 0, failed: memoryIds.length };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:595:  let archived = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:601:        // Db is guaranteed non-null because archiveBatch returns early when the module database is missing
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:604:          SET is_archived = 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:607:            AND (is_archived IS NULL OR is_archived = 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:612:          archivalStats.totalArchived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:615:          archived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:622:        archivalStats.errors.push(msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:623:        if (archivalStats.errors.length > MAX_ERROR_LOG) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:624:          archivalStats.errors = archivalStats.errors.slice(-MAX_ERROR_LOG);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:626:        console.warn(`[archival-manager] archiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:635:  return { archived, failed };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:638:function unarchiveMemory(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:644:      SET is_archived = 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:646:      WHERE id = ? AND is_archived = 1
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:651:      archivalStats.totalUnarchived++;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:652:      syncBm25OnUnarchive(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:653:      syncVectorOnUnarchive(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:661:    console.warn(`[archival-manager] unarchiveMemory error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:670:function runArchivalScan(): { scanned: number; archived: number } {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:672:  archivalStats.totalScanned += candidates.length;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:673:  archivalStats.lastScanTime = new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:675:  const result = archiveBatch(candidates.map(c => c.id));
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:681:    `[archival-manager] Scan complete: ${candidates.length} candidates, ${result.archived} archived`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:684:  return { scanned: candidates.length, archived: result.archived };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:701:      console.warn(`[archival-manager] Background job error: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:709:  console.error(`[archival-manager] Background job started (interval: ${intervalMs / 1000}s)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:716:    console.error('[archival-manager] Background job stopped');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:729:  return { ...archivalStats };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:733:  return archivalStats.errors.slice(-limit);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:737:  archivalStats.totalScanned = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:738:  archivalStats.totalArchived = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:739:  archivalStats.totalUnarchived = 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:740:  archivalStats.lastScanTime = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:741:  archivalStats.errors = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:764:  archiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:765:  archiveBatch,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:766:  unarchiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:25:  includeArchived?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:155: * @param options - Search options (limit, specFolder, includeArchived)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:167:  const { limit = 20, specFolder, includeArchived = false } = options;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:183:  const archivalFilter = !includeArchived
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:184:    ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:202:      ${archivalFilter}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:146:      SET access_count = access_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:147:          last_accessed = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:197:          access_count = access_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:198:          last_accessed = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:244:  const usage = calculateUsageScore((memory.access_count as number) || 0) as number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:309:      ORDER BY last_accessed DESC, importance_weight DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:40:  access_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:382:      SET access_count = access_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:383:          last_accessed = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:383:           AND COALESCE(is_archived, 0) = 0`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:431:         WHERE COALESCE(is_archived, 0) = 0
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:28:  '/z_archive/',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:135:  includeArchived: boolean
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:137:  if (includeArchived) return results;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139:    const archived = row.is_archived ?? row.isArchived;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:140:    if (archived == null) return true;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:141:    if (typeof archived === 'number') return archived === 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:142:    if (typeof archived === 'boolean') return archived === false;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:490:    includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:598:      includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:669:                    { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:732:                  { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:766:            { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:775:          { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:814:                { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:831:                    { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:878:            { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:896:            includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:936:      includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1112:                { limit, specFolder, includeArchived }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1259:            const archiveFilteredSummaryHits = applyArchiveFilter(newSummaryHits, includeArchived);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1260:            const folderFilteredSummaryHits = applyFolderFilter(archiveFilteredSummaryHits, specFolder);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:527:    const dateStr = r.created_at as string | undefined || r.last_accessed as string | undefined || r.last_review as string | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:41:  includeArchived: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:124:  includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:153:    includeArchived,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:39:The cognitive subsystem is the "brain" of the memory system. It determines which memories stay active, which fade, and which get archived. Unlike simple time-based caching, it uses FSRS v4 power-law decay validated on 100M+ real human memory data.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:193:| **Usage**      | 0.15   | Access frequency       | `min(1, access_count / 50)`                   |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:253:├── archival-manager.ts         # 90-day archival lifecycle (395 lines)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:270:| `archival-manager.ts`      | Lifecycle management      | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                    |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:500:// Activate memory (increment access_count, update last_accessed)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:640:  archiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:641:  unarchiveMemory,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:647:} from './archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:658:// scanResult = { scanned: 15, archived: 12 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:664:// Archive/unarchive
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:665:archiveMemory(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:666:unarchiveMemory(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:668:// Get archival candidates
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:674:// stats = { totalScanned, totalArchived, totalUnarchived, lastScanTime, errors }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:687:# maxAgeDays: 90                               # Days before eligible for archival
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:750:import * as archival from './archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:759:archival.init(db);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:763:// Start background archival
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:764:archival.startBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:885:**Cause**: Not archiving old memories, or archival job not running
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:889:import * as archival from './archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:891:// Check archival stats
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:892:const stats = archival.getStats();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:893:console.log('Background job:', archival.isBackgroundJobRunning());
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:896:if (!archival.isBackgroundJobRunning()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:897:  archival.startBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:901:const scanResult = archival.runArchivalScan();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:902:console.log(`Archived ${scanResult.archived} old memories`);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:940:// Use activateMemoryWithFsrs (updates stability, last_review, access_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:954:| Memory leak          | Enable archival: `archival.startBackgroundJob()`             |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:999:**Q: Can I disable automatic archival?**
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1003:import * as archival from './archival-manager';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1004:archival.stopBackgroundJob();
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1049:| `ARCHIVED_DAYS_THRESHOLD` | 90      | Days inactive before archival           |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1051:| `SPECKIT_ARCHIVAL`        | true    | Enable background archival job          |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:461:  includeArchived: boolean,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:464:  return `${db_scope}::${spec_folder || 'global'}:${includeArchived ? 'arch' : 'noarch'}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:606: * @param includeArchived - Whether archived memories should be included.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:612:  includeArchived = false
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:614:  // Scope cache entries to the active DB path as well as the archived filter.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:615:  const cache_key = build_constitutional_cache_key(spec_folder, includeArchived);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:637:        ${!includeArchived ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)' : ''}
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:679:    const scoped_suffix_archived = `::${spec_folder}:arch`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:682:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:687:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:715:         AND COALESCE(m.is_archived, 0) = 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:942:      includeArchived: options.includeArchived === true
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1096:    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:574:          access_count = access_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:575:          last_accessed = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:801:      SELECT id, COALESCE(access_count, 0) AS access_count
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:804:    `).all(...resultIds) as Array<{ id: number; access_count: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:811:      Math.max(currentMax, Number.isFinite(row.access_count) ? row.access_count : 0), 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:817:    const usageMap = new Map(usageRows.map((row) => [row.id, row.access_count]));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:26:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:93:  last_accessed?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:134:  includeArchived: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:114:  it('returns the merged survivor id instead of the archived predecessor id', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:152:  it('removes archived assistive auto-merge documents from the BM25 singleton', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:153:    const archiveRun = vi.fn();
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:155:      prepare: vi.fn(() => ({ run: archiveRun })),
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:192:    expect(archiveRun).toHaveBeenCalledWith(55);
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:45:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:46:      last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1329:    'access_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1330:    'last_accessed',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1344:    'is_archived',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:124:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:274:        '/archive/specs/002-feature/memory/implementation-notes.md.bak',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:275:        '/archive/specs/002-feature/memory/implementation-notes.md.bak',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:160:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:37:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:73:    it('T211: 89 days + low R => NOT archived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:171:    it('T226: Constitutional => never archive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:175:    it('T227: Critical => never archive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:179:    it('T228: Pinned => never archive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:183:    it('T229: Old low-stability normal => should archive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.vitest.ts:187:    it('T230: Recent high-stability => should NOT archive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:19:    access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:37:      access_count: 100,
+.opencode/skills/system-spec-kit/mcp_server/tests/cold-start.vitest.ts:49:      access_count: 100,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:349:  // D1: All fields are serialized for archival — only `.snapshot` is read back
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:212:      includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:61:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/usage-weighted-ranking.vitest.ts:23:      access_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/usage-weighted-ranking.vitest.ts:56:    expect(columns.filter((column) => column.name === 'access_count')).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:278:    it('Rejects spec.md in /z_archive/ directory', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:279:      expect(isMemoryFile('/p/.opencode/specs/003/100/z_archive/spec.md')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:427:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:473:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:497:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:776:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:868:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:869:        last_accessed: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:911:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:912:        last_accessed: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:24:    validationCount = 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:68:    expect(info.validationCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:69:    expect(info.positiveValidationCount).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:73:  it('recordValidation reports positiveValidationCount separately from total validationCount', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:77:    expect(negativeResult.validationCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:79:    expect(negativeResult.positiveValidationCount).toBe(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:86:    expect(positiveResult.validationCount).toBe(6);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:87:    expect(positiveResult.positiveValidationCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:92:    insertMemory(3, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:98:    expect(blocked.validationCount).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:101:    insertMemory(4, { tier: 'normal', validationCount: 7 });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:107:    expect(eligible.validationCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:118:    insertMemory(10, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:119:    insertMemory(11, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:15:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:16:  positiveValidationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:31:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:32:  positiveValidationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:41:  validationCount?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:69:  positiveValidationCount: number
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:76:    positiveValidationCount >= PROMOTION_VALIDATION_THRESHOLD;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:130:      const currentValidationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:143:      const positiveValidationCount = resolvePositiveValidationCount(
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:152:        positiveValidationCount
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:167:        validationCount: newValidationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:168:        positiveValidationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:222:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:224:    const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:251:      const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:253:      const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:257:        `and positive_validation_count >= ${PROMOTION_VALIDATION_THRESHOLD} (current: ${positiveValidationCount})`
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:294:    const validationCount = memory.validationCount ?? memory.validation_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:296:    const positiveValidationCount = resolvePositiveValidationCount(validationCount, negativeValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:301:      validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:302:      positiveValidationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:309:        validationsMet: positiveValidationCount >= PROMOTION_VALIDATION_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:289:      // Mark existing memory as archived (superseded)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:292:        SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:834:  const value = row.is_archived;
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:19:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:53:    expect(plan.compaction?.hook).toBe('experimental.session.compacting');
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:201:  access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:236:  { spec_folder: 'z_archive/001-old', updated_at: '2024-06-01', importance_tier: 'deprecated' },
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:239:const ranked = computeFolderScores(memories, { includeArchived: false });
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:260:> **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:261:> The code type-casts to include both `validationCount` and `validation_count` for safety,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:271:| Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:262:        access_count: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:277:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:293:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:324:        access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:343:        access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:353:        access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:372:        access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:411:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:456:        access_count: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:488:        access_count: 1e10,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:532:          access_count: -100,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:539:          access_count: Number.NEGATIVE_INFINITY,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:599:          access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:609:          access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:628:          access_count: 100,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:638:          access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:660:          access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:670:          access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:680:          access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:699:          access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:761:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:943:        access_count: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:965:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:983:        access_count: -50,
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:997:        { similarity: 50, access_count: 5 },
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:75:  last_accessed: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:854:    "UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?"
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:863:      WHERE (last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days'))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:864:         OR (last_accessed IS NOT NULL AND last_accessed < datetime('now', '-' || ? || ' days'))
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:865:      ORDER BY COALESCE(last_accessed, extracted_at) ASC
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:29:    access_count: 15,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:30:    last_accessed: 1706800000,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:78:    validationCount: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:214:    expect(memory.validationCount).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:194:    includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:357:          is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:391:      is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:428:          is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:439:          is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:477:          is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:491:          is_archived: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:53:    hasArchivedColumn: columnSet.has('is_archived'),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:62:    predicates.push(`COALESCE(${alias}.is_archived, 0) = 0`);
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:123:    includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:164:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:238:      const memory = { importance_tier: 'normal', access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:246:      const memory = { importance_tier: 'normal', access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:252:      const memory = { importance_tier: 'normal', access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:74:      includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:198:  it('T033-07: No last_accessed fallback — uncited memory scores 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:200:    const score = calculateCitationScore({ last_accessed: Date.now() });
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:275:      access_count: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:294:      calculateFiveFactorScore({ access_count: 10000 }, {}),
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:314:      { id: 1, access_count: 0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:315:      { id: 2, access_count: 10, lastReview: now.toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:322:    const results: BatchScoreInput[] = [{ id: 1, access_count: 5 }];
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:349:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:355:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:393:      access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:414:        access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:473:    const row = { title: 'authentication', similarity: 70, access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:482:    const recent = { lastCited: now.toISOString(), access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:483:    const old = { lastCited: oldDate.toISOString(), access_count: 5 };
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:494:      access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:503:      access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:803:  it('EDGE-COMP-02: Row with only access_count', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:804:    const score = calculateFiveFactorScore({ access_count: 10 }, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:810:    const row = { access_count: 10 };
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:823:      access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:838:      access_count: 100,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:875:      { id: 1, access_count: 5, created_at: now.toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:876:      { id: 2, access_count: 5, created_at: now.toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:887:      results.push({ id: i, access_count: i % 20 });
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:910:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:918:    const breakdown = getFiveFactorBreakdown({ access_count: 5 }, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:20:import * as archivalManager from '../lib/cognitive/archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:35:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:36:  access_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:46:  archivalManager.__setEmbeddingsModuleForTests(null);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:76:      last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:77:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:79:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:80:      archived_at TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:115:    data.last_accessed || 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:116:    data.access_count || 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:139:      expect(() => archivalManager.init(requireDb())).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:142:    it('T059-002: is_archived column exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:145:      expect(columns.map(column => column.name)).toContain('is_archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:149:      expect(archivalManager.ARCHIVAL_CONFIG).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:150:      expect(typeof archivalManager.ARCHIVAL_CONFIG.scanIntervalMs).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:154:      const config = archivalManager.ARCHIVAL_CONFIG;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:166:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:177:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:187:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:193:      const candidates = archivalManager.getArchivalCandidates(100);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:206:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:212:      const candidates = archivalManager.getArchivalCandidates(100);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:225:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:230:      const candidates = archivalManager.getArchivalCandidates(100);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:243:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:248:      const candidates = archivalManager.getArchivalCandidates(100);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:261:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:268:    it('T059-010: archiveMemory returns true on success', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:279:      const archiveResult = archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:280:      expect(archiveResult).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:283:    it('T059-011: is_archived flag set to 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:294:      archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:295:      const row = requireDb().prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id) as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:296:      expect(row.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:299:    it('T059-012: unarchiveMemory succeeds', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:310:      archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:311:      const unarchiveResult = archivalManager.unarchiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:312:      expect(unarchiveResult).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:314:      const row = requireDb().prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id) as { is_archived: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:315:      expect(row.is_archived).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:318:    it('T059-012c: archive and unarchive invalidate graph caches on success', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:329:      expect(archivalManager.archiveMemory(memory_id)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:330:      expect(archivalManager.unarchiveMemory(memory_id)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:336:    it('T059-013: Batch archive succeeds', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:350:      const batchResult = archivalManager.archiveBatch(idsToArchive);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:351:      expect(batchResult.archived).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:355:    it('T059-014: archiveMemory on already-archived returns false', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:366:      archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:367:      const alreadyArchived = archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:371:    it('T059-011b: archiveMemory removes vec_memories row but preserves memory_index archive state', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:392:      const archiveResult = archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:393:      expect(archiveResult).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:395:      const archivedRow = requireDb()
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:396:        .prepare('SELECT is_archived FROM memory_index WHERE id = ?')
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:397:        .get(memory_id) as { is_archived: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:398:      expect(archivedRow).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:399:      expect(archivedRow?.is_archived).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:407:    it('T059-012b: unarchiveMemory defers vector re-embedding to next index scan', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:413:        content_text: 'Rebuild vector content on unarchive',
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:425:      archivalManager.__setEmbeddingsModuleForTests({
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:432:      expect(archivalManager.archiveMemory(memory_id)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:434:      const archivedVector = requireDb()
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:437:      expect(archivedVector).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:439:      // Capture deferred-rebuild log emitted by syncVectorOnUnarchive
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:442:        expect(archivalManager.unarchiveMemory(memory_id)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:445:        const vectorAfterUnarchive = requireDb()
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:448:        expect(vectorAfterUnarchive).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:464:    it('T059-011c: archiveMemory suppresses vec_memories no-such-table cleanup errors', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:477:        const archiveResult = archivalManager.archiveMemory(memory_id);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:478:        expect(archiveResult).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:482:          return text.includes('Vector archive sync failed')
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:499:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:500:      archivalManager.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:507:    it('T059-015: Archival scan archives candidates', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:514:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:520:        access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:526:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:534:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:540:      const scanResult = archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:541:      expect(scanResult.archived).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:551:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:557:      const scanResult = archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:568:        access_count: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:574:      const scanResult = archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:575:      const scan2Result = archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:576:      expect(scan2Result.archived).toBeLessThanOrEqual(scanResult.archived);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:586:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:590:      archivalManager.stopBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:595:      expect(() => archivalManager.startBackgroundJob(60000)).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:599:      archivalManager.startBackgroundJob(60000);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:600:      expect(archivalManager.isBackgroundJobRunning()).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:604:      archivalManager.startBackgroundJob(60000);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:605:      expect(() => archivalManager.stopBackgroundJob()).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:609:      archivalManager.startBackgroundJob(60000);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:610:      archivalManager.stopBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:611:      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:621:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:622:      archivalManager.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:637:          access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:645:      archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:646:      const stats = archivalManager.getStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:658:          access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:666:      archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:667:      const stats = archivalManager.getStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:678:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:684:      archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:685:      const stats = archivalManager.getStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:690:      archivalManager.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:691:      const stats = archivalManager.getStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:702:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:717:      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:730:      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:735:      const missingStatus = archivalManager.checkMemoryArchivalStatus(99999);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:751:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:752:      archivalManager.startBackgroundJob(60000);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:753:      archivalManager.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:754:      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:759:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:760:      archivalManager.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:761:      const stats = archivalManager.getStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:769:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:770:      archivalManager.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:771:      const candidates = archivalManager.getArchivalCandidates();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:776:    it('T059-032: archiveMemory returns false without db', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:778:      archivalManager.init(requireDb());
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:779:      archivalManager.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:780:      const result = archivalManager.archiveMemory(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:90:      access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:100:      access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:132:      access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:230:        access_count: 20,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring.vitest.ts:240:        access_count: 20,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:15:type MutationType = 'create' | 'update' | 'delete' | 'merge' | 'archive' | 'restore' | 'reindex';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:93:    mutation_type TEXT NOT NULL CHECK(mutation_type IN ('create','update','delete','merge','archive','restore','reindex')),
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:62:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:302:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:318:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:332:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:346:    // Set last_accessed to 31 days ago
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:347:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now', '-31 days') WHERE id = ?").run(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:362:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:376:      INSERT INTO causal_edges (source_id, target_id, relation, strength, created_by, last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:397:    // Set extracted_at to 91 days ago (no last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:409:    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE source_id = '1'").run();
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:272: * Parse last_accessed value that may be:
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:392:  // Never fall back to last_accessed or updated_at — those conflate
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:614:  const usageScore = calculateUsageScore(row.access_count || 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:668:  const popularityScore = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:711:      usage: calculateUsageScore(row.access_count || 0),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:752:        popularity: calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:784:  const usage = calculateUsageScore(row.access_count || 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:832:  const popularity = calculatePopularityScore(row.access_count || 0, parseLastAccessed(row.last_accessed), row.created_at || null);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:374:            is_archived INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:391:            last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:97:      is_archived INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:122:  validationCount?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:130:    validationCount = 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:727:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:735:    insertMemory(testDb, 1, { tier: 'important', validationCount: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:743:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 3 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:751:    insertMemory(testDb, 1, { tier: 'important', validationCount: 7 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:758:    insertMemory(testDb, 1, { tier: 'critical', validationCount: 20 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:765:    insertMemory(testDb, 1, { tier: 'constitutional', validationCount: 100 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:772:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:781:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:790:    insertMemory(testDb, 1, { tier: 'critical', validationCount: 0 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:799:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:800:    insertMemory(testDb, 2, { tier: 'normal', validationCount: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:801:    insertMemory(testDb, 3, { tier: 'important', validationCount: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:814:    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:815:    insertMemory(testDb, 2, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:816:    insertMemory(testDb, 3, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:817:    insertMemory(testDb, 4, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:855:    insertMemory(testDb, 5, { tier: 'normal', validationCount: 5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
+.opencode/skills/system-spec-kit/mcp_server/tests/phase2-integration.vitest.ts:41:        last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:404:      '../lib/cognitive/archival-manager',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:707:      vi.doMock('../lib/cognitive/archival-manager', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1963:    // T44: Shutdown stops archival manager
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1964:    it('T44: Shutdown stops archival manager', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1965:      expect(sourceCode).toMatch(/archivalManager\.cleanup\(\)/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2257:      { module: './lib/cognitive/archival-manager.js', name: 'Archival manager' },
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:70:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:80:      "expectedResultDescription": "Should surface memories about SPECKIT_WORKING_MEMORY, SPECKIT_EVENT_DECAY, working-memory.ts, and archival-manager.ts. The relationship is that event decay reduces attention scores over time.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:630:      "expectedResultDescription": "Should surface importance-tiers.ts, tier-classifier.ts, archival-manager.ts, and any spec memories about the 5-tier state machine.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:705:      "query": "I want to understand how the memory system decides when to archive a memory",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:710:      "expectedResultDescription": "Should surface archival-manager.ts, tier-classifier.ts, and any spec about the archival lifecycle conditions.",
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:76:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:77:      last_accessed INTEGER,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:100:      includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:230:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:260:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-density.vitest.ts:32:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:68:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:228:    includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:38:    // Create causal_edges table matching production schema (+created_by, +last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:51:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:109:          access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:110:          last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:20:  access_count: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:21:  last_accessed: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:40:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:41:      last_accessed TEXT DEFAULT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:84:      const row = requireTestDb().prepare('SELECT access_count, last_accessed FROM memory_index WHERE id = 1').get() as AccessRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:86:      expect(row.access_count).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:87:      expect(row.last_accessed).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:90:    it('flushAccessCounts increments access_count cumulatively', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:97:      const row = requireTestDb().prepare('SELECT access_count FROM memory_index WHERE id = 1').get() as Pick<AccessRow, 'access_count'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:98:      expect(row.access_count).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:240:      const row = requireTestDb().prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:241:      expect(row.access_count).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:278:      const firstDbRow = firstDb.prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:279:      const secondDbRow = secondDb.prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as Pick<AccessRow, 'access_count'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:282:      expect(firstDbRow.access_count).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:283:      expect(secondDbRow.access_count).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:324:        'SELECT id, access_count FROM memory_index WHERE id IN (1, 2) ORDER BY id'
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:325:      ).all() as Array<{ id: number; access_count: number }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:331:        { id: 1, access_count: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:332:        { id: 2, access_count: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:399:  describe('Composite scoring + archival integration', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:446:        { includeArchived: true }
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:457:    it('Archival paths are deprioritized by archive multipliers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:461:          { id: 201, spec_folder: 'specs/z_archive/legacy', updated_at: nowIso, created_at: nowIso, importance_tier: 'critical' },
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:464:        { includeArchived: true }
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:467:      const archivedFolder = folderScores.find(folder => folder.folder === 'specs/z_archive/legacy');
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:470:      expect(archivedFolder).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:472:      expect(archivedFolder?.score ?? 1).toBeLessThan(activeFolder?.score ?? 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:117:      const archiveTests = [
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:118:        { path: 'specs/z_archive/old-project', expected: true },
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:127:      for (const { path: p, expected } of archiveTests) {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:133:      const archiveMultiplier = mod.getArchiveMultiplier('specs/z_archive/old');
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:136:      expect(archiveMultiplier).toBeLessThan(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:142:        createMemory({ specFolder: 'z_archive/old', spec_folder: 'z_archive/old' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:146:      const withArchived = mod.computeFolderScores(memories, { includeArchived: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:126:      expect(result.validationCount).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:209:      expect(typeof info.validationCount).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:225:    // T-TC-15: Constitutional with extra fields still never archives
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:226:    it('T-TC-15: Constitutional never archives (with extras)', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:245:    it('should add access_count column to memory_index', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:250:      const row = db.prepare(`SELECT access_count FROM memory_index WHERE spec_folder = 'test'`).get() as { access_count: number | null };
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:251:      expect(row.access_count).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:2:// Converted from: t206-search-archival.test.ts (custom runner)
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:24:describe('T206 - vector_search accepts includeArchived [deferred - DB dependency]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:29:  it('T206-VS2: vectorSearch accepts includeArchived option', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:30:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function vector_search\([\s\S]*?includeArchived = false/);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:34:describe('T206 - multi_concept_search accepts includeArchived [deferred - DB dependency]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:39:  it('T206-MC2: multiConceptSearch accepts includeArchived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:40:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function multi_concept_search\([\s\S]*?includeArchived = false/);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:44:describe('T206 - keyword_search accepts includeArchived [deferred - DB dependency]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:49:  it('T206-KW2: keywordSearch accepts includeArchived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:50:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function keyword_search\([\s\S]*?includeArchived = false/);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:54:describe('T206 - getConstitutionalMemories accepts includeArchived [deferred - DB dependency]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:59:  it('T206-CM2: getConstitutionalMemories accepts includeArchived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:60:    expect(VECTOR_INDEX_QUERIES_SOURCE).toMatch(/export function get_constitutional_memories_public\([\s\S]*?includeArchived = false/);
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:69:describe('T206 - Source code contains is_archived filter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:70:  it('T206-SRC1: vector-index-queries.ts has is_archived filters (>= 3)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:71:    const vsFilterCount = (VECTOR_INDEX_QUERIES_SOURCE.match(/is_archived IS NULL OR.*is_archived\s*=\s*0/g) || []).length;
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:75:  it('T206-SRC2: multi_concept_search uses archival_filter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:76:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('archival_filter');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:77:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('${archival_filter}');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:80:  it('T206-SRC3: hybrid-search has is_archived filter in ftsSearch', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:94:    expect(hsSource).toContain('is_archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:97:  it('T206-SRC4: HybridSearchOptions has includeArchived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:102:    expect(hsTs).toContain('includeArchived');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:105:  it('T206-SRC5: memory-search handler references includeArchived', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:110:    expect(handlerSource).toContain('includeArchived');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:111:    const count = (handlerSource.match(/includeArchived/g) || []).length;
+.opencode/skills/system-spec-kit/mcp_server/tests/search-archival.vitest.ts:116:    expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('is_archived IS NULL OR is_archived = 0');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:73:    includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:30:        is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:49:      INSERT INTO memory_index (id, title, trigger_phrases, content_text, file_path, spec_folder, is_archived)
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:54:        (4, 'Archived Memory', 'old data', 'This memory is archived', '/specs/old.md', 'old-spec', 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:114:  it('T6: archived memories excluded by default', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:115:    const results = fts5Bm25Search(db, 'archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:120:  it('T6b: archived memories included when requested', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:121:    const results = fts5Bm25Search(db, 'archived', { includeArchived: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/sqlite-fts.vitest.ts:194:        is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:34:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:188:      access_count: 50,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:651:    it('increments access_count and updates last_accessed', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:653:      const initialCount = before?.access_count || 0;
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:659:      expect(after?.access_count).toBe(initialCount + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:660:      expect(after?.last_accessed).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:721:        { similarity: 80, created_at: oldDate, access_count: 1, specFolder: 'a' },
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:722:        { similarity: 70, created_at: now, access_count: 10, specFolder: 'b' },
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:930:    it('returns entries sorted by access_count', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:931:      const stats = mod.getUsageStats({ sortBy: 'access_count', order: 'DESC', limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts:58:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:12:  access_count: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:34:        access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:35:        last_accessed INTEGER DEFAULT NULL,
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:91:      const row = requireDb().prepare('SELECT access_count FROM memory_index WHERE id = 2').get() as AccessCountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:92:      expect(row.access_count).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:54:  access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-observability.vitest.ts:491:      { ...BASE_ROW, access_count: 100, similarity: 99 },
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:109:  it('T007a-S4: includeArchived=true can surface archived folders in count mode', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:112:      `specs/z_archive/${runId}-archived`,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:116:    const result = await handler.handleMemoryStats({ folderRanking: 'count', includeArchived: true, limit: 100 });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:118:    expect(parsed.data.topFolders.some((folder: { folder: string }) => folder.folder.includes(`${runId}-archived`))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:40:    access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:146:    it('T-FS-11: archive folder scoring works', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:148:      const score = computeSingleFolderScore('z_archive/old-stuff', memories);
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:415:    vi.mocked(folderScoringSourceMod.isArchived).mockImplementation((folder: string) => folder.includes('z_archive'));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1088:        { spec_folder: 'specs/z_archive/old', count: 3 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1091:    const result = await handler.handleMemoryStats({ folderRanking: 'count', includeArchived: false });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1093:    const hasArchived = parsed?.data?.topFolders?.some((f: any) => (f.folder || '').includes('z_archive'));
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:105:  it('includes deep-mode and archival/quality/state-limit controls in cache args', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:116:      includeArchived: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:133:    expect(args.includeArchived).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:149:      includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:74:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:159:      is_archived INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:348:        trigger_phrases: JSON.stringify([`background${index + 1} archive${index + 1}`]),
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:315:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:338:    expect(resumed.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:354:    expect(explicit.confidence).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:93:  it('clears folder-scoped constitutional cache entries for archived and non-archived keys', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:128:      db.prepare('UPDATE memory_index SET is_archived = 1 WHERE id = ?').run(4001);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:269:    it('T643: access_count column exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:270:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('access_count INTEGER DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:273:    it('T644: last_accessed column exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:274:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('last_accessed INTEGER DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:298:    it('T650: last_accessed stores epoch timestamp', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:300:      expect(ACCESS_TRACKER_SOURCE).toContain('last_accessed = ?');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:305:    it('updates stability, review_count, access_count, and last_accessed together', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:308:      expect(STAGE2_SOURCE).toContain('access_count = access_count + 1');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:309:      expect(STAGE2_SOURCE).toContain('last_accessed = ?');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:336:      expect(ACCESS_TRACKER_SOURCE).toContain('SET access_count = access_count + 1');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:89:      last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:103:        { id: 2, importance_tier: 'normal', access_count: 5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:136:          access_count: 10,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-signals.vitest.ts:45:      last_accessed TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:87:| `usage-tracking.ts` | Adds `access_count` column to `memory_index`, provides `incrementAccessCount()` and `getAccessCount()` | `SPECKIT_USAGE_RANKING` |
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:114:| `ensureUsageColumn` | usage-tracking.ts | Adds access_count column to memory_index |
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:142:| `memory_index` | usage-tracking.ts, community-detection.ts | access_count column, stale assignment cleanup |
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:117:    access_count: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:405:        access_count: 100,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:419:        access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:307:    INSERT INTO causal_edges (id, source_id, target_id, relation, strength, evidence, created_by, last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:79:        last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:900:    it('T001: touchEdgeAccess updates last_accessed timestamp on read', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:903:      // Before read, last_accessed should be null
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:904:      const before = (testDb.prepare('SELECT last_accessed FROM causal_edges WHERE id = ?').get(edgeId) as { last_accessed: string | null });
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:905:      expect(before.last_accessed).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:910:      const after = (testDb.prepare('SELECT last_accessed FROM causal_edges WHERE id = ?').get(edgeId) as { last_accessed: string | null });
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:911:      expect(after.last_accessed).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:950:        if (sql.includes("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?")) {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:59:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:17: * Add access_count column to memory_index if not present.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:26:    db.exec(`ALTER TABLE memory_index ADD COLUMN access_count INTEGER DEFAULT 0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:51:      UPDATE memory_index SET access_count = COALESCE(access_count, 0) + 1 WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:71:      SELECT COALESCE(access_count, 0) AS access_count FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:72:    `) as Database.Statement).get(memoryId) as { access_count: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-tracking.ts:73:    return row?.access_count ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:90:- Purpose: Owns the memory-science side of the system: decay, retrievability, working memory, co-activation, pressure monitoring, archival movement, and adaptive ranking inputs. It is the main "how memory behaves over time" module family.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:96:  - `archival-manager.ts` — lifecycle transitions between active and archived memory states.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:43:| Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:179:│   ├── archival-manager.ts     # 5-state archival model
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:329:| `cognitive/archival-manager.ts` | 5-state archival model |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:394:// ARCHIVED (R < 0.02)  - Effectively forgotten, time-based archival
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:6:import * as archival from '../lib/cognitive/archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:22:/** Create in-memory DB with memory_index schema for archival-manager */
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:35:      last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:36:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:38:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:39:      archived_at TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:278:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:279:    archival.ensureArchivedColumn();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:280:    archival.ensureArchivedColumn();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:282:    expect(columns).toContain('is_archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:283:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:287:  it('E-02: adds is_archived column when missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:296:    expect(colsBefore).not.toContain('is_archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:298:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:300:    expect(colsAfter).toContain('is_archived');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:301:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:306:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:307:    expect(() => archival.ensureArchivedColumn()).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:318:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:319:    archival.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:320:    const errors = archival.getRecentErrors();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:323:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:329:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:330:    archival.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:331:    const errors = archival.getRecentErrors();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:333:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:339:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:340:    archival.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:341:    const errors = archival.getRecentErrors();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:343:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:349:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:350:    archival.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:351:    const errors = archival.getRecentErrors(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:353:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:359:    archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:360:    archival.resetStats();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:361:    const errors = archival.getRecentErrors();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:    archival.cleanup();
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:674:  it('T312: syncChangedRows removes archived or missing documents incrementally', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:41:          hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:168:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:169:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:186:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, { context: [] });
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/usage-ranking-signal.ts:5:// Computes a small log-scale score bonus from access_count so
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:35:        access_count: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:36:        last_accessed: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-scoring-calibration.vitest.ts:64:    access_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:83:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:447: * @param options - Optional limit, specFolder filter, and includeArchived flag.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:452:  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:459:  const { limit = DEFAULT_LIMIT, specFolder, includeArchived = false } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:466:    const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:486: * @param options - Optional limit, specFolder filter, and includeArchived flag.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:491:  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:866:    includeArchived = false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:879:        includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:897:    const ftsResults = ftsSearch(query, { limit, specFolder, includeArchived });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1069:          includeArchived: options.includeArchived || false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1808:    // H13 FIX: Exclude archived rows unless explicitly requested
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1811:      `(is_archived IS NULL OR is_archived = 0)`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:152:        includeArchived: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:31:  validationCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:143:        validationCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:151:    const validationCount = resolvePositiveValidationCount(totalValidationCount, negativeValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:159:        validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:171:        validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:177:    if (validationCount < path.threshold) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:182:        validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:183:        reason: `below_threshold: positive_validation_count=${validationCount}/${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:191:      validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:192:      reason: `threshold_met: positive_validation_count=${validationCount}>=${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:201:      validationCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:240:          validationCount: check.validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:257:        check.validationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:269:        `(${check.validationCount} validations)`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:281:      validationCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:316:      const positiveValidationCount = resolvePositiveValidationCount(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:321:      if (positiveValidationCount < path.threshold) continue;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:327:        validationCount: positiveValidationCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:328:        reason: `threshold_met: positive_validation_count=${positiveValidationCount}>=${path.threshold}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:264:  const archivedOrCold = results.filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:267:  if (archivedOrCold.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:268:    blockers.push(`${archivedOrCold.length} result(s) are cold/archived — may be stale`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:619:            last_accessed TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:946:        database.exec('ALTER TABLE causal_edges ADD COLUMN last_accessed TEXT');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:947:        logger.info('Migration v18: Added last_accessed column to causal_edges');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:950:          console.warn('[VectorIndex] Migration v18 warning (last_accessed):', get_error_message(e));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1813:  if (!column_names.includes('last_accessed')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1815:      database.exec(`ALTER TABLE memory_index ADD COLUMN last_accessed INTEGER DEFAULT 0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1816:      console.warn('[vector-index] Migration: Added last_accessed column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1821:      logDuplicateColumnMigrationSkip('last_accessed', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2047:    database.exec(`CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2048:    logger.info('Created idx_last_accessed index');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2052:      index: 'idx_last_accessed',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2319:      access_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2320:      last_accessed INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2345:      is_archived INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2434:    CREATE INDEX IF NOT EXISTS idx_access_importance ON memory_index(access_count DESC, importance_weight DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2466:    CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:187:    includeArchived = false
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:218:    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:226:  if (!includeArchived) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:227:    where_clauses.push('(m.is_archived IS NULL OR m.is_archived = 0)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:292:  options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:295:  const { specFolder = null, maxTokens = 2000, includeArchived = false } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:297:  let results = get_constitutional_memories(database, specFolder, includeArchived);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:321:  options: { limit?: number; specFolder?: string | null; minSimilarity?: number; includeArchived?: boolean } = {}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:346:  const { limit = 10, specFolder = null, minSimilarity = 50, includeArchived = false } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:360:  const archival_filter = !includeArchived ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)' : '';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:383:        ${archival_filter}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:618:  options: { limit?: number; specFolder?: string | null; includeArchived?: boolean } = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:621:  const { limit = 20, specFolder = null, includeArchived = false } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:642:  if (!includeArchived) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:643:    where_clause += ' AND (is_archived IS NULL OR is_archived = 0)';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:995:    const usage_factor = Math.min(1.0, (r.access_count || 0) / 10);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1096:    sortBy = 'access_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1102:  const sort_field = valid_sort_fields.includes(sortBy) ? sortBy : 'access_count';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1108:    SELECT id, title, spec_folder, file_path, access_count,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1111:    WHERE access_count > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1119:    access_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1120:    last_accessed: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1158:      last_accessed,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1159:      access_count,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1165:      OR access_count <= ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1167:      OR (last_accessed IS NULL AND created_at < ?)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1169:      last_accessed ASC NULLS FIRST,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1170:      access_count ASC,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1192:      typeof row.last_accessed === 'number' ? new Date(row.last_accessed).toISOString() : null
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1199:    if ((row.access_count || 0) <= maxAccessCount) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1200:      const count = row.access_count || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1213:      lastAccessedAt: row.last_accessed,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1214:      accessCount: row.access_count || 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1274:    lastAccessedAt: memory.last_accessed,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1275:    accessCount: memory.access_count || 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1279:      typeof memory.last_accessed === 'number' ? new Date(memory.last_accessed).toISOString() : null
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:51:  archivedDaysThreshold: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:64:  archivedDaysThreshold: parseLimit('ARCHIVED_DAYS_THRESHOLD', ARCHIVED_DAYS_THRESHOLD),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:264:    const timestamp = mem.lastAccess || mem.last_accessed || mem.lastReview || mem.last_review || mem.created_at;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:277:  // (days > 90 AND r < 0.02). Using || here would incorrectly archive
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:279:  if (days > TIER_CONFIG.archivedDaysThreshold && r < STATE_THRESHOLDS.DORMANT) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:494: * Determine if a memory should be archived.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:499:  // Never archive constitutional or critical
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:504:  // Pinned memories are never archived
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:54:  access_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:55:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:85:  access_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:86:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:141:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:159:  access_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:4:// Feature catalog: Automatic archival subsystem
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:5:// Background archival job for dormant/archived memories
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:32:      console.warn(`[archival-manager] tier-classifier module unavailable: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:91:          `[archival-manager] bm25-index module unavailable. primary="${primaryError}" fallback="${fallbackMessage}"`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:147:          `[archival-manager] embeddings module unavailable. primary="${primaryError}" fallback="${fallbackMessage}"`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:214:  access_count: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:222:  totalUnarchived: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:234:const archivalStats: ArchivalStats = {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:237:  totalUnarchived: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:258:    const hasArchived = columns.some(c => c.name === 'is_archived');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:261:      db.exec('ALTER TABLE memory_index ADD COLUMN is_archived INTEGER DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:262:      db.exec('CREATE INDEX IF NOT EXISTS idx_archived ON memory_index(is_archived)');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:263:      console.error('[archival-manager] Added is_archived column');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:268:      console.warn(`[archival-manager] ensureArchivedColumn error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:274: * Ensure the archival_stats metadata table exists for persisting stats across restarts (P5-06).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:281:      CREATE TABLE IF NOT EXISTS archival_stats (
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:289:    console.warn(`[archival-manager] ensureArchivalStatsTable error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:294: * Load archival stats from the database on startup (P5-06).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:301:      'SELECT key, value FROM archival_stats'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:307:          archivalStats.totalScanned = parseInt(row.value, 10) || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:310:          archivalStats.totalArchived = parseInt(row.value, 10) || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:312:        case 'totalUnarchived':
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:313:          archivalStats.totalUnarchived = parseInt(row.value, 10) || 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:316:          archivalStats.lastScanTime = row.value === '' ? null : row.value || null;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:322:    console.warn(`[archival-manager] loadArchivalStats error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:327: * Persist archival stats to the database (P5-06).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:334:      INSERT INTO archival_stats (key, value, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:340:      upsert.run('totalScanned', String(archivalStats.totalScanned));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:341:      upsert.run('totalArchived', String(archivalStats.totalArchived));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:342:      upsert.run('totalUnarchived', String(archivalStats.totalUnarchived));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:343:      upsert.run('lastScanTime', archivalStats.lastScanTime ?? '');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:349:    console.warn(`[archival-manager] saveArchivalStats error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:358: * Get archival candidates using SQL as a pre-filter, then FSRS tier classifier
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:361: * Strategy: SQL query fetches broad candidates (unarchived, not protected, not pinned).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:362: * The FSRS-based tier classifier then determines which should actually be archived.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:363: * This unifies the dual archival paths (P5-05) — FSRS is primary, SQL is pre-filter.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:371:    // Broad SQL pre-filter: get unarchived, non-protected, non-pinned memories
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:375:      WHERE (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:378:      ORDER BY last_accessed ASC NULLS FIRST, access_count ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:385:    // Use FSRS-based tier classifier as authoritative archival decision
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:403:          ((row.access_count as number) || 0) <= ARCHIVAL_CONFIG.maxAccessCount &&
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:416:          access_count: (row.access_count as number) || 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:428:    console.warn(`[archival-manager] getArchivalCandidates error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:438:  if ((row.access_count as number) <= ARCHIVAL_CONFIG.maxAccessCount) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:460:    const isArchived = (memory.is_archived as number) === 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:472:    console.warn(`[archival-manager] checkMemoryArchivalStatus error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:485:    console.warn(`[archival-manager] getMemoryIndexColumns failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:498:    console.warn(`[archival-manager] BM25 archive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:503:// Touching memory_index or ancillary tables. This preserves the archived row
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:504:// (is_archived=1) so unarchive can still find and restore it.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:514:      console.warn(`[archival-manager] Vector archive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:519:function syncBm25OnUnarchive(memoryId: number): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:530:    const query = `SELECT ${availableColumns.join(', ')} FROM memory_index WHERE id = ? AND is_archived = 0`;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:539:    console.warn(`[archival-manager] BM25 unarchive sync failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:546: * The playbook contract (scenario 124) requires that unarchive does NOT recreate the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:549: * the unarchive call on an async embedding generation round-trip and keeps the
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:550: * archive/unarchive path lightweight.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:552:function syncVectorOnUnarchive(memoryId: number): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:554:    `[archival-manager] Deferred vector re-embedding for memory ${memoryId} until next index scan`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:558:function archiveMemory(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:564:      SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:567:        AND (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:572:      archivalStats.totalArchived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:583:    archivalStats.errors.push(msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:584:    if (archivalStats.errors.length > MAX_ERROR_LOG) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:585:      archivalStats.errors = archivalStats.errors.slice(-MAX_ERROR_LOG);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:587:    console.warn(`[archival-manager] archiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:592:function archiveBatch(memoryIds: number[]): { archived: number; failed: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:593:  if (!db) return { archived: 0, failed: memoryIds.length };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:595:  let archived = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:601:        // Db is guaranteed non-null because archiveBatch returns early when the module database is missing
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:604:          SET is_archived = 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:607:            AND (is_archived IS NULL OR is_archived = 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:612:          archivalStats.totalArchived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:615:          archived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:622:        archivalStats.errors.push(msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:623:        if (archivalStats.errors.length > MAX_ERROR_LOG) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:624:          archivalStats.errors = archivalStats.errors.slice(-MAX_ERROR_LOG);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:626:        console.warn(`[archival-manager] archiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:635:  return { archived, failed };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:638:function unarchiveMemory(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:644:      SET is_archived = 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:646:      WHERE id = ? AND is_archived = 1
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:651:      archivalStats.totalUnarchived++;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:652:      syncBm25OnUnarchive(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:653:      syncVectorOnUnarchive(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:661:    console.warn(`[archival-manager] unarchiveMemory error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:670:function runArchivalScan(): { scanned: number; archived: number } {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:672:  archivalStats.totalScanned += candidates.length;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:673:  archivalStats.lastScanTime = new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:675:  const result = archiveBatch(candidates.map(c => c.id));
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:681:    `[archival-manager] Scan complete: ${candidates.length} candidates, ${result.archived} archived`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:684:  return { scanned: candidates.length, archived: result.archived };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:701:      console.warn(`[archival-manager] Background job error: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:709:  console.error(`[archival-manager] Background job started (interval: ${intervalMs / 1000}s)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:716:    console.error('[archival-manager] Background job stopped');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:729:  return { ...archivalStats };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:733:  return archivalStats.errors.slice(-limit);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:737:  archivalStats.totalScanned = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:738:  archivalStats.totalArchived = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:739:  archivalStats.totalUnarchived = 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:740:  archivalStats.lastScanTime = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:741:  archivalStats.errors = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:764:  archiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:765:  archiveBatch,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:766:  unarchiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:25:  includeArchived?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:155: * @param options - Search options (limit, specFolder, includeArchived)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:167:  const { limit = 20, specFolder, includeArchived = false } = options;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:183:  const archivalFilter = !includeArchived
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:184:    ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:202:      ${archivalFilter}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:146:      SET access_count = access_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:147:          last_accessed = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:197:          access_count = access_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:198:          last_accessed = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:244:  const usage = calculateUsageScore((memory.access_count as number) || 0) as number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:309:      ORDER BY last_accessed DESC, importance_weight DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:40:  access_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:382:      SET access_count = access_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:383:          last_accessed = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:383:           AND COALESCE(is_archived, 0) = 0`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:431:         WHERE COALESCE(is_archived, 0) = 0
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:28:  '/z_archive/',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:135:  includeArchived: boolean
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:137:  if (includeArchived) return results;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139:    const archived = row.is_archived ?? row.isArchived;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:140:    if (archived == null) return true;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:141:    if (typeof archived === 'number') return archived === 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:142:    if (typeof archived === 'boolean') return archived === false;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:490:    includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:598:      includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:669:                    { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:732:                  { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:766:            { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:775:          { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:814:                { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:831:                    { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:878:            { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:896:            includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:936:      includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1112:                { limit, specFolder, includeArchived }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1259:            const archiveFilteredSummaryHits = applyArchiveFilter(newSummaryHits, includeArchived);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1260:            const folderFilteredSummaryHits = applyFolderFilter(archiveFilteredSummaryHits, specFolder);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:527:    const dateStr = r.created_at as string | undefined || r.last_accessed as string | undefined || r.last_review as string | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:41:  includeArchived: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:124:  includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:153:    includeArchived,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:39:The cognitive subsystem is the "brain" of the memory system. It determines which memories stay active, which fade, and which get archived. Unlike simple time-based caching, it uses FSRS v4 power-law decay validated on 100M+ real human memory data.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:193:| **Usage**      | 0.15   | Access frequency       | `min(1, access_count / 50)`                   |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:253:├── archival-manager.ts         # 90-day archival lifecycle (395 lines)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:270:| `archival-manager.ts`      | Lifecycle management      | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                    |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:500:// Activate memory (increment access_count, update last_accessed)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:640:  archiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:641:  unarchiveMemory,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:647:} from './archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:658:// scanResult = { scanned: 15, archived: 12 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:664:// Archive/unarchive
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:665:archiveMemory(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:666:unarchiveMemory(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:668:// Get archival candidates
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:674:// stats = { totalScanned, totalArchived, totalUnarchived, lastScanTime, errors }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:687:# maxAgeDays: 90                               # Days before eligible for archival
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:750:import * as archival from './archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:759:archival.init(db);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:763:// Start background archival
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:764:archival.startBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:885:**Cause**: Not archiving old memories, or archival job not running
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:889:import * as archival from './archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:891:// Check archival stats
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:892:const stats = archival.getStats();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:893:console.log('Background job:', archival.isBackgroundJobRunning());
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:896:if (!archival.isBackgroundJobRunning()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:897:  archival.startBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:901:const scanResult = archival.runArchivalScan();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:902:console.log(`Archived ${scanResult.archived} old memories`);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:940:// Use activateMemoryWithFsrs (updates stability, last_review, access_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:954:| Memory leak          | Enable archival: `archival.startBackgroundJob()`             |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:999:**Q: Can I disable automatic archival?**
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1003:import * as archival from './archival-manager';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1004:archival.stopBackgroundJob();
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1049:| `ARCHIVED_DAYS_THRESHOLD` | 90      | Days inactive before archival           |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1051:| `SPECKIT_ARCHIVAL`        | true    | Enable background archival job          |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:461:  includeArchived: boolean,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:464:  return `${db_scope}::${spec_folder || 'global'}:${includeArchived ? 'arch' : 'noarch'}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:606: * @param includeArchived - Whether archived memories should be included.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:612:  includeArchived = false
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:614:  // Scope cache entries to the active DB path as well as the archived filter.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:615:  const cache_key = build_constitutional_cache_key(spec_folder, includeArchived);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:637:        ${!includeArchived ? 'AND (m.is_archived IS NULL OR m.is_archived = 0)' : ''}
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:679:    const scoped_suffix_archived = `::${spec_folder}:arch`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:682:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:687:      if (key.endsWith(scoped_suffix_archived) || key.endsWith(scoped_suffix_live)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:715:         AND COALESCE(m.is_archived, 0) = 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:942:      includeArchived: options.includeArchived === true
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1096:    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:574:          access_count = access_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:575:          last_accessed = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:801:      SELECT id, COALESCE(access_count, 0) AS access_count
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:804:    `).all(...resultIds) as Array<{ id: number; access_count: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:811:      Math.max(currentMax, Number.isFinite(row.access_count) ? row.access_count : 0), 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:817:    const usageMap = new Map(usageRows.map((row) => [row.id, row.access_count]));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:26:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:93:  last_accessed?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:134:  includeArchived: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
 
 exec
 /bin/zsh -lc "nl -ba .opencode/plugins/spec-kit-compact-code-graph.js | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3906,7 +3906,7 @@ exec
    225	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '340,700p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts | sed -n '340,700p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    340	      upsert.run('totalScanned', String(archivalStats.totalScanned));
    341	      upsert.run('totalArchived', String(archivalStats.totalArchived));
@@ -4271,7 +4271,7 @@ exec
    700	      const msg = error instanceof Error ? error.message : String(error);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts | sed -n '360,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts | sed -n '360,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    360	      console.warn(`[memory-save] TM-06: Reconsolidation error (proceeding with normal save): ${message}`);
    361	      // Reconsolidation errors must not block saves
@@ -4357,7 +4357,7 @@ exec
 406:      const block = plan?.compaction;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '180,290p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts | sed -n '180,290p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    180	  return flagValue === 'true' || flagValue === '1';
    181	}
@@ -4472,7 +4472,7 @@ exec
    290	  return {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts | sed -n '130,155p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts | sed -n '130,155p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    130	  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
    131	  tenantId?: string;
@@ -4502,7 +4502,7 @@ exec
    155	  document_type?: string;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    648	/** Handle memory_validate tool - records user validation feedback to adjust confidence */
    649	async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
@@ -4685,7 +4685,7 @@ exec
    419	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '560,840p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '560,840p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    560	    const difficultyBonus = Math.max(0, (0.9 - clampedR) * 0.5);
    561	
@@ -4970,7 +4970,7 @@ exec
    840	/**
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts | sed -n '126,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts | sed -n '126,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    126	  let total = 0;
    127	  let statusCounts: ReturnType<typeof vectorIndex.getStatusCounts> = { success: 0, pending: 0, failed: 0, retry: 0, partial: 0 };
@@ -5069,7 +5069,7 @@ exec
    220	        scoredFolders = folderScoring.computeFolderScores(allMemories, scoringOptions);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '130,150p;1236,1264p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts | sed -n '130,150p;1236,1264p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    130	  });
    131	}
@@ -5123,7 +5123,7 @@ exec
   1264	              : tierFilteredSummaryHits;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts | sed -n '372,438p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts | sed -n '372,438p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    372	
    373	    if (normalizedIds.length === 0) {
@@ -5194,7 +5194,7 @@ exec
    438	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts | sed -n '628,720p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts | sed -n '628,720p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    628	
    629	  try {
@@ -5291,7 +5291,7 @@ exec
    720	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1724,1742p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1724,1742p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
   1724	      const message = extractionErr instanceof Error ? extractionErr.message : String(extractionErr);
   1725	      throw new Error(`[context-server] Extraction adapter startup failed: ${message}`);
@@ -5314,7 +5314,7 @@ exec
   1742	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '700,716p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '700,716p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    700	  meta.sessionPriming = sessionPrimeContext;
    701	}
@@ -5335,301 +5335,301 @@ exec
    716	    const data = (parsed.data ?? {}) as Record<string, unknown>;
 
 exec
-/bin/zsh -lc "rg -n \"durability|salience|importance_tier|state =|HOT|WARM|COLD|DORMANT|ARCHIVED|is_pinned|importance_weight\" .opencode/skill/system-spec-kit/mcp_server/lib .opencode/skill/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"durability|salience|importance_tier|state =|HOT|WARM|COLD|DORMANT|ARCHIVED|is_pinned|importance_weight\" .opencode/skills/system-spec-kit/mcp_server/lib .opencode/skills/system-spec-kit/mcp_server/handlers | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:331:  if (job.state === 'complete' || job.state === 'failed' || job.state === 'cancelled') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:340:  const summary = cancelled.state === 'cancelled'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:116:  let countSql = 'SELECT COUNT(*) as count FROM memory_index WHERE importance_tier = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:184:  let selectSql = 'SELECT id, content_hash, file_path, spec_folder FROM memory_index WHERE importance_tier = ?';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:161:  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:167:    if (tier === 'HOT') return content;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:168:    // WARM tier returns truncated summary
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:502:  const coldCount = cognitiveStats?.tierDistribution?.COLD;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:504:    hints.push(`${coldCount} COLD-tier memories excluded for token efficiency`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:223:                importance_weight: typeof r.importance_weight === 'number'
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:224:                  ? r.importance_weight
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:141:   5. METRICS SNAPSHOT
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:146:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:247:        SET importance_tier = 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:187:    "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:108:  const sortColumn = ['created_at', 'updated_at', 'importance_weight'].includes(sortBy)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:131:    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:152:    importanceWeight: row.importance_weight,
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:573:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:586:  if ((row.importance_tier?.trim().toLowerCase() ?? 'normal') !== 'normal') {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:233:        state = 'queued',
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:305:  if (current.state === nextState) {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:317:      SET state = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:318:      WHERE id = ? AND state = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:472:  if (job.state === 'failed') {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:482:  if (job.state === 'complete') {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:492:  if (job.state === 'cancelled') {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:515:  if (job.state === 'queued') {
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:551:  const stateRisk = job.state === 'indexing' ? 0.15 : (job.state === 'embedding' ? 0.1 : 0.05);
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:608:    if (current.state === 'cancelled') return;
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:638:  if (done.state === 'cancelled') return;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:177:  SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:367:      importance_weight: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:412:          importanceWeight: row.importance_weight || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1823:      SELECT id, title, file_path, importance_tier, importance_weight, spec_folder
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1827:        CASE importance_tier
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1835:        importance_weight DESC,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1850:      importance_tier: row.importance_tier as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:355:  let state = degreeCachePerDb.get(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:357:    state = {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:569:      `SELECT id FROM memory_index WHERE id IN (${placeholders}) AND importance_tier = 'constitutional'`
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:176:          importance_weight = ?,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:212:      SET importance_tier = 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:280:      importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:291:      SET importance_tier = 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:145:      'SELECT importance_tier, COUNT(*) as count FROM memory_index GROUP BY importance_tier'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:146:    ).all() as { importance_tier: string; count: number }[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:148:      tierBreakdown[row.importance_tier || 'normal'] = row.count;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:207:          id, spec_folder, file_path, title, importance_weight, importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:133:      importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:148:    const tier = (memory.importance_tier || 'normal').toLowerCase();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:246:        'UPDATE memory_index SET importance_tier = ?, updated_at = ? WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:298:      SELECT id, importance_tier, validation_count
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:300:      WHERE importance_tier IN ('normal', 'important')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:304:      importance_tier: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:311:      const tier = row.importance_tier?.toLowerCase() || 'normal';
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:62:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:94:  'content_hash', 'context_type', 'importance_tier', 'memory_type',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:243:        importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:344:          importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:507:            importance_tier = ?,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:508:            importance_weight = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:85:| 2 | Importance tier | 0.9 | `importance_tier: constitutional` -> meta-cognitive |
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:255:  const importance_tier = extractImportanceTier(content, { documentType });
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:266:    importanceTier: importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:278:    importanceTier: importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:639:  const yamlMatch = frontmatter?.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:41:const BM25_WARMUP_BATCH_SIZE = 250;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:446:        const batchIds = pendingIds.splice(0, BM25_WARMUP_BATCH_SIZE);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:119:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:515:    minState,  // No default — memoryState column not yet in schema; defaulting to 'WARM' filters all rows
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:833:              SELECT id, title, similarity, content, file_path, importance_tier, context_type,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:31:  source: 'frontmatter_explicit' | 'importance_tier' | 'file_path' | 'keywords' | 'default';
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:52:  importance_tier?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:129:  // Check for importance_tier in frontmatter
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:130:  const tierMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:251:      source: 'importance_tier',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:260:      source: 'importance_tier',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:304:      importanceTier: memory.importanceTier || memory.importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:321:  importance_tier: 'Derived from importance_tier field mapping',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:430:          SELECT id, title, spec_folder, importance_tier, importance_weight,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:450:              SELECT id, title, spec_folder, importance_tier, created_at
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:42:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:165:      .map(r => r.importance_tier)
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:248:  const warmResults = results.filter(r => r.memoryState === 'WARM' || r.memoryState === 'HOT');
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:265:    r => r.memoryState === 'COLD' || r.memoryState === 'ARCHIVED'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:249:  const state = detectState(rootDir);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:348:    const state = detectState(rootDir);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:63:│  Tier Classifier ───→ State = HOT (R > 0.80)                     │
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:71:│  Tier Classifier ───→ State = WARM → COLD → DORMANT              │
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:73:│  Archival Manager ──→ After 90 days → ARCHIVED                  │
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:89:| **5-State Model**            | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                                        | Progressive memory transitions       |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:147:| **HOT**      | R >= 0.80            | Recently accessed | Full content  | 0-2 days    |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:148:| **WARM**     | R >= 0.25            | Recently relevant | Summary only  | 3-14 days   |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:149:| **COLD**     | R >= 0.05            | Fading            | Metadata only | 15-60 days  |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:150:| **DORMANT**  | R >= 0.02            | Nearly forgotten  | Metadata only | 60-90 days  |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:151:| **ARCHIVED** | R < 0.02 OR 90+ days | Long-term storage | Not loaded    | 90+ days    |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:155:NEW MEMORY → HOT (R = 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:157:  WARM (R = 0.60)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:159:  COLD (R = 0.15)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:161:  DORMANT (R = 0.03)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:163:  ARCHIVED
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:166:[Any state] → HOT (R = 1.0) + Stability boost
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:351:const state = classifyState(0.65, 5);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:352:// state = 'WARM' (R >= 0.25 but < 0.80)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:360:// classification = { state: 'WARM', retrievability: 0.65, effectiveHalfLife: 60 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:363:const hotMemories = getStateContent(allMemories, 'HOT', 5);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:364:// hotMemories = { state: 'HOT', memories: [...], count: N }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:366:// Filter with tier-specific limits (max 5 HOT + max 10 WARM)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:371:// stats = { HOT: 3, WARM: 8, COLD: 12, DORMANT: 4, ARCHIVED: 20, total: 47 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:376:HOT_THRESHOLD=0.80      # Default: 0.80
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:377:WARM_THRESHOLD=0.25     # Default: 0.25
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:378:COLD_THRESHOLD=0.05     # Default: 0.05
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:379:ARCHIVED_DAYS_THRESHOLD=90  # Default: 90 days
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:482:// Uses memory.importance_tier for decay rate
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:803:    db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:931:**Symptom**: Memory shows COLD but was recently accessed
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:956:| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)         |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1046:| `HOT_THRESHOLD`           | 0.80    | Retrievability threshold for HOT state  |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1047:| `WARM_THRESHOLD`          | 0.25    | Retrievability threshold for WARM state |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1048:| `COLD_THRESHOLD`          | 0.05    | Retrievability threshold for COLD state |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:1049:| `ARCHIVED_DAYS_THRESHOLD` | 90      | Days inactive before archival           |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:42:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:105: * - Positive validations can trigger auto-promotion (`importance_tier` changes),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:150:        memory.importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:217:    if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:247:      if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:264:      SET importance_tier = 'critical', updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:303:      importanceTier: memory.importance_tier || 'normal',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:163:  return results.filter((row) => row.importance_tier === tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:967:    candidates = candidates.filter((r) => r.importance_tier === tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1022:      (r) => r.importance_tier === 'constitutional'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1068:      (r) => r.importance_tier !== 'constitutional'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:44:  importance_weight?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:53:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:58:  is_pinned?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:82:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:83:  importance_weight?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:94:  - `attention-decay.ts` — time/usage decay utilities used to age memory salience.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:246:    String(memory.importance_tier || memory.importanceTier || 'normal'),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:247:    memory.importance_weight as number | undefined
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:308:        AND (importance_tier IS NULL OR importance_tier NOT IN ('deprecated'))
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:309:      ORDER BY last_accessed DESC, importance_weight DESC
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:39:  HOT: 0.80,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:40:  WARM: 0.25,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:41:  COLD: 0.05,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:42:  DORMANT: 0.02,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:45:const ARCHIVED_DAYS_THRESHOLD = 90;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:61:  hotThreshold: parseThreshold('HOT_THRESHOLD', STATE_THRESHOLDS.HOT),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:62:  warmThreshold: parseThreshold('WARM_THRESHOLD', STATE_THRESHOLDS.WARM),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:63:  coldThreshold: parseThreshold('COLD_THRESHOLD', STATE_THRESHOLDS.COLD),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:64:  archivedDaysThreshold: parseLimit('ARCHIVED_DAYS_THRESHOLD', ARCHIVED_DAYS_THRESHOLD),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:65:  maxHotMemories: parseLimit('MAX_HOT_MEMORIES', 5),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:66:  maxWarmMemories: parseLimit('MAX_WARM_MEMORIES', 10),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:67:  maxColdMemories: parseLimit('MAX_COLD_MEMORIES', 3),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:68:  maxDormantMemories: parseLimit('MAX_DORMANT_MEMORIES', 2),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:69:  maxArchivedMemories: parseLimit('MAX_ARCHIVED_MEMORIES', 1),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:73:// Validate threshold ordering (HOT > WARM > COLD)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:75:  console.warn('[tier-classifier] Invalid thresholds: HOT must be > WARM. Using defaults.');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:76:  TIER_CONFIG.hotThreshold = STATE_THRESHOLDS.HOT;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:77:  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:80:  console.warn('[tier-classifier] Invalid thresholds: WARM must be > COLD. Using defaults.');
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:81:  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:82:  TIER_CONFIG.coldThreshold = STATE_THRESHOLDS.COLD;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:89:type TierState = 'HOT' | 'WARM' | 'COLD' | 'DORMANT' | 'ARCHIVED';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:100:  HOT: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:101:  WARM: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:102:  COLD: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:103:  DORMANT: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:104:  ARCHIVED: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:186:  const tier = memory.importance_tier;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:236: *   - null/undefined: returns 'DORMANT'
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:246:    return 'DORMANT';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:273:    return 'DORMANT';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:276:  // ARCHIVED requires BOTH conditions: old age AND very low retrievability
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:279:  if (days > TIER_CONFIG.archivedDaysThreshold && r < STATE_THRESHOLDS.DORMANT) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:280:    return 'ARCHIVED';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:282:  if (r >= TIER_CONFIG.hotThreshold) return 'HOT';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:283:  if (r >= TIER_CONFIG.warmThreshold) return 'WARM';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:284:  if (r >= TIER_CONFIG.coldThreshold) return 'COLD';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:285:  return 'DORMANT';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:300:  // If no decay (constitutional/critical), always HOT
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:302:    return { state: 'HOT', retrievability: 1.0, effectiveHalfLife: null };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:305:  // Pinned memories are always HOT
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:306:  if (memory.is_pinned === 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:307:    return { state: 'HOT', retrievability: 1.0, effectiveHalfLife };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:326:  const state = classifyState(retrievability, elapsedDays);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:348:    .filter(m => m._classification.state === targetState)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:365:  HOT: TIER_CONFIG.maxHotMemories,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:366:  WARM: TIER_CONFIG.maxWarmMemories,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:367:  COLD: TIER_CONFIG.maxColdMemories,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:368:  DORMANT: TIER_CONFIG.maxDormantMemories,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:369:  ARCHIVED: TIER_CONFIG.maxArchivedMemories,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:373:const TIER_PRIORITY: TierState[] = ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'];
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:381: * (HOT: 5, WARM: 10, COLD: 3, DORMANT: 2, ARCHIVED: 1 by default).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:400:    classified = classified.filter((entry) => entry.classification.state === targetState);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:407:      HOT: [], WARM: [], COLD: [], DORMANT: [], ARCHIVED: [],
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:410:      const state = entry.classification.state;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:477:    HOT: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:478:    WARM: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:479:    COLD: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:480:    DORMANT: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:481:    ARCHIVED: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:500:  if (memory.importance_tier === 'constitutional' || memory.importance_tier === 'critical') {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:505:  if (memory.is_pinned === 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:509:  return state === 'ARCHIVED' || state === 'DORMANT';
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:519:  ARCHIVED_DAYS_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:331:  if (job.state === 'complete' || job.state === 'failed' || job.state === 'cancelled') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:340:  const summary = cancelled.state === 'cancelled'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:116:  let countSql = 'SELECT COUNT(*) as count FROM memory_index WHERE importance_tier = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:184:  let selectSql = 'SELECT id, content_hash, file_path, spec_folder FROM memory_index WHERE importance_tier = ?';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156:/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:161:  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:167:    if (tier === 'HOT') return content;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:168:    // WARM tier returns truncated summary
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:502:  const coldCount = cognitiveStats?.tierDistribution?.COLD;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:504:    hints.push(`${coldCount} COLD-tier memories excluded for token efficiency`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:223:                importance_weight: typeof r.importance_weight === 'number'
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:224:                  ? r.importance_weight
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:141:   5. METRICS SNAPSHOT
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:146:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:247:        SET importance_tier = 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:187:    "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:108:  const sortColumn = ['created_at', 'updated_at', 'importance_weight'].includes(sortBy)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:131:    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:152:    importanceWeight: row.importance_weight,
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:573:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:586:  if ((row.importance_tier?.trim().toLowerCase() ?? 'normal') !== 'normal') {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:233:        state = 'queued',
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:305:  if (current.state === nextState) {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:317:      SET state = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:318:      WHERE id = ? AND state = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:472:  if (job.state === 'failed') {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:482:  if (job.state === 'complete') {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:492:  if (job.state === 'cancelled') {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:515:  if (job.state === 'queued') {
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:551:  const stateRisk = job.state === 'indexing' ? 0.15 : (job.state === 'embedding' ? 0.1 : 0.05);
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:608:    if (current.state === 'cancelled') return;
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:638:  if (done.state === 'cancelled') return;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:177:  SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:367:      importance_weight: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:412:          importanceWeight: row.importance_weight || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1810:      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1823:      SELECT id, title, file_path, importance_tier, importance_weight, spec_folder
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1827:        CASE importance_tier
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1835:        importance_weight DESC,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1850:      importance_tier: row.importance_tier as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:355:  let state = degreeCachePerDb.get(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:357:    state = {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:569:      `SELECT id FROM memory_index WHERE id IN (${placeholders}) AND importance_tier = 'constitutional'`
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:176:          importance_weight = ?,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:212:      SET importance_tier = 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:280:      importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:291:      SET importance_tier = 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:145:      'SELECT importance_tier, COUNT(*) as count FROM memory_index GROUP BY importance_tier'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:146:    ).all() as { importance_tier: string; count: number }[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:148:      tierBreakdown[row.importance_tier || 'normal'] = row.count;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:207:          id, spec_folder, file_path, title, importance_weight, importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:133:      importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:148:    const tier = (memory.importance_tier || 'normal').toLowerCase();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:246:        'UPDATE memory_index SET importance_tier = ?, updated_at = ? WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:298:      SELECT id, importance_tier, validation_count
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:300:      WHERE importance_tier IN ('normal', 'important')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:304:      importance_tier: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:311:      const tier = row.importance_tier?.toLowerCase() || 'normal';
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:62:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:94:  'content_hash', 'context_type', 'importance_tier', 'memory_type',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:243:        importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:344:          importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:507:            importance_tier = ?,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:508:            importance_weight = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:85:| 2 | Importance tier | 0.9 | `importance_tier: constitutional` -> meta-cognitive |
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:255:  const importance_tier = extractImportanceTier(content, { documentType });
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:266:    importanceTier: importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:278:    importanceTier: importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:639:  const yamlMatch = frontmatter?.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:41:const BM25_WARMUP_BATCH_SIZE = 250;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:446:        const batchIds = pendingIds.splice(0, BM25_WARMUP_BATCH_SIZE);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:119:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:515:    minState,  // No default — memoryState column not yet in schema; defaulting to 'WARM' filters all rows
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:833:              SELECT id, title, similarity, content, file_path, importance_tier, context_type,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:31:  source: 'frontmatter_explicit' | 'importance_tier' | 'file_path' | 'keywords' | 'default';
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:52:  importance_tier?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:129:  // Check for importance_tier in frontmatter
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:130:  const tierMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:251:      source: 'importance_tier',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:260:      source: 'importance_tier',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:304:      importanceTier: memory.importanceTier || memory.importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:321:  importance_tier: 'Derived from importance_tier field mapping',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:430:          SELECT id, title, spec_folder, importance_tier, importance_weight,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:450:              SELECT id, title, spec_folder, importance_tier, created_at
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:42:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:165:      .map(r => r.importance_tier)
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:248:  const warmResults = results.filter(r => r.memoryState === 'WARM' || r.memoryState === 'HOT');
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:265:    r => r.memoryState === 'COLD' || r.memoryState === 'ARCHIVED'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:249:  const state = detectState(rootDir);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:348:    const state = detectState(rootDir);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:63:│  Tier Classifier ───→ State = HOT (R > 0.80)                     │
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:71:│  Tier Classifier ───→ State = WARM → COLD → DORMANT              │
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:73:│  Archival Manager ──→ After 90 days → ARCHIVED                  │
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:89:| **5-State Model**            | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                                        | Progressive memory transitions       |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:147:| **HOT**      | R >= 0.80            | Recently accessed | Full content  | 0-2 days    |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:148:| **WARM**     | R >= 0.25            | Recently relevant | Summary only  | 3-14 days   |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:149:| **COLD**     | R >= 0.05            | Fading            | Metadata only | 15-60 days  |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:150:| **DORMANT**  | R >= 0.02            | Nearly forgotten  | Metadata only | 60-90 days  |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:151:| **ARCHIVED** | R < 0.02 OR 90+ days | Long-term storage | Not loaded    | 90+ days    |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:155:NEW MEMORY → HOT (R = 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:157:  WARM (R = 0.60)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:159:  COLD (R = 0.15)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:161:  DORMANT (R = 0.03)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:163:  ARCHIVED
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:166:[Any state] → HOT (R = 1.0) + Stability boost
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:351:const state = classifyState(0.65, 5);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:352:// state = 'WARM' (R >= 0.25 but < 0.80)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:360:// classification = { state: 'WARM', retrievability: 0.65, effectiveHalfLife: 60 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:363:const hotMemories = getStateContent(allMemories, 'HOT', 5);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:364:// hotMemories = { state: 'HOT', memories: [...], count: N }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:366:// Filter with tier-specific limits (max 5 HOT + max 10 WARM)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:371:// stats = { HOT: 3, WARM: 8, COLD: 12, DORMANT: 4, ARCHIVED: 20, total: 47 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:376:HOT_THRESHOLD=0.80      # Default: 0.80
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:377:WARM_THRESHOLD=0.25     # Default: 0.25
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:378:COLD_THRESHOLD=0.05     # Default: 0.05
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:379:ARCHIVED_DAYS_THRESHOLD=90  # Default: 90 days
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:482:// Uses memory.importance_tier for decay rate
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:803:    db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:931:**Symptom**: Memory shows COLD but was recently accessed
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:956:| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)         |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1046:| `HOT_THRESHOLD`           | 0.80    | Retrievability threshold for HOT state  |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1047:| `WARM_THRESHOLD`          | 0.25    | Retrievability threshold for WARM state |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1048:| `COLD_THRESHOLD`          | 0.05    | Retrievability threshold for COLD state |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:1049:| `ARCHIVED_DAYS_THRESHOLD` | 90      | Days inactive before archival           |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:42:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:105: * - Positive validations can trigger auto-promotion (`importance_tier` changes),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:150:        memory.importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:217:    if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:247:      if (memory.importance_tier === 'critical' || memory.importance_tier === 'constitutional') {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:264:      SET importance_tier = 'critical', updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:303:      importanceTier: memory.importance_tier || 'normal',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:163:  return results.filter((row) => row.importance_tier === tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:967:    candidates = candidates.filter((r) => r.importance_tier === tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1022:      (r) => r.importance_tier === 'constitutional'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1068:      (r) => r.importance_tier !== 'constitutional'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:44:  importance_weight?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:53:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:58:  is_pinned?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:82:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:83:  importance_weight?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:94:  - `attention-decay.ts` — time/usage decay utilities used to age memory salience.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:246:    String(memory.importance_tier || memory.importanceTier || 'normal'),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:247:    memory.importance_weight as number | undefined
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:308:        AND (importance_tier IS NULL OR importance_tier NOT IN ('deprecated'))
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:309:      ORDER BY last_accessed DESC, importance_weight DESC
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:39:  HOT: 0.80,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:40:  WARM: 0.25,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:41:  COLD: 0.05,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:42:  DORMANT: 0.02,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:45:const ARCHIVED_DAYS_THRESHOLD = 90;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:61:  hotThreshold: parseThreshold('HOT_THRESHOLD', STATE_THRESHOLDS.HOT),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:62:  warmThreshold: parseThreshold('WARM_THRESHOLD', STATE_THRESHOLDS.WARM),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:63:  coldThreshold: parseThreshold('COLD_THRESHOLD', STATE_THRESHOLDS.COLD),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:64:  archivedDaysThreshold: parseLimit('ARCHIVED_DAYS_THRESHOLD', ARCHIVED_DAYS_THRESHOLD),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:65:  maxHotMemories: parseLimit('MAX_HOT_MEMORIES', 5),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:66:  maxWarmMemories: parseLimit('MAX_WARM_MEMORIES', 10),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:67:  maxColdMemories: parseLimit('MAX_COLD_MEMORIES', 3),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:68:  maxDormantMemories: parseLimit('MAX_DORMANT_MEMORIES', 2),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:69:  maxArchivedMemories: parseLimit('MAX_ARCHIVED_MEMORIES', 1),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:73:// Validate threshold ordering (HOT > WARM > COLD)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:75:  console.warn('[tier-classifier] Invalid thresholds: HOT must be > WARM. Using defaults.');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:76:  TIER_CONFIG.hotThreshold = STATE_THRESHOLDS.HOT;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:77:  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:80:  console.warn('[tier-classifier] Invalid thresholds: WARM must be > COLD. Using defaults.');
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:81:  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:82:  TIER_CONFIG.coldThreshold = STATE_THRESHOLDS.COLD;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:89:type TierState = 'HOT' | 'WARM' | 'COLD' | 'DORMANT' | 'ARCHIVED';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:100:  HOT: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:101:  WARM: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:102:  COLD: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:103:  DORMANT: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:104:  ARCHIVED: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:186:  const tier = memory.importance_tier;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:236: *   - null/undefined: returns 'DORMANT'
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:246:    return 'DORMANT';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:273:    return 'DORMANT';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:276:  // ARCHIVED requires BOTH conditions: old age AND very low retrievability
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:279:  if (days > TIER_CONFIG.archivedDaysThreshold && r < STATE_THRESHOLDS.DORMANT) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:280:    return 'ARCHIVED';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:282:  if (r >= TIER_CONFIG.hotThreshold) return 'HOT';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:283:  if (r >= TIER_CONFIG.warmThreshold) return 'WARM';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:284:  if (r >= TIER_CONFIG.coldThreshold) return 'COLD';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:285:  return 'DORMANT';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:300:  // If no decay (constitutional/critical), always HOT
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:302:    return { state: 'HOT', retrievability: 1.0, effectiveHalfLife: null };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:305:  // Pinned memories are always HOT
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:306:  if (memory.is_pinned === 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:307:    return { state: 'HOT', retrievability: 1.0, effectiveHalfLife };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:326:  const state = classifyState(retrievability, elapsedDays);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:348:    .filter(m => m._classification.state === targetState)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:365:  HOT: TIER_CONFIG.maxHotMemories,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:366:  WARM: TIER_CONFIG.maxWarmMemories,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:367:  COLD: TIER_CONFIG.maxColdMemories,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:368:  DORMANT: TIER_CONFIG.maxDormantMemories,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:369:  ARCHIVED: TIER_CONFIG.maxArchivedMemories,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:373:const TIER_PRIORITY: TierState[] = ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'];
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:381: * (HOT: 5, WARM: 10, COLD: 3, DORMANT: 2, ARCHIVED: 1 by default).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:400:    classified = classified.filter((entry) => entry.classification.state === targetState);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:407:      HOT: [], WARM: [], COLD: [], DORMANT: [], ARCHIVED: [],
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:410:      const state = entry.classification.state;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:477:    HOT: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:478:    WARM: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:479:    COLD: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:480:    DORMANT: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:481:    ARCHIVED: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:500:  if (memory.importance_tier === 'constitutional' || memory.importance_tier === 'critical') {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:505:  if (memory.is_pinned === 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:509:  return state === 'ARCHIVED' || state === 'DORMANT';
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:519:  ARCHIVED_DAYS_THRESHOLD,
 
 exec
-/bin/zsh -lc "rg -n \"retention_sweep|delete_after|deleteAfter|retentionPolicy|ephemeral\" .opencode/skill/system-spec-kit/mcp_server | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"retention_sweep|delete_after|deleteAfter|retentionPolicy|ephemeral\" .opencode/skills/system-spec-kit/mcp_server | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:30:      delete_after TEXT
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:160:      action: 'retention_sweep',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:165:      reason: 'delete_after_expired',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json:59:      "content": "Tier 1 memories are ephemeral and decay within 24 hours",
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:88:      "a": "Tier 1 ephemeral memories",
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:522:        'T027k-ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:526:      expect(parsed.meta.sessionLifecycle.sessionScope).toBe('ephemeral');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:16:export type RetentionPolicy = 'keep' | 'ephemeral' | 'shared';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:459:| Temporary | Yes (fast) | 0.5x | Session-specific, ephemeral |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:13:// STORAGE: In-memory only (ephemeral by design, no SQLite persistence).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:70: * Sessions are ephemeral — they exist only in process memory and are not
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
+.opencode/skills/system-spec-kit/mcp_server/README.md:710:| `retentionPolicy` | string | `keep` (default), `ephemeral`, `shared` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:711:| `deleteAfter` | string | ISO date for automatic deletion |
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:195:  retentionPolicy: z.enum(['keep', 'ephemeral', 'shared']).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:196:  deleteAfter: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'tenantId', 'userId', 'agentId', 'sessionId', 'sharedSpaceId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:30:      delete_after TEXT
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:139:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:140:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:170:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:164:  retentionPolicy?: 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:165:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:94:  sessionScope: 'caller' | 'ephemeral';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1241:    sessionScope: requestedSessionId ? 'caller' : 'ephemeral',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:160:      action: 'retention_sweep',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:165:      reason: 'delete_after_expired',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1114:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1115:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1145:    retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1146:    deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1471:        metadata: { filePath: validatedPath, retentionPolicy: governanceDecision.normalized.retentionPolicy },
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/sample-memories.json:59:      "content": "Tier 1 memories are ephemeral and decay within 24 hours",
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/similarity-test-cases.json:88:      "a": "Tier 1 ephemeral memories",
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:516:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:522:        'T027k-ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:526:      expect(parsed.meta.sessionLifecycle.sessionScope).toBe('ephemeral');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:16:export type RetentionPolicy = 'keep' | 'ephemeral' | 'shared';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:36:  retentionPolicy?: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:37:  deleteAfter?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:53:  retentionPolicy: RetentionPolicy;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:54:  deleteAfter: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:207:    || input.retentionPolicy === 'ephemeral'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:208:    || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:209:    || typeof input.deleteAfter === 'string';
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:222:  const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:223:  const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral' || input.retentionPolicy === 'shared'
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:224:    ? input.retentionPolicy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:243:        retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:244:        deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:255:  if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:256:    issues.push('deleteAfter must be later than governedAt');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:258:  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:259:  // Without this, ephemeral rows are never swept since sweeps key off delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:260:  if (retentionPolicy === 'ephemeral' && !deleteAfter) {
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261:    issues.push('deleteAfter is required for ephemeral retention policy');
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:277:      retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:278:      deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:299:    retention_policy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:300:    delete_after: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:310:      retentionPolicy: decision.normalized.retentionPolicy,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:311:      deleteAfter: decision.normalized.deleteAfter,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:9:// Domain (ephemeral session attention vs persistent memory scoring).
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:459:| Temporary | Yes (fast) | 0.5x | Session-specific, ephemeral |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:240: * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:45:  delete_after?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:62:  'governed_at', 'retention_policy', 'delete_after', 'governance_metadata',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:928:    delete_after: existingRow.delete_after,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:13:// STORAGE: In-memory only (ephemeral by design, no SQLite persistence).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:70: * Sessions are ephemeral — they exist only in process memory and are not
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1422:    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1468:      CREATE INDEX IF NOT EXISTS idx_memory_retention_delete_after
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1469:        ON memory_index(delete_after);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2334:      delete_after TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:978:  // passed an ephemeral sessionId, because memories don't have session-scoped access.
 
 codex
 I’ve now got the live retrieval and lifecycle hooks that make migration risky: archived-row filtering, deferred vector rebuilds, governed expiry rules, validation-driven ranking, and Public’s existing compaction transport. I’m doing one last pass on tier-state versus permanence so the risk matrix doesn’t accidentally collapse separate concepts into a single flag.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '276,308p;496,510p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts | sed -n '276,308p;496,510p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    276	  // ARCHIVED requires BOTH conditions: old age AND very low retrievability
    277	  // (days > 90 AND r < 0.02). Using || here would incorrectly archive
@@ -5681,7 +5681,7 @@ exec
    510	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Working Memory
@@ -5805,7 +5805,7 @@ exec
    120	  title: string;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '156,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '156,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    156	/** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
    157	async function getTieredContent(
@@ -5824,7 +5824,7 @@ exec
    170	  } catch (_error: unknown) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/README.md | sed -n '706,722p;816,830p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/README.md | sed -n '706,722p;816,830p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    706	| `force` | boolean | Overwrite if already indexed |
    707	| `dryRun` | boolean | Preview validation without saving |
@@ -5971,7 +5971,7 @@ exec
 .opencode/plugins/spec-kit-compact-code-graph-bridge.mjs:3:import { handleSessionResume } from '../skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js';
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/mcp-coco-index/README.md | sed -n '80,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/mcp-coco-index/README.md | sed -n '80,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     80	| Daemon architecture | Auto-starts, auto-restarts on version or settings change |
     81	| Spec Kit integration | Companion lifecycle tools (`ccc_status`, `ccc_reindex`, `ccc_feedback`) and code-graph/session integration are available through system-spec-kit |
@@ -5992,7 +5992,7 @@ exec
     96	Run the idempotent bootstrap helper. It installs the binary, initializes the project if needed, and reports readiness.
     97	
     98	```bash
-    99	bash .opencode/skill/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
+    99	bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
    100	```
    101	
    102	**Step 2: Build the index**
@@ -6046,13 +6046,13 @@ exec
    150	|---|---|---|
 
 exec
-/bin/zsh -lc 'rg -n "opencodeTransport|compaction|transportOnly|messagesTransform|retrievalPolicyOwner" .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "opencodeTransport|compaction|transportOnly|messagesTransform|retrievalPolicyOwner" .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:114:  opencodeTransport?: OpenCodeTransportPlan;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:590:    opencodeTransport: buildOpenCodeTransportPlan({
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:370:        opencodeTransport: buildOpenCodeTransportPlan({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:114:  opencodeTransport?: OpenCodeTransportPlan;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:590:    opencodeTransport: buildOpenCodeTransportPlan({
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:370:        opencodeTransport: buildOpenCodeTransportPlan({
 
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
@@ -6317,7 +6317,7 @@ exec
    260	      `Transcript identity could not be confirmed because the transcript was unreadable: ${message}`,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '560,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '560,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    560	    kind: 'resume',
    561	    sections: payloadSections,
@@ -6376,7 +6376,7 @@ exec
    614	}
 
 exec
-/bin/zsh -lc "rg -n \"function buildOpenCodeTransportPlan|compaction|messagesTransform|retrievalPolicyOwner|transportOnly\" .opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"function buildOpenCodeTransportPlan|compaction|messagesTransform|retrievalPolicyOwner|transportOnly\" .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
 28:  transportOnly: true;
@@ -6553,7 +6553,7 @@ exec
    155	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '150,172p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts | sed -n '150,172p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    150	    });
    151	    recordGovernanceAudit(db, {
@@ -6601,31 +6601,31 @@ exec
    276	
 
 exec
-/bin/zsh -lc "rg -n \"isUsageRankingEnabled|usage ranking|SPECKIT_USAGE|trackAccess|trackAccess\" .opencode/skill/system-spec-kit/mcp_server/lib/search .opencode/skill/system-spec-kit/mcp_server/handlers | sed -n '1,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"isUsageRankingEnabled|usage ranking|SPECKIT_USAGE|trackAccess|trackAccess\" .opencode/skills/system-spec-kit/mcp_server/lib/search .opencode/skills/system-spec-kit/mcp_server/handlers | sed -n '1,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:635: * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:637:export function isUsageRankingEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:638:  return isFeatureEnabled('SPECKIT_USAGE_RANKING');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:73:  isUsageRankingEnabled,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:785:  if (!isUsageRankingEnabled() || !Array.isArray(results) || results.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:835:    console.warn(`[stage2-fusion] usage ranking failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1174:  if (isUsageRankingEnabled()) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1180:      console.warn(`[stage2-fusion] usage ranking skipped (db unavailable): ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:635: * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:637:export function isUsageRankingEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:638:  return isFeatureEnabled('SPECKIT_USAGE_RANKING');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:73:  isUsageRankingEnabled,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:785:  if (!isUsageRankingEnabled() || !Array.isArray(results) || results.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:835:    console.warn(`[stage2-fusion] usage ranking failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1174:  if (isUsageRankingEnabled()) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1180:      console.warn(`[stage2-fusion] usage ranking skipped (db unavailable): ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts | sed -n '632,642p' && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '198,205p;515,521p' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '843,852p;1190,1202p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts | sed -n '632,642p' && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '198,205p;515,521p' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '843,852p;1190,1202p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    632	
    633	/**
@@ -6678,30 +6678,30 @@ exec
   1202	      recordAdaptiveAccessSignals(db, results, config.query);
 
 exec
-/bin/zsh -lc "rg -n \"AssistiveReconsolidation|isAssistiveReconsolidationEnabled|ASSISTIVE_REVIEW_THRESHOLD|RECONSOLIDATION\" .opencode/skill/system-spec-kit/mcp_server/handlers/save .opencode/skill/system-spec-kit/mcp_server/lib | sed -n '1,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"AssistiveReconsolidation|isAssistiveReconsolidationEnabled|ASSISTIVE_REVIEW_THRESHOLD|RECONSOLIDATION\" .opencode/skills/system-spec-kit/mcp_server/handlers/save .opencode/skills/system-spec-kit/mcp_server/lib | sed -n '1,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:18:  isAssistiveReconsolidationEnabled as _isAssistiveReconsolidationEnabled,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:40:// ASSISTIVE RECONSOLIDATION CONSTANTS (REQ-D4-005)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:45: * and auto-merged.  Requires SPECKIT_ASSISTIVE_RECONSOLIDATION=true.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:54:export const ASSISTIVE_REVIEW_THRESHOLD = 0.88;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:58: * Default: ON (graduated). Set SPECKIT_ASSISTIVE_RECONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:60:export function isAssistiveReconsolidationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:61:  return _isAssistiveReconsolidationEnabled();
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:129:  /** Populated when SPECKIT_ASSISTIVE_RECONSOLIDATION is enabled and a
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:366:  // ASSISTIVE RECONSOLIDATION (REQ-D4-005)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:373:  if (!force && isAssistiveReconsolidationEnabled() && embedding) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:380:        minSimilarity: Math.round(ASSISTIVE_REVIEW_THRESHOLD * 100), // convert to 0-100 scale
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:159: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:162:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:562: * Default: TRUE (graduated). Set SPECKIT_ASSISTIVE_RECONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:564:export function isAssistiveReconsolidationEnabled(): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:565:  return isFeatureEnabled('SPECKIT_ASSISTIVE_RECONSOLIDATION');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:422:| `SPECKIT_RECONSOLIDATION` | `false` | Enable similarity-based merge/conflict routing on save (TM-06). Opt in with `SPECKIT_RECONSOLIDATION=true` |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:693:Similarity-based merge/conflict/complement routing gated via `SPECKIT_RECONSOLIDATION` (default OFF, opt in with `SPECKIT_RECONSOLIDATION=true`):
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:13:// Behind SPECKIT_RECONSOLIDATION opt-in flag (default OFF)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:143:// Default: ON (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:586:// 9. RECONSOLIDATION ORCHESTRATOR
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:18:  isAssistiveReconsolidationEnabled as _isAssistiveReconsolidationEnabled,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:40:// ASSISTIVE RECONSOLIDATION CONSTANTS (REQ-D4-005)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:45: * and auto-merged.  Requires SPECKIT_ASSISTIVE_RECONSOLIDATION=true.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:54:export const ASSISTIVE_REVIEW_THRESHOLD = 0.88;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:58: * Default: ON (graduated). Set SPECKIT_ASSISTIVE_RECONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:60:export function isAssistiveReconsolidationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:61:  return _isAssistiveReconsolidationEnabled();
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:129:  /** Populated when SPECKIT_ASSISTIVE_RECONSOLIDATION is enabled and a
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:366:  // ASSISTIVE RECONSOLIDATION (REQ-D4-005)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:373:  if (!force && isAssistiveReconsolidationEnabled() && embedding) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:380:        minSimilarity: Math.round(ASSISTIVE_REVIEW_THRESHOLD * 100), // convert to 0-100 scale
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:159: * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:162:  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:562: * Default: TRUE (graduated). Set SPECKIT_ASSISTIVE_RECONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:564:export function isAssistiveReconsolidationEnabled(): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:565:  return isFeatureEnabled('SPECKIT_ASSISTIVE_RECONSOLIDATION');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:422:| `SPECKIT_RECONSOLIDATION` | `false` | Enable similarity-based merge/conflict routing on save (TM-06). Opt in with `SPECKIT_RECONSOLIDATION=true` |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:693:Similarity-based merge/conflict/complement routing gated via `SPECKIT_RECONSOLIDATION` (default OFF, opt in with `SPECKIT_RECONSOLIDATION=true`):
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:13:// Behind SPECKIT_RECONSOLIDATION opt-in flag (default OFF)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:143:// Default: ON (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:586:// 9. RECONSOLIDATION ORCHESTRATOR
 
 codex
 # Iteration 032: MIGRATION RISK MATRIX
@@ -6711,7 +6711,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 
 ## Findings
 ### Finding 1: Compaction memory guidance should layer onto Public’s transport note, not replace it
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
 - **What it does**: Mnemosyne injects a direct memory-tool reminder during compaction, while Public already injects a transport-owned resume note derived from `session_resume`.
 - **Why it matters**: The transferable value is memory-tool awareness after compaction, not replacing Public’s structural continuity contract.
 - **Recommendation**: adopt now
@@ -6722,7 +6722,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: new `SPECKIT_COMPACTION_MEMORY_GUIDANCE`, default `false`, with per-runtime/plugin override.
 
 ### Finding 2: Archive-first forgetting is safe only if retrieval and rebuild paths stay in sync
-- **Source**: [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396), [stage1-candidate-gen.ts:133](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L133)
+- **Source**: [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396), [stage1-candidate-gen.ts:133](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L133)
 - **What it does**: Public archives stale or superseded memories, filters them out of active retrieval, supports unarchive, and defers vector rebuild until the next scan.
 - **Why it matters**: This is stronger than Mnemosyne’s direct `delete` surface, but the migration is only safe if every index and cache honors archive state.
 - **Recommendation**: adopt now
@@ -6733,7 +6733,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: keep `SPECKIT_ARCHIVAL` and `SPECKIT_ASSISTIVE_RECONSOLIDATION`; add a narrower `SPECKIT_ARCHIVE_FIRST_DELETE` only if a user-facing delete alias is introduced.
 
 ### Finding 3: Hard expiry should not roll out ahead of a verified sweep path
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160)
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160)
 - **What it does**: Public models `retentionPolicy` and `deleteAfter`, and governed ingest rejects ephemeral saves without a future expiry.
 - **Why it matters**: This is the right contract shape, but migration risk is operational, not schema-level.
 - **Recommendation**: adopt now
@@ -6744,7 +6744,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: gate rollout behind existing `SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS` plus a new `SPECKIT_RETENTION_SWEEP` or equivalent shadow/audit-first toggle.
 
 ### Finding 4: Validation and usage signals should stay additive, and write-back must remain opt-in
-- **Source**: [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648), [checkpoints.ts:721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L721), [search-flags.ts:635](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts#L635), [memory-search.ts:202](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L202), [stage2-fusion.ts:781](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L781), [stage2-fusion.ts:1195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L1195)
+- **Source**: [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648), [checkpoints.ts:721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L721), [search-flags.ts:635](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts#L635), [memory-search.ts:202](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L202), [stage2-fusion.ts:781](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L781), [stage2-fusion.ts:1195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L1195)
 - **What it does**: Public already uses validation feedback, negative-feedback demotion, usage-weighted ranking, and optional access write-back.
 - **Why it matters**: This is a strong adopt-now pattern, but it can destabilize ranking if migrated as a primary score rather than a modifier.
 - **Recommendation**: adopt now
@@ -6755,7 +6755,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: keep `SPECKIT_USAGE_RANKING`, `SPECKIT_NEGATIVE_FEEDBACK`, and preserve `trackAccess` as explicit opt-in only.
 
 ### Finding 5: Mnemosyne-style `core` must not collapse Public’s separate permanence, state, and session-attention models
-- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts:216](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L216), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [tier-classifier.ts:300](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L300), [tier-classifier.ts:496](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L496), [memory-triggers.ts:156](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
+- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts:216](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L216), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [tier-classifier.ts:300](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L300), [tier-classifier.ts:496](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L496), [memory-triggers.ts:156](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
 - **What it does**: Mnemosyne’s `core=true` is a single cross-cutting concept, while Public separates long-term importance, FSRS state, and ephemeral working-memory attention.
 - **Why it matters**: Public’s model is safer for long-lived systems, but a naive compatibility layer could erase that separation.
 - **Recommendation**: adopt now
@@ -6769,18 +6769,18 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38)
 - [external/package.json:1](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1)
 - [external/README.md:29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L29)
-- [session-resume.ts:590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L590)
-- [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102)
-- [archival-manager.ts:490](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L490)
-- [memory-crud-stats.ts:206](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L206)
-- [mcp-coco-index/README.md:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md#L85)
+- [session-resume.ts:590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L590)
+- [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102)
+- [archival-manager.ts:490](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L490)
+- [memory-crud-stats.ts:206](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L206)
+- [mcp-coco-index/README.md:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md#L85)
 
 ## Assessment
 - New information ratio: `0.12`
 - Questions addressed: compaction layering, archive/delete migration, expiry rollout safety, feedback-signal rollout, and `core` compatibility mapping.
 - Questions answered: the riskiest migrations are contract collisions, not algorithm swaps; every adopt-now item needs an explicit kill switch and a no-data-loss rollback.
 - Novelty justification: this pass adds little new source discovery, but it turns prior adopt-now recommendations into rollout-safe migration boundaries with concrete failure modes.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp-file warning.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp-file warning.
 
 ## Ruled Out
 - Replacing Public’s existing compaction transport with Mnemosyne’s simpler prompt block.
@@ -6810,7 +6810,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 
 ## Findings
 ### Finding 1: Compaction memory guidance should layer onto Public’s transport note, not replace it
-- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
+- **Source**: [external/src/index.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L210), [opencode-transport.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L142), [spec-kit-compact-code-graph.js:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396)
 - **What it does**: Mnemosyne injects a direct memory-tool reminder during compaction, while Public already injects a transport-owned resume note derived from `session_resume`.
 - **Why it matters**: The transferable value is memory-tool awareness after compaction, not replacing Public’s structural continuity contract.
 - **Recommendation**: adopt now
@@ -6821,7 +6821,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: new `SPECKIT_COMPACTION_MEMORY_GUIDANCE`, default `false`, with per-runtime/plugin override.
 
 ### Finding 2: Archive-first forgetting is safe only if retrieval and rebuild paths stay in sync
-- **Source**: [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396), [stage1-candidate-gen.ts:133](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L133)
+- **Source**: [external/src/index.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396), [stage1-candidate-gen.ts:133](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts#L133)
 - **What it does**: Public archives stale or superseded memories, filters them out of active retrieval, supports unarchive, and defers vector rebuild until the next scan.
 - **Why it matters**: This is stronger than Mnemosyne’s direct `delete` surface, but the migration is only safe if every index and cache honors archive state.
 - **Recommendation**: adopt now
@@ -6832,7 +6832,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: keep `SPECKIT_ARCHIVAL` and `SPECKIT_ASSISTIVE_RECONSOLIDATION`; add a narrower `SPECKIT_ARCHIVE_FIRST_DELETE` only if a user-facing delete alias is introduced.
 
 ### Finding 3: Hard expiry should not roll out ahead of a verified sweep path
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160)
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160)
 - **What it does**: Public models `retentionPolicy` and `deleteAfter`, and governed ingest rejects ephemeral saves without a future expiry.
 - **Why it matters**: This is the right contract shape, but migration risk is operational, not schema-level.
 - **Recommendation**: adopt now
@@ -6843,7 +6843,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: gate rollout behind existing `SPECKIT_MEMORY_GOVERNANCE_GUARDRAILS` plus a new `SPECKIT_RETENTION_SWEEP` or equivalent shadow/audit-first toggle.
 
 ### Finding 4: Validation and usage signals should stay additive, and write-back must remain opt-in
-- **Source**: [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648), [checkpoints.ts:721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L721), [search-flags.ts:635](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts#L635), [memory-search.ts:202](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L202), [stage2-fusion.ts:781](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L781), [stage2-fusion.ts:1195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L1195)
+- **Source**: [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648), [checkpoints.ts:721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L721), [search-flags.ts:635](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts#L635), [memory-search.ts:202](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L202), [stage2-fusion.ts:781](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L781), [stage2-fusion.ts:1195](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts#L1195)
 - **What it does**: Public already uses validation feedback, negative-feedback demotion, usage-weighted ranking, and optional access write-back.
 - **Why it matters**: This is a strong adopt-now pattern, but it can destabilize ranking if migrated as a primary score rather than a modifier.
 - **Recommendation**: adopt now
@@ -6854,7 +6854,7 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - **Feature flag needed**: keep `SPECKIT_USAGE_RANKING`, `SPECKIT_NEGATIVE_FEEDBACK`, and preserve `trackAccess` as explicit opt-in only.
 
 ### Finding 5: Mnemosyne-style `core` must not collapse Public’s separate permanence, state, and session-attention models
-- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts:216](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L216), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [tier-classifier.ts:300](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L300), [tier-classifier.ts:496](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L496), [memory-triggers.ts:156](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
+- **Source**: [external/src/index.ts:138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts:216](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L216), [working-memory.ts:5](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts#L5), [tier-classifier.ts:300](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L300), [tier-classifier.ts:496](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts#L496), [memory-triggers.ts:156](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L156)
 - **What it does**: Mnemosyne’s `core=true` is a single cross-cutting concept, while Public separates long-term importance, FSRS state, and ephemeral working-memory attention.
 - **Why it matters**: Public’s model is safer for long-lived systems, but a naive compatibility layer could erase that separation.
 - **Recommendation**: adopt now
@@ -6868,18 +6868,18 @@ MIGRATION RISK MATRIX: for each adopt-now pattern, detail what could break durin
 - [external/src/index.ts:38](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38)
 - [external/package.json:1](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L1)
 - [external/README.md:29](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L29)
-- [session-resume.ts:590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L590)
-- [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102)
-- [archival-manager.ts:490](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L490)
-- [memory-crud-stats.ts:206](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L206)
-- [mcp-coco-index/README.md:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md#L85)
+- [session-resume.ts:590](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L590)
+- [opencode-transport.ts:102](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102)
+- [archival-manager.ts:490](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L490)
+- [memory-crud-stats.ts:206](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts#L206)
+- [mcp-coco-index/README.md:85](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md#L85)
 
 ## Assessment
 - New information ratio: `0.12`
 - Questions addressed: compaction layering, archive/delete migration, expiry rollout safety, feedback-signal rollout, and `core` compatibility mapping.
 - Questions answered: the riskiest migrations are contract collisions, not algorithm swaps; every adopt-now item needs an explicit kill switch and a no-data-loss rollback.
 - Novelty justification: this pass adds little new source discovery, but it turns prior adopt-now recommendations into rollout-safe migration boundaries with concrete failure modes.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp-file warning.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED`, `Errors: 0`, `Warnings: 0`, with the known read-only temp-file warning.
 
 ## Ruled Out
 - Replacing Public’s existing compaction transport with Mnemosyne’s simpler prompt block.

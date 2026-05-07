@@ -4,14 +4,14 @@
 
 - Check: `CHK-210 [P1] SC-013: 100% of new memories include quality_score and quality_flags`
 - Spec: `.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag`
-- Database: `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite`
+- Database: `.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite`
 
 ## DB Query Evidence (After Remediation)
 
 Command:
 
 ```bash
-sqlite3 -header -column ".opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite" "SELECT COUNT(*) AS recent_rows, SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null, SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null FROM (SELECT id, quality_score, quality_flags FROM memory_index WHERE spec_folder LIKE 'system-spec-kit/020-mcp-working-memory-hybrid-rag%' AND document_type='memory' ORDER BY datetime(updated_at) DESC, id DESC LIMIT 10);"
+sqlite3 -header -column ".opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite" "SELECT COUNT(*) AS recent_rows, SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null, SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null FROM (SELECT id, quality_score, quality_flags FROM memory_index WHERE spec_folder LIKE 'system-spec-kit/020-mcp-working-memory-hybrid-rag%' AND document_type='memory' ORDER BY datetime(updated_at) DESC, id DESC LIMIT 10);"
 ```
 
 Output:

@@ -17,7 +17,7 @@ _memory:
       - ".codex writes denied"
       - "strict validation runtime failure"
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md"
     completion_pct: 90
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ---

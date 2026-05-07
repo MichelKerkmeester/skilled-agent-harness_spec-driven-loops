@@ -1,9 +1,9 @@
 # System Spec Kit Tree + README + Config Inventory
 
-Scope: `.opencode/skill/system-spec-kit/`
+Scope: `.opencode/skills/system-spec-kit/`
 Constraints applied:
 - Excluded all `node_modules/` and `dist/` directories.
-- Included `.opencode/skill/system-spec-kit/mcp_server/` as a leaf, without descending.
+- Included `.opencode/skills/system-spec-kit/mcp_server/` as a leaf, without descending.
 
 Totals:
 - Tree nodes listed: 713
@@ -13,7 +13,7 @@ Totals:
 ## 1) Complete ASCII Tree Diagram
 
 ```text
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 |-- assets/
 |   |-- complexity_decision_matrix.md
 |   |-- level_decision_matrix.md
@@ -730,60 +730,60 @@ Totals:
 
 ## 2) README Inventory (One-line Coverage Scope)
 
-- `.opencode/skill/system-spec-kit/README.md` - Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search.
-- `.opencode/skill/system-spec-kit/config/README.md` - Configuration files for Spec Kit's memory system, complexity detection, search and content filtering
-- `.opencode/skill/system-spec-kit/constitutional/README.md` - Always-surface rules and critical context that MUST be visible to AI agents on every interaction.
-- `.opencode/skill/system-spec-kit/scripts/README.md` - Current script inventory and execution flow for system-spec-kit scripts.
-- `.opencode/skill/system-spec-kit/scripts/core/README.md` - Core TypeScript workflow modules for context generation, scoring, writing, and indexing.
-- `.opencode/skill/system-spec-kit/scripts/extractors/README.md` - Extractor inventory for session, conversation, decision, file, and implementation data capture.
-- `.opencode/skill/system-spec-kit/scripts/lib/README.md` - Shared TypeScript and shell helper libraries used by system-spec-kit scripts.
-- `.opencode/skill/system-spec-kit/scripts/loaders/README.md` - Data loader modules that normalize input from JSON, OpenCode capture, or simulation fallback.
-- `.opencode/skill/system-spec-kit/scripts/memory/README.md` - TypeScript CLIs for memory context generation, enrichment, ranking, quality checks, and index maintenance.
-- `.opencode/skill/system-spec-kit/scripts/ops/README.md` - Deterministic runbook helpers for spec-kit operational failure classes with bounded retry and escalation output.
-- `.opencode/skill/system-spec-kit/scripts/renderers/README.md` - Renderer modules for Mustache-like template population and output cleanup.
-- `.opencode/skill/system-spec-kit/scripts/rules/README.md` - Modular shell scripts that validate spec folder structure and documentation completeness
-- `.opencode/skill/system-spec-kit/scripts/setup/README.md` - Prerequisite validation scripts for feature-folder readiness and environment requirements
-- `.opencode/skill/system-spec-kit/scripts/spec-folder/README.md` - TypeScript modules for spec folder detection and alignment validation.
-- `.opencode/skill/system-spec-kit/scripts/spec/README.md` - Spec lifecycle scripts for create, upgrade, placeholder cleanup, validation, and completion checks.
-- `.opencode/skill/system-spec-kit/scripts/templates/README.md` - Automated composition system for SpecKit documentation templates across all documentation levels.
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/README.md` - Test scenarios for validating SpecKit spec folder structure, content rules, validation logic and edge-case handling.
-- `.opencode/skill/system-spec-kit/scripts/tests/README.md` - Current test inventory for shell scripts, TypeScript modules, and integration workflows.
-- `.opencode/skill/system-spec-kit/scripts/types/README.md` - Shared session type definitions used across the Spec Kit scripts pipeline.
-- `.opencode/skill/system-spec-kit/scripts/utils/README.md` - Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging and input normalization across all system-spec-kit scripts.
-- `.opencode/skill/system-spec-kit/shared/README.md` - Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction.
-- `.opencode/skill/system-spec-kit/shared/embeddings/README.md` - Flexible embeddings system supporting multiple backends with strong fallback and per-profile databases.
-- `.opencode/skill/system-spec-kit/shared/scoring/README.md` - Computes composite relevance scores for spec folders based on their memories, used for ranking and resume-recent-work workflows.
-- `.opencode/skill/system-spec-kit/shared/utils/README.md` - Low-level utility functions providing security-hardened path validation and resilient retry logic shared across system-spec-kit.
-- `.opencode/skill/system-spec-kit/templates/README.md` - System Spec Kit template architecture and level routing.
-- `.opencode/skill/system-spec-kit/templates/addendum/README.md` - Level extension blocks used to compose final level templates.
-- `.opencode/skill/system-spec-kit/templates/core/README.md` - Shared base templates used by all documentation levels.
-- `.opencode/skill/system-spec-kit/templates/examples/README.md` - Reference examples showing expected documentation depth by level.
-- `.opencode/skill/system-spec-kit/templates/level_1/README.md` - Baseline documentation templates for low-risk, small-scope changes.
-- `.opencode/skill/system-spec-kit/templates/level_2/README.md` - Verification-focused templates for medium complexity changes.
-- `.opencode/skill/system-spec-kit/templates/level_3+/README.md` - Governance-heavy templates for high-complexity or regulated work.
-- `.opencode/skill/system-spec-kit/templates/level_3/README.md` - Architecture-oriented templates for large or high-risk implementation work.
-- `.opencode/skill/system-spec-kit/templates/memory/README.md` - Memory workflow rules for generated context files in spec folders.
-- `.opencode/skill/system-spec-kit/templates/scratch/README.md` - Template and guidelines for the scratch/ subdirectory used for temporary and disposable files during spec folder work.
+- `.opencode/skills/system-spec-kit/README.md` - Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search.
+- `.opencode/skills/system-spec-kit/config/README.md` - Configuration files for Spec Kit's memory system, complexity detection, search and content filtering
+- `.opencode/skills/system-spec-kit/constitutional/README.md` - Always-surface rules and critical context that MUST be visible to AI agents on every interaction.
+- `.opencode/skills/system-spec-kit/scripts/README.md` - Current script inventory and execution flow for system-spec-kit scripts.
+- `.opencode/skills/system-spec-kit/scripts/core/README.md` - Core TypeScript workflow modules for context generation, scoring, writing, and indexing.
+- `.opencode/skills/system-spec-kit/scripts/extractors/README.md` - Extractor inventory for session, conversation, decision, file, and implementation data capture.
+- `.opencode/skills/system-spec-kit/scripts/lib/README.md` - Shared TypeScript and shell helper libraries used by system-spec-kit scripts.
+- `.opencode/skills/system-spec-kit/scripts/loaders/README.md` - Data loader modules that normalize input from JSON, OpenCode capture, or simulation fallback.
+- `.opencode/skills/system-spec-kit/scripts/memory/README.md` - TypeScript CLIs for memory context generation, enrichment, ranking, quality checks, and index maintenance.
+- `.opencode/skills/system-spec-kit/scripts/ops/README.md` - Deterministic runbook helpers for spec-kit operational failure classes with bounded retry and escalation output.
+- `.opencode/skills/system-spec-kit/scripts/renderers/README.md` - Renderer modules for Mustache-like template population and output cleanup.
+- `.opencode/skills/system-spec-kit/scripts/rules/README.md` - Modular shell scripts that validate spec folder structure and documentation completeness
+- `.opencode/skills/system-spec-kit/scripts/setup/README.md` - Prerequisite validation scripts for feature-folder readiness and environment requirements
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/README.md` - TypeScript modules for spec folder detection and alignment validation.
+- `.opencode/skills/system-spec-kit/scripts/spec/README.md` - Spec lifecycle scripts for create, upgrade, placeholder cleanup, validation, and completion checks.
+- `.opencode/skills/system-spec-kit/scripts/templates/README.md` - Automated composition system for SpecKit documentation templates across all documentation levels.
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/README.md` - Test scenarios for validating SpecKit spec folder structure, content rules, validation logic and edge-case handling.
+- `.opencode/skills/system-spec-kit/scripts/tests/README.md` - Current test inventory for shell scripts, TypeScript modules, and integration workflows.
+- `.opencode/skills/system-spec-kit/scripts/types/README.md` - Shared session type definitions used across the Spec Kit scripts pipeline.
+- `.opencode/skills/system-spec-kit/scripts/utils/README.md` - Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging and input normalization across all system-spec-kit scripts.
+- `.opencode/skills/system-spec-kit/shared/README.md` - Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction.
+- `.opencode/skills/system-spec-kit/shared/embeddings/README.md` - Flexible embeddings system supporting multiple backends with strong fallback and per-profile databases.
+- `.opencode/skills/system-spec-kit/shared/scoring/README.md` - Computes composite relevance scores for spec folders based on their memories, used for ranking and resume-recent-work workflows.
+- `.opencode/skills/system-spec-kit/shared/utils/README.md` - Low-level utility functions providing security-hardened path validation and resilient retry logic shared across system-spec-kit.
+- `.opencode/skills/system-spec-kit/templates/README.md` - System Spec Kit template architecture and level routing.
+- `.opencode/skills/system-spec-kit/templates/addendum/README.md` - Level extension blocks used to compose final level templates.
+- `.opencode/skills/system-spec-kit/templates/core/README.md` - Shared base templates used by all documentation levels.
+- `.opencode/skills/system-spec-kit/templates/examples/README.md` - Reference examples showing expected documentation depth by level.
+- `.opencode/skills/system-spec-kit/templates/level_1/README.md` - Baseline documentation templates for low-risk, small-scope changes.
+- `.opencode/skills/system-spec-kit/templates/level_2/README.md` - Verification-focused templates for medium complexity changes.
+- `.opencode/skills/system-spec-kit/templates/level_3+/README.md` - Governance-heavy templates for high-complexity or regulated work.
+- `.opencode/skills/system-spec-kit/templates/level_3/README.md` - Architecture-oriented templates for large or high-risk implementation work.
+- `.opencode/skills/system-spec-kit/templates/memory/README.md` - Memory workflow rules for generated context files in spec folders.
+- `.opencode/skills/system-spec-kit/templates/scratch/README.md` - Template and guidelines for the scratch/ subdirectory used for temporary and disposable files during spec folder work.
 
 ## 3) Config Inventory + Relationships
 
 ### 3.1 Config files found in scope
 
-- `.opencode/skill/system-spec-kit/package.json`
-- `.opencode/skill/system-spec-kit/package-lock.json`
-- `.opencode/skill/system-spec-kit/tsconfig.json`
-- `.opencode/skill/system-spec-kit/.npmrc`
-- `.opencode/skill/system-spec-kit/.env.example`
-- `.opencode/skill/system-spec-kit/.node-version-marker`
-- `.opencode/skill/system-spec-kit/config/config.jsonc`
-- `.opencode/skill/system-spec-kit/config/filters.jsonc`
-- `.opencode/skill/system-spec-kit/shared/package.json`
-- `.opencode/skill/system-spec-kit/shared/tsconfig.json`
-- `.opencode/skill/system-spec-kit/scripts/package.json`
-- `.opencode/skill/system-spec-kit/scripts/tsconfig.json`
-- `.opencode/skill/system-spec-kit/scripts/scripts-registry.json`
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/046-with-config/.speckit.yaml`
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/049-with-rule-order/.speckit.yaml`
+- `.opencode/skills/system-spec-kit/package.json`
+- `.opencode/skills/system-spec-kit/package-lock.json`
+- `.opencode/skills/system-spec-kit/tsconfig.json`
+- `.opencode/skills/system-spec-kit/.npmrc`
+- `.opencode/skills/system-spec-kit/.env.example`
+- `.opencode/skills/system-spec-kit/.node-version-marker`
+- `.opencode/skills/system-spec-kit/config/config.jsonc`
+- `.opencode/skills/system-spec-kit/config/filters.jsonc`
+- `.opencode/skills/system-spec-kit/shared/package.json`
+- `.opencode/skills/system-spec-kit/shared/tsconfig.json`
+- `.opencode/skills/system-spec-kit/scripts/package.json`
+- `.opencode/skills/system-spec-kit/scripts/tsconfig.json`
+- `.opencode/skills/system-spec-kit/scripts/scripts-registry.json`
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/046-with-config/.speckit.yaml`
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/049-with-rule-order/.speckit.yaml`
 
 ### 3.2 ESLint / Prettier config status
 

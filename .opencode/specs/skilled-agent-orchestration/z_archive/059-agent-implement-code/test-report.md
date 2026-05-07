@@ -28,7 +28,7 @@ _memory:
 
 | | |
 |---|---|
-| **Subject** | `.opencode/agent/code.md` (522 → 525 lines) |
+| **Subject** | `.opencode/agents/code.md` (522 → 525 lines) |
 | **Window** | 2026-05-01 evening → 2026-05-02 late morning |
 | **Executor** | `cli-copilot --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir <sandbox>` |
 | **Scenarios** | 1 baseline (CP-026) + 8 stress tests (CP-027 → CP-034) |
@@ -83,7 +83,7 @@ A multi-model baseline came first: if the envelope only renders on gpt-5.5, then
 Every scenario sends the **identical task body** to copilot twice:
 
 - **Call A** — `As @Task: <task body>` — Copilot's built-in `@Task` / `@general` implementer. This is the baseline: a competent generic agent with no specialized envelope.
-- **Call B** — same body, but the dispatch prompt prepends the entire `.opencode/agent/code.md` file (~40 KB), then `Depth: 1`, then the task. Copilot then operates as `@code` per the agent's §0 dispatch gate.
+- **Call B** — same body, but the dispatch prompt prepends the entire `.opencode/agents/code.md` file (~40 KB), then `Depth: 1`, then the task. Copilot then operates as `@code` per the agent's §0 dispatch gate.
 
 Both calls run with:
 
@@ -256,15 +256,15 @@ The headline finding: routing was being treated as documentation, not as a direc
 
 ### Edits applied (R2)
 
-Three coordinated edits to `.opencode/agent/code.md`. None changed any §3 contract; they tightened wording to convert advisory text into directive text.
+Three coordinated edits to `.opencode/agents/code.md`. None changed any §3 contract; they tightened wording to convert advisory text into directive text.
 
 #### Edit 1 — §1 step 3: HARD STOP for UNKNOWN_STACK
 
 ```diff
-- 3. **INVOKE sk-code** → Read `.opencode/skill/sk-code/SKILL.md` and apply its
+- 3. **INVOKE sk-code** → Read `.opencode/skills/sk-code/SKILL.md` and apply its
 -    detection / intent / resource-loading protocol. Capture: stack, intents,
 -    verification_commands, resource paths, applicable quality checklist.
-+ 3. **INVOKE sk-code** → Read `.opencode/skill/sk-code/SKILL.md` and **execute its
++ 3. **INVOKE sk-code** → Read `.opencode/skills/sk-code/SKILL.md` and **execute its
 +    `route_code_resources(task)` pseudocode mentally** to produce a concrete tuple:
 +    `(detected_stack, top-1/top-2 intents, conditional resource paths,
 +    verification command)`. **HARD STOP**: if `detected_stack` is not in sk-code's
@@ -433,7 +433,7 @@ Per the standing rule that every new agent must mirror to all four runtime surfa
 
 | Path | Lines | Notes |
 |---|---:|---|
-| `.opencode/agent/code.md` | 525 | Source of truth |
+| `.opencode/agents/code.md` | 525 | Source of truth |
 | `.claude/agents/code.md` | 525 | Path Convention adjusted to `.claude/agents/*.md` |
 | `.gemini/agents/code.md` | 525 | Path Convention adjusted to `.gemini/agents/*.md` |
 | `.codex/agents/code.toml` | 500 | toml-wrapped; `sandbox_mode="workspace-write"`, `model="gpt-5.4"`, `model_reasoning_effort="high"` |
@@ -514,7 +514,7 @@ All transcripts and side-files live under `/tmp/`. The session is reproducible f
 ### Scenario specs (canonical, in repo)
 
 ```
-.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/
+.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/
 ├── 004-code-vs-general-agent-perf-comparison.md  (CP-026)
 ├── 005-unknown-stack-escalation-discipline.md    (CP-027)
 ├── 006-verify-fail-fail-closed.md                (CP-028)
@@ -531,7 +531,7 @@ Plus the root-index updates in `.../manual_testing_playbook.md` (§10 routing-ta
 ### Modified runtime files
 
 ```
-.opencode/agent/code.md          (522 → 525 lines, source of truth)
+.opencode/agents/code.md          (522 → 525 lines, source of truth)
 .claude/agents/code.md           (mirror, 525 lines)
 .gemini/agents/code.md           (mirror, 525 lines)
 .codex/agents/code.toml          (mirror, 500 lines toml-wrapped)
@@ -547,7 +547,7 @@ The v2 suffix marks the second dispatch with `Gate 3: Option D — skip` pre-ans
 
 ### Validator state
 
-`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` passed at v2.0 strict at packet ship time. The v3.0.0 validator (introduced post-ship) flags 4 pre-existing strictness issues unrelated to this campaign — see `handover.md` "Known Limitations" and `implementation-summary.md` for context.
+`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` passed at v2.0 strict at packet ship time. The v3.0.0 validator (introduced post-ship) flags 4 pre-existing strictness issues unrelated to this campaign — see `handover.md` "Known Limitations" and `implementation-summary.md` for context.
 <!-- /ANCHOR:artifacts -->
 
 ---
@@ -566,5 +566,5 @@ The v2 suffix marks the second dispatch with `Gate 3: Option D — skip` pre-ans
 - **CP-035 — sk-code routing-tuple regression test.** Assert that every `@code` invocation surfaces the routing tuple in RETURN. Catches any future regression of the §10 7th self-check.
 - **CP-036 — orchestrator consumes the @debug offer.** Currently the BLOCKED-count circuit breaker emits an offer file. Test that the orchestrator actually re-routes on the offer rather than just observing it.
 - **Adversarial fuzzing.** Generate randomized task framings and confirm escalation classifiers remain correct. Likely surfaces mode-discrimination edge cases CP-032 / CP-033 didn't cover.
-- **Promote `route_code_resources` from pseudocode to script.** It currently lives as documentation in `.opencode/skill/sk-code/SKILL.md`. Promoting it to a callable (`sk-code-router.cjs`, per stream-03 finding) would make the agent's "execute mentally" instruction unnecessary — the script would just return the tuple.
+- **Promote `route_code_resources` from pseudocode to script.** It currently lives as documentation in `.opencode/skills/sk-code/SKILL.md`. Promoting it to a callable (`sk-code-router.cjs`, per stream-03 finding) would make the agent's "execute mentally" instruction unnecessary — the script would just return the tuple.
 <!-- /ANCHOR:next-steps -->

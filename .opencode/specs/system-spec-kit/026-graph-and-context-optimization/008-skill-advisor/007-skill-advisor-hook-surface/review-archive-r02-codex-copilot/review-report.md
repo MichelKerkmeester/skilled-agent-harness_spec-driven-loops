@@ -118,7 +118,7 @@ P2:
 P0: None.
 
 P1:
-- `DR-P1-005`: Operator-facing docs and playbooks contain stale or non-executable setup/readiness claims. Published commands point at a root npm workspace that this checkout does not define, Copilot live-session setup is described as a settings-file registration despite the shipped callback model, the root manual-testing playbook has stale scenario/category counts, Codex registration status is inconsistent across docs, and the measurement artifact name is wrong in one playbook path. Representative evidence: `skill-advisor-hook.md:70-89`, `skill-advisor-hook.md:205`, `README.md:100`, `package.json:5-6`, `.opencode/skill/system-spec-kit/mcp_server/package.json:16`, `LIVE_SESSION_WRAPPER_SETUP.md:114-121`, `feature_catalog.md:579-653`, and `manual_testing_playbook.md:35-53`.
+- `DR-P1-005`: Operator-facing docs and playbooks contain stale or non-executable setup/readiness claims. Published commands point at a root npm workspace that this checkout does not define, Copilot live-session setup is described as a settings-file registration despite the shipped callback model, the root manual-testing playbook has stale scenario/category counts, Codex registration status is inconsistent across docs, and the measurement artifact name is wrong in one playbook path. Representative evidence: `skill-advisor-hook.md:70-89`, `skill-advisor-hook.md:205`, `README.md:100`, `package.json:5-6`, `.opencode/skills/system-spec-kit/mcp_server/package.json:16`, `LIVE_SESSION_WRAPPER_SETUP.md:114-121`, `feature_catalog.md:579-653`, and `manual_testing_playbook.md:35-53`.
 
 P2: None.
 

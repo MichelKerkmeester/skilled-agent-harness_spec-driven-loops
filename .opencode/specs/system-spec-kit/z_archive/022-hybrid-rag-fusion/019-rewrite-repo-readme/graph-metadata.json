@@ -47,8 +47,8 @@
       "scratch/research-brief.md",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -80,7 +80,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {

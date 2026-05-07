@@ -32,13 +32,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Markdown documentation in `.opencode/specs/` and `.opencode/skill/` |
+| **Language/Stack** | Markdown documentation in `.opencode/specs/` and `.opencode/skills/` |
 | **Framework** | OpenCode spec-folder workflow and skill reference docs |
 | **Storage** | None |
 | **Testing** | `validate.sh --strict` plus manual content review |
 
 ### Overview
-The research work is already done in the packet research document. This plan updates the Level 1 docs so the packet keeps the original four-command recommendation visible, records the explicit user override to include all commands in the short list, and points the downstream work at the quick reference as the primary surface with `.opencode/skill/system-spec-kit/SKILL.md` as a pointer only.
+The research work is already done in the packet research document. This plan updates the Level 1 docs so the packet keeps the original four-command recommendation visible, records the explicit user override to include all commands in the short list, and points the downstream work at the quick reference as the primary surface with `.opencode/skills/system-spec-kit/SKILL.md` as a pointer only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -57,7 +57,7 @@ The research work is already done in the packet research document. This plan upd
 - [ ] Each relevant file distinguishes the original research recommendation from the chosen implementation direction
 - [ ] The exact four-command shortlist is documented as the minimal recommendation
 - [ ] The exact 12-command surface is documented as the approved implementation direction
-- [ ] The quick reference is named as the primary target and `.opencode/skill/system-spec-kit/SKILL.md` as pointer only
+- [ ] The quick reference is named as the primary target and `.opencode/skills/system-spec-kit/SKILL.md` as pointer only
 - [ ] Spec validation returns exit code 0 or 1
 <!-- /ANCHOR:quality-gates -->
 
@@ -75,10 +75,10 @@ Packet documentation refresh for a completed research workflow with downstream d
 - **`plan.md`**: Describes how the packet is updated and how downstream docs changes should be framed.
 - **`tasks.md`**: Tracks the scoped packet refresh work.
 - **`implementation-summary.md`**: States what the packet now records and what still belongs downstream.
-- **Downstream target files**: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` as the primary surface and `.opencode/skill/system-spec-kit/SKILL.md` as pointer only.
+- **Downstream target files**: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` as the primary surface and `.opencode/skills/system-spec-kit/SKILL.md` as pointer only.
 
 ### Data Flow
-`research/research.md` provides the original conclusion and recommendation. The Level 1 docs summarize that result, record the user's override, and hand a future implementer a concrete downstream docs change: expand the quick-reference short list to include all 12 commands while keeping `.opencode/skill/system-spec-kit/SKILL.md` non-duplicative.
+`research/research.md` provides the original conclusion and recommendation. The Level 1 docs summarize that result, record the user's override, and hand a future implementer a concrete downstream docs change: expand the quick-reference short list to include all 12 commands while keeping `.opencode/skills/system-spec-kit/SKILL.md` non-duplicative.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -112,7 +112,7 @@ Packet documentation refresh for a completed research workflow with downstream d
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Validation | Required Level 1 files exist and match template structure | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Validation | Required Level 1 files exist and match template structure | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Content review | Research conclusion, override, expanded command surface, and downstream docs scope are stated clearly | Read tool |
 | Scope review | No files outside this spec folder are modified | Git status and file paths |
 <!-- /ANCHOR:testing -->
@@ -125,9 +125,9 @@ Packet documentation refresh for a completed research workflow with downstream d
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `research/research.md` | Internal | Green | The packet cannot be summarized accurately without it |
-| `.opencode/skill/system-spec-kit/templates/level_1/` | Internal | Green | The docs must follow current template structure |
+| `.opencode/skills/system-spec-kit/templates/level_1/` | Internal | Green | The docs must follow current template structure |
 | User override decision | Internal | Green | The packet would misstate the chosen implementation direction without it |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Completion cannot be claimed without validation evidence |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Internal | Green | Completion cannot be claimed without validation evidence |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -34,7 +34,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 | **Language/Stack** | Markdown packet docs + skill-owned command dispatch (TypeScript/YAML behind the scenes) |
 | **Framework** | Spec Kit Level 3 umbrella packet |
 | **Storage** | Packet docs plus `research/019-system-hardening-001-initial-research/` research tree |
-| **Testing** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
+| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 
 ### Overview
 
@@ -160,7 +160,7 @@ Coordination-only umbrella packet with a single research child and reserved impl
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Structural validation | Umbrella + 001 child | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh 019-system-hardening --strict` |
+| Structural validation | Umbrella + 001 child | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 019-system-hardening --strict` |
 | Convergence check | Each Tier 1 iteration | Skill-owned YAML state machine (`deep-research-state.jsonl`, `deep-review-state.jsonl`) |
 | Findings registry audit | `implementation-summary.md §Sub-phase summaries §Findings Registry` | Manual review + optional `findings-registry.json` schema check |
 | Root-sync drift check | 026 root docs reference 019 correctly | `rg -n "019-system-hardening\|phase 19" .opencode/specs/system-spec-kit/026-graph-and-context-optimization/{spec,plan,tasks,checklist,decision-record,implementation-summary}.md` |

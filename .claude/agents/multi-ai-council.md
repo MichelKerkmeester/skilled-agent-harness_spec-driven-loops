@@ -392,7 +392,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
-The canonical schema for §8 lives at `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+The canonical schema for §8 lives at `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
 
 ### Multi-AI Council Report
 
@@ -602,7 +602,7 @@ File shape contracts:
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
 - `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md`.
+Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md`.
 
 ---
 
@@ -612,7 +612,7 @@ Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-l
 2. **Subsequent call**: if `ai-council/` exists, read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from the highest `round_end` event + 1. Run new seats with prior deliberation as input, append state events, synthesize the new deliberation, then check convergence.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round. If all `seat_returned` events exist but no `deliberation_synthesized`, run synthesis. If deliberation exists without `round_end`, close the round and continue convergence handling.
 
-Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`.
+Reference: `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`.
 
 ---
 
@@ -642,7 +642,7 @@ type CouncilComplete = {event:"council_complete"; timestamp:string; final_report
 
 Helper-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; helper v1.1 emits `"1.1"`, `protocol:"multi-ai-council"`, and `producer:"persist-artifacts.cjs@<version>"`.
 
-Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`.
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md`.
 
 ## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE
 
@@ -659,17 +659,17 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ## 16. CALLER PERSISTENCE PROTOCOL
 
-When `@multi-ai-council` returns a plan, the dispatching parent persists packet artifacts with `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. The council agent itself stays planning-only: write, edit, bash, and patch remain denied. The helper consumes the §8 report shape documented in `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`.
+When `@multi-ai-council` returns a plan, the dispatching parent persists packet artifacts with `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. The council agent itself stays planning-only: write, edit, bash, and patch remain denied. The helper consumes the §8 report shape documented in `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`.
 
 Caller patterns:
 
 1. **Top-level Task dispatch** (Claude Code or any AI assistant):
-   `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+   `node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
 2. **`@orchestrate` at Depth 1**:
-   `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+   `node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
    Orchestrate runs this after the LEAF returns; the LEAF does not run the helper.
 3. **`/spec_kit:*` command YAMLs**:
-   planned post-dispatch invocation: `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+   planned post-dispatch invocation: `node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
    Command wiring is deferred to a follow-on packet.
 4. **CLI-skill manual playbooks**:
    use the same command from cli-claude-code, cli-codex, cli-opencode, or cli-gemini playbooks after the council report is captured.
@@ -683,15 +683,15 @@ Forward-only scope: this convention applies to council dispatches from this poin
 Callers may add `--memory-save-payload-out FILE` when invoking the helper. On `council_complete`, the helper writes a `generate-context.js` compatible JSON payload; without the flag, no payload is written.
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> \
+node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> \
   --input-file council-report.md \
   --memory-save-payload-out /tmp/council-payload.json
 
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 
-The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skill/system-spec-kit/references/multi-ai-council/command-wiring.md`.
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/system-spec-kit/references/multi-ai-council/command-wiring.md`.
 
 ---
 

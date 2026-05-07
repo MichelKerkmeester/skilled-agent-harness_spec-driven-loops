@@ -38,7 +38,7 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 
 | ID | Priority | Requirement | Acceptance |
 |---|---|---|---|
-| REQ-001 | P0 | All 5 CLI SKILL.md files contain identical "Code Standards Loading (codebase-agnostic baseline+overlay contract)" canonical rule | `grep -l "Code Standards Loading (codebase-agnostic" .opencode/skill/cli-*/SKILL.md \| wc -l` returns 5 |
+| REQ-001 | P0 | All 5 CLI SKILL.md files contain identical "Code Standards Loading (codebase-agnostic baseline+overlay contract)" canonical rule | `grep -l "Code Standards Loading (codebase-agnostic" .opencode/skills/cli-*/SKILL.md \| wc -l` returns 5 |
 | REQ-002 | P0 | Zero non-anti-pattern mentions of `sk-code-review` / `sk-code-opencode` in active CLI skill files | manual inspection confirms remaining mentions are only inside the canonical NEVER-clause as anti-pattern examples |
 | REQ-003 | P0 | All modified `.md` files pass `validate_document.py` (excluding pre-existing quirks not introduced by this packet) | 9/10 modified files VALID; 1 (hook_contract.md) INVALID with pre-existing `missing_required_section: overview` |
 | REQ-004 | P1 | cli-codex Skill Integration table de-duplicates the two `sk-code` rows into one baseline+overlay row | visual inspection of SKILL.md §7 |
@@ -60,5 +60,5 @@ The `review` agent already solved this with a baseline+overlay standards contrac
 - Plan: `plan.md`
 - Tasks: `tasks.md`
 - Implementation Summary: `implementation-summary.md`
-- Pattern donor: `.opencode/agent/review.md` §1 step 3, §3 capability scan, §6 fallback rule
+- Pattern donor: `.opencode/agents/review.md` §1 step 3, §3 capability scan, §6 fallback rule
 - Approved external plan: `/Users/michelkerkmeester/.claude/plans/not-all-manual-testing-prancy-biscuit.md`

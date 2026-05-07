@@ -24,7 +24,7 @@ permission:
 
 Executes ONE review iteration within an autonomous review loop. Reads externalized state, reviews code quality across one dimension, produces P0/P1/P2 findings with file:line evidence, and updates state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/spec_kit:deep-review` command's YAML workflows. This agent is dispatched once per iteration with explicit context about what dimension to review.
 
@@ -123,7 +123,7 @@ Perform 3-5 analysis actions using available tools:
 - `[INFERENCE: based on X and Y]` when deriving from multiple sources
 
 #### Step 4: Classify Findings
-Before assigning severity, load `.opencode/skill/sk-code-review/references/review_core.md`.
+Before assigning severity, load `.opencode/skills/sk-code-review/references/review_core.md`.
 
 Use the shared `P0` / `P1` / `P2` definitions and evidence requirements from `review_core.md`, then tag each finding with one primary review dimension: `correctness`, `security`, `traceability`, or `maintainability`.
 
@@ -149,7 +149,7 @@ Every new `P0` or `P1` finding MUST include a typed claim-adjudication packet in
 
 #### Step 5: Write Findings
 
-Create `review/iterations/iteration-NNN.md`. Use exactly one canonical template. The reducer at `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` reads both the legacy section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`) and the live section names below. Inside findings, use `### P0 Findings`, `### P1 Findings`, and `### P2 Findings` subsections. Findings use numbered bullets of the form `N. **Title** — file:line — Description`, each followed by a claim-adjudication JSON block for P0/P1.
+Create `review/iterations/iteration-NNN.md`. Use exactly one canonical template. The reducer at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` reads both the legacy section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`) and the live section names below. Inside findings, use `### P0 Findings`, `### P1 Findings`, and `### P2 Findings` subsections. Findings use numbered bullets of the form `N. **Title** — file:line — Description`, each followed by a claim-adjudication JSON block for P0/P1.
 
 ````markdown
 # Iteration [N] - [dimension] - [focus area]
@@ -280,9 +280,9 @@ newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/command/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop; dispatches this agent once per iteration |
-| Auto workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | May dispatch `@deep-review`; owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | May dispatch `@deep-review`; owns approval pauses and reducer refresh |
+| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` (`/spec_kit:deep-review`) | Owns the loop; dispatches this agent once per iteration |
+| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | May dispatch `@deep-review`; owns loop state and reducer refresh |
+| Confirm workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | May dispatch `@deep-review`; owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative review agent; do not delegate to it from this leaf agent |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -301,7 +301,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from .opencode/skill/sk-code-review/references/review_core.md for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from .opencode/skills/sk-code-review/references/review_core.md for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -346,7 +346,7 @@ Deferred (reserved, not runtime-supported):
 - `fork`: Earlier drafts described this as a child review session from an earlier lineage point. Not emitted today.
 - `completed-continue`: Earlier drafts described re-opening a completed session for additional review coverage. Not emitted today.
 
-See `.opencode/skill/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
+See `.opencode/skills/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
 
 Always treat these config fields as required read-only lineage metadata:
 - `sessionId`
@@ -358,7 +358,7 @@ Always treat these config fields as required read-only lineage metadata:
 
 Reducer boundary:
 - `review/deep-review-findings-registry.json` is the canonical reducer-owned finding registry.
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` owns registry/dashboard refresh after each iteration.
+- `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` owns registry/dashboard refresh after each iteration.
 - This leaf agent may READ the registry for continuity and deduplication context.
 - The orchestrator/reducer refreshes the registry after each iteration; do not overwrite it from this agent.
 
@@ -558,23 +558,23 @@ Return this summary to the dispatcher after completing the iteration:
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/command/spec_kit/deep-review.md` |
-| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-review` | Autonomous review loop and dispatcher for this agent | `.opencode/commands/spec_kit/deep-review.md` |
+| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### YAML Workflows
 
 | Workflow | Purpose | Path |
 |----------|---------|------|
-| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
-| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
+| Deep-review auto mode | Dispatches iterative `@deep-review` runs without per-iteration confirmation | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` |
+| Deep-review confirm mode | Dispatches iterative `@deep-review` runs with operator confirmation boundaries | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` |
 
 ### Skills
 
 | Skill | Purpose | Path |
 |-------|---------|------|
-| `sk-deep-review` | Deep review loop orchestration, reducer, state format, convergence protocol | `.opencode/skill/sk-deep-review/SKILL.md` |
-| `sk-code-review` | Shared review doctrine via `references/review_core.md` | `.opencode/skill/sk-code-review/SKILL.md` |
-| `system-spec-kit` | Spec folders, memory, docs, packet validation | `.opencode/skill/system-spec-kit/SKILL.md` |
+| `sk-deep-review` | Deep review loop orchestration, reducer, state format, convergence protocol | `.opencode/skills/sk-deep-review/SKILL.md` |
+| `sk-code-review` | Shared review doctrine via `references/review_core.md` | `.opencode/skills/sk-code-review/SKILL.md` |
+| `system-spec-kit` | Spec folders, memory, docs, packet validation | `.opencode/skills/system-spec-kit/SKILL.md` |
 
 ### Agents
 
@@ -606,14 +606,14 @@ Return this summary to the dispatcher after completing the iteration:
 |-----------|---------|
 | `references/state_format.md` | JSONL and config schema |
 | `references/convergence.md` | Convergence algorithm details |
-| `.opencode/skill/sk-code-review/references/review_core.md` | Severity definitions and evidence requirements |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Reducer-owned registry/dashboard refresh |
+| `.opencode/skills/sk-code-review/references/review_core.md` | Severity definitions and evidence requirements |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Reducer-owned registry/dashboard refresh |
 
 ---
 
 ## 9b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skill/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active review context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
+If hook-injected context is present (from the runtime startup/bootstrap surface; trigger matrix: `.opencode/skills/system-spec-kit/references/config/hook_system.md:105`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present, rebuild the active review context from `handover.md`, then the active spec doc's `_memory.continuity`, then the relevant spec docs. Only widen to `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` when those canonical packet sources are missing or insufficient.
 
 Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, canonical packet continuity (`handover.md` -> `_memory.continuity` -> spec docs, or the operator-facing `/spec_kit:resume` output) for active-session recovery, and Memory (`memory_search`/`memory_context`) for broader historical context after the packet sources are exhausted.
 

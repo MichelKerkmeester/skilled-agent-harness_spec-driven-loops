@@ -12,9 +12,9 @@ Public's per-command YAML asset pattern captures behavior cleanly, but it duplic
 Compared Public's command docs and YAML loading pattern with Relay's single workflow runner, multi-format workflow authoring, and builder/coordinator lifecycle features.
 
 ## Evidence
-- Public says each `spec_kit` command loads a YAML workflow from `assets/` and executes it step by step. [SOURCE: .opencode/command/spec_kit/README.txt:43-45]
-- The command group currently lists separate YAML assets per command/mode, including `spec_kit_complete_*`, `spec_kit_debug_*`, `spec_kit_deep-research_*`, `spec_kit_deep-review_*`, `spec_kit_implement_*`, `spec_kit_plan_*`, `spec_kit_resume_*`, and `spec_kit_handover_full.yaml`. [SOURCE: .opencode/command/spec_kit/README.txt:83-111]
-- `plan`, `implement`, and `complete` each tell the runner to load a different YAML prompt after setup passes. [SOURCE: .opencode/command/spec_kit/plan.md:204-211] [SOURCE: .opencode/command/spec_kit/implement.md:209-216] [SOURCE: .opencode/command/spec_kit/complete.md:331-337]
+- Public says each `spec_kit` command loads a YAML workflow from `assets/` and executes it step by step. [SOURCE: .opencode/commands/spec_kit/README.txt:43-45]
+- The command group currently lists separate YAML assets per command/mode, including `spec_kit_complete_*`, `spec_kit_debug_*`, `spec_kit_deep-research_*`, `spec_kit_deep-review_*`, `spec_kit_implement_*`, `spec_kit_plan_*`, `spec_kit_resume_*`, and `spec_kit_handover_full.yaml`. [SOURCE: .opencode/commands/spec_kit/README.txt:83-111]
+- `plan`, `implement`, and `complete` each tell the runner to load a different YAML prompt after setup passes. [SOURCE: .opencode/commands/spec_kit/plan.md:204-211] [SOURCE: .opencode/commands/spec_kit/implement.md:209-216] [SOURCE: .opencode/commands/spec_kit/complete.md:331-337]
 - Relay uses one workflow runner that can execute YAML, TypeScript, or Python workflows from the same entrypoint. [SOURCE: external/packages/sdk/src/workflows/README.md:1-27]
 - Relay also exposes a zero-config `runWorkflow()` helper plus one fluent `workflow()` builder rather than separate per-command shells. [SOURCE: external/packages/sdk/src/workflows/README.md:539-551] [SOURCE: external/packages/sdk/src/workflows/builder.ts:134-239]
 - The builder and runner share lifecycle features such as channel selection, idle nudging, shared state, `startFrom`, and `previousRunId`. [SOURCE: external/packages/sdk/src/workflows/README.md:553-746] [SOURCE: external/packages/sdk/src/workflows/builder.ts:193-239]
@@ -27,7 +27,7 @@ confidence: high
 finding: Public should merge the per-command YAML asset pattern into a shared lifecycle engine, keeping thin command shells for user ergonomics while reducing duplicated setup, mode, save-context, and completion logic.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/assets/`, deep-loop command shells, lifecycle/reducer infrastructure
+- **Target file or module:** `.opencode/commands/spec_kit/assets/`, deep-loop command shells, lifecycle/reducer infrastructure
 - **Change type:** workflow-engine merger
 - **Blast radius:** very high
 - **Prerequisites:** identify the common lifecycle primitives and define which command-specific behaviors remain thin wrappers

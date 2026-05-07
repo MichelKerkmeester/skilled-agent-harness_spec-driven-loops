@@ -47,11 +47,11 @@ status: complete
 - [x] CHK-021 `spec_kit_deep-review_confirm.yaml` same
 - [x] CHK-022 `spec_kit_deep-research_auto.yaml` same
 - [x] CHK-023 `spec_kit_deep-research_confirm.yaml` same
-- [x] CHK-024 `grep -r '{spec_folder}/review/' .opencode/command/spec_kit/assets/` returns 0 hardcoded child-local paths
+- [x] CHK-024 `grep -r '{spec_folder}/review/' .opencode/commands/spec_kit/assets/` returns 0 hardcoded child-local paths
 
 ### Agent Definitions (4 runtimes x 2 skills)
-- [x] CHK-030 `.opencode/agent/deep-review.md` references root-level convention
-- [x] CHK-031 `.opencode/agent/deep-research.md` references root-level convention
+- [x] CHK-030 `.opencode/agents/deep-review.md` references root-level convention
+- [x] CHK-031 `.opencode/agents/deep-research.md` references root-level convention
 - [x] CHK-032 `.claude/agents/deep-review.md` consistent with OpenCode version
 - [x] CHK-033 `.claude/agents/deep-research.md` consistent
 - [x] CHK-034 `.gemini/agents/deep-review.md` consistent

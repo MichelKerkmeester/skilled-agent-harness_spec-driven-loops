@@ -36,13 +36,13 @@ Specifically watch for:
 
 ### Source files to read (representative — add more as needed)
 
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/ccc-reindex.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/ccc-feedback.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/ccc-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-run-ablation.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting-dashboard.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ccc/` (if exists)
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/ccc-reindex.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/ccc-feedback.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/ccc-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-run-ablation.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting-dashboard.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/eval/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ccc/` (if exists)
 - Any tests, fixtures, or yaml workflows that reference these tools
 - `.github/workflows/` (CI integrations)
 

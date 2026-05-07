@@ -31,9 +31,9 @@ None. The residual broad rollback guidance is tracked as PARTIAL closure for pri
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/deep-review-strategy.md:1-85`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-001.md:1-52`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-004.md:1-85`
-- `.opencode/command/spec_kit/skill-advisor.md:1-319`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:1-310`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:1-375`
+- `.opencode/commands/spec_kit/skill-advisor.md:1-319`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:1-310`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:1-375`
 - `.opencode/install_guides/SET-UP - Skill Advisor.md:1-162`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/runner.sh:1-86`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/runner.sh:1-80`

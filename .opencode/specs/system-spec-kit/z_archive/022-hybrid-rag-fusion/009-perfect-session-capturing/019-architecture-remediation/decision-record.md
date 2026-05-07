@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -958,5 +958,5 @@ Level 3 Decision Record — 8 ADRs covering:
   ADR-007: JSON-primary data flow integrity (Wave 3 synthesis complete)
   ADR-008: Dead code and deprecated module deletion policy (Wave 3 synthesis complete)
 Write in human voice: active, direct, specific.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

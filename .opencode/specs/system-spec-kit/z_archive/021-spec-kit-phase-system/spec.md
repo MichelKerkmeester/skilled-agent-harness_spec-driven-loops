@@ -116,17 +116,17 @@ AI agents proactively detect tasks that warrant phased execution, suggest struct
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `../../../skill/system-spec-kit/SKILL.md` | Modify | Add PHASE intent signal, resource mapping, command boost |
-| `.opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh` | Modify | Add phase recommendation scoring and --recommend-phases flag |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Modify | Add --phase mode with parent+child creation |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Modify | Add --recursive flag for phase-aware validation |
+| `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | Modify | Add phase recommendation scoring and --recommend-phases flag |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modify | Add --phase mode with parent+child creation |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Add --recursive flag for phase-aware validation |
 | `/spec_kit:phase` command entry point | Create | New phase command entry point |
-| `.opencode/command/spec_kit/assets/spec_kit_phase_auto.yaml` | Create | Phase command autonomous workflow |
-| `.opencode/command/spec_kit/assets/spec_kit_phase_confirm.yaml` | Create | Phase command interactive workflow |
+| `.opencode/commands/spec_kit/assets/spec_kit_phase_auto.yaml` | Create | Phase command autonomous workflow |
+| `.opencode/commands/spec_kit/assets/spec_kit_phase_confirm.yaml` | Create | Phase command interactive workflow |
 | `../../../command/spec_kit/plan.md` | Modify | Add phase awareness to Gate 3 options |
 | `../../../command/spec_kit/implement.md` | Modify | Support sub-folder path resolution |
 | `../../../command/spec_kit/complete.md` | Modify | Add phase lifecycle to workflow |
 | `../../../command/spec_kit/resume.md` | Modify | Phase detection in context loading |
-| `.opencode/skill/system-spec-kit/templates/addendum/phase/` | Create | Phase-linkage addendum (parent + child templates) |
+| `.opencode/skills/system-spec-kit/templates/addendum/phase/` | Create | Phase-linkage addendum (parent + child templates) |
 | `../../../skill/system-spec-kit/nodes/phase-system.md` | Create | Graph mode node for phase workflow |
 | `../../../skill/system-spec-kit/references/structure/phase_definitions.md` | Create | Phase taxonomy and transition rules |
 | `../../../skill/system-spec-kit/references/structure/sub_folder_versioning.md` | Modify | Integrate phase concepts into versioning docs |

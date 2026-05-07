@@ -97,9 +97,9 @@ The "Modified Files" table contains exactly 32 entries (lines 55-87). Note: `che
 
 Every verification command referenced in the summary was checked against the filesystem:
 - `scratch/verification-log-2026-03-04.md` -- EXISTS, contains the claimed "10 files, 199 tests" output
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` -- EXISTS
-- `.opencode/skill/sk-doc/scripts/validate_document.py` -- EXISTS
-- `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` -- EXISTS
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` -- EXISTS
+- `.opencode/skills/sk-doc/scripts/validate_document.py` -- EXISTS
+- `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` -- EXISTS
 - `.github/workflows/system-spec-kit-boundary-enforcement.yml` -- EXISTS
 - All referenced test files exist (task-enrichment, memory-render-fixture, generate-context-cli-authority, import-policy-rules)
 - Phase 13 proof memory file exists at `memory/06-03-26_15-07__phase-13-indexed-direct-save-quality-closure-for.md`

@@ -31,7 +31,7 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 
 ### Dynamic Targets
 
-- targets are bounded agent files selected at initialization time (any `.opencode/agent/*.md`)
+- targets are bounded agent files selected at initialization time (any `.opencode/agents/*.md`)
 - no canonical pre-selected target; every run picks its target explicitly and evaluates it through dynamic mode
 
 ---

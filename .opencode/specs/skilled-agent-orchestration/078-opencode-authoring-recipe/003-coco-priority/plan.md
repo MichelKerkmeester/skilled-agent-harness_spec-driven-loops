@@ -31,7 +31,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-077 finding F-001-002 surfaced that mcp-coco-index's `DEFAULT_EXCLUDED_PATTERNS` (specifically `**/.*` for hidden-dir exclusion) prevents fresh-clone ingestion of `.opencode/skill/sk-code/assets/opencode/` — the very assets just shipped in Phase 1 v3.2.0.0. F-005-002 et al. surfaced that canonical resources have no rank priority over playbook/spec scaffolds. Phase 3 closes both gaps: a new `CANONICAL_RESOURCE_PATHS` constant + per-project `canonical_resource_paths` field bypasses exclusion AND adds a +0.10 rank boost via `canonical_resource_boost` signal in `query._ranked_result`. Implementation dispatched via cli-codex; modifications across settings.py, indexer.py, query.py + 3 new tests + SKILL.md doc. mcp-coco-index bumped 1.0.0 → 1.1.0 with v1.3.0.0.md changelog. Pytest blocked by missing `mcp` + `cocoindex` deps in system Python; codex's venv'd manual verification PASSED.
+077 finding F-001-002 surfaced that mcp-coco-index's `DEFAULT_EXCLUDED_PATTERNS` (specifically `**/.*` for hidden-dir exclusion) prevents fresh-clone ingestion of `.opencode/skills/sk-code/assets/opencode/` — the very assets just shipped in Phase 1 v3.2.0.0. F-005-002 et al. surfaced that canonical resources have no rank priority over playbook/spec scaffolds. Phase 3 closes both gaps: a new `CANONICAL_RESOURCE_PATHS` constant + per-project `canonical_resource_paths` field bypasses exclusion AND adds a +0.10 rank boost via `canonical_resource_boost` signal in `query._ranked_result`. Implementation dispatched via cli-codex; modifications across settings.py, indexer.py, query.py + 3 new tests + SKILL.md doc. mcp-coco-index bumped 1.0.0 → 1.1.0 with v1.3.0.0.md changelog. Pytest blocked by missing `mcp` + `cocoindex` deps in system Python; codex's venv'd manual verification PASSED.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,9 +70,9 @@ _memory:
 
 ```python
 CANONICAL_RESOURCE_PATHS: list[str] = [
-    ".opencode/skill/*/assets/opencode/**",
-    ".opencode/skill/*/assets/motion_dev/**",
-    ".opencode/skill/*/references/**",
+    ".opencode/skills/*/assets/opencode/**",
+    ".opencode/skills/*/assets/motion_dev/**",
+    ".opencode/skills/*/references/**",
 ]
 ```
 

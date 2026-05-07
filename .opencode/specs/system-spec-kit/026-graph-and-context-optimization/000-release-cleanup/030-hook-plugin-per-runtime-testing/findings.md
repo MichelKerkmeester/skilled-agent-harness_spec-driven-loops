@@ -49,10 +49,10 @@ the user's real auth state, keychain, home config, or runtime state directories.
 
 | Runtime | Direct Smoke Result | Evidence |
 |---------|---------------------|----------|
-| Claude Code | PASS | `hookSpecificOutput.additionalContext` emitted by `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186`. |
-| Codex CLI | PASS | Stale timeout fallback and freshness smoke fields emitted by `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194` and `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28`. |
-| GitHub Copilot CLI | PASS | Hook returned `{}` and wrote the managed next-prompt context via `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233` and `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122`. |
-| Gemini CLI | PASS | `hookSpecificOutput.additionalContext` emitted by `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`. |
+| Claude Code | PASS | `hookSpecificOutput.additionalContext` emitted by `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186`. |
+| Codex CLI | PASS | Stale timeout fallback and freshness smoke fields emitted by `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194` and `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28`. |
+| GitHub Copilot CLI | PASS | Hook returned `{}` and wrote the managed next-prompt context via `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233` and `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122`. |
+| Gemini CLI | PASS | `hookSpecificOutput.additionalContext` emitted by `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`. |
 | OpenCode plugin bridge | PASS | Plugin transform appended advisor context through `.opencode/plugins/spec-kit-skill-advisor.js:627` and `.opencode/plugins/spec-kit-skill-advisor.js:663`. |
 
 ## Operator Remediation
@@ -60,7 +60,7 @@ the user's real auth state, keychain, home config, or runtime state directories.
 Run the amended runner from a normal shell for the canonical live CLI verdict:
 
 ```bash
-npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests
 ```
 
 Running the same command under `codex exec --sandbox workspace-write` now records
@@ -101,7 +101,7 @@ Direct hook/plugin smokes did produce useful signals for Claude, Codex, Copilot,
 
 Assertion failed: Claude UserPromptSubmit should emit `hookSpecificOutput.additionalContext` containing an advisor brief during a live runtime invocation.
 
-Evidence: the CLI returned `Not logged in`; the direct hook command returned JSON with `hookSpecificOutput.additionalContext`. The source that produces the model-visible context is `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186`.
+Evidence: the CLI returned `Not logged in`; the direct hook command returned JSON with `hookSpecificOutput.additionalContext`. The source that produces the model-visible context is `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:186`.
 
 Remediation: run `claude` login/setup for this host, then rerun `runners/run-all-runtime-hooks.ts`.
 
@@ -109,7 +109,7 @@ Remediation: run `claude` login/setup for this host, then rerun `runners/run-all
 
 Assertion failed: Codex prompt hook should expose stale timeout fallback and freshness smoke output during a live runtime invocation.
 
-Evidence: `codex exec` failed before session creation because this sandbox could not access `/Users/michelkerkmeester/.codex/sessions`. The direct hook emitted the stale fallback from `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`, and the freshness helper from `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28` returned JSON with `fresh`, `lastUpdateAt`, and `latencyMs`.
+Evidence: `codex exec` failed before session creation because this sandbox could not access `/Users/michelkerkmeester/.codex/sessions`. The direct hook emitted the stale fallback from `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`, and the freshness helper from `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:28` returned JSON with `fresh`, `lastUpdateAt`, and `latencyMs`.
 
 Remediation: run from an environment where Codex can read/write its session store, then rerun the cell. No doc contract drift surfaced.
 
@@ -117,7 +117,7 @@ Remediation: run from an environment where Codex can read/write its session stor
 
 Assertion failed: Copilot hook should return `{}` and refresh managed custom instructions for the next prompt during a live runtime invocation.
 
-Evidence: `copilot` failed before model execution with `SecItemCopyMatching failed -50`. The direct hook returned `{}` and wrote a temp managed block using the code path at `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233` and `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122`.
+Evidence: `copilot` failed before model execution with `SecItemCopyMatching failed -50`. The direct hook returned `{}` and wrote a temp managed block using the code path at `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233` and `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122`.
 
 Remediation: fix Copilot keychain/auth in the operator environment. The checked config still routes through the Superset wrapper, so a follow-up should decide whether that is intended runtime policy or the known wrapper-parity drift.
 
@@ -135,7 +135,7 @@ Remediation: run with an OpenCode state directory writable by the process, then 
 
 Assertion timed out: Gemini BeforeAgent should emit `hookSpecificOutput.additionalContext` containing an advisor brief during a live runtime invocation.
 
-Evidence: `gemini` opened an authentication prompt and waited until the 300s cell timeout. The direct hook emitted `additionalContext` from `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`.
+Evidence: `gemini` opened an authentication prompt and waited until the 300s cell timeout. The direct hook emitted `additionalContext` from `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:200`.
 
 Remediation: complete Gemini authentication non-interactively or in a prepared shell, then rerun the cell.
 

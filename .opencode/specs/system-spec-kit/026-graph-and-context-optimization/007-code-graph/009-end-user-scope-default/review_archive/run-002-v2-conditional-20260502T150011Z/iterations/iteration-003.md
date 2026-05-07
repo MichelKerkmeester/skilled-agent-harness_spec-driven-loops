@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` — `rg` returned no banned-vocabulary hits.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:137-158`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:328-358`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:70-72`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:278-288`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:600-632`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:515-605`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-236`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:338-344`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-310`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` — `rg` returned no banned-vocabulary hits.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:137-158`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:328-358`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/startup-brief.ts:70-72`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:278-288`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:600-632`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:515-605`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-264`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-50`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-236`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:338-344`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-310`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/spec.md:119-128`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:92-98`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:151-181`
@@ -53,7 +53,7 @@ Downgrade trigger: If this reason is proven to be maintainer-internal only and n
 - `checklist_evidence`: PASS with advisory. CHK-042 remains substantively covered because README/env/schema surfaces describe `SPECKIT_CODE_GRAPH_INDEX_SKILLS`, `includeSkills`, and full scans without code_graph README vocabulary hits; the new finding is limited to a readiness reason string.
 - `skill_agent`: PASS. This iteration stayed LEAF-only, did not dispatch sub-agents, and wrote findings only under the approved review packet.
 - `feature_catalog_code`: PASS. No feature-catalog contradiction was found; the finding is a wording leak in an existing readiness full-scan reason, not a feature behavior mismatch.
-- `adr_005_vocabulary`: PARTIAL. Required scan executed with `rg -i "preset|capabilit(y|ies)|kind|manifest" .opencode/skill/system-spec-kit/mcp_server/code_graph/ --type ts --type md`; README had no hits, typed `kind` fields were ruled internal, and `candidate manifest drift` remains the only substantive user-facing leak.
+- `adr_005_vocabulary`: PARTIAL. Required scan executed with `rg -i "preset|capabilit(y|ies)|kind|manifest" .opencode/skills/system-spec-kit/mcp_server/code_graph/ --type ts --type md`; README had no hits, typed `kind` fields were ruled internal, and `candidate manifest drift` remains the only substantive user-facing leak.
 
 ## Run-1 Regression Check
 

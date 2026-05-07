@@ -61,7 +61,7 @@ A comprehensive parallel analysis using 20 specialized agents examined the `syst
 **Severity:** MEDIUM
 
 **Findings:**
-- All documented commands exist in `.opencode/command/` folder
+- All documented commands exist in `.opencode/commands/` folder
 - Commands correctly reference implementations
 - Script references accurate
 

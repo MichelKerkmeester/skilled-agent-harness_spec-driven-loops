@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 013 of 20. The packet root is
 
 **Angle C3 — Skill advisor recommendation quality**
 
-Audit advisor recommendation patterns. Sample real-world prompts from `.opencode/skill/system-spec-kit/scripts/fixtures/skill_advisor_regression_cases.jsonl` (or whatever the fixture file is — find it with `fd` or `find`). Where does it confidently recommend the wrong skill? Where does it correctly hedge with low-confidence? What patterns dominate false positives and false negatives? Cite specific cases with file:line.
+Audit advisor recommendation patterns. Sample real-world prompts from `.opencode/skills/system-spec-kit/scripts/fixtures/skill_advisor_regression_cases.jsonl` (or whatever the fixture file is — find it with `fd` or `find`). Where does it confidently recommend the wrong skill? Where does it correctly hedge with low-confidence? What patterns dominate false positives and false negatives? Cite specific cases with file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

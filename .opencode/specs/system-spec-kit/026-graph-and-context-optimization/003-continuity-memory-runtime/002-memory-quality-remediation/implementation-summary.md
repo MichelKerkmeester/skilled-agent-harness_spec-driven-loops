@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -136,7 +136,7 @@ A 7-iteration `/spec_kit:deep-review` ran against this packet on 2026-04-08, del
 | Workstream | Commit | Scope | Findings | Files |
 |------------|--------|-------|---------:|------:|
 | **RW-B Parent rollup normalization** | `bc7754ef0` | Parent + 005 + 006 + 007 doc drift | 6 P1 (P1-004, P1-006, P1-007, P1-011, P1-012, P1-013) | 7 |
-| **RW-A Shipped-code bug fixes** | `93c415203` | TypeScript source under `.opencode/skill/system-spec-kit/scripts/` | 6 P1 (P1-001, P1-002, P1-003, P1-008, P1-009, P1-010) | 5 |
+| **RW-A Shipped-code bug fixes** | `93c415203` | TypeScript source under `.opencode/skills/system-spec-kit/scripts/` | 6 P1 (P1-001, P1-002, P1-003, P1-008, P1-009, P1-010) | 5 |
 | **RW-C Telemetry/alert contract reconciliation** | `599449409` | Phase 5 telemetry-catalog.md + memory-save-quality-alerts.yml | 1 P1 (P1-005) | 2 |
 | **RW-D P2 advisory cleanup** | `2de224c79` | Phase 1 docs + parent checklist + Phase 5 docs + sanitizer + PR-7 gate + PR-10 wording | 9 P2 (P2-001..P2-009) | 9 |
 

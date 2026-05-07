@@ -16,10 +16,10 @@ _memory:
     next_safe_action: "Author plan.md/tasks.md/implementation-summary.md and commit child docs"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/assets/feature_catalog
-      - .opencode/skill/sk-doc/assets/testing_playbook
-      - .opencode/skill/sk-doc/assets/agent_template.md
-      - .opencode/skill/sk-doc/assets/command_template.md
+      - .opencode/skills/sk-doc/assets/feature_catalog
+      - .opencode/skills/sk-doc/assets/testing_playbook
+      - .opencode/skills/sk-doc/assets/agent_template.md
+      - .opencode/skills/sk-doc/assets/command_template.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase1-authoring"
@@ -113,11 +113,11 @@ Promote the 4 heavy-traffic asset items to `assets/` root and delete the empty `
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/assets/documentation/feature_catalog/` | Move | Promoted to `assets/feature_catalog/` (2 files inside preserved) |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` | Move | Promoted to `assets/testing_playbook/` (2 files inside preserved) |
-| `.opencode/skill/sk-doc/assets/agents/agent_template.md` | Move | Promoted to `assets/agent_template.md` |
-| `.opencode/skill/sk-doc/assets/agents/command_template.md` | Move | Promoted to `assets/command_template.md` |
-| `.opencode/skill/sk-doc/assets/agents/` | Delete | Empty after moves; physical `rmdir` |
+| `.opencode/skills/sk-doc/assets/documentation/feature_catalog/` | Move | Promoted to `assets/feature_catalog/` (2 files inside preserved) |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` | Move | Promoted to `assets/testing_playbook/` (2 files inside preserved) |
+| `.opencode/skills/sk-doc/assets/agents/agent_template.md` | Move | Promoted to `assets/agent_template.md` |
+| `.opencode/skills/sk-doc/assets/agents/command_template.md` | Move | Promoted to `assets/command_template.md` |
+| `.opencode/skills/sk-doc/assets/agents/` | Delete | Empty after moves; physical `rmdir` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -129,12 +129,12 @@ Promote the 4 heavy-traffic asset items to `assets/` root and delete the empty `
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `feature_catalog/` directory promoted to `assets/` root | `test -d .opencode/skill/sk-doc/assets/feature_catalog && test ! -d .opencode/skill/sk-doc/assets/documentation/feature_catalog` |
-| REQ-002 | `testing_playbook/` directory promoted to `assets/` root | `test -d .opencode/skill/sk-doc/assets/testing_playbook && test ! -d .opencode/skill/sk-doc/assets/documentation/testing_playbook` |
-| REQ-003 | `agent_template.md` promoted to `assets/` root | `test -f .opencode/skill/sk-doc/assets/agent_template.md && test ! -f .opencode/skill/sk-doc/assets/agents/agent_template.md` |
-| REQ-004 | `command_template.md` promoted to `assets/` root | `test -f .opencode/skill/sk-doc/assets/command_template.md && test ! -f .opencode/skill/sk-doc/assets/agents/command_template.md` |
-| REQ-005 | `assets/agents/` folder physically deleted | `test ! -e .opencode/skill/sk-doc/assets/agents` |
-| REQ-006 | Git history preserved via `git mv` (not `mv` + `git add`) | `git log --follow --oneline .opencode/skill/sk-doc/assets/agent_template.md` shows pre-move history |
+| REQ-001 | `feature_catalog/` directory promoted to `assets/` root | `test -d .opencode/skills/sk-doc/assets/feature_catalog && test ! -d .opencode/skills/sk-doc/assets/documentation/feature_catalog` |
+| REQ-002 | `testing_playbook/` directory promoted to `assets/` root | `test -d .opencode/skills/sk-doc/assets/testing_playbook && test ! -d .opencode/skills/sk-doc/assets/documentation/testing_playbook` |
+| REQ-003 | `agent_template.md` promoted to `assets/` root | `test -f .opencode/skills/sk-doc/assets/agent_template.md && test ! -f .opencode/skills/sk-doc/assets/agents/agent_template.md` |
+| REQ-004 | `command_template.md` promoted to `assets/` root | `test -f .opencode/skills/sk-doc/assets/command_template.md && test ! -f .opencode/skills/sk-doc/assets/agents/command_template.md` |
+| REQ-005 | `assets/agents/` folder physically deleted | `test ! -e .opencode/skills/sk-doc/assets/agents` |
+| REQ-006 | Git history preserved via `git mv` (not `mv` + `git add`) | `git log --follow --oneline .opencode/skills/sk-doc/assets/agent_template.md` shows pre-move history |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -154,13 +154,13 @@ Promote the 4 heavy-traffic asset items to `assets/` root and delete the empty `
 
 ### Given/When/Then Verification Scenarios
 
-**Given** the empty 068-sk-doc-organization/ scaffold exists, **When** `git mv .opencode/skill/sk-doc/assets/documentation/feature_catalog .opencode/skill/sk-doc/assets/feature_catalog` runs, **Then** the directory and its 2 inner files appear at the new path with git rename detection.
+**Given** the empty 068-sk-doc-organization/ scaffold exists, **When** `git mv .opencode/skills/sk-doc/assets/documentation/feature_catalog .opencode/skills/sk-doc/assets/feature_catalog` runs, **Then** the directory and its 2 inner files appear at the new path with git rename detection.
 
-**Given** `feature_catalog` moved, **When** `git mv .opencode/skill/sk-doc/assets/documentation/testing_playbook .opencode/skill/sk-doc/assets/testing_playbook` runs, **Then** the directory and its 2 inner files appear at the new path.
+**Given** `feature_catalog` moved, **When** `git mv .opencode/skills/sk-doc/assets/documentation/testing_playbook .opencode/skills/sk-doc/assets/testing_playbook` runs, **Then** the directory and its 2 inner files appear at the new path.
 
 **Given** both folders moved, **When** the 2 template files are moved via `git mv ... assets/agents/{agent,command}_template.md ... assets/{agent,command}_template.md`, **Then** `assets/agents/` is empty.
 
-**Given** `assets/agents/` is empty, **When** `rmdir .opencode/skill/sk-doc/assets/agents` runs, **Then** `test ! -e .opencode/skill/sk-doc/assets/agents` exits 0.
+**Given** `assets/agents/` is empty, **When** `rmdir .opencode/skills/sk-doc/assets/agents` runs, **Then** `test ! -e .opencode/skills/sk-doc/assets/agents` exits 0.
 
 **Given** all moves complete, **When** running `git status --porcelain`, **Then** 6 R (rename) entries are staged for the moves (2 from `feature_catalog/`, 2 from `testing_playbook/`, 2 templates).
 

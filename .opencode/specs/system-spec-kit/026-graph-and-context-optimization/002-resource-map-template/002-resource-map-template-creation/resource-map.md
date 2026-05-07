@@ -42,12 +42,12 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/templates/README.md` | Updated | OK | Structure table row + Workflow Notes + Related. |
-| `.opencode/skill/system-spec-kit/templates/level_1/README.md` | Updated | OK | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_2/README.md` | Updated | OK | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3/README.md` | Updated | OK | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3+/README.md` | Updated | OK | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/README.md` | Updated | OK | Template architecture section. |
+| `.opencode/skills/system-spec-kit/templates/README.md` | Updated | OK | Structure table row + Workflow Notes + Related. |
+| `.opencode/skills/system-spec-kit/templates/level_1/README.md` | Updated | OK | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_2/README.md` | Updated | OK | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3/README.md` | Updated | OK | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3+/README.md` | Updated | OK | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/README.md` | Updated | OK | Template architecture section. |
 
 ---
 
@@ -55,9 +55,9 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Updated | OK | Cross-cutting row + per-level Optional Files mentions. |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Updated | OK | Cross-cutting row + per-level Optional Files mentions. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/path-references-audit` (md) | Analyzed | OK | Reference shape (categories + table columns) inspiration. |
-| `.opencode/skill/system-spec-kit/templates/addendum/phase/phase-child-header.md` | Analyzed | OK | Consulted for the phase-child metadata rows. |
+| `.opencode/skills/system-spec-kit/templates/addendum/phase/phase-child-header.md` | Analyzed | OK | Consulted for the phase-child metadata rows. |
 
 ---
 
@@ -65,22 +65,22 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Created | OK | The new template itself (~130 lines, 10 categories, author instructions). |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Updated | OK | Distributed-governance block + cross-cutting mention in §3/§9 + Rule 9 list. |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Created | OK | New feature catalog entry (neighbor of `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md`). |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Created | OK | New playbook scenario (neighbor of `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`). |
-| `.opencode/skill/system-spec-kit/templates/core/` | Analyzed | OK | Template architecture source-of-truth for CORE/ADDENDUM composition. |
-| `.opencode/skill/system-spec-kit/templates/addendum/` | Analyzed | OK | Confirmed L2/L3/L3+ addendum structure before writing level READMEs. |
-| `.opencode/skill/system-spec-kit/templates/handover.md` | Analyzed | OK | File-location precedent (cross-cutting peer at templates root). |
-| `.opencode/skill/system-spec-kit/templates/research.md` | Analyzed | OK | File-location precedent. |
-| `.opencode/skill/system-spec-kit/templates/debug-delegation.md` | Analyzed | OK | File-location precedent. |
-| `.opencode/skill/system-spec-kit/templates/level_1/spec.md` | Analyzed | OK | L1 template shape reference. |
-| `.opencode/skill/system-spec-kit/templates/level_2/spec.md` | Analyzed | OK | L2 template shape used to conform this packet's spec.md. |
-| `.opencode/skill/system-spec-kit/templates/level_2/plan.md` | Analyzed | OK | L2 plan shape used to conform this packet's plan.md. |
-| `.opencode/skill/system-spec-kit/templates/level_2/tasks.md` | Analyzed | OK | L2 tasks shape used to conform this packet's tasks.md. |
-| `.opencode/skill/system-spec-kit/templates/level_2/checklist.md` | Analyzed | OK | L2 checklist shape used to conform this packet's checklist.md. |
-| `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md` | Analyzed | OK | Impl summary shape reference. |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Analyzed | OK | Level-detection + section-count logic consulted to diagnose validator output. |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Created | OK | The new template itself (~130 lines, 10 categories, author instructions). |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Updated | OK | Distributed-governance block + cross-cutting mention in §3/§9 + Rule 9 list. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Created | OK | New feature catalog entry (neighbor of `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md`). |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Created | OK | New playbook scenario (neighbor of `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md`). |
+| `.opencode/skills/system-spec-kit/templates/core/` | Analyzed | OK | Template architecture source-of-truth for CORE/ADDENDUM composition. |
+| `.opencode/skills/system-spec-kit/templates/addendum/` | Analyzed | OK | Confirmed L2/L3/L3+ addendum structure before writing level READMEs. |
+| `.opencode/skills/system-spec-kit/templates/handover.md` | Analyzed | OK | File-location precedent (cross-cutting peer at templates root). |
+| `.opencode/skills/system-spec-kit/templates/research.md` | Analyzed | OK | File-location precedent. |
+| `.opencode/skills/system-spec-kit/templates/debug-delegation.md` | Analyzed | OK | File-location precedent. |
+| `.opencode/skills/system-spec-kit/templates/level_1/spec.md` | Analyzed | OK | L1 template shape reference. |
+| `.opencode/skills/system-spec-kit/templates/level_2/spec.md` | Analyzed | OK | L2 template shape used to conform this packet's spec.md. |
+| `.opencode/skills/system-spec-kit/templates/level_2/plan.md` | Analyzed | OK | L2 plan shape used to conform this packet's plan.md. |
+| `.opencode/skills/system-spec-kit/templates/level_2/tasks.md` | Analyzed | OK | L2 tasks shape used to conform this packet's tasks.md. |
+| `.opencode/skills/system-spec-kit/templates/level_2/checklist.md` | Analyzed | OK | L2 checklist shape used to conform this packet's checklist.md. |
+| `.opencode/skills/system-spec-kit/templates/level_1/implementation-summary.md` | Analyzed | OK | Impl summary shape reference. |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Analyzed | OK | Level-detection + section-count logic consulted to diagnose validator output. |
 
 ---
 
@@ -108,7 +108,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Updated | OK | Append `'resource-map.md'` to `SPEC_DOCUMENT_FILENAMES` so memory classification treats it as a canonical spec doc. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Updated | OK | Append `'resource-map.md'` to `SPEC_DOCUMENT_FILENAMES` so memory classification treats it as a canonical spec doc. |
 
 ---
 

@@ -1,7 +1,7 @@
 # QA10-O20: Final Quality Score — 5-Dimension Rubric
 
 **Date:** 2026-03-09
-**Scope:** 14-file pipeline codebase under `.opencode/skill/system-spec-kit/scripts/`
+**Scope:** 14-file pipeline codebase under `.opencode/skills/system-spec-kit/scripts/`
 **Scored by:** Claude Opus 4.6 (@review agent)
 **Inputs:** O18 Opus Synthesis, O19 Cross-Model Reconciliation, direct source file verification
 **Confidence:** HIGH — all 14 source files read, all P0/P1 findings verified against source

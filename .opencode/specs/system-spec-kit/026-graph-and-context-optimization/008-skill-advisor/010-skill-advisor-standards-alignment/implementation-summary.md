@@ -88,11 +88,11 @@ Plugin edits were constrained to comments and documentation: box-header lines, d
 | Gate | Command | Result |
 |------|---------|--------|
 | Syntax | `node --check .opencode/plugins/spec-kit-skill-advisor.js` | Pass, exit 0 |
-| Build | `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | Pass, exit 0 |
-| Focused Vitest | `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` | Pass, 30/30 |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment --strict` | Pass, 0 errors / 0 warnings |
+| Build | `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | Pass, exit 0 |
+| Focused Vitest | `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` | Pass, 30/30 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/010-skill-advisor-standards-alignment --strict` | Pass, 0 errors / 0 warnings |
 | Diff inspection | `diff -u /tmp/spec-kit-skill-advisor.before-009.js .opencode/plugins/spec-kit-skill-advisor.js` | Pass: comments/JSDoc/box-header/dividers only |
-| Canonical save | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Pass, exit 0; packet metadata refreshed and canonical docs indexed with deferred embeddings |
+| Canonical save | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json ...` | Pass, exit 0; packet metadata refreshed and canonical docs indexed with deferred embeddings |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -2,7 +2,7 @@
 
 **Auditor:** Claude Opus 4.6
 **Date:** 2026-03-08
-**Scope:** `.opencode/skill/system-spec-kit/scripts/kpi/`
+**Scope:** `.opencode/skills/system-spec-kit/scripts/kpi/`
 
 ---
 

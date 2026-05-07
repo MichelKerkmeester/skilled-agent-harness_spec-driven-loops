@@ -15,9 +15,9 @@ _memory:
     next_safe_action: "Optional: packet 091 to trim 8 over-soft commands"
     blockers: []
     key_files:
-      - ".opencode/agent/debug.md"
-      - ".opencode/agent/code.md"
-      - ".opencode/agent/orchestrate.md"
+      - ".opencode/agents/debug.md"
+      - ".opencode/agents/code.md"
+      - ".opencode/agents/orchestrate.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-090"
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Acted on the first real finding from `/doctor:skill-budget` (shipped in packet 086): trimmed 6 over-soft agent descriptions across all 4 runtime mirrors (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total. Each agent's name token, primary verb, primary domain noun, and dispatch-routing keyword were preserved.
+Acted on the first real finding from `/doctor:skill-budget` (shipped in packet 086): trimmed 6 over-soft agent descriptions across all 4 runtime mirrors (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total. Each agent's name token, primary verb, primary domain noun, and dispatch-routing keyword were preserved.
 
 ### Files Changed
 
@@ -89,7 +89,7 @@ Single-pass scripted edit. `/tmp/trim-agent-descriptions-090.py` (run-time only,
 
 | Mirror | Format | Replacement target |
 |--------|--------|---------------------|
-| `.opencode/agent/<name>.md` | YAML frontmatter | `^description:\s*.+$` inside `---...---` block |
+| `.opencode/agents/<name>.md` | YAML frontmatter | `^description:\s*.+$` inside `---...---` block |
 | `.claude/agents/<name>.md` | YAML frontmatter | same |
 | `.gemini/agents/<name>.md` | YAML frontmatter | same |
 | `.codex/agents/<name>.toml` | TOML key | `^description\s*=\s*"[^"]*"` (top-level only) |
@@ -121,7 +121,7 @@ Single-pass scripted edit. `/tmp/trim-agent-descriptions-090.py` (run-time only,
 |-----------|--------|----------|
 | Audit pre-trim | Recorded | TOTAL 6,086 / headroom -486 / overSoft 14 (6 agents, 8 commands) |
 | Audit post-trim | PASS | TOTAL 5,546 / **headroom +54** / overSoft 8 (only commands remain; agents: 0) |
-| Name-token preservation | PASS | All 6 trims contain agent name token; spot-checked via grep on `.opencode/agent/*.md` |
+| Name-token preservation | PASS | All 6 trims contain agent name token; spot-checked via grep on `.opencode/agents/*.md` |
 | Strict spec validation | PASS | After impl-summary.md written: 0 errors, 0 warnings, RESULT: PASSED |
 | Cross-runtime consistency | PASS | Trim script applied identical text to all 4 mirrors per agent; 24/24 successful, 0 failures |
 

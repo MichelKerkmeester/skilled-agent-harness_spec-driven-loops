@@ -2,7 +2,7 @@
 
 | Field         | Value                                                        |
 | ------------- | ------------------------------------------------------------ |
-| **Folder**    | `.opencode/skill/system-spec-kit/mcp_server/`                |
+| **Folder**    | `.opencode/skills/system-spec-kit/mcp_server/`                |
 | **File**      | `README.md` (1205 lines, ~59KB)                              |
 | **Status**    | **PASS** (minor drift noted, no critical structural misalignment) |
 | **Auditor**   | Claude Opus 4.6                                              |

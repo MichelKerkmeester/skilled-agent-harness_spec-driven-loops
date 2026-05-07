@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Run strict validator"
     blockers: []
     key_files:
-      - "(deleted) Code_Environment/Public/.opencode/skill/mcp-figma/"
-      - "Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/database/skill-graph.sqlite (re-indexed)"
+      - "(deleted) Code_Environment/Public/.opencode/skills/mcp-figma/"
+      - "Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/database/skill-graph.sqlite (re-indexed)"
     session_dedup:
       fingerprint: "sha256:25cf13e5fd108afe6a6d42294fa1c9c517783bf124da6d9345e02fa17e40a090"
       session_id: "067-003-phase3-2026-05-05"
@@ -61,7 +61,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/implementation-summ
 <!-- ANCHOR:verification -->
 ## VERIFICATION
 
-Verification artifact: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; command: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict
+Verification artifact: commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d; Opus Hooks E+F+G PASS; command: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal --strict
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
@@ -96,7 +96,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/implementation-summ
 ### Commit 4 (deletion + initial cross-refs, 28 file ops)
 
 **DELETED — skill folder (14 files):**
-- `.opencode/skill/mcp-figma/` (entire folder rm -rf, including SKILL.md, README.md, INSTALL_GUIDE.md, graph-metadata.json, assets/, references/, nodes/, changelog/)
+- `.opencode/skills/mcp-figma/` (entire folder rm -rf, including SKILL.md, README.md, INSTALL_GUIDE.md, graph-metadata.json, assets/, references/, nodes/, changelog/)
 
 **MODIFIED — advisor scoring tables (8 files):**
 - `system-spec-kit/.../skill_advisor/graph-metadata.json` (1 edge deletion + count 20→19)
@@ -110,7 +110,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/implementation-summ
 
 **MODIFIED — documentation (5 files):**
 - root `README.md` (PATCH 1 example + DELETE mcp-figma subsection)
-- `.opencode/skill/README.md` (2 count patches + 4 row deletions)
+- `.opencode/skills/README.md` (2 count patches + 4 row deletions)
 - `mcp-code-mode/SKILL.md` line 476 (D1 strip)
 - `mcp-code-mode/README.md` line 451 (D1 strip)
 - `mcp-code-mode/references/architecture.md` line 514 (D1 strip)
@@ -167,7 +167,7 @@ Template compliance scaffold for 003-mcp-figma-skill-removal/implementation-summ
 
 2. **sk-code graph-metadata validation error** — advisor-graph-health still fails because `kind: "reference-category"` is not in the validator's enum. Pre-existing drift from 069-sk-code-motion-dev parallel work. Resolution: in 069 packet, either (a) update the compiler enum to include "reference-category" or (b) change the entity kind to "reference". Out of scope for 067.
 
-3. **Telemetry purge** — `.opencode/skill/.smart-router-telemetry/compliance.jsonl` retains 4 historical records of mcp-figma routing from 2026-04-19. File is gitignored (immutable local history). Optional: delete for fresh telemetry baseline; preserved by default per D2 spirit (immutable history).
+3. **Telemetry purge** — `.opencode/skills/.smart-router-telemetry/compliance.jsonl` retains 4 historical records of mcp-figma routing from 2026-04-19. File is gitignored (immutable local history). Optional: delete for fresh telemetry baseline; preserved by default per D2 spirit (immutable history).
 
 ---
 

@@ -47,7 +47,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -119,7 +119,7 @@ B3 specifically resolves the PR-3 traceability mismatch by excluding `mcp_server
 | Check | Result |
 |-------|--------|
 | Finding source lookup | PASS - `R1-P1-002` and `R3-P1-003` records found in review delta JSONL |
-| Retained memory semantics test | PASS - `find .opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts -maxdepth 1 -print` returns the retained file |
+| Retained memory semantics test | PASS - `find .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts -maxdepth 1 -print` returns the retained file |
 | Removed promotion subsystem paths | PASS - `find` over deleted promotion module, schema, promotion test, and bench paths returns no surviving deleted paths |
 | Summary stale-state scrub | PASS - this file now describes Phase 5 completion instead of the old scaffold state |
 | B3 validation scope | PASS - documentation-only; no `tsc` run for B3 |

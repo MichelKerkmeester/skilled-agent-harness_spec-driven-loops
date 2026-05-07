@@ -127,8 +127,8 @@ Primary source is read once (iteration 001), then targeted re-reads are performe
 
 - [x] Writer/amendment pass: Compose and refresh `research/research.md` from the consolidated F1-F24 ledger (577 lines, 12 sections)
 - [x] Create Level 3 spec documents (this task set)
-- [x] Validation: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings --strict` -> exit code 2, warnings 1 (`ANCHORS_VALID` only)
-- [x] Memory save: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings` -> memory file written and post-save HIGH issue patched
+- [x] Validation: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings --strict` -> exit code 2, warnings 1 (`ANCHORS_VALID` only)
+- [x] Memory save: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings` -> memory file written and post-save HIGH issue patched
 <!-- /ANCHOR:phases -->
 
 ---

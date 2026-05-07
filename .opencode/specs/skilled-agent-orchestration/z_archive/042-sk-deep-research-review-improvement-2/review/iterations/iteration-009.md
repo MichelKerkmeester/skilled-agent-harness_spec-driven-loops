@@ -9,7 +9,7 @@ completedAt: 2026-04-12T10:16:09Z
 
 # Deep Review Iteration 009 — correctness
 
-**Focus:** Phase 005 agent-improver alignment: verify .opencode/skill/sk-improve-agent/scripts/ (13 CJS modules) correctly implement stop-reason taxonomy, journal wiring, and advisory optimizer contract. Focus on improvement-journal.cjs, mutation-coverage.cjs, trade-off-detector.cjs, candidate-lineage.cjs, benchmark-stability.cjs.
+**Focus:** Phase 005 agent-improver alignment: verify .opencode/skills/sk-improve-agent/scripts/ (13 CJS modules) correctly implement stop-reason taxonomy, journal wiring, and advisory optimizer contract. Focus on improvement-journal.cjs, mutation-coverage.cjs, trade-off-detector.cjs, candidate-lineage.cjs, benchmark-stability.cjs.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: correctness
-FOCUS: Phase 005 agent-improver alignment: verify .opencode/skill/sk-improve-agent/scripts/ (13 CJS modules) correctly implement stop-reason taxonomy, journal wiring, and advisory optimizer contract. Focus on improvement-journal.cjs, mutation-coverage.cjs, trade-off-detector.cjs, candidate-lineage.cjs, benchmark-stability.cjs.
+FOCUS: Phase 005 agent-improver alignment: verify .opencode/skills/sk-improve-agent/scripts/ (13 CJS modules) correctly implement stop-reason taxonomy, journal wiring, and advisory optimizer contract. Focus on improvement-journal.cjs, mutation-coverage.cjs, trade-off-detector.cjs, candidate-lineage.cjs, benchmark-stability.cjs.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -69,7 +69,7 @@ user cancelled MCP tool call
 exec
 /bin/zsh -lc 'rg -n "042-sk-deep-research-review-improvement-2|sk-improve-agent|Phase 005|REQ-026|REQ-034|rvw-2026-04-11T13-50-06Z" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
  succeeded in 0ms:
 ---
@@ -89,7 +89,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -294,7 +294,7 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 ### Data Flow
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 9 for spec folder 042-sk-deep-research-review-improvement-2, correctness focus on Phase 005 agent-improver alignment and sk-improve-agent scripts improvement-journal.cjs mutation-coverage.cjs trade-off-detector.cjs candidate-lineage.cjs benchmark-stability.cjs" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 9 for spec folder 042-sk-deep-research-review-improvement-2, correctness focus on Phase 005 agent-improver alignment and sk-improve-agent scripts improvement-journal.cjs mutation-coverage.cjs trade-off-detector.cjs candidate-lineage.cjs benchmark-stability.cjs" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 571ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-tNQVr1jS' (errno=Operation not permitted)
 [
@@ -351,9 +351,9 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-tNQVr1jS' (errno=Opera
 codex
 The review skill routing is clear: `sk-deep-review`, `sk-code-review`, and `sk-improve-agent` all matched strongly, so I’m using the deep-review loop contract for iteration discipline, the code-review format for findings, and the improve-agent skill only as needed for contract expectations. Next I’m mapping the Phase 005 files and their callers so the correctness checks stay grounded in actual runtime use.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-improve-agent/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-improve-agent/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -809,10 +809,10 @@ exec
 538:applies_to: cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems; reuse_rule=reuse for follow-up work inside this packet family when user requests prompt parity or extra deep-research iterations on an existing phase lineage
 608:- 031-normalized-analytics-reader, spec status Complete, validate.sh --strict, check-completion.sh, checklist P0/P1 totals, description.json timestamp, memory_delete, memory_index_scan, lineage mismatch
 623:- when the user asked "Run /spec_kit:deep-research ... get tot 20 total iterations so add 7 more," treat it as resume of the active lineage, not a fork [Task 2]
-636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
+636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 646:- if memory indexing flags lineage/template mismatches during closeout, remove stale rows with `memory_delete`, rerun forced `memory_index_scan` after cooldown, and verify clean reindex before final sign-off [Task 7]
 655:- symptom: closeout validation passes but memory index reports lineage mismatch/stale packet rows; cause: old memory_index entries persisted through packet updates; fix: delete stale row IDs, wait out cooldown, then force `memory_index_scan` and confirm zero failed entries before marking complete [Task 7]
-1132:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agent/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
+1132:- Ignoring malformed agent role definition, agent-improver, description metadata, .opencode/agents/<role>.md, python3.11 tomllib, rg -L '^description\\s*=\\s*\".+\"$'
 1134:## Task 3: Apply direct `agent-improver` metadata hotfix after explicit skip-spec-folder choice, outcome success
 1142:- fix malformed agent role definition of agent-improver, .codex/agents/agent-improver.toml, description key, python3.11 tomllib, direct fix option D
 1389:- 012-pre-release-remediation, lineage, review-report, spec.md, plan.md, checklist.md
@@ -820,7 +820,7 @@ exec
 1441:- symptom: JSON parse breaks after lineage edits; cause: trailing comma; fix: run `jq empty` immediately after list-item deletion [Task 1]
 
 exec
-/bin/zsh -lc 'rg --files .opencode/skill/sk-improve-agent/scripts .opencode/specs | rg "(improvement-journal|mutation-coverage|trade-off-detector|candidate-lineage|benchmark-stability|042-sk-deep-research-review-improvement-2|phase-005|005)"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg --files .opencode/skills/sk-improve-agent/scripts .opencode/specs | rg "(improvement-journal|mutation-coverage|trade-off-detector|candidate-lineage|benchmark-stability|042-sk-deep-research-review-improvement-2|phase-005|005)"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 202ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/agent-output-iter-006-copilot-C2.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/scratch/audit-v3-MASTER-REPORT.md
@@ -1137,7 +1137,7 @@ The implementation landed in commit `080cf549e` and shipped in `.opencode/change
 | **Phase** | 5 of 8 |
 | **Predecessor** | `../004-offline-loop-optimizer/spec.md` |
 | **Successor** | `../006-graph-testing-and-playbook-alignment/spec.md` |
-| **Runtime Target** | `.opencode/skill/sk-improve-agent/` |
+| **Runtime Target** | `.opencode/skills/sk-improve-agent/` |
 | **Historical Note** | The phase slug keeps `agent-improver`, but the active runtime surface was renamed to `sk-improve-agent` in Phase 007. |
 <!-- /ANCHOR:metadata -->
 
@@ -1170,8 +1170,8 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 ### In Scope
 
-- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skill/sk-improve-agent/`.
-- Document the delivered command and runtime-agent updates for `.opencode/command/improve/agent.md` and `.opencode/agent/improve-agent.md`.
+- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
+- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
 - Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
 - Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
 
@@ -1186,18 +1186,18 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
-| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
-| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
-| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
-| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
-| `.opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
-| `.opencode/agent/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-| `.opencode/command/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
+| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
+| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
+| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
+| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
+| `.opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
+| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
+| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
+| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1214,7 +1214,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | REQ-003 | The phase must add dimension-aware trade-off detection. | `trade-off-detector.cjs` exists and shipped with dedicated test coverage. |
 | REQ-004 | The phase must add candidate-lineage tracking for optional parallel exploration. | `candidate-lineage.cjs` exists, with supporting tests and playbook coverage. |
 | REQ-005 | The phase must add benchmark stability measurement for replay quality. | `benchmark-stability.cjs` exists and is referenced in changelog and test evidence. |
-| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skill/sk-improve-agent/` and `.opencode/agent/improve-agent.md`, not missing `agent-improver` runtime paths. |
+| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skills/sk-improve-agent/` and `.opencode/agents/improve-agent.md`, not missing `agent-improver` runtime paths. |
 | REQ-007 | The phase packet must satisfy the current Level 3 contract. | `validate.sh --strict` passes for this phase folder with all required headings, anchors, and template markers present. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -1256,7 +1256,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Commit `080cf549e` is the primary landing point for the phase. | High | Cite the commit directly and tie closeout evidence to live repo paths plus `v1.1.0.0`. |
-| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
+| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
 | Risk | Packet docs can accidentally reintroduce the retired `agent-improver` runtime path. | Medium | Use only live runtime paths in specs, tasks, checklist, and implementation summary. |
 | Risk | Packet docs can freeze unsupported lifecycle wording that `v1.2.1.0` later retracted. | Medium | Explicitly note that the later patch release narrowed the lifecycle surface and keep this packet aligned to current reality. |
 | Risk | Static-profile examples from older improve-agent docs could be copied forward as canon. | Low | Use dynamic target-family wording and cite current `supportedProfiles: []` state in the active config. |
@@ -1286,7 +1286,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 
 ### Historical Naming
 
-- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agent/improve-agent.md`.
+- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agents/improve-agent.md`.
 - The landing commit created files under the pre-rename skill path; Phase 007 later renamed those runtime surfaces without invalidating the phase outcome.
 
 ### Lifecycle Drift
@@ -1364,7 +1364,7 @@ The accepted decision set for Phase 005 is:
 #### Decision Set 2: Reuse graph-style coverage tracking for improve-agent
 
 - **Why**: improvement sessions needed explainable coverage without inventing an entirely separate persistence model.
-- **Evidence**: `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
+- **Evidence**: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
 
 #### Decision Set 3: Treat trajectory as a first-class convergence input
 
@@ -1374,7 +1374,7 @@ The accepted decision set for Phase 005 is:
 #### Decision Set 4: Keep parallel candidates opt-in
 
 - **Why**: branching candidate exploration increases complexity and should not become the default path for every improve-agent run.
-- **Evidence**: `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
+- **Evidence**: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
 
 #### Decision Set 5: Preserve backward compatibility through additive config defaults
 
@@ -1455,19 +1455,19 @@ Phase 005 brought the improve-agent loop into the same runtime-truth family as t
 
 ### Stop-Reason Taxonomy and Audit Journal
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/command/improve/agent.md`, and `.opencode/agent/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 
 ### Mutation Coverage and Trade-Off Detection
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
+The phase added `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
 
 ### Optional Parallel Candidate Waves
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
+The phase added `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
 
 ### Stability Scoring and Advisory Optimization
 
-The phase added `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which later phases refined further rather than replacing.
+The phase added `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which later phases refined further rather than replacing.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -1535,9 +1535,9 @@ user cancelled MCP tool call
 codex
 The Phase 005 packet is explicit about the intended contract: orchestrator-owned journal emission, additive config defaults, opt-in parallel waves, and advisory-only optimizer output. I’m moving from the packet contract into the runtime now, reading the five helpers with their tests and import sites side by side so any mismatch shows up as a concrete correctness issue instead of a speculative one.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Mutation Coverage — Track Explored Mutations & Dimension Trajectories   ║
@@ -2063,11 +2063,11 @@ exec
    260	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Trade-Off Detector — Cross-Dimension Regression Detection               ║
@@ -2827,7 +2827,7 @@ exec
    320	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	  if (unstableDimensions.length > 0) {
    261	    return {
@@ -2863,7 +2863,7 @@ exec
    291	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	}
    321	
@@ -2886,7 +2886,7 @@ exec
    338	};
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	      }
    261	    }
@@ -2908,7 +2908,7 @@ exec
    277	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -2923,7 +2923,7 @@ exec
     11	
     12	const journal = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs',
     15	)) as {
     16	  STOP_REASONS: Readonly<Record<string, string>>;
     17	  SESSION_OUTCOMES: Readonly<Record<string, string>>;
@@ -3114,225 +3114,225 @@ exec
    202	});
 
 exec
-/bin/zsh -lc "rg -n \"improvement-journal|mutation-coverage|trade-off-detector|candidate-lineage|benchmark-stability|emitEvent|recordMutation|recordTrajectory|detectTradeOffs|getLineage|generateWeightRecommendations|measureStability|checkConvergenceEligibility\" .opencode/skill/sk-improve-agent -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"improvement-journal|mutation-coverage|trade-off-detector|candidate-lineage|benchmark-stability|emitEvent|recordMutation|recordTrajectory|detectTradeOffs|getLineage|generateWeightRecommendations|measureStability|checkConvergenceEligibility\" .opencode/skills/sk-improve-agent -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:74:    "path": "improvement/improvement-journal.jsonl",
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:86:    "path": "improvement/mutation-coverage.json"
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:104:    "lineagePath": "improvement/candidate-lineage.json"
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:119:    "improvement-journal.jsonl": "append-only",
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:120:    "mutation-coverage.json": "mutable",
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:121:    "candidate-lineage.json": "mutable",
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:131:[Reducer populates when trade-off-detector.cjs flags a Pareto trade-off]
-.opencode/skill/sk-improve-agent/SKILL.md:263:All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
-.opencode/skill/sk-improve-agent/SKILL.md:265:**Script**: `scripts/improvement-journal.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:293:**Script**: `scripts/mutation-coverage.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:303:**Script**: `scripts/trade-off-detector.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:309:**Script**: `scripts/candidate-lineage.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:315:**Script**: `scripts/benchmark-stability.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:324:Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly; only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
-.opencode/skill/sk-improve-agent/SKILL.md:329:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
-.opencode/skill/sk-improve-agent/SKILL.md:344:`improvement-journal.cjs` currently exports and validates the following enums:
-.opencode/skill/sk-improve-agent/SKILL.md:361:- `improvement-journal.jsonl`
-.opencode/skill/sk-improve-agent/SKILL.md:362:- `candidate-lineage.json`
-.opencode/skill/sk-improve-agent/SKILL.md:363:- `mutation-coverage.json`
-.opencode/skill/sk-improve-agent/SKILL.md:371:- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
-.opencode/skill/sk-improve-agent/SKILL.md:372:- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
-.opencode/skill/sk-improve-agent/SKILL.md:373:- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
-.opencode/skill/sk-improve-agent/SKILL.md:443:| `scripts/improvement-journal.cjs` | Append-only JSONL event emitter for improvement session audit journals |
-.opencode/skill/sk-improve-agent/SKILL.md:444:| `scripts/mutation-coverage.cjs` | Coverage graph reader/writer for explored dimensions and mutation tracking |
-.opencode/skill/sk-improve-agent/SKILL.md:445:| `scripts/trade-off-detector.cjs` | Cross-dimension regression detector using trajectory and Pareto analysis |
-.opencode/skill/sk-improve-agent/SKILL.md:446:| `scripts/candidate-lineage.cjs` | Lineage graph for optional parallel candidate wave sessions |
-.opencode/skill/sk-improve-agent/SKILL.md:447:| `scripts/benchmark-stability.cjs` | Benchmark replay stability measurement and advisory weight optimization |
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:284:  recordMutation,
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:288:  recordTrajectory,
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:831:  const journalPath = path.join(runtimeRoot, 'improvement-journal.jsonl');
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:832:  const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:833:  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:77:function getLineage(lineagePath, candidateId) {
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:176:  getLineage,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:115: * @param {string} journalPath - Path to the improvement-journal.jsonl file
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:119:function emitEvent(journalPath, event) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:145: * @param {string} journalPath - Path to the improvement-journal.jsonl file
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:171: * @param {string} journalPath - Path to the improvement-journal.jsonl file
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:188: * @param {string} journalPath - Path to the improvement-journal.jsonl file
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:215:  emitEvent,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:263:    const result = emitEvent(journalPath, event);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:272:      '  node improvement-journal.cjs --emit <eventType> --journal <path> [--details <json>]\n' +
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:273:      '  node improvement-journal.cjs --read <path>\n'
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:163: * @param {string} journalPath - Path to the improvement-journal.jsonl file
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:249:  detectTradeOffs,
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:12:  '.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs',
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:22:  measureStability:
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:27:  generateWeightRecommendations: (sessionHistory: object[], currentWeights: Record<string, number>, config?: object) => { recommendations: Record<string, number> | null; sufficient: boolean; report: string };
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:30:describe('benchmark-stability', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:88:  describe('measureStability', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:90:      expect(stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:101:      expect(stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:119:      const result = stability.measureStability(results);
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:135:      const result = stability.measureStability(results);
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:152:      const result = stability.measureStability(results);
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:160:      const result = stability.measureStability([]);
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:170:      const result = stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:188:      const result = stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:197:      const result = stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:206:      const result = stability.measureStability([
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:213:  describe('generateWeightRecommendations', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:215:      const result = stability.generateWeightRecommendations(
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:243:      const result = stability.generateWeightRecommendations(sessions, currentWeights);
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:260:      const result = stability.generateWeightRecommendations(
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:14:  '.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs',
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:20:  emitEvent: (journalPath: string, event: object) => { success: boolean; errors?: string[] };
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:31:  journalPath = path.join(tmpDir, 'improvement-journal.jsonl');
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:38:describe('improvement-journal', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:104:  describe('emitEvent', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:106:      const result = journal.emitEvent(journalPath, {
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:121:      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:122:      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:134:      const result = journal.emitEvent(journalPath, { eventType: 'not_real' });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:144:      journal.emitEvent(journalPath, { eventType: 'session_start' });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:157:      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 0 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:158:      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:159:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:172:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:173:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 3 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:174:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 2 });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:182:      journal.emitEvent(journalPath, { eventType: 'session_start' });
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:189:      journal.emitEvent(journalPath, {
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:14:  '.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs',
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:21:  detectTradeOffs:
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:39:describe('trade-off-detector', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:66:  describe('detectTradeOffs', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:68:      expect(detector.detectTradeOffs([
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:86:      const tradeOffs = detector.detectTradeOffs(trajectory);
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:108:      const tradeOffs = detector.detectTradeOffs(trajectory);
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:119:      const tradeOffs = detector.detectTradeOffs(trajectory);
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:131:      const tradeOffs = detector.detectTradeOffs(trajectory, {
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:145:      expect(detector.detectTradeOffs(trajectory, { minDataPoints: 5 })).toEqual({
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:154:      const tradeOffs = detector.detectTradeOffs(null as unknown as object[]);
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:14:  '.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs',
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:20:  recordMutation: (coveragePath: string, mutation: object) => void;
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:24:  recordTrajectory: (coveragePath: string, dataPoint: object) => void;
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:26:  checkConvergenceEligibility: (coveragePath: string, options?: object) => { canConverge: boolean; reason: string; dataPoints: number };
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:41:describe('mutation-coverage', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:66:  describe('recordMutation', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:68:      coverage.recordMutation(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:83:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:84:      coverage.recordMutation(coveragePath, { dimension: 'ruleCoherence', mutationType: 'b', candidateId: '2', iteration: 2 });
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:115:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:116:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'b', candidateId: '2', iteration: 2 });
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:117:      coverage.recordMutation(coveragePath, { dimension: 'integration', mutationType: 'c', candidateId: '3', iteration: 3 });
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:134:      coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:149:  describe('checkConvergenceEligibility', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:151:      coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:156:      const result = coverage.checkConvergenceEligibility(coveragePath);
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:164:        coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:170:      const result = coverage.checkConvergenceEligibility(coveragePath);
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:176:      coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:180:      coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:184:      coverage.recordTrajectory(coveragePath, {
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:189:      const result = coverage.checkConvergenceEligibility(coveragePath);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:105:| 07-005 | Benchmark stability | `node benchmark-stability.cjs` (unit) | Mean, stddev, coefficient per dimension, `isStable()` result | Stable=true for low variance, false for high |
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:106:| 07-006 | Dimension trajectory | `node mutation-coverage.cjs` (unit) | Trajectory recorded, convergence requires 3+ stable points | Convergence rejected <3 points, accepted when stable |
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:148:| `06--end-to-end-loop/` | 020-full-pipeline, 021-any-agent, 022-mutation-coverage-graph-tracking, 023-trade-off-detection, 024-candidate-lineage |
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:149:| `07--runtime-truth/` | 025-stop-reason-taxonomy, 026-audit-journal-emission, 027-resume-continuation, 028-legal-stop-gates, 029-benchmark-stability, 030-dimension-trajectory, 031-parallel-candidates-opt-in |
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:14:  '.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs',
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:18:  getLineage: (lineagePath: string, candidateId: string) => object[];
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:29:  lineagePath = path.join(tmpDir, 'candidate-lineage.json');
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:36:describe('candidate-lineage', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:82:  describe('getLineage', () => {
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:84:      expect(lineage.getLineage('/nonexistent/path.json', 'c-001')).toEqual([]);
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:95:      const chain = lineage.getLineage(lineagePath, 'c-001');
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:122:      const chain = lineage.getLineage(lineagePath, 'c-003') as Array<{ candidateId: string }>;
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:137:      expect(lineage.getLineage(lineagePath, 'c-unknown')).toEqual([]);
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:7:- `trade-off-trajectory.json` contains only 2 trajectory points, so `trade-off-detector.cjs` should return `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` when called with `minDataPoints: 3`.
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:8:- `benchmark-results.json` contains only 1 replay, so `benchmark-stability.cjs` should return `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` when called with `minReplayCount: 3`.
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:13:- The journal uses validator-accepted enum values from `improvement-journal.cjs`.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md:26:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:9:Validates that every completed improvement session emits a `session_ended` event with a valid `stopReason` and `sessionOutcome` drawn from the frozen taxonomies defined in `improvement-journal.cjs`.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:20:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:42:- `emitEvent()` refuses to write a `session_ended` event with an invalid stopReason or sessionOutcome
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:50:- If no `session_ended` event exists: verify the orchestrator calls `emitEvent` with `eventType: 'session_ended'` at session close
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:52:- If `stopReason` is invalid: check whether a new reason was added to the orchestrator but not to the `STOP_REASONS` enum in `improvement-journal.cjs`
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md:32:- If no graph file is created: verify that mutation-coverage.cjs is invoked by the orchestrator and writes to the configured path
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:9:Validates that `mutation-coverage.cjs` tracks per-dimension score history across iterations, and that convergence eligibility requires at least 3 stable data points with all dimension deltas within the configured stability delta.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:15:const mc = require('./.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:19:mc.recordTrajectory(coveragePath, { iteration: 1, scores: { structural: 88, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:20:mc.recordTrajectory(coveragePath, { iteration: 2, scores: { structural: 89, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:21:mc.recordTrajectory(coveragePath, { iteration: 3, scores: { structural: 89, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:24:const result = mc.checkConvergenceEligibility(coveragePath);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:38:const mc = require('./.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:42:mc.recordTrajectory(cp, { iteration: 1, scores: { structural: 88, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:43:mc.recordTrajectory(cp, { iteration: 2, scores: { structural: 89, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:44:let r = mc.checkConvergenceEligibility(cp);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:49:mc.recordTrajectory(cp, { iteration: 3, scores: { structural: 89, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:50:r = mc.checkConvergenceEligibility(cp);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:55:mc.recordTrajectory(cp2, { iteration: 1, scores: { structural: 70, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:56:mc.recordTrajectory(cp2, { iteration: 2, scores: { structural: 80, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:57:mc.recordTrajectory(cp2, { iteration: 3, scores: { structural: 90, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:58:r = mc.checkConvergenceEligibility(cp2);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:68:- `recordTrajectory()` appends per-dimension scores with iteration number and timestamp
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:70:- `checkConvergenceEligibility()` returns `{ canConverge, reason, dataPoints }`
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:9:Validates that `benchmark-stability.cjs` correctly computes mean, standard deviation, and stability coefficient from repeated benchmark results, and that `isStable()` returns true only when variance is below threshold.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:15:const bs = require('./.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:23:const stableResult = bs.measureStability(stableResults);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:33:const unstableResult = bs.measureStability(unstableResults);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:43:const bs = require('./.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:44:const stable = bs.measureStability([
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:49:const unstable = bs.measureStability([
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:64:- `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:13:Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/command/improve/agent.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:26:TMP_JOURNAL="$TMP_SPEC/improvement/improvement-journal.jsonl"
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:28:grep -n "improvement-journal.cjs\|--emit" "$AUTO_YAML"
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:45:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal "$TMP_JOURNAL" --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:47:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --read "$TMP_JOURNAL" | python3 -c "
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:54:grep -A 5 "STOP_REASONS\|SESSION_OUTCOMES" .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:59:script = Path(".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs").read_text()
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:77:print("PASS — command doc taxonomy matches improvement-journal.cjs enums")
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:85:- `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` contains `improvement-journal.cjs` emission steps for:
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:90:- `improvement-journal.cjs` exports frozen `STOP_REASONS` and `SESSION_OUTCOMES` enums
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/command/improve/agent.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:102:- If `session_end` is emitted but validation fails: compare the emitted `details.stopReason` / `details.sessionOutcome` values against the frozen enums in `improvement-journal.cjs`
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:35:- If journal event is missing: check that `improvement-journal.cjs` emits `trade-off-detected` event type and the orchestrator calls the emitter
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:20:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:35:- `improvement-journal.jsonl` file created at the configured journal path
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:53:- If a specific event type is absent: trace the orchestrator flow to find where `emitEvent()` should be called for that stage
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md:32:- If no lineage graph is created: verify that `candidate-lineage.cjs` is invoked by the orchestrator after each candidate evaluation
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:20:node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md:40:const cl = require('./.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md:41:const lineagePath = '{spec}/improvement/candidate-lineage.json';
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:9:Validates ADR-002 Option A replay-consumer behavior: `reduce-state.cjs` reads `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json`, writes their summaries into the registry, and degrades gracefully when any one artifact is missing.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:11:Given: an improvement runtime where `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` are all present.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:53:for artifact in improvement-journal.jsonl candidate-lineage.json mutation-coverage.json; do
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:59:    improvement-journal.jsonl)
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:63:    candidate-lineage.json)
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:67:    mutation-coverage.json)
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:12:When: the operator runs `trade-off-detector.cjs`, `benchmark-stability.cjs`, and `reduce-state.cjs` against that low-sample runtime.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:33:const td = require('./.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:35:const result = td.detectTradeOffs(trajectory);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:39:console.log('PASS — trade-off-detector insufficientData:', JSON.stringify(result));
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:44:const bs = require('./.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs');
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:46:const result = bs.measureStability(replays);
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:50:console.log('PASS — benchmark-stability insufficientSample:', JSON.stringify(result));
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:63:- `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:64:- `benchmark-stability.cjs` returns `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` for the low-sample benchmark replays
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:72:The low-sample fixture produces `insufficientData` from `trade-off-detector.cjs`, `insufficientSample` from `benchmark-stability.cjs`, the reducer registry records both `insufficientDataIterations` and `insufficientSampleIterations`, and the dashboard's Sample Quality section exposes those states clearly enough that the operator can distinguish low trajectory coverage from low replay coverage.
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:77:- If `trade-off-detector.cjs` returns an array instead of `insufficientData`: check `MIN_DATA_POINTS_DEFAULT` / `minDataPoints` wiring and verify the fixture only has 2 trajectory entries
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:78:- If `benchmark-stability.cjs` returns a generic instability result: verify `minReplayCount` is set to `3` and the fixture exposes only 1 replay
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:74:    "path": "improvement/improvement-journal.jsonl",
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:86:    "path": "improvement/mutation-coverage.json"
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:104:    "lineagePath": "improvement/candidate-lineage.json"
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:119:    "improvement-journal.jsonl": "append-only",
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:120:    "mutation-coverage.json": "mutable",
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:121:    "candidate-lineage.json": "mutable",
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:131:[Reducer populates when trade-off-detector.cjs flags a Pareto trade-off]
+.opencode/skills/sk-improve-agent/SKILL.md:263:All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
+.opencode/skills/sk-improve-agent/SKILL.md:265:**Script**: `scripts/improvement-journal.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:293:**Script**: `scripts/mutation-coverage.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:303:**Script**: `scripts/trade-off-detector.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:309:**Script**: `scripts/candidate-lineage.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:315:**Script**: `scripts/benchmark-stability.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:324:Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly; only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
+.opencode/skills/sk-improve-agent/SKILL.md:329:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+.opencode/skills/sk-improve-agent/SKILL.md:344:`improvement-journal.cjs` currently exports and validates the following enums:
+.opencode/skills/sk-improve-agent/SKILL.md:361:- `improvement-journal.jsonl`
+.opencode/skills/sk-improve-agent/SKILL.md:362:- `candidate-lineage.json`
+.opencode/skills/sk-improve-agent/SKILL.md:363:- `mutation-coverage.json`
+.opencode/skills/sk-improve-agent/SKILL.md:371:- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
+.opencode/skills/sk-improve-agent/SKILL.md:372:- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
+.opencode/skills/sk-improve-agent/SKILL.md:373:- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
+.opencode/skills/sk-improve-agent/SKILL.md:443:| `scripts/improvement-journal.cjs` | Append-only JSONL event emitter for improvement session audit journals |
+.opencode/skills/sk-improve-agent/SKILL.md:444:| `scripts/mutation-coverage.cjs` | Coverage graph reader/writer for explored dimensions and mutation tracking |
+.opencode/skills/sk-improve-agent/SKILL.md:445:| `scripts/trade-off-detector.cjs` | Cross-dimension regression detector using trajectory and Pareto analysis |
+.opencode/skills/sk-improve-agent/SKILL.md:446:| `scripts/candidate-lineage.cjs` | Lineage graph for optional parallel candidate wave sessions |
+.opencode/skills/sk-improve-agent/SKILL.md:447:| `scripts/benchmark-stability.cjs` | Benchmark replay stability measurement and advisory weight optimization |
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:284:  recordMutation,
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:288:  recordTrajectory,
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:831:  const journalPath = path.join(runtimeRoot, 'improvement-journal.jsonl');
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:832:  const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:833:  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:77:function getLineage(lineagePath, candidateId) {
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:176:  getLineage,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:115: * @param {string} journalPath - Path to the improvement-journal.jsonl file
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:119:function emitEvent(journalPath, event) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:145: * @param {string} journalPath - Path to the improvement-journal.jsonl file
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:171: * @param {string} journalPath - Path to the improvement-journal.jsonl file
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:188: * @param {string} journalPath - Path to the improvement-journal.jsonl file
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:215:  emitEvent,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:263:    const result = emitEvent(journalPath, event);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:272:      '  node improvement-journal.cjs --emit <eventType> --journal <path> [--details <json>]\n' +
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:273:      '  node improvement-journal.cjs --read <path>\n'
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:163: * @param {string} journalPath - Path to the improvement-journal.jsonl file
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:249:  detectTradeOffs,
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:12:  '.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs',
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:22:  measureStability:
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:27:  generateWeightRecommendations: (sessionHistory: object[], currentWeights: Record<string, number>, config?: object) => { recommendations: Record<string, number> | null; sufficient: boolean; report: string };
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:30:describe('benchmark-stability', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:88:  describe('measureStability', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:90:      expect(stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:101:      expect(stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:119:      const result = stability.measureStability(results);
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:135:      const result = stability.measureStability(results);
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:152:      const result = stability.measureStability(results);
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:160:      const result = stability.measureStability([]);
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:170:      const result = stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:188:      const result = stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:197:      const result = stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:206:      const result = stability.measureStability([
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:213:  describe('generateWeightRecommendations', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:215:      const result = stability.generateWeightRecommendations(
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:243:      const result = stability.generateWeightRecommendations(sessions, currentWeights);
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts:260:      const result = stability.generateWeightRecommendations(
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:14:  '.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs',
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:20:  emitEvent: (journalPath: string, event: object) => { success: boolean; errors?: string[] };
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:31:  journalPath = path.join(tmpDir, 'improvement-journal.jsonl');
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:38:describe('improvement-journal', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:104:  describe('emitEvent', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:106:      const result = journal.emitEvent(journalPath, {
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:121:      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:122:      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:134:      const result = journal.emitEvent(journalPath, { eventType: 'not_real' });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:144:      journal.emitEvent(journalPath, { eventType: 'session_start' });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:157:      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 0 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:158:      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:159:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:172:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:173:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 3 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:174:      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 2 });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:182:      journal.emitEvent(journalPath, { eventType: 'session_start' });
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts:189:      journal.emitEvent(journalPath, {
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:14:  '.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs',
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:21:  detectTradeOffs:
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:39:describe('trade-off-detector', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:66:  describe('detectTradeOffs', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:68:      expect(detector.detectTradeOffs([
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:86:      const tradeOffs = detector.detectTradeOffs(trajectory);
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:108:      const tradeOffs = detector.detectTradeOffs(trajectory);
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:119:      const tradeOffs = detector.detectTradeOffs(trajectory);
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:131:      const tradeOffs = detector.detectTradeOffs(trajectory, {
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:145:      expect(detector.detectTradeOffs(trajectory, { minDataPoints: 5 })).toEqual({
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts:154:      const tradeOffs = detector.detectTradeOffs(null as unknown as object[]);
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:14:  '.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs',
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:20:  recordMutation: (coveragePath: string, mutation: object) => void;
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:24:  recordTrajectory: (coveragePath: string, dataPoint: object) => void;
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:26:  checkConvergenceEligibility: (coveragePath: string, options?: object) => { canConverge: boolean; reason: string; dataPoints: number };
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:41:describe('mutation-coverage', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:66:  describe('recordMutation', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:68:      coverage.recordMutation(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:83:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:84:      coverage.recordMutation(coveragePath, { dimension: 'ruleCoherence', mutationType: 'b', candidateId: '2', iteration: 2 });
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:115:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:116:      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'b', candidateId: '2', iteration: 2 });
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:117:      coverage.recordMutation(coveragePath, { dimension: 'integration', mutationType: 'c', candidateId: '3', iteration: 3 });
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:134:      coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:149:  describe('checkConvergenceEligibility', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:151:      coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:156:      const result = coverage.checkConvergenceEligibility(coveragePath);
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:164:        coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:170:      const result = coverage.checkConvergenceEligibility(coveragePath);
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:176:      coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:180:      coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:184:      coverage.recordTrajectory(coveragePath, {
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts:189:      const result = coverage.checkConvergenceEligibility(coveragePath);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:105:| 07-005 | Benchmark stability | `node benchmark-stability.cjs` (unit) | Mean, stddev, coefficient per dimension, `isStable()` result | Stable=true for low variance, false for high |
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:106:| 07-006 | Dimension trajectory | `node mutation-coverage.cjs` (unit) | Trajectory recorded, convergence requires 3+ stable points | Convergence rejected <3 points, accepted when stable |
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:148:| `06--end-to-end-loop/` | 020-full-pipeline, 021-any-agent, 022-mutation-coverage-graph-tracking, 023-trade-off-detection, 024-candidate-lineage |
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:149:| `07--runtime-truth/` | 025-stop-reason-taxonomy, 026-audit-journal-emission, 027-resume-continuation, 028-legal-stop-gates, 029-benchmark-stability, 030-dimension-trajectory, 031-parallel-candidates-opt-in |
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:14:  '.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs',
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:18:  getLineage: (lineagePath: string, candidateId: string) => object[];
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:29:  lineagePath = path.join(tmpDir, 'candidate-lineage.json');
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:36:describe('candidate-lineage', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:82:  describe('getLineage', () => {
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:84:      expect(lineage.getLineage('/nonexistent/path.json', 'c-001')).toEqual([]);
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:95:      const chain = lineage.getLineage(lineagePath, 'c-001');
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:122:      const chain = lineage.getLineage(lineagePath, 'c-003') as Array<{ candidateId: string }>;
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts:137:      expect(lineage.getLineage(lineagePath, 'c-unknown')).toEqual([]);
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:7:- `trade-off-trajectory.json` contains only 2 trajectory points, so `trade-off-detector.cjs` should return `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` when called with `minDataPoints: 3`.
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:8:- `benchmark-results.json` contains only 1 replay, so `benchmark-stability.cjs` should return `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` when called with `minReplayCount: 3`.
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md:13:- The journal uses validator-accepted enum values from `improvement-journal.cjs`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md:26:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:9:Validates that every completed improvement session emits a `session_ended` event with a valid `stopReason` and `sessionOutcome` drawn from the frozen taxonomies defined in `improvement-journal.cjs`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:20:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:42:- `emitEvent()` refuses to write a `session_ended` event with an invalid stopReason or sessionOutcome
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:50:- If no `session_ended` event exists: verify the orchestrator calls `emitEvent` with `eventType: 'session_ended'` at session close
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md:52:- If `stopReason` is invalid: check whether a new reason was added to the orchestrator but not to the `STOP_REASONS` enum in `improvement-journal.cjs`
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md:32:- If no graph file is created: verify that mutation-coverage.cjs is invoked by the orchestrator and writes to the configured path
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:9:Validates that `mutation-coverage.cjs` tracks per-dimension score history across iterations, and that convergence eligibility requires at least 3 stable data points with all dimension deltas within the configured stability delta.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:15:const mc = require('./.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:19:mc.recordTrajectory(coveragePath, { iteration: 1, scores: { structural: 88, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:20:mc.recordTrajectory(coveragePath, { iteration: 2, scores: { structural: 89, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:21:mc.recordTrajectory(coveragePath, { iteration: 3, scores: { structural: 89, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:24:const result = mc.checkConvergenceEligibility(coveragePath);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:38:const mc = require('./.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:42:mc.recordTrajectory(cp, { iteration: 1, scores: { structural: 88, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:43:mc.recordTrajectory(cp, { iteration: 2, scores: { structural: 89, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:44:let r = mc.checkConvergenceEligibility(cp);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:49:mc.recordTrajectory(cp, { iteration: 3, scores: { structural: 89, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:50:r = mc.checkConvergenceEligibility(cp);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:55:mc.recordTrajectory(cp2, { iteration: 1, scores: { structural: 70, ruleCoherence: 85, integration: 90, outputQuality: 82, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:56:mc.recordTrajectory(cp2, { iteration: 2, scores: { structural: 80, ruleCoherence: 86, integration: 91, outputQuality: 83, systemFitness: 89 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:57:mc.recordTrajectory(cp2, { iteration: 3, scores: { structural: 90, ruleCoherence: 86, integration: 90, outputQuality: 83, systemFitness: 90 } });
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:58:r = mc.checkConvergenceEligibility(cp2);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:68:- `recordTrajectory()` appends per-dimension scores with iteration number and timestamp
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md:70:- `checkConvergenceEligibility()` returns `{ canConverge, reason, dataPoints }`
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:9:Validates that `benchmark-stability.cjs` correctly computes mean, standard deviation, and stability coefficient from repeated benchmark results, and that `isStable()` returns true only when variance is below threshold.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:15:const bs = require('./.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:23:const stableResult = bs.measureStability(stableResults);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:33:const unstableResult = bs.measureStability(unstableResults);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:43:const bs = require('./.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:44:const stable = bs.measureStability([
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:49:const unstable = bs.measureStability([
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:64:- `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:13:Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/improve/agent.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:26:TMP_JOURNAL="$TMP_SPEC/improvement/improvement-journal.jsonl"
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:28:grep -n "improvement-journal.cjs\|--emit" "$AUTO_YAML"
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:45:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal "$TMP_JOURNAL" --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:47:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read "$TMP_JOURNAL" | python3 -c "
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:54:grep -A 5 "STOP_REASONS\|SESSION_OUTCOMES" .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:59:script = Path(".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs").read_text()
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:77:print("PASS — command doc taxonomy matches improvement-journal.cjs enums")
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:85:- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` contains `improvement-journal.cjs` emission steps for:
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:90:- `improvement-journal.cjs` exports frozen `STOP_REASONS` and `SESSION_OUTCOMES` enums
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/commands/improve/agent.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:102:- If `session_end` is emitted but validation fails: compare the emitted `details.stopReason` / `details.sessionOutcome` values against the frozen enums in `improvement-journal.cjs`
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:35:- If journal event is missing: check that `improvement-journal.cjs` emits `trade-off-detected` event type and the orchestrator calls the emitter
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:20:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:35:- `improvement-journal.jsonl` file created at the configured journal path
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:53:- If a specific event type is absent: trace the orchestrator flow to find where `emitEvent()` should be called for that stage
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md:32:- If no lineage graph is created: verify that `candidate-lineage.cjs` is invoked by the orchestrator after each candidate evaluation
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:20:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md:40:const cl = require('./.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md:41:const lineagePath = '{spec}/improvement/candidate-lineage.json';
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:9:Validates ADR-002 Option A replay-consumer behavior: `reduce-state.cjs` reads `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json`, writes their summaries into the registry, and degrades gracefully when any one artifact is missing.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:11:Given: an improvement runtime where `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` are all present.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:53:for artifact in improvement-journal.jsonl candidate-lineage.json mutation-coverage.json; do
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:59:    improvement-journal.jsonl)
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:63:    candidate-lineage.json)
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:67:    mutation-coverage.json)
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:12:When: the operator runs `trade-off-detector.cjs`, `benchmark-stability.cjs`, and `reduce-state.cjs` against that low-sample runtime.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:33:const td = require('./.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:35:const result = td.detectTradeOffs(trajectory);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:39:console.log('PASS — trade-off-detector insufficientData:', JSON.stringify(result));
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:44:const bs = require('./.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs');
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:46:const result = bs.measureStability(replays);
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:50:console.log('PASS — benchmark-stability insufficientSample:', JSON.stringify(result));
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:63:- `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:64:- `benchmark-stability.cjs` returns `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` for the low-sample benchmark replays
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:72:The low-sample fixture produces `insufficientData` from `trade-off-detector.cjs`, `insufficientSample` from `benchmark-stability.cjs`, the reducer registry records both `insufficientDataIterations` and `insufficientSampleIterations`, and the dashboard's Sample Quality section exposes those states clearly enough that the operator can distinguish low trajectory coverage from low replay coverage.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:77:- If `trade-off-detector.cjs` returns an array instead of `insufficientData`: check `MIN_DATA_POINTS_DEFAULT` / `minDataPoints` wiring and verify the fixture only has 2 trajectory entries
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:78:- If `benchmark-stability.cjs` returns a generic instability result: verify `minReplayCount` is set to `3` and the fixture exposes only 1 replay
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -3347,7 +3347,7 @@ exec
     11	
     12	const coverage = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs',
     15	)) as {
     16	  LOOP_TYPE: string;
     17	  MIN_TRAJECTORY_POINTS: number;
@@ -3531,9 +3531,9 @@ exec
    195	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -3548,7 +3548,7 @@ exec
     11	
     12	const detector = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs',
     15	)) as {
     16	  HARD_DIMENSIONS: readonly string[];
     17	  SOFT_DIMENSIONS: readonly string[];
@@ -3775,7 +3775,7 @@ exec
     11	
     12	const lineage = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs',
     15	)) as {
     16	  createLineageGraph: () => object;
     17	  recordCandidate: (lineagePath: string, candidate: object) => void;
@@ -3948,7 +3948,7 @@ exec
    184	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import { createRequire } from 'node:module';
@@ -3961,7 +3961,7 @@ exec
      9	
     10	const stability = require(path.join(
     11	  WORKSPACE_ROOT,
-    12	  '.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs',
+    12	  '.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs',
     13	)) as {
     14	  MIN_REPLAY_COUNT_DEFAULT: number;
     15	  DEFAULT_REPLAY_COUNT: number;
@@ -4220,7 +4220,7 @@ exec
    268	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/SKILL.md | sed -n '250,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/SKILL.md | sed -n '250,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    250	| `stuckRecovery` | Session detected stuck state and exhausted recovery options |
    251	
@@ -4301,7 +4301,7 @@ exec
    326	The CLI contract is:
    327	
    328	```bash
-   329	node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+   329	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
    330	```
    331	
    332	The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
@@ -4365,7 +4365,7 @@ exec
    390	- Read the charter, manifest, and target profile before creating a candidate
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    760	
    761	function renderDashboard(registry, sampleQuality) {
@@ -4460,7 +4460,7 @@ exec
    850	main();
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/assets/improvement_config.json | sed -n '60,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/assets/improvement_config.json | sed -n '60,160p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     60	    "minimumAggregateScore": 85,
     61	    "minimumFixtureScore": 70,
@@ -4535,102 +4535,102 @@ exec
    130	}
 
 exec
-/bin/zsh -lc "rg -n \"session_end|session_ended|trade_off_detected|trade-off|candidate-lineage|mutation-coverage|benchmark-stability|weight optimization|stopReason|sessionOutcome\" .opencode/command/improve .opencode/skill/sk-improve-agent -g '"'!**/manual_testing_playbook/**'"' -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"session_end|session_ended|trade_off_detected|trade-off|candidate-lineage|mutation-coverage|benchmark-stability|weight optimization|stopReason|sessionOutcome\" .opencode/commands/improve .opencode/skills/sk-improve-agent -g '"'!**/manual_testing_playbook/**'"' -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:86:    "path": "improvement/mutation-coverage.json"
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:104:    "lineagePath": "improvement/candidate-lineage.json"
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:120:    "mutation-coverage.json": "mutable",
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:121:    "candidate-lineage.json": "mutable",
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:216:        description: "Emit session_end journal event after synthesis completes"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:86:| Trade-off detected | `trade_off_detected` | improving, regressing, deltas |
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:87:| Session end | `session_ended` | stopReason, sessionOutcome, finalIteration |
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:91:- **stopReason** (WHY session ended): `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:92:- **sessionOutcome** (WHAT happened): `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:182:        description: "Emit session_end journal event after synthesis completes"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:131:[Reducer populates when trade-off-detector.cjs flags a Pareto trade-off]
-.opencode/command/improve/agent.md:309:# node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
-.opencode/command/improve/agent.md:316:**stopReason** (WHY):
-.opencode/command/improve/agent.md:324:**sessionOutcome** (WHAT):
-.opencode/skill/sk-improve-agent/SKILL.md:239:Every improvement session termination MUST produce both a `stopReason` (why) and a `sessionOutcome` (what happened).
-.opencode/skill/sk-improve-agent/SKILL.md:241:**stopReason** (WHY the session ended):
-.opencode/skill/sk-improve-agent/SKILL.md:252:**sessionOutcome** (WHAT happened to the candidate):
-.opencode/skill/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
-.opencode/skill/sk-improve-agent/SKILL.md:293:**Script**: `scripts/mutation-coverage.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:303:**Script**: `scripts/trade-off-detector.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:305:Detects Pareto trade-offs: flags when improvement > +3 in one dimension causes regression < -3 in hard dimensions (structural, integration, systemFitness) or < -5 in soft dimensions (ruleCoherence, outputQuality). Blocks promotion for Pareto-dominated candidates.
-.opencode/skill/sk-improve-agent/SKILL.md:309:**Script**: `scripts/candidate-lineage.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:315:**Script**: `scripts/benchmark-stability.cjs`
-.opencode/skill/sk-improve-agent/SKILL.md:332:The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
-.opencode/skill/sk-improve-agent/SKILL.md:340:| `session_end` | Once after synthesis completes or the session reaches a terminal stop | `session_end` | `stopReason`, `sessionOutcome`, `endedAt`, `totalIterations` |
-.opencode/skill/sk-improve-agent/SKILL.md:353:- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
-.opencode/skill/sk-improve-agent/SKILL.md:362:- `candidate-lineage.json`
-.opencode/skill/sk-improve-agent/SKILL.md:363:- `mutation-coverage.json`
-.opencode/skill/sk-improve-agent/SKILL.md:371:- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
-.opencode/skill/sk-improve-agent/SKILL.md:372:- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
-.opencode/skill/sk-improve-agent/SKILL.md:373:- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
-.opencode/skill/sk-improve-agent/SKILL.md:383:The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
-.opencode/skill/sk-improve-agent/SKILL.md:444:| `scripts/mutation-coverage.cjs` | Coverage graph reader/writer for explored dimensions and mutation tracking |
-.opencode/skill/sk-improve-agent/SKILL.md:445:| `scripts/trade-off-detector.cjs` | Cross-dimension regression detector using trajectory and Pareto analysis |
-.opencode/skill/sk-improve-agent/SKILL.md:446:| `scripts/candidate-lineage.cjs` | Lineage graph for optional parallel candidate wave sessions |
-.opencode/skill/sk-improve-agent/SKILL.md:447:| `scripts/benchmark-stability.cjs` | Benchmark replay stability measurement and advisory weight optimization |
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:183:  let stopReason = null;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:184:  let sessionOutcome = null;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:199:    if ((eventType === 'session_end' || eventType === 'session_ended') && timestamp) {
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:201:      stopReason =
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:202:        typeof details.stopReason === 'string' && details.stopReason.trim()
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:203:          ? details.stopReason
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:204:          : stopReason;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:205:      sessionOutcome =
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:206:        typeof details.sessionOutcome === 'string' && details.sessionOutcome.trim()
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:207:          ? details.sessionOutcome
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:208:          : sessionOutcome;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:217:    stopReason,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:218:    sessionOutcome,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:747:    ? '\nSome iterations had insufficient data for trade-off / stability analysis. Review the specific iterations before trusting verdicts.\n'
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:832:  const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:833:  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:222: * Generate weight optimization recommendations based on historical session data.
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:43: * Default minimum number of trajectory points required before trade-off analysis.
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:79: * Detect trade-offs between dimensions in trajectory data (REQ-AI-008).
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:80: * A trade-off exists when one dimension improves significantly while another regresses.
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:84: * @returns {object[]|{state: string, dataPoints: number, minRequired: number, reason: string}} Array of detected trade-offs or insufficient-data state
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:141:    // A trade-off exists when both improving and regressing dimensions are found
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:18: * Research finding (P0): do not overload stopReason with outcome semantics.
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:32: * Separate from stopReason per research finding (P0).
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:62:  'trade_off_detected',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:65:  'session_ended',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:66:  'session_end',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:91:  if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:92:    if (!event.details || !event.details.stopReason) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:93:      errors.push('session_ended/session_end events MUST include details.stopReason');
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:97:    if (!event.details || !event.details.sessionOutcome) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:98:      errors.push('session_ended/session_end events MUST include details.sessionOutcome');
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:99:    } else if (!Object.values(SESSION_OUTCOMES).includes(event.details.sessionOutcome)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:100:      errors.push(`Invalid sessionOutcome: "${event.details.sessionOutcome}". Valid outcomes: ${Object.values(SESSION_OUTCOMES).join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:186: * Get the stop reason from the last session_ended event.
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:189: * @returns {{ stopReason: string|null, sessionOutcome: string|null }}
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:194:    (e) => e.eventType === 'session_ended' || e.eventType === 'session_end'
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:197:    return { stopReason: null, sessionOutcome: null };
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:201:    stopReason: (last.details && last.details.stopReason) || null,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:202:    sessionOutcome: (last.details && last.details.sessionOutcome) || null,
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:86:    "path": "improvement/mutation-coverage.json"
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:104:    "lineagePath": "improvement/candidate-lineage.json"
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:120:    "mutation-coverage.json": "mutable",
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:121:    "candidate-lineage.json": "mutable",
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:216:        description: "Emit session_end journal event after synthesis completes"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:86:| Trade-off detected | `trade_off_detected` | improving, regressing, deltas |
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:87:| Session end | `session_ended` | stopReason, sessionOutcome, finalIteration |
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:91:- **stopReason** (WHY session ended): `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:92:- **sessionOutcome** (WHAT happened): `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:182:        description: "Emit session_end journal event after synthesis completes"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:131:[Reducer populates when trade-off-detector.cjs flags a Pareto trade-off]
+.opencode/commands/improve/agent.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+.opencode/commands/improve/agent.md:316:**stopReason** (WHY):
+.opencode/commands/improve/agent.md:324:**sessionOutcome** (WHAT):
+.opencode/skills/sk-improve-agent/SKILL.md:239:Every improvement session termination MUST produce both a `stopReason` (why) and a `sessionOutcome` (what happened).
+.opencode/skills/sk-improve-agent/SKILL.md:241:**stopReason** (WHY the session ended):
+.opencode/skills/sk-improve-agent/SKILL.md:252:**sessionOutcome** (WHAT happened to the candidate):
+.opencode/skills/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
+.opencode/skills/sk-improve-agent/SKILL.md:293:**Script**: `scripts/mutation-coverage.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:303:**Script**: `scripts/trade-off-detector.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:305:Detects Pareto trade-offs: flags when improvement > +3 in one dimension causes regression < -3 in hard dimensions (structural, integration, systemFitness) or < -5 in soft dimensions (ruleCoherence, outputQuality). Blocks promotion for Pareto-dominated candidates.
+.opencode/skills/sk-improve-agent/SKILL.md:309:**Script**: `scripts/candidate-lineage.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:315:**Script**: `scripts/benchmark-stability.cjs`
+.opencode/skills/sk-improve-agent/SKILL.md:332:The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
+.opencode/skills/sk-improve-agent/SKILL.md:340:| `session_end` | Once after synthesis completes or the session reaches a terminal stop | `session_end` | `stopReason`, `sessionOutcome`, `endedAt`, `totalIterations` |
+.opencode/skills/sk-improve-agent/SKILL.md:353:- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
+.opencode/skills/sk-improve-agent/SKILL.md:362:- `candidate-lineage.json`
+.opencode/skills/sk-improve-agent/SKILL.md:363:- `mutation-coverage.json`
+.opencode/skills/sk-improve-agent/SKILL.md:371:- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
+.opencode/skills/sk-improve-agent/SKILL.md:372:- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
+.opencode/skills/sk-improve-agent/SKILL.md:373:- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
+.opencode/skills/sk-improve-agent/SKILL.md:383:The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
+.opencode/skills/sk-improve-agent/SKILL.md:444:| `scripts/mutation-coverage.cjs` | Coverage graph reader/writer for explored dimensions and mutation tracking |
+.opencode/skills/sk-improve-agent/SKILL.md:445:| `scripts/trade-off-detector.cjs` | Cross-dimension regression detector using trajectory and Pareto analysis |
+.opencode/skills/sk-improve-agent/SKILL.md:446:| `scripts/candidate-lineage.cjs` | Lineage graph for optional parallel candidate wave sessions |
+.opencode/skills/sk-improve-agent/SKILL.md:447:| `scripts/benchmark-stability.cjs` | Benchmark replay stability measurement and advisory weight optimization |
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:183:  let stopReason = null;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184:  let sessionOutcome = null;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:199:    if ((eventType === 'session_end' || eventType === 'session_ended') && timestamp) {
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:201:      stopReason =
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:202:        typeof details.stopReason === 'string' && details.stopReason.trim()
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:203:          ? details.stopReason
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:204:          : stopReason;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:205:      sessionOutcome =
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:206:        typeof details.sessionOutcome === 'string' && details.sessionOutcome.trim()
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:207:          ? details.sessionOutcome
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:208:          : sessionOutcome;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:217:    stopReason,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:218:    sessionOutcome,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:747:    ? '\nSome iterations had insufficient data for trade-off / stability analysis. Review the specific iterations before trusting verdicts.\n'
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:832:  const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:833:  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:222: * Generate weight optimization recommendations based on historical session data.
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:43: * Default minimum number of trajectory points required before trade-off analysis.
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:79: * Detect trade-offs between dimensions in trajectory data (REQ-AI-008).
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:80: * A trade-off exists when one dimension improves significantly while another regresses.
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:84: * @returns {object[]|{state: string, dataPoints: number, minRequired: number, reason: string}} Array of detected trade-offs or insufficient-data state
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:141:    // A trade-off exists when both improving and regressing dimensions are found
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:18: * Research finding (P0): do not overload stopReason with outcome semantics.
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:32: * Separate from stopReason per research finding (P0).
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:62:  'trade_off_detected',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:65:  'session_ended',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:66:  'session_end',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:91:  if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:92:    if (!event.details || !event.details.stopReason) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:93:      errors.push('session_ended/session_end events MUST include details.stopReason');
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:97:    if (!event.details || !event.details.sessionOutcome) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:98:      errors.push('session_ended/session_end events MUST include details.sessionOutcome');
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:99:    } else if (!Object.values(SESSION_OUTCOMES).includes(event.details.sessionOutcome)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:100:      errors.push(`Invalid sessionOutcome: "${event.details.sessionOutcome}". Valid outcomes: ${Object.values(SESSION_OUTCOMES).join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:186: * Get the stop reason from the last session_ended event.
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:189: * @returns {{ stopReason: string|null, sessionOutcome: string|null }}
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:194:    (e) => e.eventType === 'session_ended' || e.eventType === 'session_end'
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:197:    return { stopReason: null, sessionOutcome: null };
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:201:    stopReason: (last.details && last.details.stopReason) || null,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:202:    sessionOutcome: (last.details && last.details.sessionOutcome) || null,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs | sed -n '150,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '150,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/assets/improve_improve-agent_auto.yaml | sed -n '130,210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_auto.yaml | sed -n '130,210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    130	        description: "Record baseline candidate state in append-only ledger"
    131	        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
    132	      step_emit_journal_event:
    133	        description: "Emit session_start journal event before the first loop iteration begins"
-   134	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+   134	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
    135	
    136	  phase_loop:
    137	    description: "Iterative propose -> score -> benchmark -> reduce cycle"
@@ -4639,19 +4639,19 @@ exec
    140	    steps:
    141	      step_scan_integration:
    142	        description: "Refresh integration surface map before each iteration"
-   143	        command: "node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent={target_profile} --output={spec_folder}/improvement/integration-report.json"
+   143	        command: "node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent={target_profile} --output={spec_folder}/improvement/integration-report.json"
    144	      step_generate_candidate:
    145	        description: "Dispatch @improve-agent to write one bounded candidate"
    146	        action: "Dispatch @improve-agent to write a new candidate into candidates/"
    147	      step_emit_journal_event_candidate_generated:
    148	        description: "Emit candidate_generated journal event after the candidate is written"
-   149	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+   149	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
    150	      step_score_candidate:
    151	        description: "Score candidate across 5 dimensions (dynamic) or keyword checks (static)"
-   152	        command: "node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
+   152	        command: "node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
    153	      step_emit_journal_event_candidate_scored:
    154	        description: "Emit candidate_scored journal event after scoring completes"
-   155	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+   155	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
    156	      step_run_benchmark:
    157	        description: "Run fixture tests against packet-local outputs"
    158	        action: "Run profile fixtures against packet-local outputs under benchmark-runs/{target_profile}/"
@@ -4660,13 +4660,13 @@ exec
    161	        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
    162	      step_reduce:
    163	        description: "Refresh dashboard, registry, and dimensional progress"
-   164	        command: "node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs {spec_folder}/improvement"
+   164	        command: "node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs {spec_folder}/improvement"
    165	      step_stop_check:
    166	        description: "Evaluate stop conditions: dimension plateau, infra failure, weak benchmarks, max iterations"
    167	        action: "Stop if experiment-registry.json reports stopStatus.shouldStop: true"
    168	      step_emit_journal_event_gate_evaluation:
    169	        description: "Emit gate_evaluation journal event after stop-condition evaluation"
-   170	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
+   170	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
    171	
    172	  phase_synthesis:
    173	    description: "After loop exits, summarize findings and recommend next action"
@@ -4679,7 +4679,7 @@ exec
    180	        action: "Check experiment-registry.json for bestPromptRecord and stopStatus"
    181	      step_emit_journal_event:
    182	        description: "Emit session_end journal event after synthesis completes"
-   183	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+   183	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 
  succeeded in 0ms:
    150	  ) {
@@ -4795,9 +4795,9 @@ exec
    260	    currentLeaf: nodes.length > 0 ? nodes[nodes.length - 1].id : null,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/assets/improve_improve-agent_confirm.yaml | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/agent.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/agent.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    160	      gate_before_candidate:
    161	        type: approval_gate
@@ -4812,13 +4812,13 @@ exec
    170	        action: "Dispatch @improve-agent to write a new candidate into candidates/"
    171	      step_emit_journal_event_candidate_generated:
    172	        description: "Emit candidate_generated journal event after the candidate is written"
-   173	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+   173	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
    174	      step_score_candidate:
    175	        description: "Score candidate across 5 dimensions (dynamic) or keyword checks (static)"
-   176	        command: "node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
+   176	        command: "node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
    177	      step_emit_journal_event_candidate_scored:
    178	        description: "Emit candidate_scored journal event after scoring completes"
-   179	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+   179	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
    180	      step_run_benchmark:
    181	        description: "Run fixture tests against packet-local outputs"
    182	        action: "Run profile fixtures against packet-local outputs under benchmark-runs/{target_profile}/"
@@ -4827,7 +4827,7 @@ exec
    185	        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
    186	      step_reduce:
    187	        description: "Refresh dashboard, registry, and dimensional progress"
-   188	        command: "node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs {spec_folder}/improvement"
+   188	        command: "node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs {spec_folder}/improvement"
    189	      gate_after_score:
    190	        type: approval_gate
    191	        description: "Operator reviews scores and decides next action"
@@ -4839,11 +4839,11 @@ exec
    197	          C) Stop loop
    198	      step_emit_journal_event_gate_evaluation:
    199	        description: "Emit gate_evaluation journal event after the operator gate is evaluated"
-   200	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
+   200	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
    201	      step_promote_candidate:
    202	        description: "Promote the accepted candidate to canonical target (guarded, requires score evidence)"
    203	        condition: "gate_after_score == 'B' AND score_recommendation == 'candidate-better'"
-   204	        command: "node .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={benchmark_output_path} --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+   204	        command: "node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={benchmark_output_path} --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
    205	
    206	  phase_synthesis:
    207	    description: "After loop exits, summarize findings and recommend next action"
@@ -4856,7 +4856,7 @@ exec
    214	        action: "Check experiment-registry.json for bestPromptRecord and stopStatus"
    215	      step_emit_journal_event:
    216	        description: "Emit session_end journal event after synthesis completes"
-   217	        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+   217	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 
  succeeded in 0ms:
    280	2. Dispatch `@improve-agent` to write one bounded candidate
@@ -4879,7 +4879,7 @@ exec
    297	
    298	```bash
    299	# At session start:
-   300	node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+   300	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
    301	
    302	# At iteration boundaries:
    303	# candidate_generated after the candidate is written
@@ -4888,7 +4888,7 @@ exec
    306	# The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
    307	
    308	# At session end:
-   309	# node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+   309	# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
    310	```
    311	
    312	### Step 6C: Stop-Reason Reporting (Phase 005)
@@ -4918,13 +4918,13 @@ exec
    336	3. Resume the iteration counter from that point
    337	4. Do NOT repeat already-completed iterations
    338	
-   339	Supported lineage modes: `new`. sk-improve-agent is one-session-only in the current release — every invocation starts a fresh session with generation 1. `resume`, `restart`, `fork`, and `completed-continue` were described in earlier drafts but have no runtime wiring; see `.opencode/skill/sk-improve-agent/SKILL.md §Resume/Continuation Semantics (current release)` for the full retraction.
+   339	Supported lineage modes: `new`. sk-improve-agent is one-session-only in the current release — every invocation starts a fresh session with generation 1. `resume`, `restart`, `fork`, and `completed-continue` were described in earlier drafts but have no runtime wiring; see `.opencode/skills/sk-improve-agent/SKILL.md §Resume/Continuation Semantics (current release)` for the full retraction.
    340	
 
 codex
 A concrete contract mismatch has already shown up in the reducer path: the lineage helper writes one shape, while the replay consumer appears to summarize a different shape. I’m checking the other replay-consumer expectations now, because this kind of bug tends to repeat across journal, coverage, and stability ingestion.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs | sed -n '220,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '220,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	}
    221	
@@ -5049,9 +5049,9 @@ exec
    340	
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/assets/improvement_charter.md | sed -n '78,100p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/assets/improvement_charter.md | sed -n '78,100p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     78	| --- | --- | --- |
     79	| Session initialization | `session_initialized` | sessionId, target, profile, config snapshot |
@@ -5095,7 +5095,7 @@ exec
     15	## Prompt / Command
     16	
     17	```text
-    18	node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs {spec}/improvement
+    18	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs {spec}/improvement
     19	```
     20	
     21	### Verification (copy-paste)
@@ -5104,7 +5104,7 @@ exec
     24	RUNTIME_COPY="$(mktemp -d /tmp/improve-agent-replay-XXXXXX)"
     25	cp -R "{spec}/improvement/." "$RUNTIME_COPY/"
     26	
-    27	node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs "$RUNTIME_COPY"
+    27	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$RUNTIME_COPY"
     28	
     29	cat "$RUNTIME_COPY/experiment-registry.json" | jq '.journalSummary, .candidateLineage, .mutationCoverage'
     30	grep -n "Journal Summary\|Candidate Lineage\|Mutation Coverage" "$RUNTIME_COPY/agent-improvement-dashboard.md"
@@ -5134,7 +5134,7 @@ exec
     54	  TMP_CASE="$(mktemp -d /tmp/improve-agent-replay-case-XXXXXX)"
     55	  cp -R "$RUNTIME_COPY/." "$TMP_CASE/"
     56	  rm -f "$TMP_CASE/$artifact"
-    57	  node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs "$TMP_CASE"
+    57	  node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$TMP_CASE"
     58	  case "$artifact" in
     59	    improvement-journal.jsonl)
     60	      cat "$TMP_CASE/experiment-registry.json" | jq '.journalSummary'
@@ -5188,30 +5188,30 @@ exec
    108	```
 
 exec
-/bin/zsh -lc "rg -n \"generateWeightRecommendations|measureStability|detectTradeOffs|getTrajectory\\(|checkConvergenceEligibility|recordCandidate\\(|recordMutation\\(|recordTrajectory\\(\" .opencode/skill/sk-improve-agent/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"generateWeightRecommendations|measureStability|detectTradeOffs|getTrajectory\\(|checkConvergenceEligibility|recordCandidate\\(|recordMutation\\(|recordTrajectory\\(\" .opencode/skills/sk-improve-agent/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:213:function getTrajectory(coveragePath) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:236:  const trajectory = getTrajectory(coveragePath);
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:53:function recordCandidate(lineagePath, candidate) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:166:function getTrajectory(journalPath) {
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:249:  detectTradeOffs,
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:213:function getTrajectory(coveragePath) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229:function checkConvergenceEligibility(coveragePath, options) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:236:  const trajectory = getTrajectory(coveragePath);
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:290:  checkConvergenceEligibility,
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:53:function recordCandidate(lineagePath, candidate) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:166:function getTrajectory(journalPath) {
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:249:  detectTradeOffs,
 
 codex
 I’m down to the deeper contract checks now. Two replay-consumer mismatches are confirmed, and I’m verifying whether the same pattern affects trade-off extraction and the advisory optimizer path, because those would make the Phase 005 runtime truth look present in code but inert in live runs.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"weightOptimizer|benchmarkStability|reportPath|autoApply|sessionCountThreshold|generateWeightRecommendations|measureStability|insufficientSample|insufficientDataIterations|insufficientSampleIterations|tradeOff\" .opencode/skill/sk-improve-agent/scripts .opencode/command/improve/assets -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"weightOptimizer|benchmarkStability|reportPath|autoApply|sessionCountThreshold|generateWeightRecommendations|measureStability|insufficientSample|insufficientDataIterations|insufficientSampleIterations|tradeOff\" .opencode/skills/sk-improve-agent/scripts .opencode/commands/improve/assets -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	title: "Insufficient Sample Propagation"
@@ -5223,7 +5223,7 @@ exec
      8	
      9	Validates that low-sample guards propagate `insufficientData` and `insufficientSample` states from the helpers into the reducer registry and the dashboard's Sample Quality reporting.
     10	
-    11	Given: a session fixture with only 2 trade-off trajectory points and 1 benchmark replay at `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/` once T050 lands.
+    11	Given: a session fixture with only 2 trade-off trajectory points and 1 benchmark replay at `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/` once T050 lands.
     12	When: the operator runs `trade-off-detector.cjs`, `benchmark-stability.cjs`, and `reduce-state.cjs` against that low-sample runtime.
     13	Then: the helper states remain distinct, the reducer records `insufficientDataIterations` and `insufficientSampleIterations`, and the dashboard surfaces low-sample messaging instead of collapsing both cases into a generic failure.
     14	
@@ -5236,7 +5236,7 @@ exec
     21	### Verification (copy-paste)
     22	
     23	```bash
-    24	FIXTURE=.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark
+    24	FIXTURE=.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark
     25	TRAJECTORY_JSON="$(rg --files "$FIXTURE" | rg 'trajectory' | head -n 1)"
     26	REPLAYS_JSON="$(rg --files "$FIXTURE" | rg 'replay|benchmark' | head -n 1)"
     27	
@@ -5245,7 +5245,7 @@ exec
     30	
     31	TRAJECTORY_JSON="$TRAJECTORY_JSON" node -e "
     32	const fs = require('node:fs');
-    33	const td = require('./.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs');
+    33	const td = require('./.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs');
     34	const trajectory = JSON.parse(fs.readFileSync(process.env.TRAJECTORY_JSON, 'utf8'));
     35	const result = td.detectTradeOffs(trajectory);
     36	console.assert(result.state === 'insufficientData', 'Expected insufficientData state');
@@ -5256,7 +5256,7 @@ exec
     41	
     42	REPLAYS_JSON="$REPLAYS_JSON" node -e "
     43	const fs = require('node:fs');
-    44	const bs = require('./.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs');
+    44	const bs = require('./.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs');
     45	const replays = JSON.parse(fs.readFileSync(process.env.REPLAYS_JSON, 'utf8'));
     46	const result = bs.measureStability(replays);
     47	console.assert(result.state === 'insufficientSample', 'Expected insufficientSample state');
@@ -5265,7 +5265,7 @@ exec
     50	console.log('PASS — benchmark-stability insufficientSample:', JSON.stringify(result));
     51	"
     52	
-    53	node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs "$FIXTURE"
+    53	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$FIXTURE"
     54	
     55	grep -n "insufficientDataIterations\|insufficientSampleIterations" "$FIXTURE/experiment-registry.json"
     56	grep -n "## Sample Quality\|insufficientSampleIterations\|insufficientDataIterations\|insufficient" "$FIXTURE/agent-improvement-dashboard.md"
@@ -5288,7 +5288,7 @@ exec
     73	
     74	## Failure Triage
     75	
-    76	- If the fixture path is missing: confirm T050 landed and the low-sample runtime exists under `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/`
+    76	- If the fixture path is missing: confirm T050 landed and the low-sample runtime exists under `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/`
     77	- If `trade-off-detector.cjs` returns an array instead of `insufficientData`: check `MIN_DATA_POINTS_DEFAULT` / `minDataPoints` wiring and verify the fixture only has 2 trajectory entries
     78	- If `benchmark-stability.cjs` returns a generic instability result: verify `minReplayCount` is set to `3` and the fixture exposes only 1 replay
     79	- If reducer fields are absent: inspect `reduce-state.cjs` for `extractInsufficientDataIteration()` and `extractInsufficientSampleIteration()` wiring
@@ -5305,41 +5305,41 @@ exec
     90	```
 
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:145:  const statePayload = findNestedState(record, 'insufficientSample');
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:332:  const isInsufficientSample = value.state === 'insufficientSample' && replayCount !== null;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:361:    insufficientSampleIterations: registry.insufficientSampleIterations.length,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:362:    insufficientDataIterations: registry.insufficientDataIterations.length,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:440:  const insufficientDataIterations = [];
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:441:  const insufficientSampleIterations = [];
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:465:      insufficientDataIterations.push(insufficientDataIteration);
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:468:    const insufficientSampleIteration = extractInsufficientSampleIteration(record, index);
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:469:    if (insufficientSampleIteration) {
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:470:      insufficientSampleIterations.push(insufficientSampleIteration);
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:538:    insufficientDataIterations,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:539:    insufficientSampleIterations,
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:744:    sampleQuality.insufficientSampleIterations > 0 ||
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:745:    sampleQuality.insufficientDataIterations > 0;
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:756:| insufficientSampleIterations | ${sampleQuality.insufficientSampleIterations} |
-.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:757:| insufficientDataIterations | ${sampleQuality.insufficientDataIterations} |
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:130:      state: 'insufficientSample',
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:202:  if (stabilityResult?.state === 'insufficientSample') {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:227: * @param {object} [config] - { sessionCountThreshold? }
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:232:    sessionCountThreshold: DEFAULT_SESSION_COUNT_THRESHOLD,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:236:  if (!sessionHistory || sessionHistory.length < opts.sessionCountThreshold) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:240:      report: `Insufficient session history: ${(sessionHistory || []).length} < ${opts.sessionCountThreshold}. Recommendations require at least ${opts.sessionCountThreshold} sessions.`,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:112:  const tradeOffs = [];
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:145:          tradeOffs.push({
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:157:  return tradeOffs;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145:  const statePayload = findNestedState(record, 'insufficientSample');
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:332:  const isInsufficientSample = value.state === 'insufficientSample' && replayCount !== null;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:361:    insufficientSampleIterations: registry.insufficientSampleIterations.length,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:362:    insufficientDataIterations: registry.insufficientDataIterations.length,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:440:  const insufficientDataIterations = [];
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:441:  const insufficientSampleIterations = [];
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:465:      insufficientDataIterations.push(insufficientDataIteration);
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:468:    const insufficientSampleIteration = extractInsufficientSampleIteration(record, index);
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:469:    if (insufficientSampleIteration) {
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:470:      insufficientSampleIterations.push(insufficientSampleIteration);
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:538:    insufficientDataIterations,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:539:    insufficientSampleIterations,
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:744:    sampleQuality.insufficientSampleIterations > 0 ||
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:745:    sampleQuality.insufficientDataIterations > 0;
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:756:| insufficientSampleIterations | ${sampleQuality.insufficientSampleIterations} |
+.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:757:| insufficientDataIterations | ${sampleQuality.insufficientDataIterations} |
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:130:      state: 'insufficientSample',
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:197: * @param {object} stabilityResult - Result from measureStability
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:202:  if (stabilityResult?.state === 'insufficientSample') {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:227: * @param {object} [config] - { sessionCountThreshold? }
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:232:    sessionCountThreshold: DEFAULT_SESSION_COUNT_THRESHOLD,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:236:  if (!sessionHistory || sessionHistory.length < opts.sessionCountThreshold) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:240:      report: `Insufficient session history: ${(sessionHistory || []).length} < ${opts.sessionCountThreshold}. Recommendations require at least ${opts.sessionCountThreshold} sessions.`,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:335:  measureStability,
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:337:  generateWeightRecommendations,
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:112:  const tradeOffs = [];
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:145:          tradeOffs.push({
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:157:  return tradeOffs;
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    340	
    341	  for (const entry of Object.values(value)) {
@@ -5487,7 +5487,7 @@ exec
     11	## Prompt / Command
     12	
     13	```text
-    14	/improve:agent ".opencode/agent/debug.md" :confirm --spec-folder=specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --iterations=3
+    14	/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder=specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --iterations=3
     15	```
     16	
     17	## Expected Signals
@@ -5524,9 +5524,9 @@ mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'cat .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cat .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'cat .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cat .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "nodes": [
@@ -5596,7 +5596,7 @@ exec
 }
 
 exec
-/bin/zsh -lc 'cat .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cat .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {"timestamp":"2026-04-11T12:00:00Z","eventType":"session_start","details":{"sessionId":"imp-low-sample-fixture","target":"deep-research","startedAt":"2026-04-11T12:00:00Z"}}
 {"timestamp":"2026-04-11T12:00:10Z","eventType":"candidate_generated","iteration":1,"candidateId":"candidate-1","details":{"parentCandidateId":"candidate-0","mutation":"prompt-tighten"}}
@@ -5608,9 +5608,9 @@ exec
 {"timestamp":"2026-04-11T12:01:30Z","eventType":"session_end","details":{"stopReason":"converged","sessionOutcome":"keptBaseline","note":"Plateau stop requested by fixture brief; validator-accepted stopReason uses converged because benchmarkPlateau is not allowed."}}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"structural|ruleCoherence|integration|outputQuality|systemFitness|correctness|efficiency\" .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs .opencode/skill/sk-improve-agent/assets .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"structural|ruleCoherence|integration|outputQuality|systemFitness|correctness|efficiency\" .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs .opencode/skills/sk-improve-agent/assets .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark -g '"'!**/node_modules/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Candidate Scorer — 5-Dimension Evaluation Framework                     ║
@@ -5819,11 +5819,11 @@ exec
    205	  for (const cmd of commands) {
    206	    refsTotal++;
    207	    const cmdPath = cmd.replace(/^\//, '').replace(/:/g, '/');
-   208	    if (fs.existsSync(`.opencode/command/${cmdPath}.md`)) { refsValid++; }
+   208	    if (fs.existsSync(`.opencode/commands/${cmdPath}.md`)) { refsValid++; }
    209	  }
    210	  for (const sk of skills) {
    211	    refsTotal++;
-   212	    if (fs.existsSync(`.opencode/skill/${sk}/SKILL.md`)) { refsValid++; }
+   212	    if (fs.existsSync(`.opencode/skills/${sk}/SKILL.md`)) { refsValid++; }
    213	  }
    214	  const refScore = refsTotal > 0 ? Math.round(30 * refsValid / refsTotal) : 30;
    215	  earned += refScore;
@@ -5874,59 +5874,59 @@ exec
    260	function main() {
 
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:87:  structural: 0.20,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:88:  ruleCoherence: 0.25,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:89:  integration: 0.25,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:90:  outputQuality: 0.15,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:91:  systemFitness: 0.15,
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:105:  const checks = profile.derivedChecks?.structural || [];
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:120:  const rules = profile.derivedChecks?.ruleCoherence || [];
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:137:  const report = runScript('scan-integration.cjs', [`--agent=${agentName}`]);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:199:  const integration = profile.derivedChecks?.integrationPoints || {};
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:200:  const commands = integration.commands || [];
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:201:  const skills = integration.skills || [];
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:235:  const structural = scoreDimStructural(profile, candidateContent);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:236:  const ruleCoherence = scoreDimRuleCoherence(profile, candidateContent);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:237:  const integration = scoreDimIntegration(agentName);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:238:  const outputQuality = scoreDimOutputQuality(profile, candidateContent);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:239:  const systemFitness = scoreDimSystemFitness(profile, candidateContent);
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:242:    { name: 'structural', score: structural.score, weight: effectiveWeights.structural, details: structural.details },
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:243:    { name: 'ruleCoherence', score: ruleCoherence.score, weight: effectiveWeights.ruleCoherence, details: ruleCoherence.details },
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:244:    { name: 'integration', score: integration.score, weight: effectiveWeights.integration, details: integration.details },
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:245:    { name: 'outputQuality', score: outputQuality.score, weight: effectiveWeights.outputQuality, details: outputQuality.details },
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs:246:    { name: 'systemFitness', score: systemFitness.score, weight: effectiveWeights.systemFitness, details: systemFitness.details },
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:51:      "structural": 0.20,
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:52:      "ruleCoherence": 0.25,
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:53:      "integration": 0.25,
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:54:      "outputQuality": 0.15,
-.opencode/skill/sk-improve-agent/assets/improvement_config.json:55:      "systemFitness": 0.15
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:3:{"timestamp":"2026-04-11T12:00:20Z","eventType":"candidate_scored","iteration":1,"candidateId":"candidate-1","details":{"score":7.2,"dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}]}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:6:{"timestamp":"2026-04-11T12:01:10Z","eventType":"candidate_scored","iteration":2,"candidateId":"candidate-2","details":{"score":7.1,"dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}]}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:8:        "correctness": 0.8,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:9:        "efficiency": 0.6
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:17:        "correctness": 0.82,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:18:        "efficiency": 0.61
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:26:        "correctness": 0.8,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:27:        "efficiency": 0.62
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:29:Build a trustworthy improvement loop for agent surfaces by proving evaluation discipline before allowing self-editing. Evaluate agents holistically across their full integration surface — not just the prompt file, but the complete system of mirrors, commands, YAML workflows, skills, and gate routing that together define agent behavior.
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:55:- evaluation uses 5 deterministic dimensions (structural integrity, rule coherence, integration consistency, output quality, system fitness) — each scored independently, weighted, and tracked per iteration
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:80:| Integration scan | `integration_scanned` | integrationReportHash, surface counts |
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:84:| Legal-stop evaluation | `legal_stop_evaluated` | gateResults (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate) |
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:98:- **contractGate**: structural >= 90 AND systemFitness >= 90
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:99:- **behaviorGate**: ruleCoherence >= 85 AND outputQuality >= 85
-.opencode/skill/sk-improve-agent/assets/improvement_charter.md:100:- **integrationGate**: integration >= 90 AND no drift ambiguity
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:3:    "correctness",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:4:    "efficiency"
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:2:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":1,"candidateId":"candidate-1","score":7.2,"recommendation":"tie","dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:3:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":2,"candidateId":"candidate-2","score":7.1,"recommendation":"keep-baseline","dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:63:[Which integration dimensions need attention: mirror sync, command coverage, permission alignment, resource references]
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:134:- If hard dimension regresses (structural, integration, systemFitness): BLOCK promotion, revert mutation
-.opencode/skill/sk-improve-agent/assets/improvement_strategy.md:135:- If soft dimension regresses (ruleCoherence, outputQuality): WARN operator, allow with explicit approval
-.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc:18:  // Path to the integration-surface scanner that checks mirror parity,
-.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc:21:  "integrationScanScript": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:87:  structural: 0.20,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:88:  ruleCoherence: 0.25,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:89:  integration: 0.25,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:90:  outputQuality: 0.15,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:91:  systemFitness: 0.15,
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:105:  const checks = profile.derivedChecks?.structural || [];
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:120:  const rules = profile.derivedChecks?.ruleCoherence || [];
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:137:  const report = runScript('scan-integration.cjs', [`--agent=${agentName}`]);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:199:  const integration = profile.derivedChecks?.integrationPoints || {};
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:200:  const commands = integration.commands || [];
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:201:  const skills = integration.skills || [];
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:235:  const structural = scoreDimStructural(profile, candidateContent);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:236:  const ruleCoherence = scoreDimRuleCoherence(profile, candidateContent);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:237:  const integration = scoreDimIntegration(agentName);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:238:  const outputQuality = scoreDimOutputQuality(profile, candidateContent);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:239:  const systemFitness = scoreDimSystemFitness(profile, candidateContent);
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:242:    { name: 'structural', score: structural.score, weight: effectiveWeights.structural, details: structural.details },
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:243:    { name: 'ruleCoherence', score: ruleCoherence.score, weight: effectiveWeights.ruleCoherence, details: ruleCoherence.details },
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:244:    { name: 'integration', score: integration.score, weight: effectiveWeights.integration, details: integration.details },
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:245:    { name: 'outputQuality', score: outputQuality.score, weight: effectiveWeights.outputQuality, details: outputQuality.details },
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs:246:    { name: 'systemFitness', score: systemFitness.score, weight: effectiveWeights.systemFitness, details: systemFitness.details },
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:51:      "structural": 0.20,
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:52:      "ruleCoherence": 0.25,
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:53:      "integration": 0.25,
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:54:      "outputQuality": 0.15,
+.opencode/skills/sk-improve-agent/assets/improvement_config.json:55:      "systemFitness": 0.15
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:3:{"timestamp":"2026-04-11T12:00:20Z","eventType":"candidate_scored","iteration":1,"candidateId":"candidate-1","details":{"score":7.2,"dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}]}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:6:{"timestamp":"2026-04-11T12:01:10Z","eventType":"candidate_scored","iteration":2,"candidateId":"candidate-2","details":{"score":7.1,"dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}]}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:8:        "correctness": 0.8,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:9:        "efficiency": 0.6
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:17:        "correctness": 0.82,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:18:        "efficiency": 0.61
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:26:        "correctness": 0.8,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:27:        "efficiency": 0.62
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:29:Build a trustworthy improvement loop for agent surfaces by proving evaluation discipline before allowing self-editing. Evaluate agents holistically across their full integration surface — not just the prompt file, but the complete system of mirrors, commands, YAML workflows, skills, and gate routing that together define agent behavior.
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:55:- evaluation uses 5 deterministic dimensions (structural integrity, rule coherence, integration consistency, output quality, system fitness) — each scored independently, weighted, and tracked per iteration
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:80:| Integration scan | `integration_scanned` | integrationReportHash, surface counts |
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:84:| Legal-stop evaluation | `legal_stop_evaluated` | gateResults (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate) |
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:98:- **contractGate**: structural >= 90 AND systemFitness >= 90
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:99:- **behaviorGate**: ruleCoherence >= 85 AND outputQuality >= 85
+.opencode/skills/sk-improve-agent/assets/improvement_charter.md:100:- **integrationGate**: integration >= 90 AND no drift ambiguity
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:3:    "correctness",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:4:    "efficiency"
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:2:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":1,"candidateId":"candidate-1","score":7.2,"recommendation":"tie","dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:3:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":2,"candidateId":"candidate-2","score":7.1,"recommendation":"keep-baseline","dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:63:[Which integration dimensions need attention: mirror sync, command coverage, permission alignment, resource references]
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:134:- If hard dimension regresses (structural, integration, systemFitness): BLOCK promotion, revert mutation
+.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:135:- If soft dimension regresses (ruleCoherence, outputQuality): WARN operator, allow with explicit approval
+.opencode/skills/sk-improve-agent/assets/target_manifest.jsonc:18:  // Path to the integration-surface scanner that checks mirror parity,
+.opencode/skills/sk-improve-agent/assets/target_manifest.jsonc:21:  "integrationScanScript": ".opencode/skills/sk-improve-agent/scripts/scan-integration.cjs",
 
 exec
-/bin/zsh -lc 'cat .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cat .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 {
   "dimensions": [
@@ -5954,59 +5954,59 @@ exec
 codex
 I’ve got enough context to move from exploration into evidence collection. I’m tightening the line references now around the confirmed mismatches: producer vs consumer schemas, missing helper wiring in the workflows, and the journal payload shape that prevents the trade-off path from reconstructing trajectory from live runs.
 exec
-/bin/zsh -lc "rg -n \"recordCandidate\\(|recordMutation\\(|recordTrajectory\\(|detectTradeOffs\\(|measureStability\\(|generateWeightRecommendations\\(\" .opencode/skill/sk-improve-agent/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"recordCandidate\\(|recordMutation\\(|recordTrajectory\\(|detectTradeOffs\\(|measureStability\\(|generateWeightRecommendations\\(\" .opencode/skills/sk-improve-agent/scripts -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"state\\\": \\\"insufficientData\\\"|correctness|efficiency|candidate-0|coverageRatio|uncoveredMutations|parentId|parentCandidateId|candidateId\" .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"state\\\": \\\"insufficientData\\\"|correctness|efficiency|candidate-0|coverageRatio|uncoveredMutations|parentId|parentCandidateId|candidateId\" .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
-.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
-.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:53:function recordCandidate(lineagePath, candidate) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
-.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
-.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:80:function recordMutation(coveragePath, mutation) {
+.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:192:function recordTrajectory(coveragePath, dataPoint) {
+.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:53:function recordCandidate(lineagePath, candidate) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:120:function measureStability(results, config) {
+.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs:230:function generateWeightRecommendations(sessionHistory, currentWeights, config) {
+.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:86:function detectTradeOffs(trajectoryData, options) {
 
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json:16:    "coverageRatio": 0.33,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json:17:    "uncoveredMutations": 4,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:3:    "correctness",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:4:    "efficiency"
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:8:      "candidate": "candidate-0",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:4:      "id": "candidate-0",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:5:      "parentId": null,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:8:        "correctness": 0.8,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:9:        "efficiency": 0.6
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:14:      "parentId": "candidate-0",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:17:        "correctness": 0.82,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:18:        "efficiency": 0.61
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:23:      "parentId": "candidate-1",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:26:        "correctness": 0.8,
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:27:        "efficiency": 0.62
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:33:      "from": "candidate-0",
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:2:{"timestamp":"2026-04-11T12:00:10Z","eventType":"candidate_generated","iteration":1,"candidateId":"candidate-1","details":{"parentCandidateId":"candidate-0","mutation":"prompt-tighten"}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:3:{"timestamp":"2026-04-11T12:00:20Z","eventType":"candidate_scored","iteration":1,"candidateId":"candidate-1","details":{"score":7.2,"dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}]}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:4:{"timestamp":"2026-04-11T12:00:30Z","eventType":"gate_evaluation","iteration":1,"candidateId":"candidate-1","details":{"decision":"continue","tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3}}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:5:{"timestamp":"2026-04-11T12:01:00Z","eventType":"candidate_generated","iteration":2,"candidateId":"candidate-2","details":{"parentCandidateId":"candidate-1","mutation":"weight-rebalance"}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:6:{"timestamp":"2026-04-11T12:01:10Z","eventType":"candidate_scored","iteration":2,"candidateId":"candidate-2","details":{"score":7.1,"dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}]}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:7:{"timestamp":"2026-04-11T12:01:20Z","eventType":"gate_evaluation","iteration":2,"candidateId":"candidate-2","details":{"decision":"keep-baseline","tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3}}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:2:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":1,"candidateId":"candidate-1","score":7.2,"recommendation":"tie","dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:3:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":2,"candidateId":"candidate-2","score":7.1,"recommendation":"keep-baseline","dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json:16:    "coverageRatio": 0.33,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json:17:    "uncoveredMutations": 4,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:3:    "correctness",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:4:    "efficiency"
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json:8:      "candidate": "candidate-0",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:4:      "id": "candidate-0",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:5:      "parentId": null,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:8:        "correctness": 0.8,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:9:        "efficiency": 0.6
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:14:      "parentId": "candidate-0",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:17:        "correctness": 0.82,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:18:        "efficiency": 0.61
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:23:      "parentId": "candidate-1",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:26:        "correctness": 0.8,
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:27:        "efficiency": 0.62
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json:33:      "from": "candidate-0",
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:2:{"timestamp":"2026-04-11T12:00:10Z","eventType":"candidate_generated","iteration":1,"candidateId":"candidate-1","details":{"parentCandidateId":"candidate-0","mutation":"prompt-tighten"}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:3:{"timestamp":"2026-04-11T12:00:20Z","eventType":"candidate_scored","iteration":1,"candidateId":"candidate-1","details":{"score":7.2,"dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}]}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:4:{"timestamp":"2026-04-11T12:00:30Z","eventType":"gate_evaluation","iteration":1,"candidateId":"candidate-1","details":{"decision":"continue","tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3}}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:5:{"timestamp":"2026-04-11T12:01:00Z","eventType":"candidate_generated","iteration":2,"candidateId":"candidate-2","details":{"parentCandidateId":"candidate-1","mutation":"weight-rebalance"}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:6:{"timestamp":"2026-04-11T12:01:10Z","eventType":"candidate_scored","iteration":2,"candidateId":"candidate-2","details":{"score":7.1,"dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}]}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:7:{"timestamp":"2026-04-11T12:01:20Z","eventType":"gate_evaluation","iteration":2,"candidateId":"candidate-2","details":{"decision":"keep-baseline","tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3}}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:2:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":1,"candidateId":"candidate-1","score":7.2,"recommendation":"tie","dimensions":[{"name":"correctness","score":0.82},{"name":"efficiency","score":0.61}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":1,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":0,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:3:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":2,"candidateId":"candidate-2","score":7.1,"recommendation":"keep-baseline","dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
 
 exec
-/bin/zsh -lc 'rg -n "improvement-journal.cjs --emit|trade_off_detected|benchmark_completed|legal_stop_evaluated|blocked_stop" .opencode/command/improve/assets/improve_improve-agent_auto.yaml .opencode/command/improve/assets/improve_improve-agent_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "improvement-journal.cjs --emit|trade_off_detected|benchmark_completed|legal_stop_evaluated|blocked_stop" .opencode/commands/improve/assets/improve_improve-agent_auto.yaml .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:150:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:173:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:179:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:134:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:149:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:155:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:150:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:173:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:179:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:134:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:149:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:155:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl | sed -n '1,20p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl | sed -n '1,20p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	{"timestamp":"2026-04-11T12:00:00Z","eventType":"session_start","details":{"sessionId":"imp-low-sample-fixture","target":"deep-research","startedAt":"2026-04-11T12:00:00Z"}}
      2	{"timestamp":"2026-04-11T12:00:10Z","eventType":"candidate_generated","iteration":1,"candidateId":"candidate-1","details":{"parentCandidateId":"candidate-0","mutation":"prompt-tighten"}}
@@ -6018,11 +6018,11 @@ exec
      8	{"timestamp":"2026-04-11T12:01:30Z","eventType":"session_end","details":{"stopReason":"converged","sessionOutcome":"keptBaseline","note":"Plateau stop requested by fixture brief; validator-accepted stopReason uses converged because benchmarkPlateau is not allowed."}}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/mutation-coverage.json | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/trade-off-trajectory.json | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/candidate-lineage.json | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	{
      2	  "nodes": [
@@ -6122,51 +6122,51 @@ codex
 1. Finding ID: `F-009-001`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml`  
+File: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`  
 Line: `141-183`  
 Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`  
 Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/improve:agent` sessions.  
-Evidence: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
+Evidence: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
 Recommendation: Add explicit loop steps that persist lineage and coverage after candidate creation/scoring, run trade-off detection after trajectory update, run benchmark-stability after replay data is available, and write the advisory weight report to the configured path.
 
 2. Finding ID: `F-009-002`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
 Line: `222-260`  
 Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`  
 Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
 Recommendation: Standardize the lineage schema on one shape and update either the producer or the reducer so the replay consumer reads the actual emitted artifact.
 
 3. Finding ID: `F-009-003`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
 Line: `264-275`  
 Title: `Reducer expects mutation-coverage metrics that the producer never writes`  
 Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
 Recommendation: Either persist computed `metrics` in `mutation-coverage.cjs` on every write, or teach the reducer to derive coverage ratio and uncovered counts from the raw arrays it already receives.
 
 4. Finding ID: `F-009-004`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`  
 Line: `181-197`  
 Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`  
 Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
 Recommendation: Emit the scored dimension array into the journal row, or change `getTrajectory()` to load the referenced score artifact from `scoreOutputPath` instead of assuming inline dimensions.
 
 5. Finding ID: `F-009-005`  
 Severity: `P2`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`  
 Line: `21-28`  
 Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`  
 Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.  
-Evidence: `.opencode/skill/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
+Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
 Recommendation: Add a plateau-specific stop reason to the validated taxonomy and update the command/skill docs so plateau exits are recorded truthfully instead of being coerced to `converged`.
 
 ITERATION SUMMARY: `5 findings total (0 P0 / 4 P1 / 1 P2)`
@@ -6188,51 +6188,51 @@ tokens used
 1. Finding ID: `F-009-001`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml`  
+File: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`  
 Line: `141-183`  
 Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`  
 Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/improve:agent` sessions.  
-Evidence: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
+Evidence: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
 Recommendation: Add explicit loop steps that persist lineage and coverage after candidate creation/scoring, run trade-off detection after trajectory update, run benchmark-stability after replay data is available, and write the advisory weight report to the configured path.
 
 2. Finding ID: `F-009-002`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
 Line: `222-260`  
 Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`  
 Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
 Recommendation: Standardize the lineage schema on one shape and update either the producer or the reducer so the replay consumer reads the actual emitted artifact.
 
 3. Finding ID: `F-009-003`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
 Line: `264-275`  
 Title: `Reducer expects mutation-coverage metrics that the producer never writes`  
 Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
 Recommendation: Either persist computed `metrics` in `mutation-coverage.cjs` on every write, or teach the reducer to derive coverage ratio and uncovered counts from the raw arrays it already receives.
 
 4. Finding ID: `F-009-004`  
 Severity: `P1`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`  
 Line: `181-197`  
 Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`  
 Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.  
-Evidence: `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
+Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
 Recommendation: Emit the scored dimension array into the journal row, or change `getTrajectory()` to load the referenced score artifact from `scoreOutputPath` instead of assuming inline dimensions.
 
 5. Finding ID: `F-009-005`  
 Severity: `P2`  
 Dimension: `correctness`  
-File: `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`  
+File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`  
 Line: `21-28`  
 Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`  
 Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.  
-Evidence: `.opencode/skill/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
+Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
 Recommendation: Add a plateau-specific stop reason to the validated taxonomy and update the command/skill docs so plateau exits are recorded truthfully instead of being coerced to `converged`.
 
 ITERATION SUMMARY: `5 findings total (0 P0 / 4 P1 / 1 P2)`

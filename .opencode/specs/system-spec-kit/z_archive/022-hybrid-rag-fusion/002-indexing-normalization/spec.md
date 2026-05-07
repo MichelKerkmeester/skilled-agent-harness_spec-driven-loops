@@ -111,12 +111,12 @@ Make indexing deterministic by deduplicating canonical file paths before indexin
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Canonical path handling in directory scan and filter logic |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Dedup merged scan file list before batch indexing |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` | Modify | Clarify and enforce default tier mapping behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts` | Modify | Add duplicate-source scan regression coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts` | Modify | Add tier precedence and parser normalization tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts` | Modify | Add tier mapping consistency tests |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Canonical path handling in directory scan and filter logic |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Dedup merged scan file list before batch indexing |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts` | Modify | Clarify and enforce default tier mapping behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts` | Modify | Add duplicate-source scan regression coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts` | Modify | Add tier precedence and parser normalization tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts` | Modify | Add tier mapping consistency tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -389,11 +389,11 @@ Define and execute a deterministic normalization plus reindex workflow that prod
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/templates/level_3/spec.md` | Modify | Normalize template frontmatter keys and defaults. |
-| `.opencode/skill/system-spec-kit/templates/level_3/plan.md` | Modify | Apply canonical frontmatter format. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Enforce normalized parse + compose behavior. |
-| `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` | Modify | Add migration pass and trigger reindex flow. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts` | Modify | Expand tests for normalized frontmatter indexing. |
+| `.opencode/skills/system-spec-kit/templates/level_3/spec.md` | Modify | Normalize template frontmatter keys and defaults. |
+| `.opencode/skills/system-spec-kit/templates/level_3/plan.md` | Modify | Apply canonical frontmatter format. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` | Modify | Enforce normalized parse + compose behavior. |
+| `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | Modify | Add migration pass and trigger reindex flow. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts` | Modify | Expand tests for normalized frontmatter indexing. |
 
 ---
 

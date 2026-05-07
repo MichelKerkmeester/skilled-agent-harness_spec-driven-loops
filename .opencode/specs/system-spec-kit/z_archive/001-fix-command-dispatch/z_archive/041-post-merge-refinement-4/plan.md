@@ -458,8 +458,8 @@ Selected Option 1 (single project) - all changes within existing .opencode/ stru
 
 - Prior refinement: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/040-mcp-server-rename`
 - Agent system: `.opencode/agents/`
-- Spec Kit skill: `.opencode/skill/system-spec-kit/`
-- Memory MCP: `.opencode/skill/system-spec-kit/mcp/`
+- Spec Kit skill: `.opencode/skills/system-spec-kit/`
+- Memory MCP: `.opencode/skills/system-spec-kit/mcp/`
 
 ---
 

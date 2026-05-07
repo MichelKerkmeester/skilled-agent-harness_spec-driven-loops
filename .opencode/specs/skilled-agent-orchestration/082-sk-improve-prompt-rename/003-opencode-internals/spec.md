@@ -14,7 +14,7 @@ _memory:
     recent_action: "Phase 003 refs rotated; rebuild blocked"
     next_safe_action: "Resolve rebuild blocker"
     blockers:
-      - "advisor_rebuild fails because .opencode/skill/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while folder is deep-agent-improvement"
+      - "advisor_rebuild fails because .opencode/skills/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while folder is deep-agent-improvement"
       - "Broad .opencode grep still finds Phase 005 files that Phase 003 constraints forbid editing"
     key_files:
       - "spec.md"
@@ -65,13 +65,13 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 ## 3. SCOPE
 
 ### In Scope
-- Update `.opencode/command/improve/prompt.md`, `.opencode/command/improve/README.txt`, and `.opencode/agent/improve-prompt.md` body refs.
+- Update `.opencode/commands/improve/prompt.md`, `.opencode/commands/improve/README.txt`, and `.opencode/agents/improve-prompt.md` body refs.
 - Update advisor scorer lanes `explicit.ts`, `lexical.ts`, `fusion.ts`, `skill_advisor.py`, advisor metadata, sync script, routing fixtures, and regression fixtures.
 - Update five cli-* `assets/prompt_quality_card.md` mirrors and parent `SKILL.md` routing tables.
 - Update listed cli manual playbooks, `deep-agent-improvement/SKILL.md`, and sk-code advisor integration docs.
 
 ### Out of Scope
-- Editing `.opencode/skill/sk-prompt/**` skill-local content or `.opencode/specs/**`.
+- Editing `.opencode/skills/sk-prompt/**` skill-local content or `.opencode/specs/**`.
 - Editing `.claude/`, `.codex/`, `.gemini/`, root docs, install guides, active changelogs outside this phase.
 - Renaming `/improve:prompt`, `@improve-prompt`, or their filenames.
 - Running final advisor rebuild and probe battery.
@@ -80,13 +80,13 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/improve/*`, `.opencode/agent/improve-prompt.md` | Modify | Dispatcher and agent body refs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**` | Modify | Scorer and fusion skill ID refs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | TOKEN_BOOSTS, PHRASE_BOOSTS, aliases dict |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/{graph-metadata.json,scripts/**}` | Modify | Metadata, sync script, fixtures, labeled prompts |
-| `.opencode/skill/cli-{claude-code,copilot,codex,gemini,opencode}/{SKILL.md,assets/prompt_quality_card.md}` | Modify | Mirrors and parent routing tables |
-| `.opencode/skill/cli-copilot/manual_testing_playbook/**`, `.opencode/skill/cli-opencode/manual_testing_playbook/**` | Modify | Listed prompt-card playbooks |
-| `.opencode/skill/deep-agent-improvement/SKILL.md`, `.opencode/skill/sk-code/**` | Modify | Cross-skill and advisor docs |
+| `.opencode/commands/improve/*`, `.opencode/agents/improve-prompt.md` | Modify | Dispatcher and agent body refs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**` | Modify | Scorer and fusion skill ID refs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | TOKEN_BOOSTS, PHRASE_BOOSTS, aliases dict |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/{graph-metadata.json,scripts/**}` | Modify | Metadata, sync script, fixtures, labeled prompts |
+| `.opencode/skills/cli-{claude-code,copilot,codex,gemini,opencode}/{SKILL.md,assets/prompt_quality_card.md}` | Modify | Mirrors and parent routing tables |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/**`, `.opencode/skills/cli-opencode/manual_testing_playbook/**` | Modify | Listed prompt-card playbooks |
+| `.opencode/skills/deep-agent-improvement/SKILL.md`, `.opencode/skills/sk-code/**` | Modify | Cross-skill and advisor docs |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -117,8 +117,8 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 
 ```bash
 rg 'sk-improve-prompt' .opencode/ --glob '!**/specs/**' --glob '!**/sk-prompt/**'
-bash .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals --strict
+bash .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals --strict
 ```
 <!-- /ANCHOR:success-criteria -->
 

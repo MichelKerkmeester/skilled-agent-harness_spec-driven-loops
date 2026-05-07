@@ -34,11 +34,11 @@ This research document captures technical investigation into adding `.txt` file 
 
 ### Finding 1: Command Folder Documentation Uses `.txt` Format
 
-**Context**: Slash command documentation is stored in `.opencode/command/**/README.txt` files with frontmatter metadata (title, description, trigger phrases).
+**Context**: Slash command documentation is stored in `.opencode/commands/**/README.txt` files with frontmatter metadata (title, description, trigger phrases).
 
 **Evidence**:
-- `.opencode/command/spec_kit/README.txt` contains 223 lines of structured documentation
-- `.opencode/command/memory/README.txt` contains memory command reference
+- `.opencode/commands/spec_kit/README.txt` contains 223 lines of structured documentation
+- `.opencode/commands/memory/README.txt` contains memory command reference
 - All command READMEs use `.txt` extension (not `.md`)
 
 **Significance**: These files are currently invisible to `memory_index_scan`, creating a documentation discovery gap.
@@ -49,7 +49,7 @@ This research document captures technical investigation into adding `.txt` file 
 
 ### Finding 2: File Discovery Uses Extension-Based Filtering
 
-**Context**: Memory indexing discovers files via three functions: `findMemoryFiles()`, `findSkillReadmes()`, and `findProjectReadmes()` (the latter was expanded to include `.opencode/command/` paths).
+**Context**: Memory indexing discovers files via three functions: `findMemoryFiles()`, `findSkillReadmes()`, and `findProjectReadmes()` (the latter was expanded to include `.opencode/commands/` paths).
 
 **Evidence**:
 ```typescript
@@ -78,7 +78,7 @@ if (file.isFile() && file.name.endsWith('.md')) {
 **Evidence**:
 ```typescript
 // From memory-save.ts:1029
-throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skill/*/constitutional/, or README.md/README.txt paths');
+throw new Error('File must be a .md or .txt file in: specs/**/memory/, specs/**/ (spec docs), .opencode/skills/*/constitutional/, or README.md/README.txt paths');
 ```
 
 **Significance**: Validation currently rejects `.txt` files. Must update regex/logic to accept `.txt` from allowed paths.
@@ -199,8 +199,8 @@ if (incremental && !force) {
 
 **Affected Lines**:
 - `findMemoryFiles()`: ~150-200 (specs/**/memory/)
-- `findSkillReadmes()`: ~269-300 (.opencode/skill/)
-- `findProjectReadmes()`: ~310-344 (root directory, expanded to include .opencode/command/)
+- `findSkillReadmes()`: ~269-300 (.opencode/skills/)
+- `findProjectReadmes()`: ~310-344 (root directory, expanded to include .opencode/commands/)
 - `isReadmeFileName()`: ~50-55 (helper function using regex /^readme\.(md|txt)$/i)
 
 **Pattern**:
@@ -227,10 +227,10 @@ if (isReadmeFileName(entry.name)) {
 **Pattern**:
 ```typescript
 // Before
-/(specs\/.*\/memory\/.*|\.opencode\/skill\/.*|\.opencode\/command\/.*)\.md$/
+/(specs\/.*\/memory\/.*|\.opencode\/skill\/.*|\.opencode\/commands\/.*)\.md$/
 
 // After
-/(specs\/.*\/memory\/.*|\.opencode\/skill\/.*|\.opencode\/command\/.*)\.(md|txt)$/
+/(specs\/.*\/memory\/.*|\.opencode\/skill\/.*|\.opencode\/commands\/.*)\.(md|txt)$/
 ```
 
 ---
@@ -258,8 +258,8 @@ if (isReadmeFileName(entry.name)) {
 **Q1**: Should `.txt` files be indexed with reduced importance weight?
 **A1**: Yes, follow README precedent (0.3) to avoid outranking specs (ADR-004)
 
-**Q2**: Should we support `.txt` files outside `.opencode/command/`?
-**A2**: Yes, allow in specs/ and .opencode/skill/ for consistency (same paths as `.md`)
+**Q2**: Should we support `.txt` files outside `.opencode/commands/`?
+**A2**: Yes, allow in specs/ and .opencode/skills/ for consistency (same paths as `.md`)
 
 **Q3**: Do we need a feature flag for `.txt` indexing?
 **A3**: No, low-risk additive change doesn't warrant flag overhead (ADR-002)

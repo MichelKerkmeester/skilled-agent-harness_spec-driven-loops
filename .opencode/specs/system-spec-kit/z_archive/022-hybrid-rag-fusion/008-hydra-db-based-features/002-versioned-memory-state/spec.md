@@ -106,12 +106,12 @@ Introduce a durable lineage contract that makes temporal state resolution explic
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Add lineage and active-projection schema extensions |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/history.ts` | Modify | Bridge historical events into lineage transitions |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Emit append-first version transitions |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/storage/` | Create/Modify | Add lineage-state helpers and integrity validators |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/` | Create/Modify | Add lineage, temporal-query, migration, and rollback coverage |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add lineage and temporal-query validation procedures |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Add lineage and active-projection schema extensions |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts` | Modify | Bridge historical events into lineage transitions |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Emit append-first version transitions |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/` | Create/Modify | Add lineage-state helpers and integrity validators |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/` | Create/Modify | Add lineage, temporal-query, migration, and rollback coverage |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Modify | Add lineage and temporal-query validation procedures |
 
 <!-- /ANCHOR:scope -->
 

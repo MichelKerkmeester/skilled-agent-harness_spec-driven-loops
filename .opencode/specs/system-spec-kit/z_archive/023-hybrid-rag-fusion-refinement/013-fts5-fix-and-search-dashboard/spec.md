@@ -62,7 +62,7 @@ This is **Phase 13** of the ESM Module Compliance specification and captures the
 
 **Item 1 — FTS5 Double-Quoting Bug (COMPLETED):** `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `"semantic search"`. When `fts5Bm25Search()` in `sqlite-fts.ts` wraps every token in quotes unconditionally, the result is invalid FTS5 syntax `""semantic search""`. SQLite silently rejects the malformed query, so every multi-word search through the MCP hybrid pipeline drops all FTS5 results without surfacing an error. Fix applied at line 58; compiled to dist.
 
-**Item 2 — Search Dashboard Visualization (COMPLETED):** The `/memory:search` result dashboard rendered spec folder paths at full length and used a dense layout, making results hard to scan. Design 10 (folder-as-tree-group with leaf folder names) was selected and applied to `.opencode/command/memory/search.md` and `.agents/commands/memory/search.toml`.
+**Item 2 — Search Dashboard Visualization (COMPLETED):** The `/memory:search` result dashboard rendered spec folder paths at full length and used a dense layout, making results hard to scan. Design 10 (folder-as-tree-group with leaf folder names) was selected and applied to `.opencode/commands/memory/search.md` and `.agents/commands/memory/search.toml`.
 
 **Item 3 — Database Path Drift (NEW — P0):** `resolve_database_path()` in `vector-index-store.ts` (lines 277–290) selects the active SQLite DB based on the embedding provider singleton's current state. After the Voyage-4 provider is lazily initialized, the function resolves to the empty provider-specific DB (`context-index__voyage__voyage-4__1024.sqlite`) rather than the populated `context-index.sqlite`. This causes vector search to return zero results from a structurally valid but empty index, with no error raised.
 
@@ -88,7 +88,7 @@ Resolve the P0 database path drift so that vector search consistently reads from
 
 **Item 2 (COMPLETED)**
 - 30 dashboard design alternatives generated in `scratch/`
-- Design 10 (folder-as-tree-group) applied to `.opencode/command/memory/search.md`
+- Design 10 (folder-as-tree-group) applied to `.opencode/commands/memory/search.md`
 - Applied to `.agents/commands/memory/search.toml`
 
 **Item 3 — DB Path Drift (P0 fixes)**
@@ -115,7 +115,7 @@ Resolve the P0 database path drift so that vector search consistently reads from
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `mcp_server/lib/search/sqlite-fts.ts` | Modify (DONE) | Guard at line 58 preventing double-quoting |
-| `.opencode/command/memory/search.md` | Modify (DONE) | Design 10 dashboard applied |
+| `.opencode/commands/memory/search.md` | Modify (DONE) | Design 10 dashboard applied |
 | `.agents/commands/memory/search.toml` | Modify (DONE) | Design 10 dashboard applied |
 | `mcp_server/lib/search/vector-index-store.ts` | Modify | Inject explicit DB path; remove hidden singleton dependency in `resolve_database_path()` (lines 277–290) |
 | `shared/embeddings/profile.ts` | Modify | Harden `getDatabasePath()` (lines 63–71) to not silently fall back to empty provider DB |

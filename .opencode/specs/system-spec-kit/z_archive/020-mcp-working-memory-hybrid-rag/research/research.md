@@ -109,7 +109,7 @@ Interpretation: 50.0% (C+D) are below an acceptable "production memory" bar with
 ### 2) Boilerplate fallback dominates decision sections
 
 - A generic sentence appears repeatedly even in files containing concrete decision-like content. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/memory/implementation-summary.md:220]
-- This behavior is directly templated as the no-decisions fallback. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:518]
+- This behavior is directly templated as the no-decisions fallback. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:518]
 
 ### 3) Semantic indexing blocks are often empty or low-signal
 
@@ -136,16 +136,16 @@ Interpretation: 50.0% (C+D) are below an acceptable "production memory" bar with
 
 ### RC1: Placeholder defaults are intentionally emitted when data is missing
 
-- The collector emits `[Not assessed]` and `[TBD]` defaults by design. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:145]
+- The collector emits `[Not assessed]` and `[TBD]` defaults by design. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:145]
 - This guarantees structural completeness, but not information completeness.
 
 ### RC2: Template-level fallback inserts low-information decision text
 
-- Decision fallback sentence is hardcoded in the context template when no decisions resolve. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md:516]
+- Decision fallback sentence is hardcoded in the context template when no decisions resolve. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md:516]
 
 ### RC3: Decision extraction relies on narrow signals
 
-- Decision extractor depends on `_manualDecisions` or observations tagged as `type === 'decision'`; otherwise output can collapse to fallback behavior. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:41]
+- Decision extractor depends on `_manualDecisions` or observations tagged as `type === 'decision'`; otherwise output can collapse to fallback behavior. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:41]
 
 ### RC4: Legacy migration normalization is incomplete
 

@@ -2,13 +2,13 @@
 
 ## Focus
 
-This iteration traced how `quality_score` is generated, persisted, and consumed during search in the live DB at `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`. The goal was to determine whether ingest is setting scores correctly, whether `min_quality_score` removes real results in practice, and whether stored quality correlates with observed search relevance.
+This iteration traced how `quality_score` is generated, persisted, and consumed during search in the live DB at `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`. The goal was to determine whether ingest is setting scores correctly, whether `min_quality_score` removes real results in practice, and whether stored quality correlates with observed search relevance.
 
 ## Findings
 
 1. `min_quality_score` is an opt-in DB-column filter, and the requested source/dist files are in sync.
 
-   The helper in `lib/search/search-utils.ts` only filters when the caller passes a finite threshold; otherwise it returns the original result set unchanged. When active, it clamps the threshold to `[0,1]`, treats missing or non-finite `quality_score` as `0`, and performs a raw `quality_score >= threshold` test. The compiled JS in `dist/lib/search/search-utils.js` is semantically identical. The handler layer only resolves the threshold and passes it into the V2 pipeline; the live filtering happens in Stage 1 candidate generation, including the main candidate batch, LLM reformulation, HyDE, and summary-embedding candidates. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:79-105`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/search-utils.js:28-49`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:431-486`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:101-117`, `:991-993`, `:1038-1049`, `:1097-1106`, `:1182-1183`.
+   The helper in `lib/search/search-utils.ts` only filters when the caller passes a finite threshold; otherwise it returns the original result set unchanged. When active, it clamps the threshold to `[0,1]`, treats missing or non-finite `quality_score` as `0`, and performs a raw `quality_score >= threshold` test. The compiled JS in `dist/lib/search/search-utils.js` is semantically identical. The handler layer only resolves the threshold and passes it into the V2 pipeline; the live filtering happens in Stage 1 candidate generation, including the main candidate batch, LLM reformulation, HyDE, and summary-embedding candidates. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:79-105`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-utils.js:28-49`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:431-486`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:101-117`, `:991-993`, `:1038-1049`, `:1097-1106`, `:1182-1183`.
 
    SQL evidence on the live DB shows the filter would be highly destructive if enabled:
 
@@ -29,7 +29,7 @@ This iteration traced how `quality_score` is generated, persisted, and consumed 
 
 2. `save-quality-gate.ts` is not the thing that writes `quality_score`; it is a pass/fail gate, and it is currently in warn-only rollout.
 
-   In the requested TS source, `save-quality-gate.ts` computes a structural/content-quality decision around a `0.4` signal-density threshold and optional semantic dedup, but it does not mutate `parsed.qualityScore`. The dist JS mirrors the same behavior. The actual persisted `quality_score` for MCP saves comes from `runQualityLoop(...)`, which writes `parsed.qualityScore = qualityLoopResult.score.total` before record creation, and that parsed value is then stored in `create-record.ts`. Code: `.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:99-125`, `:243-257`, `:570-619`, `:728-823`, `.opencode/skill/system-spec-kit/mcp_server/dist/lib/validation/save-quality-gate.js:26-47`, `:159-172`, `:441-479`, `:575-655`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:261-265`, `:737-788`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:180-229`.
+   In the requested TS source, `save-quality-gate.ts` computes a structural/content-quality decision around a `0.4` signal-density threshold and optional semantic dedup, but it does not mutate `parsed.qualityScore`. The dist JS mirrors the same behavior. The actual persisted `quality_score` for MCP saves comes from `runQualityLoop(...)`, which writes `parsed.qualityScore = qualityLoopResult.score.total` before record creation, and that parsed value is then stored in `create-record.ts`. Code: `.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:99-125`, `:243-257`, `:570-619`, `:728-823`, `.opencode/skills/system-spec-kit/mcp_server/dist/lib/validation/save-quality-gate.js:26-47`, `:159-172`, `:441-479`, `:575-655`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:261-265`, `:737-788`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:180-229`.
 
    SQL evidence confirms the rollout state:
 
@@ -50,7 +50,7 @@ This iteration traced how `quality_score` is generated, persisted, and consumed 
 
 3. Ingest is not using one quality-scoring path; MCP saves get meaningful scores, while script/index-scan style ingest often writes zero because it only extracts frontmatter `quality_score`.
 
-   The script-side indexer reads `quality_score` from frontmatter using `extractQualityScore(content)` and does not run the quality loop. That extractor returns `0` whenever the frontmatter is missing or does not contain `quality_score`. This is a different ingest contract from `memory-save.ts`, which overwrites `parsed.qualityScore` from `runQualityLoop(...)`. Code: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:145-172`, `.opencode/skill/system-spec-kit/shared/parsing/quality-extractors.ts:21-28`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:261-265`, `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:227-228`.
+   The script-side indexer reads `quality_score` from frontmatter using `extractQualityScore(content)` and does not run the quality loop. That extractor returns `0` whenever the frontmatter is missing or does not contain `quality_score`. This is a different ingest contract from `memory-save.ts`, which overwrites `parsed.qualityScore` from `runQualityLoop(...)`. Code: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:145-172`, `.opencode/skills/system-spec-kit/shared/parsing/quality-extractors.ts:21-28`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:261-265`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:227-228`.
 
    The DB distribution strongly matches that split ingest model:
 
@@ -89,7 +89,7 @@ This iteration traced how `quality_score` is generated, persisted, and consumed 
 
 4. `filterByMinQualityScore` does remove real search results in practice if enabled, but the current evidence suggests it is mostly dormant in normal search because no runtime caller sets a default threshold.
 
-   I found the parameter defined in the handler/schema/docs/tests, but no non-test runtime caller in the repo that sets it by default. The implementation itself also has no default threshold. Code/search evidence: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:431-486`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:115-125`, `.opencode/command/memory/search.md:897-898`, plus repo-wide `rg -n "min_quality_score|minQualityScore"` showing docs, schemas, tests, and no production caller setting a baseline threshold.
+   I found the parameter defined in the handler/schema/docs/tests, but no non-test runtime caller in the repo that sets it by default. The implementation itself also has no default threshold. Code/search evidence: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:431-486`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:115-125`, `.opencode/commands/memory/search.md:897-898`, plus repo-wide `rg -n "min_quality_score|minQualityScore"` showing docs, schemas, tests, and no production caller setting a baseline threshold.
 
    The live search logs show why enabling it would be risky:
 

@@ -167,11 +167,11 @@ Phase A outcome: skeleton + entry-point doc per stack; routing broken; supersede
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Path resolution | All 33 SKILL.md `RESOURCE_MAPS[NEXTJS|GO]` paths | `[ -f $p ] || echo MISSING $p` loop |
-| sk-doc validate | 9 reference + 2 asset checklist files | `python3 .opencode/skill/sk-doc/scripts/validate_document.py <file> --json` |
-| sk-doc DQI | Same 9 + 2 files | `python3 .opencode/skill/sk-doc/scripts/extract_structure.py <file>` |
+| sk-doc validate | 9 reference + 2 asset checklist files | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <file> --json` |
+| sk-doc DQI | Same 9 + 2 files | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py <file>` |
 | No fictional code | Markdown stubs (cross_stack_pairing exempt) | `grep -rE '^\`\`\`' references/{nextjs,go} --include="*.md"` |
-| Project leakage | Whole `sk-code/` subtree | `grep -rl "kerkmeester" .opencode/skill/sk-code/` |
-| Anchor sweep | Whole `sk-code/` subtree | `grep -rln '<!--.*ANCHOR:' .opencode/skill/sk-code/` |
+| Project leakage | Whole `sk-code/` subtree | `grep -rl "kerkmeester" .opencode/skills/sk-code/` |
+| Anchor sweep | Whole `sk-code/` subtree | `grep -rln '<!--.*ANCHOR:' .opencode/skills/sk-code/` |
 | Routing regression | sk-code skill advisor | `skill_advisor.py "<prompt>" --threshold 0.8` × 3 prompts |
 
 ---
@@ -201,7 +201,7 @@ Phase A outcome: skeleton + entry-point doc per stack; routing broken; supersede
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Phase B regenerates fictional code; Phase C scrub damages cross_stack_pairing canonical structure; Phase D advisor regression on Webflow.
-- **Procedure**: `git checkout -- .opencode/skill/sk-code/` to revert sk-code changes; rerun cli-codex with corrected prompt; re-author sk-doc rewrites incrementally.
+- **Procedure**: `git checkout -- .opencode/skills/sk-code/` to revert sk-code changes; rerun cli-codex with corrected prompt; re-author sk-doc rewrites incrementally.
 
 ---
 
@@ -255,8 +255,8 @@ Phase A (origin) ──► [superseded] ──► Phase B (rename + fill) ──
 - [x] Webflow content unchanged check: `git diff -- references/webflow assets/webflow scripts/` empty after every phase.
 
 ### Rollback Procedure
-1. **Phase B fictional code**: `git checkout -- .opencode/skill/sk-code/{references,assets}/{nextjs,go}` → re-dispatch cli-codex with stricter prohibitions.
-2. **Phase C reference rewrite damage**: `git checkout -- .opencode/skill/sk-code/references/{universal,router}/` → re-attempt with sk-doc template study.
+1. **Phase B fictional code**: `git checkout -- .opencode/skills/sk-code/{references,assets}/{nextjs,go}` → re-dispatch cli-codex with stricter prohibitions.
+2. **Phase C reference rewrite damage**: `git checkout -- .opencode/skills/sk-code/references/{universal,router}/` → re-attempt with sk-doc template study.
 3. **Phase D advisor regression**: revert specific edit; isolate which change broke the score.
 
 ### Data Reversal

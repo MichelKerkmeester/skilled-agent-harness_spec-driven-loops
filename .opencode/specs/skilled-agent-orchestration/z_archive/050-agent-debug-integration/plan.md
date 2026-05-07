@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Draft tasks.md with concrete T### items"
     blockers: []
     key_files:
-      - ".opencode/agent/debug.md"
-      - ".opencode/agent/orchestrate.md"
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml"
+      - ".opencode/agents/debug.md"
+      - ".opencode/agents/orchestrate.md"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-04-27-debug-integration"
@@ -49,7 +49,7 @@ _memory:
 | **Testing** | Manual rehearsal via synthetic 3-failure throwaway spec; static greps for forbidden phrases; `validate.sh --strict` for spec folder docs. |
 
 ### Overview
-This is a documentation-truthing pass plus a small UX upgrade to an existing prompt. **Edit A** rewrites every "auto-dispatch" / "Task tool dispatches" claim across four runtime agent definitions (`.opencode/agent/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`), the orchestrator (`.opencode/agent/orchestrate.md`), and the two implementation YAML configs (`spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml`) so the descriptions match the real (user-invoked, prompted-offer) behavior. **Edit B** replaces the buried A/B/C/D failure-threshold menu with a single `y / continue manually / skip` prompt, and on `y` writes a pre-filled `debug-delegation.md` scaffold using the Debug Context Handoff schema. No autonomous routing is introduced.
+This is a documentation-truthing pass plus a small UX upgrade to an existing prompt. **Edit A** rewrites every "auto-dispatch" / "Task tool dispatches" claim across four runtime agent definitions (`.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md`), the orchestrator (`.opencode/agents/orchestrate.md`), and the two implementation YAML configs (`spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml`) so the descriptions match the real (user-invoked, prompted-offer) behavior. **Edit B** replaces the buried A/B/C/D failure-threshold menu with a single `y / continue manually / skip` prompt, and on `y` writes a pre-filled `debug-delegation.md` scaffold using the Debug Context Handoff schema. No autonomous routing is introduced.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -60,7 +60,7 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 ### Definition of Ready
 - [x] Problem statement clear and scope documented (see spec.md §2-§3)
 - [x] Success criteria measurable (see spec.md §5)
-- [x] Dependencies identified — only `.opencode/agent/debug.md:60-89` schema and `validate.sh --strict`; both exist today
+- [x] Dependencies identified — only `.opencode/agents/debug.md:60-89` schema and `validate.sh --strict`; both exist today
 - [x] User constraint resolved — no auto-dispatch, period
 
 ### Definition of Done
@@ -81,8 +81,8 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 **Documentation-rewrite + thin scaffold generator.** No new modules, no new dispatch surfaces. The scaffold generator is a small helper (likely Bash or a Node CLI) that reads recent-failure metadata from the workflow's running state and emits a Markdown file populated with the Debug Context Handoff schema.
 
 ### Key Components
-- **Runtime agent definitions (×4)**: `.opencode/agent/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md` — same content, three formats. Edits mirrored across all four.
-- **Orchestrator**: `.opencode/agent/orchestrate.md` — single source of truth for routing prose. Affected lines: 99 (priority routing table), 492 (REASSIGN step), 537-539 (Debug Delegation Trigger), 595 (debug delegation row in routing lookup), 461 (debug.md Related Resources table — actually inside debug.md, not orchestrate.md).
+- **Runtime agent definitions (×4)**: `.opencode/agents/debug.md`, `.claude/agents/debug.md`, `.codex/agents/debug.toml`, `.gemini/agents/debug.md` — same content, three formats. Edits mirrored across all four.
+- **Orchestrator**: `.opencode/agents/orchestrate.md` — single source of truth for routing prose. Affected lines: 99 (priority routing table), 492 (REASSIGN step), 537-539 (Debug Delegation Trigger), 595 (debug delegation row in routing lookup), 461 (debug.md Related Resources table — actually inside debug.md, not orchestrate.md).
 - **Workflow YAML configs (×2)**: `spec_kit_implement_auto.yaml`, `spec_kit_complete_auto.yaml` — the prompt and `failure_tracking` metadata that operators see at the threshold.
 - **Scaffold generator**: New small helper. Inputs: spec folder path, last 3 failure entries (error message, file, attempt summary). Output: `<spec-folder>/debug-delegation.md` populated with handoff fields. Versioned filename if a prior scaffold exists.
 
@@ -108,24 +108,24 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 
 ### Phase 2: Edit A — Truth-Up Aspirational Claims
 
-**A.1 — `.opencode/agent/debug.md`** (lines 3, 24, 461)
+**A.1 — `.opencode/agents/debug.md`** (lines 3, 24, 461)
 - L3 description: `"User-invoked fresh-perspective debugging specialist. Surfaced as a prompted offer when an implementation workflow detects ≥3 task failures, or invoked explicitly by the user via the Task tool."`
 - L24 lead: same semantic rewrite, expanded to a sentence that emphasizes user-opt-in and the structured handoff requirement.
 - L461 Related Resources table row: `"orchestrate"` relationship changes from `"Dispatches debug after 3 failures"` to `"Prompts user to dispatch debug after 3 failures (user opts in)"`.
 
-**A.2 — `.opencode/agent/orchestrate.md`** (lines 99, 492, 537-539, 595)
+**A.2 — `.opencode/agents/orchestrate.md`** (lines 99, 492, 537-539, 595)
 - L99 priority routing row: rewrite the cell to `"Debugging when failure_count >= 3, prompted via the workflow and dispatched by the user via Task tool"`.
 - L492 REASSIGN step: rewrite the second clause from `"or dispatch @debug via Task tool when failure_count >= 3"` to `"or surface a prompted offer to dispatch @debug via Task tool when failure_count >= 3 (user opts in; orchestrator does not auto-dispatch)"`.
 - L537-539 Debug Delegation Trigger: insert "and prompt the user" after "prepare a diagnostic summary." Drop the `"and dispatch"` language.
 - L595 routing-lookup row: same wording change as L99.
 
-**A.3 — `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`** (lines 210-217, 411-413)
+**A.3 — `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`** (lines 210-217, 411-413)
 - L212 condition: from `"ONLY dispatch when failure_count >= 3..."` to `"ONLY surface a prompted offer when failure_count >= 3..."`.
 - L215 metadata: rename `failure_tracking` → `prompt_threshold` (or annotate inline as `"prompt threshold; never auto-routes"`).
 - L216 on_threshold: rewrite from the buried A/B/C/D suggestion to `"Surface a single y/n/skip prompt; on y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool."`
 - L411-413 `debug_delegation.action`: replace with the new prompt block (see Edit B below).
 
-**A.4 — `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`** (lines 321-328, 898-910)
+**A.4 — `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`** (lines 321-328, 898-910)
 - Mirror A.3 changes at L321-328.
 - L898-910 `debug_escalation` block (the actual A/B/C/D menu in this file): replace with the same y/n/skip prompt format from Edit B.
 
@@ -147,11 +147,11 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 - On `skip`: per existing skip semantics, reset failure counter.
 
 **B.2 — Scaffold generator**
-- Add a Bash or small Node helper (likely under `.opencode/skill/system-spec-kit/scripts/spec/` since other one-shot helpers live there). Suggested path: `.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (Bash for parity with `create.sh`, `validate.sh`).
+- Add a Bash or small Node helper (likely under `.opencode/skills/system-spec-kit/scripts/spec/` since other one-shot helpers live there). Suggested path: `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` (Bash for parity with `create.sh`, `validate.sh`).
 - Inputs (CLI args): `--spec-folder <path>` `--errors <json-array>` (or `--errors-file <path>`).
-- Output: `<spec-folder>/debug-delegation.md` populated from the `debug-delegation.md` template under `.opencode/skill/system-spec-kit/templates/`, filling the Error Description, Files Involved, Reproduction Steps, Prior Attempts, and Environment sections.
+- Output: `<spec-folder>/debug-delegation.md` populated from the `debug-delegation.md` template under `.opencode/skills/system-spec-kit/templates/`, filling the Error Description, Files Involved, Reproduction Steps, Prior Attempts, and Environment sections.
 - Versioning: if `debug-delegation.md` already exists, write `debug-delegation-002.md`, then `-003.md`, etc.
-- Schema parity: scaffold must populate the exact section headers from `.opencode/agent/debug.md:60-89` so the agent's "If handoff is incomplete" check passes on dispatch.
+- Schema parity: scaffold must populate the exact section headers from `.opencode/agents/debug.md:60-89` so the agent's "If handoff is incomplete" check passes on dispatch.
 
 **B.3 — YAML wiring**
 - Insert the scaffold-generator invocation into both YAML files at the y-branch of the prompt.
@@ -179,7 +179,7 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 | Manual rehearsal — y branch | Synthetic 3-failure flow → prompt fires → `y` → scaffold lands → no auto-dispatch | Throwaway `specs/099-debug-rehearsal/` |
 | Manual rehearsal — manually branch | Same setup → `continue manually` → no scaffold, no dispatch, counter not reset | Same |
 | Manual rehearsal — skip branch | Same setup → `skip` → no scaffold, counter resets per existing reset_on rule | Same |
-| `validate.sh --strict` | Spec folder template compliance | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| `validate.sh --strict` | Spec folder template compliance | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Diff parity check | Four runtime debug descriptions semantically aligned | Side-by-side diff after edits |
 <!-- /ANCHOR:testing -->
 
@@ -190,9 +190,9 @@ This is a documentation-truthing pass plus a small UX upgrade to an existing pro
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Debug Context Handoff schema (`.opencode/agent/debug.md:60-89`) | Internal | Green | Scaffold generator depends on this schema; if it changes mid-impl, regenerate scaffold to match. |
+| Debug Context Handoff schema (`.opencode/agents/debug.md:60-89`) | Internal | Green | Scaffold generator depends on this schema; if it changes mid-impl, regenerate scaffold to match. |
 | `validate.sh --strict` script | Internal | Green | Required for REQ-007. |
-| `.opencode/skill/system-spec-kit/templates/debug-delegation.md` template | Internal | Green | Scaffold generator copies from here; verify-only step in Phase 1 confirms parity. |
+| `.opencode/skills/system-spec-kit/templates/debug-delegation.md` template | Internal | Green | Scaffold generator copies from here; verify-only step in Phase 1 confirms parity. |
 | `task_failure_count` counter in workflow runtime | Internal | **Yellow — verify** | The YAML metadata declares this counter, but the deep dive confirmed no executable code maintains it. Phase 1 must verify whether the existing failure-detection branch in `implement_auto.yaml:411-413` actually fires today; if not, this packet may need to add a small counter increment in the YAML interpreter. **This is a known UNKNOWN** and may expand scope by ~30 LOC. |
 <!-- /ANCHOR:dependencies -->
 
@@ -250,7 +250,7 @@ Phase 1 (Setup) ──► Phase 2 (Edit A) ──► Phase 3 (Edit B) ──► 
 
 ### Rollback Procedure
 1. `git revert <impl-commit-sha>` — restores all 9 files at once.
-2. Delete the new scaffold-generator script if it landed (`.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`).
+2. Delete the new scaffold-generator script if it landed (`.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`).
 3. Delete the manual-testing playbook entry for this packet.
 4. Run `validate.sh --strict` on the spec folder to confirm no spec-doc damage.
 5. Document the revert in this packet's `decision-record.md` if a Level 3 escalation becomes necessary.

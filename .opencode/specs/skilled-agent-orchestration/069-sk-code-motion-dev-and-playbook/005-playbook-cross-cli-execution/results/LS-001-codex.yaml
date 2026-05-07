@@ -28,7 +28,7 @@ quality_flags: []
 agent: "none"
 response_excerpt: |
   Before I proceed, I need to ask about documentation:
-  This modifies `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.ts`, so which spec folder should this use?
+  This modifies `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.ts`, so which spec folder should this use?
   
   A) Existing spec folder
   B) New spec folder

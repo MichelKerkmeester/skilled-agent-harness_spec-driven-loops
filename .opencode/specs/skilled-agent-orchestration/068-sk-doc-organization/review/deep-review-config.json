@@ -20,9 +20,9 @@
     "hardCap": 7
   },
   "scope_inclusions": [
-    ".opencode/skill/sk-doc/",
-    ".opencode/command/create/",
-    ".opencode/agent/create.md",
+    ".opencode/skills/sk-doc/",
+    ".opencode/commands/create/",
+    ".opencode/agents/create.md",
     ".opencode/install_guides/SET-UP - Opencode Agents.md",
     ".claude/commands/create/",
     ".claude/agents/create.md",
@@ -39,9 +39,9 @@
     ".opencode/specs/**/logs/**",
     ".opencode/specs/**/research/**",
     ".opencode/specs/**/review/**",
-    ".opencode/skill/sk-doc/changelog/v[0-9]*.md",
-    ".opencode/skill/system-spec-kit/mcp_server/dist/**",
-    ".opencode/skill/system-spec-kit/scripts/observability/**",
+    ".opencode/skills/sk-doc/changelog/v[0-9]*.md",
+    ".opencode/skills/system-spec-kit/mcp_server/dist/**",
+    ".opencode/skills/system-spec-kit/scripts/observability/**",
     ".tmp/**"
   ],
   "review_focus_per_iteration": {

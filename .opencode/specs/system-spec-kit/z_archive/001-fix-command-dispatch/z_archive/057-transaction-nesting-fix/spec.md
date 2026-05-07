@@ -53,8 +53,8 @@ Refactor `indexMemory()` to use `database.transaction()` wrapper (matching `upda
 
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js` | Converted `indexMemory()` from explicit BEGIN/COMMIT/ROLLBACK to `database.transaction()` wrapper |
-| `.opencode/skill/system-spec-kit/scripts/test-bug-fixes.js` | Updated test T-010a/T-010b to verify new pattern |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` | Converted `indexMemory()` from explicit BEGIN/COMMIT/ROLLBACK to `database.transaction()` wrapper |
+| `.opencode/skills/system-spec-kit/scripts/test-bug-fixes.js` | Updated test T-010a/T-010b to verify new pattern |
 
 ## Verification
 

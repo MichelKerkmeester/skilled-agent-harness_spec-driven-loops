@@ -84,10 +84,10 @@ Categories:
 #### B. Wiring / Automation Bugs
 
 - **B1 — Hook contract drift across runtimes.** Audit the 5 hook integrations (Claude `user-prompt-submit`, Copilot `user-prompt-submit`, Gemini `user-prompt-submit`, Codex `SessionStart`+`UserPromptSubmit`, OpenCode plugin bridge) under `mcp_server/skill_advisor/lib/hooks/` and runtime-specific plugins. Do they all produce the same advisor-brief format? Same fallback paths when the daemon is down? Cite the rendering function + format strings per runtime.
-- **B2 — CLI orchestrator skill correctness.** Audit `.opencode/skill/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/` for: dispatch-prompt template correctness, mode/flag drift between skills, self-invocation guards, sandbox/approval flag wiring. Where does each skill drift from the others?
+- **B2 — CLI orchestrator skill correctness.** Audit `.opencode/skills/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/` for: dispatch-prompt template correctness, mode/flag drift between skills, self-invocation guards, sandbox/approval flag wiring. Where does each skill drift from the others?
 - **B3 — Memory MCP round-trip integrity.** Audit `memory_save → memory_index_scan → memory_search → memory_context` flow: does what gets saved actually become searchable? Are continuity blocks parsed correctly? Are causal links preserved? Trace 1-2 example saves end-to-end and report inconsistencies.
 - **B4 — Spec-kit validator correctness.** Audit `scripts/spec/validate.sh` and the rule files in `scripts/rules/`. Are there false positives (failing valid spec folders) or false negatives (passing invalid)? Specifically: SPEC_DOC_INTEGRITY checks, EVIDENCE_CITED patterns (does it really catch all evidence formats?), TEMPLATE_HEADERS detection (regex sufficiency).
-- **B5 — Workflow command auto-routing.** Audit `.opencode/command/spec_kit/` (complete.md, plan.md, implement.md, deep-research.md, deep-review.md, resume.md) for state-machine correctness: do the YAML workflows handle missing prerequisites, gate failures, partial state correctly? Where can the workflow get stuck or skip a required step?
+- **B5 — Workflow command auto-routing.** Audit `.opencode/commands/spec_kit/` (complete.md, plan.md, implement.md, deep-research.md, deep-review.md, resume.md) for state-machine correctness: do the YAML workflows handle missing prerequisites, gate failures, partial state correctly? Where can the workflow get stuck or skip a required step?
 
 #### C. Refinement / Improvement Opportunities
 

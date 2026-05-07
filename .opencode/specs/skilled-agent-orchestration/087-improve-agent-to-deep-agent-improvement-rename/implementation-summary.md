@@ -26,7 +26,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary: Rename `@improve-agent` → `@deep-agent-improvement`
 
@@ -60,15 +60,15 @@ After this packet, the naming-family is consistent: skill `deep-agent-improvemen
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/agent/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Canonical agent file (.opencode runtime) |
+| `.opencode/agents/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Canonical agent file (.opencode runtime) |
 | `.claude/agents/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Claude runtime mirror |
 | `.gemini/agents/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Gemini runtime mirror |
 | `.codex/agents/improve-agent.toml` → `deep-agent-improvement.toml` | Renamed | Codex runtime mirror |
 | `improve_improve-agent_{auto,confirm}.yaml` × 2 runtimes | Renamed | YAML asset filename pattern reflects new agent identity |
-| `.opencode/command/improve/agent.md` + mirrors | Modified | YAML filename refs + dispatch refs |
-| `.opencode/skill/deep-agent-improvement/**` | Modified | ~22 internal `@improve-agent` refs migrated |
-| `AGENTS.md`, `README.md`, `.opencode/agent/README.txt` | Modified | Public registry entries |
-| `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` | Created | New changelog documenting the rename |
+| `.opencode/commands/improve/agent.md` + mirrors | Modified | YAML filename refs + dispatch refs |
+| `.opencode/skills/deep-agent-improvement/**` | Modified | ~22 internal `@improve-agent` refs migrated |
+| `AGENTS.md`, `README.md`, `.opencode/agents/README.txt` | Modified | Public registry entries |
+| `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` | Created | New changelog documenting the rename |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,7 +106,7 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 | Frontmatter grep `name: improve-agent` / `name = "improve-agent"` | PASS — 0 lines |
 | Advisor recommendation parity | PASS — `deep-agent-improvement` top hit, score 0.646-0.700, confidence 0.851-0.878 (pre/post-remediation) |
 | 5-iter deep-review on 087 | PASS (CONDITIONAL → PASS) — converged 4/5 iters with 6 P1 advisories; ALL 6 remediated in same wave (gemini docs, old agent path refs, bare improve-agent in skill internals + cli-opencode + advisor regression fixtures); post-remediation residual 0 |
-| Smoke dispatch (scan-integration.cjs against `.opencode/agent/deep-agent-improvement.md`) | PASS — exit 0, 49 surfaces detected, 13 skills |
+| Smoke dispatch (scan-integration.cjs against `.opencode/agents/deep-agent-improvement.md`) | PASS — exit 0, 49 surfaces detected, 13 skills |
 | Vitest (no regression in advisor scoring tests) | PASS (carried over from 079 verification — same advisor source files) |
 | Branch hygiene | PASS — on `main`, no auto-branch surviving |
 
@@ -114,14 +114,14 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 
 | REQ ID | Status | Evidence |
 |--------|--------|----------|
-| REQ-001 (4 agent files renamed) | MET | `ls` confirms `.opencode/agent/deep-agent-improvement.md`, `.claude/agents/deep-agent-improvement.md`, `.gemini/agents/deep-agent-improvement.md`, `.codex/agents/deep-agent-improvement.toml` exist; old paths absent |
+| REQ-001 (4 agent files renamed) | MET | `ls` confirms `.opencode/agents/deep-agent-improvement.md`, `.claude/agents/deep-agent-improvement.md`, `.gemini/agents/deep-agent-improvement.md`, `.codex/agents/deep-agent-improvement.toml` exist; old paths absent |
 | REQ-002 (frontmatter `name:` rotated) | MET | All 4 files show `name: deep-agent-improvement` (or `name = "deep-agent-improvement"` for TOML) |
-| REQ-003 (4 YAML asset files renamed) | MET | `improve_deep-agent-improvement_{auto,confirm}.yaml` exist in `.opencode/command/improve/assets/` and `.claude/commands/improve/assets/`; old filenames absent |
+| REQ-003 (4 YAML asset files renamed) | MET | `improve_deep-agent-improvement_{auto,confirm}.yaml` exist in `.opencode/commands/improve/assets/` and `.claude/commands/improve/assets/`; old filenames absent |
 | REQ-004 (atomic agent.md + YAML rename) | MET | `agent.md` body refs updated in same wave as `git mv`; `rg 'improve_improve-agent_'` returns 0 in command/improve dirs |
 | REQ-005 (active-code residual = 0) | MET | `rg -F '@improve-agent' .opencode .claude .gemini .codex AGENTS.md README.md \| grep -v specs/ \| grep -v z_archive/ \| grep -v barter/` returns 0 |
 | REQ-006 (active-scope frontmatter = 0) | MET | `rg -F 'name: improve-agent'` and `rg -F 'name = "improve-agent"'` in active scope return 0 |
 | REQ-007 (validate.sh --strict exits 0) | MET | `RESULT: PASSED`, Errors: 0, Warnings: 0 |
-| REQ-008 (new changelog v1.5.0.0.md) | MET | `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` exists; documents rename + 079/085 precedents + migration notes |
+| REQ-008 (new changelog v1.5.0.0.md) | MET | `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` exists; documents rename + 079/085 precedents + migration notes |
 | REQ-009 (root docs updated) | MET | `grep '@improve-agent' AGENTS.md README.md` returns 0 |
 | REQ-010 (this file authored) | MET | This file populated |
 | REQ-011 (/memory:save) | MET | Continuity refreshed via `generate-context.js` invocation |
@@ -159,4 +159,4 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 - **Resource Map**: `resource-map.md`
 - **Predecessor**: `z_archive/079-sk-deep-agent-improvement/`
 - **Direct precedent**: `085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename/`
-- **New changelog entry**: `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` [POPULATE-T-023 with link once authored]
+- **New changelog entry**: `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` [POPULATE-T-023 with link once authored]

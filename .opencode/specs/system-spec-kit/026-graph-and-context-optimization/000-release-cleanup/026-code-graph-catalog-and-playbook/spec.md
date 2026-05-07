@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-code-graph-catalog-and-playbook"
@@ -67,8 +67,8 @@ Add a package-local feature catalog and manual testing playbook for code_graph, 
 ## 3. SCOPE
 
 ### In Scope
-- Create `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/`.
-- Create `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`.
+- Create `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/`.
+- Create `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`.
 - Cross-link runtime README, parent MCP README, root feature catalog category, and root manual playbook category.
 - Create this Level 2 packet with strict validation passing.
 
@@ -81,12 +81,12 @@ Add a package-local feature catalog and manual testing playbook for code_graph, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/` | Create | Runtime feature catalog package |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/` | Create | Runtime manual playbook package |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` | Modify | Link runtime catalog/playbook |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modify | Mention code_graph runtime docs |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md` | Modify | Link runtime catalog |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Modify | Link runtime playbook |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/` | Create | Runtime feature catalog package |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/` | Create | Runtime manual playbook package |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | Modify | Link runtime catalog/playbook |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify | Mention code_graph runtime docs |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/01-category-overview.md` | Modify | Link runtime catalog |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/254-code-graph-scan-query.md` | Modify | Link runtime playbook |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,8 +108,8 @@ Add a package-local feature catalog and manual testing playbook for code_graph, 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md` links every per-feature catalog entry.
-- **SC-002**: `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md` links every scenario.
+- **SC-001**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md` links every per-feature catalog entry.
+- **SC-002**: `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md` links every scenario.
 - **SC-003**: Strict validator exits 0.
 
 ### Acceptance Scenarios

@@ -7,11 +7,11 @@ Two objectives: (1) Answer Q9 -- determine whether response object mutation risk
 
 ### Q9 Investigation: Response Object Mutation Risk
 
-1. **After-tool callback architecture is fire-and-forget via `queueMicrotask`** (context-server.ts:174). Callbacks are scheduled as microtasks, meaning they run AFTER the current synchronous code finishes but BEFORE the next event-loop turn. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:169-182]
+1. **After-tool callback architecture is fire-and-forget via `queueMicrotask`** (context-server.ts:174). Callbacks are scheduled as microtasks, meaning they run AFTER the current synchronous code finishes but BEFORE the next event-loop turn. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:169-182]
 
-2. **The same mutable `result` reference is shared between the main response pipeline and callbacks** (context-server.ts:325-330). After `runAfterToolCallbacks(name, callId, result)` is called, the main pipeline continues to mutate `result` synchronously (appending autoSurfaceHints at line 335-337, token budget enforcement at lines 341-389). [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:325-337]
+2. **The same mutable `result` reference is shared between the main response pipeline and callbacks** (context-server.ts:325-330). After `runAfterToolCallbacks(name, callId, result)` is called, the main pipeline continues to mutate `result` synchronously (appending autoSurfaceHints at line 335-337, token budget enforcement at lines 341-389). [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:325-337]
 
-3. **The only registered callback (extraction-adapter `handleAfterTool`) is READ-ONLY.** It calls `stringifyToolResult(result)` (line 238) to serialize the result and `resolveSessionId(result)` (line 265) to extract session data. Neither function mutates the result object. The callback writes only to `workingMemory` via `upsertExtractedEntry`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:233-282]
+3. **The only registered callback (extraction-adapter `handleAfterTool`) is READ-ONLY.** It calls `stringifyToolResult(result)` (line 238) to serialize the result and `resolveSessionId(result)` (line 265) to extract session data. Neither function mutates the result object. The callback writes only to `workingMemory` via `upsertExtractedEntry`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:233-282]
 
 4. **Timing analysis confirms no race condition.** Since the callback runs in a `queueMicrotask`, it executes AFTER the synchronous main-pipeline mutations (lines 334-389) complete. By the time `handleAfterTool` reads the result via `stringifyToolResult`, the result has already been fully enriched (autoSurface + token budget) and the response has been returned to the MCP client. The callback sees the FINAL state of the result, not a partial one. [INFERENCE: based on Node.js microtask scheduling semantics + code at context-server.ts:169-182,272-389]
 
@@ -72,8 +72,8 @@ All findings from iterations 1-3, organized by priority.
 ---
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` (lines 131-182, 270-389, 929)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts` (lines 233-289)
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` (lines 131-182, 270-389, 929)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts` (lines 233-289)
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/research/iterations/iteration-001.md` (prior findings)
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/research/iterations/iteration-002.md` (prior findings)
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/research/deep-research-strategy.md` (state context)

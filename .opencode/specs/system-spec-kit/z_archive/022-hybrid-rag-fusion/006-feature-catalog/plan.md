@@ -392,8 +392,8 @@ Map each source file to its feature catalog entry and add concise `// Feature ca
 
 ### Technical Context
 
-- Scope: comment-only updates in `.opencode/skill/system-spec-kit/mcp_server/` and `.opencode/skill/system-spec-kit/shared/`
-- Source of truth for names: feature catalog H1 headings in `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
+- Scope: comment-only updates in `.opencode/skills/system-spec-kit/mcp_server/` and `.opencode/skills/system-spec-kit/shared/`
+- Source of truth for names: feature catalog H1 headings in `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
 - Verification inputs: non-test stale-reference grep, handler coverage (40/40), script coverage (3/3), exact-name validation (0 invalid names), and `npm run typecheck`
 
 ---

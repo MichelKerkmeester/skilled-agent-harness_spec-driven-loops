@@ -8,15 +8,15 @@
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/spec.md:50`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/spec.md:140`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/026-readiness-scaffolding-cleanup/implementation-summary.md:56`
-- `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:81`
-- `.opencode/skill/system-spec-kit/mcp_server/core/index.ts:37`
-- `.opencode/skill/system-spec-kit/mcp_server/core/README.md:40`
+- `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:81`
+- `.opencode/skills/system-spec-kit/mcp_server/core/index.ts:37`
+- `.opencode/skills/system-spec-kit/mcp_server/core/README.md:40`
 
 ## Findings
 
 ### F-003
 ```json
-{"id":"F-003","severity":"P2","dimension":"maintainability","summary":"core/README.md still documents embedding-readiness ownership after 026 removed the scaffold.","evidence":".opencode/skill/system-spec-kit/mcp_server/core/README.md:40","status":"new"}
+{"id":"F-003","severity":"P2","dimension":"maintainability","summary":"core/README.md still documents embedding-readiness ownership after 026 removed the scaffold.","evidence":".opencode/skills/system-spec-kit/mcp_server/core/README.md:40","status":"new"}
 ```
 Severity rationale: production TypeScript and exports are clean, so this is documentation drift rather than a runtime blocker.
 

@@ -3,11 +3,11 @@ GATE 3 PRE-ANSWERED: D (skip — documentation-only edits across three READMEs t
 Skill routing: sk-doc is preselected; do not re-evaluate. Proceed directly to the task.
 
 You may write to:
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md (if it exists)
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md (if it exists)
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/code_graph/SKILL.md (if no README)
-- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/skill_advisor/SKILL.md (if no README)
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md (if it exists)
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md (if it exists)
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/code_graph/SKILL.md (if no README)
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SKILL.md (if no README)
 
 Do NOT modify any other file.
 
@@ -17,9 +17,9 @@ Do NOT modify any other file.
 
 Apply the same pattern fixes that were just landed in the root README (commit 6a3167e19) to three secondary READMEs:
 
-1. `.opencode/skill/system-spec-kit/mcp_server/README.md` — the MCP server reference
-2. `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` (or `SKILL.md` if no README) — Code Graph subsystem
-3. `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md` (or `SKILL.md` if no README) — Skill Advisor subsystem
+1. `.opencode/skills/system-spec-kit/mcp_server/README.md` — the MCP server reference
+2. `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` (or `SKILL.md` if no README) — Code Graph subsystem
+3. `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md` (or `SKILL.md` if no README) — Skill Advisor subsystem
 
 # Pattern fixes
 

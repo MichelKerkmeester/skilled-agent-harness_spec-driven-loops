@@ -187,10 +187,10 @@ Nothing changes for users. Run the same commands you ran before:
 
 ```bash
 # Create a new spec folder
-bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/123-my-feature --name "my-feature"
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --path specs/123-my-feature --name "my-feature"
 
 # Validate it
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/123-my-feature --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/123-my-feature --strict
 ```
 
 If you previously copied templates by hand from `templates/level_3/`, that won't work anymore (the directory is gone). Use `create.sh` instead — it does the same thing.
@@ -199,7 +199,7 @@ If you previously copied templates by hand from `templates/level_3/`, that won't
 
 ## 6. What If I'm A Maintainer Adding A New Document?
 
-Read `.opencode/skill/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md`. The five-minute version:
+Read `.opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md`. The five-minute version:
 
 1. Drop a `your-doc.md.tmpl` file into `templates/manifest/`. Use `<!-- IF level:N -->...<!-- /IF -->` markers to gate sections per Level.
 2. Add an entry in `spec-kit-docs.json.documents` listing your new doc.

@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Keep packet docs synced with any future deep-review or advisor adjustments"
     blockers: []
     key_files:
-      - ".opencode/skill/skill-advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/sk-deep-review/graph-metadata.json"
-      - ".opencode/skill/sk-deep-research/graph-metadata.json"
+      - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/sk-deep-review/graph-metadata.json"
+      - ".opencode/skills/sk-deep-research/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:036-sk-deep-research-review-split"
       session_id: "036-sk-deep-research-review-split"
@@ -84,10 +84,10 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-deep-review/` | Create | New dedicated review skill package |
-| `.opencode/command/spec_kit/deep-review.md` | Create | New review command entrypoint |
-| `.opencode/skill/sk-deep-research/` | Modify | Remove review-mode content and keep research-only guidance |
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | Modify | Route review keywords to `sk-deep-review` |
+| `.opencode/skills/sk-deep-review/` | Create | New dedicated review skill package |
+| `.opencode/commands/spec_kit/deep-review.md` | Create | New review command entrypoint |
+| `.opencode/skills/sk-deep-research/` | Modify | Remove review-mode content and keep research-only guidance |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modify | Route review keywords to `sk-deep-review` |
 | `.agents/commands/spec_kit/deep-review.toml` | Create | Add runtime wrapper for the new command |
 | `AGENTS.md`, `CLAUDE.md`, `README.md` | Modify | Update top-level references to the split command/skill structure |
 <!-- /ANCHOR:scope -->
@@ -101,7 +101,7 @@ Separate the review-mode experience into a dedicated `sk-deep-review` skill and 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Review mode must move into a dedicated `sk-deep-review` skill package | A separate `.opencode/skill/sk-deep-review/` package exists with review-specific docs and assets |
+| REQ-001 | Review mode must move into a dedicated `sk-deep-review` skill package | A separate `.opencode/skills/sk-deep-review/` package exists with review-specific docs and assets |
 | REQ-002 | A dedicated `/spec_kit:deep-review` command must replace the old review suffix flow | Users can invoke `/spec_kit:deep-review` instead of `/spec_kit:deep-research:review` |
 | REQ-003 | `sk-deep-research` must remove review-mode guidance and remain focused on investigation | Review triggers, references, and command suffix guidance are removed from the research skill |
 | REQ-004 | Review routing must point to the new skill in advisor logic and runtime wrappers | Review keywords and runtime command wrappers resolve to `sk-deep-review` |

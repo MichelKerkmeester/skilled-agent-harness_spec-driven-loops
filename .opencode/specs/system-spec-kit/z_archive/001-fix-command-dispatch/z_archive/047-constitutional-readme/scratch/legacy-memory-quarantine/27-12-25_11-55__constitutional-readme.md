@@ -140,7 +140,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/constitutional/README.md |
+| Active File | .opencode/skills/system-spec-kit/constitutional/README.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | Decision: Added First Message Protocol as HARD BLOCK because first-turn enforcement is critical - ur |
@@ -175,7 +175,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/constitutional/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/constitutional/README.md` - Documentation
 
 - `.opencode/.../constitutional/gate-enforcement.md` - Documentation
 
@@ -183,11 +183,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../lib/vector-index.js` - Entry point / exports
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js` - Core context server
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js` - Core context server
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/README.md` - Documentation
 
 - `.opencode/.../templates/context_template.md` - Template file
 
@@ -233,15 +233,15 @@ Comprehensive constitutional memory system optimization session. Started with 5-
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/constitutional/README.md` | Updated readme |
+| `.opencode/skills/system-spec-kit/constitutional/README.md` | Updated readme |
 | `.opencode/.../constitutional/gate-enforcement.md` | Added 4 missing trigger phrases (build |
 | `.opencode/.../lib/importance-tiers.js` | Importance-tiers |
 | `.opencode/.../lib/vector-index.js` | Importance-tiers |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Importance-tiers |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Updated readme |
-| `.opencode/skill/system-spec-kit/README.md` | Updated readme |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Importance-tiers |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Updated readme |
+| `.opencode/skills/system-spec-kit/README.md` | Updated readme |
 | `.opencode/.../templates/context_template.md` | Modified during session |
-| `.opencode/skill/system-spec-kit/config/config.jsonc` | Modified during session |
+| `.opencode/skills/system-spec-kit/config/config.jsonc` | Modified during session |
 | `.opencode/.../scripts/cleanup-orphaned-vectors.js` | Modified during session |
 
 <!-- /ANCHOR:summary-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
@@ -596,15 +596,15 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-spec-kit/constitutional/README.md"
+  - ".opencode/skills/system-spec-kit/constitutional/README.md"
   - ".opencode/.../constitutional/gate-enforcement.md"
   - ".opencode/.../lib/importance-tiers.js"
   - ".opencode/.../lib/vector-index.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/README.md"
-  - ".opencode/skill/system-spec-kit/README.md"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/README.md"
+  - ".opencode/skills/system-spec-kit/README.md"
   - ".opencode/.../templates/context_template.md"
-  - ".opencode/skill/system-spec-kit/config/config.jsonc"
+  - ".opencode/skills/system-spec-kit/config/config.jsonc"
   - ".opencode/.../scripts/cleanup-orphaned-vectors.js"
 
 # Relationships

@@ -54,7 +54,7 @@ contextType: "implementation"
 ### Phase 3: Verification
 
 - [x] **T3.1** Verify file location
-  - Created at `.opencode/skill/system-spec-kit/constitutional/README.md`
+  - Created at `.opencode/skills/system-spec-kit/constitutional/README.md`
 
 - [x] **T3.2** Verify pattern compliance
   - Follows established README patterns

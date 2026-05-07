@@ -17,7 +17,7 @@ The SpecKit system is a sophisticated, high-maturity "Constitution-as-Code" fram
 **Key Findings:**
 - **Robustness**: The system is highly resilient to context loss. The strict separation of "Memory" (Context) and "Specs" (Truth) allows tasks to be paused and resumed indefinitely.
 - **Self-Healing**: The system possesses the unique capability to audit itself (as seen in `.opencode/specs/03--commands-and-skills/z_archive/001-cmd-analysis/`), effectively treating its own configuration as a "product" to be specified and tested.
-- **Maintenance Risk**: There is a critical **Parity Gap** between the passive instructions in `SKILL.md` (Human/Agent Logic) and the active workflows in `.opencode/command/spec_kit/*.yaml` (Machine Logic). These must be manually synchronized, creating a high risk of drift.
+- **Maintenance Risk**: There is a critical **Parity Gap** between the passive instructions in `SKILL.md` (Human/Agent Logic) and the active workflows in `.opencode/commands/spec_kit/*.yaml` (Machine Logic). These must be manually synchronized, creating a high risk of drift.
 
 ---
 
@@ -35,7 +35,7 @@ The system operates through four distinct layers of abstraction:
 *   **Function**: Provides the raw capabilities (templates, scripts).
 *   **Observation**: This is a **passive** library. It contains the *potential* for order (templates) but relies on the Orchestrator to enforce it.
 
-### Pillar 3: The Orchestrator (`.opencode/command/spec_kit`)
+### Pillar 3: The Orchestrator (`.opencode/commands/spec_kit`)
 *   **Role**: The "Flow" (Hidden Core)
 *   **Function**: Defines the step-by-step interactive workflows (e.g., `/spec_kit:complete`).
 *   **Mechanism**: Complex YAML files (`spec_kit_complete_auto.yaml`) act as "Prompt Programs."

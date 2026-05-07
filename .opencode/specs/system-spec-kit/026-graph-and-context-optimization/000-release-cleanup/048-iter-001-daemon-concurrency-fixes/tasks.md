@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Validate strict + commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "iter-001-daemon-fixes"
@@ -65,11 +65,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 F-001-A1-01: add `flushPromise` + `drainPending()` while-loop to watcher.ts; expose `flush()` and `suppressGenerationPublication()` on `SkillGraphWatcher` interface (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`)
+- [x] T005 F-001-A1-01: add `flushPromise` + `drainPending()` while-loop to watcher.ts; expose `flush()` and `suppressGenerationPublication()` on `SkillGraphWatcher` interface (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`)
 - [x] T006 F-001-A1-01: gate `processSkill()`'s call to `publishSkillGraphGeneration` behind the new `suppressGenerationPublication` flag (`watcher.ts`)
-- [x] T007 F-001-A1-02: reverse shutdown ordering — suppress + flush + close watcher BEFORE final `unavailable` publish (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`)
-- [x] T008 F-001-A1-03: token-tagged generation lock with owner-checked release and CAS stale reclamation; export `__testables` (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`)
-- [x] T009 F-001-A1-04: monotonic guard in `invalidateSkillGraphCaches()` — drop events whose generation < lastInvalidation.generation (`.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts`)
+- [x] T007 F-001-A1-02: reverse shutdown ordering — suppress + flush + close watcher BEFORE final `unavailable` publish (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`)
+- [x] T008 F-001-A1-03: token-tagged generation lock with owner-checked release and CAS stale reclamation; export `__testables` (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts`)
+- [x] T009 F-001-A1-04: monotonic guard in `invalidateSkillGraphCaches()` — drop events whose generation < lastInvalidation.generation (`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/cache-invalidation.ts`)
 - [x] T010 [P] Add `sa-003b` describe block (2 tests: serialized timer drain + close-awaits-flush) to `daemon-lifecycle-stress.vitest.ts`
 - [x] T011 [P] Add `sa-007b` describe block (2 tests: A's release no-ops on B's lock + concurrent ownership invariant) to `generation-cache-invalidation-stress.vitest.ts`
 <!-- /ANCHOR:phase-2 -->
@@ -83,7 +83,7 @@ _memory:
 - [x] T013 `npx vitest run skill_advisor/tests/daemon-freshness-foundation.vitest.ts` → 20/20 pass
 - [x] T014 Targeted stress (4 files) → 13/13 pass (was 9 baseline + 4 new)
 - [x] T015 `npm run stress` → exit 0, 56 files / 163 tests
-- [x] T016 `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → exit 0
+- [x] T016 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → exit 0
 - [x] T017 Stage product files + new packet folder + new tests; commit with all 4 finding IDs in message
 - [x] T018 `git push origin main`
 <!-- /ANCHOR:phase-3 -->

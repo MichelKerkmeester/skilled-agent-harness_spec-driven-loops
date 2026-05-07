@@ -17,20 +17,20 @@ I’ll perform the read-only adversarial audit, collect line-cited evidence acro
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/command/spec_kit/assets/spec_kit_{implement,complete}_{auto,confi
+  │ ".opencode/commands/spec_kit/assets/spec_kit_{implement,complete}_{auto,confi
   │ rm}.yaml"
   └ 4 files found
 
 ● Search (glob)
-  │ ".opencode/agent/{code,review,orchestrate,deep-review,multi-ai-council}.md"
+  │ ".opencode/agents/{code,review,orchestrate,deep-review,multi-ai-council}.md"
   └ 5 files found
 
 ● Search (glob)
-  │ ".opencode/skill/sk-code/**/*"
+  │ ".opencode/skills/sk-code/**/*"
   └ 85 files found
 
 ● Search (glob)
-  │ ".opencode/skill/sk-code-review/SKILL.md"
+  │ ".opencode/skills/sk-code-review/SKILL.md"
   └ 1 file found
 
 I’ve located the packet, prior review artifacts, the merged `sk-code` surface, command YAMLs, and the OpenCode agents. I’ll now sample the spec claims and the highest-risk routing/verification files, then cross-check mirror parity and command contracts.
@@ -75,27 +75,27 @@ I’ve located the packet, prior review artifacts, the merged `sk-code` surface,
 ● Search (grep)
   │ "sk-code-review|sk-code|surface|standards
   │ evidence|baseline|overlay|findings-first"
-  │ (.opencode/skill/sk-code-review/SKILL.md)
+  │ (.opencode/skills/sk-code-review/SKILL.md)
   └ 39 lines found
 
 ● Search (grep)
   │ "standards_contract|baseline:|router|surface|OPENCODE|WEBFLOW|UNKNOWN|review
   │ _agent|sk-code-review" in spec_kit_{implement,complete}_{auto,confirm}.yaml
-  │ (.opencode/command/spec_kit/assets)
+  │ (.opencode/commands/spec_kit/assets)
   └ 7 lines found
 
 ● Search (grep)
   │ "Code Surface|OPENCODE|WEBFLOW|UNKNOWN|language
   │ sub|detect|resource|Load|verification|verify_alignment_drift"
-  │ (.opencode/skill/sk-code)
+  │ (.opencode/skills/sk-code)
   └ 7 lines found
 
 ● Search (grep)
   │ "sk-code-opencode|sk-code-\*|overlay
   │ skill|baseline.*sk-code|GO|NEXTJS|NextJS|Next\.js|React/Next|react/next|go
-  │ route|nextjs" (.opencode/skill/sk-code, .opencode/skill/sk-code-review,
+  │ route|nextjs" (.opencode/skills/sk-code, .opencode/skills/sk-code-review,
   │ .opencode/agent, .claude/agents, .gemini/agents, .codex/agents,
-  │ .opencode/command/spec_kit/assets)
+  │ .opencode/commands/spec_kit/assets)
   └ 7 lines found
 
 ● Search (grep)
@@ -103,49 +103,49 @@ I’ve located the packet, prior review artifacts, the merged `sk-code` surface,
   └ 5 lines found
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-code/SKILL.md
+  │ .opencode/skills/sk-code/SKILL.md
   └ L1:260 (192 lines read)
 
 ● Read resource_loading.md
-  │ .opencode/skill/sk-code/references/router/resource_loading.md
+  │ .opencode/skills/sk-code/references/router/resource_loading.md
   └ L1:240 (88 lines read)
 
 ● Read code_surface_detection.md
-  │ .opencode/skill/sk-code/references/router/code_surface_detection.md
+  │ .opencode/skills/sk-code/references/router/code_surface_detection.md
   └ L1:260 (84 lines read)
 
 ● Read phase_lifecycle.md
-  │ .opencode/skill/sk-code/references/router/phase_lifecycle.md
+  │ .opencode/skills/sk-code/references/router/phase_lifecycle.md
   └ L1:220 (67 lines read)
 
 ● Read intent_classification.md
-  │ .opencode/skill/sk-code/references/router/intent_classification.md
+  │ .opencode/skills/sk-code/references/router/intent_classification.md
   └ L1:240 (56 lines read)
 
 ● Read verify_alignment_drift.py
-  │ .opencode/skill/sk-code/scripts/verify_alignment_drift.py
+  │ .opencode/skills/sk-code/scripts/verify_alignment_drift.py
   └ L1:260 (258 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-code-review/SKILL.md
+  │ .opencode/skills/sk-code-review/SKILL.md
   └ L180:330 (150 lines read)
 
 ● Read spec_kit_implement_auto.yaml
-  │ .opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml
+  │ .opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml
   └ L190:240 (51 lines read)
 
 A concrete inconsistency is emerging in the new router docs: they claim “first match wins” while also saying `.opencode/` target files force OPENCODE, but Webflow is checked first and the illustrative snippet ends by resetting to UNKNOWN. I’ll keep checking whether this is isolated wording or a broader release contract issue before writing findings.
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-code/SKILL.md
+  │ .opencode/skills/sk-code/SKILL.md
   └ L47:76 (30 lines read)
 
 ● Read code_surface_detection.md
-  │ .opencode/skill/sk-code/references/router/code_surface_detection.md
+  │ .opencode/skills/sk-code/references/router/code_surface_detection.md
   └ L26:47 (21 lines read)
 
 ● Read code_surface_detection.md
-  │ .opencode/skill/sk-code/references/router/code_surface_detection.md
+  │ .opencode/skills/sk-code/references/router/code_surface_detection.md
   └ L66:76 (10 lines read)
 
 ● Read resource-map.md
@@ -166,8 +166,8 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
 
 ● Search (grep)
   │ "target.*\.opencode|\.opencode.*target|force OPENCODE|first match
-  │ wins|SURFACE="UNKNOWN"" (.opencode/skill/sk-code,
-  │ .opencode/skill/sk-code-review, .opencode/agent, .claude/agents,
+  │ wins|SURFACE="UNKNOWN"" (.opencode/skills/sk-code,
+  │ .opencode/skills/sk-code-review, .opencode/agent, .claude/agents,
   │ .gemini/agents, .codex/agents)
   └ 13 lines found
 
@@ -187,7 +187,7 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   └ L232:276 (45 lines read)
 
 ● Read README.md
-  │ .opencode/skill/sk-code/README.md
+  │ .opencode/skills/sk-code/README.md
   └ L1:100 (94 lines read)
 
 ● Read implementation-summary.md
@@ -209,12 +209,12 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
 ● Search (grep)
   │ "TODO|FIXME|TBD|placeholder|populate this
   │ section|UNKNOWN|silent|eval|subprocess|shell=True|os\.system"
-  │ (.opencode/skill/sk-code, .opencode/skill/sk-code-review,
-  │ .opencode/command/spec_kit/assets)
+  │ (.opencode/skills/sk-code, .opencode/skills/sk-code-review,
+  │ .opencode/commands/spec_kit/assets)
   └ 6 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/sk-code-opencode/**"
+  │ ".opencode/skills/sk-code-opencode/**"
   └ No matches found
 
 ● Read code.md
@@ -222,15 +222,15 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   └ L1:160 (160 lines read)
 
 ● Read code.md
-  │ .opencode/agent/code.md
+  │ .opencode/agents/code.md
   └ L1:180 (180 lines read)
 
 ● Read review.md
-  │ .opencode/agent/review.md
+  │ .opencode/agents/review.md
   └ L1:120 (120 lines read)
 
 ● Read orchestrate.md
-  │ .opencode/agent/orchestrate.md
+  │ .opencode/agents/orchestrate.md
   └ L80:120 (41 lines read)
 
 ● Read code.md
@@ -242,15 +242,15 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   └ L1:120 (120 lines read)
 
 ● Read spec_kit_complete_auto.yaml
-  │ .opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml
+  │ .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
   └ L300:330 (31 lines read)
 
 ● Read spec_kit_complete_confirm.yaml
-  │ .opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml
+  │ .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
   └ L310:330 (21 lines read)
 
 ● Read code.md
-  │ .opencode/agent/code.md
+  │ .opencode/agents/code.md
   └ L22:28 (7 lines read)
 
 ● Read code.md
@@ -268,7 +268,7 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
 ● Search (grep)
   │ "Use only
   │ `\.(opencode/agent|claude/agents|gemini/agents|codex/agents).*canonical
-  │ runtime path" (.opencode/agent/code.md, .claude/agents/code.md,
+  │ runtime path" (.opencode/agents/code.md, .claude/agents/code.md,
   │ .gemini/agents/code.md, .codex/agents/code.toml)
   └ 4 lines found
 
@@ -286,7 +286,7 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   └ L22:30 (8 lines read)
 
 ● Read deep-review.md
-  │ .opencode/agent/deep-review.md
+  │ .opencode/agents/deep-review.md
   └ L23:30 (7 lines read)
 
 ● Read deep-review.toml
@@ -304,7 +304,7 @@ A concrete inconsistency is emerging in the new router docs: they claim “first
   └ 7 lines found
 
 ● Search (grep)
-  │ "Path Convention" (.opencode/agent/deep-review.md,
+  │ "Path Convention" (.opencode/agents/deep-review.md,
   │ .claude/agents/deep-review.md, .gemini/agents/deep-review.md,
   │ .codex/agents/deep-review.toml)
   └ 15 lines found
@@ -334,7 +334,7 @@ Blocked: I could not write `/tmp/066-review/iter-001-output.md` because the runt
 
 ## 1. Executive summary
 
-Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear addressed, but this pass found two new P1 issues and one P2 advisory outside the prior finding set. The highest-risk gap is the merged `sk-code` router contract: it says target `.opencode/` files force OPENCODE, yet its first-match WEBFLOW precedence and literal pseudocode can resolve the wrong route or reset to UNKNOWN. A second P1 remains in cross-runtime release readiness: deep-review mirrors for Claude/Gemini/Codex still point at `.opencode/agent/*.md` as canonical, unlike the runtime-specific code mirrors. Security review found no new vulnerability evidence in the reviewed surface.
+Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear addressed, but this pass found two new P1 issues and one P2 advisory outside the prior finding set. The highest-risk gap is the merged `sk-code` router contract: it says target `.opencode/` files force OPENCODE, yet its first-match WEBFLOW precedence and literal pseudocode can resolve the wrong route or reset to UNKNOWN. A second P1 remains in cross-runtime release readiness: deep-review mirrors for Claude/Gemini/Codex still point at `.opencode/agents/*.md` as canonical, unlike the runtime-specific code mirrors. Security review found no new vulnerability evidence in the reviewed surface.
 
 ## 2. Per-dimension verdict
 
@@ -354,13 +354,13 @@ Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear ad
 - **Dimension**: correctness
 - **Title**: `sk-code` router can misroute `.opencode/` work in mixed Webflow/OpenCode repos
 - **File:line evidence**:
-  - `.opencode/skill/sk-code/SKILL.md:51` says detection uses CWD plus changed/target files and "First match wins."
-  - `.opencode/skill/sk-code/SKILL.md:55` and `.opencode/skill/sk-code/SKILL.md:60` set WEBFLOW from repo-wide markers before OPENCODE is considered.
-  - `.opencode/skill/sk-code/SKILL.md:63` detects OPENCODE from CWD, `.opencode/skill/sk-code/SKILL.md:64` says changed/target files force OPENCODE, but `.opencode/skill/sk-code/SKILL.md:67` then unconditionally sets `SURFACE="UNKNOWN"` in the same snippet.
-  - `.opencode/skill/sk-code/references/router/code_surface_detection.md:28` repeats "First match wins"; `.opencode/skill/sk-code/references/router/code_surface_detection.md:39`-`.opencode/skill/sk-code/references/router/code_surface_detection.md:46` place OPENCODE after WEBFLOW while saying `.opencode/` target files count.
+  - `.opencode/skills/sk-code/SKILL.md:51` says detection uses CWD plus changed/target files and "First match wins."
+  - `.opencode/skills/sk-code/SKILL.md:55` and `.opencode/skills/sk-code/SKILL.md:60` set WEBFLOW from repo-wide markers before OPENCODE is considered.
+  - `.opencode/skills/sk-code/SKILL.md:63` detects OPENCODE from CWD, `.opencode/skills/sk-code/SKILL.md:64` says changed/target files force OPENCODE, but `.opencode/skills/sk-code/SKILL.md:67` then unconditionally sets `SURFACE="UNKNOWN"` in the same snippet.
+  - `.opencode/skills/sk-code/references/router/code_surface_detection.md:28` repeats "First match wins"; `.opencode/skills/sk-code/references/router/code_surface_detection.md:39`-`.opencode/skills/sk-code/references/router/code_surface_detection.md:46` place OPENCODE after WEBFLOW while saying `.opencode/` target files count.
   - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md:65` and `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md:66` mark two-axis routing as verified.
 - **Why it matters**: The repo intentionally contains multiple surfaces, so a `.opencode/` target inside a workspace with Webflow markers must not be captured by the WEBFLOW first-match branch or reset to UNKNOWN. `@code` treats the `sk-code` tuple as authoritative, so a wrong route blocks valid edits or applies the wrong standards.
-- **Recommended fix**: Make OPENCODE target/CWD detection an explicit override before workspace-wide Webflow marker checks, or implement guarded `if/elif/else` pseudocode that cannot overwrite a resolved route. Add a documented test case: "Webflow marker present + changed `.opencode/agent/code.md` => OPENCODE."
+- **Recommended fix**: Make OPENCODE target/CWD detection an explicit override before workspace-wide Webflow marker checks, or implement guarded `if/elif/else` pseudocode that cannot overwrite a resolved route. Add a documented test case: "Webflow marker present + changed `.opencode/agents/code.md` => OPENCODE."
 
 ### F-NEW-002
 
@@ -368,9 +368,9 @@ Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear ad
 - **Dimension**: release-readiness
 - **Title**: Deep-review runtime mirrors still point to the OpenCode agent path as canonical
 - **File:line evidence**:
-  - `.claude/agents/deep-review.md:27` says to use only `.opencode/agent/*.md` as the canonical runtime path.
-  - `.gemini/agents/deep-review.md:27` says to use only `.opencode/agent/*.md` as the canonical runtime path.
-  - `.codex/agents/deep-review.toml:20` says to use only `.opencode/agent/*.md` as the canonical runtime path.
+  - `.claude/agents/deep-review.md:27` says to use only `.opencode/agents/*.md` as the canonical runtime path.
+  - `.gemini/agents/deep-review.md:27` says to use only `.opencode/agents/*.md` as the canonical runtime path.
+  - `.codex/agents/deep-review.toml:20` says to use only `.opencode/agents/*.md` as the canonical runtime path.
   - The same runtime-specific code mirrors use their own paths: `.claude/agents/code.md:26`, `.gemini/agents/code.md:26`, and `.codex/agents/code.toml:15`.
 - **Why it matters**: The packet explicitly treats multi-runtime drift as a release risk, and deep-review is one of the scoped mirror agents. If Claude/Gemini/Codex deep-review agents follow the OpenCode path as canonical, future reviews can inspect or sync the wrong mirror and miss runtime-specific drift.
 - **Recommended fix**: Update the deep-review mirrors to `.claude/agents/*.md`, `.gemini/agents/*.md`, and `.codex/agents/*.toml` respectively, or document an intentional deep-review exception and add a parity check that prevents accidental mirror-path divergence.
@@ -391,7 +391,7 @@ Second-opinion verdict is **CONDITIONAL**: the prior four remediations appear ad
 
 ## 4. Adversarial questions considered but ruled out
 
-- **Did the prior F004 baseline remediation regress?** Ruled out: the scoped command YAMLs now show `standards_contract.baseline: "sk-code-review"` with `sk-code` as router-selected evidence, e.g. `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:213`-`.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:216`.
+- **Did the prior F004 baseline remediation regress?** Ruled out: the scoped command YAMLs now show `standards_contract.baseline: "sk-code-review"` with `sk-code` as router-selected evidence, e.g. `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`-`.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:216`.
 - **Is there a new security issue in the moved alignment verifier?** Ruled out for this pass: the verifier walks caller-provided roots and parses code/config files, but I did not find shell execution, command interpolation, secret handling, or broadened write behavior in the reviewed snippet.
 - **Are old `sk-code-opencode` references automatically blocking?** Ruled out as a blanket claim: several remaining references are in the packet/history itself, so only live routing or misleading audit-ledger references are actionable.
 - **Should unsupported Go/Next.js mention in migration notes be a finding?** Ruled out: current `sk-code` docs explicitly say these placeholder branches were removed and UNKNOWN should be used unless a future route is approved.

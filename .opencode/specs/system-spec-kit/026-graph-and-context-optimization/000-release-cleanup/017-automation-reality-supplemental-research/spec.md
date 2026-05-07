@@ -92,28 +92,28 @@ Run a 5-iteration supplemental loop that:
 ### Files to Read (representative; iterations may add more)
 
 - Deep-loop graph:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-{research,review}_{auto,confirm}.yaml`
 - CCC + eval + ablation:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/ccc-{reindex,feedback,status}.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-{run-ablation,reporting-dashboard}.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/eval/`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/ccc-{reindex,feedback,status}.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-{run-ablation,reporting-dashboard}.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/eval/`
 - Validator auto-fire:
-  - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-  - `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/`
+  - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+  - `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/`
   - `.claude/settings.local.json`, `.codex/settings.json`, hook configs across runtimes
 - Adversarial retest targets (012's 4 P1):
-  - `.opencode/skill/system-spec-kit/mcp_server/README.md` (line 515-518)
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/scope-governance.ts` (line 225-333)
-  - `.opencode/skill/system-spec-kit/references/config/hook_system.md` (line 22)
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` (line 27-34)
+  - `.opencode/skills/system-spec-kit/mcp_server/README.md` (line 515-518)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/scope-governance.ts` (line 225-333)
+  - `.opencode/skills/system-spec-kit/references/config/hook_system.md` (line 22)
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` (line 27-34)
   - `.codex/settings.json`, `.codex/hooks.json` (if present)
 - New gap hunt:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session-manager.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/skill_graph_*.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-drift-why.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-get-learning-history.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session-manager.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/skill_graph_*.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-drift-why.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-get-learning-history.ts`
 <!-- /ANCHOR:scope -->
 
 ---

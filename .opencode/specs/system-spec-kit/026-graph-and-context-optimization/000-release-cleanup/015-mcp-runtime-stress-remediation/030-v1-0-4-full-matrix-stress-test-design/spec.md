@@ -65,7 +65,7 @@ The full-matrix design expands from "search telemetry wiring" to "system-spec-ki
 | **Branch** | `main` |
 | **Parent** | `015-mcp-runtime-stress-remediation` |
 | **Target authority** | Writes only under this packet folder |
-| **Executor requested for this design phase** | cli-codex gpt-5.5 xhigh, service-tier=null; current Codex session authored directly because cli-codex self-invocation is prohibited by its own skill (`.opencode/skill/cli-codex/SKILL.md:12`, `:16`, `:38`). |
+| **Executor requested for this design phase** | cli-codex gpt-5.5 xhigh, service-tier=null; current Codex session authored directly because cli-codex self-invocation is prohibited by its own skill (`.opencode/skills/cli-codex/SKILL.md:12`, `:16`, `:38`). |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -149,7 +149,7 @@ Define a complete, reproducible, future-run-ready full-matrix stress test for sy
 | REQ-008 | Define scoring and regression policy. | Rubric is the 4 canonical dimensions on 0-2 scale; dropped prior same-cell scores require Hunter -> Skeptic -> Referee. |
 | REQ-009 | Choose harness architecture. | Decision record documents Options A/B/C and recommends one. |
 | REQ-010 | Provide future execution tasks. | `tasks.md` is ready for a separate execution phase and includes smoke, batches, aggregation, adversarial review, and strict validation. |
-| REQ-011 | Strict validator passes. | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0. |
+| REQ-011 | Strict validator passes. | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0. |
 <!-- /ANCHOR:requirements -->
 
 ---

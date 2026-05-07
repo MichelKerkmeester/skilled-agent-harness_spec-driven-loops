@@ -26,7 +26,7 @@ Files to audit:
 
 Sources of evidence:
 - Packet docs in the requested read order
-- Target files under `.opencode/plugins/`, `.opencode/plugin-helpers/`, and `.opencode/skill/system-spec-kit/mcp_server/**`
+- Target files under `.opencode/plugins/`, `.opencode/plugin-helpers/`, and `.opencode/skills/system-spec-kit/mcp_server/**`
 - Existing hook and handler vitest coverage for Codex, advisor handlers, privacy, and runtime parity
 - Filesystem truth for whether cited packet artifacts actually exist
 

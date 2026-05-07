@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Apply five fixes then validate, stress, commit, push"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml"
-      - ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml"
-      - ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts"
-      - ".opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml"
+      - ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml"
+      - ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
+      - ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-002-deep-loop-state"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -103,9 +103,9 @@ YAML changes have no direct unit-test surface (the workflow assets are interpret
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §B5 and `019-*/research/research.md` §D4
-- Canonical iteration schema: `.opencode/skill/sk-deep-research/references/state_format.md`
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Test harness: `.opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` (existing, extended)
+- Canonical iteration schema: `.opencode/skills/sk-deep-research/references/state_format.md`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Test harness: `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` (existing, extended)
 - No other packet dependencies. Sub-phase 002 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->
 

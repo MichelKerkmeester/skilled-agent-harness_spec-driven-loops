@@ -79,7 +79,7 @@ Verifies that previous critical bug fixes remain effective.
 **FIX APPLIED:**
 - Updated `extract_anchors()` regex: `[a-zA-Z0-9-]+` -> `[a-zA-Z0-9][a-zA-Z0-9-/]*`
 - Updated `validate_anchors()` pattern to allow slashes
-- Location: `.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js` lines 328, 291
+- Location: `.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js` lines 328, 291
 
 ### Runtime Test Results (Post-Fix)
 

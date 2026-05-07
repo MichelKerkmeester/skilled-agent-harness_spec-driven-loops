@@ -6,7 +6,7 @@ This iteration traced the hook-state recovery seam from `hooks/claude/hook-state
 ## Findings
 
 ### Finding R4-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/startup-brief.ts`
 - **Lines:** `179-198`
 - **Severity:** P1
 - **Description:** `buildSessionContinuity()` calls `loadMostRecentState()` with no scope, but `hook-state.ts` explicitly rejects scope-less lookups. In live code, the startup brief's continuity path is therefore dead on arrival.
@@ -14,7 +14,7 @@ This iteration traced the hook-state recovery seam from `hooks/claude/hook-state
 - **Downstream Impact:** Gemini startup sessions lose their only automatic continuity section, and the shared startup payload degrades to `startup summary only (resume on demand)` even when valid hook state exists on disk.
 
 ### Finding R4-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `131-166`
 - **Severity:** P1
 - **Description:** `loadMostRecentState()` is poison-pill fragile: one malformed JSON sibling file aborts the entire directory scan and returns `null`, even if newer matching state files are valid.
@@ -22,7 +22,7 @@ This iteration traced the hook-state recovery seam from `hooks/claude/hook-state
 - **Downstream Impact:** A single corrupted tempdir artifact can suppress cached continuity for both startup and `session_resume`, forcing the system back to ladder recovery with no signal that recovery failed because a sibling state file poisoned the scan.
 
 ### Finding R4-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `142-155`
 - **Severity:** P2
 - **Description:** Recent-state authority is based on filesystem `mtime`, not the logical `updatedAt` stored in `HookState`, so restored or touched files can outrank the actually newest session state.

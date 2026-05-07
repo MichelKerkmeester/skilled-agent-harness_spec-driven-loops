@@ -20,13 +20,13 @@ The important nuance: shadow scoring now has the intended order for the primary 
 
 | Check | Status | Evidence |
 |---|---|---|
-| SQLite file | PASS | `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite` exists. |
+| SQLite file | PASS | `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` exists. |
 | SQLite schema CHECK | PASS | `family TEXT NOT NULL CHECK(family IN ('cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system'))`. |
 | SQLite distinct families | PASS | `cli`, `deep-loop`, `mcp`, `sk-code`, `sk-util`, `system`. |
-| Source SQL CHECK | PASS | `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:126`. |
-| Dist SQL CHECK | PASS | `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js:53`. |
+| Source SQL CHECK | PASS | `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:126`. |
+| Dist SQL CHECK | PASS | `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js:53`. |
 | Compiler validation | PASS | `VALIDATION PASSED: all metadata files are valid`. |
-| Per-skill metadata | PASS | `.opencode/skill/deep-review/graph-metadata.json:4`; `.opencode/skill/deep-research/graph-metadata.json:4`. |
+| Per-skill metadata | PASS | `.opencode/skills/deep-review/graph-metadata.json:4`; `.opencode/skills/deep-research/graph-metadata.json:4`. |
 | No active `sk-deep` metadata family | PASS | No hits from active metadata grep. |
 | Compiled graph families | PASS | Families include `deep-loop`; members are `deep-research`, `deep-review`; `sk-deep present: False`. |
 
@@ -59,7 +59,7 @@ Active finding:
 | Source/dist `deep-loop` consistency | PASS | Dist count 20; source count 9. |
 | Phase 002-004 identity-renames | PASS | No hits for `deep-review to deep-review` or `deep-research to deep-research`. |
 | Changelog symlinks | PASS | `deep-review` and `deep-research` symlinks exist; no `sk-deep*` changelog entries. |
-| P1-004 entity kind | PASS | `reference-category` count is 0; `.opencode/skill/sk-code/graph-metadata.json:201` is `"kind": "reference"`. |
+| P1-004 entity kind | PASS | `reference-category` count is 0; `.opencode/skills/sk-code/graph-metadata.json:201` is `"kind": "reference"`. |
 
 ## Prior Findings Reconciliation
 

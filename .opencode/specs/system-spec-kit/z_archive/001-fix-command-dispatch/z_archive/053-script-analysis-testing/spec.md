@@ -123,7 +123,7 @@ As a developer, I need to verify that the complete Spec Kit Memory workflow func
 
 - **Related Specs**: .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite
 - **Documentation**: AGENTS.md (workflow documentation)
-- **Scripts**: .opencode/skill/system-spec-kit/scripts/generate-context.js
+- **Scripts**: .opencode/skills/system-spec-kit/scripts/generate-context.js
 
 ---
 

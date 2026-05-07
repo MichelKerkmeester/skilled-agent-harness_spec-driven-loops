@@ -36,29 +36,29 @@ rg -l 'sk-improve-prompt' .opencode .claude .codex .gemini *.md *.json \
 
 ### Path embed grep (old skill path references)
 ```bash
-rg -l '\.opencode/skill/sk-improve-prompt/'
+rg -l '\.opencode/skills/sk-improve-prompt/'
 ```
 **Result: 0 hits** — all path embeds rotated to `sk-prompt/`.
 
 ### Advisor probe
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 ```
 **Result:** top-1 = `sk-prompt`, confidence 0.9262, score 0.7935, dominant lane = `explicit_author`. Correct routing confirmed.
 
 ### Skill folder rename
-- `.opencode/skill/sk-prompt/` exists (8 entries, valid directory)
-- `.opencode/skill/sk-improve-prompt` does NOT exist (confirms rename)
+- `.opencode/skills/sk-prompt/` exists (8 entries, valid directory)
+- `.opencode/skills/sk-improve-prompt` does NOT exist (confirms rename)
 
 ### Skill internal self-references
 ```bash
-rg -n 'sk-improve-prompt' .opencode/skill/sk-prompt/
+rg -n 'sk-improve-prompt' .opencode/skills/sk-prompt/
 ```
 **Result: 0 hits** — all skill-local self-refs rotated.
 
 ### Cross-skill residual refs
-- `.opencode/skill/deep-agent-improvement/graph-metadata.json`: 0 hits
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`: 0 hits
+- `.opencode/skills/deep-agent-improvement/graph-metadata.json`: 0 hits
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json`: 0 hits
 
 ### Strict validation
 | Level | Result |
@@ -73,7 +73,7 @@ rg -n 'sk-improve-prompt' .opencode/skill/sk-prompt/
 
 ## Adversarial Self-Check
 
-- **Did I miss any residual path embed?** Verified both string `sk-improve-prompt` AND full path `.opencode/skill/sk-improve-prompt/` patterns. Both return 0 hits in active scope. Clean.
+- **Did I miss any residual path embed?** Verified both string `sk-improve-prompt` AND full path `.opencode/skills/sk-improve-prompt/` patterns. Both return 0 hits in active scope. Clean.
 - **Did I run the exact grep command specified in the instructions?** Yes, verbatim. 0 hits.
 - **Could the FRONTMATTER_MEMORY_BLOCK error be a transient or false positive?** Checked `resource-map.md` frontmatter against `spec.md` and implementation-summary files. The `resource-map.md` is missing `trigger_phrases`, `importance_tier`, and `contextType` — this is a real structural issue. The error is not transient.
 - **Are 081-packet refs truly out of scope?** Per the packet's own scope definition (spec.md:118-121), completed packets including 081 are excluded. The 081 refs are historical descriptions (e.g., "loads sk-improve-prompt") that accurately describe the skill as it was named at the time of 081's authorship. Updating them would be rewriting history. **Design decision upheld.**

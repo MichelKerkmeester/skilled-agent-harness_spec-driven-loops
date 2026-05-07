@@ -137,12 +137,12 @@ Prompts enter the runtime skill advisor, which recommends `sk-code` for code wor
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `sk-code-opencode` skill tree | OpenCode standards sibling skill | Merge into `sk-code`, then remove/archive | `rg -n 'sk-code-opencode' .opencode/skill/sk-code .opencode/skill/sk-code-opencode` |
-| `sk-code` Go/NextJS branches | Placeholder stacks | Remove folders and route entries | `find .opencode/skill/sk-code -path '*go*' -o -path '*nextjs*'` |
+| `sk-code-opencode` skill tree | OpenCode standards sibling skill | Merge into `sk-code`, then remove/archive | `rg -n 'sk-code-opencode' .opencode/skills/sk-code .opencode/skills/sk-code-opencode` |
+| `sk-code` Go/NextJS branches | Placeholder stacks | Remove folders and route entries | `find .opencode/skills/sk-code -path '*go*' -o -path '*nextjs*'` |
 | Runtime agents | Dispatch and review instructions | Rewrite baseline/overlay references | `rg -n 'sk-code-\\*|sk-code-opencode|GO, NEXTJS' .opencode/agent .claude/agents .codex/agents .gemini/agents` |
-| `spec_kit` command YAMLs | Auto/confirm workflow definitions | Remove overlay phase names | `rg -n 'sk-code-\\*|overlay' .opencode/command/spec_kit` |
+| `spec_kit` command YAMLs | Auto/confirm workflow definitions | Remove overlay phase names | `rg -n 'sk-code-\\*|overlay' .opencode/commands/spec_kit` |
 | Skill advisor code/tests | Recommends and tests live skills | Replace `sk-code-opencode` with new `sk-code` route expectations | Targeted vitest and regression fixture checks |
-| READMEs/install guides | User-facing inventory | Update skill count, table entries, and examples | `rg -n 'sk-code-opencode|sk-code-\\*' README.md .opencode/install_guides .opencode/skill/README.md` |
+| READMEs/install guides | User-facing inventory | Update skill count, table entries, and examples | `rg -n 'sk-code-opencode|sk-code-\\*' README.md .opencode/install_guides .opencode/skills/README.md` |
 | Generated metadata | Skill graph and graph metadata | Regenerate or patch after content move | Compare `skill-graph.json`, `description.json`, `graph-metadata.json` |
 
 Required inventories:
@@ -220,8 +220,8 @@ Required inventories:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Exact reference | Removed skill ID and overlay contract | `rg -n 'sk-code-opencode|sk-code-\\*|overlay skill' ...` |
-| Spec validation | This packet | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger --strict` |
-| Advisor unit | Skill advisor scoring and hook brief output | Existing vitest tests under `.opencode/skill/system-spec-kit/mcp_server/**` |
+| Spec validation | This packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger --strict` |
+| Advisor unit | Skill advisor scoring and hook brief output | Existing vitest tests under `.opencode/skills/system-spec-kit/mcp_server/**` |
 | Verifier unit | Moved alignment verifier | Python test currently at `sk-code-opencode/scripts/test_verify_alignment_drift.py` |
 | Runtime docs parity | Agent files across OpenCode, Claude, Codex, Gemini | `rg`, diff review, and synchronized wording checks |
 | Manual | Skill routing behavior described to users | Read `sk-code/SKILL.md`, README, and `sk-code-review` report template as an end user |

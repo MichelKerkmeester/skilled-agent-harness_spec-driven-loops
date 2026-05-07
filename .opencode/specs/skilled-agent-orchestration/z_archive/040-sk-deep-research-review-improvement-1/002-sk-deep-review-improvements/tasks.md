@@ -69,7 +69,7 @@ _memory:
 
 - [x] T011 Run the deep-review parity contract test (`npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-contract-parity.vitest.ts`)
 - [x] T012 Run the deep-review reducer and schema contract test (`npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-reducer-schema.vitest.ts`)
-- [x] T013 Re-run strict packet validation until this phase folder is fully green (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict`)
+- [x] T013 Re-run strict packet validation until this phase folder is fully green (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict`)
 - [x] T014 Confirm stale-name migration references remain only in the intentional scratch migration path and packet closeout artifacts stay diff-clean (`rg` sweep, `git diff --check`)
 <!-- /ANCHOR:phase-3 -->
 

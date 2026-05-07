@@ -7,10 +7,10 @@ Pause sentinel contract drift for deep-review.
 - Could mismatch cause failed pause/resume operations in real workflows?
 
 ## Evidence
-- `.opencode/skill/sk-deep-review/SKILL.md:210`
-- `.opencode/skill/sk-deep-review/references/loop_protocol.md:174-179`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:307-310`
-- `.opencode/skill/sk-deep-review/README.md:159,219,307`
+- `.opencode/skills/sk-deep-review/SKILL.md:210`
+- `.opencode/skills/sk-deep-review/references/loop_protocol.md:174-179`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:307-310`
+- `.opencode/skills/sk-deep-review/README.md:159,219,307`
 
 ## Analysis
 SKILL and loop protocol use `.deep-review-pause`; README and YAML enforce `.deep-research-pause` for review mode. The same session can be documented with one sentinel and executed with another.

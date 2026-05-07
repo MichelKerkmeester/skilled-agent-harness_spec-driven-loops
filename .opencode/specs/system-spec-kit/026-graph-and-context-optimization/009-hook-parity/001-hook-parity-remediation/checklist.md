@@ -53,7 +53,7 @@ Every completed `[x]` P0/P1 item below must carry concrete evidence. Items left 
 - [x] CHK-010 [P0] `npm run typecheck` exits 0 [EVIDENCE: `../review/remediation-summary.md:18`].
 - [x] CHK-011 [P0] `npm run build` exits 0 [EVIDENCE: `../review/remediation-summary.md:21`].
 - [x] CHK-012 [P1] Plugin diagnostic handles absent or unparsable transport without silent no-op [EVIDENCE: `.opencode/plugins/spec-kit-compact-code-graph.js:145`, `.opencode/plugins/spec-kit-compact-code-graph.js:170`, `.opencode/plugins/spec-kit-compact-code-graph.js:237`].
-- [x] CHK-013 [P1] Code follows existing OpenCode plugin and MCP server test patterns [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:254`].
+- [x] CHK-013 [P1] Code follows existing OpenCode plugin and MCP server test patterns [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:254`].
 <!-- /ANCHOR:code-quality -->
 
 ---

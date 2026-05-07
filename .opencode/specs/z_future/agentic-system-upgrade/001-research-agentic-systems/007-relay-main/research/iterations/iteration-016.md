@@ -14,9 +14,9 @@ Read Relay's CLI registry, package scripts, and generated-model triggers; then c
 ## Evidence
 - Relay keeps supported CLI metadata in one consolidated registry covering binaries, non-interactive arguments, bypass flags, aliases, search paths, and exit-code quirks. [SOURCE: external/packages/sdk/src/cli-registry.ts:1-12] [SOURCE: external/packages/sdk/src/cli-registry.ts:18-31] [SOURCE: external/packages/sdk/src/cli-registry.ts:41-49] [SOURCE: external/packages/sdk/src/cli-registry.ts:53-160]
 - Relay's package scripts include explicit codegen hooks, and `lint-staged` regenerates dependent artifacts when the shared CLI registry YAML changes. [SOURCE: external/package.json:88-145] [SOURCE: external/package.json:147-157]
-- Public's Codex reference documents profile routing, sandbox modes, and stateless execution in its own schema. [SOURCE: .opencode/skill/cli-codex/references/agent_delegation.md:15-22] [SOURCE: .opencode/skill/cli-codex/references/agent_delegation.md:62-132]
-- Public's Gemini reference documents `@agent` invocation, tool access, and model/tool tables in a different schema. [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:15-22] [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:60-88] [SOURCE: .opencode/skill/cli-gemini/references/agent_delegation.md:96-111]
-- Public's Copilot reference documents `@Explore`, `@Task`, cloud delegation, and custom profiles using yet another schema. [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:12-29] [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:57-90] [SOURCE: .opencode/skill/cli-copilot/references/agent_delegation.md:98-155]
+- Public's Codex reference documents profile routing, sandbox modes, and stateless execution in its own schema. [SOURCE: .opencode/skills/cli-codex/references/agent_delegation.md:15-22] [SOURCE: .opencode/skills/cli-codex/references/agent_delegation.md:62-132]
+- Public's Gemini reference documents `@agent` invocation, tool access, and model/tool tables in a different schema. [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:15-22] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:60-88] [SOURCE: .opencode/skills/cli-gemini/references/agent_delegation.md:96-111]
+- Public's Copilot reference documents `@Explore`, `@Task`, cloud delegation, and custom profiles using yet another schema. [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:12-29] [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:57-90] [SOURCE: .opencode/skills/cli-copilot/references/agent_delegation.md:98-155]
 
 ## Analysis
 Phase 1 already identified the need for a shared provider-capability matrix. Phase 2 sharpens the implementation path: do not just hand-author one more summary table. Create a registry that can generate the repeated parity surfaces. Relay's registry is not perfect, but it shows the maintenance advantage of one machine-readable source feeding multiple consumers.
@@ -26,7 +26,7 @@ confidence: high
 finding: Public should move from manually synchronized provider docs toward a single-source provider registry that can generate shared capability tables, reference snippets, and wrapper metadata across Codex, Gemini, and Copilot surfaces.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/cli-codex/references/agent_delegation.md`, `.opencode/skill/cli-gemini/references/agent_delegation.md`, `.opencode/skill/cli-copilot/references/agent_delegation.md`, shared docs/config generation tooling
+- **Target file or module:** `.opencode/skills/cli-codex/references/agent_delegation.md`, `.opencode/skills/cli-gemini/references/agent_delegation.md`, `.opencode/skills/cli-copilot/references/agent_delegation.md`, shared docs/config generation tooling
 - **Change type:** documentation/process simplification
 - **Blast radius:** medium
 - **Prerequisites:** define a canonical provider schema covering execution mode, write scope, context persistence, research/web capability, and delegation ergonomics

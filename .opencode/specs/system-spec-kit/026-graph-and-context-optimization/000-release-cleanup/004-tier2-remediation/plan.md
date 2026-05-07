@@ -73,7 +73,7 @@ Tactical doc/config remediation, no architectural changes. Cross-cutting: the Co
 
 ### Phase 2: Section E — 009/005 plugin-loader doc drift (REQ-003, REQ-010)
 
-1. **REQ-003 path correction**: in 009/005/spec.md, decision-record.md, `implementation-summary.md`, replace stale `.opencode/plugin-helpers/` references with live `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` paths. Preserve aliases only where explicit.
+1. **REQ-003 path correction**: in 009/005/spec.md, decision-record.md, `implementation-summary.md`, replace stale `.opencode/plugin-helpers/` references with live `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` paths. Preserve aliases only where explicit.
 2. **REQ-010 P2 advisories**: read 009/005 review-report §3 finding registry; close each P2 with file:line citation in checklist.
 
 ### Phase 3: Section F — 009/002 Copilot hook routing + cleanup (REQ-004, REQ-005, REQ-011)

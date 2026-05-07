@@ -47,14 +47,14 @@ Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, C
 
 | File | Key Audit Points |
 |------|-----------------|
-| `.opencode/agent/handover.md` | Model = haiku (spec 016) |
-| `.opencode/agent/review.md` | Model-agnostic (spec 015) — no hardcoded model |
-| `.opencode/agent/context.md` | Agent routing description current |
-| `.opencode/agent/speckit.md` | Agent routing description current |
-| `.opencode/agent/write.md` | Agent routing description current |
-| `.opencode/agent/debug.md` | Agent routing description current |
-| `.opencode/agent/research/research/research.md` | Agent routing description current |
-| `.opencode/agent/orchestrate.md` | Agent routing description current |
+| `.opencode/agents/handover.md` | Model = haiku (spec 016) |
+| `.opencode/agents/review.md` | Model-agnostic (spec 015) — no hardcoded model |
+| `.opencode/agents/context.md` | Agent routing description current |
+| `.opencode/agents/speckit.md` | Agent routing description current |
+| `.opencode/agents/write.md` | Agent routing description current |
+| `.opencode/agents/debug.md` | Agent routing description current |
+| `.opencode/agents/research/research/research.md` | Agent routing description current |
+| `.opencode/agents/orchestrate.md` | Agent routing description current |
 
 ### Claude Code Agent Configs (P0)
 

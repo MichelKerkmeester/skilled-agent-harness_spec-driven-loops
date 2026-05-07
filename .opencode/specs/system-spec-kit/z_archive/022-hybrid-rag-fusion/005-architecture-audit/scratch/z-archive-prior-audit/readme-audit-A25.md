@@ -10,8 +10,8 @@
 
 | File | Path | Status |
 |------|------|--------|
-| `README.md` | `.opencode/skill/system-spec-kit/README.md` | PASS (minor drift noted) |
-| `ARCHITECTURE.md` | `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | PASS (1 structural gap) |
+| `README.md` | `.opencode/skills/system-spec-kit/README.md` | PASS (minor drift noted) |
+| `ARCHITECTURE.md` | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | PASS (1 structural gap) |
 
 ---
 

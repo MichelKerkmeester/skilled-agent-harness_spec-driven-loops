@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Strict child spec validation exits 0. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync --strict` exited 0.
-- [x] CHK-021 [P0] Strict parent phase validation exits 0. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` exited 0.
+- [x] CHK-020 [P0] Strict child spec validation exits 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync --strict` exited 0.
+- [x] CHK-021 [P0] Strict parent phase validation exits 0. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook --strict` exited 0.
 - [x] CHK-022 [P0] Cross-ref audit returns 11 Motion files and 11 `motion_dev/` pointer files. Evidence: both grep/wc commands returned 11.
 - [x] CHK-023 [P1] Skill graph scan/validation runs after metadata refresh. Evidence: skill graph indexing reported 19 indexed files and validation returned `isValid:true`.
 <!-- /ANCHOR:testing -->

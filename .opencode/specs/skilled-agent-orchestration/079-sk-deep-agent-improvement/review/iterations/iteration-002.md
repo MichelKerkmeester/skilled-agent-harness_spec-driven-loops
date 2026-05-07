@@ -9,12 +9,12 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/deep-agent-improvement/SKILL.md`
-- `.opencode/command/improve/assets/improve_improve-agent_auto.yaml`
-- `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml`
-- `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs`
-- `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs`
-- `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs`
+- `.opencode/skills/deep-agent-improvement/SKILL.md`
+- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`
+- `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml`
+- `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
+- `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs`
 
 ## Findings - New
 
@@ -24,27 +24,27 @@
 
 ### P1 Findings
 
-1. **Unquoted workflow placeholders allow shell/path injection before script validation** -- `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:128` -- The auto workflow defines user-provided `spec_folder` and `target_path` fields, but only requires `spec_folder` to be present and `target_path` to match an agent path in prose validation [SOURCE: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:37`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:40`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:56`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:59`]. Those placeholders are then interpolated unquoted into shell commands such as `mkdir -p {spec_folder}/...`, `--output={spec_folder}/...`, and `--agent={target_path}` [SOURCE: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:128`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:131`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:135`]. The confirm workflow repeats the same pattern [SOURCE: `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:141`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:144`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:148`]. Because the scripts receive arguments only after the shell has expanded the command line, shell metacharacters or whitespace in these fields can redirect writes outside the intended packet or execute unintended shell fragments before Node code can apply path handling.
+1. **Unquoted workflow placeholders allow shell/path injection before script validation** -- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:128` -- The auto workflow defines user-provided `spec_folder` and `target_path` fields, but only requires `spec_folder` to be present and `target_path` to match an agent path in prose validation [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:37`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:40`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:56`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:59`]. Those placeholders are then interpolated unquoted into shell commands such as `mkdir -p {spec_folder}/...`, `--output={spec_folder}/...`, and `--agent={target_path}` [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:128`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:131`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:135`]. The confirm workflow repeats the same pattern [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:141`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:144`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:148`]. Because the scripts receive arguments only after the shell has expanded the command line, shell metacharacters or whitespace in these fields can redirect writes outside the intended packet or execute unintended shell fragments before Node code can apply path handling.
    - Finding class: cross-consumer
-   - Scope proof: Same unquoted placeholder pattern appears in both auto and confirm workflow command surfaces for the same user-controlled fields; reviewed representative path-consuming scripts parse argv and write outputs but do not protect the shell invocation boundary [SOURCE: `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs:26`, `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs:188`, `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs:235`, `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs:26`, `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs:250`, `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs:17`, `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs:261`].
+   - Scope proof: Same unquoted placeholder pattern appears in both auto and confirm workflow command surfaces for the same user-controlled fields; reviewed representative path-consuming scripts parse argv and write outputs but do not protect the shell invocation boundary [SOURCE: `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs:26`, `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs:188`, `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs:235`, `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs:26`, `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs:250`, `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:17`, `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:261`].
    - Affected surface hints: [`improve_improve-agent_auto.yaml`, `improve_improve-agent_confirm.yaml`, `spec_folder`, `target_path`, `candidate_path`]
-   - Recommendation: Route user fields through an argument array or a quoting/escaping helper before command execution, and enforce canonical `spec_folder` and `.opencode/agent/*.md` path normalization before constructing shell commands.
+   - Recommendation: Route user fields through an argument array or a quoting/escaping helper before command execution, and enforce canonical `spec_folder` and `.opencode/agents/*.md` path normalization before constructing shell commands.
 
 ```json
 {
   "type": "claim_adjudication",
   "claim": "User-controlled workflow placeholders are interpolated unquoted into shell command strings, creating shell/path injection risk before script-level path handling can run.",
   "evidenceRefs": [
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:37",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:40",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:56",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:59",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:128",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:131",
-    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml:135",
-    ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml:141",
-    ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml:144",
-    ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml:148"
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:37",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:40",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:56",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:59",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:128",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:131",
+    ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml:135",
+    ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:141",
+    ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:144",
+    ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:148"
   ],
   "counterevidenceSought": "Checked workflow validation text for stronger path constraints and reviewed scan-integration, generate-profile, and run-benchmark argument parsing. The validation is prose-level in YAML, spec_folder has no charset/root constraint, and script parsing occurs after shell interpolation.",
   "alternativeExplanation": "The command runner may provide separate placeholder escaping outside the YAML text; that surface was not present in this packet, so severity is limited to P1 rather than P0.",
@@ -66,9 +66,9 @@
 
 ## Integration Evidence
 
-- Skill frontmatter grants `Read`, `Write`, `Edit`, `Bash`, `Glob`, and `Grep`; no auth/permission frontmatter expansion beyond those allowed tools was observed in the reviewed frontmatter [SOURCE: `.opencode/skill/deep-agent-improvement/SKILL.md:1`, `.opencode/skill/deep-agent-improvement/SKILL.md:4`].
-- Auto workflow command surface inspected for init, scan, profile generation, scoring, benchmark, reducer, and journal command strings [SOURCE: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:128`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:131`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:135`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:165`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:177`, `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:192`].
-- Confirm workflow command surface inspected for equivalent interactive-mode command strings [SOURCE: `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:141`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:144`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:148`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:196`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:208`, `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:223`].
+- Skill frontmatter grants `Read`, `Write`, `Edit`, `Bash`, `Glob`, and `Grep`; no auth/permission frontmatter expansion beyond those allowed tools was observed in the reviewed frontmatter [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:1`, `.opencode/skills/deep-agent-improvement/SKILL.md:4`].
+- Auto workflow command surface inspected for init, scan, profile generation, scoring, benchmark, reducer, and journal command strings [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:128`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:131`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:135`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:165`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:177`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:192`].
+- Confirm workflow command surface inspected for equivalent interactive-mode command strings [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:141`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:144`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:148`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:196`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:208`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:223`].
 
 ## Edge Cases
 
@@ -77,13 +77,13 @@
 
 ## Confirmed-Clean Surfaces
 
-- Reviewed `scan-integration.cjs`, `generate-profile.cjs`, and `run-benchmark.cjs` use Node file/path APIs rather than direct shell execution in the inspected path-consumer flows [SOURCE: `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs:9`, `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs:9`, `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs:10`].
+- Reviewed `scan-integration.cjs`, `generate-profile.cjs`, and `run-benchmark.cjs` use Node file/path APIs rather than direct shell execution in the inspected path-consumer flows [SOURCE: `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs:9`, `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs:9`, `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:10`].
 - No hardcoded credential literal was found in the reviewed `SKILL.md` frontmatter or the inspected command YAML snippets.
 
 ## Ruled Out
 
 - No active P0: evidence shows a command-template injection boundary, but exploitability depends on the dispatcher passing malicious placeholder values without escaping.
-- No separate finding for broad SKILL.md allowed tools: the skill is explicitly an improvement workflow that writes packet-local candidates and uses Bash, so the allowed tool list alone is not evidence of a rename-introduced security regression [SOURCE: `.opencode/skill/deep-agent-improvement/SKILL.md:4`, `.opencode/skill/deep-agent-improvement/SKILL.md:38`].
+- No separate finding for broad SKILL.md allowed tools: the skill is explicitly an improvement workflow that writes packet-local candidates and uses Bash, so the allowed tool list alone is not evidence of a rename-introduced security regression [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:4`, `.opencode/skills/deep-agent-improvement/SKILL.md:38`].
 
 ## Next Focus
 

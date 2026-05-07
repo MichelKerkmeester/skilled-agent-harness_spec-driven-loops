@@ -32,11 +32,11 @@
     },
     {
       "file": "08-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit"
+      "command": "ls -la .opencode/skills/system-spec-kit"
     },
     {
       "file": "09-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit/mcp_server"
+      "command": "ls -la .opencode/skills/system-spec-kit/mcp_server"
     },
     {
       "file": "10-ls--la.txt",
@@ -72,11 +72,11 @@
     },
     {
       "file": "18-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit"
+      "command": "ls -la .opencode/skills/system-spec-kit"
     },
     {
       "file": "19-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit/mcp_server"
+      "command": "ls -la .opencode/skills/system-spec-kit/mcp_server"
     },
     {
       "file": "20-ls--la.txt",
@@ -112,11 +112,11 @@
     },
     {
       "file": "28-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit"
+      "command": "ls -la .opencode/skills/system-spec-kit"
     },
     {
       "file": "29-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit/mcp_server"
+      "command": "ls -la .opencode/skills/system-spec-kit/mcp_server"
     },
     {
       "file": "30-ls--la.txt",
@@ -152,11 +152,11 @@
     },
     {
       "file": "38-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit"
+      "command": "ls -la .opencode/skills/system-spec-kit"
     },
     {
       "file": "39-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit/mcp_server"
+      "command": "ls -la .opencode/skills/system-spec-kit/mcp_server"
     },
     {
       "file": "40-ls--la.txt",
@@ -192,11 +192,11 @@
     },
     {
       "file": "48-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit"
+      "command": "ls -la .opencode/skills/system-spec-kit"
     },
     {
       "file": "49-ls--la.txt",
-      "command": "ls -la .opencode/skill/system-spec-kit/mcp_server"
+      "command": "ls -la .opencode/skills/system-spec-kit/mcp_server"
     },
     {
       "file": "50-ls--la.txt",

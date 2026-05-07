@@ -1,26 +1,26 @@
 ### Finding 3: Mnemosyne survives compaction with reminders; Public resumes with actual session state
-- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
 - **What it does**: Mnemosyne’s `experimental.session.compacting` hook at lines 208-223 injects a static checklist telling the agent when to recall, store, delete, or use `core` and `global`. Public’s compaction transport at `spec-kit-compact-code-graph.js` lines 396-416 injects a prebuilt transport block, and `memory_context()` can inject actual prior session prompt context before budget enforcement at lines 1425-1445. `session_bootstrap()` then layers structural hints and routing nudges on top at lines 194-208.
 - **Why it matters for us**: Mnemosyne preserves memory awareness; Public can preserve memory state. The transferable idea is not the static checklist itself, but adding Mnemosyne-style memory reminders into our existing state-aware transport plan.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 4: Mnemosyne’s end-of-session lifecycle is manual note taking; `generate-context.js` is structured session serialization
-- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - **What it does**: Mnemosyne stores one concise string per `memory_store` or `memory_store_global` call at lines 138-189, and the README’s AGENTS block at lines 62-78 tells the agent to remember to save/delete manually. Public’s `generate-context.js` is JSON-primary: it expects `user_prompts`, `observations`, `recent_context`, `toolCalls`, `exchanges`, `preflight`, `postflight`, and optional `--session-id` at lines 62-107, requires an explicit target spec folder at lines 338-340, and passes the structured payload into the save workflow at lines 500-515.
 - **Why it matters for us**: Mnemosyne is good for fact snippets, but it has no first-class continuation artifact. Public’s save path captures the session as a reusable evidence package, not just a pile of memory atoms.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Mnemosyne ties memory identity to directory basename, which makes lifecycle continuity fragile across renames and parallel checkouts
-- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: Mnemosyne derives project scope from `path.basename(targetDir)` and rewrites a literal `global` basename to `default` at lines 27-30; the README confirms project memory is keyed to `<directory-name>` and global memory is separate at lines 51-60. Public’s save path instead treats the explicit CLI spec folder as authoritative at `generate-context.js` lines 85-93 and 338-345, while `context-server.ts` lines 764-789 publishes a session recovery digest around spec folder, graph freshness, and recommended next step.
 - **Why it matters for us**: Mnemosyne’s ergonomics are nice, but basename keying is a weak lifecycle anchor. Renaming a repo or opening another checkout silently changes the memory namespace. If we ever add project/global aliases, they should sit on top of canonical spec-folder or logical identity keys.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 6: Public has a continuity middle layer that Mnemosyne lacks entirely
-- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md), [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: The checked-out Mnemosyne wrapper exposes tool calls and a static compaction block, but no cached continuity summary, transcript fingerprint, token reuse note, or recovery digest. Public adds accepted cached continuity into `session_resume()` at lines 479-488, carries it through `session_bootstrap()` at lines 202-205 and 255-266, and exposes a session recovery digest with recommended action in `context-server.ts` lines 764-789.
 - **Why it matters for us**: This middle layer is the difference between “search memory again” and “resume with bounded continuity context.” Mnemosyne gives durable storage; Public gives resumable workflow state.
 - **Recommendation**: NEW FEATURE
@@ -30,15 +30,15 @@
 - [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts)
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
-- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
-- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [session-resume.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
+- [session-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - New information ratio: 0.76
@@ -82,7 +82,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -98,11 +98,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -110,7 +110,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -141,7 +141,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -714,1851 +714,1851 @@ mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'rg -n "memory_match_triggers|memory_health|memory_causal_link|memory_causal_unlink|memory_validate|memory_delete|memory_update|trigger phrases|importanceTier|confidence|quality_score|contradict" .opencode/skill/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "memory_match_triggers|memory_health|memory_causal_link|memory_causal_unlink|memory_validate|memory_delete|memory_update|trigger phrases|importanceTier|confidence|quality_score|contradict" .opencode/skills/system-spec-kit/mcp_server' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:9:/** Arguments for the memory_delete handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:12:// Feature catalog: Memory metadata update (memory_update)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:13:// Feature catalog: Single and folder delete (memory_delete)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:22:/** Arguments for the memory_update handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:28:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:82:    throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:32:const handle_memory_delete = handleMemoryDelete;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:33:const handle_memory_update = handleMemoryUpdate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:41:  handle_memory_delete,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:42:  handle_memory_update,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:83:    : 'Prediction-error contradiction across different file paths';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:227:      quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:61:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:157:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:196:            importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:271:                  quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:41:  quality_score: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:140:    quality_score: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:155:  const persistedQualityScore = existing.quality_score ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:237:      importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:302:        importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:170:    importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:337:    importanceTier: result.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:44:    importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:68:    importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:26:// Feature catalog: Single and folder delete (memory_delete)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:55:    tool: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:67:/** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:108:            'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:122:          reason: 'memory_delete: single memory delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:127:            tool: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:133:          actor: 'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:203:              'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:220:          reason: 'memory_delete: bulk delete by spec folder',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:225:            tool: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:232:          actor: 'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:290:    tool: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:30:// Feature catalog: Memory metadata update (memory_update)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:40:/** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:51:    importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:67:  if (importanceTier !== undefined && !isValidTier(importanceTier)) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:70:      `Invalid importance tier: ${importanceTier}. Valid tiers: ${VALID_TIERS.join(', ')}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:71:      { param: 'importanceTier', value: importanceTier }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:87:  if (importanceTier !== undefined) updateParams.importanceTier = importanceTier;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:151:      // T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:195:          'mcp:memory_update'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:203:        reason: 'memory_update: metadata update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:210:          importanceTier: updateParams.importanceTier ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:214:          tool: 'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:220:        actor: 'mcp:memory_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:231:      tool: 'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:289:    tool: 'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:263:export const handle_memory_delete = lazyFunction(getMemoryCrudModule, 'handle_memory_delete');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:264:export const handle_memory_update = lazyFunction(getMemoryCrudModule, 'handle_memory_update');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:316:export const handle_memory_causal_unlink = lazyFunction(getCausalGraphModule, 'handle_memory_causal_unlink');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:556:            importanceTier: r.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:188:    importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:420:    : 'Prediction-error contradiction across different file paths';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:645:          importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:61:| **Causal relations** | 6 | caused, enabled, supersedes, contradicts, derived_from, supports |
-.opencode/skill/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
-.opencode/skill/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
-.opencode/skill/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
-.opencode/skill/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
-.opencode/skill/system-spec-kit/mcp_server/README.md:361:| **contradicts** | -- | A and B conflict |
-.opencode/skill/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
-.opencode/skill/system-spec-kit/mcp_server/README.md:398:| **SUPERSEDE** | New knowledge contradicts the old | New version active, old one demoted to deprecated |
-.opencode/skill/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
-.opencode/skill/system-spec-kit/mcp_server/README.md:642:| `min_quality_score` | number | Filter out low-quality results |
-.opencode/skill/system-spec-kit/mcp_server/README.md:674:##### `memory_match_triggers`
-.opencode/skill/system-spec-kit/mcp_server/README.md:688:  "tool": "memory_match_triggers",
-.opencode/skill/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
-.opencode/skill/system-spec-kit/mcp_server/README.md:789:##### `memory_delete`
-.opencode/skill/system-spec-kit/mcp_server/README.md:801:##### `memory_update`
-.opencode/skill/system-spec-kit/mcp_server/README.md:809:| `triggerPhrases` | string[] | Updated trigger phrases |
-.opencode/skill/system-spec-kit/mcp_server/README.md:811:| `importanceTier` | string | `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
-.opencode/skill/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
-.opencode/skill/system-spec-kit/mcp_server/README.md:996:##### `memory_causal_link`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1004:| `relation` | string | **Required.** `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from` or `supports` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1020:##### `memory_causal_unlink`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1540:| Check triggers on every prompt | `memory_match_triggers` | Pass the user's prompt text |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1567:{ "tool": "memory_search", "arguments": { "query": "your query", "min_quality_score": 0.5 } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1717:Start with `memory_context` for all retrieval tasks. It handles intent detection and routing automatically. Use `memory_search` when you want explicit control over channels. Use `memory_match_triggers` when processing a raw prompt at the start of each turn. Use L4-L7 tools only for mutation, analysis or maintenance.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:16:// Feature catalog: Memory metadata update (memory_update)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:17:// Feature catalog: Single and folder delete (memory_delete)
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:17:// Feature catalog: Causal edge creation (memory_causal_link)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:18:// Feature catalog: Causal edge deletion (memory_causal_unlink)
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:27:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:198:      importanceTier: r.importance_tier as string
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:30:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:55:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:205:/** Mark a memory as superseded (deprecated) when a newer contradicting version is saved */
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:280:      importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:285:      quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:320:    importanceTier: parsed.importanceTier
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:345:        contradiction_detected,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:354:      decision.contradiction?.detected ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:77:const importanceTierEnum = z.enum([
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:90:  'contradicts',
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:130:  tier: importanceTierEnum.optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:139:  min_quality_score: boundedNumber(0, 1).optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:214:  importanceTier: importanceTierEnum.optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:232:  tier: importanceTierEnum,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:405:  memory_delete: memoryDeleteSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:406:  memory_update: memoryUpdateSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:416:  memory_causal_link: memoryCausalLinkSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:418:  memory_causal_unlink: memoryCausalUnlinkSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:470:  memory_delete: ['id', 'specFolder', 'confirm'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:481:  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:483:  memory_causal_unlink: ['edgeId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:207:  min_quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:524:    min_quality_score,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:578:  const qualityThreshold = resolveQualityThreshold(minQualityScore, min_quality_score);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:834:                     quality_score, created_at
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
-.opencode/skill/system-spec-kit/mcp_server/schemas/README.md:53:**Shared validators** -- Reusable building blocks (`positiveInt`, `positiveIntMax`, `boundedNumber`, `intentEnum`, `importanceTierEnum`, `relationEnum`) keep per-tool schema definitions concise.
-.opencode/skill/system-spec-kit/mcp_server/schemas/README.md:55:**Discriminated delete** -- `memory_delete` uses a `z.union` of two branches: single-record delete (requires `id`) and bulk folder delete (requires `specFolder` + `confirm: true`).
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:70:- `MEMORY_AWARE_TOOLS` currently includes `memory_context`, `memory_search`, `memory_match_triggers`, `memory_list`, `memory_save`, and `memory_index_scan`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:62:  contradictionDensity: 0.15, // max allowed
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:201:    signal: 'contradictionDensity',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:202:    value: signals.contradictionDensity,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:203:    threshold: t.contradictionDensity,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:204:    passed: signals.contradictionDensity <= t.contradictionDensity,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:255:  // Check for active contradictions
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:256:  const contradictions = findContradictions(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:257:  if (contradictions.length > 0 && signals.contradictionDensity > t.contradictionDensity) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:259:      type: 'high_contradiction_density',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:260:      description: `${contradictions.length} contradiction(s) detected with density above threshold`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:261:      count: contradictions.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:351:  // Check contradictions
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:352:  const contradictions = findContradictions(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:353:  if (contradictions.length > 0 && signals.findingStability < t.findingStability) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:356:      description: `${contradictions.length} contradiction(s) are lowering finding stability below threshold`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:357:      count: contradictions.length,
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:96:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:447:      importanceTier: rawResult.importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:89: * Evaluates whether the memory metadata declares enough trigger phrases for
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:108:    issues.push('No trigger phrases found');
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:427: * - Re-extract trigger phrases from content headings/title
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:442:  // Fix #1 : Re-extract trigger phrases if missing/insufficient
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:452:      fixed.push(`Re-extracted ${extracted.length} trigger phrases from content`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:482: * Extract trigger phrases from content by scanning headings and the title.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:722:      'memory_quality_score',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:23:  | 'contradictions'
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:91:      case 'contradictions': {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:92:        const contradictions = findContradictions(ns);
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:94:          queryType: 'contradictions',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:96:          contradictions: contradictions.slice(0, limit),
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:97:          totalContradictions: contradictions.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:129:          `Unknown queryType: "${args.queryType}". Valid types: uncovered_questions, unverified_claims, contradictions, provenance_chain, coverage_gaps, hot_nodes`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:20:// Feature catalog: Single and folder delete (memory_delete)
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:769:/** Handle memory_causal_unlink tool - deletes a causal edge by ID */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:776:      tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:799:        tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:803:        recovery: getRecoveryHint('memory_causal_unlink', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:821:      tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:829:      'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:861:  handle_memory_causal_unlink,
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:39:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:54:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:73:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:97:  'spec_level', 'quality_score', 'quality_flags', 'parent_id',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:243:        importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:250:        quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:344:          importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:475:      importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:516:            quality_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:522:        parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:586:        importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:643:    importanceTier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:93:  /** Optional trigger phrases for query-classifier trigger-match routing path. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:116:      min_quality_score: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:120:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:126:        description: 'Deprecated alias for min_quality_score. Prefer snake_case parameter name.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:277:  name: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:292:  name: 'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:493:  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { type: 'string', description: 'Source memory ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target memory ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' } }, required: ['sourceId', 'targetId', 'relation'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:827:  description: '[L9:CoverageGraph] Structured analysis of deep-loop coverage graph state. Supports query types: uncovered_questions (questions with no coverage), unverified_claims (claims without verification), contradictions (CONTRADICTS edge pairs), provenance_chain (BFS from a node following citation/evidence edges), coverage_gaps (nodes missing incoming coverage edges), and hot_nodes (most connected nodes by edge count + weight).',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:833:      queryType: { type: 'string', enum: ['uncovered_questions', 'unverified_claims', 'contradictions', 'provenance_chain', 'coverage_gaps', 'hot_nodes'], description: 'Type of query to execute (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:196: * - Terms must NOT already exist as organic trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:201: * @param existingTriggers - Current trigger phrases already on the memory
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
-.opencode/skill/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
-.opencode/skill/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:40:  contradicts: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:440:                WHEN 'contradicts' THEN 0.7
-.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:528:          WHEN 'contradicts' THEN 0.7
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:79: * @param triggerPhrases - Known trigger phrases to match against.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:140: * @param triggerPhrases - Optional array of known trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:131:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:176:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:233:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:176:| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match, check contradiction  |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:183:- Triggers: SUPERSEDE action to replace contradictory memory
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:421:// Detect contradiction between two texts
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:422:const contradiction = detectContradiction(newContent, existingContent);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:432:  contradiction,      // ContradictionResult
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:441:// stats = { total, byAction: {...}, contradictions, averageSimilarity }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:449:similarity >= 0.85 → UPDATE or SUPERSEDE (if contradiction detected)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:809:    // High similarity but no contradiction, update existing
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:31:Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:26:  importanceTier?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:51:  importanceTier?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:130:  const tierMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:159:  // Normalize trigger phrases to array
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:222:    importanceTier = null,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:248:  if (importanceTier && TIER_TO_TYPE_MAP[importanceTier]) {
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:250:      type: TIER_TO_TYPE_MAP[importanceTier],
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:304:      importanceTier: memory.importanceTier || memory.importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/type-inference.ts:323:  keywords: 'Matched keywords in title or trigger phrases',
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:489: * @param triggerPhrases - Array of trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:638:      reasons.push('No trigger phrases: add at least 1-2 trigger phrases');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:87:function getDecayRate(importanceTier: string | null | undefined): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:88:  if (!importanceTier || typeof importanceTier !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:92:  const rate = DECAY_CONFIG.decayRateByTier[importanceTier];
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:246:    String(memory.importance_tier || memory.importanceTier || 'normal'),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:260: * Learns new trigger phrases from a selected result.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:263: * @returns True when trigger phrases were updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:40:  { pattern: /\bcontradicts?\b/i, type: 'explicit', description: 'Explicit contradiction statement' },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:51:  contradiction: ContradictionResult | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:68:  contradiction_detected: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:69:  contradiction_type: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:78:  contradictions: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:90:    contradictions: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:122: * Detect contradictions between new and existing content.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:128: * Strategy: contradiction signals in the NEW content (e.g., "actually",
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:130: * existing knowledge. We only flag a contradiction when the new content
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:158:    explicit: 0.85,        // "contradicts" — strongest signal
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:165:    // A contradiction is signaled when:
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:166:    // 1. The NEW content contains the contradiction marker (primary signal), OR
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:170:      // New content introduces a contradiction/correction signal not present in old
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:186:    // If both match the same pattern, it's likely inherited phrasing, not a contradiction
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:230:      contradiction: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:253:      contradiction: null,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:262:  // Check for contradiction
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:264:  const contradiction = detectContradiction(newContent, existingContent);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:274:    if (contradiction.detected) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:276:      reason = `High match with contradiction: ${contradiction.description}`;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:298:      contradiction,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:310:    contradiction,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:335:  contradiction: ContradictionResult,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:346:    contradiction_detected: contradiction.detected ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:347:    contradiction_type: contradiction.type,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:364:        reason, contradiction_detected, contradiction_type,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:373:      record.contradiction_detected,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:374:      record.contradiction_type,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:390:    return { total: 0, byAction: {}, contradictions: 0, averageSimilarity: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:405:    const contradictions = (db.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:406:      `SELECT COUNT(*) as count FROM memory_conflicts WHERE contradiction_detected = 1 ${specFolder ? 'AND spec_folder = ?' : ''}`
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:421:      contradictions: contradictions.count,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:427:    return { total: 0, byAction: {}, contradictions: 0, averageSimilarity: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:462:  const stats = { total: 0, creates: 0, updates: 0, supersedes: 0, reinforces: 0, contradictions: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:485:    if (result.contradiction?.detected) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:486:      stats.contradictions++;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:69:  min_quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:102:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:225:        content_text, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:308:            quality_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:324:        content_text, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:361:    importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:400:    if (importanceTier !== undefined) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:402:      values.push(importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:426:      updates.push('quality_score = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:319: * @param importanceTier Memory importance_tier field (e.g. "constitutional", "normal")
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:322:function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:324:  const tierMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:343: * @param importanceTier Memory importance_tier field
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:349:  importanceTier: string
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:361:  const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:432:function getHybridDecayMultiplier(contextType: string, _importanceTier?: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:452:  const multiplier = getHybridDecayMultiplier(contextType, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:4:// Feature catalog: Causal edge contradiction detection
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:5:// Detects when a new edge contradicts an existing one and
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:39:  ['supports', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:40:  ['caused', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:41:  ['enabled', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:63: * Check if a new edge contradicts existing edges.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:66: * 2. Same source+target with conflicting relations (e.g., 'supports' vs 'contradicts')
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:67: * Returns array of contradictions found and invalidated.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:126:    console.warn(`[contradiction-detection] detectContradictions failed (fail-open): ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:33:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:67:  importanceTier: string | undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:71:  if (importanceTier === 'critical' || importanceTier === 'constitutional') {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:303:      importanceTier: memory.importance_tier || 'normal',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:26:  'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:28:  'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:35:    case 'memory_causal_link':   return handleMemoryCausalLink(parseArgs<CausalLinkArgs>(validateToolArgs('memory_causal_link', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:37:    case 'memory_causal_unlink': return handleMemoryCausalUnlink(parseArgs<CausalUnlinkArgs>(validateToolArgs('memory_causal_unlink', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:59:    'idx_quality_score',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:89:  'contradiction_detected',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:90:  'contradiction_type',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:258:      contradiction_detected INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:259:      contradiction_type TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:333:      contradiction_detected,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:334:      contradiction_type,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:349:      ${getFirstAvailableColumnExpression(legacyColumns, ['contradiction_detected'], '0')},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:350:      ${getFirstAvailableColumnExpression(legacyColumns, ['contradiction_type'], 'NULL')},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:416:// V15: Add quality_score and quality_flags columns for memory quality gates
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:613:              'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:834:        database.exec('ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:835:        logger.info('Migration v15: Added quality_score column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:838:          console.warn('[VectorIndex] Migration v15 warning (quality_score):', get_error_message(e));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:853:        'idx_quality_score',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:854:        'CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score)',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2349:      quality_score REAL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2470:    CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:96: * - Rows with a missing or non-finite `quality_score` are treated as 0.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:113:    const rawScore = row.quality_score as number | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:122:    if (row.quality_score !== 0 && row.quality_score != null) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:128:      quality_score: computeBackfillQualityScore(row),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:56:    toolPattern: /^(bash|memory_save|memory_update)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:257:// Returns: { promotionEligible: true, wasPromoted: true, importanceTier: 'critical' }
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:69:  'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:70:  'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:104:    case 'memory_delete':         return handleMemoryDelete(parseArgs<DeleteArgs>(validateToolArgs('memory_delete', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:105:    case 'memory_update':         return handleMemoryUpdate(parseArgs<UpdateArgs>(validateToolArgs('memory_update', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:3:description: "Community detection, graph signal scoring, temporal edges, contradiction detection, usage tracking, and community summaries for causal memory networks."
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:33:The graph module operates on the `causal_edges` and `memory_index` tables to detect communities, compute scoring signals, manage temporal edge validity, detect contradictions, track usage, and generate community summaries. All features are independently gated behind `SPECKIT_*` feature flags.
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:68:  contradiction-detection.ts  # Superseding/conflicting edge detection + auto-invalidation
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:83:| `contradiction-detection.ts` | Detects superseding and conflicting edge relations, auto-invalidates old edges via `temporal-edges.ts` | `SPECKIT_TEMPORAL_EDGES` |
-.opencode/skill/system-spec-kit/mcp_server/lib/graph/README.md:113:| `detectContradictions` | contradiction-detection.ts | Checks if new edge contradicts existing edges, auto-invalidates |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:615:                quality_score, created_at, context_type
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:639:      quality_score: (parentRow.quality_score as number | undefined) ?? bestChunk.quality_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:55:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:135: * @param triggerPhrases - Optional trigger phrases for simple-tier classification
-.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:44:    'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:4:// Structured query helpers for coverage gap detection, contradiction
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:5:/** Maximum trigger phrases stored for each memory. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:67:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:122:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:182: * @returns Parsed trigger phrases, or an empty array on invalid input.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:627:    const importanceTier = (row.importance_tier as string | undefined) ?? 'normal';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1006:      const importanceTier = (row.importance_tier as string | undefined) ?? 'normal';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:40:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:107:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/retrieval-directives.ts:54:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:31:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:214:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:216:  const tierMult = CLASSIFICATION_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:38:  contradictionDensity: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:194:  // contradictionDensity: CONTRADICTS edges / all edges
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:199:  const contradictEdgeCount = (d.prepare(
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:203:  const contradictionDensity = allEdgeCount > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:204:    ? contradictEdgeCount / allEdgeCount
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:216:    contradictionDensity,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
-.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:157:// In-memory cache of trigger phrases for fast matching
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:208:  // word breaks. For pure CJK trigger phrases, prefer substring matching so valid
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:337:/** Load all trigger phrases from the index into memory */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:380:        console.warn(`[trigger-matcher] Failed to parse trigger phrases for memory ${row.id}: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:621:/** Match user prompt against trigger phrases using exact string matching */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:694:/** Match trigger phrases with additional stats */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:725:/** Get all unique trigger phrases in the cache */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:649:| `contradicts` | 0.7 | Contradiction signal |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:719:`buildBm25DocumentText()` builds the canonical lexical document from title, content, trigger phrases, and folder metadata. `normalizeLexicalQueryTokens()` is shared by BM25 and SQLite FTS flows so lexical matching stays aligned across search channels.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:5:// 100+ stop words that should never be learned as trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:57:   to serve as meaningful trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:76: * as trigger phrases. All terms stored in lowercase for case-insensitive matching.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:71:    importanceTier: 'critical',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:103:    expect(memory.importanceTier).toBe('critical');
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:11:// 2. quality_score    → direct numeric quality metric from DB column
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:26: * Used when quality_score is absent or zero.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:71:  /** Normalised quality score in [0, 1] derived from quality_score or importance_tier. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:160: *   1. `quality_score` from the DB column (direct metric, highest priority).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:168: * (no tier, no quality_score, no content with markers).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:180:  // A positive, finite quality_score from the DB is the authoritative signal.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:183:  const dbQualityScore = typeof row.quality_score === 'number' && Number.isFinite(row.quality_score) && row.quality_score > 0
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:184:    ? row.quality_score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:191:    // Fall back to tier-derived score when no DB quality_score is available.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:24:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:86:    const rawScore = result.quality_score as number | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/README.md:37:| `memory-parser.ts` | Parses titles, trigger phrases, tiers, document type, causal links, anchors, and content hashes from markdown files |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2b-enrichment.ts:39:  // Extract spec quality signals (SPECKIT_LEVEL, quality_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:53:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:266:    importanceTier: importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:278:    importanceTier: importance_tier,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:541:/** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:634:  // (e.g., template comments containing "importanceTier: 'constitutional'" as documentation)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:639:  const yamlMatch = frontmatter?.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:62:  find_decision:  ['PREFERENCE', 'CORRECTION', 'supersedes', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:64:  understand:     ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:65:  find_spec:      ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:66:  refactor:       ['caused', 'derived_from', 'enabled', 'supports', 'supersedes', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:67:  security_audit: ['caused', 'contradicts', 'supersedes', 'enabled', 'supports', 'derived_from'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:71:const DEFAULT_EDGE_PRIORITY = ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:81: * amplify the boost while weaker ones (contradicts) attenuate it.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:93:  contradicts: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:235: * Alias map: CORRECTION → supersedes | contradicts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:241:  CORRECTION:  ['supersedes', 'contradicts'],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:429:  // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:434:                   WHEN ce.relation = 'contradicts' THEN 0.8
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:443:                   WHEN ce.relation = 'contradicts' THEN 0.8
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:457:                                   WHEN ce.relation = 'contradicts' THEN 0.8
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:97:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:99:      'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:187: * N3-lite: Consolidation engine — contradiction scan, Hebbian strengthening,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:80:  'quality_score',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:158:      quality_score REAL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:184:    CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:470:  importanceTier: 'critical',
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:505:**Trigger Matcher**: Matches user prompts to memory trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:508:// Find memories with matching trigger phrases
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:538:      'Or use memory_update() to modify existing entry',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:608:      'Valid relations: caused, enabled, supersedes, contradicts, derived_from, supports',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:610:      'See memory_causal_link() documentation for relation semantics'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:802:  memory_causal_link: {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:58:  memory_delete: ERROR_CODES.MEMORY_DELETE_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:59:  memory_update: ERROR_CODES.MEMORY_UPDATE_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:63:  memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:65:  memory_causal_unlink: ERROR_CODES.CAUSAL_GRAPH_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:4:// Feature catalog: Causal edge creation (memory_causal_link)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:9:import { detectContradictions } from '../graph/contradiction-detection.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:22:  CONTRADICTS: 'contradicts',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:4:// Lightweight graph maintenance: contradiction scan, Hebbian
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:53:  contradictions: ContradictionCluster[];
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:63:/** Cosine similarity threshold for contradiction candidates */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:69:/** Negation keywords for lightweight contradiction heuristic */
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:81: * Find potential contradictions by:
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:123: * Vector-based contradiction scan using sqlite-vec cosine similarity.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:185: * Heuristic-only contradiction scan when vector similarity is unavailable.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:238: * Check if two texts contain negation patterns suggesting contradiction.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:248:    // One has negation, the other doesn't → potential contradiction
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:284: * Surface all members of a contradiction cluster.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:285: * When a contradiction pair is detected, find ALL related memories
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:441:  const contradictions = buildContradictionClusters(database, contradictionPairs);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:469:    contradictions,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:141:      contradiction_detected INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:154:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:772:        contradiction_detected INTEGER,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:828:      importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:193:  it('fix_bug: CORRECTION covers contradicts as well', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:194:    const contradicts = causalBoost.resolveEdgePrior('contradicts', 'fix_bug');
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:195:    // CORRECTION alias covers both supersedes and contradicts at tier 0
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:196:    expect(contradicts).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:214:    expect(supersedes).toBe(0.75); // CORRECTION → supersedes/contradicts → tier 1
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:221:    // DEFAULT: ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts']
-.opencode/skill/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:381:    expect(causalBoost.RELATION_WEIGHT_MULTIPLIERS['contradicts']).toBe(0.8);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:31:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:58:  'spec_level', 'quality_score', 'quality_flags', 'parent_id',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:231:        'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:354:      'mcp:memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tests/history.vitest.ts:355:      'mcp:memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:474:      quality_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:502:    importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:508:    quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md:49:| `consolidation.ts` | N3-lite contradiction, Hebbian, and stale-edge maintenance |
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:13:  { tool: 'memory_delete', handler: 'handleMemoryDelete', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:14:  { tool: 'memory_update', handler: 'handleMemoryUpdate', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:23:  { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:25:  { tool: 'memory_causal_unlink', handler: 'handleMemoryCausalUnlink', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:39:  { camel: 'handleMemoryDelete', snake: 'handle_memory_delete' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:40:  { camel: 'handleMemoryUpdate', snake: 'handle_memory_update' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:50:  { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:52:  { camel: 'handleMemoryCausalUnlink', snake: 'handle_memory_causal_unlink' },
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:15:import type { ContradictionResult } from '../lib/graph/contradiction-detection.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:16:import { detectContradictions } from '../lib/graph/contradiction-detection.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:67:    const result = detectContradictions(db, 1, 2, 'contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:80:  it('detects supersedes contradiction', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:108:  it('detects conflicting relation pairs (supports vs contradicts)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:111:    const result = detectContradictions(db, 7, 8, 'contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:123:        reason: "Conflicting relations: existing 'supports' vs new 'contradicts'",
-.opencode/skill/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:130:      "Conflicting relations: existing 'supports' vs new 'contradicts'",
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:378:        qualityFlags: ['No trigger phrases found'],
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    detail: 'Queries must be NOT derived from trigger phrases',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:330:      "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:570:      "expectedResultDescription": "Should surface memories with trigger phrases matching \"content hash\" or \"deduplication\". Likely surfaces T054-related memories about SHA256 dedup implementation.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:571:      "notes": "Derived from known trigger phrases in the memory system related to content hash dedup."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:590:      "expectedResultDescription": "Should surface session-boost.ts, working-memory.ts, and memories with trigger phrases about session boost or attention scoring.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:661:      "notes": "Derived from \"BM25\" and \"stemming\" trigger phrases in the BM25 index module."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:671:      "notes": "Derived from \"causal edge\" and \"graph traversal\" trigger phrases."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:681:      "notes": "Derived from \"decision record\" and \"level 3\" trigger phrases in spec kit documentation."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:691:      "notes": "Derived from \"maximal marginal relevance\" or \"MMR\" trigger phrases."
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1348:    'quality_score',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:61:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:280:      const mergedImportanceTier = newMemory.importanceTier ?? getOptionalString(currentRow, 'importance_tier');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:914:    quality_score: existingRow.quality_score,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:65:    importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:79:    opts.importanceTier ?? 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:256:      importanceTier: 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:387:      importanceTier: 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:150:        { content: '---\nimportanceTier: critical\n---', expected: 'semantic' },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:204:        importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:209:        importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:122:    const expectedRelations = ['supersedes', 'contradicts', 'caused', 'enabled', 'derived_from', 'supports'];
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:177:      VALUES ('1', '2', 'supersedes', 1.0), ('1', '3', 'contradicts', 1.0)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:54:      quality_score REAL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:121:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:452:    it('T054-6f: Same-path unchanged does not short-circuit when trigger phrases changed', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:453:      const content = 'Existing same-path row with stale trigger phrases.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:483:      const content = 'Existing same-path row with stale trigger phrases.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:57:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:142:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:23:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:158:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:104:        contradiction_detected INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:118:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:442:    it.skipIf(!canRun || !hasModuleDb)('logs contradiction decision', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:448:        contradiction: {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:455:      expect(() => logPeFn!(decision, 'test-hash-002', 'specs/contradiction-folder')).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:508:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:531:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:561:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:591:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:614:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:749:        importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:776:        importanceTier: 'critical',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:783:      expect(result.importanceTier).toBe('critical');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:898:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:89:      validateToolInputSchema('memory_delete', { id: '42' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:160:   3. memory_delete SCHEMA (oneOf REMOVED — HANDLER-VALIDATED)
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:163:describe('memory_delete schema (oneOf removed, handler-validated)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:166:      validateToolInputSchema('memory_delete', { id: 42 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:172:      validateToolInputSchema('memory_delete', { id: '42' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:178:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001-test', confirm: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:184:      validateToolInputSchema('memory_delete', { id: 1, specFolder: 'specs/001-test' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:190:      validateToolInputSchema('memory_delete', {}, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:196:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001', confirm: false }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:202:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001', confirm: 'yes' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:208:      validateToolInputSchema('memory_delete', { id: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:465:    const causalLink = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:31:  quality_score: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:537:        'ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:556:            quality_score = ?,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:581:            quality_score = 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:593:        SELECT canonical_file_path, content_hash, content_text, quality_score, quality_flags, chunk_index, chunk_label
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:603:      expect(restored.quality_score).toBe(0.91);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1274:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:28:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:144:      causalEdges.insertEdge('1', '5', 'contradicts', 0.5, null);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:158:      expect(relations).toContain('contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:40:  it('T1: extracts qualityScore from db quality_score when present and positive', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:41:    const row = makeRow({ quality_score: 0.85 });
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:50:    const rowHigh = makeRow({ quality_score: 1.5 });
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:53:    // Negative quality_score is treated as absent. Without a tier, returns null.
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:54:    const rowLow = makeRow({ quality_score: -0.3 });
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:57:    // Negative quality_score with a tier falls back to tier score.
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:58:    const rowLowWithTier = makeRow({ quality_score: -0.3, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:62:  it('T3: falls back to tier score when quality_score is zero', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:63:    const row = makeRow({ quality_score: 0, importance_tier: 'critical' });
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:70:  it('T4: falls back to tier score when quality_score is absent', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:233:  it('T15: returns null when row has no signals (no tier, no quality_score, no content)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:278:      makeRow({ id: 1, importance_tier: 'critical', quality_score: 0.9 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:313:        quality_score: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:343:        quality_score: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:69:      expect(result.contradiction?.detected ?? false).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:72:    it('T504: contradiction markers in new content route to SUPERSEDE', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:82:      expect(result.contradiction?.detected).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:83:      expect(result.contradiction?.type).toBe('deprecation');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:160:      expect(record.contradiction_detected).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:161:      expect(record.contradiction_type).toBe('deprecation');
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
-.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:71:     Production: getDecayRate(importanceTier: string | null | undefined): number
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:355:          quality_score: 0.91,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:363:    mockSearch.mockResolvedValue([{ id: 1, score: 0.93, title: 'baseline-hit', quality_score: 0.93 }]);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:389:      quality_score: 0.99,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:398:    mockSearch.mockResolvedValue([{ id: 1, score: 0.95, title: 'baseline-version', quality_score: 0.95 }]);
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:426:          quality_score: 0.95,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:437:          quality_score: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:475:          quality_score: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:489:          quality_score: 0.9,
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:112:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:2:// Covers: contradiction scan, Hebbian strengthening, staleness
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:56:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:485:    expect(result).toHaveProperty('contradictions');
-.opencode/skill/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:496:    expect(result.contradictions).toHaveLength(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:167:      'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:168:      'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:182:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:184:      'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:288:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:289:      'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:291:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:294:      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1642:    it('T28e: L4 budget = 1000 (memory_delete)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1647:      expect(layerDefs!.getTokenBudget!('memory_delete')).toBe(1000)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1699:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1712:    const nonAwareTools = ['memory_delete', 'checkpoint_create', 'task_preflight']
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2082:      'memory_match_triggers': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_health': '[L3:Discovery]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2087:      'memory_delete': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2088:      'memory_update': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2089:      'memory_validate': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2097:      'memory_causal_link': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2099:      'memory_causal_unlink': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:746:      importanceTier: 'critical',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:753:    expect(fields).toContain('importanceTier');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1116:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1355:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1403:        fixes: ['Re-extracted 4 trigger phrases from content'],
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1962:            decision: { action: 'CREATE', similarity: 0.98, reason: 'contradiction across file paths' },
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:14:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:21:    importanceTier: 'critical',
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:35:      const score = computeRecencyScore(memory.updatedAt as string, memory.importanceTier as string);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:62:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:152:        'contradicts',
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:51:      quality_score REAL DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:73:        'handle_memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:74:        'handle_memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:160:    it('T519-U4: Invalid importanceTier throws', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:164:          importanceTier: 'invalid_tier' as unknown as Parameters<typeof handler.handleMemoryUpdate>[0]['importanceTier'],
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:52:      quality_score REAL DEFAULT 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:65:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
-.opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:31:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:364:      expect(EDGE_TYPE_WEIGHTS['contradicts']).toBe(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:265:    it('T501-13a: Unicode-aware boundaries match Cyrillic and CJK trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:16:      importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:34:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'important' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:35:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:48:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'important' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:49:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:68:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:69:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:70:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:71:        createMemory({ specFolder: 'old-project', spec_folder: 'old-project', updatedAt: weekAgo.toISOString(), updated_at: weekAgo.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:85:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:86:        createMemory({ specFolder: 'old-project', spec_folder: 'old-project', updatedAt: weekAgo.toISOString(), updated_at: weekAgo.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:156:        createMemory({ specFolder: 'folder-a', spec_folder: 'folder-a', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:157:        createMemory({ specFolder: 'folder-b', spec_folder: 'folder-b', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:158:        createMemory({ specFolder: 'folder-c', spec_folder: 'folder-c', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:176:        createMemory({ specFolder: 'folder-a', spec_folder: 'folder-a', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:177:        createMemory({ specFolder: 'folder-b', spec_folder: 'folder-b', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:206:  it('T027: memory_causal_link has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:207:    expect(TOOL_SPECIFIC_HINTS.memory_causal_link).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:208:    expect(typeof TOOL_SPECIFIC_HINTS.memory_causal_link).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:202:      expect(info.importanceTier).toBe('critical');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
-.opencode/skill/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:40:    importanceTier: 'constitutional',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:328:    const original = makeResult({ id: 42, specFolder: 'specs/core', importanceTier: 'constitutional' });
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:332:    expect(enriched[0].importanceTier).toBe('constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:386:  it('T38: enrichment preserves importanceTier field unchanged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:387:    const results = [makeResult({ importanceTier: 'constitutional' })];
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:389:    expect(enriched[0].importanceTier).toBe('constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:398:      importanceTier: 'constitutional',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:406:    expect(result.importanceTier).toBe(base.importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:520:      importanceTier: 'constitutional',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:554:    expect(result!.constitutional[0].importanceTier).toBe('constitutional');
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:100:    it('T515-03: no duplicate trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:45:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:124:      const expectedValues = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:184:      causalEdges.insertEdge('7', '8', 'contradicts', -0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:634:      causalEdges.insertEdge('5', '6', 'contradicts', 0.5); // unrelated
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:645:      causalEdges.insertEdge('5', '6', 'contradicts', 0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:710:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:721:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:728:      expect(br.contradicts).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:736:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:748:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:760:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:772:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:807:      causalEdges.insertEdge('1', '888', 'contradicts', 0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:41:  importanceTier = 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:46:  `).run(id, title, specFolder, importanceTier);
-.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:389:      importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:9:import { detectContradictions } from '../lib/graph/contradiction-detection.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:34:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:189:    it('should detect supersedes contradiction and invalidate old edge', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:195:      const contradictions = detectContradictions(db, 50, 60, 'supersedes');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:196:      expect(contradictions).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:197:      expect(contradictions[0]!.oldEdge.relation).toBe('caused');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:198:      expect(contradictions[0]!.oldRelation).toBe('caused');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:199:      expect(contradictions[0]!.reason).toContain('Superseded');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:208:    it('should detect conflicting relation pairs (supports vs contradicts)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:214:      const contradictions = detectContradictions(db, 70, 80, 'contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:215:      expect(contradictions).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:216:      expect(contradictions[0]!.reason).toContain('Conflicting relations');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:219:    it('should return empty array when no contradictions exist', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:225:      const contradictions = detectContradictions(db, 90, 100, 'enabled');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:226:      expect(contradictions).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:235:      const contradictions = detectContradictions(db, 110, 120, 'contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:236:      expect(contradictions).toEqual([]);
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/corrections.vitest.ts:52:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:84:  importanceTier?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:327:    it('3.3.4b filters single-word stopword trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1416:    it('does not re-add existing trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:141:    it('T120: "contradicts" detected as explicit', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:142:      const r = peGate.detectContradiction('This contradicts the previous', 'Previous');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:147:    it('T121: Non-contradictory content NOT flagged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:196:    it('T128: SUPERSEDE for contradictions in high match range', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:200:      expect(r.contradiction).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:201:      expect(r.contradiction!.detected).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:363:        contradiction,                // contradiction
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:381:        contradiction,
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:387:        'reason', 'contradiction_detected', 'contradiction_type', 'new_content_preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:402:        contradiction,
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:508:      const statFields = ['total', 'creates', 'updates', 'supersedes', 'reinforces', 'contradictions'];
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:542:    it('C138-T2: contradicting content triggers detection', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:552:    it('C138-T3: THRESHOLD constants are valid for contradiction detection', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:557:    it('C138-T4: ACTION types include contradiction-related actions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:804:  it('memory_update wraps the update path in runInTransaction', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:5:type Row = { id: string | number; quality_score?: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:16:describe('C136: minQualityScore and min_quality_score behavior', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:32:      { id: 'a', quality_score: 0.2 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:33:      { id: 'b', quality_score: 0.5 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:34:      { id: 'c', quality_score: 0.9 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:43:      { id: 'a', quality_score: 0.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:44:      { id: 'b', quality_score: 0.6 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:45:      { id: 'c', quality_score: 1.0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:42:      quality_score: 0.98,
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:50:      quality_score: 0.1,
-.opencode/skill/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:25:        memory_update: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:26:        memory_delete: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:75:    tool: 'memory_delete',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:81:    tool: 'memory_update',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:143:    tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:155:    tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:180:  { tool: 'memory_delete', handler: 'handleMemoryDelete' },
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:45:  importanceTier?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:66:    importanceTier = 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:109:      parts.push(`importance_tier: "${importanceTier}"`);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:428:  it('auto-fix rescues missing trigger phrases from headings', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:430:    // Content with headings (for trigger extraction) but NO trigger phrases and NO anchors.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1066:  it('rejects emoji-only trigger phrases as non-semantic', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1141:  it('quality loop handles exactly 3 trigger phrases at boundary', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:39:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:95:importanceTier: important
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:125:importanceTier: [bogus
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:133:importanceTier: normal
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:526:      expect(result.importanceTier).toBe('important');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:543:      expect(result.importanceTier).toBe('normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:114:        memory_match_triggers: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_health: 'L3',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_update: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:119:        memory_delete: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_validate: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_causal_link: 'L6',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:128:        memory_causal_unlink: 'L6',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:182:        { tool: 'memory_update', expected: '[L4:Mutation]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:213:        { tool: 'memory_delete', desc: 'Delete a memory', prefix: '[L4:Mutation]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:240:        { tool: 'memory_update', expected: 1000 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:416:                           'memory_update', 'checkpoint_create', 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:116:        { id: 2, importanceTier: 'critical', stability: 1.0, specFolder: 'specs/002' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:183:        { id: 2, title: 'Test Two', specFolder: 'specs/002', filePath: '/b.md', importanceTier: 'normal', stability: 100, created_at: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:118:  importanceTier: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:154:      quality_score REAL DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:174:    importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts:3:// Into learned relevance feedback trigger phrases.
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:73:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:134:      const expected = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:425:        contradicts: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:562:    it('T133: contradicts relation insertable and retrievable', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:834:    it('C138-T2: contradicts relation type exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:835:      expect(Object.values(causalEdges.RELATION_TYPES)).toContain('contradicts');
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:843:      expect(defaultWeight).toBeGreaterThan(weights.contradicts);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:312:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:335:    expect(resumed.confidence).toBe(0.95);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:351:    expect(explicit.confidence).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:92:      expect(memory.importanceTier === 'normal' || memory.importanceTier === undefined).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:50:          quality_score REAL
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:57:        CREATE INDEX idx_quality_score ON memory_index(quality_score);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:98:          contradiction_detected INTEGER,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:99:          contradiction_type TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:22:    importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:55:        makeCamelCaseMemory({ id: 2, importanceTier: 'critical' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:83:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:100:        makeCamelCaseMemory({ id: 3, specFolder: 'specs/002', importanceTier: 'critical' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:129:        { id: 1, specFolder: 'specs/010', importanceTier: 'normal', updatedAt: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:130:        { id: 2, specFolder: 'specs/010', importanceTier: 'critical', updatedAt: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:50:        'handle_memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:52:        'handle_memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:36:    database.exec('DROP INDEX IF EXISTS idx_quality_score');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:41:      if (sql.includes('CREATE INDEX IF NOT EXISTS idx_quality_score')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:42:        throw new Error('simulated idx_quality_score failure');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:47:    expect(() => ensureSchemaVersion(database)).toThrow(/simulated idx_quality_score failure/);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:54:    expect(compatibility.missingIndexes).toContain('idx_quality_score');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:175:        contradiction_detected INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:185:        similarity_score, action, contradiction_detected, notes
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:208:      SELECT id, timestamp, new_memory_hash, existing_memory_id, similarity, reason, contradiction_detected
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:218:      contradiction_detected: number;
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:228:      contradiction_detected: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:95:    "description": "Test cases for contradiction detection between memory statements",
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:99:      "always-never": "Direct always/never contradictions",
-.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:111:      "semantic-similarity": "Similar meaning, not contradictory",
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:87:        importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:152:          importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:41:    importanceTier: 'important',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:23:importanceTier: critical
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:122:importanceTier: important
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:139:importanceTier: critical
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:153:importanceTier: invalid_tier
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:177:    it('T500-06a: Inline YAML trigger phrases extracted', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:193:    it('T500-06b: Multi-line YAML trigger phrases extracted', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:213:importanceTier: critical
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:219:importanceTier: normal
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:362:importanceTier: [invalid
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:386:importanceTier: important
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:7:// - Quality score computation (trigger phrases, anchors, budget, coherence)
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:105:  it('returns 0 when no trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:109:    expect(result.issues[0]).toMatch(/no trigger phrases/i);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:112:  it('returns 0.5 for 1-3 trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:119:  it('returns 1.0 for 4+ trigger phrases', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:396:  it('re-extracts trigger phrases when missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:399:    const result = attemptAutoFix(content, metadata, ['No trigger phrases found']);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:330:      new_content_preview, existing_content_preview, contradiction_detected, contradiction_type, spec_folder, created_at
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts:52:        importanceTier: 'normal',
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:166:  it('T001.1 — edge type weights are proportional: caused > derived_from > enabled > contradicts > supersedes > supports', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:170:    expect(EDGE_TYPE_WEIGHTS['enabled']).toBeGreaterThan(EDGE_TYPE_WEIGHTS['contradicts']!);
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:171:    expect(EDGE_TYPE_WEIGHTS['contradicts']).toBeGreaterThan(EDGE_TYPE_WEIGHTS['supersedes']!);
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:116:| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:137:| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:159:| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:162:| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:227:| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:287:| `SPECKIT_RESULT_CONFIDENCE_V1` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:9:/** Arguments for the memory_delete handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:12:// Feature catalog: Memory metadata update (memory_update)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:13:// Feature catalog: Single and folder delete (memory_delete)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:22:/** Arguments for the memory_update handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:28:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:82:    throw new Error(`Bulk delete of "${tier}" tier requires specFolder scope for safety. Use memory_delete for individual deletions.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:337:      summary: 'No matching trigger phrases found',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:349:        'Ensure memories have trigger phrases defined',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:    : `Matched ${formattedResults.length} memories via trigger phrases`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:32:const handle_memory_delete = handleMemoryDelete;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:33:const handle_memory_update = handleMemoryUpdate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:41:  handle_memory_delete,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:42:  handle_memory_update,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:83:    : 'Prediction-error contradiction across different file paths';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:227:      quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:61:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:157:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:196:            importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:271:                  quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:41:  quality_score: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:140:    quality_score: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:155:  const persistedQualityScore = existing.quality_score ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:237:      importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:302:        importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:170:    importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:337:    importanceTier: result.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:44:    importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:68:    importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:26:// Feature catalog: Single and folder delete (memory_delete)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:55:    tool: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:67:/** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:108:            'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:122:          reason: 'memory_delete: single memory delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:127:            tool: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:133:          actor: 'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:203:              'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:220:          reason: 'memory_delete: bulk delete by spec folder',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:225:            tool: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:232:          actor: 'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:290:    tool: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:30:// Feature catalog: Memory metadata update (memory_update)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:40:/** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:51:    importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:67:  if (importanceTier !== undefined && !isValidTier(importanceTier)) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:70:      `Invalid importance tier: ${importanceTier}. Valid tiers: ${VALID_TIERS.join(', ')}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:71:      { param: 'importanceTier', value: importanceTier }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:87:  if (importanceTier !== undefined) updateParams.importanceTier = importanceTier;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:151:      // T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:195:          'mcp:memory_update'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:203:        reason: 'memory_update: metadata update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:210:          importanceTier: updateParams.importanceTier ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:214:          tool: 'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:220:        actor: 'mcp:memory_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:231:      tool: 'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:289:    tool: 'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:263:export const handle_memory_delete = lazyFunction(getMemoryCrudModule, 'handle_memory_delete');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:264:export const handle_memory_update = lazyFunction(getMemoryCrudModule, 'handle_memory_update');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:316:export const handle_memory_causal_unlink = lazyFunction(getCausalGraphModule, 'handle_memory_causal_unlink');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:302:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:306:  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:555:            confidence: r.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:556:            importanceTier: r.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:888:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1061:      confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1137:    confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1147:        routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1152:        confidence: classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1169:      if (classification.intent === 'structural' && classification.confidence > 0.65) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1200:      // 'semantic' or low-confidence: no graph context, fall through
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/types.ts:23:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:188:    importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:420:    : 'Prediction-error contradiction across different file paths';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:645:          importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:61:| **Causal relations** | 6 | caused, enabled, supersedes, contradicts, derived_from, supports |
+.opencode/skills/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
+.opencode/skills/system-spec-kit/mcp_server/README.md:249:| Tier 2 | BM25 keyword scoring | FTS5 results below confidence floor |
+.opencode/skills/system-spec-kit/mcp_server/README.md:285:**Stage 4 -- Filter and annotate**. Enforces score immutability (no score changes after Stage 2). Applies state filtering by minimum state parameter. Annotates results with confidence labels (high/medium/low) and feature flag states.
+.opencode/skills/system-spec-kit/mcp_server/README.md:311:For low-confidence deep searches, the system has two additional fallback strategies:
+.opencode/skills/system-spec-kit/mcp_server/README.md:361:| **contradicts** | -- | A and B conflict |
+.opencode/skills/system-spec-kit/mcp_server/README.md:396:| **REINFORCE** | Similar exists, new one adds value | Both kept, old one gets a confidence boost |
+.opencode/skills/system-spec-kit/mcp_server/README.md:398:| **SUPERSEDE** | New knowledge contradicts the old | New version active, old one demoted to deprecated |
+.opencode/skills/system-spec-kit/mcp_server/README.md:461:**Result confidence scoring** -- tags each result as high, medium or low confidence using fast heuristics (no LLM needed). Checks: top-K separation, multi-channel agreement, quality score and source document structure.
+.opencode/skills/system-spec-kit/mcp_server/README.md:642:| `min_quality_score` | number | Filter out low-quality results |
+.opencode/skills/system-spec-kit/mcp_server/README.md:674:##### `memory_match_triggers`
+.opencode/skills/system-spec-kit/mcp_server/README.md:688:  "tool": "memory_match_triggers",
+.opencode/skills/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
+.opencode/skills/system-spec-kit/mcp_server/README.md:789:##### `memory_delete`
+.opencode/skills/system-spec-kit/mcp_server/README.md:801:##### `memory_update`
+.opencode/skills/system-spec-kit/mcp_server/README.md:809:| `triggerPhrases` | string[] | Updated trigger phrases |
+.opencode/skills/system-spec-kit/mcp_server/README.md:811:| `importanceTier` | string | `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
+.opencode/skills/system-spec-kit/mcp_server/README.md:818:Tell the system whether a search result was helpful. Helpful results get a confidence boost so they show up more often. Unhelpful results get demoted. Over time, the system learns which memories are genuinely useful, like training a recommendation engine with thumbs-up and thumbs-down.
+.opencode/skills/system-spec-kit/mcp_server/README.md:996:##### `memory_causal_link`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1004:| `relation` | string | **Required.** `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from` or `supports` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1020:##### `memory_causal_unlink`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1540:| Check triggers on every prompt | `memory_match_triggers` | Pass the user's prompt text |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1567:{ "tool": "memory_search", "arguments": { "query": "your query", "min_quality_score": 0.5 } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1717:Start with `memory_context` for all retrieval tasks. It handles intent detection and routing automatically. Use `memory_search` when you want explicit control over channels. Use `memory_match_triggers` when processing a raw prompt at the start of each turn. Use L4-L7 tools only for mutation, analysis or maintenance.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:16:// Feature catalog: Memory metadata update (memory_update)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-utils.ts:17:// Feature catalog: Single and folder delete (memory_delete)
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:451:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:452:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:478:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:479:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:504:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:505:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:530:          confidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:531:          numericConfidence: clampNumericConfidence(entry.edge.metadata?.confidence ?? entry.edge.weight),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:17:// Feature catalog: Causal edge creation (memory_causal_link)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:18:// Feature catalog: Causal edge deletion (memory_causal_unlink)
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:27:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:198:      importanceTier: r.importance_tier as string
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:13:import * as confidenceTracker from '../lib/scoring/confidence-tracker.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:97:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:721:  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:768:    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:769:    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:785:      confidence: result.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:30:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:55:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:205:/** Mark a memory as superseded (deprecated) when a newer contradicting version is saved */
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:280:      importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:285:      quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:320:    importanceTier: parsed.importanceTier
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:345:        contradiction_detected,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:354:      decision.contradiction?.detected ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:77:const importanceTierEnum = z.enum([
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:90:  'contradicts',
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:130:  tier: importanceTierEnum.optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:139:  min_quality_score: boundedNumber(0, 1).optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:214:  importanceTier: importanceTierEnum.optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:232:  tier: importanceTierEnum,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:405:  memory_delete: memoryDeleteSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:406:  memory_update: memoryUpdateSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:416:  memory_causal_link: memoryCausalLinkSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:418:  memory_causal_unlink: memoryCausalUnlinkSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:470:  memory_delete: ['id', 'specFolder', 'confirm'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:471:  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:481:  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:483:  memory_causal_unlink: ['edgeId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:207:  min_quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:524:    min_quality_score,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:578:  const qualityThreshold = resolveQualityThreshold(minQualityScore, min_quality_score);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:672:    intentConfidence = classification.confidence;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:678:      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:682:  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:685:    console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:834:                     quality_score, created_at
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:931:        confidence: intentConfidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1006:      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1273:            confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:65:      if (!metadata || typeof metadata.confidence !== 'number') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:87:      if (!best || metadata.confidence > best.numericConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:90:          numericConfidence: metadata.confidence,
+.opencode/skills/system-spec-kit/mcp_server/schemas/README.md:53:**Shared validators** -- Reusable building blocks (`positiveInt`, `positiveIntMax`, `boundedNumber`, `intentEnum`, `importanceTierEnum`, `relationEnum`) keep per-tool schema definitions concise.
+.opencode/skills/system-spec-kit/mcp_server/schemas/README.md:55:**Discriminated delete** -- `memory_delete` uses a `z.union` of two branches: single-record delete (requires `id`) and bulk folder delete (requires `specFolder` + `confirm: true`).
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:70:- `MEMORY_AWARE_TOOLS` currently includes `memory_context`, `memory_search`, `memory_match_triggers`, `memory_list`, `memory_save`, and `memory_index_scan`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:184:              confidence: a.confidence,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:62:  contradictionDensity: 0.15, // max allowed
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:201:    signal: 'contradictionDensity',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:202:    value: signals.contradictionDensity,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:203:    threshold: t.contradictionDensity,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:204:    passed: signals.contradictionDensity <= t.contradictionDensity,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:255:  // Check for active contradictions
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:256:  const contradictions = findContradictions(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:257:  if (contradictions.length > 0 && signals.contradictionDensity > t.contradictionDensity) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:259:      type: 'high_contradiction_density',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:260:      description: `${contradictions.length} contradiction(s) detected with density above threshold`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:261:      count: contradictions.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:351:  // Check contradictions
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:352:  const contradictions = findContradictions(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:353:  if (contradictions.length > 0 && signals.findingStability < t.findingStability) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:356:      description: `${contradictions.length} contradiction(s) are lowering finding stability below threshold`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:357:      count: contradictions.length,
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:42:} from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:96:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:447:      importanceTier: rawResult.importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:616:  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:617:  const confidenceEnabled = isResultConfidenceEnabled();
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:618:  let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:620:  if (confidenceEnabled) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:623:    confidenceData = computeResultConfidence(scoredResults);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:624:    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:630:    // Compute average confidence for recovery decision
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:632:    if (confidenceData && confidenceData.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:633:      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:634:      avgConfidence = sum / confidenceData.length;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:667:  // Merge per-result confidence into the formatted result array (additive)
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:670:      if (!confidenceData) return r as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:671:      const conf = confidenceData[i];
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:89: * Evaluates whether the memory metadata declares enough trigger phrases for
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:108:    issues.push('No trigger phrases found');
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:427: * - Re-extract trigger phrases from content headings/title
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:442:  // Fix #1 : Re-extract trigger phrases if missing/insufficient
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:452:      fixed.push(`Re-extracted ${extracted.length} trigger phrases from content`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:482: * Extract trigger phrases from content by scanning headings and the title.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:722:      'memory_quality_score',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:23:  | 'contradictions'
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:91:      case 'contradictions': {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:92:        const contradictions = findContradictions(ns);
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:94:          queryType: 'contradictions',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:96:          contradictions: contradictions.slice(0, limit),
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:97:          totalContradictions: contradictions.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:129:          `Unknown queryType: "${args.queryType}". Valid types: uncovered_questions, unverified_claims, contradictions, provenance_chain, coverage_gaps, hot_nodes`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:20:// Feature catalog: Single and folder delete (memory_delete)
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:769:/** Handle memory_causal_unlink tool - deletes a causal edge by ID */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:776:      tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:799:        tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:803:        recovery: getRecoveryHint('memory_causal_unlink', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:821:      tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:829:      'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:861:  handle_memory_causal_unlink,
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:53:| **DegradedModeContract** | Failure description with confidence impact, retry recommendation, and affected stages |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:131:| `confidence_impact` | `number` | Confidence factor (0 = total loss, 1 = no impact), clamped to [0, 1] |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:162:| `createDegradedContract(failure_mode, fallback_mode, confidence_impact, retry_recommendation, degradedStages)` | `DegradedModeContract` | New degraded-mode record with clamped confidence |
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:185:- Do not replace those axes with a single scalar such as `trust`, `confidence`, `authorityScore`, or `freshnessScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:186:- Ranking confidence from `lib/search/confidence-scoring.ts` is retrieval-ordering metadata only and must not be reused as `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:236:console.log(`Failure: ${degraded.failure_mode}, confidence impact: ${degraded.confidence_impact}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:237:// Failure: timeout, confidence impact: 0.15
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:305:- Fail closed when any axis is missing, malformed, or collapsed into scalar stand-ins such as `trust`, `trustScore`, `confidence`, `confidenceScore`, or `authorityScore`.
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:312:- Ranking confidence and other retrieval-ordering metadata stay separate from `StructuralTrust`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:208:          created_at, updated_at, confidence, validation_count, access_count
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:39:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:54:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:73:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:97:  'spec_level', 'quality_score', 'quality_flags', 'parent_id',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:243:        importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:250:        quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:344:          importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:475:      importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:516:            quality_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:522:        parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:586:        importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:643:    importanceTier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:42:} from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:66:import type { TruncationResult } from './confidence-truncation.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:87:   * When true, preserve the requested top-K window by bypassing confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:93:  /** Optional trigger phrases for query-classifier trigger-match routing path. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:165:    confidence: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1030:        confidence: routeResult.classification.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1532:  // candidates before low-confidence tails are trimmed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1579:          // Wire confidence truncation metadata into per-result trace (036)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1581:            confidenceTruncation: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2013: * Keep Tier 3 structural fallback scores below established Tier 1/2 confidence.
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:116:      min_quality_score: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:120:        description: 'Minimum quality score threshold (0.0-1.0). Results with lower quality_score are filtered out.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:126:        description: 'Deprecated alias for min_quality_score. Prefer snake_case parameter name.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:213:  inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching memories to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:219:  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:277:  name: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:292:  name: 'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:294:  inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'number', minimum: 1, description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', minimum: 0, maximum: 1, description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' }, allowPartialUpdate: { type: 'boolean', default: false, description: 'Allow update to succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false (default), the entire update is rolled back on embedding failure.' } }, required: ['id'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:299:  description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:305:      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:493:  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { type: 'string', description: 'Source memory ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target memory ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' } }, required: ['sourceId', 'targetId', 'relation'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:827:  description: '[L9:CoverageGraph] Structured analysis of deep-loop coverage graph state. Supports query types: uncovered_questions (questions with no coverage), unverified_claims (claims without verification), contradictions (CONTRADICTS edge pairs), provenance_chain (BFS from a node following citation/evidence edges), coverage_gaps (nodes missing incoming coverage edges), and hot_nodes (most connected nodes by edge count + weight).',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:833:      queryType: { type: 'string', enum: ['uncovered_questions', 'unverified_claims', 'contradictions', 'provenance_chain', 'coverage_gaps', 'hot_nodes'], description: 'Type of query to execute (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:131:      'SELECT importance_tier, validation_count, confidence FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:135:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:604:When Z-score analysis signals low-confidence retrieval (insufficient signal in the indexed corpus), the server prepends an evidence gap warning to the LLM payload. This tells the AI assistant that results may be incomplete rather than letting it treat sparse results as authoritative.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:614:- `quality`: Result quality score based on embedding confidence and match density
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:196: * - Terms must NOT already exist as organic trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:201: * @param existingTriggers - Current trigger phrases already on the memory
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:133:| `type-inference.ts` | Multi-source inference with confidence scoring |
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:166:// Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:172:// Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/config/README.md:179:// Returns: { type: 'procedural', source: 'keywords', confidence: 0.7 }
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:297:- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:302:  - `confidence-tracker.ts` — confidence-related normalization helpers.
+.opencode/skills/system-spec-kit/mcp_server/lib/MODULE_MAP.md:303:  - `negative-feedback.ts` — post-feedback confidence penalties.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:215:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:404:          ((row.confidence as number) || 0.5) <= ARCHIVAL_CONFIG.maxConfidence
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:417:          confidence: (row.confidence as number) || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:441:  if ((row.confidence as number) <= ARCHIVAL_CONFIG.maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:442:    reasons.push('low-confidence');
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:530:    caveat = 'Forecast is low-confidence until at least one file has been processed.';
+.opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:537:        caveat = 'Forecast is low-confidence because queue history is still sparse or noisy.';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:40:  contradicts: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:440:                WHEN 'contradicts' THEN 0.7
+.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:528:          WHEN 'contradicts' THEN 0.7
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:18:  confidence: 'high' | 'medium' | 'low' | 'fallback';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:79: * @param triggerPhrases - Known trigger phrases to match against.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:91: * Determine confidence label based on how clearly the query fits its tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:113:    // High confidence: many terms and low stop-word ratio (content-rich)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:140: * @param triggerPhrases - Optional array of known trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:141: * @returns ClassificationResult with tier, features, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:151:    confidence: 'fallback',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:184:    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:195:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:71:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:159: * Classify results by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:160: * Returns counts for high, medium, low (and unknown when no confidence data).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:162: * @param results - Results to classify by confidence label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:163: * @returns Counts for each confidence bucket.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:175:    const label = result.confidence?.label;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:196: * Build a human-readable digest string from confidence distribution.
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:131:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:176:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:233:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:176:| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match, check contradiction  |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:183:- Triggers: SUPERSEDE action to replace contradictory memory
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:417://   contradiction: { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:421:// Detect contradiction between two texts
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:422:const contradiction = detectContradiction(newContent, existingContent);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:423:// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:432:  contradiction,      // ContradictionResult
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:441:// stats = { total, byAction: {...}, contradictions, averageSimilarity }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:449:similarity >= 0.85 → UPDATE or SUPERSEDE (if contradiction detected)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:670:// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:689:# maxConfidence: 0.4                           # Low-confidence threshold
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:809:    // High similarity but no contradiction, update existing
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:31:Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:49:  confidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:259:  const lowConfidence = results.filter(r => r.confidence?.label === 'low');
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:261:    blockers.push(`${lowConfidence.length} result(s) have low confidence scores`);
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:26:  importanceTier?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:32:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:51:  importanceTier?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:130:  const tierMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:159:  // Normalize trigger phrases to array
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:222:    importanceTier = null,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:225:  // 1. Check explicit type in frontmatter (highest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:231:      confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:243:      confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:248:  if (importanceTier && TIER_TO_TYPE_MAP[importanceTier]) {
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:250:      type: TIER_TO_TYPE_MAP[importanceTier],
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:252:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:261:      confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:271:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:281:      confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:285:  // 6. Default type (lowest confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:289:    confidence: 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:304:      importanceTier: memory.importanceTier || memory.importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:323:  keywords: 'Matched keywords in title or trigger phrases',
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:489: * @param triggerPhrases - Array of trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts:638:      reasons.push('No trigger phrases: add at least 1-2 trigger phrases');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:6:// Gate: SPECKIT_HYDE — deep + low-confidence queries only.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:84: * Low-confidence threshold: if the top result has an effective score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:85: * below this value, the baseline is considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:90: * Minimum number of results needed to assess baseline confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:91: * An empty result set is always considered low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:121: * Detect whether a baseline result set has low retrieval confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:123: * A baseline is low-confidence when:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:131: * @returns True when the baseline is low-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:380: * for a deep + low-confidence query, log results, and return candidates
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:87:function getDecayRate(importanceTier: string | null | undefined): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:88:  if (!importanceTier || typeof importanceTier !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:92:  const rate = DECAY_CONFIG.decayRateByTier[importanceTier];
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:246:    String(memory.importance_tier || memory.importanceTier || 'normal'),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:260: * Learns new trigger phrases from a selected result.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-aliases.ts:263: * @returns True when trigger phrases were updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:40:  { pattern: /\bcontradicts?\b/i, type: 'explicit', description: 'Explicit contradiction statement' },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:51:  contradiction: ContradictionResult | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:59:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:68:  contradiction_detected: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:69:  contradiction_type: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:78:  contradictions: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:90:    contradictions: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:122: * Detect contradictions between new and existing content.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:128: * Strategy: contradiction signals in the NEW content (e.g., "actually",
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:130: * existing knowledge. We only flag a contradiction when the new content
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:139:    return { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:148:  // Specificity-based confidence per contradiction type:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:149:  // General/weak signals get lower confidence, explicit/strong signals get higher
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:158:    explicit: 0.85,        // "contradicts" — strongest signal
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:165:    // A contradiction is signaled when:
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:166:    // 1. The NEW content contains the contradiction marker (primary signal), OR
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:170:      // New content introduces a contradiction/correction signal not present in old
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:171:      const confidence = PATTERN_CONFIDENCE[type] ?? 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:172:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:173:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:179:      const confidence = (PATTERN_CONFIDENCE[type] ?? 0.5) * 0.6;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:180:      if (confidence > maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:181:        maxConfidence = confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:186:    // If both match the same pattern, it's likely inherited phrasing, not a contradiction
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:193:    confidence: maxConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:220:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:230:      contradiction: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:243:        { detected: false, type: null, description: null, confidence: 0 },
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:253:      contradiction: null,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:262:  // Check for contradiction
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:264:  const contradiction = detectContradiction(newContent, existingContent);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:274:    if (contradiction.detected) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:276:      reason = `High match with contradiction: ${contradiction.description}`;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:298:      contradiction,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:310:    contradiction,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:335:  contradiction: ContradictionResult,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:346:    contradiction_detected: contradiction.detected ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:347:    contradiction_type: contradiction.type,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:364:        reason, contradiction_detected, contradiction_type,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:373:      record.contradiction_detected,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:374:      record.contradiction_type,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:390:    return { total: 0, byAction: {}, contradictions: 0, averageSimilarity: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:405:    const contradictions = (db.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:406:      `SELECT COUNT(*) as count FROM memory_conflicts WHERE contradiction_detected = 1 ${specFolder ? 'AND spec_folder = ?' : ''}`
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:421:      contradictions: contradictions.count,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:427:    return { total: 0, byAction: {}, contradictions: 0, averageSimilarity: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:462:  const stats = { total: 0, creates: 0, updates: 0, supersedes: 0, reinforces: 0, contradictions: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:485:    if (result.contradiction?.detected) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:486:      stats.contradictions++;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:69:  min_quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:102:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:225:        content_text, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:308:            quality_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:324:        content_text, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:361:    importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:400:    if (importanceTier !== undefined) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:402:      values.push(importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:426:      updates.push('quality_score = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:751: * Updates the confidence value for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:753: * @param confidence - The confidence value to store.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:754: * @returns True when the confidence was updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:756:export function update_confidence(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:758:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:761:  if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:762:    console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:769:      SET confidence = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:771:    `).run(confidence, memory_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:775:    console.warn(`[vector-index] Failed to update confidence for ${memory_id}: ${get_error_message(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:788:export { update_confidence as updateConfidence };
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:5:// Memory's composite score via a confidence multiplier.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:12:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:56: * Compute the confidence multiplier based on negative validation count
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:103: * Apply negative feedback confidence signal to a composite score.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts:83: * Truncate results based on confidence gap analysis.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:7:// no results, very low-confidence results, or only partial matches.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:23:export type RecoveryStatus = 'no_results' | 'low_confidence' | 'partial';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:47:  /** How many results were returned (0 = no_results, 1–N = partial/low_confidence). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:49:  /** Average confidence value across returned results (0–1). Only meaningful when resultCount > 0. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:51:  /** Low-confidence threshold — results below this trigger recovery. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:76:  ) return 'low_confidence';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:78:  return 'low_confidence'; // fallback — should only be called when recovery is warranted
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:175: * When the search produces no results or low-confidence results, this function
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:291: *  - Average confidence below threshold, OR
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:319: * @param importanceTier Memory importance_tier field (e.g. "constitutional", "normal")
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:322:function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:324:  const tierMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:343: * @param importanceTier Memory importance_tier field
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:349:  importanceTier: string
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:361:  const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:432:function getHybridDecayMultiplier(contextType: string, _importanceTier?: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:452:  const multiplier = getHybridDecayMultiplier(contextType, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:9:// Signal confidence tiers:
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:42:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:53:  confidence: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:62:  confidence?: FeedbackConfidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:75: * Infer confidence tier from event type.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:76: * Callers may override by providing explicit confidence in the event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:87: * Resolve confidence for a feedback event.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:124:    confidence TEXT NOT NULL CHECK(confidence IN ('strong','medium','weak')),
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:134:  CREATE INDEX IF NOT EXISTS idx_feedback_confidence ON feedback_events(confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:180:    const confidence = resolveConfidence(event.type, event.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:183:      INSERT INTO feedback_events (type, memory_id, query_id, confidence, timestamp, session_id)
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:189:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:253:    if (opts.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:254:      conditions.push('confidence = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:255:      params.push(opts.confidence);
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:307: * Returns counts broken down by confidence tier.
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:324:      SELECT confidence, COUNT(*) as cnt
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:327:      GROUP BY confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:328:    `).all(memoryId) as Array<{ confidence: FeedbackConfidence; cnt: number }>;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:332:      summary[row.confidence] = row.cnt;
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:4:// Feature catalog: Causal edge contradiction detection
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:5:// Detects when a new edge contradicts an existing one and
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:39:  ['supports', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:40:  ['caused', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:41:  ['enabled', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:63: * Check if a new edge contradicts existing edges.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:66: * 2. Same source+target with conflicting relations (e.g., 'supports' vs 'contradicts')
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:67: * Returns array of contradictions found and invalidated.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts:126:    console.warn(`[contradiction-detection] detectContradictions failed (fail-open): ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:196:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:197:  'confidenceScore',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:14:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:22:  confidenceRequired: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:24:  confidenceMet: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:30:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:33:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:39:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:67:  importanceTier: string | undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:68:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:71:  if (importanceTier === 'critical' || importanceTier === 'constitutional') {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:75:  return confidence >= PROMOTION_CONFIDENCE_THRESHOLD &&
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:97: * Record a validation event for a memory and persist confidence counters.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:100: * - This function updates `memory_index.confidence` and `validation_count`,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:114:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:121:      const currentConfidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:135:        SET confidence = ?, validation_count = ?, updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:157:        console.warn('[confidence-tracker] negative feedback recorded', {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:166:        confidence: newConfidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:177:    console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:183: * Get current confidence score for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:189:      SELECT confidence FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:190:    `).get(memoryId) as { confidence?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:196:    return memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:198:    console.error(`[confidence-tracker] getConfidenceScore failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:209:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:221:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:226:    return isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:228:    console.error(`[confidence-tracker] checkPromotionEligible failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:240:        SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:256:        `Requires confidence >= ${PROMOTION_CONFIDENCE_THRESHOLD} (current: ${memory.confidence ?? CONFIDENCE_BASE}) ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:268:    console.warn(`[confidence-tracker] Memory ${memoryId} promoted to critical tier`);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:272:    console.error(`[confidence-tracker] promoteToCritical failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:278: * Get full confidence info for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:286:      SELECT confidence, validation_count, importance_tier FROM memory_index WHERE id = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:293:    const confidence = memory.confidence ?? CONFIDENCE_BASE;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:300:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:303:      importanceTier: memory.importance_tier || 'normal',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:304:      promotionEligible: isPromotionEligible(memory.importance_tier, confidence, positiveValidationCount),
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:306:        confidenceRequired: PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:308:        confidenceMet: confidence >= PROMOTION_CONFIDENCE_THRESHOLD,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:315:    console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:26:  'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:28:  'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:35:    case 'memory_causal_link':   return handleMemoryCausalLink(parseArgs<CausalLinkArgs>(validateToolArgs('memory_causal_link', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:37:    case 'memory_causal_unlink': return handleMemoryCausalUnlink(parseArgs<CausalUnlinkArgs>(validateToolArgs('memory_causal_unlink', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:59:    'idx_quality_score',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:89:  'contradiction_detected',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:90:  'contradiction_type',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:258:      contradiction_detected INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:259:      contradiction_type TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:333:      contradiction_detected,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:334:      contradiction_type,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:349:      ${getFirstAvailableColumnExpression(legacyColumns, ['contradiction_detected'], '0')},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:350:      ${getFirstAvailableColumnExpression(legacyColumns, ['contradiction_type'], 'NULL')},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:416:// V15: Add quality_score and quality_flags columns for memory quality gates
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:613:              'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:834:        database.exec('ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:835:        logger.info('Migration v15: Added quality_score column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:838:          console.warn('[VectorIndex] Migration v15 warning (quality_score):', get_error_message(e));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:853:        'idx_quality_score',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:854:        'CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score)',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1677: * Adds legacy confidence-related columns when needed.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1681:export function migrate_confidence_columns(database: Database.Database): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1685:  if (!column_names.includes('confidence')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1687:      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1688:      console.warn('[vector-index] Migration: Added confidence column');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1693:      logDuplicateColumnMigrationSkip('confidence', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2276:    migrate_confidence_columns(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2337:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2349:      quality_score REAL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2470:    CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2487:export { migrate_confidence_columns as migrateConfidenceColumns };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:96: * - Rows with a missing or non-finite `quality_score` are treated as 0.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:113:    const rawScore = row.quality_score as number | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:122:    if (row.quality_score !== 0 && row.quality_score != null) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:128:      quality_score: computeBackfillQualityScore(row),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1167:  //   - Check if the current baseline has low confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1240:                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, is_archived, context_type, tenant_id, user_id, agent_id, session_id, shared_space_id FROM memory_index WHERE id IN (${placeholders})`
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:56:    toolPattern: /^(bash|memory_save|memory_update)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:3:description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking."
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:12:> Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking and confidence tracking.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:48:| **HVR Integration** | Human Validation Rate integration for confidence-weighted scoring (Spec 137) |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:125:HVR integration extends the confidence tracking system by incorporating human validation signals into composite scoring. The HVR score reflects how often users confirm a memory as useful versus not useful, creating a feedback-weighted confidence metric.
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:132:- Works alongside the existing promotion pipeline in `confidence-tracker.ts`
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:165: confidence-tracker.ts    # User validation and promotion
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:168: negative-feedback.ts     # Negative validation confidence multiplier with time-based recovery
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:181:| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:184:| `negative-feedback.ts` | Negative validation confidence multiplier with 30-day half-life recovery; records negative feedback events and batch-loads stats for scoring pipeline |
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:246:import { recordValidation, getConfidenceInfo } from './confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:253:// Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:255:// After 5+ validations with confidence >= 0.9
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:257:// Returns: { promotionEligible: true, wasPromoted: true, importanceTier: 'critical' }
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:69:  'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:70:  'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:104:    case 'memory_delete':         return handleMemoryDelete(parseArgs<DeleteArgs>(validateToolArgs('memory_delete', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:105:    case 'memory_update':         return handleMemoryUpdate(parseArgs<UpdateArgs>(validateToolArgs('memory_update', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:3:description: "Community detection, graph signal scoring, temporal edges, contradiction detection, usage tracking, and community summaries for causal memory networks."
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:33:The graph module operates on the `causal_edges` and `memory_index` tables to detect communities, compute scoring signals, manage temporal edge validity, detect contradictions, track usage, and generate community summaries. All features are independently gated behind `SPECKIT_*` feature flags.
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:68:  contradiction-detection.ts  # Superseding/conflicting edge detection + auto-invalidation
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:83:| `contradiction-detection.ts` | Detects superseding and conflicting edge relations, auto-invalidates old edges via `temporal-edges.ts` | `SPECKIT_TEMPORAL_EDGES` |
+.opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:113:| `detectContradictions` | contradiction-detection.ts | Checks if new edge contradicts existing edges, auto-invalidates |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:615:                quality_score, created_at, context_type
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:639:      quality_score: (parentRow.quality_score as number | undefined) ?? bestChunk.quality_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:184:    const confidence = detection.type === 'query_reformulated' ? 'medium' : 'weak';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:190:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:220:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:253:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:55:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:135: * @param triggerPhrases - Optional trigger phrases for simple-tier classification
+.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:144:  // When feature flag is disabled, classifier returns 'complex' with 'fallback' confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/ontology-hooks.ts:44:    'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:120:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:126:    const warning = '> **⚠️ EVIDENCE GAP DETECTED:** Retrieved context has low mathematical confidence. Consider first principles.';
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:4:// Structured query helpers for coverage gap detection, contradiction
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:5:/** Maximum trigger phrases stored for each memory. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:56:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:67:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:87:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:122:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:182: * @returns Parsed trigger phrases, or an empty array on invalid input.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:627:    const importanceTier = (row.importance_tier as string | undefined) ?? 'normal';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:628:    const recency = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:653: * confidence, the class strategy's `boostFactor` is applied to the
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:666:  if (!routingResult || routingResult.confidence <= 0) return results;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:700: * confidence-multiplier demotion. The multiplier is batch-loaded from the DB
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:763:    // Apply negative feedback demotion (multiplicative confidence multiplier)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:938: *   5.  Artifact routing   (all types, when routing confidence > 0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1006:      const importanceTier = (row.importance_tier as string | undefined) ?? 'normal';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1009:      const recencyScore = computeRecencyScore(recencyTimestamp, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1230:  if (config.artifactRouting && config.artifactRouting.confidence > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1304:    config.artifactRouting.confidence > 0 &&
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:40:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:107:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:180:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:6:// feedback-ledger.ts), computes confidence-weighted signal scores
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:46:/** Per-confidence-tier weights used in the weighted score formula. */
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:178: * Groups events by memoryId, counts confidence tiers, and computes
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:179: * a confidence-weighted score.  Does NOT apply min-support filtering
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:215:      entry[ev.confidence]++;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-directives.ts:54:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:11:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:17:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:193:/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:383:      confidence: Math.min(1, score),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:399: * Classify a query string into one of 7 intent types with confidence and keyword evidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:402: * @returns Intent result with type, confidence, per-intent scores, and matched keywords
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:408:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:467:  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:472:      confidence: topScore,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:481:    confidence: Math.min(1, topScore),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492: * @returns Intent result with type, confidence, scores, and keywords
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:130:  it('T005b-Q3d: getIngestForecast returns low-confidence caveat before progress starts', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/job-queue-state-edge.vitest.ts:146:      caveat: 'Forecast is low-confidence until at least one file has been processed.',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:31:  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:214:function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:216:  const tierMult = CLASSIFICATION_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:38:  contradictionDensity: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:194:  // contradictionDensity: CONTRADICTS edges / all edges
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:199:  const contradictEdgeCount = (d.prepare(
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:203:  const contradictionDensity = allEdgeCount > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:204:    ? contradictEdgeCount / allEdgeCount
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:216:    contradictionDensity,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:30:// 3. Apply evidence gap detection via TRM (Z-score confidence check)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:38:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:256: * Returns a RoutingResult with the detected class, strategy, and confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:262:    confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:302:  const confidence = bestScore > 0 ? Math.min(1, bestScore / 6) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:310:      confidence: 0.4,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:321:        confidence: 0.3, // Low confidence from folder hint only
+.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts:329:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:157:// In-memory cache of trigger phrases for fast matching
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:208:  // word breaks. For pure CJK trigger phrases, prefer substring matching so valid
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:337:/** Load all trigger phrases from the index into memory */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:380:        console.warn(`[trigger-matcher] Failed to parse trigger phrases for memory ${row.id}: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:621:/** Match user prompt against trigger phrases using exact string matching */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:694:/** Match trigger phrases with additional stats */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:725:/** Get all unique trigger phrases in the cache */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:119:**Score immutability invariant**: Stage 4 MUST NOT modify scores. Enforced via compile-time `Stage4ReadonlyRow` readonly fields and runtime `captureScoreSnapshot` / `verifyScoreInvariant` defence-in-depth. Applies memory-state filtering (HOT/WARM/COLD/DORMANT/ARCHIVED with per-tier limits), evidence gap detection (Z-score confidence check), quality floor (`QUALITY_FLOOR=0.005`), and token budget truncation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:250:| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:305:| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:309:| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:333:| `confidence-scoring.ts`    | -      | TypeScript | Computes calibrated confidence scores for retrieval results |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:649:| `contradicts` | 0.7 | Contradiction signal |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:719:`buildBm25DocumentText()` builds the canonical lexical document from title, content, trigger phrases, and folder metadata. `normalizeLexicalQueryTokens()` is shared by BM25 and SQLite FTS flows so lexical matching stays aligned across search channels.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:801:// -> { type: 'add_feature', confidence: 0.85 }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:963:- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:5:// 100+ stop words that should never be learned as trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:57:   to serve as meaningful trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/feedback-denylist.ts:76: * as trigger phrases. All terms stored in lowercase for case-insensitive matching.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:98:- TRM evidence-gap detection (Z-score confidence check on score distribution).
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:37:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:71:    importanceTier: 'critical',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:77:    confidence: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:103:    expect(memory.importanceTier).toBe('critical');
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:213:    expect(memory.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:11:// 2. quality_score    → direct numeric quality metric from DB column
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:26: * Used when quality_score is absent or zero.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:71:  /** Normalised quality score in [0, 1] derived from quality_score or importance_tier. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:160: *   1. `quality_score` from the DB column (direct metric, highest priority).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:168: * (no tier, no quality_score, no content with markers).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:180:  // A positive, finite quality_score from the DB is the authoritative signal.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:183:  const dbQualityScore = typeof row.quality_score === 'number' && Number.isFinite(row.quality_score) && row.quality_score > 0
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:184:    ? row.quality_score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:191:    // Fall back to tier-derived score when no DB quality_score is available.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1094:export function get_usage_stats(options: UsageStatsOptions = {}): Array<{ id: number; title: string | null; spec_folder: string; file_path: string; access_count: number; last_accessed: number | null; confidence: number | null; created_at: string }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1101:  const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1109:           last_accessed, confidence, created_at
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1121:    confidence: number | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1137:export function find_cleanup_candidates(options: CleanupOptions = {}): Array<{ id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; reasons: string[] }> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1160:      confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1166:      OR confidence <= ?
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1171:      confidence ASC
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1203:    if ((row.confidence || 0.5) <= maxConfidence) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1204:      reasons.push(`low importance (${Math.round((row.confidence || 0.5) * 100)}%)`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1215:      confidence: row.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1276:    confidence: memory.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:24:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:86:    const rawScore = result.quality_score as number | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:189: * No-op if routing result is absent, unknown, or zero-confidence.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:196:  if (!routingResult || routingResult.detectedClass === 'unknown' || routingResult.confidence <= 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/README.md:37:| `memory-parser.ts` | Parses titles, trigger phrases, tiers, document type, causal links, anchors, and content hashes from markdown files |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:5:// Transparent Reasoning Module (TRM): Z-score confidence check
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:6:// On RRF scores to detect low-confidence retrieval and inject
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:14:/** Z-score threshold below which retrieval confidence is considered low. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:35:  /** True when retrieval confidence is too low to trust results. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:208:  return `> **[EVIDENCE GAP DETECTED]: Retrieved context has low mathematical confidence (Z=${trm.zScore.toFixed(2)}). Consider first principles.**`;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2b-enrichment.ts:39:  // Extract spec quality signals (SPECKIT_LEVEL, quality_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:25:  migrate_confidence_columns,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:47:  update_confidence,
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:168:    it('returns operational labels with bounded relevance and confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:181:      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:182:      expect(labels[0].confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:195:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.95, reasoning: 'Highly relevant' },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:196:        { queryId: 'q2', memoryId: 43, relevance: 1, confidence: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:205:        { queryId: 'q1', memoryId: 42, relevance: 1, confidence: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:208:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:222:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:223:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.85 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:224:        { queryId: 'q3', memoryId: 44, relevance: 1, confidence: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:243:        { queryId: 'q1', memoryId: 42, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:244:        { queryId: 'q2', memoryId: 43, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:262:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:263:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:264:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:265:        { queryId: 'q4', memoryId: 4, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:266:        { queryId: 'q5', memoryId: 5, relevance: 2, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:285:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:286:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:287:        { queryId: 'q3', memoryId: 3, relevance: 1, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:288:        { queryId: 'q4', memoryId: 4, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:289:        { queryId: 'q5', memoryId: 5, relevance: 3, confidence: 0.9 }, // disagrees
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:307:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 }, // exact match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:308:        { queryId: 'q2', memoryId: 2, relevance: 2, confidence: 0.9 }, // +1 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:309:        { queryId: 'q3', memoryId: 3, relevance: 0, confidence: 0.9 }, // -2 from manual
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:326:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:327:        { queryId: 'q99', memoryId: 99, relevance: 0, confidence: 0.9 }, // no manual match
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:343:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:358:        { queryId: 'q1', memoryId: 1, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:359:        { queryId: 'q2', memoryId: 2, relevance: 0, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:401:        { queryId: 'q1', memoryId: 42, relevance: 3, confidence: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:402:        { queryId: 'q2', memoryId: 43, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:418:        { queryId: 'q3', memoryId: 44, relevance: 2, confidence: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:43:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:53:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:266:    importanceTier: importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:278:    importanceTier: importance_tier,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:286:    memoryTypeConfidence: typeInference.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:541:/** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:634:  // (e.g., template comments containing "importanceTier: 'constitutional'" as documentation)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:639:  const yamlMatch = frontmatter?.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:62:  find_decision:  ['PREFERENCE', 'CORRECTION', 'supersedes', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:64:  understand:     ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:65:  find_spec:      ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:66:  refactor:       ['caused', 'derived_from', 'enabled', 'supports', 'supersedes', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:67:  security_audit: ['caused', 'contradicts', 'supersedes', 'enabled', 'supports', 'derived_from'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:71:const DEFAULT_EDGE_PRIORITY = ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:81: * amplify the boost while weaker ones (contradicts) attenuate it.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:93:  contradicts: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:235: * Alias map: CORRECTION → supersedes | contradicts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:241:  CORRECTION:  ['supersedes', 'contradicts'],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:429:  // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:434:                   WHEN ce.relation = 'contradicts' THEN 0.8
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:443:                   WHEN ce.relation = 'contradicts' THEN 0.8
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:457:                                   WHEN ce.relation = 'contradicts' THEN 0.8
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:97:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:99:      'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:4:// REQ-D5-004: Per-result calibrated confidence scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:7:// and anchor density into a single calibrated confidence score per
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:14://   "confidence": {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:24:// IMPORTANT: This module only models ranking confidence for retrieval ordering.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:35:// Weights for each confidence factor (must sum to 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:65:/** Which factors drove the confidence score upward. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:72:/** Per-result confidence payload. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:84:  confidence: RankingConfidenceContract;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:95: * Minimal result shape needed for confidence computation.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:196: * Map raw confidence value to a coarse label.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:212: * Compute per-result confidence for a ranked list of results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:214: * Each result receives a confidence object derived from:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:261:    // Base score is a strong prior: if the score itself is very high, confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:274:        confidence: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:286: * - "good":  most results have high/medium confidence and a healthy top score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:288: * - "gap":   no results, or all results have low confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:291: * @param confidences - Parallel confidence array from `computeResultConfidence`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:295:  confidences: ResultConfidence[],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:301:  const highOrMediumCount = confidences.filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:302:    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:319: * Check whether the per-result confidence feature flag is enabled.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:17:// Feature catalog: Negative feedback confidence signal
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:142: * Confidence-gap truncation for low-confidence tails.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:166: * T002b/A4: Negative-feedback confidence demotion in ranking.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:187: * N3-lite: Consolidation engine — contradiction scan, Hebbian strengthening,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:410: * Generates a pseudo-document for low-confidence deep queries.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:545: * REQ-D5-004: Per-result calibrated confidence scoring.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:19:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:66:  let confidence = 0.55;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:68:    confidence = Math.max(confidence, candidate);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:99:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:113:  const confidence = candidate.confidence;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:120:    || typeof confidence !== 'number'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:121:    || !Number.isFinite(confidence)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:132:    confidence: Math.max(0, Math.min(1, confidence)),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:65:  'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:80:  'quality_score',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:141:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:158:      quality_score REAL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:184:    CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:65:| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:155:│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:157:│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:168:│   ├── confidence-tracker.ts   # Confidence tracking
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:339:| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:470:  importanceTier: 'critical',
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:505:**Trigger Matcher**: Matches user prompts to memory trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:508:// Find memories with matching trigger phrases
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:538:      'Or use memory_update() to modify existing entry',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:608:      'Valid relations: caused, enabled, supersedes, contradicts, derived_from, supports',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:610:      'See memory_causal_link() documentation for relation semantics'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:802:  memory_causal_link: {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:58:  memory_delete: ERROR_CODES.MEMORY_DELETE_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:59:  memory_update: ERROR_CODES.MEMORY_UPDATE_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:63:  memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:65:  memory_causal_unlink: ERROR_CODES.CAUSAL_GRAPH_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:4:// Feature catalog: Causal edge creation (memory_causal_link)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:9:import { detectContradictions } from '../graph/contradiction-detection.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:22:  CONTRADICTS: 'contradicts',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:39:  contradicts:  0.8,  // Dampened — conflicting signals lower confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29:  confidence: number,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:34:    confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:817:  // CONTAINS: class -> method (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:831:  // IMPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:844:  // EXPORTS (confidence 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:857:  // EXTENDS: class -> parent class (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:872:  // IMPLEMENTS: class -> interface (confidence 0.95)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:889:  // CALLS: function/method -> called function (confidence 0.8)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:922:  // DECORATES: decorator symbol -> decorated class/function/method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:944:  // OVERRIDES: method -> parent class method (confidence 0.9)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:970:  // TYPE_OF: symbol -> referenced type symbol (confidence 0.85)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:1142:  // Cross-file TESTED_BY edges (heuristic, confidence 0.6)
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:15:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:115: * Returns intent + confidence score. Hybrid intent means
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:120:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords: [] };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:138:    return { intent: 'hybrid', confidence: 0.5, structuralScore: 0, semanticScore: 0, matchedKeywords };
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:154:      confidence: computeConfidence(structuralRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:165:      confidence: computeConfidence(semanticRatio),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:172:  // Ambiguous → hybrid with moderate confidence
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:175:    confidence: 0.5 + Math.abs(structuralRatio - semanticRatio) * 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:71:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:139:    confidence REAL NOT NULL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:329: * relevance grades (0-3) and confidence (0-1). This provides an
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:356:          confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:375:      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:376:      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:382:        confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:405:        (query_id, memory_id, relevance, confidence, reasoning)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:416:          label.confidence,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:4:// Lightweight graph maintenance: contradiction scan, Hebbian
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:53:  contradictions: ContradictionCluster[];
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:63:/** Cosine similarity threshold for contradiction candidates */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:69:/** Negation keywords for lightweight contradiction heuristic */
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:81: * Find potential contradictions by:
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:123: * Vector-based contradiction scan using sqlite-vec cosine similarity.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:185: * Heuristic-only contradiction scan when vector similarity is unavailable.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:238: * Check if two texts contain negation patterns suggesting contradiction.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:248:    // One has negation, the other doesn't → potential contradiction
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:284: * Surface all members of a contradiction cluster.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:285: * When a contradiction pair is detected, find ALL related memories
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:440:  const contradictionPairs = scanContradictions(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:441:  const contradictions = buildContradictionClusters(database, contradictionPairs);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:469:    contradictions,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:141:      contradiction_detected INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:154:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:772:        contradiction_detected INTEGER,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:828:      importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:193:  it('fix_bug: CORRECTION covers contradicts as well', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:194:    const contradicts = causalBoost.resolveEdgePrior('contradicts', 'fix_bug');
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:195:    // CORRECTION alias covers both supersedes and contradicts at tier 0
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:196:    expect(contradicts).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:214:    expect(supersedes).toBe(0.75); // CORRECTION → supersedes/contradicts → tier 1
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:221:    // DEFAULT: ['caused', 'enabled', 'derived_from', 'supports', 'supersedes', 'contradicts']
+.opencode/skills/system-spec-kit/mcp_server/tests/typed-traversal.vitest.ts:381:    expect(causalBoost.RELATION_WEIGHT_MULTIPLIERS['contradicts']).toBe(0.8);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:269:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:31:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:58:  'spec_level', 'quality_score', 'quality_flags', 'parent_id',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:231:        'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:354:      'mcp:memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tests/history.vitest.ts:355:      'mcp:memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:474:      quality_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:502:    importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:508:    quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md:49:| `consolidation.ts` | N3-lite contradiction, Hebbian, and stale-edge maintenance |
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:13:  { tool: 'memory_delete', handler: 'handleMemoryDelete', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:14:  { tool: 'memory_update', handler: 'handleMemoryUpdate', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:23:  { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:25:  { tool: 'memory_causal_unlink', handler: 'handleMemoryCausalUnlink', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:39:  { camel: 'handleMemoryDelete', snake: 'handle_memory_delete' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:40:  { camel: 'handleMemoryUpdate', snake: 'handle_memory_update' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:50:  { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:52:  { camel: 'handleMemoryCausalUnlink', snake: 'handle_memory_causal_unlink' },
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:15:import type { ContradictionResult } from '../lib/graph/contradiction-detection.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:16:import { detectContradictions } from '../lib/graph/contradiction-detection.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:67:    const result = detectContradictions(db, 1, 2, 'contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:80:  it('detects supersedes contradiction', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:108:  it('detects conflicting relation pairs (supports vs contradicts)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:111:    const result = detectContradictions(db, 7, 8, 'contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:123:        reason: "Conflicting relations: existing 'supports' vs new 'contradicts'",
+.opencode/skills/system-spec-kit/mcp_server/tests/contradiction-detection.vitest.ts:130:      "Conflicting relations: existing 'supports' vs new 'contradicts'",
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:378:        qualityFlags: ['No trigger phrases found'],
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:264:    detail: 'Queries must be NOT derived from trigger phrases',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:25:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:330:      "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:570:      "expectedResultDescription": "Should surface memories with trigger phrases matching \"content hash\" or \"deduplication\". Likely surfaces T054-related memories about SHA256 dedup implementation.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:571:      "notes": "Derived from known trigger phrases in the memory system related to content hash dedup."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:590:      "expectedResultDescription": "Should surface session-boost.ts, working-memory.ts, and memories with trigger phrases about session boost or attention scoring.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:661:      "notes": "Derived from \"BM25\" and \"stemming\" trigger phrases in the BM25 index module."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:671:      "notes": "Derived from \"causal edge\" and \"graph traversal\" trigger phrases."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:681:      "notes": "Derived from \"decision record\" and \"level 3\" trigger phrases in spec kit documentation."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:691:      "notes": "Derived from \"maximal marginal relevance\" or \"MMR\" trigger phrases."
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1264:    if (column === 'confidence') return 0.5;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1271:  if (column === 'confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1337:    'confidence',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1348:    'quality_score',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:105:    expect(typeof result.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:114:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:121:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:420:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:646:  it('C138-T2: classifyIntent returns confidence between 0 and 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:648:    expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:649:    expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:61:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:280:      const mergedImportanceTier = newMemory.importanceTier ?? getOptionalString(currentRow, 'importance_tier');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:914:    quality_score: existingRow.quality_score,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:53:  confidence: number; // 0.0 - 1.0
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:123:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:138:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:160:        confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:175:    confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:202:          confidence: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:223:          confidence: Math.max(0, 0.95 - (distance * 0.02)),
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:244:          confidence: 0.7,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:258:      confidence: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:288:  // Sort by confidence descending
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:289:  refs.sort((a, b) => b.confidence - a.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:65:    importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:79:    opts.importanceTier ?? 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:256:      importanceTier: 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:387:      importanceTier: 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:89:      avgConfidence: undefined, // no confidence data
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:250:  it('recommends "ask_user" for low_confidence + knowledge_gap', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:324:    const validStatuses = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:290:/** Result of bootstrap confidence interval computation. */
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:312: * Compute bootstrap 95% confidence interval for MRR@5.
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:876:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:919:        confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:150:        { content: '---\nimportanceTier: critical\n---', expected: 'semantic' },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:204:        importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:209:        importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:122:    const expectedRelations = ['supersedes', 'contradicts', 'caused', 'enabled', 'derived_from', 'supports'];
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts:177:      VALUES ('1', '2', 'supersedes', 1.0), ('1', '3', 'contradicts', 1.0)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:242:| `confidence` | `number` | Clamped transition confidence in the range `[0, 1]` |
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:54:      quality_score REAL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:121:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:452:    it('T054-6f: Same-path unchanged does not short-circuit when trigger phrases changed', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:453:      const content = 'Existing same-path row with stale trigger phrases.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:483:      const content = 'Existing same-path row with stale trigger phrases.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:57:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:142:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:23:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:158:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-truncation.vitest.ts:19:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:104:        contradiction_detected INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:118:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:442:    it.skipIf(!canRun || !hasModuleDb)('logs contradiction decision', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:448:        contradiction: {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:452:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:455:      expect(() => logPeFn!(decision, 'test-hash-002', 'specs/contradiction-folder')).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:508:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:531:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:561:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:591:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:614:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:749:        importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:776:        importanceTier: 'critical',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:783:      expect(result.importanceTier).toBe('critical');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:898:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:326:    confidence: Math.max(0, Math.min(1, transition.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:708:      confidence: Math.max(0, Math.min(1, t.transitionDiagnostics.confidence)),
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:89:      validateToolInputSchema('memory_delete', { id: '42' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:160:   3. memory_delete SCHEMA (oneOf REMOVED — HANDLER-VALIDATED)
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:163:describe('memory_delete schema (oneOf removed, handler-validated)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:166:      validateToolInputSchema('memory_delete', { id: 42 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:172:      validateToolInputSchema('memory_delete', { id: '42' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:178:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001-test', confirm: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:184:      validateToolInputSchema('memory_delete', { id: 1, specFolder: 'specs/001-test' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:190:      validateToolInputSchema('memory_delete', {}, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:196:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001', confirm: false }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:202:      validateToolInputSchema('memory_delete', { specFolder: 'specs/001', confirm: 'yes' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:208:      validateToolInputSchema('memory_delete', { id: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:465:    const causalLink = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:163:vi.mock('../lib/search/confidence-scoring', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:9:const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:134:  it('classifies weak result sets as low_confidence', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:31:  quality_score: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:97:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:537:        'ALTER TABLE memory_index ADD COLUMN quality_score REAL DEFAULT 0',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:556:            quality_score = ?,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:581:            quality_score = 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:593:        SELECT canonical_file_path, content_hash, content_text, quality_score, quality_flags, chunk_index, chunk_label
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:603:      expect(restored.quality_score).toBe(0.91);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1027:          typeof parsed.data?.confidence === 'number' ||
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:1049:        expect(typeof parsed.data?.confidence === 'number').toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:855:    const lowRecallVectorSearch = () => [{ id: 1, similarity: 0.01, content: 'vector low confidence' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1274:  it('T024: co-activation promotion happens before confidence truncation drops tail candidates', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:28:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:144:      causalEdges.insertEdge('1', '5', 'contradicts', 0.5, null);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-fixes.vitest.ts:158:      expect(relations).toContain('contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:37:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:78:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:105:    INSERT INTO memory_index (spec_folder, file_path, title, content_text, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:117:    data.confidence || 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:178:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:188:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:207:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:226:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:244:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:515:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:521:        confidence: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:527:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:535:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:552:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:569:        confidence: 0.2,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:638:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:659:          confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:679:        confidence: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:40:  it('T1: extracts qualityScore from db quality_score when present and positive', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:41:    const row = makeRow({ quality_score: 0.85 });
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:50:    const rowHigh = makeRow({ quality_score: 1.5 });
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:53:    // Negative quality_score is treated as absent. Without a tier, returns null.
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:54:    const rowLow = makeRow({ quality_score: -0.3 });
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:57:    // Negative quality_score with a tier falls back to tier score.
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:58:    const rowLowWithTier = makeRow({ quality_score: -0.3, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:62:  it('T3: falls back to tier score when quality_score is zero', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:63:    const row = makeRow({ quality_score: 0, importance_tier: 'critical' });
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:70:  it('T4: falls back to tier score when quality_score is absent', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:233:  it('T15: returns null when row has no signals (no tier, no quality_score, no content)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:278:      makeRow({ id: 1, importance_tier: 'critical', quality_score: 0.9 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:313:        quality_score: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:343:        quality_score: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:69:      expect(result.contradiction?.detected ?? false).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:72:    it('T504: contradiction markers in new content route to SUPERSEDE', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:82:      expect(result.contradiction?.detected).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:83:      expect(result.contradiction?.type).toBe('deprecation');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:152:        { detected: true, type: 'deprecation', description: 'Previous guidance replaced', confidence: 0.75 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:160:      expect(record.contradiction_detected).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:161:      expect(record.contradiction_type).toBe('deprecation');
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:54:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:8:import * as confidenceTracker from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:23:    confidence = 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:25:  }: { tier?: string; confidence?: number; validationCount?: number } = {},
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:28:    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:30:  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:41:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:58:  it('confidence-tracker eligibility subtracts negative validations from threshold counts', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:59:    insertMemory(1, { confidence: 0.95, validationCount: 5, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:60:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:65:    expect(confidenceTracker.checkPromotionEligible(db, 1)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:67:    const info = confidenceTracker.getConfidenceInfo(db, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:74:    insertMemory(2, { confidence: 0.9, validationCount: 4, tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:76:    const negativeResult = confidenceTracker.recordValidation(db, 2, false);
+.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:85:    const positiveResult = confidenceTracker.recordValidation(db, 2, true);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:71:     Production: getDecayRate(importanceTier: string | null | undefined): number
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:4:import * as confMod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:18:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:29:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:35:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:39:    opts.confidence ?? 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:87:      insertMemory(db, 1, { confidence: 0.95, validation_count: 6, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:99:      insertMemory(db, 1, { confidence: 0.95, validation_count: 7, importance_tier: 'important' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:110:        'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at) VALUES (?, ?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:121:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'critical' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:130:      insertMemory(db, 1, { confidence: 0.99, validation_count: 10, importance_tier: 'constitutional' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:139:      insertMemory(db, 1, { confidence: 0.3, validation_count: 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:155:      insertMemory(db, 1, { confidence: 0.4, validation_count: 2, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:167:      insertMemory(db, 1, { confidence: ct, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:174:    it('T-CT16 fails just below confidence threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:178:      insertMemory(db, 1, { confidence: ct - 0.01, validation_count: vt, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts:189:      insertMemory(db, 1, { confidence: ct, validation_count: vt - 1, importance_tier: 'normal' });
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:355:          quality_score: 0.91,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:363:    mockSearch.mockResolvedValue([{ id: 1, score: 0.93, title: 'baseline-hit', quality_score: 0.93 }]);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:389:      quality_score: 0.99,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:398:    mockSearch.mockResolvedValue([{ id: 1, score: 0.95, title: 'baseline-version', quality_score: 0.95 }]);
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:426:          quality_score: 0.95,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:437:          quality_score: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:475:          quality_score: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:489:          quality_score: 0.9,
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:65:    confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:230:  it('counts confidence tiers separately', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:58:    expect(ref.confidence).toBeCloseTo(0.89, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:69:    expect(ref.confidence).toBeLessThan(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:142:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:148:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:154:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:160:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:166:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:172:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:178:    expect(result.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/artifact-routing.vitest.ts:190:    expect(result.confidence).toBe(0.3); // Low confidence from folder hint
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:112:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:2:// Covers: contradiction scan, Hebbian strengthening, staleness
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:56:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:485:    expect(result).toHaveProperty('contradictions');
+.opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts:496:    expect(result.contradictions).toHaveLength(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:167:      'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:168:      'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:182:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:184:      'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:288:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:289:      'memory_delete', 'memory_update', 'memory_bulk_delete', 'memory_list', 'memory_stats',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:291:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:294:      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1642:    it('T28e: L4 budget = 1000 (memory_delete)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1647:      expect(layerDefs!.getTokenBudget!('memory_delete')).toBe(1000)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1699:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1712:    const nonAwareTools = ['memory_delete', 'checkpoint_create', 'task_preflight']
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2082:      'memory_match_triggers': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_health': '[L3:Discovery]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2087:      'memory_delete': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2088:      'memory_update': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2089:      'memory_validate': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2097:      'memory_causal_link': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2099:      'memory_causal_unlink': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:402:            confidence: 0.8, validation_count: 2, access_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:746:      importanceTier: 'critical',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:753:    expect(fields).toContain('importanceTier');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:183:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1116:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1355:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1403:        fixes: ['Re-extracted 4 trigger phrases from content'],
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1962:            decision: { action: 'CREATE', similarity: 0.98, reason: 'contradiction across file paths' },
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:14:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:21:    importanceTier: 'critical',
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:35:      const score = computeRecencyScore(memory.updatedAt as string, memory.importanceTier as string);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:4:// Validates confidence computation, label thresholds, driver list
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:13:} from '../lib/search/confidence-scoring';
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:74:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:75:    expect(confidences).toHaveLength(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:80:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:81:    expect(confidences).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:84:  it('confidence value is in [0, 1] range for all results', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:86:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:87:    for (const c of confidences) {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:88:      expect(c.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:89:      expect(c.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:107:    expect(conf.confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:108:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:112:    // Zero score, single channel, no reranker, no anchors → very low confidence
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:115:    expect(conf.confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:116:    expect(conf.confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:123:    expect(['medium', 'high']).toContain(conf.confidence.label);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:130:  it('large margin (>= 0.15) boosts confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:133:    expect(topConf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:139:    expect(topConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:144:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:145:    const lastConf = confidences[confidences.length - 1];
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:146:    expect(lastConf.confidence.drivers).not.toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:160:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:170:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:181:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:196:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:207:    expect(conf.confidence.drivers).not.toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:217:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:223:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:229:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:235:    expect(conf.confidence.drivers).not.toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:252:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:262:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:268:    expect(conf.confidence.drivers).not.toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:279:    expect(highConf.confidence.value).toBeGreaterThan(lowConf.confidence.value);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:286:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:292:    expect(conf.confidence.value).toBeGreaterThan(0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:299:    expect(conf.confidence.value).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:300:    expect(conf.confidence.value).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:311:    expect(Array.isArray(conf.confidence.drivers)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:326:    expect(conf.confidence.drivers.length).toBeGreaterThan(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:327:    expect(conf.confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:328:    expect(conf.confidence.drivers).toContain('multi_channel_agreement');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:329:    expect(conf.confidence.drivers).toContain('reranker_boost');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:330:    expect(conf.confidence.drivers).toContain('anchor_density');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:342:  it('returns "good" when most results are high/medium confidence and top score is high', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:348:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:349:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:353:  it('returns "gap" when all results have low confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:355:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:356:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:360:  it('returns "weak" for results with mediocre scores and mixed confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:362:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:363:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:371:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:372:    const { requestQuality } = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:378:    const confidences = computeResultConfidence(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts:379:    const assessment = assessRequestQuality(results, confidences);
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:62:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts:152:        'contradicts',
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:163:    expect(shortQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:167:    expect(longQuery.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:174:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:228:  it('reports high confidence for trigger matches', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:231:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:235:  it('reports high confidence for very short queries', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:238:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:276:  it('reports appropriate confidence for moderate tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:279:      expect(['low', 'medium']).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:283:  it('reports low confidence near simple boundary (4 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:287:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:291:  it('reports low confidence near complex boundary (8 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:295:      expect(result.confidence).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:335:  it('reports high confidence for very long queries (>12 terms)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:341:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:345:  it('reports high confidence for content-rich queries (low stop-word ratio)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:352:      expect(result.confidence).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:525:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:533:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:542:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:551:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:560:      expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:600:      expect(typeof result.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-lifecycle.vitest.ts:51:      quality_score REAL DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:73:        'handle_memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:74:        'handle_memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:160:    it('T519-U4: Invalid importanceTier throws', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:164:          importanceTier: 'invalid_tier' as unknown as Parameters<typeof handler.handleMemoryUpdate>[0]['importanceTier'],
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:167:    expect(contract.confidence_impact).toBe(0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:172:  it('createDegradedContract clamps confidence_impact to [0, 1]', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:174:    expect(overContract.confidence_impact).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:177:    expect(underContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:180:    expect(nanContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:183:    expect(infContract.confidence_impact).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:52:      quality_score REAL DEFAULT 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:65:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:119:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:118:    parts.push(`> **⚠️ EVIDENCE GAP DETECTED:** Low confidence (Z=${trm.zScore.toFixed(2)})\n`);
+.opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:31:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/degree-computation.vitest.ts:364:      expect(EDGE_TYPE_WEIGHTS['contradicts']).toBe(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:287:    expect(typeof result.classification.confidence).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts:329:    expect(result.classification.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:231:      confidenceImpact: 0.3,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:239:    expect(contract.confidenceImpact).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:240:    expect(contract.confidenceImpact).toBeLessThanOrEqual(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:247:      confidenceImpact: 1.0,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:251:    expect(totalFailure.confidenceImpact).toBe(1.0);
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts:265:    it('T501-13a: Unicode-aware boundaries match Cyrillic and CJK trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:16:      importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:34:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'important' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:35:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:48:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'important' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:49:        createMemory({ updatedAt: now.toISOString(), importanceTier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:68:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:69:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:70:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:71:        createMemory({ specFolder: 'old-project', spec_folder: 'old-project', updatedAt: weekAgo.toISOString(), updated_at: weekAgo.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:85:        createMemory({ specFolder: 'active-project', spec_folder: 'active-project', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:86:        createMemory({ specFolder: 'old-project', spec_folder: 'old-project', updatedAt: weekAgo.toISOString(), updated_at: weekAgo.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:156:        createMemory({ specFolder: 'folder-a', spec_folder: 'folder-a', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:157:        createMemory({ specFolder: 'folder-b', spec_folder: 'folder-b', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:158:        createMemory({ specFolder: 'folder-c', spec_folder: 'folder-c', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'critical', importance_tier: 'critical' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:176:        createMemory({ specFolder: 'folder-a', spec_folder: 'folder-a', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'important', importance_tier: 'important' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:177:        createMemory({ specFolder: 'folder-b', spec_folder: 'folder-b', updatedAt: now.toISOString(), updated_at: now.toISOString(), importanceTier: 'normal', importance_tier: 'normal' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:206:  it('T027: memory_causal_link has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:207:    expect(TOOL_SPECIFIC_HINTS.memory_causal_link).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:208:    expect(typeof TOOL_SPECIFIC_HINTS.memory_causal_link).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:7:import * as mod from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:12:} from '../lib/scoring/confidence-tracker';
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:30:    confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:54:    'INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier) VALUES (?, ?, ?, ?, ?)'
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:115:    it('T510-02a: Positive validation increases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:119:      expect(result.confidence).toBeGreaterThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:141:    it('T510-03a: Negative validation decreases confidence', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:145:      expect(result.confidence).toBeLessThan(before);
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:184:      // Memory 5 has confidence=0.88, validation_count=4
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:185:      // Promotion requires confidence >= 0.9 AND validation_count >= 5
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:202:      expect(info.importanceTier).toBe('critical');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:208:      expect(typeof info.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:220:// Verifies all 7 DB operations in confidence-tracker survive
+.opencode/skills/system-spec-kit/mcp_server/tests/confidence-tracker.vitest.ts:239:          confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:40:    importanceTier: 'constitutional',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:95:    const content = 'Must stop if confidence is below 80%.';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:98:    expect(directive!.surfaceCondition).toContain('confidence is below 80%');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:328:    const original = makeResult({ id: 42, specFolder: 'specs/core', importanceTier: 'constitutional' });
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:332:    expect(enriched[0].importanceTier).toBe('constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:386:  it('T38: enrichment preserves importanceTier field unchanged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:387:    const results = [makeResult({ importanceTier: 'constitutional' })];
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:389:    expect(enriched[0].importanceTier).toBe('constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:398:      importanceTier: 'constitutional',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:406:    expect(result.importanceTier).toBe(base.importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:520:      importanceTier: 'constitutional',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:554:    expect(result!.constitutional[0].importanceTier).toBe('constitutional');
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:100:    it('T515-03: no duplicate trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:170:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts:175:          confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:45:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:124:      const expectedValues = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:184:      causalEdges.insertEdge('7', '8', 'contradicts', -0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:634:      causalEdges.insertEdge('5', '6', 'contradicts', 0.5); // unrelated
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:645:      causalEdges.insertEdge('5', '6', 'contradicts', 0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:710:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:721:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:728:      expect(br.contradicts).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:736:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:748:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:760:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:772:      causalEdges.insertEdge('5', '4', 'contradicts', 0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts:807:      causalEdges.insertEdge('1', '888', 'contradicts', 0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:41:  importanceTier = 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/community-detection.vitest.ts:46:  `).run(id, title, specFolder, importanceTier);
+.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:389:      importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:9:import { detectContradictions } from '../lib/graph/contradiction-detection.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:34:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:189:    it('should detect supersedes contradiction and invalidate old edge', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:195:      const contradictions = detectContradictions(db, 50, 60, 'supersedes');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:196:      expect(contradictions).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:197:      expect(contradictions[0]!.oldEdge.relation).toBe('caused');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:198:      expect(contradictions[0]!.oldRelation).toBe('caused');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:199:      expect(contradictions[0]!.reason).toContain('Superseded');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:208:    it('should detect conflicting relation pairs (supports vs contradicts)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:214:      const contradictions = detectContradictions(db, 70, 80, 'contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:215:      expect(contradictions).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:216:      expect(contradictions[0]!.reason).toContain('Conflicting relations');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:219:    it('should return empty array when no contradictions exist', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:225:      const contradictions = detectContradictions(db, 90, 100, 'enabled');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:226:      expect(contradictions).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:235:      const contradictions = detectContradictions(db, 110, 120, 'contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts:236:      expect(contradictions).toEqual([]);
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/corrections.vitest.ts:52:        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:65:  confidence: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:84:  importanceTier?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:327:    it('3.3.4b filters single-word stopword trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:13:import { computeResultConfidence } from '../lib/search/confidence-scoring.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:78:  it('keeps ranking confidence separate from structural trust axes', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:96:    expect(firstConfidence?.confidence.value).toBeTypeOf('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:97:    expect(firstConfidence?.confidence).not.toHaveProperty('structuralTrust');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:98:    expect(firstConfidence?.confidence).not.toHaveProperty('parserProvenance');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:99:    expect(firstConfidence?.confidence).not.toHaveProperty('evidenceStatus');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:100:    expect(firstConfidence?.confidence).not.toHaveProperty('freshnessAuthority');
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:3:// Feedback confidence signal (T002b/A4).
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:90:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:123:  confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:131:    confidence = 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:135:    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-feedback.vitest.ts:137:  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:86:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:28:  confidence?: ConfidencePayload;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:52:    file_path: `/tmp/confidence-${id}.md`,
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:56:    triggerPhrases: ['retrieval', 'confidence'],
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:83:  if (!result?.confidence) {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:84:    throw new Error(`Expected confidence payload for result ${resultId}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:87:  return result.confidence;
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:90:describe('D5 Phase A: result confidence scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:106:  it('assigns high confidence to a result with a large score margin', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:143:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:144:    expect(confidence.label).toBe('high');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:145:    expect(confidence.value).toBeGreaterThan(0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:146:    expect(confidence.drivers).toContain('large_margin');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:149:  it('boosts confidence when multiple channels agree on the top result', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:217:  it('assigns low confidence when the top result barely beats the runner-up', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:239:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:240:    expect(confidence.label).toBe('low');
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:241:    expect(confidence.value).toBeLessThan(0.4);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:244:  it('keeps label thresholds aligned with the numeric confidence value', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:311:  it('populates confidence drivers with contributing factors', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:346:    const confidence = getResultConfidence(envelope, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:347:    expect(confidence.drivers.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:348:    expect(new Set(confidence.drivers).size).toBe(confidence.drivers.length);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:349:    expect(confidence.drivers.every((driver) => DRIVER_NAMES.includes(driver as (typeof DRIVER_NAMES)[number]))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:405:  it('omits confidence when SPECKIT_RESULT_CONFIDENCE_V1 is false', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts:425:    expect(envelope.data.results.every((result) => result.confidence === undefined)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:626:    it('sets confidence to 0.85', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1416:    it('does not re-add existing trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:53:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:66:      expect(result.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:67:      expect(result.confidence).toBeLessThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:73:    it('confidence never exceeds 0.95', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:77:      expect(result.confidence).toBeLessThanOrEqual(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/query-intent-classifier.vitest.ts:85:      expect(result.confidence).toBe(0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:58:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:83:| Search and ranking | `hybrid-search.vitest.ts`, `bm25-index.vitest.ts`, `query-router.vitest.ts`, `dynamic-token-budget.vitest.ts`, `result-confidence-scoring.vitest.ts` | Retrieval, ranking, and profile/trace behavior |
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:146:Broader confidence runs:
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:45:    confidence: {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:103:  it('produces correct digest with confidence classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:105:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:106:      makeResult({ id: 2, confidence: { label: 'high', value: 0.8 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:107:      makeResult({ id: 3, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:108:      makeResult({ id: 4, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:114:  it('classifies results without confidence data as "weak"', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:116:    // No confidence property → defaults to low/weak
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:123:      makeResult({ id: 1, confidence: { label: 'high', value: 0.95 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:124:      makeResult({ id: 2, confidence: { label: 'high', value: 0.85 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:137:      makeResult({ id: 1, confidence: { label: 'high', value: 0.9 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:138:      makeResult({ id: 2, confidence: { label: 'medium', value: 0.5 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:139:      makeResult({ id: 3, confidence: { label: 'low', value: 0.2 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:140:      makeResult({ id: 4, confidence: { label: 'low', value: 0.1 } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-disclosure.vitest.ts:146:  it('treats missing confidence as low', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:94:     Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:141:    it('T120: "contradicts" detected as explicit', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:142:      const r = peGate.detectContradiction('This contradicts the previous', 'Previous');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:147:    it('T121: Non-contradictory content NOT flagged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:168:      expect(typeof r.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:169:      expect(r.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:172:    it('T125: Result has {detected, type, description, confidence}', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:177:      expect(r).toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:196:    it('T128: SUPERSEDE for contradictions in high match range', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:200:      expect(r.contradiction).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:201:      expect(r.contradiction!.detected).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:356:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:363:        contradiction,                // contradiction
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:374:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:381:        contradiction,
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:387:        'reason', 'contradiction_detected', 'contradiction_type', 'new_content_preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:395:      const contradiction = { detected: false, type: null, description: null, confidence: 0 };
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:402:        contradiction,
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:508:      const statFields = ['total', 'creates', 'updates', 'supersedes', 'reinforces', 'contradictions'];
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:542:    it('C138-T2: contradicting content triggers detection', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:552:    it('C138-T3: THRESHOLD constants are valid for contradiction detection', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:557:    it('C138-T4: ACTION types include contradiction-related actions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/bm25-index.vitest.ts:804:  it('memory_update wraps the update path in runInTransaction', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:5:type Row = { id: string | number; quality_score?: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:16:describe('C136: minQualityScore and min_quality_score behavior', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:32:      { id: 'a', quality_score: 0.2 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:33:      { id: 'b', quality_score: 0.5 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:34:      { id: 'c', quality_score: 0.9 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:43:      { id: 'a', quality_score: 0.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:44:      { id: 'b', quality_score: 0.6 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:45:      { id: 'c', quality_score: 1.0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:71:      confidence: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:88:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:66:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:74:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:80:    expect(result.confidence).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:316:    expect(r1.confidence).toBe(r2.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:42:      quality_score: 0.98,
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-architecture-remediation.vitest.ts:50:      quality_score: 0.1,
+.opencode/skills/system-spec-kit/mcp_server/tests/search-fallback-tiered.vitest.ts:310:  it('T045-17b: quality degradation uses absolute+relative confidence checks', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:45:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:37:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:37:      confidence?: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:488:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:497:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:25:        memory_update: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:26:        memory_delete: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:75:    tool: 'memory_delete',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:81:    tool: 'memory_update',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:143:    tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:155:    tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:180:  { tool: 'memory_delete', handler: 'handleMemoryDelete' },
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:34:    confidence: 'weak',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:88:    expect(names).toContain('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:101:    expect(names).toContain('idx_feedback_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:176:    const id = logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:196:  it('stores all 3 confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:198:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:199:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:200:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:202:    const tiers = events.map(e => e.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:215:      confidence: 'strong',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:225:    expect(row.confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:237:  it('auto-infers confidence from type when not overridden', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:239:    // Pass the event type's own inferred confidence to match resolveConfidence
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:244:      confidence: resolveConfidence('query_reformulated'),
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:248:    expect(events[0].confidence).toBe('medium');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:299:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:316:  it('filters by confidence tier', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:318:    logFeedbackEvent(db, makeEvent({ confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:319:    logFeedbackEvent(db, makeEvent({ confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:320:    logFeedbackEvent(db, makeEvent({ confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:322:    const strong = getFeedbackEvents(db, { confidence: 'strong' });
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:324:    expect(strong[0].confidence).toBe('strong');
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:394:  it('aggregates correctly across confidence tiers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:396:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:397:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:398:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'medium' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:399:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-1', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:411:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-A', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:412:    logFeedbackEvent(db, makeEvent({ memoryId: 'mem-B', confidence: 'weak' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:448:    logFeedbackEvent(db, makeEvent({ type: 'result_cited', confidence: 'strong' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:45:  importanceTier?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:66:    importanceTier = 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:109:      parts.push(`importance_tier: "${importanceTier}"`);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:428:  it('auto-fix rescues missing trigger phrases from headings', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:430:    // Content with headings (for trigger extraction) but NO trigger phrases and NO anchors.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1066:  it('rejects emoji-only trigger phrases as non-semantic', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1141:  it('quality loop handles exactly 3 trigger phrases at boundary', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:39:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:95:importanceTier: important
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:125:importanceTier: [bogus
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:133:importanceTier: normal
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:526:      expect(result.importanceTier).toBe('important');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser-extended.vitest.ts:543:      expect(result.importanceTier).toBe('normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:114:        memory_match_triggers: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_health: 'L3',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_update: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:119:        memory_delete: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_validate: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_causal_link: 'L6',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:128:        memory_causal_unlink: 'L6',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:182:        { tool: 'memory_update', expected: '[L4:Mutation]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:213:        { tool: 'memory_delete', desc: 'Delete a memory', prefix: '[L4:Mutation]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:240:        { tool: 'memory_update', expected: 1000 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:416:                           'memory_update', 'checkpoint_create', 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:116:        { id: 2, importanceTier: 'critical', stability: 1.0, specFolder: 'specs/002' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-tier-classifier-types.vitest.ts:183:        { id: 2, title: 'Test Two', specFolder: 'specs/002', filePath: '/b.md', importanceTier: 'normal', stability: 100, created_at: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:30:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:97:  it('T001-04: confidence is a valid label (high, medium, low, or fallback)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:100:    expect(validLabels).toContain(result.confidence);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:107:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-query-intelligence.vitest.ts:113:    expect(result.confidence).toBe('fallback');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:55:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:148:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:118:  importanceTier: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:154:      quality_score REAL DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:174:    importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-denylist.vitest.ts:3:// Into learned relevance feedback trigger phrases.
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:73:          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:134:      const expected = ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'];
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:425:        contradicts: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:562:    it('T133: contradicts relation insertable and retrievable', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:834:    it('C138-T2: contradicts relation type exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:835:      expect(Object.values(causalEdges.RELATION_TYPES)).toContain('contradicts');
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:843:      expect(defaultWeight).toBeGreaterThan(weights.contradicts);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:312:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:335:    expect(resumed.confidence).toBe(0.95);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:351:    expect(explicit.confidence).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:43:        confidence: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:92:      expect(memory.importanceTier === 'normal' || memory.importanceTier === undefined).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:640:          confidence: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:50:          quality_score REAL
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:57:        CREATE INDEX idx_quality_score ON memory_index(quality_score);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:98:          contradiction_detected INTEGER,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:99:          contradiction_type TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:22:    importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:55:        makeCamelCaseMemory({ id: 2, importanceTier: 'critical' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:83:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:100:        makeCamelCaseMemory({ id: 3, specFolder: 'specs/002', importanceTier: 'critical' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:129:        { id: 1, specFolder: 'specs/010', importanceTier: 'normal', updatedAt: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:130:        { id: 2, specFolder: 'specs/010', importanceTier: 'critical', updatedAt: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:85:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:74:} from '../lib/search/confidence-truncation';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:169:      expect(intent.confidence).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:468:      expect(emptyIntent.confidence).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:625:      // Step 7: Truncate by confidence
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:133:          confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:172:      confidence: 0.85,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:50:        'handle_memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:52:        'handle_memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:37:      confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:36:    database.exec('DROP INDEX IF EXISTS idx_quality_score');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:41:      if (sql.includes('CREATE INDEX IF NOT EXISTS idx_quality_score')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:42:        throw new Error('simulated idx_quality_score failure');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:47:    expect(() => ensureSchemaVersion(database)).toThrow(/simulated idx_quality_score failure/);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:54:    expect(compatibility.missingIndexes).toContain('idx_quality_score');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:175:        contradiction_detected INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:185:        similarity_score, action, contradiction_detected, notes
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:208:      SELECT id, timestamp, new_memory_hash, existing_memory_id, similarity, reason, contradiction_detected
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:218:      contradiction_detected: number;
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:228:      contradiction_detected: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:115:            confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:139:      confidence: 0.8,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-handler.vitest.ts:145:    expect(parsed.data).not.toHaveProperty('confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:178:      decision_meta: { confidence: 0.95, strategy: 'dedup' },
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:95:    "description": "Test cases for contradiction detection between memory statements",
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:99:      "always-never": "Direct always/never contradictions",
+.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/contradiction-pairs.json:111:      "semantic-similarity": "Similar meaning, not contradictory",
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:87:        importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-composite-scoring-types.vitest.ts:152:          importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:41:    importanceTier: 'important',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:31:        confidence: 0.92,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:43:          { intent: 'find_spec', confidence: 0.92, score: 0.92 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:44:          { intent: 'find_decision', confidence: 0.44, score: 0.44 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-session-state.vitest.ts:45:          { intent: 'understand', confidence: 0.18, score: 0.18 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:23:importanceTier: critical
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:122:importanceTier: important
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:139:importanceTier: critical
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:153:importanceTier: invalid_tier
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:177:    it('T500-06a: Inline YAML trigger phrases extracted', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:193:    it('T500-06b: Multi-line YAML trigger phrases extracted', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:213:importanceTier: critical
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:219:importanceTier: normal
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:362:importanceTier: [invalid
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts:386:importanceTier: important
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:83:  classifyIntent: vi.fn(() => ({ intent: 'understand', confidence: 0.9, fallback: false })),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:57:        confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:7:// - Quality score computation (trigger phrases, anchors, budget, coherence)
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:105:  it('returns 0 when no trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:109:    expect(result.issues[0]).toMatch(/no trigger phrases/i);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:112:  it('returns 0.5 for 1-3 trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:119:  it('returns 1.0 for 4+ trigger phrases', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:396:  it('re-extracts trigger phrases when missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:399:    const result = attemptAutoFix(content, metadata, ['No trigger phrases found']);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:330:      new_content_preview, existing_content_preview, contradiction_detected, contradiction_type, spec_folder, created_at
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-cleanup-ordering.vitest.ts:52:        importanceTier: 'normal',
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:2:// Transparent Reasoning Module: Z-score confidence check on RRF
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts:3:// Scores to detect low-confidence retrieval and inject warnings.
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:166:  it('T001.1 — edge type weights are proportional: caused > derived_from > enabled > contradicts > supersedes > supports', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:170:    expect(EDGE_TYPE_WEIGHTS['enabled']).toBeGreaterThan(EDGE_TYPE_WEIGHTS['contradicts']!);
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:171:    expect(EDGE_TYPE_WEIGHTS['contradicts']).toBeGreaterThan(EDGE_TYPE_WEIGHTS['supersedes']!);
 
 exec
 /bin/zsh -lc 'rg -n "experimental.session.compacting|context.push|memory" .opencode/plugins/spec-kit-compact-code-graph.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -2567,7 +2567,7 @@ exec
 416:      output.context.push(rendered);
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '184,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '184,520p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    184	/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
    185	async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse> {
@@ -2908,7 +2908,7 @@ exec
    520	    hints,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '222,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '222,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    222	/** Handle memory_health tool -- returns system health status and diagnostics. */
    223	async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
@@ -3292,7 +3292,7 @@ exec
    601	export { handleMemoryHealth };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts | sed -n '67,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts | sed -n '67,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     67	/** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
     68	async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
@@ -3531,7 +3531,7 @@ exec
    301	export { handleMemoryDelete };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts | sed -n '40,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts | sed -n '40,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     40	/** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
     41	async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
@@ -3796,10 +3796,10 @@ exec
    300	export { handleMemoryUpdate };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '930,1080p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '930,1080p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ────────────────────────────────────────────────────────────────
      2	// MODULE: Causal Graph
@@ -4123,7 +4123,7 @@ exec
    320	function formatRelationSummary(chain: FlattenedChain, label: 'incoming' | 'outgoing'): string | null {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Search
@@ -4417,74 +4417,74 @@ exec
 codex
 I’ve got the key Public hygiene handlers open now. The gap pattern is strengthening: Mnemosyne gives agents a manual hygiene discipline, while Public encodes hygiene into mutation transactions, scope checks, repair flows, and trigger/session controls.
 exec
-/bin/zsh -lc "rg -n \"handleMemoryValidate|memory_validate|wasUseful|confidence boost|thumbs-up|thumbs-down|resultRank\" .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts .opencode/skill/system-spec-kit/mcp_server/handlers -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"handleMemoryValidate|memory_validate|wasUseful|confidence boost|thumbs-up|thumbs-down|resultRank\" .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts .opencode/skills/system-spec-kit/mcp_server/handlers -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:649:async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:807:  handleMemoryValidate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:287:export const handleMemoryValidate = lazyFunction(getCheckpointsModule, 'handleMemoryValidate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:649:async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:807:  handleMemoryValidate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:649:async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:807:  handleMemoryValidate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:287:export const handleMemoryValidate = lazyFunction(getCheckpointsModule, 'handleMemoryValidate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:85:  wasUseful: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:88:  resultRank?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:649:async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:654:    wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:657:    resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:669:  if (typeof wasUseful !== 'boolean') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:670:    throw new Error('wasUseful is required and must be a boolean');
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681:  const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:685:      signalType: wasUseful ? 'outcome' : 'correction',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:692:        resultRank: typeof resultRank === 'number' ? resultRank : null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:710:  if (wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:722:  if (!wasUseful) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:735:  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:739:      selectedRank: resultRank,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:749:    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:750:      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:767:  const summary = wasUseful
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:775:  if (!wasUseful && result.validationCount > 3) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:784:      wasUseful: wasUseful,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:807:  handleMemoryValidate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
 
 exec
 /bin/zsh -lc 'rg --files .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "trigger phrases|quality_score|contradiction|importance_tier|auto-fix|pre-flight|duplicate" .opencode/skill/system-spec-kit/mcp_server/handlers/save .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "trigger phrases|quality_score|contradiction|importance_tier|auto-fix|pre-flight|duplicate" .opencode/skills/system-spec-kit/mcp_server/handlers/save .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/tsconfig.json
@@ -4493,59 +4493,59 @@ exec
 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/LICENSE
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:420:    : 'Prediction-error contradiction across different file paths';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:797:    const duplicatePrecheck = checkContentHashDedup(database, parsed, force, validation.warnings, {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:801:    if (duplicatePrecheck) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:802:      return duplicatePrecheck;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1063:    console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1293:        check_duplicates: !force,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1562:        console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(file_path)} before pending-file promotion`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1738:      ? 'Memory skipped (duplicate content)'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:83:    : 'Prediction-error contradiction across different file paths';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:227:      quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:247:        SET importance_tier = 'deprecated',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:146:  importance_tier?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:157:  quality_score?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:53:1. dedup          -- Skip if unchanged or duplicate content hash
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:44: * Similarity threshold above which two memories are considered near-duplicates
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:271:                  quality_score: parsed.qualityScore ?? 0,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:12:// Feature catalog: Generation-time duplicate and empty content prevention
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:41:  quality_score: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:140:    quality_score: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:155:  const persistedQualityScore = existing.quality_score ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:226:  // P1-4 FIX: Check content hash even during force reindex to prevent duplicate
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:228:  // not change either, so re-indexing provides no value and creates duplicates.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:262:    const duplicateParams: Array<string> = [
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:271:      duplicateParams.push(samePathExclusion.filePath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:273:      duplicateParams.push(samePathExclusion.canonicalFilePath);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:276:    const duplicateByHash = database.prepare(`
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:282:    `).get(...duplicateParams) as DuplicateLookupRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:284:    if (duplicateByHash) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:286:        duplicateByHash.content_text,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:287:        duplicateByHash.file_path,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:291:        console.warn(`[memory-save] Hash match for memory #${duplicateByHash.id} failed secondary content verification; continuing save`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:294:      console.error(`[memory-save] T054: Duplicate content detected (hash match id=${duplicateByHash.id}), skipping embedding`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:297:        id: duplicateByHash.id,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:299:        title: parsed.title ?? duplicateByHash.title ?? '',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:304:        message: `Duplicate content detected: identical to existing memory #${duplicateByHash.id} (${duplicateByHash.file_path}). Skipping embedding generation.`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:406:    hints.push('Existing memory was reinforced instead of creating duplicate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:420:    : 'Prediction-error contradiction across different file paths';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:797:    const duplicatePrecheck = checkContentHashDedup(database, parsed, force, validation.warnings, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:801:    if (duplicatePrecheck) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:802:      return duplicatePrecheck;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1063:    console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1293:        check_duplicates: !force,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1562:        console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(file_path)} before pending-file promotion`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1738:      ? 'Memory skipped (duplicate content)'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:83:    : 'Prediction-error contradiction across different file paths';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:      importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:227:      quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:247:        SET importance_tier = 'deprecated',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:34:  contradiction?: { detected: boolean; type: string | null; description: string | null; confidence: number } | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:146:  importance_tier?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:157:  quality_score?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:53:1. dedup          -- Skip if unchanged or duplicate content hash
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:44: * Similarity threshold above which two memories are considered near-duplicates
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:69: *   similarity >= 0.96  → auto-merge (near-duplicate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:262:                  importance_tier: parsed.importanceTier,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:271:                  quality_score: parsed.qualityScore ?? 0,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:12:// Feature catalog: Generation-time duplicate and empty content prevention
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:41:  quality_score: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:140:    quality_score: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:155:  const persistedQualityScore = existing.quality_score ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:226:  // P1-4 FIX: Check content hash even during force reindex to prevent duplicate
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:228:  // not change either, so re-indexing provides no value and creates duplicates.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:262:    const duplicateParams: Array<string> = [
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:271:      duplicateParams.push(samePathExclusion.filePath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:273:      duplicateParams.push(samePathExclusion.canonicalFilePath);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:276:    const duplicateByHash = database.prepare(`
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:282:    `).get(...duplicateParams) as DuplicateLookupRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:284:    if (duplicateByHash) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:286:        duplicateByHash.content_text,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:287:        duplicateByHash.file_path,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:291:        console.warn(`[memory-save] Hash match for memory #${duplicateByHash.id} failed secondary content verification; continuing save`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:294:      console.error(`[memory-save] T054: Duplicate content detected (hash match id=${duplicateByHash.id}), skipping embedding`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:297:        id: duplicateByHash.id,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:299:        title: parsed.title ?? duplicateByHash.title ?? '',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:304:        message: `Duplicate content detected: identical to existing memory #${duplicateByHash.id} (${duplicateByHash.file_path}). Skipping embedding generation.`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:406:    hints.push('Existing memory was reinforced instead of creating duplicate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1312ms:
 
 ───────────────────────────────────────────────────────────────
@@ -4560,7 +4560,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -4573,7 +4573,7 @@ exec
 codex
 I also kicked off the strict phase validation command exactly as requested so I can report the real outcome rather than infer it. While that runs, I’m drilling one level deeper into the save/validation path because that’s where our memory hygiene differs most sharply from Mnemosyne’s manual “remember to clean up” model.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,804p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,804p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    648	/** Handle memory_validate tool - records user validation feedback to adjust confidence */
    649	async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
@@ -4734,7 +4734,7 @@ exec
    804	  handleCheckpointList,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '760,1085p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | sed -n '760,1085p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    760	            }));
    761	          } : null,
@@ -5064,7 +5064,7 @@ exec
   1085	    return createMCPErrorResponse({
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts | sed -n '200,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts | sed -n '200,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    200	          triggerPhrases: parsed.triggerPhrases,
    201	          importanceWeight,
@@ -5149,34 +5149,34 @@ exec
    280	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '480,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '480,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "handleMemoryCausalLink|handleMemoryCausalUnlink|handleMemoryCausalStats|handleMemoryDriftWhy|cleanupOrphanedEdges|coverage percentage|contradicts" .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "handleMemoryCausalLink|handleMemoryCausalUnlink|handleMemoryCausalStats|handleMemoryDriftWhy|cleanupOrphanedEdges|coverage percentage|contradicts" .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.js: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:339:async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:558:async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:668:async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:770:async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:844:  handleMemoryDriftWhy,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:845:  handleMemoryCausalLink,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:846:  handleMemoryCausalStats,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:847:  handleMemoryCausalUnlink,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:854:const handle_memory_causal_stats = handleMemoryCausalStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
+rg: .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.js: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:50:  by_contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:63:  contradicts: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:142:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:187:      case 'contradicts': return result.by_contradicts;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:210:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:229:      case 'contradicts': merged.by_contradicts.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:276:    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:294:    by_contradicts: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:309:    contradicts: chain.by_contradicts,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:326:  if (chain.by_contradicts.length > 0) parts.push(`${chain.by_contradicts.length} contradicts`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:339:async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:516:    if (combinedChain.by_contradicts.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:558:async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:668:async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:770:async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:844:  handleMemoryDriftWhy,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:845:  handleMemoryCausalLink,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:846:  handleMemoryCausalStats,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:847:  handleMemoryCausalUnlink,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:854:const handle_memory_causal_stats = handleMemoryCausalStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
 
  succeeded in 0ms:
    480	
@@ -5462,7 +5462,7 @@ rg: .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.js: No s
    760	      'Causal graph statistics failed.',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/mcp-coco-index/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/mcp-coco-index/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -5564,7 +5564,7 @@ exec
     96	Run the idempotent bootstrap helper. It installs the binary, initializes the project if needed, and reports readiness.
     97	
     98	```bash
-    99	bash .opencode/skill/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
+    99	bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
    100	```
    101	
    102	**Step 2: Build the index**
@@ -6088,7 +6088,7 @@ exec
 zsh:1: unmatched "
 
 exec
-/bin/zsh -lc 'rg -n "memory_match_triggers|memory_health|memory_validate|memory_causal_stats|memory_causal_link|memory_delete|memory_update" .opencode/skill/system-spec-kit/mcp_server/README.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "memory_match_triggers|memory_health|memory_validate|memory_causal_stats|memory_causal_link|memory_delete|memory_update" .opencode/skills/system-spec-kit/mcp_server/README.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 178:  "tool": "memory_health",
 674:##### `memory_match_triggers`
@@ -6154,35 +6154,35 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - **Impact**: medium
 
 ### Finding 2: Mnemosyne stores opaque memory snippets; Public’s save path scores, dedups, and enriches memory quality
-- **Source**: [external/src/index.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts#L160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-save.ts#L764](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L764), [memory-save.ts#L797](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L797), [memory-save.ts#L1013](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1013), [save/create-record.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L215), [checkpoints.ts#L681](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L681)
+- **Source**: [external/src/index.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts#L160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-save.ts#L764](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L764), [memory-save.ts#L797](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L797), [memory-save.ts#L1013](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1013), [save/create-record.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L215), [checkpoints.ts#L681](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L681)
 - **What it does**: Wrapper-confirmed: Mnemosyne `memory_store` and `memory_store_global` accept only `content` plus optional `core`. Public’s save path rejects low-quality saves, dedups by content hash, runs reconsolidation/post-insert enrichment, persists `importance_tier` and `quality_score`, and later learns from `memory_validate`.
 - **Why it matters for us**: Mnemosyne has persistence hygiene by convention; Public has persistence hygiene by pipeline. Replacing our structured save/quality loop with Mnemosyne’s minimal atom-store model would be a regression. Affected subsystem: save pipeline, quality loop, adaptive feedback.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 3: Mnemosyne has no trigger system, so retrieval hygiene stays agent-driven instead of signal-driven
-- **Source**: [external/src/index.ts#L96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [external/src/index.ts#L118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-triggers.ts#L184](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L184), [memory-triggers.ts#L212](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L212), [memory-triggers.ts#L288](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L288), [memory-triggers.ts#L363](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L363), [memory-triggers.ts#L444](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L444)
+- **Source**: [external/src/index.ts#L96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [external/src/index.ts#L118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-triggers.ts#L184](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L184), [memory-triggers.ts#L212](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L212), [memory-triggers.ts#L288](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L288), [memory-triggers.ts#L363](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L363), [memory-triggers.ts#L444](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L444)
 - **What it does**: Wrapper-confirmed: Mnemosyne exposes semantic recall for project/global stores, but nothing like trigger phrases, prompt-start matching, session-scoped activation, co-activation, or tiered content trimming. Public’s `memory_match_triggers` validates trusted session IDs, filters by scope, runs attention decay/co-activation, and limits by cognitive state.
 - **Why it matters for us**: This is the biggest hygiene difference in retrieval. Mnemosyne tells the agent “remember to search”; Public can proactively surface the right memory when the prompt itself matches stored triggers. Affected subsystem: prompt-start recall, token discipline, session memory activation.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 4: Mnemosyne’s mutation hygiene is single-shot delete/manual overwrite; Public mutations are transactional and auditable
-- **Source**: [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [memory-crud-delete.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L94), [memory-crud-delete.ts#L115](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L115), [memory-crud-delete.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L163), [memory-crud-delete.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L215), [memory-crud-update.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138), [memory-crud-update.ts#L201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L201)
+- **Source**: [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [memory-crud-delete.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L94), [memory-crud-delete.ts#L115](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L115), [memory-crud-delete.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L163), [memory-crud-delete.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L215), [memory-crud-update.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138), [memory-crud-update.ts#L201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L201)
 - **What it does**: Wrapper-confirmed plus README-documented: Mnemosyne expects the agent to delete outdated memories by document ID and then store the new fact. Public wraps delete/update in transactions, records history, appends a mutation ledger, checkpoints bulk deletes, clears causal edges, and runs post-mutation hooks.
 - **Why it matters for us**: Mnemosyne’s hygiene assumes the agent gets lifecycle discipline right every time. Public keeps an audit trail even when the agent is imperfect, which is much safer for a long-lived memory store. Affected subsystem: mutation safety, rollback, auditability, graph consistency.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Mnemosyne hides readiness drift behind auto-init; Public makes hygiene failures observable and repairable
-- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-health.ts#L426](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L426), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [memory-crud-health.ts#L501](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L501), [memory-crud-health.ts#L520](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L520)
+- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-health.ts#L426](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L426), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [memory-crud-health.ts#L501](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L501), [memory-crud-health.ts#L520](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L520)
 - **What it does**: Wrapper-confirmed: the plugin silently auto-initializes project/global collections and returns a friendly install string when the binary is missing. README-documented: first use downloads a large local model. Public’s `memory_health` explicitly reports DB/model/vector/FTS/alias/orphan status and gates repair behind `confirmed:true`.
 - **Why it matters for us**: Mnemosyne optimizes onboarding friction, but it gives almost no in-band health vocabulary for drift, corruption, alias divergence, or orphan cleanup. Public’s hygiene story is operational, not just ergonomic. Affected subsystem: diagnostics, repair, incident response.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 6: Mnemosyne treats contradiction hygiene as deletion; Public models contradiction and supersession as first-class graph state
-- **Source**: [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [causal-graph.ts#L557](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L557), [causal-graph.ts#L667](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L667), [causal-graph.ts#L721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L721), [memory-save.ts#L957](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L957), [save/create-record.ts#L244](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L244), [save/create-record.ts#L258](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L258)
+- **Source**: [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [causal-graph.ts#L557](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L557), [causal-graph.ts#L667](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L667), [causal-graph.ts#L721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L721), [memory-save.ts#L957](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L957), [save/create-record.ts#L244](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L244), [save/create-record.ts#L258](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L258)
 - **What it does**: README-documented plus wrapper-confirmed: Mnemosyne’s contradiction guidance is “delete contradicted memories.” Public can instead create `supersedes`/`contradicts` relationships, mark predecessors deprecated, trace lineage with `memory_drift_why`, and measure graph coverage/orphans with `memory_causal_stats`.
 - **Why it matters for us**: This is the cleanest hygiene win on our side. Delete-only hygiene removes evidence; graph-native hygiene preserves why knowledge changed, which is better for audits and future retrieval ranking. Affected subsystem: causal lineage, contradiction management, historical continuity.
 - **Recommendation**: reject
@@ -6192,16 +6192,16 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts)
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
-- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
-- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [save/create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts)
-- [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
-- [causal-graph.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts)
+- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
+- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [save/create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts)
+- [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+- [causal-graph.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - New information ratio: 0.81
@@ -6234,35 +6234,35 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - **Impact**: medium
 
 ### Finding 2: Mnemosyne stores opaque memory snippets; Public’s save path scores, dedups, and enriches memory quality
-- **Source**: [external/src/index.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts#L160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-save.ts#L764](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L764), [memory-save.ts#L797](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L797), [memory-save.ts#L1013](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L1013), [save/create-record.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L215), [checkpoints.ts#L681](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L681)
+- **Source**: [external/src/index.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L138), [external/src/index.ts#L160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L160), [memory-save.ts#L764](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L764), [memory-save.ts#L797](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L797), [memory-save.ts#L1013](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L1013), [save/create-record.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L215), [checkpoints.ts#L681](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L681)
 - **What it does**: Wrapper-confirmed: Mnemosyne `memory_store` and `memory_store_global` accept only `content` plus optional `core`. Public’s save path rejects low-quality saves, dedups by content hash, runs reconsolidation/post-insert enrichment, persists `importance_tier` and `quality_score`, and later learns from `memory_validate`.
 - **Why it matters for us**: Mnemosyne has persistence hygiene by convention; Public has persistence hygiene by pipeline. Replacing our structured save/quality loop with Mnemosyne’s minimal atom-store model would be a regression. Affected subsystem: save pipeline, quality loop, adaptive feedback.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 3: Mnemosyne has no trigger system, so retrieval hygiene stays agent-driven instead of signal-driven
-- **Source**: [external/src/index.ts#L96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [external/src/index.ts#L118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-triggers.ts#L184](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L184), [memory-triggers.ts#L212](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L212), [memory-triggers.ts#L288](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L288), [memory-triggers.ts#L363](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L363), [memory-triggers.ts#L444](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L444)
+- **Source**: [external/src/index.ts#L96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L96), [external/src/index.ts#L118](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L118), [memory-triggers.ts#L184](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L184), [memory-triggers.ts#L212](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L212), [memory-triggers.ts#L288](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L288), [memory-triggers.ts#L363](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L363), [memory-triggers.ts#L444](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L444)
 - **What it does**: Wrapper-confirmed: Mnemosyne exposes semantic recall for project/global stores, but nothing like trigger phrases, prompt-start matching, session-scoped activation, co-activation, or tiered content trimming. Public’s `memory_match_triggers` validates trusted session IDs, filters by scope, runs attention decay/co-activation, and limits by cognitive state.
 - **Why it matters for us**: This is the biggest hygiene difference in retrieval. Mnemosyne tells the agent “remember to search”; Public can proactively surface the right memory when the prompt itself matches stored triggers. Affected subsystem: prompt-start recall, token discipline, session memory activation.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 4: Mnemosyne’s mutation hygiene is single-shot delete/manual overwrite; Public mutations are transactional and auditable
-- **Source**: [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [memory-crud-delete.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L94), [memory-crud-delete.ts#L115](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L115), [memory-crud-delete.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L163), [memory-crud-delete.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L215), [memory-crud-update.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138), [memory-crud-update.ts#L201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L201)
+- **Source**: [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [memory-crud-delete.ts#L94](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L94), [memory-crud-delete.ts#L115](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L115), [memory-crud-delete.ts#L163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L163), [memory-crud-delete.ts#L215](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts#L215), [memory-crud-update.ts#L138](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L138), [memory-crud-update.ts#L201](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts#L201)
 - **What it does**: Wrapper-confirmed plus README-documented: Mnemosyne expects the agent to delete outdated memories by document ID and then store the new fact. Public wraps delete/update in transactions, records history, appends a mutation ledger, checkpoints bulk deletes, clears causal edges, and runs post-mutation hooks.
 - **Why it matters for us**: Mnemosyne’s hygiene assumes the agent gets lifecycle discipline right every time. Public keeps an audit trail even when the agent is imperfect, which is much safer for a long-lived memory store. Affected subsystem: mutation safety, rollback, auditability, graph consistency.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 5: Mnemosyne hides readiness drift behind auto-init; Public makes hygiene failures observable and repairable
-- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-health.ts#L426](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L426), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [memory-crud-health.ts#L501](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L501), [memory-crud-health.ts#L520](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L520)
+- **Source**: [external/src/index.ts#L78](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L78), [external/src/index.ts#L171](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L171), [external/README.md#L18](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L18), [memory-crud-health.ts#L222](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L222), [memory-crud-health.ts#L426](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L426), [memory-crud-health.ts#L454](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L454), [memory-crud-health.ts#L501](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L501), [memory-crud-health.ts#L520](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts#L520)
 - **What it does**: Wrapper-confirmed: the plugin silently auto-initializes project/global collections and returns a friendly install string when the binary is missing. README-documented: first use downloads a large local model. Public’s `memory_health` explicitly reports DB/model/vector/FTS/alias/orphan status and gates repair behind `confirmed:true`.
 - **Why it matters for us**: Mnemosyne optimizes onboarding friction, but it gives almost no in-band health vocabulary for drift, corruption, alias divergence, or orphan cleanup. Public’s hygiene story is operational, not just ergonomic. Affected subsystem: diagnostics, repair, incident response.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 6: Mnemosyne treats contradiction hygiene as deletion; Public models contradiction and supersession as first-class graph state
-- **Source**: [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [causal-graph.ts#L557](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L557), [causal-graph.ts#L667](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L667), [causal-graph.ts#L721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts#L721), [memory-save.ts#L957](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts#L957), [save/create-record.ts#L244](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L244), [save/create-record.ts#L258](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L258)
+- **Source**: [external/README.md#L72](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L72), [external/src/index.ts#L193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [causal-graph.ts#L557](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L557), [causal-graph.ts#L667](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L667), [causal-graph.ts#L721](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts#L721), [memory-save.ts#L957](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts#L957), [save/create-record.ts#L244](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L244), [save/create-record.ts#L258](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L258)
 - **What it does**: README-documented plus wrapper-confirmed: Mnemosyne’s contradiction guidance is “delete contradicted memories.” Public can instead create `supersedes`/`contradicts` relationships, mark predecessors deprecated, trace lineage with `memory_drift_why`, and measure graph coverage/orphans with `memory_causal_stats`.
 - **Why it matters for us**: This is the cleanest hygiene win on our side. Delete-only hygiene removes evidence; graph-native hygiene preserves why knowledge changed, which is better for audits and future retrieval ranking. Affected subsystem: causal lineage, contradiction management, historical continuity.
 - **Recommendation**: reject
@@ -6272,16 +6272,16 @@ COMPARISON - HYGIENE: Compare memory quality/hygiene against our causal links, h
 - [external/src/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts)
 - [external/package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json)
 - [external/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md)
-- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
-- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
-- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts)
-- [save/create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts)
-- [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
-- [causal-graph.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts)
+- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [memory-crud-delete.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts)
+- [memory-crud-update.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts)
+- [memory-save.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts)
+- [save/create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts)
+- [checkpoints.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+- [causal-graph.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts)
 - [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js)
-- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/mcp-coco-index/README.md)
+- [mcp-coco-index/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/README.md)
 
 ## Assessment
 - New information ratio: 0.81

@@ -58,8 +58,8 @@ The work started by reshaping manual testing playbooks into feature-catalog-styl
 Documentation-contract alignment across paired root-doc plus per-feature-file package families.
 
 ### Key Components
-- **Feature catalogs**: Root catalog documents such as `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` plus numbered category folders of per-feature files.
-- **Manual testing playbooks**: Root playbook documents such as `.opencode/skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` plus numbered category folders of per-feature files.
+- **Feature catalogs**: Root catalog documents such as `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` plus numbered category folders of per-feature files.
+- **Manual testing playbooks**: Root playbook documents such as `.opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` plus numbered category folders of per-feature files.
 - **`sk-doc` template bundles**: Dedicated `assets/documentation/feature_catalog/` and `assets/documentation/testing_playbook/` bundles.
 - **`sk-doc` reference groups**: `references/global/` for cross-cutting docs and `references/specific/` for creation workflow guides.
 - **Runtime consumers**: Create commands and agent docs that load the regrouped references.
@@ -80,20 +80,20 @@ Audit shipped contracts -> normalize feature catalogs and playbooks -> align tem
 
 ### Phase 2: Package Alignment
 - [x] Refactor `system-spec-kit/manual_testing_playbook/` into the integrated root-playbook contract and align prompts, frontmatter, and per-feature-file structure.
-- [x] Align `system-spec-kit/feature_catalog/` and `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` to the final header/frontmatter conventions.
+- [x] Align `system-spec-kit/feature_catalog/` and `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` to the final header/frontmatter conventions.
 - [x] Normalize `mcp-coco-index/manual_testing_playbook/` to the integrated root-playbook contract.
 - [x] Mirror the feature-catalog folder taxonomy into `.claude/skills/system-spec-kit/manual_testing_playbook/`.
 
 ### Phase 3: sk-doc Surface Modernization
 - [x] Move playbook and feature-catalog templates into dedicated bundle folders.
-- [x] Add `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` and `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`.
-- [x] Add `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`, `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`, and `.opencode/skill/sk-doc/references/specific/agent_creation.md`.
-- [x] Rename the former install-guide standards reference to `.opencode/skill/sk-doc/references/specific/install_guide_creation.md`.
+- [x] Add `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` and `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`.
+- [x] Add `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`, `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`, and `.opencode/skills/sk-doc/references/specific/agent_creation.md`.
+- [x] Rename the former install-guide standards reference to `.opencode/skills/sk-doc/references/specific/install_guide_creation.md`.
 - [x] Regroup references into `references/global/` and `references/specific/`.
 
 ### Phase 4: Runtime Consumer Alignment and Verification
-- [x] Update `.opencode/skill/sk-doc/SKILL.md`, `.opencode/skill/sk-doc/README.md`, `.opencode/skill/sk-doc/references/global/quick_reference.md`, and `.opencode/skill/sk-doc/references/global/workflows.md`.
-- [x] Update create-command assets and `.opencode/agent/write.md` path assumptions.
+- [x] Update `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-doc/README.md`, `.opencode/skills/sk-doc/references/global/quick_reference.md`, and `.opencode/skills/sk-doc/references/global/workflows.md`.
+- [x] Update create-command assets and `.opencode/agents/write.md` path assumptions.
 - [x] Re-run validation, count audits, link/path sweeps, and the targeted `vitest` suite.
 <!-- /ANCHOR:phases -->
 
@@ -106,7 +106,7 @@ Audit shipped contracts -> normalize feature catalogs and playbooks -> align tem
 |-----------|-------|-------|
 | Structural | Folder layout, file presence, per-feature counts | `find`, `ls`, `test` |
 | Content consistency | Stale wording, grouped-reference paths, sidecar-doc removal | `rg`, targeted review |
-| Markdown validation | Touched `sk-doc` docs and references | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Markdown validation | Touched `sk-doc` docs and references | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | JSON validation | Template rules manifest | `python3 -m json.tool` |
 | Regression tests | Root/per-feature-file Hydra doc contract | `npx vitest run tests/feature-flag-reference-docs.vitest.ts tests/hydra-spec-pack-consistency.vitest.ts` |
 
@@ -121,7 +121,7 @@ Audit shipped contracts -> normalize feature catalogs and playbooks -> align tem
 - **PC-004 sk-doc template/reference alignment**
   - PASS: playbook and feature-catalog bundles, creation references, and grouped `references/` paths now match the shipped structure.
 - **PC-005 Downstream runtime-path alignment**
-  - PASS: create-command assets and `.opencode/agent/write.md` now reference the regrouped `sk-doc` docs, including the created `.opencode/skill/sk-doc/references/specific/agent_creation.md`.
+  - PASS: create-command assets and `.opencode/agents/write.md` now reference the regrouped `sk-doc` docs, including the created `.opencode/skills/sk-doc/references/specific/agent_creation.md`.
 - **PC-006 Markdown and JSON validation**
   - PASS: targeted `sk-doc` docs validated cleanly, with only previously documented non-blocking embedded-example numbering warnings where applicable; `template_rules.json` parsed successfully.
 - **PC-007 Targeted regression tests**

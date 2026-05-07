@@ -103,7 +103,7 @@ Pass-2 flagged five P1 items and doc drift; Wave-2 closed all of them surgically
 | `P1-013`, `P1-014` | `lib/config/spec-doc-paths.ts:29-80`; `handlers/memory-index-discovery.ts:28-49,89-130,243-285` | Spec-doc classification and discovery call `shouldIndexForMemory()` as SSOT with additive overlays only |
 | `P1-003`, `P1-017` | `lib/utils/canonical-path.ts:32-41`; `handlers/memory-save.ts:308-325,2714-2718`; `code_graph/lib/structural-indexer.ts:1273-1285` | Save-time invariant checks and code-graph `specificFiles` evaluate `fs.realpathSync()` results instead of string-normalized paths |
 | `P1-001`, `P1-009` | `scripts/memory/cleanup-index-scope-violations.ts:429-435`; `handlers/memory-index-discovery.ts:28-49,91-110,253-273`; `code_graph/lib/structural-indexer.ts:1161-1240` | Cleanup apply builds from the transaction snapshot; `.gitignore` reads cap at 1MB, recursive walkers stop at depth 20 or 50,000 nodes with warnings |
-| `P2-pass2-003`, `P2-pass2-004`, `P2-pass2-007`, `P1-015` | `lib/governance/scope-governance.ts:117-137,184-195,372-390`; `lib/search/vector-index-mutations.ts:64-100,450-472`; `handlers/memory-crud-update.ts:156-200`; `lib/storage/post-insert-metadata.ts:91-116`; `handlers/memory-save.ts:318-325`; `lib/storage/checkpoints.ts:92-100,1291-1368,1570-1572,1651,1858-1862`; `.opencode/skill/system-spec-kit/mcp_server/README.md:119-123` | Shared action strings and `recordTierDowngradeAudit()` drive every tier-downgrade emitter; update-path `constitutional → critical` transitions are audited; the operator README documents the stable action strings |
+| `P2-pass2-003`, `P2-pass2-004`, `P2-pass2-007`, `P1-015` | `lib/governance/scope-governance.ts:117-137,184-195,372-390`; `lib/search/vector-index-mutations.ts:64-100,450-472`; `handlers/memory-crud-update.ts:156-200`; `lib/storage/post-insert-metadata.ts:91-116`; `handlers/memory-save.ts:318-325`; `lib/storage/checkpoints.ts:92-100,1291-1368,1570-1572,1651,1858-1862`; `.opencode/skills/system-spec-kit/mcp_server/README.md:119-123` | Shared action strings and `recordTierDowngradeAudit()` drive every tier-downgrade emitter; update-path `constitutional → critical` transitions are audited; the operator README documents the stable action strings |
 
 ### Cleanup CLI
 
@@ -203,7 +203,7 @@ Track A acceptance summary from live evidence:
 | Wave-1 cleanup verify | exit `0`; `constitutional_total=2`, `constitutional_in_folder=2`, `z_future_rows=0`, `external_rows=0`, `invalid_constitutional_rows=0`, `gate_enforcement_rows=1` |
 | Wave-2 cleanup verify | exit `0`; `0` planned deletions, `0` duplicate deletes, `0` downgrades in the final state |
 | Final SQL check | exit `0`; `constitutional_total=2`, `constitutional_in_folder=2` — only the two constitutional-folder rule files remain (gate-enforcement and gate-tool-routing) |
-| Strict packet validate | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict --no-recursive` exit `0` |
+| Strict packet validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict --no-recursive` exit `0` |
 
 ### Before / After DB Counts
 

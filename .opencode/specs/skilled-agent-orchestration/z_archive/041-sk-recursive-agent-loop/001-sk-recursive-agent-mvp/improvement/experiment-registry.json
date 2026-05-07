@@ -11,7 +11,7 @@
     "score": 100,
     "recommendation": "candidate-better",
     "delta": 5,
-    "promotedTarget": ".opencode/agent/handover.md"
+    "promotedTarget": ".opencode/agents/handover.md"
   },
   "acceptedCandidates": [
     {
@@ -20,7 +20,7 @@
       "score": 100,
       "recommendation": "candidate-better",
       "delta": 5,
-      "promotedTarget": ".opencode/agent/handover.md"
+      "promotedTarget": ".opencode/agents/handover.md"
     }
   ],
   "rejectedCandidates": [

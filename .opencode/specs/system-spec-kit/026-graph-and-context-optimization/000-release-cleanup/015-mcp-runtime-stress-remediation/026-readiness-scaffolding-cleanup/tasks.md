@@ -19,11 +19,11 @@ _memory:
     blockers:
       - "Full vitest suite reported unrelated failures and then did not terminate within the observed window"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/core/db-state.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/core/index.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/context-server.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/core/index.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
     completion_pct: 100
 ---
 # Tasks: Readiness Scaffolding Cleanup

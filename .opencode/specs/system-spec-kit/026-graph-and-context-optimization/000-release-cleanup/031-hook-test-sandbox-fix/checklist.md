@@ -63,8 +63,8 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Sandboxed runner reports direct smokes separately from live skips. [EVIDENCE: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests`]
-- [x] CHK-021 [P0] MCP server build passes. [EVIDENCE: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`]
+- [x] CHK-020 [P0] Sandboxed runner reports direct smokes separately from live skips. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests`]
+- [x] CHK-021 [P0] MCP server build passes. [EVIDENCE: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`]
 - [x] CHK-022 [P1] Strict validator exits 0 for this packet. [EVIDENCE: `validate.sh --strict`]
 - [x] CHK-023 [P1] Prior findings amendment preserves the original verdict as history. [EVIDENCE: `../030-hook-plugin-per-runtime-testing/findings.md`]
 <!-- /ANCHOR:testing -->

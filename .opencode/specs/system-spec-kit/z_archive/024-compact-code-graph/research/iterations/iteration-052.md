@@ -24,7 +24,7 @@ The goal is not just "retrieve from three places," but to decide retrieval order
    - Stage 2: expand Code Graph from active symbols plus top CocoIndex hits used as structural seeds
    - Stage 3: fuse all candidates with a shared scorer, then project into the compact payload
 
-   This is stronger than `Memory -> Code Graph -> CocoIndex` because the packet already says `code_graph_context` should accept CocoIndex results as seeds for structural expansion, and the revised compaction pipeline explicitly lists semantic retrieval before structural expansion. At the same time, Memory should still start immediately because the current hook guarantees constitutional+triggered surfacing and already has compaction-specific budget enforcement. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md:104-106`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:500-512`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:188-223`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`]
+   This is stronger than `Memory -> Code Graph -> CocoIndex` because the packet already says `code_graph_context` should accept CocoIndex results as seeds for structural expansion, and the revised compaction pipeline explicitly lists semantic retrieval before structural expansion. At the same time, Memory should still start immediately because the current hook guarantees constitutional+triggered surfacing and already has compaction-specific budget enforcement. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md:104-106`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:500-512`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:188-223`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`]
 
    Inference from the sources: the best implementation is "Memory pinned in parallel, semantic seeds before structural expansion, merge last."
 
@@ -63,7 +63,7 @@ The goal is not just "retrieve from three places," but to decide retrieval order
 
 4. Ranking should use a hard-priority layer for memory, then additive scoring for code candidates.
 
-   The current memory surface logic already gives us the priority contract for durable memory: constitutional memories are always fetched, triggered memories are added next, and budget trimming removes triggered entries before constitutional entries. That means constitutional memory is not just "high score"; it is effectively pinned. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-016.md:64-71`]
+   The current memory surface logic already gives us the priority contract for durable memory: constitutional memories are always fetched, triggered memories are added next, and budget trimming removes triggered entries before constitutional entries. That means constitutional memory is not just "high score"; it is effectively pinned. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:159-185`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-016.md:64-71`]
 
    For non-memory candidates, the packet already proposes an additive relevance model and a relevance ordering: recency, explicit mention, graph proximity, verification coupling, and semantic similarity. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:332-339`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:190-199`]
 
@@ -82,7 +82,7 @@ The goal is not just "retrieve from three places," but to decide retrieval order
    - `freshness_factor`: `hot=1.0`, `warm=0.9`, `stale=0.75`
    - `budget_penalty` for verbose candidates that duplicate already-kept coverage
 
-   This also matches the current budget contract: the dynamic token budget module only computes an advisory budget, so the compaction merger itself must own trimming and ordering. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-90`]
+   This also matches the current budget contract: the dynamic token budget module only computes an advisory budget, so the compaction merger itself must own trimming and ordering. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-90`]
 
 5. The merged payload should look like a compact recovery brief with explicit source-derived sections, not a source dump.
 
@@ -186,7 +186,7 @@ The goal is not just "retrieve from three places," but to decide retrieval order
 
 9. Freshness should be explicit per source, and Memory is not literally "always fresh."
 
-   The user premise is directionally right but slightly too strong. In the current implementation, triggered memories are matched live from the compaction context, but constitutional memories are cached for 60 seconds at module scope. So Memory is the freshest source operationally, but not a literal zero-cache source. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:49-55`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:79-118`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:196-223`]
+   The user premise is directionally right but slightly too strong. In the current implementation, triggered memories are matched live from the compaction context, but constitutional memories are cached for 60 seconds at module scope. So Memory is the freshest source operationally, but not a literal zero-cache source. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:49-55`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:79-118`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:196-223`]
 
    For Code Graph, the packet already recommends a hybrid freshness model and explicit freshness metadata (`hot`, `warm`, `stale`, partial-state warnings). [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:248-263`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-041.md:42-50`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:75-80`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:266-277`]
 
@@ -227,14 +227,14 @@ The goal is not just "retrieve from three places," but to decide retrieval order
 
 ## Evidence
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:49-55`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:79-118`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-223`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-90`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:325-399`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:49-55`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:79-118`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-223`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:300-316`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:5-9`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:38-48`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts:54-90`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:325-399`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:58-74`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md:97-106`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:248-263`

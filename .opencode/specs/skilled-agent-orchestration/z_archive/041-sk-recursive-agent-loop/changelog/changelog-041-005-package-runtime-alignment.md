@@ -33,7 +33,7 @@ Tightened template fidelity for the skill package and renamed the runtime mutato
 
 | File | What changed |
 | --- | --- |
-| `.opencode/agent/agent-improver.md` | Mutator name updated to match naming convention. |
+| `.opencode/agents/agent-improver.md` | Mutator name updated to match naming convention. |
 | `.agents/agents/agent-improver.md` | Mirror resynchronized with canonical. |
 | `sk-improve-agent/` | Template fidelity corrections across package surfaces. |
 

@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -58,25 +58,25 @@ This phase folder now follows the active Level 1 Spec Kit template and records c
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modified | Freeze lifecycle, reducer, release-readiness, and runtime-parity guidance |
-| `.opencode/skill/sk-deep-review/README.md` | Modified | Publish canonical review packet names, lifecycle modes, and operator guidance |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modified | Define review packet schemas, reducer metrics, and operator-controlled sentinel behavior |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Modified | Document reducer sequencing, canonical reducer inputs and outputs, and lifecycle handling |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modified | Tie convergence output to release-readiness states |
-| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Modified | Publish canonical state files, lifecycle modes, and readiness terminology |
-| `.opencode/skill/sk-deep-review/assets/deep_review_config.json` | Modified | Add canonical reducer metrics and sentinel protection metadata |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Modified | Mark reducer-owned sections and review boundaries |
-| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Modified | Carry machine-owned metrics and readiness data |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Modified | Establish the canonical review-mode contract and output paths |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Carry migration logic, lifecycle branches, reducer refresh, and synthesis guidance |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirror the same contract for confirm mode |
-| `.opencode/agent/deep-review.md` | Modified | Align the OpenCode runtime mirror to the canonical review packet contract |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Freeze lifecycle, reducer, release-readiness, and runtime-parity guidance |
+| `.opencode/skills/sk-deep-review/README.md` | Modified | Publish canonical review packet names, lifecycle modes, and operator guidance |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modified | Define review packet schemas, reducer metrics, and operator-controlled sentinel behavior |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Modified | Document reducer sequencing, canonical reducer inputs and outputs, and lifecycle handling |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modified | Tie convergence output to release-readiness states |
+| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Modified | Publish canonical state files, lifecycle modes, and readiness terminology |
+| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modified | Add canonical reducer metrics and sentinel protection metadata |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modified | Mark reducer-owned sections and review boundaries |
+| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modified | Carry machine-owned metrics and readiness data |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Modified | Establish the canonical review-mode contract and output paths |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Carry migration logic, lifecycle branches, reducer refresh, and synthesis guidance |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Mirror the same contract for confirm mode |
+| `.opencode/agents/deep-review.md` | Modified | Align the OpenCode runtime mirror to the canonical review packet contract |
 | `.claude/agents/deep-review.md` | Modified | Align the Claude runtime mirror to the canonical review packet contract |
 | `.gemini/agents/deep-review.md` | Modified | Align the Gemini runtime mirror to the canonical review packet contract |
 | `.codex/agents/deep-review.toml` | Modified | Align the Codex runtime mirror to the canonical review packet contract |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/` | Modified | Remove stale review-mode `deep-research-*` references from operator scenarios |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Created | Lock parity and naming expectations with executable coverage |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Created | Lock reducer, lifecycle, severity, and readiness schema expectations |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/` | Modified | Remove stale review-mode `deep-research-*` references from operator scenarios |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Created | Lock parity and naming expectations with executable coverage |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts` | Created | Lock reducer, lifecycle, severity, and readiness schema expectations |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modified/Created | Restore Level 1 template compliance and capture verified packet completion evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -108,9 +108,9 @@ The delivery stayed inside the phase's named review-contract surfaces. First the
 | Check | Result |
 |-------|--------|
 | `npx vitest run --config ../mcp_server/vitest.config.ts tests/deep-review-contract-parity.vitest.ts tests/deep-review-reducer-schema.vitest.ts` | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict` | PASS |
-| `rg -n "deep-research-config.json|deep-research-state.jsonl|\\.deep-research-pause|review/deep-research" .opencode/skill/sk-deep-review .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | PASS with expected hits limited to the intentional scratch migration path in the two workflow YAML assets |
-| `git diff --check -- .opencode/skill/sk-deep-review .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml .opencode/agent/deep-review.md .claude/agents/deep-review.md .gemini/agents/deep-review.md .codex/agents/deep-review.toml .opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements --strict` | PASS |
+| `rg -n "deep-research-config.json|deep-research-state.jsonl|\\.deep-research-pause|review/deep-research" .opencode/skills/sk-deep-review .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | PASS with expected hits limited to the intentional scratch migration path in the two workflow YAML assets |
+| `git diff --check -- .opencode/skills/sk-deep-review .opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml .opencode/agents/deep-review.md .claude/agents/deep-review.md .gemini/agents/deep-review.md .codex/agents/deep-review.toml .opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts .opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

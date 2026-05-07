@@ -8,11 +8,11 @@ Determine how the planned code graph should preserve an AI session's structural 
 
 1. Our current session tracking is split across two mechanisms, and neither one tracks code files or symbols directly.
 
-   `session-state.ts` is an in-memory retrieval-session manager. It stores `sessionId`, `activeGoal`, `seenResultIds`, `openQuestions`, `preferredAnchors`, `createdAt`, and `updatedAt`; it is explicitly ephemeral, uses a 30-minute TTL, and evicts beyond 100 sessions. Its behaviors are also retrieval-oriented: `deduplicateResults()` deprioritizes already-seen result IDs, and `refineForGoal()` boosts result content aligned with the active goal. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:6-14`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:32-40`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:118-159`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:233-380`]
+   `session-state.ts` is an in-memory retrieval-session manager. It stores `sessionId`, `activeGoal`, `seenResultIds`, `openQuestions`, `preferredAnchors`, `createdAt`, and `updatedAt`; it is explicitly ephemeral, uses a 30-minute TTL, and evicts beyond 100 sessions. Its behaviors are also retrieval-oriented: `deduplicateResults()` deprioritizes already-seen result IDs, and `refineForGoal()` boosts result content aligned with the active goal. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:6-14`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:32-40`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:118-159`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:233-380`]
 
-   The currently inspected production wiring updates `activeGoal` and `preferredAnchors` during `memory_search`, then applies `refineForGoal()`. In other words: what is live today is "query/result state", not "code artifact state". [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:690-705`]
+   The currently inspected production wiring updates `activeGoal` and `preferredAnchors` during `memory_search`, then applies `refineForGoal()`. In other words: what is live today is "query/result state", not "code artifact state". [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:690-705`]
 
-   `session-boost.ts` is separate again. It reads persisted `working_memory` rows by `session_id` and `memory_id`, converts `attention_score` into a bounded score boost, and applies that boost during hybrid fusion. The underlying `working_memory` table stores memory-oriented metadata such as `attention_score`, `last_focused`, `focus_count`, `mention_count`, `source_tool`, and `source_call_id`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:73-109`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:129-203`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-71`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:381-499`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:736-748`]
+   `session-boost.ts` is separate again. It reads persisted `working_memory` rows by `session_id` and `memory_id`, converts `attention_score` into a bounded score boost, and applies that boost during hybrid fusion. The underlying `working_memory` table stores memory-oriented metadata such as `attention_score`, `last_focused`, `focus_count`, `mention_count`, `source_tool`, and `source_call_id`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:73-109`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:129-203`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-71`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:381-499`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:736-748`]
 
    Conclusion: today we have session state for retrieval and attention state for memories, but no durable model of "files/symbols this coding session actually touched."
 
@@ -64,7 +64,7 @@ Determine how the planned code graph should preserve an AI session's structural 
    - Incrementally append or upsert lightweight access events during the session.
    - Compute the expanded, ranked structural neighborhood only when compaction or resume actually needs it.
 
-   This recommendation also fits the current architecture. `context-server.ts` already recognizes compaction-lifecycle `memory_context(mode:"resume")` calls, and `autoSurfaceAtCompaction()` already expects a bounded session-context summary with a 4,000-token budget. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:328-356`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:286-316`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:58-74`]
+   This recommendation also fits the current architecture. `context-server.ts` already recognizes compaction-lifecycle `memory_context(mode:"resume")` calls, and `autoSurfaceAtCompaction()` already expects a bounded session-context summary with a 4,000-token budget. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:328-356`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:286-316`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:58-74`]
 
    Conclusion: track seeds continuously, project structure lazily.
 
@@ -100,7 +100,7 @@ Determine how the planned code graph should preserve an AI session's structural 
 
 8. Large working sets should be reduced by tiering, clustering, and budget-aware truncation, not by arbitrary file-count cuts.
 
-   The existing `working_memory` table is a useful warning sign here: it is capped at 7 entries and optimized for memory attention, not for code working-set preservation. Reusing that exact capacity model would be too small for sessions that touch dozens of files. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:27-31`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:519-541`]
+   The existing `working_memory` table is a useful warning sign here: it is capped at 7 entries and optimized for memory attention, not for code working-set preservation. Reusing that exact capacity model would be too small for sessions that touch dozens of files. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:27-31`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:519-541`]
 
    Recommended reduction strategy when a session touches 50+ files:
 
@@ -148,23 +148,23 @@ Determine how the planned code graph should preserve an AI session's structural 
    - `semanticScore` or `semanticBoost` when CocoIndex is applied
    - `compactionPriority`
 
-   The rationale comes from the current memory attention schema and the compaction architecture: our current persisted session metadata already tracks timestamps, counts, and provenance for memory items, and the compaction path already expects a budgeted, human-readable result rather than opaque IDs. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-59`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:75-99`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:193-205`]
+   The rationale comes from the current memory attention schema and the compaction architecture: our current persisted session metadata already tracks timestamps, counts, and provenance for memory items, and the compaction path already expects a budgeted, human-readable result rather than opaque IDs. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-59`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:75-99`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:193-205`]
 
 ## Evidence
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:6-14`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:32-40`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:118-159`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts:233-380`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:690-705`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:73-109`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts:129-203`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:736-748`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:27-31`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-99`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:381-541`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:328-356`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:286-316`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:6-14`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:32-40`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:118-159`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:233-380`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:690-705`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:73-109`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts:129-203`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:736-748`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:27-31`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:45-99`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts:381-541`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:328-356`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:286-316`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:58-67`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-105`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:9-15`

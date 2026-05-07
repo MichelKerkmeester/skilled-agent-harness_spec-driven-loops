@@ -122,7 +122,7 @@ Convergence achieved (`newFindingsRatio=0.033`, well below the 0.10 threshold) b
 ### Confirmed non-issues
 - Packet identity consistent across `graph-metadata.json` (`packet_id`, `spec_folder`), `description.json` (`specFolder`), and frontmatter title.
 - Parent context-index, spec, and tasks rows for 012 exist (the issue is metadata sync around them, not the rows themselves).
-- `.opencode/command/spec_kit/README.txt` includes the new skill-advisor row and structure-tree entries.
+- `.opencode/commands/spec_kit/README.txt` includes the new skill-advisor row and structure-tree entries.
 
 ---
 

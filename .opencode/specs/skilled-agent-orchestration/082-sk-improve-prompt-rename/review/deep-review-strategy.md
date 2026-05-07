@@ -86,7 +86,7 @@ Packet `skilled-agent-orchestration/082-sk-improve-prompt-rename` — semantic r
 | Approach | Iteration | Reason |
 |----------|-----------|--------|
 | Scoped grep for `sk-improve-prompt` in active scope | 1 | 0 hits — no further discovery possible |
-| Path-embed grep for `.opencode/skill/sk-improve-prompt/` | 1 | 0 hits |
+| Path-embed grep for `.opencode/skills/sk-improve-prompt/` | 1 | 0 hits |
 | Advisor probe battery (5 prompts) | 2 | All return sk-prompt top-1 |
 | skill-graph.json key audit (5 locations) | 2 | All rotated |
 | Agent identity audit (4 runtimes) | 2 | All identities preserved |

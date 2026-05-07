@@ -73,9 +73,9 @@ Promote the path-references-audit shape to a first-class optional template disco
 ## 3. SCOPE
 
 ### In Scope
-- New template file at `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- New template file at `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Documentation surface updates across the templates README, every level README, SKILL.md, the main skill README, references/templates/level_specifications.md, feature_catalog, manual_testing_playbook, and CLAUDE.md.
-- One runtime constant update: `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` appends the new filename to SPEC_DOCUMENT_FILENAMES.
+- One runtime constant update: `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` appends the new filename to SPEC_DOCUMENT_FILENAMES.
 - Level 2 packet docs for this phase (including description.json and graph-metadata.json).
 
 ### Out of Scope
@@ -88,18 +88,18 @@ Promote the path-references-audit shape to a first-class optional template disco
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Create | The template itself. |
-| `.opencode/skill/system-spec-kit/templates/README.md` | Modify | Structure table row + Workflow Notes + Related. |
-| `.opencode/skill/system-spec-kit/templates/level_1/README.md` | Modify | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_2/README.md` | Modify | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3/README.md` | Modify | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/templates/level_3+/README.md` | Modify | Optional Files subsection. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Canonical spec docs + cross-cutting templates + distributed governance mentions. |
-| `.opencode/skill/system-spec-kit/README.md` | Modify | Template architecture section. |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Modify | Cross-cutting Templates row + per-level Optional Files. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modify | Append to SPEC_DOCUMENT_FILENAMES. |
-| `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Create | Feature catalog entry. |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Create | Playbook scenario. |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Create | The template itself. |
+| `.opencode/skills/system-spec-kit/templates/README.md` | Modify | Structure table row + Workflow Notes + Related. |
+| `.opencode/skills/system-spec-kit/templates/level_1/README.md` | Modify | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_2/README.md` | Modify | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3/README.md` | Modify | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/templates/level_3+/README.md` | Modify | Optional Files subsection. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Canonical spec docs + cross-cutting templates + distributed governance mentions. |
+| `.opencode/skills/system-spec-kit/README.md` | Modify | Template architecture section. |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Modify | Cross-cutting Templates row + per-level Optional Files. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts` | Modify | Append to SPEC_DOCUMENT_FILENAMES. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` | Create | Feature catalog entry. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | Create | Playbook scenario. |
 | `CLAUDE.md` | Modify | Documentation Levels cross-cutting note. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/*` | Create | Packet docs. |
 <!-- /ANCHOR:scope -->

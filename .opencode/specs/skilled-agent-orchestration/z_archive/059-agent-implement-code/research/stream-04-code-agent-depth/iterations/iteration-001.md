@@ -2,24 +2,24 @@
 
 ## Focus
 
-This iteration translated the structural quality rubric in `@review` into a coder-side acceptance rubric for `.opencode/agent/code.md`. The research tested the suggested 100-point distribution against the review template, `sk-code`'s implementation lifecycle, `sk-code-review`'s severity contract, the universal code-quality gate, and the repo-level quality/scope principles.
+This iteration translated the structural quality rubric in `@review` into a coder-side acceptance rubric for `.opencode/agents/code.md`. The research tested the suggested 100-point distribution against the review template, `sk-code`'s implementation lifecycle, `sk-code-review`'s severity contract, the universal code-quality gate, and the repo-level quality/scope principles.
 
 ## Actions Taken
 
-1. Read `.opencode/agent/review.md:114-152` to capture the source rubric structure: five scoring dimensions, score bands, P0/P1/P2 issue severity, and per-dimension Full/Good/Weak/Critical matrix.
-2. Read `.opencode/skill/sk-code/SKILL.md:50-62`, `.opencode/skill/sk-code/SKILL.md:398-413`, and `.opencode/skill/sk-code/SKILL.md:463-473` to extract the implementation lifecycle, Iron Law, mandatory Phase 1.5 Code Quality Gate, and P0/P1/P2 gate handling.
-3. Read `.opencode/skill/sk-code-review/SKILL.md:270-333`, `.opencode/skill/sk-code-review/references/review_core.md:18-70`, and `.opencode/skill/sk-code-review/references/code_quality_checklist.md:80-136` to mirror the review-side severity contract without importing review-only output behavior.
-4. Read `.opencode/skill/sk-code/references/universal/code_quality_standards.md:36-130` to ground coder-side quality-gate severity and the relationship between author validation and formal review.
+1. Read `.opencode/agents/review.md:114-152` to capture the source rubric structure: five scoring dimensions, score bands, P0/P1/P2 issue severity, and per-dimension Full/Good/Weak/Critical matrix.
+2. Read `.opencode/skills/sk-code/SKILL.md:50-62`, `.opencode/skills/sk-code/SKILL.md:398-413`, and `.opencode/skills/sk-code/SKILL.md:463-473` to extract the implementation lifecycle, Iron Law, mandatory Phase 1.5 Code Quality Gate, and P0/P1/P2 gate handling.
+3. Read `.opencode/skills/sk-code-review/SKILL.md:270-333`, `.opencode/skills/sk-code-review/references/review_core.md:18-70`, and `.opencode/skills/sk-code-review/references/code_quality_checklist.md:80-136` to mirror the review-side severity contract without importing review-only output behavior.
+4. Read `.opencode/skills/sk-code/references/universal/code_quality_standards.md:36-130` to ground coder-side quality-gate severity and the relationship between author validation and formal review.
 5. Read `AGENTS.md:125-153` and `specs/skilled-agent-orchestration/059-agent-implement-code/research/synthesis.md:74-108` to fold in scope discipline, evidence requirements, integration lenses, LEAF boundaries, and the Bash/interpreter write-bypass warning.
 
 ## Findings
 
-- F-iter001-001 (P1): `@review` provides the exact structural template to mirror — citation: `.opencode/agent/review.md:116-152` — evidence: the section defines 100-point scoring, quality bands, P0/P1/P2 severity, and a Full/Good/Weak/Critical matrix.
-- F-iter001-002 (P1): Coder acceptance must give verification its own scoring weight — citation: `.opencode/skill/sk-code/SKILL.md:52-62` — evidence: the lifecycle ends with mandatory Phase 3 verification, and the Iron Law blocks completion claims without fresh stack evidence.
-- F-iter001-003 (P1): Stack-pattern compliance should be a separate dimension but owned by `sk-code`, not hardcoded into `@code` — citation: `.opencode/skill/sk-code/SKILL.md:398-413` — evidence: Phase 1.5 loads the matching checklist, validates by P0/P1/P2 severity, and blocks completion on any P0.
-- F-iter001-004 (P1): Security/correctness minimums remain hard gates even if security is not a top-level coder scoring dimension — citation: `.opencode/skill/sk-code-review/references/review_core.md:56-70` — evidence: baseline security and correctness minimums are always enforced, with mandatory baseline families for correctness and security risk.
+- F-iter001-001 (P1): `@review` provides the exact structural template to mirror — citation: `.opencode/agents/review.md:116-152` — evidence: the section defines 100-point scoring, quality bands, P0/P1/P2 severity, and a Full/Good/Weak/Critical matrix.
+- F-iter001-002 (P1): Coder acceptance must give verification its own scoring weight — citation: `.opencode/skills/sk-code/SKILL.md:52-62` — evidence: the lifecycle ends with mandatory Phase 3 verification, and the Iron Law blocks completion claims without fresh stack evidence.
+- F-iter001-003 (P1): Stack-pattern compliance should be a separate dimension but owned by `sk-code`, not hardcoded into `@code` — citation: `.opencode/skills/sk-code/SKILL.md:398-413` — evidence: Phase 1.5 loads the matching checklist, validates by P0/P1/P2 severity, and blocks completion on any P0.
+- F-iter001-004 (P1): Security/correctness minimums remain hard gates even if security is not a top-level coder scoring dimension — citation: `.opencode/skills/sk-code-review/references/review_core.md:56-70` — evidence: baseline security and correctness minimums are always enforced, with mandatory baseline families for correctness and security risk.
 - F-iter001-005 (P1): Scope-adherence deserves coder-side weight because the agent's risk is not only bad code but unauthorized code — citation: `AGENTS.md:127-153` and `specs/skilled-agent-orchestration/059-agent-implement-code/research/synthesis.md:74-82` — evidence: repo principles require solving only the stated problem and checking scope; the packet synthesis requires body-level scope discipline and an explicit Bash-bypass warning.
-- F-iter001-006 (P2): The suggested point distribution needs no numeric change, but needs a documented override rule — citation: `.opencode/skill/sk-code/references/universal/code_quality_standards.md:40-47` — evidence: P0 blocks completion, P1 requires fix or approved deferral, and P2 is tracked but non-blocking.
+- F-iter001-006 (P2): The suggested point distribution needs no numeric change, but needs a documented override rule — citation: `.opencode/skills/sk-code/references/universal/code_quality_standards.md:40-47` — evidence: P0 blocks completion, P1 requires fix or approved deferral, and P2 is tracked but non-blocking.
 
 ## Questions Answered
 

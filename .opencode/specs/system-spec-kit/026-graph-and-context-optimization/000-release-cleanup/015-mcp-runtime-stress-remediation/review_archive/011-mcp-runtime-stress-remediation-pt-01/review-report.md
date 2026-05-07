@@ -6,7 +6,7 @@ Overall verdict: **PASS** (`hasAdvisories=true`).
 
 Active findings: P0=0, P1=0, P2=6.
 
-The v1.0.2 stress-test cycle holds up under deep review. The 6/7 PROVEN claim, 0 REGRESSION claim, 83.8% overall score, and pre-flight daemon attestation contract all pass independent verification. The proposed P0 cli-copilot Gate 3 fix in `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` plus `buildCopilotPromptArg` is correctly implemented across all five security sub-checks: authority insertion, plan-only safe-fail, target-authority preamble, recovered-context resistance, and helper test coverage.
+The v1.0.2 stress-test cycle holds up under deep review. The 6/7 PROVEN claim, 0 REGRESSION claim, 83.8% overall score, and pre-flight daemon attestation contract all pass independent verification. The proposed P0 cli-copilot Gate 3 fix in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` plus `buildCopilotPromptArg` is correctly implemented across all five security sub-checks: authority insertion, plan-only safe-fail, target-authority preamble, recovered-context resistance, and helper test coverage.
 
 The six active P2 advisories are documentation drift, wording precision, navigation, observability, and replayability issues. None blocks release.
 

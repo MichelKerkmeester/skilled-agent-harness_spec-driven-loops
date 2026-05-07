@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/improve/agent.md",
+      ".opencode/commands/improve/agent.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,7 +52,7 @@
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/agent.md",
+        "path": ".opencode/commands/improve/agent.md",
         "source": "derived"
       },
       {

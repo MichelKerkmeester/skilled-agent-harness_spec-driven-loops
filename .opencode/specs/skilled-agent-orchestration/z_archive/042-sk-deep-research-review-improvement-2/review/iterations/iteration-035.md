@@ -41,15 +41,15 @@ I’ve got the reducer/helper targets. Next I’m reading the spec packet and th
   └ 129 lines read
 
 ● Read reduce-state.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ 1 line read
 
 ● Read improvement-journal.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
   └ 279 lines read
 
 ● Read trade-off-detector.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs
   └ 331 lines read
 
 ● Read implementation-summary.md
@@ -60,12 +60,12 @@ I’ve got the reducer/helper targets. Next I’m reading the spec packet and th
 ● Search (grep)
   │ "lineage|mutationCoverage|coverage|journal|plateau|dashboard|tradeOff|scoredDimensions|scoreOutp
   │ utPath|sessionId|parentSessionId|lineageMode|generation|continuedFromRun"
-  │ (.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs)
+  │ (.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs)
   └ 27 lines found
 
 ● Search (grep)
   │ "lineage|mutationCoverage|plateau|tradeOff|scoredDimensions|scoreOutputPath|benchmarkPlateau|blo
-  │ ckedStop" in **/*.{js,cjs,ts,json,md,yaml,yml} (.opencode/skill/sk-improve-agent)
+  │ ckedStop" in **/*.{js,cjs,ts,json,md,yaml,yml} (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Read spec.md
@@ -76,41 +76,41 @@ I’ve got the reducer/helper targets. Next I’m reading the spec packet and th
 I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reducer against its tests and nearby contract docs, because any remaining correctness issue here is most likely a schema mismatch rather than an obvious syntax bug.
 
 ● Read reduce-state.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ L261:620 (360 lines read)
 
 ● Read reduce-state.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ L1:260 (260 lines read)
 
 ● Read reduce-state.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ L621:1100 (418 lines read)
 
 ● Search (glob)
   │ "**/*{reduce-state,improvement-journal,trade-off-detector}*.{vitest.ts,test.ts,js,cjs}" in
-  │ .opencode/skill/sk-improve-agent
+  │ .opencode/skills/sk-improve-agent
   └ 5 files found
 
 ● Search (grep)
   │ "plateau|benchmarkPlateau|blockedStop|mutationCoverage|trade-off|scoredDimensions|scoreOutputPat
-  │ h|lineage" (.opencode/skill/sk-improve-agent/scripts/tests)
+  │ h|lineage" (.opencode/skills/sk-improve-agent/scripts/tests)
   └ 59 lines found
 
 ● Read improvement-journal.vitest.ts
-  │ .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
+  │ .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
   └ L1:280 (233 lines read)
 
 ● Read candidate-lineage.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs
   └ 180 lines read
 
 ● Read mutation-coverage.cjs
-  │ .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs
+  │ .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs
   └ 291 lines read
 
 ● Read trade-off-detector.vitest.ts
-  │ .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
+  │ .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
   └ L1:280 (261 lines read)
 
 ● Read v1.2.0.0.md
@@ -120,7 +120,7 @@ I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reduc
 ● Search (grep)
   │ ""dimensions"\s*:\s*\[|dimensions: \[|scoredDimensions|scoreOutputPath|candidate_scored|benchmar
   │ k_run|agent-improvement-state.jsonl|experiment-registry.json|agent-improvement-dashboard.md" in
-  │ **/*.{json,jsonl,md,cjs,yml,yaml,ts} (.opencode/skill/sk-improve-agent)
+  │ **/*.{json,jsonl,md,cjs,yml,yaml,ts} (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Read v1.2.1.0.md
@@ -130,17 +130,17 @@ I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reduc
 ● Search (grep)
   │ "lineageDepth|totalCandidates|currentLeaf|coverageRatio|uncoveredMutations|journalSummary|candid
   │ ateLineage|mutationCoverage|benchmarkPlateau|plateau"
-  │ (.opencode/skill/sk-improve-agent/SKILL.md)
+  │ (.opencode/skills/sk-improve-agent/SKILL.md)
   └ 5 lines found
 
 ● Search (grep)
   │ "lineageDepth|totalCandidates|currentLeaf|coverageRatio|uncoveredMutations|journalSummary|candid
-  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/command/improve/agent.md)
+  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/commands/improve/agent.md)
   └ 7 lines found
 
 ● Search (grep)
   │ "lineageDepth|totalCandidates|currentLeaf|coverageRatio|uncoveredMutations|journalSummary|candid
-  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/agent/improve-agent.md)
+  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/agents/improve-agent.md)
   └ No matches found
 
 ● Search (grep)
@@ -150,11 +150,11 @@ I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reduc
   └ 6 lines found
 
 ● Read agent.md
-  │ .opencode/command/improve/agent.md
+  │ .opencode/commands/improve/agent.md
   └ L330:420 (91 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skill/sk-improve-agent/SKILL.md
+  │ .opencode/skills/sk-improve-agent/SKILL.md
   └ L332:386 (55 lines read)
 
 ● Search (grep)
@@ -167,101 +167,101 @@ I found one likely drift already: the helper accepts richer stop reasons than on
 ● Search (grep)
   │ "improvement-journal\.cjs|session_end|session_ended|stopReason|all_dimensions_plateaued|max_iter
   │ ations_reached|blockedStop|benchmarkPlateau|plateau" in **/*.{yaml,yml,md}
-  │ (.opencode/command/improve/assets)
+  │ (.opencode/commands/improve/assets)
   └ 17 lines found
 
 ● Search (grep)
   │ "scoreOutputPath|candidate_scored|scoredDimensions|dimensions" in **/*.{yaml,yml}
-  │ (.opencode/command/improve/assets)
+  │ (.opencode/commands/improve/assets)
   └ 16 lines found
 
 ● Search (grep)
   │ "improvement-journal\.cjs|session_end|session_ended|stopReason|benchmarkPlateau|plateau|all_dime
   │ nsions_plateaued|candidate_scored|scoreOutputPath|scoredDimensions" in
-  │ **/*.{md,cjs,json,yaml,yml} (.opencode/skill/sk-improve-agent)
+  │ **/*.{md,cjs,json,yaml,yml} (.opencode/skills/sk-improve-agent)
   └ 7 lines found
 
 ● Search (grep)
   │ "stop_reason|stop_status|session_outcome|all_dimensions_plateaued|max_iterations_reached|plateau
-  │ |benchmarkPlateau" (.opencode/command/improve/assets/improve_improve-agent_auto.yaml)
+  │ |benchmarkPlateau" (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
   │ "stop_reason|stop_status|session_outcome|all_dimensions_plateaued|max_iterations_reached|plateau
-  │ |benchmarkPlateau" (.opencode/command/improve/assets/improve_improve-agent_confirm.yaml)
+  │ |benchmarkPlateau" (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
   └ 3 lines found
 
 ● Search (grep)
   │ "iteration\":\"\{iteration\}\"|weightedScore\":\"\{weighted_score\}\"|scoreOutputPath\":\"\{scor
   │ e_output_path\}\"|candidateId\":\"\{candidate_id\}\"" in improve_improve-agent_*.yaml
-  │ (.opencode/command/improve/assets)
+  │ (.opencode/commands/improve/assets)
   └ No matches found
 
 ● Read 034-replay-consumer.md
-  │ .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.m
+  │ .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.m
   │ d
   └ 110 lines read
 
 ● Search (glob)
-  │ "**/fixtures/**" in .opencode/skill/sk-improve-agent/scripts/tests
+  │ "**/fixtures/**" in .opencode/skills/sk-improve-agent/scripts/tests
   └ 8 files found
 
 ● Search (grep)
   │ "reduce-state|agent-improvement-dashboard|journalSummary|candidateLineage|mutationCoverage|Sampl
   │ e Quality|improvement-journal.jsonl|candidate-lineage.json|mutation-coverage.json"
-  │ (.opencode/skill/sk-improve-agent/scripts/tests)
+  │ (.opencode/skills/sk-improve-agent/scripts/tests)
   └ 3 lines found
 
 ● Read 032-journal-wiring.md
-  │ .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
+  │ .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
   └ 117 lines read
 
 ● Read agent-improvement-state.jsonl
-  │ .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-s
+  │ .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-s
   │ tate.jsonl
   └ 3 lines read
 
 ● Search (grep)
   │ "all_dimensions_plateaued|max_iterations_reached|benchmarkPlateau|plateau|maxIterationsReached|b
-  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/skill/sk-improve-agent)
+  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/skills/sk-improve-agent)
   └ 63 lines found
 
 ● Search (grep)
   │ "all_dimensions_plateaued|max_iterations_reached|benchmarkPlateau|plateau|maxIterationsReached|b
-  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/command/improve)
+  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/commands/improve)
   └ 14 lines found
 
 ● Read improvement-journal.jsonl
-  │ .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal
+  │ .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal
   │ .jsonl
   └ 8 lines read
 
 ● Read improvement_charter.md
-  │ .opencode/skill/sk-improve-agent/assets/improvement_charter.md
+  │ .opencode/skills/sk-improve-agent/assets/improvement_charter.md
   └ L80:110 (31 lines read)
 
 ● Read improve_improve-agent_auto.yaml
-  │ .opencode/command/improve/assets/improve_improve-agent_auto.yaml
+  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
   └ L130:220 (75 lines read)
 
 ● Read improve_improve-agent_confirm.yaml
-  │ .opencode/command/improve/assets/improve_improve-agent_confirm.yaml
+  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
   └ L180:255 (66 lines read)
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/command/improve/assets/improve_improve-agent_confirm.yaml)
+  │ "score_output_path" (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
   └ 5 lines found
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/command/improve/assets/improve_improve-agent_auto.yaml)
+  │ "score_output_path" (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/command/improve/agent.md)
+  │ "score_output_path" (.opencode/commands/improve/agent.md)
   └ No matches found
 
 ● Search (grep)
-  │ "score_output_path" in **/*.{md,json,yaml,yml,cjs} (.opencode/skill/sk-improve-agent)
+  │ "score_output_path" in **/*.{md,json,yaml,yml,cjs} (.opencode/skills/sk-improve-agent)
   └ No matches found
 
 I’ve narrowed this to runtime-shape questions now, not style or doc wording. I’m reproducing the journal/reducer path with the same payload shape the YAML emits, because that’s the fastest way to tell whether the current code still misreads live data.
@@ -269,8 +269,8 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
 ✗ Run reducer on low-sample fixture (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && tmpdir=$(mktemp -d
   │ /tmp/improve-reducer-XXXXXX) && cp -R
-  │ .opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/. "$tmpdir" &&
-  │ node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs "$tmpdir" >/dev/null && printf
+  │ .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/. "$tmpdir" &&
+  │ node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$tmpdir" >/dev/null && printf
   │ 'REGISTRY\n' && jq '{journalSummary,candidateLineage,mutationCoverage,insufficientDataIteratio…
   └ Permission denied and could not request permission from user
 
@@ -279,17 +279,17 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
   │ const fs = require('node:fs');
   │ const os = require('node:os');
   │ const path = require('node:path');
-  │ const detector = require('./.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs');…
+  │ const detector = require('./.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs');…
   └ 20 lines...
 
 ● Search (grep)
   │ "mutationType|mutation_type|candidate-proposal|parentCandidateId|null"
-  │ (.opencode/command/improve/assets/improve_improve-agent_auto.yaml)
+  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
   │ "mutationType|mutation_type|candidate-proposal|parentCandidateId|null"
-  │ (.opencode/command/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
   └ 4 lines found
 
 ● Search (grep)
@@ -327,37 +327,37 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
 1. **Finding ID:** F-035-001  
    **Severity:** P1  
    **Dimension:** correctness  
-   **File:** `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:269-273`  
+   **File:** `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273`  
    **Title:** Live `candidate_scored` journal rows lose the real iteration number in trade-off trajectories  
    **Description:** `getTrajectory()` only trusts `details.iteration` when it is already numeric, otherwise it falls back to top-level `event.iteration`. The live auto/confirm workflows emit `iteration` inside `details` as a string, and the CLI wrapper keeps it there, so replayed trajectory rows come back with `iteration: 0`. `detectTradeOffs()` then falls back to the array index (`i`), which mislabels the iteration in `trade-off-report.json` and any downstream audit/replay that relies on those IDs.  
    **Evidence:**  
-   - `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs:269-273` only accepts numeric `details.iteration` and otherwise falls back to `event.iteration`.  
-   - `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:165-167` and `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:196-198` emit `candidate_scored` with `"iteration":"{iteration}"` inside `details`.  
-   - `.opencode/skill/sk-improve-agent/SKILL.md:332-339` explicitly says the CLI wrapper stores boundary context under `details`, not as top-level JS API fields.  
+   - `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273` only accepts numeric `details.iteration` and otherwise falls back to `event.iteration`.  
+   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:165-167` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:196-198` emit `candidate_scored` with `"iteration":"{iteration}"` inside `details`.  
+   - `.opencode/skills/sk-improve-agent/SKILL.md:332-339` explicitly says the CLI wrapper stores boundary context under `details`, not as top-level JS API fields.  
    **Recommendation:** Coerce numeric strings in `getTrajectory()` (and similar replay consumers), or change the workflow/helper boundary so iteration is emitted as a numeric top-level field the consumer already understands.
 
 2. **Finding ID:** F-035-002  
    **Severity:** P1  
    **Dimension:** correctness  
-   **File:** `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:313-376`  
+   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376`  
    **Title:** Derived mutation-coverage metrics collapse the whole workflow to one synthetic key  
    **Description:** The reducer derives `coverageRatio` and `uncoveredMutations` from unique `dimension::mutationType` pairs, but the live auto/confirm workflows always record the same hard-coded pair: `dimension: 'composite'`, `mutationType: 'candidate-proposal'`. That means the new coverage section cannot represent real explored-vs-unexplored mutation space; it only reports whether that one synthetic bucket was exhausted. The dashboard therefore looks precise while hiding that no dimension- or mutation-family coverage is being tracked.  
    **Evidence:**  
-   - `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:313-376` builds coverage keys from `dimension` + `mutationType` and derives the summary from those keys.  
-   - `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:168-170` and `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:199-201` always call `recordMutation(... { dimension:'composite', mutationType:'candidate-proposal', ... })`.  
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376` builds coverage keys from `dimension` + `mutationType` and derives the summary from those keys.  
+   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:168-170` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:199-201` always call `recordMutation(... { dimension:'composite', mutationType:'candidate-proposal', ... })`.  
    **Recommendation:** Feed real mutation-family metadata into `recordMutation()` and mark exhausted families when the workflow retires them, so reducer-derived coverage reflects actual search breadth instead of a single placeholder bucket.
 
 3. **Finding ID:** F-035-003  
    **Severity:** P1  
    **Dimension:** correctness  
-   **File:** `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:213-226`  
+   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226`  
    **Title:** Journal dashboard sections for legal-stop and blocked-stop can never populate from the live workflow  
    **Description:** The reducer only fills `latestLegalStop` from `legal_stop_evaluated` events and `latestBlockedStop` from `blocked_stop` events, and the dashboard renders those sections directly. The live auto/confirm workflows do not emit either event type; they only emit generic `gate_evaluation` plus `session_end`. As shipped, the journal summary cannot surface the gate-bundle evidence the runtime contract describes, so blocked-stop/legal-stop audit data is silently absent from the reducer output.  
    **Evidence:**  
-   - `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:213-226` only captures `legal_stop_evaluated` and `blocked_stop`.  
-   - `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:894-902` renders dedicated dashboard subsections for those summaries.  
-   - `.opencode/command/improve/assets/improve_improve-agent_auto.yaml:189-204` and `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml:226-245` emit `gate_evaluation` and `session_end`, but no `legal_stop_evaluated` / `blocked_stop`.  
-   - `.opencode/skill/sk-improve-agent/assets/improvement_charter.md:84-85,104` still defines legal-stop and blocked-stop as canonical runtime-truth events.  
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226` only captures `legal_stop_evaluated` and `blocked_stop`.  
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:894-902` renders dedicated dashboard subsections for those summaries.  
+   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:189-204` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:226-245` emit `gate_evaluation` and `session_end`, but no `legal_stop_evaluated` / `blocked_stop`.  
+   - `.opencode/skills/sk-improve-agent/assets/improvement_charter.md:84-85,104` still defines legal-stop and blocked-stop as canonical runtime-truth events.  
    **Recommendation:** Either emit the canonical `legal_stop_evaluated` / `blocked_stop` events from the workflows, or update the reducer to consume the actual `gate_evaluation` payload shape until producer and consumer are aligned.
 
 **ITERATION SUMMARY:** 3 findings total: **0 P0, 3 P1, 0 P2**. The plateau stop-reason fix in `improvement-journal.cjs` is good; the remaining breakage is in how the live workflow emits data and how the reducer/trade-off replay consumers interpret it.

@@ -12,9 +12,9 @@ The current parser functions still stamp captures with `endLine: lineNum` for JS
 
 For a **minimal Phase A** limited to endLine computation inside `parseJsTs()`, `parsePython()`, and `parseBash()`, the original **60-80 LOC** estimate still looks realistic. If Phase A also absorbs the later review-driven hardening/cross-check work, the expanded **120-165 LOC** range is also believable. In other words: **the low range fits a narrow parser fix; the expanded range fits the broader reviewed scope.**
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:171-191]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:171-191]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
 
 ### 2. `code-graph-db.ts` remains a valid Phase B file, but it is not required for the minimal Phase A parser fix
 **Current LOC: 338**
@@ -25,8 +25,8 @@ However, nothing in the current Phase A parser bug requires a DB change. So the 
 
 For Phase B1 specifically, the earlier **~45-60 LOC** estimate in this file still seems realistic. The file is compact, the schema and upsert seams are obvious, and the missing functionality is localized rather than architectural.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:96-177]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:18-68]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:96-177]
 
 ### 3. `context-server.ts` is a real Phase B implementation seam and should be treated as a required file in the current file list
 **Current LOC: 1171**
@@ -42,8 +42,8 @@ This is the most important correction to iteration 068's Phase B file list: **th
 
 The good news is that the proposed changes are still realistic despite the file's large size, because the actual insertion points are narrowly localized. A Phase B wiring change in this file still looks like a **small-to-moderate delta, roughly 25-50 LOC**, not a broad rewrite.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:307-377]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts:379-438]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:307-377]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts:379-438]
 
 ### 4. `memory-surface.ts` is still the right helper/pattern file for Phase B, but it is not sufficient by itself
 **Current LOC: 337**
@@ -60,9 +60,9 @@ So it remains a valid Phase B file for first-call tracking and graph-aware helpe
 
 That makes the proposed work realistic but slightly more constrained than some earlier phrasing suggested. Adding `FirstCallTracker` and/or `GRAPH_AWARE_TOOLS`-style helper logic here still looks reasonable, and a rough **70-120 LOC** range in this file remains believable depending on whether it carries only helper code or also session-tracking state.
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-84]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-229]
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:235-317]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-84]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-229]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:235-317]
 
 ### 5. Overall assessment: Phase A estimate still holds; Phase B estimate is broadly plausible, but the file list needs correction
 Using the current files only, the verification result is:
@@ -93,11 +93,11 @@ None. The requested four files were enough to verify both the LOC counts and the
 
 ## Sources Consulted
 
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts`
-- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`
+- `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 - `wc -l` counts run on the four requested files during this iteration
 
 ## Assessment

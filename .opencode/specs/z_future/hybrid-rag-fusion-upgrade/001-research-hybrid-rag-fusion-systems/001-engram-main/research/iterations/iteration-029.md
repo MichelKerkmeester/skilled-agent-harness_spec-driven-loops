@@ -12,14 +12,14 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 2: Explicit session lifecycle plus durable session summaries is Engram's strongest architecture decision
-- **Source**: `001-engram-main/external/internal/store/store.go:754-858,1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:76-99,111-149`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:1-120`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:1-127,163-220`
+- **Source**: `001-engram-main/external/internal/store/store.go:754-858,1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:76-99,111-149`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:1-120`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:1-127,163-220`
 - **What it does**: Engram persists sessions as first-class records, closes them with summaries, and formats recent sessions, prompts, and observations into startup context through `mem_session_start`, `mem_session_end`, `mem_session_summary`, and `mem_context`.
 - **Why it matters**: Public already has stronger recovery machinery than Engram, but it lacks an equally thin lifecycle front door. We should adopt the ergonomics lesson without replacing `session_bootstrap`, `session_resume`, or trusted session handling.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 3: Stable topic families are valuable, but Engram's raw upsert model is too lossy for Public
-- **Source**: `001-engram-main/external/internal/store/store.go:948-1068,3201-3278`; `001-engram-main/external/internal/mcp/mcp.go:302-324`; `001-engram-main/external/docs/ARCHITECTURE.md:86-117`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:92-178`
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1068,3201-3278`; `001-engram-main/external/internal/mcp/mcp.go:302-324`; `001-engram-main/external/docs/ARCHITECTURE.md:86-117`; `.opencode/skills/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:92-178`
 - **What it does**: Engram uses `topic_key` families such as `architecture/`, `bug/`, and `decision/`, suggests keys from heuristics, and upserts later saves onto the latest matching observation while incrementing `revision_count`.
 - **Why it matters**: The stable-thread idea is strong for evolving ADRs and research threads, but Public's markdown evidence and `generate-context.js` flow are richer than Engram's overwrite-first storage model.
 - **Recommendation**: prototype later
@@ -33,14 +33,14 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 5: Exact-key lexical shortcuts should be adopted, but Engram's lexical-first search model should not
-- **Source**: `001-engram-main/external/internal/store/store.go:1462-1584,3382-3391`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-120`
+- **Source**: `001-engram-main/external/internal/store/store.go:1462-1584,3382-3391`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:40-120`
 - **What it does**: Engram checks direct `topic_key` matches before FTS5 when the query contains `/`, sanitizes FTS input with `sanitizeFTS()`, and then orders by `fts.rank`.
 - **Why it matters**: Public should import the exact-handle lane for future thread keys and artifact names, but Engram's broader FTS-first retrieval would be a downgrade from Public's semantic-first hybrid architecture.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 6: Engram's coarse `project` versus `personal` scope model should be rejected for Public
-- **Source**: `001-engram-main/external/internal/mcp/mcp.go:187-192,253-258,385-390`; `001-engram-main/external/internal/store/store.go:959-976,3166-3171`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-120`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:357-435`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:104-116,207-227`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:187-192,253-258,385-390`; `001-engram-main/external/internal/store/store.go:959-976,3166-3171`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:40-120`; `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:357-435`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:104-116,207-227`
 - **What it does**: Engram normalizes scope to a flat `project` or `personal` boundary and keys saves and searches by normalized project plus that scope.
 - **Why it matters**: Public already carries `tenantId`, `userId`, `agentId`, `sharedSpaceId`, and trusted `effectiveSessionId` enforcement. Collapsing that model to Engram's scope would weaken shared/private safety and auditability.
 - **Recommendation**: reject

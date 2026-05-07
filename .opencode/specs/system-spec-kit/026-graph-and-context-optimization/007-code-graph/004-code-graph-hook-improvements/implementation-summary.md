@@ -58,24 +58,24 @@ The packet hardened code-graph CALLS resolution so ambiguous `handle*` subjects 
 
 | Path | Summary |
 |---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts` | Operation-aware subject resolution, selected-candidate metadata, blocked query contract |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts` | Blocked context contract, deadline defaults, richer anchor metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` | CocoIndex score/snippet/range/provider preservation and ranking |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts` | Deadline enforcement and structured partial-output metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Graph-quality readers and enrichment-summary clearing helper |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` | Null-summary clearing on successful scans |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts` | `graphQualitySummary` reader exposure |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Graph-quality startup rendering and startup shared-payload transport |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Startup payload contract section |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Startup payload contract section |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Startup payload contract banner transport |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts` | Startup payload contract transport for Codex |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` | Resolver ambiguity and blocked-read regressions |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts` | Blocked-read, seed-fidelity, and partial-output regressions |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts` | Overwrite-then-clear enrichment summary regression |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts` | Claude, Gemini, and Copilot startup payload contract regressions |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` | Codex startup payload contract regression |
-| `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Operator note for `graphQualitySummary` |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts` | Operation-aware subject resolution, selected-candidate metadata, blocked query contract |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts` | Blocked context contract, deadline defaults, richer anchor metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts` | CocoIndex score/snippet/range/provider preservation and ranking |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts` | Deadline enforcement and structured partial-output metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Graph-quality readers and enrichment-summary clearing helper |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts` | Null-summary clearing on successful scans |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts` | `graphQualitySummary` reader exposure |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Graph-quality startup rendering and startup shared-payload transport |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Startup payload contract section |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Startup payload contract section |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Startup payload contract banner transport |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts` | Startup payload contract transport for Codex |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts` | Resolver ambiguity and blocked-read regressions |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts` | Blocked-read, seed-fidelity, and partial-output regressions |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts` | Overwrite-then-clear enrichment summary regression |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts` | Claude, Gemini, and Copilot startup payload contract regressions |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts` | Codex startup payload contract regression |
+| `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Operator note for `graphQualitySummary` |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -112,6 +112,6 @@ This checkout does not include a packet-local `applied/` ledger, so the auditabl
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` still fails because `spec.md`, `plan.md`, and `tasks.md` contain pre-existing template-anchor/template-source/link issues, and this packet explicitly disallowed modifying those files.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` still fails because `spec.md`, `plan.md`, and `tasks.md` contain pre-existing template-anchor/template-source/link issues, and this packet explicitly disallowed modifying those files.
 - `npm run check --workspace=@spec-kit/mcp-server` still fails on unrelated repo-wide lint issues in untouched files outside this packet.
 <!-- /ANCHOR:limitations -->

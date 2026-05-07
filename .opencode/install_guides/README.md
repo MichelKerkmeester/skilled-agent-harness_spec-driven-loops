@@ -218,7 +218,7 @@ The SpecKit validation and creation scripts require a Bash shell:
 Run scripts from Git Bash or WSL on Windows:
 ```bash
 # From Git Bash
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/<001-feature>/
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<001-feature>/
 ```
 
 </details>
@@ -326,7 +326,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Code Mode           | MCP Server | External tool orchestration (GitHub, your CMS, etc.) | Node.js 18+                             |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
-| Native Skills       | Built-in   | Skill discovery from .opencode/skill/                 | None (OpenCode v1.0.190+)               |
+| Native Skills       | Built-in   | Skill discovery from .opencode/skills/                 | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI | CLI Tool   | Browser debugging & automation                        | Node.js 18+                             |
 | Antigravity Auth    | Plugin     | Google OAuth for Claude                               | Node.js 18+                             |
 | OpenAI Codex Auth   | Plugin     | ChatGPT OAuth                                         | Node.js 18+                             |
@@ -366,7 +366,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    │  GitHub, your CMS...                  │
    └───────────────────────────────────┘
 
-   NATIVE SKILLS: auto-discovered from .opencode/skill/*/SKILL.md
+   NATIVE SKILLS: auto-discovered from .opencode/skills/*/SKILL.md
    OPTIONAL: Chrome DevTools CLI (bdg), Gemini CLI, Auth Plugins
 ```
 
@@ -392,7 +392,7 @@ Prerequisites → Code Mode → Spec Kit Memory
 - [ ] Antigravity Auth (Google OAuth)
 - [ ] OpenAI Codex Auth (ChatGPT OAuth)
 
-**Note:** Native Skills are built-in to OpenCode v1.0.190+ and require no installation. Skills are auto-discovered from `.opencode/skill/*/SKILL.md`.
+**Note:** Native Skills are built-in to OpenCode v1.0.190+ and require no installation. Skills are auto-discovered from `.opencode/skills/*/SKILL.md`.
 
 ---
 
@@ -644,7 +644,7 @@ Spec Kit Memory now supports three embedding backends:
 - If `OPENAI_API_KEY` set + `EMBEDDINGS_PROVIDER=openai`: uses OpenAI
 - Manual override: `export EMBEDDINGS_PROVIDER=hf-local|voyage|openai`
 
-**Location:** Bundled in project at `.opencode/skill/system-spec-kit/`
+**Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
 
 **Configure in `opencode.json`:**
 ```json
@@ -652,7 +652,7 @@ Spec Kit Memory now supports three embedding backends:
   "mcp": {
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
+      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"],
       "env": {
         "EMBEDDINGS_PROVIDER": "hf-local"
       }
@@ -677,7 +677,7 @@ export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 # HF Local config (if using HF local)
 export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
 
-# Database directory (optional - default: .opencode/skill/system-spec-kit/mcp_server/database/)
+# Database directory (optional - default: .opencode/skills/system-spec-kit/mcp_server/database/)
 export MEMORY_DB_DIR=/path/to/database
 ```
 
@@ -688,7 +688,7 @@ Each provider+model+dimension combination uses its own SQLite database. This pre
 ```bash
 # The database is created automatically on first run
 # Verify the directory exists
-ls -la .opencode/skill/system-spec-kit/mcp_server/database/
+ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 ```
 
 ### Validation: `spec_kit_memory_check`
@@ -699,7 +699,7 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/database/
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+test -f .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Verify active provider:**
@@ -804,8 +804,8 @@ grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json
 OpenCode v1.0.190+ has **native skill support** built-in. No plugin installation required.
 
 Skills are automatically discovered from:
-- `.opencode/skill/<name>/SKILL.md` (project-level)
-- `~/.opencode/skill/<name>/SKILL.md` (global)
+- `.opencode/skills/<name>/SKILL.md` (project-level)
+- `~/.opencode/skills/<name>/SKILL.md` (global)
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
 **Current Skills:**
@@ -828,7 +828,7 @@ Skills are automatically discovered from:
 - Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_code_mode`)
 - Agents read `SKILL.md` files directly when a task matches
 
-**No configuration needed.** Skills in `.opencode/skill/` are automatically available.
+**No configuration needed.** Skills in `.opencode/skills/` are automatically available.
 
 ### Validation: `native_skills_check`
 
@@ -838,7 +838,7 @@ Skills are automatically discovered from:
 
 **Quick Verification:**
 ```bash
-test -d .opencode/skill && ls .opencode/skill/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+test -d .opencode/skill && ls .opencode/skills/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -911,7 +911,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
+      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
     },
     "sequential_thinking": {
       "command": "npx",
@@ -950,7 +950,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
+      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
     }
   },
   "plugins": []
@@ -994,7 +994,7 @@ echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 
 ```bash
 npx utcp-mcp --list-tools          # Code Mode
-ls .opencode/skill/                 # Skills
+ls .opencode/skills/                 # Skills
 cat opencode.json | jq '.mcp | keys'  # MCP servers
 ```
 
@@ -1025,13 +1025,13 @@ Emergency procedures for backup, recovery and clean uninstallation of OpenCode c
 
 ```bash
 # Backup
-BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skill/system-spec-kit/mcp_server/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
+BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skills/system-spec-kit/mcp_server/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
 
 # List backups
 ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"
 
 # Restore (replace BACKUP path)
-BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && cp -r "$BACKUP/database" .opencode/skill/system-spec-kit/ 2>/dev/null && echo "✅ Restored"
+BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && cp -r "$BACKUP/database" .opencode/skills/system-spec-kit/ 2>/dev/null && echo "✅ Restored"
 ```
 
 ---
@@ -1042,10 +1042,10 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
-| **Spec Kit Memory**      | `rm .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite` | Database will be recreated             |
+| **Spec Kit Memory**      | `rm .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite` | Database will be recreated             |
 | **Sequential Thinking**  | Remove from `opencode.json`                            | No files to delete                                   |
-| **Skills**               | `rm -rf .opencode/skill/<skill-name>/`                 | Remove specific skill folder                         |
-| **All Skills**           | `rm -rf .opencode/skill/`                              | Removes all skills                                   |
+| **Skills**               | `rm -rf .opencode/skills/<skill-name>/`                 | Remove specific skill folder                         |
+| **All Skills**           | `rm -rf .opencode/skills/`                              | Removes all skills                                   |
 
 **To remove MCP server:** Edit `opencode.json` and delete the corresponding entry from the `mcp` object.
 
@@ -1066,7 +1066,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | ---------------------------- | ---------------------------------------------------------- |
 | MCP server hangs             | `pkill -f "server-name" && opencode`                       |
 | Ollama not responding        | `pkill ollama && ollama serve &`                           |
-| Database corruption (Memory) | `rm -rf .opencode/skill/system-spec-kit/mcp_server/database/` |
+| Database corruption (Memory) | `rm -rf .opencode/skills/system-spec-kit/mcp_server/database/` |
 | Config invalid JSON          | Restore from backup or regenerate from Section 12 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
 | Python/uv issues             | `uv cache clean && uv tool install <tool> --force`         |
@@ -1082,7 +1082,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
-ls .opencode/skill/           # Skills installed
+ls .opencode/skills/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
 
@@ -1126,7 +1126,7 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 1. **Rename the file**: `AGENTS (Universal).md` → `AGENTS.md`
 2. **Choose project type**: Front-end, Back-end, or Full-stack
 3. **Align with installed tools**: Update tool references to match your MCP configuration
-4. **Align with available skills**: Update skills table to match `.opencode/skill/`
+4. **Align with available skills**: Update skills table to match `.opencode/skills/`
 
 **Quick customization for project types:**
 
@@ -1144,7 +1144,7 @@ The Skill Advisor (`skill_advisor.py`) powers Gate 2 in AGENTS.md, routing reque
 
 ```bash
 # Verify skill advisor
-python .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "help me write documentation"
+python .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "help me write documentation"
 ```
 
 If confidence > 0.8, the AI agent MUST use the recommended skill.
@@ -1157,10 +1157,10 @@ Create custom skills to extend AI agent capabilities:
 
 ```bash
 # Initialize new skill
-python .opencode/skill/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
 
 # Validate skill
-python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/<my-skill>/
+python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/<my-skill>/
 ```
 
 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
@@ -1185,7 +1185,7 @@ The Agent System provides specialized AI personas with defined authorities, tool
 
 **Quick Verification:**
 ```bash
-ls .opencode/agent/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/agents/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Detailed Guide**: [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md)
@@ -1206,7 +1206,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 4. Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 5. Bump `sk-code` version + ship a changelog. Use `assets/opencode/checklists/skill_authoring.md` as your reference.
 
-**Adding your own skills:** the shipped set is intentionally minimal — most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.opencode/skill/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
+**Adding your own skills:** the shipped set is intentionally minimal — most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **Detailed Guide**: [Root README §4 Customizing for Your Stack](../../README.md#customizing-for-your-stack)
 
@@ -1217,7 +1217,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
-ls .opencode/skill/           # Skills installed
+ls .opencode/skills/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
 
@@ -1235,7 +1235,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Test skill invocation  | `python .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "your task"`          |
+| 3    | Test skill invocation  | `python .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "your task"`          |
 | 4    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
 
 ### 16.2 Common Workflows
@@ -1264,10 +1264,10 @@ For the SpecKit chain, `/spec_kit:plan --intake-only` is the standalone intake e
 | Resource      | Location                                   | Description                   |
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
-| Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation          |
-| Code Skill    | `.opencode/skill/sk-code/SKILL.md` | Frontend implementation patterns |
-| Code Skill    | `.opencode/skill/sk-code/SKILL.md` | Multi-stack implementation patterns |
-| Git Skill     | `.opencode/skill/sk-git/SKILL.md`   | Git workflows                 |
+| Memory Skill  | `.opencode/skills/system-spec-kit/SKILL.md` | Context preservation          |
+| Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Frontend implementation patterns |
+| Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Multi-stack implementation patterns |
+| Git Skill     | `.opencode/skills/sk-git/SKILL.md`   | Git workflows                 |
 | AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
 | Agent System  | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Agent creation & usage |
 
@@ -1310,22 +1310,22 @@ npx utcp-mcp
 ### Database not found
 ```bash
 # Create directory if missing
-mkdir -p .opencode/skill/system-spec-kit/mcp_server/dist/database
+mkdir -p .opencode/skills/system-spec-kit/mcp_server/dist/database
 
 # Database is created on first run
-node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
+node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
 1. Default provider is HF Local. No Ollama required
-2. Clear corrupted model cache: `rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
+2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
 
 ### Memory search returns empty
 ```bash
 # Check database has content
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
+sqlite3 .opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
 ```
 
 </details>
@@ -1370,7 +1370,7 @@ bdg screenshot --chrome-path "/Applications/Google Chrome.app/Contents/MacOS/Goo
 <summary><strong>Plugin Issues</strong></summary>
 
 ### Skills not loading (Native Skills)
-1. Verify skill folder exists: `ls -la .opencode/skill/`
+1. Verify skill folder exists: `ls -la .opencode/skills/`
 2. Check SKILL.md frontmatter has required `name` and `description` fields
 3. Ensure `name` matches folder name exactly
 4. Restart OpenCode after adding skills
@@ -1437,9 +1437,9 @@ The doctor commands read the install guides, check system reality, and offer gui
 
 Shell script (for direct use outside AI clients):
 ```bash
-bash .opencode/command/doctor/scripts/mcp-doctor.sh
-bash .opencode/command/doctor/scripts/mcp-doctor.sh --json
-bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
+bash .opencode/commands/doctor/scripts/mcp-doctor.sh
+bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json
+bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 ```
 
 </details>
@@ -1457,8 +1457,8 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | Check prerequisites  | `node -v && python3 -V`                                     |
 | Start Ollama         | `ollama serve`                                              |
 | Pull embedding model | `ollama pull nomic-embed-text`                              |
-| List skills          | `ls .opencode/skill/`                                       |
-| Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
+| List skills          | `ls .opencode/skills/`                                       |
+| Read skill           | `cat .opencode/skills/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
 | Run health check     | `bash health-check.sh`                                      |
 
@@ -1468,8 +1468,8 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (4 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (17 skills)                 |
-| `.opencode/agent/`          | Base agent source definitions                 |
+| `.opencode/skills/`          | Skill definitions (17 skills)                 |
+| `.opencode/agents/`          | Base agent source definitions                 |
 | `.opencode/install_guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |
 | `AGENTS.md`                 | AI agent behavior configuration               |

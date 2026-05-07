@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
+  "description": "Phase parent for renaming .opencode/skills/, .opencode/agents/, .opencode/commands/ to plural per opencode official docs. Four phases: skills, agents, commands, symlinks. ~9,000 files / ~670,000 occurrences.",
+  "keywords": [
+    "spec",
+    "096",
+    "opencode",
+    "rename",
+    "plural",
+    "skills",
+    "agents",
+    "commands",
+    "symlinks",
+    "discovery"
+  ],
+  "lastUpdated": "2026-05-07T14:00:00.000Z",
+  "specId": "096",
+  "folderSlug": "rename-opencode-dirs-to-plural",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 0,
+  "lastOutcome": "Scaffolded phase parent and 4 children; awaiting phase 001 dispatch."
+}

@@ -43,10 +43,10 @@ _memory:
 
 Completed the four packet 034 remediation tasks:
 
-1. Copilot freshness now says NEXT-PROMPT and the managed block includes `nextPromptFreshness: true`. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:130`]
-2. Codex timeout fallback now emits a stale marker and structured warning, plus a cold-start smoke helper. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-203`; `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:23-42`]
+1. Copilot freshness now says NEXT-PROMPT and the managed block includes `nextPromptFreshness: true`. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:130`]
+2. Codex timeout fallback now emits a stale marker and structured warning, plus a cold-start smoke helper. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-203`; `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts:23-42`]
 3. The ENV reference now has a source-derived feature flags reference table with default ON/OFF state. [EVIDENCE: ENV reference lines 28-105]
-4. `advisor_status` is documented as diagnostic-only and `advisor_rebuild` is registered as the explicit repair command. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:49-109`; `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:55-71`]
+4. `advisor_status` is documented as diagnostic-only and `advisor_rebuild` is registered as the explicit repair command. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:49-109`; `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:55-71`]
 
 ### Files Changed
 
@@ -64,10 +64,10 @@ Completed the four packet 034 remediation tasks:
 | Skill advisor hook reference | Modified | Advisor tool matrix and operator state actions |
 | Hook system reference | Modified | Copilot and Codex fallback semantics |
 | MCP server ENV reference | Modified | Feature flags reference table |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/*` | Modified | Next-prompt docs and header field |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/*` | Modified/Created | Fallback marker, warning, smoke helper, docs |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/*` | Modified/Created | `advisor_rebuild` handler, schema, descriptor, docs |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/*` | Created/Modified | New tests and legacy parity expectation |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/*` | Modified | Next-prompt docs and header field |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/*` | Modified/Created | Fallback marker, warning, smoke helper, docs |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/*` | Modified/Created | `advisor_rebuild` handler, schema, descriptor, docs |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/*` | Created/Modified | New tests and legacy parity expectation |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,9 +99,9 @@ Phase 1 created packet docs. Phase 2 applied sub-tasks in the requested order. P
 
 | Check | Command / Artifact | Result |
 |-------|--------------------|--------|
-| Codex/advisor targeted tests | `npm --prefix .opencode/skill/system-spec-kit/mcp_server exec -- vitest run --config .opencode/skill/system-spec-kit/mcp_server/vitest.config.ts mcp_server/tests/hooks-codex-freshness.vitest.ts mcp_server/tests/advisor-rebuild.vitest.ts --reporter=default` | PASS: 2 files, 4 tests |
-| TypeScript build | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` | PASS |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades --strict` | PASS |
+| Codex/advisor targeted tests | `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run --config .opencode/skills/system-spec-kit/mcp_server/vitest.config.ts mcp_server/tests/hooks-codex-freshness.vitest.ts mcp_server/tests/advisor-rebuild.vitest.ts --reporter=default` | PASS: 2 files, 4 tests |
+| TypeScript build | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | PASS |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-half-auto-upgrades --strict` | PASS |
 | Scope check | `git status --short` | PASS: unrelated `.opencode/specs/...` changes observed and left untouched |
 <!-- /ANCHOR:verification -->
 

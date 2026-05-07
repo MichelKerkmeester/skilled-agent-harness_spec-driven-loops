@@ -41,20 +41,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/implementation-summary.md",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/checklist.md",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/spec.md",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/implementation-summary.md",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/spec.md",
       ".opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
-      ".opencode/agent/context.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+      ".opencode/agents/context.md",
       ".claude/agents/context.md",
       "spec.md",
       "plan.md",
@@ -66,49 +66,49 @@
       {
         "name": "tool-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
         "name": "session-prime.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
         "source": "derived"
       },
       {
         "name": "shared.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts",
         "source": "derived"
       },
       {
         "name": "session-stop.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
         "source": "derived"
       },
       {
         "name": "session-snapshot.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
         "source": "derived"
       },
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {

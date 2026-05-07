@@ -37,7 +37,7 @@
 
 ### 2.1 Complexity Detection Algorithm
 
-**Source File**: `.opencode/skill/system-spec-kit/lib/complexity/detector.js`
+**Source File**: `.opencode/skills/system-spec-kit/lib/complexity/detector.js`
 **Test File**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests/test-detector.js`
 
 | Test Category | Count | Status |
@@ -64,8 +64,8 @@
 ### 2.2 Template Selection Logic
 
 **Source Files**:
-- `.opencode/skill/system-spec-kit/lib/complexity/classifier.js`
-- `.opencode/skill/system-spec-kit/lib/complexity/features.js`
+- `.opencode/skills/system-spec-kit/lib/complexity/classifier.js`
+- `.opencode/skills/system-spec-kit/lib/complexity/features.js`
 
 **Test File**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests/test-classifier.js`
 
@@ -96,7 +96,7 @@
 
 ### 2.3 Marker Processing
 
-**Source File**: `.opencode/skill/system-spec-kit/lib/expansion/marker-parser.js`
+**Source File**: `.opencode/skills/system-spec-kit/lib/expansion/marker-parser.js`
 **Test File**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests/test-marker-parser.js`
 
 | Test Category | Count | Status |
@@ -124,7 +124,7 @@
 
 ### 2.4 Preprocessor Integration
 
-**Source File**: `.opencode/skill/system-spec-kit/lib/expansion/preprocessor.js`
+**Source File**: `.opencode/skills/system-spec-kit/lib/expansion/preprocessor.js`
 **Test File**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity/tests/test-preprocessor.js`
 
 | Test Category | Count | Status |
@@ -172,7 +172,7 @@
 
 ### 3.1 Recency Scoring
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js`
 **Test File**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js`
 
 | Test Case | Status | Evidence |
@@ -188,7 +188,7 @@
 
 ### 3.2 Importance Scoring
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js`
 
 | Test Case | Status | Evidence |
 |-----------|--------|----------|
@@ -234,8 +234,8 @@
 ### 3.6 RRF Fusion & Hybrid Search
 
 **Source Files**:
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rrf-fusion.js`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rrf-fusion.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.js`
 
 | Test Case | Status | Evidence |
 |-----------|--------|----------|
@@ -345,13 +345,13 @@
 
 ## 5. MCP Server Tests (Memory Ranking Infrastructure)
 
-**Test Path**: `.opencode/skill/system-spec-kit/mcp_server/tests/`
+**Test Path**: `.opencode/skills/system-spec-kit/mcp_server/tests/`
 **Test Runner**: `node tests/<test-file>.test.js`
 
 ### 5.1 Tier Classifier Tests
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js`
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -371,8 +371,8 @@
 
 ### 5.2 Working Memory Tests
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.js`
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -388,8 +388,8 @@
 
 ### 5.3 Summary Generator Tests
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/summary-generator.js`
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/summary-generator.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -406,8 +406,8 @@
 
 ### 5.4 Attention Decay Tests
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js`
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -421,8 +421,8 @@
 
 ### 5.5 Co-Activation Tests
 
-**Source File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/co-activation.js`
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.test.js`
+**Source File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/co-activation.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -442,7 +442,7 @@
 
 ### 5.6 Modularization Tests
 
-**Test File**: `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.test.js`
+**Test File**: `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.test.js`
 
 | Test Category | Count | Status |
 |---------------|-------|--------|
@@ -556,10 +556,10 @@ node test/test-folder-scoring.js
 ### Run Spec 071 Verification
 ```bash
 # Check level folders
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Check for COMPLEXITY_GATE markers
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 
 # Test script at each level
 for level in 1 2 3; do
@@ -569,7 +569,7 @@ done
 
 ### Run All MCP Server Tests
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 node tests/tier-classifier.test.js
 node tests/working-memory.test.js
 node tests/summary-generator.test.js

@@ -71,8 +71,8 @@ This checklist has two lanes. Scaffold items can be verified in this packet. Exe
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Child packet strict validation passes. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test --strict` exited 0 on 2026-05-05.
-- [x] CHK-021 [P0] Parent packet strict validation passes. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph --strict` exited 0 on 2026-05-05.
+- [x] CHK-020 [P0] Child packet strict validation passes. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test --strict` exited 0 on 2026-05-05.
+- [x] CHK-021 [P0] Parent packet strict validation passes. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph --strict` exited 0 on 2026-05-05.
 - [x] CHK-022 [P1] Parent metadata contains child id. Evidence: JSON assertion printed `Parent metadata: PASS`.
 - [ ] CHK-023 [P1] Edge cases are represented in the execution design. Evidence: `spec.md` L2 Edge Cases.
 - [ ] CHK-024 [P1] Execution pass runs each scenario across required CLIs. Evidence: 012-EXEC trial log must show 58 cells with three assisted trials each or approved deferrals.

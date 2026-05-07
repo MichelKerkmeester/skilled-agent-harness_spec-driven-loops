@@ -16,13 +16,13 @@ _memory:
     next_safe_action: "Apply V-001 through V-007 fixes and verify gates"
     blockers: []
     key_files:
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/mcp-code-mode/references/workflows.md"
-      - ".opencode/skill/cli-opencode/README.md"
-      - ".opencode/skill/cli-opencode/references/opencode_tools.md"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/mcp-code-mode/references/workflows.md"
+      - ".opencode/skills/cli-opencode/README.md"
+      - ".opencode/skills/cli-opencode/references/opencode_tools.md"
     session_dedup:
       fingerprint: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       session_id: "phase-071-001-remediation"
@@ -80,7 +80,7 @@ Close the actionable verifier findings while preserving the rule that sk-code re
 
 ### Out of Scope
 
-- Modifying `.opencode/skill/sk-code/`, because sk-code is the approved owner for stack-specific metadata.
+- Modifying `.opencode/skills/sk-code/`, because sk-code is the approved owner for stack-specific metadata.
 - Modifying changelog files or test fixtures, per user instruction.
 - Repairing the `specs/skilled-agent-orchestration` parent metadata validation failure, because V-008 is explicitly outside 071 scope.
 
@@ -90,19 +90,19 @@ Close the actionable verifier findings while preserving the rule that sk-code re
 |-----------|-------------|-------------|
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation/*` | Create | Child packet docs and metadata |
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/graph-metadata.json` | Modify | Add `001-remediation` to `children_ids` |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py` | Modify | Replace library-specific canonical asset default with generic placeholder |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | Remove stack-specific explicit routing terms and comments |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modify | Replace stack-specific lexical hints with surface-agnostic hints |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Replace stack-specific route keywords, comments, and phrases |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/explicit.js` | Modify | Mirror explicit lane changes |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/lexical.js` | Modify | Mirror lexical lane changes |
-| `.opencode/skill/system-spec-kit/scripts/.folder-list.txt` | Modify | Neutralize real-client scan artifact paths |
-| `.opencode/skill/system-spec-kit/scripts/.scan-lines.txt` | Modify | Neutralize real-client scan artifact paths |
-| `.opencode/skill/mcp-code-mode/references/workflows.md` | Modify | Replace real-client expected log line |
-| `.opencode/skill/cli-opencode/README.md` | Modify | Replace local workspace paths with placeholders |
-| `.opencode/skill/cli-opencode/references/opencode_tools.md` | Modify | Replace local workspace paths with placeholders |
-| `.opencode/skill/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md` | Modify | Align MyService tool name |
-| `.opencode/skill/mcp-chrome-devtools/examples/README.md` | Modify | Remove stale sk-code reference links |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/settings.py` | Modify | Replace library-specific canonical asset default with generic placeholder |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | Remove stack-specific explicit routing terms and comments |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Modify | Replace stack-specific lexical hints with surface-agnostic hints |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | Replace stack-specific route keywords, comments, and phrases |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/explicit.js` | Modify | Mirror explicit lane changes |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/lexical.js` | Modify | Mirror lexical lane changes |
+| `.opencode/skills/system-spec-kit/scripts/.folder-list.txt` | Modify | Neutralize real-client scan artifact paths |
+| `.opencode/skills/system-spec-kit/scripts/.scan-lines.txt` | Modify | Neutralize real-client scan artifact paths |
+| `.opencode/skills/mcp-code-mode/references/workflows.md` | Modify | Replace real-client expected log line |
+| `.opencode/skills/cli-opencode/README.md` | Modify | Replace local workspace paths with placeholders |
+| `.opencode/skills/cli-opencode/references/opencode_tools.md` | Modify | Replace local workspace paths with placeholders |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md` | Modify | Align MyService tool name |
+| `.opencode/skills/mcp-chrome-devtools/examples/README.md` | Modify | Remove stale sk-code reference links |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +144,7 @@ Close the actionable verifier findings while preserving the rule that sk-code re
 - **SC-002**: V-008 and V-009 are documented in `decision-record.md` as requested.
 - **SC-003**: The 8-prompt routing regression suite returns the expected skill for all eight prompts.
 - **SC-004**: Compiler validation and child strict validation pass.
-- **SC-005**: `git diff --name-only .opencode/skill/sk-code/` is empty.
+- **SC-005**: `git diff --name-only .opencode/skills/sk-code/` is empty.
 <!-- /ANCHOR:success-criteria -->
 
 ---

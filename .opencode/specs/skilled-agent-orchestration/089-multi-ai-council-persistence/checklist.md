@@ -55,11 +55,11 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] **CHK-010** [P0] Helper at `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` exports parser/renderer/builder/state-line as separate functions
+- [x] **CHK-010** [P0] Helper at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` exports parser/renderer/builder/state-line as separate functions
 - [x] **CHK-011** [P0] Helper CLI accepts `<packet> [--round NNN] [--input-file FILE] [--strict-output]` with proper usage on missing args
 - [x] **CHK-012** [P0] Exit codes match contract: 0 success, 1 strict-required missing (no writes), 2 partial-write recovery
 - [x] **CHK-013** [P0] Output-schema.md at `references/multi-ai-council/output-schema.md` covers requiredness matrix, heading aliases, seat fallback, optional-section policy, schema-change lockstep rule
-- [x] **CHK-014** [P0] Agent body §17 in `.opencode/agent/multi-ai-council.md` enumerates 4 caller patterns
+- [x] **CHK-014** [P0] Agent body §17 in `.opencode/agents/multi-ai-council.md` enumerates 4 caller patterns
 - [x] **CHK-015** [P0] §17 explicitly states Depth-1 rule (dispatching parent owns helper invocation)
 - [x] **CHK-016** [P1] §17 documents forward-only scope (no retroactive migration of pre-080 outputs)
 - [x] **CHK-017** [P1] §8 in agent body cross-links `output-schema.md` as authority
@@ -116,7 +116,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] **CHK-060** [P0] No new skill folder at `.opencode/skill/multi-ai-council/` (lightweight bound preserved)
+- [x] **CHK-060** [P0] No new skill folder at `.opencode/skills/multi-ai-council/` (lightweight bound preserved)
 - [x] **CHK-061** [P0] Helper located under `system-spec-kit/scripts/multi-ai-council/` (centralizes spec-folder lifecycle scripts per ADR rationale)
 - [x] **CHK-062** [P0] Fixtures located under `scripts/tests/fixtures/multi-ai-council/`
 - [x] **CHK-063** [P0] Output-schema.md located under `references/multi-ai-council/`
@@ -177,7 +177,7 @@ Final completion gate: all P0 = checked with evidence; all P1 = checked or defer
 ## L3+: COMPLIANCE VERIFICATION
 
 - [ ] **CHK-100** [P0] Planning-only invariant preserved: agent retains write/edit/bash/patch deny across all 4 runtimes
-- [ ] **CHK-101** [P0] ADR-001 lightweight bound preserved: no `.opencode/skill/multi-ai-council/` folder
+- [ ] **CHK-101** [P0] ADR-001 lightweight bound preserved: no `.opencode/skills/multi-ai-council/` folder
 - [ ] **CHK-102** [P1] AGENTS.md / runtime mirror conventions followed (per memory `feedback_new_agent_mirror_all_runtimes`)
 <!-- /ANCHOR:compliance-verify -->
 

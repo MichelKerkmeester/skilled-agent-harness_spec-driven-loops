@@ -30,8 +30,8 @@
 - CF-010 unified query trust mapping around detector provenance, which means new findings should look for other surfaces that still bypass or dilute the shared readiness contract [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md:5-13].
 - CF-014 moved child-phase research artifacts onto a canonical packet root, so pt-02 should not spend time on artifact-root drift unless a new downstream consumer still assumes the pre-fix layout [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md:5-13].
 - Pt-01's findings registry left the most actionable open lanes in correctness, freshness, observability, and cross-runtime transport rather than introducing a broader architecture rewrite agenda [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json:26-125].
-- Startup-brief builder tests already assert that a structured `sharedPayload` exists at the builder layer, so transport loss is likely happening in runtime adapters rather than the builder itself [.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81].
-- The live startup docs still frame SessionStart as a shared runtime capability, which raises the bar for any remaining text-only or runtime-specific degradation across adapters [.opencode/skill/system-spec-kit/references/config/hook_system.md:35-45,64-78].
+- Startup-brief builder tests already assert that a structured `sharedPayload` exists at the builder layer, so transport loss is likely happening in runtime adapters rather than the builder itself [.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81].
+- The live startup docs still frame SessionStart as a shared runtime capability, which raises the bar for any remaining text-only or runtime-specific degradation across adapters [.opencode/skills/system-spec-kit/references/config/hook_system.md:35-45,64-78].
 
 ## Initial Hypotheses
 

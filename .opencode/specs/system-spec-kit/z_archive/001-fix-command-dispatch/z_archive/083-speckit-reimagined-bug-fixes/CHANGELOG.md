@@ -20,7 +20,7 @@ This release addresses **30+ bugs** discovered during a comprehensive 15-agent p
 - **Impact:** Memory anchors now parse correctly
 
 #### BUG-002: YAML Path Corrections
-- **Fixed:** 7 command files updated from `.opencode/command/` → `.claude/commands/`
+- **Fixed:** 7 command files updated from `.opencode/commands/` → `.claude/commands/`
 - **Files:** debug.md, research/research.md, complete.md, implement.md, plan.md, resume.md, handover.md
 - **Impact:** YAML assets now load from correct paths
 
@@ -129,7 +129,7 @@ This release addresses **30+ bugs** discovered during a comprehensive 15-agent p
 |----------|-------|-------|
 | Command Files | spec_kit/*.md, memory/*.md | 13 |
 | YAML Assets | spec_kit/assets/*.yaml | 7 |
-| Agent Files | .opencode/agent/*.md | 2 |
+| Agent Files | .opencode/agents/*.md | 2 |
 | Documentation | README.md, SKILL.md | 2 |
 
 ---

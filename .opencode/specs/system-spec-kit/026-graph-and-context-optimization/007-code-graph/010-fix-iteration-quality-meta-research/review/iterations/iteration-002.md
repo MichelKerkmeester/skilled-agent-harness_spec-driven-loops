@@ -2,20 +2,20 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12` - R5 classification requirement for suspected issues.
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:36` - same-class producer, consumer, algorithm, matrix, and hostile-state inventory protocol.
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12` - R5 classification requirement for suspected issues.
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:36` - same-class producer, consumer, algorithm, matrix, and hostile-state inventory protocol.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/prompts/iteration-002.md:7` - security focus on adversarial `scopeProof` values.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/decision-record.md:52` - P1-B context: review-derived Planning Packet strings can contain instruction-like or unverified content.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/decision-record.md:60` - decision requires inert handling, repo-relative verification, or `UNKNOWN`.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:66` - P1-B classified as a cross-consumer copied-command execution boundary.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:84` - prior generic inert wording was exhausted because command-shaped text could still become verification work.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:100` - cycle-3 focus requires confirming both plan workflows and command-shaped/shell-shaped handling.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:218` - auto workflow imports Planning Packet fields including `activeFindings[].scopeProof`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:220` - auto workflow treats imported values as inert, forbids executing copied `scopeProof` commands, and defines the command-shaped/shell-shaped detector.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:576` - auto writing rule repeats the copied-command ban and detector.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:224` - confirm workflow imports Planning Packet fields including `activeFindings[].scopeProof`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:226` - confirm workflow treats imported values as inert, forbids executing copied `scopeProof` commands, and defines the command-shaped/shell-shaped detector.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:625` - confirm writing rule repeats the copied-command ban and detector.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:218` - auto workflow imports Planning Packet fields including `activeFindings[].scopeProof`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:220` - auto workflow treats imported values as inert, forbids executing copied `scopeProof` commands, and defines the command-shaped/shell-shaped detector.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:576` - auto writing rule repeats the copied-command ban and detector.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:224` - confirm workflow imports Planning Packet fields including `activeFindings[].scopeProof`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:226` - confirm workflow treats imported values as inert, forbids executing copied `scopeProof` commands, and defines the command-shaped/shell-shaped detector.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:625` - confirm writing rule repeats the copied-command ban and detector.
 
 ## Findings by Severity
 

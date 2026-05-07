@@ -47,14 +47,14 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Cited | OK | `memory_context` (line 48) + `memory_search` (line 55) + `code_graph_query` (line 573) descriptions |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Cited | OK | Advisor structural-intent nudge logic at lines 226-340 |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | Cited | OK | Routing handler reviewed for RQ1 + RQ3 |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Cited | OK | Envelope build site (lines 1100-1200) |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Cited | OK | `code_graph_query` response shape |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope contract for RQ3 routing-trace coverage |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Cited | OK | QueryPlan: intent + selectedChannels + skippedChannels + routingReasons |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Cited | OK | Existing intent classifier reference |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Cited | OK | `memory_context` (line 48) + `memory_search` (line 55) + `code_graph_query` (line 573) descriptions |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Cited | OK | Advisor structural-intent nudge logic at lines 226-340 |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Cited | OK | Routing handler reviewed for RQ1 + RQ3 |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Cited | OK | Envelope build site (lines 1100-1200) |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts` | Cited | OK | `code_graph_query` response shape |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope contract for RQ3 routing-trace coverage |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts` | Cited | OK | QueryPlan: intent + selectedChannels + skippedChannels + routingReasons |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts` | Cited | OK | Existing intent classifier reference |
 
 ---
 

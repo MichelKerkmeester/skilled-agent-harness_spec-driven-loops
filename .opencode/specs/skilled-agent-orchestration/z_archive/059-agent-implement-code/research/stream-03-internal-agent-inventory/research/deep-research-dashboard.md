@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: Inventory the existing internal .opencode/agent/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agent/code.md design.
+- Topic: Inventory the existing internal .opencode/agents/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agents/code.md design.
 - Started: 2026-05-01T15:00:00Z
 - Status: COMPLETE
 - Iteration: 5 of 8
@@ -49,7 +49,7 @@ Reducer-generated observability surface for the active research packet.
 - Answered: 0/5
 - [ ] Q1: Skill auto-loading patterns - how do current agents pick up skills? Is there a frontmatter field naming skills to auto-load? What does the skill-advisor hook do at the agent boundary?
 - [ ] Q2: Stack-agnostic detection mechanisms - concretely: how does `sk-code` detect Webflow vs Next.js vs Go vs Swift? Where is the marker-file probing logic? Can a future `@code` agent reuse this without hardcoding stack assumptions?
-- [ ] Q3: Caller-restriction enforcement (D3 BLOCKER) - any harness-level mechanism in our codebase that enforces caller restrictions? Inspect every `.opencode/agent/*.md` for relevant frontmatter. Inspect AGENTS.md "Distributed Governance Rule" and "@orchestrate routes to" pattern. Find what mechanism, if any, the harness already supports for "callable only by orchestrator".
+- [ ] Q3: Caller-restriction enforcement (D3 BLOCKER) - any harness-level mechanism in our codebase that enforces caller restrictions? Inspect every `.opencode/agents/*.md` for relevant frontmatter. Inspect AGENTS.md "Distributed Governance Rule" and "@orchestrate routes to" pattern. Find what mechanism, if any, the harness already supports for "callable only by orchestrator".
 - [ ] Q4: Write-capable safety guarantees - how do existing write-capable agents (write, debug for `debug-delegation.md`, deep-research for `research/research.md`) bound their writes? Path allowlists, scope locks, validation hooks?
 - [ ] Q5: Sub-agent dispatch contracts and depth/nesting rules - what does LEAF mean concretely in our agents? Find every `leaf` flag, every `task:` permission, every comment forbidding nested dispatch. What enforces it at runtime? `task: deny` is one example - where is it implemented?
 
@@ -68,7 +68,7 @@ Reducer-generated observability surface for the active research packet.
 - Existing explicit frontmatter keys named `caller`, `dispatchableBy`, `callableFrom`, `parent`, `restricted_callers`, `allowed_callers`, or equivalent. (iteration 1)
 - Existing harness-level validator patterns named `isOrchestrator`, `restricted_callers`, or `dispatchableBy`. (iteration 1)
 - Treating `permission.task: deny` as caller restriction. It prevents the callee from dispatching onward; it does not restrict who can invoke the callee. (iteration 1)
-- A universal runtime write allowlist for `.opencode/agent/*` agents in system-spec-kit scripts/shared code. (iteration 2)
+- A universal runtime write allowlist for `.opencode/agents/*` agents in system-spec-kit scripts/shared code. (iteration 2)
 - Code-level enforcement for "spec.md scope is FROZEN"; the focused search found the scope-lock rule as AGENTS.md prose only. (iteration 2)
 - Machine-readable `allowed_paths` / `allowedPaths` / `allowed_path` fields in the inspected agent frontmatter. (iteration 2)
 - `@orchestrate` having an explicit `permission.task: allow` frontmatter field in the current file. (iteration 3)

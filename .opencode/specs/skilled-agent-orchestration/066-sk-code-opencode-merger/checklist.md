@@ -65,7 +65,7 @@ _memory:
 - [x] CHK-010 [P0] `sk-code` two-axis detection routes Webflow + OpenCode correctly. Evidence: `SKILL.md`, `code_surface_detection.md`, advisor recommendation for `.opencode` TypeScript fixture routes to `sk-code`.
 - [x] CHK-010a [P0] CODE SURFACE detection: Webflow markers route to webflow surface; .opencode/ CWD routes to opencode surface. Evidence: router docs and focused reference checks.
 - [x] CHK-010b [P0] Language sub-detection within OPENCODE correctly selects JS/TS/Python/Shell/Config from file extensions. Evidence: `SKILL.md` language table and opencode resource map.
-- [x] CHK-011 [P0] Moved verifier script passes its tests. Evidence: `npx vitest run ../scripts/tests/alignment-drift-fixture-preservation.vitest.ts` passed; `verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/skill_advisor` PASS.
+- [x] CHK-011 [P0] Moved verifier script passes its tests. Evidence: `npx vitest run ../scripts/tests/alignment-drift-fixture-preservation.vitest.ts` passed; `verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server/skill_advisor` PASS.
 - [x] CHK-012 [P1] TypeScript advisor scorer changes pass targeted vitest suites. Evidence: focused advisor/router suite passed 185 tests.
 - [x] CHK-013 [P1] Agent and command docs use one synchronized wording model. Evidence: reference searches for old overlay text are clean except retired-model note.
 <!-- /ANCHOR:code-quality -->
@@ -76,7 +76,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Exact live search for `sk-code-opencode` has only historical/spec-folder matches after deletion.
-- [x] CHK-020a [P0] Historical changelogs deleted with `.opencode/skill/sk-code-opencode/`.
+- [x] CHK-020a [P0] Historical changelogs deleted with `.opencode/skills/sk-code-opencode/`.
 - [x] CHK-020b [P0] Telemetry JSONL regenerated/rewritten. Evidence: `smart-router-measurement-results.jsonl` clean; live compliance rows normalized to `sk-code`.
 - [x] CHK-021 [P0] Exact live search for `sk-code-*` overlay language has only approved historical matches. Evidence: retired-model note in `sk-code-review/README.md` only.
 - [x] CHK-022 [P0] Exact `sk-code` search shows no live `GO` or `NEXTJS` support claims. Evidence: remaining matches are historical changelog text or unrelated word fragments.

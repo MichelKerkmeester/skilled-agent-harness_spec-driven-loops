@@ -8,7 +8,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { wrapSectionsWithAnchors } from '../../../../../skill/system-spec-kit/scripts/dist/lib/anchor-generator.js';
-const TEMPLATE_BASE = '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates';
+const TEMPLATE_BASE = '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates';
 const LEVEL_FOLDERS = ['level_1', 'level_2', 'level_3', 'level_3+'];
 const TEMPLATE_FILES = [
     'spec.md',

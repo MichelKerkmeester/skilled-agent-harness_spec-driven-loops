@@ -157,7 +157,7 @@ T-024: /memory:save
 
 - [ ] T-014: Mass sed `@improve-agent` → `@deep-agent-improvement` across active scope (skill docs + command bodies + YAML internal content)
 - [ ] T-015: Update root governance (AGENTS.md line 324, README.md line 1097)
-- [ ] T-016: Update runtime READMEs (.opencode/agent/README.txt, etc.)
+- [ ] T-016: Update runtime READMEs (.opencode/agents/README.txt, etc.)
 - [ ] T-017: Author new changelog `v1.5.0.0.md` documenting the rename + 079 + 085/001 precedents
 
 ### Phase 3: Verification (T-018..T-024)
@@ -191,8 +191,8 @@ T-024: /memory:save
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Packet 079 skill rename complete | Internal | Green (`.opencode/skill/deep-agent-improvement/` exists) | Cannot rename agent without skill rename predecessor |
-| Sandbox agent at `.opencode/skill/deep-agent-improvement/test-fixtures/...` | Internal | Green | Smoke dispatch test |
+| Packet 079 skill rename complete | Internal | Green (`.opencode/skills/deep-agent-improvement/` exists) | Cannot rename agent without skill rename predecessor |
+| Sandbox agent at `.opencode/skills/deep-agent-improvement/test-fixtures/...` | Internal | Green | Smoke dispatch test |
 | `validate.sh` working | Internal | Green | Strict validation gate |
 <!-- /ANCHOR:dependencies -->
 
@@ -205,7 +205,7 @@ T-024: /memory:save
 - **Procedure**:
   1. `git log --oneline | head -10` — identify rename commits
   2. `git revert <commit-hash>` for each commit in reverse order
-  3. Verify: `ls .opencode/agent/improve-agent.md` returns the file again; `rg -F '@improve-agent'` returns ~31 hits
+  3. Verify: `ls .opencode/agents/improve-agent.md` returns the file again; `rg -F '@improve-agent'` returns ~31 hits
   4. Verify smoke dispatch on the restored agent
   5. Document rollback in `implementation-summary.md`
 <!-- /ANCHOR:rollback -->

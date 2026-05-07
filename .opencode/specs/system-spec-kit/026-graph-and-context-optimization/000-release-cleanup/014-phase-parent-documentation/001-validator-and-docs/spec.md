@@ -95,23 +95,23 @@ A spec folder that has phase children only requires three files at the parent le
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | Modify | Add early phase-parent branch: if `has_phase_children()` and at least one child has spec.md/description.json, require only `spec.md` (parent already validated for `description.json`/`graph-metadata.json` by other rules). |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh` | Modify | Skip level-match enforcement at phase parents (level is informational only when the parent surface is the lean trio). |
-| `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh` | Modify | Add `is_phase_parent()` helper used by both rules (single source of truth alongside existing `has_phase_children()`). |
-| `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md` | Create | New minimalist phase-parent spec template. ~80 LOC. Content discipline rule embedded as inline comments. |
-| `.opencode/skill/system-spec-kit/templates/context-index.md` | Create | Migration-bridge template (for cases like 026's 29→10 reorg). |
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Modify | Sharpen Author Instructions §Scope shape: parent-aggregate vs per-child mode at phase parents. ~10 LOC. |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Modify | When `--phase` is used, parent scaffolds from `templates/phase_parent/spec.md` instead of `templates/level_N/spec.md`. |
-| `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` (and TS source under `mcp_server/lib/`) | Modify | `isPhaseParent(specFolder)` helper; routing branch that writes `graph-metadata.json` `derived.last_active_child_id` instead of `implementation-summary.md` continuity for parents. |
-| `.opencode/command/spec_kit/spec_kit_resume.md` (and YAML) | Modify | Phase-parent redirect: read pointer, recurse to child; fall back to manifest with `--no-redirect` flag. |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Note phase-parent redirect in the brief assembler. |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Modify | Add early phase-parent branch: if `has_phase_children()` and at least one child has spec.md/description.json, require only `spec.md` (parent already validated for `description.json`/`graph-metadata.json` by other rules). |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh` | Modify | Skip level-match enforcement at phase parents (level is informational only when the parent surface is the lean trio). |
+| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | Modify | Add `is_phase_parent()` helper used by both rules (single source of truth alongside existing `has_phase_children()`). |
+| `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md` | Create | New minimalist phase-parent spec template. ~80 LOC. Content discipline rule embedded as inline comments. |
+| `.opencode/skills/system-spec-kit/templates/context-index.md` | Create | Migration-bridge template (for cases like 026's 29→10 reorg). |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Modify | Sharpen Author Instructions §Scope shape: parent-aggregate vs per-child mode at phase parents. ~10 LOC. |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modify | When `--phase` is used, parent scaffolds from `templates/phase_parent/spec.md` instead of `templates/level_N/spec.md`. |
+| `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` (and TS source under `mcp_server/lib/`) | Modify | `isPhaseParent(specFolder)` helper; routing branch that writes `graph-metadata.json` `derived.last_active_child_id` instead of `implementation-summary.md` continuity for parents. |
+| `.opencode/commands/spec_kit/spec_kit_resume.md` (and YAML) | Modify | Phase-parent redirect: read pointer, recurse to child; fall back to manifest with `--no-redirect` flag. |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Note phase-parent redirect in the brief assembler. |
 | `CLAUDE.md` | Modify | Resume ladder addendum for phase parents (`graph-metadata.json` → child) and §3 Documentation Levels phase-parent mode. |
 | `AGENTS.md` | Modify | §3 Documentation Levels: add phase-parent row; update mandatory-metadata note. |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Phase-parent mode explanation in level matrix; pointers to new templates. |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Phase-parent mode explanation in level matrix; pointers to new templates. |
 | `AGENTS_Barter.md` | Modify | Sync the phase-parent rule per known invariant. |
 | `AGENTS_example_fs_enterprises.md` | Modify | Sync the phase-parent rule per known invariant. |
-| `.opencode/skill/system-spec-kit/scripts/tests/spec/check-files.test.sh` (or equivalent) | Modify/Create | Test phase-parent branch passes with lean trio; test legacy parent with heavy docs still passes (tolerant policy). |
-| `.opencode/skill/system-spec-kit/scripts/tests/lib/is-phase-parent.test.sh` | Create | Test detection rule edge cases (empty children, NNN children without spec.md). |
+| `.opencode/skills/system-spec-kit/scripts/tests/spec/check-files.test.sh` (or equivalent) | Modify/Create | Test phase-parent branch passes with lean trio; test legacy parent with heavy docs still passes (tolerant policy). |
+| `.opencode/skills/system-spec-kit/scripts/tests/lib/is-phase-parent.test.sh` | Create | Test detection rule edge cases (empty children, NNN children without spec.md). |
 <!-- /ANCHOR:scope -->
 
 ---

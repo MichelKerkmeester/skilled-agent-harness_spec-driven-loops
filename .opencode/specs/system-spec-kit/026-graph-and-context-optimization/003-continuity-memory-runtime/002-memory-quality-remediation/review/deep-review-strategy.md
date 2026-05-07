@@ -95,9 +95,9 @@ Completed. The remaining defect is isolated to the Phase 4 Draft-status mismatch
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/006-memory-duplication-reduction/implementation-summary.md` | D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/007-skill-catalog-sync/spec.md` | D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/007-skill-catalog-sync/implementation-summary.md` | D3 | 2 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
-| `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | D1, D4 | 3 | 0 P0, 0 P1, 0 P2 | complete |
 
 ## 15. REVIEW BOUNDARIES
 

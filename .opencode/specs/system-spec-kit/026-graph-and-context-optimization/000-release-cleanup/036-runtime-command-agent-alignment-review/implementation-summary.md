@@ -66,10 +66,10 @@ Updated `/doctor:mcp_install`, `/doctor:code-graph`, `/doctor:skill-advisor`, `/
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/doctor/*` | Modified | Refresh Node floor, code-graph, and advisor rebuild claims |
-| `.opencode/command/memory/*` | Modified | Surface retention sweep lifecycle |
-| `.opencode/command/spec_kit/assets/*deep*.yaml` | Modified | Replace stale authority-guard packet prose |
-| `.opencode/agent/*.md` | Modified | Align hook, directory, evergreen, and phase wording |
+| `.opencode/commands/doctor/*` | Modified | Refresh Node floor, code-graph, and advisor rebuild claims |
+| `.opencode/commands/memory/*` | Modified | Surface retention sweep lifecycle |
+| `.opencode/commands/spec_kit/assets/*deep*.yaml` | Modified | Replace stale authority-guard packet prose |
+| `.opencode/agents/*.md` | Modified | Align hook, directory, evergreen, and phase wording |
 | `.claude/agents/*.md` | Modified | Mirror writable agent fixes |
 | `.gemini/agents/*.md` | Modified | Mirror writable agent fixes |
 | Packet docs and reports | Created | Audit, remediation, cross-runtime, and validation record |

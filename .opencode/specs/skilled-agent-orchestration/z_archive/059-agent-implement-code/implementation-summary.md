@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Live smoke tests post-merge; user can dispatch @orchestrate → @code from a fresh session"
     blockers: []
     key_files:
-      - .opencode/agent/code.md
-      - .opencode/agent/orchestrate.md
+      - .opencode/agents/code.md
+      - .opencode/agents/orchestrate.md
       - AGENTS.md
       - AGENTS_Barter.md
       - specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md
@@ -50,8 +50,8 @@ _memory:
 | Phase 2 (Research) | Complete (2026-05-01 afternoon — 3 parallel streams converged) |
 | Phase 3 (Implementation) | Complete (2026-05-01 evening — agent authored + routing + AGENTS triad + ADR-3 final + structural cleanup) |
 | Total spec docs touched | 7 (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`) |
-| New runtime files | 1 (`.opencode/agent/code.md`) |
-| Modified runtime files | 3 (`.opencode/agent/orchestrate.md`, `AGENTS.md`, `AGENTS_Barter.md`) |
+| New runtime files | 1 (`.opencode/agents/code.md`) |
+| Modified runtime files | 3 (`.opencode/agents/orchestrate.md`, `AGENTS.md`, `AGENTS_Barter.md`) |
 | Research artifacts | 3 stream packets + 1 cross-stream synthesis (`research/synthesis.md`) |
 | Branch | `main` (per memory rule: no feature branches) |
 
@@ -64,7 +64,7 @@ _memory:
 
 ### @code: Application-Code LEAF Agent
 
-A new write-capable LEAF agent at `.opencode/agent/code.md` that implements bounded application-code changes inside an orchestrator-declared scope. Stack-aware via `sk-code` skill delegation (no stack rules baked into the agent prompt). Fail-closed verification: any test or build failure returns to the orchestrator without internal retry.
+A new write-capable LEAF agent at `.opencode/agents/code.md` that implements bounded application-code changes inside an orchestrator-declared scope. Stack-aware via `sk-code` skill delegation (no stack rules baked into the agent prompt). Fail-closed verification: any test or build failure returns to the orchestrator without internal retry.
 
 **Body depth (post stream-04 expansion):** ~522 lines mirroring `@review.md` §0-§13 structure from a coder perspective:
 - §0 Illegal Nesting + §0 Dispatch Gate (D3 convention-floor)
@@ -87,15 +87,15 @@ A new write-capable LEAF agent at `.opencode/agent/code.md` that implements boun
 Three layers, matching the precedent set by `@deep-research`/`@deep-review`/`@improve-agent` (`cli-opencode/SKILL.md:296-300`, `AGENTS.md:223`):
 
 1. Frontmatter `description` field declares "Dispatched ONLY by @orchestrate (orchestrator-only convention; not harness-enforced)."
-2. Body §0 **DISPATCH GATE** refuses with the canonical REFUSE message when invoked without an orchestrator-context marker (the `Depth: 1` line per `.opencode/agent/orchestrate.md` §2 NDP).
-3. `.opencode/agent/orchestrate.md` §2 routing-table entry adds `@code` as the implementation specialist (orchestrator-side referencing).
+2. Body §0 **DISPATCH GATE** refuses with the canonical REFUSE message when invoked without an orchestrator-context marker (the `Depth: 1` line per `.opencode/agents/orchestrate.md` §2 NDP).
+3. `.opencode/agents/orchestrate.md` §2 routing-table entry adds `@code` as the implementation specialist (orchestrator-side referencing).
 
 Reinforcing harness mechanism (LEAF, distinct from caller-restriction): `mode: subagent` + `permission.task: deny`.
 
 ### Files Changed
 
-- **NEW** `.opencode/agent/code.md` (~522 lines, expanded post-stream-04 to mirror `@review.md` §0-§13 depth from coder perspective) — the agent file
-- **MODIFIED** `.opencode/agent/orchestrate.md` — `@code` row added to §2 routing table + Agent Files table
+- **NEW** `.opencode/agents/code.md` (~522 lines, expanded post-stream-04 to mirror `@review.md` §0-§13 depth from coder perspective) — the agent file
+- **MODIFIED** `.opencode/agents/orchestrate.md` — `@code` row added to §2 routing table + Agent Files table
 - **MODIFIED** `AGENTS.md` — `@code` listed in §5 Agent Routing
 - **MODIFIED** `AGENTS_Barter.md` — `@code` listed in §5 Agent Routing
 - **MODIFIED** `specs/.../059-agent-implement-code/decision-record.md` — ADR-3 (D3) final text + `ADR-D#` → `ADR-#` rename for canonical-header validator alignment
@@ -126,14 +126,14 @@ Three parallel deep-research streams dispatched via background general-purpose s
 |---|---|---|---|---|
 | 01 | oh-my-opencode-slim | 4/8 | all_questions_answered | ~30 cited |
 | 02 | opencode-swarm-main | 5/8 | all_questions_resolved | ~44 cited (P0/P1/P2) |
-| 03 | internal `.opencode/agent/` + AGENTS.md + sk-code | 5/8 | zero-remaining-questions | 56 cited |
+| 03 | internal `.opencode/agents/` + AGENTS.md + sk-code | 5/8 | zero-remaining-questions | 56 cited |
 
 Cross-stream synthesis written to `research/synthesis.md` reconciling the three sources and producing the finalized D3 diff text + canonical `code.md` skeleton.
 
 ### Phase 2 — Implementation: Authoring + sync (T027–T031)
 
-T027 — `.opencode/agent/code.md` authored from synthesis §4 skeleton.
-T028 — `.opencode/agent/orchestrate.md` §2 routing table updated.
+T027 — `.opencode/agents/code.md` authored from synthesis §4 skeleton.
+T028 — `.opencode/agents/orchestrate.md` §2 routing table updated.
 T029–T031 — AGENTS.md sibling triad synced with `@code` row (shared runtime contract; skill-specific names stayed project-local per memory rule).
 
 ### Phase 3 — Verification (T032–T039)
@@ -168,7 +168,7 @@ No decisions REVERSED by research. ADR-3 was the only ADR with a "post-research"
 After the canonical-header restructure of tasks.md / checklist.md / implementation-summary.md / decision-record.md, the validator should pass on the structural rules. Final pass command:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/skilled-agent-orchestration/059-agent-implement-code --strict
 ```
 

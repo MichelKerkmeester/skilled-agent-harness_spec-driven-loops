@@ -51,8 +51,8 @@ This pass does not add new MCP tools. It reconciles the 012 command-alignment pl
 
 ### Definition of Ready
 - [x] Live schema count verified from `tool-schemas.ts`
-- [x] Live command-surface count verified from `.opencode/command/memory/`
-- [x] Retrieval and shared-lifecycle ownership verified from `.opencode/command/memory/search.md`, `.opencode/command/memory/manage.md`, and `.opencode/command/memory/README.txt`
+- [x] Live command-surface count verified from `.opencode/commands/memory/`
+- [x] Retrieval and shared-lifecycle ownership verified from `.opencode/commands/memory/search.md`, `.opencode/commands/memory/manage.md`, and `.opencode/commands/memory/README.txt`
 
 ### Definition of Done
 - [ ] `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` satisfy required Level 2 anchors and sections
@@ -70,7 +70,7 @@ Documentation-only truth reconciliation against live repo sources.
 
 ### Key Components
 - **Schema inventory**: `tool-schemas.ts` and `schemas/tool-input-schemas.ts` define the canonical 33-tool surface.
-- **Runtime command docs**: `.opencode/command/memory/*.md`, `.opencode/command/spec_kit/resume.md`, and the README surfaces define the live 4-command ownership model plus spec-kit recovery routing.
+- **Runtime command docs**: `.opencode/commands/memory/*.md`, `.opencode/commands/spec_kit/resume.md`, and the README surfaces define the live 4-command ownership model plus spec-kit recovery routing.
 - **Spec pack**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` carry the reconciled narrative.
 
 ### Data Flow
@@ -88,7 +88,7 @@ Read live schema and command-doc evidence, update the five scoped planning docum
 |------|--------|--------|----------|
 | 0.1 | Recount `TOOL_DEFINITIONS` | Confirm 33-tool baseline | P0 |
 | 0.2 | Count live memory command files | Confirm 4-command suite, no standalone `/memory:analyze`, and no standalone `/memory:shared` command file | P0 |
-| 0.3 | Verify command ownership in `.opencode/command/memory/search.md`, `.opencode/command/memory/manage.md`, and `.opencode/command/memory/README.txt` | Confirm retrieval plus `memory_quick_search` ownership under `search`, and shared lifecycle under `manage shared` | P0 |
+| 0.3 | Verify command ownership in `.opencode/commands/memory/search.md`, `.opencode/commands/memory/manage.md`, and `.opencode/commands/memory/README.txt` | Confirm retrieval plus `memory_quick_search` ownership under `search`, and shared lifecycle under `manage shared` | P0 |
 
 ### Phase 1: Reconcile the 012 Spec Pack
 
@@ -136,11 +136,11 @@ Read live schema and command-doc evidence, update the five scoped planning docum
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Internal | Green | Tool-count truth source would be unavailable |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Internal | Green | Parameter-parity verification would be incomplete |
-| `.opencode/command/memory/search.md` | Internal | Green | Retrieval ownership could not be verified |
-| `.opencode/command/memory/manage.md` | Internal | Green | Shared-memory lifecycle ownership could not be verified |
-| `.opencode/command/memory/README.txt` | Internal | Green | Command-home coverage matrix could not be verified |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Internal | Green | Tool-count truth source would be unavailable |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Internal | Green | Parameter-parity verification would be incomplete |
+| `.opencode/commands/memory/search.md` | Internal | Green | Retrieval ownership could not be verified |
+| `.opencode/commands/memory/manage.md` | Internal | Green | Shared-memory lifecycle ownership could not be verified |
+| `.opencode/commands/memory/README.txt` | Internal | Green | Command-home coverage matrix could not be verified |
 | `validate.sh` | Internal | Green | Pack completion could not be claimed honestly |
 <!-- /ANCHOR:dependencies -->
 
@@ -176,7 +176,7 @@ For each planning document:
 
 - Use `tool-schemas.ts` for canonical tool count.
 - Use the live command directory to determine command-surface shape.
-- Use `.opencode/command/memory/README.txt`, `.opencode/command/memory/search.md`, and `.opencode/command/memory/manage.md` as evidence for command ownership.
+- Use `.opencode/commands/memory/README.txt`, `.opencode/commands/memory/search.md`, and `.opencode/commands/memory/manage.md` as evidence for command ownership.
 - Do not infer missing work if the command/docs already exist.
 
 ---
@@ -188,11 +188,11 @@ Recommended checks:
 ```bash
 node - <<'NODE'
 const fs = require('fs');
-const text = fs.readFileSync('.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts', 'utf8');
+const text = fs.readFileSync('.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts', 'utf8');
 console.log((text.match(/name:\s*'/g) || []).length);
 NODE
 
-ls .opencode/command/memory
+ls .opencode/commands/memory
 
 rg -n "32-tool|32 tools|7-command|7 commands|context" \
   .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment
@@ -200,7 +200,7 @@ rg -n "32-tool|32 tools|7-command|7 commands|context" \
 rg -n "/memory:analyze|/memory:shared|analyze\\.md|shared\\.md|5-command|5 commands" \
   .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment
 
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment --strict
 ```
 

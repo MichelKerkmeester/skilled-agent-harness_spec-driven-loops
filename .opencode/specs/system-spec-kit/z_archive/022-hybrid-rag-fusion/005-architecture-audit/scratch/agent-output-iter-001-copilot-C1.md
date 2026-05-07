@@ -6,11 +6,11 @@ I’m pulling the review baseline plus the actual core files now, then I’ll ex
   └ Agent started in background with agent_id: core-audit-second-pass. You can us...
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ 1 line read
 
 ● Read config.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/config.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/config.ts
   └ 369 lines read
 
 ● Read quick_reference.md
@@ -26,23 +26,23 @@ I’m pulling the review baseline plus the actual core files now, then I’ll ex
   └ 162 lines read
 
 ● Read subfolder-utils.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts
   └ 223 lines read
 
 ● Read file-writer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 231 lines read
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ 239 lines read
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/index.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/index.ts
   └ 39 lines read
 
 ● Read tree-thinning.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
   └ 285 lines read
 
 ● Read security_checklist.md
@@ -50,11 +50,11 @@ I’m pulling the review baseline plus the actual core files now, then I’ll ex
   └ 206 lines read
 
 ● Read topic-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/topic-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/topic-extractor.ts
   └ 59 lines read
 
 ● Read quality-scorer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts
   └ 356 lines read
 
 ● Create session plan file (shell)
@@ -70,64 +70,64 @@ I’m pulling the review baseline plus the actual core files now, then I’ll ex
 `workflow.ts` is the main hotspot, so I’m chunking it and mapping the big functions before I score the concrete risks.
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1:250 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L251:500 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L751:1000 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L501:750 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1001:1250 (249 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1251:1500 (249 lines read)
 
 ● Count lines and map workflow functions (shell)
   │ wc -l
-  │ '.opencode/skill/system-spec-kit/scripts/core/'{config.ts,workflow.ts,memory-indexer.ts,qualit
+  │ '.opencode/skills/system-spec-kit/scripts/core/'{config.ts,workflow.ts,memory-indexer.ts,qualit
   │ y-scorer.ts,topic-extractor.ts,file-writer.ts,subfolder-utils.ts,tree-thinning.ts,index.ts} &&
   │ printf '\n--- workflow functions ---\n' && rg -n
   │ "^(export\s+)?(async\s+)?function|^const\s+[A-Za-z0-9_]+\s*=\s*(async\s*)?\(" …
   └ 60 lines...
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1501:1750 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L1751:2000 (250 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2001:2250 (249 lines read)
 
 ● Read workflow.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ L2251:2398 (148 lines read)
 
 ● Search (grep)
   │ "TODO|FIXME|HACK|catch \(_error|catch \{|console\.warn|console\.error|readFileSync|writeFileSync
   │ |existsSync|readdirSync|statSync|realpathSync" in *.ts
-  │ (.opencode/skill/system-spec-kit/scripts/core)
+  │ (.opencode/skills/system-spec-kit/scripts/core)
   └ 57 lines found
 
 ● Search (grep)
   │ "normalizeFilePath\(|readNamedObject\(|readStringArray\(|readNumber\(|readString\(|ensureMinTrig
   │ gerPhrases\(|ensureMinSemanticTopics\(|validateDescription\(|qualityAbortThreshold|SEARCH_MAX_DE
   │ PTH|DEFAULT_THINNING_CONFIG|MIN_SUBSTANCE_CHARS" in **/*.ts
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 94 lines found
 
 I’ve got the full code in view now. I’m doing one pass for correctness/perf/maintainability, then I’ll cross-check with a separate reviewer to weed out weak findings.
@@ -138,23 +138,23 @@ I’ve got the full code in view now. I’m doing one pass for correctness/perf/
 I’ve narrowed it to a handful of real defects plus a few structural hotspots. I’m sanity-checking the trickier regex/path cases so the final audit stays high-signal.
 
 ● Read file-helpers.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/file-helpers.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/file-helpers.ts
   └ L121:170 (50 lines read)
 
 ● Read runtime-memory-inputs.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
   └ L525:590 (66 lines read)
 
 ● Read git-context-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/git-context-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/git-context-extractor.ts
   └ L100:160 (61 lines read)
 
 ● Read tree-thinning.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/tree-thinning.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts
   └ L1:80 (80 lines read)
 
 ● Read spec-folder-extractor.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts
   └ L150:210 (61 lines read)
 
 ● Validate regex and memory path edge cases (shell)

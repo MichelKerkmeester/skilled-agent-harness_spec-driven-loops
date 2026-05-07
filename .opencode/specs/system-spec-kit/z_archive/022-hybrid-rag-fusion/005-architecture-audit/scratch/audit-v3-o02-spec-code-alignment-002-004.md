@@ -30,7 +30,7 @@
 ### O2-003: All Claimed Implementation Code Verified Present
 - **Severity**: N/A (PASS)
 - **Category**: alignment
-- **Location**: Multiple files in `.opencode/skill/system-spec-kit/mcp_server/`
+- **Location**: Multiple files in `.opencode/skills/system-spec-kit/mcp_server/`
 - **Description**: All code artifacts claimed by Phase 002 spec exist and contain the expected functionality:
   - `lib/parsing/memory-parser.ts` — contains `getCanonicalPathKey`, `canonicalizeForSpecFolderExtraction`, `seenCanonicalRoots`, `seenCanonicalFiles` dedup logic
   - `handlers/memory-index.ts` — contains canonical dedup with `seenCanonicalFiles` set, `dedupDuplicatesSkipped` counter, diagnostic log output
@@ -64,13 +64,13 @@
 ### O2-005: Constitutional Learn Refactor — Full Rewrite Verified Complete
 - **Severity**: N/A (PASS)
 - **Category**: alignment
-- **Location**: `.opencode/command/memory/learn.md`
+- **Location**: `.opencode/commands/memory/learn.md`
 - **Description**: The learn.md command file is confirmed rewritten as a constitutional memory manager:
   - Frontmatter describes "Create and manage constitutional memories"
   - Old learning types (pattern, mistake, insight, optimization) are absent — only one safe use of "constraint" in a qualification question remains, exactly as the checklist documents
   - Subcommands (list, edit, remove, budget) are present
   - File is 520 lines (spec claimed ~550, close enough)
-  - Constitutional directory path `.opencode/skill/system-spec-kit/constitutional/` exists with `gate-enforcement.md` and `README.md`
+  - Constitutional directory path `.opencode/skills/system-spec-kit/constitutional/` exists with `gate-enforcement.md` and `README.md`
   - Regression test `memory-learn-command-docs.vitest.ts` exists in `scripts/tests/`
 - **Evidence**: Grep for old learning types returns 0 matches except safe "constraint" context. Constitutional directory exists with active files.
 - **Impact**: N/A — refactor is complete as claimed.
@@ -83,7 +83,7 @@
 ### O2-006: Test Isolation Failure — Duplicate-Content No-Op Test Fails in Multi-File Run
 - **Severity**: HIGH
 - **Category**: bug
-- **Location**: `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:218`
+- **Location**: `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:218`
 - **Description**: The test "does not emit postMutationHooks for duplicate-content no-op saves" passes when run in isolation but **fails** when run as part of the 9-file combined suite. The test expects status `'duplicate'` but receives `'reinforced'`, indicating that DB state from other test files affects the content-hash dedup lookup.
 - **Evidence**:
   - Isolated run: `Tests 8 passed (8)` — all pass
@@ -104,7 +104,7 @@
 ### O2-008: All Claimed UX Hook Implementation Code Verified Present
 - **Severity**: N/A (PASS)
 - **Category**: alignment
-- **Location**: Multiple files in `.opencode/skill/system-spec-kit/mcp_server/`
+- **Location**: Multiple files in `.opencode/skills/system-spec-kit/mcp_server/`
 - **Description**: All code artifacts claimed by Phase 004 spec exist and contain the expected functionality:
   - `hooks/mutation-feedback.ts` — `buildMutationHookFeedback()` function with operation, latency, cache-clear data
   - `hooks/response-hints.ts` — `appendAutoSurfaceHints()`, `syncEnvelopeTokenCount()`, `serializeEnvelopeWithTokenCount()` functions

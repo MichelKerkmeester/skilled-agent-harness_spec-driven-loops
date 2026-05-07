@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 002 of 20. The packet root is
 
 **Angle A2 — Code-graph SQLite contention**
 
-Audit `.opencode/skill/system-spec-kit/mcp_server/code_graph/` (handlers/ and lib/) for concurrent-scan + concurrent-read patterns. Are transactions the right size? Are write-write conflicts handled (BEGIN IMMEDIATE / SAVEPOINT)? Are stale snapshots ever served from a long-running read? Cite the SQL or query construction sites with file:line.
+Audit `.opencode/skills/system-spec-kit/mcp_server/code_graph/` (handlers/ and lib/) for concurrent-scan + concurrent-read patterns. Are transactions the right size? Are write-write conflicts handled (BEGIN IMMEDIATE / SAVEPOINT)? Are stale snapshots ever served from a long-running read? Cite the SQL or query construction sites with file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

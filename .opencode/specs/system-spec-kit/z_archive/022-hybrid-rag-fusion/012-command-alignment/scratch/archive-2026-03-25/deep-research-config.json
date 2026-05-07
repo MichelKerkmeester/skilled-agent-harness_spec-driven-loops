@@ -1,8 +1,8 @@
 {
   "mode": "review",
   "reviewTarget": [
-    ".opencode/command/spec_kit/",
-    ".opencode/command/memory/"
+    ".opencode/commands/spec_kit/",
+    ".opencode/commands/memory/"
   ],
   "reviewTargetType": "files",
   "dimensions": ["correctness", "security", "traceability", "maintainability"],

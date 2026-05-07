@@ -16,16 +16,16 @@ I compared the external loop's config and persisted state models with the local 
 - `[SOURCE: external/automated-loop/config.py:102-110]` Completion-gate behavior is also defined in the same executable configuration model.
 - `[SOURCE: external/automated-loop/config.py:178-250]` Stagnation, validation, verification, and multi-agent controls stay in that same controller-owned config hierarchy.
 - `[SOURCE: external/automated-loop/state_tracker.py:65-77]` Persisted runtime state is also centralized in one typed model.
-- `[SOURCE: .opencode/command/spec_kit/deep-research.md:166-173]` The local command delegates the actual workflow to YAML assets rather than a single engine surface.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:15-16]` The loop protocol says the YAML manages lifecycle while the agent and reducer handle other responsibilities.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:46-70]` Initialization rules and charter validation are defined in prose.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:101-123]` Stop decisions and quality-guard behavior are also specified in prose.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/loop_protocol.md:159-198]` Dispatch context, per-iteration budgets, and reducer expectations are defined in yet another reference layer.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:15-27]` The local state model spans six primary files plus a reducer-owned registry.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/state_format.md:39-110]` Config and file-protection semantics are specified separately from the runtime controller.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/convergence.md:21-39]` Hard stops are defined in the convergence reference.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/convergence.md:50-150]` Composite convergence and quality guards are also defined there.
-- `[SOURCE: .opencode/skill/sk-deep-research/references/convergence.md:176-185]` Decision priority is documented textually rather than emitted from a single executable state machine.
+- `[SOURCE: .opencode/commands/spec_kit/deep-research.md:166-173]` The local command delegates the actual workflow to YAML assets rather than a single engine surface.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:15-16]` The loop protocol says the YAML manages lifecycle while the agent and reducer handle other responsibilities.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:46-70]` Initialization rules and charter validation are defined in prose.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:101-123]` Stop decisions and quality-guard behavior are also specified in prose.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/loop_protocol.md:159-198]` Dispatch context, per-iteration budgets, and reducer expectations are defined in yet another reference layer.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:15-27]` The local state model spans six primary files plus a reducer-owned registry.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/state_format.md:39-110]` Config and file-protection semantics are specified separately from the runtime controller.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:21-39]` Hard stops are defined in the convergence reference.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:50-150]` Composite convergence and quality guards are also defined there.
+- `[SOURCE: .opencode/skills/sk-deep-research/references/convergence.md:176-185]` Decision priority is documented textually rather than emitted from a single executable state machine.
 
 ## Analysis
 The local system is impressively explicit, but it is explicit in many places at once. Phase 1 already showed why this is dangerous for behavior drift. Phase 2 adds the architectural version of the same critique: the loop has a command surface, YAML assets, protocol docs, a state spec, a convergence spec, and reducer assumptions. That is enough surface area for semantic mismatch even when everyone is acting in good faith.
@@ -38,7 +38,7 @@ confidence: high
 finding: `system-spec-kit` should build a first-class deep-loop controller that owns lifecycle transitions, stop reasons, state writes, and reducer handoff semantics for both research and review. The current doc-and-YAML distribution is too diffuse for a core runtime contract.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.opencode/skill/sk-deep-research/references/state_format.md`, `.opencode/skill/sk-deep-research/references/convergence.md`
+- **Target file or module:** `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-research/references/convergence.md`
 - **Change type:** new module
 - **Blast radius:** architectural
 - **Prerequisites:** define a typed state machine and event schema that can be shared by research and review

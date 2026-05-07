@@ -66,8 +66,8 @@ Contract-first extension of the existing deep-research loop.
 
 ### Key Components
 - **Review packet spec docs**: `spec.md`, `plan.md`, `tasks.md`, `handover.md`
-- **Shared review references**: `.opencode/skill/sk-code-review/` reference files
-- **Review-mode command and skill docs**: `.opencode/command/spec_kit/deep-research.md` and `.opencode/skill/sk-deep-research/README.md`
+- **Shared review references**: `.opencode/skills/sk-code-review/` reference files
+- **Review-mode command and skill docs**: `.opencode/commands/spec_kit/deep-research.md` and `.opencode/skills/sk-deep-research/README.md`
 
 ### Data Flow
 The packet defines the review-mode intent, shared review references provide the scoring and contract inputs, and the command or skill surfaces carry the runtime-facing behavior.
@@ -99,7 +99,7 @@ The packet defines the review-mode intent, shared review references provide the 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Link integrity | `handover.md` and sibling packet docs | Manual review and spec validator |
-| Packet structure | This spec folder | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Packet structure | This spec folder | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Surface alignment | Referenced command and skill docs | Manual diff review |
 <!-- /ANCHOR:testing -->
 
@@ -110,9 +110,9 @@ The packet defines the review-mode intent, shared review references provide the 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/skill/sk-code-review/references/review_core.md` | Internal | Green | Shared review doctrine becomes harder to trace |
-| `.opencode/skill/sk-deep-research/README.md` | Internal | Green | Runtime-facing review guidance loses context |
-| `.opencode/command/spec_kit/deep-research.md` | Internal | Green | Entry-point behavior becomes ambiguous |
+| `.opencode/skills/sk-code-review/references/review_core.md` | Internal | Green | Shared review doctrine becomes harder to trace |
+| `.opencode/skills/sk-deep-research/README.md` | Internal | Green | Runtime-facing review guidance loses context |
+| `.opencode/commands/spec_kit/deep-research.md` | Internal | Green | Entry-point behavior becomes ambiguous |
 <!-- /ANCHOR:dependencies -->
 
 ---

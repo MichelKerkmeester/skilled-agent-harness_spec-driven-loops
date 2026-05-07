@@ -16,15 +16,15 @@ Answer Q8: decide whether `/memory:save` should learn to anchor council-completi
 
 ### 1. Do not add `ANCHOR:council-report-{packet}` as a canonical save target
 
-The current save router is deliberately category-based, not artifact-name based. `/memory:save` documents eight routed categories at `.opencode/command/memory/save.md:90` through `.opencode/command/memory/save.md:103`: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, and `drop`. The implementation mirrors that fixed target set in `buildTarget()` at `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:1062` through `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:1085`.
+The current save router is deliberately category-based, not artifact-name based. `/memory:save` documents eight routed categories at `.opencode/commands/memory/save.md:90` through `.opencode/commands/memory/save.md:103`: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, and `drop`. The implementation mirrors that fixed target set in `buildTarget()` at `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1062` through `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1085`.
 
-Adding a packet-specific `ANCHOR:council-report-{packet}` family would be a new ninth semantic destination or a dynamic sub-anchor system. That would fight the router prompt, which tells Tier 3 to classify into exactly the eight categories and never invent a new category, doc, anchor, or merge mode at `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:1280` through `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts:1298`.
+Adding a packet-specific `ANCHOR:council-report-{packet}` family would be a new ninth semantic destination or a dynamic sub-anchor system. That would fight the router prompt, which tells Tier 3 to classify into exactly the eight categories and never invent a new category, doc, anchor, or merge mode at `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1280` through `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1298`.
 
 The better rule is: a completed council can be summarized through existing save categories, but the raw `ai-council/council-report.md` remains the packet artifact source of truth.
 
 ### 2. `/memory:save` already has the right destination for council completion metadata
 
-The command's purpose is to route session context into canonical packet docs and `_memory.continuity`, not to index every packet artifact as its own anchor. Its canonical model names `handover.md`, `_memory.continuity`, `implementation-summary.md`, and `decision-record.md` as the main destinations at `.opencode/command/memory/save.md:71` through `.opencode/command/memory/save.md:80`. The direct workflow guide says all paths feed `generate-context` and update canonical packet continuity docs at `.opencode/skill/system-spec-kit/references/memory/save_workflow.md:14` through `.opencode/skill/system-spec-kit/references/memory/save_workflow.md:20`.
+The command's purpose is to route session context into canonical packet docs and `_memory.continuity`, not to index every packet artifact as its own anchor. Its canonical model names `handover.md`, `_memory.continuity`, `implementation-summary.md`, and `decision-record.md` as the main destinations at `.opencode/commands/memory/save.md:71` through `.opencode/commands/memory/save.md:80`. The direct workflow guide says all paths feed `generate-context` and update canonical packet continuity docs at `.opencode/skills/system-spec-kit/references/memory/save_workflow.md:14` through `.opencode/skills/system-spec-kit/references/memory/save_workflow.md:20`.
 
 That means the council completion should be represented as compact routed context:
 
@@ -37,7 +37,7 @@ No special anchor is needed to recover the raw report path. The `council_complet
 
 ### 3. A helper-emitted save payload is the right integration point
 
-`generate-context.ts` expects the AI or caller to provide structured JSON. Its help text says the preferred path is `--stdin`, `--json`, or a JSON temp file at `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:89` through `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:94`, and its JSON shape accepts `observations`, `recent_context`, `toolCalls`, `exchanges`, `preflight`, and `postflight` at `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:101` through `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:144`.
+`generate-context.ts` expects the AI or caller to provide structured JSON. Its help text says the preferred path is `--stdin`, `--json`, or a JSON temp file at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:89` through `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:94`, and its JSON shape accepts `observations`, `recent_context`, `toolCalls`, `exchanges`, `preflight`, and `postflight` at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:101` through `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:144`.
 
 The follow-on council helper from Q1 should therefore optionally emit a small save payload after it writes artifacts. Shape:
 
@@ -67,13 +67,13 @@ The caller may pipe this through `generate-context.js --stdin` only when the ses
 
 ### 4. Treat `council_complete` as evidence, not as the save trigger
 
-The agent body defines `council_complete` as the final JSONL event with `final_report_path` at `.opencode/agent/multi-ai-council.md:621` through `.opencode/agent/multi-ai-council.md:637`. The state-format reference says that if `council_complete` exists, the council is done unless the user requests another round at `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md:60`.
+The agent body defines `council_complete` as the final JSONL event with `final_report_path` at `.opencode/agents/multi-ai-council.md:621` through `.opencode/agents/multi-ai-council.md:637`. The state-format reference says that if `council_complete` exists, the council is done unless the user requests another round at `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md:60`.
 
 That event is a strong evidence source for save payload generation, but it should not automatically fire `/memory:save`. Automatic save-on-complete would couple a planning artifact to the canonical continuity substrate and add hidden writes to a convention whose current design is explicit, caller-mediated persistence. The packet 080 council report also says the agent remains planning-only and the dispatching orchestrator owns persistence at `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/ai-council/council-report.md:121`.
 
 ### 5. Thin continuity budget argues for pointers, not embedded report content
 
-The thin continuity writer serializes only the compact `_memory.continuity` frontmatter envelope at `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:778` through `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:790`. It compacts or rejects oversized continuity blocks at `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:895` through `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:915`.
+The thin continuity writer serializes only the compact `_memory.continuity` frontmatter envelope at `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:778` through `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:790`. It compacts or rejects oversized continuity blocks at `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:895` through `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts:915`.
 
 Council reports are long deliberative artifacts. Embedding them into `_memory.continuity` would be the wrong granularity. Store only a pointer plus the winning recommendation, convergence status, round number, and next action. Leave the full plan in `ai-council/council-report.md`.
 

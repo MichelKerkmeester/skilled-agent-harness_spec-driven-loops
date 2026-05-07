@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -105,7 +105,7 @@ After iter 20, synthesis updated `research/research.md` with section 13.B, exten
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` | PASS - RESULT: PASSED with zero errors and zero warnings |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` | PASS - RESULT: PASSED with zero errors and zero warnings |
 | 22 of 22 research questions answered | PASS - final coverage 1.0 at iter 20 |
 | At least 5 cited findings (REQ minimum) | PASS - 42 consolidated findings (K1 to K42), every one with file:line citation |
 | Adopt/Adapt/Reject table line-grounded | PASS - section 12 now has 6+7+4 rows, and each A5/A6/D6/D7 row is fully inlined with explicit source citations |
@@ -132,5 +132,5 @@ After iter 20, synthesis updated `research/research.md` with section 13.B, exten
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

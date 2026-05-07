@@ -41,13 +41,13 @@
     "status": "complete",
     "key_files": [
       "scripts/core/post-save-review.ts",
-      ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
-      ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts",
-      ".opencode/skill/system-spec-kit/scripts/core/post-save-review.ts",
+      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -67,37 +67,37 @@
       {
         "name": "session-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
         "source": "derived"
       },
       {
         "name": "workflow.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
         "source": "derived"
       },
       {
         "name": "collect-session-data.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
         "name": "session-extractor.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
         "source": "derived"
       },
       {

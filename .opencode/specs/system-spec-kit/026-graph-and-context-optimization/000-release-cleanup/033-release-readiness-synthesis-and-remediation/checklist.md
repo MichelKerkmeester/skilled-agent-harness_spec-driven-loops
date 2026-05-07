@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes build. [EVIDENCE: `npm run build` passed in `.opencode/skill/system-spec-kit/mcp_server`]
+- [x] CHK-010 [P0] Code passes build. [EVIDENCE: `npm run build` passed in `.opencode/skills/system-spec-kit/mcp_server`]
 - [x] CHK-011 [P0] No broad unrelated refactors. [EVIDENCE: `remediation-log.md` maps each edit to a packet 045 finding]
 - [x] CHK-012 [P1] Error handling implemented. [EVIDENCE: destructive deletes and schema validation reject unsafe calls]
 - [x] CHK-013 [P1] Code follows project patterns. [EVIDENCE: existing Zod schemas, Vitest tests, and shell rule patterns reused]

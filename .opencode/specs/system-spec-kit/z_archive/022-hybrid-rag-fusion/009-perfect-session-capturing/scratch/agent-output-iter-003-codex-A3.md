@@ -88,7 +88,7 @@ exec
      1	{
      2	  "capturedOn": "2026-03-17",
      3	  "capturedFromWorkspace": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",
-     4	  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skill/system-spec-kit/scripts`",
+     4	  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skills/system-spec-kit/scripts`",
      5	  "proofCriteria": {
      6	    "sameDayDate": "2026-03-17",
      7	    "minimumExchanges": 2,

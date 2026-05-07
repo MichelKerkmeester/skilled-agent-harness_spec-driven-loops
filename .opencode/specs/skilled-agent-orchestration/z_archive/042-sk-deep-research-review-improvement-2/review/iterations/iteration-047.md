@@ -155,18 +155,18 @@ I’ve recovered the actual code surface from the remediation commit. Now I’m 
 
 ● Show code diffs for 042 fix commit (shell)
   │ git --no-pager show --unified=3 --format=medium 54cefd6d7d --
-  │ .opencode/skill/sk-deep-research/scripts/reduce-state.cjs
-  │ .opencode/skill/sk-deep-review/scripts/reduce-state.cjs
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts …
+  │ .opencode/skills/sk-deep-research/scripts/reduce-state.cjs
+  │ .opencode/skills/sk-deep-review/scripts/reduce-state.cjs
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts …
   └ 24 lines...
 
 ● Run syntax and type checks on reviewed code (shell)
-  │ node --check .opencode/skill/sk-deep-research/scripts/reduce-state.cjs && node --check
-  │ .opencode/skill/sk-deep-review/scripts/reduce-state.cjs && node --check
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-session.cjs && node --check
-  │ .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs && node --check
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs && node --check …
+  │ node --check .opencode/skills/sk-deep-research/scripts/reduce-state.cjs && node --check
+  │ .opencode/skills/sk-deep-review/scripts/reduce-state.cjs && node --check
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs && node --check
+  │ .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs && node --check
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs && node --check …
   └ 16 lines...
 
 ● Read copilot-tool-output-1776019149395-vyuokg.txt
@@ -196,73 +196,73 @@ I’ve recovered the actual code surface from the remediation commit. Now I’m 
 I’ve narrowed it further: the active risk isn’t TypeScript build breakage—the typecheck is clean. I’m now verifying the CJS helper wiring and a couple of moved test files where broken exports or bad paths are still the most likely release-time failure modes.
 
 ● Read wave-segment-state.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs
   └ L1:220 (220 lines read)
 
 ● Read wave-coordination-board.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs
   └ L1:220 (220 lines read)
 
 ● Read wave-lifecycle.cjs
-  │ .opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs
+  │ .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs
   └ L1:220 (220 lines read)
 
 ● Read coverage-graph-signals.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts
   └ L1:240 (240 lines read)
 
 ● Read coverage-graph-tools.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/archive/coverage-graph-tools.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-tools.vitest.ts
   └ L1:120 (119 lines read)
 
 ● Search (grep)
   │ "buildFindingRecord\(|mergeFinding\(|compareFindingSeverity"
-  │ (.opencode/skill/system-spec-kit/scripts/lib)
+  │ (.opencode/skills/system-spec-kit/scripts/lib)
   └ 12 lines found
 
 ● Search (grep)
   │ "advanceBoardStatus|deriveBoardStatus|buildFindingCompositeKey|normalizeMergeKeyPart|buildFindin
-  │ gGroupKey" (.opencode/skill/system-spec-kit)
+  │ gGroupKey" (.opencode/skills/system-spec-kit)
   └ 19 lines found
 
 ● Search (grep)
-  │ "coverage-graph-db\.vitest|coverage-graph-tools\.vitest" (.opencode/skill/system-spec-kit)
+  │ "coverage-graph-db\.vitest|coverage-graph-tools\.vitest" (.opencode/skills/system-spec-kit)
   └ 5 lines found
 
 ● Search (grep)
-  │ "computeMomentum" (.opencode/skill/system-spec-kit)
+  │ "computeMomentum" (.opencode/skills/system-spec-kit)
   └ 6 lines found
 
 ● Search (grep)
   │ "module\.exports = \{|buildFindingKey\(|compareSeverity\(|createCanonicalMergeBoard\(|advanceBoa
-  │ rdStatus\(|deriveBoardStatus\(" (.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs)
+  │ rdStatus\(|deriveBoardStatus\(" (.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs)
   └ 29 lines found
 
 ● Search (grep)
   │ "export function getSnapshots|function getSnapshots"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts)
   └ 7 lines found
 
 ● Search (grep)
   │ "module\.exports =
   │ \{|compareSeverity\(|createCanonicalMergeBoard\(|MERGE_KEYS|FINDING_MERGE_KEYS"
-  │ (.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs)
+  │ (.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs)
   └ 52 lines found
 
 ● Search (grep)
   │ "function createCorruptionError|createCorruptionError\(|module\.exports = \{|STATE_CORRUPTION"
-  │ (.opencode/skill/sk-deep-review/scripts/reduce-state.cjs)
+  │ (.opencode/skills/sk-deep-review/scripts/reduce-state.cjs)
   └ 29 lines found
 
 ● Search (grep)
   │ "function createCorruptionError|createCorruptionError\(|STATE_CORRUPTION"
-  │ (.opencode/skill/sk-deep-research/scripts/reduce-state.cjs)
+  │ (.opencode/skills/sk-deep-research/scripts/reduce-state.cjs)
   └ 23 lines found
 
 I haven’t found a static wiring break yet, so I’m doing one focused execution pass over the exact reducer, wave, and coverage-graph suites tied to the changed code. That’s the quickest way to surface a hidden bad import or renamed export if one slipped through.
 
 ● Run targeted reducer, wave, and graph tests (shell)
-  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-sp
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-sp
   │ ec-kit && node mcp_server/node_modules/vitest/vitest.mjs run
   │ scripts/tests/review-reducer-fail-closed.vitest.ts
   │ scripts/tests/deep-research-reducer.vitest.ts scripts/tests/coverage-graph-signals.vitest.ts
@@ -283,20 +283,20 @@ This release-readiness correctness pass is clean for the modified code paths. Th
 
 Reviewed all modified CJS/TS files from the 042 remediation commit:
 
-1. `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-2. `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs`
-3. `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
-4. `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-session.cjs`
-5. `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs`
-6. `.opencode/skill/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
-7. `.opencode/skill/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
-8. `.opencode/skill/system-spec-kit/scripts/lib/wave-segment-state.cjs`
-9. `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts`
-10. `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
-11. `.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
-12. `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
-13. `.opencode/skill/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts`
-14. `.opencode/skill/system-spec-kit/mcp_server/tests/archive/coverage-graph-tools.vitest.ts`
+1. `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+2. `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+3. `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
+4. `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs`
+5. `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs`
+6. `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs`
+7. `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs`
+8. `.opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs`
+9. `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts`
+10. `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts`
+11. `.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts`
+12. `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+13. `.opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts`
+14. `.opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-tools.vitest.ts`
 
 The archived test moves are also path-safe: they are self-contained and do not introduce broken relative imports.
 

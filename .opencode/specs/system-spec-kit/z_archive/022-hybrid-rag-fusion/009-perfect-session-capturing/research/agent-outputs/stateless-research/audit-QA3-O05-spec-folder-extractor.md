@@ -1,6 +1,6 @@
 # Audit QA3-O05: spec-folder-extractor.ts
 
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts`
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts`
 **LOC:** 293
 **Auditor:** Claude Opus 4.6 (Reviewer agent)
 **Date:** 2026-03-09
@@ -224,7 +224,7 @@ return relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
 
 | Path | Changes | Issues |
 |------|---------|--------|
-| `.opencode/skill/system-spec-kit/scripts/extractors/spec-folder-extractor.ts` | 293 LOC (new) | 2 P1, 7 P2 |
+| `.opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts` | 293 LOC (new) | 2 P1, 7 P2 |
 
 **Reviewed against:** `core/config.ts`, `extractors/index.ts`, `extractors/file-extractor.ts`, `extractors/session-extractor.ts`, `extractors/contamination-filter.ts`, `extractors/git-context-extractor.ts`, `core/workflow.ts` (consumer)
 

@@ -14,14 +14,14 @@ You are running iteration 5 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit T01-T07 verifier scaffolding + MCP integration:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts` (loadGoldBattery, executeBattery)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` (handleCodeGraphVerify)
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:554-647, 915-920` (VerifySchema + TOOL_DEFINITIONS)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11` (handler exports)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:5-96` (dispatch)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-204` (metadata helpers)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:247-287` (opt-in scan verify)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` (verification surface)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/gold-query-verifier.ts` (loadGoldBattery, executeBattery)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/verify.ts` (handleCodeGraphVerify)
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:554-647, 915-920` (VerifySchema + TOOL_DEFINITIONS)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts:4-11` (handler exports)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:5-96` (dispatch)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:190-204` (metadata helpers)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:247-287` (opt-in scan verify)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-62` (verification surface)
 
 ## Look For
 

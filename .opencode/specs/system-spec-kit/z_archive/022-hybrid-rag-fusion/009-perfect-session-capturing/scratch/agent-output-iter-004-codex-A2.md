@@ -19,8 +19,8 @@ Analyze Memory Handback protocol success rate across CLIs and where handback JSO
 **Q15.** Memory Handback protocol success rate across CLIs — where does handback JSON fail minimum payload guidance?
 
 ## Files to Examine
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` — How handback data is loaded
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` — How handback payloads are validated
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` — How handback data is loaded
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` — How handback payloads are validated
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/` — Phase 015 spec docs
 - Search for "handback", "handback-json", "outsourced" in the scripts directory
 - Search for test files covering handback scenarios
@@ -50,7 +50,7 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’ll analyze the handback flow end-to-end in the specified scripts and Phase 015 docs, then map CLI-by-CLI success/failure points and test coverage. First I’m running quick discovery (including skill routing and semantic search) so we can ground conclusions in concrete code paths.
 exec
-/bin/zsh -lc 'rg -n "handback|handback-json|outsourced" .opencode/skill/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "handback|handback-json|outsourced" .opencode/skills/system-spec-kit/scripts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:3:description: "External CLI handback protocol for session memory saves: hard-fail JSON input, next-step persistence, redact-and-scrub security, and post-010 awareness of sufficiency/contamination gates."
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:4:trigger_phrases: ["outsourced agent memory", "cli agent context", "memory handback", "external agent save", "generate-context json"]
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:36:| **Origin** | Evolved from `022-hybrid-rag-fusion/013-outsourced-agent-memory/` |
@@ -61,7 +61,7 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:77:- Snake_case field acceptance in the handback protocol
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:83:- Modifying native capture extractors (outsourced saves use JSON-mode, not native capture)
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:93:| `scripts/tests/outsourced-agent-handback-docs.vitest.ts` | Create | Guard the 8 handback docs and feature catalog against post-010 drift |
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:99:| `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md` | Modify | Align the catalog entry to phase `015` and the post-010 gate contract |
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:99:| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md` | Modify | Align the catalog entry to phase `015` and the post-010 gate contract |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:113:| REQ-003 | All 8 CLI docs describe the handback protocol with redact-and-scrub | 4 SKILL.md + 4 prompt templates contain identical 7-step flow with `MEMORY_HANDBACK_START`/`END` delimiters |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:122:| REQ-007 | Callers aware that cross-spec content triggers contamination gate | CLI docs and spec document that `CONTAMINATION_GATE_ABORT` fires when handback JSON contains content about a different spec folder |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md:135:- A representative manual-format JSON handback writes successfully and produces a fresh memory file for phase `015`
@@ -76,7 +76,7 @@ exec
 AGENTS.md
 .opencode/specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/AGENTS.md
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Analyze Memory Handback protocol success rate across CLIs and where handback JSON fails minimum payload guidance" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 621ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Analyze Memory Handback protocol success rate across CLIs and where handback JSON fails minimum payload guidance" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 621ms:
 [
   {
     "skill": "system-spec-kit",
@@ -90,42 +90,42 @@ exec
 codex
 Quick status: skill routing recommended `system-spec-kit` with high confidence, and I located the key handback-related tests (`runtime-memory-inputs.vitest.ts` plus docs-alignment tests). Next I’m reading the exact loader/normalizer code and Phase 015 docs to extract the minimum payload contract and failure modes.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts .opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     584 .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
-    1157 .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
-     912 .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
-      76 .opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     584 .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
+    1157 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
+     912 .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts
+      76 .opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts
      237 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md
     2966 total
 exec
 /bin/zsh -lc "rg -n \"MEMORY_HANDBACK_START|handback JSON|minimum payload|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL\" .opencode/skill -g 'SKILL.md' -g '*prompt*'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/cli-gemini/assets/prompt_templates.md:367:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-gemini/assets/prompt_templates.md:392:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-gemini/assets/prompt_templates.md:434:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-gemini/SKILL.md:413:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
-.opencode/skill/cli-gemini/SKILL.md:424:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:461:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:486:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:528:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-copilot/SKILL.md:310:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
-.opencode/skill/cli-copilot/SKILL.md:321:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
-.opencode/skill/cli-claude-code/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
-.opencode/skill/cli-claude-code/SKILL.md:477:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
-.opencode/skill/cli-codex/assets/prompt_templates.md:536:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-codex/assets/prompt_templates.md:561:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-codex/assets/prompt_templates.md:603:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-codex/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
-.opencode/skill/cli-codex/SKILL.md:477:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
+.opencode/skills/cli-gemini/assets/prompt_templates.md:367:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-gemini/assets/prompt_templates.md:392:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-gemini/assets/prompt_templates.md:434:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-gemini/SKILL.md:413:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+.opencode/skills/cli-gemini/SKILL.md:424:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:461:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:486:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:528:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-copilot/SKILL.md:310:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+.opencode/skills/cli-copilot/SKILL.md:321:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
+.opencode/skills/cli-claude-code/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+.opencode/skills/cli-claude-code/SKILL.md:477:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
+.opencode/skills/cli-codex/assets/prompt_templates.md:536:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-codex/assets/prompt_templates.md:561:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-codex/assets/prompt_templates.md:603:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-codex/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+.opencode/skills/cli-codex/SKILL.md:477:**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
 tool cocoindex_code.search({"query":"Where is outsourced agent handback JSON loaded and validated in system-spec-kit scripts? include loader and normalizer functions","limit":8,"refresh_index":false})
 cocoindex_code.search({"query":"Where is outsourced agent handback JSON loaded and validated in system-spec-kit scripts? include loader and normalizer functions","limit":8,"refresh_index":false}) success in 6.11s:
 {
   "content": [
     {
       "type": "text",
-      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Outsourced agent handback protocol\\n\\n## 1. OVERVIEW\\n\\nOutsourced agent handback keeps external CLI save payloads aligned with the current `generate-context.js` contract. It enforces hard-fail validation for explicit JSON data files, persists `nextSteps` fields into memory observations, and now documents the post-010 save gates that can still reject a valid handback after normalization.\\n\\nWhen work is delegated to an external helper (like a different AI tool), the results need to come back in a clean format the memory system can understand. This feature makes sure that incoming data files are properly validated and that follow-up actions are captured, so nothing important gets lost when work passes between different tools.\\n\\n---\\n\\n## 2. CURRENT REALITY\\n\\nOutsourced-agent handback is now implemented and aligned across runtime behavior, regression tests, the 8 CLI handback docs, and the feature catalog.\\n\\nCurrent behavior is enforced in four slices:\",\n      \"start_line\": 1,\n      \"end_line\": 15,\n      \"score\": 0.6790405435642395\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Outsourced agent handback protocol\\n\\n## 1. OVERVIEW\\n\\nOutsourced agent handback keeps external CLI save payloads aligned with the current `generate-context.js` contract. It enforces hard-fail validation for explicit JSON data files, persists `nextSteps` fields into memory observations, and now documents the post-010 save gates that can still reject a valid handback after normalization.\\n\\nWhen work is delegated to an external helper (like a different AI tool), the results need to come back in a clean format the memory system can understand. This feature makes sure that incoming data files are properly validated and that follow-up actions are captured, so nothing important gets lost when work passes between different tools.\\n\\n---\\n\\n## 2. CURRENT REALITY\\n\\nOutsourced-agent handback is now implemented and aligned across runtime behavior, regression tests, the 8 CLI handback docs, and the feature catalog.\\n\\nCurrent behavior is enforced in four slices:\",\n      \"start_line\": 1,\n      \"end_line\": 15,\n      \"score\": 0.6790405435642395\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Feature Specification: Outsourced Agent Handback Protocol\\n\\nThis document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.\\n\\n\\n<!-- SPECKIT_LEVEL: 2 -->\\n<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->\\n\\n---\\n\\n<!-- ANCHOR:metadata -->\",\n      \"start_line\": 8,\n      \"end_line\": 18,\n      \"score\": 0.6772679149813552\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### Purpose\\n\\nEnsure the outsourced agent handback protocol produces saves that survive the full 010 pipeline as far as caller-provided evidence allows, covering not just input validation, but also sufficiency evaluation, contamination detection, and post-render quality scoring. Callers must know what minimum payload richness is required, what rejection codes they may encounter, and that file-backed saves bypass `QUALITY_GATE_ABORT` without bypassing all quality-related warnings.\\n<!-- /ANCHOR:problem -->\\n\\n---\\n\\n<!-- ANCHOR:scope -->\",\n      \"start_line\": 64,\n      \"end_line\": 71,\n      \"score\": 0.6262758805637656\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/16-03-26_22-22__next-steps.md\",\n      \"language\": \"markdown\",\n      \"content\": \"---\\ntitle: \\\"Next Steps [015-outsourced-agent-handback/16-03-26_22-22__next-steps]\\\"\\ndescription: \\\"File-backed handbacks still hit sufficiency and contamination gates after normalization, so the payload needs durable evidence and spec-local content.\\\"\\ntrigger_phrases:\\n  - \\\"system spec kit/022 hybrid rag fusion/010 perfect session capturing/015 outsourced agent handback\\\"\\n  - \\\"file backed\\\"\\n  - \\\"spec local\\\"\\n  - \\\"cli codex\\\"\\n  - \\\"tree thinning\\\"\\n  - \\\"post 010\\\"\\n  - \\\"save gate\\\"\\n  - \\\"minimum payload\\\"\\n  - \\\"outsourced agent handback docs\\\"\",\n      \"start_line\": 1,\n      \"end_line\": 13,\n      \"score\": 0.62564843059954\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-11-cross-cli.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- `015-outsourced-agent-handback/tasks.md:57` — hits: `.opencode/` — - [x] T012 Record current TypeScript check evidence: `npm run lint` in `.opencode/skill/system-spec-kit/scripts` passed (`tsc --noEmit`)\\n- `015-outsourced-agent-handback/tasks.md:61` — hits: `.opencode/` — - [x] T016 Run `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` on this spec folder and record the exit code\\n- `015-outsourced-agent-handback/tasks.md:85` — hits: `.opencode/` — - **Runtime loader**: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`\\n- `015-outsourced-agent-handback/tasks.md:86` — hits: `.opencode/` — - **Normalization**: `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts`\\n- `015-outsourced-agent-handback/tasks.md:87` — hits: `.opencode/` — - **Next-action extraction**: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts`\",\n      \"start_line\": 277,\n      \"end_line\": 281,\n      \"score\": 0.6175862703803432\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"---\\ntitle: \\\"Outsourced Agent Handback Protocol\\\"\\ndescription: \\\"External CLI handback protocol for session memory saves: hard-fail JSON input, next-step persistence, redact-and-scrub security, and post-010 awareness of sufficiency/contamination gates.\\\"\\ntrigger_phrases: [\\\"outsourced agent memory\\\", \\\"cli agent context\\\", \\\"memory handback\\\", \\\"external agent save\\\", \\\"generate-context json\\\"]\\nimportance_tier: \\\"normal\\\"\\ncontextType: \\\"general\\\"\\n---\",\n      \"start_line\": 1,\n      \"end_line\": 7,\n      \"score\": 0.6019166208327249\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **`outsourced-agent-handback-docs.vitest.ts`**: Keeps the 8 CLI handback docs and the feature catalog aligned on post-010 save-gate guidance.\\n- **4 `cli-*` skills + 4 prompt templates**: Tell the caller to extract handback data, redact and scrub it, include richer `FILES` metadata, and stop on explicit JSON-mode failures.\\n- **Feature catalog entry `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.\",\n      \"start_line\": 65,\n      \"end_line\": 67,\n      \"score\": 0.5970442825839015\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
+      "text": "{\n  \"success\": true,\n  \"results\": [\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Outsourced agent handback protocol\\n\\n## 1. OVERVIEW\\n\\nOutsourced agent handback keeps external CLI save payloads aligned with the current `generate-context.js` contract. It enforces hard-fail validation for explicit JSON data files, persists `nextSteps` fields into memory observations, and now documents the post-010 save gates that can still reject a valid handback after normalization.\\n\\nWhen work is delegated to an external helper (like a different AI tool), the results need to come back in a clean format the memory system can understand. This feature makes sure that incoming data files are properly validated and that follow-up actions are captured, so nothing important gets lost when work passes between different tools.\\n\\n---\\n\\n## 2. CURRENT REALITY\\n\\nOutsourced-agent handback is now implemented and aligned across runtime behavior, regression tests, the 8 CLI handback docs, and the feature catalog.\\n\\nCurrent behavior is enforced in four slices:\",\n      \"start_line\": 1,\n      \"end_line\": 15,\n      \"score\": 0.6790405435642395\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Outsourced agent handback protocol\\n\\n## 1. OVERVIEW\\n\\nOutsourced agent handback keeps external CLI save payloads aligned with the current `generate-context.js` contract. It enforces hard-fail validation for explicit JSON data files, persists `nextSteps` fields into memory observations, and now documents the post-010 save gates that can still reject a valid handback after normalization.\\n\\nWhen work is delegated to an external helper (like a different AI tool), the results need to come back in a clean format the memory system can understand. This feature makes sure that incoming data files are properly validated and that follow-up actions are captured, so nothing important gets lost when work passes between different tools.\\n\\n---\\n\\n## 2. CURRENT REALITY\\n\\nOutsourced-agent handback is now implemented and aligned across runtime behavior, regression tests, the 8 CLI handback docs, and the feature catalog.\\n\\nCurrent behavior is enforced in four slices:\",\n      \"start_line\": 1,\n      \"end_line\": 15,\n      \"score\": 0.6790405435642395\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"# Feature Specification: Outsourced Agent Handback Protocol\\n\\nThis document records the current verified state for this scope. Use [spec.md](spec.md) and [plan.md](plan.md) to trace requirements and implementation evidence.\\n\\n\\n<!-- SPECKIT_LEVEL: 2 -->\\n<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->\\n\\n---\\n\\n<!-- ANCHOR:metadata -->\",\n      \"start_line\": 8,\n      \"end_line\": 18,\n      \"score\": 0.6772679149813552\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"### Purpose\\n\\nEnsure the outsourced agent handback protocol produces saves that survive the full 010 pipeline as far as caller-provided evidence allows, covering not just input validation, but also sufficiency evaluation, contamination detection, and post-render quality scoring. Callers must know what minimum payload richness is required, what rejection codes they may encounter, and that file-backed saves bypass `QUALITY_GATE_ABORT` without bypassing all quality-related warnings.\\n<!-- /ANCHOR:problem -->\\n\\n---\\n\\n<!-- ANCHOR:scope -->\",\n      \"start_line\": 64,\n      \"end_line\": 71,\n      \"score\": 0.6262758805637656\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/memory/16-03-26_22-22__next-steps.md\",\n      \"language\": \"markdown\",\n      \"content\": \"---\\ntitle: \\\"Next Steps [015-outsourced-agent-handback/16-03-26_22-22__next-steps]\\\"\\ndescription: \\\"File-backed handbacks still hit sufficiency and contamination gates after normalization, so the payload needs durable evidence and spec-local content.\\\"\\ntrigger_phrases:\\n  - \\\"system spec kit/022 hybrid rag fusion/010 perfect session capturing/015 outsourced agent handback\\\"\\n  - \\\"file backed\\\"\\n  - \\\"spec local\\\"\\n  - \\\"cli codex\\\"\\n  - \\\"tree thinning\\\"\\n  - \\\"post 010\\\"\\n  - \\\"save gate\\\"\\n  - \\\"minimum payload\\\"\\n  - \\\"outsourced agent handback docs\\\"\",\n      \"start_line\": 1,\n      \"end_line\": 13,\n      \"score\": 0.62564843059954\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/agent-11-cross-cli.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- `015-outsourced-agent-handback/tasks.md:57` — hits: `.opencode/` — - [x] T012 Record current TypeScript check evidence: `npm run lint` in `.opencode/skills/system-spec-kit/scripts` passed (`tsc --noEmit`)\\n- `015-outsourced-agent-handback/tasks.md:61` — hits: `.opencode/` — - [x] T016 Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` on this spec folder and record the exit code\\n- `015-outsourced-agent-handback/tasks.md:85` — hits: `.opencode/` — - **Runtime loader**: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`\\n- `015-outsourced-agent-handback/tasks.md:86` — hits: `.opencode/` — - **Normalization**: `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`\\n- `015-outsourced-agent-handback/tasks.md:87` — hits: `.opencode/` — - **Next-action extraction**: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`\",\n      \"start_line\": 277,\n      \"end_line\": 281,\n      \"score\": 0.6175862703803432\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md\",\n      \"language\": \"markdown\",\n      \"content\": \"---\\ntitle: \\\"Outsourced Agent Handback Protocol\\\"\\ndescription: \\\"External CLI handback protocol for session memory saves: hard-fail JSON input, next-step persistence, redact-and-scrub security, and post-010 awareness of sufficiency/contamination gates.\\\"\\ntrigger_phrases: [\\\"outsourced agent memory\\\", \\\"cli agent context\\\", \\\"memory handback\\\", \\\"external agent save\\\", \\\"generate-context json\\\"]\\nimportance_tier: \\\"normal\\\"\\ncontextType: \\\"general\\\"\\n---\",\n      \"start_line\": 1,\n      \"end_line\": 7,\n      \"score\": 0.6019166208327249\n    },\n    {\n      \"file_path\": \"specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md\",\n      \"language\": \"markdown\",\n      \"content\": \"- **`outsourced-agent-handback-docs.vitest.ts`**: Keeps the 8 CLI handback docs and the feature catalog aligned on post-010 save-gate guidance.\\n- **4 `cli-*` skills + 4 prompt templates**: Tell the caller to extract handback data, redact and scrub it, include richer `FILES` metadata, and stop on explicit JSON-mode failures.\\n- **Feature catalog entry `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md`**: Tracks the handback protocol as a current phase `015` concern rather than a stale `013` snapshot.\",\n      \"start_line\": 65,\n      \"end_line\": 67,\n      \"score\": 0.5970442825839015\n    }\n  ],\n  \"total_returned\": 8,\n  \"offset\": 0,\n  \"message\": null\n}"
     }
   ],
   "structuredContent": {
@@ -166,53 +166,53 @@ cocoindex_code.search({"query":"tests for runtime memory inputs handback next_st
 codex
 I’ve confirmed where the CLI docs describe post-010 gate behavior and located the runtime handback test suite. Next I’m extracting precise line-level evidence from `data-loader.ts`, `input-normalizer.ts`, and the tests so we can quantify where malformed payloads pass vs fail.
 exec
-/bin/zsh -lc 'rg -n "MEMORY_HANDBACK_START|EXPLICIT_DATA_FILE_LOAD_FAILED|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|next_steps|nextSteps|minimum payload|FILES|payload" .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md .opencode/skill/cli-codex/SKILL.md .opencode/skill/cli-copilot/SKILL.md .opencode/skill/cli-claude-code/SKILL.md .opencode/skill/cli-gemini/SKILL.md .opencode/skill/cli-codex/assets/prompt_templates.md .opencode/skill/cli-copilot/assets/prompt_templates.md .opencode/skill/cli-claude-code/assets/prompt_templates.md .opencode/skill/cli-gemini/assets/prompt_templates.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-copilot/assets/prompt_templates.md:380:# Redact or scrub secrets before writing the JSON payload
-.opencode/skill/cli-copilot/assets/prompt_templates.md:386:  "FILES": [
-.opencode/skill/cli-copilot/assets/prompt_templates.md:402:  "nextSteps": ["<extracted remaining work>"],
-.opencode/skill/cli-copilot/assets/prompt_templates.md:412:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:414:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-copilot/assets/prompt_templates.md:418:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:461:<!-- MEMORY_HANDBACK_START -->
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:486:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:492:# Redact or scrub secrets before writing the JSON payload
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:498:  "FILES": [
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:514:  "nextSteps": ["<extracted remaining work>"],
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:524:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:526:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:528:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
-.opencode/skill/cli-claude-code/assets/prompt_templates.md:530:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
-.opencode/skill/cli-claude-code/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
-.opencode/skill/cli-claude-code/SKILL.md:467:3. **Parse to JSON**: Map extracted fields to `{ sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps }` (the save flow also accepts documented snake_case keys such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`)
+/bin/zsh -lc 'rg -n "MEMORY_HANDBACK_START|EXPLICIT_DATA_FILE_LOAD_FAILED|INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|next_steps|nextSteps|minimum payload|FILES|payload" .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md .opencode/skills/cli-codex/SKILL.md .opencode/skills/cli-copilot/SKILL.md .opencode/skills/cli-claude-code/SKILL.md .opencode/skills/cli-gemini/SKILL.md .opencode/skills/cli-codex/assets/prompt_templates.md .opencode/skills/cli-copilot/assets/prompt_templates.md .opencode/skills/cli-claude-code/assets/prompt_templates.md .opencode/skills/cli-gemini/assets/prompt_templates.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/cli-copilot/assets/prompt_templates.md:349:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-copilot/assets/prompt_templates.md:374:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-copilot/assets/prompt_templates.md:380:# Redact or scrub secrets before writing the JSON payload
+.opencode/skills/cli-copilot/assets/prompt_templates.md:386:  "FILES": [
+.opencode/skills/cli-copilot/assets/prompt_templates.md:402:  "nextSteps": ["<extracted remaining work>"],
+.opencode/skills/cli-copilot/assets/prompt_templates.md:412:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:414:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:416:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-copilot/assets/prompt_templates.md:418:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:461:<!-- MEMORY_HANDBACK_START -->
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:486:const match = output.match(/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/);
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:492:# Redact or scrub secrets before writing the JSON payload
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:498:  "FILES": [
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:514:  "nextSteps": ["<extracted remaining work>"],
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:524:Accepted field names include camelCase and the documented snake_case equivalents such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`. Persistence behavior for next-step fields: the first item becomes `Next: ...` and sets `NEXT_ACTION`; additional items become `Follow-up: ...`.
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:526:If `/tmp/save-context-data.json` is passed explicitly and cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture for that error.
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:528:Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+.opencode/skills/cli-claude-code/assets/prompt_templates.md:530:Minimum viable payload: include a specific summary, at least one meaningful `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
+.opencode/skills/cli-claude-code/SKILL.md:466:2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+.opencode/skills/cli-claude-code/SKILL.md:467:3. **Parse to JSON**: Map extracted fields to `{ sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps }` (the save flow also accepts documented snake_case keys such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`)
 exec
-/bin/zsh -lc 'rg -n "handback|explicit data|EXPLICIT_DATA_FILE_LOAD_FAILED|nextSteps|next_steps|data file|JSON|outsourced|collectSessionData|normalizeInputData|quality|contamination|INSUFFICIENT_CONTEXT_ABORT|QUALITY_GATE_ABORT" .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:22:  normalizeInputData,
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:510:        structuredLog('error', 'Invalid data file path - security validation failed', {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:514:        throw new Error(`Security: Invalid data file path: ${pathErrMsg}`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:518:      const rawData: RawInputData = JSON.parse(dataContent) as RawInputData;
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:523:      const data: NormalizedData | RawInputData = normalizeInputData(rawData);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:524:      console.log(`   \u2713 Loaded data from data file`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:532:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found: ${dataFile}`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:534:        structuredLog('error', 'Permission denied reading data file', {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:538:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Permission denied: ${dataFile}`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:540:        structuredLog('error', 'Invalid JSON in data file', {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:545:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Invalid JSON in data file ${dataFile}: ${error.message}`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:548:        structuredLog('error', 'Failed to load data file', {
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:552:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Failed to load data file ${dataFile}: ${errMsg}`);
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:571:    'NO_DATA_AVAILABLE: No session data found. Neither JSON data file, OpenCode session capture, Claude Code session capture, Codex CLI session capture, Copilot CLI session capture, nor Gemini CLI session capture provided usable content. ' +
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:572:    'External CLI agents must provide data via JSON mode: ' +
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:82:  nextSteps?: string[];
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:83:  next_steps?: string[];
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:182:  return JSON.stringify(alt);
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:282:    .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:302:      VALUE: typeof value === 'object' ? JSON.stringify(value) : String(value),
+/bin/zsh -lc 'rg -n "handback|explicit data|EXPLICIT_DATA_FILE_LOAD_FAILED|nextSteps|next_steps|data file|JSON|outsourced|collectSessionData|normalizeInputData|quality|contamination|INSUFFICIENT_CONTEXT_ABORT|QUALITY_GATE_ABORT" .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:22:  normalizeInputData,
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:510:        structuredLog('error', 'Invalid data file path - security validation failed', {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:514:        throw new Error(`Security: Invalid data file path: ${pathErrMsg}`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:518:      const rawData: RawInputData = JSON.parse(dataContent) as RawInputData;
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:523:      const data: NormalizedData | RawInputData = normalizeInputData(rawData);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:524:      console.log(`   \u2713 Loaded data from data file`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:532:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found: ${dataFile}`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:534:        structuredLog('error', 'Permission denied reading data file', {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:538:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Permission denied: ${dataFile}`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:540:        structuredLog('error', 'Invalid JSON in data file', {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:545:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Invalid JSON in data file ${dataFile}: ${error.message}`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:548:        structuredLog('error', 'Failed to load data file', {
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:552:        throw new Error(`EXPLICIT_DATA_FILE_LOAD_FAILED: Failed to load data file ${dataFile}: ${errMsg}`);
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:571:    'NO_DATA_AVAILABLE: No session data found. Neither JSON data file, OpenCode session capture, Claude Code session capture, Codex CLI session capture, Copilot CLI session capture, nor Gemini CLI session capture provided usable content. ' +
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:572:    'External CLI agents must provide data via JSON mode: ' +
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:82:  nextSteps?: string[];
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:83:  next_steps?: string[];
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:182:  return JSON.stringify(alt);
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:282:    .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:302:      VALUE: typeof value === 'object' ? JSON.stringify(value) : String(value),
 codex
 I’ve now pinpointed the exact lines where CLI docs encode the same handback contract and where runtime tests cover explicit-file failures plus `nextSteps` behavior. I’m pulling the core validation and gate code next (including sufficiency/contamination abort paths) so we can report true success-rate implications, not just docs claims.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '280,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '280,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    280	function buildTechnicalContextObservation(techContext: Record<string, unknown>): Observation {
    281	  const techDetails: string = Object.entries(techContext)
    282	    .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
@@ -234,7 +234,7 @@ exec
    298	function mapTechnicalContext(techContext: Record<string, unknown>): Array<{ KEY: string; VALUE: string }> {
    299	  return Object.entries(techContext)
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '470,590p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '470,590p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    470	        return null;
    471	      } catch (captureError: unknown) {
    472	        const captureErrMsg = captureError instanceof Error ? captureError.message : String(captureError);
@@ -256,7 +256,7 @@ exec
    488	
    489	  // Priority 1: Data file provided via command line
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '560,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '560,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    560	      errors.push('Missing required field: specFolder (or use CLI argument)');
    561	    }
    562	  }
@@ -278,29 +278,29 @@ exec
    578	  if (data.filesModified !== undefined && !Array.isArray(data.filesModified)) {
    579	    errors.push('filesModified must be an array');
 exec
-/bin/zsh -lc 'rg -n "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|sufficiency|contamination|file-backed|isFileBacked" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:21:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:46:  | 'has_contamination'
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:73:export interface QualityInsufficiencySummary {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:90:  insufficiency: QualityInsufficiencySummary | null;
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:170:  sufficiencyResult?: MemorySufficiencyResult,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:172:  contaminationSeverity: ContaminationSeverity | null = null,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:297:  const effectiveSeverity: ContaminationSeverity = contaminationSeverity || 'medium';
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:300:    qualityFlags.add('has_contamination');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:304:      warnings.push('Low-severity contamination detected (preamble only) — minor penalty applied');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:308:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:312:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:316:  if (sufficiencyResult && !sufficiencyResult.pass) {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:318:    scoreCap = Math.min(scoreCap ?? 1, clamp01(sufficiencyResult.score * 0.4));
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:320:      `Insufficient context for a durable memory: ${sufficiencyResult.reasons.join(' ')}`
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:337:    { id: 'contamination', score01: hadContamination ? (effectiveSeverity === 'low' ? 0.95 : effectiveSeverity === 'medium' ? 0.85 : 0.60) : 1, score100: hadContamination ? (effectiveSeverity === 'low' ? 95 : effectiveSeverity === 'medium' ? 85 : 60) : 100, maxScore100: 100, passed: !hadContamination },
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:350:    insufficiency: sufficiencyResult ? {
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:351:      pass: sufficiencyResult.pass,
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:352:      score01: clamp01(sufficiencyResult.score),
-.opencode/skill/system-spec-kit/scripts/core/quality-scorer.ts:353:      reasons: [...sufficiencyResult.reasons],
+/bin/zsh -lc 'rg -n "INSUFFICIENT_CONTEXT_ABORT|CONTAMINATION_GATE_ABORT|QUALITY_GATE_ABORT|QUALITY_GATE_FAIL|sufficiency|contamination|file-backed|isFileBacked" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:21:import type { MemorySufficiencyResult } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:23:import type { ContaminationSeverity } from '../extractors/contamination-filter';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:46:  | 'has_contamination'
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:73:export interface QualityInsufficiencySummary {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:90:  insufficiency: QualityInsufficiencySummary | null;
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:170:  sufficiencyResult?: MemorySufficiencyResult,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:172:  contaminationSeverity: ContaminationSeverity | null = null,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:297:  const effectiveSeverity: ContaminationSeverity = contaminationSeverity || 'medium';
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:300:    qualityFlags.add('has_contamination');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:304:      warnings.push('Low-severity contamination detected (preamble only) — minor penalty applied');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:308:      warnings.push('Medium-severity contamination detected (orchestration chatter) — capped at 0.85');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:312:      warnings.push('High-severity contamination detected (AI self-reference/tool leaks) — capped at 0.60');
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:316:  if (sufficiencyResult && !sufficiencyResult.pass) {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:318:    scoreCap = Math.min(scoreCap ?? 1, clamp01(sufficiencyResult.score * 0.4));
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:320:      `Insufficient context for a durable memory: ${sufficiencyResult.reasons.join(' ')}`
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:337:    { id: 'contamination', score01: hadContamination ? (effectiveSeverity === 'low' ? 0.95 : effectiveSeverity === 'medium' ? 0.85 : 0.60) : 1, score100: hadContamination ? (effectiveSeverity === 'low' ? 95 : effectiveSeverity === 'medium' ? 85 : 60) : 100, maxScore100: 100, passed: !hadContamination },
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:350:    insufficiency: sufficiencyResult ? {
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:351:      pass: sufficiencyResult.pass,
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:352:      score01: clamp01(sufficiencyResult.score),
+.opencode/skills/system-spec-kit/scripts/core/quality-scorer.ts:353:      reasons: [...sufficiencyResult.reasons],
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Data Loader
      3	// ---------------------------------------------------------------
@@ -322,7 +322,7 @@ exec
     19	
     20	import {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '260,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts | sed -n '260,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	
    261	  const normalized = rawValue.trim().toLowerCase();
    262	  if (normalized.length === 0) {
@@ -344,8 +344,8 @@ exec
    278	    const value = env[key];
    279	    return typeof value === 'string' && value.trim().length > 0;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1120,1188p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2140,2245p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1120,1188p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2140,2245p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2140	  // Step 8.5b: Spec document health annotation (non-blocking)
   2141	  let specDocHealth: SpecDocHealthResult | null = null;
   2142	  try {
@@ -388,7 +388,7 @@ exec
   1138	    anchors: extractAnchorIds(content),
   1139	  };
 exec
-/bin/zsh -lc 'rg -n "determineValidationDisposition|captureCapabilities|inputMode|file-backed|stateless|QUALITY_GATE_ABORT" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "determineValidationDisposition|captureCapabilities|inputMode|file-backed|stateless|QUALITY_GATE_ABORT" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 45:  determineValidationDisposition,
 1151: * Selective enrichment for file-backed (JSON-mode) data.
 1425:        const alignMsg = `ALIGNMENT_WARNING: Captured stateless content matched the workspace but not the target spec folder "${activeSpecFolderArg}". ` +
@@ -406,7 +406,7 @@ exec
 2233:    const validationAbortMsg = `QUALITY_GATE_ABORT: Save blocked due to failed validation rules: ${validationDisposition.blockingRuleIds.join(', ')}`;
 2244:    } else if (captureCapabilities.inputMode === 'stateless') {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '120,245p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '120,245p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    120	  contextFilename: string;
    121	  /** List of absolute paths for all files written during this run. */
    122	  writtenFiles: string[];
@@ -428,7 +428,7 @@ exec
    138	    isSimulation: boolean;
    139	  };
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '247,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '247,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    247	    return 'trigger_phrases: []';
    248	  }
    249	
@@ -452,58 +452,58 @@ exec
 codex
 I now have the loader/normalizer internals and the exact gate checkpoints in `workflow.ts`. I’m tracing the source-capability policy next (`determineValidationDisposition`) plus handback-specific tests to separate documented behavior from actually enforced behavior.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/source-capabilities.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-nl: .opencode/skill/system-spec-kit/scripts/core/source-capabilities.ts: No such file or directory
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/source-capabilities.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+nl: .opencode/skills/system-spec-kit/scripts/core/source-capabilities.ts: No such file or directory
 exec
-/bin/zsh -lc 'rg -n "determineValidationDisposition|getSourceCapabilities|quality gate|V8|V9|file-backed|stateless" .opencode/skill/system-spec-kit/scripts/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts:102:          content: 'Use the Copilot transcript as a stateless fallback.',
-.opencode/skill/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts:177:        userInput: 'Use the Copilot transcript as a stateless fallback.',
-.opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts:32:      triggerPhrases: ['perfect session capturing', 'stateless capture quality'],
-.opencode/skill/system-spec-kit/scripts/tests/spec-affinity.vitest.ts:60:      'stateless capture quality',
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:34:      ['claude capture', 'stateless fallback', 'quality scoring', 'transcript parser', 'history matching', 'memory save', 'alignment blocking', 'provenance'],
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:37:        { DESCRIPTION: 'Integrates Claude transcript fallback into the stateless data loader with exact session matching.', _provenance: 'git' as const },
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:147:    const richTriggers = ['claude capture', 'stateless fallback', 'quality scoring', 'transcript parser', 'history matching', 'memory save', 'alignment blocking', 'provenance'];
-.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:149:    const richFiles = [{ DESCRIPTION: 'Integrates Claude transcript fallback into the stateless data loader.', _provenance: 'git' as const }];
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:4:  determineValidationDisposition,
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:9:import { getSourceCapabilities } from '../utils/source-capabilities';
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:20:    expect(determineValidationDisposition(['V10'], 'opencode-capture')).toMatchObject({
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:28:  it('keeps V8 as a hard write and index blocker', () => {
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29:    const metadata = getRuleMetadata('V8');
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:33:    expect(shouldBlockWrite('V8', 'codex-cli-capture')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:34:    expect(shouldBlockIndex('V8', 'codex-cli-capture')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:35:    expect(determineValidationDisposition(['V8'], 'codex-cli-capture')).toMatchObject({
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:37:      blockingRuleIds: ['V8'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:38:      indexBlockingRuleIds: ['V8'],
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:48:    expect(determineValidationDisposition(['V2'], 'file')).toMatchObject({
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:59:    expect(getSourceCapabilities('file')).toMatchObject({
+/bin/zsh -lc 'rg -n "determineValidationDisposition|getSourceCapabilities|quality gate|V8|V9|file-backed|stateless" .opencode/skills/system-spec-kit/scripts/tests' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts:102:          content: 'Use the Copilot transcript as a stateless fallback.',
+.opencode/skills/system-spec-kit/scripts/tests/copilot-cli-capture.vitest.ts:177:        userInput: 'Use the Copilot transcript as a stateless fallback.',
+.opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts:32:      triggerPhrases: ['perfect session capturing', 'stateless capture quality'],
+.opencode/skills/system-spec-kit/scripts/tests/spec-affinity.vitest.ts:60:      'stateless capture quality',
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:34:      ['claude capture', 'stateless fallback', 'quality scoring', 'transcript parser', 'history matching', 'memory save', 'alignment blocking', 'provenance'],
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:37:        { DESCRIPTION: 'Integrates Claude transcript fallback into the stateless data loader with exact session matching.', _provenance: 'git' as const },
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:147:    const richTriggers = ['claude capture', 'stateless fallback', 'quality scoring', 'transcript parser', 'history matching', 'memory save', 'alignment blocking', 'provenance'];
+.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts:149:    const richFiles = [{ DESCRIPTION: 'Integrates Claude transcript fallback into the stateless data loader.', _provenance: 'git' as const }];
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:4:  determineValidationDisposition,
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:9:import { getSourceCapabilities } from '../utils/source-capabilities';
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:20:    expect(determineValidationDisposition(['V10'], 'opencode-capture')).toMatchObject({
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:28:  it('keeps V8 as a hard write and index blocker', () => {
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:29:    const metadata = getRuleMetadata('V8');
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:33:    expect(shouldBlockWrite('V8', 'codex-cli-capture')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:34:    expect(shouldBlockIndex('V8', 'codex-cli-capture')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:35:    expect(determineValidationDisposition(['V8'], 'codex-cli-capture')).toMatchObject({
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:37:      blockingRuleIds: ['V8'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:38:      indexBlockingRuleIds: ['V8'],
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:48:    expect(determineValidationDisposition(['V2'], 'file')).toMatchObject({
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:59:    expect(getSourceCapabilities('file')).toMatchObject({
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/source-capabilities.ts | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-nl: .opencode/skill/system-spec-kit/scripts/core/source-capabilities.ts: No such file or directory
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/source-capabilities.ts | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+nl: .opencode/skills/system-spec-kit/scripts/core/source-capabilities.ts: No such file or directory
 exec
-/bin/zsh -lc 'rg -n "function determineValidationDisposition|const determineValidationDisposition|getSourceCapabilities|inputMode" .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:52:    inputMode: 'structured',
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:62:function getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {
-.opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts:80:  getSourceCapabilities,
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:9:import { getSourceCapabilities } from '../utils/source-capabilities';
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:59:    expect(getSourceCapabilities('file')).toMatchObject({
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:60:      inputMode: 'structured',
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:67:    expect(getSourceCapabilities('claude-code-capture').toolTitleWithPathExpected).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:68:    expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:69:    expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:70:    expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(false);
-.opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:71:    expect(getSourceCapabilities('gemini-cli-capture').toolTitleWithPathExpected).toBe(false);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:86:import { getSourceCapabilities } from '../utils/source-capabilities';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1508:    const captureCapabilities = getSourceCapabilities(captureSource);
+/bin/zsh -lc 'rg -n "function determineValidationDisposition|const determineValidationDisposition|getSourceCapabilities|inputMode" .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:8:  inputMode: SourceInputMode;
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:16:    inputMode: 'structured',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:22:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:28:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:34:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:40:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:46:    inputMode: 'stateless',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:52:    inputMode: 'structured',
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:62:function getSourceCapabilities(source: DataSource | string | null | undefined): SourceCapabilities {
+.opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts:80:  getSourceCapabilities,
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:9:import { getSourceCapabilities } from '../utils/source-capabilities';
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:59:    expect(getSourceCapabilities('file')).toMatchObject({
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:60:      inputMode: 'structured',
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:67:    expect(getSourceCapabilities('claude-code-capture').toolTitleWithPathExpected).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:68:    expect(getSourceCapabilities('opencode-capture').toolTitleWithPathExpected).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:69:    expect(getSourceCapabilities('codex-cli-capture').toolTitleWithPathExpected).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:70:    expect(getSourceCapabilities('copilot-cli-capture').toolTitleWithPathExpected).toBe(false);
+.opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts:71:    expect(getSourceCapabilities('gemini-cli-capture').toolTitleWithPathExpected).toBe(false);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:86:import { getSourceCapabilities } from '../utils/source-capabilities';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1508:    const captureCapabilities = getSourceCapabilities(captureSource);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '360,490p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '360,490p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import type { DataSource } from './input-normalizer';
      2	
      3	export type SourceInputMode = 'structured' | 'stateless';
@@ -546,7 +546,7 @@ exec
    378	 *   → allowed = { "009-perfect-session-capturing", "012-template-compliance" }
    379	 */
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/validation-rule-metadata.vitest.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import { describe, expect, it } from 'vitest';
      2	
      3	import {
@@ -568,7 +568,7 @@ exec
     19	    expect(shouldBlockIndex('V10', 'opencode-capture')).toBe(false);
     20	    expect(determineValidationDisposition(['V10'], 'opencode-capture')).toMatchObject({
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env node
      2	// ---------------------------------------------------------------
      3	// MODULE: Validate Memory Quality
@@ -590,7 +590,7 @@ exec
     19	type ValidationRuleSeverity = 'low' | 'medium' | 'high';
     20	type ValidationDisposition = 'abort_write' | 'write_skip_index' | 'write_and_index';
 exec
-/bin/zsh -lc 'rg -n "VALIDATION_RULE_METADATA|V8:|V9:|V10:|V2:|appliesToSources|blockOnWrite|blockOnIndex" .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "VALIDATION_RULE_METADATA|V8:|V9:|V10:|V2:|appliesToSources|blockOnWrite|blockOnIndex" .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:  blockOnWrite: boolean;
 26:  blockOnIndex: boolean;
 27:  appliesToSources: 'all' | readonly KnownDataSource[];
@@ -642,7 +642,7 @@ exec
     12	
     13	<!-- SPECKIT_LEVEL: 2 -->
     14	<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
-    15	<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+    15	<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
     16	
     17	---
     18	
@@ -669,7 +669,7 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/implementation-summary.md:115:3. **L3**: Structured payloads that arrive pre-populated with `user_prompts`, `recent_context`, or `observations` need equivalent durable evidence because they bypass part of the manual-format synthesis path.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md:33:- [x] CHK-002 [P0] Technical approach defined in `plan.md` - runtime, CLI-doc, catalog/test, and reconciliation phases documented [Evidence: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/plan.md`]
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md:34:- [x] CHK-003 [P1] Dependencies identified and available - runtime files, 8 CLI docs, the feature catalog, `scratch/`, and the phase `memory/` directory verified in repo [Evidence: runtime sources plus spec folder directories read during reconciliation]
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md:42:- [x] CHK-010 [P0] Explicit missing-file failures hard-fail with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...` [Evidence: `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts`]
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md:42:- [x] CHK-010 [P0] Explicit missing-file failures hard-fail with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...` [Evidence: `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts`]
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/checklist.md | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
@@ -693,8 +693,8 @@ exec
     19	
     20	| Priority | Handling | Completion Impact |
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '560,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '560,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────────
      2	// MODULE: Runtime Memory Input Tests
      3	// ───────────────────────────────────────────────────────────────────
@@ -737,7 +737,7 @@ exec
    578	    const normalized = normalizeInputData({
    579	      specFolder: '022-hybrid-rag-fusion/015-outsourced-agent-handback',
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '840,920p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '840,920p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    840	    // so with 5 observations and MAX_OBSERVATIONS=3, it would be truncated
    841	    // without the priority sort fix.
    842	    const normalized = normalizeInputData({
@@ -759,7 +759,7 @@ exec
    858	      }],
    859	      recentContext: [{
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts | sed -n '1,200p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
@@ -775,13 +775,13 @@ exec
     13	
     14	describe('outsourced agent handback docs', () => {
     15	  const skillDocs = [
-    16	    '.opencode/skill/cli-codex/SKILL.md',
-    17	    '.opencode/skill/cli-copilot/SKILL.md',
-    18	    '.opencode/skill/cli-claude-code/SKILL.md',
-    19	    '.opencode/skill/cli-gemini/SKILL.md',
+    16	    '.opencode/skills/cli-codex/SKILL.md',
+    17	    '.opencode/skills/cli-copilot/SKILL.md',
+    18	    '.opencode/skills/cli-claude-code/SKILL.md',
+    19	    '.opencode/skills/cli-gemini/SKILL.md',
     20	  ];
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -803,7 +803,7 @@ exec
     19	// 2. TYPES
     20	// ───────────────────────────────────────────────────────────────
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2088,2160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2088,2160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2088	  log(`   Template populated (quality: ${filterStats.qualityScore}/100)\n`);
   2089	
   2090	  // Step 8.5: Content cleaning — strip leaked HTML tags from rendered content
@@ -825,34 +825,34 @@ exec
   2106	  contaminationAuditTrail.push(qualityValidation.contaminationAudit);
   2107	  const metadataJson = JSON.parse(files['metadata.json']) as Record<string, unknown>;
 exec
-/bin/zsh -lc "rg -n \"MEMORY_SUFFICIENCY_REJECTION_CODE|evaluateMemorySufficiency|memory-sufficiency|buildWorkflowMemoryEvidenceSnapshot|evidenceCounts|primary|support|semanticChars|uniqueWords\" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:221:// Don't support. If index changes significantly, restart the server to refresh instructions.
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:92:  'supports',
-.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:493:      // Use os.tmpdir() for cross-platform temp directory support
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:305:        primaryPhase: 'Research',
-.opencode/skill/system-spec-kit/scripts/lib/simulation-factory.ts:315:        primaryPhase: 'Planning',
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:437:    console.error('ERROR: Only --to 15 is supported (targeted v16 -> v15 downgrade).');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:113:  const primarySource = result.sources[0] ?? 'hybrid';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:120:    source: typeof sourceCandidate === 'string' ? sourceCandidate : primarySource,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1071: * fallback — primary at minSimilarity=0.3, retry at 0.17.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1089:  // Where no result exceeds the primary threshold — chosen empirically via eval.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1095:  const primaryOptions = { ...options, minSimilarity: options.minSimilarity ?? PRIMARY_THRESHOLD };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1096:  let results = await hybridSearchEnhanced(query, embedding, primaryOptions);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1099:  if (results.length === 0 && (primaryOptions.minSimilarity ?? PRIMARY_THRESHOLD) >= FALLBACK_THRESHOLD) {
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:106:  it('supports ngram depth 1 through 4 without changing the public contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:404:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:405:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Memory ID to trace causal lineage for (required)' }, maxDepth: { type: 'number', default: 3, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', enum: ['outgoing', 'incoming', 'both'], default: 'both', description: 'Traversal direction: outgoing (what this caused), incoming (what caused this), or both' }, relations: { type: 'array', items: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'] }, description: 'Filter to specific relationship types' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:410:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:411:  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Source memory ID (the cause/enabler/superseder)' }, targetId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Target memory ID (the effect/superseded)' }, relation: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'], description: 'Relationship type' }, strength: { type: 'number', default: 1.0, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' } }, required: ['sourceId', 'targetId', 'relation'] },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:45:  primarySignal: SessionTransitionSignal | undefined,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/session-transition.ts:48:  switch (primarySignal) {
+/bin/zsh -lc "rg -n \"MEMORY_SUFFICIENCY_REJECTION_CODE|evaluateMemorySufficiency|memory-sufficiency|buildWorkflowMemoryEvidenceSnapshot|evidenceCounts|primary|support|semanticChars|uniqueWords\" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit -g '*.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:221:// Don't support. If index changes significantly, restart the server to refresh instructions.
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:92:  'supports',
+.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:493:      // Use os.tmpdir() for cross-platform temp directory support
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:305:        primaryPhase: 'Research',
+.opencode/skills/system-spec-kit/scripts/lib/simulation-factory.ts:315:        primaryPhase: 'Planning',
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:437:    console.error('ERROR: Only --to 15 is supported (targeted v16 -> v15 downgrade).');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:113:  const primarySource = result.sources[0] ?? 'hybrid';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:120:    source: typeof sourceCandidate === 'string' ? sourceCandidate : primarySource,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1071: * fallback — primary at minSimilarity=0.3, retry at 0.17.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1089:  // Where no result exceeds the primary threshold — chosen empirically via eval.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1095:  const primaryOptions = { ...options, minSimilarity: options.minSimilarity ?? PRIMARY_THRESHOLD };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1096:  let results = await hybridSearchEnhanced(query, embedding, primaryOptions);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1099:  if (results.length === 0 && (primaryOptions.minSimilarity ?? PRIMARY_THRESHOLD) >= FALLBACK_THRESHOLD) {
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:106:  it('supports ngram depth 1 through 4 without changing the public contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:404:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:405:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Memory ID to trace causal lineage for (required)' }, maxDepth: { type: 'number', default: 3, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', enum: ['outgoing', 'incoming', 'both'], default: 'both', description: 'Traversal direction: outgoing (what this caused), incoming (what caused this), or both' }, relations: { type: 'array', items: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'] }, description: 'Filter to specific relationship types' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:410:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:411:  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Source memory ID (the cause/enabler/superseder)' }, targetId: { oneOf: [{ type: 'number' }, { type: 'string', minLength: 1 }], description: 'Target memory ID (the effect/superseded)' }, relation: { type: 'string', enum: ['caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'], description: 'Relationship type' }, strength: { type: 'number', default: 1.0, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' } }, required: ['sourceId', 'targetId', 'relation'] },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:45:  primarySignal: SessionTransitionSignal | undefined,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/session-transition.ts:48:  switch (primarySignal) {
 exec
 /bin/zsh -lc 'rg --files | rg "memory-sufficiency"' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
+.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '280,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '280,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    280	function collectSupportContexts(snapshot: MemoryEvidenceSnapshot): string[] {
    281	  const results: string[] = [];
    282	
@@ -895,7 +895,7 @@ exec
     19	      triggerPhrases: ['perfect session capturing', 'memory sufficiency', 'memory save', 'alignment block'],
     20	      files: [
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Sufficiency
      3	// ---------------------------------------------------------------
@@ -917,8 +917,8 @@ exec
     19	  /^session context$/i,
     20	  /^implementation$/i,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '520,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1160,1398p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts | sed -n '520,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts | sed -n '1160,1398p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    520	    expect(result.writtenFiles.length).toBeGreaterThan(0);
    521	    expect(result.memoryId).not.toBeNull();
    522	    expect(result.indexingStatus).toMatchObject({
@@ -945,12 +945,12 @@ exec
   1162	        {
   1163	          title: 'Prepare media editor flow',
   1164	          narrative: 'Queued the image conversion workflow for hero assets.',
-  1165	          files: ['.opencode/skill/system-spec-kit/scripts/core/config.ts'],
+  1165	          files: ['.opencode/skills/system-spec-kit/scripts/core/config.ts'],
   1166	        },
   1167	      ],
   1168	      FILES: [
   1169	        {
-  1170	          FILE_PATH: '.opencode/skill/system-spec-kit/scripts/core/config.ts',
+  1170	          FILE_PATH: '.opencode/skills/system-spec-kit/scripts/core/config.ts',
   1171	          DESCRIPTION: 'Generic infrastructure path touched during unrelated media workflow.',
   1172	        },
   1173	      ],
@@ -961,7 +961,7 @@ exec
   1178	    try {
   1179	      // Q1: Block A now warns instead of throwing for explicit CLI args,
 exec
-/bin/zsh -lc 'rg -n "_source !== '"'file'|captureSource "'!== '"'file'|captureSource === 'file'|QUALITY_ABORT_THRESHOLD|quality abort\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "_source !== '"'file'|captureSource "'!== '"'file'|captureSource === 'file'|QUALITY_ABORT_THRESHOLD|quality abort\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 2213:  const QUALITY_ABORT_THRESHOLD = CONFIG.QUALITY_ABORT_THRESHOLD;
 2214:  if (qualityResult.score01 < QUALITY_ABORT_THRESHOLD) {
 2216:      `is below minimum threshold (${QUALITY_ABORT_THRESHOLD.toFixed(2)}). ` +
@@ -970,7 +970,7 @@ exec
 codex
 I found an important contradiction: current runtime code appears to apply `QUALITY_GATE_ABORT` to file-backed JSON saves too, despite Phase 015 docs claiming file-backed handbacks bypass it. I’m verifying this against tests now and then I’ll include it as a concrete gap with exact references.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '260,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts | sed -n '260,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	  });
    261	});
    262	
@@ -992,7 +992,7 @@ exec
    278	        },
    279	      ],
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-codex/SKILL.md | sed -n '430,510p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/cli-codex/SKILL.md | sed -n '430,510p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    430	   - Codex CLI transmits prompts to OpenAI's API
    431	
    432	4. **NEVER hammer the API** with rapid sequential calls
@@ -1014,7 +1014,7 @@ exec
    448	
    449	1. **ESCALATE IF Codex CLI is not installed** and user has not acknowledged
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-codex/assets/prompt_templates.md | sed -n '540,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/cli-codex/assets/prompt_templates.md | sed -n '540,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    540	[1-3 sentences: what was accomplished]
    541	
    542	### Files Modified
@@ -1036,8 +1036,8 @@ exec
    558	After receiving agent output, the calling AI extracts the handback section:
    559	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-gemini/SKILL.md | sed -n '395,438p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/cli-copilot/SKILL.md | sed -n '292,334p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/cli-gemini/SKILL.md | sed -n '395,438p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/cli-copilot/SKILL.md | sed -n '292,334p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    292	3. **NEVER assume Autopilot is perfect**; always verify the structural integrity of generated code.
    293	4. **NEVER ignore repository memory**; check for existing conventions before overriding.
    294	5. **NEVER invoke this skill from within Copilot CLI itself**
@@ -1080,7 +1080,7 @@ exec
    413	2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
    414	3. **Parse to JSON**: Map extracted fields to `{ sessionSummary, filesModified, keyDecisions, specFolder, triggerPhrases, nextSteps }` (the save flow also accepts documented snake_case keys such as `session_summary`, `files_modified`, `trigger_phrases`, `recent_context`, and `next_steps`)
 exec
-/bin/zsh -lc 'rg -n "parseStructuredModeArguments|dataFile|runWorkflow|loadCollectedData|/tmp/save-context-data.json|JSON mode|explicit" .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "parseStructuredModeArguments|dataFile|runWorkflow|loadCollectedData|/tmp/save-context-data.json|JSON mode|explicit" .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 25:import { runWorkflow } from '../core/workflow';
 26:import { loadCollectedData } from '../loaders';
 32:  dataFile: string | null;
@@ -1102,8 +1102,8 @@ exec
 436:    dataFile: primaryArg,
 561:    CONFIG.DATA_FILE = parsed.dataFile;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts | sed -n '380,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts | sed -n '520,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts | sed -n '380,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts | sed -n '520,660p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    380	  return {
    381	    dataFile: null,
    382	    specFolderArg,
@@ -1148,7 +1148,7 @@ exec
 codex
 I confirmed the CLI entrypoint path as well: JSON handback mode (`/tmp/save-context-data.json` or `--json/--stdin`) is routed into `runWorkflow` as `_source: "file"`. I’m now compiling the final CLI-by-CLI success matrix and the malformed payload gaps that are currently not blocked by validation.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1468,1628p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1468,1628p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1468	
   1469	    let specFolderName = '';
   1470	    for (const candidateRoot of candidateSpecsDirs) {
@@ -1170,14 +1170,14 @@ exec
   1486	      const marker = '/specs/';
   1487	      const markerIndex = normalizedSpecFolder.lastIndexOf(marker);
 exec
-/bin/zsh -lc 'rg -n "isStatelessMode" .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "isStatelessMode" .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 1415:    const isStatelessMode = !activeDataFile && !preloadedData;
 1416:    if (isStatelessMode && activeSpecFolderArg && (collectedData.observations || collectedData.FILES)) {
 1588:    if (isStatelessMode) {
 1773:  if (isStatelessMode && sessionData.TOOL_COUNT === 0 && inferredToolCount > 0) {
 1982:      ...(isStatelessMode ? { TOOL_COUNT: sessionData.TOOL_COUNT } : {}),
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '1388,1448p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '1388,1448p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   1388	    const warn = silent ? (): void => {} : console.warn.bind(console);
   1389	
   1390	    log('Starting memory skill workflow...\n');
@@ -1199,7 +1199,7 @@ exec
   1406	
   1407	    if (!collectedData) {
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: "Outsourced agent handback protocol"
      3	description: "Outsourced agent handback keeps external CLI save payloads aligned with the current `generate-context.js` contract. It enforces hard-fail validation for explicit JSON data files, persists `nextSteps` fields into memory observations, and now documents the post-010 save gates that can still reject a valid handback after normalization."
@@ -1249,31 +1249,31 @@ codex
 
 **Observed success rate**
 1. **Contract parity across CLIs: 4/4 (100%)**  
-All four CLI skill docs and all four prompt templates are enforced for the same handback contract in test coverage ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L14)).
+All four CLI skill docs and all four prompt templates are enforced for the same handback contract in test coverage ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L14)).
 2. **Runtime handback proof per CLI: not directly measured (0/4 dedicated E2E tests)**  
-Runtime tests validate the shared JSON path and failures, but not “CLI output -> extract handback -> save -> run pipeline” separately per CLI ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L67)).
+Runtime tests validate the shared JSON path and failures, but not “CLI output -> extract handback -> save -> run pipeline” separately per CLI ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L67)).
 
 **1) Minimum handback JSON payload schema**
-1. **What the runtime accepts (syntactic minimum):** object + valid field types ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L551)).  
-`specFolder` is only required when no CLI spec arg and no structured arrays are present ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L558)).
-2. **What docs define as “minimum viable” for durable saves:** specific summary, meaningful `recentContext` (or equivalent observation), and rich `FILES` descriptions (+ optional `ACTION`, `MODIFICATION_MAGNITUDE`, `_provenance`) ([cli-codex prompt template](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/assets/prompt_templates.md#L605), [cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L479)).
-3. **What actually gates durability:** sufficiency rules require primary evidence, enough total evidence, and semantic substance; thin payloads abort with `INSUFFICIENT_CONTEXT_ABORT` ([memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts#L371), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2207)).
+1. **What the runtime accepts (syntactic minimum):** object + valid field types ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L551)).  
+`specFolder` is only required when no CLI spec arg and no structured arrays are present ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L558)).
+2. **What docs define as “minimum viable” for durable saves:** specific summary, meaningful `recentContext` (or equivalent observation), and rich `FILES` descriptions (+ optional `ACTION`, `MODIFICATION_MAGNITUDE`, `_provenance`) ([cli-codex prompt template](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/assets/prompt_templates.md#L605), [cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L479)).
+3. **What actually gates durability:** sufficiency rules require primary evidence, enough total evidence, and semantic substance; thin payloads abort with `INSUFFICIENT_CONTEXT_ABORT` ([memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts#L371), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2207)).
 
 **2) CLI-by-CLI pipeline flow**
-1. **Codex, Copilot, Claude Code, Gemini all follow the same JSON handback pattern**: emit delimiter block, extract, redact/scrub, write `/tmp/save-context-data.json`, run `generate-context.js` ([cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L461), [cli-copilot SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-copilot/SKILL.md#L305), [cli-gemini SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-gemini/SKILL.md#L408)).
-2. **Runtime path is source-agnostic once JSON is provided**: `generate-context` passes file/preloaded data into workflow as `_source: "file"` ([generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L383), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L565), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L490)).  
+1. **Codex, Copilot, Claude Code, Gemini all follow the same JSON handback pattern**: emit delimiter block, extract, redact/scrub, write `/tmp/save-context-data.json`, run `generate-context.js` ([cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L461), [cli-copilot SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-copilot/SKILL.md#L305), [cli-gemini SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-gemini/SKILL.md#L408)).
+2. **Runtime path is source-agnostic once JSON is provided**: `generate-context` passes file/preloaded data into workflow as `_source: "file"` ([generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L383), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L565), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L490)).  
 Inference: JSON handback success/failure behavior is effectively the same for all 4 CLIs after extraction.
 
 **3) Validation gaps (malformed/thin payloads that slip through early validation)**
-1. `validateInputData` checks array-ness but not deep item quality for many fields; low-value arrays can pass then fail later at sufficiency ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L564)).
-2. `nextSteps`/`next_steps` element content is not validated; empty first step persists as `Next: ` ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L765)).
-3. `FILES` only enforces `FILE_PATH/path` presence; weak descriptions pass input validation and are filtered only by sufficiency semantics ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L609), [memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts#L181)).
-4. **Important mismatch**: docs/spec claim file-backed handbacks skip `QUALITY_GATE_ABORT`, but workflow and tests show file-backed runs can still hit `QUALITY_GATE_ABORT` ([spec.md](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md#L63), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2213), [task-enrichment.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts#L1289)).
+1. `validateInputData` checks array-ness but not deep item quality for many fields; low-value arrays can pass then fail later at sufficiency ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L564)).
+2. `nextSteps`/`next_steps` element content is not validated; empty first step persists as `Next: ` ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L765)).
+3. `FILES` only enforces `FILE_PATH/path` presence; weak descriptions pass input validation and are filtered only by sufficiency semantics ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L609), [memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts#L181)).
+4. **Important mismatch**: docs/spec claim file-backed handbacks skip `QUALITY_GATE_ABORT`, but workflow and tests show file-backed runs can still hit `QUALITY_GATE_ABORT` ([spec.md](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md#L63), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2213), [task-enrichment.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts#L1289)).
 
 **4) Current test coverage for handback scenarios per CLI**
-1. **Per-CLI docs/templates contract coverage:** yes, 4/4 CLIs via shared regression test ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29)).
-2. **Shared JSON ingestion/failure coverage:** yes (missing file, invalid JSON, invalid shape, snake_case, next steps) ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L73)).
-3. **Per-CLI native capture fallback coverage:** yes, but this is stateless capture, not handback JSON extraction ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L263)).
+1. **Per-CLI docs/templates contract coverage:** yes, 4/4 CLIs via shared regression test ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29)).
+2. **Shared JSON ingestion/failure coverage:** yes (missing file, invalid JSON, invalid shape, snake_case, next steps) ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L73)).
+3. **Per-CLI native capture fallback coverage:** yes, but this is stateless capture, not handback JSON extraction ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L263)).
 4. **Per-CLI handback E2E coverage:** no dedicated tests (gap).
 
 **5) Minimum tests needed per CLI for strong confidence**
@@ -1288,31 +1288,31 @@ tokens used
 
 **Observed success rate**
 1. **Contract parity across CLIs: 4/4 (100%)**  
-All four CLI skill docs and all four prompt templates are enforced for the same handback contract in test coverage ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L14)).
+All four CLI skill docs and all four prompt templates are enforced for the same handback contract in test coverage ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L14)).
 2. **Runtime handback proof per CLI: not directly measured (0/4 dedicated E2E tests)**  
-Runtime tests validate the shared JSON path and failures, but not “CLI output -> extract handback -> save -> run pipeline” separately per CLI ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L67)).
+Runtime tests validate the shared JSON path and failures, but not “CLI output -> extract handback -> save -> run pipeline” separately per CLI ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L67)).
 
 **1) Minimum handback JSON payload schema**
-1. **What the runtime accepts (syntactic minimum):** object + valid field types ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L551)).  
-`specFolder` is only required when no CLI spec arg and no structured arrays are present ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L558)).
-2. **What docs define as “minimum viable” for durable saves:** specific summary, meaningful `recentContext` (or equivalent observation), and rich `FILES` descriptions (+ optional `ACTION`, `MODIFICATION_MAGNITUDE`, `_provenance`) ([cli-codex prompt template](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/assets/prompt_templates.md#L605), [cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L479)).
-3. **What actually gates durability:** sufficiency rules require primary evidence, enough total evidence, and semantic substance; thin payloads abort with `INSUFFICIENT_CONTEXT_ABORT` ([memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts#L371), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2207)).
+1. **What the runtime accepts (syntactic minimum):** object + valid field types ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L551)).  
+`specFolder` is only required when no CLI spec arg and no structured arrays are present ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L558)).
+2. **What docs define as “minimum viable” for durable saves:** specific summary, meaningful `recentContext` (or equivalent observation), and rich `FILES` descriptions (+ optional `ACTION`, `MODIFICATION_MAGNITUDE`, `_provenance`) ([cli-codex prompt template](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/assets/prompt_templates.md#L605), [cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L479)).
+3. **What actually gates durability:** sufficiency rules require primary evidence, enough total evidence, and semantic substance; thin payloads abort with `INSUFFICIENT_CONTEXT_ABORT` ([memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts#L371), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2207)).
 
 **2) CLI-by-CLI pipeline flow**
-1. **Codex, Copilot, Claude Code, Gemini all follow the same JSON handback pattern**: emit delimiter block, extract, redact/scrub, write `/tmp/save-context-data.json`, run `generate-context.js` ([cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-codex/SKILL.md#L461), [cli-copilot SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-copilot/SKILL.md#L305), [cli-gemini SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/cli-gemini/SKILL.md#L408)).
-2. **Runtime path is source-agnostic once JSON is provided**: `generate-context` passes file/preloaded data into workflow as `_source: "file"` ([generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L383), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts#L565), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts#L490)).  
+1. **Codex, Copilot, Claude Code, Gemini all follow the same JSON handback pattern**: emit delimiter block, extract, redact/scrub, write `/tmp/save-context-data.json`, run `generate-context.js` ([cli-codex SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-codex/SKILL.md#L461), [cli-copilot SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-copilot/SKILL.md#L305), [cli-gemini SKILL](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/cli-gemini/SKILL.md#L408)).
+2. **Runtime path is source-agnostic once JSON is provided**: `generate-context` passes file/preloaded data into workflow as `_source: "file"` ([generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L383), [generate-context.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts#L565), [data-loader.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts#L490)).  
 Inference: JSON handback success/failure behavior is effectively the same for all 4 CLIs after extraction.
 
 **3) Validation gaps (malformed/thin payloads that slip through early validation)**
-1. `validateInputData` checks array-ness but not deep item quality for many fields; low-value arrays can pass then fail later at sufficiency ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L564)).
-2. `nextSteps`/`next_steps` element content is not validated; empty first step persists as `Next: ` ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L765)).
-3. `FILES` only enforces `FILE_PATH/path` presence; weak descriptions pass input validation and are filtered only by sufficiency semantics ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts#L609), [memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts#L181)).
-4. **Important mismatch**: docs/spec claim file-backed handbacks skip `QUALITY_GATE_ABORT`, but workflow and tests show file-backed runs can still hit `QUALITY_GATE_ABORT` ([spec.md](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md#L63), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L2213), [task-enrichment.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts#L1289)).
+1. `validateInputData` checks array-ness but not deep item quality for many fields; low-value arrays can pass then fail later at sufficiency ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L564)).
+2. `nextSteps`/`next_steps` element content is not validated; empty first step persists as `Next: ` ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L765)).
+3. `FILES` only enforces `FILE_PATH/path` presence; weak descriptions pass input validation and are filtered only by sufficiency semantics ([input-normalizer.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L609), [memory-sufficiency.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts#L181)).
+4. **Important mismatch**: docs/spec claim file-backed handbacks skip `QUALITY_GATE_ABORT`, but workflow and tests show file-backed runs can still hit `QUALITY_GATE_ABORT` ([spec.md](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-outsourced-agent-handback/spec.md#L63), [workflow.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L2213), [task-enrichment.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts#L1289)).
 
 **4) Current test coverage for handback scenarios per CLI**
-1. **Per-CLI docs/templates contract coverage:** yes, 4/4 CLIs via shared regression test ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29)).
-2. **Shared JSON ingestion/failure coverage:** yes (missing file, invalid JSON, invalid shape, snake_case, next steps) ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L73)).
-3. **Per-CLI native capture fallback coverage:** yes, but this is stateless capture, not handback JSON extraction ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L263)).
+1. **Per-CLI docs/templates contract coverage:** yes, 4/4 CLIs via shared regression test ([outsourced-agent-handback-docs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts#L29)).
+2. **Shared JSON ingestion/failure coverage:** yes (missing file, invalid JSON, invalid shape, snake_case, next steps) ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L73)).
+3. **Per-CLI native capture fallback coverage:** yes, but this is stateless capture, not handback JSON extraction ([runtime-memory-inputs.vitest.ts](/Users/michelkerkmeester/MEGA/Development%20Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts#L263)).
 4. **Per-CLI handback E2E coverage:** no dedicated tests (gap).
 
 **5) Minimum tests needed per CLI for strong confidence**

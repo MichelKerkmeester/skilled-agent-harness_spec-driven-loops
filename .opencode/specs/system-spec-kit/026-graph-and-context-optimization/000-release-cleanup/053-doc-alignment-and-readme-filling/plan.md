@@ -70,7 +70,7 @@ Pattern anchor (read-only): <anchor path>
 
 Constraints:
 - Modify only the WB-N target files
-- Verify each modified file with: python3 .opencode/skill/sk-doc/scripts/validate_document.py <path>
+- Verify each modified file with: python3 .opencode/skills/sk-doc/scripts/validate_document.py <path>
 - Do NOT relocate WB-2 files (stay at templates/manifest/)
 - Do NOT add emojis, em dashes, or fabricated content
 - Report a one-line status per file when done
@@ -108,7 +108,7 @@ Run all checks from `resource-map.md` §Author Instructions. Fix any failures; d
 | Type | Dependency | Note |
 |------|------------|------|
 | Tool | `cli-codex` (gpt-5.5, medium reasoning, fast service tier) | Per memory `feedback_codex_cli_fast_mode`, `-c service_tier="fast"` always |
-| Tool | sk-doc validator | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
+| Tool | sk-doc validator | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
 | Tool | system-spec-kit strict validate | `bash scripts/spec/validate.sh --strict` |
 | Template | `sk-doc skill_reference_template.md` | WB-1, WB-2 |
 | Template | `sk-doc readme_code_template.md` | WB-3, WB-4 |

@@ -98,15 +98,15 @@ Three streams land in dependency order: (A) the skill folder itself, (B) advisor
 | the cli-opencode integration_patterns file | NEW | A |
 | the cli-opencode agent_delegation file | NEW | A |
 | the cli-opencode opencode_tools file | NEW | A |
-| `.opencode/skill/cli-claude-code/graph-metadata.json` | MOD (sibling edge) | B |
-| `.opencode/skill/cli-codex/graph-metadata.json` | MOD (sibling edge) | B |
-| `.opencode/skill/cli-copilot/graph-metadata.json` | MOD (sibling edge) | B |
-| `.opencode/skill/cli-gemini/graph-metadata.json` | MOD (sibling edge) | B |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:15` | MOD (TOKEN_BOOSTS) | B (optional, ADR-003) |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | REGEN | B |
-| `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite` | REGEN | B |
+| `.opencode/skills/cli-claude-code/graph-metadata.json` | MOD (sibling edge) | B |
+| `.opencode/skills/cli-codex/graph-metadata.json` | MOD (sibling edge) | B |
+| `.opencode/skills/cli-copilot/graph-metadata.json` | MOD (sibling edge) | B |
+| `.opencode/skills/cli-gemini/graph-metadata.json` | MOD (sibling edge) | B |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:15` | MOD (TOKEN_BOOSTS) | B (optional, ADR-003) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | REGEN | B |
+| `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` | REGEN | B |
 | the cli-opencode v1.0.0.0 changelog file | NEW | C |
-| `.opencode/skill/README.md` | MOD (8 edit points) | C |
+| `.opencode/skills/README.md` | MOD (8 edit points) | C |
 | `.opencode/README.md` | MOD (2 edit points) | C |
 <!-- /ANCHOR:architecture -->
 
@@ -151,7 +151,7 @@ Mark all tasks/checklist items complete with evidence. Populate implementation-s
 
 ### Per-stream
 
-- **Stream A:** Smoke test the skill by invoking `Read(.opencode/skill/cli-opencode/SKILL.md)` and verifying advisor recommends it for "delegate to opencode CLI" prompts.
+- **Stream A:** Smoke test the skill by invoking `Read(.opencode/skills/cli-opencode/SKILL.md)` and verifying advisor recommends it for "delegate to opencode CLI" prompts.
 - **Stream B:** `python3 skill_graph_compiler.py --validate-only` after every sibling-edge patch. `/doctor:skill-advisor:auto` retune as the final integration test.
 - **Stream C:** Manual visual diff on the 10 README edit points. sk-doc DQI score on changelog v1.0.0.0.md.
 
@@ -193,7 +193,7 @@ Each task produces a focused diff. Failed tasks revert via `git checkout HEAD --
 
 ### Per stream
 
-- Stream A rollback: delete `.opencode/skill/cli-opencode/` directory; the four sibling skills still work.
+- Stream A rollback: delete `.opencode/skills/cli-opencode/` directory; the four sibling skills still work.
 - Stream B rollback: revert sibling-edge patches + TOKEN_BOOTS patch; rerun `init-skill-graph.sh` to rebuild SQLite.
 - Stream C rollback: revert README patches; delete `.opencode/changelog/cli-opencode/`; revert any GitHub tag via `git tag -d v1.0.0.0 && git push --delete origin v1.0.0.0` (optional, with operator confirmation).
 
@@ -251,7 +251,7 @@ Implementation runs autonomously via cli-codex gpt-5.4 high fast (canonical) OR 
 - **`opencode` binary missing or version mismatch**: SKILL.md prerequisite check catches before any dispatch. If the operator's machine has v1.4 with breaking flag changes, document drift in references/cli_reference.md and continue.
 - **`init-skill-graph.sh` validate-only fails**: Fix the offending graph-metadata.json file based on the error message; rerun.
 - **`/doctor:skill-advisor:auto` reports regression on existing cli-* siblings**: Revert the TOKEN_BOOTS entry (ADR-003 fallback) and rerun. If still regressing, lower sibling edge weights from 0.5 to 0.3.
-- **`/create:changelog` cannot find sk-doc template**: Use the absolute path explicitly: `--template /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-doc/assets/documentation/changelog_template.md`.
+- **`/create:changelog` cannot find sk-doc template**: Use the absolute path explicitly: `--template /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/documentation/changelog_template.md`.
 - **Both READMEs drift**: Re-run the patch script idempotently; the patches are line-anchored so they only apply once.
 <!-- /ANCHOR:enhanced-rollback -->
 

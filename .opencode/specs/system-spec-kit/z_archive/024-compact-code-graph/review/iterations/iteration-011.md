@@ -6,8 +6,8 @@
 - Reviewed surfaces:
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/spec.md`
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
 
 ## Findings
 

@@ -2,7 +2,7 @@
 
 Date: 2026-03-05
 Agent: Codex-5 (Phase 5 Code Quality)
-Base: `.opencode/skill/system-spec-kit/`
+Base: `.opencode/skills/system-spec-kit/`
 
 ## Task Status
 - T027: Completed

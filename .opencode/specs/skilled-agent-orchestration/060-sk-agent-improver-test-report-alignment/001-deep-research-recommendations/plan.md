@@ -54,7 +54,7 @@ Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15
 
 2. **Bootstrap JSON metadata** via `generate-context.js`:
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+   node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
      --json '{"specFolder":"specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations","sessionId":"..."}' \
      specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment
    ```
@@ -62,7 +62,7 @@ Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15
 
 3. **Strict-validate**:
    ```bash
-   bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
      specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict
    ```
    Expected: exit 0.
@@ -97,7 +97,7 @@ Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15
    ```
 
    **Topic body** (passed during setup phase or pre-bound via spec.md research questions):
-   > Research how to improve the sk-improve-agent triad — `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/agent/improve-agent.md`, `.opencode/command/improve/agent.md` — by applying the testing methodology from packet 059 (`@code` stress-test campaign documented in `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md`). Use the 7 research questions in this packet's spec.md §5 as the iteration anchors. Target output: `research/research.md` with gap analysis, sketched stress-test scenarios in CP-XXX format, prioritized diff sketches, and a recommended fixture-target design for the eventual implementation packet (061).
+   > Research how to improve the sk-improve-agent triad — `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md` — by applying the testing methodology from packet 059 (`@code` stress-test campaign documented in `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md`). Use the 7 research questions in this packet's spec.md §5 as the iteration anchors. Target output: `research/research.md` with gap analysis, sketched stress-test scenarios in CP-XXX format, prioritized diff sketches, and a recommended fixture-target design for the eventual implementation packet (061).
 
 3. **Monitor convergence** by watching:
    - `research/iterations/iteration-NNN.md` files appearing
@@ -127,7 +127,7 @@ Total wall time estimate: **15-25 minutes** (Phase 1 ≈ 2 min, Phase 2 ≈ 8-15
 After 060's `research/research.md` converges, packet **061** will:
 
 - Apply the diff recommendations to the 3 target files (SKILL.md, improve-agent.md, improve/agent.md)
-- Promote the sketched CP-XXX scenarios to real playbook entries under `.opencode/skill/cli-copilot/manual_testing_playbook/`
+- Promote the sketched CP-XXX scenarios to real playbook entries under `.opencode/skills/cli-copilot/manual_testing_playbook/`
 - Run multi-round stress tests against the improved triad (target: PASS/PARTIAL/FAIL score progression, 059-style)
 - Produce `test-report.md` for sk-improve-agent in 061's spec folder
 

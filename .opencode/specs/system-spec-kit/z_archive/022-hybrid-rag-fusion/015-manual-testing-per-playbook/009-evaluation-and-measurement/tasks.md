@@ -99,5 +99,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Playbook source**: `.opencode/skill/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/`
+- **Playbook source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/`
 <!-- /ANCHOR:cross-refs -->

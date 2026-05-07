@@ -40,24 +40,24 @@ This research focused on concrete implementation patterns and directly actionabl
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/research/research/research.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-hybrid-rag-fusion-logic-improvements/global-quality-sweep.md`
 - `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-spec-kit-templates/spec.md`
-- `.opencode/skill/sk-code-opencode/SKILL.md`
-- `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md`
-- `.opencode/skill/sk-code-opencode/references/shared/code_organization.md`
-- `.opencode/skill/sk-code-opencode/references/javascript/style_guide.md`
-- `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md`
-- `.opencode/skill/sk-code-opencode/references/python/style_guide.md`
-- `.opencode/skill/sk-code-opencode/references/shell/style_guide.md`
-- `.opencode/skill/sk-code-opencode/references/config/style_guide.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md`
-- `.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md`
-- `.opencode/skill/sk-code-review/SKILL.md`
-- `.opencode/skill/sk-code-review/references/quick_reference.md`
-- `.opencode/skill/sk-code-review/references/code_quality_checklist.md`
-- `.opencode/skill/sk-code-review/references/solid_checklist.md`
+- `.opencode/skills/sk-code-opencode/SKILL.md`
+- `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md`
+- `.opencode/skills/sk-code-opencode/references/shared/code_organization.md`
+- `.opencode/skills/sk-code-opencode/references/javascript/style_guide.md`
+- `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md`
+- `.opencode/skills/sk-code-opencode/references/python/style_guide.md`
+- `.opencode/skills/sk-code-opencode/references/shell/style_guide.md`
+- `.opencode/skills/sk-code-opencode/references/config/style_guide.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md`
+- `.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md`
+- `.opencode/skills/sk-code-review/SKILL.md`
+- `.opencode/skills/sk-code-review/references/quick_reference.md`
+- `.opencode/skills/sk-code-review/references/code_quality_checklist.md`
+- `.opencode/skills/sk-code-review/references/solid_checklist.md`
 
 ### Supplemental synthesis inputs
 
@@ -86,21 +86,21 @@ The following patterns are concrete implementation behaviors that can be reused 
 
 ## 3.1 `sk-code-opencode` gaps relevant to this spec
 
-1. **Inline comment policy is still broad**: current rule is repeated as "Maximum 5 comments per 10 lines" in core and language guides, which allows verbose narration to pass if ratio is respected. [SOURCE: `.opencode/skill/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/python/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/shell/style_guide.md`]
-2. **Header conventions are strong but not explicitly guarded as non-regression invariant in checklists**: numbered ALL-CAPS sections are present throughout style/checklist docs, but preservation is not a named closure check. [SOURCE: `.opencode/skill/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`] [SOURCE: `.opencode/specs/03--commands-and-skills/018-code-opencode-refinement/spec.md`]
-3. **KISS/DRY/SOLID terms are effectively absent in opencode standards/checklists**: search signal is missing from `sk-code-opencode` core references and checklists. [SOURCE: `.opencode/skill/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md`]
+1. **Inline comment policy is still broad**: current rule is repeated as "Maximum 5 comments per 10 lines" in core and language guides, which allows verbose narration to pass if ratio is respected. [SOURCE: `.opencode/skills/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/python/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/shell/style_guide.md`]
+2. **Header conventions are strong but not explicitly guarded as non-regression invariant in checklists**: numbered ALL-CAPS sections are present throughout style/checklist docs, but preservation is not a named closure check. [SOURCE: `.opencode/skills/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`] [SOURCE: `.opencode/specs/03--commands-and-skills/018-code-opencode-refinement/spec.md`]
+3. **KISS/DRY/SOLID terms are effectively absent in opencode standards/checklists**: search signal is missing from `sk-code-opencode` core references and checklists. [SOURCE: `.opencode/skills/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md`]
 
 ## 3.2 `sk-code-review` detection gaps (KISS/DRY/SOLID)
 
-1. **SOLID is keyword-gated too narrowly**: router intent for SOLID depends on a short keyword list (`solid`, `architecture`, `design`, `coupling`, `cohesion`), so architecture-risk reviews can miss `solid_checklist.md` when different vocabulary is used. [SOURCE: `.opencode/skill/sk-code-review/SKILL.md`]
-2. **KISS/DRY are not explicit intents or checklist anchors**: baseline quick-reference and code-quality checklist mention maintainability signals but do not explicitly codify KISS/DRY checks as a required pass. [SOURCE: `.opencode/skill/sk-code-review/references/quick_reference.md`] [SOURCE: `.opencode/skill/sk-code-review/references/code_quality_checklist.md`]
-3. **SOLID prompts exist but are conditional**: `solid_checklist.md` is well-structured and actionable, but it is not always loaded. [SOURCE: `.opencode/skill/sk-code-review/references/solid_checklist.md`] [SOURCE: `.opencode/skill/sk-code-review/SKILL.md`]
+1. **SOLID is keyword-gated too narrowly**: router intent for SOLID depends on a short keyword list (`solid`, `architecture`, `design`, `coupling`, `cohesion`), so architecture-risk reviews can miss `solid_checklist.md` when different vocabulary is used. [SOURCE: `.opencode/skills/sk-code-review/SKILL.md`]
+2. **KISS/DRY are not explicit intents or checklist anchors**: baseline quick-reference and code-quality checklist mention maintainability signals but do not explicitly codify KISS/DRY checks as a required pass. [SOURCE: `.opencode/skills/sk-code-review/references/quick_reference.md`] [SOURCE: `.opencode/skills/sk-code-review/references/code_quality_checklist.md`]
+3. **SOLID prompts exist but are conditional**: `solid_checklist.md` is well-structured and actionable, but it is not always loaded. [SOURCE: `.opencode/skills/sk-code-review/references/solid_checklist.md`] [SOURCE: `.opencode/skills/sk-code-review/SKILL.md`]
 
 ## 3.3 Language coverage implications (`sh/js/ts/json/python`)
 
-1. `sh/js/ts/python` each have `quick_reference + style_guide + quality_standards`, so they already support layered enforcement. [SOURCE: `.opencode/skill/sk-code-opencode/references/shell/quality_standards.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/javascript/quality_standards.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/typescript/quality_standards.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/python/quality_standards.md`]
-2. `json/jsonc` currently has only `quick_reference + style_guide`; there is no `quality_standards.md` in `references/config`. [SOURCE: `.opencode/skill/sk-code-opencode/references/config/quick_reference.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/config/style_guide.md`]
-3. `sk-code-opencode` config routing reflects this reduced depth (config references are style + quick reference only). [SOURCE: `.opencode/skill/sk-code-opencode/SKILL.md`]
+1. `sh/js/ts/python` each have `quick_reference + style_guide + quality_standards`, so they already support layered enforcement. [SOURCE: `.opencode/skills/sk-code-opencode/references/shell/quality_standards.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/typescript/quality_standards.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/python/quality_standards.md`]
+2. `json/jsonc` currently has only `quick_reference + style_guide`; there is no `quality_standards.md` in `references/config`. [SOURCE: `.opencode/skills/sk-code-opencode/references/config/quick_reference.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/config/style_guide.md`]
+3. `sk-code-opencode` config routing reflects this reduced depth (config references are style + quick reference only). [SOURCE: `.opencode/skills/sk-code-opencode/SKILL.md`]
 
 ## 4. Priority Recommendations (Implementation-Ready, Minimal Invasiveness)
 
@@ -108,30 +108,30 @@ The recommendations below are intentionally incremental and scoped to existing f
 
 | ID | Priority | Target Files | Implementation-ready change |
 |---|---|---|---|
-| R1 | **P0** | `.opencode/skill/sk-code-opencode/SKILL.md`, `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md`, all language `style_guide.md` files in `javascript/typescript/python/shell/config` | Replace current comment-density rule with stricter policy: **"max 3 comments per 10 LOC"** and add explicit allowlist: `WHY`, `GUARD`, `INVARIANT`, `REQ-/BUG-/SEC-/T- trace`, `RISK/PERF`. Keep existing good/bad examples but add one negative example for narrative/mechanical comments. |
-| R2 | **P0** | `.opencode/skill/sk-code-opencode/references/shared/code_organization.md`, `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`, language checklists | Add explicit non-regression invariant: numbered ALL-CAPS primary section headers are mandatory in standards docs and examples (`## N. UPPERCASE`). Add checklist item and validation regex guidance for this invariant. |
-| R3 | **P0** | `.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`, `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md`, `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md`, `.opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md`, `.opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md`, `.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md` | Add compact KISS/DRY/SOLID checks with pass/fail wording. Minimum: one KISS and one DRY check in every checklist; full SRP/OCP/LSP/ISP/DIP prompts in universal + JS/TS; SRP/DRY analog checks for Python/Shell/Config. |
-| R4 | **P1** (Optional review alignment) | `.opencode/skill/sk-code-review/SKILL.md` | Expand intent detection: include architecture markers (`module`, `adapter`, `interface`, `abstraction`, `responsibility`, `dependency`, `boundary`) and add explicit KISS/DRY intents mapped to existing checklist resources. |
-| R5 | **P1** (Optional review alignment) | `.opencode/skill/sk-code-review/references/quick_reference.md`, `.opencode/skill/sk-code-review/references/code_quality_checklist.md` | Add one short KISS/DRY reviewer checkpoint in quick flow and one explicit severity mapping cue for duplication/over-abstraction (P2 default, escalate when behavior risk exists). |
-| R6 | **P1** | `.opencode/skill/sk-code-opencode/references/config/style_guide.md`, `.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md` | Close config parity gap without new file by adding a "CONFIG QUALITY GATES" subsection that mirrors P0/P1 policy style used in other languages. |
-| R7 | **P2** | `.opencode/skill/sk-code-opencode/references/config/quality_standards.md` (new, optional) and `.opencode/skill/sk-code-opencode/SKILL.md` routing map | Optional parity enhancement: add dedicated config `quality_standards.md` and include it in config routing for full symmetry with `sh/js/ts/python`. |
+| R1 | **P0** | `.opencode/skills/sk-code-opencode/SKILL.md`, `.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md`, all language `style_guide.md` files in `javascript/typescript/python/shell/config` | Replace current comment-density rule with stricter policy: **"max 3 comments per 10 LOC"** and add explicit allowlist: `WHY`, `GUARD`, `INVARIANT`, `REQ-/BUG-/SEC-/T- trace`, `RISK/PERF`. Keep existing good/bad examples but add one negative example for narrative/mechanical comments. |
+| R2 | **P0** | `.opencode/skills/sk-code-opencode/references/shared/code_organization.md`, `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`, language checklists | Add explicit non-regression invariant: numbered ALL-CAPS primary section headers are mandatory in standards docs and examples (`## N. UPPERCASE`). Add checklist item and validation regex guidance for this invariant. |
+| R3 | **P0** | `.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`, `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md`, `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md`, `.opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md`, `.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md`, `.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md` | Add compact KISS/DRY/SOLID checks with pass/fail wording. Minimum: one KISS and one DRY check in every checklist; full SRP/OCP/LSP/ISP/DIP prompts in universal + JS/TS; SRP/DRY analog checks for Python/Shell/Config. |
+| R4 | **P1** (Optional review alignment) | `.opencode/skills/sk-code-review/SKILL.md` | Expand intent detection: include architecture markers (`module`, `adapter`, `interface`, `abstraction`, `responsibility`, `dependency`, `boundary`) and add explicit KISS/DRY intents mapped to existing checklist resources. |
+| R5 | **P1** (Optional review alignment) | `.opencode/skills/sk-code-review/references/quick_reference.md`, `.opencode/skills/sk-code-review/references/code_quality_checklist.md` | Add one short KISS/DRY reviewer checkpoint in quick flow and one explicit severity mapping cue for duplication/over-abstraction (P2 default, escalate when behavior risk exists). |
+| R6 | **P1** | `.opencode/skills/sk-code-opencode/references/config/style_guide.md`, `.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md` | Close config parity gap without new file by adding a "CONFIG QUALITY GATES" subsection that mirrors P0/P1 policy style used in other languages. |
+| R7 | **P2** | `.opencode/skills/sk-code-opencode/references/config/quality_standards.md` (new, optional) and `.opencode/skills/sk-code-opencode/SKILL.md` routing map | Optional parity enhancement: add dedicated config `quality_standards.md` and include it in config routing for full symmetry with `sh/js/ts/python`. |
 | R8 | **P2** | Existing verification scripts/checklist workflow | Optional automation: add a narrow text-validation check that asserts comment-policy anchors, KISS/DRY/SOLID markers, and ALL-CAPS header invariant across scoped files. |
 
 ### Why these are minimally invasive
 
-1. They reuse existing structure and references instead of introducing a new architecture layer. [SOURCE: `.opencode/skill/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skill/sk-code-review/SKILL.md`]
+1. They reuse existing structure and references instead of introducing a new architecture layer. [SOURCE: `.opencode/skills/sk-code-opencode/SKILL.md`] [SOURCE: `.opencode/skills/sk-code-review/SKILL.md`]
 2. They align with 139's "tight seam fixes + strong verification" behavior. [SOURCE: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/002-hybrid-rag-fusion/implementation-summary.md`] [SOURCE: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies/implementation-summary.md`] [SOURCE: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/005-auto-detected-session-bug/implementation-summary.md`]
-3. They preserve current baseline/overlay precedence while improving detection coverage. [SOURCE: `.opencode/skill/sk-code-review/SKILL.md`] [SOURCE: `.opencode/skill/sk-code-review/references/quick_reference.md`]
+3. They preserve current baseline/overlay precedence while improving detection coverage. [SOURCE: `.opencode/skills/sk-code-review/SKILL.md`] [SOURCE: `.opencode/skills/sk-code-review/references/quick_reference.md`]
 
 ## 5. Language Coverage Implications Matrix
 
 | Language | Current state | Risk if unchanged | Required update in this refinement |
 |---|---|---|---|
-| **Shell (`sh`)** | Full reference stack present; comment guidance currently 5/10 ratio. [SOURCE: `.opencode/skill/sk-code-opencode/references/shell/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/shell/quality_standards.md`] | Over-commented scripts and inconsistent architecture quality checks in review outputs. | Apply R1 comment tightening in shell style guide + R3 KISS/DRY/SRP analog checklist checks. |
-| **JavaScript (`js`)** | Full reference stack present; strong style and checklist coverage. [SOURCE: `.opencode/skill/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md`] | SOLID/KISS/DRY gaps stay implicit; reviewers may miss design drift unless explicitly asked. | Apply R1 + full R3 SOLID prompts + optional R4/R5 review routing expansion. |
-| **TypeScript (`ts`)** | Full reference stack present with strict typing emphasis. [SOURCE: `.opencode/skill/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md`] | Architecture/abstraction issues can pass when SOLID intent is not auto-detected. | Apply R1 + R3 SOLID prompts + R4 intent keyword expansion in review router. |
-| **JSON/JSONC (`json`)** | No config `quality_standards.md`; only style + quick reference. [SOURCE: `.opencode/skill/sk-code-opencode/references/config/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/config/quick_reference.md`] | Severity and quality gating for config changes stay weaker than other languages. | Apply R6 now (minimal, no new file); optionally apply R7 for full parity. |
-| **Python (`python`)** | Full reference stack present; comment guidance currently 5/10 ratio. [SOURCE: `.opencode/skill/sk-code-opencode/references/python/style_guide.md`] [SOURCE: `.opencode/skill/sk-code-opencode/references/python/quality_standards.md`] | DRY/SRP checks remain implicit and may vary reviewer-by-reviewer. | Apply R1 + R3 (KISS/DRY/SRP analog checks in python checklist). |
+| **Shell (`sh`)** | Full reference stack present; comment guidance currently 5/10 ratio. [SOURCE: `.opencode/skills/sk-code-opencode/references/shell/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/shell/quality_standards.md`] | Over-commented scripts and inconsistent architecture quality checks in review outputs. | Apply R1 comment tightening in shell style guide + R3 KISS/DRY/SRP analog checklist checks. |
+| **JavaScript (`js`)** | Full reference stack present; strong style and checklist coverage. [SOURCE: `.opencode/skills/sk-code-opencode/references/javascript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md`] | SOLID/KISS/DRY gaps stay implicit; reviewers may miss design drift unless explicitly asked. | Apply R1 + full R3 SOLID prompts + optional R4/R5 review routing expansion. |
+| **TypeScript (`ts`)** | Full reference stack present with strict typing emphasis. [SOURCE: `.opencode/skills/sk-code-opencode/references/typescript/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md`] | Architecture/abstraction issues can pass when SOLID intent is not auto-detected. | Apply R1 + R3 SOLID prompts + R4 intent keyword expansion in review router. |
+| **JSON/JSONC (`json`)** | No config `quality_standards.md`; only style + quick reference. [SOURCE: `.opencode/skills/sk-code-opencode/references/config/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/config/quick_reference.md`] | Severity and quality gating for config changes stay weaker than other languages. | Apply R6 now (minimal, no new file); optionally apply R7 for full parity. |
+| **Python (`python`)** | Full reference stack present; comment guidance currently 5/10 ratio. [SOURCE: `.opencode/skills/sk-code-opencode/references/python/style_guide.md`] [SOURCE: `.opencode/skills/sk-code-opencode/references/python/quality_standards.md`] | DRY/SRP checks remain implicit and may vary reviewer-by-reviewer. | Apply R1 + R3 (KISS/DRY/SRP analog checks in python checklist). |
 
 ## 6. New Global Quality Sweep Definition (for 043)
 
@@ -150,10 +150,10 @@ Verify all scoped standards artifacts together:
 Suggested command set:
 
 ```bash
-rg -n "Maximum 3 comments per 10 lines|allowlist|WHY|GUARD|INVARIANT" .opencode/skill/sk-code-opencode
-rg -n "ALL-CAPS|## [0-9]+\\. [A-Z0-9 ()/-]+" .opencode/skill/sk-code-opencode
-rg -n "KISS|DRY|SRP|OCP|LSP|ISP|DIP" .opencode/skill/sk-code-opencode/assets/checklists
-rg -n "INTENT_SIGNALS|RESOURCE_MAP|KISS|DRY|SOLID" .opencode/skill/sk-code-review
+rg -n "Maximum 3 comments per 10 lines|allowlist|WHY|GUARD|INVARIANT" .opencode/skills/sk-code-opencode
+rg -n "ALL-CAPS|## [0-9]+\\. [A-Z0-9 ()/-]+" .opencode/skills/sk-code-opencode
+rg -n "KISS|DRY|SRP|OCP|LSP|ISP|DIP" .opencode/skills/sk-code-opencode/assets/checklists
+rg -n "INTENT_SIGNALS|RESOURCE_MAP|KISS|DRY|SOLID" .opencode/skills/sk-code-review
 ```
 
 ### Step 2: Global bug detection sweep (required)

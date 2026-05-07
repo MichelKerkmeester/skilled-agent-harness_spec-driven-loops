@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-08
 **Auditor:** Claude Opus 4.6
-**Base path:** `.opencode/skill/system-spec-kit`
+**Base path:** `.opencode/skills/system-spec-kit`
 
 ---
 

@@ -47,13 +47,13 @@ _memory:
 <!-- ANCHOR:phase -->
 ## Phase 2: Implementation
 
-- [x] T005 [WS-1] Align `session_bootstrap` handler output with every documented public contract surface (`.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/README.md`).
+- [x] T005 [WS-1] Align `session_bootstrap` handler output with every documented public contract surface (`.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/README.md`).
 - [x] T006 [WS-2][P] Repair root packet evidence so checklist proof agrees with actual shipped status for phases 015 and 016 (`../implementation-summary.md`, `../checklist.md`).
-- [x] T007 [WS-3][P] Add Gemini compact-recovery provenance fencing or narrow the claim to the live behavior (`.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts`).
-- [x] T008 [WS-3][P] Replace transcript-frequency autosave targeting with validated active-session packet selection (`.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`).
+- [x] T007 [WS-3][P] Add Gemini compact-recovery provenance fencing or narrow the claim to the live behavior (`.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts`).
+- [x] T008 [WS-3][P] Replace transcript-frequency autosave targeting with validated active-session packet selection (`.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`).
 - [x] T009 [WS-4] Truth-sync Phase 021 to the bootstrap-first recovery contract and mark superseded guidance explicitly if kept for history (`../021-cross-runtime-instruction-parity/spec.md`, `../021-cross-runtime-instruction-parity/implementation-summary.md`, `AGENTS.md`).
-- [x] T010 [WS-5] Implement or relax the Phase 027 hard structural budget claim so packet docs and runtime behavior agree (`../027-opencode-structural-priming/spec.md`, `../027-opencode-structural-priming/plan.md`, `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts`).
-- [x] T011 [WS-6] Align `context-prime` structural Prime Package wording across OpenCode, Claude, and the live Codex runtime surfaces if the advisory is accepted for this pass (`.opencode/agent/context.md`, `.claude/agents/context.md`, `.codex/agents/context-prime.toml`).
+- [x] T010 [WS-5] Implement or relax the Phase 027 hard structural budget claim so packet docs and runtime behavior agree (`../027-opencode-structural-priming/spec.md`, `../027-opencode-structural-priming/plan.md`, `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts`).
+- [x] T011 [WS-6] Align `context-prime` structural Prime Package wording across OpenCode, Claude, and the live Codex runtime surfaces if the advisory is accepted for this pass (`.opencode/agents/context.md`, `.claude/agents/context.md`, `.codex/agents/context-prime.toml`).
 <!-- /ANCHOR:phase -->
 
 <!-- ANCHOR:phase-3 -->

@@ -41,13 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md",
+      ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
       "research/research.md",
       "spec.md",
       "plan.md",
       "research/iterations/iteration-009.md",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       ".claude/settings.local.json",
       "scripts/utils/template-structure.js",
       "tasks.md",
@@ -58,7 +58,7 @@
       {
         "name": "template_compliance_contract.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md",
+        "path": ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
         "source": "derived"
       },
       {
@@ -88,13 +88,13 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "template-structure.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
         "source": "derived"
       },
       {

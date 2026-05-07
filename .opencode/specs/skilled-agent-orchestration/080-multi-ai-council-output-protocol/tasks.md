@@ -67,7 +67,7 @@ Spec authoring + design lock-in. Final verification gate is strict validation pa
 
 Agent body update + 4-runtime mirror sync + 4 reference files under system-spec-kit.
 
-- [x] T101 Update `.opencode/agent/multi-ai-council.md` body with §Output Protocol (683 LOC, under 750)
+- [x] T101 Update `.opencode/agents/multi-ai-council.md` body with §Output Protocol (683 LOC, under 750)
 - [x] T102 Add §Invocation Contract (first-call / subsequent / resume rules)
 - [x] T103 Add §State Schema (jsonl event types + examples)
 - [x] T104 Add §Convergence Signal (2/3 agreement rule)

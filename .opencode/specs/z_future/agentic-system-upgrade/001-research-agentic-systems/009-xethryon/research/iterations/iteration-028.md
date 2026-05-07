@@ -12,9 +12,9 @@ Yes. The underlying safeguards are justified, but too much of the explanation si
 I compared the local gate and constitutional memory surfaces with Xethryon's lighter runtime injection model.
 
 ## Evidence
-- The gate constitutional docs explicitly define Gate 1, Gate 2, Gate 3, continuation validation, and multiple trigger rules. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-106]
-- Tool routing is also documented as a separate constitutional decision tree. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-55]
-- `system-spec-kit`'s primary skill expands into a broad router over spec folders, memory, validation, commands, and templates. [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:32-59] [SOURCE: .opencode/skill/system-spec-kit/SKILL.md:130-229]
+- The gate constitutional docs explicitly define Gate 1, Gate 2, Gate 3, continuation validation, and multiple trigger rules. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-106]
+- Tool routing is also documented as a separate constitutional decision tree. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-55]
+- `system-spec-kit`'s primary skill expands into a broad router over spec folders, memory, validation, commands, and templates. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:32-59] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:130-229]
 - Xethryon's operator surface is lighter because memory, git context, and autonomy instructions are injected into the session system rather than narrated as separate preflight concepts. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1555-1585]
 - Xethryon's autonomy toggle still exposes one user-visible control, but much less conceptual setup is carried into each task. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:149-159]
 
@@ -49,7 +49,7 @@ finding: keep the gate system, but simplify the operator-facing experience by re
 - **Migration path:** additive summary first, then gradually trim repeated prose from front-door workflows.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define a stable preflight summary schema shared across bootstrap, resume, and first-response flows

@@ -157,12 +157,12 @@ contextType: "implementation"
 - [x] No need to run memory_index_scan after restore
 
 ### P1-013: /help Command
-- [x] help.md command created → `.opencode/command/spec_kit/help.md` (274 lines)
+- [x] help.md command created → `.opencode/commands/spec_kit/help.md` (274 lines)
 - [x] Lists all available commands
 - [x] Works without spec folder context
 
 ### P1-014: Namespace Help Commands
-- [x] /memory:help created → `.opencode/command/memory/help.md` (144 lines)
+- [x] /memory:help created → `.opencode/commands/memory/help.md` (144 lines)
 - [x] /search:help created OR documented as not needed
 
 <!-- /ANCHOR:docs -->

@@ -60,8 +60,8 @@ Average 274s/CP (4.5min). Range: 181s-391s. cli-copilot dispatching per CP via `
 
 ## 5. Reusable Artifacts
 
-- **6 CPs at** `.opencode/skill/sk-deep-research/manual_testing_playbook/07--command-flow-stress-tests/`
-- **Sandbox helper at** `.opencode/skill/sk-deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh`
+- **6 CPs at** `.opencode/skills/sk-deep-research/manual_testing_playbook/07--command-flow-stress-tests/`
+- **Sandbox helper at** `.opencode/skills/sk-deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh`
 - **Per-CP transcripts at** `/tmp/cp-046..051-B-{command,artifacts,combined,field-counts}.txt`
 - **Stress runner at** `/tmp/062-r1-stress-runner.py` (Python orchestrator with 3-parallel concurrency limit)
 

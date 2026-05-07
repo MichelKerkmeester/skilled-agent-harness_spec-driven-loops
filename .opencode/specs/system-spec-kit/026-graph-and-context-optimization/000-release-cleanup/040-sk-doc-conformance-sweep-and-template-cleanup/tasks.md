@@ -124,7 +124,7 @@ _memory:
 - [x] T-067 Swept `level3plus-govern` → `level3-plus-govern` across 19 active code files
 - [x] T-068 Swept `templates/stress-test` → `templates/stress_test` across 4 active code files (1 acceptable residual in shadow-deltas.jsonl runtime data — auto-regenerates)
 - [x] T-069 Swept `templates/sharded` references (validate.sh guard removed; 0 active callers remain)
-- [x] T-070 Final residual sweep: 0 hits across `level3plus-govern` / `templates/stress-test` / `templates/sharded` in active code paths (.opencode/skill/)
+- [x] T-070 Final residual sweep: 0 hits across `level3plus-govern` / `templates/stress-test` / `templates/sharded` in active code paths (.opencode/skills/)
 
 ### Tier 4 — Validation + memory save
 

@@ -89,7 +89,7 @@ All patterns supported by `/memory:context`.
 **Priority:** P0 | **Effort:** 2 hours | **Completed:** 2025-02-02
 
 **Results:**
-- ✅ manage.md created at `.opencode/command/memory/manage.md`
+- ✅ manage.md created at `.opencode/commands/memory/manage.md`
 - ✅ All database functionality preserved
 - ✅ MCP tools verified (L3-L5 tools working)
 
@@ -171,7 +171,7 @@ All patterns supported by `/memory:context`.
 **Priority:** P1 | **Effort:** 30 min | **Completed:** 2025-02-02
 
 **Results:**
-- ✅ why.md deleted from `.opencode/command/memory/`
+- ✅ why.md deleted from `.opencode/commands/memory/`
 - ✅ No orphaned references in memory folder
 
 ---
@@ -213,7 +213,7 @@ All patterns supported by `/memory:context`.
 
 **Remaining files (5):**
 ```
-.opencode/command/memory/
+.opencode/commands/memory/
 ├── context.md     ✅
 ├── continue.md    ✅
 ├── learn.md       ✅

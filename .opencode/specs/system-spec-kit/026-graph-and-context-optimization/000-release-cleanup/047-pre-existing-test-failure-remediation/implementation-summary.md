@@ -87,7 +87,7 @@ These are not standalone bugs — they are tail edits of an in-progress rename. 
 | `mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts` | Assert via `compat-contract.json` import + contract default values |
 | `mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Two `"skill-advisor"` → `"skill_advisor"` (lines 200, 337) |
 | `mcp_server/skill_advisor/scripts/skill_advisor.py` | `GRAPH_ONLY_SKILL_IDS = {"skill_advisor"}` (line 211) |
-| `.opencode/skill/sk-code/graph-metadata.json` | `v1.3.0.0.md` → `v3.0.0.0.md` (×2 sites); dropped 2 directory entries from `key_files` |
+| `.opencode/skills/sk-code/graph-metadata.json` | `v1.3.0.0.md` → `v3.0.0.0.md` (×2 sites); dropped 2 directory entries from `key_files` |
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions

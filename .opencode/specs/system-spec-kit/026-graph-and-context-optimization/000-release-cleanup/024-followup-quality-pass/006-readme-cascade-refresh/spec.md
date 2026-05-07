@@ -20,8 +20,8 @@ _memory:
     blockers: []
     key_files:
       - "target-list.md"
-      - ".opencode/skill/system-spec-kit/README.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/README.md"
+      - ".opencode/skills/system-spec-kit/README.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "037-006-readme-cascade-refresh"
@@ -73,7 +73,7 @@ Refresh the first-party README cascade so operators can trust tool counts, folde
 
 ### In Scope
 
-- Audit first-party READMEs under `.opencode/skill/system-spec-kit/mcp_server/`.
+- Audit first-party READMEs under `.opencode/skills/system-spec-kit/mcp_server/`.
 - Refresh parent skill docs: README, skill instructions, and architecture overview.
 - Refresh related reference docs when README links or version/tool-count claims depend on them.
 - Create `target-list.md` with discovery and PASS / NEEDS_UPDATE results.
@@ -88,11 +88,11 @@ Refresh the first-party README cascade so operators can trust tool counts, folde
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/README.md` | Modify | Update MCP count, feature/playbook counts, structure tree, and related links |
+| `.opencode/skills/system-spec-kit/README.md` | Modify | Update MCP count, feature/playbook counts, structure tree, and related links |
 | Parent skill instruction doc | Modify | Update server version and catalog/playbook counts |
 | Parent architecture doc | Modify | Add matrix/stress architecture notes and correct subsystem/tool lists |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modify | Update 54-tool count, Skill Advisor tool list, structure, and version footer |
-| `.opencode/skill/system-spec-kit/mcp_server/**/*.md` | Modify | Surgical subfolder README/link refreshes where stale |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify | Update 54-tool count, Skill Advisor tool list, structure, and version footer |
+| `.opencode/skills/system-spec-kit/mcp_server/**/*.md` | Modify | Surgical subfolder README/link refreshes where stale |
 | `.opencode/specs/.../006-readme-cascade-refresh/*` | Create | Level 2 packet docs and target audit list |
 <!-- /ANCHOR:scope -->
 

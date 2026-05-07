@@ -8,7 +8,7 @@ You are running iteration 2 of 7 in a deep-research loop on code-graph resilienc
 
 ## Required reads
 1. Strategy + iteration 1 output
-2. Code-graph scan implementation under `.opencode/skill/system-spec-kit/mcp_server/lib/` — focus on the function that determines if a file needs re-indexing
+2. Code-graph scan implementation under `.opencode/skills/system-spec-kit/mcp_server/lib/` — focus on the function that determines if a file needs re-indexing
 3. detect_changes implementation if exposed
 4. Schema definitions (look for stale_at, last_scanned_at, file_hash columns)
 

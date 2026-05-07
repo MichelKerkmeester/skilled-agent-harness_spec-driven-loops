@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -105,7 +105,7 @@ The audit used direct file reads, targeted regex checks, and sibling packet form
 |-------|--------|
 | Scoped target inventory | PASS: audited target files found except stale `lib/deep-loop/coverage-graph.ts` path, recorded as traceability drift. |
 | Deep-loop static audit | PASS: convergence, graph-vote, lineage, post-dispatch validation, prompt-pack, executor-audit, and reducer paths reviewed. |
-| Packet strict validation | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/007-deep-loop-workflow-integrity --strict` exited 0. |
+| Packet strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/007-deep-loop-workflow-integrity --strict` exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---

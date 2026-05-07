@@ -77,5 +77,5 @@ Sample-prompt confidence test for 5 known-good prompts: "save context", "create 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Reindex is idempotent — re-running `/doctor:skill-advisor :auto` restores any drift. If scoring tables are corrupted, restore from git: `git checkout HEAD -- .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scoring/*.json` and re-run.
+Reindex is idempotent — re-running `/doctor:skill-advisor :auto` restores any drift. If scoring tables are corrupted, restore from git: `git checkout HEAD -- .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scoring/*.json` and re-run.
 <!-- /ANCHOR:rollback -->

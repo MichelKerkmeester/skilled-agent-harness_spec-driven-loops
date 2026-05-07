@@ -17,10 +17,10 @@ _memory:
     blockers:
       - "Live runtime probe requires MCP daemon/client restart before rebuilt dist is loaded"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts"
       - "implementation-summary.md"
     completion_pct: 95
     open_questions: []
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -64,10 +64,10 @@ Built behavior:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` | Modified | Added `IntentTelemetry`, `emitIntentTelemetry()`, and `deriveParaphraseGroup()` |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modified | Embedded full telemetry in `meta.intent`; kept aliases and backend routing separation |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts` | Added | New paired paraphrase corpus with stability and confidence drift assertions |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts` | Modified | Added normalized telemetry shape assertion |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts` | Modified | Added `IntentTelemetry`, `emitIntentTelemetry()`, and `deriveParaphraseGroup()` |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modified | Embedded full telemetry in `meta.intent`; kept aliases and backend routing separation |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts` | Added | New paired paraphrase corpus with stability and confidence drift assertions |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts` | Modified | Added normalized telemetry shape assertion |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/007-intent-classifier-stability/implementation-summary.md` | Modified | Recorded implementation and verification evidence |
 <!-- /ANCHOR:what-built -->
 
@@ -108,12 +108,12 @@ Per packet 013, source + tests + build + dist greps are not enough for live runt
 
 | Check | Result | Evidence |
 |-------|--------|----------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/intent-paraphrase-stability.vitest.ts tests/intent-classifier.vitest.ts` | PASS | 2 files passed, 62 tests passed |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS | `tsc --build` completed successfully |
-| `grep -l taskIntent .opencode/skill/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
-| `grep -l backendRouting .opencode/skill/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
-| `grep -l paraphraseGroup .opencode/skill/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
-| `grep -l classificationKind .opencode/skill/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/intent-paraphrase-stability.vitest.ts tests/intent-classifier.vitest.ts` | PASS | 2 files passed, 62 tests passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS | `tsc --build` completed successfully |
+| `grep -l taskIntent .opencode/skills/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
+| `grep -l backendRouting .opencode/skills/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
+| `grep -l paraphraseGroup .opencode/skills/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
+| `grep -l classificationKind .opencode/skills/system-spec-kit/mcp_server/dist/lib/search/intent-classifier.js` | PASS | matched `dist/lib/search/intent-classifier.js` |
 | Live `memory_context({input:"Semantic Search", mode:"auto"})` probe | PASS | Recorded 2026-04-27T10:12:36.021Z (fresh Claude Code session post-2026-04-26 dist rebuild). `meta.intent.taskIntent.intent:"understand"`, `classificationKind:"task-intent"`. `data.queryIntentRouting.classificationKind:"backend-routing"`, `route:"semantic"`, `confidence:0.8`, `matchedKeywords:["search"]`. `meta.intent.paraphraseGroup:"search-semantic"`, `meta.intent.backendRouting.route:"semantic"`. Confirms `emitIntentTelemetry()` is live with both `taskIntent` and `backendRouting` fields and the `paraphraseGroup` annotation per REQ-001. |
 
 REQ acceptance criteria:

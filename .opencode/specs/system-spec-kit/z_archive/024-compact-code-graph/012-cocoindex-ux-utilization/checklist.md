@@ -78,7 +78,7 @@ Template compliance shim section. Legacy phase content continues below.
 
 <!-- ANCHOR:code-quality -->
 ### Code Quality
-- [x] CHK-010 [P0] Packet uses required Level 2 headers and anchors [EVIDENCE: docs rewritten against `.opencode/skill/system-spec-kit/templates/level_2/`]
+- [x] CHK-010 [P0] Packet uses required Level 2 headers and anchors [EVIDENCE: docs rewritten against `.opencode/skills/system-spec-kit/templates/level_2/`]
 - [x] CHK-011 [P0] No stale claims about automated build verification remain [EVIDENCE: checklist, plan, and summary all describe manual build output verification only]
 - [x] CHK-012 [P1] Current helper-tool behavior is described precisely [EVIDENCE: `ccc_status` and `ccc_feedback` language aligned across packet docs]
 - [x] CHK-013 [P1] Packet follows project patterns [EVIDENCE: local cross-references retained and unresolved external markdown links avoided]
@@ -99,7 +99,7 @@ Template compliance shim section. Legacy phase content continues below.
 <!-- ANCHOR:security -->
 ### Security
 - [x] CHK-030 [P0] No hardcoded secrets introduced in packet docs [EVIDENCE: packet contains documentation only]
-- [x] CHK-031 [P0] Storage behavior is not overstated [EVIDENCE: `ccc_feedback` documented as local JSONL at `.opencode/skill/mcp-coco-index/feedback/search-feedback.jsonl`]
+- [x] CHK-031 [P0] Storage behavior is not overstated [EVIDENCE: `ccc_feedback` documented as local JSONL at `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`]
 - [x] CHK-032 [P1] SessionStart readiness-bootstrap limitation is documented accurately [EVIDENCE: checklist, tasks, and implementation summary all state that SessionStart remains status-only and does not call `ensure_ready.sh`]
 <!-- /ANCHOR:security -->
 
@@ -109,7 +109,7 @@ Template compliance shim section. Legacy phase content continues below.
 ### Documentation
 - [x] CHK-040 [P1] Spec, plan, tasks, checklist, and summary are synchronized [EVIDENCE: all docs repeat the same seven current-reality corrections]
 - [x] CHK-041 [P1] Known limitations are explicit [EVIDENCE: implementation summary lists status-only SessionStart, hint-only PreCompact, lightweight helpers, and no background re-index]
-- [x] CHK-042 [P2] Broader CocoIndex README and tool reference updated [EVIDENCE: `.opencode/skill/mcp-coco-index/README.md` now documents system-spec-kit integration and helper-tool reality]
+- [x] CHK-042 [P2] Broader CocoIndex README and tool reference updated [EVIDENCE: `.opencode/skills/mcp-coco-index/README.md` now documents system-spec-kit integration and helper-tool reality]
 <!-- /ANCHOR:docs -->
 
 ---

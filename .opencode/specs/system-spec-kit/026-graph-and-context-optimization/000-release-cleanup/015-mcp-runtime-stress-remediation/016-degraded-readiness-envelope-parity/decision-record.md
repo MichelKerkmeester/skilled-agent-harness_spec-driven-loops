@@ -27,7 +27,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -253,5 +253,5 @@ Both approaches close the F-003 PASS gate on their own. We had to decide whether
 <!--
 Level 2 Decision Record: ADRs for the F-006 / F-008 docs scope of Packet 016.
 Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

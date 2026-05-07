@@ -81,8 +81,8 @@ Verification-first finalization with surgical documentation repair.
 
 ### Key Components
 - **Parent narrative docs**: `../spec.md`, `../description.json`, `../graph-metadata.json`, `../resource-map.md`, and `../002-skill-folder-rename/description.json`.
-- **Advisor graph tooling**: `.opencode/skill/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js` and `skill_advisor.py`.
-- **Spec validator**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- **Advisor graph tooling**: `.opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js` and `skill_advisor.py`.
+- **Spec validator**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 - **Phase 006 docs**: Level 2 docs in this folder.
 
 ### Data Flow
@@ -136,7 +136,7 @@ Write `implementation-summary.md`, update task/checklist evidence, and set the v
 
 | Test | Command | Expected |
 |------|---------|----------|
-| Advisor build | `node .opencode/skill/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js 2>&1 \| tail -10` | Build completes |
+| Advisor build | `node .opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js 2>&1 \| tail -10` | Build completes |
 | Deep review probe | `skill_advisor.py "deep review the auth flow for security issues" --threshold 0.0` | Top-1 `deep-review` |
 | Deep research probe | `skill_advisor.py "deep research the new typing api" --threshold 0.0` | Top-1 `deep-research` |
 | Active grep audit | Requested old-name grep with exclusions | Zero active hits |
@@ -152,7 +152,7 @@ Write `implementation-summary.md`, update task/checklist evidence, and set the v
 - Phases 001-005 exist and have completed their scoped work.
 - Node can run the advisor graph build script.
 - `/usr/bin/python3` can run `skill_advisor.py`.
-- The spec validator is available under `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- The spec validator is available under `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 <!-- /ANCHOR:dependencies -->
 
 ---

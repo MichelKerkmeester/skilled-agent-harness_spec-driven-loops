@@ -96,7 +96,7 @@ _memory:
 
 - [x] CHK-040 [P0] spec.md / plan.md / tasks.md / checklist.md / implementation-summary.md present and synchronized — `validate.sh --strict` exits 0 with 3 errors / 1 warning (cleaner than baseline 049 spec at 6/6; remaining errors are SPEC_DOC_INTEGRITY warnings about legitimate file-yet-to-be-created references)
 - [x] CHK-041 [P1] Code comments adequate — `scaffold-debug-delegation.sh:1-37` has a header block documenting inputs/outputs/schema source and the no-autonomous-routing constraint
-- [x] CHK-042 [P0] Manual-testing playbook entry written — `.opencode/skill/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001) covers all 3 branches plus injection probe + parity check
+- [x] CHK-042 [P0] Manual-testing playbook entry written — `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` (DBG-SCAF-001) covers all 3 branches plus injection probe + parity check
 - [x] CHK-043 [P1] `implementation-summary.md` cites file:line evidence — every REQ acceptance criterion in the Verification section maps to a specific check / file:line
 <!-- /ANCHOR:docs -->
 

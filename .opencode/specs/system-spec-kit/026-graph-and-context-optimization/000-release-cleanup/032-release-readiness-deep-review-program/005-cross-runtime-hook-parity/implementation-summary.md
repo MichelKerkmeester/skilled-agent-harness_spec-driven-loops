@@ -104,7 +104,7 @@ The audit read the actual hook source, docs, configs, 035 findings, 043 findings
 |-------|--------|
 | Evidence review | PASS: source, docs, configs, 035, 043, and 044 reviewed with file:line citations. |
 | Packet scope | PASS: authored files are packet-local. |
-| Strict validator | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/005-cross-runtime-hook-parity --strict`. |
+| Strict validator | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/005-cross-runtime-hook-parity --strict`. |
 <!-- /ANCHOR:verification -->
 
 ---

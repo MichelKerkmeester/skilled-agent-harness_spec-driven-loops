@@ -67,7 +67,7 @@ Verification phase with packet-local runtime evidence
 ### Key Components
 - **Scorer calibration**: a narrow handover scoring tweak in `score-candidate.cjs`
 - **Phase-local runtime**: `improvement/` config, manifest, candidate, benchmarks, archive, promotion, and rollback artifacts
-- **Canonical target under test**: `.opencode/agent/handover.md`, promoted briefly and then restored
+- **Canonical target under test**: `.opencode/agents/handover.md`, promoted briefly and then restored
 - **Second-target repeatability evidence**: `context-prime` benchmark reruns plus `repeatability.json`
 
 ### Data Flow
@@ -112,8 +112,8 @@ Create a phase-local runtime, score a stronger handover candidate against the cu
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Prompt scoring | Handover candidate vs canonical baseline | `node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` |
-| Benchmark repeatability | Handover and context-prime baseline outputs | `node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` plus repeatability JSON generation |
+| Prompt scoring | Handover candidate vs canonical baseline | `node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` |
+| Benchmark repeatability | Handover and context-prime baseline outputs | `node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` plus repeatability JSON generation |
 | Promotion path | Canonical handover target | `promote-candidate.cjs` and `rollback-candidate.cjs` |
 | Validation | Promoted handover file and candidate file | `validate_document.py --type agent` |
 | Packet Validation | Root `041` and phase `004` | `validate.sh --strict` |

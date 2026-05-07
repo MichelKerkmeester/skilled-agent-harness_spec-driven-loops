@@ -103,7 +103,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/mcp-coco-index/README.md` | Updated | OK | Embedded reference path for the cocoindex-overfetch-dedup packet rewired to the renumbered location (`011-…/004-cocoindex-overfetch-dedup/`). |
+| `.opencode/skills/mcp-coco-index/README.md` | Updated | OK | Embedded reference path for the cocoindex-overfetch-dedup packet rewired to the renumbered location (`011-…/004-cocoindex-overfetch-dedup/`). |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -139,7 +139,7 @@ Maintenance notes for this map:
 - **Path conventions** — paths are repo-root relative; one path per row except where a `**` glob applies the same Action across all matches in the renumbered subtree.
 - **Two immutable CLI run logs** under `001-search-intelligence-stress-test/002-scenario-execution/runs/{S3/cli-opencode-pure-1,I2/cli-copilot-1}/output.txt` reference legacy 003/006 paths and were intentionally NOT rewritten (they are historical CLI capture, not active spec content). They are not listed individually in the Specs section because they are leaf evidence inside an already-listed child; treat them as part of the `001-…` row's tree.
 - **Future updates** — when additional post-cycle work lands, append rows to the relevant section or add a `PLANNED` placeholder at the time the child is created; do not let the parent ledger lag the phase-parent manifest.
-- **Reference reading**: `.opencode/skill/system-spec-kit/templates/resource-map.md` (template), `.opencode/skill/system-spec-kit/SKILL.md` §3.
+- **Reference reading**: `.opencode/skills/system-spec-kit/templates/resource-map.md` (template), `.opencode/skills/system-spec-kit/SKILL.md` §3.
 <!-- /ANCHOR:author-instructions -->
 
 ---

@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -81,13 +81,13 @@ Phase 009 migrated the skill graph family schema so `deep-loop` is accepted end-
 | `implementation-summary.md` | Created | Final migration summary |
 | `../graph-metadata.json` | Updated | Added Phase 009 child ID |
 | `.opencode/specs/.../graph-metadata.json` | Updated | Added Phase 009 child ID to mirrored parent metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Renamed `families.sk-deep` to `families.deep-loop` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Updated | Allowed `deep-loop` in compiler validation |
-| `.opencode/skill/deep-review/graph-metadata.json` | Updated | Set family to `deep-loop` |
-| `.opencode/skill/deep-research/graph-metadata.json` | Updated | Set family to `deep-loop` |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Updated | Updated `SkillFamily`, allow-list, and SQL `CHECK` |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js` | Updated | Updated generated runtime mirror |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts` | Updated | Updated generated type union mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Updated | Renamed `families.sk-deep` to `families.deep-loop` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | Updated | Allowed `deep-loop` in compiler validation |
+| `.opencode/skills/deep-review/graph-metadata.json` | Updated | Set family to `deep-loop` |
+| `.opencode/skills/deep-research/graph-metadata.json` | Updated | Set family to `deep-loop` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts` | Updated | Updated `SkillFamily`, allow-list, and SQL `CHECK` |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js` | Updated | Updated generated runtime mirror |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts` | Updated | Updated generated type union mirror |
 | Type/schema mirrors | Updated | Replaced family enum/allow-list member with `deep-loop` |
 | `skill-graph.sqlite*` | Deleted | Forces recreation with the updated schema during orchestrator rebuild |
 <!-- /ANCHOR:what-built -->

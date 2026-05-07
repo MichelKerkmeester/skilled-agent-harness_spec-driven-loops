@@ -65,7 +65,7 @@ contextType: "research"
 2. FSRS Algorithm Documentation [SOURCE: https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm]
 3. Neuroscience memory consolidation research (PMC articles) [SOURCE: https://pmc.ncbi.nlm.nih.gov/articles/PMC10618102/]
 4. Vestige MCP server architecture [SOURCE: https://github.com/samvallad33/vestige]
-5. Existing Spec Kit Memory cognitive modules [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/]
+5. Existing Spec Kit Memory cognitive modules [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/]
 
 ---
 
@@ -976,9 +976,9 @@ const COGNITIVE_MEMORY_CONFIG = {
 
 ### Existing Codebase
 
-1. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.js] - Current working memory implementation
-2. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js] - Current decay implementation
-3. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js] - Current tier classification
+1. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.js] - Current working memory implementation
+2. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js] - Current decay implementation
+3. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js] - Current tier classification
 4. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/055-cognitive-memory-upgrade/research/research/research.md] - Previous cognitive memory research
 
 ---

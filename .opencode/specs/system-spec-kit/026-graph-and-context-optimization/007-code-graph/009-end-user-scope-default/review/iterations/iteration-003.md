@@ -4,10 +4,10 @@ Cross-cutting verification sweep for FIX-009-v3 found no correctness regressions
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
 
 ## Findings (P0/P1/P2 - say "None." if empty)
 

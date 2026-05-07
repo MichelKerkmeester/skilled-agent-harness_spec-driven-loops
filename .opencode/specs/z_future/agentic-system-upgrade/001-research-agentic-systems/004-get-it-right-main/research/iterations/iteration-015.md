@@ -14,10 +14,10 @@ I compared the external repo's agent split with `system-spec-kit`'s orchestrator
 ## Evidence
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/README.md:152-158] The external repo exposes only three loop roles: implementer, reviewer, and refactorer.
 - [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/004-get-it-right-main/external/docs/loop-explained.md:147-159] The repo explicitly frames value as separated concerns: implementation, analytical review, and surgical cleanup.
-- [SOURCE: .opencode/agent/orchestrate.md:171-181] `system-spec-kit`'s orchestrator advertises a broader runtime roster: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@debug`, and `@handover`.
-- [SOURCE: .opencode/agent/orchestrate.md:191-211] Delegation requires a large structured task envelope that includes agent type, definition file, skills, boundaries, and outputs.
-- [SOURCE: .opencode/agent/deep-research.md:24-32] At least some internal roles are workflow-specific execution leaves rather than generic capability roles.
-- [SOURCE: .opencode/agent/review.md:239-243] The review agent is already integrated as a gate protocol output rather than only as prose analysis.
+- [SOURCE: .opencode/agents/orchestrate.md:171-181] `system-spec-kit`'s orchestrator advertises a broader runtime roster: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@debug`, and `@handover`.
+- [SOURCE: .opencode/agents/orchestrate.md:191-211] Delegation requires a large structured task envelope that includes agent type, definition file, skills, boundaries, and outputs.
+- [SOURCE: .opencode/agents/deep-research.md:24-32] At least some internal roles are workflow-specific execution leaves rather than generic capability roles.
+- [SOURCE: .opencode/agents/review.md:239-243] The review agent is already integrated as a gate protocol output rather than only as prose analysis.
 
 ## Analysis
 The external repo shows the advantage of a tight control-role vocabulary: the loop is easy to reason about because each role exists only to move one state transition forward. `system-spec-kit` has accumulated a broader taxonomy that mixes capability roles (`@review`, `@debug`) with workflow-specific roles (`@deep-research`, `@handover`, `@speckit`). That is appropriate for the whole product surface, but it makes execution-loop design more complex than it needs to be. A smaller reusable runtime taxonomy for loop controllers would reduce duplicated role contracts and make new workflows cheaper to author.

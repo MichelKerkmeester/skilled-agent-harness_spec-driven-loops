@@ -16,11 +16,11 @@ _memory:
     next_safe_action: "Commit and push to origin main"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-008-search-quality"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -116,7 +116,7 @@ NDCG/MRR additions must not change the baseline test (`baseline.vitest.ts`) — 
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §11 (C1: search quality findings)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Existing search-quality stress files: `baseline`, `w3`, `w4`, `w5`, `w6`, `w7-*`, `w8`, `w10`, `w11`, `w13` — all must remain green
 - No other packet dependencies; sub-phase 008 is independent within Wave 1
 <!-- /ANCHOR:dependencies -->

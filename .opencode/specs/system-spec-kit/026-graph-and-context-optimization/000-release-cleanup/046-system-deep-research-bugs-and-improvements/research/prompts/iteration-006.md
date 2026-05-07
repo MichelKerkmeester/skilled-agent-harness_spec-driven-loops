@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 006 of 20. The packet root is
 
 **Angle B1 — Hook contract drift across runtimes**
 
-Audit the 5 hook integrations: Claude `UserPromptSubmit`, Copilot `UserPromptSubmit`, Gemini `UserPromptSubmit`, Codex `SessionStart`+`UserPromptSubmit`, OpenCode plugin bridge. Look in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/hooks/` and runtime-specific plugin code. Do they all produce the same advisor-brief format? Same fallback paths when the daemon is down? Cite the rendering function + format strings per runtime.
+Audit the 5 hook integrations: Claude `UserPromptSubmit`, Copilot `UserPromptSubmit`, Gemini `UserPromptSubmit`, Codex `SessionStart`+`UserPromptSubmit`, OpenCode plugin bridge. Look in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/hooks/` and runtime-specific plugin code. Do they all produce the same advisor-brief format? Same fallback paths when the daemon is down? Cite the rendering function + format strings per runtime.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

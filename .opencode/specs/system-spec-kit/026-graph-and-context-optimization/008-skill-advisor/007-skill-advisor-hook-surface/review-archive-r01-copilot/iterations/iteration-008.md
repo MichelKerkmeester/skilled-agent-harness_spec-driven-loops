@@ -4,9 +4,9 @@
 Ran a narrow privacy recheck against the already-identified subprocess boundary to confirm whether any additional non-persistence leak surfaces exist beyond the argv exposure recorded in iteration 001.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:231-245` → raw prompt still enters `commandArgs` directly and is only protected after process launch.
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md:549-599` → documented privacy contract is scoped to persisted hook surfaces and verification sources.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-privacy.vitest.ts:77-114` → privacy suite continues to validate persisted/logged surfaces only.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:231-245` → raw prompt still enters `commandArgs` directly and is only protected after process launch.
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md:549-599` → documented privacy contract is scoped to persisted hook surfaces and verification sources.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-privacy.vitest.ts:77-114` → privacy suite continues to validate persisted/logged surfaces only.
 
 ## Findings
 

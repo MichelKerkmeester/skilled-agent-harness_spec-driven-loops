@@ -342,5 +342,5 @@ Key trick for this research: the codex agent itself running with `--sandbox work
 - **Tasks**: `../../009-hook-parity/003-codex-hook-parity-remediation/tasks.md`
 - **Decisions**: `../../009-hook-parity/003-codex-hook-parity-remediation/decision-record.md` — ADR-003 populated from §5 above
 - **Sibling phase**: `../../009-hook-parity/002-copilot-hook-parity-remediation/` — Copilot has NO dynamic hook-based injection (outcome B); this is the contrast case
-- **Reference implementation (Claude-side)**: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` — the implementation Phase 2 ports to `hooks/codex/`
+- **Reference implementation (Claude-side)**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` — the implementation Phase 2 ports to `hooks/codex/`
 - **User's existing config**: `~/.codex/hooks.json` (notify.sh registered), `~/.codex/config.toml` (feature flag ABSENT — must be added in Phase 2)

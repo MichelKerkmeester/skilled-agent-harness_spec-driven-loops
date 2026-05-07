@@ -26,9 +26,9 @@ Lens diversity satisfied: 3 distinct strategies. Vantage diversity satisfied: 3 
 
 - `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/spec.md` (G6, REQ-002, SC-001 through SC-007)
 - `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md` (ADR-001 lightweight bound)
-- `.opencode/agent/multi-ai-council.md` §0, §12-§15
-- `.opencode/agent/deep-research.md` permission block (`write: allow`)
-- `.opencode/agent/deep-review.md` permission block (`write: allow`)
+- `.opencode/agents/multi-ai-council.md` §0, §12-§15
+- `.opencode/agents/deep-research.md` permission block (`write: allow`)
+- `.opencode/agents/deep-review.md` permission block (`write: allow`)
 - Memory: `feedback_new_agent_mirror_all_runtimes.md` (4-runtime mirror tax)
 
 ## Convergence Rule

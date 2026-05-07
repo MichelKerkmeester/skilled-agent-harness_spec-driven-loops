@@ -16,10 +16,10 @@ _memory:
     next_safe_action: "Apply 3 fixes, validate, commit"
     blockers: []
     key_files:
-      - .opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md
-      - .opencode/skill/sk-doc/references/global/quick_reference.md
-      - .opencode/skill/sk-doc/assets/skill/skill_md_template.md
-      - .opencode/skill/sk-doc/references/specific/skill_creation.md
+      - .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
+      - .opencode/skills/sk-doc/references/global/quick_reference.md
+      - .opencode/skills/sk-doc/assets/skill/skill_md_template.md
+      - .opencode/skills/sk-doc/references/specific/skill_creation.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase4-authoring"
@@ -110,10 +110,10 @@ Close the residual doc-accuracy gap with surgical edits.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` | Modify (1 line) | L770 link `../agents/command_template.md` → `../command_template.md` |
-| `.opencode/skill/sk-doc/references/global/quick_reference.md` | Modify (~16 lines) | L174-189 ASCII tree rewritten to reflect new flat layout |
-| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Modify (1 line) | L593 illustrative example list no longer mentions `assets/agents/` |
-| `.opencode/skill/sk-doc/references/specific/skill_creation.md` | Modify (1 line) | L56 illustrative example list no longer mentions `assets/agents/` |
+| `.opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` | Modify (1 line) | L770 link `../agents/command_template.md` → `../command_template.md` |
+| `.opencode/skills/sk-doc/references/global/quick_reference.md` | Modify (~16 lines) | L174-189 ASCII tree rewritten to reflect new flat layout |
+| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modify (1 line) | L593 illustrative example list no longer mentions `assets/agents/` |
+| `.opencode/skills/sk-doc/references/specific/skill_creation.md` | Modify (1 line) | L56 illustrative example list no longer mentions `assets/agents/` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,15 +125,15 @@ Close the residual doc-accuracy gap with surgical edits.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | P1-003-A fixed: frontmatter_templates.md:770 link target exists | `test -f .opencode/skill/sk-doc/assets/command_template.md && grep -c "(../command_template.md)" .opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md` returns >=1 |
-| REQ-002 | iter4-F1 P2 fixed: quick_reference.md tree shows new flat layout | `rg -c "assets/agents/" .opencode/skill/sk-doc/references/global/quick_reference.md` returns 0 |
-| REQ-003 | P2-003-A fixed: skill_md_template.md and skill_creation.md illustrative lists no longer mention `assets/agents/` | `rg -c "assets/agents/" .opencode/skill/sk-doc/assets/skill/skill_md_template.md` returns 0; same for `.../references/specific/skill_creation.md` |
+| REQ-001 | P1-003-A fixed: frontmatter_templates.md:770 link target exists | `test -f .opencode/skills/sk-doc/assets/command_template.md && grep -c "(../command_template.md)" .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md` returns >=1 |
+| REQ-002 | iter4-F1 P2 fixed: quick_reference.md tree shows new flat layout | `rg -c "assets/agents/" .opencode/skills/sk-doc/references/global/quick_reference.md` returns 0 |
+| REQ-003 | P2-003-A fixed: skill_md_template.md and skill_creation.md illustrative lists no longer mention `assets/agents/` | `rg -c "assets/agents/" .opencode/skills/sk-doc/assets/skill/skill_md_template.md` returns 0; same for `.../references/specific/skill_creation.md` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | validate.sh --strict on parent 068 still exits 0 | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict` exits 0 |
+| REQ-004 | validate.sh --strict on parent 068 still exits 0 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/068-sk-doc-organization --strict` exits 0 |
 | REQ-005 | One commit on main; no surviving feature branch | `git branch --show-current = main`; `git log -1 --format=%s` matches `feat(sk-doc): remediate review findings (068/004)` |
 | REQ-006 | Active-scope residual rg still returns 0 | Same residual sweep from Phase 2 D.2 returns 0 hits |
 <!-- /ANCHOR:requirements -->
@@ -148,7 +148,7 @@ Close the residual doc-accuracy gap with surgical edits.
 
 ### Given/When/Then Verification Scenarios
 
-**Given** P1-003-A in `frontmatter_templates.md:770`, **When** the link is rewritten to `../command_template.md`, **Then** following the link resolves to `.opencode/skill/sk-doc/assets/command_template.md` (file exists).
+**Given** P1-003-A in `frontmatter_templates.md:770`, **When** the link is rewritten to `../command_template.md`, **Then** following the link resolves to `.opencode/skills/sk-doc/assets/command_template.md` (file exists).
 
 **Given** iter4-F1 P2 in `quick_reference.md:174-189`, **When** the tree is rewritten with `agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/` at assets/ root and no `assets/agents/` line, **Then** `rg -c "assets/agents/" quick_reference.md` returns 0.
 

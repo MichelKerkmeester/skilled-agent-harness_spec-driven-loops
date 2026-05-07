@@ -7,9 +7,9 @@
       "class": "confidence-floor hard-stale signal",
       "summary": "Doctor should emit the full-rescan warning for empty/error freshness, absent/unavailable trust state, full_scan action, missing persisted scan evidence, failed gold query floors, or severe edge drift.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:73-124",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-186",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:73-124",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-186",
         "research/iterations/iteration-004.md:59-354",
         "research/iterations/iteration-006.md:29-58"
       ]
@@ -19,10 +19,10 @@
       "class": "self-healing selective reindex boundary",
       "summary": "Auto partial re-scan is safe only for <=50 existing stale tracked files, unchanged Git HEAD, healthy DB/schema, workspace-contained paths, caller opt-in, and timeout-bounded execution.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:38-51",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:176-186",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:290-367",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:135-168"
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:38-51",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:176-186",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:290-367",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:135-168"
       ]
     },
     {
@@ -30,8 +30,8 @@
       "class": "read-only paths must not silently self-heal",
       "summary": "detect_changes is the reference safety-sensitive surface: it disables inline index/full scan and blocks on non-fresh graph state to avoid false-safe empty results.",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106",
-        ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264"
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106",
+        ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264"
       ]
     }
   ],

@@ -26,7 +26,7 @@ Run a 7-iteration deep-research loop investigating code-graph staleness, error r
 ## Scope
 
 ### Investigation targets
-- Code-graph implementation under `.opencode/skill/system-spec-kit/mcp_server/lib/...`
+- Code-graph implementation under `.opencode/skills/system-spec-kit/mcp_server/lib/...`
 - Existing scan logs under `.opencode/specs/.../research/iteration-*.log`
 - SQLite schema and on-disk storage layout
 - Scanner config / exclude-rule surfaces
@@ -74,6 +74,6 @@ Run a 7-iteration deep-research loop investigating code-graph staleness, error r
 
 ## Known Context
 
-- Code-graph implementation is in `.opencode/skill/system-spec-kit/mcp_server/` (TS package)
-- Existing doctor command pattern: `.opencode/command/doctor/skill-advisor.md` (5-phase, mutation_boundaries.validator, per-run rollback)
+- Code-graph implementation is in `.opencode/skills/system-spec-kit/mcp_server/` (TS package)
+- Existing doctor command pattern: `.opencode/commands/doctor/skill-advisor.md` (5-phase, mutation_boundaries.validator, per-run rollback)
 - The 006 sibling packet's Phase B is gated on these outputs

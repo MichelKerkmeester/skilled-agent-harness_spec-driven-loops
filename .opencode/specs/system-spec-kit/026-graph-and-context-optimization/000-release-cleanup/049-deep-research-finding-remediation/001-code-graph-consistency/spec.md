@@ -23,11 +23,11 @@ _memory:
     next_safe_action: "Author plan/tasks/checklist; then apply 9 surgical fixes in target files"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
-      - ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
+      - ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-001-code-graph-consistency"
@@ -40,7 +40,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -108,7 +108,7 @@ Close all nine findings with surgical changes that keep behavior backward-compat
 | `mcp_server/code_graph/lib/code-graph-db.ts` | Modify | F-002-A2-02: add `PRAGMA busy_timeout = 5000` at `initDb`. F-014-C4-01: in `isFileStale`/`ensureFreshFiles`, compare content hash on mtime drift before declaring stale (touch-only is fresh). F-004-A4-03: distinguish absent vs corrupt vs invalid-shape in three metadata getters via typed result. |
 | `mcp_server/code_graph/handlers/query.ts` | Modify | F-002-A2-03: open a single `IMMEDIATE` read transaction around query operations, or use a generation marker so multiple SELECTs see a stable snapshot. |
 | `mcp_server/code_graph/lib/code-graph-context.ts` | Modify | F-004-A4-02: change `resolveSubjectToRef` return type to `ArtifactRef \| { unavailable: true; reason: string } \| null`; surface DB error path distinctly from no-row case. |
-| `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` | Modify | F-014-C4-04: redefine Phase 1 Analysis to use `code_graph_status` + filesystem walk for stale/missed/bloat (which the YAML's existing fallback path already implements). Drop `detect_changes({})` call entirely. |
+| `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` | Modify | F-014-C4-04: redefine Phase 1 Analysis to use `code_graph_status` + filesystem walk for stale/missed/bloat (which the YAML's existing fallback path already implements). Drop `detect_changes({})` call entirely. |
 | `mcp_server/code_graph/tests/code-graph-atomic-persistence.vitest.ts` | Create | F-002-A2-01 atomic-write transactional behavior. |
 | `mcp_server/code_graph/tests/code-graph-busy-timeout.vitest.ts` | Create | F-002-A2-02 busy retry under simulated lock contention. |
 | `mcp_server/code_graph/tests/code-graph-stale-mtime-vs-hash.vitest.ts` | Create | F-014-C4-01 touch-only mtime drift remains fresh. |
@@ -180,7 +180,7 @@ Close all nine findings with surgical changes that keep behavior backward-compat
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Worked-pilot: sibling sub-phase `004-validation-and-memory/` (commit `1822a1e69`)
 - No cross-packet dependencies.
 <!-- /ANCHOR:risks -->

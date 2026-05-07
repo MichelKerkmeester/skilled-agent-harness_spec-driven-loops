@@ -16,7 +16,7 @@
     },
     {
       "id": "finding-1-1-spec-kit-resume-uses-opencode-skill-system-spec-kit-mcp-server-lib-resume-resume",
-      "text": "`/spec_kit:resume` uses `.opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts`. It resolves an explicit or cached spec folder under `.opencode/specs/` or `specs/`, reads `handover.md`, then `_memory.continuity` inside `implementation-summary.md`, then spec docs. Spec-doc fallback only needs at least one discovered spec doc. Priority order is `implementation-summary.md`, `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `research.md`, `handover.md`, `resource-map.md`.",
+      "text": "`/spec_kit:resume` uses `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts`. It resolves an explicit or cached spec folder under `.opencode/specs/` or `specs/`, reads `handover.md`, then `_memory.continuity` inside `implementation-summary.md`, then spec docs. Spec-doc fallback only needs at least one discovered spec doc. Priority order is `implementation-summary.md`, `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `research.md`, `handover.md`, `resource-map.md`.",
       "addedAtIteration": 1,
       "sources": []
     },
@@ -58,7 +58,7 @@
     },
     {
       "id": "finding-2-1-opencode-skill-system-spec-kit-scripts-rules-check-files-sh-is-still-the-simples",
-      "text": "`.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` is still the simplest hard file-presence source: Level 1 requires `spec.md`, `plan.md`, `tasks.md`; Level 2 adds `checklist.md`; Level 3 and `3+` add `decision-record.md`; `implementation-summary.md` is required after tasks/checklist show completion. Phase parents skip the ordinary level set and require only `spec.md` in this shell rule.",
+      "text": "`.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` is still the simplest hard file-presence source: Level 1 requires `spec.md`, `plan.md`, `tasks.md`; Level 2 adds `checklist.md`; Level 3 and `3+` add `decision-record.md`; `implementation-summary.md` is required after tasks/checklist show completion. Phase parents skip the ordinary level set and require only `spec.md` in this shell rule.",
       "addedAtIteration": 2,
       "sources": []
     },
@@ -154,7 +154,7 @@
     },
     {
       "id": "finding-4-24-opencode-skill-system-spec-kit-scripts-tests-template-scaffold-vitest-ts",
-      "text": "`.opencode/skill/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`",
+      "text": "`.opencode/skills/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`",
       "addedAtIteration": 4,
       "sources": []
     },
@@ -250,7 +250,7 @@
     },
     {
       "id": "finding-4-25-existing-integration-point-opencode-skill-system-spec-kit-scripts-package-json-t",
-      "text": "Existing integration point: `.opencode/skill/system-spec-kit/scripts/package.json` `test` script, via `vitest run --config ../mcp_server/vitest.config.ts --root .`.",
+      "text": "Existing integration point: `.opencode/skills/system-spec-kit/scripts/package.json` `test` script, via `vitest run --config ../mcp_server/vitest.config.ts --root .`.",
       "addedAtIteration": 4,
       "sources": []
     },
@@ -286,7 +286,7 @@
     },
     {
       "id": "finding-4-27-optional-dedicated-local-command-add-test-templates-to-opencode-skill-system-spe",
-      "text": "Optional dedicated local command: add `test:templates` to `.opencode/skill/system-spec-kit/scripts/package.json` as `vitest run tests/template-scaffold.vitest.ts --config ../mcp_server/vitest.config.ts --root .`.",
+      "text": "Optional dedicated local command: add `test:templates` to `.opencode/skills/system-spec-kit/scripts/package.json` as `vitest run tests/template-scaffold.vitest.ts --config ../mcp_server/vitest.config.ts --root .`.",
       "addedAtIteration": 4,
       "sources": []
     },
@@ -304,7 +304,7 @@
     },
     {
       "id": "finding-4-26-root-integration-point-opencode-skill-system-spec-kit-package-json-test-root-whi",
-      "text": "Root integration point: `.opencode/skill/system-spec-kit/package.json` `test:root`, which already runs `npm run test --workspace=@spec-kit/scripts`.",
+      "text": "Root integration point: `.opencode/skills/system-spec-kit/package.json` `test:root`, which already runs `npm run test --workspace=@spec-kit/scripts`.",
       "addedAtIteration": 4,
       "sources": []
     },
@@ -394,19 +394,19 @@
     },
     {
       "id": "finding-5-44-calls-opencode-skill-system-spec-kit-scripts-utils-template-structure-js-compare",
-      "text": "Calls `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js compare \"$level\" \"$(basename \"$file\")\" \"$file\" headers`.",
+      "text": "Calls `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js compare \"$level\" \"$(basename \"$file\")\" \"$file\" headers`.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
       "id": "finding-5-62-consume-the-same-manifest-through-a-new-module-at-opencode-skill-system-spec-kit",
-      "text": "Consume the same manifest through a new module at `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`.",
+      "text": "Consume the same manifest through a new module at `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
       "id": "finding-5-3-copies-every-markdown-file-from-opencode-skill-system-spec-kit-templates-level-1",
-      "text": "Copies every Markdown file from `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, or `.opencode/skill/system-spec-kit/templates/level_3+`.",
+      "text": "Copies every Markdown file from `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, or `.opencode/skills/system-spec-kit/templates/level_3+`.",
       "addedAtIteration": 5,
       "sources": []
     },
@@ -526,7 +526,7 @@
     },
     {
       "id": "finding-5-20-load-opencode-skill-system-spec-kit-templates-manifest-spec-kit-docs-json",
-      "text": "Load `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
+      "text": "Load `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
       "addedAtIteration": 5,
       "sources": []
     },
@@ -640,7 +640,7 @@
     },
     {
       "id": "finding-5-7-resolve-preset-kind-capabilities-from-opencode-skill-system-spec-kit-templates-m",
-      "text": "Resolve `preset -> kind + capabilities` from `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
+      "text": "Resolve `preset -> kind + capabilities` from `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
       "addedAtIteration": 5,
       "sources": []
     },
@@ -670,7 +670,7 @@
     },
     {
       "id": "finding-5-4-special-cases-phase-parents-through-opencode-skill-system-spec-kit-templates-pha",
-      "text": "Special-cases phase parents through `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md`.",
+      "text": "Special-cases phase parents through `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md`.",
       "addedAtIteration": 5,
       "sources": []
     },
@@ -1918,7 +1918,7 @@
     },
     {
       "id": "finding-7-225-presets-stay-inside-opencode-skill-system-spec-kit-templates-manifest-spec-kit-d",
-      "text": "Presets stay inside `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` under `presets[]`.",
+      "text": "Presets stay inside `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` under `presets[]`.",
       "addedAtIteration": 7,
       "sources": []
     },
@@ -1990,7 +1990,7 @@
     },
     {
       "id": "finding-7-138-rule-remediation-create-missing-files-missing-list-use-templates-from-opencode-s",
-      "text": "RULE_REMEDIATION=\"Create missing files: $missing_list. Use templates from .opencode/skill/system-spec-kit/templates/\"",
+      "text": "RULE_REMEDIATION=\"Create missing files: $missing_list. Use templates from .opencode/skills/system-spec-kit/templates/\"",
       "addedAtIteration": 7,
       "sources": []
     },
@@ -2098,19 +2098,19 @@
     },
     {
       "id": "finding-8-33-opencode-skill-system-spec-kit-templates-manifest-templates-plan-md-tmpl",
-      "text": "`.opencode/skill/system-spec-kit/templates/manifest/templates/plan.md.tmpl`",
+      "text": "`.opencode/skills/system-spec-kit/templates/manifest/templates/plan.md.tmpl`",
       "addedAtIteration": 8,
       "sources": []
     },
     {
       "id": "finding-8-32-opencode-skill-system-spec-kit-templates-manifest-templates-spec-md-tmpl",
-      "text": "`.opencode/skill/system-spec-kit/templates/manifest/templates/spec.md.tmpl`",
+      "text": "`.opencode/skills/system-spec-kit/templates/manifest/templates/spec.md.tmpl`",
       "addedAtIteration": 8,
       "sources": []
     },
     {
       "id": "finding-8-34-opencode-skill-system-spec-kit-templates-manifest-templates-tasks-md-tmpl",
-      "text": "`.opencode/skill/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`",
+      "text": "`.opencode/skills/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`",
       "addedAtIteration": 8,
       "sources": []
     },
@@ -2206,7 +2206,7 @@
     },
     {
       "id": "finding-8-9-input-artifact-opencode-skill-system-spec-kit-templates-manifest-spec-kit-docs-j",
-      "text": "Input artifact: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
+      "text": "Input artifact: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.",
       "addedAtIteration": 8,
       "sources": []
     },
@@ -2496,7 +2496,7 @@
     },
     {
       "id": "finding-10-29-all-ai-user-facing-documentation-remains-level-only-claude-md-agents-md-opencode",
-      "text": "All AI/user-facing documentation remains level-only: `CLAUDE.md`, `AGENTS.md`, `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/spec_kit/*.md`, `.opencode/agent/orchestrate.md`, and relevant sk-doc references.",
+      "text": "All AI/user-facing documentation remains level-only: `CLAUDE.md`, `AGENTS.md`, `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/spec_kit/*.md`, `.opencode/agents/orchestrate.md`, and relevant sk-doc references.",
       "addedAtIteration": 10,
       "sources": []
     },
@@ -2958,7 +2958,7 @@
     },
     {
       "id": "finding-11-2-no-mention-of-preset-capability-or-kind-in-claude-md-agents-md-skill-md-opencode",
-      "text": "No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/command/*.md`, `.opencode/agent/*.md`, `.opencode/skill/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.",
+      "text": "No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/commands/*.md`, `.opencode/agents/*.md`, `.opencode/skills/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.",
       "addedAtIteration": 11,
       "sources": []
     },
@@ -3024,7 +3024,7 @@
     },
     {
       "id": "finding-11-36-replace-use-the-active-manifest-preset-templates-with-use-templates-for-level-le",
-      "text": "Replace `Use the active manifest preset templates.` with `Use templates for Level $level from .opencode/skill/system-spec-kit/templates/`.",
+      "text": "Replace `Use the active manifest preset templates.` with `Use templates for Level $level from .opencode/skills/system-spec-kit/templates/`.",
       "addedAtIteration": 11,
       "sources": []
     },
@@ -3126,7 +3126,7 @@
     },
     {
       "id": "finding-12-1-copy-the-exact-h1-h2-structure-from-the-active-template-in-opencode-skill-system",
-      "text": "Copy the exact H1/H2 structure from the active template in .opencode/skill/system-spec-kit/templates/",
+      "text": "Copy the exact H1/H2 structure from the active template in .opencode/skills/system-spec-kit/templates/",
       "addedAtIteration": 12,
       "sources": []
     },
@@ -3162,49 +3162,49 @@
     },
     {
       "id": "finding-13-28-opencode-skill-system-spec-kit-scripts-tests-fixtures-phase-creation-expected-3p",
-      "text": "`.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`",
+      "text": "`.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-19-opencode-skill-system-spec-kit-scripts-tests-workflow-invariance-live-surfaces-v",
-      "text": "`.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance-live-surfaces.vitest.ts`",
+      "text": "`.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance-live-surfaces.vitest.ts`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-20-opencode-skill-system-spec-kit-scripts-tests-workflow-invariance-public-docs-vit",
-      "text": "`.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance-public-docs.vitest.ts`",
+      "text": "`.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance-public-docs.vitest.ts`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-26-opencode-skill-system-spec-kit-templates-addendum-level3-arch-spec-level3-suffix",
-      "text": "`.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md`",
+      "text": "`.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-25-opencode-skill-system-spec-kit-templates-addendum-level3-arch-spec-level3-md",
-      "text": "`.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3.md`",
+      "text": "`.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3.md`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-27-opencode-skill-system-spec-kit-templates-addendum-level3-plus-govern-spec-level3",
-      "text": "`.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md`",
+      "text": "`.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-23-opencode-skill-system-spec-kit-templates-level-3-spec-md",
-      "text": "`.opencode/skill/system-spec-kit/templates/level_3/spec.md`",
+      "text": "`.opencode/skills/system-spec-kit/templates/level_3/spec.md`",
       "addedAtIteration": 13,
       "sources": []
     },
     {
       "id": "finding-13-24-opencode-skill-system-spec-kit-templates-level-3-spec-md",
-      "text": "`.opencode/skill/system-spec-kit/templates/level_3+/spec.md`",
+      "text": "`.opencode/skills/system-spec-kit/templates/level_3+/spec.md`",
       "addedAtIteration": 13,
       "sources": []
     },

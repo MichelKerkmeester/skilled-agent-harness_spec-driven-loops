@@ -12,10 +12,10 @@ contextType: "planning"
 # Plan: 003-save-ergonomics
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Implementation Order
 1. Freeze the wrapper contract around `--json`, `--stdin`, or a JSON temp file.

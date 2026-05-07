@@ -14,10 +14,10 @@ Startup initializes `hybridSearch` with whatever database handle `vectorIndex.ge
 
 However, there is a major caveat in this repository: the checked-in MCP launch configs explicitly set `MEMORY_DB_PATH` to the legacy `context-index.sqlite`, which should pin both vector and FTS to that legacy file and bypass provider-derived path selection. So the "startup on legacy -> later rebind to provider DB" sequence is absolutely supported by the code, but under the checked-in launcher config it should only happen if the runtime is not actually using that config, or if `MEMORY_DB_PATH` is temporarily overridden in-process.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:259-316`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:259-316`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
 [SOURCE: `opencode.json:19-38`]  
 [SOURCE: `.vscode/mcp.json:11-29`]  
 
@@ -60,8 +60,8 @@ initDbState({ graphSearchFn });
 
 So at startup, `hybridSearch` receives the **same DB handle** that `vectorIndex.initializeDb()` opened.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1301-1368`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1417-1462`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1301-1368`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1417-1462`]  
 
 ## 2. Does startup embedding config create the provider singleton?
 
@@ -103,8 +103,8 @@ So the answer to task 4 and 5 is:
 - `getStartupEmbeddingDimension()` does **not** create the provider singleton
 - neither startup path populates `providerInstance`
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts:258-287`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:10-16`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:258-287`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:10-16`]  
 
 ## 3. What actually creates the provider singleton?
 
@@ -138,8 +138,8 @@ So:
 
 That distinction matters because `vector-index-store.ts` uses `getEmbeddingProfile()` when resolving the DB path.
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:364-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:838-849`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:364-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:838-849`]  
 
 ## 4. Which database does `ftsSearch()` use?
 
@@ -173,8 +173,8 @@ function ftsSearch(query, options = {}) {
 
 So FTS does **not** ask `vectorIndex` for the DB on each call. It uses whatever database handle was most recently passed into `hybridSearch.init(...)`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:259-316`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:259-316`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
 
 ## 5. Does `reinitializeDatabase()` re-run `hybridSearch.init()` with the new DB?
 
@@ -203,8 +203,8 @@ if (hybridSearch) {
 
 So after a successful reinitialize, `hybridSearch.db` is explicitly rewritten to the new DB handle.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
 
 ## 6. Is there also a DB-change listener path?
 
@@ -232,8 +232,8 @@ if (previousDb !== connection || previousPath !== target_path) {
 
 During `reinitializeDatabase()` the listener is temporarily suppressed and `rebindDatabaseConsumers(...)` is called manually afterward, so the end result is still the same: dependent modules, including `hybridSearch`, are rebound to the new DB.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:128-183`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:394-442`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:128-183`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:394-442`]  
 
 ## 7. What triggers reinitialize at runtime?
 
@@ -265,9 +265,9 @@ await checkDatabaseUpdated();
 
 So once a marker is written, the next qualifying request can rebind the live DB handle.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:218-243`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:750-753`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:399-403`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:218-243`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:750-753`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:399-403`]  
 
 ## 8. Can the sequence in the prompt happen?
 
@@ -289,13 +289,13 @@ The sequence is fully supported by the code:
 
 This means the hybrid pipeline's FTS channel can indeed drop to `0` for the same reason vector search does: both were rebound to the empty provider-specific DB.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:838-844`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:384-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:308-316`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:838-844`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:384-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:160-182`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:246-293`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:308-316`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-460`]  
 
 ## 9. But is that sequence compatible with the checked-in runtime config?
 
@@ -304,7 +304,7 @@ Not by default.
 The checked-in launcher configs explicitly set:
 
 ```json
-"MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
+"MEMORY_DB_PATH": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
 ```
 
 in both:
@@ -338,7 +338,7 @@ That means the remaining puzzle becomes narrower:
 - or `MEMORY_DB_PATH` was absent/overridden in that runtime
 - or some code temporarily swapped it
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:269-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:269-290`]  
 [SOURCE: `opencode.json:19-38`]  
 [SOURCE: `.vscode/mcp.json:11-29`]  
 
@@ -372,9 +372,9 @@ I did **not** find ordinary startup logic in `context-server.ts` that rewrites `
 
 So for normal search traffic, the most relevant question is whether the runtime was launched with `MEMORY_DB_PATH` set at all.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:127-141`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/paths.ts:101-108`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:127-141`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/paths.ts:101-108`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]  
 
 ## Conclusion
 

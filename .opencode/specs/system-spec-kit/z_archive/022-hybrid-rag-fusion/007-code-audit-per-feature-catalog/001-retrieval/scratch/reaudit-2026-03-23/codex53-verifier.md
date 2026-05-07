@@ -309,7 +309,7 @@ Files in the MCP server that implement retrieval features but are NOT listed in 
 ### File Verification
 | Source File (from catalog) | Exists? | Correct Role? |
 |----------------------------|---------|---------------|
-| `.opencode/command/memory/continue.md` | YES | YES |
+| `.opencode/commands/memory/continue.md` | YES | YES |
 | `mcp_server/handlers/memory-context.ts` | YES | YES |
 | `mcp_server/handlers/memory-search.ts` | YES | YES |
 | `mcp_server/handlers/memory-crud-list.ts` | YES | YES |
@@ -329,7 +329,7 @@ Files in the MCP server that implement retrieval features but are NOT listed in 
 
 ### Unreferenced Files
 Files in the MCP server that implement retrieval features but are NOT listed in the catalog:
-- `mcp_server/handlers/memory-crud-stats.ts` (command declares shared `memory_stats` tool at `.opencode/command/memory/continue.md:4,21`; implementation at `memory-crud-stats.ts:31`)
+- `mcp_server/handlers/memory-crud-stats.ts` (command declares shared `memory_stats` tool at `.opencode/commands/memory/continue.md:4,21`; implementation at `memory-crud-stats.ts:31`)
 
 ### Verdict: PARTIAL
 

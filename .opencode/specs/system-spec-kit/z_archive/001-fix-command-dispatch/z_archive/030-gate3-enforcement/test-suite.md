@@ -429,8 +429,8 @@ If constitutional memory doesn't appear first:
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/spec.md` | Problem statement and solutions |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/plan.md` | Implementation phases |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/checklist.md` | Verification checklist |
-| `.opencode/skill/system-memory/SKILL.md` | Constitutional tier documentation |
-| `.opencode/skill/system-spec-kit/SKILL.md` | First Message Protocol reference |
+| `.opencode/skills/system-memory/SKILL.md` | Constitutional tier documentation |
+| `.opencode/skills/system-spec-kit/SKILL.md` | First Message Protocol reference |
 
 ---
 

@@ -10,21 +10,21 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/004-mcp-advisor-surface/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/005-compat-migration-and-bootstrap/spec.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/006-promotion-gates/spec.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/derived/sync.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/derived/sanitizer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/compat/redirect-metadata.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/compat/redirect-metadata.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/projection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/derived/sync.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/derived/sanitizer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/compat/redirect-metadata.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-recommend.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/redirect-metadata.vitest.ts`
 - `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`
-- `.opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- `.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 ## Findings by Severity (P0/P1/P2)
 

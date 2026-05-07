@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/improve/agent.md",
-      ".opencode/agent/README.txt",
-      ".opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md",
-      ".opencode/agent/deep-agent-improvement.md",
+      ".opencode/commands/improve/agent.md",
+      ".opencode/agents/README.txt",
+      ".opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md",
+      ".opencode/agents/deep-agent-improvement.md",
       ".claude/agents/deep-agent-improvement.md",
       ".gemini/agents/deep-agent-improvement.md",
       ".codex/agents/deep-agent-improvement.toml",
@@ -54,9 +54,9 @@
       "tasks.md",
       "checklist.md",
       "resource-map.md",
-      ".opencode/command/improve/README.txt",
-      ".opencode/skill/sk-doc/assets/agent_template.md",
-      "barter/coder/.opencode/agent/improve-agent.md",
+      ".opencode/commands/improve/README.txt",
+      ".opencode/skills/sk-doc/assets/agent_template.md",
+      "barter/coder/.opencode/agents/improve-agent.md",
       "implementation-summary.md",
       ".claude/commands/improve/agent.md",
       ".claude/commands/improve/README.txt",
@@ -72,19 +72,19 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/agent/README.txt",
+        "path": ".opencode/agents/README.txt",
         "source": "derived"
       },
       {
         "name": "v1.5.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md",
+        "path": ".opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md",
         "source": "derived"
       },
       {
         "name": "deep-agent-improvement.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-agent-improvement.md",
+        "path": ".opencode/agents/deep-agent-improvement.md",
         "source": "derived"
       },
       {
@@ -132,13 +132,13 @@
       {
         "name": "agent_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/agent_template.md",
+        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
         "source": "derived"
       },
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": "barter/coder/.opencode/agent/improve-agent.md",
+        "path": "barter/coder/.opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {

@@ -15,10 +15,10 @@ Design the patch that adds content-hash as a freshness signal alongside mtime in
 
 ## Required reads
 1. `research/research.md` (synthesis) and `assets/staleness-model.md`
-2. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` — focus on `isFileStale`, `getStaleFiles`, schema for `code_files.content_hash`
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` — readiness flow that calls the stale predicate
-4. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — where content_hash is computed and persisted (look for `crypto`, `createHash`, `sha256`)
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` — scan flow
+2. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` — focus on `isFileStale`, `getStaleFiles`, schema for `code_files.content_hash`
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts` — readiness flow that calls the stale predicate
+4. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — where content_hash is computed and persisted (look for `crypto`, `createHash`, `sha256`)
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` — scan flow
 
 ## What to look for
 - Exact function body of `isFileStale()` and how mtime comparison happens today
@@ -51,7 +51,7 @@ Path: `research/deltas/iteration-008.json`. Schema with `research_questions_answ
 JSONL line to `research/deep-research-state.jsonl` with `iteration: 8`, `status: "insight"`, citations array.
 
 ## Constraints
-- Read-only research. Do not edit code under `.opencode/skill/system-spec-kit/mcp_server/`.
+- Read-only research. Do not edit code under `.opencode/skills/system-spec-kit/mcp_server/`.
 - Pseudocode is acceptable; do not write actual TS patches yet.
 - Every claim about current behavior MUST cite a file:line range that you actually inspected.
 - Minimum 8 distinct file:line citations across the iteration markdown.

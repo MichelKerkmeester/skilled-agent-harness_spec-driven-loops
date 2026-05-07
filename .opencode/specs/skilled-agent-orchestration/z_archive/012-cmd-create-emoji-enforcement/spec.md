@@ -27,7 +27,7 @@ The `/create` command currently enforces emoji usage in documentation titles and
 
 **Key Decisions**: Preserve backward compatibility; remove validation but keep emoji display if already present; update templates to remove emoji requirements.
 
-**Critical Dependencies**: Access to `.opencode/command/create` and `.opencode/command/create/assets` directories.
+**Critical Dependencies**: Access to `.opencode/commands/create` and `.opencode/commands/create/assets` directories.
 
 
 ---
@@ -61,8 +61,8 @@ Remove all emoji enforcement logic from `/create` command while maintaining back
 ## 3. SCOPE
 
 ### In Scope
-- Analyze `.opencode/command/create` for emoji validation logic
-- Analyze `.opencode/command/create/assets` for emoji requirements in templates
+- Analyze `.opencode/commands/create` for emoji validation logic
+- Analyze `.opencode/commands/create/assets` for emoji requirements in templates
 - Remove or update emoji enforcement from validation functions
 - Update command templates to remove emoji requirements
 - Verify command still creates valid outputs without emoji enforcement
@@ -77,8 +77,8 @@ Remove all emoji enforcement logic from `/create` command while maintaining back
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/**/*.{js,ts,md}` | Modify | Remove emoji validation logic and template requirements |
-| `.opencode/command/create/assets/**/*.md` | Modify | Update templates to make emojis optional |
+| `.opencode/commands/create/**/*.{js,ts,md}` | Modify | Remove emoji validation logic and template requirements |
+| `.opencode/commands/create/assets/**/*.md` | Modify | Update templates to make emojis optional |
 <!-- /ANCHOR:scope -->
 
 ---

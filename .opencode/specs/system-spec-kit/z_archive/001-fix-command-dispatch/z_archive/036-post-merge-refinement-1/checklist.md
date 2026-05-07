@@ -18,7 +18,7 @@ level: 2
 ## P0 - Critical Issues (HARD BLOCKERS)
 
 - [ ] **P0.1**: validate-spec.sh exists and is functional
-  - [ ] Script created at `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+  - [ ] Script created at `.opencode/skills/system-spec-kit/scripts/validate-spec.sh`
   - [ ] Exit codes work correctly (0/1/2)
   - [ ] Tested on 3+ existing spec folders
   - [ ] Gate 6 integration verified

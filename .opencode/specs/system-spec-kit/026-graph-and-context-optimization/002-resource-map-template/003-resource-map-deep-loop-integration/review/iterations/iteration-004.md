@@ -6,9 +6,9 @@
 - Scope slice: focused Vitest file, extractor README, review prompt-pack contract
 
 ## Files Reviewed
-- `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/resource-map/README.md`
-- `.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl`
+- `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/resource-map/README.md`
+- `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl`
 
 ## Findings - New
 
@@ -19,11 +19,11 @@
 - None.
 
 ### P2 Findings
-- **F003**: Focused Vitest coverage never exercises the canonical review `file:line` finding shape — `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44` — the review-shape fixture only uses path-only `file` values, so the documented prompt-pack example that writes `file":"path:line"` can regress without the extractor test suite noticing.
+- **F003**: Focused Vitest coverage never exercises the canonical review `file:line` finding shape — `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44` — the review-shape fixture only uses path-only `file` values, so the documented prompt-pack example that writes `file":"path:line"` can regress without the extractor test suite noticing.
   - Rationale: the missing test case is what allowed the correctness bug in `F001` to ship with green focused coverage.
   - Evidence:
-    - `.opencode/skill/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44-55` supplies only path-only `file` fields such as `.opencode/command/spec_kit/deep-review.md`.
-    - `.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82` shows the canonical review delta example with `file":"path:line"`.
+    - `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:44-55` supplies only path-only `file` fields such as `.opencode/commands/spec_kit/deep-review.md`.
+    - `.opencode/skills/sk-deep-review/assets/prompt_pack_iteration.md.tmpl:77-82` shows the canonical review delta example with `file":"path:line"`.
   - Recommendation: add at least one review fixture that uses `file:path:line` and one that uses separate `file` + `line` fields so the extractor contract is pinned on real review evidence shapes.
 
 ## Findings Closed
@@ -34,7 +34,7 @@
 - `playbook_capability`: pass - the playbooks point operators at the reducer and YAML surfaces that actually own emission.
 
 ## Confirmed-Clean Surfaces
-- `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
+- `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` explains degraded-row behavior and deterministic fallbacks clearly enough for a follow-on patch.
 - The feature catalog and playbook entries reference the same implementation anchors and opt-out behavior.
 
 ## Assessment

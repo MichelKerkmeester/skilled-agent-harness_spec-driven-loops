@@ -336,7 +336,7 @@ Priority: P1 | Estimated LOC: ~160
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Implementation introduces errors in existing workflows or breaks backward compatibility
-- **Procedure**: `git checkout main -- .opencode/skill/sk-git/` — restores all skill files to main branch state
+- **Procedure**: `git checkout main -- .opencode/skills/sk-git/` — restores all skill files to main branch state
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -390,7 +390,7 @@ Phase 2 (SKILL.md) ────────────────┤
 - [ ] Config template is valid JSON
 
 ### Rollback Procedure
-1. Revert skill files: `git checkout main -- .opencode/skill/sk-git/`
+1. Revert skill files: `git checkout main -- .opencode/skills/sk-git/`
 2. Delete new worktree_config_template.json if it was created
 3. Verify skill loads correctly (no broken references)
 

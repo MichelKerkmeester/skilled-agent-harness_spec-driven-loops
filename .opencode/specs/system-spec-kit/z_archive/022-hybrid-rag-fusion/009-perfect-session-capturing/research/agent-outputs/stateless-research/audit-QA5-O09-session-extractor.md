@@ -2,7 +2,7 @@
 title: "QA5 Audit O09 — session-extractor.ts"
 auditor: "Claude Opus 4.6 (@review agent)"
 date: "2026-03-09"
-file: ".opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts"
+file: ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts"
 loc: 475
 score: 79/100
 recommendation: "ACCEPTABLE — PASS with notes"

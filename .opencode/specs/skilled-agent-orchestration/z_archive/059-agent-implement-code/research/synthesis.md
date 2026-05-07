@@ -1,6 +1,6 @@
 ---
 title: "Phase 2 Cross-Stream Research Synthesis — @code Agent Design"
-description: "Cross-stream synthesis for packet 059-agent-implement-code: reconciles findings from oh-my-opencode-slim, opencode-swarm-main, and internal .opencode/agent/ inventory into final D3 decision and .opencode/agent/code.md skeleton."
+description: "Cross-stream synthesis for packet 059-agent-implement-code: reconciles findings from oh-my-opencode-slim, opencode-swarm-main, and internal .opencode/agents/ inventory into final D3 decision and .opencode/agents/code.md skeleton."
 status: complete
 ---
 
@@ -12,14 +12,14 @@ Final synthesis across the three deep-research streams that ran sequentially und
 |---|---|---|---|---|
 | **01** | `external/oh-my-opencode-slim/` | 4 / 8 | all_questions_answered | ~30, P0/P1 |
 | **02** | `external/opencode-swarm-main/` | 5 / 8 | all_questions_resolved | ~44, P0/P1/P2 |
-| **03** | internal `.opencode/agent/*` + AGENTS.md + skill-advisor + sk-code | 5 / 8 | zero-remaining-questions | 56 |
+| **03** | internal `.opencode/agents/*` + AGENTS.md + skill-advisor + sk-code | 5 / 8 | zero-remaining-questions | 56 |
 
 Per-stream `research.md` files are the canonical evidence record:
 - `research/stream-01-oh-my-opencode-slim/research.md`
 - `research/stream-02-opencode-swarm-main/research.md`
 - `research/stream-03-internal-agent-inventory/research/research.md` *(extra `research/` nesting because the reducer required `specFolder` to match the artifact dir; not a layout error to fix)*
 
-This synthesis only reconciles the cross-stream consensus and translates it into the two load-bearing deliverables: **D3** in `decision-record.md` and the `.opencode/agent/code.md` skeleton. All file:line citations are repo-relative.
+This synthesis only reconciles the cross-stream consensus and translates it into the two load-bearing deliverables: **D3** in `decision-record.md` and the `.opencode/agents/code.md` skeleton. All file:line citations are repo-relative.
 
 ---
 
@@ -128,9 +128,9 @@ Apply this to `decision-record.md` D3 (replacing the "pending research" placehol
    (orchestrator-only convention; not harness-enforced)."
 2. Body §0 **DISPATCH GATE** that refuses with explicit message when invoked
    without an orchestrator-context marker (e.g. the orchestrator-injected
-   "Depth: 1" prefix per `.opencode/agent/orchestrate.md:208`). REFUSE, do not
+   "Depth: 1" prefix per `.opencode/agents/orchestrate.md:208`). REFUSE, do not
    warn-and-proceed.
-3. `.opencode/agent/orchestrate.md` §3 routing-table entry adds `@code` as the
+3. `.opencode/agents/orchestrate.md` §3 routing-table entry adds `@code` as the
    implementation specialist.
 
 **Reinforcing harness mechanism (LEAF, distinct from caller-restriction):**
@@ -161,14 +161,14 @@ the canonical REFUSE message).
 - Stream-02 (opencode-swarm-main): `src/agents/index.ts:651`,
   `src/agents/architect-permission.adversarial.test.ts:43,55,104,123`
   (suffix-classifier overmatch caveat informs name choice).
-- Stream-03 (internal): `.opencode/skill/cli-opencode/SKILL.md:296-300`,
-  `AGENTS.md:223`, `.opencode/agent/orchestrate.md:147,151,208`,
-  `.opencode/agent/write.md:30` (closest write-capable LEAF analog).
+- Stream-03 (internal): `.opencode/skills/cli-opencode/SKILL.md:296-300`,
+  `AGENTS.md:223`, `.opencode/agents/orchestrate.md:147,151,208`,
+  `.opencode/agents/write.md:30` (closest write-capable LEAF analog).
 ```
 
 ---
 
-## 4. Final `.opencode/agent/code.md` Skeleton
+## 4. Final `.opencode/agents/code.md` Skeleton
 
 Adopting stream-03's §7.2 skeleton (which already conforms to our agent-file conventions) with refinements informed by streams 01/02 (Bash-bypass warning, swarm-style return contract, name-collision avoidance):
 
@@ -202,7 +202,7 @@ executes bounded by sk-code-returned guidance, and verifies via stack-appropriat
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be
 > dispatched by @orchestrate. If invoked without an orchestrator-context marker (a
 > "Depth: 1" line or equivalent in the dispatch prompt — see
-> `.opencode/agent/orchestrate.md:208`), HALT and return:
+> `.opencode/agents/orchestrate.md:208`), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate. (D3
 > caller-restriction convention; see
@@ -232,7 +232,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    success criteria, packet/spec-folder context).
 2. **READ PACKET DOCS** if available (`spec.md`, `plan.md`, `tasks.md`) to anchor
    scope. Spec-folder scope is FROZEN per `AGENTS.md:36`.
-3. **INVOKE sk-code** by reading `.opencode/skill/sk-code/SKILL.md` and applying its
+3. **INVOKE sk-code** by reading `.opencode/skills/sk-code/SKILL.md` and applying its
    detection/intent/resource-loading protocol. Capture: stack, intents,
    verification_commands, resource paths.
 4. **IMPLEMENT** strictly bounded by sk-code-returned guidance and packet scope.
@@ -253,7 +253,7 @@ returned UNKNOWN for cwd=...; needs stack hint or sibling skill").
 
 | Skill | Use When | How |
 | --- | --- | --- |
-| `sk-code` | Always | Read `.opencode/skill/sk-code/SKILL.md`; apply detect/route protocol; load returned resources before implementing. |
+| `sk-code` | Always | Read `.opencode/skills/sk-code/SKILL.md`; apply detect/route protocol; load returned resources before implementing. |
 | `sk-code-opencode` | If sk-code returns UNKNOWN AND working under `.opencode/` | Sibling skill for OpenCode harness/system code. |
 | `sk-code-review` | NEVER inside @code | Pair via @orchestrate dispatching @review separately if formal review is required. |
 
@@ -300,9 +300,9 @@ The structural elements (§0 dispatch gate + §0 illegal nesting + §1 6-step wo
 
 ## 5. Phase 3 Implementation Order
 
-1. **T027** — Author `.opencode/agent/code.md` with the §4 skeleton above.
-2. **T028** — Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` to validate authored-spec markdown contract.
-3. **T029** — Update `.opencode/agent/orchestrate.md` §3 routing-table to add `@code` row (D3 convention layer 3). Run targeted-strict validate after.
+1. **T027** — Author `.opencode/agents/code.md` with the §4 skeleton above.
+2. **T028** — Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/059-agent-implement-code --strict` to validate authored-spec markdown contract.
+3. **T029** — Update `.opencode/agents/orchestrate.md` §3 routing-table to add `@code` row (D3 convention layer 3). Run targeted-strict validate after.
 4. **T030** — Sync AGENTS.md siblings per memory rule:
    - `AGENTS.md` (canonical)
    - `AGENTS_Barter.md` (symlinked → separate Barter repo)
@@ -341,10 +341,10 @@ These surfaced during research but do NOT belong in 059. File as future packets:
 
 ### Internal anchors (cited heavily in stream-03)
 
-- `.opencode/agent/{context,debug,deep-research,deep-review,improve-agent,improve-prompt,orchestrate,review,ultra-think,write}.md`
-- `.opencode/skill/sk-code/SKILL.md` + `references/router/stack_detection.md`
-- `.opencode/skill/cli-opencode/SKILL.md` (D3 dispatch-contract precedent)
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/agents/{context,debug,deep-research,deep-review,improve-agent,improve-prompt,orchestrate,review,ultra-think,write}.md`
+- `.opencode/skills/sk-code/SKILL.md` + `references/router/stack_detection.md`
+- `.opencode/skills/cli-opencode/SKILL.md` (D3 dispatch-contract precedent)
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 - `AGENTS.md` (governance: §3 §4 §5 §6 §7)
 - `specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md` (D1-D10)
 

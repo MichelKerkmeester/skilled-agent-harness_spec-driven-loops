@@ -27,12 +27,12 @@ That means the most accurate final conclusion is:
 
 [SOURCE: `opencode.json:19-38`]  
 [SOURCE: `.vscode/mcp.json:11-29`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:384-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:839-849`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:63-92`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:384-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:839-849`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]  
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:63-92`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]  
 [SOURCE: live runtime probes on 2026-04-01 documented below]
 
 ## 1. Actual runtime environment
@@ -62,7 +62,7 @@ ps eww -p <pid> | tr ' ' '\n' | grep '^MEMORY_DB_PATH='
 All live MCP server processes were started with:
 
 ```text
-MEMORY_DB_PATH=.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
+MEMORY_DB_PATH=.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 So the active MCP servers are in fact pinned to the legacy DB path.
@@ -78,7 +78,7 @@ Both checked-in launcher configs pin `MEMORY_DB_PATH` to the legacy DB.
 The OpenCode MCP config defines:
 
 ```json
-"MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
+"MEMORY_DB_PATH": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
 ```
 
 [SOURCE: `opencode.json:19-38`]
@@ -88,7 +88,7 @@ The OpenCode MCP config defines:
 The VS Code MCP config also defines:
 
 ```json
-"MEMORY_DB_PATH": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite"
+"MEMORY_DB_PATH": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
 ```
 
 [SOURCE: `.vscode/mcp.json:11-29`]
@@ -128,7 +128,7 @@ export const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH || DATABASE_PATH;
 
 So when `MEMORY_DB_PATH` is present, the override wins cleanly and early.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:274-290`]
 
 ## 4. What happens when `MEMORY_DB_PATH` is explicitly set
 
@@ -230,8 +230,8 @@ So:
 - before first lazy provider creation, `getEmbeddingProfile()` returns `null`
 - after provider creation, `getEmbeddingProfile()` returns a live profile
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:364-417`]  
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:839-849`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:364-417`]  
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:839-849`]
 
 ## 7. Where the provider-specific DB filename comes from
 
@@ -258,7 +258,7 @@ the resulting path is:
 
 - `context-index__voyage__voyage-4__1024.sqlite`
 
-[SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:47-71`]
+[SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:47-71`]
 
 ## 8. Startup and rebind behavior in `context-server.ts` and `db-state.ts`
 
@@ -286,8 +286,8 @@ const database = vectorIndex.getDb();
 hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1360-1368`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1417-1459`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1360-1368`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1417-1459`]
 
 ### 8.2 Rebind after external DB update
 
@@ -315,8 +315,8 @@ rebindDatabaseConsumers(database)
 
 So a later reinitialize can reopen the DB using the current runtime path-resolution logic, not necessarily the original startup choice.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:217-233`]  
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:245-293`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:217-233`]  
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:245-293`]
 
 ## 9. Does the ingest/indexer process write to a different DB than the search server reads from?
 
@@ -341,8 +341,8 @@ embedding = await generateDocumentEmbedding(weightedEmbeddingInput);
 memoryId = vectorIndex.indexMemory({ ... });
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:72-92`]  
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:159-172`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:72-92`]  
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:159-172`]
 
 The embeddings module used by scripts is just a re-export of shared embeddings:
 
@@ -350,7 +350,7 @@ The embeddings module used by scripts is just a re-export of shared embeddings:
 export * from '@spec-kit/shared/embeddings';
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/lib/embeddings.ts:1-9`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/lib/embeddings.ts:1-9`]
 
 And `index_memory(...)` defaults to:
 
@@ -358,7 +358,7 @@ And `index_memory(...)` defaults to:
 database: Database.Database = initialize_db(),
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]
 
 That means:
 
@@ -378,8 +378,8 @@ Observed output:
 
 ```json
 {
-  "coldPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
-  "warmPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"
+  "coldPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "warmPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index__voyage__voyage-4__1024.sqlite"
 }
 ```
 
@@ -392,14 +392,14 @@ So the split-brain risk is not theoretical. It is reproducible in one process wh
 This is the complete root cause chain with the current evidence set:
 
 1. `resolve_database_path()` in `vector-index-store.ts` chooses DB path in this order: `MEMORY_DB_PATH` -> embedding profile path -> default legacy path.  
-   [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]
+   [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:277-290`]
 
 2. The embedding provider is lazy, and `getEmbeddingProfile()` only returns a profile **after** provider creation.  
-   [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:364-417`]  
-   [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:839-849`]
+   [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:364-417`]  
+   [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:839-849`]
 
 3. A Voyage profile maps to `context-index__voyage__voyage-4__1024.sqlite`.  
-   [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts:63-71`]
+   [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:63-71`]
 
 4. The provider-specific Voyage DB in this workspace is empty: `memory_index = 0`, `active_memory_projection = 0`, `vec_memories = 0`.  
    [SOURCE: live runtime probe on 2026-04-01]
@@ -408,16 +408,16 @@ This is the complete root cause chain with the current evidence set:
    [SOURCE: live runtime probe on 2026-04-01]
 
 6. `checkDatabaseUpdated()` and `reinitializeDatabase()` can reopen the DB later, and that reopen reuses the same path-resolution logic.  
-   [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:217-233`]  
-   [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:245-293`]
+   [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:217-233`]  
+   [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:245-293`]
 
 7. There is no migration or backfill step that copies legacy data into the provider-specific DB. The schema/bootstrap logic only initializes the currently opened database.  
-   [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-838`]  
+   [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:749-838`]  
    [SOURCE: evidence from live DB counts above]
 
 8. The script-side indexer generates embeddings before calling `vectorIndex.indexMemory(...)`, so in an unpinned process it can initialize the provider and then write into the provider-specific DB.  
-   [SOURCE: `.opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts:72-92`]  
-   [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]
+   [SOURCE: `.opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts:72-92`]  
+   [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:153-156`]
 
 9. The currently running MCP server is **not** suffering from this drift right now because it was launched with `MEMORY_DB_PATH=context-index.sqlite`.  
    [SOURCE: `opencode.json:19-38`]  

@@ -86,20 +86,20 @@ Stubs are project-agnostic: every NEXTJS / GO file declares `status: stub`, `pop
 
 | File / Path | Change Type | Description |
 |------------|-------------|-------------|
-| `.opencode/skill/sk-code/references/nextjs/` | Create + populate | 12 stub markdown files + README + impl_workflows entry |
-| `.opencode/skill/sk-code/references/go/` | Create + populate | 12 stub markdown files + README + impl_workflows entry |
-| `.opencode/skill/sk-code/assets/nextjs/{checklists,patterns,integrations}/` | Create | 3 checklists + 5 code stubs + 3 integrations |
-| `.opencode/skill/sk-code/assets/go/{checklists,patterns}/` | Create | 3 checklists + 5 code stubs |
-| `.opencode/skill/sk-code/references/router/cross_stack_pairing.md` | Author + scrub | Canonical contract (15K+); kerkmeester scrubbed; sk-doc-aligned |
-| `.opencode/skill/sk-code/references/router/{stack_detection,intent_classification,resource_loading,phase_lifecycle}.md` | Rewrite | sk-doc canonical reference template |
-| `.opencode/skill/sk-code/references/universal/{code_quality_standards,code_style_guide,error_recovery,multi_agent_research}.md` | Rewrite | sk-doc canonical reference template |
-| `.opencode/skill/sk-code/assets/universal/checklists/{debugging,verification}_checklist.md` | Rewrite | sk-doc canonical asset template |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | sk-doc smart-router alignment, §5 REFERENCES added, anchors stripped, version 1.3.0 |
-| `.opencode/skill/sk-code/README.md` | Modify | Stack table updated; STUB markers honest |
-| `.opencode/skill/sk-code/changelog/v1.3.0.0.md` | Create | Version changelog entry |
-| `.opencode/skill/sk-code/description.json` | Rewrite | supported_stacks, keywords, lastUpdated, placeholder_fill_packet |
-| `.opencode/skill/sk-code/graph-metadata.json` | Rewrite | domains, intent_signals, key_files, causal_summary, placeholder_fill_packet |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | NEXTJS lane (was REACT); kerkmeester removed; nextjs go pairing triggers |
+| `.opencode/skills/sk-code/references/nextjs/` | Create + populate | 12 stub markdown files + README + impl_workflows entry |
+| `.opencode/skills/sk-code/references/go/` | Create + populate | 12 stub markdown files + README + impl_workflows entry |
+| `.opencode/skills/sk-code/assets/nextjs/{checklists,patterns,integrations}/` | Create | 3 checklists + 5 code stubs + 3 integrations |
+| `.opencode/skills/sk-code/assets/go/{checklists,patterns}/` | Create | 3 checklists + 5 code stubs |
+| `.opencode/skills/sk-code/references/router/cross_stack_pairing.md` | Author + scrub | Canonical contract (15K+); kerkmeester scrubbed; sk-doc-aligned |
+| `.opencode/skills/sk-code/references/router/{stack_detection,intent_classification,resource_loading,phase_lifecycle}.md` | Rewrite | sk-doc canonical reference template |
+| `.opencode/skills/sk-code/references/universal/{code_quality_standards,code_style_guide,error_recovery,multi_agent_research}.md` | Rewrite | sk-doc canonical reference template |
+| `.opencode/skills/sk-code/assets/universal/checklists/{debugging,verification}_checklist.md` | Rewrite | sk-doc canonical asset template |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | sk-doc smart-router alignment, §5 REFERENCES added, anchors stripped, version 1.3.0 |
+| `.opencode/skills/sk-code/README.md` | Modify | Stack table updated; STUB markers honest |
+| `.opencode/skills/sk-code/changelog/v1.3.0.0.md` | Create | Version changelog entry |
+| `.opencode/skills/sk-code/description.json` | Rewrite | supported_stacks, keywords, lastUpdated, placeholder_fill_packet |
+| `.opencode/skills/sk-code/graph-metadata.json` | Rewrite | domains, intent_signals, key_files, causal_summary, placeholder_fill_packet |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Modify | NEXTJS lane (was REACT); kerkmeester removed; nextjs go pairing triggers |
 
 ---
 
@@ -115,10 +115,10 @@ Stubs are project-agnostic: every NEXTJS / GO file declares `status: stub`, `pop
 | REQ-001 | Three-stack router resolves at runtime | Path-existence sweep over SKILL.md `RESOURCE_MAPS[stack][intent]` for WEBFLOW + NEXTJS + GO returns 0 missing |
 | REQ-002 | All NEXTJS / GO stub files declare honest status | Every md stub has `status: stub`, `populated: false`, `last_synced_at: 2026-04-30`; every code stub has `Status: stub` in comment header |
 | REQ-003 | No fictional code in stubs | `grep -rE '^\`\`\`' references/{nextjs,go} --include="*.md"` returns empty |
-| REQ-004 | No project-name leakage | `grep -rl "kerkmeester" .opencode/skill/sk-code/` returns empty |
+| REQ-004 | No project-name leakage | `grep -rl "kerkmeester" .opencode/skills/sk-code/` returns empty |
 | REQ-005 | sk-doc validation passes for all 9 universal+router references | All 9 files report `valid: true`, `total_issues: 0` from `validate_document.py` |
 | REQ-006 | SKILL.md follows sk-doc canonical structure | sk-doc validator returns `valid: true`; sections 1-10 numbered; smart-router-references anchor (or anchor-free per user request); REFERENCES section present |
-| REQ-007 | No ANCHOR HTML comments anywhere in sk-code | `grep -rln '<!--.*ANCHOR:' .opencode/skill/sk-code/` returns 0 |
+| REQ-007 | No ANCHOR HTML comments anywhere in sk-code | `grep -rln '<!--.*ANCHOR:' .opencode/skills/sk-code/` returns 0 |
 | REQ-008 | Advisor smoke regression on 3 prompts | Next.js / Go / Webflow prompts all route to sk-code with `passes_threshold: true` |
 
 ### P1 — Required (complete OR user-approved deferral)

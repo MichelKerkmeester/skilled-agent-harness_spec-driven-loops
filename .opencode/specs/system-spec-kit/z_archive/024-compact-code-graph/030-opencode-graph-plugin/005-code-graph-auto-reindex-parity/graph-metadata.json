@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,7 +54,7 @@
       {
         "name": "ensure-ready.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
         "source": "derived"
       },
       {

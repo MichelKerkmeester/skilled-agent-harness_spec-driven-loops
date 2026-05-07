@@ -23,9 +23,9 @@ _memory:
     blockers: []
     key_files:
       - ".claude/settings.local.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts"
-      - ".opencode/skill/.advisor-state/skill-graph-generation.json"
-      - ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts"
+      - ".opencode/skills/.advisor-state/skill-graph-generation.json"
+      - ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md"
     completion_pct: 86
     open_questions:
       - "Is skill-graph-generation.json sourceSignature null by design (not populated yet) or a bug in the scanner write path?"
@@ -95,11 +95,11 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` (or peer) | Modify | Ensure `sourceSignature` is persisted during graph scan so freshness probe can reconcile. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/advisor-state.ts` (if applicable) | Modify | Write `sourceSignature` into `skill-graph-generation.json` when scan completes. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` (or peer) | Modify | Ensure `sourceSignature` is persisted during graph scan so freshness probe can reconcile. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/advisor-state.ts` (if applicable) | Modify | Write `sourceSignature` into `skill-graph-generation.json` when scan completes. |
 | `.claude/settings.local.json` | Modify | Remove outer `bash`/`timeoutSec` fields; keep nested Claude-schema `hooks` array only. |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Modify | Add §9 "Multi-turn regression harness" with `--input-format stream-json` pattern. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add cross-reference to §9 and cost-optimization callout. |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Modify | Add §9 "Multi-turn regression harness" with `--input-format stream-json` pattern. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modify | Add cross-reference to §9 and cost-optimization callout. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,7 +112,7 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Advisor freshness probe returns `live` after a successful `skill_graph_scan` with no intervening source changes. | Run `skill_graph_scan` → wait for completion → run direct advisor hook smoke with a work-intent prompt → confirm `freshness: "live"` in JSONL stderr (not `stale`). |
-| REQ-002 | `sourceSignature` in `skill-graph-generation.json` is non-null after a successful scan. | After `skill_graph_scan` completes, `cat .opencode/skill/.advisor-state/skill-graph-generation.json` shows a non-null signature string. |
+| REQ-002 | `sourceSignature` in `skill-graph-generation.json` is non-null after a successful scan. | After `skill_graph_scan` completes, `cat .opencode/skills/.advisor-state/skill-graph-generation.json` shows a non-null signature string. |
 | REQ-003 | `.claude/settings.local.json` hook entries contain only Claude-documented schema fields (`type`, `command`, `timeout`, optional `matcher`, optional `hooks` array for nesting). | `jq` query against settings.local.json confirms no `bash` or `timeoutSec` fields at any nesting level. |
 | REQ-004 | UserPromptSubmit fires exactly 2 hooks in a fresh `claude -p` session (Spec Kit claude hook + user-global GitKraken hook). | `claude -p "test" --output-format stream-json --include-hook-events` shows exactly 2 `hook_started` events for `UserPromptSubmit` (was 3). |
 
@@ -120,7 +120,7 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Skill-advisor validation playbook documents a multi-turn stream-json harness. | New §9 in `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with working `claude -p --input-format stream-json` example, stated cost reduction vs N one-shot sessions, and disable-flag note (env var cannot flip mid-session). |
+| REQ-005 | Skill-advisor validation playbook documents a multi-turn stream-json harness. | New §9 in `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with working `claude -p --input-format stream-json` example, stated cost reduction vs N one-shot sessions, and disable-flag note (env var cannot flip mid-session). |
 | REQ-006 | Rollback path documented for the freshness-fix change. | `plan.md` §7 lists revert steps and a smoke command to confirm rollback leaves the system in its prior stale-but-functional state. |
 <!-- /ANCHOR:requirements -->
 
@@ -139,7 +139,7 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 **AS-001 — Freshness reconciles to live (REQ-001, REQ-002)**
 - **Given** a completed `skill_graph_scan` with no intervening source changes
 - **When** the direct advisor hook smoke fires with a work-intent prompt
-- **Then** JSONL stderr reports `freshness: "live"` and `.opencode/skill/.advisor-state/skill-graph-generation.json` contains a non-null `sourceSignature`
+- **Then** JSONL stderr reports `freshness: "live"` and `.opencode/skills/.advisor-state/skill-graph-generation.json` contains a non-null `sourceSignature`
 
 **AS-002 — Schema is Claude-canonical (REQ-003)**
 - **Given** the normalized `.claude/settings.local.json`
@@ -152,7 +152,7 @@ Restore a trustworthy advisor freshness contract, normalize Claude hook registra
 - **Then** exactly 2 distinct `hook_id` values appear (was 3 pre-fix)
 
 **AS-004 — Playbook harness is runnable (REQ-005)**
-- **Given** the new §9 fixture in `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
+- **Given** the new §9 fixture in `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
 - **When** an operator runs the example `claude -p --input-format stream-json < fixture.jsonl` with 5 advisor prompts
 - **Then** the final `result` event reports `total_cost_usd ≤ 0.30` and all advisor prompts produce a recognizable `Advisor:` brief or a documented skip reason
 

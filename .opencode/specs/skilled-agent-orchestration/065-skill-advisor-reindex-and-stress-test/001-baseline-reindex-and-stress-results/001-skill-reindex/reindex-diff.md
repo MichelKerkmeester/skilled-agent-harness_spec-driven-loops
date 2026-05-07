@@ -76,7 +76,7 @@ The attached MCP tool surface was replayed after restart/reload and now matches 
 | `git commit` confidence | top1 `sk-git`, confidence `0.9295` | PASS |
 | `review pull request` confidence | top1 `sk-code-review`, confidence `0.95` | PASS |
 
-The only diagnostic remains the expected non-skill metadata warning for `.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json`.
+The only diagnostic remains the expected non-skill metadata warning for `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json`.
 
 ## GO Signal
 

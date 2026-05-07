@@ -105,7 +105,7 @@ Core archival mechanics are fully implemented. `archiveMemory()` (lines 517-547)
 ### 134 — Startup pending-file recovery lifecycle coverage
 **Verdict**: PASS
 
-`recoverPendingFiles()` in `context-server.ts:422-505` derives scan roots from `MEMORY_BASE_PATH` env var, `ALLOWED_BASE_PATHS`, plus explicit `specs/` and `.opencode/specs/` subdirs under each root. Constitutional directories under `.opencode/skill/*/constitutional/` are also scanned. `transactionManager.recoverAllPendingFiles(location, isCommittedInDb)` renames committed pending files to their original paths. Stale pending files (no committed DB row) are left in place with a `console.warn` at `transaction-manager.ts:359-361`. Startup scan root set covers configured and constitutional locations. All 3 playbook signals are met.
+`recoverPendingFiles()` in `context-server.ts:422-505` derives scan roots from `MEMORY_BASE_PATH` env var, `ALLOWED_BASE_PATHS`, plus explicit `specs/` and `.opencode/specs/` subdirs under each root. Constitutional directories under `.opencode/skills/*/constitutional/` are also scanned. `transactionManager.recoverAllPendingFiles(location, isCommittedInDb)` renames committed pending files to their original paths. Stale pending files (no committed DB row) are left in place with a `console.warn` at `transaction-manager.ts:359-361`. Startup scan root set covers configured and constitutional locations. All 3 playbook signals are met.
 
 ### 144 — Advisory ingest lifecycle forecast
 **Verdict**: PASS

@@ -17,8 +17,8 @@ D2 Security — validation and boundary handling
 ### P2-023-003: V-rule bridge is still optionally fail-open under an environment toggle
 - Dimension: D2 Security
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:61]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103]
 - Impact: The packet implies the validator bridge now fails closed, but the current handler still permits an allow-by-default bypass when optional mode is enabled.
 - Final severity: P2
 
@@ -31,8 +31,8 @@ D2 Security — validation and boundary handling
 - Reviewed shared-memory and memory-save boundary surfaces; no new active auth bypass stronger than archived packet evidence was confirmed in this pass.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:103]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:88]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:61]
 
 ## Assessment

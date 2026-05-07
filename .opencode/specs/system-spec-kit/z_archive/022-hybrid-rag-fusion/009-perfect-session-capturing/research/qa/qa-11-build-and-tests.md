@@ -19,7 +19,7 @@ Execute these commands IN ORDER and report results:
 
 2. Find and run ALL test files related to the session capturing pipeline:
    - Look for test files matching: test-extractors*, test-bug-fixes*, test-integration*, test-memory-quality*, *.test.ts, *.spec.ts
-   - Search in: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/__tests__/, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/tests/
+   - Search in: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/__tests__/, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/tests/
    - Run with: npx vitest run [file] --reporter=verbose OR node --experimental-vm-modules [file]
 
 3. For each test suite, report:
@@ -104,14 +104,14 @@ sys 0.08
 codex
 The build step is now bounded and reproducible: it times out after 30 seconds with no compiler output, which strongly points to environment setup rather than a reported TypeScript error. Next I’m enumerating every matching test file in the three requested directories and pulling spec 012 so I can map coverage to the 20 fixes.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find '.opencode/skill/system-spec-kit/scripts/__tests__' '.opencode/skill/system-spec-kit/scripts/tests' 'tests' -type f \\( -name 'test-extractors*' -o -name 'test-bug-fixes*' -o -name 'test-integration*' -o -name 'test-memory-quality*' -o -name '*.test.ts' -o -name '*.spec.ts' \\) 2>/dev/null | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find '.opencode/skills/system-spec-kit/scripts/__tests__' '.opencode/skills/system-spec-kit/scripts/tests' 'tests' -type f \\( -name 'test-extractors*' -o -name 'test-bug-fixes*' -o -name 'test-integration*' -o -name 'test-memory-quality*' -o -name '*.test.ts' -o -name '*.spec.ts' \\) 2>/dev/null | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find specs -maxdepth 2 -type d | rg '/012["'^/]*$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 51ms:
 
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js
-.opencode/skill/system-spec-kit/scripts/tests/test-integration.js
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js
+.opencode/skills/system-spec-kit/scripts/tests/test-integration.js
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js
 exec
 /bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find specs -type d | rg '/012["'^/]*'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 52ms:
 
@@ -162,10 +162,10 @@ specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-k
 specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/mcp-server/dist/tests/continue-session.vitest.d.ts.map
 specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/mcp-server/dist/tests/handler-session-learning.vitest.d.ts
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,240p' '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,240p' '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 // ───────────────────────────────────────────────────────────────
 // TEST: BUG FIXES VERIFICATION
 // ───────────────────────────────────────────────────────────────
@@ -252,7 +252,7 @@ const MCP_SERVER_DIR = path.join(ROOT, 'mcp_server');
 codex
 I’ve confirmed these are standalone Node-based test scripts rather than Vitest suites, so I’m running each with `node --experimental-vm-modules` as allowed. Some of them create temporary workspace content, so any permission-related failure will be called out explicitly instead of being mistaken for a product regression.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 1.62s:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 1.62s:
    [PASS] EXT-Session-018: getChannel returns string
       Evidence: Type is string
    [PASS] EXT-Session-019: Channel is non-empty
@@ -274,7 +274,7 @@ exec
    [PASS] EXT-Session-027: Decision context = important
       Evidence: important === important
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skill/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skills/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 
 ════════════════════════════════════════════════════════════
   INTEGRATION TEST SUITE
@@ -287,16 +287,16 @@ exec
 
 📁 Setting up test workspace...
 
-❌ Fatal error: EPERM: operation not permitted, mkdir '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/.test-workspace/specs'
-Error: EPERM: operation not permitted, mkdir '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/.test-workspace/specs'
+❌ Fatal error: EPERM: operation not permitted, mkdir '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/.test-workspace/specs'
+Error: EPERM: operation not permitted, mkdir '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/.test-workspace/specs'
     at Object.mkdirSync (node:fs:1333:26)
-    at setupTestWorkspace (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-integration.js:95:6)
-    at main (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-integration.js:976:5)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-integration.js:1041:1)
+    at setupTestWorkspace (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-integration.js:95:6)
+    at main (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-integration.js:976:5)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-integration.js:1041:1)
     at Module._compile (node:internal/modules/cjs/loader:1811:14)
     at Module._extensions..js (node:internal/modules/cjs/loader:1942:10)
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && /usr/bin/time -p node --experimental-vm-modules '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 test-memory-quality-lane: PASS
 real 0.07
 user 0.05
@@ -304,9 +304,9 @@ sys 0.01
 codex
 Three of the four suites are now run. The integration script exposed a useful quirk: it logs a fatal EPERM setup failure but still exits `0` with “all passed,” so I’m treating that as a harness issue, not a genuine green run. I’m inspecting the memory-quality script next because it only emits a single PASS line and we still need an accurate per-suite count.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,260p' '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,260p' '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,260p' 'specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/tasks.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"assert\\(\" '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"assert\\(\" '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 # Tasks: Perfect Session Capturing
 
 ## Phase A: Spec Folder Setup
@@ -371,7 +371,7 @@ function runValidatorRuleTests() {
 167:  assert(bonusClamp.qualityScore <= 1, 'bonus case should clamp to 1.0');
 exec
 /bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,260p' 'specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/checklist.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Fix [0-9]+|Session ID|contamination|confidence|HTML stripping|memoryId|description dedup|File action|delta|RESEARCH phase|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|MAX_FILES_IN_MEMORY|MAX_OBSERVATIONS|MIN_PROMPT_LENGTH|MAX_CONTENT_PREVIEW|TOOL_PREVIEW_LINES|redundant catch|description tracking\" '.opencode/skill/system-spec-kit/scripts/tests' 'specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Fix [0-9]+|Session ID|contamination|confidence|HTML stripping|memoryId|description dedup|File action|delta|RESEARCH phase|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|MAX_FILES_IN_MEMORY|MAX_OBSERVATIONS|MIN_PROMPT_LENGTH|MAX_CONTENT_PREVIEW|TOOL_PREVIEW_LINES|redundant catch|description tracking\" '.opencode/skills/system-spec-kit/scripts/tests' 'specs/system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
 # Checklist: Perfect Session Capturing
 
 ## P0 — Critical (must pass)
@@ -436,31 +436,31 @@ Comprehensive audit and remediation of the `generate-context.js` session capturi
 | `scripts/extractors/collect-session-data.ts` | 1 | Postflight delta only computed when both sides have data |
 
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Session ID|crypto|randomBytes|Math\\.random|hadContamination|contamination|CONFIDENCE|confidence|multiple options|rationale|getTrendIndicator|delta|RESEARCH === RESEARCH|Read\\)|Renamed|Duplicate files deduplicated|Semantic description|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|maxFilesInMemory|maxObservations|minPromptLength|maxContentPreview|toolPreviewLines|memoryId|HTML|code fence|rollback|temp file|random suffix\" '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js' '.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js' '.opencode/skill/system-spec-kit/scripts/tests/test-integration.js' '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:8:const contamination = require(path.join(DIST_DIR, 'extractors', 'contamination-filter.js'));
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:61:  const filtered1 = contamination.filterContamination("I'll execute this step by step and then proceed.");
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:62:  assert(filtered1.hadContamination === true, 'contamination positive #1 should detect');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:64:  const filtered2 = contamination.filterContamination('Let me analyze the failure and report back.');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:65:  assert(filtered2.hadContamination === true, 'contamination positive #2 should detect');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:67:  const clean1 = contamination.filterContamination('Decision: adopt typed validator module.');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:68:  assert(clean1.hadContamination === false, 'contamination negative #1 should pass');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:70:  const clean2 = contamination.filterContamination('I needled this case in a test title.');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:71:  assert(clean2.hadContamination === false, 'contamination negative #2 should pass');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:73:  const empty = contamination.filterContamination('');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:74:  assert(empty.cleanedText === '', 'contamination empty input should return empty text');
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:112:    hadContamination: true,
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:128:    hadContamination: false,
-.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js:144:    hadContamination: false,
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:174:    // Test 2: Transaction wrapper provides automatic rollback (no manual cleanup needed)
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:175:    // With database.transaction(), rollback is automatic on throw - no orphan cleanup code needed
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:176:    if (vectorIndex.includes('auto-rollback on error')) {
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:177:      pass('T-010b: Automatic rollback via transaction wrapper', 
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:178:           'Comment indicates auto-rollback behavior');
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:180:      skip('T-010b: Automatic rollback via transaction wrapper', 
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Session ID|crypto|randomBytes|Math\\.random|hadContamination|contamination|CONFIDENCE|confidence|multiple options|rationale|getTrendIndicator|delta|RESEARCH === RESEARCH|Read\\)|Renamed|Duplicate files deduplicated|Semantic description|TOOL_OUTPUT_MAX_LENGTH|TIMESTAMP_MATCH_TOLERANCE_MS|maxFilesInMemory|maxObservations|minPromptLength|maxContentPreview|toolPreviewLines|memoryId|HTML|code fence|rollback|temp file|random suffix\" '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js' '.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js' '.opencode/skills/system-spec-kit/scripts/tests/test-integration.js' '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:8:const contamination = require(path.join(DIST_DIR, 'extractors', 'contamination-filter.js'));
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:61:  const filtered1 = contamination.filterContamination("I'll execute this step by step and then proceed.");
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:62:  assert(filtered1.hadContamination === true, 'contamination positive #1 should detect');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:64:  const filtered2 = contamination.filterContamination('Let me analyze the failure and report back.');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:65:  assert(filtered2.hadContamination === true, 'contamination positive #2 should detect');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:67:  const clean1 = contamination.filterContamination('Decision: adopt typed validator module.');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:68:  assert(clean1.hadContamination === false, 'contamination negative #1 should pass');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:70:  const clean2 = contamination.filterContamination('I needled this case in a test title.');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:71:  assert(clean2.hadContamination === false, 'contamination negative #2 should pass');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:73:  const empty = contamination.filterContamination('');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:74:  assert(empty.cleanedText === '', 'contamination empty input should return empty text');
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:112:    hadContamination: true,
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:128:    hadContamination: false,
+.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js:144:    hadContamination: false,
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:174:    // Test 2: Transaction wrapper provides automatic rollback (no manual cleanup needed)
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:175:    // With database.transaction(), rollback is automatic on throw - no orphan cleanup code needed
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:176:    if (vectorIndex.includes('auto-rollback on error')) {
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:177:      pass('T-010b: Automatic rollback via transaction wrapper', 
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:178:           'Comment indicates auto-rollback behavior');
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:180:      skip('T-010b: Automatic rollback via transaction wrapper', 
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '360,430p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '560,740p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skill/system-spec-kit/scripts/dist/extractors/session-extractor.js' | rg -n \"randomBytes|Math\\.random|session-|RESEARCH|total === 0|total > 0\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '360,430p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '560,740p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '1,220p' '.opencode/skills/system-spec-kit/scripts/dist/extractors/session-extractor.js' | rg -n \"randomBytes|Math\\.random|session-|RESEARCH|total === 0|total > 0\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
   log('\n=== SESSION-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -517,7 +517,7 @@ exec
 132:    if (readTools / total > 0.6)
 133:        return 'RESEARCH';
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"rollback|temp|randomBytes|batch|toolOutputMaxLength|timestampMatchTolerance|maxFilesInMemory|maxObservations|minPromptLength|maxContentPreview|toolPreviewLines|memoryId|HTML|Read|Renamed|Deleted|Created|Modified\" '.opencode/skill/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"rollback|temp|randomBytes|batch|toolOutputMaxLength|timestampMatchTolerance|maxFilesInMemory|maxObservations|minPromptLength|maxContentPreview|toolPreviewLines|memoryId|HTML|Read|Renamed|Deleted|Created|Modified\" '.opencode/skills/system-spec-kit/scripts/tests/test-integration.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 21:const TEMPLATES_DIR = path.join(ROOT, 'templates');
 98:  testSessionId = `test-session-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
 129:  // Copy templates based on level
@@ -539,8 +539,8 @@ exec
 624:        templatesFound++;
 628:    if (templatesFound === levels.length) {
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find '.opencode/skill/system-spec-kit/scripts/test-fixtures/memory-quality-benchmarks' '.opencode/skill/system-spec-kit/scripts/test-fixtures/quality-benchmarks' -type f -name '*.md' 2>/dev/null | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"async function main|function main|runValidatorRuleTests|runContaminationTests|runDecisionCueTests|runQualityScorerTests|runBenchmarkFixtureTest|test-memory-quality-lane: PASS\" '.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && find '.opencode/skills/system-spec-kit/scripts/test-fixtures/memory-quality-benchmarks' '.opencode/skills/system-spec-kit/scripts/test-fixtures/quality-benchmarks' -type f -name '*.md' 2>/dev/null | sort" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"async function main|function main|runValidatorRuleTests|runContaminationTests|runDecisionCueTests|runQualityScorerTests|runBenchmarkFixtureTest|test-memory-quality-lane: PASS\" '.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 
  succeeded in 51ms:
 18:function runValidatorRuleTests() {
@@ -556,7 +556,7 @@ exec
 266:  runBenchmarkFixtureTest();
 267:  console.log('test-memory-quality-lane: PASS');
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '880,980p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '880,980p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
       assertExists(guides[0].GUIDE_TEXT, 'EXT-Impl-023: Guide has GUIDE_TEXT');
     }
 
@@ -578,7 +578,7 @@ exec
     assertArray(guideData.IMPL_KEY_FILES, 'EXT-Impl-030: Guide has IMPL_KEY_FILES');
     assertArray(guideData.EXTENSION_GUIDES, 'EXT-Impl-031: Guide has EXTENSION_GUIDES');
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '980,1080p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '980,1080p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 /* ─────────────────────────────────────────────────────────────
    11. OPENCODE-CAPTURE TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
@@ -600,7 +600,7 @@ async function testOpencodeCapture() {
     assertType(opencodeCapture.getSessionMessages, 'function', 'EXT-OC-008: get_session_messages exported');
     assertType(opencodeCapture.getMessageParts, 'function', 'EXT-OC-009: get_message_parts exported');
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '250,350p' '.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && sed -n '250,350p' '.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    4. COLLECT-SESSION-DATA TESTS (P0)
 ────────────────────────────────────────────────────────────────*/
 
@@ -634,23 +634,23 @@ Inference: the root command is stalling before `tsc` actually starts.
 
 I found 4 matching suites in the requested paths, all `.js` scripts, so I ran them with `node --experimental-vm-modules`. No `*.test.ts` or `*.spec.ts` files matched in those directories.
 
-- [test-bug-fixes.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js): 24 total, 12 passed, 4 failed, 8 skipped.
+- [test-bug-fixes.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js): 24 total, 12 passed, 4 failed, 8 skipped.
   Failing tests:
-  `T-005: Cross-connection visibility` -> `EPERM: operation not permitted, open '.../.opencode/skill/system-spec-kit/mcp_server/database/.db-updated'`
+  `T-005: Cross-connection visibility` -> `EPERM: operation not permitted, open '.../.opencode/skills/system-spec-kit/mcp_server/database/.db-updated'`
   `T-034a: getCacheKey() function exists` -> `Function not found in source`
   `T-042a: verifyIntegrity() function exists` -> `Function not found in source`
   `Config: smartRanking weights` -> `Got: {"recencyWeight":0.3,"accessWeight":0.2,"relevanceWeight":0.5}`
 
-- [test-extractors-loaders.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js): 279 total, 278 passed, 1 failed, 0 skipped.
+- [test-extractors-loaders.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js): 279 total, 278 passed, 1 failed, 0 skipped.
   Failing test:
   `EXT-Session-016: Session ID format correct` -> `Expected to match /^session-\\d+-[a-z0-9]+$/, got: session-1772998210077--Y6OXxN0i`
 
-- [test-integration.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-integration.js): 0 total, 0 passed, 0 failed, 0 skipped.
+- [test-integration.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-integration.js): 0 total, 0 passed, 0 failed, 0 skipped.
   Important note: setup hit a fatal error before any tests ran:
   `EPERM: operation not permitted, mkdir '.../.test-workspace/specs'`
   The script still exited `0` and printed “ALL INTEGRATION TESTS PASSED!”, so this is not a trustworthy pass.
 
-- [test-memory-quality-lane.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js): 22 total, 22 passed, 0 failed, 0 skipped.
+- [test-memory-quality-lane.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js): 22 total, 22 passed, 0 failed, 0 skipped.
   This suite only prints `test-memory-quality-lane: PASS`, so the `22` is inferred from the executed assertions in the file.
 
 Aggregate executed totals: 325 total, 312 passed, 5 failed, 8 skipped, plus 1 fatal integration-suite setup error.
@@ -686,23 +686,23 @@ Inference: the root command is stalling before `tsc` actually starts.
 
 I found 4 matching suites in the requested paths, all `.js` scripts, so I ran them with `node --experimental-vm-modules`. No `*.test.ts` or `*.spec.ts` files matched in those directories.
 
-- [test-bug-fixes.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js): 24 total, 12 passed, 4 failed, 8 skipped.
+- [test-bug-fixes.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js): 24 total, 12 passed, 4 failed, 8 skipped.
   Failing tests:
-  `T-005: Cross-connection visibility` -> `EPERM: operation not permitted, open '.../.opencode/skill/system-spec-kit/mcp_server/database/.db-updated'`
+  `T-005: Cross-connection visibility` -> `EPERM: operation not permitted, open '.../.opencode/skills/system-spec-kit/mcp_server/database/.db-updated'`
   `T-034a: getCacheKey() function exists` -> `Function not found in source`
   `T-042a: verifyIntegrity() function exists` -> `Function not found in source`
   `Config: smartRanking weights` -> `Got: {"recencyWeight":0.3,"accessWeight":0.2,"relevanceWeight":0.5}`
 
-- [test-extractors-loaders.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js): 279 total, 278 passed, 1 failed, 0 skipped.
+- [test-extractors-loaders.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js): 279 total, 278 passed, 1 failed, 0 skipped.
   Failing test:
   `EXT-Session-016: Session ID format correct` -> `Expected to match /^session-\\d+-[a-z0-9]+$/, got: session-1772998210077--Y6OXxN0i`
 
-- [test-integration.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-integration.js): 0 total, 0 passed, 0 failed, 0 skipped.
+- [test-integration.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-integration.js): 0 total, 0 passed, 0 failed, 0 skipped.
   Important note: setup hit a fatal error before any tests ran:
   `EPERM: operation not permitted, mkdir '.../.test-workspace/specs'`
   The script still exited `0` and printed “ALL INTEGRATION TESTS PASSED!”, so this is not a trustworthy pass.
 
-- [test-memory-quality-lane.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-memory-quality-lane.js): 22 total, 22 passed, 0 failed, 0 skipped.
+- [test-memory-quality-lane.js](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-memory-quality-lane.js): 22 total, 22 passed, 0 failed, 0 skipped.
   This suite only prints `test-memory-quality-lane: PASS`, so the `22` is inferred from the executed assertions in the file.
 
 Aggregate executed totals: 325 total, 312 passed, 5 failed, 8 skipped, plus 1 fatal integration-suite setup error.

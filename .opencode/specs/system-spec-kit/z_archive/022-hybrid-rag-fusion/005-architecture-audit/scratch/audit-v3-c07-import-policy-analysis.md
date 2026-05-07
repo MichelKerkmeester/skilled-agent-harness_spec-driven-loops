@@ -1,9 +1,9 @@
 # C7 Import Policy Enforcement Audit
 
-Scope: `.opencode/skill/system-spec-kit/`
+Scope: `.opencode/skills/system-spec-kit/`
 
 Execution notes:
-- `cd .opencode/skill/system-spec-kit/scripts && npm run check` did not complete in this sandbox because `tsx` failed to open its IPC pipe during `npm run lint` with `EPERM` before the boundary scripts ran.
+- `cd .opencode/skills/system-spec-kit/scripts && npm run check` did not complete in this sandbox because `tsx` failed to open its IPC pipe during `npm run lint` with `EPERM` before the boundary scripts ran.
 - The shipped compiled checks were still runnable:
   - `node dist/evals/check-no-mcp-lib-imports.js` -> PASS
   - `node dist/evals/check-no-mcp-lib-imports-ast.js` -> PASS
@@ -13,7 +13,7 @@ Execution notes:
 ### C7-001: Package alias traversal bypasses forbidden-import detection
 Severity: HIGH
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/scripts/evals/import-policy-rules.ts:20`
+Location: `.opencode/skills/system-spec-kit/scripts/evals/import-policy-rules.ts:20`
 
 Description: The shared detection rule only normalizes relative specifiers. Package-form imports are checked as raw strings, so a caller can write `@spec-kit/mcp-server/api/../lib/...` and bypass both the regex checker and the AST checker even though TypeScript resolves that specifier into `mcp_server/lib/*`, which the architecture explicitly forbids.
 
@@ -38,7 +38,7 @@ rel api/../lib => true
 
 ```text
 @spec-kit/mcp-server/api/../lib/search/folder-discovery
-=> /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
+=> /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts
 ```
 
 Impact: A forbidden scripts-to-runtime-internals import can be written in package form, compile successfully, and pass the current enforcement stack without allowlist review. This is a true policy bypass, not just documentation drift.
@@ -48,7 +48,7 @@ Recommended Fix: Canonicalize package-form specifiers before matching, not just 
 ### C7-002: The standard boundary gate does not execute AST import-policy enforcement
 Severity: MEDIUM
 Category: verification
-Location: `.opencode/skill/system-spec-kit/scripts/package.json:14`
+Location: `.opencode/skills/system-spec-kit/scripts/package.json:14`
 
 Description: The codebase ships an AST checker for direct and transitive internal imports, but the default `npm run check` path only runs the regex-level checker. That means the standard gate used by contributors can miss cases the AST checker was added to catch, especially deeper re-export chains and AST-only syntax variants.
 
@@ -70,7 +70,7 @@ Recommended Fix: Fold `npm run check:ast` into `npm run check`, or otherwise mak
 ### C7-003: Raw filesystem reads create an unchecked path to runtime internals
 Severity: MEDIUM
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts:80`
+Location: `.opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts:80`
 
 Description: `map-ground-truth-ids.ts` does not import a forbidden runtime module, but it still reaches into `mcp_server/lib/` by resolving and reading a private source file directly. That dependency is outside the allowlist model and outside both import-policy checkers, even though the architecture boundary says scripts should consume runtime functionality through `api/` or `shared/`, never internal runtime directories.
 
@@ -91,7 +91,7 @@ Recommended Fix: Move the ground-truth dataset to `shared/` or expose it through
 ### C7-004: Exception governance documentation is stale relative to the allowlist
 Severity: LOW
 Category: governance
-Location: `.opencode/skill/system-spec-kit/ARCHITECTURE.md:199`
+Location: `.opencode/skills/system-spec-kit/ARCHITECTURE.md:199`
 
 Description: The allowlist is the real source of truth and currently contains four active exceptions, but the architecture document only lists three of them and `scripts/evals/README.md` only mentions one. That makes manual review of exception scope incomplete even though the JSON allowlist itself is well-formed and unexpired.
 

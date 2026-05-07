@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Auto-mode fallback can quietly downgrade from cloud embeddings to HF local while config introspection still reports the cloud provider
-**File** `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/README.md`
+**File** `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/README.md`
 
 **Issue** `createEmbeddingsProvider()` automatically falls back from `voyage` or `openai` to `hf-local` whenever warmup fails or provider construction throws in auto mode, but that downgrade is only logged. The exported `getProviderInfo()` helper still reports the env-derived provider from `resolveProvider()`, not the provider actually returned after fallback. In practice that means operators can believe they are using Voyage or OpenAI while the runtime has already degraded to local 768-d embeddings with lower retrieval quality.
 
@@ -12,7 +12,7 @@
 **Fix** Return structured fallback metadata from `createEmbeddingsProvider()` or persist the effective provider choice in a shared runtime state that `getProviderInfo()` reads. At minimum, expose `requestedProvider`, `effectiveProvider`, `fallbackReason`, and `dimensionChanged` so monitoring can distinguish “Voyage selected” from “Voyage key existed but runtime degraded to hf-local”.
 
 ### [P1] API key validation is optional and disconnected from provider/dimension resolution, so invalid cloud configs can progress into startup setup before validation runs
-**File** `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts`
+**File** `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`
 
 **Issue** The module exports a fail-fast `validateApiKey()` helper, but neither `getStartupEmbeddingDimension()` nor `createEmbeddingsProvider()` enforces that validation before provider selection and dimension resolution. Because of that separation, startup code can resolve a cloud provider and its embedding dimension, initialize downstream DB/profile state from that choice, and only later discover that the key is invalid or the provider is unreachable.
 
@@ -21,7 +21,7 @@
 **Fix** Couple preflight validation to the first cloud-provider resolution path. A straightforward fix is to add a startup entrypoint that performs `resolveProvider()` plus `validateApiKey()` before exposing dimension/profile data, and make DB/profile initialization consume that validated result instead of re-deriving provider state independently.
 
 ### [P1] `dim` overrides are treated as authoritative profile/schema dimensions even though the providers never request matching output dimensions
-**File** `.opencode/skill/system-spec-kit/shared/embeddings/factory.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/providers/openai.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/profile.ts`
+**File** `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts`
 
 **Issue** The factory accepts any positive `options.dim` and passes it into provider constructors, which then use that value as their expected embedding dimension and as part of the embedding profile/DB slug. But the actual provider requests never ask the remote model to emit that dimension, and the local model cannot change output width at all. That means non-default dimensions fail late at embedding time after the profile/database identity has already been built around an impossible schema.
 
@@ -30,7 +30,7 @@
 **Fix** Fail fast unless the requested dimension is actually supported and actively requested from the provider. For OpenAI/Voyage, only accept override values that are sent in the API request and confirmed by the provider's supported-dimension map. For `hf-local`, reject any non-768 override up front. Profile/database construction should only use a validated effective dimension, never an unchecked caller override.
 
 ### [P2] Timeout handling is incomplete: HF local exposes a timeout knob that is never used, and cloud warmup has no overall budget beyond per-request retries
-**File** `.opencode/skill/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/providers/openai.ts`, `.opencode/skill/system-spec-kit/shared/embeddings/providers/voyage.ts`
+**File** `.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts`
 
 **Issue** The local provider advertises a per-embedding timeout, but inference never wraps model execution in any timeout logic, so a slow or hung local inference can block indefinitely. On the cloud side, each request has a 30s abort, but warmup is allowed to wait through the full retry chain because there is no end-to-end warmup deadline in the provider or factory layer.
 

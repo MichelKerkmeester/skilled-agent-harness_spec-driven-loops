@@ -139,7 +139,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js |
+| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js |
 | Last Action | Tool: grep |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -161,7 +161,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/.../lib/checkpoints.js` - Core checkpoints
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js` - Core context server
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js` - Core context server
 
 - `.opencode/.../lib/vector-index.js` - Entry point / exports
 
@@ -200,7 +200,7 @@ I found the checkpoint module. Let me examine it along with the main server file
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../lib/checkpoints.js` | Updated checkpoints |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Updated context server |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Updated context server |
 | `.opencode/.../lib/vector-index.js` | Updated vector index |
 
 <!-- /ANCHOR:summary-session-1766736662905-pmkjc0m87-006-speckit-test-suite -->
@@ -238,27 +238,27 @@ Executed glob
 <!-- ANCHOR:implementation-tool-read-fa2caa18-session-1766736662905-pmkjc0m87 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-fa2caa18-session-1766736662905-pmkjc0m87 -->
 
 <!-- ANCHOR:implementation-tool-read-fa2caa18-2-session-1766736662905-pmkjc0m87 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-fa2caa18-2-session-1766736662905-pmkjc0m87 -->
 
 <!-- ANCHOR:implementation-tool-read-fa2caa18-3-session-1766736662905-pmkjc0m87 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-fa2caa18-3-session-1766736662905-pmkjc0m87 -->
 
@@ -267,16 +267,16 @@ Executed glob
 
 let db = null|getDb|initializeDb
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-9022125a-session-1766736662905-pmkjc0m87 -->
 
 <!-- ANCHOR:implementation-tool-read-fa2caa18-4-session-1766736662905-pmkjc0m87 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-fa2caa18-4-session-1766736662905-pmkjc0m87 -->
 
@@ -285,7 +285,7 @@ let db = null|getDb|initializeDb
 
 CREATE TABLE.*checkpoints|checkpoints.*CREATE
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 **Details:** Tool: grep | Status: completed
 <!-- /ANCHOR:implementation-tool-grep-9022125a-2-session-1766736662905-pmkjc0m87 -->
 
@@ -518,7 +518,7 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../lib/checkpoints.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.js"
   - ".opencode/.../lib/vector-index.js"
 
 # Relationships

@@ -1,6 +1,6 @@
 # MCP Daemon Rebuild + Restart Protocol
 
-> Canonical 4-part verification contract for every MCP TypeScript fix landing under `.opencode/skill/system-spec-kit/mcp_server/`. Without all 4 parts, completion claims are PROVISIONAL.
+> Canonical 4-part verification contract for every MCP TypeScript fix landing under `.opencode/skills/system-spec-kit/mcp_server/`. Without all 4 parts, completion claims are PROVISIONAL.
 
 ---
 
@@ -60,7 +60,7 @@ Claude Code owns its MCP child via the MCP server config in settings. Restart by
 ```text
 source patched
   -> targeted vitest pass (npx vitest run <files>)
-  -> npm run build (cd .opencode/skill/system-spec-kit/mcp_server && npm run build)
+  -> npm run build (cd .opencode/skills/system-spec-kit/mcp_server && npm run build)
   -> dist marker grep (grep -l <new-marker> dist/<file>.js)
   -> dist timestamp newer than source (stat -f "%m %N" both files)
   -> restart MCP-owning client/runtime
@@ -75,7 +75,7 @@ source patched
 The `npm test` script in `mcp_server/` runs full `test:core` before `test:file-watcher`, which can take many minutes and often surfaces unrelated failures from concurrent worktree state. Use targeted `npx vitest run <files>` instead:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npx vitest run tests/<your-target-file>.vitest.ts
 ```
 

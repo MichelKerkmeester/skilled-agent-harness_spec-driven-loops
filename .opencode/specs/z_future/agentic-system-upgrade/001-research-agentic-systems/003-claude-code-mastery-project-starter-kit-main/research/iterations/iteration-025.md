@@ -10,9 +10,9 @@ The external repo will confirm that smaller role rosters feel simpler, but the l
 Compared the local deep-research and deep-review agent contracts and skills to the external repo's narrower agent set.
 
 ## Evidence
-- The local deep-research agent is explicitly designed for repeated iterations with fresh context, externalized state, convergence tracking, and synthesized findings. [SOURCE: .opencode/agent/deep-research.md:99-119] [SOURCE: .opencode/agent/deep-research.md:121-171]
-- The local deep-review agent follows a similar pattern with severity-weighted findings, iterative state, and convergence behavior across review dimensions. [SOURCE: .opencode/agent/deep-review.md:95-122] [SOURCE: .opencode/agent/deep-review.md:144-180]
-- The matching skills codify reducer-owned artifacts, JSONL state, iteration isolation, and synthesis rules. [SOURCE: .opencode/skill/sk-deep-research/SKILL.md:137-221] [SOURCE: .opencode/skill/sk-deep-review/SKILL.md:157-260]
+- The local deep-research agent is explicitly designed for repeated iterations with fresh context, externalized state, convergence tracking, and synthesized findings. [SOURCE: .opencode/agents/deep-research.md:99-119] [SOURCE: .opencode/agents/deep-research.md:121-171]
+- The local deep-review agent follows a similar pattern with severity-weighted findings, iterative state, and convergence behavior across review dimensions. [SOURCE: .opencode/agents/deep-review.md:95-122] [SOURCE: .opencode/agents/deep-review.md:144-180]
+- The matching skills codify reducer-owned artifacts, JSONL state, iteration isolation, and synthesis rules. [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:137-221] [SOURCE: .opencode/skills/sk-deep-review/SKILL.md:157-260]
 - The external repo's named agents are much lighter and do not appear to provide an equivalent deep-loop orchestration model. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/agents/code-reviewer.md:1-39] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/003-claude-code-mastery-project-starter-kit-main/external/.claude/agents/test-writer.md:1-60]
 
 ## Analysis

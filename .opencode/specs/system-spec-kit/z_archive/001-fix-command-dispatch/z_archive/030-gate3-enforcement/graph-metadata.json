@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,7 +52,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

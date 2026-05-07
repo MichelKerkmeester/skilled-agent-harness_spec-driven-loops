@@ -48,8 +48,8 @@ _memory:
 ## Phase 2: Implementation
 
 ### Sub-phase 2A: Skill tree deletions
-- [ ] T002 [P] Delete `.opencode/skill/sk-code-full-stack/` (82 files)
-- [ ] T003 [P] Delete `.opencode/skill/sk-code-web/` (46 files)
+- [ ] T002 [P] Delete `.opencode/skills/sk-code-full-stack/` (82 files)
+- [ ] T003 [P] Delete `.opencode/skills/sk-code-web/` (46 files)
 
 ### Sub-phase 2B: sk-code self-references
 - [ ] T004 [P] Neutralize 10 `_placeholder.md` files (5 references/<stack>/ + 5 assets/<stack>/)
@@ -75,7 +75,7 @@ _memory:
 
 ### Sub-phase 2E: Doc surfaces
 - [ ] T020 Edit root `README.md` — drop deprecated skill sections
-- [ ] T021 Edit `.opencode/skill/README.md` — drop table rows, tree lines, runtime matrix rows; update counts
+- [ ] T021 Edit `.opencode/skills/README.md` — drop table rows, tree lines, runtime matrix rows; update counts
 - [ ] T022 Edit `.opencode/install_guides/README.md` — drop rows, update Skills count 17→15
 - [ ] T023 Edit `.opencode/install_guides/SET-UP - AGENTS.md` — drop sections, update Skills count
 - [ ] T024 Edit `.opencode/install_guides/SET-UP - Opencode Agents.md` — drop deprecated rows
@@ -100,7 +100,7 @@ _memory:
 - [ ] T039 [P] Edit `.claude/agents/deep-review.md`
 - [ ] T040 [P] Edit `.codex/agents/deep-review.toml`
 - [ ] T041 [P] Edit `.gemini/agents/deep-review.md`
-- [ ] T042 [P] Edit `.opencode/agent/deep-review.md`
+- [ ] T042 [P] Edit `.opencode/agents/deep-review.md`
 
 ### Sub-phase 2H: SQLite DBs
 - [ ] T043 Backup all DBs to `.bak`

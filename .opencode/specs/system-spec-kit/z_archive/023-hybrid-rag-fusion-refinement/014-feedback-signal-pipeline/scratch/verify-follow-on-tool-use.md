@@ -28,7 +28,7 @@ Run these steps **exactly in order**:
 ### Step 0: Baseline
 
 ```sql
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
+sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT type, COUNT(*) as cnt FROM feedback_events GROUP BY type ORDER BY cnt DESC;"
 ```
 
@@ -89,13 +89,13 @@ Should trigger `same_topic_requery`.
 
 **Global counts:**
 ```sql
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
+sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT type, COUNT(*) as cnt FROM feedback_events GROUP BY type ORDER BY cnt DESC;"
 ```
 
 **Session-specific counts:**
 ```sql
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
+sqlite3 .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT type, COUNT(*) FROM feedback_events WHERE session_id = '<your-uuid>' GROUP BY type;"
 ```
 

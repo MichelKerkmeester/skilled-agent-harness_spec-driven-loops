@@ -115,8 +115,8 @@ Operator opens root playbook, follows a linked scenario file, executes commands,
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Markdown structure | Touched playbook entries and roots | `python3 .opencode/skill/sk-doc/scripts/validate_document.py` |
-| Spec compliance | Packet folder | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Markdown structure | Touched playbook entries and roots | `python3 .opencode/skills/sk-doc/scripts/validate_document.py` |
+| Spec compliance | Packet folder | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 | Link/path sanity | New scenario references | `test -f`, `rg`, manual review |
 <!-- /ANCHOR:testing -->
 

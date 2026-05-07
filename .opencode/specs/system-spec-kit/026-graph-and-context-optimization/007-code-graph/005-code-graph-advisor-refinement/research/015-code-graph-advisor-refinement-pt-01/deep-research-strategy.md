@@ -401,10 +401,10 @@ Code Graph System + Skill Advisor System refinement — investigate algorithm/co
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: None this iteration. Every action produced evidence. The one explicit
 
-### None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
+### None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
+- Do NOT retry: None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
 
 ### Re-implement-in-place strategies (already eliminated in iter-11/12) -- BLOCKED (iteration 14, 1 attempts)
 - What was tried: Re-implement-in-place strategies (already eliminated in iter-11/12)
@@ -455,7 +455,7 @@ Code Graph System + Skill Advisor System refinement — investigate algorithm/co
 - **Not a `.opencode/plugin/` issue:** The directory does not exist in (iteration 4)
 - **Not a fix by adding more fields to the brief:** F21's maximal (iteration 4)
 - **Not a fix via a runtime-branching macro in the library:** F24 (iteration 4)
-- None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. (iteration 4)
+- None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`. (iteration 4)
 - **Empirical lane-ablation table this iteration**: blocked by F33 (corpus-path mismatch). Did not retry by copying the corpus into the legacy path because that would be a code mutation outside the research scope; instead recorded the wiring defect as a finding and resolved RQ-02 from static structure. (iteration 7)
 - **Static-analysis-only confidence calibration**: tried, ruled out at F35 - confidence is rule-based but the only way to score calibration is empirical. (iteration 7)
 - Treating `semantic_shadow` as a meaningful lane to ablate against top-1 accuracy: it is structurally a noop in the live scorer (`weights-config.ts:44-48`, `fusion.ts:223-230`). Any future ablation suite should treat it as raw-evidence-only and not include it in accuracy-delta assertions. (iteration 7)
@@ -556,7 +556,7 @@ resource-map.md not present at `{spec_folder}/resource-map.md`; skipping coverag
 - Lifecycle branches: `resume`, `restart` (live)
 - Machine-owned sections: reducer controls Sections 3, 6, 7–11
 - Canonical pause sentinel: `research/015-code-graph-advisor-refinement-pt-01/.deep-research-pause`
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
 - Current generation: 1
 - Started: 2026-04-24T19:52:59.013Z
 <!-- /ANCHOR:research-boundaries -->

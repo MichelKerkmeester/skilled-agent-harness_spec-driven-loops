@@ -16,7 +16,7 @@ The checkpoint functionality in Spec Kit Memory MCP is completely broken. All ch
 ## Environment
 
 - **System**: Spec Kit Memory MCP v12.6.0
-- **Location**: `.opencode/skill/system-spec-kit/`
+- **Location**: `.opencode/skills/system-spec-kit/`
 - **Database**: `database/context-index.sqlite`
 - **Platform**: macOS (darwin)
 - **Node.js**: Runtime environment
@@ -61,7 +61,7 @@ The error occurs because the `db` variable in `checkpoints.js` (line 13) remains
 Cannot read properties of null (reading 'prepare')
 ```
 
-**Stack trace location**: `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+**Stack trace location**: `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 
 The error originates from any function attempting to use `db.prepare()`:
 - `createCheckpoint()` at line 61
@@ -164,10 +164,10 @@ This suggests the main database works, but the checkpoint module's reference is 
 
 | File | Relevance |
 |------|-----------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` | **Primary**: Contains broken `db` reference (line 13) and `init()` function (line 26) |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | **Secondary**: Calls `checkpoints.init()` at line 1715 |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js` | **Reference**: Provides `getDb()` function (line 2798) that may return null |
-| `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Database**: The SQLite database file containing checkpoints table |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` | **Primary**: Contains broken `db` reference (line 13) and `init()` function (line 26) |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | **Secondary**: Calls `checkpoints.init()` at line 1715 |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` | **Reference**: Provides `getDb()` function (line 2798) that may return null |
+| `.opencode/skills/system-spec-kit/database/context-index.sqlite` | **Database**: The SQLite database file containing checkpoints table |
 
 ## Test Evidence
 

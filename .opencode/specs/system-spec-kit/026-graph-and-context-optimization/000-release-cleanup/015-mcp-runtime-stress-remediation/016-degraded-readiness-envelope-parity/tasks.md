@@ -66,7 +66,7 @@ _memory:
 - [x] T106 Move `getGraphReadinessSnapshot(process.cwd())` to the TOP of `handleCodeGraphStatus()` (before any `graphDb.getStats()` access) — REQ-004.
 - [x] T107 Wrap `graphDb.getStats()` in try/catch. On failure, short-circuit to a structured `status: 'error'` response that retains `data.readiness`, `data.canonicalReadiness`, `data.trustState`, `data.fallbackDecision: { nextTool: 'rg', reason: 'stats_unavailable' }`, and `data.blockReason: 'stats_unavailable'` — REQ-005.
 - [x] T108 Update the post-stats catch path to preserve the snapshot via `buildReadinessBlock(...)` and emit `data.fallbackDecision: { nextTool: 'rg', reason: 'status_path_failed' }` (REQ-006). The catch path no longer returns a generic init error string.
-- [x] T109 Typecheck `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
+- [x] T109 Typecheck `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
 
 ### F-008: shared vocabulary docs
 - [x] T110 Author `decision-record.md` ADR-001 (shared vocabulary vs handler-local payloads) and ADR-002 (snapshot-first AND isolate-stats: defense in depth).

@@ -4,14 +4,14 @@
 
 - `.claude/skills/sk-code-review/SKILL.md:313-322`
 - `.claude/skills/sk-code-review/references/review_core.md:85-88`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:215-220`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:221-226`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:785`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1037-1055`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:762`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1059-1077`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-220`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-226`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/iterations/iteration-005.md:34-38`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/iterations/iteration-006.md:32-34`
 

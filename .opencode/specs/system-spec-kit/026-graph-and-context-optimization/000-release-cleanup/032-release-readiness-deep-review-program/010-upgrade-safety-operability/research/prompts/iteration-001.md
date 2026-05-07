@@ -8,12 +8,12 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/db/` (schema migrations)
-- `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` (scripts; npm test, npm run stress, npm run hook-tests)
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md`
-- `.opencode/command/doctor/assets/doctor_mcp_install_*.yaml`
-- `.opencode/command/doctor/assets/doctor_mcp_debug_*.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/db/` (schema migrations)
+- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` (scripts; npm test, npm run stress, npm run hook-tests)
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`
+- `.opencode/commands/doctor/assets/doctor_mcp_install_*.yaml`
+- `.opencode/commands/doctor/assets/doctor_mcp_debug_*.yaml`
 - Recent file relocations: `mcp_server/stress_test/` (from 037/005 + 038), `mcp_server/matrix_runners/` (from 036), `mcp_server/code_graph/feature_catalog/` (from 039)
 - Configuration sanity: `opencode.json`, runtime hook configs
 

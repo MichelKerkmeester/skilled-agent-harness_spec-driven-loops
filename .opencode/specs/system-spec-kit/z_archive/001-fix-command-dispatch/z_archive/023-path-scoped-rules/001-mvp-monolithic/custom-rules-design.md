@@ -3,7 +3,7 @@
 > **Status**: Design Document (Future Implementation)  
 > **Version**: 1.0.0  
 > **Created**: 2024-12-24  
-> **Related**: [validate-spec.sh](/.opencode/skill/system-spec-kit/scripts/validate-spec.sh)
+> **Related**: [validate-spec.sh](/.opencode/skills/system-spec-kit/scripts/validate-spec.sh)
 
 ---
 

@@ -4,15 +4,15 @@ validator-coverage
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/review_core.md:18` - severity definitions and evidence threshold.
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:138` - Level 1 lazy addon docs include `handover.md`, `debug-delegation.md`, and `research/research.md`.
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:364` - Level 3 repeats the same lazy addon docs.
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js:156` - shell helper `docs` contract source only returns required core plus required addon docs.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh:35` - template-source shell rule claims to validate docs defined by the Level contract.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh:42` - template-source shell rule iterates `node template-structure.js docs "$contract_level"`.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:149` - template-header shell rule uses the same `docs` helper list.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh:45` - section shell rule uses the same `docs` helper list.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:177` - MCP validator collects required, addon, lazy docs, `resource-map.md`, and `context-index.md`.
+- `.opencode/skills/sk-code-review/references/review_core.md:18` - severity definitions and evidence threshold.
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:138` - Level 1 lazy addon docs include `handover.md`, `debug-delegation.md`, and `research/research.md`.
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:364` - Level 3 repeats the same lazy addon docs.
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js:156` - shell helper `docs` contract source only returns required core plus required addon docs.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh:35` - template-source shell rule claims to validate docs defined by the Level contract.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh:42` - template-source shell rule iterates `node template-structure.js docs "$contract_level"`.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:149` - template-header shell rule uses the same `docs` helper list.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh:45` - section shell rule uses the same `docs` helper list.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:177` - MCP validator collects required, addon, lazy docs, `resource-map.md`, and `context-index.md`.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/resource-map.md:178` - resource map explicitly scopes broad validator/doc cleanup surfaces.
 
 ## Findings by Severity
@@ -25,7 +25,7 @@ None.
 
 #### DR-004-P1-001 [P1] Shell validator rules skip manifest-declared lazy docs
 
-- **File**: `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js:156`
+- **File**: `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js:156`
 - **Claim**: The shell validator public surface does not cover manifest-declared lazy docs (`handover.md`, `debug-delegation.md`, `research/research.md`) even when those docs exist, creating a parity gap with the MCP validator and allowing generated command/agent/workflow-owned docs to miss template-source and structure checks.
 - **Evidence**: The manifest declares lazy docs for Level 1 and Level 3 at `spec-kit-docs.json:138` and `spec-kit-docs.json:364`. The shell helper's `getContractDocs()` returns only `requiredCoreDocs` plus `requiredAddonDocs` at `template-structure.js:156`, and `check-template-source.sh`, `check-template-headers.sh`, and `check-sections.sh` all iterate that helper output (`check-template-source.sh:42`, `check-template-headers.sh:149`, `check-sections.sh:45`). By contrast, the MCP validator includes `lazyAddonDocs`, `resource-map.md`, and `context-index.md` in `collectDocuments()` at `spec-doc-structure.ts:177`.
 - **Counterevidence sought**: Checked whether another shell rule validates lazy docs. `check-spec-doc-integrity.sh` scans only max-depth root markdown and performs link/metadata/handover target checks, not template-source or template-structure checks for lazy docs; the template-source rule reports success based only on the required-doc list.

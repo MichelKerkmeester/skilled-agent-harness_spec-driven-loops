@@ -149,7 +149,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/SKILL.md, .opencode/.../templates/level_specifications.md, .opencode/.../templates/level_selection_guide.md
+- Files modified: .opencode/skills/system-spec-kit/SKILL.md, .opencode/.../templates/level_specifications.md, .opencode/.../templates/level_selection_guide.md
 
 - Last: Implemented Spec 089 (system-spec-kit Reimagined Refinement) using multi-agent o
 
@@ -164,7 +164,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/SKILL.md |
+| Active File | .opencode/skills/system-spec-kit/SKILL.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | Decision: Used run_in_background for all agents to keep orchestrator context lean and prevent compac |
@@ -186,7 +186,7 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
 - `.opencode/.../templates/level_specifications.md` - Template file
 
@@ -200,7 +200,7 @@ Next: Continue implementation
 
 - `.opencode/.../assets/parallel_dispatch_config.md` - Configuration
 
-- `.opencode/skill/system-spec-kit/assets/template_mapping.md` - Template file
+- `.opencode/skills/system-spec-kit/assets/template_mapping.md` - Template file
 
 **How to Extend**:
 
@@ -243,15 +243,15 @@ Implemented Spec 089 (system-spec-kit Reimagined Refinement) using multi-agent o
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | P0 PASS and P1 PASS |
+| `.opencode/skills/system-spec-kit/SKILL.md` | P0 PASS and P1 PASS |
 | `.opencode/.../templates/level_specifications.md` | File modified (description pending) |
 | `.opencode/.../templates/level_selection_guide.md` | File modified (description pending) |
 | `.opencode/.../config/environment_variables.md` | File modified (description pending) |
 | `.opencode/.../validation/validation_rules.md` | File modified (description pending) |
 | `.opencode/.../assets/level_decision_matrix.md` | File modified (description pending) |
 | `.opencode/.../assets/parallel_dispatch_config.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/assets/template_mapping.md` | File modified (description pending) |
-| `.opencode/agent/write.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/assets/template_mapping.md` | File modified (description pending) |
+| `.opencode/agents/write.md` | File modified (description pending) |
 | `.opencode/.../handlers/memory-search.js` | File modified (description pending) |
 
 <!-- /ANCHOR:summary-session-1770391953977-fh7agxazl-003-memory-and-spec-kit/089-speckit-reimagined-refinement -->
@@ -470,7 +470,7 @@ Implemented Spec 089 (system-spec-kit Reimagined Refinement) using multi-agent o
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/089-speckit-reimagined-refinement", limit: 10 })
@@ -482,7 +482,7 @@ ls -la 003-memory-and-spec-kit/089-speckit-reimagined-refinement/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/089-speckit-reimagined-refinement --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/089-speckit-reimagined-refinement --force
 ```
 
 ### Recovery Priority
@@ -640,15 +640,15 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/skill/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
   - ".opencode/.../templates/level_specifications.md"
   - ".opencode/.../templates/level_selection_guide.md"
   - ".opencode/.../config/environment_variables.md"
   - ".opencode/.../validation/validation_rules.md"
   - ".opencode/.../assets/level_decision_matrix.md"
   - ".opencode/.../assets/parallel_dispatch_config.md"
-  - ".opencode/skill/system-spec-kit/assets/template_mapping.md"
-  - ".opencode/agent/write.md"
+  - ".opencode/skills/system-spec-kit/assets/template_mapping.md"
+  - ".opencode/agents/write.md"
   - ".opencode/.../handlers/memory-search.js"
 
 # Relationships

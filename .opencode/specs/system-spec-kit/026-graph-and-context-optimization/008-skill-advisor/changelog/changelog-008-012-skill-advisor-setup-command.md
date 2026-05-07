@@ -23,20 +23,20 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 
 ### Added
 
-- [P] Create .opencode/command/doctor/skill-advisor.md — command markdown with frontmatter, argument-hint, allowed-tools, execution protocol header, consolidated prompt phase
-- [P] Create doctor_skill-advisor_auto.yaml — autonomous workflow definition with discovery, analysis, proposal, apply, verify phases (.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml)
-- [P] Create doctor_skill-advisor_confirm.yaml — interactive workflow with approval gates between phases (.opencode/command/doctor/assets/doctor_skill-advisor_confirm.yaml)
-- Update README.txt — add skill-advisor row to command table, update structure tree, add usage example (.opencode/command/spec_kit/README.txt)
+- [P] Create .opencode/commands/doctor/skill-advisor.md — command markdown with frontmatter, argument-hint, allowed-tools, execution protocol header, consolidated prompt phase
+- [P] Create doctor_skill-advisor_auto.yaml — autonomous workflow definition with discovery, analysis, proposal, apply, verify phases (.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml)
+- [P] Create doctor_skill-advisor_confirm.yaml — interactive workflow with approval gates between phases (.opencode/commands/doctor/assets/doctor_skill-advisor_confirm.yaml)
+- Update README.txt — add skill-advisor row to command table, update structure tree, add usage example (.opencode/commands/spec_kit/README.txt)
 - Create SET-UP - Skill Advisor.md — user-facing install guide with AI-first prompt, prerequisite check, interactive flow, troubleshooting (.opencode/install_guides/SET-UP - Skill Advisor.md)
 - Update parent .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md — add 012 row to child phase map and key implementation summary
 
 ### Changed
 
 - Validate YAML workflow syntax — parse both YAML files, check for required keys (operating_mode, workflow steps)
-- Run parent strict validation (bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh)
+- Run parent strict validation (bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh)
 - All tasks marked [x]
 - No [B] blocked tasks remaining
-- Command file exists at .opencode/command/doctor/skill-advisor.md
+- Command file exists at .opencode/commands/doctor/skill-advisor.md
 - Both YAML assets exist in assets/
 
 ### Fixed
@@ -60,10 +60,10 @@ You can now run /doctor:skill-advisor to interactively analyze every skill in yo
 
 | File | Action | What changed |
 |---|---|---|
-| `.opencode/command/doctor/skill-advisor.md` | Created | Command markdown definition (frontmatter + protocol + reference) |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_auto.yaml` | Created | Autonomous 5-phase workflow (no approval gates) |
-| `.opencode/command/doctor/assets/doctor_skill-advisor_confirm.yaml` | Created | Interactive 5-phase workflow with per-phase + per-skill approval |
-| `.opencode/command/spec_kit/README.txt` | Modified | Added skill-advisor row to commands table, structure tree, and usage example |
+| `.opencode/commands/doctor/skill-advisor.md` | Created | Command markdown definition (frontmatter + protocol + reference) |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_auto.yaml` | Created | Autonomous 5-phase workflow (no approval gates) |
+| `.opencode/commands/doctor/assets/doctor_skill-advisor_confirm.yaml` | Created | Interactive 5-phase workflow with per-phase + per-skill approval |
+| `.opencode/commands/spec_kit/README.txt` | Modified | Added skill-advisor row to commands table, structure tree, and usage example |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Created (was broken symlink) | User-facing setup guide with AI-first prompt and rollback procedure |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md` | Modified | Added 012 child phase row, summary, and open-items entry |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md` | Modified | Added 012 row to phase documentation map |

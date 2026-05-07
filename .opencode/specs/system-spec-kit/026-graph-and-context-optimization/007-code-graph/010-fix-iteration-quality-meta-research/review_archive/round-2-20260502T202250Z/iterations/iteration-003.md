@@ -2,22 +2,22 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12-85`
-- `.opencode/skill/sk-code-review/SKILL.md:288-320`
-- `.opencode/skill/sk-code-review/references/review_core.md:75-87`
-- `.opencode/agent/deep-review.md:147-184`
-- `.opencode/skill/sk-deep-review/references/state_format.md:185-219`
-- `.opencode/skill/sk-deep-review/references/state_format.md:448-452`
-- `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml:312-323`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1077`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:215-226`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:70-79`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`
-- `.opencode/skill/system-spec-kit/templates/manifest/plan.md.tmpl:87-102`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-85`
+- `.opencode/skills/sk-code-review/SKILL.md:288-320`
+- `.opencode/skills/sk-code-review/references/review_core.md:75-87`
+- `.opencode/agents/deep-review.md:147-184`
+- `.opencode/skills/sk-deep-review/references/state_format.md:185-219`
+- `.opencode/skills/sk-deep-review/references/state_format.md:448-452`
+- `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:312-323`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1055`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1077`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-226`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:568-574`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-224`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:617-623`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:70-79`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`
+- `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:87-102`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/deep-review-state.jsonl:1-3`
 - `git diff --name-only` and `git diff --name-status -- .../review`
 
@@ -46,7 +46,7 @@ None.
 
 ### P2
 
-1. **Finding-class enum is documented upstream but not centralized or enforced at the deep-review/plan boundary.** The canonical enum values are explicit in `sk-code-review` and the R5 checklist (`instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, `test-isolation`), and the active state uses in-enum values. However, deep-review state guidance only requires a `findingClass` field and gives one example value, review-mode contract only requires `findingDetails`, post-dispatch validation only checks that `findingDetails` is an array, and `/spec_kit:plan` imports the field without restating or validating the enum. This is not a live naming mismatch, but it leaves future producer drift harder to detect. Finding class: `cross-consumer`. Scope proof: same-class producer inventory found enum definitions in `sk-code-review` and the checklist, field propagation in `@deep-review`, state docs, R7 synthesis, and R3 plan prompts, and no `scopeProofNeeded` occurrences on active surfaces; validation reads only the array shape. Affected surface hints: `sk-code-review` finding schema, `sk-deep-review` state schema, `post-dispatch-validate.ts`, `/spec_kit:plan` Planning Packet import. [SOURCE: `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:18-23`; `.opencode/skill/sk-code-review/references/review_core.md:86-87`; `.opencode/agent/deep-review.md:152-184`; `.opencode/skill/sk-deep-review/references/state_format.md:195-219`; `.opencode/skill/sk-deep-review/references/state_format.md:448-452`; `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`; `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:218`; `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:224`]
+1. **Finding-class enum is documented upstream but not centralized or enforced at the deep-review/plan boundary.** The canonical enum values are explicit in `sk-code-review` and the R5 checklist (`instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, `test-isolation`), and the active state uses in-enum values. However, deep-review state guidance only requires a `findingClass` field and gives one example value, review-mode contract only requires `findingDetails`, post-dispatch validation only checks that `findingDetails` is an array, and `/spec_kit:plan` imports the field without restating or validating the enum. This is not a live naming mismatch, but it leaves future producer drift harder to detect. Finding class: `cross-consumer`. Scope proof: same-class producer inventory found enum definitions in `sk-code-review` and the checklist, field propagation in `@deep-review`, state docs, R7 synthesis, and R3 plan prompts, and no `scopeProofNeeded` occurrences on active surfaces; validation reads only the array shape. Affected surface hints: `sk-code-review` finding schema, `sk-deep-review` state schema, `post-dispatch-validate.ts`, `/spec_kit:plan` Planning Packet import. [SOURCE: `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:18-23`; `.opencode/skills/sk-code-review/references/review_core.md:86-87`; `.opencode/agents/deep-review.md:152-184`; `.opencode/skills/sk-deep-review/references/state_format.md:195-219`; `.opencode/skills/sk-deep-review/references/state_format.md:448-452`; `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts:187-192`; `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:218`; `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:224`]
 
 ## Verdict - CONDITIONAL
 

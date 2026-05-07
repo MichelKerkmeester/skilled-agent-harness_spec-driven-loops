@@ -14,7 +14,7 @@ In scope:
 - Phase 023 remediation + OpenCode plugin path
 - Phase 024 deferred remediation, measurement, wrapper, and analyzer assets
 
-Reviewed evidence included source under `.opencode/skill/system-spec-kit/mcp_server/**`, plugin files under `.opencode/plugins/**`, automated tests, observability scripts, operator docs, playbooks, and the local npm/workspace configuration that those docs rely on.
+Reviewed evidence included source under `.opencode/skills/system-spec-kit/mcp_server/**`, plugin files under `.opencode/plugins/**`, automated tests, observability scripts, operator docs, playbooks, and the local npm/workspace configuration that those docs rely on.
 
 Out of scope:
 - Reopening the Phase 020 architecture
@@ -38,12 +38,12 @@ Dimension coverage for iterations 010-040 matched the requested deeper-drill dis
 
 ## 4. Evidence Classes
 Primary evidence classes:
-- Source code under `.opencode/skill/system-spec-kit/mcp_server/lib/**`
-- Runtime adapters under `.opencode/skill/system-spec-kit/mcp_server/hooks/**`
+- Source code under `.opencode/skills/system-spec-kit/mcp_server/lib/**`
+- Runtime adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/**`
 - OpenCode plugin and bridge code under `.opencode/plugins/**`
-- Automated tests under `.opencode/skill/system-spec-kit/mcp_server/tests/**`
-- Observability scripts under `.opencode/skill/system-spec-kit/scripts/observability/**`
-- Operator docs under `.opencode/skill/system-spec-kit/references/**` and `.opencode/skill/skill-advisor/**`
+- Automated tests under `.opencode/skills/system-spec-kit/mcp_server/tests/**`
+- Observability scripts under `.opencode/skills/system-spec-kit/scripts/observability/**`
+- Operator docs under `.opencode/skills/system-spec-kit/references/**` and `.opencode/skills/skill-advisor/**`
 - Repo-local npm/workspace config (`.npmrc`, root `package.json`, `system-spec-kit/package.json`)
 
 Secondary evidence classes:
@@ -121,10 +121,10 @@ This is nevertheless a narrow PASS. The remaining issues affect real operator/ru
 - Plan: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/001-skill-advisor-hook-surface/plan.md`
 - Strategy/state: `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`
 - Iterations: `review/iterations/iteration-001.md` through `review/iterations/iteration-040.md`
-- D1 evidence: `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts`
+- D1 evidence: `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts`
 - D5 evidence: `.opencode/plugins/spec-kit-skill-advisor.js`, `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`, `mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts`
 - D6 evidence: `mcp_server/tests/advisor-privacy.vitest.ts`, `advisor-runtime-parity.vitest.ts`, `spec-kit-skill-advisor-plugin.vitest.ts`
-- D7 evidence: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`, `skill-advisor-hook-validation.md`, `.opencode/skill/skill-advisor/README.md`, `.npmrc`, `package.json`, `.opencode/skill/system-spec-kit/package.json`
+- D7 evidence: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`, `skill-advisor-hook-validation.md`, `.opencode/skills/skill-advisor/README.md`, `.npmrc`, `package.json`, `.opencode/skills/system-spec-kit/package.json`
 - Related phase packets: `021-smart-router-context-efficacy/`, `022-skill-advisor-docs-and-code-alignment/`, `023-smart-router-remediation-and-opencode-plugin/`, `024-deferred-remediation-and-telemetry-run/`
 
 ## 9. Artifacts

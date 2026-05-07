@@ -167,15 +167,15 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `specs/.../053-script-analysis-testing/checklist.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/templates/spec_md.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/spec_md.md` - Template file
 
-- `.opencode/skill/system-spec-kit/templates/plan_md.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/plan_md.md` - Template file
 
-- `.opencode/skill/system-spec-kit/templates/checklist_md.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/checklist_md.md` - Template file
 
-- `.opencode/skill/system-spec-kit/templates/spec.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/spec.md` - Template file
 
-- `.opencode/skill/system-spec-kit/templates/plan.md` - Template file
+- `.opencode/skills/system-spec-kit/templates/plan.md` - Template file
 
 **How to Extend**:
 
@@ -217,12 +217,12 @@ I'll execute this end-to-end workflow test. Let me start by creating the spec fo
 | `specs/.../053-script-analysis-testing/spec.md` | Specs/003-memory-and-spec-kit/053-script-analysis-testing... |
 | `specs/.../053-script-analysis-testing/plan.md` | Specs/003-memory-and-spec-kit/053-script-analysis-testing... |
 | `specs/.../053-script-analysis-testing/checklist.md` | Specs/003-memory-and-spec-kit/053-script-analysis-testing... |
-| `.opencode/skill/system-spec-kit/templates/spec_md.md` | Updated spec md |
-| `.opencode/skill/system-spec-kit/templates/plan_md.md` | Updated plan md |
-| `.opencode/skill/system-spec-kit/templates/checklist_md.md` | Updated checklist md |
-| `.opencode/skill/system-spec-kit/templates/spec.md` | Modified during session |
-| `.opencode/skill/system-spec-kit/templates/plan.md` | Modified during session |
-| `.opencode/skill/system-spec-kit/templates/checklist.md` | Modified during session |
+| `.opencode/skills/system-spec-kit/templates/spec_md.md` | Updated spec md |
+| `.opencode/skills/system-spec-kit/templates/plan_md.md` | Updated plan md |
+| `.opencode/skills/system-spec-kit/templates/checklist_md.md` | Updated checklist md |
+| `.opencode/skills/system-spec-kit/templates/spec.md` | Modified during session |
+| `.opencode/skills/system-spec-kit/templates/plan.md` | Modified during session |
+| `.opencode/skills/system-spec-kit/templates/checklist.md` | Modified during session |
 
 <!-- /ANCHOR:summary-session-1767206788962-ngmhplupw-003-memory-and-spec-kit/053-script-analysis-testing -->
 
@@ -277,7 +277,7 @@ Create spec folder structure
 
 Executed read
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/spec_md.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/spec_md.md
 **Details:** Tool: read | Status: error
 <!-- /ANCHOR:implementation-tool-read-48c0c126-session-1767206788962-ngmhplupw -->
 
@@ -286,7 +286,7 @@ Executed read
 
 Executed read
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/plan_md.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/plan_md.md
 **Details:** Tool: read | Status: error
 <!-- /ANCHOR:implementation-tool-read-48c0c126-2-session-1767206788962-ngmhplupw -->
 
@@ -295,7 +295,7 @@ Executed read
 
 Executed read
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/checklist_md.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/checklist_md.md
 **Details:** Tool: read | Status: error
 <!-- /ANCHOR:implementation-tool-read-48c0c126-3-session-1767206788962-ngmhplupw -->
 
@@ -318,27 +318,27 @@ List spec-kit skill structure
 <!-- ANCHOR:implementation-tool-read-48c0c126-4-session-1767206788962-ngmhplupw -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/spec.md
+.opencode/skills/system-spec-kit/templates/spec.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/spec.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/spec.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-48c0c126-4-session-1767206788962-ngmhplupw -->
 
 <!-- ANCHOR:implementation-tool-read-48c0c126-5-session-1767206788962-ngmhplupw -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/plan.md
+.opencode/skills/system-spec-kit/templates/plan.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/plan.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/plan.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-48c0c126-5-session-1767206788962-ngmhplupw -->
 
 <!-- ANCHOR:implementation-tool-read-48c0c126-6-session-1767206788962-ngmhplupw -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/checklist.md
+.opencode/skills/system-spec-kit/templates/checklist.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/checklist.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/checklist.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-48c0c126-6-session-1767206788962-ngmhplupw -->
 
@@ -648,12 +648,12 @@ key_files:
   - "specs/.../053-script-analysis-testing/spec.md"
   - "specs/.../053-script-analysis-testing/plan.md"
   - "specs/.../053-script-analysis-testing/checklist.md"
-  - ".opencode/skill/system-spec-kit/templates/spec_md.md"
-  - ".opencode/skill/system-spec-kit/templates/plan_md.md"
-  - ".opencode/skill/system-spec-kit/templates/checklist_md.md"
-  - ".opencode/skill/system-spec-kit/templates/spec.md"
-  - ".opencode/skill/system-spec-kit/templates/plan.md"
-  - ".opencode/skill/system-spec-kit/templates/checklist.md"
+  - ".opencode/skills/system-spec-kit/templates/spec_md.md"
+  - ".opencode/skills/system-spec-kit/templates/plan_md.md"
+  - ".opencode/skills/system-spec-kit/templates/checklist_md.md"
+  - ".opencode/skills/system-spec-kit/templates/spec.md"
+  - ".opencode/skills/system-spec-kit/templates/plan.md"
+  - ".opencode/skills/system-spec-kit/templates/checklist.md"
 
 # Relationships
 related_sessions:

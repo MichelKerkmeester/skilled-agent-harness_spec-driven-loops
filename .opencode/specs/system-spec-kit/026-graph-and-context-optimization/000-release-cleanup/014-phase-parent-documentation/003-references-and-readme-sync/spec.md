@@ -90,19 +90,19 @@ Bring those 13 files into alignment with shipped behavior in a single doc-only p
 
 | File Path | Change Type | Severity |
 |-----------|-------------|----------|
-| `.opencode/skill/system-spec-kit/references/structure/phase_definitions.md` | Modify | CRITICAL |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Modify | CRITICAL |
-| `.opencode/skill/system-spec-kit/references/validation/validation_rules.md` | Modify | CRITICAL |
-| `.opencode/skill/system-spec-kit/README.md` | Modify | CRITICAL |
-| `.opencode/skill/system-spec-kit/templates/README.md` | Modify | CRITICAL |
-| `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md` | Modify | MEDIUM |
-| `.opencode/skill/system-spec-kit/references/intake-contract.md` | Modify | MEDIUM |
-| `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` | Modify | MEDIUM |
-| `.opencode/skill/system-spec-kit/assets/template_mapping.md` | Modify | MEDIUM |
-| `.opencode/command/spec_kit/plan.md` | Modify | MEDIUM |
-| `.opencode/command/spec_kit/complete.md` | Modify | MEDIUM |
-| `.opencode/skill/system-spec-kit/references/structure/folder_routing.md` | Modify | LOW |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Modify | LOW |
+| `.opencode/skills/system-spec-kit/references/structure/phase_definitions.md` | Modify | CRITICAL |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Modify | CRITICAL |
+| `.opencode/skills/system-spec-kit/references/validation/validation_rules.md` | Modify | CRITICAL |
+| `.opencode/skills/system-spec-kit/README.md` | Modify | CRITICAL |
+| `.opencode/skills/system-spec-kit/templates/README.md` | Modify | CRITICAL |
+| `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md` | Modify | MEDIUM |
+| `.opencode/skills/system-spec-kit/references/intake-contract.md` | Modify | MEDIUM |
+| `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md` | Modify | MEDIUM |
+| `.opencode/skills/system-spec-kit/assets/template_mapping.md` | Modify | MEDIUM |
+| `.opencode/commands/spec_kit/plan.md` | Modify | MEDIUM |
+| `.opencode/commands/spec_kit/complete.md` | Modify | MEDIUM |
+| `.opencode/skills/system-spec-kit/references/structure/folder_routing.md` | Modify | LOW |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modify | LOW |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,8 +144,8 @@ Bring those 13 files into alignment with shipped behavior in a single doc-only p
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skill/system-spec-kit/references/` returns zero matches (the specific stale phrases in `phase_definitions.md` are gone).
-- **SC-002**: `grep -lE "Phase Parent Mode|lean trio|last_active_child_id|PHASE_PARENT_CONTENT" .opencode/skill/system-spec-kit/{SKILL.md,README.md,references/structure/phase_definitions.md,references/memory/save_workflow.md,references/validation/validation_rules.md,references/validation/template_compliance_contract.md,references/intake-contract.md,references/workflows/quick_reference.md,templates/README.md,assets/template_mapping.md} 2>/dev/null` lists ALL 10 P0+P1 files.
+- **SC-001**: `grep -nrE "├── plan\.md.*coordination|memory/.*Parent-level context" .opencode/skills/system-spec-kit/references/` returns zero matches (the specific stale phrases in `phase_definitions.md` are gone).
+- **SC-002**: `grep -lE "Phase Parent Mode|lean trio|last_active_child_id|PHASE_PARENT_CONTENT" .opencode/skills/system-spec-kit/{SKILL.md,README.md,references/structure/phase_definitions.md,references/memory/save_workflow.md,references/validation/validation_rules.md,references/validation/template_compliance_contract.md,references/intake-contract.md,references/workflows/quick_reference.md,templates/README.md,assets/template_mapping.md} 2>/dev/null` lists ALL 10 P0+P1 files.
 - **SC-003**: `validate.sh --strict` against the new `003-references-and-readme-sync/` packet passes modulo SPEC_DOC_INTEGRITY forward-reference noise.
 - **SC-004**: `validate.sh --strict` regression on `026-graph-and-context-optimization/` introduces no new error rules vs current baseline.
 - **SC-005**: A reader who lands on `references/structure/phase_definitions.md` learns the lean-trio policy from the parent structure block alone — no contradictions with other docs.

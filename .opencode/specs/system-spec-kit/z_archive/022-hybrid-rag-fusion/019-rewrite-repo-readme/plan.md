@@ -70,9 +70,9 @@ Complete rewrite of the root README as the top-level entry point to the OpenCode
 Documentation rewrite — top-level overview linking to component documentation.
 
 ### Key Components
-- **Agent definitions**: 12 agents (2 built-in + 10 custom) across `.opencode/agent/`, `.claude/agents/`, `.opencode/agent/chatgpt/`, `.gemini/agents/`
-- **Skill directory**: 18 skills in `.opencode/skill/`
-- **Command directory**: Commands in `.opencode/command/`
+- **Agent definitions**: 12 agents (2 built-in + 10 custom) across `.opencode/agents/`, `.claude/agents/`, `.opencode/agents/chatgpt/`, `.gemini/agents/`
+- **Skill directory**: 18 skills in `.opencode/skills/`
+- **Command directory**: Commands in `.opencode/commands/`
 - **CLAUDE.md**: Gate system, configuration, operational mandates
 - **Component READMEs**: MCP README (D1), Spec Kit README (D3)
 

@@ -23,14 +23,14 @@ I’m loading the review rubric and inventorying the 22 catalog files first, the
   └ 162 lines read
 
 ● Search (glob)
-  │ "*.md" in .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture
+  │ "*.md" in .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture
   └ 22 files found
 
 ● Run skill advisor and create session plan (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Review ALL .md files in
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture and compare
-  │ described features against .opencode/skill/system-spec-kit/mcp_server and
-  │ .opencode/skill/system-spec-kit/scripts" --threshold 0.8 && cat >
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Review ALL .md files in
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture and compare
+  │ described features against .opencode/skills/system-spec-kit/mcp_server and
+  │ .opencode/skills/system-spec-kit/scripts" --threshold 0.8 && cat >
   │ '/Users/michelkerkmeester/.copilot/session-state/14b9af08-7520-41ba-923f-f769cc6386a6/plan.md'…
   └ 52 lines...
 
@@ -65,7 +65,7 @@ The batch reviewers are running now. While they work, I’m going to spot-check 
 ● Summarize all pipeline feature docs (shell)
   │ python3 - <<'PY'
   │ from pathlib import Path
-  │ base = Path('.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture')
+  │ base = Path('.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture')
   │ for path in sorted(base.glob('*.md')):
   │ text = path.read_text()…
   └ 99 lines...
@@ -88,90 +88,90 @@ The batch reviewers are running now. While they work, I’m going to spot-check 
 I haven’t got the batch summaries back yet, so I’m sampling representative docs directly to understand how these catalog entries describe “current reality.” That makes it easier to separate true implementation drift from wording drift once the batch results land.
 
 ● Read 01-4-stage-pipeline-refactor.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-re
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-re
   │ factor.md
   └ 226 lines read
 
 ● Read 11-pipeline-and-mutation-hardening.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/11-pipeline-and-mutati
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/11-pipeline-and-mutati
   │ on-hardening.md
   └ 89 lines read
 
 ● Read 17-cross-process-db-hot-rebinding.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/17-cross-process-db-ho
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/17-cross-process-db-ho
   │ t-rebinding.md
   └ 44 lines read
 
 ● Read 22-lineage-state-active-projection-and-asof-resolution.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/22-lineage-state-activ
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-lineage-state-activ
   │ e-projection-and-asof-resolution.md
   └ 55 lines read
 
 ● Read 18-atomic-write-then-index-api.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-i
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-i
   │ ndex-api.md
   └ 48 lines read
 
 ● Search (grep)
   │ "constitutionalInjected|resolveEffectiveScore|verifyScoreInvariant|postSearchPipeline|resolveBas
-  │ eScore" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ eScore" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "DB_UPDATED_FILE|checkDatabaseUpdated|reinitializeDatabase|initializeDb|lastDbCheck|embedding
-  │ model readiness|constitutional cache" in *.ts (.opencode/skill/system-spec-kit/mcp_server)
+  │ model readiness|constitutional cache" in *.ts (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "resolveLineageStateAsOf|active projection|lineage|asOf|appendLineage" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "pending file|pendingPath|dbCommitted|retry.*index|rename|atomicSaveMemory|memory_save" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 I found a few likely hotspots already: `db-state.ts`, `memory-save.ts`, and `lineage-state.ts` are clearly involved. I’m reading those directly now to verify whether the catalog wording matches the actual runtime behavior or overstates it.
 
 ● Read db-state.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/core/db-state.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/core/db-state.ts
   └ L1:260 (260 lines read)
 
 ● Read memory-save.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
   └ L1:320 (320 lines read)
 
 ● Read lineage-state.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts
   └ L1:320 (320 lines read)
 
 ● Read stage4-filter.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts
   └ L1:260 (260 lines read)
 
 ● Read types.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts
   └ L1:260 (259 lines read)
 
 ● Search (grep)
   │ "lineage-state|memory_lineage|active_memory_projection|asOf|recordLineageVersion|createAppendOnl
-  │ yMemoryRecord" in *.{ts,js,py,sh} (.opencode/skill/system-spec-kit/scripts)
+  │ yMemoryRecord" in *.{ts,js,py,sh} (.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Search (grep)
   │ "DB_UPDATED_FILE|checkDatabaseUpdated|reinitializeDatabase|db-state|initializeDb" in
-  │ *.{ts,js,py,sh} (.opencode/skill/system-spec-kit/scripts)
+  │ *.{ts,js,py,sh} (.opencode/skills/system-spec-kit/scripts)
   └ 32 lines found
 
 ● Search (grep)
   │ "4-stage|stage1|stage2|stage3|stage4|orchestrator|resolveEffectiveScore|verifyScoreInvariant" in
-  │ *.{ts,js,py,sh} (.opencode/skill/system-spec-kit/scripts)
+  │ *.{ts,js,py,sh} (.opencode/skills/system-spec-kit/scripts)
   └ 6 lines found
 
 ● Search (grep)
   │ "pendingPath|dbCommitted|atomicSaveMemory|memory-save|transaction-manager" in *.{ts,js,py,sh}
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 One batch just finished, so I’m pulling that report now and checking whether the other batches are close behind. Once I’ve got them all, I’ll normalize the statuses and severity counts into one final table.
@@ -184,22 +184,22 @@ One batch just finished, so I’m pulling that report now and checking whether t
 Batch C looks clean so far: those six docs appear to match the current code pretty closely. I’m waiting on the remaining three batches now, then I’ll sanity-check any `MISALIGNED` or `PARTIAL` calls before I finalize the full catalog report.
 
 ● Read 14-dynamic-server-instructions-at-mcp-initialization.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/14-dynamic-server-inst
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/14-dynamic-server-inst
   │ ructions-at-mcp-initialization.md
   └ 1 line read
 
 ● Read 15-warm-server-daemon-mode.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/15-warm-server-daemon-
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/15-warm-server-daemon-
   │ mode.md
   └ 46 lines read
 
 ● Read 13-strict-zod-schema-validation.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/13-strict-zod-schema-v
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/13-strict-zod-schema-v
   │ alidation.md
   └ 42 lines read
 
 ● Read 16-backend-storage-adapter-abstraction.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-ada
+  │ .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-ada
   │ pter-abstraction.md
   └ 46 lines read
 
@@ -216,7 +216,7 @@ Batch A also came back clean. The interesting part now is whether batches B and 
 ● Read (Explore agent — Review batch D)
   └ idle
 
-Reviewed all 22 files against both `.opencode/skill/system-spec-kit/mcp_server/` and `.opencode/skill/system-spec-kit/scripts/`.
+Reviewed all 22 files against both `.opencode/skills/system-spec-kit/mcp_server/` and `.opencode/skills/system-spec-kit/scripts/`.
 
 `01-4-stage-pipeline-refactor.md | ALIGNED |` 4-stage pipeline exists in `mcp_server/lib/search/pipeline/{stage1-candidate-gen,stage2-fusion,stage3-rerank,stage4-filter,orchestrator,types}.ts`; Stage 4 immutability is enforced by `Stage4ReadonlyRow` + `verifyScoreInvariant()`. No competing legacy runtime path found in `scripts`.
 

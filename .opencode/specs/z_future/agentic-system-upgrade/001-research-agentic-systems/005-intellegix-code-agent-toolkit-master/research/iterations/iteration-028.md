@@ -14,10 +14,10 @@ I compared the local `CLAUDE.md`, constitutional gate memories, and start/stop h
 ## Evidence
 - `[SOURCE: CLAUDE.md:107-141]` The local runtime-level contract exposes Gate 1, Gate 2, Gate 3, and the consolidated-question protocol directly in the main operator instructions.
 - `[SOURCE: CLAUDE.md:147-165]` Memory-save and completion-verification rules are also surfaced as explicit hard blocks in the same document.
-- `[SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-40]` Tool-routing constitutional memory adds another always-surfaced decision layer for search and retrieval.
-- `[SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-68]` Gate-enforcement constitutional memory cross-references the gate stack again and reiterates Gate 3 precedence.
-- `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:111-170]` The startup hook already knows how to inject session context, recovery tools, structural context, and stale-graph guidance automatically.
-- `[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105]` The stop hook already knows how to auto-save context from lightweight session state when the needed signals exist.
+- `[SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-40]` Tool-routing constitutional memory adds another always-surfaced decision layer for search and retrieval.
+- `[SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-68]` Gate-enforcement constitutional memory cross-references the gate stack again and reiterates Gate 3 precedence.
+- `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:111-170]` The startup hook already knows how to inject session context, recovery tools, structural context, and stale-graph guidance automatically.
+- `[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:60-105]` The stop hook already knows how to auto-save context from lightweight session state when the needed signals exist.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:36-43]` The external orchestrator exposes a much thinner persistent mode model to the operator.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/agents/orchestrator.md:60-68]` The external repo keeps several constraints real without surfacing a large constitutional stack at the public boundary.
 
@@ -32,7 +32,7 @@ confidence: high
 finding: `system-spec-kit` should redesign its gate and hook exposure into a thin operator contract, keeping the current policy internals and automation machinery but moving most of the rule detail out of the default operator-facing surface.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `CLAUDE.md`, `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`, `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- **Target file or module:** `CLAUDE.md`, `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
 - **Change type:** must-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define the concise operator brief and the hidden policy source of truth it is generated from

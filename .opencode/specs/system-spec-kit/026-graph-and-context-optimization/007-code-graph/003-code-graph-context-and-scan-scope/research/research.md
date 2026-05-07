@@ -96,7 +96,7 @@ After confirming packet 012's dist build was current (`z_future` present in `dis
 
 **Why packet 012 surfaced this:** Before packet 012 the scan walked far more files (26K) and the stale gate filtered them down to a working set the cleanup happened to tolerate. With packet 012's tighter walk (1,425 candidates) plus the same stale-gate contract bug, the cleanup math collapsed to 33.
 
-**Caller enumeration:** `rg -n 'indexFiles\(' .opencode/skill/system-spec-kit/mcp_server` finds:
+**Caller enumeration:** `rg -n 'indexFiles\(' .opencode/skills/system-spec-kit/mcp_server` finds:
 
 | Caller | Intent | Default `skipFreshFiles=true` safe? |
 |---|---|---|
@@ -160,7 +160,7 @@ The running MCP server's `dist/` tree was inspected to confirm the source-level 
 ### 5.1 F1 — `IndexFilesOptions { skipFreshFiles?: boolean }`
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
 @@
 +export interface IndexFilesOptions {
 +  skipFreshFiles?: boolean;
@@ -177,7 +177,7 @@ diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structura
 ```
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
 @@
 -  const results = await indexFiles(config);
 +  const results = await indexFiles(config, { skipFreshFiles: effectiveIncremental });
@@ -188,7 +188,7 @@ diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan
 ### 5.2 F2 — Dedupe in `capturesToNodes()` (Option A)
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
 @@
 -  const symbolNodes = captures.map(c => {
 +  const seenSymbolIds = new Set<string>([moduleNode.symbolId]);
@@ -440,20 +440,20 @@ describe('capturesToNodes dedupe (Bug #2 regression)', () => {
 ## 13. Citations (file:line)
 
 ### Bug #1 evidence
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:124,128,171,177,183,193-201`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227,1246-1249`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:124,128,171,177,183,193-201`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227,1246-1249`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190`
 
 ### Bug #2 evidence
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:68,70,305-328`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:82-85`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:498-520,648`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:68,70,305-328`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:82-85`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:498-520,648`
 
 ### dist verification
-- `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/structural-indexer.js:12,1036`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/lib/indexer-types.js:45`
-- `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/handlers/scan.js:133-137,141,203`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/structural-indexer.js:12,1036`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/lib/indexer-types.js:45`
+- `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/handlers/scan.js:133-137,141,203`
 
 ### Packet 012 source
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-context-and-scan-scope/implementation-summary.md`

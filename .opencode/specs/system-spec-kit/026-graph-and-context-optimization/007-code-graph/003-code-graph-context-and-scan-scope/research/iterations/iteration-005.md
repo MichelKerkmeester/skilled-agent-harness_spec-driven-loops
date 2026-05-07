@@ -6,9 +6,9 @@ Verify the source-level findings against the current `dist/` build, cross-check 
 
 ## Actions Taken
 
-1. Checked the built MCP server files under `.opencode/skill/system-spec-kit/mcp_server/dist/code-graph/`.
+1. Checked the built MCP server files under `.opencode/skills/system-spec-kit/mcp_server/dist/code-graph/`.
 2. Re-read the scan handler, indexer, DB schema/migration, persistence, and cleanup boundaries.
-3. Spot-checked root and nested `.gitignore` files relevant to `.opencode/skill/`.
+3. Spot-checked root and nested `.gitignore` files relevant to `.opencode/skills/`.
 4. Reconciled all prior "Questions Remaining" entries into answered, ruled out, or deferred outcomes.
 5. Prepared the final synthesis hand-off checklist.
 
@@ -29,7 +29,7 @@ Verdict: dist matches the source-level findings. This is the current shipped/run
 | H-alt-1: A pre-scan migration silently dropped rows. | Ruled out as primary cause. | `code-graph-db.ts` schema migration only adds `file_mtime_ms`, creates metadata/index structures, and updates `schema_version`; no migration path drops or truncates `code_files`, `code_nodes`, or `code_edges`. `lastPersistedAt` is derived from `MAX(indexed_at)` in `code_files`, not from a separate migration timestamp. The destructive row removal path is in `scan.ts` when `effectiveIncremental` is false and stale-only `results` become the desired full set. | No implementation change needed for this packet. |
 | H-alt-2: The UNIQUE crash cascaded and aborted full-scan cleanup mid-flight. | Ruled out as primary cause; retained as a secondary consistency risk. | Non-incremental cleanup runs before per-file indexing. It builds `indexedPaths` from `results` and removes every tracked file absent from that stale-only set. `replaceNodes()` wraps only the node/edge replacement for one file in a transaction; the handler catches each file error and continues. Therefore duplicate-symbol failures do not abort the cleanup pass. However, `upsertFile()` runs before `replaceNodes()`, so a failed file can still have updated file metadata unless later guarded. | Verify post-fix that the three formerly failing files have coherent `code_files` metadata, nodes, and edges. |
 | H-alt-3: A racing scan or concurrent MCP request caused the 33-file outcome. | Not supported by evidence; formally retained as a hardening item. | No scan-level mutex, lock, queue, or in-flight guard was found in the code-graph scan path. The DB uses WAL for concurrent readers, but that is not scan serialization. The exact 33-file result is already explained by the deterministic stale-only `results` plus non-incremental cleanup path. | Defer scan serialization/idempotency hardening to a future packet if post-fix repeated scans or concurrent invocations show instability. |
-| H-alt-4: `.gitignore` aggressively ignored the whole `.opencode/` tree. | Ruled out. | Root `.gitignore` explicitly unignores `.opencode/` and comments that this repo is the source of `.opencode/` content. Nested `.opencode/skill/system-spec-kit/.gitignore` excludes build outputs such as `mcp_server/dist/`, `shared/dist/`, and caches, not the whole skill tree. Prior filesystem reproduction still yielded about 1,425 post-exclude candidates. | No follow-up needed beyond the existing acceptance scan. |
+| H-alt-4: `.gitignore` aggressively ignored the whole `.opencode/` tree. | Ruled out. | Root `.gitignore` explicitly unignores `.opencode/` and comments that this repo is the source of `.opencode/` content. Nested `.opencode/skills/system-spec-kit/.gitignore` excludes build outputs such as `mcp_server/dist/`, `shared/dist/`, and caches, not the whole skill tree. Prior filesystem reproduction still yielded about 1,425 post-exclude candidates. | No follow-up needed beyond the existing acceptance scan. |
 
 ## Executive Summary
 

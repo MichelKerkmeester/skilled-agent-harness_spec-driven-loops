@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Run inventory and start deterministic patch order"
     blockers: []
     key_files:
-      - ".opencode/skill/"
+      - ".opencode/skills/"
     session_dedup:
       fingerprint: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
       session_id: "phase-071-stack-agnostic-cleanup"
@@ -60,18 +60,18 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Clean `cli-claude-code` (`.opencode/skill/cli-claude-code/`)
-- [x] T005 Clean `cli-codex` (`.opencode/skill/cli-codex/`)
-- [x] T006 Clean `cli-copilot` (`.opencode/skill/cli-copilot/`)
-- [x] T007 Clean `cli-gemini` (`.opencode/skill/cli-gemini/`)
-- [x] T008 Clean `cli-opencode` (`.opencode/skill/cli-opencode/`)
-- [x] T009 Clean `mcp-chrome-devtools` (`.opencode/skill/mcp-chrome-devtools/`)
-- [x] T010 Clean `mcp-coco-index` (`.opencode/skill/mcp-coco-index/`)
-- [x] T011 Clean `sk-doc` (`.opencode/skill/sk-doc/`)
-- [x] T012 Clean `sk-git` (`.opencode/skill/sk-git/`)
-- [x] T013 Clean `sk-code-review` (`.opencode/skill/sk-code-review/`)
-- [x] T014 Clean `system-spec-kit` (`.opencode/skill/system-spec-kit/`)
-- [x] T015 Clean `mcp-code-mode` (`.opencode/skill/mcp-code-mode/`)
+- [x] T004 Clean `cli-claude-code` (`.opencode/skills/cli-claude-code/`)
+- [x] T005 Clean `cli-codex` (`.opencode/skills/cli-codex/`)
+- [x] T006 Clean `cli-copilot` (`.opencode/skills/cli-copilot/`)
+- [x] T007 Clean `cli-gemini` (`.opencode/skills/cli-gemini/`)
+- [x] T008 Clean `cli-opencode` (`.opencode/skills/cli-opencode/`)
+- [x] T009 Clean `mcp-chrome-devtools` (`.opencode/skills/mcp-chrome-devtools/`)
+- [x] T010 Clean `mcp-coco-index` (`.opencode/skills/mcp-coco-index/`)
+- [x] T011 Clean `sk-doc` (`.opencode/skills/sk-doc/`)
+- [x] T012 Clean `sk-git` (`.opencode/skills/sk-git/`)
+- [x] T013 Clean `sk-code-review` (`.opencode/skills/sk-code-review/`)
+- [x] T014 Clean `system-spec-kit` (`.opencode/skills/system-spec-kit/`)
+- [x] T015 Clean `mcp-code-mode` (`.opencode/skills/mcp-code-mode/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

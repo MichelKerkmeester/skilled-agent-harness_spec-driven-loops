@@ -63,7 +63,7 @@ Consider these alternative hypotheses that haven't been ruled out yet:
 1. **H-alt-1**: A pre-scan migration step (schemaVersion=3 → ?) silently dropped rows. Search for migration code; check `lastPersistedAt` ordering.
 2. **H-alt-2**: The `replaceNodes()` UNIQUE crash on the 3 files cascaded — failing those transactions could have aborted the full-scan cleanup mid-flight. If so, the cleanup ran on a partial set. Read transaction boundaries in `code-graph-db.ts` around `replaceNodes`.
 3. **H-alt-3**: A racing scan / concurrent MCP request. Check whether scan locks anything.
-4. **H-alt-4**: The user's `.gitignore` is unusually aggressive (e.g., ignores the entire `.opencode/` tree). Spot-check `.gitignore` at repo root and any nested ones in `.opencode/skill/`.
+4. **H-alt-4**: The user's `.gitignore` is unusually aggressive (e.g., ignores the entire `.opencode/` tree). Spot-check `.gitignore` at repo root and any nested ones in `.opencode/skills/`.
 
 For each, either confirm the alternative is ruled out by existing evidence, or note it as a "verify post-fix" item.
 

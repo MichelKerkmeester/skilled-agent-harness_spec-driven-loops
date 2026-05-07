@@ -304,5 +304,5 @@ These are the primary investigation targets for the 20-iteration deep-research l
 - **Research Synthesis**: See `research/015-code-graph-advisor-refinement-pt-01/research.md`
 - **Resource Map**: See `research/015-code-graph-advisor-refinement-pt-01/resource-map.md`
 - **Thematic Sibling**: See `014-skill-advisor-hook-improvements/` spec folder (009-hook-parity peer)
-- **Code Graph Source**: See `.opencode/skill/system-spec-kit/mcp_server/code-graph/README.md`
-- **Skill Advisor Source**: See `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md`
+- **Code Graph Source**: See `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md`
+- **Skill Advisor Source**: See `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md`

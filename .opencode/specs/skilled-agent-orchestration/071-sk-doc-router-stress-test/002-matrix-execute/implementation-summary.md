@@ -25,7 +25,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -48,7 +48,7 @@ _memory:
 
 The 45-cell test matrix shipped: 15 sk-doc scenarios × 3 CLIs (cli-codex, cli-opencode), all dispatched via run-matrix.sh with 3-CLIs-in-parallel-per-scenario concurrency. Each cell produced a per-CLI .log file (stdout/stderr) plus a delta JSONL entry (timestamp, exit, duration, tokens). Phase 3 synthesis can now extract metrics, build matrix.csv, and author review-report.md from this raw data.
 
-The big learning from Phase 2 is the **methodology bug**: imperative scenario prompts caused real side-effects when fed to CLIs with file-write permissions. A CLI started `/create:feature-catalog` work and created 7 empty skeleton dirs at `.opencode/skill/sk-doc/feature_catalog/` before hitting the 120s timeout. Fixed by patching all 15 scenarios with a reflective-framing prefix ("DO NOT execute. Describe routing trace only"), then re-running cleanly. Zero side-effects in the final run, verified by `find -newer scripts/run-matrix.sh`.
+The big learning from Phase 2 is the **methodology bug**: imperative scenario prompts caused real side-effects when fed to CLIs with file-write permissions. A CLI started `/create:feature-catalog` work and created 7 empty skeleton dirs at `.opencode/skills/sk-doc/feature_catalog/` before hitting the 120s timeout. Fixed by patching all 15 scenarios with a reflective-framing prefix ("DO NOT execute. Describe routing trace only"), then re-running cleanly. Zero side-effects in the final run, verified by `find -newer scripts/run-matrix.sh`.
 
 ### Files Changed
 
@@ -65,7 +65,7 @@ The big learning from Phase 2 is the **methodology bug**: imperative scenario pr
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Bash dispatcher with prompt extraction (awk/regex) + 3 CLI subprocess invocations per scenario in `&`/`wait` blocks. 120s timeout per cell. Initial run completed ~35/45 cells before user halted ("i see sk-graph-rag was generated? shouldnt happen"). Cleanup: deleted 7 empty skeleton dirs at `.opencode/skill/sk-doc/feature_catalog/`. Patched scenarios via Python regex script. Reset deltas/logs. Re-dispatched in background; completed in ~24 min.
+Bash dispatcher with prompt extraction (awk/regex) + 3 CLI subprocess invocations per scenario in `&`/`wait` blocks. 120s timeout per cell. Initial run completed ~35/45 cells before user halted ("i see sk-graph-rag was generated? shouldnt happen"). Cleanup: deleted 7 empty skeleton dirs at `.opencode/skills/sk-doc/feature_catalog/`. Patched scenarios via Python regex script. Reset deltas/logs. Re-dispatched in background; completed in ~24 min.
 
 cli-codex used stdin redirection (`echo $prompt | codex exec -`) to avoid the large-prompt-in-background stall pattern observed earlier in this session. Foreground subprocess + 120s timeout avoided the cli-codex unreliability seen in 7-iter deep-review attempt.
 <!-- /ANCHOR:how-delivered -->

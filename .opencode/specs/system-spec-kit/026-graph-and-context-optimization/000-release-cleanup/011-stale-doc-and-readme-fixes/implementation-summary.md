@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -57,7 +57,7 @@ The stale documentation set is closed across packet continuity, code-adjacent RE
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| REQ-001 | Met | Packet continuity updated in 023, 025, 028, and `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` |
+| REQ-001 | Met | Packet continuity updated in 023, 025, 028, and `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` |
 | REQ-002 | Met | Five code-adjacent READMEs updated; deleted embedding-readiness identifiers grep clean |
 | REQ-003 | Met | Deep-review/deep-research READMEs now describe flat-first artifact dirs; sk-doc lists `playbook_feature` |
 | REQ-004 | Met | Strict validator exits 0 after final continuity update |
@@ -73,15 +73,15 @@ The stale documentation set is closed across packet continuity, code-adjacent RE
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md` | 4, 18-31, 62, 91, 101, 111 | Updated TC-3 from stale gap marker prose to packet-025 passing-state prose |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/tasks.md` | 17-29, 82-87, 95-100 | Removed stale typecheck-blocked state and marked final batch clean |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/spec.md` | 15-20 | Updated continuity to implementation complete and 100 percent |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | 183-220 | Replaced child-phase layout example with flat-first plus conditional `pt-NN` example |
-| `.opencode/skill/system-spec-kit/mcp_server/core/README.md` | 40 | Replaced stale embedding-readiness ownership with DB rebind/cache ownership |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md` | 79 | Replaced deleted readiness setter with lazy embedding/provider startup path |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md` | 118 | Updated Stage 3 rerank to conditional default-on, 4-candidate floor, and `rerankGateDecision` metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` | 145-149 | Added `fallbackDecision` to blocked/degraded operator surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md` | 12-22 | Updated parser contract to Tree-sitter WASM default plus regex fallback and added newer modules |
-| `.opencode/skill/sk-deep-review/README.md` | 216-229 | Rewrote review runtime state around flat-first `{artifact_dir}` and conditional `pt-NN` |
-| `.opencode/skill/sk-deep-research/README.md` | 63-73, 134-147 | Rewrote research quick-start and runtime layout around flat-first `{artifact_dir}` and conditional `pt-NN` |
-| `.opencode/skill/sk-doc/README.md` | 80, 149-155 | Added `playbook_feature` doctype and per-feature playbook path explanation |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | 183-220 | Replaced child-phase layout example with flat-first plus conditional `pt-NN` example |
+| `.opencode/skills/system-spec-kit/mcp_server/core/README.md` | 40 | Replaced stale embedding-readiness ownership with DB rebind/cache ownership |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md` | 79 | Replaced deleted readiness setter with lazy embedding/provider startup path |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md` | 118 | Updated Stage 3 rerank to conditional default-on, 4-candidate floor, and `rerankGateDecision` metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | 145-149 | Added `fallbackDecision` to blocked/degraded operator surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md` | 12-22 | Updated parser contract to Tree-sitter WASM default plus regex fallback and added newer modules |
+| `.opencode/skills/sk-deep-review/README.md` | 216-229 | Rewrote review runtime state around flat-first `{artifact_dir}` and conditional `pt-NN` |
+| `.opencode/skills/sk-deep-research/README.md` | 63-73, 134-147 | Rewrote research quick-start and runtime layout around flat-first `{artifact_dir}` and conditional `pt-NN` |
+| `.opencode/skills/sk-doc/README.md` | 80, 149-155 | Added `playbook_feature` doctype and per-feature playbook path explanation |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes/implementation-summary.md` | 1-129 | Created completion summary and verification record |
 <!-- /ANCHOR:what-built -->
 
@@ -113,9 +113,9 @@ All edits were made as direct Markdown replacements or additions against the 12 
 | Check | Result |
 |-------|--------|
 | `rg -n 'setEmbeddingModelReady|isEmbeddingModelReady|embeddingModelReady|waitForEmbeddingModel' <5 code-adjacent READMEs>` | PASS: exit 1, 0 matches |
-| `rg -n 'pt-01' .opencode/skill/sk-deep-review/README.md .opencode/skill/sk-deep-research/README.md` | PASS: exit 1, 0 matches |
+| `rg -n 'pt-01' .opencode/skills/sk-deep-review/README.md .opencode/skills/sk-deep-research/README.md` | PASS: exit 1, 0 matches |
 | `rg -n 'regex-only|tree-sitter planned|optional, min 2 results|\{packet\}|\[packet-dir/\]|expected_fail|expected-failure' <target docs>` | PASS: exit 1, 0 matches |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes --strict` | PASS: exit 0 |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-stale-doc-and-readme-fixes --strict` | PASS: exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -11,7 +11,7 @@
     "spec_kit_memory": {
       "command": "node",
       "args": [
-        ".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"
+        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
       ],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto",
@@ -32,7 +32,7 @@
       "disabled": false
     },
     "cocoindex_code": {
-      "command": ".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc",
+      "command": ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc",
       "args": ["mcp"],
       "env": {
         "COCOINDEX_CODE_ROOT_PATH": "."
@@ -42,7 +42,7 @@
     "code_mode": {
       "command": "node",
       "args": [
-        ".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"
+        ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
       ],
       "env": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"

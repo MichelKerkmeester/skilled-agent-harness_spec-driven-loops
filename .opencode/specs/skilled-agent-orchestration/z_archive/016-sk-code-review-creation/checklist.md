@@ -68,18 +68,18 @@ Verification matrix for completion evidence across rename, contract wiring, rout
   Evidence: `ls -la .opencode/skill | rg "sk-code-review"` -> `sk-code-review` present; root artifact removed (`legacy-single-hyphen-review.zip` deleted).
 
 - [x] CHK-101 [P0] REQ-002 router rebuilt to standards parity [Evidence: see verification notes]  
-  Evidence: `rg -n "Resource Domains|Resource Loading Levels|Smart Router Pseudocode|Precedence Matrix|Unknown Fallback Checklist|RELATED RESOURCES" .opencode/skill/sk-code-review/SKILL.md`.
+  Evidence: `rg -n "Resource Domains|Resource Loading Levels|Smart Router Pseudocode|Precedence Matrix|Unknown Fallback Checklist|RELATED RESOURCES" .opencode/skills/sk-code-review/SKILL.md`.
 
 - [x] CHK-102 [P0] REQ-003 runtime contract updated in agents/orchestrators [Evidence: see verification notes]  
-  Evidence: `rg -n "sk-code-review|baseline\+overlay|overlay" .opencode/agent/review.md .opencode/agent/chatgpt/review.md .opencode/agent/orchestrate.md .opencode/agent/chatgpt/orchestrate.md .gemini/agents/review.md .gemini/agents/orchestrate.md .claude/agents/review.md .claude/agents/orchestrate.md .codex/agents/review.toml .codex/agents/orchestrate.toml`.
+  Evidence: `rg -n "sk-code-review|baseline\+overlay|overlay" .opencode/agents/review.md .opencode/agents/chatgpt/review.md .opencode/agents/orchestrate.md .opencode/agents/chatgpt/orchestrate.md .gemini/agents/review.md .gemini/agents/orchestrate.md .claude/agents/review.md .claude/agents/orchestrate.md .codex/agents/review.toml .codex/agents/orchestrate.toml`.
 
 - [x] CHK-103 [P0] REQ-004 all 18 command YAML review dispatch blocks updated [Evidence: see verification notes]  
   Evidence: `rg -n "standards_contract|baseline: \"sk-code-review\""` across all 18 listed YAML assets returned matches for each file.
 
 - [x] CHK-104 [P0] REQ-005 review-intent routing updated [Evidence: see verification notes]  
   Evidence:
-  - `python3 .opencode/skill/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` -> top `sk-code-review`.
-  - `python3 .opencode/skill/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` -> top `sk-git`.
+  - `python3 .opencode/skills/scripts/skill_advisor.py "review this PR for race conditions and auth bugs" --threshold 0.8` -> top `sk-code-review`.
+  - `python3 .opencode/skills/scripts/skill_advisor.py "help me rebase and split commits" --threshold 0.8` -> top `sk-git`.
   - Live-doc completion evidence no longer asserts any removed visual skill target.
 
 ---
@@ -102,7 +102,7 @@ Verification matrix for completion evidence across rename, contract wiring, rout
 ### P1 Requirement Evidence
 
 - [x] CHK-110 [P1] REQ-006 skill indexes updated [Evidence: see verification notes]  
-  Evidence: `.opencode/skill/README.md` and `.opencode/README.md` now include `sk-code-review` and 11-skill counts.
+  Evidence: `.opencode/skills/README.md` and `.opencode/README.md` now include `sk-code-review` and 11-skill counts.
 
 - [x] CHK-111 [P1] REQ-007 spec docs synchronized [Evidence: see verification notes]  
   Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` updated for implemented scope and results.
@@ -111,7 +111,7 @@ Verification matrix for completion evidence across rename, contract wiring, rout
   Evidence:
   - `quick_validate.py` -> FAIL (`Name 'sk-code-review' cannot contain consecutive hyphens`).
   - `package_skill.py` -> FAIL (same validator rule).
-  - Existing same failure reproduced against `.opencode/skill/sk-code-web`, confirming validator mismatch with established `sk-code-*` naming convention.
+  - Existing same failure reproduced against `.opencode/skills/sk-code-web`, confirming validator mismatch with established `sk-code-*` naming convention.
 
 ---
 
@@ -139,7 +139,7 @@ Verification matrix for completion evidence across rename, contract wiring, rout
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md` synchronized [Evidence: see verification notes]
 - [x] CHK-041 [P1] `implementation-summary.md` created [Evidence: see verification notes]
-- [x] CHK-042 [P2] Catalog docs updated (`.opencode/skill/README.md`, `.opencode/README.md`) [Evidence: see verification notes]
+- [x] CHK-042 [P2] Catalog docs updated (`.opencode/skills/README.md`, `.opencode/README.md`) [Evidence: see verification notes]
 
 ---
 

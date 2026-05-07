@@ -24,8 +24,8 @@ This takes the spec folder basename (e.g., `012-memory-save-quality-pipeline`), 
 
 **Problem:** The JSON payload's `sessionSummary` is never used for TITLE. Even when the AI provides a rich, descriptive sessionSummary like "Implemented ESM module compliance fixes for the shared parsing layer", the TITLE will always be the mechanical folder name derivative. The `sessionSummary` IS passed through as `_JSON_SESSION_SUMMARY` (line 1034) and used as a title candidate in `pickPreferredMemoryTask()` at workflow.ts:1143, but this only affects `MEMORY_TITLE` in the frontmatter, not the session TITLE used in the template body.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1017`]
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1034`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1017`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1034`]
 
 ### 2. SUMMARY Fallback Chain -- Source of "Session focused on..." (collect-session-data.ts:851-873)
 
@@ -56,7 +56,7 @@ const SUMMARY: string = (!isErrorContent && learningIsTopical && rawLearning.len
 
 **The fix point:** `data.sessionSummary` from the JSON payload is never checked as a SUMMARY candidate. It's only passed through as `_JSON_SESSION_SUMMARY` at line 1034 for downstream title enrichment.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:851-873`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:851-873`]
 
 ### 3. contextType Detection -- RC5 Fix Honors JSON Explicit Values (session-extractor.ts:575-613)
 
@@ -77,8 +77,8 @@ const contextType = (
 
 **Remaining gap:** When JSON provides neither explicit `contextType` nor `keyDecisions`, and tool counts are 0, `detectContextType` returns `'general'` at line 126. The downstream `detectImportanceTier()` (line 150) then returns `'normal'` because only `contextType === 'planning'` triggers `'important'`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:575-613`]
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:120-135`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:575-613`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:120-135`]
 
 ### 4. importanceTier Resolution Chain (session-extractor.ts:143-176)
 
@@ -93,7 +93,7 @@ The explicit override `resolveImportanceTier()` (lines 163-176) checks for valid
 
 **JSON-mode path:** When the AI provides `importanceTier: "important"` in the JSON, it's honored directly. Without it, and without file paths containing critical segments, most JSON saves get `'normal'`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:143-176`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:143-176`]
 
 ### 5. extractKeyTopics -- Two Divergent Implementations (session-extractor.ts:535-561 vs core/topic-extractor.ts)
 
@@ -130,7 +130,7 @@ function extractKeyTopics(summary: string | undefined, decisions: DecisionForTop
 
 This is dead code from the workflow's perspective -- or it may be used by other callers.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:535-561`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:535-561`]
 
 ### 6. File Extraction -- Three Source Paths (file-extractor.ts:96-268)
 
@@ -154,8 +154,8 @@ return allFiles.slice(0, CONFIG.MAX_FILES_IN_MEMORY)  // default: 10
 
 **JSON-mode path:** When JSON provides files in `collectedData.FILES`, they flow through Source 1. When JSON provides no file references, only Source 3 (observation file refs) contributes, which typically produces very few entries with generic descriptions.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:96-268`]
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/core/config.ts:232`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:96-268`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/core/config.ts:232`]
 
 ### 7. Observation Deduplication and Anchoring (file-extractor.ts:330-435)
 
@@ -168,7 +168,7 @@ The dedup key is `title.toLowerCase() + '::' + sortedFiles.join('|')` (line 397)
 
 **JSON-mode behavior:** Observations synthesized from JSON `keyDecisions` (by input-normalizer) get titles like "Decision: Use ESM modules" which pass through type detection as `'decision'`. However, if the normalizer produces observations with generic or empty titles, they won't merge and create duplicate entries.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:330-435`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:330-435`]
 
 ### 8. projectPhase Inference for JSON Mode (collect-session-data.ts:894-909)
 
@@ -193,7 +193,7 @@ if (!explicitProjectPhase && contextType !== 'general') {
 
 Without this, `detectProjectPhase()` (session-extractor.ts:189-208) returns `'RESEARCH'` when `total === 0` (line 195), which is the common case in JSON mode. The fix ensures that if contextType was set (explicitly or via decision detection), the phase aligns with it.
 
-[SOURCE: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:894-909`]
+[SOURCE: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:894-909`]
 
 ## Ruled Out
 - No approaches failed this iteration.
@@ -202,11 +202,11 @@ Without this, `detectProjectPhase()` (session-extractor.ts:189-208) returns `'RE
 - None identified.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 655 lines)
-- `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts` (full file, 448 lines)
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 840-1075)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts` (lines 61-109)
-- `.opencode/skill/system-spec-kit/scripts/core/config.ts` (line 232)
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` (full file, 655 lines)
+- `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts` (full file, 448 lines)
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` (lines 840-1075)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts` (lines 61-109)
+- `.opencode/skills/system-spec-kit/scripts/core/config.ts` (line 232)
 
 ## Assessment
 - New information ratio: 0.75

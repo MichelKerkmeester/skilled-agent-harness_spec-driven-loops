@@ -18,11 +18,11 @@ _memory:
     next_safe_action: "Apply 9 surgical edits + 6 new tests, then validate strict, then commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
-      - ".opencode/command/doctor/assets/doctor_code-graph_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts"
+      - ".opencode/commands/doctor/assets/doctor_code-graph_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-001-code-graph-consistency"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -46,7 +46,7 @@ Nine surgical edits across the code-graph indexing helper (`ensure-ready.ts`), t
 
 ### Technical Context
 
-The product code lives under `mcp_server/code_graph/{lib,handlers}/` and a single YAML lives under `.opencode/command/doctor/assets/`. All TS edits stay within existing files. New vitest cases live under `mcp_server/code_graph/tests/` (alongside the existing `code-graph-*.vitest.ts` suite). No new packages are required; better-sqlite3 already supports `pragma()` and `transaction()`.
+The product code lives under `mcp_server/code_graph/{lib,handlers}/` and a single YAML lives under `.opencode/commands/doctor/assets/`. All TS edits stay within existing files. New vitest cases live under `mcp_server/code_graph/tests/` (alongside the existing `code-graph-*.vitest.ts` suite). No new packages are required; better-sqlite3 already supports `pragma()` and `transaction()`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -109,7 +109,7 @@ For each TS change: extend or add a vitest under `mcp_server/code_graph/tests/`.
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §2 (consistency), §14 (resilience), §4 (silent-error)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - Worked-pilot: sibling sub-phase `004-validation-and-memory/` (commit `1822a1e69`)
 - No cross-packet dependencies; sub-phase 001 is independent within the 049 series.

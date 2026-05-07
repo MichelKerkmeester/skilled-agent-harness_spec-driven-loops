@@ -156,14 +156,14 @@ All indexing methods use SHA-256 content hashing:
   - Added auto-indexing section in Related Resources
 
 ### Command Files (2025-12-16)
-- `.opencode/command/memory/save.md` - **UPDATED**
+- `.opencode/commands/memory/save.md` - **UPDATED**
   - Added `memory_save`, `memory_index_scan`, `memory_stats` to allowed-tools
   - Updated MCP Enforcement Matrix with IMMEDIATE INDEX option
   - Added auto-indexing explanation
   - Added Section 11: Indexing Options with all 4 methods
   - Updated failure/error handling tables
 
-- `.opencode/command/memory/search.md` - **MAJOR UPDATE**
+- `.opencode/commands/memory/search.md` - **MAJOR UPDATE**
   - Added `memory_validate`, `memory_update` to allowed-tools
   - Added `--concepts:<c1,c2>` argument for AND search
   - Added constitutional tier to all tier filter options
@@ -173,13 +173,13 @@ All indexing methods use SHA-256 content hashing:
   - Updated Quick Reference and Keyboard Shortcuts sections
   - Added includeConstitutional parameter documentation
 
-- `.opencode/command/memory/triggers.md` - **UPDATED**
+- `.opencode/commands/memory/triggers.md` - **UPDATED**
   - Added constitutional tier (⭐) to display format example
   - Added tier symbols (⭐ !! ! - ~ x) to memory listings
 
-- `.opencode/command/memory/cleanup.md` - No changes needed (already has constitutional)
-- `.opencode/command/memory/checkpoint.md` - No changes needed
-- `.opencode/command/memory/status.md` - No changes needed (already shows all tiers)
+- `.opencode/commands/memory/cleanup.md` - No changes needed (already has constitutional)
+- `.opencode/commands/memory/checkpoint.md` - No changes needed
+- `.opencode/commands/memory/status.md` - No changes needed (already shows all tiers)
 
 ---
 

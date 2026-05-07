@@ -10,8 +10,8 @@ This testing suite validates all changes made during the Memory System Overhaul.
 1. **Restart OpenCode** to load updated MCP server
 2. **Verify no syntax errors:**
    ```bash
-   node --check .opencode/skill/system-memory/mcp_server/semantic-memory.js
-   node --check .opencode/skill/system-memory/scripts/generate-context.js
+   node --check .opencode/skills/system-memory/mcp_server/semantic-memory.js
+   node --check .opencode/skills/system-memory/scripts/generate-context.js
    ```
 
 ---
@@ -81,7 +81,7 @@ This testing suite validates all changes made during the Memory System Overhaul.
 
 ```bash
 # Validate JSON syntax (strip comments first)
-cat .opencode/skill/system-memory/config.jsonc | grep -v '//' | node -e "JSON.parse(require('fs').readFileSync(0, 'utf8'))"
+cat .opencode/skills/system-memory/config.jsonc | grep -v '//' | node -e "JSON.parse(require('fs').readFileSync(0, 'utf8'))"
 ```
 
 #### 3.2 filters.jsonc
@@ -111,7 +111,7 @@ cat .opencode/skill/system-memory/config.jsonc | grep -v '//' | node -e "JSON.pa
 
 ```bash
 # Verify file existence
-ls -la .opencode/skill/system-memory/references/
+ls -la .opencode/skills/system-memory/references/
 ```
 
 #### 4.2 SKILL.md References
@@ -124,11 +124,11 @@ ls -la .opencode/skill/system-memory/references/
 
 ```bash
 # Check for old references
-grep -r "semantic_memory.md\|execution_methods.md\|output_format.md\|spec_folder_detection.md\|alignment_scoring.md" .opencode/skill/system-memory/SKILL.md
+grep -r "semantic_memory.md\|execution_methods.md\|output_format.md\|spec_folder_detection.md\|alignment_scoring.md" .opencode/skills/system-memory/SKILL.md
 # Should return nothing
 
 # Check for new references
-grep -r "save-workflow.md\|folder_routing.md" .opencode/skill/system-memory/SKILL.md
+grep -r "save-workflow.md\|folder_routing.md" .opencode/skills/system-memory/SKILL.md
 # Should find matches
 ```
 
@@ -146,7 +146,7 @@ grep -r "save-workflow.md\|folder_routing.md" .opencode/skill/system-memory/SKIL
 | save.md | Grep for memory_load | Not found (except deprecation notes) |
 
 ```bash
-grep -n "memory_load" .opencode/command/memory/*.md
+grep -n "memory_load" .opencode/commands/memory/*.md
 # Should only show deprecation notes, not allowed-tools
 ```
 
@@ -170,7 +170,7 @@ grep -n "memory_load" .opencode/command/memory/*.md
 | No NOT YET IMPLEMENTED | Grep README | No matches |
 
 ```bash
-grep -i "NOT YET IMPLEMENTED" .opencode/skill/system-memory/README.md
+grep -i "NOT YET IMPLEMENTED" .opencode/skills/system-memory/README.md
 # Should return nothing
 ```
 
@@ -191,7 +191,7 @@ FAIL=0
 
 # Test 1: Syntax check semantic-memory.js
 echo -n "Test 1: semantic-memory.js syntax... "
-if node --check .opencode/skill/system-memory/mcp_server/semantic-memory.js 2>/dev/null; then
+if node --check .opencode/skills/system-memory/mcp_server/semantic-memory.js 2>/dev/null; then
     echo "PASS"
     ((PASS++))
 else
@@ -201,7 +201,7 @@ fi
 
 # Test 2: Syntax check generate-context.js
 echo -n "Test 2: generate-context.js syntax... "
-if node --check .opencode/skill/system-memory/scripts/generate-context.js 2>/dev/null; then
+if node --check .opencode/skills/system-memory/scripts/generate-context.js 2>/dev/null; then
     echo "PASS"
     ((PASS++))
 else
@@ -211,7 +211,7 @@ fi
 
 # Test 3: semantic_memory.md deleted
 echo -n "Test 3: semantic_memory.md deleted... "
-if [ ! -f ".opencode/skill/system-memory/references/semantic_memory.md" ]; then
+if [ ! -f ".opencode/skills/system-memory/references/semantic_memory.md" ]; then
     echo "PASS"
     ((PASS++))
 else
@@ -221,7 +221,7 @@ fi
 
 # Test 4: save-workflow.md exists
 echo -n "Test 4: save-workflow.md exists... "
-if [ -f ".opencode/skill/system-memory/references/save-workflow.md" ]; then
+if [ -f ".opencode/skills/system-memory/references/save-workflow.md" ]; then
     echo "PASS"
     ((PASS++))
 else
@@ -231,7 +231,7 @@ fi
 
 # Test 5: folder_routing.md exists
 echo -n "Test 5: folder_routing.md exists... "
-if [ -f ".opencode/skill/system-memory/references/folder_routing.md" ]; then
+if [ -f ".opencode/skills/system-memory/references/folder_routing.md" ]; then
     echo "PASS"
     ((PASS++))
 else
@@ -241,7 +241,7 @@ fi
 
 # Test 6: No memory_load in search.md allowed-tools
 echo -n "Test 6: memory_load removed from search.md... "
-if ! grep -q "semantic_memory_memory_load" .opencode/command/memory/search.md 2>/dev/null; then
+if ! grep -q "semantic_memory_memory_load" .opencode/commands/memory/search.md 2>/dev/null; then
     echo "PASS"
     ((PASS++))
 else
@@ -251,7 +251,7 @@ fi
 
 # Test 7: No NOT YET IMPLEMENTED in README
 echo -n "Test 7: No NOT YET IMPLEMENTED in README... "
-if ! grep -qi "NOT YET IMPLEMENTED" .opencode/skill/system-memory/README.md 2>/dev/null; then
+if ! grep -qi "NOT YET IMPLEMENTED" .opencode/skills/system-memory/README.md 2>/dev/null; then
     echo "PASS"
     ((PASS++))
 else
@@ -261,7 +261,7 @@ fi
 
 # Test 8: config.jsonc reduced
 echo -n "Test 8: config.jsonc < 150 lines... "
-LINES=$(wc -l < .opencode/skill/system-memory/config.jsonc)
+LINES=$(wc -l < .opencode/skills/system-memory/config.jsonc)
 if [ "$LINES" -lt 150 ]; then
     echo "PASS ($LINES lines)"
     ((PASS++))

@@ -17,13 +17,13 @@ _memory:
     next_safe_action: "Validate strict; commit + push"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/spec/is-phase-parent.ts"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
+      - ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh"
       - ".opencode/plugins/spec-kit-skill-advisor.js"
-      - ".opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-007-topology-build-boundary"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -118,8 +118,8 @@ For TS edits: vitest cases live next to existing test patterns (`mcp_server/test
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` D4 (phase topology, §F-019) + D5 (build/dist boundary, §F-020)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Alignment checker: `.opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts` (modified by this packet)
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Alignment checker: `.opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts` (modified by this packet)
 - Stress runner: `cd mcp_server && npm run stress`
 - No cross-packet dependencies; sub-phase 007 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->

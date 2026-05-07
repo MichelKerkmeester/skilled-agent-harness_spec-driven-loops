@@ -6,15 +6,15 @@ Determine whether code graph defects are current runtime gaps or post-remediatio
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:22`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:141`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1078`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:99`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:1`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:22`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:141`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1078`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:99`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:158`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts:76`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts:1`
 
 ## Findings
 

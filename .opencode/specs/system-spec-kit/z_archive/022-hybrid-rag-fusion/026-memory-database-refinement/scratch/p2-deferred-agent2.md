@@ -2,7 +2,7 @@
 
 ## Scope
 
-Implemented the four deferred P2 fixes inside the allowed ownership set under `.opencode/skill/system-spec-kit/mcp_server/`.
+Implemented the four deferred P2 fixes inside the allowed ownership set under `.opencode/skills/system-spec-kit/mcp_server/`.
 
 ## Changes
 
@@ -44,11 +44,11 @@ Focused regression checks:
 
 Requested commands:
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5`
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -5`
   - Produced no tailed output because of the pipe-to-`tail`.
   - Separate raw `npx tsc --noEmit` check still reports pre-existing type errors in `handlers/causal-graph.ts` outside this task's ownership.
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=$PWD/.opencode/skill/system-spec-kit/mcp_server/.tmp/vitest-tmp npx vitest run 2>&1 | tail -15`
+- `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=$PWD/.opencode/skills/system-spec-kit/mcp_server/.tmp/vitest-tmp npx vitest run 2>&1 | tail -15`
   - Completed with existing non-scope suite failures.
   - Tail summary: `9 failed | 319 passed | 1 skipped`, `33 failed | 8754 passed | 74 skipped | 26 todo`.
 

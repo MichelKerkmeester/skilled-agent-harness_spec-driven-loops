@@ -28,24 +28,24 @@
 - Packet docs: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `checklist.md`, `resource-map.md`
 - Claimed task evidence: `applied/T-001.md` through `applied/T-016.md` when present
 - Implementation files:
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`
 
 ### Sources Of Evidence
 

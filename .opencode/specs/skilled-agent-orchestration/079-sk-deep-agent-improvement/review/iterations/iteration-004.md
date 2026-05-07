@@ -19,7 +19,7 @@ description: Maintainability review of naming consistency, documentation clarity
 - `AGENTS.md`
 - `.opencode/install_guides/README.md`
 - `.opencode/install_guides/SET-UP - AGENTS.md`
-- `.opencode/skill/deep-agent-improvement/SKILL.md`
+- `.opencode/skills/deep-agent-improvement/SKILL.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/plan.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/tasks.md`
@@ -46,13 +46,13 @@ description: Maintainability review of naming consistency, documentation clarity
 
 ## Traceability Checks
 
-- `maintainability_naming`: partial. `README.md`, `AGENTS.md`, `.opencode/install_guides/README.md`, and `.opencode/skill/deep-agent-improvement/SKILL.md` use `deep-agent-improvement` consistently for the renamed skill [SOURCE: `README.md:845`, `README.md:1217`, `AGENTS.md:324`, `.opencode/install_guides/README.md:1200`, `.opencode/skill/deep-agent-improvement/SKILL.md:2`]. One adjacent install-guide inventory table still uses retired `sk-deep-research` / `sk-deep-review` skill IDs [SOURCE: `.opencode/install_guides/SET-UP - AGENTS.md:514`, `.opencode/install_guides/SET-UP - AGENTS.md:515`].
+- `maintainability_naming`: partial. `README.md`, `AGENTS.md`, `.opencode/install_guides/README.md`, and `.opencode/skills/deep-agent-improvement/SKILL.md` use `deep-agent-improvement` consistently for the renamed skill [SOURCE: `README.md:845`, `README.md:1217`, `AGENTS.md:324`, `.opencode/install_guides/README.md:1200`, `.opencode/skills/deep-agent-improvement/SKILL.md:2`]. One adjacent install-guide inventory table still uses retired `sk-deep-research` / `sk-deep-review` skill IDs [SOURCE: `.opencode/install_guides/SET-UP - AGENTS.md:514`, `.opencode/install_guides/SET-UP - AGENTS.md:515`].
 - `historical_record_boundaries`: clean for the inspected 079 docs. `spec.md` explicitly preserves historical changelog narrative and specs research artifacts while updating active path strings [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:92`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:93`], and `implementation-summary.md` repeats the same boundary [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:174`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:175`].
-- `operator_follow_on_clarity`: partial. The skill current-release section clearly retracts unsupported lineage modes and tells operators to start a new session [SOURCE: `.opencode/skill/deep-agent-improvement/SKILL.md:306`, `.opencode/skill/deep-agent-improvement/SKILL.md:308`, `.opencode/skill/deep-agent-improvement/SKILL.md:310`]. Prior P1-003 remains active for packet completion follow-on clarity because `/memory:save`, T-041, and CHK-055 remain pending.
+- `operator_follow_on_clarity`: partial. The skill current-release section clearly retracts unsupported lineage modes and tells operators to start a new session [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:306`, `.opencode/skills/deep-agent-improvement/SKILL.md:308`, `.opencode/skills/deep-agent-improvement/SKILL.md:310`]. Prior P1-003 remains active for packet completion follow-on clarity because `/memory:save`, T-041, and CHK-055 remain pending.
 
 ## Integration Evidence
 
-- Reviewed exact documentation integration surfaces named by the packet scope: root `README.md`, root `AGENTS.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`, and `.opencode/skill/deep-agent-improvement/SKILL.md`.
+- Reviewed exact documentation integration surfaces named by the packet scope: root `README.md`, root `AGENTS.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`, and `.opencode/skills/deep-agent-improvement/SKILL.md`.
 - Did not use stale code graph evidence. Exact Grep/Read evidence was used for naming and documentation consistency.
 
 ## Edge Cases
@@ -66,7 +66,7 @@ description: Maintainability review of naming consistency, documentation clarity
 
 - Root README uses `deep-agent-improvement` in the skill description and codebase-agnostic skill table [SOURCE: `README.md:845`, `README.md:1217`].
 - Root AGENTS uses `@improve-agent` as the stable agent name and `deep-agent-improvement` as the backing skill, matching the packet's naming decision [SOURCE: `AGENTS.md:324`].
-- `.opencode/skill/deep-agent-improvement/SKILL.md` frontmatter and current-release semantics use the new skill name and clearly distinguish `/improve:agent` / `@improve-agent` from the skill folder name [SOURCE: `.opencode/skill/deep-agent-improvement/SKILL.md:2`, `.opencode/skill/deep-agent-improvement/SKILL.md:308`, `.opencode/skill/deep-agent-improvement/SKILL.md:443`, `.opencode/skill/deep-agent-improvement/SKILL.md:444`].
+- `.opencode/skills/deep-agent-improvement/SKILL.md` frontmatter and current-release semantics use the new skill name and clearly distinguish `/improve:agent` / `@improve-agent` from the skill folder name [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:2`, `.opencode/skills/deep-agent-improvement/SKILL.md:308`, `.opencode/skills/deep-agent-improvement/SKILL.md:443`, `.opencode/skills/deep-agent-improvement/SKILL.md:444`].
 - Packet docs preserve the historical-record boundary consistently rather than rewriting factual old release narrative [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:92`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:174`].
 
 ## Ruled Out

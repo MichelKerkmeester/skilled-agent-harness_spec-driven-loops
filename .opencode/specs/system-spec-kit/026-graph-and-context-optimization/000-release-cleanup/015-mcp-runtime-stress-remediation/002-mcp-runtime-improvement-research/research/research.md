@@ -154,7 +154,7 @@ Key considerations:
 | State log | Convergence, duplicate reducer entries, Q8 graph event | `research/.../deep-research-state.jsonl` | Medium-high |
 | Findings registry | Initial question registry; not reduced after iterations | `research/.../findings-registry.json` | Low for final status |
 | Spec doc | Scope, acceptance, source packet mapping | `spec.md` | High for intended scope |
-| Source reads | Handler and test line ranges sampled during synthesis | `.opencode/skill/system-spec-kit/mcp_server/...` | High for current checkout |
+| Source reads | Handler and test line ranges sampled during synthesis | `.opencode/skills/system-spec-kit/mcp_server/...` | High for current checkout |
 ---
 ## 4. CORE ARCHITECTURE
 ### System Components
@@ -166,7 +166,7 @@ Responsibilities:
 - Enforce wrapper token budgets through `enforceTokenBudget()`.
 - Report enforcement metadata to callers.
 Integration points:
-- Handler source: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`.
+- Handler source: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`.
 - Budget enforcement starts at `memory-context.ts:447`.
 - Survivor-preserving fallback starts at `memory-context.ts:489`.
 - Fallback token reporting happens at `memory-context.ts:810`.
@@ -178,7 +178,7 @@ Responsibilities:
 - Expose weak/partial/no-result diagnostics.
 - Serve model callers with enough authority signals to avoid unsupported claims.
 Integration points:
-- Formatter source: `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts`.
+- Formatter source: `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`.
 - Recovery insertion point: `search-results.ts:951-983` and `search-results.ts:1025-1035`.
 - Recovery action vocabulary: `recovery-payload.ts:28-37`, `recovery-payload.ts:152-164`.
 #### Code Graph
@@ -189,7 +189,7 @@ Responsibilities:
 - Block full-scan-required read paths.
 - Provide `code_graph_scan` as first-class repair.
 Integration points:
-- Query handler: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts`.
+- Query handler: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`.
 - Readiness check: `query.ts:1045-1059`.
 - Blocked payload: `query.ts:775-796`.
 - State detection: `ensure-ready.ts:151-220`.
@@ -211,7 +211,7 @@ Responsibilities:
 - Auto-record supersession during save/reconsolidation.
 - Report graph stats to callers.
 Integration points:
-- Relation types and edge insertion: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts`.
+- Relation types and edge insertion: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts`.
 - Auto edge strength and per-node caps: `causal-edges.ts:234-253`.
 - Batch paths: `causal-edges.ts:366-468`.
 - Prediction-error supersedes producer: `handlers/save/create-record.ts:129-196`, `handlers/save/create-record.ts:386-396`.
@@ -223,7 +223,7 @@ Responsibilities:
 - Expose task-intent separately from backend routing.
 - Preserve paraphrase stability across CLI caller styles.
 Integration points:
-- Classifier source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`.
+- Classifier source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`.
 - Intent labels and keywords: `intent-classifier.ts:7-73`.
 - Centroid classifier seeds: `intent-classifier.ts:130-174`.
 - Runtime response annotations cited by Q1: `classificationKind` and `seeAlso` in `memory_context`.
@@ -264,7 +264,7 @@ External/CLI callers:
 ## 5. TECHNICAL SPECIFICATIONS
 ### Q1 Contract: MCP Build, Restart, Live Probe
 Current behavior:
-- `opencode.json` starts the MCP server with `node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`.
+- `opencode.json` starts the MCP server with `node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js`.
 - Rebuilding updates disk, but an already-running client continues using the old child process.
 Recommended contract:
 ```text
@@ -497,7 +497,7 @@ Shared runtime fields should avoid caller-specific interpretation:
 ### Verification Commands
 Use these as packet-level guides; exact commands belong in implementation packets:
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm test -- --run tests/token-budget-enforcement.vitest.ts tests/memory-context.vitest.ts
 npm test -- --run tests/d5-recovery-payload.vitest.ts tests/empty-result-recovery.vitest.ts
 npm run build
@@ -520,7 +520,7 @@ Expected:
 ## 9. CODE EXAMPLES
 ### Pattern: `memory_context` Token Telemetry
 Current evidence points:
-- Enforcement starts at `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:447-462`.
+- Enforcement starts at `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:447-462`.
 - Empty fallback candidates remain at `memory-context.ts:551-580`.
 - Final empty fallback remains at `memory-context.ts:607-614`.
 - Fallback token reporting occurs at `memory-context.ts:810-835`.

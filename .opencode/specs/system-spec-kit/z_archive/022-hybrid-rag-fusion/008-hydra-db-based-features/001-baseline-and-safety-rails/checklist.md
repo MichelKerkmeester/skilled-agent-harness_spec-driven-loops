@@ -64,7 +64,7 @@ SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-010 [P1] `npx tsc --noEmit` passed in `.opencode/skill/system-spec-kit/mcp_server` [EVIDENCE:implementation-summary.md]
+- [x] CHK-010 [P1] `npx tsc --noEmit` passed in `.opencode/skills/system-spec-kit/mcp_server` [EVIDENCE:implementation-summary.md]
 - [x] CHK-011 [P1] `npm run build` passed and generated current `dist` [EVIDENCE:implementation-summary.md]
 - [x] CHK-012 [P1] Focused Vitest sweep for Phase 1 surfaces passed [EVIDENCE:implementation-summary.md]
 - [x] CHK-013 [P1] Manual baseline and graph snapshot smoke checks passed against built `dist` [EVIDENCE:implementation-summary.md]

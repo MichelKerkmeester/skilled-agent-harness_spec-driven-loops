@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Implementation Summary: Copilot Target-Authority Helper
 
@@ -66,7 +66,7 @@ You can now call it once at every cli-copilot dispatch site and trust that the p
 
 ### YAML wire-ins for both auto-loop dispatch sites
 
-Both `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` now route their `if_cli_copilot.command` block through `buildCopilotPromptArg`. Each inline Node script reads the workflow's `{spec_folder}` template, derives a `CopilotTargetAuthority` from it (approved when present, missing+writeIntent:true when absent), and feeds the helper's argv to either `runAuditedExecutorCommand` (deep-research) or `spawnSync('copilot', ...)` (deep-review). The deep-review path was unified onto Node-based dispatch in the process, replacing the prior bash + `wc -c` + heredoc shape.
+Both `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` now route their `if_cli_copilot.command` block through `buildCopilotPromptArg`. Each inline Node script reads the workflow's `{spec_folder}` template, derives a `CopilotTargetAuthority` from it (approved when present, missing+writeIntent:true when absent), and feeds the helper's argv to either `runAuditedExecutorCommand` (deep-research) or `spawnSync('copilot', ...)` (deep-review). The deep-review path was unified onto Node-based dispatch in the process, replacing the prior bash + `wc -c` + heredoc shape.
 
 ### Vitest coverage
 
@@ -76,10 +76,10 @@ Both `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` and `.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | Modified | Append `CopilotTargetAuthority` type + `buildCopilotPromptArg` + 2 helper builders (~+150 LOC); existing `resolveCopilotPromptArg` body byte-stable |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Replace `if_cli_copilot.command` block with helper-routed Node script; +2 explanatory `notes` lines |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Replace `if_cli_copilot.command` block with helper-routed Node script (also unifies on Node-based dispatch); +2 explanatory `notes` lines |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | Created | 13 vitest cases across 6 describe blocks |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | Modified | Append `CopilotTargetAuthority` type + `buildCopilotPromptArg` + 2 helper builders (~+150 LOC); existing `resolveCopilotPromptArg` body byte-stable |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Replace `if_cli_copilot.command` block with helper-routed Node script; +2 explanatory `notes` lines |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Replace `if_cli_copilot.command` block with helper-routed Node script (also unifies on Node-based dispatch); +2 explanatory `notes` lines |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | Created | 13 vitest cases across 6 describe blocks |
 | `.opencode/specs/.../012-copilot-target-authority-helper/{spec,plan,tasks,checklist,implementation-summary}.md` | Created | Standard Level 1 packet docs |
 | `.opencode/specs/.../012-copilot-target-authority-helper/{description,graph-metadata}.json` | Created | Required spec metadata |
 <!-- /ANCHOR:what-built -->
@@ -174,10 +174,10 @@ The packet's review-report.md (Copilot CLI gpt-5.5 high) flagged 4 P1 items. The
 
 | File | LOC delta | Purpose |
 |------|-----------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | +60 / -10 | Add `validateSpecFolder` + reject sets + placeholder pattern; revalidate authority at top of `buildCopilotPromptArg`; emit `promptFileBody` on approved+over-threshold; argv becomes bare `@${promptPath}` in that branch |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | +14 / -6 | Drop YAML pre-validation; pass `specFolderRaw` directly to helper; write `promptFileBody` to disk when set; +1 explanatory note |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | +14 / -6 | Same as deep-research |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | +175 / -10 | 16 new test cases (29 total, up from 13): wrapper-mode `promptFileBody` (3 cases), specFolder validation (12 cases for the malformed/whitespace/control-char matrix + regression + trim guards), I1-replay zero-mutation (2 cases) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | +60 / -10 | Add `validateSpecFolder` + reject sets + placeholder pattern; revalidate authority at top of `buildCopilotPromptArg`; emit `promptFileBody` on approved+over-threshold; argv becomes bare `@${promptPath}` in that branch |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | +14 / -6 | Drop YAML pre-validation; pass `specFolderRaw` directly to helper; write `promptFileBody` to disk when set; +1 explanatory note |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | +14 / -6 | Same as deep-research |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | +175 / -10 | 16 new test cases (29 total, up from 13): wrapper-mode `promptFileBody` (3 cases), specFolder validation (12 cases for the malformed/whitespace/control-char matrix + regression + trim guards), I1-replay zero-mutation (2 cases) |
 
 ### Verification
 

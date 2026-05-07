@@ -18,10 +18,10 @@ _memory:
     blockers:
       - "Live MCP probe requires daemon restart before rebuilt dist is loaded"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts"
       - "spec.md"
       - "plan.md"
       - "tasks.md"
@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -70,10 +70,10 @@ The change is **pure additive metadata**. Anchor `score`, `confidence`, `resolut
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified (+12 lines) | Extended `codeGraphSeedSchema` with snake_case + camelCase telemetry fields |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified (+47 / -13 lines) | Extended `ContextHandlerArgs.seeds`; normalized wire names; emitted telemetry on anchors |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts` | Modified (+28 / -9 lines) | Extended `CocoIndexSeed` + `ArtifactRef`; preserved telemetry through `resolveCocoIndexSeed` |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | Added (~340 lines, 12 tests) | Coverage for criteria A–F |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified (+12 lines) | Extended `codeGraphSeedSchema` with snake_case + camelCase telemetry fields |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts` | Modified (+47 / -13 lines) | Extended `ContextHandlerArgs.seeds`; normalized wire names; emitted telemetry on anchors |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts` | Modified (+28 / -9 lines) | Extended `CocoIndexSeed` + `ArtifactRef`; preserved telemetry through `resolveCocoIndexSeed` |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | Added (~340 lines, 12 tests) | Coverage for criteria A–F |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/spec.md` | Added | Packet spec |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/plan.md` | Added | Packet plan |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough/tasks.md` | Added | Packet tasks |
@@ -116,8 +116,8 @@ The change crosses three layers (schema → types → handler) but is purely add
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors, no warnings) |
-| `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | PASS — 1 file, 12 tests passed |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS (no errors, no warnings) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/code-graph-context-cocoindex-telemetry-passthrough.vitest.ts` | PASS — 1 file, 12 tests passed |
 | Test A (snake_case wire schema accepts) | PASS: `validateToolArgs('code_graph_context', { seeds: [{ ...raw_score, path_class, rankingSignals }] })` does not throw |
 | Test B (camelCase + mixed schema accepts) | PASS: both variants validate; mixed snake+camel accepted |
 | Test C (anchors emit telemetry next to score/snippet/range) | PASS: `anchor.score === 0.85`, `anchor.snippet`, `anchor.range`, plus `anchor.rawScore === 0.92`, `anchor.pathClass === 'implementation'`, `anchor.rankingSignals === ['implementation_boost']` |
@@ -128,8 +128,8 @@ The change crosses three layers (schema → types → handler) but is purely add
 | Test E2 (`anchor.score === seed.score` NOT `seed.raw_score`) | PASS: when `score=0.5` and `raw_score=0.99`, anchor.score is 0.5 (bounded post-rerank) and anchor.rawScore is 0.99 (raw audit signal) |
 | Test F (hybrid-search.ts + search-utils.ts not referencing fork tokens) | PASS: regex `/\bpath_class\b/`, `/\bpathClass\b/`, `/\brankingSignals\b/`, `/\braw_score\b/` all 0 matches in both files |
 | Test G (direct Zod schema validation) | PASS: schema parses snake + camel + mixed seeds without throwing |
-| `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/code-graph-*.vitest.ts tests/tool-input-schema.vitest.ts` | 91 tests across 2 targeted files PASS; full code-graph-* run shows 1 PRE-EXISTING failure in `code-graph-degraded-sweep.vitest.ts` (packet 013 work in progress) — confirmed pre-existing via `git stash` regression run |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough --strict` | DEFERRED: driver run pending |
+| `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/code-graph-*.vitest.ts tests/tool-input-schema.vitest.ts` | 91 tests across 2 targeted files PASS; full code-graph-* run shows 1 PRE-EXISTING failure in `code-graph-degraded-sweep.vitest.ts` (packet 013 work in progress) — confirmed pre-existing via `git stash` regression run |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/015-cocoindex-seed-telemetry-passthrough --strict` | DEFERRED: driver run pending |
 | Live `code_graph_context` probe | DEFERRED: requires daemon restart per packet 008 |
 <!-- /ANCHOR:verification -->
 

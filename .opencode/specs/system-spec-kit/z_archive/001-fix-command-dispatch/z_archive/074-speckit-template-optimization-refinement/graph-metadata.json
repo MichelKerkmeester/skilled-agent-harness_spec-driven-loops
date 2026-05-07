@@ -41,41 +41,41 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/references/templates/level_specifications.md",
-      ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/skill/system-spec-kit/scripts/templates/compose.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
+      ".opencode/skills/system-spec-kit/scripts/templates/compose.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/config/config.jsonc",
+      ".opencode/skills/system-spec-kit/config/config.jsonc",
       "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "level_specifications.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/templates/level_specifications.md",
+        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
         "source": "derived"
       },
       {
         "name": "parallel_dispatch_config.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
+        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
         "source": "derived"
       },
       {
         "name": "compose.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/templates/compose.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/templates/compose.sh",
         "source": "derived"
       },
       {
@@ -111,7 +111,7 @@
       {
         "name": "config.jsonc",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/config/config.jsonc",
+        "path": ".opencode/skills/system-spec-kit/config/config.jsonc",
         "source": "derived"
       },
       {

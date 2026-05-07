@@ -64,8 +64,8 @@ Every completed item must cite a committed file, release note, phase-local artif
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Dedicated graph-aware stop coverage exists. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts]`
-- [x] CHK-021 [P0] Dedicated session-isolation coverage exists. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
+- [x] CHK-020 [P0] Dedicated graph-aware stop coverage exists. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts]`
+- [x] CHK-021 [P0] Dedicated session-isolation coverage exists. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
 - [x] CHK-022 [P1] Research Phase 008 verification is recorded in the release note. `[EVIDENCE: .opencode/changelog/12--sk-deep-research/v1.6.0.0.md]`
 - [x] CHK-023 [P1] Review Phase 008 verification is recorded in the release note. `[EVIDENCE: .opencode/changelog/13--sk-deep-review/v1.3.0.0.md]`
 - [x] CHK-024 [P1] Improve-agent Phase 008 verification is recorded in the release note. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md]`

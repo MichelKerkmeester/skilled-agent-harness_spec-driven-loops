@@ -21,23 +21,23 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## 4. Agents
 
-> `.opencode/agent/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`.
+> `.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/agent/create.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/agents/create.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---
 
 ## 5. Skills
 
-> `.opencode/skill/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
+> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature_catalog/`, `manual_testing_playbook/`, `scripts/`, `shared/`, `mcp_server/`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skill/system-spec-kit/scripts/spec/create.sh | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/skill/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/skill/system-spec-kit/scripts/utils/template-structure.js | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/scripts/spec/create.sh | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/scripts/utils/template-structure.js | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---

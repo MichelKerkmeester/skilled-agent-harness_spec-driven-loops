@@ -134,8 +134,8 @@ Our manual-orchestrated parallel execution (multiple @deep-research agents dispa
 - https://api.github.com/repos/davebcn87/pi-autoresearch/issues?state=all (30 issues)
 - https://api.github.com/repos/davebcn87/pi-autoresearch/issues/22 (MAD confidence PR)
 - https://api.github.com/repos/davebcn87/pi-autoresearch/issues/12 (parallel loops proposal)
-- .opencode/skill/sk-deep-research/references/convergence.md (our convergence algorithm)
-- .opencode/skill/sk-deep-research/references/state-format.md (our state format spec)
+- .opencode/skills/sk-deep-research/references/convergence.md (our convergence algorithm)
+- .opencode/skills/sk-deep-research/references/state-format.md (our state format spec)
 
 ## Assessment
 - New information ratio: 0.85

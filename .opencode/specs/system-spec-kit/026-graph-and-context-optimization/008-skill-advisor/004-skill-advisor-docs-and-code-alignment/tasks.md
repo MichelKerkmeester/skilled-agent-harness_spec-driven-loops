@@ -103,6 +103,6 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - Spec: `spec.md`
 - Parent: `../../008-skill-advisor/007-skill-advisor-hook-surface/implementation-summary.md`
 - sk-code-opencode: `../../../../skill/sk-code-opencode/SKILL.md`
-- skill-advisor: `.opencode/skill/skill-advisor/`
+- skill-advisor: `.opencode/skills/skill-advisor/`
 - Phase 020 reference doc: ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md
 <!-- /ANCHOR:cross-refs -->

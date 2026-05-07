@@ -17,7 +17,7 @@ Commands run from the repository root:
 ```bash
 find .opencode/skill -type d -name 'manual_testing_playbook*' -or -type d -name 'manual-testing-playbook*'
 find .opencode/skill -type f -name '*playbook*'
-find .opencode/skill/sk-doc -name '*playbook*'
+find .opencode/skills/sk-doc -name '*playbook*'
 ```
 
 ---
@@ -28,12 +28,12 @@ Relevant paths found:
 
 | Surface | Path | Notes |
 |---------|------|-------|
-| system-spec-kit | `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Root manual testing playbook for Spec Kit Memory/system-spec-kit. |
-| skill_advisor | `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Nested Skill Advisor native-first playbook. |
-| code_graph | `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/` | No standalone code_graph playbook directory was found; current code_graph coverage lives in this system-spec-kit category. |
-| sk-doc template | `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Root playbook template. |
-| sk-doc creation reference | `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Authoring workflow and validation guidance. |
-| cli-opencode reference package | `.opencode/skill/cli-opencode/manual_testing_playbook/` | Existing numbered category pattern with per-feature files. |
+| system-spec-kit | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Root manual testing playbook for Spec Kit Memory/system-spec-kit. |
+| skill_advisor | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Nested Skill Advisor native-first playbook. |
+| code_graph | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/` | No standalone code_graph playbook directory was found; current code_graph coverage lives in this system-spec-kit category. |
+| sk-doc template | `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Root playbook template. |
+| sk-doc creation reference | `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Authoring workflow and validation guidance. |
+| cli-opencode reference package | `.opencode/skills/cli-opencode/manual_testing_playbook/` | Existing numbered category pattern with per-feature files. |
 
 Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude-code`, `mcp-code-mode`, `mcp-clickup`, `mcp-chrome-devtools`, `mcp-coco-index`, `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent`.
 
@@ -43,10 +43,10 @@ Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Canonical package shape and validation workflow. |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Required root and per-feature contract fields. |
-| `.opencode/skill/cli-opencode/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` | Per-feature scenario format with 9-column contract. |
-| `.opencode/skill/cli-opencode/manual_testing_playbook/02--external-dispatch/003-self-invocation-refusal.md` | Safety-focused scenario with variants and triage. |
+| `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Canonical package shape and validation workflow. |
+| `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Required root and per-feature contract fields. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` | Per-feature scenario format with 9-column contract. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/003-self-invocation-refusal.md` | Safety-focused scenario with variants and triage. |
 
 ---
 
@@ -58,7 +58,7 @@ Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude
 | 033 | `../../020-memory-retention-sweep/spec.md` and MCP README document `memory_retention_sweep`. |
 | 034 | `../../021-half-auto-upgrades/spec.md` and Skill Advisor handlers document diagnostic `advisor_status` plus explicit `advisor_rebuild`. |
 | 035 | `022-full-matrix-execution-validation/logs/feature-runs/F5-code-graph-query.log`, `F6-code-graph-verify.log`, `F7-causal-graph.log`, `F8-cocoindex-calibration.log`, plus F5-F8 JSONL result files. |
-| 036 | `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md`, `matrix-manifest.json`, adapters, and matrix adapter tests. |
+| 036 | `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md`, `matrix-manifest.json`, adapters, and matrix adapter tests. |
 
 ---
 

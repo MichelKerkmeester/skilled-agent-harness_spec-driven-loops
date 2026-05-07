@@ -17,9 +17,9 @@ _memory:
     blockers:
       - ".codex writes denied by sandbox with Operation not permitted"
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts"
-      - ".opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts"
-      - ".opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts"
+      - ".opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts"
     completion_pct: 90
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 ---
@@ -53,11 +53,11 @@ Phase 024 now has the measurement machinery that Phases 020-023 deferred: a stat
 
 ### Live-Session Wrapper
 
-`live-session-wrapper.ts` exposes `configureSmartRouterSession()` and `onToolCall()` so runtime-specific adapters can record `Read` calls against `.opencode/skill/*` resources. Those records now remain identifiable as live-wrapper evidence, which lets downstream measurement distinguish operational telemetry from predictive static runs without changing runtime behavior.
+`live-session-wrapper.ts` exposes `configureSmartRouterSession()` and `onToolCall()` so runtime-specific adapters can record `Read` calls against `.opencode/skills/*` resources. Those records now remain identifiable as live-wrapper evidence, which lets downstream measurement distinguish operational telemetry from predictive static runs without changing runtime behavior.
 
 ### Telemetry Analyzer
 
-`smart-router-analyze.ts` reads `.opencode/skill/.smart-router-telemetry/compliance.jsonl`, skips invalid lines, handles empty files with a no-data report, and aggregates compliance distribution, over-load rate, under-load rate and ON_DEMAND trigger rate.
+`smart-router-analyze.ts` reads `.opencode/skills/.smart-router-telemetry/compliance.jsonl`, skips invalid lines, handles empty files with a no-data report, and aggregates compliance distribution, over-load rate, under-load rate and ON_DEMAND trigger rate.
 
 ### Track 1 Block
 
@@ -71,15 +71,15 @@ The requested `.codex/settings.json` and `.codex/policy.json` could not be writt
 | `tasks.md` | Created | Track completed and blocked work |
 | `checklist.md` | Created | Track verification evidence |
 | `implementation-summary.md` | Created | Capture final state and handoff |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement.ts` | Created | Static corpus measurement harness |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Created | Full 200-prompt static measurement report |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Created | Per-prompt measurement output plus summary row |
-| `.opencode/skill/system-spec-kit/scripts/observability/live-session-wrapper.ts` | Created | Observe-only live-session read recorder |
-| `.opencode/skill/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md` | Created | Runtime setup guide for Claude, Codex, Gemini and Copilot |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze.ts` | Created | Compliance JSONL analyzer |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md` | Created | Analyzer report over current compliance JSONL |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts` | Created | Harness fixture tests |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts` | Created | Analyzer fixture tests |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement.ts` | Created | Static corpus measurement harness |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Created | Full 200-prompt static measurement report |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Created | Per-prompt measurement output plus summary row |
+| `.opencode/skills/system-spec-kit/scripts/observability/live-session-wrapper.ts` | Created | Observe-only live-session read recorder |
+| `.opencode/skills/system-spec-kit/scripts/observability/LIVE_SESSION_WRAPPER_SETUP.md` | Created | Runtime setup guide for Claude, Codex, Gemini and Copilot |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze.ts` | Created | Compliance JSONL analyzer |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-analyze-report-2026-04-19T17-57-07-192Z.md` | Created | Analyzer report over current compliance JSONL |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-measurement.vitest.ts` | Created | Harness fixture tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/smart-router-analyze.vitest.ts` | Created | Analyzer fixture tests |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -119,7 +119,7 @@ The implementation reused the Phase 023 telemetry primitive and ported the Phase
 | Analyzer run | PASS: 202 records, 0 parse errors, markdown report emitted |
 | Smart-router checker | PASS: no missing paths; existing 5 bloat warnings remain informational |
 | Phase 020/current regression subset | PASS: 20 files / 138 tests |
-| Strict 024 validation | PASS: `NODE_OPTIONS='--import ./.opencode/skill/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs' bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` passed with errors=0 |
+| Strict 024 validation | PASS: `NODE_OPTIONS='--import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs' bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` passed with errors=0 |
 | Track 1 Codex config | BLOCKED: sandbox denies writes under `.codex` |
 <!-- /ANCHOR:verification -->
 

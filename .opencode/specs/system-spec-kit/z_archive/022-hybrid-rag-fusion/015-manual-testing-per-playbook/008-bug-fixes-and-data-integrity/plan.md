@@ -73,7 +73,7 @@ Manual test execution — sequential scenario runner
 
 ### Key Components
 
-- **Playbook files**: Source of truth for each scenario's steps and expected outcomes. Located in `.opencode/skill/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/`
+- **Playbook files**: Source of truth for each scenario's steps and expected outcomes. Located in `.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/`
 - **MCP tool chain**: All scenario steps are executed via `mcp__spec_kit_memory__*` tools
 - **SQLite DB**: State store under test; read before and after each mutating scenario
 - **checklist.md**: Evidence log — one P0 item per scenario, updated as runs complete

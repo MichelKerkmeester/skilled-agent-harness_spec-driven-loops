@@ -50,9 +50,9 @@ Two contract violations in the deep-review/deep-research skill output:
 
 **Bug 1 — Iteration audit trail not staged for commit**: Commit `6a8095907 feat(026/000/005/005): post-program cleanup loop + validator local-leak fix` shipped only the `review-report` markdown (193 lines) and dropped the entire iteration trail (`iterations/`, `deltas/`, `deep-review-state.jsonl`, `deep-review-strategy` markdown, `deep-review-config.json`, `deep-review-findings-registry.json`). The skill's externalized-state contract was violated.
 
-Root cause: the deep-review YAML at `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1142-1149` declares the `git add` for iteration files in a `reference_only_appendix` block with the explicit note "Checkpoint commits are intentionally excluded from workflow.steps." So the workflow never stages iteration files. Operators who do `git add review-report.md` (the obvious target file) miss everything else.
+Root cause: the deep-review YAML at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1142-1149` declares the `git add` for iteration files in a `reference_only_appendix` block with the explicit note "Checkpoint commits are intentionally excluded from workflow.steps." So the workflow never stages iteration files. Operators who do `git add review-report.md` (the obvious target file) miss everything else.
 
-**Bug 2 — Always-pt-NN wrapper for child phases on first run**: `resolveArtifactRoot` (`.opencode/skill/system-spec-kit/shared/review-research-paths.cjs:199-224`) always wraps child-phase artifacts in a `{phaseSlug}-pt-NN` subfolder, even on first run. This produces unnecessary nesting like `005-post-program-cleanup/review/005-post-program-cleanup-pt-01/` when the parent's `review/` folder is empty. The `pt-NN` convention should only kick in when there's already prior content (re-review scenarios), not on every first run.
+**Bug 2 — Always-pt-NN wrapper for child phases on first run**: `resolveArtifactRoot` (`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:199-224`) always wraps child-phase artifacts in a `{phaseSlug}-pt-NN` subfolder, even on first run. This produces unnecessary nesting like `005-post-program-cleanup/review/005-post-program-cleanup-pt-01/` when the parent's `review/` folder is empty. The `pt-NN` convention should only kick in when there's already prior content (re-review scenarios), not on every first run.
 
 ### Purpose
 
@@ -68,7 +68,7 @@ Fix both contract violations:
 
 ### In Scope
 
-- Update `resolveArtifactRoot` in `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs`:
+- Update `resolveArtifactRoot` in `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs`:
   - Child phases with EMPTY `{mode}/` directory → flat (artifactDir = rootDir, subfolder = null)
   - Child phases with EXISTING flat config matching current target → reuse flat
   - Child phases with EXISTING pt-NN matching current target → reuse pt-NN (existing behavior)
@@ -76,26 +76,26 @@ Fix both contract violations:
   - Root specs → flat (no change)
 
 - Add `git add {state_paths.artifact_dir}` step in synthesis phase of:
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
   - Place AFTER the synthesis-output write so the staged set includes the synthesis report AND all upstream state.
   - DO NOT auto-commit — operators retain commit authority.
 
-- Update existing tests in `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` to reflect the new flat-first behavior. Add new test cases for:
+- Update existing tests in `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` to reflect the new flat-first behavior. Add new test cases for:
   - First run with empty rootDir → flat
   - Reuse flat on continuation (config matches current target)
   - Allocate pt-NN when prior content exists (flat or pt-NN) for different target
 
 - Update doc references where the "always pt-NN" rule is described:
-  - `.opencode/skill/sk-deep-review/SKILL.md`
-  - `.opencode/skill/sk-deep-research/SKILL.md`
-  - `.opencode/skill/sk-deep-review/references/state_format.md`
-  - `.opencode/skill/sk-deep-research/references/state_format.md`
-  - `.opencode/skill/sk-deep-review/references/loop_protocol.md`
-  - `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-  - `.opencode/skill/system-spec-kit/references/structure/folder_structure.md`
+  - `.opencode/skills/sk-deep-review/SKILL.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-review/references/state_format.md`
+  - `.opencode/skills/sk-deep-research/references/state_format.md`
+  - `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+  - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+  - `.opencode/skills/system-spec-kit/references/structure/folder_structure.md`
 
 ### Out of Scope
 
@@ -108,19 +108,19 @@ Fix both contract violations:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Edit | Update `resolveArtifactRoot` for flat-first on empty rootDir |
-| `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Edit | Update existing tests + add flat-first cases |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Edit | Add `git add {artifact_dir}` step at synthesis end |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Edit | Same as auto |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Edit | Same as auto |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Edit | Same as auto |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Edit | Update flat-first convention doc |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Edit | Same |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Edit | Same |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Edit | Same |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Edit | Same |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Edit | Same |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | Edit | Same |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Edit | Update `resolveArtifactRoot` for flat-first on empty rootDir |
+| `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Edit | Update existing tests + add flat-first cases |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Edit | Add `git add {artifact_dir}` step at synthesis end |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Edit | Same as auto |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Edit | Same as auto |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Edit | Same as auto |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Edit | Update flat-first convention doc |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Edit | Same |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Edit | Same |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Edit | Same |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Edit | Same |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Edit | Same |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Edit | Same |
 <!-- /ANCHOR:scope -->
 
 ---

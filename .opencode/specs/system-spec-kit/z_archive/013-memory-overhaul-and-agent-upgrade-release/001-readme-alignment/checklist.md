@@ -29,8 +29,8 @@ contextType: "implementation"
 
 ## P0 — High-Traffic READMEs
 
-- [x] CHK-001 [P0] `.opencode/skill/system-spec-kit/README.md` audited for 5-source, 7 intents, schema v13, document-type scoring [Evidence: Agent A19 updated with spec 126 hardening notes]
-- [x] CHK-002 [P0] `.opencode/skill/system-spec-kit/mcp_server/README.md` audited for same + includeSpecDocs parameter [Evidence: Agent A19 added metadata preservation notes]
+- [x] CHK-001 [P0] `.opencode/skills/system-spec-kit/README.md` audited for 5-source, 7 intents, schema v13, document-type scoring [Evidence: Agent A19 updated with spec 126 hardening notes]
+- [x] CHK-002 [P0] `.opencode/skills/system-spec-kit/mcp_server/README.md` audited for same + includeSpecDocs parameter [Evidence: Agent A19 added metadata preservation notes]
 - [x] CHK-003 [P0] `.opencode/README.md` statistics table verified (counts accurate) [Evidence: Agent A20 updated with 5-source indexing and 7-intent routing]
 
 ## P1 — Sub-Directory READMEs
@@ -39,7 +39,7 @@ contextType: "implementation"
 - [x] CHK-011 [P1] All scripts/ READMEs audited (16 files) [Evidence: Agents A06 and A07 updated scripts READMEs]
 - [x] CHK-012 [P1] All templates/ READMEs audited (9 files) [Evidence: Agent A08 updated all template README files]
 - [x] CHK-013 [P1] All shared/ READMEs audited (4 files) [Evidence: Agent A07 updated shared/ docs]
-- [x] CHK-014 [P1] `.opencode/skill/README.md` verified current [Evidence: Agent A01 updated system-spec-kit version to v2.2.9.0]
+- [x] CHK-014 [P1] `.opencode/skills/README.md` verified current [Evidence: Agent A01 updated system-spec-kit version to v2.2.9.0]
 - [x] CHK-015 [P1] `.opencode/install_guides/README.md` verified [Evidence: Agent A01 corrected guide count and skill versions]
 - [x] CHK-016 [P1] All workflow skill READMEs audited (6 files) [Evidence: Agent A09 updated all 6 workflow skill READMEs; MCP skills tracked in CHK-017]
 - [x] CHK-017 [P1] All MCP skill READMEs audited (2 files) [Evidence: Agent A09 updated mcp-code-mode and mcp-figma READMEs]

@@ -36,7 +36,7 @@
     "strategyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/deep-research-strategy.md",
     "machineOwnedSections": ["key-questions","answered-questions","what-worked","what-failed","exhausted-approaches","ruled-out-directions","next-focus"]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
   "pauseSentinelPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/002-copilot-hook-parity-remediation/research/007-deep-review-remediation-pt-01/.deep-research-pause",
   "archiveRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/research_archive/007-deep-review-remediation-pt-01",
   "fileProtection": {

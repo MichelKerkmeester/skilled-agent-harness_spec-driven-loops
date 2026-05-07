@@ -19,12 +19,12 @@ _memory:
     next_safe_action: "Apply six surgical doc edits then validate strict"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-opencode/SKILL.md"
-      - ".opencode/skill/cli-opencode/references/agent_delegation.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-codex/assets/prompt_templates.md"
-      - ".opencode/skill/cli-claude-code/assets/prompt_templates.md"
-      - ".opencode/skill/cli-gemini/assets/prompt_templates.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-opencode/references/agent_delegation.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-codex/assets/prompt_templates.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_templates.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_templates.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-010-cli-drift"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,12 +88,12 @@ Land six surgical doc edits so each CLI skill states one consistent dispatch con
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-opencode/SKILL.md` | Modify | Disambiguate subagent dispatch contract — note the `references/agent_delegation.md` examples are routed-via-orchestrate, not direct invocation |
-| `.opencode/skill/cli-opencode/references/agent_delegation.md` | Modify | State explicitly that deep-research/deep-review/improve-* dispatch goes through their parent commands, not via `--agent <slug>` |
-| `.opencode/skill/cli-copilot/SKILL.md` | Modify | Reconcile effort-flag prose; document precedence (CLI flag > config) and link copilot 1.0.36+ baseline |
-| `.opencode/skill/cli-codex/assets/prompt_templates.md` | Modify | Add explicit `--model gpt-5.5 --reasoning-effort high` pins to single-file/multi-file templates; correct `--full-auto` description |
-| `.opencode/skill/cli-claude-code/assets/prompt_templates.md` | Modify | Add explicit `--model claude-sonnet-4-6` to single-file/multi-file templates |
-| `.opencode/skill/cli-gemini/assets/prompt_templates.md` | Modify | Replace bare `--yolo` in write templates with explicit "approved-write" gating language and split safe templates |
+| `.opencode/skills/cli-opencode/SKILL.md` | Modify | Disambiguate subagent dispatch contract — note the `references/agent_delegation.md` examples are routed-via-orchestrate, not direct invocation |
+| `.opencode/skills/cli-opencode/references/agent_delegation.md` | Modify | State explicitly that deep-research/deep-review/improve-* dispatch goes through their parent commands, not via `--agent <slug>` |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modify | Reconcile effort-flag prose; document precedence (CLI flag > config) and link copilot 1.0.36+ baseline |
+| `.opencode/skills/cli-codex/assets/prompt_templates.md` | Modify | Add explicit `--model gpt-5.5 --reasoning-effort high` pins to single-file/multi-file templates; correct `--full-auto` description |
+| `.opencode/skills/cli-claude-code/assets/prompt_templates.md` | Modify | Add explicit `--model claude-sonnet-4-6` to single-file/multi-file templates |
+| `.opencode/skills/cli-gemini/assets/prompt_templates.md` | Modify | Replace bare `--yolo` in write templates with explicit "approved-write" gating language and split safe templates |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +144,7 @@ Land six surgical doc edits so each CLI skill states one consistent dispatch con
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §6
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - No other packet dependencies
 <!-- /ANCHOR:risks -->
 

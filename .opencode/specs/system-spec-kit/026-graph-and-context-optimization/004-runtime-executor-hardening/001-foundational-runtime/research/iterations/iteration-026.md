@@ -6,7 +6,7 @@ I re-checked the five requested seams against prior iterations and Phase 015, th
 ## Findings
 
 ### Finding R26-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
 - **Lines:** `598-601`
 - **Severity:** P2
 - **Description:** The `missing -> stale` collapse is no longer just an implementation detail; it is now a directly asserted public contract. `trustStateFromStructuralStatus()` still maps both `stale` and `missing` structural states to the same provenance label, and the newer structural contract tests now explicitly lock that downgraded label in for an empty graph.
@@ -14,7 +14,7 @@ I re-checked the five requested seams against prior iterations and Phase 015, th
 - **Downstream Impact:** The OpenCode transport renders only the envelope-level provenance line (`lib/context/opencode-transport.ts:64-71`), so missing structural context is now contractually presented to operators and agents as a recoverable "`stale`" graph rather than an absent one. That weakens downstream routing between "refresh existing graph state" and "there is no trustworthy structural graph yet."
 
 ### Finding R26-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts`
 - **Lines:** `136-166`
 - **Severity:** P2
 - **Description:** `session_health` preserves the same collapsed `trustStateFromStructuralStatus(...)` output, but unlike `session_resume` and `session_bootstrap` it does not attach section-level `structuralTrust` axes at all. The health surface therefore exposes only the coarse envelope label (`live`/`stale`) even when the underlying structural status is `missing`.

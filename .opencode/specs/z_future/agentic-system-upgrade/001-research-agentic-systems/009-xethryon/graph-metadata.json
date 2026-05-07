@@ -57,10 +57,10 @@
       "external/XETHRYON_MODS.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-010.md",
-      ".opencode/agent/deep-research.md",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts"
+      ".opencode/agents/deep-research.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts"
     ],
     "entities": [
       {
@@ -162,25 +162,25 @@
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
         "name": "reconsolidation-bridge.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "session-resume.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
         "source": "derived"
       },
       {

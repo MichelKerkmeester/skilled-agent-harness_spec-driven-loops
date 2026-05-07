@@ -36,7 +36,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/mcp-coco-index/feedback/search-feedback.jsonl",
+      ".opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -44,13 +44,13 @@
       "implementation-summary.md",
       "hooks/claude/session-prime.ts",
       "hooks/claude/compact-inject.ts",
-      ".opencode/skill/mcp-coco-index/README.md"
+      ".opencode/skills/mcp-coco-index/README.md"
     ],
     "entities": [
       {
         "name": "search-feedback.jsonl",
         "kind": "file",
-        "path": ".opencode/skill/mcp-coco-index/feedback/search-feedback.jsonl",
+        "path": ".opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl",
         "source": "derived"
       },
       {
@@ -98,7 +98,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-coco-index/README.md",
+        "path": ".opencode/skills/mcp-coco-index/README.md",
         "source": "derived"
       },
       {

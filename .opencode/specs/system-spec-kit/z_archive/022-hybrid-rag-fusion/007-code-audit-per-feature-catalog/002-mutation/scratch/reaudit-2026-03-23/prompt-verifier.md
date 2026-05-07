@@ -14,11 +14,11 @@ For each of the 10 features, verify at the code level:
 ## Files to Read
 
 ### Feature Catalog Entries (read ALL 10)
-Directory: `.opencode/skill/system-spec-kit/feature_catalog/02--mutation/`
+Directory: `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/`
 Files: 01 through 10 (all .md files in this directory)
 
 ### MCP Server Source Code
-Root: `.opencode/skill/system-spec-kit/mcp_server/`
+Root: `.opencode/skills/system-spec-kit/mcp_server/`
 Key directories:
 - `handlers/save/` — save handler implementations
 - `handlers/` — mutation tool handlers

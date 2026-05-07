@@ -30,13 +30,13 @@ For each tool answer:
 
 ### Source files to read (representative — add more as needed)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/coverage-graph.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/deep-loop-graph-*.ts`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/`
 - Any tests or fixtures that exercise these tools
 
 ### Constraints

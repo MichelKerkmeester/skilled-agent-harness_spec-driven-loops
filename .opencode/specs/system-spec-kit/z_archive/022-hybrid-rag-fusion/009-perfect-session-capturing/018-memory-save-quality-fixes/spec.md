@@ -78,16 +78,16 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts` | Modify | Fix duplicated decision rendering so CONTEXT, RATIONALE, and CHOSEN no longer collapse into the same value |
-| `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` | Modify | Detect completion from observation-based Next Steps when normalized JSON moves `nextSteps` out of the top level |
-| `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` | Modify | Replace broad blocker keywords with structural blocker patterns |
-| `.opencode/skill/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts` | Modify | Remove generic code-pattern matchers and require stronger keyword evidence |
-| `.opencode/skill/system-spec-kit/shared/trigger-extractor.ts` | Modify | Filter short generic trigger phrases, expand the allowlist, and keep relaxed mode quality-aware |
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Parse em dash, en dash, and colon file separators without contaminating `filesModified` |
-| `.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts` | Modify | Lower the merge threshold and cap merged children so useful files stay visible |
-| `.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts` | Modify | Synthesize assistant messages from structured JSON when prompts are sparse |
-| `.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts` | Modify | Update the golden expectation for the intentional Fix 5 trigger-filter improvement |
-| `.opencode/skill/system-spec-kit/shared/dist/trigger-extractor.js` | Modify | Rebuild the distributed trigger-extractor artifact after the source changes |
+| `.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts` | Modify | Fix duplicated decision rendering so CONTEXT, RATIONALE, and CHOSEN no longer collapse into the same value |
+| `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` | Modify | Detect completion from observation-based Next Steps when normalized JSON moves `nextSteps` out of the top level |
+| `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` | Modify | Replace broad blocker keywords with structural blocker patterns |
+| `.opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts` | Modify | Remove generic code-pattern matchers and require stronger keyword evidence |
+| `.opencode/skills/system-spec-kit/shared/trigger-extractor.ts` | Modify | Filter short generic trigger phrases, expand the allowlist, and keep relaxed mode quality-aware |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Parse em dash, en dash, and colon file separators without contaminating `filesModified` |
+| `.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts` | Modify | Lower the merge threshold and cap merged children so useful files stay visible |
+| `.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts` | Modify | Synthesize assistant messages from structured JSON when prompts are sparse |
+| `.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts` | Modify | Update the golden expectation for the intentional Fix 5 trigger-filter improvement |
+| `.opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js` | Modify | Rebuild the distributed trigger-extractor artifact after the source changes |
 
 ### Root Cause Inventory
 

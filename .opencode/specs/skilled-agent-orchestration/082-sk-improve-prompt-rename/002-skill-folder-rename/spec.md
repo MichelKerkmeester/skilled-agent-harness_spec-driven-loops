@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `082-sk-improve-prompt-rename` |
 | **Phase** | 002 of 006 |
-| **Handoff Criteria** | `ls .opencode/skill/sk-prompt/` succeeds; advisor status reports generation bumped after rebuild |
+| **Handoff Criteria** | `ls .opencode/skills/sk-prompt/` succeeds; advisor status reports generation bumped after rebuild |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -61,7 +61,7 @@ Phase 002 performs the physical `git mv`, updates skill internals and `skill-gra
 ## 3. SCOPE
 
 ### In Scope
-- Run `git mv .opencode/skill/sk-improve-prompt .opencode/skill/sk-prompt`.
+- Run `git mv .opencode/skills/sk-improve-prompt .opencode/skills/sk-prompt`.
 - Update `SKILL.md` frontmatter `name:` and skill-local `README.md`, `graph-metadata.json`, changelog headers, references, and assets.
 - Update `skill-graph.json` keys for signals, families, adjacency, and hub skills.
 - Verify `.opencode/changelog/sk-improve-prompt` and recreate or retarget it only if required.
@@ -76,11 +76,11 @@ Phase 002 performs the physical `git mv`, updates skill internals and `skill-gra
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-prompt/` -> `.opencode/skill/sk-prompt/` | Rename | Canonical skill folder move |
-| `.opencode/skill/sk-prompt/{SKILL.md,README.md,graph-metadata.json}` | Modify | Name, path, and `skill_id` refs |
-| `.opencode/skill/sk-prompt/changelog/v1.0.0.0.md`, `v1.1.0.0.md`, `v1.2.0.0.md` | Modify | Changelog headers and self-refs |
-| `.opencode/skill/sk-prompt/references/*`, `.opencode/skill/sk-prompt/assets/*` | Modify | Skill-local self-references |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Graph keys and adjacency IDs |
+| `.opencode/skills/sk-improve-prompt/` -> `.opencode/skills/sk-prompt/` | Rename | Canonical skill folder move |
+| `.opencode/skills/sk-prompt/{SKILL.md,README.md,graph-metadata.json}` | Modify | Name, path, and `skill_id` refs |
+| `.opencode/skills/sk-prompt/changelog/v1.0.0.0.md`, `v1.1.0.0.md`, `v1.2.0.0.md` | Modify | Changelog headers and self-refs |
+| `.opencode/skills/sk-prompt/references/*`, `.opencode/skills/sk-prompt/assets/*` | Modify | Skill-local self-references |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modify | Graph keys and adjacency IDs |
 | `.opencode/changelog/sk-improve-prompt` | Rename/Retarget | Symlink handling after folder move |
 <!-- /ANCHOR:scope -->
 
@@ -93,8 +93,8 @@ Phase 002 performs the physical `git mv`, updates skill internals and `skill-gra
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Rename the physical skill folder to `.opencode/skill/sk-prompt/`. | `ls .opencode/skill/sk-prompt/SKILL.md` succeeds and the old folder path is absent. |
-| REQ-002 | Update skill-local references from `sk-improve-prompt` to `sk-prompt`. | Scoped `rg` over `.opencode/skill/sk-prompt` returns no `sk-improve-prompt` matches. |
+| REQ-001 | Rename the physical skill folder to `.opencode/skills/sk-prompt/`. | `ls .opencode/skills/sk-prompt/SKILL.md` succeeds and the old folder path is absent. |
+| REQ-002 | Update skill-local references from `sk-improve-prompt` to `sk-prompt`. | Scoped `rg` over `.opencode/skills/sk-prompt` returns no `sk-improve-prompt` matches. |
 | REQ-003 | Update advisor graph keys and values for the prompt skill. | Scoped `rg` over `skill-graph.json` returns no `sk-improve-prompt` matches and `jq` passes. |
 | REQ-004 | Rebuild advisor state after graph edits. | Advisor rebuild reports a generation bump and status reports freshness `live`. |
 
@@ -111,8 +111,8 @@ Phase 002 performs the physical `git mv`, updates skill internals and `skill-gra
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `.opencode/skill/sk-prompt/SKILL.md` exists and its frontmatter `name:` field is `sk-prompt`.
-- **SC-002**: No `sk-improve-prompt` literal remains in `.opencode/skill/sk-prompt/` or Phase 002's `skill-graph.json` scope.
+- **SC-001**: `.opencode/skills/sk-prompt/SKILL.md` exists and its frontmatter `name:` field is `sk-prompt`.
+- **SC-002**: No `sk-improve-prompt` literal remains in `.opencode/skills/sk-prompt/` or Phase 002's `skill-graph.json` scope.
 - **SC-003**: `skill-graph.json` remains valid JSON.
 - **SC-004**: Advisor rebuild completes and advisor status reports freshness `live`.
 - **SC-005**: Strict validation passes on this phase folder.
@@ -184,15 +184,15 @@ Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should make 
 <!-- ANCHOR:handoff -->
 ## 12. HANDOFF CRITERIA
 
-- `ls .opencode/skill/sk-prompt/` succeeds.
-- `rg 'sk-improve-prompt' .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` returns 0.
+- `ls .opencode/skills/sk-prompt/` succeeds.
+- `rg 'sk-improve-prompt' .opencode/skills/sk-prompt .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` returns 0.
 - `.opencode/changelog/sk-improve-prompt` is gone or retargeted by the verified symlink policy.
 - `mcp__spec_kit_memory__advisor_rebuild` completes and advisor status reports generation bumped.
 
 ```bash
-ls .opencode/skill/sk-prompt/
-rg 'sk-improve-prompt' .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename --strict
+ls .opencode/skills/sk-prompt/
+rg 'sk-improve-prompt' .opencode/skills/sk-prompt .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename --strict
 ```
 <!-- /ANCHOR:handoff -->
 

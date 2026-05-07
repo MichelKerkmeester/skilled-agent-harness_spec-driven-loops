@@ -10,22 +10,22 @@ The weak-search probe didn’t match your expected shape: the runtime returned `
 
 ● Search (glob)
   │ "**/*{hybrid,search,routing,advisor}*.{md,ts,js}" in
-  │ .opencode/specs/system-spec-kit, .opencode/skill/system-spec-kit
+  │ .opencode/specs/system-spec-kit, .opencode/skills/system-spec-kit
   └ 8 files found
 
 ● Search (grep)
   │ "requestQuality|suggestedQueries|low_confidence|knowledge_gap|evidenceGapDet
-  │ ected" in **/*.{ts,js,json,md} (.opencode/skill/system-spec-kit)
+  │ ected" in **/*.{ts,js,json,md} (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Search (grep)
   │ "cocoindex|hybrid retrieval|hybrid
   │ search|artifactRouting|searchType":"hybrid|searchType: 'hybrid'|searchType =
-  │ 'hybrid'" in **/*.{ts,js,json,md} (.opencode/skill/system-spec-kit)
+  │ 'hybrid'" in **/*.{ts,js,json,md} (.opencode/skills/system-spec-kit)
   └ 6 lines found
 
 ● search (MCP: cocoindex_code) · where is hybrid memory_search retrieval quality and recovery sugge…
-  └ {"success":true,"results":[{"file_path":".opencode/skill/system-spec-kit...
+  └ {"success":true,"results":[{"file_path":".opencode/skills/system-spec-kit...
 
 I’ve got the weak-search behavior pinned down; now I’m narrowing to the files that actually generate that payload and the specs that describe the hybrid retrieval changes.
 
@@ -37,15 +37,15 @@ I’ve got the weak-search behavior pinned down; now I’m narrowing to the file
 ● Search (grep)
   │ "requestQuality\.requestQuality|suggestedQueries|recommendedAction|knowledge
   │ _gap|low_confidence|label === 'gap'|label: 'gap'" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 7 lines found
 
 ● Read search-results.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts
   └ L240:360 (121 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L45:95 (51 lines read)
 
 ● Search (grep)
@@ -58,7 +58,7 @@ I’ve found the formatter branch that turns weak retrieval into `broaden_or_ask
 ● Search (grep)
   │ "interface RequestQualityAssessment|type RequestQualityAssessment|function .
   │ *requestQuality|classify.*request.*quality|RecoveryPayload|suggestedQueries"
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 7 lines found
 
 ● Search (grep)
@@ -74,12 +74,12 @@ I’ve found the formatter branch that turns weak retrieval into `broaden_or_ask
   └ {"success":false,"results":[],"total_returned":0,"offset":0,"dedupedAlia...
 
 ● Read search-results.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts
   └ L1:80 (80 lines read)
 
 ● Search (grep)
   │ "buildRecoveryPayload|assessRequestQuality|RequestQualityAssessment|Recovery
-  │ Payload" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ Payload" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 7 lines found
 
 ● Search (grep)
@@ -92,19 +92,19 @@ I’ve found the formatter branch that turns weak retrieval into `broaden_or_ask
 I’ve got the UI/formatter edge; now I’m checking the quality scorer, recovery builder, and the main memory-search/hybrid-search pipeline so I can tell you which layer is most likely wrong.
 
 ● Read recovery-payload.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts
   └ L1:260 (260 lines read)
 
 ● Read confidence-scoring.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts
   └ L1:320 (320 lines read)
 
 ✗ Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/handlers/memory-search.ts
   └ Path does not exist
 
 ● Read hybrid-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
   └ L1:320 (319 lines read)
 
 ✗ Search (glob)
@@ -124,7 +124,7 @@ The key mismatch is already visible: the recovery builder eagerly synthesizes br
 ● Search (grep)
   │ "function buildRecoveryPayload|synthesizeBroadeningSuggestions|generateSugge
   │ stedQueries|shouldTriggerRecovery"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts)
   └ 45 lines found
 
 ● Search (glob)
@@ -132,11 +132,11 @@ The key mismatch is already visible: the recovery builder eagerly synthesizes br
   └ No matches found
 
 ● Search (glob)
-  │ "**/memory-search.ts" in .opencode/skill/system-spec-kit/mcp_server
+  │ "**/memory-search.ts" in .opencode/skills/system-spec-kit/mcp_server
   └ 1 file found
 
 ● Search (glob)
-  │ "**/memory-search*.{ts,js}" in .opencode/skill/system-spec-kit/mcp_server
+  │ "**/memory-search*.{ts,js}" in .opencode/skills/system-spec-kit/mcp_server
   └ 5 files found
 
 ● Read spec.md
@@ -153,7 +153,7 @@ The key mismatch is already visible: the recovery builder eagerly synthesizes br
 I’ve got enough to see the split: one spec defines the recovery/quality contract, another defines the query-intelligence retrieval path. I’m locating the handler entrypoint and any routing-advisor packet so I can order the starting points cleanly.
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:280 (280 lines read)
 
 ● Search (glob)
@@ -163,12 +163,12 @@ I’ve got enough to see the split: one spec defines the recovery/quality contra
 ● Search (grep)
   │ "assessRequestQuality|buildRecoveryPayload|shouldTriggerRecovery|requestQual
   │ ity|recovery"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ 40 lines found
 
 ● Search (grep)
   │ "formatSearchResults|hybridSearch|searchType|retrievalTrace|evidenceGapDetec
-  │ ted" (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts)
+  │ ted" (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
   └ 33 lines found
 
 ● Search (grep)
@@ -179,11 +179,11 @@ I’ve got enough to see the split: one spec defines the recovery/quality contra
 I’ve confirmed the handler path: `handlers/memory-search.ts` builds a hybrid pipeline and hands weak-result shaping off to the formatter. I’m just locating the exact 026 packet name now, since that looks like the newer routing-focused thread.
 
 ● Read recovery-payload.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts
   └ L320:390 (53 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L900:1185 (286 lines read)
 
 ● Search (grep)
@@ -194,7 +194,7 @@ I’ve confirmed the handler path: `handlers/memory-search.ts` builds a hybrid p
 
 ● Search (grep)
   │ "executePipeline|stage1|stage2|stage3|stage4" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline)
   └ 7 lines found
 
 I’ve got the main split now: the observed payload shape comes from the D5 retrieval-UX layer, while the actual candidate generation still starts in the V2 pipeline + hybrid search. I’m pulling the newer 026 tuning packet because that looks like the most recent routing-focused follow-on.
@@ -210,16 +210,16 @@ I’ve got the main split now: the observed payload shape comes from the D5 retr
   └ 4 files found
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts
   └ L1:220 (36 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candid
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candid
   │ ate-gen.ts
   └ L1:260 (260 lines read)
 
 ● Read stage2-fusion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion
   │ .ts
   └ L1:220 (220 lines read)
 
@@ -255,7 +255,7 @@ The 026 packet is just the coordination parent; the real detail lives in its mer
   └ 17 lines found
 
 ● Read orchestrator.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.
   │ ts
   └ L1:260 (195 lines read)
 
@@ -264,16 +264,16 @@ The 026 packet is just the coordination parent; the real detail lives in its mer
 If you’re debugging **this exact mismatch**, open these first, in order:
 
 1. `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation/spec.md` — defines the weak/gap recovery contract.
-2. `.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` — `assessRequestQuality()` is what labeled this request as `gap` instead of `weak`.
-3. `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts` — `buildRecoveryPayload()` falls back to `synthesizeBroadeningSuggestions()` when `recommendedAction === 'ask_user'` and no heuristic suggestions exist, which explains why `suggestedQueries` was not empty.
-4. `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts` — turns the request-quality + recovery payload into the final response contract.
+2. `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` — `assessRequestQuality()` is what labeled this request as `gap` instead of `weak`.
+3. `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts` — `buildRecoveryPayload()` falls back to `synthesizeBroadeningSuggestions()` when `recommendedAction === 'ask_user'` and no heuristic suggestions exist, which explains why `suggestedQueries` was not empty.
+4. `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` — turns the request-quality + recovery payload into the final response contract.
 
 If the bug is actually **earlier in retrieval**, start here next:
 
-1. `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` — main entrypoint; builds the hybrid pipeline and passes query/specFolder into formatting.
-2. `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts` — four-stage flow.
-3. `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` — best first place for candidate-generation/search-routing issues.
-4. `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` — low-level hybrid retrieval path.
+1. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` — main entrypoint; builds the hybrid pipeline and passes query/specFolder into formatting.
+2. `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts` — four-stage flow.
+3. `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` — best first place for candidate-generation/search-routing issues.
+4. `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` — low-level hybrid retrieval path.
 5. `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/spec.md` — best historical spec for prior search-pipeline failure modes.
 6. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/implementation-summary.md` — best recent summary for shipped search-fusion and routing tuning.
 

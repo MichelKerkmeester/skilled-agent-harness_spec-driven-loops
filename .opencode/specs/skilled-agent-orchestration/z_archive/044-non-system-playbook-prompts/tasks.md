@@ -73,8 +73,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Inventory all 126 scoped markdown files and record per-target counts (`.opencode/skill/*/manual_testing_playbook/`, `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`) (`total_markdown_files=126`)
-- [x] T002 Extract the shared modernization contract from the current `sk-doc` template assets plus the richer `sk-deep-research` and `sk-deep-review` playbooks (`.opencode/skill/sk-doc/assets/documentation/testing_playbook/`) (`shared rewrite contract applied across all five targets`)
+- [x] T001 Inventory all 126 scoped markdown files and record per-target counts (`.opencode/skills/*/manual_testing_playbook/`, `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`) (`total_markdown_files=126`)
+- [x] T002 Extract the shared modernization contract from the current `sk-doc` template assets plus the richer `sk-deep-research` and `sk-deep-review` playbooks (`.opencode/skills/sk-doc/assets/documentation/testing_playbook/`) (`shared rewrite contract applied across all five targets`)
 - [x] T003 Define the no-drift guardrails for IDs, filenames, category folders, command sequences, and destructive-scenario warnings (`spec.md`, `plan.md`) (`scoped diff and representative scenario reads stayed inside the documented guardrails`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -83,12 +83,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Update the root template contract in `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` (`template rewrite shipped in the scoped 124-file diff`)
-- [x] T005 Update the per-scenario template contract in `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` (`snippet template rewrite shipped in the scoped 124-file diff`)
-- [x] T006 Rewrite root and scenario prompt wording for `mcp-coco-index` without changing scenario inventory (`.opencode/skill/mcp-coco-index/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
-- [x] T007 Rewrite root and scenario prompt wording for `sk-improve-agent` without changing scenario inventory (`.opencode/skill/sk-improve-agent/manual_testing_playbook/`) (`root index synchronized to include runtime-truth rows 07-008..07-010; RT-027 rewritten to fresh-session continuation guidance`)
-- [x] T008 [P] Harmonize existing rich-style wording for `sk-deep-research` (`.opencode/skill/sk-deep-research/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
-- [x] T009 [P] Harmonize existing rich-style wording for `sk-deep-review` (`.opencode/skill/sk-deep-review/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
+- [x] T004 Update the root template contract in `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` (`template rewrite shipped in the scoped 124-file diff`)
+- [x] T005 Update the per-scenario template contract in `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` (`snippet template rewrite shipped in the scoped 124-file diff`)
+- [x] T006 Rewrite root and scenario prompt wording for `mcp-coco-index` without changing scenario inventory (`.opencode/skills/mcp-coco-index/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
+- [x] T007 Rewrite root and scenario prompt wording for `sk-improve-agent` without changing scenario inventory (`.opencode/skills/sk-improve-agent/manual_testing_playbook/`) (`root index synchronized to include runtime-truth rows 07-008..07-010; RT-027 rewritten to fresh-session continuation guidance`)
+- [x] T008 [P] Harmonize existing rich-style wording for `sk-deep-research` (`.opencode/skills/sk-deep-research/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
+- [x] T009 [P] Harmonize existing rich-style wording for `sk-deep-review` (`.opencode/skills/sk-deep-review/manual_testing_playbook/`) (`root playbook validated successfully after rewrite`)
 - [x] T010 Reconcile target root playbook files with the final template language so package-level guidance and scenario files match (root playbook file in each of the four skill targets) (`validate_document.py` passed for all four rewritten root playbooks)
 <!-- /ANCHOR:phase-2 -->
 

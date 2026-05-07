@@ -58,7 +58,7 @@ The three **P2 observations** are: (a) sibling `cli-*/changelog/v*.md` files ret
 **Iteration cadence:** 5 iterations targeted with convergence detection at threshold 0.10. The intended executor was `cli-opencode` with `opencode-go/deepseek-v4-pro` per the user's explicit instruction. cli-opencode is not a wired deep-review YAML executor (the YAML supports `native | cli-codex | cli-gemini | cli-claude-code`); the user pre-authorized the fallback to native @deep-review on Opus.
 
 **What actually ran:**
-1. **Iteration 1 (cli-opencode dispatch attempt)**: `opencode run --model opencode-go/deepseek-v4-pro --dangerously-skip-permissions <prompt>` was dispatched in fast mode with the comprehensive 81-target review prompt. The opencode runtime failed to spawn the agent cleanly (skills directory probe error: tried `.opencode/skills/` instead of `.opencode/skill/`) and the dispatch returned without writing the iteration file. Corroborating evidence: a parallel orchestration was already running `opencode run --model opencode-go/deepseek-v4-pro` for packet 082's deep-review (PID 5884, started ~6 min before mine), saturating the deepseek-v4-pro provider.
+1. **Iteration 1 (cli-opencode dispatch attempt)**: `opencode run --model opencode-go/deepseek-v4-pro --dangerously-skip-permissions <prompt>` was dispatched in fast mode with the comprehensive 81-target review prompt. The opencode runtime failed to spawn the agent cleanly (skills directory probe error: tried `.opencode/skills/` instead of `.opencode/skills/`) and the dispatch returned without writing the iteration file. Corroborating evidence: a parallel orchestration was already running `opencode run --model opencode-go/deepseek-v4-pro` for packet 082's deep-review (PID 5884, started ~6 min before mine), saturating the deepseek-v4-pro provider.
 2. **Memory rule applied**: `feedback_cli_dispatch_unreliability.md` ("when 2+ codex/copilot dispatches run in parallel, fresh dispatches silently fail or partially revert; prefer direct sed/Edit for mechanical work") was followed. Sequential cli-opencode dispatches under contention from packet 082's concurrent run were judged unreliable.
 3. **Iterations 2-5 (synthesis-led)**: orchestrator (Claude Opus 4.7, 1M context, with full session-state awareness of packet 081's 4 commits) executed live verification commands against the working tree and produced this report. Each finding cites direct evidence from grep output, file inspection, validate.sh runs, advisor smoke tests, and JSON validity checks.
 
@@ -82,14 +82,14 @@ The three **P2 observations** are: (a) sibling `cli-*/changelog/v*.md` files ret
 ### P1 — Required (advisory; recommend follow-on action)
 
 **[P1-081-001] Test infrastructure compilation not independently verified**
-- **Evidence**: `cli-matrix.vitest.ts` (formerly imported `buildCopilotPromptArg` and had a `cli-copilot dispatch shape` describe block) and `executor-config.vitest.ts` (formerly had 3 cli-copilot test cases) have both been edited per the implementation log. Live grep: `grep -c 'cli-copilot\|buildCopilotPromptArg' <both files>` → 0 hits in each. However, `npm run test --prefix .opencode/skill/system-spec-kit/mcp_server/` was NOT run as part of this packet's verification.
+- **Evidence**: `cli-matrix.vitest.ts` (formerly imported `buildCopilotPromptArg` and had a `cli-copilot dispatch shape` describe block) and `executor-config.vitest.ts` (formerly had 3 cli-copilot test cases) have both been edited per the implementation log. Live grep: `grep -c 'cli-copilot\|buildCopilotPromptArg' <both files>` → 0 hits in each. However, `npm run test --prefix .opencode/skills/system-spec-kit/mcp_server/` was NOT run as part of this packet's verification.
 - **Why required**: `executor-config.ts` deleted the `buildCopilotPromptArg` function and updated TypeScript type unions. If any test file still references the deleted symbol, compilation will fail.
-- **Remediation**: Run `cd .opencode/skill/system-spec-kit/mcp_server && npm run build && npm test` and address any failures in a follow-on packet.
+- **Remediation**: Run `cd .opencode/skills/system-spec-kit/mcp_server && npm run build && npm test` and address any failures in a follow-on packet.
 
 **[P1-081-002] dist/ artifacts deleted without rebuild**
 - **Evidence**: `dist/matrix_runners/{run-matrix,adapter-cli-copilot}.{d.ts,js}` and `dist/lib/deep-loop/executor-config.{d.ts,js}` were deleted as part of B1/B2 cleanup (compiled outputs of source files that were deleted or scrubbed).
 - **Why required**: Any runtime that loads from `dist/` (e.g., the MCP server in production) will fail to find the matrix runner / executor-config modules until `npm run build` regenerates them.
-- **Remediation**: Run `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` to regenerate the compiled outputs, then commit. (Out of scope for this review's verdict — packet 081 declares the source clean; the build step is operational.)
+- **Remediation**: Run `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` to regenerate the compiled outputs, then commit. (Out of scope for this review's verdict — packet 081 declares the source clean; the build step is operational.)
 
 ### P2 — Suggestions (advisory; documented decisions, not defects)
 
@@ -146,19 +146,19 @@ $ grep -rln 'cli-copilot' . \
 ### 6.2 Physical deletions
 
 ```
-[ ! -d .opencode/skill/cli-copilot ]                                                     => OK
+[ ! -d .opencode/skills/cli-copilot ]                                                     => OK
 [ ! -d .opencode/changelog/cli-copilot ]                                                 => OK
-[ ! -d .opencode/skill/system-spec-kit/mcp_server/hooks/copilot ]                        => OK
+[ ! -d .opencode/skills/system-spec-kit/mcp_server/hooks/copilot ]                        => OK
 [ ! -f .github/hooks/spec-kit-copilot-hook.sh ]                                          => OK
-[ ! -f .opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ] => OK
-[ ! -f .opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts ] => OK
-[ ! -f .opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts ] => OK
+[ ! -f .opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ] => OK
+[ ! -f .opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts ] => OK
+[ ! -f .opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts ] => OK
 ```
 
 ### 6.3 Strict spec validation
 
 ```
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
     .opencode/specs/skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike --strict
 Summary: Errors: 0  Warnings: 0
 RESULT: PASSED
@@ -177,7 +177,7 @@ $ python3 skill_advisor.py "delegate to copilot for cloud delegation"
 ### 6.5 Mirror parity
 
 ```
-.opencode/agent/multi-ai-council.md:    0 cli-copilot hits
+.opencode/agents/multi-ai-council.md:    0 cli-copilot hits
 .claude/agents/multi-ai-council.md:     0 cli-copilot hits
 .gemini/agents/multi-ai-council.md:     0 cli-copilot hits
 .codex/agents/multi-ai-council.toml:    0 cli-copilot hits
@@ -194,7 +194,7 @@ matrix-manifest.json              => valid JSON ✓
 ### 6.7 EXECUTOR_KINDS source-of-truth
 
 ```
-$ grep 'EXECUTOR_KINDS' .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
+$ grep 'EXECUTOR_KINDS' .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-gemini', 'cli-claude-code'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 ```
@@ -243,7 +243,7 @@ For the 2 P1 advisories:
 ### P1-081-001 — Verify test compilation
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build 2>&1 | tail -20
 npm test -- --run tests/deep-loop/executor-config.vitest.ts 2>&1 | tail -20
 npm test -- --run tests/deep-loop/cli-matrix.vitest.ts 2>&1 | tail -20
@@ -254,7 +254,7 @@ If any failures: address per the standard test-fix workflow. If all pass: P1-081
 ### P1-081-002 — Regenerate dist artifacts
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build 2>&1 | tail -10
 git add -A dist/
 git commit -m "build(081): regenerate mcp_server/dist/ after cli-copilot deletion"
@@ -297,7 +297,7 @@ The cli-copilot deprecation is **substantively complete**. All P0 success criter
 **P1-081-001 — test compile verification: ✓ CLOSED**
 
 ```
-$ cd .opencode/skill/system-spec-kit/mcp_server
+$ cd .opencode/skills/system-spec-kit/mcp_server
 $ ./node_modules/.bin/vitest run tests/deep-loop/executor-config.vitest.ts tests/deep-loop/cli-matrix.vitest.ts
  Test Files  2 passed (2)
       Tests  28 passed (28)
@@ -309,7 +309,7 @@ Both `executor-config.vitest.ts` and `cli-matrix.vitest.ts` compile and pass aft
 **P1-081-002 — dist rebuild: ✓ CLOSED (and reframed)**
 
 ```
-$ cd .opencode/skill/system-spec-kit/mcp_server
+$ cd .opencode/skills/system-spec-kit/mcp_server
 $ npm run build
 > @spec-kit/mcp-server@1.8.0 build
 > tsc --build

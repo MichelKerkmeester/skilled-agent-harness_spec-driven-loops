@@ -13,8 +13,8 @@ Read BAD's Phase 3 auto-merge section and detailed merge subagent instructions, 
 - BAD only auto-merges stories that completed Step 4 successfully, then sorts them ascending by story number and merges them one at a time. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:340-353]
 - BAD explains the rationale: merge lowest-first so each later merge rebases against `main` that already contains its predecessors, which makes conflict resolution incremental and predictable. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:342-345]
 - Each BAD merge subagent checks mergeability, rebases if needed, waits for CI to pass, then squashes and confirms the merge. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/references/phase4-auto-merge.md:11-64]
-- Local git finish is intentionally user-choice-driven, and its core process ends with presenting merge/PR/keep/discard options instead of automatically integrating multiple parallel branches. [SOURCE: .opencode/skill/sk-git/references/finish_workflows.md:25-39]
-- Local git rules prioritize cleanups, squash merges, and explicit workflow choice, not autonomous multi-branch sequencing. [SOURCE: .opencode/skill/sk-git/SKILL.md:283-291]
+- Local git finish is intentionally user-choice-driven, and its core process ends with presenting merge/PR/keep/discard options instead of automatically integrating multiple parallel branches. [SOURCE: .opencode/skills/sk-git/references/finish_workflows.md:25-39]
+- Local git rules prioritize cleanups, squash merges, and explicit workflow choice, not autonomous multi-branch sequencing. [SOURCE: .opencode/skills/sk-git/SKILL.md:283-291]
 
 ## Analysis
 BAD's sequential auto-merge is a batch scheduler policy, not a general git principle. It depends on story numbers, dependency order, and a coordinator that already owns the whole batch. The local git skill does not have that context and deliberately asks the user how to finish work. Folding BAD's merge policy into `sk-git` would over-specialize a general workflow and weaken the current explicit-choice contract.
@@ -25,7 +25,7 @@ confidence: high
 finding: Sequential auto-merge is valuable inside a dedicated sprint runner, but it should not become the default local git finish behavior. The right lesson for `system-spec-kit` is architectural separation: keep general git workflows user-driven, and reserve batch merge policies for a future higher-level automation module.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/sk-git/references/finish_workflows.md`
+- **Target file or module:** `.opencode/skills/sk-git/references/finish_workflows.md`
 - **Change type:** rejected
 - **Blast radius:** medium
 - **Prerequisites:** none

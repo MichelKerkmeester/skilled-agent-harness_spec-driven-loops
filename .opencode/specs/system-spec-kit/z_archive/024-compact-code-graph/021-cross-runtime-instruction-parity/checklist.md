@@ -81,11 +81,11 @@ Template compliance shim anchor for summary.
 - [x] [P1] CODEX.md has No Hook Transport trigger table — fresh session, resume, compaction flows documented [EVIDENCE: verified in implementation-summary.md]
 - [x] [P1] AGENTS.md has No Hook Transport trigger table — code graph auto-trigger included [EVIDENCE: verified in implementation-summary.md]
 - [x] [P1] GEMINI.md has No Hook Transport trigger table — adapted for Gemini lifecycle [EVIDENCE: verified in implementation-summary.md]
-- [x] [P1] @context-prime agent created at .opencode/agent/context.md — 227 lines, uses `session_resume()` plus optional `session_health()` [EVIDENCE: verified in implementation-summary.md]
+- [x] [P1] @context-prime agent created at .opencode/agents/context.md — 227 lines, uses `session_resume()` plus optional `session_health()` [EVIDENCE: verified in implementation-summary.md]
 
 ### P2 — Should Pass
 
 - [x] @context-prime listed in CLAUDE.md Agent Definitions — entry added to routing table [EVIDENCE: verified in implementation-summary.md]
 - [x] AGENTS.md defines `@context-prime` and documents No Hook Transport session lifecycle guidance [EVIDENCE: verified in implementation-summary.md]
-- [x] F059: orchestrate.md wires delegation to @context-prime on first turn — VERIFIED in `.opencode/agent/orchestrate.md` lines 18-21 [EVIDENCE: verified in implementation-summary.md]
+- [x] F059: orchestrate.md wires delegation to @context-prime on first turn — VERIFIED in `.opencode/agents/orchestrate.md` lines 18-21 [EVIDENCE: verified in implementation-summary.md]
 - [x] Residual Claude-hook wording cleanup in non-Claude agent files is complete [EVIDENCE: `.codex/agents/*.toml` and `.gemini/agents/*.md` now reference the runtime startup/bootstrap surface instead of Claude-only SessionStart wording]

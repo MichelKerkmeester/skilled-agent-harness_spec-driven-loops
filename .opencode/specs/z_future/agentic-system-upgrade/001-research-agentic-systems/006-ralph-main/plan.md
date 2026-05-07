@@ -96,7 +96,7 @@ Read existing research and external evidence -> write Phase 3 iteration artifact
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Integrity | Packet-local file existence and totals alignment | `rg`, `tail`, manual review |
-| Validation | Spec packet structure and references | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
+| Validation | Spec packet structure and references | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` |
 | Manual | Research artifact spot checks | `sed`, `rg` |
 <!-- /ANCHOR:testing -->
 

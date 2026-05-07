@@ -60,7 +60,7 @@ Verified no rotation leaked the new name into frozen scope:
 73:- Tier 3 sister SKILL.md cross-ref updates (... sk-improve-prompt)
 
 # 070-sk-deep-rename/resource-map.md:53
-53:| `.opencode/skill/sk-improve-prompt/SKILL.md` | ~15-20 |
+53:| `.opencode/skills/sk-improve-prompt/SKILL.md` | ~15-20 |
 
 # 079-sk-deep-agent-improvement/spec.md:79
 79:5. **Cross-skill metadata** — `sk-improve-prompt/graph-metadata.json:32`
@@ -70,7 +70,7 @@ Verified no rotation leaked the new name into frozen scope:
 140:- R-103 Cross-skill ... sk-improve-prompt/
 
 # 026-graph/011-sk-doc-smart-router/spec.md:96
-96:| `.opencode/skill/sk-improve-prompt/SKILL.md` | Modify |
+96:| `.opencode/skills/sk-improve-prompt/SKILL.md` | Modify |
 ```
 
 All 6 sampled frozen paths retain their original `sk-improve-prompt` references with correct line numbers matching their historical context.
@@ -93,13 +93,13 @@ rg -l 'sk-improve-prompt' .opencode .claude .codex .gemini *.md *.json \
 ### Advisor probe
 
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
 ```
 **Result:** top-1 = `sk-prompt`, confidence 0.9262, score 0.7935, dominant_lane = `explicit_author`. Routing confirmed.
 
 ### Skill folder presence
-- `.opencode/skill/sk-prompt/` exists (8 entries). ✓
-- `.opencode/skill/sk-improve-prompt` does NOT exist. ✓
+- `.opencode/skills/sk-prompt/` exists (8 entries). ✓
+- `.opencode/skills/sk-improve-prompt` does NOT exist. ✓
 
 ### Strict validate (parent)
 ```

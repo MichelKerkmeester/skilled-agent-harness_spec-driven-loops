@@ -28,11 +28,11 @@ contextType: "planning"
 ### Research Phase
 
 1. Analyze existing READMEs in the skill folder to understand patterns:
-   - `.opencode/skill/system-spec-kit/README.md` (1887 lines)
-   - `.opencode/skill/system-spec-kit/mcp_server/README.md` (396 lines)
-   - `.opencode/skill/system-spec-kit/scripts/README.md` (483 lines)
-   - `.opencode/skill/system-spec-kit/scripts/lib/README.md` (355 lines)
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/README.md` (477 lines)
+   - `.opencode/skills/system-spec-kit/README.md` (1887 lines)
+   - `.opencode/skills/system-spec-kit/mcp_server/README.md` (396 lines)
+   - `.opencode/skills/system-spec-kit/scripts/README.md` (483 lines)
+   - `.opencode/skills/system-spec-kit/scripts/lib/README.md` (355 lines)
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/README.md` (477 lines)
 
 2. Examine constitutional folder contents:
    - `gate-enforcement.md` - existing constitutional memory
@@ -102,7 +102,7 @@ Create README.md with sections:
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/system-spec-kit/constitutional/README.md` | Main deliverable |
+| `.opencode/skills/system-spec-kit/constitutional/README.md` | Main deliverable |
 
 ---
 

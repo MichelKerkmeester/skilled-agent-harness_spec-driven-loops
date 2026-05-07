@@ -63,8 +63,8 @@ Lean ledger of every artifact touched, created, or referenced across the 7-itera
 
 ## Skills
 
-- `deep-research` (`.opencode/skill/deep-research/SKILL.md`): workflow + reducer + dashboard contracts
-- `system-spec-kit` (`.opencode/skill/system-spec-kit/SKILL.md`): spec-folder + validation contracts
+- `deep-research` (`.opencode/skills/deep-research/SKILL.md`): workflow + reducer + dashboard contracts
+- `system-spec-kit` (`.opencode/skills/system-spec-kit/SKILL.md`): spec-folder + validation contracts
 - `cli-codex`: executor lineage (gpt-5.5 high reasoning, fast service tier, workspace-write sandbox)
 
 ---

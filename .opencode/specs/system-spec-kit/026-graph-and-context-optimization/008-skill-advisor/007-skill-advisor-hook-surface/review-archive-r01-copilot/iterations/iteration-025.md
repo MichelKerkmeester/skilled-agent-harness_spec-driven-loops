@@ -4,8 +4,8 @@
 Checked whether the freshness/source-cache layer has a correctness hole around signature churn, deleted skills, or stale reuse after source updates.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/source-cache.ts:57-79` -> cache reuse is keyed and bounded by explicit TTL plus eviction on overflow.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:352-376` -> advisor brief cache invalidates on source-signature change and drops entries whose skill labels disappeared from the current fingerprint set.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/source-cache.ts:57-79` -> cache reuse is keyed and bounded by explicit TTL plus eviction on overflow.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:352-376` -> advisor brief cache invalidates on source-signature change and drops entries whose skill labels disappeared from the current fingerprint set.
 - `advisor-freshness.vitest.ts:194-208` -> freshness cache hits are stable within TTL and invalidate when the source signature changes.
 
 ## Findings

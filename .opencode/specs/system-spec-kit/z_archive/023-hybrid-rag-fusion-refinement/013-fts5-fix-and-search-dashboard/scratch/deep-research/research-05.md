@@ -16,12 +16,12 @@ The focus for this iteration was:
 
 The `0` candidates do **not** appear to come from stage1 forgetting to pass the embedding.
 
-Stage1 resolves `effectiveEmbedding`, throws if it is missing, and passes that embedding into `hybridSearch.collectRawCandidates(...)`. Inside hybrid search, the primary stage uses `collectAndFuseHybridResults(query, embedding, primaryOptions)`, and the vector lane passes that same embedding into `vectorSearchFn(embedding, ...)`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-780`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1064`]
+Stage1 resolves `effectiveEmbedding`, throws if it is missing, and passes that embedding into `hybridSearch.collectRawCandidates(...)`. Inside hybrid search, the primary stage uses `collectAndFuseHybridResults(query, embedding, primaryOptions)`, and the vector lane passes that same embedding into `vectorSearchFn(embedding, ...)`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-780`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1064`]
 
 The likely origin of `0` is narrower:
 
 - every active hybrid lane returns `[]` for the query, especially vector under the fallback similarity thresholds, and
-- `collectRawCandidates()` still returns **fused** output rather than true raw per-channel candidates, so stage1 sees `0` once fusion input is effectively empty. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`] [SOURCE: `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:290-299`]
+- `collectRawCandidates()` still returns **fused** output rather than true raw per-channel candidates, so stage1 sees `0` once fusion input is effectively empty. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`] [SOURCE: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:290-299`]
 
 ## Trace: `stage1` -> `collectRawCandidates` -> `executeFallbackPlan`
 
@@ -52,7 +52,7 @@ hybridSearch.collectRawCandidates(
 )
 ```
 
-So stage1 is not silently calling hybrid search with a null embedding in the normal hybrid path. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
+So stage1 is not silently calling hybrid search with a null embedding in the normal hybrid path. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
 
 ### 2. `collectRawCandidates()` delegates into `executeFallbackPlan()`
 
@@ -68,7 +68,7 @@ const { allowedChannels, stages } = await executeFallbackPlan(
 );
 ```
 
-Then it prefers staged results from `stages[0]`/`stages[1]`, and only if those are empty does it separately run FTS-only and BM25-only fallback searches. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1719`]
+Then it prefers staged results from `stages[0]`/`stages[1]`, and only if those are empty does it separately run FTS-only and BM25-only fallback searches. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1719`]
 
 ## What `executeFallbackPlan()` actually does
 
@@ -83,7 +83,7 @@ const primaryResults = primaryExecution
   : await hybridSearch(query, embedding, primaryOptions);
 ```
 
-So the primary stage uses the enhanced internal fusion path by calling `collectAndFuseHybridResults(...)` directly. `hybridSearchEnhanced()` is just a thin wrapper around that same helper. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-780`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:970-985`]
+So the primary stage uses the enhanced internal fusion path by calling `collectAndFuseHybridResults(...)` directly. `hybridSearchEnhanced()` is just a thin wrapper around that same helper. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-780`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:970-985`]
 
 ## Important finding: `collectRawCandidates()` is not really returning raw candidates
 
@@ -105,7 +105,7 @@ if (options.stopAfterFusion) {
 }
 ```
 
-That means `collectRawCandidates()` still consumes `execution.fusedResults`, not the raw per-channel lists themselves. It is "pre-enrichment" and "pre-rerank", but **not pre-fusion**. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1719`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`]
+That means `collectRawCandidates()` still consumes `execution.fusedResults`, not the raw per-channel lists themselves. It is "pre-enrichment" and "pre-rerank", but **not pre-fusion**. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1719`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`]
 
 This matters because if all channel lists are empty, `collectRawCandidates()` returns `[]` even though the code path is named "collect raw candidates."
 
@@ -128,7 +128,7 @@ if (activeChannels.has('vector') && embedding && vectorSearchFn) {
 }
 ```
 
-So the embedding is definitely passed into the vector search function. There is no sign here that the embedding is omitted, replaced with `null`, or accidentally dropped before the vector query executes. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1081`]
+So the embedding is definitely passed into the vector search function. There is no sign here that the embedding is omitted, replaced with `null`, or accidentally dropped before the vector query executes. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1081`]
 
 ## Where vector results can become empty without error
 
@@ -142,7 +142,7 @@ const max_distance = 2 * (1 - minSimilarity / 100);
 WHERE sub.distance <= ?
 ```
 
-So if no rows satisfy the distance threshold, the vector lane simply returns an empty array. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:190-200`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:259-283`]
+So if no rows satisfy the distance threshold, the vector lane simply returns an empty array. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:190-200`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:259-283`]
 
 That is directly relevant because `executeFallbackPlan()` sets:
 
@@ -150,7 +150,7 @@ That is directly relevant because `executeFallbackPlan()` sets:
 - adaptive retry min similarity = `17`
 - tiered retry min similarity = `10`
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:235-239`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-777`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:794-799`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:813-819`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:235-239`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:773-777`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:794-799`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:813-819`]
 
 So a fully healthy vector stack can still yield `[]` if the query has no neighbors under those thresholds.
 
@@ -160,7 +160,7 @@ I checked whether internal routing could reduce the pipeline to vector-only and 
 
 It does not.
 
-`routeQuery()` guarantees at least two channels via `enforceMinimumChannels()`, and the default `simple` route is already `['vector', 'fts']`. If the complexity router is disabled, it returns **all** channels. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:45-48`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:154-158`]
+`routeQuery()` guarantees at least two channels via `enforceMinimumChannels()`, and the default `simple` route is already `['vector', 'fts']`. If the complexity router is disabled, it returns **all** channels. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:45-48`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:154-158`]
 
 So if `candidateCount: 0` comes out of `collectRawCandidates()`, it is not because lexical search was silently disabled by query routing. It means the active routed lanes all produced `[]`.
 
@@ -168,7 +168,7 @@ So if `candidateCount: 0` comes out of `collectRawCandidates()`, it is not becau
 
 ### FTS
 
-`ftsSearch()` short-circuits to `[]` if `db` is missing or `memory_fts` is unavailable, and otherwise catches any query failure and returns `[]`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-437`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-471`]
+`ftsSearch()` short-circuits to `[]` if `db` is missing or `memory_fts` is unavailable, and otherwise catches any query failure and returns `[]`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-437`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:446-471`]
 
 From prior iterations, we already know `db` is present and `memory_fts` exists, so the most likely remaining FTS-empty case is simply "no lexical matches for this query" rather than missing infrastructure.
 
@@ -180,7 +180,7 @@ From prior iterations, we already know `db` is present and `memory_fts` exists, 
 - the index has no matching rows
 - scoped spec-folder lookup fails closed
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326-399`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326-399`]
 
 So the hybrid path can produce an all-empty `lists` set even when all subsystems are up.
 
@@ -188,7 +188,7 @@ So the hybrid path can produce an all-empty `lists` set even when all subsystems
 
 Yes, but not in the way that fits the observed stage1 call path.
 
-The embeddings facade in `mcp_server/lib/providers/embeddings.ts` is only a re-export of the shared provider implementation. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`]
+The embeddings facade in `mcp_server/lib/providers/embeddings.ts` is only a re-export of the shared provider implementation. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`]
 
 The real `generateQueryEmbedding()` implementation is in `shared/embeddings.ts`, and it can return `null` in several non-throwing cases:
 
@@ -210,9 +210,9 @@ catch (...) {
 }
 ```
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`] [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:46-57`] [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:66-79`] [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:684-723`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`] [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:46-57`] [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:66-79`] [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:684-723`]
 
-However, in the stage1 hybrid path that does **not** explain a silent zero result, because stage1 explicitly throws if `effectiveEmbedding` is null before it ever calls hybrid search. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`]
+However, in the stage1 hybrid path that does **not** explain a silent zero result, because stage1 explicitly throws if `effectiveEmbedding` is null before it ever calls hybrid search. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`]
 
 So:
 
@@ -223,15 +223,15 @@ So:
 
 Not for query embedding generation.
 
-The only circuit breaker I found under `lib/search/` is for the cross-encoder reranker, not embeddings. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-187`] 
+The only circuit breaker I found under `lib/search/` is for the cross-encoder reranker, not embeddings. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-187`] 
 
-The actual embedding circuit breaker lives in `shared/embeddings.ts` and is re-exported through the provider facade. [SOURCE: `.opencode/skill/system-spec-kit/shared/embeddings.ts:39-99`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]
+The actual embedding circuit breaker lives in `shared/embeddings.ts` and is re-exported through the provider facade. [SOURCE: `.opencode/skills/system-spec-kit/shared/embeddings.ts:39-99`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:10-49`]
 
 ## Can fusion itself collapse non-empty channel lists to zero?
 
 The RRF combiner does not appear to be the origin of empty results.
 
-`fuseResultsMulti()` skips only lists with `weight <= 0` or `list.results.length === 0`. For any non-empty, positive-weight list, it inserts items into `scoreMap` and returns `Array.from(scoreMap.values())...`. [SOURCE: `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:264-327`] [SOURCE: `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:254-255`]
+`fuseResultsMulti()` skips only lists with `weight <= 0` or `list.results.length === 0`. For any non-empty, positive-weight list, it inserts items into `scoreMap` and returns `Array.from(scoreMap.values())...`. [SOURCE: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:264-327`] [SOURCE: `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:254-255`]
 
 So if fusion output is empty, the most likely reason is that the input lists were empty (or all had zero weight, which is not the case for the normal vector/fts/bm25 paths here).
 
@@ -240,13 +240,13 @@ So if fusion output is empty, the most likely reason is that the input lists wer
 ### Ruled out
 
 1. **Stage1 forgetting to pass the embedding**  
-   Ruled out. Stage1 computes `effectiveEmbedding`, throws if null, and passes it into `collectRawCandidates()`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
+   Ruled out. Stage1 computes `effectiveEmbedding`, throws if null, and passes it into `collectRawCandidates()`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`]
 
 2. **`executeFallbackPlan()` dropping the embedding before vector search**  
-   Ruled out. The vector lane explicitly calls `vectorSearchFn(embedding, ...)`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1064`]
+   Ruled out. The vector lane explicitly calls `vectorSearchFn(embedding, ...)`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1054-1064`]
 
 3. **Complexity router silently disabling lexical lanes**  
-   Ruled out. The router enforces at least two channels and defaults to vector+fts for simple queries. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:154-163`]
+   Ruled out. The router enforces at least two channels and defaults to vector+fts for simple queries. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:154-163`]
 
 ### Most likely actual origin of `0`
 
@@ -255,7 +255,7 @@ So if fusion output is empty, the most likely reason is that the input lists wer
 1. vector search receives the embedding correctly but returns `[]` under the current `minSimilarity` threshold,
 2. FTS/BM25 also return `[]` for that same query/scope,
 3. `collectAndFuseHybridResults()` therefore has no effective ranked lists,
-4. `collectRawCandidates()` returns empty because it is still consuming **fused** results rather than raw lane outputs. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:199-200`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:259-283`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`]
+4. `collectRawCandidates()` returns empty because it is still consuming **fused** results rather than raw lane outputs. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:199-200`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:259-283`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`]
 
 ## Best next step
 
@@ -274,27 +274,27 @@ That will tell us whether the true origin is:
 
 ## Sources
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:235-239`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326-399`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-471`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:604-640`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:763-836`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:970-985`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:987-1081`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:45-48`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:154-158`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:168-283`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`
-- `.opencode/skill/system-spec-kit/shared/embeddings.ts:39-99`
-- `.opencode/skill/system-spec-kit/shared/embeddings.ts:684-723`
-- `.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:254-327`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-187`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:608-614`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:854-858`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:235-239`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326-399`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:426-471`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:604-640`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:674-705`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:763-836`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:970-985`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:987-1081`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1180-1193`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1677-1720`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:43-47`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:62-72`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:83-95`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:138-163`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:45-48`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts:154-158`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:168-283`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts:1-49`
+- `.opencode/skills/system-spec-kit/shared/embeddings.ts:39-99`
+- `.opencode/skills/system-spec-kit/shared/embeddings.ts:684-723`
+- `.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:254-327`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:141-187`

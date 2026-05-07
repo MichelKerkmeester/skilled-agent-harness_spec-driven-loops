@@ -17,10 +17,10 @@ _memory:
     next_safe_action: "Phase 003 opencode internals"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/skill/sk-prompt/README.md"
-      - ".opencode/skill/sk-prompt/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
       - ".opencode/changelog/sk-prompt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -34,7 +34,7 @@ _memory:
 # Implementation Summary: Phase 002 Skill Folder Rename
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,7 +65,7 @@ The prompt skill now has its canonical folder and self-identity at `sk-prompt`, 
 
 ### Folder Rename And Skill Internals
 
-The physical skill folder moved from `.opencode/skill/sk-improve-prompt/` to `.opencode/skill/sk-prompt/`. The eight listed skill-local files now use `sk-prompt` for frontmatter, skill IDs, trigger phrases, path embeds, changelog references, and fast-path prompt quality card guidance.
+The physical skill folder moved from `.opencode/skills/sk-improve-prompt/` to `.opencode/skills/sk-prompt/`. The eight listed skill-local files now use `sk-prompt` for frontmatter, skill IDs, trigger phrases, path embeds, changelog references, and fast-path prompt quality card guidance.
 
 The changelog convention was preserved. Sibling changelog entries are symlinks, so `.opencode/changelog/sk-prompt` now points to `../skill/sk-prompt/changelog`, and the old `.opencode/changelog/sk-improve-prompt` path is gone.
 
@@ -77,16 +77,16 @@ The changelog convention was preserved. Sibling changelog entries are symlinks, 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-improve-prompt/` -> `.opencode/skill/sk-prompt/` | Renamed | Canonical skill folder moved to the new name |
-| `.opencode/skill/sk-prompt/SKILL.md` (453 lines) | Modified | Frontmatter `name:` now reads `sk-prompt` |
-| `.opencode/skill/sk-prompt/README.md` (368 lines) | Modified | Skill title, trigger phrase, overview, and structure refs moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/graph-metadata.json` (151 lines) | Modified | `skill_id`, key files, entity names, and path refs moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md` (119 lines) | Modified | Fast-path card self references moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/references/depth_framework.md` (444 lines) | Modified | DEPTH reference self reference moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/changelog/v1.0.0.0.md` (9 lines) | Modified | Historical skill self reference moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/changelog/v1.1.0.0.md` (28 lines) | Modified | Historical path refs moved to `sk-prompt` |
-| `.opencode/skill/sk-prompt/changelog/v1.2.0.0.md` (31 lines) | Modified | Historical path refs moved to `sk-prompt` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` (366 lines) | Modified | Advisor graph keys and values moved to `sk-prompt` |
+| `.opencode/skills/sk-improve-prompt/` -> `.opencode/skills/sk-prompt/` | Renamed | Canonical skill folder moved to the new name |
+| `.opencode/skills/sk-prompt/SKILL.md` (453 lines) | Modified | Frontmatter `name:` now reads `sk-prompt` |
+| `.opencode/skills/sk-prompt/README.md` (368 lines) | Modified | Skill title, trigger phrase, overview, and structure refs moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/graph-metadata.json` (151 lines) | Modified | `skill_id`, key files, entity names, and path refs moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md` (119 lines) | Modified | Fast-path card self references moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/references/depth_framework.md` (444 lines) | Modified | DEPTH reference self reference moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/changelog/v1.0.0.0.md` (9 lines) | Modified | Historical skill self reference moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/changelog/v1.1.0.0.md` (28 lines) | Modified | Historical path refs moved to `sk-prompt` |
+| `.opencode/skills/sk-prompt/changelog/v1.2.0.0.md` (31 lines) | Modified | Historical path refs moved to `sk-prompt` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` (366 lines) | Modified | Advisor graph keys and values moved to `sk-prompt` |
 | `.opencode/changelog/sk-prompt` | Created symlink | Points to `../skill/sk-prompt/changelog` |
 | `.opencode/changelog/sk-improve-prompt` | Removed symlink | Old dangling changelog path removed |
 <!-- /ANCHOR:what-built -->
@@ -130,17 +130,17 @@ The change was delivered as a mechanical rename plus literal replacement in the 
 
 | Check | Result |
 |-------|--------|
-| `ls .opencode/skill/sk-improve-prompt/` | PASS before rename; folder existed. |
-| `git mv .opencode/skill/sk-improve-prompt .opencode/skill/sk-prompt` | FAIL due sandbox: `Unable to create .../.git/index.lock: Operation not permitted`. |
-| `mv .opencode/skill/sk-improve-prompt .opencode/skill/sk-prompt` | PASS; physical folder rename completed. |
-| `rg -n "sk-improve-prompt" .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; exit 1 with no matches. |
-| `jq . .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; JSON parsed successfully. |
-| `sed -n '1,12p' .opencode/skill/sk-prompt/SKILL.md` | PASS; frontmatter shows `name: sk-prompt`. |
+| `ls .opencode/skills/sk-improve-prompt/` | PASS before rename; folder existed. |
+| `git mv .opencode/skills/sk-improve-prompt .opencode/skills/sk-prompt` | FAIL due sandbox: `Unable to create .../.git/index.lock: Operation not permitted`. |
+| `mv .opencode/skills/sk-improve-prompt .opencode/skills/sk-prompt` | PASS; physical folder rename completed. |
+| `rg -n "sk-improve-prompt" .opencode/skills/sk-prompt .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; exit 1 with no matches. |
+| `jq . .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; JSON parsed successfully. |
+| `sed -n '1,12p' .opencode/skills/sk-prompt/SKILL.md` | PASS; frontmatter shows `name: sk-prompt`. |
 | `ls -l .opencode/changelog/sk-prompt .opencode/changelog/sk-improve-prompt` | PASS; `sk-prompt -> ../skill/sk-prompt/changelog`, old path absent. |
 | `node --input-type=module ... handleAdvisorRebuild({ force: true })` | PASS; final rebuild true, generation `1213 -> 1214`, freshness `stale -> live`. Warnings remain for Phase 003 references outside this scope. |
 | `node --input-type=module ... handleAdvisorStatus(...)` | PASS; freshness `live`, generation `1214`. |
-| `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skill/sk-prompt` | PASS; scanned 1 file, 0 findings, 0 warnings, 0 violations. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename --strict` | PASS; Errors: 0, Warnings: 0, `RESULT: PASSED`. |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-prompt` | PASS; scanned 1 file, 0 findings, 0 warnings, 0 violations. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename --strict` | PASS; Errors: 0, Warnings: 0, `RESULT: PASSED`. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -163,5 +163,5 @@ The change was delivered as a mechanical rename plus literal replacement in the 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

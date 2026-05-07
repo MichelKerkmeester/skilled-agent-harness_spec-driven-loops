@@ -29,7 +29,7 @@ The 7-iteration review found no P0 blockers. It found three active P1 issues tha
 
 - **F001**: ADR still describes the decision as proposed and plan-only after implementation completed. Evidence: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md:48`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md:63`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md:59`.
 - **F003**: Spec and plan still describe the packet as plan-only/incomplete after implementation is documented complete. Evidence: `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md:3`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md:63`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md:68`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md:72`, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md:59`.
-- **F004**: Workflow review-agent `standards_contract` metadata names `sk-code` as baseline, contradicting the `sk-code-review` baseline plus `sk-code` router-selected evidence contract. Evidence: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:213`, `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml:199`, `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:310`, `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:319`, `.opencode/agent/review.md:76`.
+- **F004**: Workflow review-agent `standards_contract` metadata names `sk-code` as baseline, contradicting the `sk-code-review` baseline plus `sk-code` router-selected evidence contract. Evidence: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`, `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199`, `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310`, `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319`, `.opencode/agents/review.md:76`.
 
 ### P2 Advisory
 
@@ -79,8 +79,8 @@ Remediation completed after the seven-iteration review:
 
 Post-remediation validation:
 
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger --strict` passed with 0 errors and 0 warnings.
-- `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/skill_advisor` passed with 0 findings.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger --strict` passed with 0 errors and 0 warnings.
+- `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server/skill_advisor` passed with 0 findings.
 - Targeted command-asset scan found no remaining `baseline: "sk-code"` or live `sk-code-opencode` references in `spec_kit` workflow YAML assets.
 - Targeted public-surface scan found no checked internal surface-name leakage patterns in runtime agent mirrors or `spec_kit` command docs.
 

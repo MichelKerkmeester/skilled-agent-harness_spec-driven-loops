@@ -31,7 +31,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       "scripts/tests/template-structure.vitest.ts",
       "scripts/tests/test-phase-command-workflows.js",
       "spec.md",
@@ -44,7 +44,7 @@
       {
         "name": "template-structure.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
         "source": "derived"
       },
       {

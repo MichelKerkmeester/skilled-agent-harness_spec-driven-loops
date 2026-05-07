@@ -72,18 +72,18 @@ Replace old `sk-deep-review` and `sk-deep-research` skill IDs with `deep-review`
 
 ### In Scope
 - Author Phase 003 Level 2 planning artifacts.
-- Fix the critical graph metadata edges in `.opencode/skill/sk-code-review/graph-metadata.json` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` first.
-- Update allowed `.opencode/skill/<other-skill>/SKILL.md`, `references/**/*.md`, `assets/**/*.md`, manual playbook markdown, and graph metadata references.
-- Update `.opencode/agent`, `.opencode/command/spec_kit`, MCP server TypeScript/JavaScript/Python tests, scripts, script fixtures, and active `.opencode/specs` authored docs/metadata/research/review artifacts.
+- Fix the critical graph metadata edges in `.opencode/skills/sk-code-review/graph-metadata.json` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` first.
+- Update allowed `.opencode/skills/<other-skill>/SKILL.md`, `references/**/*.md`, `assets/**/*.md`, manual playbook markdown, and graph metadata references.
+- Update `.opencode/agent`, `.opencode/commands/spec_kit`, MCP server TypeScript/JavaScript/Python tests, scripts, script fixtures, and active `.opencode/specs` authored docs/metadata/research/review artifacts.
 - Validate JSON files after replacement and run the requested grep audits.
 
 ### Out of Scope
 - `.opencode/specs/**/z_archive/**/*` - frozen historical artifacts.
 - `.opencode/specs/**/runs/**/*` - historical run output text.
-- `.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite*` - binary caches rebuilt later.
+- `.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite*` - binary caches rebuilt later.
 - Phase 001 inventory files - they intentionally document old names.
-- `.opencode/skill/<deep-review|deep-research>/changelog/*.md` - historical changelog entries.
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json` - confirmed non-skill-metadata fixture.
+- `.opencode/skills/<deep-review|deep-research>/changelog/*.md` - historical changelog entries.
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json` - confirmed non-skill-metadata fixture.
 - Runtime mirrors, root docs, and config files owned by Phases 004 and 005.
 
 ### Files to Change
@@ -95,12 +95,12 @@ Replace old `sk-deep-review` and `sk-deep-research` skill IDs with `deep-review`
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals/tasks.md` | Create/Update | Task checklist and evidence |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals/checklist.md` | Create/Update | Level 2 verification checklist |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals/graph-metadata.json` | Create/Update | Phase graph metadata |
-| `.opencode/skill/sk-code-review/graph-metadata.json` | Modify | Critical broken edge to `deep-review` |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modify | Critical broken edges to `deep-review` and `deep-research` |
-| `.opencode/agent/**` | Modify | Agent skill references |
-| `.opencode/command/spec_kit/**` | Modify | Command markdown/YAML skill references |
-| `.opencode/skill/system-spec-kit/mcp_server/**` | Modify | MCP server code and test references |
-| `.opencode/skill/system-spec-kit/scripts/**` | Modify | Script and fixture references |
+| `.opencode/skills/sk-code-review/graph-metadata.json` | Modify | Critical broken edge to `deep-review` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Modify | Critical broken edges to `deep-review` and `deep-research` |
+| `.opencode/agents/**` | Modify | Agent skill references |
+| `.opencode/commands/spec_kit/**` | Modify | Command markdown/YAML skill references |
+| `.opencode/skills/system-spec-kit/mcp_server/**` | Modify | MCP server code and test references |
+| `.opencode/skills/system-spec-kit/scripts/**` | Modify | Script and fixture references |
 | `.opencode/specs/**` | Modify | Active authored docs, graph metadata, descriptions, research/review artifacts only |
 <!-- /ANCHOR:scope -->
 
@@ -133,8 +133,8 @@ Replace old `sk-deep-review` and `sk-deep-research` skill IDs with `deep-review`
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -c "sk-deep-review" .opencode/skill/sk-code-review/graph-metadata.json` returns `0`.
-- **SC-002**: `grep -c "sk-deep-research\|sk-deep-review" .opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` returns `0`.
+- **SC-001**: `grep -c "sk-deep-review" .opencode/skills/sk-code-review/graph-metadata.json` returns `0`.
+- **SC-002**: `grep -c "sk-deep-research\|sk-deep-review" .opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` returns `0`.
 - **SC-003**: Active `.opencode/specs` authored docs and metadata return no old-name grep rows after exclusions.
 - **SC-004**: `.opencode/agent` and `.opencode/command` return no old-name grep rows.
 - **SC-005**: MCP server and script grep audit returns no old-name rows outside explicit exclusions.

@@ -43,7 +43,7 @@
     "promotion_decision": "orchestrator_recommended_operator_confirmed",
     "promotion_rationale": "iter-5 synthesis +3 delta with rich integration-touchpoint additions; substrate-recommended promotion",
     "mirrors_synced": [
-      ".opencode/agent/improve-prompt.md",
+      ".opencode/agents/improve-prompt.md",
       ".claude/agents/improve-prompt.md",
       ".gemini/agents/improve-prompt.md",
       ".codex/agents/improve-prompt.toml"

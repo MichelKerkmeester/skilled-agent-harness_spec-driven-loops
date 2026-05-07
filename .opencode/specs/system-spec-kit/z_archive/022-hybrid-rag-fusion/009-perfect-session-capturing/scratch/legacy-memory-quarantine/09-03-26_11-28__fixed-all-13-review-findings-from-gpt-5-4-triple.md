@@ -101,7 +101,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/scripts/core/config.ts, .opencode/skill/system-spec-kit/scripts/core/file-writer.ts, .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+- Files modified: .opencode/skills/system-spec-kit/scripts/core/config.ts, .opencode/skills/system-spec-kit/scripts/core/file-writer.ts, .opencode/skills/system-spec-kit/scripts/core/workflow.ts
 
 - Last: Fixed all 13 review findings from GPT-5.4 triple-review across 8 code files and 
 
@@ -116,7 +116,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/scripts/core/config.ts |
+| Active File | .opencode/skills/system-spec-kit/scripts/core/config.ts |
 | Last Action | Fixed all 13 review findings from GPT-5.4 triple-review across 8 code files and 3 doc files using... |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -136,11 +136,11 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/scripts/core/config.ts` - Configuration
+- `.opencode/skills/system-spec-kit/scripts/core/config.ts` - Configuration
 
-- `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts` - File modified (description pending)
+- `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts` - File modified (description pending)
 
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` - File modified (description pending)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` - File modified (description pending)
 
 - `.opencode/.../extractors/contamination-filter.ts` - File modified (description pending)
 
@@ -150,7 +150,7 @@ Next: Continue implementation
 
 - `.opencode/.../utils/input-normalizer.ts` - File modified (description pending)
 
-- `.opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts` - Utility functions
+- `.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts` - Utility functions
 
 **How to Extend**:
 
@@ -184,10 +184,10 @@ Fixed all 13 review findings from GPT-5.4 triple-review across 8 code files and 
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/scripts/core/(merged-small-files)` | Tree-thinning merged 3 small files (config.ts, file-writer.ts, workflow.ts). Merged from .opencode/skill/system-spec-kit/scripts/core/config.ts : File modified (description pending) | Merged from .opencode/skill/system-spec-kit/scripts/core/file-writer.ts : File modified (description pending) | Merged from .opencode/skill/system-spec-kit/scripts/core/workflow.ts : File modified (description pending) |
+| `.opencode/skills/system-spec-kit/scripts/core/(merged-small-files)` | Tree-thinning merged 3 small files (config.ts, file-writer.ts, workflow.ts). Merged from .opencode/skills/system-spec-kit/scripts/core/config.ts : File modified (description pending) | Merged from .opencode/skills/system-spec-kit/scripts/core/file-writer.ts : File modified (description pending) | Merged from .opencode/skills/system-spec-kit/scripts/core/workflow.ts : File modified (description pending) |
 | `.opencode/.../extractors/(merged-small-files)` | Tree-thinning merged 3 small files (contamination-filter.ts, decision-extractor.ts, opencode-capture.ts). Merged from .opencode/.../extractors/contamination-filter.ts : File modified (description pending) | Merged from .opencode/.../extractors/decision-extractor.ts : File modified (description pending) | Merged from .opencode/.../extractors/opencode-capture.ts : File modified (description pending) |
 | `.opencode/.../utils/(merged-small-files)` | Tree-thinning merged 1 small files (input-normalizer.ts). Merged from .opencode/.../utils/input-normalizer.ts : File modified (description pending) |
-| `.opencode/skill/system-spec-kit/scripts/utils/(merged-small-files)` | Tree-thinning merged 1 small files (slug-utils.ts). Merged from .opencode/skill/system-spec-kit/scripts/utils/slug-utils.ts : File modified (description pending) |
+| `.opencode/skills/system-spec-kit/scripts/utils/(merged-small-files)` | Tree-thinning merged 1 small files (slug-utils.ts). Merged from .opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts : File modified (description pending) |
 | `.opencode/.../009-perfect-session-capturing/(merged-small-files)` | Tree-thinning merged 2 small files (checklist.md, decision-record.md). Merged from .opencode/.../009-perfect-session-capturing/checklist.md : File modified (description pending) | Merged from .opencode/.../009-perfect-session-capturing/decision-record.md : File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
@@ -294,7 +294,7 @@ Fixed all 13 review findings from GPT-5.4 triple-review across 8 code files and 
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing", limit: 10 })
@@ -306,7 +306,7 @@ ls -la system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/memor
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --force
 ```
 
 ### Recovery Priority
@@ -442,13 +442,13 @@ trigger_phrases:
   - "using parallel copilot cli"
   - "parallel copilot cli agents"
   - "copilot cli agents batches"
-  - ".opencode/skill/system-spec-kit/scripts/core/ merged-small-files .opencode/.../extractors/ merged-small-files"
+  - ".opencode/skills/system-spec-kit/scripts/core/ merged-small-files .opencode/.../extractors/ merged-small-files"
   - "merged-small-files .opencode/.../extractors/ merged-small-files .opencode/.../utils/"
   - ".opencode/.../extractors/ merged-small-files .opencode/.../utils/ merged-small-files"
-  - "merged-small-files .opencode/.../utils/ merged-small-files .opencode/skill/system-spec-kit/scripts/utils/"
-  - ".opencode/.../utils/ merged-small-files .opencode/skill/system-spec-kit/scripts/utils/ merged-small-files"
-  - "merged-small-files .opencode/skill/system-spec-kit/scripts/utils/ merged-small-files .opencode/.../009-perfect-session-capturing/"
-  - ".opencode/skill/system-spec-kit/scripts/utils/ merged-small-files .opencode/.../009-perfect-session-capturing/ merged-small-files"
+  - "merged-small-files .opencode/.../utils/ merged-small-files .opencode/skills/system-spec-kit/scripts/utils/"
+  - ".opencode/.../utils/ merged-small-files .opencode/skills/system-spec-kit/scripts/utils/ merged-small-files"
+  - "merged-small-files .opencode/skills/system-spec-kit/scripts/utils/ merged-small-files .opencode/.../009-perfect-session-capturing/"
+  - ".opencode/skills/system-spec-kit/scripts/utils/ merged-small-files .opencode/.../009-perfect-session-capturing/ merged-small-files"
   - "merged-small-files .opencode/.../009-perfect-session-capturing/ merged-small-files system"
   - ".opencode/.../009-perfect-session-capturing/ merged-small-files system spec"
   - "system"
@@ -462,10 +462,10 @@ trigger_phrases:
   - "capturing"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/core/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/scripts/core/(merged-small-files)"
   - ".opencode/.../extractors/(merged-small-files)"
   - ".opencode/.../utils/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/scripts/utils/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/scripts/utils/(merged-small-files)"
   - ".opencode/.../009-perfect-session-capturing/(merged-small-files)"
 
 # Relationships

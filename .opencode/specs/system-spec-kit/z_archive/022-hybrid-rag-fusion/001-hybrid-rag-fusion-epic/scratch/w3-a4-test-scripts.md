@@ -13,7 +13,7 @@ Existing unit/contract tests that cover checklist items directly. 10 test files,
 ### Command (all at once)
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run \
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run \
   tests/tool-input-schema.vitest.ts \
   tests/mcp-input-validation.vitest.ts \
   tests/review-fixes.vitest.ts \
@@ -109,7 +109,7 @@ Performance-related checklist items requiring timing harnesses. **These harnesse
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-tool-validation.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-tool-validation.mjs
 ```
 
 **Covers Items:**
@@ -123,7 +123,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-tool-vali
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-search-envelope.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-search-envelope.mjs
 ```
 
 **Covers Items:**
@@ -137,7 +137,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-search-en
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-ingest-runtime.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-ingest-runtime.mjs
 ```
 
 **Covers Items:**
@@ -152,7 +152,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-ingest-ru
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-local-reranker.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-local-reranker.mjs
 ```
 
 **Covers Items:**
@@ -166,7 +166,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-local-rer
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-file-watcher.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/bench-file-watcher.mjs
 ```
 
 **Covers Items:**
@@ -181,7 +181,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/bench-file-watc
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node benchmarks/run-eval-ablation.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node benchmarks/run-eval-ablation.mjs
 ```
 
 **Covers Items:**
@@ -217,7 +217,7 @@ End-to-end tests that drive a live MCP server over stdio and assert on real enve
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/tool-matrix.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/tool-matrix.mjs
 ```
 
 **Covers Items:**
@@ -233,7 +233,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/tool-matri
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/search-contract.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/search-contract.mjs
 ```
 
 **Covers Items:**
@@ -250,7 +250,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/search-con
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/ingest-lifecycle.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/ingest-lifecycle.mjs
 ```
 
 **Covers Items:**
@@ -269,7 +269,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/ingest-lif
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/dynamic-init-contract.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/dynamic-init-contract.mjs
 ```
 
 **Covers Items:**
@@ -286,7 +286,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/dynamic-in
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/file-watcher-e2e.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/file-watcher-e2e.mjs
 ```
 
 **Covers Items:**
@@ -302,7 +302,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/file-watch
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/local-reranker-e2e.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/local-reranker-e2e.mjs
 ```
 
 **Covers Items:**
@@ -318,7 +318,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/local-rera
 
 ```bash
 # DOES NOT EXIST YET — needs creation
-cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/regression-snapshots.mjs
+cd .opencode/skills/system-spec-kit/mcp_server && node scripts/runtime/regression-snapshots.mjs
 ```
 
 **Covers Items:**
@@ -359,7 +359,7 @@ cd .opencode/skill/system-spec-kit/mcp_server && node scripts/runtime/regression
 
 ```
 Step 1: Group 1 full run (~12s)
-  cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run \
+  cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run \
     tests/tool-input-schema.vitest.ts \
     tests/mcp-input-validation.vitest.ts \
     tests/review-fixes.vitest.ts \

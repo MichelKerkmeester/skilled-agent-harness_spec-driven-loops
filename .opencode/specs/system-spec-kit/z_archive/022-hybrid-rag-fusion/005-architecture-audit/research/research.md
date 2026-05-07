@@ -765,7 +765,7 @@ The most impactful findings cluster around: (1) the search pipeline's "V2 wraps 
 #### F8.13 -- Feature-flag docs test currently failing
 - **Severity:** HIGH
 - **File(s):** `mcp_server/tests/feature-flag-reference-docs.vitest.ts:110-129`
-- **Description:** Test looks for an outdated `manual_testing_playbook` location, but the file actually lives under `.opencode/skill/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/125-hydra-roadmap-capability-flags.md`. This is the current baseline test failure.
+- **Description:** Test looks for an outdated `manual_testing_playbook` location, but the file actually lives under `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/125-hydra-roadmap-capability-flags.md`. This is the current baseline test failure.
 - **Impact:** `npm test` fails on a documentation contract test.
 - **Recommendation:** Fix the path in the test.
 
@@ -778,7 +778,7 @@ The most impactful findings cluster around: (1) the search pipeline's "V2 wraps 
 
 #### F8.15 -- .gitignore doesn't ignore .env
 - **Severity:** LOW
-- **File(s):** `.opencode/skill/system-spec-kit/.gitignore`
+- **File(s):** `.opencode/skills/system-spec-kit/.gitignore`
 - **Description:** No `.env` entry in gitignore.
 - **Impact:** Accidental secret commits possible.
 - **Recommendation:** Add `.env` to `.gitignore`.

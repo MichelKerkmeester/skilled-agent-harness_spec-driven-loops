@@ -51,11 +51,11 @@ Investigation used direct codebase examination following @research agent's 9-ste
 6. **Documentation**: Structured findings with evidence citations (file:line)
 
 **Evidence Sources**:
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` (validation orchestrator)
-- `.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh` (ANCHOR validation)
-- `.opencode/skill/system-spec-kit/templates/level_*/spec.md` (template structure)
-- `.opencode/agent/chatgpt/speckit.md` (agent enforcement rules)
-- `.opencode/agent/chatgpt/orchestrate.md` (Gate 3 routing)
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` (validation orchestrator)
+- `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` (ANCHOR validation)
+- `.opencode/skills/system-spec-kit/templates/level_*/spec.md` (template structure)
+- `.opencode/agents/chatgpt/speckit.md` (agent enforcement rules)
+- `.opencode/agents/chatgpt/orchestrate.md` (Gate 3 routing)
 - `AGENTS.md` (system-wide agent routing rules)
 
 <!-- /ANCHOR:methodology -->
@@ -75,7 +75,7 @@ The validation system runs **after** files are created, not before. This means:
 
 ### Evidence
 
-**File**: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+**File**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 
 **Lines 1-100**: Script initialization and argument parsing
 ```bash
@@ -86,7 +86,7 @@ The validation system runs **after** files are created, not before. This means:
 
 **Key Observation**: The script **accepts a folder path** as input (line 60: `./validate-spec.sh <folder-path>`). This means validation is invoked **on existing folders**, not as a gate before folder creation.
 
-**File**: `.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh`
+**File**: `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh`
 
 **Lines 1-100**: ANCHOR validation logic
 ```bash
@@ -159,7 +159,7 @@ Templates **include ANCHOR tags** for all major sections, but agents can bypass 
 
 ### Evidence
 
-**File**: `.opencode/skill/system-spec-kit/templates/level_3/spec.md`
+**File**: `.opencode/skills/system-spec-kit/templates/level_3/spec.md`
 
 **Lines 1-80**: Template structure with embedded ANCHOR tags
 ```markdown
@@ -219,7 +219,7 @@ Templates **include ANCHOR tags** for all major sections, but agents can bypass 
 
 **Key Observation**: Templates **DO** include properly formatted ANCHOR tags (lines 25-33, 37-47, 51-59, 63-80). The template structure is correct.
 
-**File**: `.opencode/agent/chatgpt/speckit.md`
+**File**: `.opencode/agents/chatgpt/speckit.md`
 
 **Lines 150-166**: Speckit agent level selection and workflow
 ```markdown
@@ -340,7 +340,7 @@ Gate 3 (the spec folder question) is implemented as a **SOFT BLOCK**:
 
 **Weakness**: Agents can still call Write tool before asking Gate 3 question. There's no runtime check that prevents this.
 
-**File**: `.opencode/agent/chatgpt/orchestrate.md`
+**File**: `.opencode/agents/chatgpt/orchestrate.md`
 
 **Lines 160-188**: Rule 2 (Spec Folder Gate 3) and Rule 5 (Spec Documentation Exclusivity)
 ```markdown
@@ -358,7 +358,7 @@ Gate 3 (the spec folder question) is implemented as a **SOFT BLOCK**:
 - `handover.md` → `@handover` agent exclusively (session continuation documents)
 - `research/research.md` → `@research` agent exclusively (9-step investigation findings)
 **Logic:** `@speckit` enforces template structure, Level 1-3+ standards, and validation that other agents lack. Bypassing `@speckit` produces non-standard documentation that fails quality gates.
-**Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agent/speckit.md` and include its content in the Task prompt.
+**Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agents/speckit.md` and include its content in the Task prompt.
 ```
 
 **Key Observation**: The orchestrator **has the rule** (lines 162-164: "Confirm existence of a Spec Folder"). But this is a **behavioral instruction**, not a **technical gate**.
@@ -606,7 +606,7 @@ function memorySave(filePath: string, content: string) {
 changed_specs=$(git diff --cached --name-only | grep "^specs/.*/.*\.md$")
 if [ -n "$changed_specs" ]; then
   for spec in $changed_specs; do
-    .opencode/skill/system-spec-kit/scripts/spec/validate.sh "$(dirname "$spec")" --strict
+    .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$(dirname "$spec")" --strict
     if [ $? -ne 0 ]; then
       echo "ERROR: Spec validation failed for $spec"
       exit 1
@@ -928,7 +928,7 @@ run_check() {
 - **Reading** spec docs is permitted by any agent
 - **Minor status updates** (e.g., checking task boxes) by implementing agents are acceptable
 **Logic:** `@speckit` enforces template structure, Level 1-3+ standards, and validation that other agents lack. Bypassing `@speckit` produces non-standard documentation that fails quality gates.
-**Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agent/speckit.md` and include its content in the Task prompt. This ensures template structure, Level 1-3+ standards, and validation workflows are enforced. Simply instructing a general agent to "act as @speckit" bypasses all enforcement.
+**Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agents/speckit.md` and include its content in the Task prompt. This ensures template structure, Level 1-3+ standards, and validation workflows are enforced. Simply instructing a general agent to "act as @speckit" bypasses all enforcement.
 ```
 
 ---

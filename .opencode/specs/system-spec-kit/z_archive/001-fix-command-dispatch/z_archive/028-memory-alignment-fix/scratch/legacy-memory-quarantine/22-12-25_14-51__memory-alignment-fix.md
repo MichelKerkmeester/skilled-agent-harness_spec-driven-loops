@@ -115,7 +115,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `AGENTS.md` - Documentation
 
-- `.opencode/command/memory/save.md` - Documentation
+- `.opencode/commands/memory/save.md` - Documentation
 
 - `.opencode/skills/system-memory/scripts/generate-context.js` - React context provider
 
@@ -158,7 +158,7 @@ Implemented a Three-Layer Defense System to prevent memory saves to incorrect sp
 | **File** | **Description** |
 |:---------|:----------------|
 | `AGENTS.md` | Gate 5 with PRE-SAVE VALIDATION requiring folder selectio... |
-| `.opencode/command/memory/save.md` | PRE-SAVE VALIDATION requiring folder selection and alignm... |
+| `.opencode/commands/memory/save.md` | PRE-SAVE VALIDATION requiring folder selection and alignm... |
 | `.opencode/skills/system-memory/scripts/generate-context.js` | ALWAYS run alignment checks via new validateFolderAlignme... |
 | `specs/005-memory/016-memory-alignment-fix/checklist.md` | Modified during session |
 | `specs/.../memory/22-12-25_12-08__mcp-code-context.md` | Modified during session |
@@ -479,7 +479,7 @@ key_topics:
 
 key_files:
   - "AGENTS.md"
-  - ".opencode/command/memory/save.md"
+  - ".opencode/commands/memory/save.md"
   - ".opencode/skills/system-memory/scripts/generate-context.js"
   - "specs/005-memory/016-memory-alignment-fix/checklist.md"
   - "specs/.../memory/22-12-25_12-08__mcp-code-context.md"

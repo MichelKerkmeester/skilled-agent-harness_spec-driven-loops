@@ -23,7 +23,7 @@
       "019-decisions-and-deferrals", "020-feature-flag-reference",
       "021-remediation-revalidation", "022-implement-and-remove-deprecated-features"
     ],
-    "featureCatalog": ".opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md",
+    "featureCatalog": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
     "mcpServerCodeFiles": 251,
     "mcpServerTestFiles": 317,
     "totalScopeFiles": 700

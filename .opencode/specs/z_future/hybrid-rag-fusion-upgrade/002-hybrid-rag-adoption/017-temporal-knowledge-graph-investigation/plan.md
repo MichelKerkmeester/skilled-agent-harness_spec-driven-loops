@@ -16,12 +16,12 @@ contextType: "planning"
 # Plan: 017-temporal-knowledge-graph-investigation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 ## Investigation Order
 1. Define the minimal temporal-fact use cases that Public actually lacks today.

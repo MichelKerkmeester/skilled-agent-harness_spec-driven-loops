@@ -25,7 +25,7 @@ _memory:
 
 <!-- ANCHOR:summary -->
 ## Summary
-This investigation focused on the residual hook/daemon parity gaps still visible after `012-docs-impact-remediation` refreshed the operator-facing docs. The strongest gaps are no longer in the shared advisor core; they are in runtime activation, readiness detection, and startup/reporting surfaces for Codex, Copilot, and Gemini. Copilot's wrapper-based activation path is still reverted in the live repo config, Codex detection overstates native-hook readiness relative to the documented `codex_hooks` contract, and Gemini's checked-in hook names no longer match the operator docs or fallback fixtures. Lower-severity drift remains in startup-surface harmonization and in `advisor_status`, which currently treats freshness readability as a proxy for daemon availability. Iterations 02, 03, 05, and 07 contributed the most novel evidence. Evidence anchors: `.codex/config.toml:43`, `.claude/settings.local.json:24`, `.gemini/settings.json:95`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93`.
+This investigation focused on the residual hook/daemon parity gaps still visible after `012-docs-impact-remediation` refreshed the operator-facing docs. The strongest gaps are no longer in the shared advisor core; they are in runtime activation, readiness detection, and startup/reporting surfaces for Codex, Copilot, and Gemini. Copilot's wrapper-based activation path is still reverted in the live repo config, Codex detection overstates native-hook readiness relative to the documented `codex_hooks` contract, and Gemini's checked-in hook names no longer match the operator docs or fallback fixtures. Lower-severity drift remains in startup-surface harmonization and in `advisor_status`, which currently treats freshness readability as a proxy for daemon availability. Iterations 02, 03, 05, and 07 contributed the most novel evidence. Evidence anchors: `.codex/config.toml:43`, `.claude/settings.local.json:24`, `.gemini/settings.json:95`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:scope -->
@@ -33,7 +33,7 @@ This investigation focused on the residual hook/daemon parity gaps still visible
 This research covered the `009-hook-parity` parent packet, its direct child packet root docs, and the runtime/operator surfaces implicated by post-012 drift:
 
 - Parent and child packet docs under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/`
-- Runtime config and hook files under `.claude/`, `.codex/`, `.gemini/`, and `.opencode/skill/system-spec-kit/mcp_server/hooks/`
+- Runtime config and hook files under `.claude/`, `.codex/`, `.gemini/`, and `.opencode/skills/system-spec-kit/mcp_server/hooks/`
 - Cross-runtime readiness/detection and advisor-status code under `mcp_server/code-graph/lib/` and `mcp_server/skill-advisor/`
 - OpenCode plugin bridge files under `.opencode/plugins/` for contrast
 - Cross-runtime and runtime-specific test files that still define the current regression boundary
@@ -47,14 +47,14 @@ The investigation attempted CocoIndex semantic search for unfamiliar-code discov
 No P0 release-blocker was found inside the shared advisor core. The residual gaps are concentrated in runtime/operator surfaces, not in the scorer or brief producer itself.
 
 ### P1
-- `F-001` Codex readiness is overstated. The remediated docs say native Codex hooks require `[features].codex_hooks = true` and `~/.codex/hooks.json`, but the checked-in `.codex/config.toml` omits `codex_hooks`, no repo-local `hooks.json` exists, and `detectCodexHookPolicy()` still upgrades the runtime to `live` from `.codex/settings.json` alone. Evidence: [iteration-02.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-02.md), `.codex/config.toml:43`, `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:219`
+- `F-001` Codex readiness is overstated. The remediated docs say native Codex hooks require `[features].codex_hooks = true` and `~/.codex/hooks.json`, but the checked-in `.codex/config.toml` omits `codex_hooks`, no repo-local `hooks.json` exists, and `detectCodexHookPolicy()` still upgrades the runtime to `live` from `.codex/settings.json` alone. Evidence: [iteration-02.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-02.md), `.codex/config.toml:43`, `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:219`
 - `F-002` Copilot activation parity is still reverted. Packets 010 and 011 both say the top-level wrapper fields and writer commands were removed and must be reapplied, and the live `.claude/settings.local.json` still contains only nested Claude hooks while docs present the wrapper path as current. Evidence: [iteration-03.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-03.md), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/006-copilot-wrapper-schema-fix/implementation-summary.md:24`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/007-copilot-writer-wiring/implementation-summary.md:24`, `.claude/settings.local.json:24`
-- `F-003` Gemini's operator contract is fragmented. The checked-in runtime uses `BeforeAgent`, `PreCompress`, and `SessionEnd`, but docs and fallback tests still describe Gemini through older or Claude-shaped names and stale availability expectations. Evidence: [iteration-05.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-05.md), `.gemini/settings.json:83`, `.gemini/settings.json:95`, `.opencode/skill/system-spec-kit/references/config/hook_system.md:59`, `.opencode/skill/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:102`
+- `F-003` Gemini's operator contract is fragmented. The checked-in runtime uses `BeforeAgent`, `PreCompress`, and `SessionEnd`, but docs and fallback tests still describe Gemini through older or Claude-shaped names and stale availability expectations. Evidence: [iteration-05.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-05.md), `.gemini/settings.json:83`, `.gemini/settings.json:95`, `.opencode/skills/system-spec-kit/references/config/hook_system.md:59`, `.opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts:102`
 
 ### P2
-- `F-004` Copilot readiness detection keys off generic `.github/hooks/*.json` presence rather than Spec Kit wrapper presence in `.claude/settings.local.json`, so unrelated Copilot hooks can make the runtime look "enabled." Evidence: [iteration-04.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-04.md), `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts:82`, `.github/hooks/superset-notify.json:4`
-- `F-005` Startup-surface parity is not actually uniform. Claude/Codex preserve cached-summary rejection reasoning and optional spec-folder-aware startup shaping; Gemini and Copilot do not. Evidence: [iteration-06.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-06.md), `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:129`, `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:153`
-- `F-006` `advisor_status` conflates daemon presence with freshness state. It reports `daemonAvailable` from generation state and only optionally includes a PID, so operators can read "daemon available" when only static freshness artifacts are present. Evidence: [iteration-07.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-07.md), `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93`, `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:29`
+- `F-004` Copilot readiness detection keys off generic `.github/hooks/*.json` presence rather than Spec Kit wrapper presence in `.claude/settings.local.json`, so unrelated Copilot hooks can make the runtime look "enabled." Evidence: [iteration-04.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-04.md), `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts:82`, `.github/hooks/superset-notify.json:4`
+- `F-005` Startup-surface parity is not actually uniform. Claude/Codex preserve cached-summary rejection reasoning and optional spec-folder-aware startup shaping; Gemini and Copilot do not. Evidence: [iteration-06.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-06.md), `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:218`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:129`, `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:153`
+- `F-006` `advisor_status` conflates daemon presence with freshness state. It reports `daemonAvailable` from generation state and only optionally includes a PID, so operators can read "daemon available" when only static freshness artifacts are present. Evidence: [iteration-07.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/research/iterations/iteration-07.md), `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts:93`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness/trust-state.ts:29`
 <!-- /ANCHOR:key-findings -->
 
 <!-- ANCHOR:evidence-trail -->
@@ -112,15 +112,15 @@ Iterations 08 through 10 mostly refined fix ordering and bounded the problem to 
 - `.codex/settings.json`
 - `.gemini/settings.json`
 - `.github/hooks/superset-notify.json`
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/runtime-detection.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
 - `.opencode/plugins/spec-kit-compact-code-graph.js`
 <!-- /ANCHOR:references -->

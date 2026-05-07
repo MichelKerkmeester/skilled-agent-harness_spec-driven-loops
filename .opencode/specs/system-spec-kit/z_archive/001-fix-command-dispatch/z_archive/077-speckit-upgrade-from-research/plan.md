@@ -523,7 +523,7 @@ CRITICAL PATH: 1.1 → 1.4 → 2.1 → 2.2 → Release (P0 items)
 
 ```bash
 # Git-based rollback to pre-upgrade state
-git checkout v1.0.6 -- .opencode/skill/system-spec-kit/
+git checkout v1.0.6 -- .opencode/skills/system-spec-kit/
 git checkout v1.0.6 -- AGENTS.md
 git checkout v1.0.6 -- AGENTS.md
 

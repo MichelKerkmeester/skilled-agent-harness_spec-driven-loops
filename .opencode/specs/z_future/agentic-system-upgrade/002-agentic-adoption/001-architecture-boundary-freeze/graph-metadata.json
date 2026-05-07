@@ -38,11 +38,11 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/agent/orchestrate.md",
-      ".opencode/agent/deep-research.md",
-      ".opencode/agent/deep-review.md",
-      ".opencode/command/spec_kit/README.txt",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/skills/system-spec-kit/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -52,31 +52,31 @@
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-review.md",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/spec_kit/README.txt",
+        "path": ".opencode/commands/spec_kit/README.txt",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

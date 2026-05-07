@@ -43,7 +43,7 @@ _memory:
 | **Language/Stack** | Markdown command files + YAML workflow definitions |
 | **Framework** | OpenCode slash command system (`/doctor:*` command group) |
 | **MCP Tools** | `code_graph_status`, `code_graph_query`, `detect_changes` |
-| **Pattern Source** | `.opencode/command/doctor/skill-advisor.md` (5-phase pattern) |
+| **Pattern Source** | `.opencode/commands/doctor/skill-advisor.md` (5-phase pattern) |
 
 ### Overview
 
@@ -84,7 +84,7 @@ OpenCode Slash Command + YAML Workflow Orchestration (mirrors `/doctor:skill-adv
 
 ### Key Components
 
-- **Command Markdown** (the planned .opencode/command/doctor/code-graph.md (created by T001)): frontmatter + execution protocol + setup phase + reference. Supports `:auto`/`:confirm` modes plus `--scope=stale|missed|bloat|all`.
+- **Command Markdown** (the planned .opencode/commands/doctor/code-graph.md (created by T001)): frontmatter + execution protocol + setup phase + reference. Supports `:auto`/`:confirm` modes plus `--scope=stale|missed|bloat|all`.
 - **Auto YAML** (`doctor_code-graph_auto.yaml`): autonomous workflow. Discovery → Analysis → Proposal-as-report. No Phase 3, no Phase 4 in Phase A.
 - **Confirm YAML** (`doctor_code-graph_confirm.yaml`): same phases with one approval gate at `pre_phase_2 (Proposal)`.
 - **Install Guide** (`SET-UP - Code Graph.md`): AI-first prompt + prerequisite check + report-reading guide.

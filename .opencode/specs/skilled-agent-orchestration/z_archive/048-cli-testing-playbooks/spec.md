@@ -22,8 +22,8 @@ _memory:
       - ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/spec.md"
       - ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/plan.md"
       - ".opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/decision-record.md"
-      - ".opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md"
-      - ".opencode/command/create/testing-playbook.md"
+      - ".opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md"
+      - ".opencode/commands/create/testing-playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000048"
       session_id: "048-spec-init"
@@ -49,7 +49,7 @@ Five CLI orchestrator skills ship without operator-facing manual testing playboo
 
 **Key Decisions**: Level 3 spec (matches 043/046/047 sibling precedent); shared category schema across all five playbooks (ADR-001); dispatch via `/create:testing-playbook` rather than hand-craft (ADR-005).
 
-**Critical Dependencies**: `@write` agent must be available; canonical command `/create:testing-playbook` must remain functional; templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/` must be unchanged through delivery.
+**Critical Dependencies**: `@write` agent must be available; canonical command `/create:testing-playbook` must remain functional; templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/` must be unchanged through delivery.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -96,18 +96,18 @@ Each CLI skill ships a complete `manual_testing_playbook/` package matching the 
 - Modifying the CLI skill SKILL.md / references / assets themselves — playbooks reference current behavior, not new behavior
 - Creating `feature_catalog/` packages for the CLIs — would shift work to `/create:feature-catalog` (separate command) and lengthen this spec
 - Automating playbook execution — the playbooks are operator-facing manual matrices; automation is a follow-up
-- Modifying the canonical templates at `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`
+- Modifying the canonical templates at `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`
 - Playbooks for MCP skills — owned by sibling spec `049-mcp-testing-playbooks`
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-claude-code/manual_testing_playbook/` | Create | Root playbook + 7 category folders + ~18-20 per-feature files |
-| `.opencode/skill/cli-codex/manual_testing_playbook/` | Create | Root playbook + 8 category folders + ~22-25 per-feature files |
-| `.opencode/skill/cli-copilot/manual_testing_playbook/` | Create | Root playbook + 8 category folders + ~20-23 per-feature files |
-| `.opencode/skill/cli-gemini/manual_testing_playbook/` | Create | Root playbook + 6 category folders + ~15-18 per-feature files |
-| `.opencode/skill/cli-opencode/manual_testing_playbook/` | Create | Root playbook + 9 category folders + ~28-32 per-feature files |
+| `.opencode/skills/cli-claude-code/manual_testing_playbook/` | Create | Root playbook + 7 category folders + ~18-20 per-feature files |
+| `.opencode/skills/cli-codex/manual_testing_playbook/` | Create | Root playbook + 8 category folders + ~22-25 per-feature files |
+| `.opencode/skills/cli-copilot/manual_testing_playbook/` | Create | Root playbook + 8 category folders + ~20-23 per-feature files |
+| `.opencode/skills/cli-gemini/manual_testing_playbook/` | Create | Root playbook + 6 category folders + ~15-18 per-feature files |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/` | Create | Root playbook + 9 category folders + ~28-32 per-feature files |
 | `.opencode/specs/skilled-agent-orchestration/048-cli-testing-playbooks/*` | Create | Level 3 spec docs (this folder) |
 <!-- /ANCHOR:scope -->
 
@@ -155,7 +155,7 @@ Each CLI skill ships a complete `manual_testing_playbook/` package matching the 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `@write` agent availability | Cannot dispatch `/create:testing-playbook` if missing | Verify @write agent before each Wave dispatch; fall back to hand-crafting to the same contract if unavailable |
-| Dependency | `validate_document.py` script | Cannot run H4 validation | Confirmed present at `.opencode/skill/sk-doc/scripts/validate_document.py` |
+| Dependency | `validate_document.py` script | Cannot run H4 validation | Confirmed present at `.opencode/skills/sk-doc/scripts/validate_document.py` |
 | Risk | Per-feature file count balloons past ~120 | Scope creep, longer review window | Cap each CLI at the upper bound table in plan.md; defer edge cases to follow-up update |
 | Risk | Taxonomy drift between Wave 1 and Wave 2 | Inconsistent playbooks make cross-CLI navigation painful | ADR-001 frozen before Wave 1 dispatch; @write briefs include exact category list |
 | Risk | Validator misses per-feature file issues (documented limitation) | Per-feature files ship with structural defects | Manual spot-check 2 per-feature files per CLI after each Wave |
@@ -269,7 +269,7 @@ The seven BDD scenarios below pin REQ-001..REQ-006 + REQ-010 (taxonomy invariant
 ### AS-002: Root playbook structure validates (REQ-002)
 
 - **Given** the five root playbook files written by `/create:testing-playbook`
-- **When** an operator runs `python3 .opencode/skill/sk-doc/scripts/validate_document.py <path>` against each root file
+- **When** an operator runs `python3 .opencode/skills/sk-doc/scripts/validate_document.py <path>` against each root file
 - **Then** the script exits 0 for all five files
 
 ### AS-003: Per-feature scaffold + 9-column table present (REQ-003)
@@ -320,7 +320,7 @@ The seven BDD scenarios below pin REQ-001..REQ-006 + REQ-010 (taxonomy invariant
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Sibling spec (MCP playbooks)**: `.opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/`
-- **Canonical command**: `.opencode/command/create/testing-playbook.md`
-- **Templates**: `.opencode/skill/sk-doc/assets/documentation/testing_playbook/`
-- **Reference playbook (mature)**: `.opencode/skill/system-spec-kit/manual_testing_playbook/`
-- **Reference playbook (single-tool analog)**: `.opencode/skill/mcp-coco-index/manual_testing_playbook/`
+- **Canonical command**: `.opencode/commands/create/testing-playbook.md`
+- **Templates**: `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`
+- **Reference playbook (mature)**: `.opencode/skills/system-spec-kit/manual_testing_playbook/`
+- **Reference playbook (single-tool analog)**: `.opencode/skills/mcp-coco-index/manual_testing_playbook/`

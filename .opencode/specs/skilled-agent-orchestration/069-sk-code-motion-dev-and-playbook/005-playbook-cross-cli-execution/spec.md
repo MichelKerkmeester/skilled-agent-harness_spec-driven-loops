@@ -25,7 +25,7 @@ _memory:
       - "implementation-summary.md"
       - "prompts/universal_test_prompt.md"
       - "scripts/run_matrix.sh"
-      - "../../../.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - "../../../.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05"
@@ -96,8 +96,8 @@ Create a read-only execution harness plus seven cross-stack routing scenarios so
 | `005-playbook-cross-cli-execution/*.json` | Create | Canonical description and graph metadata |
 | `005-playbook-cross-cli-execution/prompts/universal_test_prompt.md` | Create | Cross-runtime read-only routing analysis prompt |
 | `005-playbook-cross-cli-execution/scripts/*.sh` | Create | CLI runners and matrix orchestrator |
-| `.opencode/skill/sk-code/manual_testing_playbook/07--cross-stack-routing/*.md` | Create | Seven CS scenario contracts |
-| `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modify | Root playbook index, counts, Section 13, and cross-references |
+| `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/*.md` | Create | Seven CS scenario contracts |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | Modify | Root playbook index, counts, Section 13, and cross-references |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -209,5 +209,5 @@ Create a read-only execution harness plus seven cross-stack routing scenarios so
 - **Task Ledger**: `tasks.md`
 - **Verification Checklist**: `checklist.md`
 - **Universal Prompt**: `prompts/universal_test_prompt.md`
-- **Root Playbook**: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
+- **Root Playbook**: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 <!-- /ANCHOR:related-docs -->

@@ -14,9 +14,9 @@ You are running iteration 2 of 10 in a deep-review loop on the 008-code-graph-ba
 
 Audit the test coverage and scan-handler hash propagation:
 
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:905-940` (mtime+hash test, recently fixed to use generateContentHash)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:41-46, 111-117` (hash predicate edge cases)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:208-217` (currentContentHash propagation)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:905-940` (mtime+hash test, recently fixed to use generateContentHash)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:41-46, 111-117` (hash predicate edge cases)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:208-217` (currentContentHash propagation)
 
 ## Look For
 

@@ -67,7 +67,7 @@ Top-level `README.md` (81KB) gained four surgical edits: Phase Parent row in the
 
 `assets/template_mapping.md` Required Templates by Level table gains a Phase Parent row and a paragraph block enumerating required, prohibited, and optional files at phase parents.
 
-`.opencode/command/spec_kit/plan.md` and `complete.md` `:with-phases` workflow descriptions both now state the parent is created from `templates/phase_parent/spec.md` (lean trio only); plan/tasks/checklist/decisions live in children.
+`.opencode/commands/spec_kit/plan.md` and `complete.md` `:with-phases` workflow descriptions both now state the parent is created from `templates/phase_parent/spec.md` (lean trio only); plan/tasks/checklist/decisions live in children.
 
 ### Low touch-ups
 
@@ -88,8 +88,8 @@ Top-level `README.md` (81KB) gained four surgical edits: Phase Parent row in the
 | `references/intake-contract.md` | MEDIUM | §1 OVERVIEW phase-parent note + §14 REFERENCE rows |
 | `references/workflows/quick_reference.md` | MEDIUM | Phase-Parent Resume Ladder block after Phased Resume |
 | `assets/template_mapping.md` | MEDIUM | Phase Parent row in Required Templates + qualifier block |
-| `.opencode/command/spec_kit/plan.md` | MEDIUM | `:with-phases` Phase Decomposition lean-parent statement |
-| `.opencode/command/spec_kit/complete.md` | MEDIUM | Same lean-parent statement in Execution Modes table |
+| `.opencode/commands/spec_kit/plan.md` | MEDIUM | `:with-phases` Phase Decomposition lean-parent statement |
+| `.opencode/commands/spec_kit/complete.md` | MEDIUM | Same lean-parent statement in Execution Modes table |
 | `references/structure/folder_routing.md` | LOW | Explicit-target-priority footnote |
 | `references/config/hook_system.md` | LOW | SessionStart phase-parent redirect mention |
 <!-- /ANCHOR:what-built -->

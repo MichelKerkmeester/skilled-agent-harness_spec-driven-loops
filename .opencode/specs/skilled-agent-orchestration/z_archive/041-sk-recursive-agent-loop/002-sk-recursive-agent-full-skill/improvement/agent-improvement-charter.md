@@ -11,12 +11,12 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 
 ## Canonical Benchmark Seed
 
-- Canonical source under test: `.opencode/agent/handover.md`
+- Canonical source under test: `.opencode/agents/handover.md`
 - Reason: structured prompt surface, narrow scope, clear downstream artifact contract
 
 ## Additional Bounded Target
 
-- Candidate-only source under test: `.opencode/agent/context-prime.md`
+- Candidate-only source under test: `.opencode/agents/context-prime.md`
 - Reason: structured, read-only Prime Package contract with a smaller and safer output surface than broad orchestration agents
 
 ## Policy

@@ -94,7 +94,7 @@ Each campaign below follows this 6-phase template. Where a child has unique rule
 
 Before dispatching, manual check:
 ```
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder> \
   --strict --no-recursive
 ```
@@ -423,8 +423,8 @@ Alternate executor (doc-heavy work): **cli-claude-code with Opus 4.7** may be pr
 
 ### Validation gate
 
-- Reference doc exists at path: .opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md — all 11 sections per §3.1 list
-- Validation playbook exists at path: .opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md — 8 steps
+- Reference doc exists at path: .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md — all 11 sections per §3.1 list
+- Validation playbook exists at path: .opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md — 8 steps
 - sk-doc DQI validator ≥ 0.85 on both docs
 - CLAUDE.md §Gate 2 references hook as primary
 - 020 parent `implementation-summary.md` Release Prep section has every item `[x]` with evidence link
@@ -444,19 +444,19 @@ After all 8 children are signed off individually, run the integration gauntlet:
 
 1. **Full test suite** at `mcp_server/`:
    ```
-   cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run
+   cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run
    ```
    Expect: 0 failures, full coverage of new advisor code paths.
 
 2. **TypeScript clean**:
    ```
-   cd .opencode/skill/system-spec-kit && npx tsc --noEmit
+   cd .opencode/skills/system-spec-kit && npx tsc --noEmit
    ```
    Expect: 0 errors.
 
 3. **Parent validation (recursive)**:
    ```
-   bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
      .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface \
      --strict
    ```
@@ -477,7 +477,7 @@ For each of Claude / Gemini / Copilot / Codex:
 
 After T9 passes all checks:
 ```
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface","sessionSummary":"Phase 020 shipped: 8 children converged, all runtime adapters green, 200/200 corpus parity, hard gate lifted, release documentation published"}'
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface","sessionSummary":"Phase 020 shipped: 8 children converged, all runtime adapters green, 200/200 corpus parity, hard gate lifted, release documentation published"}'
 ```
 
 ---
@@ -645,13 +645,13 @@ Template (substitute `<child-folder>` and review focus):
 
 ```bash
 # Single child, strict
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder> --strict --no-recursive
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder> --strict --no-recursive
 
 # Full umbrella (recursive)
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface --strict
 
 # TypeScript + tests
-cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit && npx vitest run
+cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit && npx vitest run
 ```
 
 ---

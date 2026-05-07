@@ -24,7 +24,7 @@
 
 - Impact: Recovery path can fail to resolve a valid child when direct nested resolution fails, reducing typo-recovery reliability.
 - Evidence:
-  - `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts:112` calls `findChildFolderAsync(specArg)`.
+  - `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:112` calls `findChildFolderAsync(specArg)`.
   - For values like `specs/003-parent/121-child`, this passes a multi-segment string to child lookup, which is expected to receive a child folder name.
 - Repro thought experiment:
   1. Invoke detector with `specs/003-parent/121-child` where nested target is not directly resolvable.
@@ -53,7 +53,7 @@
 
 - Impact: Permits atypical names (e.g., `003-foo-`) that can create naming inconsistency.
 - Evidence:
-  - `.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts:20`
+  - `.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts:20`
   - Pattern allows trailing `-` due to `[a-z0-9-]*` suffix.
 - Recommended fix: tighten pattern to disallow trailing hyphens while keeping multi-segment slugs valid.
 
@@ -61,15 +61,15 @@
 
 - Impact: Increased maintenance risk; behavior depends on which consumer normalizes first.
 - Evidence:
-  - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` normalizes/strips prefixes during argument parsing.
-  - `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts` applies separate prefix handling/resolution.
+  - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` normalizes/strips prefixes during argument parsing.
+  - `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts` applies separate prefix handling/resolution.
 - Recommended fix: centralize normalization contract (single utility or canonical pre-resolved absolute form).
 
 #### P2-03: Deep suggestion scan behavior is not fully aligned/documented
 
 - Impact: Suggestion quality can differ by specs directory selection and scan strategy.
 - Evidence:
-  - `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` includes inline deep scan fallback logic.
+  - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` includes inline deep scan fallback logic.
   - Directory preference/suggestion behavior across multiple specs roots is only partially surfaced.
 - Recommended fix: document exact selection/scan order and optionally reuse shared resolver utilities for consistency.
 
@@ -92,15 +92,15 @@
 
 ## Concrete File-Level Patch Plan (No code yet)
 
-- [ ] `.opencode/skill/system-spec-kit/scripts/spec-folder/folder-detector.ts`
+- [ ] `.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts`
   - Patch P1-01: use basename for fallback child lookup input in async path.
 - [ ] `.opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/checklist.md`
   - Patch P1-02: execute/record CHK-010..CHK-031 evidence; update verification summary.
 - [ ] `.opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/tasks.md`
   - Patch P1-03: sync phase/task completion markers with actual implementation and test outcomes.
-- [ ] `.opencode/skill/system-spec-kit/scripts/core/subfolder-utils.ts`
+- [ ] `.opencode/skills/system-spec-kit/scripts/core/subfolder-utils.ts`
   - Patch P2-01: tighten folder-name regex to prevent trailing hyphen names.
-- [ ] `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
+- [ ] `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
   - Patch P2-02/P2-03: normalize argument contract centrally; reduce/align deep suggestion scanning behavior.
 - [ ] Related verification docs/tests (if present in `scripts/tests` or verification notes)
   - Document integration-vs-source test intent and required build/type-check gate.

@@ -35,7 +35,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Created | OK | Behavioral test with TC-1 (envelope on response), TC-2 (audit JSONL emission), TC-3 (degradedReadiness — initially expected_fail, flipped by 025) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Created | OK | Behavioral test with TC-1 (envelope on response), TC-2 (audit JSONL emission), TC-3 (degradedReadiness — initially expected_fail, flipped by 025) |
 
 ---
 
@@ -45,10 +45,10 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Cited | OK | Test exercises this real handler |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope shape asserted |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts` | Cited | OK | recordSearchDecision JSONL append asserted |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts` | Cited | OK | executePipeline mocked at retrieval boundary |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Cited | OK | Test exercises this real handler |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | Envelope shape asserted |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts` | Cited | OK | recordSearchDecision JSONL append asserted |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts` | Cited | OK | executePipeline mocked at retrieval boundary |
 
 ---
 

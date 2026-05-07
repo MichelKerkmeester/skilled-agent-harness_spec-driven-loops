@@ -161,5 +161,5 @@ This packet is complete when:
 - Source of evidence: `../010-stress-test-rerun-v1-0-2/findings.md` Recommendations §1-5
 - Sibling remediation packets: `../003-memory-context-truncation-contract/`, `../004-cocoindex-overfetch-dedup/`, `../005-code-graph-fast-fail/`, `../006-causal-graph-window-metrics/`, `../007-intent-classifier-stability/`, `../008-mcp-daemon-rebuild-protocol/`, `../009-memory-search-response-policy/`
 - Predecessor v1.0.1 baseline: `../001-search-intelligence-stress-test/002-scenario-execution/findings.md`
-- Workflow: `.opencode/skill/sk-deep-research/SKILL.md`, `.opencode/command/spec_kit/deep-research.md`
+- Workflow: `.opencode/skills/sk-deep-research/SKILL.md`, `.opencode/commands/spec_kit/deep-research.md`
 <!-- /ANCHOR:cross-refs -->

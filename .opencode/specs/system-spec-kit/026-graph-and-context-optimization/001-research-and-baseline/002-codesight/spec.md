@@ -31,7 +31,7 @@ Phase 2 of `001-research-graph-context-systems` is a read-only audit of the code
 
 **Key Decisions**: Run the packet to 20 total iterations across three segments: original charter (iters 1-5), first continuation charter (iters 6-10), and a `completed-continue` extension (iters 11-20) covering watch/hook automation, middleware/libs/config detectors, formatter lifecycle, MCP cache/error semantics, AI-config write safety, HTML projection, scanner heuristics, and final adoption synthesis. Iterations 1-3 and 6-10 used cli-codex `gpt-5.4` high reasoning effort, iters 4-5 used native fallback after codex stalls, and iters 11-20 executed directly in the active Codex session because self-invoking cli-codex from Codex would be circular. The packet keeps the 22-row Adopt/Adapt/Reject matrix and extends it with the 20-iteration synthesis.
 
-**Critical Dependencies**: cli-codex CLI installed (verified `codex-cli 0.118.0`); `external/` accessible at the spec folder root; reducer script at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`.
+**Critical Dependencies**: cli-codex CLI installed (verified `codex-cli 0.118.0`); `external/` accessible at the spec folder root; reducer script at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`; memory script at `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
 
 ---
 
@@ -155,9 +155,9 @@ Produce an evidence-grounded Adopt/Adapt/Reject decision matrix for Codesight pa
 
 - `external/` directory containing the codesight source tree (already cloned at phase folder root).
 - cli-codex CLI v0.118.0+ for iteration dispatch.
-- Reducer script `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` for state file maintenance.
-- Memory script `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for memory artifact generation.
-- Validator script `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` for spec compliance.
+- Reducer script `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` for state file maintenance.
+- Memory script `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for memory artifact generation.
+- Validator script `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` for spec compliance.
 
 ---
 

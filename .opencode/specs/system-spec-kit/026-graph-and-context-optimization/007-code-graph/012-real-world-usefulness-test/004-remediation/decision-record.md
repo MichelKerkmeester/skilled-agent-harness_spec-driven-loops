@@ -17,9 +17,9 @@ _memory:
     next_safe_action: "Keep implementation aligned with ADR safety contracts"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts"
     session_dedup:
       fingerprint: "sha256:35670aa2334623f7a8dfbfd68f30064456f013f84330ffd27df0e9174f3dce91"
       session_id: "026-007-012-004-remediation"

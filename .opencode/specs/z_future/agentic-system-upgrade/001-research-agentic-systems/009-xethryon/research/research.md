@@ -21,11 +21,11 @@ contextType: "research"
 - Combined totals: Must-have 3 | Should-have 13 | Nice-to-have 7 | Rejected 7
 - Phase 3 UX verdict totals: SIMPLIFY 2 | ADD 2 | MERGE 3 | KEEP 2 | REDESIGN 1
 - Top Phase 3 adoption opportunities for `system-spec-kit`:
-  - Redesign Gate 2 so skill routing is silent by default and only explained on ambiguity or request. [SOURCE: .opencode/skill/scripts/skill_advisor.py:6-16] [SOURCE: .opencode/skill/scripts/skill_advisor.py:211-259]
-  - Add one guided lifecycle front door above `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete`. [SOURCE: .opencode/command/spec_kit/plan.md:13-21] [SOURCE: .opencode/command/spec_kit/implement.md:171-201] [SOURCE: .opencode/command/spec_kit/complete.md:198-217]
-  - Add a guided spec-level chooser with required-file and validator previews. [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:30-35] [SOURCE: .opencode/skill/system-spec-kit/templates/README.md:66-73] [SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:80-100]
-  - Merge `@context-prime` into startup/bootstrap behavior and keep `@context` as the visible retrieval role. [SOURCE: .opencode/agent/context-prime.md:22-39] [SOURCE: .opencode/agent/context.md:25-31] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:140-158]
-  - Shrink the YAML workflow-asset surface by factoring shared execution skeletons instead of repeating orchestration boilerplate across command assets. [SOURCE: .opencode/command/spec_kit/plan.md:13-21] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:96-237]
+  - Redesign Gate 2 so skill routing is silent by default and only explained on ambiguity or request. [SOURCE: .opencode/skills/scripts/skill_advisor.py:6-16] [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-259]
+  - Add one guided lifecycle front door above `/spec_kit:plan`, `/spec_kit:implement`, and `/spec_kit:complete`. [SOURCE: .opencode/commands/spec_kit/plan.md:13-21] [SOURCE: .opencode/commands/spec_kit/implement.md:171-201] [SOURCE: .opencode/commands/spec_kit/complete.md:198-217]
+  - Add a guided spec-level chooser with required-file and validator previews. [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:30-35] [SOURCE: .opencode/skills/system-spec-kit/templates/README.md:66-73] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:80-100]
+  - Merge `@context-prime` into startup/bootstrap behavior and keep `@context` as the visible retrieval role. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context.md:25-31] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:140-158]
+  - Shrink the YAML workflow-asset surface by factoring shared execution skeletons instead of repeating orchestration boilerplate across command assets. [SOURCE: .opencode/commands/spec_kit/plan.md:13-21] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/command/index.ts:96-237]
 
 ## 2. External Repo Map
 - Xethryon's operator surface is anchored around one TUI/chat loop with slash commands, bundled skills, prompt injection, and a smaller visible role vocabulary than `system-spec-kit`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/README.md:165-205] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:140-225]
@@ -40,7 +40,7 @@ contextType: "research"
 
 ### 3.2 Phase 2 — Refactor / Pivot Discipline
 - Phase 2 showed that Xethryon's polished UX often sits on top of weaker verification and hidden runtime behavior, which means Spec Kit should import selected patterns without pivoting its core architecture.
-- The most important Phase 2 architectural lesson was to preserve file-mediated, artifact-backed deep loops even when Xethryon's runtime reflection looks lighter. [SOURCE: .opencode/agent/deep-research.md:121-171] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1389-1428]
+- The most important Phase 2 architectural lesson was to preserve file-mediated, artifact-backed deep loops even when Xethryon's runtime reflection looks lighter. [SOURCE: .opencode/agents/deep-research.md:121-171] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/prompt.ts:1389-1428]
 
 ### 3.3 Phase 3 — UX, Agentic System & Skills Analysis
 - The main UX problem in `system-spec-kit` is not raw feature count. It is exposed ceremony: too many visible lifecycle doors, too much visible routing theory, and too many operator-facing capability buckets.
@@ -63,8 +63,8 @@ contextType: "research"
 ### 4.1 Actionable Findings
 | ID | Iteration | Priority | Target | Summary |
 |---|---|---|---|---|
-| F-001 | 010 | must-have | `.opencode/agent/deep-research.md` | Add a claim-verification ledger so major external claims are marked `verified`, `contradicted`, or `unresolved`. |
-| F-002 | 004 | should-have | `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` | Add deferred reconsolidation cadence on top of save-time reconsolidation. |
-| F-003 | 005 | should-have | `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Add an explicit one-pass publication critique instead of relying on hidden reflection. |
-| F-004 | 003 | should-have | `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Generate a runtime-agnostic continuity synopsis for stronger non-hook recovery. |
-| F-005 | 007 | should-have | `.opencode/agent/orchestrate.md` | Compress role-transition rules into a compact trigger matrix. |
+| F-001 | 010 | must-have | `.opencode/agents/deep-research.md` | Add a claim-verification ledger so major external claims are marked `verified`, `contradicted`, or `unresolved`. |
+| F-002 | 004 | should-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts` | Add deferred reconsolidation cadence on top of save-time reconsolidation. |
+| F-003 | 005 | should-have | `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Add an explicit one-pass publication critique instead of relying on hidden reflection. |
+| F-004 | 003 | should-have | `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Generate a runtime-agnostic continuity synopsis for stronger non-hook recovery. |
+| F-005 | 007 | should-have | `.opencode/agents/orchestrate.md` | Compress role-transition rules into a compact trigger matrix. |

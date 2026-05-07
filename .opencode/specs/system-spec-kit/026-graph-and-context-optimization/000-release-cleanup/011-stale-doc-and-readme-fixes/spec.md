@@ -48,9 +48,9 @@ _memory:
 Today's 022-028 batch shipped runtime + skill-contract changes faster than packet continuity and adjacent READMEs caught up. Stale narrative in three flavors:
 
 1. **Packet continuity drift**: the 023 implementation summary still describes TC-3 as `expected_fail`; the 025 tasks file still marks typecheck-blocked; the 028 spec continuity still says "Authored Level 1 spec" despite implementation complete.
-2. **Code-adjacent README staleness from 026**: `.opencode/skill/system-spec-kit/mcp_server/core/README.md:40` and `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md:79` still reference deleted readiness functions.
-3. **Skill README staleness from 028**: `.opencode/skill/sk-deep-review/README.md` and `.opencode/skill/sk-deep-research/README.md` still document `review/{packet}/` first-run shape; `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:196` example shows pt-01 child layout before flat-first rule.
-4. **Older drift surfaced by audit**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md` rerank min count, `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` fallbackDecision, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md` parser default, `.opencode/skill/sk-doc/README.md` doctype list.
+2. **Code-adjacent README staleness from 026**: `.opencode/skills/system-spec-kit/mcp_server/core/README.md:40` and `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md:79` still reference deleted readiness functions.
+3. **Skill README staleness from 028**: `.opencode/skills/sk-deep-review/README.md` and `.opencode/skills/sk-deep-research/README.md` still document `review/{packet}/` first-run shape; `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:196` example shows pt-01 child layout before flat-first rule.
+4. **Older drift surfaced by audit**: `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md` rerank min count, `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` fallbackDecision, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md` parser default, `.opencode/skills/sk-doc/README.md` doctype list.
 
 ### Purpose
 
@@ -82,25 +82,25 @@ Update 12 documents to match committed code. Pure documentation; no runtime chan
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/023-live-handler-envelope-capture-seam/implementation-summary.md` | 64, 113 | Update TC-3 narrative - passing not expected_fail; cite that 025 closed the wiring |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/tasks.md` | 83 | Remove typecheck-blocked annotation; final batch state typechecks cleanly |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/028-deep-review-skill-contract-fixes/spec.md` | 17 (continuity) | Update `recent_action` to "Implementation complete + shipped"; bump completion_pct to 100; refresh last_updated_at |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | ~196 | Update child-phase layout example to flat-first; pt-NN explicitly shown as second-run conditional |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | ~196 | Update child-phase layout example to flat-first; pt-NN explicitly shown as second-run conditional |
 
 #### Code-adjacent READMEs (5 files)
 
 | File | Line(s) | Action |
 |------|---------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/core/README.md` | 40 | Drop the embedding-readiness ownership line; describe current DB rebind/cache responsibilities only |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md` | 79 | Replace `setEmbeddingModelReady` mention with current lazy embedding/provider startup path |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md` | 117-118 | Stage 3 = conditional default-on rerank; min 4 candidates; mention `rerankGateDecision` metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md` | 141-148 | Add `fallbackDecision` to blocked-path + status-degraded field tables |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md` | 12 | `structural-indexer.ts` = Tree-sitter WASM default + regex fallback (not "regex-only, tree-sitter planned"); also list newer modules `ensure-ready.ts`, `query-result-adapter.ts`, `utils/workspace-path.ts` |
+| `.opencode/skills/system-spec-kit/mcp_server/core/README.md` | 40 | Drop the embedding-readiness ownership line; describe current DB rebind/cache responsibilities only |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md` | 79 | Replace `setEmbeddingModelReady` mention with current lazy embedding/provider startup path |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md` | 117-118 | Stage 3 = conditional default-on rerank; min 4 candidates; mention `rerankGateDecision` metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | 141-148 | Add `fallbackDecision` to blocked-path + status-degraded field tables |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md` | 12 | `structural-indexer.ts` = Tree-sitter WASM default + regex fallback (not "regex-only, tree-sitter planned"); also list newer modules `ensure-ready.ts`, `query-result-adapter.ts`, `utils/workspace-path.ts` |
 
 #### Skill READMEs (3 files)
 
 | File | Line(s) | Action |
 |------|---------|--------|
-| `.opencode/skill/sk-deep-review/README.md` | 216-220 | Rewrite runtime-state layout around `{artifact_dir}` flat-first; pt-NN explicitly conditional |
-| `.opencode/skill/sk-deep-research/README.md` | 73, 134-136 | Same flat-first treatment |
-| `.opencode/skill/sk-doc/README.md` | 80, 149 | Add `playbook_feature` doctype to Document Quality mode list |
+| `.opencode/skills/sk-deep-review/README.md` | 216-220 | Rewrite runtime-state layout around `{artifact_dir}` flat-first; pt-NN explicitly conditional |
+| `.opencode/skills/sk-deep-research/README.md` | 73, 134-136 | Same flat-first treatment |
+| `.opencode/skills/sk-doc/README.md` | 80, 149 | Add `playbook_feature` doctype to Document Quality mode list |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -122,8 +122,8 @@ Update 12 documents to match committed code. Pure documentation; no runtime chan
 
 ### Acceptance Scenarios
 
-1. **Given** a reader opens `.opencode/skill/system-spec-kit/mcp_server/core/README.md`, **when** they read the state-ownership section, **then** they see no mention of `embeddingModelReady` / `isEmbeddingModelReady` / `setEmbeddingModelReady` / `waitForEmbeddingModel`.
-2. **Given** a reader opens `.opencode/skill/sk-deep-review/README.md`, **when** they read the runtime-state layout, **then** the first-run case is flat at `{spec_folder}/review/` and pt-NN is explicitly conditional on prior content.
+1. **Given** a reader opens `.opencode/skills/system-spec-kit/mcp_server/core/README.md`, **when** they read the state-ownership section, **then** they see no mention of `embeddingModelReady` / `isEmbeddingModelReady` / `setEmbeddingModelReady` / `waitForEmbeddingModel`.
+2. **Given** a reader opens `.opencode/skills/sk-deep-review/README.md`, **when** they read the runtime-state layout, **then** the first-run case is flat at `{spec_folder}/review/` and pt-NN is explicitly conditional on prior content.
 <!-- /ANCHOR:requirements -->
 
 ---

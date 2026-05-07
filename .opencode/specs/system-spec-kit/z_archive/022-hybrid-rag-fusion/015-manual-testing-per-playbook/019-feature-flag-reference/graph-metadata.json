@@ -48,7 +48,7 @@
       "lib/search/graph-flags.ts",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js"
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js"
     ],
     "entities": [
       {

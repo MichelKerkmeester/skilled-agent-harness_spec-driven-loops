@@ -13,15 +13,15 @@ implementation-spec-alignment
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/resource-map.md:96`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/implementation-summary.md:58`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/implementation-summary.md:74`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:57`
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:182`
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:52`
-- `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:35`
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1117`
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1123`
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45`
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:103`
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:120`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:57`
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:182`
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:52`
+- `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:35`
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1117`
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1123`
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45`
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:103`
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:120`
 
 # Findings by Severity
 
@@ -33,13 +33,13 @@ None.
 
 ### DR-001-P1-001 [P1] Phase-parent scaffolding still emits private `manifest` vocabulary into generated public spec text
 
-- File: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1123`
+- File: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1123`
 - Claim: The implementation does not fully satisfy ADR-005/workflow-invariance for phase-parent scaffold output because generated `spec.md` scope text still contains `child phase manifest`.
-- Evidence: The spec requires the implementation to fix "Sub-phase manifest" wording and keep workflow-invariance green for public/AI-facing surfaces [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:78`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:103`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:122`]. The phase-parent template itself uses taxonomy-neutral "Sub-phase list" wording [SOURCE: `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:35`, `.opencode/skill/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:37`]. However, `create.sh` renders that template for phase parents and then substitutes scope rows containing `child phase manifest` [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1117`, `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1123`].
-- Counterevidence sought: I checked the current workflow-invariance test. It scans markdown/YAML/JSON/TXT surfaces under templates, commands, agents, feature catalog, manual playbook, root policy docs, and live `--help` output [SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45`, `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:103`, `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:120`]. That coverage does not exercise generated phase-parent body text from `create.sh`, so the clean template does not prove generated output is clean.
+- Evidence: The spec requires the implementation to fix "Sub-phase manifest" wording and keep workflow-invariance green for public/AI-facing surfaces [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:78`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:103`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/003-template-greenfield-impl/spec.md:122`]. The phase-parent template itself uses taxonomy-neutral "Sub-phase list" wording [SOURCE: `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:35`, `.opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl:37`]. However, `create.sh` renders that template for phase parents and then substitutes scope rows containing `child phase manifest` [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1117`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1123`].
+- Counterevidence sought: I checked the current workflow-invariance test. It scans markdown/YAML/JSON/TXT surfaces under templates, commands, agents, feature catalog, manual playbook, root policy docs, and live `--help` output [SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45`, `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:103`, `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:120`]. That coverage does not exercise generated phase-parent body text from `create.sh`, so the clean template does not prove generated output is clean.
 - Alternative explanation: The word "manifest" here could be intended as a generic phase listing rather than the private template manifest. That does not remove the mismatch because this exact wording class was called out for cleanup and the generated spec is an AI-readable public surface.
 - Finding class: cross-consumer
-- Scope proof: `rg -n "phase manifest|Sub-phase manifest|child phase manifest|phase map|manifest for" create.sh phase-parent.spec.md.tmpl workflow-invariance.vitest.ts .opencode/agent .opencode/command/spec_kit` returned this single generated-output substitution site.
+- Scope proof: `rg -n "phase manifest|Sub-phase manifest|child phase manifest|phase map|manifest for" create.sh phase-parent.spec.md.tmpl workflow-invariance.vitest.ts .opencode/agent .opencode/commands/spec_kit` returned this single generated-output substitution site.
 - Affected surface hints: ["phase-parent scaffold output", "workflow-invariance test", "public Level vocabulary"]
 - Recommendation: Replace the generated scope text with taxonomy-neutral wording such as `child phase list` or `phase map`, and extend workflow-invariance coverage to scaffold a phase-parent or otherwise scan rendered phase-parent output.
 - Final severity: P1

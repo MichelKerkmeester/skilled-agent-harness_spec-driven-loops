@@ -4,8 +4,8 @@
 Finished the D7 drill by checking disable-flag naming and behavior consistency across hook docs, playbooks, and the plugin/runtime code.
 
 ## Evidence read
-- `.opencode/skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md:262-281` -> playbook distinguishes hook disable via `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and plugin opt-out via `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` or `enabled: false`.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/{claude,gemini,copilot,codex}/user-prompt-submit.ts` -> all four adapters gate on `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'`.
+- `.opencode/skills/skill-advisor/manual_testing_playbook/manual_testing_playbook.md:262-281` -> playbook distinguishes hook disable via `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and plugin opt-out via `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` or `enabled: false`.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/{claude,gemini,copilot,codex}/user-prompt-submit.ts` -> all four adapters gate on `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'`.
 - `.opencode/plugins/spec-kit-skill-advisor.js:18-19` and `:42-60` -> plugin uses the distinct `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED` env and mirrors config opt-out.
 
 ## Findings

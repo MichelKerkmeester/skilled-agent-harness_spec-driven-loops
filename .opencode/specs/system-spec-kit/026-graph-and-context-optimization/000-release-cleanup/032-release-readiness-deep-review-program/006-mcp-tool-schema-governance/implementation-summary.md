@@ -38,7 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -108,7 +108,7 @@ The audit used direct source reads, exact regex checks, and targeted cross-check
 | Tool count source check | PASS: 50 local descriptors plus 4 advisor descriptors equals 54 public `spec_kit_memory` tools. |
 | Strict schema default check | PASS: strict mode is default because only `SPECKIT_STRICT_SCHEMAS=false` switches schemas to passthrough. |
 | Governance SQL review | PASS: audited governance SQL uses fixed clauses and bound parameters. |
-| Packet strict validation | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/006-mcp-tool-schema-governance --strict` exited 0. |
+| Packet strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/006-mcp-tool-schema-governance --strict` exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---

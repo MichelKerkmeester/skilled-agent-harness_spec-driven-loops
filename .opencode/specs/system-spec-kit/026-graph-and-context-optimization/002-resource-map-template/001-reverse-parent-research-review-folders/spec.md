@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Phase 002 can proceed on the restored local-owner artifact contract"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
+      - ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -102,14 +102,14 @@ Restore the local-owner artifact contract everywhere, migrate misplaced child pa
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Modify | Restore local-owner packet resolution for root, child, and sub-phase runs. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
-| `.opencode/skill/sk-deep-research/**` | Modify | Update docs and references to the restored child-local packet policy. |
-| `.opencode/skill/sk-deep-review/**` | Modify | Update docs, references, assets, and mirrors to the restored child-local packet policy. |
-| `.opencode/skill/system-spec-kit/scripts/tests/**` | Modify/Create | Add path-resolution coverage and update parity expectations. |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modify | Restore local-owner packet resolution for root, child, and sub-phase runs. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modify | Use resolver-provided `{artifact_dir}` only. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_*.yaml` | Modify | Keep prompts, state, and synthesized outputs inside the same resolved local-owner packet. |
+| `.opencode/skills/sk-deep-research/**` | Modify | Update docs and references to the restored child-local packet policy. |
+| `.opencode/skills/sk-deep-review/**` | Modify | Update docs, references, assets, and mirrors to the restored child-local packet policy. |
+| `.opencode/skills/system-spec-kit/scripts/tests/**` | Modify/Create | Add path-resolution coverage and update parity expectations. |
 | `.opencode/specs/**/research/**`, `.opencode/specs/**/review/**` | Move/Rewrite | Relocate misplaced child packets and update live canonical references. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/*` | Modify | Rebase phase 002 onto the restored local-owner contract. |
 <!-- /ANCHOR:scope -->

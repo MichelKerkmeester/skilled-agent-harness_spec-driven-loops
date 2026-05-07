@@ -398,11 +398,11 @@ As an AI agent, I need gate system documentation to be more accessible so that I
 
 | File | Purpose | Issues Found |
 |------|---------|--------------|
-| `.opencode/skill/system-spec-kit/SKILL.md` | Main skill documentation | Version, template count |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | MCP server implementation | Empty query bug, non-TTY crash |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Main skill documentation | Version, template count |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | MCP server implementation | Empty query bug, non-TTY crash |
 | `AGENTS.md` | Agent routing configuration | Missing agents, naming mismatch |
-| `.opencode/command/memory/*.md` | Memory command documentation | Step counts, tool naming |
-| `.opencode/command/spec_kit/*.md` | Spec kit command documentation | Step counts, missing scripts |
+| `.opencode/commands/memory/*.md` | Memory command documentation | Step counts, tool naming |
+| `.opencode/commands/spec_kit/*.md` | Spec kit command documentation | Step counts, missing scripts |
 | `.opencode/agents/` | Agent definitions | Missing files |
 
 ### P0 Issues Detail

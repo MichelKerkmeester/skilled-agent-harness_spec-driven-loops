@@ -65,7 +65,7 @@ Used Sequential Thinking (12 steps) to systematically rule out hypotheses: missi
 | `mcp_server/handlers/memory-context.ts` | Modify | Remove 2x hardcoded `minState: 'WARM'` |
 | `mcp_server/dist/handlers/memory-context.js` | Modify | Same fix in compiled output |
 
-All paths relative to `.opencode/skill/system-spec-kit/`.
+All paths relative to `.opencode/skills/system-spec-kit/`.
 <!-- /ANCHOR:what-built -->
 
 ---

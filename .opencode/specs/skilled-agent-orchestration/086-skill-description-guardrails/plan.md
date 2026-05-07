@@ -114,7 +114,7 @@ Layer-cake guardrails. Each layer is independent and degrades gracefully if uppe
 
 ### Phase 3: Tier 3 — `/doctor:skill-budget` audit
 - [x] Create `audit_descriptions.py` reusing Tier 2 length library
-- [x] Walk `.opencode/skill/*/SKILL.md`, `.opencode/command/**/*.md`, four agent surfaces (incl. Codex TOML)
+- [x] Walk `.opencode/skills/*/SKILL.md`, `.opencode/commands/**/*.md`, four agent surfaces (incl. Codex TOML)
 - [x] Emit per-item table, top-N bloated, project total, headroom, suggested trims
 - [x] `--json` and `--fail-over=N` flags
 - [x] Create `doctor/skill-budget.md` entrypoint mirroring `skill-advisor.md` structure
@@ -166,7 +166,7 @@ Layer-cake guardrails. Each layer is independent and degrades gracefully if uppe
 
 - **Trigger**: REQ-006 probe regression (sk-doc loses advisor ranking) OR Tier 2 length check fires before multiline-block rejection
 - **Procedure**:
-  1. `git checkout HEAD -- .opencode/skill/sk-doc .opencode/command/create .opencode/command/doctor` (per-tier as needed)
+  1. `git checkout HEAD -- .opencode/skills/sk-doc .opencode/commands/create .opencode/commands/doctor` (per-tier as needed)
   2. Run advisor probe to confirm baseline restored
   3. Open follow-on packet to redesign the failing tier
   4. Other tiers remain shipped (independence is the point of layer-cake)

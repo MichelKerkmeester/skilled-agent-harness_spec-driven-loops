@@ -52,9 +52,9 @@ Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with
 - .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/073-speckit-template-optimization
 - .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/074-speckit-template-optimization-refinement
 - .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing
-- .opencode/skill/system-spec-kit/
-- .opencode/command/spec_kit/
-- .opencode/command/memory/
+- .opencode/skills/system-spec-kit/
+- .opencode/commands/spec_kit/
+- .opencode/commands/memory/
 
 ## Documentation Level
 

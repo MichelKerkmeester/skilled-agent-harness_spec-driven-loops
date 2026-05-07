@@ -1,6 +1,6 @@
 ---
 title: "Spec: Constitutional [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/047-constitutional-readme/spec]"
-description: "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skill/system-spec-kit/constitutional/. The README should explain how con..."
+description: "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skills/system-spec-kit/constitutional/. The README should explain how con..."
 trigger_phrases:
   - "spec"
   - "constitutional"
@@ -29,7 +29,7 @@ contextType: "planning"
 <!-- ANCHOR:metadata -->
 ## 1. Objective
 
-Create comprehensive documentation (README.md) for the constitutional memory system located at `.opencode/skill/system-spec-kit/constitutional/`. The README should explain how constitutional memories work, how to create new ones, and how to customize existing ones.
+Create comprehensive documentation (README.md) for the constitutional memory system located at `.opencode/skills/system-spec-kit/constitutional/`. The README should explain how constitutional memories work, how to create new ones, and how to customize existing ones.
 
 ---
 
@@ -84,7 +84,7 @@ Create comprehensive documentation (README.md) for the constitutional memory sys
 ### File Location
 
 ```
-.opencode/skill/system-spec-kit/constitutional/
+.opencode/skills/system-spec-kit/constitutional/
 ├── README.md              # Created by this spec
 ├── gate-enforcement.md    # Existing constitutional memory
 ```
@@ -93,7 +93,7 @@ Create comprehensive documentation (README.md) for the constitutional memory sys
 
 ## 5. Dependencies
 
-- Existing README patterns from `.opencode/skill/system-spec-kit/` folder
+- Existing README patterns from `.opencode/skills/system-spec-kit/` folder
 - Understanding of constitutional tier from MCP server implementation
 - ANCHOR format documentation
 

@@ -66,8 +66,8 @@ contextType: "implementation"
 ## Testing
 
 - [x] CHK-020 [P0] Active packet docs were re-grepped for stale removed-command references [EVIDENCE: focused stale-string sweep run against spec.md, plan.md, checklist.md, and implementation-summary.md]
-- [x] CHK-021 [P0] Strict packet validation passes [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/014-cmd-memory-output --strict` passed on 2026-03-27 with Errors: 0, Warnings: 0]
-- [x] CHK-022 [P1] Current live command surface confirmed in the repo [EVIDENCE: `.opencode/command/memory/` contains the live 4-command memory surface and no deleted legacy files]
+- [x] CHK-021 [P0] Strict packet validation passes [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/014-cmd-memory-output --strict` passed on 2026-03-27 with Errors: 0, Warnings: 0]
+- [x] CHK-022 [P1] Current live command surface confirmed in the repo [EVIDENCE: `.opencode/commands/memory/` contains the live 4-command memory surface and no deleted legacy files]
 
 ---
 

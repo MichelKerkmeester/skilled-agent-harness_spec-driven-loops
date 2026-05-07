@@ -16,11 +16,11 @@ _memory:
     next_safe_action: "Review and commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts"
     session_dedup:
       fingerprint: "sha256:4444444444444444444444444444444444444444444444444444444444444444"
       session_id: "026-007-012-005-scope-guard"
@@ -33,7 +33,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -67,11 +67,11 @@ The schema change adds `forceScopeChange` beside `forceZeroNodeReset` in the pub
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Add scope-change guard and blocked response. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | Expose `forceScopeChange`. |
-| `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Validate and allow `forceScopeChange`. |
-| `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modified | Add scope guard regression tests. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modified | Add schema acceptance coverage. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts` | Modified | Add scope-change guard and blocked response. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modified | Expose `forceScopeChange`. |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modified | Validate and allow `forceScopeChange`. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts` | Modified | Add scope guard regression tests. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Modified | Add schema acceptance coverage. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/005-scope-guard/*` | Created | Add Phase 005 planning, ADR, checklist, and summary docs. |
 <!-- /ANCHOR:what-built -->
 
@@ -107,7 +107,7 @@ The new test was run before the handler change and failed with `expected 'ok' to
 | `npx vitest run code_graph/tests/code-graph-scan.vitest.ts` | PASS: 1 file, 36 tests. |
 | `npx vitest run code_graph/tests/` | PASS: 20 files, 265 tests. |
 | `npx vitest run tests/tool-input-schema.vitest.ts` | PASS: 1 file, 86 tests. |
-| `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server` | PASS with 6 warnings outside changed files. |
+| `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | PASS with 6 warnings outside changed files. |
 | Child strict validation | PASS: exit 0. |
 | Parent strict validation | PASS: exit 0. |
 <!-- /ANCHOR:verification -->

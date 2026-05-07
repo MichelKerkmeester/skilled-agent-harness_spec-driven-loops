@@ -4,11 +4,11 @@
 Privacy and prompt-safety stabilization pass across hook output, diagnostics, and wrapper surfaces.
 
 ### Files Audited
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:55-70`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:134-187`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:111-113`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts:80-84`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-privacy.vitest.ts:88-110`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:55-70`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:134-187`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/prompt-wrapper.ts:111-113`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts:80-84`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-privacy.vitest.ts:88-110`
 
 ### Findings
 

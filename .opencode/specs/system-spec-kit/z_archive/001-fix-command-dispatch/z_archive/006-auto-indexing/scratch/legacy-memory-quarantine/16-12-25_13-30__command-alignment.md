@@ -211,7 +211,7 @@ Aligned the `/memory` command (search.md) with the structural patterns used in s
 
 | File | Change |
 |------|--------|
-| `.opencode/command/memory/memory.md` | Full restructuring (426 → 556 lines) |
+| `.opencode/commands/memory/memory.md` | Full restructuring (426 → 556 lines) |
 | `.opencode/skills/workflows-memory/SKILL.md` | Updated command references |
 
 ## Verification Performed
@@ -235,7 +235,7 @@ Used Sequential Thinking MCP for thorough analysis:
 ## Related
 
 - `specs/005-memory/004-auto-indexing/fix-summary.md`
-- `.opencode/command/memory/memory.md`
+- `.opencode/commands/memory/memory.md`
 - `.opencode/skills/workflows-memory/SKILL.md`
 
 

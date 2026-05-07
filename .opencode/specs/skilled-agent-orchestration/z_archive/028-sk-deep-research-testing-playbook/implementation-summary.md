@@ -58,7 +58,7 @@ Two accepted ADRs anchor the work. The first keeps the playbook unblocked by the
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet was rebuilt from the official Level 3 templates, then rewritten against the live `.opencode/skill/sk-deep-research/README`, command, skill, references, assets, and the current `sk-doc` testing-playbook contract. This alignment pass removed the superseded 14-scenario and 4-category framing and replaced it with the approved 19-scenario, 6-category implementation scope.
+The packet was rebuilt from the official Level 3 templates, then rewritten against the live `.opencode/skills/sk-deep-research/README`, command, skill, references, assets, and the current `sk-doc` testing-playbook contract. This alignment pass removed the superseded 14-scenario and 4-category framing and replaced it with the approved 19-scenario, 6-category implementation scope.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -83,7 +83,7 @@ The packet was rebuilt from the official Level 3 templates, then rewritten again
 |-------|--------|
 | Level 3 packet files created from official templates and rewritten with real content | PASS |
 | Approved 19-scenario and 6-category drift removed from the packet | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/028-sk-deep-research-testing-playbook` | PASS (`RESULT: PASSED`, 0 errors, 0 warnings) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/03--commands-and-skills/028-sk-deep-research-testing-playbook` | PASS (`RESULT: PASSED`, 0 errors, 0 warnings) |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -13,18 +13,18 @@ Read each `w7-*.vitest.ts` file and determine whether they exercise real fallbac
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts:7` calls `runMeasurement` and reads the `w7-code-graph-stale` case.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts:7` does the same for `w7-code-graph-empty`.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts:7` does the same for `w7-code-graph-full-scan-required`.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts:7` does the same for `w7-code-graph-unavailable`.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:139` maps W7 cases to baseline static candidates.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155` creates static runners for `memory_search`, `code_graph_query`, and `skill_graph_query`.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:172` runs the harness with those static runners.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151` classifies an empty graph as requiring full scan.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166` checks stale tracked files.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787` blocks the read path when full scan is required.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62` blocks context reads for readiness errors and full-scan-required states.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts:127` tests blocked envelopes with mocked readiness failures.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts:7` calls `runMeasurement` and reads the `w7-code-graph-stale` case.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts:7` does the same for `w7-code-graph-empty`.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts:7` does the same for `w7-code-graph-full-scan-required`.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts:7` does the same for `w7-code-graph-unavailable`.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:139` maps W7 cases to baseline static candidates.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:155` creates static runners for `memory_search`, `code_graph_query`, and `skill_graph_query`.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts:172` runs the harness with those static runners.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:151` classifies an empty graph as requiring full scan.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166` checks stale tracked files.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:787` blocks the read path when full scan is required.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:62` blocks context reads for readiness errors and full-scan-required states.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-degraded-readiness-envelope-parity.vitest.ts:127` tests blocked envelopes with mocked readiness failures.
 
 ## Findings
 

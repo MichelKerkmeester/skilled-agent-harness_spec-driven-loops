@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Apply ADR rule to non-sk-code skill cleanup"
     blockers: []
     key_files:
-      - ".opencode/skill/"
+      - ".opencode/skills/"
     session_dedup:
       fingerprint: "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
       session_id: "phase-071-stack-agnostic-cleanup"

@@ -11,10 +11,10 @@ contextType: "planning"
 # Plan: 011-tool-profile-split-investigation
 
 ## Affected Files
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 
 ## Investigation Order
 1. Baseline today's startup, bootstrap, and workflow guidance for tool discoverability.

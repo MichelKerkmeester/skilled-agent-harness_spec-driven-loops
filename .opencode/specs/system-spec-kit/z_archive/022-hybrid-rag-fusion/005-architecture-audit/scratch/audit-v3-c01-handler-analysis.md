@@ -1,6 +1,6 @@
 # C1 Handler Analysis
 
-Scope: `.opencode/skill/system-spec-kit/mcp_server/handlers/**/*.ts`
+Scope: `.opencode/skills/system-spec-kit/mcp_server/handlers/**/*.ts`
 
 Summary:
 - Total findings: 10
@@ -14,7 +14,7 @@ Summary:
 ### C1-001: Oversized handler cluster breaches the 500 LOC threshold
 Severity: HIGH
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1`
 Description:
 Nine handler files exceed the stated 500 LOC god-object threshold. The largest are not borderline cases; several are 600-1400 LOC and already span multiple architectural concerns.
 
@@ -31,15 +31,15 @@ Exact line counts:
 
 Evidence (code snippet):
 ```text
-    1402 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
-    1263 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
-     980 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
-     748 .opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts
-     745 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts
-     715 .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
-     647 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
-     596 .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
-     591 .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
+    1402 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts
+    1263 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
+     980 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
+     748 .opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts
+     745 .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
+     715 .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
+     647 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
+     596 .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts
+     591 .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts
 ```
 Impact:
 Reviewability, change isolation, and ownership boundaries are already degraded. This is the root condition that makes the circular-risk and responsibility findings below likely.
@@ -49,7 +49,7 @@ Set a handler target of roughly 150-250 LOC and move orchestration into `lib/` s
 ### C1-002: `memory-save.ts` is acting as transport adapter, save orchestrator, governance engine, and enrichment pipeline at once
 Severity: CRITICAL
 Category: alignment
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:8`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:8`
 Description:
 `memory-save.ts` is not a thin handler anymore. It imports persistence, parsing, quality scoring, governance, collaboration, deduplication, embeddings, PE gating, reconsolidation, post-insert enrichment, causal processing, and response building from one boundary module. At 1402 LOC, the file is effectively the save service layer living inside `handlers/`.
 Evidence (code snippet):
@@ -76,7 +76,7 @@ Create a `lib/save/memory-save-service.ts` or similar orchestration service. Kee
 ### C1-003: `memory-search.ts` still contains the search service instead of calling one
 Severity: HIGH
 Category: alignment
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:8`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:8`
 Description:
 The search boundary is similarly overloaded. `memory-search.ts` owns pipeline execution, session management, routing, telemetry, eval logging, trace construction, formatting, and fallback behavior inside a 1263 LOC handler. That is service-layer behavior, not handler-layer behavior.
 Evidence (code snippet):
@@ -101,7 +101,7 @@ Extract a `lib/search/memory-search-service.ts` that returns a domain result obj
 ### C1-004: `memory-context.ts` composes sibling handlers directly, creating circular-import pressure
 Severity: HIGH
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:16`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:16`
 Description:
 There is no direct cycle today, but `memory-context.ts` imports and invokes sibling handlers as if they were internal services. That couples transport-layer modules to each other and makes future reverse imports dangerous.
 
@@ -139,7 +139,7 @@ Promote the quick/deep/focused retrieval strategies into a `lib/context/` or `li
 ### C1-005: `memory-index.ts` reuses `memory-save.ts` as a shared indexing service
 Severity: MEDIUM
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:135`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:135`
 Description:
 `memory-index.ts` imports `indexMemoryFile` out of `memory-save.ts`, which creates a second handler-to-handler dependency spine. The current graph is still acyclic, but this path is risky because the target file is already the largest boundary object in the directory.
 
@@ -165,7 +165,7 @@ Move `indexMemoryFile` into a service module under `lib/indexing/` or `lib/save/
 ### C1-006: Save mutex queue suppresses prior failures with an empty catch
 Severity: HIGH
 Category: bug
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:128`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:128`
 Description:
 The per-spec-folder lock chain intentionally clears the previous promise rejection before starting the next save, but it does so with an empty `.catch` that records nothing. This preserves queue progress at the cost of completely discarding failure context.
 Evidence (code snippet):
@@ -185,7 +185,7 @@ Keep the queue-draining behavior, but log the discarded error or store it in loc
 ### C1-007: Context telemetry and eval logging discard exceptions silently
 Severity: MEDIUM
 Category: bug
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:902`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:902`
 Description:
 The context handler uses multiple bare `catch {}` blocks around result extraction, consumption logging, and eval logging. These paths are marked fail-safe, but they are also fully silent, so regressions in observability disappear instead of being downgraded and surfaced.
 Evidence (code snippet):
@@ -211,7 +211,7 @@ Keep these paths non-fatal, but emit a structured warning or telemetry counter f
 ### C1-008: `causal-links-processor.ts` exposes a dead backward-compatibility re-export
 Severity: LOW
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:178`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:178`
 Description:
 `detectSpecLevelFromParsed` is re-exported from `causal-links-processor.ts`, but repository-wide usage points directly at `handler-utils.ts`; no importer references this compatibility surface.
 Evidence (code snippet):
@@ -227,7 +227,7 @@ Remove the re-export, or add a current caller if the compatibility path is still
 ### C1-009: `SpecDiscoveryOptions` is exported but never imported anywhere
 Severity: LOW
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:39`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:39`
 Description:
 `SpecDiscoveryOptions` appears only in its declaration and in the local `findSpecDocuments` signature. A repository-wide search found no imports of the type.
 Evidence (code snippet):
@@ -246,7 +246,7 @@ Make the interface local if it is implementation-only, or move it into shared ty
 ### C1-010: `session-learning.ts` exports several internal-only response-shape types
 Severity: LOW
 Category: architecture
-Location: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:58`
+Location: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:58`
 Description:
 `LearningDeltaSnapshot`, `LearningHistoryBaseRow`, `PreflightLearningHistoryRow`, `CompletedLearningHistoryRow`, and `LearningHistorySummary` are exported, but repo-wide imports only consume `LearningHistoryPayload` and `LearningHistoryRow`. The extra exported shapes appear to be implementation-local.
 Evidence (code snippet):

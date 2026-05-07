@@ -4,8 +4,8 @@
 Audited the closed metric namespace and health-section math to confirm the observability contract is still intentionally narrow and internally consistent.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:78-109` -> only six `speckit_advisor_hook_*` metrics are defined, with closed label sets.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:258-273` -> health summaries operate over the last 30 records and compute cache-hit p95 only from cache-hit samples.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:78-109` -> only six `speckit_advisor_hook_*` metrics are defined, with closed label sets.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/metrics.ts:258-273` -> health summaries operate over the last 30 records and compute cache-hit p95 only from cache-hit samples.
 - `advisor-observability.vitest.ts:15-60` and `:101-133` -> tests lock the namespace, label closure, health rollups, and env-driven alert thresholds.
 
 ## Findings

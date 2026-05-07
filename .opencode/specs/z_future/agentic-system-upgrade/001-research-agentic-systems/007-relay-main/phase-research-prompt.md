@@ -34,7 +34,7 @@ Use the full 9-phase packet map below to avoid duplicate analysis. Phase 007 own
 
 ### What This Repo Already Has
 
-Code_Environment/Public already has agent coordination guidance in `.opencode/agent/orchestrate.md`, multi-model delegation surfaces in `.opencode/skill/cli-copilot/`, `.opencode/skill/cli-codex/`, and `.opencode/skill/cli-gemini/`, plus Spec Kit Memory, spec validation, and strong orchestration/safety rules. What it does **not** have is a first-class realtime messaging fabric between concurrently running agents. There is no Relay-style shared channel layer where agents subscribe, wait for peer readiness, exchange messages asynchronously, and react to inbound transport events through callbacks.
+Code_Environment/Public already has agent coordination guidance in `.opencode/agents/orchestrate.md`, multi-model delegation surfaces in `.opencode/skills/cli-copilot/`, `.opencode/skills/cli-codex/`, and `.opencode/skills/cli-gemini/`, plus Spec Kit Memory, spec validation, and strong orchestration/safety rules. What it does **not** have is a first-class realtime messaging fabric between concurrently running agents. There is no Relay-style shared channel layer where agents subscribe, wait for peer readiness, exchange messages asynchronously, and react to inbound transport events through callbacks.
 
 ### Research Lens for This Phase
 
@@ -58,7 +58,7 @@ Relay's coordinator surfaces are lightweight and communication-oriented. Do not 
 4. Use `@speckit` for markdown authoring when the runtime supports agent routing. If routing is unavailable, follow the established Level 3 structure manually.
 5. Validate the phase folder before deep research with this exact command:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/007-relay-main" --strict
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/007-relay-main" --strict
    ```
 6. If validation fails, fix the docs in this same phase folder and rerun strict validation before continuing. If blocked, record the blocker explicitly in `tasks.md` and `checklist.md`.
 7. Run `spec_kit:deep-research` with this exact topic string:
@@ -70,11 +70,11 @@ Relay's coordinator surfaces are lightweight and communication-oriented. Do not 
 10. Then examine the Claude Code plugin surface through `external/docs/plugin-claude-code.md`, the `external/README.md` plugin section, and any closely related plugin docs needed to confirm `/relay-team`, `/relay-fanout`, and `/relay-pipeline`.
 11. Trace the message lifecycle end to end: provider-specific spawn helper or `spawnPty()` -> broker startup/connect -> worker registration and `worker_ready` -> `sendMessage()` or channel post -> routing target resolution -> inbound relay event -> callback firing such as `onMessageReceived`.
 12. Compare the TypeScript and Python SDKs explicitly. Capture where they expose the same concepts (`AgentRelay`, provider-specific spawn helpers, ready waits, event hooks, channels) and where one surface is richer or clearer than the other.
-13. Compare Relay's transport model against Public's current model: `task`-tool dispatch, `.opencode/agent/orchestrate.md`, and the `cli-copilot` / `cli-codex` / `cli-gemini` delegation skills. Explain what Relay adds that Task-tool delegation alone cannot provide, and what should remain outside scope because phase 002 or 005 already owns it.
+13. Compare Relay's transport model against Public's current model: `task`-tool dispatch, `.opencode/agents/orchestrate.md`, and the `cli-copilot` / `cli-codex` / `cli-gemini` delegation skills. Explain what Relay adds that Task-tool delegation alone cannot provide, and what should remain outside scope because phase 002 or 005 already owns it.
 14. Verify the docs delivery model. Relay exposes both web docs and generated Markdown mirrors backed by the same MDX source; do not rely on one surface if the other clarifies transport, plugin, or workflow behavior.
 15. Save findings under `research/`, with `research/research.md` as the canonical output. Update `checklist.md`, create `implementation-summary.md`, then save memory with:
    ```bash
-   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/007-relay-main"
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/007-relay-main"
    ```
 
 ## 6. Research Questions
@@ -121,7 +121,7 @@ Relay's coordinator surfaces are lightweight and communication-oriented. Do not 
 - What it does: Relay explicitly separates spawn success from transport readiness by exposing `waitForAgentReady()` / `wait_for_agent_ready()` before agents are treated as safe message targets.
 - Why it matters: Public currently delegates work, but it does not expose a first-class readiness handshake for concurrently running agents that need to message each other in realtime.
 - Recommended action: prototype later
-- Affected area: .opencode/agent/orchestrate.md, Task-tool coordination, future transport abstractions
+- Affected area: .opencode/agents/orchestrate.md, Task-tool coordination, future transport abstractions
 - Risk/cost: Medium; requires lifecycle state modeling and timeout/error semantics that do not exist today
 ```
 

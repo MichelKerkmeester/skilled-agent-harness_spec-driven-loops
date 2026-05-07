@@ -49,7 +49,7 @@ A FIX prompt or reviewer should suspect this wrong pattern when the fix changes 
 Run a producer inventory, not a diff-only inspection:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 rg -n 'error:|errors:|errors\.push|warnings:|warnings\.push|throw new Error|JSON.stringify' "$SCAN"
 rg -n 'relativizeScan(Error|Warning|Message)|relativize\(' "$SCAN"
 ```
@@ -58,7 +58,7 @@ For wording or vocabulary fixes, search across response builders and schemas, no
 
 ```bash
 rg -n -i 'preset|capabilit(y|ies)|kind|manifest|candidate manifest' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts' --glob '*.md'
 ```
 
@@ -69,9 +69,9 @@ The wrong pattern is present if new or edited user-facing emitters are not accou
 Self-verifying 009 gate for the raw-path class:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 ! rg -n 'errors\.push\(`\$\{result\.filePath\}|parseErrors\.map\(e => `\$\{result\.filePath\}' "$SCAN"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'invalid rootDir|out-of-workspace rootDir|scan warnings|data.errors|relativizeScanError multi-path safety'
 ```
@@ -80,7 +80,7 @@ Self-verifying vocabulary-class gate:
 
 ```bash
 rg -n -i 'candidate manifest drift|preset|capabilities' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts' --glob '*.md'
 ```
 
@@ -140,7 +140,7 @@ For the 009 scope policy:
 
 ```bash
 rg -n 'resolveIndexScopePolicy|parseIndexScopePolicyFromFingerprint|setCodeGraphScope|getStoredCodeGraphScope|activeScope|storedScope|scopeMismatch' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph \
   --glob '*.ts'
 ```
 
@@ -149,7 +149,7 @@ For any changed function:
 ```bash
 SYMBOL=resolveIndexScopePolicy
 rg -n "($SYMBOL|from '../lib/index-scope-policy|from \"../lib/index-scope-policy)" \
-  .opencode/skill/system-spec-kit/mcp_server \
+  .opencode/skills/system-spec-kit/mcp_server \
   --glob '*.ts'
 ```
 
@@ -160,10 +160,10 @@ The wrong pattern is present if the consumer list is larger than the test/fix li
 Self-verifying 009 gate:
 
 ```bash
-STATUS=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts
+STATUS=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts
 ! rg -n 'activeScopePolicy\s*=\s*resolveIndexScopePolicy\(\)' "$STATUS"
 rg -n 'parseIndexScopePolicyFromFingerprint\(storedScope\).*resolveIndexScopePolicy' "$STATUS"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'reports status activeScope from the stored scan scope|lets includeSkills false override'
 ```
@@ -232,7 +232,7 @@ Concrete detection for the 009 wrong approach:
 
 ```bash
 rg -n 'replace\(/\\/\[\^|relativizeScan(Error|Warning)\(.*replace|PATH_DELIMITERS|split\(PATH_DELIMITERS\)' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
 ```
 
 Wrong smell: regex replacement exists without a structural split/parser and without adversarial table coverage.
@@ -242,12 +242,12 @@ Wrong smell: regex replacement exists without a structural split/parser and with
 Self-verifying 009 gate:
 
 ```bash
-SCAN=.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
+SCAN=.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts
 ! rg -n 'relativizeScan(Error|Warning).*replace|replace\(/\\/\[\^' "$SCAN"
 rg -n 'PATH_DELIMITERS|split\(PATH_DELIMITERS\)' "$SCAN"
 rg -n 'colon-delimited|NUL-delimited|quoted path|bracketed path list|mixed delimiters|no abs paths' "$TEST"
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-scan.vitest.ts \
     -t 'relativizeScanError multi-path safety'
 ```
@@ -315,7 +315,7 @@ The wrong pattern is present if a test name says "matrix" but row count is small
 Concrete 009 matrix-row check:
 
 ```bash
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
 sed -n '/resolveIndexScopePolicy precedence matrix/,/] as const/p' "$TEST"
 ```
 
@@ -333,10 +333,10 @@ Wrong smell: the review/checklist refers to `main~1..HEAD` or an unpinned branch
 Self-verifying 009 matrix gate:
 
 ```bash
-TEST=.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
+TEST=.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts
 rows=$(sed -n '/resolveIndexScopePolicy precedence matrix/,/] as const/p' "$TEST" | rg -c "^\s*\[(undefined|'true')")
 test "$rows" -eq 6
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   npx vitest run code_graph/tests/code-graph-indexer.vitest.ts \
     -t 'resolveIndexScopePolicy precedence matrix'
 ```
@@ -346,7 +346,7 @@ Self-verifying direct-coverage gate for REQ-heavy packets:
 ```bash
 PACKET=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-code-graph-backend-resilience
 rg -n 'REQ-00[2-9]|REQ-01[0-5]' "$PACKET"/spec.md "$PACKET"/checklist.md "$PACKET"/implementation-summary.md
-rg -n 'REQ-00[2-9]|REQ-01[0-5]' .opencode/skill/system-spec-kit/mcp_server --glob '*.{vitest,test}.ts'
+rg -n 'REQ-00[2-9]|REQ-01[0-5]' .opencode/skills/system-spec-kit/mcp_server --glob '*.{vitest,test}.ts'
 ```
 
 Expected result: every claimed requirement has direct test evidence or the packet docs explicitly downgrade the claim from direct to indirect coverage.
@@ -399,7 +399,7 @@ Search for process-wide state writes in tests and bench files. Any write must ha
 
 ```bash
 rg -n 'process\.env(\[[^\]]+\]|\.[A-Z0-9_]+)\s*=|delete process\.env|speckitMetrics\.reset|vi\.stubEnv|vi\.unstubAllEnvs' \
-  .opencode/skill/system-spec-kit/mcp_server \
+  .opencode/skills/system-spec-kit/mcp_server \
   --glob '*.{vitest,test,bench}.ts'
 ```
 
@@ -410,7 +410,7 @@ Wrong smell: a test sets `process.env.X = ...` inside one case, or relies on def
 Self-verifying 009 isolation gate:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server &&
+cd .opencode/skills/system-spec-kit/mcp_server &&
   SPECKIT_CODE_GRAPH_INDEX_SKILLS=true npx vitest run \
     code_graph/tests/code-graph-scan.vitest.ts \
     code_graph/tests/code-graph-indexer.vitest.ts \
@@ -421,9 +421,9 @@ Self-verifying source audit:
 
 ```bash
 rg -n 'original.*Env|beforeEach\(\(\) => \{|afterEach\(\(\) => \{|delete process\.env\[CODE_GRAPH_INDEX_SKILLS_ENV\]' \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts \
-  .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts \
+  .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts
 ```
 
 Generic global-state gate:

@@ -25,7 +25,7 @@ _memory:
 
 ## Summary
 
-This packet deepened the code-graph and hook investigation beyond pt-01 by focusing on residual contract gaps that survived the earlier remediation wave. The strongest new issues are not broad storage or parser failures, but downstream correctness and transport leaks: read-path handlers continue operating when a full scan is required but intentionally suppressed, the CocoIndex bridge sheds semantic ranking fidelity before graph resolution, and scan-time enrichment metadata can remain stale because null summaries never clear prior state [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:239-242]. The investigation also confirmed that persisted detector/enrichment summaries are still effectively write-only for operators, while startup structured payloads exist only at the builder layer and disappear at adapter boundaries and in adapter test expectations [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:226-259,652-692; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245; .opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68]. The context deadline surface remains only partially real because the handler never supplies `deadlineMs`, only one mode enforces an elapsed-time budget, and budget-driven omissions are unlabeled in the response payload [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21,189-240,281-327; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176]. Ten iterations were used because novelty kept tapering but did not hit the two-iteration early-stop condition soon enough to justify a legal early exit.
+This packet deepened the code-graph and hook investigation beyond pt-01 by focusing on residual contract gaps that survived the earlier remediation wave. The strongest new issues are not broad storage or parser failures, but downstream correctness and transport leaks: read-path handlers continue operating when a full scan is required but intentionally suppressed, the CocoIndex bridge sheds semantic ranking fidelity before graph resolution, and scan-time enrichment metadata can remain stale because null summaries never clear prior state [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:239-242]. The investigation also confirmed that persisted detector/enrichment summaries are still effectively write-only for operators, while startup structured payloads exist only at the builder layer and disappear at adapter boundaries and in adapter test expectations [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:226-259,652-692; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245; .opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68]. The context deadline surface remains only partially real because the handler never supplies `deadlineMs`, only one mode enforces an elapsed-time budget, and budget-driven omissions are unlabeled in the response payload [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21,189-240,281-327; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176]. Ten iterations were used because novelty kept tapering but did not hit the two-iteration early-stop condition soon enough to justify a legal early exit.
 
 ## Scope
 
@@ -33,7 +33,7 @@ In scope:
 
 - Code-graph read, readiness, scan, context, and startup surfaces named by the parent packet [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:54-74].
 - CocoIndex-to-code-graph seed resolution and neighborhood expansion behavior [.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/spec.md:67-74].
-- Runtime startup hook transport and operator-facing docs/tests tied to code-graph priming [.opencode/skill/system-spec-kit/references/config/hook_system.md:35-45,64-78].
+- Runtime startup hook transport and operator-facing docs/tests tied to code-graph priming [.opencode/skills/system-spec-kit/references/config/hook_system.md:35-45,64-78].
 
 Out of scope:
 
@@ -58,15 +58,15 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 ### P1
 
-- `F-001` `correctness` — `code_graph_query` and `code_graph_context` continue executing after `ensureCodeGraphReady()` reports a `full_scan` requirement while `allowInlineFullScan` is disabled, so callers can receive unresolved or partial graph answers instead of an explicit blocked-until-scan contract [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599,613-727; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106,168-178; .opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:98-130; .opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:56-104].
-- `F-002` `correctness` — The CocoIndex bridge discards semantic `score`, `snippet`, and meaningful range semantics before graph resolution, then reorders seeds by local graph confidence, which can mis-anchor or mis-rank multi-seed semantic search results [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92,185-246,275-290].
-- `F-003` `freshness` — `handleCodeGraphScan()` only persists `graphEdgeEnrichmentSummary` when it is non-null, so a later scan with no enrichment evidence leaves the previous summary in metadata and creates stale post-scan observability state [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:187-188,239-242; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:243-259; .opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:91-138].
+- `F-001` `correctness` — `code_graph_query` and `code_graph_context` continue executing after `ensureCodeGraphReady()` reports a `full_scan` requirement while `allowInlineFullScan` is disabled, so callers can receive unresolved or partial graph answers instead of an explicit blocked-until-scan contract [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599,613-727; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106,168-178; .opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:98-130; .opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:56-104].
+- `F-002` `correctness` — The CocoIndex bridge discards semantic `score`, `snippet`, and meaningful range semantics before graph resolution, then reorders seeds by local graph confidence, which can mis-anchor or mis-rank multi-seed semantic search results [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92,185-246,275-290].
+- `F-003` `freshness` — `handleCodeGraphScan()` only persists `graphEdgeEnrichmentSummary` when it is non-null, so a later scan with no enrichment evidence leaves the previous summary in metadata and creates stale post-scan observability state [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:187-188,239-242; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:243-259; .opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts:91-138].
 
 ### P2
 
-- `F-004` `observability` — Detector-provenance and edge-enrichment summaries are persisted in metadata but still have no operator-facing readers in `getStats()`, `code_graph_status`, or `buildStartupBrief()`, which makes them effectively write-only outside direct DB access [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:226-259,652-692; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts:13-47; .opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:131-169,223-255].
-- `F-005` `cross-runtime` — `buildStartupBrief()` creates a structured startup `sharedPayload`, but Claude, Gemini, Copilot, and Codex adapters still emit text-only startup surfaces, and adapter tests only assert text output, so the structured startup contract is not runtime-real today [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245; .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:235-285; .opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:170-219; .opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:171-219; .opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts:155-176; .opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:257-268; .opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68].
-- `F-006` `ergonomics` — `code_graph_context` still presents a partially implemented bounded-work contract: the handler never sets `deadlineMs`, only `impact` mode enforces an elapsed-time budget, and text-budget omission is not labeled as partial output in the response envelope [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21,73-95,189-240,281-327; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176].
+- `F-004` `observability` — Detector-provenance and edge-enrichment summaries are persisted in metadata but still have no operator-facing readers in `getStats()`, `code_graph_status`, or `buildStartupBrief()`, which makes them effectively write-only outside direct DB access [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:226-259,652-692; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts:13-47; .opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:131-169,223-255].
+- `F-005` `cross-runtime` — `buildStartupBrief()` creates a structured startup `sharedPayload`, but Claude, Gemini, Copilot, and Codex adapters still emit text-only startup surfaces, and adapter tests only assert text output, so the structured startup contract is not runtime-real today [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:230-245; .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:235-285; .opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:170-219; .opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts:171-219; .opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:155-176; .opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:64-81; .opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:257-268; .opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts:46-68].
+- `F-006` `ergonomics` — `code_graph_context` still presents a partially implemented bounded-work contract: the handler never sets `deadlineMs`, only `impact` mode enforces an elapsed-time budget, and text-budget omission is not labeled as partial output in the response envelope [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21,73-95,189-240,281-327; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176].
 
 ## Evidence Trail
 
@@ -85,7 +85,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-001` for `F-001`
   Severity: `P1`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
   Recommendation: after `ensureCodeGraphReady()`, explicitly gate on `readiness.action === "full_scan"` when `inlineIndexPerformed` is false. Either return a structured "full scan required" error or a clearly marked degraded payload with no graph answers.
   Diff shape: add a helper such as `shouldBlockReadPath(readiness)` and unit tests for empty/full-scan-needed states.
 
@@ -93,7 +93,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-002` for `F-002`
   Severity: `P1`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
   Recommendation: preserve CocoIndex `score`, `snippet`, and full range overlap through seed resolution, and only fall back to local graph confidence as a secondary tie-breaker.
   Diff shape: extend `ArtifactRef` or a parallel metadata carrier to preserve original semantic ranking, and update seed ordering to combine semantic and structural confidence instead of replacing one with the other.
 
@@ -101,7 +101,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-003` for `F-003`
   Severity: `P1`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
   Recommendation: clear persisted enrichment summary metadata when a successful scan computes no current summary.
   Diff shape: add an explicit `clearLastGraphEdgeEnrichmentSummary()` DB helper or allow null writes, then add a regression test that runs two scans with a non-null then null summary.
 
@@ -109,7 +109,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-004` for `F-004`
   Severity: `P2`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`, `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`
   Recommendation: add a compact graph-quality summary reader and surface it in `code_graph_status` and startup priming.
   Diff shape: extend `getStats()` or introduce `getGraphQualitySummary()` with detector counts and enrichment confidence class, then document the meaning of those fields for operators.
 
@@ -117,7 +117,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-005` for `F-005`
   Severity: `P2`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`, `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts`, `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`, `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
   Recommendation: either propagate `sharedPayload` (or a compact serialized derivative) through runtime startup adapters, or delete the builder-level startup `sharedPayload` so the code stops advertising an unused contract.
   Diff shape: choose one transport contract, implement it in all adapters, and add adapter-level tests that assert structured startup graph metadata rather than text only.
 
@@ -125,7 +125,7 @@ The packet ran 10 iterations and stopped at the configured cap rather than early
 
 - `RF-006` for `F-006`
   Severity: `P2`
-  Target files: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`, `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+  Target files: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`, `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
   Recommendation: make `deadlineMs` real by default, enforce it across all modes, and annotate responses when sections are omitted or truncated.
   Diff shape: pass a default deadline from the handler, add budget checks to `neighborhood` and `outline`, and attach explicit partial-output metadata to the result envelope.
 
@@ -177,7 +177,7 @@ Iterations 02-07 produced the decisive evidence. Iteration 02 established the re
 - Prior packet synthesis: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
 - Prior packet registry: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/findings-registry.json`
 - Closed closure notes used as boundaries: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-009.md`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-010.md`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/006-integrity-parity-closure/applied/CF-014.md`
-- Startup/runtime reference docs: `.opencode/skill/system-spec-kit/references/config/hook_system.md`, `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md`
+- Startup/runtime reference docs: `.opencode/skills/system-spec-kit/references/config/hook_system.md`, `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md`
 
 ## Next Steps
 
@@ -200,28 +200,28 @@ Iterations 02-07 produced the decisive evidence. Iteration 02 established the re
 
 ### Code Surfaces
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts`
 
 ### Docs and Tests
 
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/codex-session-start-hook.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`

@@ -12,13 +12,13 @@ It should be redesigned. The current file set and validation depth are useful, b
 I compared the local template architecture, level guidance, and validation rules with the external repo's lighter artifact model around `CLAUDE.md`, `BLUEPRINT.md`, and handoff-oriented files. I focused on operator comprehension rather than implementation correctness.
 
 ## Evidence
-- `[SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:15-46]` The local template system uses a CORE-plus-ADDENDUM architecture with multiple composed level folders and a maintainer-facing composition model.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:48-75]` The public abstraction is a four-step progressive enhancement ladder with Level 1, 2, 3, and 3+ guidance.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:81-97]` Even Level 1 requires four files, including `implementation-summary.md`.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:27-34]` Template usage is strict: never create from scratch, preserve structure, remove placeholders, and delete sample content.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/validation/validation_rules.md:40-57]` The validation system exposes fourteen named rules across files, placeholders, evidence, anchors, levels, counts, and phase links.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/validation/validation_rules.md:63-85]` `implementation-summary.md` is enforced for all levels as part of the file-exists contract.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:83-100]` The validator advertises strict mode, recursive validation, multiple rule classes, and level/file expectations at the CLI boundary.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:15-46]` The local template system uses a CORE-plus-ADDENDUM architecture with multiple composed level folders and a maintainer-facing composition model.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:48-75]` The public abstraction is a four-step progressive enhancement ladder with Level 1, 2, 3, and 3+ guidance.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:81-97]` Even Level 1 requires four files, including `implementation-summary.md`.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:27-34]` Template usage is strict: never create from scratch, preserve structure, remove placeholders, and delete sample content.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/validation/validation_rules.md:40-57]` The validation system exposes fourteen named rules across files, placeholders, evidence, anchors, levels, counts, and phase links.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/validation/validation_rules.md:63-85]` `implementation-summary.md` is enforced for all levels as part of the file-exists contract.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:83-100]` The validator advertises strict mode, recursive validation, multiple rule classes, and level/file expectations at the CLI boundary.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator.md:128-138]` The external repo keeps its project understanding centered on a small set of anchor documents rather than a numbered packet taxonomy.
 - `[SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/005-intellegix-code-agent-toolkit-master/external/commands/orchestrator-new.md:83-111]` The external greenfield flow persists the original prompt and scaffolds a few core directories and documents without exposing a comparable level system.
 
@@ -33,7 +33,7 @@ confidence: high
 finding: `system-spec-kit` should redesign spec-folder UX around named work profiles instead of asking operators to reason directly about Level 1/2/3+ template classes.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`, `.opencode/skill/system-spec-kit/references/templates/template_guide.md`, `CLAUDE.md`
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`, `.opencode/skills/system-spec-kit/references/templates/template_guide.md`, `CLAUDE.md`
 - **Change type:** must-have
 - **Blast radius:** operator-surface
 - **Prerequisites:** define stable profile names and a reversible mapping to current levels

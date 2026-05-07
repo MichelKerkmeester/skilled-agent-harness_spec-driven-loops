@@ -57,7 +57,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->"
 ### Attempt 1 Fixes (verified this session)
 
 - [x] FTS5 double-quoting guard (`sqlite-fts.ts` line 58)
-- [x] Search dashboard Design 10 (`.opencode/command/memory/search.md`, `.agents/commands/memory/search.toml`)
+- [x] Search dashboard Design 10 (`.opencode/commands/memory/search.md`, `.agents/commands/memory/search.toml`)
 - [x] DB path stabilization (`vector-index-store.ts` lines 277-289)
 - [x] Empty DB rebind guard (`db-state.ts` lines 294-310)
 - [x] Startup health check + DB path log (`context-server.ts` lines 1368-1374)

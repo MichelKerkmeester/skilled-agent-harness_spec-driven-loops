@@ -40,16 +40,16 @@
     "status": "complete",
     "key_files": [
       "implementation-summary.md",
-      ".opencode/agent/improve-agent.md",
-      ".opencode/agent/write.md",
-      ".opencode/agent/prompt-improver.md",
-      ".opencode/agent/debug.md",
-      ".opencode/agent/deep-research.md",
-      ".opencode/agent/deep-review.md",
-      ".opencode/agent/context.md",
-      ".opencode/agent/orchestrate.md",
-      ".opencode/agent/review.md",
-      ".opencode/agent/code.md",
+      ".opencode/agents/improve-agent.md",
+      ".opencode/agents/write.md",
+      ".opencode/agents/prompt-improver.md",
+      ".opencode/agents/debug.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/review.md",
+      ".opencode/agents/code.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -68,61 +68,61 @@
       {
         "name": "improve-agent.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agents/improve-agent.md",
         "source": "derived"
       },
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
         "name": "prompt-improver.md",
         "kind": "doc",
-        "path": ".opencode/agent/prompt-improver.md",
+        "path": ".opencode/agents/prompt-improver.md",
         "source": "derived"
       },
       {
         "name": "debug.md",
         "kind": "doc",
-        "path": ".opencode/agent/debug.md",
+        "path": ".opencode/agents/debug.md",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
         "name": "deep-review.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-review.md",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
         "name": "context.md",
         "kind": "doc",
-        "path": ".opencode/agent/context.md",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "review.md",
         "kind": "doc",
-        "path": ".opencode/agent/review.md",
+        "path": ".opencode/agents/review.md",
         "source": "derived"
       },
       {
         "name": "code.md",
         "kind": "doc",
-        "path": ".opencode/agent/code.md",
+        "path": ".opencode/agents/code.md",
         "source": "derived"
       },
       {

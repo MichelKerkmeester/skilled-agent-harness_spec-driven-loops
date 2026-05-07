@@ -62,7 +62,7 @@ passesShadowGate = candidateAccuracy >= (minimumAccuracy ?? liveAccuracy)
   them or checks whether they fired**. The audit surface is structural-only
   — it declares the audit intent but does not enforce the no-side-effect
   invariant.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:140-200`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:140-200`]
 
 ### F16 — RQ-04 close: Three concrete regression categories slip through the full promotion bundle
 
@@ -86,7 +86,7 @@ reads of `rollback.ts` and `weight-delta-cap.ts`:
   <0.05 can accumulate across successive promotions. 20 such promotions
   drift the vector by L2~2.0 with zero individual cap violations and all
   individual shadow cycles marginally passing.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/weight-delta-cap.ts:7,42-49` + iter 2 F13]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/weight-delta-cap.ts:7,42-49` + iter 2 F13]
 
 **Category B — Oscillating skills (high within-cycle variance, marginal
 mean):**
@@ -105,8 +105,8 @@ mean):**
   indistinguishable from stable skills at the promotion gate. A noisy
   evaluation environment (flaky test corpus, seed-dependent tiebreaks)
   can trip two-cycle pass purely by chance.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:173-200` +
-   `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:7-41`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:173-200` +
+   `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts:7-41`]
 
 **Category C — Silent rollback cache-invalidation failure:**
 - `rollback.ts:40-48` wraps `invalidateCache` in `try/catch` so a cache-
@@ -123,7 +123,7 @@ mean):**
   upstream consumer. Combined with iter 2 F11 INV-F5-V2 (generation bump
   without fan-out is discipline-only), this is a second route by which
   stale cache can serve post-rollback.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:40-72`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:40-72`]
 
 ### F17 — RQ-07 close: There are THREE independent stale-state vocabularies in the code-graph package
 
@@ -134,19 +134,19 @@ not a wiring bug. Grep matrix + type-alias audit reveals:
 ```
 export type GraphFreshness = 'fresh' | 'stale' | 'empty';
 ```
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:22`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:22`]
 
 **Vocabulary V2 — `GraphFreshness` (ops-hardening.ts) — DIFFERENT type, SAME name:**
 ```
 export type GraphFreshness = 'fresh' | 'stale' | 'empty' | 'error';
 ```
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts:7`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts:7`]
 
 **Vocabulary V3 — `StartupBriefResult.graphState`:**
 ```
 graphState: 'ready' | 'stale' | 'empty' | 'missing';
 ```
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:43`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:43`]
 
 **Vocabulary V4 — `StructuralReadiness` (canonical, ops-hardening):**
 ```
@@ -158,7 +158,7 @@ Re-exported from `readiness-contract.ts:43`.
 ```
 'live' | 'stale' | 'absent' (subset of canonical 8-state)
 ```
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts:103-116`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts:103-116`]
 
 **Divergences:**
 - Two type aliases named `GraphFreshness` exist in the same package with
@@ -196,7 +196,7 @@ Re-exported from `readiness-contract.ts:43`.
   vocabulary while the `freshness` field uses the V1 vocabulary in the
   same response.
 - No mention of `'unavailable'`, `'fallback'`, `'blocked'`, or `'degraded'`.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts:11-63`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts:11-63`]
 
 **Surface S2 — `handlers/context.ts` (280 LOC):**
 - Uses `freshness: 'empty' as const` as the default-initialized readiness
@@ -212,7 +212,7 @@ Re-exported from `readiness-contract.ts:43`.
   only knows 3 trust states; context.ts injects a 4th ad-hoc. Consumers
   that switch on `trustState` must handle the 4-value union here but
   only the 3-value subset elsewhere. **Silent degraded-state path.**
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:108-229`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:108-229`]
 
 **Surface S3 — `handlers/query.ts` (1104 LOC):**
 - Uses `freshness: 'empty' as const` as default (line 760), same pattern
@@ -230,7 +230,7 @@ Re-exported from `readiness-contract.ts:43`.
   a `status: 'blocked'` payload with `trustState: 'unavailable'` on
   crash; S3 serves a `status: 'error'` payload with no trustState field
   at all.
-  [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:623-780`]
+  [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:623-780`]
 
 **Surface S4 — `lib/startup-brief.ts` (333 LOC):**
 - Uses V3 `graphState: 'ready'|'stale'|'empty'|'missing'` (line 43).
@@ -317,16 +317,16 @@ value sets.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:1-204`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:1-88`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/promotion/weight-delta-cap.ts:1-73`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts:1-63`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:108-229`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:620-780`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:43-333`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts:1-225`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:22` (via grep)
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts:7` (via grep)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/shadow-cycle.ts:1-204`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts:1-88`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/weight-delta-cap.ts:1-73`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts:1-63`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:108-229`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:620-780`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:43-333`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts:1-225`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:22` (via grep)
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ops-hardening.ts:7` (via grep)
 
 ## Assessment
 

@@ -45,7 +45,7 @@ The same plugin also contains `get-token-insights`, the observability feature re
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with `memory_search`, session continuity, `generate-context.js` for structured memory saves, an agent-facing `MEMORY.md` pattern, and importance tiers in frontmatter. It also already has `.opencode/skill/` as its own plugin-like skill distribution surface.
+`Code_Environment/Public` already has Spec Kit Memory with `memory_search`, session continuity, `generate-context.js` for structured memory saves, an agent-facing `MEMORY.md` pattern, and importance tiers in frontmatter. It also already has `.opencode/skills/` as its own plugin-like skill distribution surface.
 
 What this repo does **not** currently show is Claude Code marketplace integration comparable to `.claude-plugin/marketplace.json`, nor a `claude-memory`-style token auditor that ingests local Claude JSONL files and emits an HTML dashboard. Do not describe Public as lacking memory or retrieval. Compare Claudest against the current stack, not a blank slate.
 
@@ -65,7 +65,7 @@ What this repo does **not** currently show is Claude Code marketplace integratio
 12. Save canonical research output under `research/`, with `research/research.md` as the final report. The report must contain at least five findings, and every finding must cite exact `external/plugins/` or `external/.claude-plugin/` paths.
 13. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest" --strict
     ```
 14. Run `spec_kit:deep-research` using this exact topic:
     ```text
@@ -73,7 +73,7 @@ What this repo does **not** currently show is Claude Code marketplace integratio
     ```
 15. After research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/005-claudest"
     ```
 
 ## 6. Research Questions

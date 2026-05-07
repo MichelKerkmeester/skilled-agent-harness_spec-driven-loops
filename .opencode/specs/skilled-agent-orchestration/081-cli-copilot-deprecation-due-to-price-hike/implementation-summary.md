@@ -46,12 +46,12 @@ _memory:
 
 ### DELETED (B1 — physical removal)
 
-- **`.opencode/skill/cli-copilot/`** — entire skill tree (~50 files including SKILL.md, README.md, references, assets, scripts, manual_testing_playbook with 50+ scenarios, changelog/v1.0.0.0..v1.3.7.0)
+- **`.opencode/skills/cli-copilot/`** — entire skill tree (~50 files including SKILL.md, README.md, references, assets, scripts, manual_testing_playbook with 50+ scenarios, changelog/v1.0.0.0..v1.3.7.0)
 - **`.opencode/changelog/cli-copilot`** — global skill changelog symlink
 - **`.github/hooks/spec-kit-copilot-hook.sh`** — git hook
-- **`.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/`** — 4 hook source files (compact-cache, custom-instructions, session-prime, user-prompt-submit)
-- **`.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts`** — matrix dispatch adapter
-- **`.opencode/skill/system-spec-kit/mcp_server/tests/{matrix-adapter-copilot.vitest.ts, executor-config-copilot-target-authority.vitest.ts}`** — 2 vitest test files
+- **`.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/`** — 4 hook source files (compact-cache, custom-instructions, session-prime, user-prompt-submit)
+- **`.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts`** — matrix dispatch adapter
+- **`.opencode/skills/system-spec-kit/mcp_server/tests/{matrix-adapter-copilot.vitest.ts, executor-config-copilot-target-authority.vitest.ts}`** — 2 vitest test files
 - **4 copilot-specific feature_catalog + manual_testing_playbook docs**:
   - `feature_catalog/16/36-copilot-target-authority-helper.md`
   - `feature_catalog/18/21-shared-provenance-and-copilot-compact-cache-parity.md`
@@ -83,16 +83,16 @@ _memory:
 All scrubbed of cli-copilot from current-state peer lists, JSON edges, related-skill bullets, and prose. Self-invocation guard sentence updated to drop the Copilot example. (Sibling changelog/v*.md files preserved — historical record.)
 
 **B4 — Agent + command files (7 files, with mirror sync):**
-- `multi-ai-council` × 4 runtimes: `.opencode/agent/multi-ai-council.md`, `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml` — vantage tables, vantage lists in flowchart, ASCII diagram, principle bullets all updated
-- `.opencode/command/spec_kit/deep-research.md`, `deep-review.md`: option `C) cli-copilot` deleted; `D` → `C`, `E` → `D`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`: entire `if_cli_copilot:` block (lines 614-690, ~77 lines including dispatch script + 6 notes) deleted
+- `multi-ai-council` × 4 runtimes: `.opencode/agents/multi-ai-council.md`, `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml` — vantage tables, vantage lists in flowchart, ASCII diagram, principle bullets all updated
+- `.opencode/commands/spec_kit/deep-research.md`, `deep-review.md`: option `C) cli-copilot` deleted; `D` → `C`, `E` → `D`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`: entire `if_cli_copilot:` block (lines 614-690, ~77 lines including dispatch script + 6 notes) deleted
 
 **B5 — Routing docs (7 files):**
 - `CLAUDE.md` (symlink to `AGENTS.md`)
 - `AGENTS.md`: tiebreaker example sentence updated to `cli-codex gpt-5.5 high`
 - `README.md`: cli-copilot bullet block deleted; matrix-runner adapter list updated 5→4; multi-ai-council vantage list updated
 - `DEPLOYMENT.md`: copilot-specific paragraphs deleted
-- `.opencode/skill/README.md`: catalog row deleted; skill catalog count updated 5→4; structure tree updated; resource matrix row deleted
+- `.opencode/skills/README.md`: catalog row deleted; skill catalog count updated 5→4; structure tree updated; resource matrix row deleted
 - `.opencode/install_guides/{README.md, SET-UP - AGENTS.md}`: catalog rows + skill counts updated
 
 **B6 — Cross-skill playbooks + matrix runners (matrix runner cluster cleaned):**
@@ -169,13 +169,13 @@ grep -rln 'cli-copilot' . [excludes] | grep -v '/specs/' | grep -v '/changelog/'
 - `skill_advisor.py`, `skill-graph.json`, `graph-metadata.json`, `check-prompt-quality-card-sync.sh`, fixtures JSONL ✓
 - `multi-ai-council.md/.toml` × 4 runtimes ✓
 - `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode` SKILL.md + README.md + graph-metadata.json ✓
-- `CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skill/README.md`, both install_guides ✓
+- `CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skills/README.md`, both install_guides ✓
 - `deep-research.md`, `deep-review.md`, `spec_kit_deep-research_auto.yaml` ✓
 - `executor-config.ts` ✓
 
 **Skill advisor smoke test:**
 ```
-$ python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "use copilot cli"
+$ python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "use copilot cli"
 [
   {
     "skill": "cli-claude-code",
@@ -189,13 +189,13 @@ Top recommendation is `cli-claude-code` (next closest peer); cli-copilot does NO
 
 **Strict spec validation:**
 ```
-$ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh \
+$ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
     .opencode/specs/skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike --strict
 Summary: Errors: 0  Warnings: 0
 RESULT: PASSED
 ```
 
-**Mirror parity:** `multi-ai-council` content equivalent across `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (allowing for runtime-specific format differences).
+**Mirror parity:** `multi-ai-council` content equivalent across `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (allowing for runtime-specific format differences).
 
 **Git state:**
 - Branch: `main`
@@ -212,7 +212,7 @@ RESULT: PASSED
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **36 maintainer playbook/feature-catalog files retain historical cli-copilot mentions** (P2 deferred). These describe past test scenarios involving cli-copilot in `.opencode/skill/sk-doc/manual_testing_playbook/` (~17 files), `deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/` (6 files), `system-spec-kit/feature_catalog/` + `manual_testing_playbook/` (~5 files), `deep-research/SKILL.md` + `deep-review/SKILL.md` (2 files), `sk-code/manual_testing_playbook/` (1 file), `mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json` (1 fixture), `outsourced-agent-handback-docs.vitest.ts` (1 test), `matrix_runners/run-matrix.ts` + `matrix-manifest.json` (2 files — already substantially cleaned). These are documentation that REFERENCE cli-copilot in test descriptions; they do not affect routing or runtime execution.
+1. **36 maintainer playbook/feature-catalog files retain historical cli-copilot mentions** (P2 deferred). These describe past test scenarios involving cli-copilot in `.opencode/skills/sk-doc/manual_testing_playbook/` (~17 files), `deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/` (6 files), `system-spec-kit/feature_catalog/` + `manual_testing_playbook/` (~5 files), `deep-research/SKILL.md` + `deep-review/SKILL.md` (2 files), `sk-code/manual_testing_playbook/` (1 file), `mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json` (1 fixture), `outsourced-agent-handback-docs.vitest.ts` (1 test), `matrix_runners/run-matrix.ts` + `matrix-manifest.json` (2 files — already substantially cleaned). These are documentation that REFERENCE cli-copilot in test descriptions; they do not affect routing or runtime execution.
 
 2. **`cli-matrix.vitest.ts` still references `buildCopilotPromptArg`** (which was deleted from `executor-config.ts`). The test will fail to compile. Recommended follow-on: remove the cli-copilot describe block + the import + the case-branch in cli-matrix.vitest.ts.
 

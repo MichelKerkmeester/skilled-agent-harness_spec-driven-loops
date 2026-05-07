@@ -14,8 +14,8 @@ I re-examined Xethryon's auto-memory path rules and compared them with Spec Kit'
 ## Evidence
 - Xethryon's auto-memory directory is keyed to a sanitized project root and is intentionally shared across worktrees of the same repo. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/paths.ts:92-129]
 - Xethryon's own memory guidance says not to save code patterns, git history, or project structure because those are derivable from current state. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/memoryTypes.ts:183-202]
-- Spec Kit already distinguishes durable memory from current-state recovery surfaces: startup/recovery uses `session_bootstrap()` and `session_resume()`, while memory guidance explicitly warns that memories can drift and should be verified against current state before acting. [SOURCE: .opencode/skill/system-spec-kit/README.md:93-99] [SOURCE: .opencode/skill/system-spec-kit/README.md:170-179] [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/memoryTypes.ts:197-202]
-- Spec Kit's current save contract keeps durable memory scoped and explicit rather than silently promoting current workspace facts into long-lived memory. [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:75-84]
+- Spec Kit already distinguishes durable memory from current-state recovery surfaces: startup/recovery uses `session_bootstrap()` and `session_resume()`, while memory guidance explicitly warns that memories can drift and should be verified against current state before acting. [SOURCE: .opencode/skills/system-spec-kit/README.md:93-99] [SOURCE: .opencode/skills/system-spec-kit/README.md:170-179] [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:103-105] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/xethryon/memory/memoryTypes.ts:197-202]
+- Spec Kit's current save contract keeps durable memory scoped and explicit rather than silently promoting current workspace facts into long-lived memory. [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:75-84]
 
 ## Analysis
 Xethryon's ambient orientation works because the system always starts from a project-root memory namespace. But that same choice makes worktree and branch distinctions much easier to blur. Spec Kit already has the healthier conceptual split: current-state orientation belongs in bootstrap/resume, while durable memory should capture decisions and context worth preserving. The right simplification is therefore not "repo-global memory," but "faster current-state orientation."
@@ -37,7 +37,7 @@ finding: Spec Kit should prototype a branch-aware orientation surface that is ge
 - **Migration path:** start with bootstrap/resume display only; do not change memory save behavior.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
+- **Target file or module:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define branch-aware fields and freshness rules so the orientation block stays read-only and current-state based

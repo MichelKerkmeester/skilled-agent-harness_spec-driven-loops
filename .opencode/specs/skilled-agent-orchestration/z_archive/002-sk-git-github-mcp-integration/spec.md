@@ -63,11 +63,11 @@ Normalize the sk-git documentation so GitHub MCP calls use the correct Code Mode
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-git/SKILL.md` | Modify | Correct GitHub MCP syntax and usage guidance |
-| `.opencode/skill/sk-git/references/finish_workflows.md` | Modify | Add correct PR and remote workflow examples |
-| `.opencode/skill/sk-git/references/shared_patterns.md` | Modify | Add GitHub MCP remote operation patterns |
-| `.opencode/skill/sk-git/references/quick_reference.md` | Modify | Add quick-reference commands and decision guidance |
-| .opencode/skill/sk-git/references/pr_template.md | Review/Modify | Ensure PR automation examples remain consistent |
+| `.opencode/skills/sk-git/SKILL.md` | Modify | Correct GitHub MCP syntax and usage guidance |
+| `.opencode/skills/sk-git/references/finish_workflows.md` | Modify | Add correct PR and remote workflow examples |
+| `.opencode/skills/sk-git/references/shared_patterns.md` | Modify | Add GitHub MCP remote operation patterns |
+| `.opencode/skills/sk-git/references/quick_reference.md` | Modify | Add quick-reference commands and decision guidance |
+| .opencode/skills/sk-git/references/pr_template.md | Review/Modify | Ensure PR automation examples remain consistent |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/memory/search.md",
+      ".opencode/commands/memory/search.md",
       "mcp_server/lib/search/sqlite-fts.ts",
       "mcp_server/lib/search/vector-index-store.ts",
       "mcp_server/core/db-state.ts",
@@ -66,7 +66,7 @@
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {

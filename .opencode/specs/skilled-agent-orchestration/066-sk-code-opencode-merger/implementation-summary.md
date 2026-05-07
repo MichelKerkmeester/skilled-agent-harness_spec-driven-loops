@@ -37,7 +37,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -76,12 +76,12 @@ The delivered design uses **two-axis context-aware detection**: Code Surface (fi
 | Area | Delivered |
 |------|-----------|
 | `sk-code` | Rewritten as the single code-work skill with `WEBFLOW`, `OPENCODE`, and `UNKNOWN` surfaces. |
-| OpenCode standards | Moved into `.opencode/skill/sk-code/references/opencode/` and `.opencode/skill/sk-code/assets/opencode/checklists/`. |
-| Verifier | Moved to `.opencode/skill/sk-code/scripts/verify_alignment_drift.py`. |
+| OpenCode standards | Moved into `.opencode/skills/sk-code/references/opencode/` and `.opencode/skills/sk-code/assets/opencode/checklists/`. |
+| Verifier | Moved to `.opencode/skills/sk-code/scripts/verify_alignment_drift.py`. |
 | Removed branches | Deleted Go and NextJS placeholder branches plus `cross_stack_pairing.md`. |
 | Review/CLI/docs | Updated `sk-code-review`, CLI dispatch guidance, agents, commands, repo docs, and install guides to the single-skill model. |
 | Advisor/tests | Updated scorer lanes, fixtures, hook expectations, telemetry, and generated graph artifacts to route OpenCode system code to `sk-code`. |
-| Obsolete skill | Deleted `.opencode/skill/sk-code-opencode/` after live references were clean. |
+| Obsolete skill | Deleted `.opencode/skills/sk-code-opencode/` after live references were clean. |
 
 ### Key Architectural Decisions
 
@@ -128,7 +128,7 @@ Implementation used exact reference searches, direct file inspection, focused pa
 |-------|--------|
 | Focused advisor/router vitest suite | PASS, 11 files / 185 tests |
 | Alignment fixture preservation test | PASS, 1 file / 2 tests |
-| Alignment verifier | PASS, `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/skill_advisor` |
+| Alignment verifier | PASS, `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server/skill_advisor` |
 | Advisor graph compile | PASS, 19 skills; warning only for 4631-byte graph exceeding 4KB target |
 | Skill graph scan/status | PASS, 19 skills, 68 edges, healthy, no stale skill IDs |
 | Smart-router measurement | PASS, regenerated with 130/197 advisor label accuracy and no removed-skill labels |
@@ -150,6 +150,6 @@ Implementation used exact reference searches, direct file inspection, focused pa
 <!-- ANCHOR:runbook -->
 ## Runbook
 
-If this needs rollback, restore `.opencode/skill/sk-code-opencode/` and the previous advisor graph/telemetry from git, then rerun `skill_graph_scan` and advisor rebuild. If continuing forward, use `sk-code` for both Webflow frontend and `.opencode/` system-code work, and use `sk-code-review` only for findings-first review output.
+If this needs rollback, restore `.opencode/skills/sk-code-opencode/` and the previous advisor graph/telemetry from git, then rerun `skill_graph_scan` and advisor rebuild. If continuing forward, use `sk-code` for both Webflow frontend and `.opencode/` system-code work, and use `sk-code-review` only for findings-first review output.
 <!-- /ANCHOR:runbook -->
 <!-- /ANCHOR:limitations -->

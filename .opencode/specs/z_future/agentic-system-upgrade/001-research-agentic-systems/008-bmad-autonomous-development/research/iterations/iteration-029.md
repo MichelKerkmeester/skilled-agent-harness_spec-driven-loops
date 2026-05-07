@@ -11,7 +11,7 @@ Walked the local feature workflow from spec binding through implementation, comp
 
 ## Evidence
 - The local system front-loads Gate 3 binding for file modification, then routes through planning/implementation/completion workflows and post-execution save/verification rules. [SOURCE: AGENTS.md:165-218] [SOURCE: CLAUDE.md:107-176]
-- The local template system requires at least a Level 1 spec folder with `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`, with more files for higher levels. [SOURCE: CLAUDE.md:181-197] [SOURCE: .opencode/skill/system-spec-kit/references/templates/level_specifications.md:90-238]
+- The local template system requires at least a Level 1 spec folder with `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`, with more files for higher levels. [SOURCE: CLAUDE.md:181-197] [SOURCE: .opencode/skills/system-spec-kit/references/templates/level_specifications.md:90-238]
 - BAD's operator journey is thinner: configure once, then run the coordinator, which internally handles stage progression, wait/continue logic, and cleanup. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:35-59] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/SKILL.md:212-391]
 
 ## Analysis
@@ -43,7 +43,7 @@ confidence: high
 finding: The standard local feature workflow has too many visible boundaries. `system-spec-kit` should add a bundled end-to-end entrypoint for the common path instead of requiring operators to compose it manually from gates, templates, and separate lifecycle commands.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/README.txt`
+- **Target file or module:** `.opencode/commands/spec_kit/README.txt`
 - **Change type:** added capability
 - **Blast radius:** high
 - **Prerequisites:** define the default lifecycle contract and identify where advanced users can still break out into manual control

@@ -46,8 +46,8 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research/archive",
   "migrationWindowDays": 28,

@@ -104,7 +104,7 @@ A single "compact" version would either (a) be too long for restrictive UIs, or 
 
 Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, references/, and intent routing. Option 3 conflates voice tuning with prompt templates — different conceptual categories. Option 2 matches existing asset patterns (`prompt_quality_card.md`, `prompt_templates.md` are already first-class assets of cli-codex).
 
-**Decision**: Place both files inside `.opencode/skill/cli-codex/assets/`. Update SKILL.md to reference them in the resource map and ALWAYS-load list.
+**Decision**: Place both files inside `.opencode/skills/cli-codex/assets/`. Update SKILL.md to reference them in the resource map and ALWAYS-load list.
 
 **Consequences**:
 - **Positive**: No new skill lifecycle to manage; zero routing overhead.
@@ -143,7 +143,7 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 2. For humans using `codex exec` directly, a shell wrapper function (`cxv()`) is simpler than a maintained repo asset; it's a personal dotfile concern, not a skill concern.
 3. The module had no legitimate consumer that wasn't better served by a different mechanism.
 
-**Decision**: Delete `.opencode/skill/cli-codex/assets/codex_voice_module.md`. Strip all SKILL.md / README.md references. No replacement asset — humans who want CLI voice tuning use the user-global `~/.codex/AGENTS.md` (see ADR-007) which Codex loads automatically, or write their own shell wrapper.
+**Decision**: Delete `.opencode/skills/cli-codex/assets/codex_voice_module.md`. Strip all SKILL.md / README.md references. No replacement asset — humans who want CLI voice tuning use the user-global `~/.codex/AGENTS.md` (see ADR-007) which Codex loads automatically, or write their own shell wrapper.
 
 **Consequences**:
 - **Positive**: Removes dead code; AI delegations stay lean.
@@ -162,7 +162,7 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 3. For the APP UI use case, the user can copy-paste directly from the global file — no need for a separate tiered asset.
 4. Per-char-tier compression (TINY/COMPACT/EXTENDED) was solving a problem — char limits in the APP UI — that doesn't apply at the CLI level, where one unconstrained file suffices.
 
-**Decision**: Delete `.opencode/skill/cli-codex/assets/codex_app_personalization.md`. Replace with a user-global voice addendum at `<repo>/.codex/AGENTS.md`, symlinked from `~/.codex/AGENTS.md`. Strip all SKILL.md / README.md references to the deleted asset.
+**Decision**: Delete `.opencode/skills/cli-codex/assets/codex_app_personalization.md`. Replace with a user-global voice addendum at `<repo>/.codex/AGENTS.md`, symlinked from `~/.codex/AGENTS.md`. Strip all SKILL.md / README.md references to the deleted asset.
 
 **Consequences**:
 - **Positive**: One file, loaded automatically by Codex CLI.

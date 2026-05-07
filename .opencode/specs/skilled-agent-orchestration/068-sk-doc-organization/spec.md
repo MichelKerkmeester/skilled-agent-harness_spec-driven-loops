@@ -85,7 +85,7 @@ Pure relocation + reference-string update across four runtime mirrors. No templa
 ### Out of Scope (locked decisions)
 - `barter/coder/` mirror tree (~30 parallel copies; user confirmed out-of-scope)
 - `z_archive/` and historical iteration logs / research / review records (immutable history)
-- `.opencode/skill/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` (preserve historical accuracy at release time)
+- `.opencode/skills/sk-doc/changelog/v1.1.3.0.md` and `v1.4.0.0.md` (preserve historical accuracy at release time)
 - Build artifacts (`.tmp/`, `dist/`, `observability/*.jsonl`)
 - Template byte-content (moved files preserve byte-identity)
 - `decision-record.md` (pure relocation has no architectural decision)
@@ -95,12 +95,12 @@ Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skill/sk-doc/assets/{feature_catalog,testing_playbook}/` | Move | 001 | Promoted from `documentation/` subfolder to `assets/` root |
-| `.opencode/skill/sk-doc/assets/{agent,command}_template.md` | Move | 001 | Promoted from `agents/` subfolder to `assets/` root |
-| `.opencode/skill/sk-doc/assets/agents/` | Delete | 001 | Empty after moves; physical rmdir |
-| `.opencode/skill/sk-doc/{SKILL.md,references/,changelog/}` | Modify | 002 | 4 fixed-string substring substitutions |
-| `.opencode/command/create/{*.md,assets/*.yaml,README.txt}` | Modify | 002 | Canonical `/create:*` command surface |
-| `.opencode/agent/create.md`, `.opencode/install_guides/SET-UP - Opencode Agents.md` | Modify | 002 | Canonical `@create` agent + install guide |
+| `.opencode/skills/sk-doc/assets/{feature_catalog,testing_playbook}/` | Move | 001 | Promoted from `documentation/` subfolder to `assets/` root |
+| `.opencode/skills/sk-doc/assets/{agent,command}_template.md` | Move | 001 | Promoted from `agents/` subfolder to `assets/` root |
+| `.opencode/skills/sk-doc/assets/agents/` | Delete | 001 | Empty after moves; physical rmdir |
+| `.opencode/skills/sk-doc/{SKILL.md,references/,changelog/}` | Modify | 002 | 4 fixed-string substring substitutions |
+| `.opencode/commands/create/{*.md,assets/*.yaml,README.txt}` | Modify | 002 | Canonical `/create:*` command surface |
+| `.opencode/agents/create.md`, `.opencode/install_guides/SET-UP - Opencode Agents.md` | Modify | 002 | Canonical `@create` agent + install guide |
 | `.claude/commands/create/`, `.codex/prompts/create/`, `.claude/agents/create.md` | Replicate | 002 | rsync byte-identity copy from `.opencode/` |
 | `.gemini/commands/create/*.toml`, `.gemini/agents/create.md`, `.codex/agents/create.toml` | Regenerate | 002 | TOML re-escape from updated `.opencode/` source |
 | Spec folder docs | Modify/Create | 003 | implementation-summary, validate, graph-metadata refresh |

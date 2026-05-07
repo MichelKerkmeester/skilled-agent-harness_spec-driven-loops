@@ -6,7 +6,7 @@ I stayed on the unlocked read-modify-write seams from Iterations 031-032, but fi
 ## Findings
 
 ### Finding R34-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `session-stop.ts:119-125, 261-269, 302-318`; `hook-state.ts:221-240`
 - **Severity:** P1
 - **Description:** `producerMetadataWritten` is an attempted-write flag, not a durable postcondition. The stop hook flips it to `true` immediately after the producer-metadata patch is issued, but it never re-reads state to prove that `producerMetadata` survived the later unlocked writes in the same stop flow or any interleaving writer for the same session.
@@ -14,7 +14,7 @@ I stayed on the unlocked read-modify-write seams from Iterations 031-032, but fi
 - **Downstream Impact:** Stop-hook callers can treat `producerMetadataWritten === true` as proof that resume/autosave consumers will see producer metadata, even though the final state file can already have been overwritten by another stop/compact writer. That turns a coordination race into a false success signal for continuity freshness and transcript provenance.
 
 ### Finding R34-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
 - **Lines:** `reconsolidation-bridge.ts:261-306`; `reconsolidation.ts:599-694`; `memory-save.ts:2159-2171, 2250-2304`
 - **Severity:** P1
 - **Description:** The complement path has a stale-search duplicate window. Reconsolidation planning performs vector search and scope filtering before the save path takes its writer transaction; if another save inserts or upgrades a near-duplicate after that search but before the later `writeTransaction`, the current save still proceeds as a normal complement and creates a second memory without re-running similarity search.

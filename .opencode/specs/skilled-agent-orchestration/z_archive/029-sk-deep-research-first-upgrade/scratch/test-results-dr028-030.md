@@ -23,10 +23,10 @@
    - The Track column is the third column, positioned between Focus and Ratio, matching the JSONL focusTrack field.
 
 3. **Agent files instruct the agent to include focusTrack in JSONL records:**
-   - `.opencode/agent/deep-research.md:171` -- JSONL template includes `"focusTrack":"optional-track-label"`
-   - `.opencode/agent/deep-research.md:187` -- Documents focusTrack as an optional v1.1.0 field
-   - `.opencode/agent/deep-research.md:214` -- Dashboard Awareness section confirms focusTrack feeds into dashboard visualization
-   - Same contract in `.claude/agents/deep-research.md:166,182,209` and `.opencode/agent/chatgpt/deep-research.md:171,187,214`
+   - `.opencode/agents/deep-research.md:171` -- JSONL template includes `"focusTrack":"optional-track-label"`
+   - `.opencode/agents/deep-research.md:187` -- Documents focusTrack as an optional v1.1.0 field
+   - `.opencode/agents/deep-research.md:214` -- Dashboard Awareness section confirms focusTrack feeds into dashboard visualization
+   - Same contract in `.claude/agents/deep-research.md:166,182,209` and `.opencode/agents/chatgpt/deep-research.md:171,187,214`
 
 4. **Secondary confirmation:**
    - `loop_protocol.md:161` -- Dispatch context may include a suggested focusTrack label

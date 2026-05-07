@@ -368,7 +368,7 @@
       {
         "name": "memory_save",
         "args": {
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
           "asyncEmbedding": true,
           "skipPreflight": true
         }
@@ -384,7 +384,7 @@
         "handler": {
           "name": "memory_save",
           "args": {
-            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
+            "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/.tmp/gate-i-manual-playbook-PospIR/specs/001-manual-fixture-auth-resume/decision-record.md",
             "asyncEmbedding": true,
             "skipPreflight": true
           }
@@ -450,7 +450,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-state.vitest.ts` 3) Inspect the output for active projection, `asOf`, integrity failure coverage, and timestamp-order coverage for variant date formats"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-state.vitest.ts` 3) Inspect the output for active projection, `asOf`, integrity failure coverage, and timestamp-order coverage for variant date formats"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."
@@ -472,7 +472,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skill/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-backfill.vitest.ts` 3) Inspect the output for dry-run counts, successful execution, zero-change rerun, and post-restore empty lineage tables"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit/mcp_server` 2) `npm test -- --run tests/memory-lineage-backfill.vitest.ts` 3) Inspect the output for dry-run counts, successful execution, zero-change rerun, and post-restore empty lineage tables"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

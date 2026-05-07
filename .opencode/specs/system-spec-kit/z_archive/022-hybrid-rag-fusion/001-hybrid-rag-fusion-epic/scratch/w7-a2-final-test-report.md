@@ -1,6 +1,6 @@
 # W7-A2 Final Test Report
 
-- Command: `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run --reporter=verbose 2>&1 | tail -50`
+- Command: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run --reporter=verbose 2>&1 | tail -50`
 - Run timestamp: 2026-03-08T15:01:16.355Z request / observed completion during this session
 
 ## Test counts

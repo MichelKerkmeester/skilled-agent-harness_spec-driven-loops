@@ -71,23 +71,23 @@ Contract-first path migration with bounded legacy tolerance and one-shot corpus 
 
 ### Key Components
 - **Command contract**:
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
 - **Canonical runtime contract**:
   - `.codex/agents/deep-research.toml`
   - `.codex/agents/deep-review.toml`
   - mirrored runtime agent files in `.opencode`, `.claude`, and `.gemini`
 - **Skill and docs contract**:
-  - `.opencode/skill/sk-deep-research/`
-  - `.opencode/skill/system-spec-kit/`
+  - `.opencode/skills/sk-deep-research/`
+  - `.opencode/skills/system-spec-kit/`
 - **Path-sensitive runtime helpers**:
   - `mcp_server` parsing, storage, type inference, discovery, tool schema, and tests
   - shell helpers under `scripts/common.sh` and `scripts/setup/check-prerequisites.sh`
 - **Corpus migration**:
-  - `.opencode/skill/system-spec-kit/scripts/migrate-deep-research-paths.ts`
+  - `.opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts`
   - tracked `.opencode/specs/` packets
 
 ### Data Flow
@@ -180,7 +180,7 @@ Contract-first path migration with bounded legacy tolerance and one-shot corpus 
 | Path-helper verification | `system-spec-kit` shell and runtime helper outputs | shell commands, targeted unit tests, strict packet validation |
 | Artifact-routing and indexing verification | `mcp_server` parsing, discovery, and artifact-routing logic | targeted Vitest suites |
 | Corpus migration verification | Migration utility plus tracked `.opencode/specs/` packets | migration script output, `find`, `rg`, representative validator runs |
-| Packet validation | This packet and representative migrated packets | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Packet validation | This packet and representative migrated packets | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 
 ### Planned Verification Queries
 

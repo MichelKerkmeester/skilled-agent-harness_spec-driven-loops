@@ -16,7 +16,7 @@ You are running as codex CLI (`gpt-5.4`, `reasoning_effort=high`, `service_tier=
 
 ## THE 4 COMPILE ERRORS (exact locations)
 
-Run `cd .opencode/skill/system-spec-kit/scripts && npm run build` first to see the live errors. Expected output includes:
+Run `cd .opencode/skills/system-spec-kit/scripts && npm run build` first to see the live errors. Expected output includes:
 
 ```
 core/workflow.ts(1446,48): error TS2352: Conversion of type 'CanonicalDocs' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
@@ -41,7 +41,7 @@ Either `match` should be `matches` (if a previously-defined variable) OR it shou
 
 After fixing all 4 errors:
 ```bash
-cd .opencode/skill/system-spec-kit/scripts
+cd .opencode/skills/system-spec-kit/scripts
 npm run build
 ```
 Must exit with code 0. If any new errors surface, fix them the same way.
@@ -52,7 +52,7 @@ After `dist/` is rebuilt, run the memory save on 014 via the CLI and inspect the
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades 2>&1 | tail -30
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/001-code-graph-upgrades 2>&1 | tail -30
 ```
 
 The `/tmp/save-context-data.json` file already exists from the prior wild verification attempt. Use it as-is. The save will create a NEW memory file in `005-code-graph-upgrades/memory/` with a fresh timestamp.
@@ -100,7 +100,7 @@ BUILD:
   dist/core/title-builder.js modified timestamp: <new time>
 
 WILD_SAVE:
-  command: node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .../001-code-graph-upgrades
+  command: node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .../001-code-graph-upgrades
   exit code: <n>
   new memory file: <path>
 

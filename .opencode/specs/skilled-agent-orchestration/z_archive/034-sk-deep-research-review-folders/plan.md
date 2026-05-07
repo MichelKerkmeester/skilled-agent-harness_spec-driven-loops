@@ -72,24 +72,24 @@ Contract-first folder relocation with targeted legacy migration.
 - **Authoritative path decision**:
   - `spec.md`
   - `decision-record.md`
-  - `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml`
+  - `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`
 - **Workflow consumers**:
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-  - `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+  - `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
 - **Runtime consumers**:
-  - `.opencode/agent/deep-review.md`
+  - `.opencode/agents/deep-review.md`
   - `.claude/agents/deep-review.md`
   - `.codex/agents/deep-review.toml`
   - `.gemini/agents/deep-review.md`
 - **Documentation consumers**:
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/skill/sk-deep-research/SKILL.md`
-  - `.opencode/skill/sk-deep-research/README.md`
-  - `.opencode/skill/sk-deep-research/references/quick_reference.md`
-  - `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-  - `.opencode/skill/sk-deep-research/references/state_format.md`
-  - `.opencode/skill/sk-deep-research/references/convergence.md`
-  - `.opencode/skill/sk-deep-research/manual_testing_playbook/`
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/skills/sk-deep-research/SKILL.md`
+  - `.opencode/skills/sk-deep-research/README.md`
+  - `.opencode/skills/sk-deep-research/references/quick_reference.md`
+  - `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+  - `.opencode/skills/sk-deep-research/references/state_format.md`
+  - `.opencode/skills/sk-deep-research/references/convergence.md`
+  - `.opencode/skills/sk-deep-research/manual_testing_playbook/`
 
 ### Data Flow
 1. Review-mode startup inspects the target spec for canonical `review/` state and legacy scratch-based review state.
@@ -139,14 +139,14 @@ Contract-first folder relocation with targeted legacy migration.
 - [ ] Update `spec_kit_deep-research_review_auto.yaml` to use `review/` for creation, classification, pause, iteration, synthesis, and backup behavior.
 - [ ] Mirror the same changes in `spec_kit_deep-research_review_confirm.yaml`.
 - [ ] Synchronize the shared deep-research auto and confirm preflight guards so both `specs/` and `.opencode/specs/` alias roots remain valid without changing research-mode storage paths.
-- [ ] Update `.opencode/agent/deep-review.md` to reference `review/` instead of `scratch/`.
+- [ ] Update `.opencode/agents/deep-review.md` to reference `review/` instead of `scratch/`.
 - [ ] Update `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, and `.gemini/agents/deep-review.md` for the same contract.
-- [ ] Update `.opencode/skill/sk-deep-research/assets/review_mode_contract.yaml`, `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md`, and `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` so the asset layer matches the runtime layer.
+- [ ] Update `.opencode/skills/sk-deep-research/assets/review_mode_contract.yaml`, `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md`, and `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` so the asset layer matches the runtime layer.
 
 ### Phase 3: Synchronize docs and verification surfaces
-- [ ] Update the review sections of `.opencode/command/spec_kit/deep-research.md`, `.opencode/skill/sk-deep-research/SKILL.md`, and `.opencode/skill/sk-deep-research/README.md`.
+- [ ] Update the review sections of `.opencode/commands/spec_kit/deep-research.md`, `.opencode/skills/sk-deep-research/SKILL.md`, and `.opencode/skills/sk-deep-research/README.md`.
 - [ ] Update the parallel `.agents/commands/spec_kit/deep-research.toml` wrapper metadata and any shared recovery wording that still contradicts the landed review packet contract.
-- [ ] Update the review-relevant sections of `.opencode/skill/sk-deep-research/references/quick_reference.md`, `.opencode/skill/sk-deep-research/references/loop_protocol.md`, `.opencode/skill/sk-deep-research/references/state_format.md`, and `.opencode/skill/sk-deep-research/references/convergence.md`.
+- [ ] Update the review-relevant sections of `.opencode/skills/sk-deep-research/references/quick_reference.md`, `.opencode/skills/sk-deep-research/references/loop_protocol.md`, `.opencode/skills/sk-deep-research/references/state_format.md`, and `.opencode/skills/sk-deep-research/references/convergence.md`.
 - [ ] Update manual testing playbook scenarios that reference review-mode paths, review packet outputs, or shared pause or resume behavior.
 - [ ] Add or update validation sweeps proving that review-mode durable artifacts are described under `review/`, not `scratch/`.
 
@@ -169,7 +169,7 @@ Contract-first folder relocation with targeted legacy migration.
 | Legacy migration check | Scratch-based review session rehydration into `review/` | Manual fixture or representative spec-folder replay |
 | Pause or resume validation | Review-mode sentinel handling and completed-session detection | Manual scenario verification plus playbook sync |
 | Doc consistency review | Command, skill, references, playbook | `rg`, manual cross-read |
-| Spec packet validation | This Level 3 packet | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/03--commands-and-skills/034-sk-deep-research-review-folders --strict` |
+| Spec packet validation | This Level 3 packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/03--commands-and-skills/034-sk-deep-research-review-folders --strict` |
 
 ### Planned Verification Queries
 

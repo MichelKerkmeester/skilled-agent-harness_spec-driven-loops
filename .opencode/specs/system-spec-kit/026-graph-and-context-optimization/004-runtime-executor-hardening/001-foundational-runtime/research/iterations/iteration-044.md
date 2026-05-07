@@ -6,7 +6,7 @@ I traced whether the repository's declared routing/governance vocabularies are a
 ## Findings
 
 ### Finding R44-001
-- **File:** `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skill/skill-advisor/graph-metadata.json`; `.opencode/skill/skill-advisor/scripts/skill_advisor.py`; `.opencode/skill/skill-advisor/tests/test_skill_advisor.py`
+- **File:** `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skills/skill-advisor/graph-metadata.json`; `.opencode/skills/skill-advisor/scripts/skill_advisor.py`; `.opencode/skills/skill-advisor/tests/test_skill_advisor.py`
 - **Lines:** `skill_graph_compiler.py:501-568`; `graph-metadata.json:37-42`; `skill_advisor.py:105-189,250-339,1185-1200,1629-1694`; `test_skill_advisor.py:61-186`
 - **Severity:** P1
 - **Description:** The skill graph compiler preserves per-skill `intent_signals`, and the runtime loader faithfully pulls those signals from SQLite/JSON into the in-memory graph object, but the scoring path never consumes them. Live Gate 2 routing is still driven by hard-coded boost tables, description terms, name variants, and graph topology edges, so graph-level routing vocabulary is effectively advisory metadata.
@@ -14,7 +14,7 @@ I traced whether the repository's declared routing/governance vocabularies are a
 - **Downstream Impact:** Editing `graph-metadata.json` to refine routing phrases looks authoritative but does not change Gate 2 behavior. Skill authors and reviewers can believe they updated routing semantics when they only updated inert metadata, leaving manual dictionaries and the graph store free to drift apart.
 
 ### Finding R44-002
-- **File:** `.opencode/skill/sk-deep-research/SKILL.md`; `.opencode/skill/system-spec-kit/SKILL.md`; `.opencode/skill/skill-advisor/scripts/skill_advisor_runtime.py`; `.opencode/skill/skill-advisor/tests/test_skill_advisor.py`
+- **File:** `.opencode/skills/sk-deep-research/SKILL.md`; `.opencode/skills/system-spec-kit/SKILL.md`; `.opencode/skills/skill-advisor/scripts/skill_advisor_runtime.py`; `.opencode/skills/skill-advisor/tests/test_skill_advisor.py`
 - **Lines:** `sk-deep-research/SKILL.md:1-10`; `system-spec-kit/SKILL.md:1-8`; `skill_advisor_runtime.py:38-64,111-141,165-203`; `test_skill_advisor.py:61-186`
 - **Severity:** P2
 - **Description:** The advisor's cached skill discovery strips each `SKILL.md` down to scalar frontmatter fields and ignores the keyword vocabularies that the skills themselves publish in `<!-- Keywords: ... -->` comments. In practice, the live router sees only `name`, `description`, and generated variants, so repository-authored keyword lists in skill files are governance prose rather than executable routing input.
@@ -22,7 +22,7 @@ I traced whether the repository's declared routing/governance vocabularies are a
 - **Downstream Impact:** Skill maintainers can update the keyword surface in `SKILL.md` and see no routing change unless they also remember to edit separate Python dictionaries. That turns the skill files' own keyword comments into a drift-prone social contract instead of a mechanically enforced source of truth.
 
 ### Finding R44-003
-- **File:** `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`; `.opencode/skill/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
+- **File:** `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`; `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`; `.opencode/skills/system-spec-kit/mcp_server/tests/transcript-planner-export.vitest.ts`
 - **Lines:** `spec_kit_plan_auto.yaml:375-392`; `spec_kit_plan_confirm.yaml:400-417`; `transcript-planner-export.vitest.ts:146-217`
 - **Severity:** P2
 - **Description:** Both `/spec_kit:plan` workflow assets express the `--intake-only` stop/continue branch with uppercase boolean literals inside string conditions (`"intake_only == TRUE"` / `"intake_only == FALSE"`), but no nearby runtime contract or automated test pins what evaluator semantics make those literals valid. The branch is therefore controlled by interpreter convention rather than a shared, validated boolean grammar.

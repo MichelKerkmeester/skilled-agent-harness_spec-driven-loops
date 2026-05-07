@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce98-d8f1-7130-88f7-e758901d028c
 --------
 user
-You are investigating undocumented features in an MCP server. Read these source files under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/: handlers/memory-index*.ts (all files matching this pattern), also check for causal-links-processor.ts and vector-index-mutations.ts under lib/ or handlers/. Verify these gaps: Gap 10 (Spec Document Discovery + Level Inference), Gap 11 (Auto Spec-Document Causal Chains), Gap 12 (Declarative Causal Link Ingestion), Gap 13 (Deferred Lexical-Only Indexing). 
+You are investigating undocumented features in an MCP server. Read these source files under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/: handlers/memory-index*.ts (all files matching this pattern), also check for causal-links-processor.ts and vector-index-mutations.ts under lib/ or handlers/. Verify these gaps: Gap 10 (Spec Document Discovery + Level Inference), Gap 11 (Auto Spec-Document Causal Chains), Gap 12 (Declarative Causal Link Ingestion), Gap 13 (Deferred Lexical-Only Indexing). 
 
 OUTPUT FORMAT (repeat for each gap):
 ---
@@ -39,12 +39,12 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 You want a source-level verification of Gaps 10–13 in the Spec Kit MCP server, plus any new undocumented capabilities in the same area. I’m going to scan the requested `mcp_server` files first, then map each gap to concrete implementation lines and report status with evidence.
 exec
-/bin/zsh -lc "rg --files .opencode/skill/system-spec-kit/mcp_server | rg 'handlers/memory-index.*\\.ts|causal-links-processor\\.ts|vector-index-mutations\\.ts|undocumented-features-scan\\.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts
+/bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/mcp_server | rg 'handlers/memory-index.*\\.ts|causal-links-processor\\.ts|vector-index-mutations\\.ts|undocumented-features-scan\\.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts
 codex
 I found all requested implementation files, including `memory-index*`, `causal-links-processor.ts`, and `vector-index-mutations.ts`. Next I’ll read them alongside `undocumented-features-scan.md` so each gap status is grounded in exact line evidence.
 exec
@@ -80,9 +80,9 @@ Most gaps are in the **infrastructure/operational layer** (server lifecycle, cra
 codex
 I’ve loaded the gap definitions. I’m now reading each target implementation file with line numbers so I can confirm whether each gap is real, false positive, or already implemented in a different form.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Memory Index Discovery Helpers
      3	// ---------------------------------------------------------------
@@ -146,9 +146,9 @@ exec
     19	
     20	import * as memoryParser from '../lib/parsing/memory-parser';
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts | sed -n '320,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts | sed -n '320,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Causal Links Processor
      3	// ---------------------------------------------------------------
@@ -212,7 +212,7 @@ exec
    338	    results.staleDeleteFailed = staleDeleteResult.failed;
    339	  }
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts | sed -n '360,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts | sed -n '360,760p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    360	      } catch (e: unknown) {
    361	        console.warn(`[vector-index] Vector deletion failed for memory ${id}: ${get_error_message(e)}`);
    362	      }
@@ -234,33 +234,33 @@ exec
    378	
    379	    const result = database.prepare('DELETE FROM memory_index WHERE id = ?').run(id);
 exec
-/bin/zsh -lc "rg -n \"processCausalLinks|causalLinks|caused_by|supersedes|derived_from|blocks|related_to|detectSpecLevel\\(|findSpecDocuments\\(|index_memory_deferred|indexMemoryDeferred\" .opencode/skill/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"processCausalLinks|causalLinks|caused_by|supersedes|derived_from|blocks|related_to|detectSpecLevel\\(|findSpecDocuments\\(|index_memory_deferred|indexMemoryDeferred\" .opencode/skills/system-spec-kit/mcp_server" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 Total output lines: 321
 
-.opencode/skill/system-spec-kit/mcp_server/README.md:330:| `supersedes`   | A replaces B as the current truth             |
-.opencode/skill/system-spec-kit/mcp_server/README.md:332:| `derived_from` | A was built upon or derived from B            |
-.opencode/skill/system-spec-kit/mcp_server/README.md:897:// Returns causal chain: causedBy, enabledBy, supersedes
-.opencode/skill/system-spec-kit/mcp_server/README.md:903:// Document that decision A supersedes decision B
-.opencode/skill/system-spec-kit/mcp_server/README.md:907:  relation: 'supersedes',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:126: * Extracted from duplicate blocks in handleTaskPreflight and handleTaskPostflight.
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:44:  by_supersedes: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:46:  by_derived_from: FlatEdge[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:95:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:97:    by_derived_from: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:139:      case 'supersedes': return result.by_supersedes;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:141:      case 'derived_from': return result.by_derived_from;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:162:    by_supersedes: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:164:    by_derived_from: [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:179:      case 'supersedes': merged.by_supersedes.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:181:      case 'derived_from': merged.by_derived_from.push(edge); break;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:226:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:228:    by_derived_from: allowed.has('derived_from') ? chain.by_derived_from : [],
+.opencode/skills/system-spec-kit/mcp_server/README.md:330:| `supersedes`   | A replaces B as the current truth             |
+.opencode/skills/system-spec-kit/mcp_server/README.md:332:| `derived_from` | A was built upon or derived from B            |
+.opencode/skills/system-spec-kit/mcp_server/README.md:897:// Returns causal chain: causedBy, enabledBy, supersedes
+.opencode/skills/system-spec-kit/mcp_server/README.md:903:// Document that decision A supersedes decision B
+.opencode/skills/system-spec-kit/mcp_server/README.md:907:  relation: 'supersedes',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:126: * Extracted from duplicate blocks in handleTaskPreflight and handleTaskPostflight.
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:44:  by_supersedes: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:46:  by_derived_from: FlatEdge[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:95:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:97:    by_derived_from: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:139:      case 'supersedes': return result.by_supersedes;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:141:      case 'derived_from': return result.by_derived_from;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:162:    by_supersedes: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:164:    by_derived_from: [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:179:      case 'supersedes': merged.by_supersedes.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:181:      case 'derived_from': merged.by_derived_from.push(edge); break;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:226:    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:228:    by_derived_from: allowed.has('derived_from') ? chain.by_derived_from : [],
 codex
 I confirmed call sites exist beyond the core files, so I’m checking those integration points now (post-insert enrichment and deferred-index call paths) to ensure each gap is truly implemented end-to-end, not just declared.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts | sed -n '130,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts | sed -n '130,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Post Insert
      3	// ---------------------------------------------------------------
@@ -324,7 +324,7 @@ exec
    148	    const existing = database.prepare(`
    149	      SELECT id FROM memory_index
 exec
-/bin/zsh -lc "rg -n \"detectSpecLevelFromParsed|detectSpecLevel\\(\" .opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"detectSpecLevelFromParsed|detectSpecLevel\\(\" .opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts | sed -n '1,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 15:// - detectSpecLevelFromParsed: extracted from causal-links-processor.ts
 33:export function detectSpecLevelFromParsed(filePath: string): number | null {
      1	// ---------------------------------------------------------------
@@ -346,7 +346,7 @@ exec
     17	
     18	import fs from 'fs';
 exec
-/bin/zsh -lc 'rg -n "causalLinks|caused_by|supersedes|derived_from|blocks|related_to|hasCausalLinks" .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc 'rg -n "causalLinks|caused_by|supersedes|derived_from|blocks|related_to|hasCausalLinks" .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 25:  caused_by: string[];
 26:  supersedes: string[];
 27:  derived_from: string[];
@@ -368,7 +368,7 @@ exec
 597:    // Check for sub-key (e.g., "  caused_by:")
 598:    const keyMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*$/);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | sed -n '150,250p' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | sed -n '540,700p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | sed -n '150,250p' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | sed -n '540,700p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    150	    for (let i = 0; i < contentBuffer.length - 1; i += 2) {
    151	      const temp = contentBuffer[i];
    152	      contentBuffer[i] = contentBuffer[i + 1];
@@ -390,7 +390,7 @@ exec
    168	  const content = readFileWithEncoding(filePath);
    169	  // Spec 126: Infer document type from file path
 exec
-/bin/zsh -lc "rg -n \"createSpecDocumentChain|SPEC_DOCUMENT_CHAIN|spec document chain|create spec document\" .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '1,260p' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"createSpecDocumentChain|SPEC_DOCUMENT_CHAIN|spec document chain|create spec document\" .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '1,260p' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts | sed -n '260,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 556:function createSpecDocumentChain(documentIds: Record<string, number>): { inserted: number; failed: number } {
 760:  createSpecDocumentChain,
      1	// ---------------------------------------------------------------
@@ -423,10 +423,10 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X02.md:242:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/decision-record.md:214:**Why this one**: Category restructuring is a significant change that would triple the scope of this audit. The current 20 categories can house new features, even if imperfect.
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:137:/bin/zsh -lc 'rg -n "Gap 14|Gap 15|Gap 16|Gap 17|''^#|''^##|Category|SUGGESTED_CATEGORY|existing categories" '"'.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/undocumented-features-scan.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X04.md:178:/bin/zsh -lc 'rg -n "''^##|''^#|''^'"\\d{2}-|Category|categories|feature catalog\" '.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:315:/bin/zsh -lc "rg -n \"SignalCategory|correction|preference|neutral|prefer|actually|I was wrong|detect|signal|signal categories|vocab|vocabulary|true-mem|category\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:339:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:10:export type SignalCategory = 'correction' | 'preference' | 'neutral';
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:341:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:14:  category: SignalCategory;
-.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:350:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:341:const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:315:/bin/zsh -lc "rg -n \"SignalCategory|correction|preference|neutral|prefer|actually|I was wrong|detect|signal|signal categories|vocab|vocabulary|true-mem|category\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/signal-vocab.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-matcher.vitest.ts' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:339:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:10:export type SignalCategory = 'correction' | 'preference' | 'neutral';
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:341:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:14:  category: SignalCategory;
+.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/verification-C14.md:350:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:341:const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X10.md:299:/bin/zsh -lc 'rg -n "''^## |''^### |Category|'"\\|\\s*[0-9]{2}\\s*\\|\" .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog -g '*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X10.md:385:.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X09.md:102:/bin/zsh -lc 'rg -n "''^#|''^##|category|Category|''^[0-9]{2}-|''^'"\\|\\s*[0-9]{2}\\s*\\|\" .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog -g '*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/scratch/investigation-X05.md:292:/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/decision-record.md:202:**How it works**: Gap investigation agents suggest a category for each new feature. The synthesis phase validates the suggestion against existing categories and assigns the closest match. Category restructuring tracked as a separate future task.
@@ -456,27 +456,27 @@ Total output lines: 266
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/plan.md:222:| C07 | 09-eval-measurement (1-8) | 8 |
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/plan.md:223:| C08 | 09-eval-measurement (9-15) | 7 |
 exec
-/bin/zsh -lc 'find .opencode/skill/system-spec-kit/feature_catalog -maxdepth 1 -mindepth 1 -type d | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/feature_catalog/.github
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval
-.opencode/skill/system-spec-kit/feature_catalog/02--mutation
-.opencode/skill/system-spec-kit/feature_catalog/03--discovery
-.opencode/skill/system-spec-kit/feature_catalog/04--maintenance
-.opencode/skill/system-spec-kit/feature_catalog/05--lifecycle
-.opencode/skill/system-spec-kit/feature_catalog/06--analysis
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation
-.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement
-.opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration
-.opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence
-.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing
-.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture
-.opencode/skill/system-spec-kit/feature_catalog/15--retrieval-enhancements
-.opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts
-.opencode/skill/system-spec-kit/feature_catalog/17--governance
-.opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks
-.opencode/skill/system-spec-kit/feature_catalog/19--decisions-and-deferrals
+/bin/zsh -lc 'find .opencode/skills/system-spec-kit/feature_catalog -maxdepth 1 -mindepth 1 -type d | sort' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/feature_catalog/.github
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval
+.opencode/skills/system-spec-kit/feature_catalog/02--mutation
+.opencode/skills/system-spec-kit/feature_catalog/03--discovery
+.opencode/skills/system-spec-kit/feature_catalog/04--maintenance
+.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle
+.opencode/skills/system-spec-kit/feature_catalog/06--analysis
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation
+.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement
+.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration
+.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence
+.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing
+.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture
+.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements
+.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts
+.opencode/skills/system-spec-kit/feature_catalog/17--governance
+.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks
+.opencode/skills/system-spec-kit/feature_catalog/19--decisions-and-deferrals
 exec
 /bin/zsh -lc "rg -n \"SPECKIT_INDEX_SPEC_DOCS|includeSpecDocs|specFolder filter|session|title LIKE|sqlite_vec|embedding_status = 'pending'|failure_reason|reference resolution|causalLinksResult\" .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/undocumented-features-scan.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 28:| 2 | **Cross-Process DB Hot Rebinding** | `core/db-state.ts` | Shared marker file detects external mutations → reopens DB → rebinds hybrid search, checkpoints, session manager, etc. |

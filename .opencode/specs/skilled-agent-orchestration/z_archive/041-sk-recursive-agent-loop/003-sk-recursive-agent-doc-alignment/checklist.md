@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P1] `.opencode/skill/sk-improve-agent/SKILL.md` contains the required `REFERENCES` section (verified)
+- [x] CHK-010 [P1] `.opencode/skills/sk-improve-agent/SKILL.md` contains the required `REFERENCES` section (verified)
 - [x] CHK-011 [P1] The README includes a table of contents and overview section (verified)
 - [x] CHK-012 [P1] The canonical loop command uses the required `PURPOSE` and `INSTRUCTIONS` sections (verified)
 - [x] CHK-013 [P1] The canonical loop agent contains the required `CORE WORKFLOW`, `CAPABILITY SCAN`, `OUTPUT VERIFICATION`, `ANTI-PATTERNS`, and `RELATED RESOURCES` sections (verified)

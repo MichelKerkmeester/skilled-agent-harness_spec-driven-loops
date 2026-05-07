@@ -89,7 +89,7 @@ prior findings with the real `BLOCKED_BY_TEST_SANDBOX` cause.
 | `../030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` | Modify | Detect sandbox once, pass it to adapters, and print aggregate verdict. |
 | `../030-hook-plugin-per-runtime-testing/runners/test-*.ts` | Modify | Emit direct-smoke and live-cli cells separately. |
 | `../030-hook-plugin-per-runtime-testing/runners/README.md` | Modify | Document operator live mode and sandbox partial mode. |
-| `.opencode/skill/system-spec-kit/mcp_server/package.json` | Modify | Add `hook-tests` script using the local TS loader. |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Add `hook-tests` script using the local TS loader. |
 | `../030-hook-plugin-per-runtime-testing/findings.md` | Modify | Add corrected amendment while preserving original verdict. |
 | `methodology-correction.md` | Create | Document root cause and corrected operator path. |
 <!-- /ANCHOR:scope -->

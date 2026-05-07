@@ -103,7 +103,7 @@ Documentation-driven research packet with append-only iteration state and merged
 |-----------|-------|-------|
 | Consistency | Iteration counts, state totals, verdict distribution | Direct file review |
 | Integrity | Packet-local markdown path references and required packet docs | `rg`, direct file review |
-| Validation | Full phase-folder structural checks | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` |
+| Validation | Full phase-folder structural checks | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -148,8 +148,8 @@ The 007 resilience-research packet identified five concrete backend resilience g
 ## 5. SUCCESS CRITERIA
 
 - All 15 tasks (T01-T15) marked complete with verified evidence
-- `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` exits 0
-- `npm --prefix .opencode/skill/system-spec-kit/mcp_server test` passes 100%
+- `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` exits 0
+- `npm --prefix .opencode/skills/system-spec-kit/mcp_server test` passes 100%
 - `code_graph_verify` MCP tool reachable; returns `{status:"blocked",...}` when graph stale
 - `/doctor:code-graph:auto` smoke test succeeds against modified backend
 - Strict spec validation passes 0 errors / 0 warnings on this packet
@@ -176,7 +176,7 @@ The 007 resilience-research packet identified five concrete backend resilience g
 
 - **Upstream:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
 - **Sibling:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/`
-- **Backend target:** `.opencode/skill/system-spec-kit/mcp_server/code_graph/`
+- **Backend target:** `.opencode/skills/system-spec-kit/mcp_server/code_graph/`
 - **No external deps**
 <!-- /ANCHOR:risks -->
 

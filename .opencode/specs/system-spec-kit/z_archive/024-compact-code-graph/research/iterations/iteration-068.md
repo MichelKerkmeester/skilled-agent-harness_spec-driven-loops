@@ -156,7 +156,7 @@ B3: GRAPH_AWARE_TOOLS interceptor (per-tool enrichment)
 
 | File | Current LOC | Changes | Est. LOC Delta | Purpose |
 |------|------------|---------|---------------|---------|
-| `.opencode/agent/context.md` | 429 | Add Layer 1.5 code_graph_context in retrieval sequence | +15-20 | Every @context dispatch includes structural graph |
+| `.opencode/agents/context.md` | 429 | Add Layer 1.5 code_graph_context in retrieval sequence | +15-20 | Every @context dispatch includes structural graph |
 | `.claude/agents/context.md` | 418 | Mirror changes from OpenCode context agent | +15-20 | Claude agent parity |
 | `.codex/agents/context.toml` | existing | Add code_graph_context instruction | +5-10 | Codex agent parity |
 | `.agents/agents/context.md` | existing | Add code_graph_context instruction | +15-20 | Copilot agent parity |
@@ -165,8 +165,8 @@ B3: GRAPH_AWARE_TOOLS interceptor (per-tool enrichment)
 
 | File | Current LOC | Changes | Est. LOC Delta | Purpose |
 |------|------------|---------|---------------|---------|
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | existing | Add step_1b_index_freshness | +10-15 | Auto-refresh code graph on resume |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` | existing | Mirror changes | +10-15 | Confirm-mode resume also gets freshness check |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | existing | Add step_1b_index_freshness | +10-15 | Auto-refresh code graph on resume |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | existing | Mirror changes | +10-15 | Confirm-mode resume also gets freshness check |
 
 **D3: Instruction File Updates**
 
@@ -174,7 +174,7 @@ B3: GRAPH_AWARE_TOOLS interceptor (per-tool enrichment)
 |------|------------|---------|---------------|---------|
 | `CLAUDE.md` (root) | existing | Add code_graph_status to Quick Reference table | +5-8 | Cross-runtime documentation |
 | `CODEX.md` | NEW or existing | Add code graph startup guidance: "On first interaction, run code_graph_status" | +10-15 | Codex CLI users get code graph awareness |
-| `.opencode/skill/system-spec-kit/SKILL.md` | existing | Add code graph section to skill documentation | +15-25 | Skill documentation includes code graph |
+| `.opencode/skills/system-spec-kit/SKILL.md` | existing | Add code graph section to skill documentation | +15-25 | Skill documentation includes code graph |
 
 **Phase D total estimated LOC:** 100-168 new/modified lines
 **Dependencies:** Phase B2 (MCP first-call priming) should be complete -- it provides the universal mechanism. Phase D is additive instruction-level changes that work even without B2, but are most effective when combined with MCP-side priming.
@@ -253,7 +253,7 @@ Phase A: endLine fix (P0, foundation)
 - `memory-context.ts` (1373 lines) -- priming payload injection point
 - `seed-resolver.ts` (267 lines) -- CocoIndex integration seam
 - `handlers/code-graph/*.ts` (633 lines total) -- handler modification points
-- `.opencode/agent/context.md` (429 lines) -- agent instruction update target
+- `.opencode/agents/context.md` (429 lines) -- agent instruction update target
 - `.claude/agents/context.md` (418 lines) -- Claude agent parity target
 - iteration-060, iteration-064, iteration-065, iteration-066, iteration-067 -- prior findings
 

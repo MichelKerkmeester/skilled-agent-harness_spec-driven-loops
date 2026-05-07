@@ -118,8 +118,8 @@ The validator detected 2 issues in the authored spec folder, but neither relates
 
 | Integration Surface | Canonical Path | Reviewed? | Finding |
 |---------------------|---------------|-----------|---------|
-| Dispatcher command | `.opencode/command/spec_kit/deep-review.md` | N/A (not in scope) | Not reviewed |
-| Auto workflow | `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | N/A (not in scope) | Not reviewed |
+| Dispatcher command | `.opencode/commands/spec_kit/deep-review.md` | N/A (not in scope) | Not reviewed |
+| Auto workflow | `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | N/A (not in scope) | Not reviewed |
 | Orchestrator agent | `@orchestrate` | N/A (not in scope) | Not reviewed |
 | Single-pass reviewer | `@review` | N/A (not in scope) | Not reviewed |
 | `create.sh` scaffold | `scripts/spec/create.sh` | Yes (indirect) | Uses `loadLevelContract()` which returns sectionGates but never validates them against templates |
@@ -150,7 +150,7 @@ The validator detected 2 issues in the authored spec folder, but neither relates
 ## Next Focus
 
 - **Dimension**: cross-runtime-mirror-consistency
-- **Focus Area**: Do `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` mirror each other consistently? Are template-path references consistent across runtimes? Does the `@deep-review` agent file (this agent's own runtime) correctly reference the current manifest-based architecture?
+- **Focus Area**: Do `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` mirror each other consistently? Are template-path references consistent across runtimes? Does the `@deep-review` agent file (this agent's own runtime) correctly reference the current manifest-based architecture?
 - **Reason**: This is the final dimension in the review charter. With 15 findings (11 P1, 8 P2) across 4 dimensions, the cross-runtime mirror check completes the coverage audit. The validator-coverage findings (P1-004-001/002/003) show structural gaps that cross-runtime agents may also be vulnerable to.
 - **Rotation status**: Final dimension
 - **Blocked/productive carry-forward**: Conclusive — 3 new P1 findings with strong evidence

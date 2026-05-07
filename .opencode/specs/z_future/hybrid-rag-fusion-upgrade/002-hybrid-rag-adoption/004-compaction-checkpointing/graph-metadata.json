@@ -38,9 +38,9 @@
     "status": "planned",
     "key_files": [
       ".opencode/plugins/spec-kit-compact-code-graph.js",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,19 +56,19 @@
       {
         "name": "generate-context.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
         "name": "session-bootstrap.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {

@@ -715,7 +715,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | --- | --- | --- |
-| `/memory:save` | Preserve session context | `.opencode/skill/system-spec-kit/` |
+| `/memory:save` | Preserve session context | `.opencode/skills/system-spec-kit/` |
 
 ### Skills
 

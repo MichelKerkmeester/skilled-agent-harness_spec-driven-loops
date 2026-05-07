@@ -37,7 +37,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown (catalog + playbook) |
 | **Framework** | None — prose edits |
-| **Storage** | Filesystem (`.opencode/skill/system-spec-kit/feature_catalog/` + `manual_testing_playbook/`) |
+| **Storage** | Filesystem (`.opencode/skills/system-spec-kit/feature_catalog/` + `manual_testing_playbook/`) |
 | **Testing** | Read-back verification + `validate.sh --strict` on the packet |
 
 ### Overview
@@ -122,7 +122,7 @@ Forward-reference cross-doc edits. The two catalog pages (auto-trigger + readine
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Direct re-read | Wording matches REQ-001..006 | Manual `Read` tool |
-| Spec validator | Packet structure (Level-1 file set, frontmatter, anchors) | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Spec validator | Packet structure (Level-1 file set, frontmatter, anchors) | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Diff scope check | Only `.md` + `.json` files in scope | `git diff --name-only` |
 <!-- /ANCHOR:testing -->
 

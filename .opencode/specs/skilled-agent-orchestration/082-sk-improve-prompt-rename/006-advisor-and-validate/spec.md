@@ -133,12 +133,12 @@ Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should run t
 - Recursive strict validation exits 0 and final grep returns 0 hits.
 
 ```bash
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "enhance this prompt" --threshold 0.0
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "rewrite this prompt" --threshold 0.0
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "make this prompt better" --threshold 0.0
-python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "DEPTH framework prompt" --threshold 0.0
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename --strict --recursive
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve my prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "enhance this prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "rewrite this prompt" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "make this prompt better" --threshold 0.0
+python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "DEPTH framework prompt" --threshold 0.0
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename --strict --recursive
 rg -l 'sk-improve-prompt' .opencode .claude .codex .gemini *.md *.json --glob '!**/z_archive/**' --glob '!**/z_future/**' --glob '!**/{054,055,061,063,067,070,079}/**' --glob '!**/system-spec-kit/026-graph-and-context-optimization/**' --glob '!**/082-sk-improve-prompt-rename/**'
 ```
 <!-- /ANCHOR:handoff -->

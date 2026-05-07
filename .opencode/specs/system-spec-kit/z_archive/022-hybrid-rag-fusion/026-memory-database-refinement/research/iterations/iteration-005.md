@@ -4,7 +4,7 @@
 Q5: Dead code, unused exports, orphaned test helpers, and architectural debt accumulated during the four fix sprints plus Phase 12 remediation.
 
 ## Scope And Method
-- Scanned `.opencode/skill/system-spec-kit/mcp_server/` for exported symbols, stale wrappers, skipped tests, and feature-flag branches.
+- Scanned `.opencode/skills/system-spec-kit/mcp_server/` for exported symbols, stale wrappers, skipped tests, and feature-flag branches.
 - Cross-checked candidate exports with project-wide `rg` usage searches.
 - Prioritized only high-confidence findings where the declaration exists but no live callers were found, or where the branch is provably unreachable.
 
@@ -12,8 +12,8 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 1. Dead eager-warmup branch is still shipped even though the flag hook is inert
 - Evidence:
-  - `.opencode/skill/system-spec-kit/shared/embeddings.ts:307-313` documents `SPECKIT_EAGER_WARMUP` / `SPECKIT_LAZY_LOADING` as inert and hard-returns `false` from `shouldEagerWarmup()`.
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:895-934` still carries the full eager-warmup branch plus legacy log messaging.
+  - `.opencode/skills/system-spec-kit/shared/embeddings.ts:307-313` documents `SPECKIT_EAGER_WARMUP` / `SPECKIT_LAZY_LOADING` as inert and hard-returns `false` from `shouldEagerWarmup()`.
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:895-934` still carries the full eager-warmup branch plus legacy log messaging.
 - Impact:
   - The `if (eagerWarmup)` path is unreachable in the current codebase.
   - Startup logic, tests, and docs still imply a configurable behavior that no longer exists.
@@ -25,7 +25,7 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 2. `tools/types.ts` exposes orphaned API surface
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:12-34` exports `MCPResponseWithContext` and `parseValidatedArgs()`.
+  - `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:12-34` exports `MCPResponseWithContext` and `parseValidatedArgs()`.
   - Project-wide search in the MCP server returns no internal references beyond those declarations.
 - Impact:
   - This creates a larger public surface than the runtime actually uses.
@@ -37,7 +37,7 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 3. `handlers/index.ts` still exports lazy sub-module proxies that no runtime path uses
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:296-309` exports `memorySearch`, `memoryTriggers`, `memorySave`, `memoryCrud`, `memoryIndex`, `memoryBulkDelete`, `checkpoints`, `sessionLearning`, `causalGraph`, `evalReporting`, `memoryContext`, `memoryIngest`, and `sharedMemory`.
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:296-309` exports `memorySearch`, `memoryTriggers`, `memorySave`, `memoryCrud`, `memoryIndex`, `memoryBulkDelete`, `checkpoints`, `sessionLearning`, `causalGraph`, `evalReporting`, `memoryContext`, `memoryIngest`, and `sharedMemory`.
   - Project-wide search found no direct `.memorySearch`, `.memoryTriggers`, `.memoryCrud`, `.memoryIngest`, `.sessionLearning`, `.causalGraph`, `.evalReporting`, `.memoryContext`, or `.sharedMemory` usage in the MCP server.
 - Impact:
   - The barrel exports more than the server, tools, or tests consume.
@@ -49,8 +49,8 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 4. A few runtime modules still export debug or placeholder symbols with no callers
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:448-449` exports `getLastDegradedState()` with no in-repo callers.
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:202-206` exports `_resetInitTracking()` but the function body does not reset anything and has no callers.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:448-449` exports `getLastDegradedState()` with no in-repo callers.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts:202-206` exports `_resetInitTracking()` but the function body does not reset anything and has no callers.
 - Impact:
   - `getLastDegradedState()` looks like a supported debug API but is not exercised.
   - `_resetInitTracking()` is worse than dead code: it advertises test-only behavior but currently does nothing.
@@ -62,9 +62,9 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 5. Several exported types look like leftover public surface rather than active contracts
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:352-359` exports `PipelineOrchestrator`, but no in-repo references exist.
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:18-22` exports `InterferenceResult`, but no in-repo references exist.
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:57-67` exports `SurrogateMatchResult`, but no in-repo references exist.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:352-359` exports `PipelineOrchestrator`, but no in-repo references exist.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts:18-22` exports `InterferenceResult`, but no in-repo references exist.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-surrogates.ts:57-67` exports `SurrogateMatchResult`, but no in-repo references exist.
 - Impact:
   - These types expand the apparent API surface and invite drift between docs and reality.
   - Because they are type-only, they do not hurt runtime directly, but they add maintenance noise after heavy churn.
@@ -75,9 +75,9 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 6. Shared-memory test discovery still depends on a shim file instead of normal test naming
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts:13-16` only includes `tests/**/*.{vitest,test}.ts`.
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.test-suite.ts:1-31` contains the actual suite.
-  - `.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory.vitest.ts:1` exists only to import that suite file.
+  - `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:13-16` only includes `tests/**/*.{vitest,test}.ts`.
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.test-suite.ts:1-31` contains the actual suite.
+  - `.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory.vitest.ts:1` exists only to import that suite file.
 - Impact:
   - The wrapper is not harmful, but it is test-discovery debt and obscures the actual test file.
   - Anyone scanning the tree could misread the real suite as orphaned because its filename does not match Vitest discovery.
@@ -88,9 +88,9 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 
 ### 7. Score-resolution logic is duplicated and already diverged
 - Evidence:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:48-58` defines canonical `resolveEffectiveScore()` using `intentAdjustedScore -> rrfScore -> score -> similarity`.
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:106-119` duplicates the same fallback chain locally.
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:123-129` uses a reduced helper that only considers `score` and `similarity`.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:48-58` defines canonical `resolveEffectiveScore()` using `intentAdjustedScore -> rrfScore -> score -> similarity`.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:106-119` duplicates the same fallback chain locally.
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:123-129` uses a reduced helper that only considers `score` and `similarity`.
 - Impact:
   - The formatter can report a different "top result score" than the pipeline and confidence subsystems use.
   - This is not dead code, but it is architectural debt caused by local helper drift after the refinement sprints.
@@ -100,8 +100,8 @@ Q5: Dead code, unused exports, orphaned test helpers, and architectural debt acc
 - Removal safety: High once the consumer types are normalized.
 
 ## Lower-Signal Debt Worth A Separate Sweep
-- `.opencode/skill/system-spec-kit/mcp_server/tests/sparse-first-graph.vitest.ts:1-31` is a fully skipped spec-ahead suite. If the sparse-first policy is still planned, either export the needed helpers and enable the tests or delete the file until implementation resumes.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:16-29` still carries a stale TODO and old size commentary for `memory-save`; this is doc/test debt rather than dead runtime code.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/sparse-first-graph.vitest.ts:1-31` is a fully skipped spec-ahead suite. If the sparse-first policy is still planned, either export the needed helpers and enable the tests or delete the file until implementation resumes.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:16-29` still carries a stale TODO and old size commentary for `memory-save`; this is doc/test debt rather than dead runtime code.
 
 ## Recommended Cleanup Order
 1. Delete the dead eager-warmup path and legacy flag references.

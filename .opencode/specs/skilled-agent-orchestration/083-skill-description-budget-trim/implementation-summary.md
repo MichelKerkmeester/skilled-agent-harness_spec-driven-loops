@@ -17,11 +17,11 @@ _memory:
     next_safe_action: "Restart Claude Code session to confirm dropped count is 0"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/mcp-code-mode/SKILL.md"
-      - ".opencode/command/doctor/code-graph.md"
-      - ".opencode/command/create/changelog.md"
-      - ".opencode/command/memory/manage.md"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/mcp-code-mode/SKILL.md"
+      - ".opencode/commands/doctor/code-graph.md"
+      - ".opencode/commands/create/changelog.md"
+      - ".opencode/commands/memory/manage.md"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -56,42 +56,42 @@ Trimmed YAML-frontmatter `description:` fields across 36 of 39 project skill/com
 | File | Action | Purpose |
 |------|--------|---------|
 | `~/.claude/settings.json` | Modified | Removed `SLASH_COMMAND_TOOL_CHAR_BUDGET` (revert to default 8000) |
-| `.opencode/skill/sk-code/SKILL.md` | Modified | 545 → 125 chars (dropped enumerated stack list) |
-| `.opencode/skill/mcp-code-mode/SKILL.md` | Modified | 300 → 125 chars |
-| `.opencode/skill/cli-claude-code/SKILL.md` | Modified | 262 → 124 chars |
-| `.opencode/skill/cli-opencode/SKILL.md` | Modified | 256 → 121 chars |
-| `.opencode/skill/sk-doc/SKILL.md` | Modified | 253 → 126 chars |
-| `.opencode/skill/cli-gemini/SKILL.md` | Modified | 250 → 121 chars |
-| `.opencode/skill/sk-prompt/SKILL.md` | Modified | 240 → 132 chars |
-| `.opencode/skill/cli-codex/SKILL.md` | Modified | 230 → 115 chars |
-| `.opencode/skill/mcp-coco-index/SKILL.md` | Modified | 225 → 124 chars |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | 219 → 127 chars |
-| `.opencode/skill/mcp-chrome-devtools/SKILL.md` | Modified | 209 → 120 chars |
-| `.opencode/skill/deep-review/SKILL.md` | Modified | 179 → 128 chars |
-| `.opencode/skill/deep-agent-improvement/SKILL.md` | Modified | 176 → 120 chars |
-| `.opencode/skill/sk-code-review/SKILL.md` | Modified | 174 → 120 chars |
-| `.opencode/skill/sk-git/SKILL.md` | Modified | 162 → 122 chars |
-| `.opencode/skill/deep-research/SKILL.md` | Modified | 145 → 122 chars |
-| `.opencode/command/memory/search.md` | Modified | 146 → 112 chars |
-| `.opencode/command/memory/manage.md` | Modified | 211 → 116 chars |
-| `.opencode/command/doctor/code-graph.md` | Modified | 248 → 119 chars |
-| `.opencode/command/doctor/mcp_install.md` | Modified | 165 → 110 chars |
-| `.opencode/command/doctor/skill-advisor.md` | Modified | 167 → 109 chars |
-| `.opencode/command/doctor/mcp_debug.md` | Modified | 151 → 99 chars |
-| `.opencode/command/spec_kit/complete.md` | Modified | 111 → 94 chars |
-| `.opencode/command/spec_kit/implement.md` | Modified | 122 → 101 chars |
-| `.opencode/command/spec_kit/deep-review.md` | Modified | 112 → 100 chars |
-| `.opencode/command/spec_kit/resume.md` | Modified | 106 → 90 chars |
-| `.opencode/command/spec_kit/deep-research.md` | Modified | 117 → 105 chars |
-| `.opencode/command/spec_kit/plan.md` | Modified | 121 → 89 chars |
-| `.opencode/command/improve/agent.md` | Modified | 183 → 122 chars |
-| `.opencode/command/improve/prompt.md` | Modified | 163 → 112 chars |
-| `.opencode/command/create/agent.md` | Modified | 127 → 104 chars |
-| `.opencode/command/create/changelog.md` | Modified | 241 → 114 chars |
-| `.opencode/command/create/sk-skill.md` | Modified | 128 → 112 chars |
-| `.opencode/command/create/feature-catalog.md` | Modified | 137 → 89 chars |
-| `.opencode/command/create/testing-playbook.md` | Modified | 145 → 97 chars |
-| `.opencode/command/create/folder_readme.md` | Modified | 140 → 102 chars |
+| `.opencode/skills/sk-code/SKILL.md` | Modified | 545 → 125 chars (dropped enumerated stack list) |
+| `.opencode/skills/mcp-code-mode/SKILL.md` | Modified | 300 → 125 chars |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Modified | 262 → 124 chars |
+| `.opencode/skills/cli-opencode/SKILL.md` | Modified | 256 → 121 chars |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified | 253 → 126 chars |
+| `.opencode/skills/cli-gemini/SKILL.md` | Modified | 250 → 121 chars |
+| `.opencode/skills/sk-prompt/SKILL.md` | Modified | 240 → 132 chars |
+| `.opencode/skills/cli-codex/SKILL.md` | Modified | 230 → 115 chars |
+| `.opencode/skills/mcp-coco-index/SKILL.md` | Modified | 225 → 124 chars |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | 219 → 127 chars |
+| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | Modified | 209 → 120 chars |
+| `.opencode/skills/deep-review/SKILL.md` | Modified | 179 → 128 chars |
+| `.opencode/skills/deep-agent-improvement/SKILL.md` | Modified | 176 → 120 chars |
+| `.opencode/skills/sk-code-review/SKILL.md` | Modified | 174 → 120 chars |
+| `.opencode/skills/sk-git/SKILL.md` | Modified | 162 → 122 chars |
+| `.opencode/skills/deep-research/SKILL.md` | Modified | 145 → 122 chars |
+| `.opencode/commands/memory/search.md` | Modified | 146 → 112 chars |
+| `.opencode/commands/memory/manage.md` | Modified | 211 → 116 chars |
+| `.opencode/commands/doctor/code-graph.md` | Modified | 248 → 119 chars |
+| `.opencode/commands/doctor/mcp_install.md` | Modified | 165 → 110 chars |
+| `.opencode/commands/doctor/skill-advisor.md` | Modified | 167 → 109 chars |
+| `.opencode/commands/doctor/mcp_debug.md` | Modified | 151 → 99 chars |
+| `.opencode/commands/spec_kit/complete.md` | Modified | 111 → 94 chars |
+| `.opencode/commands/spec_kit/implement.md` | Modified | 122 → 101 chars |
+| `.opencode/commands/spec_kit/deep-review.md` | Modified | 112 → 100 chars |
+| `.opencode/commands/spec_kit/resume.md` | Modified | 106 → 90 chars |
+| `.opencode/commands/spec_kit/deep-research.md` | Modified | 117 → 105 chars |
+| `.opencode/commands/spec_kit/plan.md` | Modified | 121 → 89 chars |
+| `.opencode/commands/improve/agent.md` | Modified | 183 → 122 chars |
+| `.opencode/commands/improve/prompt.md` | Modified | 163 → 112 chars |
+| `.opencode/commands/create/agent.md` | Modified | 127 → 104 chars |
+| `.opencode/commands/create/changelog.md` | Modified | 241 → 114 chars |
+| `.opencode/commands/create/sk-skill.md` | Modified | 128 → 112 chars |
+| `.opencode/commands/create/feature-catalog.md` | Modified | 137 → 89 chars |
+| `.opencode/commands/create/testing-playbook.md` | Modified | 145 → 97 chars |
+| `.opencode/commands/create/folder_readme.md` | Modified | 140 → 102 chars |
 
 3 commands untouched (already ≤110 chars): `memory/learn`, `memory/save`, `agent_router`.
 

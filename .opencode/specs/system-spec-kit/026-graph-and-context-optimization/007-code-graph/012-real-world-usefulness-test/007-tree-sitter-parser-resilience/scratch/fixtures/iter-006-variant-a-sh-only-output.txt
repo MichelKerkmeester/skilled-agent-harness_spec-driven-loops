@@ -12,7 +12,7 @@ RuntimeError: memory access out of bounds
     at wasm://wasm/0055765a:wasm-function[24]:0x3852
     at wasm://wasm/000ba4ee:wasm-function[43]:0x7b12
     at wasm://wasm/000ba4ee:wasm-function[137]:0x1c191
-    at Parser.setLanguage (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/web-tree-sitter/tree-sitter.js:2049:15)
+    at Parser.setLanguage (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/web-tree-sitter/tree-sitter.js:2049:15)
     at file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/007-tree-sitter-parser-resilience/scratch/fixtures/iter-006-bash-isolation.mjs:106:12
 
 Node.js v25.6.1

@@ -95,7 +95,7 @@ Complete the follow-on phase that aligns startup/session-context surfacing acros
 | `../tasks.md` | Modify | Mark the parity follow-on as implemented and verified |
 | `../checklist.md` | Modify | Update packet-level verification wording for phase 004 completion |
 | `../implementation-summary.md` | Modify | Record the completed parity pass in the parent closeout |
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Modify | Provide shared startup brief content reusable across runtimes |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Modify | Provide shared startup brief content reusable across runtimes |
 | `.codex/agents/context-prime.toml` | Modify | Align Codex bootstrap output with the same startup surface |
 <!-- /ANCHOR:scope -->
 

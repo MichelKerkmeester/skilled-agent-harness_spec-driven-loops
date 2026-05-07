@@ -218,19 +218,19 @@ Finalize segment 5 by converting the existing hook-plus-code-graph research into
   - `checklist.md:5-42`
   - `007-testing-validation/spec.md:12-18`
   - `007-testing-validation/spec.md:31-40`
-  - `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:73-81`
-  - `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml:138-141`
-  - `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml:73-84`
-  - `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml:182-185`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:77-79`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:245-248`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:327-337`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:955-962`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-18`
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-44`
+  - `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:73-81`
+  - `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml:138-141`
+  - `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml:73-84`
+  - `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml:182-185`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:77-79`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:245-248`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:327-337`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:955-962`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts:4-18`
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-44`
   - `.claude/settings.local.json:1-14`
   - repo sweeps on 2026-03-30:
-    - `find .opencode/skill/system-spec-kit/scripts -path '*claude*'` returned no hook script files
+    - `find .opencode/skills/system-spec-kit/scripts -path '*claude*'` returned no hook script files
     - `rg "code_graph_scan|code_graph_query|code_graph_context|code_graph_status"` returned no matches
 
 ## New Information Ratio

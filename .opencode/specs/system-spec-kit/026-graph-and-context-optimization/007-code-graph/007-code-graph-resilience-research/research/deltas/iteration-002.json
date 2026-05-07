@@ -6,25 +6,25 @@
       "id": "F-ST-001",
       "class": "mtime-only per-file stale predicate with persisted but unused content hashes",
       "frequency": 1,
-      "evidence": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:55-65; .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-388"
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:55-65; .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-388"
     },
     {
       "id": "F-ST-002",
       "class": "readiness-level staleness includes empty graph, git HEAD drift, deleted tracked files, and stale-count threshold",
       "frequency": 1,
-      "evidence": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:112-187"
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:112-187"
     },
     {
       "id": "F-ST-003",
       "class": "selective-to-full reindex threshold is already quantitative at 50 stale files",
       "frequency": 1,
-      "evidence": ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52; .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:161-186"
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52; .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:161-186"
     },
     {
       "id": "F-ST-004",
       "class": "detect_changes blocks on any non-fresh graph before per-file line-overlap attribution",
       "frequency": 1,
-      "evidence": ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106; .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264; .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:319-369"
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106; .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264; .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:319-369"
     },
     {
       "id": "F-ST-005",

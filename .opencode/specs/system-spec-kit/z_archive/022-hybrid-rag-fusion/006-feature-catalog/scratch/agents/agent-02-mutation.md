@@ -11,7 +11,7 @@ I’m mapping the catalog files and the source of truth first, then I’ll do a 
   └ 98 lines read
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/*.md"
+  │ ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/*.md"
   └ 10 files found
 
 ● Create session plan file (shell)
@@ -25,50 +25,50 @@ I’m mapping the catalog files and the source of truth first, then I’ll do a 
 I’ve got the 10 targets. Next I’m reading them all together and then I’ll cross-check each claimed tool/parameter against `scripts/` so the findings stay evidence-based.
 
 ● Read 02-memory-metadata-update-memoryupdate.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupd
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/02-memory-metadata-update-memoryupd
   │ ate.md
   └ 64 lines read
 
 ● Read 01-memory-indexing-memorysave.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/01-memory-indexing-memorysave.md
   └ 88 lines read
 
 ● Read 03-single-and-folder-delete-memorydelete.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memoryd
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/03-single-and-folder-delete-memoryd
   │ elete.md
   └ 279 lines read
 
 ● Read 04-tier-based-bulk-deletion-memorybulkdelete.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memoryb
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/04-tier-based-bulk-deletion-memoryb
   │ ulkdelete.md
   └ 160 lines read
 
 ● Read 05-validation-feedback-memoryvalidate.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalida
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/05-validation-feedback-memoryvalida
   │ te.md
   └ 66 lines read
 
 ● Read 06-transaction-wrappers-on-mutation-handlers.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/06-transaction-wrappers-on-mutation
   │ -handlers.md
   └ 50 lines read
 
 ● Read 07-namespace-management-crud-tools.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/07-namespace-management-crud-tools.
   │ md
   └ 62 lines read
 
 ● Read 08-prediction-error-save-arbitration.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitratio
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/08-prediction-error-save-arbitratio
   │ n.md
   └ 52 lines read
 
 ● Read 09-correction-tracking-with-undo.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md
   └ 50 lines read
 
 ● Read 10-per-memory-history-log.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/02--mutation/10-per-memory-history-log.md
   └ 52 lines read
 
 I’ve finished the document read. Now I’m checking whether the catalog’s claimed tools and parameters actually exist under `scripts/` versus only in `mcp_server`, which is likely where the biggest drift will show up.
@@ -76,23 +76,23 @@ I’ve finished the document read. Now I’m checking whether the catalog’s cl
 ● Search (grep)
   │ "\basyncEmbedding\b|\ballowPartialUpdate\b|\bolderThanDays\b|\bqueryId\b|\bqueryTerms\b|\bresult
   │ Rank\b|\btotalResultsShown\b|\bsearchMode\b|\bwasUseful\b|\bimportanceTier\b|\bimportanceWeight\
-  │ b|\btriggerPhrases\b" (.opencode/skill/system-spec-kit/scripts)
+  │ b|\btriggerPhrases\b" (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "\bmemory_save\b|\bmemory_update\b|\bmemory_delete\b|\bmemory_bulk_delete\b|\bmemory_validate\b"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 9 lines found
 
 ● Search (grep)
   │ "\bshared_space_upsert\b|\bshared_space_membership_set\b|\bshared_memory_status\b|\bshared_memor
-  │ y_enable\b" (.opencode/skill/system-spec-kit/scripts)
+  │ y_enable\b" (.opencode/skills/system-spec-kit/scripts)
   └ No matches found
 
 ● Search (grep)
   │ "prediction error|PE arbitration|PE gating|REINFORCE|SUPERSEDE|CREATE_LINKED|undo_correction|cor
   │ rections\.ts|memory_history|runInTransaction|transaction"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 97 lines found
 
 The first pass confirms a pattern: most named mutation tools do **not** appear as implemented features under `scripts/`; they mostly show up in test fixtures or install/help text. I’m tightening the search to non-test script sources now so the verdicts are precise.
@@ -100,28 +100,28 @@ The first pass confirms a pattern: most named mutation tools do **not** appear a
 ● Search (grep)
   │ "\bmemory_save\b|\bmemory_update\b|\bmemory_delete\b|\bmemory_bulk_delete\b|\bmemory_validate\b|
   │ \bshared_space_upsert\b|\bshared_space_membership_set\b|\bshared_memory_status\b|\bshared_memory
-  │ _enable\b" in !**/tests/** (.opencode/skill/system-spec-kit/scripts)
+  │ _enable\b" in !**/tests/** (.opencode/skills/system-spec-kit/scripts)
   └ 1 line found
 
 ● Search (grep)
   │ "\basyncEmbedding\b|\ballowPartialUpdate\b|\bolderThanDays\b|\bqueryId\b|\bqueryTerms\b|\bresult
   │ Rank\b|\btotalResultsShown\b|\bsearchMode\b|\bwasUseful\b|\bimportanceTier\b|\bimportanceWeight\
   │ b|\btriggerPhrases\b|\bspaceId\b|\btenantId\b|\bactorUserId\b|\bactorAgentId\b" in !**/tests/**
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "memory_history|corrections\.ts|undo_correction|prediction
   │ error|REINFORCE|SUPERSEDE|CREATE_LINKED|transaction\(|database\.transaction|runInTransaction" in
-  │ !**/tests/** (.opencode/skill/system-spec-kit/scripts)
+  │ !**/tests/** (.opencode/skills/system-spec-kit/scripts)
   └ 9 lines found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/**/*.ts"
   └ 146 files found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/**/*.js"
+  │ ".opencode/skills/system-spec-kit/scripts/**/*.js"
   └ 28 files found
 
 ● Read copilot-tool-output-1774455684888-puxkgo.txt
@@ -130,63 +130,63 @@ The first pass confirms a pattern: most named mutation tools do **not** appear a
 
 ● Search (grep)
   │ "\basyncEmbedding\b|\ballowPartialUpdate\b|\bolderThanDays\b|\bqueryId\b|\bwasUseful\b|\bspaceId
-  │ \b|\btenantId\b" in !**/tests/** (.opencode/skill/system-spec-kit/scripts)
+  │ \b|\btenantId\b" in !**/tests/** (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "\bimportanceTier\b|\bimportanceWeight\b|\btriggerPhrases\b" in !**/tests/**
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 5 lines found
 
 ● Search (grep)
   │ "queryTerms|resultRank|totalResultsShown|searchMode|actorUserId|actorAgentId|shared_memory" in
-  │ !**/tests/** (.opencode/skill/system-spec-kit/scripts)
+  │ !**/tests/** (.opencode/skills/system-spec-kit/scripts)
   └ 2 lines found
 
 I’ve narrowed it to the actual `scripts/` sources. Most of the “tool” docs are drifting because they point at `mcp_server` handlers, while `scripts/` only contains adjacent helpers, generators, validators, or cleanup utilities.
 
 ● Read memory-indexer.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts
   └ L1:260 (244 lines read)
 
 ● Read generate-context.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts
   └ L1:260 (260 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L430:560 (131 lines read)
 
 ● Read memory-metadata.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/memory-metadata.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/memory-metadata.ts
   └ L1:320 (320 lines read)
 
 ● Read cleanup-orphaned-vectors.ts
-  │ .opencode/skill/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
+  │ .opencode/skills/system-spec-kit/scripts/memory/cleanup-orphaned-vectors.ts
   └ L1:220 (204 lines read)
 
 I’ve got enough to score most files. I’m just pulling a few pinpoint lines for the borderline cases (`memory_save`, `memory_validate`) so the final call-outs are unambiguous.
 
 ● Read install.sh
-  │ .opencode/skill/system-spec-kit/scripts/setup/install.sh
+  │ .opencode/skills/system-spec-kit/scripts/setup/install.sh
   └ L345:355 (10 lines read)
 
 ● Read frontmatter-editor.ts
-  │ .opencode/skill/system-spec-kit/scripts/core/frontmatter-editor.ts
+  │ .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts
   └ L88:110 (23 lines read)
 
 ● Read map-ground-truth-ids.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
   └ L45:60 (16 lines read)
 
 ● Read map-ground-truth-ids.ts
-  │ .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
+  │ .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts
   └ L355:395 (41 lines read)
 
 ✗ Memory stored repository structure
   └ The system-spec-kit `scripts/` workspace provides context-generation/indexing he…
 
-Checked against **non-test files under `.opencode/skill/system-spec-kit/scripts/` only**. References that resolve only in `mcp_server/` were treated as out-of-scope for this alignment pass.
+Checked against **non-test files under `.opencode/skills/system-spec-kit/scripts/` only**. References that resolve only in `mcp_server/` were treated as out-of-scope for this alignment pass.
 
 `01-memory-indexing-memorysave.md | PARTIAL | P1: scripts has adjacent indexing flow in `scripts/memory/generate-context.ts` and `scripts/core/memory-indexer.ts` (CLI ingest, trigger phrases, `importanceWeight`, vector indexing), plus `triggerPhrases`/`importanceTier` normalization in `scripts/utils/input-normalizer.ts`; but the documented `memory_save` tool surface and params like `asyncEmbedding` are not implemented in non-test scripts. `memory_save` appears in scripts mainly in install/help text and tests.`
 

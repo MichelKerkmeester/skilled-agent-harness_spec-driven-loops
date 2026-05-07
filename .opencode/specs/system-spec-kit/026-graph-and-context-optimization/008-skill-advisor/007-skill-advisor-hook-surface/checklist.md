@@ -69,7 +69,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] [P0] New hook-surface reference doc published under `.opencode/skill/system-spec-kit/references/hooks/` (created by 020/009). Evidence: `implementation-summary.md` 020/009 summary. [EVIDENCE: completion carried forward]
+- [x] [P0] New hook-surface reference doc published under `.opencode/skills/system-spec-kit/references/hooks/` (created by 020/009). Evidence: `implementation-summary.md` 020/009 summary. [EVIDENCE: completion carried forward]
 - [x] [P1] CLAUDE.md references the hook in Gate 2 discussion. Evidence: `implementation-summary.md` 020/009 summary. [EVIDENCE: completion carried forward]
 - [x] [P1] Cross-runtime README updates. Evidence: `implementation-summary.md` 020/009 summary. [EVIDENCE: completion carried forward]
 <!-- /ANCHOR:docs -->

@@ -44,14 +44,14 @@
     "status": "complete",
     "key_files": [
       ".claude/settings.local.json",
-      ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "plan.md",
-      ".opencode/skill/.advisor-state/skill-graph-generation.json",
+      ".opencode/skills/.advisor-state/skill-graph-generation.json",
       "implementation-summary.md",
       "handlers/skill-graph/scan.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation/implementation-summary.md",
       "checklist.md",
       "spec.md",
@@ -67,19 +67,19 @@
       {
         "name": "skill-advisor-hook-validation.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
         "source": "derived"
       },
       {
         "name": "scan.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts",
         "source": "derived"
       },
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -91,7 +91,7 @@
       {
         "name": "skill-graph-generation.json",
         "kind": "config",
-        "path": ".opencode/skill/.advisor-state/skill-graph-generation.json",
+        "path": ".opencode/skills/.advisor-state/skill-graph-generation.json",
         "source": "derived"
       },
       {
@@ -103,7 +103,7 @@
       {
         "name": "user-prompt-submit.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js",
         "source": "derived"
       },
       {

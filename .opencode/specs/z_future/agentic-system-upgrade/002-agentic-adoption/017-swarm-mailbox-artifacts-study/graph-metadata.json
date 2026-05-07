@@ -38,9 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/agent/orchestrate.md",
-      ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -50,19 +50,19 @@
       {
         "name": "orchestrate.md",
         "kind": "doc",
-        "path": ".opencode/agent/orchestrate.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
         "name": "parallel_dispatch_config.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md",
+        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {

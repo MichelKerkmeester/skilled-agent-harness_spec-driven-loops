@@ -16,9 +16,9 @@ Constraints respected:
 
 ## Commands Run
 
-1. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit`
-2. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit/scratch/merged-030-architecture-boundary-remediation`
-3. `cd .opencode/skill/system-spec-kit && npx tsc --noEmit`
+1. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit`
+2. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit/scratch/merged-030-architecture-boundary-remediation`
+3. `cd .opencode/skills/system-spec-kit && npx tsc --noEmit`
 
 ## Initial Results
 

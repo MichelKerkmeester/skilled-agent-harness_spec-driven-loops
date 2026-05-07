@@ -1,7 +1,7 @@
 {
   "id": "deep-review",
   "family": "derived",
-  "targetPath": ".opencode/agent/deep-review.md",
+  "targetPath": ".opencode/agents/deep-review.md",
   "outputKind": "markdown",
   "promotionEligible": false,
   "generated": true,

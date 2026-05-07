@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019ccec9-6007-7e61-9f13-7cf1d8d8ddb6
 --------
 user
-You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts (499 lines).
+You are a code auditor. Read EVERY LINE of /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts (499 lines).
 
 This file normalizes input data from different AI session formats into a common structure. A recent bug was fixed in transformOpencodeCapture() where irrelevant session content was leaking into memory files due to missing spec-folder relevance filtering.
 
@@ -56,8 +56,8 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m auditing that file line-by-line now, with focus on `transformOpencodeCapture()` and the six areas you listed. First step is to load the full file with line numbers so I can verify the fix and map every field precisely.
 exec
-/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     499 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+/bin/zsh -lc "wc -l '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts' && nl -ba '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     499 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
      1	// ---------------------------------------------------------------
      2	// MODULE: Input Normalizer
      3	// ---------------------------------------------------------------
@@ -80,7 +80,7 @@ exec
 codex
 I’ve finished the full-line read and I’m now cross-checking edge cases against each required audit area (filtering, regex, confidence, detection, mapping, normalization). I’ll run a quick targeted scan for format-detection cues next.
 exec
-/bin/zsh -lc "rg -n \"copilot|opencode|format|normalize|source|capture\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "rg -n \"copilot|opencode|format|normalize|source|capture\" '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 4:// Validates, normalizes, and transforms raw input data into structured session format
 8:/** Data source type indicating where loaded data came from */
 9:export type DataSource = 'file' | 'opencode-capture' | 'simulation';
@@ -105,7 +105,7 @@ codex
 I’ve validated the core behavior now and identified multiple concrete issues, including residual leakage paths after the recent fix. I’m compiling them in your exact reporting template with severity and line-anchored references.
 codex
 ### FINDING-01: `userPrompts` bypasses spec-folder relevance filter
-- **File:** [input-normalizer.ts:384](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:384)
+- **File:** [input-normalizer.ts:384](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:384)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `userPrompts` is built from all `exchanges`, even when `specFolderHint` is provided.
@@ -115,7 +115,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: `recentContext` still leaks irrelevant session content
-- **File:** [input-normalizer.ts:453](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:453)
+- **File:** [input-normalizer.ts:453](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:453)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `recentContext` uses first/last of full `exchanges`, not filtered exchanges.
@@ -125,7 +125,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Relevance keywords are over-broad (especially with absolute paths)
-- **File:** [input-normalizer.ts:366](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:366)
+- **File:** [input-normalizer.ts:366](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:366)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Keywords include every path segment (e.g., `public`, `development`, `specs`) plus full path.
@@ -135,7 +135,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Substring matching causes false positives
-- **File:** [input-normalizer.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:377)
+- **File:** [input-normalizer.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:377)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Relevance uses `combined.includes(keyword)`.
@@ -145,7 +145,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Relevant follow-up exchanges can be dropped
-- **File:** [input-normalizer.ts:406](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:406)
+- **File:** [input-normalizer.ts:406](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:406)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Each exchange must mention a keyword directly; contextual follow-ups (“do that change now”) get excluded.
@@ -155,7 +155,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: Tool relevance check misses many relevant tool calls
-- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:374)
+- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:374)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.
@@ -165,7 +165,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Decision extraction regex is narrow and misses common phrasing
-- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:138)
+- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:138)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Extractor only catches a small verb set (`chose`, `selected`, etc.).
@@ -175,7 +175,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Decision regex can over-capture non-option text
-- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:138)
+- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:138)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `([^.,]+)` captures until punctuation, often including extra clause text.
@@ -185,7 +185,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Confidence scores are hardcoded and not meaningful
-- **File:** [input-normalizer.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:183)
+- **File:** [input-normalizer.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:183)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `_manualDecision.confidence` is always `75`.
@@ -195,7 +195,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: No Copilot/other format detection logic in this normalizer
-- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:222)
+- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:222)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Only manual-ish normalization and OpenCode transform exist; no explicit Copilot schema detection path.
@@ -205,7 +205,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: Early return skips normalization for partially-normalized inputs
-- **File:** [input-normalizer.ts:223](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:223)
+- **File:** [input-normalizer.ts:223](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:223)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If any one of `userPrompts|observations|recentContext` exists, function returns raw data unchanged.
@@ -215,7 +215,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Invalid timestamps can throw and abort normalization
-- **File:** [input-normalizer.ts:386](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:386)
+- **File:** [input-normalizer.ts:386](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:386)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(invalid).toISOString()` can throw `RangeError`.
@@ -225,7 +225,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-13: String normalization (trim) is mostly missing
-- **File:** [input-normalizer.ts:385](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:385)
+- **File:** [input-normalizer.ts:385](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:385)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Prompt/narrative/title/file-path strings are copied without trimming/cleanup.
@@ -235,7 +235,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: Arrays are not consistently deduplicated
-- **File:** [input-normalizer.ts:275](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:275)
+- **File:** [input-normalizer.ts:275](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:275)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `FILES` is deduped in one path, but `triggerPhrases`, `keyDecisions`, and prompt/observation-derived arrays are not.
@@ -254,7 +254,7 @@ codex
 tokens used
 13,292
 ### FINDING-01: `userPrompts` bypasses spec-folder relevance filter
-- **File:** [input-normalizer.ts:384](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:384)
+- **File:** [input-normalizer.ts:384](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:384)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `userPrompts` is built from all `exchanges`, even when `specFolderHint` is provided.
@@ -264,7 +264,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-02: `recentContext` still leaks irrelevant session content
-- **File:** [input-normalizer.ts:453](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:453)
+- **File:** [input-normalizer.ts:453](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:453)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `recentContext` uses first/last of full `exchanges`, not filtered exchanges.
@@ -274,7 +274,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Relevance keywords are over-broad (especially with absolute paths)
-- **File:** [input-normalizer.ts:366](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:366)
+- **File:** [input-normalizer.ts:366](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:366)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Keywords include every path segment (e.g., `public`, `development`, `specs`) plus full path.
@@ -284,7 +284,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-04: Substring matching causes false positives
-- **File:** [input-normalizer.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:377)
+- **File:** [input-normalizer.ts:377](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:377)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Relevance uses `combined.includes(keyword)`.
@@ -294,7 +294,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: Relevant follow-up exchanges can be dropped
-- **File:** [input-normalizer.ts:406](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:406)
+- **File:** [input-normalizer.ts:406](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:406)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** Each exchange must mention a keyword directly; contextual follow-ups (“do that change now”) get excluded.
@@ -304,7 +304,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-06: Tool relevance check misses many relevant tool calls
-- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:374)
+- **File:** [input-normalizer.ts:374](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:374)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** Only `input.filePath/file_path/path` and `title` are considered.
@@ -314,7 +314,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Decision extraction regex is narrow and misses common phrasing
-- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:138)
+- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:138)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Extractor only catches a small verb set (`chose`, `selected`, etc.).
@@ -324,7 +324,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-08: Decision regex can over-capture non-option text
-- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:138)
+- **File:** [input-normalizer.ts:138](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:138)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `([^.,]+)` captures until punctuation, often including extra clause text.
@@ -334,7 +334,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-09: Confidence scores are hardcoded and not meaningful
-- **File:** [input-normalizer.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:183)
+- **File:** [input-normalizer.ts:183](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:183)
 - **Severity:** MEDIUM
 - **Category:** DESIGN
 - **Current Behavior:** `_manualDecision.confidence` is always `75`.
@@ -344,7 +344,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-10: No Copilot/other format detection logic in this normalizer
-- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:222)
+- **File:** [input-normalizer.ts:222](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:222)
 - **Severity:** HIGH
 - **Category:** DESIGN
 - **Current Behavior:** Only manual-ish normalization and OpenCode transform exist; no explicit Copilot schema detection path.
@@ -354,7 +354,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-11: Early return skips normalization for partially-normalized inputs
-- **File:** [input-normalizer.ts:223](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:223)
+- **File:** [input-normalizer.ts:223](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:223)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If any one of `userPrompts|observations|recentContext` exists, function returns raw data unchanged.
@@ -364,7 +364,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-12: Invalid timestamps can throw and abort normalization
-- **File:** [input-normalizer.ts:386](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:386)
+- **File:** [input-normalizer.ts:386](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:386)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** `new Date(invalid).toISOString()` can throw `RangeError`.
@@ -374,7 +374,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-13: String normalization (trim) is mostly missing
-- **File:** [input-normalizer.ts:385](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:385)
+- **File:** [input-normalizer.ts:385](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:385)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** Prompt/narrative/title/file-path strings are copied without trimming/cleanup.
@@ -384,7 +384,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-14: Arrays are not consistently deduplicated
-- **File:** [input-normalizer.ts:275](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:275)
+- **File:** [input-normalizer.ts:275](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:275)
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `FILES` is deduped in one path, but `triggerPhrases`, `keyDecisions`, and prompt/observation-derived arrays are not.

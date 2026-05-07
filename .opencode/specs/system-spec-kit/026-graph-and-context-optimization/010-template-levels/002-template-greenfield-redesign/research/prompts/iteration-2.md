@@ -28,14 +28,14 @@ Three sub-tasks:
    | resource-map.md | ? | ? | ? | ? |
    | context-index.md | ? | ? | ? | ? |
 
-   Read writer code: search `.opencode/skill/`, `.opencode/command/`, `.opencode/agent/` for writes to each filename. Document the path and trigger.
+   Read writer code: search `.opencode/skills/`, `.opencode/commands/`, `.opencode/agents/` for writes to each filename. Document the path and trigger.
 
 2. **Level-encoding validator survey (Q4 deepening):** read these files and classify how each encodes level taxonomy:
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
-   - `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-   - Any TS in `.opencode/skill/system-spec-kit/mcp_server/` matching `spec-doc-structure`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
+   - `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+   - Any TS in `.opencode/skills/system-spec-kit/mcp_server/` matching `spec-doc-structure`
    - Canonical-save checks: `check-canonical-save-*.sh` if present
    
    For each: which level constants are hardcoded? Which level→file mappings? Are these EASY or HARD to refactor to a manifest-driven approach?

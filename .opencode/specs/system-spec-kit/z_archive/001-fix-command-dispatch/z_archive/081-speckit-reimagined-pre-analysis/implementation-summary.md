@@ -46,7 +46,7 @@ All paths are relative to `skill/system-spec-kit/`.
 ## Verification Details
 
 All 12 implementing files were verified to exist on disk at:
-`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/`
+`/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/`
 
 **Verification date:** 2026-02-06
 **Unverified files:** None (all 12/12 confirmed present)

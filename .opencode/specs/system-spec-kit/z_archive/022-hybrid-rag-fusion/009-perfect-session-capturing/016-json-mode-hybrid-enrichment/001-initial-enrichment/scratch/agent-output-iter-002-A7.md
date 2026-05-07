@@ -27,7 +27,7 @@ Each V-rule analyzed for what it catches vs. what it misses:
 | **V11** | HIGH (blocks write) | API error vocabulary in description or title, error-dominated trigger phrases (>50% error vocab) | Does not check body/narrative content for error dominance. A memory whose rendered markdown body is 90% error stack traces but has a clean title/description passes V11. Does not detect timeout-only content (long-running operations that timed out without explicit error messages). |
 | **V12** | MEDIUM (blocks index) | Zero topical overlap between memory content (case-insensitive substring match) and spec's `trigger_phrases` from `spec.md` | Degrades to no-op silently (see Finding 3). Substring matching is crude: a spec trigger phrase "memory quality" matches content containing "memory quality" anywhere, including in unrelated contexts like "I have a good memory quality is important". No semantic similarity, just string inclusion. |
 
-[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:42-650]
+[SOURCE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:42-650]
 
 ### Finding 2: Three Additional Uncovered Failure Modes Beyond A1 (Q2)
 
@@ -36,19 +36,19 @@ Beyond what prior iterations identified, three more failure modes have no V-rule
 **Failure Mode A: Observation deduplication is not validated.**
 The `duplicate_observations` quality flag exists in the QualityFlag type (line 295 of session-types.ts) but NO V-rule checks for it. The quality scorer maps V-rule failures to flags, but `duplicate_observations` has no V-rule trigger. Duplicate observations in rendered content (e.g., the same finding stated twice from different extraction paths) produce no penalty or warning.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/types/session-types.ts:295 -- QualityFlag includes 'duplicate_observations' but no V-rule maps to it]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:122-157 -- flag mappings skip duplicate_observations]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/types/session-types.ts:295 -- QualityFlag includes 'duplicate_observations' but no V-rule maps to it]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:122-157 -- flag mappings skip duplicate_observations]
 
 **Failure Mode B: Frontmatter YAML syntax validity is never validated.**
 No V-rule checks that the YAML frontmatter is syntactically valid. The `extractFrontMatter` function uses regex (`/^---\n([\s\S]*?)\n---/`) rather than a YAML parser. Malformed YAML (unquoted colons in values, tab characters, duplicate keys, missing closing `---`) silently produces wrong extractions rather than validation failures. This means downstream V-rules that depend on frontmatter parsing (V5, V8, V9, V11, V12) operate on potentially incorrect data.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:183-191 -- extractFrontMatter uses regex, not YAML parser]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:183-191 -- extractFrontMatter uses regex, not YAML parser]
 
 **Failure Mode C: Content length/emptiness below the rendered body.**
 The quality scorer has an empty content check (lines 85-106 of quality-scorer.ts) that catches completely empty content. But there is no V-rule for "content is present but trivially short" -- a rendered memory with just `# Title\n\nOne sentence.` and valid frontmatter passes all V-rules. The `short_content` quality flag exists in the type system but no V-rule triggers it. The `P3-4: minimum_message_ratio` check in the scorer partially addresses this (flagging `insufficient_capture` when message/tool ratio < 0.05), but it is a heuristic about session shape, not content adequacy.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/types/session-types.ts:293 -- QualityFlag includes 'short_content' with no V-rule]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:85-106 -- empty content path, lines 189-193 -- minimum_message_ratio]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/types/session-types.ts:293 -- QualityFlag includes 'short_content' with no V-rule]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:85-106 -- empty content path, lines 189-193 -- minimum_message_ratio]
 
 ### Finding 3: V12 Degrades to No-Op Under Three Conditions (Q13)
 
@@ -65,7 +65,7 @@ Line 637: `if (specTriggerPhrases.length > 0)` -- if the spec.md file has no `tr
 
 **Frequency estimate**: Condition 2 is likely the MOST common degradation path. Memory files store `spec_folder` in frontmatter as a relative path (e.g., `specs/system-spec-kit/022-hybrid-rag-fusion/.../016-json-mode-hybrid-enrichment`), but `validateMemoryQualityContent` receives the rendered content string -- it extracts `spec_folder` from frontmatter via regex (line 459), then calls `path.resolve(specFolder, 'spec.md')`. If the script's CWD is not the project root, the resolved path is wrong. Even if CWD IS the project root, the relative path must be correct -- and there is no normalization (e.g., stripping quotes, handling `.opencode/` prefix variants).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:612-650]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:612-650]
 
 ### Finding 4: RawInputData Silently Accepts Unknown Fields (Q12)
 
@@ -86,9 +86,9 @@ There is a TODO comment on `NormalizedData` (line 123): `// TODO(O3-12): Remove 
 
 **Practical impact**: The `CollectedDataBase` interface (session-types.ts) has ~45 explicitly declared fields. Any JSON field not matching one of these names is silently dropped. No warning log, no validation error, no metric. This is the primary mechanism for "silent field drops" that Domain A is concerned about.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:72-98 -- RawInputData index signature]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:621-703 -- validateInputData checks known fields only]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:123 -- TODO(O3-12)]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:72-98 -- RawInputData index signature]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:621-703 -- validateInputData checks known fields only]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:123 -- TODO(O3-12)]
 
 ### Finding 5: Quality Scorer Penalty Math Still Allows Perfect Scores on Failed Rules (Q2 Supplement)
 
@@ -96,14 +96,14 @@ Confirming and extending the A1 finding: the quality scorer (extractors/quality-
 
 This means: a memory that fails V4 (fallback decision), V5 (sparse triggers), V6 (placeholder remnants), V7 (tool state mismatch), AND V10 (session source mismatch) -- five simultaneous soft failures -- with a session that had messages, tools, and decisions: `1.0 - (5 * 0.05) + 0.20 = 0.95`. Five failed rules, score 95%.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts:113-205 -- penalty sum + bonus logic]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:42-139 -- severity assignments]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts:113-205 -- penalty sum + bonus logic]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:42-139 -- severity assignments]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts` (full file, 731 lines) -- V-rule implementations
-- `.opencode/skill/system-spec-kit/scripts/extractors/quality-scorer.ts` (full file, 247 lines) -- scoring logic
-- `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` (full file, 639 lines) -- type definitions, QualityFlag enum
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 1-260, 620-720) -- RawInputData interface, validateInputData
+- `.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts` (full file, 731 lines) -- V-rule implementations
+- `.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts` (full file, 247 lines) -- scoring logic
+- `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` (full file, 639 lines) -- type definitions, QualityFlag enum
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 1-260, 620-720) -- RawInputData interface, validateInputData
 
 ## Assessment
 - New information ratio: 0.70

@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -109,8 +109,8 @@ Runtime code stays read-only; every write stays inside this packet folder and it
 |-------|--------------------|--------|
 | Artifact completeness | `find research/iterations -name 'iteration-*.md' \| wc -l` | PASS: 5 iter files + 5 delta files + research-report.md (226 lines) |
 | Source grounding | grep file:line citations across iteration markdown | PASS: every reality-map row + adversarial verdict cites file:line |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research --strict` | PASS: 0 errors, 0 warnings, RESULT: PASSED |
-| Memory index refresh | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` | PENDING: phase save step |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/017-automation-reality-supplemental-research --strict` | PASS: 0 errors, 0 warnings, RESULT: PASSED |
+| Memory index refresh | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` | PENDING: phase save step |
 <!-- /ANCHOR:verification -->
 
 ---

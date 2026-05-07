@@ -37,7 +37,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
       "mcp_server/lib/validation/preflight.ts",
       "mcp_server/handlers/v-rule-bridge.ts",
       "mcp_server/handlers/quality-loop.ts",
@@ -55,7 +55,7 @@
       {
         "name": "01-category-stub.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
         "source": "derived"
       },
       {

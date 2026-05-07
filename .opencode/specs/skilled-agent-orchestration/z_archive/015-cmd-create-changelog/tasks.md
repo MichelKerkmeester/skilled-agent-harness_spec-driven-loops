@@ -39,7 +39,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create changelog.md with frontmatter (`.opencode/command/create/changelog.md`)
+- [x] T001 Create changelog.md with frontmatter (`.opencode/commands/create/changelog.md`)
 - [x] T002 Add Phase 0 agent self-verification block
 - [x] T003 Add Unified Setup Phase with consolidated questions (Q0-Q3)
 - [x] T004 Add Phase Status Verification table
@@ -56,7 +56,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T007 Create create_changelog_auto.yaml header (role, purpose, operating_mode) (`.opencode/command/create/assets/create_changelog_auto.yaml`)
+- [x] T007 Create create_changelog_auto.yaml header (role, purpose, operating_mode) (`.opencode/commands/create/assets/create_changelog_auto.yaml`)
 - [x] T008 Add user_inputs, field_handling, and confidence_framework sections
 - [x] T009 Implement Step 1: Context Analysis (spec folder reading + git fallback)
 - [x] T010 Implement Step 2: Component Resolution with full mapping table (18 components)
@@ -82,7 +82,7 @@ contextType: "implementation"
 
 ### Phase 3: Confirm YAML Workflow
 
-- [x] T018 Create create_changelog_confirm.yaml by duplicating auto YAML (`.opencode/command/create/assets/create_changelog_confirm.yaml`)
+- [x] T018 Create create_changelog_confirm.yaml by duplicating auto YAML (`.opencode/commands/create/assets/create_changelog_confirm.yaml`)
 - [x] T019 Update operating_mode to interactive with step_by_step approvals
 - [x] T020 Add checkpoint gates at each of the 7 workflow steps
 - [x] T021 Add interactive_execution section (replacing autonomous_execution)
@@ -91,7 +91,7 @@ contextType: "implementation"
 
 ### Phase 4: Verification & Integration
 
-- [x] T022 Update README.txt with changelog command entry (`.opencode/command/create/README.txt`)
+- [x] T022 Update README.txt with changelog command entry (`.opencode/commands/create/README.txt`)
 - [x] T023 Verify changelog.md structure matches sibling create commands
 - [x] T024 Verify YAML workflows contain all required fields per pattern
 - [x] T025 Verify component mapping covers all 18 changelog subfolders

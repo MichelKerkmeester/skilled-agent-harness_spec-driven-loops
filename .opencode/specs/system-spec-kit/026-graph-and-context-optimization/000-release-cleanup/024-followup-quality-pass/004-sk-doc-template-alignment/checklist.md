@@ -61,7 +61,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] No code files changed. [EVIDENCE: audit scope and git diff are doc-only.]
-- [x] CHK-011 [P0] sk-doc skill remained read-only. [EVIDENCE: no `.opencode/skill/sk-doc/` diffs.]
+- [x] CHK-011 [P0] sk-doc skill remained read-only. [EVIDENCE: no `.opencode/skills/sk-doc/` diffs.]
 - [x] CHK-012 [P1] Raw prompt templates preserved. [EVIDENCE: `audit-findings.md` DEFERRED rows.]
 - [x] CHK-013 [P1] Edited docs follow applicable template checks. [EVIDENCE: `validate_document.py` passed on edited READMEs and reference.]
 <!-- /ANCHOR:code-quality -->

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Apply spec corrections"
     blockers: []
     key_files:
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py"
-      - ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py"
+      - ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-07-026-011-cocoindex-daemon-research"
@@ -304,21 +304,21 @@ No unresolved contradictions remain.
 
 ### File:line evidence
 
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:192-225` (start_daemon body, missing pre-flight check)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:413-443` (ensure_daemon version-mismatch path)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py:244-256` (Win32 _pid_alive)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:432-451` (handle_connection error path)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:436` (streaming send_bytes site 1)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:439` (streaming send_bytes site 2 — buggy second attempt)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:441` (non-streaming send_bytes — third unsafe site, P0-3)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:438` (logger.exception streaming response)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:445` (logger.exception outer handling connection)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:568` (unconditional pid_path.write_text)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:572-575` (plain FileHandler)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:613-615` (unconditional socket unlink — POSIX-only branch)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:619` (Listener init missing backlog kwarg)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:644-665` (_accept_loop in dedicated thread)
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/project.py:33` (sole "LMDB" docstring mention — refutes LMDB framing)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:192-225` (start_daemon body, missing pre-flight check)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:413-443` (ensure_daemon version-mismatch path)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py:244-256` (Win32 _pid_alive)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:432-451` (handle_connection error path)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:436` (streaming send_bytes site 1)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:439` (streaming send_bytes site 2 — buggy second attempt)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:441` (non-streaming send_bytes — third unsafe site, P0-3)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:438` (logger.exception streaming response)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:445` (logger.exception outer handling connection)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:568` (unconditional pid_path.write_text)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:572-575` (plain FileHandler)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:613-615` (unconditional socket unlink — POSIX-only branch)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:619` (Listener init missing backlog kwarg)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py:644-665` (_accept_loop in dedicated thread)
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/project.py:33` (sole "LMDB" docstring mention — refutes LMDB framing)
 
 ### External / runtime evidence
 
@@ -373,7 +373,7 @@ The orchestrator owns the next phase. Recommended sequence:
 2. **Author plan.md** with the 7 patches (§10 above).
 3. **Author tasks.md** with the 13 tasks (§11 above).
 4. **Commit the spec/plan/tasks updates** as a documentation-only commit. Do not include source patches in this commit.
-5. **Dispatch Phase 2 implementation** as a separate packet (or sub-phase). The implementation packet applies all 7 patches, creates the 2 test files, runs the 6 stress test cases, and validates with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`.
+5. **Dispatch Phase 2 implementation** as a separate packet (or sub-phase). The implementation packet applies all 7 patches, creates the 2 test files, runs the 6 stress test cases, and validates with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`.
 6. **Operator recovery doc** ships with the implementation packet's `implementation-summary.md`.
 
 Deferred follow-ups (not Phase 2 blockers):

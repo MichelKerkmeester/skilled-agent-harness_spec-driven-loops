@@ -49,8 +49,8 @@ Cross-phase rule: tag overlap with `002` for orchestration and `006` for persist
 
 ### 4.3 What This Repo Already Has
 `Code_Environment/Public` already has meaningful equivalents:
-- `.opencode/skill/system-spec-kit/README.md` describes Spec Kit Memory with persistent semantic memory, graph intelligence, and session continuity
-- `.opencode/agent/orchestrate.md` defines agent routing, single-hop delegation, and leaf-agent boundaries
+- `.opencode/skills/system-spec-kit/README.md` describes Spec Kit Memory with persistent semantic memory, graph intelligence, and session continuity
+- `.opencode/agents/orchestrate.md` defines agent routing, single-hop delegation, and leaf-agent boundaries
 - Spec Kit Memory, deep-research, code graph, and CocoIndex already cover semantic retrieval, recovery, and evidence gathering
 
 What this repo does **not** visibly have today:
@@ -75,7 +75,7 @@ Follow these steps in order and keep the analysis evidence-first.
 11. Inspect `external/packages/opencode/src/xethryon/git.ts` and then the `gitContext()` integration in `session/system.ts`. Verify exactly which git signals are injected and what guidance is added.
 12. Inspect `external/packages/opencode/src/xethryon/autonomy.ts`, `tool/switch_agent.ts`, and `tool/invoke_skill.ts`. Map the autonomy toggle, intent-to-agent switching rules, hard limits, permission checks, and post-task skill invocation logic.
 13. Inspect the swarm stack last: `xethryon/swarm/spawn.ts`, `mailbox.ts`, `tasks-board.ts`, `team.ts`, `state.ts`, `paths.ts`, then `tool/team_create.ts`, `tool/send_message.ts`, and the `task_*` tools. Trace teammate session creation, file IPC, locks, and idle / failure notifications.
-14. Compare Xethryon directly against `.opencode/skill/system-spec-kit/README.md` for memory and session continuity, and `.opencode/agent/orchestrate.md` for routing and delegation boundaries.
+14. Compare Xethryon directly against `.opencode/skills/system-spec-kit/README.md` for memory and session continuity, and `.opencode/agents/orchestrate.md` for routing and delegation boundaries.
 15. Before any deep-research run, ensure this phase folder contains `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md`. Validate the folder, run deep research against this same packet, save outputs under `research/`, update `checklist.md`, create `implementation-summary.md`, and save memory from this packet path when complete.
 
 Use this exact deep-research topic:
@@ -94,7 +94,7 @@ Research Xethryon at /Users/michelkerkmeester/MEGA/Development/Code_Environment/
 8. How does autonomy mode decide which of the five agent types to use, and how much is hard-enforced versus merely instructed through prompt text?
 9. How does `invoke_skill` decide when autonomous follow-up workflows such as `/verify`, `/remember`, `/pr`, or `/debug` should run, and what limits keep that behavior bounded?
 10. How do the swarm mailbox and task-board files coordinate teammate lifecycle, message passing, task ownership, and idle / failure reporting?
-11. Compared with Spec Kit Memory and `.opencode/agent/orchestrate.md`, which Xethryon patterns are genuinely novel, which are redundant, and which are weaker than local mechanisms already present?
+11. Compared with Spec Kit Memory and `.opencode/agents/orchestrate.md`, which Xethryon patterns are genuinely novel, which are redundant, and which are weaker than local mechanisms already present?
 12. Which findings belong mainly to overlap packet `002` or `006`, and how should they be tagged without weakening phase `009` ownership?
 
 ## 7. Do's
@@ -147,7 +147,7 @@ Research Xethryon at /Users/michelkerkmeester/MEGA/Development/Code_Environment/
 - git-aware prompt context
 - autonomy-mode switching and skill invocation
 - swarm teammate spawning, mailbox IPC, task-board state, and idle / failure signals
-- explicit comparison to Spec Kit Memory and `.opencode/agent/orchestrate.md`
+- explicit comparison to Spec Kit Memory and `.opencode/agents/orchestrate.md`
 
 **OUT OF SCOPE**
 - theme, logos, branding, and cosmetic UI changes
@@ -164,8 +164,8 @@ Produce research outputs that include:
 2. A memory lifecycle trace covering extraction -> file storage -> retrieval -> AutoDream.
 3. A reflection trace covering trigger -> verdict -> critique injection -> final pass behavior.
 4. A swarm trace covering team creation -> teammate spawn -> mailbox IPC -> task board -> idle / failure notification.
-5. A comparison section against `.opencode/skill/system-spec-kit/README.md`.
-6. A comparison section against `.opencode/agent/orchestrate.md`.
+5. A comparison section against `.opencode/skills/system-spec-kit/README.md`.
+6. A comparison section against `.opencode/agents/orchestrate.md`.
 7. A recommendation matrix with `adopt now`, `prototype later`, and `reject`, plus an overlap log for packets `002` and `006`.
 
 Minimum finding schema:
@@ -207,7 +207,7 @@ Use this CLEAR self-check:
 - Autonomy switching and autonomous skill invocation are traced with exact evidence from `autonomy.ts`, `switch_agent.ts`, and `invoke_skill.ts`.
 - Swarm mailbox and task-board behavior are traced with exact evidence from `spawn.ts`, `mailbox.ts`, `tasks-board.ts`, and the related tools.
 - `research/research.md` contains at least 5 evidence-backed findings.
-- The research compares Xethryon directly to `.opencode/skill/system-spec-kit/README.md` and `.opencode/agent/orchestrate.md`.
+- The research compares Xethryon directly to `.opencode/skills/system-spec-kit/README.md` and `.opencode/agents/orchestrate.md`.
 - Overlap with packets `002` and `006` is explicitly resolved where applicable.
 - All paths stay under the approved `999-agentic-system-upgrade` root.
 - No edits were made outside the approved phase folder.

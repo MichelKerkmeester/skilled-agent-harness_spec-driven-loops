@@ -58,11 +58,11 @@ I’ve got the packet shape; next I’m reading the live state, prior iteration 
   └ L1450:1705 (256 lines read)
 
 ● Read session-bootstrap.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
   └ L163:250 (88 lines read)
 
 ● Read context-server.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/context-server.ts
   └ L741:811 (71 lines read)
 
 The phase packet is incomplete at the root and the loop state isn’t in canonical filenames, so I’m mapping the actual on-disk layout before I write iteration 36.
@@ -112,7 +112,7 @@ I’ve confirmed the packet is missing its Level 3 root docs, and the live loop 
 
 ✗ Validate Engram phase folder (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
-  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ .opencode/skills/system-spec-kit/scripts/spec/validate.sh
   │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
   │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
   │ --strict
@@ -188,43 +188,43 @@ The direct validator shell path is blocked in this runtime, so I’m switching t
 
 I’m pulling the canonical Spec Kit templates next so the phase docs I add match the expected metadata and section layout instead of guessing from memory.
 
-● List directory .opencode/skill/system-spec-kit/templates
+● List directory .opencode/skills/system-spec-kit/templates
   └ 17 files found
 
 ● Search (glob)
-  │ "**/*.md" in .opencode/skill/system-spec-kit/templates
+  │ "**/*.md" in .opencode/skills/system-spec-kit/templates
   └ 84 files found
 
 ● Read check-spec-doc-integrity.sh
-  │ .opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh
+  │ .opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh
   └ L1:220 (139 lines read)
 
 ● Read template_compliance_contract.md
-  │ .opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md
+  │ .opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md
   └ L1:220 (220 lines read)
 
 ● Read spec.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/spec.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/spec.md
   └ L1:260 (260 lines read)
 
 ● Read plan.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/plan.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/plan.md
   └ L1:260 (259 lines read)
 
 ● Read tasks.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/tasks.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/tasks.md
   └ L1:260 (204 lines read)
 
 ● Read checklist.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/checklist.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/checklist.md
   └ L1:260 (194 lines read)
 
 ● Read decision-record.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/decision-record.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/decision-record.md
   └ L1:260 (260 lines read)
 
 ● Read implementation-summary.md
-  │ .opencode/skill/system-spec-kit/templates/examples/level_3/implementation-summary.md
+  │ .opencode/skills/system-spec-kit/templates/examples/level_3/implementation-summary.md
   └ L1:260 (227 lines read)
 
 I’ve got the packet templates. Now I’m reading the source and setup docs that directly affect developer workflow: runtime setup, startup instructions, session closure, and passive capture.
@@ -253,25 +253,25 @@ I’ve got the packet templates. Now I’m reading the source and setup docs tha
   └ L350:620 (271 lines read)
 
 ● Read session-resume.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts
   └ L400:614 (215 lines read)
 
 ● Read tool-schemas.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
   └ L638:776 (139 lines read)
 
 Engram’s DX story is now clear enough to compare. I’m pulling Public’s current user-facing memory/recovery entry points so the findings stay concrete about commands, behavior changes, and migration cost.
 
 ● Read generate-context.js
-  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  │ .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js
   └ L1:220 (220 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L641:930 (290 lines read)
 
 ● Read memory-triggers.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
   └ L444:505 (62 lines read)
 
 ● Read README.md
@@ -296,11 +296,11 @@ Engram’s DX story is now clear enough to compare. I’m pulling Public’s cur
   └ 1 file found
 
 ● Read save.md
-  │ .opencode/command/memory/save.md
+  │ .opencode/commands/memory/save.md
   └ L1:260 (260 lines read)
 
 ● Read resume.md
-  │ .opencode/command/spec_kit/resume.md
+  │ .opencode/commands/spec_kit/resume.md
   └ L1:260 (260 lines read)
 
 ● Read README.md
@@ -377,15 +377,15 @@ I’m blocked from repo writes, so I’m probing whether session-local artifacts
   └ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/iter36-probe.txt
 
 ● Read decision-record.md
-  │ .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
+  │ .opencode/skills/system-spec-kit/templates/level_3/decision-record.md
   └ L1:260 (126 lines read)
 
 ● Read spec.md
-  │ .opencode/skill/system-spec-kit/templates/level_3/spec.md
+  │ .opencode/skills/system-spec-kit/templates/level_3/spec.md
   └ L1:260 (221 lines read)
 
 ● Read checklist.md
-  │ .opencode/skill/system-spec-kit/templates/level_3/checklist.md
+  │ .opencode/skills/system-spec-kit/templates/level_3/checklist.md
   └ L1:240 (183 lines read)
 
 I can’t land these into the repo, so I’m preserving a ready-to-apply packet in the session workspace: the missing Level 3 docs plus the full iteration 36 content and the exact `research.md` insertion block.

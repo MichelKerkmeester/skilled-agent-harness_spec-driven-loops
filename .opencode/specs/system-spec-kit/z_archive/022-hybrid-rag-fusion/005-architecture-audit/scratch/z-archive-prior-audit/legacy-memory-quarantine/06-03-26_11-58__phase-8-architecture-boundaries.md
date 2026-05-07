@@ -125,7 +125,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md, .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/skill/system-spec-kit/mcp_server/scripts/README.md
+- Files modified: .opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md, .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/skills/system-spec-kit/mcp_server/scripts/README.md
 
 - Last: Phase 8 verification passed
 
@@ -140,7 +140,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/mcp_server/README.md |
+| Active File | .opencode/skills/system-spec-kit/mcp_server/README.md |
 | Last Action | Phase 8 verification passed |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -160,15 +160,15 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` - Documentation
+- `.opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/shared/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/shared/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` - Documentation
 
 - `specs/.../005-architecture-audit/plan.md` - Documentation
 
@@ -205,11 +205,11 @@ Updated ARCHITECTURE_BOUNDARIES.md plus the mcp_server, scripts, shared, and hoo
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/(merged-small-files)` | Tree-thinning merged 1 small files (ARCHITECTURE_BOUNDARIES.md). ARCHITECTURE_BOUNDARIES.md: Plus the mcp_server |
-| `.opencode/skill/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
-| `.opencode/skill/system-spec-kit/mcp_server/scripts/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
-| `.opencode/skill/system-spec-kit/shared/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
+| `.opencode/skills/system-spec-kit/(merged-small-files)` | Tree-thinning merged 1 small files (ARCHITECTURE_BOUNDARIES.md). ARCHITECTURE_BOUNDARIES.md: Plus the mcp_server |
+| `.opencode/skills/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
+| `.opencode/skills/system-spec-kit/shared/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/(merged-small-files)` | Tree-thinning merged 1 small files (README.md). README.md: Verified runtime/build structure |
 | `specs/.../005-architecture-audit/(merged-small-files)` | Tree-thinning merged 4 small files (plan.md, checklist.md, tasks.md, implementation-summary.md). plan.md: Verified runtime/build structure | checklist.md: Verified runtime/build structure |
 | `specs/.../022-hybrid-rag-fusion/(merged-small-files)` | Tree-thinning merged 1 small files (005-architecture-audit). 005-architecture-audit: Exit code 0 and 0 warnings |
 
@@ -227,7 +227,7 @@ Updated ARCHITECTURE_BOUNDARIES.md plus the mcp_server, scripts, shared, and hoo
 
 Updated ARCHITECTURE_BOUNDARIES.md plus the mcp_server, scripts, shared, and hooks READMEs so documented ownership, wrapper policy, alias imports, tool grouping, and dist policy align with verified runtime/build structure. Then updated 005-architecture-audit tasks/checklist/implementation-summary to record closure evidence.
 
-**Files:** .opencode/skill/system-spec-kit/ARCHITECTURE_BOUNDARIES.md, .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/skill/system-spec-kit/mcp_server/hooks/README.md, .opencode/skill/system-spec-kit/mcp_server/scripts/README.md, .opencode/skill/system-spec-kit/shared/README.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/checklist.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/implementation-summary.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/plan.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/tasks.md
+**Files:** .opencode/skills/system-spec-kit/ARCHITECTURE_BOUNDARIES.md, .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/skills/system-spec-kit/mcp_server/hooks/README.md, .opencode/skills/system-spec-kit/mcp_server/scripts/README.md, .opencode/skills/system-spec-kit/shared/README.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/checklist.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/implementation-summary.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/plan.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/tasks.md
 **Details:** dist policy explicitly documented as generated build output, not source-of-truth checkout content | wrapper-only role of mcp_server/scripts clarified against canonical scripts ownership | shared README alias-import guidance and package inventory aligned to current shared surface | hooks README updated to include extractContextHint and current memory-aware helper behavior | Phase 8 tasks T091-T099 and checklist CHK-530 through CHK-550 recorded as complete
 <!-- /ANCHOR:implementation-phase-strictpass-remediation-completed-71900689 -->
 
@@ -236,8 +236,8 @@ Updated ARCHITECTURE_BOUNDARIES.md plus the mcp_server, scripts, shared, and hoo
 
 validate_document.py passed for edited README files, spec validate.sh passed with exit code 0 and 0 warnings, and final review scored the audited Phase 8 scope as a strict documentation/architecture pass.
 
-**Files:** .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/skill/system-spec-kit/mcp_server/hooks/README.md, .opencode/skill/system-spec-kit/mcp_server/scripts/README.md, .opencode/skill/system-spec-kit/shared/README.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit
-**Details:** README validator passed with 0 issues for edited README files | spec validation command passed: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit | final gate review returned PASS 96/100 within audited Phase 8 scope | no remaining accepted exceptions were recorded for Phase 8
+**Files:** .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/skills/system-spec-kit/mcp_server/hooks/README.md, .opencode/skills/system-spec-kit/mcp_server/scripts/README.md, .opencode/skills/system-spec-kit/shared/README.md, specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit
+**Details:** README validator passed with 0 issues for edited README files | spec validation command passed: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit | final gate review returned PASS 96/100 within audited Phase 8 scope | no remaining accepted exceptions were recorded for Phase 8
 <!-- /ANCHOR:implementation-phase-verification-passed-7cc9295d -->
 
 <!-- /ANCHOR:detailed-changes -->
@@ -326,7 +326,7 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/022-hybrid-rag-fusion", limit: 10 })
@@ -338,7 +338,7 @@ ls -la system-spec-kit/022-hybrid-rag-fusion/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit --force
 ```
 
 ### Recovery Priority
@@ -504,7 +504,7 @@ trigger_phrases:
   - "readme.md verified runtime/build structure"
   - "architecture boundaries.md plus mcp"
   - "boundaries.md plus mcp server"
-  - "verified runtime/build structure .opencode/skill/system-spec-kit/mcp"
+  - "verified runtime/build structure .opencode/skills/system-spec-kit/mcp"
   - "plus mcp server scripts"
   - "mcp server scripts shared"
   - "server scripts shared hooks"
@@ -528,11 +528,11 @@ trigger_phrases:
   - "fusion"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/scripts/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/shared/(merged-small-files)"
-  - ".opencode/skill/system-spec-kit/mcp_server/hooks/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/scripts/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/shared/(merged-small-files)"
+  - ".opencode/skills/system-spec-kit/mcp_server/hooks/(merged-small-files)"
   - "specs/.../005-architecture-audit/(merged-small-files)"
   - "specs/.../022-hybrid-rag-fusion/(merged-small-files)"
 

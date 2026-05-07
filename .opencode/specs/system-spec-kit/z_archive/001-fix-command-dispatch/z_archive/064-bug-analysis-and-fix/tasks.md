@@ -36,16 +36,16 @@ Comprehensive task breakdown for fixing ~231 identified issues across the SpecKi
 
 ```bash
 # Check for broken references
-grep -r "AGENTS.md" .opencode/skill/system-spec-kit/ --include="*.md" | wc -l  # Should be 0
+grep -r "AGENTS.md" .opencode/skills/system-spec-kit/ --include="*.md" | wc -l  # Should be 0
 
 # Verify await fix
-grep -c "return await formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js  # Should be 3
+grep -c "return await formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js  # Should be 3
 
 # Verify threshold consistency
 grep -rn "failed.*attempt" .opencode/ --include="*.md" | grep -v "3" | wc -l  # Should be 0
 
 # Check syntax after edits
-node --check .opencode/skill/system-spec-kit/mcp_server/context-server.js  # No errors
+node --check .opencode/skills/system-spec-kit/mcp_server/context-server.js  # No errors
 ```
 
 ### Scratch Directory Usage
@@ -166,12 +166,12 @@ Testing is integrated into each task where verification is possible.
 ```
 
 ### Path Conventions
-- **MCP Server**: `.opencode/skill/system-spec-kit/mcp_server/`
-- **Shared**: `.opencode/skill/system-spec-kit/shared/`
-- **Scripts**: `.opencode/skill/system-spec-kit/scripts/`
-- **Templates**: `.opencode/skill/system-spec-kit/templates/`
-- **Commands**: `.opencode/command/spec_kit/`
-- **Documentation**: `.opencode/skill/system-spec-kit/references/`
+- **MCP Server**: `.opencode/skills/system-spec-kit/mcp_server/`
+- **Shared**: `.opencode/skills/system-spec-kit/shared/`
+- **Scripts**: `.opencode/skills/system-spec-kit/scripts/`
+- **Templates**: `.opencode/skills/system-spec-kit/templates/`
+- **Commands**: `.opencode/commands/spec_kit/`
+- **Documentation**: `.opencode/skills/system-spec-kit/references/`
 
 ---
 
@@ -203,8 +203,8 @@ Testing is integrated into each task where verification is possible.
 #### T001: Resolve Config System per ADR-001
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/config-loader.js`
-  - `.opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/config-loader.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json`
   - All modules using hardcoded constants
 - **Description:** 8 of 10 config sections in `search-weights.json` are never loaded. `config-loader.js` exists but is never imported. ADR-001 chooses removal of unused config infrastructure.
 
@@ -212,20 +212,20 @@ Testing is integrated into each task where verification is possible.
 
 1. **Verify config-loader is unused:**
    ```bash
-   grep -r "config-loader" .opencode/skill/system-spec-kit/mcp_server/ --include="*.js" | grep -v "config-loader.js:"
+   grep -r "config-loader" .opencode/skills/system-spec-kit/mcp_server/ --include="*.js" | grep -v "config-loader.js:"
    ```
    Expected: No output (no imports found)
 
 2. **Identify used config sections:**
    ```bash
-   grep -r "maxTriggersPerMemory\|smartRanking" .opencode/skill/system-spec-kit/ --include="*.js"
+   grep -r "maxTriggersPerMemory\|smartRanking" .opencode/skills/system-spec-kit/ --include="*.js"
    ```
    Document which files use these 2 sections.
 
 3. **Backup and delete config-loader.js:**
    ```bash
-   cp .opencode/skill/system-spec-kit/mcp_server/lib/config-loader.js scratch/config-loader.js.bak
-   rm .opencode/skill/system-spec-kit/mcp_server/lib/config-loader.js
+   cp .opencode/skills/system-spec-kit/mcp_server/lib/config-loader.js scratch/config-loader.js.bak
+   rm .opencode/skills/system-spec-kit/mcp_server/lib/config-loader.js
    ```
 
 4. **Reduce search-weights.json** to only used sections (maxTriggersPerMemory, smartRanking)
@@ -240,11 +240,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm no config-loader imports remain
-  grep -r "config-loader" .opencode/skill/system-spec-kit/ --include="*.js" | wc -l
+  grep -r "config-loader" .opencode/skills/system-spec-kit/ --include="*.js" | wc -l
   # Expected: 0
   
   # Confirm search-weights.json only has used sections
-  cat .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json | grep -c "maxTriggersPerMemory\|smartRanking"
+  cat .opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json | grep -c "maxTriggersPerMemory\|smartRanking"
   # Expected: 2 (both sections present)
   ```
 
@@ -253,8 +253,8 @@ Testing is integrated into each task where verification is possible.
 #### T002: Resolve ANCHOR System Scope (Defer Full Implementation)
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js`
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
   - Database schema (anchor_id column)
 - **Description:** `anchor_id` column in database is NEVER populated. ANCHOR tags are validated but never extracted for section-level retrieval. Documented "93% token savings" from anchors is not implemented. Plan is to document as non-indexed and defer full implementation.
 
@@ -262,14 +262,14 @@ Testing is integrated into each task where verification is possible.
 
 1. **Verify anchor_id is never populated:**
    ```bash
-   sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+   sqlite3 .opencode/skills/system-spec-kit/database/context-index.sqlite \
      "SELECT count(*) FROM memory_index WHERE anchor_id IS NOT NULL"
    ```
    Expected: 0
 
 2. **Search for "93% token savings" claim:**
    ```bash
-   grep -rn "93%" .opencode/skill/system-spec-kit/ --include="*.md"
+   grep -rn "93%" .opencode/skills/system-spec-kit/ --include="*.md"
    ```
    Document all locations.
 
@@ -281,7 +281,7 @@ Testing is integrated into each task where verification is possible.
 
 5. **Verify ANCHOR validation still works:**
    ```bash
-   grep -n "VALID_ANCHOR_PATTERN" .opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js
+   grep -n "VALID_ANCHOR_PATTERN" .opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js
    ```
    Confirm validation regex exists.
 
@@ -293,11 +293,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm no "93%" claims remain
-  grep -r "93%" .opencode/skill/system-spec-kit/ --include="*.md" | wc -l
+  grep -r "93%" .opencode/skills/system-spec-kit/ --include="*.md" | wc -l
   # Expected: 0
   
   # Confirm ANCHOR validation regex still exists
-  grep -c "VALID_ANCHOR_PATTERN" .opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js
+  grep -c "VALID_ANCHOR_PATTERN" .opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js
   # Expected: 1 or more
   ```
 
@@ -306,26 +306,26 @@ Testing is integrated into each task where verification is possible.
 #### T003: Resolve Debug Trigger Threshold Inconsistency
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md` (lines 543, 608)
-  - `.opencode/command/spec_kit/debug.md` (line 232)
+  - `.opencode/skills/system-spec-kit/SKILL.md` (lines 543, 608)
+  - `.opencode/commands/spec_kit/debug.md` (line 232)
 - **Description:** SKILL.md says "3+ failed fix attempts" but debug.md says "2+ fix attempts". Agents may follow inconsistent rules.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Find all threshold references:**
    ```bash
-   grep -rn "failed.*attempt\|fix attempt\|[0-9]+.*attempt" .opencode/skill/system-spec-kit/ .opencode/command/spec_kit/ --include="*.md"
+   grep -rn "failed.*attempt\|fix attempt\|[0-9]+.*attempt" .opencode/skills/system-spec-kit/ .opencode/commands/spec_kit/ --include="*.md"
    ```
    Document all locations and current values.
 
 2. **Standardize to 3 attempts** (more conservative):
-   - Update `.opencode/command/spec_kit/debug.md` line 232:
+   - Update `.opencode/commands/spec_kit/debug.md` line 232:
      - FROM: "2+ fix attempts"
      - TO: "3+ failed fix attempts"
 
 3. **Verify SKILL.md already says 3:**
    ```bash
-   grep -n "3.*failed\|3+.*attempt" .opencode/skill/system-spec-kit/SKILL.md
+   grep -n "3.*failed\|3+.*attempt" .opencode/skills/system-spec-kit/SKILL.md
    ```
    Expected: Lines 543 and 608 show "3+"
 
@@ -337,11 +337,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm all references say "3"
-  grep -rn "failed.*attempt\|fix attempt" .opencode/skill/system-spec-kit/ .opencode/command/spec_kit/ --include="*.md" | grep -v "3"
+  grep -rn "failed.*attempt\|fix attempt" .opencode/skills/system-spec-kit/ .opencode/commands/spec_kit/ --include="*.md" | grep -v "3"
   # Expected: No output (all references use 3)
   
   # Confirm specific fix in debug.md
-  grep -n "3.*failed\|3+.*attempt" .opencode/command/spec_kit/debug.md
+  grep -n "3.*failed\|3+.*attempt" .opencode/commands/spec_kit/debug.md
   # Expected: Shows updated line with "3"
   ```
 
@@ -350,20 +350,20 @@ Testing is integrated into each task where verification is possible.
 #### T004: Create Missing /memory:save Command
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/command/spec_kit/memory_save.md` (CREATE)
-  - `.opencode/skill/system-spec-kit/SKILL.md` (lines 109, 421-426, 787-788)
+  - `.opencode/commands/spec_kit/memory_save.md` (CREATE)
+  - `.opencode/skills/system-spec-kit/SKILL.md` (lines 109, 421-426, 787-788)
 - **Description:** SKILL.md references `/memory:save` command extensively but no corresponding command file exists.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Verify command doesn't exist:**
    ```bash
-   ls -la .opencode/command/spec_kit/memory_save.md 2>/dev/null || echo "CONFIRMED: File does not exist"
+   ls -la .opencode/commands/spec_kit/memory_save.md 2>/dev/null || echo "CONFIRMED: File does not exist"
    ```
 
 2. **Study existing command structure:**
    ```bash
-   head -100 .opencode/command/spec_kit/complete.md
+   head -100 .opencode/commands/spec_kit/complete.md
    ```
    Use as template for new command.
 
@@ -383,7 +383,7 @@ Testing is integrated into each task where verification is possible.
    
    ## WORKFLOW
    1. Identify current spec folder (Gate 3 if needed)
-   2. Execute: `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
+   2. Execute: `node .opencode/skills/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
    3. Verify memory file created in `memory/` folder
    4. Confirm indexing via MCP memory_save tool
    
@@ -394,7 +394,7 @@ Testing is integrated into each task where verification is possible.
 
 4. **Verify SKILL.md references will resolve:**
    ```bash
-   grep -n "memory:save\|memory_save" .opencode/skill/system-spec-kit/SKILL.md
+   grep -n "memory:save\|memory_save" .opencode/skills/system-spec-kit/SKILL.md
    ```
 
 - **Acceptance:**
@@ -404,31 +404,31 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm file exists
-  ls -la .opencode/command/spec_kit/memory_save.md
+  ls -la .opencode/commands/spec_kit/memory_save.md
   # Expected: File exists with proper permissions
   
   # Confirm file follows template
-  head -20 .opencode/command/spec_kit/memory_save.md
+  head -20 .opencode/commands/spec_kit/memory_save.md
   # Expected: Shows proper header structure
   ```
 
 #### T101: Fix Missing await in memory_search
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.js` (lines 1085, 1140, 1161)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.js` (lines 1085, 1140, 1161)
 - **Description:** `formatSearchResults()` is async but called without await, returning Promises in `memory_search`.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Verify the bug exists:**
    ```bash
-   grep -n "return formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js
+   grep -n "return formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js
    ```
    Expected: Lines 1085, 1140, 1161 show `return formatSearchResults(...)` WITHOUT await
 
 2. **Verify formatSearchResults is async:**
    ```bash
-   grep -n "async function formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js
+   grep -n "async function formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js
    ```
    Expected: Line ~1170 shows `async function formatSearchResults`
 
@@ -445,11 +445,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm all calls now have await
-  grep -n "return.*formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js | grep -v "await"
+  grep -n "return.*formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js | grep -v "await"
   # Expected: No output (all calls have await)
   
   # Confirm with await present
-  grep -n "return await formatSearchResults" .opencode/skill/system-spec-kit/mcp_server/context-server.js | wc -l
+  grep -n "return await formatSearchResults" .opencode/skills/system-spec-kit/mcp_server/context-server.js | wc -l
   # Expected: 3
   ```
 
@@ -463,19 +463,19 @@ Testing is integrated into each task where verification is possible.
 
 1. **Check current CHANGELOG format:**
    ```bash
-   head -50 .opencode/skill/system-spec-kit/CHANGELOG.md | grep -E "^\[|^## \["
+   head -50 .opencode/skills/system-spec-kit/CHANGELOG.md | grep -E "^\[|^## \["
    ```
    Document the format used (should be `[X.Y.Z]`)
 
 2. **Check package.json versions:**
    ```bash
-   grep '"version"' .opencode/skill/system-spec-kit/package.json .opencode/skill/system-spec-kit/mcp_server/package.json
+   grep '"version"' .opencode/skills/system-spec-kit/package.json .opencode/skills/system-spec-kit/mcp_server/package.json
    ```
    Document versions (should match CHANGELOG latest)
 
 3. **Search for any mismatched versions:**
    ```bash
-   grep -rn "17\.1\|1\.7\.1\|version" .opencode/skill/system-spec-kit/ --include="*.md" --include="*.json" | head -30
+   grep -rn "17\.1\|1\.7\.1\|version" .opencode/skills/system-spec-kit/ --include="*.md" --include="*.json" | head -30
    ```
    Identify any inconsistencies
 
@@ -489,18 +489,18 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm CHANGELOG uses consistent format
-  grep -E "^## \[" .opencode/skill/system-spec-kit/CHANGELOG.md | head -10
+  grep -E "^## \[" .opencode/skills/system-spec-kit/CHANGELOG.md | head -10
   # Expected: All entries in [X.Y.Z] format
   
   # Confirm package.json matches latest CHANGELOG version
-  grep '"version"' .opencode/skill/system-spec-kit/package.json
+  grep '"version"' .opencode/skills/system-spec-kit/package.json
   # Expected: Matches latest CHANGELOG entry
   ```
 
 #### T103: Define and Document E429 Error Code
 - **Priority:** P0
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/errors.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/errors.js`
   - References docs for error codes
 - **Description:** `E429` error is thrown but not defined or documented.
 
@@ -508,13 +508,13 @@ Testing is integrated into each task where verification is possible.
 
 1. **Find where E429 is used:**
    ```bash
-   grep -rn "E429" .opencode/skill/system-spec-kit/ --include="*.js"
+   grep -rn "E429" .opencode/skills/system-spec-kit/ --include="*.js"
    ```
    Expected: context-server.js line ~2222
 
 2. **Check current ErrorCodes enum:**
    ```bash
-   grep -A 50 "ErrorCodes\|const.*Errors" .opencode/skill/system-spec-kit/mcp_server/lib/errors.js | head -60
+   grep -A 50 "ErrorCodes\|const.*Errors" .opencode/skills/system-spec-kit/mcp_server/lib/errors.js | head -60
    ```
    Verify E429 is NOT defined
 
@@ -537,11 +537,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm E429 now defined in errors.js
-  grep -n "E429" .opencode/skill/system-spec-kit/mcp_server/lib/errors.js
+  grep -n "E429" .opencode/skills/system-spec-kit/mcp_server/lib/errors.js
   # Expected: Shows E429 definition
   
   # Confirm all E429 usages have matching definition
-  grep -c "E429" .opencode/skill/system-spec-kit/mcp_server/lib/errors.js
+  grep -c "E429" .opencode/skills/system-spec-kit/mcp_server/lib/errors.js
   # Expected: At least 1
   ```
 
@@ -555,13 +555,13 @@ Testing is integrated into each task where verification is possible.
 
 1. **Identify batch embedding call sites:**
    ```bash
-   grep -rn "batch\|Batch" .opencode/skill/system-spec-kit/shared/embeddings*.js --include="*.js"
-   grep -rn "generateEmbedding\|generate.*embedding" .opencode/skill/system-spec-kit/ --include="*.js" | head -20
+   grep -rn "batch\|Batch" .opencode/skills/system-spec-kit/shared/embeddings*.js --include="*.js"
+   grep -rn "generateEmbedding\|generate.*embedding" .opencode/skills/system-spec-kit/ --include="*.js" | head -20
    ```
 
 2. **Check for existing rate limiting:**
    ```bash
-   grep -rn "delay\|throttle\|rateLimit\|sleep" .opencode/skill/system-spec-kit/shared/ --include="*.js"
+   grep -rn "delay\|throttle\|rateLimit\|sleep" .opencode/skills/system-spec-kit/shared/ --include="*.js"
    ```
    Expected: Little or no rate limiting found
 
@@ -588,7 +588,7 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm rate limiting code exists
-  grep -rn "delay\|BATCH_DELAY\|rateLimit" .opencode/skill/system-spec-kit/shared/ --include="*.js"
+  grep -rn "delay\|BATCH_DELAY\|rateLimit" .opencode/skills/system-spec-kit/shared/ --include="*.js"
   # Expected: Shows rate limiting implementation
   ```**
   - Load test batch calls to confirm throttling
@@ -607,12 +607,12 @@ Testing is integrated into each task where verification is possible.
 
 2. **Find current cleanup logic:**
    ```bash
-   grep -rn "DELETE FROM vec_memories" .opencode/skill/system-spec-kit/ --include="*.js"
+   grep -rn "DELETE FROM vec_memories" .opencode/skills/system-spec-kit/ --include="*.js"
    ```
 
 3. **Verify cleanup script exists:**
    ```bash
-   ls -la .opencode/skill/system-spec-kit/scripts/cleanup-orphaned-vectors.js
+   ls -la .opencode/skills/system-spec-kit/scripts/cleanup-orphaned-vectors.js
    ```
 
 4. **Ensure deletion operations clean up vectors:**
@@ -627,11 +627,11 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Check cleanup script exists and has proper logic
-  grep -n "DELETE FROM vec_memories" .opencode/skill/system-spec-kit/scripts/cleanup-orphaned-vectors.js
+  grep -n "DELETE FROM vec_memories" .opencode/skills/system-spec-kit/scripts/cleanup-orphaned-vectors.js
   # Expected: Shows cleanup query
   
   # Verify delete functions in vector-index.js handle vec_memories
-  grep -B5 -A10 "DELETE FROM memory_index" .opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js | head -30
+  grep -B5 -A10 "DELETE FROM memory_index" .opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js | head -30
   # Expected: Shows vec_memories deleted first
   ```
 
@@ -656,25 +656,25 @@ Testing is integrated into each task where verification is possible.
 #### T005: Fix AGENTS.md Reference Error
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md` (lines 14, 100, 288, 303, 420-423, 714-715)
+  - `.opencode/skills/system-spec-kit/SKILL.md` (lines 14, 100, 288, 303, 420-423, 714-715)
 - **Description:** SKILL.md references non-existent "AGENTS.md" file. Should reference AGENTS.md instead.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Find all AGENTS.md references:**
    ```bash
-   grep -n "AGENTS.md" .opencode/skill/system-spec-kit/SKILL.md
+   grep -n "AGENTS.md" .opencode/skills/system-spec-kit/SKILL.md
    ```
    Document all line numbers.
 
 2. **Verify AGENTS.md does NOT exist:**
    ```bash
-   ls -la .opencode/skill/system-spec-kit/AGENTS.md 2>/dev/null || echo "CONFIRMED: Does not exist"
+   ls -la .opencode/skills/system-spec-kit/AGENTS.md 2>/dev/null || echo "CONFIRMED: Does not exist"
    ```
 
 3. **Determine correct replacement:**
    - Check if project-level AGENTS.md exists: `ls AGENTS.md`
-   - Check if AGENTS.md exists: `ls .opencode/skill/system-spec-kit/AGENTS.md` or `ls AGENTS.md`
+   - Check if AGENTS.md exists: `ls .opencode/skills/system-spec-kit/AGENTS.md` or `ls AGENTS.md`
 
 4. **Replace all references**:
    - If project-level AGENTS.md: Update to relative path `../../AGENTS.md` or `AGENTS.md`
@@ -689,7 +689,7 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm no AGENTS.md references remain in SKILL.md
-  grep -c "AGENTS.md" .opencode/skill/system-spec-kit/SKILL.md
+  grep -c "AGENTS.md" .opencode/skills/system-spec-kit/SKILL.md
   # Expected: 0
   
   # Confirm replacement file exists
@@ -702,21 +702,21 @@ Testing is integrated into each task where verification is possible.
 #### T006: Fix Decay Formula Documentation
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/references/debugging/troubleshooting.md`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/attention-decay.js`
+  - `.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/attention-decay.js`
 - **Description:** troubleshooting.md documents time-based decay but attention-decay.js uses turn-based decay.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Read the actual implementation:**
    ```bash
-   grep -A20 "function.*decay\|calculateDecay" .opencode/skill/system-spec-kit/mcp_server/lib/attention-decay.js | head -30
+   grep -A20 "function.*decay\|calculateDecay" .opencode/skills/system-spec-kit/mcp_server/lib/attention-decay.js | head -30
    ```
    Document whether it's turn-based or time-based.
 
 2. **Find the documentation claim:**
    ```bash
-   grep -n "decay" .opencode/skill/system-spec-kit/references/debugging/troubleshooting.md | head -10
+   grep -n "decay" .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md | head -10
    ```
 
 3. **Update documentation to match implementation**:
@@ -731,7 +731,7 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm docs mention "turn" not "time" for decay
-  grep -i "turn\|time" .opencode/skill/system-spec-kit/references/debugging/troubleshooting.md | grep -i decay
+  grep -i "turn\|time" .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md | grep -i decay
   # Expected: Should reference turn-based decay
   ```
 
@@ -740,19 +740,19 @@ Testing is integrated into each task where verification is possible.
 #### T007: Fix Embedding Model Recording
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/shared/vector-index.js` (lines 861, 912)
+  - `.opencode/skills/system-spec-kit/shared/vector-index.js` (lines 861, 912)
 - **Description:** Code always records `nomic-ai/nomic-embed-text-v1.5` even when using Voyage/OpenAI.
 
 **STEP-BY-STEP EXECUTION:**
 
 1. **Find the hardcoded model name:**
    ```bash
-   grep -n "nomic-ai\|nomic-embed" .opencode/skill/system-spec-kit/ -r --include="*.js"
+   grep -n "nomic-ai\|nomic-embed" .opencode/skills/system-spec-kit/ -r --include="*.js"
    ```
 
 2. **Identify how to get actual model from factory:**
    ```bash
-   grep -n "getModel\|modelName\|getEmbeddingProfile" .opencode/skill/system-spec-kit/shared/embeddings/*.js
+   grep -n "getModel\|modelName\|getEmbeddingProfile" .opencode/skills/system-spec-kit/shared/embeddings/*.js
    ```
 
 3. **Update to use dynamic model name:**
@@ -767,7 +767,7 @@ Testing is integrated into each task where verification is possible.
 - **Verification:**
   ```bash
   # Confirm hardcoded string removed
-  grep -c "nomic-ai/nomic-embed-text-v1.5" .opencode/skill/system-spec-kit/shared/vector-index.js
+  grep -c "nomic-ai/nomic-embed-text-v1.5" .opencode/skills/system-spec-kit/shared/vector-index.js
   # Expected: 0 (or only in comments/defaults)
   ```
 
@@ -776,8 +776,8 @@ Testing is integrated into each task where verification is possible.
 #### T008: Fix attention-decay Return Type
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/attention-decay.js` (line 198)
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.js` (consumer)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/attention-decay.js` (line 198)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.js` (consumer)
 - **Description:** Returns number at line 198, but context-server expects object with `decayedCount` property.
 - **Acceptance:**
   - Return type matches consumer expectations
@@ -791,7 +791,7 @@ Testing is integrated into each task where verification is possible.
 #### T009: Remove Invalid Failure Pattern Reference
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/command/spec_kit/implement.md` (lines 16-18)
+  - `.opencode/commands/spec_kit/implement.md` (lines 16-18)
 - **Description:** References "Failure Pattern #19" but only patterns 1-18 exist in documentation.
 - **Acceptance:**
   - Invalid reference removed or corrected
@@ -805,7 +805,7 @@ Testing is integrated into each task where verification is possible.
 #### T010: Fix memory_save Re-embedding Documentation
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/references/memory/memory_system.md`
+  - `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
   - Actual re-embedding implementation
 - **Description:** Documentation says re-embedding triggers "when title changes" but code uses full content comparison.
 - **Acceptance:**
@@ -819,7 +819,7 @@ Testing is integrated into each task where verification is possible.
 #### T011: Document searchBoost Multipliers
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/references/memory/memory_system.md`
+  - `.opencode/skills/system-spec-kit/references/memory/memory_system.md`
   - Relevant config/code files
 - **Description:** Documentation missing searchBoost multipliers (3.0, 2.0, 1.5, 1.0, 0.5) for importance tiers.
 - **Acceptance:**
@@ -838,7 +838,7 @@ Testing is integrated into each task where verification is possible.
 #### T012: Fix Embedding Warmup Race Condition
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.js` (lines 2514-2522)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.js` (lines 2514-2522)
 - **Description:** `embeddingModelReady` flag may be stale, causing race conditions during initialization.
 - **Acceptance:**
   - Proper async/await pattern for embedding model readiness
@@ -852,7 +852,7 @@ Testing is integrated into each task where verification is possible.
 #### T013: Expose Missing MCP Tool Parameters
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.js` (lines 1849-1920)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.js` (lines 1849-1920)
 - **Description:** `includeWorkingMemory` and `sessionId` parameters not exposed in MCP tool schema.
 - **Acceptance:**
   - Both parameters added to tool schema
@@ -866,7 +866,7 @@ Testing is integrated into each task where verification is possible.
 #### T014: Add Null Check in retry-manager
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/retry-manager.js` (lines 227-238)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/retry-manager.js` (lines 227-238)
 - **Description:** `mark_as_failed` can crash if DB not initialized.
 - **Acceptance:**
   - Null check added before DB operations
@@ -884,7 +884,7 @@ Testing is integrated into each task where verification is possible.
 
 #### T120: MCP Server Re-Analysis Fixes
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+- **Affected Files:** `.opencode/skills/system-spec-kit/mcp_server/context-server.js`
 - **Description:** Clear all additional MCP server issues from research inventory (null dereferences, numeric validation, cache invalidation, startup mutex, error format consistency).
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -898,7 +898,7 @@ Testing is integrated into each task where verification is possible.
 **STEP-BY-STEP EXECUTION:**
 ```bash
 # Find each issue location
-grep -n "\.count\|parseInt\|validateNumeric" .opencode/skill/system-spec-kit/mcp_server/context-server.js | head -20
+grep -n "\.count\|parseInt\|validateNumeric" .opencode/skills/system-spec-kit/mcp_server/context-server.js | head -20
 ```
 
 - **Acceptance:** All MCP server items in research/research.md resolved
@@ -908,7 +908,7 @@ grep -n "\.count\|parseInt\|validateNumeric" .opencode/skill/system-spec-kit/mcp
 
 #### T121: lib/ Module Reliability Fixes
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/mcp_server/lib/*.js`
+- **Affected Files:** `.opencode/skills/system-spec-kit/mcp_server/lib/*.js`
 - **Description:** Resolve JSON.parse crash paths, listener cleanup, global state mutation, error propagation, and timer cleanup issues.
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -922,7 +922,7 @@ grep -n "\.count\|parseInt\|validateNumeric" .opencode/skill/system-spec-kit/mcp
 **STEP-BY-STEP EXECUTION:**
 ```bash
 # Find JSON.parse without try-catch
-grep -n "JSON.parse" .opencode/skill/system-spec-kit/mcp_server/lib/*.js | head -20
+grep -n "JSON.parse" .opencode/skills/system-spec-kit/mcp_server/lib/*.js | head -20
 ```
 
 - **Acceptance:** All lib/ module items in research/research.md resolved
@@ -932,7 +932,7 @@ grep -n "JSON.parse" .opencode/skill/system-spec-kit/mcp_server/lib/*.js | head 
 
 #### T122: Scripts Cross-Platform & Reliability Fixes
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/scripts/**`
+- **Affected Files:** `.opencode/skills/system-spec-kit/scripts/**`
 - **Description:** Resolve signal handling, cross-platform path issues, race conditions, and hardcoded values.
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -945,7 +945,7 @@ grep -n "JSON.parse" .opencode/skill/system-spec-kit/mcp_server/lib/*.js | head 
 **STEP-BY-STEP EXECUTION:**
 ```bash
 # Find hardcoded paths
-grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js" --include="*.sh"
+grep -rn "/tmp\|/Users" .opencode/skills/system-spec-kit/scripts/ --include="*.js" --include="*.sh"
 ```
 
 - **Acceptance:** All script items in research/research.md resolved
@@ -955,7 +955,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 
 #### T123: Template Consistency Fixes
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/templates/*.md`
+- **Affected Files:** `.opencode/skills/system-spec-kit/templates/*.md`
 - **Description:** Fix status vocab inconsistencies, "WHEN TO USE" gaps, marker positioning, metadata field naming, and numbering logic.
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -972,7 +972,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 
 #### T124: Command Workflow Alignment
 - **Priority:** P1
-- **Affected Files:** `.opencode/command/spec_kit/*.md`, `.opencode/command/spec_kit/assets/*.yaml`
+- **Affected Files:** `.opencode/commands/spec_kit/*.md`, `.opencode/commands/spec_kit/assets/*.yaml`
 - **Description:** Resolve step mismatches, termination text inconsistencies, and YAML/MD divergence.
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -989,7 +989,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 
 #### T125: Reference Documentation Corrections
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/references/**`
+- **Affected Files:** `.opencode/skills/system-spec-kit/references/**`
 - **Description:** Align docs with actual parameter names, tier weights, and error code references.
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -1006,7 +1006,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 
 #### T126: shared/ Documentation + Integration Fixes
 - **Priority:** P1
-- **Affected Files:** `.opencode/skill/system-spec-kit/shared/**`, SKILL.md
+- **Affected Files:** `.opencode/skills/system-spec-kit/shared/**`, SKILL.md
 - **Description:** Document shared/ modules and resolve integration gaps (checkpoint_restore docs, missing changelog refs).
 
 **ISSUES TO RESOLVE (from research/research.md):**
@@ -1024,7 +1024,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T015: Fix Memory Leak in Trigger Cache
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/trigger-matcher.js` (lines 62-129)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/trigger-matcher.js` (lines 62-129)
 - **Description:** Regex objects accumulate in cache without bounds or cleanup.
 - **Acceptance:**
   - Cache has size limit (LRU or similar)
@@ -1038,7 +1038,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T016: Fix co-activation.init() Error Handling
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/co-activation.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/co-activation.js`
 - **Description:** Returns silently on null DB while other modules throw, causing inconsistent behavior.
 - **Acceptance:**
   - Consistent error handling pattern across all modules
@@ -1056,7 +1056,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T017: Fix plan.md Level Contradiction
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/templates/plan.md` (lines 368-378)
+  - `.opencode/skills/system-spec-kit/templates/plan.md` (lines 368-378)
 - **Description:** Says "Level 2 or Level 3" then immediately says "REQUIRED for ALL levels".
 - **Acceptance:**
   - Clear, non-contradictory language
@@ -1069,7 +1069,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T018: Fix tasks.md Level Contradiction
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/templates/tasks.md` (lines 335-346)
+  - `.opencode/skills/system-spec-kit/templates/tasks.md` (lines 335-346)
 - **Description:** Same contradiction as plan.md regarding level requirements.
 - **Acceptance:**
   - Clear, non-contradictory language
@@ -1082,8 +1082,8 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T019: Add Missing spec.md Section
 - **Priority:** P1
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/templates/spec.md`
-  - `.opencode/skill/system-spec-kit/references/level_specifications.md`
+  - `.opencode/skills/system-spec-kit/templates/spec.md`
+  - `.opencode/skills/system-spec-kit/references/level_specifications.md`
 - **Description:** spec.md missing "Files to Change" section per level_specifications.md requirements.
 - **Acceptance:**
   - "Files to Change" section added to spec.md template
@@ -1112,7 +1112,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T020: Fix complete.md Option Format Reference
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/complete.md` (line 100)
+  - `.opencode/commands/spec_kit/complete.md` (line 100)
 - **Description:** References `[1] [2] [3] [all] [skip]` format that doesn't exist elsewhere.
 - **Acceptance:**
   - Reference updated to match actual format
@@ -1125,7 +1125,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T021: Fix plan.md Step Numbering Discrepancy
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/plan.md` (lines 248 vs 315)
+  - `.opencode/commands/spec_kit/plan.md` (lines 248 vs 315)
 - **Description:** Step 5 vs Step 6 discrepancy for Planning phase.
 - **Acceptance:**
   - Consistent step numbering throughout
@@ -1137,7 +1137,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T022: Add checkpoint_restore to Tool Table
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/resume.md` (lines 421-427)
+  - `.opencode/commands/spec_kit/resume.md` (lines 421-427)
 - **Description:** `checkpoint_restore` missing from tool table.
 - **Acceptance:**
   - Tool added to table with proper documentation
@@ -1149,8 +1149,8 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T023: Document research/research.md Phase 3
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/research/research/research.md`
-  - `.opencode/skill/system-spec-kit/SKILL.md`
+  - `.opencode/commands/spec_kit/research/research/research.md`
+  - `.opencode/skills/system-spec-kit/SKILL.md`
 - **Description:** research/research.md has unique Phase 3 (Prior Work Search) not documented in SKILL.md.
 - **Acceptance:**
   - Phase 3 documented in SKILL.md
@@ -1163,7 +1163,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T024: Add Missing YAML References to handover.md
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/handover.md`
+  - `.opencode/commands/spec_kit/handover.md`
 - **Description:** Missing YAML asset file references unlike other commands.
 - **Acceptance:**
   - YAML references added consistent with other commands
@@ -1179,7 +1179,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T025: Fix generate-context.js Spec Folder Regex
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/scripts/generate-context.js` (lines 60-64)
+  - `.opencode/skills/system-spec-kit/scripts/generate-context.js` (lines 60-64)
 - **Description:** Regex `/^\d{3}-/` is too permissive, may match non-spec folders.
 - **Acceptance:**
   - Stricter regex or additional validation
@@ -1192,7 +1192,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T026: Remove Hardcoded macOS Path
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/shared/semantic-summarizer.js` (lines 467-469)
+  - `.opencode/skills/system-spec-kit/shared/semantic-summarizer.js` (lines 467-469)
 - **Description:** Hardcoded `/Users/...` path makes code non-portable.
 - **Acceptance:**
   - Dynamic path resolution
@@ -1205,7 +1205,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T027: Fix checkpoints.js TTL Cleanup Logic
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` (lines 223-231)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` (lines 223-231)
 - **Description:** TTL cleanup ignores last-used date, may delete recently accessed checkpoints.
 - **Acceptance:**
   - TTL calculation considers last-used date
@@ -1218,7 +1218,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T028: Fix hybrid-search.js README Documentation
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/shared/hybrid-search.js` (README section)
+  - `.opencode/skills/system-spec-kit/shared/hybrid-search.js` (README section)
 - **Description:** Documents `vectorWeight`/`ftsWeight` params that don't exist in implementation.
 - **Acceptance:**
   - Documentation matches actual API
@@ -1231,7 +1231,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T029: Add Template Error Handling
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/template-renderer.js` (lines 120-125)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/template-renderer.js` (lines 120-125)
 - **Description:** Missing try-catch for template not found scenario.
 - **Acceptance:**
   - Graceful error handling when template missing
@@ -1248,8 +1248,8 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T030: Document shared/ Directory
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md`
-  - `.opencode/skill/system-spec-kit/shared/` (reference)
+  - `.opencode/skills/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/shared/` (reference)
 - **Description:** `shared/` directory contents and purpose undocumented in SKILL.md.
 - **Acceptance:**
   - shared/ directory documented with file purposes
@@ -1261,8 +1261,8 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T031: Document Root config/ Directory
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/SKILL.md`
-  - `.opencode/skill/system-spec-kit/config/` (reference)
+  - `.opencode/skills/system-spec-kit/SKILL.md`
+  - `.opencode/skills/system-spec-kit/config/` (reference)
 - **Description:** Root `config/` directory undocumented in SKILL.md.
 - **Acceptance:**
   - config/ directory documented with file purposes
@@ -1299,7 +1299,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T033: [P] Standardize Command Endings
 - **Priority:** P2
 - **Affected Files:**
-  - Various command files in `.opencode/command/spec_kit/`
+  - Various command files in `.opencode/commands/spec_kit/`
 - **Description:** Inconsistent "What would you like to do next?" endings across commands.
 - **Acceptance:**
   - Consistent ending pattern across all commands
@@ -1311,7 +1311,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T034: [P] Fix README Module Count
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/README.md`
+  - `.opencode/skills/system-spec-kit/README.md`
 - **Description:** Claims 29 modules but only 28 exist.
 - **Acceptance:**
   - Correct module count documented
@@ -1323,7 +1323,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T035: [P] Fix config-loader Naming Convention
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/config-loader.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/config-loader.js`
 - **Description:** snake_case vs camelCase mismatch in defaults.
 - **Acceptance:**
   - Consistent naming convention (prefer camelCase for JS)
@@ -1335,7 +1335,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T036: [P] Remove Redundant BigInt Conversions
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 - **Description:** Unnecessary BigInt conversions that don't serve a purpose.
 - **Acceptance:**
   - Redundant conversions removed
@@ -1360,8 +1360,8 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T038: [P] Document MAX_CHECKPOINTS and CHECKPOINT_TTL_DAYS
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/references/` (appropriate doc file)
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/references/` (appropriate doc file)
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 - **Description:** Constants (10 and 30) not documented.
 - **Acceptance:**
   - Both constants documented with rationale
@@ -1373,7 +1373,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T039: [P] Increase Git Command Timeout
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js`
 - **Description:** 1 second timeout too short for git commands on large repos.
 - **Acceptance:**
   - Reasonable timeout (5-10 seconds suggested)
@@ -1398,7 +1398,7 @@ grep -rn "/tmp\|/Users" .opencode/skill/system-spec-kit/scripts/ --include="*.js
 #### T041: [P] Fix Phase 2.5 Positioning in complete.md
 - **Priority:** P2
 - **Affected Files:**
-  - `.opencode/command/spec_kit/complete.md`
+  - `.opencode/commands/spec_kit/complete.md`
 - **Description:** Phase 2.5 appears in wrong location.
 - **Acceptance:**
   - Phase ordering correct and logical

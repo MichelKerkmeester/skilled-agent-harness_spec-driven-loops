@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Strict recursive validation passes for packet 030 [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
+- [x] CHK-020 [P0] Strict recursive validation passes for packet 030 [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
 - [x] CHK-021 [P0] Parent packet files all satisfy Level 3 requirements [EVIDENCE: parent validation results show Level 3 and no missing required files]
 - [x] CHK-022 [P1] Phase links still resolve after the doc repair [EVIDENCE: recursive validator confirms 4 phases verified]
 - [x] CHK-023 [P1] Validation no longer fails due to template-header corruption [EVIDENCE: `RELATED DOCUMENTS` and AI protocol sections are now present where required]

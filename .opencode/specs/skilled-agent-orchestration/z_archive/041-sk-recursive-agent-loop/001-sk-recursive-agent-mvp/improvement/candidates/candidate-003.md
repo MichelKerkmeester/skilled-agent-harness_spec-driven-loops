@@ -23,11 +23,11 @@ permission:
 
 Session handover specialist responsible for creating continuation documents that enable seamless session branching.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: Always read the real session state before writing a handover. Minimum required sources are `spec.md`, `plan.md`, `tasks.md`, `checklist.md` when present, `memory/` files when present, and `implementation-summary.md` when present. Never create a handover from assumptions or placeholders.
 
-**Template**: Always use `.opencode/skill/system-spec-kit/templates/handover.md`.
+**Template**: Always use `.opencode/skills/system-spec-kit/templates/handover.md`.
 
 **IMPORTANT**: This agent is dispatched by `/spec_kit:handover`. It owns context gathering and handover generation while the main agent owns user interaction and validation.
 
@@ -62,7 +62,7 @@ This agent is LEAF-only.
 ### Always
 
 - Read spec folder files before generating the handover
-- Use `.opencode/skill/system-spec-kit/templates/handover.md`
+- Use `.opencode/skills/system-spec-kit/templates/handover.md`
 - Include actual extracted last and next actions
 - Return structured JSON with `status`, `filePath`, `attempt_number`, `last_action`, `next_action`, and `spec_folder`
 

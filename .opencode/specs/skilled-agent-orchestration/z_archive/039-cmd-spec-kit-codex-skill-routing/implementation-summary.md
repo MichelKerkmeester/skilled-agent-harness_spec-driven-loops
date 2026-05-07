@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -44,7 +44,7 @@ This work updated the existing Level 1 documentation for an existing research pa
 
 ### Decision update recorded
 
-The packet now says two things clearly. First, the research finding still stands: the problem is discoverability placement, not missing command documentation, and the minimal recommendation was a four-command shortlist. Second, the chosen implementation direction is broader because the user explicitly asked to "add all commands though in short list." The downstream docs update should therefore surface all 12 commands in the quick reference while keeping `.opencode/skill/system-spec-kit/SKILL.md` limited to a pointer back to that surface.
+The packet now says two things clearly. First, the research finding still stands: the problem is discoverability placement, not missing command documentation, and the minimal recommendation was a four-command shortlist. Second, the chosen implementation direction is broader because the user explicitly asked to "add all commands though in short list." The downstream docs update should therefore surface all 12 commands in the quick reference while keeping `.opencode/skills/system-spec-kit/SKILL.md` limited to a pointer back to that surface.
 
 ### Files Changed
 
@@ -74,7 +74,7 @@ The packet was delivered by reading the existing research file, reading the curr
 |----------|-----|
 | Keep the original four-command recommendation visible | The packet should stay honest about what the research actually recommended |
 | Record the approved all-commands short-list direction separately | The user explicitly overrode the minimal recommendation, so the docs need both truths |
-| Keep the quick reference primary and `.opencode/skill/system-spec-kit/SKILL.md` pointer-only | Duplicating the command matrix in two places would reintroduce drift risk |
+| Keep the quick reference primary and `.opencode/skills/system-spec-kit/SKILL.md` pointer-only | Duplicating the command matrix in two places would reintroduce drift risk |
 <!-- /ANCHOR:decisions -->
 
 ---

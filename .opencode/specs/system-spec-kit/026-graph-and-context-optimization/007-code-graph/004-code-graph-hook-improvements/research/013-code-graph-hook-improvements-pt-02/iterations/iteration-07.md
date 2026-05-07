@@ -7,16 +7,16 @@ This round revisited the context deadline contract, but with a narrower question
 ### Context Consumed
 
 - `iterations/iteration-06.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/research/028-code-graph-hook-improvements-pt-01/research.md`
 
 ### Findings
 
-- `ContextArgs` still exposes `deadlineMs`, but `handleCodeGraphContext()` never sets it, so the bounded-work contract remains opt-in even though the handler advertises a budgeted context surface by default [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176].
-- Only `impact` mode enforces an elapsed-time budget inside `expandAnchor()`; `neighborhood` and `outline` loops can continue unbounded relative to `deadlineMs` once anchor expansion starts [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:73-95,189-240].
-- `formatTextBrief()` truncates by character budget and may omit later sections, but the response payload does not include any explicit `truncated`, `partial`, or `omittedSections` signal, so consumers cannot distinguish true absence from budget-driven omission [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:281-327].
+- `ContextArgs` still exposes `deadlineMs`, but `handleCodeGraphContext()` never sets it, so the bounded-work contract remains opt-in even though the handler advertises a budgeted context surface by default [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:13-21; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-176].
+- Only `impact` mode enforces an elapsed-time budget inside `expandAnchor()`; `neighborhood` and `outline` loops can continue unbounded relative to `deadlineMs` once anchor expansion starts [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:73-95,189-240].
+- `formatTextBrief()` truncates by character budget and may omit later sections, but the response payload does not include any explicit `truncated`, `partial`, or `omittedSections` signal, so consumers cannot distinguish true absence from budget-driven omission [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts:281-327].
 
 ### Evidence
 

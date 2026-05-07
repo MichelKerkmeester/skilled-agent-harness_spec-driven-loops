@@ -68,9 +68,9 @@ Treat graphify as a candidate pattern library for those gaps, not as something t
 11. Explicitly compare graphify against this repo's existing Code Graph MCP and CocoIndex capabilities so the recommendation set avoids duplicating features already present.
 12. Update the phase checklist to reflect the completed research steps and create `implementation-summary.md` for the phase after the research write-up is finished.
 13. Validate the spec folder with:
-    `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify" --strict`
+    `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify" --strict`
 14. Save memory at the end with:
-    `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify"`
+    `cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify"`
 15. Prioritize improvement proposals that can realistically strengthen graph-based context retrieval in Public without forcing a full graphify clone.
 
 ## Research Questions

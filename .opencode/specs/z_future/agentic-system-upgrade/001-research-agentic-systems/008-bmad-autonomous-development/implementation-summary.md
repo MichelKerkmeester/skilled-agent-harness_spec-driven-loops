@@ -14,7 +14,7 @@ contextType: "research"
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -86,7 +86,7 @@ The work was delivered by reading the existing Phase 1 packet artifacts first, c
 | Check | Result |
 |-------|--------|
 | `wc -l research/deep-research-state.jsonl` | PASS, 20 total state entries |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development --strict` | PASS after packet-doc repair |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development --strict` | PASS after packet-doc repair |
 <!-- /ANCHOR:verification -->
 
 ---

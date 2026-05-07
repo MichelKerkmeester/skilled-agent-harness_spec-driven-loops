@@ -114,7 +114,7 @@ Built in one pass following research.md §4 (Q-P1) Approach #1. The first attemp
 | `npx vitest run mcp_server/tests/code-graph-*.vitest.ts` | PASS - 34 tests pass across 5 files, zero regressions, exit code 0 |
 | Live-DB hash before/after | PASS — sha256 byte-equal, asserted in `afterAll` |
 | `npx tsc --noEmit -p tsconfig.json` (filtered to packet) | PASS — zero TypeScript errors in the new file |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | PASS — structural errors = 0 (see validation appendix below) |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | PASS — structural errors = 0 (see validation appendix below) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -152,5 +152,5 @@ Built in one pass following research.md §4 (Q-P1) Approach #1. The first attemp
 
 <!--
 Filed AFTER implementation per system-spec-kit Rule 13.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

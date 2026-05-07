@@ -78,7 +78,7 @@ Produce an auditable target list, fix confirmed sk-doc violations in packet scop
 
 ### Out of Scope
 - Code changes.
-- Editing `.opencode/skill/sk-doc/` standards or templates.
+- Editing `.opencode/skills/sk-doc/` standards or templates.
 - Fixing unrelated 051, 052 or 037/001 drift picked up by the broad raw range command.
 - Rewriting raw matrix prompt templates into README-style documents.
 
@@ -88,12 +88,12 @@ Produce an auditable target list, fix confirmed sk-doc violations in packet scop
 |-----------|-------------|-------------|
 | `specs/.../004-sk-doc-template-alignment/*.md` | Create | Level 2 packet docs and audit artifacts |
 | `specs/.../004-sk-doc-template-alignment/*.json` | Create | Packet metadata and graph metadata |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Modify | README TOC anchor and metadata alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modify | README TOC anchor and metadata alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/*/README.md` | Modify | README TOC, anchors and metadata alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md` | Modify | README structure, TOC and anchors |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Modify | Reference frontmatter, section numbering and anchors |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Reference importance tier metadata |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modify | README TOC anchor and metadata alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modify | README TOC anchor and metadata alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/*/README.md` | Modify | README TOC, anchors and metadata alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md` | Modify | README structure, TOC and anchors |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modify | Reference frontmatter, section numbering and anchors |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modify | Reference importance tier metadata |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,7 +107,7 @@ Produce an auditable target list, fix confirmed sk-doc violations in packet scop
 |----|-------------|---------------------|
 | REQ-001 | Discover target docs | `audit-target-list.md` records the packet-filtered 031 through 036 markdown/text scope |
 | REQ-002 | Audit every target | `audit-findings.md` has PASS, FIX_APPLIED or DEFERRED for each target |
-| REQ-003 | Keep sk-doc read-only | No files under `.opencode/skill/sk-doc/` are modified |
+| REQ-003 | Keep sk-doc read-only | No files under `.opencode/skills/sk-doc/` are modified |
 | REQ-004 | Preserve doc-only scope | No non-document source files are changed |
 
 ### P1 - Required (complete OR user-approved deferral)

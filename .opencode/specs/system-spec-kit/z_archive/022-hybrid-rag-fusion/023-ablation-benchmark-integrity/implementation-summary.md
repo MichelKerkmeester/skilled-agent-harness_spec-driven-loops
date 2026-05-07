@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -58,21 +58,21 @@ You can now refresh the canonical relevance file intentionally. `map-ground-trut
 
 The MCP ablation handler now supports `SPECKIT_EVAL_DB_PATH` as an eval-only DB override via a `withAblationDb()` helper in `eval-reporting.ts`. The helper temporarily swaps the vector-index singleton to the eval DB, runs alignment and search there, then restores the original connection in a `finally` block.
 
-However, the root cause was simpler: all 7 MCP runtime configs pointed `MEMORY_DB_PATH` at an external 44-record Codex DB (`~/.codex/memories/`) instead of the repo DB. All configs were repointed to `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` (the repo DB with 2,417 records), and a symlink was placed at the old Codex path for backward compatibility. With `MEMORY_DB_PATH` and the repo DB aligned, `SPECKIT_EVAL_DB_PATH` is no longer needed and was removed from all configs.
+However, the root cause was simpler: all 7 MCP runtime configs pointed `MEMORY_DB_PATH` at an external 44-record Codex DB (`~/.codex/memories/`) instead of the repo DB. All configs were repointed to `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` (the repo DB with 2,417 records), and a symlink was placed at the old Codex path for backward compatibility. With `MEMORY_DB_PATH` and the repo DB aligned, `SPECKIT_EVAL_DB_PATH` is no longer needed and was removed from all configs.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modified | Added ground-truth alignment audit and fail-fast benchmark validation. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modified | Added `evaluationMode` to bypass confidence and token-budget truncation only for benchmark callers. |
-| `.opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` | Modified | Validates repo DB provenance, enables eval mode, normalizes parent IDs, and now resolves paths in both source and dist layouts. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts` | Modified | Adds provenance guard, eval-mode search path, and `withAblationDb()` override support to MCP ablation runs. |
-| `.opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts` | Modified | Adds explicit `--write` support and resolves paths correctly in both source and dist layouts. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json` | Modified | Refreshed canonical parent-memory relevance dataset for the repo DB. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts` | Modified | Covers alignment-pass and alignment-fail cases. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts` | Modified | Covers eval-mode search options, parent normalization, and `SPECKIT_EVAL_DB_PATH` override behavior. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts` | Modified | Covers evaluation-mode truncation bypass. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modified | Added ground-truth alignment audit and fail-fast benchmark validation. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modified | Added `evaluationMode` to bypass confidence and token-budget truncation only for benchmark callers. |
+| `.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` | Modified | Validates repo DB provenance, enables eval mode, normalizes parent IDs, and now resolves paths in both source and dist layouts. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts` | Modified | Adds provenance guard, eval-mode search path, and `withAblationDb()` override support to MCP ablation runs. |
+| `.opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts` | Modified | Adds explicit `--write` support and resolves paths correctly in both source and dist layouts. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json` | Modified | Refreshed canonical parent-memory relevance dataset for the repo DB. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts` | Modified | Covers alignment-pass and alignment-fail cases. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts` | Modified | Covers eval-mode search options, parent normalization, and `SPECKIT_EVAL_DB_PATH` override behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts` | Modified | Covers evaluation-mode truncation bypass. |
 | `opencode.json` · `.claude/mcp.json` · `.mcp.json` · `.vscode/mcp.json` · `.codex/config.toml` · `.agents/settings.json` · `.gemini/settings.json` | Modified | Repointed `MEMORY_DB_PATH` from external `~/.codex/memories/` to repo DB path. |
 <!-- /ANCHOR:what-built -->
 
@@ -111,8 +111,8 @@ After the runtime patches landed, the benchmark dataset was refreshed against th
 | Repo DB alignment audit | PASS, `294` relevances across `126` unique IDs with `chunk_rows=0` and `missing=0` |
 | Dist DB smoke check (pre-config-fix) | PASS, benchmark correctly failed closed with `missing relevances=294 across 126 IDs` when configs pointed at the external Codex DB |
 | MCP config unification | PASS, all 7 runtime configs repointed `MEMORY_DB_PATH` to the repo DB; symlink at `~/.codex/memories/` for backward compatibility |
-| `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts` | PASS, run `ablation-1774694183830-651d`, baseline `0.32323232323232315`, FTS5 ablated `0.0` |
-| `SPECKIT_ABLATION=true npx tsx .opencode/skill/system-spec-kit/scripts/evals/run-ablation.ts --channels fts5` | PASS, run `ablation-1774694221880-ef57`, same baseline and same FTS5 collapse |
+| `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts` | PASS, run `ablation-1774694183830-651d`, baseline `0.32323232323232315`, FTS5 ablated `0.0` |
+| `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts --channels fts5` | PASS, run `ablation-1774694221880-ef57`, same baseline and same FTS5 collapse |
 | 10-query evaluation-mode runtime probe | PASS, every sampled query reported `budgetTruncated=false` and `evaluationMode=true`; shorter result lists were genuine sparse retrieval, not token clipping |
 <!-- /ANCHOR:verification -->
 
@@ -129,5 +129,5 @@ None. The original limitation (Codex MCP runtime pointing at an external DB) was
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

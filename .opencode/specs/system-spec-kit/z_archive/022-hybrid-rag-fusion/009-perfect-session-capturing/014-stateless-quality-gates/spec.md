@@ -121,14 +121,14 @@ This phase fixes the quality gate architecture so stateless saves from Claude Co
 
 | File Path | Change Type | Description | Phase |
 |-----------|-------------|-------------|-------|
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Modify | Tier Gate A into hard-block and soft-warning rule sets, preserve explicit-CLI alignment warnings, and thread `captureSource` into contamination filtering | 1, 3 |
-| `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts` | Modify | Export `HARD_BLOCK_RULES` for the stateless Gate A split | 1 |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add `--stdin` and `--json` parsing, spec-folder resolution/validation, and preloaded `collectedData` handoff | 2 |
-| `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` | Modify | Add `captureSource` parameter and downgrade tool-title-with-path only for Claude Code | 3 |
-| `.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` | Modify | Cover stateless soft-warning vs hard-block behavior and the failed-embedding regression harness | 1 |
-| `.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modify | Cover `--stdin` / `--json` handoff and target-authority rules | 2 |
-| `.opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` | Modify | Cover source-aware severity behavior | 3 |
-| `.opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts` | Modify | Cover the uncapped Claude-specific score path | 3 |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify | Tier Gate A into hard-block and soft-warning rule sets, preserve explicit-CLI alignment warnings, and thread `captureSource` into contamination filtering | 1, 3 |
+| `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts` | Modify | Export `HARD_BLOCK_RULES` for the stateless Gate A split | 1 |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Add `--stdin` and `--json` parsing, spec-folder resolution/validation, and preloaded `collectedData` handoff | 2 |
+| `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` | Modify | Add `captureSource` parameter and downgrade tool-title-with-path only for Claude Code | 3 |
+| `.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts` | Modify | Cover stateless soft-warning vs hard-block behavior and the failed-embedding regression harness | 1 |
+| `.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modify | Cover `--stdin` / `--json` handoff and target-authority rules | 2 |
+| `.opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts` | Modify | Cover source-aware severity behavior | 3 |
+| `.opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts` | Modify | Cover the uncapped Claude-specific score path | 3 |
 <!-- /ANCHOR:scope -->
 
 ---

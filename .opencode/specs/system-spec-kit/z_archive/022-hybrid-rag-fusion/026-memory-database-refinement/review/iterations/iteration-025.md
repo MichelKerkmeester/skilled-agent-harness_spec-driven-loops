@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] Common-word trigger phrases are accepted unchanged and can auto-surface irrelevant memories
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
 
 **Issue** The matcher accepts any trigger phrase with length `>= 3`, caches it verbatim, and then checks every cached phrase against every prompt. That means frontmatter phrases such as `save`, `update`, `error`, `context`, or `memory` are treated as valid trigger keys even though they are common enough to appear in ordinary prompts. In the proactive surfacing path this can pull unrelated memories into the surfaced set just because the user used routine vocabulary.
 
@@ -12,7 +12,7 @@
 **Fix** Reuse the denylist or an equivalent semantic filter during trigger ingestion and cache load, not just learned-feedback flows. At minimum reject single-token broad terms from the denylist; preferably require either multi-token phrases or a rarity/quality threshold before a phrase becomes matchable.
 
 ### [P1] Frontmatter extraction/storage errors are silently dropped, making memories disappear from trigger surfacing
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
 
 **Issue** If a persisted `trigger_phrases` payload is malformed JSON or not an array, `loadTriggerCache()` just skips that row and emits no warning, counter, or repair hint. Any upstream frontmatter extraction or storage bug therefore turns into a silent retrieval miss: the memory simply vanishes from trigger matching and proactive surfacing.
 
@@ -21,7 +21,7 @@
 **Fix** Replace the raw `JSON.parse()` branch with the shared `parse_trigger_phrases()` helper, and log invalid rows with at least `id` and `file_path`. Also expose an `invalidTriggerRows` counter in cache stats and surface a diagnostic hint from `memory_match_triggers` when rows were skipped, so broken frontmatter is observable instead of silent.
 
 ### [P2] Unicode handling is only Latin-1-aware, and phrase lookup uses a different normalization path than the matcher
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
 
 **Issue** The word-boundary regex only treats `[A-Za-z0-9\\u00C0-\\u00FF]` as in-word characters, so letters outside Latin-1 are treated as delimiters. That creates false positives inside mixed-script words and weakens the claim that matching is Unicode-safe. Separately, the helper lookup path lowercases with `toLowerCase()` only, while the main matcher caches phrases via NFC normalization plus lowercasing, so canonically equivalent phrases can disagree depending on the API path.
 
@@ -30,7 +30,7 @@
 **Fix** Replace the custom Latin-1 boundary class with Unicode-aware tokenization or property escapes such as `[\p{L}\p{N}]` under the `u` flag, and route every phrase lookup through the same `normalizeUnicode()` function used for cached phrases. Add regression tests for composed/decomposed accents and mixed-script boundaries, not just ASCII case folding.
 
 ### [P2] Proactive surfacing still does a full-cache regex scan on every dispatch, which will degrade sharply as trigger sets grow
-**File** `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`
 
 **Issue** Match time grows linearly with the total number of cached trigger phrases because every request iterates every cached regex and sorts the full match set before applying `limit`. That is especially expensive in proactive surfacing, where the hook invokes trigger matching on normal tool dispatches rather than only on explicit memory retrieval calls.
 

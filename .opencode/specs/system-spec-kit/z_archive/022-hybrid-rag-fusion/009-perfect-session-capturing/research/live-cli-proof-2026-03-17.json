@@ -1,7 +1,7 @@
 {
   "capturedOn": "2026-03-17",
   "capturedFromWorkspace": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",
-  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skill/system-spec-kit/scripts`",
+  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skills/system-spec-kit/scripts`",
   "proofCriteria": {
     "sameDayDate": "2026-03-17",
     "minimumExchanges": 2,
@@ -44,7 +44,7 @@
     {
       "source": "copilot",
       "sessionId": "90ef3116-39bb-4959-8bca-e0a085003254",
-      "title": "COPILOT-PROOF-2026-03-17-A: Read `.opencode/skill/system-spec-kit/scripts/loader",
+      "title": "COPILOT-PROOF-2026-03-17-A: Read `.opencode/skills/system-spec-kit/scripts/loader",
       "exchanges": 2,
       "toolCalls": 5,
       "proofDepth": "deep",
@@ -55,7 +55,7 @@
     {
       "source": "gemini",
       "sessionId": "bed88843-89c0-4aef-a4c6-eb8f3a395bb7",
-      "title": "GEMINI-PROOF-2026-03-17-A: Read `.opencode/skill/system-spec-kit/scripts/loaders",
+      "title": "GEMINI-PROOF-2026-03-17-A: Read `.opencode/skills/system-spec-kit/scripts/loaders",
       "exchanges": 2,
       "toolCalls": 4,
       "proofDepth": "deep",

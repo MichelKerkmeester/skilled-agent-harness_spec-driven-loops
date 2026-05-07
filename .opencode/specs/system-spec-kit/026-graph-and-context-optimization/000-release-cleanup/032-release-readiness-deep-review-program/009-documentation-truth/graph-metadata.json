@@ -45,7 +45,7 @@
       {
         "name": "tool-schemas.ts",
         "type": "canonical-source",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts"
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
       }
     ],
     "causal_summary": "Deep-review angle 9: documentation truth — every claim verified against runtime; tool counts canonical; feature catalogs complete; evergreen-doc rule self-check; trigger columns populated.",

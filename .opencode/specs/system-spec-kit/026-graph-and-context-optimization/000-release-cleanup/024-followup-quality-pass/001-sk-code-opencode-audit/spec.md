@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - "audit-findings.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/"
+      - ".opencode/skills/system-spec-kit/mcp_server/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "037-001-sk-code-opencode-audit"
@@ -75,7 +75,7 @@ Produce a line-cited audit, apply minimal code fixes for confirmed violations, a
 - Verify strict validator, build, and targeted vitest run.
 
 ### Out of Scope
-- Modifying `.opencode/skill/sk-code-opencode/` files - read-only in this packet.
+- Modifying `.opencode/skills/sk-code-opencode/` files - read-only in this packet.
 - Refactoring pre-existing code outside the packet changes.
 - Running the full 036 matrix.
 
@@ -85,7 +85,7 @@ Produce a line-cited audit, apply minimal code fixes for confirmed violations, a
 |-----------|-------------|-------------|
 | `specs/.../001-sk-code-opencode-audit/*.md` | Create | Level 2 packet docs and audit report |
 | `specs/.../001-sk-code-opencode-audit/*.json` | Create | Packet metadata and graph metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/**/*.ts` | Modify | Minimal standards fixes found during audit |
+| `.opencode/skills/system-spec-kit/mcp_server/**/*.ts` | Modify | Minimal standards fixes found during audit |
 <!-- /ANCHOR:scope -->
 
 ---

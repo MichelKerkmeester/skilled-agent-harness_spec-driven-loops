@@ -88,11 +88,11 @@ Implement the packet-02 findings in one Level-2 packet by:
 
 | Path | Why |
 |---|---|
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/**` | Advisor core logic |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py` | Fallback path |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/**` | Per-runtime hook adapters |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Runtime hook matrix |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Advisor hook contract |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/**` | Advisor core logic |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py` | Fallback path |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/**` | Per-runtime hook adapters |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Runtime hook matrix |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Advisor hook contract |
 | `026/009/001-skill-advisor-hook-surface/research/research.md` (if present) | Prior 001 research |
 | `026/009/008-skill-advisor-plugin-hardening/implementation-summary.md` | Prior 008 outcomes |
 | `026/009/009-skill-advisor-standards-alignment/implementation-summary.md` | Prior 009 outcomes |

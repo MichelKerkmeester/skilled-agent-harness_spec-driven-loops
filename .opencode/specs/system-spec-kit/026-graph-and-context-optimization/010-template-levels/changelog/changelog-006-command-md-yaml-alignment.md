@@ -1,6 +1,6 @@
 ---
 title: "Template Levels Phase 010/006: Command Markdown and YAML alignment"
-description: "Audited 18 in-scope command assets (6 Markdown files and 12 YAML workflow assets under .opencode/command/spec_kit/) for stale template-system references, banned public vocabulary leaks, and missing current-behavior notes. Removed all stale references. Preserved YAML structure and step ordering. Added current-behavior notes for validation exit codes, path hardening, and save locking where they affect command behavior."
+description: "Audited 18 in-scope command assets (6 Markdown files and 12 YAML workflow assets under .opencode/commands/spec_kit/) for stale template-system references, banned public vocabulary leaks, and missing current-behavior notes. Removed all stale references. Preserved YAML structure and step ordering. Added current-behavior notes for validation exit codes, path hardening, and save locking where they affect command behavior."
 trigger_phrases:
   - "phase 010/006 changelog"
   - "command md yaml alignment"
@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-Phase 006 audited the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The 6 command Markdown files under `.opencode/command/spec_kit/` and 12 command YAML workflow assets under `.opencode/command/spec_kit/assets/` were reviewed for stale references to deleted scripts (`compose.sh`, `wrap-all-templates`), deleted folder names (`level_N/` directories), and the retired architecture label. Current-behavior notes were added only where they affect command invocation: validation exit codes, path traversal rejection, canonical save locking, batch inline rendering, and phase-mode syntax.
+Phase 006 audited the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The 6 command Markdown files under `.opencode/commands/spec_kit/` and 12 command YAML workflow assets under `.opencode/commands/spec_kit/assets/` were reviewed for stale references to deleted scripts (`compose.sh`, `wrap-all-templates`), deleted folder names (`level_N/` directories), and the retired architecture label. Current-behavior notes were added only where they affect command invocation: validation exit codes, path traversal rejection, canonical save locking, batch inline rendering, and phase-mode syntax.
 
 YAML files received the higher-risk attention because they drive runtime command behavior. Each edit preserved step IDs, ordering, and structural shape. All 12 YAML files parse cleanly after edits.
 
@@ -37,7 +37,7 @@ YAML files received the higher-risk attention because they drive runtime command
 
 ### Fixed
 
-- Zero stale-pattern hits remain in `.opencode/command/spec_kit/`.
+- Zero stale-pattern hits remain in `.opencode/commands/spec_kit/`.
 - Zero banned public vocabulary leaks in user-facing command prose (excluding legitimate runtime workflow terms and concrete `templates/manifest/` directory references).
 - All 12 YAML files parse cleanly with Python yaml.safe_load.
 
@@ -52,14 +52,14 @@ YAML files received the higher-risk attention because they drive runtime command
 
 | File | What changed |
 |------|--------------|
-| `.opencode/command/spec_kit/complete.md` | Stale references removed. Exit-code and validation notes added. |
-| `.opencode/command/spec_kit/deep-research.md` | Stale references removed. |
-| `.opencode/command/spec_kit/deep-review.md` | Stale references removed. |
-| `.opencode/command/spec_kit/implement.md` | Stale references removed. Path hardening notes added. |
-| `.opencode/command/spec_kit/plan.md` | Stale references removed. Phase-mode syntax note added. |
-| `.opencode/command/spec_kit/resume.md` | Stale references removed. Save-locking note added. |
-| `.opencode/command/spec_kit/assets/spec_kit_*_auto.yaml` (6 files) | Stale references corrected. |
-| `.opencode/command/spec_kit/assets/spec_kit_*_confirm.yaml` (6 files) | Stale references corrected. |
+| `.opencode/commands/spec_kit/complete.md` | Stale references removed. Exit-code and validation notes added. |
+| `.opencode/commands/spec_kit/deep-research.md` | Stale references removed. |
+| `.opencode/commands/spec_kit/deep-review.md` | Stale references removed. |
+| `.opencode/commands/spec_kit/implement.md` | Stale references removed. Path hardening notes added. |
+| `.opencode/commands/spec_kit/plan.md` | Stale references removed. Phase-mode syntax note added. |
+| `.opencode/commands/spec_kit/resume.md` | Stale references removed. Save-locking note added. |
+| `.opencode/commands/spec_kit/assets/spec_kit_*_auto.yaml` (6 files) | Stale references corrected. |
+| `.opencode/commands/spec_kit/assets/spec_kit_*_confirm.yaml` (6 files) | Stale references corrected. |
 | `010-template-levels/graph-metadata.json` | 006 registered as active child. |
 
 One commit: `de27ce62f9`.

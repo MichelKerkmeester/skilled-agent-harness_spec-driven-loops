@@ -165,8 +165,8 @@ Update the root README so it reflects the current runtime surface, cites canonic
 ## L2: EDGE CASES
 
 ### Count Boundaries
-- `.opencode/agent/README.txt` and `.claude/agents/README.txt` are not agent definitions.
-- `.opencode/skill/README.md` and dot-directories are not counted as skills.
+- `.opencode/agents/README.txt` and `.claude/agents/README.txt` are not agent definitions.
+- `.opencode/skills/README.md` and dot-directories are not counted as skills.
 - Advisor schema files define input/output schemas; the four advisor MCP descriptors are imported into `TOOL_DEFINITIONS`.
 
 ### Evergreen Grep

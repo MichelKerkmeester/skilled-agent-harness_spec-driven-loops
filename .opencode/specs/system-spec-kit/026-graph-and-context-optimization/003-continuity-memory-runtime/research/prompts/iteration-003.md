@@ -28,15 +28,15 @@ Produce severity-ranked findings (P0/P1/P2) with exact file:line evidence for ev
 ## RESEARCH ACTIONS (target 5–8, cap 12 tool calls)
 
 1. **Read the documented routing contract.** Read:
-   - `.opencode/command/memory/save.md` (full)
-   - `.opencode/skill/system-spec-kit/references/` directory listing, then open any routing-contract or planner-first doc (grep for "planner-first", "routeAs", "narrative_progress|narrative_delivery|handover_state|research_finding|task_update|metadata_only|drop")
-   - `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` (sections relating to `SPECKIT_MEMORY_SAVE_*`, `SPECKIT_COMMUNITY_SEARCH_FALLBACK`, and planner/execute flags)
+   - `.opencode/commands/memory/save.md` (full)
+   - `.opencode/skills/system-spec-kit/references/` directory listing, then open any routing-contract or planner-first doc (grep for "planner-first", "routeAs", "narrative_progress|narrative_delivery|handover_state|research_finding|task_update|metadata_only|drop")
+   - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` (sections relating to `SPECKIT_MEMORY_SAVE_*`, `SPECKIT_COMMUNITY_SEARCH_FALLBACK`, and planner/execute flags)
 
 2. **Read the runtime routing implementation.** Read:
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts` (planner branching, envvar gates, default behavior)
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts` (planner response shape, follow-up actions)
-   - `.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts` (blockers vs advisories)
-   - `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts` (Tier 3 exception + routing table)
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` (planner branching, envvar gates, default behavior)
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` (planner response shape, follow-up actions)
+   - `.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts` (blockers vs advisories)
+   - `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts` (Tier 3 exception + routing table)
 
 3. **Cross-check every route value against code.** For each of the 8 documented `routeAs` values (`decision`, `narrative_progress`, `narrative_delivery`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, `drop`), answer in code:
    - Where is the route decision made (source-of-truth function)?

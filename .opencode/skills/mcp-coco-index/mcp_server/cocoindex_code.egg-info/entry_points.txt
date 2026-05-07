@@ -1,0 +1,2 @@
+[console_scripts]
+ccc = cocoindex_code.cli:app

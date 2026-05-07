@@ -19,9 +19,9 @@ _memory:
     next_safe_action: "Update D3 row after research streams converge with research-validated mechanism"
     blockers: []
     key_files:
-      - .opencode/agent/review.md
-      - .opencode/agent/orchestrate.md
-      - .opencode/skill/sk-code/SKILL.md
+      - .opencode/agents/review.md
+      - .opencode/agents/orchestrate.md
+      - .opencode/skills/sk-code/SKILL.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-01-spec-scaffold"
@@ -48,7 +48,7 @@ Each decision is captured ADR-style: **Status / Context / Decision / Alternative
 
 **Context:** User said verbatim "dedicated 'code' agent." Need an agent file name that maps cleanly to the orchestrator-dispatched alias.
 
-**Decision:** File at `.opencode/agent/code.md`; agent reference `@code`.
+**Decision:** File at `.opencode/agents/code.md`; agent reference `@code`.
 
 **Alternatives Considered:**
 - `implement.md` — verb-first; avoids cosmetic collision with `sk-code` skill name
@@ -56,10 +56,10 @@ Each decision is captured ADR-style: **Status / Context / Decision / Alternative
 
 **Consequences:**
 - Pro: Matches user's verbatim language; routing reads cleanly as `@code`
-- Con: Cosmetic collision with `sk-code` skill (different namespaces — `.opencode/agent/` vs `.opencode/skill/` — but a reader scanning routing rules "@code uses sk-code" may trip)
+- Con: Cosmetic collision with `sk-code` skill (different namespaces — `.opencode/agents/` vs `.opencode/skills/` — but a reader scanning routing rules "@code uses sk-code" may trip)
 - Acceptable cost; verbatim-language win dominates per pressure-test (Plan agent verdict: PARTIAL agree, accept)
 
-**Validation:** Authored at `.opencode/agent/code.md` (post-research).
+**Validation:** Authored at `.opencode/agents/code.md` (post-research).
 
 <!-- /ANCHOR:adr-1 -->
 
@@ -111,13 +111,13 @@ permission:
 
 **Status:** Accepted (post-research, Phase 2 complete 2026-05-01)
 
-**Context:** User stated `@code` "should only be called by orchestrate and cant be used in other ways." Existing `.opencode/agent/` survey: NO native frontmatter mechanism for caller restriction. Phase 2 deep research across three streams (`oh-my-opencode-slim`, `opencode-swarm-main`, internal `.opencode/agent/` + AGENTS.md + sk-code) confirmed: NO machine-readable caller-restriction frontmatter field exists in any source, and NO local dispatch validator gates "callable only by orchestrator". See `research/synthesis.md` §1 Q3 + §3 for full evidence.
+**Context:** User stated `@code` "should only be called by orchestrate and cant be used in other ways." Existing `.opencode/agents/` survey: NO native frontmatter mechanism for caller restriction. Phase 2 deep research across three streams (`oh-my-opencode-slim`, `opencode-swarm-main`, internal `.opencode/agents/` + AGENTS.md + sk-code) confirmed: NO machine-readable caller-restriction frontmatter field exists in any source, and NO local dispatch validator gates "callable only by orchestrator". See `research/synthesis.md` §1 Q3 + §3 for full evidence.
 
 **Decision (final / post-research):** Convention-floor with three layers, matching the precedent set by `@deep-research`/`@deep-review`/`@improve-agent` and documented in `cli-opencode/SKILL.md:296-300` and `AGENTS.md:223`:
 
 1. Frontmatter `description` field states: "Dispatched ONLY by @orchestrate (orchestrator-only convention; not harness-enforced)."
-2. Body §0 **DISPATCH GATE** refuses with explicit message when invoked without an orchestrator-context marker (the orchestrator-injected `Depth: 1` line per `.opencode/agent/orchestrate.md` §2 NDP). REFUSE, do not warn-and-proceed.
-3. `.opencode/agent/orchestrate.md` §2 routing-table entry adds `@code` as the implementation specialist (orchestrator-side referencing).
+2. Body §0 **DISPATCH GATE** refuses with explicit message when invoked without an orchestrator-context marker (the orchestrator-injected `Depth: 1` line per `.opencode/agents/orchestrate.md` §2 NDP). REFUSE, do not warn-and-proceed.
+3. `.opencode/agents/orchestrate.md` §2 routing-table entry adds `@code` as the implementation specialist (orchestrator-side referencing).
 
 **Reinforcing harness mechanism (LEAF, distinct from caller-restriction):**
 - Frontmatter `mode: subagent` (registry classification; prevents `@code` from being a primary/user-invocable target).
@@ -144,7 +144,7 @@ permission:
 **Citations:**
 - Stream-01 (oh-my-opencode-slim): `src/agents/index.ts:428-442`, `src/agents/index.ts:172-181`, `src/tools/council.ts:52-69`, `src/config/constants.ts:25-66` (SUBAGENT_DELEGATION_RULES dead-code anti-pattern).
 - Stream-02 (opencode-swarm-main): `src/agents/index.ts:651`, `src/agents/architect-permission.adversarial.test.ts:43,55,104,123` (suffix-classifier overmatch caveat).
-- Stream-03 (internal): `.opencode/skill/cli-opencode/SKILL.md:296-300`, `AGENTS.md:223`, `.opencode/agent/orchestrate.md:147,151,208`, `.opencode/agent/write.md:30` (closest write-capable LEAF analog).
+- Stream-03 (internal): `.opencode/skills/cli-opencode/SKILL.md:296-300`, `AGENTS.md:223`, `.opencode/agents/orchestrate.md:147,151,208`, `.opencode/agents/write.md:30` (closest write-capable LEAF analog).
 
 <!-- /ANCHOR:adr-3 -->
 
@@ -259,7 +259,7 @@ permission:
 
 **Status:** Accepted
 
-**Context:** User specified "10 iterations per folder" for external + "let them check ours" for internal. Two external folders (oh-my-opencode-slim, opencode-swarm-main) + one internal sweep (.opencode/agent/) = 3 streams. Memory: cli-copilot caps at 3 concurrent.
+**Context:** User specified "10 iterations per folder" for external + "let them check ours" for internal. Two external folders (oh-my-opencode-slim, opencode-swarm-main) + one internal sweep (.opencode/agents/) = 3 streams. Memory: cli-copilot caps at 3 concurrent.
 
 **Decision:** 3 streams × 10 iters each = 30 iters total. All 3 dispatched in parallel (matches concurrency cap exactly).
 

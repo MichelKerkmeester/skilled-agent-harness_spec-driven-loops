@@ -36,10 +36,10 @@ Shipped on commit **`6374d5806`**.
 ### Static benchmark assets
 
 ```
-.opencode/skill/sk-improve-agent/assets/benchmark-profiles/
+.opencode/skills/sk-improve-agent/assets/benchmark-profiles/
 └── default.json                                (profile JSON: fixtureDir, fixtures, outputsDir, metrics, thresholdDelta)
 
-.opencode/skill/sk-improve-agent/assets/benchmark-fixtures/
+.opencode/skills/sk-improve-agent/assets/benchmark-fixtures/
 ├── fixture-baseline.json
 ├── fixture-improved.json
 └── fixture-edge.json
@@ -48,7 +48,7 @@ Shipped on commit **`6374d5806`**.
 ### Materializer helper
 
 ```
-.opencode/skill/sk-improve-agent/scripts/
+.opencode/skills/sk-improve-agent/scripts/
 └── materialize-benchmark-fixtures.cjs          (97 lines; reads profile, writes outputsDir/{id}.md before run-benchmark.cjs)
 ```
 
@@ -77,7 +77,7 @@ Shipped on commit **`6374d5806`**.
 ### Helper scripts
 
 ```
-.opencode/skill/sk-improve-agent/scripts/
+.opencode/skills/sk-improve-agent/scripts/
 ├── run-benchmark.cjs                           (consumes materialized fixtures, emits report.json + benchmark_run state row)
 ├── improvement-journal.cjs                     (validates nested details.gateResults; rejects non-canonical stop reasons)
 └── reduce-state.cjs                            (consumes nested details.gateResults; surfaces journalSummary.latestLegalStop.gateResults)
@@ -86,32 +86,32 @@ Shipped on commit **`6374d5806`**.
 ### Command YAMLs (auto + confirm lockstep)
 
 ```
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml       (materializer→run-benchmark wiring; nested legal_stop_evaluated; benchmark_completed gated on report file)
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml    (same — lockstep parity)
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml       (materializer→run-benchmark wiring; nested legal_stop_evaluated; benchmark_completed gated on report file)
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml    (same — lockstep parity)
 ```
 
 ### Skill docs + references
 
 ```
-.opencode/skill/sk-improve-agent/SKILL.md                              (static-asset benchmark location; materializer ownership; nested gate shape; stop-reason enum truth)
-.opencode/skill/sk-improve-agent/README.md                             (top-level skill description align)
-.opencode/skill/sk-improve-agent/changelog/v1.1.0.0.md                 (062 changes documented)
-.opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md
-.opencode/skill/sk-improve-agent/references/quick_reference.md
+.opencode/skills/sk-improve-agent/SKILL.md                              (static-asset benchmark location; materializer ownership; nested gate shape; stop-reason enum truth)
+.opencode/skills/sk-improve-agent/README.md                             (top-level skill description align)
+.opencode/skills/sk-improve-agent/changelog/v1.1.0.0.md                 (062 changes documented)
+.opencode/skills/sk-improve-agent/references/benchmark_operator_guide.md
+.opencode/skills/sk-improve-agent/references/quick_reference.md
 ```
 
 ### Native RT scenarios (sk-improve-agent's own playbook)
 
 ```
-.opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
 ```
 
 ### CP-XXX playbook scenarios (signal shapes updated for 062's emissions)
 
 ```
-.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/
+.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/
 ├── 013-skill-load-not-protocol.md              (CP-040)
 ├── 014-proposal-only-boundary.md               (CP-041)
 ├── 015-active-critic-overfit.md                (CP-042)
@@ -123,11 +123,11 @@ Shipped on commit **`6374d5806`**.
 ### Existing tests (matched to new shapes)
 
 ```
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md
-.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md
+.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl
 ```
 
 ---

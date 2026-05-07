@@ -17,7 +17,7 @@ Final iteration. Per the memory rule "AGENTS.md updates must sync the Barter + f
 
 4. **No spec.md or implementation-summary.md authoritative references in active siblings.** The implementation-summary.md for 002 contains 10 hits for "promotion|gate-bundle|shadow-cycle" but all describe 002's OWN promotion machinery (rag-fusion semantic gating) — not 015's advisor-brief promotion. No cross-packet contamination, no stale roadmap references. [SOURCE: grep -c result on 002/spec.md]
 
-5. **Memory rule compliance verified.** The memory rule specifies: "AGENTS.md changes mirror into AGENTS_Barter.md (symlink → separate Barter repo) and AGENTS_example_fs_enterprises.md; port shared gates/runtime contracts, not skill-specific names." Since the 10-PR roadmap is **skill-internal** (advisor-brief code in `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/` + `shared/`), it does NOT cross the AGENTS.md-level shared-contract boundary. **No triad mirror required.** [SOURCE: feedback_agents_md_sync_triad.md memory rule]
+5. **Memory rule compliance verified.** The memory rule specifies: "AGENTS.md changes mirror into AGENTS_Barter.md (symlink → separate Barter repo) and AGENTS_example_fs_enterprises.md; port shared gates/runtime contracts, not skill-specific names." Since the 10-PR roadmap is **skill-internal** (advisor-brief code in `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/` + `shared/`), it does NOT cross the AGENTS.md-level shared-contract boundary. **No triad mirror required.** [SOURCE: feedback_agents_md_sync_triad.md memory rule]
 
 6. **SHIP-READY signal: GREEN.** All three audit dimensions return clean:
    - Triad files: 0 stale hits

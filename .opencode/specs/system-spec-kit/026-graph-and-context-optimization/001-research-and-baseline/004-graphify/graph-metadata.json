@@ -46,8 +46,8 @@
       "external/skills/graphify/skill.md",
       "implementation-summary.md",
       "external/worked/mixed-corpus/GRAPH_REPORT.md",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "external/worked/karpathy-repos/GRAPH_REPORT.md",
       "spec.md",
       "plan.md",
@@ -78,13 +78,13 @@
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "generate-context.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {

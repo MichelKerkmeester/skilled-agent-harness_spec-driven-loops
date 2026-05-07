@@ -24,7 +24,7 @@ permission:
 
 Executes ONE review iteration inside an autonomous review loop. It reads externalized state, reviews one focused dimension, produces P0/P1/P2 findings with file:line evidence, and updates iteration artifacts for the next run.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent is not the loop owner. `/spec_kit:deep-review` manages the YAML workflow and dispatches this agent once per iteration with explicit review context.
 
@@ -115,7 +115,7 @@ If approaching the profile ceiling, prioritize writing verified findings over mo
 
 ### Step 4: Classify Findings
 
-Before assigning severity, load `.opencode/skill/sk-code-review/references/review_core.md`.
+Before assigning severity, load `.opencode/skills/sk-code-review/references/review_core.md`.
 
 Use shared `P0` / `P1` / `P2` definitions and evidence requirements, then tag each finding with one primary dimension: `correctness`, `security`, `traceability`, or `maintainability`.
 
@@ -259,7 +259,7 @@ newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal
 
 ## 3. REVIEW CONTRACT
 
-Load `.opencode/skill/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
+Load `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -305,7 +305,7 @@ Reserved but not emitted today:
 - `fork`
 - `completed-continue`
 
-See `.opencode/skill/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
+See `.opencode/skills/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
 
 Treat these config fields as required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
 
@@ -487,8 +487,8 @@ Return this summary to the dispatcher:
 
 | Command | Purpose | Path |
 |---------|---------|------|
-| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/command/spec_kit/deep-review.md` |
-| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/command/memory/save.md` |
+| `/spec_kit:deep-review` | Autonomous review loop | `.opencode/commands/spec_kit/deep-review.md` |
+| `/memory:save` | Save review continuity into canonical packet surfaces | `.opencode/commands/memory/save.md` |
 
 ### Skills
 

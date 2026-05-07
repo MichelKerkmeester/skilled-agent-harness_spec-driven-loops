@@ -12,11 +12,11 @@ Yes. A few roles remain genuinely exclusive, but too many workflow nuances are e
 I compared Public's orchestrator routing table and role-specialized agents with Agent Lightning's capability-oriented repo architecture.
 
 ## Evidence
-- The orchestrator enumerates a broad LEAF roster: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`. [SOURCE: .opencode/agent/orchestrate.md:97-106]
-- Those roles are backed by strict depth and LEAF-enforcement rules, so the role boundaries become architecture, not just prompts. [SOURCE: .opencode/agent/orchestrate.md:116-126] [SOURCE: .opencode/agent/orchestrate.md:152-156]
-- `@context` is declared the exclusive entrypoint for all exploration tasks. [SOURCE: .opencode/agent/context.md:27-31]
-- `@context-prime` exists specifically to return a compact Prime Package for startup or recovery. [SOURCE: .opencode/agent/context-prime.md:22-36] [SOURCE: .opencode/agent/context-prime.md:96-116]
-- `@handover` separately owns continuation documents and mandates a specific source set and template. [SOURCE: .opencode/agent/handover.md:28-49]
+- The orchestrator enumerates a broad LEAF roster: `@context-prime`, `@context`, `@deep-research`, `@ultra-think`, `@speckit`, `@review`, `@write`, `@general`, `@debug`, and `@handover`. [SOURCE: .opencode/agents/orchestrate.md:97-106]
+- Those roles are backed by strict depth and LEAF-enforcement rules, so the role boundaries become architecture, not just prompts. [SOURCE: .opencode/agents/orchestrate.md:116-126] [SOURCE: .opencode/agents/orchestrate.md:152-156]
+- `@context` is declared the exclusive entrypoint for all exploration tasks. [SOURCE: .opencode/agents/context.md:27-31]
+- `@context-prime` exists specifically to return a compact Prime Package for startup or recovery. [SOURCE: .opencode/agents/context-prime.md:22-36] [SOURCE: .opencode/agents/context-prime.md:96-116]
+- `@handover` separately owns continuation documents and mandates a specific source set and template. [SOURCE: .opencode/agents/handover.md:28-49]
 - In contrast, Agent Lightning describes itself through functional modules: runners, tracers, store, algorithms, docs, examples, dashboard, scripts, and tests. [SOURCE: external/AGENTS.md:3-9]
 
 ## Analysis
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should merge much of its named-agent roster into a smaller capability-bundle model, while preserving a short list of genuinely exclusive roles.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md` and the operator-facing agent taxonomy
+- **Target file or module:** `.opencode/agents/orchestrate.md` and the operator-facing agent taxonomy
 - **Change type:** architecture merge
 - **Blast radius:** large
 - **Prerequisites:** identify which current roles are truly exclusive, define canonical capability bundles, and preserve prompt/permission overlays where they add real safety

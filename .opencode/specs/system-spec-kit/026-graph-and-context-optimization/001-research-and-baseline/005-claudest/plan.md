@@ -52,8 +52,8 @@ Run a 20-iteration deep-research loop against `external/` to translate Claudest'
 - [x] Phase research prompt exists at `scratch/phase-research-prompt.md` with 10 explicit research questions
 - [x] Cross-phase awareness (sibling phase `001-claude-optimization-settings`) loaded into strategy.md `Known Context` section
 - [x] cli-codex CLI installed (verified via `codex --version` → `codex-cli 0.118.0`)
-- [x] Reducer script reachable at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`
-- [x] Memory script reachable at `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- [x] Reducer script reachable at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+- [x] Memory script reachable at `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 
 ### Definition of Done
 
@@ -180,7 +180,7 @@ generate-context.js -> memory/<dated-summary>.md + metadata.json
 
 This is a research-only phase, so the "testing" surface is documentation and validator compliance:
 
-- **Validator gate**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` must return RESULT: PASSED.
+- **Validator gate**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` must return RESULT: PASSED.
 - **Anchor integrity**: All anchor open and close pairs in research.md and strategy.md must balance.
 - **Frontmatter validity**: All spec docs must have `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType` fields.
 - **Memory quality**: `generate-context.js` post-save review must report no HIGH severity issues; MEDIUM issues should be patched when practical.
@@ -197,9 +197,9 @@ This is a research-only phase, so the "testing" surface is documentation and val
 - `external/` directory containing the Claudest checkout.
 - cli-codex CLI v0.118.0+ (verified via `codex --version`).
 - Node.js for reducer + memory scripts.
-- Reducer script `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs`.
-- Memory script `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`.
-- Validator script `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- Reducer script `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`.
+- Memory script `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`.
+- Validator script `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 - Voyage API key for memory embedding (`VOYAGE_API_KEY` env var).
 - Public packets `023/013` (FTS5 fix), `024/002` (SessionStart hook), `024/003` (Stop hook tracking), `022/008` (signal extraction) — referenced as substrate dependencies.
 
@@ -352,7 +352,7 @@ Before dispatching any iteration, verify:
 | TASK-SCOPE-001 | Each iteration writes to exactly ONE iteration file | research/iterations/iteration-001.md write-once |
 | TASK-SCOPE-002 | External repo `external/` is READ-ONLY | sandbox=workspace-write, but the agent only reads under `external/` per the prompt's scope rules |
 | TASK-SEQ-002 | Append iteration record to JSONL after iteration completes | One JSONL line per iteration with `type=iteration` |
-| TASK-SEQ-003 | Run reducer after every iteration before the next dispatch | `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs <spec-folder>` |
+| TASK-SEQ-003 | Run reducer after every iteration before the next dispatch | `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs <spec-folder>` |
 | TASK-SCOPE-003 | Findings must cite file:line evidence | `[SOURCE: external/plugins/...:LINE-LINE]` format |
 | TASK-SEQ-004 | Convergence check before each iteration | composite_converged stop unless user override |
 | TASK-CONT-001 | Continuation iterations 8-12 are synthesis-class and depend on prior synthesis output | Sequential dispatch, no parallelism |

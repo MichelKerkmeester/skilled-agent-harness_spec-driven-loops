@@ -72,11 +72,11 @@ Make AI-composed JSON the routine save contract, hard-deprecate direct positiona
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Reject direct spec-folder invocation and require structured JSON modes (`--stdin`, `--json`, or JSON file path) |
-| `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` | Modify | Enforce structured JSON-only loader contract for save workflows |
-| `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` | Modify | Add structured JSON enrichment types |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modify | Update the operator guidance to JSON-primary wording |
-| `.opencode/command/memory/save.md` | Modify | Align the save command with the JSON-primary contract |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Reject direct spec-folder invocation and require structured JSON modes (`--stdin`, `--json`, or JSON file path) |
+| `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` | Modify | Enforce structured JSON-only loader contract for save workflows |
+| `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` | Modify | Add structured JSON enrichment types |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modify | Update the operator guidance to JSON-primary wording |
+| `.opencode/commands/memory/save.md` | Modify | Align the save command with the JSON-primary contract |
 <!-- /ANCHOR:scope -->
 
 ---

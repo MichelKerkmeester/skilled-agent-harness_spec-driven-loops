@@ -114,22 +114,22 @@ User invokes /create:changelog <spec-folder> [:auto|:confirm]
 
 | Pattern | Changelog Folder |
 |---------|-----------------|
-| `.opencode/skill/system-spec-kit/**` | `01--system-spec-kit` |
-| `AGENTS.md`, `.claude/agents/**`, `.opencode/agent/**` | `02--agents-md` |
+| `.opencode/skills/system-spec-kit/**` | `01--system-spec-kit` |
+| `AGENTS.md`, `.claude/agents/**`, `.opencode/agents/**` | `02--agents-md` |
 | Agent orchestration, dispatch logic | `03--agent-orchestration` |
-| `.opencode/command/**` | `04--commands` |
+| `.opencode/commands/**` | `04--commands` |
 | `skill_advisor.py` | `05--skill-advisor` |
-| `.opencode/skill/sk-code-opencode/**` | `06--sk-code-opencode` |
-| `.opencode/skill/sk-code-web/**` | `07--sk-code-web` |
-| `.opencode/skill/sk-code-full-stack/**` | `08--sk-code-full-stack` |
-| `.opencode/skill/sk-code-review/**` | `09--sk-code-review` |
-| `.opencode/skill/sk-git/**` | `10--sk-git` |
-| `.opencode/skill/sk-doc/**` | `11--sk-doc` |
-| `.opencode/skill/sk-improve-prompt/**` | `13--sk-improve-prompt` |
-| `.opencode/skill/mcp-chrome-devtools/**` | `14--mcp-chrome-devtools` |
-| `.opencode/skill/mcp-code-mode/**` | `15--mcp-code-mode` |
-| `.opencode/skill/mcp-figma/**` | `16--mcp-figma` |
-| `.opencode/skill/cli-gemini/**` | `17--cli-gemini` |
+| `.opencode/skills/sk-code-opencode/**` | `06--sk-code-opencode` |
+| `.opencode/skills/sk-code-web/**` | `07--sk-code-web` |
+| `.opencode/skills/sk-code-full-stack/**` | `08--sk-code-full-stack` |
+| `.opencode/skills/sk-code-review/**` | `09--sk-code-review` |
+| `.opencode/skills/sk-git/**` | `10--sk-git` |
+| `.opencode/skills/sk-doc/**` | `11--sk-doc` |
+| `.opencode/skills/sk-improve-prompt/**` | `13--sk-improve-prompt` |
+| `.opencode/skills/mcp-chrome-devtools/**` | `14--mcp-chrome-devtools` |
+| `.opencode/skills/mcp-code-mode/**` | `15--mcp-code-mode` |
+| `.opencode/skills/mcp-figma/**` | `16--mcp-figma` |
+| `.opencode/skills/cli-gemini/**` | `17--cli-gemini` |
 | Unmatched / cross-component | `00--opencode-environment` |
 <!-- /ANCHOR:architecture -->
 
@@ -243,9 +243,9 @@ Phase 1 (Command File) ──► Phase 2 (Auto YAML) ──► Phase 3 (Confirm 
 - [ ] README.txt backed up
 
 ### Rollback Procedure
-1. Delete `.opencode/command/create/changelog.md`
-2. Delete `.opencode/command/create/assets/create_changelog_auto.yaml`
-3. Delete `.opencode/command/create/assets/create_changelog_confirm.yaml`
+1. Delete `.opencode/commands/create/changelog.md`
+2. Delete `.opencode/commands/create/assets/create_changelog_auto.yaml`
+3. Delete `.opencode/commands/create/assets/create_changelog_confirm.yaml`
 4. Revert README.txt to previous state
 
 ### Data Reversal

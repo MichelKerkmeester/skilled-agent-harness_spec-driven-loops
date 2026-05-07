@@ -5,18 +5,18 @@
 
 ## Sources Read
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/deep-review-strategy.md:36`
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:181`
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:196`
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:207`
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md:219`
-- `.opencode/skill/sk-deep-review/SKILL.md:303`
-- `.opencode/skill/sk-deep-review/references/state_format.md:43`
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:181`
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:196`
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:207`
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md:219`
+- `.opencode/skills/sk-deep-review/SKILL.md:303`
+- `.opencode/skills/sk-deep-review/references/state_format.md:43`
 
 ## Findings
 
 ### F-006
 ```json
-{"id":"F-006","severity":"P2","dimension":"maintainability","summary":"folder_structure.md's illustrated child-phase layout still teaches a pt-01 default before the post-028 flat-first rule.","evidence":".opencode/skill/system-spec-kit/references/structure/folder_structure.md:196","status":"new"}
+{"id":"F-006","severity":"P2","dimension":"maintainability","summary":"folder_structure.md's illustrated child-phase layout still teaches a pt-01 default before the post-028 flat-first rule.","evidence":".opencode/skills/system-spec-kit/references/structure/folder_structure.md:196","status":"new"}
 ```
 Severity rationale: the normative prose is correct later in the same section, so this is a reader-confusion risk, not a contract break.
 

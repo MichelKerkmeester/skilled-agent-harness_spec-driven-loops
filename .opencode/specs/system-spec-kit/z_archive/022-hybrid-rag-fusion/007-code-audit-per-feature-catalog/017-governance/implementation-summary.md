@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -111,7 +111,7 @@ None. All governance features verified as MATCH after remediation pass (2026-03-
 
 | Field | Value |
 |-------|-------|
-| **Source File** | `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md` (107 lines) |
+| **Source File** | `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md` (107 lines) |
 | **Classification** | BOTH_MISSING — exists in source, no catalog entry, no prior audit |
 | **Verdict** | Documented as constitutional memory |
 

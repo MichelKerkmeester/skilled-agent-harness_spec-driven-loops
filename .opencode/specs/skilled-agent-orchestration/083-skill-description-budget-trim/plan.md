@@ -44,7 +44,7 @@ _memory:
 | **Language/Stack** | YAML frontmatter (Markdown headers) |
 | **Files** | 16 SKILL.md + 23 command .md (39 total, all in `.opencode/`) |
 | **Tooling** | Python in-place rewriter, awk audit |
-| **Validation** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| **Validation** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 
 ### Overview
 Mechanical metadata trim. For each frontmatter, replace the existing `description:` value with a tighter version that retains routing keywords (skill name token, primary verb, primary domain noun) and drops product enumerations, parenthetical jargon, and marketing prose. Targets: ≤130 chars per skill, ≤110 chars per command. Combined target: ≤5,600 chars (leaves ≥2,400 for Claude Code built-ins under the default 8,000 budget).

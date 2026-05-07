@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] `memory_match_triggers` cannot accept the scope fields its handler depends on
-**File** `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts`
 
 **Issue** The published tool schema and dispatcher-local `TriggerArgs` type expose only `prompt`, `limit`, `session_id`, `turnNumber`, and `include_cognitive`, but the handler has a second contract that expects `specFolder`, `tenantId`, `userId`, `agentId`, and `sharedSpaceId` so it can post-filter trigger results by scope. Because the dispatcher validates against the narrower schema first, direct MCP callers can never reach that scope-filtering path.
 
@@ -12,7 +12,7 @@
 **Fix** Make the public tool contract match the handler by adding `specFolder`, `tenantId`, `userId`, `agentId`, and `sharedSpaceId` to `tool-schemas.ts`, `schemas/tool-input-schemas.ts`, and `tools/types.ts`. If those fields are intentionally unsupported for external callers, remove the dead handler path and document that trigger matching is always global.
 
 ### [P2] `memory_quick_search` returns envelopes labeled as `memory_search`
-**File** `.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
 
 **Issue** The dispatcher advertises a distinct `memory_quick_search` tool, but it forwards directly into `handleMemorySearch()` without overriding the response metadata. As a result, success and error envelopes identify the tool as `memory_search`, not the tool the caller actually invoked.
 
@@ -21,7 +21,7 @@
 **Fix** Add a lightweight wrapper for `memory_quick_search` that either passes a caller tool name into `handleMemorySearch()` or rewrites the response envelope before returning it. At minimum, success and error responses should preserve the original tool identity.
 
 ### [P2] Shared-memory admin tools publish a looser actor contract than the dispatcher enforces
-**File** `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
 
 **Issue** The published schemas for `shared_space_upsert` and `shared_space_membership_set` imply that callers may send both `actorUserId` and `actorAgentId` together, but the runtime validator and handlers reject that combination. That is required authorization behavior, but it is not represented in the public JSON schema surface.
 
@@ -30,7 +30,7 @@
 **Fix** Encode the actor exclusivity rule in `tool-schemas.ts` too, either with `oneOf` branches or an extension such as `x-mutuallyExclusive`. The documented contract should match the dispatcher's real acceptance rules for admin mutations.
 
 ### [P2] The published JSON schemas under-document numeric and non-empty constraints that the dispatcher already enforces
-**File** `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 
 **Issue** Several tools describe bounded or non-empty inputs in prose, but the actual JSON schema omits the matching `minimum`, `maximum`, or `minLength` rules. Generated clients and human callers will accept values that the dispatcher's Zod layer rejects, especially around negative numbers, zero values, and empty strings.
 
@@ -39,7 +39,7 @@
 **Fix** Treat `tool-schemas.ts` as a real machine-readable contract, not a prose summary. Mirror the runtime bounds directly in the JSON schema for every field whose validator already has hard requirements, especially min/max integers, non-empty strings, and bounded percentages.
 
 ### [P2] Dispatcher-local `ContextArgs` already drifted from the public `memory_context` contract
-**File** `.opencode/skill/system-spec-kit/mcp_server/tools/types.ts`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+**File** `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 **Issue** The dispatcher's shared `ContextArgs` interface no longer includes `profile`, even though the public schema exposes it and the handler consumes it. Because `parseArgs<T>()` is just a cast, this drift will not fail loudly, which makes future parameter omissions easy to miss.
 

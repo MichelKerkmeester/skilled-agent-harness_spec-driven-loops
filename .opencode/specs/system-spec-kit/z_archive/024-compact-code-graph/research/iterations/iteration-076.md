@@ -16,9 +16,9 @@ The underlying bug is still present. Every parser in `structural-indexer.ts` sti
 
 The wording from prior research needs one refinement: `CALLS` edge detection is not literally zeroed out in all cases. Same-line definitions such as `function foo() { return bar(); }` can still be detected because the declaration line is scanned. So the strong version of the claim ("breaking CALLS edge detection") is directionally right but slightly overstated. The precise current state is: **the bug still exists unchanged and severely degrades CALLS extraction for normal multi-line bodies**.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-169]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:171-191]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:30-169]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:171-191]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:282-313]
 
 ### Claim 2 — three missing edge types: DECORATES, OVERRIDES, TYPE_OF
 **Status: VERIFIED**
@@ -28,9 +28,9 @@ The wording from prior research needs one refinement: `CALLS` edge detection is 
 
 There is still no `DECORATES`, `OVERRIDES`, or `TYPE_OF` in `indexer-types.ts`, and no extraction logic in `structural-indexer.ts` that would emit those relationships. This part of the earlier research remains fully accurate.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:12-15]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:194-343]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:12-15]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:194-343]
 
 ### Claim 3 — three ghost SymbolKinds: variable, module, parameter
 **Status: VERIFIED**
@@ -39,8 +39,8 @@ There is still no `DECORATES`, `OVERRIDES`, or `TYPE_OF` in `indexer-types.ts`, 
 
 So these remain "ghost" kinds: the type system advertises them, but the extractor does not populate them.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts:7-10]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:29-169]
 
 ### Claim 4 — five budget allocator improvements proposed
 **Status: VERIFIED**
@@ -55,15 +55,15 @@ The current `budget-allocator.ts` still matches the limitations identified in it
 
 This means the prior improvement list is still current and still unimplemented in the checked file.
 
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:24-29]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:31-42]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:118-130]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:24-29]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:31-42]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:52-115]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts:118-130]
 
 ## Sources Reviewed
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/indexer-types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/budget-allocator.ts`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-056.md`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-060.md`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/deep-research-strategy.md`

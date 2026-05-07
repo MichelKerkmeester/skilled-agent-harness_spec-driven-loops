@@ -64,9 +64,9 @@ Run a 10-iteration deep research loop using cli-codex (gpt-5.5/high/fast) to map
 
 ### In Scope
 - 10-iteration `@deep-research` loop with cli-codex executor (gpt-5.5/high/fast/workspace-write/900s)
-- Audit of `.opencode/skill/system-spec-kit/` (skill + MCP server + scripts + templates)
-- Audit of `.opencode/skill/mcp-coco-index/` (skill + MCP server + settings + CLI parity)
-- Audit of `.opencode/skill/sk-code/{references,assets}/opencode/` (drift + coverage gaps + missing files)
+- Audit of `.opencode/skills/system-spec-kit/` (skill + MCP server + scripts + templates)
+- Audit of `.opencode/skills/mcp-coco-index/` (skill + MCP server + settings + CLI parity)
+- Audit of `.opencode/skills/sk-code/{references,assets}/opencode/` (drift + coverage gaps + missing files)
 - Cross-cutting questions: smart-router x spec-folder writes; CocoIndex ingestion of sk-code; missed integration points
 - `research/research.md` synthesis with prioritized remediation roadmap
 - `research/resource-map.md` covering 43+ touched paths across READMEs/Documents/Commands/Agents/Skills/Specs/Scripts/Tests/Config/Meta sections

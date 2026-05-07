@@ -171,11 +171,11 @@ Improved the graph-metadata parser quality across five review findings: added ch
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
-| `cd .opencode/skill/system-spec-kit/scripts && npx tsc --noEmit` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/graph-metadata-schema.vitest.ts` | PASS (`14/14`) |
-| `cd .opencode/skill/system-spec-kit && NODE_PATH=./mcp_server/node_modules ./mcp_server/node_modules/.bin/vitest run scripts/tests/graph-metadata-backfill.vitest.ts` | PASS (`3/3`) |
-| `cd .opencode/skill/system-spec-kit && node scripts/dist/graph/backfill-graph-metadata.js` | PASS (`541` refreshed packets) |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
+| `cd .opencode/skills/system-spec-kit/scripts && npx tsc --noEmit` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/graph-metadata-schema.vitest.ts` | PASS (`14/14`) |
+| `cd .opencode/skills/system-spec-kit && NODE_PATH=./mcp_server/node_modules ./mcp_server/node_modules/.bin/vitest run scripts/tests/graph-metadata-backfill.vitest.ts` | PASS (`3/3`) |
+| `cd .opencode/skills/system-spec-kit && node scripts/dist/graph/backfill-graph-metadata.js` | PASS (`541` refreshed packets) |
 | Post-backfill corpus scan | PASS: all zero outliers inside original research corpus |
 
 #### Notes

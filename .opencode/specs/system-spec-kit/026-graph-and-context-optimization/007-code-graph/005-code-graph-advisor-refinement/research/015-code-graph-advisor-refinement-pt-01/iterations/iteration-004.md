@@ -108,8 +108,8 @@ when counting diagnostics + metrics + provenance).
 **Signal-to-noise ratio** of the declared result surface: **~6 / 26 ≈ 0.23**.
 Three-quarters of the declared result shape is diagnostic-only or dead.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:72-81,156-173,220-282`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:21-33,111-159`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:72-81,156-173,220-282`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:21-33,111-159`]
 
 ### F20 — RQ-08 subtle: The `brief` field is double-rendered
 
@@ -149,8 +149,8 @@ Then each adapter (`claude/user-prompt-submit.ts:170`,
   pre-render at the producer side entirely and let each adapter render
   once.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:156-173,199-218,496-502`]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:305-310`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:156-173,199-218,496-502`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:305-310`]
 
 ### F21 — RQ-08: Two candidate brief schemas with token budget
 
@@ -213,10 +213,10 @@ Matrix of divergences:
 | **Side effects beyond return** | None | None | None | **Writes `writeCopilotCustomInstructions`** — a file-refresh side effect because Copilot CLI ignores hook return values for prompt mutation |
 
 [SOURCE:
- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:28-45,149,166-169`,
- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:30-53,122-136,175-193,283-310`,
- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:29-51,80-94,178-184`,
- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:34-42,77-83,124-136,194-216,231-239`]
+ `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:28-45,149,166-169`,
+ `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:30-53,122-136,175-193,283-310`,
+ `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:29-51,80-94,178-184`,
+ `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:34-42,77-83,124-136,194-216,231-239`]
 
 **Key structural observations:**
 
@@ -253,7 +253,7 @@ Adapter existence ≠ hook firing. Inspected each runtime's settings for a
 "UserPromptSubmit": [
   {
     "type": "command",
-    "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
+    "bash": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js",
     "timeoutSec": 5,
     "hooks": [
       {
@@ -320,7 +320,7 @@ JSON object."* This means:
 [SOURCE: `.claude/settings.local.json:25-75` (UserPromptSubmit/PreCompact/SessionStart/Stop nested `bash:copilot` / `hooks[0].command:claude` pattern)]
 [SOURCE: `.codex/settings.json:1-40` (clean wiring on UserPromptSubmit)]
 [SOURCE: `.gemini/settings.json:20-60` (wired on BeforeAgent, not UserPromptSubmit)]
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-10` comment]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-10` comment]
 
 ### F24 — RQ-10: The advisor path has ZERO runtime-specific branching except the `runtime` cache-key field and Codex-only thresholds
 
@@ -348,7 +348,7 @@ isolated to the thin adapter layer (F22). Any parity fix can ship as
 adapter-level changes without touching the library.
 
 [SOURCE: grep `runtime ===` and `AdvisorRuntime` across
-`.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/`]
+`.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/`]
 
 ### F25 — RQ-10: There is a legacy parity test but it's in `tests/legacy/`
 
@@ -369,7 +369,7 @@ synthesized inputs. Verified that:
   slated for removal or replacement. Without a current-tier replacement,
   per-runtime parity regressions could ship without CI coverage.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:1-300`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:1-300`]
 
 ## Questions Answered
 
@@ -417,22 +417,22 @@ synthesized inputs. Verified that:
 
 ## Dead Ends
 
-- None this iteration. The dispatch hinted at `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
+- None this iteration. The dispatch hinted at `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` — that directory does not exist either. Found the real path (`mcp_server/hooks/<runtime>/`) via `find` + `grep`.
 
 ## Sources Consulted
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:1-546`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:1-161`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:1-333` (re-read; largely mapped in iter 3)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:1-247`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:1-401`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:1-261`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-282`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:1-546`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:1-161`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:1-333` (re-read; largely mapped in iter 3)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts:1-247`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:1-401`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts:1-261`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:1-282`
 - `.claude/settings.json` (top-level keys only: `env`, `statusLine`)
 - `.claude/settings.local.json:25-75` (UserPromptSubmit + PreCompact + SessionStart + Stop entries)
 - `.codex/settings.json:1-40`
 - `.gemini/settings.json:20-60`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:1-300` (via grep)
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts:1-300` (via grep)
 - Grep `AdvisorRuntime | 'claude' | 'codex' | 'gemini' | 'copilot'` across advisor package
 
 ## Assessment
@@ -477,7 +477,7 @@ synthesized inputs. Verified that:
   and cache-restamp paths — time-consuming but the only way to know
   "load-bearing vs decorative."
 - **What did not work and why:** The dispatch context mentioned
-  `.opencode/skill/system-spec-kit/scripts/hooks/*.sh` and
+  `.opencode/skills/system-spec-kit/scripts/hooks/*.sh` and
   `.opencode/plugin/` — neither exists. Cost one tool call to confirm.
   Root cause: dispatch context authored without a directory check.
   Identical to iter 3's `handlers/code-graph-*.ts` miss. **This is a
@@ -500,7 +500,7 @@ synthesized inputs. Verified that:
    evidence for F19's "signal-to-noise" of scan budget.
 2. **RQ-06 (query p50/p95/p99 + cache hit ratio)** — measurement, requires
    a live benchmark run OR reading existing benchmark snapshots in
-   `deep-research-state.jsonl` or in `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/benchmarks/` (if such a directory exists). One grep + one read to locate the fixture.
+   `deep-research-state.jsonl` or in `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/benchmarks/` (if such a directory exists). One grep + one read to locate the fixture.
 3. **RQ-02 (scorer bias across lanes)** — requires the MCP tools
    `eval_run_ablation` + `eval_reporting_dashboard`. One MCP call with a
    long latency tail. **Defer to iter 6+ unless iter 5 is quick**, so

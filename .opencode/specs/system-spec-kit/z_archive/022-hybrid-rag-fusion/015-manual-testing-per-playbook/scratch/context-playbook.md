@@ -1,7 +1,7 @@
 # Manual Testing Playbook -- Per-Category Summary
 
 > Generated: 2026-03-22
-> Source: `.opencode/skill/system-spec-kit/manual_testing_playbook/`
+> Source: `.opencode/skills/system-spec-kit/manual_testing_playbook/`
 > Purpose: Source of truth for rewriting spec documentation in 015-manual-testing-per-playbook
 
 ---

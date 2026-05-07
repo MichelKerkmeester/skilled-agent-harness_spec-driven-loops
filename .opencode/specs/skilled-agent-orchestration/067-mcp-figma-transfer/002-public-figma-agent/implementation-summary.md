@@ -58,7 +58,7 @@ Template compliance scaffold for 002-public-figma-agent/implementation-summary.m
 <!-- ANCHOR:verification -->
 ## VERIFICATION
 
-Verification artifact: commits c4f6c56 + e96a3ee; Opus Hooks C+D 12/12 PASS; command: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict
+Verification artifact: commits c4f6c56 + e96a3ee; Opus Hooks C+D 12/12 PASS; command: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent --strict
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
@@ -206,7 +206,7 @@ Begin Phase 3 (003-mcp-figma-skill-removal):
 2. Re-grep Code_Environment/Public for any drift since this brief
 3. Apply 31 edits across 9 advisor + index + readme files (DELETE_LINE / DELETE_NODE / PATCH_VALUE)
 4. Apply 4 strip edits to mcp-code-mode (D1: skill-name refs only; keep 127 figma-developer-mcp tool refs)
-5. `rm -rf .opencode/skill/mcp-figma/`
+5. `rm -rf .opencode/skills/mcp-figma/`
 6. Run `Skill: doctor:skill-advisor :auto` to regenerate `skill-graph.json` and scoring tables
 7. Verify advisor tests green (G2)
 8. Commit 4 (deletion + cross-ref patches) + Commit 5 (advisor regen)

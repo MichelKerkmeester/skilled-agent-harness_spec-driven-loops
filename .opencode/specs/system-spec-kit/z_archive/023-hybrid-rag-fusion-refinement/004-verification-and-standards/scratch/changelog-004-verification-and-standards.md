@@ -28,8 +28,8 @@ This phase matters because it proved the move to ESM (JavaScript's modern module
 
 | File | What changed |
 |------|-------------|
-| `.opencode/skill/sk-code-opencode/**/*.md` | Updated standards guidance to match the verified ESM runtime state |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Moved search-input validation out of schema `superRefine` for tool-calling compatibility |
+| `.opencode/skills/sk-code-opencode/**/*.md` | Updated standards guidance to match the verified ESM runtime state |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Moved search-input validation out of schema `superRefine` for tool-calling compatibility |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/implementation-summary.md` | Recorded phase 4 verification results, delivery order, decisions, and limitations |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/tasks.md` | Captured evidence for the verification matrix, standards sync, and packet closure tasks |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md` | Updated the parent packet summary with final runtime evidence and completion status |

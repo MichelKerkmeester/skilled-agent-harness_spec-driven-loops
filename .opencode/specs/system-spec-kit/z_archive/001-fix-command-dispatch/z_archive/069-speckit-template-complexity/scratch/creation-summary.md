@@ -3,7 +3,7 @@
 ## Created Templates
 
 ### Level 3 Templates (Full - Complex)
-**Location:** `.opencode/skill/system-spec-kit/templates/level_3/`
+**Location:** `.opencode/skills/system-spec-kit/templates/level_3/`
 
 | File | Size | Features |
 |------|------|----------|
@@ -17,7 +17,7 @@
 **Total files:** 6
 
 ### Level 3+ Templates (Extended - Enterprise)
-**Location:** `.opencode/skill/system-spec-kit/templates/level_3+/`
+**Location:** `.opencode/skills/system-spec-kit/templates/level_3+/`
 
 | File | Size | Features |
 |------|------|----------|

@@ -20,7 +20,7 @@ The architecture audit (005) is substantively intact. Of the 7 verification area
 ### O3-001: ARCHITECTURE.md Exception Table Missing 4th Allowlist Entry
 - **Severity**: HIGH
 - **Category**: drift
-- **Location**: `.opencode/skill/system-spec-kit/ARCHITECTURE.md:199-205`
+- **Location**: `.opencode/skills/system-spec-kit/ARCHITECTURE.md:199-205`
 - **Description**: The ARCHITECTURE.md "Current exceptions" table lists 3 entries, but `scripts/evals/import-policy-allowlist.json` contains 4 entries. The 4th entry (`scripts/memory/rebuild-auto-entities.ts` importing `../../mcp_server/lib/extraction/entity-extractor`) was added on 2026-03-15 but never reflected in ARCHITECTURE.md.
 - **Evidence**:
   - ARCHITECTURE.md line 199-205: 3-row exception table (run-performance-benchmarks, generate-description, workflow)
@@ -34,7 +34,7 @@ The architecture audit (005) is substantively intact. Of the 7 verification area
 ### O3-002: ARCHITECTURE.md Enforcement Tooling Table Missing 2 Active Tools
 - **Severity**: MEDIUM
 - **Category**: drift
-- **Location**: `.opencode/skill/system-spec-kit/ARCHITECTURE.md:233-241`
+- **Location**: `.opencode/skills/system-spec-kit/ARCHITECTURE.md:233-241`
 - **Description**: The Enforcement Tooling table lists 7 entries but omits 2 tools that are actively wired into `npm run check --workspace=scripts`: `check-allowlist-expiry.ts` and `check-source-dist-alignment.ts`. Both were added during Phase 15 and post-review remediation but the table was not updated.
 - **Evidence**:
   - `scripts/package.json` check script explicitly runs both: `... && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts`

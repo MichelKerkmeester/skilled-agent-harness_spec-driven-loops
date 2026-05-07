@@ -72,7 +72,7 @@ Close the 15 actionable Tier 2 findings to move D/E/F/G from CONDITIONAL toward 
 - Verify `buildCopilotPromptArg` large-prompt `@path` behavior (P2 advisory).
 
 ### In Scope (E 009/005 plugin-loader)
-- Update canonical packet evidence (spec.md / decision-record.md / implementation-summary.md) from stale `.opencode/plugin-helpers/` to live `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/` paths.
+- Update canonical packet evidence (spec.md / decision-record.md / implementation-summary.md) from stale `.opencode/plugin-helpers/` to live `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/` paths.
 - Close any related P2 advisories (typically test-fixture or doc consistency).
 
 ### In Scope (F 009/002 copilot-hook)

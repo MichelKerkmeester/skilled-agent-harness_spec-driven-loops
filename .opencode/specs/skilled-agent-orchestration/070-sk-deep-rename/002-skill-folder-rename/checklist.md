@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - "checklist.md"
-      - ".opencode/skill/deep-review"
-      - ".opencode/skill/deep-research"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/deep-review"
+      - ".opencode/skills/deep-research"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "codex-2026-05-05-phase-002"
@@ -83,8 +83,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] `.opencode/skill/deep-review/` contains the former review skill files (evidence: `ls` shows README, SKILL.md, assets, changelog, feature catalog, metadata, playbook, references, scripts)
-- [x] CHK-FIX-002 [P0] `.opencode/skill/deep-research/` contains the former research skill files (evidence: `ls` shows README, SKILL.md, assets, changelog, feature catalog, metadata, playbook, references, scripts)
+- [x] CHK-FIX-001 [P0] `.opencode/skills/deep-review/` contains the former review skill files (evidence: `ls` shows README, SKILL.md, assets, changelog, feature catalog, metadata, playbook, references, scripts)
+- [x] CHK-FIX-002 [P0] `.opencode/skills/deep-research/` contains the former research skill files (evidence: `ls` shows README, SKILL.md, assets, changelog, feature catalog, metadata, playbook, references, scripts)
 - [x] CHK-FIX-003 [P0] Internal self-references and cross-references in renamed folders use new names (evidence: grep returned no rows for old names)
 - [x] CHK-FIX-004 [P1] Advisor graph source uses new names in keys, families, adjacency, hub skills, signals, and anti-signals where present (evidence: 11 quoted old-ID occurrences replaced and key assertion passed)
 <!-- /ANCHOR:fix-completeness -->

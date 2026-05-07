@@ -18,13 +18,13 @@ _memory:
     next_safe_action: "Apply 13 surgical edits + 7 new tests + 4 new fixtures, then validate strict, then commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-evidence.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-004-validation-and-memory"
@@ -37,7 +37,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -113,14 +113,14 @@ The fixes preserve the existing module boundaries:
 
 For each schema/parser change in TypeScript: extend or add a vitest in the relevant `__tests__/` dir using existing fixture patterns from `tests/memory-parser-extended.vitest.ts` and `skill_advisor/tests/handlers/advisor-validate.vitest.ts`.
 
-For shell rule changes (B4-01 through B4-05): add fixture markdown files under `.opencode/skill/system-spec-kit/scripts/test-fixtures/`, then run `bash scripts/spec/validate.sh` against the fixture spec folders.
+For shell rule changes (B4-01 through B4-05): add fixture markdown files under `.opencode/skills/system-spec-kit/scripts/test-fixtures/`, then run `bash scripts/spec/validate.sh` against the fixture spec folders.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §5 (advisor + checkpoints), §8 (memory + causal links), §9 (validators)
-- Validate script: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Validate script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 - Stress runner: `cd mcp_server && npm run stress`
 - No cross-packet dependencies; sub-phase 004 is independent within Wave 1.
 <!-- /ANCHOR:dependencies -->

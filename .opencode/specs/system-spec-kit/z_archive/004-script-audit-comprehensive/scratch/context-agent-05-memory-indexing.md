@@ -1,6 +1,6 @@
 # Context Scan: Memory/Indexing Risks (scripts + mcp_server)
 
-Scope: `.opencode/skill/system-spec-kit/scripts/**` and `.opencode/skill/system-spec-kit/mcp_server/**`.
+Scope: `.opencode/skills/system-spec-kit/scripts/**` and `.opencode/skills/system-spec-kit/mcp_server/**`.
 Exclusion applied: node_modules relocation-only issues.
 
 ## Top risks

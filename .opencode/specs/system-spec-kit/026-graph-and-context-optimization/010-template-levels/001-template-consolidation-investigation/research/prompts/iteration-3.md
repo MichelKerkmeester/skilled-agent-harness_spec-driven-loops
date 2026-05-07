@@ -51,7 +51,7 @@ All paths are relative to the repo root.
 - Write ALL findings to files. Do not hold in context.
 - Read iteration-001.md AND iteration-002.md FIRST to avoid re-investigating known facts.
 - Repo root is the current working directory. Use absolute or repo-relative paths; do NOT modify files outside the spec folder's `research/` packet AND a temp dir under `/tmp/template-experiment/` if you run the deterministic experiment.
-- DO NOT modify files in `.opencode/skill/system-spec-kit/templates/` itself. The deterministic experiment writes to a temp dir.
+- DO NOT modify files in `.opencode/skills/system-spec-kit/templates/` itself. The deterministic experiment writes to a temp dir.
 
 ## OUTPUT CONTRACT
 
@@ -72,7 +72,7 @@ All three artifacts are REQUIRED.
 ## RESEARCH GUIDANCE FOR ITERATION 3
 
 Specifically:
-1. **Read** `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` end-to-end. Understand the exact composition algorithm: which file fragments combine, in what order, with what normalization.
+1. **Read** `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` end-to-end. Understand the exact composition algorithm: which file fragments combine, in what order, with what normalization.
 2. **Run a deterministic experiment**: `mkdir -p /tmp/template-experiment` then re-run `compose.sh` (if it has an output-dir parameter) OR manually compose 1-2 level files and `diff` them against checked-in `templates/level_N/`. Document any drift.
 3. **Measure latency**: `time bash scripts/templates/compose.sh` to get total composition time. Estimate per-level generation latency for the on-demand path.
 4. **Trace consumer hot paths**: in `scripts/spec/create.sh` lines 538-661 and `scripts/lib/template-utils.sh::copy_template`, identify the exact `cp` calls or template-resolution functions that would be replaced by a generator call.

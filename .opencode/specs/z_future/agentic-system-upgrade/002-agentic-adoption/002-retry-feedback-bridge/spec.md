@@ -67,10 +67,10 @@ Turn the research synthesis for 002 retry feedback bridge into one follow-on imp
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
-| `.opencode/agent/review.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/implement.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Modify | Primary affected surface for the adoption work |
+| `.opencode/agents/review.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -6,7 +6,7 @@ I re-read the five target runtime seams against prior iterations 001-011 and the
 ## Findings
 
 ### Finding R14-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `175-193, 257-268, 274-276`
 - **Severity:** P1
 - **Description:** Producer-metadata failure also fail-opens the incremental transcript cursor. Trigger: transcript parsing succeeds, but `buildProducerMetadata(...)` or the subsequent `recordStateUpdate(...)` throws. Caller perception: the stop hook parsed the new transcript segment once and advanced the persisted offset. Reality: `storeTokenSnapshot()` already rewrote `metrics.lastTranscriptOffset` back to `0`, the catch block swallows the later failure, and the real `newOffset` never becomes durable.
@@ -14,7 +14,7 @@ I re-read the five target runtime seams against prior iterations 001-011 and the
 - **Downstream Impact:** Later stop events can re-parse the same transcript segment, re-run spec-folder detection and autosave off stale cursor state, and violate the replay-stability behavior the direct harness only proves in the success case.
 
 ### Finding R14-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `26-39, 442-555`
 - **Severity:** P2
 - **Description:** Unsupported or mistyped `edgeType` filters fail open into success-shaped empty graph answers. Trigger: caller passes any non-empty `edgeType` string that does not correspond to stored edge rows. Caller perception: the queried symbol simply has no matching callers/importers. Reality: the handler uppercases and trusts the filter, then returns `status: "ok"` with an empty edge set instead of surfacing that the filter itself was invalid.
@@ -22,7 +22,7 @@ I re-read the five target runtime seams against prior iterations 001-011 and the
 - **Downstream Impact:** Agents and operator tooling can get false-negative structural answers from `code_graph_query` when they supply an ad hoc or misspelled edge filter, then treat the empty result as authoritative graph truth.
 
 ### Finding R14-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `94-113`
 - **Severity:** P1
 - **Description:** Partial causal-link failures are normalized into successful enrichment. Trigger: `processCausalLinks()` returns unresolved references or per-edge errors without throwing. Caller perception: causal-link enrichment succeeded because `enrichmentStatus.causalLinks` is `true` and no generic partial-enrichment warning appears. Reality: the causal graph is incomplete, but the post-insert layer only logs and does not propagate the partial failure.
@@ -30,7 +30,7 @@ I re-read the five target runtime seams against prior iterations 001-011 and the
 - **Downstream Impact:** `memory_save` responses can look causally enriched even when some lineage edges were never written, which weakens later `memory_drift_why`, causal traversal, and graph-boosted retrieval without surfacing a user-visible warning.
 
 ### Finding R14-004
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `159-177`
 - **Severity:** P2
 - **Description:** Entity-linking density-guard skips are also normalized into success. Trigger: `runEntityLinkingForMemory()` returns `skippedByDensityGuard: true` because the graph is already above the configured edge-density threshold. Caller perception: cross-document linking ran and found nothing actionable. Reality: no linking work was allowed to run, but the post-insert status still marks `entityLinking` as successful.

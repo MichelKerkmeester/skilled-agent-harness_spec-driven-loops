@@ -42,8 +42,8 @@
     "status": "in_progress",
     "key_files": [
       "review/review-report.md",
-      ".opencode/skill/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
       "plan.md",
       "mcp_server/scripts/map-ground-truth-ids.ts",
       "mcp_server/tests/modularization.vitest.ts",
@@ -64,13 +64,13 @@
       {
         "name": "map-ground-truth-ids.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
         "source": "derived"
       },
       {
         "name": "modularization.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
         "source": "derived"
       },
       {

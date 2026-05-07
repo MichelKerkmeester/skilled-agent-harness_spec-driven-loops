@@ -6,7 +6,7 @@ The repo already has three priming surfaces, but they are not equally verified a
 
 | Runtime | Intended primary priming path | Verified repo surface | Current confidence |
 |---|---|---|---|
-| OpenCode / Copilot profile | `@context-prime` via orchestrator, plus MCP first-call auto-priming | `.opencode/agent/orchestrate.md:18-20`, `.opencode/agent/context-prime.md:32-42`, `opencode.json:10-58` | Medium |
+| OpenCode / Copilot profile | `@context-prime` via orchestrator, plus MCP first-call auto-priming | `.opencode/agents/orchestrate.md:18-20`, `.opencode/agents/context-prime.md:32-42`, `opencode.json:10-58` | Medium |
 | Claude Code | Hook-based priming, with manual fallback | `.claude/CLAUDE.md:5-24`, `.claude/settings.local.json:5-39`, hook tests under `mcp_server/tests/` | High |
 | Codex CLI | Session Start Protocol / `session_resume()`, plus MCP first-call auto-priming | `CODEX.md:14-47`, `.codex/config.toml:5-39` | High |
 | Gemini CLI | Docs and hook scripts exist, but runtime classification still says tool fallback | `GEMINI.md:69-76,388-395`, `mcp_server/hooks/gemini/*.ts`, but `runtime-detection.ts:37-40` and `cross-runtime-fallback.vitest.ts:51-54,92-99` classify Gemini as `disabled_by_scope/tool_fallback` | Low |
@@ -14,7 +14,7 @@ The repo already has three priming surfaces, but they are not equally verified a
 Two hookless mechanisms are real and implemented:
 
 1. Instruction/agent bootstrap.
-OpenCode/Copilot delegates first turn to `@context-prime`, which does `memory_context` + `code_graph_status` + `ccc_status` + `session_health` and returns a compact Prime Package (`.opencode/agent/context-prime.md:34-41`).
+OpenCode/Copilot delegates first turn to `@context-prime`, which does `memory_context` + `code_graph_status` + `ccc_status` + `session_health` and returns a compact Prime Package (`.opencode/agents/context-prime.md:34-41`).
 
 2. MCP auto-priming on first tool call.
 `primeSessionIfNeeded()` runs before tool dispatch, sets `sessionPrimed`, and injects constitutional memories, code-graph status, and a `primePackage` with `specFolder`, `currentTask`, graph freshness, CocoIndex availability, and recommended next calls (`hooks/memory-surface.ts:315-420`, `context-server.ts:707-715,530-565`).

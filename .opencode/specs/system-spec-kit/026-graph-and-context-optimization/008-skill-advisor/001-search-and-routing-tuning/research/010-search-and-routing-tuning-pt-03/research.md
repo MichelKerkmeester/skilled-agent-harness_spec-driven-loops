@@ -27,8 +27,8 @@ This research loop scanned every `graph-metadata.json` file under `.opencode/spe
 
 ### Runtime Baseline
 - Corpus size: 344 graph-metadata files. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-- Legacy-format files: 35, all still runtime-loadable through the parser's legacy fallback. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-203] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
-- Backfill already expects review-worthy ambiguity around status, summary quality, and prose relationships. [SOURCE: .opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:111-136]
+- Legacy-format files: 35, all still runtime-loadable through the parser's legacy fallback. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:96-203] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
+- Backfill already expects review-worthy ambiguity around status, summary quality, and prose relationships. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:111-136]
 
 ## Research Answers
 
@@ -45,13 +45,13 @@ Interpretation:
 This is a low-confidence sign of graph health because the graph contains only four declared dependency edges.
 
 ### RQ-3: Children IDs
-`children_ids` serialize specs-root-relative paths generated from direct numeric child directories. With that same path base, all 290 child links resolve. Ghost-child rate: 0.0%. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393] [SOURCE: .opencode/specs/00--ai-systems/001-global-shared/graph-metadata.json:6-12] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
+`children_ids` serialize specs-root-relative paths generated from direct numeric child directories. With that same path base, all 290 child links resolve. Ghost-child rate: 0.0%. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:388-393] [SOURCE: .opencode/specs/00--ai-systems/001-global-shared/graph-metadata.json:6-12] [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 
 Interpretation:
 The obvious ghost-child failures appear only when scanners incorrectly join `dirname` with values that are already full specs-root-relative identifiers.
 
 ### RQ-4: Key File Existence
-`deriveKeyFiles()` pulls backticked file references from packet docs, prefers `implementation-summary.md`, appends canonical doc names, and truncates the final list to 20 entries. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
+`deriveKeyFiles()` pulls backticked file references from packet docs, prefers `implementation-summary.md`, appends canonical doc names, and truncates the final list to 20 entries. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:463-471]
 
 Corpus result:
 - Total key-file entries: 5,298
@@ -70,7 +70,7 @@ Interpretation:
 Key-file quality is the largest concrete path-quality problem in the corpus. Many stored values are not canonical paths at all.
 
 ### RQ-5: Entity Duplicate Noise
-`deriveEntities()` seeds the entity map from every key-file path using `path.basename()`, then adds extracted doc entities, and truncates to 16 entries. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446]
+`deriveEntities()` seeds the entity map from every key-file path using `path.basename()`, then adds extracted doc entities, and truncates to 16 entries. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446]
 
 Corpus result:
 - Basename-only duplicate entities: 2,020
@@ -86,7 +86,7 @@ Interpretation:
 Entity quality is downstream of key-file quality, and both are currently too noisy for high-confidence graph/search enrichment.
 
 ### RQ-6: Status Accuracy
-`deriveStatus()` reads frontmatter scalars only and does not inspect markdown metadata tables. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
+`deriveStatus()` reads frontmatter scalars only and does not inspect markdown metadata tables. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:346-353] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:498-510]
 
 Corpus result:
 - Stored status distribution: `planned` 302, `complete` 39, `Complete` 1, `In Progress` 1, `review` 1
@@ -114,7 +114,7 @@ The current caps are either too low for the source material or are being fed too
 130 folders have `last_save_at` older than the newest canonical-doc mtime in the same packet. [SOURCE: live filesystem scan over `.opencode/specs` on 2026-04-13]
 
 Important nuance:
-Legacy fallback parsing synthesizes timestamp fields instead of preserving historical save times, so stale-timestamp counts mix true freshness gaps with compatibility-artifact gaps. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160]
+Legacy fallback parsing synthesizes timestamp fields instead of preserving historical save times, so stale-timestamp counts mix true freshness gaps with compatibility-artifact gaps. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:122-160]
 
 Interpretation:
 Timestamp freshness is useful as a signal, but it should be split into native-JSON freshness versus legacy-compatibility freshness before driving automation.

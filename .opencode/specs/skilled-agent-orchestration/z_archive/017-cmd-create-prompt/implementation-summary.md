@@ -41,7 +41,7 @@ contextType: "implementation"
 
 | File Path | Change Type | LOC | Description |
 |-----------|-------------|-----|-------------|
-| `.opencode/command/create/prompt.md` | Create | 338 | New `/create:prompt` command — mode-based workflow command wrapping sk-improve-prompt skill |
+| `.opencode/commands/create/prompt.md` | Create | 338 | New `/create:prompt` command — mode-based workflow command wrapping sk-improve-prompt skill |
 | `.opencode/specs/03--commands-and-skills/017-cmd-create-prompt/spec.md` | Create | 167 | Feature specification |
 | `.opencode/specs/03--commands-and-skills/017-cmd-create-prompt/plan.md` | Create | 184 | Implementation plan |
 | `.opencode/specs/03--commands-and-skills/017-cmd-create-prompt/tasks.md` | Create | 83 | Task breakdown (10 tasks, all complete) |
@@ -134,7 +134,7 @@ All validation items pass:
 
 | Test | Status | Notes |
 |------|--------|-------|
-| File creation at correct path | Pass | `.opencode/command/create/prompt.md` exists |
+| File creation at correct path | Pass | `.opencode/commands/create/prompt.md` exists |
 | Frontmatter validation | Pass | All required fields present |
 | Mandatory gate structure | Pass | Blocks on empty input with 3 options |
 | Mode prefix routing | Pass | 7 prefixes with aliases in ASCII tree |

@@ -12,7 +12,7 @@ Validate the iteration-002 fixes before implementation:
 ## Actions Taken
 
 1. Re-read the deep-research skill surface and prior iteration context.
-2. Enumerated every `indexFiles()` call with `rg -n "indexFiles\\(" .opencode/skill/system-spec-kit/mcp_server`.
+2. Enumerated every `indexFiles()` call with `rg -n "indexFiles\\(" .opencode/skills/system-spec-kit/mcp_server`.
 3. Inspected `ensure-ready.ts`, `scan.ts`, `tree-sitter-parser.vitest.ts`, `structural-indexer.ts`, `tree-sitter-parser.ts`, `code-graph-db.ts`, `code-graph-scan.vitest.ts`, and `structural-contract.vitest.ts`.
 4. Searched for `isFileStale`, `incremental`, parser capture fields, overload-like syntax, and generated test patterns.
 5. Wrote implementation-ready test snippets for indexer options, scan-handler integration, and duplicate-symbol dedupe.
@@ -24,11 +24,11 @@ Validate the iteration-002 fixes before implementation:
 All current call sites were found:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:162
-.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:184
-.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:183
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227
-.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190
+.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:162
+.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:184
+.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:183
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227
+.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190
 ```
 
 Caller decisions:

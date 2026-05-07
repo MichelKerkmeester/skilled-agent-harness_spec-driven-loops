@@ -6,9 +6,9 @@ You are operating as the @deep-research agent in a single iteration of a 10-iter
 
 Apply the testing methodology from packet 059 (`@code` stress-test campaign documented in `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md`) to evaluate and produce concrete improvement recommendations for the **sk-improve-agent triad**:
 
-- `.opencode/skill/sk-improve-agent/SKILL.md` (463 lines)
-- `.opencode/agent/improve-agent.md` (246 lines)
-- `.opencode/command/improve/agent.md` (456 lines)
+- `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
+- `.opencode/agents/improve-agent.md` (246 lines)
+- `.opencode/commands/improve/agent.md` (456 lines)
 
 Plus the secondary surface: `references/` (12 docs), `scripts/` (14 .cjs), `assets/` (6 items) under sk-improve-agent.
 

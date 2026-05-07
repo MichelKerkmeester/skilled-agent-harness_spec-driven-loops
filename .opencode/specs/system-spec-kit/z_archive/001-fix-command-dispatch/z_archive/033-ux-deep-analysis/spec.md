@@ -23,10 +23,10 @@ The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive 
 <!-- /ANCHOR:metadata -->
 <!-- ANCHOR:scope -->
 ## Scope
-- Memory Skill (.opencode/skill/system-memory/)
+- Memory Skill (.opencode/skills/system-memory/)
 - Memory MCP Server (mcp_server/)
-- SpecKit Skill (.opencode/skill/system-spec-kit/)
-- Commands (.opencode/command/)
+- SpecKit Skill (.opencode/skills/system-spec-kit/)
+- Commands (.opencode/commands/)
 - AGENTS.md alignment
 - Cross-platform compatibility
 - First-time user experience

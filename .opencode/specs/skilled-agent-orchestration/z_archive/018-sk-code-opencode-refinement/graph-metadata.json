@@ -41,44 +41,44 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/sk-code-opencode/SKILL.md",
-      ".opencode/skill/sk-code-review/SKILL.md",
-      ".opencode/skill/sk-code-review/references/code_quality_checklist.md",
-      ".opencode/skill/sk-code-review/references/solid_checklist.md",
+      ".opencode/skills/sk-code-opencode/SKILL.md",
+      ".opencode/skills/sk-code-review/SKILL.md",
+      ".opencode/skills/sk-code-review/references/code_quality_checklist.md",
+      ".opencode/skills/sk-code-review/references/solid_checklist.md",
       "scratch/final-quality-evidence-2026-02-22.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/sk-code-opencode/references/shared/universal_patterns.md",
-      ".opencode/skill/sk-code-opencode/references/shared/code_organization.md",
-      ".opencode/skill/sk-code-opencode/references/javascript/style_guide.md",
-      ".opencode/skill/sk-code-opencode/references/typescript/style_guide.md",
-      ".opencode/skill/sk-code-opencode/references/python/style_guide.md",
-      ".opencode/skill/sk-code-opencode/references/shell/style_guide.md",
-      ".opencode/skill/sk-code-opencode/references/config/style_guide.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md",
-      ".opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md"
+      ".opencode/skills/sk-code-opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code-opencode/references/shared/code_organization.md",
+      ".opencode/skills/sk-code-opencode/references/javascript/style_guide.md",
+      ".opencode/skills/sk-code-opencode/references/typescript/style_guide.md",
+      ".opencode/skills/sk-code-opencode/references/python/style_guide.md",
+      ".opencode/skills/sk-code-opencode/references/shell/style_guide.md",
+      ".opencode/skills/sk-code-opencode/references/config/style_guide.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md",
+      ".opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md"
     ],
     "entities": [
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/SKILL.md",
+        "path": ".opencode/skills/sk-code-opencode/SKILL.md",
         "source": "derived"
       },
       {
         "name": "code_quality_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-review/references/code_quality_checklist.md",
+        "path": ".opencode/skills/sk-code-review/references/code_quality_checklist.md",
         "source": "derived"
       },
       {
         "name": "solid_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-review/references/solid_checklist.md",
+        "path": ".opencode/skills/sk-code-review/references/solid_checklist.md",
         "source": "derived"
       },
       {
@@ -102,55 +102,55 @@
       {
         "name": "universal_patterns.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/references/shared/universal_patterns.md",
+        "path": ".opencode/skills/sk-code-opencode/references/shared/universal_patterns.md",
         "source": "derived"
       },
       {
         "name": "code_organization.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/references/shared/code_organization.md",
+        "path": ".opencode/skills/sk-code-opencode/references/shared/code_organization.md",
         "source": "derived"
       },
       {
         "name": "style_guide.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/references/javascript/style_guide.md",
+        "path": ".opencode/skills/sk-code-opencode/references/javascript/style_guide.md",
         "source": "derived"
       },
       {
         "name": "universal_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md",
         "source": "derived"
       },
       {
         "name": "javascript_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md",
         "source": "derived"
       },
       {
         "name": "typescript_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md",
         "source": "derived"
       },
       {
         "name": "python_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md",
         "source": "derived"
       },
       {
         "name": "shell_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md",
         "source": "derived"
       },
       {
         "name": "config_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md",
+        "path": ".opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md",
         "source": "derived"
       },
       {

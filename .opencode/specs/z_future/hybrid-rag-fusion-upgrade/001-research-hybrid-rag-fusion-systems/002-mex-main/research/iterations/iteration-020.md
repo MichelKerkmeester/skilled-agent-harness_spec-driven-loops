@@ -1,5 +1,5 @@
 ### Finding 6: Mex’s single drift score should not become a primary health signal in Spec Kit [Rank 6: medium x high, negative]
-- **Source**: [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L72), [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L14), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L246), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1031)
+- **Source**: [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L72), [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts#L14), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L246), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1031)
 - **What it does**: Mex starts at `100` and subtracts `10/3/1` for error/warning/info, regardless of whether the issue is a hard trust break or mild hygiene noise.
 - **Why it matters for us**: Spec Kit already distinguishes blocked, degraded, exact, estimated, unknown, and rejected states. A single number would blur meaningful contract differences and could make a partially unsafe surface look “mostly fine.”
 - **Recommendation**: reject
@@ -10,7 +10,7 @@
 - [cli.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/cli.ts), [drift/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/index.ts), [claims.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/claims.ts), [frontmatter.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/frontmatter.ts), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts)
 - [path.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/path.ts), [edges.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/edges.ts), [index-sync.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/index-sync.ts), [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts), [command.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/command.ts), [dependency.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/dependency.ts), [cross-file.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/cross-file.ts), [script-coverage.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/script-coverage.ts)
 - [scanner/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/index.ts), [scanner/manifest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/scanner/manifest.ts), [sync/brief-builder.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/brief-builder.ts), [sync/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/sync/index.ts), [pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts), [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts), [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/SKILL.md)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts), [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts), [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts), [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/SKILL.md)
 
 ## Assessment
 - New information ratio: 0.77
@@ -74,7 +74,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
 12. Compare Mex directly against current `Code_Environment/Public` capabilities: Spec Kit validation, memory frontmatter, documented memory/index structure, and other repo guidance files. Be precise about where Mex adds new capability versus where it overlaps with systems already covered by phases `001`, `003`, or `004`.
 13. Before any deep-research run, ensure this phase folder contains the expected spec-kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -82,7 +82,7 @@ Mex is a structured markdown scaffold with a TypeScript/Node.js CLI for persiste
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every finding must cite exact file paths, describe what Mex actually does, why it matters for `Code_Environment/Public`, whether it should be `adopt now`, `prototype later`, or `reject`, what subsystem it would affect, and what migration or validation risk comes with it. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main"
     ```
 
 ## 6. Research Questions
@@ -355,15 +355,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`** — NEVER manually create memory files.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -443,7 +443,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -471,7 +471,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, memory file creation
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
 - **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
@@ -516,7 +516,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -1281,7 +1281,7 @@ When done, report:
 ```
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 mcp: cocoindex_code/search started
 mcp: cocoindex_code/search (failed)
 user cancelled MCP tool call
@@ -1299,7 +1299,7 @@ user cancelled MCP tool call
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -3007,7 +3007,7 @@ exec
     90	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Session Bootstrap Handler
@@ -3351,7 +3351,7 @@ exec
    340	    nextActions: buildNextActions(resumeData, healthData, structuralContext),
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1,320p' && printf '\\n---TRIGGERS---\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | sed -n '1,320p' && printf '\\n---TRIGGERS---\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ────────────────────────────────────────────────────────────────
      2	// MODULE: Memory Context
@@ -3937,7 +3937,7 @@ exec
    260	          evalRunId: _evalRunId,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '1,360p' && printf '\\n---CAUSAL---\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | sed -n '1,360p' && printf '\\n---CAUSAL---\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ────────────────────────────────────────────────────────────────
      2	// MODULE: Memory Crud Health
@@ -4563,7 +4563,7 @@ exec
    260	  if (titleCandidates.length > 0) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts | sed -n '980,1085p' && printf '\\n---QUALITY---\\n' && nl -ba .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts | sed -n '980,1085p' && printf '\\n---QUALITY---\\n' && nl -ba .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    980	          field: 'git_provenance',
    981	          message: `expected git provenance fields are missing: ${missingFields.join(', ')}`,
@@ -4997,7 +4997,7 @@ exec
 codex
 I’ve got the core comparison surfaces now. Mex is strongest where it statically checks markdown claims against the filesystem and manifest layer; our system is stronger where trust, certainty, and blocked/degraded semantics matter. I’m pulling the remaining files that decide edge cases: git freshness behavior, checker tests, and the save-path tooling that makes our current trust model more granular.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts | sed -n '1,240p' && printf '\\n---CHECKER TESTS---\\n' && nl -ba .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts | sed -n '1,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -5640,231 +5640,231 @@ exec
    301	});
 
 exec
-/bin/zsh -lc "rg -n \"exact|degraded|unknown|rejected|defaulted|estimated|blocking|REJECTED|ISSUES_FOUND\" .opencode/skill/system-spec-kit/mcp_server/handlers .opencode/skill/system-spec-kit/scripts/core/post-save-review.ts .opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"exact|degraded|unknown|rejected|defaulted|estimated|blocking|REJECTED|ISSUES_FOUND\" .opencode/skills/system-spec-kit/mcp_server/handlers .opencode/skills/system-spec-kit/scripts/core/post-save-review.ts .opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:17:const { load: loadYaml } = require('js-yaml') as { load: (input: string) => unknown };
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:219:function isYamlMapping(value: unknown): value is Record<string, unknown> {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:223:function describeYamlParseError(error: unknown): string {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:238:function loadYamlValue(raw: string): unknown {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:242:function parseYamlMapping(raw: string): Record<string, unknown> | null {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:250:  } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:263:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:292:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:365:    } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:558:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:613:      } catch (_siblingError: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:617:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:716:  // the spec_folder frontmatter field — without it, V8 sees current_spec as unknown
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:810:      } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:933:          } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1030:      `current_spec:${currentSpecId ?? 'unknown'}`,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1033:      `captured_file_count:${capturedFileCount ?? 'unknown'}`,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1034:      `filesystem_file_count:${filesystemFileCount ?? 'unknown'}`,
-.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts:1051:  } catch (e: unknown) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:17:  METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:34:export type ReviewStatus = 'PASSED' | 'ISSUES_FOUND' | 'SKIPPED' | 'REJECTED' | 'REVIEWER_ERROR';
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:90:    keyDecisions?: unknown[];
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:91:    _manualDecisions?: unknown[];
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:497:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.path_fragment, {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:503:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.standalone_stopword, {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:509:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.synthetic_bigram, {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:568:      structuredLog('warn', 'memory_save_git_provenance_degraded', {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1047:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1102:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REVIEWER ERROR (${result.reviewerError || 'unknown reviewer error'})\n`);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1116:  if (result.status === 'REJECTED') {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1117:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REJECTED (${result.blockerReason})\n`);
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1128:  if (result.status === 'REJECTED') {
-.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts:1129:    console.log('The save is REJECTED because the composite blocker fired.\n');
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:110:          hint: 'Configure exactly one of SPECKIT_SHARED_MEMORY_ADMIN_USER_ID or SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID on the MCP server.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:164:        hint: 'Provide exactly one non-empty actorUserId or actorAgentId value.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:190:        hint: 'Provide exactly one caller identity via actorUserId or actorAgentId.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:287:    metadata?: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:376:  error: unknown,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:615:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:682:        } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:732:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:779:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:800:export async function handleSharedMemoryEnable(args: Record<string, unknown>): Promise<MCPResponse> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:825:    } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:860:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:885:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:85:  decisionMeta: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:78:function mapJobForResponse(job: IngestJob): Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:79:  let forecast: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:81:    forecast = getIngestForecast(job) as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:82:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:93:  let telemetryPayload: Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:119:    forecast: forecast as unknown as Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:215:      error: `Invalid path(s) rejected: ${invalidPaths.map((entry) => `"${entry.input}" (${entry.reason})`).join(', ')}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:220:        rejectedCount: invalidPaths.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263:      rejectedPathCount: overlengthPaths.length,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:265:      ...(overlengthPaths.length > 0 ? { rejectedPaths: overlengthPaths } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:274:        ? ['Some input paths were rejected before queueing; inspect rejectedPaths for details']
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:117:  const countParams: unknown[] = [tier];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:169:    } catch (cpErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:185:  const selectParams: unknown[] = [tier];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:223:        } catch (_histErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:265:    } catch (hookError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:293:  const data: Record<string, unknown> = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:57:  [key: string]: unknown;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:77:  [key: string]: unknown;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:148:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:170:  } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:268:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:282:    } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:314:          // H2 FIX: Require exact scope match — rows with NULL scope are excluded
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:324:    } catch (scopeErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:340:        degradedMatching: degradedTriggerMatching,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:372:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:388:        } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:517:      degradedMatching: degradedTriggerMatching,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:525:      ...(degradedTriggerMatching ? { degradedMatching: degradedTriggerMatching } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:16: * Accepts either exact name `pre-reconsolidation` or prefixed variants.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:36:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:10:const SPEC_FOLDER_LOCKS = new Map<string, Promise<unknown>>();
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:15:    .catch((error: unknown) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:238:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:274:      } catch (bm25_err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:294:    } catch (_histErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:176:    } catch (embedding_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:26:  [key: string]: unknown;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:54:export interface IndexResult extends Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:74:  causalLinks?: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:87:    layers: unknown;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:130:  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:209:              const scopeFiltered = results.filter((r: Record<string, unknown>) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:216:              return scopeFiltered.map((r: Record<string, unknown>) => ({
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:284:                  } catch (bm25Err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:358:    } catch (reconErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:385:        const top = candidateResults[0] as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:413:          } catch (mergeErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:439:    } catch (assistiveErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:113:    const parsed = JSON.parse(raw) as unknown;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:132:function buildInClause(values: readonly unknown[]): string {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:141:/** Resolve many memory references in batch (exact first, fuzzy fallback). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:196:  // 2) Batch exact path matches via canonical_file_path/file_path equality
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:253:  // 3) Batch exact title matches
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:384:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:405:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:89:    } catch (causal_err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:109:    } catch (entityErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:131:    } catch (summaryErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:150:          : 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:153:          : 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:157:    } catch (linkErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:184:    } catch (glErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:110:interface PreflightRecord extends Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:231:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:259:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:391:    } catch (e: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:446:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:498:  const params: unknown[] = [spec_folder, taskId];
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:602:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:648:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:691:    const params: unknown[] = [spec_folder];
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:705:    const rows = database.prepare(sql).all(...params) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:707:    const learningHistory: LearningHistoryRow[] = rows.map((row: Record<string, unknown>) => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:712:      try { knowledgeGaps = row.knowledge_gaps ? JSON.parse(row.knowledge_gaps as string) : []; } catch (_error: unknown) { /* ignore */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:713:      try { gapsClosed = row.gaps_closed ? JSON.parse(row.gaps_closed as string) : []; } catch (_error: unknown) { /* ignore */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:714:      try { newGapsDiscovered = row.new_gaps_discovered ? JSON.parse(row.new_gaps_discovered as string) : []; } catch (_error: unknown) { /* ignore */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:775:      const summaryParams: unknown[] = [spec_folder];
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:786:      const stats = database.prepare(summarySql).get(...summaryParams) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:853:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:256:    } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:284:          (row as Record<string, unknown>).parentMemoryId ?? row.id
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:89:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:153:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:156:  } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:182:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:187:  } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:114: * This can migrate to MemoryDbRow & Record<string, unknown> later without changing the handler contract.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:116:interface MemorySearchRow extends Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:150:  data: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:154:type SessionAwareResult = Record<string, unknown> & {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:222:  telemetryPayload: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:230:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:232:      ? envelope.meta as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:243:  } catch (error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:250:function extractResponseResults(response: MCPResponse): Array<Record<string, unknown>> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:257:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:259:      ? envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:262:      ? data.results as Array<Record<string, unknown>>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:276:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:279:      ? envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:297:): { firstEntry: { type: 'text'; text: string }; envelope: Record<string, unknown> } | null {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:306:      envelope: JSON.parse(firstEntry.text) as Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:316:  envelope: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:359:    ? parsed.envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:373:function hasPublicationContractFields(result: Record<string, unknown>): boolean {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:390:    ? parsed.envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:393:    ? data.results as Array<Record<string, unknown>>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:410:      multiplierAuthorityFields: result.multiplierAuthorityFields as Record<string, unknown> | null | undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:590:    } catch (validationError: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:701:    } catch (_autoProfileErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:758:  let goalRefinementPayload: Record<string, unknown> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:805:      artifactRouting: artifactRouting as unknown as PipelineConfig['artifactRouting'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:810:    let resultsForFormatting = pipelineResult.results as unknown as SessionAwareResult[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:837:            `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:848:              const existingIds = new Set(resultsForFormatting.map((r) => (r as Record<string, unknown>).id as number));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:851:                resultsForFormatting = [...resultsForFormatting, ...newRows as unknown as SessionAwareResult[]];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:856:        } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:867:        const filePath = (r as Record<string, unknown>).file_path as string | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:869:          const raw = (r as Record<string, unknown>);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:879:          const sa = (a as Record<string, unknown>).similarity as number ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:880:          const sb = (b as Record<string, unknown>).similarity as number ?? 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:912:    const extraData: Record<string, unknown> = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:972:        resultsForFormatting as Array<Record<string, unknown> & { id: number }>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:978:    } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:984:    const appliedBoosts: Record<string, unknown> = {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1013:        const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1018:      } catch (_error: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1027:          ? parsedFormatted.envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1057:      ? parsedResponse.envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1073:    let resultsData: Record<string, unknown> | null = null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1076:        resultsData = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1077:      } catch (err: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1083:      resultsData = responseToReturn as unknown as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1090:      ? resultsData.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1149:      ? parsedResponse.envelope.data as Record<string, unknown>
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1151:    const existingResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1188:    const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1195:          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1196:          const data = parsed?.data as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1197:          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1199:          resultCount = Array.isArray(data?.results) ? (data.results as unknown[]).length : 0;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1201:      } catch (_error: unknown) { /* ignore parse errors */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1213:  } catch (_error: unknown) { /* instrumentation must never cause search to fail */ }
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1222:          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1223:          const data = parsed?.data as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1224:          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1228:      } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:17:const { load: loadYaml } = require('js-yaml') as { load: (input: string) => unknown };
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:40:  blockingRuleIds: QualityRuleId[];
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:219:function isYamlMapping(value: unknown): value is Record<string, unknown> {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:223:function describeYamlParseError(error: unknown): string {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:238:function loadYamlValue(raw: string): unknown {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:242:function parseYamlMapping(raw: string): Record<string, unknown> | null {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:250:  } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:263:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:292:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:365:    } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:558:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:613:      } catch (_siblingError: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:617:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:677:  const blockingRuleIds = failedRules.filter((ruleId) => shouldBlockWrite(ruleId, source));
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:678:  if (blockingRuleIds.length > 0) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:681:      blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:682:      indexBlockingRuleIds: blockingRuleIds,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:683:      softRuleIds: failedRules.filter((ruleId) => !blockingRuleIds.includes(ruleId)),
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:691:      blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:699:    blockingRuleIds: [],
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:716:  // the spec_folder frontmatter field — without it, V8 sees current_spec as unknown
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:810:      } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:933:          } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1030:      `current_spec:${currentSpecId ?? 'unknown'}`,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1033:      `captured_file_count:${capturedFileCount ?? 'unknown'}`,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1034:      `filesystem_file_count:${filesystemFileCount ?? 'unknown'}`,
+.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:1051:  } catch (e: unknown) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:17:  METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:34:export type ReviewStatus = 'PASSED' | 'ISSUES_FOUND' | 'SKIPPED' | 'REJECTED' | 'REVIEWER_ERROR';
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:71:  blocking?: boolean;
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:90:    keyDecisions?: unknown[];
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:91:    _manualDecisions?: unknown[];
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:497:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.path_fragment, {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:503:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.standalone_stopword, {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:509:    emitMemoryMetric(METRIC_M3_MEMORY_SAVE_TRIGGER_PHRASE_REJECTED_TOTAL, counts.synthetic_bigram, {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:568:      structuredLog('warn', 'memory_save_git_provenance_degraded', {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1032:    const blocking = guardrailCounts.high >= 2 || (guardrailCounts.high >= 1 && guardrailCounts.medium >= 2);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1033:    const blockerReason = blocking
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1038:      status: blocking ? 'REJECTED' : 'ISSUES_FOUND',
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1040:      blocking,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1047:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1091:    blocking: result.blocking ?? false,
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1102:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REVIEWER ERROR (${result.reviewerError || 'unknown reviewer error'})\n`);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1116:  if (result.status === 'REJECTED') {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1117:    console.log(`\nPOST-SAVE QUALITY REVIEW -- REJECTED (${result.blockerReason})\n`);
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1128:  if (result.status === 'REJECTED') {
+.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts:1129:    console.log('The save is REJECTED because the composite blocker fired.\n');
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:110:          hint: 'Configure exactly one of SPECKIT_SHARED_MEMORY_ADMIN_USER_ID or SPECKIT_SHARED_MEMORY_ADMIN_AGENT_ID on the MCP server.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:164:        hint: 'Provide exactly one non-empty actorUserId or actorAgentId value.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:190:        hint: 'Provide exactly one caller identity via actorUserId or actorAgentId.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:287:    metadata?: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:376:  error: unknown,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:615:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:682:        } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:732:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:779:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:800:export async function handleSharedMemoryEnable(args: Record<string, unknown>): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:825:    } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:860:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:885:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:85:  decisionMeta: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:78:function mapJobForResponse(job: IngestJob): Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:79:  let forecast: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:81:    forecast = getIngestForecast(job) as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:82:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:93:  let telemetryPayload: Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:119:    forecast: forecast as unknown as Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:215:      error: `Invalid path(s) rejected: ${invalidPaths.map((entry) => `"${entry.input}" (${entry.reason})`).join(', ')}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:220:        rejectedCount: invalidPaths.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263:      rejectedPathCount: overlengthPaths.length,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:265:      ...(overlengthPaths.length > 0 ? { rejectedPaths: overlengthPaths } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:274:        ? ['Some input paths were rejected before queueing; inspect rejectedPaths for details']
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:117:  const countParams: unknown[] = [tier];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:169:    } catch (cpErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:185:  const selectParams: unknown[] = [tier];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:223:        } catch (_histErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:265:    } catch (hookError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:293:  const data: Record<string, unknown> = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:57:  [key: string]: unknown;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:77:  [key: string]: unknown;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:148:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:170:  } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:254:  } catch (_error: unknown) { /* eval logging must never break triggers handler */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:268:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:282:    } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:314:          // H2 FIX: Require exact scope match — rows with NULL scope are excluded
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:324:    } catch (scopeErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:332:  const degradedTriggerMatching = triggerMatchResult.stats?.degraded ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:340:        degradedMatching: degradedTriggerMatching,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:351:        ...(degradedTriggerMatching ? ['Trigger matching ran in degraded mode; inspect server logs for skipped trigger sources'] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:372:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:388:        } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:517:      degradedMatching: degradedTriggerMatching,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:525:      ...(degradedTriggerMatching ? { degradedMatching: degradedTriggerMatching } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:544:  } catch (_error: unknown) { /* instrumentation must never cause triggers handler to fail */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:16: * Accepts either exact name `pre-reconsolidation` or prefixed variants.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/db-helpers.ts:36:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:10:const SPEC_FOLDER_LOCKS = new Map<string, Promise<unknown>>();
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:15:    .catch((error: unknown) => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:238:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:274:      } catch (bm25_err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:294:    } catch (_histErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:176:    } catch (embedding_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:26:  [key: string]: unknown;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:54:export interface IndexResult extends Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:74:  causalLinks?: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:87:    layers: unknown;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:130:  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:154:  } catch (repairErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:209:              const scopeFiltered = results.filter((r: Record<string, unknown>) => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:216:              return scopeFiltered.map((r: Record<string, unknown>) => ({
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:284:                  } catch (bm25Err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:358:    } catch (reconErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:385:        const top = candidateResults[0] as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:413:          } catch (mergeErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:439:    } catch (assistiveErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:113:    const parsed = JSON.parse(raw) as unknown;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:132:function buildInClause(values: readonly unknown[]): string {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:141:/** Resolve many memory references in batch (exact first, fuzzy fallback). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:196:  // 2) Batch exact path matches via canonical_file_path/file_path equality
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:253:  // 3) Batch exact title matches
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:384:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:405:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:89:    } catch (causal_err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:109:    } catch (entityErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:131:    } catch (summaryErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:150:          : 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:153:          : 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:157:    } catch (linkErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:184:    } catch (glErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:110:interface PreflightRecord extends Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:231:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:259:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:391:    } catch (e: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:446:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:498:  const params: unknown[] = [spec_folder, taskId];
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:602:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:648:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:691:    const params: unknown[] = [spec_folder];
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:705:    const rows = database.prepare(sql).all(...params) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:707:    const learningHistory: LearningHistoryRow[] = rows.map((row: Record<string, unknown>) => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:712:      try { knowledgeGaps = row.knowledge_gaps ? JSON.parse(row.knowledge_gaps as string) : []; } catch (_error: unknown) { /* ignore */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:713:      try { gapsClosed = row.gaps_closed ? JSON.parse(row.gaps_closed as string) : []; } catch (_error: unknown) { /* ignore */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:714:      try { newGapsDiscovered = row.new_gaps_discovered ? JSON.parse(row.new_gaps_discovered as string) : []; } catch (_error: unknown) { /* ignore */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:775:      const summaryParams: unknown[] = [spec_folder];
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:786:      const stats = database.prepare(summarySql).get(...summaryParams) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:853:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:256:    } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:284:          (row as Record<string, unknown>).parentMemoryId ?? row.id
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:89:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:153:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:156:  } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:182:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:187:  } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:114: * This can migrate to MemoryDbRow & Record<string, unknown> later without changing the handler contract.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:116:interface MemorySearchRow extends Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:145:  dedupStats: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:150:  data: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:154:type SessionAwareResult = Record<string, unknown> & {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:222:  telemetryPayload: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:230:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:232:      ? envelope.meta as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:243:  } catch (error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:250:function extractResponseResults(response: MCPResponse): Array<Record<string, unknown>> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:257:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:259:      ? envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:262:      ? data.results as Array<Record<string, unknown>>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:276:    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:279:      ? envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:297:): { firstEntry: { type: 'text'; text: string }; envelope: Record<string, unknown> } | null {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:306:      envelope: JSON.parse(firstEntry.text) as Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:316:  envelope: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:324:function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:359:    ? parsed.envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:373:function hasPublicationContractFields(result: Record<string, unknown>): boolean {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:390:    ? parsed.envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:393:    ? data.results as Array<Record<string, unknown>>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:410:      multiplierAuthorityFields: result.multiplierAuthorityFields as Record<string, unknown> | null | undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:590:    } catch (validationError: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:646:  } catch (_error: unknown) { /* eval logging must never break search */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:701:    } catch (_autoProfileErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:707:  if (detectedIntent && artifactRouting?.detectedClass === 'unknown' && artifactRouting?.confidence === 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:758:  let goalRefinementPayload: Record<string, unknown> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:805:      artifactRouting: artifactRouting as unknown as PipelineConfig['artifactRouting'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:810:    let resultsForFormatting = pipelineResult.results as unknown as SessionAwareResult[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:837:            `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:848:              const existingIds = new Set(resultsForFormatting.map((r) => (r as Record<string, unknown>).id as number));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:851:                resultsForFormatting = [...resultsForFormatting, ...newRows as unknown as SessionAwareResult[]];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:856:        } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:867:        const filePath = (r as Record<string, unknown>).file_path as string | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:869:          const raw = (r as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:879:          const sa = (a as Record<string, unknown>).similarity as number ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:880:          const sb = (b as Record<string, unknown>).similarity as number ?? 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:912:    const extraData: Record<string, unknown> = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:972:        resultsForFormatting as Array<Record<string, unknown> & { id: number }>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:978:    } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:984:    const appliedBoosts: Record<string, unknown> = {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1013:        const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1018:      } catch (_error: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1027:          ? parsedFormatted.envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1057:      ? parsedResponse.envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1073:    let resultsData: Record<string, unknown> | null = null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1076:        resultsData = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1077:      } catch (err: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1083:      resultsData = responseToReturn as unknown as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1090:      ? resultsData.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1132:        (resultsData.meta as Record<string, unknown>).dedupStats = dedupStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1149:      ? parsedResponse.envelope.data as Record<string, unknown>
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1151:    const existingResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1188:    const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1195:          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1196:          const data = parsed?.data as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1197:          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1199:          resultCount = Array.isArray(data?.results) ? (data.results as unknown[]).length : 0;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1201:      } catch (_error: unknown) { /* ignore parse errors */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1213:  } catch (_error: unknown) { /* instrumentation must never cause search to fail */ }
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1222:          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1223:          const data = parsed?.data as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1224:          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1228:      } catch (_error: unknown) { /* ignore parse errors */ }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '300,360p' && printf '\\n---SEARCH---\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '680,760p' && printf '\\n---RESPONSE CONTRACTS---\\n' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts | sed -n '300,360p' && printf '\\n---SEARCH---\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '680,760p' && printf '\\n---RESPONSE CONTRACTS---\\n' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    300	          SELECT id, spec_folder, tenant_id, user_id, agent_id, shared_space_id
    301	          FROM memory_index WHERE id IN (${placeholders})
@@ -6234,7 +6234,7 @@ exec
    220	  return typeof value === 'string'
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -6252,7 +6252,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -6994,7 +6994,7 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - **Impact**: high
 
 ### Finding 2: Dual freshness signals are useful, but only as supplemental trust metadata
-- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L329)
+- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L329)
 - **What it does**: Mex emits separate stale-file issues from both elapsed days (`30`/`90`) and commits since last change (`50`/`200`). If git history cannot answer, `git.ts` returns `null`, so the checker silently emits nothing.
 - **Why it matters for us**: The days-plus-commits idea is strong, but silent `null` is too weak for Spec Kit. Our current surfaces already distinguish `exact`, `estimated`, `defaulted`, `unknown`, and degraded matching; freshness should plug into that trust model instead of pretending “no signal” means “healthy.”
 - **Recommendation**: prototype later
@@ -7029,7 +7029,7 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - **Impact**: medium
 
 ### Finding 7: Mex’s single drift score should not be promoted into Spec Kit’s primary health surface
-- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L87), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1019), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L45), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22)
+- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L87), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1019), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L45), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22)
 - **What it does**: Mex starts at `100` and subtracts fixed costs per issue. That makes score the headline surface even though the underlying findings have very different trust implications.
 - **Why it matters for us**: Spec Kit already has richer truth states: block-on-write rules, `REJECTED` post-save outcomes, and certainty/provenance fields. A single score would compress those distinctions and make unsafe or unknown states look deceptively acceptable.
 - **Recommendation**: reject
@@ -7059,14 +7059,14 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - [pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
 - [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts)
 - [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts)
-- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts)
+- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 
 ## Assessment
 - New information ratio: 0.46
@@ -7104,7 +7104,7 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - **Impact**: high
 
 ### Finding 2: Dual freshness signals are useful, but only as supplemental trust metadata
-- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L329)
+- **Source**: [staleness.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/checkers/staleness.ts#L4), [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts#L12), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L219), [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts#L329)
 - **What it does**: Mex emits separate stale-file issues from both elapsed days (`30`/`90`) and commits since last change (`50`/`200`). If git history cannot answer, `git.ts` returns `null`, so the checker silently emits nothing.
 - **Why it matters for us**: The days-plus-commits idea is strong, but silent `null` is too weak for Spec Kit. Our current surfaces already distinguish `exact`, `estimated`, `defaulted`, `unknown`, and degraded matching; freshness should plug into that trust model instead of pretending “no signal” means “healthy.”
 - **Recommendation**: prototype later
@@ -7139,7 +7139,7 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - **Impact**: medium
 
 ### Finding 7: Mex’s single drift score should not be promoted into Spec Kit’s primary health surface
-- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L87), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts#L1019), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts#L45), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22)
+- **Source**: [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/README.md#L87), [scoring.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/drift/scoring.ts#L3), [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts#L1019), [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts#L45), [shared-payload.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts#L22)
 - **What it does**: Mex starts at `100` and subtracts fixed costs per issue. That makes score the headline surface even though the underlying findings have very different trust implications.
 - **Why it matters for us**: Spec Kit already has richer truth states: block-on-write rules, `REJECTED` post-save outcomes, and certainty/provenance fields. A single score would compress those distinctions and make unsafe or unknown states look deceptively acceptable.
 - **Recommendation**: reject
@@ -7169,14 +7169,14 @@ Executive summary: Mex is strongest as a thin markdown-integrity layer, not as a
 - [pattern/index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/pattern/index.ts)
 - [git.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/src/git.ts)
 - [checkers.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/002-mex-main/external/test/checkers.test.ts)
-- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
-- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts)
-- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
-- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
-- [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts)
-- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts)
-- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/lib/validate-memory-quality.ts)
-- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js)
+- [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- [memory-context.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [memory-triggers.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts)
+- [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts)
+- [causal-links-processor.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts)
+- [post-save-review.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts)
+- [validate-memory-quality.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts)
+- [generate-context.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js)
 
 ## Assessment
 - New information ratio: 0.46

@@ -6,7 +6,7 @@ Deep dive into migration risk for the endLine fix (Phase A) and tree-sitter WASM
 ## Findings
 
 ### 1. No Tests Depend on the Broken endLine=startLine Behavior
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts]
 
 The existing test file (146 lines) tests `parseFile` and `extractEdges` but **never asserts on endLine values**. Tests check:
 - Function/class/interface/import names extracted correctly
@@ -17,7 +17,7 @@ The existing test file (146 lines) tests `parseFile` and `extractEdges` but **ne
 No test contains `endLine` in any assertion. This means the endLine fix has **zero risk of breaking existing tests**. The test suite validates node discovery (names, kinds) and edge type creation, not line range accuracy.
 
 ### 2. The endLine Bug Has a Cascading Impact on CALLS Edge Extraction
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:290]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:290]
 
 Line 290 in `extractEdges()`:
 ```typescript
@@ -27,7 +27,7 @@ const bodyLines = contentLines.slice(caller.startLine - 1, caller.endLine);
 When `endLine === startLine`, this slice produces exactly **one line** (the declaration line only). For a function spanning 20 lines, all call-site references in lines 2-20 are invisible. This means CALLS edges are systematically **under-detected** -- the graph only finds calls that happen to appear on the declaration line itself. Fixing endLine will immediately produce more CALLS edges, which is a behavioral change but a **correctness improvement**.
 
 ### 3. The contentHash Bug Compounds the endLine Bug
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:190]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts:190]
 
 Line 190:
 ```typescript
@@ -40,7 +40,7 @@ With `endLine === startLine`, the hash covers only the declaration line. When en
 - A full re-index after the fix is needed to update all contentHash values
 
 ### 4. DB Schema Does NOT Need Migration -- SCHEMA_VERSION=1 with No Migration System
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:17-68]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:17-68]
 
 The DB has `SCHEMA_VERSION = 1` (line 17) and `CREATE TABLE IF NOT EXISTS` (lines 20-68). There is **no migration system**:
 - No `schema_version` table in the database
@@ -51,7 +51,7 @@ The DB has `SCHEMA_VERSION = 1` (line 17) and `CREATE TABLE IF NOT EXISTS` (line
 The endLine fix changes data **values** (endLine numbers, contentHash), not schema **structure**. The existing `end_line INTEGER NOT NULL` column (line 41) already stores the correct data type. A simple `code_graph_scan({ force: true })` after deploying the fix will re-populate all values correctly. No schema migration needed.
 
 ### 5. Seed Resolver Has a Dependency on Correct endLine for Enclosing-Symbol Resolution
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:196-198]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts:196-198]
 
 The enclosing symbol query:
 ```sql
@@ -114,10 +114,10 @@ The only metric that changes is edge count (upward), which is a quality improvem
 - None -- all investigated paths yielded useful findings
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (lines 275-325)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (lines 190-235)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts` (full file, 146 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/structural-indexer.ts` (lines 275-325)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (lines 190-235)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-indexer.vitest.ts` (full file, 146 lines)
 - Grep across entire mcp_server directory for endLine/end_line references (57 hits across 9 files)
 
 ## Assessment

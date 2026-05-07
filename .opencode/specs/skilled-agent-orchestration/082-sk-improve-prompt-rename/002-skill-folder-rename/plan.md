@@ -18,10 +18,10 @@ _memory:
     next_safe_action: "Phase 003 opencode internals"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-prompt/SKILL.md"
-      - ".opencode/skill/sk-prompt/README.md"
-      - ".opencode/skill/sk-prompt/graph-metadata.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-skill-folder-rename"
@@ -96,7 +96,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/sk-prompt/` | Owns prompt skill body and self metadata | Rename and replace local literals | Scoped `rg` returns no old-name matches |
+| `.opencode/skills/sk-prompt/` | Owns prompt skill body and self metadata | Rename and replace local literals | Scoped `rg` returns no old-name matches |
 | `skill-graph.json` | Advisor graph fallback and signal map | Rename graph IDs and key values | `jq` passes; scoped `rg` returns no old-name matches |
 | `.opencode/changelog/` | Skill changelog symlink catalog | Retarget symlink to new folder | `ls -l` shows `sk-prompt -> ../skill/sk-prompt/changelog` |
 | Advisor generated state | Runtime advisor freshness and generation | Rebuild after JSON edits | Generation `1212 -> 1213`, freshness `live` |
@@ -119,7 +119,7 @@ Required inventories:
 - [x] Confirm current branch is `main`.
 
 ### Phase 2: Core Implementation
-- [x] Rename `.opencode/skill/sk-improve-prompt/` to `.opencode/skill/sk-prompt/`.
+- [x] Rename `.opencode/skills/sk-improve-prompt/` to `.opencode/skills/sk-prompt/`.
 - [x] Replace skill-local `sk-improve-prompt` literals with `sk-prompt`.
 - [x] Replace Phase 002 `skill-graph.json` keys and refs.
 - [x] Retarget changelog symlink.
@@ -188,7 +188,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Scoped grep finds old refs in Phase 002 files, JSON becomes invalid, or advisor status cannot return live after rebuild.
-- **Procedure**: Move `.opencode/skill/sk-prompt/` back to `.opencode/skill/sk-improve-prompt/`, retarget the changelog symlink, restore the previous `skill-graph.json` refs, then rebuild advisor state.
+- **Procedure**: Move `.opencode/skills/sk-prompt/` back to `.opencode/skills/sk-improve-prompt/`, retarget the changelog symlink, restore the previous `skill-graph.json` refs, then rebuild advisor state.
 <!-- /ANCHOR:rollback -->
 
 ---

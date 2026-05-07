@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "review"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/SKILL.md"
-      - ".opencode/skill/system-spec-kit/references/"
-      - ".opencode/skill/system-spec-kit/assets/"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/references/"
+      - ".opencode/skills/system-spec-kit/assets/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-skill-references-assets-alignment"

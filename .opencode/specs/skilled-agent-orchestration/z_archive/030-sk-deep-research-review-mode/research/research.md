@@ -282,16 +282,16 @@ This research investigated 7 key questions about improving the review logic in `
 ## 8. Sources
 
 ### Internal (Codebase)
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/plan.md`
-- `.opencode/agent/deep-review.md` (+ `.claude/`, `.codex/`, `.gemini/`, `.opencode/agent/chatgpt/` variants)
-- `.opencode/agent/review.md`
-- `.opencode/skill/sk-deep-research/SKILL.md` and references (loop_protocol.md, state_format.md, convergence.md, quick_reference.md)
-- `.opencode/skill/sk-deep-research/README.md`
-- `.opencode/skill/sk-code-review/SKILL.md` and references
-- `.opencode/skill/system-spec-kit/` (templates, compose.sh, template_guide.md)
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/agents/deep-review.md` (+ `.claude/`, `.codex/`, `.gemini/`, `.opencode/agents/chatgpt/` variants)
+- `.opencode/agents/review.md`
+- `.opencode/skills/sk-deep-research/SKILL.md` and references (loop_protocol.md, state_format.md, convergence.md, quick_reference.md)
+- `.opencode/skills/sk-deep-research/README.md`
+- `.opencode/skills/sk-code-review/SKILL.md` and references
+- `.opencode/skills/system-spec-kit/` (templates, compose.sh, template_guide.md)
 - Real review runs: specs 012 (pre-release-fixes) and 013 (memory-generation-quality)
 - Archived v1 research: `scratch/archive-research-v1/`
 

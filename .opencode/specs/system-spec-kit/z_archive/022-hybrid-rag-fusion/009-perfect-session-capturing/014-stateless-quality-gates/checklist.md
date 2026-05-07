@@ -43,7 +43,7 @@ This document records the current verified state for Phase 014. Use [spec.md](sp
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md` with all P0/P1 REQs [Evidence: `spec.md` now records the shipped Gate A split, CLI contract, Claude-only downgrade, and current verification scope.]
-- [x] CHK-002 [P0] Technical approach defined in `plan.md` and the bundled stateless-save decision recorded in `decision-record.md` [Evidence: `plan.md` and `decision-record.md` both describe the shipped implementation under `.opencode/skill/system-spec-kit/scripts/...`.]
+- [x] CHK-002 [P0] Technical approach defined in `plan.md` and the bundled stateless-save decision recorded in `decision-record.md` [Evidence: `plan.md` and `decision-record.md` both describe the shipped implementation under `.opencode/skills/system-spec-kit/scripts/...`.]
 - [x] CHK-003 [P0] Surrounding runtime semantics were already present and the shared test baselines were green before implementation started [Evidence: the later phase-016 documentation sweep records the 2026-03-18 green scripts and MCP baselines that phase `014` inherits as evidence.]
 - [x] CHK-004 [P1] Root cause locations confirmed by reading `workflow.ts`, `generate-context.ts`, and `contamination-filter.ts` [Evidence: the affected seams were re-read during this remediation pass.]
 <!-- /ANCHOR:pre-impl -->
@@ -53,12 +53,12 @@ This document records the current verified state for Phase 014. Use [spec.md](sp
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Gate A hard-block tier correctly lists V1, V3, V8, V9, V11 [Evidence: `.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts` exports `HARD_BLOCK_RULES` with those ids only.]
-- [x] CHK-011 [P0] Gate A soft-warning tier correctly allows V10-only failures to proceed [Evidence: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` warns with `QUALITY_GATE_WARN` when no hard-block rule failed.]
-- [x] CHK-012 [P0] `--stdin` and `--json` set `_source = 'file'` on parsed data before passing to `runWorkflow()` [Evidence: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` parses structured JSON through the file-mode path.]
+- [x] CHK-010 [P0] Gate A hard-block tier correctly lists V1, V3, V8, V9, V11 [Evidence: `.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts` exports `HARD_BLOCK_RULES` with those ids only.]
+- [x] CHK-011 [P0] Gate A soft-warning tier correctly allows V10-only failures to proceed [Evidence: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` warns with `QUALITY_GATE_WARN` when no hard-block rule failed.]
+- [x] CHK-012 [P0] `--stdin` and `--json` set `_source = 'file'` on parsed data before passing to `runWorkflow()` [Evidence: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` parses structured JSON through the file-mode path.]
 - [x] CHK-013 [P0] `--stdin` / `--json` resolve and validate the target spec folder before `runWorkflow()` executes [Evidence: `generate-context-cli-authority.vitest.ts` remains part of the green targeted lane.]
 - [x] CHK-014 [P0] stdin/json mode passes preloaded `collectedData` into `runWorkflow()` instead of falling through the loader path [Evidence: targeted CLI-authority tests passed on 2026-03-18.]
-- [x] CHK-015 [P0] `filterContamination()` signature change is backward-compatible [Evidence: `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts` keeps the denylist parameter in second position and adds an optional third options object.]
+- [x] CHK-015 [P0] `filterContamination()` signature change is backward-compatible [Evidence: `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts` keeps the denylist parameter in second position and adds an optional third options object.]
 - [x] CHK-016 [P0] No TypeScript drift in the affected seams [Evidence: Phase 014 touched existing TypeScript surfaces only, and the inherited broader scripts baseline remains green.]
 - [x] CHK-017 [P0] No build drift in the affected seams [Evidence: the parent closure baseline and phase-016 continuation retain clean scripts and MCP build evidence.]
 - [x] CHK-018 [P1] Error handling exists for `--stdin` / `--json` edge cases [Evidence: `generate-context.ts` rejects empty or malformed structured input and the CLI-authority tests remain green.]

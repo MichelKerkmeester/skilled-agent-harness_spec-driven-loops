@@ -59,9 +59,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] YAML parse checks pass for every file in `.opencode/command/create/assets/` [EVIDENCE: full `yaml.safe_load` pass succeeded]
-- [x] CHK-021 [P1] `validate_document.py` passes for `.opencode/command/create/README.txt` [EVIDENCE: validator returned `VALID`]
-- [x] CHK-022 [P1] `validate_document.py` passes for `.opencode/command/README.txt` [EVIDENCE: validator returned `VALID`]
+- [x] CHK-020 [P0] YAML parse checks pass for every file in `.opencode/commands/create/assets/` [EVIDENCE: full `yaml.safe_load` pass succeeded]
+- [x] CHK-021 [P1] `validate_document.py` passes for `.opencode/commands/create/README.txt` [EVIDENCE: validator returned `VALID`]
+- [x] CHK-022 [P1] `validate_document.py` passes for `.opencode/commands/README.txt` [EVIDENCE: validator returned `VALID`]
 - [x] CHK-023 [P1] Spec validator passes for this folder [EVIDENCE: `validate.sh` returned `PASSED WITH WARNINGS` with only non-blocking AI protocol and custom-anchor warnings]
 <!-- /ANCHOR:testing -->
 
@@ -91,7 +91,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] This spec folder contains the standard Level 3 packet files [EVIDENCE: spec, plan, tasks, checklist, decision record, and implementation summary are present]
-- [x] CHK-051 [P1] The refinement scope stayed inside the create asset suite plus this packet [EVIDENCE: modified files are limited to `.opencode/command/create/assets/` and `027-cmd-create-yaml-refinement/`]
+- [x] CHK-051 [P1] The refinement scope stayed inside the create asset suite plus this packet [EVIDENCE: modified files are limited to `.opencode/commands/create/assets/` and `027-cmd-create-yaml-refinement/`]
 - [x] CHK-052 [P2] No manual memory file edits were made [EVIDENCE: `memory/` remains untouched except scaffold `.gitkeep`]
 <!-- /ANCHOR:file-org -->
 

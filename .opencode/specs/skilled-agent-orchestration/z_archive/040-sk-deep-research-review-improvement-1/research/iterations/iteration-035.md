@@ -7,7 +7,7 @@ Iteration artifact schema depth versus reducer requirements.
 - Which fields remain inference-only today?
 
 ## Evidence
-- `.opencode/skill/sk-deep-research/references/state_format.md:276-290`
+- `.opencode/skills/sk-deep-research/references/state_format.md:276-290`
 - `.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl` (existing runs)
 
 ## Analysis

@@ -227,7 +227,7 @@ function formatFolderDisplay(folder, memoryCount, lastUpdate, score = null) {
 **Description:**
 Modify `/memory:search` dashboard mode to use new ranking and sections.
 
-**Changes to `.opencode/command/memory-search.md`:**
+**Changes to `.opencode/commands/memory-search.md`:**
 
 1. Fetch all memories (not just stats topFolders)
 2. Group by folder and compute scores

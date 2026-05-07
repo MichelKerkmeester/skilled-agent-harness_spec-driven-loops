@@ -10,7 +10,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | FSRS v4 algorithm implementation for memory strength calculation |
 | **Changes** | New file created - 360 lines |
@@ -38,7 +38,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | Conflict detection using similarity thresholds and contradiction patterns |
 | **Changes** | New file created - 616 lines |
@@ -84,7 +84,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | Memory state classification (extended from 3-tier to 5-state model) |
 | **Changes** | Extended functionality - 844 lines |
@@ -119,7 +119,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | Memory attention score decay using FSRS power-law formula |
 | **Changes** | Added FSRS decay functions - 666 lines |
@@ -158,7 +158,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/index.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/index.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | Barrel export file for cognitive module |
 | **Changes** | Added 2 new module exports |
@@ -179,7 +179,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.js` |
 | **Part Of** | Memory Ranking System |
 | **Purpose** | Multi-factor memory scoring with retrievability integration |
 | **Changes** | Added FSRS retrievability factor - 193 lines |
@@ -216,7 +216,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js` |
 | **Part Of** | Vector Database System |
 | **Purpose** | Schema v4 migration for FSRS and conflict tracking |
 | **Changes** | Database schema upgrade - 27537 lines total |
@@ -262,7 +262,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.js` |
 | **Part Of** | Memory Save Handler |
 | **Purpose** | Prediction error gating integration for duplicate/conflict detection |
 | **Changes** | Integrated PE gate logic |
@@ -303,7 +303,7 @@
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.js` |
 | **Part Of** | Memory Search Handler |
 | **Purpose** | Testing effect integration - strengthen memories on access |
 | **Changes** | Added FSRS testing effect |
@@ -356,7 +356,7 @@ WHERE id = ?
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | Unit tests for FSRS implementation |
 | **Changes** | Created 2026-01-27 (30 tests), Expanded 2026-01-28 (52 tests) |
@@ -393,7 +393,7 @@ WHERE id = ?
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js` |
 | **Part Of** | Verification Suite |
 | **Purpose** | Comprehensive verification script for cognitive upgrade |
 | **Changes** | New file created - 9 verification categories |
@@ -414,7 +414,7 @@ WHERE id = ?
 
 **Run Verification**:
 ```bash
-node .opencode/skill/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
 ```
 
 **Expected Output**:
@@ -438,7 +438,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | Comprehensive tests for PE gating |
 | **Changes** | New file created - 65 tests |
@@ -460,7 +460,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | 5-state memory model tests |
 | **Changes** | Expanded from ~35 tests to 81 tests |
@@ -482,7 +482,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | FSRS decay integration tests |
 | **Changes** | Expanded from ~35 tests to 93 tests |
@@ -504,7 +504,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | Retrievability weight integration tests |
 | **Changes** | New file created - 63 tests |
@@ -525,7 +525,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | PE gating handler integration tests |
 | **Changes** | New file created - 70 tests |
@@ -546,7 +546,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | Testing effect handler integration tests |
 | **Changes** | New file created - 57 tests |
@@ -567,7 +567,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.test.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.test.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | Schema v4 migration tests |
 | **Changes** | New file created - 58 tests |
@@ -588,7 +588,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/tests/test-cognitive-integration.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/tests/test-cognitive-integration.js` |
 | **Part Of** | Test Suite |
 | **Purpose** | End-to-end cognitive flow tests |
 | **Changes** | Expanded to 95 tests |
@@ -611,7 +611,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/scripts/tests/run-all-tests.js` |
+| **Path** | `.opencode/skills/system-spec-kit/scripts/tests/run-all-tests.js` |
 | **Part Of** | Test Infrastructure |
 | **Purpose** | Master test runner |
 | **Changes** | New file created |
@@ -627,7 +627,7 @@ VERIFICATION PASSED: 9/9 categories
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/scripts/tests/test-utils.js` |
+| **Path** | `.opencode/skills/system-spec-kit/scripts/tests/test-utils.js` |
 | **Part Of** | Test Infrastructure |
 | **Purpose** | Shared test utilities |
 | **Changes** | New file created - 18 functions |
@@ -691,7 +691,7 @@ All test files aligned with workflows-code standards:
 
 | Attribute | Value |
 |-----------|-------|
-| **Path** | `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js` |
+| **Path** | `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.js` |
 | **Part Of** | Cognitive Memory System |
 | **Purpose** | Export grouped constants for testing |
 | **Changes** | Added FSRS_CONSTANTS object |
@@ -814,20 +814,20 @@ module.exports = {
 
 ```bash
 # Full Test Suite
-node .opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js      # 52/52 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.test.js # 65/65 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js       # 81/81 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js       # 93/93 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.test.js     # 63/63 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.test.js   # 70/70 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.test.js # 57/57 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.test.js      # 58/58 passed
-node .opencode/skill/system-spec-kit/mcp_server/tests/test-cognitive-integration.js # 95/95 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js      # 52/52 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.test.js # 65/65 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js       # 81/81 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js       # 93/93 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.test.js     # 63/63 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.test.js   # 70/70 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.test.js # 57/57 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.test.js      # 58/58 passed
+node .opencode/skills/system-spec-kit/mcp_server/tests/test-cognitive-integration.js # 95/95 passed
 
 # TOTAL: 634/634 tests passed (0 failed, 0 skipped)
 
 # Comprehensive Verification
-node .opencode/skill/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
 ✅ 9/9 categories passed
 ```
 
@@ -979,10 +979,10 @@ const decision = predictionErrorGate.evaluate_memory(candidates, content);
 
 ```bash
 # Run unit tests
-node .opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.test.js
 
 # Run comprehensive verification
-node .opencode/skill/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
+node .opencode/skills/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.js
 
 # Expected: All tests pass
 ```
@@ -1012,10 +1012,10 @@ node .opencode/skill/system-spec-kit/mcp_server/tests/verify-cognitive-upgrade.j
 
 | File | Path | Changes Made |
 |------|------|--------------|
-| `checkpoint.md` | `.opencode/command/memory/checkpoint.md` | 4 fixes: MCP ENFORCEMENT MATRIX emoji, USE CASES emoji, CONFIGURATION emoji, RELATED COMMANDS emoji |
-| `database.md` | `.opencode/command/memory/database.md` | 9 fixes: Added section number to COGNITIVE MEMORY MODEL, renumbered sections 9-17, fixed VALIDATE MODE emoji (✓ → ✅), QUICK REFERENCE emoji |
-| `save.md` | `.opencode/command/memory/save.md` | 8 fixes: MCP ENFORCEMENT MATRIX emoji, PHASE 1B → PHASE 2 (integer numbering), updated all Phase 1B references, RELATED COMMANDS emoji |
-| `search.md` | `.opencode/command/memory/search.md` | 9 fixes: Added numbers to CONSTITUTIONAL MEMORY BEHAVIOR and COGNITIVE MEMORY FEATURES, renumbered sections 7-15, QUICK REFERENCE emoji |
+| `checkpoint.md` | `.opencode/commands/memory/checkpoint.md` | 4 fixes: MCP ENFORCEMENT MATRIX emoji, USE CASES emoji, CONFIGURATION emoji, RELATED COMMANDS emoji |
+| `database.md` | `.opencode/commands/memory/database.md` | 9 fixes: Added section number to COGNITIVE MEMORY MODEL, renumbered sections 9-17, fixed VALIDATE MODE emoji (✓ → ✅), QUICK REFERENCE emoji |
+| `save.md` | `.opencode/commands/memory/save.md` | 8 fixes: MCP ENFORCEMENT MATRIX emoji, PHASE 1B → PHASE 2 (integer numbering), updated all Phase 1B references, RELATED COMMANDS emoji |
+| `search.md` | `.opencode/commands/memory/search.md` | 9 fixes: Added numbers to CONSTITUTIONAL MEMORY BEHAVIOR and COGNITIVE MEMORY FEATURES, renumbered sections 7-15, QUICK REFERENCE emoji |
 
 ### Alignment Issues Fixed
 
@@ -1048,7 +1048,7 @@ From `command_template.md`:
 
 ```bash
 # Verified H2 headers in all 4 files
-grep "^## " .opencode/command/memory/*.md
+grep "^## " .opencode/commands/memory/*.md
 
 # All sections now have:
 # - Sequential numbering (no gaps)

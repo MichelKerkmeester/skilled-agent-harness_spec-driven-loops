@@ -74,7 +74,7 @@ Manual test execution — dependency-ordered scenario runner
 
 ### Key Components
 
-- **Playbook files**: Source of truth for each scenario's steps and expected outcomes. Located in `.opencode/skill/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/`
+- **Playbook files**: Source of truth for each scenario's steps and expected outcomes. Located in `.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/`
 - **MCP tool chain**: Scenarios executed via `mcp__spec_kit_memory__eval_run_ablation`, `memory_search`, `memory_stats`, and related tools
 - **eval_metric_snapshots table**: Stores ablation and metric results; must exist before metric computation scenarios run
 - **Ground truth corpus**: Required for BM25 baseline and ablation scenarios; generated via scenario 010

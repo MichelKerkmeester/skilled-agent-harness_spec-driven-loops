@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Scripts package build passes with nested changelog support [EVIDENCE: `cd .opencode/skill/system-spec-kit/scripts && npm run build`]
+- [x] CHK-010 [P0] Scripts package build passes with nested changelog support [EVIDENCE: `cd .opencode/skills/system-spec-kit/scripts && npm run build`]
 - [x] CHK-011 [P0] Root and phase generator paths render successfully in focused tests [EVIDENCE: `npx vitest run tests/nested-changelog.vitest.ts --config ../mcp_server/vitest.config.ts --root .`]
 - [x] CHK-012 [P1] Generator falls back gracefully when packet sections are missing [EVIDENCE: fallback copy in `nested-changelog.ts` and template-driven rendering]
 - [x] CHK-013 [P1] Workflow stays aligned with existing project patterns [EVIDENCE: command assets, skill docs, template docs, and references updated together]
@@ -82,8 +82,8 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` are synchronized [EVIDENCE: packet `025` created at closeout]
-- [x] CHK-041 [P1] Command and skill documentation explain nested changelog as additive to implementation summary [EVIDENCE: updated command docs and `.opencode/skill/system-spec-kit/SKILL.md`]
-- [x] CHK-042 [P2] Canonical workflow reference added [EVIDENCE: `.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md`]
+- [x] CHK-041 [P1] Command and skill documentation explain nested changelog as additive to implementation summary [EVIDENCE: updated command docs and `.opencode/skills/system-spec-kit/SKILL.md`]
+- [x] CHK-042 [P2] Canonical workflow reference added [EVIDENCE: `.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md`]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -91,7 +91,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Packet changelog templates live under `.opencode/skill/system-spec-kit/templates/changelog/` [EVIDENCE: `.opencode/skill/system-spec-kit/templates/changelog/root.md` and `.opencode/skill/system-spec-kit/templates/changelog/phase.md` added]
+- [x] CHK-050 [P1] Packet changelog templates live under `.opencode/skills/system-spec-kit/templates/changelog/` [EVIDENCE: `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `.opencode/skills/system-spec-kit/templates/changelog/phase.md` added]
 - [x] CHK-051 [P1] Generator export and README surfaces were updated together [EVIDENCE: scripts README, index export, registry updates]
 - [ ] CHK-052 [P2] Historical packet changelogs normalized to the new format [DEFERRED: this packet only standardizes the forward workflow]
 <!-- /ANCHOR:file-org -->
@@ -139,7 +139,7 @@ _memory:
 
 - [x] CHK-120 [P0] Rollback procedure documented [EVIDENCE: `plan.md` rollback sections]
 - [x] CHK-121 [P0] Feature-flag requirement evaluated as not applicable [EVIDENCE: packet changes command/documentation workflow only]
-- [x] CHK-122 [P1] Operational runbook guidance added to command and workflow docs [EVIDENCE: command docs plus `.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md`]
+- [x] CHK-122 [P1] Operational runbook guidance added to command and workflow docs [EVIDENCE: command docs plus `.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md`]
 - [x] CHK-123 [P1] Packet closeout runbook created via `implementation-summary.md` and this checklist [EVIDENCE: packet `025` documentation set]
 - [x] CHK-124 [P2] Deployment runbook reviewed in packet docs [EVIDENCE: command workflow updates reviewed alongside generator changes]
 <!-- /ANCHOR:deploy-ready -->
@@ -162,7 +162,7 @@ _memory:
 
 - [x] CHK-140 [P1] All packet docs synchronized [EVIDENCE: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`]
 - [x] CHK-141 [P1] Command-facing documentation updated where user workflow changes [EVIDENCE: `/create:changelog`, `/spec_kit:implement`, `/spec_kit:complete`]
-- [x] CHK-142 [P2] User-facing workflow reference updated [EVIDENCE: `.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md`]
+- [x] CHK-142 [P2] User-facing workflow reference updated [EVIDENCE: `.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md`]
 - [x] CHK-143 [P2] Knowledge transfer documented for future packet work [EVIDENCE: packet `025` plus updated skill/template reference docs]
 <!-- /ANCHOR:docs-verify -->
 

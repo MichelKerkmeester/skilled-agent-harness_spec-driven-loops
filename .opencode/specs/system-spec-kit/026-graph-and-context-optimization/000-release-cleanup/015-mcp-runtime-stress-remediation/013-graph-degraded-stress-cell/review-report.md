@@ -5,11 +5,11 @@ Mode:      read-only review (no production code or tests executed)
 Scope:     packet 013-graph-degraded-stress-cell (test-only, closes packet 005 v1.0.2 NEUTRAL verdict)
 
 Pre-dispatch scope verification (orchestrator-side, before reviewer ran):
-  $ git status --short -- .opencode/skill/system-spec-kit/mcp_server/tests/
-    ?? .opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts
+  $ git status --short -- .opencode/skills/system-spec-kit/mcp_server/tests/
+    ?? .opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts
     (other untracked test files belong to sibling packets 012/014/015)
 
-  $ git diff --stat HEAD -- .opencode/skill/system-spec-kit/mcp_server/
+  $ git diff --stat HEAD -- .opencode/skills/system-spec-kit/mcp_server/
     Modified files all attributable to sibling packets (012 / 014 / 015), NOT 013.
     Confirmed packet 013's footprint is exactly:
       * mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts  (untracked, new)

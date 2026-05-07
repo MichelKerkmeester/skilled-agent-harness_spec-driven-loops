@@ -32,10 +32,10 @@ contextType: "implementation"
 
 ## P0 — Model Assignments
 
-- [x] CHK-001 [P0] Handover agent = Haiku on OpenCode (`.opencode/agent/handover.md`) [Evidence: Agent A16 verified cross-platform alignment]
+- [x] CHK-001 [P0] Handover agent = Haiku on OpenCode (`.opencode/agents/handover.md`) [Evidence: Agent A16 verified cross-platform alignment]
 - [x] CHK-002 [P0] Handover agent = Haiku on Claude Code (`.claude/agents/handover.md`) [Evidence: Agent A17 switched model from sonnet to haiku]
 - [x] CHK-003 [P0] Handover agent = fast profile on Codex (`.codex/agents/handover.md`) [Evidence: Agent A18 verified Codex frontmatter alignment]
-- [x] CHK-004 [P0] Review agent model-agnostic on OpenCode (`.opencode/agent/review.md`) [Evidence: Agent A16 added spec-015 note about model-agnostic frontmatter]
+- [x] CHK-004 [P0] Review agent model-agnostic on OpenCode (`.opencode/agents/review.md`) [Evidence: Agent A16 added spec-015 note about model-agnostic frontmatter]
 - [x] CHK-005 [P0] Review agent model-agnostic on Claude Code (`.claude/agents/review.md`) [Evidence: Agent A17 updated frontmatter descriptions]
 - [x] CHK-006 [P0] Review agent = readonly profile on Codex (`.codex/agents/review.md`) [Evidence: Agent A18 verified Codex profile alignment]
 

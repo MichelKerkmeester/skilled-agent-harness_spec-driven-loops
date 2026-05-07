@@ -5,8 +5,8 @@ contextType: general
 description: This session captures research work for mcp working memory hybrid rag
   on 2026-02-20. This session finalized the public release documentation pass for
   the hybrid memory rollout and aligned release-facing READMEs with the latest memory
-  capabilities. Work included auditing system-spec-ki... It references work on .opencode/skill/system-spec-kit/README.md,
-  .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/README.md and preserves
+  capabilities. Work included auditing system-spec-ki... It references work on .opencode/skills/system-spec-kit/README.md,
+  .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/README.md and preserves
   the current in_progress checkpoint.
 trigger_phrases:
 - mcp working memory
@@ -151,7 +151,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/skill/system-spec-kit/README.md, .opencode/skill/system-spec-kit/mcp_server/README.md, .opencode/README.md
+- Files modified: .opencode/skills/system-spec-kit/README.md, .opencode/skills/system-spec-kit/mcp_server/README.md, .opencode/README.md
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -168,7 +168,7 @@ Next: Continue implementation
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/skill/system-spec-kit/README.md |
+| Active File | .opencode/skills/system-spec-kit/README.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | None |
@@ -211,13 +211,13 @@ Next: Continue implementation
 
 **Key Files and Their Roles**:
 
-- `.opencode/skill/system-spec-kit/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` - Documentation
 
 - `.opencode/README.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
 - `.opencode/changelog/00--opencode-environment/v2.2.0.1.md` - Documentation
 
@@ -225,7 +225,7 @@ Next: Continue implementation
 
 - `PUBLIC_RELEASE.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/nodes/gate-3-integration.md` - Documentation
+- `.opencode/skills/system-spec-kit/nodes/gate-3-integration.md` - Documentation
 
 **How to Extend**:
 
@@ -265,15 +265,15 @@ This session finalized the public release documentation pass for the hybrid memo
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/skill/system-spec-kit/README.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/README.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | File modified (description pending) |
 | `.opencode/README.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | File modified (description pending) |
 | `.opencode/changelog/00--opencode-environment/v2.2.0.1.md` | File modified (description pending) |
 | `.opencode/changelog/01--system-spec-kit/v2.2.24.1.md` | File modified (description pending) |
 | `PUBLIC_RELEASE.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/nodes/gate-3-integration.md` | File modified (description pending) |
-| `.opencode/skill/system-spec-kit/nodes/when-to-use.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/nodes/gate-3-integration.md` | File modified (description pending) |
+| `.opencode/skills/system-spec-kit/nodes/when-to-use.md` | File modified (description pending) |
 
 <!-- /ANCHOR:summary -->
 
@@ -518,7 +518,7 @@ This session finalized the public release documentation pass for the hybrid memo
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag", limit: 10 })
@@ -530,7 +530,7 @@ ls -la ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/memo
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js ../.opencode/specs/system-spec-kit/020-mcp-working-memory-hybrid-rag --force
 ```
 
 ### Recovery Priority
@@ -723,15 +723,15 @@ trigger_phrases:
   - "rag"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/README.md"
-  - ".opencode/skill/system-spec-kit/mcp_server/README.md"
+  - ".opencode/skills/system-spec-kit/README.md"
+  - ".opencode/skills/system-spec-kit/mcp_server/README.md"
   - ".opencode/README.md"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
   - ".opencode/changelog/00--opencode-environment/v2.2.0.1.md"
   - ".opencode/changelog/01--system-spec-kit/v2.2.24.1.md"
   - "PUBLIC_RELEASE.md"
-  - ".opencode/skill/system-spec-kit/nodes/gate-3-integration.md"
-  - ".opencode/skill/system-spec-kit/nodes/when-to-use.md"
+  - ".opencode/skills/system-spec-kit/nodes/gate-3-integration.md"
+  - ".opencode/skills/system-spec-kit/nodes/when-to-use.md"
 
 # Relationships
 related_sessions:

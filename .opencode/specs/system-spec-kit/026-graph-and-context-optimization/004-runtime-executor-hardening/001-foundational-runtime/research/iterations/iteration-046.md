@@ -6,7 +6,7 @@ I revisited the remaining unclaimed string-governance seams after iterations 41-
 ## Findings
 
 ### Finding R46-001
-- **File:** `.opencode/skill/skill-advisor/scripts/skill_advisor.py`; `.opencode/skill/skill-advisor/tests/test_skill_advisor.py`
+- **File:** `.opencode/skills/skill-advisor/scripts/skill_advisor.py`; `.opencode/skills/skill-advisor/tests/test_skill_advisor.py`
 - **Lines:** `skill_advisor.py:980-1021,1404-1410,1647,1741-1768`; `test_skill_advisor.py:73-186`
 - **Severity:** P1
 - **Description:** Explicit slash-command routing for the entire `/spec_kit:*` family is governed by one broad string prefix. `COMMAND_BRIDGES` registers the generic markers `"/spec_kit"` and `"spec_kit:"` for `command-spec-kit`, `detect_explicit_command_intent()` returns the first marker hit, and the ranking phase then penalizes every other command bridge while giving the matched bridge highest command priority. That means subcommands with their own semantics, such as `/spec_kit:deep-research` or `/spec_kit:resume`, are mechanically collapsed into the generic `command-spec-kit` command surface.
@@ -14,7 +14,7 @@ I revisited the remaining unclaimed string-governance seams after iterations 41-
 - **Downstream Impact:** Operators can explicitly request a more specific `/spec_kit` command and still get a generic planner-oriented routing result. Because the contract is just prefix matching on raw strings, adding or renaming subcommands can silently change routing priority without any schema failure or test break.
 
 ### Finding R46-002
-- **File:** `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skill/skill-advisor/scripts/skill_advisor.py`; `.opencode/skill/skill-advisor/tests/test_skill_advisor.py`
+- **File:** `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py`; `.opencode/skills/skill-advisor/scripts/skill_advisor.py`; `.opencode/skills/skill-advisor/tests/test_skill_advisor.py`
 - **Lines:** `skill_graph_compiler.py:272-319,501-568,630-663`; `skill_advisor.py:141-187,321-339`; `test_skill_advisor.py:73-186`
 - **Severity:** P1
 - **Description:** One-sided `conflicts_with` metadata is silently promoted into a bilateral runtime conflict penalty. The compiler's only symmetry checks cover `depends_on`/`prerequisite_for` and `siblings`; it never validates reciprocal `conflicts_with` edges. But both the compiler and the SQLite loader normalize any declared conflict into a sorted two-skill pair, and `_apply_graph_conflict_penalty()` later raises uncertainty for both skills whenever that pair co-appears above threshold.
@@ -22,7 +22,7 @@ I revisited the remaining unclaimed string-governance seams after iterations 41-
 - **Downstream Impact:** A maintainer can declare `A conflicts_with B` in only one metadata file and still cause both `A` and `B` to be uncertainty-penalized at runtime. Because the bilateral effect is created by string-normalization during compile/load rather than by a validated reciprocal contract, routing behavior can change from a unilateral metadata edit with no failing validation gate.
 
 ### Finding R46-003
-- **File:** `.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
+- **File:** `.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
 - **Lines:** `manual-playbook-runner.ts:181-194,427-445,930-943,1112-1117`
 - **Severity:** P1
 - **Description:** The manual playbook runner's markdown-to-code path now trusts live runtime values, not just repository-authored markdown. When a parsed step argument starts with `{`, the runner first substitutes fixture placeholders plus `runtimeState.lastJobId` into the raw markdown string and then executes the result with `Function(...)`. Because `lastJobId` is captured from prior handler payloads, tool output becomes part of the code string that gets evaluated.

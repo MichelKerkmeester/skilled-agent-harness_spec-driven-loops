@@ -39,9 +39,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/command/memory/save.md",
-      ".opencode/command/memory/search.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/memory/search.md",
       "database/context-index.sqlite",
       "spec.md",
       "plan.md",
@@ -52,19 +52,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "save.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/save.md",
+        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/search.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {

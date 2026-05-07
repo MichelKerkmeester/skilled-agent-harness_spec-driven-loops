@@ -10,12 +10,12 @@ Synthesize RQ1, RQ2, and RQ3 into implementation guidance. This follows the stra
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research/research/iterations/iteration-002.md:1`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research/research/iterations/iteration-003.md:1`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/027-memory-context-structural-channel-research/research/iterations/iteration-004.md:1`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1408-1478`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1639-1797`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1145-1497`
-- `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:1072-1106`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:29-48`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1408-1478`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1639-1797`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1145-1497`
+- `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1072-1106`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:29-48`
 
 ## Findings
 

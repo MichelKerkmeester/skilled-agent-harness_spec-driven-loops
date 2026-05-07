@@ -3,8 +3,8 @@
 **Audit Date:** 2025-02-15  
 **Audit Scope:** Error handling consistency across scripts and MCP server  
 **Audit Paths:**
-1. `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts`
-2. `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server`
+1. `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts`
+2. `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server`
 
 **Standards Reference:** workflows-code--opencode (JavaScript/TypeScript error handling, logging, and exit code patterns)
 

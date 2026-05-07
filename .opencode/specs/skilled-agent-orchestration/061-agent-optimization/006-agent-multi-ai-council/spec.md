@@ -58,10 +58,10 @@ Improvement focus: **Multi-strategy planning architect; cross-runtime RENAME (ul
 ### Rename Scope (sub-phase 006 only)
 
 In addition to standard improvement, rename `@ultra-think` → `@multi-ai-council` across:
-- Canonical: `.opencode/agent/ultra-think.md` → `.opencode/agent/multi-ai-council.md`
+- Canonical: `.opencode/agents/ultra-think.md` → `.opencode/agents/multi-ai-council.md`
 - 3 mirrors: `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (TOML)
 - Frontmatter `name:` field updated in all 4
-- Every reference in `.opencode/skill/*/SKILL.md`, `.opencode/command/*`, READMEs, MEMORY index, CLAUDE.md, AGENTS.md, root README.md
+- Every reference in `.opencode/skills/*/SKILL.md`, `.opencode/commands/*`, READMEs, MEMORY index, CLAUDE.md, AGENTS.md, root README.md
 - Verification: `grep -r "@ultra-think\|ultra-think" .opencode .claude .gemini .codex README.md CLAUDE.md AGENTS.md` returns zero hits
 
 <!-- /ANCHOR:problem -->
@@ -72,7 +72,7 @@ In addition to standard improvement, rename `@ultra-think` → `@multi-ai-counci
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/ultra-think.md`
+- Canonical agent body: `.opencode/agents/ultra-think.md`
 - Runtime mirrors: `.claude/agents/ultra-think.md`, `.gemini/agents/ultra-think.md`, `.codex/agents/ultra-think.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: planning depth, strategy diversity, rename completeness
@@ -87,7 +87,7 @@ In addition to standard improvement, rename `@ultra-think` → `@multi-ai-counci
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/ultra-think.md` | Update | Promoted candidate body |
+| `.opencode/agents/ultra-think.md` | Update | Promoted candidate body |
 | `.claude/agents/ultra-think.md` | Update | Mirror sync |
 | `.gemini/agents/ultra-think.md` | Update | Mirror sync |
 | `.codex/agents/ultra-think.toml` | Update | Mirror sync (TOML) |

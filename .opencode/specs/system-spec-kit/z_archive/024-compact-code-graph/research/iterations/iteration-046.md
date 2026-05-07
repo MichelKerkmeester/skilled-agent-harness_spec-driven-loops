@@ -8,7 +8,7 @@ Define the bridge contract between CocoIndex semantic retrieval and the planned 
 
 1. `code_graph_context` should accept direct file-range seeds, not only symbol IDs.
 
-   The bridge should accept CocoIndex hits in their native shape because DR-010 explicitly says CocoIndex remains the semantic system of record while code graph remains structural. CocoIndex already returns `file path + line range + snippet + relevance + language`; forcing an intermediate symbol-resolution tool would add latency, duplicate work, and make the bridge awkward at the exact point where the two systems meet. Our own MCP conventions also already distinguish deterministic low-level tools from higher-level orchestration tools, so `code_graph_context` is the right place to accept richer seed shapes and normalize them internally. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/spec.md:40-46`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:154-264`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-43`]
+   The bridge should accept CocoIndex hits in their native shape because DR-010 explicitly says CocoIndex remains the semantic system of record while code graph remains structural. CocoIndex already returns `file path + line range + snippet + relevance + language`; forcing an intermediate symbol-resolution tool would add latency, duplicate work, and make the bridge awkward at the exact point where the two systems meet. Our own MCP conventions also already distinguish deterministic low-level tools from higher-level orchestration tools, so `code_graph_context` is the right place to accept richer seed shapes and normalize them internally. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/spec.md:40-46`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-044.md:154-264`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-43`]
 
    Recommended bridge contract:
 
@@ -189,7 +189,7 @@ Define the bridge contract between CocoIndex semantic retrieval and the planned 
    Failure mode: token budget overrun in `PreCompact`.
    Mitigation: always drop in this order: second-hop neighbors -> sibling symbols -> semantic analogs -> tests -> import details, while preserving the top anchor, one boundary edge, and one recommended next action.
 
-   The general design rule is degrade, do not fail: produce the best partial answer available and say which layer was missing. That is consistent with the packet's broader compaction strategy. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:177-205`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:6-21`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86-110`]
+   The general design rule is degrade, do not fail: produce the best partial answer available and say which layer was missing. That is consistent with the packet's broader compaction strategy. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:177-205`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:6-21`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86-110`]
 
 8. With a 2-second `PreCompact` budget, the bridge must behave like a fast working-set augmenter, not a full multi-hop retrieval pipeline.
 
@@ -245,9 +245,9 @@ Define the bridge contract between CocoIndex semantic retrieval and the planned 
   - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:131-209`
 
 - Current MCP orchestration and profile conventions:
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:39-43`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:6-21`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86-110`
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:39-43`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:6-21`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:86-110`
 
 - External URLs used:
   - https://sourcegraph.com/docs/cody

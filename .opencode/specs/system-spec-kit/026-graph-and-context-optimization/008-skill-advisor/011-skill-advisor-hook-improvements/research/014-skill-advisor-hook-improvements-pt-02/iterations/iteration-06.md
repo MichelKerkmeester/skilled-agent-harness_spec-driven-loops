@@ -9,16 +9,16 @@ This iteration stayed on threshold drift, but moved from runtime branches into t
 - `../deep-research-strategy.md`
 - `iteration-02.md`
 - `iteration-05.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md`
 
 ### Findings
 
-- The public validator uses a default aggregate pass threshold of `0.7` for both full-corpus and holdout slices, because both calls to `countSlice()` use the helper's default instead of a separate holdout threshold [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:231-243] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:287-291].
-- The package README describes stricter promotion gates of `>= 75%` full-corpus and `>= 72.5%` holdout, so the public validation output and the documented promotion gate thresholds are currently not aligned [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md:150-158].
-- The runtime brief path applies per-prompt `0.8` confidence and `0.35` uncertainty filtering before a recommendation is rendered, but `advisor_validate` does not expose those effective prompt-time thresholds in its public output, so validator "pass" and hook-time "passes threshold" are not directly comparable [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:120-135] [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:72-76].
+- The public validator uses a default aggregate pass threshold of `0.7` for both full-corpus and holdout slices, because both calls to `countSlice()` use the helper's default instead of a separate holdout threshold [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:231-243] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:287-291].
+- The package README describes stricter promotion gates of `>= 75%` full-corpus and `>= 72.5%` holdout, so the public validation output and the documented promotion gate thresholds are currently not aligned [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md:150-158].
+- The runtime brief path applies per-prompt `0.8` confidence and `0.35` uncertainty filtering before a recommendation is rendered, but `advisor_validate` does not expose those effective prompt-time thresholds in its public output, so validator "pass" and hook-time "passes threshold" are not directly comparable [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts:120-135] [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts:72-76].
 
 ### Evidence
 
@@ -26,15 +26,15 @@ This iteration stayed on threshold drift, but moved from runtime branches into t
 >   const percentage = total > 0 ? Number((correct / total).toFixed(4)) : 0;
 >   return {
 >     percentage,
->     passed: percentage >= threshold, [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:231-240]
+>     passed: percentage >= threshold, [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:231-240]
 
 > const fullSlice = countSlice(full.correct, corpus.length);
-> const holdoutSlice = countSlice(holdoutResult.correct, holdout.length); [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:287-291]
+> const holdoutSlice = countSlice(holdoutResult.correct, holdout.length); [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts:287-291]
 
 > 1. Full-corpus top-1 >= 75%.
 > 2. Holdout top-1 >= 72.5%.
 > 3. Gold-none UNKNOWN count must not increase.
-> 4. Safety slice (adversarial + sanitization). [.opencode/skill/system-spec-kit/mcp_server/skill-advisor/README.md:152-155]
+> 4. Safety slice (adversarial + sanitization). [.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md:152-155]
 
 ### Negative Knowledge
 

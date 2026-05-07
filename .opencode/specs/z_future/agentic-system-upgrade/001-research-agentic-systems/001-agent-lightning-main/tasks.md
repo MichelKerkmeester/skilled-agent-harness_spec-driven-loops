@@ -45,7 +45,7 @@ contextType: "implementation"
 ## Phase 2: Implementation
 
 - [x] T005 [P] Map Agent Lightning top-level structure and identify key runtime modules (`external/README.md`, `agentlightning/*`)
-- [x] T006 [P] Map Public comparison seams in `.opencode/skill/system-spec-kit/`, `.opencode/command/`, and `.opencode/agent/`
+- [x] T006 [P] Map Public comparison seams in `.opencode/skills/system-spec-kit/`, `.opencode/commands/`, and `.opencode/agents/`
 - [x] T007 Define the first three narrow research questions from real source inspection
 
 - [x] T008 Execute iteration 001 and append JSONL state (`research/iterations/`)

@@ -65,7 +65,7 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 - Update `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` wrappers to require the same baseline+overlay contract when delegating to canonical chatgpt playbooks.
 - Update all listed review-dispatch command YAML assets (18 files) to include the same contract.
 - Update skill routing (`skill_advisor.py`) so generic review intents route to `sk-code-review` while preserving git behavior and removing stale visual-skill claims from live docs.
-- Update skill indexes (`.opencode/skill/README.md`, `.opencode/README.md`).
+- Update skill indexes (`.opencode/skills/README.md`, `.opencode/README.md`).
 - Finalize Level 2 spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`).
 
 ### Out of Scope
@@ -78,10 +78,10 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 
 | Group | Paths |
 |------|-------|
-| Skill package | `.opencode/skill/sk-code-review/SKILL.md`, `.opencode/skill/sk-code-review/README.md`, `.opencode/skill/sk-code-review/references/*.md` |
-| Review agents/orchestrators | `.opencode/agent/review.md`, .opencode/agent/chatgpt/review.md, `.opencode/agent/orchestrate.md`, .opencode/agent/chatgpt/orchestrate.md, `.gemini/agents/review.md`, `.gemini/agents/orchestrate.md`, `.claude/agents/review.md`, `.claude/agents/orchestrate.md`, `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml` |
-| Review dispatch commands | 18 YAMLs under `.opencode/command/spec_kit/assets/` and `.opencode/command/create/assets/` (full list in `tasks.md`) |
-| Routing + catalogs | `.opencode/skill/scripts/skill_advisor.py`, `.opencode/skill/README.md`, `.opencode/README.md` |
+| Skill package | `.opencode/skills/sk-code-review/SKILL.md`, `.opencode/skills/sk-code-review/README.md`, `.opencode/skills/sk-code-review/references/*.md` |
+| Review agents/orchestrators | `.opencode/agents/review.md`, .opencode/agents/chatgpt/review.md, `.opencode/agents/orchestrate.md`, .opencode/agents/chatgpt/orchestrate.md, `.gemini/agents/review.md`, `.gemini/agents/orchestrate.md`, `.claude/agents/review.md`, `.claude/agents/orchestrate.md`, `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml` |
+| Review dispatch commands | 18 YAMLs under `.opencode/commands/spec_kit/assets/` and `.opencode/commands/create/assets/` (full list in `tasks.md`) |
+| Routing + catalogs | `.opencode/skills/scripts/skill_advisor.py`, `.opencode/skills/README.md`, `.opencode/README.md` |
 | Spec docs | `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/spec.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/plan.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/tasks.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/checklist.md`, `.opencode/specs/03--commands-and-skills/016-sk-code-review-creation/implementation-summary.md` |
 <!-- /ANCHOR:scope -->
 
@@ -94,7 +94,7 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Hard rename completed | Skill folder exists only as `.opencode/skill/sk-code-review/`; `legacy-single-hyphen-review.zip` removed |
+| REQ-001 | Hard rename completed | Skill folder exists only as `.opencode/skills/sk-code-review/`; `legacy-single-hyphen-review.zip` removed |
 | REQ-002 | Router rebuilt to standards parity | SKILL.md includes required section order + smart routing model + baseline+overlay logic + precedence matrix + related resources |
 | REQ-003 | Review runtime contract updated | Review agents/orchestrators in `.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`, plus `.codex` wrapper configs, explicitly document/enforce baseline `sk-code-review` + one overlay model |
 | REQ-004 | Command review dispatch updated | All 18 listed command YAMLs include baseline+overlay review contract wording/config |
@@ -104,7 +104,7 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Skill indexes updated | `.opencode/skill/README.md` and `.opencode/README.md` include `sk-code-review` and updated counts |
+| REQ-006 | Skill indexes updated | `.opencode/skills/README.md` and `.opencode/README.md` include `sk-code-review` and updated counts |
 | REQ-007 | Spec docs synchronized | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` match actual implementation state and evidence |
 | REQ-008 | Validation evidence captured | Planned commands executed and outcomes recorded, including known validator constraints |
 <!-- /ANCHOR:requirements -->

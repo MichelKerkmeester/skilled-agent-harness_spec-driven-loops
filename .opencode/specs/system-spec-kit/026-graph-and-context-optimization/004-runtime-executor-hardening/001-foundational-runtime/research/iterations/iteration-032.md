@@ -6,7 +6,7 @@ Mapped the live read-modify-write seams that still rely on unlocked temp-file sw
 ## Findings
 
 ### Finding R32-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `170-176`, `221-241`
 - **Severity:** P1
 - **Description:** `saveState()` still uses a deterministic sibling temp file (`<state>.tmp`), so two writers targeting the same session can swap bytes before rename instead of merely racing on the final file. Because `updateState()` always returns the merged in-memory object even after a failed persist, one caller can observe a "successful" state object while the on-disk file actually contains another writer's payload.
@@ -14,7 +14,7 @@ Mapped the live read-modify-write seams that still rely on unlocked temp-file sw
 - **Downstream Impact:** Any overlapping hook producers for the same Claude session can lose `lastSpecFolder`, `pendingCompactPrime`, transcript offsets, or producer metadata. Later `loadState()` / `loadMostRecentState()` consumers then recover a false session truth and propagate it into SessionStart, SessionStop, or autosave flows.
 
 ### Finding R32-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `60-67`, `119-125`, `244-246`, `261-268`, `281-289`, `302-309`
 - **Severity:** P1
 - **Description:** `processStopHook()` snapshots state once, performs multiple independent `recordStateUpdate()` calls, and then re-reads state inside `runContextAutosave()`. That creates a split-brain window where overlapping stop hooks can mix fields from different runs or overwrite a newer `lastSpecFolder` using the stale `stateBeforeStop` snapshot.
@@ -22,7 +22,7 @@ Mapped the live read-modify-write seams that still rely on unlocked temp-file sw
 - **Downstream Impact:** A single autosave can persist the summary from one stop event into the spec folder selected by another stop event. That feeds `generate-context.js` a mixed payload and can write continuity into the wrong packet or against the wrong transcript offset history.
 
 ### Finding R32-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
 - **Lines:** `reconsolidation-bridge.ts:270-306`; `reconsolidation.ts:611-656`, `467-508`, `806-819`, `882-929`
 - **Severity:** P1
 - **Description:** Governed reconsolidation still chooses and filters candidates before the mutation transaction. The later conflict path deprecates the chosen predecessor without re-checking governed scope or row version, so a candidate that was in-scope at search time can still be superseded after a concurrent scope retag or other metadata rewrite.
@@ -30,7 +30,7 @@ Mapped the live read-modify-write seams that still rely on unlocked temp-file sw
 - **Downstream Impact:** Cross-scope or freshly re-scoped memories can be deprecated or merged based on stale candidate eligibility. That breaks save isolation and can cause one governed save to rewrite lineage for a memory that no longer belongs to the same tenant/user/agent/session boundary.
 
 ### Finding R32-004
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `969-989`
 - **Severity:** P2
 - **Description:** `writeGraphMetadataFile()` uses `process.pid + Date.now()` to build its temp path and has no retry loop. Two same-process writes to the same packet within one millisecond still target the same temp file, so one write can clobber the other's temp payload before rename.
@@ -38,7 +38,7 @@ Mapped the live read-modify-write seams that still rely on unlocked temp-file sw
 - **Downstream Impact:** A refresh/backfill burst that hits the same packet twice in one process can fail with `ENOENT` on rename or persist the wrong derived payload. The result is stale or mismatched `graph-metadata.json`, which then affects packet discovery and graph traversal surfaces.
 
 ### Finding R32-005
-- **File:** `.opencode/command/memory/save.md`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md`; `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`
+- **File:** `.opencode/commands/memory/save.md`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md`; `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
 - **Lines:** `memory/save.md:127`, `359-361`; `spec_kit/deep-research.md:211-213`; `spec_kit/deep-review.md:243-245`; `generate-context.ts:61-82`
 - **Severity:** P2
 - **Description:** The documented generate-context handoff still normalizes on `/tmp/save-context-data.json` across multiple command surfaces, even though the script itself already supports safer `--stdin`, `--json`, or arbitrary temp-file inputs. Two sessions following the documented flow can overwrite each other's JSON payload before `generate-context.js` reads it.

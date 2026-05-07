@@ -42,7 +42,7 @@ Produce a D1–D8 landing-status table plus severity-ranked findings for every g
 3. **Check for "landed in reviewer only" slices.** A common drift pattern: remediation exists as a reviewer rule in `post-save-review.ts` but the actual write path does not enforce it, so the fix is informational only. For each D{N}, determine if the reviewer-detected defect is ALSO prevented at write time. If not, flag it.
 
 4. **Silent drops / enum mismatches.** Grep for every silent drop pattern:
-   - `rg -n "silently (?:drop|ignore)|return\\s+;.*//.*skip|if.*return\\s+null.*//" .opencode/skill/system-spec-kit/scripts/core/ .opencode/skill/system-spec-kit/mcp_server/lib/ --type ts`
+   - `rg -n "silently (?:drop|ignore)|return\\s+;.*//.*skip|if.*return\\s+null.*//" .opencode/skills/system-spec-kit/scripts/core/ .opencode/skills/system-spec-kit/mcp_server/lib/ --type ts`
    - Compare the SaveMode / SaveRoute / RoutingTier enum surfaces across:
      - `mcp_server/handlers/memory-save.ts`
      - `mcp_server/handlers/save/response-builder.ts`

@@ -33,10 +33,10 @@ There is no reliable way to measure context preservation quality across runtimes
 - Description: Add a generic collector in `session-manager` (or sibling module) that records per-session lifecycle and tool-level metrics independent of runtime hooks: tool call count, unique tools used, handler latency, response size, session duration, recovery/checkpoint frequency, spec-folder transitions, dedup counts, working-memory churn, and resume/compact-related events when available. Store raw events lightly and roll up session summaries.
 - LOC estimate: 250-450
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts` or central handler wrapper
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts` or central handler wrapper
   - New module like `lib/session/context-metrics.ts`
 - Dependencies:
   - Session IDs being consistently threaded through handlers
@@ -100,9 +100,9 @@ There is no reliable way to measure context preservation quality across runtimes
   Reuse existing dashboard patterns, but add context-specific tables/snapshots rather than forcing everything into retrieval-ablation semantics.
 - LOC estimate: 220-420
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-db.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts`
   - Possibly new `lib/eval/context-reporting.ts`
 - Dependencies:
   - Proposal A summaries

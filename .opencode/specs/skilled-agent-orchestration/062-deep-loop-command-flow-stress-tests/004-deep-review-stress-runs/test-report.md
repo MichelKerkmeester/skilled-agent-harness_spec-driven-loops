@@ -89,8 +89,8 @@ This sub-phase reached methodology-application-complete but NOT PASS 6/0/0. The 
 
 ## 6. Reusable Artifacts
 
-- **6 CPs at** `.opencode/skill/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/`
-- **Sandbox helper at** `.opencode/skill/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh`
+- **6 CPs at** `.opencode/skills/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/`
+- **Sandbox helper at** `.opencode/skills/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh`
 - **R1 transcripts** `/tmp/cp-052..057-B-*.txt` (parallel)
 - **R2 transcripts** `/tmp/062-r2-logs/cp-052..057-r2.log` + `/tmp/cp-052..057-B-*.txt` (cli-opencode + github-copilot, sequential)
 - **R1 runner**: `/tmp/062-r1-stress-runner.py` (Python orchestrator, 3-parallel)
@@ -121,7 +121,7 @@ After authoring this report, operator approved applying the recommendations from
 
 ### Category C: Substrate updates — APPLIED
 - **sk-deep-review SKILL.md ALWAYS rules**: added rule 13 (BINDING emission contract) and rule 14 (canonical REFUSE wording). Both rules are grep-checkable contracts that machines and operators can verify.
-- **@deep-review canonical agent body** (`.opencode/agent/deep-review.md`):
+- **@deep-review canonical agent body** (`.opencode/agents/deep-review.md`):
   - §0 ILLEGAL NESTING: added "Canonical Refusal Wording (mandatory)" subsection requiring exact verbatim emission of `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
   - §0b INPUT + SCOPE GATES: added "Setup BINDING Emission" subsection requiring 6 canonical `BINDING:` lines before any state read.
 - **4-runtime mirror sync**: changes mirrored to `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` (TOML wrapper). All parse cleanly. File size: 596/596/596/590 lines (all under the 600-line cap).

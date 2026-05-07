@@ -165,14 +165,14 @@ grep -n "Five Checks" *.yaml
 | `spec_kit_resume_confirm.yaml` | 4-tier detection, context sources, key_steps |
 | `spec_kit_plan_confirm.yaml` | Step comment |
 
-### Agent Files (`.opencode/agent/`)
+### Agent Files (`.opencode/agents/`)
 
 | File | Changes |
 |------|---------|
 | `speckit.md` | Orphaned references removed |
 | `handover.md` | Task param |
 
-### Documentation (`.opencode/skill/system-spec-kit/`)
+### Documentation (`.opencode/skills/system-spec-kit/`)
 
 | File | Changes |
 |------|---------|

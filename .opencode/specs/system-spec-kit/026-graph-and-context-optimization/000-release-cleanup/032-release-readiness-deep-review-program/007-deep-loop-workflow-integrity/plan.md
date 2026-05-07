@@ -122,7 +122,7 @@ The audit follows runtime flow from initialization through convergence, graph vo
 | Static | YAML and helper contract review | `nl`, `rg`, direct file reads |
 | Traceability | Prior packet and reference comparison | `rg`, direct file reads |
 | Documentation | Report and metadata quality | Sibling packet comparison |
-| Spec Validation | Packet structure and metadata | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| Spec Validation | Packet structure and metadata | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 <!-- /ANCHOR:testing -->
 
 ---

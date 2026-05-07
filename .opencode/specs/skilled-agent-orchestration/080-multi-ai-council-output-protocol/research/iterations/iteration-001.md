@@ -6,11 +6,11 @@ Answer Q1: propose a concrete shape for the multi-ai-council artifact persistenc
 
 ## Actions Taken
 
-- Read `.opencode/skill/deep-research/scripts/reduce-state.cjs`.
-- Read `.opencode/skill/deep-review/scripts/reduce-state.cjs`.
+- Read `.opencode/skills/deep-research/scripts/reduce-state.cjs`.
+- Read `.opencode/skills/deep-review/scripts/reduce-state.cjs`.
 - Read `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/ai-council/council-report.md`.
 - Read `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md`.
-- Read `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`.
+- Read `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`.
 
 ## Findings
 
@@ -19,7 +19,7 @@ Answer Q1: propose a concrete shape for the multi-ai-council artifact persistenc
 Implement the helper at:
 
 ```text
-.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs
+.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs
 ```
 
 Use Node CJS with an executable shebang:
@@ -38,7 +38,7 @@ Bash would be worse here because packet 081 needs fixture-driven parser tests an
 Usage:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs \
+node .opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs \
   <packet-spec-folder> \
   [--round NNN] \
   [--input-file FILE] \
@@ -248,7 +248,7 @@ async function main() {
 Add tests beside the existing validator regression:
 
 ```text
-.opencode/skill/system-spec-kit/scripts/tests/
+.opencode/skills/system-spec-kit/scripts/tests/
   multi-ai-council-persist-artifacts.vitest.ts
   fixtures/
     multi-ai-council/
@@ -351,7 +351,7 @@ The council helper does not need:
 - strategy mutation
 - lifecycle state machine
 - YAML workflow ownership
-- a dedicated `.opencode/skill/multi-ai-council/` folder
+- a dedicated `.opencode/skills/multi-ai-council/` folder
 
 The whole job is:
 

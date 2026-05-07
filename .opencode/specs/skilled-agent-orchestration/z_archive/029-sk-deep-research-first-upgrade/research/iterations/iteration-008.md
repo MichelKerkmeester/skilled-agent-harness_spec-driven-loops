@@ -89,7 +89,7 @@ AI-Research-SKILLs adds a stronger modularity lesson than Wave 1: successful res
 - `/tmp/deep-research-029-wave2/AI-Research-SKILLs/demos/autoresearch-norm-heterogeneity/README.md`
 - `/tmp/deep-research-029-wave2/AI-Research-SKILLs/packages/ai-research-skills/README.md`
 - `/tmp/deep-research-029-wave2/AI-Research-SKILLs/packages/ai-research-skills/src/installer.js`
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/03--commands-and-skills/029-sk-deep-research-first-upgrade/research/research/research.md`
 
 ## Assessment

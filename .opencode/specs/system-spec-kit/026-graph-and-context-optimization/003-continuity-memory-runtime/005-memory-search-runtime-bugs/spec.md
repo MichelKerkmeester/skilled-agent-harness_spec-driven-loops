@@ -66,7 +66,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands. The empty-arguments gate fired correctly, but every downstream stage produced at least one observable defect: the intent classifier emitted `fix_bug` (confidence 0.098) for the query "Semantic Search" despite the spec mandating `understand` as the no-keyword-match fallback; the `memory_context` wrapper reported `truncated=true` and zero `results` while consuming only 2% of its 3000-3500 token budget; the assistant rendering used the explicitly-forbidden phrase "Auto-triggered memories"; `causal-stats` returned three of six valid relation types and labeled itself `health: "healthy"` while reporting `meetsTarget: false`. The root spec at `.opencode/command/memory/search.md` documents the intended behavior, but the runtime drifts from it on multiple axes.
+A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output rendering, and causal-graph subcommands. The empty-arguments gate fired correctly, but every downstream stage produced at least one observable defect: the intent classifier emitted `fix_bug` (confidence 0.098) for the query "Semantic Search" despite the spec mandating `understand` as the no-keyword-match fallback; the `memory_context` wrapper reported `truncated=true` and zero `results` while consuming only 2% of its 3000-3500 token budget; the assistant rendering used the explicitly-forbidden phrase "Auto-triggered memories"; `causal-stats` returned three of six valid relation types and labeled itself `health: "healthy"` while reporting `meetsTarget: false`. The root spec at `.opencode/commands/memory/search.md` documents the intended behavior, but the runtime drifts from it on multiple axes.
 
 ### Purpose
 Capture the bug catalog with reproducible runtime evidence so a subsequent remediation packet can address each cluster independently and re-verify against the same probes. This spec is intentionally findings-only — fixes belong to a follow-up implementation packet.
@@ -79,14 +79,14 @@ Capture the bug catalog with reproducible runtime evidence so a subsequent remed
 
 ### In Scope
 - Documenting every observed defect from the conversation transcript and the live reproduction probes against `memory_context`, `memory_search`, and `memory_causal_stats`.
-- Cross-referencing each defect against the canonical spec at `.opencode/command/memory/search.md` to separate documented contract violations from undocumented gaps.
+- Cross-referencing each defect against the canonical spec at `.opencode/commands/memory/search.md` to separate documented contract violations from undocumented gaps.
 - Clustering defects by root cause to enable independent remediation.
 - Recording the literal probe output as evidence so later runs can detect regression or confirm a fix.
 
 ### Out of Scope
 - Implementing fixes (deferred to a follow-up packet referenced from `plan.md`).
-- Modifying the `/memory:search` command source file at `.opencode/command/memory/search.md`.
-- Touching the runtime MCP server source code under `.opencode/skill/system-spec-kit/mcp_server/`.
+- Modifying the `/memory:search` command source file at `.opencode/commands/memory/search.md`.
+- Touching the runtime MCP server source code under `.opencode/skills/system-spec-kit/mcp_server/`.
 - Re-architecting the hybrid retrieval pipeline (graph + vector + FTS5/BM25); only the observable surface defects are catalogued.
 
 ### Files to Change
@@ -159,7 +159,7 @@ Capture the bug catalog with reproducible runtime evidence so a subsequent remed
 - **SC-001**: Every defect in §4 has a reproducible probe (command + expected literal output diff) recorded in `tasks.md`.
 - **SC-002**: Defects are clustered by root cause in `plan.md` so remediation can proceed cluster-by-cluster.
 - **SC-003**: The follow-up remediation packet, when implemented, can re-run the probes here and observe each acceptance criterion pass.
-- **SC-004**: Validation passes via `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`.
+- **SC-004**: Validation passes via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -269,5 +269,5 @@ T2: total_edges=1135 by_relation={supersedes:786, caused:236, supports:113}
 ```
 +344 edges, all `supersedes`. `caused`/`supports` unchanged. Coverage moved 56.77% → 56.21% (negative despite adds).
 
-Authoritative sources: `.opencode/command/memory/search.md` (canonical spec), `.opencode/skill/system-spec-kit/mcp_server/` (runtime), sibling packets `001-cache-warning-hooks` (token-budget patterns), `002-memory-quality-remediation` (prior repair history).
+Authoritative sources: `.opencode/commands/memory/search.md` (canonical spec), `.opencode/skills/system-spec-kit/mcp_server/` (runtime), sibling packets `001-cache-warning-hooks` (token-budget patterns), `002-memory-quality-remediation` (prior repair history).
 <!-- /ANCHOR:questions -->

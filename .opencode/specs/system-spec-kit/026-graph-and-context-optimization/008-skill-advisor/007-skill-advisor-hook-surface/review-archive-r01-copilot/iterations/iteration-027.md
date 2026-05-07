@@ -4,9 +4,9 @@
 Reviewed import/export discipline and local module boundaries after confirming the strict-mode baseline, looking for late-pass maintainability issues such as fan-out re-exports or hidden helper duplication.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:5-12` -> subprocess module imports only the child-process/fs/path/perf primitives it uses plus the threshold type.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:11-18` -> adapter normalizer exports one narrow runtime-neutral shape instead of a star-export barrel.
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:11-21` and `hooks/copilot/user-prompt-submit.ts:14-24` -> adapters import shared producer/renderer/metrics directly and do not route through re-export barrels.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/subprocess.ts:5-12` -> subprocess module imports only the child-process/fs/path/perf primitives it uses plus the threshold type.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:11-18` -> adapter normalizer exports one narrow runtime-neutral shape instead of a star-export barrel.
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:11-21` and `hooks/copilot/user-prompt-submit.ts:14-24` -> adapters import shared producer/renderer/metrics directly and do not route through re-export barrels.
 
 ## Findings
 

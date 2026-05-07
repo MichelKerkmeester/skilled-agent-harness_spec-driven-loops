@@ -92,7 +92,7 @@ Agent receives task -> Reads inline contract (Layer 1: headers + anchors per doc
 
 ### Phase B: Contract Injection (~40 min)
 - [x] B1: In `.claude/agents/speckit.md`, replace the old scaffold with the compact contract covering all 5 L2 doc types + L3 decision-record structure support
-- [x] B2: Replicate B1 changes to `.opencode/agent/speckit.md` and .opencode/agent/chatgpt/speckit.md
+- [x] B2: Replicate B1 changes to `.opencode/agents/speckit.md` and .opencode/agents/chatgpt/speckit.md
 - [x] B3: Replicate B1 changes to `.codex/agents/speckit.toml` (TOML multi-line string format)
 
 ### Phase C: Directive Consolidation (~30 min)
@@ -189,7 +189,7 @@ Phase C (Directive Consolidation) ─────────┘
 - [ ] Shared reference file version and sync metadata documented
 
 ### Rollback Procedure
-1. Revert agent definition changes: `git checkout -- .claude/agents/speckit.md .opencode/agent/speckit.md .opencode/agent/chatgpt/speckit.md .codex/agents/speckit.toml`
+1. Revert agent definition changes: `git checkout -- .claude/agents/speckit.md .opencode/agents/speckit.md .opencode/agents/chatgpt/speckit.md .codex/agents/speckit.toml`
 2. Remove shared contract reference file if introduced in error
 3. Verify no spec folder validation regressions
 

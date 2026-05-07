@@ -28,13 +28,13 @@ D3 Traceability — root packet vs live runtime
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/spec.md:233]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/tasks.md:37]
 - Evidence: [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/tasks.md:86]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/shared/package.json:5]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/shared/tsconfig.json:7]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/package.json:5]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tsconfig.json:7]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:5]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:231]
-- Evidence: [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1725]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/shared/package.json:5]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/shared/tsconfig.json:7]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:5]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tsconfig.json:7]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:5]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:231]
+- Evidence: [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1725]
 - Impact: The root packet still contains pending-state language and draft child-phase references even though the implementation surfaces and summary describe completed migration work.
 - Final severity: P1
 
@@ -103,13 +103,13 @@ D3 Traceability — root packet vs live runtime
 - Compared spec/plan/tasks/checklist/implementation-summary against live package manifests and runtime entrypoints.
 
 ## Sources Reviewed
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1725]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/package.json:5]
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tsconfig.json:7]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:231]
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/package.json:5]
-- [SOURCE: .opencode/skill/system-spec-kit/shared/package.json:5]
-- [SOURCE: .opencode/skill/system-spec-kit/shared/tsconfig.json:7]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1725]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/package.json:5]
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tsconfig.json:7]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:231]
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/package.json:5]
+- [SOURCE: .opencode/skills/system-spec-kit/shared/package.json:5]
+- [SOURCE: .opencode/skills/system-spec-kit/shared/tsconfig.json:7]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:77]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/checklist.md:78]
 - [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/implementation-summary.md:3]

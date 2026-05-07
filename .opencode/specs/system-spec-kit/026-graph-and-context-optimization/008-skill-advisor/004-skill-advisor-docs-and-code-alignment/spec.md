@@ -52,7 +52,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 
 ### Problem Statement
 
-Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skill/system-spec-kit/references/hooks/`. However:
+Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skills/system-spec-kit/references/hooks/`. However:
 
 1. The skill-advisor's OWN artifacts — `README.md`, feature_catalog/feature_catalog.md, manual_testing_playbook/manual_testing_playbook.md — have not been updated to reflect the new hook-based invocation path. They still describe the explicit `skill_advisor.py` subprocess flow as primary.
 
@@ -103,10 +103,10 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 | `../../../../skill/skill-advisor/README.md` | Modify | Hook-based path documentation |
 | ../../../../skill/skill-advisor/feature_catalog/feature_catalog.md | Modify | Phase 020 feature additions |
 | ../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md | Modify | Hook-based routing playbook |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/**/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Audit + Fix if drift | sk-code-opencode alignment (002 scope only) |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Audit + Fix if drift | sk-code-opencode alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/**/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Audit + Fix if drift | sk-code-opencode alignment (002 scope only) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Audit + Fix if drift | sk-code-opencode alignment |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -183,6 +183,6 @@ No open questions remain for Phase 022 execution.
 - Parent: `../../008-skill-advisor/007-skill-advisor-hook-surface/` (shipped)
 - Sibling: `../004-smart-router-context-efficacy/` (research in progress)
 - sk-code-opencode skill: `../../../../skill/sk-code-opencode/SKILL.md`
-- skill-advisor: `.opencode/skill/skill-advisor/`
+- skill-advisor: `.opencode/skills/skill-advisor/`
 - Reference doc: ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md (from 020/009)
 <!-- /ANCHOR:questions -->

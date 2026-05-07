@@ -47,8 +47,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json",
-      ".opencode/skill/system-spec-kit/SKILL.md"
+      ".opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -90,13 +90,13 @@
       {
         "name": "search-weights.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {

@@ -21,7 +21,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 # Implementation Summary
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -54,14 +54,14 @@ The final sweep converted the last soft failures into real passing coverage. It 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Align expected error codes with the shipped handler contract |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts` | Modified | Accept the structured error response format now returned by the handler |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts` | Modified | Create deterministic per-test DB fixtures |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts` | Modified | Fix recovery coverage to run against explicit DB fixtures |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts` | Modified | Ignore broken-symlink ENOENT noise during source walking |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Modified | Match the current `db-state.js` size and later stabilize DB-dependent import checks |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Truth-sync the playbook surface that Phase 5 depended on |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts` | Modified | Replace todo coverage with real executable crash-recovery tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Align expected error codes with the shipped handler contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts` | Modified | Accept the structured error response format now returned by the handler |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts` | Modified | Create deterministic per-test DB fixtures |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts` | Modified | Fix recovery coverage to run against explicit DB fixtures |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts` | Modified | Ignore broken-symlink ENOENT noise during source walking |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts` | Modified | Match the current `db-state.js` size and later stabilize DB-dependent import checks |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Truth-sync the playbook surface that Phase 5 depended on |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts` | Modified | Replace todo coverage with real executable crash-recovery tests |
 <!-- /ANCHOR:what-built -->
 
 ---

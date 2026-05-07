@@ -2,34 +2,34 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12` - R5 classification protocol applied to each claimed cycle-3 fix surface.
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:36` - same-class producer, consumer, algorithm, matrix, and hostile-state inventory protocol.
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12` - R5 classification protocol applied to each claimed cycle-3 fix surface.
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:36` - same-class producer, consumer, algorithm, matrix, and hostile-state inventory protocol.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/prompts/iteration-003.md:8` - traceability focus requires cross-checking file:line claims against the cycle-3 Codex summary.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:63` - cycle-3 summary lists the three targeted P1 remediations.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:100` - cycle-3 next-focus list requires confirming live strategy, plan workflow command handling, and `affectedSurfaceHints`.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:117` - cross-reference table claims cycle-3 protocol status, including live strategy restoration.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:131` - claimed patched file: `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:132` - claimed patched file: `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:133` - claimed patched file: `.opencode/skill/sk-code-review/SKILL.md`.
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:134` - claimed patched file: `.opencode/skill/sk-code-review/references/review_core.md`.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:131` - claimed patched file: `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:132` - claimed patched file: `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:133` - claimed patched file: `.opencode/skills/sk-code-review/SKILL.md`.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:134` - claimed patched file: `.opencode/skills/sk-code-review/references/review_core.md`.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-2-final-20260502T214111Z/deep-review-strategy.md:135` - claimed restored file: `review/deep-review-strategy.md`.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/spec.md:130` - packet success criteria require `review/deep-review-strategy.md` to exist and name the active lineage.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/checklist.md:81` - checklist claims same-class producer inventory coverage.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/checklist.md:82` - checklist claims consumer inventory coverage, including review strategy state.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/checklist.md:83` - checklist claims matrix coverage, including strategy state.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/checklist.md:110` - checklist claims `review/deep-review-strategy.md` was restored under the active review folder.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:218` - auto plan imports `findingClass`, `scopeProof`, and `affectedSurfaceHints`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:220` - auto plan inert-data boundary forbids executing copied imported commands, including `activeFindings[].scopeProof`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:576` - auto plan writing rule repeats the copied-command ban and detector.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:224` - confirm plan imports `findingClass`, `scopeProof`, and `affectedSurfaceHints`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:226` - confirm plan inert-data boundary forbids executing copied imported commands, including `activeFindings[].scopeProof`.
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:625` - confirm plan writing rule repeats the copied-command ban and detector.
-- `.opencode/skill/sk-code-review/SKILL.md:319` - sk-code-review output contract includes finding class.
-- `.opencode/skill/sk-code-review/SKILL.md:320` - sk-code-review output contract includes scope proof.
-- `.opencode/skill/sk-code-review/SKILL.md:321` - sk-code-review output contract includes `affectedSurfaceHints`.
-- `.opencode/skill/sk-code-review/references/review_core.md:86` - shared schema includes `findingClass`.
-- `.opencode/skill/sk-code-review/references/review_core.md:87` - shared schema includes `scopeProof`.
-- `.opencode/skill/sk-code-review/references/review_core.md:88` - shared schema includes `affectedSurfaceHints`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:218` - auto plan imports `findingClass`, `scopeProof`, and `affectedSurfaceHints`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:220` - auto plan inert-data boundary forbids executing copied imported commands, including `activeFindings[].scopeProof`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:576` - auto plan writing rule repeats the copied-command ban and detector.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:224` - confirm plan imports `findingClass`, `scopeProof`, and `affectedSurfaceHints`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:226` - confirm plan inert-data boundary forbids executing copied imported commands, including `activeFindings[].scopeProof`.
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:625` - confirm plan writing rule repeats the copied-command ban and detector.
+- `.opencode/skills/sk-code-review/SKILL.md:319` - sk-code-review output contract includes finding class.
+- `.opencode/skills/sk-code-review/SKILL.md:320` - sk-code-review output contract includes scope proof.
+- `.opencode/skills/sk-code-review/SKILL.md:321` - sk-code-review output contract includes `affectedSurfaceHints`.
+- `.opencode/skills/sk-code-review/references/review_core.md:86` - shared schema includes `findingClass`.
+- `.opencode/skills/sk-code-review/references/review_core.md:87` - shared schema includes `scopeProof`.
+- `.opencode/skills/sk-code-review/references/review_core.md:88` - shared schema includes `affectedSurfaceHints`.
 
 ## Findings by Severity
 

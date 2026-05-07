@@ -12,19 +12,19 @@
 
 ### NEW P1
 
-1. **Deleting `.opencode/skill/mcp-figma/` broke live user-facing source links and a global install-guide symlink.**
+1. **Deleting `.opencode/skills/mcp-figma/` broke live user-facing source links and a global install-guide symlink.**
    Evidence:
    - `.opencode/install_guides/MCP - Figma.md` is a symlink to `../skill/mcp-figma/INSTALL_GUIDE.md`; `test -e .opencode/install_guides/MCP\ -\ Figma.md` exits `1`.
    - `.opencode/install_guides/README.md:83` still advertises `[MCP - Figma.md](./MCP%20-%20Figma.md)` as a symlink install guide.
-   - The deleted target is confirmed by `test -d .opencode/skill/mcp-figma` exit `1`.
-   Earlier Phase 3 checks searched `.opencode/skill/` and mcp-code-mode, but this broken symlink lives outside that scope and is exactly the kind of non-test dependency the deletion could break.
+   - The deleted target is confirmed by `test -d .opencode/skills/mcp-figma` exit `1`.
+   Earlier Phase 3 checks searched `.opencode/skills/` and mcp-code-mode, but this broken symlink lives outside that scope and is exactly the kind of non-test dependency the deletion could break.
 
 2. **Both shipped Figma agents link to the deleted `mcp-figma` source skill.**
    Evidence:
-   - `AI_Systems/Barter/MCP Agents/Figma/README.md:674-677` links to `../../../../Code_Environment/Public/.opencode/skill/mcp-figma/{INSTALL_GUIDE.md,README.md,SKILL.md,changelog/}`.
+   - `AI_Systems/Barter/MCP Agents/Figma/README.md:674-677` links to `../../../../Code_Environment/Public/.opencode/skills/mcp-figma/{INSTALL_GUIDE.md,README.md,SKILL.md,changelog/}`.
    - `AI_Systems/Public/Figma/README.md:674-677` has the same dead links.
    - Both Combined Workflows docs repeat deleted source references at `knowledge base/reference/Figma - Reference - Combined Workflows - v0.100.md:1068-1070`.
-   - The target files do not exist: `test -f .../.opencode/skill/mcp-figma/INSTALL_GUIDE.md` and `test -f .../.opencode/skill/mcp-figma/SKILL.md` both exit `1`.
+   - The target files do not exist: `test -f .../.opencode/skills/mcp-figma/INSTALL_GUIDE.md` and `test -f .../.opencode/skills/mcp-figma/SKILL.md` both exit `1`.
    This is a real post-removal regression: user-facing Resources sections now route readers to a removed skill.
 
 3. **Public/Figma local-bundled setup still points at the Barter repo path.**
@@ -59,12 +59,12 @@
 |---|---|---|
 | "Barter/Public AGENTS.md parity PASS" | FAILED | `diff -rq Barter/MCP\ Agents/Figma Public/Figma` reports `AGENTS.md` differs; `cmp -s .../AGENTS.md .../AGENTS.md` exits `1`; only heading line 181 differs. |
 | "Byte-equivalent except expected README/context/node_modules differences" | WEAKENED | `cmp -s INSTALL_GUIDE.md` exits `0` and System Prompt `cmp` exits `0`, but AGENTS parity fails. No CRLF/BOM issue found by `file`, so this is real content drift. |
-| "mcp-figma deletion did not break non-test dependencies" | FAILED | Broken symlink `.opencode/install_guides/MCP - Figma.md -> ../skill/mcp-figma/INSTALL_GUIDE.md`; README and KB source links point to deleted `.opencode/skill/mcp-figma/*`. |
+| "mcp-figma deletion did not break non-test dependencies" | FAILED | Broken symlink `.opencode/install_guides/MCP - Figma.md -> ../skill/mcp-figma/INSTALL_GUIDE.md`; README and KB source links point to deleted `.opencode/skills/mcp-figma/*`. |
 | "Install-guide path works if a user follows it" | FAILED for Public local-bundled path | `Public/Figma/INSTALL_GUIDE.md:410` hardcodes the Barter `cwd`; Public `config-snippets.md:121` also templates Barter. |
 | "System Prompt DAG/references resolve" | WEAKENED | AGENTS DAG paths exist, but System Prompt `references/tool_reference.md` at line 83 does not exist in either repo. |
 | "verify.sh works as documented" | WEAKENED | Script exits `0`, but prints `protocol layer untested`; it verifies reachability more than protocol behavior. |
 | "Hook F current state is one known sk-code failure" | RECONFIRMED | Targeted `npx vitest run advisor-corpus-parity ... python-ts-parity ... advisor-graph-health ...` produced 2 passed files and 1 failed file: `advisor-graph-health` fails on `sk-code` `reference-category`. |
-| "mcp-code-mode mcp-figma skill-name strip" | RECONFIRMED | SQLite `skill_edges` has no figma targets; `.opencode/skill/mcp-code-mode` no longer has live `mcp-figma` skill-name refs. Remaining grep hits are telemetry/history/comments or binary DB snapshots. |
+| "mcp-code-mode mcp-figma skill-name strip" | RECONFIRMED | SQLite `skill_edges` has no figma targets; `.opencode/skills/mcp-code-mode` no longer has live `mcp-figma` skill-name refs. Remaining grep hits are telemetry/history/comments or binary DB snapshots. |
 
 ## Verdict
 

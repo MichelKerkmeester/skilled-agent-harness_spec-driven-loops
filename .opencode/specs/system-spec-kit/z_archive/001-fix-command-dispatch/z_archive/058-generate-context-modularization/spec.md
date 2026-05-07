@@ -165,7 +165,7 @@ The script depends on:
 ### Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/scripts/
+.opencode/skills/system-spec-kit/scripts/
 ├── generate-context.js          # CLI entry point (~100 lines)
 ├── core/
 │   ├── index.js                 # Re-exports
@@ -248,7 +248,7 @@ Node.js built-ins
 
 ## References
 
-- [Current generate-context.js](.opencode/skill/system-spec-kit/scripts/generate-context.js)
-- [Existing lib/ modules](.opencode/skill/system-spec-kit/scripts/lib/)
-- [MCP server integration](.opencode/skill/system-spec-kit/mcp_server/)
-- [Templates](.opencode/skill/system-spec-kit/templates/)
+- [Current generate-context.js](.opencode/skills/system-spec-kit/scripts/generate-context.js)
+- [Existing lib/ modules](.opencode/skills/system-spec-kit/scripts/lib/)
+- [MCP server integration](.opencode/skills/system-spec-kit/mcp_server/)
+- [Templates](.opencode/skills/system-spec-kit/templates/)

@@ -43,44 +43,44 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/cli-claude-code/graph-metadata.json",
-      ".opencode/skill/cli-codex/graph-metadata.json",
-      ".opencode/skill/cli-copilot/graph-metadata.json",
-      ".opencode/skill/cli-gemini/graph-metadata.json",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
-      ".opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite",
+      ".opencode/skills/cli-claude-code/graph-metadata.json",
+      ".opencode/skills/cli-codex/graph-metadata.json",
+      ".opencode/skills/cli-copilot/graph-metadata.json",
+      ".opencode/skills/cli-gemini/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+      ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
       ".opencode/changelog/cli-opencode/v1.0.0.0.md",
-      ".opencode/skill/README.md",
+      ".opencode/skills/README.md",
       ".opencode/README.md",
-      ".opencode/skill/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skill/cli-claude-code/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
-      ".opencode/command/create/changelog.md",
-      ".opencode/skill/sk-doc/assets/documentation/changelog_template.md",
-      ".opencode/skill/cli-opencode/references/cli_reference.md",
-      ".opencode/skill/cli-opencode/references/opencode_tools.md"
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/references/opencode_tools.md"
     ],
     "entities": [
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skill/cli-claude-code/graph-metadata.json",
+        "path": ".opencode/skills/cli-claude-code/graph-metadata.json",
         "source": "derived"
       },
       {
         "name": "skill-graph.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
         "source": "derived"
       },
       {
         "name": "skill-graph.sqlite",
         "kind": "file",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -92,13 +92,13 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -128,31 +128,31 @@
       {
         "name": "init-skill-graph.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/init-skill-graph.sh",
         "source": "derived"
       },
       {
         "name": "changelog.md",
         "kind": "doc",
-        "path": ".opencode/command/create/changelog.md",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
         "name": "changelog_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/documentation/changelog_template.md",
+        "path": ".opencode/skills/sk-doc/assets/documentation/changelog_template.md",
         "source": "derived"
       },
       {
         "name": "cli_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/references/cli_reference.md",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
         "source": "derived"
       },
       {
         "name": "opencode_tools.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-opencode/references/opencode_tools.md",
+        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add `cli-opencode` as a fifth sibling under `.opencode/skill/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skill/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy \"opencode\" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.",
+    "causal_summary": "Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skills/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy \"opencode\" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.",
     "created_at": "2026-04-26T05:00:00Z",
     "last_save_at": "2026-04-26T09:17:15.282Z",
     "save_lineage": "same_pass",

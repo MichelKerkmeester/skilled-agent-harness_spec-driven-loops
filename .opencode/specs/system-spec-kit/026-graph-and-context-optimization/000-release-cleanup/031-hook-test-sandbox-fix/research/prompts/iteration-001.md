@@ -30,7 +30,7 @@ Two-part:
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/common.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/test-{claude,codex,copilot,gemini,opencode}-{hooks,plugins}.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` (where to add an `npm run hook-tests` script)
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` (where to add an `npm run hook-tests` script)
 
 ### Implementation
 
@@ -68,7 +68,7 @@ The new `SKIPPED_SANDBOX` status is distinct from the existing `SKIPPED` (which 
 
 #### Phase 3: package.json script + operator path docs
 
-Add to `.opencode/skill/system-spec-kit/mcp_server/package.json` scripts:
+Add to `.opencode/skills/system-spec-kit/mcp_server/package.json` scripts:
 
 ```json
 {
@@ -101,7 +101,7 @@ DO NOT delete the original "Verdict" section — preserve it as historical recor
 
 #### Phase 5: Verify build + integration
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` — must succeed
+- `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — must succeed
 - `npx tsx specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts` (this WILL run inside the cli-codex test sandbox; should now report SKIPPED_SANDBOX for live cells, PASS for direct smokes — verify the new behavior works)
 
 ### Packet structure to create (Level 2)

@@ -7,8 +7,8 @@ Event model adequacy for lineage and generation tracking.
 - Are resume events sufficiently expressive for branch-aware continuation?
 
 ## Evidence
-- `.opencode/skill/sk-deep-research/references/state_format.md:219-231`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md:74`
+- `.opencode/skills/sk-deep-research/references/state_format.md:219-231`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md:74`
 
 ## Analysis
 The event catalog is rich for convergence/recovery observability but lacks persistent lineage identifiers (`sessionId`, `parentSessionId`, `generation`, `lineageMode`). `resumed` only carries `fromIteration`.

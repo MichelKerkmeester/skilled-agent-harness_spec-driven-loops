@@ -6,7 +6,7 @@ I traced how compact-cache provenance is serialized into `pendingCompactPrime.pa
 ## Findings
 
 ### Finding R10-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`
 - **Lines:** `55-68`
 - **Severity:** P1
 - **Description:** Gemini's compact-recovery replay drops cached provenance metadata entirely. The cache writer stores a `payloadContract` with explicit `producer`, `trustState`, and `sourceSurface`, and the shared wrapper knows how to emit a `[PROVENANCE: ...]` line, but Gemini replay calls the wrapper without metadata in both `session-prime` and `compact-inject`. Claude preserves those fields on replay.
@@ -14,7 +14,7 @@ I traced how compact-cache provenance is serialized into `pendingCompactPrime.pa
 - **Downstream Impact:** Gemini's post-compression recovery prompt loses the only structured provenance markers that distinguish cached context from ordinary recovered text. Operators and models can no longer tell whether the block came from `gemini-compact-cache`, Claude's merged `compact-cache`, or some future trust-state variant, and cross-runtime recovery output diverges even when both runtimes persist the same hook-state contract.
 
 ### Finding R10-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts`
 - **Lines:** `109-123`
 - **Severity:** P2
 - **Description:** The recovered-compact provenance wrapper trusts persisted metadata too much: it sanitizes only the payload body, then interpolates `producer`, `trustState`, and `sourceSurface` directly into the `[PROVENANCE: ...]` line with no escaping or runtime validation. Claude replay feeds those fields straight from tempdir hook state.

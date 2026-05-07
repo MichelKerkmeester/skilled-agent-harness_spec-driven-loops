@@ -93,7 +93,7 @@ contextType: "implementation"
 **Task:** Update system-memory references to system-spec-kit
 **Files:** `create_skill_reference.yaml`, `create_skill_asset.yaml`, `create_folder_readme.yaml`
 
-- [x] **P0** `grep -r "system-memory" .opencode/command/` returns no results
+- [x] **P0** `grep -r "system-memory" .opencode/commands/` returns no results
 - [x] **P0** Commands execute without "file not found" errors
   - Evidence: All YAML files updated
 - [x] **P0** Example loading works correctly
@@ -310,10 +310,10 @@ contextType: "implementation"
 
 ### CHK-L-DOCS: Documentation Cleanup
 - [ ] **P3** allowed-tools array formatting standardized
-- [x] **P3** Command index README created [EVIDENCE: .opencode/command/README.md exists]
-- [x] **P3** scripts/lib/ documented [EVIDENCE: .opencode/skill/system-spec-kit/scripts/lib/README.md exists]
-- [x] **P3** scripts/rules/ documented [EVIDENCE: .opencode/skill/system-spec-kit/scripts/rules/README.md created with DQI 99/100]
-- [x] **P3** mcp_server/lib/ documented [EVIDENCE: .opencode/skill/system-spec-kit/mcp_server/lib/README.md created with DQI 99/100]
+- [x] **P3** Command index README created [EVIDENCE: .opencode/commands/README.md exists]
+- [x] **P3** scripts/lib/ documented [EVIDENCE: .opencode/skills/system-spec-kit/scripts/lib/README.md exists]
+- [x] **P3** scripts/rules/ documented [EVIDENCE: .opencode/skills/system-spec-kit/scripts/rules/README.md created with DQI 99/100]
+- [x] **P3** mcp_server/lib/ documented [EVIDENCE: .opencode/skills/system-spec-kit/mcp_server/lib/README.md created with DQI 99/100]
 
 ### CHK-L-CODE: Code Quality
 - [ ] **P3** Empty catch blocks have comments

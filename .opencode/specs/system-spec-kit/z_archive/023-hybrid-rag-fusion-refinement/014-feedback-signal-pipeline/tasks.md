@@ -62,10 +62,10 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: level_2/tasks.md | v2.2 -->
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Re-run `npx tsc --noEmit` in `.opencode/skill/system-spec-kit/mcp_server`
+- [x] T008 Re-run `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server`
 - [x] T009 Re-run `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/query-flow-tracker.vitest.ts tests/context-server.vitest.ts tests/feedback-ledger.vitest.ts`
 - [x] T010 Fix tracker assertions and add DB-level packet flow coverage in `tests/query-flow-tracker.vitest.ts`
-- [x] T011 Capture benchmark evidence for the `<5ms` async-overhead claim via `node --input-type=module` in `.opencode/skill/system-spec-kit/mcp_server`
+- [x] T011 Capture benchmark evidence for the `<5ms` async-overhead claim via `node --input-type=module` in `.opencode/skills/system-spec-kit/mcp_server`
 - [x] T012 Retain the previously recorded live MCP five-event verification as prior runtime evidence and keep its date explicit in the packet
 - [x] T013 Truth-sync the packet closeout state across all five markdown files
 <!-- /ANCHOR:phase-3 -->

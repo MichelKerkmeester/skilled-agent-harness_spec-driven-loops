@@ -91,10 +91,10 @@ The skill-advisor plugin file follows ESM conventions (necessarily) but its file
 
 ### Phase 3: Verify
 
-1. `cd .opencode/skill/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` → expect 30/30.
+1. `cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run tests/spec-kit-skill-advisor-plugin.vitest.ts` → expect 30/30.
 2. `npm run build` in mcp_server → clean.
-3. `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → 0/0.
-4. `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for canonical save.
+3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` → 0/0.
+4. `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for canonical save.
 <!-- /ANCHOR:phases -->
 
 ---

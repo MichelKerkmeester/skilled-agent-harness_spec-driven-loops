@@ -47,7 +47,7 @@ _memory:
 - [x] T003 Confirm feature catalog links for all 8 scenarios: `../../feature_catalog/19--feature-flag-reference/`
 - [x] T004 Confirm MCP runtime access for `memory_search` and `memory_context` — not applicable; execution performed via direct code analysis + dist invocation (see T006)
 - [x] T005 Verify flag documentation is indexed — triaged via feature catalog cross-reference per playbook fallback protocol; EVIDENCE GAP documented below per scenario
-- [x] T006 Confirm dist build at `.opencode/skill/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` is current — file confirmed present and executed successfully for 125
+- [x] T006 Confirm dist build at `.opencode/skills/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js` is current — file confirmed present and executed successfully for 125
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T015 Change to `.opencode/skill/system-spec-kit/mcp_server/` directory — confirmed
+- [x] T015 Change to `.opencode/skills/system-spec-kit/mcp_server/` directory — confirmed
 - [x] T016 Execute 125 step 1 — `SPECKIT_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-a')))"` — Output: `{"phase":"shared-rollout","capabilities":{"lineageState":true,"graphUnified":true,"adaptiveRanking":true,"scopeEnforcement":true,"governanceGuardrails":true,"sharedMemory":true},"scopeDimensionsTracked":4}` — CONFIRMED: phase:"shared-rollout" with capabilities.graphUnified:true
 - [x] T017 Execute 125 step 2 — `SPECKIT_HYDRA_PHASE=graph SPECKIT_HYDRA_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-b')))"` — Output: `{"phase":"graph","capabilities":{"lineageState":true,"graphUnified":false,"adaptiveRanking":true,"scopeEnforcement":true,"governanceGuardrails":true,"sharedMemory":true},"scopeDimensionsTracked":4}` — CONFIRMED: phase:"graph" with capabilities.graphUnified:false
 - [x] T018 SPECKIT_HYDRA_* env vars scoped to single-invocation shell commands; no persistent env state; unset by design (inline prefix injection)

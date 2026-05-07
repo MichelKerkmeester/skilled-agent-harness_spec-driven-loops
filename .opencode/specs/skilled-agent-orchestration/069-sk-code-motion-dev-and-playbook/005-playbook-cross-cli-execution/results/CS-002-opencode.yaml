@@ -23,7 +23,7 @@ assets_loaded:
 quality_flags: []
 agent: "none"
 response_excerpt: |
-  For cross-stack Motion.dev guidance, look under `.opencode/skill/sk-code/references/motion_dev/`.
+  For cross-stack Motion.dev guidance, look under `.opencode/skills/sk-code/references/motion_dev/`.
 verdict: pending
 raw_stdout: "/tmp/skc-CS-002-opencode.txt"
 raw_stderr: "/tmp/skc-CS-002-opencode.err"

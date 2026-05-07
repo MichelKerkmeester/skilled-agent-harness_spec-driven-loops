@@ -1,12 +1,12 @@
 # Iteration 8 — Post-insert status truthfulness (8/10)
 
 ## Investigation Thread
-I shifted from the hook/code-graph startup seam into the save-time enrichment controller in `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`, then traced how its status object is consumed by `memory-save` result building and what the direct post-insert tests currently lock in. The focus was whether planner-first and degraded enrichment states stay truthful once they leave the pipeline.
+I shifted from the hook/code-graph startup seam into the save-time enrichment controller in `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`, then traced how its status object is consumed by `memory-save` result building and what the direct post-insert tests currently lock in. The focus was whether planner-first and degraded enrichment states stay truthful once they leave the pipeline.
 
 ## Findings
 
 ### Finding R8-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `86-213, 223-238`
 - **Severity:** P1
 - **Description:** `EnrichmentStatus` is documented as tracking which enrichment steps succeeded, but the implementation uses `true` for four different outcomes: actual success, feature-disabled skip, "nothing to do" skip, and full planner-first deferral. Because the save response only warns when some status flag is `false`, a save where no enrichment ran is serialized as fully healthy.
@@ -14,7 +14,7 @@ I shifted from the hook/code-graph startup seam into the save-time enrichment co
 - **Downstream Impact:** `handlers/memory-save.ts:2362-2383` forwards this status into the indexed save result, so planner-first saves and feature-disabled saves can look fully enriched even though causal links, summaries, entity linking, and graph lifecycle never ran. That suppresses the runtime's only generic warning surface for skipped freshness work and makes deferred saves observationally similar to completed saves.
 
 ### Finding R8-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 - **Lines:** `116-129, 157-181`
 - **Severity:** P1
 - **Description:** Entity linking is gated only by feature flags, not by successful entity extraction. If `extractEntities()`, `filterEntities()`, or `refreshAutoEntitiesForMemory()` throws, the catch block only logs a warning and the pipeline still calls `runEntityLinkingForMemory()` as long as the flags remain enabled.
@@ -25,4 +25,4 @@ I shifted from the hook/code-graph startup seam into the save-time enrichment co
 Phase 015 already found that planner follow-up payloads advertise `runEnrichmentBackfill` as if it were an invocable tool (`review/015-deep-review-and-remediation/iterations/iteration-029.md:53-58`), but this pass found a deeper problem one layer earlier: the post-insert controller itself collapses "ran," "skipped," and "deferred" into success-shaped status. The direct tests are not just missing the issue; `tests/post-insert-deferred.vitest.ts` currently locks the all-`true` deferred contract in place.
 
 ## Next Investigation Angle
-Stay on the save-path truthfulness seam and inspect `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts` plus `startup-brief.ts` to see whether the same collapse happens in payload-level trust state, especially around `missing` vs `empty` vs `stale` structural context.
+Stay on the save-path truthfulness seam and inspect `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` plus `startup-brief.ts` to see whether the same collapse happens in payload-level trust state, especially around `missing` vs `empty` vs `stale` structural context.

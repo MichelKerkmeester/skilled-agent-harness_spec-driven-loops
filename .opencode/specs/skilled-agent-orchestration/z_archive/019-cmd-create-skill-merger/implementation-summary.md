@@ -37,32 +37,32 @@ The implementation consolidated skill command creation and update flows into one
 
 ### Canonical command entrypoint
 
-`.opencode/command/create/sk-skill.md` now defines the full setup contract, hard/soft gates, operation router, mode router, migration map, and compatibility expectations. It establishes the canonical source of truth and removes ambiguity between legacy commands.
+`.opencode/commands/create/sk-skill.md` now defines the full setup contract, hard/soft gates, operation router, mode router, migration map, and compatibility expectations. It establishes the canonical source of truth and removes ambiguity between legacy commands.
 
 ### Unified mode workflows
 
 Two unified YAML workflows were added:
-- `.opencode/command/create/assets/create_sk_skill_auto.yaml` for autonomous execution
-- `.opencode/command/create/assets/create_sk_skill_confirm.yaml` for checkpointed execution
+- `.opencode/commands/create/assets/create_sk_skill_auto.yaml` for autonomous execution
+- `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` for checkpointed execution
 
 Both support the same operation set and validation contract so behavior stays consistent across modes.
 
 ### Migration cleanup and reference alignment
 
-Deprecated command markdown files and legacy workflow YAML files were removed. Related command references in `.opencode/command/create/prompt.md` were updated to canonical `/create:sk-skill` variants.
+Deprecated command markdown files and legacy workflow YAML files were removed. Related command references in `.opencode/commands/create/prompt.md` were updated to canonical `/create:sk-skill` variants.
 
 ### Cross-runtime active docs synchronization
 
-Active runtime and onboarding docs were synchronized to the same canonical command surface so users see one command contract regardless of runtime profile or setup entrypoint. Updated files are `.agents/agents/write.md`, `.opencode/agent/write.md`, .opencode/agent/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, and `.opencode/install_guides/SET-UP - AGENTS.md`.
+Active runtime and onboarding docs were synchronized to the same canonical command surface so users see one command contract regardless of runtime profile or setup entrypoint. Updated files are `.agents/agents/write.md`, `.opencode/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, and `.opencode/install_guides/SET-UP - AGENTS.md`.
 
 Directory verification also confirmed no remaining legacy `/create:skill*` references in `.agents/agents`, `.codex`, or `.claude`.
 
 ### Alignment and expansion completion
 
 Canonical artifacts were aligned closer to the sk-doc command template and neighboring create-command conventions, then expanded to complete the documented length increase:
-- `.opencode/command/create/sk-skill.md`: 523 lines
-- `.opencode/command/create/assets/create_sk_skill_auto.yaml`: 470 lines
-- `.opencode/command/create/assets/create_sk_skill_confirm.yaml`: 519 lines
+- `.opencode/commands/create/sk-skill.md`: 523 lines
+- `.opencode/commands/create/assets/create_sk_skill_auto.yaml`: 470 lines
+- `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`: 519 lines
 
 ### Memory save and indexing completion
 
@@ -75,22 +75,22 @@ Implementation memory was saved under the spec folder and indexed:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/create/sk-skill.md` | Modified | Canonical command aligned to template conventions and expanded to 523 lines |
-| `.opencode/command/create/assets/create_sk_skill_auto.yaml` | Modified | Unified autonomous workflow aligned and expanded to 470 lines |
-| `.opencode/command/create/assets/create_sk_skill_confirm.yaml` | Modified | Unified interactive workflow aligned and expanded to 519 lines |
-| .opencode/command/create/skill.md | Deleted | Remove deprecated legacy command |
-| .opencode/command/create/skill_reference.md | Deleted | Remove deprecated legacy command |
-| .opencode/command/create/skill_asset.md | Deleted | Remove deprecated legacy command |
-| `.opencode/command/create/assets/create_skill_auto.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/assets/create_skill_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/assets/create_skill_reference_auto.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/assets/create_skill_reference_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/assets/create_skill_asset_auto.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/assets/create_skill_asset_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
-| `.opencode/command/create/prompt.md` | Modified | Replace old create-skill references with canonical variants |
+| `.opencode/commands/create/sk-skill.md` | Modified | Canonical command aligned to template conventions and expanded to 523 lines |
+| `.opencode/commands/create/assets/create_sk_skill_auto.yaml` | Modified | Unified autonomous workflow aligned and expanded to 470 lines |
+| `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` | Modified | Unified interactive workflow aligned and expanded to 519 lines |
+| .opencode/commands/create/skill.md | Deleted | Remove deprecated legacy command |
+| .opencode/commands/create/skill_reference.md | Deleted | Remove deprecated legacy command |
+| .opencode/commands/create/skill_asset.md | Deleted | Remove deprecated legacy command |
+| `.opencode/commands/create/assets/create_skill_auto.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/assets/create_skill_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/assets/create_skill_reference_auto.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/assets/create_skill_reference_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/assets/create_skill_asset_auto.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/assets/create_skill_asset_confirm.yaml` | Deleted | Remove deprecated legacy workflow |
+| `.opencode/commands/create/prompt.md` | Modified | Replace old create-skill references with canonical variants |
 | `.agents/agents/write.md` | Modified | Synchronize active write-agent docs to canonical `/create:sk-skill` |
-| `.opencode/agent/write.md` | Modified | Synchronize OpenCode runtime write-agent docs to canonical `/create:sk-skill` |
-| .opencode/agent/chatgpt/write.md | Modified | Synchronize ChatGPT runtime write-agent docs to canonical `/create:sk-skill` |
+| `.opencode/agents/write.md` | Modified | Synchronize OpenCode runtime write-agent docs to canonical `/create:sk-skill` |
+| .opencode/agents/chatgpt/write.md | Modified | Synchronize ChatGPT runtime write-agent docs to canonical `/create:sk-skill` |
 | `.codex/agents/write.toml` | Modified | Synchronize Codex runtime write-agent config to canonical `/create:sk-skill` |
 | `.opencode/README.md` | Modified | Synchronize OpenCode docs to canonical `/create:sk-skill` |
 | `README.md` | Modified | Synchronize root docs to canonical `/create:sk-skill` |
@@ -146,15 +146,15 @@ Delivery followed a migration-first sequence: add canonical command and unified 
 
 | Check | Result |
 |-------|--------|
-| Canonical command exists | PASS (`.opencode/command/create/sk-skill.md`) |
-| Unified `:auto` workflow exists | PASS (`.opencode/command/create/assets/create_sk_skill_auto.yaml`) |
-| Unified `:confirm` workflow exists | PASS (`.opencode/command/create/assets/create_sk_skill_confirm.yaml`) |
-| Canonical command alignment and expansion complete | PASS (`.opencode/command/create/sk-skill.md` at 523 lines) |
-| Unified auto workflow alignment and expansion complete | PASS (`.opencode/command/create/assets/create_sk_skill_auto.yaml` at 470 lines) |
-| Unified confirm workflow alignment and expansion complete | PASS (`.opencode/command/create/assets/create_sk_skill_confirm.yaml` at 519 lines) |
+| Canonical command exists | PASS (`.opencode/commands/create/sk-skill.md`) |
+| Unified `:auto` workflow exists | PASS (`.opencode/commands/create/assets/create_sk_skill_auto.yaml`) |
+| Unified `:confirm` workflow exists | PASS (`.opencode/commands/create/assets/create_sk_skill_confirm.yaml`) |
+| Canonical command alignment and expansion complete | PASS (`.opencode/commands/create/sk-skill.md` at 523 lines) |
+| Unified auto workflow alignment and expansion complete | PASS (`.opencode/commands/create/assets/create_sk_skill_auto.yaml` at 470 lines) |
+| Unified confirm workflow alignment and expansion complete | PASS (`.opencode/commands/create/assets/create_sk_skill_confirm.yaml` at 519 lines) |
 | Deprecated markdown command files removed | PASS (legacy command paths absent) |
 | Deprecated workflow YAML files removed | PASS (`create_skill*.yaml` legacy set absent) |
-| Prompt command reference updated | PASS (`.opencode/command/create/prompt.md` references `/create:sk-skill` variants) |
+| Prompt command reference updated | PASS (`.opencode/commands/create/prompt.md` references `/create:sk-skill` variants) |
 | Cross-runtime docs synchronized | PASS (all eight listed runtime/setup docs reference `/create:sk-skill`) |
 | Legacy reference directory scan clean | PASS (`/create:skill` search returns no matches in `.agents/agents`, `.codex`, `.claude`) |
 | Memory saved and indexed for spec folder | PASS (`latest memory/*.md artifact`, `memory/metadata.json`, `memory_index_scan`: `status complete`, `failed = 0`) |

@@ -100,7 +100,7 @@ Every iteration MUST append a JSONL record to `research/deep-research-state.json
 
 Respect the quality guards before claiming convergence: **source_diversity** (≥2 sources per question), **focus_alignment** (new findings align with original key questions), **single_weak_source_dominance** (block STOP if any question depends on a single tentative source).
 
-Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skill/sk-deep-research/scripts/reduce-state.cjs`.
+Do NOT write to `deep-research-dashboard.md` or `findings-registry.json` — those are reducer-owned and generated post-run by `node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs`.
 
 ### 5.2 Research topic
 
@@ -115,7 +115,7 @@ Research the external repository at /Users/michelkerkmeester/MEGA/Development/Co
 Save memory for this phase folder when research is complete with:
 
 ```bash
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/008-xethryon"
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/008-xethryon"
 ```
 
 ## 6. Research Questions
@@ -136,7 +136,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - Do read `XETHRYON_CONTEXT.md` and `XETHRYON_MODS.md` first — they are the authoritative positioning docs for Xethryon's memory claims.
 - Do trace `packages/opencode/src/session/system.ts` and `packages/opencode/src/session/prompt.ts` end-to-end; these files carry the architectural contribution.
 - Do look for where hooks, idle timers, or post-save callbacks are registered — the cadence model lives in the registration, not the save function.
-- Do map every finding to a concrete target file in Public (`.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/plugins/spec-kit-compact-code-graph.js`, etc.).
+- Do map every finding to a concrete target file in Public (`.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, `.opencode/plugins/spec-kit-compact-code-graph.js`, etc.).
 - Do identify specifically where Xethryon overlaps with Engram session summaries, MemPalace wake-up layers, and Ralph's git bootstrap, and triage accordingly.
 - Do preserve the memory-operations vs memory-architecture lens throughout the analysis.
 
@@ -158,7 +158,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: Xethryon registers a post-save async hook that schedules AutoDream reconsolidation. The hook runs off the critical path, writes output to a pending-state file, and commits on next bootstrap if validation passes.
 - Why it matters: Public's `generate-context.js` saves are fully synchronous; any cross-memory consolidation (causal-link rebalancing, topic-key normalization) happens inline and blocks the save path. An async post-save hook could move non-critical consolidation off the hot path without changing the save authority.
 - Recommendation: prototype later
-- Affected area: `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` (post-save hook registration), new pending-state file format
+- Affected area: `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` (post-save hook registration), new pending-state file format
 - Impact: medium (latency improvement for heavy saves, enables safer cross-memory work)
 - Source strength: primary
 ```
@@ -171,7 +171,7 @@ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .op
 - What it does: At session bootstrap, Xethryon captures git HEAD commit, branch, dirty-file count, and last-5 commit titles, then embeds them in the system prompt as structured project orientation (not as a freeform note).
 - Why it matters: Public's `session_bootstrap` currently surfaces structural hints, routing nudges, and recent memory context, but not git orientation. Adding a structured git-state block would let the agent start every turn oriented to the repo's actual position without manual status calls.
 - Recommendation: adopt now
-- Affected area: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` (add gitState to payload), no schema break
+- Affected area: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` (add gitState to payload), no schema break
 - Impact: medium (additive field, improves first-turn efficiency)
 - Source strength: primary
 ```

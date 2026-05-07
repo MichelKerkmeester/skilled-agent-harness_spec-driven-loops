@@ -56,21 +56,21 @@ REASON: Tests CLI that was modified in Spec 071 to accept level parameter with f
 
 ### 2. System-Wide SpecKit Test Files
 
-**Location:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/`
+**Location:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/`
 
-FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh`
+FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-validation.sh`
 TESTS: validate-spec.sh comprehensive test suite (validates spec folder structure and content)
 LAST_MODIFIED: 2026-01-15 13:16
 STATUS: relevant
 REASON: Tests spec folder validation rules that apply to all levels (Level 1, 2, 3 structure)
 
-FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js`
+FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js`
 TESTS: Bug fix verification tests for Spec 054 (memory system bugs)
 LAST_MODIFIED: 2026-01-06 16:05
 STATUS: unrelated
 REASON: Tests memory system bugs from Spec 054, not related to template level alignment
 
-FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js`
+FILE: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js`
 TESTS: Embeddings factory and provider system verification
 LAST_MODIFIED: 2026-01-15 13:58
 STATUS: unrelated
@@ -94,14 +94,14 @@ According to `implementation-summary.md`, Spec 071 used the following verificati
 
 ```bash
 # Verified level folders exist and contain correct files
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Verified no COMPLEXITY_GATE markers in level folders
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 # Result: No matches
 
 # Verified no broken paths in scripts
-grep -r "templates/spec.md" .opencode/skill/system-spec-kit/scripts/
+grep -r "templates/spec.md" .opencode/skills/system-spec-kit/scripts/
 # Result: No matches
 
 # Ran full test suite

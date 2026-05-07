@@ -67,16 +67,16 @@ External AI assistants can invoke Claude Code CLI for deep reasoning, surgical c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/cli-claude-code/SKILL.md` | Create | Main orchestrator (8 sections) |
-| `.opencode/skill/cli-claude-code/README.md` | Create | Companion guide |
-| `.opencode/skill/cli-claude-code/references/cli_reference.md` | Create | CLI flags, commands, models |
-| `.opencode/skill/cli-claude-code/references/agent_delegation.md` | Create | 9 agents, routing table |
-| `.opencode/skill/cli-claude-code/references/claude_tools.md` | Create | Unique capabilities, 3-way comparison |
-| `.opencode/skill/cli-claude-code/references/integration_patterns.md` | Create | Reversed orchestration patterns |
-| `.opencode/skill/cli-claude-code/assets/prompt_templates.md` | Create | Copy-paste templates |
-| `.opencode/skill/scripts/skill_advisor.py` | Modify | Add 3 booster sections |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Create | Main orchestrator (8 sections) |
+| `.opencode/skills/cli-claude-code/README.md` | Create | Companion guide |
+| `.opencode/skills/cli-claude-code/references/cli_reference.md` | Create | CLI flags, commands, models |
+| `.opencode/skills/cli-claude-code/references/agent_delegation.md` | Create | 9 agents, routing table |
+| `.opencode/skills/cli-claude-code/references/claude_tools.md` | Create | Unique capabilities, 3-way comparison |
+| `.opencode/skills/cli-claude-code/references/integration_patterns.md` | Create | Reversed orchestration patterns |
+| `.opencode/skills/cli-claude-code/assets/prompt_templates.md` | Create | Copy-paste templates |
+| `.opencode/skills/scripts/skill_advisor.py` | Modify | Add 3 booster sections |
 | `.claude/skills/cli-claude-code` | Create | Symlink to skill |
-| `.opencode/skill/README.md` | Modify | Add skill entry |
+| `.opencode/skills/README.md` | Modify | Add skill entry |
 | `.opencode/README.md` | Modify | Add skill entry |
 | `README.md` | Modify | Add skill entry |
 
@@ -117,8 +117,8 @@ External AI assistants can invoke Claude Code CLI for deep reasoning, surgical c
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `python3 skill_advisor.py "use claude code cli"` returns cli-claude-code with confidence >= 0.8
-- **SC-002**: `readlink .claude/skills/cli-claude-code` resolves to `../../.opencode/skill/cli-claude-code`
-- **SC-003**: All 9 agents from `.opencode/agent/` documented in agent_delegation.md
+- **SC-002**: `readlink .claude/skills/cli-claude-code` resolves to `../../.opencode/skills/cli-claude-code`
+- **SC-003**: All 9 agents from `.opencode/agents/` documented in agent_delegation.md
 - **SC-004**: 3-way comparison table (Claude Code vs Gemini CLI vs Codex CLI) in claude_tools.md
 
 ---
@@ -139,7 +139,7 @@ External AI assistants can invoke Claude Code CLI for deep reasoning, surgical c
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Claude Code CLI installed | Skill is documentation-only; no runtime dependency | Installation instructions included |
-| Dependency | `.opencode/agent/*.md` definitions | Agent roster accuracy | Read actual agent files during implementation |
+| Dependency | `.opencode/agents/*.md` definitions | Agent roster accuracy | Read actual agent files during implementation |
 | Risk | Claude Code CLI flags change | Low — documentation-only | Version-pin references, update as needed |
 | Risk | Model IDs change | Medium — affects all model references | Centralize model references for easy updates |
 

@@ -35,8 +35,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Updated | OK | Added optional `telemetry?` field to `SearchQualityChannelOutput`; propagated through `SearchQualityChannelCapture` and `SearchQualityCaseResult`; added `options.telemetryExportPath` writing 3 sibling JSONL files |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | OK | Telemetry-mode test: TC-1 in-memory preservation, TC-2 JSONL export shape, TC-3 no-export-without-path |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Updated | OK | Added optional `telemetry?` field to `SearchQualityChannelOutput`; propagated through `SearchQualityChannelCapture` and `SearchQualityCaseResult`; added `options.telemetryExportPath` writing 3 sibling JSONL files |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | OK | Telemetry-mode test: TC-1 in-memory preservation, TC-2 JSONL export shape, TC-3 no-export-without-path |
 
 ---
 
@@ -44,8 +44,8 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `SearchDecisionEnvelope` type imported into harness |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts` | Cited | OK | `ShadowDeltaRecord` type imported into harness |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts` | Cited | OK | `SearchDecisionEnvelope` type imported into harness |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/shadow/shadow-sink.ts` | Cited | OK | `ShadowDeltaRecord` type imported into harness |
 
 ---
 
@@ -66,4 +66,4 @@ _memory:
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.../024/graph-metadata.json` | Created | OK | Graph rollout metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Analyzed | OK | Read-only contract reference (intentionally NOT modified) |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Analyzed | OK | Read-only contract reference (intentionally NOT modified) |

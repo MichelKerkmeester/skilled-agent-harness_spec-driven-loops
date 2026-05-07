@@ -48,14 +48,14 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skill/system-spec-kit/references/config/hook_system.md",
-      ".opencode/command/memory/manage.md",
-      ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".claude/settings.local.json",
       ".codex/settings.json",
-      ".opencode/command/memory/README.txt",
+      ".opencode/commands/memory/README.txt",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/checklist.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/description.json",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/018-doc-truth-pass/graph-metadata.json",
@@ -98,31 +98,31 @@
       {
         "name": "hook_system.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/references/config/hook_system.md",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
         "source": "derived"
       },
       {
         "name": "manage.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/manage.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
         "name": "ARCHITECTURE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/ARCHITECTURE.md",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
@@ -140,7 +140,7 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/memory/README.txt",
+        "path": ".opencode/commands/memory/README.txt",
         "source": "derived"
       },
       {

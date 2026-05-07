@@ -22,5 +22,5 @@
 
 ## Files Created
 
-1. `.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/README.md`
-2. `.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md`
+1. `.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/README.md`
+2. `.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md`

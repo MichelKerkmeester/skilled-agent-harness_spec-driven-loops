@@ -71,7 +71,7 @@ Complete a deterministic migration to `sk-doc` and remove stale visual-skill ref
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/**` | Modify | Content identifier replacement to canonical names. |
-| `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/*` | Move/Rename | Canonical documentation-skill path migration and stale visual reference repair. |
+| `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/*` | Move/Rename | Canonical documentation-skill path migration and stale visual reference repair. |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.claude/skills/*` | Rename | Runtime symlink-name and target updates. |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.gemini/skills/*` | Rename | Runtime symlink-name and target updates. |
 | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Barter/coder/AGENTS.md` | Verify/Conditional Modify | Check for legacy matches and update only if needed. |

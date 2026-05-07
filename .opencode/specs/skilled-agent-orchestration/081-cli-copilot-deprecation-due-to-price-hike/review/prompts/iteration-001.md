@@ -27,16 +27,16 @@ You are reviewing packet 081 across **all 4 dimensions**: correctness, security,
 
 ### Correctness
 - Run `grep -rln 'cli-copilot' . --include='*.md' --include='*.json' --include='*.jsonc' --include='*.yaml' --include='*.yml' --include='*.toml' --include='*.ts' --include='*.js' --include='*.py' --include='*.sh' --exclude-dir='node_modules' --exclude-dir='dist' --exclude-dir='.git' --exclude-dir='z_archive' --exclude-dir='memory' --exclude-dir='.venv' 2>/dev/null | grep -v '/specs/' | grep -v '/changelog/'` — should be 0 hits
-- Verify `[ ! -d .opencode/skill/cli-copilot ]` — skill folder must be gone
+- Verify `[ ! -d .opencode/skills/cli-copilot ]` — skill folder must be gone
 - Verify `[ ! -L .opencode/changelog/cli-copilot ]` — changelog symlink must be gone
-- Verify `[ ! -d .opencode/skill/system-spec-kit/mcp_server/hooks/copilot ]` — hooks dir must be gone
+- Verify `[ ! -d .opencode/skills/system-spec-kit/mcp_server/hooks/copilot ]` — hooks dir must be gone
 
 ### Compilation / type-check
-- Read `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` — verify EXECUTOR_KINDS does NOT contain cli-copilot, no buildCopilotPromptArg function remains, no Extract<ExecutorKind, 'cli-copilot' | ...> type unions
-- Read `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts` — verify no cli-copilot test cases remain
-- Read `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` — verify no buildCopilotPromptArg import or describe block remains
-- Read `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` — verify no adapterCliCopilot import or case branch
-- Read `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` — verify no cli-copilot manifest entries
+- Read `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` — verify EXECUTOR_KINDS does NOT contain cli-copilot, no buildCopilotPromptArg function remains, no Extract<ExecutorKind, 'cli-copilot' | ...> type unions
+- Read `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts` — verify no cli-copilot test cases remain
+- Read `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` — verify no buildCopilotPromptArg import or describe block remains
+- Read `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts` — verify no adapterCliCopilot import or case branch
+- Read `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json` — verify no cli-copilot manifest entries
 
 ## Deliverable
 

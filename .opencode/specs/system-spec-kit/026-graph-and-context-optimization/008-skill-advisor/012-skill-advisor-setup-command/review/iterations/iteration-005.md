@@ -2,7 +2,7 @@
 
 ## Summary
 
-This pass audited packet identity, packet-local cross-references, parent documentation sync, the nested changelog, `.opencode/README.md` counts, and `.opencode/command/spec_kit/README.txt`. The packet identity itself is consistent: `graph-metadata.json` uses the same packet string for `packet_id` and `spec_folder`, `description.json` uses the same `specFolder`, and the packet frontmatter title uses the same 012 slug. The required parent child-row surfaces also exist, and the command README includes the new skill-advisor row and assets.
+This pass audited packet identity, packet-local cross-references, parent documentation sync, the nested changelog, `.opencode/README.md` counts, and `.opencode/commands/spec_kit/README.txt`. The packet identity itself is consistent: `graph-metadata.json` uses the same packet string for `packet_id` and `spec_folder`, `description.json` uses the same `specFolder`, and the packet frontmatter title uses the same 012 slug. The required parent child-row surfaces also exist, and the command README includes the new skill-advisor row and assets.
 
 The traceability failures are in the surrounding references and aggregate counts: packet docs/metadata still contain relative `.md` references despite the full repo-rooted path contract; parent metadata still describes the parent as 11 children and omits 012 trigger phrases; the top-level `.opencode/README.md` counts do not match live `find` output; and the nested changelog diverges from `implementation-summary.md`.
 
@@ -31,7 +31,7 @@ The traceability failures are in the surrounding references and aggregate counts
 
 - F-TRACE-004: `.opencode/README.md` command/YAML counts do not match the live repository.
   - Evidence: `.opencode/README.md:58`, `.opencode/README.md:60`, `.opencode/README.md:74`, `.opencode/README.md:158-167`
-  - Verification: `find .opencode/command -type f -name '*.md' | wc -l` returned 22 vs claimed 23; `find .opencode/command/spec_kit -maxdepth 1 -type f -name '*.md' | wc -l` returned 7 vs claimed 10; `find .opencode/command -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l` returned 30 vs claimed 31; `find .opencode/command/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l` returned 14.
+  - Verification: `find .opencode/command -type f -name '*.md' | wc -l` returned 22 vs claimed 23; `find .opencode/commands/spec_kit -maxdepth 1 -type f -name '*.md' | wc -l` returned 7 vs claimed 10; `find .opencode/command -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l` returned 30 vs claimed 31; `find .opencode/commands/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) | wc -l` returned 14.
   - Impact: The Current Counts table claims 23 commands, 10 `spec_kit`, and 31 YAML assets, while live filesystem counts are lower. Section 5 also labels `Spec Kit Commands` as 10 but lists eight user-facing bullets and only seven markdown command files exist.
   - Remediation: Recompute the command taxonomy and update both the Current Counts table and Section 5 heading/details from the same `find` command set.
 
@@ -56,7 +56,7 @@ The traceability failures are in the surrounding references and aggregate counts
 - Packet identity is internally consistent: `packet_id` and `spec_folder` match in `graph-metadata.json`, and `description.json.specFolder` uses the same string. Evidence: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/graph-metadata.json:3-4`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/description.json:2`.
 - The packet frontmatter title uses the expected 012 packet slug. Evidence: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/spec.md:2`.
 - Parent required entries exist: context-index row, key implementation summary entry, open-items entry, parent spec phase 12 row, and parent tasks T013. Evidence: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md:70`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md:85`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/context-index.md:100`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/spec.md:121`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/tasks.md:84`.
-- `.opencode/command/spec_kit/README.txt` includes the skill-advisor command row and structure-tree entries for the command markdown and both YAML assets. Evidence: `.opencode/command/spec_kit/README.txt:61`, `.opencode/command/spec_kit/README.txt:93`, `.opencode/command/spec_kit/README.txt:107-108`.
+- `.opencode/commands/spec_kit/README.txt` includes the skill-advisor command row and structure-tree entries for the command markdown and both YAML assets. Evidence: `.opencode/commands/spec_kit/README.txt:61`, `.opencode/commands/spec_kit/README.txt:93`, `.opencode/commands/spec_kit/README.txt:107-108`.
 
 ## Count Verification
 
@@ -67,9 +67,9 @@ The traceability failures are in the surrounding references and aggregate counts
 | Parent tasks T013 rows | 1 expected by prompt | 1 | `grep -c 'T013.*012-skill-advisor-setup-command' .../tasks.md` |
 | Changelog `.opencode` file rows | 15 to match implementation summary | 12 | `awk '/^\| \`\.opencode/{c++} END{print c+0}' .../changelog-008-012-skill-advisor-setup-command.md` |
 | `.opencode/README.md` command markdown files | 23 | 22 | `find .opencode/command -type f -name '*.md' \| wc -l` |
-| `.opencode/README.md` `spec_kit` commands | 10 | 7 markdown files | `find .opencode/command/spec_kit -maxdepth 1 -type f -name '*.md' \| wc -l` |
+| `.opencode/README.md` `spec_kit` commands | 10 | 7 markdown files | `find .opencode/commands/spec_kit -maxdepth 1 -type f -name '*.md' \| wc -l` |
 | `.opencode/README.md` YAML assets | 31 | 30 | `find .opencode/command -type f \( -name '*.yaml' -o -name '*.yml' \) \| wc -l` |
-| `spec_kit` YAML assets | not claimed in README table | 14 | `find .opencode/command/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) \| wc -l` |
+| `spec_kit` YAML assets | not claimed in README table | 14 | `find .opencode/commands/spec_kit/assets -maxdepth 1 -type f \( -name '*.yaml' -o -name '*.yml' \) \| wc -l` |
 
 ## Files Reviewed
 
@@ -91,7 +91,7 @@ The traceability failures are in the surrounding references and aggregate counts
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/tasks.md:1-115`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/changelog/changelog-008-012-skill-advisor-setup-command.md:1-83`
 - `.opencode/README.md:1-337`
-- `.opencode/command/spec_kit/README.txt:1-260`
+- `.opencode/commands/spec_kit/README.txt:1-260`
 
 ## Convergence Signals
 

@@ -65,8 +65,8 @@ contextType: "general"
 
 | File | Change | Status |
 | ---- | ------ | ------ |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` | SPECKIT-003: Batch delete before insert on restore | COMPLETE (needs restart) |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | SPECKIT-004: Filter constitutional when flag is false | VERIFIED WORKING |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` | SPECKIT-003: Batch delete before insert on restore | COMPLETE (needs restart) |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | SPECKIT-004: Filter constitutional when flag is false | VERIFIED WORKING |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md` | Created with full test findings | COMPLETE |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md` | Updated with test evidence | COMPLETE |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md` | Created as reminder | COMPLETE |
@@ -127,7 +127,7 @@ memory_search({ specFolder: "044-speckit-test-suite", includeContent: true })
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md` - Full test findings
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md` - Test evidence and status
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md` - Restart reminder
-- `.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js` - SPECKIT-003 fix location
+- `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` - SPECKIT-003 fix location
 
 ---
 

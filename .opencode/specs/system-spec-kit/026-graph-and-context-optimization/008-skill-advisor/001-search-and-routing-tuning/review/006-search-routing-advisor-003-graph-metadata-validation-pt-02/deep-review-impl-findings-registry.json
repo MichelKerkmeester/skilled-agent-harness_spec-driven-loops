@@ -7,11 +7,11 @@
       "title": "Backfill aborts the entire corpus when one existing graph-metadata.json is invalid",
       "status": "open",
       "evidence": [
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:206",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:208",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:214",
-        ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:397",
-        ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:401"
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:206",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:208",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:214",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:397",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:401"
       ],
       "firstSeenIteration": 1,
       "lastSeenIteration": 10,
@@ -24,11 +24,11 @@
       "title": "Backfill accepts any --root and recursively scans it without a traversal budget",
       "status": "open",
       "evidence": [
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137",
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144"
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:89",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:90",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:121",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:137",
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:144"
       ],
       "firstSeenIteration": 2,
       "lastSeenIteration": 10,
@@ -41,9 +41,9 @@
       "title": "Atomic graph-metadata writes can leave temp files behind when rename fails",
       "status": "open",
       "evidence": [
-        ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1145",
-        ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1148",
-        ".opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1149"
+        ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1145",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1148",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1149"
       ],
       "firstSeenIteration": 3,
       "lastSeenIteration": 10,
@@ -56,11 +56,11 @@
       "title": "Backfill tests name z_future coverage but only create z_archive fixtures",
       "status": "open",
       "evidence": [
-        ".opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27",
-        ".opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60",
-        ".opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61",
-        ".opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78",
-        ".opencode/skill/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117"
+        ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:27",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:60",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:61",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:78",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:117"
       ],
       "firstSeenIteration": 4,
       "lastSeenIteration": 10,

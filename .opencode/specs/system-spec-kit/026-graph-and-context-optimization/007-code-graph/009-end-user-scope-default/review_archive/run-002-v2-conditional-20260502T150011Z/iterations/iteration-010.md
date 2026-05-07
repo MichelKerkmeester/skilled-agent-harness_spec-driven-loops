@@ -14,27 +14,27 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:206-213`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/implementation-summary.md:64-84`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/resource-map.md:58-87`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:5-50`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:55-58`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:242-251`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:586-593`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-304`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:197-235`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-345`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:358-379`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159-173`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:258-295`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-308`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:314-359`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:253-310`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:63-107`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:562-604`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:683-748`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:250-278`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-262`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:5-50`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:140-166`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:56-65`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:55-58`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:242-251`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:586-593`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293-304`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:197-235`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:285-345`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:358-379`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:159-173`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:258-295`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:257-308`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:314-359`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:253-310`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:348-414`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:63-107`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:562-604`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:683-748`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:250-278`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:258-262`
 
 ## Findings by Severity
 
@@ -62,7 +62,7 @@ Focused security checks:
 - `scope_fingerprint_stability`: PASS. `resolveIndexScopePolicy()` returns literal fingerprints for included/excluded skill policy states, so the same policy yields the same fingerprint across runs, restarts, and cwd changes.
 - `excludedSkillGlobs_ordering`: PASS. The current implementation has one skill-exclusion glob and does not derive the fingerprint from caller-provided array order. No order-dependent fingerprint instability was found.
 - `storedScope_payload`: PASS with advisory context. `code_graph_status` returns `storedScope.fingerprint` and `storedScope.label`, but the values are stable policy labels already documented and tested; they do not expose file names, paths, credentials, hashes of user content, or a secret algorithm.
-- `excludedTrackedFiles_count`: PASS. The count is aggregate-only (`COUNT(*) WHERE file_path LIKE '%.opencode/skill/%'`) and does not reveal secret-named files. If sensitive paths are still queryable, that is the already-open stale indexed-row problem carried by prior findings, not a new count-specific disclosure.
+- `excludedTrackedFiles_count`: PASS. The count is aggregate-only (`COUNT(*) WHERE file_path LIKE '%.opencode/skills/%'`) and does not reveal secret-named files. If sensitive paths are still queryable, that is the already-open stale indexed-row problem carried by prior findings, not a new count-specific disclosure.
 - `scopeMismatch_boolean`: PASS. The boolean reveals whether active policy differs from stored policy, not when the DB was scanned. Status already exposes `lastScanAt`; this pass found no additional timing channel unique to `scopeMismatch`.
 
 ## Run-1 Regression Check (state which closed finding(s) you re-verified, with PASS/FAIL)

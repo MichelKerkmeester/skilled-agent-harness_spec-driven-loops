@@ -52,9 +52,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P] Create the planned .opencode/command/doctor/code-graph.md (created by T001) — command markdown with frontmatter, argument-hint, allowed-tools (Read + Bash + code_graph_* MCP tools), execution protocol, consolidated setup prompt
-- [x] T002 [P] Create `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml` — autonomous workflow with 3 phases (Discovery, Analysis, Proposal-as-report)
-- [x] T003 [P] Create `.opencode/command/doctor/assets/doctor_code-graph_confirm.yaml` — interactive workflow with one `pre_phase_2` approval gate
+- [x] T001 [P] Create the planned .opencode/commands/doctor/code-graph.md (created by T001) — command markdown with frontmatter, argument-hint, allowed-tools (Read + Bash + code_graph_* MCP tools), execution protocol, consolidated setup prompt
+- [x] T002 [P] Create `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml` — autonomous workflow with 3 phases (Discovery, Analysis, Proposal-as-report)
+- [x] T003 [P] Create `.opencode/commands/doctor/assets/doctor_code-graph_confirm.yaml` — interactive workflow with one `pre_phase_2` approval gate
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -78,7 +78,7 @@ _memory:
 - [x] T010 Validate command markdown loads correctly — frontmatter parse, argument-hint format, allowed-tools list
 - [x] T011 Validate both YAML workflows parse via `python3 yaml.safe_load`
 - [x] T012 Verify mutation_boundaries.allowed_targets is empty in both YAMLs (Phase A read-only invariant)
-- [x] T013 Run strict spec-folder validation (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh`)
+- [x] T013 Run strict spec-folder validation (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 - [x] T014 Verify `/doctor:code-graph` appears in runtime skill list after creation
 - [x] T015 Smoke-test: invoke `/doctor:code-graph:auto` against this repo and confirm report at packet scratch with no other file changes
 <!-- /ANCHOR:phase-3 -->
@@ -90,8 +90,8 @@ _memory:
 
 - [x] All Phase 1-3 tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Command file exists at the planned .opencode/command/doctor/code-graph.md (created by T001)
-- [x] Both YAML assets exist in `.opencode/command/doctor/assets/`
+- [x] Command file exists at the planned .opencode/commands/doctor/code-graph.md (created by T001)
+- [x] Both YAML assets exist in `.opencode/commands/doctor/assets/`
 - [x] Install guide exists at `.opencode/install_guides/SET-UP - Code Graph.md`
 - [x] Parent context-index, spec, tasks updated with 006 child entry
 - [x] Strict validation passes 0/0

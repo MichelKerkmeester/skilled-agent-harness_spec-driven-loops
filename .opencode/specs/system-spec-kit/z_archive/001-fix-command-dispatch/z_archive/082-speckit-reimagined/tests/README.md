@@ -48,7 +48,7 @@ This folder contains comprehensive test documentation consolidated from spec 083
 
 Actual test files are located in:
 ```
-.opencode/skill/system-spec-kit/mcp_server/tests/
+.opencode/skills/system-spec-kit/mcp_server/tests/
 ```
 
 Current test count: ~850+ tests across 29 files.
@@ -84,7 +84,7 @@ Current test count: ~850+ tests across 29 files.
 
 ```bash
 # Navigate to MCP server
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 
 # Run all tests
 for f in tests/*.test.js; do node "$f"; done
@@ -101,6 +101,6 @@ node tests/tier-classifier.test.js
 
 - **Parent Spec:** `082-speckit-reimagined/spec.md`
 - **Original Spec:** `z_archive/083-speckit-reimagined-test-suite/` (archived)
-- **Test Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+- **Test Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
 <!-- /ANCHOR:references -->
 

@@ -36,8 +36,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
-      ".opencode/command/spec_kit/resume.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+      ".opencode/commands/spec_kit/resume.md",
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/handlers/memory-search.ts",
       "mcp_server/handlers/memory-crud-list.ts",
@@ -53,13 +53,13 @@
       {
         "name": "11-session-recovery-spec-kit-resume.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
         "source": "derived"
       },
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {

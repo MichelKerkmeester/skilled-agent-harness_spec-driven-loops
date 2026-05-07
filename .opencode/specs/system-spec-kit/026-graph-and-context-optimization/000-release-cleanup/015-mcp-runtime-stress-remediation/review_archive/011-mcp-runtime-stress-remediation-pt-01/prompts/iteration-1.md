@@ -64,7 +64,7 @@ Open `010-stress-test-rerun-v1-0-2/findings.md` and validate:
 Open `011-post-stress-followup-research/research/` (look for iteration JSONL or markdown files):
 - Does the 10-iter newInfoRatio decay (0.74 → 0.22 per the plan I authored) actually appear in the data? Or did it converge differently?
 - Are the 4 patch proposals (P0 cli-copilot Gate 3, P1 graph testability, P2 file-watcher, OPP CocoIndex telemetry) backed by concrete file:line evidence in the research synthesis?
-- Specifically for the **P0 cli-copilot Gate 3 bypass fix**: is the proposed insertion point in `executor-config.ts` correct? Off-by-one in authority-token binding would reintroduce the vulnerability. Cross-reference against `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` and any `buildCopilotPromptArg` implementation.
+- Specifically for the **P0 cli-copilot Gate 3 bypass fix**: is the proposed insertion point in `executor-config.ts` correct? Off-by-one in authority-token binding would reintroduce the vulnerability. Cross-reference against `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` and any `buildCopilotPromptArg` implementation.
 
 ### 4. Cross-cutting correctness
 
@@ -110,6 +110,6 @@ Append to: `specs/system-spec-kit/026-graph-and-context-optimization/000-release
 
 Write to: `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/011-mcp-runtime-stress-remediation-pt-01/deltas/iter-001.jsonl`
 
-After completing, write the strategy file at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/011-mcp-runtime-stress-remediation-pt-01/deep-review-strategy.md` (use the deep_review_strategy.md template at `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` and populate Topic, Review Dimensions, Known Context with what you learned this iteration, and Next Focus pointing iter-2 at security with focus on the P0 cli-copilot Gate 3 fix proposal).
+After completing, write the strategy file at `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/review/011-mcp-runtime-stress-remediation-pt-01/deep-review-strategy.md` (use the deep_review_strategy.md template at `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` and populate Topic, Review Dimensions, Known Context with what you learned this iteration, and Next Focus pointing iter-2 at security with focus on the P0 cli-copilot Gate 3 fix proposal).
 
 GO.

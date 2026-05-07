@@ -31,7 +31,7 @@ completedAt: 2026-04-12T18:03:02Z
 I’ve narrowed this to the schema source plus the 042 docs and tests that describe or exercise it. Next I’m checking whether the migration behavior and documented contract actually match the SQL the runtime creates.
 
 ● Read coverage-graph-db.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
   └ 1 line read
 
 ● Search (grep)
@@ -44,17 +44,17 @@ I’ve narrowed this to the schema source plus the 042 docs and tests that descr
 ● Search (grep)
   │ "coverage-graph-db|deep_loop_graph|deep-loop
   │ graph|coverage_graph|graph_upsert|graph_query|graph_convergence" in
-  │ **/*.{ts,js,md,json,yml,yaml} (.opencode/skill/system-spec-kit)
+  │ **/*.{ts,js,md,json,yml,yaml} (.opencode/skills/system-spec-kit)
   └ 7 lines found
 
 ● Read README.md
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/README.md
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/README.md
   └ 24 lines read
 
 ● Search (grep)
   │ "CREATE TABLE|PRIMARY KEY|schema_version|migration|DROP TABLE|ALTER
   │ TABLE|specFolder|loopType|sessionId|namespace|version"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts)
   └ 7 lines found
 
 ● Search (grep)
@@ -66,11 +66,11 @@ I’ve narrowed this to the schema source plus the 042 docs and tests that descr
 The schema file is the key source of truth here; I’m pulling its setup and migration sections directly, then I’ll cross-check them against the 042 docs and any coverage-graph tests.
 
 ● Read coverage-graph-db.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
   └ L1:260 (260 lines read)
 
 ● Search (glob)
-  │ "**/*coverage*graph*.{ts,js,md}" in .opencode/skill/system-spec-kit
+  │ "**/*coverage*graph*.{ts,js,md}" in .opencode/skills/system-spec-kit
   └ 12 files found
 
 ● Search (grep)
@@ -81,11 +81,11 @@ The schema file is the key source of truth here; I’m pulling its setup and mig
   └ 5 lines found
 
 ● Read coverage-graph-db.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
   └ L261:520 (260 lines read)
 
 ● Read coverage-graph-db.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts
   └ 237 lines read
 
 ● Search (grep)
@@ -95,17 +95,17 @@ The schema file is the key source of truth here; I’m pulling its setup and mig
   └ 6 lines found
 
 ● Read coverage-graph-db.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts
   └ L521:820 (210 lines read)
 
 ● Search (grep)
   │ "coverage_nodes|coverage_edges|coverage_snapshots|schema_version|SCHEMA_VERSION|deep-loop-graph.
-  │ sqlite" in **/*coverage-graph*.ts (.opencode/skill/system-spec-kit/scripts/tests)
+  │ sqlite" in **/*coverage-graph*.ts (.opencode/skills/system-spec-kit/scripts/tests)
   └ No matches found
 
 ● Search (grep)
   │ "coverage_nodes|coverage_edges|coverage_snapshots|composite primary key|drop the v1
-  │ tables|REQ-028|F004" in **/*.{md,ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ tables|REQ-028|F004" in **/*.{md,ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 82 lines found
 
 ● Read implementation-summary.md
@@ -121,11 +121,11 @@ The schema file is the key source of truth here; I’m pulling its setup and mig
   └ 6 lines found
 
 ● Read coverage-graph-core.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts
   └ L1:260 (257 lines read)
 
 ● Read coverage-graph-integration.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
   └ L1:280 (279 lines read)
 
 ● Search (grep)
@@ -138,11 +138,11 @@ The schema file is the key source of truth here; I’m pulling its setup and mig
 ● Search (grep)
   │ "session isolation|shared-ID|composite primary key|schema
   │ version|migration|drop-and-recreate|SCHEMA_VERSION|getLatestSnapshot|getStats|coverage graph db"
-  │ in **/*coverage-graph*.ts (.opencode/skill/system-spec-kit/scripts/tests)
+  │ in **/*coverage-graph*.ts (.opencode/skills/system-spec-kit/scripts/tests)
   └ No matches found
 
 ● Search (glob)
-  │ "**/*session*isolation*.ts" in .opencode/skill/system-spec-kit
+  │ "**/*session*isolation*.ts" in .opencode/skills/system-spec-kit
   └ 1 file found
 
 I found one likely migration seam already: the upgrade only drops old tables when `schema_version` exists, so I’m checking whether the original v1 database always had that table. If not, the code can stamp a legacy schema as v2 without actually migrating it.
@@ -158,63 +158,63 @@ I found one likely migration seam already: the upgrade only drops old tables whe
   └ L38:90 (53 lines read)
 
 ● Read session-isolation.vitest.ts
-  │ .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts
+  │ .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts
   └ 472 lines read
 
 ● Show coverage graph db history (shell)
   │ git --no-pager log --follow --oneline --
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | head -n 20
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | head -n 20
   └ 4 lines...
 
 ● Show lane 2 coverage graph db schema (shell)
   │ git --no-pager show
-  │ be79ed0a0:.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
+  │ be79ed0a0:.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
   │ sed -n '145,290p'
   └ 147 lines...
 
 ● Show initial coverage graph db schema (shell)
   │ git --no-pager show
-  │ ffb3ecf11:.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
+  │ ffb3ecf11:.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
   │ sed -n '145,280p'
   └ 136 lines...
 
 ● Show initial coverage graph db header (shell)
   │ git --no-pager show
-  │ ffb3ecf11:.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
+  │ ffb3ecf11:.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts |
   │ sed -n '1,144p'
   └ 145 lines...
 
 ● Read coverage-graph-query.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts
   └ L1:260 (260 lines read)
 
 ● Read status.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts
   └ L1:220 (101 lines read)
 
 ● Read query.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts
   └ L1:160 (160 lines read)
 
 ● Read convergence.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts
   └ L1:180 (180 lines read)
 
 ● Search (grep)
   │ "function computeScopedStats|function computeScopedSignals|function
   │ computeScopedMomentum|getNodes\(|getEdges\(|getSnapshots\("
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts)
   └ 11 lines found
 
 ● Search (grep)
   │ "session_id = \?|spec_folder = \?|loop_type =
   │ \?|buildCompositeNodeJoin|getNodeById|getEdgesFromNode"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts)
   └ 9 lines found
 
 ● Show coverage graph db changes since v1 (shell)
   │ git --no-pager diff ffb3ecf11..HEAD --
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n
   │ '1,220p'
   └ 221 lines...
 
@@ -227,12 +227,12 @@ The v1 history confirms the original schema *did* create `schema_version`, so th
 
 ● Search (grep)
   │ "SCHEMA_VERSION|schema version|migrat|drop-and-recreate|shared-ID collisions|session isolation"
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/scripts/tests)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/scripts/tests)
   └ 46 lines found
 
 ● Search (grep)
   │ "SCHEMA_VERSION|schema version|migrat|drop-and-recreate|shared-ID collisions|session isolation"
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 76 lines found
 
 ● Read spec.md
@@ -253,11 +253,11 @@ I have a stronger migration concern now: if a legacy DB reached `CREATE TABLE sc
     Please rewrite the command without these expansion patterns.
 
 ● Read package.json
-  │ .opencode/skill/system-spec-kit/package.json
+  │ .opencode/skills/system-spec-kit/package.json
   └ 51 lines read
 
 ● Search (glob)
-  │ "**/coverage-graph-db.js" in .opencode/skill/system-spec-kit
+  │ "**/coverage-graph-db.js" in .opencode/skills/system-spec-kit
   └ No matches found
 
 I’ve got enough static evidence for the empty-version-row migration hole, but I’m running a tiny SQLite-only reproduction so the finding is grounded in the exact branch behavior rather than just code inspection.
@@ -277,7 +277,7 @@ I’ve got enough static evidence for the empty-version-row migration hole, but 
 1. **Finding ID:** F-043-001  
    **Severity:** P1  
    **Dimension:** correctness  
-   **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`  
+   **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`  
    **Line:** 246  
    **Title:** Empty `schema_version` tables bypass the v1->v2 migration but still get stamped as v2  
    **Description:** The migration only drops/recreates legacy v1 tables when `SELECT version FROM schema_version` returns a row and that row is `< 2`. If the table exists but is empty, the code skips the drop branch, runs `CREATE TABLE IF NOT EXISTS` against the old v1 tables, and then inserts version `2`. That leaves the single-column-PK v1 schema in place while reporting the DB as migrated.  

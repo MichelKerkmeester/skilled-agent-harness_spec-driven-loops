@@ -91,22 +91,22 @@ The two final synthesis candidates still hold:
 - Readiness action vs freshness label: status/read/search surfaces should expose the same action-oriented readiness vocabulary, while preserving non-mutating status behavior.
 
 ## Sources read this iteration (delta from prior)
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-strategy.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-005.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-006.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-query-fallback-decision.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts`
 
 ## Suggested focus for iteration 8
 

@@ -41,9 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/spec.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/plan.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity/tasks.md",
@@ -66,19 +66,19 @@
       {
         "name": "phase-classification.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
         "source": "derived"
       },
       {
         "name": "content-filter-parity.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
         "source": "derived"
       },
       {
         "name": "runtime-memory-inputs.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
         "source": "derived"
       },
       {

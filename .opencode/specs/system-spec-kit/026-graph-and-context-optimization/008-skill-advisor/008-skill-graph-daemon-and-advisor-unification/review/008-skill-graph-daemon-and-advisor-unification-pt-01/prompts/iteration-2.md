@@ -32,14 +32,14 @@ Last claim_adjudication_passed: true
 ## ITERATION 2 FOCUS — D2 SECURITY
 
 ### S1. Cache corruption recovery boundaries
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`
 - When the on-disk SQLite skill-graph DB is corrupted (truncated, malformed, locked), what's the recovery path?
 - Does the daemon detect corruption proactively, or only on first failed query?
 - Is the rebuild idempotent under concurrent recovery attempts?
 
 ### S2. SIGKILL / SIGTERM paths
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
 - Daemon receives SIGTERM during a rebuild — does it abort gracefully, or leave a partial graph state?
 - Plugin subprocess receives SIGKILL during scoring — does the parent recover, or hang?
 - Are there orphaned processes after SIGTERM cascading?
@@ -51,8 +51,8 @@ Last claim_adjudication_passed: true
 - Specifically check: when an exception is caught, is the message templated with user input or filesystem state?
 
 ### S4. Compat shim trust boundaries
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
 - The Python fallback advisor: what privileges does it run with? Can a malicious skill graph file (after directory traversal) cause arbitrary code execution via the parser?
 - Probe semantics: can the probe be tricked into reporting "available" when daemon is actually dead via a stale lock file?
 

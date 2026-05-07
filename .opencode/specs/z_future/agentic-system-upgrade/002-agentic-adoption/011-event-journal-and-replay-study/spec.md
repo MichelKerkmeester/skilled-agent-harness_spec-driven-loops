@@ -65,9 +65,9 @@ Answer the remaining uncertainty for 011 event journal and replay study with bou
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/resume.md` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Investigate | Potential touchpoint for the bounded study |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/commands/spec_kit/resume.md` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Investigate | Potential touchpoint for the bounded study |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Investigate | Potential touchpoint for the bounded study |
 <!-- /ANCHOR:scope -->
 
 ---

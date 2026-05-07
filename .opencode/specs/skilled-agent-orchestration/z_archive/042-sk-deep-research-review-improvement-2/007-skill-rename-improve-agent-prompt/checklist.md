@@ -38,8 +38,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Live renamed skill folders exist before packet rewrite. [EVIDENCE: `.opencode/skill/sk-improve-agent/` and `.opencode/skill/sk-improve-prompt/` are present]
-- [x] CHK-002 [P0] Live runtime-agent files use the `improve-agent` naming convention. [EVIDENCE: `.opencode/agent/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml`]
+- [x] CHK-001 [P0] Live renamed skill folders exist before packet rewrite. [EVIDENCE: `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/` are present]
+- [x] CHK-002 [P0] Live runtime-agent files use the `improve-agent` naming convention. [EVIDENCE: `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml`]
 <!-- /ANCHOR:pre-impl -->
 
 ---

@@ -16,8 +16,8 @@ Read Relay's introduction docs and CLI bootstrap tests, then compared that UX wi
 - Relay's user-facing examples lean on verbs and coordination intents (`/relay-team`, `/relay-fanout`, `/relay-pipeline`) rather than on an explicit pre-execution gate taxonomy. [SOURCE: external/docs/introduction.md:67-89]
 - The CLI bootstrap test locks down a broad but still straightforward command catalog through executable behavior, which keeps the public surface concrete and testable. [SOURCE: external/src/cli/bootstrap.test.ts:6-48] [SOURCE: external/src/cli/bootstrap.test.ts:68-125]
 - Public's AGENTS contract exposes three named gates, consolidated question protocol, completion verification, violation recovery, and self-checklists directly to the operator-facing doctrine. [SOURCE: AGENTS.md:159-229]
-- Constitutional gate memories reinforce the same explicit framing: Gate 3 overrides Gates 1-2, continuation validation, and trigger routing remain prominently surfaced. [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:58-69] [SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md:74-103]
-- Public's orchestrator then repeats gate checking as a first-class operational step before task decomposition. [SOURCE: .opencode/agent/orchestrate.md:49-60]
+- Constitutional gate memories reinforce the same explicit framing: Gate 3 overrides Gates 1-2, continuation validation, and trigger routing remain prominently surfaced. [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:58-69] [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:74-103]
+- Public's orchestrator then repeats gate checking as a first-class operational step before task decomposition. [SOURCE: .opencode/agents/orchestrate.md:49-60]
 
 ## Analysis
 The question is not whether Public needs safeguards. It clearly does. The question is whether users need to think in terms of "Gate 1 / Gate 2 / Gate 3" as often as they currently do. Relay suggests a cleaner separation: keep internal enforcement real, but present the operator with simple, intention-shaped surfaces. Public currently teaches too much of its internal control system as if it were the product.
@@ -27,7 +27,7 @@ confidence: high
 finding: Public should simplify its UX by internalizing most gate machinery. Preserve the protections, but expose simpler operator-facing modes and prompts that describe outcomes rather than the constitutional implementation.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `AGENTS.md`, `.opencode/skill/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/agent/orchestrate.md`, command entrypoints that currently restate gate doctrine
+- **Target file or module:** `AGENTS.md`, `.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md`, `.opencode/agents/orchestrate.md`, command entrypoints that currently restate gate doctrine
 - **Change type:** documentation and behavior simplification
 - **Blast radius:** large
 - **Prerequisites:** identify which gate behaviors must remain operator-visible versus silently enforced at runtime

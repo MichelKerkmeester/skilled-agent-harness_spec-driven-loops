@@ -14,9 +14,9 @@ I compared the external repo's CI and loop-driver tests with the local spec vali
 ## Evidence
 - `[SOURCE: external/.github/workflows/ci.yml:13-40]` The external CI gate is centered on running the loop's Python tests under multiple Python versions with coverage requirements.
 - `[SOURCE: external/automated-loop/tests/test_loop_driver.py:2213-2272]` Completion-gate acceptance and rejection are asserted behaviorally in tests rather than trusted as documentation intent.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:81-99]` The local validator exposes a growing rule set covering file existence, placeholders, sections, priority tags, evidence, anchors, ToC policy, phase links, and spec-document integrity.
-- `[SOURCE: .opencode/skill/system-spec-kit/scripts/spec/validate.sh:528-634]` Recursive phase validation compounds those documentation checks across parent and child folders and can auto-enable on phase detection.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/templates/template_guide.md:716-729]` The local documentation rules also require template copying, structure preservation, level upgrades, history handling, and validation before coding.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:81-99]` The local validator exposes a growing rule set covering file existence, placeholders, sections, priority tags, evidence, anchors, ToC policy, phase links, and spec-document integrity.
+- `[SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:528-634]` Recursive phase validation compounds those documentation checks across parent and child folders and can auto-enable on phase detection.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/templates/template_guide.md:716-729]` The local documentation rules also require template copying, structure preservation, level upgrades, history handling, and validation before coding.
 
 ## Analysis
 The local validation system is not wrong; it is optimized for documentation integrity and packet hygiene. The issue is scope creep. Automation-heavy features now depend on runtime behavior that documentation validators cannot actually prove. Phase 1 already identified this as a testing opportunity. Phase 2 pushes the conclusion further: for automation subsystems, the primary source of truth should be behavior under test, with documentation validation serving as a secondary guardrail.
@@ -29,7 +29,7 @@ confidence: high
 finding: `system-spec-kit` should pivot to a behavior-first validation model for automation packets. Runtime semantics should be gated by executable contract tests first, with documentation validators constrained to packet integrity and operator clarity.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`, `.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`, future orchestration/runtime test suites
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`, `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`, `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`, future orchestration/runtime test suites
 - **Change type:** modified existing
 - **Blast radius:** large
 - **Prerequisites:** define which automation contracts are test-owned versus doc-owned

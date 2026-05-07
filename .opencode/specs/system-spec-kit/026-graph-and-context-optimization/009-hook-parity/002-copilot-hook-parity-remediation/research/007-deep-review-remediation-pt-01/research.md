@@ -290,4 +290,4 @@ The research methodology that worked for this packet — reusable for Gemini CLI
 - **Tasks**: `../../009-hook-parity/002-copilot-hook-parity-remediation/tasks.md`
 - **Decisions**: `../../009-hook-parity/002-copilot-hook-parity-remediation/decision-record.md` — ADR-003 populated from §5 above
 - **Sibling phase**: `../../009-hook-parity/003-codex-hook-parity-remediation/` — Codex has native hooks with DIFFERENT semantics; separate synthesis
-- **Reference implementation**: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` — the Claude-side hook this phase parity-matches (implementation tracked against outcome B path)
+- **Reference implementation**: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts` — the Claude-side hook this phase parity-matches (implementation tracked against outcome B path)

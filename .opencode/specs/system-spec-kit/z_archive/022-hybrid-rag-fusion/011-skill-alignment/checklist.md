@@ -72,7 +72,7 @@ Required evidence that the pack now reflects live repo truth.
 
 - [x] CHK-020 [P0] `validate.sh --strict` passes for `011-skill-alignment` [EVIDENCE: strict validation run on 2026-03-25 returned exit code 0, all 18 checks passed with 0 errors and 0 warnings]
 - [x] CHK-021 [P1] Stale-string checks confirm obsolete command-surface framing is gone from current-state claims [EVIDENCE: targeted `rg` checks on the five canonical docs returned only historical/negative references, not stale current-state claims]
-- [x] CHK-022 [P1] Live count checks support the reconciled narrative [EVIDENCE: `.opencode/command/memory/*.md` count = 6; `mcp_server/tool-schemas.ts` count = 33]
+- [x] CHK-022 [P1] Live count checks support the reconciled narrative [EVIDENCE: `.opencode/commands/memory/*.md` count = 6; `mcp_server/tool-schemas.ts` count = 33]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -107,12 +107,12 @@ Required evidence that the pack now reflects live repo truth.
 
 ### Post-Research-Refinement Alignment (2026-03-22)
 
-- [x] CHK-060 [P0] system-spec-kit SKILL.md feature flags table includes all graduated spec-011 flags (33 search/pipeline flags; 47 total including roadmap env vars) [EVIDENCE: `.opencode/skill/system-spec-kit/SKILL.md` feature flags table verified 2026-03-22; `.opencode/skill/system-spec-kit/references/config/environment_variables.md` section 8.2 lists all 9 graduated flags]
-- [x] CHK-061 [P0] SKILL.md feature catalog count updated (point-in-time: 221 on 2026-03-22, now 224 as of 2026-03-25) [EVIDENCE: `find .opencode/skill/system-spec-kit/feature_catalog -name "*.md" | wc -l` = 224; count drift is expected as features are added]
-- [x] CHK-062 [P0] memory_system tool table has 33 rows matching "(33 tools)" header [EVIDENCE: `.opencode/skill/system-spec-kit/references/memory/memory_system.md` L2 Core section includes `memory_quick_search()` row; `grep -c "name:" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` = 33]
-- [x] CHK-063 [P1] environment_variables section 8.2 documents all 9 graduated spec-011 flags [EVIDENCE: `.opencode/skill/system-spec-kit/references/config/environment_variables.md` contains "Research-Based Refinement (Spec-011 Graduated)" subsection with 9 entries]
-- [x] CHK-064 [P1] SKILL.md testing playbook count updated (point-in-time: 227 on 2026-03-22, now 231 as of 2026-03-25) [EVIDENCE: `find .opencode/skill/system-spec-kit/manual_testing_playbook -name "*.md" | wc -l` = 231; 19 categories confirmed]
-- [x] CHK-065 [P1] Agent definitions, command files, and command configs verified clean of stale counts [EVIDENCE: grep across `.claude/agents/`, `.opencode/agent/`, `.opencode/command/` returned no hardcoded tool/command/flag counts as of 2026-03-22]
+- [x] CHK-060 [P0] system-spec-kit SKILL.md feature flags table includes all graduated spec-011 flags (33 search/pipeline flags; 47 total including roadmap env vars) [EVIDENCE: `.opencode/skills/system-spec-kit/SKILL.md` feature flags table verified 2026-03-22; `.opencode/skills/system-spec-kit/references/config/environment_variables.md` section 8.2 lists all 9 graduated flags]
+- [x] CHK-061 [P0] SKILL.md feature catalog count updated (point-in-time: 221 on 2026-03-22, now 224 as of 2026-03-25) [EVIDENCE: `find .opencode/skills/system-spec-kit/feature_catalog -name "*.md" | wc -l` = 224; count drift is expected as features are added]
+- [x] CHK-062 [P0] memory_system tool table has 33 rows matching "(33 tools)" header [EVIDENCE: `.opencode/skills/system-spec-kit/references/memory/memory_system.md` L2 Core section includes `memory_quick_search()` row; `grep -c "name:" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` = 33]
+- [x] CHK-063 [P1] environment_variables section 8.2 documents all 9 graduated spec-011 flags [EVIDENCE: `.opencode/skills/system-spec-kit/references/config/environment_variables.md` contains "Research-Based Refinement (Spec-011 Graduated)" subsection with 9 entries]
+- [x] CHK-064 [P1] SKILL.md testing playbook count updated (point-in-time: 227 on 2026-03-22, now 231 as of 2026-03-25) [EVIDENCE: `find .opencode/skills/system-spec-kit/manual_testing_playbook -name "*.md" | wc -l` = 231; 19 categories confirmed]
+- [x] CHK-065 [P1] Agent definitions, command files, and command configs verified clean of stale counts [EVIDENCE: grep across `.claude/agents/`, `.opencode/agents/`, `.opencode/commands/` returned no hardcoded tool/command/flag counts as of 2026-03-22]
 - [x] CHK-066 [P0] All edits aligned with sk-doc standards (HVR, table formatting, no em dashes/semicolons) [EVIDENCE: grep for banned words returned zero matches in the edited files]
 
 ---

@@ -19,7 +19,7 @@ Iterations 10-13 show that levels are the public and AI-facing contract, while k
 
 Iteration 12 found two user-visible leaks to fix in the follow-on implementation: replace `[capability]` user-story placeholders with `[needed behavior]`, and replace `Sub-phase manifest` with `Sub-phase list`. Iteration 13 dry-ran five user-conversation scenarios and all five PASS workflow-invariance.
 
-One prompt-level correction overrides the stored iteration-13 narrative: workflow-invariance CI should be a single test under `.opencode/skill/system-spec-kit/scripts/tests/`, not two tests. It should scan live script outputs, generated fixtures, template sources, and public AI-facing docs with explicit allowlists for historical research text.
+One prompt-level correction overrides the stored iteration-13 narrative: workflow-invariance CI should be a single test under `.opencode/skills/system-spec-kit/scripts/tests/`, not two tests. It should scan live script outputs, generated fixtures, template sources, and public AI-facing docs with explicit allowlists for historical research text.
 
 ## Convergence
 

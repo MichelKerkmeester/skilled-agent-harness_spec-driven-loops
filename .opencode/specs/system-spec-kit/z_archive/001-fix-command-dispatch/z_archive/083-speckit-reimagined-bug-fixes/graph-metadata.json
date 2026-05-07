@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
       ".claude/commands/spec_kit/complete.md",
       ".claude/commands/spec_kit/implement.md",
       ".claude/commands/spec_kit/plan.md",
@@ -65,7 +65,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

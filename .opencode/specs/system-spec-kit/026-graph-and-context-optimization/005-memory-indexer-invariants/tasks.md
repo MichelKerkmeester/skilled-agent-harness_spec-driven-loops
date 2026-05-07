@@ -119,7 +119,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level3-arch 
 - [x] **T-41** Collapse spec-doc exclusion drift onto `index-scope.ts` as SSOT; prove the helper drives classification + discovery. [EVIDENCE: `lib/config/spec-doc-paths.ts`, `handlers/memory-index-discovery.ts`.]
 - [x] **T-42** Harden save-time and code-graph `specificFiles` checks with `fs.realpathSync` canonicalization. [EVIDENCE: `handlers/memory-save.ts`, `code-graph/lib/structural-indexer.ts`.]
 - [x] **T-43** Move cleanup apply planning onto the transaction snapshot; add walker DoS caps for `.gitignore` size, depth, and node count. [EVIDENCE: `scripts/memory/cleanup-index-scope-violations.ts`, `handlers/memory-index-discovery.ts`, `code-graph/lib/structural-indexer.ts`.]
-- [x] **T-44** Extend `constitutional → critical` update auditing and refresh operator + spec docs. [EVIDENCE: `handlers/memory-crud-update.ts`, `api/index.ts`, `.opencode/skill/system-spec-kit/mcp_server/README.md`.]
+- [x] **T-44** Extend `constitutional → critical` update auditing and refresh operator + spec docs. [EVIDENCE: `handlers/memory-crud-update.ts`, `api/index.ts`, `.opencode/skills/system-spec-kit/mcp_server/README.md`.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -147,7 +147,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level3-arch 
 ### Live Cleanup
 
 - [x] **T-70** Run cleanup dry-run / apply / verify against the Voyage-4 DB. [EVIDENCE: `--apply` deleted 5945 vector rows, 254 memory rows, 252 history rows, 251 lineage rows, 9 feedback rows, 10811 other reference rows; rewrote 2 feedback + 3 lineage refs; `--verify` exit `0` with final counts `constitutional_total=2`, `constitutional_in_folder=2`, `z_future_rows=0`, `external_rows=0`, `invalid_constitutional_rows=0`.]
-- [x] **T-71** Update operator README with invariants, helper location, and stable governance-audit action strings. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section.]
+- [x] **T-71** Update operator README with invariants, helper location, and stable governance-audit action strings. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section.]
 
 ### Root Merge Restructure
 

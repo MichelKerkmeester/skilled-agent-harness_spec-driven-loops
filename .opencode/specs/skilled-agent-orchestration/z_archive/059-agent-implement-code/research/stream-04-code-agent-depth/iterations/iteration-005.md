@@ -6,32 +6,32 @@ Q5 - Define a coder-side adversarial self-check for `@code`: Builder/Critic/Veri
 
 ## Actions
 
-1. Read `.opencode/agent/review.md:364-393` for the full Hunter/Skeptic/Referee adversarial self-check.
-2. Read `.opencode/agent/debug.md:204-234` for Phase 4 adversarial validation: counter-evidence, simpler alternatives, anchoring check, prior-attempt echo check, and post-challenge re-ranking.
-3. Searched `.opencode/skill/sk-code-review/references/review_core.md` for sycophancy/adversarial language; no direct matches were present, so used its baseline evidence discipline instead.
+1. Read `.opencode/agents/review.md:364-393` for the full Hunter/Skeptic/Referee adversarial self-check.
+2. Read `.opencode/agents/debug.md:204-234` for Phase 4 adversarial validation: counter-evidence, simpler alternatives, anchoring check, prior-attempt echo check, and post-challenge re-ranking.
+3. Searched `.opencode/skills/sk-code-review/references/review_core.md` for sycophancy/adversarial language; no direct matches were present, so used its baseline evidence discipline instead.
 4. Synthesized the Builder/Critic/Verifier protocol for coder completion claims, scope discipline, and verification truthfulness.
 
 ## Findings
 
 ### f-iter005-001 - blocker - Coder adversarial self-check should challenge completion claims, not findings
 
-`@review` uses Hunter/Skeptic/Referee to counter both phantom findings and over-approval, and only confirmed findings enter the final report (`.opencode/agent/review.md:366`, `.opencode/agent/review.md:380`, `.opencode/agent/review.md:383`). For `@code`, the analogous risk is not false-positive findings; it is a premature `DONE` claim. Builder should argue that the code works, Critic should challenge hidden failure modes and verification gaps, and Verifier should decide whether the RETURN can truthfully ship.
+`@review` uses Hunter/Skeptic/Referee to counter both phantom findings and over-approval, and only confirmed findings enter the final report (`.opencode/agents/review.md:366`, `.opencode/agents/review.md:380`, `.opencode/agents/review.md:383`). For `@code`, the analogous risk is not false-positive findings; it is a premature `DONE` claim. Builder should argue that the code works, Critic should challenge hidden failure modes and verification gaps, and Verifier should decide whether the RETURN can truthfully ship.
 
 ### f-iter005-002 - blocker - The protocol must be required for P0/P1-risk implementation claims, with a fast-path skip
 
-The review precedent requires adversarial self-check for all P0/P1 findings and skips Fast Path mode for low-complexity reviews (`.opencode/agent/review.md:368`). The coder version should be required whenever the implementation is about to claim `DONE` while any blocker/important-risk surface exists: non-trivial behavior change, multi-file edit, failed-then-fixed verification, edge-case handling, security/auth/data-path work, or a P0/P1 deferral. It may be skipped in fast-path surgical-fix or trivial mode when the edit is tiny, scope is obvious, and fresh verification evidence exists.
+The review precedent requires adversarial self-check for all P0/P1 findings and skips Fast Path mode for low-complexity reviews (`.opencode/agents/review.md:368`). The coder version should be required whenever the implementation is about to claim `DONE` while any blocker/important-risk surface exists: non-trivial behavior change, multi-file edit, failed-then-fixed verification, edge-case handling, security/auth/data-path work, or a P0/P1 deferral. It may be skipped in fast-path surgical-fix or trivial mode when the edit is tiny, scope is obvious, and fresh verification evidence exists.
 
 ### f-iter005-003 - important - Critic needs debug-style counter-evidence checks, not generic caution
 
-`@debug` requires asking what would be seen if a hypothesis were wrong, actively searching for that counter-evidence, checking simpler explanations, checking anchoring, and checking whether the hypothesis repeats a failed prior attempt (`.opencode/agent/debug.md:210`, `.opencode/agent/debug.md:212`, `.opencode/agent/debug.md:215`, `.opencode/agent/debug.md:219`, `.opencode/agent/debug.md:223`). The coder Critic should do the same against Builder's completion story: look for untested branches, partial command output, retry masking, copied patterns that do not apply, hidden scope expansion, and prior failed approaches repeated without new evidence.
+`@debug` requires asking what would be seen if a hypothesis were wrong, actively searching for that counter-evidence, checking simpler explanations, checking anchoring, and checking whether the hypothesis repeats a failed prior attempt (`.opencode/agents/debug.md:210`, `.opencode/agents/debug.md:212`, `.opencode/agents/debug.md:215`, `.opencode/agents/debug.md:219`, `.opencode/agents/debug.md:223`). The coder Critic should do the same against Builder's completion story: look for untested branches, partial command output, retry masking, copied patterns that do not apply, hidden scope expansion, and prior failed approaches repeated without new evidence.
 
 ### f-iter005-004 - important - Verifier should fail closed when Critic concerns lack evidence
 
-The review baseline requires evidence tied to observed code behavior, concrete file:line citations for P0/P1 findings, and explicit assumptions when evidence is incomplete (`.opencode/skill/sk-code-review/references/review_core.md:32`, `.opencode/skill/sk-code-review/references/review_core.md:33`, `.opencode/skill/sk-code-review/references/review_core.md:35`). The coder Verifier should apply the same discipline to completion: Builder's defense only counts if backed by final file reads, stack verification, command/action exit status, or runtime observation. If Critic raises a plausible correctness, scope, or verification concern and Builder cannot answer with evidence, the correct return is `BLOCKED`, not `DONE`.
+The review baseline requires evidence tied to observed code behavior, concrete file:line citations for P0/P1 findings, and explicit assumptions when evidence is incomplete (`.opencode/skills/sk-code-review/references/review_core.md:32`, `.opencode/skills/sk-code-review/references/review_core.md:33`, `.opencode/skills/sk-code-review/references/review_core.md:35`). The coder Verifier should apply the same discipline to completion: Builder's defense only counts if backed by final file reads, stack verification, command/action exit status, or runtime observation. If Critic raises a plausible correctness, scope, or verification concern and Builder cannot answer with evidence, the correct return is `BLOCKED`, not `DONE`.
 
 ### f-iter005-005 - important - The RETURN report needs an adversarial summary table for non-fast-path work
 
-`@review` includes a report table for P0/P1 findings with Finding, Hunter Severity, Skeptic Challenge, Referee Verdict, and Final Severity (`.opencode/agent/review.md:386`, `.opencode/agent/review.md:388`). The coder analog should include Finding, Builder Defense, Critic Challenge, Verifier Verdict, and Final Action. This makes the adversarial pass auditable without forcing a full review-style report for trivial edits.
+`@review` includes a report table for P0/P1 findings with Finding, Hunter Severity, Skeptic Challenge, Referee Verdict, and Final Severity (`.opencode/agents/review.md:386`, `.opencode/agents/review.md:388`). The coder analog should include Finding, Builder Defense, Critic Challenge, Verifier Verdict, and Final Action. This makes the adversarial pass auditable without forcing a full review-style report for trivial edits.
 
 ## Questions Answered
 

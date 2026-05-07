@@ -235,7 +235,7 @@ All path references to `workflows-memory` → `system-memory`
 | 62 | Database note path: `workflows-memory` → `system-memory` |
 
 ### Agent 3D: Memory Commands
-**Files:** `.opencode/command/memory/*.md`
+**Files:** `.opencode/commands/memory/*.md`
 **References:** 6
 
 | File | Lines |
@@ -245,7 +245,7 @@ All path references to `workflows-memory` → `system-memory`
 | `checkpoint.md` | 473 |
 
 ### Agent 3E: SpecKit Command YAMLs
-**Files:** `.opencode/command/spec_kit/assets/*.yaml`
+**Files:** `.opencode/commands/spec_kit/assets/*.yaml`
 **References:** 32
 
 | File | Refs |
@@ -260,7 +260,7 @@ All path references to `workflows-memory` → `system-memory`
 | `spec_kit_research_confirm.yaml` | 4 |
 
 ### Agent 3F: Create Commands
-**Files:** `.opencode/command/create/assets/*.yaml`, `.opencode/command/create/*.md`
+**Files:** `.opencode/commands/create/assets/*.yaml`, `.opencode/commands/create/*.md`
 **References:** 9
 
 | File | Refs |
@@ -284,7 +284,7 @@ All path references to `workflows-memory` → `system-memory`
 | system-spec-kit | SKILL.md, README.md, references | 6 |
 
 ### Agent 3H: Orchestrator Agent
-**File:** `.opencode/agent/orchestrator.md`
+**File:** `.opencode/agents/orchestrator.md`
 **References:** 4
 
 | Line | Content |

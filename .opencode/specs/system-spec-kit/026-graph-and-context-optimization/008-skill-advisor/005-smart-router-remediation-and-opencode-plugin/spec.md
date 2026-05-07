@@ -85,13 +85,13 @@ Ship all 6 recommendations + the OpenCode plugin in a single remediation packet.
 - Preserve behavior when intents DO score — only change the zero-score path
 
 **Area D — Static CI check**
-- New script: `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` (or similar)
+- New script: `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` (or similar)
 - Validates: every route path exists on disk
 - Reports: per-skill ALWAYS tier size + percentage of loadable resource tree (flag >50%)
 - Wires into existing validate.sh or runs standalone
 
 **Area E — Observe-only telemetry harness**
-- New script: `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts` (or similar language)
+- New script: `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts` (or similar language)
 - Logs per-prompt: `{prompt_id, selected_skill, predicted_route, allowed_resources, actual_reads, compliance_class}`
 - Compliance classes: `always`, `conditional_expected`, `on_demand_expected`, `extra`, `missing_expected`, `unknown_unparsed`
 - Observe-only — NO enforcement in this phase
@@ -115,18 +115,18 @@ Ship all 6 recommendations + the OpenCode plugin in a single remediation packet.
 
 | File Path | Action | Area |
 |-----------|--------|------|
-| `.opencode/skill/mcp-code-mode/SKILL.md` | Modify | A |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Modify | A |
-| `.opencode/skill/*/SKILL.md` (as needed) | Modify | A, B |
-| `.opencode/skill/cli-codex/SKILL.md` | Modify | C |
-| `.opencode/skill/cli-copilot/SKILL.md` | Modify | C |
-| `.opencode/skill/cli-gemini/SKILL.md` | Modify | C |
-| `.opencode/skill/cli-claude-code/SKILL.md` | Modify | C |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-smart-router.sh` | Create | D |
-| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.*` | Create | E |
+| `.opencode/skills/mcp-code-mode/SKILL.md` | Modify | A |
+| `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | A |
+| `.opencode/skills/*/SKILL.md` (as needed) | Modify | A, B |
+| `.opencode/skills/cli-codex/SKILL.md` | Modify | C |
+| `.opencode/skills/cli-copilot/SKILL.md` | Modify | C |
+| `.opencode/skills/cli-gemini/SKILL.md` | Modify | C |
+| `.opencode/skills/cli-claude-code/SKILL.md` | Modify | C |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh` | Create | D |
+| `.opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.*` | Create | E |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Create | F |
 | `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | Create | F |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Create | F |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` | Create | F |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -246,4 +246,4 @@ Ship all 6 recommendations + the OpenCode plugin in a single remediation packet.
   - `../004-smart-router-context-efficacy/001-initial-research/research/research.md` (V8+V9 plugin recommendations)
   - `../004-smart-router-context-efficacy/002-skill-md-intent-router-efficacy/research/research.md` (6 smart-router recommendations)
 - Reference plugin pattern: `.opencode/plugins/spec-kit-compact-code-graph.js` + `.mjs` bridge
-- Phase 020 producer/renderer to reuse: `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/`
+- Phase 020 producer/renderer to reuse: `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/`

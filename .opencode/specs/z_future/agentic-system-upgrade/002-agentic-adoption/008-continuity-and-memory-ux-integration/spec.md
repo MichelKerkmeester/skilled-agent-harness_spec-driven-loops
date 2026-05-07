@@ -68,12 +68,12 @@ Turn the research synthesis for 008 continuity and memory ux integration into on
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/spec_kit/handover.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/memory/README.txt` | Modify | Primary affected surface for the adoption work |
-| `.opencode/command/memory/search.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/resume.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/spec_kit/handover.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/memory/README.txt` | Modify | Primary affected surface for the adoption work |
+| `.opencode/commands/memory/search.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/references/memory/save_workflow.md` | Modify | Primary affected surface for the adoption work |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Primary affected surface for the adoption work |
 <!-- /ANCHOR:scope -->
 
 ---

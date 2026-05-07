@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P0] `get_embedding_dim()` can size the vector index for the wrong provider
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
 
 **Issue**: `get_embedding_dim()` does not use the canonical provider-resolution rules before the provider is initialized. It returns `1024` whenever `VOYAGE_API_KEY` is merely present and `1536` whenever `OPENAI_API_KEY` is present, even if `EMBEDDINGS_PROVIDER=hf-local` explicitly forces the local 768-dim provider or if the Voyage key is a placeholder that the shared factory intentionally ignores. Because `initialize_db()` passes this helper into schema creation and dimension validation, a valid configuration can bootstrap the database with the wrong vector width and only fail later when real embeddings are generated.
 
@@ -16,7 +16,7 @@
 **Fix**: Replace the ad hoc env checks in `get_embedding_dim()` with the same startup-resolution path used by the shared embeddings package, so dimension selection is derived from the resolved provider/model profile rather than raw key presence.
 
 ### [P1] Provider-specific database isolation is bypassed before the embedding provider initializes
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`
 
 **Issue**: `resolve_database_path()` only uses `profile.getDatabasePath()` when `getEmbeddingProfile()` already has a live provider instance. The shared embeddings facade returns `null` until lazy initialization completes, so first-touch callers open the generic `DEFAULT_DB_PATH` instead of a provider/model/dimension-specific database. That defeats the intended isolation between 768-, 1024-, and 1536-dim indexes and turns provider switches into shared-DB integrity failures.
 
@@ -29,7 +29,7 @@
 **Fix**: Derive the startup DB path from resolved provider/model/dimension metadata even before lazy provider initialization, or add a synchronous startup-profile helper so DB selection and dimension selection share the same canonical source.
 
 ### [P1] The SQLite embedding cache can replay stale vectors after a dimension change
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`
 
 **Issue**: Cache rows store `dimensions`, but `lookupEmbedding()` ignores that field and keys lookups only by `(content_hash, model_id)`. In `retryEmbedding()`, a cache hit is rehydrated directly into a `Float32Array` and treated as authoritative without checking the stored dimension against the current embedding dimension. If the same model name is reused with a different configured dimension, the retry path can serve a stale cached vector and attempt to persist it into the current index.
 

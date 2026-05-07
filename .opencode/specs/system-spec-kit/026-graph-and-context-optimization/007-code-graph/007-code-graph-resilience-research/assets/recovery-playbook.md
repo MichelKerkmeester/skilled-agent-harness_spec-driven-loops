@@ -2,7 +2,7 @@
 
 ## Scope
 
-These procedures are idempotent and source-first. The code graph database is a rebuildable cache; recovery may salvage evidence, but trust is restored by a fresh source scan plus verification. [SOURCE: `research/iterations/iteration-003.md:3-10`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-115`]
+These procedures are idempotent and source-first. The code graph database is a rebuildable cache; recovery may salvage evidence, but trust is restored by a fresh source scan plus verification. [SOURCE: `research/iterations/iteration-003.md:3-10`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-115`]
 
 ## Procedure CG-RP-001: SQLite Corruption
 
@@ -18,7 +18,7 @@ These procedures are idempotent and source-first. The code graph database is a r
 
 **Idempotence:** Every run writes to a new timestamped recovery/quarantine directory; repeated full scans rebuild the cache from source.
 
-**Verification:** `PRAGMA integrity_check` returns `ok`, `PRAGMA foreign_key_check` returns no rows, orphan node/edge queries return zero, `code_graph_status` reports `status:"ok"` with `freshness:"fresh"` and `trustState:"live"`, and at least one gold query from `assets/code-graph-gold-queries.json` returns its expected top-K symbol. [SOURCE: `research/iterations/iteration-003.md:107-144`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-64`]
+**Verification:** `PRAGMA integrity_check` returns `ok`, `PRAGMA foreign_key_check` returns no rows, orphan node/edge queries return zero, `code_graph_status` reports `status:"ok"` with `freshness:"fresh"` and `trustState:"live"`, and at least one gold query from `assets/code-graph-gold-queries.json` returns its expected top-K symbol. [SOURCE: `research/iterations/iteration-003.md:107-144`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-64`]
 
 ## Procedure CG-RP-002: Partial-Scan Failure
 
@@ -30,7 +30,7 @@ These procedures are idempotent and source-first. The code graph database is a r
 4. If stale files exceed 50, Git HEAD changed, graph is empty/error, or selective retry repeats the same error, run `code_graph_scan` with `incremental:false`.
 5. Record scan errors and do not promote readiness if the same file-level persist/parse error repeats.
 
-**Idempotence:** The persistence path writes `file_mtime_ms = 0` before nodes/edges and only finalizes real mtime after structural rows land, so failed files remain stale and retryable. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`]
+**Idempotence:** The persistence path writes `file_mtime_ms = 0` before nodes/edges and only finalizes real mtime after structural rows land, so failed files remain stale and retryable. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`]
 
 **Verification:** Staged `file_mtime_ms = 0` rows are absent or explained, `code_graph_status` reports `fresh`, the scan result has no repeated critical errors, and the gold battery passes the 90% overall / 80% edge-focus floors. [SOURCE: `research/iterations/iteration-006.md:40-43`; `assets/code-graph-gold-queries.json`]
 
@@ -46,4 +46,4 @@ These procedures are idempotent and source-first. The code graph database is a r
 
 **Idempotence:** Each rollback snapshot is timestamped; if no known-good copy exists, repeating the procedure simply rebuilds from source again.
 
-**Verification:** `code_graph_status` has nonzero files/nodes/edges, `lastPersistedAt` is present, `canonicalReadiness:"ready"`, `trustState:"live"`, no orphan nodes/edges, and no critical gold-query canary missing. Do not use raw SQLite file size as proof of recovery because deleted rows may leave the DB file large. [SOURCE: `research/iterations/iteration-001.md:19-20`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:701-715`]
+**Verification:** `code_graph_status` has nonzero files/nodes/edges, `lastPersistedAt` is present, `canonicalReadiness:"ready"`, `trustState:"live"`, no orphan nodes/edges, and no critical gold-query canary missing. Do not use raw SQLite file size as proof of recovery because deleted rows may leave the DB file large. [SOURCE: `research/iterations/iteration-001.md:19-20`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:701-715`]

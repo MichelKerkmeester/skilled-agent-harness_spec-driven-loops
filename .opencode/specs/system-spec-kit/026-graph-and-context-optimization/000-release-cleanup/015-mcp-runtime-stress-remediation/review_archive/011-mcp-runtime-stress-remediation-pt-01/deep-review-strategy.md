@@ -119,16 +119,16 @@ STOP candidate — all 4 dimensions covered. No active P0/P1 findings; loop mana
 | `010-stress-test-rerun-v1-0-2/findings.md` | D1 | 1 | 0 | partial |
 | `011-post-stress-followup-research/research/research.md` | D1 | 1 | 1 P2 | partial |
 | `resource-map.md` | D1 | 1 | 1 P2 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1 | 1 | 0 | partial |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1 | 1 | 0 | partial |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1 | 1 | 0 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1,D2 | 2 | 0 | pass |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1,D2 | 2 | 0 | pass |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1,D2 | 2 | 0 | pass |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | D2 | 2 | 0 | pass |
-| `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts` | D2 | 2 | 0 | partial |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts` | D2 | 2 | 0 | pass |
-| `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py` | D2 | 2 | 0 | pass |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1 | 1 | 0 | partial |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1 | 1 | 0 | partial |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1 | 1 | 0 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` | D1,D2 | 2 | 0 | pass |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | D1,D2 | 2 | 0 | pass |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | D1,D2 | 2 | 0 | pass |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | D2 | 2 | 0 | pass |
+| `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | D2 | 2 | 0 | partial |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | D2 | 2 | 0 | pass |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py` | D2 | 2 | 0 | pass |
 | `HANDOVER-deferred.md` | D3 | 3 | 1 P2 | partial |
 | `context-index.md` | D3 | 3 | 0 | pass |
 | `resource-map.md` | D1,D3 | 3 | 1 P2 (existing F-001 quantified) | partial |
@@ -149,9 +149,9 @@ STOP candidate — all 4 dimensions covered. No active P0/P1 findings; loop mana
 | `011-post-stress-followup-research/research/research.md` | D1,D4 | 4 | 0 | pass |
 | `012-018/*/spec.md` | D3,D4 | 4 | 0 | pass |
 | `008-mcp-daemon-rebuild-protocol/references/{mcp-rebuild-restart-protocol.md,live-probe-template.md}` | D2,D4 | 4 | 0 | pass |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/{code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough,code-graph-degraded-readiness-envelope-parity}.vitest.ts` | D4 | 4 | 0 | pass-with-advisory |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | D4 | 4 | 0 | pass |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | D2,D4 | 4 | 0 | pass |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/{code-graph-degraded-sweep,code-graph-status-readiness-snapshot,code-graph-context-cocoindex-telemetry-passthrough,code-graph-degraded-readiness-envelope-parity}.vitest.ts` | D4 | 4 | 0 | pass-with-advisory |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts` | D4 | 4 | 0 | pass |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/executor-config-copilot-target-authority.vitest.ts` | D2,D4 | 4 | 0 | pass |
 <!-- MACHINE-OWNED: END -->
 
 ## 16. REVIEW BOUNDARIES

@@ -45,7 +45,7 @@ Changes:
 ```
 
 ### Task 2.2: Update /memory:save Command Phase 1
-Location: `.opencode/command/memory/save.md`
+Location: `.opencode/commands/memory/save.md`
 
 Changes:
 - Add HARD BLOCK enforcement when `$ARGUMENTS` is empty

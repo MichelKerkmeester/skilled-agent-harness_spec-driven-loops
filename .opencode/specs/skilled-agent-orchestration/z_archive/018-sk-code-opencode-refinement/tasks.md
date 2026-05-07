@@ -72,27 +72,27 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core + level2-verify + level3-arch + level3plus-
 
 ### Phase 2: Core Policy Implementation (`sk-code-opencode`)
 
-- [x] T020 Update reduced inline-comment policy and AI semantics contract (`.opencode/skill/sk-code-opencode/SKILL.md`)
-- [x] T021 Update shared parse-first comment policy and examples (`.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T022 Reinforce numbered ALL-CAPS section invariants (`.opencode/skill/sk-code-opencode/references/shared/code_organization.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T023 [P] Align JavaScript style guide with new comment policy (`.opencode/skill/sk-code-opencode/references/javascript/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T024 [P] Align TypeScript style guide with new comment policy (`.opencode/skill/sk-code-opencode/references/typescript/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T025 [P] Align Python style guide with new comment policy (`.opencode/skill/sk-code-opencode/references/python/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T026 [P] Align Shell style guide with new comment policy (`.opencode/skill/sk-code-opencode/references/shell/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T027 [P] Align Config style guide with JSONC boundaries and comment semantics (`.opencode/skill/sk-code-opencode/references/config/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T020 Update reduced inline-comment policy and AI semantics contract (`.opencode/skills/sk-code-opencode/SKILL.md`)
+- [x] T021 Update shared parse-first comment policy and examples (`.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T022 Reinforce numbered ALL-CAPS section invariants (`.opencode/skills/sk-code-opencode/references/shared/code_organization.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T023 [P] Align JavaScript style guide with new comment policy (`.opencode/skills/sk-code-opencode/references/javascript/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T024 [P] Align TypeScript style guide with new comment policy (`.opencode/skills/sk-code-opencode/references/typescript/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T025 [P] Align Python style guide with new comment policy (`.opencode/skills/sk-code-opencode/references/python/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T026 [P] Align Shell style guide with new comment policy (`.opencode/skills/sk-code-opencode/references/shell/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T027 [P] Align Config style guide with JSONC boundaries and comment semantics (`.opencode/skills/sk-code-opencode/references/config/style_guide.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
 
 ---
 
 ### Phase 3: Checklist Hardening and Optional Review Alignment
 
-- [x] T030 Add KISS/DRY and full SOLID checks to universal checklist (`.opencode/skill/sk-code-opencode/assets/checklists/universal_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T031 [P] Add JS checklist policy checks (`.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T032 [P] Add TS checklist policy checks (`.opencode/skill/sk-code-opencode/assets/checklists/typescript_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T033 [P] Add Python checklist policy checks (`.opencode/skill/sk-code-opencode/assets/checklists/python_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T034 [P] Add Shell checklist policy checks (`.opencode/skill/sk-code-opencode/assets/checklists/shell_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T035 [P] Add Config checklist policy checks (`.opencode/skill/sk-code-opencode/assets/checklists/config_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
-- [x] T036 Evaluate optional review alignment trigger via mismatch evidence (`.opencode/skill/sk-code-review/SKILL.md`)
-- [x] T037 [Conditional] Apply minimal review router/checklist alignment edits if triggered (`.opencode/skill/sk-code-review/SKILL.md`, `.opencode/skill/sk-code-review/references/quick_reference.md`, `.opencode/skill/sk-code-review/references/code_quality_checklist.md`, `.opencode/skill/sk-code-review/references/solid_checklist.md`) - Triggered and completed with minimal edits to scoped review files.
+- [x] T030 Add KISS/DRY and full SOLID checks to universal checklist (`.opencode/skills/sk-code-opencode/assets/checklists/universal_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T031 [P] Add JS checklist policy checks (`.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T032 [P] Add TS checklist policy checks (`.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T033 [P] Add Python checklist policy checks (`.opencode/skills/sk-code-opencode/assets/checklists/python_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T034 [P] Add Shell checklist policy checks (`.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T035 [P] Add Config checklist policy checks (`.opencode/skills/sk-code-opencode/assets/checklists/config_checklist.md`) - No net diff required; verified compliant via EVT-001/001b/001c.
+- [x] T036 Evaluate optional review alignment trigger via mismatch evidence (`.opencode/skills/sk-code-review/SKILL.md`)
+- [x] T037 [Conditional] Apply minimal review router/checklist alignment edits if triggered (`.opencode/skills/sk-code-review/SKILL.md`, `.opencode/skills/sk-code-review/references/quick_reference.md`, `.opencode/skills/sk-code-review/references/code_quality_checklist.md`, `.opencode/skills/sk-code-review/references/solid_checklist.md`) - Triggered and completed with minimal edits to scoped review files.
 
 ---
 
@@ -102,7 +102,7 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core + level2-verify + level3-arch + level3plus-
 - [x] T041 Run header invariant assertions across shared and language guides (`plan.md` command set item 3)
 - [x] T042 Run checklist KISS/DRY/SOLID assertions (`plan.md` command set item 4)
 - [x] T043 Run optional review alignment assertions when review files changed (`plan.md` command set item 5)
-- [x] T044 Run spec validation script for this folder (`.opencode/skill/system-spec-kit/scripts/spec/validate.sh`) - Result: PASSED WITH WARNINGS (SECTION_COUNTS).
+- [x] T044 Run spec validation script for this folder (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`) - Result: PASSED WITH WARNINGS (SECTION_COUNTS).
 - [x] T045 Update checklist evidence slots with command output references (`checklist.md`)
 
 ---

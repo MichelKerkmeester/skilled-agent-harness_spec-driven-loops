@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 010 of 20. The packet root is
 
 **Angle B5 — Workflow command auto-routing**
 
-Audit `.opencode/command/spec_kit/` (complete.md, plan.md, implement.md, deep-research.md, deep-review.md, resume.md and the assets/ YAMLs) for state-machine correctness: do the YAML workflows handle missing prerequisites, gate failures, partial state correctly? Where can the workflow get stuck or skip a required step? Cite YAML file:line for each issue.
+Audit `.opencode/commands/spec_kit/` (complete.md, plan.md, implement.md, deep-research.md, deep-review.md, resume.md and the assets/ YAMLs) for state-machine correctness: do the YAML workflows handle missing prerequisites, gate failures, partial state correctly? Where can the workflow get stuck or skip a required step? Cite YAML file:line for each issue.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

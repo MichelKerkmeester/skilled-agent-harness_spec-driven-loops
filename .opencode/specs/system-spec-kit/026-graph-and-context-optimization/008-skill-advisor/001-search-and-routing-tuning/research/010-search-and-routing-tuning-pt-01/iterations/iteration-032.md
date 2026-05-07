@@ -4,9 +4,9 @@
 Look for unintended runtime or maintenance consequences now that the length penalty is retired but the compatibility flag still exists.
 
 ## Findings
-1. The scoring behavior is genuinely retired: `calculateLengthPenalty()` now always returns `1.0`, `applyLengthPenalty()` clones the result set unchanged, and the targeted scoring tests assert that content length no longer changes reranker scores. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:230] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:235] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:176]
-2. Cache behavior improved in the intended direction. The cache key now ignores the legacy flag and varies only by provider, query, and canonicalized document IDs, so identical rerank calls no longer split across `applyLengthPenalty=true/false` buckets. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:431] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:482]
-3. The remaining cost is maintenance, not ranking quality: the handler and Stage 3 still thread the compatibility flag, the source-analysis tests still assert that plumbing exists, and `generateCacheKey()` keeps a stale "option bits" signature/comment even though option bits are no longer used in the key. That is low runtime risk but real post-removal cleanup debt. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:923] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:229] [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:246]
+1. The scoring behavior is genuinely retired: `calculateLengthPenalty()` now always returns `1.0`, `applyLengthPenalty()` clones the result set unchanged, and the targeted scoring tests assert that content length no longer changes reranker scores. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:230] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:235] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:176]
+2. Cache behavior improved in the intended direction. The cache key now ignores the legacy flag and varies only by provider, query, and canonicalized document IDs, so identical rerank calls no longer split across `applyLengthPenalty=true/false` buckets. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:431] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:482]
+3. The remaining cost is maintenance, not ranking quality: the handler and Stage 3 still thread the compatibility flag, the source-analysis tests still assert that plumbing exists, and `generateCacheKey()` keeps a stale "option bits" signature/comment even though option bits are no longer used in the key. That is low runtime risk but real post-removal cleanup debt. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:923] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:229] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:246]
 
 ## Ruled Out
 - Expecting the retired length penalty to still create meaningful ranking drift in the shipped runtime.
@@ -15,9 +15,9 @@ Look for unintended runtime or maintenance consequences now that the length pena
 - None this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts`
 
 ## Assessment
 - New information ratio: 0.14

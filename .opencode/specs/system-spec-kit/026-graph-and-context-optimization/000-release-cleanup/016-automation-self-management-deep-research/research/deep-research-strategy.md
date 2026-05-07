@@ -38,18 +38,18 @@ Automation reality map across skill advisor, code graph, system-spec-kit, memory
 - The cleanup itself reveals automation patterns to investigate
 
 ### Critical entry points
-- Hook: `.opencode/skill/system-spec-kit/mcp_server/hooks/` + `.opencode/hooks/`
-- Skill advisor: `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/{handlers,scripts}/`
-- Code graph: `.opencode/skill/system-spec-kit/mcp_server/code_graph/{handlers,lib,watcher}/`
-- system-spec-kit: `.opencode/skill/system-spec-kit/scripts/` + `.opencode/skill/system-spec-kit/SKILL.md`
-- Memory: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-*.ts`
+- Hook: `.opencode/skills/system-spec-kit/mcp_server/hooks/` + `.opencode/hooks/`
+- Skill advisor: `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/{handlers,scripts}/`
+- Code graph: `.opencode/skills/system-spec-kit/mcp_server/code_graph/{handlers,lib,watcher}/`
+- system-spec-kit: `.opencode/skills/system-spec-kit/scripts/` + `.opencode/skills/system-spec-kit/SKILL.md`
+- Memory: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-*.ts`
 - Per-runtime configs: `.claude/`, `.codex/`, `.gemini/`, `.opencode/`
 
 ### Reference docs to cite
 - CLAUDE.md (project-level)
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- `.opencode/skill/system-spec-kit/references/config/hook_system.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/references/config/hook_system.md`
 
 ## Constraints
 - READ ONLY across the codebase (research only).

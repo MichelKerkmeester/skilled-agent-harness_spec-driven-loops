@@ -1,6 +1,6 @@
 ---
 title: "QA Validation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/checklist]"
-description: "cp .opencode/skill/system-spec-kit/database/context-index.sqlite \\\\\\\\"
+description: "cp .opencode/skills/system-spec-kit/database/context-index.sqlite \\\\\\\\"
 trigger_phrases:
   - "validation"
   - "checklist"
@@ -50,8 +50,8 @@ contextType: "implementation"
 - [ ] **CHK-PRE-001**: Git branch created for changes (`git checkout -b fix/048-system-remediation`)
 - [ ] **CHK-PRE-002**: Database backup created
   ```bash
-  cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
-     .opencode/skill/system-spec-kit/database/context-index.sqlite.backup
+  cp .opencode/skills/system-spec-kit/database/context-index.sqlite \
+     .opencode/skills/system-spec-kit/database/context-index.sqlite.backup
   ```
 - [ ] **CHK-PRE-003**: All file paths in analysis.md verified to exist
 - [ ] **CHK-PRE-004**: Baseline tests run and passing

@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Run strict validator"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-code-graph-catalog-and-playbook"

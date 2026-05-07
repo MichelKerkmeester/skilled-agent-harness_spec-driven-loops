@@ -22,7 +22,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -84,12 +84,12 @@ The implementation stayed centered on the actual runtime ownership boundaries ra
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit && npm run typecheck` | Passed |
-| `cd .opencode/skill/system-spec-kit/scripts && npm run build` | Passed |
-| `cd .opencode/skill/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/phase-classification.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 1 file, 7 tests |
-| `cd .opencode/skill/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/phase-classification.vitest.ts tests/semantic-signal-golden.vitest.ts tests/decision-confidence.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 3 files, 18 tests |
-| `cd .opencode/skill/system-spec-kit/scripts && node tests/test-extractors-loaders.js` | Passed: 307 passed, 0 failed |
-| `cd .opencode/skill/system-spec-kit/scripts && node tests/test-scripts-modules.js` | Passed: 384 passed, 0 failed, 5 skipped |
+| `cd .opencode/skills/system-spec-kit && npm run typecheck` | Passed |
+| `cd .opencode/skills/system-spec-kit/scripts && npm run build` | Passed |
+| `cd .opencode/skills/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/phase-classification.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 1 file, 7 tests |
+| `cd .opencode/skills/system-spec-kit/scripts && node ../mcp_server/node_modules/vitest/vitest.mjs run tests/phase-classification.vitest.ts tests/semantic-signal-golden.vitest.ts tests/decision-confidence.vitest.ts --config ../mcp_server/vitest.config.ts` | Passed: 3 files, 18 tests |
+| `cd .opencode/skills/system-spec-kit/scripts && node tests/test-extractors-loaders.js` | Passed: 307 passed, 0 failed |
+| `cd .opencode/skills/system-spec-kit/scripts && node tests/test-scripts-modules.js` | Passed: 384 passed, 0 failed, 5 skipped |
 <!-- /ANCHOR:verification -->
 
 ---

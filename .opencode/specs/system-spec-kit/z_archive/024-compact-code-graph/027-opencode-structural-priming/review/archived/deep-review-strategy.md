@@ -3,7 +3,7 @@
 ## Scope
 - Non-hook structural bootstrap contract (`session-snapshot.ts`)
 - Contract propagation (`memory-surface.ts`, `session-bootstrap.ts`, `session-resume.ts`, `session-health.ts`)
-- OpenCode-first guidance mirrors (`context-server.ts`, `AGENTS.md`, `.opencode/agent/context-prime.md`)
+- OpenCode-first guidance mirrors (`context-server.ts`, `AGENTS.md`, `.opencode/agents/context-prime.md`)
 - Parent/child packet traceability
 
 ## Initial Findings Focus

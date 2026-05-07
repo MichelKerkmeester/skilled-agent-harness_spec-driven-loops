@@ -26,7 +26,7 @@ Segment 3 did not overturn the earlier runtime story; it made it more concrete. 
 
 Late wave-1 evidence also sharpened the feature-state ledger without increasing the finding count. The evaluation category carries a duplicate-ordinal traceability defect across its two `15-*` entries, and the discovery slice confirmed that `memory_list` is directionally sound but still not stably verified on its empty-string folder-filter edge case.
 
-The new blocker from segment 3 is not theoretical. A fresh targeted scripts run fails `scripts/tests/memory-learn-command-docs.vitest.ts` because both the feature entry and the regression still depend on `.opencode/command/memory/README.txt`, while the live workspace only has `.opencode/command/memory/README.md`.
+The new blocker from segment 3 is not theoretical. A fresh targeted scripts run fails `scripts/tests/memory-learn-command-docs.vitest.ts` because both the feature entry and the regression still depend on `.opencode/commands/memory/README.txt`, while the live workspace only has `.opencode/commands/memory/README.md`.
 
 This `review/` packet remains the canonical audit surface. The top-level `/020-post-release-fixes/review-report.md` is historical evidence only.
 
@@ -119,7 +119,7 @@ This `review/` packet remains the canonical audit surface. The top-level `/020-p
 | `HRF-DR-016` | Caller-controlled session trust boundary hole | correctness, security | `mcp_server/lib/session/session-manager.ts:307-419`; `mcp_server/handlers/memory-context.ts:667-699` |
 | `HRF-DR-018` | Bulk-delete DB outage is misreported as a generic search-style failure | correctness | `mcp_server/handlers/memory-bulk-delete.ts:78-80`; `mcp_server/context-server.ts:410`; `mcp_server/lib/errors/core.ts:261` |
 | `HRF-DR-024` | Tool-cache stale in-flight reuse crosses invalidation and shutdown boundaries | correctness, security | `mcp_server/lib/cache/tool-cache.ts:237-257,335-351,398-402` |
-| `HRF-DR-027` | Constitutional memory manager command docs-alignment contract is broken by a stale `README.txt` dependency | correctness, traceability, maintainability | `feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md:37-45`; `scripts/tests/memory-learn-command-docs.vitest.ts:24-38`; `.opencode/command/memory/README.md:1-16` |
+| `HRF-DR-027` | Constitutional memory manager command docs-alignment contract is broken by a stale `README.txt` dependency | correctness, traceability, maintainability | `feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md:37-45`; `scripts/tests/memory-learn-command-docs.vitest.ts:24-38`; `.opencode/commands/memory/README.md:1-16` |
 
 ### P2 Findings (advisories)
 
@@ -219,7 +219,7 @@ This `review/` packet remains the canonical audit surface. The top-level `/020-p
   {
     "id": "HRF-DR-027",
     "claim": "The constitutional-memory-manager command contract is broken because the live workspace no longer provides the README.txt surface the feature and regression still require",
-    "evidenceRefs": ["feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md:37-45", "scripts/tests/memory-learn-command-docs.vitest.ts:24-38", ".opencode/command/memory/README.md:1-16"],
+    "evidenceRefs": ["feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md:37-45", "scripts/tests/memory-learn-command-docs.vitest.ts:24-38", ".opencode/commands/memory/README.md:1-16"],
     "counterevidenceSought": "Direct rerun of the docs-alignment regression plus a filesystem check for the expected command-group surface",
     "alternativeExplanation": "README.txt still exists or the regression is intentionally stale and not part of the live contract",
     "finalSeverity": "P1",
@@ -254,9 +254,9 @@ This `review/` packet remains the canonical audit surface. The top-level `/020-p
 ## 6. Verification Snapshot
 
 - Fresh commands executed on 2026-03-27:
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <012 packet>` -> `FAIL`
-  - `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <022 root> --recursive` -> `PASSED WITH WARNINGS`
-  - `cd .opencode/skill/system-spec-kit/mcp_server && npm test` -> `PASS`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <012 packet>` -> `FAIL`
+  - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <022 root> --recursive` -> `PASSED WITH WARNINGS`
+  - `cd .opencode/skills/system-spec-kit/mcp_server && npm test` -> `PASS`
 - Targeted segment-3 subsets:
   - Retrieval/mutation/lifecycle subset -> `8` files, `256` passed
   - Search/pipeline/indexing/scoring subset -> `11` files, `397` passed, `10` skipped
@@ -323,7 +323,7 @@ This `review/` packet remains the canonical audit surface. The top-level `/020-p
 - `006-feature-catalog/spec.md`
 - `015-manual-testing-per-playbook/spec.md`
 - `007-code-audit-per-feature-catalog/implementation-summary.md`
-- `.opencode/skill/system-spec-kit/feature_catalog/**/*.md`
-- `.opencode/skill/system-spec-kit/mcp_server/**/*.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/**/*.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/**/*.vitest.ts`
+- `.opencode/skills/system-spec-kit/feature_catalog/**/*.md`
+- `.opencode/skills/system-spec-kit/mcp_server/**/*.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/**/*.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/**/*.vitest.ts`

@@ -7,17 +7,17 @@ This round inspected whether read-path handlers behave honestly when the graph i
 ### Context Consumed
 
 - `iterations/iteration-01.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts`
 
 ### Findings
 
-- Both `code_graph_query` and `code_graph_context` explicitly disable inline full scans on read paths by calling `ensureCodeGraphReady(process.cwd(), { allowInlineIndex: true, allowInlineFullScan: false })`, so empty or fully stale graphs remain unrepaired during those requests [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106].
-- After receiving readiness, neither handler gates on `readiness.action === "full_scan"`; `query.ts` immediately resolves the requested subject and continues execution, and `context.ts` immediately constructs `ContextArgs` and calls `buildContext()` [.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:613-727; .opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-178].
-- The current regression harness only covers the "fresh" path, thrown readiness failures, and one stale transitive case; there is no test asserting a blocked response when a full scan is required but suppressed [.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:98-130,239-260; .opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:56-104].
+- Both `code_graph_query` and `code_graph_context` explicitly disable inline full scans on read paths by calling `ensureCodeGraphReady(process.cwd(), { allowInlineIndex: true, allowInlineFullScan: false })`, so empty or fully stale graphs remain unrepaired during those requests [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:595-599; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:103-106].
+- After receiving readiness, neither handler gates on `readiness.action === "full_scan"`; `query.ts` immediately resolves the requested subject and continues execution, and `context.ts` immediately constructs `ContextArgs` and calls `buildContext()` [.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:613-727; .opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:168-178].
+- The current regression harness only covers the "fresh" path, thrown readiness failures, and one stale transitive case; there is no test asserting a blocked response when a full scan is required but suppressed [.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:98-130,239-260; .opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:56-104].
 
 ### Evidence
 

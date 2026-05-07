@@ -37,13 +37,13 @@ contextType: "verification"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md [Evidence: `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/spec.md`]
 - [x] CHK-002 [P0] Technical approach defined in plan.md [Evidence: `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md`]
-- [x] CHK-003 [P1] Dependencies identified and available [Evidence: dependency section in `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md` references `.opencode/command/create/` assets]
+- [x] CHK-003 [P1] Dependencies identified and available [Evidence: dependency section in `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md` references `.opencode/commands/create/` assets]
 
 ---
 
 ### P0
 
-- [x] Canonical command, mode routing, operation coverage, and migration cleanup are complete [Evidence: `.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`, deleted legacy command/workflow paths]
+- [x] Canonical command, mode routing, operation coverage, and migration cleanup are complete [Evidence: `.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`, deleted legacy command/workflow paths]
 
 ---
 <!-- /ANCHOR:pre-impl -->
@@ -53,18 +53,18 @@ contextType: "verification"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Canonical command entrypoint exists and is deterministic [Evidence: `.opencode/command/create/sk-skill.md`]
-- [x] CHK-011 [P0] Unified mode workflows exist for both modes [Evidence: `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`]
-- [x] CHK-012 [P1] Operation routing includes all supported operations [Evidence: operation tables in `.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`]
-- [x] CHK-013 [P1] Deprecated command/workflow files removed [Evidence: missing paths .opencode/command/create/skill.md, .opencode/command/create/skill_reference.md, .opencode/command/create/skill_asset.md, and legacy `create_skill*.yaml` files in `.opencode/command/create/assets/`]
-- [x] CHK-014 [P1] Canonical command and unified YAMLs aligned with sk-doc/create-command structure patterns [Evidence: `.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`]
+- [x] CHK-010 [P0] Canonical command entrypoint exists and is deterministic [Evidence: `.opencode/commands/create/sk-skill.md`]
+- [x] CHK-011 [P0] Unified mode workflows exist for both modes [Evidence: `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`]
+- [x] CHK-012 [P1] Operation routing includes all supported operations [Evidence: operation tables in `.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`]
+- [x] CHK-013 [P1] Deprecated command/workflow files removed [Evidence: missing paths .opencode/commands/create/skill.md, .opencode/commands/create/skill_reference.md, .opencode/commands/create/skill_asset.md, and legacy `create_skill*.yaml` files in `.opencode/commands/create/assets/`]
+- [x] CHK-014 [P1] Canonical command and unified YAMLs aligned with sk-doc/create-command structure patterns [Evidence: `.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`]
 - [x] CHK-015 [P1] Canonical artifact expansion completed with exact line counts [Evidence: `wc -l` = 523 (sk-skill.md), 470 (`create_sk_skill_auto.yaml`), 519 (`create_sk_skill_confirm.yaml`)]
 
 ---
 
 ### P1
 
-- [x] Related references and Level 2 documentation are synchronized [Evidence: `.opencode/command/create/prompt.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/spec.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/tasks.md`]
+- [x] Related references and Level 2 documentation are synchronized [Evidence: `.opencode/commands/create/prompt.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/spec.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/tasks.md`]
 
 | Category | Total | Verified |
 |----------|-------|----------|
@@ -82,10 +82,10 @@ contextType: "verification"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] All migration acceptance criteria met [Evidence: canonical entrypoint + unified YAMLs present, deprecated files absent, prompt reference updated in `.opencode/command/create/prompt.md`]
-- [x] CHK-021 [P0] Manual verification complete [Evidence: operation and mode support documented in `.opencode/command/create/sk-skill.md` and both `create_sk_skill_*.yaml` files]
-- [x] CHK-022 [P1] Edge cases represented in routing contracts [Evidence: create-vs-update existence gate logic in `.opencode/command/create/sk-skill.md` and `gate_logic` sections in both unified YAMLs]
-- [x] CHK-023 [P1] Error scenarios validated in workflow docs [Evidence: `error_recovery` and `violation_recovery` sections in `.opencode/command/create/assets/create_sk_skill_auto.yaml` and `.opencode/command/create/assets/create_sk_skill_confirm.yaml`]
+- [x] CHK-020 [P0] All migration acceptance criteria met [Evidence: canonical entrypoint + unified YAMLs present, deprecated files absent, prompt reference updated in `.opencode/commands/create/prompt.md`]
+- [x] CHK-021 [P0] Manual verification complete [Evidence: operation and mode support documented in `.opencode/commands/create/sk-skill.md` and both `create_sk_skill_*.yaml` files]
+- [x] CHK-022 [P1] Edge cases represented in routing contracts [Evidence: create-vs-update existence gate logic in `.opencode/commands/create/sk-skill.md` and `gate_logic` sections in both unified YAMLs]
+- [x] CHK-023 [P1] Error scenarios validated in workflow docs [Evidence: `error_recovery` and `violation_recovery` sections in `.opencode/commands/create/assets/create_sk_skill_auto.yaml` and `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`]
 
 ---
 
@@ -97,8 +97,8 @@ contextType: "verification"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets in migrated files [Evidence: `.opencode/command/create/sk-skill.md`, `.opencode/command/create/assets/create_sk_skill_auto.yaml`, `.opencode/command/create/assets/create_sk_skill_confirm.yaml`]
-- [x] CHK-031 [P0] Input/setup validation requirements documented [Evidence: setup hard stops and required field checks in `.opencode/command/create/sk-skill.md`]
+- [x] CHK-030 [P0] No hardcoded secrets in migrated files [Evidence: `.opencode/commands/create/sk-skill.md`, `.opencode/commands/create/assets/create_sk_skill_auto.yaml`, `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`]
+- [x] CHK-031 [P0] Input/setup validation requirements documented [Evidence: setup hard stops and required field checks in `.opencode/commands/create/sk-skill.md`]
 - [x] CHK-032 [P1] Workflow gate model explicitly defined [Evidence: `gate_logic` sections in both unified YAML files]
 
 ---
@@ -112,8 +112,8 @@ contextType: "verification"
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized [Evidence: `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/spec.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/plan.md`, `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/tasks.md`]
-- [x] CHK-041 [P1] Canonical command references updated in related docs [Evidence: `.opencode/command/create/prompt.md` lines referencing `/create:sk-skill` variants]
-- [x] CHK-042 [P1] Cross-runtime active docs synchronized to canonical command [Evidence: `.agents/agents/write.md`, `.opencode/agent/write.md`, .opencode/agent/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md` reference `/create:sk-skill`]
+- [x] CHK-041 [P1] Canonical command references updated in related docs [Evidence: `.opencode/commands/create/prompt.md` lines referencing `/create:sk-skill` variants]
+- [x] CHK-042 [P1] Cross-runtime active docs synchronized to canonical command [Evidence: `.agents/agents/write.md`, `.opencode/agents/write.md`, .opencode/agents/chatgpt/write.md, `.codex/agents/write.toml`, `.opencode/README.md`, `README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md` reference `/create:sk-skill`]
 - [x] CHK-043 [P2] Implementation summary completed [Evidence: `.opencode/specs/03--commands-and-skills/019-cmd-create-skill-merger/implementation-summary.md`]
 
 ---

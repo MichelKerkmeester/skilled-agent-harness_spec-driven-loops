@@ -13,10 +13,10 @@ user
 You are auditing the session-capturing pipeline of a Spec Kit Memory system. Your focus: TEMPLATE & OUTPUT QUALITY.
 
 TASK: Compare the template expectations with actual rendering behavior. Read:
-1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md (the Mustache template, ~27KB)
-2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts (rendering logic, 201 lines)
-3. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts (post-render validation, 97 lines)
-4. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts (content reduction, 248 lines)
+1. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md (the Mustache template, ~27KB)
+2. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts (rendering logic, 201 lines)
+3. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts (post-render validation, 97 lines)
+4. /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts (content reduction, 248 lines)
 
 Then read 5+ real memory files to compare template vs output:
 - Find memory files: look for .md files in any memory/ subdirectory under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/specs/
@@ -71,8 +71,8 @@ Plan update
 codex
 I’m checking the local skill routing guidance as part of the repo’s workflow, then I’ll read the pipeline files and sample outputs in parallel so we can ground findings in both code and real artifacts.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -115,7 +115,7 @@ Universal `sk-code` review baseline for any codebase, implemented by `sk-code-re
 Use this skill when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Audit Spec Kit Memory session-capturing pipeline template and output quality; compare template expectations to renderer behavior and real memory outputs" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 753ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Audit Spec Kit Memory session-capturing pipeline template and output quality; compare template expectations to renderer behavior and real memory outputs" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 753ms:
 [
   {
     "skill": "system-spec-kit",
@@ -139,16 +139,16 @@ exec
 codex
 SKILL ROUTING: `system-spec-kit`, `sk-doc`, and `sk-code-review` all passed the threshold; I’m using the review baseline with the Spec Kit context so the audit stays findings-first and grounded in how this repo expects memory artifacts to behave.
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/templates/context_template.md .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skill/system-spec-kit/scripts/core/file-writer.ts .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "''^(#|##|###|####)|'"\\{\\{[#/"'^!]?[A-Za-z0-9_.-]+'"\\}?\\}\" .opencode/skill/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/core/file-writer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/templates/context_template.md .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts .opencode/skills/system-spec-kit/scripts/core/file-writer.ts .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "''^(#|##|###|####)|'"\\{\\{[#/"'^!]?[A-Za-z0-9_.-]+'"\\}?\\}\" .opencode/skills/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/core/file-writer.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg --files .opencode/specs | rg '/memory/.*\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     904 .opencode/skill/system-spec-kit/templates/context_template.md
-     201 .opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts
-      97 .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
-     248 .opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts
+     904 .opencode/skills/system-spec-kit/templates/context_template.md
+     201 .opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts
+      97 .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
+     248 .opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts
     1450 total
  succeeded in 50ms:
      1	// ---------------------------------------------------------------
@@ -259,61 +259,61 @@ codex
 The renderer is a custom Mustache-lite implementation, not the real Mustache engine, so I’m now cross-checking its supported syntax against the template’s patterns and then sampling generated memories to see where that mismatch shows up in actual files.
 exec
 /bin/zsh -lc "rg -n \"memory/.*\\.md"'$" .opencode/specs | head -n 0' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"populateTemplate\\(|renderTemplate\\(|writeFilesAtomically\\(|applyTreeThinning\\(\" .opencode/skill/system-spec-kit/scripts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"LAST\\b|HAS_PREFLIGHT_BASELINE|HAS_IMPLEMENTATION_GUIDE|MEMORY_TYPE|TRIGGER_PHRASES|SIMILAR_MEMORIES|RECOVERY_PRIORITY|PREFLIGHT_\" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"populateTemplate\\(|renderTemplate\\(|writeFilesAtomically\\(|applyTreeThinning\\(\" .opencode/skills/system-spec-kit/scripts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"LAST\\b|HAS_PREFLIGHT_BASELINE|HAS_IMPLEMENTATION_GUIDE|MEMORY_TYPE|TRIGGER_PHRASES|SIMILAR_MEMORIES|RECOVERY_PRIORITY|PREFLIGHT_\" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg -n \"\\{\\{["'^}]+'"\\}\\}\" .opencode/specs/**/memory/*.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 53ms:
 head: illegal line count -- 0
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:77:function renderTemplate(template: string, data: TemplateContext, parentData: TemplateContext = {}): string {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:86:      return value ? renderTemplate(content, mergedData, parentData) : '';
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:94:      return renderTemplate(content, mergedData, parentData);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:103:        return renderTemplate(content, item as TemplateContext, mergedData);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:105:      return renderTemplate(content, { ITEM: item, '.': item }, mergedData);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:113:      return renderTemplate(content, mergedData, parentData);
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:159:async function populateTemplate(templateName: string, data: TemplateContext): Promise<string> {
-.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts:187:  const rendered: string = renderTemplate(template, data);
-.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
-.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts:177:export function applyTreeThinning(
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:705:    [ctxFilename]: await populateTemplate('context', {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:845:  const writtenFiles: string[] = await writeFilesAtomically(contextDir, files);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1188:    const rendered = renderTemplate(template, { NAME: 'Test', SCORE: 100 });
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1197:    const loopRendered = renderTemplate(loopTemplate, { ITEMS: [{ NAME: 'A' }, { NAME: 'B' }] });
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1206:    const invertedRendered = renderTemplate(invertedTemplate, { EMPTY: [] });
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:1564:      await fileWriter.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:144:function renderTemplate(template, data) {
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:185:      const rendered = renderTemplate(specL1, TEST_DATA);
-.opencode/skill/system-spec-kit/scripts/tests/test-template-comprehensive.js:228:      const rendered = renderTemplate(planL1, TEST_DATA);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:77:function renderTemplate(template: string, data: TemplateContext, parentData: TemplateContext = {}): string {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:86:      return value ? renderTemplate(content, mergedData, parentData) : '';
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:94:      return renderTemplate(content, mergedData, parentData);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:103:        return renderTemplate(content, item as TemplateContext, mergedData);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:105:      return renderTemplate(content, { ITEM: item, '.': item }, mergedData);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:113:      return renderTemplate(content, mergedData, parentData);
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:159:async function populateTemplate(templateName: string, data: TemplateContext): Promise<string> {
+.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts:187:  const rendered: string = renderTemplate(template, data);
+.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:59:export async function writeFilesAtomically(
+.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts:177:export function applyTreeThinning(
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:705:    [ctxFilename]: await populateTemplate('context', {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:845:  const writtenFiles: string[] = await writeFilesAtomically(contextDir, files);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1188:    const rendered = renderTemplate(template, { NAME: 'Test', SCORE: 100 });
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1197:    const loopRendered = renderTemplate(loopTemplate, { ITEMS: [{ NAME: 'A' }, { NAME: 'B' }] });
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1206:    const invertedRendered = renderTemplate(invertedTemplate, { EMPTY: [] });
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:1564:      await fileWriter.writeFilesAtomically(tempDir, { 'test.md': 'Content with {{LEAKED_PLACEHOLDER}}' });
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:144:function renderTemplate(template, data) {
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:185:      const rendered = renderTemplate(specL1, TEST_DATA);
+.opencode/skills/system-spec-kit/scripts/tests/test-template-comprehensive.js:228:      const rendered = renderTemplate(planL1, TEST_DATA);
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/templates/context_template.md:140:{{#HAS_PREFLIGHT_BASELINE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:148:| Knowledge Score | {{PREFLIGHT_KNOW_SCORE}}/100 | {{PREFLIGHT_KNOW_ASSESSMENT}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:149:| Uncertainty Score | {{PREFLIGHT_UNCERTAINTY_SCORE}}/100 | {{PREFLIGHT_UNCERTAINTY_ASSESSMENT}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:150:| Context Score | {{PREFLIGHT_CONTEXT_SCORE}}/100 | {{PREFLIGHT_CONTEXT_ASSESSMENT}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:151:| Timestamp | {{PREFLIGHT_TIMESTAMP}} | Session start |
-.opencode/skill/system-spec-kit/templates/context_template.md:154:{{#PREFLIGHT_GAPS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:156:{{/PREFLIGHT_GAPS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:157:{{^PREFLIGHT_GAPS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:159:{{/PREFLIGHT_GAPS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:162:- Confidence: {{PREFLIGHT_CONFIDENCE}}%
-.opencode/skill/system-spec-kit/templates/context_template.md:163:- Uncertainty: {{PREFLIGHT_UNCERTAINTY_RAW}}
-.opencode/skill/system-spec-kit/templates/context_template.md:164:- Readiness: {{PREFLIGHT_READINESS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:166:{{/HAS_PREFLIGHT_BASELINE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:174:{{#HAS_IMPLEMENTATION_GUIDE}}- [IMPLEMENTATION GUIDE](#implementation-guide)
-.opencode/skill/system-spec-kit/templates/context_template.md:175:{{/HAS_IMPLEMENTATION_GUIDE}}- [OVERVIEW](#overview)
-.opencode/skill/system-spec-kit/templates/context_template.md:271:**Key Topics:** {{#TOPICS}}`{{.}}`{{^LAST}} | {{/LAST}}{{/TOPICS}}
-.opencode/skill/system-spec-kit/templates/context_template.md:276:{{#HAS_IMPLEMENTATION_GUIDE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:316:{{/HAS_IMPLEMENTATION_GUIDE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:321:## {{#HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}1{{/HAS_IMPLEMENTATION_GUIDE}}. OVERVIEW
-.opencode/skill/system-spec-kit/templates/context_template.md:356:## {{#HAS_IMPLEMENTATION_GUIDE}}3{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}. DETAILED CHANGES
+.opencode/skills/system-spec-kit/templates/context_template.md:140:{{#HAS_PREFLIGHT_BASELINE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:148:| Knowledge Score | {{PREFLIGHT_KNOW_SCORE}}/100 | {{PREFLIGHT_KNOW_ASSESSMENT}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:149:| Uncertainty Score | {{PREFLIGHT_UNCERTAINTY_SCORE}}/100 | {{PREFLIGHT_UNCERTAINTY_ASSESSMENT}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:150:| Context Score | {{PREFLIGHT_CONTEXT_SCORE}}/100 | {{PREFLIGHT_CONTEXT_ASSESSMENT}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:151:| Timestamp | {{PREFLIGHT_TIMESTAMP}} | Session start |
+.opencode/skills/system-spec-kit/templates/context_template.md:154:{{#PREFLIGHT_GAPS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:156:{{/PREFLIGHT_GAPS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:157:{{^PREFLIGHT_GAPS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:159:{{/PREFLIGHT_GAPS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:162:- Confidence: {{PREFLIGHT_CONFIDENCE}}%
+.opencode/skills/system-spec-kit/templates/context_template.md:163:- Uncertainty: {{PREFLIGHT_UNCERTAINTY_RAW}}
+.opencode/skills/system-spec-kit/templates/context_template.md:164:- Readiness: {{PREFLIGHT_READINESS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:166:{{/HAS_PREFLIGHT_BASELINE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:174:{{#HAS_IMPLEMENTATION_GUIDE}}- [IMPLEMENTATION GUIDE](#implementation-guide)
+.opencode/skills/system-spec-kit/templates/context_template.md:175:{{/HAS_IMPLEMENTATION_GUIDE}}- [OVERVIEW](#overview)
+.opencode/skills/system-spec-kit/templates/context_template.md:271:**Key Topics:** {{#TOPICS}}`{{.}}`{{^LAST}} | {{/LAST}}{{/TOPICS}}
+.opencode/skills/system-spec-kit/templates/context_template.md:276:{{#HAS_IMPLEMENTATION_GUIDE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:316:{{/HAS_IMPLEMENTATION_GUIDE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:321:## {{#HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}1{{/HAS_IMPLEMENTATION_GUIDE}}. OVERVIEW
+.opencode/skills/system-spec-kit/templates/context_template.md:356:## {{#HAS_IMPLEMENTATION_GUIDE}}3{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}. DETAILED CHANGES
  exited 1 in 164ms:
 
 codex
 I’ve confirmed the key data now flows through `workflow.ts`, so I’m reading the exact template payload builder next. That lets me separate “renderer bug” from “field never supplied” from “template section exists but current pipeline never uses it.”
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '650,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'nl -ba .opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '650,780p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'nl -ba .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    650	  const rawCtxFilename: string = `${sessionData.DATE}_${sessionData.TIME}__${contentSlug}.md`;
    651	  const ctxFilename: string = ensureUniqueMemoryFilename(contextDir, rawCtxFilename);
    652	
@@ -695,77 +695,77 @@ exec
 codex
 A clear pattern is emerging: several v2.2 metadata subtrees render in every file but remain structurally present and semantically empty. I’m confirming those keys are never supplied anywhere in the live workflow before I lock that in as a finding.
 exec
-/bin/zsh -lc 'rg -n "IMPL_TASK|IMPL_SOLUTION|IMPL_FILES_CREATED|IMPL_FILES_MODIFIED|IMPL_DECISIONS|IMPL_OUTCOMES|HAS_IMPLEMENTATION_SUMMARY|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS|HIGH_CONFIDENCE_COUNT|MEDIUM_CONFIDENCE_COUNT|LOW_CONFIDENCE_COUNT|HAS_AUTO_GENERATED|FLOW_TYPE|IMPLEMENTATION_SUMMARY" .opencode/skill/system-spec-kit/templates/context_template.md .opencode/skill/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "Quality Signals|quality_score|quality_flags" .opencode/skill/system-spec-kit/templates/context_template.md .opencode/skill/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'rg -n "MEMORY_TYPE|HALF_LIFE_DAYS|BASE_DECAY_RATE|ACCESS_BOOST_FACTOR|RECENCY_WEIGHT|IMPORTANCE_MULTIPLIER|MEMORIES_SURFACED_COUNT|DEDUP_SAVINGS_TOKENS|FINGERPRINT_HASH|SIMILAR_MEMORIES|CAUSED_BY|SUPERSEDES|DERIVED_FROM|BLOCKS|RELATED_TO|MEMORY_FILE_EXISTS|INDEX_ENTRY_VALID|CHECKSUMS_MATCH|NO_DEDUP_CONFLICTS" .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/templates/context_template.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:522:      log(`   Found ${result.DIAGRAMS.length} diagrams`);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:713:      DIAGRAM_COUNT: diagrams.DIAGRAMS.length,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:716:      HIGH_CONFIDENCE_COUNT: decisions.HIGH_CONFIDENCE_COUNT,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:717:      MEDIUM_CONFIDENCE_COUNT: decisions.MEDIUM_CONFIDENCE_COUNT,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:718:      LOW_CONFIDENCE_COUNT: decisions.LOW_CONFIDENCE_COUNT,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:720:      HAS_AUTO_GENERATED: diagrams.HAS_AUTO_GENERATED,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:721:      FLOW_TYPE: diagrams.FLOW_TYPE,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:722:      AUTO_CONVERSATION_FLOWCHART: diagrams.AUTO_CONVERSATION_FLOWCHART,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:723:      AUTO_DECISION_TREES: diagrams.AUTO_DECISION_TREES,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:724:      DIAGRAMS: diagrams.DIAGRAMS,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:725:      IMPLEMENTATION_SUMMARY: IMPL_SUMMARY_MD,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:726:      HAS_IMPLEMENTATION_SUMMARY: HAS_IMPL,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:727:      IMPL_TASK: implSummary.task,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:728:      IMPL_SOLUTION: implSummary.solution,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:729:      IMPL_FILES_CREATED: implSummary.filesCreated,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:730:      IMPL_FILES_MODIFIED: implSummary.filesModified,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:731:      IMPL_DECISIONS: implSummary.decisions,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:732:      IMPL_OUTCOMES: implSummary.outcomes,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:733:      HAS_IMPL_FILES_CREATED: implSummary.filesCreated.length > 0,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:734:      HAS_IMPL_FILES_MODIFIED: implSummary.filesModified.length > 0,
+/bin/zsh -lc 'rg -n "IMPL_TASK|IMPL_SOLUTION|IMPL_FILES_CREATED|IMPL_FILES_MODIFIED|IMPL_DECISIONS|IMPL_OUTCOMES|HAS_IMPLEMENTATION_SUMMARY|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS|HIGH_CONFIDENCE_COUNT|MEDIUM_CONFIDENCE_COUNT|LOW_CONFIDENCE_COUNT|HAS_AUTO_GENERATED|FLOW_TYPE|IMPLEMENTATION_SUMMARY" .opencode/skills/system-spec-kit/templates/context_template.md .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "Quality Signals|quality_score|quality_flags" .opencode/skills/system-spec-kit/templates/context_template.md .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'rg -n "MEMORY_TYPE|HALF_LIFE_DAYS|BASE_DECAY_RATE|ACCESS_BOOST_FACTOR|RECENCY_WEIGHT|IMPORTANCE_MULTIPLIER|MEMORIES_SURFACED_COUNT|DEDUP_SAVINGS_TOKENS|FINGERPRINT_HASH|SIMILAR_MEMORIES|CAUSED_BY|SUPERSEDES|DERIVED_FROM|BLOCKS|RELATED_TO|MEMORY_FILE_EXISTS|INDEX_ENTRY_VALID|CHECKSUMS_MATCH|NO_DEDUP_CONFLICTS" .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/templates/context_template.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:522:      log(`   Found ${result.DIAGRAMS.length} diagrams`);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:713:      DIAGRAM_COUNT: diagrams.DIAGRAMS.length,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:716:      HIGH_CONFIDENCE_COUNT: decisions.HIGH_CONFIDENCE_COUNT,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:717:      MEDIUM_CONFIDENCE_COUNT: decisions.MEDIUM_CONFIDENCE_COUNT,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:718:      LOW_CONFIDENCE_COUNT: decisions.LOW_CONFIDENCE_COUNT,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:720:      HAS_AUTO_GENERATED: diagrams.HAS_AUTO_GENERATED,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:721:      FLOW_TYPE: diagrams.FLOW_TYPE,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:722:      AUTO_CONVERSATION_FLOWCHART: diagrams.AUTO_CONVERSATION_FLOWCHART,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:723:      AUTO_DECISION_TREES: diagrams.AUTO_DECISION_TREES,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:724:      DIAGRAMS: diagrams.DIAGRAMS,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:725:      IMPLEMENTATION_SUMMARY: IMPL_SUMMARY_MD,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:726:      HAS_IMPLEMENTATION_SUMMARY: HAS_IMPL,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:727:      IMPL_TASK: implSummary.task,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:728:      IMPL_SOLUTION: implSummary.solution,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:729:      IMPL_FILES_CREATED: implSummary.filesCreated,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:730:      IMPL_FILES_MODIFIED: implSummary.filesModified,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:731:      IMPL_DECISIONS: implSummary.decisions,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:732:      IMPL_OUTCOMES: implSummary.outcomes,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:733:      HAS_IMPL_FILES_CREATED: implSummary.filesCreated.length > 0,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:734:      HAS_IMPL_FILES_MODIFIED: implSummary.filesModified.length > 0,
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:33:  return /\nquality_score:\s*[0-9.]+/i.test(content) && /\nquality_flags:\s*(?:\n|$)/i.test(content);
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:41:  yamlBlock = yamlBlock.replace(/\n# Quality Signals[\s\S]*$/i, '');
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:44:    `quality_score: ${qualityScore.toFixed(2)}`,
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:45:    'quality_flags:',
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:49:  const replacement = `${yamlBlock}\n\n# Quality Signals\n${qualityLines}`;
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:79:    `SELECT COUNT(*) AS recent_rows,\n            SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null,\n            SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null\n     FROM (\n       SELECT id, quality_score, quality_flags\n       FROM memory_index\n       WHERE spec_folder LIKE '${specFolderPrefix.replace(/'/g, "''")}%'
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:86:       AND document_type='memory'\n       AND (quality_flags IS NULL OR quality_score IS NULL)\n     ORDER BY datetime(updated_at) DESC, id DESC\n     LIMIT 50;`
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:114:      `UPDATE memory_index\n       SET quality_score = ${qualityScore},\n           quality_flags = '${qualityFlagsJson.replace(/'/g, "''")}',\n           updated_at = datetime('now')\n       WHERE id = ${Number(row.id)};`
-.opencode/skill/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:121:    `SELECT COUNT(*) AS recent_rows,\n            SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null,\n            SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null\n     FROM (\n       SELECT id, quality_score, quality_flags\n       FROM memory_index\n       WHERE spec_folder LIKE '${specFolderPrefix.replace(/'/g, "''")}%'
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:385:    `quality_score: ${qualityScore.toFixed(2)}`,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:386:    'quality_flags:',
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:390:  const updatedYaml = `${yamlBlock}\n\n# Quality Signals\n${qualityLines}`;
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2092:    // Test 9: calculate_quality_score returns number between 0-100
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2101:      pass('T-028j: calculate_quality_score returns valid score', `Score: ${qualityScore}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2103:      fail('T-028j: calculate_quality_score returns valid score', `Invalid: ${qualityScore}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2106:    // Test 10: calculate_quality_score returns 0 for empty array
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2108:    assertEqual(emptyScore, 0, 'T-028k: calculate_quality_score returns 0 for empty array');
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2110:    // Test 11: calculate_quality_score handles string items
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2114:      pass('T-028l: calculate_quality_score handles string items', `Score: ${stringScore}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:2116:      fail('T-028l: calculate_quality_score handles string items', `Invalid: ${stringScore}`);
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:33:  return /\nquality_score:\s*[0-9.]+/i.test(content) && /\nquality_flags:\s*(?:\n|$)/i.test(content);
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:41:  yamlBlock = yamlBlock.replace(/\n# Quality Signals[\s\S]*$/i, '');
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:44:    `quality_score: ${qualityScore.toFixed(2)}`,
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:45:    'quality_flags:',
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:49:  const replacement = `${yamlBlock}\n\n# Quality Signals\n${qualityLines}`;
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:79:    `SELECT COUNT(*) AS recent_rows,\n            SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null,\n            SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null\n     FROM (\n       SELECT id, quality_score, quality_flags\n       FROM memory_index\n       WHERE spec_folder LIKE '${specFolderPrefix.replace(/'/g, "''")}%'
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:86:       AND document_type='memory'\n       AND (quality_flags IS NULL OR quality_score IS NULL)\n     ORDER BY datetime(updated_at) DESC, id DESC\n     LIMIT 50;`
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:114:      `UPDATE memory_index\n       SET quality_score = ${qualityScore},\n           quality_flags = '${qualityFlagsJson.replace(/'/g, "''")}',\n           updated_at = datetime('now')\n       WHERE id = ${Number(row.id)};`
+.opencode/skills/system-spec-kit/scripts/evals/deleted-chk210-quality-backfill-script:121:    `SELECT COUNT(*) AS recent_rows,\n            SUM(CASE WHEN quality_score IS NOT NULL THEN 1 ELSE 0 END) AS quality_score_non_null,\n            SUM(CASE WHEN quality_flags IS NOT NULL THEN 1 ELSE 0 END) AS quality_flags_non_null\n     FROM (\n       SELECT id, quality_score, quality_flags\n       FROM memory_index\n       WHERE spec_folder LIKE '${specFolderPrefix.replace(/'/g, "''")}%'
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:385:    `quality_score: ${qualityScore.toFixed(2)}`,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:386:    'quality_flags:',
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:390:  const updatedYaml = `${yamlBlock}\n\n# Quality Signals\n${qualityLines}`;
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2092:    // Test 9: calculate_quality_score returns number between 0-100
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2101:      pass('T-028j: calculate_quality_score returns valid score', `Score: ${qualityScore}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2103:      fail('T-028j: calculate_quality_score returns valid score', `Invalid: ${qualityScore}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2106:    // Test 10: calculate_quality_score returns 0 for empty array
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2108:    assertEqual(emptyScore, 0, 'T-028k: calculate_quality_score returns 0 for empty array');
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2110:    // Test 11: calculate_quality_score handles string items
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2114:      pass('T-028l: calculate_quality_score handles string items', `Score: ${stringScore}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:2116:      fail('T-028l: calculate_quality_score handles string items', `Invalid: ${stringScore}`);
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/templates/context_template.md:658:| Memory File Exists | {{MEMORY_FILE_EXISTS}} | {{MEMORY_FILE_PATH}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:659:| Index Entry Valid | {{INDEX_ENTRY_VALID}} | Last indexed: {{LAST_INDEXED}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:660:| Checksums Match | {{CHECKSUMS_MATCH}} | {{CHECKSUM_DETAILS}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:661:| No Dedup Conflicts | {{NO_DEDUP_CONFLICTS}} | {{DEDUP_CONFLICT_DETAILS}} |
-.opencode/skill/system-spec-kit/templates/context_template.md:735:  memory_type: "{{MEMORY_TYPE}}"         # episodic|procedural|semantic|constitutional
-.opencode/skill/system-spec-kit/templates/context_template.md:736:  half_life_days: {{HALF_LIFE_DAYS}}     # decay half-life in days (0 = never decays)
-.opencode/skill/system-spec-kit/templates/context_template.md:738:    base_decay_rate: {{BASE_DECAY_RATE}}           # 0.0-1.0, daily decay multiplier
-.opencode/skill/system-spec-kit/templates/context_template.md:739:    access_boost_factor: {{ACCESS_BOOST_FACTOR}}   # boost per access (default 0.1)
-.opencode/skill/system-spec-kit/templates/context_template.md:740:    recency_weight: {{RECENCY_WEIGHT}}             # weight for recent accesses (default 0.5)
-.opencode/skill/system-spec-kit/templates/context_template.md:741:    importance_multiplier: {{IMPORTANCE_MULTIPLIER}} # tier-based multiplier
-.opencode/skill/system-spec-kit/templates/context_template.md:745:  memories_surfaced: {{MEMORIES_SURFACED_COUNT}}   # count of memories shown this session
-.opencode/skill/system-spec-kit/templates/context_template.md:746:  dedup_savings_tokens: {{DEDUP_SAVINGS_TOKENS}}   # tokens saved via deduplication
-.opencode/skill/system-spec-kit/templates/context_template.md:747:  fingerprint_hash: "{{FINGERPRINT_HASH}}"         # content hash for dedup detection
-.opencode/skill/system-spec-kit/templates/context_template.md:749:{{#SIMILAR_MEMORIES}}    - id: "{{MEMORY_ID}}"
-.opencode/skill/system-spec-kit/templates/context_template.md:751:{{/SIMILAR_MEMORIES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:752:{{^SIMILAR_MEMORIES}}    []
-.opencode/skill/system-spec-kit/templates/context_template.md:753:{{/SIMILAR_MEMORIES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:758:{{#CAUSED_BY}}    - "{{.}}"
-.opencode/skill/system-spec-kit/templates/context_template.md:759:{{/CAUSED_BY}}
-.opencode/skill/system-spec-kit/templates/context_template.md:760:{{^CAUSED_BY}}    []
+.opencode/skills/system-spec-kit/templates/context_template.md:658:| Memory File Exists | {{MEMORY_FILE_EXISTS}} | {{MEMORY_FILE_PATH}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:659:| Index Entry Valid | {{INDEX_ENTRY_VALID}} | Last indexed: {{LAST_INDEXED}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:660:| Checksums Match | {{CHECKSUMS_MATCH}} | {{CHECKSUM_DETAILS}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:661:| No Dedup Conflicts | {{NO_DEDUP_CONFLICTS}} | {{DEDUP_CONFLICT_DETAILS}} |
+.opencode/skills/system-spec-kit/templates/context_template.md:735:  memory_type: "{{MEMORY_TYPE}}"         # episodic|procedural|semantic|constitutional
+.opencode/skills/system-spec-kit/templates/context_template.md:736:  half_life_days: {{HALF_LIFE_DAYS}}     # decay half-life in days (0 = never decays)
+.opencode/skills/system-spec-kit/templates/context_template.md:738:    base_decay_rate: {{BASE_DECAY_RATE}}           # 0.0-1.0, daily decay multiplier
+.opencode/skills/system-spec-kit/templates/context_template.md:739:    access_boost_factor: {{ACCESS_BOOST_FACTOR}}   # boost per access (default 0.1)
+.opencode/skills/system-spec-kit/templates/context_template.md:740:    recency_weight: {{RECENCY_WEIGHT}}             # weight for recent accesses (default 0.5)
+.opencode/skills/system-spec-kit/templates/context_template.md:741:    importance_multiplier: {{IMPORTANCE_MULTIPLIER}} # tier-based multiplier
+.opencode/skills/system-spec-kit/templates/context_template.md:745:  memories_surfaced: {{MEMORIES_SURFACED_COUNT}}   # count of memories shown this session
+.opencode/skills/system-spec-kit/templates/context_template.md:746:  dedup_savings_tokens: {{DEDUP_SAVINGS_TOKENS}}   # tokens saved via deduplication
+.opencode/skills/system-spec-kit/templates/context_template.md:747:  fingerprint_hash: "{{FINGERPRINT_HASH}}"         # content hash for dedup detection
+.opencode/skills/system-spec-kit/templates/context_template.md:749:{{#SIMILAR_MEMORIES}}    - id: "{{MEMORY_ID}}"
+.opencode/skills/system-spec-kit/templates/context_template.md:751:{{/SIMILAR_MEMORIES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:752:{{^SIMILAR_MEMORIES}}    []
+.opencode/skills/system-spec-kit/templates/context_template.md:753:{{/SIMILAR_MEMORIES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:758:{{#CAUSED_BY}}    - "{{.}}"
+.opencode/skills/system-spec-kit/templates/context_template.md:759:{{/CAUSED_BY}}
+.opencode/skills/system-spec-kit/templates/context_template.md:760:{{^CAUSED_BY}}    []
 codex
 I’ve got evidence for one class of issue already: dead or optional-only metadata placeholders. I’m now checking the opposite side too, where the workflow builds fields that never make it into the template, so we don’t miss data loss in the other direction.
 exec
-/bin/zsh -lc "rg -n 'IMPL_TASK|IMPL_SOLUTION|IMPL_FILES_CREATED|IMPL_FILES_MODIFIED|IMPL_DECISIONS|IMPL_OUTCOMES|HAS_IMPLEMENTATION_SUMMARY|IMPLEMENTATION_SUMMARY|HIGH_CONFIDENCE_COUNT|MEDIUM_CONFIDENCE_COUNT|LOW_CONFIDENCE_COUNT|HAS_AUTO_GENERATED|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS' .opencode/skill/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n 'IMPL_TASK|IMPL_SOLUTION|IMPL_FILES_CREATED|IMPL_FILES_MODIFIED|IMPL_DECISIONS|IMPL_OUTCOMES|HAS_IMPLEMENTATION_SUMMARY|IMPLEMENTATION_SUMMARY|HIGH_CONFIDENCE_COUNT|MEDIUM_CONFIDENCE_COUNT|LOW_CONFIDENCE_COUNT|HAS_AUTO_GENERATED|AUTO_CONVERSATION_FLOWCHART|AUTO_DECISION_TREES|DIAGRAMS' .opencode/skills/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "rg -n '"'^## [0-9]+'"\\. WORKFLOW VISUALIZATION|"'^## [0-9]+'"\\. CONVERSATION|"'^## [0-9]+'"\\. DECISIONS' .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-ux-hooks-automation/memory/08-03-26_09-42__5-agent-codex-review-synthesis.md .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md .opencode/specs/03--commands-and-skills/001-cli-gemini/memory/28-02-26_11-26__cli-gemini.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n 'PATTERN_TYPE|USE_CASE_TITLE|WORKFLOW_FLOWCHART|HAS_WORKFLOW_DIAGRAM|FEATURES|USE_CASES|PHASES|FLOW_PATTERN' .opencode/skill/system-spec-kit/scripts .opencode/skill/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 50ms:
+/bin/zsh -lc "rg -n 'PATTERN_TYPE|USE_CASE_TITLE|WORKFLOW_FLOWCHART|HAS_WORKFLOW_DIAGRAM|FEATURES|USE_CASES|PHASES|FLOW_PATTERN' .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/templates/context_template.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 50ms:
 
  succeeded in 51ms:
 .opencode/specs/03--commands-and-skills/001-cli-gemini/memory/28-02-26_11-26__cli-gemini.md:606:## 4. DECISIONS
@@ -775,31 +775,31 @@ exec
 .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md:317:## 4. DECISIONS
 .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md:491:## 5. CONVERSATION
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/templates/context_template.md:177:{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [WORKFLOW VISUALIZATION](#workflow-visualization)
-.opencode/skill/system-spec-kit/templates/context_template.md:178:{{/HAS_WORKFLOW_DIAGRAM}}- [DECISIONS](#decisions)
-.opencode/skill/system-spec-kit/templates/context_template.md:375:{{#HAS_WORKFLOW_DIAGRAM}}
-.opencode/skill/system-spec-kit/templates/context_template.md:395:**Pattern Type**: {{PATTERN_TYPE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:397:**Use Case**: {{USE_CASE_TITLE}}
-.opencode/skill/system-spec-kit/templates/context_template.md:400:{{WORKFLOW_FLOWCHART}}
-.opencode/skill/system-spec-kit/templates/context_template.md:403:{{#HAS_PHASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:406:{{#PHASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:412:{{/PHASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:413:{{/HAS_PHASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:417:{{#FEATURES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:419:{{/FEATURES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:423:{{#USE_CASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:425:{{/USE_CASES}}
-.opencode/skill/system-spec-kit/templates/context_template.md:432:> **Pattern Reference**: This workflow uses the **{{PATTERN_TYPE}}** pattern.
-.opencode/skill/system-spec-kit/templates/context_template.md:437:> - **This session**: {{PATTERN_TYPE}} pattern with {{PHASE_COUNT}} phases
-.opencode/skill/system-spec-kit/templates/context_template.md:443:{{/HAS_WORKFLOW_DIAGRAM}}
-.opencode/skill/system-spec-kit/templates/context_template.md:453:  - +1 if HAS_WORKFLOW_DIAGRAM (adds Workflow Visualization)
-.opencode/skill/system-spec-kit/templates/context_template.md:467:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
-.opencode/skill/system-spec-kit/templates/context_template.md:554:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}6{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. CONVERSATION
+.opencode/skills/system-spec-kit/templates/context_template.md:177:{{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [WORKFLOW VISUALIZATION](#workflow-visualization)
+.opencode/skills/system-spec-kit/templates/context_template.md:178:{{/HAS_WORKFLOW_DIAGRAM}}- [DECISIONS](#decisions)
+.opencode/skills/system-spec-kit/templates/context_template.md:375:{{#HAS_WORKFLOW_DIAGRAM}}
+.opencode/skills/system-spec-kit/templates/context_template.md:395:**Pattern Type**: {{PATTERN_TYPE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:397:**Use Case**: {{USE_CASE_TITLE}}
+.opencode/skills/system-spec-kit/templates/context_template.md:400:{{WORKFLOW_FLOWCHART}}
+.opencode/skills/system-spec-kit/templates/context_template.md:403:{{#HAS_PHASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:406:{{#PHASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:412:{{/PHASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:413:{{/HAS_PHASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:417:{{#FEATURES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:419:{{/FEATURES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:423:{{#USE_CASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:425:{{/USE_CASES}}
+.opencode/skills/system-spec-kit/templates/context_template.md:432:> **Pattern Reference**: This workflow uses the **{{PATTERN_TYPE}}** pattern.
+.opencode/skills/system-spec-kit/templates/context_template.md:437:> - **This session**: {{PATTERN_TYPE}} pattern with {{PHASE_COUNT}} phases
+.opencode/skills/system-spec-kit/templates/context_template.md:443:{{/HAS_WORKFLOW_DIAGRAM}}
+.opencode/skills/system-spec-kit/templates/context_template.md:453:  - +1 if HAS_WORKFLOW_DIAGRAM (adds Workflow Visualization)
+.opencode/skills/system-spec-kit/templates/context_template.md:467:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
+.opencode/skills/system-spec-kit/templates/context_template.md:554:## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}6{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. CONVERSATION
 exec
 /bin/zsh -lc "rg -l '"'^## [0-9]+'"\\. WORKFLOW VISUALIZATION' .opencode/specs | rg '/memory/.*\\.md"'$'"' | head -n 20" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 71ms:
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '520,548p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '520,548p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    520	      log('   Extracting diagrams...');
    521	      const result = await extractDiagrams(collectedData as Parameters<typeof extractDiagrams>[0]);
    522	      log(`   Found ${result.DIAGRAMS.length} diagrams`);
@@ -925,7 +925,7 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/00--anobel.com/034-form-bot-problem/memory/07-03-26_11-31__contact-form-bot-submission-investigation.md | sed -n '586,612p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md | sed -n '500,525p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '568,592p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '568,592p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
    586	### Message Timeline
    587	
    588	> **User** | 2026-02-20 @ 12:26:36
@@ -1056,7 +1056,7 @@ FILE .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md | sed -n '1,32p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba .opencode/specs/03--commands-and-skills/001-cli-gemini/memory/28-02-26_11-26__cli-gemini.md | sed -n '1,32p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
      1	---
      2	title: "GPT-5.4 Agent Model Upgrade [027-copilot-gpt-5-4-agents/06-03-26_08-22__gpt-5-4-agent-model-upgrade]"
      3	description: "Session context memory template for Spec Kit indexing."
@@ -1120,7 +1120,7 @@ exec
     19	  - "general": fallback when no clear pattern
     20	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '10,116p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '10,116p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     10	---
     11	<!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
     12	<!-- Template Configuration Comments (stripped during generation) -->
@@ -1144,27 +1144,27 @@ exec
 codex
 The top-of-file comment leakage is important enough that I’m sanity-checking whether the compiled runtime under `scripts/dist/` still matches the TypeScript source. The outputs look like they were rendered by a stale or divergent build, and that affects root-cause accuracy.
 exec
-/bin/zsh -lc "rg -n \"stripTemplateConfigComments|HAS_WORKFLOW_DIAGRAM|OPTIONAL_PLACEHOLDERS\" .opencode/skill/system-spec-kit/scripts/dist -g '"'!*map'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"renderers/template-renderer|populateTemplate\\(\" .opencode/skill/system-spec-kit/scripts/dist -g '"'!*map'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/dist/core/workflow.js:432:                    HAS_WORKFLOW_DIAGRAM: false,
-.opencode/skill/system-spec-kit/scripts/dist/renderers/index.d.ts:1:export { populateTemplate, renderTemplate, cleanupExcessiveNewlines, stripTemplateConfigComments, isFalsy, } from './template-renderer';
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:13:exports.stripTemplateConfigComments = stripTemplateConfigComments;
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:25:const OPTIONAL_PLACEHOLDERS = new Set([
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:60:function stripTemplateConfigComments(text) {
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:110:            if (!OPTIONAL_PLACEHOLDERS.has(key)) {
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:162:    return stripTemplateConfigComments(rendered);
-.opencode/skill/system-spec-kit/scripts/dist/renderers/index.js:8:exports.isFalsy = exports.stripTemplateConfigComments = exports.cleanupExcessiveNewlines = exports.renderTemplate = exports.populateTemplate = void 0;
-.opencode/skill/system-spec-kit/scripts/dist/renderers/index.js:13:Object.defineProperty(exports, "stripTemplateConfigComments", { enumerable: true, get: function () { return template_renderer_1.stripTemplateConfigComments; } });
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:5:declare function stripTemplateConfigComments(text: string): string;
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:8:export { populateTemplate, renderTemplate, cleanupExcessiveNewlines, stripTemplateConfigComments, isFalsy, };
+/bin/zsh -lc "rg -n \"stripTemplateConfigComments|HAS_WORKFLOW_DIAGRAM|OPTIONAL_PLACEHOLDERS\" .opencode/skills/system-spec-kit/scripts/dist -g '"'!*map'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"renderers/template-renderer|populateTemplate\\(\" .opencode/skills/system-spec-kit/scripts/dist -g '"'!*map'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:432:                    HAS_WORKFLOW_DIAGRAM: false,
+.opencode/skills/system-spec-kit/scripts/dist/renderers/index.d.ts:1:export { populateTemplate, renderTemplate, cleanupExcessiveNewlines, stripTemplateConfigComments, isFalsy, } from './template-renderer';
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:13:exports.stripTemplateConfigComments = stripTemplateConfigComments;
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:25:const OPTIONAL_PLACEHOLDERS = new Set([
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:60:function stripTemplateConfigComments(text) {
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:110:            if (!OPTIONAL_PLACEHOLDERS.has(key)) {
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:162:    return stripTemplateConfigComments(rendered);
+.opencode/skills/system-spec-kit/scripts/dist/renderers/index.js:8:exports.isFalsy = exports.stripTemplateConfigComments = exports.cleanupExcessiveNewlines = exports.renderTemplate = exports.populateTemplate = void 0;
+.opencode/skills/system-spec-kit/scripts/dist/renderers/index.js:13:Object.defineProperty(exports, "stripTemplateConfigComments", { enumerable: true, get: function () { return template_renderer_1.stripTemplateConfigComments; } });
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:5:declare function stripTemplateConfigComments(text: string): string;
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:8:export { populateTemplate, renderTemplate, cleanupExcessiveNewlines, stripTemplateConfigComments, isFalsy, };
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:7:declare function populateTemplate(templateName: string, data: TemplateContext): Promise<string>;
-.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js:138:async function populateTemplate(templateName, data) {
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.d.ts:7:declare function populateTemplate(templateName: string, data: TemplateContext): Promise<string>;
+.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js:138:async function populateTemplate(templateName, data) {
 codex
 The sandbox blocks here-doc temp files, so I’m re-running those checks with inline `node -e` commands. That should still let me confirm whether comment stripping works in the compiled renderer without touching the filesystem.
 exec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const {stripTemplateConfigComments}=require('./.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js'); const sample=fs.readFileSync('./.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md','utf8'); const stripped=stripTemplateConfigComments(sample); console.log('orig_has_comment',/Constitutional Tier Promotion:/.test(sample)); console.log('stripped_has_comment',/Constitutional Tier Promotion:/.test(stripped)); console.log(stripped.split('\\n').slice(0,20).join('\\n'));\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "node -e \"const fs=require('fs'); const {stripTemplateConfigComments}=require('./.opencode/skill/system-spec-kit/scripts/dist/renderers/template-renderer.js'); const template=fs.readFileSync('./.opencode/skill/system-spec-kit/templates/context_template.md','utf8'); const stripped=stripTemplateConfigComments(template); console.log(stripped.split('\\n').slice(0,25).join('\\n'));\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "node -e \"const fs=require('fs'); const {stripTemplateConfigComments}=require('./.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js'); const sample=fs.readFileSync('./.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md','utf8'); const stripped=stripTemplateConfigComments(sample); console.log('orig_has_comment',/Constitutional Tier Promotion:/.test(sample)); console.log('stripped_has_comment',/Constitutional Tier Promotion:/.test(stripped)); console.log(stripped.split('\\n').slice(0,20).join('\\n'));\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "node -e \"const fs=require('fs'); const {stripTemplateConfigComments}=require('./.opencode/skills/system-spec-kit/scripts/dist/renderers/template-renderer.js'); const template=fs.readFileSync('./.opencode/skills/system-spec-kit/templates/context_template.md','utf8'); const stripped=stripTemplateConfigComments(template); console.log(stripped.split('\\n').slice(0,25).join('\\n'));\"" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 ---
 title: "{{MEMORY_DASHBOARD_TITLE}}"
 description: "Session context memory template for Spec Kit indexing."
@@ -1209,7 +1209,7 @@ contextType: "general"
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md | sed -n '553,575p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-ux-hooks-automation/memory/08-03-26_09-42__5-agent-codex-review-synthesis.md | sed -n '412,424p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/context_template.md | sed -n '650,662p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/context_template.md | sed -n '650,662p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    553	### Recovery Priority
    554	
    555	1. **Verify spec folder exists** - Check path is correct
@@ -1261,10 +1261,10 @@ exec
 codex
 I’m drilling into tree-thinning now because the rendered files keep surfacing pseudo-paths like `(merged-small-files)`. That’s a strong signal the reducer is preserving content but degrading the identifiers people actually search for later.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '580,650p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '580,650p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba .opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md | sed -n '740,747p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "nl -ba .opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md | sed -n '244,252p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"merged-small-files|thinFileInputs|effectiveFiles|mergedSummary|childPaths\" .opencode/skill/system-spec-kit/scripts/core/workflow.ts .opencode/skill/system-spec-kit/scripts -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "rg -n \"merged-small-files|thinFileInputs|effectiveFiles|mergedSummary|childPaths\" .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    580	    (collectedData?.observations || []) as Parameters<typeof generateImplementationSummary>[1]
    581	  );
    582	
@@ -1287,10 +1287,10 @@ exec
    599	  // Step 7.6: Tree thinning — pre-pipeline token reduction
  succeeded in 51ms:
    740	key_files:
-   741	  - ".opencode/skill/sk-improve-prompt/(merged-small-files)"
+   741	  - ".opencode/skills/sk-improve-prompt/(merged-small-files)"
    742	  - ".opencode/.../references/(merged-small-files)"
-   743	  - ".opencode/skill/(merged-small-files)"
-   744	  - ".opencode/command/create/(merged-small-files)"
+   743	  - ".opencode/skills/(merged-small-files)"
+   744	  - ".opencode/commands/create/(merged-small-files)"
    745	  - ".agents/commands/create/(merged-small-files)"
    746	  - ".opencode/changelog/13--sk-improve-prompt/(merged-small-files)"
    747	
@@ -1300,33 +1300,33 @@ exec
    246	| **File** | **Description** |
    247	|:---------|:----------------|
    248	| `.opencode/.../handlers/(merged-small-files)` | Tree-thinning merged 1 small files (sgqs-query.ts). sgqs-query.ts: Updated sgqs query |
-   249	| `.opencode/skill/system-spec-kit/mcp_server/handlers/(merged-small-files)` | Tree-thinning merged 1 small files (index.ts). index.ts: .opencode/skill/system-spec-kit/mcp_server/handlers/index.ts |
-   250	| `.opencode/skill/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (tool-schemas.ts). tool-schemas.ts: Updated tool schemas |
+   249	| `.opencode/skills/system-spec-kit/mcp_server/handlers/(merged-small-files)` | Tree-thinning merged 1 small files (index.ts). index.ts: .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts |
+   250	| `.opencode/skills/system-spec-kit/mcp_server/(merged-small-files)` | Tree-thinning merged 1 small files (tool-schemas.ts). tool-schemas.ts: Updated tool schemas |
    251	| `.opencode/.../tools/(merged-small-files)` | Tree-thinning merged 1 small files (causal-tools.ts). causal-tools.ts: Updated causal tools |
-   252	| `.opencode/skill/system-spec-kit/mcp_server/tools/(merged-small-files)` | Tree-thinning merged 1 small files (types.ts). types.ts: Edited via edit tool |
+   252	| `.opencode/skills/system-spec-kit/mcp_server/tools/(merged-small-files)` | Tree-thinning merged 1 small files (types.ts). types.ts: Edited via edit tool |
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:228:    const normalizedChildren = mergedGroup.childPaths.map(normalizeFilePath);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:265:      ? `${parentDir}/(merged-small-files)`
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:266:      : '(merged-small-files)';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:603:  const thinFileInputs: ThinningFileEntry[] = enhancedFiles.map((f) => ({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:608:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:609:  const fileRowsReduced = Math.max(0, enhancedFiles.length - effectiveFiles.length);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:654:  const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, effectiveFiles, specFolderName);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:655:  const keyFiles = effectiveFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:673:    effectiveFiles.forEach(f => {
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:697:    preExtractedTriggers = ensureMinTriggerPhrases(preExtractedTriggers, effectiveFiles, specFolderName);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:709:      FILES: effectiveFiles,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:710:      HAS_FILES: effectiveFiles.length > 0,
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:228:    const normalizedChildren = mergedGroup.childPaths.map(normalizeFilePath);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:265:      ? `${parentDir}/(merged-small-files)`
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:266:      : '(merged-small-files)';
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:603:  const thinFileInputs: ThinningFileEntry[] = enhancedFiles.map((f) => ({
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:608:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts:609:  const fileRowsReduced = Math.max(0, enhancedFiles.length - effectiveFiles.length);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:228:    const normalizedChildren = mergedGroup.childPaths.map(normalizeFilePath);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:265:      ? `${parentDir}/(merged-small-files)`
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:266:      : '(merged-small-files)';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:603:  const thinFileInputs: ThinningFileEntry[] = enhancedFiles.map((f) => ({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:608:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:609:  const fileRowsReduced = Math.max(0, enhancedFiles.length - effectiveFiles.length);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:654:  const keyTopics: string[] = ensureMinSemanticTopics(keyTopicsInitial, effectiveFiles, specFolderName);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:655:  const keyFiles = effectiveFiles.map((f) => ({ FILE_PATH: f.FILE_PATH }));
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:673:    effectiveFiles.forEach(f => {
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:697:    preExtractedTriggers = ensureMinTriggerPhrases(preExtractedTriggers, effectiveFiles, specFolderName);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:709:      FILES: effectiveFiles,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:710:      HAS_FILES: effectiveFiles.length > 0,
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:228:    const normalizedChildren = mergedGroup.childPaths.map(normalizeFilePath);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:265:      ? `${parentDir}/(merged-small-files)`
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:266:      : '(merged-small-files)';
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:603:  const thinFileInputs: ThinningFileEntry[] = enhancedFiles.map((f) => ({
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:607:  const thinningResult = applyTreeThinning(thinFileInputs);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:608:  const effectiveFiles = applyThinningToFileChanges(enhancedFiles, thinningResult);
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts:609:  const fileRowsReduced = Math.max(0, enhancedFiles.length - effectiveFiles.length);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '208,272p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '208,272p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    208	  for (const file of files) {
    209	    originalByPath.set(normalizeFilePath(file.FILE_PATH), file);
    210	  }
@@ -1408,27 +1408,27 @@ exec
 {"caused_by"=>[], "supersedes"=>[], "derived_from"=>[], "blocks"=>[], "related_to"=>[]}
 codex
 ### FINDING-01: Tree-Thinning Is Driven by Descriptions, Not Real File Content
-- **File:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L603), [workflow.ts:607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L607), [tree-thinning.ts:117](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts#L117), [gpt-5-4-agent-model-upgrade.md:248](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L248)
+- **File:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L603), [workflow.ts:607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L607), [tree-thinning.ts:117](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts#L117), [gpt-5-4-agent-model-upgrade.md:248](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L248)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** The workflow passes `DESCRIPTION` text into thinning, so many files look “tiny” and get collapsed into synthetic paths like `(merged-small-files)`. I found this artifact in 53 memory files, and it degrades both overview tables and `key_files`.
 - **Expected Behavior:** Thinning should evaluate actual file content, or stay retrieval-only, while rendered memories preserve real file paths.
-- **Root Cause:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L603) feeds `DESCRIPTION` into a reducer that was designed to preserve full child content summaries; later [workflow.ts:265](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L265) manufactures synthetic carrier paths.
+- **Root Cause:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L603) feeds `DESCRIPTION` into a reducer that was designed to preserve full child content summaries; later [workflow.ts:265](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L265) manufactures synthetic carrier paths.
 - **Suggested Fix:** Feed real file contents or size metadata into thinning, and keep the original `FILES`/`KEY_FILES` for rendered output. If merging is needed for retrieval, store it in a separate retrieval-only structure.
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: Workflow Visualization Is Dead Code
-- **File:** [workflow.ts:536](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L536), [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L537), [context_template.md:393](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L393)
+- **File:** [workflow.ts:536](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L536), [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L537), [context_template.md:393](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L393)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** The pipeline computes `WORKFLOW_FLOWCHART`, `PATTERN_TYPE`, `PHASES`, `FEATURES`, and `USE_CASES`, but hardcodes `HAS_WORKFLOW_DIAGRAM: false`. Corpus scan: `0/395` memory files render `WORKFLOW VISUALIZATION`.
 - **Expected Behavior:** Render the section when the flowchart exists, or stop computing the payload.
-- **Root Cause:** The render gate is permanently disabled in [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L537).
+- **Root Cause:** The render gate is permanently disabled in [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L537).
 - **Suggested Fix:** Set `HAS_WORKFLOW_DIAGRAM` from actual content, e.g. `phaseDetails.length > 0 && WORKFLOW_FLOWCHART.trim().length > 0`.
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Partial Prefight Data Produces Broken Metrics
-- **File:** [collect-session-data.ts:201](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L201), [collect-session-data.ts:226](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L226), [context_template.md:148](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L148), [gpt-5-4-agent-model-upgrade.md:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L68)
+- **File:** [collect-session-data.ts:201](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L201), [collect-session-data.ts:226](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L226), [context_template.md:148](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L148), [gpt-5-4-agent-model-upgrade.md:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L68)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If any preflight field exists, the section renders even when numeric fields are null, producing lines like `| Knowledge Score | /100 |  |` and `Confidence: %`. I found this in 97 memory files.
@@ -1438,17 +1438,17 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Unimplemented V2.2 Sections Render Blank Scaffolding
-- **File:** [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L29), [context_template.md:658](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L658), [context_template.md:735](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L735), [initial-creation.md:565](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L565), [initial-creation.md:632](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L632)
+- **File:** [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L29), [context_template.md:658](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L658), [context_template.md:735](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L735), [initial-creation.md:565](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L565), [initial-creation.md:632](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L632)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Session-integrity rows render with empty cells, and YAML blocks render empty strings, null scalars, and blank-line-heavy `[]` stubs for memory classification, dedup, and causal links. I found blank integrity rows in 181 files.
 - **Expected Behavior:** Unimplemented sections should be omitted cleanly or filled with explicit defaults.
-- **Root Cause:** These placeholders are whitelisted in [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L29), so missing data is silently accepted, and the template always emits the surrounding structure.
+- **Root Cause:** These placeholders are whitelisted in [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L29), so missing data is silently accepted, and the template always emits the surrounding structure.
 - **Suggested Fix:** Wrap unfinished V2.2 groups in `HAS_*` guards, or populate explicit defaults like `unknown`, `0`, or `[]` in a compact form.
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: `Key Topics` Always Ends With a Trailing Separator
-- **File:** [context_template.md:271](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L271), [template-renderer.ts:105](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L105), [workflow.ts:653](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L653), [initial-creation.md:186](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L186)
+- **File:** [context_template.md:271](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L271), [template-renderer.ts:105](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L105), [workflow.ts:653](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L653), [initial-creation.md:186](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L186)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** The template relies on `{{^LAST}}`, but `TOPICS` is passed as a string array, and the renderer only injects `ITEM`/`.` for primitive loop items. Result: trailing ` | ` in `305` memory files.
@@ -1458,7 +1458,7 @@ codex
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Raw Embedded Markdown Breaks Heading Hierarchy
-- **File:** [context_template.md:363](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L363), [context_template.md:574](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L574), [gpt-5-4-agent-model-upgrade.md:266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L266), [contact-form-bot-submission-investigation.md:598](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/00--anobel.com/034-form-bot-problem/memory/07-03-26_11-31__contact-form-bot-submission-investigation.md#L598)
+- **File:** [context_template.md:363](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L363), [context_template.md:574](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L574), [gpt-5-4-agent-model-upgrade.md:266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L266), [contact-form-bot-submission-investigation.md:598](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/00--anobel.com/034-form-bot-problem/memory/07-03-26_11-31__contact-form-bot-submission-investigation.md#L598)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Observation narratives and message bodies are injected verbatim. When source text contains headings, the rendered memory gets nested `###` headings inside existing `###` sections, which corrupts hierarchy and TOC semantics.
@@ -1468,7 +1468,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Template Configuration Comments Still Leak Into Real Outputs
-- **File:** [template-renderer.ts:63](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L63), [file-writer.ts:65](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L65), [validation-utils.ts:8](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts#L8), [gpt-5-4-agent-model-upgrade.md:11](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L11)
+- **File:** [template-renderer.ts:63](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L63), [file-writer.ts:65](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L65), [validation-utils.ts:8](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts#L8), [gpt-5-4-agent-model-upgrade.md:11](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L11)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `264` memory files still contain template-config comments like `Constitutional Tier Promotion`, even though the current strip helper removes them when run. Writer validation does not flag this class of artifact.
@@ -1478,7 +1478,7 @@ codex
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: The Workflow Assembles Fields the Template Never Uses
-- **File:** [workflow.ts:713](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L713), [workflow.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L725)
+- **File:** [workflow.ts:713](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L713), [workflow.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L725)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** The render payload includes `HIGH_CONFIDENCE_COUNT`, `MEDIUM_CONFIDENCE_COUNT`, `LOW_CONFIDENCE_COUNT`, `AUTO_CONVERSATION_FLOWCHART`, `AUTO_DECISION_TREES`, `DIAGRAMS`, `IMPLEMENTATION_SUMMARY`, and multiple `IMPL_*` fields, but the template never renders them.
@@ -1495,27 +1495,27 @@ codex
 tokens used
 407,489
 ### FINDING-01: Tree-Thinning Is Driven by Descriptions, Not Real File Content
-- **File:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L603), [workflow.ts:607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L607), [tree-thinning.ts:117](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/tree-thinning.ts#L117), [gpt-5-4-agent-model-upgrade.md:248](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L248)
+- **File:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L603), [workflow.ts:607](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L607), [tree-thinning.ts:117](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts#L117), [gpt-5-4-agent-model-upgrade.md:248](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L248)
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** The workflow passes `DESCRIPTION` text into thinning, so many files look “tiny” and get collapsed into synthetic paths like `(merged-small-files)`. I found this artifact in 53 memory files, and it degrades both overview tables and `key_files`.
 - **Expected Behavior:** Thinning should evaluate actual file content, or stay retrieval-only, while rendered memories preserve real file paths.
-- **Root Cause:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L603) feeds `DESCRIPTION` into a reducer that was designed to preserve full child content summaries; later [workflow.ts:265](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L265) manufactures synthetic carrier paths.
+- **Root Cause:** [workflow.ts:603](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L603) feeds `DESCRIPTION` into a reducer that was designed to preserve full child content summaries; later [workflow.ts:265](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L265) manufactures synthetic carrier paths.
 - **Suggested Fix:** Feed real file contents or size metadata into thinning, and keep the original `FILES`/`KEY_FILES` for rendered output. If merging is needed for retrieval, store it in a separate retrieval-only structure.
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-02: Workflow Visualization Is Dead Code
-- **File:** [workflow.ts:536](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L536), [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L537), [context_template.md:393](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L393)
+- **File:** [workflow.ts:536](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L536), [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L537), [context_template.md:393](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L393)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** The pipeline computes `WORKFLOW_FLOWCHART`, `PATTERN_TYPE`, `PHASES`, `FEATURES`, and `USE_CASES`, but hardcodes `HAS_WORKFLOW_DIAGRAM: false`. Corpus scan: `0/395` memory files render `WORKFLOW VISUALIZATION`.
 - **Expected Behavior:** Render the section when the flowchart exists, or stop computing the payload.
-- **Root Cause:** The render gate is permanently disabled in [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L537).
+- **Root Cause:** The render gate is permanently disabled in [workflow.ts:537](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L537).
 - **Suggested Fix:** Set `HAS_WORKFLOW_DIAGRAM` from actual content, e.g. `phaseDetails.length > 0 && WORKFLOW_FLOWCHART.trim().length > 0`.
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-03: Partial Prefight Data Produces Broken Metrics
-- **File:** [collect-session-data.ts:201](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L201), [collect-session-data.ts:226](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts#L226), [context_template.md:148](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L148), [gpt-5-4-agent-model-upgrade.md:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L68)
+- **File:** [collect-session-data.ts:201](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L201), [collect-session-data.ts:226](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts#L226), [context_template.md:148](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L148), [gpt-5-4-agent-model-upgrade.md:68](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L68)
 - **Severity:** MEDIUM
 - **Category:** BUG
 - **Current Behavior:** If any preflight field exists, the section renders even when numeric fields are null, producing lines like `| Knowledge Score | /100 |  |` and `Confidence: %`. I found this in 97 memory files.
@@ -1525,17 +1525,17 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Unimplemented V2.2 Sections Render Blank Scaffolding
-- **File:** [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L29), [context_template.md:658](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L658), [context_template.md:735](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L735), [initial-creation.md:565](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L565), [initial-creation.md:632](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L632)
+- **File:** [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L29), [context_template.md:658](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L658), [context_template.md:735](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L735), [initial-creation.md:565](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L565), [initial-creation.md:632](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L632)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Session-integrity rows render with empty cells, and YAML blocks render empty strings, null scalars, and blank-line-heavy `[]` stubs for memory classification, dedup, and causal links. I found blank integrity rows in 181 files.
 - **Expected Behavior:** Unimplemented sections should be omitted cleanly or filled with explicit defaults.
-- **Root Cause:** These placeholders are whitelisted in [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L29), so missing data is silently accepted, and the template always emits the surrounding structure.
+- **Root Cause:** These placeholders are whitelisted in [template-renderer.ts:29](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L29), so missing data is silently accepted, and the template always emits the surrounding structure.
 - **Suggested Fix:** Wrap unfinished V2.2 groups in `HAS_*` guards, or populate explicit defaults like `unknown`, `0`, or `[]` in a compact form.
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-05: `Key Topics` Always Ends With a Trailing Separator
-- **File:** [context_template.md:271](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L271), [template-renderer.ts:105](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L105), [workflow.ts:653](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L653), [initial-creation.md:186](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L186)
+- **File:** [context_template.md:271](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L271), [template-renderer.ts:105](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L105), [workflow.ts:653](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L653), [initial-creation.md:186](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/03--commands-and-skills/003-prompt-initial-creation/memory/04-03-26_09-15__initial-creation.md#L186)
 - **Severity:** LOW
 - **Category:** BUG
 - **Current Behavior:** The template relies on `{{^LAST}}`, but `TOPICS` is passed as a string array, and the renderer only injects `ITEM`/`.` for primitive loop items. Result: trailing ` | ` in `305` memory files.
@@ -1545,7 +1545,7 @@ tokens used
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Raw Embedded Markdown Breaks Heading Hierarchy
-- **File:** [context_template.md:363](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L363), [context_template.md:574](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/context_template.md#L574), [gpt-5-4-agent-model-upgrade.md:266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L266), [contact-form-bot-submission-investigation.md:598](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/00--anobel.com/034-form-bot-problem/memory/07-03-26_11-31__contact-form-bot-submission-investigation.md#L598)
+- **File:** [context_template.md:363](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L363), [context_template.md:574](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/context_template.md#L574), [gpt-5-4-agent-model-upgrade.md:266](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L266), [contact-form-bot-submission-investigation.md:598](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/00--anobel.com/034-form-bot-problem/memory/07-03-26_11-31__contact-form-bot-submission-investigation.md#L598)
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Observation narratives and message bodies are injected verbatim. When source text contains headings, the rendered memory gets nested `###` headings inside existing `###` sections, which corrupts hierarchy and TOC semantics.
@@ -1555,7 +1555,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-07: Template Configuration Comments Still Leak Into Real Outputs
-- **File:** [template-renderer.ts:63](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts#L63), [file-writer.ts:65](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/file-writer.ts#L65), [validation-utils.ts:8](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/utils/validation-utils.ts#L8), [gpt-5-4-agent-model-upgrade.md:11](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L11)
+- **File:** [template-renderer.ts:63](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts#L63), [file-writer.ts:65](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts#L65), [validation-utils.ts:8](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts#L8), [gpt-5-4-agent-model-upgrade.md:11](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/specs/04--agent-orchestration/027-copilot-gpt-5-4-agents/memory/06-03-26_08-22__gpt-5-4-agent-model-upgrade.md#L11)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `264` memory files still contain template-config comments like `Constitutional Tier Promotion`, even though the current strip helper removes them when run. Writer validation does not flag this class of artifact.
@@ -1565,7 +1565,7 @@ tokens used
 - **Effort:** MEDIUM (<2 hr)
 
 ### FINDING-08: The Workflow Assembles Fields the Template Never Uses
-- **File:** [workflow.ts:713](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L713), [workflow.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts#L725)
+- **File:** [workflow.ts:713](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L713), [workflow.ts:725](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts#L725)
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** The render payload includes `HIGH_CONFIDENCE_COUNT`, `MEDIUM_CONFIDENCE_COUNT`, `LOW_CONFIDENCE_COUNT`, `AUTO_CONVERSATION_FLOWCHART`, `AUTO_DECISION_TREES`, `DIAGRAMS`, `IMPLEMENTATION_SUMMARY`, and multiple `IMPL_*` fields, but the template never renders them.

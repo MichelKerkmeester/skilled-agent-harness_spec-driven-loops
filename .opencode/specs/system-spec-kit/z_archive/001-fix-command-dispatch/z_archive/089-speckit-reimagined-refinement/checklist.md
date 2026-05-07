@@ -116,13 +116,13 @@ spec: "089"
 ## Verification Gates
 
 ### Pre-Merge Verification
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` passes (exit 0)
-- [ ] MCP server starts without errors: `node .opencode/skill/system-spec-kit/mcp_server/index.js`
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` passes (exit 0)
+- [ ] MCP server starts without errors: `node .opencode/skills/system-spec-kit/mcp_server/index.js`
 - [ ] No broken markdown links in modified files (manual spot-check of 5+ files)
 - [ ] Git diff shows only intended changes (no accidental modifications)
 
 ### Post-Merge Verification
 - [ ] memory_search() returns results (MCP server functional)
 - [ ] memory_save() succeeds (LIKE injection fix doesn't break normal queries)
-- [ ] Spec folder creation works: `bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 3+ test-verify`
+- [ ] Spec folder creation works: `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3+ test-verify`
 - [ ] Content filtering works with fixed path resolution

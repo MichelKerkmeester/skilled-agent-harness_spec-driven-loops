@@ -1,7 +1,7 @@
 # Existing Tests Audit
 
 **Generated:** 2026-02-01
-**Location:** `.opencode/skill/system-spec-kit/mcp_server/tests/`
+**Location:** `.opencode/skills/system-spec-kit/mcp_server/tests/`
 
 ---
 
@@ -502,7 +502,7 @@ The following modules in `/lib/` do not have dedicated `.test.js` files:
 
 ```bash
 # Run all tests
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 node tests/tier-classifier.test.js
 node tests/five-factor-scoring.test.js
 # ... etc

@@ -4,9 +4,9 @@
 Reviewed the TypeScript strictness baseline and the hook-surface files’ indexing patterns to look for late-pass maintainability defects tied to unchecked access or convenience re-exports.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/tsconfig.json:2-14` and `mcp_server/tsconfig.json:2-16` -> the package compiles in `strict: true` and the mcp_server config inherits that strict baseline.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:72-86` -> renderer uses destructuring plus null guards instead of `.at()` or unchecked optional indexing.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:119-127` -> skill slug enumeration sorts explicit strings and does not rely on unchecked array tail access.
+- `.opencode/skills/system-spec-kit/tsconfig.json:2-14` and `mcp_server/tsconfig.json:2-16` -> the package compiles in `strict: true` and the mcp_server config inherits that strict baseline.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/render.ts:72-86` -> renderer uses destructuring plus null guards instead of `.at()` or unchecked optional indexing.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:119-127` -> skill slug enumeration sorts explicit strings and does not rely on unchecked array tail access.
 
 ## Findings
 

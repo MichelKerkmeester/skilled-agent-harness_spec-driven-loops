@@ -239,9 +239,9 @@ Backward compatibility was preserved by migrating legacy data before the stricte
 
 | Area | Changes |
 | ---- | ------- |
-| `.opencode/skill/system-spec-kit/shared/` | Native ESM migration across 20 files with 48 import and export rewrites |
-| `.opencode/skill/system-spec-kit/mcp_server/` | Native ESM migration across 181 files with 839 import rewrites plus `require()` and path cleanup |
-| `.opencode/skill/system-spec-kit/scripts/` | CommonJS interop boundary retained, Node 25 `require(esm)` path proven, memory-save pipeline hardened |
+| `.opencode/skills/system-spec-kit/shared/` | Native ESM migration across 20 files with 48 import and export rewrites |
+| `.opencode/skills/system-spec-kit/mcp_server/` | Native ESM migration across 181 files with 839 import rewrites plus `require()` and path cleanup |
+| `.opencode/skills/system-spec-kit/scripts/` | CommonJS interop boundary retained, Node 25 `require(esm)` path proven, memory-save pipeline hardened |
 | `023-hybrid-rag-fusion-refinement/006-review-remediation/` | 18 deep-review findings remediated across correctness, security, reliability, maintainability, and performance |
 | `023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/` | Zero-result search failure fixed by removing two silent filters |
 | `023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit/` | 2,081 frontmatter fixes, 4,291 anchors added, 46 bad memory files removed, database rebuilt |

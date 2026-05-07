@@ -6,6 +6,6 @@ CS-003,"I'm writing a TypeScript .opencode/ tool that includes a small preview U
 SD-001,"I'm building a Webflow site with motion.dev and Lenis for smooth scroll. Help me set up the JS imports for a hero animation.","gemini,opencode"
 CB-002,"What CWV (LCP/CLS/INP) thresholds should I check when my Webflow page has multiple motion.dev animations on the hero?","gemini,opencode"
 SA-001,"Help me set up a motion.dev hero animation in my Webflow project — should I use motion.dev or pure CSS for a simple opacity fade?","gemini,opencode"
-LS-001,"Update the .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.ts entry point to add a new CLI flag for dry-run mode.","codex"
+LS-001,"Update the .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.ts entry point to add a new CLI flag for dry-run mode.","codex"
 CS-004,"Should I use motion.dev or pure CSS for a simple hover state animation on my Webflow site?","codex"
 CS-005,"Show me a runnable motion.dev animate-on-scroll example I can drop into any stack. I'll adapt the variable naming for my stack.","codex"

@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -54,17 +54,17 @@ The deep-review and deep-research auto + confirm YAMLs gained a `step_stage_arti
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Modified | Rewrote `resolveArtifactRoot` for flat-first behavior |
-| `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Modified | Updated 2 cases + added 3 new cases for flat-first scenarios |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Added `step_stage_artifact_dir` |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Added `step_stage_artifact_dir` |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Added `step_stage_artifact_dir` |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Added `step_stage_artifact_dir` |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modified | Flat-first prose update |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modified | Flat-first prose update |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Modified | Flat-first prose update |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Modified | Flat-first prose update |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | Modified | Flat-first prose update |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Modified | Rewrote `resolveArtifactRoot` for flat-first behavior |
+| `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Modified | Updated 2 cases + added 3 new cases for flat-first scenarios |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modified | Added `step_stage_artifact_dir` |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modified | Added `step_stage_artifact_dir` |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modified | Added `step_stage_artifact_dir` |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modified | Added `step_stage_artifact_dir` |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Flat-first prose update |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modified | Flat-first prose update |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Modified | Flat-first prose update |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Modified | Flat-first prose update |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Modified | Flat-first prose update |
 <!-- /ANCHOR:what-built -->
 
 ---

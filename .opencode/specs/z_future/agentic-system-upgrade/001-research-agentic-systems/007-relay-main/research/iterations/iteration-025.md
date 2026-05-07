@@ -12,8 +12,8 @@ Relay's workflows are cleaner at the operator surface, but Public's single-itera
 Compared Public's `@deep-research` and `@deep-review` contracts with Relay's workflow runner, builder resume features, and workflow lifecycle controls.
 
 ## Evidence
-- `@deep-research` executes one iteration at a time, reads JSONL and strategy files, writes `iteration-NNN.md`, appends JSONL, and progressively updates `research/research.md`. [SOURCE: .opencode/agent/deep-research.md:22-60] [SOURCE: .opencode/agent/deep-research.md:121-213]
-- `@deep-review` mirrors that structure for review work, including state files, one-dimension focus, and append-only iteration logging. [SOURCE: .opencode/agent/deep-review.md:21-57] [SOURCE: .opencode/agent/deep-review.md:61-144]
+- `@deep-research` executes one iteration at a time, reads JSONL and strategy files, writes `iteration-NNN.md`, appends JSONL, and progressively updates `research/research.md`. [SOURCE: .opencode/agents/deep-research.md:22-60] [SOURCE: .opencode/agents/deep-research.md:121-213]
+- `@deep-review` mirrors that structure for review work, including state files, one-dimension focus, and append-only iteration logging. [SOURCE: .opencode/agents/deep-review.md:21-57] [SOURCE: .opencode/agents/deep-review.md:61-144]
 - Relay also keeps durable run state and explicit recovery hooks rather than relying on pure in-memory continuity: the workflow runner supports `pause`, `unpause`, `abort`, and `resume`, while the builder exposes `startFrom()` and `previousRunId()`. [SOURCE: external/packages/sdk/src/workflows/README.md:524-551] [SOURCE: external/packages/sdk/src/workflows/builder.ts:224-239]
 - Relay's coordinator persists workflow lifecycle state and step records in a workflow run store. [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:1-7] [SOURCE: external/packages/sdk/src/workflows/coordinator.ts:33-43]
 

@@ -11,11 +11,11 @@
 
 Capture these metrics BEFORE making any changes:
 
-- [ ] Record current CLI startup time: `time node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js'); console.log('loaded')"`
-- [ ] Record current MCP server startup time: `time node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server'); console.log('loaded')"`
-- [ ] Run validation test suite: `bash .opencode/skill/system-spec-kit/scripts/test-validation.sh`
-- [ ] Run embeddings factory test: `node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js`
-- [ ] Count modules loaded by generate-context.js: `node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js'); console.log(Object.keys(require.cache).length + ' modules')"`
+- [ ] Record current CLI startup time: `time node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js'); console.log('loaded')"`
+- [ ] Record current MCP server startup time: `time node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server'); console.log('loaded')"`
+- [ ] Run validation test suite: `bash .opencode/skills/system-spec-kit/scripts/test-validation.sh`
+- [ ] Run embeddings factory test: `node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js`
+- [ ] Count modules loaded by generate-context.js: `node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js'); console.log(Object.keys(require.cache).length + ' modules')"`
 
 ### Baseline Results (fill before migration)
 
@@ -36,7 +36,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `generateEmbedding()` returns Float32Array for valid text
   ```bash
   node -e "
-    const { generateEmbedding } = require('./.opencode/skill/system-spec-kit/shared/embeddings');
+    const { generateEmbedding } = require('./.opencode/skills/system-spec-kit/shared/embeddings');
     generateEmbedding('test input').then(r => console.log('generateEmbedding:', r instanceof Float32Array ? 'PASS' : 'FAIL'));
   "
   ```
@@ -44,7 +44,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `generateDocumentEmbedding()` returns embedding for document text
   ```bash
   node -e "
-    const { generateDocumentEmbedding } = require('./.opencode/skill/system-spec-kit/shared/embeddings');
+    const { generateDocumentEmbedding } = require('./.opencode/skills/system-spec-kit/shared/embeddings');
     generateDocumentEmbedding('This is a test document about JavaScript and Node.js development.').then(r => console.log('generateDocumentEmbedding:', r ? 'PASS' : 'FAIL'));
   "
   ```
@@ -52,7 +52,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `generateQueryEmbedding()` returns embedding for search query
   ```bash
   node -e "
-    const { generateQueryEmbedding } = require('./.opencode/skill/system-spec-kit/shared/embeddings');
+    const { generateQueryEmbedding } = require('./.opencode/skills/system-spec-kit/shared/embeddings');
     generateQueryEmbedding('How do I save context?').then(r => console.log('generateQueryEmbedding:', r ? 'PASS' : 'FAIL'));
   "
   ```
@@ -60,7 +60,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `getEmbeddingDimension()` returns expected dimension (768)
   ```bash
   node -e "
-    const { getEmbeddingDimension } = require('./.opencode/skill/system-spec-kit/shared/embeddings');
+    const { getEmbeddingDimension } = require('./.opencode/skills/system-spec-kit/shared/embeddings');
     const dim = getEmbeddingDimension();
     console.log('getEmbeddingDimension:', dim === 768 ? 'PASS' : 'FAIL (got ' + dim + ')');
   "
@@ -69,7 +69,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `semanticChunk()` truncates long text correctly
   ```bash
   node -e "
-    const { semanticChunk } = require('./.opencode/skill/system-spec-kit/shared/embeddings');
+    const { semanticChunk } = require('./.opencode/skills/system-spec-kit/shared/embeddings');
     const longText = 'x'.repeat(10000);
     const chunked = semanticChunk(longText, 1000);
     console.log('semanticChunk:', chunked.length <= 1000 ? 'PASS' : 'FAIL');
@@ -81,7 +81,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `extractTriggerPhrases()` returns array of phrases
   ```bash
   node -e "
-    const { extractTriggerPhrases } = require('./.opencode/skill/system-spec-kit/shared/trigger-extractor');
+    const { extractTriggerPhrases } = require('./.opencode/skills/system-spec-kit/shared/trigger-extractor');
     const content = 'Implemented the memory search feature with vector embeddings. Fixed the timeout bug in retry logic.';
     const phrases = extractTriggerPhrases(content);
     console.log('extractTriggerPhrases:', Array.isArray(phrases) && phrases.length > 0 ? 'PASS (' + phrases.length + ' phrases)' : 'FAIL');
@@ -91,7 +91,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `extractTriggerPhrasesWithStats()` returns stats object
   ```bash
   node -e "
-    const { extractTriggerPhrasesWithStats } = require('./.opencode/skill/system-spec-kit/shared/trigger-extractor');
+    const { extractTriggerPhrasesWithStats } = require('./.opencode/skills/system-spec-kit/shared/trigger-extractor');
     const content = 'Decided to use nomic embeddings for better performance. Implemented retry with exponential backoff.';
     const result = extractTriggerPhrasesWithStats(content);
     console.log('extractTriggerPhrasesWithStats:', result.stats && result.phrases ? 'PASS' : 'FAIL');
@@ -102,7 +102,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `removeMarkdown()` strips markdown formatting
   ```bash
   node -e "
-    const { removeMarkdown } = require('./.opencode/skill/system-spec-kit/shared/trigger-extractor');
+    const { removeMarkdown } = require('./.opencode/skills/system-spec-kit/shared/trigger-extractor');
     const md = '## Header\n**bold** and \`code\`';
     const clean = removeMarkdown(md);
     console.log('removeMarkdown:', !clean.includes('#') && !clean.includes('*') ? 'PASS' : 'FAIL');
@@ -112,7 +112,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `extractProblemTerms()` detects error/issue patterns
   ```bash
   node -e "
-    const { extractProblemTerms } = require('./.opencode/skill/system-spec-kit/shared/trigger-extractor');
+    const { extractProblemTerms } = require('./.opencode/skills/system-spec-kit/shared/trigger-extractor');
     const text = 'Fixed the short output bug and resolved missing data issue';
     const terms = extractProblemTerms(text);
     console.log('extractProblemTerms:', terms.length > 0 ? 'PASS (' + terms.map(t=>t.phrase).join(', ') + ')' : 'FAIL');
@@ -122,7 +122,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: `extractTechnicalTerms()` detects camelCase/snake_case
   ```bash
   node -e "
-    const { extractTechnicalTerms } = require('./.opencode/skill/system-spec-kit/shared/trigger-extractor');
+    const { extractTechnicalTerms } = require('./.opencode/skills/system-spec-kit/shared/trigger-extractor');
     const text = 'Called generateContext and used memory_search function';
     const terms = extractTechnicalTerms(text);
     console.log('extractTechnicalTerms:', terms.length > 0 ? 'PASS (' + terms.map(t=>t.phrase).join(', ') + ')' : 'FAIL');
@@ -135,7 +135,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   node -e "
     const path = require('path');
-    const retryUtils = require('./.opencode/skill/system-spec-kit/shared/retry-utils');
+    const retryUtils = require('./.opencode/skills/system-spec-kit/shared/retry-utils');
     const cache = Object.keys(require.cache);
     const hasVectorIndex = cache.some(k => k.includes('vector-index'));
     console.log('retry-utils loads:', retryUtils ? 'PASS' : 'FAIL');
@@ -151,26 +151,26 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: `--help` flag works
   ```bash
-  node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+  node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
   # Expected: Shows usage information, exit 0
   ```
 
 - [ ] Test: Runs with real spec folder (simulation mode)
   ```bash
-  node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation
+  node .opencode/skills/system-spec-kit/scripts/generate-context.js .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation
   # Expected: Creates memory file or shows simulation warning
   ```
 
 - [ ] Test: Handles invalid spec folder gracefully
   ```bash
-  node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/invalid-folder-that-does-not-exist/ 2>&1
+  node .opencode/skills/system-spec-kit/scripts/generate-context.js specs/invalid-folder-that-does-not-exist/ 2>&1
   # Expected: Error message, non-zero exit
   ```
 
 - [ ] Test: JSON input mode works
   ```bash
   echo '{"specFolder":".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation","sessionSummary":"Test summary"}' > /tmp/test-context.json
-  node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/test-context.json
+  node .opencode/skills/system-spec-kit/scripts/generate-context.js /tmp/test-context.json
   rm /tmp/test-context.json
   # Expected: Processes JSON, creates/updates memory
   ```
@@ -180,7 +180,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: MCP server starts without error
   ```bash
   timeout 5 node -e "
-    const server = require('./.opencode/skill/system-spec-kit/mcp_server/context-server');
+    const server = require('./.opencode/skills/system-spec-kit/mcp_server/context-server');
     console.log('MCP server loaded: PASS');
     process.exit(0);
   " 2>&1 || echo "FAIL or timeout"
@@ -190,7 +190,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   # Via OpenCode MCP tool (if available) or direct function test
   node -e "
-    const vectorIndex = require('./.opencode/skill/system-spec-kit/mcp_server/shared/vector-index');
+    const vectorIndex = require('./.opencode/skills/system-spec-kit/mcp_server/shared/vector-index');
     vectorIndex.initializeDb();
     const health = vectorIndex.getHealth ? vectorIndex.getHealth() : 'function not found';
     console.log('memory_health:', health ? 'PASS' : 'FAIL');
@@ -201,8 +201,8 @@ Capture these metrics BEFORE making any changes:
   ```bash
   # Test basic search functionality
   node -e "
-    const hybridSearch = require('./.opencode/skill/system-spec-kit/mcp_server/shared/hybrid-search');
-    const vectorIndex = require('./.opencode/skill/system-spec-kit/mcp_server/shared/vector-index');
+    const hybridSearch = require('./.opencode/skills/system-spec-kit/mcp_server/shared/hybrid-search');
+    const vectorIndex = require('./.opencode/skills/system-spec-kit/mcp_server/shared/vector-index');
     vectorIndex.initializeDb();
     // Just verify it loads without crashing
     console.log('memory_search module:', hybridSearch ? 'PASS' : 'FAIL');
@@ -213,7 +213,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   # Create test memory and verify indexing
   echo '{"specFolder":".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation","sessionSummary":"Verification test run","triggerPhrases":["lib consolidation","verification test"]}' > /tmp/verify-save.json
-  node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/verify-save.json
+  node .opencode/skills/system-spec-kit/scripts/generate-context.js /tmp/verify-save.json
   rm /tmp/verify-save.json
   # Check if memory file was created in spec folder's memory/ directory
   ls -la .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/memory/ 2>/dev/null || echo "No memory folder yet"
@@ -227,7 +227,7 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: Check for circular dependencies with madge
   ```bash
-  npx madge --circular .opencode/skill/system-spec-kit/ 2>/dev/null || echo "madge not installed - skip"
+  npx madge --circular .opencode/skills/system-spec-kit/ 2>/dev/null || echo "madge not installed - skip"
   # Expected: No circular dependencies found
   ```
 
@@ -235,13 +235,13 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: No scripts/ importing from mcp_server/shared/ (except allowed)
   ```bash
-  grep -rn "require.*mcp_server/lib" .opencode/skill/system-spec-kit/scripts/ 2>/dev/null | grep -v "vector-index" || echo "PASS: No invalid cross-imports"
+  grep -rn "require.*mcp_server/lib" .opencode/skills/system-spec-kit/scripts/ 2>/dev/null | grep -v "vector-index" || echo "PASS: No invalid cross-imports"
   # Note: vector-index.js import is allowed (MCP-specific, stays in mcp_server)
   ```
 
 - [ ] Test: No mcp_server/ importing from scripts/shared/
   ```bash
-  grep -rn "require.*scripts/lib" .opencode/skill/system-spec-kit/mcp_server/ 2>/dev/null || echo "PASS: No cross-imports from scripts/lib"
+  grep -rn "require.*scripts/lib" .opencode/skills/system-spec-kit/mcp_server/ 2>/dev/null || echo "PASS: No cross-imports from scripts/lib"
   ```
 
 ### All Imports Resolve
@@ -250,7 +250,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   node -e "
     try {
-      require('./.opencode/skill/system-spec-kit/scripts/generate-context.js');
+      require('./.opencode/skills/system-spec-kit/scripts/generate-context.js');
       console.log('scripts/generate-context.js: PASS');
     } catch (e) { console.log('FAIL:', e.message); }
   "
@@ -260,7 +260,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   node -e "
     try {
-      require('./.opencode/skill/system-spec-kit/mcp_server/context-server.js');
+      require('./.opencode/skills/system-spec-kit/mcp_server/context-server.js');
       console.log('mcp_server/context-server.js: PASS');
     } catch (e) { console.log('FAIL:', e.message); }
   "
@@ -270,7 +270,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   node -e "
     const path = require('path');
-    const libPath = './.opencode/skill/system-spec-kit/lib';
+    const libPath = './.opencode/skills/system-spec-kit/lib';
     const modules = ['embeddings', 'trigger-extractor', 'retry-utils'];
     for (const mod of modules) {
       try {
@@ -289,8 +289,8 @@ Capture these metrics BEFORE making any changes:
     process.on('uncaughtException', (e) => {
       if (e.code === 'MODULE_NOT_FOUND') console.log('MODULE_NOT_FOUND:', e.message);
     });
-    require('./.opencode/skill/system-spec-kit/scripts/generate-context.js');
-    require('./.opencode/skill/system-spec-kit/mcp_server/context-server.js');
+    require('./.opencode/skills/system-spec-kit/scripts/generate-context.js');
+    require('./.opencode/skills/system-spec-kit/mcp_server/context-server.js');
     console.log('All modules loaded: PASS');
   "
   ```
@@ -303,7 +303,7 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: Run full validation test suite
   ```bash
-  bash .opencode/skill/system-spec-kit/scripts/test-validation.sh
+  bash .opencode/skills/system-spec-kit/scripts/test-validation.sh
   # Expected: Same pass/fail count as baseline
   ```
 
@@ -311,7 +311,7 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: Run embeddings factory test
   ```bash
-  node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js
+  node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js
   # Expected: ALL TESTS PASSED
   ```
 
@@ -319,7 +319,7 @@ Capture these metrics BEFORE making any changes:
 
 - [ ] Test: Validation fixtures still work
   ```bash
-  bash .opencode/skill/system-spec-kit/scripts/test-validation.sh -c positive
+  bash .opencode/skills/system-spec-kit/scripts/test-validation.sh -c positive
   # Expected: All positive tests pass
   ```
 
@@ -333,7 +333,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   # Run 3 times, take average
   for i in 1 2 3; do
-    time node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js')" 2>&1
+    time node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js')" 2>&1
   done
   # Expected: Same or faster than baseline (should NOT increase if vector-index is avoided)
   ```
@@ -344,7 +344,7 @@ Capture these metrics BEFORE making any changes:
   ```bash
   # Run 3 times, take average
   for i in 1 2 3; do
-    time node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server.js')" 2>&1
+    time node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server.js')" 2>&1
   done
   # Expected: Same or faster than baseline
   ```
@@ -354,7 +354,7 @@ Capture these metrics BEFORE making any changes:
 - [ ] Test: CLI loads fewer modules (no vector-index)
   ```bash
   node -e "
-    require('./.opencode/skill/system-spec-kit/scripts/generate-context.js');
+    require('./.opencode/skills/system-spec-kit/scripts/generate-context.js');
     const cache = Object.keys(require.cache);
     const vectorLoaded = cache.some(k => k.includes('vector-index'));
     console.log('Modules loaded:', cache.length);
@@ -370,37 +370,37 @@ Capture these metrics BEFORE making any changes:
 ```bash
 # === BASELINE (run BEFORE migration) ===
 echo "=== BASELINE CAPTURE ===" | tee baseline.log
-time node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js')" 2>&1 | tee -a baseline.log
-time node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server')" 2>&1 | tee -a baseline.log
-bash .opencode/skill/system-spec-kit/scripts/test-validation.sh 2>&1 | tee -a baseline.log
-node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js 2>&1 | tee -a baseline.log
+time node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js')" 2>&1 | tee -a baseline.log
+time node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server')" 2>&1 | tee -a baseline.log
+bash .opencode/skills/system-spec-kit/scripts/test-validation.sh 2>&1 | tee -a baseline.log
+node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js 2>&1 | tee -a baseline.log
 
 # === POST-MIGRATION VERIFICATION ===
 echo "=== POST-MIGRATION VERIFICATION ===" | tee verify.log
 
 # Unit tests
 echo "--- Unit Tests ---" | tee -a verify.log
-node -e "const {generateEmbedding}=require('./.opencode/skill/system-spec-kit/shared/embeddings'); generateEmbedding('test').then(r=>console.log('generateEmbedding:',r?'PASS':'FAIL'))" 2>&1 | tee -a verify.log
-node -e "const {extractTriggerPhrases}=require('./.opencode/skill/system-spec-kit/shared/trigger-extractor'); console.log('extractTriggerPhrases:',extractTriggerPhrases('test feature implementation').length>0?'PASS':'FAIL')" 2>&1 | tee -a verify.log
+node -e "const {generateEmbedding}=require('./.opencode/skills/system-spec-kit/shared/embeddings'); generateEmbedding('test').then(r=>console.log('generateEmbedding:',r?'PASS':'FAIL'))" 2>&1 | tee -a verify.log
+node -e "const {extractTriggerPhrases}=require('./.opencode/skills/system-spec-kit/shared/trigger-extractor'); console.log('extractTriggerPhrases:',extractTriggerPhrases('test feature implementation').length>0?'PASS':'FAIL')" 2>&1 | tee -a verify.log
 
 # Integration tests
 echo "--- Integration Tests ---" | tee -a verify.log
-node .opencode/skill/system-spec-kit/scripts/generate-context.js --help 2>&1 | head -5 | tee -a verify.log
-timeout 5 node -e "require('./.opencode/skill/system-spec-kit/mcp_server/context-server');console.log('MCP:PASS')" 2>&1 | tee -a verify.log
+node .opencode/skills/system-spec-kit/scripts/generate-context.js --help 2>&1 | head -5 | tee -a verify.log
+timeout 5 node -e "require('./.opencode/skills/system-spec-kit/mcp_server/context-server');console.log('MCP:PASS')" 2>&1 | tee -a verify.log
 
 # Import resolution
 echo "--- Import Resolution ---" | tee -a verify.log
-grep -rn "require.*mcp_server/lib" .opencode/skill/system-spec-kit/scripts/ 2>/dev/null | grep -v vector-index | head -5 || echo "No invalid cross-imports" | tee -a verify.log
+grep -rn "require.*mcp_server/lib" .opencode/skills/system-spec-kit/scripts/ 2>/dev/null | grep -v vector-index | head -5 || echo "No invalid cross-imports" | tee -a verify.log
 
 # Regression tests
 echo "--- Regression Tests ---" | tee -a verify.log
-bash .opencode/skill/system-spec-kit/scripts/test-validation.sh 2>&1 | tail -20 | tee -a verify.log
-node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js 2>&1 | tail -10 | tee -a verify.log
+bash .opencode/skills/system-spec-kit/scripts/test-validation.sh 2>&1 | tail -20 | tee -a verify.log
+node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js 2>&1 | tail -10 | tee -a verify.log
 
 # Performance
 echo "--- Performance ---" | tee -a verify.log
-time node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js')" 2>&1 | tee -a verify.log
-node -e "require('./.opencode/skill/system-spec-kit/scripts/generate-context.js');console.log('Modules:',Object.keys(require.cache).length)" 2>&1 | tee -a verify.log
+time node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js')" 2>&1 | tee -a verify.log
+node -e "require('./.opencode/skills/system-spec-kit/scripts/generate-context.js');console.log('Modules:',Object.keys(require.cache).length)" 2>&1 | tee -a verify.log
 ```
 
 ---
@@ -448,5 +448,5 @@ If ANY of these occur, rollback immediately:
 
 **Rollback command:**
 ```bash
-git checkout HEAD -- .opencode/skill/system-spec-kit/
+git checkout HEAD -- .opencode/skills/system-spec-kit/
 ```

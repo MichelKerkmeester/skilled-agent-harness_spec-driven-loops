@@ -48,7 +48,7 @@ Task log for the broader documentation-alignment effort that followed the initia
 
 - [x] T010 Refactor `system-spec-kit/manual_testing_playbook/` into the integrated root-playbook contract
 - [x] T011 [P] Align all `system-spec-kit` playbook per-feature files with frontmatter, divider, and orchestrator-led prompt expectations
-- [x] T012 Align `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` and `.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` to the final header/frontmatter conventions
+- [x] T012 Align `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` and `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md` to the final header/frontmatter conventions
 - [x] T013 [P] Add frontmatter to feature-catalog and manual-testing per-feature files in the aligned trees
 - [x] T014 Remove obsolete canonical playbook sidecar docs and fold their guidance into the root playbook
 - [x] T015 Normalize `mcp-coco-index/manual_testing_playbook/` to the same integrated root-playbook contract
@@ -61,18 +61,18 @@ Task log for the broader documentation-alignment effort that followed the initia
 
 - [x] T020 Move testing-playbook templates into `assets/documentation/testing_playbook/`
 - [x] T021 [P] Create the feature-catalog template bundle under `assets/documentation/feature_catalog/`
-- [x] T022 Update `.opencode/skill/sk-doc/SKILL.md`, `.opencode/skill/sk-doc/README.md`, `.opencode/skill/sk-doc/references/global/quick_reference.md`, and `.opencode/skill/sk-doc/references/global/workflows.md` for the final feature-catalog and testing-playbook contracts
-- [x] T023 [P] Add `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` and `.opencode/skill/sk-doc/references/specific/feature_catalog_creation.md`
-- [x] T024 [P] Rename the former install-guide standards reference to `.opencode/skill/sk-doc/references/specific/install_guide_creation.md`
+- [x] T022 Update `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-doc/README.md`, `.opencode/skills/sk-doc/references/global/quick_reference.md`, and `.opencode/skills/sk-doc/references/global/workflows.md` for the final feature-catalog and testing-playbook contracts
+- [x] T023 [P] Add `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` and `.opencode/skills/sk-doc/references/specific/feature_catalog_creation.md`
+- [x] T024 [P] Rename the former install-guide standards reference to `.opencode/skills/sk-doc/references/specific/install_guide_creation.md`
 - [x] T025 Regroup `sk-doc/references/` into `global/` and `specific/`
-- [x] T026 Create the missing `.opencode/skill/sk-doc/references/specific/agent_creation.md`
+- [x] T026 Create the missing `.opencode/skills/sk-doc/references/specific/agent_creation.md`
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T030 Update `.opencode/command/create/` assets and docs to use the regrouped reference paths
-- [x] T031 Update `.opencode/agent/write.md` to match nested grouped-reference discovery
+- [x] T030 Update `.opencode/commands/create/` assets and docs to use the regrouped reference paths
+- [x] T031 Update `.opencode/agents/write.md` to match nested grouped-reference discovery
 - [x] T032 Run stale-path and stale-contract wording sweeps across touched surfaces
 - [x] T033 Validate touched `sk-doc` docs and references with `validate_document.py`
 - [x] T034 Verify playbook counts, path resolution, and frontmatter coverage in the aligned trees

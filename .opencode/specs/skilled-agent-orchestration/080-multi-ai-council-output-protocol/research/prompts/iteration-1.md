@@ -46,13 +46,13 @@ Last 3 Iterations Summary: (none yet)
 Working directory: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 Key files for context:
-- .opencode/agent/multi-ai-council.md (683 LOC, §0-§16, §12-§15 are the new packet-080 sections)
-- .opencode/skill/deep-research/scripts/reduce-state.cjs (sibling reducer pattern to study)
-- .opencode/skill/deep-research/scripts/runtime-capabilities.cjs
+- .opencode/agents/multi-ai-council.md (683 LOC, §0-§16, §12-§15 are the new packet-080 sections)
+- .opencode/skills/deep-research/scripts/reduce-state.cjs (sibling reducer pattern to study)
+- .opencode/skills/deep-research/scripts/runtime-capabilities.cjs
 - .opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/ai-council/council-report.md (round-2 amended; contains 6 ADDs)
 - .opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md (ADR-001..ADR-004)
-- .opencode/skill/system-spec-kit/references/multi-ai-council/ (4 reference files)
-- .opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts (regression test pattern)
+- .opencode/skills/system-spec-kit/references/multi-ai-council/ (4 reference files)
+- .opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts (regression test pattern)
 
 ## OUTPUT CONTRACT
 
@@ -76,7 +76,7 @@ Produce THREE artifacts:
 
 Answer Q1 concretely. Required contents in iteration-001.md Findings section:
 
-- Helper script proposed path (e.g. `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.{sh|cjs|ts}`).
+- Helper script proposed path (e.g. `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.{sh|cjs|ts}`).
 - Language choice (bash / Node CJS / Node TS) with rationale referencing existing scripts/ conventions.
 - CLI args: `<packet-spec-folder>`, optional `--round NNN`, `--input-file` or stdin, `--strict-output` (per ADD-2 graceful degradation).
 - Parser strategy: how to extract from markdown §-headers (Council Composition, per-seat sections, Recommended Plan, Plan Confidence as strict-required; others optional). Reference reduce-state.cjs's parsing approach.

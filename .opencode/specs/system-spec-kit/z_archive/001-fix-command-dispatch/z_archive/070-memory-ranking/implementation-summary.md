@@ -76,7 +76,7 @@ A composite ranking system for the Spec Kit Memory that replaces simple count-ba
 | `folder-scoring.js` | Pure scoring calculations, constants | `mcp_server/lib/scoring/` |
 | `memory-crud.js` | API handler, parameter validation | `mcp_server/handlers/` |
 | `context-server.js` | MCP tool schema definitions | `mcp_server/` |
-| `search.md` | Dashboard display logic | `.opencode/command/memory/` |
+| `search.md` | Dashboard display logic | `.opencode/commands/memory/` |
 
 ---
 
@@ -172,17 +172,17 @@ recency_score = 1 / (1 + days_since_update × 0.10)
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` | 375 | Scoring library |
-| `.opencode/skill/system-spec-kit/scripts/rank-memories.js` | 571 | Client-side fallback |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.js` | 375 | Scoring library |
+| `.opencode/skills/system-spec-kit/scripts/rank-memories.js` | 571 | Client-side fallback |
 | `specs/.../070-memory-ranking/test/test-folder-scoring.js` | 728 | Test suite |
 
 ### Modified Files
 
 | File | Changes |
 |------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.js` | Added folderScoring import, enhanced handle_memory_stats() |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Updated memory_stats schema |
-| `.opencode/command/memory/search.md` | Dashboard uses composite ranking |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.js` | Added folderScoring import, enhanced handle_memory_stats() |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Updated memory_stats schema |
+| `.opencode/commands/memory/search.md` | Dashboard uses composite ranking |
 
 ---
 

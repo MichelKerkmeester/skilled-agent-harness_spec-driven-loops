@@ -48,8 +48,8 @@
       "mcp_server/lib/search/hybrid-search.ts",
       "mcp_server/lib/search/graph-search-fn.ts",
       "implementation-summary.md",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "external/plugins/claude-memory/skills/recall-conversations/scripts/memory_lib/db.py",
       "external/plugins/claude-memory/skills/recall-conversations/scripts/search_conversations.py",
       "external/plugins/claude-memory/skills/recall-conversations/scripts/recent_chats.py",
@@ -61,7 +61,7 @@
       "external/plugins/claude-memory/skills/get-token-insights/scripts/ingest_token_data.py",
       "external/plugins/claude-memory/skills/get-token-insights/templates/dashboard.html",
       "mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "plan.md"
     ],
     "entities": [
@@ -98,13 +98,13 @@
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "generate-context.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -176,7 +176,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

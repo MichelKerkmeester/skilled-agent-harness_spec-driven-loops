@@ -38,8 +38,8 @@
       "mcp_server/lib/response/profile-formatters.ts",
       "mcp_server/tests/memory/trust-badges.test.ts",
       "mcp_server/tests/response-profile-formatters.vitest.ts",
-      ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -78,13 +78,13 @@
       {
         "name": "28-memory-causal-trust-display.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md",
         "source": "derived"
       },
       {
         "name": "203-memory-causal-trust-display.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
         "source": "derived"
       },
       {

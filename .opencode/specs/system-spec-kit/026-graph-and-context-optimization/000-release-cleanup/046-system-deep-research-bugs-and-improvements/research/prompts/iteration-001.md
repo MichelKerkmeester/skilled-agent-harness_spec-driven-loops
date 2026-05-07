@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 001 of 20. The packet root is
 
 **Angle A1 — Daemon concurrency edge cases**
 
-Audit `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/` (lease.ts, lifecycle.ts, watcher.ts) and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/` (generation.ts, trust-state.ts, cache-invalidation.ts) for race conditions, ordering bugs, missing happens-before edges, lease lifecycle issues, and watcher races. Find specific function names + line numbers where two paths can run concurrently without a lock or a happens-before guarantee.
+Audit `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/` (lease.ts, lifecycle.ts, watcher.ts) and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/` (generation.ts, trust-state.ts, cache-invalidation.ts) for race conditions, ordering bugs, missing happens-before edges, lease lifecycle issues, and watcher races. Find specific function names + line numbers where two paths can run concurrently without a lock or a happens-before guarantee.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

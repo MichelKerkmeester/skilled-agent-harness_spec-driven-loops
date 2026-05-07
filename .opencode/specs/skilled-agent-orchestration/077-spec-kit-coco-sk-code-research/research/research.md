@@ -12,7 +12,7 @@
 <!-- ANCHOR:summary -->
 ## 1. EXECUTIVE SUMMARY
 
-The audit found that all three surfaces are **healthy at their cores** but share a common architectural gap: **no first-class authoring-time integration path between them**. system-spec-kit, mcp-coco-index, and sk-code each work well in isolation, but the workflow that ties them together — spec-folder writes that touch `.opencode/skill/sk-code/` code, expecting sk-code patterns to load AND CocoIndex to index AND spec-kit validators to enforce — has no canonical recipe. The result: each surface assumes the others handle the integration, and small drift accumulates at the seams.
+The audit found that all three surfaces are **healthy at their cores** but share a common architectural gap: **no first-class authoring-time integration path between them**. system-spec-kit, mcp-coco-index, and sk-code each work well in isolation, but the workflow that ties them together — spec-folder writes that touch `.opencode/skills/sk-code/` code, expecting sk-code patterns to load AND CocoIndex to index AND spec-kit validators to enforce — has no canonical recipe. The result: each surface assumes the others handle the integration, and small drift accumulates at the seams.
 
 Source iterations: `iteration-001` through `iteration-010` under `077/research/iterations/`.
 
@@ -20,7 +20,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 
 1. **system-spec-kit drift is concentrated in the validator + MCP-tool surface**, not the templates. The strict validator misses graph-metadata shape errors and phase-parent edge cases (registry-owned phase rules, active-child pointer drift). The MCP server advertises tools whose dispatch is incomplete. None of these are correctness bugs that break shipped flows; they're observability + completeness gaps that mask real drift.
 
-2. **mcp-coco-index search effectiveness depends on local config**, not skill defaults. The default `DEFAULT_EXCLUDED_PATTERNS` excludes `**/.*` which would skip `.opencode/skill/sk-code/` entirely; the user's local repo settings override this but new clones won't. CLI vs MCP parity is incomplete — only `search` is exposed via MCP; init/index/status/reset/daemon stay CLI-only.
+2. **mcp-coco-index search effectiveness depends on local config**, not skill defaults. The default `DEFAULT_EXCLUDED_PATTERNS` excludes `**/.*` which would skip `.opencode/skills/sk-code/` entirely; the user's local repo settings override this but new clones won't. CLI vs MCP parity is incomplete — only `search` is exposed via MCP; init/index/status/reset/daemon stay CLI-only.
 
 3. **sk-code OpenCode side has the largest surface gap**: claims to cover skills/agents/commands authoring but ships only language-level checklists. No spec-folder writing recipe, no skills/agents/commands authoring checklists, no canonical OpenCode-side resource manifest, no machine-readable STACK_FOLDERS contract. The references are present but the assets directory is language-checklist-only.
 
@@ -52,7 +52,7 @@ Source iterations: `iteration-001` through `iteration-010` under `077/research/i
 
 | ID | Severity | Surface | Summary |
 |---|---|---|---|
-| F-001-002 | P1 | settings | `DEFAULT_EXCLUDED_PATTERNS` includes `**/.*` → `.opencode/skill/sk-code/` resources skipped under defaults. Local override masks the bug. |
+| F-001-002 | P1 | settings | `DEFAULT_EXCLUDED_PATTERNS` includes `**/.*` → `.opencode/skills/sk-code/` resources skipped under defaults. Local override masks the bug. |
 | F-001-003 | P2 | MCP refresh | `refresh_index=true` default + known `ComponentContext` concurrency issue → freshness/perf hotspot. |
 | F-004-001 | P1 | MCP coverage | CocoIndex maintenance (init/reset/daemon/status) has no MCP owner — only `search` is exposed. |
 | F-004-002 | P1 | telemetry | Search telemetry docs overstate emitted fields (drift between docs and runtime). |
@@ -154,7 +154,7 @@ The findings sequence into **4 dependent remediation phases**, each appropriate 
 **Closes**: F-001-002, F-005-001, F-005-002, F-005-004, F-007-005, F-008-005, F-009-003, F-009-004
 
 - Add `CANONICAL_RESOURCE_PATHS` setting that outranks regular search
-- Add a smoke test asserting `.opencode/skill/sk-code/assets/opencode/` is ingested on a fresh clone
+- Add a smoke test asserting `.opencode/skills/sk-code/assets/opencode/` is ingested on a fresh clone
 - Update `DEFAULT_EXCLUDED_PATTERNS` semantics so canonical paths under `**/.*` are explicitly opt-in
 - Document the rank-priority contract in mcp-coco-index/SKILL.md
 

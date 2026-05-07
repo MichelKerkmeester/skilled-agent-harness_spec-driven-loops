@@ -88,14 +88,14 @@ Use the live template files as the single source of truth for required header an
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skill/system-spec-kit/scripts/utils/template-structure.js | Create | Shared live template contract parser/comparator |
-| .opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh | Modify | Fail on missing/out-of-order required headers, warn on extra custom headers |
-| .opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh | Modify | Compare ordered required anchors against live template contracts |
-| .opencode/skill/system-spec-kit/scripts/spec/validate.sh | Modify | Treat `TEMPLATE_HEADERS` as an error in normal validation |
-| OpenCode runtime speckit agent docs in `.opencode/agent/` plus `.agents/agents/` | Modify | Inline scaffold and strict post-write validation rules |
+| .opencode/skills/system-spec-kit/scripts/utils/template-structure.js | Create | Shared live template contract parser/comparator |
+| .opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh | Modify | Fail on missing/out-of-order required headers, warn on extra custom headers |
+| .opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh | Modify | Compare ordered required anchors against live template contracts |
+| .opencode/skills/system-spec-kit/scripts/spec/validate.sh | Modify | Treat `TEMPLATE_HEADERS` as an error in normal validation |
+| OpenCode runtime speckit agent docs in `.opencode/agents/` plus `.agents/agents/` | Modify | Inline scaffold and strict post-write validation rules |
 | Claude and Gemini runtime speckit agent docs | Modify | Match runtime prompt contract with inline scaffolds and strict validation |
-| .opencode/command/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml | Modify | Embed scaffold contracts and `validate.sh --strict` post-write steps |
-| System-spec-kit fixture and test lanes under `.opencode/skill/system-spec-kit/scripts/` | Create/Modify | Add compliant and mutated fixtures plus targeted test coverage |
+| .opencode/commands/spec_kit/assets/spec_kit_{plan,implement,complete}_{auto,confirm}.yaml | Modify | Embed scaffold contracts and `validate.sh --strict` post-write steps |
+| System-spec-kit fixture and test lanes under `.opencode/skills/system-spec-kit/scripts/` | Create/Modify | Add compliant and mutated fixtures plus targeted test coverage |
 <!-- /ANCHOR:scope -->
 
 ---

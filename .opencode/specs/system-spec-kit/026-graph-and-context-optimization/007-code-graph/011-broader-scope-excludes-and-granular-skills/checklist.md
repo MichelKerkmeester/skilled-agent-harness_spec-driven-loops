@@ -78,8 +78,8 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-FIX-001 [P0] Finding class recorded. Evidence: class-of-bug, cross-consumer, algorithmic, matrix/evidence, and test-isolation axes listed in `plan.md`.
-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. Evidence: `rg -n ".opencode/(skill|agent|command|specs|plugins)" .opencode/skill/system-spec-kit/mcp_server/ --type ts`.
-- [x] CHK-FIX-003 [P0] Consumer inventory completed. Evidence: `rg -n "resolveIndexScopePolicy|IndexScopePolicy|excludedSkillGlobs" .opencode/skill/system-spec-kit/mcp_server/ --type ts`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. Evidence: `rg -n ".opencode/(skill|agent|command|specs|plugins)" .opencode/skills/system-spec-kit/mcp_server/ --type ts`.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed. Evidence: `rg -n "resolveIndexScopePolicy|IndexScopePolicy|excludedSkillGlobs" .opencode/skills/system-spec-kit/mcp_server/ --type ts`.
 - [x] CHK-FIX-004 [P0] Algorithm invariant tested. Evidence: deterministic fingerprint test sorts selected skills before serialization.
 - [x] CHK-FIX-005 [P1] Matrix axes listed. Evidence: `plan.md` affected surfaces and test matrix notes.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed. Evidence: tests capture/restore all five scope env vars and verify env false/true precedence.

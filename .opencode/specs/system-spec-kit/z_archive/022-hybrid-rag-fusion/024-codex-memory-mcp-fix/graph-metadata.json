@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
       "tasks.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/README.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/spec.md",
@@ -51,14 +51,14 @@
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/checklist.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/decision-record.md",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix/implementation-summary.md",
-      ".opencode/skill/system-spec-kit/scripts/utils/logger.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
       ".codex/config.toml",
       ".claude/mcp.json",
       ".vscode/mcp.json",
       ".gemini/settings.json",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
       "spec.md",
       "plan.md"
     ],
@@ -66,13 +66,13 @@
       {
         "name": "vector-index-store.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
         "source": "derived"
       },
       {
         "name": "vector-index-store-remediation.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
         "source": "derived"
       },
       {
@@ -120,7 +120,7 @@
       {
         "name": "logger.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/logger.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
         "source": "derived"
       },
       {
@@ -144,19 +144,19 @@
       {
         "name": "spec-doc-paths.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {
         "name": "memory-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
         "source": "derived"
       },
       {
         "name": "modularization.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
         "source": "derived"
       },
       {

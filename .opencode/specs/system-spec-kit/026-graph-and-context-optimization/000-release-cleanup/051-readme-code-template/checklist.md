@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Use implementation-summary.md for detailed evidence"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/readme_template.md"
-      - ".opencode/skill/sk-doc/assets/documentation/readme_code_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_template.md"
+      - ".opencode/skills/sk-doc/assets/documentation/readme_code_template.md"
     session_dedup:
       fingerprint: "sha256:0510000000000000000000000000000000000000000000000000000000000004"
       session_id: "task-10-readme-code-template-diagram-evidence"
@@ -80,7 +80,7 @@ _memory:
 - [x] CHK-023 [P1] Error scenarios validated [Evidence: no HVR punctuation or banned-word matches, both primary validators exited 0, and flowchart validator exit 1 is documented as a non-blocking validator limitation]
 - [x] CHK-024 [P1] Code-folder README P1 batches complete [Evidence: Task #25 reports P1 batches completed]
 - [x] CHK-025 [P1] Code-folder README P2 batches complete [Evidence: Task #25 reports P2 batches 01-22 completed]
-- [x] CHK-026 [P1] Shared README remediation documented [Evidence: `.opencode/skill/system-spec-kit/shared/README.md` recorded as fixed]
+- [x] CHK-026 [P1] Shared README remediation documented [Evidence: `.opencode/skills/system-spec-kit/shared/README.md` recorded as fixed]
 - [x] CHK-027 [P1] Batch exceptions documented [Evidence: `templates/scratch/README.md` validator skip by template-path rule, DQI 64 from `extract_structure`, and reported validator alternatives recorded for final review]
 - [x] CHK-028 [P1] Explicit README sweep target manifest documented [Evidence: exact path table in `implementation-summary.md`]
 - [x] CHK-029 [P1] Final blocker remediation documented [Evidence: shared README fixed, HVR blockers fixed, lowercase-v diagram blockers fixed, low-DQI files improved, and template scratch exception retained]
@@ -130,13 +130,13 @@ _memory:
 **Verification Date**: 2026-05-02
 
 **Task #5 Evidence**:
-- `.opencode/skill/sk-doc/assets/documentation/readme_template.md`: general template expanded for skill/project README alignment based on sampled skill READMEs. `validate_document.py` exit 0 with non-blocking `non_sequential_numbering` warnings from scaffold headings in code fences. `extract_structure.py` exit 0 with DQI 99 excellent.
-- `.opencode/skill/sk-doc/assets/documentation/readme_code_template.md`: code template improved with an `ARCHITECTURE.md`-style zone diagram, package topology, allowed dependency direction, directory tree, key file table, and control-flow example. `validate_document.py` exit 0 with non-blocking `non_sequential_numbering` warnings from scaffold headings in code fences. `extract_structure.py` exit 0 with DQI 99 excellent.
+- `.opencode/skills/sk-doc/assets/documentation/readme_template.md`: general template expanded for skill/project README alignment based on sampled skill READMEs. `validate_document.py` exit 0 with non-blocking `non_sequential_numbering` warnings from scaffold headings in code fences. `extract_structure.py` exit 0 with DQI 99 excellent.
+- `.opencode/skills/sk-doc/assets/documentation/readme_code_template.md`: code template improved with an `ARCHITECTURE.md`-style zone diagram, package topology, allowed dependency direction, directory tree, key file table, and control-flow example. `validate_document.py` exit 0 with non-blocking `non_sequential_numbering` warnings from scaffold headings in code fences. `extract_structure.py` exit 0 with DQI 99 excellent.
 - HVR punctuation scan found no matches.
 - HVR banned-word scan found no matches.
 
 **Task #9 Diagram Styling Evidence**:
-- `.opencode/skill/sk-doc/assets/documentation/readme_code_template.md`: diagrams now use sk-doc Unicode box drawing style.
+- `.opencode/skills/sk-doc/assets/documentation/readme_code_template.md`: diagrams now use sk-doc Unicode box drawing style.
 - Replaced ASCII `+---`, `--->`, lowercase `v`, and bracket-list `->` diagram patterns.
 - Directory trees intentionally remain tree blocks.
 - `validate_document.py` exit 0 for `readme_code_template.md`.
@@ -146,7 +146,7 @@ _memory:
 **Task #25 Code-Folder README Batch Evidence**:
 - P1 batches completed.
 - P2 batches 01-22 completed.
-- `.opencode/skill/system-spec-kit/shared/README.md` is fixed in final remediation.
+- `.opencode/skills/system-spec-kit/shared/README.md` is fixed in final remediation.
 - Batch validation summaries are recorded as complete for the supplied P1 and P2 batch evidence.
 - `templates/scratch/README.md` is a known exception: validator skipped by template-path rule and `extract_structure` reported DQI 64.
 - Some agents reported validator alternatives such as `verify_alignment_drift.py` or markdownlint where applicable; final review will verify globally.
@@ -159,8 +159,8 @@ _memory:
 - Low-DQI files were improved, with `templates/scratch/README.md` retained as the remaining template scratch exception.
 
 **Task #31 Final P1 Cleanup Evidence**:
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md`: semicolon prose fixed and validation passed.
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md`: banned term removed from prose, remains only in command text `npm run stress:harness`, and validation passed.
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md`: semicolon prose fixed and validation passed.
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md`: banned term removed from prose, remains only in command text `npm run stress:harness`, and validation passed.
 <!-- /ANCHOR:summary -->
 
 ---

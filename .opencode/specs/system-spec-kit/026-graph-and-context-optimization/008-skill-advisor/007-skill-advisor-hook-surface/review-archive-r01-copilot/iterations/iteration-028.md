@@ -4,7 +4,7 @@
 Reviewed the Codex-specific detection and input-fallback paths to make sure native-hook detection, stdin/argv precedence, and Bash-only deny policy remain intentionally scoped.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:159-209` -> detector probes `codex --version` and `codex hooks list`, returning `live|partial|unavailable` without mutating runtime state beyond its per-process cache.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts:159-209` -> detector probes `codex --version` and `codex hooks list`, returning `live|partial|unavailable` without mutating runtime state beyond its per-process cache.
 - `codex-user-prompt-submit-hook.vitest.ts:84-154` -> stdin wins when both stdin and argv JSON are present; invalid stdin does not silently fall through to argv.
 - `codex-pre-tool-use.vitest.ts:20-90` -> PreToolUse deny logic intentionally applies only to the Bash tool and fails open when policy loading fails.
 

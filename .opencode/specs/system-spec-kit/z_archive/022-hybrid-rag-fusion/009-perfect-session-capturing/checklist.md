@@ -62,7 +62,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Recursive strict validation passes for the full spec tree [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict --recursive` passes after the repair.]
+- [x] CHK-020 [P0] Recursive strict validation passes for the full spec tree [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing --strict --recursive` passes after the repair.]
 - [x] CHK-021 [P1] Stale current-navigation references were swept in the in-scope doc set [Evidence: targeted `rg` checks were rerun for the moved/removed phase paths after editing.]
 - [x] CHK-022 [P1] Placeholder sweep is clean for the touched doc set [Evidence: `rg "\\[PLACEHOLDER\\]"` across the touched authoritative docs returned no matches on 2026-03-20.]
 <!-- /ANCHOR:testing -->

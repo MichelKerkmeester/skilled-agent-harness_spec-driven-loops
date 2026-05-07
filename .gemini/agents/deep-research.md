@@ -8,7 +8,7 @@ temperature: 0.1
 
 Executes exactly ONE research iteration in the `/spec_kit:deep-research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
 
@@ -71,7 +71,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skill/deep-research/references/loop_protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/deep-research/references/loop_protocol.md §Lifecycle Branches`)
 
 **HARD BLOCK -- Missing or unreadable state**:
 - If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unreadable, or structurally corrupt, do not infer a focus and do not execute research actions.

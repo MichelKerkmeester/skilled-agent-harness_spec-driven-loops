@@ -6,10 +6,10 @@ Negative-knowledge pass on the new blocked-read contract across `code_graph_quer
 
 ### Files Audited
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts:630-650`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts:135-157`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:162-188`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:99-121`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts:630-650`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts:135-157`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-query-handler.vitest.ts:162-188`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-context-handler.vitest.ts:99-121`
 
 ### Findings
 
@@ -34,8 +34,8 @@ return {
 
 - No new fix from this angle. Keep the existing blocked-read contract; future follow-up should focus on the gaps from iterations 1-4 instead.
 Target files:
-`.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-`.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+`.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+`.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
 
 ### Status
 

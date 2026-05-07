@@ -80,14 +80,14 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 
 ### In Scope
 
-- New shared helper: `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` that ingests an array of per-iteration delta JSON objects and emits a filled `resource-map.md` string.
+- New shared helper: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` that ingests an array of per-iteration delta JSON objects and emits a filled `resource-map.md` string.
 - Helper supports two input shapes: `review` deltas (with `findings[]` carrying `{ severity, file, line }`) and `research` deltas (with `findings[]` carrying `{ source_paths[], citations[] }`).
 - Dimension-specific column additions on the review shape: extra `Findings (P0/P1/P2)` column. On the research shape: extra `Citations (N iterations)` column.
 - Integration call from `sk-deep-review/scripts/reduce-state.cjs` at convergence, writing to the resolved local-owner `{artifact_dir}/resource-map.md`.
 - Integration call from `sk-deep-research/scripts/reduce-state.cjs` at convergence, writing to the resolved local-owner `{artifact_dir}/resource-map.md`.
 - YAML workflow updates: `spec_kit_deep-research_auto.yaml`, `spec_kit_deep-research_confirm.yaml`, `spec_kit_deep-review_auto.yaml`, `spec_kit_deep-review_confirm.yaml` — all four gain a post-convergence step that triggers emission, guarded by `config.resource_map.emit: true` (default on).
 - SKILL.md updates for both skills documenting the new output surface.
-- `.opencode/command/spec_kit/deep-research.md` + `deep-review.md` — brief mentions of the convergence-time resource-map output.
+- `.opencode/commands/spec_kit/deep-research.md` + `deep-review.md` — brief mentions of the convergence-time resource-map output.
 - References updates: `sk-deep-research/references/convergence.md`, `sk-deep-review/references/convergence.md` — note the new emission step.
 - Feature catalog entries: `sk-deep-research/feature_catalog/` and `sk-deep-review/feature_catalog/` — one entry each.
 - Manual testing playbook entries: `sk-deep-research/manual_testing_playbook/` and `sk-deep-review/manual_testing_playbook/` — one entry each.
@@ -106,25 +106,25 @@ Auto-emit a filled `resource-map.md` at convergence for every `/spec_kit:deep-re
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Create | Shared evidence extractor. Handles both review and research delta shapes. |
-| `.opencode/skill/system-spec-kit/scripts/resource-map/README.md` | Create | Short doc covering the extractor's input/output contract. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add convergence-emission step; add `resource_map.emit` config flag (default true). |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Same. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Same. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Same. |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Modify | Document the new output surface + opt-out flag. |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Modify | Same. |
-| `.opencode/command/spec_kit/deep-review.md` | Modify | Brief mention of the output. |
-| `.opencode/command/spec_kit/deep-research.md` | Modify | Brief mention of the output. |
-| `.opencode/skill/sk-deep-review/references/convergence.md` | Modify | Note the new emission step in the convergence sequence. |
-| `.opencode/skill/sk-deep-research/references/convergence.md` | Modify | Same. |
-| `.opencode/skill/sk-deep-review/feature_catalog/**/resource-map-emission.md` | Create | Feature catalog entry. |
-| `.opencode/skill/sk-deep-research/feature_catalog/**/resource-map-emission.md` | Create | Feature catalog entry. |
-| `.opencode/skill/sk-deep-review/manual_testing_playbook/**/resource-map-emission.md` | Create | Playbook scenario. |
-| `.opencode/skill/sk-deep-research/manual_testing_playbook/**/resource-map-emission.md` | Create | Playbook scenario. |
-| `.opencode/skill/system-spec-kit/scripts/tests/resource-map-extractor.vitest.ts` | Create | Vitest coverage for extractor. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Create | Shared evidence extractor. Handles both review and research delta shapes. |
+| `.opencode/skills/system-spec-kit/scripts/resource-map/README.md` | Create | Short doc covering the extractor's input/output contract. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Call the extractor at convergence; write to the resolved local-owner `{artifact_dir}/resource-map.md`. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Modify | Add convergence-emission step; add `resource_map.emit` config flag (default true). |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Modify | Same. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Modify | Same. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Modify | Same. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Modify | Document the new output surface + opt-out flag. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Same. |
+| `.opencode/commands/spec_kit/deep-review.md` | Modify | Brief mention of the output. |
+| `.opencode/commands/spec_kit/deep-research.md` | Modify | Brief mention of the output. |
+| `.opencode/skills/sk-deep-review/references/convergence.md` | Modify | Note the new emission step in the convergence sequence. |
+| `.opencode/skills/sk-deep-research/references/convergence.md` | Modify | Same. |
+| `.opencode/skills/sk-deep-review/feature_catalog/**/resource-map-emission.md` | Create | Feature catalog entry. |
+| `.opencode/skills/sk-deep-research/feature_catalog/**/resource-map-emission.md` | Create | Feature catalog entry. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/**/resource-map-emission.md` | Create | Playbook scenario. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/**/resource-map-emission.md` | Create | Playbook scenario. |
+| `.opencode/skills/system-spec-kit/scripts/tests/resource-map-extractor.vitest.ts` | Create | Vitest coverage for extractor. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/003-resource-map-deep-loop-integration/*` | Create | Level 2 packet docs. |
 <!-- /ANCHOR:scope -->
 

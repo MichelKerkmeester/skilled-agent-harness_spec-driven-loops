@@ -7,7 +7,7 @@ Q5 + Q7: Extract the machine-readable template contract from template-structure.
 
 ### Finding 1: template-structure.js is a fully extractable contract engine with CLI interface
 The `loadTemplateContract(level, basename)` function returns a structured JSON object for any (level, document-type) pair. It can be invoked from the command line: `node template-structure.js contract <level> <basename>`. The output is already machine-readable and includes: `headerRules` (required H2 headers in order), `optionalHeaderRules` (level-gated optional sections), `requiredAnchors` (ANCHOR IDs that must appear in sequence), `optionalAnchors`, and `allowedAnchors`. This is the canonical truth source -- the validation rule `check-template-headers.sh` delegates to this exact function.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/template-structure.js:218-289, 644-666]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/template-structure.js:218-289, 644-666]
 
 ### Finding 2: Level 2 spec.md contract defines 7 required headers, 3 optional, 7 required anchors, 10 allowed
 The exact contract for Level 2 spec.md:
@@ -41,26 +41,26 @@ At roughly 9 lines per document type, this is well within agent prompt budget li
 
 ### Finding 6: The contract engine supports phase addendum merging
 `loadTemplateContractForDocument()` automatically detects phase parent/child relationships via `inferPhaseSpecAddenda()` and merges addendum contracts. This means the contract for a phase-parent spec.md will include additional optional headers and anchors (e.g., phase-map). This dynamic merging is important: any static injection into agent prompts would need to document this phase-aware behavior separately.
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/template-structure.js:432-495]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/template-structure.js:432-495]
 
 ### Finding 7: Agent definitions exist in 4 CLI directories, creating a multi-surface injection challenge
 The @speckit agent is defined in at least:
 - `.claude/agents/speckit.md` (Claude Code)
-- `.opencode/agent/speckit.md` (Copilot/OpenCode base)
-- `.opencode/agent/chatgpt/speckit.md` (ChatGPT)
+- `.opencode/agents/speckit.md` (Copilot/OpenCode base)
+- `.opencode/agents/chatgpt/speckit.md` (ChatGPT)
 - `.codex/agents/speckit.toml` (Codex CLI)
 Any prompt injection strategy must be applied to ALL of these surfaces OR use a shared resource (like SKILL.md or a generated contract file) that all agents reference.
-[SOURCE: Glob results across .claude/agents/, .opencode/agent/, .codex/agents/]
+[SOURCE: Glob results across .claude/agents/, .opencode/agents/, .codex/agents/]
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` (full source, 685 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` (full source, 685 lines)
 - `.claude/agents/speckit.md` (full source, 566 lines)
 - CLI output: `node template-structure.js contract 2 spec.md`
 - CLI output: `node template-structure.js contract 2 plan.md`
 - CLI output: `node template-structure.js contract 2 tasks.md`
 - CLI output: `node template-structure.js contract 2 checklist.md`
 - CLI output: `node template-structure.js contract 2 implementation-summary.md`
-- Glob results: `.opencode/agent/`, `.codex/agents/`
+- Glob results: `.opencode/agents/`, `.codex/agents/`
 
 ## Assessment
 - New information ratio: 0.86

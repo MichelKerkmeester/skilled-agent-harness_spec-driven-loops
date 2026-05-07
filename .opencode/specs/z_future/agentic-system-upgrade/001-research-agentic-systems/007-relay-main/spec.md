@@ -22,7 +22,7 @@ Phase `007-relay-main` is a read-only research packet that studies the bundled A
 
 **Key Decisions**: Keep all writes inside this phase folder; treat `external/` as read-only; preserve Public's phase-002 orchestration boundary; add explicit non-goals alongside adoption recommendations.
 
-**Critical Dependencies**: `phase-research-prompt.md`; the bundled Agent Relay checkout under `external/`; Public comparison surfaces under `.opencode/agent/`, `.opencode/command/`, and `.opencode/skill/`; strict validation via `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+**Critical Dependencies**: `phase-research-prompt.md`; the bundled Agent Relay checkout under `external/`; Public comparison surfaces under `.opencode/agents/`, `.opencode/commands/`, and `.opencode/skills/`; strict validation via `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 
 ---
 
@@ -68,14 +68,14 @@ Produce a 20-iteration evidence-backed research record that preserves Phase 1 tr
   - `external/tests/continuity.rs`
   - `external/tests/integration/broker/*.test.ts`
 - Comparison against Public surfaces:
-  - `.opencode/agent/orchestrate.md`
-  - `.opencode/command/spec_kit/deep-research.md`
-  - `.opencode/command/spec_kit/deep-review.md`
-  - `.opencode/skill/sk-deep-research/`
-  - `.opencode/skill/sk-deep-review/`
-  - `.opencode/skill/system-spec-kit/scripts/memory/`
-  - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-  - `.opencode/skill/cli-codex/`, `.opencode/skill/cli-gemini/`, `.opencode/skill/cli-copilot/`
+  - `.opencode/agents/orchestrate.md`
+  - `.opencode/commands/spec_kit/deep-research.md`
+  - `.opencode/commands/spec_kit/deep-review.md`
+  - `.opencode/skills/sk-deep-research/`
+  - `.opencode/skills/sk-deep-review/`
+  - `.opencode/skills/system-spec-kit/scripts/memory/`
+  - `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+  - `.opencode/skills/cli-codex/`, `.opencode/skills/cli-gemini/`, `.opencode/skills/cli-copilot/`
 - Research artifacts:
   - `research/iterations/iteration-001.md` through `research/iterations/iteration-020.md`
   - `research/deep-research-state.jsonl`
@@ -123,7 +123,7 @@ Produce a 20-iteration evidence-backed research record that preserves Phase 1 tr
 | REQ-004 | Append Phase 2 state rows with `phase: 2` and keep the JSONL valid | `research/deep-research-state.jsonl` contains 20 parseable rows with ten Phase 2 entries |
 | REQ-005 | The updated synthesis distinguishes adopt-now work from architecture spikes and explicit non-goals | `research/research.md` contains a priority queue plus rejected recommendations |
 | REQ-006 | Every nontrivial recommendation maps to a concrete Public subsystem or file | Iterations and synthesis name exact `.opencode/...` targets |
-| REQ-007 | The packet validates successfully under strict mode after the Phase 2 write pass | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exits 0 |
+| REQ-007 | The packet validates successfully under strict mode after the Phase 2 write pass | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exits 0 |
 | REQ-008 | All edits remain inside this phase folder | Post-work verification shows no writes outside `007-relay-main/` |
 
 ### P1 - Required (complete OR user-approved deferral)

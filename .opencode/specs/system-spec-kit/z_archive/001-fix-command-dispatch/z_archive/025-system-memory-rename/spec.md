@@ -101,7 +101,7 @@ The `workflows-memory` skill needs to be renamed to `system-memory` to align wit
 |------|------------|-------|
 | `opencode.json` | 2 | 59 (mcp_server path), 62 (database path) |
 
-#### 4. Command Files (.opencode/command/)
+#### 4. Command Files (.opencode/commands/)
 
 | File | References | Lines |
 |------|------------|-------|
@@ -143,7 +143,7 @@ The `workflows-memory` skill needs to be renamed to `system-memory` to align wit
 
 | File | References | Lines |
 |------|------------|-------|
-| `.opencode/agent/orchestrator.md` | 4 | 88, 152, 260, 281 |
+| `.opencode/agents/orchestrator.md` | 4 | 88, 152, 260, 281 |
 
 #### 7. Historical References (PRESERVE - DO NOT UPDATE)
 

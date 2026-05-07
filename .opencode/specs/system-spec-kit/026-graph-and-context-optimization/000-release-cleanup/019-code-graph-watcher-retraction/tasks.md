@@ -55,11 +55,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Patch README code-graph freshness model. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md:517-529`]
+- [x] T005 Patch README code-graph freshness model. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md:517-529`]
 - [x] T006 Sweep watcher and real-time wording. [EVIDENCE: targeted `rg` checks over current operator docs]
-- [x] T007 Confirm `.opencode/skill/system-spec-kit/SKILL.md` code-graph automation wording. [EVIDENCE: `.opencode/skill/system-spec-kit/SKILL.md:796-798`]
+- [x] T007 Confirm `.opencode/skills/system-spec-kit/SKILL.md` code-graph automation wording. [EVIDENCE: `.opencode/skills/system-spec-kit/SKILL.md:796-798`]
 - [x] T008 Confirm `CLAUDE.md` recovery wording. [EVIDENCE: `CLAUDE.md:107`]
-- [x] T009 Confirm `.opencode/skill/system-spec-kit/references/config/hook_system.md` has no structural watcher claim. [EVIDENCE: `.opencode/skill/system-spec-kit/references/config/hook_system.md:76-101`]
+- [x] T009 Confirm `.opencode/skills/system-spec-kit/references/config/hook_system.md` has no structural watcher claim. [EVIDENCE: `.opencode/skills/system-spec-kit/references/config/hook_system.md:76-101`]
 <!-- /ANCHOR:phase-2 -->
 
 ---

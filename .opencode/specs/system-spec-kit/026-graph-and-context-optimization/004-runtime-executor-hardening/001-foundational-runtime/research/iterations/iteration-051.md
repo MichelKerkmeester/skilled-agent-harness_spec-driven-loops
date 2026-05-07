@@ -9,14 +9,14 @@
 
 Inspected the canonical save pipeline end-to-end to determine whether the "no auto-refresh" pattern behind R4-P1-002 extends beyond `description.json.lastUpdated`. Files read:
 
-1. `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` (647 lines) — CLI wrapper only.
-2. `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1200-1420` — the actual save body.
-3. `.opencode/skill/system-spec-kit/scripts/spec-folder/generate-description.ts:79` — the *one* site where `lastUpdated` is written.
-4. `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1050-1190` — graph-metadata refresh path.
-5. `.opencode/skill/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:660-760` — discovery-side description repair.
-6. `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:636-682` — trustState derivation (typed-union exhaustiveness audit).
-7. `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:295-340` — `OnIndexSkipReason → EnrichmentSkipReason` mapping.
-8. `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:128-140` — `OnIndexSkipReason` declaration.
+1. `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (647 lines) — CLI wrapper only.
+2. `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1200-1420` — the actual save body.
+3. `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:79` — the *one* site where `lastUpdated` is written.
+4. `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1050-1190` — graph-metadata refresh path.
+5. `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts:660-760` — discovery-side description repair.
+6. `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:636-682` — trustState derivation (typed-union exhaustiveness audit).
+7. `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:295-340` — `OnIndexSkipReason → EnrichmentSkipReason` mapping.
+8. `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts:128-140` — `OnIndexSkipReason` declaration.
 
 Greps run:
 - `lastUpdated` across `scripts/` → 4 hits, only `spec-folder/generate-description.ts:79` is a create-time writer, rest are test fixtures / registry metadata.
@@ -129,7 +129,7 @@ The `Record<string, …>` key type is `string`, not `OnIndexSkipReason`. If a fu
 
 ### R51-P1-001 | Canonical save path has no reachable description.json writer | Cluster B (extends R4-P1-002)
 
-**File:line**: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1259`
+**File:line**: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1259`
 **Claim**: `const ctxFileWritten = false` hardcodes the description-update guard to false, making the entire `savePerFolderDescription` block at 1261-1331 unreachable dead code. Even if reached, that block only updates `memorySequence`, never `lastUpdated`.
 **Evidence**:
 ```ts
@@ -149,7 +149,7 @@ Inspection of lines 1261-1331 confirms the block updates `sequenceSnapshot.memor
 
 ### R51-P1-002 | Default planner-mode `plan-only` skips graph-metadata refresh | Cluster B (extends R3-P2-001, R5-P1-001)
 
-**File:line**: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1333`, `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:415`
+**File:line**: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1333`, `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:415`
 **Claim**: `refreshGraphMetadata` is gated on `options.plannerMode === 'full-auto'`. The default planner mode (set at line 415 of generate-context.ts) is `'plan-only'`. Therefore the default `/memory:save` path NEVER refreshes `graph-metadata.json.derived.last_save_at` / `derived.status` / `derived.source_docs`.
 **Evidence**:
 ```ts
@@ -167,7 +167,7 @@ else { log('   Deferred graph metadata refresh to explicit follow-up'); }
 
 ### R51-P1-003 | implementation-summary.md._memory.continuity has zero programmatic writers | Cluster B (NEW surface)
 
-**File:line**: `.opencode/skill/system-spec-kit/` (whole tree — grep miss)
+**File:line**: `.opencode/skills/system-spec-kit/` (whole tree — grep miss)
 **Claim**: Zero TypeScript/shell/JS code in the skill writes `_memory.continuity` frontmatter. Only READS exist (validation in `spec-doc-structure.ts:513-555`, resume in `resume-ladder.ts:361-372`). Maintenance is 100% manual AI-authored.
 **Evidence**: Grep `_memory\.continuity|_memory:\s*\n|continuity:\s*\n|continuity_freshness` across `scripts/` and `mcp_server/` source (non-test) returns zero programmatic writer hits. The only matches are prose documentation in README/SKILL/feature_catalog files. Even the canonical save handler `mcp_server/handlers/memory-save.ts:1699` invokes `refreshGraphMetadata` but does nothing for continuity frontmatter.
 **Blast radius**: Extends Cluster B by a 4th canonical-save surface. The review caught 3 (description.json, graph-metadata.json, checklist.md evidence markers). The fourth — `_memory.continuity` in `implementation-summary.md` — is critical for `/spec_kit:resume` accuracy. Stale continuity blocks make `resume-ladder.ts` recover a packet at the wrong position. CLAUDE.md explicitly permits AI hand-editing, but without a validator that flags "last_updated_at > 7d old", every resume dispatch could be silently working from a stale action-pointer.
@@ -176,7 +176,7 @@ else { log('   Deferred graph metadata refresh to explicit follow-up'); }
 
 ### R51-P2-001 | OnIndexSkipReason lookup uses weak-typed Record<string, …> enabling silent variant loss | Standalone (ride-along on R4-P2-002)
 
-**File:line**: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts:302-316`
+**File:line**: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:302-316`
 **Claim**: The `reasonMap: Record<string, EnrichmentSkipReason>` uses `string` keys instead of `OnIndexSkipReason`. Any future variant added to the `OnIndexSkipReason` union would return `undefined` from the lookup and silently coerce to `'graph_lifecycle_no_op'`, losing the new reason without compile-time warning.
 **Evidence**:
 ```ts

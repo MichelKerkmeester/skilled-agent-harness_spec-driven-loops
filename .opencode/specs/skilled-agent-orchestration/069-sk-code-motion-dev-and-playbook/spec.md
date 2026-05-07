@@ -25,10 +25,10 @@ _memory:
       - "002-motion-dev/implementation-summary.md"
       - "003-cross-ref-metadata-sync/implementation-summary.md"
       - "004-deep-review-remediation/implementation-summary.md"
-      - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-code/references/motion_dev/quick_start.md"
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
+      - ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code/references/motion_dev/quick_start.md"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-05"
@@ -90,9 +90,9 @@ Decompose this work into three independent sub-phases:
 ## 3. SCOPE
 
 ### In Scope
-- Refining `.opencode/skill/sk-code/manual_testing_playbook/` (root playbook + numbered category folders) with new motion.dev scenarios + animation regression + perf gates + cross-browser checks; aligning structure/headings/section discipline to sk-doc standards.
-- Populating `.opencode/skill/sk-code/references/motion_dev/` and `.opencode/skill/sk-code/assets/motion_dev/` as a peer category (NOT under `webflow/`) with cited content from official motion.dev docs and in-repo `a_nobel_en_zn/2_javascript/` usage.
-- Adding non-destructive "See also" cross-references in `.opencode/skill/sk-code/references/webflow/` and `.opencode/skill/sk-code/assets/webflow/` files that mention motion.dev.
+- Refining `.opencode/skills/sk-code/manual_testing_playbook/` (root playbook + numbered category folders) with new motion.dev scenarios + animation regression + perf gates + cross-browser checks; aligning structure/headings/section discipline to sk-doc standards.
+- Populating `.opencode/skills/sk-code/references/motion_dev/` and `.opencode/skills/sk-code/assets/motion_dev/` as a peer category (NOT under `webflow/`) with cited content from official motion.dev docs and in-repo `a_nobel_en_zn/2_javascript/` usage.
+- Adding non-destructive "See also" cross-references in `.opencode/skills/sk-code/references/webflow/` and `.opencode/skills/sk-code/assets/webflow/` files that mention motion.dev.
 - Refreshing sk-code metadata: SKILL.md, README.md, description.json, graph-metadata.json, changelog.
 - Updating sk-code's smart-router/surface manifest so motion_dev is a discoverable category alongside webflow (audit existing mechanism first; do not invent new mechanisms).
 
@@ -108,7 +108,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Authoritative file ledger |
 |-------|--------|---------------------------|
-| 001 | `001-playbook/` | `manual_testing_playbook.md` + new category folders (e.g. `05--motion-dev-and-animation-regression/`, `06--cross-browser-and-performance-gates/`) under `.opencode/skill/sk-code/manual_testing_playbook/` |
+| 001 | `001-playbook/` | `manual_testing_playbook.md` + new category folders (e.g. `05--motion-dev-and-animation-regression/`, `06--cross-browser-and-performance-gates/`) under `.opencode/skills/sk-code/manual_testing_playbook/` |
 | 002 | `002-motion-dev/` | 6 new docs in `references/motion_dev/` (quick_start, animate_and_timelines, scroll_and_gestures, performance_and_pitfalls, decision_matrix, integration_patterns) + `assets/motion_dev/install_card.md`, `assets/motion_dev/snippets/*`, `assets/motion_dev/playbook_entries.md` |
 | 003 | `003-cross-ref-metadata-sync/` | "See also" pointers added to ~10 `references/webflow/*` and 1 `assets/webflow/*` files; refreshed `SKILL.md`, `README.md`, `description.json`, `graph-metadata.json`, and `changelog/` entries; router/manifest updates if applicable |
 <!-- /ANCHOR:scope -->
@@ -165,8 +165,8 @@ Answered in continuity:
 - **Phase children**: See sub-folders `001-playbook/`, `002-motion-dev/`, `003-cross-ref-metadata-sync/`, and `004-deep-review-remediation/` for per-phase spec.md, plan.md, tasks.md
 - **Parent Spec**: See `../` (skilled-agent-orchestration)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
-- **sk-doc playbook standards**: `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`
-- **sk-doc playbook templates**: `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`, `manual_testing_playbook_snippet_template.md`
-- **Existing sk-code playbook**: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
+- **sk-doc playbook standards**: `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md`
+- **sk-doc playbook templates**: `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md`, `manual_testing_playbook_snippet_template.md`
+- **Existing sk-code playbook**: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 - **Motion.dev official docs**: https://motion.dev/docs/quick-start
 - **In-repo motion.dev usage**: `a_nobel_en_zn/2_javascript/` (slider/testimonial.js, navigation/nav_dropdown.js, etc.)

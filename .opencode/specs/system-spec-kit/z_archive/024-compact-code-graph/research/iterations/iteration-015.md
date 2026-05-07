@@ -294,7 +294,7 @@ The repo already has a runtime/profile mapping in `CLAUDE.md`:
 - Claude profile -> `.claude/agents/`
 - Codex CLI -> `.codex/agents/`
 - Gemini CLI -> `.gemini/agents/`
-- Copilot/default OpenCode profile -> `.opencode/agent/`
+- Copilot/default OpenCode profile -> `.opencode/agents/`
 
 That mapping is a better first-party signal than brittle prompt-text heuristics.
 
@@ -312,7 +312,7 @@ Proposed precedence:
 
 Important edge case:
 
-`.opencode/agent/` identifies the default OpenCode/Copilot-style profile bucket, but it does **not** disambiguate Copilot vs OpenCode by itself. If that distinction matters operationally, the launcher should pass an explicit runtime hint.
+`.opencode/agents/` identifies the default OpenCode/Copilot-style profile bucket, but it does **not** disambiguate Copilot vs OpenCode by itself. If that distinction matters operationally, the launcher should pass an explicit runtime hint.
 
 ### 4. Policy Resolution
 
@@ -356,24 +356,24 @@ The phase is ready when all of the following are true:
 - [SOURCE: specs/system-spec-kit/024-compact-code-graph/spec.md:28-32] — intended hook-script architecture
 - [SOURCE: specs/system-spec-kit/024-compact-code-graph/spec.md:58-66] — Stop-hook phase and dashboard out-of-scope statement
 - [SOURCE: CLAUDE.md:237-246] — runtime/profile to agent-directory mapping
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-61] — memory-aware tool skip list and 4000-token hook budgets
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185] — budget enforcement strategy for surfaced hook payloads
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:1-37] — existing SQLite telemetry types and event model
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:96-162] — `consumption_log` schema and fail-safe write path
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:61-67] — `tokenUsageRatio` in telemetry mode metadata
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:248-261] — ratio normalization/clamping in `recordMode`
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:689-715] — resume-mode retrieval behavior
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:730-760] — trusted session resolution and effective session handling
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:801-814] — resume heuristics
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1060-1148] — token budget, pressure policy, and session transition wiring
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:1099-1114] — startup crash-recovery behavior
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/startup-checks.ts:12-60] — deterministic runtime snapshot and mismatch pattern
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:1-109] — current hook-oriented test style
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:1-133] — current SQLite telemetry fixture pattern
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:1-168] — current continue-session extraction tests
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-117] — current crash-recovery coverage and TODO gaps
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:1-68] — current multi-session continuity contract
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/tests/dynamic-token-budget.vitest.ts:1-140] — current env-gated token-budget test style
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:42-61] — memory-aware tool skip list and 4000-token hook budgets
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:136-185] — budget enforcement strategy for surfaced hook payloads
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:1-37] — existing SQLite telemetry types and event model
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:96-162] — `consumption_log` schema and fail-safe write path
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:61-67] — `tokenUsageRatio` in telemetry mode metadata
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:248-261] — ratio normalization/clamping in `recordMode`
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:689-715] — resume-mode retrieval behavior
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:730-760] — trusted session resolution and effective session handling
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:801-814] — resume heuristics
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1060-1148] — token budget, pressure policy, and session transition wiring
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1099-1114] — startup crash-recovery behavior
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/startup-checks.ts:12-60] — deterministic runtime snapshot and mismatch pattern
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:1-109] — current hook-oriented test style
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:1-133] — current SQLite telemetry fixture pattern
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:1-168] — current continue-session extraction tests
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-117] — current crash-recovery coverage and TODO gaps
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts:1-68] — current multi-session continuity contract
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/tests/dynamic-token-budget.vitest.ts:1-140] — current env-gated token-budget test style
 - [SOURCE: https://docs.anthropic.com/en/docs/claude-code/hooks (accessed 2026-03-29)] — current Claude Code hook events and Stop-hook input fields
 - [SOURCE: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-hooks (accessed 2026-03-29)] — current GitHub Copilot CLI hook support
 - [SOURCE: https://geminicli.com/docs/hooks/ (accessed 2026-03-29)] — current Gemini CLI hook support

@@ -33,7 +33,7 @@ The smallest-correct recommendation is to add a four-command "Start Here" shortl
 
 An optional one-line pointer in `SKILL.md` back to the shortlist is acceptable, but duplicating a full command matrix in multiple places is not.
 
-Decision update after research: the user explicitly overrode the minimal shortlist recommendation with, "add all commands though in short list." That means the chosen implementation direction is now broader than the research recommendation. The research finding still stands as the minimal recommendation, but the downstream docs change should now reflect an expanded all-commands short list in the quick reference while keeping `.opencode/skill/system-spec-kit/SKILL.md` as a pointer only.
+Decision update after research: the user explicitly overrode the minimal shortlist recommendation with, "add all commands though in short list." That means the chosen implementation direction is now broader than the research recommendation. The research finding still stands as the minimal recommendation, but the downstream docs change should now reflect an expanded all-commands short list in the quick reference while keeping `.opencode/skills/system-spec-kit/SKILL.md` as a pointer only.
 
 ---
 
@@ -43,7 +43,7 @@ Decision update after research: the user explicitly overrode the minimal shortli
 
 **Scope:** Research only. No implementation changes were made to the target runtime surfaces in this session.
 
-**Why this matters:** Codex may not reliably surface repository-local slash commands or prompt menus in the UI, so command discoverability must work through the text surfaces the skill router already loads. [SOURCE: `.opencode/skill/cli-codex/references/codex_tools.md:119-205`]
+**Why this matters:** Codex may not reliably surface repository-local slash commands or prompt menus in the UI, so command discoverability must work through the text surfaces the skill router already loads. [SOURCE: `.opencode/skills/cli-codex/references/codex_tools.md:119-205`]
 
 ---
 
@@ -51,11 +51,11 @@ Decision update after research: the user explicitly overrode the minimal shortli
 
 ### Q1. What command surfaces already exist?
 
-The repository already contains the core command surfaces under `.opencode/command/spec_kit/` and `.opencode/command/memory/`. This is not primarily a missing-docs problem. [SOURCE: `.opencode/command/spec_kit/resume.md:1-33`, `.opencode/command/spec_kit/plan.md:1-40`, `.opencode/command/memory/save.md:1-76`, `.opencode/command/memory/search.md:1-80`]
+The repository already contains the core command surfaces under `.opencode/commands/spec_kit/` and `.opencode/commands/memory/`. This is not primarily a missing-docs problem. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`, `.opencode/commands/memory/search.md:1-80`]
 
 ### Q2. What surface does Codex most likely see first?
 
-The first-touch surface is `references/workflows/quick_reference.md` because `system-spec-kit` sets it as the default resource and loads ALWAYS resources before intent-specific docs. [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:135`, `.opencode/skill/system-spec-kit/SKILL.md:226-233`, `.opencode/skill/system-spec-kit/SKILL.md:306-323`]
+The first-touch surface is `references/workflows/quick_reference.md` because `system-spec-kit` sets it as the default resource and loads ALWAYS resources before intent-specific docs. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135`, `.opencode/skills/system-spec-kit/SKILL.md:226-233`, `.opencode/skills/system-spec-kit/SKILL.md:306-323`]
 
 ### Q3. What is the smallest high-signal change?
 
@@ -65,15 +65,15 @@ The smallest high-signal change is a narrow four-command shortlist, not a genera
 - `/memory:search` for retrieving prior context and analysis
 - `/memory:save` for preserving session context
 
-[SOURCE: `.opencode/command/spec_kit/resume.md:1-33`, `.opencode/command/spec_kit/plan.md:1-40`, `.opencode/command/memory/search.md:1-80`, `.opencode/command/memory/save.md:1-76`]
+[SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/search.md:1-80`, `.opencode/commands/memory/save.md:1-76`]
 
 ### Q4. Where should the fix live?
 
-The primary fix should live in `references/workflows/quick_reference.md` because that file is already the always-loaded first-touch surface. `SKILL.md` may include a tiny pointer back to that shortlist, but should not duplicate another full command matrix. [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:135-180`, `.opencode/skill/system-spec-kit/SKILL.md:373`, `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:109-166`]
+The primary fix should live in `references/workflows/quick_reference.md` because that file is already the always-loaded first-touch surface. `SKILL.md` may include a tiny pointer back to that shortlist, but should not duplicate another full command matrix. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135-180`, `.opencode/skills/system-spec-kit/SKILL.md:373`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`]
 
 ### Q5. What exact recommendation should be implemented next?
 
-Insert a concise "Start Here" command shortlist immediately under `## 4. ESSENTIAL COMMANDS` in `references/workflows/quick_reference.md`. Keep exactly the four must-show commands in that block. Optionally add a one-line note in `SKILL.md` pointing readers to the shortlist. Do not create new command docs, do not generate a new registry, and do not promote lower-priority commands into the first-touch set. [SOURCE: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:109-166`, `.opencode/skill/system-spec-kit/SKILL.md:135-180`, `.opencode/skill/system-spec-kit/SKILL.md:561-562`]
+Insert a concise "Start Here" command shortlist immediately under `## 4. ESSENTIAL COMMANDS` in `references/workflows/quick_reference.md`. Keep exactly the four must-show commands in that block. Optionally add a one-line note in `SKILL.md` pointing readers to the shortlist. Do not create new command docs, do not generate a new registry, and do not promote lower-priority commands into the first-touch set. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`, `.opencode/skills/system-spec-kit/SKILL.md:135-180`, `.opencode/skills/system-spec-kit/SKILL.md:561-562`]
 
 ### Q6. What changed after the user decision override?
 
@@ -92,15 +92,15 @@ The implementation direction changed, not the research conclusion. The packet sh
 - `/memory:manage`
 - `/memory:learn`
 
-The quick reference remains the primary surface, and `.opencode/skill/system-spec-kit/SKILL.md` should only point to it rather than duplicate the matrix in full.
+The quick reference remains the primary surface, and `.opencode/skills/system-spec-kit/SKILL.md` should only point to it rather than duplicate the matrix in full.
 
 ---
 
 ## 4. Findings
 
-1. The default loading path matters more than command doc existence for Codex discoverability. The core problem is visibility order. [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:135`, `.opencode/skill/system-spec-kit/SKILL.md:226-233`, `.opencode/skill/system-spec-kit/SKILL.md:306-323`]
-2. The current quick reference does not act like a first-step routing map. Its early sections emphasize progressive documentation mechanics rather than the highest-value command entrypoints. [SOURCE: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:13-188`]
-3. The current quick reference over-represents lower-priority items for a first-touch user, such as save mechanics, handover, and phase shortcuts, compared with `resume`, `plan`, and `search`. [SOURCE: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:468-527`]
+1. The default loading path matters more than command doc existence for Codex discoverability. The core problem is visibility order. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135`, `.opencode/skills/system-spec-kit/SKILL.md:226-233`, `.opencode/skills/system-spec-kit/SKILL.md:306-323`]
+2. The current quick reference does not act like a first-step routing map. Its early sections emphasize progressive documentation mechanics rather than the highest-value command entrypoints. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:13-188`]
+3. The current quick reference over-represents lower-priority items for a first-touch user, such as save mechanics, handover, and phase shortcuts, compared with `resume`, `plan`, and `search`. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`]
 4. Historical repo work already exposed command-surface drift around `/memory:save`, so any solution that duplicates command inventories broadly is likely to regress over time. [SOURCE: `specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/064-bug-analysis-and-fix/tasks.md:350-379`]
 
 ---
@@ -109,7 +109,7 @@ The quick reference remains the primary surface, and `.opencode/skill/system-spe
 
 ### Required change
 
-Update `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`:
+Update `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`:
 - Add a compact short-list block immediately under `## 4. ESSENTIAL COMMANDS`
 - Preserve the research note that the minimal recommendation was four commands
 - Implement the approved expanded surface as a grouped 12-command short list
@@ -117,7 +117,7 @@ Update `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
 
 ### Optional change
 
-Update `.opencode/skill/system-spec-kit/SKILL.md`:
+Update `.opencode/skills/system-spec-kit/SKILL.md`:
 - Add a brief pointer that the quick reference contains the first-touch command shortlist
 - Do not restate the 12-command matrix in full
 
@@ -153,10 +153,10 @@ Update `.opencode/skill/system-spec-kit/SKILL.md`:
 
 ## 6. Ruled Out Directions
 
-- Creating brand-new command docs as the primary fix. The docs already exist. [SOURCE: `.opencode/command/spec_kit/resume.md:1-33`, `.opencode/command/spec_kit/plan.md:1-40`, `.opencode/command/memory/save.md:1-76`]
-- Building a generated command index as the primary solution. The existing always-loaded quick reference is a lower-drift surface. [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:135-180`, `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:109-166`]
-- Promoting every `memory` or `spec_kit` command into the first-touch set. That recreates noise and drift risk. [SOURCE: `.opencode/skill/system-spec-kit/SKILL.md:561-612`]
-- Treating `/spec_kit:handover` as a first-touch command. It is end-of-session oriented rather than initial navigation. [SOURCE: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:499-513`]
+- Creating brand-new command docs as the primary fix. The docs already exist. [SOURCE: `.opencode/commands/spec_kit/resume.md:1-33`, `.opencode/commands/spec_kit/plan.md:1-40`, `.opencode/commands/memory/save.md:1-76`]
+- Building a generated command index as the primary solution. The existing always-loaded quick reference is a lower-drift surface. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:135-180`, `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:109-166`]
+- Promoting every `memory` or `spec_kit` command into the first-touch set. That recreates noise and drift risk. [SOURCE: `.opencode/skills/system-spec-kit/SKILL.md:561-612`]
+- Treating `/spec_kit:handover` as a first-touch command. It is end-of-session oriented rather than initial navigation. [SOURCE: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:499-513`]
 
 ---
 
@@ -179,19 +179,19 @@ Update `.opencode/skill/system-spec-kit/SKILL.md`:
 
 ## 9. Sources
 
-- `.opencode/skill/system-spec-kit/SKILL.md:135`
-- `.opencode/skill/system-spec-kit/SKILL.md:226-233`
-- `.opencode/skill/system-spec-kit/SKILL.md:306-323`
-- `.opencode/skill/system-spec-kit/SKILL.md:373`
-- `.opencode/skill/system-spec-kit/SKILL.md:561-612`
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:13-188`
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md:468-527`
-- `.opencode/command/spec_kit/resume.md:1-33`
-- `.opencode/command/spec_kit/plan.md:1-40`
-- `.opencode/command/memory/search.md:1-80`
-- `.opencode/command/memory/save.md:1-76`
+- `.opencode/skills/system-spec-kit/SKILL.md:135`
+- `.opencode/skills/system-spec-kit/SKILL.md:226-233`
+- `.opencode/skills/system-spec-kit/SKILL.md:306-323`
+- `.opencode/skills/system-spec-kit/SKILL.md:373`
+- `.opencode/skills/system-spec-kit/SKILL.md:561-612`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:13-188`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md:468-527`
+- `.opencode/commands/spec_kit/resume.md:1-33`
+- `.opencode/commands/spec_kit/plan.md:1-40`
+- `.opencode/commands/memory/search.md:1-80`
+- `.opencode/commands/memory/save.md:1-76`
 - `specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/064-bug-analysis-and-fix/tasks.md:350-379`
-- `.opencode/skill/cli-codex/references/codex_tools.md:119-205`
+- `.opencode/skills/cli-codex/references/codex_tools.md:119-205`
 
 ---
 

@@ -75,7 +75,7 @@ _memory:
 | 8 | 008 | Files-to-change table expanded with `post-tool-use.ts` + `codex-post-tool-use-hook.vitest.ts` |
 | 9 | 009 | §3.5 validation playbook (8 manual steps) + troubleshooting table (top-5 symptoms); §3.6 prompt-artifact privacy (hook-state + Copilot wrapper + observability); REQ-009/010/011 |
 
-All 6 patched children pass `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <child> --strict --no-recursive` with 0 errors (pre-existing warnings only — RELATED DOCUMENTS custom header + implementation-summary.md baseline — same as pre-patch state).
+All 6 patched children pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child> --strict --no-recursive` with 0 errors (pre-existing warnings only — RELATED DOCUMENTS custom header + implementation-summary.md baseline — same as pre-patch state).
 
 Full findings: research-validation.md in the wave-3 artifact folder (research/020-skill-advisor-hook-surface-pt-03/)
 
@@ -143,10 +143,10 @@ Parent-level docs in this same folder:
 - `020/001-initial-research/003-implementation-plan-validation-copilot/` — wave-3 charter (converged)
 
 ### Short-name convention (newly-defined backend logic)
-- `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` — `resolveArtifactRoot()` + `allocateShortSubfolder()` now produce `{phaseSlug}-pt-NN`
-- Skill docs at .opencode/skill/sk-deep-research/SKILL.md and .opencode/skill/sk-deep-review/SKILL.md — format documented
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` + `_confirm.yaml` — format documented
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` + `_confirm.yaml` — format documented
+- `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` — `resolveArtifactRoot()` + `allocateShortSubfolder()` now produce `{phaseSlug}-pt-NN`
+- Skill docs at .opencode/skills/sk-deep-research/SKILL.md and .opencode/skills/sk-deep-review/SKILL.md — format documented
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` + `_confirm.yaml` — format documented
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` + `_confirm.yaml` — format documented
 
 ## Git State
 

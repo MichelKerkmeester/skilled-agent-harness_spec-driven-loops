@@ -93,7 +93,7 @@ Existing packet context and external evidence are re-read first, then distilled 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Structural validation | Phase packet docs and research artifacts | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <phase>` |
+| Structural validation | Phase packet docs and research artifacts | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <phase>` |
 | Formatting sanity | Whitespace and patch hygiene | `git diff --check -- <phase>` |
 | Artifact verification | Iterations, state rows, dashboard, merged report | `ls`, `sed`, `tail`, `rg` |
 <!-- /ANCHOR:testing -->

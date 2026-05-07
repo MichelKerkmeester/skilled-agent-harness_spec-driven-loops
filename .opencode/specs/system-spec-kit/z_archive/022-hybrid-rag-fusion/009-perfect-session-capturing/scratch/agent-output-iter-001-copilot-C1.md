@@ -12,165 +12,165 @@
 ● skill(sk-code-review)
 
 ● Read opencode-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ 1 line read
 
 ● Read source-capabilities.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts
   └ 82 lines read
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ 1 line read
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ 1 line read
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/adapters/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/adapters/**/*.ts"
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/skill/system-spec-kit/scripts/extractors/**/*.ts"
+  │ ".opencode/skills/system-spec-kit/scripts/extractors/**/*.ts"
   └ 18 files found
 
 I found all four adapter files; next I’ll map routing and compare extraction/mapping/error behaviors side-by-side across them and the loader/normalizer paths.
 
 ● Read claude-code-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
   └ 1 line read
 
 ● Read codex-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/codex-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/codex-cli-capture.ts
   └ 471 lines read
 
 ● Read copilot-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/copilot-cli-capture.ts
   └ 414 lines read
 
 ● Read gemini-cli-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/gemini-cli-capture.ts
   └ 394 lines read
 
 ● Read index.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/index.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/index.ts
   └ 46 lines read
 
 ● Search (grep)
   │ "^(export |function |const |interface |type )|throw new
   │ Error|logger\.|console\.|try\s*\{|catch\s*\("
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts)
   └ 45 lines found
 
 ● Search (grep)
   │ "(opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|
   │ DataSource|normalize|source|capture)"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 82 lines found
 
 ● Search (grep)
   │ "(opencode-capture|claude-code-capture|codex-cli-capture|copilot-cli-capture|gemini-cli-capture|
   │ loadCollectedData|source|adapter|extract|capture)"
-  │ (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "export async function captureClaudeConversation|function resolve|readJsonl|tool\.execution|assi
   │ stant|user|isApiErrorContent|normalizeToolStatus|sanitizeToolInputPaths|return null|catch"
-  │ (.opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts)
   └ 37 lines found
 
 ● Read claude-code-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
   └ L1:260 (260 lines read)
 
 ● Read claude-code-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
   └ L261:560 (300 lines read)
 
 ● Read opencode-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ L220:420 (201 lines read)
 
 ● Read opencode-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ L420:860 (441 lines read)
 
 ● Search (grep)
   │ "captureOpencodeConversation|captureClaudeConversation|captureCodexConversation|captureCopilotCo
   │ nversation|captureGeminiConversation|transformOpencodeCapture|DataSource|_source|source|stateles
-  │ s|simulation|file" (.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts)
+  │ s|simulation|file" (.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts)
   └ 57 lines found
 
 ● Search (grep)
   │ "transformOpencodeCapture|CaptureDataSource|_source|file_summary|_sourceSession|OpencodeCapture|
-  │ source:|metadata|FILES" (.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts)
+  │ source:|metadata|FILES" (.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts)
   └ 56 lines found
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L790:930 (141 lines read)
 
 ● Read claude-code-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/claude-code-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/claude-code-capture.ts
   └ L560:780 (172 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L220:390 (171 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L390:590 (195 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1:220 (220 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L1040:1148 (109 lines read)
 
 ● Read opencode-capture.ts
-  │ .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
+  │ .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
   └ L1:220 (220 lines read)
 
 ● Read input-normalizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
   └ L930:1040 (111 lines read)
 
 ● Read data-loader.ts
-  │ .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts
+  │ .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts
   └ L1:220 (219 lines read)
 
 ● Read source-capabilities.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/source-capabilities.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts
   └ L1:120 (82 lines read)
 
 ● Search (grep)
   │ "status:\s*'pending'|status:\s*'completed'|status:\s*'error'|normalizeToolStatus|isApiErrorConte
   │ nt|isApiErrorMessage|toolRequests|function_call|tool_use|tool_result|tool.execution_start|tool.e
-  │ xecution_complete" in *.ts (.opencode/skill/system-spec-kit/scripts/extractors)
+  │ xecution_complete" in *.ts (.opencode/skills/system-spec-kit/scripts/extractors)
   └ 23 lines found
 
 ● Search (grep)
   │ "normalizeToolStatus|isApiErrorContent|sanitizeToolInputPaths|sanitizeToolDescription"
-  │ (.opencode/skill/system-spec-kit/scripts/utils/tool-sanitizer.ts)
+  │ (.opencode/skills/system-spec-kit/scripts/utils/tool-sanitizer.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "getSourceCapabilities|SOURCE_CAPABILITIES|toolTitleWithPathExpected|prefersStructuredSave"
-  │ (.opencode/skill/system-spec-kit/scripts)
+  │ (.opencode/skills/system-spec-kit/scripts)
   └ 44 lines found
 
 ● Search (grep)
   │ "_source\b|CaptureDataSource|transformOpencodeCapture\(|loadCollectedData\(|attemptNativeCapture
-  │ \(" (.opencode/skill/system-spec-kit/scripts)
+  │ \(" (.opencode/skills/system-spec-kit/scripts)
   └ 95 lines found
 
 ● Read tool-sanitizer.ts
-  │ .opencode/skill/system-spec-kit/scripts/utils/tool-sanitizer.ts
+  │ .opencode/skills/system-spec-kit/scripts/utils/tool-sanitizer.ts
   └ L1:220 (146 lines read)
 
 Here’s the structural map for **the 4 CLI adapters** (no `scripts/adapters/*` files found; all are in `scripts/extractors/*`).

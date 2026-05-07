@@ -7,7 +7,7 @@ LOCK IN WORKFLOW INVARIANCE. Write ADR-005, define the invariant-safe `resolve_l
 ## Actions Taken
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-010.md` first, preserving the reopened invariant constraints and four unresolved questions.
-- Re-read the workflow rules in `.opencode/skill/sk-deep-research/SKILL.md` for this single leaf iteration.
+- Re-read the workflow rules in `.opencode/skills/sk-deep-research/SKILL.md` for this single leaf iteration.
 - Re-read the iteration-007 concrete diffs and searched for public leakage of `preset`, `capability`, `kind`, and `manifest` vocabulary.
 - Re-read line-numbered synthesis excerpts in `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/research.md`.
 - Checked the iteration-010 delta format before writing this iteration's narrative and delta records.
@@ -26,15 +26,15 @@ LOCK IN WORKFLOW INVARIANCE. Write ADR-005, define the invariant-safe `resolve_l
 
 **Context:** On 2026-05-01 the user added a workflow invariant: AI behavior, Gate 3 behavior, user conversation flow, command syntax, authored packet markers, and user-visible validator output must remain level-based. The C+F manifest design can still remove duplicated template source folders, but it must not introduce a new public taxonomy. Iteration 10 found that earlier iteration-007 and iteration-009 wording leaked `preset`, `capability`, and `kind` into public CLI help, validator messages, metadata, and synthesis language.
 
-**Decision:** Level vocabulary remains the sole public and AI-facing contract. `Level 1`, `Level 2`, `Level 3`, `Level 3+`, and phase-parent remain the user-facing taxonomy in `CLAUDE.md`, `AGENTS.md`, command markdown, skill text, generated packet markers, validator output, and CLI help. Preset, capability, and kind names are strictly internal to `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`, the TypeScript resolver, and the scaffolder internals. The public bridge is `resolveLevelContract(level)`.
+**Decision:** Level vocabulary remains the sole public and AI-facing contract. `Level 1`, `Level 2`, `Level 3`, `Level 3+`, and phase-parent remain the user-facing taxonomy in `CLAUDE.md`, `AGENTS.md`, command markdown, skill text, generated packet markers, validator output, and CLI help. Preset, capability, and kind names are strictly internal to `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, the TypeScript resolver, and the scaffolder internals. The public bridge is `resolveLevelContract(level)`.
 
 **Specific bans:**
 
 - No public `--preset X` flag. Drop it from `create.sh --help`, examples, slash-command docs, and AI-facing skill text. If test-only fixture generation needs a non-level selector, it must be private, undocumented, and unable to appear in normal help or logs.
-- No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/command/*.md`, `.opencode/agent/*.md`, `.opencode/skill/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.
+- No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `.opencode/commands/*.md`, `.opencode/agents/*.md`, `.opencode/skills/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.
 - Keep `--level N`, `<!-- SPECKIT_LEVEL: N -->`, `level: N` frontmatter where already supported, `spec_level` metadata, and the `Level 1/2/3/3+` taxonomy in user-facing docs.
 
-**Implementation:** Iteration 11 replaces the iteration-007 public `--preset` proposal with level-only public diffs. New canonical API: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts::resolveLevelContract(level)`. Shell bridge: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh::resolve_level_contract <level>`. `create.sh` keeps `DOC_LEVEL`, `--level`, `DOC_LEVEL` JSON, and Level-shaped logs. Validator rules consume the resolved contract internally but emit only Level-shaped or taxonomy-neutral messages.
+**Implementation:** Iteration 11 replaces the iteration-007 public `--preset` proposal with level-only public diffs. New canonical API: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts::resolveLevelContract(level)`. Shell bridge: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh::resolve_level_contract <level>`. `create.sh` keeps `DOC_LEVEL`, `--level`, `DOC_LEVEL` JSON, and Level-shaped logs. Validator rules consume the resolved contract internally but emit only Level-shaped or taxonomy-neutral messages.
 
 **Consequences:**
 
@@ -57,7 +57,7 @@ LOCK IN WORKFLOW INVARIANCE. Write ADR-005, define the invariant-safe `resolve_l
 The public TypeScript file must avoid manifest, preset, capability, and kind in its filename and exported API. It may query `spec-kit-docs.json` internally.
 
 ```ts
-// .opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts
+// .opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts
 
 export type PublicSpecLevel = '1' | '2' | '3' | '3+' | 'phase';
 
@@ -99,11 +99,11 @@ Contract details:
 Shell wrapper sketch:
 
 ```sh
-# .opencode/skill/system-spec-kit/scripts/lib/template-utils.sh
+# .opencode/skills/system-spec-kit/scripts/lib/template-utils.sh
 
 resolve_level_contract() {
     local level="$1"
-    node "$REPO_ROOT/.opencode/skill/system-spec-kit/scripts/dist/templates/level-contract-resolver-cli.js" "$level"
+    node "$REPO_ROOT/.opencode/skills/system-spec-kit/scripts/dist/templates/level-contract-resolver-cli.js" "$level"
 }
 ```
 
@@ -143,7 +143,7 @@ The wrapper returns JSON on stdout with only these public fields:
 
 - Replace iteration-007 `RULE_MESSAGE="All required files present for manifest contract"` with `RULE_MESSAGE="All required files present for Level $level"`.
 - Replace `RULE_MESSAGE="${#RULE_DETAILS[@]} optional manifest file warning(s)"` with `RULE_MESSAGE="${#RULE_DETAILS[@]} optional workflow file warning(s)"`.
-- Replace `Use the active manifest preset templates.` with `Use templates for Level $level from .opencode/skill/system-spec-kit/templates/`.
+- Replace `Use the active manifest preset templates.` with `Use templates for Level $level from .opencode/skills/system-spec-kit/templates/`.
 - Missing file details must be file-only or level-shaped. Preferred message: `Level 3 packet missing required file: decision-record.md`.
 - Internal resolver failures become `Internal template contract could not be resolved for Level $level`; stderr must not include raw `Unknown preset`, `Ambiguous preset`, `Capability X`, or `kind Y`.
 

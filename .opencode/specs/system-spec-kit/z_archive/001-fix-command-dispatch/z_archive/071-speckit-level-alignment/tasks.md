@@ -38,7 +38,7 @@ Implementation tasks for aligning SpecKit with level-based template architecture
 ## Phase 1: Script Updates (P0 - CRITICAL)
 
 ### TASK-001: Update create-spec-folder.sh [P0]
-**File**: `.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh`
+**File**: `.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh`
 **Status**: ✅ Complete
 **Estimated**: ~50 lines
 
@@ -71,7 +71,7 @@ get_level_templates_dir() {
 ---
 
 ### TASK-002: Update expand-template.js [P0]
-**File**: `.opencode/skill/system-spec-kit/scripts/expand-template.js`
+**File**: `.opencode/skills/system-spec-kit/scripts/expand-template.js`
 **Status**: ✅ Complete
 **Estimated**: ~20 lines
 
@@ -103,7 +103,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ## Phase 2: Lib Module Updates (P1 - HIGH)
 
 ### TASK-003: Update preprocessor.js [P1]
-**File**: `.opencode/skill/system-spec-kit/lib/expansion/preprocessor.js`
+**File**: `.opencode/skills/system-spec-kit/lib/expansion/preprocessor.js`
 **Status**: ✅ Complete
 **Estimated**: ~40 lines
 
@@ -116,7 +116,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ---
 
 ### TASK-004: Update features.js [P2]
-**File**: `.opencode/skill/system-spec-kit/lib/complexity/features.js`
+**File**: `.opencode/skills/system-spec-kit/lib/complexity/features.js`
 **Status**: ✅ Complete
 **Estimated**: ~20 lines
 
@@ -129,7 +129,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ---
 
 ### TASK-005: Add deprecation to marker-parser.js [P3]
-**File**: `.opencode/skill/system-spec-kit/lib/expansion/marker-parser.js`
+**File**: `.opencode/skills/system-spec-kit/lib/expansion/marker-parser.js`
 **Status**: ✅ Complete
 **Estimated**: ~5 lines
 
@@ -141,7 +141,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ---
 
 ### TASK-006: Update user-stories.js [P3]
-**File**: `.opencode/skill/system-spec-kit/lib/expansion/generators/user-stories.js`
+**File**: `.opencode/skills/system-spec-kit/lib/expansion/generators/user-stories.js`
 **Status**: ✅ Complete
 **Estimated**: ~5 lines
 
@@ -157,7 +157,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ## Phase 3: Documentation Updates (P1-P2)
 
 ### TASK-007: Update SKILL.md [P0]
-**File**: `.opencode/skill/system-spec-kit/SKILL.md`
+**File**: `.opencode/skills/system-spec-kit/SKILL.md`
 **Status**: ✅ Complete
 **Estimated**: ~30 lines
 
@@ -171,7 +171,7 @@ node scripts/expand-template.js --template spec.md --level 2 --dry-run
 ---
 
 ### TASK-008: Update README.md [P1]
-**File**: `.opencode/skill/system-spec-kit/README.md`
+**File**: `.opencode/skills/system-spec-kit/README.md`
 **Status**: ✅ Complete
 **Estimated**: ~50 lines
 
@@ -183,7 +183,7 @@ Update copy commands at lines 412, 428, 466, 1003-1004, 1553-1554, 1559, 1655-16
 ---
 
 ### TASK-009: Update level_specifications.md [P1]
-**File**: `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+**File**: `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 **Status**: ✅ Complete
 **Estimated**: ~40 lines
 
@@ -195,7 +195,7 @@ Update template paths at lines 46-47, 97-100, 173-178, 275-278, 397-400, 639-642
 ---
 
 ### TASK-010: Update template_guide.md [P1]
-**File**: `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
+**File**: `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
 **Status**: ✅ Complete
 **Estimated**: ~30 lines
 
@@ -207,7 +207,7 @@ Update copy commands at lines 56-57, 107, 400, 685, 999-1002
 ---
 
 ### TASK-011: Update complexity_guide.md [P1]
-**File**: `.opencode/skill/system-spec-kit/references/templates/complexity_guide.md`
+**File**: `.opencode/skills/system-spec-kit/references/templates/complexity_guide.md`
 **Status**: ✅ Complete
 **Estimated**: ~20 lines
 
@@ -219,7 +219,7 @@ Update template paths at lines 325-328, 331-334
 ---
 
 ### TASK-012: Update quick_reference.md [P2]
-**File**: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+**File**: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 **Status**: ✅ Complete
 **Estimated**: ~20 lines
 
@@ -231,7 +231,7 @@ Update copy commands at lines 53-54, 63, 552-555
 ---
 
 ### TASK-013: Update template_mapping.md [P2]
-**File**: `.opencode/skill/system-spec-kit/assets/template_mapping.md`
+**File**: `.opencode/skills/system-spec-kit/assets/template_mapping.md`
 **Status**: ✅ Complete
 **Estimated**: ~25 lines
 
@@ -243,7 +243,7 @@ Update copy commands at lines 53-54, 61, 258-259, 266, 313-316
 ---
 
 ### TASK-014: Update validation_rules.md [P2]
-**File**: `.opencode/skill/system-spec-kit/references/validation/validation_rules.md`
+**File**: `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`
 **Status**: ✅ Complete
 **Estimated**: ~5 lines
 
@@ -255,7 +255,7 @@ Update copy command at line 119
 ---
 
 ### TASK-015: Update phase_checklists.md [P2]
-**File**: `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md`
+**File**: `.opencode/skills/system-spec-kit/references/validation/phase_checklists.md`
 **Status**: ✅ Complete
 **Estimated**: ~5 lines
 
@@ -283,7 +283,7 @@ Update checklist.md link at line 176
 ## Phase 4: Template Cleanup (P1)
 
 ### TASK-017: Remove COMPLEXITY_GATE markers from level_2/checklist.md [P1]
-**File**: `.opencode/skill/system-spec-kit/templates/level_2/checklist.md`
+**File**: `.opencode/skills/system-spec-kit/templates/level_2/checklist.md`
 **Status**: ✅ Complete
 **Estimated**: ~30 lines (remove markers, keep content)
 
@@ -316,13 +316,13 @@ done
 
 ### VERIFY-003: Verify No Broken Paths
 ```bash
-grep -r "templates/spec.md" .opencode/skill/system-spec-kit/scripts/
+grep -r "templates/spec.md" .opencode/skills/system-spec-kit/scripts/
 ```
 **Expected**: No matches (all should reference level folders)
 
 ### VERIFY-004: Verify No COMPLEXITY_GATE in Level Folders
 ```bash
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 ```
 **Expected**: No matches
 

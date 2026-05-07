@@ -6,7 +6,7 @@ I audited the shared payload contract layer behind startup, resume, bootstrap, a
 ## Findings
 
 ### Finding R9-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
 - **Lines:** `592-601`
 - **Severity:** P1
 - **Description:** The shared trust-state mappers collapse non-usable structural states into `stale`, erasing the difference between "graph exists but is outdated" and "graph is empty/unavailable". `trustStateFromGraphState()` maps both `empty` and `missing` startup graph states to `stale`, and `trustStateFromStructuralStatus()` maps `missing` bootstrap/resume structural context to `stale`.
@@ -14,7 +14,7 @@ I audited the shared payload contract layer behind startup, resume, bootstrap, a
 - **Downstream Impact:** `buildOpenCodeTransportPlan()` prints `payload.provenance.trustState` verbatim into runtime-facing startup and retrieval digests (`lib/context/opencode-transport.ts:64-71,122-149`), so hookless consumers see a recoverable "`stale` graph" even when structural context is actually absent or failed. That blurs the operator action boundary between "refresh existing graph" and "run an initial scan / repair a missing graph".
 
 ### Finding R9-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`
 - **Lines:** `40-54`
 - **Severity:** P2
 - **Description:** Shared payload coercion is shape-only, not contract-level. `coerceSharedPayloadEnvelope()` accepts any object with a string `kind`, string `summary`, array `sections`, and object `provenance`, without validating `kind`, `producer`, `trustState`, `sourceSurface`, or the section payload schema.

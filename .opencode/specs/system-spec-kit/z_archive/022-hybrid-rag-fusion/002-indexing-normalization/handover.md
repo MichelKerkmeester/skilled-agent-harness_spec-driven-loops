@@ -80,7 +80,7 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 - [x] `former child spec 002-index-tier-anomalies -> implementation-summary.md` (frontmatter template-source marker)
 
 ### Verification Executed
-- [x] `.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` -> PASS (0 errors, 0 warnings)
+- [x] `.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` -> PASS (0 errors, 0 warnings)
 - [x] Memory query checks confirm descriptive titles now dominate reindexed records.
 
 ## 4. Pending Work
@@ -130,9 +130,9 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 ```
 
 ### Files to Review First
-1. `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts` - list filtering behavior (`includeChunks`).
-2. `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` - API schema/runtime wiring.
-3. `.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` - expected list behavior.
+1. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts` - list filtering behavior (`includeChunks`).
+2. `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` - API schema/runtime wiring.
+3. `.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts` - expected list behavior.
 4. `former child spec 002-index-tier-anomalies -> checklist.md` - verification status baseline.
 
 ### Quick-Start Checklist

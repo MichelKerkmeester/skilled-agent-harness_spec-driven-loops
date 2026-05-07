@@ -119,10 +119,10 @@ Improve CocoIndex integration (seed resolution, query-intent metadata, auto-rein
 **Item 25: Cross-runtime instruction updates**
 - **AGENTS.md**: Add Session Start Protocol section — force `memory_context()` + `code_graph_status()` on first turn
 - **AGENTS.md**: Add code graph auto-trigger for Copilot CLI agents
-- **OpenCode agents**: Update `.opencode/agent/context.md` with code graph integration
+- **OpenCode agents**: Update `.opencode/agents/context.md` with code graph integration
 - **Gemini**: Update `AGENTS.md` with equivalent session start protocol
 - **CLAUDE.md** (root): Add universal Code Search Protocol referencing code graph tools
-- Files: `AGENTS.md`, `AGENTS.md`, `.opencode/agent/context.md`, `AGENTS.md`, `CLAUDE.md`
+- Files: `AGENTS.md`, `AGENTS.md`, `.opencode/agents/context.md`, `AGENTS.md`, `CLAUDE.md`
 - LOC: 100-168
 - Evidence: research iter-065 (OpenCode), iter-074 (Codex/Copilot), iter-084-087 (per-runtime deep dives)
 

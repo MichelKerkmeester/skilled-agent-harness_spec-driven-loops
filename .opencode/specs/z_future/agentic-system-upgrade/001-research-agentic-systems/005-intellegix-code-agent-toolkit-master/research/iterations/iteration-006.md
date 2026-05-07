@@ -17,9 +17,9 @@ I compared the external orchestrator command and pre-tool-use guard with `system
 - `[SOURCE: external/hooks/orchestrator-guard.py:1-10]` A dedicated pre-tool-use hook exists specifically to police orchestrator behavior.
 - `[SOURCE: external/hooks/orchestrator-guard.py:130-175]` Paths are classified into allowed, denied, and managed-worktree cases before a tool action is permitted.
 - `[SOURCE: external/hooks/orchestrator-guard.py:178-250]` Disallowed bash and file operations are blocked with explicit reasons rather than relying on prompt discipline.
-- `[SOURCE: .opencode/agent/orchestrate.md:36-37]` `system-spec-kit` says the orchestrator must not perform implementation or codebase exploration directly.
-- `[SOURCE: .opencode/agent/orchestrate.md:160-167]` The orchestrator must read agent definitions before dispatch, but the rule is procedural rather than runtime-enforced.
-- `[SOURCE: .opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md:31-40]` Constitutional routing currently focuses on retrieval-tool choice, not role-specific enforcement for orchestration actors.
+- `[SOURCE: .opencode/agents/orchestrate.md:36-37]` `system-spec-kit` says the orchestrator must not perform implementation or codebase exploration directly.
+- `[SOURCE: .opencode/agents/orchestrate.md:160-167]` The orchestrator must read agent definitions before dispatch, but the rule is procedural rather than runtime-enforced.
+- `[SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:31-40]` Constitutional routing currently focuses on retrieval-tool choice, not role-specific enforcement for orchestration actors.
 
 ## Analysis
 The external repo has a stronger safety posture here because it treats orchestration boundaries as enforceable policy, not just behavioral guidance. `system-spec-kit`'s orchestration docs are thoughtful, but if an orchestrator drifts into exploration or implementation, the current system relies on the model following instructions. The external sentinel pattern is a better fit than its lock-heavy worker runtime because it strengthens an existing local concept without forcing parallelism. A lightweight, runtime-agnostic sentinel schema could let `system-spec-kit` encode "allowed reads," "forbidden writes," and "task ownership" for orchestrator-led workflows.
@@ -30,7 +30,7 @@ confidence: high
 finding: `system-spec-kit` should adopt an optional sentinel-and-guard pattern for orchestrated workflows. This is a better transfer candidate than the external repo's full multi-agent substrate because it reinforces boundaries the local system already wants.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`, `.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`, `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`
 - **Change type:** new module
 - **Blast radius:** medium
 - **Prerequisites:** define a sentinel schema that works across runtimes without assuming one specific hook system

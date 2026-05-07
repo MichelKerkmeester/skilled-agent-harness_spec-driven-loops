@@ -90,7 +90,7 @@ The slug suffix is preserved across both rename steps; only the leading number p
 
 ## CROSS-REFERENCE STATUS
 
-The carve-out + renumber rewrite swept all path-form references across the moved subtree, the top-level `.opencode/specs/descriptions.json` discovery index, and the `.opencode/skill/mcp-coco-index/README.md` documentation. Two intentional exclusions remain:
+The carve-out + renumber rewrite swept all path-form references across the moved subtree, the top-level `.opencode/specs/descriptions.json` discovery index, and the `.opencode/skills/mcp-coco-index/README.md` documentation. Two intentional exclusions remain:
 
 - `003-continuity-refactor-gates/description.json` and `004-memory-save-rewrite/description.json` retain `intermediate_spec_folder` aliases that reference even older historical paths (a prior, unrelated renumber). Those are separate provenance records and were not touched.
 - Two CLI run logs under `001-search-intelligence-stress-test/002-scenario-execution/runs/{S3/cli-opencode-pure-1,I2/cli-copilot-1}/output.txt` capture verbatim CLI output from the original sweep and reference the legacy 003/006 path. They are immutable historical evidence and were not rewritten.

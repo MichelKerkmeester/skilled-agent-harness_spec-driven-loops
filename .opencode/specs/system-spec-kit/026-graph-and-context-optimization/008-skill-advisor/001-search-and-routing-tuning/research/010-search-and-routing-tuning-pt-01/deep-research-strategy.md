@@ -39,7 +39,7 @@ Search fusion weight optimization, reranking threshold calibration, and safe imp
 <!-- ANCHOR:non-goals -->
 ## 4. NON-GOALS
 
-- No source edits under `.opencode/skill/system-spec-kit/mcp_server/`
+- No source edits under `.opencode/skills/system-spec-kit/mcp_server/`
 - No historical memory-save analysis or telemetry backfill
 - No provider live benchmarking that requires external credentials or a running local reranker
 - No packet-wide implementation plan outside the `research/` directory

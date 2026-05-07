@@ -27,8 +27,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Top-Level Docs
 
-- [x] T001 Edit `.opencode/skill/cli-opencode/SKILL.md`: replace all `github-copilot/*` model references with `opencode-go/deepseek-v4-pro`; drop copilot rows from §3 model table; update §3 default invocation block; rewrite ALWAYS rule 3; remove copilot from frontmatter Keywords HTML comment; update §3 OpenCode Agent Delegation invocation patterns.
-- [x] T002 [P] Edit `.opencode/skill/cli-opencode/README.md`: update §1 key statistics row "Default invocation" and "Supported providers"; rewrite §3.2 Models table; update §5 Model Defaults; update §6 example commands; update §8 FAQ Models Q/A.
+- [x] T001 Edit `.opencode/skills/cli-opencode/SKILL.md`: replace all `github-copilot/*` model references with `opencode-go/deepseek-v4-pro`; drop copilot rows from §3 model table; update §3 default invocation block; rewrite ALWAYS rule 3; remove copilot from frontmatter Keywords HTML comment; update §3 OpenCode Agent Delegation invocation patterns.
+- [x] T002 [P] Edit `.opencode/skills/cli-opencode/README.md`: update §1 key statistics row "Default invocation" and "Supported providers"; rewrite §3.2 Models table; update §5 Model Defaults; update §6 example commands; update §8 FAQ Models Q/A.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -37,10 +37,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: References
 
-- [x] T003 [P] Edit `.opencode/skill/cli-opencode/references/cli_reference.md`: update §6 default invocation; drop github-copilot rows from model + variant tables; ensure deepseek rows remain.
-- [x] T004 [P] Edit `.opencode/skill/cli-opencode/references/integration_patterns.md`: replace `--model github-copilot/*` lines with `--model opencode-go/deepseek-v4-pro`.
-- [x] T005 [P] Edit `.opencode/skill/cli-opencode/references/opencode_tools.md`: replace `--model github-copilot/*` example.
-- [x] T006 [P] Edit `.opencode/skill/cli-opencode/references/agent_delegation.md`: replace `--model github-copilot/*` lines.
+- [x] T003 [P] Edit `.opencode/skills/cli-opencode/references/cli_reference.md`: update §6 default invocation; drop github-copilot rows from model + variant tables; ensure deepseek rows remain.
+- [x] T004 [P] Edit `.opencode/skills/cli-opencode/references/integration_patterns.md`: replace `--model github-copilot/*` lines with `--model opencode-go/deepseek-v4-pro`.
+- [x] T005 [P] Edit `.opencode/skills/cli-opencode/references/opencode_tools.md`: replace `--model github-copilot/*` example.
+- [x] T006 [P] Edit `.opencode/skills/cli-opencode/references/agent_delegation.md`: replace `--model github-copilot/*` lines.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -49,11 +49,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Templates and Playbook
 
-- [x] T007 Edit `.opencode/skill/cli-opencode/assets/prompt_templates.md`: replace `--model github-copilot/*` examples with `--model opencode-go/deepseek-v4-pro`.
-- [x] T008 Delete `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md`.
-- [x] T009 Delete `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md`.
-- [x] T010 Edit `.opencode/skill/cli-opencode/manual_testing_playbook/manual_testing_playbook.md`: update root index; drop the two deleted entries; update any opencode-go/deepseek language.
-- [x] T011 Edit `.opencode/skill/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md`: replace github-copilot variant comparison with opencode-go/deepseek-v4-pro variant comparison.
+- [x] T007 Edit `.opencode/skills/cli-opencode/assets/prompt_templates.md`: replace `--model github-copilot/*` examples with `--model opencode-go/deepseek-v4-pro`.
+- [x] T008 Delete `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/001-copilot-default-gpt-5-4.md`.
+- [x] T009 Delete `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/002-copilot-claude-sonnet-4-6.md`.
+- [x] T010 Edit `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md`: update root index; drop the two deleted entries; update any opencode-go/deepseek language.
+- [x] T011 Edit `.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/004-variant-levels-comparison.md`: replace github-copilot variant comparison with opencode-go/deepseek-v4-pro variant comparison.
 - [x] T012 Sweep all remaining playbook entries and replace `github-copilot/*` model identifiers in example commands with `opencode-go/deepseek-v4-pro`.
 
 <!-- /ANCHOR:phase-3 -->
@@ -63,10 +63,10 @@ contextType: "general"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Metadata + Verification
 
-- [x] T013 Edit `.opencode/skill/cli-opencode/graph-metadata.json`: update causal_summary to drop github-copilot from the provider list; drop copilot from intent_signals/derived.trigger_phrases if present in provider context.
-- [x] T014 Run `grep -ri "github-copilot" .opencode/skill/cli-opencode/` and confirm zero hits.
-- [x] T015 Run `grep -ri "cli-copilot" .opencode/skill/cli-opencode/` and confirm sibling-skill references still present.
-- [x] T016 Run `grep -ri "deepseek" .opencode/skill/cli-opencode/` and confirm direct DeepSeek API references preserved.
+- [x] T013 Edit `.opencode/skills/cli-opencode/graph-metadata.json`: update causal_summary to drop github-copilot from the provider list; drop copilot from intent_signals/derived.trigger_phrases if present in provider context.
+- [x] T014 Run `grep -ri "github-copilot" .opencode/skills/cli-opencode/` and confirm zero hits.
+- [x] T015 Run `grep -ri "cli-copilot" .opencode/skills/cli-opencode/` and confirm sibling-skill references still present.
+- [x] T016 Run `grep -ri "deepseek" .opencode/skills/cli-opencode/` and confirm direct DeepSeek API references preserved.
 
 <!-- /ANCHOR:phase-4 -->
 

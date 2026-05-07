@@ -17,24 +17,24 @@
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-findings-registry.json`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-strategy.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json`
-- `.opencode/skill/sk-code-review/references/review_core.md`
-- `.opencode/agent/code.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
+- `.opencode/agents/code.md`
 - `.claude/agents/code.md`
 - `.gemini/agents/code.md`
 - `.codex/agents/code.toml`
-- `.opencode/agent/review.md`
+- `.opencode/agents/review.md`
 - `.claude/agents/review.md`
 - `.gemini/agents/review.md`
 - `.codex/agents/review.toml`
-- `.opencode/agent/orchestrate.md`
+- `.opencode/agents/orchestrate.md`
 - `.claude/agents/orchestrate.md`
 - `.gemini/agents/orchestrate.md`
 - `.codex/agents/orchestrate.toml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`
-- `.opencode/command/spec_kit/deep-review.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`
+- `.opencode/commands/spec_kit/deep-review.md`
 
 ## Findings - New
 
@@ -52,18 +52,18 @@
 
 ## Traceability Checks
 
-- `review_doctrine_loaded`: pass. Severity definitions require P1 for required spec mismatch / must-fix gate issues and P2 for non-blocking documentation polish. [SOURCE: `.opencode/skill/sk-code-review/references/review_core.md:20`]
-- `public_agent_code_router_wording`: pass. OpenCode, Claude, Gemini, and Codex `code` mirrors all describe `sk-code` as the single router and exclude `sk-code-review` from `@code`, without exposing internal route names in the checked skills table. [SOURCE: `.opencode/agent/code.md:74`] [SOURCE: `.opencode/agent/code.md:78`] [SOURCE: `.claude/agents/code.md:74`] [SOURCE: `.claude/agents/code.md:78`] [SOURCE: `.gemini/agents/code.md:74`] [SOURCE: `.gemini/agents/code.md:78`] [SOURCE: `.codex/agents/code.toml:55`] [SOURCE: `.codex/agents/code.toml:59`]
-- `public_agent_review_baseline_wording`: pass. OpenCode, Claude, Gemini, and Codex `review` mirrors all state the baseline+router contract as `sk-code-review` first, then `sk-code` router-selected evidence. [SOURCE: `.opencode/agent/review.md:31`] [SOURCE: `.opencode/agent/review.md:47`] [SOURCE: `.claude/agents/review.md:31`] [SOURCE: `.claude/agents/review.md:47`] [SOURCE: `.gemini/agents/review.md:31`] [SOURCE: `.gemini/agents/review.md:47`] [SOURCE: `.codex/agents/review.toml:19`] [SOURCE: `.codex/agents/review.toml:35`]
-- `public_agent_orchestrator_review_contract`: pass. The runtime orchestrator mirrors consistently route code review to `@review` with `sk-code-review baseline + sk-code router-selected evidence`. [SOURCE: `.opencode/agent/orchestrate.md:99`] [SOURCE: `.claude/agents/orchestrate.md:99`] [SOURCE: `.gemini/agents/orchestrate.md:99`] [SOURCE: `.codex/agents/orchestrate.toml:90`]
-- `command_public_examples`: pass. The checked deep-review command example uses generic `skill:sk-code router-guidance` branding and does not expose retired `sk-code-opencode` or internal stack/surface specifics. [SOURCE: `.opencode/command/spec_kit/deep-review.md:309`]
-- `F004_command_variant_replay`: still-active existing P1, not a new finding. The four implement/complete workflow variants still set `standards_contract.baseline: "sk-code"` while their adjacent phase labels name `sk-code-review baseline + sk-code router-selected evidence`, matching F004 rather than adding a distinct variant. [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:214`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:221`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml:200`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml:207`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:311`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml:318`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:320`] [SOURCE: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:327`]
+- `review_doctrine_loaded`: pass. Severity definitions require P1 for required spec mismatch / must-fix gate issues and P2 for non-blocking documentation polish. [SOURCE: `.opencode/skills/sk-code-review/references/review_core.md:20`]
+- `public_agent_code_router_wording`: pass. OpenCode, Claude, Gemini, and Codex `code` mirrors all describe `sk-code` as the single router and exclude `sk-code-review` from `@code`, without exposing internal route names in the checked skills table. [SOURCE: `.opencode/agents/code.md:74`] [SOURCE: `.opencode/agents/code.md:78`] [SOURCE: `.claude/agents/code.md:74`] [SOURCE: `.claude/agents/code.md:78`] [SOURCE: `.gemini/agents/code.md:74`] [SOURCE: `.gemini/agents/code.md:78`] [SOURCE: `.codex/agents/code.toml:55`] [SOURCE: `.codex/agents/code.toml:59`]
+- `public_agent_review_baseline_wording`: pass. OpenCode, Claude, Gemini, and Codex `review` mirrors all state the baseline+router contract as `sk-code-review` first, then `sk-code` router-selected evidence. [SOURCE: `.opencode/agents/review.md:31`] [SOURCE: `.opencode/agents/review.md:47`] [SOURCE: `.claude/agents/review.md:31`] [SOURCE: `.claude/agents/review.md:47`] [SOURCE: `.gemini/agents/review.md:31`] [SOURCE: `.gemini/agents/review.md:47`] [SOURCE: `.codex/agents/review.toml:19`] [SOURCE: `.codex/agents/review.toml:35`]
+- `public_agent_orchestrator_review_contract`: pass. The runtime orchestrator mirrors consistently route code review to `@review` with `sk-code-review baseline + sk-code router-selected evidence`. [SOURCE: `.opencode/agents/orchestrate.md:99`] [SOURCE: `.claude/agents/orchestrate.md:99`] [SOURCE: `.gemini/agents/orchestrate.md:99`] [SOURCE: `.codex/agents/orchestrate.toml:90`]
+- `command_public_examples`: pass. The checked deep-review command example uses generic `skill:sk-code router-guidance` branding and does not expose retired `sk-code-opencode` or internal stack/surface specifics. [SOURCE: `.opencode/commands/spec_kit/deep-review.md:309`]
+- `F004_command_variant_replay`: still-active existing P1, not a new finding. The four implement/complete workflow variants still set `standards_contract.baseline: "sk-code"` while their adjacent phase labels name `sk-code-review baseline + sk-code router-selected evidence`, matching F004 rather than adding a distinct variant. [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:213`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:214`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:221`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:199`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:200`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml:207`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:310`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:311`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml:318`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:319`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:320`] [SOURCE: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:327`]
 
 ## Integration Evidence
 
 - Checked public runtime mirrors: `.opencode/agent`, `.claude/agents`, `.gemini/agents`, and `.codex/agents`.
 - Checked command workflow variants: `spec_kit_implement_auto.yaml`, `spec_kit_implement_confirm.yaml`, `spec_kit_complete_auto.yaml`, and `spec_kit_complete_confirm.yaml`.
-- Checked command example surface: `.opencode/command/spec_kit/deep-review.md`.
+- Checked command example surface: `.opencode/commands/spec_kit/deep-review.md`.
 
 ## Edge Cases
 

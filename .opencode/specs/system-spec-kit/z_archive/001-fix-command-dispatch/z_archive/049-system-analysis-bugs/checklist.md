@@ -1,6 +1,6 @@
 ---
 title: "Verification [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/checklist]"
-description: "node -e \"const {memory_health} = require('./.opencode/skill/system-spec-kit/mcp_server/context-server.js'); memory_health().then(console.log)\""
+description: "node -e \"const {memory_health} = require('./.opencode/skills/system-spec-kit/mcp_server/context-server.js'); memory_health().then(console.log)\""
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -136,16 +136,16 @@ contextType: "implementation"
 
 ```bash
 # CHK005: Test memory indexing
-node -e "const {memory_health} = require('./.opencode/skill/system-spec-kit/mcp_server/context-server.js'); memory_health().then(console.log)"
+node -e "const {memory_health} = require('./.opencode/skills/system-spec-kit/mcp_server/context-server.js'); memory_health().then(console.log)"
 
 # CHK006: Test folder naming
 ./scripts/validate-spec.sh specs/bad-folder-name/
 
 # CHK010: Find broken links
-grep -r "\.\./" .opencode/skill/system-spec-kit/references/ | grep -v node_modules
+grep -r "\.\./" .opencode/skills/system-spec-kit/references/ | grep -v node_modules
 
 # CHK015: Test help flag
-node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
 ```
 
 ---

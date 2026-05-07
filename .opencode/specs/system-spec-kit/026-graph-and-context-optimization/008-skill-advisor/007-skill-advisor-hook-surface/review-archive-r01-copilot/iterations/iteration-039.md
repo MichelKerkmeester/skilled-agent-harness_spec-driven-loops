@@ -4,8 +4,8 @@
 Executed the last D2 pass to confirm the freshness trust-state ladder and non-live result mapping stayed stable across all the deeper inspections.
 
 ## Evidence read
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:268-297` -> `absent` becomes `skipped`, `unavailable` becomes `degraded`, and neither path emits a brief.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:214-255` -> freshness derivation stays limited to `live`, `stale`, and `absent` from source/artifact state.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts:268-297` -> `absent` becomes `skipped`, `unavailable` becomes `degraded`, and neither path emits a brief.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/freshness.ts:214-255` -> freshness derivation stays limited to `live`, `stale`, and `absent` from source/artifact state.
 - `advisor-freshness.vitest.ts:98-177` -> live, stale, absent, and JSON-fallback-stale cases remain explicitly covered.
 
 ## Findings

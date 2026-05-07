@@ -6,7 +6,7 @@ I stayed on the unlocked hook/save seams from Iterations 031-035, but filtered o
 ## Findings
 
 ### Finding R37-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `175-190`, `244-252`, `257-268`
 - **Severity:** P1
 - **Description:** `processStopHook()` performs a hidden two-step metrics write for the same transcript parse. `storeTokenSnapshot()` first persists `metrics.lastTranscriptOffset = 0`, and only the later `recordStateUpdate()` replaces that sentinel with `newOffset`. A second stop hook that starts in that interleaving window will read `0` from hook-state and reparse the transcript from the beginning.
@@ -14,7 +14,7 @@ I stayed on the unlocked hook/save seams from Iterations 031-035, but filtered o
 - **Downstream Impact:** Overlapping stop hooks can duplicate token accounting, replay already-counted transcript bytes, and churn producer metadata even before the previously documented last-writer-wins overwrite happens. That makes token/cost history and downstream continuity freshness look authoritative while being inflated by a transient sentinel state.
 
 ### Finding R37-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
 - **Lines:** `128-145`, `244-246`, `281-296`, `340-369`
 - **Severity:** P1
 - **Description:** The stop hook can suppress a legitimate packet retarget because `detectSpecFolder()` prefers the supplied `currentSpecFolder` whenever multiple packet paths are present, and `processStopHook()` passes a stale `stateBeforeStop.lastSpecFolder` snapshot into that preference. If another writer has already switched the real active packet, this invocation can still "validate" the old packet and avoid retargeting.
@@ -22,7 +22,7 @@ I stayed on the unlocked hook/save seams from Iterations 031-035, but filtered o
 - **Downstream Impact:** A session that has really moved to a new packet can keep auto-saving continuity into the previous packet, with an info-level "validated" log that falsely suggests the packet target was freshly confirmed rather than inherited from stale state.
 
 ### Finding R37-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
 - **Lines:** `261-306`, `453-500`
 - **Severity:** P2
 - **Description:** A single save request can observe two different unlocked candidate snapshots before the writer transaction begins. The TM-06 reconsolidation planner does one `vectorSearch` + scope-filter pass, and if it falls through, the assistive reconsolidation block later does a second `vectorSearch` + scope-filter pass. No transaction, lock, or snapshot token ties those two reads together.

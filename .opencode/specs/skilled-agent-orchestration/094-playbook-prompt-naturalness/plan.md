@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown + YAML frontmatter |
 | **Framework** | sk-doc testing-playbook contract |
-| **Storage** | `.opencode/skill/sk-doc/` + 16 `.opencode/skill/*/manual_testing_playbook/` |
+| **Storage** | `.opencode/skills/sk-doc/` + 16 `.opencode/skills/*/manual_testing_playbook/` |
 | **Testing** | `validate_document.py` + structural sweep + prompt-sync audit + @review DQI |
 
 ### Overview
@@ -188,7 +188,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Multiple per-playbook validations fail post-dispatch and cli-codex re-dispatch doesn't recover OR @review DQI surfaces P0 regressions across multiple playbooks.
-- **Procedure**: `git checkout HEAD -- .opencode/skill/<playbook>/manual_testing_playbook/` per affected playbook. sk-doc template edits roll back via `git checkout HEAD -- .opencode/skill/sk-doc/`. Spec packet stays as planning artifact even on rollback.
+- **Procedure**: `git checkout HEAD -- .opencode/skills/<playbook>/manual_testing_playbook/` per affected playbook. sk-doc template edits roll back via `git checkout HEAD -- .opencode/skills/sk-doc/`. Spec packet stays as planning artifact even on rollback.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -239,9 +239,9 @@ Phase 1 (Setup) ──► Phase A (sk-doc) ──► Phase B (per-playbook ×16)
 - [ ] cli-codex shape: `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`
 
 ### Rollback Procedure
-1. Per-playbook failure: `git checkout HEAD -- .opencode/skill/<playbook>/manual_testing_playbook/`
-2. sk-doc template failure: `git checkout HEAD -- .opencode/skill/sk-doc/`
-3. Multi-playbook drift: `git restore --staged .opencode/skill/*/manual_testing_playbook/` then `git checkout HEAD -- .opencode/skill/*/manual_testing_playbook/`
+1. Per-playbook failure: `git checkout HEAD -- .opencode/skills/<playbook>/manual_testing_playbook/`
+2. sk-doc template failure: `git checkout HEAD -- .opencode/skills/sk-doc/`
+3. Multi-playbook drift: `git restore --staged .opencode/skills/*/manual_testing_playbook/` then `git checkout HEAD -- .opencode/skills/*/manual_testing_playbook/`
 
 ### Data Reversal
 - **Has data migrations?** No - text-only changes.

@@ -6,7 +6,7 @@ I traced the remaining missing/empty/stale collapse past the already-documented 
 ## Findings
 
 ### Finding R30-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`
 - **Lines:** `session-bootstrap.ts:321-347`, `session-resume.ts:530-551`
 - **Severity:** P1
 - **Description:** `session_bootstrap` and `session_resume` now serialize two incompatible states for the same structural condition. Their envelope provenance still uses `trustStateFromStructuralStatus(structuralContext.status)`, so a `missing` graph is labeled `stale`, while the newer `graphOps` contract in the same response canonicalizes that same condition to `missing` by routing non-ready/non-stale states through `graphFreshness: 'empty'`.
@@ -14,7 +14,7 @@ I traced the remaining missing/empty/stale collapse past the already-documented 
 - **Downstream Impact:** Any caller that keys off `payloadContract.provenance.trustState` gets “graph exists but is old,” while a caller that keys off `graphOps.readiness.canonical` gets “graph missing or unusable.” The same recovery payload can therefore drive refresh-first and repair-first behavior simultaneously, depending on which field a consumer trusts.
 
 ### Finding R30-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`
 - **Lines:** `64-71`, `98-149`
 - **Severity:** P1
 - **Description:** The OpenCode transport adapter consumes the already-collapsed top-level provenance label and drops the richer structural truth that bootstrap/resume surfaces already computed. `renderBlockContent()` prints only `payload.provenance.trustState`, and `buildOpenCodeTransportPlan()` forwards bootstrap/resume/health payloads straight into startup/message/compaction blocks without surfacing `structural-context.structuralTrust` or `graphOps`.

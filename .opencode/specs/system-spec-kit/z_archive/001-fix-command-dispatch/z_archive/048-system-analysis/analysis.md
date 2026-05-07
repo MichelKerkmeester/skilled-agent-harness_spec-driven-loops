@@ -70,7 +70,7 @@
 | Tier weights             | `memory_system.md`: critical=0.9  | `importance-tiers.js`: critical=1.0                                | Agent 11 |
 | Re-embedding trigger     | "Re-generates if content changes" | Only re-generates on **title** change                              | Agent 8  |
 | Deprecated tier          | "Rarely" surfaces                 | **Never** surfaces (excludeFromSearch=true)                        | Agent 11 |
-| Constitutional discovery | "Auto-discovered"                 | Only manual indexing works for `.opencode/skill/*/constitutional/` | Agent 14 |
+| Constitutional discovery | "Auto-discovered"                 | Only manual indexing works for `.opencode/skills/*/constitutional/` | Agent 14 |
 | Rate limiting            | Not documented                    | 1-minute cooldown on `memory_index_scan`                           | Agent 8  |
 | Spec folder filter       | "Specific folder"                 | Actually matches prefix (startsWith)                               | Agent 14 |
 
@@ -189,7 +189,7 @@ Templates are **3-10x more comprehensive** than actual usage:
 | **P0**   | Fix tier filtering in hybrid search               | Currently returns empty results                   | Agent 11 |
 | **P1**   | Create "5-minute Quick Start" guide               | AGENTS.md is 625 lines - overwhelming             | Agent 20 |
 | **P1**   | Add session-level Gate 3 preferences              | Reduces repetitive prompts                        | Agent 20 |
-| **P2**   | Add constitutional directory scanning             | Auto-discover `.opencode/skill/*/constitutional/` | Agent 14 |
+| **P2**   | Add constitutional directory scanning             | Auto-discover `.opencode/skills/*/constitutional/` | Agent 14 |
 | **P2**   | Add progress indicators for long operations       | No feedback during generate-context.js            | Agent 20 |
 
 ### 6.3 Missing Features

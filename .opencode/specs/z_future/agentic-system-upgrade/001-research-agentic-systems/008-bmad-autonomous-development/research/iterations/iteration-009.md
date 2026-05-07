@@ -15,7 +15,7 @@ Read BAD's skill activation, setup asset, README, docs index, module manifest, a
 - BAD setup also re-checks `_bmad/config.yaml` for the `bad` section, reinforcing that path. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:18-23]
 - BAD's public README and docs index both claim the module stores settings in `_bmad/bad/config.yaml`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:61-74]
 - BAD's checked-in docs do not self-resolve the conflict: setup writes `_bmad/config.yaml`, while public docs keep telling users to expect `_bmad/bad/config.yaml`. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/skills/bad/assets/module-setup.md:9-23] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/008-bmad-autonomous-development/external/README.md:61-74]
-- Local `deep-research-contract-parity` tests already assert canonical artifact names across primary docs, runtime mirrors, and command assets, which is exactly the kind of guard BAD needed here. [SOURCE: .opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:24-84]
+- Local `deep-research-contract-parity` tests already assert canonical artifact names across primary docs, runtime mirrors, and command assets, which is exactly the kind of guard BAD needed here. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:24-84]
 
 ## Analysis
 BAD's mismatch is not subtle: the skill and public docs disagree with the setup asset about where canonical config lives. Because the repo snapshot is mostly documentation and setup logic, this kind of inconsistency is particularly dangerous; users will follow whichever document they see first. `system-spec-kit` already has a strong response pattern in its contract-parity tests. The adoption opportunity is to treat every future multi-file automation surface the same way: declare canonical paths once, then fail tests when docs and assets drift.
@@ -26,7 +26,7 @@ confidence: high
 finding: BAD's config-path inconsistency is a concrete example of why parity tests matter. `system-spec-kit` should keep scaling its contract-test approach whenever it adds new command/agent/asset bundles, especially if those bundles introduce runtime-specific paths or setup-time file writes.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
+- **Target file or module:** `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`
 - **Change type:** new module
 - **Blast radius:** small
 - **Prerequisites:** define canonical path ownership for any new sprint-automation assets before writing the parity assertions

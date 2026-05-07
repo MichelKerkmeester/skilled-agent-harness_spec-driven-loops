@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce97-f948-70c3-90f2-f1ae89d41b52
 --------
 user
-You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-stack-overflow-elimination.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/10-chunking-orchestrator-safe-swap.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/11-working-memory-timestamp-fix.md. For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
+You are a feature catalog verification agent. Read these specific feature snippet files: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-stack-overflow-elimination.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/10-chunking-orchestrator-safe-swap.md, /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/11-working-memory-timestamp-fix.md. For each, read its '## Source Files' section to find listed source file paths under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/. Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing. 
 
 OUTPUT FORMAT (repeat for each feature file):
 ---
@@ -37,11 +37,11 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m verifying those five feature snippets against the actual `mcp_server` code, starting by loading the recommended workflow guidance and the feature files themselves so we can compare each “Current Reality” section to the implementation.
 exec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/11-working-memory-timestamp-fix.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-stack-overflow-elimination.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/10-chunking-orchestrator-safe-swap.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/11-working-memory-timestamp-fix.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/08-mathmax-min-stack-overflow-elimination.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/10-chunking-orchestrator-safe-swap.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 # Working Memory Session Cleanup Timestamp Fix
 
 ## Current Reality
@@ -147,7 +147,7 @@ During re-chunking of parent memories, the orchestrator previously deleted exist
 | (no dedicated test file yet) | — |
 
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Verify five system-spec-kit feature catalog snippets against actual source files under .opencode/skill/system-spec-kit/mcp_server, checking description accuracy, listed file existence, and missing important source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 676ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Verify five system-spec-kit feature catalog snippets against actual source files under .opencode/skills/system-spec-kit/mcp_server, checking description accuracy, listed file existence, and missing important source files" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 676ms:
 [
   {
     "skill": "system-spec-kit",
@@ -178,10 +178,10 @@ Verification-only task: inspect the feature snippets, map each to the relevant i
 codex
 I’ve got the five snippets loaded. Next I’m tracing the actual implementation points in `mcp_server` so we can separate accurate descriptions from stale or unrelated file lists.
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"combinedLexicalSearch|hybridSearch|canonical id|canonical-id|dedup map|mem:\" '.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|RangeError|AI-WHY|reduce\\\\(\\\\(a, b\\\\) => Math\\\\.(max|min)\" '.opencode/skill/system-spec-kit/mcp_server' '.opencode/skill/system-spec-kit/shared'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"enforceEntryLimit|db\\\\.transaction|cleanupOldSessions|last_focused|datetime\\\\(|parent_id|chunking orchestrator|re-chunk|staged swap|attach.*parent|old children|new child\" '.opencode/skill/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"combinedLexicalSearch|hybridSearch|canonical id|canonical-id|dedup map|mem:\" '.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|RangeError|AI-WHY|reduce\\\\(\\\\(a, b\\\\) => Math\\\\.(max|min)\" '.opencode/skills/system-spec-kit/mcp_server' '.opencode/skills/system-spec-kit/shared'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"enforceEntryLimit|db\\\\.transaction|cleanupOldSessions|last_focused|datetime\\\\(|parent_id|chunking orchestrator|re-chunk|staged swap|attach.*parent|old children|new child\" '.opencode/skills/system-spec-kit/mcp_server'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -205,75 +205,75 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
  succeeded in 51ms:
 Total output lines: 323
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:66:import * as hybridSearch from './lib/search/hybrid-search';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:700:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:847:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:7:import { init as initHybridSearch, hybridSearchEnhanced } from '../lib/search/hybrid-search';
-.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:94:    const results = await hybridSearchEnhanced(query, embedding, searchOptions);
-.opencode/skill/system-spec-kit/mcp_server/api/indexing.ts:34:    hybridSearch: { init: initHybridSearch },
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:54:  hybridSearch?: HybridSearchLike;
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:78:let hybridSearch: HybridSearchLike | null = null;
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:92:  if (deps.hybridSearch) hybridSearch = deps.hybridSearch;
-.opencode/skill/system-spec-kit/mcp_server/core/db-state.ts:155:      if (hybridSearch) hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFnRef);
-.opencode/skill/system-spec-kit/mcp_server/api/search.ts:10:  hybridSearchEnhanced,
-.opencode/skill/system-spec-kit/mcp_server/core/README.md:42:- `init()` supports `vectorIndex`, `checkpoints`, `accessTracker`, `hybridSearch`, `sessionManager`, and `incrementalIndex` dependencies.
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:588:    const canonicalDir = fs.mkdtempSync(path.join(os.tmpdir(), 'inc-idx-canonical-id-'));
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:590:    fs.writeFileSync(canonicalFile, 'canonical-id content', 'utf-8');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:48:  it('G1: returns numeric IDs (source_id) — not string-prefixed mem:edgeId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:71:  it('G1: never returns a string-prefixed id like mem:edge-001', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:79:      expect(String(r['id'])).not.toMatch(/^mem:/);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:90:  //   rank 1 → mem:10   rank 2 → mem:20   rank 3 → mem:30
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:66:import * as hybridSearch from './lib/search/hybrid-search';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:700:  initDbState({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:847:    hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFn);
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:7:import { init as initHybridSearch, hybridSearchEnhanced } from '../lib/search/hybrid-search';
+.opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:94:    const results = await hybridSearchEnhanced(query, embedding, searchOptions);
+.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:34:    hybridSearch: { init: initHybridSearch },
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:54:  hybridSearch?: HybridSearchLike;
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:78:let hybridSearch: HybridSearchLike | null = null;
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:92:  if (deps.hybridSearch) hybridSearch = deps.hybridSearch;
+.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:155:      if (hybridSearch) hybridSearch.init(database, vectorIndex.vectorSearch, graphSearchFnRef);
+.opencode/skills/system-spec-kit/mcp_server/api/search.ts:10:  hybridSearchEnhanced,
+.opencode/skills/system-spec-kit/mcp_server/core/README.md:42:- `init()` supports `vectorIndex`, `checkpoints`, `accessTracker`, `hybridSearch`, `sessionManager`, and `incrementalIndex` dependencies.
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:588:    const canonicalDir = fs.mkdtempSync(path.join(os.tmpdir(), 'inc-idx-canonical-id-'));
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:590:    fs.writeFileSync(canonicalFile, 'canonical-id content', 'utf-8');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:48:  it('G1: returns numeric IDs (source_id) — not string-prefixed mem:edgeId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:71:  it('G1: never returns a string-prefixed id like mem:edge-001', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:79:      expect(String(r['id'])).not.toMatch(/^mem:/);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:90:  //   rank 1 → mem:10   rank 2 → mem:20   rank 3 → mem:30
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:355:      parentId: toNullableNumber(rawResult.parentId ?? rawResult.parent_id),
-.opencode/skill/system-spec-kit/mcp_server/README.md:526:Each chunk is indexed as a child record linked to a parent via `parent_id`. Search results from chunked files include metadata: `isChunk`, `parentId`, `chunkIndex`, `chunkLabel` and `chunkCount`. When `includeContent: true` is set, child chunks are reassembled into full content automatically.
-.opencode/skill/system-spec-kit/mcp_server/README.md:816:| `parent_id`   | Links chunk to parent record     |
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:158:      'SELECT COUNT(*) as count FROM memory_index WHERE parent_id IS NOT NULL'
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:164:    // parent_id column may not exist yet
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:214:    countSql += ` AND created_at < datetime('now', '-' || ? || ' days')`;
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:241:    if (olderThanDays) { sampleSql += ` AND created_at < datetime('now', '-' || ? || ' days')`; sampleParams.push(parseInt(olderThanDays, 10)); }
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:288:  if (olderThanDays) { selectSql += ` AND created_at < datetime('now', '-' || ? || ' days')`; selectParams.push(parseInt(olderThanDays, 10)); }
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:299:  const bulkDeleteTx = db.transaction(() => {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:247:      AND parent_id IS NULL
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:90:    created_at TEXT DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:91:    updated_at TEXT DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:188:      WHERE parent_id IS NULL
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:208:    WHERE parent_id IS NULL
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:73:  parent_id?: number | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:395:    const parentId = parseNullableInt(row.parent_id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:442:      SELECT parent_id, chunk_index, chunk_label, content_text
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:444:      WHERE parent_id IN (${placeholders})
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:445:      ORDER BY parent_id ASC, chunk_index ASC
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:447:      parent_id: number;
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:355:      parentId: toNullableNumber(rawResult.parentId ?? rawResult.parent_id),
+.opencode/skills/system-spec-kit/mcp_server/README.md:526:Each chunk is indexed as a child record linked to a parent via `parent_id`. Search results from chunked files include metadata: `isChunk`, `parentId`, `chunkIndex`, `chunkLabel` and `chunkCount`. When `includeContent: true` is set, child chunks are reassembled into full content automatically.
+.opencode/skills/system-spec-kit/mcp_server/README.md:816:| `parent_id`   | Links chunk to parent record     |
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:158:      'SELECT COUNT(*) as count FROM memory_index WHERE parent_id IS NOT NULL'
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:164:    // parent_id column may not exist yet
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:214:    countSql += ` AND created_at < datetime('now', '-' || ? || ' days')`;
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:241:    if (olderThanDays) { sampleSql += ` AND created_at < datetime('now', '-' || ? || ' days')`; sampleParams.push(parseInt(olderThanDays, 10)); }
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:288:  if (olderThanDays) { selectSql += ` AND created_at < datetime('now', '-' || ? || ' days')`; selectParams.push(parseInt(olderThanDays, 10)); }
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:299:  const bulkDeleteTx = db.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:247:      AND parent_id IS NULL
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:90:    created_at TEXT DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:91:    updated_at TEXT DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:188:      WHERE parent_id IS NULL
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:208:    WHERE parent_id IS NULL
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:73:  parent_id?: number | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:395:    const parentId = parseNullableInt(row.parent_id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:442:      SELECT parent_id, chunk_index, chunk_label, content_text
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:444:      WHERE parent_id IN (${placeholders})
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:445:      ORDER BY parent_id ASC, chunk_index ASC
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:447:      parent_id: number;
  succeeded in 50ms:
 Total output lines: 359
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:217:// AI-WHY(CHK-076): Instructions are computed once at startup and NOT refreshed during the session.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:680:  // AI-WHY: Short delay allows pending stderr writes to flush before exit
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:155:    // AI-WHY: WARM tier returns truncated summary
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:333:          // AI-WHY: Fix #30 (017-refinement-phase-6) — WM already applies its own decay.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:346:      // AI-WHY: Clamp to [0,1] — retrievability * decay or wmEntry scores
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:473:// AI-WHY: Backward-compatible aliases (snake_case)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:251:  // AI-WHY: Samples are intentionally capped; when summary says more divergent groups exist,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:88:  // AI-WHY: Fallback: path-based heuristic (backward compatibility)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:90:      // AI-WHY: Fix #19 (017-refinement-phase-6) — Embed title + content_text, not title alone.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:129:  // AI-WHY: T2-5 transaction wrapper — wraps all synchronous mutation steps (DB update,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:130:  // AI-WHY: cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:131:  // AI-WHY: Embedding generation (async) runs before this block; its result feeds into updateParams.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:142:      // AI-WHY: T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:144:    // AI-WHY: Heuristic fallback: check sibling files.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:26:// AI-WHY: Backward-compatible aliases (snake_case) — remove after all callers migrate to camelCase
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:335:  // AI-WHY: Fix #35 (017-refinement-phase-6) — Allow re-correction by accepting
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts:667:// AI-WHY: Backward-compatible aliases (snake_case)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:226:  // AI-WHY: Fallback: if no inner results array found or couldn't parse,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:217:// AI-WHY(CHK-076): Instructions are computed once at startup and NOT refreshed during the session.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:680:  // AI-WHY: Short delay allows pending stderr writes to flush before exit
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:155:    // AI-WHY: WARM tier returns truncated summary
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:333:          // AI-WHY: Fix #30 (017-refinement-phase-6) — WM already applies its own decay.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:346:      // AI-WHY: Clamp to [0,1] — retrievability * decay or wmEntry scores
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:473:// AI-WHY: Backward-compatible aliases (snake_case)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts:251:  // AI-WHY: Samples are intentionally capped; when summary says more divergent groups exist,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:88:  // AI-WHY: Fallback: path-based heuristic (backward compatibility)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:90:      // AI-WHY: Fix #19 (017-refinement-phase-6) — Embed title + content_text, not title alone.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:129:  // AI-WHY: T2-5 transaction wrapper — wraps all synchronous mutation steps (DB update,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:130:  // AI-WHY: cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:131:  // AI-WHY: Embedding generation (async) runs before this block; its result feeds into updateParams.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:142:      // AI-WHY: T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts:144:    // AI-WHY: Heuristic fallback: check sibling files.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:26:// AI-WHY: Backward-compatible aliases (snake_case) — remove after all callers migrate to camelCase
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:335:  // AI-WHY: Fix #35 (017-refinement-phase-6) — Allow re-correction by accepting
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts:667:// AI-WHY: Backward-compatible aliases (snake_case)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:226:  // AI-WHY: Fallback: if no inner results array found or couldn't parse,
 codex
 The first pass already shows one strong mismatch: some snippets describe behavior in `search`, `session`, or `cognitive` modules, but their listed implementation tables point at unrelated files. I’m pulling the exact code regions now so the final report is evidence-based rather than pattern-based.
 exec
-/bin/zsh -lc "sed -n '235,265p' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '400,470p' '.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '340,430p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '190,215p' '.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1140,1185p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '150,430p' '.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '235,265p' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '400,470p' '.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '340,430p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '190,215p' '.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1140,1185p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '150,430p' '.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
       );
       expect(valid).toBe(true);
     });
@@ -400,12 +400,12 @@ function canonicalResultId(id: number | string): string {
         database.prepare(`DELETE FROM memory_index WHERE id = ?`).run(existing.id);
       }
 exec
-/bin/zsh -lc "sed -n '430,560p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"canonicalResultId\\(|new Map<string, HybridSearchResult>|seenIds|seenSources|dedup\" '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '150,210p' '.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '360,395p' '.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"reduce avoids stack overflow|Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce\\\\(\\\\(a, b\\\\) => Math\\\\.(max|min)\" '.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts' '.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts' '.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"T031-BASIC-04|canonicalResultId|mem:42|number-vs-string drift|combined_lexical_search\\(\\) deduplicates canonical IDs\" '.opencode/skill/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '430,560p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"canonicalResultId\\(|new Map<string, HybridSearchResult>|seenIds|seenSources|dedup\" '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '150,210p' '.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '360,395p' '.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"reduce avoids stack overflow|Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce\\\\(\\\\(a, b\\\\) => Math\\\\.(max|min)\" '.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts' '.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts' '.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"T031-BASIC-04|canonicalResultId|mem:42|number-vs-string drift|combined_lexical_search\\(\\) deduplicates canonical IDs\" '.opencode/skills/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 359: * Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores.
 372:  // canonicalResultId() prevents duplicate rows when one channel emits
 374:  const merged = new Map<string, HybridSearchResult>();
@@ -488,36 +488,36 @@ describe('G. cleanupOldSessions', () => {
 
     db.exec(`INSERT INTO memory_index (id, spec_folder, file_path, title) VALUES (1, 'test', '/t.md', 'T1')`);
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492:  // Use reduce instead of Math.max(...) to avoid stack overflow on large arrays.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:306:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:309:    min: Math.round(values.reduce((a, b) => Math.min(a, b), Infinity) * 10000) / 10000,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:310:    max: Math.round(values.reduce((a, b) => Math.max(a, b), -Infinity) * 10000) / 10000,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:184:    // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:185:    t.quality.topResultScore = scores.reduce((a, b) => Math.max(a, b), -Infinity);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:483:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:485:    min: similarities.reduce((a, b) => Math.min(a, b), Infinity),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:486:    max: similarities.reduce((a, b) => Math.max(a, b), -Infinity),
-.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts:432:  // AI-WHY: Avoid Math.max(...scores) / Math.min(...scores) — spread on large
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:163:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:164:  const topScore = finiteScores.reduce((a, b) => Math.max(a, b), -Infinity);
-.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts:200:  const recencyScore = Math.max(...folderMemories.map(m =>
-.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts:267:  return new Date(Math.max(...timestamps)).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:228:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:229:  const lowestScore = Math.max(0.0001, results.map((item) => resolveBaseScore(item)).reduce((a, b) => Math.min(a, b), Infinity));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:101:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:102:  const minA = scoresA.length > 0 ? scoresA.reduce((a, b) => Math.min(a, b), Infinity) : 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:103:  const maxA = scoresA.length > 0 ? scoresA.reduce((a, b) => Math.max(a, b), -Infinity) : 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:104:  const minB = scoresB.length > 0 ? scoresB.reduce((a, b) => Math.min(a, b), Infinity) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:492:  // Use reduce instead of Math.max(...) to avoid stack overflow on large arrays.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:306:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:309:    min: Math.round(values.reduce((a, b) => Math.min(a, b), Infinity) * 10000) / 10000,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:310:    max: Math.round(values.reduce((a, b) => Math.max(a, b), -Infinity) * 10000) / 10000,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:184:    // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:185:    t.quality.topResultScore = scores.reduce((a, b) => Math.max(a, b), -Infinity);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:483:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:485:    min: similarities.reduce((a, b) => Math.min(a, b), Infinity),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:486:    max: similarities.reduce((a, b) => Math.max(a, b), -Infinity),
+.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:432:  // AI-WHY: Avoid Math.max(...scores) / Math.min(...scores) — spread on large
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:163:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts:164:  const topScore = finiteScores.reduce((a, b) => Math.max(a, b), -Infinity);
+.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:200:  const recencyScore = Math.max(...folderMemories.map(m =>
+.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:267:  return new Date(Math.max(...timestamps)).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:228:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:229:  const lowestScore = Math.max(0.0001, results.map((item) => resolveBaseScore(item)).reduce((a, b) => Math.min(a, b), Infinity));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:101:  // AI-WHY: reduce avoids stack overflow on arrays >100K elements (spread pushes all onto call stack)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:102:  const minA = scoresA.length > 0 ? scoresA.reduce((a, b) => Math.min(a, b), Infinity) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:103:  const maxA = scoresA.length > 0 ? scoresA.reduce((a, b) => Math.max(a, b), -Infinity) : 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts:104:  const minB = scoresB.length > 0 ? scoresB.reduce((a, b) => Math.min(a, b), Infinity) : 0;
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:158:      { source: 'graph', results: [{ id: 'mem:42', title: 'Prefixed' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:246:    it('T031-LEX-05: combined_lexical_search() deduplicates canonical IDs', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:249:        hybridSearch.__testables.canonicalResultId(r.id as number | string)
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:440:    it('T031-BASIC-04: hybridSearch() deduplicates canonical IDs across channels', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:454:      const canonicalIds = results.map((r) => hybridSearch.__testables.canonicalResultId(r.id));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:158:      { source: 'graph', results: [{ id: 'mem:42', title: 'Prefixed' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:246:    it('T031-LEX-05: combined_lexical_search() deduplicates canonical IDs', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:249:        hybridSearch.__testables.canonicalResultId(r.id as number | string)
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:440:    it('T031-BASIC-04: hybridSearch() deduplicates canonical IDs across channels', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:454:      const canonicalIds = results.map((r) => hybridSearch.__testables.canonicalResultId(r.id));
 codex
 I’m at the evidence-gathering stage now. The remaining work is mostly path validation and deciding whether each snippet’s source-file table is complete or points at the wrong subsystem.
 exec
-/bin/zsh -lc "python3 -c \"from pathlib import Path; base=Path('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit'); files=['07-canonical-id-dedup-hardening.md','08-mathmax-min-stack-overflow-elimination.md','09-session-manager-transaction-gap-fixes.md','10-chunking-orchestrator-safe-swap.md','11-working-memory-timestamp-fix.md']; root=base/'feature_catalog/08--bug-fixes-and-data-integrity';
+/bin/zsh -lc "python3 -c \"from pathlib import Path; base=Path('/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit'); files=['07-canonical-id-dedup-hardening.md','08-mathmax-min-stack-overflow-elimination.md','09-session-manager-transaction-gap-fixes.md','10-chunking-orchestrator-safe-swap.md','11-working-memory-timestamp-fix.md']; root=base/'feature_catalog/08--bug-fixes-and-data-integrity';
 for name in files:
     text=(root/name).read_text();
     paths=[]
@@ -533,7 +533,7 @@ for name in files:
 zsh:13: unmatched "
 exec
 /bin/zsh -lc "python3 -c 'from pathlib import Path
-base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit\")
+base=Path(\"/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit\")
 files=[\"07-canonical-id-dedup-hardening.md\",\"08-mathmax-min-stack-overflow-elimination.md\",\"09-session-manager-transaction-gap-fixes.md\",\"10-chunking-orchestrator-safe-swap.md\",\"11-working-memory-timestamp-fix.md\"]
 root=base/\"feature_catalog/08--bug-fixes-and-data-integrity\"
 for name in files:
@@ -569,18 +569,18 @@ COUNT: 2
 INVALID: NONE
 ---
 exec
-/bin/zsh -lc "sed -n '156,170p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '180,188p' '.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '90,110p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '206,218p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '480,488p' '.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '220,234p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '304,312p' '.opencode/skill/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '428,438p' '.opencode/skill/system-spec-kit/shared/algorithms/rrf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '488,496p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '194,205p' '.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '146,154p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '262,270p' '.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '156,170p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '180,188p' '.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '90,110p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '206,218p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/rsf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '480,488p' '.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '220,234p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '304,312p' '.opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '428,438p' '.opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '488,496p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '194,205p' '.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '146,154p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/tfidf-summarizer.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '262,270p' '.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
       if (typeof r.score === 'number' && Number.isFinite(r.score)) return r.score;
       if (typeof r.similarity === 'number' && Number.isFinite(r.similarity)) return r.similarity / 100;
       return 0;
@@ -733,14 +733,14 @@ function normalizeRrfScores(results: FusionResult[]): void {
 
 // ---------------------------------------------------------------
 exec
-/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|RangeError|call stack\" '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skill/system-spec-kit/shared/normalization.ts' '.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts' '.opencode/skill/system-spec-kit/shared/types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '430,462p' '.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '560,595p' '.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"cleanupOldSessions|datetime\\\\(last_focused\\\\)|last_focused < \\?|toISOString\\(\\)\" '.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"safe-swap|staged|re-chunk|existing children intact|all .*chunks failed|parent retained|DELETE FROM memory_index WHERE parent_id = \\?|UPDATE memory_index\\s+SET parent_id = \\?\" '.opencode/skill/system-spec-kit/mcp_server/tests' '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts:200:  const recencyScore = Math.max(...folderMemories.map(m =>
-.opencode/skill/system-spec-kit/shared/scoring/folder-scoring.ts:267:  return new Date(Math.max(...timestamps)).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:798:  // Math.max(...scores) / Math.min(...scores) which causes stack overflow on arrays
+/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|RangeError|call stack\" '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skills/system-spec-kit/shared/normalization.ts' '.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts' '.opencode/skills/system-spec-kit/shared/types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '430,462p' '.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '560,595p' '.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"cleanupOldSessions|datetime\\\\(last_focused\\\\)|last_focused < \\?|toISOString\\(\\)\" '.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"safe-swap|staged|re-chunk|existing children intact|all .*chunks failed|parent retained|DELETE FROM memory_index WHERE parent_id = \\?|UPDATE memory_index\\s+SET parent_id = \\?\" '.opencode/skills/system-spec-kit/mcp_server/tests' '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:200:  const recencyScore = Math.max(...folderMemories.map(m =>
+.opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts:267:  return new Date(Math.max(...timestamps)).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:798:  // Math.max(...scores) / Math.min(...scores) which causes stack overflow on arrays
  succeeded in 51ms:
       const result = hybridSearch.hybridSearch('authentication', mockEmbedding, { limit: 5 });
       expect(typeof result.then === 'function' || Array.isArray(result)).toBe(true);
@@ -784,39 +784,39 @@ exec
         for (let i = 1; i <= 5; i++) {
           sm.markMemorySent(sid, mem({ id: 1000 + i, anchorId: `anchor-${i}` }));
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:69:    const now = new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:97:      const now = new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:165:      const now = new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:70:    const oneHourAgo = new Date(Date.now() - 3600_000).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:77:    const tenDaysAgo = new Date(Date.now() - 10 * 86400_000).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:84:    const oneYearAgo = new Date(Date.now() - 365 * 86400_000).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:91:    const tomorrow = new Date(Date.now() + 86400_000).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:97:    const now = new Date().toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:219:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:   G. WORKING MEMORY — cleanupOldSessions
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:366:describe('G. cleanupOldSessions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:370:    const removed = wm.cleanupOldSessions();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:382:    const oldTime = new Date(Date.now() - 7200_000).toISOString();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:384:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:386:    const removed = wm.cleanupOldSessions();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    const removed = wm.cleanupOldSessions();
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:182:      'cleanupOldSessions',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:69:    const now = new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:97:      const now = new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:165:      const now = new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:70:    const oneHourAgo = new Date(Date.now() - 3600_000).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:77:    const tenDaysAgo = new Date(Date.now() - 10 * 86400_000).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:84:    const oneYearAgo = new Date(Date.now() - 365 * 86400_000).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:91:    const tomorrow = new Date(Date.now() + 86400_000).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:97:    const now = new Date().toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:219:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:   G. WORKING MEMORY — cleanupOldSessions
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:366:describe('G. cleanupOldSessions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:370:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:382:    const oldTime = new Date(Date.now() - 7200_000).toISOString();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:384:    db.exec(`INSERT INTO working_memory (session_id, memory_id, attention_score, last_focused) VALUES ('fresh-session', 2, 0.8, '${new Date().toISOString()}')`);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:386:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:182:      'cleanupOldSessions',
  succeeded in 50ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:161:      // Safe-swap mode for re-chunking: keep existing children intact until
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:167:        database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(existing.id);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:338:      ? `Chunked indexing aborted: all ${retainedChunks.length} chunks failed (parent rolled back)`
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:339:      : `Chunked indexing aborted: all ${retainedChunks.length} chunks failed (existing parent retained)`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:345:          database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:392:      database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:446:          console.error(`[memory-save] Failed to clean staged chunks for parent ${parentId}: ${cleanupMessage}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/README.md:163:├── structure-aware-chunker.vitest.ts      # Structure-aware document chunking
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:9:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:161:      // Safe-swap mode for re-chunking: keep existing children intact until
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:167:        database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(existing.id);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:338:      ? `Chunked indexing aborted: all ${retainedChunks.length} chunks failed (parent rolled back)`
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:339:      : `Chunked indexing aborted: all ${retainedChunks.length} chunks failed (existing parent retained)`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:345:          database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:392:      database.prepare(`DELETE FROM memory_index WHERE parent_id = ?`).run(parentId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:446:          console.error(`[memory-save] Failed to clean staged chunks for parent ${parentId}: ${cleanupMessage}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/README.md:163:├── structure-aware-chunker.vitest.ts      # Structure-aware document chunking
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:8:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:9:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
 exec
-/bin/zsh -lc "sed -n '790,805p' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '790,805p' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
  * @param scores - Array of raw composite scores
  * @returns Normalized scores mapped to [0, 1] (or unchanged when disabled)
  */
@@ -834,9 +834,9 @@ export function normalizeCompositeScores(scores: number[]): number[] {
     if (s < minScore) minScore = s;
   }
 exec
-/bin/zsh -lc "sed -n '420,445p' '.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|loop-based min/max|call-stack\" '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skill/system-spec-kit/shared/normalization.ts' '.opencode/skill/system-spec-kit/shared/types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,120p' '.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "sed -n '420,445p' '.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|loop-based min/max|call-stack\" '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skills/system-spec-kit/shared/normalization.ts' '.opencode/skills/system-spec-kit/shared/types.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,120p' '.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
         parsed.contextType,
         parsed.importanceTier,
         importanceWeight,
@@ -881,25 +881,25 @@ describe('Working Memory Module', () => {
     it('WORKING_MEMORY_CONFIG is exported', () => {
       expect(workingMemory.WORKING_MEMORY_CONFIG).toBeTruthy();
 exec
-/bin/zsh -lc "rg -n \"chunking-orchestrator|indexLargeFile|chunked indexing|rechunk|safe-swap\" '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts' '.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|loop-based min/max|call-stack\" '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skill/system-spec-kit/shared/normalization.ts' '.opencode/skill/system-spec-kit/shared/types.ts' || true" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"working-memory\\.ts|cleanupOldSessions|G\\. cleanupOldSessions|current timestamp|datetime\\(last_focused\\)\" '.opencode/skill/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:469:    reason: `memory_save: chunked indexing (${chunkResult.strategy}, ${chunkResult.chunks.length} chunks)`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:29:import { needsChunking, indexChunkedMemoryFile } from './chunking-orchestrator';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:167:    console.error(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);
+/bin/zsh -lc "rg -n \"chunking-orchestrator|indexLargeFile|chunked indexing|rechunk|safe-swap\" '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts' '.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"Math\\\\.(max|min)\\\\(\\\\.\\\\.\\\\.|reduce avoids stack overflow|loop-based min/max|call-stack\" '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/folder-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/interference-scoring.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts' '.opencode/skills/system-spec-kit/shared/normalization.ts' '.opencode/skills/system-spec-kit/shared/types.ts' || true" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"working-memory\\.ts|cleanupOldSessions|G\\. cleanupOldSessions|current timestamp|datetime\\(last_focused\\)\" '.opencode/skills/system-spec-kit/mcp_server/tests'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:469:    reason: `memory_save: chunked indexing (${chunkResult.strategy}, ${chunkResult.chunks.length} chunks)`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:29:import { needsChunking, indexChunkedMemoryFile } from './chunking-orchestrator';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:167:    console.error(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);
  succeeded in 51ms:
 
  succeeded in 52ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:3:// Aligned with production working-memory.ts named exports
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:182:      'cleanupOldSessions',
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:96:  it('A-06: current timestamp returns ~0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:   G. WORKING MEMORY — cleanupOldSessions
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:366:describe('G. cleanupOldSessions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:370:    const removed = wm.cleanupOldSessions();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:386:    const removed = wm.cleanupOldSessions();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:3:// Aligned with production working-memory.ts named exports
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:182:      'cleanupOldSessions',
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:96:  it('A-06: current timestamp returns ~0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:363:   G. WORKING MEMORY — cleanupOldSessions
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:366:describe('G. cleanupOldSessions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:370:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:386:    const removed = wm.cleanupOldSessions();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:397:    const removed = wm.cleanupOldSessions();
 exec
-/bin/zsh -lc "sed -n '690,710p' '.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "sed -n '690,710p' '.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
     }
 
     // Merge keyword results after all channels complete
@@ -923,22 +923,22 @@ exec
 codex
 I’ve narrowed it down to three buckets: fully accurate snippets with noisy source tables, snippets whose source tables miss the real implementation files, and one snippet that looks stale enough to need a rewrite rather than a small touch-up.
 exec
-/bin/zsh -lc "rg -n \"indexChunkedMemoryFile|needsChunking|chunked indexing|chunking-orchestrator|parent_id\" '.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '150,175p' '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"describe\\('16\\. enforceEntryLimit|markMemorySent|markMemoriesSentBatch|transaction ensures atomic insert|atomic with insert to prevent row count races\" '.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:341:  it('uses thinChunks retained set in indexChunkedMemoryFile active path', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:384:    const result = await memorySave.indexChunkedMemoryFile(filePath, parsed);
-.opencode/skill/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:388:    const childCountRow = db.prepare('SELECT COUNT(*) as count FROM memory_index WHERE parent_id = ?').get(result.id) as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:14:  needsChunking,
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:59:    expect(needsChunking(atThreshold)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:71:    expect(needsChunking(anchoredLargeContent)).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:92:    expect(columns).toEqual(expect.arrayContaining(['parent_id', 'chunk_index', 'chunk_label']));
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:95:    expect(indexes).toEqual(expect.arrayContaining(['idx_parent_id', 'idx_parent_chunk']));
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:332:    expect(columns).not.toContain('parent_id');
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:374:      (id, spec_folder, file_path, anchor_id, title, created_at, updated_at, embedding_status, content_text, parent_id, chunk_index, chunk_label, importance_tier)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:383:      { id: 9001, parent_id: 9000, chunk_index: 0, chunk_label: 'chunk-1', file_path: '/specs/010-test/memory/large.md' },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:384:      { id: 9002, parent_id: 9000, chunk_index: 1, chunk_label: 'chunk-2', file_path: '/specs/010-test/memory/large.md' },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:396:      throw new Error('Expected reassembled chunk result for parent_id=9000');
+/bin/zsh -lc "rg -n \"indexChunkedMemoryFile|needsChunking|chunked indexing|chunking-orchestrator|parent_id\" '.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '150,175p' '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"describe\\('16\\. enforceEntryLimit|markMemorySent|markMemoriesSentBatch|transaction ensures atomic insert|atomic with insert to prevent row count races\" '.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:341:  it('uses thinChunks retained set in indexChunkedMemoryFile active path', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:384:    const result = await memorySave.indexChunkedMemoryFile(filePath, parsed);
+.opencode/skills/system-spec-kit/mcp_server/tests/chunk-thinning.vitest.ts:388:    const childCountRow = db.prepare('SELECT COUNT(*) as count FROM memory_index WHERE parent_id = ?').get(result.id) as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:14:  needsChunking,
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:59:    expect(needsChunking(atThreshold)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:71:    expect(needsChunking(anchoredLargeContent)).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:92:    expect(columns).toEqual(expect.arrayContaining(['parent_id', 'chunk_index', 'chunk_label']));
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:95:    expect(indexes).toEqual(expect.arrayContaining(['idx_parent_id', 'idx_parent_chunk']));
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:332:    expect(columns).not.toContain('parent_id');
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:374:      (id, spec_folder, file_path, anchor_id, title, created_at, updated_at, embedding_status, content_text, parent_id, chunk_index, chunk_label, importance_tier)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:383:      { id: 9001, parent_id: 9000, chunk_index: 0, chunk_label: 'chunk-1', file_path: '/specs/010-test/memory/large.md' },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:384:      { id: 9002, parent_id: 9000, chunk_index: 1, chunk_label: 'chunk-2', file_path: '/specs/010-test/memory/large.md' },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:396:      throw new Error('Expected reassembled chunk result for parent_id=9000');
  succeeded in 52ms:
       title: parsed.title ?? '',
       triggerPhrases: parsed.triggerPhrases,
@@ -961,26 +961,26 @@ exec
     return indexChunkedMemoryFile(filePath, parsed, { force, applyPostInsertMetadata });
   }
  succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:397:function markMemorySent(sessionId: string, memory: MemoryInput | number): MarkResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:414:    // AI-WHY: transaction ensures atomic insert + limit enforcement, preventing concurrent race past entry limit.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:417:      // AI-WHY: enforceEntryLimit inside tx — atomic with insert to prevent row count races.
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:424:    console.error(`[session-manager] markMemorySent failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:429:function markMemoriesSentBatch(sessionId: string, memories: MemoryInput[]): MarkBatchResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:462:    console.error(`[session-manager] markMemoriesSentBatch failed: ${message}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:705:  return markMemoriesSentBatch(sessionId, results);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1105:  markMemorySent,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1106:  markMemoriesSentBatch,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:107:        'markMemorySent',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:222:      const markResult: MarkResult = sessionManager.markMemorySent(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:231:  // T005: markMemorySent() TRACKS SENT MEMORY IDS
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:234:  describe('T005: markMemorySent() correctly tracks sent memory IDs', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:248:        const result: MarkResult = sessionManager.markMemorySent(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:280:      sessionManager.markMemorySent(session1, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:286:      sessionManager.markMemorySent(session2, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:320:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 502
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:321:      sessionManager.markMemorySent(sessionId, searchResults[3]); // 504
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:379:      sessionManager.markMemorySent(sessionId, searchResults[0]); // 601
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:380:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 602
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:397:function markMemorySent(sessionId: string, memory: MemoryInput | number): MarkResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:414:    // AI-WHY: transaction ensures atomic insert + limit enforcement, preventing concurrent race past entry limit.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:417:      // AI-WHY: enforceEntryLimit inside tx — atomic with insert to prevent row count races.
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:424:    console.error(`[session-manager] markMemorySent failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:429:function markMemoriesSentBatch(sessionId: string, memories: MemoryInput[]): MarkBatchResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:462:    console.error(`[session-manager] markMemoriesSentBatch failed: ${message}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:705:  return markMemoriesSentBatch(sessionId, results);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1105:  markMemorySent,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1106:  markMemoriesSentBatch,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:107:        'markMemorySent',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:222:      const markResult: MarkResult = sessionManager.markMemorySent(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:231:  // T005: markMemorySent() TRACKS SENT MEMORY IDS
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:234:  describe('T005: markMemorySent() correctly tracks sent memory IDs', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:248:        const result: MarkResult = sessionManager.markMemorySent(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:280:      sessionManager.markMemorySent(session1, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:286:      sessionManager.markMemorySent(session2, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:320:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 502
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:321:      sessionManager.markMemorySent(sessionId, searchResults[3]); // 504
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:379:      sessionManager.markMemorySent(sessionId, searchResults[0]); // 601
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:380:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 602
 Plan update
 Compared each snippet’s Current Reality claims with the live implementation, checked every listed path for existence, and identified where the source tables miss or mis-point to the real implementation files.
   ✓ Read the relevant system-spec-kit guidance and extract each feature’s claimed source files and behavior

@@ -39,12 +39,12 @@ _memory:
     next_safe_action: "Move template, update references, wire into sk-doc routing"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-doc/assets/documentation/changelog_template.md"
-      - ".opencode/command/create/assets/create_changelog_auto.yaml"
-      - ".opencode/command/create/assets/create_changelog_confirm.yaml"
-      - ".opencode/command/create/changelog.md"
-      - ".opencode/skill/system-spec-kit/references/workflows/nested_changelog.md"
-      - ".opencode/skill/sk-doc/SKILL.md"
+      - ".opencode/skills/sk-doc/assets/documentation/changelog_template.md"
+      - ".opencode/commands/create/assets/create_changelog_auto.yaml"
+      - ".opencode/commands/create/assets/create_changelog_confirm.yaml"
+      - ".opencode/commands/create/changelog.md"
+      - ".opencode/skills/system-spec-kit/references/workflows/nested_changelog.md"
+      - ".opencode/skills/sk-doc/SKILL.md"
     session_dedup:
       fingerprint: "sha256:045-sk-doc-changelog-template"
       session_id: "045-sk-doc-changelog-template"
@@ -52,7 +52,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "Target location is .opencode/skill/sk-doc/assets/documentation/changelog_template.md (matches readme/install/llmstxt/frontmatter siblings)"
+      - "Target location is .opencode/skills/sk-doc/assets/documentation/changelog_template.md (matches readme/install/llmstxt/frontmatter siblings)"
       - "sk-git references the /create:changelog command surface, not the template path, so no sk-git source changes are required"
 ---
 # Feature Specification: Move changelog_template.md into sk-doc
@@ -80,7 +80,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/command/create/assets/changelog_template`). Every other documentation template (README, install guide, llms.txt, frontmatter, feature catalog, manual playbook) lives under `.opencode/skill/sk-doc/assets/documentation/`. The mismatch hid the template from sk-doc Smart Routing and made the path inconsistent with the rest of the documentation template surface.
+The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelog_template`). Every other documentation template (README, install guide, llms.txt, frontmatter, feature catalog, manual playbook) lives under `.opencode/skills/sk-doc/assets/documentation/`. The mismatch hid the template from sk-doc Smart Routing and made the path inconsistent with the rest of the documentation template surface.
 
 ### Purpose
 Move the template into `sk-doc/assets/documentation/`, repoint the changelog command YAMLs and the user-facing changelog command markdown at the new path, fix the spec-kit nested-changelog reference, and wire a CHANGELOG intent into the sk-doc Smart Router so the template is discoverable from the same skill that owns every other documentation template.
@@ -92,30 +92,30 @@ Move the template into `sk-doc/assets/documentation/`, repoint the changelog com
 ## 3. SCOPE
 
 ### In Scope
-- Move the changelog template to [.opencode/skill/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md)
-- Delete the original at the former create-command asset path (`.opencode/command/create/assets/changelog_template`)
+- Move the changelog template to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md)
+- Delete the original at the former create-command asset path (`.opencode/commands/create/assets/changelog_template`)
 - Update `create_changelog_auto.yaml` and `create_changelog_confirm.yaml` to reference the new path
-- Update [.opencode/command/create/changelog.md](../../../command/create/changelog.md) (Section 3 + Related Resources references)
-- Update [.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md](../../../skill/system-spec-kit/references/workflows/nested_changelog.md) (the "do not reuse global template" pointer)
-- Add CHANGELOG intent + RESOURCE_MAP entry + use-case mention + references-list entry in [.opencode/skill/sk-doc/SKILL.md](../../../skill/sk-doc/SKILL.md)
+- Update [.opencode/commands/create/changelog.md](../../../command/create/changelog.md) (Section 3 + Related Resources references)
+- Update [.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md](../../../skill/system-spec-kit/references/workflows/nested_changelog.md) (the "do not reuse global template" pointer)
+- Add CHANGELOG intent + RESOURCE_MAP entry + use-case mention + references-list entry in [.opencode/skills/sk-doc/SKILL.md](../../../skill/sk-doc/SKILL.md)
 
 ### Out of Scope
 - Editing the template's content. The move is path-only; the file body is preserved verbatim.
 - Modifying sk-git references. sk-git points at the `/create:changelog` command surface, not at the template path, so no sk-git source changes are needed.
-- Touching nested packet-local changelog templates under `.opencode/skill/system-spec-kit/templates/changelog/`. Those stay where they are.
+- Touching nested packet-local changelog templates under `.opencode/skills/system-spec-kit/templates/changelog/`. Those stay where they are.
 - Re-indexing historical research/iteration logs that captured the old path. Those are frozen artifacts.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skill/sk-doc/assets/documentation/changelog_template.md | Create | Verbatim copy of the moved template |
-| .opencode/command/create/assets/changelog_template.md | Delete | Removed from old location |
-| .opencode/command/create/assets/create_changelog_auto.yaml | Modify | Point all references at the sk-doc path |
-| .opencode/command/create/assets/create_changelog_confirm.yaml | Modify | Point all references at the sk-doc path |
-| .opencode/command/create/changelog.md | Modify | Update Section 3 and Related Resources |
-| .opencode/skill/system-spec-kit/references/workflows/nested_changelog.md | Modify | Update the global-template pointer |
-| .opencode/skill/sk-doc/SKILL.md | Modify | Add CHANGELOG intent, RESOURCE_MAP, use-case bullet, references-list entry |
+| .opencode/skills/sk-doc/assets/documentation/changelog_template.md | Create | Verbatim copy of the moved template |
+| .opencode/commands/create/assets/changelog_template.md | Delete | Removed from old location |
+| .opencode/commands/create/assets/create_changelog_auto.yaml | Modify | Point all references at the sk-doc path |
+| .opencode/commands/create/assets/create_changelog_confirm.yaml | Modify | Point all references at the sk-doc path |
+| .opencode/commands/create/changelog.md | Modify | Update Section 3 and Related Resources |
+| .opencode/skills/system-spec-kit/references/workflows/nested_changelog.md | Modify | Update the global-template pointer |
+| .opencode/skills/sk-doc/SKILL.md | Modify | Add CHANGELOG intent, RESOURCE_MAP, use-case bullet, references-list entry |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,10 +127,10 @@ Move the template into `sk-doc/assets/documentation/`, repoint the changelog com
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Template lives under sk-doc | `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` exists with the original body |
-| REQ-002 | Old location is removed | The former create-command asset path (.opencode/command/create/assets/changelog_template) no longer exists |
-| REQ-003 | Changelog command surfaces resolve to the new path | grep across `.opencode/command/create/` returns zero hits for the old path |
-| REQ-004 | spec-kit nested-changelog reference resolves to the new path | grep across `.opencode/skill/system-spec-kit/` (excluding archived research artifacts) returns zero hits for the old path |
+| REQ-001 | Template lives under sk-doc | `.opencode/skills/sk-doc/assets/documentation/changelog_template.md` exists with the original body |
+| REQ-002 | Old location is removed | The former create-command asset path (.opencode/commands/create/assets/changelog_template) no longer exists |
+| REQ-003 | Changelog command surfaces resolve to the new path | grep across `.opencode/commands/create/` returns zero hits for the old path |
+| REQ-004 | spec-kit nested-changelog reference resolves to the new path | grep across `.opencode/skills/system-spec-kit/` (excluding archived research artifacts) returns zero hits for the old path |
 
 ### P1 - Required (complete OR user-approved deferral)
 

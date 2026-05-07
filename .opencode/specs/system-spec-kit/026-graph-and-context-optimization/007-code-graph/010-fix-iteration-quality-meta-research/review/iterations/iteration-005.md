@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:12-23`
-- `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md:36-71`
-- `.opencode/skill/sk-code-review/SKILL.md:313-322`
-- `.opencode/skill/sk-code-review/references/review_core.md:75-100`
-- `.opencode/agent/deep-review.md:175-212`
-- `.opencode/skill/sk-deep-review/references/state_format.md:190-220`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1056`
-- `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1078`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:215-221`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:221-227`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:12-23`
+- `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md:36-71`
+- `.opencode/skills/sk-code-review/SKILL.md:313-322`
+- `.opencode/skills/sk-code-review/references/review_core.md:75-100`
+- `.opencode/agents/deep-review.md:175-212`
+- `.opencode/skills/sk-deep-review/references/state_format.md:190-220`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:1047-1056`
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:1069-1078`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:215-221`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml:570-576`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:221-227`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml:619-625`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review/deep-review-state.jsonl:1-5`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/review_archive/round-1-20260502T193723Z/review-report.md:274-286`
 

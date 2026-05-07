@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 [P2] Add additive `phase_path_grammar` documentation block under `phase_folder_awareness` (F-019-D4-02) (`.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`)
+- [x] T004 [P2] Add additive `phase_path_grammar` documentation block under `phase_folder_awareness` (F-019-D4-02) (`.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`)
 - [x] T005 [P2] Export `assessPhaseParentHealth()` plus warning/error thresholds (F-019-D4-03) (`mcp_server/lib/spec/is-phase-parent.ts`)
 - [x] T006 [P2] Mirror health helper export plus CLI entrypoint (`health <folder>`) (F-019-D4-03) (`scripts/spec/is-phase-parent.ts`)
 - [x] T007 [P2] Append manifest-size advisory via dist CLI; soft-fail when node/dist absent (F-019-D4-03) (`scripts/rules/check-phase-parent-content.sh`)

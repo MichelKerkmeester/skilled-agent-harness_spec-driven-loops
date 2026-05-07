@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Run Phase 2 implementation"
     blockers: []
     key_files:
-      - ".opencode/agent/multi-ai-council.md"
-      - ".opencode/skill/system-spec-kit/references/"
+      - ".opencode/agents/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/references/"
     session_dedup:
       fingerprint: "sha256:921f7e22b80aef0cf063bf9bec0a8e6cd479b01138e86e5fea7b08048c72f86c"
       session_id: "plan-080-author"
@@ -39,7 +39,7 @@ _memory:
 Three implementation phases under packet 080:
 
 1. **Phase 1: Spec + design lock-in** (this packet finalizes the contract).
-2. **Phase 2: Agent body + references** (update `.opencode/agent/multi-ai-council.md`; add `system-spec-kit/references/multi-ai-council/` with 4 reference files; mirror agent across 3 sibling runtime dirs).
+2. **Phase 2: Agent body + references** (update `.opencode/agents/multi-ai-council.md`; add `system-spec-kit/references/multi-ai-council/` with 4 reference files; mirror agent across 3 sibling runtime dirs).
 3. **Phase 3: Validator awareness + smoke test** (validator regression test confirms `ai-council/` is not flagged; live council dispatch on a real packet to verify end-to-end).
 
 The packet is being implemented as a single Level 3 leaf packet rather than a phase parent — all phases land in one packet's tasks.md.
@@ -110,12 +110,12 @@ If not: increment round; loop
 - implementation-summary.md (post-implementation real version)
 
 ### Phase 2 — Agent body + references
-- Update `.opencode/agent/multi-ai-council.md`:
+- Update `.opencode/agents/multi-ai-council.md`:
   - Add §Output Protocol documenting the `ai-council/` layout
   - Add §Invocation Contract with first-call vs subsequent-call vs resume rules
   - Add §State Schema with the jsonl event types
   - Add §Convergence Signal with the 2/3 agreement rule
-- Create `.opencode/skill/system-spec-kit/references/multi-ai-council/`:
+- Create `.opencode/skills/system-spec-kit/references/multi-ai-council/`:
   - `folder-layout.md` (one page reference for the directory tree)
   - `seat-diversity-patterns.md` (lens combination guidance)
   - `convergence-signals.md` (the 2/3 rule + escape hatches)
@@ -152,10 +152,10 @@ If not: increment round; loop
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- `.opencode/agent/multi-ai-council.md` — agent body (will be updated)
+- `.opencode/agents/multi-ai-council.md` — agent body (will be updated)
 - `.claude/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml`, `.gemini/agents/multi-ai-council.md` — runtime mirrors
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` — validator (regression-tested)
-- `.opencode/skill/system-spec-kit/references/` — shared reference home (new subfolder)
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` — validator (regression-tested)
+- `.opencode/skills/system-spec-kit/references/` — shared reference home (new subfolder)
 - Existing CLI skills (`cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, `cli-opencode`) — used by council seats
 - Existing patterns from `deep-research/` and `deep-review/` (for layout inspiration only; no code reuse)
 <!-- /ANCHOR:dependencies -->
@@ -168,7 +168,7 @@ If not: increment round; loop
 If the new convention causes a regression:
 
 1. **Revert agent body changes** (4 runtimes) — `git revert` the agent commits; deep skills and validator are untouched, so revert is local.
-2. **Delete reference files** — `rm -rf .opencode/skill/system-spec-kit/references/multi-ai-council/` (no consumers besides the agent).
+2. **Delete reference files** — `rm -rf .opencode/skills/system-spec-kit/references/multi-ai-council/` (no consumers besides the agent).
 3. **Remove vitest case** — `git rm system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts`.
 4. **Existing council dispatches** that produced `ai-council/` artifacts: leave on disk (free-form subfolder, harmless to validator); reference docs in chat history.
 
@@ -205,7 +205,7 @@ No database or production state is touched. Rollback is purely git-level.
 
 Per-phase rollback granularity:
 
-- **Phase 2 partial revert**: if only mirrors are bad, revert .claude/.codex/.gemini files and keep `.opencode/agent/multi-ai-council.md` (canonical). Operator dispatches via `.opencode/` only until mirrors are fixed.
+- **Phase 2 partial revert**: if only mirrors are bad, revert .claude/.codex/.gemini files and keep `.opencode/agents/multi-ai-council.md` (canonical). Operator dispatches via `.opencode/` only until mirrors are fixed.
 - **Phase 3 partial revert**: drop the vitest case; `ai-council/` remains free-form. Smoke test failure means the agent body needs a fix, not a revert.
 - **Reference file cleanup**: each reference file is independently revertable; deletion does not break the agent (agent is self-contained per ADR-001).
 <!-- /ANCHOR:enhanced-rollback -->
@@ -237,7 +237,7 @@ spec.md -> plan.md -> tasks.md -> checklist.md -> decision-record.md
 The critical path runs:
 
 1. Spec lock-in (this packet's Phase 1)
-2. Agent body update (`.opencode/agent/multi-ai-council.md`)
+2. Agent body update (`.opencode/agents/multi-ai-council.md`)
 3. 4-runtime mirror sync
 4. Vitest regression test
 5. Smoke test dispatch
@@ -253,7 +253,7 @@ References authoring is parallel to the agent body update — references can be 
 | Milestone | Trigger | Evidence |
 |-----------|---------|----------|
 | M1: Spec locked | All Phase 1 docs validate strict | `validate.sh --strict` exit 0 |
-| M2: Agent body authoritative | `.opencode/agent/multi-ai-council.md` documents 4 new sections | grep §Output Protocol/§Invocation Contract/§State Schema/§Convergence Signal |
+| M2: Agent body authoritative | `.opencode/agents/multi-ai-council.md` documents 4 new sections | grep §Output Protocol/§Invocation Contract/§State Schema/§Convergence Signal |
 | M3: 4-runtime parity | All 4 mirrors agree on output protocol | manual diff |
 | M4: Validator regression-proof | Vitest case passes | `npm test` output |
 | M5: End-to-end smoke | Council dispatch on packet 080 produces canonical `ai-council/` artifacts | `ls ai-council/` shows skeleton + report |

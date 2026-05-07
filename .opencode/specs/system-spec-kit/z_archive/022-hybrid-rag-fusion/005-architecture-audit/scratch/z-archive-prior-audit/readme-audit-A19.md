@@ -1,7 +1,7 @@
 # README Audit A19 — scripts/ Subfolders (extractors, lib, loaders, renderers)
 
 **Date:** 2026-03-08
-**Scope:** 4 folders under `.opencode/skill/system-spec-kit/scripts/`
+**Scope:** 4 folders under `.opencode/skills/system-spec-kit/scripts/`
 **Checks:** file completeness, description accuracy, YAML frontmatter, numbered ALL CAPS H2 sections, HVR-banned words
 
 ---

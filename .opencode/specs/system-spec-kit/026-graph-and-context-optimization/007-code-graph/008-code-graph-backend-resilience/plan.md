@@ -39,7 +39,7 @@ _memory:
 
 ### Technical Context
 
-Live mcp_server backend at `.opencode/skill/system-spec-kit/mcp_server/code_graph/` with the readiness contract in `lib/ensure-ready.ts`, query handlers in `handlers/`, structural indexer in `lib/structural-indexer.ts`, tree-sitter parser in `lib/tree-sitter-parser.ts`, and the SQLite cache wrapper in `lib/code-graph-db.ts`. All TS, sqlite, and tree-sitter primitives in place; no new external deps.
+Live mcp_server backend at `.opencode/skills/system-spec-kit/mcp_server/code_graph/` with the readiness contract in `lib/ensure-ready.ts`, query handlers in `handlers/`, structural indexer in `lib/structural-indexer.ts`, tree-sitter parser in `lib/tree-sitter-parser.ts`, and the SQLite cache wrapper in `lib/code-graph-db.ts`. All TS, sqlite, and tree-sitter primitives in place; no new external deps.
 
 Land the 5 implementation streams in dependency order. Each task targets specific file:line ranges with concrete change instructions. Tests are added per stream. Each task is dispatched to cli-codex as a focused, self-contained patch prompt. The implementation runner script processes tasks sequentially via `codex exec --model gpt-5.4 -c model_reasoning_effort=high -c service_tier=fast -c approval_policy=never --sandbox workspace-write`. After each task: rebuild, run tests, log result. After all 15 tasks: full smoke test + commit + push.
 <!-- /ANCHOR:summary -->
@@ -51,7 +51,7 @@ Land the 5 implementation streams in dependency order. Each task targets specifi
 
 ### Per-task gates
 
-- TS build passes (zero errors): `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`
+- TS build passes (zero errors): `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
 - No new ESLint errors introduced
 - Patch surface matches plan (no scope creep)
 
@@ -167,7 +167,7 @@ Block-final tests for `detect_changes` hard block; per-stream tests for hash/res
 
 - **Upstream:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
 - **Sibling:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/`
-- **Backend target:** `.opencode/skill/system-spec-kit/mcp_server/code_graph/`
+- **Backend target:** `.opencode/skills/system-spec-kit/mcp_server/code_graph/`
 - **No external deps** — all changes use existing TypeScript + sqlite + tree-sitter primitives
 <!-- /ANCHOR:dependencies -->
 

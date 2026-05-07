@@ -88,7 +88,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] **P2-01** cli-codex hook contract exists. [EVIDENCE: repo-root `.opencode/skill/cli-codex/references/hook_contract.md`.]
+- [x] **P2-01** cli-codex hook contract exists. [EVIDENCE: repo-root `.opencode/skills/cli-codex/references/hook_contract.md`.]
 - [x] **P2-02** Research methodology exists for future CLI parity work. [EVIDENCE: parent research synthesis has methodology notes.]
 <!-- /ANCHOR:docs -->
 

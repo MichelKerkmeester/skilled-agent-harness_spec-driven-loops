@@ -6,36 +6,36 @@ Q4 - Define coder-side Output Verification for `@code`: Pre-Return Verification,
 
 ## Actions
 
-1. Read `.opencode/agent/review.md:315-362` for the review-side Output Verification block, stopping before Adversarial Self-Check.
-2. Read `.opencode/skill/sk-code/SKILL.md:60-65` and searched for "fresh verification evidence", "verification command", and "verification_commands" to anchor the coder-side Iron Law and stack-aware verification pattern.
-3. Read `.opencode/agent/write.md:295-330` for the write-capable LEAF precedent that adapts review-style verification into created-output verification.
-4. Read `.opencode/agent/code.md:45-105`, `.opencode/skill/sk-code/SKILL.md:427-489`, and `.opencode/skill/sk-code/assets/universal/checklists/verification_checklist.md:1-80` to align the output protocol with the existing code-agent RETURN contract.
+1. Read `.opencode/agents/review.md:315-362` for the review-side Output Verification block, stopping before Adversarial Self-Check.
+2. Read `.opencode/skills/sk-code/SKILL.md:60-65` and searched for "fresh verification evidence", "verification command", and "verification_commands" to anchor the coder-side Iron Law and stack-aware verification pattern.
+3. Read `.opencode/agents/write.md:295-330` for the write-capable LEAF precedent that adapts review-style verification into created-output verification.
+4. Read `.opencode/agents/code.md:45-105`, `.opencode/skills/sk-code/SKILL.md:427-489`, and `.opencode/skills/sk-code/assets/universal/checklists/verification_checklist.md:1-80` to align the output protocol with the existing code-agent RETURN contract.
 
 ## Findings
 
 ### f-iter004-001 - blocker - Coder Output Verification should be Pre-Return, not Pre-Report
 
-`@review` verifies before reporting findings, with checks for existing paths, verified citations, project-pattern evidence, and no false positives (`.opencode/agent/review.md:319`, `.opencode/agent/review.md:321`, `.opencode/agent/review.md:323`, `.opencode/agent/review.md:326`). For `@code`, the equivalent boundary is the handoff `RETURN`, because `code.md` already defines a structured return line with modified files, verification state, and escalation status (`.opencode/agent/code.md:89`, `.opencode/agent/code.md:91`). The coder-side block should therefore be titled `Pre-Return Verification` and require proof for every claim made in the RETURN summary.
+`@review` verifies before reporting findings, with checks for existing paths, verified citations, project-pattern evidence, and no false positives (`.opencode/agents/review.md:319`, `.opencode/agents/review.md:321`, `.opencode/agents/review.md:323`, `.opencode/agents/review.md:326`). For `@code`, the equivalent boundary is the handoff `RETURN`, because `code.md` already defines a structured return line with modified files, verification state, and escalation status (`.opencode/agents/code.md:89`, `.opencode/agents/code.md:91`). The coder-side block should therefore be titled `Pre-Return Verification` and require proof for every claim made in the RETURN summary.
 
 ### f-iter004-002 - blocker - The coder Iron Law must use fresh stack evidence, not generic verification language
 
-The review Iron Law says never claim completion without verification evidence (`.opencode/agent/review.md:356`, `.opencode/agent/review.md:358`). `sk-code` makes the coder version stricter: verification is a phase gate before any `done` or `works` claim, and its canonical wording is "NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK" (`.opencode/skill/sk-code/SKILL.md:60`, `.opencode/skill/sk-code/SKILL.md:62`). The coder Iron Law should quote that line rather than reusing the generic review wording.
+The review Iron Law says never claim completion without verification evidence (`.opencode/agents/review.md:356`, `.opencode/agents/review.md:358`). `sk-code` makes the coder version stricter: verification is a phase gate before any `done` or `works` claim, and its canonical wording is "NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK" (`.opencode/skills/sk-code/SKILL.md:60`, `.opencode/skills/sk-code/SKILL.md:62`). The coder Iron Law should quote that line rather than reusing the generic review wording.
 
 ### f-iter004-003 - important - Verification evidence has to include command/action identity and exit outcome
 
-`@code` must capture `verification_commands` from `sk-code`, run the returned verification command, and fail closed on verification failure (`.opencode/agent/code.md:51`, `.opencode/agent/code.md:53`). `sk-code` expands that into an eight-step gate: identify what proves the claim, run the stack commands, verify expected behavior, record what exited 0, and only then make the claim (`.opencode/skill/sk-code/SKILL.md:431`, `.opencode/skill/sk-code/SKILL.md:432`, `.opencode/skill/sk-code/SKILL.md:437`, `.opencode/skill/sk-code/SKILL.md:438`). The output protocol should require command/action name, exit code, and a short evidence snippet or observation.
+`@code` must capture `verification_commands` from `sk-code`, run the returned verification command, and fail closed on verification failure (`.opencode/agents/code.md:51`, `.opencode/agents/code.md:53`). `sk-code` expands that into an eight-step gate: identify what proves the claim, run the stack commands, verify expected behavior, record what exited 0, and only then make the claim (`.opencode/skills/sk-code/SKILL.md:431`, `.opencode/skills/sk-code/SKILL.md:432`, `.opencode/skills/sk-code/SKILL.md:437`, `.opencode/skills/sk-code/SKILL.md:438`). The output protocol should require command/action name, exit code, and a short evidence snippet or observation.
 
 ### f-iter004-004 - important - Evidence severity can mirror review, but coder P0 means failed or missing implementation proof
 
-`@review` maps P0/P1/P2 to increasingly lighter evidence requirements (`.opencode/agent/review.md:328`, `.opencode/agent/review.md:332`, `.opencode/agent/review.md:334`). For `@code`, P0 evidence should prove the implementation cannot be claimed complete: file:line, verification-fail snippet, and escalation status. P1 should include file:line plus reasoning because it may be a meaningful risk or approved deferral. P2 can stay file:line plus suggestion. This keeps coder output evidence-based without turning `@code` into `@review`.
+`@review` maps P0/P1/P2 to increasingly lighter evidence requirements (`.opencode/agents/review.md:328`, `.opencode/agents/review.md:332`, `.opencode/agents/review.md:334`). For `@code`, P0 evidence should prove the implementation cannot be claimed complete: file:line, verification-fail snippet, and escalation status. P1 should include file:line plus reasoning because it may be a meaningful risk or approved deferral. P2 can stay file:line plus suggestion. This keeps coder output evidence-based without turning `@code` into `@review`.
 
 ### f-iter004-005 - important - The self-validation questions should test authored-output truthfulness
 
-Review self-validation asks whether files were read, scores are traceable, issues cite code, security review happened, findings are reproducible, and P0/P1 adversarial checks ran (`.opencode/agent/review.md:336`, `.opencode/agent/review.md:339`, `.opencode/agent/review.md:344`). Coder-side questions should instead ask whether edited files were re-read, scope stayed locked, verification ran, RETURN citations were checked, quality gates passed or escalated, and no dead/debug residue remains. Q5 will handle the adversarial self-check analog; it should not be bundled into Q4.
+Review self-validation asks whether files were read, scores are traceable, issues cite code, security review happened, findings are reproducible, and P0/P1 adversarial checks ran (`.opencode/agents/review.md:336`, `.opencode/agents/review.md:339`, `.opencode/agents/review.md:344`). Coder-side questions should instead ask whether edited files were re-read, scope stayed locked, verification ran, RETURN citations were checked, quality gates passed or escalated, and no dead/debug residue remains. Q5 will handle the adversarial self-check analog; it should not be bundled into Q4.
 
 ### f-iter004-006 - important - `@write` confirms the pattern for write-capable LEAFs
 
-The write agent adapts output verification around created files: read all created files, scan for placeholders, verify template alignment, run the relevant quality tool, then document confidence (`.opencode/agent/write.md:301`, `.opencode/agent/write.md:303`, `.opencode/agent/write.md:307`, `.opencode/agent/write.md:329`). That precedent supports a coder-specific block that verifies authored code artifacts, stack checks, and RETURN evidence rather than copying review-only concepts like quality scores.
+The write agent adapts output verification around created files: read all created files, scan for placeholders, verify template alignment, run the relevant quality tool, then document confidence (`.opencode/agents/write.md:301`, `.opencode/agents/write.md:303`, `.opencode/agents/write.md:307`, `.opencode/agents/write.md:329`). That precedent supports a coder-specific block that verifies authored code artifacts, stack checks, and RETURN evidence rather than copying review-only concepts like quality scores.
 
 ## Questions Answered
 
@@ -85,7 +85,7 @@ If ANY is NO: DO NOT return `DONE`. Fix the verification gap or return the appro
 
 > **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK.**
 
-Canonical source: `.opencode/skill/sk-code/SKILL.md:62`.
+Canonical source: `.opencode/skills/sk-code/SKILL.md:62`.
 
 Before returning: (1) run the six-question self-validation protocol, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN summary.
 

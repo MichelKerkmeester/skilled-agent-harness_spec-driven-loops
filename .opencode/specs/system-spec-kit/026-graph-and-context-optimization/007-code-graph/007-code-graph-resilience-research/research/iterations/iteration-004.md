@@ -2,9 +2,9 @@
 
 ## Summary
 
-Q5 is answered with a gold seed list of 28 canonical queries. The battery is intentionally biased toward symbols whose disappearance would show a broken scan scope: MCP tool descriptors and dispatch handlers, code-graph query/readiness internals, skill-advisor scoring lanes and daemon freshness, skill-graph query helpers, and exported API contracts. These queries are not meant to validate generic fixtures; they are meant to prove the canonical implementation files under `.opencode/skill/system-spec-kit/mcp_server/` remain indexed.
+Q5 is answered with a gold seed list of 28 canonical queries. The battery is intentionally biased toward symbols whose disappearance would show a broken scan scope: MCP tool descriptors and dispatch handlers, code-graph query/readiness internals, skill-advisor scoring lanes and daemon freshness, skill-graph query helpers, and exported API contracts. These queries are not meant to validate generic fixtures; they are meant to prove the canonical implementation files under `.opencode/skills/system-spec-kit/mcp_server/` remain indexed.
 
-Key regression boundary: generic test fixtures may legitimately be absent when they live under excluded roots such as `node_modules`, `dist`, `vendor`, `external`, `z_future`, `z_archive`, or `mcp-coco-index/mcp_server`. The current code-graph scope excludes those segments via `EXCLUDED_FOR_CODE_GRAPH` and `getDefaultConfig().excludeGlobs`; it does not generally exclude all `tests/` or `fixtures/` folders. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`]
+Key regression boundary: generic test fixtures may legitimately be absent when they live under excluded roots such as `node_modules`, `dist`, `vendor`, `external`, `z_future`, `z_archive`, or `mcp-coco-index/mcp_server`. The current code-graph scope excludes those segments via `EXCLUDED_FOR_CODE_GRAPH` and `getDefaultConfig().excludeGlobs`; it does not generally exclude all `tests/` or `fixtures/` folders. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`]
 
 ## Query Categories
 
@@ -70,7 +70,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["handleCodeGraphQuery", "codeGraphQuery", "handleTool"],
     "edge_focus": ["define", "import", "call"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:570-588", ".opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:20-69", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1031-1036"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:570-588", ".opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:20-69", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1031-1036"]
   },
   {
     "id": "GQ-MCP-002",
@@ -80,7 +80,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["handleCodeGraphScan", "codeGraphScan", "handleTool"],
     "edge_focus": ["define", "import", "call"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:555-568", ".opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:20-63", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:127-186"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:555-568", ".opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:20-63", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:127-186"]
   },
   {
     "id": "GQ-MCP-003",
@@ -90,7 +90,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["handleCodeGraphStatus", "codeGraphStatus", "buildReadinessBlock"],
     "edge_focus": ["define", "import", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:590-594", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-65"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:590-594", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:10-65"]
   },
   {
     "id": "GQ-MCP-004",
@@ -100,7 +100,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["handleCodeGraphContext", "buildContext", "resolveSeeds"],
     "edge_focus": ["define", "import", "call"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:596-634", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:107-225", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:102-123"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:596-634", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:107-225", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:102-123"]
   },
   {
     "id": "GQ-MCP-005",
@@ -110,7 +110,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["handleDetectChanges", "readinessRequiresBlock", "detectChanges"],
     "edge_focus": ["define", "call", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:636-647", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:211-264"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:636-647", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:211-264"]
   },
   {
     "id": "GQ-MCP-006",
@@ -120,7 +120,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["advisorRecommendTool", "handleAdvisorRecommend", "scoreAdvisorPrompt"],
     "edge_focus": ["define", "import", "call"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-recommend.ts:7-27", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:238-256", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:237-245"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-recommend.ts:7-27", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:238-256", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:237-245"]
   },
   {
     "id": "GQ-MCP-007",
@@ -130,7 +130,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "4-6",
     "expected_top_K_symbols": ["handleSkillGraphQuery", "skillGraphQuery", "dependsOn"],
     "edge_focus": ["define", "import", "call"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:661-678", ".opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:15-61", ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:44-147"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:661-678", ".opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:15-61", ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:44-147"]
   },
   {
     "id": "GQ-XMOD-001",
@@ -140,7 +140,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["ensureCodeGraphReady", "detectState", "SELECTIVE_REINDEX_THRESHOLD"],
     "edge_focus": ["call", "ref", "define"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:290-387"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:102-187", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:290-387"]
   },
   {
     "id": "GQ-XMOD-002",
@@ -150,7 +150,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["indexFiles", "buildIndexPhases", "runPhases"],
     "edge_focus": ["call", "define", "import"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1399-1508", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1510-1535"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1399-1508", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1510-1535"]
   },
   {
     "id": "GQ-XMOD-003",
@@ -160,7 +160,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["persistIndexedFileResult", "upsertFile", "replaceNodes"],
     "edge_focus": ["call", "define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-355", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:281-355", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424"]
   },
   {
     "id": "GQ-XMOD-004",
@@ -170,7 +170,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "5-7",
     "expected_top_K_symbols": ["scoreAdvisorPrompt", "buildLaneScores", "scoreGraphCausalLane"],
     "edge_focus": ["import", "call", "define"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14-26", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:139-158", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:237-256"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14-26", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:139-158", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:237-256"]
   },
   {
     "id": "GQ-XMOD-005",
@@ -180,7 +180,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["runSkillGraphIndex", "indexSkillMetadata", "publishSkillGraphGeneration"],
     "edge_focus": ["call", "import", "define"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/context-server.ts:1467-1490", ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:463-642", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:110-133"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/context-server.ts:1467-1490", ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:463-642", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:110-133"]
   },
   {
     "id": "GQ-XMOD-006",
@@ -190,7 +190,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "4-6",
     "expected_top_K_symbols": ["startSkillGraphDaemon", "acquireSkillGraphLease", "createSkillGraphWatcher"],
     "edge_focus": ["call", "import", "define"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:28-70", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts:110-180"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:28-70", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts:110-180"]
   },
   {
     "id": "GQ-XMOD-007",
@@ -200,7 +200,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "4-6",
     "expected_top_K_symbols": ["applyValidationSignalScoring", "loadPersistedLearnedStage2Model", "sortDeterministicRows"],
     "edge_focus": ["call", "import", "define"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:21-44", ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:169-218", ".opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:220-259"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:21-44", ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:169-218", ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:220-259"]
   },
   {
     "id": "GQ-TYPE-001",
@@ -210,7 +210,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["CodeNode", "CodeEdge", "ParseResult"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:31-79"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:31-79"]
   },
   {
     "id": "GQ-TYPE-002",
@@ -220,7 +220,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["QueryArgs", "EdgeType", "SUPPORTED_EDGE_TYPES"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:23-56"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:23-56"]
   },
   {
     "id": "GQ-TYPE-003",
@@ -230,7 +230,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["ContextArgs", "ContextResult", "QueryMode"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:19-54"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:19-54"]
   },
   {
     "id": "GQ-TYPE-004",
@@ -240,7 +240,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["SkillNode", "SkillEdge", "SkillGraphStats"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:18-68"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:18-68"]
   },
   {
     "id": "GQ-TYPE-005",
@@ -250,7 +250,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "3-5",
     "expected_top_K_symbols": ["AdvisorHookResult", "SkillAdvisorBriefOptions", "ResolvedAdvisorThresholdConfig"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:47-88", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:108-150"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:47-88", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:108-150"]
   },
   {
     "id": "GQ-TYPE-006",
@@ -260,7 +260,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_count_range": "2-4",
     "expected_top_K_symbols": ["DetectChangesResult", "AffectedSymbol", "DetectChangesStatus"],
     "edge_focus": ["define", "ref"],
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:21-50"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:21-50"]
   },
   {
     "id": "GQ-REG-001",
@@ -271,7 +271,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["getDefaultConfig", "includeGlobs", "excludeGlobs"],
     "edge_focus": ["define", "ref"],
     "rationale": "if this query fails, the canonical indexer config or its include/exclude scope rules are missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120"]
   },
   {
     "id": "GQ-REG-002",
@@ -282,7 +282,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["EXCLUDED_FOR_CODE_GRAPH", "shouldIndexForCodeGraph", "shouldExcludePath"],
     "edge_focus": ["call", "define", "ref"],
     "rationale": "if this query fails, the shared scope filter that distinguishes canonical code from legitimate excluded fixtures is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1146-1158"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1146-1158"]
   },
   {
     "id": "GQ-REG-003",
@@ -293,7 +293,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["TOOL_DEFINITIONS", "codeGraphQuery", "codeGraphStatus"],
     "edge_focus": ["define", "ref"],
     "rationale": "if this query fails, the MCP registration layer that makes code graph tools discoverable is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:875-928"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:875-928"]
   },
   {
     "id": "GQ-REG-004",
@@ -304,7 +304,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["QueryArgs", "handleCodeGraphQuery", "SUPPORTED_RELATIONSHIP_OPERATIONS"],
     "edge_focus": ["define", "call", "ref"],
     "rationale": "if this query fails, the canonical outline/calls/imports/blast_radius query surface is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:23-56", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1097-1134", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1136-1319", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1321-1436"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:23-56", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1097-1134", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1136-1319", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1321-1436"]
   },
   {
     "id": "GQ-REG-005",
@@ -315,7 +315,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["scoreAdvisorPrompt", "buildLaneScores", "SCORER_LANES"],
     "edge_focus": ["import", "call", "define"],
     "rationale": "if this query fails, advisor scoring lanes or the scorer subtree are missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14-26", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:52-59", ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:139-158"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14-26", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:52-59", ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:139-158"]
   },
   {
     "id": "GQ-REG-006",
@@ -326,7 +326,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["getPreparedStatements", "dependsOn", "transitivePath"],
     "edge_focus": ["call", "define", "ref"],
     "rationale": "if this query fails, the skill-graph relationship query layer is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:83-193", ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:254-430"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:83-193", ".opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:254-430"]
   },
   {
     "id": "GQ-REG-007",
@@ -337,7 +337,7 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["handleDetectChanges", "readinessRequiresBlock", "blockedResponse"],
     "edge_focus": ["call", "define", "ref"],
     "rationale": "if this query fails, the hard safety guard that blocks false-safe empty affectedSymbols output is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:7-12", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:69-80", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106", ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:7-12", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:69-80", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:94-106", ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264"]
   },
   {
     "id": "GQ-REG-008",
@@ -348,14 +348,14 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
     "expected_top_K_symbols": ["buildIndexPhases", "indexFiles", "runPhases"],
     "edge_focus": ["call", "define", "ref"],
     "rationale": "if this query fails, the scanner phase pipeline that exercises find/parse/finalize/metrics edges is missing from the index",
-    "citations": [".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1399-1508", ".opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1510-1535"]
+    "citations": [".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1399-1508", ".opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1510-1535"]
   }
 ]
 ```
 
 ## Regression-Detection Queries
 
-- **GQ-REG-001**: if this query fails, the canonical indexer config or its include/exclude scope rules are missing from the index. This catches over-aggressive excludes that drop `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`.
+- **GQ-REG-001**: if this query fails, the canonical indexer config or its include/exclude scope rules are missing from the index. This catches over-aggressive excludes that drop `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`.
 - **GQ-REG-002**: if this query fails, the shared scope filter that distinguishes canonical code from legitimate excluded fixtures is missing from the index. This specifically protects `lib/utils/index-scope.ts` and the `shouldExcludePath()` call site.
 - **GQ-REG-003**: if this query fails, MCP tool discovery is missing from the index. It catches dropped `tool-schemas.ts` or descriptor arrays.
 - **GQ-REG-004**: if this query fails, the canonical `code_graph_query` operation surface is missing from the index. It exercises define/ref/call coverage for outline, calls, imports, transitive traversal, and blast-radius paths.
@@ -371,34 +371,34 @@ Each `expected_count` is an approximate top-result count target with a +/-20% to
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-001.md:1-76`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-002.md:1-75`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/research/iterations/iteration-003.md:1-187`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:555-678`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:875-928`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/index.ts:1-111`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-98`
-- `.opencode/skill/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:1-72`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1-1436`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:1-240`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts:1-260`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:1-370`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-121`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-390`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1-180`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1120-1275`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1390-1535`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:1-760`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:1-240`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:1-53`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:1-430`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:1-735`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:1-223`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:1-256`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tools/advisor-recommend.ts:1-27`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:1-260`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:1-145`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:1-150`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts:1-180`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1-260`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:555-678`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:875-928`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:1-111`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:1-98`
+- `.opencode/skills/system-spec-kit/mcp_server/tools/skill-graph-tools.ts:1-72`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1-1436`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:1-240`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:1-260`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:1-370`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:1-121`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-390`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1-180`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1120-1275`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1390-1535`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:1-760`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:1-240`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:1-53`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-queries.ts:1-430`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:1-735`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:1-223`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:1-256`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-recommend.ts:1-27`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:1-260`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:1-145`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:1-150`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lease.ts:1-180`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1-260`
 
 ## Convergence Signals
 

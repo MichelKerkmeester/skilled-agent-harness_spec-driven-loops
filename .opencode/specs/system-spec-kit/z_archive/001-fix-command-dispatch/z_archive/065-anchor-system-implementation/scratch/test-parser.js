@@ -1,6 +1,6 @@
 'use strict';
 
-const parser = require('../../../../.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js');
+const parser = require('../../../../.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js');
 const fs = require('fs');
 const path = require('path');
 

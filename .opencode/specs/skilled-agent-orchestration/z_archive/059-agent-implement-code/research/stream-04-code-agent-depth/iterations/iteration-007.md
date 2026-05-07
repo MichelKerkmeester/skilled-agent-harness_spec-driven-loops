@@ -9,11 +9,11 @@ This iteration combines Q8 and Q9:
 
 ## Actions
 
-1. Read `.opencode/agent/review.md:237-279` for quality gate protocol, gate types, circuit breaker, and output format.
-2. Read `.opencode/agent/review.md:70-99` for the baseline plus `sk-code-*` overlay model.
-3. Read `.opencode/agent/debug.md:296-367` for structured success, blocked, and escalation response formats.
-4. Read `.opencode/agent/code.md:45-101` for current @code workflow, skills, and RETURN contract.
-5. Read `.opencode/agent/orchestrate.md:188-220` and `.opencode/agent/orchestrate.md:296-318` for dispatch fields and the current implementation-task skill wording.
+1. Read `.opencode/agents/review.md:237-279` for quality gate protocol, gate types, circuit breaker, and output format.
+2. Read `.opencode/agents/review.md:70-99` for the baseline plus `sk-code-*` overlay model.
+3. Read `.opencode/agents/debug.md:296-367` for structured success, blocked, and escalation response formats.
+4. Read `.opencode/agents/code.md:45-101` for current @code workflow, skills, and RETURN contract.
+5. Read `.opencode/agents/orchestrate.md:188-220` and `.opencode/agents/orchestrate.md:296-318` for dispatch fields and the current implementation-task skill wording.
 
 ## Findings
 
@@ -21,12 +21,12 @@ This iteration combines Q8 and Q9:
 
 Evidence:
 
-- @review exposes an explicit orchestrator-facing gate input and output shape: `gate_type`, task id, artifact/context/threshold in, then pass/score/breakdown/blockers/required/suggestions/revision guidance/confidence out (`.opencode/agent/review.md:241-245`).
-- @review separately names gate stages as `pre_execution`, `mid_execution`, and `post_execution` (`.opencode/agent/review.md:247-253`).
-- @review's output format requires a `Gate Validation Result` with gate type, task id, result, score, breakdown, issue counts/lists, and revision guidance when failing (`.opencode/agent/review.md:264-273`).
-- @debug uses different structured response bodies for resolved, blocked, and escalation outcomes, which shows downstream consumers benefit from typed blocked/escalation fields rather than a single prose summary (`.opencode/agent/debug.md:296-367`).
-- @code currently returns only `files | verification | escalation`, which omits dispatch mode, confidence, score, and retry-relevant detail (`.opencode/agent/code.md:80-101`).
-- @orchestrate has a generic dispatch field for `Output Format` and success criteria with evidence requirements, so it can ask @code for structured output without changing the task template (`.opencode/agent/orchestrate.md:188-204`).
+- @review exposes an explicit orchestrator-facing gate input and output shape: `gate_type`, task id, artifact/context/threshold in, then pass/score/breakdown/blockers/required/suggestions/revision guidance/confidence out (`.opencode/agents/review.md:241-245`).
+- @review separately names gate stages as `pre_execution`, `mid_execution`, and `post_execution` (`.opencode/agents/review.md:247-253`).
+- @review's output format requires a `Gate Validation Result` with gate type, task id, result, score, breakdown, issue counts/lists, and revision guidance when failing (`.opencode/agents/review.md:264-273`).
+- @debug uses different structured response bodies for resolved, blocked, and escalation outcomes, which shows downstream consumers benefit from typed blocked/escalation fields rather than a single prose summary (`.opencode/agents/debug.md:296-367`).
+- @code currently returns only `files | verification | escalation`, which omits dispatch mode, confidence, score, and retry-relevant detail (`.opencode/agents/code.md:80-101`).
+- @orchestrate has a generic dispatch field for `Output Format` and success criteria with evidence requirements, so it can ask @code for structured output without changing the task template (`.opencode/agents/orchestrate.md:188-204`).
 
 Decision: expand the RETURN body. Keep the first line for quick parsing, then require a structured markdown block. The compact first line preserves the existing low-friction contract; the body gives orchestrator enough data for retry, reassignment, and gate decisions.
 
@@ -65,9 +65,9 @@ Conditional fields: `first_failing_assertion` when verification fails, `adversar
 
 Evidence:
 
-- @review's orchestrator integration already uses a three-stage quality gate model (`.opencode/agent/review.md:239-253`).
+- @review's orchestrator integration already uses a three-stage quality gate model (`.opencode/agents/review.md:239-253`).
 - Q5 established Builder/Critic/Verifier passes for @code. Mapping those stages onto @review's gate protocol gives @orchestrate a symmetric way to request coder checks without treating implementation as review.
-- @code already has fail-closed verification and no internal retry (`.opencode/agent/code.md:49-54`), so the post gate should be the point where the final RETURN is produced.
+- @code already has fail-closed verification and no internal retry (`.opencode/agents/code.md:49-54`), so the post gate should be the point where the final RETURN is produced.
 
 Recommended coder gate types:
 
@@ -109,9 +109,9 @@ Recommended gate validation result format:
 
 Evidence:
 
-- @review recommends circuit-breaker consideration when reviewer scores stay below 50 across attempts (`.opencode/agent/review.md:255-260`).
-- @code may fail for reasons that are not quality scores: UNKNOWN stack, scope conflict, low confidence, logic-sync conflict, or verification failure (`.opencode/agent/code.md:80-92`).
-- @debug has a dedicated blocked response with blocker type, phase reached, tested hypotheses, information needed, and partial findings (`.opencode/agent/debug.md:321-344`), making it the right follow-up when implementation repeatedly cannot proceed.
+- @review recommends circuit-breaker consideration when reviewer scores stay below 50 across attempts (`.opencode/agents/review.md:255-260`).
+- @code may fail for reasons that are not quality scores: UNKNOWN stack, scope conflict, low confidence, logic-sync conflict, or verification failure (`.opencode/agents/code.md:80-92`).
+- @debug has a dedicated blocked response with blocker type, phase reached, tested hypotheses, information needed, and partial findings (`.opencode/agents/debug.md:321-344`), making it the right follow-up when implementation repeatedly cannot proceed.
 
 Decision: use a coder-specific blocked circuit breaker.
 
@@ -123,9 +123,9 @@ This rule should not fire on three ordinary `FAIL` scores alone. Verification fa
 
 Evidence:
 
-- @review loads `sk-code` as baseline and then selects a `sk-code-*` overlay from stack/codebase signals (`.opencode/agent/review.md:70-82`).
-- @code currently says `sk-code` always, `sk-code-opencode` only if `sk-code` returns UNKNOWN and cwd is under `.opencode/`, and `sk-code-review` never inside @code (`.opencode/agent/code.md:60-66`).
-- @orchestrate's implementation example already says `sk-code baseline + one overlay (selected from available sk-code-* overlays)` (`.opencode/agent/orchestrate.md:310-315`), so the refined @code rule should match the caller contract.
+- @review loads `sk-code` as baseline and then selects a `sk-code-*` overlay from stack/codebase signals (`.opencode/agents/review.md:70-82`).
+- @code currently says `sk-code` always, `sk-code-opencode` only if `sk-code` returns UNKNOWN and cwd is under `.opencode/`, and `sk-code-review` never inside @code (`.opencode/agents/code.md:60-66`).
+- @orchestrate's implementation example already says `sk-code baseline + one overlay (selected from available sk-code-* overlays)` (`.opencode/agents/orchestrate.md:310-315`), so the refined @code rule should match the caller contract.
 
 Recommended @code skill precedence matrix:
 

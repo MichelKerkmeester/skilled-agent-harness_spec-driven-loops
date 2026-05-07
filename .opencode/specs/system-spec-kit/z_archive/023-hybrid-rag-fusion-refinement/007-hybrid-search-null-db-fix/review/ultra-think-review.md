@@ -7,7 +7,7 @@
   - Read all 17 requested source files plus their current `dist/*.js` counterparts.
   - Inspected the 8 search-pipeline commits from March 30, 2026.
   - Searched for leftover hardcoded `minState`, token-budget, and RRF K references.
-  - Ran `TMPDIR=/Users/michelkerkmeester/MEGA/Development/Opencode\ Env/Public/.tmp/vitest-tmp npx vitest run tests/tool-input-schema.vitest.ts` from `.opencode/skill/system-spec-kit/mcp_server` and got 2 failures.
+  - Ran `TMPDIR=/Users/michelkerkmeester/MEGA/Development/Opencode\ Env/Public/.tmp/vitest-tmp npx vitest run tests/tool-input-schema.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server` and got 2 failures.
   - Ran `TMPDIR=/Users/michelkerkmeester/MEGA/Development/Opencode\ Env/Public/.tmp/vitest-tmp npx vitest run tests/co-activation.vitest.ts tests/stage3-rerank-regression.vitest.ts tests/spec-folder-prefilter.vitest.ts` and all 63 tests passed.
 
 ## P0 Findings (blocking issues)

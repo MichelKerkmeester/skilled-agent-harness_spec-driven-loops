@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -65,13 +65,13 @@ The packet fixed README TOC anchors, added missing README TOCs, balanced new REA
 | `audit-findings.md` | Created | Per-file audit report |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Created | Level 2 packet structure |
 | `description.json`, `graph-metadata.json` | Created | Packet metadata |
-| `.opencode/skill/system-spec-kit/ARCHITECTURE.md` | Modified | README TOC and metadata alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | Modified | README TOC and metadata alignment |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/README.md` | Modified | README TOC, anchors and metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modified | README TOC, anchors and metadata |
-| `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/README.md` | Modified | README structure and anchors |
-| `.opencode/skill/system-spec-kit/references/config/hook_system.md` | Modified | Reference frontmatter, section numbering and anchors |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modified | Reference importance tier metadata |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modified | README TOC and metadata alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | README TOC and metadata alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md` | Modified | README TOC, anchors and metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Modified | README TOC, anchors and metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md` | Modified | README structure and anchors |
+| `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modified | Reference frontmatter, section numbering and anchors |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modified | Reference importance tier metadata |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -103,7 +103,7 @@ The audit used sk-doc rules, frontmatter templates, README standards, feature ca
 |-------|--------|
 | `validate_document.py` on edited READMEs and reference | PASS |
 | Active target anchor and fence audit | PASS |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/004-sk-doc-template-alignment --strict` | PASS |
 | Strict validator on `.opencode/specs/.../018-doc-truth-pass` through `023-cli-matrix-adapter-runners` | PASS |
 <!-- /ANCHOR:verification -->
 

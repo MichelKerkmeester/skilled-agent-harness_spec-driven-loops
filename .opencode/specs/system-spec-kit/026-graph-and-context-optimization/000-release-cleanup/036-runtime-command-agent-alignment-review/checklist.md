@@ -123,5 +123,5 @@ _memory:
 
 - `git diff --name-only | rg '^(\\.opencode/command|\\.opencode/agent|\\.claude/agents|\\.gemini/agents)' | xargs rg -n "matrix-runners|tests/search-quality|node >= 18|Node\\.js 18\\+|Phase 008|Phase 005|packet 026|packet 011|packet 012"`: PASS, no output
 - `rg -n "memory_retention_sweep|advisor_rebuild|runtime startup/bootstrap|Runtime Directory Resolution|Evergreen Rule" ...`: PASS, expected updated references present
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict`: PASS
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/036-runtime-command-agent-alignment-review --strict`: PASS
 <!-- /ANCHOR:summary -->

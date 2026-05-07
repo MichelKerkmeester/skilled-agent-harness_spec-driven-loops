@@ -4,10 +4,10 @@
 
 - Focus: Q4 error recovery gaps in partial-failure paths
 - Target files:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
 
 ## Summary
 
@@ -18,7 +18,7 @@ I found 4 remaining recovery gaps. The strongest issue is in the chunked save + 
 ### 1. High: chunked save can commit the new memory tree, then fail while superseding the predecessor
 
 - Affected code:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:670-689`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:670-689`
 - Evidence:
   - `indexChunkedMemoryFile()` completes first.
   - After that, `recordCrossPathPeSupersedes(...)` is called.
@@ -39,7 +39,7 @@ I found 4 remaining recovery gaps. The strongest issue is in the chunked save + 
 ### 2. Medium: safe-swap re-chunk finalization archives old children in-transaction, but deletes them outside the transaction
 
 - Affected code:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:481-549`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:481-549`
 - Evidence:
   - `finalizeSwapTx(...)` updates the parent, attaches the new children, and marks old children `is_archived = 1`.
   - Only after that transaction commits does the code loop over `oldChildIds` and call `vectorIndex.deleteMemory(oldChildId)`.
@@ -56,8 +56,8 @@ I found 4 remaining recovery gaps. The strongest issue is in the chunked save + 
 ### 3. Medium: all-chunks-failed rollback retains the old parent row but can leave BM25 indexed with the new parent summary
 
 - Affected code:
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:244-258`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:387-457`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:244-258`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:387-457`
 - Evidence:
   - The parent BM25 document is updated before any chunk outcome is known.
   - In the `successCount === 0` rollback branch, parent BM25 is removed only when `parentRolledBack === true`.
@@ -72,7 +72,7 @@ I found 4 remaining recovery gaps. The strongest issue is in the chunked save + 
 ### 4. Medium: reconsolidation merge commits DB changes even if BM25 remove/add fails twice
 
 - Affected code:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:265-374`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:265-374`
 - Evidence:
   - Inside the merge transaction, the code archives the old memory, inserts the merged replacement, inserts the supersedes edge, and then tries `bm25.removeDocument(existing)` plus `bm25.addDocument(newId)`.
   - BM25 failures are caught and converted into `bm25RepairNeeded = true`.

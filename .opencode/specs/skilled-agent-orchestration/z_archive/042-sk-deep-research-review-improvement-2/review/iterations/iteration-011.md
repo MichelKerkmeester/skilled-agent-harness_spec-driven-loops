@@ -70,7 +70,7 @@ exec
 /bin/zsh -lc 'rg -n "042-sk-deep-research-review-improvement-2|005-agent-improver-deep-loop-alignment|006-graph-testing-and-playbook-alignment|15--sk-improve-agent" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "deep review iteration 11 traceability for 042-sk-deep-research-review-improvement-2 focusing on 005-agent-improver-deep-loop-alignment and 006-graph-testing-and-playbook-alignment, changelog parity, test file existence" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "deep review iteration 11 traceability for 042-sk-deep-research-review-improvement-2 focusing on 005-agent-improver-deep-loop-alignment and 006-graph-testing-and-playbook-alignment, changelog parity, test file existence" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 553ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-P0YaoY6a' (errno=Operation not permitted)
 [
@@ -103,9 +103,9 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-P0YaoY6a' (errno=Opera
 codex
 Skill routing pointed strongly at `sk-deep-review` and `sk-code-review`, which matches your request, so I’m using those review workflows for this pass. The quick memory scan didn’t surface a directly relevant prior note for this exact packet/focus area, so I’m moving to primary evidence in the repo itself.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-review
@@ -124,7 +124,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -668,7 +668,7 @@ exec
     43	#### Decision Set 2: Reuse graph-style coverage tracking for improve-agent
     44	
     45	- **Why**: improvement sessions needed explainable coverage without inventing an entirely separate persistence model.
-    46	- **Evidence**: `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
+    46	- **Evidence**: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` plus the `v1.1.0.0` release note describe the improvement-scoped mutation coverage graph.
     47	
     48	#### Decision Set 3: Treat trajectory as a first-class convergence input
     49	
@@ -678,7 +678,7 @@ exec
     53	#### Decision Set 4: Keep parallel candidates opt-in
     54	
     55	- **Why**: branching candidate exploration increases complexity and should not become the default path for every improve-agent run.
-    56	- **Evidence**: `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
+    56	- **Evidence**: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`
     57	
     58	#### Decision Set 5: Preserve backward compatibility through additive config defaults
     59	
@@ -754,15 +754,15 @@ exec
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. Memory saves use `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs for session continuity updates, but must NEVER manually author standalone packet continuity artifacts under `memory/`.
   - AI composes structured JSON → `generate-context.js --json '{"specFolder":"...","sessionSummary":"..."}' [spec-folder]` or writes to `/tmp/save-context-data.json` and passes as first arg.
 - **Code Search Decision Tree** (MANDATORY):
-  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skill/mcp-coco-index/`
+  - Semantic/concept search → `mcp__cocoindex_code__search` (CocoIndex). Skill: `.opencode/skills/mcp-coco-index/`
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
 **GIT WORKFLOW:** 
-Full details: `.opencode/skill/sk-git/`
+Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
@@ -843,7 +843,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 > Gate 1 is SOFT — if file modification detected, Gate 3 (HARD) takes precedence. Ask spec folder question BEFORE analysis.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Run: `python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "[request]" --threshold 0.8`
+1. A) Run: `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "[request]" --threshold 0.8`
 2. B) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
@@ -871,7 +871,7 @@ When multiple inputs are needed, consolidate into a SINGLE prompt — never spli
 Trigger: "save context", "save memory", `/memory:save`, continuity support artifact refresh
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Script:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Script:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
   - Use this for DB indexing, embedding generation, and `description.json` refresh. AI may directly edit `_memory.continuity` frontmatter blocks in spec docs when only the doc-local continuity hints need updating.
   - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`. The AI has strictly better information about its own session than any DB extraction.
   - Subfolder: `003-parent/121-child` or bare `121-child` (auto-searches parents)
@@ -917,7 +917,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 
 **Rules:** When in doubt → higher level. LOC is soft guidance (risk/complexity can override). Single typo/whitespace fixes (<5 characters in one file) are exempt.
 
-**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skill/system-spec-kit/templates/`
+**Spec folder path:** `specs/[###-short-name]/` | **Templates:** `.opencode/skills/system-spec-kit/templates/`
 
 **For details on:** folder structure, `scratch/` vs `memory/` usage, sub-folder versioning, checklist verification (P0/P1/P2), and completion workflow — see system-spec-kit SKILL.md §3.
 
@@ -988,19 +988,19 @@ exec
     37	
     38	### Stop-Reason Taxonomy and Audit Journal
     39	
-    40	The phase added `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/command/improve/agent.md`, and `.opencode/agent/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+    40	The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
     41	
     42	### Mutation Coverage and Trade-Off Detection
     43	
-    44	The phase added `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
+    44	The phase added `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` and `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`. Together they made the loop explainable: maintainers could see which dimensions and mutation types had already been explored, and they could detect when a candidate improved one dimension by regressing another.
     45	
     46	### Optional Parallel Candidate Waves
     47	
-    48	The phase added `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
+    48	The phase added `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` plus supporting playbook scenarios. That let the loop track optional branch exploration without turning parallelism into the mandatory default path.
     49	
     50	### Stability Scoring and Advisory Optimization
     51	
-    52	The phase added `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which later phases refined further rather than replacing.
+    52	The phase added `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` so repeated benchmark behavior could be measured instead of assumed. The same helper family also exposed advisory optimizer-facing outputs, which later phases refined further rather than replacing.
     53	<!-- /ANCHOR:what-built -->
     54	
     55	---
@@ -1102,8 +1102,8 @@ exec
     35	
     36	| File | Action | Purpose |
     37	|------|--------|---------|
-    38	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
-    39	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
+    38	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
+    39	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
     40	| Research graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
     41	| Review graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
     42	| Improve-agent graph playbooks | Created | Add operator scenarios for mutation coverage, trade-off detection, and candidate lineage |
@@ -1137,12 +1137,12 @@ exec
     70	
     71	| Check | Result |
     72	|-------|--------|
-    73	| Graph integration suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
-    74	| Graph stress suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
-    75	| Research graph playbooks present | PASS - `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
-    76	| Review graph playbooks present | PASS - `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
-    77	| Improve-agent graph playbooks present | PASS - `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
-    78	| README graph references captured | PASS - `.opencode/skill/sk-deep-research/README.md`, `.opencode/skill/sk-deep-review/README.md`, and `.opencode/skill/sk-improve-agent/README.md` cited in the packet |
+    73	| Graph integration suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
+    74	| Graph stress suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
+    75	| Research graph playbooks present | PASS - `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
+    76	| Review graph playbooks present | PASS - `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
+    77	| Improve-agent graph playbooks present | PASS - `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
+    78	| README graph references captured | PASS - `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-review/README.md`, and `.opencode/skills/sk-improve-agent/README.md` cited in the packet |
     79	| Strict phase validation | PASS after packet rewrite |
     80	<!-- /ANCHOR:verification -->
     81	
@@ -1207,7 +1207,7 @@ exec
     46	
     47	### Dynamic Profile Generator
     48	
-    49	The `generate-profile.cjs` script derives a scoring profile from any agent's own structure -- parsing YAML frontmatter, ALWAYS/NEVER/ESCALATE IF rules, output verification checklist, capability scan, anti-patterns, and related resources. This eliminates the need for manually created profiles and makes any agent in `.opencode/agent/` a valid evaluation target.
+    49	The `generate-profile.cjs` script derives a scoring profile from any agent's own structure -- parsing YAML frontmatter, ALWAYS/NEVER/ESCALATE IF rules, output verification checklist, capability scan, anti-patterns, and related resources. This eliminates the need for manually created profiles and makes any agent in `.opencode/agents/` a valid evaluation target.
     50	
     51	---
     52	
@@ -1265,17 +1265,17 @@ exec
    104	
    105	| File | Action | Description |
    106	| --- | --- | --- |
-   107	| `.opencode/skill/sk-improve-agent/` | Created | Skill package: SKILL.md, README.md, 11 references, 6 assets, 8 scripts, 22 playbook files |
-   108	| `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` | Created | Integration surface scanner |
-   109	| `.opencode/skill/sk-improve-agent/scripts/generate-profile.cjs` | Created | Dynamic target profile generator |
-   110	| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Modified | Added 5-dimension framework + `--dynamic` flag |
-   111	| `.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` | Modified | Added `--integration-report` flag |
-   112	| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Modified | Added dimensional tracking + plateau stop |
-   113	| `.opencode/agent/agent-improver.md` | Created | Canonical agent with v1.1.1 frontmatter |
-   114	| `.opencode/command/improve/agent.md` | Created | Full command with Phase 0, Setup, violations |
-   115	| `.opencode/command/improve/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
-   116	| `.opencode/command/improve/README.txt` | Created | Command group index |
-   117	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/` | Created | 21 test scenarios across 6 categories |
+   107	| `.opencode/skills/sk-improve-agent/` | Created | Skill package: SKILL.md, README.md, 11 references, 6 assets, 8 scripts, 22 playbook files |
+   108	| `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` | Created | Integration surface scanner |
+   109	| `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs` | Created | Dynamic target profile generator |
+   110	| `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` | Modified | Added 5-dimension framework + `--dynamic` flag |
+   111	| `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` | Modified | Added `--integration-report` flag |
+   112	| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modified | Added dimensional tracking + plateau stop |
+   113	| `.opencode/agents/agent-improver.md` | Created | Canonical agent with v1.1.1 frontmatter |
+   114	| `.opencode/commands/improve/agent.md` | Created | Full command with Phase 0, Setup, violations |
+   115	| `.opencode/commands/improve/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
+   116	| `.opencode/commands/improve/README.txt` | Created | Command group index |
+   117	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/` | Created | 21 test scenarios across 6 categories |
    118	
    119	---
    120	
@@ -1300,7 +1300,7 @@ exec
     15	## What Changed
     16	
     17	- **Self-test completed** (Phase 009): Ran `/improve:agent` targeting `agent-improver.md` itself. 3 iterations, baseline 99→100, all 5 dimensions converged at 100. First real end-to-end validation of the skill on its own agent.
-    18	- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/improve:agent-improver` pointing to a nonexistent file. Fixed to `/improve:agent` → `.opencode/command/improve/agent.md`. Synced to all 4 mirrors.
+    18	- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/improve:agent-improver` pointing to a nonexistent file. Fixed to `/improve:agent` → `.opencode/commands/improve/agent.md`. Synced to all 4 mirrors.
     19	- **Reducer family fix** (Phase 010): `inferFamily()` no longer hardcodes `session-handover` for every profile. Agent-improver now shows its own name in the dashboard.
     20	- **Configurable plateau window** (Phase 010): Plateau detector reads `stopRules.plateauWindow` from config (default 3). Short runs can now use a window of 2.
     21	- **Accepted counting fix** (Phase 010): Dashboard now counts `candidate-acceptable` and `candidate-better` recommendations as accepted (previously always showed 0).
@@ -1315,20 +1315,20 @@ exec
     30	
     31	| File | Action | Description |
     32	| --- | --- | --- |
-    33	| `.opencode/agent/agent-improver.md` | Modified | Fixed command path, promoted candidate improvements (halt condition, merged checklists, 4th anti-pattern) |
+    33	| `.opencode/agents/agent-improver.md` | Modified | Fixed command path, promoted candidate improvements (halt condition, merged checklists, 4th anti-pattern) |
     34	| `.claude/agents/agent-improver.md` | Modified | Mirror sync |
     35	| `.agents/agents/agent-improver.md` | Modified | Mirror sync |
     36	| `.codex/agents/agent-improver.toml` | Modified | Mirror sync, wording fix |
     37	| `.gemini/agents/agent-improver.md` | Modified | Mirror sync, path reference fix |
-    38	| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Modified | Family derivation, configurable plateau window, accepted counting |
-    39	| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modified | Added `plateauWindow` field |
-    40	| `.opencode/skill/sk-improve-agent/assets/improvement_config_reference.md` | Modified | Documented `plateauWindow` |
-    41	| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | Modified | Phase 008+ routing entries + COMMAND_BRIDGES |
-    42	| `.opencode/skill/README.md` | Modified | Version bump to 1.0.0.0 |
+    38	| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modified | Family derivation, configurable plateau window, accepted counting |
+    39	| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modified | Added `plateauWindow` field |
+    40	| `.opencode/skills/sk-improve-agent/assets/improvement_config_reference.md` | Modified | Documented `plateauWindow` |
+    41	| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modified | Phase 008+ routing entries + COMMAND_BRIDGES |
+    42	| `.opencode/skills/README.md` | Modified | Version bump to 1.0.0.0 |
     43	| `README.md` | Modified | Added Context-Prime and Agent-Improver agents, rewrote Improve commands |
-    44	| `.opencode/command/README.txt` | Modified | Added improve group, fixed command counts |
-    45	| `.opencode/command/spec_kit/README.txt` | Modified | Added deep-review command |
-    46	| `.opencode/command/create/README.txt` | Modified | Removed prompt (moved to improve), added changelog |
+    44	| `.opencode/commands/README.txt` | Modified | Added improve group, fixed command counts |
+    45	| `.opencode/commands/spec_kit/README.txt` | Modified | Added deep-review command |
+    46	| `.opencode/commands/create/README.txt` | Modified | Removed prompt (moved to improve), added changelog |
     47	
     48	---
     49	
@@ -1397,32 +1397,32 @@ exec
     59	
     60	| File                                                                                                                     | Action   | Description                                                                                   |
     61	| ------------------------------------------------------------------------------------------------------------------------ | -------- | --------------------------------------------------------------------------------------------- |
-    62	| `.opencode/skill/sk-improve-agent/SKILL.md`                                                                              | Modified | Bumped version to 1.1.0.0 and published stop-reason taxonomy, journal, graph, and trade-off guidance |
-    63	| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
-    64	| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs`                                                         | Created  | Mutation coverage graph (loop_type "improvement" namespace)                                   |
-    65	| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`                                                        | Created  | Pareto-aware dimension trade-off detection                                                    |
-    66	| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs`                                                         | Created  | Directed candidate lineage graph                                                              |
-    67	| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs`                                                       | Created  | Benchmark stability coefficient scoring                                                       |
-    68	| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
-    69	| `.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`                                             | Created  | Vitest coverage for coverage graph                                                            |
-    70	| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`                                            | Created  | Vitest coverage for trade-off detection                                                       |
-    71	| `.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`                                             | Created  | Vitest coverage for lineage graph                                                             |
-    72	| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`                                           | Created  | Vitest coverage for stability scoring                                                         |
-    73	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`   | Created  | Playbook: mutation coverage graph tracking                                                    |
-    74	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`                | Created  | Playbook: trade-off detection                                                                 |
-    75	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`                  | Created  | Playbook: candidate lineage                                                                   |
-    76	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`                 | Created  | Playbook: stop-reason taxonomy                                                                |
-    77	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`               | Created  | Playbook: audit journal emission                                                              |
-    78	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`                  | Created  | Playbook: resume continuation                                                                 |
-    79	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`                     | Created  | Playbook: legal-stop gates                                                                    |
-    80	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`                  | Created  | Playbook: benchmark stability                                                                 |
-    81	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
-    82	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
-    83	| `.opencode/skill/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
-    84	| `.opencode/command/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
-    85	| `.opencode/command/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
-    86	| `.opencode/command/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
-    87	| `.opencode/agent/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
+    62	| `.opencode/skills/sk-improve-agent/SKILL.md`                                                                              | Modified | Bumped version to 1.1.0.0 and published stop-reason taxonomy, journal, graph, and trade-off guidance |
+    63	| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
+    64	| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs`                                                         | Created  | Mutation coverage graph (loop_type "improvement" namespace)                                   |
+    65	| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`                                                        | Created  | Pareto-aware dimension trade-off detection                                                    |
+    66	| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs`                                                         | Created  | Directed candidate lineage graph                                                              |
+    67	| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs`                                                       | Created  | Benchmark stability coefficient scoring                                                       |
+    68	| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
+    69	| `.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`                                             | Created  | Vitest coverage for coverage graph                                                            |
+    70	| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`                                            | Created  | Vitest coverage for trade-off detection                                                       |
+    71	| `.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`                                             | Created  | Vitest coverage for lineage graph                                                             |
+    72	| `.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`                                           | Created  | Vitest coverage for stability scoring                                                         |
+    73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`   | Created  | Playbook: mutation coverage graph tracking                                                    |
+    74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`                | Created  | Playbook: trade-off detection                                                                 |
+    75	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`                  | Created  | Playbook: candidate lineage                                                                   |
+    76	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`                 | Created  | Playbook: stop-reason taxonomy                                                                |
+    77	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`               | Created  | Playbook: audit journal emission                                                              |
+    78	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`                  | Created  | Playbook: resume continuation                                                                 |
+    79	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`                     | Created  | Playbook: legal-stop gates                                                                    |
+    80	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`                  | Created  | Playbook: benchmark stability                                                                 |
+    81	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
+    82	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
+    83	| `.opencode/skills/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
+    84	| `.opencode/commands/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
+    85	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
+    86	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
+    87	| `.opencode/agents/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
     88	
     89	---
     90	
@@ -1447,7 +1447,7 @@ exec
      7	### Journal Wiring (REQ-004, REQ-005)
      8	
      9	- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
-    10	- The malformed `--event=session_initialized` CLI example in `.opencode/command/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
+    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
     11	- `SKILL.md` adds a new "Journal Wiring Contract" section documenting the three boundary points, the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums (aligned to the helper's actual validator: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery` / `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`), and the orchestrator-only emission rule.
     12	
     13	---
@@ -1494,7 +1494,7 @@ exec
     54	- Phase 008 vitest runs: trade-off-detector (17/17), benchmark-stability (23/23) — all passing with new insufficient-state assertions.
     55	- Phase 008 full vitest suite: 12/12 across 4 new phase 008 suites.
     56	- Journal wiring end-to-end: YAML workflow confirmed to call `improvement-journal.cjs --emit` at session_start + iteration boundary + session_end.
-    57	- CLI example verification: copy-paste `node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
+    57	- CLI example verification: copy-paste `node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
     58	
     59	---
     60	
@@ -1502,19 +1502,19 @@ exec
     62	
     63	| File | Action | Description |
     64	| ---- | ------ | ----------- |
-    65	| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Bumped version to 1.2.0.0 + added Journal Wiring Contract + ADR-002 Consumer + Sample Quality sections |
-    66	| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Modified | minDataPoints=3 default, insufficientData state, MIN_DATA_POINTS_DEFAULT export |
-    67	| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Modified | minReplayCount=3 default, insufficientSample state, MIN_REPLAY_COUNT_DEFAULT export |
-    68	| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Modified | ADR-002 replay consumer (journal + lineage + coverage reads); insufficient-state propagation; Sample Quality dashboard section |
-    69	| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Modified | Asserts insufficientData state (17/17 passing) |
-    70	| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Modified | Asserts insufficientSample state (23/23 passing) |
-    71	| `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*` | Created | Durable fixture for insufficient-sample states |
-    72	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
-    73	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
-    74	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
-    75	| `.opencode/command/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
-    76	| `.opencode/command/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
-    77	| `.opencode/command/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
+    65	| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Bumped version to 1.2.0.0 + added Journal Wiring Contract + ADR-002 Consumer + Sample Quality sections |
+    66	| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Modified | minDataPoints=3 default, insufficientData state, MIN_DATA_POINTS_DEFAULT export |
+    67	| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Modified | minReplayCount=3 default, insufficientSample state, MIN_REPLAY_COUNT_DEFAULT export |
+    68	| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modified | ADR-002 replay consumer (journal + lineage + coverage reads); insufficient-state propagation; Sample Quality dashboard section |
+    69	| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Modified | Asserts insufficientData state (17/17 passing) |
+    70	| `.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Modified | Asserts insufficientSample state (23/23 passing) |
+    71	| `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*` | Created | Durable fixture for insufficient-sample states |
+    72	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
+    73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
+    74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
+    75	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
+    76	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
+    77	| `.opencode/commands/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
     78	
     79	---
     80	
@@ -1550,8 +1550,8 @@ exec
     24	
     25	| File                                                           | What changed                                                                             |
     26	| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-    27	| `.opencode/skill/sk-improve-agent/SKILL.md`                    | Version bump 1.2.0.0 → 1.2.1.0; Resume/Continuation Semantics rewritten to `new`-only    |
-    28	| `.opencode/command/improve/agent.md`                           | Line 339 Supported lineage modes narrowed to `new`; deferred note added                  |
+    27	| `.opencode/skills/sk-improve-agent/SKILL.md`                    | Version bump 1.2.0.0 → 1.2.1.0; Resume/Continuation Semantics rewritten to `new`-only    |
+    28	| `.opencode/commands/improve/agent.md`                           | Line 339 Supported lineage modes narrowed to `new`; deferred note added                  |
     29	| `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`         | Append-only "Update (post-release)" block pointing at this release                       |
     30	
     31	---
@@ -1647,18 +1647,18 @@ exec
     68	
     69	| File Path | Change Type | Description |
     70	|-----------|-------------|-------------|
-    71	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
-    72	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
-    73	| `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Create | Research playbook for graph-aware convergence. |
-    74	| `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` | Create | Research playbook for `graphEvents` emission. |
-    75	| `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Create | Review playbook for graph-aware convergence. |
-    76	| `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Create | Review playbook for `graphEvents` emission. |
-    77	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | Create | Improve-agent playbook for mutation-coverage graph tracking. |
-    78	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | Create | Improve-agent playbook for trade-off detection. |
-    79	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | Create | Improve-agent playbook for candidate-lineage tracking. |
-    80	| `.opencode/skill/sk-deep-research/README.md` | Modify | Surface graph capability coverage. |
-    81	| `.opencode/skill/sk-deep-review/README.md` | Modify | Surface graph capability coverage. |
-    82	| `.opencode/skill/sk-improve-agent/README.md` | Modify | Surface graph capability coverage. |
+    71	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
+    72	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
+    73	| `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Create | Research playbook for graph-aware convergence. |
+    74	| `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` | Create | Research playbook for `graphEvents` emission. |
+    75	| `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Create | Review playbook for graph-aware convergence. |
+    76	| `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Create | Review playbook for `graphEvents` emission. |
+    77	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md` | Create | Improve-agent playbook for mutation-coverage graph tracking. |
+    78	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md` | Create | Improve-agent playbook for trade-off detection. |
+    79	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` | Create | Improve-agent playbook for candidate-lineage tracking. |
+    80	| `.opencode/skills/sk-deep-research/README.md` | Modify | Surface graph capability coverage. |
+    81	| `.opencode/skills/sk-deep-review/README.md` | Modify | Surface graph capability coverage. |
+    82	| `.opencode/skills/sk-improve-agent/README.md` | Modify | Surface graph capability coverage. |
     83	<!-- /ANCHOR:scope -->
     84	
     85	---
@@ -1816,7 +1816,7 @@ exec
     42	| **Phase** | 5 of 8 |
     43	| **Predecessor** | `../004-offline-loop-optimizer/spec.md` |
     44	| **Successor** | `../006-graph-testing-and-playbook-alignment/spec.md` |
-    45	| **Runtime Target** | `.opencode/skill/sk-improve-agent/` |
+    45	| **Runtime Target** | `.opencode/skills/sk-improve-agent/` |
     46	| **Historical Note** | The phase slug keeps `agent-improver`, but the active runtime surface was renamed to `sk-improve-agent` in Phase 007. |
     47	<!-- /ANCHOR:metadata -->
     48	
@@ -1849,8 +1849,8 @@ exec
     75	
     76	### In Scope
     77	
-    78	- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skill/sk-improve-agent/`.
-    79	- Document the delivered command and runtime-agent updates for `.opencode/command/improve/agent.md` and `.opencode/agent/improve-agent.md`.
+    78	- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
+    79	- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
     80	- Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
     81	- Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
     82	
@@ -1865,18 +1865,18 @@ exec
     91	
     92	| File Path | Change Type | Description |
     93	|-----------|-------------|-------------|
-    94	| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
-    95	| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
-    96	| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
-    97	| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
-    98	| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
-    99	| `.opencode/skill/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
-   100	| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
-   101	| `.opencode/skill/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
-   102	| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
-   103	| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
-   104	| `.opencode/agent/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-   105	| `.opencode/command/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+    94	| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
+    95	| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` | Created | Improvement-scoped coverage graph and exhausted-mutation tracking. |
+    96	| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Created | Pareto-aware cross-dimension trade-off detection. |
+    97	| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs` | Created | Directed lineage graph for optional parallel candidates. |
+    98	| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Created | Replay stability scoring and advisory optimizer support. |
+    99	| `.opencode/skills/sk-improve-agent/scripts/tests/*.vitest.ts` | Created | Dedicated tests for each new runtime-truth helper. |
+   100	| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modified | Added journal, coverage, trajectory, parallel-wave, and optimizer settings. |
+   101	| `.opencode/skills/sk-improve-agent/assets/improvement_charter.md` | Modified | Added audit-trail and legal-stop obligations. |
+   102	| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
+   103	| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
+   104	| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
+   105	| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
    106	<!-- /ANCHOR:scope -->
    107	
    108	---
@@ -1893,7 +1893,7 @@ exec
    119	| REQ-003 | The phase must add dimension-aware trade-off detection. | `trade-off-detector.cjs` exists and shipped with dedicated test coverage. |
    120	| REQ-004 | The phase must add candidate-lineage tracking for optional parallel exploration. | `candidate-lineage.cjs` exists, with supporting tests and playbook coverage. |
    121	| REQ-005 | The phase must add benchmark stability measurement for replay quality. | `benchmark-stability.cjs` exists and is referenced in changelog and test evidence. |
-   122	| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skill/sk-improve-agent/` and `.opencode/agent/improve-agent.md`, not missing `agent-improver` runtime paths. |
+   122	| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skills/sk-improve-agent/` and `.opencode/agents/improve-agent.md`, not missing `agent-improver` runtime paths. |
    123	| REQ-007 | The phase packet must satisfy the current Level 3 contract. | `validate.sh --strict` passes for this phase folder with all required headings, anchors, and template markers present. |
    124	
    125	### P1 - Required (complete OR user-approved deferral)
@@ -1935,7 +1935,7 @@ exec
    161	| Type | Item | Impact | Mitigation |
    162	|------|------|--------|------------|
    163	| Dependency | Commit `080cf549e` is the primary landing point for the phase. | High | Cite the commit directly and tie closeout evidence to live repo paths plus `v1.1.0.0`. |
-   164	| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
+   164	| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
    165	| Risk | Packet docs can accidentally reintroduce the retired `agent-improver` runtime path. | Medium | Use only live runtime paths in specs, tasks, checklist, and implementation summary. |
    166	| Risk | Packet docs can freeze unsupported lifecycle wording that `v1.2.1.0` later retracted. | Medium | Explicitly note that the later patch release narrowed the lifecycle surface and keep this packet aligned to current reality. |
    167	| Risk | Static-profile examples from older improve-agent docs could be copied forward as canon. | Low | Use dynamic target-family wording and cite current `supportedProfiles: []` state in the active config. |
@@ -1965,7 +1965,7 @@ exec
    191	
    192	### Historical Naming
    193	
-   194	- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agent/improve-agent.md`.
+   194	- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agents/improve-agent.md`.
    195	- The landing commit created files under the pre-rename skill path; Phase 007 later renamed those runtime surfaces without invalidating the phase outcome.
    196	
    197	### Lifecycle Drift
@@ -1993,7 +1993,7 @@ exec
    219	
    220	| Risk ID | Description | Impact | Likelihood | Mitigation |
    221	|---------|-------------|--------|------------|------------|
-   222	| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`. |
+   222	| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`. |
    223	| R-002 | Packet repeats unsupported multi-session lifecycle promises. | Medium | Current packet cites the `v1.2.1.0` retraction and avoids freezing superseded wording. |
    224	| R-003 | Architectural rationale is lost during template cleanup. | Medium | `decision-record.md` consolidates the five accepted phase decisions with rationale and consequences. |
    225	| R-004 | Phase evidence appears weak because the packet only cites files. | Medium | Tasks and checklist items cite commit `080cf549e`, `v1.1.0.0`, current file paths, and strict validation. |
@@ -2022,86 +2022,86 @@ exec
    248	
    249	- `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`
    250	- `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md`
-   251	- `.opencode/skill/sk-improve-agent/SKILL.md`
-   252	- `.opencode/skill/sk-improve-agent/assets/improvement_config.json`
-   253	- `.opencode/skill/sk-improve-agent/assets/improvement_charter.md`
-   254	- `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md`
-   255	- `.opencode/skill/sk-improve-agent/references/loop_protocol.md`
-   256	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`
-   257	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`
-   258	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`
-   259	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`
-   260	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`
+   251	- `.opencode/skills/sk-improve-agent/SKILL.md`
+   252	- `.opencode/skills/sk-improve-agent/assets/improvement_config.json`
+   253	- `.opencode/skills/sk-improve-agent/assets/improvement_charter.md`
+   254	- `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md`
+   255	- `.opencode/skills/sk-improve-agent/references/loop_protocol.md`
+   256	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`
+   257	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`
+   258	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`
+   259	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`
+   260	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`
 
 exec
 /bin/zsh -lc "rg --files .opencode/skill | rg 'improvement-journal\\.vitest\\.ts|mutation-coverage\\.vitest\\.ts|trade-off-detector\\.vitest\\.ts|candidate-lineage\\.vitest\\.ts|benchmark-stability\\.vitest\\.ts|coverage-graph-integration\\.vitest\\.ts|coverage-graph-stress\\.vitest\\.ts|022-mutation-coverage-graph-tracking\\.md|023-trade-off-detection\\.md|024-candidate-lineage\\.md|025-stop-reason-taxonomy\\.md|026-audit-journal-emission\\.md|027-resume-continuation\\.md|028-legal-stop-gates\\.md|029-benchmark-stability\\.md|030-dimension-trajectory\\.md|031-parallel-candidates-opt-in\\.md|032-journal-wiring\\.md|033-insufficient-sample\\.md|034-replay-consumer\\.md|031-graph-convergence-signals\\.md|029-graph-events-emission\\.md|021-graph-convergence-review\\.md|015-graph-events-review\\.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md
-.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md
-.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md
-.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
-.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md
-.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md
+.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md
+.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md
+.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts
+.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
 
 exec
 /bin/zsh -lc "rg -n \"improvement-journal\\.vitest\\.ts|mutation-coverage\\.vitest\\.ts|trade-off-detector\\.vitest\\.ts|candidate-lineage\\.vitest\\.ts|benchmark-stability\\.vitest\\.ts|coverage-graph-integration\\.vitest\\.ts|coverage-graph-stress\\.vitest\\.ts|022-mutation-coverage-graph-tracking\\.md|023-trade-off-detection\\.md|024-candidate-lineage\\.md|025-stop-reason-taxonomy\\.md|026-audit-journal-emission\\.md|027-resume-continuation\\.md|028-legal-stop-gates\\.md|029-benchmark-stability\\.md|030-dimension-trajectory\\.md|031-parallel-candidates-opt-in\\.md|032-journal-wiring\\.md|033-insufficient-sample\\.md|034-replay-consumer\\.md|031-graph-convergence-signals\\.md|029-graph-events-emission\\.md|021-graph-convergence-review\\.md|015-graph-events-review\\.md\" .opencode/skill" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-deep-review/README.md:381:| Graph playbook  | `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Operator test case for graph-backed legal-stop behavior |
-.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md:77:- Feature file path: `04--convergence-and-recovery/021-graph-convergence-review.md`
-.opencode/skill/sk-deep-research/README.md:219:| `manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
-.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:77:- Feature file path: `03--iteration-execution-and-state-discipline/015-graph-events-review.md`
-.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md:77:- Feature file path: `04--convergence-and-recovery/031-graph-convergence-signals.md`
-.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md:77:- Feature file path: `03--iteration-execution-and-state-discipline/029-graph-events-emission.md`
+.opencode/skills/sk-deep-review/README.md:381:| Graph playbook  | `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` | Operator test case for graph-backed legal-stop behavior |
+.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md:77:- Feature file path: `04--convergence-and-recovery/021-graph-convergence-review.md`
+.opencode/skills/sk-deep-research/README.md:219:| `manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
+.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:77:- Feature file path: `03--iteration-execution-and-state-discipline/015-graph-events-review.md`
+.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md:77:- Feature file path: `04--convergence-and-recovery/031-graph-convergence-signals.md`
+.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md:77:- Feature file path: `03--iteration-execution-and-state-discipline/029-graph-events-emission.md`
 
 exec
 /bin/zsh -lc "rg --files .opencode/agent | rg 'improve-agent|agent-improver'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/agent/improve-agent.md
+.opencode/agents/improve-agent.md
 
 exec
-/bin/zsh -lc "rg -n \"\\.opencode/agent/improve-agent\\.md|\\.opencode/agent/agent-improver\\.md|improvement-journal|coverage-graph-integration|coverage-graph-stress|31/31|10,335|908 passing|12/12 across 4 new phase 008 suites|032-journal-wiring|033-insufficient-sample|034-replay-consumer\" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment .opencode/changelog/15--sk-improve-agent" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"\\.opencode/agents/improve-agent\\.md|\\.opencode/agents/agent-improver\\.md|improvement-journal|coverage-graph-integration|coverage-graph-stress|31/31|10,335|908 passing|12/12 across 4 new phase 008 suites|032-journal-wiring|033-insufficient-sample|034-replay-consumer\" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment .opencode/changelog/15--sk-improve-agent" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:18:- Added `scripts/improvement-journal.cjs` — append-only JSONL journal with event-type validation. Event types: `session_start`, `candidate_generated`, `scored`, `gate_evaluation`, `session_end`. `session_ended` requires `stopReason` and `sessionOutcome`.
 .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:20:- A CLI entrypoint (`node .../improvement-journal.cjs --emit <event-json> | --read <session>`) allows replay tools and tests to consume the journal directly.
 .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:45:- Every playbook scenario was executed against the updated runtime — **31/31 PASS**, covering both pre-existing loop scenarios and all new Phase 5 additions.
 .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:51:- New vitest coverage under `scripts/tests/`: `improvement-journal.vitest.ts`, `mutation-coverage.vitest.ts`, `trade-off-detector.vitest.ts`, `candidate-lineage.vitest.ts`, `benchmark-stability.vitest.ts`.
 .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:53:- Full vitest suite green (10,335 passing, 0 failing).
-.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:63:| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
-.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:68:| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
-.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:87:| `.opencode/agent/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
-.opencode/changelog/15--sk-improve-agent/v1.0.0.0.md:113:| `.opencode/agent/agent-improver.md` | Created | Canonical agent with v1.1.1 frontmatter |
+.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:63:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
+.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:68:| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
+.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:87:| `.opencode/agents/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
+.opencode/changelog/15--sk-improve-agent/v1.0.0.0.md:113:| `.opencode/agents/agent-improver.md` | Created | Canonical agent with v1.1.1 frontmatter |
 .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md:9:Patch release that retracts a multi-session lifecycle contract `sk-improve-agent` had documented but never actually shipped. The 042 closing audit flagged the gap. This release is documentation-only — no runtime behavior changes, no new tests, and the full `scripts/tests/` vitest suite still reports 908 passing.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:71:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:72:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:71:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Create | Verify relation names, weight clamping, self-loop handling, and namespace alignment across layers. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:72:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Create | Exercise large-node graphs, contradiction scanning, and traversal behavior under load. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94:| REQ-001 | Integration coverage must prove CommonJS and TypeScript graph contracts stay aligned. | `coverage-graph-integration.vitest.ts` verifies relation alignment, weight clamping, self-loop rejection, namespace isolation, and convergence-signal parity. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:95:| REQ-002 | Stress coverage must exercise larger graph workloads. | `coverage-graph-stress.vitest.ts` covers large graph construction, contradiction scanning, and traversal behavior at scale. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:62:- append-only journal wiring through `improvement-journal.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:79:- Document the delivered command and runtime-agent updates for `.opencode/command/improve/agent.md` and `.opencode/agent/improve-agent.md`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/agent/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:79:- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:117:| REQ-001 | The phase must add a dedicated audit journal for improve-agent sessions. | `improvement-journal.cjs` exists and the release notes describe orchestrator-owned journal emission. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:122:| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skill/sk-improve-agent/` and `.opencode/agent/improve-agent.md`, not missing `agent-improver` runtime paths. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:164:| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:194:- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agent/improve-agent.md`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:222:| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:122:| REQ-006 | The phase packet must reflect the current runtime surface names. | Phase documentation points to `.opencode/skills/sk-improve-agent/` and `.opencode/agents/improve-agent.md`, not missing `agent-improver` runtime paths. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:164:| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:194:- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agents/improve-agent.md`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:222:| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`. |
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:3:This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/improve:agent` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:9:- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:27:  - `improvement-journal.jsonl` → extracts `lastSessionStart`, `lastSessionEnd`, `totalEvents`, `eventTypeCounts`, and terminal `stopReason` + `sessionOutcome` from the latest session_end event.
@@ -2110,87 +2110,87 @@ exec
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:48:  - `034-replay-consumer.md` — verify ADR-002 consumer path + graceful degradation on missing artifacts
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:55:- Phase 008 full vitest suite: 12/12 across 4 new phase 008 suites.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:56:- Journal wiring end-to-end: YAML workflow confirmed to call `improvement-journal.cjs --emit` at session_start + iteration boundary + session_end.
-.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:57:- CLI example verification: copy-paste `node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
-.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:72:| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
-.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:73:| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
-.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:74:| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
+.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:57:- CLI example verification: copy-paste `node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
+.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:72:| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
+.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:73:| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
+.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:74:| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/plan.md:79:- [x] Add `coverage-graph-integration.vitest.ts` and `coverage-graph-stress.vitest.ts`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:27:| **Runtime Mirrors** | `.opencode/agent/improve-agent.md` and improve command docs |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:56:- [x] Five runtime-truth helper scripts landed. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:57:- [x] Five dedicated Vitest suites landed alongside the helpers. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts; mutation-coverage.vitest.ts; trade-off-detector.vitest.ts; candidate-lineage.vitest.ts; benchmark-stability.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:27:| **Runtime Mirrors** | `.opencode/agents/improve-agent.md` and improve command docs |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:56:- [x] Five runtime-truth helper scripts landed. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:57:- [x] Five dedicated Vitest suites landed alongside the helpers. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts; mutation-coverage.vitest.ts; trade-off-detector.vitest.ts; candidate-lineage.vitest.ts; benchmark-stability.vitest.ts]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:74:- `improvement-journal.cjs`: append-only event capture for improvement sessions.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:96:- [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:97:- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agent/improve-agent.md; .opencode/command/improve/agent.md; commit 080cf549e]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:96:- [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:97:- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/improve/agent.md; commit 080cf549e]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:229:improvement-journal.cjs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:246:| `improvement-journal.cjs` | Session payloads | Journal rows | Orchestrator and reducers |
-.opencode/changelog/15--sk-improve-agent/v1.0.1.0.md:33:| `.opencode/agent/agent-improver.md` | Modified | Fixed command path, promoted candidate improvements (halt condition, merged checklists, 4th anti-pattern) |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/checklist.md:40:- [x] CHK-004 [P0] `coverage-graph-integration.vitest.ts` exists as the cross-layer contract suite. [EVIDENCE: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`]
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/checklist.md:41:- [x] CHK-005 [P0] `coverage-graph-stress.vitest.ts` exists as the larger-graph stress suite. [EVIDENCE: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`]
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:46:- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:61:- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
+.opencode/changelog/15--sk-improve-agent/v1.0.1.0.md:33:| `.opencode/agents/agent-improver.md` | Modified | Fixed command path, promoted candidate improvements (halt condition, merged checklists, 4th anti-pattern) |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/checklist.md:40:- [x] CHK-004 [P0] `coverage-graph-integration.vitest.ts` exists as the cross-layer contract suite. [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`]
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/checklist.md:41:- [x] CHK-005 [P0] `coverage-graph-stress.vitest.ts` exists as the larger-graph stress suite. [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`]
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:46:- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:61:- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:66:- [x] CHK-025 [P1] Shipped release evidence records the broader verification result. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "31/31 PASS"; "10,335 passing, 0 failing"]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:78:- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:39:| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:73:| Graph integration suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:74:| Graph stress suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/tasks.md:45:- [x] T004 Add the graph integration suite. (`.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/tasks.md:46:- [x] T005 Add the graph stress suite. (`.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:42:      ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:43:      ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:78:- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:39:| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:73:| Graph integration suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:74:| Graph stress suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/tasks.md:45:- [x] T004 Add the graph integration suite. (`.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/tasks.md:46:- [x] T005 Add the graph stress suite. (`.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:42:      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:43:      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:54:      "coverage-graph-integration.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:55:      "coverage-graph-stress.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:65:        "name": "coverage-graph-integration.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:67:        "path": ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:67:        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:71:        "name": "coverage-graph-stress.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:73:        "path": ".opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:73:        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:137:        "name": "coverage-graph-integration.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:139:        "path": "coverage-graph-integration.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:143:        "name": "coverage-graph-stress.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:145:        "path": "coverage-graph-stress.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/command/improve/agent.md`, and `.opencode/agent/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:64:- the 31/31 manual playbook pass
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:65:- the 10,335-test Vitest result recorded at ship time
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:91:| `improvement-journal.vitest.ts` exists | PASS |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:50:      ".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:53:      ".opencode/agent/improve-agent.md",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:50:      ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:53:      ".opencode/agents/improve-agent.md",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:60:      "improvement-journal.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:65:      "improvement-journal.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:83:        "name": "improvement-journal.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:85:        "path": ".opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:103:        "path": ".opencode/agent/improve-agent.md",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:85:        "path": ".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:103:        "path": ".opencode/agents/improve-agent.md",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:143:        "name": "improvement-journal.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/graph-metadata.json:145:        "path": "improvement-journal.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:36:- [x] T003 Preserved the proposal-only model by keeping journal writes in orchestrator-owned surfaces instead of the target agent body. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "orchestrator-only constraint is preserved"; .opencode/agent/improve-agent.md]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:37:- [x] T004 Defined the delivered helper surface for the phase: journal, coverage, trade-off, lineage, and stability modules. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [x] T006 Created the append-only improvement journal helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:56:- [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agent/improve-agent.md]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:67:- [x] T020 Added dedicated Vitest coverage for the journal helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:36:- [x] T003 Preserved the proposal-only model by keeping journal writes in orchestrator-owned surfaces instead of the target agent body. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "orchestrator-only constraint is preserved"; .opencode/agents/improve-agent.md]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:37:- [x] T004 Defined the delivered helper surface for the phase: journal, coverage, trade-off, lineage, and stability modules. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [x] T006 Created the append-only improvement journal helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:56:- [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agents/improve-agent.md]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:67:- [x] T020 Added dedicated Vitest coverage for the journal helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:72:- [x] T025 Recorded the shipped verification summary in the release note. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "31/31 PASS" and "10,335 passing"]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:107:- [x] Keep documentation aligned to live `sk-improve-agent` naming. `[EVIDENCE: packet docs reference `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:115:| TASK-NAMING | Current runtime references use `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:107:- [x] Keep documentation aligned to live `sk-improve-agent` naming. `[EVIDENCE: packet docs reference `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:115:| TASK-NAMING | Current runtime references use `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/description.json:9:    "improvement-journal",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:26:- .opencode/agent/agent-improver.md (the LEAF agent)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:26:- .opencode/agents/agent-improver.md (the LEAF agent)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:452:- Audit journal (`improvement-journal.jsonl`) capturing all session events
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:480:| `.opencode/agent/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:482:| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:487:| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:480:| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:482:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:487:| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:506:| REQ-AI-004 | Audit journal (`improvement-journal.jsonl`) capturing all events (iteration-started, candidate-proposed, candidate-evaluated, promotion-gate-checked, session-ended) | All five event types appear in the journal for every completed session; file is append-only and survives process restart |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:675:- **improvement-journal.cjs**: Append-only JSONL emitter. Receives structured event objects from the orchestrator and appends them to the session journal file. Enforces the event schema and blocks invalid event types.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:683:Orchestrator receives improvement session trigger → reads prior journal (if resume) → enters iteration loop → calls agent-improver (proposal-only) → evaluates candidate using 5-dimension scoring → calls trade-off-detector → appends events to journal via improvement-journal.cjs → updates mutation-coverage.cjs → checks legal-stop gates → emits stop-reason and session-ended event → optionally triggers benchmark-stability.cjs post-session → optionally triggers weight optimizer (separate invocation).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:698:- [ ] Create `improvement-journal.cjs` with append-only JSONL emit (REQ-AI-004)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:702:- [ ] Write `improvement-journal.vitest.ts` test suite
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:911:- [ ] T004 Add legal-stop gate protocol to agent-improver.md orchestrator section: gate conditions for `converged` and `promoted` using 5-dimension stability + no regression + promotion criteria (`.opencode/agent/agent-improver.md`) (REQ-AI-002)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:913:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:914:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:917:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:948:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agent/agent-improver.md`) (REQ-AI-010)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:911:- [ ] T004 Add legal-stop gate protocol to agent-improver.md orchestrator section: gate conditions for `converged` and `promoted` using 5-dimension stability + no regression + promotion criteria (`.opencode/agents/agent-improver.md`) (REQ-AI-002)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:913:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:914:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:917:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:948:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:976:- [ ] All 5 Vitest suites (`improvement-journal`, `mutation-coverage`, `trade-off-detector`, `candidate-lineage`, `benchmark-stability`) pass with zero failures across 3 consecutive runs
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:1123:/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agent/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/command/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:1123:/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2425:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:69:- Audit journal (`improvement-journal.jsonl`) capturing all session events
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2433:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agent/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2435:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2437:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2433:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2435:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2437:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2442:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:123:| REQ-AI-004 | Audit journal (`improvement-journal.jsonl`) capturing all events (iteration-started, candidate-proposed, candidate-evaluated, promotion-gate-checked, session-ended) | All five event types appear in the journal for every completed session; file is append-only and survives process restart |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2494:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:70:- **improvement-journal.cjs**: Append-only JSONL emitter. Receives structured event objects from the orchestrator and appends them to the session journal file. Enforces the event schema and blocks invalid event types.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2499:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:78:Orchestrator receives improvement session trigger → reads prior journal (if resume) → enters iteration loop → calls agent-improver (proposal-only) → evaluates candidate using 5-dimension scoring → calls trade-off-detector → appends events to journal via improvement-journal.cjs → updates mutation-coverage.cjs → checks legal-stop gates → emits stop-reason and session-ended event → optionally triggers benchmark-stability.cjs post-session → optionally triggers weight optimizer (separate invocation).
@@ -2200,14 +2200,14 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2545:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:51:- [ ] CHK-012 [P0] Journal emitter enforces append-only discipline: no overwrite code path exists in improvement-journal.cjs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2547:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:63:- [ ] CHK-020 [P0] `improvement-journal.vitest.ts` passes: event emit, append-only enforcement, invalid event rejection, resume journal read, session-ended schema
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2561:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/checklist.md:163:- [ ] CHK-131 [P1] Append-only journal discipline verified: no code path in improvement-journal.cjs opens files in overwrite mode
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2567:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2568:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2571:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:50:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2584:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:81:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agent/agent-improver.md`) (REQ-AI-010)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8645:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md).
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8659:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8682:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agent/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/command/improve/agent.md).
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8696:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2567:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2568:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2571:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:50:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2584:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:81:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8645:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8659:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8682:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8696:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -2247,8 +2247,8 @@ exec
     33	
     34	- [x] T001 Read the earlier 042 runtime-truth phases and mapped the improve-agent work to those patterns. `[EVIDENCE: ../001-runtime-truth-foundation/spec.md; ../002-semantic-coverage-graph/spec.md; commit 080cf549e summary]`
     35	- [x] T002 Identified the improve-agent surfaces that needed alignment: skill, assets, command, runtime mirror, scripts, tests, and playbooks. `[EVIDENCE: commit 080cf549e summary; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-    36	- [x] T003 Preserved the proposal-only model by keeping journal writes in orchestrator-owned surfaces instead of the target agent body. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "orchestrator-only constraint is preserved"; .opencode/agent/improve-agent.md]`
-    37	- [x] T004 Defined the delivered helper surface for the phase: journal, coverage, trade-off, lineage, and stability modules. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
+    36	- [x] T003 Preserved the proposal-only model by keeping journal writes in orchestrator-owned surfaces instead of the target agent body. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "orchestrator-only constraint is preserved"; .opencode/agents/improve-agent.md]`
+    37	- [x] T004 Defined the delivered helper surface for the phase: journal, coverage, trade-off, lineage, and stability modules. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; mutation-coverage.cjs; trade-off-detector.cjs; candidate-lineage.cjs; benchmark-stability.cjs]`
     38	- [x] T005 Established release evidence for packet closeout. `[EVIDENCE: commit 080cf549e; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
     39	<!-- /ANCHOR:phase-1 -->
     40	
@@ -2257,19 +2257,19 @@ exec
     43	<!-- ANCHOR:phase-2 -->
     44	## Phase 2: Implementation
     45	
-    46	- [x] T006 Created the append-only improvement journal helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs]`
-    47	- [x] T007 Created the mutation coverage helper for improvement sessions. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs]`
-    48	- [x] T008 Created the trade-off detector helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs]`
-    49	- [x] T009 Created the candidate-lineage helper for optional parallel exploration. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs]`
-    50	- [x] T010 Created the benchmark stability helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs]`
-    51	- [x] T011 Updated improve-agent configuration to carry runtime-truth settings. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_config.json]`
-    52	- [x] T012 Updated the improve-agent charter with audit-trail and legal-stop obligations. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_charter.md]`
-    53	- [x] T013 Updated the improve-agent strategy asset with convergence, exhaustion, and trade-off guidance. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_strategy.md]`
-    54	- [x] T014 Published the runtime-truth contract in the skill documentation. `[EVIDENCE: .opencode/skill/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-    55	- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/command/improve/agent.md; commit 080cf549e summary]`
-    56	- [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agent/improve-agent.md]`
-    57	- [x] T017 Added end-to-end playbook scenarios for mutation coverage, trade-off detection, and candidate lineage. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
-    58	- [x] T018 Added runtime-truth playbook scenarios for stop reasons, journal emission, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
+    46	- [x] T006 Created the append-only improvement journal helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs]`
+    47	- [x] T007 Created the mutation coverage helper for improvement sessions. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs]`
+    48	- [x] T008 Created the trade-off detector helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs]`
+    49	- [x] T009 Created the candidate-lineage helper for optional parallel exploration. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs]`
+    50	- [x] T010 Created the benchmark stability helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs]`
+    51	- [x] T011 Updated improve-agent configuration to carry runtime-truth settings. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_config.json]`
+    52	- [x] T012 Updated the improve-agent charter with audit-trail and legal-stop obligations. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_charter.md]`
+    53	- [x] T013 Updated the improve-agent strategy asset with convergence, exhaustion, and trade-off guidance. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md]`
+    54	- [x] T014 Published the runtime-truth contract in the skill documentation. `[EVIDENCE: .opencode/skills/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
+    55	- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/commands/improve/agent.md; commit 080cf549e summary]`
+    56	- [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agents/improve-agent.md]`
+    57	- [x] T017 Added end-to-end playbook scenarios for mutation coverage, trade-off detection, and candidate lineage. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
+    58	- [x] T018 Added runtime-truth playbook scenarios for stop reasons, journal emission, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
     59	- [x] T019 Captured the delivered work in the release note for `v1.1.0.0`. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
     60	<!-- /ANCHOR:phase-2 -->
     61	
@@ -2278,11 +2278,11 @@ exec
     64	<!-- ANCHOR:phase-3 -->
     65	## Phase 3: Verification
     66	
-    67	- [x] T020 Added dedicated Vitest coverage for the journal helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
-    68	- [x] T021 Added dedicated Vitest coverage for the coverage helper. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
-    69	- [x] T022 Added dedicated Vitest coverage for the trade-off detector. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
-    70	- [x] T023 Added dedicated Vitest coverage for candidate lineage. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
-    71	- [x] T024 Added dedicated Vitest coverage for benchmark stability. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
+    67	- [x] T020 Added dedicated Vitest coverage for the journal helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
+    68	- [x] T021 Added dedicated Vitest coverage for the coverage helper. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
+    69	- [x] T022 Added dedicated Vitest coverage for the trade-off detector. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
+    70	- [x] T023 Added dedicated Vitest coverage for candidate lineage. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
+    71	- [x] T024 Added dedicated Vitest coverage for benchmark stability. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
     72	- [x] T025 Recorded the shipped verification summary in the release note. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "31/31 PASS" and "10,335 passing"]`
     73	- [x] T026 Recorded the later lifecycle-contract correction so the packet closeout matches current reality. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md]`
     74	- [x] T027 Normalized the phase packet to the current Level 3 template. `[EVIDENCE: this phase folder; validate.sh --strict]`
@@ -2318,7 +2318,7 @@ exec
    104	#### Pre-Task Checklist
    105	
    106	- [x] Read packet docs and live runtime surfaces before editing. `[EVIDENCE: packet rewrite grounded in current file inventory and release artifacts]`
-   107	- [x] Keep documentation aligned to live `sk-improve-agent` naming. `[EVIDENCE: packet docs reference `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`]`
+   107	- [x] Keep documentation aligned to live `sk-improve-agent` naming. `[EVIDENCE: packet docs reference `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`]`
    108	
    109	#### Execution Rules
    110	
@@ -2326,7 +2326,7 @@ exec
    112	|------|-------------|
    113	| TASK-SCOPE | Only phase-folder docs are edited during closeout. |
    114	| TASK-EVIDENCE | Every completed task uses a concrete file, commit, changelog, or validator citation. |
-   115	| TASK-NAMING | Current runtime references use `sk-improve-agent` and `.opencode/agent/improve-agent.md`. |
+   115	| TASK-NAMING | Current runtime references use `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
    116	| TASK-HISTORY | Historical outcomes are preserved, but superseded lifecycle claims are not reintroduced as current truth. |
    117	
    118	#### Status Reporting Format
@@ -2377,7 +2377,7 @@ exec
     32	<!-- ANCHOR:phase-1 -->
     33	## Phase 1: Setup
     34	
-    35	- [x] T001 Read the Phase 002 graph-runtime surfaces and identify the CommonJS and TypeScript contracts that need integration coverage. (`.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs`; `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`)
+    35	- [x] T001 Read the Phase 002 graph-runtime surfaces and identify the CommonJS and TypeScript contracts that need integration coverage. (`.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`)
     36	- [x] T002 Locate the live playbook trees and README files that need graph capability updates. (`sk-deep-research`; `sk-deep-review`; `sk-improve-agent`)
     37	- [x] T003 Confirm the exact playbook filenames and verification-surface paths before packet closeout. (the seven graph-related playbook files plus the two Vitest suites)
     38	<!-- /ANCHOR:phase-1 -->
@@ -2387,12 +2387,12 @@ exec
     42	<!-- ANCHOR:phase-2 -->
     43	## Phase 2: Implementation
     44	
-    45	- [x] T004 Add the graph integration suite. (`.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`)
-    46	- [x] T005 Add the graph stress suite. (`.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`)
-    47	- [x] T006 Add research graph playbooks. (`.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md`; `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md`)
-    48	- [x] T007 Add review graph playbooks. (`.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md`; `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md`)
-    49	- [x] T008 Add improve-agent graph-adjacent playbooks. (`.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`; `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`; `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`)
-    50	- [x] T009 Update graph capability references in the three affected skill READMEs. (`.opencode/skill/sk-deep-research/README.md`; `.opencode/skill/sk-deep-review/README.md`; `.opencode/skill/sk-improve-agent/README.md`)
+    45	- [x] T004 Add the graph integration suite. (`.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`)
+    46	- [x] T005 Add the graph stress suite. (`.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`)
+    47	- [x] T006 Add research graph playbooks. (`.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md`; `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md`)
+    48	- [x] T007 Add review graph playbooks. (`.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md`; `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md`)
+    49	- [x] T008 Add improve-agent graph-adjacent playbooks. (`.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`; `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`; `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`)
+    50	- [x] T009 Update graph capability references in the three affected skill READMEs. (`.opencode/skills/sk-deep-research/README.md`; `.opencode/skills/sk-deep-review/README.md`; `.opencode/skills/sk-improve-agent/README.md`)
     51	<!-- /ANCHOR:phase-2 -->
     52	
     53	---
@@ -2402,7 +2402,7 @@ exec
     57	
     58	- [x] T010 Confirm the two Vitest suites and seven playbook files exist at the documented paths. (all paths cited in `spec.md` and `implementation-summary.md`)
     59	- [x] T011 Record the verification surfaces and README updates in the packet docs with evidence. (`checklist.md`; `implementation-summary.md`)
-    60	- [x] T012 Run strict validation on the phase folder until it passes cleanly. (`bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --strict`)
+    60	- [x] T012 Run strict validation on the phase folder until it passes cleanly. (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --strict`)
     61	<!-- /ANCHOR:phase-3 -->
     62	
     63	---
@@ -2457,8 +2457,8 @@ exec
     27	<!-- ANCHOR:pre-impl -->
     28	## Pre-Implementation
     29	
-    30	- [x] CHK-001 [P0] CommonJS coverage-graph helper surfaces were identified before closeout. [EVIDENCE: `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-*.cjs`]
-    31	- [x] CHK-002 [P0] TypeScript graph DB surface was identified before closeout. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`]
+    30	- [x] CHK-001 [P0] CommonJS coverage-graph helper surfaces were identified before closeout. [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-*.cjs`]
+    31	- [x] CHK-002 [P0] TypeScript graph DB surface was identified before closeout. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`]
     32	- [x] CHK-003 [P1] Existing playbook trees were confirmed before recording the delivered scenarios. [EVIDENCE: `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent` playbook directories]
     33	<!-- /ANCHOR:pre-impl -->
     34	
@@ -2467,8 +2467,8 @@ exec
     37	<!-- ANCHOR:code-quality -->
     38	## Code Quality
     39	
-    40	- [x] CHK-004 [P0] `coverage-graph-integration.vitest.ts` exists as the cross-layer contract suite. [EVIDENCE: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`]
-    41	- [x] CHK-005 [P0] `coverage-graph-stress.vitest.ts` exists as the larger-graph stress suite. [EVIDENCE: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`]
+    40	- [x] CHK-004 [P0] `coverage-graph-integration.vitest.ts` exists as the cross-layer contract suite. [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts`]
+    41	- [x] CHK-005 [P0] `coverage-graph-stress.vitest.ts` exists as the larger-graph stress suite. [EVIDENCE: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts`]
     42	- [x] CHK-006 [P1] The phase packet uses the current Level 2 template markers and anchors. [EVIDENCE: packet docs include `SPECKIT_LEVEL`, `SPECKIT_TEMPLATE_SOURCE`, and required anchor blocks]
     43	<!-- /ANCHOR:code-quality -->
     44	
@@ -2477,13 +2477,13 @@ exec
     47	<!-- ANCHOR:testing -->
     48	## Testing
     49	
-    50	- [x] CHK-007 [P0] Research graph-convergence playbook exists. [EVIDENCE: `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md`]
-    51	- [x] CHK-008 [P0] Research graph-events playbook exists. [EVIDENCE: `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md`]
-    52	- [x] CHK-009 [P0] Review graph-convergence playbook exists. [EVIDENCE: `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md`]
-    53	- [x] CHK-010 [P0] Review graph-events playbook exists. [EVIDENCE: `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md`]
-    54	- [x] CHK-011 [P1] Improve-agent mutation-coverage playbook exists. [EVIDENCE: `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`]
-    55	- [x] CHK-012 [P1] Improve-agent trade-off-detection playbook exists. [EVIDENCE: `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`]
-    56	- [x] CHK-013 [P1] Improve-agent candidate-lineage playbook exists. [EVIDENCE: `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`]
+    50	- [x] CHK-007 [P0] Research graph-convergence playbook exists. [EVIDENCE: `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md`]
+    51	- [x] CHK-008 [P0] Research graph-events playbook exists. [EVIDENCE: `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md`]
+    52	- [x] CHK-009 [P0] Review graph-convergence playbook exists. [EVIDENCE: `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md`]
+    53	- [x] CHK-010 [P0] Review graph-events playbook exists. [EVIDENCE: `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md`]
+    54	- [x] CHK-011 [P1] Improve-agent mutation-coverage playbook exists. [EVIDENCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`]
+    55	- [x] CHK-012 [P1] Improve-agent trade-off-detection playbook exists. [EVIDENCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`]
+    56	- [x] CHK-013 [P1] Improve-agent candidate-lineage playbook exists. [EVIDENCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`]
     57	- [x] CHK-014 [P1] Strict phase validation passes after packet rewrite. [EVIDENCE: `validate.sh --strict` result]
     58	<!-- /ANCHOR:testing -->
     59	
@@ -2500,9 +2500,9 @@ exec
     70	<!-- ANCHOR:docs -->
     71	## Documentation
     72	
-    73	- [x] CHK-016 [P0] The deep-research README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skill/sk-deep-research/README.md`]
-    74	- [x] CHK-017 [P0] The deep-review README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skill/sk-deep-review/README.md`]
-    75	- [x] CHK-018 [P1] The improve-agent README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skill/sk-improve-agent/README.md`]
+    73	- [x] CHK-016 [P0] The deep-research README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skills/sk-deep-research/README.md`]
+    74	- [x] CHK-017 [P0] The deep-review README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skills/sk-deep-review/README.md`]
+    75	- [x] CHK-018 [P1] The improve-agent README is documented as a graph-capability surface. [EVIDENCE: `.opencode/skills/sk-improve-agent/README.md`]
     76	- [x] CHK-019 [P1] `implementation-summary.md` records the delivered tests, playbooks, and README updates. [EVIDENCE: `implementation-summary.md` sections `What Was Built`, `How It Was Delivered`, and `Verification`]
     77	<!-- /ANCHOR:docs -->
     78	
@@ -2574,13 +2574,13 @@ exec
     43	<!-- ANCHOR:code-quality -->
     44	## Code Quality
     45	
-    46	- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs]`
-    47	- [x] CHK-011 [P0] `mutation-coverage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs]`
-    48	- [x] CHK-012 [P0] `trade-off-detector.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs]`
-    49	- [x] CHK-013 [P0] `candidate-lineage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs]`
-    50	- [x] CHK-014 [P0] `benchmark-stability.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs]`
-    51	- [x] CHK-015 [P1] Improve-agent config and strategy assets were expanded for runtime truth. `[EVIDENCE: .opencode/skill/sk-improve-agent/assets/improvement_config.json; improvement_strategy.md; improvement_charter.md]`
-    52	- [x] CHK-016 [P1] The skill documentation published the runtime-truth contract. `[EVIDENCE: .opencode/skill/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
+    46	- [x] CHK-010 [P0] `improvement-journal.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs]`
+    47	- [x] CHK-011 [P0] `mutation-coverage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs]`
+    48	- [x] CHK-012 [P0] `trade-off-detector.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs]`
+    49	- [x] CHK-013 [P0] `candidate-lineage.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs]`
+    50	- [x] CHK-014 [P0] `benchmark-stability.cjs` exists and is part of the shipped helper set. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs]`
+    51	- [x] CHK-015 [P1] Improve-agent config and strategy assets were expanded for runtime truth. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_config.json; improvement_strategy.md; improvement_charter.md]`
+    52	- [x] CHK-016 [P1] The skill documentation published the runtime-truth contract. `[EVIDENCE: .opencode/skills/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
     53	- [x] CHK-017 [P2] The packet closeout uses current dynamic-mode naming rather than stale static-profile wording. `[EVIDENCE: spec.md §2; REQ-010]`
     54	<!-- /ANCHOR:code-quality -->
     55	
@@ -2589,14 +2589,14 @@ exec
     58	<!-- ANCHOR:testing -->
     59	## Testing
     60	
-    61	- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
-    62	- [x] CHK-021 [P0] Dedicated mutation-coverage tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
-    63	- [x] CHK-022 [P0] Dedicated trade-off tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
-    64	- [x] CHK-023 [P0] Dedicated lineage tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
-    65	- [x] CHK-024 [P0] Dedicated stability tests exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
+    61	- [x] CHK-020 [P0] Dedicated journal tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts]`
+    62	- [x] CHK-021 [P0] Dedicated mutation-coverage tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts]`
+    63	- [x] CHK-022 [P0] Dedicated trade-off tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts]`
+    64	- [x] CHK-023 [P0] Dedicated lineage tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts]`
+    65	- [x] CHK-024 [P0] Dedicated stability tests exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts]`
     66	- [x] CHK-025 [P1] Shipped release evidence records the broader verification result. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md "31/31 PASS"; "10,335 passing, 0 failing"]`
-    67	- [x] CHK-026 [P1] Runtime-truth manual scenarios exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
-    68	- [x] CHK-027 [P1] End-to-end coverage, trade-off, and lineage scenarios exist. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
+    67	- [x] CHK-026 [P1] Runtime-truth manual scenarios exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
+    68	- [x] CHK-027 [P1] End-to-end coverage, trade-off, and lineage scenarios exist. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
     69	- [x] CHK-028 [P2] Later lifecycle wording correction was captured so test evidence is not overstated. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md]`
     70	<!-- /ANCHOR:testing -->
     71	
@@ -2606,7 +2606,7 @@ exec
     75	## Security
     76	
     77	- [x] CHK-030 [P0] The phase packet does not introduce secrets or private runtime paths. `[EVIDENCE: phase-folder docs only reference repo paths and release artifacts]`
-    78	- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agent/improve-agent.md` and `.opencode/skill/sk-improve-agent/`]`
+    78	- [x] CHK-031 [P1] The closeout packet avoids dead runtime references that could misdirect future operators. `[EVIDENCE: phase docs point at `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`]`
     79	- [x] CHK-032 [P1] Historical wording is framed as history, not current live contract. `[EVIDENCE: implementation-summary.md; decision-record.md; v1.2.1.0 citation]`
     80	<!-- /ANCHOR:security -->
     81	
@@ -2655,9 +2655,9 @@ exec
    124	## L3+: ARCHITECTURE VERIFICATION
    125	
    126	- [x] CHK-100 [P0] Journal ownership stayed outside the proposal agent. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 1]`
-   127	- [x] CHK-101 [P0] Coverage graph reuse remained improvement-scoped rather than inventing a parallel system. `[EVIDENCE: .opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs; decision-record.md ADR set 2]`
+   127	- [x] CHK-101 [P0] Coverage graph reuse remained improvement-scoped rather than inventing a parallel system. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs; decision-record.md ADR set 2]`
    128	- [x] CHK-102 [P1] Trajectory gating was treated as a first-class convergence input. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 3]`
-   129	- [x] CHK-103 [P1] Optional parallel candidates were kept opt-in. `[EVIDENCE: .opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md; decision-record.md ADR set 4]`
+   129	- [x] CHK-103 [P1] Optional parallel candidates were kept opt-in. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md; decision-record.md ADR set 4]`
    130	- [x] CHK-104 [P1] Backward-compatible config defaults remained part of the delivered design. `[EVIDENCE: .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md; decision-record.md ADR set 5]`
    131	<!-- /ANCHOR:arch-verify -->
    132	
@@ -2704,7 +2704,7 @@ exec
 codex
 I’ve found one substantive drift already: the Phase `005` packet presents the journal as shipped runtime behavior, but the later `v1.2.0.0` changelog says the visible `/improve:agent` workflow only started emitting journal events in Phase `008`. I’m validating that against the actual test files now so I can separate “file exists” from “packet accurately traces when behavior became real.”
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	import path from 'node:path';
      2	import fs from 'node:fs';
@@ -2719,7 +2719,7 @@ exec
     11	
     12	const journal = require(path.join(
     13	  WORKSPACE_ROOT,
-    14	  '.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs',
+    14	  '.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs',
     15	)) as {
     16	  STOP_REASONS: Readonly<Record<string, string>>;
     17	  SESSION_OUTCOMES: Readonly<Record<string, string>>;
@@ -2910,7 +2910,7 @@ exec
    202	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	/**
      2	 * Coverage Graph Integration Tests (Phase 006 — REQ-GT-001 through REQ-GT-006)
@@ -2938,7 +2938,7 @@ exec
     24	
     25	const coreModule = require(path.join(
     26	  WORKSPACE_ROOT,
-    27	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    27	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     28	)) as {
     29	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     30	  REVIEW_RELATION_WEIGHTS: Readonly<Record<string, number>>;
@@ -2951,7 +2951,7 @@ exec
     37	
     38	const signalsModule = require(path.join(
     39	  WORKSPACE_ROOT,
-    40	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    40	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     41	)) as {
     42	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     43	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -2960,7 +2960,7 @@ exec
     46	
     47	const convergenceModule = require(path.join(
     48	  WORKSPACE_ROOT,
-    49	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    49	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     50	)) as {
     51	  computeSourceDiversity: (graph: any) => number;
     52	  computeEvidenceDepth: (graph: any) => number;
@@ -2972,7 +2972,7 @@ exec
     58	
     59	const contradictionsModule = require(path.join(
     60	  WORKSPACE_ROOT,
-    61	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    61	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     62	)) as {
     63	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     64	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -3174,7 +3174,7 @@ exec
    260	    it('CJS insertEdge allows edges between different nodes', () => {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	/**
      2	 * Coverage Graph Stress Tests (Phase 006 — REQ-GT-007, REQ-GT-008)
@@ -3199,7 +3199,7 @@ exec
     21	
     22	const coreModule = require(path.join(
     23	  WORKSPACE_ROOT,
-    24	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
+    24	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
     25	)) as {
     26	  RESEARCH_RELATION_WEIGHTS: Readonly<Record<string, number>>;
     27	  createGraph: () => { nodes: Map<string, any>; edges: Map<string, any> };
@@ -3210,7 +3210,7 @@ exec
     32	
     33	const signalsModule = require(path.join(
     34	  WORKSPACE_ROOT,
-    35	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
+    35	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
     36	)) as {
     37	  computeDegree: (graph: any, nodeId: string) => { inDegree: number; outDegree: number; total: number };
     38	  computeAllDepths: (graph: any) => Map<string, number>;
@@ -3219,7 +3219,7 @@ exec
     41	
     42	const convergenceModule = require(path.join(
     43	  WORKSPACE_ROOT,
-    44	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
+    44	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
     45	)) as {
     46	  computeSourceDiversity: (graph: any) => number;
     47	  computeEvidenceDepth: (graph: any) => number;
@@ -3229,7 +3229,7 @@ exec
     51	
     52	const contradictionsModule = require(path.join(
     53	  WORKSPACE_ROOT,
-    54	  '.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
+    54	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
     55	)) as {
     56	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     57	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
@@ -3438,9 +3438,9 @@ exec
    260	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Trade-Off Detector — Cross-Dimension Regression Detection               ║
@@ -3958,12 +3958,12 @@ exec
    260	      stddev: stddev(scores),
 
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/assets/improve_agent-improver_auto.yaml | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_agent-improver_auto.yaml | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-nl: .opencode/command/improve/assets/improve_agent-improver_auto.yaml: No such file or directory
+nl: .opencode/commands/improve/assets/improve_agent-improver_auto.yaml: No such file or directory
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Improvement Journal — Append-Only Audit Journal for Improvement Sessions║
@@ -4227,52 +4227,52 @@ exec
    260	      }
 
 exec
-/bin/zsh -lc 'rg --files .opencode/command/improve/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg --files .opencode/commands/improve/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml
 
 exec
-/bin/zsh -lc 'rg -n "session_end|session_ended|candidate_scored|scored|gate_evaluation|trade_off_detected|VALID_EVENT_TYPES|STOP_REASONS|SESSION_OUTCOMES" .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs .opencode/skill/sk-improve-agent/SKILL.md .opencode/command/improve/agent.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_end|session_ended|candidate_scored|scored|gate_evaluation|trade_off_detected|VALID_EVENT_TYPES|STOP_REASONS|SESSION_OUTCOMES" .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs .opencode/skills/sk-improve-agent/SKILL.md .opencode/commands/improve/agent.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
-.opencode/skill/sk-improve-agent/SKILL.md:332:The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
-.opencode/skill/sk-improve-agent/SKILL.md:339:| `iteration_boundary` | On every iteration after candidate generation, after candidate scoring, and after gate evaluation | `candidate_generated`, `candidate_scored`, `gate_evaluation` | Per-iteration context such as `sessionId`, `iteration`, `candidateId`, `candidatePath`, `scoreOutputPath`, `weightedScore`, and gate decision details |
-.opencode/skill/sk-improve-agent/SKILL.md:340:| `session_end` | Once after synthesis completes or the session reaches a terminal stop | `session_end` | `stopReason`, `sessionOutcome`, `endedAt`, `totalIterations` |
-.opencode/skill/sk-improve-agent/SKILL.md:346:- `STOP_REASONS`: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
-.opencode/skill/sk-improve-agent/SKILL.md:347:- `SESSION_OUTCOMES`: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-.opencode/skill/sk-improve-agent/SKILL.md:353:- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
-.opencode/skill/sk-improve-agent/SKILL.md:354:- Confirm mode mirrors the same boundaries, with `gate_evaluation` emitted after the operator-facing approval gate is resolved.
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21:const STOP_REASONS = Object.freeze({
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:35:const SESSION_OUTCOMES = Object.freeze({
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:47:const VALID_EVENT_TYPES = Object.freeze([
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:52:  'candidate_scored',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:54:  'gate_evaluation',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:62:  'trade_off_detected',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:65:  'session_ended',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:66:  'session_end',
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:87:  } else if (!VALID_EVENT_TYPES.includes(event.eventType)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:88:    errors.push(`Invalid eventType: "${event.eventType}". Valid types: ${VALID_EVENT_TYPES.join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:91:  if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:93:      errors.push('session_ended/session_end events MUST include details.stopReason');
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:98:      errors.push('session_ended/session_end events MUST include details.sessionOutcome');
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:99:    } else if (!Object.values(SESSION_OUTCOMES).includes(event.details.sessionOutcome)) {
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:100:      errors.push(`Invalid sessionOutcome: "${event.details.sessionOutcome}". Valid outcomes: ${Object.values(SESSION_OUTCOMES).join(', ')}`);
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:186: * Get the stop reason from the last session_ended event.
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:194:    (e) => e.eventType === 'session_ended' || e.eventType === 'session_end'
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:211:  STOP_REASONS,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:212:  SESSION_OUTCOMES,
-.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:213:  VALID_EVENT_TYPES,
-.opencode/command/improve/agent.md:304:# candidate_scored after scoring completes
-.opencode/command/improve/agent.md:305:# gate_evaluation after stop-check or operator-gate evaluation
-.opencode/command/improve/agent.md:309:# node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+.opencode/skills/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
+.opencode/skills/sk-improve-agent/SKILL.md:332:The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
+.opencode/skills/sk-improve-agent/SKILL.md:339:| `iteration_boundary` | On every iteration after candidate generation, after candidate scoring, and after gate evaluation | `candidate_generated`, `candidate_scored`, `gate_evaluation` | Per-iteration context such as `sessionId`, `iteration`, `candidateId`, `candidatePath`, `scoreOutputPath`, `weightedScore`, and gate decision details |
+.opencode/skills/sk-improve-agent/SKILL.md:340:| `session_end` | Once after synthesis completes or the session reaches a terminal stop | `session_end` | `stopReason`, `sessionOutcome`, `endedAt`, `totalIterations` |
+.opencode/skills/sk-improve-agent/SKILL.md:346:- `STOP_REASONS`: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
+.opencode/skills/sk-improve-agent/SKILL.md:347:- `SESSION_OUTCOMES`: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
+.opencode/skills/sk-improve-agent/SKILL.md:353:- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
+.opencode/skills/sk-improve-agent/SKILL.md:354:- Confirm mode mirrors the same boundaries, with `gate_evaluation` emitted after the operator-facing approval gate is resolved.
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21:const STOP_REASONS = Object.freeze({
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:35:const SESSION_OUTCOMES = Object.freeze({
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:47:const VALID_EVENT_TYPES = Object.freeze([
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:52:  'candidate_scored',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:54:  'gate_evaluation',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:62:  'trade_off_detected',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:65:  'session_ended',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:66:  'session_end',
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:87:  } else if (!VALID_EVENT_TYPES.includes(event.eventType)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:88:    errors.push(`Invalid eventType: "${event.eventType}". Valid types: ${VALID_EVENT_TYPES.join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:91:  if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:93:      errors.push('session_ended/session_end events MUST include details.stopReason');
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:94:    } else if (!Object.values(STOP_REASONS).includes(event.details.stopReason)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:95:      errors.push(`Invalid stopReason: "${event.details.stopReason}". Valid reasons: ${Object.values(STOP_REASONS).join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:98:      errors.push('session_ended/session_end events MUST include details.sessionOutcome');
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:99:    } else if (!Object.values(SESSION_OUTCOMES).includes(event.details.sessionOutcome)) {
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:100:      errors.push(`Invalid sessionOutcome: "${event.details.sessionOutcome}". Valid outcomes: ${Object.values(SESSION_OUTCOMES).join(', ')}`);
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:186: * Get the stop reason from the last session_ended event.
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:194:    (e) => e.eventType === 'session_ended' || e.eventType === 'session_end'
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:211:  STOP_REASONS,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:212:  SESSION_OUTCOMES,
+.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:213:  VALID_EVENT_TYPES,
+.opencode/commands/improve/agent.md:304:# candidate_scored after scoring completes
+.opencode/commands/improve/agent.md:305:# gate_evaluation after stop-check or operator-gate evaluation
+.opencode/commands/improve/agent.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-improve-agent/SKILL.md | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/SKILL.md | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/agent.md | sed -n '292,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/agent.md | sed -n '292,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	
    261	### Audit Journal Protocol
@@ -4343,7 +4343,7 @@ exec
    326	The CLI contract is:
    327	
    328	```bash
-   329	node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+   329	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
    330	```
    331	
    332	The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
@@ -4385,7 +4385,7 @@ exec
    297	
    298	```bash
    299	# At session start:
-   300	node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+   300	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
    301	
    302	# At iteration boundaries:
    303	# candidate_generated after the candidate is written
@@ -4394,7 +4394,7 @@ exec
    306	# The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
    307	
    308	# At session end:
-   309	# node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+   309	# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
    310	```
    311	
    312	### Step 6C: Stop-Reason Reporting (Phase 005)
@@ -4408,9 +4408,9 @@ exec
    320	- `manualStop` — User cancelled
 
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/assets/improve_improve-agent_confirm.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/command/improve/assets/improve_improve-agent_auto.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_auto.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	# ─────────────────────────────────────────────────────────────────
      2	# AGENT IMPROVER: EVALUATION LOOP (AUTONOMOUS MODE)
@@ -4448,7 +4448,7 @@ exec
     34	# USER INPUTS
     35	# ─────────────────────────────────────────────────────────────────
     36	user_inputs:
-    37	  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .opencode/agent/*.md."
+    37	  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .opencode/agents/*.md."
     38	  target_profile: "[TARGET_PROFILE] - Profile ID: handover, context-prime, or dynamic. Auto-derived from target_path if not explicit."
     39	  scoring_mode: "[SCORING_MODE] - 'dynamic' for 5-dimension any-agent scoring, 'static' for legacy keyword profiles. Default: dynamic."
     40	  spec_folder: "[SPEC_FOLDER] - Spec folder path for improvement runtime. REQUIRED."
@@ -4468,7 +4468,7 @@ exec
     54	    target_path_required: true
     55	    spec_folder_required: true
     56	    target_path_must_exist: true
-    57	    target_path_must_be_agent: "Must match .opencode/agent/*.md pattern"
+    57	    target_path_must_be_agent: "Must match .opencode/agents/*.md pattern"
     58	
     59	# ─────────────────────────────────────────────────────────────────
     60	# CONTEXT LOADING
@@ -4490,19 +4490,19 @@ exec
     76	# ─────────────────────────────────────────────────────────────────
     77	skill_reference:
     78	  skill: sk-improve-agent
-    79	  skill_md: .opencode/skill/sk-improve-agent/SKILL.md
+    79	  skill_md: .opencode/skills/sk-improve-agent/SKILL.md
     80	  templates:
-    81	    config: .opencode/skill/sk-improve-agent/assets/improvement_config.json
-    82	    strategy: .opencode/skill/sk-improve-agent/assets/improvement_strategy.md
-    83	    charter: .opencode/skill/sk-improve-agent/assets/improvement_charter.md
-    84	    manifest: .opencode/skill/sk-improve-agent/assets/target_manifest.jsonc
+    81	    config: .opencode/skills/sk-improve-agent/assets/improvement_config.json
+    82	    strategy: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md
+    83	    charter: .opencode/skills/sk-improve-agent/assets/improvement_charter.md
+    84	    manifest: .opencode/skills/sk-improve-agent/assets/target_manifest.jsonc
     85	  scripts:
-    86	    scanner: .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs
-    87	    profiler: .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs
-    88	    scorer: .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs
-    89	    benchmark: .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs
-    90	    journal: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs
-    91	    reducer: .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+    86	    scanner: .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
+    87	    profiler: .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs
+    88	    scorer: .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
+    89	    benchmark: .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
+    90	    journal: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
+    91	    reducer: .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
     92	
     93	# ─────────────────────────────────────────────────────────────────
     94	# STATE PATHS
@@ -4571,7 +4571,7 @@ exec
     35	# USER INPUTS
     36	# ─────────────────────────────────────────────────────────────────
     37	user_inputs:
-    38	  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .opencode/agent/*.md."
+    38	  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .opencode/agents/*.md."
     39	  target_profile: "[TARGET_PROFILE] - Profile ID: handover, context-prime, or dynamic. Auto-derived from target_path if not explicit."
     40	  scoring_mode: "[SCORING_MODE] - 'dynamic' for 5-dimension any-agent scoring, 'static' for legacy keyword profiles. Default: dynamic."
     41	  spec_folder: "[SPEC_FOLDER] - Spec folder path for improvement runtime. REQUIRED."
@@ -4591,7 +4591,7 @@ exec
     55	    target_path_required: true
     56	    spec_folder_required: true
     57	    target_path_must_exist: true
-    58	    target_path_must_be_agent: "Must match .opencode/agent/*.md pattern"
+    58	    target_path_must_be_agent: "Must match .opencode/agents/*.md pattern"
     59	
     60	# ─────────────────────────────────────────────────────────────────
     61	# CONTEXT LOADING
@@ -4618,19 +4618,19 @@ exec
     82	# ─────────────────────────────────────────────────────────────────
     83	skill_reference:
     84	  skill: sk-improve-agent
-    85	  skill_md: .opencode/skill/sk-improve-agent/SKILL.md
+    85	  skill_md: .opencode/skills/sk-improve-agent/SKILL.md
     86	  templates:
-    87	    config: .opencode/skill/sk-improve-agent/assets/improvement_config.json
-    88	    strategy: .opencode/skill/sk-improve-agent/assets/improvement_strategy.md
-    89	    charter: .opencode/skill/sk-improve-agent/assets/improvement_charter.md
-    90	    manifest: .opencode/skill/sk-improve-agent/assets/target_manifest.jsonc
+    87	    config: .opencode/skills/sk-improve-agent/assets/improvement_config.json
+    88	    strategy: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md
+    89	    charter: .opencode/skills/sk-improve-agent/assets/improvement_charter.md
+    90	    manifest: .opencode/skills/sk-improve-agent/assets/target_manifest.jsonc
     91	  scripts:
-    92	    scanner: .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs
-    93	    profiler: .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs
-    94	    scorer: .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs
-    95	    benchmark: .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs
-    96	    journal: .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs
-    97	    reducer: .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs
+    92	    scanner: .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
+    93	    profiler: .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs
+    94	    scorer: .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
+    95	    benchmark: .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
+    96	    journal: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
+    97	    reducer: .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
     98	
     99	# ─────────────────────────────────────────────────────────────────
    100	# STATE PATHS
@@ -4660,14 +4660,14 @@ exec
  succeeded in 0ms:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:27:| **Primary Release Note** | `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:28:| **Follow-on Correction** | `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skill/sk-improve-agent/SKILL.md`, `.opencode/command/improve/agent.md`, and `.opencode/agent/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:60:The implementation landed in commit `080cf549e`, which records the five helper scripts, the five dedicated test files, and the asset plus command updates. The shipped outcome was then documented in `v1.1.0.0`, which records:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:67:Later on the packet family corrected one important documentation drift: `v1.2.1.0` explicitly retracted a multi-session lifecycle contract that had been documented but not actually wired. This closeout packet reflects that later correction so Phase 005 is recorded as shipped without silently preserving superseded lifecycle claims.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:101:Verification evidence for the shipped runtime lives in `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`. Verification evidence for the later lifecycle wording correction lives in `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:110:2. `v1.1.0.0` documented broader lifecycle semantics than the runtime actually shipped; `v1.2.1.0` later narrowed that wording to current reality.
 
 exec
-/bin/zsh -lc 'rg -n "graph" .opencode/skill/sk-improve-agent/README.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "graph" .opencode/skills/sk-improve-agent/README.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 67:| Mutation coverage graph | Tracks explored dimensions and tried mutation types via a coverage graph with `loop_type: "improvement"` namespace, preventing re-exploration of exhausted mutations |
 69:| Candidate lineage | Maintains a directed graph of candidate proposals across iterations, tracking session-id, wave-index, spawning mutation type, and parent references |
@@ -4676,7 +4676,7 @@ exec
 /bin/zsh -lc "rg -n \"v1\\.1\\.0\\.0|v1\\.2\\.0\\.0|v1\\.2\\.1\\.0|changelog\" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/*" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "rg -n \"coverage-graph-db\\.ts|VALID_RELATIONS|TS_VALID_RELATIONS|IMPORTANT: If coverage-graph-db\\.ts changes, these must be updated|do not need to import the TS module\" .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"coverage-graph-db\\.ts|VALID_RELATIONS|TS_VALID_RELATIONS|IMPORTANT: If coverage-graph-db\\.ts changes, these must be updated|do not need to import the TS module\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 7: *   - TS/MCP layer: coverage-graph-db.ts (types and constants)
 70: * These constants mirror the VALID_RELATIONS and weight maps from
@@ -4702,7 +4702,7 @@ exec
 codex
 I’ve narrowed this to four concrete traceability problems rather than broad “docs feel off” feedback: one overstatement in the Phase `005` summary, one phase-ownership collision between `005` and `006`, one cross-layer test that isn’t actually tied to the live TS contract, and one set of stale changelog paths/contracts. I’m grabbing one last bit of line-level evidence from the live mirror file so the final report can stay precise.
 exec
-/bin/zsh -lc "nl -ba .opencode/agent/improve-agent.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/agents/improve-agent.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "nl -ba .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md | sed -n '15,25p;41,55p;58,90p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -4733,7 +4733,7 @@ exec
     25	
     26	**CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
     27	
-    28	**IMPORTANT**: Use `.opencode/agent/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
+    28	**IMPORTANT**: Use `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
     29	
     30	---
     31	
@@ -4778,32 +4778,32 @@ exec
     59	
     60	| File                                                                                                                     | Action   | Description                                                                                   |
     61	| ------------------------------------------------------------------------------------------------------------------------ | -------- | --------------------------------------------------------------------------------------------- |
-    62	| `.opencode/skill/sk-improve-agent/SKILL.md`                                                                              | Modified | Bumped version to 1.1.0.0 and published stop-reason taxonomy, journal, graph, and trade-off guidance |
-    63	| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
-    64	| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs`                                                         | Created  | Mutation coverage graph (loop_type "improvement" namespace)                                   |
-    65	| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs`                                                        | Created  | Pareto-aware dimension trade-off detection                                                    |
-    66	| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs`                                                         | Created  | Directed candidate lineage graph                                                              |
-    67	| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs`                                                       | Created  | Benchmark stability coefficient scoring                                                       |
-    68	| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
-    69	| `.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`                                             | Created  | Vitest coverage for coverage graph                                                            |
-    70	| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`                                            | Created  | Vitest coverage for trade-off detection                                                       |
-    71	| `.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`                                             | Created  | Vitest coverage for lineage graph                                                             |
-    72	| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`                                           | Created  | Vitest coverage for stability scoring                                                         |
-    73	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`   | Created  | Playbook: mutation coverage graph tracking                                                    |
-    74	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`                | Created  | Playbook: trade-off detection                                                                 |
-    75	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`                  | Created  | Playbook: candidate lineage                                                                   |
-    76	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`                 | Created  | Playbook: stop-reason taxonomy                                                                |
-    77	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`               | Created  | Playbook: audit journal emission                                                              |
-    78	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`                  | Created  | Playbook: resume continuation                                                                 |
-    79	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`                     | Created  | Playbook: legal-stop gates                                                                    |
-    80	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`                  | Created  | Playbook: benchmark stability                                                                 |
-    81	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
-    82	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
-    83	| `.opencode/skill/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
-    84	| `.opencode/command/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
-    85	| `.opencode/command/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
-    86	| `.opencode/command/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
-    87	| `.opencode/agent/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
+    62	| `.opencode/skills/sk-improve-agent/SKILL.md`                                                                              | Modified | Bumped version to 1.1.0.0 and published stop-reason taxonomy, journal, graph, and trade-off guidance |
+    63	| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`                                                       | Created  | Append-only JSONL audit journal with frozen enums and CLI entrypoint                          |
+    64	| `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs`                                                         | Created  | Mutation coverage graph (loop_type "improvement" namespace)                                   |
+    65	| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`                                                        | Created  | Pareto-aware dimension trade-off detection                                                    |
+    66	| `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs`                                                         | Created  | Directed candidate lineage graph                                                              |
+    67	| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs`                                                       | Created  | Benchmark stability coefficient scoring                                                       |
+    68	| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`                                           | Created  | Vitest coverage for journal append/replay and enum validation                                 |
+    69	| `.opencode/skills/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts`                                             | Created  | Vitest coverage for coverage graph                                                            |
+    70	| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts`                                            | Created  | Vitest coverage for trade-off detection                                                       |
+    71	| `.opencode/skills/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts`                                             | Created  | Vitest coverage for lineage graph                                                             |
+    72	| `.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts`                                           | Created  | Vitest coverage for stability scoring                                                         |
+    73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`   | Created  | Playbook: mutation coverage graph tracking                                                    |
+    74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`                | Created  | Playbook: trade-off detection                                                                 |
+    75	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md`                  | Created  | Playbook: candidate lineage                                                                   |
+    76	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md`                 | Created  | Playbook: stop-reason taxonomy                                                                |
+    77	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md`               | Created  | Playbook: audit journal emission                                                              |
+    78	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md`                  | Created  | Playbook: resume continuation                                                                 |
+    79	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md`                     | Created  | Playbook: legal-stop gates                                                                    |
+    80	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md`                  | Created  | Playbook: benchmark stability                                                                 |
+    81	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
+    82	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
+    83	| `.opencode/skills/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
+    84	| `.opencode/commands/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
+    85	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
+    86	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
+    87	| `.opencode/agents/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
     88	
     89	---
     90	
@@ -4821,8 +4821,8 @@ exec
     35	
     36	| File | Action | Purpose |
     37	|------|--------|---------|
-    38	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
-    39	| `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
+    38	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Created | Verifies cross-layer graph contract alignment |
+    39	| `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` | Created | Exercises larger graph workloads and contradiction scanning |
     40	| Research graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
     41	| Review graph playbooks | Created | Add operator scenarios for graph convergence and `graphEvents` emission |
     42	| Improve-agent graph playbooks | Created | Add operator scenarios for mutation coverage, trade-off detection, and candidate lineage |
@@ -4856,12 +4856,12 @@ exec
     70	
     71	| Check | Result |
     72	|-------|--------|
-    73	| Graph integration suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
-    74	| Graph stress suite present | PASS - `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
-    75	| Research graph playbooks present | PASS - `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
-    76	| Review graph playbooks present | PASS - `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
-    77	| Improve-agent graph playbooks present | PASS - `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skill/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
-    78	| README graph references captured | PASS - `.opencode/skill/sk-deep-research/README.md`, `.opencode/skill/sk-deep-review/README.md`, and `.opencode/skill/sk-improve-agent/README.md` cited in the packet |
+    73	| Graph integration suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` |
+    74	| Graph stress suite present | PASS - `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts` |
+    75	| Research graph playbooks present | PASS - `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` and `.opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/029-graph-events-emission.md` |
+    76	| Review graph playbooks present | PASS - `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/021-graph-convergence-review.md` and `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` |
+    77	| Improve-agent graph playbooks present | PASS - `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md`, and `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md` |
+    78	| README graph references captured | PASS - `.opencode/skills/sk-deep-research/README.md`, `.opencode/skills/sk-deep-review/README.md`, and `.opencode/skills/sk-improve-agent/README.md` cited in the packet |
     79	| Strict phase validation | PASS after packet rewrite |
     80	<!-- /ANCHOR:verification -->
 
@@ -4875,7 +4875,7 @@ exec
      7	### Journal Wiring (REQ-004, REQ-005)
      8	
      9	- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
-    10	- The malformed `--event=session_initialized` CLI example in `.opencode/command/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
+    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
     11	- `SKILL.md` adds a new "Journal Wiring Contract" section documenting the three boundary points, the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums (aligned to the helper's actual validator: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery` / `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`), and the orchestrator-only emission rule.
     12	
     13	---
@@ -4901,7 +4901,7 @@ exec
     54	- Phase 008 vitest runs: trade-off-detector (17/17), benchmark-stability (23/23) — all passing with new insufficient-state assertions.
     55	- Phase 008 full vitest suite: 12/12 across 4 new phase 008 suites.
     56	- Journal wiring end-to-end: YAML workflow confirmed to call `improvement-journal.cjs --emit` at session_start + iteration boundary + session_end.
-    57	- CLI example verification: copy-paste `node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
+    57	- CLI example verification: copy-paste `node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --payload '...'` from the fixed command doc — runs clean.
     58	
     59	---
     60	
@@ -4909,19 +4909,19 @@ exec
     62	
     63	| File | Action | Description |
     64	| ---- | ------ | ----------- |
-    65	| `.opencode/skill/sk-improve-agent/SKILL.md` | Modified | Bumped version to 1.2.0.0 + added Journal Wiring Contract + ADR-002 Consumer + Sample Quality sections |
-    66	| `.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs` | Modified | minDataPoints=3 default, insufficientData state, MIN_DATA_POINTS_DEFAULT export |
-    67	| `.opencode/skill/sk-improve-agent/scripts/benchmark-stability.cjs` | Modified | minReplayCount=3 default, insufficientSample state, MIN_REPLAY_COUNT_DEFAULT export |
-    68	| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Modified | ADR-002 replay consumer (journal + lineage + coverage reads); insufficient-state propagation; Sample Quality dashboard section |
-    69	| `.opencode/skill/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Modified | Asserts insufficientData state (17/17 passing) |
-    70	| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Modified | Asserts insufficientSample state (23/23 passing) |
-    71	| `.opencode/skill/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*` | Created | Durable fixture for insufficient-sample states |
-    72	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
-    73	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
-    74	| `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
-    75	| `.opencode/command/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
-    76	| `.opencode/command/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
-    77	| `.opencode/command/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
+    65	| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Bumped version to 1.2.0.0 + added Journal Wiring Contract + ADR-002 Consumer + Sample Quality sections |
+    66	| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Modified | minDataPoints=3 default, insufficientData state, MIN_DATA_POINTS_DEFAULT export |
+    67	| `.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs` | Modified | minReplayCount=3 default, insufficientSample state, MIN_REPLAY_COUNT_DEFAULT export |
+    68	| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modified | ADR-002 replay consumer (journal + lineage + coverage reads); insufficient-state propagation; Sample Quality dashboard section |
+    69	| `.opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts` | Modified | Asserts insufficientData state (17/17 passing) |
+    70	| `.opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Modified | Asserts insufficientSample state (23/23 passing) |
+    71	| `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/*` | Created | Durable fixture for insufficient-sample states |
+    72	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
+    73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
+    74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
+    75	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
+    76	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
+    77	| `.opencode/commands/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
     78	
 
 codex
@@ -4947,7 +4947,7 @@ Recommendation: Change Phase 006 wording from “Created” to “validated/cros
 3. `F-011-003`
 Severity: `P1`
 Dimension: `traceability`
-File: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:70-76`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94-95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38-39`
+File: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:70-76`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94-95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38-39`
 Title: The “integration” suite does not verify the live TypeScript contract it claims to cover
 Description: The Phase 006 packet says `coverage-graph-integration.vitest.ts` proves CommonJS/TypeScript graph-contract alignment, but the test hardcodes `TS_VALID_RELATIONS` and weight maps instead of reading `coverage-graph-db.ts`. The file itself states those constants “must be updated” manually. That means the suite is checking CJS against an inline snapshot, not against the authoritative live TS contract, so the packet overstates the suite’s traceability value.
 Evidence: `coverage-graph-integration.vitest.ts:70-76` says the TS constants are mirrored test fixtures and are not imported from the TS module; `spec.md:94-95` and `implementation-summary.md:38-39` describe the suite as cross-layer alignment proof.
@@ -4956,7 +4956,7 @@ Recommendation: Replace the frozen inline TS fixture with a generated/shared con
 4. `F-011-004`
 Severity: `P1`
 Dimension: `traceability`
-File: `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:17-20`; `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21-28,47-67,242-259`; `.opencode/skill/sk-improve-agent/SKILL.md:326-349`
+File: `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:17-20`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28,47-67,242-259`; `.opencode/skills/sk-improve-agent/SKILL.md:326-349`
 Title: The primary Phase 005 changelog records a journal contract that does not match the shipped helper
 Description: `v1.1.0.0` documents stop reasons such as `convergedImprovement` and `benchmarkPlateau`, lists event `scored`, and describes a CLI shape of `--emit <event-json> | --read <session>`. The live helper and skill contract instead use `converged`, `candidate_scored`, and `--emit <eventType> --journal <path> --details '<json>'`. Because the Phase 005 summary points to `v1.1.0.0` as its primary release note, auditors following that artifact are led to the wrong runtime-truth contract.
 Evidence: `v1.1.0.0:17-20` vs `improvement-journal.cjs:21-28,47-67,242-259` and `SKILL.md:326-349`.
@@ -5002,7 +5002,7 @@ Recommendation: Change Phase 006 wording from “Created” to “validated/cros
 3. `F-011-003`
 Severity: `P1`
 Dimension: `traceability`
-File: `.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:70-76`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94-95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38-39`
+File: `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:70-76`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94-95`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/implementation-summary.md:38-39`
 Title: The “integration” suite does not verify the live TypeScript contract it claims to cover
 Description: The Phase 006 packet says `coverage-graph-integration.vitest.ts` proves CommonJS/TypeScript graph-contract alignment, but the test hardcodes `TS_VALID_RELATIONS` and weight maps instead of reading `coverage-graph-db.ts`. The file itself states those constants “must be updated” manually. That means the suite is checking CJS against an inline snapshot, not against the authoritative live TS contract, so the packet overstates the suite’s traceability value.
 Evidence: `coverage-graph-integration.vitest.ts:70-76` says the TS constants are mirrored test fixtures and are not imported from the TS module; `spec.md:94-95` and `implementation-summary.md:38-39` describe the suite as cross-layer alignment proof.
@@ -5011,7 +5011,7 @@ Recommendation: Replace the frozen inline TS fixture with a generated/shared con
 4. `F-011-004`
 Severity: `P1`
 Dimension: `traceability`
-File: `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:17-20`; `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs:21-28,47-67,242-259`; `.opencode/skill/sk-improve-agent/SKILL.md:326-349`
+File: `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:17-20`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28,47-67,242-259`; `.opencode/skills/sk-improve-agent/SKILL.md:326-349`
 Title: The primary Phase 005 changelog records a journal contract that does not match the shipped helper
 Description: `v1.1.0.0` documents stop reasons such as `convergedImprovement` and `benchmarkPlateau`, lists event `scored`, and describes a CLI shape of `--emit <event-json> | --read <session>`. The live helper and skill contract instead use `converged`, `candidate_scored`, and `--emit <eventType> --journal <path> --details '<json>'`. Because the Phase 005 summary points to `v1.1.0.0` as its primary release note, auditors following that artifact are led to the wrong runtime-truth contract.
 Evidence: `v1.1.0.0:17-20` vs `improvement-journal.cjs:21-28,47-67,242-259` and `SKILL.md:326-349`.

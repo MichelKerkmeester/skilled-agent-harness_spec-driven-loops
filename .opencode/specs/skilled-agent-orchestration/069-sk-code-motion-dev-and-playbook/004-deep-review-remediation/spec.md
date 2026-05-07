@@ -89,13 +89,13 @@ Clear every active finding from F-001 through F-014 except the superseded F-003 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `004-deep-review-remediation/*.md` | Create | Phase 004 planning and summary artifacts |
-| `.opencode/skill/sk-code/SKILL.md` | Modify | Remove bare Motion terms from WEBFLOW surface detection |
-| `.opencode/skill/sk-code/references/router/code_surface_detection.md` | Modify | Align surface-detection docs with MOTION_DEV intent design |
-| `.opencode/skill/sk-code/README.md` | Modify | Align routing table and Motion peer-resource note |
-| `.opencode/skill/sk-code/references/motion_dev/*.md` | Modify | Replace stale timeline citations |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Modify/Create | Fix layout/ESM snippets and add stagger snippet |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Modify | Reference stagger snippet |
-| `.opencode/skill/sk-code/manual_testing_playbook/**/*.md` | Modify | Add motion_dev preconditions, local scenario links, and dividers |
+| `.opencode/skills/sk-code/SKILL.md` | Modify | Remove bare Motion terms from WEBFLOW surface detection |
+| `.opencode/skills/sk-code/references/router/code_surface_detection.md` | Modify | Align surface-detection docs with MOTION_DEV intent design |
+| `.opencode/skills/sk-code/README.md` | Modify | Align routing table and Motion peer-resource note |
+| `.opencode/skills/sk-code/references/motion_dev/*.md` | Modify | Replace stale timeline citations |
+| `.opencode/skills/sk-code/assets/motion_dev/snippets/*.js` | Modify/Create | Fix layout/ESM snippets and add stagger snippet |
+| `.opencode/skills/sk-code/assets/motion_dev/playbook_entries.md` | Modify | Reference stagger snippet |
+| `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Modify | Add motion_dev preconditions, local scenario links, and dividers |
 | `../spec.md` | Modify | Refresh parent phase status, phase map, and answered questions |
 | `../00{1,2,3}-*/spec.md` | Modify | Refresh child continuity blocks only |
 | `../003-cross-ref-metadata-sync/graph-metadata.json` | Modify | Update delivered causal summary |
@@ -110,7 +110,7 @@ Clear every active finding from F-001 through F-014 except the superseded F-003 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | F-004 no-clobber proof is restored | `git diff --cached --numstat -- .opencode/skill/sk-code/references/webflow/` has no deletion evidence, or any deletion is explicitly documented |
+| REQ-001 | F-004 no-clobber proof is restored | `git diff --cached --numstat -- .opencode/skills/sk-code/references/webflow/` has no deletion evidence, or any deletion is explicitly documented |
 | REQ-002 | F-005 layout snippet uses documented Motion+ path | `layout_transition.js` dynamically imports `unstable_animateLayout` from `motion-plus/animate-layout` and no longer probes undocumented globals |
 
 ### P1 - Required
@@ -118,7 +118,7 @@ Clear every active finding from F-001 through F-014 except the superseded F-003 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | F-001 removes bare Motion surface markers | WEBFLOW surface detection no longer matches `from "motion"` or generic `motion.dev` |
-| REQ-004 | F-002 removes stale timeline URL | `rg "motion\.dev/docs/timeline" .opencode/skill/sk-code/` returns zero hits |
+| REQ-004 | F-002 removes stale timeline URL | `rg "motion\.dev/docs/timeline" .opencode/skills/sk-code/` returns zero hits |
 | REQ-005 | F-006 fixes ESM bootstrap | Snippet uses dynamic import, try/catch, export validation, and reduced-motion fallback |
 | REQ-006 | F-007/F-008 refresh continuity state | Parent status and child continuity blocks reflect completed work |
 | REQ-007 | F-009/F-010 align playbook and summary state | Packet 2 summary, root playbook preconditions, and Motion asset count are current |
@@ -140,7 +140,7 @@ Clear every active finding from F-001 through F-014 except the superseded F-003 
 - **SC-001**: All active findings F-001, F-002, F-004 through F-014 are FIXED or explicitly documented.
 - **SC-002**: Parent and child spec folders validate with strict spec validation.
 - **SC-003**: Motion snippets parse with `node --check`.
-- **SC-004**: No stale timeline URL remains under `.opencode/skill/sk-code/`.
+- **SC-004**: No stale timeline URL remains under `.opencode/skills/sk-code/`.
 - **SC-005**: No bare Motion marker remains in WEBFLOW surface-detection bash blocks.
 <!-- /ANCHOR:success-criteria -->
 

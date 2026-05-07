@@ -31,7 +31,7 @@ The 121-row cohort splits into two distinct upstream failure modes:
 | `memory access out of bounds` | 33 | 10 | 6 | 2 | **51** |
 
 - 100% of "resolved is not a function" failures are `.sh` files (70/70). 100% of non-.sh failures are "memory access out of bounds" (18/18 across .ts/.py/.js). The .sh extension itself splits 70/33 across the two classes.
-- The `resolved is not a function` string is **not produced by application code** — `rg 'resolved is not a function' .opencode/skill/system-spec-kit/mcp_server/code_graph/` returns zero hits. It originates from the WASM glue layer:
+- The `resolved is not a function` string is **not produced by application code** — `rg 'resolved is not a function' .opencode/skills/system-spec-kit/mcp_server/code_graph/` returns zero hits. It originates from the WASM glue layer:
   - `mcp_server/node_modules/web-tree-sitter/tree-sitter.js:1163` — `return resolved(...args);` inside a Proxy stub for unresolved WASM symbols.
 - This is consistent with a **stale-symbol-table failure inside the WASM dynamic-linker proxy**: the `resolved` closure captured at proxy construction is itself uninitialized when invoked, so calling it as a function throws TypeError. The fact that this tracks .sh files suggests the bash grammar's WASM exports a symbol set that triggers the proxy fallback path differently from typescript/python/javascript grammars.
 
@@ -77,7 +77,7 @@ Top extension breakdown:
 - `.js` — 2 (2%)
 
 All 121 paths are absolute (start with `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`). Sample top-level directory pulls (paths trimmed):
-- `.opencode/skill/system-spec-kit/scripts/` — bulk of the .sh "resolved is not a function" cohort (validate.sh, create.sh, archive.sh, calculate-completeness.sh, etc.)
+- `.opencode/skills/system-spec-kit/scripts/` — bulk of the .sh "resolved is not a function" cohort (validate.sh, create.sh, archive.sh, calculate-completeness.sh, etc.)
 - `.opencode/install_guides/install_scripts/` — install-sequential-thinking.sh, install-all.sh, _utils.sh
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/...` — 5 of the 10 .ts crashes (stress test files, all >300 lines, all using `import { ... } from '/Users/michelkerkmeester/...'` absolute imports of length 100-180 chars)
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-hook-plugin-per-runtime-testing/runners/` — the other 5 .ts crashes (common.ts, run-all-runtime-hooks.ts, test-claude-hooks.ts, test-codex-hooks.ts, test-copilot-hooks.ts, test-gemini-hooks.ts, test-opencode-plugins.ts) — same absolute-import pattern.
@@ -92,8 +92,8 @@ Sampled 5 failing files distributed across error class × extension:
 | File | Ext | Lines | Error | Notable syntactic feature |
 |---|---|---|---|---|
 | `.opencode/install_guides/install_scripts/install-sequential-thinking.sh` | .sh | 206 | resolved-not-fn | `set -euo pipefail` + heredoc-style box-drawing comments + `local` variable expansion; standard bash, NO unusual constructs (e.g., `${str//\\/\\\\}` style nested parameter expansion). |
-| `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh` | .sh | 95 | resolved-not-fn | Heavy use of nested parameter expansion `${str//\\/\\\\}`, `${str//\"/\\\"}` (4 sequential transformations on lines 33-36), function definitions with nested `[[ ]]` conditionals, `set -euo pipefail` only when invoked directly. |
-| `phase-h-stress.test.ts` (021-stress-test) | .ts | 352 | OOB | 14,805 chars; ~15 imports each using **absolute path strings 100-180 chars long** (e.g., `from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/.../search-decision-envelope.ts'`); type imports interleaved with value imports; large describe/it block. |
+| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | .sh | 95 | resolved-not-fn | Heavy use of nested parameter expansion `${str//\\/\\\\}`, `${str//\"/\\\"}` (4 sequential transformations on lines 33-36), function definitions with nested `[[ ]]` conditionals, `set -euo pipefail` only when invoked directly. |
+| `phase-h-stress.test.ts` (021-stress-test) | .ts | 352 | OOB | 14,805 chars; ~15 imports each using **absolute path strings 100-180 chars long** (e.g., `from '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/.../search-decision-envelope.ts'`); type imports interleaved with value imports; large describe/it block. |
 | `refresh_metadata.py` (scratch/reorg-2026-04-25) | .py | 200 | OOB | Generated-style script; multiple regex literals, `subprocess.run` w/ list-of-strs, large dict literals for metadata mapping. |
 | `spec-kit-compact-code-graph.js` (.opencode/plugins) | .js | 507 | OOB | Hook plugin with deeply nested object literals, regex character classes, `module.exports = { ... }` w/ 5+ nested handler closures. |
 

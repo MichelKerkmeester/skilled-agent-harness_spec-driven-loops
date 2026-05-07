@@ -50,7 +50,7 @@ Codesight also exposes an MCP server and impact-analysis layer. `external/src/mc
 14. Before deep research begins, ensure the phase folder contains the required Level 3 Spec Kit docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md`. Use `@speckit` for markdown authoring when the runtime allows agent delegation; if delegation is unavailable, preserve the same Level 3 document expectations manually.
 15. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/002-codesight" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/002-codesight" --strict
     ```
 16. Run deep research using this exact topic:
     ```text
@@ -59,7 +59,7 @@ Codesight also exposes an MCP server and impact-analysis layer. `external/src/mc
 17. Save all substantive outputs under `research/`, especially `research/research.md`. Every finding must cite exact file paths, state whether the evidence is source-confirmed, test-confirmed, or README-level, and classify the recommendation as `adopt now`, `prototype later`, or `reject`.
 18. When research completes, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/002-codesight"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/002-codesight"
     ```
 
 ## 6. Research Questions

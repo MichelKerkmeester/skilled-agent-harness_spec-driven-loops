@@ -19,8 +19,8 @@ _memory:
     next_safe_action: "Run Phase 2 implementation"
     blockers: []
     key_files:
-      - ".opencode/agent/multi-ai-council.md"
-      - ".opencode/skill/system-spec-kit/references/"
+      - ".opencode/agents/multi-ai-council.md"
+      - ".opencode/skills/system-spec-kit/references/"
     session_dedup:
       fingerprint: "sha256:291209cb8da2544cd69d61368bb0902172eb8689f546d3c6c56c9defe237c0c1"
       session_id: "spec-080-author"
@@ -45,7 +45,7 @@ The `@multi-ai-council` agent today returns deliberation results inline to chat 
 
 **Key Decisions**: lightweight bound (no dedicated skill folder), folder layout mirrors research/ and review/ patterns.
 
-**Critical Dependencies**: `.opencode/agent/multi-ai-council.md`, `validate.sh` validator, system-spec-kit references home.
+**Critical Dependencies**: `.opencode/agents/multi-ai-council.md`, `validate.sh` validator, system-spec-kit references home.
 
 ---
 
@@ -82,7 +82,7 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 ### In Scope
 - Folder convention design (`ai-council/` subfolder layout)
 - File shape canonical specs (config, strategy, state.jsonl, seats/, deliberations/, critiques/, council-report.md)
-- Agent body update (`.opencode/agent/multi-ai-council.md`)
+- Agent body update (`.opencode/agents/multi-ai-council.md`)
 - Optional shared references under `system-spec-kit/references/multi-ai-council/`
 - Validator awareness (treat `ai-council/` as known optional subfolder)
 - Plan + tasks + checklist + ADRs for implementation
@@ -99,15 +99,15 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agent/multi-ai-council.md` | Modify | Add §Output Protocol, §Invocation Contract, §State Schema, §Convergence Signal |
+| `.opencode/agents/multi-ai-council.md` | Modify | Add §Output Protocol, §Invocation Contract, §State Schema, §Convergence Signal |
 | `.claude/agents/multi-ai-council.md` | Modify | Mirror agent body changes |
 | `.codex/agents/multi-ai-council.toml` | Modify | Mirror agent body (sandbox-write adjusted) |
 | `.gemini/agents/multi-ai-council.md` | Modify | Mirror agent body changes |
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md` | Create | Folder tree reference |
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md` | Create | Lens combination guidance |
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/convergence-signals.md` | Create | 2/3 rule + escape hatches |
-| `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md` | Create | jsonl schema with examples |
-| `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` | Create | Regression test for validator |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/folder-layout.md` | Create | Folder tree reference |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/seat-diversity-patterns.md` | Create | Lens combination guidance |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/convergence-signals.md` | Create | 2/3 rule + escape hatches |
+| `.opencode/skills/system-spec-kit/references/multi-ai-council/state-format.md` | Create | jsonl schema with examples |
+| `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` | Create | Regression test for validator |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -155,7 +155,7 @@ Define and roll out an `ai-council/` subfolder convention so council outputs are
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `.opencode/agent/multi-ai-council.md` | Agent body is the primary writer of `ai-council/` | Keep agent body authoritative; reference docs are read-only support |
+| Dependency | `.opencode/agents/multi-ai-council.md` | Agent body is the primary writer of `ai-council/` | Keep agent body authoritative; reference docs are read-only support |
 | Dependency | `validate.sh` validator | Validator must not flag `ai-council/` | Validator already accepts unknown subfolders; add regression test |
 | Risk | Agent body bloat as council logic grows | Med | Hard cap at ~750 LOC; spill detail to references when crossed |
 | Risk | State.jsonl format drift across runs | Med | Document schema in references; convention-only validation for v1 |

@@ -40,7 +40,7 @@ Complete research documentation analyzing karpathy/autoresearch and 3 derivative
 
 **Related Documents**:
 - Repos: [karpathy/autoresearch](https://github.com/karpathy/autoresearch), [JoaquinMulet/AGR](https://github.com/JoaquinMulet/Artificial-General-Research), [davebcn87/pi-autoresearch](https://github.com/davebcn87/pi-autoresearch), [dabiggm0e/autoresearch-opencode](https://github.com/dabiggm0e/autoresearch-opencode)
-- Integration target: `.claude/agents/orchestrate.md`, `.opencode/skill/system-spec-kit/`
+- Integration target: `.claude/agents/orchestrate.md`, `.opencode/skills/system-spec-kit/`
 
 ---
 
@@ -70,8 +70,8 @@ Our system has `/spec_kit:research` which runs a 9-step single-pass research wor
 
 **Primary Recommendation**: Create a 3-layer integration:
 1. **`@deep-research` agent** (`.claude/agents/deep-research.md`) -- LEAF agent with loop-aware instructions, full tool access (Read, Write, Edit, Bash, Grep, Glob, WebFetch, spec_kit_memory)
-2. **`/spec_kit:deep-research` command** (`.opencode/command/spec_kit/deep-research.md`) -- YAML workflow defining the loop protocol, dispatch modes, and convergence criteria
-3. **`sk-deep-research` skill** (`.opencode/skill/sk-deep-research/`) -- Reference documentation for the protocol, templates, and configuration
+2. **`/spec_kit:deep-research` command** (`.opencode/commands/spec_kit/deep-research.md`) -- YAML workflow defining the loop protocol, dispatch modes, and convergence criteria
+3. **`sk-deep-research` skill** (`.opencode/skills/sk-deep-research/`) -- Reference documentation for the protocol, templates, and configuration
 
 **Alternative Approaches**:
 - **Enhance `/spec_kit:research`**: Add loop mode to existing 9-step workflow. Rejected: conflates two distinct use cases and bloats an already complex workflow.
@@ -162,7 +162,7 @@ User invokes: /spec_kit:deep-research "optimize API response time"
 | Repository | JoaquinMulet/Artificial-General-Research (18 stars) | [GitHub](https://github.com/JoaquinMulet/Artificial-General-Research) | Medium |
 | Repository | davebcn87/pi-autoresearch (2.1k stars, Shopify) | [GitHub](https://github.com/davebcn87/pi-autoresearch) | High |
 | Repository | dabiggm0e/autoresearch-opencode (103 stars) | [GitHub](https://github.com/dabiggm0e/autoresearch-opencode) | Medium |
-| Codebase | Our agent/skill/speckit system | `.claude/agents/`, `.opencode/skill/` | High |
+| Codebase | Our agent/skill/speckit system | `.claude/agents/`, `.opencode/skills/` | High |
 
 ---
 
@@ -489,7 +489,7 @@ Agent appends to deep-research-state.jsonl
 
 **After research**:
 ```
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder]
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder]
 memory_index_scan({ specFolder: "023-sk-deep-research-creation" })
 ```
 
@@ -512,12 +512,12 @@ memory_index_scan({ specFolder: "023-sk-deep-research-creation" })
 
 ```
 .claude/agents/deep-research.md           # Agent definition
-.opencode/command/spec_kit/              # Command definition
+.opencode/commands/spec_kit/              # Command definition
   deep-research.md                       # Command spec
   assets/
     spec_kit_deep-research_auto.yaml    # Autonomous mode workflow
     spec_kit_deep-research_confirm.yaml # Interactive mode workflow
-.opencode/skill/sk-deep-research/        # Skill reference
+.opencode/skills/sk-deep-research/        # Skill reference
   SKILL.md                             # Protocol documentation
   references/
     loop_protocol.md                   # Detailed loop specification

@@ -45,15 +45,15 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
 exec
 /bin/zsh -lc "rg --files | rg 'opencode-capture\\.ts|workflow\\.ts|contamination-filter\\.ts|validate-memory-quality\\.ts|live-cli-proof-2026-03-17\\.json'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts
-.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
-.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts
-.opencode/skill/system-spec-kit/scripts/core/workflow.ts
+.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts
+.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
+.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts
+.opencode/skills/system-spec-kit/scripts/core/workflow.ts
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/research/live-cli-proof-2026-03-17.json
 codex
 I found all referenced files and I’m now checking the exact line neighborhoods around each cited line number to validate the claims against current code.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/core/workflow.ts | sed -n '2150,2195p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/core/workflow.ts | sed -n '2150,2195p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
   2150	    // Non-blocking — health annotation failure must not prevent memory save
   2151	    log(`   Spec doc health check skipped: ${e instanceof Error ? e.message : String(e)}`);
   2152	  }
@@ -75,7 +75,7 @@ exec
   2168	  if (filterStats.qualityScore < 20) {
   2169	    const warningHeader = `> **Note:** This session had limited actionable content (quality score: ${filterStats.qualityScore}/100). ${filterStats.noiseFiltered} noise entries and ${filterStats.duplicatesRemoved} duplicates were filtered.\n\n`;
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '790,830p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts | sed -n '790,830p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    790	      promptIndex = positionIndex;
    791	    } else {
    792	      // Timestamp tolerance fallback
@@ -97,7 +97,7 @@ exec
    808	    const matchingResponses = responses.filter((r) => {
    809	      const responseMsg = messages.find((m) => m.id === r.messageId);
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '90,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts | sed -n '90,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     90	   3. FILTER LOGIC
     91	------------------------------------------------------------------*/
     92	
@@ -119,7 +119,7 @@ exec
    108	  }
    109	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env node
      2	// ---------------------------------------------------------------
      3	// MODULE: Validate Memory Quality
@@ -145,7 +145,7 @@ exec
 {
   "capturedOn": "2026-03-17",
   "capturedFromWorkspace": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",
-  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skill/system-spec-kit/scripts`",
+  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skills/system-spec-kit/scripts`",
   "proofCriteria": {
     "sameDayDate": "2026-03-17",
     "minimumExchanges": 2,
@@ -169,7 +169,7 @@ exec
      1	{
      2	  "capturedOn": "2026-03-17",
      3	  "capturedFromWorkspace": "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public",
-     4	  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skill/system-spec-kit/scripts`",
+     4	  "captureMethod": "system-spec-kit native capture extractors via `npx tsx` from `.opencode/skills/system-spec-kit/scripts`",
      5	  "proofCriteria": {
      6	    "sameDayDate": "2026-03-17",
      7	    "minimumExchanges": 2,
@@ -188,7 +188,7 @@ exec
     20	      "capturedAt": "2026-03-17T16:35:17.168Z"
 codex
 1. **P1-03 first-child selection** — **CONFIRMED**  
-Evidence: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:808) and [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:812)  
+Evidence: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:808) and [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:812)  
 Current lines:
 ```ts
 const matchingResponses = responses.filter((r) => { ... });
@@ -196,7 +196,7 @@ const response = matchingResponses[0];
 ```
 
 2. **NEW-1 frontmatter displacement** — **PARTIAL** (true when low-quality branch triggers)  
-Evidence: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168) and [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2170)  
+Evidence: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168) and [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2170)  
 Current lines:
 ```ts
 if (filterStats.qualityScore < 20) {
@@ -206,7 +206,7 @@ if (filterStats.qualityScore < 20) {
 This prepends content before the existing file start (`---`) only if `qualityScore < 20`.
 
 3. **Source-capabilities migration** — **CONFIRMED**  
-Evidence: [contamination-filter.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:110)  
+Evidence: [contamination-filter.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:110)  
 Current line:
 ```ts
 const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(options?.captureSource);
@@ -214,7 +214,7 @@ const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(
 No source-name equality check is used here for this decision path.
 
 4. **V2 index-blocking rule** — **CONFIRMED**  
-Evidence: [validate-memory-quality.ts:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:47) to [validate-memory-quality.ts:52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:52)  
+Evidence: [validate-memory-quality.ts:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:47) to [validate-memory-quality.ts:52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:52)  
 Current lines:
 ```ts
 V2: {
@@ -236,7 +236,7 @@ Current lines include:
 tokens used
 12,084
 1. **P1-03 first-child selection** — **CONFIRMED**  
-Evidence: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:808) and [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/opencode-capture.ts:812)  
+Evidence: [opencode-capture.ts:808](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:808) and [opencode-capture.ts:812](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/opencode-capture.ts:812)  
 Current lines:
 ```ts
 const matchingResponses = responses.filter((r) => { ... });
@@ -244,7 +244,7 @@ const response = matchingResponses[0];
 ```
 
 2. **NEW-1 frontmatter displacement** — **PARTIAL** (true when low-quality branch triggers)  
-Evidence: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2168) and [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:2170)  
+Evidence: [workflow.ts:2168](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2168) and [workflow.ts:2170](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:2170)  
 Current lines:
 ```ts
 if (filterStats.qualityScore < 20) {
@@ -254,7 +254,7 @@ if (filterStats.qualityScore < 20) {
 This prepends content before the existing file start (`---`) only if `qualityScore < 20`.
 
 3. **Source-capabilities migration** — **CONFIRMED**  
-Evidence: [contamination-filter.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:110)  
+Evidence: [contamination-filter.ts:110](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:110)  
 Current line:
 ```ts
 const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(options?.captureSource);
@@ -262,7 +262,7 @@ const sourceCapabilities = options?.sourceCapabilities ?? getSourceCapabilities(
 No source-name equality check is used here for this decision path.
 
 4. **V2 index-blocking rule** — **CONFIRMED**  
-Evidence: [validate-memory-quality.ts:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:47) to [validate-memory-quality.ts:52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts:52)  
+Evidence: [validate-memory-quality.ts:47](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:47) to [validate-memory-quality.ts:52](/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts:52)  
 Current lines:
 ```ts
 V2: {

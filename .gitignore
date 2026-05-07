@@ -17,7 +17,7 @@
 
 # Archive
 # ───────────────────────────────────────────
-.opencode/agent/.provider-backups/
+.opencode/agents/.provider-backups/
 
 
 # Build output
@@ -35,14 +35,14 @@ dist/
 *.db-shm
 *.db-wal
 *.sqlite3
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-shm
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-wal
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite.bak*
-.opencode/skill/system-spec-kit/mcp_server/database/.db-updated
-.opencode/skill/system-spec-kit/mcp_server/*.sqlite*
-.opencode/skill/.advisor-state/
-.opencode/skill/.smart-router-telemetry/
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
+.opencode/skills/system-spec-kit/mcp_server/database/.db-updated
+.opencode/skills/system-spec-kit/mcp_server/*.sqlite*
+.opencode/skills/.advisor-state/
+.opencode/skills/.smart-router-telemetry/
 
 # Dependencies
 # ───────────────────────────────────────────
@@ -83,8 +83,8 @@ tmp/
 # CocoIndex
 # ───────────────────────────────────────────
 .cocoindex_code/
-.opencode/skill/mcp-cocoindex-code/mcp_server/.venv/
-.opencode/skill/mcp-coco-index/mcp_server/.venv/
+.opencode/skills/mcp-cocoindex-code/mcp_server/.venv/
+.opencode/skills/mcp-coco-index/mcp_server/.venv/
 code-graph.sqlite
 
 # Not part of framework
@@ -111,18 +111,18 @@ code-graph.sqlite
 .claude/scheduled_tasks.lock
 
 # Skill-advisor runtime output artifacts
-.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
+.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
 
 # system-spec-kit runtime artifacts (from 2026-04-21 audit)
-.opencode/skill/system-spec-kit/shared/mcp_server/database/*.sqlite
-.opencode/skill/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
-.opencode/skill/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-shm
-.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
 **/.advisor-state/
 **/.advisor-state/**
 
 # Generated vitest source maps
-.opencode/skill/system-spec-kit/scripts/tests/*.vitest.d.ts.map
-.opencode/skill/system-spec-kit/scripts/tests/*.vitest.js.map
+.opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map
+.opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map

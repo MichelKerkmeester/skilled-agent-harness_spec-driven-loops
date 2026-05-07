@@ -76,10 +76,10 @@ _memory:
 ## Phase 3: Verification
 
 ### Phase Verification
-- [x] T014 [P0] Run package typecheck for the analytics module and parser changes [EVIDENCE: `TMPDIR=$PWD/.tmp/tsc-tmp npm run typecheck` passed in `.opencode/skill/system-spec-kit/mcp_server`.]
+- [x] T014 [P0] Run package typecheck for the analytics module and parser changes [EVIDENCE: `TMPDIR=$PWD/.tmp/tsc-tmp npm run typecheck` passed in `.opencode/skills/system-spec-kit/mcp_server`.]
 - [x] T015 [P0] Run focused replay and analytics tests [EVIDENCE: `TMPDIR=$PWD/.tmp/vitest-tmp npx vitest run tests/session-analytics-db.vitest.ts tests/hook-session-stop-replay.vitest.ts tests/hook-stop-token-tracking.vitest.ts` passed.]
 - [x] T016 [P0] Update `implementation-summary.md` after runtime verification completes [EVIDENCE: the implementation summary now reflects the delivered replay parser, analytics DB, and tests.]
-- [x] T017 [P0] Run strict packet validation [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict` passed.]
+- [x] T017 [P0] Run strict packet validation [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ".opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader" --strict` passed.]
 - [x] T018 [P1] Refresh packet metadata cache and description fields if needed (`description.json`) [EVIDENCE: packet description metadata now identifies `024-compact-code-graph/031-normalized-analytics-reader` correctly.]
 <!-- /ANCHOR:phase-3 -->
 

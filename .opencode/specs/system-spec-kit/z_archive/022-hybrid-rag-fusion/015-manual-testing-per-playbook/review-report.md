@@ -96,10 +96,10 @@
 | **Disposition** | Active |
 
 **Missing entries:**
-1. `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md` — Session recovery via /memory:continue
-2. `.opencode/skill/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` — Audit phase mapping note
-3. `.opencode/skill/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` — Category stub
-4. `.opencode/skill/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` — Category stub
+1. `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md` — Session recovery via /memory:continue
+2. `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md` — Audit phase mapping note
+3. `.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md` — Category stub
+4. `.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md` — Category stub
 
 **Fix:** Add rows to Section 12 table in MANUAL_TESTING_PLAYBOOK.md.
 
@@ -157,7 +157,7 @@ The Scenario Registry provides a quick lookup mapping scenario IDs to feature ca
 | **Evidence** | Round 2-6 content-based matching confirmed coverage exists via feature-flag-gated scenarios (IDs 156-180) |
 | **Disposition** | Active |
 
-These 25 features were originally counted as P0 (no coverage) but rounds 2-6 verified that playbook scenarios DO exist — they just lack the `- Feature catalog:` back-reference link. The mappings are via feature-flag-gated scenario files (e.g., `166-result-explain-v1` → `.opencode/skill/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md`).
+These 25 features were originally counted as P0 (no coverage) but rounds 2-6 verified that playbook scenarios DO exist — they just lack the `- Feature catalog:` back-reference link. The mappings are via feature-flag-gated scenario files (e.g., `166-result-explain-v1` → `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md`).
 
 **Affected categories:** 18-UX Hooks (6), 10-Graph Signal (4), 11-Scoring (4), 12-Query Intel (5), 13-Memory Quality (5), 01-Retrieval (1)
 
@@ -294,7 +294,7 @@ These 25 features were originally counted as P0 (no coverage) but rounds 2-6 ver
 - `playbook_capability`: 190/230 scenarios have feature catalog back-references (82.6%). 40 scenarios missing back-refs.
 
 ### Sources Reviewed
-- `.opencode/skill/system-spec-kit/feature_catalog/` — 222 entries across 21 categories
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/` — 230 scenarios across 19 categories + root
+- `.opencode/skills/system-spec-kit/feature_catalog/` — 222 entries across 21 categories
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/` — 230 scenarios across 19 categories + root
 - `specs/system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/` — 22 spec phases + root docs
 - Section 12 of MANUAL_TESTING_PLAYBOOK.md — 219 cross-reference entries, 214 links verified

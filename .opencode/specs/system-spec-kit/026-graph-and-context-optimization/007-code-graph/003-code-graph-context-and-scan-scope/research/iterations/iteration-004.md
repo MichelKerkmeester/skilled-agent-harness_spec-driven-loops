@@ -19,10 +19,10 @@ No production code was changed in this iteration.
 3. Inspected the current `007-deep-review-remediation/` topology and packet 012 docs.
 4. Re-read iteration 003 and the active `deep-research-state.jsonl`.
 5. Anchored implementation task line references against current code in:
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
-   - `.opencode/skill/system-spec-kit/mcp_server/code-graph/README.md`
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/tests/code-graph-scan.vitest.ts`
+   - `.opencode/skills/system-spec-kit/mcp_server/code-graph/README.md`
 
 ## Spec Folder Decision
 
@@ -78,7 +78,7 @@ Ruled out:
 | T-009 | test | `code-graph/tests/code-graph-scan.vitest.ts:85-168` | Add scan handler integration test: `incremental:false` passes `skipFreshFiles:false`, emits `fullScanRequested:true`, `effectiveIncremental:false`. | ~45 lines | T-005/T-007 |
 | T-010 | test | `tests/tree-sitter-parser.vitest.ts` | Add `capturesToNodes()` duplicate-symbol regression test using duplicate captures from the same file/kind/fqName. | ~25 lines | T-006 |
 | T-011 | doc | `code-graph/README.md:165-183` | Update scan behavior matrix with `fullScanRequested`, `effectiveIncremental`, and note `filesScanned` means parsed/persisted result count, not discovered candidates. | <=18 lines | T-007 |
-| T-012 | build | `.opencode/skill/system-spec-kit/mcp_server/` | Run `npm run build`. | none | T-003 through T-011 |
+| T-012 | build | `.opencode/skills/system-spec-kit/mcp_server/` | Run `npm run build`. | none | T-003 through T-011 |
 | T-013 | verify | MCP runtime | Restart MCP server; run full scan; assert `filesScanned >= 1000`, zero `errors[]`, and new response fields. | none | T-012 |
 | T-014 | verify | MCP runtime | Run `code_graph_status`, `code_graph_query`, and `code_graph_context` smoke checks against the larger graph. | none | T-013 |
 | T-015 | doc | nested packet docs | Update tasks/checklist/implementation-summary with evidence, including dropped duplicate count and scan duration. | docs only | T-013/T-014 |
@@ -117,7 +117,7 @@ Ordering rationale:
 - [ ] AC-6: Existing focused Vitest suites pass, including structural contract and tree-sitter parser suites; expected baseline after packet 012 was 20 tests across those two files, and new tests should raise that count.
 - [ ] AC-7: New tests exist: at least 3 `indexFiles` option tests, 1 scan handler integration test, and 1 duplicate-symbol regression test.
 - [ ] AC-8: `code_graph_query`, `code_graph_context`, and `code_graph_status` response shapes remain backward-compatible and pass smoke checks against the larger graph.
-- [ ] AC-9: `npm run build` passes in `.opencode/skill/system-spec-kit/mcp_server/`.
+- [ ] AC-9: `npm run build` passes in `.opencode/skills/system-spec-kit/mcp_server/`.
 - [ ] AC-10: The implementation summary records scan duration, total files, total nodes, total edges, and duplicate symbols dropped by file.
 
 Acceptance coverage gaps:

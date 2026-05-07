@@ -8,12 +8,12 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 ### Target surface
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/` (entire dir)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/{query,scan,verify,status,context,detect-changes}.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/` (post-038 stress tests)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/` (entire dir)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/{query,scan,verify,status,context,detect-changes}.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/` (post-038 stress tests)
 
 ### Audit dimensions + readiness-specific questions
 

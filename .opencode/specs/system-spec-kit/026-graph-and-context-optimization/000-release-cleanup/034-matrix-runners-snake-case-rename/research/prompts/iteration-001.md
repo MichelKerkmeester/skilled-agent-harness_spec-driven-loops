@@ -8,7 +8,7 @@ The packet folder is: `specs/system-spec-kit/026-graph-and-context-optimization/
 
 ### Goal
 
-Rename `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` (kebab-case) to `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` (snake_case) to match the convention used by adjacent dirs:
+Rename `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` (kebab-case) to `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/` (snake_case) to match the convention used by adjacent dirs:
 
 | Existing dir | Convention |
 |--------------|------------|
@@ -27,7 +27,7 @@ This is a pure rename + reference update operation. No semantic code changes.
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-git mv .opencode/skill/system-spec-kit/mcp_server/matrix_runners .opencode/skill/system-spec-kit/mcp_server/matrix_runners
+git mv .opencode/skills/system-spec-kit/mcp_server/matrix_runners .opencode/skills/system-spec-kit/mcp_server/matrix_runners
 ```
 
 If `git mv` is blocked by sandbox `.git/index.lock` (known issue), fall back to filesystem mv + git add/rm.
@@ -45,13 +45,13 @@ grep -rln 'matrix_runners' .opencode/ specs/ AGENTS.md CLAUDE.md README.md \
 ```
 
 Surfaces likely affected:
-- `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/*.ts` — internal cross-imports between adapter files
-- `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` — imports from matrix_runners
-- `.opencode/skill/system-spec-kit/mcp_server/package.json` — npm scripts (`npm run hook-tests`, etc.)
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` and `vitest.stress.config.ts` — include/exclude patterns
-- `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json` — path aliases or include patterns (if any)
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` — documentation references
-- `.opencode/skill/system-spec-kit/SKILL.md`, `ARCHITECTURE.md` — top-level skill docs
+- `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/*.ts` — internal cross-imports between adapter files
+- `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-*.vitest.ts` — imports from matrix_runners
+- `.opencode/skills/system-spec-kit/mcp_server/package.json` — npm scripts (`npm run hook-tests`, etc.)
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` and `vitest.stress.config.ts` — include/exclude patterns
+- `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` — path aliases or include patterns (if any)
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` — documentation references
+- `.opencode/skills/system-spec-kit/SKILL.md`, `ARCHITECTURE.md` — top-level skill docs
 - Root `README.md` — was just updated in 042; check for matrix_runners refs
 - `AGENTS.md` — if it references matrix_runners
 - Spec docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/023-cli-matrix-adapter-runners/` — update path refs in implementation-summary.md, plan.md, etc.
@@ -65,7 +65,7 @@ The `mcp_server/matrix_runners/README.md` itself is now an evergreen doc inside 
 ### Phase 3: Verify
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build  # MUST pass — no broken imports
 npx vitest run matrix-adapter  # all 5 smoke tests still pass
 ```

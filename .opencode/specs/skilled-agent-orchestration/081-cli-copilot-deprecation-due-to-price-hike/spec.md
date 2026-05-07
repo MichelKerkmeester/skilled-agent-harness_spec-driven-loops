@@ -19,10 +19,10 @@ _memory:
     next_safe_action: "Author plan.md"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-copilot/"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
+      - ".opencode/skills/cli-copilot/"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json"
       - ".opencode/changelog/cli-copilot/"
     completion_pct: 10
     open_questions: []
@@ -65,7 +65,7 @@ _memory:
 GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:
 
 1. **Misleading routing** — the skill advisor still ranks `cli-copilot` highly for prompts like "use copilot cli", "delegate to copilot", "cloud delegation". Users reaching for cloud delegation get pointed to a CLI we no longer want them to use.
-2. **Maintenance debt** — the cli-copilot skill, its hooks (`.github/hooks/spec-kit-copilot-hook.sh`, `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/`), its matrix-runner adapter (`adapter-cli-copilot.ts`), its smoke test (`matrix-adapter-copilot.vitest.ts`), and its 50+ manual-testing-playbook scenarios all need to be kept current as `gpt-5.5`/`gpt-codex`/`grok-code-fast-1` model lineups shift. That maintenance is sunk-cost relative to the deprecation decision.
+2. **Maintenance debt** — the cli-copilot skill, its hooks (`.github/hooks/spec-kit-copilot-hook.sh`, `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/`), its matrix-runner adapter (`adapter-cli-copilot.ts`), its smoke test (`matrix-adapter-copilot.vitest.ts`), and its 50+ manual-testing-playbook scenarios all need to be kept current as `gpt-5.5`/`gpt-codex`/`grok-code-fast-1` model lineups shift. That maintenance is sunk-cost relative to the deprecation decision.
 3. **Cross-skill clutter** — every sibling `cli-*` SKILL.md, every cross-CLI orchestration manual, every routing table in `CLAUDE.md` / `AGENTS.md` / `README.md` lists `cli-copilot` as one of the supported executors. Each of those mentions becomes incorrect on deprecation day.
 
 ### Purpose
@@ -86,15 +86,15 @@ Physically delete `cli-copilot` and every live-config reference. After this pack
 
 ### In Scope
 
-- **Skill self-delete.** `rm -rf .opencode/skill/cli-copilot/` (entire directory tree including 50+ manual-testing-playbook scenarios, references, assets, scripts, changelog/, graph-metadata.json).
+- **Skill self-delete.** `rm -rf .opencode/skills/cli-copilot/` (entire directory tree including 50+ manual-testing-playbook scenarios, references, assets, scripts, changelog/, graph-metadata.json).
 - **Global skill changelog directory.** `rm -rf .opencode/changelog/cli-copilot/` (the cli-copilot global changelog folder).
-- **Hooks.** `.github/hooks/spec-kit-copilot-hook.sh` (file), `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/` (directory).
-- **Matrix runner adapter.** `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` (file), `.opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` (file). Plus edits to `run-matrix.ts`, `matrix-manifest.json`, `matrix_runners/README.md` to drop the cli-copilot adapter wiring.
+- **Hooks.** `.github/hooks/spec-kit-copilot-hook.sh` (file), `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/` (directory).
+- **Matrix runner adapter.** `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts` (file), `.opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts` (file). Plus edits to `run-matrix.ts`, `matrix-manifest.json`, `matrix_runners/README.md` to drop the cli-copilot adapter wiring.
 - **Skill advisor scoring tables.** `skill_advisor.py` (TOKEN_BOOSTS, PHRASE_BOOSTS, command-bridge tiebreaker prose, AMBIGUITY_DELTA fixtures), `skill-graph.json` (every `cli-copilot` node + edge), `graph-metadata.json` (the cli-copilot edge entry), `check-prompt-quality-card-sync.sh` (path list), `fixtures/skill_advisor_regression_cases.jsonl` (P1-CLI-004 line).
 - **Sibling cli-\* skill bodies.** `cli-claude-code/{SKILL.md,README.md,graph-metadata.json,manual_testing_playbook/}`, `cli-codex/{SKILL.md,README.md,graph-metadata.json}`, `cli-gemini/{SKILL.md,README.md,graph-metadata.json}`, `cli-opencode/{SKILL.md,README.md,graph-metadata.json,manual_testing_playbook/,references/integration_patterns.md,references/opencode_tools.md,assets/prompt_templates.md}`. Scrub every `cli-copilot` mention — usually replaced with the surviving cli-* peer list, or removed cleanly when it documents a cli-copilot-specific dispatch.
-- **Agents.** `.opencode/agent/multi-ai-council.md` plus its 3 runtime mirrors (`.claude/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml`, `.gemini/agents/multi-ai-council.md`).
-- **Commands.** `.opencode/command/spec_kit/deep-research.md`, `.opencode/command/spec_kit/deep-review.md`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`. (Note: command-mirroring to runtime dirs is targeted only where existing routing references exist; many command files don't have runtime mirrors.)
-- **Routing docs.** `CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skill/README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`.
+- **Agents.** `.opencode/agents/multi-ai-council.md` plus its 3 runtime mirrors (`.claude/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml`, `.gemini/agents/multi-ai-council.md`).
+- **Commands.** `.opencode/commands/spec_kit/deep-research.md`, `.opencode/commands/spec_kit/deep-review.md`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`. (Note: command-mirroring to runtime dirs is targeted only where existing routing references exist; many command files don't have runtime mirrors.)
+- **Routing docs.** `CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skills/README.md`, `.opencode/install_guides/README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`.
 - **Cross-skill manual-testing-playbook + feature-catalog references** that name `cli-copilot` as a supported CLI executor — `sk-doc/`, `sk-code/`, `sk-improve-prompt/`, `deep-research/`, `deep-review/`, `deep-agent-improvement/`, `system-spec-kit/feature_catalog/16--tooling-and-scripts/`, `system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/`. Two specific files are deleted as cli-copilot-specific (`feature_catalog/16/36-copilot-target-authority-helper.md`, `feature_catalog/18/21-shared-provenance-and-copilot-compact-cache-parity.md` and the matching playbook files); the rest are edited.
 - **Re-index.** Run `skill_advisor` rebuild → `skill_graph_scan` → `code_graph_scan` after edits to refresh in-memory tables and graph indexes.
 - **Memory annotation.** Add a deprecation marker line to `memory/feedback_copilot_concurrency_override.md` indicating the rule is historical (do NOT delete).
@@ -121,13 +121,13 @@ See `resource-map.md` for the full enumerated inventory across 6 buckets (DELETE
 
 ### P0 - Blockers (MUST complete)
 
-- **R-001** Skill folder `.opencode/skill/cli-copilot/` is physically deleted (no `z_archive/`, no `.bak`, no commented-out tombstone).
+- **R-001** Skill folder `.opencode/skills/cli-copilot/` is physically deleted (no `z_archive/`, no `.bak`, no commented-out tombstone).
 - **R-002** Global skill changelog `.opencode/changelog/cli-copilot/` is physically deleted.
 - **R-003** Skill advisor scoring tables (`skill_advisor.py`, `skill-graph.json`, `graph-metadata.json`, `check-prompt-quality-card-sync.sh`, `fixtures/skill_advisor_regression_cases.jsonl`) contain zero `cli-copilot` references after edits.
 - **R-004** Skill advisor smoke test: invoking `python3 skill_advisor.py "use copilot cli"` and `python3 skill_advisor.py "delegate to copilot for cloud delegation"` returns no `cli-copilot` recommendation in the top results.
 - **R-005** Sibling `cli-*` skill bodies (cli-claude-code, cli-codex, cli-gemini, cli-opencode — SKILL.md + README.md + graph-metadata.json + manual_testing_playbook + references + assets) contain zero `cli-copilot` references after edits.
 - **R-006** Agent + command files (`multi-ai-council.md` ×4 runtimes, `deep-research.md`, `deep-review.md`, `spec_kit_deep-research_auto.yaml`) contain zero `cli-copilot` references after edits.
-- **R-007** Routing docs (`CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skill/README.md`, both `install_guides/`) contain zero `cli-copilot` references after edits.
+- **R-007** Routing docs (`CLAUDE.md`, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `.opencode/skills/README.md`, both `install_guides/`) contain zero `cli-copilot` references after edits.
 - **R-008** Live-config grep gate: `grep -rln 'cli-copilot' . --include='*.md' --include='*.json' --include='*.jsonc' --include='*.yaml' --include='*.yml' --include='*.toml' --include='*.ts' --include='*.js' --include='*.py' --include='*.sh' --exclude-dir='node_modules' --exclude-dir='dist' --exclude-dir='.git' --exclude-dir='z_archive' --exclude-dir='memory' --exclude-dir='specs' --exclude-dir='.venv'` returns hits ONLY in this packet's own spec docs.
 - **R-009** `validate.sh .opencode/specs/skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike --strict` exits 0.
 - **R-010** All P0 checklist items in `checklist.md` marked `[x]` with evidence citations.
@@ -156,9 +156,9 @@ See `resource-map.md` for the full enumerated inventory across 6 buckets (DELETE
 | ID | Criterion | Verification |
 |----|-----------|--------------|
 | SC-1 | Zero `cli-copilot` hits in live config | `grep -rln 'cli-copilot' . [excludes]` shows only this packet's docs |
-| SC-2 | Skill folder gone | `[ ! -d .opencode/skill/cli-copilot ]` |
+| SC-2 | Skill folder gone | `[ ! -d .opencode/skills/cli-copilot ]` |
 | SC-3 | Global changelog dir gone | `[ ! -d .opencode/changelog/cli-copilot ]` |
-| SC-4 | Hook + adapter files gone | `[ ! -f .github/hooks/spec-kit-copilot-hook.sh ] && [ ! -f .opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ]` |
+| SC-4 | Hook + adapter files gone | `[ ! -f .github/hooks/spec-kit-copilot-hook.sh ] && [ ! -f .opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts ]` |
 | SC-5 | Advisor never recommends cli-copilot | `python3 skill_advisor.py "use copilot cli" --threshold 0` shows no cli-copilot in top-N |
 | SC-6 | Strict spec validation passes | `validate.sh <spec-folder> --strict` exits 0 |
 | SC-7 | Mirror parity | `.claude/`, `.gemini/`, `.codex/` reflect canonical edits |
@@ -184,7 +184,7 @@ See `resource-map.md` for the full enumerated inventory across 6 buckets (DELETE
 
 ### Dependencies
 
-- `cli-codex` skill (`.opencode/skill/cli-codex/`) — required as the dispatcher for parallel batches; this packet does NOT modify cli-codex's own contents in a way that breaks dispatch.
+- `cli-codex` skill (`.opencode/skills/cli-codex/`) — required as the dispatcher for parallel batches; this packet does NOT modify cli-codex's own contents in a way that breaks dispatch.
 - Skill advisor MCP service — runs locally; rebuild via `skill_advisor` MCP tool or `python3 skill_advisor.py --rebuild` after edits.
 - Code graph MCP service — `code_graph_scan` MCP tool to refresh after edits.
 - `validate.sh` script — strict mode is the gate.

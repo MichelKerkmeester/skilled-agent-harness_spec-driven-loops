@@ -66,124 +66,124 @@ Each iteration was dispatched as an independent cli-codex run using `gpt-5.5` wi
 
 ### Skill advisor daemon and freshness
 
-- `F-001-A1-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:361-368`, P1: watcher enqueue can start overlapping `flushPending()` runs. Serialize flushes with a watcher-local mutex/drain promise.
-- `F-001-A1-02`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:85-94`, P1: shutdown can publish `unavailable`, then pending watcher flush can republish `live`. Close/flush first or suppress generation publication during shutdown, then publish one terminal state.
-- `F-001-A1-03`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:71-80`, P1: stale generation-lock reclamation is not owner-safe. Store a unique lock token and release/delete only when ownership still matches.
-- `F-001-A1-04`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:123-127`, P2: cache invalidation can arrive out of order after lock release. Emit while locked or make invalidation state/listeners monotonic.
-- `F-003-A3-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:336-343`, P1: target refresh adds new watched paths but never unwatches removed ones. Add `unwatch` support or recreate the watcher on target shrink.
-- `F-003-A3-02`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:321`, P2: diagnostics array grows for process lifetime. Replace with a bounded ring buffer plus aggregate counters.
-- `F-004-A4-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts:237-240`, P1: SQLite projection failures silently fall back to filesystem projection. Emit diagnostics or fail open with explicit stale/unavailable state.
-- `F-004-A4-04`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:155-172`, P2: malformed `graph-metadata.json` silently drops derived key-file watch targets. Record a diagnostic or quarantine malformed metadata.
-- `F-005-A5-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:92-95`, P1: advisor `workspaceRoot` accepts arbitrary non-empty strings. Resolve/realpath and bound to the current workspace or an explicit allowlist.
-- `F-005-A5-02`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:116-135`, P1: corpus/regression JSONL rows are cast without schema validation. Add strict row schemas and line-numbered validation errors.
-- `F-005-A5-03`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:220-238`, P2: Python stdout top-skill output is parsed without shape/length validation. Validate as `Array<string|null>` with exact input-row length.
+- `F-001-A1-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:361-368`, P1: watcher enqueue can start overlapping `flushPending()` runs. Serialize flushes with a watcher-local mutex/drain promise.
+- `F-001-A1-02`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts:85-94`, P1: shutdown can publish `unavailable`, then pending watcher flush can republish `live`. Close/flush first or suppress generation publication during shutdown, then publish one terminal state.
+- `F-001-A1-03`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:71-80`, P1: stale generation-lock reclamation is not owner-safe. Store a unique lock token and release/delete only when ownership still matches.
+- `F-001-A1-04`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts:123-127`, P2: cache invalidation can arrive out of order after lock release. Emit while locked or make invalidation state/listeners monotonic.
+- `F-003-A3-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:336-343`, P1: target refresh adds new watched paths but never unwatches removed ones. Add `unwatch` support or recreate the watcher on target shrink.
+- `F-003-A3-02`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:321`, P2: diagnostics array grows for process lifetime. Replace with a bounded ring buffer plus aggregate counters.
+- `F-004-A4-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts:237-240`, P1: SQLite projection failures silently fall back to filesystem projection. Emit diagnostics or fail open with explicit stale/unavailable state.
+- `F-004-A4-04`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:155-172`, P2: malformed `graph-metadata.json` silently drops derived key-file watch targets. Record a diagnostic or quarantine malformed metadata.
+- `F-005-A5-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:92-95`, P1: advisor `workspaceRoot` accepts arbitrary non-empty strings. Resolve/realpath and bound to the current workspace or an explicit allowlist.
+- `F-005-A5-02`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:116-135`, P1: corpus/regression JSONL rows are cast without schema validation. Add strict row schemas and line-numbered validation errors.
+- `F-005-A5-03`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-validate.ts:220-238`, P2: Python stdout top-skill output is parsed without shape/length validation. Validate as `Array<string|null>` with exact input-row length.
 
 ### Code graph and shared MCP server
 
-- `F-002-A2-01`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:271`, P1: per-file persistence spans multiple independent write phases. Wrap stage-file, nodes, edges, and finalize-file in one atomic write unit.
-- `F-002-A2-02`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:159`, P1: SQLite lacks explicit contention policy for shared graph DB writes. Add busy timeout/retry and reserve writers with `BEGIN IMMEDIATE` or file-lock scan serialization.
-- `F-002-A2-03`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089`, P2: logical graph queries use multiple SELECTs without a consistent snapshot. Wrap query reads in short read transactions or use a completed generation marker.
-- `F-003-A3-03`, `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:223-232`, P2: file-watcher backpressure queue is unbounded. Coalesce by path, cap queue depth, and abort queued work on close.
-- `F-004-A4-02`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:501-526`, P2: subject resolution swallows DB failures as unresolved subject. Return typed unavailable/error metadata.
-- `F-004-A4-03`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:253-296`, P2: malformed metadata JSON collapses to `null`, including verification-gate state. Distinguish absent, corrupt, and invalid-shape records.
-- `F-005-A5-04`, `.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:807-808`, P2: generic JSON parsing can emit non-`string[]` trigger phrases. Use typed array validation.
-- `F-005-A5-05`, `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:513-543`, P2: description metadata bypasses the existing `perFolderDescriptionSchema`. Reuse the schema and surface path-aware errors.
-- `F-005-A5-06`, `.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1568-1578`, P2: checkpoint restore casts snapshots after minimal array checks. Add a snapshot schema and reject/quarantine malformed rows.
+- `F-002-A2-01`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:271`, P1: per-file persistence spans multiple independent write phases. Wrap stage-file, nodes, edges, and finalize-file in one atomic write unit.
+- `F-002-A2-02`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:159`, P1: SQLite lacks explicit contention policy for shared graph DB writes. Add busy timeout/retry and reserve writers with `BEGIN IMMEDIATE` or file-lock scan serialization.
+- `F-002-A2-03`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts:1089`, P2: logical graph queries use multiple SELECTs without a consistent snapshot. Wrap query reads in short read transactions or use a completed generation marker.
+- `F-003-A3-03`, `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts:223-232`, P2: file-watcher backpressure queue is unbounded. Coalesce by path, cap queue depth, and abort queued work on close.
+- `F-004-A4-02`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts:501-526`, P2: subject resolution swallows DB failures as unresolved subject. Return typed unavailable/error metadata.
+- `F-004-A4-03`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:253-296`, P2: malformed metadata JSON collapses to `null`, including verification-gate state. Distinguish absent, corrupt, and invalid-shape records.
+- `F-005-A5-04`, `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:807-808`, P2: generic JSON parsing can emit non-`string[]` trigger phrases. Use typed array validation.
+- `F-005-A5-05`, `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:513-543`, P2: description metadata bypasses the existing `perFolderDescriptionSchema`. Reuse the schema and surface path-aware errors.
+- `F-005-A5-06`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1568-1578`, P2: checkpoint restore casts snapshots after minimal array checks. Add a snapshot schema and reject/quarantine malformed rows.
 
 ## §6 Findings — Wiring/Automation Bugs (Category B)
 
 ### Runtime hooks and OpenCode plugin bridge
 
-- `F-006-B1-01`, `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`, P2: Codex timeout fallback emits a bespoke advisor brief. Move it behind the shared renderer or version/document it as Codex-only.
-- `F-006-B1-02`, `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:316`, P2: OpenCode disabled mode is model-visible while other runtimes fail open silently. Align disabled behavior or document it as runtime-specific status.
-- `F-006-B1-03`, `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:117`, P2: dead alternate bridge renderer can drift from the shared format. Remove it or assert bridge output only uses `renderAdvisorBrief()`.
+- `F-006-B1-01`, `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:194`, P2: Codex timeout fallback emits a bespoke advisor brief. Move it behind the shared renderer or version/document it as Codex-only.
+- `F-006-B1-02`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:316`, P2: OpenCode disabled mode is model-visible while other runtimes fail open silently. Align disabled behavior or document it as runtime-specific status.
+- `F-006-B1-03`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:117`, P2: dead alternate bridge renderer can drift from the shared format. Remove it or assert bridge output only uses `renderAdvisorBrief()`.
 
 ### CLI orchestrator skills
 
-- `F-007-B2-01`, `.opencode/skill/cli-opencode/SKILL.md:292-294`, P1: cli-opencode says subagents are not directly invokable, then later directly invokes them. Pick one dispatch contract and update roster/examples.
-- `F-007-B2-02`, `.opencode/skill/cli-opencode/references/agent_delegation.md:202-205`, P1: OpenCode references/templates bypass command-owned deep-loop routing. Route through parent commands or narrowly document approved leaf-only invocation.
-- `F-007-B2-03`, `.opencode/skill/cli-copilot/SKILL.md:280`, P1: Copilot effort flag and default-effort docs contradict the CLI reference. Confirm live CLI support and update SKILL.md or reference accordingly.
-- `F-007-B2-04`, `.opencode/skill/cli-codex/assets/prompt_templates.md:52-55`, P2: Codex templates omit required model/effort/tier pins and misdescribe `--full-auto`. Align templates to SKILL.md semantics.
-- `F-007-B2-05`, `.opencode/skill/cli-claude-code/assets/prompt_templates.md:52-55`, P2: Claude Code templates omit explicit `--model`. Add `--model claude-sonnet-4-6` to default templates.
-- `F-007-B2-06`, `.opencode/skill/cli-gemini/assets/prompt_templates.md:45-47`, P2: Gemini write templates embed `--yolo` without approval preconditions. Split safe templates from explicitly approved write templates.
+- `F-007-B2-01`, `.opencode/skills/cli-opencode/SKILL.md:292-294`, P1: cli-opencode says subagents are not directly invokable, then later directly invokes them. Pick one dispatch contract and update roster/examples.
+- `F-007-B2-02`, `.opencode/skills/cli-opencode/references/agent_delegation.md:202-205`, P1: OpenCode references/templates bypass command-owned deep-loop routing. Route through parent commands or narrowly document approved leaf-only invocation.
+- `F-007-B2-03`, `.opencode/skills/cli-copilot/SKILL.md:280`, P1: Copilot effort flag and default-effort docs contradict the CLI reference. Confirm live CLI support and update SKILL.md or reference accordingly.
+- `F-007-B2-04`, `.opencode/skills/cli-codex/assets/prompt_templates.md:52-55`, P2: Codex templates omit required model/effort/tier pins and misdescribe `--full-auto`. Align templates to SKILL.md semantics.
+- `F-007-B2-05`, `.opencode/skills/cli-claude-code/assets/prompt_templates.md:52-55`, P2: Claude Code templates omit explicit `--model`. Add `--model claude-sonnet-4-6` to default templates.
+- `F-007-B2-06`, `.opencode/skills/cli-gemini/assets/prompt_templates.md:45-47`, P2: Gemini write templates embed `--yolo` without approval preconditions. Split safe templates from explicitly approved write templates.
 
 ### Memory, validators, and spec-kit workflows
 
-- `F-008-B3-01`, `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:872`, P1: causal-link parser claims `causal_links` but only matches `causalLinks`. Accept both keys through shared frontmatter/YAML parsing.
-- `F-008-B3-02`, `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:405`, P1: causal-link insert count increments even when storage returns `null`. Count only real row IDs and report skipped reasons.
-- `F-009-B4-01`, `.opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:63`, P1: Markdown link extraction mishandles angle-bracket links and misses reference definitions. Use a Markdown-aware parser or explicit format coverage.
-- `F-009-B4-02`, `.opencode/skill/system-spec-kit/scripts/rules/check-evidence.sh:78`, P1: evidence check treats same-line second checkbox as evidence. Require semantic evidence markers or structured evidence fields.
-- `F-009-B4-03`, `.opencode/skill/system-spec-kit/scripts/rules/check-evidence.sh:57`, P2: evidence check does not share priority parsing with priority-tag rule. Reuse one parser or recognize all accepted priority formats.
-- `F-009-B4-04`, `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:73`, P1: template header wrapper ignores middle-of-structure extra headers. Preserve helper `extra_header` results and classify by position.
-- `F-009-B4-05`, `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh:91`, P2: checklist guard misses uppercase `[X]`. Match checkbox classes used by the rest of the validator.
-- `F-010-B5-01`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:179-182`, P1: deep-research lock is acquired before classification but not released on halt/cancel paths. Add finally cleanup or acquire after terminal-state classification.
-- `F-010-B5-02`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:851-853`, P1: deep-research fallback record uses `run` and omits required iteration fields. Emit canonical error iteration records or non-counted failure events.
-- `F-010-B5-03`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:812-814`, P1: deep-review has the same malformed fallback record problem. Align fallback schema or use non-iteration failure events.
-- `F-010-B5-04`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:235-249`, P2: `--no-resource-map` is parsed in markdown then overwritten by YAML config creation. Pass the flag into YAML config for research and review modes.
+- `F-008-B3-01`, `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:872`, P1: causal-link parser claims `causal_links` but only matches `causalLinks`. Accept both keys through shared frontmatter/YAML parsing.
+- `F-008-B3-02`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:405`, P1: causal-link insert count increments even when storage returns `null`. Count only real row IDs and report skipped reasons.
+- `F-009-B4-01`, `.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh:63`, P1: Markdown link extraction mishandles angle-bracket links and misses reference definitions. Use a Markdown-aware parser or explicit format coverage.
+- `F-009-B4-02`, `.opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh:78`, P1: evidence check treats same-line second checkbox as evidence. Require semantic evidence markers or structured evidence fields.
+- `F-009-B4-03`, `.opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh:57`, P2: evidence check does not share priority parsing with priority-tag rule. Reuse one parser or recognize all accepted priority formats.
+- `F-009-B4-04`, `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:73`, P1: template header wrapper ignores middle-of-structure extra headers. Preserve helper `extra_header` results and classify by position.
+- `F-009-B4-05`, `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh:91`, P2: checklist guard misses uppercase `[X]`. Match checkbox classes used by the rest of the validator.
+- `F-010-B5-01`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:179-182`, P1: deep-research lock is acquired before classification but not released on halt/cancel paths. Add finally cleanup or acquire after terminal-state classification.
+- `F-010-B5-02`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:851-853`, P1: deep-research fallback record uses `run` and omits required iteration fields. Emit canonical error iteration records or non-counted failure events.
+- `F-010-B5-03`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:812-814`, P1: deep-review has the same malformed fallback record problem. Align fallback schema or use non-iteration failure events.
+- `F-010-B5-04`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:235-249`, P2: `--no-resource-map` is parsed in markdown then overwritten by YAML config creation. Pass the flag into YAML config for research and review modes.
 
 ## §7 Findings — Refinement/Improvement (Category C)
 
 ### Search quality and reranking
 
-- `F-011-C1-01`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts:10`, P2: W3-W13 summary lacks NDCG/MRR. Add rank-sensitive metrics such as NDCG@3 and NDCG@10.
-- `F-011-C1-02`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:42`, P1: rerank is blocked for fewer than four candidates, including ambiguous three-candidate cases. Lower the floor for weak-margin/disagreement triggers or overfetch before Stage 3.
-- `F-011-C1-03`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:31`, P1: provider `maxDocuments` is declared but not enforced. Apply a top-N candidate window before provider calls and merge the untouched tail.
-- `F-011-C1-04`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:47`, P2: duplicate-density overfetch is telemetry-only. Graduate bounded adaptive overfetch behind latency/recall guardrails.
-- `F-011-C1-05`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1270`, P2: learned Stage 2 scoring remains shadow-only despite quality gains. Promote as a small guarded blend after stable deltas.
+- `F-011-C1-01`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts:10`, P2: W3-W13 summary lacks NDCG/MRR. Add rank-sensitive metrics such as NDCG@3 and NDCG@10.
+- `F-011-C1-02`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:42`, P1: rerank is blocked for fewer than four candidates, including ambiguous three-candidate cases. Lower the floor for weak-margin/disagreement triggers or overfetch before Stage 3.
+- `F-011-C1-03`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:31`, P1: provider `maxDocuments` is declared but not enforced. Apply a top-N candidate window before provider calls and merge the untouched tail.
+- `F-011-C1-04`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:47`, P2: duplicate-density overfetch is telemetry-only. Graduate bounded adaptive overfetch behind latency/recall guardrails.
+- `F-011-C1-05`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1270`, P2: learned Stage 2 scoring remains shadow-only despite quality gains. Promote as a small guarded blend after stable deltas.
 
 ### Skill advisor quality
 
-- `F-012-C2-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts:89-90`, P1: graph conflict evidence is filtered out when score is negative. Preserve negative graph contributions or add post-fusion conflict penalties.
-- `F-012-C2-02`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts:146-147`, P1: SQLite projection duplicates derived triggers as derived keywords. Keep fields distinct or dedupe before scoring.
-- `F-012-C2-03`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:120-124`, P1: task-intent confidence floor lets token-stuffed prompts pass many unrelated skills. Add dispersion/ambiguity guards before thresholding.
-- `F-012-C2-04`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts:9-12`, P2: ambiguity compares only top-two confidence, not effective ranking score or larger tie clusters. Compute ambiguity from ranking score and include all tied candidates.
-- `F-013-C3-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl:26`, P1: fixture expects `sk-code-review` for `review and update this`, a write/edit prompt. Change expectation to `sk-code` or ambiguous and add a review-plus-edit disambiguation rule.
+- `F-012-C2-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/graph-causal.ts:89-90`, P1: graph conflict evidence is filtered out when score is negative. Preserve negative graph contributions or add post-fusion conflict penalties.
+- `F-012-C2-02`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts:146-147`, P1: SQLite projection duplicates derived triggers as derived keywords. Keep fields distinct or dedupe before scoring.
+- `F-012-C2-03`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:120-124`, P1: task-intent confidence floor lets token-stuffed prompts pass many unrelated skills. Add dispersion/ambiguity guards before thresholding.
+- `F-012-C2-04`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/ambiguity.ts:9-12`, P2: ambiguity compares only top-two confidence, not effective ranking score or larger tie clusters. Compute ambiguity from ranking score and include all tied candidates.
+- `F-013-C3-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl:26`, P1: fixture expects `sk-code-review` for `review and update this`, a write/edit prompt. Change expectation to `sk-code` or ambiguous and add a review-plus-edit disambiguation rule.
 
 ### Code graph and tests
 
-- `F-014-C4-01`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:457-459`, P2: timestamp-only changes force stale status before content-hash comparison. Hash on mtime drift before declaring normal-sized files stale.
-- `F-014-C4-02`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:156-183`, P2: raw Git HEAD drift triggers full scans for non-graph-affecting changes. Filter diffs through index scope before full reindex.
-- `F-014-C4-03`, `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166-196`, P1: new untracked indexable files are invisible while HEAD is unchanged. Persist/compare a candidate manifest or run bounded candidate discovery.
-- `F-014-C4-04`, `.opencode/command/doctor/assets/doctor_code-graph_auto.yaml:100-104`, P1: doctor asks `detect_changes({})` for stale/missed files the handler does not produce. Add a dedicated index-health primitive or redefine workflow around existing outputs.
-- `F-015-C5-01`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts:15`, P1: stress test hard-codes a developer checkout path. Capture/restore original cwd and remove absolute local paths.
-- `F-015-C5-02`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts:176-195`, P2: CI-facing stress test asserts absolute latency budgets. Split correctness from benchmark-only performance telemetry.
-- `F-015-C5-03`, `.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305-319`, P2: unit tests sleep with real timers and assert elapsed time. Inject deterministic times or use local fake timers with cleanup.
-- `F-015-C5-04`, `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:141-152`, P1: env opt-out test can leak `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`. Restore env snapshots in `afterEach`.
-- `F-015-C5-05`, `.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:58-76`, P2: `SPECKIT_MMR` mutation is not restored. Use env snapshot helpers.
-- `F-015-C5-06`, `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:33-35`, P2: repo-local temp fixtures can collide and remain after crashes. Use per-test `os.tmpdir()` mkdtemp roots.
+- `F-014-C4-01`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:457-459`, P2: timestamp-only changes force stale status before content-hash comparison. Hash on mtime drift before declaring normal-sized files stale.
+- `F-014-C4-02`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:156-183`, P2: raw Git HEAD drift triggers full scans for non-graph-affecting changes. Filter diffs through index scope before full reindex.
+- `F-014-C4-03`, `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:166-196`, P1: new untracked indexable files are invisible while HEAD is unchanged. Persist/compare a candidate manifest or run bounded candidate discovery.
+- `F-014-C4-04`, `.opencode/commands/doctor/assets/doctor_code-graph_auto.yaml:100-104`, P1: doctor asks `detect_changes({})` for stale/missed files the handler does not produce. Add a dedicated index-health primitive or redefine workflow around existing outputs.
+- `F-015-C5-01`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts:15`, P1: stress test hard-codes a developer checkout path. Capture/restore original cwd and remove absolute local paths.
+- `F-015-C5-02`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts:176-195`, P2: CI-facing stress test asserts absolute latency budgets. Split correctness from benchmark-only performance telemetry.
+- `F-015-C5-03`, `.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:305-319`, P2: unit tests sleep with real timers and assert elapsed time. Inject deterministic times or use local fake timers with cleanup.
+- `F-015-C5-04`, `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:141-152`, P1: env opt-out test can leak `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`. Restore env snapshots in `afterEach`.
+- `F-015-C5-05`, `.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:58-76`, P2: `SPECKIT_MMR` mutation is not restored. Use env snapshot helpers.
+- `F-015-C5-06`, `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:33-35`, P2: repo-local temp fixtures can collide and remain after crashes. Use per-test `os.tmpdir()` mkdtemp roots.
 
 ## §8 Findings — Architecture/Organization (Category D)
 
 ### Boundary discipline and dependency graph
 
-- `F-016-D1-01`, `.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:13`, P2: core skill-graph storage imports advisor freshness internals. Move SQLite integrity checks to neutral storage/utils.
-- `F-016-D1-02`, `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:9`, P2: shared context contract imports advisor renderer sanitization. Move sanitization to a neutral payload utility.
-- `F-016-D1-03`, `.opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:9`, P2: lib resume code imports handler-level spec discovery. Extract discovery to lib and have handlers depend inward.
-- `F-016-D1-04`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:8`, P2: compat lib imports handler status reader. Move status reading into advisor lib and keep handler as wrapper.
-- `F-016-D1-05`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:7`, P2: freshness rebuild imports busy retry from daemon watcher. Extract retry utility to neutral storage/advisor utils.
-- `F-016-D1-06`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:9`, P2: watcher owns watching, indexing, provenance, freshness, and generation publishing. Split watcher service from injected reindex/generation orchestration.
-- `F-016-D1-07`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts:5`, P2: scorer lane and lifecycle age policy are conceptually entangled. Move age decay into scorer policy or pass primitive metadata.
-- `F-016-D1-08`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts:6`, P2: corpus math imports lifecycle filtering. Let callers pass eligible docs or inject a predicate.
-- `F-017-D2-01`, `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:9`, P2: value-level cycle between session snapshot and memory-surface hooks. Extract priming state or bootstrap-contract builder.
-- `F-017-D2-02`, `.opencode/skill/system-spec-kit/mcp_server/lib/graph/community-summaries.ts:8`, P2: community detection/storage/summary types form a cycle. Extract shared community types.
-- `F-017-D2-03`, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:300`, P2: dead exported non-test symbols lack internal non-test use. Remove/make private or mark as external compatibility exports.
+- `F-016-D1-01`, `.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts:13`, P2: core skill-graph storage imports advisor freshness internals. Move SQLite integrity checks to neutral storage/utils.
+- `F-016-D1-02`, `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:9`, P2: shared context contract imports advisor renderer sanitization. Move sanitization to a neutral payload utility.
+- `F-016-D1-03`, `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts:9`, P2: lib resume code imports handler-level spec discovery. Extract discovery to lib and have handlers depend inward.
+- `F-016-D1-04`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:8`, P2: compat lib imports handler status reader. Move status reading into advisor lib and keep handler as wrapper.
+- `F-016-D1-05`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/rebuild-from-source.ts:7`, P2: freshness rebuild imports busy retry from daemon watcher. Extract retry utility to neutral storage/advisor utils.
+- `F-016-D1-06`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:9`, P2: watcher owns watching, indexing, provenance, freshness, and generation publishing. Split watcher service from injected reindex/generation orchestration.
+- `F-016-D1-07`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/derived.ts:5`, P2: scorer lane and lifecycle age policy are conceptually entangled. Move age decay into scorer policy or pass primitive metadata.
+- `F-016-D1-08`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/corpus/df-idf.ts:6`, P2: corpus math imports lifecycle filtering. Let callers pass eligible docs or inject a predicate.
+- `F-017-D2-01`, `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:9`, P2: value-level cycle between session snapshot and memory-surface hooks. Extract priming state or bootstrap-contract builder.
+- `F-017-D2-02`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/community-summaries.ts:8`, P2: community detection/storage/summary types form a cycle. Extract shared community types.
+- `F-017-D2-03`, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:300`, P2: dead exported non-test symbols lack internal non-test use. Remove/make private or mark as external compatibility exports.
 
 ### Schema duplication
 
-- `F-018-D3-01`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts:38`, P2: trust-state literals are redefined across schemas, metrics, and guards. Export one canonical values tuple and derive schemas/types from it.
-- `F-018-D3-02`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:10`, P2: lifecycle status union and runtime schemas can drift. Move values to one tuple/schema and infer TS types.
-- `F-018-D3-03`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:47`, P2: advisor runtime/outcome labels are split across unions, tuples, Zod, and guards. Define each values tuple once and reuse.
-- `F-018-D3-04`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:50`, P2: MCP JSON Schema, Zod inputs, handler checks, and allowed-parameter lists duplicate tool contracts. Generate public/schema/allowed lists from one source.
+- `F-018-D3-01`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/trust-state.ts:38`, P2: trust-state literals are redefined across schemas, metrics, and guards. Export one canonical values tuple and derive schemas/types from it.
+- `F-018-D3-02`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:10`, P2: lifecycle status union and runtime schemas can drift. Move values to one tuple/schema and infer TS types.
+- `F-018-D3-03`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts:47`, P2: advisor runtime/outcome labels are split across unions, tuples, Zod, and guards. Define each values tuple once and reuse.
+- `F-018-D3-04`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:50`, P2: MCP JSON Schema, Zod inputs, handler checks, and allowed-parameter lists duplicate tool contracts. Generate public/schema/allowed lists from one source.
 
 ### Spec topology and build boundary
 
-- `F-019-D4-01`, `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:419-425`, P1: child saves update only parent last-active pointer, leaving parent children metadata stale. Refresh parent graph metadata or update `children_ids` and key files during child save.
-- `F-019-D4-02`, `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml:56-61`, P2: workflow docs describe two-level phase paths while runtime supports deeper packet trees. Define explicit topology grammar and update workflow docs/tests.
-- `F-019-D4-03`, `.opencode/skill/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts:23-38`, P2: large phase parents have no topology health warning. Add threshold-based health checks and summarized manifests.
+- `F-019-D4-01`, `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:419-425`, P1: child saves update only parent last-active pointer, leaving parent children metadata stale. Refresh parent graph metadata or update `children_ids` and key files during child save.
+- `F-019-D4-02`, `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml:56-61`, P2: workflow docs describe two-level phase paths while runtime supports deeper packet trees. Define explicit topology grammar and update workflow docs/tests.
+- `F-019-D4-03`, `.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts:23-38`, P2: large phase parents have no topology health warning. Add threshold-based health checks and summarized manifests.
 - `F-020-D5-01`, `.opencode/plugins/spec-kit-skill-advisor.js:40`, P2: plugin cache signature watches `dist/skill-advisor` but runtime imports `dist/skill_advisor`. Fix path or derive from runtime module URL.
-- `F-020-D5-02`, `.opencode/skill/system-spec-kit/scripts/evals/check-source-dist-alignment.ts:95`, P2: dist alignment checker excludes runtime-critical outputs. Scan all relevant `mcp_server/dist/**/*.js` with documented exceptions.
-- `F-020-D5-03`, `.opencode/skill/system-spec-kit/mcp_server/dist/tests/search-quality/harness.js:11`, P2: stale compiled test artifacts remain after source moved. Delete orphaned outputs and make checker catch them.
-- `F-020-D5-04`, `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:150`, P2: source-of-truth runtime MJS bridge is outside TS boundary and undocumented. Document and smoke-test it, or migrate to TS.
+- `F-020-D5-02`, `.opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts:95`, P2: dist alignment checker excludes runtime-critical outputs. Scan all relevant `mcp_server/dist/**/*.js` with documented exceptions.
+- `F-020-D5-03`, `.opencode/skills/system-spec-kit/mcp_server/dist/tests/search-quality/harness.js:11`, P2: stale compiled test artifacts remain after source moved. Delete orphaned outputs and make checker catch them.
+- `F-020-D5-04`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:150`, P2: source-of-truth runtime MJS bridge is outside TS boundary and undocumented. Document and smoke-test it, or migrate to TS.
 
 ## §9 P0 Triage
 

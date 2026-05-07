@@ -123,7 +123,7 @@ non-search tool dispatch
 | Handler regression | Sticky-session follow-on behavior | Covered by `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/query-flow-tracker.vitest.ts tests/context-server.vitest.ts tests/feedback-ledger.vitest.ts` — PASS (451 tests total) |
 | Combined regression | Ledger + dispatcher behavior together | Same combined TMPDIR Vitest rerun — PASS, 3 files / 451 tests |
 | Dedicated tracker/unit suite | Query-flow tracker thresholds, TTL, result_cited, follow-on window, and packet DB flow | Same combined TMPDIR Vitest rerun — PASS |
-| Benchmark | Async signal-path overhead | `node --input-type=module` benchmark in `.opencode/skill/system-spec-kit/mcp_server` — `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233` |
+| Benchmark | Async signal-path overhead | `node --input-type=module` benchmark in `.opencode/skills/system-spec-kit/mcp_server` — `averageMs: 0.030233255999999983`, `p95Ms: 0.06591600000000142`, `maxMs: 0.43650000000000233` |
 | Live MCP runtime | Five-event emission after restart | Historical packet evidence remains valid and is retained as prior runtime evidence |
 <!-- /ANCHOR:testing -->
 

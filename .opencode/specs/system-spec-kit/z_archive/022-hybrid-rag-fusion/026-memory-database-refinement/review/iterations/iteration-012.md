@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P0] Shared-space admin mutations run as a global server admin with no caller authentication
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
 
 **Issue**: `handleSharedSpaceUpsert()` and `handleSharedSpaceMembershipSet()` do not authenticate the actual MCP caller before performing tenant-scoped mutations. Both handlers call `resolveAdminActor()` and then execute with the server-configured admin identity even when the request omits actor hints entirely. That turns the tool surface itself into an admin capability: any caller who can invoke these tools can create a space in any tenant, bootstrap the configured admin as owner, and then rewrite memberships through that owner identity.
 
@@ -16,7 +16,7 @@
 **Fix**: Stop deriving mutation authority from server-owned environment variables alone. Bind these tools to authenticated transport/session identity, require that identity to match the configured admin or a tenant-scoped owner, and reject omitted actor identities unless the MCP layer itself injects a verified caller principal that the handler can trust.
 
 ### [P1] `shared_memory_status` trusts spoofable principal IDs and leaks shared-space membership topology
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
 
 **Issue**: `handleSharedMemoryStatus()` accepts arbitrary `tenantId`, `userId`, and `agentId` values from the request and passes them straight into `getAllowedSharedSpaceIds()`. There is no authentication, corroboration, or admin gate on whose status is being queried. A caller who knows or can guess a tenant/principal identifier can enumerate that principal's visible shared-space IDs.
 
@@ -29,7 +29,7 @@
 **Fix**: Resolve status scope from the authenticated caller instead of request body fields. If cross-principal inspection is required for operators, add a distinct admin-only endpoint that requires verified admin identity and records both the actor and the inspected subject in audit metadata.
 
 ### [P2] Global shared-memory enablement is an unauthenticated lifecycle mutation
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts`
 
 **Issue**: `handleSharedMemoryEnable()` permanently flips the workspace-level `shared_memory_enabled` config flag and creates the shared-spaces README without any tenant scope, actor scope, or admin authorization check. Any caller with tool access can therefore turn on a cross-tenant collaboration subsystem for the whole workspace.
 

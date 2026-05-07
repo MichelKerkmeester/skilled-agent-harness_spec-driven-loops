@@ -4,24 +4,24 @@ Iteration 4 focused on test brittleness around the new end-user scope default an
 
 ## Files Reviewed (path:line list)
 
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:80-115
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:248-310
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:312-370
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:370-445
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:988-1130
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:1-190
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:190-232
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:230-620
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:620-705
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:57-107
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:184-320
-- .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:1-40
-- .opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:500-735
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:1-55
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1315
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1475
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-245
-- .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:338-350
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:80-115
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:248-310
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:312-370
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:370-445
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:988-1130
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:1-190
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:190-232
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:230-620
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:620-705
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:57-107
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-siblings-readiness.vitest.ts:184-320
+- .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:1-40
+- .opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:500-735
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:1-55
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1292-1315
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1451-1475
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:180-245
+- .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:338-350
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/spec.md:100-145
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/checklist.md:85-105
 - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:151-181
@@ -42,12 +42,12 @@ None.
 
 - claim: `code-graph-scan.vitest.ts` has a default-scope assertion that assumes `SPECKIT_CODE_GRAPH_INDEX_SKILLS` is unset, but its `beforeEach` only resets mocks and never establishes or restores a known env baseline. The test calls `handleCodeGraphScan()` without `includeSkills`, while production policy intentionally falls back to `process.env` when the per-call argument is absent. Running the in-scope scan test with the documented maintainer env opt-in enabled makes the assertion at line 247 expect the default excluded fingerprint even though the SUT correctly resolves the env-enabled included fingerprint.
 - evidenceRefs:
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:98-147
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:193-250
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:233-234
-  - .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:98-147
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:193-250
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:233-234
+  - .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30-39
   - .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/decision-record.md:172-180
-- counterevidenceSought: I checked the explicit per-call false override test and it does set env true, pass `includeSkills: false`, and delete the env var in `finally`, so FIX-009's precedence path remains covered at `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-309`. I also ran the affected scan/indexer tests with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true`; `code-graph-indexer.vitest.ts` passed, but `code-graph-scan.vitest.ts` failed exactly at the default-scope expectation on line 247. A separate `code-graph-scope-readiness.vitest.ts` env-enabled run passed, so this is not a blanket failure across all tests.
+- counterevidenceSought: I checked the explicit per-call false override test and it does set env true, pass `includeSkills: false`, and delete the env var in `finally`, so FIX-009's precedence path remains covered at `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:280-309`. I also ran the affected scan/indexer tests with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true`; `code-graph-indexer.vitest.ts` passed, but `code-graph-scan.vitest.ts` failed exactly at the default-scope expectation on line 247. A separate `code-graph-scope-readiness.vitest.ts` env-enabled run passed, so this is not a blanket failure across all tests.
 - alternativeExplanation: The suite may have implicitly assumed test runners never inherit the maintainer opt-in env. That assumption is weak because the accepted decision explicitly documents the missing-argument-plus-env-true contract and states tests can cover true/false overrides without mutating process-wide defaults.
 - finalSeverity: P1
 - confidence: 0.92

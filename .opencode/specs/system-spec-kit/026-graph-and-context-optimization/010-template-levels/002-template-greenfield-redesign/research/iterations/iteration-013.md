@@ -7,10 +7,10 @@ AI-CONVERSATION TRANSCRIPT DRY-RUN under the workflow-invariant lens. Walk five 
 ## Actions Taken
 
 - Read `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-012.md` first.
-- Loaded `.opencode/skill/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract, output requirements, and no-sub-dispatch constraint.
+- Loaded `.opencode/skills/sk-deep-research/SKILL.md` to preserve the LEAF iteration contract, output requirements, and no-sub-dispatch constraint.
 - Re-ran a focused leak search across:
-  - `.opencode/skill/system-spec-kit/templates`
-  - `.opencode/skill/system-spec-kit/scripts/tests/fixtures`
+  - `.opencode/skills/system-spec-kit/templates`
+  - `.opencode/skills/system-spec-kit/scripts/tests/fixtures`
   - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research`
 - Read the current state log and `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/deltas/iter-012.jsonl` to preserve JSONL shape.
 - Modeled five AI transcript dry-runs with under-the-hood actions separated from user-visible text.
@@ -39,7 +39,7 @@ E) Phase folder
 
 **USER**: B.
 
-**(under the hood):** bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 2 --short-name 'import-resolver-edge' 'Add a new validator for the import-resolver edge case'
+**(under the hood):** bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --short-name 'import-resolver-edge' 'Add a new validator for the import-resolver edge case'
 
 **AI**: Created a new Level 2 spec folder for `import-resolver-edge`.
 
@@ -78,7 +78,7 @@ E) Phase folder
 
 **USER**: B.
 
-**(under the hood):** bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 3 --short-name 'pluggable-indexers' 'Refactor the memory-parser to support pluggable indexers'
+**(under the hood):** bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --short-name 'pluggable-indexers' 'Refactor the memory-parser to support pluggable indexers'
 
 **AI**: Created a new Level 3 spec folder for `pluggable-indexers`.
 
@@ -119,7 +119,7 @@ E) Phase folder
 
 **USER**: E, phase folder.
 
-**(under the hood):** bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 3 --phase --phases 4 --phase-names 'manifest-add,scaffolder-migrate,validator-migrate,legacy-delete' --short-name 'manifest-migration' 'Plan a multi-phase migration from level system to manifest system'
+**(under the hood):** bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 3 --phase --phases 4 --phase-names 'manifest-add,scaffolder-migrate,validator-migrate,legacy-delete' --short-name 'manifest-migration' 'Plan a multi-phase migration from level system to manifest system'
 
 **AI**: Created a Level 3 phase-parent packet with four child phases.
 
@@ -147,7 +147,7 @@ Validator failure remediation. The AI explains the error in level vocabulary and
 
 **AI**: I’ll run strict validation against the packet and read the failing rule output.
 
-**(under the hood):** bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign --strict
+**(under the hood):** bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign --strict
 **(under the hood):** Validator output includes: Level 3 packet missing required file: decision-record.md
 
 **AI**: The packet is Level 3, and it is missing a required file: `decision-record.md`.
@@ -185,8 +185,8 @@ Verdict: PASS (level-only). AI-visible summary uses `Level 3 packet`, doc file n
 
    Decision: use two tests:
 
-   - `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance-live-surfaces.vitest.ts`
-   - `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance-public-docs.vitest.ts`
+   - `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance-live-surfaces.vitest.ts`
+   - `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance-public-docs.vitest.ts`
 
    Reasoning: live templates and output-producing scripts can enforce a strict zero-leak rule immediately. Public docs need a separate test with explicit allowlists for historical research, ADR text, and implementation notes. Combining them would either make the live-surface test too permissive or make the docs test noisy enough that maintainers ignore it.
 
@@ -194,7 +194,7 @@ Verdict: PASS (level-only). AI-visible summary uses `Level 3 packet`, doc file n
 
    Decision: update affected generated fixtures in the same leak-fix PR, not as a follow-on.
 
-   Scope: rewrite only fixtures generated from the changed templates, especially `.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`. Do not perform a broad fixture cleanup. The reason is simple: stale expected fixtures can reintroduce the banned words through snapshot churn even after live templates are fixed.
+   Scope: rewrite only fixtures generated from the changed templates, especially `.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`. Do not perform a broad fixture cleanup. The reason is simple: stale expected fixtures can reintroduce the banned words through snapshot churn even after live templates are fixed.
 
 ### 2 Leak Fixes (replacement wording)
 
@@ -208,12 +208,12 @@ Verdict: PASS (level-only). AI-visible summary uses `Level 3 packet`, doc file n
 
    Apply to:
 
-   - `.opencode/skill/system-spec-kit/templates/level_3/spec.md`
-   - `.opencode/skill/system-spec-kit/templates/level_3+/spec.md`
-   - `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3.md`
-   - `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md`
-   - `.opencode/skill/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md`
-   - `.opencode/skill/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`
+   - `.opencode/skills/system-spec-kit/templates/level_3/spec.md`
+   - `.opencode/skills/system-spec-kit/templates/level_3+/spec.md`
+   - `.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3.md`
+   - `.opencode/skills/system-spec-kit/templates/addendum/level3-arch/spec-level3-suffix.md`
+   - `.opencode/skills/system-spec-kit/templates/addendum/level3-plus-govern/spec-level3plus-suffix.md`
+   - `.opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-creation/expected-3phase-named/spec.md`
 
    Also replace addendum frontmatter strings:
 
@@ -236,7 +236,7 @@ Verdict: PASS (level-only). AI-visible summary uses `Level 3 packet`, doc file n
 
 2. Replace phase-parent `Sub-phase manifest` with `Sub-phase list`.
 
-   Exact replacement in `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md`:
+   Exact replacement in `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md`:
 
    ```text
    - Sub-phase list: which child phase folders exist and what each one does

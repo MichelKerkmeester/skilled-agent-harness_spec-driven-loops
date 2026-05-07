@@ -7,7 +7,7 @@ Packet 044 path: `.opencode/specs/system-spec-kit/026-graph-and-context-optimiza
 
 ## Inputs (read-only)
 
-1. **Stress test folder** — `.opencode/skill/system-spec-kit/mcp_server/stress_test/` — walk recursively. Subdirs: `code-graph/`, `skill-advisor/`, `memory/`, `session/`, `search-quality/`, `matrix/`.
+1. **Stress test folder** — `.opencode/skills/system-spec-kit/mcp_server/stress_test/` — walk recursively. Subdirs: `code-graph/`, `skill-advisor/`, `memory/`, `session/`, `search-quality/`, `matrix/`.
 2. **Latest stress run log** — `<PACKET_044>/logs/stress-run-20260430-200010Z.log` — final run after 044, exit 0, 56/56 files, 159/159 tests, 46.09s.
 3. **Coverage matrix from 042** — `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/042-stress-coverage-audit-and-run/coverage-matrix.csv` — to map files to feature_ids.
 4. **Earlier run logs** for trajectory:
@@ -85,7 +85,7 @@ Count and list test files by stress axis category:
 
 ## How to work
 
-1. Run `find .opencode/skill/system-spec-kit/mcp_server/stress_test -name '*.vitest.ts' -type f | sort` to enumerate files.
+1. Run `find .opencode/skills/system-spec-kit/mcp_server/stress_test -name '*.vitest.ts' -type f | sort` to enumerate files.
 2. For each file: read the top 30-50 lines (frontmatter + describe block + first few `it(...)` calls) to extract purpose, feature_id mapping, axis category.
 3. For totals: read the latest run log's summary line — `Test Files 56 passed (56)` and `Tests 159 passed (159)` and `Duration 46.09s`.
 4. Cross-reference catalog feature_ids by reading `042-stress-coverage-audit-and-run/coverage-matrix.csv` and matching each test file path to the `stress_test_files` and `supplementary_stress_files` columns.

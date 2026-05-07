@@ -83,7 +83,7 @@ _memory:
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T401 `cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/intent-paraphrase-stability.vitest.ts tests/intent-classifier.vitest.ts` → green
+- [ ] T401 `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/intent-paraphrase-stability.vitest.ts tests/intent-classifier.vitest.ts` → green
 - [ ] T402 npm run build
 - [ ] T403 grep dist for `taskIntent`, `backendRouting`, `paraphraseGroup`, `classificationKind` markers
 - [ ] T404 Document daemon restart

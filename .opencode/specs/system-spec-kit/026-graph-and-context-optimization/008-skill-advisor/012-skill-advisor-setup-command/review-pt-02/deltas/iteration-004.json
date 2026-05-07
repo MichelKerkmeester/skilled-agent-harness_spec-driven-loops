@@ -7,10 +7,10 @@
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-002.md:1-45",
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review-pt-02/iterations/iteration-003.md:1-61",
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-006.md:1-68",
-    ".opencode/command/spec_kit/skill-advisor.md:1-319",
+    ".opencode/commands/spec_kit/skill-advisor.md:1-319",
     ".opencode/install_guides/SET-UP - Skill Advisor.md:1-162",
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md:65-80",
-    ".opencode/skill/system-spec-kit/mcp_server/README.md:570-595"
+    ".opencode/skills/system-spec-kit/mcp_server/README.md:570-595"
   ],
   "findings": {
     "p0": [],
@@ -28,7 +28,7 @@
     "new": []
   },
   "dqi": {
-    ".opencode/command/spec_kit/skill-advisor.md": {
+    ".opencode/commands/spec_kit/skill-advisor.md": {
       "score": 94,
       "band": "excellent"
     },
@@ -41,7 +41,7 @@
     "bannedWordHits": 0,
     "grepExit": 1,
     "files": [
-      ".opencode/command/spec_kit/skill-advisor.md",
+      ".opencode/commands/spec_kit/skill-advisor.md",
       ".opencode/install_guides/SET-UP - Skill Advisor.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md"
     ]

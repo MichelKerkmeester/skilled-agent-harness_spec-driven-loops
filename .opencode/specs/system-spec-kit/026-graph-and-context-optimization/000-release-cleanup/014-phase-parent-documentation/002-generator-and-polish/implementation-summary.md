@@ -24,7 +24,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -53,7 +53,7 @@ A `/memory:save` against a phase parent now stamps `derived.last_active_child_id
 
 ### Resume pointer-redirect
 
-`.opencode/command/spec_kit/resume.md` step 3b now reads `derived.last_active_child_id` first when the target is a phase parent. The redirect fires only when (a) the value is a non-null string, (b) `derived.last_active_at` parses as ISO-8601, and (c) the timestamp is within the last 24 hours. Stale, malformed, or missing pointers fall through to the existing list-children-with-statuses behavior. `--no-redirect` skips the pointer step entirely. Both the `auto` and `confirm` YAML assets mirror this logic.
+`.opencode/commands/spec_kit/resume.md` step 3b now reads `derived.last_active_child_id` first when the target is a phase parent. The redirect fires only when (a) the value is a non-null string, (b) `derived.last_active_at` parses as ISO-8601, and (c) the timestamp is within the last 24 hours. Stale, malformed, or missing pointers fall through to the existing list-children-with-statuses behavior. `--no-redirect` skips the pointer step entirely. Both the `auto` and `confirm` YAML assets mirror this logic.
 
 ### Lean phase-parent default in `create.sh --phase`
 
@@ -79,22 +79,22 @@ CLAUDE.md (§1 fallback resume ladder, line 98) and AGENTS.md (resume ladder + �
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modified | `isPhaseParent` import; `updatePhaseParentPointersAfterSave` + `atomicWriteJson` helpers; pointer-write at parent saves + bubble-up at child saves |
-| `.opencode/skill/system-spec-kit/scripts/spec/is-phase-parent.ts` | Created | New ESM source under the `"type":"module"` package; pairs with the existing mcp_server CJS twin so the dist is auto-rebuildable by `tsc --build` |
-| `.opencode/skill/system-spec-kit/scripts/dist/spec/is-phase-parent.js` | Rebuilt | tsc-emitted ESM dist with sourceMappingURL — replaces my hand-rolled fallback from 001 |
-| `.opencode/skill/system-spec-kit/scripts/tsconfig.json` | Modified | Includes scripts/spec for the new ESM source |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Modified | `--phase` parent path copies `templates/phase_parent/spec.md` and fills placeholders |
-| `.opencode/skill/system-spec-kit/templates/context-index.md` | Created | Migration-bridge template (optional, never auto-scaffolded) |
-| `.opencode/skill/system-spec-kit/templates/resource-map.md` | Modified | Author Instructions §Scope shape sharpened for phase parents |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh` | Created | P2 token-scan validator with code-fence awareness |
-| `.opencode/skill/system-spec-kit/scripts/lib/validator-registry.json` | Modified | Registered `PHASE_PARENT_CONTENT` rule (severity warn) |
-| `.opencode/command/spec_kit/resume.md` | Modified | Pointer-first redirect with stale-pointer fallback and `--no-redirect` bypass |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | Modified | Mirrors resume.md redirect logic |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml` | Modified | Mirrors resume.md redirect logic |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modified | Brief assembler honors phase-parent redirect |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modified | `isPhaseParent` import; `updatePhaseParentPointersAfterSave` + `atomicWriteJson` helpers; pointer-write at parent saves + bubble-up at child saves |
+| `.opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts` | Created | New ESM source under the `"type":"module"` package; pairs with the existing mcp_server CJS twin so the dist is auto-rebuildable by `tsc --build` |
+| `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js` | Rebuilt | tsc-emitted ESM dist with sourceMappingURL — replaces my hand-rolled fallback from 001 |
+| `.opencode/skills/system-spec-kit/scripts/tsconfig.json` | Modified | Includes scripts/spec for the new ESM source |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modified | `--phase` parent path copies `templates/phase_parent/spec.md` and fills placeholders |
+| `.opencode/skills/system-spec-kit/templates/context-index.md` | Created | Migration-bridge template (optional, never auto-scaffolded) |
+| `.opencode/skills/system-spec-kit/templates/resource-map.md` | Modified | Author Instructions §Scope shape sharpened for phase parents |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh` | Created | P2 token-scan validator with code-fence awareness |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modified | Registered `PHASE_PARENT_CONTENT` rule (severity warn) |
+| `.opencode/commands/spec_kit/resume.md` | Modified | Pointer-first redirect with stale-pointer fallback and `--no-redirect` bypass |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | Modified | Mirrors resume.md redirect logic |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml` | Modified | Mirrors resume.md redirect logic |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Modified | Brief assembler honors phase-parent redirect |
 | `AGENTS.md` | Modified | Resume ladder mentions pointer-first behavior |
 | `CLAUDE.md` | Modified | Resume ladder mentions pointer-first behavior |
-| `.opencode/skill/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Created | 4 vitest fixtures: parent pointer write, child bubble-up, concurrent atomic, non-phase no-op |
+| `.opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Created | 4 vitest fixtures: parent pointer write, child bubble-up, concurrent atomic, non-phase no-op |
 | `.opencode/specs/.../002-generator-and-polish/scratch/e2e-trace.txt` | Created | Real round-trip trace: scaffolded tmp packet, ran generator save against child, parent pointer populated, resume simulation returned `{redirected: true}` |
 <!-- /ANCHOR:what-built -->
 

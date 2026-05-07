@@ -38,12 +38,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/spec_kit/plan.md",
-      ".opencode/command/spec_kit/resume.md",
-      ".opencode/command/spec_kit/complete.md",
-      ".opencode/skill/system-spec-kit/SKILL.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/scripts/README.md",
+      ".opencode/commands/spec_kit/plan.md",
+      ".opencode/commands/spec_kit/resume.md",
+      ".opencode/commands/spec_kit/complete.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/scripts/README.md",
       "implementation-summary.md",
       "spec.md"
     ],
@@ -51,25 +51,25 @@
       {
         "name": "resume.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

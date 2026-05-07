@@ -6,30 +6,30 @@ D4 Maintainability: daemon lifecycle pattern consistency, scorer fusion change s
 
 ## Files Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/lifecycle.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs`
 - `.opencode/plugins/spec-kit-skill-advisor.js`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-advisor.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/compat/daemon-probe.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-advisor.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/compat/plugin-bridge.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/compat/daemon-probe.vitest.ts`
 - `decision-record.md`
 
 ## Findings — P0
@@ -48,10 +48,10 @@ The daemon package has a named busy-retry helper, but only the main `reindexSkil
 
 Evidence:
 
-- `withBusyRetry()` is defined as the SQLite busy boundary in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:111`.
-- Quarantine writes and reads open/close SQLite directly in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:239`, `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:256`, and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:269`.
-- The retry helper is applied only around `reindexSkill()` in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:407`.
-- Tests assert retry behavior for `reindexSkill()` at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:187`, while quarantine behavior is tested separately without busy contention at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:215`.
+- `withBusyRetry()` is defined as the SQLite busy boundary in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:111`.
+- Quarantine writes and reads open/close SQLite directly in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:239`, `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:256`, and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:269`.
+- The retry helper is applied only around `reindexSkill()` in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts:407`.
+- Tests assert retry behavior for `reindexSkill()` at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:187`, while quarantine behavior is tested separately without busy contention at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/daemon-freshness-foundation.vitest.ts:215`.
 
 Concrete fix:
 
@@ -63,11 +63,11 @@ The scorer has useful lane modules, but the lane registry is not yet a single de
 
 Evidence:
 
-- `ScorerLane` and `LaneScores` hard-code all lanes in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:7` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:58`.
-- `emptyLaneScores()` repeats the same lane keys in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:53`.
-- `buildLaneScores()` imports and invokes each lane directly in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14` through `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:18` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:153`.
-- Weights and lane order are separate constants in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:8` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:22`.
-- Public schemas duplicate the lane enum in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:8`.
+- `ScorerLane` and `LaneScores` hard-code all lanes in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:7` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts:58`.
+- `emptyLaneScores()` repeats the same lane keys in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:53`.
+- `buildLaneScores()` imports and invokes each lane directly in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:14` through `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:18` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:153`.
+- Weights and lane order are separate constants in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:8` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/weights-config.ts:22`.
+- Public schemas duplicate the lane enum in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:8`.
 
 Concrete fix:
 
@@ -79,11 +79,11 @@ The README documents the broad boundary, but the executable contract is spread a
 
 Evidence:
 
-- The TS daemon probe exposes `available`, `freshness`, `trustState`, `generation`, optional `daemonPid`, and `reason` in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:16`.
-- The Python shim embeds a separate Node bridge string that recreates `unavailable()`, `probe()`, and the status/recommend output envelope in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:91`.
-- The OpenCode plugin bridge defines its own status vocabulary and response envelope in `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:5` and `.opencode/skill/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:11`.
+- The TS daemon probe exposes `available`, `freshness`, `trustState`, `generation`, optional `daemonPid`, and `reason` in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/compat/daemon-probe.ts:16`.
+- The Python shim embeds a separate Node bridge string that recreates `unavailable()`, `probe()`, and the status/recommend output envelope in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:91`.
+- The OpenCode plugin bridge defines its own status vocabulary and response envelope in `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:5` and `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-skill-advisor-bridge.mjs:11`.
 - Plugin-side parsing repeats the expected bridge fields in `.opencode/plugins/spec-kit-skill-advisor.js:215`.
-- Docs describe the entrypoint and current runtimes at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md:153`, but they do not give a machine-readable adapter schema for Codex/Gemini/next-runtime implementers.
+- Docs describe the entrypoint and current runtimes at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md:153`, but they do not give a machine-readable adapter schema for Codex/Gemini/next-runtime implementers.
 
 Concrete fix:
 
@@ -95,11 +95,11 @@ The advisor handler side has Zod output schemas and parsed public contracts. The
 
 Evidence:
 
-- Advisor outputs are schema-defined in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:60` and `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:91`.
-- `advisor_recommend` parses the output before returning it in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:221`.
-- `skill_graph_query` defines local envelope helpers in `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:37`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:206`, and `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:215`.
-- `skill_graph_scan` repeats its own envelope helpers in `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:19`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:65`, and `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:74`.
-- `skill_graph_status` repeats them again in `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:25`, `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:216`, and `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:225`.
+- Advisor outputs are schema-defined in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:60` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:91`.
+- `advisor_recommend` parses the output before returning it in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-recommend.ts:221`.
+- `skill_graph_query` defines local envelope helpers in `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:37`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:206`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/query.ts:215`.
+- `skill_graph_scan` repeats its own envelope helpers in `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:19`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:65`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts:74`.
+- `skill_graph_status` repeats them again in `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:25`, `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:216`, and `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/status.ts:225`.
 
 Concrete fix:
 
@@ -111,9 +111,9 @@ The test suite has some shared fixtures, but the skill-graph SQLite setup is cop
 
 Evidence:
 
-- Advisor DB tests define `writeGraphMetadata()` locally in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts:11`.
-- Skill-graph handler tests define another local `writeGraphMetadata()` with the same shape in `.opencode/skill/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts:11`.
-- The advisor test tree has a lifecycle fixture helper in `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/fixtures/lifecycle/index.ts:9`, but no equivalent shared SQLite skill-graph helper for these suites.
+- Advisor DB tests define `writeGraphMetadata()` locally in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/skill-graph-db.vitest.ts:11`.
+- Skill-graph handler tests define another local `writeGraphMetadata()` with the same shape in `.opencode/skills/system-spec-kit/mcp_server/tests/skill-graph-handlers.vitest.ts:11`.
+- The advisor test tree has a lifecycle fixture helper in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/fixtures/lifecycle/index.ts:9`, but no equivalent shared SQLite skill-graph helper for these suites.
 - `rg` found two local skill-graph metadata writers in the reviewed roots, both paired with direct `mkdtempSync()` and `initDb()` setup.
 
 Concrete fix:

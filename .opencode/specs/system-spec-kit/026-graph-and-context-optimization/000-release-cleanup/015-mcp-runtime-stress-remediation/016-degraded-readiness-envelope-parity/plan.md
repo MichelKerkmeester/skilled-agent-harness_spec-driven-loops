@@ -130,7 +130,7 @@ code_graph_status (stats crash)
 - [x] Modify `status.ts` to move `getGraphReadinessSnapshot()` ahead of `graphDb.getStats()`.
 - [x] Wrap `getStats()` in try/catch; short-circuit to degraded envelope on failure.
 - [x] Update post-stats catch path to preserve the snapshot.
-- [x] Typecheck `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
+- [x] Typecheck `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` PASS.
 
 ### Phase 2: Tests
 - [x] Extend `tests/readiness-contract.vitest.ts`:

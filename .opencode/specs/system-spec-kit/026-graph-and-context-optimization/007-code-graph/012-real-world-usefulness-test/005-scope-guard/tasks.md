@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Review and commit"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts"
     session_dedup:
       fingerprint: "sha256:2222222222222222222222222222222222222222222222222222222222222222"
       session_id: "026-007-012-005-scope-guard"

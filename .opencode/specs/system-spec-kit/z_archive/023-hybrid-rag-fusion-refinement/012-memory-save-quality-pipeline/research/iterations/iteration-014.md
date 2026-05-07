@@ -29,8 +29,8 @@ const memoryDescription = deriveMemoryDescription({
 ```
 This uses `SUMMARY` which for JSON-mode comes from `collectedData.sessionSummary` (via collect-session-data.ts line 1034: `_JSON_SESSION_SUMMARY`). If `sessionSummary` was propagated to `SUMMARY`, the description should already be populated. But if `enrichCapturedSessionData` overwrites SUMMARY with spec context (line 514), the original sessionSummary may be lost.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1116-1172]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts:36-49]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1116-1172]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:36-49]
 
 ### 2. Design Fix: Title Derivation from sessionSummary
 
@@ -75,8 +75,8 @@ The observation pipeline works as follows:
 
 **JSON-mode gap:** When JSON payload provides `observations` as a simple array of strings (e.g., `["Fixed the bug in parser", "Updated tests"]`), the `Observation` type expects objects with `{title, narrative, type}`. If the input normalizer does not coerce strings to Observation objects, the pipeline produces empty observation blocks.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:794-808, 932-1037]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:753-781]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:794-808, 932-1037]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:753-781]
 
 ### 4. Design Fix: Observation Mapping for JSON Mode
 
@@ -173,7 +173,7 @@ export function buildKeyFiles(effectiveFiles: FileChange[], specFolderPath: stri
 
 **Estimated LOC:** ~25 lines (replace function body).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts:99-109]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts:99-109]
 
 ### 6. Honoring filesChanged from JSON Input
 
@@ -202,7 +202,7 @@ if (data.filesChanged && !data.FILES) {
 
 **Estimated LOC:** 8-12 lines in normalizer if mapping is needed.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:96-180]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:96-180]
 [INFERENCE: based on zero codebase matches for "filesChanged" -- field may need to be defined in JSON schema]
 
 ### 7. Summary of All Proposed Changes
@@ -225,13 +225,13 @@ if (data.filesChanged && !data.FILES) {
 - **`filesChanged` as existing field**: Confirmed it does not exist in the codebase. This is a new field that needs to be defined if it will be part of the JSON schema, or the caller should use the existing `FILES` field.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1116-1172` (title pipeline, template population)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1270-1345` (buildKeyFiles call, template data assembly)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow-path-utils.ts:99-109` (buildKeyFiles implementation)
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:794-808, 932-1037` (observation handling, OBSERVATIONS binding)
-- `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:96-180` (extractFilesFromData, FILE normalization)
-- `.opencode/skill/system-spec-kit/scripts/utils/task-enrichment.ts:36-49` (pickPreferredMemoryTask)
-- `.opencode/skill/system-spec-kit/scripts/lib/memory-frontmatter.ts:97` (deriveMemoryDescription)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1116-1172` (title pipeline, template population)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1270-1345` (buildKeyFiles call, template data assembly)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow-path-utils.ts:99-109` (buildKeyFiles implementation)
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:794-808, 932-1037` (observation handling, OBSERVATIONS binding)
+- `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:96-180` (extractFilesFromData, FILE normalization)
+- `.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:36-49` (pickPreferredMemoryTask)
+- `.opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:97` (deriveMemoryDescription)
 
 ## Assessment
 - New information ratio: 0.85

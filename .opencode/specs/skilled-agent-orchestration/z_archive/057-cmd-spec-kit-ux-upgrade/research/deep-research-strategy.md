@@ -21,7 +21,7 @@ Persistent brain for the 10-iteration SPAR-Kit vs system-spec-kit comparison loo
 
 ## 2. TOPIC
 
-Compare external SPAR-Kit project at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` (Specify -> Plan -> Act -> Retain workflow kit by jed-tech, npm `@spar-kit/install` Beta1) against the internal `system-spec-kit` surface (`.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/skill/system-spec-kit/templates/`, `.opencode/command/spec_kit/`, `.opencode/command/memory/`, `.opencode/command/create/`, `.opencode/agent/`). Produce 10-20 ranked, evidence-backed UX/orchestration patterns we should adopt-as-is, adapt, take inspiration from, or reject-with-rationale across 6 axes.
+Compare external SPAR-Kit project at `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/` (Specify -> Plan -> Act -> Retain workflow kit by jed-tech, npm `@spar-kit/install` Beta1) against the internal `system-spec-kit` surface (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/templates/`, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`). Produce 10-20 ranked, evidence-backed UX/orchestration patterns we should adopt-as-is, adapt, take inspiration from, or reject-with-rationale across 6 axes.
 
 ---
 
@@ -102,7 +102,7 @@ Iteration 1 focus: SCOUT pass — enumerate external/ folder structure and key f
   - SKILL.md: ~991 lines
   - Templates: ~99 files (core, addendum, level_{1,2,3,3+}, examples, cross-cutting)
   - Commands: 6 spec_kit + 4 memory + 6 create
-  - Agents: 10 in `.opencode/agent/`
+  - Agents: 10 in `.opencode/agents/`
   - MCP tools: 47
 - External surface (from spec.md §3 In Scope):
   - 4 SPAR phases: Specify / Plan / Act / Retain
@@ -127,6 +127,6 @@ Iteration 1 focus: SCOUT pass — enumerate external/ folder structure and key f
 - Lifecycle branches: `resume`, `restart` live; `fork`, `completed-continue` deferred
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11
 - Pause sentinel: `research/.deep-research-pause`
-- Capability matrix: `.opencode/skill/sk-deep-research/assets/runtime_capabilities.json`
+- Capability matrix: `.opencode/skills/sk-deep-research/assets/runtime_capabilities.json`
 - Generation: 1
 - Started: 2026-05-01T08:26:08.402Z

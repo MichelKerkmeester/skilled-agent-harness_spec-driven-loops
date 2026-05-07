@@ -50,32 +50,32 @@ REASON: Test harness for running all tests. Excellent reusable pattern for 072's
 
 ## Test Files in System-Spec-Kit (MCP Server)
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/tier-classifier.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/tier-classifier.test.js
 TESTS: HOT/WARM/COLD tier classification
 STATUS: highly-relevant
 REASON: DIRECTLY tests the tier classification system that 072 is built on. This is the existing test file for the tier classification logic.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.test.js
 TESTS: Attention decay scoring (time-based decay)
 STATUS: highly-relevant
 REASON: Tests attention decay mechanism used in tier ranking. Core component of 072's memory ranking system.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/co-activation.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/co-activation.test.js
 TESTS: Co-activation scoring (semantic relationships)
 STATUS: highly-relevant
 REASON: Tests co-activation mechanism for related memories. Core component of 072's ranking system.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.test.js
 TESTS: Working memory management (capacity, eviction, priority)
 STATUS: highly-relevant
 REASON: Tests the working memory system that 072 integrates with. Essential for integration testing.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/summary-generator.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/summary-generator.test.js
 TESTS: Memory summary generation
 STATUS: relevant
 REASON: Tests summary generation logic. May be useful for testing 072's memory content processing.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/tests/modularization.test.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/tests/modularization.test.js
 TESTS: Modularization and module structure
 STATUS: needs-review
 REASON: Tests module structure. May contain organizational patterns useful for 072.
@@ -84,17 +84,17 @@ REASON: Tests module structure. May contain organizational patterns useful for 0
 
 ## Test Files in System-Spec-Kit (Scripts)
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js
 TESTS: Bug fixes verification
 STATUS: needs-review
 REASON: Tests specific bug fixes. Review to see if any relate to tier classification or memory ranking.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js
 TESTS: Embeddings factory creation and configuration
 STATUS: relevant
 REASON: Tests embedding provider setup. Relevant for 072's semantic similarity calculations.
 
-FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
+FILE: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
 TESTS: Spec folder validation
 STATUS: partially-relevant
 REASON: Shell-based validation tests. Pattern may be useful for 072's validation needs.

@@ -42,8 +42,8 @@
     "status": "in_progress",
     "key_files": [
       "shared/embeddings/providers/voyage.js",
-      ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,13 +60,13 @@
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {

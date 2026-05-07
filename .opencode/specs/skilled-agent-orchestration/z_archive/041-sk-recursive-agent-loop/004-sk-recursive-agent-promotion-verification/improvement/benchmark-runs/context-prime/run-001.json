@@ -2,7 +2,7 @@
   "status": "benchmark-complete",
   "profileId": "context-prime",
   "family": "session-bootstrap",
-  "target": ".opencode/agent/context-prime.md",
+  "target": ".opencode/agents/context-prime.md",
   "label": "context-prime-run-001",
   "aggregateScore": 100,
   "maxScore": 100,

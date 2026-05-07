@@ -4,7 +4,7 @@
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 --- Iteration 28 ---
 ## Findings
@@ -13,21 +13,21 @@
 - **Impact**: high
 
 ### Finding 3: Reversible forgetting is stronger than hard deletion for durable memory
-- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
+- **Source**: [archival-manager.ts:358](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts:388](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L388), [archival-manager.ts:403](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L403), [archival-manager.ts:558](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [archival-manager.ts:638](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L638), [reconsolidation-bridge.ts:396](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L396); evidence type: wrapper-confirmed
 - **What it does**: Public archives low-value memories instead of immediately deleting them, removes archived rows from BM25/vector retrieval, and supports unarchive. The save-time reconsolidation path also archives older near-duplicates rather than physically deleting them.
 - **Why it matters**: For long-lived systems, “forgetting” should usually mean reversible removal from active retrieval, not destruction. That preserves lineage, auditability, and recovery when the system over-prunes.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: Hard expiry should stay opt-in and explicitly ephemeral
-- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
+- **Source**: [save/types.ts:139](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts#L139), [scope-governance.ts:207](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L207), [scope-governance.ts:255](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L255), [scope-governance.ts:260](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L260), [README.md:710](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/README.md#L710), [memory-governance.vitest.ts:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts#L160); evidence type: both
 - **What it does**: Public supports explicit `retentionPolicy` and `deleteAfter`, and governed ingest rejects `ephemeral` saves without a future expiry. I found test/audit evidence for a `retention_sweep` action, but I did not locate a concrete runtime sweep implementation in this checkout.
 - **Why it matters**: This is the correct shape for hard expiry: explicit, narrow, and policy-driven. The gap is operational visibility, not the policy model itself.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 5: Desired-retention scheduling exists internally, but it is not yet an operator-facing memory policy
-- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
+- **Source**: [fsrs-scheduler.ts:123](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L123), [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177), [fsrs-scheduler.ts:200](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L200), [pe-gating.ts:142](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts#L142), [tool-schemas.ts:86](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L86), [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165); evidence type: wrapper-confirmed
 --
 ## Findings
 ### Finding N: [Title]
@@ -43,14 +43,14 @@
 - **Impact**: high
 
 ### Finding 5: Public already measures index integrity and storage health
-- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts)
+- **Source**: [memory-crud-health.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts), [memory-crud-stats.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts)
 - **What it does**: Public reports embedding readiness and retry stats, vector availability, FTS5 parity, alias conflicts, orphan-edge cleanup, by-status embedding counts, trigger totals, tier breakdown, database size, last indexed time, and startup projection health.
 - **Why it matters**: System health must include integrity metrics: embedding backlog, FTS drift, alias divergence, graph orphan rate, storage growth, and projection consistency.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 6: The real missing benchmark is compaction continuity
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js), [session-bootstrap.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts)
 - **What it does**: Mnemosyne injects memory-tool guidance during `experimental.session.compacting`. Public injects structural transport blocks and records bootstrap duration/completeness, but neither system turns post-compaction recovery into an explicit benchmark.
 - **Why it matters**: For long-running agent memory systems, the critical failure mode is often “after compaction, can the agent recover fast and correctly?”
 - **Recommendation**: NEW FEATURE
@@ -63,7 +63,7 @@
 - Memory quality: `confidence`, `validationCount`, `positiveValidationCount`, negative-feedback rate, `access_count`, `last_accessed`, cleanup-candidate rate, archive/unarchive rate.
 - Retrieval accuracy: `Recall@K`, channel ablation delta, K-sensitivity, average result confidence, evidence-gap rate, `no_results` / `low_confidence` / `partial` distribution, stage latency breakdown.
 - System health: bootstrap duration/completeness, session quality score, graph freshness, embedding status counts, FTS parity drift, alias conflicts, retry stats, database size, startup projection consistency.
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Recommended Next Focus
 Define a compaction-continuity benchmark for Public: measure recovery success after `experimental.session.compacting`, time to first successful `memory_context` / `memory_search`, and whether scoped/private/shared retrieval remains correct after bootstrap and compaction.
@@ -98,7 +98,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -114,11 +114,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -126,7 +126,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -157,7 +157,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -335,7 +335,7 @@ exec
 sed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/opencode-mnemosyne-main/package.json: No such file or directory
 
 exec
-/bin/zsh -lc "bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main' --strict" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main' --strict" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1400ms:
 
 ───────────────────────────────────────────────────────────────
@@ -350,7 +350,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -770,7 +770,7 @@ npm run typecheck
 MIT
 
 exec
-/bin/zsh -lc "rg -n \"function memorySearch|export async function|Reciprocal Rank Fusion|RRF|BM25|vector|searchType|memory_search|fusion|recallK|ablation\" '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"function memorySearch|export async function|Reciprocal Rank Fusion|RRF|BM25|vector|searchType|memory_search|fusion|recallK|ablation\" '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 100:// Feature catalog: Semantic and lexical search (memory_search)
 340:    tool: 'memory_search',
@@ -789,155 +789,155 @@ exec
 1377:  handle_memory_search,
 
 exec
-/bin/zsh -lc "rg -n \"session_bootstrap|session_resume|bootstrap|quality score|graph freshness|structural|resume\" '.opencode/skill/system-spec-kit/mcp_server/context-server.ts' '.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' '.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"session_bootstrap|session_resume|bootstrap|quality score|graph freshness|structural|resume\" '.opencode/skills/system-spec-kit/mcp_server/context-server.ts' '.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' '.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:111:  structuralContext?: StructuralBootstrapContract;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:405:  // Phase 024: Record bootstrap telemetry
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:455:    // Graph status hints deferred to structural contract (Phase 027)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:456:    // — structural context hints at lines 128-130 provide preferred recovery path
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:473:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:477:  const structuralTrust = buildStructuralContextTrust(structuralContext);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:507:  const structuralCertainty: SharedPayloadCertainty = 'exact';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:549:      key: 'structural-context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:551:      content: structuralContext.summary,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:553:      certainty: structuralCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:554:      structuralTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:567:      { label: 'structural', certainty: structuralCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:572:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:574:      lastUpdated: structuralContext.provenance?.lastUpdated ?? codeGraph.lastScan,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:588:    structuralContext,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:599:  // Phase 024 / Item 9: Record bootstrap telemetry
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:7:import { handleSessionResume } from './session-resume.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:8:import type { CachedSessionSummaryDecision } from './session-resume.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:46:  resume: Record<string, unknown>;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:49:  structuralContext?: StructuralBootstrapContract & StructuralTrust;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:50:  structuralRoutingNudge?: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:95:  resumeData: Record<string, unknown>,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:97:  structuralContext: StructuralBootstrapContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101:  if (resumeData.error) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:109:  if (structuralContext.recommendedAction) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:110:    nextActions.add(structuralContext.recommendedAction);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:136:  const structuralSection = payload.sections.find((section) =>
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:137:    section.key === 'structural-context' && section.structuralTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:140:  return structuralSection?.structuralTrust ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:144:  structuralContext: StructuralBootstrapContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:145:): SessionBootstrapResult['structuralRoutingNudge'] | null {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:169:  let resumeData: Record<string, unknown> = {};
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:171:    const resumeResponse = await handleSessionResume({
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:174:    resumeData = extractData(resumeResponse);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:175:    allHints.push(...extractHints(resumeData));
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:178:    resumeData = { error: message };
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194:  // Phase 027: Structural bootstrap contract
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:202:  const cachedSummary = extractCachedSummary(resumeData);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:204:    allHints.push('Cached continuity summary accepted as additive bootstrap context.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:206:  const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:207:  if (structuralRoutingNudge) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:208:    allHints.push(structuralRoutingNudge.message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:214:  // Record bootstrap telemetry once for the composite call.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:219:  const resumeCertainty: SharedPayloadCertainty = resumeData.error ? 'unknown' : 'estimated';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:222:  const structuralCertainty: SharedPayloadCertainty = 'exact';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:226:  const structuralSnapshotTrust = buildStructuralContextTrust(structuralContext);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:228:  if (!resumeData.error && !resumeStructuralTrust) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:233:  const structuralContextWithTrust = attachStructuralTrustFields(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:234:    structuralContext,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:235:    structuralSnapshotTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:238:  const resumeWithTrust = resumeData.error
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:239:    ? resumeData
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:241:      resumeData,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:242:      resumeStructuralTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:248:      key: 'resume-surface',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:250:      content: summarizeUnknown(resumeData),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:277:      key: 'structural-context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:279:      // This section carries trust derived from the local structural snapshot,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:280:      // which remains valid even when the remote resume surface fails closed.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:281:      content: structuralContext.summary,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:284:      structuralTrust: structuralSnapshotTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:296:    kind: 'bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:310:      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:324:    resume: resumeWithTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:327:    structuralContext: structuralContextWithTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:328:    ...(structuralRoutingNudge ? { structuralRoutingNudge } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:331:      bootstrapPayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:338:    // Keep advisory routing guidance out of nextActions so bootstrap and resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:343:  meta.structuralRoutingNudge = nudge;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:782:  // Phase 027: Structural bootstrap guidance for non-hook runtimes
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1002:            const nudge = meta.structuralRoutingNudge
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1015:          // Response is not JSON envelope — skip structural nudge injection
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:4:// Phase 020: Composite MCP tool that merges memory resume context,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:111:  structuralContext?: StructuralBootstrapContract;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:405:  // Phase 024: Record bootstrap telemetry
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:409:  // ── Sub-call 1: Memory context resume (skip in minimal mode) ──
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:416:        input: 'resume previous work continue session',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:417:        mode: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:418:        profile: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:455:    // Graph status hints deferred to structural contract (Phase 027)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:456:    // — structural context hints at lines 128-130 provide preferred recovery path
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:471:  // Phase 027: Structural bootstrap contract for resume surface
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:473:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:477:  const structuralTrust = buildStructuralContextTrust(structuralContext);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:479:  // Keep live resume authoritative; cached continuity only appends bounded notes when every gate passes.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:485:    hints.push('Cached continuity summary accepted as additive resume context.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:507:  const structuralCertainty: SharedPayloadCertainty = 'exact';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:511:      key: 'memory-resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:549:      key: 'structural-context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:551:      content: structuralContext.summary,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:553:      certainty: structuralCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:554:      structuralTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:560:    kind: 'resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:567:      { label: 'structural', certainty: structuralCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:572:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:574:      lastUpdated: structuralContext.provenance?.lastUpdated ?? codeGraph.lastScan,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:588:    structuralContext,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:599:  // Phase 024 / Item 9: Record bootstrap telemetry
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:7:import { handleSessionResume } from './session-resume.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:8:import type { CachedSessionSummaryDecision } from './session-resume.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:46:  resume: Record<string, unknown>;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:49:  structuralContext?: StructuralBootstrapContract & StructuralTrust;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:50:  structuralRoutingNudge?: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:95:  resumeData: Record<string, unknown>,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:97:  structuralContext: StructuralBootstrapContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:101:  if (resumeData.error) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:109:  if (structuralContext.recommendedAction) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:110:    nextActions.add(structuralContext.recommendedAction);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:136:  const structuralSection = payload.sections.find((section) =>
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:137:    section.key === 'structural-context' && section.structuralTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:140:  return structuralSection?.structuralTrust ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:144:  structuralContext: StructuralBootstrapContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:145:): SessionBootstrapResult['structuralRoutingNudge'] | null {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:169:  let resumeData: Record<string, unknown> = {};
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:171:    const resumeResponse = await handleSessionResume({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:174:    resumeData = extractData(resumeResponse);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:175:    allHints.push(...extractHints(resumeData));
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:178:    resumeData = { error: message };
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194:  // Phase 027: Structural bootstrap contract
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:202:  const cachedSummary = extractCachedSummary(resumeData);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:204:    allHints.push('Cached continuity summary accepted as additive bootstrap context.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:206:  const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:207:  if (structuralRoutingNudge) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:208:    allHints.push(structuralRoutingNudge.message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:214:  // Record bootstrap telemetry once for the composite call.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:216:  const completeness = resumeData.error || healthData.error ? 'partial' : 'full';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:219:  const resumeCertainty: SharedPayloadCertainty = resumeData.error ? 'unknown' : 'estimated';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:222:  const structuralCertainty: SharedPayloadCertainty = 'exact';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:226:  const structuralSnapshotTrust = buildStructuralContextTrust(structuralContext);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:228:  if (!resumeData.error && !resumeStructuralTrust) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:233:  const structuralContextWithTrust = attachStructuralTrustFields(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:234:    structuralContext,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:235:    structuralSnapshotTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:238:  const resumeWithTrust = resumeData.error
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:239:    ? resumeData
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:241:      resumeData,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:242:      resumeStructuralTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:248:      key: 'resume-surface',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:250:      content: summarizeUnknown(resumeData),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:252:      certainty: resumeCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:277:      key: 'structural-context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:279:      // This section carries trust derived from the local structural snapshot,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:280:      // which remains valid even when the remote resume surface fails closed.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:281:      content: structuralContext.summary,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:284:      structuralTrust: structuralSnapshotTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:296:    kind: 'bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:299:      { label: 'resume', certainty: resumeCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:310:      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:311:      sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:324:    resume: resumeWithTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:327:    structuralContext: structuralContextWithTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:328:    ...(structuralRoutingNudge ? { structuralRoutingNudge } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:331:      bootstrapPayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:338:    // Keep advisory routing guidance out of nextActions so bootstrap and resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:339:    // remain the authoritative recovery owners for startup and deep resume flows.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:258:  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:343:  meta.structuralRoutingNudge = nudge;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:782:  // Phase 027: Structural bootstrap guidance for non-hook runtimes
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1002:            const nudge = meta.structuralRoutingNudge
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1015:          // Response is not JSON envelope — skip structural nudge injection
 
 exec
-/bin/zsh -lc "rg -n \"semantic code search|CocoIndex|memory|separate|code search|hybrid\" '.opencode/skill/mcp-coco-index/README.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"semantic code search|CocoIndex|memory|separate|code search|hybrid\" '.opencode/skills/mcp-coco-index/README.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "rg -n \"experimental\\.session\\.compacting|compact|memory|context.push|transport|code graph|structural\" '.opencode/plugins/spec-kit-compact-code-graph.js'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -987,7 +987,7 @@ exec
 codex
 I have the comparison anchors now. Public already covers hybrid memory retrieval and structured bootstrap quite deeply, so this ADR is shaping up less as “copy the external stack” and more as “adopt a few thin-wrapper ergonomics and reject the parts that would regress current governance and recovery surfaces.”
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '470,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '470,560p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    470	  };
    471	}
@@ -1082,7 +1082,7 @@ exec
    560	        },
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '1210,1265p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts' | sed -n '1210,1265p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "nl -ba '.opencode/plugins/spec-kit-compact-code-graph.js' | sed -n '388,422p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -1178,7 +1178,7 @@ exec
    419	}
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' | sed -n '163,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' | sed -n '163,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    163	/** Handle session_bootstrap tool call — one-call session setup */
    164	export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promise<MCPResponse> {
@@ -1360,7 +1360,7 @@ exec
    340	    nextActions: buildNextActions(resumeData, healthData, structuralContext),
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/mcp-coco-index/README.md' | sed -n '36,90p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/mcp-coco-index/README.md' | sed -n '36,90p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     36	
     37	<!-- ANCHOR:overview -->
@@ -1761,9 +1761,9 @@ exec
    225	};
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts' | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts' | sed -n '90,170p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts' | sed -n '180,290p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts' | sed -n '180,290p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     90	    true,
     91	    'auto',
@@ -1961,85 +1961,85 @@ exec
    290	  return {
 
 exec
-/bin/zsh -lc "rg -n \"compaction|title:|code graph|structural|transport\" '.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs' '.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' '.opencode/skill/system-spec-kit/mcp_server/context-server.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"compaction|title:|code graph|structural|transport\" '.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs' '.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' '.opencode/skills/system-spec-kit/mcp_server/context-server.ts'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:30:} from '../lib/context/opencode-transport.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:49:  structuralContext?: StructuralBootstrapContract & StructuralTrust;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:50:  structuralRoutingNudge?: {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:97:  structuralContext: StructuralBootstrapContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:109:  if (structuralContext.recommendedAction) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:110:    nextActions.add(structuralContext.recommendedAction);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:136:  const structuralSection = payload.sections.find((section) =>
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:137:    section.key === 'structural-context' && section.structuralTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:140:  return structuralSection?.structuralTrust ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:144:  structuralContext: StructuralBootstrapContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:145:): SessionBootstrapResult['structuralRoutingNudge'] | null {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:206:  const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:207:  if (structuralRoutingNudge) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:208:    allHints.push(structuralRoutingNudge.message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:222:  const structuralCertainty: SharedPayloadCertainty = 'exact';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:226:  const structuralSnapshotTrust = buildStructuralContextTrust(structuralContext);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:233:  const structuralContextWithTrust = attachStructuralTrustFields(
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:234:    structuralContext,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:235:    structuralSnapshotTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:249:      title: 'Resume Surface',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:258:      title: 'Cached Continuity',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:271:      title: 'Health Surface',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:277:      key: 'structural-context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:278:      title: 'Structural Context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:279:      // This section carries trust derived from the local structural snapshot,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:281:      content: structuralContext.summary,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:284:      structuralTrust: structuralSnapshotTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:288:      title: 'Next Actions',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:310:      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:327:    structuralContext: structuralContextWithTrust,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:328:    ...(structuralRoutingNudge ? { structuralRoutingNudge } : {}),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:343:  meta.structuralRoutingNudge = nudge;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:373:  return explicitSessionId ?? transportSessionId ?? codexThreadId ?? undefined;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1002:            const nudge = meta.structuralRoutingNudge
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1015:          // Response is not JSON envelope — skip structural nudge injection
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1020:    // F057: Passive context enrichment pipeline — adds code graph symbols
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1340:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1341:let transport: StdioServerTransport | null = null;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1381:    // P1-09 FIX: Close MCP transport on shutdown
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1382:    runCleanupStep('transport', () => {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1383:      if (transport) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1384:        transport.close();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1385:        transport = null;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1873:  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1886:  transport = new StdioServerTransport();
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1887:  await server.connect(transport);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:30:} from '../lib/context/opencode-transport.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:49:  structuralContext?: StructuralBootstrapContract & StructuralTrust;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:50:  structuralRoutingNudge?: {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:97:  structuralContext: StructuralBootstrapContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:109:  if (structuralContext.recommendedAction) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:110:    nextActions.add(structuralContext.recommendedAction);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:136:  const structuralSection = payload.sections.find((section) =>
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:137:    section.key === 'structural-context' && section.structuralTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:140:  return structuralSection?.structuralTrust ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:144:  structuralContext: StructuralBootstrapContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:145:): SessionBootstrapResult['structuralRoutingNudge'] | null {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:206:  const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:207:  if (structuralRoutingNudge) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:208:    allHints.push(structuralRoutingNudge.message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:222:  const structuralCertainty: SharedPayloadCertainty = 'exact';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:226:  const structuralSnapshotTrust = buildStructuralContextTrust(structuralContext);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:233:  const structuralContextWithTrust = attachStructuralTrustFields(
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:234:    structuralContext,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:235:    structuralSnapshotTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:249:      title: 'Resume Surface',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:258:      title: 'Cached Continuity',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:271:      title: 'Health Surface',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:277:      key: 'structural-context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:278:      title: 'Structural Context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:279:      // This section carries trust derived from the local structural snapshot,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:281:      content: structuralContext.summary,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:283:      certainty: structuralCertainty,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:284:      structuralTrust: structuralSnapshotTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:288:      title: 'Next Actions',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:289:      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:302:      { label: 'structural', certainty: structuralCertainty },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:310:      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:327:    structuralContext: structuralContextWithTrust,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:328:    ...(structuralRoutingNudge ? { structuralRoutingNudge } : {}),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:340:    nextActions: buildNextActions(resumeData, healthData, structuralContext),
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:322:    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:343:  meta.structuralRoutingNudge = nudge;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:373:  return explicitSessionId ?? transportSessionId ?? codexThreadId ?? undefined;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:786:  lines.push('- If structural context shows "ready": code_graph_query is available for structural lookups');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:985:            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or code_graph_query for structural lookups.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1002:            const nudge = meta.structuralRoutingNudge
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1015:          // Response is not JSON envelope — skip structural nudge injection
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1020:    // F057: Passive context enrichment pipeline — adds code graph symbols
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1340:// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1341:let transport: StdioServerTransport | null = null;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1381:    // P1-09 FIX: Close MCP transport on shutdown
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1382:    runCleanupStep('transport', () => {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1383:      if (transport) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1384:        transport.close();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1385:        transport = null;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1873:  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1886:  transport = new StdioServerTransport();
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1887:  await server.connect(transport);
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/context-server.ts' | sed -n '780,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/context-server.ts' | sed -n '780,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts' | sed -n '409,488p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts' | sed -n '409,488p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    780	  } catch { /* session-snapshot not available — skip digest */ }
    781	
@@ -2110,10 +2110,10 @@ exec
    462	  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
    463	  const cocoIndex: CocoIndexStatus = {
    464	    available: isCocoIndexAvailable(),
-   465	    binaryPath: '.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc',
+   465	    binaryPath: '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc',
    466	  };
    467	  if (!cocoIndex.available) {
-   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skill/mcp-coco-index/scripts/install.sh`');
+   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skills/mcp-coco-index/scripts/install.sh`');
    469	  }
    470	
    471	  // Phase 027: Structural bootstrap contract for resume surface
@@ -2136,31 +2136,31 @@ exec
    488	  }
 
 exec
-/bin/zsh -lc "rg -n \"compaction|buildOpenCodeTransportPlan|transport plan|Structural Context|code_graph_query|session_bootstrap\" '.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' '.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.js'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"compaction|buildOpenCodeTransportPlan|transport plan|Structural Context|code_graph_query|session_bootstrap\" '.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' '.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.js'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 2 in 0ms:
-rg: .opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.js: No such file or directory (os error 2)
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:82:export function buildOpenCodeTransportPlan(args: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
+rg: .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.js: No such file or directory (os error 2)
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:82:export function buildOpenCodeTransportPlan(args: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
 
 exec
-/bin/zsh -lc "rg --files '.opencode/skill/system-spec-kit/mcp_server/lib/context'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg --files '.opencode/skills/system-spec-kit/mcp_server/lib/context'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/context/publication-gate.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/context/publication-gate.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' | sed -n '82,155p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts' | sed -n '82,155p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     82	export function buildOpenCodeTransportPlan(args: {
     83	  bootstrapPayload?: SharedPayloadEnvelope | null;
@@ -2288,7 +2288,7 @@ exec
 codex
 I’m tightening one last comparison point before I write the ADR: deletion policy. Mnemosyne treats contradiction cleanup as direct deletion, and I want that call grounded against Public’s actual archive-first behavior rather than only earlier iteration notes.
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts' | sed -n '350,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts' | sed -n '350,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    350	  }
    351	}
@@ -2363,7 +2363,7 @@ exec
    420	
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts' | sed -n '550,645p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts' | sed -n '550,645p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    550	 * archive/unarchive path lightweight.
    551	 */
@@ -2463,7 +2463,7 @@ exec
    645	          updated_at = datetime('now')
 
 exec
-/bin/zsh -lc "nl -ba '.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' | sed -n '388,408p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba '.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts' | sed -n '388,408p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    388	        const similarity = rawSimilarity > 1 ? rawSimilarity / 100 : rawSimilarity;
    389	        const topId = typeof top.id === 'number' ? top.id : 0;
@@ -2488,7 +2488,7 @@ exec
    408	            }
 
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/sk-deep-research/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/sk-deep-research/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -2506,7 +2506,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -2712,7 +2712,7 @@ Save --> generate-context.js --> verify memory artifact
 | **Findings registry** | Reducer-owned open/resolved questions, key findings, and ruled-out directions |
 
 exec
-/bin/zsh -lc "sed -n '1,220p' '.opencode/skill/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' '.opencode/skills/system-spec-kit/SKILL.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: system-spec-kit
@@ -2946,7 +2946,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82)
 - **Evidence type**: both
 - **What it does**: the repo is essentially one wrapper file plus packaging; the wrapper shells out to `mnemosyne`, while BM25, vector search, RRF, ONNX inference, and the `snowflake-arctic-embed-m-v1.5` choice are README-level backend claims.
-- **Why it matters**: Public already has hybrid retrieval in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482) and should not duplicate that stack inside an OpenCode plugin. If we want a plugin surface, it should adapt existing Public capabilities rather than become a second retrieval engine.
+- **Why it matters**: Public already has hybrid retrieval in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482) and should not duplicate that stack inside an OpenCode plugin. If we want a plugin surface, it should adapt existing Public capabilities rather than become a second retrieval engine.
 - **Recommendation**: prototype later
 - **Affected subsystem**: OpenCode plugin surface, packaging, optional local-runtime adapters
 - **Risk**: medium; the wrapper is clean, but the backend behavior is only documented here and comes with binary plus model-install overhead
@@ -2963,7 +2963,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: medium
 
 ### Finding 3: Prompt-level memory-tool guidance during compaction is the most transferable idea
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L782)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L782)
 - **Evidence type**: both
 - **What it does**: Mnemosyne injects explicit memory operating instructions into `experimental.session.compacting`, and the README mirrors that same discipline in `AGENTS.md`. Public already injects structural continuity and routing context across startup/resume/compaction, but not a similarly direct reminder of memory actions.
 - **Why it matters**: Public’s structural transport is stronger than Mnemosyne’s, but Mnemosyne is better at preserving memory-tool awareness after compaction. The right move is additive: keep structural context and add a short memory-usage block.
@@ -2973,7 +2973,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 4: First-class project/global memory UX is valuable, but only as aliases into Public’s richer governed scopes
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L95), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L95), [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L95), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L95), [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201)
 - **Evidence type**: both
 - **What it does**: Mnemosyne exposes a very clear two-scope operator model: project and global, with matching recall/store tools. Public already supports `tenantId`, `userId`, `agentId`, `sessionId`, and `sharedSpaceId`, plus governed retention and dedup.
 - **Why it matters**: the external UX is simpler and easier to teach, but Public’s storage truth is already more correct for private, shared, and governed memory. The transferable idea is the ergonomic alias layer, not the two-bucket data model.
@@ -2993,7 +2993,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 6: Delete-by-ID as the normal contradiction workflow is weaker than Public’s archive-first lifecycle
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L69), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [reconsolidation-bridge.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L395)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L69), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [reconsolidation-bridge.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L395)
 - **Evidence type**: both
 - **What it does**: Mnemosyne expects contradicted memories to be deleted by document ID. Public instead archives low-value or superseded memories, removes them from active retrieval, supports unarchive, and archives near-duplicates during reconsolidation rather than physically deleting them.
 - **Why it matters**: for long-lived memory, reversible forgetting is stronger than destructive cleanup. Public’s archive-first model preserves auditability, recovery, and lineage when pruning decisions turn out to be wrong.
@@ -3005,8 +3005,8 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 ## Assessment
 - New information ratio: 0.43
 - The ADR outcome is selective, not wholesale: adopt Mnemosyne’s compaction-time memory guidance and safe CLI-wrapper pattern; prototype ergonomic scope aliases; reject basename-derived identity and delete-first contradiction handling.
-- Public already has the stronger retrieval core and recovery surface: hybrid `memory_search` with RRF in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), and composite startup/resume transport in [`session-bootstrap.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163) and [`session-resume.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L409).
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Public already has the stronger retrieval core and recovery surface: hybrid `memory_search` with RRF in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), and composite startup/resume transport in [`session-bootstrap.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163) and [`session-resume.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L409).
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - Constraint: this session is read-only, so I could not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or run `generate-context.js` to save memory.
 
 ## Recommended Next Focus
@@ -3025,7 +3025,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L38), [package.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json#L31), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L82)
 - **Evidence type**: both
 - **What it does**: the repo is essentially one wrapper file plus packaging; the wrapper shells out to `mnemosyne`, while BM25, vector search, RRF, ONNX inference, and the `snowflake-arctic-embed-m-v1.5` choice are README-level backend claims.
-- **Why it matters**: Public already has hybrid retrieval in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482) and should not duplicate that stack inside an OpenCode plugin. If we want a plugin surface, it should adapt existing Public capabilities rather than become a second retrieval engine.
+- **Why it matters**: Public already has hybrid retrieval in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482) and should not duplicate that stack inside an OpenCode plugin. If we want a plugin surface, it should adapt existing Public capabilities rather than become a second retrieval engine.
 - **Recommendation**: prototype later
 - **Affected subsystem**: OpenCode plugin surface, packaging, optional local-runtime adapters
 - **Risk**: medium; the wrapper is clean, but the backend behavior is only documented here and comes with binary plus model-install overhead
@@ -3042,7 +3042,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: medium
 
 ### Finding 3: Prompt-level memory-tool guidance during compaction is the most transferable idea
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/context-server.ts#L782)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L208), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L62), [spec-kit-compact-code-graph.js](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/spec-kit-compact-code-graph.js#L396), [opencode-transport.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L102), [context-server.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/context-server.ts#L782)
 - **Evidence type**: both
 - **What it does**: Mnemosyne injects explicit memory operating instructions into `experimental.session.compacting`, and the README mirrors that same discipline in `AGENTS.md`. Public already injects structural continuity and routing context across startup/resume/compaction, but not a similarly direct reminder of memory actions.
 - **Why it matters**: Public’s structural transport is stronger than Mnemosyne’s, but Mnemosyne is better at preserving memory-tool awareness after compaction. The right move is additive: keep structural context and add a short memory-usage block.
@@ -3052,7 +3052,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 4: First-class project/global memory UX is valuable, but only as aliases into Public’s richer governed scopes
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L95), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts#L95), [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L95), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L51), [create-record.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts#L95), [scope-governance.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts#L201)
 - **Evidence type**: both
 - **What it does**: Mnemosyne exposes a very clear two-scope operator model: project and global, with matching recall/store tools. Public already supports `tenantId`, `userId`, `agentId`, `sessionId`, and `sharedSpaceId`, plus governed retention and dedup.
 - **Why it matters**: the external UX is simpler and easier to teach, but Public’s storage truth is already more correct for private, shared, and governed memory. The transferable idea is the ergonomic alias layer, not the two-bucket data model.
@@ -3072,7 +3072,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 - **Impact**: high
 
 ### Finding 6: Delete-by-ID as the normal contradiction workflow is weaker than Public’s archive-first lifecycle
-- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L69), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [reconsolidation-bridge.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L395)
+- **Source**: [index.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts#L193), [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md#L69), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L358), [archival-manager.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts#L558), [reconsolidation-bridge.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts#L395)
 - **Evidence type**: both
 - **What it does**: Mnemosyne expects contradicted memories to be deleted by document ID. Public instead archives low-value or superseded memories, removes them from active retrieval, supports unarchive, and archives near-duplicates during reconsolidation rather than physically deleting them.
 - **Why it matters**: for long-lived memory, reversible forgetting is stronger than destructive cleanup. Public’s archive-first model preserves auditability, recovery, and lineage when pruning decisions turn out to be wrong.
@@ -3084,8 +3084,8 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 ## Assessment
 - New information ratio: 0.43
 - The ADR outcome is selective, not wholesale: adopt Mnemosyne’s compaction-time memory guidance and safe CLI-wrapper pattern; prototype ergonomic scope aliases; reject basename-derived identity and delete-first contradiction handling.
-- Public already has the stronger retrieval core and recovery surface: hybrid `memory_search` with RRF in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), and composite startup/resume transport in [`session-bootstrap.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163) and [`session-resume.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L409).
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Public already has the stronger retrieval core and recovery surface: hybrid `memory_search` with RRF in [`memory-search.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482), and composite startup/resume transport in [`session-bootstrap.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163) and [`session-resume.ts`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L409).
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - Constraint: this session is read-only, so I could not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or run `generate-context.js` to save memory.
 
 ## Recommended Next Focus

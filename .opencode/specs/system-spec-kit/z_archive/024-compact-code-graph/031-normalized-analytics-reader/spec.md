@@ -101,10 +101,10 @@ Deliver a narrow Level 3 packet that turns the producer seam into a queryable re
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts` | Modify | Emit deterministic transcript turns with byte offsets and absolute line numbers. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts` | Create | Reader-owned normalized analytics schema, seed data, and ingest helpers. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts` | Create | Verify schema creation, replay ingest, idempotency, and growing-transcript replay. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl` | Reuse | Fixture-backed transcript for replay verification. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts` | Modify | Emit deterministic transcript turns with byte offsets and absolute line numbers. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts` | Create | Reader-owned normalized analytics schema, seed data, and ingest helpers. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts` | Create | Verify schema creation, replay ingest, idempotency, and growing-transcript replay. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl` | Reuse | Fixture-backed transcript for replay verification. |
 | `.opencode/specs/system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader/*.md` | Modify | Align packet docs to the implemented reader-only boundary. |
 <!-- /ANCHOR:scope -->
 

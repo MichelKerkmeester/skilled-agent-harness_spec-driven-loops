@@ -22,7 +22,7 @@
 - Q5 Sub-agent dispatch — resolved iter 3 (tests verified iter 4)
 
 Note: Stream sub-packet uses non-standard layout (parent 059 has 3 stream subfolders).
-The reducer at `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` resolves
+The reducer at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` resolves
 to `{spec_folder}/research/` (flat) per its `resolveArtifactRoot`, so it cannot see
 this sub-folder. Strategy / registry / dashboard are maintained inline by the
 orchestrator instead — every state record (config, executor_pre_dispatch sentinels,

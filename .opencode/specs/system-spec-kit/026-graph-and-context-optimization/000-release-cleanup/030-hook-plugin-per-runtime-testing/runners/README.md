@@ -21,13 +21,13 @@ Canonical live verdicts must be run from a normal operator shell, not from insid
 `codex exec` or another sandboxed parent process:
 
 ```bash
-npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests
+npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests
 ```
 
 Equivalent direct runner:
 
 ```bash
-node --import ./.opencode/skill/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
+node --import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
   specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/030-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts
 ```
 
@@ -47,7 +47,7 @@ When the runner is launched from a sandboxed parent such as:
 
 ```bash
 codex exec --sandbox workspace-write \
-  "npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests"
+  "npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests"
 ```
 
 it detects the sandbox, runs only direct hook/plugin smokes, and records live CLI

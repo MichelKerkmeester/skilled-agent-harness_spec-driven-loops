@@ -4,9 +4,9 @@
 
 This is iteration 1 of up to 8. No prior iterations. All 5 questions are open.
 
-Research Topic: Inventory the existing internal .opencode/agent/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agent/code.md design.
+Research Topic: Inventory the existing internal .opencode/agents/* ecosystem and harness governance to identify (1) skill auto-loading patterns, (2) stack-agnostic detection mechanisms in sk-code, (3) caller-restriction enforcement (D3 BLOCKER), (4) write-capable safety guarantees, (5) sub-agent dispatch contracts and depth/nesting rules. Map findings to a concrete recommendation set for .opencode/agents/code.md design.
 Iteration: 1 of 8
-Focus Area: Q3 caller-restriction enforcement (D3 BLOCKER) - inspect every .opencode/agent/*.md frontmatter for caller-restriction fields, then check AGENTS.md and orchestrate.md routing patterns.
+Focus Area: Q3 caller-restriction enforcement (D3 BLOCKER) - inspect every .opencode/agents/*.md frontmatter for caller-restriction fields, then check AGENTS.md and orchestrate.md routing patterns.
 Remaining Key Questions:
 - Q1: Skill auto-loading patterns - how do current agents pick up skills?
 - Q2: Stack-agnostic detection mechanisms - how does sk-code detect stack?
@@ -38,11 +38,11 @@ All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Developme
 
 Focus on Q3 (caller-restriction enforcement) — this is the explicit D3 blocker:
 
-1. Read every file under `.opencode/agent/*.md` and survey the frontmatter. Look for ANY field that could express caller-restriction (e.g. `caller:`, `dispatchableBy:`, `parent:`, `callableFrom:`, `task:`, `owner:`, `mode:`, `gate:`, `permissionedBy:`, etc.). Note exact frontmatter keys per agent.
+1. Read every file under `.opencode/agents/*.md` and survey the frontmatter. Look for ANY field that could express caller-restriction (e.g. `caller:`, `dispatchableBy:`, `parent:`, `callableFrom:`, `task:`, `owner:`, `mode:`, `gate:`, `permissionedBy:`, etc.). Note exact frontmatter keys per agent.
 2. Read AGENTS.md (root) §5 "Distributed Governance Rule" and §5 Agent Routing — capture the exact wording about which agents are dispatched by what.
-3. Read `.opencode/agent/orchestrate.md` — identify how it lists/routes to other agents (e.g. is there a body section "Routes to: @debug, @write, ..." that the harness honors? Or is it pure prose?).
-4. Search for any harness-level dispatch validator: grep/coco for `dispatchableBy`, `caller`, `parent_agent`, `restricted_callers`, `if (!isOrchestrator)` patterns in `.opencode/skill/system-spec-kit/mcp_server/`, `.opencode/plugin/`, or anywhere the harness loads agent files.
-5. Note also: `.opencode/agent/improve-agent.md` and `.opencode/agent/improve-prompt.md` are dispatched by `/improve:agent` and `/improve:prompt` commands — check if their frontmatter says anything about caller restriction. Same for `@deep-research` and `@deep-review`.
+3. Read `.opencode/agents/orchestrate.md` — identify how it lists/routes to other agents (e.g. is there a body section "Routes to: @debug, @write, ..." that the harness honors? Or is it pure prose?).
+4. Search for any harness-level dispatch validator: grep/coco for `dispatchableBy`, `caller`, `parent_agent`, `restricted_callers`, `if (!isOrchestrator)` patterns in `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/plugin/`, or anywhere the harness loads agent files.
+5. Note also: `.opencode/agents/improve-agent.md` and `.opencode/agents/improve-prompt.md` are dispatched by `/improve:agent` and `/improve:prompt` commands — check if their frontmatter says anything about caller restriction. Same for `@deep-research` and `@deep-review`.
 
 Begin by inventorying every agent's frontmatter as a table, then assess what fields exist that COULD enforce caller restriction at the harness level vs convention only.
 

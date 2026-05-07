@@ -1,16 +1,16 @@
 ● Todo added: Review contamination filter expansion
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 90 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts
   └ 402 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts
   └ 1 line read
 
 ● Grep "memoryId" (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 7 lines found
 
 ● Create session plan
@@ -25,23 +25,23 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
 
 ● Grep "code fence|code fences|```|strip HTML|stripHtml|html stripping|<[^>]+>|replace\(/<"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 26 lines found
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 120-230
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 120-230
   └ 111 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 920-990
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 920-990
   └ 71 lines read
 
 ● Todo started: fix-5-decision-confidence
 
-● Read .opencode/skill/system-spec-kit/scripts/core/workflow.ts lines 812-842
+● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 812-842
   └ 31 lines read
 
 ● Grep "memoryId\s*(?:!==|===|!=|==|\)|&&|\|\|)|!memoryId|memoryId !== undefined|memoryId != null"
 (/Users/michelkerkmeester/MEGA/Development/Opencode
-Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
+Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts)
   └ 2 lines found
 
 ● Count denylist patterns
@@ -49,19 +49,19 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
   from pathlib import Path
   import re
   p = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts')...
+  Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts')...
   └ 43 lines...
 
 ● Todo completed: fix-5-decision-confidence, fix-6-html-stripping, fix-7-memoryid-null-check
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts lines 121-170
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts lines 121-170
   └ 50 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts lines 252-262
+● Read .opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts lines 252-262
   └ 10 lines read
 
 ### FINDING-01: FIX 4 — Contamination Filter Expansion (CORRECT)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:6-43`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:6-43`
 - **Severity:** LOW
 - **Category:** QUALITY
 - **Current Behavior:** `DEFAULT_DENYLIST` contains 32 exact regex patterns, covering orchestration chatter, AI self-reference, filler phrases, and tool scaffolding. This satisfies the stated “30+ patterns” expectation.
@@ -71,7 +71,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: FIX 5 — Evidence-Based Decision Confidence (INCOMPLETE)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/extractors/decision-extractor.ts:121-169,258-261`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts:121-169,258-261`
 - **Severity:** HIGH
 - **Category:** QUALITY
 - **Current Behavior:** Observation-derived decisions now use the expected defaults (`OPTIONS.length > 1 ? 70 : rationale-detected ? 65 : 50`), but the manual-decision path still hard-codes `CONFIDENCE: 80`.
@@ -81,7 +81,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: FIX 6 — Code-Block-Safe HTML Stripping (INCOMPLETE)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:821-840`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:821-840`
 - **Severity:** HIGH
 - **Category:** BUG
 - **Current Behavior:** The workflow now splits on triple-backtick fences before stripping HTML, so ordinary fenced blocks are preserved. However, the stripping regex removes only opening `<div|span|p|br|hr>` tags, not closing tags like `</div>`, and inline code spans are still exposed to stripping.
@@ -91,7 +91,7 @@ Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts)
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: FIX 7 — `memoryId !== null` Guard (CORRECT)
-- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/scripts/core/workflow.ts:934-940,977`
+- **File:** `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/core/workflow.ts:934-940,977`
 - **Severity:** LOW
 - **Category:** ALIGNMENT
 - **Current Behavior:** `memoryId` is initialized as `number | null`, assigned from `indexMemory(...)`, and guarded with `if (memoryId !== null)` before logging and metadata updates. Returning `memoryId` later also preserves a valid `0` value.

@@ -431,8 +431,8 @@ Example:
     'next: continue current working tree changes if save occurs mid-session'
   ],
   files: [
-    '.opencode/skill/system-spec-kit/scripts/core/workflow.ts',
-    '.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts'
+    '.opencode/skills/system-spec-kit/scripts/core/workflow.ts',
+    '.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts'
   ]
 }
 ```
@@ -538,8 +538,8 @@ The safest implementation is not to turn git into fake transcript replay; it is 
 
 ---
 
-[^generate-context]: `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:21-24, 452-465`
-[^collect-session-data]: `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:674-804`
-[^file-extractor]: `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts:24-29, 104-182`
-[^session-extractor]: `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts:130-141`
-[^config]: `.opencode/skill/system-spec-kit/scripts/core/config.ts:143-154, 235-240`
+[^generate-context]: `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:21-24, 452-465`
+[^collect-session-data]: `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:674-804`
+[^file-extractor]: `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts:24-29, 104-182`
+[^session-extractor]: `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts:130-141`
+[^config]: `.opencode/skills/system-spec-kit/scripts/core/config.ts:143-154, 235-240`

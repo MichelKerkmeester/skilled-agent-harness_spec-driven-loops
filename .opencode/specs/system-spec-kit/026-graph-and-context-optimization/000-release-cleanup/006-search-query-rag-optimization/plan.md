@@ -19,8 +19,8 @@ _memory:
     key_files:
       - "spec.md"
       - "tasks.md"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts"
     session_dedup:
       fingerprint: "sha256:006-search-query-rag-optimization-plan-20260428"
       session_id: "006-search-query-rag-optimization-20260428"

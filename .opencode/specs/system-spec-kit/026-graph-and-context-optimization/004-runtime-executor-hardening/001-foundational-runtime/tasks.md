@@ -52,7 +52,7 @@ _memory:
 ### T-CNS-01 — [x] Canonical save writes description.json.lastUpdated [EVIDENCE: aaf0f49a8]
 
 **Severity**: P1 | **Effort**: M (4h) | **Wave**: A
-**Files**: `.opencode/skill/system-spec-kit/scripts/core/workflow.ts:1259, 1261-1331`
+**Files**: `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1259, 1261-1331`
 **Resolves**: R4-P1-002, R51-P1-001, partial R3-P2-001, partial R5-P1-001
 
 **Changes**:
@@ -429,7 +429,7 @@ _memory:
 ### T-YML-CP4-01 — [x] Canonical YAML timing-note fix for CP-004 [EVIDENCE: b26514cbc]
 
 **Severity**: P2 | **Effort**: M (4h) | **Wave**: D
-**Files**: `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml:1099`
+**Files**: `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml:1099`
 **Resolves**: CP-004
 
 **Acceptance**:

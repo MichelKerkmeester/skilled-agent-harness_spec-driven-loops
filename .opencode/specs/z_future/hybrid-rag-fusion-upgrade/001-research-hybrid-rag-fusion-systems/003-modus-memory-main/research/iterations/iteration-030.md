@@ -1,5 +1,5 @@
 ### Finding 6: Modus’s small curated tool bundle is easier to learn than Public’s broad surface
-- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
+- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
 - **What it does**: Modus deliberately narrows its memory-facing MCP surface to 11 tools. Public’s surface is more capable, but also harder for operators and AI clients to learn quickly.
 - **Why it matters**: Discoverability is part of DX. A smaller “operator bundle” can make a powerful system feel approachable without removing advanced capabilities.
 - **Recommendation**: **prototype later**. Keep Public’s full surface, but add a curated operator profile or alias bundle centered on search, status, review, debug, health, and adjacency.
@@ -24,7 +24,7 @@ Run the next iteration on **operator workflow design**: map Public’s existing 
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -55,7 +55,7 @@ Run the next iteration on **operator workflow design**: map Public’s existing 
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -115,12 +115,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -129,7 +129,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -303,7 +303,7 @@ exec
 2023:- when user asked to “Let 3 ultra-think agents review all work done in .../023-hybrid-rag-fusion-refinement,” run multi-agent read-only review with severity-ranked findings and exact file+line evidence [Task 1]
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-deep-research
@@ -321,7 +321,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -658,12 +658,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -672,7 +672,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -865,10 +865,10 @@ drwxr-xr-x   3 michelkerkmeester  staff     96 Apr 10 21:06 memory
 drwxr-xr-x   4 michelkerkmeester  staff    128 Apr 10 21:17 research
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 exec
-/bin/zsh -lc 'bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1184ms:
 
 ───────────────────────────────────────────────────────────────
@@ -883,7 +883,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -1644,7 +1644,7 @@ exec
    260	// FormatBriefing renders a Briefing as a readable markdown string.
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '450,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '450,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    450	function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
    451	  if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
@@ -1819,7 +1819,7 @@ exec
    620	    });
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs Scheduler
@@ -2103,7 +2103,7 @@ exec
    280	    Object.entries(LEGACY_CONTEXT_TYPE_ALIASES).map(
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Fsrs
@@ -2896,653 +2896,653 @@ exec
    952	}
 
 exec
-/bin/zsh -lc "rg -n \"memory_validate|trackAccess|processReview|nextReviewDate|AGAIN|HARD|GOOD|EASY|memory_review|memory_due|review\" .opencode/skill/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"memory_validate|trackAccess|processReview|nextReviewDate|AGAIN|HARD|GOOD|EASY|memory_review|memory_due|review\" .opencode/skills/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:46:| `SPECKIT_EVAL_LOGGING` | Persists evaluation events for later review, but does not authorize publication-grade multiplier claims. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:40:  action: 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:151:  review_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85: * Classify whether a borderline (review-tier) memory pair should be
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:   *  borderline pair is detected (review tier). */
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417:        } else if (tier === 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:421:            action: 'review',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:411:      meta.parseFailedPreview = parseFailedInnerText.slice(0, 120);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:517:      hints.push('Contradicting relationships detected - review for consistency');
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:114:    [--dry-run]                    Preview without deleting
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:307:  console.log(`\nBulk Delete Preview`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:17:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:75:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/api/index.ts:9:// auditing all consumers first (see review/review-report.md P2-MNT-02).
-.opencode/skill/system-spec-kit/mcp_server/README.md:78:| **Save quality** | Accept everything | 3-layer gate (structure, semantic sufficiency, duplicate) with dry-run preview |
-.opencode/skill/system-spec-kit/mcp_server/README.md:322:Think of it like how your own brain works: things you reviewed recently are easy to recall, while things you have not thought about in months fade into the background.
-.opencode/skill/system-spec-kit/mcp_server/README.md:455:If a file fails any gate, the system rejects it with a clear explanation. Preview all checks without saving using `dryRun: true`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:707:| `dryRun` | boolean | Preview validation without saving |
-.opencode/skill/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1042:The MCP handler scores chunk-backed hits against `parentMemoryId ?? row.id`, so eval rows stay attached to canonical parent memories. Before comparing runs after a DB rebuild or import, preview or refresh the live ground-truth mapping with `scripts/evals/map-ground-truth-ids.ts`; if token-budget overflow collapses a run below `recallK`, treat that run as investigation-only rather than a clean benchmark.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1264:| L7 | Maintenance | 10 | 1,000 | Re-index files, review history, run bulk imports |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1578:**Fix**: Preview what would happen with a dry run:
-.opencode/skill/system-spec-kit/mcp_server/README.md:1644:| Slow responses on large index | Set `ENABLE_TOOL_CACHE=true` and review cache + trace settings before enabling heavier debug output |
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:557:        'Restore applied partially; review restored.errors and restored.skipped before retrying',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
-.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
-.opencode/skill/system-spec-kit/mcp_server/utils/README.md:19:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/utils/README.md:57:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:88:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:89:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:340:  // Check dimension coverage — blocking gate for review mode.
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:341:  // Incomplete dimension coverage means the review is not yet comprehensive
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:148:  trackAccess: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:75:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/schemas/README.md:70:- `../tests/review-fixes.vitest.ts` -- test coverage for schema validation
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:51:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:52:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/formatters/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/formatters/README.md:46:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:564:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skill/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:786:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type: research or review (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:832:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:850:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:863:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:52:  return loopType === 'research' || loopType === 'review';
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:77:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:67:  review_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:95:  'type_inference_source', 'stability', 'difficulty', 'review_count',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:35:    if (args.loopType !== 'research' && args.loopType !== 'review') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:36:      return errorResponse('loopType must be "research" or "review"');
-.opencode/skill/system-spec-kit/mcp_server/configs/README.md:20:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/configs/README.md:59:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:386:  elapsedDays  // Days since last review
-.opencode/skill/system-spec-kit/mcp_server/lib/README.md:402:2. **FSRS calculation**: If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:23:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:25:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/checklist.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:33:        'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:35:    ).toBe('specs/system-spec-kit/024-compact-code-graph/029-review-remediation');
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:44:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:59:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:60:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/checklist.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:66:      'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:85:        'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:61: * For review: dimensions/files that are not sources of outgoing COVERS or EVIDENCE_FOR edges.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:77:  if (loopType === 'review') {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:236: * For review: FINDING nodes with no RESOLVES edges.
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:120:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:148:      SELECT id, stability, difficulty, last_review, review_count, title
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:157:    const elapsedDays = fsrsScheduler.calculateElapsedDays(memory.last_review as string | null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:165:      fsrsScheduler.GRADE_GOOD,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:179:          last_review = datetime('now'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:180:          review_count = COALESCE(review_count, 0) + 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:85:        last_review TEXT DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:86:        review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:621:            id, spec_folder, file_path, title, content_text, content_hash, stability, difficulty, review_count
-.opencode/skill/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:5:// research and review convergence metrics.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:312: * Compute review convergence signals.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:437: * Dispatches to research or review signal computation based on loop type.
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:555:      "query": "security review of the path traversal prevention in memory file loading",
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:54:## 3. HARDENING NOTES
-.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:18:// 8. Sprint gate review -- manual review before enabling
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:41:    last_review: '2025-02-01T12:00:00Z',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:42:    review_count: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:82:    reviewCount: 5,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:165:    row.last_review = null;
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:217:    expect(memory.reviewCount).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:61:  it('auto-merge threshold is above review threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:77:  it('returns "review" for similarity in [0.88, 0.96)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:78:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:79:    expect(classifyAssistiveSimilarity(0.90)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:80:    expect(classifyAssistiveSimilarity(0.9599)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:93:  it('exact boundary 0.88 is review', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:94:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:204:    // review
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:205:    expect(classifyAssistiveSimilarity(0.959)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:206:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:223:    expect(tier).toBe('review');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:17:export type LoopType = 'research' | 'review';
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:124:/** Initial weight estimates for review relations */
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:139:  review: ['DIMENSION', 'FILE', 'FINDING', 'EVIDENCE', 'REMEDIATION'] as const,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:145:  review: ['COVERS', 'EVIDENCE_FOR', 'CONTRADICTS', 'RESOLVES', 'CONFIRMS', 'ESCALATES', 'IN_DIMENSION', 'IN_FILE'] as const,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:156:    loop_type TEXT NOT NULL CHECK(loop_type IN ('research', 'review')),
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:85:      trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:348:    input.config.trackAccess = true;
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:95:    { id: 403, content: 'Post-save review highlights title, trigger phrase, and importance tier issues. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:59:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:60:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:61:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:62:  review_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/config/memory-types.ts:151:  { pattern: /\/review\/iterations\//, type: 'working' },
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:146:    it('Recent review => ~1.0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:149:        last_review: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:156:    it('No last_review => returns baseScore', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:327:      expect(fsrsScheduler.GRADE_AGAIN).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:328:      expect(fsrsScheduler.GRADE_HARD).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:329:      expect(fsrsScheduler.GRADE_GOOD).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:330:      expect(fsrsScheduler.GRADE_EASY).toBe(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:423:    // Deprecated tier also frozen — use applyFsrsDecay with no last_review to get baseScore back
-.opencode/skill/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:424:    it('No last_review = frozen state (returns baseScore)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:123:      last_review TEXT DEFAULT (datetime('now')),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:124:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:20:  '/review/iterations/',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:27:  '/review/',
-.opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:30:  '/review/iterations/',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:353:      'review XSS security vulnerabilities in forms',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:540:        'review XSS protections in forms',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:544:        'security review of user input validation',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:581:      security_audit: ['security audit', 'vulnerability check', 'xss review', 'penetration test', 'audit permissions'],
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:624:      security_audit: 'security audit vulnerability and injection review',
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:384:    it('research/review iteration paths fall back to working-artifact weight', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:386:      expect(calculateDocumentWeight('/p/specs/x/review/iterations/iteration-001.md')).toBe(0.25);
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:880:        last_review: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:881:        review_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:923:        last_review: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:924:        review_count: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:82:  GRADE_GOOD: 3,
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:223:      trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:62:   2. DIVERSITY HARD GATES
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:72:  MIN_HARD_NEGATIVES: 3,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:271:    required: GATES.MIN_HARD_NEGATIVES,
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:273:    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:11:  reviewGovernanceAudit,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:130:  it('reviews governance audit history with summary counts and parsed metadata', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:168:    const review = reviewGovernanceAudit(db, {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:174:    expect(review.summary.totalMatching).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:175:    expect(review.summary.returnedRows).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:176:    expect(review.summary.byAction).toEqual({ memory_save: 2 });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:177:    expect(review.summary.byDecision).toEqual({ allow: 1, deny: 1 });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:178:    expect(review.summary.latestCreatedAt).toEqual(expect.any(String));
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:179:    expect(review.rows).toHaveLength(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:180:    expect(review.rows[0]).toMatchObject({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:188:    expect(review.rows[1]).toMatchObject({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:216:    const blocked = reviewGovernanceAudit(db, {});
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:224:    const allowed = reviewGovernanceAudit(db, { allowUnscoped: true, limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:107:    it('T414: R=1 for just-reviewed memory', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:130:    it('T416: Falls back to updated_at when last_review missing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:20:    last_review: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:76:        last_review: daysAgo(elapsed[tier]),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:55:    'idx_last_review',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:87:  'new_content_preview',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:88:  'existing_content_preview',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:256:      new_content_preview TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:257:      existing_content_preview TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:331:      new_content_preview,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:332:      existing_content_preview,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:347:      ${getFirstAvailableColumnExpression(legacyColumns, ['new_content_preview'], 'NULL')},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:348:      ${getFirstAvailableColumnExpression(legacyColumns, ['existing_content_preview'], 'NULL')},
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:472:        { name: 'last_review', sql: 'ALTER TABLE memory_index ADD COLUMN last_review TEXT' },
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:473:        { name: 'review_count', sql: 'ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0' }
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:500:        'idx_last_review',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:501:        'CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review)',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:507:        'CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review)',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1873:  if (!column_names.includes('last_review')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1875:      database.exec(`ALTER TABLE memory_index ADD COLUMN last_review TEXT`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1876:      console.warn('[vector-index] Migration: Added last_review column (FSRS)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1881:      logDuplicateColumnMigrationSkip('last_review', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1885:  if (!column_names.includes('review_count')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1887:      database.exec(`ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1888:      console.warn('[vector-index] Migration: Added review_count column (FSRS)');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1893:      logDuplicateColumnMigrationSkip('review_count', error);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2342:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2343:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2475:    CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2476:    CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:8:// 2. Snippet extraction — short previews with detail-available flags
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:37:/** Snippet preview of a single result. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:260: * Extract snippet previews from full results.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:267: * const previews = extractSnippets(results);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:122:        { path: '/project/.opencode/specs/008-feature/review/iterations/iteration-001.md', expected: 'working' },
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:30:  it('T016: Just reviewed = full retrievability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:239:    const grade = 3; // "Good" review
-.opencode/skill/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:474:    // Changes should be less than 2 points per review (gradual)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:99:    /security\s+(?:audit|review|check)/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:155:    'security audit vulnerability and injection review',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:527:    const dateStr = r.created_at as string | undefined || r.last_accessed as string | undefined || r.last_review as string | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:128:  'review': 'research',
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:86:      last_review TEXT
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:264:    const timestamp = mem.lastAccess || mem.last_accessed || mem.lastReview || mem.last_review || mem.created_at;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:297:  const lastReview = memory.last_review || memory.created_at;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:320:  // Type's configured half-life, while well-reviewed memories keep their
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:89:        'Summarize rollout monitoring dashboards for post-deployment review.',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:145:    it('T510: conflict records preserve metadata and previews', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:162:      expect(record.new_content_preview).toHaveLength(203);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:100:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:101:        review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:557:  it('EDGE-T06: Falls back to updated_at when no last_review', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:183:| < 0.40 | Poor -- review fallback policy |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:81:  get_memory_preview,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:106:  getMemoryPreview,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:57:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:58:        review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:205:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:6:// Dimensions for governance review and Wave 2 gate decisions.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:589: * Tune adaptive thresholds after reviewing the current shadow signal set.
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:88:    expect(parsed.data.graphOps.previewPolicy.mode).toBe('metadata-only');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:24:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:91:  last_review?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:8:// FSRS-preferred strategy. Memories with FSRS review data (last_review
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:9:// IS NOT NULL, review_count > 0) use the FSRS v4 power-law formula:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:11:// Memories without review data fall back to half-life exponential:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:13:// This ensures backward compatibility while aligning reviewed
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:201:| `security_audit` | Security review              | Vulnerabilities, audit logs         |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:452:| v4      | FSRS columns (`stability`, `difficulty`, `last_review`, `review_count`) + `memory_conflicts` table + FSRS indexes |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:757:Selection tracking writes to a separate `learned_triggers` column (NOT FTS5 index). 10 safeguards: separate column, 30-day TTL, 100+ stop words denylist, rate cap (3 terms/selection, 8 terms/memory), top-3 exclusion, 1-week shadow period, <72h memory exclusion, sprint gate review, rollback mechanism, provenance audit log. Query weight: **0.7x** of organic triggers. Gated via `SPECKIT_LEARN_FROM_SELECTION` (default ON; set to `false` to disable).
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:137:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:184:- Audit: Logs to `memory_conflicts` table for review
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:292:  processReview,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:294:  GRADE_GOOD,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:303:// Update stability after review
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:307:  GRADE_GOOD,   // grade (3 = successful recall)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:311:// Process a full review cycle
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:313:// params = { stability: 1.0, difficulty: 5.0, lastReview: null, reviewCount: 0 }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:315:const result = processReview(params, GRADE_GOOD);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:318:// Optimal review interval
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:323:- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.2
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:324:- `GRADE_HARD (2)`: Difficult recall → gradeFactor 0.8
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:325:- `GRADE_GOOD (3)`: Successful recall → gradeFactor 1.0
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:326:- `GRADE_EASY (4)`: Easy recall → gradeFactor 1.3
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:433:  'preview of new',   // newContentPreview
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:434:  'preview of old',   // existingContentPreview
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:478:// Uses memory.stability and memory.last_review to calculate
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:503:// Activate with FSRS review update
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:504:activateMemoryWithFsrs(memoryId, 3);  // memoryId, grade (default: 3 = GOOD)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:773:// Memory was accessed, apply FSRS review update
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:774:decay.activateMemoryWithFsrs(42, 3);  // memoryId=42, grade=GOOD(3)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:933:**Cause**: `last_review` not being updated on access
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:940:// Use activateMemoryWithFsrs (updates stability, last_review, access_count)
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:956:| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)         |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:120:  const lastReview = (memory.last_review || memory.created_at) as string | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:160: * Activate memory with FSRS review update.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:166:    const memory = (db.prepare('SELECT stability, difficulty, last_review, review_count FROM memory_index WHERE id = ?') as Database.Statement).get(memoryId) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:172:      lastReview: (memory.last_review as string) || null,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:173:      reviewCount: (memory.review_count as number) || 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:177:    if (typeof fsrsScheduler.processReview === 'function') {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:178:      result = fsrsScheduler.processReview(params, grade);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:185:        reviewCount: params.reviewCount + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:195:          last_review = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:196:          review_count = ?,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:204:      result.reviewCount,
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:77: * Filters used to review governance audit history.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:87: * Parsed governance audit row returned for review workflows.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:101: * Aggregate view of governance audit activity for a filtered review.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:112: * Combined governance audit review rows and summary.
-.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:503:export function reviewGovernanceAudit(
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:72: * Per-cohort summary used to review shared rollout coverage.
-.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:293: * @returns Cohort-by-cohort rollout counts ordered for review.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:70:  new_content_preview: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:71:  existing_content_preview: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:113: * Truncate content to a preview length.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:336:  newContentPreview: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:337:  existingContentPreview: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:348:    new_content_preview: newContentPreview,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:349:    existing_content_preview: existingContentPreview,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:365:        new_content_preview, existing_content_preview, spec_folder
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:375:      record.new_content_preview,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:376:      record.existing_content_preview,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:533: * handler. Uses GRADE_GOOD with a difficulty bonus inversely proportional
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:554:      'SELECT stability, difficulty, review_count FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:559:    const grade = fsrsScheduler.GRADE_GOOD;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:572:          last_review = CURRENT_TIMESTAMP,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:573:          review_count = review_count + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:847: * stability and last_review fields, then `strengthenOnAccess` fires an FSRS
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:848: * GRADE_GOOD update — increasing stability proportional to how much the memory
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:849: * needed the review.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:864:      const lastReview = (row.last_review as string | undefined | null) || (row.created_at as string | undefined);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:121:        { path: 'specs/project/review/iterations/iteration-001', expected: true },
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:371:            last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:75:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:78:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:111:      trackAccess: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:225:  it('records adaptive access signals when trackAccess is true and adaptive ranking enabled', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:230:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:239:      { id: 1, score: 0.9, similarity: 90, stability: 2.5, last_review: '2026-03-01T00:00:00.000Z', created_at: '2026-02-01T00:00:00.000Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:240:      { id: 2, score: 0.8, similarity: 80, stability: 3.0, last_review: '2026-03-02T00:00:00.000Z', created_at: '2026-02-02T00:00:00.000Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:260:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:267:      { id: 1, score: 0.9, similarity: 90, stability: 2.5, last_review: '2026-03-01T00:00:00.000Z', created_at: '2026-02-01T00:00:00.000Z' },
-.opencode/skill/system-spec-kit/mcp_server/lib/manage/README.md:78:When graph scoring behavior needs review, start with the active modules listed below instead of looking for helpers in `lib/manage/`.
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:67:  'review code quality in handlers',
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:78:  'review and audit the complete authentication authorization flow for potential security vulnerabilities and misconfigurations',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:206:         WHEN m.last_review IS NOT NULL AND m.review_count > 0 THEN
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:208:             1.0 + (19.0/81.0) * (julianday('now') - julianday(m.last_review)) / COALESCE(NULLIF(m.stability, 0), 1.0),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:448: * Extracts a preview snippet from indexed content.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1224: * Builds a preview payload for a stored memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1227: * @returns The memory preview, if found.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1238:    console.warn(`[vector-index] get_memory_preview query error: ${get_error_message(e)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1259:    console.warn('[vector-index] get_memory_preview file read warning', {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1260:      operation: 'get_memory_preview',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1455:export { get_memory_preview as getMemoryPreview };
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:21:// Where t = elapsed days, S = stability (grows with successful reviews).
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39:/** Grade constants for review scoring */
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:40:const GRADE_AGAIN = 1;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:41:const GRADE_HARD = 2;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:42:const GRADE_GOOD = 3;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:43:const GRADE_EASY = 4;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:94: * Update stability based on review grade.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:106:  if (grade === GRADE_AGAIN) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:113:  const gradeFactor = grade === GRADE_EASY ? 1.3 : grade === GRADE_GOOD ? 1.0 : 0.8;
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:122: * Calculate optimal review interval from stability.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:138: * Update difficulty based on review grade.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:144:  if (grade === GRADE_AGAIN) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:146:  } else if (grade === GRADE_HARD) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:148:  } else if (grade === GRADE_GOOD) {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:151:    // EASY
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:159: * Calculate elapsed days since last review.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:198: * Process a review and return updated parameters.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:226:  GRADE_AGAIN,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:227:  GRADE_HARD,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:228:  GRADE_GOOD,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:229:  GRADE_EASY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:461:  GRADE_AGAIN,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:462:  GRADE_HARD,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:463:  GRADE_GOOD,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:464:  GRADE_EASY,
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:211:    it('review node types are well-defined', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:212:      const reviewNodeTypes = ['dimension_node', 'file_node', 'finding_node', 'evidence_node'];
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:213:      expect(reviewNodeTypes.length).toBe(4);
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:214:      for (const type of reviewNodeTypes) {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:229:    it('review relations are well-defined', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:230:      const reviewRelations = ['COVERS', 'CONTRADICTS', 'EVIDENCES', 'REMEDIATES', 'DEPENDS_ON'];
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:231:      expect(reviewRelations.length).toBe(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:232:      for (const rel of reviewRelations) {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/README.md:200:  last_review: '2025-01-15T10:00:00Z',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:81:    const content = 'Code should be reviewed before merging when changes touch the core.';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:152:      'Should review changes when touching core.',
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:303:  const lastReview = (row.lastReview as string | undefined) || (row.last_review as string | undefined) || row.updated_at || row.created_at;
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:123:          last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:124:          review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:69:  'last_review',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:70:  'review_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:145:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:146:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:187:    CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:188:    CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:328:  trackAccess,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:61:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:62:        review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/consolidation.ts:397: * Flags them for review without deletion.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:5:// readiness, repair, export/import, path identity, and previews.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:10:export interface MetadataOnlyPreview {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:44:  previewPolicy: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:110:    previewPolicy: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:114:      recommendedAction: 'Expose metadata-only previews for non-text artifacts and avoid raw binary content in runtime context surfaces.',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:119:export function createMetadataOnlyPreview(input: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:124:}): MetadataOnlyPreview {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:25:  review_count?: number;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:56:  'type_inference_source', 'stability', 'difficulty', 'review_count',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:75: * - `last_review` is always refreshed to `datetime('now')`
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:101:  setClauses.push("last_review = datetime('now')");
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:186:        mod.trackAccess(i);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:191:      const result = mod.trackAccess(overflowId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:206:        mod.trackAccess(i);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:208:      mod.trackAccess(MAX + 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:231:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:249:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:271:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:301:          mod.trackAccess(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:318:          mod.trackAccess(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:383:      expect(typeof mod.trackAccess).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:153:    it('includes optional review-specific signal', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:250:    it('review graphEvidence sub-check validates finding connectivity', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:274:    it('review relation weights fall within valid range', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:4:// Specific finding from the 25-agent comprehensive review.
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:275:// - Each test maps 1:1 to a specific finding from the 25-agent review
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:42:const GOOD_CONTENT = `# Sprint 0 Measurement Foundation
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:66:const GOOD_METADATA = {
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:281:    const score = computeMemoryQualityScore(GOOD_CONTENT, GOOD_METADATA);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:305:    const score = computeMemoryQualityScore(GOOD_CONTENT, GOOD_METADATA);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:449:    const result = runQualityLoop(GOOD_CONTENT, GOOD_METADATA);
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:572:      runQualityLoop(GOOD_CONTENT, GOOD_METADATA, { emitEvalMetrics: false });
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:634:      expect(() => runQualityLoop(GOOD_CONTENT, GOOD_METADATA)).not.toThrow();
-.opencode/skill/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:635:      expect(runQualityLoop(GOOD_CONTENT, GOOD_METADATA).passed).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1267:    if (column === 'review_count') return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1280:  if (column === 'review_count') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1341:    'last_review',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1342:    'review_count',
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:26:        last_review: '2020-01-01T00:00:00Z',
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:36:        last_review: new Date().toISOString(),
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:47:        last_review: '2023-01-01T00:00:00Z',
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:56:        { id: 11, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:57:        { id: 12, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:58:        { id: 13, importance_tier: 'temporary', stability: 0.01, last_review: '2022-06-01T00:00:00Z', created_at: '2022-06-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:79:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:80:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:81:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:92:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:93:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:94:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:105:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:106:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:107:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:191:        { memoryId: 41, attentionScore: 0.50, tier: 'WARM', importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString(), id: 41 },
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:192:        { memoryId: 42, attentionScore: 0.10, tier: 'COLD', importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01', created_at: '2023-01-01', id: 42 },
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:20:type MemoryPreview = NonNullable<ReturnType<VectorIndexModule['getMemoryPreview']>>;
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:104:        'findCleanupCandidates', 'deleteMemories', 'getMemoryPreview',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1446:  describe('getMemoryPreview', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1447:    const previewFileContent = [
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1448:      '# Preview Test File',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1460:    it('returns full preview with file content', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1462:      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1464:      const preview = mod.getMemoryPreview(deferredId1!);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1465:      expect(preview).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1466:      const resolvedPreview = preview as MemoryPreview;
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1467:      expect(resolvedPreview.id).toBe(deferredId1);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1468:      expect(resolvedPreview.specFolder).toBe('specs/test-001');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1469:      expect(resolvedPreview.title).toBe('Updated Title Alpha');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1470:      expect(typeof resolvedPreview.content).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1471:      expect(resolvedPreview.content).toContain('Preview Test File');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1472:      expect(resolvedPreview.content).toContain('line 3');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1473:      expect(typeof resolvedPreview.ageString).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1474:      expect(typeof resolvedPreview.accessCount).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1479:      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1481:      const preview = mod.getMemoryPreview(deferredId1!, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1482:      expect(preview).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1483:      const resolvedPreview = preview as MemoryPreview;
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1484:      const contentLines = resolvedPreview.content.split('\n');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1487:      expect(resolvedPreview.content).toContain('more lines');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1491:      const preview = mod.getMemoryPreview(999999);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1492:      expect(preview).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1495:    it('returns preview with empty content for missing file', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1497:        specFolder: 'specs/test-preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1501:      const preview = mod.getMemoryPreview(noFileId);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1502:      expect(preview).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1503:      expect(preview!.title).toBe('No File Memory');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1504:      expect(preview!.content).toBe('');
-.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:84:    trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:7:// Validates critical fixes from the 8-agent cross-AI review:
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:60:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:61:        review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:65:    it('T507-01: trackAccess returns true on accumulate', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:66:      const result1 = mod.trackAccess(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:70:    it('T507-01b: Accumulator state updated after trackAccess', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:85:        mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:89:      mod.trackAccess(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:169:      mod.trackAccess(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:40:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:41:        review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:364:        'New content preview',        // newContentPreview
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:365:        'Existing content preview',   // existingContentPreview
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:382:        'New content preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:383:        'Existing content preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:387:        'reason', 'contradiction_detected', 'contradiction_type', 'new_content_preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:388:        'existing_content_preview', 'spec_folder'];
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:403:        'New content preview',
-.opencode/skill/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:404:        'Existing content preview',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:908:    review_count: existingRow.review_count,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:47:        last_review: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:48:        review_count: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:137:        last_review: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:168:        last_review: null, is_pinned: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:149:      review_count INTEGER,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:58:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:59:      review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:151:      last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:152:      review_count INTEGER DEFAULT 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:442:          last_review TEXT, review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:163:        trackAccess: false,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:330:      new_content_preview, existing_content_preview, contradiction_detected, contradiction_type, spec_folder, created_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:332:  `).run(1, later, 'UPDATE', 'hash-beta', 2, 1, 0.82, 'seed conflict', 'beta preview', 'alpha preview', 0, null, 'specs/022-hybrid-rag-fusion', later);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:381:  `).run(1, 'space-1', 'specs/022-hybrid-rag-fusion::/tmp/specs/022/alpha.md::_', 1, 2, 'manual_review', 'tester', '{"phase":"seed"}', later);
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:64:  'review code quality in handlers',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:82:  'review and audit the complete authentication authorization flow for potential security vulnerabilities and misconfigurations',
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:4:  createMetadataOnlyPreview,
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:25:    expect(contract.previewPolicy.mode).toBe('metadata-only');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:28:  it('builds metadata-only previews for artifact-safe surfacing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:29:    const preview = createMetadataOnlyPreview({
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:36:    expect(preview.mode).toBe('metadata-only');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:37:    expect(preview.fileName).toBe('report.pdf');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:38:    expect(preview.kind).toBe('binary');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:39:    expect(preview.rawContentIncluded).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:48:          last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:53:        CREATE INDEX idx_last_review ON memory_index(last_review);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:54:        CREATE INDEX idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:96:          new_content_preview TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:97:          existing_content_preview TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:49: * Return `false` to leave the `_pending` file in place for manual review.
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:402:    // Log and leave for manual review instead of renaming.
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:23:    it('T704: last_review column exists on memory_index', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:27:    it('T705: review_count column exists on memory_index', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:39:    it('T708: last_review has TEXT type', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:43:    it('T709: review_count has INTEGER type', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:48:      const fsrsColumns = ['stability', 'difficulty', 'last_review', 'review_count'];
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:62:    it('T713: New memory gets review_count = 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:66:    it('T714: last_review can be NULL initially', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:82:    it('T718: Can set last_review to ISO timestamp', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:86:    it('T719: Can update review_count incrementally', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:227:    it('idx_last_review index exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:461:    const content = '# Gate Analysis\n\n## Review Process\n\n## Check Strategy\n\n## Validation Notes\n\nAnalysis of gate review process.';
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:48:        last_review TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:49:        review_count INTEGER DEFAULT 0
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:45:      last_review TEXT
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:121:  it('B-02: review date is in the future', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:127:  it('B-03: higher stability pushes review further out', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:158:    expect(params).toHaveProperty('reviewCount');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:176:  it('C-05: reviewCount is 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:178:    expect(params.reviewCount).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:191:   D. FSRS SCHEDULER — processReview
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:194:describe('D. processReview', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:202:    const result = fsrs.processReview(initial, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:206:    expect(result).toHaveProperty('reviewCount');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:211:  it('D-02: reviewCount increments by 1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:212:    const result = fsrs.processReview(initial, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:213:    expect(result.reviewCount).toBe(initial.reviewCount + 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:218:    const result = fsrs.processReview(initial, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:219:    const reviewTime = new Date(result.lastReview).getTime();
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:220:    expect(reviewTime).toBeGreaterThanOrEqual(before - 1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:221:    expect(reviewTime).toBeLessThanOrEqual(Date.now() + 1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:224:  it('D-04: grade AGAIN decreases stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:226:    const result = fsrs.processReview(params, fsrs.GRADE_AGAIN);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:230:  it('D-05: grade EASY increases stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:232:    const result = fsrs.processReview(params, fsrs.GRADE_EASY);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:236:  it('D-06: grade GOOD increases stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:238:    const result = fsrs.processReview(params, fsrs.GRADE_GOOD);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:242:  it('D-07: grade HARD gives <= stability than GOOD', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:243:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:244:    const resultHard = fsrs.processReview(params, fsrs.GRADE_HARD);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:245:    const resultGood = fsrs.processReview(params, fsrs.GRADE_GOOD);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:250:    const result = fsrs.processReview(initial, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:257:    const result = fsrs.processReview(initial, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:262:  it('D-10: chaining reviews updates state', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:264:    const result1 = fsrs.processReview(params, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:265:    const result2 = fsrs.processReview(result1, 4);
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:266:    expect(result2.reviewCount).toBe(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:57:    it('T601: GRADE_GOOD constant is 3', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:58:      expect(fsrsScheduler.GRADE_GOOD).toBe(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:75:    it('T603: GRADE_GOOD increases stability', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:77:      const reviewed = fsrsScheduler.processReview(initial, fsrsScheduler.GRADE_GOOD);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:78:      expect(reviewed.stability).toBeGreaterThan(initial.stability);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:82:      const lowRetrievability = fsrsScheduler.updateStability(2.0, 5.0, fsrsScheduler.GRADE_GOOD, 0.2);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:83:      const highRetrievability = fsrsScheduler.updateStability(2.0, 5.0, fsrsScheduler.GRADE_GOOD, 0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:140:      const reviewed = fsrsScheduler.processReview({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:144:        reviewCount: 0,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:145:      }, fsrsScheduler.GRADE_AGAIN);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:146:      expect(reviewed.stability).toBeGreaterThanOrEqual(fsrsScheduler.MIN_STABILITY);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:261:    it('T641: review_count column exists in schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:262:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('review_count INTEGER DEFAULT 0');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:265:    it('T642: last_review column exists', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:266:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('last_review TEXT');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:277:    it('T645: Default review_count is 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:278:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toMatch(/review_count INTEGER DEFAULT 0/);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:281:    it('T646: review_count increments correctly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:282:      expect(STAGE2_SOURCE).toContain('review_count = review_count + 1');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:286:      expect(STAGE2_SOURCE).not.toContain('review_count = 1');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:289:    it('T648: last_review timestamp updates', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:290:      expect(STAGE2_SOURCE).toContain('last_review = CURRENT_TIMESTAMP');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:294:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:295:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:305:    it('updates stability, review_count, access_count, and last_accessed together', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:307:      expect(STAGE2_SOURCE).toContain('review_count = review_count + 1');
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:239:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:46:| `SPECKIT_EVAL_LOGGING` | Persists evaluation events for later review, but does not authorize publication-grade multiplier claims. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:9:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:40:  action: 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:151:  review_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:70: *   0.88 <= sim < 0.96  → review (supersede or complement recommendation)
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:78:): 'auto_merge' | 'review' | 'keep_separate' {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:80:  if (similarity >= ASSISTIVE_REVIEW_THRESHOLD)     return 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:85: * Classify whether a borderline (review-tier) memory pair should be
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:130:   *  borderline pair is detected (review tier). */
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417:        } else if (tier === 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:421:            action: 'review',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:20:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:31:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:292:export const handle_memory_validate = lazyFunction(getCheckpointsModule, 'handle_memory_validate');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:411:      meta.parseFailedPreview = parseFailedInnerText.slice(0, 120);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:22:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:29:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:517:      hints.push('Contradicting relationships detected - review for consistency');
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:114:    [--dry-run]                    Preview without deleting
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:307:  console.log(`\nBulk Delete Preview`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:17:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:36:- `checkpoints.ts` - Checkpoint lifecycle plus `memory_validate`.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:75:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/api/index.ts:9:// auditing all consumers first (see review/review-report.md P2-MNT-02).
+.opencode/skills/system-spec-kit/mcp_server/README.md:78:| **Save quality** | Accept everything | 3-layer gate (structure, semantic sufficiency, duplicate) with dry-run preview |
+.opencode/skills/system-spec-kit/mcp_server/README.md:322:Think of it like how your own brain works: things you reviewed recently are easy to recall, while things you have not thought about in months fade into the background.
+.opencode/skills/system-spec-kit/mcp_server/README.md:455:If a file fails any gate, the system rejects it with a clear explanation. Preview all checks without saving using `dryRun: true`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:707:| `dryRun` | boolean | Preview validation without saving |
+.opencode/skills/system-spec-kit/mcp_server/README.md:816:##### `memory_validate`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1042:The MCP handler scores chunk-backed hits against `parentMemoryId ?? row.id`, so eval rows stay attached to canonical parent memories. Before comparing runs after a DB rebuild or import, preview or refresh the live ground-truth mapping with `scripts/evals/map-ground-truth-ids.ts`; if token-budget overflow collapses a run below `recallK`, treat that run as investigation-only rather than a clean benchmark.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1264:| L7 | Maintenance | 10 | 1,000 | Re-index files, review history, run bulk imports |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1578:**Fix**: Preview what would happen with a dry run:
+.opencode/skills/system-spec-kit/mcp_server/README.md:1644:| Slow responses on large index | Set `ENABLE_TOOL_CACHE=true` and review cache + trace settings before enabling heavier debug output |
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:557:        'Restore applied partially; review restored.errors and restored.skipped before retrying',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648:/** Handle memory_validate tool - records user validation feedback to adjust confidence */
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:688:      actor: sessionId ?? 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:726:  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:780:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:815:const handle_memory_validate = handleMemoryValidate;
+.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:822:  handle_memory_validate,
+.opencode/skills/system-spec-kit/mcp_server/utils/README.md:19:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/utils/README.md:57:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:88:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:89:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:340:  // Check dimension coverage — blocking gate for review mode.
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:341:  // Incomplete dimension coverage means the review is not yet comprehensive
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:148:  trackAccess: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:407:  memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:202:  trackAccess?: boolean; // opt-in access tracking (default false)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519:    trackAccess: trackAccess = false, // opt-in, off by default
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:801:      trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:75:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/schemas/README.md:70:- `../tests/review-fixes.vitest.ts` -- test coverage for schema validation
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:51:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:52:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/formatters/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/formatters/README.md:46:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/handlers/handler-utils.ts:21:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:165:      trackAccess: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298:  name: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:564:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:786:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type: research or review (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:832:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:850:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:858:  description: '[L9:CoverageGraph] Composite convergence assessment for deep-loop coverage graph. Returns a typed decision (CONTINUE, STOP_ALLOWED, STOP_BLOCKED), signal values, blockers with severity levels, and a typed trace explaining each signal threshold evaluation. For research: evaluates questionCoverage, claimVerificationRate, contradictionDensity, plus blocking guards sourceDiversity and evidenceDepth. For review: evaluates dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation. Extends Phase 001 stop logic without replacing newInfoRatio.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:863:      loopType: { type: 'string', enum: ['research', 'review'], description: 'Loop type (required)' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:52:  return loopType === 'research' || loopType === 'review';
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:77:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:67:  review_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:95:  'type_inference_source', 'stability', 'difficulty', 'review_count',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:35:    if (args.loopType !== 'research' && args.loopType !== 'review') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:36:      return errorResponse('loopType must be "research" or "review"');
+.opencode/skills/system-spec-kit/mcp_server/configs/README.md:20:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/configs/README.md:59:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:74:  trackAccess?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:386:  elapsedDays  // Days since last review
+.opencode/skills/system-spec-kit/mcp_server/lib/README.md:402:2. **FSRS calculation**: If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:23:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:25:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/checklist.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:33:        'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:35:    ).toBe('specs/system-spec-kit/024-compact-code-graph/029-review-remediation');
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:44:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:59:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/tasks.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:60:        '.opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation/checklist.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:66:      'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts:85:        'specs/system-spec-kit/024-compact-code-graph/029-review-remediation',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:61: * For review: dimensions/files that are not sources of outgoing COVERS or EVIDENCE_FOR edges.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:77:  if (loopType === 'review') {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:236: * For review: FINDING nodes with no RESOLVES edges.
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:120:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:71:  'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:106:    case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:148:      SELECT id, stability, difficulty, last_review, review_count, title
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:157:    const elapsedDays = fsrsScheduler.calculateElapsedDays(memory.last_review as string | null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:165:      fsrsScheduler.GRADE_GOOD,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:179:          last_review = datetime('now'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:180:          review_count = COALESCE(review_count, 0) + 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:85:        last_review TEXT DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:86:        review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:621:            id, spec_folder, file_path, title, content_text, content_hash, stability, difficulty, review_count
+.opencode/skills/system-spec-kit/mcp_server/tests/governance-e2e.vitest.ts:4:// Scoped governance isolation, retention behavior, and audit review.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:5:// research and review convergence metrics.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:312: * Compute review convergence signals.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:437: * Dispatches to research or review signal computation based on loop type.
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:555:      "query": "security review of the path traversal prevention in memory file loading",
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:18:- [3. HARDENING NOTES](#3--hardening-notes)
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:54:## 3. HARDENING NOTES
+.opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:18:// 8. Sprint gate review -- manual review before enabling
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:41:    last_review: '2025-02-01T12:00:00Z',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:42:    review_count: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:82:    reviewCount: 5,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:165:    row.last_review = null;
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:217:    expect(memory.reviewCount).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:61:  it('auto-merge threshold is above review threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:77:  it('returns "review" for similarity in [0.88, 0.96)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:78:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:79:    expect(classifyAssistiveSimilarity(0.90)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:80:    expect(classifyAssistiveSimilarity(0.9599)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:93:  it('exact boundary 0.88 is review', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:94:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:204:    // review
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:205:    expect(classifyAssistiveSimilarity(0.959)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:206:    expect(classifyAssistiveSimilarity(0.88)).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/assistive-reconsolidation.vitest.ts:223:    expect(tier).toBe('review');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-spaces.vitest.ts:776:      JSON.stringify({ note: 'resolved by reviewer' }),
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:17:export type LoopType = 'research' | 'review';
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:124:/** Initial weight estimates for review relations */
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:139:  review: ['DIMENSION', 'FILE', 'FINDING', 'EVIDENCE', 'REMEDIATION'] as const,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:145:  review: ['COVERS', 'EVIDENCE_FOR', 'CONTRADICTS', 'RESOLVES', 'CONFIRMS', 'ESCALATES', 'IN_DIMENSION', 'IN_FILE'] as const,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:156:    loop_type TEXT NOT NULL CHECK(loop_type IN ('research', 'review')),
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:85:      trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:348:    input.config.trackAccess = true;
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:95:    { id: 403, content: 'Post-save review highlights title, trigger phrase, and importance tier issues. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:59:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:60:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:61:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:62:  review_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts:151:  { pattern: /\/review\/iterations\//, type: 'working' },
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:146:    it('Recent review => ~1.0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:149:        last_review: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:156:    it('No last_review => returns baseScore', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:327:      expect(fsrsScheduler.GRADE_AGAIN).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:328:      expect(fsrsScheduler.GRADE_HARD).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:329:      expect(fsrsScheduler.GRADE_GOOD).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:330:      expect(fsrsScheduler.GRADE_EASY).toBe(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:423:    // Deprecated tier also frozen — use applyFsrsDecay with no last_review to get baseScore back
+.opencode/skills/system-spec-kit/mcp_server/tests/attention-decay.vitest.ts:424:    it('No last_review = frozen state (returns baseScore)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:123:      last_review TEXT DEFAULT (datetime('now')),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:124:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:20:  '/review/iterations/',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:27:  '/review/',
+.opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts:30:  '/review/iterations/',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:353:      'review XSS security vulnerabilities in forms',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:540:        'review XSS protections in forms',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:544:        'security review of user input validation',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:581:      security_audit: ['security audit', 'vulnerability check', 'xss review', 'penetration test', 'audit permissions'],
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:624:      security_audit: 'security audit vulnerability and injection review',
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:384:    it('research/review iteration paths fall back to working-artifact weight', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:386:      expect(calculateDocumentWeight('/p/specs/x/review/iterations/iteration-001.md')).toBe(0.25);
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:880:        last_review: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:881:        review_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:923:        last_review: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:924:        review_count: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:82:  GRADE_GOOD: 3,
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:223:      trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:62:   2. DIVERSITY HARD GATES
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:72:  MIN_HARD_NEGATIVES: 3,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:271:    required: GATES.MIN_HARD_NEGATIVES,
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:273:    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:11:  reviewGovernanceAudit,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:130:  it('reviews governance audit history with summary counts and parsed metadata', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:168:    const review = reviewGovernanceAudit(db, {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:174:    expect(review.summary.totalMatching).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:175:    expect(review.summary.returnedRows).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:176:    expect(review.summary.byAction).toEqual({ memory_save: 2 });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:177:    expect(review.summary.byDecision).toEqual({ allow: 1, deny: 1 });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:178:    expect(review.summary.latestCreatedAt).toEqual(expect.any(String));
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:179:    expect(review.rows).toHaveLength(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:180:    expect(review.rows[0]).toMatchObject({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:188:    expect(review.rows[1]).toMatchObject({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:216:    const blocked = reviewGovernanceAudit(db, {});
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:224:    const allowed = reviewGovernanceAudit(db, { allowUnscoped: true, limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:15:  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:41:  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:107:    it('T414: R=1 for just-reviewed memory', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/composite-scoring.vitest.ts:130:    it('T416: Falls back to updated_at when last_review missing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:20:    last_review: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/search-limits-scoring.vitest.ts:76:        last_review: daysAgo(elapsed[tier]),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:55:    'idx_last_review',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:87:  'new_content_preview',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:88:  'existing_content_preview',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:256:      new_content_preview TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:257:      existing_content_preview TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:331:      new_content_preview,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:332:      existing_content_preview,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:347:      ${getFirstAvailableColumnExpression(legacyColumns, ['new_content_preview'], 'NULL')},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:348:      ${getFirstAvailableColumnExpression(legacyColumns, ['existing_content_preview'], 'NULL')},
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:472:        { name: 'last_review', sql: 'ALTER TABLE memory_index ADD COLUMN last_review TEXT' },
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:473:        { name: 'review_count', sql: 'ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0' }
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:500:        'idx_last_review',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:501:        'CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review)',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:507:        'CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review)',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1873:  if (!column_names.includes('last_review')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1875:      database.exec(`ALTER TABLE memory_index ADD COLUMN last_review TEXT`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1876:      console.warn('[vector-index] Migration: Added last_review column (FSRS)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1881:      logDuplicateColumnMigrationSkip('last_review', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1885:  if (!column_names.includes('review_count')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1887:      database.exec(`ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1888:      console.warn('[vector-index] Migration: Added review_count column (FSRS)');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1893:      logDuplicateColumnMigrationSkip('review_count', error);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2342:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2343:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2475:    CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2476:    CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:8:// 2. Snippet extraction — short previews with detail-available flags
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:37:/** Snippet preview of a single result. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:260: * Extract snippet previews from full results.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:267: * const previews = extractSnippets(results);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-types.vitest.ts:122:        { path: '/project/.opencode/specs/008-feature/review/iterations/iteration-001.md', expected: 'working' },
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:30:  it('T016: Just reviewed = full retrievability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:239:    const grade = 3; // "Good" review
+.opencode/skills/system-spec-kit/mcp_server/tests/fsrs-scheduler.vitest.ts:474:    // Changes should be less than 2 points per review (gradual)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:99:    /security\s+(?:audit|review|check)/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:155:    'security audit vulnerability and injection review',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts:527:    const dateStr = r.created_at as string | undefined || r.last_accessed as string | undefined || r.last_review as string | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:128:  'review': 'research',
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:86:      last_review TEXT
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:264:    const timestamp = mem.lastAccess || mem.last_accessed || mem.lastReview || mem.last_review || mem.created_at;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:297:  const lastReview = memory.last_review || memory.created_at;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:320:  // Type's configured half-life, while well-reviewed memories keep their
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:89:        'Summarize rollout monitoring dashboards for post-deployment review.',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:145:    it('T510: conflict records preserve metadata and previews', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts:162:      expect(record.new_content_preview).toHaveLength(203);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:100:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:101:        review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/five-factor-scoring.vitest.ts:557:  it('EDGE-T06: Falls back to updated_at when no last_review', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:183:| < 0.40 | Poor -- review fallback policy |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:81:  get_memory_preview,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:106:  getMemoryPreview,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:57:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:58:        review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:205:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:6:// Dimensions for governance review and Wave 2 gate decisions.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/adaptive-ranking.ts:589: * Tune adaptive thresholds after reviewing the current shadow signal set.
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:88:    expect(parsed.data.graphOps.previewPolicy.mode).toBe('metadata-only');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:24:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:91:  last_review?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:152:  trackAccess: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:8:// FSRS-preferred strategy. Memories with FSRS review data (last_review
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:9:// IS NOT NULL, review_count > 0) use the FSRS v4 power-law formula:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:11:// Memories without review data fall back to half-life exponential:
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:13:// This ensures backward compatibility while aligning reviewed
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints.vitest.ts:70:        'handle_memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:108:5. Testing effect — FSRS strengthening write-back (opt-in via `trackAccess`)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:201:| `security_audit` | Security review              | Vulnerabilities, audit logs         |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:452:| v4      | FSRS columns (`stability`, `difficulty`, `last_review`, `review_count`) + `memory_conflicts` table + FSRS indexes |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:757:Selection tracking writes to a separate `learned_triggers` column (NOT FTS5 index). 10 safeguards: separate column, 30-day TTL, 100+ stop words denylist, rate cap (3 terms/selection, 8 terms/memory), top-3 exclusion, 1-week shadow period, <72h memory exclusion, sprint gate review, rollback mechanism, provenance audit log. Query weight: **0.7x** of organic triggers. Gated via `SPECKIT_LEARN_FROM_SELECTION` (default ON; set to `false` to disable).
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:137:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:184:- Audit: Logs to `memory_conflicts` table for review
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:264:| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:292:  processReview,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:294:  GRADE_GOOD,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:303:// Update stability after review
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:307:  GRADE_GOOD,   // grade (3 = successful recall)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:311:// Process a full review cycle
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:313:// params = { stability: 1.0, difficulty: 5.0, lastReview: null, reviewCount: 0 }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:315:const result = processReview(params, GRADE_GOOD);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:316:// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:318:// Optimal review interval
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:323:- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.2
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:324:- `GRADE_HARD (2)`: Difficult recall → gradeFactor 0.8
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:325:- `GRADE_GOOD (3)`: Successful recall → gradeFactor 1.0
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:326:- `GRADE_EASY (4)`: Easy recall → gradeFactor 1.3
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:433:  'preview of new',   // newContentPreview
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:434:  'preview of old',   // existingContentPreview
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:478:// Uses memory.stability and memory.last_review to calculate
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:503:// Activate with FSRS review update
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:504:activateMemoryWithFsrs(memoryId, 3);  // memoryId, grade (default: 3 = GOOD)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:773:// Memory was accessed, apply FSRS review update
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:774:decay.activateMemoryWithFsrs(42, 3);  // memoryId=42, grade=GOOD(3)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:933:**Cause**: `last_review` not being updated on access
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:940:// Use activateMemoryWithFsrs (updates stability, last_review, access_count)
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:956:| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)         |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:87:- FSRS testing effect fires only when `trackAccess` is explicitly true.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:120:  const lastReview = (memory.last_review || memory.created_at) as string | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:160: * Activate memory with FSRS review update.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:166:    const memory = (db.prepare('SELECT stability, difficulty, last_review, review_count FROM memory_index WHERE id = ?') as Database.Statement).get(memoryId) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:172:      lastReview: (memory.last_review as string) || null,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:173:      reviewCount: (memory.review_count as number) || 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:177:    if (typeof fsrsScheduler.processReview === 'function') {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:178:      result = fsrsScheduler.processReview(params, grade);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:185:        reviewCount: params.reviewCount + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:186:        nextReviewDate: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:195:          last_review = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:196:          review_count = ?,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:204:      result.reviewCount,
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:77: * Filters used to review governance audit history.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:87: * Parsed governance audit row returned for review workflows.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:101: * Aggregate view of governance audit activity for a filtered review.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:112: * Combined governance audit review rows and summary.
+.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:503:export function reviewGovernanceAudit(
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:77:    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete']
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:72: * Per-cohort summary used to review shared rollout coverage.
+.opencode/skills/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:293: * @returns Cohort-by-cohort rollout counts ordered for review.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:70:  new_content_preview: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:71:  existing_content_preview: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:113: * Truncate content to a preview length.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:336:  newContentPreview: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:337:  existingContentPreview: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:348:    new_content_preview: newContentPreview,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:349:    existing_content_preview: existingContentPreview,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:365:        new_content_preview, existing_content_preview, spec_folder
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:375:      record.new_content_preview,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/prediction-error-gate.ts:376:      record.existing_content_preview,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:14://     - FSRS write-back to memory_index (when trackAccess=true) — DB write
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:28:// 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:533: * handler. Uses GRADE_GOOD with a difficulty bonus inversely proportional
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:554:      'SELECT stability, difficulty, review_count FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:559:    const grade = fsrsScheduler.GRADE_GOOD;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:572:          last_review = CURRENT_TIMESTAMP,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:573:          review_count = review_count + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:843: * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:847: * stability and last_review fields, then `strengthenOnAccess` fires an FSRS
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:848: * GRADE_GOOD update — increasing stability proportional to how much the memory
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:849: * needed the review.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:864:      const lastReview = (row.last_review as string | undefined | null) || (row.created_at as string | undefined);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:936: *   3.  Testing effect     (all types, when trackAccess = true)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1195:  // P3-09 FIX: Only when explicitly opted in via trackAccess.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1198:  if (config.trackAccess) {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring.vitest.ts:121:        { path: 'specs/project/review/iterations/iteration-001', expected: true },
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:371:            last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/negative-feedback.ts:4:// When wasUseful=false is recorded via memory_validate, reduce the
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:75:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:78:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:111:      trackAccess: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:225:  it('records adaptive access signals when trackAccess is true and adaptive ranking enabled', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:230:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:239:      { id: 1, score: 0.9, similarity: 90, stability: 2.5, last_review: '2026-03-01T00:00:00.000Z', created_at: '2026-02-01T00:00:00.000Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:240:      { id: 2, score: 0.8, similarity: 80, stability: 3.0, last_review: '2026-03-02T00:00:00.000Z', created_at: '2026-02-02T00:00:00.000Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:260:      INSERT INTO memory_index (id, stability, difficulty, review_count, access_count, last_review, created_at)
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking.vitest.ts:267:      { id: 1, score: 0.9, similarity: 90, stability: 2.5, last_review: '2026-03-01T00:00:00.000Z', created_at: '2026-02-01T00:00:00.000Z' },
+.opencode/skills/system-spec-kit/mcp_server/lib/manage/README.md:78:When graph scoring behavior needs review, start with the active modules listed below instead of looking for helpers in `lib/manage/`.
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:67:  'review code quality in handlers',
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:78:  'review and audit the complete authentication authorization flow for potential security vulnerabilities and misconfigurations',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:206:         WHEN m.last_review IS NOT NULL AND m.review_count > 0 THEN
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:208:             1.0 + (19.0/81.0) * (julianday('now') - julianday(m.last_review)) / COALESCE(NULLIF(m.stability, 0), 1.0),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:448: * Extracts a preview snippet from indexed content.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1224: * Builds a preview payload for a stored memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1227: * @returns The memory preview, if found.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1229:export function get_memory_preview(memory_id: number, max_lines = 50): { id: number; specFolder: string; filePath: string; title: string; createdAt: string | undefined; lastAccessedAt: number | undefined; accessCount: number; confidence: number; ageString: string; lastAccessString: string; content: string } | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1238:    console.warn(`[vector-index] get_memory_preview query error: ${get_error_message(e)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1259:    console.warn('[vector-index] get_memory_preview file read warning', {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1260:      operation: 'get_memory_preview',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1455:export { get_memory_preview as getMemoryPreview };
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:21:// Where t = elapsed days, S = stability (grows with successful reviews).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39:/** Grade constants for review scoring */
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:40:const GRADE_AGAIN = 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:41:const GRADE_HARD = 2;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:42:const GRADE_GOOD = 3;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:43:const GRADE_EASY = 4;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:62:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:69:  reviewCount: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:70:  nextReviewDate: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:94: * Update stability based on review grade.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:106:  if (grade === GRADE_AGAIN) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:113:  const gradeFactor = grade === GRADE_EASY ? 1.3 : grade === GRADE_GOOD ? 1.0 : 0.8;
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:122: * Calculate optimal review interval from stability.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:138: * Update difficulty based on review grade.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:144:  if (grade === GRADE_AGAIN) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:146:  } else if (grade === GRADE_HARD) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:148:  } else if (grade === GRADE_GOOD) {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:151:    // EASY
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:159: * Calculate elapsed days since last review.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:175: * Get next review date based on stability and desired retention.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:193:    reviewCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:198: * Process a review and return updated parameters.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:200:function processReview(params: FsrsParams, grade: number): ReviewResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:207:  const nextReviewDate = getNextReviewDate(newStability);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:213:    reviewCount: params.reviewCount + 1,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:214:    nextReviewDate,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:226:  GRADE_AGAIN,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:227:  GRADE_HARD,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:228:  GRADE_GOOD,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:229:  GRADE_EASY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:461:  GRADE_AGAIN,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:462:  GRADE_HARD,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:463:  GRADE_GOOD,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:464:  GRADE_EASY,
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:496:  processReview,
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:211:    it('review node types are well-defined', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:212:      const reviewNodeTypes = ['dimension_node', 'file_node', 'finding_node', 'evidence_node'];
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:213:      expect(reviewNodeTypes.length).toBe(4);
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:214:      for (const type of reviewNodeTypes) {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:229:    it('review relations are well-defined', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:230:      const reviewRelations = ['COVERS', 'CONTRADICTS', 'EVIDENCES', 'REMEDIATES', 'DEPENDS_ON'];
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:231:      expect(reviewRelations.length).toBe(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:232:      for (const rel of reviewRelations) {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md:200:  last_review: '2025-01-15T10:00:00Z',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:81:    const content = 'Code should be reviewed before merging when changes touch the core.';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-directives.vitest.ts:152:      'Should review changes when touching core.',
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:303:  const lastReview = (row.lastReview as string | undefined) || (row.last_review as string | undefined) || row.updated_at || row.created_at;
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:123:          last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:124:          review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:69:  'last_review',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:70:  'review_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:145:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:146:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:187:    CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:188:    CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:86:function trackAccess(memoryId: number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts:328:  trackAccess,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:170:      'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2093:      'memory_validate': '[L4:Mutation]',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:61:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:62:        review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:397: * Flags them for review without deletion.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:5:// readiness, repair, export/import, path identity, and previews.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:10:export interface MetadataOnlyPreview {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:44:  previewPolicy: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:110:    previewPolicy: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:114:      recommendedAction: 'Expose metadata-only previews for non-text artifacts and avoid raw binary content in runtime context surfaces.',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:119:export function createMetadataOnlyPreview(input: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:124:}): MetadataOnlyPreview {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:25:  review_count?: number;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:56:  'type_inference_source', 'stability', 'difficulty', 'review_count',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:75: * - `last_review` is always refreshed to `datetime('now')`
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:101:  setClauses.push("last_review = datetime('now')");
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:186:        mod.trackAccess(i);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:189:      // The next trackAccess should trigger the overflow guard
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:191:      const result = mod.trackAccess(overflowId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:206:        mod.trackAccess(i);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:208:      mod.trackAccess(MAX + 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:231:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:249:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:271:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:301:          mod.trackAccess(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:318:          mod.trackAccess(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:383:      expect(typeof mod.trackAccess).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:153:    it('includes optional review-specific signal', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:250:    it('review graphEvidence sub-check validates finding connectivity', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:274:    it('review relation weights fall within valid range', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:4:// Specific finding from the 25-agent comprehensive review.
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-suite.vitest.ts:275:// - Each test maps 1:1 to a specific finding from the 25-agent review
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:42:const GOOD_CONTENT = `# Sprint 0 Measurement Foundation
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:66:const GOOD_METADATA = {
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:281:    const score = computeMemoryQualityScore(GOOD_CONTENT, GOOD_METADATA);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:305:    const score = computeMemoryQualityScore(GOOD_CONTENT, GOOD_METADATA);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:449:    const result = runQualityLoop(GOOD_CONTENT, GOOD_METADATA);
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:572:      runQualityLoop(GOOD_CONTENT, GOOD_METADATA, { emitEvalMetrics: false });
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:634:      expect(() => runQualityLoop(GOOD_CONTENT, GOOD_METADATA)).not.toThrow();
+.opencode/skills/system-spec-kit/mcp_server/tests/quality-loop.vitest.ts:635:      expect(runQualityLoop(GOOD_CONTENT, GOOD_METADATA).passed).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1267:    if (column === 'review_count') return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1280:  if (column === 'review_count') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1341:    'last_review',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1342:    'review_count',
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:26:        last_review: '2020-01-01T00:00:00Z',
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:36:        last_review: new Date().toISOString(),
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:47:        last_review: '2023-01-01T00:00:00Z',
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:56:        { id: 11, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:57:        { id: 12, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:58:        { id: 13, importance_tier: 'temporary', stability: 0.01, last_review: '2022-06-01T00:00:00Z', created_at: '2022-06-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:79:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:80:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:81:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:92:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:93:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:94:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:105:        { id: 32, importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString() },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:106:        { id: 33, importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01T00:00:00Z', created_at: '2023-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:107:        { id: 34, importance_tier: 'temporary', stability: 0.01, last_review: '2022-01-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:191:        { memoryId: 41, attentionScore: 0.50, tier: 'WARM', importance_tier: 'normal', stability: 1.0, last_review: new Date().toISOString(), id: 41 },
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:192:        { memoryId: 42, attentionScore: 0.10, tier: 'COLD', importance_tier: 'normal', stability: 0.05, last_review: '2023-01-01', created_at: '2023-01-01', id: 42 },
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:20:type MemoryPreview = NonNullable<ReturnType<VectorIndexModule['getMemoryPreview']>>;
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:104:        'findCleanupCandidates', 'deleteMemories', 'getMemoryPreview',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1446:  describe('getMemoryPreview', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1447:    const previewFileContent = [
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1448:      '# Preview Test File',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1460:    it('returns full preview with file content', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1462:      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1464:      const preview = mod.getMemoryPreview(deferredId1!);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1465:      expect(preview).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1466:      const resolvedPreview = preview as MemoryPreview;
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1467:      expect(resolvedPreview.id).toBe(deferredId1);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1468:      expect(resolvedPreview.specFolder).toBe('specs/test-001');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1469:      expect(resolvedPreview.title).toBe('Updated Title Alpha');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1470:      expect(typeof resolvedPreview.content).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1471:      expect(resolvedPreview.content).toContain('Preview Test File');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1472:      expect(resolvedPreview.content).toContain('line 3');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1473:      expect(typeof resolvedPreview.ageString).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1474:      expect(typeof resolvedPreview.accessCount).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1475:      expect(typeof resolvedPreview.confidence).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1479:      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1481:      const preview = mod.getMemoryPreview(deferredId1!, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1482:      expect(preview).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1483:      const resolvedPreview = preview as MemoryPreview;
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1484:      const contentLines = resolvedPreview.content.split('\n');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1487:      expect(resolvedPreview.content).toContain('more lines');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1491:      const preview = mod.getMemoryPreview(999999);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1492:      expect(preview).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1495:    it('returns preview with empty content for missing file', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1497:        specFolder: 'specs/test-preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1501:      const preview = mod.getMemoryPreview(noFileId);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1502:      expect(preview).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1503:      expect(preview!.title).toBe('No File Memory');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1504:      expect(preview!.content).toBe('');
+.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:84:    trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:87:    tool: 'memory_validate',
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:7:// Validates critical fixes from the 8-agent cross-AI review:
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:60:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:61:        review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:65:    it('T507-01: trackAccess returns true on accumulate', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:66:      const result1 = mod.trackAccess(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:70:    it('T507-01b: Accumulator state updated after trackAccess', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:85:        mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:89:      mod.trackAccess(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker.vitest.ts:169:      mod.trackAccess(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:40:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:41:        review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:364:        'New content preview',        // newContentPreview
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:365:        'Existing content preview',   // existingContentPreview
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:382:        'New content preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:383:        'Existing content preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:387:        'reason', 'contradiction_detected', 'contradiction_type', 'new_content_preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:388:        'existing_content_preview', 'spec_folder'];
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:403:        'New content preview',
+.opencode/skills/system-spec-kit/mcp_server/tests/prediction-error-gate.vitest.ts:404:        'Existing content preview',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:908:    review_count: existingRow.review_count,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:47:        last_review: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:48:        review_count: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:137:        last_review: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:168:        last_review: null, is_pinned: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:149:      review_count INTEGER,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:58:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:59:      review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:151:      last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:152:      review_count INTEGER DEFAULT 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:442:          last_review TEXT, review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:163:        trackAccess: false,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:330:      new_content_preview, existing_content_preview, contradiction_detected, contradiction_type, spec_folder, created_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:332:  `).run(1, later, 'UPDATE', 'hash-beta', 2, 1, 0.82, 'seed conflict', 'beta preview', 'alpha preview', 0, null, 'specs/022-hybrid-rag-fusion', later);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:381:  `).run(1, 'space-1', 'specs/022-hybrid-rag-fusion::/tmp/specs/022/alpha.md::_', 1, 2, 'manual_review', 'tester', '{"phase":"seed"}', later);
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:126:        memory_validate: 'L4',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:64:  'review code quality in handlers',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:82:  'review and audit the complete authentication authorization flow for potential security vulnerabilities and misconfigurations',
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:4:  createMetadataOnlyPreview,
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:25:    expect(contract.previewPolicy.mode).toBe('metadata-only');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:28:  it('builds metadata-only previews for artifact-safe surfacing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:29:    const preview = createMetadataOnlyPreview({
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:36:    expect(preview.mode).toBe('metadata-only');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:37:    expect(preview.fileName).toBe('report.pdf');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:38:    expect(preview.kind).toBe('binary');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:39:    expect(preview.rawContentIncluded).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:48:          last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:53:        CREATE INDEX idx_last_review ON memory_index(last_review);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:54:        CREATE INDEX idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:96:          new_content_preview TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:97:          existing_content_preview TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:27:        memory_validate: 1000,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:49: * Return `false` to leave the `_pending` file in place for manual review.
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:402:    // Log and leave for manual review instead of renaming.
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:23:    it('T704: last_review column exists on memory_index', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:27:    it('T705: review_count column exists on memory_index', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:39:    it('T708: last_review has TEXT type', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:43:    it('T709: review_count has INTEGER type', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:48:      const fsrsColumns = ['stability', 'difficulty', 'last_review', 'review_count'];
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:62:    it('T713: New memory gets review_count = 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:66:    it('T714: last_review can be NULL initially', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:82:    it('T718: Can set last_review to ISO timestamp', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:86:    it('T719: Can update review_count incrementally', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/schema-migration.vitest.ts:227:    it('idx_last_review index exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:461:    const content = '# Gate Analysis\n\n## Review Process\n\n## Check Strategy\n\n## Validation Notes\n\nAnalysis of gate review process.';
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:48:        last_review TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:49:        review_count INTEGER DEFAULT 0
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:45:      last_review TEXT
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:121:  it('B-02: review date is in the future', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:127:  it('B-03: higher stability pushes review further out', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:158:    expect(params).toHaveProperty('reviewCount');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:176:  it('C-05: reviewCount is 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:178:    expect(params.reviewCount).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:191:   D. FSRS SCHEDULER — processReview
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:194:describe('D. processReview', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:202:    const result = fsrs.processReview(initial, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:206:    expect(result).toHaveProperty('reviewCount');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:207:    expect(result).toHaveProperty('nextReviewDate');
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:211:  it('D-02: reviewCount increments by 1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:212:    const result = fsrs.processReview(initial, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:213:    expect(result.reviewCount).toBe(initial.reviewCount + 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:218:    const result = fsrs.processReview(initial, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:219:    const reviewTime = new Date(result.lastReview).getTime();
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:220:    expect(reviewTime).toBeGreaterThanOrEqual(before - 1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:221:    expect(reviewTime).toBeLessThanOrEqual(Date.now() + 1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:224:  it('D-04: grade AGAIN decreases stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:225:    const params = { ...initial, stability: 5.0, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:226:    const result = fsrs.processReview(params, fsrs.GRADE_AGAIN);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:230:  it('D-05: grade EASY increases stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:231:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:232:    const result = fsrs.processReview(params, fsrs.GRADE_EASY);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:236:  it('D-06: grade GOOD increases stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:237:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:238:    const result = fsrs.processReview(params, fsrs.GRADE_GOOD);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:242:  it('D-07: grade HARD gives <= stability than GOOD', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:243:    const params = { ...initial, lastReview: new Date().toISOString(), reviewCount: 1 };
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:244:    const resultHard = fsrs.processReview(params, fsrs.GRADE_HARD);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:245:    const resultGood = fsrs.processReview(params, fsrs.GRADE_GOOD);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:249:  it('D-08: nextReviewDate is valid future date', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:250:    const result = fsrs.processReview(initial, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:251:    const nextDate = new Date(result.nextReviewDate);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:257:    const result = fsrs.processReview(initial, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:262:  it('D-10: chaining reviews updates state', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:264:    const result1 = fsrs.processReview(params, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:265:    const result2 = fsrs.processReview(result1, 4);
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:266:    expect(result2.reviewCount).toBe(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:57:    it('T601: GRADE_GOOD constant is 3', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:58:      expect(fsrsScheduler.GRADE_GOOD).toBe(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:75:    it('T603: GRADE_GOOD increases stability', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:77:      const reviewed = fsrsScheduler.processReview(initial, fsrsScheduler.GRADE_GOOD);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:78:      expect(reviewed.stability).toBeGreaterThan(initial.stability);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:82:      const lowRetrievability = fsrsScheduler.updateStability(2.0, 5.0, fsrsScheduler.GRADE_GOOD, 0.2);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:83:      const highRetrievability = fsrsScheduler.updateStability(2.0, 5.0, fsrsScheduler.GRADE_GOOD, 0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:140:      const reviewed = fsrsScheduler.processReview({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:144:        reviewCount: 0,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:145:      }, fsrsScheduler.GRADE_AGAIN);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:146:      expect(reviewed.stability).toBeGreaterThanOrEqual(fsrsScheduler.MIN_STABILITY);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:261:    it('T641: review_count column exists in schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:262:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('review_count INTEGER DEFAULT 0');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:265:    it('T642: last_review column exists', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:266:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toContain('last_review TEXT');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:277:    it('T645: Default review_count is 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:278:      expect(VECTOR_INDEX_SCHEMA_SOURCE).toMatch(/review_count INTEGER DEFAULT 0/);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:281:    it('T646: review_count increments correctly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:282:      expect(STAGE2_SOURCE).toContain('review_count = review_count + 1');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:286:      expect(STAGE2_SOURCE).not.toContain('review_count = 1');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:289:    it('T648: last_review timestamp updates', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:290:      expect(STAGE2_SOURCE).toContain('last_review = CURRENT_TIMESTAMP');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:294:      const nextReviewDate = fsrsScheduler.getNextReviewDate(5);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:295:      expect(Number.isNaN(new Date(nextReviewDate).getTime())).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:305:    it('updates stability, review_count, access_count, and last_accessed together', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:307:      expect(STAGE2_SOURCE).toContain('review_count = review_count + 1');
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:239:    trackAccess: false,
 
 codex
 The main contrast is already sharpening: Modus exposes explicit review and connected-neighbor controls, while Public mostly keeps FSRS mechanics behind retrieval internals and `memory_validate`. I’m pulling the remaining source points now so the final ranking reflects both implementation feasibility and what we should explicitly reject.
@@ -4678,9 +4678,9 @@ exec
     39	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '1180,1225p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '1180,1225p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '520,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts | sed -n '520,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    520	      graphEvidence: {
    521	        edges,
@@ -4833,9 +4833,9 @@ exec
   1225	      metadata.intentWeightsApplied = 'failed';
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts | sed -n '648,790p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '150,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '150,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    648	/** Handle memory_validate tool - records user validation feedback to adjust confidence */
    649	async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
@@ -5052,7 +5052,7 @@ exec
    217	const memorySave: ToolDefinition = {
    218	  name: 'memory_save',
    219	  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
    221	};
    222	
    223	// L3: Discovery - Browse and explore (Token Budget: 800)
@@ -5187,7 +5187,7 @@ exec
 - **Impact**: **high**
 
 ### Finding 5: Public already has the stronger compaction-survival architecture; the Modus lesson is to improve preselection, not replace recovery
-- **Source**: [memory-context.ts:673](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L673); [memory-context.ts:783](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts#L783); [session-resume.ts:409](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L409); [session-resume.ts:479](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts#L479); [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163); [session-snapshot.ts:33](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L33); [session-snapshot.ts:205](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L205); [memory-surface.ts:626](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts#L626); [compact-merger.ts:122](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts#L122); [compact-inject.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts#L210); [opencode-transport.ts:81](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L81); [session-manager.ts:1266](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts#L1266); [generate-context.js:81](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js#L81)
+- **Source**: [memory-context.ts:673](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L673); [memory-context.ts:783](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts#L783); [session-resume.ts:409](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L409); [session-resume.ts:479](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts#L479); [session-bootstrap.ts:163](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts#L163); [session-snapshot.ts:33](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L33); [session-snapshot.ts:205](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts#L205); [memory-surface.ts:626](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts#L626); [compact-merger.ts:122](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts#L122); [compact-inject.ts:210](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts#L210); [opencode-transport.ts:81](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts#L81); [session-manager.ts:1266](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts#L1266); [generate-context.js:81](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js#L81)
 - **What it does**: Public has explicit compaction and recovery surfaces: `memory_context(...resume...)` with bounded anchors, `session_resume`, `session_bootstrap`, a token-capped structural bootstrap contract, a compaction hook, a 4000-token compact merger, runtime transport blocks for startup and compaction, `CONTINUE_SESSION.md`, and curated `generate-context.js` memory saves.
 - **Why it matters**: Our compaction survival is already explicit, bounded, and auditable in ways Modus is not. The best Modus-derived improvement is a cheap lexical/adjacency candidate lane ahead of our current merge pipeline, not a replacement of the existing recovery contracts.
 - **Recommendation**: **adopt now**
@@ -5195,7 +5195,7 @@ exec
 
 ## Assessment
 - New information ratio: **0.33**
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict` returned `RESULT: PASSED`; it also emitted `cannot create temp file for here document: Operation not permitted`, consistent with the read-only environment.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict` returned `RESULT: PASSED`; it also emitted `cannot create temp file for here document: Operation not permitted`, consistent with the read-only environment.
 - This was a read-only iteration. I verified the phase state and source evidence, but did not update phase artifacts.
 
 ## Recommended Next Focus
@@ -5204,7 +5204,7 @@ Design a narrow compaction-candidate experiment inside Public’s existing survi
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -5271,12 +5271,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -5285,7 +5285,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -5459,7 +5459,7 @@ Run a narrow routing experiment instead of a retrieval rewrite: detect exact/tok
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -5481,7 +5481,7 @@ Run a narrow routing experiment instead of a retrieval rewrite: detect exact/tok
 - **Impact**: **high**
 
 ### Finding 4: Capability-aware fallback is good DX only when the route is visible
-- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
+- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
 - **What it does**: Modus cleanly falls back to the original query when librarian expansion is unavailable or unparsable. Public already has stronger fail-open behavior across FTS, intent routing, and community fallback, but much of that is visible only in stderr or trace metadata.
 - **Why it matters**: Operators trust fallback only when they can tell what path actually ran and why.
 - **Recommendation**: **adopt now**. Public should surface a compact route summary in debug profiles or status tools instead of keeping routing visibility mostly in logs.
@@ -5495,7 +5495,7 @@ Run a narrow routing experiment instead of a retrieval rewrite: detect exact/tok
 - **Impact**: **medium**
 
 ### Finding 6: Modus’s small curated tool bundle is easier to learn than Public’s broad surface
-- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
+- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
 - **What it does**: Modus deliberately narrows its memory-facing MCP surface to 11 tools. Public’s surface is more capable, but also harder for operators and AI clients to learn quickly.
 - **Why it matters**: Discoverability is part of DX. A smaller “operator bundle” can make a powerful system feel approachable without removing advanced capabilities.
 - **Recommendation**: **prototype later**. Keep Public’s full surface, but add a curated operator profile or alias bundle centered on search, status, review, debug, health, and adjacency.
@@ -5549,12 +5549,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -5563,7 +5563,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -5708,7 +5708,7 @@ BENCHMARK & METRICS: What does this system measure? What metrics should we track
 
  succeeded in 0ms:
 ### Finding 4: Capability-aware fallback is good DX only when the route is visible
-- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
+- **Source**: [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L29); [librarian/search.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L35); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L28); [vault.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L47); [sqlite-fts.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L210); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L699)
 - **What it does**: Modus cleanly falls back to the original query when librarian expansion is unavailable or unparsable. Public already has stronger fail-open behavior across FTS, intent routing, and community fallback, but much of that is visible only in stderr or trace metadata.
 - **Why it matters**: Operators trust fallback only when they can tell what path actually ran and why.
 - **Recommendation**: **adopt now**. Public should surface a compact route summary in debug profiles or status tools instead of keeping routing visibility mostly in logs.
@@ -5722,7 +5722,7 @@ BENCHMARK & METRICS: What does this system measure? What metrics should we track
 - **Impact**: **medium**
 
 ### Finding 6: Modus’s small curated tool bundle is easier to learn than Public’s broad surface
-- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
+- **Source**: [memory.go](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go#L7); [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md#L191); [memory-search.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L482)
 - **What it does**: Modus deliberately narrows its memory-facing MCP surface to 11 tools. Public’s surface is more capable, but also harder for operators and AI clients to learn quickly.
 - **Why it matters**: Discoverability is part of DX. A smaller “operator bundle” can make a powerful system feel approachable without removing advanced capabilities.
 - **Recommendation**: **prototype later**. Keep Public’s full surface, but add a curated operator profile or alias bundle centered on search, status, review, debug, health, and adjacency.
@@ -5747,7 +5747,7 @@ Run the next iteration on **operator workflow design**: map Public’s existing 
 ## Findings
 
 ### Finding 1: Rank 1 (20/25) — explicit `memory_review` is the first thing Public should ship
-- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
+- **Source**: `external/internal/mcp/memory.go:7-15`; `external/internal/mcp/vault.go:885-897`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,197-215`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:529-585,840-877,1194-1202`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:300-316`
 - **What it does**: Modus exposes an explicit `memory_reinforce` operator action on top of its FSRS state. Public already has the underlying pieces: graded review math (`AGAIN/HARD/GOOD/EASY`), `processReview()` with `nextReviewDate`, and opt-in strengthening-on-access. The current exposed adjacent surface is `memory_validate`, which records only `wasUseful` feedback and does not let an operator issue a graded FSRS review.
 - **Why it matters for us**: This is the highest impact x feasibility transfer because it closes the clearest control-plane gap without inventing new storage or changing retrieval architecture. It also de-risks the bigger `memory_due` idea: until Public has a first-class graded review action, any future review queue would have no trustworthy way to record hard recalls, lapses, and easy wins distinctly.
 - **Recommendation**: **adopt now**
@@ -5807,12 +5807,12 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 6. Read `external/modus-memory-main/internal/markdown/parser.go` and `external/modus-memory-main/internal/markdown/writer.go` after the retrieval core. Study frontmatter parsing, body parsing, wiki-link extraction, markdown write conventions, and how plain-file storage shapes operability and portability.
 7. Read MCP tool handlers next: `external/modus-memory-main/internal/mcp/vault.go` and `external/modus-memory-main/internal/mcp/memory.go`. Trace which tools are free vs. Pro, where librarian expansion is invoked, where cross-reference hints are appended, and where reinforcement happens automatically on search recall.
 8. Read `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/modus-memory-main/README.md` only after the source files above. Use it to validate claims about cached search speed, markdown-native persistence, binary size, MCP surface area, and the intended value proposition. Do not let README marketing copy override code evidence.
-9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
+9. Compare Modus directly against current `Code_Environment/Public` memory behavior by reading `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/fsrs.ts`, and `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts`. Be explicit about what this repo already does with FSRS-style decay and where Modus still differs materially.
 10. Separate overlap cleanly across phases: avoid redoing `001` as a generic MCP memory-server study, avoid drifting into `002` markdown-scaffold and drift-detection patterns, and avoid reframing `003` as vector or plugin work owned by `004`. This phase owns BM25, lightweight caching, librarian expansion, FSRS reinforcement loops, and adjacency-map cross-references.
 11. Before any deep-research run, ensure this phase folder contains the required Spec Kit docs for the research effort. If they are missing, note the gap and create or request them through the established spec workflow before claiming the phase is complete.
 12. Validate the phase folder before deep research with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main" --strict
     ```
 13. After validation passes, run deep research against this same phase folder using this exact topic:
     ```text
@@ -5821,7 +5821,7 @@ Modus Memory is a local memory server that stores data as plain markdown files, 
 14. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, explain what Modus does, why it matters here, whether to `adopt now`, `prototype later`, or `reject`, what Public subsystem it affects, and what migration, compatibility, or validation risk comes with it.
 15. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main"
     ```
 
 ## 6. Research Questions
@@ -5971,7 +5971,7 @@ ARCHITECTURE DECISION RECORD: Document the key architectural decisions this syst
 codex
 I’ve verified the late-iteration recommendations against source. I’m doing one last pass over the canonical report and a few routing lines now so the final synthesis can reconcile the earlier BM25/expansion findings with the later control-plane and DX findings instead of over-weighting just the last few iterations.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '660,715p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '660,715p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    660	    if (intentClassifier.isValidIntent(explicitIntent)) {
    661	      detectedIntent = explicitIntent;
@@ -6148,10 +6148,10 @@ exec
 3640:.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:343:	srv.AddTool("memory_search", "Search episodic memory facts with librarian expansion and FSRS reinforcement.", memorySearchSchema, memorySearchHandler)
 3676:.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:737:	srv.AddTool("atlas_reject_pr", "Reject an evolution PR. Weakens linked beliefs. Operator only.", map[string]interface{}{
 3703:The README mostly matches the code on the big-picture shape: local binary, markdown vault, BM25 search, FSRS decay, cross-reference index, and 11 exposed memory tools. The numbers are still README claims rather than code-proven benchmarks, so I’m separating those from the verified mechanics while I compare them to our own `memory_search` and FSRS paths.
-3808:.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-3825:.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-3842:.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-3846:.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
+3808:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+3825:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+3842:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+3846:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1071:  // Apply session deduplication AFTER cache
 4470:   482	/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
 4562:   574	      cacheHit: false,
 4706:   718	  // Build cache key args
@@ -6232,9 +6232,9 @@ exec
 6429:.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:293:	system := `Classify this content for a developer building AI infrastructure (local models, MLX, Apple Silicon, Go, memory systems, security, revenue generation).
 6430:.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:304:	response := Call(system, user, 100)
 6433:There’s a meaningful README-to-code drift here: the docs say search doesn’t use LLM calls and that librarian expansion is a local synonym map, but the actual `librarian` package does live HTTP calls to a local model endpoint and uses it for query expansion, ranking, summarization, extraction, and classification. I’m folding that into the architecture findings because it changes how we should think about Modus’s retrieval path and operational simplicity.
-6485:.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:142:  it('P010-T1: handleMemorySearch returns lexicalPath and fallbackState on cached degraded responses', async () => {
-6490:.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:170:  it('P010-T2: handleMemorySearch returns lexicalPath and fallbackState on cached healthy responses', async () => {
-6573:.opencode/skill/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:174:    await expect(executePipeline(config)).rejects.toThrow('embedding service unavailable');
+6485:.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:142:  it('P010-T1: handleMemorySearch returns lexicalPath and fallbackState on cached degraded responses', async () => {
+6490:.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:170:  it('P010-T2: handleMemorySearch returns lexicalPath and fallbackState on cached healthy responses', async () => {
+6573:.opencode/skills/system-spec-kit/mcp_server/tests/orchestrator-error-cascade.vitest.ts:174:    await expect(executePipeline(config)).rejects.toThrow('embedding service unavailable');
 7361:     5	// Weighted BM25 scoring for FTS5 full-text search.
 7365:     9	import { BM25_FTS5_WEIGHTS, normalizeLexicalQueryTokens } from './bm25-index.js';
 7503:   147	 * Execute a weighted BM25 FTS5 search against memory_fts.
@@ -6307,7 +6307,7 @@ exec
 8230:- **What it does**: Modus hard-codes `http://127.0.0.1:8090` as the Librarian endpoint, probes `/health` with `/v1/models` fallback, and posts chat requests to `/v1/chat/completions`. `ExpandQuery()`, `RankResults()`, `ExtractFacts()`, `ClassifyIntent()`, and `ProduceBriefing()` all run through this local OpenAI-compatible sidecar, but none are exposed as MCP tools themselves. MCP callers only see higher-level tools whose behavior changes if `librarian.Available()` returns true.
 8232:- **Recommendation**: prototype later
 8239:- **Recommendation**: reject
-8243:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
+8243:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 8244:- **What it does**: `vault_search` silently switches to librarian-expanded multi-query retrieval when the sidecar is reachable, otherwise falls back to direct search. `memory_search` silently spawns async `ReinforceFact()` calls for every returned fact. There are no per-call controls for disabling reinforcement, forcing plain lexical search, asking for provenance, selecting a presentation profile, or scoping session behavior. Public exposes those controls explicitly through `trackAccess`, `includeTrace`, `profile`, `sessionId`, intent routing, and governed scope fields.
 8246:- **Recommendation**: reject
 8253:- **Recommendation**: NEW FEATURE
@@ -6321,7 +6321,7 @@ exec
 8315:- **Recommendation**: reject
 8322:- **Recommendation**: reject
 8329:- **Recommendation**: reject
-8333:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/missions.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts`, `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+8333:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/missions.go`, `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
 8334:- **What it does**: `SummarizeForCloud()` can compress search hits, and `ProduceBriefing()` can generate a five-bucket briefing from ingested items plus active missions. But there are no call sites for either helper in the shipped runtime, and `server.go` simply exits on EOF without any session-finalization hook. Public, by contrast, has cached continuity summaries in `session-resume.ts`, a one-call recovery tool in `session-bootstrap.ts`, and checkpoint generation in `session-manager.ts`.
 8336:- **Recommendation**: prototype later
 8343:- **Recommendation**: prototype later
@@ -6331,16 +6331,16 @@ exec
 8402:### Finding 1: Modus is **not** a vector or true hybrid retriever; it is a BM25-only engine with optional LLM query rewrites
 8404:- **What it does**: Modus builds one in-memory lexical index over six fields with fixed weights `{path 1.5, source 1.0, subject 2.0, title 3.0, tags 1.5, body 1.0}`, tokenizes/stems locally, and falls back to prefix matching for terms of length `>=3`. The only “hybrid” element in shipped search is librarian-driven query expansion before rerunning the same lexical engine. There is no vector lane, no learned fusion, and no cross-channel score combination. Public already has explicit hybrid retrieval: weighted FTS5 BM25, embedding/vector retrieval, multi-variant deep mode, and RRF-based fusion.
 8406:- **Recommendation**: reject
-8410:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:10-52,55-107`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:28-58,280-332`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:324-343,346-391,713-750,803-850`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:21-41,931-942`
+8410:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:10-52,55-107`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:28-58,280-332`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:324-343,346-391,713-750,803-850`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:21-41,931-942`
 8411:- **What it does**: `ExpandQuery()` always keeps the original query first, appends up to five additional strings, and `vault_search` / `memory_search` then append results variant-by-variant while deduplicating by `path` or `subject|predicate`. After dedup, Modus simply truncates to `limit`; it does not merge scores across branches or globally re-rank the union. A librarian `RankResults()` helper exists, but the only call site is its own definition. Public, by contrast, preserves branch/source provenance per candidate and fuses later in the pipeline.
 8413:- **Recommendation**: reject
 8416:### Finding 3: The cache idea is useful, but the shipped Jaccard/LRU implementation is unsafe and only partially correct
-8417:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go:10-80,83-120,137-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-755`
+8417:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go:10-80,83-120,137-195`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-755`
 8418:- **What it does**: Modus adds a two-tier cache: exact query hash match first, then fuzzy reuse when token-set Jaccard similarity is `>=0.6`, with `256` max entries. That part is interesting. But `get()` mutates `hits` while holding only `RLock`, and cache reads never increment the global counter, so its “LRU” recency signal is not actually advanced on access.
 8419:- **Why it matters for us**: The architectural idea is stronger than the implementation. Public already has exact-argument caching around `memory_search`; a safe lexical/paraphrase cache could still be worth exploring for repeated nearby queries, but Modus’s version should not be copied.
 8420:- **Recommendation**: prototype later
 8423:### Finding 4: README latency claims only fit the pure in-memory BM25 path; the default librarian-expanded path can be network/LLM-bound
-8424:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:27-32,51-58,191-207,416-427`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:28-35,280-285`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go:17-33,35-82`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:71-75,717-739`
+8424:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:27-32,51-58,191-207,416-427`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:28-35,280-285`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go:17-33,35-82`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:71-75,717-739`
 8425:- **What it does**: Modus advertises `<100µs` cached search and `<5ms` cold search, which is believable for the in-memory BM25/cache path after startup. But when the librarian is reachable, both `vault_search` and `memory_search` first do a health probe and then send a chat-completions request with a `120s` HTTP timeout to generate expansions. That makes the real default search path dependent on external model latency, not just BM25 speed. Public’s deep expansion path is explicitly gated and wrapped in a `5s` timeout budget.
 8427:- **Recommendation**: reject
 8430:### Finding 5: Modus’s fact lane is **not BM25**, and it couples search with automatic write-side reinforcement
@@ -6363,11 +6363,11 @@ exec
 8527:- **Recommendation**: reject
 8534:- **Recommendation**: reject
 8583: gpt-5.4                  3.1m in, 19.9k out, 2.9m cached, 9.4k reasoning (Est. 1 Premium request)
-8595:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:211-230`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md:45-60,107-145,179-185`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go:83-88`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-38`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:143-162,343,379,856-897`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go:149-188`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1100-1183,1458-1493`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-281,456-493`
+8595:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:211-230`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md:45-60,107-145,179-185`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go:83-88`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-38`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:143-162,343,379,856-897`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/server.go:149-188`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1100-1183,1458-1493`; `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-281,456-493`
 8598:- **Recommendation**: reject
 8605:- **Recommendation**: reject
 8612:- **Recommendation**: reject
-8616:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go:83-88`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-38`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:119-160,181-258`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/learnings.go:11-220`; `.opencode/skill/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:157-199,205-258`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:962-973`
+8616:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/main.go:83-88`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/memory.go:7-38`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:119-160,181-258`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/learnings.go:11-220`; `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/query-flow-tracker.ts:157-199,205-258`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:962-973`
 8619:- **Recommendation**: reject
 8626:- **Recommendation**: prototype later
 8630:- **Source**: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/client.go:1-33,35-119`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go:15-52`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go:28-53,280-317`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/README.md:211-231,316-317`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/docs/librarian.md:16-29,107-145`
@@ -6382,10 +6382,10 @@ exec
 8691:- **Why it matters for us**: The useful conclusion is **not** “swap in Modus BM25.” Public already has a richer lexical+semantic memory path, plus dedicated code retrieval channels. Modus is a reference for a compact lexical implementation, not a superior search architecture.
 8692:- **Recommendation**: reject
 8695:### Finding 2: Modus’s fuzzy query cache is one real retrieval idea Public does not already have
-8696:- **Source**: `external/internal/index/cache.go:10-17,41-80,83-119,167-195`; `external/internal/index/indexer.go:169-219`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:718-767`
+8696:- **Source**: `external/internal/index/cache.go:10-17,41-80,83-119,167-195`; `external/internal/index/indexer.go:169-219`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:718-767`
 8697:- **What it does**: Modus adds a two-tier cache in front of search: exact normalized-query hash reuse, then fuzzy reuse when Jaccard similarity between token sets is at least `0.6`, with a small LRU of `256` entries. Public also caches search responses, but the cache key is exact and scope-heavy (`query/concepts/specFolder/tenant/user/agent/sharedSpace/session/flags`), so it does not opportunistically reuse near-duplicate lexical queries.
 8699:- **Recommendation**: prototype later
-8703:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-321`; `external/README.md:261-267,316-317`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts:20-100`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:155-259`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:347-383,616-860,1088-1155`
+8703:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-321`; `external/README.md:261-267,316-317`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts:20-100`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts:155-259`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:347-383,616-860,1088-1155`
 8705:- **Why it matters for us**: The net-new idea is narrower than the README suggests. We do **not** need “query expansion” in general; we already have it. The transferable part is a cheap, explicitly lexical rewrite lane that can widen BM25/FTS recall without changing semantic or graph routing.
 8706:- **Recommendation**: prototype later
 8711:- **What it does**: Modus builds cheap adjacency maps over markdown documents only: shared subject gets weight `3.0`, entity `2.0`, tag `1.0`, then `vault_search` appends connected documents that were not already returned. Public’s code-graph and CocoIndex are stronger, but they solve different problems: `code_graph_query/context` answer structural code questions, and CocoIndex is the semantic code-search bridge. Neither is the same as “show me adjacent memory docs I might also want right now.”
@@ -6433,10 +6433,10 @@ exec
 9022:- Questions addressed: whether Modus has net-new memory-adjacent features beyond BM25/FSRS; whether it includes an operational lessons layer; whether it has autonomy/governance controls; whether decay feeds an actual quarantine/archive loop; whether it exposes a structured entity/belief model.
 9038: gpt-5.4                  1.2m in, 14.4k out, 1.0m cached, 7.4k reasoning (Est. 1 Premium request)
 9048:### Finding 1: **Reject Modus’s fuzzy result-cache architecture; it is the wrong cache contract for Public**
-9049:- **Source**: `external/internal/index/cache.go:10-17,41-80,83-119`; `.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:56-61,98-106,143-181,242-257`
+9049:- **Source**: `external/internal/index/cache.go:10-17,41-80,83-119`; `.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:56-61,98-106,143-181,242-257`
 9050:- **What it does**: Modus caches full result sets with two tiers: exact query hash and fuzzy reuse when Jaccard similarity between token sets is `>= 0.6`. Its “LRU” bookkeeping is weaker than advertised: `counter` advances only on `put`, while `get` rewrites `hits` without advancing recency, so eviction is really write-recency-biased rather than true read-recency-aware. Public’s cache is a canonical-args SHA256 key with TTL, explicit invalidation by tool, and generation bumps to prevent stale reuse after mutations.
 9052:- **Recommendation**: reject
-9056:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-331`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:347-389,616-779`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:6-20`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/ranking-contract.ts:28-64`
+9056:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-331`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:347-389,616-779`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:6-20`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/ranking-contract.ts:28-64`
 9059:- **Recommendation**: reject
 9064:- **What it does**: Modus has at least two fact-retrieval contracts for the same memory objects: a general document BM25 index filtered to `memory/facts/`, and a separate in-memory `factStore` with its own term index, confidence boost, recency boost, and active-flag handling. `memory_search` uses `Index.SearchFacts`, while `Vault.SearchFacts` uses a different path and fallback behavior. Public, by contrast, pushes `memory_search` through a single pipeline config and result contract.
 9066:- **Recommendation**: adopt now
@@ -6445,7 +6445,7 @@ exec
 9080:- **Recommendation**: prototype later
 9088:- `external/internal/index/cache.go`
 9092:- `external/internal/librarian/search.go`
-9099:- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
+9099:- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
 9112:- Questions addressed: whether Modus’s cache design should influence Public; whether Modus’s query-expansion merge path is architecturally better or worse than Public’s pipeline; whether Modus’s split fact-search surfaces suggest a refactor direction; whether Public’s own FSRS write-back placement should change; whether any part of Modus’s connected-doc UX is worth borrowing without adopting its adjacency index.
 9113:- Questions answered: Public should **not** move toward Modus’s fuzzy result cache or union-first expansion flow; Public **should** preserve a single canonical retrieval core and refactor access-writeback out of Stage 2; the only cross-ref idea worth carrying forward is a response-layer related-doc hint built from existing graph evidence rather than a new storage/index model.
 9116:- What worked: Tracing the exact merge and cache code paths exposed the architectural differences much faster than feature-by-feature comparison. Looking at where side effects happen — handler, retrieval core, or post-processing — was the key lens for this iteration.
@@ -6494,7 +6494,7 @@ exec
 9483: gpt-5.4                  1.4m in, 16.1k out, 1.3m cached, 8.0k reasoning (Est. 1 Premium request)
 9498:- **Recommendation**: **NEW FEATURE**
 9505:- **Recommendation**: **adopt now**
-9509:- **Source**: `external/internal/librarian/search.go:10-53`; `external/internal/mcp/vault.go:21-58,280-331`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:4-18,88-176,200-260`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
+9509:- **Source**: `external/internal/librarian/search.go:10-53`; `external/internal/mcp/vault.go:21-58,280-331`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:4-18,88-176,200-260`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
 9511:- **Why it matters for us**: Integration is **medium** because the insertion points already exist, but the value is incremental, not foundational. Public must avoid duplicating its current deep-mode expansion stack or adding noisy variant fan-out across vector, FTS, BM25, and graph lanes.
 9512:- **Recommendation**: **prototype later**
 9517:- **What it does**: Modus builds an in-memory metadata adjacency map from subject/tag/entity overlap, weights subject/entity/tag at `3/2/1`, and appends “connected” documents that were not in the main ranked set. Public already has stronger structural enrichment—causal-neighbor boost, neighbor injection, and co-activation spreading—but those are graph-driven, not simple frontmatter co-membership summaries.
@@ -6504,14 +6504,14 @@ exec
 9526:- **Recommendation**: **adopt now**
 9531:- `external/internal/index/cache.go`
 9532:- `external/internal/librarian/search.go`
-9553:- `.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
+9553:- `.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts`
 9561:- **Questions addressed**: which Modus ideas already have insertion points in Public; whether the missing work is backend math or operator surface; which candidates are low/medium integration versus truly invasive; whether connected-result hints overlap with Public graph features; whether librarian expansion is still meaningful given Public deep-mode reformulation.
 9569:Evaluate a concrete Public design for `memory_due` + `memory_review`: one tool that lists due/stale/promotion-eligible/archival-candidate memories, and one tool that applies graded FSRS review updates explicitly, then compare whether a metadata-based “connected docs” appendix improves operator trust beyond current causal/contiguity enrichment.
 9577: gpt-5.4                  2.8m in, 18.6k out, 2.6m cached, 9.0k reasoning (Est. 1 Premium request)
 9592:- **Recommendation**: **NEW FEATURE**
 9599:- **Recommendation**: **adopt now**
 9602:### Finding 3: Lexical expansion risk — copying Modus’s librarian directly would stack another weak branch onto Public’s already-expanded deep pipeline
-9603:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:280-299`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:8-18,88-125,148-175`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
+9603:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:280-299`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:8-18,88-125,148-175`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
 9606:- **Recommendation**: **prototype later**
 9609:### Finding 4: Connected-doc hint risk — metadata adjacency is useful as explanation, but risky as a scoring signal
 9611:- **What it does**: Modus builds an in-memory adjacency map from subject/tag/entity overlap with weights `3/2/1`, using lightweight matching. Public already has causal traversal, neighbor injection, and co-activation enrichment.
@@ -6527,7 +6527,7 @@ exec
 9697:- **What it does**: Modus builds a lightweight adjacency layer from subject/tag/entity overlap and appends “connected docs not in results above” as an extra hint surface. Public already has stronger graph-backed enrichment via causal boosts, neighbor injection, and co-activation, but not a simple metadata-derived explanation appendix.
 9699:- **Recommendation**: **prototype later**
 9702:### Finding 5: Rank 5 (6/25) — Modus-style librarian expansion belongs last, and only as weak-result recovery
-9703:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:280-299`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:4-18,88-176`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
+9703:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:280-299`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:4-18,88-176`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616-740`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:173-251`
 9705:- **Why it matters for us**: This has the weakest impact x feasibility score because it overlaps the most with existing Public machinery and carries the highest risk of branch explosion. The only credible adoption path is a bounded fallback for weak-result cases, never an always-on copy of Modus’s librarian path.
 9706:- **Recommendation**: **prototype later**
 9711:- **What it does**: The ranking resolves into a four-phase roadmap: **Phase 1** ship `memory_review` plus a doctor-style summary; **Phase 2** define the authoritative due-state contract and then add `memory_due`; **Phase 3** pilot connected-doc explanations as a non-scoring appendix; **Phase 4** run a feature-flagged lexical-expansion experiment only on weak-result fallback paths.
@@ -6546,11 +6546,11 @@ exec
 9803:- **Recommendation**: NEW FEATURE
 9808:- **What it does**: Modus builds lightweight subject/entity/tag adjacency and appends connected docs that did not make the main ranked list. The weighting is simple and fixed (`subject 3`, `entity 2`, `tag 1`).
 9810:- **Recommendation**: prototype later
-9814:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
+9814:- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
 9817:- **Recommendation**: prototype later
 9824:- **Recommendation**: prototype later
 9827:### Finding 9: Reject Modus’s fuzzy Jaccard result-cache contract
-9828:- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
+9828:- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
 9829:- **What it does**: Modus reuses cached result sets on exact hash hits or Jaccard-similar query term sets. Public’s search surface has too many scoring knobs—scope, archived filtering, session/causal boost, rerank, quality thresholds, trace/profile flags—for fuzzy query reuse to be safe.
 9830:- **Why it matters for us**: This is the wrong cache contract for Public. Similar text is not enough to guarantee equivalent retrieval intent or scoring context.
 9831:- **Recommendation**: reject
@@ -6565,7 +6565,7 @@ exec
 9908: gpt-5.4                  1.3m in, 14.8k out, 1.1m cached, 6.4k reasoning (Est. 1 Premium request)
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '190,235p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts | sed -n '190,235p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    190	    ? [sanitized, specFolder, specFolder, limit]
    191	    : [sanitized, limit];
@@ -6921,1250 +6921,1250 @@ exec
    260	}
 
 exec
-/bin/zsh -lc "rg -n \"memory_health|doctor|status|route summary|profile .*debug|includeTrace\" .opencode/skill/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"memory_health|doctor|status|route summary|profile .*debug|includeTrace\" .opencode/skills/system-spec-kit/mcp_server -g '"'!**/dist/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:138:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:165:    status: 'ok' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:242:  status: 'ok' | 'timeout' | 'unavailable';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:281:function isMutationStatus(status: string | undefined): boolean {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:282:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:594:    status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:636:          status: 'unavailable',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:650:        status: 'timeout',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:680:  const codeGraphState = codeGraphStatus?.status === 'ok'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1292:        if (result.status === 'indexed') indexed++;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1293:        else if (result.status === 'updated') updated++;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1838:              if (isMutationStatus(result.status)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1841:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1842:                    updated: result.status === 'updated' || result.status === 'reinforced' ? 1 : 0,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1847:                    status: result.status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:5:// and rollout status reporting with deny-by-default access.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:786:      'Shared memory status failed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:910:| \`/memory:manage shared status\` | View rollout state and accessible spaces |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:268:      'Use memory_ingest_status with jobId to poll progress',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:290:      tool: 'memory_ingest_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:303:    tool: 'memory_ingest_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:325:        actions: ['Call memory_ingest_status with a known jobId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:356:const handle_memory_ingest_status = handleMemoryIngestStatus;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-ingest.ts:364:  handle_memory_ingest_status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:24:  status: 'success' | 'pending';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:162:            status: embeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:188:    status: embeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:55:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:114:  status?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:153:  embedding_status?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:39:| `dedup.ts`                  | Pre-save deduplication. `checkExistingRow` matches by file path but returns `unchanged` only for healthy rows (`success`, `pending`, `partial`); `checkContentHashDedup` matches by content hash and accepts chunked parents only when their status is valid `partial`. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/README.md:69:- **Deferred Indexing** -- When embedding generation fails or async mode is explicitly requested, the memory is stored with `embedding_status = 'pending'` and remains searchable via BM25/FTS5. Normal watcher/ingest reindex cache misses still run the eager provider path.
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:345:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:39:  embedding_status: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:220:  const existingStatus = existing?.embedding_status ?? null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:231:      status: 'unchanged',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:259:      'embedding_status IN (?, ?)',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:151:      status: resultStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:164:    status: resultStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:249:  if (result.status === 'unchanged') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:254:        status: 'unchanged',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:263:  if (result.status === 'error') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:273:        status: result.status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:282:  if (result.status === 'rejected') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:288:        status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:331:    status: result.status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:352:    response.message = `Memory ${result.status} (PE: ${result.pe_action})`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:144:  status: 'error' | 'warning';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:152:    && 'status' in value
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:153:    && typeof (value as { status?: unknown }).status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:211:  if (isVRuleUnavailableResult(vRuleResult) && vRuleResult.status === 'error') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:639:          status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:732:      status: embeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:767:            status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:844:        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:871:            status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:881:        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1216:        status: 'dry_run',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1348:          status: 'dry_run',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1583:          if (lockedIndexResult.status === 'rejected') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1613:      if (indexResult.status === 'error') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1614:        throw new Error(indexResult.message ?? indexResult.error ?? 'indexMemoryFile returned status=error');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1616:      if (indexResult.status === 'rejected') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1621:          status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1671:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1692:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1739:      : `Memory ${indexResult.status} successfully`
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1758:    status: indexResult.status,
-.opencode/skill/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
-.opencode/skill/system-spec-kit/mcp_server/README.md:183:You should get a JSON response with `status: "ok"` and database table counts.
-.opencode/skill/system-spec-kit/mcp_server/README.md:489:**Provenance-rich response envelopes** (when `includeTrace` is enabled) -- show exactly how each result was found: which channels contributed, how scores were calculated and where the information originated.
-.opencode/skill/system-spec-kit/mcp_server/README.md:517:**12-metric core computation** -- grades every query across twelve quality dimensions (MRR@1/3/10, NDCG@10, MAP and more). Together they pinpoint exactly where search is struggling, like a doctor running multiple tests instead of just asking "do you feel sick?"
-.opencode/skill/system-spec-kit/mcp_server/README.md:545:**Startup/recovery surfaces:** `session_resume`, `session_bootstrap`, and the startup brief now report freshness-aware graph status instead of count-only health. Startup surfaces are intentionally non-mutating snapshots, so later structural reads may still differ if repo state changes.
-.opencode/skill/system-spec-kit/mcp_server/README.md:583:| `includeTrace` | boolean | Include retrieval trace for debugging |
-.opencode/skill/system-spec-kit/mcp_server/README.md:601:Resume session with combined memory, code graph and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. The response carries freshness-aware code-graph status (`fresh`, `stale`, `empty`, `error`) instead of count-only health. For the canonical first-call recovery path on session start or after `/clear`, prefer `session_bootstrap`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
-.opencode/skill/system-spec-kit/mcp_server/README.md:779:Check session readiness: priming status, code graph freshness and time since last tool call. Returns `ok`, `warning` or `stale` with actionable hints. Call periodically during long sessions to detect context drift.
-.opencode/skill/system-spec-kit/mcp_server/README.md:783:| _(none required)_ |  | Returns health status with hints |
-.opencode/skill/system-spec-kit/mcp_server/README.md:924:##### `shared_memory_status`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1087:| `includeTrace` | boolean | Include trace metadata for debugging |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1123:Start a bulk import job for multiple markdown files. Returns immediately with a job ID so you do not have to wait. Check progress with `memory_ingest_status`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1132:##### `memory_ingest_status`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1165:##### `code_graph_status`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1175:##### `ccc_status`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1177:Check CocoIndex availability, binary path and index status.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1262:| L5 | Lifecycle | 8 | 600 | Checkpoints, shared spaces and enable/status/shared-space lifecycle |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1446:  "tool": "memory_ingest_status",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:85:        if (reinforced.status !== 'error') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:143:          linkedMemoryIds: updated.status === 'error' ? [existingId] : [existingId, updated.id],
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:121:  const healthStatus = typeof healthData.status === 'string' ? healthData.status : null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:203:  if (cachedSummary?.status === 'accepted') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:221:  const cachedCertainty: SharedPayloadCertainty = cachedSummary?.status === 'accepted' ? 'estimated' : 'defaulted';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:255:  if (cachedSummary?.status === 'accepted' && cachedSummary.cachedSummary) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:301:      ...(cachedSummary?.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:346:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:38:    status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:62:    status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:5:// code graph status, and CocoIndex availability into a single call.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:68:  status: 'accepted' | 'rejected';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:94:  status: 'fresh' | 'stale' | 'empty' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:166:    status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:328:    status: 'accepted',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:373:  if (decision.status !== 'accepted' || !decision.cachedSummary) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:387:  if (decision.status === 'accepted' || decision.reason === 'missing_state') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:437:  // ── Sub-call 2: Code graph status ───────────────────────────
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:439:    status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:449:      status: freshness,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:455:    // Graph status hints deferred to structural contract (Phase 027)
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:458:    codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:473:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:484:  if (cachedSummaryDecision.status === 'accepted') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:504:  const cachedCertainty: SharedPayloadCertainty = cachedSummaryDecision.status === 'accepted' ? 'estimated' : 'defaulted';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:505:  const codeGraphCertainty: SharedPayloadCertainty = codeGraph.status === 'error' ? 'unknown' : 'exact';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:518:  if (cachedSummaryDecision.status === 'accepted' && cachedSummaryDecision.cachedSummary) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:533:      key: 'code-graph-status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:535:      content: `status=${codeGraph.status}; files=${codeGraph.fileCount}; nodes=${codeGraph.nodeCount}; edges=${codeGraph.edgeCount}; lastScan=${codeGraph.lastScan ?? 'unknown'}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:540:      key: 'cocoindex-status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:564:      ...(cachedSummaryDecision.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:568:    ])}; graph=${codeGraph.status}; graphStatus=${codeGraph.status}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:572:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:579:    graphFreshness: codeGraph.status as GraphFreshness,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:611:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:32:- `memory-ingest.ts` - Async ingestion job start, status, and cancel handlers.
-.opencode/skill/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
-.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:42:  status: 'error' | 'warning';
-.opencode/skill/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:94:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:209:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:526:    includeTrace: includeTraceArg = false,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:531:  const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:532:  const includeTrace = includeTraceByFlag || includeTraceArg === true;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:747:    includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1005:      includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:125:- startup and resume surfaces report freshness-aware graph status (`fresh`, `stale`, `empty`, `error`)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:434:- `code_graph_status` (graph health check)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:447:- the startup or bootstrap response reports freshness-aware graph status
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:860:  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1017:  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:181:      includeTrace: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:232:  description: '[L3:Discovery] Get statistics about the memory system. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 800.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:238:  description: '[L3:Discovery] Check health status of the memory system. Token Budget: 800.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:444:  name: 'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:597:  name: 'memory_ingest_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:692:      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:699:  name: 'ccc_status',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:734:  description: '[L3:Discovery] Check session readiness: priming status, code graph freshness, time since last tool call. Call periodically during long sessions to check for context drift. Returns ok/warning/stale with actionable hints. No arguments required.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:770:      structuralContext: { type: 'object', description: 'Structural bootstrap contract (status, summary, recommendedAction); omitted when code graph is unavailable', properties: { status: { type: 'string', enum: ['ready', 'stale', 'missing'] }, summary: { type: 'string' }, recommendedAction: { type: 'string' } } },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:772:      nextActions: { type: 'array', items: { type: 'string' }, description: 'Up to 3 recommended next actions derived from resume, health, and structural status' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:844:  name: 'deep_loop_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:252:export const handle_memory_ingest_status = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_status');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:185:  includeTrace: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:732:    includeTrace: options.includeTrace || false, // CHK-040
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:763:    includeTrace: options.includeTrace || false, // CHK-040
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:797:    includeTrace: options.includeTrace || false, // CHK-040
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:905:        /\b(next(?:\s+steps?)?|status|state|blockers|where\b|left off|what changed)\b/i.test(normalizedInput)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1009:    includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1031:            includeTrace === true ? sessionTransition : undefined,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1289:    includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // CHK-040
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1345:  options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1427:  const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1501:      includeTrace: options.includeTrace === true,
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:392:      text: JSON.stringify({ status: 'ok', data }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:401:      text: JSON.stringify({ status: 'error', error }),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:151:  includeTrace: z.boolean().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:424:  memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445:  shared_memory_status: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:489:  memory_ingest_status: ['jobId'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:86:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:767: *   - Active sessions (session_state with status='active')
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:810:      `DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:961:    status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active', 'completed', 'interrupted')),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:974:  'CREATE INDEX IF NOT EXISTS idx_session_state_status ON session_state(status);',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1043:        status = 'active',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1085:      SET status = 'completed', updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1113:      SET status = 'interrupted', updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1114:      WHERE status = 'active'
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1161:      status: row.status as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1173:      _recovered: row.status === 'interrupted',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1176:    if (row.status === 'interrupted') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1179:        SET status = 'active', updated_at = ?
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1203:      WHERE status = 'interrupted'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:41:    status: 'ok' | 'error';
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:188:      AND embedding_status IN ('success', 'pending', 'partial')
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:224:      status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:240:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:439:  if (graphSnapshot.status === 'ok' && graphSnapshot.data) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:525:    if (enrichedConstitutional.length === 0 && codeGraphStatus.status !== 'ok') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:49:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:190:      status: 'reinforced',
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:201:    return { status: 'error', id: memoryId, title: '', specFolder: '', success: false, error: message };
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:248:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:314:    status: 'updated',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:147:      text: JSON.stringify({ status: 'ok', data }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:156:      text: JSON.stringify({ status: 'error', error }),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:122:  if (cachedSummaryDecision.status !== 'accepted') {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:126:  const sessionContinuity = cachedSummaryDecision.status === 'accepted'
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:143:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:121:- Session ID and status
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:109:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/index.ts:6:export { handleCoverageGraphStatus } from './status.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:4:// Dispatch for code graph MCP tools: scan, query, status, context.
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:21:  'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:23:  'ccc_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:47:        status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:67:    case 'code_graph_status':
-.opencode/skill/system-spec-kit/mcp_server/tools/code-graph-tools.ts:71:    case 'ccc_status':
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:97:  if (typeof result.status === 'number' && result.status === 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:104:  const errorText = stderr || stdout || result.error?.message || `exit=${String(result.status)}`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:162:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:189:      text: JSON.stringify({ status: 'error', error }),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:5:// Aggregates metrics, graph freshness, and priming status into a
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:175:  // Priming status
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:215:  let status: StructuralBootstrapContract['status'];
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:217:    status = 'ready';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:221:    status = 'missing';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:227:  if (status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:240:  } else if (status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:252:  if (status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:254:  } else if (status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:263:    status,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:271:      trustState: trustStateFromStructuralStatus(status),
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:273:      lastUpdated: status === 'ready' || status === 'stale'
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:5:// readiness, code graph freshness, and priming status.
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:44:  status: SessionStatus;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:86:    if (snapshot.status === 'ok' && snapshot.data) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:108:  let status: SessionStatus;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:110:    status = 'stale';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:112:    status = 'warning';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:114:    status = 'ok';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:122:  if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:124:  } else if (structuralContext.status === 'missing') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:142:        content: `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; graph=${graphFreshness}; specFolder=${specFolder ?? 'none'}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:158:    summary: `Session health is ${status}; graph freshness is ${graphFreshness}; structural status is ${structuralContext.status}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:162:      trustState: trustStateFromStructuralStatus(structuralContext.status),
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:174:    status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:192:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:4:// MCP tool handler for deep_loop_graph_status — reports graph
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:27:/** Handle deep_loop_graph_status tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:59:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:89:      text: JSON.stringify({ status: 'error', error }),
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:37:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:77:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/tools/types.ts:351:/** Arguments for ingestion job status requests. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:363:        status: isEmbeddingModelReady() && database ? 'healthy' : 'degraded',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:380:  const status = isEmbeddingModelReady() && database ? 'healthy' : 'degraded';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:382:  const summary = `Memory system ${status}: ${memoryCount} memories indexed`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:431:        status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:573:      status,
-.opencode/skill/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts:15:if (typeof result.status === 'number') {
-.opencode/skill/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts:16:  process.exit(result.status);
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:347:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:379:          text: JSON.stringify({ status: 'error', error: `Could not resolve blast-radius sources: ${rawSubjects.join(', ')}` }),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:389:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:411:        text: JSON.stringify({ status: 'error', error: `Could not resolve subject: ${subject}` }),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:424:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:548:      return { content: [{ type: 'text', text: JSON.stringify({ status: 'error', error: `Unknown operation: ${operation}` }) }] };
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts:555:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:14:if (typeof result.status === 'number') {
-.opencode/skill/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:15:  process.exit(result.status);
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:57:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:66:/** Type guard: distinguishes IndexResult from RetryErrorResult via the 'status' property */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:71:    typeof (result as { status?: unknown }).status === 'string' &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:80:  status?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:315:        status: 'complete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:418:          status: 'failed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:424:          result.status === 'success' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:425:          result.status === 'indexed' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:426:          result.status === 'updated' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:427:          result.status === 'unchanged' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:428:          result.status === 'reinforced' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:429:          result.status === 'duplicate' ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:430:          result.status === 'deferred';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:435:        if (result.status === 'indexed') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:438:        } else if (result.status === 'updated') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:441:        } else if (result.status === 'unchanged') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:444:        } else if (result.status === 'reinforced') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:447:        } else if (result.status === 'duplicate') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:450:        } else if (result.status === 'deferred') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:456:          if (result.status === 'indexed') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:458:          } else if (result.status === 'unchanged') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:463:        if (result.status !== 'unchanged') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:468:            status: result.status,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:478:          status: 'failed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:515:        if (!fileResult.specFolder || fileResult.status === 'failed') {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:634:      status: 'complete',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/index.ts:6:export { handleCodeGraphStatus } from './status.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/index.ts:8:export { handleCccStatus } from './ccc-status.js';
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:52:  'memory_ingest_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:58:  'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:73:    case 'memory_ingest_status':       return handleMemoryIngestStatus(parseArgs<IngestStatusArgs>(validateToolArgs('memory_ingest_status', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:79:    case 'shared_memory_status':       return handleSharedMemoryStatus(parseArgs<SharedMemoryStatusArgs>(validateToolArgs('shared_memory_status', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:48:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:69:  embedding_status?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:96:  'file_mtime_ms', 'embedding_status', 'encoding_intent', 'document_type',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:145: * Parent record: embedding_status='partial', content_text=summary
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:146: * Child records: embedding_status='success'|'pending', parent_id=parent.id
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:162:    return { status: 'warning', id: 0, specFolder: parsed.specFolder ?? '',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:249:        embedding_status: 'partial',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:345:          embedding_status: chunkEmbeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:469:      status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:509:            embedding_status = 'partial',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:580:        status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:619:      status: 'chunked',
-.opencode/skill/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:637:    status: existing ? 'updated' : 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:127:  let statusCounts: ReturnType<typeof vectorIndex.getStatusCounts> = { success: 0, pending: 0, failed: 0, retry: 0, partial: 0 };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:138:    statusCounts = vectorIndex.getStatusCounts();
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:210:        WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:297:  if (statusCounts.pending > 0) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:298:    hints.push(`${statusCounts.pending} memories pending re-indexing`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:306:      byStatus: statusCounts,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:8:        status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:48:      text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:59:    status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:105:      status: 'stale',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:114:    expect(parsed.data.structuralContext.status).toBe('stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:116:      structuralContext: expect.objectContaining({ status: 'stale' }),
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/README.md:11:| `status.ts` | `code_graph_status` | Report graph health and statistics |
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:50:  'embedding_status',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:126:      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:170:    CREATE INDEX IF NOT EXISTS idx_embedding_status ON memory_index(embedding_status);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:171:    CREATE INDEX IF NOT EXISTS idx_retry_eligible ON memory_index(embedding_status, retry_count, last_retry_at);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:194:      ON memory_index(embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:195:      WHERE embedding_status IN ('pending', 'partial', 'retry');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:198:      ON memory_index(spec_folder, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:199:      WHERE embedding_status IN ('pending', 'failed', 'retry');
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:393:  includeTrace: boolean = false,
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:463:    if (includeTrace) {
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:294:      status: 200,
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:295:      statusText: 'OK',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:25:            status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:49:            status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:63:            status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:74:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:42:| `shared_memory_status` | Caller-scoped rollout and membership view; requires exactly one actor identity |
-.opencode/skill/system-spec-kit/mcp_server/shared-spaces/README.md:50:`shared_memory_status`, `shared_space_upsert`, and `shared_space_membership_set` rely on actor identity validation in `handlers/shared-memory.ts`. Admin mutations compare the caller against the configured shared-memory admin identity before allowing ownership-sensitive changes.
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:660:// Check specific memory status
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:661:const status = checkMemoryArchivalStatus(memoryId);
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md:662:// status = { isArchived: boolean, shouldArchive: boolean }
-.opencode/skill/system-spec-kit/mcp_server/cli.ts:224:      "SELECT COUNT(*) as count FROM memory_index WHERE embedding_status = 'partial'"
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:33:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:155:    const profile = (['quick', 'research', 'debug'].includes(args.profile ?? '') ? args.profile : undefined) as ContextArgs['profile'];
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:164:      includeTrace: args.includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:173:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/context.ts:203:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:27:  embedding_status?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:57:  'file_mtime_ms', 'embedding_status', 'encoding_intent', 'document_type',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9:/** Handle code_graph_status tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:19:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:41:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:307:      WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:146:    expect(result.earlyReturn?.status).toBe('merged');
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:145:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:159:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:265:      text: JSON.stringify({ status: 'ok', data: scanResult }, null, 2),
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1322:    'embedding_status',
-.opencode/skill/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:4:// MCP tool handler for ccc_status — reports CocoIndex availability and stats.
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9:/** Handle ccc_status tool call */
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:29:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:49:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:50:          error: `ccc_status failed: ${err instanceof Error ? err.message : String(err)}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:24:            status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:51:          status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:65:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:233:    db!.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', initialIndex.id);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:242:    expect(parsed.data.status).toBe('duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:259:    expect(['indexed', 'created', 'updated', 'deferred']).toContain(parsed.data.status);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:291:    expect(result.status).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:305:  it('atomicSaveMemory duplicate no-op omits postMutationHooks and reports no-op status', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:314:    db!.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', initialIndex.id);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:325:    expect(['duplicate', 'unchanged', 'no_change']).toContain(result.status);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:343:    expect(['deferred', 'created', 'indexed', 'updated']).toContain(result.status);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:362:    expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:381:    expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:390:        status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:410:    expect(parsed.data.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:271:  it('C10c: includeTrace preserves graph contribution details and top-level graph metadata', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:317:  it('C10d: includeTrace=false omits per-result graph trace even when raw results carry graphContribution', async () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/README.md:65:- `incremental-index.ts` uses `file_mtime_ms`, `content_hash`, and `embedding_status` together, so unchanged-path fast paths still requeue rows whose embeddings are unhealthy.
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:4:// Validates recovery payload generation, status classification,
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:135:// -- buildRecoveryPayload — status field --
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:137:describe('buildRecoveryPayload() — status classification', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:138:  it('emits status "no_results" when resultCount is 0', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:140:    expect(payload.status).toBe('no_results');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:151:  it('emits status "partial" when resultCount is between 1 and PARTIAL_RESULT_MIN-1', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:153:    expect(payload.status).toBe('partial');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:156:  it('emits status "partial" when evidence-gap detection marks incomplete coverage', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:162:    expect(payload.status).toBe('partial');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:317:    expect(payload).toHaveProperty('status');
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:323:  it('status is one of the valid literals', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:326:    expect(validStatuses).toContain(payload.status);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:468:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:402: * @param profile       - Profile name ('quick' | 'research' | 'resume' | 'debug')
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:81:  status: MergeAbortStatus;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:256:    const txResult = db.transaction((): { status: 'merged' } | { status: MergeAbortStatus } => {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:260:        return { status: 'predecessor_gone' };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:264:        return { status: 'predecessor_changed' };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:276:      const mergedEmbeddingStatus = mergedEmbeddingBuffer ? 'success' : getOptionalString(currentRow, 'embedding_status') ?? 'pending';
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:308:        embedding_status: mergedEmbeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:337:        embedding_status: mergedEmbeddingStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:385:      return { status: 'merged' };
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:388:    if (txResult.status !== 'merged') {
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:389:      return buildMergeAbortResult(existingMemory, newMemory, txResult.status);
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:841:  status: MergeAbortStatus,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:845:    status,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:910:    embedding_status: existingRow.embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:391:          status: 'retry_scheduled',
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:427:        status: 'escalated',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:234: * Find claim nodes whose metadata verification_status is not 'verified'.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:235: * For research: CLAIM nodes with status != 'verified'.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:243:    // Research: CLAIM nodes where metadata.verification_status != 'verified'
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:264:        const status = n.metadata?.verification_status;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:265:        return status !== 'verified';
-.opencode/skill/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:70:/** Re-check weekly due status every hour while the server is running. */
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:269:      `Invalid evidence status: expected one of ${EVIDENCE_STATUS_VALUES.join(', ')}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:319:      `Publication methodology status must be one of ${PUBLICATION_METHODOLOGY_STATUSES.join(', ')}.`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:408:  structuralContext: { status: string },
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:410:  if (structuralContext.status === 'ready') {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:418:  if (structuralContext.status === 'stale') {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:599:  status: 'ready' | 'stale' | 'missing',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:601:  return status === 'ready' ? 'live' : 'stale';
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:224:    expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:228:      SELECT id, anchor_id, chunk_label, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:236:      embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:242:    expect(childRows.map((row) => row.embedding_status)).toEqual(['success', 'pending', 'pending']);
-.opencode/skill/system-spec-kit/mcp_server/lib/response/README.md:41:- `profile-formatters.ts` exports `applyResponseProfile()` and `applyProfileToEnvelope()` plus the public profile types for `quick`, `research`, `resume`, and `debug`.
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:182:  // claimVerificationRate: claims with status != 'unresolved' / all claims
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:192:        if (meta.verification_status && meta.verification_status !== 'unresolved') {
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:179:  WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:83:    WHERE m.embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:94:    const status = 'status' in result ? result.status : 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:95:    throw new Error(`Expected merge result but received ${result.action}:${status}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:122:        embedding_status TEXT DEFAULT 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:526:          embedding_status, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:614:          embedding_status, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:697:      expect(result.status).toBe('predecessor_changed');
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:38:  embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:119:          SELECT file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:126:          SELECT file_path, file_mtime_ms, content_hash, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:174:    // Still check if embedding status is pending
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:175:    if (stored.embedding_status === 'pending' || stored.embedding_status === 'failed') {
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:37:      embedding_status TEXT DEFAULT 'complete',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:92:        embedding_status TEXT DEFAULT 'pending'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:511:      expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:534:      if (result.status === 'error') {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:536:        expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:538:        expect(result.status).toBe('reinforced');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:575:        expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:594:      if (result.status === 'error') {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:595:        expect(result).toHaveProperty('status');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:635:        expect(result.status).toBe('reinforced');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:755:      expect(result.status).toBe('updated');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:442:  it('handler requires caller identity for shared_memory_status', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:454:  it('runtime accepts shared_memory_status with one actor identity', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:456:      validateToolArgs('shared_memory_status', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:22:    embedding_status: 'completed',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:120:    expect(row.embedding_status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:53:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:116:  const status = typeof memory.embedding_status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:117:    ? memory.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:122:  return status === 'pending' || status === 'retry' ? status : null;
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:305:        SET embedding_status = 'retry',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:309:          AND embedding_status = 'pending'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:318:          AND embedding_status = 'retry'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:452:    WHERE embedding_status IN ('pending', 'retry')
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:455:      CASE WHEN embedding_status = 'pending' THEN 0 ELSE 1 END,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:474:  if (row.embedding_status === 'pending') return true;
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:476:  if (row.embedding_status === 'retry' && row.last_retry_at) {
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:480:    // The retry status, so use (retryCount - 1) for the backoff index. First retry (retryCount=1)
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:487:  return row.embedding_status === 'retry';
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:499:    WHERE embedding_status = 'failed'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:515:      SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:516:      SUM(CASE WHEN embedding_status = 'retry' THEN 1 ELSE 0 END) as retry,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:517:      SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:518:      SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as success,
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:570:      typeof memory.embedding_status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:571:        ? memory.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:641:        SET embedding_status = 'success',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:696:  const previousStatus = typeof memory.embedding_status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:697:    ? memory.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:707:      SET embedding_status = 'retry',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:728:  const previousStatus = memory && typeof memory.embedding_status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:729:    ? memory.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:736:    SET embedding_status = 'failed',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:749:  const previousStatus = memory && typeof memory.embedding_status === 'string'
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:750:    ? memory.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:757:    SET embedding_status = 'retry',
-.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:762:    WHERE id = ? AND embedding_status = 'failed'
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:20:type EmbeddingStatus = StoredMetadata['embedding_status'];
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:37:      embedding_status TEXT DEFAULT 'pending'
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:38:        CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:74:  embedding_status?: EmbeddingStatus;
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:78:    INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:86:    opts.embedding_status ?? 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:205:  it('returns correct row shape {file_path, file_mtime_ms, content_hash, embedding_status}', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:212:      embedding_status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:222:    expect(row.embedding_status).toBe('success');
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:233:      embedding_status: 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:267:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:300:    insertRow(db, { file_path: fakePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:318:    insertRow(db, { file_path: tmpFile, file_mtime_ms: null, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:331:    insertRow(db, { file_path: tmpFile, file_mtime_ms: mtimeMs, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:348:      embedding_status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:366:    insertRow(db, { file_path: tmpFile, file_mtime_ms: stats.mtimeMs, embedding_status: 'pending' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:378:    insertRow(db, { file_path: tmpFile, file_mtime_ms: stats.mtimeMs, embedding_status: 'failed' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:389:    insertRow(db, { file_path: tmpFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:443:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:497:    insertRow(db, { file_path: unchangedFile, file_mtime_ms: unchangedStats.mtimeMs, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:498:    insertRow(db, { file_path: modifiedFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:499:    insertRow(db, { file_path: deletedPath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:531:    insertRow(db, { file_path: tmpFile, file_mtime_ms: null, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:544:    insertRow(db, { file_path: liveFile, file_mtime_ms: liveStats.mtimeMs, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:547:    insertRow(db, { file_path: stalePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:572:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:591:    const staleId = insertRow(db, { file_path: stalePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:595:    const liveId = insertRow(db, { file_path: liveFile, file_mtime_ms: liveStats.mtimeMs, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:620:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:688:    insertRow(db, { file_path: successFile, file_mtime_ms: successMeta.mtime, content_hash: 'hash-ok', embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:705:    insertRow(db, { file_path: failedFile, file_mtime_ms: failedMeta.mtime, content_hash: 'hash-fail', embedding_status: 'failed' });
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:719:    insertRow(db, { file_path: successFile, file_mtime_ms: 0, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:62:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:114:    expect(result.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:126:    expect(initResult.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:140:    expect(deleteResult.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:180:    expect(result.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:191:    expect(initResult.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:197:    expect(downgradeResult.status).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:209:    expect(unknownCommand.status).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:216:    expect(missingTier.status).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:223:    expect(missingConfirm.status).toBe(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cli.vitest.ts:240:    expect(result.status).not.toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:21:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:69:  const nodeLimit = args.profile === 'quick' ? 10 : args.profile === 'debug' ? 30 : 20;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:130:      embedding_status TEXT DEFAULT 'pending'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:818:  it('reinforceExistingMemory: error status for missing ID', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:832:    expect(result.status).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:137:  it('T005a-I5: status with missing jobId throws', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:143:  it('T005a-I6: status with non-string jobId throws', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:149:  it('T005a-I6b: status returns E404 payload when job is unknown', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:631:  it('returns an internal error when shared-memory status lookup throws unexpectedly', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:643:    expect(envelope.data.error).toContain('Shared memory status failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:647:  it('scopes shared-memory status to the authenticated caller identity', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:649:      spaceId: 'space-status-owner',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:656:      spaceId: 'space-status-other',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:663:      spaceId: 'space-status-other',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:678:    expect(envelope.data.allowedSharedSpaceIds).toEqual(['space-status-other']);
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:685:  it('rejects shared-memory status when caller identity is omitted', async () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:435:      'Check checkpoint_list() for checkpoint status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:590:      'Check memory_causal_stats() for graph status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:6:// query, and status handlers.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:343: * Non-mutating freshness check for status display.
-.opencode/skill/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:29:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/contracts/README.md:330:| `missing_methodology` | The row is missing a supported publication methodology status. |
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:28:type EmbeddingStatus = RetryQueueItem['embedding_status'];
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:225:      status: EmbeddingStatus = 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:236:             embedding_status, retry_count, last_retry_at, failure_reason,
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:241:          now, now, status, retryCount, lastRetryAt, failureReason,
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:247:          SET embedding_status = ?, retry_count = ?, last_retry_at = ?,
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:250:        `).run(status, retryCount, lastRetryAt, failureReason, now, id);
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:305:      it('T25: getRetryStats() counts by status correctly', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:427:      it('T37: markAsFailed() sets status and failure_reason', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:433:        const row = activeDb.prepare('SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?').get(4001) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:434:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:437:        expect(row.embedding_status).toBe('failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:469:        const row = activeDb.prepare('SELECT embedding_status, retry_count, last_retry_at, failure_reason FROM memory_index WHERE id = ?').get(5001) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:470:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:475:        expect(row.embedding_status).toBe('retry');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:545:          'SELECT embedding_status, retry_count, failure_reason FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:547:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:553:        expect(row?.embedding_status).toBe('retry');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:568:          'SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?'
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:570:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:575:        expect(row?.embedding_status).toBe('failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:661:        const row1 = activeDb.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:662:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:664:        expect(row1.embedding_status).toBe('retry');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:667:        const row2 = activeDb.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:668:          embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:670:        expect(row2.embedding_status).toBe('failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:673:      it('T53: getRetryQueue() excludes success and failed statuses', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:685:      it('T54: getRetryStats().total >= sum of individual statuses', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:696:      it('T55: getRetryQueue() rows have id, file_path, embedding_status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:704:          expect(['pending', 'retry']).toContain(item.embedding_status);
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:29:  doctor: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:86:    doctor: {
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hyde.ts:257:      console.warn(`[hyde] LLM endpoint returned HTTP ${response.status}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:49:  embedding_status?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:209:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:285:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:328:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:376:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:460:      (id, spec_folder, file_path, title, created_at, updated_at, embedding_status, content_text, importance_tier)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:476:      (id, spec_folder, file_path, anchor_id, title, created_at, updated_at, embedding_status, content_text, parent_id, chunk_index, chunk_label, importance_tier)
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:544:    expect(helpResult.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:552:    expect(statsResult.status).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:48:function mockFetch(status: number, body: Record<string, unknown>): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:50:    ok: status >= 200 && status < 300,
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:51:    status,
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:52:    statusText: `HTTP ${status}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:861:        embedding_status: 'completed',
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:904:        embedding_status: 'completed',
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:23:  status: (typeof VALID_RECOVERY_STATUSES)[number];
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:122:        status: expect.any(String),
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:129:    expect(VALID_RECOVERY_STATUSES).toContain(envelope.data.recovery?.status);
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
-.opencode/skill/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:188:    expect(envelope.data.recovery?.status).toBe('partial');
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:345:      "query": "checklist verification status for T006 eval metrics implementation",
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:49:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:85:  'status',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:152:          if (normalizedSql === "DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:156:              if ((row.status === 'completed' || row.status === 'interrupted') && row.updated_at < cutoffIso) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:196:              status: 'active',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:219:            row.status = 'completed';
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:224:          if (normalizedSql === "UPDATE session_state SET status = 'interrupted', updated_at = ? WHERE status = 'active'") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:228:              if (row.status === 'active') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:229:                row.status = 'interrupted';
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:243:            row.status = 'active';
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:292:              .filter((row) => row.status === 'interrupted')
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:402:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_status'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:425:        status: 'active',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:446:      expect(database.getSessionState('active-a')?.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:447:      expect(database.getSessionState('active-b')?.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:458:      expect(database.getSessionState('active-only')?.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:459:      expect(database.getSessionState('completed-only')?.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:491:      expect(database.getSessionState('recover-me')?.status).toBe('active');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:583:        'status',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:590:    it('should have CHECK constraint on status column', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:595:      expect(createTableSql).toContain("CHECK(status IN ('active', 'completed', 'interrupted'))");
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:657:      expect(database.getSessionState('complete-transition')?.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:669:      expect(database.getSessionState('interrupt-transition')?.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:681:      expect(database.getSessionState('interrupt-active')?.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:682:      expect(database.getSessionState('interrupt-completed')?.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:706:        status: 'interrupted',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:759:      expect(result.state?.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:774:      expect(database.getSessionState('flag-reactivate')?.status).toBe('active');
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:115:    tools: ['memory_index_scan', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'code_graph_scan', 'code_graph_status', 'ccc_status', 'ccc_reindex', 'ccc_feedback']
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:45:      embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:64: * Insert a memory record as if it was already indexed (embedding_status='success').
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:89:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:180:      expect(result!.status).toBe('duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:208:      const content = 'Content with a pending embedding status.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:211:      // Insert with embedding_status='pending' — should NOT be matched
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:213:        INSERT INTO memory_index (spec_folder, file_path, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:283:      expect(result?.status).toBe('duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:305:    it('T054-6c: Invalid terminal status complete is excluded from dedup', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:306:      const content = 'Legacy complete status should not dedup.';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:307:      const folder = 'specs/invalid-complete-status';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:311:        '/specs/invalid-complete-status/memory/legacy.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:330:          spec_folder, file_path, canonical_file_path, title, content_hash, content_text, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:414:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:435:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:448:      expect(result?.status).toBe('unchanged');
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:519:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:546:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:563:      expect(result?.status).toBe('duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:573:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:598:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, tenant_id, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:627:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, tenant_id, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:710:      expect(result).toHaveProperty('status', 'duplicate');
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:722:        INSERT INTO memory_index (spec_folder, file_path, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:10:// T10-T12 : extractValidationMetadata — completion status markers
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:144:   T10-T12: Completion status from content markers
-.opencode/skill/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:147:describe('extractValidationMetadata — completion status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:76:            data: { status: 'success' },
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:58:  status: 'PASS' | 'FAIL';
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:71:  const status: 'PASS' | 'FAIL' = delta <= tolerance ? 'PASS' : 'FAIL';
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:72:  discrepancyLog.push({ scenario, metric, expected, computed, delta, status });
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:408:      const status    = r.status.padEnd(11);
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:409:      return `║  ${scenario}  │ ${metric} │ ${expected} │ ${computed} │ ${delta} │  ${status}  ║`;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:412:    const failures = discrepancyLog.filter(r => r.status === 'FAIL').length;
-.opencode/skill/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:413:    const passes   = discrepancyLog.filter(r => r.status === 'PASS').length;
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:75:  status?: number | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:131:      exitCode: failure.status ?? 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:152:      exitCode: failure.status ?? 2,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:218:    const embedding_status = sqlite_vec ? 'success' : 'pending';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:224:        embedding_generated_at, embedding_status, encoding_intent, document_type, spec_level,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:229:      importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:301:            embedding_status = 'pending',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:322:        importance_weight, created_at, updated_at, embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:437:      updates.push('embedding_status = ?');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:469:      database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:718:// Valid statuses: 'pending', 'success', 'failed', 'retry', 'partial'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:720: * Updates the embedding status for a memory.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:722: * @param status - The new embedding status.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:723: * @returns True when the status was updated.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:725:export function update_embedding_status(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:727:  status: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:730:  const valid_statuses = ['pending', 'success', 'failed', 'retry', 'partial'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:731:  if (!valid_statuses.includes(status)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:732:    console.warn(`[vector-index] Invalid embedding status: ${status}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:739:      SET embedding_status = ?, updated_at = datetime('now')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:741:    `).run(status, id);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:745:    console.warn(`[vector-index] Failed to update embedding status for ${id}: ${get_error_message(error)}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:787:export { update_embedding_status as updateEmbeddingStatus };
-.opencode/skill/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:82:      embedding_status TEXT DEFAULT 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:373:            embedding_status TEXT DEFAULT 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:431:            embedding_status, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:47:function mockFetch(status: number, body: unknown, shouldThrow = false): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:51:      status,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:52:      statusText: status === 200 ? 'OK' : 'Internal Server Error',
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:448:          status: 200,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:449:          statusText: 'OK',
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:472:          status: 200,
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:473:          statusText: 'OK',
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:500:      const status = crossEncoder.getRerankerStatus();
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:501:      expect(status.latency.count).toBeGreaterThanOrEqual(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:502:      expect(status.latency.avg).toBeGreaterThanOrEqual(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
-.opencode/skill/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:50:  'check status',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:11:      text: JSON.stringify({ status: 'ok', data: { memories: [] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:61:    expect(parsed.status).toBe('ok');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:88:    expect(parsed.data.codeGraph.status).toBe('empty');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:91:  it('reports stale graph status in the startup payload when freshness detection says stale', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:97:    expect(parsed.data.codeGraph.status).toBe('stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:99:    expect(parsed.data.payloadContract.sections.find((section: { key: string }) => section.key === 'code-graph-status')?.content)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:100:      .toContain('status=stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:117:    expect(parsed.data.codeGraph.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:83:      status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:97:    expect(payload.status).toBe('ok');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:138:      status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:146:    expect(payload.status).toBe('ok');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:215:      WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:95:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:70:    it('should report enabled status', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:33:  status: RecoveryStatus;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:84:function classifyReason(ctx: RecoveryContext, status: RecoveryStatus): RecoveryReason {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:86:  if (ctx.hasSpecFolderFilter && status === 'no_results') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:150: * Map status + reason to a recommended next action.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:152:function recommendAction(status: RecoveryStatus, reason: RecoveryReason): RecoveryAction {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:153:  if (status === 'no_results') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:193:  const status = classifyStatus(ctx);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:273:  const status = classifyStatus(ctx);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:274:  const reason = classifyReason(ctx, status);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:276:  const recommendedAction = recommendAction(status, reason);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:279:    status,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:69:  /** Completion status derived from content markers ('complete' | 'partial' | 'unknown'). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:213:    // Completion status.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:241:        `[llm-reformulation] LLM endpoint returned HTTP ${response.status}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:96:  it('captures thrown hook error details in errors and marks the failing hook status false', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:53:      embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:235:    it('T519-H1: Health handler returns status', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:239:      expect(typeof parsed.data?.status).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:197:        status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:292:        status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:650:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:673:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:727:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:743:        checkExistingRowMock: vi.fn(() => buildIndexResult({ status: 'indexed', id: 201 })),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:776:      expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:786:    it('treats indexMemoryFile status=error as failure and retries once', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:790:            status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:792:            message: 'forced error status',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:793:            error: 'forced error status',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:796:        .mockReturnValueOnce(buildIndexResult({ status: 'indexed', id: 301 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:802:      const filePath = createAtomicSaveTargetPath('status-error-then-success.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:804:        { file_path: filePath, content: '# status error then success' },
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:812:        fs.readdirSync(path.dirname(filePath)).some((entry) => entry.includes('status-error-then-success_pending.md'))
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:816:    it('treats indexMemoryFile status=rejected as non-retry rollback outcome', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:819:          status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:830:      const filePath = createAtomicSaveTargetPath('status-rejected.md');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:837:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:842:        fs.readdirSync(path.dirname(filePath)).some((entry) => entry.includes('status-rejected_pending.md'))
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:850:          status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:881:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:889:          status: 'rejected',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:919:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:940:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:956:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:971:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:985:            earlyReturn: buildIndexResult({ status: 'indexed', id: 401 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:993:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1005:        status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1020:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1039:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1048:        earlyReturn: buildIndexResult({ status: 'merged', id: 555 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1054:        status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1064:      expect(result.status).toBe('merged');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1075:        status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1093:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1135:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1145:      const checkContentHashDedupMock = vi.fn(() => buildIndexResult({ status: 'duplicate', id: 779 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1155:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1207:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1283:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1353:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1377:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1394:            status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1403:            earlyReturn: buildIndexResult({ status: 'reinforced', id: 902 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1422:      expect(result.status).toBe('reinforced');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1427:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 911 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1454:      expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1482:          status: 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1582:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1622:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1628:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 1001 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1661:      expect(payload?.data?.status).toBe('dry_run');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1669:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 999 }));
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1684:      expect(payload?.data?.status).toBe('dry_run');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1767:          status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1814:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1845:              status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1867:      expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1889:              status: 'error',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1911:      expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1948:          status: 'indexed',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:2012:      expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:12:type EmbeddingStatus = MemoryDbRow['embedding_status'];
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:101:          embedding_status TEXT DEFAULT 'pending'
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:102:            CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:136:      embedding_status?: EmbeddingStatus;
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:140:        INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:147:        opts.embedding_status ?? 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:168:      insertRow(db, { file_path: tmpFile, file_mtime_ms: 0, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:191:      insertRow(db, { file_path: successFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:192:      insertRow(db, { file_path: failFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:214:      insertRow(db, { file_path: file, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:230:      insertRow(db, { file_path: file, file_mtime_ms: stats.mtimeMs, embedding_status: 'pending' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:245:      insertRow(db, { file_path: file, file_mtime_ms: stats.mtimeMs, embedding_status: 'failed' });
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:263:        insertRow(db, { file_path: f, file_mtime_ms: 1000000000000, embedding_status: 'success' });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:315:  vi.mocked(vectorIndex.updateEmbeddingStatus).mockImplementation((id: number, status: string) => { calls.updateEmbeddingStatus.push({ id, status }); });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:368:  statusCounts?: any;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:378:    statusCounts = { success: 3, pending: 1, failed: 1 },
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:397:        if (sql.includes('embedding_status')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:411:  vi.mocked(vectorIndex.getStatusCounts).mockImplementation(() => statusCounts);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:857:    const hasPending = (calls.updateEmbeddingStatus.length > 0 && calls.updateEmbeddingStatus[0].status === 'pending') ||
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:983:  it('EXT-S2: Stats includes status breakdown', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:985:    installStatsMocks({ statusCounts: { success: 10, pending: 2, failed: 1 } });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1009:    installStatsMocks({ statusCounts: { success: 5, pending: 3, failed: 0 } });
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1119:  it('EXT-H1: Healthy system returns status=healthy', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1125:    expect(parsed?.data?.status).toBe('healthy');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1128:  it('EXT-H2: No DB returns status=degraded', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1134:    expect(parsed?.data?.status).toBe('degraded');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1143:    expect(parsed?.data?.status).toBe('degraded');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1723:    expect(parsed?.data?.status).toBe('degraded');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1734:    expect(parsed?.data?.status).toBe('healthy');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:677:              if (result.status === 'fulfilled') return result.value;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:741:            if (result.status === 'fulfilled') return result.value;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1117:            if (result.status === 'fulfilled') return result.value;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:125:    embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:408:// Added 'partial' embedding_status for deferred indexing (REQ-031, T096)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:581:      // V6 -> v7: Add 'partial' embedding_status for deferred indexing (REQ-031, T096)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:585:          ON memory_index(embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:586:          WHERE embedding_status IN ('pending', 'partial', 'retry')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:596:          ON memory_index(spec_folder, embedding_status, importance_tier)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:597:          WHERE embedding_status IN ('pending', 'partial')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1136:       ON memory_index(embedding_status, id)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1137:       WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2071:      ON memory_index(embedding_status, id)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2072:      WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2312:      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2428:    CREATE INDEX idx_embedding_status ON memory_index(embedding_status);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2429:    CREATE INDEX idx_retry_eligible ON memory_index(embedding_status, retry_count, last_retry_at)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2440:      ON memory_index(embedding_status, id)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2441:      WHERE embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2457:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:33:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:56:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:564:        SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as complete,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:565:        SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:566:        SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:636:        AND m.embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:164:    expect(api.LAYER_DEFINITIONS.L5.tools).toContain('shared_memory_status');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:165:    expect(api.TOOL_LAYER_MAP.shared_memory_status).toBe('L5');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:166:    expect(api.getLayerForTool('shared_memory_status')).toBe('L5');
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:167:    expect(api.getLayerTokenBudget('shared_memory_status')).toBe(1000);
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:38:  embedding_status?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:122:      embedding_status TEXT DEFAULT 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:126:    INSERT INTO memory_index (id, spec_folder, file_path, title, trigger_phrases, importance_weight, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:130:    insert.run(r.id, r.spec_folder, r.file_path, r.title, r.trigger_phrases, r.importance_weight, r.embedding_status ?? 'success');
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:354:    it('3.3.6 skips non-success embedding_status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:358:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha"]', importance_weight: 0.5, embedding_status: 'success' },
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:359:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta"]', importance_weight: 0.5, embedding_status: 'pending' },
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:43:  it('returns ready status with highlights when graph is fresh', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:55:    expect(contract.status).toBe('ready');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:68:  it('returns stale status when graph scan is old', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:82:    expect(contract.status).toBe('stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:90:  it('returns missing status when graph is empty', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:105:    expect(contract.status).toBe('missing');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:113:  it('returns missing status when graph DB throws', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:125:    expect(contract.status).toBe('missing');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:111:    expect(typeof parsed.data.status).toBe('string');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:79:    expect(typeof handler.handle_memory_ingest_status).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:179:  it('status returns E404 payload when job is missing', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:189:  it('status returns mapped job payload when found', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:242:  it('status emits optional lifecycle telemetry when extended telemetry is enabled', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:281:  it('status degrades safely when forecast derivation throws', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:89:    const content = `---\ntitle: My Spec\nstatus: active\n---\n# Real Title Here\n\nBody content.`;
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:69:      getCachedSessionSummaryDecision: vi.fn(() => ({ status: 'rejected' })),
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:229:            status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:267:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:278:        status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:55: * Consumers must not reuse this as parser provenance, evidence status,
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:26:  estimateCompletionPercent: (observations: Array<{ title: string }>, messageCount: number, toolCounts: Record<string, number>, status: string) => number;
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:46:    const status = determineSessionStatus('Build failing due to missing dependency', [], 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:47:    expect(status).toBe('BLOCKED');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:52:    const status = determineSessionStatus('None', [], 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:53:    expect(status).toBe('IN_PROGRESS');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:62:    const status = determineSessionStatus('None', observations, 10);
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:63:    expect(status).toBe('COMPLETED');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:68:    const status = determineSessionStatus('None', [], 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:69:    expect(status).toBe('IN_PROGRESS');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:74:  it('T124-05: Returns 100 for COMPLETED status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:80:  it('T124-06: Returns capped value for BLOCKED status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:204:  it('T018-03: Shows Active as status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:455:| v7      | `partial` embedding_status + `idx_embedding_pending` + `idx_fts_fallback` (REQ-031, T096) |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:292:    throw new Error(`Voyage rerank failed: ${response.status} ${response.statusText}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:334:    throw new Error(`Cohere rerank failed: ${response.status} ${response.statusText}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:370:    throw new Error(`Local rerank failed: ${response.status} ${response.statusText}`);
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:111:    (result): result is PromiseRejectedResult => result.status === 'rejected'
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:124:    (result): result is PromiseRejectedResult => result.status === 'rejected'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:31:    INSERT INTO memory_index (spec_folder, file_path, title, created_at, updated_at, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:113: * Gets memory counts grouped by embedding status.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:114: * @returns The counts for each embedding status.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:116:export function get_status_counts(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:120:    SELECT m.embedding_status, COUNT(*) as count
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:123:    GROUP BY m.embedding_status
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:126:  // M7 FIX: Include 'partial' status in counts
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:128:  for (const row of rows as Array<{ embedding_status: keyof typeof counts; count: number }>) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:129:    if (row.embedding_status in counts) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:130:      counts[row.embedding_status] = row.count;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:144:  const counts = get_status_counts(database);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:221:  const where_clauses = ['m.embedding_status = \'success\''];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:380:      WHERE m.embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1341:        WHERE m.embedding_status = 'success'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1435:export { get_status_counts as getStatusCounts };
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:177:      'shared_memory_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:190:      'memory_ingest_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:194:      'code_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:196:      'ccc_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:204:      'deep_loop_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:297:      'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:301:      'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:302:      'ccc_status', 'ccc_reindex', 'ccc_feedback',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:621:        indexSingleFile: vi.fn(async () => ({ status: 'unchanged' })),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:622:        indexMemoryFile: vi.fn(async () => ({ status: 'unchanged' })),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1257:            data: { status: 'success' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1325:      const originalText = '{"summary":"ok","data":{"status":"success"},"hints":[],"meta":{"tokenCount":1}}'
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2090:      'memory_health': '[L3:Discovery]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2109:      'memory_ingest_status': '[L7:Maintenance]',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:46:  update_embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.ts:61:  get_status_counts,
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:29:  it('keeps parser provenance, evidence status, and freshness authority as separate fields', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:55:  includeTrace?: boolean;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:138:  includeTrace = false,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts:167:    includeTrace,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:106:          importance_tier, importance_weight, created_at, updated_at, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:19:      embedding_status TEXT DEFAULT 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:74:  it('returns skip when mtime is unchanged and embedding status is success', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:81:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:88:  it('forces reindex when embedding status is pending even if mtime is unchanged', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:94:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:109:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:115:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:131:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:37:function mockFetch(status: number, body: Record<string, unknown>, options: { delay?: number } = {}): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:60:      ok: status >= 200 && status < 300,
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:61:      status,
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:62:      statusText: `HTTP ${status}`,
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:20:    'deep_loop_graph_status',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:123:        memory_health: 'L3',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:161:    it('shared_memory_status appears in exactly one layer and is mapped to that layer', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:162:      const matchingLayers = Object.values(LD).filter((layer) => layer.tools.includes('shared_memory_status'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:166:      expect(mod.TOOL_LAYER_MAP['shared_memory_status']).toBe(matchingLayers[0].id);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:405:    it('reports isVectorSearchAvailable status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:470:      expect(mem!.embedding_status).toBe('pending');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:596:      expect(mem?.embedding_status).toBe('failed');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:611:    it('rejects invalid status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:612:      const result = mod.updateEmbeddingStatus(deferredId1!, 'invalid_status');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1209:      expect(mem?.embedding_status).toBe('success');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1341:      expect(mem?.embedding_status).toBe('success');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:150:    it('getRerankerStatus returns complete status object', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:151:      const status = crossEncoder.getRerankerStatus();
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:153:      expect(typeof status.available).toBe('boolean');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:154:      expect(status.provider === null || typeof status.provider === 'string').toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:155:      expect(status.model === null || typeof status.model === 'string').toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:156:      expect(status.latency).toBeTruthy();
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:157:      expect(typeof status.latency.avg).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:158:      expect(typeof status.latency.p95).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:159:      expect(typeof status.latency.count).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:164:      const status = crossEncoder.getRerankerStatus();
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:165:      expect(status.latency.count).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:53:      embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:146:      embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:202:      status TEXT NOT NULL DEFAULT 'active',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:15:    status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:147:            status: 'completed',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:190:  it('exposes a status tool for plugin diagnostics', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:199:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:201:    expect(status).toContain('plugin_id=spec-kit-compact-code-graph');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:202:    expect(status).toContain('cache_ttl_ms=7777');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:203:    expect(status).toContain('resume_mode=minimal');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:204:    expect(status).toContain('messages_transform_enabled=true');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:205:    expect(status).toContain('messages_transform_mode=schema_aligned');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:206:    expect(status).toContain('runtime_ready=true');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:207:    expect(status).toContain('node_binary=node-custom');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:208:    expect(status).toContain('bridge_timeout_ms=1234');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:209:    expect(status).toContain('last_runtime_error=none');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:227:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:228:    expect(status).toContain('runtime_ready=false');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:229:    expect(status).toContain('last_runtime_error=NODE_MODULE_VERSION mismatch');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:37:          embedding_status TEXT,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:62:            embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:35:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:17:  it('excludes rows missing methodology status', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:16:  it('supports every certainty status through the publishable metric helper', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:76:          text: JSON.stringify({ status: 'ok', data: { memories: ['active packet'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:115:        status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:143:      'code-graph-status': 'exact',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:144:      'cocoindex-status': 'exact',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:167:            status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:205:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:216:        status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:99:        data: { status: 'ok' }
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:150:            status: 'ok',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:180:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:187:        status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:58:    const routingQuery = resolveArtifactRoutingQuery('show checklist status', ['fallback', 'concepts']);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:59:    expect(routingQuery).toBe('show checklist status');
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:237:        ['q9', 'status'], ['q10', 'status'],
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:26:  status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:409:        expect(row!.status).toBe('active');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:446:        expect(row.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:470:        expect(row1.status).toBe('interrupted');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:472:        expect(row2.status).toBe('completed');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:515:        expect(row.status).toBe('active');
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:97:    expect(result.status).toBe('success');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:56:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:341:    expect(result.status).not.toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:342:    expect(result.status).not.toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:343:    expect(['indexed', 'created', 'updated', 'duplicate', 'deferred', 'unchanged']).toContain(result.status);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:388:    expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:988:      expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1009:    expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1026:    expect(result.status).toBe('rejected');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:109:  indexMemoryFile: vi.fn(async () => ({ status: 'indexed', id: 1, specFolder: 'specs/test' })),
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:363:          status: 'failed',
-.opencode/skill/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:202:      'status: active',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:70:      embedding_status TEXT DEFAULT 'success'
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:92:function insertMemory(db: Database.Database, id: number, opts?: { specFolder?: string; title?: string; status?: string }): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:94:    INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:101:    opts?.status ?? 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:548:      INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:563:      INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:41:      embedding_status TEXT DEFAULT 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:41:        embedding_status TEXT DEFAULT 'success',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:91:  it('T536-2: includeTrace=false (default) omits scores/source/trace', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:101:  it('T536-3: includeTrace=true includes scores, source, and trace fields', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:162:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:173:        status: 'ready',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:28:        embedding_status: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:154:      status TEXT NOT NULL DEFAULT 'active',
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:210:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:258:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:60:  it('returns success status flags when all hooks succeed', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:141:      embedding_status TEXT DEFAULT 'pending',
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:206:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:262:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:295:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:350:    expect(result.status).toBe('updated');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:361:      SELECT id, parent_id, chunk_label, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:369:      embedding_status: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:419:    expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:463:    expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:477:  it('partial embedding failures still swap successfully with mixed child statuses', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:494:    expect(result.status).toBe('updated');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:509:      SELECT embedding_status, parent_id
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:513:    `).all(parentId) as Array<{ embedding_status: string; parent_id: number | null }>;
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:516:    expect(newChildren.some(row => row.embedding_status === 'pending')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:517:    expect(newChildren.some(row => row.embedding_status === 'success')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:537:    expect(result.status).toBe('indexed');
-.opencode/skill/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:576:    expect(result.status).toBe('error');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:309:      status?: string;
-.opencode/skill/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:312:    expect(escalationMeta.status).toBe('escalated');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:389:    expect(MEMORY_CONTEXT_SOURCE).toContain('options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;');
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts:39:      importance_tier, importance_weight, created_at, updated_at, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:37:  'check status',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:47:      embedding_status,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:597:    it('injects session transition into traced nested results when includeTrace=true', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:628:          includeTrace: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:658:          includeTrace: true,
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:76:        importance_tier, context_type, embedding_status
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:304:    expect(indexes[1]?.sql).toContain('embedding_status');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:138:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:165:    status: 'ok' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:216:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:242:  status: 'ok' | 'timeout' | 'unavailable';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:281:function isMutationStatus(status: string | undefined): boolean {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:282:  return status === 'indexed' || status === 'updated' || status === 'reinforced' || status === 'deferred';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:594:    status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:636:          status: 'unavailable',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:650:        status: 'timeout',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:680:  const codeGraphState = codeGraphStatus?.status === 'ok'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:681:    ? 'loaded code graph status'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:682:    : 'code graph status unavailable';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1292:        if (result.status === 'indexed') indexed++;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1293:        else if (result.status === 'updated') updated++;
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1838:              if (isMutationStatus(result.status)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1841:                    indexed: result.status === 'indexed' || result.status === 'deferred' ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1842:                    updated: result.status === 'updated' || result.status === 'reinforced' ? 1 : 0,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1847:                    status: result.status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:5:// and rollout status reporting with deny-by-default access.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:33:type SharedIdentityTool = SharedAdminTool | 'shared_memory_status';
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:374:  tool: 'shared_space_upsert' | 'shared_space_membership_set' | 'shared_memory_status' | 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:747: * Report rollout status and visible shared spaces for the requested scope.
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:756:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:765:      tool: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:785:      'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:786:      'Shared memory status failed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:910:| \`/memory:manage shared status\` | View rollout state and accessible spaces |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:50:/** Arguments for the memory_health handler. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:268:      'Use memory_ingest_status with jobId to poll progress',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:290:      tool: 'memory_ingest_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:303:    tool: 'memory_ingest_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:325:        actions: ['Call memory_ingest_status with a known jobId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:356:const handle_memory_ingest_status = handleMemoryIngestStatus;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:364:  handle_memory_ingest_status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:14:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:36:const handle_memory_health = handleMemoryHealth;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts:45:  handle_memory_health,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:24:  status: 'success' | 'pending';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:162:            status: embeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:188:    status: embeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:55:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:114:  status?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:153:  embedding_status?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:39:| `dedup.ts`                  | Pre-save deduplication. `checkExistingRow` matches by file path but returns `unchanged` only for healthy rows (`success`, `pending`, `partial`); `checkContentHashDedup` matches by content hash and accepts chunked parents only when their status is valid `partial`. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md:69:- **Deferred Indexing** -- When embedding generation fails or async mode is explicitly requested, the memory is stored with `embedding_status = 'pending'` and remains searchable via BM25/FTS5. Normal watcher/ingest reindex cache misses still run the eager provider path.
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:345:              status: reconResult.action === 'merge' ? 'merged' : 'superseded',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:39:  embedding_status: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:95:    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:220:  const existingStatus = existing?.embedding_status ?? null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:231:      status: 'unchanged',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:259:      'embedding_status IN (?, ?)',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:296:        status: 'duplicate',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:151:      status: resultStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:164:    status: resultStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:249:  if (result.status === 'unchanged') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:254:        status: 'unchanged',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:263:  if (result.status === 'error') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:273:        status: result.status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:282:  if (result.status === 'rejected') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:288:        status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:312:  const shouldEmitPostMutationFeedback = result.status !== 'duplicate' && result.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:331:    status: result.status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:340:    message: result.message ?? (result.status === 'duplicate' ? 'Memory skipped (duplicate content)' : `Memory ${result.status} successfully`),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:352:    response.message = `Memory ${result.status} (PE: ${result.pe_action})`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts:435:  } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:144:  status: 'error' | 'warning';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:152:    && 'status' in value
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:153:    && typeof (value as { status?: unknown }).status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:211:  if (isVRuleUnavailableResult(vRuleResult) && vRuleResult.status === 'error') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:639:          status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:732:      status: embeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:767:            status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:844:        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:871:            status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:881:        && (chunkedResult.status === 'indexed' || chunkedResult.status === 'updated')
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1216:        status: 'dry_run',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1348:          status: 'dry_run',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1455:  if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1583:          if (lockedIndexResult.status === 'rejected') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1613:      if (indexResult.status === 'error') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1614:        throw new Error(indexResult.message ?? indexResult.error ?? 'indexMemoryFile returned status=error');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1616:      if (indexResult.status === 'rejected') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1621:          status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1671:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1692:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1710:  if (indexResult.status !== 'unchanged' && indexResult.status !== 'duplicate' && indexResult.id > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1714:  const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1737:    indexResult.status === 'duplicate'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1739:      : `Memory ${indexResult.status} successfully`
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1751:  } else if (indexResult.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:1758:    status: indexResult.status,
+.opencode/skills/system-spec-kit/mcp_server/README.md:178:  "tool": "memory_health",
+.opencode/skills/system-spec-kit/mcp_server/README.md:183:You should get a JSON response with `status: "ok"` and database table counts.
+.opencode/skills/system-spec-kit/mcp_server/README.md:489:**Provenance-rich response envelopes** (when `includeTrace` is enabled) -- show exactly how each result was found: which channels contributed, how scores were calculated and where the information originated.
+.opencode/skills/system-spec-kit/mcp_server/README.md:517:**12-metric core computation** -- grades every query across twelve quality dimensions (MRR@1/3/10, NDCG@10, MAP and more). Together they pinpoint exactly where search is struggling, like a doctor running multiple tests instead of just asking "do you feel sick?"
+.opencode/skills/system-spec-kit/mcp_server/README.md:545:**Startup/recovery surfaces:** `session_resume`, `session_bootstrap`, and the startup brief now report freshness-aware graph status instead of count-only health. Startup surfaces are intentionally non-mutating snapshots, so later structural reads may still differ if repo state changes.
+.opencode/skills/system-spec-kit/mcp_server/README.md:583:| `includeTrace` | boolean | Include retrieval trace for debugging |
+.opencode/skills/system-spec-kit/mcp_server/README.md:601:Resume session with combined memory, code graph and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. The response carries freshness-aware code-graph status (`fresh`, `stale`, `empty`, `error`) instead of count-only health. For the canonical first-call recovery path on session start or after `/clear`, prefer `session_bootstrap`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:763:##### `memory_health`
+.opencode/skills/system-spec-kit/mcp_server/README.md:779:Check session readiness: priming status, code graph freshness and time since last tool call. Returns `ok`, `warning` or `stale` with actionable hints. Call periodically during long sessions to detect context drift.
+.opencode/skills/system-spec-kit/mcp_server/README.md:783:| _(none required)_ |  | Returns health status with hints |
+.opencode/skills/system-spec-kit/mcp_server/README.md:924:##### `shared_memory_status`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1087:| `includeTrace` | boolean | Include trace metadata for debugging |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1123:Start a bulk import job for multiple markdown files. Returns immediately with a job ID so you do not have to wait. Check progress with `memory_ingest_status`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1132:##### `memory_ingest_status`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1165:##### `code_graph_status`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1175:##### `ccc_status`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1177:Check CocoIndex availability, binary path and index status.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1262:| L5 | Lifecycle | 8 | 600 | Checkpoints, shared spaces and enable/status/shared-space lifecycle |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1446:  "tool": "memory_ingest_status",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1542:| Diagnose search problems | `memory_health` | Set `reportMode: "full"` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1563:{ "tool": "memory_health", "arguments": { "reportMode": "full", "autoRepair": true } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1663:{ "tool": "memory_health", "arguments": { "reportMode": "divergent_aliases", "limit": 20 } }
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:85:        if (reinforced.status !== 'error') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts:143:          linkedMemoryIds: updated.status === 'error' ? [existingId] : [existingId, updated.id],
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:113:  if (structuralContext.status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:115:  } else if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:121:  const healthStatus = typeof healthData.status === 'string' ? healthData.status : null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:146:  if (structuralContext.status !== 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:196:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:203:  if (cachedSummary?.status === 'accepted') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:221:  const cachedCertainty: SharedPayloadCertainty = cachedSummary?.status === 'accepted' ? 'estimated' : 'defaulted';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:255:  if (cachedSummary?.status === 'accepted' && cachedSummary.cachedSummary) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:301:      ...(cachedSummary?.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:304:    ])}; structuralStatus=${structuralContext.status}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:308:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:315:    graphFreshness: structuralContext.status === 'ready'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:317:      : structuralContext.status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:346:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:38:    status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/validation-responses.ts:62:    status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:5:// code graph status, and CocoIndex availability into a single call.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:68:  status: 'accepted' | 'rejected';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:94:  status: 'fresh' | 'stale' | 'empty' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:166:    status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:328:    status: 'accepted',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:373:  if (decision.status !== 'accepted' || !decision.cachedSummary) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:387:  if (decision.status === 'accepted' || decision.reason === 'missing_state') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:437:  // ── Sub-call 2: Code graph status ───────────────────────────
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:439:    status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:449:      status: freshness,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:455:    // Graph status hints deferred to structural contract (Phase 027)
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:458:    codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:473:  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:484:  if (cachedSummaryDecision.status === 'accepted') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:504:  const cachedCertainty: SharedPayloadCertainty = cachedSummaryDecision.status === 'accepted' ? 'estimated' : 'defaulted';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:505:  const codeGraphCertainty: SharedPayloadCertainty = codeGraph.status === 'error' ? 'unknown' : 'exact';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:518:  if (cachedSummaryDecision.status === 'accepted' && cachedSummaryDecision.cachedSummary) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:533:      key: 'code-graph-status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:535:      content: `status=${codeGraph.status}; files=${codeGraph.fileCount}; nodes=${codeGraph.nodeCount}; edges=${codeGraph.edgeCount}; lastScan=${codeGraph.lastScan ?? 'unknown'}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:540:      key: 'cocoindex-status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:564:      ...(cachedSummaryDecision.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:568:    ])}; graph=${codeGraph.status}; graphStatus=${codeGraph.status}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:572:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:579:    graphFreshness: codeGraph.status as GraphFreshness,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:611:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:32:- `memory-ingest.ts` - Async ingestion job start, status, and cancel handlers.
+.opencode/skills/system-spec-kit/mcp_server/handlers/README.md:46:- `code-graph/status.ts` - `code_graph_status`: report graph health and statistics.
+.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:42:  status: 'error' | 'warning';
+.opencode/skills/system-spec-kit/mcp_server/handlers/v-rule-bridge.ts:94:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:209:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:211:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:526:    includeTrace: includeTraceArg = false,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:531:  const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:532:  const includeTrace = includeTraceByFlag || includeTraceArg === true;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:747:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1005:      includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1172:  if (includeTrace && sessionTransition) {
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:125:- startup and resume surfaces report freshness-aware graph status (`fresh`, `stale`, `empty`, `error`)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:434:- `code_graph_status` (graph health check)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:447:- the startup or bootstrap response reports freshness-aware graph status
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:860:  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1017:  "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:181:      includeTrace: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:232:  description: '[L3:Discovery] Get statistics about the memory system. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 800.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:237:  name: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:238:  description: '[L3:Discovery] Check health status of the memory system. Token Budget: 800.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:268:        description: 'Required with autoRepair:true to execute repair actions. When false or omitted, memory_health returns a confirmation-only response.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:444:  name: 'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:597:  name: 'memory_ingest_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:657:  name: 'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:692:      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:699:  name: 'ccc_status',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:700:  description: '[L7:Maintenance] Check CocoIndex availability, binary path, and index status.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:734:  description: '[L3:Discovery] Check session readiness: priming status, code graph freshness, time since last tool call. Call periodically during long sessions to check for context drift. Returns ok/warning/stale with actionable hints. No arguments required.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:769:      health: { type: 'object', description: 'session_health payload (system status, database health, MCP connectivity)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:770:      structuralContext: { type: 'object', description: 'Structural bootstrap contract (status, summary, recommendedAction); omitted when code graph is unavailable', properties: { status: { type: 'string', enum: ['ready', 'stale', 'missing'] }, summary: { type: 'string' }, recommendedAction: { type: 'string' } } },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:772:      nextActions: { type: 'array', items: { type: 'string' }, description: 'Up to 3 recommended next actions derived from resume, health, and structural status' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:844:  name: 'deep_loop_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:252:export const handle_memory_ingest_status = lazyFunction(getMemoryIngestModule, 'handle_memory_ingest_status');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:267:export const handle_memory_health = lazyFunction(getMemoryCrudModule, 'handle_memory_health');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:127:  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:185:  includeTrace: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:732:    includeTrace: options.includeTrace || false, // CHK-040
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:763:    includeTrace: options.includeTrace || false, // CHK-040
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:797:    includeTrace: options.includeTrace || false, // CHK-040
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:905:        /\b(next(?:\s+steps?)?|status|state|blockers|where\b|left off|what changed)\b/i.test(normalizedInput)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1009:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1031:            includeTrace === true ? sessionTransition : undefined,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1289:    includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // CHK-040
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1345:  options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1427:  const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1501:      includeTrace: options.includeTrace === true,
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:392:      text: JSON.stringify({ status: 'ok', data }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:401:      text: JSON.stringify({ status: 'error', error }),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:151:  includeTrace: z.boolean().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:404:  memory_health: memoryHealthSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:424:  memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:445:  shared_memory_status: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:469:  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:489:  memory_ingest_status: ['jobId'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493:  shared_memory_status: ['tenantId', 'actorUserId', 'actorAgentId'],
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:86:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:767: *   - Active sessions (session_state with status='active')
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:810:      `DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:961:    status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active', 'completed', 'interrupted')),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:974:  'CREATE INDEX IF NOT EXISTS idx_session_state_status ON session_state(status);',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1036:        session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1043:        status = 'active',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1085:      SET status = 'completed', updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1113:      SET status = 'interrupted', updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1114:      WHERE status = 'active'
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1136:      SELECT session_id, status, spec_folder, current_task, last_action,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1161:      status: row.status as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1173:      _recovered: row.status === 'interrupted',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1176:    if (row.status === 'interrupted') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1179:        SET status = 'active', updated_at = ?
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1203:      WHERE status = 'interrupted'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:41:    status: 'ok' | 'error';
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:188:      AND embedding_status IN ('success', 'pending', 'partial')
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:224:      status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:240:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:439:  if (graphSnapshot.status === 'ok' && graphSnapshot.data) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:525:    if (enrichedConstitutional.length === 0 && codeGraphStatus.status !== 'ok') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:49:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:190:      status: 'reinforced',
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:201:    return { status: 'error', id: memoryId, title: '', specFolder: '', success: false, error: message };
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:248:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:314:    status: 'updated',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:147:      text: JSON.stringify({ status: 'ok', data }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:156:      text: JSON.stringify({ status: 'error', error }),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:122:  if (cachedSummaryDecision.status !== 'accepted') {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:126:  const sessionContinuity = cachedSummaryDecision.status === 'accepted'
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:143:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:121:- Session ID and status
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:109:        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/index.ts:6:export { handleCoverageGraphStatus } from './status.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:4:// Dispatch for code graph MCP tools: scan, query, status, context.
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:21:  'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:23:  'ccc_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:47:        status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:67:    case 'code_graph_status':
+.opencode/skills/system-spec-kit/mcp_server/tools/code-graph-tools.ts:71:    case 'ccc_status':
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:97:  if (typeof result.status === 'number' && result.status === 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:104:  const errorText = stderr || stdout || result.error?.message || `exit=${String(result.status)}`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:162:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts:189:      text: JSON.stringify({ status: 'error', error }),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:5:// Aggregates metrics, graph freshness, and priming status into a
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:39:  status: 'ready' | 'stale' | 'missing';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:175:  // Priming status
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:215:  let status: StructuralBootstrapContract['status'];
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:217:    status = 'ready';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:219:    status = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:221:    status = 'missing';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:227:  if (status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:240:  } else if (status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:252:  if (status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:254:  } else if (status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:263:    status,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:271:      trustState: trustStateFromStructuralStatus(status),
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:273:      lastUpdated: status === 'ready' || status === 'stale'
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:5:// readiness, code graph freshness, and priming status.
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:44:  status: SessionStatus;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:86:    if (snapshot.status === 'ok' && snapshot.data) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:108:  let status: SessionStatus;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:110:    status = 'stale';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:112:    status = 'warning';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:114:    status = 'ok';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:122:  if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:124:  } else if (structuralContext.status === 'missing') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:142:        content: `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; graph=${graphFreshness}; specFolder=${specFolder ?? 'none'}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:158:    summary: `Session health is ${status}; graph freshness is ${graphFreshness}; structural status is ${structuralContext.status}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:162:      trustState: trustStateFromStructuralStatus(structuralContext.status),
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:174:    status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:192:      text: JSON.stringify({ status: 'ok', data: result }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:4:// MCP tool handler for deep_loop_graph_status — reports graph
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:27:/** Handle deep_loop_graph_status tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:59:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:89:      text: JSON.stringify({ status: 'error', error }),
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:37:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:77:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:351:/** Arguments for ingestion job status requests. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:28:// Feature catalog: Health diagnostics (memory_health)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222:/** Handle memory_health tool -- returns system health status and diagnostics. */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:233:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:251:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:260:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:269:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:278:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:287:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:333:        tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:359:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:363:        status: isEmbeddingModelReady() && database ? 'healthy' : 'degraded',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:380:  const status = isEmbeddingModelReady() && database ? 'healthy' : 'degraded';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:382:  const summary = `Memory system ${status}: ${memoryCount} memories indexed`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:428:      tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:431:        status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:439:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:570:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:573:      status,
+.opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts:15:if (typeof result.status === 'number') {
+.opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts:16:  process.exit(result.status);
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:347:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:379:          text: JSON.stringify({ status: 'error', error: `Could not resolve blast-radius sources: ${rawSubjects.join(', ')}` }),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:389:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:411:        text: JSON.stringify({ status: 'error', error: `Could not resolve subject: ${subject}` }),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:424:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:548:      return { content: [{ type: 'text', text: JSON.stringify({ status: 'error', error: `Unknown operation: ${operation}` }) }] };
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts:555:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:14:if (typeof result.status === 'number') {
+.opencode/skills/system-spec-kit/mcp_server/scripts/reindex-embeddings.ts:15:  process.exit(result.status);
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:68:  'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:103:    case 'memory_health':         return handleMemoryHealth(parseArgs<HealthArgs>(validateToolArgs('memory_health', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:57:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:66:/** Type guard: distinguishes IndexResult from RetryErrorResult via the 'status' property */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:71:    typeof (result as { status?: unknown }).status === 'string' &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:80:  status?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:315:        status: 'complete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:418:          status: 'failed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:424:          result.status === 'success' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:425:          result.status === 'indexed' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:426:          result.status === 'updated' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:427:          result.status === 'unchanged' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:428:          result.status === 'reinforced' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:429:          result.status === 'duplicate' ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:430:          result.status === 'deferred';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:435:        if (result.status === 'indexed') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:438:        } else if (result.status === 'updated') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:441:        } else if (result.status === 'unchanged') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:444:        } else if (result.status === 'reinforced') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:447:        } else if (result.status === 'duplicate') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:450:        } else if (result.status === 'deferred') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:456:          if (result.status === 'indexed') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:458:          } else if (result.status === 'unchanged') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:463:        if (result.status !== 'unchanged') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:468:            status: result.status,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:478:          status: 'failed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:515:        if (!fileResult.specFolder || fileResult.status === 'failed') {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:634:      status: 'complete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/index.ts:6:export { handleCodeGraphStatus } from './status.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/index.ts:8:export { handleCccStatus } from './ccc-status.js';
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:52:  'memory_ingest_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:58:  'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:73:    case 'memory_ingest_status':       return handleMemoryIngestStatus(parseArgs<IngestStatusArgs>(validateToolArgs('memory_ingest_status', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:79:    case 'shared_memory_status':       return handleSharedMemoryStatus(parseArgs<SharedMemoryStatusArgs>(validateToolArgs('shared_memory_status', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:48:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:69:  embedding_status?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:96:  'file_mtime_ms', 'embedding_status', 'encoding_intent', 'document_type',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:145: * Parent record: embedding_status='partial', content_text=summary
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:146: * Child records: embedding_status='success'|'pending', parent_id=parent.id
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:162:    return { status: 'warning', id: 0, specFolder: parsed.specFolder ?? '',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:249:        embedding_status: 'partial',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:345:          embedding_status: chunkEmbeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:469:      status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:509:            embedding_status = 'partial',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:580:        status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:619:      status: 'chunked',
+.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:637:    status: existing ? 'updated' : 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:127:  let statusCounts: ReturnType<typeof vectorIndex.getStatusCounts> = { success: 0, pending: 0, failed: 0, retry: 0, partial: 0 };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:138:    statusCounts = vectorIndex.getStatusCounts();
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:210:        WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:297:  if (statusCounts.pending > 0) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:298:    hints.push(`${statusCounts.pending} memories pending re-indexing`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:306:      byStatus: statusCounts,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:8:        status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:48:      text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:59:    status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:105:      status: 'stale',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:114:    expect(parsed.data.structuralContext.status).toBe('stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:116:      structuralContext: expect.objectContaining({ status: 'stale' }),
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/README.md:11:| `status.ts` | `code_graph_status` | Report graph health and statistics |
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:50:  'embedding_status',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:126:      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:170:    CREATE INDEX IF NOT EXISTS idx_embedding_status ON memory_index(embedding_status);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:171:    CREATE INDEX IF NOT EXISTS idx_retry_eligible ON memory_index(embedding_status, retry_count, last_retry_at);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:194:      ON memory_index(embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:195:      WHERE embedding_status IN ('pending', 'partial', 'retry');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:198:      ON memory_index(spec_folder, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:199:      WHERE embedding_status IN ('pending', 'failed', 'retry');
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:393:  includeTrace: boolean = false,
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:463:    if (includeTrace) {
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:294:      status: 200,
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:295:      statusText: 'OK',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:25:            status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:49:            status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:63:            status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-reindex.ts:74:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:42:| `shared_memory_status` | Caller-scoped rollout and membership view; requires exactly one actor identity |
+.opencode/skills/system-spec-kit/mcp_server/shared-spaces/README.md:50:`shared_memory_status`, `shared_space_upsert`, and `shared_space_membership_set` rely on actor identity validation in `handlers/shared-memory.ts`. Admin mutations compare the caller against the configured shared-memory admin identity before allowing ownership-sensitive changes.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:660:// Check specific memory status
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:661:const status = checkMemoryArchivalStatus(memoryId);
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/README.md:662:// status = { isArchived: boolean, shouldArchive: boolean }
+.opencode/skills/system-spec-kit/mcp_server/cli.ts:224:      "SELECT COUNT(*) as count FROM memory_index WHERE embedding_status = 'partial'"
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:33:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:155:    const profile = (['quick', 'research', 'debug'].includes(args.profile ?? '') ? args.profile : undefined) as ContextArgs['profile'];
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:164:      includeTrace: args.includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:173:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/context.ts:203:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:27:  embedding_status?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/post-insert-metadata.ts:57:  'file_mtime_ms', 'embedding_status', 'encoding_intent', 'document_type',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:4:// MCP tool handler for code_graph_status — reports graph health.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9:/** Handle code_graph_status tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:19:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/status.ts:41:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/attention-decay.ts:307:      WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation-bridge.vitest.ts:146:    expect(result.earlyReturn?.status).toBe('merged');
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:145:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:159:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/scan.ts:265:      text: JSON.stringify({ status: 'ok', data: scanResult }, null, 2),
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1322:    'embedding_status',
+.opencode/skills/system-spec-kit/mcp_server/database/README.md:72:- Use MCP tools (`memory_stats`, `memory_health`, `memory_index_scan`) for normal operations.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:4:// MCP tool handler for ccc_status — reports CocoIndex availability and stats.
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9:/** Handle ccc_status tool call */
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:29:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:49:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:50:          error: `ccc_status failed: ${err instanceof Error ? err.message : String(err)}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:24:            status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:51:          status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/ccc-feedback.ts:65:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:233:    db!.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', initialIndex.id);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:242:    expect(parsed.data.status).toBe('duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:259:    expect(['indexed', 'created', 'updated', 'deferred']).toContain(parsed.data.status);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:291:    expect(result.status).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:305:  it('atomicSaveMemory duplicate no-op omits postMutationHooks and reports no-op status', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:314:    db!.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', initialIndex.id);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:325:    expect(['duplicate', 'unchanged', 'no_change']).toContain(result.status);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:343:    expect(['deferred', 'created', 'indexed', 'updated']).toContain(result.status);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:362:    expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:381:    expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:390:        status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:410:    expect(parsed.data.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:271:  it('C10c: includeTrace preserves graph contribution details and top-level graph metadata', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:317:  it('C10d: includeTrace=false omits per-result graph trace even when raw results carry graphContribution', async () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md:65:- `incremental-index.ts` uses `file_mtime_ms`, `content_hash`, and `embedding_status` together, so unchanged-path fast paths still requeue rows whose embeddings are unhealthy.
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:4:// Validates recovery payload generation, status classification,
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:135:// -- buildRecoveryPayload — status field --
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:137:describe('buildRecoveryPayload() — status classification', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:138:  it('emits status "no_results" when resultCount is 0', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:140:    expect(payload.status).toBe('no_results');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:143:  it('emits status "low_confidence" when avgConfidence < threshold', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:148:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:151:  it('emits status "partial" when resultCount is between 1 and PARTIAL_RESULT_MIN-1', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:153:    expect(payload.status).toBe('partial');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:156:  it('emits status "partial" when evidence-gap detection marks incomplete coverage', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:162:    expect(payload.status).toBe('partial');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:257:    expect(payload.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:317:    expect(payload).toHaveProperty('status');
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:323:  it('status is one of the valid literals', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts:326:    expect(validStatuses).toContain(payload.status);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:468:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:402: * @param profile       - Profile name ('quick' | 'research' | 'resume' | 'debug')
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:81:  status: MergeAbortStatus;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:256:    const txResult = db.transaction((): { status: 'merged' } | { status: MergeAbortStatus } => {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:260:        return { status: 'predecessor_gone' };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:264:        return { status: 'predecessor_changed' };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:276:      const mergedEmbeddingStatus = mergedEmbeddingBuffer ? 'success' : getOptionalString(currentRow, 'embedding_status') ?? 'pending';
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:308:        embedding_status: mergedEmbeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:337:        embedding_status: mergedEmbeddingStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:385:      return { status: 'merged' };
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:388:    if (txResult.status !== 'merged') {
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:389:      return buildMergeAbortResult(existingMemory, newMemory, txResult.status);
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:841:  status: MergeAbortStatus,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:845:    status,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:910:    embedding_status: existingRow.embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:391:          status: 'retry_scheduled',
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:427:        status: 'escalated',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:234: * Find claim nodes whose metadata verification_status is not 'verified'.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:235: * For research: CLAIM nodes with status != 'verified'.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:243:    // Research: CLAIM nodes where metadata.verification_status != 'verified'
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:264:        const status = n.metadata?.verification_status;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:265:        return status !== 'verified';
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:70:/** Re-check weekly due status every hour while the server is running. */
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:269:      `Invalid evidence status: expected one of ${EVIDENCE_STATUS_VALUES.join(', ')}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:319:      `Publication methodology status must be one of ${PUBLICATION_METHODOLOGY_STATUSES.join(', ')}.`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:408:  structuralContext: { status: string },
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:410:  if (structuralContext.status === 'ready') {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:418:  if (structuralContext.status === 'stale') {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:599:  status: 'ready' | 'stale' | 'missing',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:601:  return status === 'ready' ? 'live' : 'stale';
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:224:    expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:228:      SELECT id, anchor_id, chunk_label, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:236:      embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator.vitest.ts:242:    expect(childRows.map((row) => row.embedding_status)).toEqual(['success', 'pending', 'pending']);
+.opencode/skills/system-spec-kit/mcp_server/lib/response/README.md:41:- `profile-formatters.ts` exports `applyResponseProfile()` and `applyProfileToEnvelope()` plus the public profile types for `quick`, `research`, `resume`, and `debug`.
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:182:  // claimVerificationRate: claims with status != 'unresolved' / all claims
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:192:        if (meta.verification_status && meta.verification_status !== 'unresolved') {
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:179:  WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:83:    WHERE m.embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:94:    const status = 'status' in result ? result.status : 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:95:    throw new Error(`Expected merge result but received ${result.action}:${status}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:122:        embedding_status TEXT DEFAULT 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:526:          embedding_status, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:614:          embedding_status, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/reconsolidation.vitest.ts:697:      expect(result.status).toBe('predecessor_changed');
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:38:  embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:119:          SELECT file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:126:          SELECT file_path, file_mtime_ms, content_hash, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:174:    // Still check if embedding status is pending
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:175:    if (stored.embedding_status === 'pending' || stored.embedding_status === 'failed') {
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:37:      embedding_status TEXT DEFAULT 'complete',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:92:        embedding_status TEXT DEFAULT 'pending'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:511:      expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:534:      if (result.status === 'error') {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:536:        expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:538:        expect(result.status).toBe('reinforced');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:575:        expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:594:      if (result.status === 'error') {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:595:        expect(result).toHaveProperty('status');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:635:        expect(result.status).toBe('reinforced');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-extended.vitest.ts:755:      expect(result.status).toBe('updated');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:397:    for (const toolName of ['shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status']) {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:442:  it('handler requires caller identity for shared_memory_status', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:454:  it('runtime accepts shared_memory_status with one actor identity', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:456:      validateToolArgs('shared_memory_status', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:479:describe('memory_health schema', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:482:      validateToolInputSchema('memory_health', { reportMode: 'divergent_aliases', limit: 201 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:488:      validateToolInputSchema('memory_health', { autoRepair: true, confirmed: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:493:    const parsed = validateToolArgs('memory_health', { autoRepair: true, confirmed: true });
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:22:    embedding_status: 'completed',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:120:    expect(row.embedding_status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:53:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:116:  const status = typeof memory.embedding_status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:117:    ? memory.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:122:  return status === 'pending' || status === 'retry' ? status : null;
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:305:        SET embedding_status = 'retry',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:309:          AND embedding_status = 'pending'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:318:          AND embedding_status = 'retry'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:452:    WHERE embedding_status IN ('pending', 'retry')
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:455:      CASE WHEN embedding_status = 'pending' THEN 0 ELSE 1 END,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:474:  if (row.embedding_status === 'pending') return true;
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:476:  if (row.embedding_status === 'retry' && row.last_retry_at) {
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:480:    // The retry status, so use (retryCount - 1) for the backoff index. First retry (retryCount=1)
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:487:  return row.embedding_status === 'retry';
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:499:    WHERE embedding_status = 'failed'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:515:      SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:516:      SUM(CASE WHEN embedding_status = 'retry' THEN 1 ELSE 0 END) as retry,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:517:      SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:518:      SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as success,
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:570:      typeof memory.embedding_status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:571:        ? memory.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:641:        SET embedding_status = 'success',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:696:  const previousStatus = typeof memory.embedding_status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:697:    ? memory.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:707:      SET embedding_status = 'retry',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:728:  const previousStatus = memory && typeof memory.embedding_status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:729:    ? memory.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:736:    SET embedding_status = 'failed',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:749:  const previousStatus = memory && typeof memory.embedding_status === 'string'
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:750:    ? memory.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:757:    SET embedding_status = 'retry',
+.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:762:    WHERE id = ? AND embedding_status = 'failed'
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:20:type EmbeddingStatus = StoredMetadata['embedding_status'];
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:37:      embedding_status TEXT DEFAULT 'pending'
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:38:        CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:74:  embedding_status?: EmbeddingStatus;
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:78:    INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:86:    opts.embedding_status ?? 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:205:  it('returns correct row shape {file_path, file_mtime_ms, content_hash, embedding_status}', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:212:      embedding_status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:222:    expect(row.embedding_status).toBe('success');
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:233:      embedding_status: 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:267:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:300:    insertRow(db, { file_path: fakePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:318:    insertRow(db, { file_path: tmpFile, file_mtime_ms: null, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:331:    insertRow(db, { file_path: tmpFile, file_mtime_ms: mtimeMs, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:348:      embedding_status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:366:    insertRow(db, { file_path: tmpFile, file_mtime_ms: stats.mtimeMs, embedding_status: 'pending' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:378:    insertRow(db, { file_path: tmpFile, file_mtime_ms: stats.mtimeMs, embedding_status: 'failed' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:389:    insertRow(db, { file_path: tmpFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:443:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:497:    insertRow(db, { file_path: unchangedFile, file_mtime_ms: unchangedStats.mtimeMs, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:498:    insertRow(db, { file_path: modifiedFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:499:    insertRow(db, { file_path: deletedPath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:531:    insertRow(db, { file_path: tmpFile, file_mtime_ms: null, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:544:    insertRow(db, { file_path: liveFile, file_mtime_ms: liveStats.mtimeMs, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:547:    insertRow(db, { file_path: stalePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:572:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:591:    const staleId = insertRow(db, { file_path: stalePath, file_mtime_ms: 1700000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:595:    const liveId = insertRow(db, { file_path: liveFile, file_mtime_ms: liveStats.mtimeMs, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:620:      INSERT INTO memory_index (spec_folder, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:688:    insertRow(db, { file_path: successFile, file_mtime_ms: successMeta.mtime, content_hash: 'hash-ok', embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:705:    insertRow(db, { file_path: failedFile, file_mtime_ms: failedMeta.mtime, content_hash: 'hash-fail', embedding_status: 'failed' });
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index-v2.vitest.ts:719:    insertRow(db, { file_path: successFile, file_mtime_ms: 0, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:62:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:114:    expect(result.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:126:    expect(initResult.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:140:    expect(deleteResult.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:180:    expect(result.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:191:    expect(initResult.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:197:    expect(downgradeResult.status).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:209:    expect(unknownCommand.status).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:216:    expect(missingTier.status).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:223:    expect(missingConfirm.status).toBe(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cli.vitest.ts:240:    expect(result.status).not.toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:21:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts:69:  const nodeLimit = args.profile === 'quick' ? 10 : args.profile === 'debug' ? 30 : 20;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:130:      embedding_status TEXT DEFAULT 'pending'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:818:  it('reinforceExistingMemory: error status for missing ID', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:832:    expect(result.status).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:137:  it('T005a-I5: status with missing jobId throws', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:143:  it('T005a-I6: status with non-string jobId throws', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:149:  it('T005a-I6b: status returns E404 payload when job is unknown', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:631:  it('returns an internal error when shared-memory status lookup throws unexpectedly', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:643:    expect(envelope.data.error).toContain('Shared memory status failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:647:  it('scopes shared-memory status to the authenticated caller identity', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:649:      spaceId: 'space-status-owner',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:656:      spaceId: 'space-status-other',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:663:      spaceId: 'space-status-other',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:678:    expect(envelope.data.allowedSharedSpaceIds).toEqual(['space-status-other']);
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-memory-handlers.vitest.ts:685:  it('rejects shared-memory status when caller identity is omitted', async () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:138:// Default hint is "Run memory_health() for diagnostics".
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:149:      'Run memory_health() to check embedding system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:152:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:179:      'Run memory_health() to see current provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:182:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:242:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:247:      'Run memory_health() to check database integrity',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:252:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:268:      'Contact support with schema version info from memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:271:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:276:      'Run memory_health() to assess damage',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:286:      'Run memory_health() to check database status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:291:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:316:      'Use memory_health() to see current system limits'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:336:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:340:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:345:      'Check embedding provider status with memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:350:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:435:      'Check checkpoint_list() for checkpoint status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:447:      'Run memory_health() to check system status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:450:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:487:      'Check memory_health() for recovery options'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:490:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:529:      'Run memory_health() to check database status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:532:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:590:      'Check memory_causal_stats() for graph status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:659:      'Check memory_health() for system status',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:663:    toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:677:    'Run memory_health() for diagnostics',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:682:  toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:699:        'Check embedding provider status: memory_health()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:734:        'Run memory_health() to verify database integrity'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:737:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:757:        'Check memory_health() for embedding provider status'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:760:      toolTip: 'memory_health()'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:6:// query, and status handlers.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ensure-ready.ts:343: * Non-mutating freshness check for status display.
+.opencode/skills/system-spec-kit/mcp_server/tests/create-record-lineage-regressions.vitest.ts:29:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md:330:| `missing_methodology` | The row is missing a supported publication methodology status. |
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:28:type EmbeddingStatus = RetryQueueItem['embedding_status'];
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:225:      status: EmbeddingStatus = 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:236:             embedding_status, retry_count, last_retry_at, failure_reason,
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:241:          now, now, status, retryCount, lastRetryAt, failureReason,
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:247:          SET embedding_status = ?, retry_count = ?, last_retry_at = ?,
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:250:        `).run(status, retryCount, lastRetryAt, failureReason, now, id);
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:305:      it('T25: getRetryStats() counts by status correctly', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:427:      it('T37: markAsFailed() sets status and failure_reason', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:433:        const row = activeDb.prepare('SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?').get(4001) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:434:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:437:        expect(row.embedding_status).toBe('failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:469:        const row = activeDb.prepare('SELECT embedding_status, retry_count, last_retry_at, failure_reason FROM memory_index WHERE id = ?').get(5001) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:470:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:475:        expect(row.embedding_status).toBe('retry');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:545:          'SELECT embedding_status, retry_count, failure_reason FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:547:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:553:        expect(row?.embedding_status).toBe('retry');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:568:          'SELECT embedding_status, failure_reason FROM memory_index WHERE id = ?'
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:570:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:575:        expect(row?.embedding_status).toBe('failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:661:        const row1 = activeDb.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:662:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:664:        expect(row1.embedding_status).toBe('retry');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:667:        const row2 = activeDb.prepare('SELECT embedding_status FROM memory_index WHERE id = ?').get(8010) as {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:668:          embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:670:        expect(row2.embedding_status).toBe('failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:673:      it('T53: getRetryQueue() excludes success and failed statuses', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:685:      it('T54: getRetryStats().total >= sum of individual statuses', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:696:      it('T55: getRetryQueue() rows have id, file_path, embedding_status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:704:          expect(['pending', 'retry']).toContain(item.embedding_status);
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:29:  doctor: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:31:    surface: 'memory_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:86:    doctor: {
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:88:      surface: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:100:      recommendedAction: 'Use memory_health({ autoRepair: true, confirmed: true }) for bounded repair workflows and transparent partial-success reporting.',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hyde.ts:257:      console.warn(`[hyde] LLM endpoint returned HTTP ${response.status}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:49:  embedding_status?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:209:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:285:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:328:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:376:      (spec_folder, file_path, title, content_hash, importance_tier, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:460:      (id, spec_folder, file_path, title, created_at, updated_at, embedding_status, content_text, importance_tier)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:476:      (id, spec_folder, file_path, anchor_id, title, created_at, updated_at, embedding_status, content_text, parent_id, chunk_index, chunk_label, importance_tier)
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:544:    expect(helpResult.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:552:    expect(statsResult.status).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:48:function mockFetch(status: number, body: Record<string, unknown>): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:50:    ok: status >= 200 && status < 300,
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:51:    status,
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:52:    statusText: `HTTP ${status}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:861:        embedding_status: 'completed',
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:904:        embedding_status: 'completed',
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:23:  status: (typeof VALID_RECOVERY_STATUSES)[number];
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:122:        status: expect.any(String),
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:129:    expect(VALID_RECOVERY_STATUSES).toContain(envelope.data.recovery?.status);
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:163:    expect(envelope.data.recovery?.status).toBe('low_confidence');
+.opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:188:    expect(envelope.data.recovery?.status).toBe('partial');
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:345:      "query": "checklist verification status for T006 eval metrics implementation",
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:49:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:85:  'status',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:152:          if (normalizedSql === "DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:156:              if ((row.status === 'completed' || row.status === 'interrupted') && row.updated_at < cutoffIso) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:196:              status: 'active',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:213:          if (normalizedSql === "UPDATE session_state SET status = 'completed', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:219:            row.status = 'completed';
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:224:          if (normalizedSql === "UPDATE session_state SET status = 'interrupted', updated_at = ? WHERE status = 'active'") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:228:              if (row.status === 'active') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:229:                row.status = 'interrupted';
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:237:          if (normalizedSql === "UPDATE session_state SET status = 'active', updated_at = ? WHERE session_id = ?") {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:243:            row.status = 'active';
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:265:          if (normalizedSql === 'SELECT session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, tenant_id, user_id, agent_id, created_at, updated_at FROM session_state WHERE session_id = ?') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:290:          if (normalizedSql === 'SELECT session_id, spec_folder, current_task, last_action, context_summary, pending_work, updated_at, tenant_id, user_id, agent_id FROM session_state WHERE status = \'interrupted\' ORDER BY updated_at DESC') {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:292:              .filter((row) => row.status === 'interrupted')
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:402:      expect(database.execStatements.some((sql) => sql.includes('idx_session_state_status'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:425:        status: 'active',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:446:      expect(database.getSessionState('active-a')?.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:447:      expect(database.getSessionState('active-b')?.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:458:      expect(database.getSessionState('active-only')?.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:459:      expect(database.getSessionState('completed-only')?.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:491:      expect(database.getSessionState('recover-me')?.status).toBe('active');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:583:        'status',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:590:    it('should have CHECK constraint on status column', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:595:      expect(createTableSql).toContain("CHECK(status IN ('active', 'completed', 'interrupted'))");
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:657:      expect(database.getSessionState('complete-transition')?.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:669:      expect(database.getSessionState('interrupt-transition')?.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:681:      expect(database.getSessionState('interrupt-active')?.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:682:      expect(database.getSessionState('interrupt-completed')?.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:706:        status: 'interrupted',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:759:      expect(result.state?.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:774:      expect(database.getSessionState('flag-reactivate')?.status).toBe('active');
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:68:    tools: ['memory_list', 'memory_stats', 'memory_health', 'session_health']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:86:    tools: ['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete', 'shared_memory_enable', 'shared_memory_status', 'shared_space_upsert', 'shared_space_membership_set']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:115:    tools: ['memory_index_scan', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'code_graph_scan', 'code_graph_status', 'ccc_status', 'ccc_reindex', 'ccc_feedback']
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:12:  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:38:  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:45:      embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:64: * Insert a memory record as if it was already indexed (embedding_status='success').
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:89:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:180:      expect(result!.status).toBe('duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:208:      const content = 'Content with a pending embedding status.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:211:      // Insert with embedding_status='pending' — should NOT be matched
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:213:        INSERT INTO memory_index (spec_folder, file_path, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:283:      expect(result?.status).toBe('duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:305:    it('T054-6c: Invalid terminal status complete is excluded from dedup', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:306:      const content = 'Legacy complete status should not dedup.';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:307:      const folder = 'specs/invalid-complete-status';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:311:        '/specs/invalid-complete-status/memory/legacy.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:330:          spec_folder, file_path, canonical_file_path, title, content_hash, content_text, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:414:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:435:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:448:      expect(result?.status).toBe('unchanged');
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:457:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:487:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:519:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:546:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:563:      expect(result?.status).toBe('duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:573:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:598:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, tenant_id, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:627:          spec_folder, file_path, canonical_file_path, title, content_hash, embedding_status, tenant_id, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:710:      expect(result).toHaveProperty('status', 'duplicate');
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:722:        INSERT INTO memory_index (spec_folder, file_path, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:10:// T10-T12 : extractValidationMetadata — completion status markers
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:144:   T10-T12: Completion status from content markers
+.opencode/skills/system-spec-kit/mcp_server/tests/validation-metadata.vitest.ts:147:describe('extractValidationMetadata — completion status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:76:            data: { status: 'success' },
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:58:  status: 'PASS' | 'FAIL';
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:71:  const status: 'PASS' | 'FAIL' = delta <= tolerance ? 'PASS' : 'FAIL';
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:72:  discrepancyLog.push({ scenario, metric, expected, computed, delta, status });
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:408:      const status    = r.status.padEnd(11);
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:409:      return `║  ${scenario}  │ ${metric} │ ${expected} │ ${computed} │ ${delta} │  ${status}  ║`;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:412:    const failures = discrepancyLog.filter(r => r.status === 'FAIL').length;
+.opencode/skills/system-spec-kit/mcp_server/tests/eval-the-eval.vitest.ts:413:    const passes   = discrepancyLog.filter(r => r.status === 'PASS').length;
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:75:  status?: number | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:131:      exitCode: failure.status ?? 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/progressive-validation.vitest.ts:152:      exitCode: failure.status ?? 2,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:6:// Index, update, delete, and status/confidence updates.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:218:    const embedding_status = sqlite_vec ? 'success' : 'pending';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:224:        embedding_generated_at, embedding_status, encoding_intent, document_type, spec_level,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:229:      importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:301:            embedding_status = 'pending',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:322:        importance_weight, created_at, updated_at, embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:437:      updates.push('embedding_status = ?');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:469:      database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:718:// Valid statuses: 'pending', 'success', 'failed', 'retry', 'partial'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:720: * Updates the embedding status for a memory.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:722: * @param status - The new embedding status.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:723: * @returns True when the status was updated.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:725:export function update_embedding_status(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:727:  status: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:730:  const valid_statuses = ['pending', 'success', 'failed', 'retry', 'partial'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:731:  if (!valid_statuses.includes(status)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:732:    console.warn(`[vector-index] Invalid embedding status: ${status}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:739:      SET embedding_status = ?, updated_at = datetime('now')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:741:    `).run(status, id);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:745:    console.warn(`[vector-index] Failed to update embedding status for ${id}: ${get_error_message(error)}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:787:export { update_embedding_status as updateEmbeddingStatus };
+.opencode/skills/system-spec-kit/mcp_server/tests/archival-manager.vitest.ts:82:      embedding_status TEXT DEFAULT 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:373:            embedding_status TEXT DEFAULT 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/mpab-quality-gate-integration.vitest.ts:431:            embedding_status, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:47:function mockFetch(status: number, body: unknown, shouldThrow = false): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:51:      status,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:52:      statusText: status === 200 ? 'OK' : 'Internal Server Error',
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:448:          status: 200,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:449:          statusText: 'OK',
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:472:          status: 200,
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:473:          statusText: 'OK',
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:500:      const status = crossEncoder.getRerankerStatus();
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:501:      expect(status.latency.count).toBeGreaterThanOrEqual(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts:502:      expect(status.latency.avg).toBeGreaterThanOrEqual(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:434:  it('T058: DEFAULT_HINT actions include memory_health() reference (REQ-009)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:437:      a.includes('memory_health()')
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:446:  it('T060: DEFAULT_HINT has toolTip for memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:447:    expect(DEFAULT_HINT.toolTip).toBe('memory_health()');
+.opencode/skills/system-spec-kit/mcp_server/tests/query-classifier.vitest.ts:50:  'check status',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:11:      text: JSON.stringify({ status: 'ok', data: { memories: [] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:61:    expect(parsed.status).toBe('ok');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:68:    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:88:    expect(parsed.data.codeGraph.status).toBe('empty');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:91:  it('reports stale graph status in the startup payload when freshness detection says stale', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:97:    expect(parsed.data.codeGraph.status).toBe('stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:99:    expect(parsed.data.payloadContract.sections.find((section: { key: string }) => section.key === 'code-graph-status')?.content)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:100:      .toContain('status=stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:117:    expect(parsed.data.codeGraph.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:83:      status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:97:    expect(payload.status).toBe('ok');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:138:      status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-scan.vitest.ts:146:    expect(payload.status).toBe('ok');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:215:      WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:95:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:70:    it('should report enabled status', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:14://   "status": "no_results" | "low_confidence" | "partial",
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:33:  status: RecoveryStatus;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:65: * Classify retrieval status based on result count and confidence signals.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:84:function classifyReason(ctx: RecoveryContext, status: RecoveryStatus): RecoveryReason {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:86:  if (ctx.hasSpecFolderFilter && status === 'no_results') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:150: * Map status + reason to a recommended next action.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:152:function recommendAction(status: RecoveryStatus, reason: RecoveryReason): RecoveryAction {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:153:  if (status === 'no_results') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:158:  if (status === 'low_confidence') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:193:  const status = classifyStatus(ctx);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:194:  if (status !== 'no_results' && status !== 'low_confidence') return [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:273:  const status = classifyStatus(ctx);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:274:  const reason = classifyReason(ctx, status);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:276:  const recommendedAction = recommendAction(status, reason);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts:279:    status,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:69:  /** Completion status derived from content markers ('complete' | 'partial' | 'unknown'). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/validation-metadata.ts:213:    // Completion status.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:241:        `[llm-reformulation] LLM endpoint returned HTTP ${response.status}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-mutation-wiring.vitest.ts:96:  it('captures thrown hook error details in errors and marks the failing hook status false', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/deferred-features-integration.vitest.ts:53:      embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:77:        'handle_memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:235:    it('T519-H1: Health handler returns status', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:239:      expect(typeof parsed.data?.status).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:197:        status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:292:        status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:650:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:673:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:727:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:743:        checkExistingRowMock: vi.fn(() => buildIndexResult({ status: 'indexed', id: 201 })),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:776:      expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:786:    it('treats indexMemoryFile status=error as failure and retries once', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:790:            status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:792:            message: 'forced error status',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:793:            error: 'forced error status',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:796:        .mockReturnValueOnce(buildIndexResult({ status: 'indexed', id: 301 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:802:      const filePath = createAtomicSaveTargetPath('status-error-then-success.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:804:        { file_path: filePath, content: '# status error then success' },
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:812:        fs.readdirSync(path.dirname(filePath)).some((entry) => entry.includes('status-error-then-success_pending.md'))
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:816:    it('treats indexMemoryFile status=rejected as non-retry rollback outcome', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:819:          status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:830:      const filePath = createAtomicSaveTargetPath('status-rejected.md');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:837:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:842:        fs.readdirSync(path.dirname(filePath)).some((entry) => entry.includes('status-rejected_pending.md'))
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:850:          status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:881:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:889:          status: 'rejected',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:919:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:940:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:956:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:971:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:985:            earlyReturn: buildIndexResult({ status: 'indexed', id: 401 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:993:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1005:        status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1020:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1039:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1048:        earlyReturn: buildIndexResult({ status: 'merged', id: 555 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1054:        status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1064:      expect(result.status).toBe('merged');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1075:        status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1093:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1135:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1145:      const checkContentHashDedupMock = vi.fn(() => buildIndexResult({ status: 'duplicate', id: 779 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1155:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1207:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1283:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1353:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1377:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1394:            status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1403:            earlyReturn: buildIndexResult({ status: 'reinforced', id: 902 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1422:      expect(result.status).toBe('reinforced');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1427:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 911 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1454:      expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1482:          status: 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1582:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1622:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1628:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 1001 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1661:      expect(payload?.data?.status).toBe('dry_run');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1669:      const checkExistingRowMock = vi.fn(() => buildIndexResult({ status: 'indexed', id: 999 }));
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1684:      expect(payload?.data?.status).toBe('dry_run');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1767:          status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1814:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1845:              status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1867:      expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1889:              status: 'error',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1911:      expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1948:          status: 'indexed',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:2012:      expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:12:type EmbeddingStatus = MemoryDbRow['embedding_status'];
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:101:          embedding_status TEXT DEFAULT 'pending'
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:102:            CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:136:      embedding_status?: EmbeddingStatus;
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:140:        INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:147:        opts.embedding_status ?? 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:168:      insertRow(db, { file_path: tmpFile, file_mtime_ms: 0, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:191:      insertRow(db, { file_path: successFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:192:      insertRow(db, { file_path: failFile, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:214:      insertRow(db, { file_path: file, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:230:      insertRow(db, { file_path: file, file_mtime_ms: stats.mtimeMs, embedding_status: 'pending' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:245:      insertRow(db, { file_path: file, file_mtime_ms: stats.mtimeMs, embedding_status: 'failed' });
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:263:        insertRow(db, { file_path: f, file_mtime_ms: 1000000000000, embedding_status: 'success' });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:315:  vi.mocked(vectorIndex.updateEmbeddingStatus).mockImplementation((id: number, status: string) => { calls.updateEmbeddingStatus.push({ id, status }); });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:368:  statusCounts?: any;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:378:    statusCounts = { success: 3, pending: 1, failed: 1 },
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:397:        if (sql.includes('embedding_status')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:411:  vi.mocked(vectorIndex.getStatusCounts).mockImplementation(() => statusCounts);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:857:    const hasPending = (calls.updateEmbeddingStatus.length > 0 && calls.updateEmbeddingStatus[0].status === 'pending') ||
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:983:  it('EXT-S2: Stats includes status breakdown', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:985:    installStatsMocks({ statusCounts: { success: 10, pending: 2, failed: 1 } });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1009:    installStatsMocks({ statusCounts: { success: 5, pending: 3, failed: 0 } });
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1119:  it('EXT-H1: Healthy system returns status=healthy', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1125:    expect(parsed?.data?.status).toBe('healthy');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1128:  it('EXT-H2: No DB returns status=degraded', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1134:    expect(parsed?.data?.status).toBe('degraded');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1143:    expect(parsed?.data?.status).toBe('degraded');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1723:    expect(parsed?.data?.status).toBe('degraded');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-extended.vitest.ts:1734:    expect(parsed?.data?.status).toBe('healthy');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:677:              if (result.status === 'fulfilled') return result.value;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:741:            if (result.status === 'fulfilled') return result.value;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1117:            if (result.status === 'fulfilled') return result.value;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:125:    embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:408:// Added 'partial' embedding_status for deferred indexing (REQ-031, T096)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:581:      // V6 -> v7: Add 'partial' embedding_status for deferred indexing (REQ-031, T096)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:585:          ON memory_index(embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:586:          WHERE embedding_status IN ('pending', 'partial', 'retry')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:596:          ON memory_index(spec_folder, embedding_status, importance_tier)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:597:          WHERE embedding_status IN ('pending', 'partial')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1136:       ON memory_index(embedding_status, id)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1137:       WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2071:      ON memory_index(embedding_status, id)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2072:      WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2312:      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2428:    CREATE INDEX idx_embedding_status ON memory_index(embedding_status);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2429:    CREATE INDEX idx_retry_eligible ON memory_index(embedding_status, retry_count, last_retry_at)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2440:      ON memory_index(embedding_status, id)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2441:      WHERE embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2457:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-backfill.vitest.ts:33:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-working-memory.vitest.ts:56:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:564:        SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as complete,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:565:        SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:566:        SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:636:        AND m.embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:164:    expect(api.LAYER_DEFINITIONS.L5.tools).toContain('shared_memory_status');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:165:    expect(api.TOOL_LAYER_MAP.shared_memory_status).toBe('L5');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:166:    expect(api.getLayerForTool('shared_memory_status')).toBe('L5');
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:167:    expect(api.getLayerTokenBudget('shared_memory_status')).toBe(1000);
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:38:  embedding_status?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:122:      embedding_status TEXT DEFAULT 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:126:    INSERT INTO memory_index (id, spec_folder, file_path, title, trigger_phrases, importance_weight, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:130:    insert.run(r.id, r.spec_folder, r.file_path, r.title, r.trigger_phrases, r.importance_weight, r.embedding_status ?? 'success');
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:354:    it('3.3.6 skips non-success embedding_status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:358:        { id: 1, spec_folder: 's', file_path: '/a.md', title: 'T', trigger_phrases: '["alpha"]', importance_weight: 0.5, embedding_status: 'success' },
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-config-extended.vitest.ts:359:        { id: 2, spec_folder: 's', file_path: '/b.md', title: 'T', trigger_phrases: '["beta"]', importance_weight: 0.5, embedding_status: 'pending' },
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:43:  it('returns ready status with highlights when graph is fresh', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:55:    expect(contract.status).toBe('ready');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:68:  it('returns stale status when graph scan is old', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:82:    expect(contract.status).toBe('stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:90:  it('returns missing status when graph is empty', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:105:    expect(contract.status).toBe('missing');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:113:  it('returns missing status when graph DB throws', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:125:    expect(contract.status).toBe('missing');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:111:    expect(typeof parsed.data.status).toBe('string');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts:130:        'Re-run memory_health with autoRepair:true and confirmed:true to execute repair actions.',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:79:    expect(typeof handler.handle_memory_ingest_status).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:179:  it('status returns E404 payload when job is missing', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:189:  it('status returns mapped job payload when found', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:242:  it('status emits optional lifecycle telemetry when extended telemetry is enabled', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts:281:  it('status degrades safely when forecast derivation throws', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery.vitest.ts:89:    const content = `---\ntitle: My Spec\nstatus: active\n---\n# Real Title Here\n\nBody content.`;
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:69:      getCachedSessionSummaryDecision: vi.fn(() => ({ status: 'rejected' })),
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:229:            status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:267:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:278:        status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:55: * Consumers must not reuse this as parser provenance, evidence status,
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:26:  estimateCompletionPercent: (observations: Array<{ title: string }>, messageCount: number, toolCounts: Record<string, number>, status: string) => number;
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:46:    const status = determineSessionStatus('Build failing due to missing dependency', [], 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:47:    expect(status).toBe('BLOCKED');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:52:    const status = determineSessionStatus('None', [], 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:53:    expect(status).toBe('IN_PROGRESS');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:62:    const status = determineSessionStatus('None', observations, 10);
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:63:    expect(status).toBe('COMPLETED');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:68:    const status = determineSessionStatus('None', [], 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:69:    expect(status).toBe('IN_PROGRESS');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:74:  it('T124-05: Returns 100 for COMPLETED status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:80:  it('T124-06: Returns capped value for BLOCKED status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:204:  it('T018-03: Shows Active as status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:24:        memory_health: 1000,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:455:| v7      | `partial` embedding_status + `idx_embedding_pending` + `idx_fts_fallback` (REQ-031, T096) |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:292:    throw new Error(`Voyage rerank failed: ${response.status} ${response.statusText}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:334:    throw new Error(`Cohere rerank failed: ${response.status} ${response.statusText}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:370:    throw new Error(`Local rerank failed: ${response.status} ${response.statusText}`);
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:111:    (result): result is PromiseRejectedResult => result.status === 'rejected'
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:124:    (result): result is PromiseRejectedResult => result.status === 'rejected'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-stats-edge.vitest.ts:31:    INSERT INTO memory_index (spec_folder, file_path, title, created_at, updated_at, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:113: * Gets memory counts grouped by embedding status.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:114: * @returns The counts for each embedding status.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:116:export function get_status_counts(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:120:    SELECT m.embedding_status, COUNT(*) as count
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:123:    GROUP BY m.embedding_status
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:126:  // M7 FIX: Include 'partial' status in counts
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:128:  for (const row of rows as Array<{ embedding_status: keyof typeof counts; count: number }>) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:129:    if (row.embedding_status in counts) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:130:      counts[row.embedding_status] = row.count;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:144:  const counts = get_status_counts(database);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:221:  const where_clauses = ['m.embedding_status = \'success\''];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:380:      WHERE m.embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1341:        WHERE m.embedding_status = 'success'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1435:export { get_status_counts as getStatusCounts };
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:166:      'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:177:      'shared_memory_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:190:      'memory_ingest_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:194:      'code_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:196:      'ccc_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:204:      'deep_loop_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:295:      'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:297:      'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:300:      'shared_space_upsert', 'shared_space_membership_set', 'shared_memory_status', 'shared_memory_enable',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:301:      'code_graph_scan', 'code_graph_query', 'code_graph_status', 'code_graph_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:302:      'ccc_status', 'ccc_reindex', 'ccc_feedback',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:621:        indexSingleFile: vi.fn(async () => ({ status: 'unchanged' })),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:622:        indexMemoryFile: vi.fn(async () => ({ status: 'unchanged' })),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1257:            data: { status: 'success' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1325:      const originalText = '{"summary":"ok","data":{"status":"success"},"hints":[],"meta":{"tokenCount":1}}'
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2090:      'memory_health': '[L3:Discovery]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2109:      'memory_ingest_status': '[L7:Maintenance]',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:68:    tool: 'memory_health',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:46:  update_embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts:61:  get_status_counts,
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:29:  it('keeps parser provenance, evidence status, and freshness authority as separate fields', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:55:  includeTrace?: boolean;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:138:  includeTrace = false,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts:167:    includeTrace,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:106:          importance_tier, importance_weight, created_at, updated_at, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:19:      embedding_status TEXT DEFAULT 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:74:  it('returns skip when mtime is unchanged and embedding status is success', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:81:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:88:  it('forces reindex when embedding status is pending even if mtime is unchanged', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:94:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:109:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:115:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/incremental-index.vitest.ts:131:      INSERT INTO memory_index (spec_folder, file_path, file_mtime_ms, content_hash, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:37:function mockFetch(status: number, body: Record<string, unknown>, options: { delay?: number } = {}): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:60:      ok: status >= 200 && status < 300,
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:61:      status,
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:62:      statusText: `HTTP ${status}`,
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:20:    'deep_loop_graph_status',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:123:        memory_health: 'L3',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:161:    it('shared_memory_status appears in exactly one layer and is mapped to that layer', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:162:      const matchingLayers = Object.values(LD).filter((layer) => layer.tools.includes('shared_memory_status'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:166:      expect(mod.TOOL_LAYER_MAP['shared_memory_status']).toBe(matchingLayers[0].id);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:405:    it('reports isVectorSearchAvailable status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:470:      expect(mem!.embedding_status).toBe('pending');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:596:      expect(mem?.embedding_status).toBe('failed');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:611:    it('rejects invalid status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:612:      const result = mod.updateEmbeddingStatus(deferredId1!, 'invalid_status');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1209:      expect(mem?.embedding_status).toBe('success');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:1341:      expect(mem?.embedding_status).toBe('success');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:150:    it('getRerankerStatus returns complete status object', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:151:      const status = crossEncoder.getRerankerStatus();
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:153:      expect(typeof status.available).toBe('boolean');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:154:      expect(status.provider === null || typeof status.provider === 'string').toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:155:      expect(status.model === null || typeof status.model === 'string').toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:156:      expect(status.latency).toBeTruthy();
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:157:      expect(typeof status.latency.avg).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:158:      expect(typeof status.latency.p95).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:159:      expect(typeof status.latency.count).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:164:      const status = crossEncoder.getRerankerStatus();
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder.vitest.ts:165:      expect(status.latency.count).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:53:      embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:146:      embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:202:      status TEXT NOT NULL DEFAULT 'active',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:278:      session_id, status, spec_folder, current_task, tenant_id, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:440:          embedding_status TEXT DEFAULT 'success', confidence REAL DEFAULT 0.5,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:628:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:710:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-storage.vitest.ts:740:          session_id, status, spec_folder, current_task, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-retry-stats.vitest.ts:3:// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:15:    status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:147:            status: 'completed',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:190:  it('exposes a status tool for plugin diagnostics', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:199:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:201:    expect(status).toContain('plugin_id=spec-kit-compact-code-graph');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:202:    expect(status).toContain('cache_ttl_ms=7777');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:203:    expect(status).toContain('resume_mode=minimal');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:204:    expect(status).toContain('messages_transform_enabled=true');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:205:    expect(status).toContain('messages_transform_mode=schema_aligned');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:206:    expect(status).toContain('runtime_ready=true');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:207:    expect(status).toContain('node_binary=node-custom');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:208:    expect(status).toContain('bridge_timeout_ms=1234');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:209:    expect(status).toContain('last_runtime_error=none');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:227:    const status = await hooks.tool?.spec_kit_compact_code_graph_status.execute({});
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:228:    expect(status).toContain('runtime_ready=false');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:229:    expect(status).toContain('last_runtime_error=NODE_MODULE_VERSION mismatch');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:37:          embedding_status TEXT,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:62:            embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-limit.vitest.ts:35:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:17:  it('excludes rows missing methodology status', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:16:  it('supports every certainty status through the publishable metric helper', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:76:          text: JSON.stringify({ status: 'ok', data: { memories: ['active packet'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:115:        status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:143:      'code-graph-status': 'exact',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:144:      'cocoindex-status': 'exact',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:167:            status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:205:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:216:        status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:99:        data: { status: 'ok' }
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:150:            status: 'ok',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:180:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:187:        status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:58:    const routingQuery = resolveArtifactRoutingQuery('show checklist status', ['fallback', 'concepts']);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:59:    expect(routingQuery).toBe('show checklist status');
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:237:        ['q9', 'status'], ['q10', 'status'],
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:448:  it('J2: DEFAULT_HINT actions reference memory_health()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:450:    expect(actionsStr).toContain('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:26:  status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:409:        expect(row!.status).toBe('active');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:445:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('complete-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:446:        expect(row.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:469:        const row1 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:470:        expect(row1.status).toBe('interrupted');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:471:        const row2 = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('reset-2') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:472:        expect(row2.status).toBe('completed');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:514:        const row = testDb!.prepare('SELECT status FROM session_state WHERE session_id = ?').get('recover-1') as Pick<SessionStateRow, 'status'>;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:515:        expect(row.status).toBe('active');
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-pipeline-weighting.vitest.ts:97:    expect(result.status).toBe('success');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:56:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:341:    expect(result.status).not.toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:342:    expect(result.status).not.toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:343:    expect(['indexed', 'created', 'updated', 'duplicate', 'deferred', 'unchanged']).toContain(result.status);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:388:    expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:988:      expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1009:    expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:1026:    expect(result.status).toBe('rejected');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:109:  indexMemoryFile: vi.fn(async () => ({ status: 'indexed', id: 1, specFolder: 'specs/test' })),
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-cooldown.vitest.ts:363:          status: 'failed',
+.opencode/skills/system-spec-kit/mcp_server/tests/encoding-intent.vitest.ts:202:      'status: active',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:70:      embedding_status TEXT DEFAULT 'success'
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:92:function insertMemory(db: Database.Database, id: number, opts?: { specFolder?: string; title?: string; status?: string }): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:94:    INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:101:    opts?.status ?? 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:548:      INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-summaries.vitest.ts:563:      INSERT INTO memory_index (id, spec_folder, file_path, title, embedding_status)
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts:41:      embedding_status TEXT DEFAULT 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/temporal-contiguity.vitest.ts:41:        embedding_status TEXT DEFAULT 'success',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:91:  it('T536-2: includeTrace=false (default) omits scores/source/trace', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:101:  it('T536-3: includeTrace=true includes scores, source, and trace fields', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:162:          text: JSON.stringify({ status: 'ok', data: { state: 'ok', hints: ['health ok'] } }),
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:173:        status: 'ready',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:28:        embedding_status: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:154:      status TEXT NOT NULL DEFAULT 'active',
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:210:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:258:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:385:      session_id, status, spec_folder, current_task, last_action, context_summary, pending_work, state_data, created_at, updated_at
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks.vitest.ts:60:  it('returns success status flags when all hooks succeed', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:141:      embedding_status TEXT DEFAULT 'pending',
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:206:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:262:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:295:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:350:    expect(result.status).toBe('updated');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:361:      SELECT id, parent_id, chunk_label, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:369:      embedding_status: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:419:    expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:463:    expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:477:  it('partial embedding failures still swap successfully with mixed child statuses', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:494:    expect(result.status).toBe('updated');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:509:      SELECT embedding_status, parent_id
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:513:    `).all(parentId) as Array<{ embedding_status: string; parent_id: number | null }>;
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:516:    expect(newChildren.some(row => row.embedding_status === 'pending')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:517:    expect(newChildren.some(row => row.embedding_status === 'success')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:537:    expect(result.status).toBe('indexed');
+.opencode/skills/system-spec-kit/mcp_server/tests/chunking-orchestrator-swap.vitest.ts:576:    expect(result.status).toBe('error');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:23:    expect(contract.doctor.surface).toBe('memory_health');
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:309:      status?: string;
+.opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts:312:    expect(escalationMeta.status).toBe('escalated');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:389:    expect(MEMORY_CONTEXT_SOURCE).toContain('options.sessionTransition = options.includeTrace === true ? sessionTransition : undefined;');
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store.vitest.ts:39:      importance_tier, importance_weight, created_at, updated_at, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:37:  'check status',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:47:      embedding_status,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:597:    it('injects session transition into traced nested results when includeTrace=true', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:628:          includeTrace: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:658:          includeTrace: true,
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:76:        importance_tier, context_type, embedding_status
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:304:    expect(indexes[1]?.sql).toContain('embedding_status');
 
 exec
 /bin/zsh -lc "sed -n '9765,9855p' .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/research/research.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -8176,35 +8176,35 @@ FINAL SYNTHESIS: Classify EVERY finding as adopt-now / prototype-later / new-fea
 ## Findings
 
 ### Finding 1: Explicit graded review is the best immediate transfer
-- **Source**: `external/internal/mcp/vault.go:885-897`; `external/internal/vault/facts.go:160-217`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,65-71,197-215`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:298-316`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
+- **Source**: `external/internal/mcp/vault.go:885-897`; `external/internal/vault/facts.go:160-217`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:39-43,65-71,197-215`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:298-316`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`
 - **What it does**: Modus exposes `memory_reinforce`, but only as a success-only reinforce action. Public already has the stronger primitive: graded FSRS review (`AGAIN/HARD/GOOD/EASY`) plus computed `nextReviewDate`, yet the exposed adjacent tool is only `memory_validate(wasUseful)`, which adjusts confidence rather than recording a real review event.
 - **Why it matters for us**: This closes the clearest control-plane gap without changing retrieval architecture. It also makes any later review queue trustworthy because review history would record hard recalls and lapses, not only “useful / not useful.”
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 2: A doctor-style summary should ship beside review
-- **Source**: `external/cmd/modus-memory/doctor.go:13-242`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:378-594`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-273`
+- **Source**: `external/cmd/modus-memory/doctor.go:13-242`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:378-594`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:236-273`
 - **What it does**: Modus’s `doctor` turns vault health into a one-screen operator report. Public already has deeper health and repair machinery—FTS rebuild, orphan cleanup, degraded/healthy state, confirmation-gated repair—but exposes it as a richer technical envelope.
 - **Why it matters for us**: This is mostly presentation work, not backend work. It improves operator trust immediately while preserving Public’s stronger repair semantics underneath.
 - **Recommendation**: adopt now
 - **Impact**: medium
 
 ### Finding 3: Keep one retrieval core; Modus’s split fact-search paths are a warning
-- **Source**: `external/internal/index/indexer.go:287-340`; `external/internal/vault/facts.go:290-337`; `external/internal/mcp/vault.go:273-317`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:771-809`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:1-32`
+- **Source**: `external/internal/index/indexer.go:287-340`; `external/internal/vault/facts.go:290-337`; `external/internal/mcp/vault.go:273-317`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:771-809`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:1-32`
 - **What it does**: Modus has multiple fact-search contracts for the same memory objects: `Index.SearchFacts`, a separate in-memory `factStore`, and `Vault.SearchFacts` fallback behavior. Public routes `memory_search` through one pipeline contract via `executePipeline`.
 - **Why it matters for us**: This is the strongest architectural lesson from Modus’s weaknesses. Public should keep specialized search surfaces as thin wrappers over the canonical pipeline instead of growing parallel ranking rules that will drift.
 - **Recommendation**: adopt now
 - **Impact**: high
 
 ### Finding 4: `memory_due` is real product value, but it needs an authoritative due-state contract first
-- **Source**: `external/internal/mcp/vault.go:273-317,856-897`; `external/internal/vault/facts.go:64-157,160-217`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:65-71,177-215`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`
+- **Source**: `external/internal/mcp/vault.go:273-317,856-897`; `external/internal/vault/facts.go:64-157,160-217`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:65-71,177-215`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520`
 - **What it does**: Modus visibly ties search recall, reinforce, decay, and archive to one fact state. Public already stores `stability`, `difficulty`, `last_review`, `review_count`, and opt-in access effects, and computes `nextReviewDate`, but does not expose an operator-facing due queue.
 - **Why it matters for us**: This is the biggest missing workflow surface in Public. But it should not ship until “due” is defined as either persisted state (`next_review_at`) or a deterministic derivation from existing FSRS fields.
 - **Recommendation**: NEW FEATURE
 - **Impact**: high
 
 ### Finding 5: Durable proposal inboxes are the best non-retrieval idea Modus has
-- **Source**: `external/internal/vault/prs.go:10-118`; `external/internal/mcp/vault.go:681-777`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-452`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:681-790`
+- **Source**: `external/internal/vault/prs.go:10-118`; `external/internal/mcp/vault.go:681-777`; `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:417-452`; `.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:681-790`
 - **What it does**: Modus persists risky knowledge changes as markdown PR artifacts, then merge/reject outcomes reinforce or weaken linked beliefs. Public already produces advisory reconsolidation recommendations and confidence feedback, but the recommendation is transient and not stored as a durable review object.
 - **Why it matters for us**: Public’s next gap is operator workflow, not mutation safety. A persistent inbox for reconsolidation, supersession, promotion, and deprecation proposals would let existing confidence and mutation systems work as a real review loop.
 - **Recommendation**: NEW FEATURE
@@ -8218,35 +8218,35 @@ FINAL SYNTHESIS: Classify EVERY finding as adopt-now / prototype-later / new-fea
 - **Impact**: medium
 
 ### Finding 7: Lexical-only expansion belongs only in weak-result recovery
-- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
+- **Source**: `external/internal/librarian/search.go:10-52`; `external/internal/mcp/vault.go:28-58,280-299`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:525-529,771-809`
 - **What it does**: Modus asks the Librarian for 3-5 keyword variants, searches each, deduplicates, and caps results. It is lightweight, but ungrounded and union-first.
 - **Why it matters for us**: Public already has a more complex retrieval pipeline, so copying this as a mainline branch would mostly add noise and latency. The only credible transfer is a tightly bounded fallback when hybrid retrieval is weak.
 - **Recommendation**: prototype later
 - **Impact**: low
 
 ### Finding 8: Content-level contradiction and duplicate-fact linting is still worth a prototype
-- **Source**: `external/cmd/modus-memory/doctor.go:42-158`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:455-555`
+- **Source**: `external/cmd/modus-memory/doctor.go:42-158`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:455-555`
 - **What it does**: Modus’s `doctor` explicitly flags missing `subject`/`predicate`, duplicate `subject+predicate` pairs, and contradictory values for the same pair. Public’s current health surface is stronger on infrastructure integrity than on fact-content linting.
 - **Why it matters for us**: This complements Public’s existing infra health checks instead of replacing them. It is one of the few Modus hygiene ideas that adds net-new value.
 - **Recommendation**: prototype later
 - **Impact**: medium
 
 ### Finding 9: Reject Modus’s fuzzy Jaccard result-cache contract
-- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
+- **Source**: `external/internal/index/cache.go:10-17,41-119`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:502-529,718-755`
 - **What it does**: Modus reuses cached result sets on exact hash hits or Jaccard-similar query term sets. Public’s search surface has too many scoring knobs—scope, archived filtering, session/causal boost, rerank, quality thresholds, trace/profile flags—for fuzzy query reuse to be safe.
 - **Why it matters for us**: This is the wrong cache contract for Public. Similar text is not enough to guarantee equivalent retrieval intent or scoring context.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 10: Reject Modus’s permissive markdown parse/write contract
-- **Source**: `external/internal/markdown/parser.go:98-159,161-186`; `external/internal/markdown/writer.go:10-52`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:220-220`
+- **Source**: `external/internal/markdown/parser.go:98-159,161-186`; `external/internal/markdown/writer.go:10-52`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:220-220`
 - **What it does**: Modus treats malformed YAML as body, skips parse failures during scans, and writes markdown directly with minimal validation. That is good for a personal vault, but it optimizes for permissiveness over authoritative ingestion.
 - **Why it matters for us**: Public’s memory layer is intentionally more governed. Regressing to Modus’s permissive storage contract would weaken memory integrity for little gain.
 - **Recommendation**: reject
 - **Impact**: high
 
 ### Finding 11: Reject default write-on-read as Public’s default policy
-- **Source**: `external/internal/mcp/vault.go:311-317`; `external/internal/vault/facts.go:188-217`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520,797-802`
+- **Source**: `external/internal/mcp/vault.go:311-317`; `external/internal/vault/facts.go:188-217`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:519-520,797-802`
 - **What it does**: Modus treats every returned fact as a successful recall and asynchronously reinforces it. Public already supports access effects, but keeps them explicit with `trackAccess=false` by default.
 - **Why it matters for us**: Public’s graded FSRS model is stronger than Modus’s success-only reinforce loop. Default write-on-read would blur retrieval and review, inflate successful-recall history, and make future due-state less trustworthy.
 - **Recommendation**: reject
@@ -8389,7 +8389,7 @@ exec
    340	func (v *Vault) StoreFact(subject, predicate, value string, confidence float64, importance string) (string, error) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Index
@@ -8436,28 +8436,28 @@ FINAL EXTENDED SYNTHESIS: Integrate all 30 iterations. Update the adopt/prototyp
 
 ## Findings
 ### Finding 1: Ship explicit graded `memory_review` first
-- **Source**: [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [fsrs-scheduler.ts:39](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L39); [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L297)
+- **Source**: [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [fsrs-scheduler.ts:39](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L39); [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L297)
 - **What it does**: Modus exposes explicit reinforcement; Public already has the stronger graded FSRS math and `nextReviewDate`, but only exposes `memory_validate(wasUseful)`.
 - **Why it matters**: This is the clearest operator-surface gap and the best impact-to-effort transfer from Modus.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **10 / 3 / 9**
 
 ### Finding 2: Add a compact doctor/debug surface, not more hidden routing
-- **Source**: [doctor.go:13](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/doctor.go#L13); [memory-search.ts:676](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts:699](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L699); [tool-schemas.ts:236](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L236)
+- **Source**: [doctor.go:13](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/doctor.go#L13); [memory-search.ts:676](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts:699](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L699); [tool-schemas.ts:236](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L236)
 - **What it does**: Modus turns system state into a one-screen operator report. Public already computes more health and routing detail, but much of it is log-first or trace-only.
 - **Why it matters**: Operator trust improves immediately when route and health are visible without opening trace envelopes or stderr.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **8 / 4 / 7**
 
 ### Finding 3: Preserve one canonical retrieval core
-- **Source**: [indexer.go:287](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L287); [facts.go:290](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L290); [index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts#L4)
+- **Source**: [indexer.go:287](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L287); [facts.go:290](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L290); [index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts#L4)
 - **What it does**: Modus ends up with multiple fact-search paths; Public already centralizes retrieval through `executePipeline`.
 - **Why it matters**: The strongest architectural lesson from all 30 iterations is to keep new tools as thin wrappers over the same retrieval core, not parallel ranking systems.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **9 / 2 / 8**
 
 ### Finding 4: `memory_due` is the biggest missing workflow, but it needs a real contract first
-- **Source**: [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [fsrs-scheduler.ts:65](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L65); [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177); [memory-search.ts:519](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L519)
+- **Source**: [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [fsrs-scheduler.ts:65](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L65); [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177); [memory-search.ts:519](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L519)
 - **What it does**: Public already stores the FSRS ingredients for due-state, but does not expose an operator-facing due queue.
 - **Why it matters**: This is real product value, but “due” must be defined first as either persisted state or deterministic derivation.
 - **Recommendation**: **NEW FEATURE**
@@ -8471,21 +8471,21 @@ FINAL EXTENDED SYNTHESIS: Integrate all 30 iterations. Update the adopt/prototyp
 - **Priority / Effort / Impact**: **6 / 4 / 6**
 
 ### Finding 6: Prototype lexical expansion only for weak-result recovery
-- **Source**: [search.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L10); [search.go:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L49); [sqlite-fts.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L193); [memory-search.ts:691](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L691)
+- **Source**: [search.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L10); [search.go:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L49); [sqlite-fts.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L193); [memory-search.ts:691](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L691)
 - **What it does**: Modus expands into 3-5 keyword variants, unions results, and deduplicates.
 - **Why it matters**: Public already has a richer hybrid stack, so this should only ever be a bounded recovery path when the main retrieval is weak.
 - **Recommendation**: **prototype later**
 - **Priority / Effort / Impact**: **5 / 5 / 5**
 
 ### Finding 7: Do not copy Modus’s fuzzy Jaccard result-cache contract
-- **Source**: [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [cache.go:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L41); [memory-search.ts:502](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L502)
+- **Source**: [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [cache.go:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L41); [memory-search.ts:502](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L502)
 - **What it does**: Modus reuses cached results for exact matches and Jaccard-similar term sets.
 - **Why it matters**: Public has too many routing, scope, rerank, quality, and trace knobs for fuzzy query reuse to be trustworthy.
 - **Recommendation**: **reject**
 - **Priority / Effort / Impact**: **8 / 1 / 8**
 
 ### Finding 8: Reject write-on-read and permissive markdown as default policy
-- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [parser.go:143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/parser.go#L143); [writer.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go#L10); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165)
+- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [parser.go:143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/parser.go#L143); [writer.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go#L10); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165)
 - **What it does**: Modus reinforces on search return and tolerates malformed markdown/YAML much more aggressively.
 - **Why it matters**: Public’s stronger governance depends on retrieval staying observational by default and ingestion staying authoritative.
 - **Recommendation**: **reject**
@@ -8512,28 +8512,28 @@ FINAL EXTENDED SYNTHESIS: Integrate all 30 iterations. Update the adopt/prototyp
 
 ## Findings
 ### Finding 1: Ship explicit graded `memory_review` first
-- **Source**: [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [fsrs-scheduler.ts:39](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L39); [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L297)
+- **Source**: [vault.go:885](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L885); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [fsrs-scheduler.ts:39](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L39); [checkpoints.ts:648](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts#L648); [tool-schemas.ts:297](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L297)
 - **What it does**: Modus exposes explicit reinforcement; Public already has the stronger graded FSRS math and `nextReviewDate`, but only exposes `memory_validate(wasUseful)`.
 - **Why it matters**: This is the clearest operator-surface gap and the best impact-to-effort transfer from Modus.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **10 / 3 / 9**
 
 ### Finding 2: Add a compact doctor/debug surface, not more hidden routing
-- **Source**: [doctor.go:13](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/doctor.go#L13); [memory-search.ts:676](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts:699](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L699); [tool-schemas.ts:236](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L236)
+- **Source**: [doctor.go:13](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/cmd/modus-memory/doctor.go#L13); [memory-search.ts:676](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L676); [memory-search.ts:699](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L699); [tool-schemas.ts:236](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L236)
 - **What it does**: Modus turns system state into a one-screen operator report. Public already computes more health and routing detail, but much of it is log-first or trace-only.
 - **Why it matters**: Operator trust improves immediately when route and health are visible without opening trace envelopes or stderr.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **8 / 4 / 7**
 
 ### Finding 3: Preserve one canonical retrieval core
-- **Source**: [indexer.go:287](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L287); [facts.go:290](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L290); [index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts#L4)
+- **Source**: [indexer.go:287](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/indexer.go#L287); [facts.go:290](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L290); [index.ts:4](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts#L4)
 - **What it does**: Modus ends up with multiple fact-search paths; Public already centralizes retrieval through `executePipeline`.
 - **Why it matters**: The strongest architectural lesson from all 30 iterations is to keep new tools as thin wrappers over the same retrieval core, not parallel ranking systems.
 - **Recommendation**: **adopt now**
 - **Priority / Effort / Impact**: **9 / 2 / 8**
 
 ### Finding 4: `memory_due` is the biggest missing workflow, but it needs a real contract first
-- **Source**: [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [fsrs-scheduler.ts:65](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L65); [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177); [memory-search.ts:519](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L519)
+- **Source**: [vault.go:856](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L856); [fsrs-scheduler.ts:65](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L65); [fsrs-scheduler.ts:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts#L177); [memory-search.ts:519](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L519)
 - **What it does**: Public already stores the FSRS ingredients for due-state, but does not expose an operator-facing due queue.
 - **Why it matters**: This is real product value, but “due” must be defined first as either persisted state or deterministic derivation.
 - **Recommendation**: **NEW FEATURE**
@@ -8547,21 +8547,21 @@ FINAL EXTENDED SYNTHESIS: Integrate all 30 iterations. Update the adopt/prototyp
 - **Priority / Effort / Impact**: **6 / 4 / 6**
 
 ### Finding 6: Prototype lexical expansion only for weak-result recovery
-- **Source**: [search.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L10); [search.go:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L49); [sqlite-fts.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L193); [memory-search.ts:691](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L691)
+- **Source**: [search.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L10); [search.go:49](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/librarian/search.go#L49); [sqlite-fts.ts:193](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts#L193); [memory-search.ts:691](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L691)
 - **What it does**: Modus expands into 3-5 keyword variants, unions results, and deduplicates.
 - **Why it matters**: Public already has a richer hybrid stack, so this should only ever be a bounded recovery path when the main retrieval is weak.
 - **Recommendation**: **prototype later**
 - **Priority / Effort / Impact**: **5 / 5 / 5**
 
 ### Finding 7: Do not copy Modus’s fuzzy Jaccard result-cache contract
-- **Source**: [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [cache.go:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L41); [memory-search.ts:502](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts#L502)
+- **Source**: [cache.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L10); [cache.go:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/index/cache.go#L41); [memory-search.ts:502](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts#L502)
 - **What it does**: Modus reuses cached results for exact matches and Jaccard-similar term sets.
 - **Why it matters**: Public has too many routing, scope, rerank, quality, and trace knobs for fuzzy query reuse to be trustworthy.
 - **Recommendation**: **reject**
 - **Priority / Effort / Impact**: **8 / 1 / 8**
 
 ### Finding 8: Reject write-on-read and permissive markdown as default policy
-- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [parser.go:143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/parser.go#L143); [writer.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go#L10); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts#L165)
+- **Source**: [vault.go:311](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/mcp/vault.go#L311); [facts.go:160](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/vault/facts.go#L160); [parser.go:143](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/parser.go#L143); [writer.go:10](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/003-modus-memory-main/external/internal/markdown/writer.go#L10); [tool-schemas.ts:165](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts#L165)
 - **What it does**: Modus reinforces on search return and tolerates malformed markdown/YAML much more aggressively.
 - **Why it matters**: Public’s stronger governance depends on retrieval staying observational by default and ingestion staying authoritative.
 - **Recommendation**: **reject**

@@ -36,7 +36,7 @@ Shipped on commit **`3b5f00ee4`**.
 ### CP-XXX playbook scenarios (6 new files)
 
 ```
-.opencode/skill/cli-copilot/manual_testing_playbook/04--agent-routing/
+.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/
 ├── 013-skill-load-not-protocol.md           (CP-040 — 113 lines)
 ├── 014-proposal-only-boundary.md            (CP-041 — 115 lines)
 ├── 015-active-critic-overfit.md             (CP-042 — 108 lines)
@@ -48,10 +48,10 @@ Shipped on commit **`3b5f00ee4`**.
 ### Fixture target (4-runtime mirror)
 
 ```
-.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test/
+.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/
 ├── README.md                                (intentional flaws documented)
 ├── benchmark/sentinel.js                    (sentinel for old contract — retired by 062)
-├── .opencode/agent/cp-improve-target.md     (canonical fixture agent)
+├── .opencode/agents/cp-improve-target.md     (canonical fixture agent)
 ├── .claude/agents/cp-improve-target.md      (mirror)
 ├── .gemini/agents/cp-improve-target.md      (mirror)
 └── .codex/agents/cp-improve-target.toml     (mirror)
@@ -87,7 +87,7 @@ Shipped on commit **`3b5f00ee4`**.
 ### Agent triad — 4-runtime mirror parity (CRITIC PASS section added)
 
 ```
-.opencode/agent/improve-agent.md                    (canonical, +CRITIC PASS §6.5)
+.opencode/agents/improve-agent.md                    (canonical, +CRITIC PASS §6.5)
 .claude/agents/improve-agent.md                     (mirror)
 .gemini/agents/improve-agent.md                     (mirror)
 .codex/agents/improve-agent.toml                    (mirror, toml-wrapped)
@@ -96,22 +96,22 @@ Shipped on commit **`3b5f00ee4`**.
 ### Skill + helper scripts
 
 ```
-.opencode/skill/sk-improve-agent/SKILL.md           (skill-load ≠ protocol-execution clarification)
-.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs    (.gemini/agents mirror path fix)
-.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs     (--baseline + delta + thresholdDelta)
+.opencode/skills/sk-improve-agent/SKILL.md           (skill-load ≠ protocol-execution clarification)
+.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs    (.gemini/agents mirror path fix)
+.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs     (--baseline + delta + thresholdDelta)
 ```
 
 ### Command YAMLs (auto + confirm lockstep)
 
 ```
-.opencode/command/improve/assets/improve_improve-agent_auto.yaml      (legal_stop_evaluated + benchmark_completed + blocked_stop emissions)
-.opencode/command/improve/assets/improve_improve-agent_confirm.yaml   (same)
+.opencode/commands/improve/assets/improve_improve-agent_auto.yaml      (legal_stop_evaluated + benchmark_completed + blocked_stop emissions)
+.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml   (same)
 ```
 
 ### Playbook root index
 
 ```
-.opencode/skill/cli-copilot/manual_testing_playbook/manual_testing_playbook.md   (§10 + §16 updated for CP-040..045)
+.opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md   (§10 + §16 updated for CP-040..045)
 ```
 
 ---

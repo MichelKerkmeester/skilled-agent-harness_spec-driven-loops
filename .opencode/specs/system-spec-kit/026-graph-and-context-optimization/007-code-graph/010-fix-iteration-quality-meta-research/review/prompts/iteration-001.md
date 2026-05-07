@@ -8,7 +8,7 @@ SessionId: 2026-05-02T21:41:11Z
 Iter 1 — verify cycle 3 fixed P1-A (live deep-review-strategy.md restored), P1-B (command injection blocked), P1-C (affectedSurfaceHints in R4 schema). For each: read the fix's claimed location and confirm content.
 
 ## Apply R5 fix-completeness-checklist
-Read `.opencode/skill/sk-code-review/references/fix-completeness-checklist.md` first.
+Read `.opencode/skills/sk-code-review/references/fix-completeness-checklist.md` first.
 Apply protocol: classify each suspected issue, run same-class producer inventory,
 check cross-consumer flow, check matrix completeness.
 

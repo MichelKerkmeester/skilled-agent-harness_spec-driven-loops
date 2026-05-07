@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P0] Governed memories from different scopes collide into the same lineage key
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
 
 **Issue**: Same-path predecessor lookup is scope-aware, but lineage identity is not. `findSamePathExistingMemory()` explicitly isolates predecessor selection by `tenant_id`, `user_id`, `agent_id`, `session_id`, and `shared_space_id`, yet `buildLogicalKey()` only uses `spec_folder`, canonical path, and anchor. That means two governed memories from different scopes but the same file path produce the same `logical_key`. On the first append-only write for the second scope, lineage will try to insert another version `1` for that same key and hit `UNIQUE(logical_key, version_number)`, or at minimum compete for the same `active_memory_projection` row. This breaks tenant/session isolation and turns lineage/projection into a cross-scope collision surface.
 
@@ -17,7 +17,7 @@
 **Fix**: Make lineage identity scope-aware. Either include the normalized governance scope tuple in `logical_key`, or introduce a separate stable lineage identity that is derived from `(tenant, user/agent, session/shared-space, spec_folder, canonical_path, anchor)` and use that identity consistently in both `memory_lineage` and `active_memory_projection`.
 
 ### [P1] PE `SUPERSEDE` can splice unrelated files into the same version chain
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts`
 
 **Issue**: The save path treats any PE `SUPERSEDE` target as a lineage predecessor, even when it was selected by semantic similarity rather than by logical-file identity. `findSimilarMemories()` searches across the scoped memory set and does not restrict candidates to the same file path. When PE returns `SUPERSEDE`, `createMemoryRecord()` uses `existingMemoryId` as `predecessorMemoryId`, and `recordLineageTransition()` then adopts the predecessor's `logical_key` and `root_memory_id`. A contradiction in one file can therefore become the next version of a different file's lineage, moving the active projection for the older document onto the newer file.
 
@@ -30,7 +30,7 @@
 **Fix**: Only append to an existing lineage when the predecessor matches the new row's own logical identity. If PE identifies a contradictory memory on a different file path, model it as a causal `supersedes`/conflict relationship instead of a version-chain predecessor.
 
 ### [P1] Retention plumbing exists, but expiring the active version would currently drop the active view and erase lineage history
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`
 
 **Issue**: The code persists `retention_policy` and `delete_after`, and governance comments explicitly say ephemeral memories rely on `delete_after`-based sweeps, but I could not find any production retention-sweep implementation under `mcp_server`. More importantly, the only available cleanup path is generic deletion, and that path hard-deletes both `memory_lineage` and `active_memory_projection` rows for the target memory. If an active version is ever deleted for expiry, the logical memory disappears from all projection-backed reads instead of promoting the predecessor or preserving an auditable lineage chain. This is both a retention gap and an integrity gap.
 
@@ -40,12 +40,12 @@
 - [`vector-index-schema.ts:1063`](../../../../../../skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts#L1063) stores and indexes `retention_policy` / `delete_after`.
 - [`vector-index-mutations.ts:43`](../../../../../../skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts#L43) deletes `memory_lineage` rows outright and [`vector-index-mutations.ts:66`](../../../../../../skill/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts#L66) deletes the matching `active_memory_projection`.
 - [`vector-index-queries.ts:84`](../../../../../../skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts#L84) and [`vector-index-store.ts:492`](../../../../../../skill/system-spec-kit/mcp_server/lib/search/vector-index-store.ts#L492) show that folder reads, counts, and constitutional injection all rely on `JOIN active_memory_projection`.
-- A repository-wide search under `.opencode/skill/system-spec-kit/mcp_server` for `retention_sweep` / `delete_after` consumers found only schema/test references, not a runtime sweep implementation.
+- A repository-wide search under `.opencode/skills/system-spec-kit/mcp_server` for `retention_sweep` / `delete_after` consumers found only schema/test references, not a runtime sweep implementation.
 
 **Fix**: Implement a real retention sweep that is lineage-aware. For expired active versions, either tombstone the version while promoting the most recent non-expired predecessor into `active_memory_projection`, or preserve lineage rows and mark expiry in metadata instead of physically deleting chain state. If hard deletion is required, it should repair the predecessor/successor pointers and projection inside the same transaction.
 
 ### [P2] Delimiter collisions are only warned about, so ambiguous logical keys are still persisted
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
 
 **Issue**: `buildLogicalKey()` acknowledges that `::` inside `spec_folder`, canonical path, or anchor makes the composite key ambiguous, but it only emits a warning and still persists the concatenated string. Two distinct component tuples can therefore map to the same `logical_key`, merging independent chains or causing projection overwrite.
 
@@ -57,7 +57,7 @@
 **Fix**: Stop using raw string concatenation for lineage identity. Encode each component safely, use a structured serialization such as JSON, or hash a canonical tuple so ambiguous user/path data cannot alias another lineage.
 
 ### [P2] Concurrent supersedes of the same predecessor are not serialized or retried
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts`
 
 **Issue**: `recordLineageTransition()` derives the next `version_number` from the predecessor row in user space and then inserts that version without any optimistic retry or compare-and-swap guard. If two writers supersede the same predecessor concurrently, both compute the same next version and race into `UNIQUE(logical_key, version_number)`. The transaction protects against silent corruption, but one writer will still fail with an integrity error even though a valid serialized outcome exists.
 

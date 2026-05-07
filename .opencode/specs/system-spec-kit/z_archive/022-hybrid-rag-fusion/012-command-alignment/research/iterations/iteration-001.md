@@ -9,7 +9,7 @@
 - File: .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_08-26__implemented-016-command-alignment-aligned-the.md:85
 - Claim: Historical memory artifacts inside the 012 spec folder still describe the memory command surface as a `31-tool`/`8-command` system with `context.md` and `ingest.md` command files, and one follow-up artifact still says the spec reflects `7 commands` with `context.md` references.
 - Reality: Live truth on 2026-03-25 is `33` MCP tools in `tool-schemas.ts`, `6` memory command files (`analyze`, `continue`, `learn`, `manage`, `save`, `shared`) plus `README.txt`, and no standalone `context.md` or `ingest.md` command files. The five canonical 012 docs already match that live state.
-- Evidence: Verified `33` tool definitions in `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`; verified the 33-tool ownership matrix in `.opencode/command/memory/README.txt:249-297`; verified `analyze.md` owns 13 tools at `.opencode/command/memory/analyze.md:748`; stale matches remain in `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_08-26__implemented-016-command-alignment-aligned-the.md:85,190,201` and `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_11-13__implemented-sk-doc-dqi-alignment-across-all-8.md:85,194,311`.
+- Evidence: Verified `33` tool definitions in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`; verified the 33-tool ownership matrix in `.opencode/commands/memory/README.txt:249-297`; verified `analyze.md` owns 13 tools at `.opencode/commands/memory/analyze.md:748`; stale matches remain in `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_08-26__implemented-016-command-alignment-aligned-the.md:85,190,201` and `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_11-13__implemented-sk-doc-dqi-alignment-across-all-8.md:85,194,311`.
 - Impact: Future retrieval or audits that search the whole spec folder can surface obsolete command-count and file-layout claims, which risks reintroducing already-resolved alignment errors even though the canonical spec pack is correct.
 - Fix: Mark these memory artifacts as explicitly historical/deprecated, archive or de-index them, or add a prominent note that they preserve superseded state and must not be used as current-source-of-truth evidence.
 
@@ -19,15 +19,15 @@
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/tasks.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/checklist.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/implementation-summary.md
-- .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
-- .opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
-- .opencode/command/memory/README.txt
-- .opencode/command/memory/analyze.md
-- .opencode/command/memory/continue.md
-- .opencode/command/memory/learn.md
-- .opencode/command/memory/manage.md
-- .opencode/command/memory/save.md
-- .opencode/command/memory/shared.md
+- .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts
+- .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts
+- .opencode/commands/memory/README.txt
+- .opencode/commands/memory/analyze.md
+- .opencode/commands/memory/continue.md
+- .opencode/commands/memory/learn.md
+- .opencode/commands/memory/manage.md
+- .opencode/commands/memory/save.md
+- .opencode/commands/memory/shared.md
 - .opencode/specs/system-spec-kit/021-spec-kit-phase-system/spec.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_08-26__implemented-016-command-alignment-aligned-the.md
 - .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/012-command-alignment/memory/15-03-26_11-13__implemented-sk-doc-dqi-alignment-across-all-8.md

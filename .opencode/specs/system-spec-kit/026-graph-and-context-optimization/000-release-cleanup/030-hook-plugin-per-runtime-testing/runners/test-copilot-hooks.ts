@@ -41,7 +41,7 @@ export async function runCopilotHookTests(sandbox: SandboxDetection = detectSand
   const instructionsPath = join(mkdtempSync('/tmp/speckit-043-copilot-'), 'copilot-instructions.md');
   const hook = await runCommand({
     command: 'node',
-    args: ['.opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js'],
+    args: ['.opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js'],
     stdin: JSON.stringify({
       timestamp: Date.now(),
       cwd: REPO_ROOT,
@@ -78,8 +78,8 @@ export async function runCopilotHookTests(sandbox: SandboxDetection = detectSand
       },
     },
     [
-      '.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233',
-      '.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122',
+      '.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/user-prompt-submit.ts:233',
+      '.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/custom-instructions.ts:122',
     ],
     CONFIG_PATH,
   );

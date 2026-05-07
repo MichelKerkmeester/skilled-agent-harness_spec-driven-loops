@@ -56,7 +56,7 @@ Create a `/create:prompt` command in the `create/` namespace that provides a str
 
 ### In Scope
 
-- Mode-based command file (`.opencode/command/create/prompt.md`) following command_template.md standards
+- Mode-based command file (`.opencode/commands/create/prompt.md`) following command_template.md standards
 - Mandatory gate pattern for required `<prompt_or_topic>` argument
 - Argument dispatch routing for sk-improve-prompt mode prefixes (`$text`, `$improve`, `$refine`, `$short`, `$json`, `$yaml`, `$raw`)
 - `:auto`/`:confirm` execution mode support
@@ -76,7 +76,7 @@ Create a `/create:prompt` command in the `create/` namespace that provides a str
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/prompt.md` | Create | New command file for `/create:prompt` |
+| `.opencode/commands/create/prompt.md` | Create | New command file for `/create:prompt` |
 
 ---
 <!-- /ANCHOR:scope -->

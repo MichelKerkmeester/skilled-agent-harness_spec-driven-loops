@@ -115,9 +115,9 @@ JSONL output under `run-output/latest`, and prints status counts plus verdict.
 
 | Test | Command | Expected |
 |------|---------|----------|
-| Sandboxed runner | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run hook-tests` | 5 PASS, 5 SKIPPED_SANDBOX |
-| Build | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` | exit 0 |
-| Strict validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | exit 0 |
+| Sandboxed runner | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run hook-tests` | 5 PASS, 5 SKIPPED_SANDBOX |
+| Build | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | exit 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/031-hook-test-sandbox-fix --strict` | exit 0 |
 <!-- /ANCHOR:testing -->
 
 ---

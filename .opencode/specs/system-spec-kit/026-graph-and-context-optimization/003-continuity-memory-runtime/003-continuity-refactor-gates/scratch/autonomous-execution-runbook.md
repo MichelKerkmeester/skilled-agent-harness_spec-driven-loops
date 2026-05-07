@@ -365,10 +365,10 @@ Specifically:
 - T005: Transition → canonical (new path is default, legacy path runs read-only as verification)
 
 **Week 2-3 equivalent (parallel fanout) — documentation sync**:
-- T006 [P]: Update .opencode/command/memory/{save,search,manage,learn}.md
-- T007 [P]: Update .opencode/command/spec_kit/{resume,handover,plan,implement,complete,deep-research,deep-review}.md
-- T008 [P]: Update .opencode/command/spec_kit/assets/*.yaml workflow YAMLs
-- T009 [P]: Update .opencode/agent/{context,speckit,orchestrate,handover,deep-research,deep-review,ultra-think}.md
+- T006 [P]: Update .opencode/commands/memory/{save,search,manage,learn}.md
+- T007 [P]: Update .opencode/commands/spec_kit/{resume,handover,plan,implement,complete,deep-research,deep-review}.md
+- T008 [P]: Update .opencode/commands/spec_kit/assets/*.yaml workflow YAMLs
+- T009 [P]: Update .opencode/agents/{context,speckit,orchestrate,handover,deep-research,deep-review,ultra-think}.md
 - T010 [P]: Update 8 CLI handback files (cli-{claude-code,codex,copilot,gemini}/SKILL.md + assets/prompt_templates.md) in lockstep with generate-context.js contract
 - T011 [P]: Update 4 referencing skills (sk-deep-research, sk-deep-review, sk-doc, sk-git) + system-spec-kit/SKILL.md
 - T012 [P]: Update top-level docs (CLAUDE.md, AGENTS.md, README.md, ARCHITECTURE.md, mcp_server/README.md, mcp_server/INSTALL_GUIDE.md)
@@ -505,7 +505,7 @@ for gate in 001-gate-a-prework 002-gate-b-foundation 003-gate-c-writer-ready 004
   git log -1 --format=%s | grep -q "$gate" || { echo "$gate commit missing"; exit 3; }
 
   # Strict validate
-  bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict \
+  bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict \
     ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/$PACKET/$gate" \
     | tee "/tmp/validate-$gate.log"
 

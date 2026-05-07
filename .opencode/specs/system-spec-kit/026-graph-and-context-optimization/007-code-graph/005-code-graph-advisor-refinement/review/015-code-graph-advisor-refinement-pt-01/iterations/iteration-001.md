@@ -12,18 +12,18 @@ Baseline review for correctness and security across the highest-risk landed PRs:
 ## Files Reviewed
 
 - `.claude/settings.local.json`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/readiness-contract.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/query.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md`
 
 Validation run:
 
@@ -41,7 +41,7 @@ None.
 
 Dimension: correctness. PR source: PR-4.
 
-`startup-brief.ts` detects `freshness === 'error'` and stores `graphState = 'missing'` at `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:245`, then later computes shared payload provenance with `trustStateFromGraphState(graph.graphState)` at `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:330`. But `trustStateFromGraphState('missing')` maps to `absent` at `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:1019`, while only `graphState === 'error'` maps to `unavailable` at `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:1022`.
+`startup-brief.ts` detects `freshness === 'error'` and stores `graphState = 'missing'` at `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:245`, then later computes shared payload provenance with `trustStateFromGraphState(graph.graphState)` at `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:330`. But `trustStateFromGraphState('missing')` maps to `absent` at `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:1019`, while only `graphState === 'error'` maps to `unavailable` at `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:1022`.
 
 Impact: startup-brief is one of the four PR-4 surfaces, and an unreachable/crashed graph probe is reported in the shared payload as "absent" rather than "unavailable". That contradicts the V2 error -> V5 unavailable contract used by context/query/status and can make consumers treat an operational failure as a normal empty scope.
 
@@ -53,11 +53,11 @@ Fix: preserve an error axis for startup provenance, or map the startup error bra
 
 Dimension: traceability. PR source: PR-3.
 
-The implementation plan/task list names `mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` as part of PR-3 deletion scope, but the file still exists and begins with promotion-threshold tests at `.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:1` and defines the suite at `.opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:33`.
+The implementation plan/task list names `mcp_server/tests/promotion-positive-validation-semantics.vitest.ts` as part of PR-3 deletion scope, but the file still exists and begins with promotion-threshold tests at `.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:1` and defines the suite at `.opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:33`.
 
 Impact: the delete sweep is not traceable to the approved PR boundary. Either this file was incorrectly listed for deletion, or the landed delta is incomplete. In either case the close-out evidence cannot claim that the PR-3 deletion list was fully applied.
 
-Reproduce: run `find .opencode/skill/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts -maxdepth 1 -print`; the path is still present.
+Reproduce: run `find .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts -maxdepth 1 -print`; the path is still present.
 
 Fix: decide whether this test belongs to the removed promotion subsystem. If yes, delete it with PR-3. If no, update `plan.md`/`tasks.md` and close-out evidence so the delete inventory excludes the memory auto-promotion test.
 
@@ -65,7 +65,7 @@ Fix: decide whether this test belongs to the removed promotion subsystem. If yes
 
 Dimension: security. PR source: PR-5.
 
-The collector stores series keys directly from caller-provided labels at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:578` and `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:588`. Emission sites feed environment strings into labels without clamping to the declared vocabularies: `SPECKIT_RUNTIME` and `SPECKIT_ADVISOR_FRESHNESS` flow into recommendation metrics at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:320`, and `SPECKIT_RUNTIME` flows into edge metrics at `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1419`.
+The collector stores series keys directly from caller-provided labels at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:578` and `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts:588`. Emission sites feed environment strings into labels without clamping to the declared vocabularies: `SPECKIT_RUNTIME` and `SPECKIT_ADVISOR_FRESHNESS` flow into recommendation metrics at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/fusion.ts:320`, and `SPECKIT_RUNTIME` flows into edge metrics at `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1419`.
 
 Impact: enabling `SPECKIT_METRICS_ENABLED=true` lets arbitrary env values create unbounded label series in-process. That weakens the stated cardinality envelope and can become a metrics memory/telemetry denial-of-service footgun when wrappers vary those env values.
 
@@ -79,11 +79,11 @@ Fix: normalize env-derived labels to closed enums (`claude`, `gemini`, `copilot`
 
 Dimension: maintainability. PR source: PR-3.
 
-The manual scenario run still claims `promotion-gates.vitest.ts — 22/22 tests pass` at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:30` and repeats it at `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:84`, even though PR-3 removed the promotion-gates suite.
+The manual scenario run still claims `promotion-gates.vitest.ts — 22/22 tests pass` at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:30` and repeats it at `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md:84`, even though PR-3 removed the promotion-gates suite.
 
 Impact: future reviewers can mistake historical evidence for current validation and chase a deleted test target. This does not block runtime behavior, but it undermines the delete-sweep audit trail.
 
-Reproduce: `rg -n "promotion-gates.vitest.ts|22/22" .opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md`.
+Reproduce: `rg -n "promotion-gates.vitest.ts|22/22" .opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/SCENARIO_RUN_2026-04-21.md`.
 
 Fix: mark the run as historical/pre-delete or scrub the deleted suite from current validation evidence.
 

@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read `skill-graph-db.ts` fully and identify `DB_FILENAME` (`.opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`)
+- [x] T001 Read `skill-graph-db.ts` fully and identify `DB_FILENAME` (`.opencode/skills/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts`)
 - [x] T002 Search approved schema/type surfaces for `sk-deep` family-context literals (`rg`)
 - [x] T003 Read existing Phase 008 artifact shape (`../008-final-cleanup/`)
 - [x] T004 Create Phase 009 planning artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `description.json`, `graph-metadata.json`)
@@ -66,8 +66,8 @@ _memory:
 
 - [x] T010 Rename `families.sk-deep` to `families.deep-loop` (`skill-graph.json`)
 - [x] T011 Replace compiler `ALLOWED_FAMILIES` member `sk-deep` with `deep-loop` (`skill_graph_compiler.py`)
-- [x] T012 Update deep-review family field (`.opencode/skill/deep-review/graph-metadata.json`)
-- [x] T013 Update deep-research family field (`.opencode/skill/deep-research/graph-metadata.json`)
+- [x] T012 Update deep-review family field (`.opencode/skills/deep-review/graph-metadata.json`)
+- [x] T013 Update deep-research family field (`.opencode/skills/deep-research/graph-metadata.json`)
 - [x] T020 Update `SkillFamily`, `ALLOWED_FAMILIES`, and SQL `CHECK` in source (`skill-graph-db.ts`)
 - [x] T021 Update generated JS mirror (`dist/lib/skill-graph/skill-graph-db.js`)
 - [x] T022 Update generated d.ts union mirror (`dist/lib/skill-graph/skill-graph-db.d.ts`)
@@ -79,7 +79,7 @@ _memory:
 - [x] T035 Update skill graph query family allow-list dist mirror (`dist/handlers/skill-graph/query.js`)
 - [x] T040 Add Phase 009 child ID to `specs/` parent metadata (`../graph-metadata.json`)
 - [x] T041 Add Phase 009 child ID to `.opencode/specs/` parent metadata mirror (`.opencode/specs/.../graph-metadata.json`)
-- [x] T042 Delete `skill-graph.sqlite` (`.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite`)
+- [x] T042 Delete `skill-graph.sqlite` (`.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite`)
 - [x] T043 Delete SQLite WAL/SHM sidecars if present (`skill-graph.sqlite-wal`, `skill-graph.sqlite-shm`)
 <!-- /ANCHOR:phase-2 -->
 

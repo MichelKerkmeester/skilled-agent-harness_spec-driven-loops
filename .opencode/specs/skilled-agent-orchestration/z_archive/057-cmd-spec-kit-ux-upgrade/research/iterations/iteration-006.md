@@ -6,7 +6,7 @@ Cross-cut synthesis over iterations 1-5. Pull together the highest-impact adopti
 
 1. Read the active strategy, state log tail, and findings registry. The state log contains iterations 1-5, while `findings-registry.json` is still empty, so this pass used the written iteration narratives as source-of-truth.
 2. Read `iteration-001.md` through `iteration-005.md` to extract cross-axis findings from installer/distribution, instruction files, template architecture, tool discovery, and personas/tone.
-3. Checked internal suffix/mode references for `:auto`, `:confirm`, `:with-phases`, and `:with-research` across `.opencode/command`, `.opencode/skill/system-spec-kit`, and the packet docs.
+3. Checked internal suffix/mode references for `:auto`, `:confirm`, `:with-phases`, and `:with-research` across `.opencode/command`, `.opencode/skills/system-spec-kit`, and the packet docs.
 4. Searched for the unresolved `fs-enterprises` instruction-root evidence and symlink-related instruction context. The broad result set reinforced that symlinked framework consumption is real, but did not resolve a concrete `fs-enterprises` path.
 
 # Findings

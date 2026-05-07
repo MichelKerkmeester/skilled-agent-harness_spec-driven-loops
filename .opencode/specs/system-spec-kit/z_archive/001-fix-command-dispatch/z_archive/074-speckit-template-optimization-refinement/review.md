@@ -300,8 +300,8 @@ The Spec 073 implementation successfully achieved its primary goals of template 
 ### Data Sources
 
 1. **Spec 073 Documentation:** spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md
-2. **Current Implementation:** `.opencode/skill/system-spec-kit/`
-3. **Backup (Original):** `.opencode/skill/z_backup/system-spec-kit/`
+2. **Current Implementation:** `.opencode/skills/system-spec-kit/`
+3. **Backup (Original):** `.opencode/skills/z_backup/system-spec-kit/`
 4. **10 Parallel Research Agents:** Opus 4.5 models analyzing specific subsystems
 
 ### Review Criteria

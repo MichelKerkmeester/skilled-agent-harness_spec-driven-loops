@@ -2,15 +2,15 @@
 
 ## Scope Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts`
 
 ## Checks
 
-- Reviewed provider resolution at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:213`.
-- Reviewed cross-encoder feature flag behavior at `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:98`.
-- Reviewed outbound request construction for Voyage, Cohere, and local rerankers at `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:284`, `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:326`, and `.opencode/skill/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:366`.
+- Reviewed provider resolution at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:213`.
+- Reviewed cross-encoder feature flag behavior at `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:98`.
+- Reviewed outbound request construction for Voyage, Cohere, and local rerankers at `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:284`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:326`, and `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts:366`.
 
 ## Findings
 

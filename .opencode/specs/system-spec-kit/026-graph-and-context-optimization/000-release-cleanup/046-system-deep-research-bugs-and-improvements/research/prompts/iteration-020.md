@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 020 of 20. The packet root is
 
 **Angle D5 — Build / dist / runtime separation**
 
-Audit `.opencode/skill/system-spec-kit/mcp_server/` `tsconfig`, `dist/` outputs, and runtime imports. Which `.js` paths in source files are compiled outputs vs source-of-truth? Are there places where source and dist drift? Recommend clarifications. Cite tsconfig + sample import file:line.
+Audit `.opencode/skills/system-spec-kit/mcp_server/` `tsconfig`, `dist/` outputs, and runtime imports. Which `.js` paths in source files are compiled outputs vs source-of-truth? Are there places where source and dist drift? Recommend clarifications. Cite tsconfig + sample import file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

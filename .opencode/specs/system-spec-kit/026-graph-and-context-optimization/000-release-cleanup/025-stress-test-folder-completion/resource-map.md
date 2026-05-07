@@ -45,42 +45,42 @@ _memory:
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skill/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
+> `.opencode/skills/**` artifacts under that skill tree, including references, assets, catalogs, playbooks, scripts, shared helpers, and MCP server files.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph-degraded-sweep.vitest.ts` | Removed | MISSING | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md` | Updated | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w11-cocoindex-calibration-telemetry.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w4-conditional-rerank.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w5-shadow-learned-weights.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session-manager-stress.vitest.ts` | Removed | MISSING | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/skill-advisor/skill-graph-rebuild-concurrency.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph-degraded-sweep.vitest.ts` | Removed | MISSING | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/walker-dos-caps.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/matrix/shadow-comparison.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-trigger-fast-path.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-trigger-perf-benchmark.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` | Updated | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/baseline.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w11-cocoindex-calibration-telemetry.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w4-conditional-rerank.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w5-shadow-learned-weights.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w6-cocoindex-calibration.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-empty.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-full-scan.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-stale.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w7-degraded-unavailable.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session-manager-stress.vitest.ts` | Removed | MISSING | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-benchmark-session-resume.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/gate-d-resume-perf.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/skill-advisor/skill-graph-rebuild-concurrency.vitest.ts` | Created | OK | Stress-test surface touched by the packet. |
 <!-- /ANCHOR:skills -->
 
 ---
@@ -204,7 +204,7 @@ _memory:
 
 - Paths are repo-root relative and use the real `.opencode/specs` tree rather than the `specs` symlink.
 - This map was derived from packet commit history with shared commits split by packet-owned paths and commit-body scope.
-- Keep action/status vocabulary aligned with `.opencode/skill/system-spec-kit/templates/resource-map.md`.
+- Keep action/status vocabulary aligned with `.opencode/skills/system-spec-kit/templates/resource-map.md`.
 - Preserve category precedence: Specs over Config, Meta over root READMEs, Skills over Documents, Tests over Scripts.
 - Refresh this map whenever the packet receives additional touched paths or a canonical save changes packet-local metadata.
 <!-- /ANCHOR:author-instructions -->

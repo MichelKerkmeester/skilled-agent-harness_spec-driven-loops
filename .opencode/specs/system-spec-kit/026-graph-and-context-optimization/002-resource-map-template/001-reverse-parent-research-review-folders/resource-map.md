@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Use this ledger as the path baseline for phase 002"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
+      - ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "reverse-parent-research-review-folders-resource-map"
@@ -48,27 +48,27 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/sk-deep-research/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `research/` folders. |
-| `.opencode/skill/sk-deep-review/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `review/` folders. |
+| `.opencode/skills/sk-deep-research/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `research/` folders. |
+| `.opencode/skills/sk-deep-review/README.md` | Updated | OK | Restored child-run examples and packet-location language to owner-local `review/` folders. |
 
 ## 3. Commands
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Prompt and artifact paths now follow resolved `{artifact_dir}` semantics. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Confirm flow now writes prompts and synthesized outputs beside the resolved local packet. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Review auto loop now keeps packet writes under resolved `{artifact_dir}`. |
-| `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Review confirm flow now keeps prompts and packet outputs under resolved `{artifact_dir}`. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` | Updated | OK | Prompt and artifact paths now follow resolved `{artifact_dir}` semantics. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml` | Updated | OK | Confirm flow now writes prompts and synthesized outputs beside the resolved local packet. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` | Updated | OK | Review auto loop now keeps packet writes under resolved `{artifact_dir}`. |
+| `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml` | Updated | OK | Review confirm flow now keeps prompts and packet outputs under resolved `{artifact_dir}`. |
 
 ## 4. Agents
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/agent/deep-research.md` | Updated | OK | Mirror text now describes the restored owner-local research packet contract. |
+| `.opencode/agents/deep-research.md` | Updated | OK | Mirror text now describes the restored owner-local research packet contract. |
 | `.claude/agents/deep-research.md` | Updated | OK | Claude mirror aligned with the restored research packet contract. |
 | `.gemini/agents/deep-research.md` | Updated | OK | Gemini mirror aligned with the restored research packet contract. |
 | `.codex/agents/deep-research.toml` | Updated | OK | Codex mirror aligned with the restored research packet contract. |
-| `.opencode/agent/deep-review.md` | Updated | OK | Mirror text now describes the restored owner-local review packet contract. |
+| `.opencode/agents/deep-review.md` | Updated | OK | Mirror text now describes the restored owner-local review packet contract. |
 | `.claude/agents/deep-review.md` | Updated | OK | Claude mirror aligned with the restored review packet contract. |
 | `.gemini/agents/deep-review.md` | Updated | OK | Gemini mirror aligned with the restored review packet contract. |
 | `.codex/agents/deep-review.toml` | Updated | OK | Codex mirror aligned with the restored review packet contract. |
@@ -77,24 +77,24 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/shared/review-research-paths.cjs` | Updated | OK | Single source of truth now distinguishes root-local runs from child/sub-phase owner-local packet folders. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` | Created | OK | Repo-wide migration utility that relocates misplaced child packets and rewrites live canonical references. |
-| `.opencode/skill/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | Created | OK | Explicit owner-map cleanup for the residual root packet directories that metadata heuristics did not classify correctly. |
-| `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` | Updated | OK | Reducer now writes only to resolver-provided `researchDir`. |
-| `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` | Updated | OK | Reducer now writes only to resolver-provided `reviewDir`. |
-| `.opencode/skill/sk-deep-research/SKILL.md` | Updated | OK | Core skill doc now explains root-local vs owner-local research packet placement. |
-| `.opencode/skill/sk-deep-review/SKILL.md` | Updated | OK | Core skill doc now explains root-local vs owner-local review packet placement. |
-| `.opencode/skill/sk-deep-research/references/quick_reference.md` | Updated | OK | Quick reference examples now match the restored local-owner contract. |
-| `.opencode/skill/sk-deep-review/references/quick_reference.md` | Updated | OK | Quick reference examples now match the restored local-owner contract. |
-| `.opencode/skill/sk-deep-research/references/state_format.md` | Updated | OK | State-format examples now resolve child artifacts under the owner spec. |
-| `.opencode/skill/sk-deep-review/references/state_format.md` | Updated | OK | State-format examples now resolve child artifacts under the owner spec. |
-| `.opencode/skill/sk-deep-research/references/loop_protocol.md` | Updated | OK | Loop protocol examples now describe local owner packet roots. |
-| `.opencode/skill/sk-deep-review/references/loop_protocol.md` | Updated | OK | Loop protocol examples now describe local owner packet roots. |
-| `.opencode/skill/sk-deep-review/assets/review_mode_contract.yaml` | Updated | OK | Output path patterns now resolve through `{artifact_dir}` instead of parent/root `review/`. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_strategy.md` | Updated | OK | Review asset examples now reflect owner-local packet roots. |
-| `.opencode/skill/sk-deep-review/assets/deep_review_dashboard.md` | Updated | OK | Dashboard text now reflects owner-local packet roots. |
-| `.opencode/skill/sk-deep-research/assets/deep_research_dashboard.md` | Updated | OK | Dashboard text now reflects owner-local packet roots. |
-| `.opencode/skill/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | Folder-structure reference now documents the restored root-local vs child-local policy. |
+| `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` | Updated | OK | Single source of truth now distinguishes root-local runs from child/sub-phase owner-local packet folders. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs` | Created | OK | Repo-wide migration utility that relocates misplaced child packets and rewrites live canonical references. |
+| `.opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs` | Created | OK | Explicit owner-map cleanup for the residual root packet directories that metadata heuristics did not classify correctly. |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Updated | OK | Reducer now writes only to resolver-provided `researchDir`. |
+| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | Updated | OK | Reducer now writes only to resolver-provided `reviewDir`. |
+| `.opencode/skills/sk-deep-research/SKILL.md` | Updated | OK | Core skill doc now explains root-local vs owner-local research packet placement. |
+| `.opencode/skills/sk-deep-review/SKILL.md` | Updated | OK | Core skill doc now explains root-local vs owner-local review packet placement. |
+| `.opencode/skills/sk-deep-research/references/quick_reference.md` | Updated | OK | Quick reference examples now match the restored local-owner contract. |
+| `.opencode/skills/sk-deep-review/references/quick_reference.md` | Updated | OK | Quick reference examples now match the restored local-owner contract. |
+| `.opencode/skills/sk-deep-research/references/state_format.md` | Updated | OK | State-format examples now resolve child artifacts under the owner spec. |
+| `.opencode/skills/sk-deep-review/references/state_format.md` | Updated | OK | State-format examples now resolve child artifacts under the owner spec. |
+| `.opencode/skills/sk-deep-research/references/loop_protocol.md` | Updated | OK | Loop protocol examples now describe local owner packet roots. |
+| `.opencode/skills/sk-deep-review/references/loop_protocol.md` | Updated | OK | Loop protocol examples now describe local owner packet roots. |
+| `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml` | Updated | OK | Output path patterns now resolve through `{artifact_dir}` instead of parent/root `review/`. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Updated | OK | Review asset examples now reflect owner-local packet roots. |
+| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Updated | OK | Dashboard text now reflects owner-local packet roots. |
+| `.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md` | Updated | OK | Dashboard text now reflects owner-local packet roots. |
+| `.opencode/skills/system-spec-kit/references/structure/folder_structure.md` | Updated | OK | Folder-structure reference now documents the restored root-local vs child-local policy. |
 
 ## 6. Specs
 
@@ -119,6 +119,6 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/skill/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Created | OK | Adds resolver coverage for root, child, nested, and rerun reuse behavior. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Updated | OK | Research parity assertions now expect local-owner child packet wording. |
-| `.opencode/skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Updated | OK | Review parity assertions now expect local-owner child packet wording and `{artifact_dir}` output paths. |
+| `.opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts` | Created | OK | Adds resolver coverage for root, child, nested, and rerun reuse behavior. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Updated | OK | Research parity assertions now expect local-owner child packet wording. |
+| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Updated | OK | Review parity assertions now expect local-owner child packet wording and `{artifact_dir}` output paths. |

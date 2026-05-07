@@ -17,7 +17,7 @@ Deep-read `data-loader.ts` and `generate-context.ts`. Map how `--json` input is 
 
 For `--json` and `--stdin`, the parsed payload is stored in `parsed.collectedData` (line 382-386) with `_source: 'file'` hardcoded.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:393-433]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:393-433]
 
 ### 2. The --json / --stdin Path Bypasses data-loader.ts Entirely
 
@@ -38,7 +38,7 @@ When `parsed.collectedData` is present (i.e., `--json` or `--stdin`), `loadDataF
 
 However, `validateInputData()` and `normalizeInputData()` from `input-normalizer.ts` are still called. The validation happens at `generate-context.ts` line 100 indirectly -- actually no, for `--json`/`--stdin`, validation is NOT called by `data-loader.ts` since that module is bypassed. The question is whether `runWorkflow()` calls validation.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:558-567]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:558-567]
 
 ### 3. For File-Path Mode, data-loader.ts Validates and Normalizes
 
@@ -52,7 +52,7 @@ However, `validateInputData()` and `normalizeInputData()` from `input-normalizer
 
 The allowed base directories are: `os.tmpdir()`, `/tmp`, `/private/tmp`, `process.cwd()`, `cwd/specs`, `cwd/.opencode` (lines 76-83).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:59-105]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:59-105]
 
 ### 4. Complete Accepted Fields Map (from KNOWN_RAW_INPUT_FIELDS)
 
@@ -80,7 +80,7 @@ The `input-normalizer.ts` defines `KNOWN_RAW_INPUT_FIELDS` at lines 750-772. Any
 | recentContext | `recentContext`, `recent_context` | object[] | Pre-structured recent context |
 | preflight/postflight | `knowledgeScore`, `uncertaintyScore`, `contextScore`, `knowledgeGaps`, `gapsClosed`, `newGapsDiscovered` + snake_case variants | number/array | Epistemic tracking |
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:750-772]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:750-772]
 
 ### 5. `filesChanged` Is NOT an Accepted Field -- It Will Trigger "Unknown field" Warning
 
@@ -92,7 +92,7 @@ If an AI agent sends `{ "filesChanged": [...] }`, the validator will:
 
 This is a significant discoverability issue since `filesChanged` is a natural field name an AI might use.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:789-791]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:789-791]
 [INFERENCE: based on Grep returning zero results for filesChanged across the scripts directory and the KNOWN_RAW_INPUT_FIELDS set not containing it]
 
 ### 6. Two Normalization Paths: Fast-Path vs Slow-Path
@@ -113,7 +113,7 @@ This is a significant discoverability issue since `filesChanged` is a natural fi
 
 **Key difference:** The fast-path preserves existing arrays and only backfills. The slow-path constructs everything. Most `--json` saves from AI agents will hit the **slow-path** since they typically provide `sessionSummary` + `keyDecisions` without pre-structured `userPrompts`/`observations`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:445-737]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:445-737]
 
 ### 7. The `--json` Path Does NOT Run `validateInputData()`
 
@@ -127,7 +127,7 @@ The `validateInputData()` call at data-loader.ts line 100 only runs in the file-
 
 This means the `--json` path has weaker validation than the file-path mode -- unknown fields are silently accepted without even a warning.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:348-388]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:348-388]
 [INFERENCE: based on data-loader.ts being bypassed for --json/--stdin modes and parseStructuredJson only checking JSON validity]
 
 ### 8. Spec Folder Resolution Priority
@@ -139,7 +139,7 @@ The spec folder is resolved with a clear priority chain in `parseStructuredModeA
 
 Both are passed through `resolveCliSpecFolderReference()` for path resolution. If neither produces a value, the function throws.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:369-377]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:369-377]
 
 ## Ruled Out
 - `filesChanged` as an accepted alias -- confirmed not present anywhere in the codebase
@@ -149,9 +149,9 @@ Both are passed through `resolveCliSpecFolderReference()` for path resolution. I
 None.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` (full file, 607 lines)
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` (full file, 143 lines)
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 72-100, 198-261, 445-737, 750-810)
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (full file, 607 lines)
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` (full file, 143 lines)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 72-100, 198-261, 445-737, 750-810)
 - Grep search for `filesChanged` across scripts directory (zero matches)
 
 ## Assessment

@@ -64,10 +64,10 @@ Retract the structural watcher claim and document the real freshness model: `ens
 
 ### In Scope
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
-- Targeted checks in `.opencode/skill/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
+- Targeted checks in `.opencode/skills/system-spec-kit/SKILL.md`
 - Targeted checks in `CLAUDE.md`
-- Targeted checks in `.opencode/skill/system-spec-kit/references/config/hook_system.md`
+- Targeted checks in `.opencode/skills/system-spec-kit/references/config/hook_system.md`
 - Packet-local docs under this `019-code-graph-watcher-retraction/` folder
 
 ### Out of Scope
@@ -127,7 +127,7 @@ Retract the structural watcher claim and document the real freshness model: `ens
 | Risk | Historical research artifacts still mention the old claim | Treat them as evidence records, not current operator docs |
 | Risk | README over-corrects and hides selective read-path repair | Name both selective self-heal and manual full repair |
 | Dependency | 013 research report | Use section 4 P1-1 and section 6 Packet 032 as source-of-truth |
-| Dependency | Strict validator | Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` |
+| Dependency | Strict validator | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-code-graph-watcher-retraction --strict` |
 <!-- /ANCHOR:risks -->
 
 ---

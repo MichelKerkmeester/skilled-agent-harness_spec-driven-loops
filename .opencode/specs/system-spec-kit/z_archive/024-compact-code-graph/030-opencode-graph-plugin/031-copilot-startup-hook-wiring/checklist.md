@@ -60,11 +60,11 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Copilot hook wiring tests pass [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/copilot-hook-wiring.vitest.ts`]
-- [x] CHK-021 [P0] Runtime detection and cross-runtime fallback tests pass [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts`]
-- [x] CHK-022 [P1] Typecheck passes after runtime changes [EVIDENCE: `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit`]
+- [x] CHK-020 [P0] Copilot hook wiring tests pass [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/copilot-hook-wiring.vitest.ts`]
+- [x] CHK-021 [P0] Runtime detection and cross-runtime fallback tests pass [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts`]
+- [x] CHK-022 [P1] Typecheck passes after runtime changes [EVIDENCE: `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit`]
 - [x] CHK-023 [P1] Hook config JSON validates and wrapper smoke runs pass [EVIDENCE: `jq empty .github/hooks/superset-notify.json`; `./.github/hooks/scripts/session-start.sh`; `./.github/hooks/scripts/superset-notify.sh sessionEnd`]
-- [x] CHK-024 [P1] Strict packet validation passes after truth-sync [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
+- [x] CHK-024 [P1] Strict packet validation passes after truth-sync [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict`]
 <!-- /ANCHOR:testing -->
 
 ---

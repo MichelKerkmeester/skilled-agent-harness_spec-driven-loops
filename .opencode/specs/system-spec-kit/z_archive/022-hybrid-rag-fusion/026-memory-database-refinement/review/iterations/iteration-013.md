@@ -3,7 +3,7 @@
 ## Findings
 
 ### [P1] `task_postflight` can overwrite another session's baseline while keeping the old `session_id`
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts`
 
 **Issue**: Preflight stores `session_id`, and learning-history queries can filter on it, but postflight does not accept a `sessionId` and does not verify session ownership before updating the row. Any caller that knows the same `specFolder` and `taskId` can complete the record, overwrite the deltas/learning index, and leave the original `session_id` attached. That corrupts session-scoped history because the completed record now contains one session's identity and another session's outcomes.
 
@@ -16,7 +16,7 @@
 **Fix**: Add `sessionId` to `task_postflight` and enforce a match against the stored `session_id` whenever the baseline was session-scoped. If cross-session completion is intentionally allowed, update the stored session attribution explicitly instead of silently preserving the old value.
 
 ### [P1] Completed rows are write-once per `spec_folder/task_id`, so later learning cycles are rejected and lost
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts`
 
 **Issue**: The schema enforces `UNIQUE(spec_folder, task_id)`, and preflight hard-rejects any existing `complete` row for that pair. In practice this means a common task identifier such as `implementation` can only ever be recorded once per spec folder. Any later session that wants to measure the same task again is blocked, so recurring work collapses into a single cycle and the later learning history is never stored.
 
@@ -29,7 +29,7 @@
 **Fix**: Store immutable learning cycles keyed by a run identifier, or extend uniqueness to include `session_id` so repeated sessions can record separate baselines and completions for the same logical task.
 
 ### [P2] The file scoped as "Session learning (FSRS)" does not implement any FSRS state or scheduling
-**File**: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-learning.ts`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts`
 
 **Issue**: The review packet scopes iteration 013 as "Session learning (FSRS)" and explicitly points at this handler plus stability/difficulty columns, but this module only tracks epistemic score snapshots and a weighted learning index. There is no stability/difficulty state, no review count, no interval calculation, and no next-review scheduling. That leaves the advertised FSRS dimension effectively unimplemented here, including the first-review and interval-computation cases this audit was supposed to examine.
 

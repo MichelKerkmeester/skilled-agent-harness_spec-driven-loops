@@ -5,11 +5,11 @@
   "method": "direct Read/Grep (copilot fallback not required)",
   "scope": {
     "focus_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
-      ".opencode/skill/system-spec-kit/templates/resource-map.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/23-tool-routing-enforcement.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/267-tool-routing-enforcement.md",
+      ".opencode/skills/system-spec-kit/templates/resource-map.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/002-resource-map-template-creation/resource-map.md"
     ],
     "out_of_scope": [
@@ -22,7 +22,7 @@
   "findings_p2": [
     {
       "id": "P2-07-A",
-      "file": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md",
       "issue": "Playbook verifies existence + discovery-surface grep but has no fill-quality smoke check against the filled example.",
       "suggestion": "Add a third TEST EXECUTION block that opens the 026/012 example and spot-checks header, Summary block, and at least one category table.",
       "severity": "P2",
@@ -30,7 +30,7 @@
     },
     {
       "id": "P2-07-B",
-      "file": ".opencode/skill/system-spec-kit/templates/resource-map.md",
+      "file": ".opencode/skills/system-spec-kit/templates/resource-map.md",
       "issue": "Repo-root-relative paths, one-path-per-row, and glob usage rules live only in the bottom <!-- INSTRUCTIONS FOR AUTHORS --> comment; first-time fillers may miss them.",
       "suggestion": "Add a one-line 'fill rules' pointer under the Summary block, or duplicate the 3 key rules above the first category table.",
       "severity": "P2",
@@ -38,7 +38,7 @@
     },
     {
       "id": "P2-07-C",
-      "file": ".opencode/skill/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts + /memory:save output + /spec_kit:resume ladder",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts + /memory:save output + /spec_kit:resume ladder",
       "issue": "Classification wiring via SPEC_DOCUMENT_FILENAMES is correct but silent: operator sees no log line confirming resource-map.md was indexed, and /spec_kit:resume does not surface the map in its continuity ladder.",
       "suggestion": "Emit a one-line classification summary in generate-context.js post-save output, and consider surfacing resource-map.md presence in the resume surface when it exists.",
       "severity": "P2",

@@ -15,7 +15,7 @@ _memory:
     next_safe_action: "final-report"
     blockers: []
     key_files:
-      - ".opencode/command/spec_kit/"
+      - ".opencode/commands/spec_kit/"
     session_dedup:
       fingerprint: "sha256:0060060060060060060060060060060060060060060060060060060060060002"
       session_id: "2026-05-02-006-command-md-yaml-alignment"
@@ -63,24 +63,24 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T108 Audit command doc (`.opencode/command/spec_kit/complete.md`)
-- [x] T109 Audit command doc (`.opencode/command/spec_kit/deep-research.md`)
-- [x] T110 Audit command doc (`.opencode/command/spec_kit/deep-review.md`)
-- [x] T111 Audit command doc (`.opencode/command/spec_kit/implement.md`)
-- [x] T112 Audit command doc (`.opencode/command/spec_kit/plan.md`)
-- [x] T113 Audit command doc (`.opencode/command/spec_kit/resume.md`)
-- [x] T114 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`)
-- [x] T115 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
-- [x] T116 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
-- [x] T117 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`)
-- [x] T118 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`)
-- [x] T119 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml`)
-- [x] T120 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml`)
-- [x] T121 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`)
-- [x] T122 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`)
-- [x] T123 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml`)
-- [x] T124 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`)
-- [x] T125 Audit YAML asset (`.opencode/command/spec_kit/assets/spec_kit_resume_confirm.yaml`)
+- [x] T108 Audit command doc (`.opencode/commands/spec_kit/complete.md`)
+- [x] T109 Audit command doc (`.opencode/commands/spec_kit/deep-research.md`)
+- [x] T110 Audit command doc (`.opencode/commands/spec_kit/deep-review.md`)
+- [x] T111 Audit command doc (`.opencode/commands/spec_kit/implement.md`)
+- [x] T112 Audit command doc (`.opencode/commands/spec_kit/plan.md`)
+- [x] T113 Audit command doc (`.opencode/commands/spec_kit/resume.md`)
+- [x] T114 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`)
+- [x] T115 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml`)
+- [x] T116 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml`)
+- [x] T117 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`)
+- [x] T118 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`)
+- [x] T119 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml`)
+- [x] T120 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml`)
+- [x] T121 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml`)
+- [x] T122 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml`)
+- [x] T123 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml`)
+- [x] T124 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`)
+- [x] T125 Audit YAML asset (`.opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml`)
 - [x] T126 Add current feature mentions where command behavior naturally requires them
 <!-- /ANCHOR:phase-2 -->
 

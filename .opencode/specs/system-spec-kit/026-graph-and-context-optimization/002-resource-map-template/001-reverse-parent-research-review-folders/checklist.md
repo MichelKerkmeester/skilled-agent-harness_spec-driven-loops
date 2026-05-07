@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Phase 002 can proceed from the restored local-owner contract"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/shared/review-research-paths.cjs"
-      - ".opencode/skill/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
+      - ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/001-reverse-parent-research-review-folders/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -62,7 +62,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 ## Code Quality
 
 - [x] CHK-010 [P0] `review-research-paths.cjs` resolves root, child, nested, and rerun cases to the restored local-owner contract [Evidence: direct Node assertion pass verified root research/review, child research/review, nested review, and rerun reuse cases]
-- [x] CHK-011 [P0] Reducers and YAML assets write only to the resolved `{artifact_dir}` [Evidence: reducer reads in `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` and `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` plus command YAML paths in `.opencode/command/spec_kit/assets/spec_kit_deep-*_*.yaml`]
+- [x] CHK-011 [P0] Reducers and YAML assets write only to the resolved `{artifact_dir}` [Evidence: reducer reads in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` plus command YAML paths in `.opencode/commands/spec_kit/assets/spec_kit_deep-*_*.yaml`]
 - [x] CHK-012 [P1] Live docs, mirrors, and shared assets match the same restored contract [Evidence: updated skill docs, READMEs, mirrors, folder structure reference, and `review_mode_contract.yaml`; direct Node assertion pass verified these surfaces]
 - [x] CHK-013 [P1] Migration skips conflicts safely instead of overwriting packet data [Evidence: both migration scripts check destination existence before rename; the heuristic and owner-map applied runs each reported `conflictCount: 0`]
 <!-- /ANCHOR:code-quality -->

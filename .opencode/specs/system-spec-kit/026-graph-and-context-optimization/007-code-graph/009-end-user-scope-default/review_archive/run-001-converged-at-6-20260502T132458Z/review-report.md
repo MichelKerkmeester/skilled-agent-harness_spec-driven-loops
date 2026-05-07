@@ -27,14 +27,14 @@ _None._
 
 ## P1 Findings
 
-- **R1-P1-001** [correctness] .opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30 — includeSkills:false cannot force end-user scope when SPECKIT_CODE_GRAPH_INDEX_SKILLS=true
-- **R3-P1-001** [security] .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184-217 — Symlinked rootDir can bypass default .opencode/skill exclusion
+- **R1-P1-001** [correctness] .opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:30 — includeSkills:false cannot force end-user scope when SPECKIT_CODE_GRAPH_INDEX_SKILLS=true
+- **R3-P1-001** [security] .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184-217 — Symlinked rootDir can bypass default .opencode/skill exclusion
 
 ## P2 Findings
 
 - **R1-P2-001** [resource-map-coverage] .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/resource-map.md:78 — Resource map marks several Phase 2 handlers as modified although the packet diff did not touch them
 - **R2-P2-001** [resource-map-coverage] .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/resource-map.md:54-90 — Resource map omits actual code-graph readiness test and README artifacts changed by the implementation
-- **R4-P2-001** [security] .opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184 — Scope validation errors and scan warnings expose absolute filesystem paths
+- **R4-P2-001** [security] .opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:184 — Scope validation errors and scan warnings expose absolute filesystem paths
 - **R4-P2-002** [resource-map-coverage] .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/resource-map.md:58 — Resource map omits broader changed docs/artifacts visible in the implementation diff
 
 ## Iteration Log

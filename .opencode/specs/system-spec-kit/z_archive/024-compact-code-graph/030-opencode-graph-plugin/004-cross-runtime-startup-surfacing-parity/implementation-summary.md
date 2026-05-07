@@ -57,13 +57,13 @@ The startup surfaces were later refined to become freshness-aware instead of cou
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Modified | Define the shared startup-status surface |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Modified | Align structural startup/resume freshness with the shared readiness engine |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit freshness-aware graph status in the OpenCode startup digest source |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Modified | Lead Claude startup injection with the shared startup surface |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Modified | Lead Gemini startup injection with the shared startup surface |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Created | Add the Copilot session-start banner hook |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts` | Modified | Verify the shared startup-status output |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts` | Modified | Define the shared startup-status surface |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Modified | Align structural startup/resume freshness with the shared readiness engine |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit freshness-aware graph status in the OpenCode startup digest source |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` | Modified | Lead Claude startup injection with the shared startup surface |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Modified | Lead Gemini startup injection with the shared startup surface |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/session-prime.ts` | Created | Add the Copilot session-start banner hook |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts` | Modified | Verify the shared startup-status output |
 | `.codex/agents/context-prime.toml` | Modified | Align Codex bootstrap output with the same startup surface |
 | `.github/hooks/superset-notify.json` | Modified in Phase 031 | Repo-local Copilot hook config now routes `sessionStart` through the tracked startup wrapper |
 <!-- /ANCHOR:what-built -->
@@ -104,17 +104,17 @@ The implementation kept the original packet-030 boundary intact:
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/session-resume.vitest.ts tests/startup-brief.vitest.ts tests/structural-contract.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/session-resume.vitest.ts tests/startup-brief.vitest.ts tests/structural-contract.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
 | `python3.11` TOML parse of `.codex/agents/context-prime.toml` | PASS |
 | `jq empty .github/hooks/superset-notify.json` | PASS |
-| `printf '{\"sessionId\":\"demo\"}\\n' \| node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js` | PASS - emitted the shared startup banner |
-| `printf '{\"session_id\":\"demo\",\"source\":\"startup\"}\\n' \| node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js` | PASS - emitted the shared startup block plus recovery/structural sections |
-| `printf '{\"session_id\":\"demo\",\"source\":\"startup\"}\\n' \| node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js` | PASS - emitted Gemini JSON with the shared startup block in `additionalContext` |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --build --verbose` | PASS - rebuilt stale OpenCode transport output so the snapshot note reached the live runtime |
+| `printf '{\"sessionId\":\"demo\"}\\n' \| node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js` | PASS - emitted the shared startup banner |
+| `printf '{\"session_id\":\"demo\",\"source\":\"startup\"}\\n' \| node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js` | PASS - emitted the shared startup block plus recovery/structural sections |
+| `printf '{\"session_id\":\"demo\",\"source\":\"startup\"}\\n' \| node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js` | PASS - emitted Gemini JSON with the shared startup block in `additionalContext` |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --build --verbose` | PASS - rebuilt stale OpenCode transport output so the snapshot note reached the live runtime |
 | Fresh OpenCode session retest of startup digest + `session_resume({ minimal: true })` + structural reads | PASS - startup digest, resume payload, and readiness contract all agreed and the digest included the explicit startup-snapshot note |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin --recursive --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -90,7 +90,7 @@ templates/
 #!/bin/bash
 # compose.sh - Compose templates from core + addendums
 
-TEMPLATES_DIR=".opencode/skill/system-spec-kit/templates"
+TEMPLATES_DIR=".opencode/skills/system-spec-kit/templates"
 
 compose_level() {
     local level=$1

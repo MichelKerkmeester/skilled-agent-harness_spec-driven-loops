@@ -53,8 +53,8 @@ _memory:
 Packet 013 identified four Tier C surfaces where automation was easy to overstate:
 
 1. Copilot advisor refresh is next-prompt only, not current-prompt injection. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:155-168`]
-2. Codex timeout fallback served stale cold-start context without a machine-visible marker. [EVIDENCE: `../016-automation-self-management-deep-research/research/research-report.md:13`; `.opencode/skill/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180` before this packet]
-3. Feature-flag defaults hid opt-in OFF behavior for save reconsolidation, post-insert enrichment, quality auto-fix, watcher, and local reranker. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:140-152`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:348-366`]
+2. Codex timeout fallback served stale cold-start context without a machine-visible marker. [EVIDENCE: `../016-automation-self-management-deep-research/research/research-report.md:13`; `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts:174-180` before this packet]
+3. Feature-flag defaults hid opt-in OFF behavior for save reconsolidation, post-insert enrichment, quality auto-fix, watcher, and local reranker. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:140-152`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:348-366`]
 4. `advisor_status` detected stale advisor state but had no explicit repair tool. [EVIDENCE: `../017-automation-reality-supplemental-research/research/research-report.md:101`]
 
 ### Purpose

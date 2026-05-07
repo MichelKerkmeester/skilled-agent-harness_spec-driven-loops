@@ -41,50 +41,50 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/command/README.txt",
-      ".opencode/command/create/README.txt",
-      ".opencode/command/memory/README.txt",
-      ".opencode/command/spec_kit/README.txt",
-      ".opencode/skill/sk-doc/references/specific/readme_creation.md",
-      ".opencode/skill/sk-doc/references/global/hvr_rules.md",
-      ".opencode/skill/system-spec-kit/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/README.md",
-      ".opencode/skill/cli-claude-code/README.md",
-      ".opencode/skill/cli-codex/README.md",
-      ".opencode/skill/cli-copilot/README.md",
-      ".opencode/skill/cli-gemini/README.md",
-      ".opencode/skill/mcp-chrome-devtools/README.md",
-      ".opencode/skill/mcp-clickup/README.md",
-      ".opencode/skill/mcp-coco-index/README.md",
-      ".opencode/skill/mcp-code-mode/README.md",
-      ".opencode/skill/mcp-figma/README.md",
-      ".opencode/skill/sk-code-full-stack/README.md",
-      ".opencode/skill/sk-code-opencode/README.md"
+      ".opencode/commands/README.txt",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/memory/README.txt",
+      ".opencode/commands/spec_kit/README.txt",
+      ".opencode/skills/sk-doc/references/specific/readme_creation.md",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/cli-claude-code/README.md",
+      ".opencode/skills/cli-codex/README.md",
+      ".opencode/skills/cli-copilot/README.md",
+      ".opencode/skills/cli-gemini/README.md",
+      ".opencode/skills/mcp-chrome-devtools/README.md",
+      ".opencode/skills/mcp-clickup/README.md",
+      ".opencode/skills/mcp-coco-index/README.md",
+      ".opencode/skills/mcp-code-mode/README.md",
+      ".opencode/skills/mcp-figma/README.md",
+      ".opencode/skills/sk-code-full-stack/README.md",
+      ".opencode/skills/sk-code-opencode/README.md"
     ],
     "entities": [
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/README.txt",
+        "path": ".opencode/commands/README.txt",
         "source": "derived"
       },
       {
         "name": "readme_creation.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/specific/readme_creation.md",
+        "path": ".opencode/skills/sk-doc/references/specific/readme_creation.md",
         "source": "derived"
       },
       {
         "name": "hvr_rules.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/global/hvr_rules.md",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skill/sk-doc/references/specific/readme_creation.md` and `.opencode/skill/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.",
+    "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skills/sk-doc/references/specific/readme_creation.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.",
     "created_at": "2026-04-12T09:02:50.178Z",
     "last_save_at": "2026-04-26T09:17:15.179Z",
     "save_lineage": "graph_only",

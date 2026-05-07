@@ -41,9 +41,9 @@ None. The stale rollback wording is recorded as a PARTIAL closure for prior F-CO
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-002.md:1-77`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/iterations/iteration-003.md:1-70`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/implementation-summary.md:139-185`
-- `.opencode/command/spec_kit/skill-advisor.md:1-319`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:1-310`
-- `.opencode/command/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:1-375`
+- `.opencode/commands/spec_kit/skill-advisor.md:1-319`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_auto.yaml:1-310`
+- `.opencode/commands/spec_kit/assets/spec_kit_skill-advisor_confirm.yaml:1-375`
 
 ## Convergence Signals
 

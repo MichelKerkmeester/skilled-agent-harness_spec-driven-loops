@@ -85,7 +85,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T018 Build: `cd .opencode/skill/system-spec-kit/mcp_server && npm run build` (exit 0) (Evidence: Phase 2 verification recorded `npm run build` exit 0)
+- [x] T018 Build: `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` (exit 0) (Evidence: Phase 2 verification recorded `npm run build` exit 0)
 - [x] T019 Live driver: `node /tmp/cg-driver.mjs scan '{"incremental":false,"includeSkills":true,"includeAgents":"all","includeCommands":"all","includeSpecs":"all","includePlugins":"all"}'` returns `status: ok` with `<2%` parser-error rate (Evidence: broad-scope scan completed with 0 B2 and 0.72% parser-error rate)
 - [x] T020 [P] Skills-only regression check: `node /tmp/cg-driver.mjs scan '{"incremental":false,"includeSkills":true}'` returns zero parser errors (Evidence: skills-only regression returned zero parser errors)
 - [x] T021 [P] Status check: `node /tmp/cg-driver.mjs status '{}'` shows new `parserSkipList` and `parserHealth` fields with sane shape (Evidence: status response surfaced `parserSkipList` and `parserHealth`)
@@ -100,7 +100,7 @@ _memory:
 - [ ] All non-deferred tasks marked `[x]` (T001-T022, with T022 deferred to follow-up packet)
 - [ ] No `[B]` blocked tasks remaining
 - [ ] checklist.md P0 items 100% verified with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0
 - [ ] `decision-record.md` records the landed hypothesis
 - [ ] `implementation-summary.md` filled (post-implementation per Rule 13)
 <!-- /ANCHOR:completion -->

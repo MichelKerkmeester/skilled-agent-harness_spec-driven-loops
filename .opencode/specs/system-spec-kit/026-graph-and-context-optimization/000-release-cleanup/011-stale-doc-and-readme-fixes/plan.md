@@ -119,7 +119,7 @@ Evidence flows from `spec.md` and `/tmp/audit-readme-staleness-report.md` into s
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Text grep | Removed identifiers and conditional `pt-01` contexts | `rg` |
-| Spec validation | Packet document structure | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh ... --strict` |
+| Spec validation | Packet document structure | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` |
 | Manual review | Adjacent README prose around cited lines | `nl`, `sed`, direct readback |
 <!-- /ANCHOR:testing -->
 

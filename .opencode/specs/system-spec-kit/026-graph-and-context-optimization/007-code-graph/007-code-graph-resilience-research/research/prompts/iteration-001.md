@@ -14,7 +14,7 @@ Survey existing deep-research and deep-review iteration logs across the repo for
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/008-deep-research-review/research/008-deep-research-review-pt-01/logs/iteration-*.log`
    - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/review/logs/iteration-*.log`
    - Any other `*.log` under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/` that mentions code_graph
-3. Code-graph scan implementation: `.opencode/skill/system-spec-kit/mcp_server/lib/` (browse for code-graph related files, likely under `lib/code-graph/` or similar — find via `Glob`)
+3. Code-graph scan implementation: `.opencode/skills/system-spec-kit/mcp_server/lib/` (browse for code-graph related files, likely under `lib/code-graph/` or similar — find via `Glob`)
 
 ## What to look for
 - Parser/tokenizer errors (encoding issues, syntax not handled)

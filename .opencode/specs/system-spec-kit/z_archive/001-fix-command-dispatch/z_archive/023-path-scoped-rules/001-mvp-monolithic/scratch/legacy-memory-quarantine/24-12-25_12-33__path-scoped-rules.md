@@ -722,9 +722,9 @@ Executed sequential_thinking_sequentialthinking
 <!-- ANCHOR:implementation-tool-read-287a1075-2-session-1766575984171-letqed6zk -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/references/path_scoped_rules.md
+.opencode/skills/system-spec-kit/references/path_scoped_rules.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/references/path_scoped_rules.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/references/path_scoped_rules.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-287a1075-2-session-1766575984171-letqed6zk -->
 

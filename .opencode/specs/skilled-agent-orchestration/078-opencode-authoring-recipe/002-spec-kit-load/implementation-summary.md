@@ -13,11 +13,11 @@ _memory:
     next_safe_action: "Commit + push + start Phase 3"
     blockers: []
     key_files:
-      - .opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml
-      - .opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml
-      - .opencode/skill/system-spec-kit/SKILL.md
-      - .opencode/skill/sk-code/SKILL.md
-      - .opencode/skill/sk-code/changelog/v3.2.1.0.md
+      - .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml
+      - .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+      - .opencode/skills/system-spec-kit/SKILL.md
+      - .opencode/skills/sk-code/SKILL.md
+      - .opencode/skills/sk-code/changelog/v3.2.1.0.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "078-002-complete"
@@ -30,7 +30,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`/spec_kit:complete` now loads sk-code at TWO distinct points instead of one. The previous behavior (sk-code loaded only at Step 11 review-time as part of `Pre-Commit code review`) is preserved verbatim. Newly added: when any task in `tasks.md` targets a path under `.opencode/skill/`, `.opencode/agent/`, `.opencode/command/`, or `.opencode/specs/`, the orchestrator now loads the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) plus the `spec_folder_write` recipe (when target is under `.opencode/specs/`) BEFORE the first write. The contract is documented from both sides: pull-side in system-spec-kit/SKILL.md §17 (the consumer documenting WHEN to consult sk-code), push-side in sk-code/SKILL.md (the producer declaring what it surfaces). Implementation dispatched via cli-codex; both YAMLs parse cleanly; validate.sh --strict + alignment-verifier PASS.
+`/spec_kit:complete` now loads sk-code at TWO distinct points instead of one. The previous behavior (sk-code loaded only at Step 11 review-time as part of `Pre-Commit code review`) is preserved verbatim. Newly added: when any task in `tasks.md` targets a path under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, the orchestrator now loads the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) plus the `spec_folder_write` recipe (when target is under `.opencode/specs/`) BEFORE the first write. The contract is documented from both sides: pull-side in system-spec-kit/SKILL.md §17 (the consumer documenting WHEN to consult sk-code), push-side in sk-code/SKILL.md (the producer declaring what it surfaces). Implementation dispatched via cli-codex; both YAMLs parse cleanly; validate.sh --strict + alignment-verifier PASS.
 
 ### Authoring-time vs review-time split
 
@@ -69,12 +69,12 @@ F-009-001 (review-time vs authoring-time load timing), F-009-002 (no first-class
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | step_10 activity prepend; cross_skill_authoring_load block added |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | Mirror of auto edits |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Authoring-time vs review-time paragraph appended below rule 17 |
-| `.opencode/skill/sk-code/SKILL.md` | Modified | Cross-Skill Consumption block added; version 3.2.0.0 → 3.2.1.0 |
-| `.opencode/skill/sk-code/description.json` | Modified | Version 3.2.0.0 → 3.2.1.0 |
-| `.opencode/skill/sk-code/changelog/v3.2.1.0.md` | Created | Compact-format patch-release changelog |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Modified | step_10 activity prepend; cross_skill_authoring_load block added |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml` | Modified | Mirror of auto edits |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Authoring-time vs review-time paragraph appended below rule 17 |
+| `.opencode/skills/sk-code/SKILL.md` | Modified | Cross-Skill Consumption block added; version 3.2.0.0 → 3.2.1.0 |
+| `.opencode/skills/sk-code/description.json` | Modified | Version 3.2.0.0 → 3.2.1.0 |
+| `.opencode/skills/sk-code/changelog/v3.2.1.0.md` | Created | Compact-format patch-release changelog |
 | `078/002/{spec,plan,tasks,implementation-summary}.md` | Created | Phase 2 child docs |
 <!-- /ANCHOR:what-built -->
 

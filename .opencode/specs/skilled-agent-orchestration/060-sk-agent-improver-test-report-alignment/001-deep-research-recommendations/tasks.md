@@ -39,13 +39,13 @@ _memory:
 
 ### T-002: Bootstrap description.json + graph-metadata.json
 
-- **Tool:** `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`
+- **Tool:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
 - **Acceptance:** Both JSON files exist; description.json has trigger_phrases populated; graph-metadata.json has derived.last_active_child_id (or null) and lowercase status
 - **Status:** [pending]
 
 ### T-003: Strict-validate spec folder
 
-- **Tool:** `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict`
+- **Tool:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment --strict`
 - **Acceptance:** exit code 0
 - **Status:** [pending]
 <!-- /ANCHOR:phase-1-tasks -->

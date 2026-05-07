@@ -32,19 +32,19 @@
 
 ## Validation
 
-- Exact requested command: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh . --strict`
+- Exact requested command: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh . --strict`
 - Result of exact `.` invocation: exit code `2`; warnings `1`; errors `2`
 - Non-warning failures from exact `.` invocation: `FOLDER_NAMING` (`.` path-format quirk) and `SPEC_DOC_INTEGRITY` (broken `research.md` references, later fixed)
-- Accepted final validation command: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings --strict`
+- Accepted final validation command: `bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings --strict`
 - Accepted final result: exit code `2`; warnings `1`; errors `0`
 - Final warning scope: `ANCHORS_VALID` only, covering the intentional repeated ADR anchor blocks in `decision-record.md`
 - Confirmation: the `ANCHORS_VALID` warning on `decision-record.md` was preserved intentionally and not fixed
 
 ## Memory Save
 
-- Exact requested command: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .`
+- Exact requested command: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json .`
 - Result of exact `.` invocation: exit code `1`; script rejected `.` as an invalid spec folder format
-- Accepted final memory-save command: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings`
+- Accepted final memory-save command: `node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings`
 - Final script status: exit code `0`
 - Memory file path: `memory/07-04-26_16-18__this-session-closed-out-the-research-only-level-3.md`
 - Post-save quality review verdict: `ISSUES_FOUND` with 1 HIGH issue (`trigger_phrases`) and 1 MEDIUM issue (`importance_tier`)

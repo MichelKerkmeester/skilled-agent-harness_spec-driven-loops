@@ -25,7 +25,7 @@ Tasks grouped by remediation theme. Parallelizable items are tagged `[P]` when i
 
 ### Theme B — Documentation Accuracy
 - [ ] TASK-003: Update SKILL.md + command docs to reference `semantic_memory_*` names exclusively (no `memory_search()` shorthand).
-  - **Scope**: `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/spec_kit/**/*.md`, `.opencode/command/memory/*.md`
+  - **Scope**: `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/spec_kit/**/*.md`, `.opencode/commands/memory/*.md`
 - [ ] TASK-004 [P]: Replace all active references to `memory_load` with guidance on `includeContent`; ensure root `README.md` matches.
 - [ ] TASK-005 [P]: Fix `mcp_server/README.md` (13 tools, remove `tier` parameter), and sync other references (INSTALL_GUIDE, README).
 - [ ] TASK-006: Correct `memory/checkpoint.md` language describing restore defaults (`clearExisting=false` preserves data) and add warning about embeddings needing regeneration.

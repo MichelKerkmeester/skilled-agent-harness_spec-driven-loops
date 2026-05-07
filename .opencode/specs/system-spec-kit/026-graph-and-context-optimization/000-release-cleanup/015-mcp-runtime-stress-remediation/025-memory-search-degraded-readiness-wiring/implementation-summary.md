@@ -18,11 +18,11 @@ _memory:
     blockers:
       - "npx tsc --noEmit fails before packet-specific errors on missing core/index exports: isEmbeddingModelReady, setEmbeddingModelReady, waitForEmbeddingModel"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "025-memory-search-degraded-readiness-wiring"
@@ -38,7 +38,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -71,11 +71,11 @@ The new `mapGraphReadinessToTelemetry()` helper lives in `mcp_server/lib/search/
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` | Created | Shared mapper for snapshot and richer code graph readiness payloads |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modified | Calls readiness snapshot and threads mapped telemetry into `SearchDecisionEnvelope` |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Modified | Removes TC-3 expected failure and asserts deterministic snapshot-derived readiness |
-| `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Modified | Replaces inline richer-payload mapping with the shared helper |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` | Created | Covers fresh, stale, empty, and error snapshot mapping |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-readiness-mapper.ts` | Created | Shared mapper for snapshot and richer code graph readiness payloads |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Modified | Calls readiness snapshot and threads mapped telemetry into `SearchDecisionEnvelope` |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts` | Modified | Removes TC-3 expected failure and asserts deterministic snapshot-derived readiness |
+| `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts` | Modified | Replaces inline richer-payload mapping with the shared helper |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/graph-readiness-mapper.vitest.ts` | Created | Covers fresh, stale, empty, and error snapshot mapping |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/plan.md` | Created | Records architecture, phases, verification plan, and mapper location decision |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/tasks.md` | Created | Tracks setup, implementation, verification, and completion criteria |
 | `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/025-memory-search-degraded-readiness-wiring/spec.md` | Modified | Updates continuity and packet status |

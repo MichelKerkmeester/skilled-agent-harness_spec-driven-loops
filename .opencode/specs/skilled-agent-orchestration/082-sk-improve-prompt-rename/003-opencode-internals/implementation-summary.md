@@ -14,7 +14,7 @@ _memory:
     recent_action: "Phase 003 refs rotated; rebuild blocked"
     next_safe_action: "Resolve rebuild blocker"
     blockers:
-      - "advisor_rebuild failed because .opencode/skill/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while the folder is deep-agent-improvement"
+      - "advisor_rebuild failed because .opencode/skills/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while the folder is deep-agent-improvement"
       - "The requested broad .opencode grep still finds Phase 005-only files, which this phase was instructed not to touch"
     key_files:
       - "spec.md"
@@ -33,7 +33,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -112,6 +112,6 @@ The change was a scoped literal rotation after reading the reference shapes. I u
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Advisor rebuild is not complete.** The local compiled handler fails before indexing because `.opencode/skill/deep-agent-improvement/graph-metadata.json` still declares `skill_id: "sk-improve-agent"` while the folder is `deep-agent-improvement`.
+1. **Advisor rebuild is not complete.** The local compiled handler fails before indexing because `.opencode/skills/deep-agent-improvement/graph-metadata.json` still declares `skill_id: "sk-improve-agent"` while the folder is `deep-agent-improvement`.
 2. **Broad `.opencode/` grep cannot reach zero under Phase 003 constraints.** Remaining old-name hits are Phase 005 files: install guides, active changelog, skill catalog README, system-spec-kit changelog, and observability results/report.
 <!-- /ANCHOR:limitations -->

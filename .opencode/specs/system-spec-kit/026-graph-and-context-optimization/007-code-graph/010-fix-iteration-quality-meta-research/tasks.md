@@ -99,6 +99,6 @@ _memory:
 - `review/iterations/iteration-005.md`
 - `review/deep-review-state.jsonl`
 - `review/deep-review-strategy.md`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml`
 <!-- /ANCHOR:cross-refs -->

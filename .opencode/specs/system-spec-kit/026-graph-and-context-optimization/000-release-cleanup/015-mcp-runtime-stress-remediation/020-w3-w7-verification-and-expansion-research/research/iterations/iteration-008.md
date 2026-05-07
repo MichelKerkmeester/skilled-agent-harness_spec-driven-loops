@@ -9,26 +9,26 @@ status: complete
 
 ## Focus
 
-Run the requested empty-folder audit against `.opencode/skill/system-spec-kit` and `.opencode/skill/system-spec-kit/mcp_server`, then identify directories that contain only placeholders.
+Run the requested empty-folder audit against `.opencode/skills/system-spec-kit` and `.opencode/skills/system-spec-kit/mcp_server`, then identify directories that contain only placeholders.
 
 ## Commands Run
 
 ```bash
-find .opencode/skill/system-spec-kit -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
-find .opencode/skill/system-spec-kit/mcp_server -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
-find .opencode/skill/system-spec-kit -type f \( -name '.gitkeep' -o -name 'index.ts' -o -name 'index.js' \) -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
+find .opencode/skills/system-spec-kit -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
+find .opencode/skills/system-spec-kit/mcp_server -type d -empty -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
+find .opencode/skills/system-spec-kit -type f \( -name '.gitkeep' -o -name 'index.ts' -o -name 'index.js' \) -not -path '*/node_modules/*' -not -path '*/dist/*' 2>/dev/null | sort
 ```
 
 ## Empty Directories Found
 
-- `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-- `.opencode/skill/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+- `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
+- `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
 
 ## Placeholder-Only Directories Found
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/out` contains only `.gitkeep`.
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/001-empty-folder` contains only `.gitkeep`.
-- `.opencode/skill/system-spec-kit/scripts/test-fixtures/012-anchors-empty-memory/memory` contains only `.gitkeep`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out` contains only `.gitkeep`.
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/001-empty-folder` contains only `.gitkeep`.
+- `.opencode/skills/system-spec-kit/scripts/test-fixtures/012-anchors-empty-memory/memory` contains only `.gitkeep`.
 
 ## Findings
 
@@ -36,8 +36,8 @@ find .opencode/skill/system-spec-kit -type f \( -name '.gitkeep' -o -name 'index
 
 The concrete deletion candidates are:
 
-1. `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
-2. `.opencode/skill/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
+1. `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs`
+2. `.opencode/skills/system-spec-kit/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-search-rag-measurement-driven-implementation/measurements`
 
 Rationale: both are empty after excluding dependency/build outputs and have no placeholder file that signals intentional retention.
 

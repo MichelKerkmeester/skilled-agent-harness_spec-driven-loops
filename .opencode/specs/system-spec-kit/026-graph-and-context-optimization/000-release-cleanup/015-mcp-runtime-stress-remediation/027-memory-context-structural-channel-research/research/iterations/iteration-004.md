@@ -6,29 +6,29 @@ Map the structural fusion paths onto `SearchDecisionEnvelope`, `QueryPlan`, trus
 
 ## Sources Read
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:44-59`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:61-104`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:152-160`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:90-109`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:153-187`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/query/query-plan.ts:229-258`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:29-48`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:69-79`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:145-203`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1320-1348`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1737-1797`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1161-1223`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts:23-34`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts:13-89`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:169-176`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:230-310`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:29-40`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:152-156`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:221-240`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25-49`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65-123`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:190-203`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:44-59`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:61-104`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-decision-envelope.ts:152-160`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:38-47`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:90-109`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:153-187`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/query/query-plan.ts:229-258`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:29-48`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:69-79`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:145-203`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1320-1348`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1737-1797`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1161-1223`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/query-plan-emission.vitest.ts:23-34`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts:13-89`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:169-176`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts:230-310`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:29-40`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:152-156`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:221-240`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25-49`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:65-123`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:190-203`
 
 ## Findings
 

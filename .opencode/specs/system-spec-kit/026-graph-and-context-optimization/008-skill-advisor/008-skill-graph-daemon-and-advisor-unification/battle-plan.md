@@ -64,7 +64,7 @@ Strict dependency chain (per `plan.md` + `graph-metadata.json.manual.depends_on`
 - Node 25 confirmed as active runtime (`node --version`).
 - Baseline `npm test` state captured in `/tmp/027-000-baseline.log`.
 
-**Dispatch prompt summary:** "Implement 027/000 per spec.md/plan.md/tasks.md/checklist.md. Scope: migrate `.opencode/skill/system-spec-kit/scripts/` from hybrid CJS/ESM to pure ESM. Flip `package.json` `\"type\"` to `\"module\"`. Convert all `if (require.main === module)` entrypoint guards in ~16-20 production source files to `import.meta.url === fileURLToPath(process.argv[1])` pattern. Convert any `const x = require('user-module')` to `import x from 'user-module'`. Convert any `__dirname` / `__filename` uses to `fileURLToPath(import.meta.url)` + `path.dirname`. Test files (`*.vitest.ts`) left out of scope. Clean rebuild dist + verify `bash validate.sh .../027/001 --strict --no-recursive` runs under both Node 25 and Node 20.19.5 without SyntaxError/ReferenceError. No changes outside `scripts/` + the 027/000 spec folder."
+**Dispatch prompt summary:** "Implement 027/000 per spec.md/plan.md/tasks.md/checklist.md. Scope: migrate `.opencode/skills/system-spec-kit/scripts/` from hybrid CJS/ESM to pure ESM. Flip `package.json` `\"type\"` to `\"module\"`. Convert all `if (require.main === module)` entrypoint guards in ~16-20 production source files to `import.meta.url === fileURLToPath(process.argv[1])` pattern. Convert any `const x = require('user-module')` to `import x from 'user-module'`. Convert any `__dirname` / `__filename` uses to `fileURLToPath(import.meta.url)` + `path.dirname`. Test files (`*.vitest.ts`) left out of scope. Clean rebuild dist + verify `bash validate.sh .../027/001 --strict --no-recursive` runs under both Node 25 and Node 20.19.5 without SyntaxError/ReferenceError. No changes outside `scripts/` + the 027/000 spec folder."
 
 **Success gate:**
 - All P0 checklist items green
@@ -80,7 +80,7 @@ Strict dependency chain (per `plan.md` + `graph-metadata.json.manual.depends_on`
 **Preconditions:**
 - Scaffold committed (done: commit `7b639258a`).
 - Audit patches applied (done: commit `9197e4ede`).
-- TS build clean baseline: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`
+- TS build clean baseline: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
 - Baseline test green: `cd mcp_server && npx vitest run` (8 files / 65 tests + any Phase 026 follow-ons — see Phase 026 commit `874554827`)
 
 **Dispatch prompt summary:** "Implement 027/001 per spec.md/plan.md/tasks.md/checklist.md. Create `mcp_server/skill-advisor/lib/daemon/{watcher,lease,lifecycle}.ts` + `lib/freshness/{generation,trust-state,rebuild-from-source}.ts` + `bench/watcher-benchmark.ts`. Use Chokidar (narrow scope + per-skill `derived.key_files` dynamic additions), workspace-scoped single-writer lease, post-commit generation publication, fail-open semantics. Add Track H inline hardening (reindex-storm back-pressure, malformed SKILL.md quarantine, partial-write resilience). Tests under `tests/daemon/**` + `tests/freshness/**`. Benchmark must meet ≤1% idle CPU / <20MB RSS. No code outside 001's scope. Full vitest suite must pass at end."
@@ -160,7 +160,7 @@ Strict dependency chain (per `plan.md` + `graph-metadata.json.manual.depends_on`
 
 **Preconditions:** 027/004 landed. 027/006 ideally landed (005 playbook references 006 promotion gates) but not hard requirement.
 
-**Dispatch prompt summary:** "Implement 027/005 per spec.md/plan.md/tasks.md/checklist.md. Rewrite `.opencode/skill/skill-advisor/scripts/skill_advisor.py` as probe→route-native-or-fallback shim (preserve Phase 025 `--stdin` mode + Phase 026 fixes). Rewire `.opencode/plugins/spec-kit-skill-advisor.js` + `-bridge.mjs` to delegate to `advisor_recommend` when daemon present. Create `lib/compat/{daemon-probe,redirect-metadata}.ts`. Update `.opencode/skill/system-spec-kit/install_guide/**` with daemon bootstrap + rollback docs. Update `.opencode/skill/skill-advisor/manual_testing_playbook/**` with native path + Python-shim path + supersession/archive/rollback redirect scenarios + H5 operator-alerting playbook. Prompt-safe status surfaces for 4 lifecycle states."
+**Dispatch prompt summary:** "Implement 027/005 per spec.md/plan.md/tasks.md/checklist.md. Rewrite `.opencode/skills/skill-advisor/scripts/skill_advisor.py` as probe→route-native-or-fallback shim (preserve Phase 025 `--stdin` mode + Phase 026 fixes). Rewire `.opencode/plugins/spec-kit-skill-advisor.js` + `-bridge.mjs` to delegate to `advisor_recommend` when daemon present. Create `lib/compat/{daemon-probe,redirect-metadata}.ts`. Update `.opencode/skills/system-spec-kit/install_guide/**` with daemon bootstrap + rollback docs. Update `.opencode/skills/skill-advisor/manual_testing_playbook/**` with native path + Python-shim path + supersession/archive/rollback redirect scenarios + H5 operator-alerting playbook. Prompt-safe status surfaces for 4 lifecycle states."
 
 **Success gate:**
 - Python shim tests green (daemon-on + daemon-off)

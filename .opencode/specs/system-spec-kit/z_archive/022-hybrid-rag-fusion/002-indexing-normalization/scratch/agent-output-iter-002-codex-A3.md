@@ -20,12 +20,12 @@ CONTEXT FROM ITERATION 1:
 TASK: Deep dive into cross-skill alignment issues.
 
 Primary files (READ ALL):
-1. .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts (229 lines)
-2. .opencode/skill/system-spec-kit/SKILL.md (full file)
-3. .opencode/skill/sk-code-opencode/SKILL.md (full file)
-4. .opencode/skill/sk-doc/SKILL.md (full file)
-5. .opencode/skill/system-spec-kit/scripts/spec/validate.sh
-6. .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+1. .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts (229 lines)
+2. .opencode/skills/system-spec-kit/SKILL.md (full file)
+3. .opencode/skills/sk-code-opencode/SKILL.md (full file)
+4. .opencode/skills/sk-doc/SKILL.md (full file)
+5. .opencode/skills/system-spec-kit/scripts/spec/validate.sh
+6. .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
 
 Questions:
 1. List all importance tiers in importance-tiers.ts and compare to every mention of tiers in SKILL.md files.
@@ -49,11 +49,11 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m treating this as a read-only alignment audit across the spec-kit and related skills. First I’m going to load the routing guidance and the requested source files, then I’ll compare tier names, P0/P1/P2 semantics, exit codes, HVR applicability, scoring multipliers, and Smart Router settings before I write up `ALIGN-NNN` findings.
 exec
-/bin/zsh -lc 'pwd && test -f .opencode/skill/system-spec-kit/SKILL.md && test -f .opencode/skill/sk-code-opencode/SKILL.md && test -f .opencode/skill/sk-doc/SKILL.md && echo READY' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'pwd && test -f .opencode/skills/system-spec-kit/SKILL.md && test -f .opencode/skills/sk-code-opencode/SKILL.md && test -f .opencode/skills/sk-doc/SKILL.md && echo READY' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
 READY
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Deep dive into cross-skill alignment issues across system-spec-kit, sk-code-opencode, and sk-doc. Compare importance tiers, P0/P1/P2 semantics, validation exit codes, HVR applicability, document-type scoring multipliers, and Smart Router ambiguity_delta." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Deep dive into cross-skill alignment issues across system-spec-kit, sk-code-opencode, and sk-doc. Compare importance tiers, P0/P1/P2 semantics, validation exit codes, HVR applicability, document-type scoring multipliers, and Smart Router ambiguity_delta." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 [
   {
     "skill": "system-spec-kit",
@@ -74,8 +74,8 @@ exec
   {
     "skill": "sk-doc",
     "kind": "skill",
-tool cocoindex_code.search({"query":"importance tiers P0 P1 P2 ambiguity_delta scoring multiplier checklist validation exit code Human Voice Rules spec documents","paths":[".opencode/skill/**"],"limit":10,"refresh_index":true})
-cocoindex_code.search({"query":"importance tiers P0 P1 P2 ambiguity_delta scoring multiplier checklist validation exit code Human Voice Rules spec documents","paths":[".opencode/skill/**"],"limit":10,"refresh_index":true}) success in 675ms:
+tool cocoindex_code.search({"query":"importance tiers P0 P1 P2 ambiguity_delta scoring multiplier checklist validation exit code Human Voice Rules spec documents","paths":[".opencode/skills/**"],"limit":10,"refresh_index":true})
+cocoindex_code.search({"query":"importance tiers P0 P1 P2 ambiguity_delta scoring multiplier checklist validation exit code Human Voice Rules spec documents","paths":[".opencode/skills/**"],"limit":10,"refresh_index":true}) success in 675ms:
 {
   "content": [
     {
@@ -100,14 +100,14 @@ Read-only cross-skill audit with multiple comparison points; I’m gathering exa
   • Compare semantics across system-spec-kit, sk-code-opencode, and sk-doc
   • Draft ALIGN-NNN findings with severity and evidence references
 exec
-/bin/zsh -lc 'wc -l .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/sk-code-opencode/SKILL.md .opencode/skill/sk-doc/SKILL.md .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-     229 .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
-     845 .opencode/skill/system-spec-kit/SKILL.md
-     703 .opencode/skill/sk-code-opencode/SKILL.md
-     856 .opencode/skill/sk-doc/SKILL.md
-     641 .opencode/skill/system-spec-kit/scripts/spec/validate.sh
-     497 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+     229 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
+     845 .opencode/skills/system-spec-kit/SKILL.md
+     703 .opencode/skills/sk-code-opencode/SKILL.md
+     856 .opencode/skills/sk-doc/SKILL.md
+     641 .opencode/skills/system-spec-kit/scripts/spec/validate.sh
+     497 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
     3771 total
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
@@ -131,31 +131,31 @@ export interface TierConfig {
 
 export type ImportanceTier =
 exec
-/bin/zsh -lc "rg -n \"P0|P1|P2|tier|importance|ambiguity_delta|multiplier|Human Voice|HVR|exit 0|exit 1|exit 2|return 0|return 1|return 2|sys\\.exit|checklist|document type|document-type|spec\" .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/sk-code-opencode/SKILL.md .opencode/skill/sk-doc/SKILL.md .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:87:// Get tier configuration by name (returns normal tier if invalid)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:88:export function getTierConfig(tierName: string | null | undefined): TierConfig {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:89:  if (!tierName || typeof tierName !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:92:  return IMPORTANCE_TIERS[tierName.toLowerCase() as ImportanceTier] || IMPORTANCE_TIERS[DEFAULT_TIER];
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:95:// Apply tier boost to a search score (critical=2x, important=1.5x, etc.)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:96:export function applyTierBoost(score: number, tier: string): number {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:98:    return 0;
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:100:  const config = getTierConfig(tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:104:// Check if tier should be excluded from search (deprecated tier)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:105:export function isExcludedFromSearch(tier: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:106:  const config = getTierConfig(tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:110:// Check if tier allows decay over time (normal, temporary)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:111:export function allowsDecay(tier: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:112:  const config = getTierConfig(tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:116:// Get auto-expiration days for tier (null = never expires)
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:117:export function getAutoExpireDays(tier: string): number | null {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:118:  const config = getTierConfig(tier);
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:122:// Validate if tier name is valid
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:123:export function isValidTier(tier: string | null | undefined): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:124:  if (!tier || typeof tier !== 'string') {
+/bin/zsh -lc "rg -n \"P0|P1|P2|tier|importance|ambiguity_delta|multiplier|Human Voice|HVR|exit 0|exit 1|exit 2|return 0|return 1|return 2|sys\\.exit|checklist|document type|document-type|spec\" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:87:// Get tier configuration by name (returns normal tier if invalid)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:88:export function getTierConfig(tierName: string | null | undefined): TierConfig {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:89:  if (!tierName || typeof tierName !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:92:  return IMPORTANCE_TIERS[tierName.toLowerCase() as ImportanceTier] || IMPORTANCE_TIERS[DEFAULT_TIER];
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:95:// Apply tier boost to a search score (critical=2x, important=1.5x, etc.)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:96:export function applyTierBoost(score: number, tier: string): number {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:98:    return 0;
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:100:  const config = getTierConfig(tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:104:// Check if tier should be excluded from search (deprecated tier)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:105:export function isExcludedFromSearch(tier: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:106:  const config = getTierConfig(tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:110:// Check if tier allows decay over time (normal, temporary)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:111:export function allowsDecay(tier: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:112:  const config = getTierConfig(tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:116:// Get auto-expiration days for tier (null = never expires)
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:117:export function getAutoExpireDays(tier: string): number | null {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:118:  const config = getTierConfig(tier);
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:122:// Validate if tier name is valid
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:123:export function isValidTier(tier: string | null | undefined): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:124:  if (!tier || typeof tier !== 'string') {
 codex
 I’ve got the first pass of exact matches. Now I’m paging through the full skill docs and the two scripts in chunks so I can verify whether the local references are normative guidance, examples, or actual enforcement logic before I label anything as breaking versus merely inconsistent.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/SKILL.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	name: system-spec-kit
      3	description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -177,7 +177,7 @@ exec
     19	
     20	A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/SKILL.md | sed -n '461,845p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/SKILL.md | sed -n '461,845p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    461	**Good examples:** `fix-typo`, `add-auth`, `mcp-code-mode`, `cli-codex`
    462	**Bad examples:** `new-feature-implementation`, `UpdateUserAuthSystem`, `fix_bug`
    463	
@@ -199,7 +199,7 @@ exec
    479	specs/007-auth-system/
    480	├── 001-initial-implementation/
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/SKILL.md | sed -n '221,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/SKILL.md | sed -n '221,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    221	
    222	LOADING_LEVELS = {
    223	    "ALWAYS": [DEFAULT_RESOURCE],
@@ -221,7 +221,7 @@ exec
    239	
    240	def _guard_in_skill(relative_path: str) -> str:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-code-opencode/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	name: sk-code-opencode
      3	description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
@@ -243,7 +243,7 @@ exec
     19	### Activation Triggers
     20	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-code-opencode/SKILL.md | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    261	        ├─ Fall back to keyword matching
    262	        └─ Prompt user if ambiguous
    263	        ↓
@@ -265,7 +265,7 @@ exec
    279	### Key Pattern Categories
    280	
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-code-opencode/SKILL.md | sed -n '521,703p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '521,703p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    521	| Shell      | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
    522	| Config     | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
    523	
@@ -287,9 +287,9 @@ exec
    539	| **sk-code-web**          | Web/frontend development, browser testing  |
    540	| **sk-doc** | Markdown documentation, skill creation     |
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/SKILL.md | sed -n '261,540p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/SKILL.md | sed -n '541,856p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/SKILL.md | sed -n '261,540p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/SKILL.md | sed -n '541,856p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    261	    for relative_path in LOADING_LEVELS["ALWAYS"]:
    262	        load_if_available(relative_path)
    263	    for intent in intents:
@@ -355,7 +355,7 @@ exec
 codex
 The remaining gap is the enforcement layer, so I’m reading the validator and verifier code directly plus the checklist template. That will let me separate “documented behavior” from what actually exits non-zero or enforces a rule in practice.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/spec/validate.sh | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/spec/validate.sh | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env bash
      2	# ───────────────────────────────────────────────────────────────
      3	# COMPONENT: Validate Spec
@@ -377,7 +377,7 @@ exec
     19	
     20	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/spec/validate.sh | sed -n '181,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/spec/validate.sh | sed -n '181,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    181	                    in_order=true; continue
    182	                elif $in_order && [[ "$line" =~ ^[[:space:]]*[A-Za-z0-9_]+: ]]; then
    183	                    break
@@ -399,7 +399,7 @@ exec
    199	    return 0
    200	}
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/spec/validate.sh | sed -n '421,641p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/spec/validate.sh | sed -n '421,641p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    421	        if [[ ! "$real_rule" == "$real_rules_dir"/* ]] || [[ "${rule_script##*.}" != "sh" ]]; then
    422	            echo "Warning: Skipping suspicious rule script: $rule_script" >&2
    423	            continue
@@ -421,7 +421,7 @@ exec
    439	        local elapsed_ms=$(( end_ms - start_ms ))
    440	        local timing_str=""
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env python3
      2	# ───────────────────────────────────────────────────────────────
      3	# COMPONENT: ALIGNMENT DRIFT VERIFIER
@@ -443,7 +443,7 @@ exec
     19	
     20	from __future__ import annotations
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '221,497p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '221,497p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    221	def is_ts_pattern_asset(path: str) -> bool:
    222	    normalized = normalize_path(path)
    223	    return "/assets/" in normalized and "/patterns/" in normalized
@@ -465,54 +465,54 @@ exec
    239	    return base_severity
    240	
 exec
-/bin/zsh -lc "rg -n \"## P0|## P1|## P2|P0|P1|P2|HARD BLOCKER|Required|Optional|defer|deferral\" .opencode/skill/system-spec-kit/templates .opencode/skill/system-spec-kit/references -g '"'!*dist*'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "rg -n \"multiplier|weight|document[- ]type|Spec|README|SKILL|Knowledge|Command|Generic|DQI|score\" .opencode/skill/sk-doc -g '*.md' -g '*.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:16:- **P0 (HARD BLOCKER)** - Must complete before proceeding
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:17:- **P1 (MUST COMPLETE)** - Required for completion, can defer with approval
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:18:- **P2 (NICE TO HAVE)** - Optional, can defer without approval
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:28:### P0 - Hard Blockers
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:35:### P1 - Must Complete
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:43:### P2 - Nice to Have
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:56:### P0 - Hard Blockers
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:63:### P1 - Must Complete
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:70:### P2 - Nice to Have
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:83:### P0 - Hard Blockers
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:92:### P1 - Must Complete
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:103:### P2 - Nice to Have
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:123:- [ ] All P0 items verified with evidence
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:153:### P0 - Hard Blockers
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:160:### P1 - Must Complete
-.opencode/skill/system-spec-kit/references/validation/phase_checklists.md:167:### P2 - Nice to Have
-.opencode/skill/system-spec-kit/references/templates/template_style_guide.md:84:| `[OPTIONAL: description]` | Optional fields | `[OPTIONAL: link to spec.md]` |
-.opencode/skill/system-spec-kit/references/templates/template_style_guide.md:98:- **Priority:** [FORMAT: P0 / P1 / P2]
-.opencode/skill/system-spec-kit/references/templates/template_style_guide.md:107:**Optional Fields:**
-.opencode/skill/system-spec-kit/references/templates/template_style_guide.md:207:### When Required
+/bin/zsh -lc "rg -n \"## P0|## P1|## P2|P0|P1|P2|HARD BLOCKER|Required|Optional|defer|deferral\" .opencode/skills/system-spec-kit/templates .opencode/skills/system-spec-kit/references -g '"'!*dist*'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "rg -n \"multiplier|weight|document[- ]type|Spec|README|SKILL|Knowledge|Command|Generic|DQI|score\" .opencode/skills/sk-doc -g '*.md' -g '*.py'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:16:- **P0 (HARD BLOCKER)** - Must complete before proceeding
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:17:- **P1 (MUST COMPLETE)** - Required for completion, can defer with approval
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:18:- **P2 (NICE TO HAVE)** - Optional, can defer without approval
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:28:### P0 - Hard Blockers
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:35:### P1 - Must Complete
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:43:### P2 - Nice to Have
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:56:### P0 - Hard Blockers
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:63:### P1 - Must Complete
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:70:### P2 - Nice to Have
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:83:### P0 - Hard Blockers
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:92:### P1 - Must Complete
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:103:### P2 - Nice to Have
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:123:- [ ] All P0 items verified with evidence
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:153:### P0 - Hard Blockers
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:160:### P1 - Must Complete
+.opencode/skills/system-spec-kit/references/validation/phase_checklists.md:167:### P2 - Nice to Have
+.opencode/skills/system-spec-kit/references/templates/template_style_guide.md:84:| `[OPTIONAL: description]` | Optional fields | `[OPTIONAL: link to spec.md]` |
+.opencode/skills/system-spec-kit/references/templates/template_style_guide.md:98:- **Priority:** [FORMAT: P0 / P1 / P2]
+.opencode/skills/system-spec-kit/references/templates/template_style_guide.md:107:**Optional Fields:**
+.opencode/skills/system-spec-kit/references/templates/template_style_guide.md:207:### When Required
  succeeded in 0ms:
-.opencode/skill/sk-doc/assets/agents/command_template.md:2:title: Command Template - OpenCode Slash Commands
-.opencode/skill/sk-doc/assets/agents/command_template.md:6:# Command Template - OpenCode Slash Commands
-.opencode/skill/sk-doc/assets/agents/command_template.md:15:### What Are OpenCode Commands?
-.opencode/skill/sk-doc/assets/agents/command_template.md:27:- Commands = Actionable workflows triggered by `/command-name`
-.opencode/skill/sk-doc/assets/agents/command_template.md:28:- Skills = Reference documentation loaded via `Read(".opencode/skill/<skill-name>/SKILL.md")`
-.opencode/skill/sk-doc/assets/agents/command_template.md:40:### How Commands Are Invoked
-.opencode/skill/sk-doc/assets/agents/command_template.md:56:### Command File Location
-.opencode/skill/sk-doc/assets/agents/command_template.md:71:Level 1: Simple Command
-.opencode/skill/sk-doc/assets/agents/command_template.md:74:Level 2: Workflow Command
-.opencode/skill/sk-doc/assets/agents/command_template.md:77:Level 3: Mode-Based / Dispatch Command
-.opencode/skill/sk-doc/assets/agents/command_template.md:87:### Create Command When
-.opencode/skill/sk-doc/assets/agents/command_template.md:109:│   │   └─► Command with argument-hint + mandatory gate
-.opencode/skill/sk-doc/assets/agents/command_template.md:135:### Command Types by Complexity
-.opencode/skill/sk-doc/assets/agents/command_template.md:193:### Common Sections (All Command Types)
-.opencode/skill/sk-doc/assets/agents/command_template.md:205:### Minimal Command Structure
-.opencode/skill/sk-doc/assets/agents/command_template.md:214:# Command Title
-.opencode/skill/sk-doc/assets/agents/command_template.md:260:Commands use two categories of notation: **semantic markers** (for blocking/validation states) and **section names** (for content organization).
-.opencode/skill/sk-doc/assets/agents/command_template.md:416:### Example Questions by Command Type
-.opencode/skill/sk-doc/assets/agents/command_template.md:418:| Command Purpose    | Question                                          |
-.opencode/skill/sk-doc/assets/agents/command_template.md:425:| Generic routing    | "What request would you like to route?"           |
-tool cocoindex_code.search({"query":"spec checklist template P0 P1 P2 definitions and sk-doc document type scoring or multiplier logic","paths":[".opencode/skill/system-spec-kit/**",".opencode/skill/sk-doc/**"],"limit":10,"refresh_index":false})
-cocoindex_code.search({"query":"spec checklist template P0 P1 P2 definitions and sk-doc document type scoring or multiplier logic","paths":[".opencode/skill/system-spec-kit/**",".opencode/skill/sk-doc/**"],"limit":10,"refresh_index":false}) failed in 2m 00s:
+.opencode/skills/sk-doc/assets/agents/command_template.md:2:title: Command Template - OpenCode Slash Commands
+.opencode/skills/sk-doc/assets/agents/command_template.md:6:# Command Template - OpenCode Slash Commands
+.opencode/skills/sk-doc/assets/agents/command_template.md:15:### What Are OpenCode Commands?
+.opencode/skills/sk-doc/assets/agents/command_template.md:27:- Commands = Actionable workflows triggered by `/command-name`
+.opencode/skills/sk-doc/assets/agents/command_template.md:28:- Skills = Reference documentation loaded via `Read(".opencode/skills/<skill-name>/SKILL.md")`
+.opencode/skills/sk-doc/assets/agents/command_template.md:40:### How Commands Are Invoked
+.opencode/skills/sk-doc/assets/agents/command_template.md:56:### Command File Location
+.opencode/skills/sk-doc/assets/agents/command_template.md:71:Level 1: Simple Command
+.opencode/skills/sk-doc/assets/agents/command_template.md:74:Level 2: Workflow Command
+.opencode/skills/sk-doc/assets/agents/command_template.md:77:Level 3: Mode-Based / Dispatch Command
+.opencode/skills/sk-doc/assets/agents/command_template.md:87:### Create Command When
+.opencode/skills/sk-doc/assets/agents/command_template.md:109:│   │   └─► Command with argument-hint + mandatory gate
+.opencode/skills/sk-doc/assets/agents/command_template.md:135:### Command Types by Complexity
+.opencode/skills/sk-doc/assets/agents/command_template.md:193:### Common Sections (All Command Types)
+.opencode/skills/sk-doc/assets/agents/command_template.md:205:### Minimal Command Structure
+.opencode/skills/sk-doc/assets/agents/command_template.md:214:# Command Title
+.opencode/skills/sk-doc/assets/agents/command_template.md:260:Commands use two categories of notation: **semantic markers** (for blocking/validation states) and **section names** (for content organization).
+.opencode/skills/sk-doc/assets/agents/command_template.md:416:### Example Questions by Command Type
+.opencode/skills/sk-doc/assets/agents/command_template.md:418:| Command Purpose    | Question                                          |
+.opencode/skills/sk-doc/assets/agents/command_template.md:425:| Generic routing    | "What request would you like to route?"           |
+tool cocoindex_code.search({"query":"spec checklist template P0 P1 P2 definitions and sk-doc document type scoring or multiplier logic","paths":[".opencode/skills/system-spec-kit/**",".opencode/skills/sk-doc/**"],"limit":10,"refresh_index":false})
+cocoindex_code.search({"query":"spec checklist template P0 P1 P2 definitions and sk-doc document type scoring or multiplier logic","paths":[".opencode/skills/system-spec-kit/**",".opencode/skills/sk-doc/**"],"limit":10,"refresh_index":false}) failed in 2m 00s:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/templates/addendum/level2-verify/checklist.md | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts | sed -n '1,229p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts | sed -n '1,229p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: "Verification Checklist: [NAME] [template:addendum/level2-verify/checklist.md]"
      3	description: "Verification Date: [YYYY-MM-DD]"
@@ -555,7 +555,7 @@ exec
     19	
     20	export type ImportanceTier =
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/validate_document.py | sed -n '261,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/validate_document.py | sed -n '261,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    261	            entry_text = entry_match.group(1)
    262	
    263	            # Check for ALL CAPS (only for readme type which requires it)
@@ -577,7 +577,7 @@ exec
    279	                    'message': f'TOC entry not ALL CAPS: "{entry_text}"',
    280	                    'line': line,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/validate_document.py | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/validate_document.py | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env python3
      2	# ───────────────────────────────────────────────────────────────
      3	# COMPONENT: README/DOCUMENTATION FORMAT VALIDATOR
@@ -599,7 +599,7 @@ exec
     19	    0 - Valid (no blocking errors)
     20	    1 - Invalid (blocking errors found)
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/references/global/hvr_rules.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/references/global/hvr_rules.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: Human Voice Rules (HVR) - Writing Standards Reference
      3	description: Linguistic standards that eliminate detectable AI patterns and enforce natural human writing across all documentation.
@@ -621,29 +621,29 @@ exec
     19	Apply to all AI-generated documentation: READMEs, implementation summaries, decision records, install guides and spec folder docs.
     20	
 exec
-/bin/zsh -lc "rg -n '\"spec\"|tocRequired|h2EmojiRequired|h2UppercaseRequired|requiredSections|documentTypes|dqi|style|content|structure' .opencode/skill/sk-doc/assets/template_rules.json .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/skill/sk-doc/references/global/validation.md .opencode/skill/sk-doc/references/specific/install_guide_creation.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/sk-doc/references/specific/install_guide_creation.md:23:- **AI-friendly** - Parseable structure with copyable commands
-.opencode/skill/sk-doc/references/specific/install_guide_creation.md:26:- All guides follow an 11-section structure (sections 0-10)
-.opencode/skill/sk-doc/references/specific/install_guide_creation.md:68:Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
-.opencode/skill/sk-doc/assets/template_rules.json:4:  "documentTypes": {
-.opencode/skill/sk-doc/assets/template_rules.json:7:      "requiredSections": ["overview"],
-.opencode/skill/sk-doc/assets/template_rules.json:9:      "optionalSections": ["structure", "features", "configuration", "usage_examples", "faq"],
-.opencode/skill/sk-doc/assets/template_rules.json:13:        "structure": "\ud83d\udcc1",
-.opencode/skill/sk-doc/assets/template_rules.json:42:      "tocRequired": true,
-.opencode/skill/sk-doc/assets/template_rules.json:45:      "h2EmojiRequired": false,
-.opencode/skill/sk-doc/assets/template_rules.json:46:      "h2UppercaseRequired": true,
-.opencode/skill/sk-doc/assets/template_rules.json:52:      "requiredSections": ["when_to_use", "smart_routing", "how_it_works", "rules"],
-.opencode/skill/sk-doc/assets/template_rules.json:83:      "tocRequired": false,
-.opencode/skill/sk-doc/assets/template_rules.json:84:      "h2EmojiRequired": false
-.opencode/skill/sk-doc/assets/template_rules.json:88:      "requiredSections": ["purpose", "instructions"],
-.opencode/skill/sk-doc/assets/template_rules.json:147:      "tocRequired": false,
-.opencode/skill/sk-doc/assets/template_rules.json:148:      "h2EmojiRequired": false,
-.opencode/skill/sk-doc/assets/template_rules.json:158:      "requiredSections": ["overview", "prerequisites", "installation", "verification"],
-.opencode/skill/sk-doc/assets/template_rules.json:182:      "tocRequired": true,
-.opencode/skill/sk-doc/assets/template_rules.json:185:      "h2EmojiRequired": false,
-.opencode/skill/sk-doc/assets/template_rules.json:186:      "h2UppercaseRequired": true,
+/bin/zsh -lc "rg -n '\"spec\"|tocRequired|h2EmojiRequired|h2UppercaseRequired|requiredSections|documentTypes|dqi|style|content|structure' .opencode/skills/sk-doc/assets/template_rules.json .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sk-doc/references/global/validation.md .opencode/skills/sk-doc/references/specific/install_guide_creation.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/sk-doc/references/specific/install_guide_creation.md:23:- **AI-friendly** - Parseable structure with copyable commands
+.opencode/skills/sk-doc/references/specific/install_guide_creation.md:26:- All guides follow an 11-section structure (sections 0-10)
+.opencode/skills/sk-doc/references/specific/install_guide_creation.md:68:Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
+.opencode/skills/sk-doc/assets/template_rules.json:4:  "documentTypes": {
+.opencode/skills/sk-doc/assets/template_rules.json:7:      "requiredSections": ["overview"],
+.opencode/skills/sk-doc/assets/template_rules.json:9:      "optionalSections": ["structure", "features", "configuration", "usage_examples", "faq"],
+.opencode/skills/sk-doc/assets/template_rules.json:13:        "structure": "\ud83d\udcc1",
+.opencode/skills/sk-doc/assets/template_rules.json:42:      "tocRequired": true,
+.opencode/skills/sk-doc/assets/template_rules.json:45:      "h2EmojiRequired": false,
+.opencode/skills/sk-doc/assets/template_rules.json:46:      "h2UppercaseRequired": true,
+.opencode/skills/sk-doc/assets/template_rules.json:52:      "requiredSections": ["when_to_use", "smart_routing", "how_it_works", "rules"],
+.opencode/skills/sk-doc/assets/template_rules.json:83:      "tocRequired": false,
+.opencode/skills/sk-doc/assets/template_rules.json:84:      "h2EmojiRequired": false
+.opencode/skills/sk-doc/assets/template_rules.json:88:      "requiredSections": ["purpose", "instructions"],
+.opencode/skills/sk-doc/assets/template_rules.json:147:      "tocRequired": false,
+.opencode/skills/sk-doc/assets/template_rules.json:148:      "h2EmojiRequired": false,
+.opencode/skills/sk-doc/assets/template_rules.json:158:      "requiredSections": ["overview", "prerequisites", "installation", "verification"],
+.opencode/skills/sk-doc/assets/template_rules.json:182:      "tocRequired": true,
+.opencode/skills/sk-doc/assets/template_rules.json:185:      "h2EmojiRequired": false,
+.opencode/skills/sk-doc/assets/template_rules.json:186:      "h2UppercaseRequired": true,
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/assets/template_rules.json | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/assets/template_rules.json | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	{
      2	  "version": "1.2.0",
      3	  "description": "Machine-readable template specifications for automated documentation validation - aligned with all 9 templates",
@@ -665,7 +665,7 @@ exec
     19	        "faq": "\u2753",
     20	        "related_documents": "\ud83d\udcda",
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/extract_structure.py | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/extract_structure.py | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env python3
      2	# ───────────────────────────────────────────────────────────────
      3	# COMPONENT: DOCUMENT STRUCTURE EXTRACTOR
@@ -687,7 +687,7 @@ exec
     19	Output: JSON to stdout for AI agent processing
     20	"""
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/extract_structure.py | sed -n '321,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/extract_structure.py | sed -n '321,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    321	    Returns:
    322	        List of issue dicts with type, line, text, severity.
    323	    """
@@ -709,7 +709,7 @@ exec
    339	        if in_code_block:
    340	            continue
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/extract_structure.py | sed -n '620,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/extract_structure.py | sed -n '620,840p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    620	        filepath: Path to the markdown file.
    621	
    622	    Returns:
@@ -731,8 +731,8 @@ exec
    638	        return 'skill', 'filename'
    639	    elif path.name == 'README.md':
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/assets/template_rules.json | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/scripts/extract_structure.py | sed -n '840,1160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/assets/template_rules.json | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/scripts/extract_structure.py | sed -n '840,1160p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    260	        "document structure": "document_structure",
    261	        "standard asset structure": "standard_structure",
    262	        "standard structure": "standard_structure",
@@ -775,51 +775,51 @@ exec
    858	
    859	    Args:
 exec
-/bin/zsh -lc 'rg -n "importance tier|constitutional tier|critical|important|normal|temporary|deprecated|document-type scoring|multiplier|decision_record|implementation_summary|checklist|handover|memory" .opencode/skill/system-spec-kit/SKILL.md .opencode/skill/sk-doc/SKILL.md .opencode/skill/sk-code-opencode/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/system-spec-kit/SKILL.md:8:<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
-.opencode/skill/system-spec-kit/SKILL.md:24:- **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
-.opencode/skill/system-spec-kit/SKILL.md:63:- **Requires @speckit:** spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, and any other *.md in spec folders
-.opencode/skill/system-spec-kit/SKILL.md:65:  - `memory/` → uses generate-context.js script
-.opencode/skill/system-spec-kit/SKILL.md:66:  - `scratch/` → temporary workspace, any agent
-.opencode/skill/system-spec-kit/SKILL.md:67:  - `handover.md` → @handover agent only
-.opencode/skill/system-spec-kit/SKILL.md:71:Routing to `@general`, `@write`, or other agents for spec documentation is a **hard violation**. See constitutional memory: `speckit-exclusivity.md`
-.opencode/skill/system-spec-kit/SKILL.md:77:| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
-.opencode/skill/system-spec-kit/SKILL.md:92:- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
-.opencode/skill/system-spec-kit/SKILL.md:94:- `references/validation/` for checklist policy, verification rules, and decision formats.
-.opencode/skill/system-spec-kit/SKILL.md:106:- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
-.opencode/skill/system-spec-kit/SKILL.md:140:    "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
-.opencode/skill/system-spec-kit/SKILL.md:141:    "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
-.opencode/skill/system-spec-kit/SKILL.md:142:    "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
-.opencode/skill/system-spec-kit/SKILL.md:146:    "SCORING_CALIBRATION": {"weight": 3, "keywords": ["calibration", "scoring", "normalization", "decay", "interference"]},
-.opencode/skill/system-spec-kit/SKILL.md:148:    "GOVERNANCE": {"weight": 3, "keywords": ["governance", "shared memory", "tenant", "retention", "audit"]},
-.opencode/skill/system-spec-kit/SKILL.md:159:        "references/memory/epistemic_vectors.md",
-.opencode/skill/system-spec-kit/SKILL.md:174:        "references/memory/memory_system.md",
-.opencode/skill/system-spec-kit/SKILL.md:175:        "references/memory/save_workflow.md",
-.opencode/skill/system-spec-kit/SKILL.md:176:        "references/memory/trigger_config.md",
+/bin/zsh -lc 'rg -n "importance tier|constitutional tier|critical|important|normal|temporary|deprecated|document-type scoring|multiplier|decision_record|implementation_summary|checklist|handover|memory" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/system-spec-kit/SKILL.md:8:<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
+.opencode/skills/system-spec-kit/SKILL.md:24:- **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
+.opencode/skills/system-spec-kit/SKILL.md:63:- **Requires @speckit:** spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, and any other *.md in spec folders
+.opencode/skills/system-spec-kit/SKILL.md:65:  - `memory/` → uses generate-context.js script
+.opencode/skills/system-spec-kit/SKILL.md:66:  - `scratch/` → temporary workspace, any agent
+.opencode/skills/system-spec-kit/SKILL.md:67:  - `handover.md` → @handover agent only
+.opencode/skills/system-spec-kit/SKILL.md:71:Routing to `@general`, `@write`, or other agents for spec documentation is a **hard violation**. See constitutional memory: `speckit-exclusivity.md`
+.opencode/skills/system-spec-kit/SKILL.md:77:| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest creating handover |
+.opencode/skills/system-spec-kit/SKILL.md:92:- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
+.opencode/skills/system-spec-kit/SKILL.md:94:- `references/validation/` for checklist policy, verification rules, and decision formats.
+.opencode/skills/system-spec-kit/SKILL.md:106:- Memory save JSON schema and workflow contracts: [save_workflow.md](./references/memory/save_workflow.md)
+.opencode/skills/system-spec-kit/SKILL.md:140:    "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
+.opencode/skills/system-spec-kit/SKILL.md:141:    "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
+.opencode/skills/system-spec-kit/SKILL.md:142:    "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
+.opencode/skills/system-spec-kit/SKILL.md:146:    "SCORING_CALIBRATION": {"weight": 3, "keywords": ["calibration", "scoring", "normalization", "decay", "interference"]},
+.opencode/skills/system-spec-kit/SKILL.md:148:    "GOVERNANCE": {"weight": 3, "keywords": ["governance", "shared memory", "tenant", "retention", "audit"]},
+.opencode/skills/system-spec-kit/SKILL.md:159:        "references/memory/epistemic_vectors.md",
+.opencode/skills/system-spec-kit/SKILL.md:174:        "references/memory/memory_system.md",
+.opencode/skills/system-spec-kit/SKILL.md:175:        "references/memory/save_workflow.md",
+.opencode/skills/system-spec-kit/SKILL.md:176:        "references/memory/trigger_config.md",
 exec
-/bin/zsh -lc "rg -n \"HVR|human voice|banned|em dash|semicolon|Oxford|style_issue|hvr_rules|voice\" .opencode/skill/sk-doc/scripts .opencode/skill/sk-doc/references/global -g '*.py' -g '*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skill/sk-doc/scripts/extract_structure.py:945:    style_issues: List[Dict[str, Any]],
-.opencode/skill/sk-doc/scripts/extract_structure.py:958:        style_issues: List of style issue dicts.
-.opencode/skill/sk-doc/scripts/extract_structure.py:968:    style_issues = style_issues or []
-.opencode/skill/sk-doc/scripts/extract_structure.py:1099:    style_issue_count = len(style_issues)
-.opencode/skill/sk-doc/scripts/extract_structure.py:1100:    breakdown['style_issue_count'] = style_issue_count
-.opencode/skill/sk-doc/scripts/extract_structure.py:1101:    style_issue_score = max(0, 8 - style_issue_count * 2)
-.opencode/skill/sk-doc/scripts/extract_structure.py:1102:    breakdown['style_issue_score'] = style_issue_score
-.opencode/skill/sk-doc/scripts/extract_structure.py:1103:    style_score += style_issue_score
-.opencode/skill/sk-doc/scripts/extract_structure.py:1159:        checklist, content_issues, style_issues, dqi, evaluation_questions.
-.opencode/skill/sk-doc/scripts/extract_structure.py:1192:    style_issues = []
-.opencode/skill/sk-doc/scripts/extract_structure.py:1194:        style_issues.extend(check_h2_formatting(headings, doc_type))
-.opencode/skill/sk-doc/scripts/extract_structure.py:1195:        style_issues.extend(check_section_dividers(content, headings))
-.opencode/skill/sk-doc/scripts/extract_structure.py:1197:        style_issues.extend(check_h3_emoji_usage(headings, content))
-.opencode/skill/sk-doc/scripts/extract_structure.py:1206:        style_issues=style_issues,
-.opencode/skill/sk-doc/scripts/extract_structure.py:1223:        'style_issues': style_issues,
-.opencode/skill/sk-doc/references/global/hvr_rules.md:2:title: Human Voice Rules (HVR) - Writing Standards Reference
-.opencode/skill/sk-doc/references/global/hvr_rules.md:6:# Human Voice Rules (HVR) - Writing Standards Reference
-.opencode/skill/sk-doc/references/global/hvr_rules.md:15:AI-generated text carries tells: em dashes everywhere, three-item lists, hedging language, the same 20 overused words. Readers spot these patterns and trust drops. HVR defines what to aim for and what to avoid.
-.opencode/skill/sk-doc/references/global/hvr_rules.md:21:- Read the voice directives (Section 2) to understand the target voice
-.opencode/skill/sk-doc/references/global/hvr_rules.md:29:<!-- ANCHOR:voice-directives -->
+/bin/zsh -lc "rg -n \"HVR|human voice|banned|em dash|semicolon|Oxford|style_issue|hvr_rules|voice\" .opencode/skills/sk-doc/scripts .opencode/skills/sk-doc/references/global -g '*.py' -g '*.md'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/sk-doc/scripts/extract_structure.py:945:    style_issues: List[Dict[str, Any]],
+.opencode/skills/sk-doc/scripts/extract_structure.py:958:        style_issues: List of style issue dicts.
+.opencode/skills/sk-doc/scripts/extract_structure.py:968:    style_issues = style_issues or []
+.opencode/skills/sk-doc/scripts/extract_structure.py:1099:    style_issue_count = len(style_issues)
+.opencode/skills/sk-doc/scripts/extract_structure.py:1100:    breakdown['style_issue_count'] = style_issue_count
+.opencode/skills/sk-doc/scripts/extract_structure.py:1101:    style_issue_score = max(0, 8 - style_issue_count * 2)
+.opencode/skills/sk-doc/scripts/extract_structure.py:1102:    breakdown['style_issue_score'] = style_issue_score
+.opencode/skills/sk-doc/scripts/extract_structure.py:1103:    style_score += style_issue_score
+.opencode/skills/sk-doc/scripts/extract_structure.py:1159:        checklist, content_issues, style_issues, dqi, evaluation_questions.
+.opencode/skills/sk-doc/scripts/extract_structure.py:1192:    style_issues = []
+.opencode/skills/sk-doc/scripts/extract_structure.py:1194:        style_issues.extend(check_h2_formatting(headings, doc_type))
+.opencode/skills/sk-doc/scripts/extract_structure.py:1195:        style_issues.extend(check_section_dividers(content, headings))
+.opencode/skills/sk-doc/scripts/extract_structure.py:1197:        style_issues.extend(check_h3_emoji_usage(headings, content))
+.opencode/skills/sk-doc/scripts/extract_structure.py:1206:        style_issues=style_issues,
+.opencode/skills/sk-doc/scripts/extract_structure.py:1223:        'style_issues': style_issues,
+.opencode/skills/sk-doc/references/global/hvr_rules.md:2:title: Human Voice Rules (HVR) - Writing Standards Reference
+.opencode/skills/sk-doc/references/global/hvr_rules.md:6:# Human Voice Rules (HVR) - Writing Standards Reference
+.opencode/skills/sk-doc/references/global/hvr_rules.md:15:AI-generated text carries tells: em dashes everywhere, three-item lists, hedging language, the same 20 overused words. Readers spot these patterns and trust drops. HVR defines what to aim for and what to avoid.
+.opencode/skills/sk-doc/references/global/hvr_rules.md:21:- Read the voice directives (Section 2) to understand the target voice
+.opencode/skills/sk-doc/references/global/hvr_rules.md:29:<!-- ANCHOR:voice-directives -->
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/sk-doc/references/global/hvr_rules.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-doc/references/global/hvr_rules.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    280	## 8. PRE-PUBLISH CHECKLIST
    281	
    282	```yaml
@@ -848,73 +848,73 @@ I’ve finished the comparison pass and I’m packaging the evidence into severi
 codex
 **Findings**
 1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-opencode`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-opencode`’s P0 gate set. `sk-code-opencode` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
-[checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L410)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
+[checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L410)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
 
 2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-opencode` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
-[importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L590)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L1)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L1)
+[importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L590)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L1)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L1)
 
 3. `ALIGN-003` `INCONSISTENT` — HVR is documented as applying to spec-folder docs, but `sk-doc` does not actually enforce it for spec documents. The skill says HVR applies to all documentation output, and the HVR reference explicitly names spec-folder docs, yet `template_rules.json` gives `spec` no required sections and no casing/TOC rules, `validate_document.py` only validates TOC/H2/required-sections, and `extract_structure.py` routes `spec` through the generic checklist and skips the style-issue pipeline used for stricter document types. Template paths under `system-spec-kit/templates/` are also excluded from validation.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L444)  
-[hvr_rules.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/references/global/hvr_rules.md#L17)  
-[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/assets/template_rules.json#L308)  
-[validate_document.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/validate_document.py#L511)  
-[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/extract_structure.py#L753)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L444)  
+[hvr_rules.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/references/global/hvr_rules.md#L17)  
+[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/assets/template_rules.json#L308)  
+[validate_document.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/validate_document.py#L511)  
+[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/extract_structure.py#L753)
 
 4. `ALIGN-004` `INCONSISTENT` — Document-type scoring is not aligned between `system-spec-kit` and `sk-doc`. `system-spec-kit` documents 10 indexed document types with explicit retrieval multipliers, but `sk-doc` has no corresponding multiplier model; it uses enforcement tables and DQI thresholds instead. `spec` falls back to generic checklist/threshold behavior in `sk-doc`, and artifact types like `plan`, `decision_record`, `implementation_summary`, `handover`, and `memory` are not first-class `sk-doc` document types.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L591)  
-[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/assets/template_rules.json#L308)  
-[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/extract_structure.py#L894)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L591)  
+[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/assets/template_rules.json#L308)  
+[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/extract_structure.py#L894)
 
 5. `ALIGN-005` `INCONSISTENT` — The validator exit-code contracts differ materially. `validate.sh` uses `0=pass`, `1=warnings`, `2=errors`, while `verify_alignment_drift.py` uses only `0` and `1`, with warnings still returning `0` unless `--fail-on-warn` is set. That means “warnings” are non-zero in spec validation but zero in alignment verification. `validate.sh` also has a stale footer comment that no longer matches its real exit behavior.  
-[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh#L92)  
-[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh#L631)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
+[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L92)  
+[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L631)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
 
 6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-opencode` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L273)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L239)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L166)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L273)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L239)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L166)
 
 Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-opencode` uses a different hardcoded `0.8` threshold.
 tokens used
 339,696
 **Findings**
 1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-opencode`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-opencode`’s P0 gate set. `sk-code-opencode` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
-[checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L410)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
+[checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L410)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
 
 2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-opencode` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
-[importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L590)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L1)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L1)
+[importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L590)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L1)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L1)
 
 3. `ALIGN-003` `INCONSISTENT` — HVR is documented as applying to spec-folder docs, but `sk-doc` does not actually enforce it for spec documents. The skill says HVR applies to all documentation output, and the HVR reference explicitly names spec-folder docs, yet `template_rules.json` gives `spec` no required sections and no casing/TOC rules, `validate_document.py` only validates TOC/H2/required-sections, and `extract_structure.py` routes `spec` through the generic checklist and skips the style-issue pipeline used for stricter document types. Template paths under `system-spec-kit/templates/` are also excluded from validation.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L444)  
-[hvr_rules.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/references/global/hvr_rules.md#L17)  
-[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/assets/template_rules.json#L308)  
-[validate_document.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/validate_document.py#L511)  
-[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/extract_structure.py#L753)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L444)  
+[hvr_rules.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/references/global/hvr_rules.md#L17)  
+[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/assets/template_rules.json#L308)  
+[validate_document.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/validate_document.py#L511)  
+[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/extract_structure.py#L753)
 
 4. `ALIGN-004` `INCONSISTENT` — Document-type scoring is not aligned between `system-spec-kit` and `sk-doc`. `system-spec-kit` documents 10 indexed document types with explicit retrieval multipliers, but `sk-doc` has no corresponding multiplier model; it uses enforcement tables and DQI thresholds instead. `spec` falls back to generic checklist/threshold behavior in `sk-doc`, and artifact types like `plan`, `decision_record`, `implementation_summary`, `handover`, and `memory` are not first-class `sk-doc` document types.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L591)  
-[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/assets/template_rules.json#L308)  
-[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/scripts/extract_structure.py#L894)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L591)  
+[template_rules.json](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/assets/template_rules.json#L308)  
+[extract_structure.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/scripts/extract_structure.py#L894)
 
 5. `ALIGN-005` `INCONSISTENT` — The validator exit-code contracts differ materially. `validate.sh` uses `0=pass`, `1=warnings`, `2=errors`, while `verify_alignment_drift.py` uses only `0` and `1`, with warnings still returning `0` unless `--fail-on-warn` is set. That means “warnings” are non-zero in spec validation but zero in alignment verification. `validate.sh` also has a stale footer comment that no longer matches its real exit behavior.  
-[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh#L92)  
-[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/scripts/spec/validate.sh#L631)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
+[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L92)  
+[validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L631)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
 
 6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-opencode` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/system-spec-kit/SKILL.md#L273)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-doc/SKILL.md#L239)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skill/sk-code-opencode/SKILL.md#L166)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L273)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L239)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L166)
 
 Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-opencode` uses a different hardcoded `0.8` threshold.

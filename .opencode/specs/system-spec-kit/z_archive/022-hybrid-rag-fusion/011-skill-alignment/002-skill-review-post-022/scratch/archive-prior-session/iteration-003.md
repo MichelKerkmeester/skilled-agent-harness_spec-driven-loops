@@ -10,7 +10,7 @@
 ### Finding 003-F1
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/references/templates/template_style_guide.md:52`
+- **File**: `.opencode/skills/system-spec-kit/references/templates/template_style_guide.md:52`
 - **Title**: Level metadata format excludes Level 3+ coordination specs
 - **Evidence**: `"Level: [FORMAT: 1 / 2 / 3]"` — no 3+ option
 - **Expected**: Include `3+` and coordination-root table-style exception with snapshot language
@@ -20,7 +20,7 @@
 ### Finding 003-F2
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/references/templates/level_selection_guide.md:93`
+- **File**: `.opencode/skills/system-spec-kit/references/templates/level_selection_guide.md:93`
 - **Title**: Level 3+ selection hard-tied to 80-100 complexity, missing coordination-root exception
 - **Evidence**: `| 80-100 | 3+ | Extended |`
 - **Expected**: Allow Level 3+ for coordination-root packets even below 80 complexity
@@ -30,7 +30,7 @@
 ### Finding 003-F3
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/references/templates/level_specifications.md:374`
+- **File**: `.opencode/skills/system-spec-kit/references/templates/level_specifications.md:374`
 - **Title**: Level 3+ spec requirements omit coordination-root content contract
 - **Evidence**: Focus on Complexity Assessment + Executive Summary, no coordination patterns
 - **Expected**: Include point-in-time snapshots, direct-phase map, current-tree-truth precedence
@@ -40,7 +40,7 @@
 ### Finding 003-F4
 - **Severity**: P1
 - **Dimension**: correctness
-- **File**: `.opencode/skill/system-spec-kit/references/templates/template_guide.md:227`
+- **File**: `.opencode/skills/system-spec-kit/references/templates/template_guide.md:227`
 - **Title**: Level 3+ adaptation workflow lacks coordination-root branch
 - **Evidence**: Only AI protocol/checklist/governance items; no coordination-root path
 - **Expected**: Coordination-root adaptation path with snapshot metadata and phase-map alignment

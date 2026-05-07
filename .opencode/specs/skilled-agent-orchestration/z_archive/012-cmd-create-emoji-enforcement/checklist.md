@@ -51,7 +51,7 @@ contextType: "implementation"
 Strict compliance audit completed: Score 96, PASS
 No hard blockers, no ambiguous issues, no parity issues
 All 13 template files updated with optional emoji policy
-Target: .opencode/command/create and .opencode/command/create/assets
+Target: .opencode/commands/create and .opencode/commands/create/assets
 ```
 
 ### CHK-021 Evidence (Generated files valid)

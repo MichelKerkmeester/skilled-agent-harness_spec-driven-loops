@@ -84,5 +84,5 @@ This spec addresses the **16 prioritized fixes** organized by severity:
 
 - Original audit: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules` (audit results)
 - Command definitions: `.opencode/commands/`
-- Skill definitions: `.opencode/skill/`
+- Skill definitions: `.opencode/skills/`
 - AGENTS.md: Project root

@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -44,7 +44,7 @@ No implementation changes are claimed in this file. This document exists to sati
 
 ### Spec-document compliance repair
 
-This repair added the missing implementation summary file and kept the folder aligned with the template-required section structure. It does not assert that `.opencode/command/create/changelog.md`, `changelog.toml`, or `.opencode/skill/sk-git/references/finish_workflows.md` have already been modified.
+This repair added the missing implementation summary file and kept the folder aligned with the template-required section structure. It does not assert that `.opencode/commands/create/changelog.md`, `changelog.toml`, or `.opencode/skills/sk-git/references/finish_workflows.md` have already been modified.
 
 ### Files Changed
 
@@ -101,5 +101,5 @@ The folder was repaired by reading the existing spec documents, preserving their
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

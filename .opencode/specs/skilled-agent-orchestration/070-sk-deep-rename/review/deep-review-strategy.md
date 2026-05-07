@@ -38,7 +38,7 @@ Final pre-commit audit. Verify the sk-deep-* → deep-* rename is complete and c
 ## KNOWN CONTEXT (loaded at init)
 
 - All 6 phases validate strict-pass at packet level (recursive)
-- Phase 002 renamed `.opencode/skill/sk-deep-review/` → `deep-review/` and `sk-deep-research/` → `deep-research/`
+- Phase 002 renamed `.opencode/skills/sk-deep-review/` → `deep-review/` and `sk-deep-research/` → `deep-research/`
 - Phase 003 updated 1,300+ .opencode/ internal references
 - Phase 004 updated runtime mirrors (.claude, .codex, .gemini)
 - Phase 005 updated root docs + configs

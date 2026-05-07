@@ -41,13 +41,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/specs/skilled-agent-orchestration/049-mcp-testing-playbooks/research.md",
-      ".opencode/command/create/testing-playbook.md",
-      ".opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md",
-      ".opencode/skill/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/commands/create/testing-playbook.md",
+      ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-clickup/manual_testing_playbook/manual_testing_playbook.md",
       "research.md",
       "implementation-summary.md",
       "plan.md",
@@ -56,17 +56,17 @@
       "decision-record.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md"
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-deep-review/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md"
     ],
     "entities": [
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -78,13 +78,13 @@
       {
         "name": "testing-playbook.md",
         "kind": "doc",
-        "path": ".opencode/command/create/testing-playbook.md",
+        "path": ".opencode/commands/create/testing-playbook.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook_creation.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md",
+        "path": ".opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md",
         "source": "derived"
       },
       {
@@ -126,7 +126,7 @@
       {
         "name": "008-concurrent-refresh-race.md",
         "kind": "doc",
-        "path": ".opencode/skill/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md",
+        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md",
         "source": "derived"
       },
       {

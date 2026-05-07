@@ -39,7 +39,7 @@ _memory:
 
 ### Overview
 
-Three files need modification. The core work is adding release creation phases (R1–R4) to `.opencode/command/create/changelog.md` immediately after the existing changelog generation steps. The TOML mirror must be updated to match. The `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 gets a one-paragraph cross-reference directing users to `create:changelog` when no changelog file exists yet. No YAML asset files are in scope — the release phases live in the command instruction layer only.
+Three files need modification. The core work is adding release creation phases (R1–R4) to `.opencode/commands/create/changelog.md` immediately after the existing changelog generation steps. The TOML mirror must be updated to match. The `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 gets a one-paragraph cross-reference directing users to `create:changelog` when no changelog file exists yet. No YAML asset files are in scope — the release phases live in the command instruction layer only.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -54,8 +54,8 @@ Three files need modification. The core work is adding release creation phases (
 
 ### Definition of Done
 - [ ] All three target files modified with no placeholder text
-- [ ] `changelog.toml` prompt field mirrors `.opencode/command/create/changelog.md` content exactly
-- [ ] `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 references `create:changelog` naturally in the workflow
+- [ ] `changelog.toml` prompt field mirrors `.opencode/commands/create/changelog.md` content exactly
+- [ ] `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 references `create:changelog` naturally in the workflow
 - [ ] Checklist verified — all P0 and P1 items marked with evidence
 <!-- /ANCHOR:quality-gates -->
 
@@ -70,9 +70,9 @@ Command instruction layer — no runtime code, no dependencies to install. All c
 
 ### Key Components
 
-- **`.opencode/command/create/changelog.md`**: The primary command instruction file. The release phase (Phases R1–R4) is appended as a named section after the existing INSTRUCTIONS block. It is gated by a `:release` suffix or user choice — changelog generation must complete successfully before the gate opens.
-- **`changelog.toml`**: The `.agents/` mirror. The `prompt` field must be a verbatim copy of the markdown instruction content. Updated last, after `.opencode/command/create/changelog.md` is finalized.
-- **`.opencode/skill/sk-git/references/finish_workflows.md`**: The sk-git finish workflow reference. Step 6 ("Create Release") is extended with a cross-reference paragraph explaining that `create:changelog` can generate changelog files and optionally the GitHub release in one command.
+- **`.opencode/commands/create/changelog.md`**: The primary command instruction file. The release phase (Phases R1–R4) is appended as a named section after the existing INSTRUCTIONS block. It is gated by a `:release` suffix or user choice — changelog generation must complete successfully before the gate opens.
+- **`changelog.toml`**: The `.agents/` mirror. The `prompt` field must be a verbatim copy of the markdown instruction content. Updated last, after `.opencode/commands/create/changelog.md` is finalized.
+- **`.opencode/skills/sk-git/references/finish_workflows.md`**: The sk-git finish workflow reference. Step 6 ("Create Release") is extended with a cross-reference paragraph explaining that `create:changelog` can generate changelog files and optionally the GitHub release in one command.
 
 ### Data Flow
 
@@ -109,9 +109,9 @@ STATUS=OK | FAIL
 
 ### Phase 1: Read and Understand All Source Files
 
-- [x] Read `.opencode/command/create/changelog.md` — understand existing phase structure and where to add release phases
+- [x] Read `.opencode/commands/create/changelog.md` — understand existing phase structure and where to add release phases
 - [x] Read `changelog.toml` — confirm it is a TOML mirror of the markdown
-- [x] Read `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 — understand existing release instructions and tone
+- [x] Read `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 — understand existing release instructions and tone
 - [x] Read `PUBLIC_RELEASE.md` Sections 4–7 — understand release notes format requirements
 
 ### Phase 2: Edit changelog.md
@@ -127,7 +127,7 @@ STATUS=OK | FAIL
 
 ### Phase 3: Update changelog.toml
 
-- [ ] Replace the `prompt` field value with the complete updated `.opencode/command/create/changelog.md` content
+- [ ] Replace the `prompt` field value with the complete updated `.opencode/commands/create/changelog.md` content
 - [ ] Verify character-for-character match between TOML prompt and markdown content
 - [ ] Verify TOML syntax is valid (no unescaped quotes in the prompt string)
 
@@ -141,8 +141,8 @@ STATUS=OK | FAIL
 ### Phase 5: Verification
 
 - [ ] Read all three modified files — confirm no placeholder text
-- [ ] Verify `changelog.toml` prompt matches `.opencode/command/create/changelog.md` instruction body
-- [ ] Verify `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 cross-reference appears naturally in the workflow narrative
+- [ ] Verify `changelog.toml` prompt matches `.opencode/commands/create/changelog.md` instruction body
+- [ ] Verify `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 cross-reference appears naturally in the workflow narrative
 - [ ] Run `validate.sh` on the spec folder
 <!-- /ANCHOR:phases -->
 
@@ -154,9 +154,9 @@ STATUS=OK | FAIL
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Manual read-through | All three modified files — check for missing sections, placeholder text, format errors | Read tool |
-| Content consistency | `changelog.toml` prompt vs `.opencode/command/create/changelog.md` instruction body | Diff comparison |
+| Content consistency | `changelog.toml` prompt vs `.opencode/commands/create/changelog.md` instruction body | Diff comparison |
 | Format validation | Release notes sample in Phase R4 matches PUBLIC_RELEASE.md §7 template | Manual checklist |
-| Integration check | `.opencode/skill/sk-git/references/finish_workflows.md` Step 6 cross-reference reads naturally in context | Read tool |
+| Integration check | `.opencode/skills/sk-git/references/finish_workflows.md` Step 6 cross-reference reads naturally in context | Read tool |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -166,9 +166,9 @@ STATUS=OK | FAIL
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `.opencode/command/create/changelog.md` must be finalized before updating `changelog.toml` | Internal ordering | Green | TOML update cannot happen until markdown is done |
+| `.opencode/commands/create/changelog.md` must be finalized before updating `changelog.toml` | Internal ordering | Green | TOML update cannot happen until markdown is done |
 | `PUBLIC_RELEASE.md` Section 7 format | Internal reference | Green | Already read and understood — format is stable |
-| `.opencode/skill/sk-git/references/finish_workflows.md` ANCHOR structure | Internal reference | Green | ANCHOR tag `complete-workflow` confirmed present at Step 3 |
+| `.opencode/skills/sk-git/references/finish_workflows.md` ANCHOR structure | Internal reference | Green | ANCHOR tag `complete-workflow` confirmed present at Step 3 |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -227,10 +227,10 @@ Phase 1 (Read sources) ──────────────┘            
 - [ ] TOML syntax valid before claiming complete
 
 ### Rollback Procedure
-1. Run `git diff .opencode/command/create/changelog.md` to confirm scope of changes
-2. `git checkout -- .opencode/command/create/changelog.md` to revert markdown
+1. Run `git diff .opencode/commands/create/changelog.md` to confirm scope of changes
+2. `git checkout -- .opencode/commands/create/changelog.md` to revert markdown
 3. `git checkout -- .agents/commands/create/changelog.toml` to revert TOML
-4. `git checkout -- .opencode/skill/sk-git/references/finish_workflows.md` to revert cross-reference
+4. `git checkout -- .opencode/skills/sk-git/references/finish_workflows.md` to revert cross-reference
 5. Verify `git status` shows clean working tree
 
 ### Data Reversal

@@ -3,7 +3,7 @@
 | Metadata | Value |
 |----------|-------|
 | **Component** | Memory MCP Server |
-| **Location** | `.opencode/skill/system-spec-kit/mcp_server/` |
+| **Location** | `.opencode/skills/system-spec-kit/mcp_server/` |
 | **Agent** | Agent 3 of 4 |
 | **Status** | Complete |
 | **Created** | 2025-12-26 |
@@ -661,7 +661,7 @@ tests/fixtures/
 ## 9. Test Directory Structure
 
 ```
-.opencode/skill/system-spec-kit/mcp_server/
+.opencode/skills/system-spec-kit/mcp_server/
 ├── tests/
 │   ├── setup.js                    # Jest setup, global mocks
 │   ├── fixtures/                   # Test data files

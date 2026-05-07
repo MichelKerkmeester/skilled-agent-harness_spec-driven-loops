@@ -33,10 +33,10 @@
       "checklist.md"
     ],
     "entities": [
-      ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/client.py",
-      ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-      ".opencode/skill/mcp-coco-index/mcp_server/tests/test_daemon.py",
-      ".opencode/skill/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py"
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/client.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_daemon.py",
+      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_e2e_daemon.py"
     ],
     "causal_summary": "Two surface bugs expanded to 7-patch defense-in-depth via 5-iteration deep research. Real leak mechanism is unconditional socket-unlink. CPU spike is 90% double logger.exception. 6 send_bytes sites need wrapping not 2. Race window is 5-60ms warm requiring fcntl.flock not just _pid_alive. Three hypotheses ruled out (LMDB, workers, backlog).",
     "created_at": "2026-05-07T07:38:00Z",

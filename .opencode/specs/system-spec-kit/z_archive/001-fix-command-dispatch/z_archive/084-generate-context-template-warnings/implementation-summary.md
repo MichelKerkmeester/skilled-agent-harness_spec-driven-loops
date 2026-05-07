@@ -1,6 +1,6 @@
 ---
 title: "...-spec-kit/z_archive/001-fix-command-dispatch/z_archive/084-generate-context-template-warnings/implementation-summary]"
-description: "File: .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js"
+description: "File: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js"
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### 1. Fixed API Naming Mismatch (P0 - Critical)
 
-**File:** `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index.js`
+**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.js`
 
 **Change:** Added snake_case export aliases for backward compatibility:
 
@@ -36,7 +36,7 @@ get_db_path,
 
 ### 2. Suppressed V2.2 Template Warnings (P1 - Improvement)
 
-**File:** `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.js`
+**File:** `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.js`
 
 **Change:** Added `OPTIONAL_PLACEHOLDERS` set containing 26 V2.2 spec'd-but-unimplemented placeholders, and modified warning logic to skip these.
 

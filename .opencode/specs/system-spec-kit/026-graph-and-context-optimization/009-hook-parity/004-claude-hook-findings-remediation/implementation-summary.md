@@ -19,9 +19,9 @@ _memory:
       - "AS-003: GitKraken+SUPERSET user hooks add third UserPromptSubmit."
       - "AS-004: Claude CLI unauthenticated in sandbox."
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts"
       - ".claude/settings.local.json"
-      - ".opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md"
+      - ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md"
     completion_pct: 86
     open_questions:
       - "Count or remove user-global SUPERSET?"
@@ -35,7 +35,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -88,21 +88,21 @@ Output was empty.
 
 ### Multi-turn regression harness documentation
 
-`.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` now has `## 9. Multi-turn Regression Harness` with a five-prompt `claude -p --input-format stream-json --output-format stream-json --include-hook-events --max-budget-usd 0.30` fixture, cost rationale, and disable-flag note. The native-first manual testing playbook links to that section from the Claude hook scenario area.
+`.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` now has `## 9. Multi-turn Regression Harness` with a five-prompt `claude -p --input-format stream-json --output-format stream-json --include-hook-events --max-budget-usd 0.30` fixture, cost rationale, and disable-flag note. The native-first manual testing playbook links to that section from the Claude hook scenario area.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` | Modified | Export source-signature computation and reconcile freshness with persisted signatures. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/generation.ts` | Modified | Preserve parsed `sourceSignature` in advisor generation snapshots. |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Modified | Publish scan-time `sourceSignature` through the atomic writer. |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` | Modified | Publish source signatures for context-server skill graph indexing. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts` | Modified | Publish source signatures for daemon reindex events. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Modified | Use persisted signature for status freshness reconciliation. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` | Modified | Export source-signature computation and reconcile freshness with persisted signatures. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/generation.ts` | Modified | Preserve parsed `sourceSignature` in advisor generation snapshots. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/skill-graph/scan.ts` | Modified | Publish scan-time `sourceSignature` through the atomic writer. |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modified | Publish source signatures for context-server skill graph indexing. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/daemon/watcher.ts` | Modified | Publish source signatures for daemon reindex events. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts` | Modified | Use persisted signature for status freshness reconciliation. |
 | `.claude/settings.local.json` | Modified | Normalize project-local Claude hook registration. |
-| `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Modified | Add §9 multi-turn stream-json harness. |
-| `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | Add §9 cross-reference. |
+| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Modified | Add §9 multi-turn stream-json harness. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | Add §9 cross-reference. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -146,15 +146,15 @@ stderr: {"timestamp":"2026-04-23T11:01:46.303Z","runtime":"claude","status":"ski
 
 | Check | Command | Result |
 |-------|---------|--------|
-| Build | `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` | PASS: `tsc --build`, exit 0 |
-| Scan + sourceSignature | Compiled `handleSkillGraphScan({})`, then `jq '{generation, updatedAt, sourceSignature, reason, state}' .opencode/skill/.advisor-state/skill-graph-generation.json` | PASS: `sourceSignature` non-null (`776a2bcc...`), state `live` |
-| Advisor freshness live | `printf ... | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` | PASS: stdout contains `Advisor: live; use sk-git 0.84/0.00 pass`; stderr JSONL has `freshness:"live"` |
+| Build | `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` | PASS: `tsc --build`, exit 0 |
+| Scan + sourceSignature | Compiled `handleSkillGraphScan({})`, then `jq '{generation, updatedAt, sourceSignature, reason, state}' .opencode/skills/.advisor-state/skill-graph-generation.json` | PASS: `sourceSignature` non-null (`776a2bcc...`), state `live` |
+| Advisor freshness live | `printf ... | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` | PASS: stdout contains `Advisor: live; use sk-git 0.84/0.00 pass`; stderr JSONL has `freshness:"live"` |
 | Settings schema | `jq 'recurse | objects | select(has("bash") or has("timeoutSec"))' .claude/settings.local.json` | PASS: empty output |
 | Hook count parity | `claude -p "ping" --output-format stream-json --include-hook-events --max-budget-usd 0.30 --verbose` | BLOCKED: `SessionStart=2`, `UserPromptSubmit=3`; third UserPromptSubmit is from user-global SUPERSET hook in `$HOME/.claude/settings.json`; Claude result was `Not logged in`, cost `0` |
 | Multi-turn harness | §9 fixture with `claude -p --input-format stream-json --output-format stream-json --include-hook-events --max-budget-usd 0.30 --verbose` | BLOCKED: sandbox/auth emitted only SessionStart hooks; no `result.total_cost_usd` or advisor prompt completions |
 | Disable flag | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` direct UserPromptSubmit smoke | PASS: stdout `{}`, stderr `status:"skipped"`, `freshness:"unavailable"` |
-| Advisor regression suite | `npm --prefix .opencode/skill/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts skill-advisor/tests/legacy/advisor-privacy.vitest.ts skill-advisor/tests/legacy/advisor-timing.vitest.ts --config vitest.config.ts --reporter verbose` | PASS: 3 files, 4 tests; corpus parity 200/200; cache-hit p95 `0.025ms`; replay hit rate `20/30`; privacy green |
-| Strict spec validation | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation --strict --no-recursive` | To run after checklist/task updates and cleanup |
+| Advisor regression suite | `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/legacy/advisor-corpus-parity.vitest.ts skill-advisor/tests/legacy/advisor-privacy.vitest.ts skill-advisor/tests/legacy/advisor-timing.vitest.ts --config vitest.config.ts --reporter verbose` | PASS: 3 files, 4 tests; corpus parity 200/200; cache-hit p95 `0.025ms`; replay hit rate `20/30`; privacy green |
+| Strict spec validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation --strict --no-recursive` | To run after checklist/task updates and cleanup |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -10,8 +10,8 @@ Use `opencode-lcm` to find net-new improvements for compaction behavior, working
 
 Our compaction path still builds its working set from transcript heuristics even though the runtime already contains a recency-weighted `WorkingSetTracker`.
 
-- `compact-inject` tails transcript lines and regex-extracts files/topics/identifiers [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:21-55`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:193-245`]
-- `WorkingSetTracker` already exposes top files and top symbols by recency-weighted score [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:15-53`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:111-153`]
+- `compact-inject` tails transcript lines and regex-extracts files/topics/identifiers [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:21-55`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:193-245`]
+- `WorkingSetTracker` already exposes top files and top symbols by recency-weighted score [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:15-53`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:111-153`]
 
 The immediate improvement is to use tracked roots/symbols first and transcript heuristics only as fallback.
 
@@ -23,7 +23,7 @@ The immediate improvement is to use tracked roots/symbols first and transcript h
 - truncation
 - file-path deduplication
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:137-176`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:137-176`]
 
 But `opencode-lcm` is stronger before rendering:
 
@@ -45,7 +45,7 @@ Our compact-cache builder scans transcript lines directly, so recovered compact 
 
 ### Current Compact State Is Too Ephemeral
 
-Today we store one `pendingCompactPrime`, reject it after 30 minutes, and clear it after one successful injection. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:19-28`] [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-87`]
+Today we store one `pendingCompactPrime`, reject it after 30 minutes, and clear it after one successful injection. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:19-28`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44-87`]
 
 `opencode-lcm` also maintains a durable compaction resume note. [SOURCE: `external/opencode-lcm-master/src/store.ts:2859-2873`] [SOURCE: `external/opencode-lcm-master/src/store.ts:3242-3275`]
 

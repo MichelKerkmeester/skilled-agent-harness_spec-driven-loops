@@ -12,7 +12,7 @@
 
 **Evidence:**
 
-1. **`:review` suffix detected in command entrypoint** -- The file `.opencode/command/spec_kit/deep-research.md` (lines 52-58) contains explicit mode-routing logic that checks for `:review` variants FIRST (order matters):
+1. **`:review` suffix detected in command entrypoint** -- The file `.opencode/commands/spec_kit/deep-research.md` (lines 52-58) contains explicit mode-routing logic that checks for `:review` variants FIRST (order matters):
    - `:review:auto` -> functional_mode = "REVIEW", execution_mode = "AUTONOMOUS"
    - `:review:confirm` -> functional_mode = "REVIEW", execution_mode = "INTERACTIVE"
    - `:review` -> functional_mode = "REVIEW", execution_mode = "AUTONOMOUS"
@@ -26,9 +26,9 @@
 3. **Routes to correct YAML workflows** -- Lines 262-264 confirm:
    - REVIEW + AUTONOMOUS -> `spec_kit_deep-research_review_auto.yaml`
    - REVIEW + INTERACTIVE -> `spec_kit_deep-research_review_confirm.yaml`
-   Both YAML files confirmed to exist at `.opencode/command/spec_kit/assets/`.
+   Both YAML files confirmed to exist at `.opencode/commands/spec_kit/assets/`.
 
-4. **README documents the `:review` command** -- The README at `.opencode/skill/sk-deep-research/README.md` has:
+4. **README documents the `:review` command** -- The README at `.opencode/skills/sk-deep-research/README.md` has:
    - Quick Start section (ANCHOR:quick-start, lines 57-84) with review examples:
      ```
      /spec_kit:deep-research:review "skill:sk-deep-research"
@@ -36,7 +36,7 @@
      /spec_kit:deep-research:review:auto "agent:deep-research" --dimensions security,correctness
      ```
 
-5. **Quick reference lists review commands** -- `.opencode/skill/sk-deep-research/references/quick_reference.md` (ANCHOR:review-mode, lines 220-281) lists:
+5. **Quick reference lists review commands** -- `.opencode/skills/sk-deep-research/references/quick_reference.md` (ANCHOR:review-mode, lines 220-281) lists:
    - `/spec_kit:deep-research:review "target"` -- Ask which review mode to use
    - `/spec_kit:deep-research:review:auto "target"` -- Autonomous review
    - `/spec_kit:deep-research:review:confirm "target"` -- Interactive review with gates
@@ -54,14 +54,14 @@
 1. **`phase_init` has scope discovery logic for 5 target types** -- The review auto YAML (`spec_kit_deep-research_review_auto.yaml`) contains `step_scope_discovery` (lines 141-169) with explicit resolution logic for all 5 target types:
 
    - **spec-folder**: Read spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md; discover implementation files referenced in spec artifacts; discover test files; set scope = all discovered files
-   - **skill**: Read SKILL.md from `.opencode/skill/{skill_name}/`; discover references/, assets/, scripts/; find agent definitions across runtimes; find command entry points; set scope = all discovered files
-   - **agent**: Find agent definition across all 5 runtimes (`.claude/agents/`, `.opencode/agent/`, `.codex/agents/`, `.agents/`, `.gemini/agents/`); compare for consistency; set scope = all agent files
+   - **skill**: Read SKILL.md from `.opencode/skills/{skill_name}/`; discover references/, assets/, scripts/; find agent definitions across runtimes; find command entry points; set scope = all discovered files
+   - **agent**: Find agent definition across all 5 runtimes (`.claude/agents/`, `.opencode/agents/`, `.codex/agents/`, `.agents/`, `.gemini/agents/`); compare for consistency; set scope = all agent files
    - **track**: List all child spec folders under `.opencode/specs/{track}/`; for each read spec.md + checklist.md; set scope = all child spec artifacts
    - **files**: Expand glob patterns from review_target; validate all files exist; discover immediate cross-references (imports, links); set scope = expanded file list + cross-references
 
    Outputs: `review_scope_files` (list) and `cross_reference_targets` (spec/code/test paths).
 
-2. **Strategy template has "Review Dimensions" checkbox list** -- The deep_review_strategy.md template (`.opencode/skill/sk-deep-research/assets/deep_review_strategy.md`, lines 35-43) contains Section 3 "Review Dimensions (remaining)" with D1-D7 as checkboxes. It also has Section 15 "Files Under Review" (lines 152-158) with a per-file coverage state table.
+2. **Strategy template has "Review Dimensions" checkbox list** -- The deep_review_strategy.md template (`.opencode/skills/sk-deep-research/assets/deep_review_strategy.md`, lines 35-43) contains Section 3 "Review Dimensions (remaining)" with D1-D7 as checkboxes. It also has Section 15 "Files Under Review" (lines 152-158) with a per-file coverage state table.
 
 3. **Config template has `reviewTarget` and `reviewTargetType` fields** -- The YAML `step_create_config` (lines 183-204) populates:
    - `reviewTarget: "{review_target}"`
@@ -128,7 +128,7 @@ The loop_protocol.md Section 6.1 has Security first ("D2 Security, D1 Correctnes
 
 **Evidence:**
 
-1. **@deep-review agent defines iteration file format with Scorecard, Findings (P0/P1/P2), Cross-Reference Results, Assessment** -- The agent file `.opencode/agent/deep-review.md` Step 5 (lines 149-213) specifies the `research/iterations/iteration-NNN.md` structure including:
+1. **@deep-review agent defines iteration file format with Scorecard, Findings (P0/P1/P2), Cross-Reference Results, Assessment** -- The agent file `.opencode/agents/deep-review.md` Step 5 (lines 149-213) specifies the `research/iterations/iteration-NNN.md` structure including:
    - **Scorecard**: Per-file scoring table (Corr/Sec/Patt/Maint/Perf/Total)
    - **Findings**: Structured by severity with explicit format:
      - P0-NNN: Title + Dimension + Evidence `[SOURCE: file:line]` + Cross-reference + Impact + Hunter/Skeptic/Referee verdicts + Final severity

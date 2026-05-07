@@ -37,11 +37,11 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/package.json",
-      ".opencode/skill/system-spec-kit/mcp_server/tsconfig.json",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
       "mcp_server/vitest.config.ts",
       "mcp_server/package.json",
       "spec.md",
@@ -51,9 +51,9 @@
       "implementation-summary.md",
       "research/prompts/iteration-001.md",
       "logs/iter-001.log",
-      ".opencode/skill/system-spec-kit/mcp_server/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/stress_test/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/README.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/research.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-001.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/review/iterations/iteration-002.md"
@@ -62,31 +62,31 @@
       {
         "name": "session-manager-stress.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/session/session-manager-stress.vitest.ts",
         "source": "derived"
       },
       {
         "name": "code-graph-degraded-sweep.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts",
         "source": "derived"
       },
       {
         "name": "vitest.config.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/vitest.config.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
         "name": "package.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/package.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {
         "name": "tsconfig.json",
         "kind": "config",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tsconfig.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
         "source": "derived"
       },
       {
@@ -134,7 +134,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {

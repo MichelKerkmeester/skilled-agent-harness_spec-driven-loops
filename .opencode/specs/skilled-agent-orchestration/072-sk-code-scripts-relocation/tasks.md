@@ -52,8 +52,8 @@ _memory:
 
 - [x] T001 Create Level 2 spec packet (`specs/skilled-agent-orchestration/072-sk-code-scripts-relocation/`)
 - [x] T002 Save initial reference inventory (`scratch/initial-inventory.md`)
-- [x] T003 Inspect alignment-drift validator (`.opencode/skill/sk-code/scripts/verify_alignment_drift.py`)
-- [x] T004 Inspect alignment-drift validator test (`.opencode/skill/sk-code/scripts/test_verify_alignment_drift.py`)
+- [x] T003 Inspect alignment-drift validator (`.opencode/skills/sk-code/scripts/verify_alignment_drift.py`)
+- [x] T004 Inspect alignment-drift validator test (`.opencode/skills/sk-code/scripts/test_verify_alignment_drift.py`)
 - [x] T005 Document alignment-drift destination verdict (`decision-record.md`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -67,7 +67,7 @@ _memory:
 - [x] T008 Relocate minification verifier (`verify-minification.mjs`)
 - [x] T009 Relocate alignment-drift validator (`verify_alignment_drift.py`)
 - [x] T010 Relocate alignment-drift validator test (`test_verify_alignment_drift.py`)
-- [x] T011 Remove old root script directory (`.opencode/skill/sk-code/scripts/`)
+- [x] T011 Remove old root script directory (`.opencode/skills/sk-code/scripts/`)
 - [x] T012 Update reference batch A: sk-code own docs and resource maps
 - [x] T013 Update reference batch B: spec-kit / command / agent references
 - [x] T014 Update reference batch C: historical spec docs and other inventory hits

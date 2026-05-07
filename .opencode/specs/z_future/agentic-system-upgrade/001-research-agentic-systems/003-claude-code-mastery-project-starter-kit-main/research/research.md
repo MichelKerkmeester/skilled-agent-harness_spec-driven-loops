@@ -55,19 +55,19 @@ contextType: "research"
 ### F-002 - Add a guided doc-first front door without replacing Spec Kit
 - Origin: `iteration-002.md`
 - Priority: should-have
-- Target: `.opencode/command/spec_kit/README.txt`
+- Target: `.opencode/commands/spec_kit/README.txt`
 - Summary: introduce a memorable guided entry experience inspired by `/mdd`, but route into existing Spec Kit depth.
 
 ### F-003 - Add a lightweight compressed-brief pattern
 - Origin: `iteration-003.md`
 - Priority: nice-to-have
-- Target: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+- Target: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 - Summary: adopt the external repo's concise brief habit, not its marketing claims.
 
 ### F-004 - Introduce a lightweight working-brief template
 - Origin: `iteration-004.md`
 - Priority: should-have
-- Target: `.opencode/skill/system-spec-kit/templates/`
+- Target: `.opencode/skills/system-spec-kit/templates/`
 - Summary: add a scan-friendly mid-session artifact that complements, not replaces, durable packets.
 
 ### F-005 - Keep recovery hooks and add a thin enforcement layer
@@ -85,13 +85,13 @@ contextType: "research"
 ### F-007 - Add command audience and distribution metadata
 - Origin: `iteration-008.md`
 - Priority: should-have
-- Target: `.opencode/command/README.txt`
+- Target: `.opencode/commands/README.txt`
 - Summary: start deriving command visibility and help from metadata instead of static taxonomy alone.
 
 ### F-008 - Expose operator-facing observability
 - Origin: `iteration-009.md`
 - Priority: nice-to-have
-- Target: `.opencode/command/memory/manage.md`
+- Target: `.opencode/commands/memory/manage.md`
 - Summary: present AI activity and telemetry in a user-facing way rather than only as internal machinery.
 
 ### F-009 - Add a first-class personal-preference layer
@@ -103,7 +103,7 @@ contextType: "research"
 ### F-010 - Add a sanctioned working-brief stage before full packet depth
 - Origin: `iteration-012.md`
 - Priority: should-have
-- Target: `.opencode/skill/system-spec-kit/templates/`
+- Target: `.opencode/skills/system-spec-kit/templates/`
 - Summary: allow a lighter starting artifact that can later promote into a full packet.
 
 ### F-011 - Split session digests from promoted memories

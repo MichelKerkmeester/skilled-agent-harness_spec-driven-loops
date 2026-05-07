@@ -60,7 +60,7 @@ The 2026-04-21 hook parity review found 10 runtime-hook defects. The highest ris
 |------|--------------|
 | `.opencode/plugins/spec-kit-compact-code-graph.js` | Emit visible diagnostics when transport parsing fails. |
 | `.opencode/plugins/spec-kit-compact-code-graph-bridge.mjs` | Emit stderr diagnostics when `opencodeTransport` is missing. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Assert the diagnostic path fires. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Assert the diagnostic path fires. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/001-hook-parity-remediation/**` | Validation, evidence, continuity, metadata, and remediation summary repairs. |
 
 ### Follow-Ups

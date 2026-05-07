@@ -58,7 +58,7 @@ The `system-spec-kit` skill's `references/` folder currently has a flat structur
 
 ## Technical Context
 
-**Target Skill:** `.opencode/skill/system-spec-kit/`
+**Target Skill:** `.opencode/skills/system-spec-kit/`
 
 **Current Structure:** Flat `references/` folder with multiple markdown files
 

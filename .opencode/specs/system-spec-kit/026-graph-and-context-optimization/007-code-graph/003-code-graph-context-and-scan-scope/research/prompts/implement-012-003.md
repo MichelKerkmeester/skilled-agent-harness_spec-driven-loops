@@ -81,7 +81,7 @@ Create `003-cross-file-dedup-defense/` with canonical Level 2 docs:
 - `decision-record.md` — ADR for "Why defense-in-depth instead of root-cause investigation" + "Why INSERT OR IGNORE over INSERT REPLACE"
 - `description.json` + `graph-metadata.json` (copy/adapt from 012/002 sibling)
 
-Validate: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <new-spec-folder> --strict` MUST exit 0.
+Validate: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <new-spec-folder> --strict` MUST exit 0.
 
 ### B. SOURCE PATCHES
 
@@ -118,7 +118,7 @@ describe('replaceNodes INSERT OR IGNORE (Layer 2)', () => {
 ### D. BUILD + VERIFY
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build
 npx vitest run tests/structural-contract.vitest.ts tests/tree-sitter-parser.vitest.ts tests/code-graph-db.vitest.ts
 ```

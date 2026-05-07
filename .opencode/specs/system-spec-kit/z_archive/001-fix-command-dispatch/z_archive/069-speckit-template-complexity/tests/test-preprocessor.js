@@ -10,7 +10,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const preprocessor = require('../../../../.opencode/skill/system-spec-kit/lib/expansion/preprocessor');
+const preprocessor = require('../../../../.opencode/skills/system-spec-kit/lib/expansion/preprocessor');
 
 let passed = 0;
 let failed = 0;
@@ -80,7 +80,7 @@ test('throws for null path', () => {
 });
 
 test('loads existing template', () => {
-  const templatesDir = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/templates');
+  const templatesDir = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/templates');
   const specTemplate = path.join(templatesDir, 'spec.md');
   if (fs.existsSync(specTemplate)) {
     const content = preprocessor.loadTemplate(specTemplate);
@@ -181,7 +181,7 @@ test('returns validation in result', () => {
 console.log('\nexpand:');
 
 test('expand loads and processes template', () => {
-  const templatesDir = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/templates');
+  const templatesDir = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/templates');
   const specTemplate = path.join(templatesDir, 'spec.md');
   if (fs.existsSync(specTemplate)) {
     const result = preprocessor.expand(specTemplate, { level: '2' });
@@ -194,7 +194,7 @@ test('expand loads and processes template', () => {
 });
 
 test('expand accepts level option', () => {
-  const templatesDir = path.join(__dirname, '../../../../.opencode/skill/system-spec-kit/templates');
+  const templatesDir = path.join(__dirname, '../../../../.opencode/skills/system-spec-kit/templates');
   const specTemplate = path.join(templatesDir, 'spec.md');
   if (fs.existsSync(specTemplate)) {
     const result = preprocessor.expand(specTemplate, { level: '3' });

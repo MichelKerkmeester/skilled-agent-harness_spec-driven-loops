@@ -124,14 +124,14 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 - Feature catalogs (3) reflect all new MCP tools and runtime surfaces from 031-036
 - Manual testing playbooks (3) have new entries for memory_retention_sweep, advisor_rebuild, codex freshness-smoke-check, CLI matrix adapters
 - All 30+ touched docs pass sk-doc template alignment
-- Stress-test logic lives at `.opencode/skill/system-spec-kit/mcp_server/stress_test/` (NOT in tests/); imports updated; build green
+- Stress-test logic lives at `.opencode/skills/system-spec-kit/mcp_server/stress_test/` (NOT in tests/); imports updated; build green
 - README cascade is consistent: tool counts, file paths, capability matrix all current
 
 ### Acceptance Scenarios
 
 - **SCN-001**: **Given** sub-task 037/001 completes, **when** a reviewer reads the audit report, **then** every new file from 033/034/036 is checked against sk-code-opencode + at least one finding (PASS or fix-applied) is recorded.
 - **SCN-002**: **Given** sub-task 037/005 completes, **when** an operator runs the stress test from `mcp_server/stress_test/`, **then** the test runs successfully without any reference to `mcp_server/tests/stress*` paths.
-- **SCN-003**: **Given** sub-task 037/006 completes, **when** a reviewer reads the mcp_server README at `.opencode/skill/system-spec-kit/mcp_server/README.md`, **then** the tool count, capability matrix, and file structure references are all current as of 036's completion.
+- **SCN-003**: **Given** sub-task 037/006 completes, **when** a reviewer reads the mcp_server README at `.opencode/skills/system-spec-kit/mcp_server/README.md`, **then** the tool count, capability matrix, and file structure references are all current as of 036's completion.
 <!-- /ANCHOR:success-criteria -->
 
 ---

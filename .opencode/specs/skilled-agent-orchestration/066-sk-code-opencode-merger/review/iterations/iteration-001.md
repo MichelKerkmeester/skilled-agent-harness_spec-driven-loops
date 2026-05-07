@@ -22,10 +22,10 @@ Inventory + correctness pass over accepted merger decisions, public agent/comman
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md`
 - `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md`
-- `.opencode/skill/sk-code/SKILL.md`
-- Public agent mirrors under `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`
-- `spec_kit` command assets under `.opencode/command/spec_kit/`
-- Deleted legacy paths checked by glob: `.opencode/skill/sk-code-opencode/**`, `.opencode/skill/sk-code/references/{go,nextjs}/**`, `.opencode/skill/sk-code/assets/{go,nextjs}/**`
+- `.opencode/skills/sk-code/SKILL.md`
+- Public agent mirrors under `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`
+- `spec_kit` command assets under `.opencode/commands/spec_kit/`
+- Deleted legacy paths checked by glob: `.opencode/skills/sk-code-opencode/**`, `.opencode/skills/sk-code/references/{go,nextjs}/**`, `.opencode/skills/sk-code/assets/{go,nextjs}/**`
 
 ## Findings - New
 
@@ -73,12 +73,12 @@ None.
 - `checklist_evidence`: partial pass; checklist records completed verification, but ADR status/constraints lag behind that evidence.
 - Resource map coverage: partial pass; ledger covered expected target classes, but resource map continuity metadata is stale.
 - Public cleanup: pass for sampled exact searches; public agent mirrors did not show live `sk-code-opencode`, `sk-code-*`, `GO`, `NEXTJS`, or React/NextJS support claims. `spec_kit` command assets retained generic `sk-code router-selected evidence` wording.
-- Legacy deletion inventory: pass for checked glob paths; `.opencode/skill/sk-code-opencode/**`, `.opencode/skill/sk-code/references/{go,nextjs}/**`, and `.opencode/skill/sk-code/assets/{go,nextjs}/**` were absent.
+- Legacy deletion inventory: pass for checked glob paths; `.opencode/skills/sk-code-opencode/**`, `.opencode/skills/sk-code/references/{go,nextjs}/**`, and `.opencode/skills/sk-code/assets/{go,nextjs}/**` were absent.
 
 ## Integration Evidence
 
-- Reviewed exact public integration surfaces: `.opencode/agent/*`, `.claude/agents/*`, `.gemini/agents/*`, `.codex/agents/*`, and `.opencode/command/spec_kit/*`.
-- Reviewed shared severity doctrine from `.opencode/skill/sk-code-review/references/review_core.md` before severity classification.
+- Reviewed exact public integration surfaces: `.opencode/agents/*`, `.claude/agents/*`, `.gemini/agents/*`, `.codex/agents/*`, and `.opencode/commands/spec_kit/*`.
+- Reviewed shared severity doctrine from `.opencode/skills/sk-code-review/references/review_core.md` before severity classification.
 - Code graph was not used for evidence because startup context reported stale graph status; direct reads, glob checks, and exact searches were used instead.
 
 ## Edge Cases

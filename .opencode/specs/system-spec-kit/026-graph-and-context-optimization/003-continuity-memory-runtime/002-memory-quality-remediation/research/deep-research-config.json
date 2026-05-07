@@ -1,5 +1,5 @@
 {
-  "topic": "Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js. Specific defects observed across 7 memory files in 026-graph-and-context-optimization/001-research-graph-context-systems/{001..005}/memory/: truncated overviews, generic decision placeholders, garbage trigger phrases, importance tier mismatches, missing causal supersedes links, duplicate trigger phrases, empty git provenance, anchor ID mismatches. Investigate JSON-mode pipeline (--json flag, file mode, --stdin mode) and downstream extractors/scorers/template populators. Identify which stage introduces each defect class. Propose backend fixes that prevent recurrence.",
+  "topic": "Root cause analysis and remediation for memory quality issues encountered during JSON-mode generation in node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js. Specific defects observed across 7 memory files in 026-graph-and-context-optimization/001-research-graph-context-systems/{001..005}/memory/: truncated overviews, generic decision placeholders, garbage trigger phrases, importance tier mismatches, missing causal supersedes links, duplicate trigger phrases, empty git provenance, anchor ID mismatches. Investigate JSON-mode pipeline (--json flag, file mode, --stdin mode) and downstream extractors/scorers/template populators. Identify which stage introduces each defect class. Propose backend fixes that prevent recurrence.",
   "maxIterations": 10,
   "convergenceThreshold": 0.05,
   "stuckThreshold": 3,
@@ -49,10 +49,10 @@
       "next-focus"
     ]
   },
-  "capabilityMatrixPath": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-  "runtimeCapabilityResolver": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+  "capabilityMatrixPath": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research/archive",
   "migrationWindowDays": 28,

@@ -40,17 +40,17 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/sk-doc/SKILL.md",
-      ".opencode/command/create/assets/create_agent_auto.yaml",
-      ".opencode/command/create/assets/create_agent_confirm.yaml",
-      ".opencode/command/create/agent.md",
-      ".opencode/command/create/README.txt",
-      ".opencode/skill/sk-doc/assets/agents/agent_template.md",
-      ".opencode/skill/sk-doc/assets/skill/skill_md_template.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/commands/create/assets/create_agent_auto.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/create/agent.md",
+      ".opencode/commands/create/README.txt",
+      ".opencode/skills/sk-doc/assets/agents/agent_template.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
       ".opencode/install_guides/SET-UP - Skill Creation.md",
       ".opencode/install_guides/SET-UP - Opencode Agents.md",
-      ".opencode/agent/write.md",
-      ".opencode/skill/README.md",
+      ".opencode/agents/write.md",
+      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -61,43 +61,43 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/SKILL.md",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
         "name": "create_agent_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_agent_auto.yaml",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
         "source": "derived"
       },
       {
         "name": "create_agent_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/create/assets/create_agent_confirm.yaml",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/command/create/agent.md",
+        "path": ".opencode/commands/create/agent.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/create/README.txt",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
         "name": "agent_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/agents/agent_template.md",
+        "path": ".opencode/skills/sk-doc/assets/agents/agent_template.md",
         "source": "derived"
       },
       {
         "name": "skill_md_template.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-doc/assets/skill/skill_md_template.md",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
         "source": "derived"
       },
       {
@@ -115,13 +115,13 @@
       {
         "name": "write.md",
         "kind": "doc",
-        "path": ".opencode/agent/write.md",
+        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {

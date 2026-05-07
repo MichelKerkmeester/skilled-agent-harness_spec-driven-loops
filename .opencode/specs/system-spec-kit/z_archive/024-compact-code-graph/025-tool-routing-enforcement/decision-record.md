@@ -54,7 +54,7 @@ Template compliance shim section. Legacy phase content continues below.
 
 ### DR-003: Constitutional Memory for Persistent Routing
 
-**Decision**: Create a constitutional-tier memory (`.opencode/skill/system-spec-kit/constitutional/gate-tool-routing.md`) that is ALWAYS surfaced at the top of every `memory_search` result.
+**Decision**: Create a constitutional-tier memory (`.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`) that is ALWAYS surfaced at the top of every `memory_search` result.
 
 **Context**: Constitutional memories bypass similarity scoring — they appear on every search. This ensures that even if server instructions and priming are missed, the routing decision tree appears when the AI uses any memory tool.
 

@@ -6,7 +6,7 @@ DEFINITIVE FINAL REPORT: Executive summary of 40 iterations. Top 10 recommendati
 ## Findings
 
 ### Finding 1: The final architectural boundary is settled: keep Public’s existing authorities, import only thin facades
-- **Source**: `research/iterations/iteration-039.md` [SOURCE: research/iterations/iteration-039.md:7-37], `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23], `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-95]
+- **Source**: `research/iterations/iteration-039.md` [SOURCE: research/iterations/iteration-039.md:7-37], `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23], `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-95]
 - **What it does**: The late-run synthesis converges on a stable rule: `memory_search`, `memory_context`, `session_bootstrap`, `generate-context.js`, CocoIndex, and code graph remain the authorities; any imported UX must compile into them rather than compete with them.
 - **Why it matters**: This closes the biggest design question of the 40-iteration run. The safe import strategy is now clear: patterns, not backends.
 - **Recommendation**: adopt now
@@ -14,7 +14,7 @@ DEFINITIVE FINAL REPORT: Executive summary of 40 iterations. Top 10 recommendati
 - **Source strength**: primary
 
 ### Finding 2: Compaction-time checkpointing is the highest-leverage adoption, but only as fail-open, JSON-primary capture
-- **Source**: `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:64-76], `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-95], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-417], `research/iterations/iteration-032.md` [SOURCE: research/iterations/iteration-032.md:3780-3789], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9479-9485]
+- **Source**: `external/hooks/mempal_precompact_hook.sh` [SOURCE: external/hooks/mempal_precompact_hook.sh:64-76], `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` [SOURCE: .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-95], `.opencode/plugins/spec-kit-compact-code-graph.js` [SOURCE: .opencode/plugins/spec-kit-compact-code-graph.js:396-417], `research/iterations/iteration-032.md` [SOURCE: research/iterations/iteration-032.md:3780-3789], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9479-9485]
 - **What it does**: MemPalace shows the value of a pre-compaction preservation moment, while Public already has the safer pieces: a structured save authority and a compaction transport hook.
 - **Why it matters**: This is the strongest direct improvement for continuity and compaction survival, but only if it reuses Public’s existing save authority and never becomes a blocking shadow workflow.
 - **Recommendation**: adopt now
@@ -22,7 +22,7 @@ DEFINITIVE FINAL REPORT: Executive summary of 40 iterations. Top 10 recommendati
 - **Source strength**: primary
 
 ### Finding 3: Bootstrap/status guidance is portable, but it must extend current hints instead of becoming a new wake-up authority
-- **Source**: `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:139-176], `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts:684-789], `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `research/iterations/iteration-032.md` [SOURCE: research/iterations/iteration-032.md:3791-3799], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9471-9477]
+- **Source**: `external/mempalace/mcp_server.py` [SOURCE: external/mempalace/mcp_server.py:139-176], `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:684-789], `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `research/iterations/iteration-032.md` [SOURCE: research/iterations/iteration-032.md:3791-3799], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9471-9477]
 - **What it does**: MemPalace’s `status` doubles as behavior instruction; Public already emits priming hints, structural routing nudges, and session-recovery guidance.
 - **Why it matters**: The importable value is not “add a new command,” but “teach the agent more directly at the existing bootstrap surfaces.”
 - **Recommendation**: adopt now
@@ -54,7 +54,7 @@ DEFINITIVE FINAL REPORT: Executive summary of 40 iterations. Top 10 recommendati
 - **Source strength**: primary
 
 ### Finding 7: Wake-up ergonomics should be prototyped only as a bounded read model on top of `session_bootstrap`
-- **Source**: `external/mempalace/layers.py` [SOURCE: external/mempalace/layers.py:369-430], `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9487-9493]
+- **Source**: `external/mempalace/layers.py` [SOURCE: external/mempalace/layers.py:369-430], `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209], `research/iterations/iteration-036.md` [SOURCE: research/iterations/iteration-036.md:9487-9493]
 - **What it does**: MemPalace’s L0/L1 wake-up stack proves the UX value of a compact startup read model, but Public already has the stronger recovery authority.
 - **Why it matters**: A formatter/profile may help startup continuity; a second bootstrap entrypoint would fragment the operator surface.
 - **Recommendation**: prototype later
@@ -155,7 +155,7 @@ The 40-iteration run settled the safe import boundary. The remaining work is no 
 **Evidence basis**
 - MemPalace’s own correction note narrows what is actually trustworthy in the external story. [SOURCE: external/README.md:52-79]
 - Its strongest portable ideas are protocol guidance, compaction timing, and temporal fact separation. [SOURCE: external/mempalace/mcp_server.py:139-176; external/hooks/mempal_precompact_hook.sh:64-76; external/mempalace/knowledge_graph.py:56-150]
-- Public already has stronger core authorities and should keep them. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23; .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209; .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-95]
+- Public already has stronger core authorities and should keep them. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23; .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209; .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-95]
 
 ## Sources Consulted
 - `external/AGENTS.md:1-79`
@@ -166,10 +166,10 @@ The 40-iteration run settled the safe import boundary. The remaining work is no 
 - `external/hooks/mempal_precompact_hook.sh:64-76`
 - `external/hooks/mempal_save_hook.sh:55-85`
 - `external/mempalace/knowledge_graph.py:56-150`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209`
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:684-789`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:85-95`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1-23`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-209`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:684-789`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:85-95`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
 - `research/iterations/iteration-032.md:3780-3848`
 - `research/iterations/iteration-034.md:12797-12887`

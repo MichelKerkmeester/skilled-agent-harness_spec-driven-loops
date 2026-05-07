@@ -6,17 +6,17 @@ Q6 and Q7 combined: define coder-specific anti-patterns beyond the generic AGENT
 
 ## Actions
 
-1. Read `.opencode/agent/review.md:396-434` for the review-agent anti-pattern precedent.
+1. Read `.opencode/agents/review.md:396-434` for the review-agent anti-pattern precedent.
 2. Read `AGENTS.md:125-153` to separate generic quality anti-patterns from coder-specific execution failure modes.
-3. Read `.opencode/agent/code.md:70-101` for current coder scope, Bash, stack, verification, and RETURN contract constraints.
-4. Read `.opencode/agent/debug.md:426-457` for debugging precedents around evidence, unrelated changes, verification, and escalation.
-5. Read `.opencode/agent/review.md:348-354` for the confidence-level shape to mirror.
+3. Read `.opencode/agents/code.md:70-101` for current coder scope, Bash, stack, verification, and RETURN contract constraints.
+4. Read `.opencode/agents/debug.md:426-457` for debugging precedents around evidence, unrelated changes, verification, and escalation.
+5. Read `.opencode/agents/review.md:348-354` for the confidence-level shape to mirror.
 
 ## Findings
 
 ### f-iter006-001 - Review anti-patterns give the right shape, but coder anti-patterns need execution verbs
 
-The review-agent table is framed as "never approve", "never score", "never block", and "never ignore project context" rules, with evidence requirements attached to each judgment (`.opencode/agent/review.md:396`, `.opencode/agent/review.md:407`, `.opencode/agent/review.md:412`, `.opencode/agent/review.md:419`). The coder equivalent should not talk about approval. It should talk about edit behavior, verification behavior, scope behavior, and RETURN behavior.
+The review-agent table is framed as "never approve", "never score", "never block", and "never ignore project context" rules, with evidence requirements attached to each judgment (`.opencode/agents/review.md:396`, `.opencode/agents/review.md:407`, `.opencode/agents/review.md:412`, `.opencode/agents/review.md:419`). The coder equivalent should not talk about approval. It should talk about edit behavior, verification behavior, scope behavior, and RETURN behavior.
 
 ### f-iter006-002 - AGENTS.md already covers generic quality traps; coder needs narrower failure modes
 
@@ -24,15 +24,15 @@ The global table already covers over-engineering, premature optimization, cargo 
 
 ### f-iter006-003 - code.md already establishes the hard coder boundaries
 
-The current code-agent contract is explicit on scope lock, spec-doc discipline, stack pivots, verification before claim, and Bash-bypass risk (`.opencode/agent/code.md:72`, `.opencode/agent/code.md:73`, `.opencode/agent/code.md:74`, `.opencode/agent/code.md:75`, `.opencode/agent/code.md:76`). It also already requires structured returns for UNKNOWN stack, failed verification, scope conflict, low confidence, and logic-sync conflicts (`.opencode/agent/code.md:82`, `.opencode/agent/code.md:83`, `.opencode/agent/code.md:84`, `.opencode/agent/code.md:85`, `.opencode/agent/code.md:86`, `.opencode/agent/code.md:87`). The anti-pattern table should sharpen those lines into recognizable traps.
+The current code-agent contract is explicit on scope lock, spec-doc discipline, stack pivots, verification before claim, and Bash-bypass risk (`.opencode/agents/code.md:72`, `.opencode/agents/code.md:73`, `.opencode/agents/code.md:74`, `.opencode/agents/code.md:75`, `.opencode/agents/code.md:76`). It also already requires structured returns for UNKNOWN stack, failed verification, scope conflict, low confidence, and logic-sync conflicts (`.opencode/agents/code.md:82`, `.opencode/agents/code.md:83`, `.opencode/agents/code.md:84`, `.opencode/agents/code.md:85`, `.opencode/agents/code.md:86`, `.opencode/agents/code.md:87`). The anti-pattern table should sharpen those lines into recognizable traps.
 
 ### f-iter006-004 - Debug precedent supports fail-closed verification language
 
-Debug-agent rules forbid multiple unrelated changes, skipped verification, and claiming resolution without evidence (`.opencode/agent/debug.md:436`, `.opencode/agent/debug.md:440`, `.opencode/agent/debug.md:444`). That maps cleanly to coder failure modes: silent retries on verify-fail, partial-success returns, and claim-without-verify.
+Debug-agent rules forbid multiple unrelated changes, skipped verification, and claiming resolution without evidence (`.opencode/agents/debug.md:436`, `.opencode/agents/debug.md:440`, `.opencode/agents/debug.md:444`). That maps cleanly to coder failure modes: silent retries on verify-fail, partial-success returns, and claim-without-verify.
 
 ### f-iter006-005 - Confidence levels should preserve review.md's three-band action model
 
-The review-agent confidence model has three rows: HIGH proceeds, MEDIUM reports documented gaps, and LOW blocks until missing verification is fixed (`.opencode/agent/review.md:350`, `.opencode/agent/review.md:352`, `.opencode/agent/review.md:353`, `.opencode/agent/review.md:354`). For coder work, LOW must be stricter than "note gaps": LOW means do not RETURN DONE.
+The review-agent confidence model has three rows: HIGH proceeds, MEDIUM reports documented gaps, and LOW blocks until missing verification is fixed (`.opencode/agents/review.md:350`, `.opencode/agents/review.md:352`, `.opencode/agents/review.md:353`, `.opencode/agents/review.md:354`). For coder work, LOW must be stricter than "note gaps": LOW means do not RETURN DONE.
 
 ## Questions Answered
 

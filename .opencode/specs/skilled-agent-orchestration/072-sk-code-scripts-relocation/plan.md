@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Review final diff"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code/assets/webflow/scripts/"
+      - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/sk-code/assets/webflow/scripts/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000072"
       session_id: "phase-072-sk-code-scripts-relocation"
@@ -91,15 +91,15 @@ The relocation flow is file-system based: inventory old references, inspect scri
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skill/sk-code/scripts/` | Old mixed root script folder | Remove after moving scoped files | `ls .opencode/skill/sk-code/scripts/ 2>&1` |
-| `.opencode/skill/sk-code/assets/webflow/scripts/` | New Webflow script asset home | Create and receive Webflow minification scripts | `ls -la .opencode/skill/sk-code/assets/webflow/scripts/` |
-| `.opencode/skill/sk-code/assets/scripts/` | Generic sk-code script asset home | Create and receive alignment-drift validator scripts | `ls -la .opencode/skill/sk-code/assets/scripts/` |
+| `.opencode/skills/sk-code/scripts/` | Old mixed root script folder | Remove after moving scoped files | `ls .opencode/skills/sk-code/scripts/ 2>&1` |
+| `.opencode/skills/sk-code/assets/webflow/scripts/` | New Webflow script asset home | Create and receive Webflow minification scripts | `ls -la .opencode/skills/sk-code/assets/webflow/scripts/` |
+| `.opencode/skills/sk-code/assets/scripts/` | Generic sk-code script asset home | Create and receive alignment-drift validator scripts | `ls -la .opencode/skills/sk-code/assets/scripts/` |
 | `.opencode/` references | Consumers of script paths | Exact textual path updates only | stale-reference grep from prompt |
 | Phase 072 spec packet | Audit trail and verification evidence | Create/update docs and scratch inventory | strict spec validation |
 
 Required inventories:
 - Old-path consumers: `grep -rln "sk-code/scripts/\|skill/sk-code/scripts" .opencode/ ...`.
-- Destination contents: `ls -la .opencode/skill/sk-code/assets/webflow/scripts/` and `ls -la .opencode/skill/sk-code/assets/scripts/`.
+- Destination contents: `ls -la .opencode/skills/sk-code/assets/webflow/scripts/` and `ls -la .opencode/skills/sk-code/assets/scripts/`.
 - Stale path check: same grep excluding this packet.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -205,7 +205,7 @@ Phase 1 (Setup) ----> Phase 2 (Core) ----> Phase 3 (Verify)
 ### Rollback Procedure
 1. Move the five files back with `git mv`.
 2. Replace new-path strings back to old paths only in files changed by this packet.
-3. Restore `.opencode/skill/sk-code/scripts/` if needed.
+3. Restore `.opencode/skills/sk-code/scripts/` if needed.
 4. Run stale-reference and strict validation checks again.
 
 ### Data Reversal

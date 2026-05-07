@@ -25,9 +25,9 @@ What breaks without a tuple-aware schema:
 - tuple-first callers must resolve into `memory_index` before they can enter the graph
 - anchor ids like `summary` or `decisions` stay ambiguous without doc scope
 - child-to-parent promotion from iteration 015 cannot be represented cleanly with one opaque endpoint id per side
-- current BFS stays optimized for `source_id` / `target_id`, not tuple filters. Source: `research/iterations/iteration-015.md:87-98,118-122` and `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:430-469`.
+- current BFS stays optimized for `source_id` / `target_id`, not tuple filters. Source: `research/iterations/iteration-015.md:87-98,118-122` and `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:430-469`.
 ## 2. Current schema (cited or best-effort)
-I did not find a standalone `schema.sql` for `causal_edges` in the prompt-suggested paths. The live source of truth is `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:605-635,937-947`, with tests confirming the same shape at `.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:68-80,500-527`.
+I did not find a standalone `schema.sql` for `causal_edges` in the prompt-suggested paths. The live source of truth is `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:605-635,937-947`, with tests confirming the same shape at `.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:68-80,500-527`.
 Packet-doc drift matters here: iteration 010 still says `source_memory_id` / `target_memory_id`; live code uses `source_id` / `target_id`. Source: `research/iterations/iteration-010.md:32-40,77-80`.
 ```sql
 CREATE TABLE IF NOT EXISTS causal_edges (
@@ -42,7 +42,7 @@ CREATE INDEX IF NOT EXISTS idx_causal_target ON causal_edges(target_id);
 CREATE INDEX IF NOT EXISTS idx_causal_relation ON causal_edges(relation);
 CREATE INDEX IF NOT EXISTS idx_causal_strength ON causal_edges(strength DESC);
 ```
-Neighbor identity already exists in `memory_index(spec_folder, file_path, anchor_id)` with `UNIQUE(spec_folder, file_path, anchor_id)`. Source: `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2297-2358`.
+Neighbor identity already exists in `memory_index(spec_folder, file_path, anchor_id)` with `UNIQUE(spec_folder, file_path, anchor_id)`. Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2297-2358`.
 ## 3. Target schema
 Iteration 010's two named columns remain part of the answer, but they are not enough alone. Anchors are only unique within a doc, and iteration 015 requires cross-packet promotion. Phase 018 therefore needs six additive tuple columns while keeping legacy ids as compatibility shadows.
 ### 3.1 Phase 018 additive DDL
@@ -86,8 +86,8 @@ CREATE INDEX idx_causal_edges_v2_target_anchor ON causal_edges_v2(target_spec_fo
 Recommendation: no new SQLite FK on the tuple columns in phase 018. `CASCADE` would erase causal lineage; `SET NULL` would silently corrupt valid edges; the correct operational behavior here is logical `RESTRICT`, enforced by the write path and migration checks. If a future immutable `anchor_nodes` registry appears, that registry should use `ON DELETE RESTRICT`.
 ## 4. Column semantics
 Anchor formats already accepted by repo tests:
-- `DECISION-pipeline-003`, `DECISION-use-rrF-001`: `.opencode/skill/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:70-78,170-178`
-- `test/path.file#section`: `.opencode/skill/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:634-640`
+- `DECISION-pipeline-003`, `DECISION-use-rrF-001`: `.opencode/skills/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:70-78,170-178`
+- `test/path.file#section`: `.opencode/skills/system-spec-kit/mcp_server/tests/anchor-metadata.vitest.ts:634-640`
 | Column | Purpose | Value contract | NULL meaning | Migration fill |
 |---|---|---|---|---|
 | `source_spec_folder` | source packet scope | `^[0-9A-Za-z._/-]+$` | unresolved legacy source | `memory_index.spec_folder` from `source_id` |
@@ -164,7 +164,7 @@ Idempotence:
 - `CREATE INDEX IF NOT EXISTS` and `COALESCE(...)` backfill are safe to re-run
 - `ALTER TABLE ... ADD COLUMN` is not; gate it with `PRAGMA table_info`.
 ## 7. Query plan analysis
-Current BFS in `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts:430-469` is id-based:
+Current BFS in `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:430-469` is id-based:
 ```sql
 WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (
   SELECT ce.source_id, ce.target_id, 1, ... FROM causal_edges ce WHERE ce.source_id IN (?)

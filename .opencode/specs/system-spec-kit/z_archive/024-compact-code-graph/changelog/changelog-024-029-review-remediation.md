@@ -29,14 +29,14 @@ contextType: "implementation"
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Added real `nextActions` generation to the bootstrap response. |
-| `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts` | Added optional `outputSchema` field to `ToolDefinition` interface; added formal output schema to `session_bootstrap` documenting `resume`, `health`, `structuralContext`, `hints`, and `nextActions`. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Wrapped compact recovery output with the shared provenance fence. |
-| `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Enforced the documented structural bootstrap token ceiling. |
-| `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Hardened autosave packet selection so ambiguous transcript-only matches are not treated as authoritative and new unambiguous packet switches retarget autosave correctly. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Updated bootstrap coverage for the new `nextActions` contract. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts` | Added coverage for the structural contract token-budget ceiling. |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts` | Added focused regression tests for stop-hook spec-folder detection behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Added real `nextActions` generation to the bootstrap response. |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Added optional `outputSchema` field to `ToolDefinition` interface; added formal output schema to `session_bootstrap` documenting `resume`, `health`, `structuralContext`, `hints`, and `nextActions`. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts` | Wrapped compact recovery output with the shared provenance fence. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts` | Enforced the documented structural bootstrap token ceiling. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts` | Hardened autosave packet selection so ambiguous transcript-only matches are not treated as authoritative and new unambiguous packet switches retarget autosave correctly. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Updated bootstrap coverage for the new `nextActions` contract. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts` | Added coverage for the structural contract token-budget ceiling. |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-stop.vitest.ts` | Added focused regression tests for stop-hook spec-folder detection behavior. |
 | `.claude/agents/context-prime.md` | Added explicit Structural Context guidance. |
 | `.codex/agents/context-prime.md` | Added explicit Structural Context guidance. |
 | `.codex/agents/context-prime.toml` | Added Structural Context output guidance to the Codex TOML agent definition. |
@@ -53,6 +53,6 @@ contextType: "implementation"
 
 ### Verification
 - `TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/session-bootstrap.vitest.ts tests/structural-contract.vitest.ts tests/hook-session-start.vitest.ts tests/hook-session-stop.vitest.ts` passed with 4 files and 20 tests.
-- `npm run typecheck` passed for `.opencode/skill/system-spec-kit/mcp_server`.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation --strict` passed.
-- `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --strict --no-recursive` passed after the phase-link cleanup.
+- `npm run typecheck` passed for `.opencode/skills/system-spec-kit/mcp_server`.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation --strict` passed.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --strict --no-recursive` passed after the phase-link cleanup.

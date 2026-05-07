@@ -86,7 +86,7 @@ Translate this roadmap into packet candidates: Q1 packet for compaction action c
 - **Questions addressed**: unit-vs-integration boundaries, memory-quality regression strategy, compaction/bootstrapping verification, scope/offline-failure testing, and how much of Mnemosyne to test directly versus as an adapter contract.
 - **Questions answered**: wrapper behavior should be unit-tested with mocks; stateful Public behaviors should use real SQLite fixtures; retrieval quality should be gated by ablation/ground-truth metrics; compaction needs payload snapshots; scope/offline matrices should precede any facade rollout.
 - **Novelty justification**: This pass adds a concrete three-lane testing architecture tied to current Public sources instead of only comparing feature patterns at the design level.
-- **Validation**: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- **Validation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 - **Execution note**: This was read-only static analysis. I did not update `research/research.md`, `checklist.md`, `implementation-summary.md`, or save memory artifacts in the phase folder.
 
 ## Ruled Out
@@ -126,7 +126,7 @@ Define the concrete CI split for this test strategy: `contract-fast`, `sqlite-in
 - Questions addressed: `[search latency trade-offs, storage growth controls, indexing overhead, startup-time impact, compaction overhead, code-search separation]`
 - Questions answered: `[Public’s main costs come from ranking depth and startup integrity work; its main savings come from incremental indexing and active-corpus reduction; Mnemosyne’s main advantage is cheap wrapper ergonomics, not lower total runtime cost]`
 - Novelty justification: `This pass adds a performance-specific synthesis that separates thin plugin overhead from backend cold-start cost and maps Mnemosyne’s cheap compaction/scoping ergonomics onto Public’s heavier but more resilient retrieval lifecycle.`
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; it also emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`; it also emitted the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
 - Re-platforming Public’s primary memory backend around Mnemosyne for performance reasons alone, because the cold path just moves into a binary/model dependency while losing Public’s current integrity and indexing controls.
@@ -163,7 +163,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 ## Findings
 - **Why it matters**: This is the right architecture for long-lived memory. Permanence, recall probability, and current-session salience should stay independent so we do not accidentally make durable rules feel “old” or recent noise feel “important.”
 - **Recommendation**: adopt now
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
 - Re-platforming Public’s primary memory backend or mutation path around Mnemosyne’s CLI wrapper.
@@ -204,7 +204,7 @@ Read-only note: I did not update [research/research.md](/Users/michelkerkmeester
 ## Findings
 ### Finding N: [Title]
 - **Source**: file path(s) [SOURCE: path:line]
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
 - Replacing Public’s current `/spec_kit:resume` and `session_bootstrap()` recovery contract with direct `memory_recall` semantics.
@@ -255,7 +255,7 @@ The plugin exposes five memory tools: `memory_recall`, `memory_recall_global`, `
 
 ### 4.3 What This Repo Already Has
 
-`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skill/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
+`Code_Environment/Public` already has Spec Kit Memory with a hybrid vector/BM25 memory retrieval pipeline in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, startup and resume flows in `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`, and CocoIndex for semantic code search through `.opencode/skills/mcp-coco-index/README.md`. It also already has a compaction-oriented transport plugin in `.opencode/plugins/spec-kit-compact-code-graph.js` that injects structural context during `experimental.session.compacting`.
 
 What this repo does **not** currently have is an OpenCode memory plugin that wraps a standalone local binary, a first-class project/global tool pair with Mnemosyne's lightweight ergonomics, or a memory-specific compaction hook that injects tool-usage guidance directly into the compaction prompt. Do not repeat the outdated claim that Public lacks hybrid BM25+vector memory retrieval; compare Mnemosyne against the current code, not stale assumptions.
 
@@ -271,11 +271,11 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 8. Examine the `experimental.session.compacting` hook implementation in `src/index.ts` line by line. Treat this as the most novel feature of the phase: capture exactly what guidance is injected, when it runs, and how that compares with Public's structural compaction plugin in `.opencode/plugins/spec-kit-compact-code-graph.js`.
 9. Only after the wrapper analysis, read `external/opencode-mnemosyne-main/README.md`. Use it to extract hybrid-search claims, model choice, AGENTS.md guidance, offline-first positioning, and the stated project/global collection model. Distinguish clearly between wrapper-verified behavior and backend claims that are only documented here.
 10. Treat the Mnemosyne backend as an interface contract, not an implementation you can prove from this repo. Infer the wrapper-visible backend verbs (`init`, `search`, `add`, `delete`) and the documented hybrid-search behavior, but do not fabricate internal Go ranking logic that is not present in the checked-out plugin repository.
-11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skill/mcp-coco-index/README.md` for semantic code-search positioning.
+11. Compare Mnemosyne directly against current `Code_Environment/Public` code: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` for existing hybrid retrieval, `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` for session bootstrap/resume behavior, `.opencode/plugins/spec-kit-compact-code-graph.js` for compaction injection, and `.opencode/skills/mcp-coco-index/README.md` for semantic code-search positioning.
 12. Resolve cross-phase boundaries explicitly. Do not redo phase `001` as generic FTS5 study or phase `003` as generic BM25 study. This phase owns wrapper-to-backend boundaries, vector-search implications, OpenCode plugin ergonomics, project/global scoping, AGENTS guidance, and memory-awareness compaction behavior.
 13. Before deep research begins, ensure the phase folder contains the required Spec Kit docs for the chosen level. Validate the phase folder with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict
     ```
 14. After validation passes, run deep research using this exact topic:
     ```text
@@ -283,7 +283,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
     ```
 15. Save all outputs inside this phase folder, especially under `research/`. Every meaningful finding must cite exact file paths, say whether the evidence is wrapper-confirmed or README-level, explain why it matters for `Code_Environment/Public`, classify the recommendation as `adopt now`, `prototype later`, or `reject`, and identify the affected subsystem. When research is complete, update `checklist.md`, create `implementation-summary.md`, and save memory with:
     ```bash
-    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
+    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main"
     ```
 
 ## 6. Research Questions
@@ -314,7 +314,7 @@ What this repo does **not** currently have is an OpenCode memory plugin that wra
 - Do not spend most of the analysis on Mnemosyne's unseen Go internals; they are a dependency, not the plugin repo under study.
 - Do not conflate the TypeScript wrapper with the backend search implementation. State clearly when a claim is README-level rather than source-proven.
 - Do not ignore the compaction hook; it is the most novel and transferable feature for `Code_Environment/Public`.
-- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
+- Do not claim Public lacks hybrid BM25+vector memory retrieval when `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` already proves otherwise.
 - Do not try to run the system unless the binary and model are already installed; static analysis is sufficient for this phase, and first-run model download is large.
 - Do not collapse this phase into generic FTS5 or BM25 discussion already owned by phases `001` and `003`.
 - Do not edit anything under `external/` or outside this phase folder.
@@ -438,7 +438,7 @@ mcp: spec_kit_memory/memory_quick_search started
 mcp: spec_kit_memory/memory_quick_search (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "DEEP RESEARCH iteration 37 of 40 final extended run on external memory system. Focus architecture evolution map for OpenCode Mnemosyne versus Spec Kit Memory, read-only synthesis."' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "DEEP RESEARCH iteration 37 of 40 final extended run on external memory system. Focus architecture evolution map for OpenCode Mnemosyne versus Spec Kit Memory, read-only synthesis."' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1223ms:
 2026-04-10 23:34:17.089 xcodebuild[4051:38758563]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-04-10 23:34:17.211 xcodebuild[4051:38758562] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -500,7 +500,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-b2vcQdqT' (errno=Opera
 codex
 The memory MCP lookup was canceled, so I’m falling back to direct source evidence and keeping the pass lean. Skill routing is also noisy in this sandbox because temp-file creation is blocked, but the task clearly matches `sk-deep-research`, so I’m proceeding with a research-first, read-only workflow.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'rg -n "mnemosyne|compaction|compact-code-graph|memory_search|memory_context|memory_match_triggers|generate-context|causal" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -520,7 +520,7 @@ version: 1.4.0.0
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -6332,7 +6332,7 @@ drwxr-xr-x   3 michelkerkmeester  staff    96 Apr 10 21:19 src
     44	}
 
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1149ms:
 
 ───────────────────────────────────────────────────────────────
@@ -6347,7 +6347,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -6471,9 +6471,9 @@ exec
    109	MIT
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Memory Search
@@ -7383,7 +7383,7 @@ exec
    260	  if (sessionID) {
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/mcp-coco-index/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/mcp-coco-index/README.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	title: "CocoIndex Code - Semantic Code Search"
@@ -7483,7 +7483,7 @@ exec
     96	Run the idempotent bootstrap helper. It installs the binary, initializes the project if needed, and reports readiness.
     97	
     98	```bash
-    99	bash .opencode/skill/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
+    99	bash .opencode/skills/mcp-coco-index/scripts/ensure_ready.sh --strict --require-config
    100	```
    101	
    102	**Step 2: Build the index**
@@ -7607,7 +7607,7 @@ exec
    220	    settings_reference.md          Embedding model switching and daemon settings
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/hooks/index.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Index
@@ -7636,7 +7636,7 @@ exec
     25	} from './response-hints.js';
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Tool Schemas
@@ -7857,7 +7857,7 @@ exec
    217	const memorySave: ToolDefinition = {
    218	  name: 'memory_save',
    219	  description: '[L2:Core] Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files. Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
-   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+   220	  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, sharedSpaceId: { type: 'string', description: 'Optional shared-memory space for collaboration saves.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
    221	};
    222	
    223	// L3: Discovery - Browse and explore (Token Budget: 800)
@@ -7960,7 +7960,7 @@ exec
    320	  name: 'memory_bulk_delete',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	"use strict";
      2	// ---------------------------------------------------------------
@@ -8224,1185 +8224,1185 @@ exec
    260	                    resolvedNestedPath = candidate;
 
 exec
-/bin/zsh -lc 'rg -n "memory_search|memory_context|memory_match_triggers|session_bootstrap|session_resume|autoSurfaceAtCompaction|experimental.session.compacting|MEMORY_AWARE_TOOLS|compaction|memory_causal_link|memory_drift_why|generate-context.js|generate-context" .opencode/skill/system-spec-kit/mcp_server .opencode/plugins .opencode/skill/system-spec-kit/scripts/dist/memory .opencode/skill/system-spec-kit/scripts/memory 2>/dev/null' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "memory_search|memory_context|memory_match_triggers|session_bootstrap|session_resume|autoSurfaceAtCompaction|experimental.session.compacting|MEMORY_AWARE_TOOLS|compaction|memory_causal_link|memory_drift_why|generate-context.js|generate-context" .opencode/skills/system-spec-kit/mcp_server .opencode/plugins .opencode/skills/system-spec-kit/scripts/dist/memory .opencode/skills/system-spec-kit/scripts/memory 2>/dev/null' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/plugins/spec-kit-opencode-message-schema.mjs:48:  'compaction',
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:52:Usage: node generate-context.js [options] <input>
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:56:                    - JSON file mode: node generate-context.js data.json [spec-folder]
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:65:  node generate-context.js /tmp/context-data.json
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:66:  node generate-context.js /tmp/context-data.json specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:67:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:68:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:69:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:540:      console.error('[generate-context] Failed to list spec folders:', errMsg);
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:543:  console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:52:Usage: node generate-context.js [options] <input>
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:56:                    - JSON file mode: node generate-context.js data.json [spec-folder]
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:65:  node generate-context.js /tmp/context-data.json
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:66:  node generate-context.js /tmp/context-data.json specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:67:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:68:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:69:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:540:      console.error('[generate-context] Failed to list spec folders:', errMsg);
+.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:543:  console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
 .opencode/plugins/spec-kit-compact-code-graph.js:77: *   compaction?: TransportBlock,
 .opencode/plugins/spec-kit-compact-code-graph.js:396:    'experimental.session.compacting': async (input, output) => {
 .opencode/plugins/spec-kit-compact-code-graph.js:406:      const block = plan?.compaction;
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:50:  MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:54:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:212:  ...MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:915:    if (MEMORY_AWARE_TOOLS.has(name)) {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:920:            autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:229:| `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:230:| `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
-.opencode/skill/system-spec-kit/scripts/memory/README.md:38:- `generate-context.ts` - generate memory output from spec folder or JSON input with content-aware candidate selection
-.opencode/skill/system-spec-kit/scripts/memory/README.md:59:node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
-.opencode/skill/system-spec-kit/scripts/memory/README.md:67:node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"sessionSummary":"...","specFolder":"..."}' specs/NNN-name
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.d.ts:23://# sourceMappingURL=generate-context.d.ts.map
-.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.d.ts.map:1:{"version":3,"file":"generate-context.d.ts","sourceRoot":"","sources":["../../memory/generate-context.ts"],"names":[],"mappings":"AA4BA,KAAK,uBAAuB,GAAG,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,GAAG;IAAE,OAAO,EAAE,MAAM,CAAA;CAAE,CAAC;AAE7E,UAAU,kBAAkB;IAC1B,QAAQ,EAAE,MAAM,GAAG,IAAI,CAAC;IACxB,aAAa,EAAE,MAAM,GAAG,IAAI,CAAC;IAC7B,aAAa,EAAE,uBAAuB,GAAG,IAAI,CAAC;IAC9C,SAAS,EAAE,MAAM,GAAG,IAAI,CAAC;CAC1B;AAKD,8DAA8D;AAC9D,MAAM,WAAW,oBAAoB;IACnC,KAAK,EAAE,OAAO,CAAC;IACf,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,OAAO,CAAC,EAAE,MAAM,CAAC;CAClB;AA4HD,iBAAS,iBAAiB,CAAC,UAAU,EAAE,MAAM,GAAG,oBAAoB,CA8DnE;AAqED,iBAAS,wBAAwB,CAAC,IAAI,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,GAAG,MAAM,GAAG,IAAI,CAS9E;AAED,iBAAe,YAAY,CAAC,KAAK,GAAE,MAAM,CAAC,UAA0B,GAAG,OAAO,CAAC,MAAM,CAAC,CAUrF;AAuED,iBAAe,cAAc,CAC3B,IAAI,GAAE,MAAM,EAA0B,EACtC,WAAW,GAAE,CAAC,KAAK,CAAC,EAAE,MAAM,CAAC,UAAU,KAAK,OAAO,CAAC,MAAM,CAAgB,GACzE,OAAO,CAAC,kBAAkB,CAAC,CAyC7B;AAED,iBAAS,iBAAiB,IAAI,IAAI,CA0GjC;AAKD,iBAAe,IAAI,CACjB,IAAI,GAAE,MAAM,EAA0B,EACtC,WAAW,GAAE,CAAC,KAAK,CAAC,EAAE,MAAM,CAAC,UAAU,KAAK,OAAO,CAAC,MAAM,CAAgB,GACzE,OAAO,CAAC,IAAI,CAAC,CAiCf;AAiBD,OAAO,EACL,IAAI,EACJ,YAAY,EACZ,cAAc,EACd,iBAAiB,EACjB,iBAAiB,EACjB,wBAAwB,GACzB,CAAC"}
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:280:    const warning = 'Manual fallback save mode detected; standard generate-context template markers are missing.';
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js.map:1:{"version":3,"file":"generate-context.js","sourceRoot":"","sources":["../../memory/generate-context.ts"],"names":[],"mappings":"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"}
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:62:Usage: node generate-context.js [options] <input>
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:66:                    - JSON file mode: node generate-context.js data.json [spec-folder]
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:75:  node generate-context.js /tmp/context-data.json
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:76:  node generate-context.js /tmp/context-data.json specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:77:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:78:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:79:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
-.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:546://# sourceMappingURL=generate-context.js.map
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:415:  memory_drift_why: memoryDriftWhySchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:416:  memory_causal_link: memoryCausalLinkSchema as unknown as ToolInputSchema,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:451:  session_bootstrap: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455:  session_resume: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:480:  memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:481:  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:495:  session_bootstrap: ['specFolder'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:497:  session_resume: ['specFolder', 'minimal'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:484:  name: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:11:export const TOOL_NAMES = new Set(['memory_context']);
-.opencode/skill/system-spec-kit/mcp_server/tools/context-tools.ts:16:    case 'memory_context': return handleMemoryContext(parseArgs<ContextArgs>(validateToolArgs('memory_context', args)));
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:137:| Codex | `.codex/config.toml` | Checked-in MCP config. Bootstrap parity via `session_bootstrap` MCP tool, not a native SessionStart hook. |
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:426:- `memory_context` (unified context retrieval)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:427:- `memory_search` (semantic search)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:437:- `session_bootstrap` (complete session bootstrap)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:438:- `session_resume` (combined session resume)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:465:- [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:530:### memory_context: Unified Context Retrieval
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:532:`memory_context()` is the primary entry point for context loading. It detects task intent and routes to the optimal retrieval strategy automatically.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:548:### memory_search: Semantic Search
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:550:`memory_search()` runs vector-based similarity search across all indexed memories.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:629:- `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:681:**Behind the scenes:** The AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, then returns the previous session state.
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:692:1. AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
-.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1064:| v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
-.opencode/skill/system-spec-kit/mcp_server/tools/README.md:27:- `context-tools.ts` - dispatch for `memory_context`.
-.opencode/skill/system-spec-kit/mcp_server/tools/README.md:40:- `memory-tools.ts` implements the `memory_quick_search` delegation path by building a richer `memory_search` request and relabeling the returned envelope metadata back to `memory_quick_search`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:9:  - "memory_context"
-.opencode/skill/system-spec-kit/mcp_server/README.md:10:  - "memory_search"
-.opencode/skill/system-spec-kit/mcp_server/README.md:200:  "tool": "memory_context",
-.opencode/skill/system-spec-kit/mcp_server/README.md:535:**Architecture:** CocoIndex (semantic, external MCP) finds code by concept. Code Graph (structural, this server) maps imports, calls and hierarchy. Memory (session, this server) preserves decisions. The compact-merger combines all three under a 4000-token budget for compaction injection.
-.opencode/skill/system-spec-kit/mcp_server/README.md:545:**Startup/recovery surfaces:** `session_resume`, `session_bootstrap`, and the startup brief now report freshness-aware graph status instead of count-only health. Startup surfaces are intentionally non-mutating snapshots, so later structural reads may still differ if repo state changes.
-.opencode/skill/system-spec-kit/mcp_server/README.md:547:**Query routing:** Structural queries (callers, imports, dependencies) go to `code_graph_query`. Semantic and concept queries go to CocoIndex (`mcp__cocoindex_code__search`). Session and memory queries go to `memory_context`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:557:**Start here for most tasks**: `memory_context` (L1) automatically figures out what you need. Use the lower-level tools when you want precise control.
-.opencode/skill/system-spec-kit/mcp_server/README.md:563:##### `memory_context`
-.opencode/skill/system-spec-kit/mcp_server/README.md:587:  "tool": "memory_context",
-.opencode/skill/system-spec-kit/mcp_server/README.md:599:##### `session_resume`
-.opencode/skill/system-spec-kit/mcp_server/README.md:601:Resume session with combined memory, code graph and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. The response carries freshness-aware code-graph status (`fresh`, `stale`, `empty`, `error`) instead of count-only health. For the canonical first-call recovery path on session start or after `/clear`, prefer `session_bootstrap`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:610:##### `session_bootstrap`
-.opencode/skill/system-spec-kit/mcp_server/README.md:612:Complete session bootstrap in one call. This is the canonical first-call recovery step on session start or after `/clear`. It wraps the full `session_resume` payload plus `session_health` and returns context, health, structural readiness and recommended next actions. Startup/bootstrap surfaces are freshness-aware but non-mutating; use `code_graph_scan` when readiness shows an empty or broad full-scan state.
-.opencode/skill/system-spec-kit/mcp_server/README.md:622:##### `memory_search`
-.opencode/skill/system-spec-kit/mcp_server/README.md:646:  "tool": "memory_search",
-.opencode/skill/system-spec-kit/mcp_server/README.md:674:##### `memory_match_triggers`
-.opencode/skill/system-spec-kit/mcp_server/README.md:688:  "tool": "memory_match_triggers",
-.opencode/skill/system-spec-kit/mcp_server/README.md:982:##### `memory_drift_why`
-.opencode/skill/system-spec-kit/mcp_server/README.md:996:##### `memory_causal_link`
-.opencode/skill/system-spec-kit/mcp_server/README.md:1026:| `edgeId` | string | **Required.** Edge ID from `memory_drift_why` results |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1227:├── hooks/                     # Session-start/compaction surfacing, mutation feedback, token-count sync
-.opencode/skill/system-spec-kit/mcp_server/README.md:1326:  "tool": "memory_context",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1347:node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/005-auth
-.opencode/skill/system-spec-kit/mcp_server/README.md:1371:  "tool": "memory_drift_why",
-.opencode/skill/system-spec-kit/mcp_server/README.md:1535:| Resume a session from scratch | `session_bootstrap` | Use as the first recovery call on session start or after `/clear` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1536:| Inspect the detailed merged resume payload | `session_resume` | Use when you want direct resume details without the full bootstrap wrapper |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1538:| Find a past decision | `memory_context` | Set `intent: "find_decision"` |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1539:| Search for specific terms | `memory_search` | Use `concepts: ["term1", "term2"]` for AND search |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1540:| Check triggers on every prompt | `memory_match_triggers` | Pass the user's prompt text |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1556:**What you see**: Irrelevant or low-scoring results from `memory_search` or `memory_context`.
-.opencode/skill/system-spec-kit/mcp_server/README.md:1567:{ "tool": "memory_search", "arguments": { "query": "your query", "min_quality_score": 0.5 } }
-.opencode/skill/system-spec-kit/mcp_server/README.md:1717:Start with `memory_context` for all retrieval tasks. It handles intent detection and routing automatically. Use `memory_search` when you want explicit control over channels. Use `memory_match_triggers` when processing a raw prompt at the start of each turn. Use L4-L7 tools only for mutation, analysis or maintenance.
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:25:  'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:26:  'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:34:    case 'memory_drift_why':     return handleMemoryDriftWhy(parseArgs<DriftWhyArgs>(validateToolArgs('memory_drift_why', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/causal-tools.ts:35:    case 'memory_causal_link':   return handleMemoryCausalLink(parseArgs<CausalLinkArgs>(validateToolArgs('memory_causal_link', args)));
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:85:const MEMORY_AWARE_TOOLS: Set<string> = new Set([
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:87:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:482:      graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:583: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:605:  if (MEMORY_AWARE_TOOLS.has(toolName)) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:624: * autoSurfaceAtCompaction
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:640:async function autoSurfaceAtCompaction(
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:665:  MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:678:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:30:              producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:31:              sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:62:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77:  it('uses the full session_resume payload and records full bootstrap telemetry', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:86:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:98:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:107:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:108:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:121:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:10:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/hooks/index.ts:11:  MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:62:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:78:    case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:80:      // E3: Delegate to memory_search with sensible defaults
-.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:56:- `autoSurfaceAtCompaction(sessionContext, options)`
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:57:- `MEMORY_AWARE_TOOLS`
-.opencode/skill/system-spec-kit/mcp_server/hooks/README.md:70:- `MEMORY_AWARE_TOOLS` currently includes `memory_context`, `memory_search`, `memory_match_triggers`, `memory_list`, `memory_save`, and `memory_index_scan`.
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:384:  it('C13: Response meta.tool is memory_search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:388:    expect(envelope.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:26:// Feature catalog: Causal chain tracing (memory_drift_why)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:354:      tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:358:      recovery: getRecoveryHint('memory_drift_why', 'E031'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:370:        tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:374:        recovery: getRecoveryHint('memory_drift_why', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:385:          tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:389:          recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:483:        tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:521:      tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:543:      'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:646:        `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:783:          'Use memory_drift_why() to find edge IDs',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:817:      hints.push('Use memory_drift_why() to find valid edge IDs');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:858:  handle_memory_drift_why,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:61:  'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:62:  'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:82:    case 'session_resume':             return handleSessionResume(parseArgs<SessionResumeArgs>(validateToolArgs('session_resume', args)));
-.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:83:    case 'session_bootstrap':          return handleSessionBootstrap(parseArgs<SessionBootstrapArgs>(validateToolArgs('session_bootstrap', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1269:> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
-.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:93:1. User queries memory_search
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:102:**Purpose**: Zero data loss on MCP server crash or context compaction.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:50:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:61:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:77:      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:140:        '- `memory_context({ input, mode })` — unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:142:        '- `memory_search({ query })` — semantic search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:185:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:190:      content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:149:        ? 'Recovered compact transcript lines were removed before fallback compaction cache assembly.'
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:150:        : 'No recovered compact transcript lines detected in fallback compaction cache assembly.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:163:        kind: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:170:        summary: 'Fallback compaction cache assembled from sanitized transcript tail',
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:51:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:62:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:73:      content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:106:        '- `memory_context({ input, mode })` - unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:108:        '- `memory_search({ query })` - semantic search',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:149:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:155:    content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:17:// Feature catalog: Causal edge creation (memory_causal_link)
-.opencode/skill/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:59:    it('T516-2: handle_memory_search alias is exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:60:      expect(typeof handler.handle_memory_search).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/README.md:31:Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:7:/** Token budget for compaction context injection */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:63:    'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:41:    resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:42:    resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:43:    resolve(process.cwd(), '.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:44:    resolve(process.cwd(), 'scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:71:    hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:19:import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:154:type AutoSurfaceAtCompactionResult = Awaited<ReturnType<typeof autoSurfaceAtCompaction>>;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:290:  const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:83:      validateToolInputSchema('memory_context', {}, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:119:      validateToolInputSchema('memory_context', { input: 'resume', mode: 'invalid-mode' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:133:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:137:    expect(errorSpy.mock.calls.some((call) => String(call[0]).includes('[schema-validation] memory_search:'))).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:240:   4. memory_search LIMIT CONTRACT (schema + runtime alignment)
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:243:describe('memory_search limit contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:246:      validateToolInputSchema('memory_search', { cursor: 'opaque-cursor-token' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:252:      validateToolArgs('memory_search', { cursor: 'opaque-cursor-token' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:258:      validateToolInputSchema('memory_search', { concepts: ['alpha', 'beta'] }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:264:      validateToolInputSchema('memory_search', {}, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:270:      validateToolArgs('memory_search', { query: 'ab', limit: 100 });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:276:      validateToolArgs('memory_search', { query: 'ab', limit: 101 });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:282:      validateToolInputSchema('memory_search', { query: 'ab', limit: 101 }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:288:      validateToolArgs('memory_search', { concepts: ['solo'] });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:292:  it('public schema rejects unknown memory_search parameters', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:294:      validateToolInputSchema('memory_search', { query: 'valid query', unexpected: true }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:300:      validateToolInputSchema('memory_search', { query: 'a' }, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:304:  it('runtime rejects unknown memory_search parameters', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:306:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:312:      validateToolArgs('memory_search', {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:322:  it('public and runtime schemas accept response profiles for memory_search', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:329:      validateToolInputSchema('memory_search', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:331:    expect(validateToolArgs('memory_search', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:346:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:348:    expect(validateToolArgs('memory_context', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:351:  it('public and runtime schemas accept response profiles for memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:358:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:360:    expect(validateToolArgs('memory_context', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:464:    const driftWhy = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_drift_why');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:465:    const causalLink = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:313:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:6:  { tool: 'memory_context', handler: 'handleMemoryContext', layer: 'L1' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:7:  { tool: 'memory_search', handler: 'handleMemorySearch', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:22:  { tool: 'memory_drift_why', handler: 'handleMemoryDriftWhy', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:23:  { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:33:  { camel: 'handleMemorySearch', snake: 'handle_memory_search' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:49:  { camel: 'handleMemoryDriftWhy', snake: 'handle_memory_drift_why' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:50:  { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:56:  { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/causal-tools.js:11:    'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/causal-tools.js:12:    'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/causal-tools.js:19:        case 'memory_drift_why': return handleMemoryDriftWhy(parseArgs(validateToolArgs('memory_drift_why', args)));
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/causal-tools.js:20:        case 'memory_causal_link': return handleMemoryCausalLink(parseArgs(validateToolArgs('memory_causal_link', args)));
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/memory-tools.js:34:    'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/memory-tools.js:36:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/memory-tools.js:49:        case 'memory_search': return handleMemorySearch(parseArgs(validateToolArgs('memory_search', args)));
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/memory-tools.js:51:            // E3: Delegate to memory_search with sensible defaults
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/memory-tools.js:70:        case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs(validateToolArgs('memory_match_triggers', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
-.opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:4:// Feature catalog: Causal edge creation (memory_causal_link)
-.opencode/skill/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:181:const key = generateCacheKey('memory_search', { query: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:184:set(key, searchResults, { toolName: 'memory_search', ttlMs: 30000 });
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:196:  'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:133:    expect(matchRule('memory_search', 'spec.md error context')).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:134:    expect(matchRule('memory_context', 'spec.md metadata')).not.toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:62:  memory_drift_why: ERROR_CODES.TRAVERSAL_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.ts:63:  memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:482:describe('T059: autoDetectIntent Parameter (memory_search)', () => {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:132:  return buildErrorResponse('memory_search', error, { query });
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/README.md:142:const hint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:25:    'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:26:    'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:45:        case 'session_resume': return handleSessionResume(parseArgs(validateToolArgs('session_resume', args)));
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:46:        case 'session_bootstrap': return handleSessionBootstrap(parseArgs(validateToolArgs('session_bootstrap', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:588:      'Use memory_drift_why() to find valid edge IDs',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:598:      'Check existing relationships with memory_drift_why()',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:603:    toolTip: 'memory_drift_why()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:610:      'See memory_causal_link() documentation for relation semantics'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:637:      'Retry memory_drift_why() with a smaller maxDepth',
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:642:    toolTip: 'memory_drift_why()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:748:        'Use generate-context.js script to create memory files'
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:788:  memory_drift_why: {
-.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:802:  memory_causal_link: {
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/context-tools.js:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/context-tools.js:9:export const TOOL_NAMES = new Set(['memory_context']);
-.opencode/skill/system-spec-kit/mcp_server/dist/tools/context-tools.js:13:        case 'memory_context': return handleMemoryContext(parseArgs(validateToolArgs('memory_context', args)));
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:5:// shared by startup, recovery, and compaction surfaces.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:12:  | 'compaction';
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
-.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:156:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:271:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:306:                tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:317:            tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:343:                    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:360:            tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:371:            tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:482:    const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:731:            toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:1038:const handle_memory_search = handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.js:1039:export { handle_memory_search, };
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:12:    content: [{ type: 'text', text: JSON.stringify({ data: { results: [], count: 0 }, meta: { tool: 'memory_search' } }) }],
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:31:import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, appendAutoSurfaceHints, syncEnvelopeTokenCount, serializeEnvelopeWithTokenCount, recordToolCall, } from './hooks/index.js';
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:97:    ...MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:149:        preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:504:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:505:        'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:514:            const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:516:                    snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:529:    lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:531:    lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:532:    lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:611:        if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:634:        const isCompactionLifecycleCall = name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:636:        if (MEMORY_AWARE_TOOLS.has(name)) {
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:641:                        autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:684:        if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js:702:        if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:30:      "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:85:      "query": "memory_context returns wrong results when token pressure is high",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:251:      "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:330:      "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:415:      "query": "the memory_search tool returns stale results after index rebuild",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:425:      "query": "what is the difference between memory_context and memory_search for context retrieval",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:430:      "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:640:      "expectedResultDescription": "Should surface the generate-context.js script documentation and CLAUDE.md Memory Save Rule about using the script instead of the Write tool.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:641:      "notes": "Derived from \"generate-context\" trigger phrase in the memory save workflow documentation."
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:670:      "expectedResultDescription": "Should surface causal-edges.ts, causal-boost.ts, memory_drift_why tool schema, and spec memories about the causal relationship graph.",
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:725:      "query": "when should I use memory_search versus memory_context",
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:16:    name: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:18:    inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:22:    name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:162:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:165:    description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:182:    name: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:436:    name: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:442:    name: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:453:    description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:673:    name: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:674:    description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:687:    name: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:688:    description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
-.opencode/skill/system-spec-kit/mcp_server/dist/tool-schemas.js:700:            resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:240:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:248:            tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:252:            recovery: getRecoveryHint('memory_drift_why', 'E031'),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:262:                tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:266:                recovery: getRecoveryHint('memory_drift_why', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:276:                    tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:280:                    recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:352:                tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:359:                    'Use memory_causal_link to create relationships',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:386:            tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:408:        return createSanitizedCausalError('memory_drift_why', error, ErrorCodes.TRAVERSAL_ERROR, { memoryId }, startTime, 'Causal traversal failed.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:414:/** Handle memory_causal_link tool - creates a causal edge between two memories */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:427:            tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:452:                tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:456:                recovery: getRecoveryHint('memory_causal_link', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:464:                tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:468:                recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:476:                tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:480:                recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:485:            tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:492:                `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:499:        return createSanitizedCausalError('memory_causal_link', error, ErrorCodes.CAUSAL_GRAPH_ERROR, { sourceId, targetId, relation }, startTime, 'Causal link creation failed.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:560:            hints.push('No causal links exist yet - use memory_causal_link to create relationships');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:602:                    'Use memory_drift_why() to find edge IDs',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:631:            hints.push('Use memory_drift_why() to find valid edge IDs');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:650:const handle_memory_drift_why = handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:651:const handle_memory_causal_link = handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:654:export { handle_memory_drift_why, handle_memory_causal_link, handle_memory_causal_stats, handle_memory_causal_unlink, };
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:304:  `).run(1, 'sess-1', 1, 0.9, now, later, 2, 1, 1, 'memory_search', 'call-1', 'rule-1', 0);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/quality-loop.d.ts:51: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/index.d.ts:1:export { extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, MEMORY_AWARE_TOOLS, recordToolCall, getSessionTimestamps, getLastActiveSessionId, isSessionPrimed, getCodeGraphStatusSnapshot, } from './memory-surface.js';
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:31:        resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:32:        resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:33:        resolve(process.cwd(), '.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:34:        resolve(process.cwd(), 'scripts/dist/memory/generate-context.js'),
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:57:        hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/shared.js:6:/** Token budget for compaction context injection */
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:123:describe('memory_search UX hook integration', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/response-profile-formatters.vitest.ts:23:      tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:58:declare const MEMORY_AWARE_TOOLS: Set<string>;
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:81:declare function autoSurfaceMemories(contextHint: string, tokenBudget?: number, hookName?: 'tool-dispatch' | 'compaction' | 'memory-aware'): Promise<AutoSurfaceResult | null>;
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:96: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:111: * autoSurfaceAtCompaction
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:113: * Fires at session compaction lifecycle points. Surfaces memories relevant
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:115: * across the compaction boundary.
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:127:declare function autoSurfaceAtCompaction(sessionContext: string, options?: {
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:130:export { MEMORY_AWARE_TOOLS, CONSTITUTIONAL_CACHE_TTL, TOOL_DISPATCH_TOKEN_BUDGET, COMPACTION_TOKEN_BUDGET, extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, primeSessionIfNeeded, resetSessionPrimed, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, recordToolCall, getSessionTimestamps, getLastActiveSessionId, isSessionPrimed, markSessionPrimed, getCodeGraphStatusSnapshot, };
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/quality-loop.js:36: * reliable retrieval via the `memory_match_triggers` tool. The scoring
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:33:                content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:43:                content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:57:            content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:109:                '- `memory_context({ input, mode })` — unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:110:                '- `memory_match_triggers({ prompt })` — fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:111:                '- `memory_search({ query })` — semantic search',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:150:            content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:156:            content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:166:            content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:17:const MEMORY_AWARE_TOOLS = new Set([
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:18:    'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:19:    'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:21:    'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:333:        recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:336:        recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:352:            graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:436: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:453:    if (MEMORY_AWARE_TOOLS.has(toolName)) {
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:468: * autoSurfaceAtCompaction
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:470: * Fires at session compaction lifecycle points. Surfaces memories relevant
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:472: * across the compaction boundary.
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:484:async function autoSurfaceAtCompaction(sessionContext, options) {
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:495:    return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:502:MEMORY_AWARE_TOOLS, CONSTITUTIONAL_CACHE_TTL, TOOL_DISPATCH_TOKEN_BUDGET, COMPACTION_TOKEN_BUDGET, 
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:504:extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, primeSessionIfNeeded, resetSessionPrimed, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, 
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:96:      'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:97:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/index.js:4:export { extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, MEMORY_AWARE_TOOLS, 
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md:132:const budget = getTokenBudget('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/lib/architecture/README.md:139:const enhanced = enhanceDescription('memory_search', 'Search memories');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:32:  handle_memory_context,
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:238:   T021-T030: handle_memory_context MAIN HANDLER TESTS
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:242:  it('T021: handle_memory_context is a function', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:289:  it('T029: handleMemoryContext is alias for handle_memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:290:    expect(handleMemoryContext).toBe(handle_memory_context);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:847:  it('T101: handle_memory_context is exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:868:  it('T105: handleMemoryContext is same as handle_memory_context', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:869:    expect(handleMemoryContext).toBe(handle_memory_context);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:902:      meta: { tool: 'memory_search' }
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js:14:import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js:247:    const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.js:194:        recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:131:                ? 'Recovered compact transcript lines were removed before fallback compaction cache assembly.'
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:132:                : 'No recovered compact transcript lines detected in fallback compaction cache assembly.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:144:                kind: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:151:                summary: 'Fallback compaction cache assembled from sanitized transcript tail',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:35:                content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:45:                content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:54:            content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:84:                '- `memory_context({ input, mode })` - unified context retrieval',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:85:                '- `memory_match_triggers({ prompt })` - fast trigger matching',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:86:                '- `memory_search({ query })` - semantic search',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:123:                content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:128:            content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:135:            content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js:48:        'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:626:      expect(md).toContain('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/shared.d.ts:3:/** Token budget for compaction context injection */
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/README.md:3:Core implementation for the structural code graph system. Provides file parsing, SQLite storage, graph queries, CocoIndex bridge, budget allocation, and compaction merging.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/README.md:16:| `compact-merger.ts` | 3-source merge (Memory + Code Graph + CocoIndex) for compaction |
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/README.md:26:The compact-merger combines all three under a 4000-token budget for compaction injection.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:4:// Tracks files and symbols accessed during a session for compaction
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:19:      sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:90:    includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:345:    memory_context: memoryContextSchema,
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:346:    memory_search: memorySearchSchema,
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:348:    memory_match_triggers: memoryMatchTriggersSchema,
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:363:    memory_drift_why: memoryDriftWhySchema,
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:364:    memory_causal_link: memoryCausalLinkSchema,
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:399:    session_bootstrap: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:403:    session_resume: getSchema({
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:409:    memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:410:    memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:412:    memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:427:    memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:428:    memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:442:    session_bootstrap: ['specFolder'],
-.opencode/skill/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:444:    session_resume: ['specFolder', 'minimal'],
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:218:        'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:219:        'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:220:        'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.d.ts:22:    sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:20:        ? 'session_bootstrap'
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:22:          ? 'session_resume'
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:53:    expect(plan.compaction?.hook).toBe('experimental.session.compacting');
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:5:// into a unified compact brief for compaction injection.
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:192:      kind: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:208:        sourceSurface: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:4:// Phase 024 / Item 7: Composite tool that runs session_resume
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:42:        nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:51:        nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:54:        nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:57:        nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:61:        nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:81:        preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:87:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:91:    // Sub-call 1: session_resume with full resume payload
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:103:        allHints.push('session_resume failed. Try calling it manually.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:118:    const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:120:        allHints.push(`Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:146:        throw new StructuralTrustPayloadError('session_bootstrap expected session_resume to emit structural-context.structuralTrust.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:148:    const structuralContextWithTrust = attachStructuralTrustFields(structuralContext, structuralSnapshotTrust, { label: 'session_bootstrap structural context payload' });
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:151:        : attachStructuralTrustFields(resumeData, resumeStructuralTrust, { label: 'session_bootstrap resume payload' });
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:207:            producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:208:            sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:221:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/context-metrics.js:153:    //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
-.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:53:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:59:declare const handle_memory_context: typeof handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:60:export { handle_memory_context, };
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:966:            ? `memory_search({ sessionId: "${sessionId}" })`
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:967:            : 'memory_search({ query: "last session" })';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:971:> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:50:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:68:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:83:    const response = buildErrorResponse('memory_search', error);
-.opencode/skill/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:92:    expect(getDefaultErrorCodeForTool('memory_drift_why')).toBe('E105');
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:86:    expect(envelope.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.d.ts:5:/** Handle session_bootstrap tool call — one-call session setup */
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/response/profile-formatters.js:109:        followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:144:  it('preserves separate trust axes through real session_resume and session_bootstrap outputs', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:190:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:49:        'handle_memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:50:        'handle_memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:126:        preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:179:                    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:190:                    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:745:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:759:                tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:772:                tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:871:                tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:889:        const layerInfo = layerDefs.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:937:        // Phase C: Intent-to-profile auto-routing for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:989:                tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1006:                tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1070:            tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1077:                `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1183:            tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1184:            error: 'memory_context failed due to an internal error',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1198:const handle_memory_context = handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1199:export { handle_memory_context, };
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:4:// - autoSurfaceAtCompaction:   fires at session compaction lifecycle point
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:28:  MEMORY_AWARE_TOOLS,
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:33:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:127:  it('returns null for memory_context (prevents recursive surfacing)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:128:    const result = await autoSurfaceAtToolDispatch('memory_context', { input: 'some context' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:132:  it('returns null for memory_search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:133:    const result = await autoSurfaceAtToolDispatch('memory_search', { query: 'some query' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:157:  it('all MEMORY_AWARE_TOOLS are skipped', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:158:    for (const toolName of MEMORY_AWARE_TOOLS) {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:168:    for (const toolName of MEMORY_AWARE_TOOLS) {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:300:  it('fires matcher once at tool-dispatch and once at compaction lifecycle points', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:305:    await autoSurfaceAtCompaction('compaction lifecycle context');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:309:    expect(matchSpy).toHaveBeenNthCalledWith(2, 'compaction lifecycle context', 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:380:   7. autoSurfaceAtCompaction — BASIC BEHAVIOR
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:383:describe('TM-05: autoSurfaceAtCompaction — basic behavior', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:392:    expect(typeof autoSurfaceAtCompaction).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:396:    const result = autoSurfaceAtCompaction('Working on feature X in specs/010');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:401:    const result = await autoSurfaceAtCompaction('Some session context about the current task');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:406:    const result = await autoSurfaceAtCompaction('');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:411:    const result = await autoSurfaceAtCompaction('   ');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:416:    const result = await autoSurfaceAtCompaction('ab');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:421:    const result = await autoSurfaceAtCompaction(null as unknown as string);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:426:    const result = await autoSurfaceAtCompaction(undefined as unknown as string);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:432:   8. autoSurfaceAtCompaction — CONFIG FLAG DISABLING
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:435:describe('TM-05: autoSurfaceAtCompaction — config flag disabling', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:444:    const result = await autoSurfaceAtCompaction(
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:455:    await autoSurfaceAtCompaction(
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:467:    await autoSurfaceAtCompaction('Long session context with meaningful content');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:474:   9. autoSurfaceAtCompaction — TRIMS WHITESPACE BEFORE SURFACING
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:477:describe('TM-05: autoSurfaceAtCompaction — whitespace trimming', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:489:    await autoSurfaceAtCompaction('  session context trimmed  ');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:497:   10. autoSurfaceAtCompaction — RESULT STRUCTURE
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:500:describe('TM-05: autoSurfaceAtCompaction — result structure', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:510:    const result = await autoSurfaceAtCompaction('Session context about memory search and spec kit');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:522:    const result = await autoSurfaceAtCompaction('Session context about memory search');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:533:    const result = await autoSurfaceAtCompaction('Session context about memory search');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:569:  it('compaction hook also enforces result limit via matchTriggerPhrases', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:578:    await autoSurfaceAtCompaction('Session context to verify budget enforcement');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:609:  it('compaction output boundary enforces estimated token budget', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:622:    const result = await autoSurfaceAtCompaction('compaction context for budget enforcement');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:677:    expect(MEMORY_AWARE_TOOLS).toBeInstanceOf(Set);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:678:    expect(MEMORY_AWARE_TOOLS.size).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:698:    await autoSurfaceAtCompaction('compaction session context');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:723:  it('autoSurfaceAtCompaction is exported', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:724:    expect(typeof autoSurfaceAtCompaction).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:729:    expect(MEMORY_AWARE_TOOLS).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:743:describe('compaction pipeline integration', () => {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/shared-payload.js:5:// shared by startup, recovery, and compaction surfaces.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:52:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:70:declare const handle_memory_search: typeof handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:71:export { handle_memory_search, };
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:40:        compaction: {
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:41:          hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:44:          dedupeKey: 'compaction:resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:45:          content: 'Summary: compaction note',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:145:          tool: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:164:  it('adds a compaction note and invalidates cache on session events', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:168:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:169:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:186:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, { context: [] });
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/shared-payload.d.ts:1:export type SharedPayloadKind = 'startup' | 'resume' | 'health' | 'bootstrap' | 'compaction';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/shared-payload.d.ts:61:    producer: 'startup_brief' | 'session_snapshot' | 'session_resume' | 'session_health' | 'session_bootstrap' | 'compact_merger' | 'hook_cache';
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-health.js:79:        hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-health.js:82:        hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-health.js:85:        hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/README.md:175:Packet `026-graph-and-context-optimization/010-fts-capability-cascade-floor` freezes the lexical capability contract that packet `002-implement-cache-warning-hooks` now consumes. `memory_search` responses expose:
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:3:export type OpenCodeTransportHook = 'event' | 'experimental.chat.system.transform' | 'experimental.chat.messages.transform' | 'experimental.session.compacting';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:24:    compaction?: OpenCodeTransportBlock;
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:34:    compactionPayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:20:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:58:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:97:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:108:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:135:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:143:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:152:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:186:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:206:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:254:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:312:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:352:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:363:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:373:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:384:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:409:        tool: 'memory_search'
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:287:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:296:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:302:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:310:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:311:    expect(resp.meta.tool).toBe('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:318:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:328:  it('F7: Tool-specific hints included for memory_search + E001', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:330:    const resp = buildErrorResponse('memory_search', err);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:353:    const err = createErrorWithHint('E040', 'fail', {}, 'memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:469:  it('K2: Has memory_search, checkpoint_restore, memory_save', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:470:    expect('memory_search' in TOOL_SPECIFIC_HINTS).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:476:    const searchHints = TOOL_SPECIFIC_HINTS['memory_search'];
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:492:  it('L1: Returns tool-specific hint for memory_search + E001', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:493:    const hint = getRecoveryHint('memory_search', 'E001');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:512:    const hint = getRecoveryHint('memory_search', 'E040');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:524:  it('M1: Returns true for known tool+code (memory_search, E001)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:525:    expect(hasSpecificHint('memory_search', 'E001')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:543:    const hints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:550:    const hints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:82:      const key1 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:83:      const key2 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:88:      const key1 = generateCacheKey('memory_search', { query: 'auth' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:89:      const key2 = generateCacheKey('memory_search', { query: 'login' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:95:      const key1 = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:352:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:353:      const key2 = generateCacheKey('memory_search', { query: 'test2' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:355:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:356:      set(key2, 'value2', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:358:      const invalidated = invalidateByTool('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:366:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:369:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:380:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:383:      set(key1, 'value1', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:394:      const searchKey = generateCacheKey('memory_search', { query: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:396:      set(searchKey, 'search_result', { toolName: 'memory_search' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:423:      const key = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:427:        'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:436:      expect(invalidateByTool('memory_search')).toBe(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:439:      const second = withCache('memory_search', args, async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:589:      const key = generateCacheKey('memory_search', args);
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:593:        'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:603:      const second = withCache('memory_search', args, async () => 'fresh-after-shutdown');
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:49:        args.compactionPayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:53:    const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:83:        ...(compactionPayload
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:85:                compaction: {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:86:                    hook: 'experimental.session.compacting',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:88:                    payloadKind: compactionPayload.kind,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:89:                    dedupeKey: `compaction:${compactionPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:90:                    content: renderBlockContent(compactionPayload, 'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.'),
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:176:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/shared-memory.js:161:    // memory_context/memory_match_triggers cannot be wired here yet.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/dist/formatters/search-results.js:242:            tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/dist/formatters/search-results.js:512:        tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:773:  describe('T141 - Decision Lineage (memory_drift_why)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:181:  it('T022: memory_search has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:182:    expect(TOOL_SPECIFIC_HINTS.memory_search).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:183:    expect(typeof TOOL_SPECIFIC_HINTS.memory_search).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:201:  it('T026: memory_drift_why has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:202:    expect(TOOL_SPECIFIC_HINTS.memory_drift_why).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:203:    expect(typeof TOOL_SPECIFIC_HINTS.memory_drift_why).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:206:  it('T027: memory_causal_link has tool-specific hints', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:207:    expect(TOOL_SPECIFIC_HINTS.memory_causal_link).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:208:    expect(typeof TOOL_SPECIFIC_HINTS.memory_causal_link).toBe('object');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:221:  it('T029: memory_search EMBEDDING_FAILED has contextual hint', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:224:      TOOL_SPECIFIC_HINTS.memory_search?.[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:244:    const searchHint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:246:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:301:      'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:315:    const hasSearch = hasSpecificHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:356:    const searchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:362:    const searchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:365:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:713:    const toolSpecific = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:718:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED]
-.opencode/skill/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:725:    const allSearchHints = getAvailableHints('memory_search');
-.opencode/skill/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:41:    const result = validateToolArgs('memory_search', {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:66:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/extraction/extraction-adapter.js:9:        toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/extraction/extraction-adapter.js:16:        toolPattern: /^(grep|memory_search)$/i,
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_context: 'L1',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_search: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:131:        memory_drift_why: 'L6',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:132:        memory_causal_link: 'L6',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:194:        { tool: 'memory_context', expected: '[L1:Orchestration]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:195:        { tool: 'memory_search', expected: '[L2:Core]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:199:        { tool: 'memory_drift_why', expected: '[L6:Analysis]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:221:      const result = mod.enhanceDescription('memory_context', 'Some description text');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:227:        { tool: 'memory_search', desc: 'Search memories', prefix: '[L2:Core]' },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:242:      expect(mod.enhanceDescription('memory_context', '')).toBe('[L1:Orchestration] ');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:252:        { tool: 'memory_context', expected: 3500 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:253:        { tool: 'memory_search', expected: 3500 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:257:        { tool: 'memory_drift_why', expected: 1500 },
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:270:      expect(typeof mod.getTokenBudget('memory_context')).toBe('number');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:280:      const info = expectLayerInfo(mod.getLayerInfo('memory_context'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:287:      expect(info.tools).toContain('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:291:      const info1 = mod.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:292:      const info2 = mod.getLayerInfo('memory_context');
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:301:      const info = expectLayerInfo(mod.getLayerInfo('memory_search'));
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:430:      const toolSamples = ['memory_context', 'memory_search', 'memory_list',
-.opencode/skill/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:431:                           'memory_update', 'checkpoint_create', 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:12:  provenance: ['session_resume'],
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:54:        provenance: ['session_resume', 'session_resume'],
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:60:describe('session_resume certainty contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:118:        sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:150:describe('session_bootstrap certainty contract', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:187:                  producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:188:                  sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:219:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:80:    const contract = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:86:    expect(contract.sourceSurface).toBe('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:103:    const contract = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:108:    expect(contract.recommendedAction).toContain('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:109:    expect(contract.sourceSurface).toBe('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:164:    const contract = buildStructuralBootstrapContract('session_bootstrap');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:89:describe('memory_context advisory metadata', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:212:describe('session_bootstrap authority preservation', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:249:                  producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:250:                  sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:281:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:291:      preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:296:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.d.ts:2:export declare const handle_memory_search: typeof import("./memory-search.js").handleMemorySearch;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.d.ts:4:export declare const handle_memory_match_triggers: typeof import("./memory-triggers.js").handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.d.ts:71:export declare const handle_memory_drift_why: typeof import("./causal-graph.js").handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.d.ts:72:export declare const handle_memory_causal_link: typeof import("./causal-graph.js").handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.d.ts:76:export declare const handle_memory_context: typeof import("./memory-context.js").handleMemoryContext;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:14:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:17:declare const handle_memory_match_triggers: typeof handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:18:export { handle_memory_match_triggers, };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:30:    tool: 'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:37:    tool: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:137:    tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:143:    tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:176:  { tool: 'memory_context', handler: 'handleMemoryContext' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:177:  { tool: 'memory_search', handler: 'handleMemorySearch' },
-.opencode/skill/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:6:// Feature catalog: Trigger phrase matching (memory_match_triggers)
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:61:        console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:91:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:97:            tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:117:            console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:119:                tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:124:                    hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:179:            console.warn('[memory_match_triggers] Decay failed:', message);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:218:            console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:228:            tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:264:                console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:280:                    console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:368:        console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:385:        tool: 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:429:const handle_memory_match_triggers = handleMemoryMatchTriggers;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:430:export { handle_memory_match_triggers, };
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:303:            'Use memory_match_triggers() for prompt-based matching instead'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:306:        toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:481:            'Check memory_search() for existing similar content'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:528:            'Use memory_drift_why() to find valid edge IDs',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:538:            'Check existing relationships with memory_drift_why()',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:543:        toolTip: 'memory_drift_why()'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:550:            'See memory_causal_link() documentation for relation semantics'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:577:            'Retry memory_drift_why() with a smaller maxDepth',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:582:        toolTip: 'memory_drift_why()'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:629:    memory_search: {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:635:                'Try memory_match_triggers() for trigger-based matching'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:638:            toolTip: 'memory_match_triggers()'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:681:                'Use generate-context.js script to create memory files'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:719:    memory_drift_why: {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:732:    memory_causal_link: {
-.opencode/skill/system-spec-kit/mcp_server/dist/context-server.d.ts:10:    preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:54:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:56:/** Handle memory_causal_link tool - creates a causal edge between two memories */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:63:declare const handle_memory_drift_why: typeof handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:64:declare const handle_memory_causal_link: typeof handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:67:export { handle_memory_drift_why, handle_memory_causal_link, handle_memory_causal_stats, handle_memory_causal_unlink, };
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.d.ts:55:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:20:      a compaction cycle. The compaction cycle moves live objects to reduce
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:30:        tools: ['memory_context', 'session_resume', 'session_bootstrap']
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:39:        tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:76:            'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:77:            'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:18:        memory_context: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:        memory_search: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:32:        memory_drift_why: 1500,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/core.js:8:    memory_search: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/core.js:10:    memory_context: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/core.js:11:    memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/core.js:17:    memory_drift_why: ERROR_CODES.TRAVERSAL_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/errors/core.js:18:    memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:44:  MEMORY_AWARE_TOOLS?: Set<string>
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:159:      'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:160:      'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:181:      'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:182:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:200:      'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:201:      'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:298:      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:441:      autoSurfaceAtCompactionMock: ReturnType<typeof vi.fn>
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:498:      const autoSurfaceAtCompactionMock = vi.fn(async () => null)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:634:        MEMORY_AWARE_TOOLS: memoryAwareTools,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:638:        autoSurfaceAtCompaction: autoSurfaceAtCompactionMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:855:        autoSurfaceAtCompactionMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:927:        { id: 'call-1', params: { name: 'memory_search', arguments: {} } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:944:      expect(callArgs[0]).toBe('memory_search')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1054:              name: 'memory_search',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1103:        memoryAwareTools: new Set<string>(['memory_search']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1113:        { id: 'call-5', params: { name: 'memory_search', arguments: { query: 'hook validation' } } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1123:    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1127:        autoSurfaceAtCompactionMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1131:        memoryAwareTools: new Set<string>(['memory_context']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1139:      autoSurfaceAtCompactionMock.mockResolvedValue(surfaced)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1144:          params: { name: 'memory_context', arguments: { input: 'session resume context', mode: 'resume' } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1149:      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledTimes(1)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1150:      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledWith('session resume context')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1157:    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1160:        autoSurfaceAtCompactionMock,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1164:        memoryAwareTools: new Set<string>(['memory_context']),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1177:          params: { name: 'memory_context', arguments: { input: 'focused retrieval context', mode: 'focused' } },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1184:      expect(autoSurfaceAtCompactionMock).not.toHaveBeenCalled()
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1563:      const response = errorsModule!.buildErrorResponse!('memory_search', testError, { query: 'test' })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1581:      const hint = errorsModule!.getRecoveryHint!('memory_search', 'UNKNOWN_TOOL')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1614:    it('T28: L1 budget = 3500 (memory_context)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1619:      expect(layerDefs!.getTokenBudget!('memory_context')).toBe(3500)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1622:    it('T28b: L2 budget = 3500 (memory_search)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1627:      expect(layerDefs!.getTokenBudget!('memory_search')).toBe(3500)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1662:    it('T28g: L6 budget = 1500 (memory_drift_why)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1667:      expect(layerDefs!.getTokenBudget!('memory_drift_why')).toBe(1500)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1680:  // GROUP 7: Hooks Integration (MEMORY_AWARE_TOOLS, extractContextHint)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1683:    // T29: Source imports MEMORY_AWARE_TOOLS
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1684:    it('T29: Imports MEMORY_AWARE_TOOLS from hooks', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1685:      expect(sourceCode).toMatch(/import\s*\{[^}]*MEMORY_AWARE_TOOLS[^}]*\}\s*from\s*['"]\.\/hooks\/index\.js['"]/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1688:    // T30: Source checks MEMORY_AWARE_TOOLS.has(name)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1689:    it('T30: Checks MEMORY_AWARE_TOOLS.has(name)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1690:      expect(sourceCode).toMatch(/MEMORY_AWARE_TOOLS\.has\(name\)/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1694:    it('T31: MEMORY_AWARE_TOOLS is a Set', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1700:      expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1705:      it(`T31b: MEMORY_AWARE_TOOLS contains '${t}'`, async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1711:        expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1712:        expect(hooksModule!.MEMORY_AWARE_TOOLS!.has(t)).toBe(true)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1718:      it(`T31c: MEMORY_AWARE_TOOLS excludes '${t}'`, async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1724:        expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1725:        expect(hooksModule!.MEMORY_AWARE_TOOLS!.has(t)).toBe(false)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2084:      'memory_context': '[L1:Orchestration]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2085:      'memory_search': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2100:      'memory_drift_why': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2101:      'memory_causal_link': '[L6:Analysis]',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2131:    it('T000e: memory_context supports optional tokenUsage (0.0-1.0)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2132:      expect(toolSchemasCode).toMatch(/name:\s*'memory_context'[\s\S]*?tokenUsage:\s*\{\s*type:\s*'number'/)
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2341:      expect(result).toContain('memory_context')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2342:      expect(result).toContain('memory_search')
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/memory-save.js:179:        const warning = 'Manual fallback save mode detected; standard generate-context template markers are missing.';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/enrichment/passive-enrichment.js:95:            return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/enrichment/passive-enrichment.js:98:            return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/search-flags.js:43: * Token-pressure policy for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/search-flags.js:50: * Automatic session resume context injection for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:5:// into a unified compact brief for compaction injection.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:119:            kind: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:135:                sourceSurface: 'compaction',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:11:    cocoIndex: 'Similar: memory-surface.ts autoSurfaceAtCompaction',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:12:    triggered: 'Trigger: compaction recovery context',
-.opencode/skill/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:45:      expect(result.payloadContract.kind).toBe('compaction');
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:22:  'tool-schemas.js': 880,           // actual: 862 — Expanded MCP schema set + Sprint 019: Zod schema integration, ingest tools, Phase 024 session_bootstrap, and newer graph/search tool contracts
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:304:    'MEMORY_AWARE_TOOLS',
-.opencode/skill/system-spec-kit/mcp_server/tests/modularization.vitest.ts:313:      if (fn === 'MEMORY_AWARE_TOOLS') {
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:47:        producer: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:48:        sourceSurface: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/sqlite-fts.js:4:// Feature catalog: Semantic and lexical search (memory_search)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:1:// TEST: memory_search per-channel eval logging (T056)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:106:describe('T056: memory_search emits per-channel eval rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/query-intent-classifier.js:8:// Phase 020: Integrated into memory_context handler for query-intent
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1:// TEST: memory_context per-channel eval logging (T056)
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:88:describe('T056: memory_context emits per-strategy channel eval rows', () => {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:30:            "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:85:            "query": "memory_context returns wrong results when token pressure is high",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:251:            "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:330:            "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:415:            "query": "the memory_search tool returns stale results after index rebuild",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:425:            "query": "what is the difference between memory_context and memory_search for context retrieval",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:430:            "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:640:            "expectedResultDescription": "Should surface the generate-context.js script documentation and CLAUDE.md Memory Save Rule about using the script instead of the Write tool.",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:641:            "notes": "Derived from \"generate-context\" trigger phrase in the memory save workflow documentation."
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:670:            "expectedResultDescription": "Should surface causal-edges.ts, causal-boost.ts, memory_drift_why tool schema, and spec memories about the causal relationship graph.",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:725:            "query": "when should I use memory_search versus memory_context",
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/pipeline/stage1-candidate-gen.js:721:    // Including it here caused all candidates to be filtered out when memory_context
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/search-flags.d.ts:17: * Token-pressure policy for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/search/search-flags.d.ts:22: * Automatic session resume context injection for memory_context.
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/ops-hardening.js:25:            ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/ops-hardening.js:26:            : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.d.ts:25:    liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:54:        return 'memory_context_then_grep';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:56:    return 'memory_context';
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:66:        if (resolution === 'memory_context_then_grep') {
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:88:    let toolCalls = 1; // session_bootstrap
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.js:174:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.js:177:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.js:254:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.js:255:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/index.js:260:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:190:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:192:    // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:224:            hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:261:    const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:263:        hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:275:        logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:351:            producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:352:            sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/dist/handlers/session-resume.js:361:        sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/dist/lib/code-graph/working-set-tracker.js:4:// Tracks files and symbols accessed during a session for compaction
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:50:  MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:54:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:212:  ...MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:760:    'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:915:    if (MEMORY_AWARE_TOOLS.has(name)) {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:920:            autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:229:| `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:230:| `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
+.opencode/skills/system-spec-kit/scripts/memory/README.md:38:- `generate-context.ts` - generate memory output from spec folder or JSON input with content-aware candidate selection
+.opencode/skills/system-spec-kit/scripts/memory/README.md:59:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<###-spec-name>
+.opencode/skills/system-spec-kit/scripts/memory/README.md:67:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"sessionSummary":"...","specFolder":"..."}' specs/NNN-name
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.d.ts:23://# sourceMappingURL=generate-context.d.ts.map
+.opencode/skills/system-spec-kit/mcp_server/handlers/shared-memory.ts:250:  // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.d.ts.map:1:{"version":3,"file":"generate-context.d.ts","sourceRoot":"","sources":["../../memory/generate-context.ts"],"names":[],"mappings":"AA4BA,KAAK,uBAAuB,GAAG,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,GAAG;IAAE,OAAO,EAAE,MAAM,CAAA;CAAE,CAAC;AAE7E,UAAU,kBAAkB;IAC1B,QAAQ,EAAE,MAAM,GAAG,IAAI,CAAC;IACxB,aAAa,EAAE,MAAM,GAAG,IAAI,CAAC;IAC7B,aAAa,EAAE,uBAAuB,GAAG,IAAI,CAAC;IAC9C,SAAS,EAAE,MAAM,GAAG,IAAI,CAAC;CAC1B;AAKD,8DAA8D;AAC9D,MAAM,WAAW,oBAAoB;IACnC,KAAK,EAAE,OAAO,CAAC;IACf,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,OAAO,CAAC,EAAE,MAAM,CAAC;CAClB;AA4HD,iBAAS,iBAAiB,CAAC,UAAU,EAAE,MAAM,GAAG,oBAAoB,CA8DnE;AAqED,iBAAS,wBAAwB,CAAC,IAAI,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,GAAG,MAAM,GAAG,IAAI,CAS9E;AAED,iBAAe,YAAY,CAAC,KAAK,GAAE,MAAM,CAAC,UAA0B,GAAG,OAAO,CAAC,MAAM,CAAC,CAUrF;AAuED,iBAAe,cAAc,CAC3B,IAAI,GAAE,MAAM,EAA0B,EACtC,WAAW,GAAE,CAAC,KAAK,CAAC,EAAE,MAAM,CAAC,UAAU,KAAK,OAAO,CAAC,MAAM,CAAgB,GACzE,OAAO,CAAC,kBAAkB,CAAC,CAyC7B;AAED,iBAAS,iBAAiB,IAAI,IAAI,CA0GjC;AAKD,iBAAe,IAAI,CACjB,IAAI,GAAE,MAAM,EAA0B,EACtC,WAAW,GAAE,CAAC,KAAK,CAAC,EAAE,MAAM,CAAC,UAAU,KAAK,OAAO,CAAC,MAAM,CAAgB,GACzE,OAAO,CAAC,IAAI,CAAC,CAiCf;AAiBD,OAAO,EACL,IAAI,EACJ,YAAY,EACZ,cAAc,EACd,iBAAiB,EACjB,iBAAiB,EACjB,wBAAwB,GACzB,CAAC"}
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:280:    const warning = 'Manual fallback save mode detected; standard generate-context template markers are missing.';
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js.map:1:{"version":3,"file":"generate-context.js","sourceRoot":"","sources":["../../memory/generate-context.ts"],"names":[],"mappings":"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"}
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:62:Usage: node generate-context.js [options] <input>
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:66:                    - JSON file mode: node generate-context.js data.json [spec-folder]
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:75:  node generate-context.js /tmp/context-data.json
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:76:  node generate-context.js /tmp/context-data.json specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:77:  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:78:  echo '{"specFolder":"specs/001-feature/"}' | node generate-context.js --stdin
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:79:  node generate-context.js --json '{"specFolder":"specs/001-feature/"}'
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:490:            console.error('[generate-context] Failed to list spec folders:', errMsg);
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:493:    console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
+.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:546://# sourceMappingURL=generate-context.js.map
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:7:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:150:    console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:197:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:218:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:220:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:225:          hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:284:      console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:325:      console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:336:      tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:374:        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:390:          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:491:    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:511:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:562:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:565:  handle_memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:112:  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:397:  memory_context: memoryContextSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:398:  memory_search: memorySearchSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:400:  memory_match_triggers: memoryMatchTriggersSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:415:  memory_drift_why: memoryDriftWhySchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:416:  memory_causal_link: memoryCausalLinkSchema as unknown as ToolInputSchema,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:451:  session_bootstrap: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455:  session_resume: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:462:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:463:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:480:  memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:481:  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:495:  session_bootstrap: ['specFolder'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:497:  session_resume: ['specFolder', 'minimal'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:42:  name: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:49:  name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:190:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:193:  description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:211:  name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:484:  name: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:11:export const TOOL_NAMES = new Set(['memory_context']);
+.opencode/skills/system-spec-kit/mcp_server/tools/context-tools.ts:16:    case 'memory_context': return handleMemoryContext(parseArgs<ContextArgs>(validateToolArgs('memory_context', args)));
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:416:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:709:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:137:| Codex | `.codex/config.toml` | Checked-in MCP config. Bootstrap parity via `session_bootstrap` MCP tool, not a native SessionStart hook. |
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:426:- `memory_context` (unified context retrieval)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:427:- `memory_search` (semantic search)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:428:- `memory_match_triggers` (fast trigger matching)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:437:- `session_bootstrap` (complete session bootstrap)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:438:- `session_resume` (combined session resume)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:465:- [ ] `memory_search()` returns results (or empty if no memories are indexed yet)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:530:### memory_context: Unified Context Retrieval
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:532:`memory_context()` is the primary entry point for context loading. It detects task intent and routes to the optimal retrieval strategy automatically.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:548:### memory_search: Semantic Search
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:550:`memory_search()` runs vector-based similarity search across all indexed memories.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:559:### memory_match_triggers: Fast Keyword Lookup
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:561:`memory_match_triggers()` provides sub-50ms keyword-based matching. Use it for immediate context surfacing at the start of a conversation.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:629:- `ContextEnvelope`: Wraps all `memory_context()` responses with metadata (mode used, memories returned, intent detected)
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:681:**Behind the scenes:** The AI calls `memory_context()` with `mode: "resume"` and `anchors: ["state", "next-steps"]`, then returns the previous session state.
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:692:1. AI calls `memory_context({ input: "add user profiles", mode: "auto" })`
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1047:MCP TOOLS: memory_context, memory_search, memory_match_triggers,
+.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1064:| v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:60:// Feature catalog: Unified context retrieval (memory_context)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:87:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:124:  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:203:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:325:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:386:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:397:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1078:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1092:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1117:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1231:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1250:  const layerInfo: LayerInfo | null = layerDefs.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1318:  // Phase C: Intent-to-profile auto-routing for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1375:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1393:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1471:    tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1478:      `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1583:      tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1584:      error: 'memory_context failed due to an internal error',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1606:const handle_memory_context = handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1609:  handle_memory_context,
+.opencode/skills/system-spec-kit/mcp_server/tools/README.md:27:- `context-tools.ts` - dispatch for `memory_context`.
+.opencode/skills/system-spec-kit/mcp_server/tools/README.md:40:- `memory-tools.ts` implements the `memory_quick_search` delegation path by building a richer `memory_search` request and relabeling the returned envelope metadata back to `memory_quick_search`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:9:  - "memory_context"
+.opencode/skills/system-spec-kit/mcp_server/README.md:10:  - "memory_search"
+.opencode/skills/system-spec-kit/mcp_server/README.md:200:  "tool": "memory_context",
+.opencode/skills/system-spec-kit/mcp_server/README.md:535:**Architecture:** CocoIndex (semantic, external MCP) finds code by concept. Code Graph (structural, this server) maps imports, calls and hierarchy. Memory (session, this server) preserves decisions. The compact-merger combines all three under a 4000-token budget for compaction injection.
+.opencode/skills/system-spec-kit/mcp_server/README.md:545:**Startup/recovery surfaces:** `session_resume`, `session_bootstrap`, and the startup brief now report freshness-aware graph status instead of count-only health. Startup surfaces are intentionally non-mutating snapshots, so later structural reads may still differ if repo state changes.
+.opencode/skills/system-spec-kit/mcp_server/README.md:547:**Query routing:** Structural queries (callers, imports, dependencies) go to `code_graph_query`. Semantic and concept queries go to CocoIndex (`mcp__cocoindex_code__search`). Session and memory queries go to `memory_context`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:557:**Start here for most tasks**: `memory_context` (L1) automatically figures out what you need. Use the lower-level tools when you want precise control.
+.opencode/skills/system-spec-kit/mcp_server/README.md:563:##### `memory_context`
+.opencode/skills/system-spec-kit/mcp_server/README.md:587:  "tool": "memory_context",
+.opencode/skills/system-spec-kit/mcp_server/README.md:599:##### `session_resume`
+.opencode/skills/system-spec-kit/mcp_server/README.md:601:Resume session with combined memory, code graph and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. The response carries freshness-aware code-graph status (`fresh`, `stale`, `empty`, `error`) instead of count-only health. For the canonical first-call recovery path on session start or after `/clear`, prefer `session_bootstrap`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:610:##### `session_bootstrap`
+.opencode/skills/system-spec-kit/mcp_server/README.md:612:Complete session bootstrap in one call. This is the canonical first-call recovery step on session start or after `/clear`. It wraps the full `session_resume` payload plus `session_health` and returns context, health, structural readiness and recommended next actions. Startup/bootstrap surfaces are freshness-aware but non-mutating; use `code_graph_scan` when readiness shows an empty or broad full-scan state.
+.opencode/skills/system-spec-kit/mcp_server/README.md:622:##### `memory_search`
+.opencode/skills/system-spec-kit/mcp_server/README.md:646:  "tool": "memory_search",
+.opencode/skills/system-spec-kit/mcp_server/README.md:674:##### `memory_match_triggers`
+.opencode/skills/system-spec-kit/mcp_server/README.md:688:  "tool": "memory_match_triggers",
+.opencode/skills/system-spec-kit/mcp_server/README.md:982:##### `memory_drift_why`
+.opencode/skills/system-spec-kit/mcp_server/README.md:996:##### `memory_causal_link`
+.opencode/skills/system-spec-kit/mcp_server/README.md:1026:| `edgeId` | string | **Required.** Edge ID from `memory_drift_why` results |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1227:├── hooks/                     # Session-start/compaction surfacing, mutation feedback, token-count sync
+.opencode/skills/system-spec-kit/mcp_server/README.md:1326:  "tool": "memory_context",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1347:node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/005-auth
+.opencode/skills/system-spec-kit/mcp_server/README.md:1371:  "tool": "memory_drift_why",
+.opencode/skills/system-spec-kit/mcp_server/README.md:1535:| Resume a session from scratch | `session_bootstrap` | Use as the first recovery call on session start or after `/clear` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1536:| Inspect the detailed merged resume payload | `session_resume` | Use when you want direct resume details without the full bootstrap wrapper |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1538:| Find a past decision | `memory_context` | Set `intent: "find_decision"` |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1539:| Search for specific terms | `memory_search` | Use `concepts: ["term1", "term2"]` for AND search |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1540:| Check triggers on every prompt | `memory_match_triggers` | Pass the user's prompt text |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1556:**What you see**: Irrelevant or low-scoring results from `memory_search` or `memory_context`.
+.opencode/skills/system-spec-kit/mcp_server/README.md:1567:{ "tool": "memory_search", "arguments": { "query": "your query", "min_quality_score": 0.5 } }
+.opencode/skills/system-spec-kit/mcp_server/README.md:1717:Start with `memory_context` for all retrieval tasks. It handles intent detection and routing automatically. Use `memory_search` when you want explicit control over channels. Use `memory_match_triggers` when processing a raw prompt at the start of each turn. Use L4-L7 tools only for mutation, analysis or maintenance.
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:25:  'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:26:  'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:34:    case 'memory_drift_why':     return handleMemoryDriftWhy(parseArgs<DriftWhyArgs>(validateToolArgs('memory_drift_why', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:35:    case 'memory_causal_link':   return handleMemoryCausalLink(parseArgs<CausalLinkArgs>(validateToolArgs('memory_causal_link', args)));
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:123:    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:125:    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts:128:    hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:85:const MEMORY_AWARE_TOOLS: Set<string> = new Set([
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:87:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:89:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:463:    recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:482:      graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:583: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:605:  if (MEMORY_AWARE_TOOLS.has(toolName)) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:624: * autoSurfaceAtCompaction
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:640:async function autoSurfaceAtCompaction(
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:665:  MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:678:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:100:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:340:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:554:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:566:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:594:          tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:613:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:625:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:751:  const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1044:      toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1374:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1377:  handle_memory_search,
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:30:              producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:31:              sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:62:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77:  it('uses the full session_resume payload and records full bootstrap telemetry', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:86:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:98:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:107:      recommendedAction: 'Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:108:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:121:    expect(parsed.data.nextActions).toContain('Call session_bootstrap to refresh structural context, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:10:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:11:  MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:62:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:64:  'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:78:    case 'memory_search':         return handleMemorySearch(parseArgs<SearchArgs>(validateToolArgs('memory_search', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:80:      // E3: Delegate to memory_search with sensible defaults
+.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99:    case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs<TriggerArgs>(validateToolArgs('memory_match_triggers', args)));
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:56:- `autoSurfaceAtCompaction(sessionContext, options)`
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:57:- `MEMORY_AWARE_TOOLS`
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:70:- `MEMORY_AWARE_TOOLS` currently includes `memory_context`, `memory_search`, `memory_match_triggers`, `memory_list`, `memory_save`, and `memory_index_scan`.
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:384:  it('C13: Response meta.tool is memory_search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts:388:    expect(envelope.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:26:// Feature catalog: Causal chain tracing (memory_drift_why)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:354:      tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:358:      recovery: getRecoveryHint('memory_drift_why', 'E031'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:370:        tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:374:        recovery: getRecoveryHint('memory_drift_why', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:385:          tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:389:          recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:483:        tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:521:      tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:543:      'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:646:        `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:783:          'Use memory_drift_why() to find edge IDs',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:817:      hints.push('Use memory_drift_why() to find valid edge IDs');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:858:  handle_memory_drift_why,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:61:  'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:62:  'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:82:    case 'session_resume':             return handleSessionResume(parseArgs<SessionResumeArgs>(validateToolArgs('session_resume', args)));
+.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:83:    case 'session_bootstrap':          return handleSessionBootstrap(parseArgs<SessionBootstrapArgs>(validateToolArgs('session_bootstrap', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1264:      : 'memory_search({ query: "last session" })';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1269:> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
+.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:90: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:93:1. User queries memory_search
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:102:**Purpose**: Zero data loss on MCP server crash or context compaction.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:50:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:61:      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:77:      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:140:        '- `memory_context({ input, mode })` — unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:141:        '- `memory_match_triggers({ prompt })` — fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:142:        '- `memory_search({ query })` — semantic search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:185:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:190:      content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:202:      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:149:        ? 'Recovered compact transcript lines were removed before fallback compaction cache assembly.'
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:150:        : 'No recovered compact transcript lines detected in fallback compaction cache assembly.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:163:        kind: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts:170:        summary: 'Fallback compaction cache assembled from sanitized transcript tail',
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:43:  sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:257:    recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:51:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:62:      content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:73:      content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:106:        '- `memory_context({ input, mode })` - unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:107:        '- `memory_match_triggers({ prompt })` - fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:108:        '- `memory_search({ query })` - semantic search',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:149:      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:155:    content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts:163:    content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:17:// Feature catalog: Causal edge creation (memory_causal_link)
+.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts:224:  //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:59:    it('T516-2: handle_memory_search alias is exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:60:      expect(typeof handler.handle_memory_search).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md:31:Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:7:/** Token budget for compaction context injection */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts:63:    'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:41:    resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:42:    resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:43:    resolve(process.cwd(), '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:44:    resolve(process.cwd(), 'scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:71:    hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:19:import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:154:type AutoSurfaceAtCompactionResult = Awaited<ReturnType<typeof autoSurfaceAtCompaction>>;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:290:  const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:83:      validateToolInputSchema('memory_context', {}, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:119:      validateToolInputSchema('memory_context', { input: 'resume', mode: 'invalid-mode' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:133:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:137:    expect(errorSpy.mock.calls.some((call) => String(call[0]).includes('[schema-validation] memory_search:'))).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:240:   4. memory_search LIMIT CONTRACT (schema + runtime alignment)
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:243:describe('memory_search limit contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:246:      validateToolInputSchema('memory_search', { cursor: 'opaque-cursor-token' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:252:      validateToolArgs('memory_search', { cursor: 'opaque-cursor-token' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:258:      validateToolInputSchema('memory_search', { concepts: ['alpha', 'beta'] }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:264:      validateToolInputSchema('memory_search', {}, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:270:      validateToolArgs('memory_search', { query: 'ab', limit: 100 });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:276:      validateToolArgs('memory_search', { query: 'ab', limit: 101 });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:282:      validateToolInputSchema('memory_search', { query: 'ab', limit: 101 }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:288:      validateToolArgs('memory_search', { concepts: ['solo'] });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:292:  it('public schema rejects unknown memory_search parameters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:294:      validateToolInputSchema('memory_search', { query: 'valid query', unexpected: true }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:300:      validateToolInputSchema('memory_search', { query: 'a' }, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:304:  it('runtime rejects unknown memory_search parameters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:306:      validateToolArgs('memory_search', { query: 'valid query', unexpected: true } as Record<string, unknown>);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:310:  it('runtime accepts governed scope fields for memory_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:312:      validateToolArgs('memory_search', {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:322:  it('public and runtime schemas accept response profiles for memory_search', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:329:      validateToolInputSchema('memory_search', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:331:    expect(validateToolArgs('memory_search', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:336:  it('public and runtime schemas accept governed scope fields for memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:346:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:348:    expect(validateToolArgs('memory_context', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:351:  it('public and runtime schemas accept response profiles for memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:358:      validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:360:    expect(validateToolArgs('memory_context', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:378:  it('public and runtime schemas accept governed scope fields for memory_match_triggers', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:389:      validateToolInputSchema('memory_match_triggers', args, TOOL_DEFINITIONS);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:391:    expect(validateToolArgs('memory_match_triggers', args)).toEqual(args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:464:    const driftWhy = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_drift_why');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts:465:    const causalLink = TOOL_DEFINITIONS.find((entry) => entry.name === 'memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:222:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:226:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:313:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:314:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:320:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:4:// Phase 024 / Item 7: Composite tool that runs session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:55:    preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:102:    nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:114:    nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:116:    nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:118:    nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:123:    nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:155:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168:  // Sub-call 1: session_resume with full resume payload
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:179:    allHints.push('session_resume failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:195:  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:198:      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:230:      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:236:    { label: 'session_bootstrap structural context payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:243:      { label: 'session_bootstrap resume payload' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:306:      producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:307:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:320:    sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:76:    it('T517-2: handle_memory_match_triggers alias exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:77:      expect(typeof handler.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:6:  { tool: 'memory_context', handler: 'handleMemoryContext', layer: 'L1' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:7:  { tool: 'memory_search', handler: 'handleMemorySearch', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:8:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:22:  { tool: 'memory_drift_why', handler: 'handleMemoryDriftWhy', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:23:  { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:33:  { camel: 'handleMemorySearch', snake: 'handle_memory_search' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:34:  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:49:  { camel: 'handleMemoryDriftWhy', snake: 'handle_memory_drift_why' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:50:  { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts:56:  { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/causal-tools.js:11:    'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/causal-tools.js:12:    'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/causal-tools.js:19:        case 'memory_drift_why': return handleMemoryDriftWhy(parseArgs(validateToolArgs('memory_drift_why', args)));
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/causal-tools.js:20:        case 'memory_causal_link': return handleMemoryCausalLink(parseArgs(validateToolArgs('memory_causal_link', args)));
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/memory-tools.js:34:    'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/memory-tools.js:36:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/memory-tools.js:49:        case 'memory_search': return handleMemorySearch(parseArgs(validateToolArgs('memory_search', args)));
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/memory-tools.js:51:            // E3: Delegate to memory_search with sensible defaults
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/memory-tools.js:70:        case 'memory_match_triggers': return handleMemoryMatchTriggers(parseArgs(validateToolArgs('memory_match_triggers', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:42:    toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/extraction/extraction-adapter.ts:49:    toolPattern: /^(grep|memory_search)$/i,
+.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:4:// Feature catalog: Causal edge creation (memory_causal_link)
+.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:4:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:181:const key = generateCacheKey('memory_search', { query: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:184:set(key, searchResults, { toolName: 'memory_search', ttlMs: 30000 });
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:196:  'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/README.md:210:// Automatically clears memory_search, memory_match_triggers, etc.
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:312:    'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:313:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts:314:    'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts:223:    followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:133:    expect(matchRule('memory_search', 'spec.md error context')).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/extraction-adapter.vitest.ts:134:    expect(matchRule('memory_context', 'spec.md metadata')).not.toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:53:  memory_search: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:55:  memory_context: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:56:  memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:62:  memory_drift_why: ERROR_CODES.TRAVERSAL_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:63:  memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:482:describe('T059: autoDetectIntent Parameter (memory_search)', () => {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:39:| Tool-Specific Hints | 6 tools | memory_search, checkpoint_restore, memory_save, memory_index_scan, memory_drift_why, memory_causal_link |
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:132:  return buildErrorResponse('memory_search', error, { query });
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/README.md:142:const hint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:14:  | 'experimental.session.compacting';
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:143:          hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:25:    'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:26:    'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:45:        case 'session_resume': return handleSessionResume(parseArgs(validateToolArgs('session_resume', args)));
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/lifecycle-tools.js:46:        case 'session_bootstrap': return handleSessionBootstrap(parseArgs(validateToolArgs('session_bootstrap', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:357:      'Use memory_match_triggers() for prompt-based matching instead'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:360:    toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:539:      'Check memory_search() for existing similar content'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:588:      'Use memory_drift_why() to find valid edge IDs',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:598:      'Check existing relationships with memory_drift_why()',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:603:    toolTip: 'memory_drift_why()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:610:      'See memory_causal_link() documentation for relation semantics'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:637:      'Retry memory_drift_why() with a smaller maxDepth',
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:642:    toolTip: 'memory_drift_why()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:694:  memory_search: {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:700:        'Try memory_match_triggers() for trigger-based matching'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:703:      toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:748:        'Use generate-context.js script to create memory files'
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:788:  memory_drift_why: {
+.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts:802:  memory_causal_link: {
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/context-tools.js:4:// Dispatch for L1 Orchestration tool: memory_context (T303).
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/context-tools.js:9:export const TOOL_NAMES = new Set(['memory_context']);
+.opencode/skills/system-spec-kit/mcp_server/dist/tools/context-tools.js:13:        case 'memory_context': return handleMemoryContext(parseArgs(validateToolArgs('memory_context', args)));
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:5:// shared by startup, recovery, and compaction surfaces.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:12:  | 'compaction';
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:157:    | 'session_resume'
+.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts:159:    | 'session_bootstrap'
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:156:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:271:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:306:                tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:317:            tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:343:                    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:360:            tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:371:            tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:482:    const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:731:            toolCache.set(cacheKey, cachePayload, { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:1038:const handle_memory_search = handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.js:1039:export { handle_memory_search, };
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts:12:    content: [{ type: 'text', text: JSON.stringify({ data: { results: [], count: 0 }, meta: { tool: 'memory_search' } }) }],
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:31:import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, appendAutoSurfaceHints, syncEnvelopeTokenCount, serializeEnvelopeWithTokenCount, recordToolCall, } from './hooks/index.js';
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:97:    ...MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:149:        preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:504:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:505:        'Graph retrieval: memory_search supports retrievalLevel (local/global/auto) for entity-level or community-level search. Graph provenance visible via graphEvidence in results.',
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:514:            const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:516:                    snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:529:    lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:531:    lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:532:    lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:611:        if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:634:        const isCompactionLifecycleCall = name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:636:        if (MEMORY_AWARE_TOOLS.has(name)) {
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:641:                        autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:684:        if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js:702:        if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:30:      "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:85:      "query": "memory_context returns wrong results when token pressure is high",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:251:      "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:330:      "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:415:      "query": "the memory_search tool returns stale results after index rebuild",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:425:      "query": "what is the difference between memory_context and memory_search for context retrieval",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:430:      "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:640:      "expectedResultDescription": "Should surface the generate-context.js script documentation and CLAUDE.md Memory Save Rule about using the script instead of the Write tool.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:641:      "notes": "Derived from \"generate-context\" trigger phrase in the memory save workflow documentation."
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:670:      "expectedResultDescription": "Should surface causal-edges.ts, causal-boost.ts, memory_drift_why tool schema, and spec memories about the causal relationship graph.",
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:725:      "query": "when should I use memory_search versus memory_context",
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:16:    name: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:18:    inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, sharedSpaceId: { type: 'string', description: 'Shared-space boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:22:    name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:162:// E3: Simplified search — 3 params, sensible defaults, delegates to memory_search
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:165:    description: '[L2:Core] Simplified search — query + optional limit + optional spec folder. Delegates to memory_search with sensible defaults (intent auto-detect ON, dedup ON, content included, limit 10). Use this when you want fast search without configuring 31 parameters.',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:182:    name: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:436:    name: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:442:    name: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:453:    description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:673:    name: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:674:    description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:687:    name: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:688:    description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
+.opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js:700:            resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:240:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:248:            tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:252:            recovery: getRecoveryHint('memory_drift_why', 'E031'),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:262:                tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:266:                recovery: getRecoveryHint('memory_drift_why', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:276:                    tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:280:                    recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:352:                tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:359:                    'Use memory_causal_link to create relationships',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:386:            tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:408:        return createSanitizedCausalError('memory_drift_why', error, ErrorCodes.TRAVERSAL_ERROR, { memoryId }, startTime, 'Causal traversal failed.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:414:/** Handle memory_causal_link tool - creates a causal edge between two memories */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:427:            tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:452:                tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:456:                recovery: getRecoveryHint('memory_causal_link', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:464:                tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:468:                recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:476:                tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:480:                recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:485:            tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:492:                `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:499:        return createSanitizedCausalError('memory_causal_link', error, ErrorCodes.CAUSAL_GRAPH_ERROR, { sourceId, targetId, relation }, startTime, 'Causal link creation failed.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:560:            hints.push('No causal links exist yet - use memory_causal_link to create relationships');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:602:                    'Use memory_drift_why() to find edge IDs',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:631:            hints.push('Use memory_drift_why() to find valid edge IDs');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:650:const handle_memory_drift_why = handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:651:const handle_memory_causal_link = handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.js:654:export { handle_memory_drift_why, handle_memory_causal_link, handle_memory_causal_stats, handle_memory_causal_unlink, };
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:48:  liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:143:    return 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:146:  return 'memory_context';
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:162:    if (resolution === 'memory_context_then_grep') {
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/warm-start-variant-runner.ts:198:  let toolCalls = 1; // session_bootstrap
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:304:  `).run(1, 'sess-1', 1, 0.9, now, later, 2, 1, 1, 'memory_search', 'call-1', 'rule-1', 0);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/quality-loop.d.ts:51: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/index.d.ts:1:export { extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, MEMORY_AWARE_TOOLS, recordToolCall, getSessionTimestamps, getLastActiveSessionId, isSessionPrimed, getCodeGraphStatusSnapshot, } from './memory-surface.js';
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:31:        resolve(HOOK_DIR, '../../../scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:32:        resolve(HOOK_DIR, '../../../../scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:33:        resolve(process.cwd(), '.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:34:        resolve(process.cwd(), 'scripts/dist/memory/generate-context.js'),
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js:57:        hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/shared.js:6:/** Token budget for compaction context injection */
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:123:describe('memory_search UX hook integration', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/response-profile-formatters.vitest.ts:23:      tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:58:declare const MEMORY_AWARE_TOOLS: Set<string>;
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:81:declare function autoSurfaceMemories(contextHint: string, tokenBudget?: number, hookName?: 'tool-dispatch' | 'compaction' | 'memory-aware'): Promise<AutoSurfaceResult | null>;
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:96: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:111: * autoSurfaceAtCompaction
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:113: * Fires at session compaction lifecycle points. Surfaces memories relevant
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:115: * across the compaction boundary.
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:127:declare function autoSurfaceAtCompaction(sessionContext: string, options?: {
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.d.ts:130:export { MEMORY_AWARE_TOOLS, CONSTITUTIONAL_CACHE_TTL, TOOL_DISPATCH_TOKEN_BUDGET, COMPACTION_TOKEN_BUDGET, extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, primeSessionIfNeeded, resetSessionPrimed, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, recordToolCall, getSessionTimestamps, getLastActiveSessionId, isSessionPrimed, markSessionPrimed, getCodeGraphStatusSnapshot, };
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/quality-loop.js:36: * reliable retrieval via the `memory_match_triggers` tool. The scoring
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:33:                content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:43:                content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:57:            content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:109:                '- `memory_context({ input, mode })` — unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:110:                '- `memory_match_triggers({ prompt })` — fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:111:                '- `memory_search({ query })` — semantic search',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:150:            content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:156:            content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:166:            content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:17:const MEMORY_AWARE_TOOLS = new Set([
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:18:    'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:19:    'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:21:    'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:333:        recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:336:        recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:352:            graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:436: *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:453:    if (MEMORY_AWARE_TOOLS.has(toolName)) {
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:468: * autoSurfaceAtCompaction
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:470: * Fires at session compaction lifecycle points. Surfaces memories relevant
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:472: * across the compaction boundary.
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:484:async function autoSurfaceAtCompaction(sessionContext, options) {
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:495:    return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:502:MEMORY_AWARE_TOOLS, CONSTITUTIONAL_CACHE_TTL, TOOL_DISPATCH_TOKEN_BUDGET, COMPACTION_TOKEN_BUDGET, 
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/memory-surface.js:504:extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, primeSessionIfNeeded, resetSessionPrimed, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, 
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:50:    tools: ['memory_context', 'session_resume', 'session_bootstrap']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:59:    tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:96:      'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts:97:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/index.js:4:export { extractContextHint, getConstitutionalMemories, clearConstitutionalCache, autoSurfaceMemories, autoSurfaceAtToolDispatch, autoSurfaceAtCompaction, MEMORY_AWARE_TOOLS, 
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:129:      return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:132:      return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md:132:const budget = getTokenBudget('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/lib/architecture/README.md:139:const enhanced = enhanceDescription('memory_search', 'Search memories');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:32:  handle_memory_context,
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:238:   T021-T030: handle_memory_context MAIN HANDLER TESTS
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:242:  it('T021: handle_memory_context is a function', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:289:  it('T029: handleMemoryContext is alias for handle_memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:290:    expect(handleMemoryContext).toBe(handle_memory_context);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:847:  it('T101: handle_memory_context is exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:868:  it('T105: handleMemoryContext is same as handle_memory_context', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:869:    expect(handleMemoryContext).toBe(handle_memory_context);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:902:      meta: { tool: 'memory_search' }
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js:14:import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js:247:    const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.js:194:        recommendedAction = 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:131:                ? 'Recovered compact transcript lines were removed before fallback compaction cache assembly.'
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:132:                : 'No recovered compact transcript lines detected in fallback compaction cache assembly.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:144:                kind: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-cache.js:151:                summary: 'Fallback compaction cache assembled from sanitized transcript tail',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:35:                content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:45:                content: 'Context was compressed. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:54:            content: 'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:84:                '- `memory_context({ input, mode })` - unified context retrieval',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:85:                '- `memory_match_triggers({ prompt })` - fast trigger matching',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:86:                '- `memory_search({ query })` - semantic search',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:123:                content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:128:            content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js:135:            content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js:48:        'Context was compressed and auto-recovered. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:626:      expect(md).toContain('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/shared.d.ts:3:/** Token budget for compaction context injection */
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/README.md:3:Core implementation for the structural code graph system. Provides file parsing, SQLite storage, graph queries, CocoIndex bridge, budget allocation, and compaction merging.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/README.md:16:| `compact-merger.ts` | 3-source merge (Memory + Code Graph + CocoIndex) for compaction |
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/README.md:26:The compact-merger combines all three under a 4000-token budget for compaction injection.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/working-set-tracker.ts:4:// Tracks files and symbols accessed during a session for compaction
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/query-intent-classifier.ts:8:// Phase 020: Integrated into memory_context handler for query-intent
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-ops-hardening.vitest.ts:19:      sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:90:    includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:345:    memory_context: memoryContextSchema,
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:346:    memory_search: memorySearchSchema,
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:348:    memory_match_triggers: memoryMatchTriggersSchema,
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:363:    memory_drift_why: memoryDriftWhySchema,
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:364:    memory_causal_link: memoryCausalLinkSchema,
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:399:    session_bootstrap: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:403:    session_resume: getSchema({
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:409:    memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:410:    memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:412:    memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'sharedSpaceId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:427:    memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:428:    memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:442:    session_bootstrap: ['specFolder'],
+.opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js:444:    session_resume: ['specFolder', 'minimal'],
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:218:        'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:219:        'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/cache/tool-cache.js:220:        'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-snapshot.d.ts:22:    sourceSurface: 'auto-prime' | 'session_bootstrap' | 'session_resume' | 'session_health';
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:20:        ? 'session_bootstrap'
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:22:          ? 'session_resume'
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:53:    expect(plan.compaction?.hook).toBe('experimental.session.compacting');
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:5:// into a unified compact brief for compaction injection.
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:192:      kind: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/compact-merger.ts:208:        sourceSurface: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:4:// Phase 024 / Item 7: Composite tool that runs session_resume
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:42:        nextActions.add('Call `session_resume({ specFolder })` directly to inspect the detailed resume failure.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:51:        nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:54:        nextActions.add('Run `code_graph_scan` if you need fresh structural context, then call `session_bootstrap()` again.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:57:        nextActions.add('If structural context matters for this task, run `code_graph_scan` and then re-run `session_bootstrap()`.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:61:        nextActions.add('Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` if you need a deeper state refresh.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:81:        preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:87:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:91:    // Sub-call 1: session_resume with full resume payload
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:103:        allHints.push('session_resume failed. Try calling it manually.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:118:    const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:120:        allHints.push(`Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:146:        throw new StructuralTrustPayloadError('session_bootstrap expected session_resume to emit structural-context.structuralTrust.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:148:    const structuralContextWithTrust = attachStructuralTrustFields(structuralContext, structuralSnapshotTrust, { label: 'session_bootstrap structural context payload' });
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:151:        : attachStructuralTrustFields(resumeData, resumeStructuralTrust, { label: 'session_bootstrap resume payload' });
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:207:            producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:208:            sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.js:221:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/context-metrics.js:153:    //   recovery (0.20)      — A memory_context({ mode: "resume" }) call is the most
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:75:      ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
+.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/ops-hardening.ts:76:      : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:53:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:59:declare const handle_memory_context: typeof handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.d.ts:60:export { handle_memory_context, };
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:966:            ? `memory_search({ sessionId: "${sessionId}" })`
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:967:            : 'memory_search({ query: "last session" })';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/session/session-manager.js:971:> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:50:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:68:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:83:    const response = buildErrorResponse('memory_search', error);
+.opencode/skills/system-spec-kit/mcp_server/tests/error-sanitization.vitest.ts:92:    expect(getDefaultErrorCodeForTool('memory_drift_why')).toBe('E105');
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts:86:    expect(envelope.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-bootstrap.d.ts:5:/** Handle session_bootstrap tool call — one-call session setup */
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/response/profile-formatters.js:109:        followUps.push(`Use memory_context with specFolder "${uniqueFolders[0]}" for full context`);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:144:  it('preserves separate trust axes through real session_resume and session_bootstrap outputs', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:190:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:49:        'handle_memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts:50:        'handle_memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:126:        preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:179:                    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:190:                    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:745:/** Handle memory_context tool — L1 orchestration layer that routes to optimal retrieval strategy.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:759:                tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:772:                tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:871:                tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:889:        const layerInfo = layerDefs.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:937:        // Phase C: Intent-to-profile auto-routing for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:989:                tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1006:                tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1070:            tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1077:                `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1183:            tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1184:            error: 'memory_context failed due to an internal error',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1198:const handle_memory_context = handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-context.js:1199:export { handle_memory_context, };
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:4:// - autoSurfaceAtCompaction:   fires at session compaction lifecycle point
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:28:  MEMORY_AWARE_TOOLS,
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:33:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:127:  it('returns null for memory_context (prevents recursive surfacing)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:128:    const result = await autoSurfaceAtToolDispatch('memory_context', { input: 'some context' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:132:  it('returns null for memory_search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:133:    const result = await autoSurfaceAtToolDispatch('memory_search', { query: 'some query' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:137:  it('returns null for memory_match_triggers', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:138:    const result = await autoSurfaceAtToolDispatch('memory_match_triggers', { prompt: 'some prompt' });
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:157:  it('all MEMORY_AWARE_TOOLS are skipped', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:158:    for (const toolName of MEMORY_AWARE_TOOLS) {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:168:    for (const toolName of MEMORY_AWARE_TOOLS) {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:300:  it('fires matcher once at tool-dispatch and once at compaction lifecycle points', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:305:    await autoSurfaceAtCompaction('compaction lifecycle context');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:309:    expect(matchSpy).toHaveBeenNthCalledWith(2, 'compaction lifecycle context', 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:380:   7. autoSurfaceAtCompaction — BASIC BEHAVIOR
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:383:describe('TM-05: autoSurfaceAtCompaction — basic behavior', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:392:    expect(typeof autoSurfaceAtCompaction).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:396:    const result = autoSurfaceAtCompaction('Working on feature X in specs/010');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:401:    const result = await autoSurfaceAtCompaction('Some session context about the current task');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:406:    const result = await autoSurfaceAtCompaction('');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:411:    const result = await autoSurfaceAtCompaction('   ');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:416:    const result = await autoSurfaceAtCompaction('ab');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:421:    const result = await autoSurfaceAtCompaction(null as unknown as string);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:426:    const result = await autoSurfaceAtCompaction(undefined as unknown as string);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:432:   8. autoSurfaceAtCompaction — CONFIG FLAG DISABLING
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:435:describe('TM-05: autoSurfaceAtCompaction — config flag disabling', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:444:    const result = await autoSurfaceAtCompaction(
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:455:    await autoSurfaceAtCompaction(
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:467:    await autoSurfaceAtCompaction('Long session context with meaningful content');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:474:   9. autoSurfaceAtCompaction — TRIMS WHITESPACE BEFORE SURFACING
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:477:describe('TM-05: autoSurfaceAtCompaction — whitespace trimming', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:489:    await autoSurfaceAtCompaction('  session context trimmed  ');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:497:   10. autoSurfaceAtCompaction — RESULT STRUCTURE
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:500:describe('TM-05: autoSurfaceAtCompaction — result structure', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:510:    const result = await autoSurfaceAtCompaction('Session context about memory search and spec kit');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:522:    const result = await autoSurfaceAtCompaction('Session context about memory search');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:533:    const result = await autoSurfaceAtCompaction('Session context about memory search');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:569:  it('compaction hook also enforces result limit via matchTriggerPhrases', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:578:    await autoSurfaceAtCompaction('Session context to verify budget enforcement');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:609:  it('compaction output boundary enforces estimated token budget', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:622:    const result = await autoSurfaceAtCompaction('compaction context for budget enforcement');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:677:    expect(MEMORY_AWARE_TOOLS).toBeInstanceOf(Set);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:678:    expect(MEMORY_AWARE_TOOLS.size).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:698:    await autoSurfaceAtCompaction('compaction session context');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:723:  it('autoSurfaceAtCompaction is exported', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:724:    expect(typeof autoSurfaceAtCompaction).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:729:    expect(MEMORY_AWARE_TOOLS).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:743:describe('compaction pipeline integration', () => {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/shared-payload.js:5:// shared by startup, recovery, and compaction surfaces.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:52:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:70:declare const handle_memory_search: typeof handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-search.d.ts:71:export { handle_memory_search, };
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:40:        compaction: {
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:41:          hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:44:          dedupeKey: 'compaction:resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:45:          content: 'Summary: compaction note',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:145:          tool: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:164:  it('adds a compaction note and invalidates cache on session events', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:168:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:169:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, output);
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts:186:    await hooks['experimental.session.compacting']?.({ sessionID: 's3' }, { context: [] });
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/shared-payload.d.ts:1:export type SharedPayloadKind = 'startup' | 'resume' | 'health' | 'bootstrap' | 'compaction';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/shared-payload.d.ts:61:    producer: 'startup_brief' | 'session_snapshot' | 'session_resume' | 'session_health' | 'session_bootstrap' | 'compact_merger' | 'hook_cache';
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-health.js:79:        hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-health.js:82:        hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-health.js:85:        hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:175:Packet `026-graph-and-context-optimization/010-fts-capability-cascade-floor` freezes the lexical capability contract that packet `002-implement-cache-warning-hooks` now consumes. `memory_search` responses expose:
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:3:export type OpenCodeTransportHook = 'event' | 'experimental.chat.system.transform' | 'experimental.chat.messages.transform' | 'experimental.session.compacting';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:24:    compaction?: OpenCodeTransportBlock;
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.d.ts:34:    compactionPayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:20:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:58:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:97:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:108:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:135:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:143:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:152:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:186:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:206:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:254:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:312:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:352:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:363:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:373:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:384:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:409:        tool: 'memory_search'
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:287:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:296:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:302:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:310:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:311:    expect(resp.meta.tool).toBe('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:318:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:328:  it('F7: Tool-specific hints included for memory_search + E001', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:330:    const resp = buildErrorResponse('memory_search', err);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:353:    const err = createErrorWithHint('E040', 'fail', {}, 'memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:469:  it('K2: Has memory_search, checkpoint_restore, memory_save', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:470:    expect('memory_search' in TOOL_SPECIFIC_HINTS).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:476:    const searchHints = TOOL_SPECIFIC_HINTS['memory_search'];
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:492:  it('L1: Returns tool-specific hint for memory_search + E001', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:493:    const hint = getRecoveryHint('memory_search', 'E001');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:512:    const hint = getRecoveryHint('memory_search', 'E040');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:524:  it('M1: Returns true for known tool+code (memory_search, E001)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:525:    expect(hasSpecificHint('memory_search', 'E001')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:543:    const hints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/errors-comprehensive.vitest.ts:550:    const hints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:82:      const key1 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:83:      const key2 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:88:      const key1 = generateCacheKey('memory_search', { query: 'auth' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:89:      const key2 = generateCacheKey('memory_search', { query: 'login' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:95:      const key1 = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:352:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:353:      const key2 = generateCacheKey('memory_search', { query: 'test2' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:355:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:356:      set(key2, 'value2', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:358:      const invalidated = invalidateByTool('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:366:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:369:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:380:      const key1 = generateCacheKey('memory_search', { query: 'test1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:383:      set(key1, 'value1', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:394:      const searchKey = generateCacheKey('memory_search', { query: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:395:      const triggerKey = generateCacheKey('memory_match_triggers', { prompt: 'test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:396:      set(searchKey, 'search_result', { toolName: 'memory_search' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:397:      set(triggerKey, 'trigger_result', { toolName: 'memory_match_triggers' });
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:423:      const key = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:427:        'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:436:      expect(invalidateByTool('memory_search')).toBe(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:439:      const second = withCache('memory_search', args, async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:589:      const key = generateCacheKey('memory_search', args);
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:593:        'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/tool-cache.vitest.ts:603:      const second = withCache('memory_search', args, async () => 'fresh-after-shutdown');
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:49:        args.compactionPayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:53:    const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:83:        ...(compactionPayload
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:85:                compaction: {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:86:                    hook: 'experimental.session.compacting',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:88:                    payloadKind: compactionPayload.kind,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:89:                    dedupeKey: `compaction:${compactionPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js:90:                    content: renderBlockContent(compactionPayload, 'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.'),
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:176:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:52: * Token-pressure policy for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:60: * Automatic session resume context injection for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/shared-memory.js:161:    // memory_context/memory_match_triggers cannot be wired here yet.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:4:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/dist/formatters/search-results.js:242:            tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/dist/formatters/search-results.js:512:        tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:773:  describe('T141 - Decision Lineage (memory_drift_why)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:181:  it('T022: memory_search has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:182:    expect(TOOL_SPECIFIC_HINTS.memory_search).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:183:    expect(typeof TOOL_SPECIFIC_HINTS.memory_search).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:201:  it('T026: memory_drift_why has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:202:    expect(TOOL_SPECIFIC_HINTS.memory_drift_why).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:203:    expect(typeof TOOL_SPECIFIC_HINTS.memory_drift_why).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:206:  it('T027: memory_causal_link has tool-specific hints', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:207:    expect(TOOL_SPECIFIC_HINTS.memory_causal_link).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:208:    expect(typeof TOOL_SPECIFIC_HINTS.memory_causal_link).toBe('object');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:221:  it('T029: memory_search EMBEDDING_FAILED has contextual hint', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:224:      TOOL_SPECIFIC_HINTS.memory_search?.[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:244:    const searchHint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:246:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:301:      'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:315:    const hasSearch = hasSpecificHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:356:    const searchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:362:    const searchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:365:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED];
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:669:  it('T087: QUERY_TOO_LONG suggests memory_match_triggers()', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:672:      a.includes('memory_match_triggers()')
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:713:    const toolSpecific = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:718:      TOOL_SPECIFIC_HINTS.memory_search[ERROR_CODES.EMBEDDING_FAILED]
+.opencode/skills/system-spec-kit/mcp_server/tests/recovery-hints.vitest.ts:725:    const allSearchHints = getAvailableHints('memory_search');
+.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:41:    const result = validateToolArgs('memory_search', {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:66:    expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/extraction/extraction-adapter.js:9:        toolPattern: /^(read|memory_context|memory_search|memory_list)$/i,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/extraction/extraction-adapter.js:16:        toolPattern: /^(grep|memory_search)$/i,
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:117:        memory_context: 'L1',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:118:        memory_search: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:120:        memory_match_triggers: 'L2',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:131:        memory_drift_why: 'L6',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:132:        memory_causal_link: 'L6',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:194:        { tool: 'memory_context', expected: '[L1:Orchestration]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:195:        { tool: 'memory_search', expected: '[L2:Core]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:199:        { tool: 'memory_drift_why', expected: '[L6:Analysis]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:221:      const result = mod.enhanceDescription('memory_context', 'Some description text');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:227:        { tool: 'memory_search', desc: 'Search memories', prefix: '[L2:Core]' },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:242:      expect(mod.enhanceDescription('memory_context', '')).toBe('[L1:Orchestration] ');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:252:        { tool: 'memory_context', expected: 3500 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:253:        { tool: 'memory_search', expected: 3500 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:257:        { tool: 'memory_drift_why', expected: 1500 },
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:270:      expect(typeof mod.getTokenBudget('memory_context')).toBe('number');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:280:      const info = expectLayerInfo(mod.getLayerInfo('memory_context'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:287:      expect(info.tools).toContain('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:291:      const info1 = mod.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:292:      const info2 = mod.getLayerInfo('memory_context');
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:301:      const info = expectLayerInfo(mod.getLayerInfo('memory_search'));
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:430:      const toolSamples = ['memory_context', 'memory_search', 'memory_list',
+.opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts:431:                           'memory_update', 'checkpoint_create', 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:12:  provenance: ['session_resume'],
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:54:        provenance: ['session_resume', 'session_resume'],
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:60:describe('session_resume certainty contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:118:        sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:150:describe('session_bootstrap certainty contract', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:187:                  producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:188:                  sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/shared-payload-certainty.vitest.ts:219:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:80:    const contract = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:86:    expect(contract.sourceSurface).toBe('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:103:    const contract = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:108:    expect(contract.recommendedAction).toContain('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:109:    expect(contract.sourceSurface).toBe('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:140:    const surfaces = ['auto-prime', 'session_bootstrap', 'session_resume', 'session_health'] as const;
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts:164:    const contract = buildStructuralBootstrapContract('session_bootstrap');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:89:describe('memory_context advisory metadata', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:212:describe('session_bootstrap authority preservation', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:249:                  producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:250:                  sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:281:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:291:      preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts:296:      'Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.d.ts:2:export declare const handle_memory_search: typeof import("./memory-search.js").handleMemorySearch;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.d.ts:4:export declare const handle_memory_match_triggers: typeof import("./memory-triggers.js").handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.d.ts:71:export declare const handle_memory_drift_why: typeof import("./causal-graph.js").handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.d.ts:72:export declare const handle_memory_causal_link: typeof import("./causal-graph.js").handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.d.ts:76:export declare const handle_memory_context: typeof import("./memory-context.js").handleMemoryContext;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:977:  // Including it here caused all candidates to be filtered out when memory_context
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:14:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:17:declare const handle_memory_match_triggers: typeof handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.d.ts:18:export { handle_memory_match_triggers, };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:30:    tool: 'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:37:    tool: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:43:    tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:137:    tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:143:    tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:176:  { tool: 'memory_context', handler: 'handleMemoryContext' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:177:  { tool: 'memory_search', handler: 'handleMemorySearch' },
+.opencode/skills/system-spec-kit/mcp_server/tests/mcp-input-validation.vitest.ts:179:  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers' },
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:6:// Feature catalog: Trigger phrase matching (memory_match_triggers)
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:61:        console.warn('[memory_match_triggers] Failed to fetch memory records:', message);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:91:/** Handle memory_match_triggers tool - matches prompt against trigger phrases with cognitive decay */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:97:            tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:117:            console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:119:                tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:124:                    hint: 'Omit session_id to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:179:            console.warn('[memory_match_triggers] Decay failed:', message);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:218:            console.error('[memory_match_triggers] Scope filtering failed, returning empty results (fail-closed):', toErrorMessage(scopeErr));
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:228:            tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:264:                console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:280:                    console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, message);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:368:        console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:385:        tool: 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:429:const handle_memory_match_triggers = handleMemoryMatchTriggers;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-triggers.js:430:export { handle_memory_match_triggers, };
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:303:            'Use memory_match_triggers() for prompt-based matching instead'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:306:        toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:481:            'Check memory_search() for existing similar content'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:528:            'Use memory_drift_why() to find valid edge IDs',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:538:            'Check existing relationships with memory_drift_why()',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:543:        toolTip: 'memory_drift_why()'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:550:            'See memory_causal_link() documentation for relation semantics'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:577:            'Retry memory_drift_why() with a smaller maxDepth',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:582:        toolTip: 'memory_drift_why()'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:629:    memory_search: {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:635:                'Try memory_match_triggers() for trigger-based matching'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:638:            toolTip: 'memory_match_triggers()'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:681:                'Use generate-context.js script to create memory files'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:719:    memory_drift_why: {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/recovery-hints.js:732:    memory_causal_link: {
+.opencode/skills/system-spec-kit/mcp_server/dist/context-server.d.ts:10:    preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:54:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:56:/** Handle memory_causal_link tool - creates a causal edge between two memories */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:63:declare const handle_memory_drift_why: typeof handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:64:declare const handle_memory_causal_link: typeof handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/causal-graph.d.ts:67:export { handle_memory_drift_why, handle_memory_causal_link, handle_memory_causal_stats, handle_memory_causal_unlink, };
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.d.ts:55:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:20:      a compaction cycle. The compaction cycle moves live objects to reduce
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:30:        tools: ['memory_context', 'session_resume', 'session_bootstrap']
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:39:        tools: ['memory_search', 'memory_quick_search', 'memory_save', 'memory_match_triggers']
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:76:            'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/architecture/layer-definitions.js:77:            'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:18:        memory_context: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:19:        memory_search: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:21:        memory_match_triggers: 3500,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts:32:        memory_drift_why: 1500,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/core.js:8:    memory_search: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/core.js:10:    memory_context: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/core.js:11:    memory_match_triggers: ERROR_CODES.SEARCH_FAILED,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/core.js:17:    memory_drift_why: ERROR_CODES.TRAVERSAL_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/errors/core.js:18:    memory_causal_link: ERROR_CODES.CAUSAL_GRAPH_ERROR,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:44:  MEMORY_AWARE_TOOLS?: Set<string>
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:159:      'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:160:      'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:162:      'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:181:      'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:182:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:200:      'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:201:      'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:292:      'memory_context', 'memory_search', 'memory_quick_search', 'memory_match_triggers',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:298:      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:303:      'session_health', 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:322:      expect(sourceCode).not.toMatch(/name !== 'session_health' && name !== 'session_bootstrap'/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:441:      autoSurfaceAtCompactionMock: ReturnType<typeof vi.fn>
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:498:      const autoSurfaceAtCompactionMock = vi.fn(async () => null)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:634:        MEMORY_AWARE_TOOLS: memoryAwareTools,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:638:        autoSurfaceAtCompaction: autoSurfaceAtCompactionMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:855:        autoSurfaceAtCompactionMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:927:        { id: 'call-1', params: { name: 'memory_search', arguments: {} } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:944:      expect(callArgs[0]).toBe('memory_search')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1054:              name: 'memory_search',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1103:        memoryAwareTools: new Set<string>(['memory_search']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1113:        { id: 'call-5', params: { name: 'memory_search', arguments: { query: 'hook validation' } } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1123:    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1127:        autoSurfaceAtCompactionMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1131:        memoryAwareTools: new Set<string>(['memory_context']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1139:      autoSurfaceAtCompactionMock.mockResolvedValue(surfaced)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1144:          params: { name: 'memory_context', arguments: { input: 'session resume context', mode: 'resume' } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1149:      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledTimes(1)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1150:      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledWith('session resume context')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1157:    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1160:        autoSurfaceAtCompactionMock,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1164:        memoryAwareTools: new Set<string>(['memory_context']),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1177:          params: { name: 'memory_context', arguments: { input: 'focused retrieval context', mode: 'focused' } },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1184:      expect(autoSurfaceAtCompactionMock).not.toHaveBeenCalled()
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1563:      const response = errorsModule!.buildErrorResponse!('memory_search', testError, { query: 'test' })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1581:      const hint = errorsModule!.getRecoveryHint!('memory_search', 'UNKNOWN_TOOL')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1614:    it('T28: L1 budget = 3500 (memory_context)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1619:      expect(layerDefs!.getTokenBudget!('memory_context')).toBe(3500)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1622:    it('T28b: L2 budget = 3500 (memory_search)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1627:      expect(layerDefs!.getTokenBudget!('memory_search')).toBe(3500)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1662:    it('T28g: L6 budget = 1500 (memory_drift_why)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1667:      expect(layerDefs!.getTokenBudget!('memory_drift_why')).toBe(1500)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1680:  // GROUP 7: Hooks Integration (MEMORY_AWARE_TOOLS, extractContextHint)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1683:    // T29: Source imports MEMORY_AWARE_TOOLS
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1684:    it('T29: Imports MEMORY_AWARE_TOOLS from hooks', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1685:      expect(sourceCode).toMatch(/import\s*\{[^}]*MEMORY_AWARE_TOOLS[^}]*\}\s*from\s*['"]\.\/hooks\/index\.js['"]/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1688:    // T30: Source checks MEMORY_AWARE_TOOLS.has(name)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1689:    it('T30: Checks MEMORY_AWARE_TOOLS.has(name)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1690:      expect(sourceCode).toMatch(/MEMORY_AWARE_TOOLS\.has\(name\)/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1694:    it('T31: MEMORY_AWARE_TOOLS is a Set', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1700:      expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1703:    const expectedAwareTools = ['memory_context', 'memory_search', 'memory_match_triggers', 'memory_list', 'memory_save', 'memory_index_scan']
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1705:      it(`T31b: MEMORY_AWARE_TOOLS contains '${t}'`, async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1711:        expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1712:        expect(hooksModule!.MEMORY_AWARE_TOOLS!.has(t)).toBe(true)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1718:      it(`T31c: MEMORY_AWARE_TOOLS excludes '${t}'`, async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1724:        expect(hooksModule?.MEMORY_AWARE_TOOLS).toBeInstanceOf(Set)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1725:        expect(hooksModule!.MEMORY_AWARE_TOOLS!.has(t)).toBe(false)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2084:      'memory_context': '[L1:Orchestration]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2085:      'memory_search': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2086:      'memory_match_triggers': '[L2:Core]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2100:      'memory_drift_why': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2101:      'memory_causal_link': '[L6:Analysis]',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2131:    it('T000e: memory_context supports optional tokenUsage (0.0-1.0)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2132:      expect(toolSchemasCode).toMatch(/name:\s*'memory_context'[\s\S]*?tokenUsage:\s*\{\s*type:\s*'number'/)
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2315:        'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2341:      expect(result).toContain('memory_context')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2342:      expect(result).toContain('memory_search')
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-save.js:179:        const warning = 'Manual fallback save mode detected; standard generate-context template markers are missing.';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/enrichment/passive-enrichment.js:95:            return ['[session] Context quality is CRITICAL. Consider running `memory_context({ mode: "resume" })` or `session_health` to diagnose.'];
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/enrichment/passive-enrichment.js:98:            return ['[session] Context quality is degraded. Session may benefit from a `session_resume` call.'];
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-flags.js:43: * Token-pressure policy for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-flags.js:50: * Automatic session resume context injection for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:5:// into a unified compact brief for compaction injection.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:119:            kind: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/compact-merger.js:135:                sourceSurface: 'compaction',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:11:    cocoIndex: 'Similar: memory-surface.ts autoSurfaceAtCompaction',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:12:    triggered: 'Trigger: compaction recovery context',
+.opencode/skills/system-spec-kit/mcp_server/tests/compact-merger.vitest.ts:45:      expect(result.payloadContract.kind).toBe('compaction');
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:22:  'tool-schemas.js': 880,           // actual: 862 — Expanded MCP schema set + Sprint 019: Zod schema integration, ingest tools, Phase 024 session_bootstrap, and newer graph/search tool contracts
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:304:    'MEMORY_AWARE_TOOLS',
+.opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts:313:      if (fn === 'MEMORY_AWARE_TOOLS') {
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:47:        producer: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:48:        sourceSurface: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tests/tiered-injection-turnNumber.vitest.ts:183:      expect(typeof handlerExports.handle_memory_match_triggers).toBe('function');
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/sqlite-fts.js:4:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:1:// TEST: memory_search per-channel eval logging (T056)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:106:describe('T056: memory_search emits per-channel eval rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/query-intent-classifier.js:8:// Phase 020: Integrated into memory_context handler for query-intent
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:1:// TEST: memory_context per-channel eval logging (T056)
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-eval-channels.vitest.ts:88:describe('T056: memory_context emits per-strategy channel eval rows', () => {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:30:            "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:85:            "query": "memory_context returns wrong results when token pressure is high",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:251:            "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:330:            "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:415:            "query": "the memory_search tool returns stale results after index rebuild",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:425:            "query": "what is the difference between memory_context and memory_search for context retrieval",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:430:            "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:640:            "expectedResultDescription": "Should surface the generate-context.js script documentation and CLAUDE.md Memory Save Rule about using the script instead of the Write tool.",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:641:            "notes": "Derived from \"generate-context\" trigger phrase in the memory save workflow documentation."
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:670:            "expectedResultDescription": "Should surface causal-edges.ts, causal-boost.ts, memory_drift_why tool schema, and spec memories about the causal relationship graph.",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/data/ground-truth.json:725:            "query": "when should I use memory_search versus memory_context",
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/pipeline/stage1-candidate-gen.js:721:    // Including it here caused all candidates to be filtered out when memory_context
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-flags.d.ts:17: * Token-pressure policy for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-flags.d.ts:22: * Automatic session resume context injection for memory_context.
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/ops-hardening.js:25:            ? 'Run code_graph_scan or session_bootstrap before relying on structural context.'
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/ops-hardening.js:26:            : 'Run session_bootstrap first, then code_graph_scan if structural context is required.';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.d.ts:25:    liveBaselineResolution: 'code_graph_query' | 'memory_context' | 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:54:        return 'memory_context_then_grep';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:56:    return 'memory_context';
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:66:        if (resolution === 'memory_context_then_grep') {
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/warm-start-variant-runner.js:88:    let toolCalls = 1; // session_bootstrap
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.js:174:export const handle_memory_search = lazyFunction(getMemorySearchModule, 'handle_memory_search');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.js:177:export const handle_memory_match_triggers = lazyFunction(getMemoryTriggersModule, 'handle_memory_match_triggers');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.js:254:export const handle_memory_drift_why = lazyFunction(getCausalGraphModule, 'handle_memory_drift_why');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.js:255:export const handle_memory_causal_link = lazyFunction(getCausalGraphModule, 'handle_memory_causal_link');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/index.js:260:export const handle_memory_context = lazyFunction(getMemoryContextModule, 'handle_memory_context');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:190:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:192:    // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:224:            hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:261:    const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:263:        hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:275:        logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:351:            producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:352:            sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/dist/handlers/session-resume.js:361:        sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph/working-set-tracker.js:4:// Tracks files and symbols accessed during a session for compaction
 
 codex
 I’ve got the wrapper and the key Public surfaces. I’m now narrowing into the exact resume/compaction and save/causal boundaries so the “after” map shows what changes in topology versus what stays authoritative.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "session_bootstrap|session_resume|memory_context|autoSurfaceAtCompaction|memory-aware|compaction" .opencode/skill/system-spec-kit/mcp_server/context-server.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_bootstrap|session_resume|memory_context|autoSurfaceAtCompaction|memory-aware|compaction" .opencode/skills/system-spec-kit/mcp_server/context-server.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:604:  // Skip memory-aware tools to prevent recursive surfacing loops
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:624: * autoSurfaceAtCompaction
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:640:async function autoSurfaceAtCompaction(
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:678:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:54:  autoSurfaceAtCompaction,
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:920:            autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:86:  'memory_context',
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:253:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:368:  hookName: 'tool-dispatch' | 'compaction' | 'memory-aware' = 'memory-aware'
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:460:    recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:604:  // Skip memory-aware tools to prevent recursive surfacing loops
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:624: * autoSurfaceAtCompaction
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:626: * Fires at session compaction lifecycle points. Surfaces memories relevant
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:628: * across the compaction boundary.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:640:async function autoSurfaceAtCompaction(
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:656:  return autoSurfaceMemories(sessionContext.trim(), COMPACTION_TOKEN_BUDGET, 'compaction');
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:678:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:54:  autoSurfaceAtCompaction,
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:257:  preservesAuthority: 'session_bootstrap';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:323:    preservesAuthority: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:759:    'Key tools: memory_context, memory_search, memory_save, memory_index_scan, memory_stats.',
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:770:      const recommended = !snap.primed ? 'call session_bootstrap()' :
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:772:        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:785:  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:787:  lines.push('- If "stale" or "missing": call session_bootstrap first to refresh structural context');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:788:  lines.push('- Recovery priority: session_bootstrap → session_resume → code_graph_scan');
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:882:    if (name === 'memory_context' && args.mode === 'resume') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:912:      name === 'memory_context' && args.mode === 'resume';
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:920:            autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:964:    if (name !== 'memory_search' && name !== 'memory_context' && name !== 'memory_quick_search' && name !== 'session_health') {
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:977:    if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:433:      hints.push('Memory resume failed. Try memory_context manually.');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
 
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
@@ -9727,7 +9727,7 @@ exec
    320	      SELECT DISTINCT wm.memory_id
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Session Resume Handler
@@ -10051,98 +10051,98 @@ exec
    320	      'freshness',
 
 exec
-/bin/zsh -lc 'rg -n "memory_causal_link|memory_drift_why|causal" .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "memory_causal_link|memory_drift_why|causal" .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:99:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:484:  name: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:497:  name: 'memory_causal_stats',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:498:  description: '[L6:Analysis] Get statistics about the causal memory graph. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of memories linked (CHK-065). Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:11:import * as causalEdges from '../lib/storage/causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:12:import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:25:// Feature catalog: Causal graph statistics (memory_causal_stats)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:26:// Feature catalog: Causal chain tracing (memory_drift_why)
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:35:  id: number;               // T202: causal_edges.id for unlink workflow
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:354:      tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:358:      recovery: getRecoveryHint('memory_drift_why', 'E031'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:370:        tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:374:        recovery: getRecoveryHint('memory_drift_why', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:378:    causalEdges.init(db);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:381:      const validRelations: string[] = Object.values(causalEdges.RELATION_TYPES) as string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:385:          tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:389:          recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:408:        const forwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'forward');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:409:        const backwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'backward');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:413:        const tree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'forward');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:416:        const tree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'backward');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:483:        tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:484:        summary: `No causal relationships found for memory ${memoryId}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:504:      ? `Found ${combinedChain.total_edges} causal relationships (${relationSummary.join('; ')})`
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:505:      : `Found ${combinedChain.total_edges} causal relationships`;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:513:        `Traversal truncated after ${combinedChain.truncation_limit ?? causalEdges.MAX_EDGES_LIMIT} edges per node - results may be incomplete`
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:521:      tool: 'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:543:      'memory_drift_why',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:581:        validRelations: Object.values(causalEdges.RELATION_TYPES) as string[]
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:584:        hint: 'Provide all required parameters to create a causal link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:588:          `relation: One of ${Object.values(causalEdges.RELATION_TYPES).join(', ')}`
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:611:    causalEdges.init(db);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:613:    const validRelations = Object.values(causalEdges.RELATION_TYPES) as string[];
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:624:    const safeRelation = relation as causalEdges.RelationType;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:625:    const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:640:      summary: `Created causal link: ${sourceId} --[${relation}]--> ${targetId}`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:646:        `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:647:        'Use memory_causal_stats() to check overall graph coverage'
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:667:/** Handle memory_causal_stats tool - returns graph coverage and health metrics */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:678:        tool: 'memory_causal_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:682:        recovery: getRecoveryHint('memory_causal_stats', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:686:    causalEdges.init(db);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:688:    const stats = causalEdges.getGraphStats();
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:689:    const orphanedEdges: CausalEdge[] = causalEdges.findOrphanedEdges();
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:698:        'SELECT DISTINCT source_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = source_id) UNION SELECT DISTINCT target_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = target_id)'
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:705:      if (message.includes('no such table') && message.includes('causal_edges')) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:706:        // New/partially initialized DB where causal edges table is absent.
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:725:      hints.push(`Coverage ${coveragePercent}% below 60% target - add more causal links`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:735:      tool: 'memory_causal_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:755:      'memory_causal_stats',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:769:/** Handle memory_causal_unlink tool - deletes a causal edge by ID */
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:776:      tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:783:          'Use memory_drift_why() to find edge IDs',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:784:          'Use memory_causal_stats() to see graph overview'
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:799:        tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:803:        recovery: getRecoveryHint('memory_causal_unlink', 'E020'),
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:807:    causalEdges.init(db);
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:809:    const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:812:      ? `Deleted causal edge ${edgeId}`
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:817:      hints.push('Use memory_drift_why() to find valid edge IDs');
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:821:      tool: 'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:829:      'memory_causal_unlink',
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:854:const handle_memory_causal_stats = handleMemoryCausalStats;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:858:  handle_memory_drift_why,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:860:  handle_memory_causal_stats,
-.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:861:  handle_memory_causal_unlink,
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:99:        description: 'Enable causal-neighbor boost (2-hop traversal on causal_edges). Defaults to SPECKIT_CAUSAL_BOOST env flag.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:484:  name: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:485:  description: '[L6:Analysis] Trace causal chain for a memory to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and memory relationships. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:487:  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Memory ID to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full memory details in results' } }, required: ['memoryId'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:491:  name: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:492:  description: '[L6:Analysis] Create a causal relationship between two memories. Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:497:  name: 'memory_causal_stats',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:498:  description: '[L6:Analysis] Get statistics about the causal memory graph. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of memories linked (CHK-065). Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:503:  name: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:504:  description: '[L6:Analysis] Remove a causal relationship by edge ID. Use memory_drift_why to find edge IDs. Token Budget: 1200.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:11:import * as causalEdges from '../lib/storage/causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:12:import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:25:// Feature catalog: Causal graph statistics (memory_causal_stats)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:26:// Feature catalog: Causal chain tracing (memory_drift_why)
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:35:  id: number;               // T202: causal_edges.id for unlink workflow
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:103:  tool: 'memory_drift_why' | 'memory_causal_link' | 'memory_causal_stats' | 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338:/** Handle memory_drift_why tool - traces causal relationships for a given memory */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:354:      tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:358:      recovery: getRecoveryHint('memory_drift_why', 'E031'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:370:        tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:374:        recovery: getRecoveryHint('memory_drift_why', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:378:    causalEdges.init(db);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:381:      const validRelations: string[] = Object.values(causalEdges.RELATION_TYPES) as string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:385:          tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:389:          recovery: getRecoveryHint('memory_drift_why', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:408:        const forwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'forward');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:409:        const backwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'backward');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:413:        const tree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'forward');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:416:        const tree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'backward');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:483:        tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:484:        summary: `No causal relationships found for memory ${memoryId}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:490:          'Use memory_causal_link to create relationships',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:504:      ? `Found ${combinedChain.total_edges} causal relationships (${relationSummary.join('; ')})`
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:505:      : `Found ${combinedChain.total_edges} causal relationships`;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:513:        `Traversal truncated after ${combinedChain.truncation_limit ?? causalEdges.MAX_EDGES_LIMIT} edges per node - results may be incomplete`
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:521:      tool: 'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:543:      'memory_drift_why',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:557:/** Handle memory_causal_link tool - creates a causal edge between two memories */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:576:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:581:        validRelations: Object.values(causalEdges.RELATION_TYPES) as string[]
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:584:        hint: 'Provide all required parameters to create a causal link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:588:          `relation: One of ${Object.values(causalEdges.RELATION_TYPES).join(', ')}`
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:603:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:607:        recovery: getRecoveryHint('memory_causal_link', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:611:    causalEdges.init(db);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:613:    const validRelations = Object.values(causalEdges.RELATION_TYPES) as string[];
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:616:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:620:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_INVALID_RELATION),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:624:    const safeRelation = relation as causalEdges.RelationType;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:625:    const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:629:        tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:633:        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:639:      tool: 'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:640:      summary: `Created causal link: ${sourceId} --[${relation}]--> ${targetId}`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:646:        `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:647:        'Use memory_causal_stats() to check overall graph coverage'
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:653:      'memory_causal_link',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:667:/** Handle memory_causal_stats tool - returns graph coverage and health metrics */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:678:        tool: 'memory_causal_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:682:        recovery: getRecoveryHint('memory_causal_stats', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:686:    causalEdges.init(db);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:688:    const stats = causalEdges.getGraphStats();
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:689:    const orphanedEdges: CausalEdge[] = causalEdges.findOrphanedEdges();
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:698:        'SELECT DISTINCT source_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = source_id) UNION SELECT DISTINCT target_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = target_id)'
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:705:      if (message.includes('no such table') && message.includes('causal_edges')) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:706:        // New/partially initialized DB where causal edges table is absent.
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:725:      hints.push(`Coverage ${coveragePercent}% below 60% target - add more causal links`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:731:      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:735:      tool: 'memory_causal_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:755:      'memory_causal_stats',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:769:/** Handle memory_causal_unlink tool - deletes a causal edge by ID */
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:776:      tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:783:          'Use memory_drift_why() to find edge IDs',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:784:          'Use memory_causal_stats() to see graph overview'
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:799:        tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:803:        recovery: getRecoveryHint('memory_causal_unlink', 'E020'),
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:807:    causalEdges.init(db);
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:809:    const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:812:      ? `Deleted causal edge ${edgeId}`
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:817:      hints.push('Use memory_drift_why() to find valid edge IDs');
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:821:      tool: 'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:829:      'memory_causal_unlink',
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:852:const handle_memory_drift_why = handleMemoryDriftWhy;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:853:const handle_memory_causal_link = handleMemoryCausalLink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:854:const handle_memory_causal_stats = handleMemoryCausalStats;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:855:const handle_memory_causal_unlink = handleMemoryCausalUnlink;
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:858:  handle_memory_drift_why,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:859:  handle_memory_causal_link,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:860:  handle_memory_causal_stats,
+.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:861:  handle_memory_causal_unlink,
 
 exec
 /bin/zsh -lc "nl -ba .opencode/plugins/spec-kit-compact-code-graph.js | sed -n '360,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -10209,7 +10209,7 @@ exec
    419	}
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts | sed -n '600,700p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts | sed -n '600,700p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    600	  if (options && options.enableToolDispatchHook === false) {
    601	    return null;
@@ -10304,7 +10304,7 @@ exec
    690	export type { PrimePackage, AutoSurfaceResult };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/context-server.ts | sed -n '740,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/context-server.ts | sed -n '740,940p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    740	// Don't support. If index changes significantly, restart the server to refresh instructions.
    741	async function buildServerInstructions(): Promise<string> {
@@ -10509,7 +10509,7 @@ exec
    940	    }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '400,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts | sed -n '400,620p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    400	/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
    401	export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
@@ -10576,10 +10576,10 @@ exec
    462	  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
    463	  const cocoIndex: CocoIndexStatus = {
    464	    available: isCocoIndexAvailable(),
-   465	    binaryPath: '.opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc',
+   465	    binaryPath: '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc',
    466	  };
    467	  if (!cocoIndex.available) {
-   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skill/mcp-coco-index/scripts/install.sh`');
+   468	    hints.push('CocoIndex not installed. Install: `bash .opencode/skills/mcp-coco-index/scripts/install.sh`');
    469	  }
    470	
    471	  // Phase 027: Structural bootstrap contract for resume surface
@@ -10728,7 +10728,7 @@ exec
    614	}
 
 exec
-/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict 2>&1' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict 2>&1' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1150ms:
 
 ───────────────────────────────────────────────────────────────
@@ -10743,7 +10743,7 @@ exec
 ───────────────────────────────────────────────────────────────
 
 
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
+.opencode/skills/system-spec-kit/scripts/spec/validate.sh: line 406: cannot create temp file for here document: Operation not permitted
 
 ───────────────────────────────────────────────────────────────
 
@@ -10754,289 +10754,289 @@ exec
 
 
 exec
-/bin/zsh -lc 'rg -n "session_bootstrap|Complete session bootstrap|session_resume" .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_bootstrap|Complete session bootstrap|session_resume" .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'rg -n "executePipeline|vector|fts5|bm25|hybrid|retrievalLevel|graphEvidence" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline .opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "executePipeline|vector|fts5|bm25|hybrid|retrievalLevel|graphEvidence" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400:/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:402:  // F052: Record memory recovery metric for session_resume
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:472:  const structuralContext = buildStructuralBootstrapContract('session_resume');
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:474:    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:487:    logCachedSummaryDecision('session_resume', cachedSummaryDecision);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:570:      producer: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:571:      sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:580:    sourceSurface: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740:  name: 'session_resume',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:741:  description: '[L1:Orchestration] Resume session with combined memory, code graph, and CocoIndex status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, CocoIndex, structural context, hints, and session-quality metadata without the full memory payload.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:755:  name: 'session_bootstrap',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:756:  description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:768:      resume: { type: 'object', description: 'Merged session_resume payload (spec folder, task status, memory context)' },
 
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:6:// Extracted from hybrid-search.ts ftsSearch() for independent
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:9:import { BM25_FTS5_WEIGHTS, normalizeLexicalQueryTokens } from './bm25-index.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:28:type LexicalPath = 'fts5' | 'like' | 'unavailable';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:33:  | 'no_such_module_fts5'
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:34:  | 'bm25_runtime_failure';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:84:  return toErrorMessage(error).toLowerCase().includes('no such module: fts5');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:89:  return message.includes('bm25');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:127:        fallbackState: 'no_such_module_fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:137:    lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:149: * Uses SQLite FTS5's built-in bm25() ranking function with
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:159: * const rows = fts5Bm25Search(db, 'memory search', { limit: 10 });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:162:function fts5Bm25Search(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:197:    SELECT m.*, -bm25(memory_fts, ${w0}, ${w1}, ${w2}, ${w3}) AS fts_score
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:226:      lexicalPath: 'fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:235:          fallbackState: 'no_such_module_fts5',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:240:            fallbackState: 'bm25_runtime_failure',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:249:              fallbackState: 'bm25_runtime_failure',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:260: * Used as a feature-detect before calling fts5Bm25Search, since FTS5
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:268: *   fts5Bm25Search(db, 'memory');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:282:  fts5Bm25Search,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:16:   * Higher = better lexical match. Not directly comparable to vector similarity
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:323:    const queryTokens = normalizeLexicalQueryTokens(query).bm25;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:415:      console.warn(`[bm25-index] Failed to sync BM25 rows: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:465:      console.warn(`[bm25-index] Failed to schedule BM25 warmup: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:533: * sanitizeQueryTokens('title:memory AND vector');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:534: * // ['title', 'memory', 'vector']
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:562:  bm25: string[];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/bm25-index.ts:574:    bm25: sharedTokens
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4:// Combines vector, FTS, and BM25 search with fallback
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:9:import { getIndex, isBm25Enabled } from './bm25-index.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:15:import { fts5Bm25Search } from './sqlite-fts.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:117:   * - `'vector'` — cosine similarity from sqlite-vec (normalized from 0-100 to 0-1)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:118:   * - `'bm25'` — BM25 term-frequency relevance (min-max normalized per source group)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:122:   * After hybrid merge, all source scores are min-max normalized to 0-1 within
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:141:  const primarySource = result.sources[0] ?? 'hybrid';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:234:/** Primary vector similarity floor for hybrid fallback passes (percentage units). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:236:/** Secondary vector similarity floor for adaptive retry passes (percentage units). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:238:/** Tier-2 vector similarity floor for quality-aware fallback (percentage units). */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:260:let vectorSearchFn: VectorSearchFn | null = null;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:303: * Initialize hybrid search with database, vector search, and optional graph search dependencies.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:305: * @param vectorFn - Optional vector search function for semantic similarity.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:310:  vectorFn: VectorSearchFn | null = null,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:314:  vectorSearchFn = vectorFn;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:324: * @returns Array of BM25-scored results tagged with source 'bm25'.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326:function bm25Search(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:331:    console.warn('[hybrid-search] BM25 not enabled — returning empty bm25Search results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:394:        source: 'bm25',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:398:    console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:429:    console.warn('[hybrid-search] db not initialized — isFtsAvailable returning false');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:455:    console.warn('[hybrid-search] db not initialized or FTS unavailable — returning empty ftsSearch results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:463:    // Uses bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) for per-column weighting
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:466:    const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:468:    return bm25Results.map(row => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:476:    console.warn(`[hybrid-search] FTS search failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:494:  const bm25Results = bm25Search(query, options);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:505:  for (const r of bm25Results) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:600:    source: typeof primary.source === 'string' ? primary.source : (sources[0] ?? 'hybrid'),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:682:  const allowed = new Set<ChannelName>(['vector', 'fts', 'graph', 'degree']);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:685:    allowed.add('bm25');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:688:  if (options.useVector === false) allowed.delete('vector');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:689:  if (options.useBm25 === false) allowed.delete('bm25');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:707:    useVector: allowedChannels.has('vector'),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:708:    useBm25: allowedChannels.has('bm25'),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:742:  vectorEmbeddingCache: Map<number, Float32Array>;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:787:    : await hybridSearch(query, embedding, primaryOptions);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:809:      : await hybridSearch(query, embedding, retryOptions);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:829:      : await hybridSearch(query, embedding, retryOptions);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:848: * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:849: * Prefer hybridSearchEnhanced() or searchWithFallback() instead. This function uses naive per-source
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:850: * min-max normalization which produces different orderings than the RRF pipeline in hybridSearchEnhanced().
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:853:async function hybridSearch(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:872:  if (useVector && embedding && vectorSearchFn) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:874:      const vectorResults = vectorSearchFn(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:881:      for (const r of vectorResults) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:886:          source: 'vector',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:891:      console.warn(`[hybrid-search] Vector search failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:903:    const bm25Results = bm25Search(query, { limit, specFolder });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:904:    results.push(...bm25Results);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:921:      console.warn(`[hybrid-search] Graph search failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:954:  // LIMITATION (P1-1): When a result appears in multiple sources (e.g., vector + fts),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973: * Enhanced hybrid search with RRF fusion.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:977:async function hybridSearchEnhanced(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:991:  return hybridSearch(query, embedding, options);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1010:    const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1055:    let bm25ChannelResults: HybridSearchResult[] = [];
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1056:    const vectorEmbeddingCache = new Map<number, Float32Array>();
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1062:    if (activeChannels.has('vector') && embedding && vectorSearchFn) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1064:        const vectorResults = vectorSearchFn(embedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1072:        semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1075:          source: 'vector',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1084:            vectorEmbeddingCache.set(result.id, embeddingCandidate);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1087:        lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1089:        // Non-critical — vector channel failure does not block pipeline
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1090:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1104:    // BM25 channel (internal error handling in bm25Search) — gated by query-complexity routing
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1105:    if (activeChannels.has('bm25')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1106:      bm25ChannelResults = bm25Search(query, options);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1107:      if (bm25ChannelResults.length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1110:        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1133:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1177:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1184:      ...bm25ChannelResults,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1195:        vectorEmbeddingCache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1222:    // weights, avoiding the heavier hybridAdaptiveFuse() standard-first path.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1234:      .filter((list) => list.source !== 'fts' && list.source !== 'bm25')
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1236:        if (list.source === 'vector') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1273:      vectorEmbeddingCache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1278:    console.warn(`[hybrid-search] Enhanced search failed, falling back: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1296:    vectorEmbeddingCache,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1337:      console.error('[hybrid-search] MPAB error (non-fatal):', msg);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1360:      fusedHybridResults.map(r => ({ ...r, source: r.source || 'hybrid' })),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1375:    console.warn('[hybrid-search] channel enforcement failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1385:  // Reuse embeddings already returned by the vector channel when present and
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1405:        const embeddingMap = new Map<number, Float32Array>(vectorEmbeddingCache);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1459:              source: 'vector',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1469:        console.warn(`[hybrid-search] MMR embedding retrieval failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:      console.warn('[hybrid-search] co-activation enrichment failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1623:      queryId: `hybrid-${Date.now()}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680: * @param embedding - Optional embedding vector for semantic search.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1718:  if (allowedChannels.has('bm25')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1719:    const bm25Fallback = collectCandidatesFromLists(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1720:      [{ source: 'bm25', results: bm25Search(query, options) }],
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1723:    if (bm25Fallback.length > 0) return bm25Fallback;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1726:  console.warn('[hybrid-search] Raw candidate collection returned empty results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1737: * @param embedding - Optional embedding vector for semantic search.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1753:  // P3-03 FIX: Use hybridSearchEnhanced (with RRF fusion) instead of
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1754:  // The naive hybridSearch that merges raw scores
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1777:  if (allowedChannels.has('bm25')) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1778:    const bm25Results = bm25Search(query, options);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1779:    if (bm25Results.length > 0) return bm25Results;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1782:  console.warn('[hybrid-search] All search methods returned empty results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1800:    console.warn('[hybrid-search] db not initialized — returning empty structuralSearch results');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1855:    console.warn(`[hybrid-search] Structural search failed: ${msg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2103: * TIER 1: hybridSearchEnhanced at minSimilarity=30
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2106: * TIER 2: hybridSearchEnhanced at minSimilarity=10, all allowed channels forced
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2115: * @param embedding - Optional embedding vector for semantic search.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2147:  console.error(`[hybrid-search] Tier 1→2 degradation: ${tier1Trigger.reason} (topScore=${tier1Trigger.topScore.toFixed(3)}, count=${tier1Trigger.resultCount})`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2174:  console.error(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2390:      `[hybrid-search] Token budget overflow (single-result fallback): ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2427:      `[hybrid-search] Token budget overflow (top-result fallback): ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2444:    `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2467:  bm25Search,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2473:  hybridSearch,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2474:  hybridSearchEnhanced,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:15:import { executePipeline } from '../lib/search/pipeline/index.js';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:214:  retrievalLevel?: 'local' | 'global' | 'auto';
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:529:    retrievalLevel: retrievalLevel = 'auto',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:777:        : 'hybrid',
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:809:    const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:818:      (retrievalLevel === 'global' || retrievalLevel === 'auto')
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:822:        (retrievalLevel === 'global') ||
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:823:        (resultsForFormatting.length < 3 && retrievalLevel === 'auto');
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:992:      appliedBoosts.communityFallback = { applied: true, retrievalLevel };
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:8:// Contiguity to raw vector-channel hits before later pipeline stages.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:13://   - hybrid (deep mode): Query expansion + multi-variant hybrid search + dedup
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:14://   - hybrid (R12):       Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:16://   - hybrid: collectRawCandidates → falls back to vector on failure
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:17://   - vector: Direct vectorSearch
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:28://     - candidates contains raw channel scores; vector hits may include an
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:34://     - Reads from the vector index and FTS5 / BM25 index (DB reads only)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:38:import * as vectorIndex from '../vector-index.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:40:import * as hybridSearch from '../hybrid-search.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:41:import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:79:/** Number of constitutional results to fetch when none appear in hybrid/vector results. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:459: * and `config.mode`, then applies vector-channel temporal contiguity when
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:508:  // the query for the hybrid search channel, improving recall for alias-rich
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:513:  /** Effective query for hybrid search — may be expanded by concept routing. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:516:  if (isGraphConceptRoutingEnabled() && searchType === 'hybrid') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:594:    candidates = vectorIndex.multiConceptSearch(conceptEmbeddings, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:604:  else if (searchType === 'hybrid') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:613:      throw new Error('[stage1-candidate-gen] Failed to generate embedding for hybrid search query');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616:    // Deep mode: expand query into variants and run hybrid for each, then dedup
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:621:      // sub-query facets and run hybrid search per facet. Results are merged
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:654:            // Run hybrid for the original query plus each facet, in parallel
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:666:                  return hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:729:                const variantResults = await hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:759:            `[stage1-candidate-gen] Deep query expansion failed, falling back to single hybrid: ${expandMsg}`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:761:          // Fall through to single hybrid search below
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:763:          candidates = (await hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:770:        // ExpandQuery returned only the original; treat as standard hybrid
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:772:        candidates = (await hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:811:              hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:828:                  return hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:864:            `[stage1-candidate-gen] R12 embedding expansion failed, using standard hybrid: ${r12Msg}`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:869:      // Standard hybrid search — runs when R12 is off, suppressed by R15,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:875:          const hybridResults = (await hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:880:          candidates = hybridResults;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:881:        } catch (hybridErr: unknown) {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:882:          const hybridMsg =
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:883:            hybridErr instanceof Error ? hybridErr.message : String(hybridErr);
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:885:            `[stage1-candidate-gen] Hybrid search failed, falling back to vector: ${hybridMsg}`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:888:          // Fallback: pure vector search
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:890:          let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:899:            vectorResults = (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:900:              vectorSearchWithContiguity(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:901:                vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:904:            ) ?? vectorResults;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:906:          candidates = vectorResults;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:910:              reason: hybridMsg,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:911:              channel: 'vector',
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:921:  else if (searchType === 'vector') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:926:      throw new Error('[stage1-candidate-gen] Failed to generate embedding for vector search query');
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:930:    let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:939:      vectorResults = (
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:940:        vectorSearchWithContiguity(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:941:          vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:944:      ) ?? vectorResults;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:946:    candidates = vectorResults;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:953:      `[stage1-candidate-gen] Unknown searchType: "${searchType}". Expected 'multi-concept', 'hybrid', or 'vector'.`
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:961:  // Exception: for hybrid search, tier/contextType are applied here because
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:963:  // For vector search, tier/contextType were already passed to vectorSearch,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1011:  // In the current candidate set, fetch them separately via vector search.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1031:        const constitutionalResults = vectorIndex.vectorSearch(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1048:        // via vector search bypass the earlier governance/context gate.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1082:  //   3. Fan-out [original, abstract, ...variants] as additional hybrid search channels.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1088:  if (mode === 'deep' && isLlmReformulationEnabled() && searchType === 'hybrid') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1109:              return hybridSearch.collectRawCandidates(
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1169:  //   - Run a vector-only search with the pseudo-document embedding.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1176:  if (mode === 'deep' && isHyDEEnabled() && searchType === 'hybrid') {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1335:              // raw row.score. For vector-only rows with only `similarity`,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1391:  // P1 fix: activeChannels counts actual retrieval channels (vector, keyword/BM25),
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1392:  // while channelCount counts parallel query variants. In hybrid mode both vector
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1394:  const activeChannels = searchType === 'hybrid' ? 2 : 1;
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:169:  // The result set, matching the V1 hybrid-search behavior.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:12:export { executePipeline } from './orchestrator.js';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:47:  graphEvidence?: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:122:  searchType: 'hybrid' | 'vector' | 'multi-concept';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:206:    /** Actual retrieval channels active (vector=1, hybrid=2). Unlike channelCount which tracks query variants. */
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:36:The public API is a single function: `executePipeline(config)` exported from `index.ts`.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:44:| `index.ts` | Public barrel export. Re-exports `executePipeline` from the orchestrator and all pipeline type definitions from `types.ts`. |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:46:| `stage1-candidate-gen.ts` | Stage 1: Candidate Generation. Runs search channels (hybrid, vector, multi-concept), applies deep-mode query expansion (R6), embedding-based expansion (R12), summary embeddings (R8), constitutional memory injection, quality threshold filtering and tier/contextType filtering. |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:47:| `stage2-fusion.ts` | Stage 2: Fusion + Signal Integration. The single authoritative scoring point. Applies 9 signal steps in fixed order: session boost, causal boost, co-activation spreading, community co-retrieval, graph signals, FSRS testing effect, intent weights (non-hybrid only, G2 prevention), artifact routing, feedback signals, artifact limiting, anchor metadata and validation metadata scoring. |
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:78:- Channels: hybrid (with optional deep-mode expansion), vector, multi-concept.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:86:- G2 prevention: intent weights are applied only for non-hybrid search types.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:106:2. **G2 Double-Weighting Guard.** Intent weights are applied only for non-hybrid search types. Hybrid search incorporates intent weighting during RRF/RSF fusion internally.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:114:- `mcp_server/lib/search/` - Parent search directory containing hybrid search, vector index, cross-encoder and other search modules consumed by the pipeline.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57:export async function executePipeline(config: PipelineConfig): Promise<PipelineResult> {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:11://     - Intent weights are NEVER applied to hybrid results (G2 double-weighting guard)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:29:// 4.  Intent weights          — non-hybrid search post-scoring adjustment
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:38:// Therefore ONLY applied for non-hybrid search types (vector,
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:39:// Multi-concept). Applying it to hybrid results would double-count.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:397: * Phase C T026: Populate graphEvidence provenance on each result that received
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:496:  // Attach graphEvidence to each boosted result
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:520:      graphEvidence: {
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:592: * G2 PREVENTION: This function is ONLY called for non-hybrid search types.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:594: * during fusion. Calling this on hybrid results would double-count intent.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:932: *   2.  Causal boost       (hybrid only — graph-traversal amplification)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:937: *   4.  Intent weights     (non-hybrid only — G2 prevention)
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:975:  const isHybrid = config.searchType === 'hybrid';
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:978:  // Only for hybrid search type — session attention signals are most meaningful
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:979:  // When the full hybrid result set is available for ordering.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1000:  // Uses computeRecencyScore (already imported but previously unused in hybrid path).
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1031:  // Only for hybrid search type — causal graph traversal is seeded from the
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1057:  // Appear in the co-activation graph. Matches V1 hybrid-search behavior.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1185:  // Populate graphEvidence on results that received graph-based boosts.
-.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1210:  // G2 PREVENTION: Only apply for non-hybrid search types.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:6:// Extracted from hybrid-search.ts ftsSearch() for independent
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:9:import { BM25_FTS5_WEIGHTS, normalizeLexicalQueryTokens } from './bm25-index.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:28:type LexicalPath = 'fts5' | 'like' | 'unavailable';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:33:  | 'no_such_module_fts5'
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:34:  | 'bm25_runtime_failure';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:84:  return toErrorMessage(error).toLowerCase().includes('no such module: fts5');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:89:  return message.includes('bm25');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:127:        fallbackState: 'no_such_module_fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:137:    lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:149: * Uses SQLite FTS5's built-in bm25() ranking function with
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:159: * const rows = fts5Bm25Search(db, 'memory search', { limit: 10 });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:162:function fts5Bm25Search(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:197:    SELECT m.*, -bm25(memory_fts, ${w0}, ${w1}, ${w2}, ${w3}) AS fts_score
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:226:      lexicalPath: 'fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:235:          fallbackState: 'no_such_module_fts5',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:240:            fallbackState: 'bm25_runtime_failure',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:249:              fallbackState: 'bm25_runtime_failure',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:260: * Used as a feature-detect before calling fts5Bm25Search, since FTS5
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:268: *   fts5Bm25Search(db, 'memory');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:282:  fts5Bm25Search,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:16:   * Higher = better lexical match. Not directly comparable to vector similarity
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:323:    const queryTokens = normalizeLexicalQueryTokens(query).bm25;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:415:      console.warn(`[bm25-index] Failed to sync BM25 rows: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:465:      console.warn(`[bm25-index] Failed to schedule BM25 warmup: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:533: * sanitizeQueryTokens('title:memory AND vector');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:534: * // ['title', 'memory', 'vector']
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:562:  bm25: string[];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:574:    bm25: sharedTokens
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4:// Combines vector, FTS, and BM25 search with fallback
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:9:import { getIndex, isBm25Enabled } from './bm25-index.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:15:import { fts5Bm25Search } from './sqlite-fts.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:117:   * - `'vector'` — cosine similarity from sqlite-vec (normalized from 0-100 to 0-1)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:118:   * - `'bm25'` — BM25 term-frequency relevance (min-max normalized per source group)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:122:   * After hybrid merge, all source scores are min-max normalized to 0-1 within
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:141:  const primarySource = result.sources[0] ?? 'hybrid';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:234:/** Primary vector similarity floor for hybrid fallback passes (percentage units). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:236:/** Secondary vector similarity floor for adaptive retry passes (percentage units). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:238:/** Tier-2 vector similarity floor for quality-aware fallback (percentage units). */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:260:let vectorSearchFn: VectorSearchFn | null = null;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:303: * Initialize hybrid search with database, vector search, and optional graph search dependencies.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:305: * @param vectorFn - Optional vector search function for semantic similarity.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:310:  vectorFn: VectorSearchFn | null = null,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:314:  vectorSearchFn = vectorFn;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:324: * @returns Array of BM25-scored results tagged with source 'bm25'.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:326:function bm25Search(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:331:    console.warn('[hybrid-search] BM25 not enabled — returning empty bm25Search results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:394:        source: 'bm25',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:398:    console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:429:    console.warn('[hybrid-search] db not initialized — isFtsAvailable returning false');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:455:    console.warn('[hybrid-search] db not initialized or FTS unavailable — returning empty ftsSearch results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:463:    // Uses bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) for per-column weighting
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:465:    // Filters: is_archived exclusion and spec_folder matching handled by fts5Bm25Search
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:466:    const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:468:    return bm25Results.map(row => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:476:    console.warn(`[hybrid-search] FTS search failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:494:  const bm25Results = bm25Search(query, options);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:505:  for (const r of bm25Results) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:600:    source: typeof primary.source === 'string' ? primary.source : (sources[0] ?? 'hybrid'),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:682:  const allowed = new Set<ChannelName>(['vector', 'fts', 'graph', 'degree']);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:685:    allowed.add('bm25');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:688:  if (options.useVector === false) allowed.delete('vector');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:689:  if (options.useBm25 === false) allowed.delete('bm25');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:707:    useVector: allowedChannels.has('vector'),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:708:    useBm25: allowedChannels.has('bm25'),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:742:  vectorEmbeddingCache: Map<number, Float32Array>;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:787:    : await hybridSearch(query, embedding, primaryOptions);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:809:      : await hybridSearch(query, embedding, retryOptions);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:829:      : await hybridSearch(query, embedding, retryOptions);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:848: * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:849: * Prefer hybridSearchEnhanced() or searchWithFallback() instead. This function uses naive per-source
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:850: * min-max normalization which produces different orderings than the RRF pipeline in hybridSearchEnhanced().
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:853:async function hybridSearch(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:872:  if (useVector && embedding && vectorSearchFn) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:874:      const vectorResults = vectorSearchFn(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:881:      for (const r of vectorResults) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:886:          source: 'vector',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:891:      console.warn(`[hybrid-search] Vector search failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:903:    const bm25Results = bm25Search(query, { limit, specFolder });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:904:    results.push(...bm25Results);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:921:      console.warn(`[hybrid-search] Graph search failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:954:  // LIMITATION (P1-1): When a result appears in multiple sources (e.g., vector + fts),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973: * Enhanced hybrid search with RRF fusion.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:977:async function hybridSearchEnhanced(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:991:  return hybridSearch(query, embedding, options);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1010:    const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1055:    let bm25ChannelResults: HybridSearchResult[] = [];
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1056:    const vectorEmbeddingCache = new Map<number, Float32Array>();
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1062:    if (activeChannels.has('vector') && embedding && vectorSearchFn) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1064:        const vectorResults = vectorSearchFn(embedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1072:        semanticResults = vectorResults.map((r: Record<string, unknown>): { id: number | string; source: string; [key: string]: unknown } => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1075:          source: 'vector',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1084:            vectorEmbeddingCache.set(result.id, embeddingCandidate);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1087:        lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1089:        // Non-critical — vector channel failure does not block pipeline
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1090:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1104:    // BM25 channel (internal error handling in bm25Search) — gated by query-complexity routing
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1105:    if (activeChannels.has('bm25')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1106:      bm25ChannelResults = bm25Search(query, options);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1107:      if (bm25ChannelResults.length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1110:        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1133:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1177:        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1184:      ...bm25ChannelResults,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1195:        vectorEmbeddingCache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1222:    // weights, avoiding the heavier hybridAdaptiveFuse() standard-first path.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1234:      .filter((list) => list.source !== 'fts' && list.source !== 'bm25')
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1236:        if (list.source === 'vector') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1273:      vectorEmbeddingCache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1278:    console.warn(`[hybrid-search] Enhanced search failed, falling back: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1296:    vectorEmbeddingCache,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1337:      console.error('[hybrid-search] MPAB error (non-fatal):', msg);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1360:      fusedHybridResults.map(r => ({ ...r, source: r.source || 'hybrid' })),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1375:    console.warn('[hybrid-search] channel enforcement failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1385:  // Reuse embeddings already returned by the vector channel when present and
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1405:        const embeddingMap = new Map<number, Float32Array>(vectorEmbeddingCache);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1459:              source: 'vector',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1469:        console.warn(`[hybrid-search] MMR embedding retrieval failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1501:      console.warn('[hybrid-search] co-activation enrichment failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1555:      console.warn('[hybrid-search] confidence truncation failed:', err instanceof Error ? err.message : String(err));
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1623:      queryId: `hybrid-${Date.now()}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1680: * @param embedding - Optional embedding vector for semantic search.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1718:  if (allowedChannels.has('bm25')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1719:    const bm25Fallback = collectCandidatesFromLists(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1720:      [{ source: 'bm25', results: bm25Search(query, options) }],
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1723:    if (bm25Fallback.length > 0) return bm25Fallback;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1726:  console.warn('[hybrid-search] Raw candidate collection returned empty results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1737: * @param embedding - Optional embedding vector for semantic search.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1753:  // P3-03 FIX: Use hybridSearchEnhanced (with RRF fusion) instead of
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1754:  // The naive hybridSearch that merges raw scores
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1777:  if (allowedChannels.has('bm25')) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1778:    const bm25Results = bm25Search(query, options);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1779:    if (bm25Results.length > 0) return bm25Results;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1782:  console.warn('[hybrid-search] All search methods returned empty results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1800:    console.warn('[hybrid-search] db not initialized — returning empty structuralSearch results');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1855:    console.warn(`[hybrid-search] Structural search failed: ${msg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2103: * TIER 1: hybridSearchEnhanced at minSimilarity=30
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2106: * TIER 2: hybridSearchEnhanced at minSimilarity=10, all allowed channels forced
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2115: * @param embedding - Optional embedding vector for semantic search.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2147:  console.error(`[hybrid-search] Tier 1→2 degradation: ${tier1Trigger.reason} (topScore=${tier1Trigger.topScore.toFixed(3)}, count=${tier1Trigger.resultCount})`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2174:  console.error(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2390:      `[hybrid-search] Token budget overflow (single-result fallback): ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2427:      `[hybrid-search] Token budget overflow (top-result fallback): ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2444:    `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2467:  bm25Search,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2473:  hybridSearch,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:2474:  hybridSearchEnhanced,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:15:import { executePipeline } from '../lib/search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:214:  retrievalLevel?: 'local' | 'global' | 'auto';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:529:    retrievalLevel: retrievalLevel = 'auto',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:777:        : 'hybrid',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:809:    const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:818:      (retrievalLevel === 'global' || retrievalLevel === 'auto')
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:822:        (retrievalLevel === 'global') ||
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:823:        (resultsForFormatting.length < 3 && retrievalLevel === 'auto');
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:992:      appliedBoosts.communityFallback = { applied: true, retrievalLevel };
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:8:// Contiguity to raw vector-channel hits before later pipeline stages.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:13://   - hybrid (deep mode): Query expansion + multi-variant hybrid search + dedup
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:14://   - hybrid (R12):       Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:16://   - hybrid: collectRawCandidates → falls back to vector on failure
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:17://   - vector: Direct vectorSearch
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:28://     - candidates contains raw channel scores; vector hits may include an
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:34://     - Reads from the vector index and FTS5 / BM25 index (DB reads only)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:38:import * as vectorIndex from '../vector-index.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:40:import * as hybridSearch from '../hybrid-search.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:41:import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:79:/** Number of constitutional results to fetch when none appear in hybrid/vector results. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:459: * and `config.mode`, then applies vector-channel temporal contiguity when
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:508:  // the query for the hybrid search channel, improving recall for alias-rich
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:513:  /** Effective query for hybrid search — may be expanded by concept routing. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:516:  if (isGraphConceptRoutingEnabled() && searchType === 'hybrid') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:594:    candidates = vectorIndex.multiConceptSearch(conceptEmbeddings, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:604:  else if (searchType === 'hybrid') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:613:      throw new Error('[stage1-candidate-gen] Failed to generate embedding for hybrid search query');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:616:    // Deep mode: expand query into variants and run hybrid for each, then dedup
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:621:      // sub-query facets and run hybrid search per facet. Results are merged
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:654:            // Run hybrid for the original query plus each facet, in parallel
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:666:                  return hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:729:                const variantResults = await hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:759:            `[stage1-candidate-gen] Deep query expansion failed, falling back to single hybrid: ${expandMsg}`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:761:          // Fall through to single hybrid search below
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:763:          candidates = (await hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:770:        // ExpandQuery returned only the original; treat as standard hybrid
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:772:        candidates = (await hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:811:              hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:828:                  return hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:864:            `[stage1-candidate-gen] R12 embedding expansion failed, using standard hybrid: ${r12Msg}`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:869:      // Standard hybrid search — runs when R12 is off, suppressed by R15,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:875:          const hybridResults = (await hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:880:          candidates = hybridResults;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:881:        } catch (hybridErr: unknown) {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:882:          const hybridMsg =
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:883:            hybridErr instanceof Error ? hybridErr.message : String(hybridErr);
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:885:            `[stage1-candidate-gen] Hybrid search failed, falling back to vector: ${hybridMsg}`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:888:          // Fallback: pure vector search
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:890:          let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:899:            vectorResults = (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:900:              vectorSearchWithContiguity(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:901:                vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:904:            ) ?? vectorResults;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:906:          candidates = vectorResults;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:910:              reason: hybridMsg,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:911:              channel: 'vector',
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:921:  else if (searchType === 'vector') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:926:      throw new Error('[stage1-candidate-gen] Failed to generate embedding for vector search query');
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:930:    let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:939:      vectorResults = (
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:940:        vectorSearchWithContiguity(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:941:          vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:944:      ) ?? vectorResults;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:946:    candidates = vectorResults;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:953:      `[stage1-candidate-gen] Unknown searchType: "${searchType}". Expected 'multi-concept', 'hybrid', or 'vector'.`
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:961:  // Exception: for hybrid search, tier/contextType are applied here because
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:963:  // For vector search, tier/contextType were already passed to vectorSearch,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1011:  // In the current candidate set, fetch them separately via vector search.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1031:        const constitutionalResults = vectorIndex.vectorSearch(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1048:        // via vector search bypass the earlier governance/context gate.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1082:  //   3. Fan-out [original, abstract, ...variants] as additional hybrid search channels.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1088:  if (mode === 'deep' && isLlmReformulationEnabled() && searchType === 'hybrid') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1109:              return hybridSearch.collectRawCandidates(
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1169:  //   - Run a vector-only search with the pseudo-document embedding.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1176:  if (mode === 'deep' && isHyDEEnabled() && searchType === 'hybrid') {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1335:              // raw row.score. For vector-only rows with only `similarity`,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1391:  // P1 fix: activeChannels counts actual retrieval channels (vector, keyword/BM25),
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1392:  // while channelCount counts parallel query variants. In hybrid mode both vector
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1394:  const activeChannels = searchType === 'hybrid' ? 2 : 1;
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:169:  // The result set, matching the V1 hybrid-search behavior.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:12:export { executePipeline } from './orchestrator.js';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:47:  graphEvidence?: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:122:  searchType: 'hybrid' | 'vector' | 'multi-concept';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:206:    /** Actual retrieval channels active (vector=1, hybrid=2). Unlike channelCount which tracks query variants. */
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34:The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:36:The public API is a single function: `executePipeline(config)` exported from `index.ts`.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:44:| `index.ts` | Public barrel export. Re-exports `executePipeline` from the orchestrator and all pipeline type definitions from `types.ts`. |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:46:| `stage1-candidate-gen.ts` | Stage 1: Candidate Generation. Runs search channels (hybrid, vector, multi-concept), applies deep-mode query expansion (R6), embedding-based expansion (R12), summary embeddings (R8), constitutional memory injection, quality threshold filtering and tier/contextType filtering. |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:47:| `stage2-fusion.ts` | Stage 2: Fusion + Signal Integration. The single authoritative scoring point. Applies 9 signal steps in fixed order: session boost, causal boost, co-activation spreading, community co-retrieval, graph signals, FSRS testing effect, intent weights (non-hybrid only, G2 prevention), artifact routing, feedback signals, artifact limiting, anchor metadata and validation metadata scoring. |
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:78:- Channels: hybrid (with optional deep-mode expansion), vector, multi-concept.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:86:- G2 prevention: intent weights are applied only for non-hybrid search types.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:106:2. **G2 Double-Weighting Guard.** Intent weights are applied only for non-hybrid search types. Hybrid search incorporates intent weighting during RRF/RSF fusion internally.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:114:- `mcp_server/lib/search/` - Parent search directory containing hybrid search, vector index, cross-encoder and other search modules consumed by the pipeline.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts:57:export async function executePipeline(config: PipelineConfig): Promise<PipelineResult> {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:11://     - Intent weights are NEVER applied to hybrid results (G2 double-weighting guard)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:29:// 4.  Intent weights          — non-hybrid search post-scoring adjustment
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:38:// Therefore ONLY applied for non-hybrid search types (vector,
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:39:// Multi-concept). Applying it to hybrid results would double-count.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:397: * Phase C T026: Populate graphEvidence provenance on each result that received
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:496:  // Attach graphEvidence to each boosted result
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:520:      graphEvidence: {
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:592: * G2 PREVENTION: This function is ONLY called for non-hybrid search types.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:594: * during fusion. Calling this on hybrid results would double-count intent.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:930: *   1.  Session boost      (hybrid only — working memory attention)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:932: *   2.  Causal boost       (hybrid only — graph-traversal amplification)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:937: *   4.  Intent weights     (non-hybrid only — G2 prevention)
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:975:  const isHybrid = config.searchType === 'hybrid';
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:978:  // Only for hybrid search type — session attention signals are most meaningful
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:979:  // When the full hybrid result set is available for ordering.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1000:  // Uses computeRecencyScore (already imported but previously unused in hybrid path).
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1031:  // Only for hybrid search type — causal graph traversal is seeded from the
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1057:  // Appear in the co-activation graph. Matches V1 hybrid-search behavior.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1185:  // Populate graphEvidence on results that received graph-based boosts.
+.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1210:  // G2 PREVENTION: Only apply for non-hybrid search types.
 
 exec
-/bin/zsh -lc 'rg -n "Direct CLI target rule|Preferred save path|Creates a memory file|session data|AI has strictly better information" .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "Direct CLI target rule|Preferred save path|Creates a memory file|session data|AI has strictly better information" .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 70:  --stdin           Read structured JSON from stdin (preferred when a caller already has curated session data)
 82:  Creates a memory file in <spec-folder>/memory/ with ANCHOR format
@@ -11045,7 +11045,7 @@ exec
 90:Direct CLI target rule:
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '338,660p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts | sed -n '338,660p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    338	/** Handle memory_drift_why tool - traces causal relationships for a given memory */
    339	async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
@@ -11374,7 +11374,7 @@ exec
 codex
 The architecture edges are clear now: Mnemosyne is a thin OpenCode plugin with prompt-time memory reminders, while Public is a server-centered memory platform with retrieval, recovery, graph, and save lineage already inside the MCP surface. I’m synthesizing the delta as “add a thin ergonomic layer and compaction reminder path, not a second storage authority.”
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '736,772p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts | sed -n '736,772p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    736	};
    737	
@@ -11415,41 +11415,41 @@ exec
    772	      nextActions: { type: 'array', items: { type: 'string' }, description: 'Up to 3 recommended next actions derived from resume, health, and structural status' },
 
 exec
-/bin/zsh -lc 'rg -n "buildOpenCodeTransportPlan|opencodeTransport|transportOnly|messagesTransform|compaction|resumePayload" .opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "buildOpenCodeTransportPlan|opencodeTransport|transportOnly|messagesTransform|compaction|resumePayload" .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts .opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:27:  buildOpenCodeTransportPlan,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:114:  opencodeTransport?: OpenCodeTransportPlan;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:590:    opencodeTransport: buildOpenCodeTransportPlan({
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:27:  buildOpenCodeTransportPlan,
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:58:  opencodeTransport?: OpenCodeTransportPlan;
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:330:    opencodeTransport: buildOpenCodeTransportPlan({
-.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:28:  transportOnly: true;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:36:  messagesTransform: OpenCodeTransportBlock[];
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:82:export function buildOpenCodeTransportPlan(args: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:85:  resumePayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:93:    args.resumePayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:98:  const systemPayload = args.bootstrapPayload ?? args.startupPayload ?? args.resumePayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:99:  const messagePayloads = [args.resumePayload, args.healthPayload].filter(
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:106:    transportOnly: true,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:130:    messagesTransform: messagePayloads.map((payload, index) => ({
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
-.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:27:  buildOpenCodeTransportPlan,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:114:  opencodeTransport?: OpenCodeTransportPlan;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:590:    opencodeTransport: buildOpenCodeTransportPlan({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:591:      resumePayload: payloadContract,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:27:  buildOpenCodeTransportPlan,
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:58:  opencodeTransport?: OpenCodeTransportPlan;
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:224:  const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:227:  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:330:    opencodeTransport: buildOpenCodeTransportPlan({
+.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:332:      resumePayload,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:5:// contracts to OpenCode-oriented startup, message, and compaction blocks.
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:28:  transportOnly: true;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:36:  messagesTransform: OpenCodeTransportBlock[];
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:37:  compaction?: OpenCodeTransportBlock;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:82:export function buildOpenCodeTransportPlan(args: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:85:  resumePayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:87:  compactionPayload?: SharedPayloadEnvelope | null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:93:    args.resumePayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:95:    args.compactionPayload?.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:98:  const systemPayload = args.bootstrapPayload ?? args.startupPayload ?? args.resumePayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:99:  const messagePayloads = [args.resumePayload, args.healthPayload].filter(
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:102:  const compactionPayload = args.compactionPayload ?? args.resumePayload ?? args.bootstrapPayload ?? null;
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:106:    transportOnly: true,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:130:    messagesTransform: messagePayloads.map((payload, index) => ({
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:140:    ...(compactionPayload
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:142:        compaction: {
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:145:          payloadKind: compactionPayload.kind,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:146:          dedupeKey: `compaction:${compactionPayload.kind}`,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:148:            compactionPayload,
+.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:149:            'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: OpenCode Transport Adapter
@@ -11608,7 +11608,7 @@ exec
    155	}
 
 exec
-/bin/zsh -lc "rg -n \"executePipeline\\(|Handle memory_search tool|retrievalLevel|graphEvidence\" .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"executePipeline\\(|Handle memory_search tool|retrievalLevel|graphEvidence\" .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 214:  retrievalLevel?: 'local' | 'global' | 'auto';
 482:/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
@@ -11620,7 +11620,7 @@ exec
 992:      appliedBoosts.communityFallback = { applied: true, retrievalLevel };
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | sed -n '482,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    482	/** Handle memory_search tool — performs hybrid vector/BM25 search with intent-aware ranking.
    483	 * @param args - Search arguments (query, concepts, mode, specFolder, etc.)
@@ -12003,9 +12003,9 @@ exec
    860	      }
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md | sed -n '34,110p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md | sed -n '34,110p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '970,1135p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | sed -n '970,1135p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     34	The `pipeline/` directory implements the core retrieval pipeline behind `memory_search`. Each search request flows through four sequential stages, each with a defined I/O contract and clear responsibility boundary. The pipeline supports hybrid, vector and multi-concept search types with optional deep-mode query expansion, cross-encoder reranking, MMR diversity pruning and MPAB chunk-to-parent reassembly.
     35	
@@ -12360,7 +12360,7 @@ exec
    781	
    782	## Reusable knowledge
    783	
-   784	- canonical validation gates for packet readiness here were `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --recursive --strict` plus `TMPDIR=... npm run check:full` and `npm run build` evidence capture [Task 1][Task 2]
+   784	- canonical validation gates for packet readiness here were `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --recursive --strict` plus `TMPDIR=... npm run check:full` and `npm run build` evidence capture [Task 1][Task 2]
    785	- for strict validator compliance, checklist lines need explicit `[EVIDENCE: ...]` and level-template headers/section numbers must remain exact (`## 1. METADATA`, `## 2. PROBLEM & PURPOSE`, etc.) [Task 3]
    786	- `session_bootstrap()` is the primary recovery call for non-hook flows; docs should mention fallback `memory_context({mode:"resume",profile:"resume"})` only after bootstrap guidance [Task 4]
    787	- hook path truth is `mcp_server/hooks/claude/*.ts` and compiled `mcp_server/dist/hooks/claude/*.js`; avoid stale `scripts/hooks/claude/` references [Task 4]
@@ -12441,7 +12441,7 @@ OpenCode runtime
 
 ## Findings
 ### Finding 1: Retrieval core does not change; only the operator surface changes
-- **Source**: wrapper bridge plus Public hybrid pipeline [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:38-75`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482-529`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:772-810`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-49`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1110`]
+- **Source**: wrapper bridge plus Public hybrid pipeline [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:38-75`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482-529`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:772-810`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-49`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1110`]
 - **What it does**: Mnemosyne’s plugin forwards CLI calls; Public already owns a four-stage hybrid retrieval stack with vector, FTS5, BM25, graph/community signals, reranking, and filtering.
 - **Why it matters**: The right evolution is not “replace Spec Kit Memory with Mnemosyne,” but “add a lighter front door over the existing Public backend.”
 - **Recommendation**: reject backend replacement; adopt a thin ergonomic facade only
@@ -12449,7 +12449,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 2: The compaction delta is a memory action card, not a new compaction subsystem
-- **Source**: Mnemosyne compaction hook versus Public transport + compaction surfacing [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:208-223`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:909-923`]
+- **Source**: Mnemosyne compaction hook versus Public transport + compaction surfacing [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:208-223`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:909-923`]
 - **What it does**: Mnemosyne injects hardcoded memory-tool guidance during compaction; Public already has transport-only compaction blocks and a compaction-time auto-surface path.
 - **Why it matters**: We should extend the existing OpenCode transport plan with a memory reminder block instead of building a second hook stack or second plugin-owned memory authority.
 - **Recommendation**: adopt now
@@ -12457,7 +12457,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 3: Project/global ergonomics should be aliases over governed scope, not basename authority
-- **Source**: basename-derived project scope in Mnemosyne versus Public governed scope and retrieval levels [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:27-32`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:118-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:51-60`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:48-74`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:498-540`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:812-859`]
+- **Source**: basename-derived project scope in Mnemosyne versus Public governed scope and retrieval levels [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:27-32`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:118-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:51-60`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-45`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:48-74`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:498-540`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:812-859`]
 - **What it does**: Mnemosyne turns directory basename into project scope and uses a lazy `--global` collection; Public already scopes retrieval by `specFolder`, tenant/user/agent/shared space, while `retrievalLevel=global` means community fallback rather than “personal global memory.”
 - **Why it matters**: If we add `project`/`global` recall ergonomics, they must compile down to Public’s governance model instead of becoming a second, conflicting scope authority.
 - **Recommendation**: prototype later
@@ -12465,7 +12465,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 4: Save-path evolution should preserve JSON-primary memory generation and remap `core`
-- **Source**: Mnemosyne store semantics versus Public save + constitutional memory [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:138-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:57-78`; `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:217-220`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:173-203`]
+- **Source**: Mnemosyne store semantics versus Public save + constitutional memory [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:138-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:57-78`; `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:217-220`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:173-203`]
 - **What it does**: Mnemosyne stores a raw string directly via CLI and tags `core`; Public generates anchored memory artifacts from structured JSON and treats “always surface” as constitutional memory, not just a tag.
 - **Why it matters**: The safest adoption is an audited `memory_remember` facade that creates or routes into the current save pipeline; `core=true` should map to constitutional memory policy, not a free-form tag on arbitrary runtime writes.
 - **Recommendation**: adopt now for the facade; reject direct raw-tag mapping
@@ -12473,7 +12473,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 5: Public’s distinctive value is the recovery + lineage layer, which Mnemosyne does not replace
-- **Source**: composite resume/bootstrap, causal graph, and code-search separation [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740-772`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`; `.opencode/skill/mcp-coco-index/README.md:61-85`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:37-50`]
+- **Source**: composite resume/bootstrap, causal graph, and code-search separation [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740-772`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`; `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`; `.opencode/skills/mcp-coco-index/README.md:61-85`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:37-50`]
 - **What it does**: Public already composes memory resume, code-graph readiness, CocoIndex status, and causal lineage into MCP-native recovery and analysis surfaces; Mnemosyne exposes only recall/store/delete-style tools plus compaction guidance.
 - **Why it matters**: The “after” architecture should wire a Mnemosyne-like UX layer into `session_bootstrap`, causal graph, and separated CocoIndex/code-graph systems, not flatten Public down to five simplified tools.
 - **Recommendation**: reject collapse; prototype a facade that routes into existing advanced surfaces
@@ -12484,26 +12484,26 @@ OpenCode runtime
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:4-223`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json:1-44`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:33-87`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482-860`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-107`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1135`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-50`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740-772`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:85-98`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482-860`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-107`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1135`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-50`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740-772`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:85-98`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`
-- `.opencode/skill/mcp-coco-index/README.md:61-85`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`
+- `.opencode/skills/mcp-coco-index/README.md:61-85`
 
 ## Assessment
 - New information ratio: `0.18`
 - Questions addressed: `[what truly changes with adoption, where compaction guidance should live, how project/global should map, how remember/save should map, what must remain separate]`
 - Questions answered: `[retrieval core stays Public-owned, compaction should extend existing transport, project/global must be facade-only, core must map to constitutional memory, session_bootstrap/causal/CocoIndex remain first-class]`
 - Novelty justification: `This pass turns prior point findings into a concrete topology map that distinguishes additive UX/transport changes from non-negotiable backend authorities.`
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
 - Replacing Spec Kit Memory storage/retrieval with the Mnemosyne CLI wrapper.
@@ -12563,7 +12563,7 @@ OpenCode runtime
 
 ## Findings
 ### Finding 1: Retrieval core does not change; only the operator surface changes
-- **Source**: wrapper bridge plus Public hybrid pipeline [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:38-75`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482-529`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:772-810`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-49`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1110`]
+- **Source**: wrapper bridge plus Public hybrid pipeline [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:38-75`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482-529`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:772-810`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-49`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1110`]
 - **What it does**: Mnemosyne’s plugin forwards CLI calls; Public already owns a four-stage hybrid retrieval stack with vector, FTS5, BM25, graph/community signals, reranking, and filtering.
 - **Why it matters**: The right evolution is not “replace Spec Kit Memory with Mnemosyne,” but “add a lighter front door over the existing Public backend.”
 - **Recommendation**: reject backend replacement; adopt a thin ergonomic facade only
@@ -12571,7 +12571,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 2: The compaction delta is a memory action card, not a new compaction subsystem
-- **Source**: Mnemosyne compaction hook versus Public transport + compaction surfacing [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:208-223`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:909-923`]
+- **Source**: Mnemosyne compaction hook versus Public transport + compaction surfacing [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:208-223`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`; `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:909-923`]
 - **What it does**: Mnemosyne injects hardcoded memory-tool guidance during compaction; Public already has transport-only compaction blocks and a compaction-time auto-surface path.
 - **Why it matters**: We should extend the existing OpenCode transport plan with a memory reminder block instead of building a second hook stack or second plugin-owned memory authority.
 - **Recommendation**: adopt now
@@ -12579,7 +12579,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 3: Project/global ergonomics should be aliases over governed scope, not basename authority
-- **Source**: basename-derived project scope in Mnemosyne versus Public governed scope and retrieval levels [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:27-32`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:118-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:51-60`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:48-74`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:498-540`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:812-859`]
+- **Source**: basename-derived project scope in Mnemosyne versus Public governed scope and retrieval levels [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:27-32`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:118-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:51-60`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-45`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:48-74`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:498-540`; `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:812-859`]
 - **What it does**: Mnemosyne turns directory basename into project scope and uses a lazy `--global` collection; Public already scopes retrieval by `specFolder`, tenant/user/agent/shared space, while `retrievalLevel=global` means community fallback rather than “personal global memory.”
 - **Why it matters**: If we add `project`/`global` recall ergonomics, they must compile down to Public’s governance model instead of becoming a second, conflicting scope authority.
 - **Recommendation**: prototype later
@@ -12587,7 +12587,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 4: Save-path evolution should preserve JSON-primary memory generation and remap `core`
-- **Source**: Mnemosyne store semantics versus Public save + constitutional memory [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:138-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:57-78`; `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:217-220`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:173-203`]
+- **Source**: Mnemosyne store semantics versus Public save + constitutional memory [SOURCE: `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:138-190`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:57-78`; `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`; `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:217-220`; `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:173-203`]
 - **What it does**: Mnemosyne stores a raw string directly via CLI and tags `core`; Public generates anchored memory artifacts from structured JSON and treats “always surface” as constitutional memory, not just a tag.
 - **Why it matters**: The safest adoption is an audited `memory_remember` facade that creates or routes into the current save pipeline; `core=true` should map to constitutional memory policy, not a free-form tag on arbitrary runtime writes.
 - **Recommendation**: adopt now for the facade; reject direct raw-tag mapping
@@ -12595,7 +12595,7 @@ OpenCode runtime
 - **Source strength**: primary
 
 ### Finding 5: Public’s distinctive value is the recovery + lineage layer, which Mnemosyne does not replace
-- **Source**: composite resume/bootstrap, causal graph, and code-search separation [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740-772`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`; `.opencode/skill/mcp-coco-index/README.md:61-85`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:37-50`]
+- **Source**: composite resume/bootstrap, causal graph, and code-search separation [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740-772`; `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`; `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`; `.opencode/skills/mcp-coco-index/README.md:61-85`; `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:37-50`]
 - **What it does**: Public already composes memory resume, code-graph readiness, CocoIndex status, and causal lineage into MCP-native recovery and analysis surfaces; Mnemosyne exposes only recall/store/delete-style tools plus compaction guidance.
 - **Why it matters**: The “after” architecture should wire a Mnemosyne-like UX layer into `session_bootstrap`, causal graph, and separated CocoIndex/code-graph systems, not flatten Public down to five simplified tools.
 - **Recommendation**: reject collapse; prototype a facade that routes into existing advanced surfaces
@@ -12606,26 +12606,26 @@ OpenCode runtime
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/src/index.ts:4-223`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/package.json:1-44`
 - `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/external/README.md:33-87`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482-860`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-107`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1135`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-50`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:740-772`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:85-98`
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:482-860`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md:34-107`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1135`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:41-50`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:740-772`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:85-98`
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:623-657`
 - `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`
-- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`
-- `.opencode/skill/mcp-coco-index/README.md:61-85`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:81-154`
+- `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:61-95`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:338-650`
+- `.opencode/skills/mcp-coco-index/README.md:61-85`
 
 ## Assessment
 - New information ratio: `0.18`
 - Questions addressed: `[what truly changes with adoption, where compaction guidance should live, how project/global should map, how remember/save should map, what must remain separate]`
 - Questions answered: `[retrieval core stays Public-owned, compaction should extend existing transport, project/global must be facade-only, core must map to constitutional memory, session_bootstrap/causal/CocoIndex remain first-class]`
 - Novelty justification: `This pass turns prior point findings into a concrete topology map that distinguishes additive UX/transport changes from non-negotiable backend authorities.`
-- Validation: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
+- Validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main" --strict` returned `RESULT: PASSED` with `Errors: 0  Warnings: 0`, plus the known read-only warning `cannot create temp file for here document: Operation not permitted`.
 
 ## Ruled Out
 - Replacing Spec Kit Memory storage/retrieval with the Mnemosyne CLI wrapper.

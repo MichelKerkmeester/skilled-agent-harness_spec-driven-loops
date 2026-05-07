@@ -70,19 +70,19 @@
       "plan.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/spec.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening/spec.md",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/convergence.md",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/command/spec_kit/deep-research.md",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/convergence.md",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/commands/spec_kit/deep-research.md",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
       "tasks.md",
       "implementation-summary.md",
       "research/research.md"
@@ -103,79 +103,79 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "source": "derived"
       },
       {
         "name": "prompt_pack_iteration.md.tmpl",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "path": ".opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "convergence.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/convergence.md",
+        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/deep-research.md",
+        "path": ".opencode/commands/spec_kit/deep-research.md",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "executor-config.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
         "name": "executor-audit.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
         "source": "derived"
       },
       {
         "name": "post-dispatch-validate.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
         "source": "derived"
       },
       {
         "name": "executor-config.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
         "source": "derived"
       },
       {
         "name": "cli-matrix.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
         "source": "derived"
       },
       {
         "name": "dispatch-failure.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
         "source": "derived"
       },
       {

@@ -19,9 +19,9 @@ _memory:
     blockers:
       - "Current memory_search handler does not pass degradedReadiness into buildSearchDecisionEnvelope"
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/search/decision-audit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-k-pp-1"

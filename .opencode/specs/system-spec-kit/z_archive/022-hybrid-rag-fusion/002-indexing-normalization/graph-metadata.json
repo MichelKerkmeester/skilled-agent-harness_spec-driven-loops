@@ -39,23 +39,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
-      ".opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
-      ".opencode/skill/system-spec-kit/templates/level_3/spec.md",
-      ".opencode/skill/system-spec-kit/templates/level_3/plan.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts",
-      ".opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts",
-      ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
+      ".opencode/skills/system-spec-kit/templates/level_3/spec.md",
+      ".opencode/skills/system-spec-kit/templates/level_3/plan.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts",
+      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
+      ".opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
       "plan.md",
       "decision-record.md",
       "implementation-summary.md"
@@ -64,91 +64,91 @@
       {
         "name": "memory-parser.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
         "source": "derived"
       },
       {
         "name": "memory-index.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
         "source": "derived"
       },
       {
         "name": "importance-tiers.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
         "source": "derived"
       },
       {
         "name": "backfill-frontmatter.js",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
         "source": "derived"
       },
       {
         "name": "memory-parser.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
         "source": "derived"
       },
       {
         "name": "spec-affinity.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/utils/spec-affinity.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts",
         "source": "derived"
       },
       {
         "name": "memory-indexer.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/memory-indexer.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts",
         "source": "derived"
       },
       {
         "name": "session-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/types/session-types.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
         "source": "derived"
       },
       {
         "name": "collect-session-data.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer-unit.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
         "source": "derived"
       },
       {
         "name": "runtime-memory-inputs.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
         "source": "derived"
       },
       {
         "name": "verify_alignment_drift.py",
         "kind": "file",
-        "path": ".opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py",
         "source": "derived"
       },
       {
         "name": "handler-memory-index.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
         "source": "derived"
       },
       {
         "name": "importance-tiers.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
         "source": "derived"
       },
       {

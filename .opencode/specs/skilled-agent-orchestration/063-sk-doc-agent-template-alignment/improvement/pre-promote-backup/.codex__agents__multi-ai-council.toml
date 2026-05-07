@@ -1,5 +1,5 @@
 # Agent: multi-ai-council
-# Converted from: .opencode/agent/multi-ai-council.md
+# Converted from: .opencode/agents/multi-ai-council.md
 name = "multi-ai-council"
 description = "Multi-AI consensus planning architect that seeks diverse AI vantage points and strategy lenses, deliberates across multiple rounds, and outputs plans only without modifying files."
 sandbox_mode = "read-only"
@@ -569,7 +569,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | --- | --- | --- |
-| `/memory:save` | Preserve session context | `.opencode/skill/system-spec-kit/` |
+| `/memory:save` | Preserve session context | `.opencode/skills/system-spec-kit/` |
 
 ### Skills
 

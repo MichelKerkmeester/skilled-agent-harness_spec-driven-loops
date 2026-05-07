@@ -78,7 +78,7 @@ _memory:
 - [x] CHK-021 [P0] Controls captured. Evidence: 35 control rows in `trials/trial-log.jsonl`.
 - [x] CHK-022 [P1] Aggregation generated. Evidence: `analysis/aggregated-metrics.md`.
 - [x] CHK-023 [P1] Per-scenario deltas generated. Evidence: `analysis/per-scenario-deltas.md`.
-- [x] CHK-024 [P0] Strict validation passes. Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution --strict` exited 0.
+- [x] CHK-024 [P0] Strict validation passes. Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution --strict` exited 0.
 <!-- /ANCHOR:testing -->
 
 ---

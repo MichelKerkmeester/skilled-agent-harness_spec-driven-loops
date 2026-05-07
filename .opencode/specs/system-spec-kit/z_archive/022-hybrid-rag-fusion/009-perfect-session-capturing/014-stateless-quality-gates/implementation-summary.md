@@ -21,7 +21,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -84,8 +84,8 @@ The shipped Phase 014 code was already present in the scripts workspace, so this
 
 | Check | Result |
 |-------|--------|
-| `cd .opencode/skill/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts` | PASS on 2026-03-18 with 4 files, 39 tests, 0 failures |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates --json` | PASS on 2026-03-18 with 0 errors and 0 warnings |
+| `cd .opencode/skills/system-spec-kit/scripts && npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts` | PASS on 2026-03-18 with 4 files, 39 tests, 0 failures |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates --json` | PASS on 2026-03-18 with 0 errors and 0 warnings |
 | Parent scripts baseline retained from closure docs | PASS on 2026-03-18 with 36 files and 385 tests |
 | Parent MCP baseline retained from closure docs | PASS on 2026-03-18 with 1 file and 20 tests |
 <!-- /ANCHOR:verification -->

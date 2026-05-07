@@ -56,7 +56,7 @@ _memory:
 - [x] T005 Surface the same runtime posture in the loader path (`scripts/loaders/data-loader.ts`)
 - [x] T006 Add structured JSON enrichment types (`scripts/types/session-types.ts`)
 - [x] T007 Extend normalization and weighting for the richer JSON input path (`scripts/utils/input-normalizer.ts`, `scripts/core/memory-indexer.ts`)
-- [x] T008 Update operator guidance to JSON-primary wording (`.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/command/memory/save.md`)
+- [x] T008 Update operator guidance to JSON-primary wording (`.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/commands/memory/save.md`)
 - [x] T009 Move obsolete dynamic-capture follow-ups under `../000-dynamic-capture-deprecation/`
 <!-- /ANCHOR:phase-2 -->
 

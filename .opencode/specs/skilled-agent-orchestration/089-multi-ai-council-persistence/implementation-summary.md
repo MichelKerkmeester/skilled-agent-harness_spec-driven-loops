@@ -15,9 +15,9 @@ _memory:
     next_safe_action: "Commit packet 089"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
-      - ".opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md"
-      - ".opencode/agent/multi-ai-council.md (§16 Caller Persistence Protocol)"
+      - ".opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs"
+      - ".opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md"
+      - ".opencode/agents/multi-ai-council.md (§16 Caller Persistence Protocol)"
     session_dedup:
       fingerprint: "sha256:3acdad44d14d714574512ca0ac00729c8a4108820e32c96f443a78a6c8a953d5"
       session_id: "implsumm-089-author"
@@ -63,17 +63,17 @@ _memory:
 
 ### Phase 2A — Helper + schema + fixtures (complete)
 
-- `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` — Node CJS helper with parser/renderer/builder/state-line exports + CLI (`<packet> [--round NNN] [--input-file FILE] [--strict-output] [--force]`); exit codes 0/1/2 per contract.
-- `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` — markdown contract: requiredness matrix, heading aliases, seat fallback, optional-section policy, schema-change lockstep rule.
-- 3 fixtures under `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/`:
+- `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` — Node CJS helper with parser/renderer/builder/state-line exports + CLI (`<packet> [--round NNN] [--input-file FILE] [--strict-output] [--force]`); exit codes 0/1/2 per contract.
+- `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md` — markdown contract: requiredness matrix, heading aliases, seat fallback, optional-section policy, schema-change lockstep rule.
+- 3 fixtures under `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/`:
   - `council-output-full.md` (complete council report)
   - `council-output-minimal.md` (only strict-required sections)
   - `council-output-missing-required.md` (missing Recommended Plan / Plan Confidence)
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts` — 4 test cases (full / minimal / missing-required / parser-export). Codex-side targeted run: 4/4 PASS.
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts` — 4 test cases (full / minimal / missing-required / parser-export). Codex-side targeted run: 4/4 PASS.
 
 ### Phase 2B — Agent body §16 + 4-runtime mirror sync (complete)
 
-- `.opencode/agent/multi-ai-council.md`: §8 OUTPUT FORMAT now cross-links `output-schema.md`; new §16 CALLER PERSISTENCE PROTOCOL added with 4 caller-pattern recipes; existing SUMMARY box renumbered to §17 (closing visual preserved). 714 LOC (under 750 cap).
+- `.opencode/agents/multi-ai-council.md`: §8 OUTPUT FORMAT now cross-links `output-schema.md`; new §16 CALLER PERSISTENCE PROTOCOL added with 4 caller-pattern recipes; existing SUMMARY box renumbered to §17 (closing visual preserved). 714 LOC (under 750 cap).
 - `.claude/agents/multi-ai-council.md` — mirrored (712 LOC).
 - `.gemini/agents/multi-ai-council.md` — mirrored (696 LOC).
 - `.codex/agents/multi-ai-council.toml` — mirrored manually after cli-codex sandbox blocked .codex/ writes (matches packet 080 pattern).
@@ -82,8 +82,8 @@ All 4 runtimes verified to have §16 CALLER PERSISTENCE PROTOCOL + §17 SUMMARY 
 
 ### Phase 2C — Validator hardening + mirror parity test (complete)
 
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — hardened: replaced partial-layout assertions with synthetic spec folder + full `validate.sh --strict` invocation. Multiple `ai-council/` internal-layout variations tested. Codex-side run: 4/4 PASS.
-- `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts` — 4-runtime normalized comparison; passes when all 4 mirrors are in lockstep; flags drift with clear diff.
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` — hardened: replaced partial-layout assertions with synthetic spec folder + full `validate.sh --strict` invocation. Multiple `ai-council/` internal-layout variations tested. Codex-side run: 4/4 PASS.
+- `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts` — 4-runtime normalized comparison; passes when all 4 mirrors are in lockstep; flags drift with clear diff.
 
 ### Phase 3 — Final wrap (complete)
 
@@ -139,7 +139,7 @@ See `decision-record.md` for full ADRs:
 | Agent body §16 (Phase 2B) | PASS | 4 runtimes have §16 CALLER PERSISTENCE PROTOCOL + §17 SUMMARY in lockstep |
 | Validator regression (Phase 2C) | PASS | 4/4 cases pass; arbitrary `ai-council/` internals tolerated |
 | Mirror parity (Phase 2C) | PASS-DESIGN | Test authored; passes when 4 runtimes in lockstep (verified manually post-codex-toml-patch) |
-| Lightweight bound preserved | PASS | No `.opencode/skill/multi-ai-council/` folder exists |
+| Lightweight bound preserved | PASS | No `.opencode/skills/multi-ai-council/` folder exists |
 | Planning-only invariant preserved | PASS | write/edit/bash/patch deny across all 4 runtimes |
 | Final strict validation | PASS | errors=0, warnings=0 on packet 089 |
 
@@ -179,7 +179,7 @@ See `decision-record.md` for full ADRs:
 - `checklist.md` — 49 verification items in CHK-XXX format (all [x])
 - `tasks.md` — 40-task ledger (all Phase 1/2A/2B/2C [x])
 - Predecessor: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/research/research.md` §7 (concrete scope source)
-- Helper: `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
-- Schema: `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`
-- Tests: `.opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-{persist-artifacts,validator,mirror-parity}.vitest.ts`
-- Fixtures: `.opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/*.md`
+- Helper: `.opencode/skills/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
+- Schema: `.opencode/skills/system-spec-kit/references/multi-ai-council/output-schema.md`
+- Tests: `.opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-{persist-artifacts,validator,mirror-parity}.vitest.ts`
+- Fixtures: `.opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/*.md`

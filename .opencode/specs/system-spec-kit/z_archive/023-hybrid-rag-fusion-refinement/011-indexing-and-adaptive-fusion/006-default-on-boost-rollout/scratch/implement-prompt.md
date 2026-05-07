@@ -62,25 +62,25 @@ Confirm root causes before writing code. Trace the actual call paths:
 #### Phase 2: Implementation (T005-T024)
 
 **Session boost default-ON** (T005):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-boost.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts`
 - Line 29: `return isFeatureEnabled('SPECKIT_SESSION_BOOST', sessionId ?? undefined);`
 - If `isFeatureEnabled` already returns true for unset vars, the suppression may be in `stage2-fusion.ts` at the `config.enableSessionBoost` guard (line 774). Trace where `enableSessionBoost` is set in the config builder.
 - Goal: session boost fires by default when a sessionId is present. `SPECKIT_SESSION_BOOST=false` disables it.
 
 **Causal boost default-ON** (T006):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/causal-boost.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts`
 - Line 145: `return isFeatureEnabled('SPECKIT_CAUSAL_BOOST');`
 - Same pattern -- trace the config builder that sets `config.enableCausalBoost` if any.
 - Goal: causal boost fires by default. `SPECKIT_CAUSAL_BOOST=false` disables it.
 
 **Deep expansion fix** (T007):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
 - Find `buildDeepQueryVariants` -- it returns only the original query for short/common queries
 - The guard `queryVariants.length > 1` prevents the multi-search branch from executing
 - Fix: ensure deep mode always generates at least 2 variants (paraphrase, synonym expansion, or relax the guard)
 
 **search-flags.ts consolidation** (T008-T009, optional):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
 - Add `isSessionBoostEnabled()` and `isCausalBoostEnabled()` alongside other graduated flags
 
 **MCP config files** (T017-T021):
@@ -100,14 +100,14 @@ Updated `_NOTE_7` should read:
 ```
 
 **Artifact classifier -- keyword expansion** (T022):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`
 - Lines 156-197: `QUERY_PATTERNS` array
 - Add to `research` keywords: `"search"`, `"retrieval"`, `"pipeline"`, `"indexing"`, `"embedding"`, `"vector"`, `"semantic"`
 - Add to `implementation-summary` keywords: `"config"`, `"setup"`, `"env"`, `"flag"`, `"setting"`
 - Add to `memory` keywords: `"resume"`, `"recover"`, `"continuation"`
 
 **Artifact classifier -- intent fallback** (T023):
-- File: `.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`
 - In `getStrategyForQuery()` (line 239), add optional `intent?: string` parameter
 - Insert a new fallback tier at line 286 (between `bestScore === 0` check and specFolder hint):
 
@@ -134,7 +134,7 @@ if (bestScore === 0 && intent && INTENT_TO_ARTIFACT[intent]) {
 ```
 
 **Wire intent into handler** (T024):
-- File: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- File: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
 - Find where `getStrategyForQuery(query, specFolder)` is called
 - Change to `getStrategyForQuery(query, specFolder, detectedIntent)` where `detectedIntent` is the already-computed intent from the search pipeline
 

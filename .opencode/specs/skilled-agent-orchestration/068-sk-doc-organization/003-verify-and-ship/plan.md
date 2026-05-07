@@ -101,7 +101,7 @@ validate.sh --strict (must exit 0)
 - [ ] Confirm spec folder structure: parent + 3 children with all required files
 
 ### Phase 2: Core Implementation (Verification gate)
-- [ ] Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <068-folder> --strict` — must exit 0
+- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <068-folder> --strict` — must exit 0
 - [ ] Dispatch `@review` agent with `sk-code-review` skill loaded; verifier prompt instructs:
   - Rerun validate.sh + rg + diff -rq + tomllib parse-check IN FRESH SHELL
   - Apply Hunter/Skeptic/Referee on git diff main...HEAD (last 2 commits)
@@ -110,9 +110,9 @@ validate.sh --strict (must exit 0)
 - [ ] On FAIL_REMEDIATE: dispatch cli-codex to remediate (max 2 retry cycles); on FAIL_HALT: halt to user
 
 ### Phase 3: Closeout
-- [ ] Run `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` to refresh parent + child graph-metadata.json
+- [ ] Run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` to refresh parent + child graph-metadata.json
 - [ ] Author `003-verify-and-ship/implementation-summary.md` with verifier outcomes
-- [ ] Author optional `.opencode/skill/sk-doc/changelog/v<next>.md` documenting the reorg
+- [ ] Author optional `.opencode/skills/sk-doc/changelog/v<next>.md` documenting the reorg
 - [ ] Final commit: `feat(sk-doc): verify and ship sk-doc reorg (068/003)`
 - [ ] Verify `git branch --show-current` returns `main`; no surviving feature branch
 <!-- /ANCHOR:phases -->

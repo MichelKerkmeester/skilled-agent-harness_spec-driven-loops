@@ -12,15 +12,15 @@ Babysitter will show that continuity can stay powerful without being split acros
 I compared Spec Kit's bootstrap, resume, and handover surfaces with Babysitter's resume wrappers and run-continuation model.
 
 ## Evidence
-- `@context-prime` exists solely to bootstrap a session, return a Prime Package, and finish in under 15 seconds. [SOURCE: .opencode/agent/context-prime.md:22-39] [SOURCE: .opencode/agent/context-prime.md:57-66]
-- `/spec_kit:resume` already owns spec detection, continuation validation, memory-choice prompts, artifact checks, and progress calculation through a long YAML-driven setup phase. [SOURCE: .opencode/command/spec_kit/resume.md:7-18] [SOURCE: .opencode/command/spec_kit/resume.md:29-41] [SOURCE: .opencode/command/spec_kit/resume.md:73-141] [SOURCE: .opencode/command/spec_kit/resume.md:177-216]
-- `/spec_kit:handover` is a separate command with its own setup prompt, validation layer, YAML workflow, and dedicated sub-agent dispatch. [SOURCE: .opencode/command/spec_kit/handover.md:7-24] [SOURCE: .opencode/command/spec_kit/handover.md:34-48] [SOURCE: .opencode/command/spec_kit/handover.md:113-140] [SOURCE: .opencode/command/spec_kit/handover.md:168-217]
-- `@handover` separately reads spec files, extracts last/next actions, and writes `handover.md`, even though resume already reasons about the same continuation state. [SOURCE: .opencode/agent/handover.md:22-32] [SOURCE: .opencode/agent/handover.md:40-47] [SOURCE: .opencode/agent/handover.md:49-83]
+- `@context-prime` exists solely to bootstrap a session, return a Prime Package, and finish in under 15 seconds. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context-prime.md:57-66]
+- `/spec_kit:resume` already owns spec detection, continuation validation, memory-choice prompts, artifact checks, and progress calculation through a long YAML-driven setup phase. [SOURCE: .opencode/commands/spec_kit/resume.md:7-18] [SOURCE: .opencode/commands/spec_kit/resume.md:29-41] [SOURCE: .opencode/commands/spec_kit/resume.md:73-141] [SOURCE: .opencode/commands/spec_kit/resume.md:177-216]
+- `/spec_kit:handover` is a separate command with its own setup prompt, validation layer, YAML workflow, and dedicated sub-agent dispatch. [SOURCE: .opencode/commands/spec_kit/handover.md:7-24] [SOURCE: .opencode/commands/spec_kit/handover.md:34-48] [SOURCE: .opencode/commands/spec_kit/handover.md:113-140] [SOURCE: .opencode/commands/spec_kit/handover.md:168-217]
+- `@handover` separately reads spec files, extracts last/next actions, and writes `handover.md`, even though resume already reasons about the same continuation state. [SOURCE: .opencode/agents/handover.md:22-32] [SOURCE: .opencode/agents/handover.md:40-47] [SOURCE: .opencode/agents/handover.md:49-83]
 - Babysitter exposes continuity with a thin resume wrapper: the OpenCode `/babysitter:resume` command just invokes the babysit skill and, if needed, helps discover the best unfinished run to continue. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8]
 - The repo-level guidance treats resume as part of the normal harness lifecycle alongside call and observe, not as a separate documentation subsystem. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:48-62] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:157-180]
 
 ## Analysis
-Spec Kit currently turns continuity into three related but distinct products: bootstrap (`@context-prime`), resume (`/spec_kit:resume`), and session export (`/spec_kit:handover`). Each one makes sense in isolation, but together they create too many operator concepts for what is fundamentally one job: "tell me where I am, what matters, and how to continue safely." [SOURCE: .opencode/agent/context-prime.md:24-45] [SOURCE: .opencode/command/spec_kit/resume.md:31-41] [SOURCE: .opencode/command/spec_kit/handover.md:126-146]
+Spec Kit currently turns continuity into three related but distinct products: bootstrap (`@context-prime`), resume (`/spec_kit:resume`), and session export (`/spec_kit:handover`). Each one makes sense in isolation, but together they create too many operator concepts for what is fundamentally one job: "tell me where I am, what matters, and how to continue safely." [SOURCE: .opencode/agents/context-prime.md:24-45] [SOURCE: .opencode/commands/spec_kit/resume.md:31-41] [SOURCE: .opencode/commands/spec_kit/handover.md:126-146]
 
 Babysitter keeps the evidence trail and run lifecycle intact, but continuity stays mentally simple. You resume the run, inspect it if needed, and continue. The model does not require a separate user-facing "bootstrap specialist" plus a separate handover ceremony just to preserve state. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:48-62]
 
@@ -42,7 +42,7 @@ finding: `system-spec-kit` should merge bootstrap, resume, and handover into one
 
 ## Refactor / Pivot Analysis
 
-- **Current system-spec-kit approach:** Separate continuity commands and agents for bootstrap, resume, and handover. [SOURCE: .opencode/agent/context-prime.md:32-45] [SOURCE: .opencode/command/spec_kit/resume.md:37-60] [SOURCE: .opencode/command/spec_kit/handover.md:113-140]
+- **Current system-spec-kit approach:** Separate continuity commands and agents for bootstrap, resume, and handover. [SOURCE: .opencode/agents/context-prime.md:32-45] [SOURCE: .opencode/commands/spec_kit/resume.md:37-60] [SOURCE: .opencode/commands/spec_kit/handover.md:113-140]
 - **External repo's approach:** Resume is a thin wrapper over the main babysit lifecycle and run model. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/plugins/babysitter-opencode/commands/resume.md:2-8] [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/002-babysitter-main/external/CLAUDE.md:48-62]
 - **Why the external approach might be better:** It lowers mental overhead and reduces duplicated continuation logic.
 - **Why system-spec-kit's approach might still be correct:** Separate export and bootstrap surfaces can be helpful during migration while the continuity model is still evolving.
@@ -52,7 +52,7 @@ finding: `system-spec-kit` should merge bootstrap, resume, and handover into one
 - **Migration path:** route `/spec_kit:handover` and `@context-prime` behaviors through the continuity stack first, then deprecate the separate public entry points once parity is proven.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/spec_kit/resume.md`, `.opencode/command/spec_kit/handover.md`, `.opencode/agent/context-prime.md`, `.opencode/agent/handover.md`
+- **Target file or module:** `.opencode/commands/spec_kit/resume.md`, `.opencode/commands/spec_kit/handover.md`, `.opencode/agents/context-prime.md`, `.opencode/agents/handover.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** decide the canonical continuity command shape and output modes

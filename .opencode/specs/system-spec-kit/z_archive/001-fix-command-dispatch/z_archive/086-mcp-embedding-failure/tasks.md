@@ -37,7 +37,7 @@ contextType: "implementation"
 
 1. **Clear the corrupted model cache**:
    ```bash
-   rm -rf "/Users/rs/.data/code/barter/ai-speckit/coder/.opencode/skill/system-spec-kit/node_modules/@huggingface/transformers/.cache/nomic-ai/nomic-embed-text-v1.5"
+   rm -rf "/Users/rs/.data/code/barter/ai-speckit/coder/.opencode/skills/system-spec-kit/node_modules/@huggingface/transformers/.cache/nomic-ai/nomic-embed-text-v1.5"
    ```
 
 2. **Restart OpenCode / MCP server**
@@ -66,7 +66,7 @@ contextType: "implementation"
 
 **Objective**: Update troubleshooting.md with ONNX cache corruption guidance
 
-**File**: `.opencode/skill/system-spec-kit/references/debugging/troubleshooting.md`
+**File**: `.opencode/skills/system-spec-kit/references/debugging/troubleshooting.md`
 
 **Content to Add**:
 ```markdown
@@ -104,7 +104,7 @@ export VOYAGE_API_KEY="your-key"
 
 **Objective**: Add proper error code and recovery hints for ONNX failures
 
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/errors/recovery-hints.js`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.js`
 
 **Content to Add**:
 ```javascript
@@ -135,7 +135,7 @@ EMBEDDING_MODEL_CORRUPT: 'E005',
 
 **Objective**: Improve error message classification for Protobuf/ONNX errors
 
-**File**: `.opencode/skill/system-spec-kit/mcp_server/lib/errors/core.js`
+**File**: `.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.js`
 
 **Content to Add** (in `internal_patterns` array around line 97):
 ```javascript
@@ -152,7 +152,7 @@ EMBEDDING_MODEL_CORRUPT: 'E005',
 
 **Objective**: Add cache location reference to environment variables doc
 
-**File**: `.opencode/skill/system-spec-kit/references/config/environment_variables.md`
+**File**: `.opencode/skills/system-spec-kit/references/config/environment_variables.md`
 
 **Content to Add**:
 ```markdown

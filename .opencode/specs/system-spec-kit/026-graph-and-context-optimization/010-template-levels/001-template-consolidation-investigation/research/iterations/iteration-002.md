@@ -42,7 +42,7 @@ This means full deletion of `level_N` outputs would break header validation unle
 
 ## Staleness and Provenance Markers
 
-The actual staleness checker is `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh`.
+The actual staleness checker is `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh`.
 
 Its current expectations:
 

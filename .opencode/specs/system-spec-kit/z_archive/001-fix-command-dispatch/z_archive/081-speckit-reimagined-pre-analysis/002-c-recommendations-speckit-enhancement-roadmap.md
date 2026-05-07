@@ -592,4 +592,4 @@ Start with P0 quick wins to demonstrate value, then proceed through P1/P2 based 
 - dotmd: https://github.com/inventivepotter/dotmd
 - seu-claude: https://github.com/jardhel/seu-claude
 - drift: https://github.com/dadbodgeoff/drift
-- system-speckit: `.opencode/skill/system-spec-kit/`
+- system-speckit: `.opencode/skills/system-spec-kit/`

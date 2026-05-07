@@ -57,7 +57,7 @@ Added a structured graph metadata system to all 20 routable skill folders plus s
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skill/*/graph-metadata.json` (21 files) | New per-skill graph metadata |
+| `.opencode/skills/*/graph-metadata.json` (21 files) | New per-skill graph metadata |
 | `skill-advisor/scripts/skill_graph_compiler.py` | New compiler script |
 | `skill-advisor/scripts/skill-graph.json` | New compiled graph output |
 | `skill-advisor/scripts/skill_advisor.py` | Graph loading, 3 boost functions, 3 call-site insertions, health extension |

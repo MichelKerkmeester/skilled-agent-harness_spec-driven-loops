@@ -40,10 +40,10 @@ Comprehensive test suite covering 4 domains:
 ### Key Components
 | Component | Technology | Location |
 |-----------|------------|----------|
-| MCP Server | Node.js + SQLite | `.opencode/skill/system-spec-kit/mcp_server/` |
-| Validation | Bash scripts | `.opencode/skill/system-spec-kit/scripts/` |
+| MCP Server | Node.js + SQLite | `.opencode/skills/system-spec-kit/mcp_server/` |
+| Validation | Bash scripts | `.opencode/skills/system-spec-kit/scripts/` |
 | Skill Advisor | Python | `.opencode/scripts/skill_advisor.py` |
-| Memory DB | SQLite + sqlite-vec | `.opencode/skill/system-spec-kit/database/` |
+| Memory DB | SQLite + sqlite-vec | `.opencode/skills/system-spec-kit/database/` |
 
 <!-- ANCHOR:architecture -->
 ## Architecture

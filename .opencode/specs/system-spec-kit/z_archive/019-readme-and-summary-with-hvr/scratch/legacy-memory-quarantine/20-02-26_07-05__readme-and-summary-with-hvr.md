@@ -6,7 +6,7 @@ description: This session captures research work for readme and summary with hvr
   2026-02-20. Completed the HVR integration work by relocating hvr_rules.md from assets/documentation/
   to references/ (it is loaded into agent context, not used as an output template).
   Updated 19 path references ac... It references work on .opencode/.../references/hvr_rules.md,
-  .opencode/skill/sk-doc/SKILL.md, .opencode/.../documentation/install_guide_template.md
+  .opencode/skills/sk-doc/SKILL.md, .opencode/.../documentation/install_guide_template.md
   and preserves the current in_progress checkpoint.
 trigger_phrases:
 - hvr documentation update
@@ -151,7 +151,7 @@ Next: Continue implementation
 
 **Key Context to Review:**
 
-- Files modified: .opencode/.../references/hvr_rules.md, .opencode/skill/sk-doc/SKILL.md, .opencode/.../documentation/install_guide_template.md
+- Files modified: .opencode/.../references/hvr_rules.md, .opencode/skills/sk-doc/SKILL.md, .opencode/.../documentation/install_guide_template.md
 
 - Check: plan.md, tasks.md, checklist.md
 
@@ -209,7 +209,7 @@ Next: Continue implementation
 
 - `.opencode/.../references/hvr_rules.md` - Documentation
 
-- `.opencode/skill/sk-doc/SKILL.md` - Documentation
+- `.opencode/skills/sk-doc/SKILL.md` - Documentation
 
 - `.opencode/.../documentation/install_guide_template.md` - Template file
 
@@ -217,7 +217,7 @@ Next: Continue implementation
 
 - `.opencode/.../references/quick_reference.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/SKILL.md` - Documentation
+- `.opencode/skills/system-spec-kit/SKILL.md` - Documentation
 
 - `.opencode/.../core/impl-summary-core.md` - Documentation
 
@@ -258,11 +258,11 @@ Completed the HVR integration work by relocating hvr_rules.md from assets/docume
 | **File** | **Description** |
 |:---------|:----------------|
 | `.opencode/.../references/hvr_rules.md` | SKILL.md (3 lines) |
-| `.opencode/skill/sk-doc/SKILL.md` | HVR_REFERENCE comment + footer) |
+| `.opencode/skills/sk-doc/SKILL.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../documentation/install_guide_template.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../documentation/readme_template.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../references/quick_reference.md` | HVR_REFERENCE comment + footer) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | HVR_REFERENCE comment + footer) |
+| `.opencode/skills/system-spec-kit/SKILL.md` | HVR_REFERENCE comment + footer) |
 | `.opencode/.../core/impl-summary-core.md` | File modified (description pending) |
 | `.opencode/.../level_1/implementation-summary.md` | File modified (description pending) |
 | `.opencode/.../level_2/implementation-summary.md` | File modified (description pending) |
@@ -512,7 +512,7 @@ Completed the HVR integration work by relocating hvr_rules.md from assets/docume
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/z_archive/019-readme-and-summary-with-hvr", limit: 10 })
@@ -524,7 +524,7 @@ ls -la system-spec-kit/z_archive/019-readme-and-summary-with-hvr/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/019-readme-and-summary-with-hvr --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/019-readme-and-summary-with-hvr --force
 ```
 
 ### Recovery Priority
@@ -717,11 +717,11 @@ trigger_phrases:
 
 key_files:
   - ".opencode/.../references/hvr_rules.md"
-  - ".opencode/skill/sk-doc/SKILL.md"
+  - ".opencode/skills/sk-doc/SKILL.md"
   - ".opencode/.../documentation/install_guide_template.md"
   - ".opencode/.../documentation/readme_template.md"
   - ".opencode/.../references/quick_reference.md"
-  - ".opencode/skill/system-spec-kit/SKILL.md"
+  - ".opencode/skills/system-spec-kit/SKILL.md"
   - ".opencode/.../core/impl-summary-core.md"
   - ".opencode/.../level_1/implementation-summary.md"
   - ".opencode/.../level_2/implementation-summary.md"

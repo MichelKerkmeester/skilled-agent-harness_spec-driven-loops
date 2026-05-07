@@ -1,7 +1,7 @@
 {
   "session_id": "imp-orchestrate-20260502T175140Z",
   "started_at": "2026-05-02T17:51:40Z",
-  "target_path": ".opencode/agent/orchestrate.md",
+  "target_path": ".opencode/agents/orchestrate.md",
   "agent_name": "orchestrate",
   "spec_folder": "specs/skilled-agent-orchestration/061-agent-optimization/005-agent-orchestrate",
   "executor": "cli-copilot",

@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Extend harness types and add opt-in JSONL export"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/harness-telemetry-export.vitest.ts"
     completion_pct: 20
     open_questions: []
     answered_questions:

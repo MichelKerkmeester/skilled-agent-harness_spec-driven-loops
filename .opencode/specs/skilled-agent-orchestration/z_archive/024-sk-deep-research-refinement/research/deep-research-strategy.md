@@ -72,7 +72,7 @@ Research at natural convergence point. All 8 RQs at 90%+ (average 95.6%). 15 v3 
 #### Cross-Runtime Agent Alignment (Agent 1B — scratch/wave1-cross-runtime-audit.md)
 - Core 7-step workflow, tool budget (8-11/12), error tiers are IDENTICAL across Claude/Codex/OpenCode/ChatGPT runtimes
 - 10 divergences found: 7 unintentional (model spec, temperature, MCP servers, permissions, budget wording, stale agent ref, reasoning effort), 3 intentional (file format, path conventions, sandbox config)
-- Recommended canonical source: `.opencode/agent/deep-research.md` (most complete permission model)
+- Recommended canonical source: `.opencode/agents/deep-research.md` (most complete permission model)
 - RQ5 is ~80% answered by this audit
 
 #### Prior Research Baseline (Agent 1C — scratch/wave1-prior-context.md)
@@ -94,16 +94,16 @@ Research at natural convergence point. All 8 RQs at 90%+ (average 95.6%). 15 v3 
 - autoresearch-opencode: https://github.com/dabiggm0e/autoresearch-opencode
 
 ### Local Files to Analyze
-- `.opencode/skill/sk-deep-research/SKILL.md` — Core skill protocol
-- `.opencode/skill/sk-deep-research/references/convergence.md` — Convergence algorithm
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md` — Loop lifecycle
-- `.opencode/skill/sk-deep-research/references/state_format.md` — State schema
-- `.opencode/command/spec_kit/deep-research.md` — Command setup
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` — Auto YAML
+- `.opencode/skills/sk-deep-research/SKILL.md` — Core skill protocol
+- `.opencode/skills/sk-deep-research/references/convergence.md` — Convergence algorithm
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md` — Loop lifecycle
+- `.opencode/skills/sk-deep-research/references/state_format.md` — State schema
+- `.opencode/commands/spec_kit/deep-research.md` — Command setup
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` — Auto YAML
 - `.claude/agents/deep-research.md` — Claude agent definition
 - `.codex/agents/deep-research.toml` — Codex agent definition
-- `.opencode/agent/deep-research.md` — OpenCode agent definition (canonical)
-- `.opencode/agent/chatgpt/deep-research.md` — ChatGPT agent definition
+- `.opencode/agents/deep-research.md` — OpenCode agent definition (canonical)
+- `.opencode/agents/chatgpt/deep-research.md` — ChatGPT agent definition
 
 ## Research Boundaries
 - Max iterations: 15

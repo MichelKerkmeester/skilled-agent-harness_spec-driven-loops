@@ -63,7 +63,7 @@ Improvement focus: **Multi-agent coordination; sub-agent dispatch authority; qua
 ## 3. SCOPE
 
 ### In Scope
-- Canonical agent body: `.opencode/agent/orchestrate.md`
+- Canonical agent body: `.opencode/agents/orchestrate.md`
 - Runtime mirrors: `.claude/agents/orchestrate.md`, `.gemini/agents/orchestrate.md`, `.codex/agents/orchestrate.toml`
 - Frontmatter / behavioral rules / output verification / anti-patterns refinements
 - Score-weighting dimensions: dispatch decision quality, synthesis discipline
@@ -78,7 +78,7 @@ Improvement focus: **Multi-agent coordination; sub-agent dispatch authority; qua
 ### Files to Change
 | File Path | Change Type | Description |
 |---|---|---|
-| `.opencode/agent/orchestrate.md` | Update | Promoted candidate body |
+| `.opencode/agents/orchestrate.md` | Update | Promoted candidate body |
 | `.claude/agents/orchestrate.md` | Update | Mirror sync |
 | `.gemini/agents/orchestrate.md` | Update | Mirror sync |
 | `.codex/agents/orchestrate.toml` | Update | Mirror sync (TOML) |

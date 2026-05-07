@@ -98,7 +98,7 @@ Replace the single blended confidence with dual fields (`CHOICE_CONFIDENCE` and 
 | `scripts/types/session-types.ts` | Modify | Add `CHOICE_CONFIDENCE` and `RATIONALE_CONFIDENCE` to `DecisionRecord`; keep legacy `CONFIDENCE` as derived |
 | `scripts/extractors/decision-extractor.ts` | Modify | Compute dual confidence values from alternatives presence, rationale depth, and evidence quality |
 | `scripts/lib/decision-tree-generator.ts` | Modify | Consume dual confidence for richer node labeling and branch weight visualization |
-| `.opencode/skill/system-spec-kit/templates/context_template.md` | Modify | Display dual confidence values in decision-related template sections |
+| `.opencode/skills/system-spec-kit/templates/context_template.md` | Modify | Display dual confidence values in decision-related template sections |
 | `scripts/core/workflow.ts` | Modify | Update percent conversion logic to handle dual confidence model |
 | `scripts/lib/ascii-boxes.ts` | Modify | Render split confidence in decision box labels when values diverge |
 | `scripts/lib/simulation-factory.ts` | Modify | Add `CHOICE_CONFIDENCE` and `RATIONALE_CONFIDENCE` fields to simulation fixture data |

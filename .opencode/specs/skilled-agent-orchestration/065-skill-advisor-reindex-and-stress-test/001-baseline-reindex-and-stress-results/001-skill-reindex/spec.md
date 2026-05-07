@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "run_doctor_skill_advisor_auto"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/"
-      - ".opencode/command/doctor/skill-advisor.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/"
+      - ".opencode/commands/doctor/skill-advisor.md"
     completion_pct: 0
     open_questions: []
     answered_questions: []

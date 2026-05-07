@@ -13,7 +13,7 @@ For each of the 10 features in this category, determine whether the feature cata
 ## Files to Read
 
 ### Feature Catalog Entries (read ALL 10 files)
-Directory: `.opencode/skill/system-spec-kit/feature_catalog/02--mutation/`
+Directory: `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/`
 - `01-memory-indexing-memorysave.md`
 - `02-memory-metadata-update-memoryupdate.md`
 - `03-single-and-folder-delete-memorydelete.md`
@@ -26,7 +26,7 @@ Directory: `.opencode/skill/system-spec-kit/feature_catalog/02--mutation/`
 - `10-per-memory-history-log.md`
 
 ### MCP Server Source Code
-Root: `.opencode/skill/system-spec-kit/mcp_server/`
+Root: `.opencode/skills/system-spec-kit/mcp_server/`
 Key directories:
 - `handlers/save/` — save handler chain
 - `handlers/` — update, delete, bulk-delete, validate handlers

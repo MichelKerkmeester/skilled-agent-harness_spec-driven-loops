@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-End-to-end run of `/improve:agent .opencode/agent/context.md :auto` against @context with cli-copilot as the candidate generator. All substrate steps executed cleanly:
+End-to-end run of `/improve:agent .opencode/agents/context.md :auto` against @context with cli-copilot as the candidate generator. All substrate steps executed cleanly:
 
 - **Integration scan**: 55 surfaces detected, 0 missing, mirror sync `all-aligned`, 4 commands + 19 skills reference @context
 - **Dynamic profile**: 5-dim profile generated (`derivedChecks.structural[]` per @context's actual rules)
@@ -74,10 +74,10 @@ cli-copilot's candidate emitted all 6 CRITIC PASS labels verbatim with substanti
 
 1. **Init**: copied skill assets (charter, strategy, config, manifest) to runtime; renamed to YAML-expected paths
 2. **Scan**: `scan-integration.cjs --agent=context` → integration-report.json (55 surfaces)
-3. **Profile**: `generate-profile.cjs --agent=.opencode/agent/context.md` → dynamic-profile.json
+3. **Profile**: `generate-profile.cjs --agent=.opencode/agents/context.md` → dynamic-profile.json
 4. **Session start**: `improvement-journal.cjs --emit session_start`
 5. **Candidate gen**: `copilot -p "<charter+inputs+5-input contract>" --model gpt-5.5 --allow-all-tools --no-ask-user` → wrote candidate + emitted JSON with critic_pass
-6. **Score**: `score-candidate.cjs --candidate=<path> --target=.opencode/agent/context.md` → score.json
+6. **Score**: `score-candidate.cjs --candidate=<path> --target=.opencode/agents/context.md` → score.json
 7. **Bench**: materialize-benchmark-fixtures.cjs + run-benchmark.cjs → 3/3 PASS
 8. **Reduce**: `reduce-state.cjs <runtime>` → dashboard + experiment-registry refreshed
 9. **Stop-check**: improvementGate fails → `legal_stop_evaluated`, `blocked_stop`, `session_end` emitted
@@ -107,7 +107,7 @@ cli-copilot's candidate emitted all 6 CRITIC PASS labels verbatim with substanti
 
 ### Mirror Sync State
 
-`integration-report.json:summary.mirrorSyncStatus = "all-aligned"` — `.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` all present, all aligned. No mirror sync action taken (no canonical mutation).
+`integration-report.json:summary.mirrorSyncStatus = "all-aligned"` — `.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/` all present, all aligned. No mirror sync action taken (no canonical mutation).
 
 ### Smoke-Test
 
@@ -150,7 +150,7 @@ Not applicable — no canonical change to verify against.
 
 | File | Change |
 |---|---|
-| `.opencode/agent/context.md` | UNCHANGED (baseline kept) |
+| `.opencode/agents/context.md` | UNCHANGED (baseline kept) |
 | `.claude/agents/context.md` | UNCHANGED |
 | `.gemini/agents/context.md` | UNCHANGED |
 | `.codex/agents/context.toml` | UNCHANGED |
@@ -178,14 +178,14 @@ After review of the candidate's qualitative changes, operator approved promotion
 
 | Runtime | Path | Promoted |
 |---|---|---|
-| OpenCode | `.opencode/agent/context.md` | ✓ 506 lines |
+| OpenCode | `.opencode/agents/context.md` | ✓ 506 lines |
 | Claude | `.claude/agents/context.md` | ✓ 506 lines |
 | Gemini | `.gemini/agents/context.md` | ✓ 506 lines |
 | Codex | `.codex/agents/context.toml` | ✓ 492 lines (TOML wrapper) |
 
 ### Rollback path
 
-Pre-promote snapshots saved at `improvement/pre-promote-backup/` (4 files). Rollback: `cp pre-promote-backup/.opencode-agent-context.md .opencode/agent/context.md` (and analog for the other 3).
+Pre-promote snapshots saved at `improvement/pre-promote-backup/` (4 files). Rollback: `cp pre-promote-backup/.opencode-agent-context.md .opencode/agents/context.md` (and analog for the other 3).
 
 ### Outcome update
 

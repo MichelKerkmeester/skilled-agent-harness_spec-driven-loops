@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm sk-doc/assets/documentation exists (`.opencode/skill/sk-doc/assets/documentation/`)
+- [x] T001 Confirm sk-doc/assets/documentation exists (`.opencode/skills/sk-doc/assets/documentation/`)
 - [x] T002 Inventory all references to the old template path
 - [x] T003 Confirm Level 1 templates apply
 <!-- /ANCHOR:phase-1 -->
@@ -79,13 +79,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Write the new template at [.opencode/skill/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md)
+- [x] T004 Write the new template at [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md)
 - [x] T005 Delete the original at the former create-command asset path
-- [x] T006 [P] Update [.opencode/command/create/assets/create_changelog_auto.yaml](../../../command/create/assets/create_changelog_auto.yaml) (5 occurrences)
-- [x] T007 [P] Update [.opencode/command/create/assets/create_changelog_confirm.yaml](../../../command/create/assets/create_changelog_confirm.yaml) (5 occurrences)
-- [x] T008 [P] Update [.opencode/command/create/changelog.md](../../../command/create/changelog.md) (Section 3 reference)
-- [x] T009 [P] Update [.opencode/skill/system-spec-kit/references/workflows/nested_changelog.md](../../../skill/system-spec-kit/references/workflows/nested_changelog.md) (global-template pointer)
-- [x] T010 Wire CHANGELOG intent into [.opencode/skill/sk-doc/SKILL.md](../../../skill/sk-doc/SKILL.md) (use-case mention + Smart Router intent + resource map + references list)
+- [x] T006 [P] Update [.opencode/commands/create/assets/create_changelog_auto.yaml](../../../command/create/assets/create_changelog_auto.yaml) (5 occurrences)
+- [x] T007 [P] Update [.opencode/commands/create/assets/create_changelog_confirm.yaml](../../../command/create/assets/create_changelog_confirm.yaml) (5 occurrences)
+- [x] T008 [P] Update [.opencode/commands/create/changelog.md](../../../command/create/changelog.md) (Section 3 reference)
+- [x] T009 [P] Update [.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md](../../../skill/system-spec-kit/references/workflows/nested_changelog.md) (global-template pointer)
+- [x] T010 Wire CHANGELOG intent into [.opencode/skills/sk-doc/SKILL.md](../../../skill/sk-doc/SKILL.md) (use-case mention + Smart Router intent + resource map + references list)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -93,7 +93,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 grep verification: zero hits for `command/create/assets/changelog_template` under `.opencode/command/` and `.opencode/skill/`
+- [x] T011 grep verification: zero hits for `command/create/assets/changelog_template` under `.opencode/commands/` and `.opencode/skills/`
 - [x] T012 Read-back the moved template to confirm parity with the source (size and shasum match)
 - [x] T013 Author [implementation-summary.md](./implementation-summary.md) with Files Changed table and verification results
 <!-- /ANCHOR:phase-3 -->

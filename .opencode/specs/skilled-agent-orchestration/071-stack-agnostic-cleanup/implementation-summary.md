@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Review final diff and commit Phase 071 if desired"
     blockers: []
     key_files:
-      - ".opencode/skill/"
+      - ".opencode/skills/"
       - "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/"
     session_dedup:
       fingerprint: "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
@@ -31,7 +31,7 @@ _memory:
 # Implementation Summary: Phase 071 Stack-Agnostic Cleanup
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -70,15 +70,15 @@ Code Mode examples now use `myservice.myservice_*` patterns and generic external
 | File Area | Action | Purpose |
 |------|--------|---------|
 | `specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/` | Created/Modified | Phase packet, ADR, inventory, tasks, checklist, summary |
-| `.opencode/skill/cli-*` | Modified | Generic `sk-code` surface-evidence dispatch wording |
-| `.opencode/skill/mcp-chrome-devtools/` | Modified | Generic Code Mode external-service examples |
-| `.opencode/skill/mcp-coco-index/` | Modified | Generic library path-priority example |
-| `.opencode/skill/mcp-code-mode/` | Modified/Renamed | Replaced external CMS examples with `myservice` placeholders and renamed the matching manual scenario file |
-| `.opencode/skill/sk-doc/` | Modified | Generic MCP and frontend documentation examples |
-| `.opencode/skill/sk-git/` | Modified | Generic surface-aware commit standards wording |
-| `.opencode/skill/sk-code-review/` | Modified | `<surface>` placeholders and surface-aware review metadata |
-| `.opencode/skill/system-spec-kit/` | Modified | Generic memory examples, structure path example, and advisor graph signals |
-| `.opencode/skill/README.md` | Modified | Root skill index uses generic surface wording |
+| `.opencode/skills/cli-*` | Modified | Generic `sk-code` surface-evidence dispatch wording |
+| `.opencode/skills/mcp-chrome-devtools/` | Modified | Generic Code Mode external-service examples |
+| `.opencode/skills/mcp-coco-index/` | Modified | Generic library path-priority example |
+| `.opencode/skills/mcp-code-mode/` | Modified/Renamed | Replaced external CMS examples with `myservice` placeholders and renamed the matching manual scenario file |
+| `.opencode/skills/sk-doc/` | Modified | Generic MCP and frontend documentation examples |
+| `.opencode/skills/sk-git/` | Modified | Generic surface-aware commit standards wording |
+| `.opencode/skills/sk-code-review/` | Modified | `<surface>` placeholders and surface-aware review metadata |
+| `.opencode/skills/system-spec-kit/` | Modified | Generic memory examples, structure path example, and advisor graph signals |
+| `.opencode/skills/README.md` | Modified | Root skill index uses generic surface wording |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -126,5 +126,5 @@ The cleanup started with the requested grep and saved the initial inventory in `
 ## Known Limitations
 
 1. **Raw grep is not zero without dependency exclusions.** Five remaining matches are vendored dependency vocabulary/type-map data under skill-local `.venv/` and `node_modules/`, not authored skill guidance.
-2. **A pre-existing `sk-code` diff is present in the workspace.** Phase 071 did not edit `.opencode/skill/sk-code/`, but `git diff --name-only -- .opencode/skill/sk-code` reports an already-dirty manual playbook file.
+2. **A pre-existing `sk-code` diff is present in the workspace.** Phase 071 did not edit `.opencode/skills/sk-code/`, but `git diff --name-only -- .opencode/skills/sk-code` reports an already-dirty manual playbook file.
 <!-- /ANCHOR:limitations -->

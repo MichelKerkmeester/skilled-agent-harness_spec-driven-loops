@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Import memory-parser from the actual location
-const memoryParser = require('../../../../.opencode/skill/system-spec-kit/mcp_server/lib/memory-parser.js');
+const memoryParser = require('../../../../.opencode/skills/system-spec-kit/mcp_server/lib/memory-parser.js');
 
 // Simple token estimation: chars / 4 (industry standard approximation)
 function estimateTokens(text) {

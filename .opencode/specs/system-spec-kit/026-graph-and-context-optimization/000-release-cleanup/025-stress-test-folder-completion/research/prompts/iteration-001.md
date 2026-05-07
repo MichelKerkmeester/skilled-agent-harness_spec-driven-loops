@@ -18,10 +18,10 @@ Complete the stress-test folder migration with a **content-based** discovery app
 
 ### Read these first
 
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md` (current minimal state)
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/` (entire dir — this is THE main stress harness; ~10+ files)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/README.md` (boundary doc)
-- `.opencode/skill/system-spec-kit/mcp_server/vitest.config.ts` + `package.json` (current test discovery + scripts)
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` (current minimal state)
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/` (entire dir — this is THE main stress harness; ~10+ files)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/README.md` (boundary doc)
+- `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts` + `package.json` (current test discovery + scripts)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/005-stress-test-folder-migration/migration-plan.md` (what the prior pass did/missed)
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/spec.md` (stress-cycle history; references the harness pattern)
 
@@ -31,19 +31,19 @@ Run this discovery sequence — DO NOT filter on filename alone:
 
 ```bash
 # Discover the harness directory (move whole dir)
-ls .opencode/skill/system-spec-kit/mcp_server/stress_test/search-quality/
+ls .opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/
 
 # Discover files importing harness (these are stress-test consumers)
-grep -rln "from.*['\"].*search-quality" .opencode/skill/system-spec-kit/mcp_server/tests/ \
+grep -rln "from.*['\"].*search-quality" .opencode/skills/system-spec-kit/mcp_server/tests/ \
   --include='*.ts' --include='*.vitest.ts'
 
 # Discover files using stress patterns (concurrency, throughput, load)
 grep -rln "concurrency\|throughput\|spike\|stress\|load test\|matrix cell\|stage1\|stage2.*\.ts" \
-  .opencode/skill/system-spec-kit/mcp_server/tests/ --include='*.vitest.ts'
+  .opencode/skills/system-spec-kit/mcp_server/tests/ --include='*.vitest.ts'
 
 # Discover files matching W3-W13 stress cells (search feature stress)
 grep -rln "^const W[0-9]\|stress.*cell\|baseline.*matrix\|telemetry.*export.*mode" \
-  .opencode/skill/system-spec-kit/mcp_server/tests/ --include='*.vitest.ts'
+  .opencode/skills/system-spec-kit/mcp_server/tests/ --include='*.vitest.ts'
 
 # Discover by recent stress-cycle commits
 git --no-pager log --oneline --since='2026-04-01' \
@@ -62,7 +62,7 @@ Write `migration-plan.md` at packet root listing every file with its classificat
 
 ### Phase 2: Reorganize stress_test/ by subsystem
 
-Create this structure under `.opencode/skill/system-spec-kit/mcp_server/stress_test/`:
+Create this structure under `.opencode/skills/system-spec-kit/mcp_server/stress_test/`:
 
 ```
 stress_test/
@@ -89,7 +89,7 @@ Use `git mv` for every move (preserves blame).
 
 For each moved file, walk through its imports — paths likely need updating since the file moved deeper. Also: any file IN tests/ or elsewhere that imports FROM a moved file needs its import path updated.
 
-Use `grep -rln "from.*<old-relative-path>" .opencode/skill/system-spec-kit/mcp_server/` for each moved file.
+Use `grep -rln "from.*<old-relative-path>" .opencode/skills/system-spec-kit/mcp_server/` for each moved file.
 
 ### Phase 4: Update vitest config
 
@@ -111,9 +111,9 @@ Confirm scripts:
 ### Phase 6: Update doc references
 
 Find every reference to old paths (e.g., `stress_test/search-quality/...`, `stress_test/code-graph/code-graph-degraded-sweep`, etc.) across:
-- `.opencode/skill/system-spec-kit/mcp_server/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/stress_test/README.md` (refresh)
-- `.opencode/skill/system-spec-kit/mcp_server/tests/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/README.md` (refresh)
+- `.opencode/skills/system-spec-kit/mcp_server/tests/README.md`
 - All packet docs in `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/**` (the stress-cycle packets that cite harness paths)
 - `specs/system-spec-kit/026-graph-and-context-optimization/030-v1-0-4-full-matrix-stress-test-design/**`
 - `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/**`
@@ -125,7 +125,7 @@ to surface any remaining stale references.
 ### Phase 7: Verification
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skills/system-spec-kit/mcp_server
 npm run build  # MUST pass
 npm test       # MUST pass (no broken imports from moves)
 npm run stress 2>&1 | head -100  # The full stress suite is now reachable

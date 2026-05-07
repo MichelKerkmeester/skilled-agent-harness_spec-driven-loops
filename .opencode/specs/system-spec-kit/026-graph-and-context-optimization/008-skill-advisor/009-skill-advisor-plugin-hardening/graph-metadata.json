@@ -46,7 +46,7 @@
       ".opencode/plugins/spec-kit-skill-advisor.js",
       "checklist.md",
       ".opencode/plugins/spec-kit-compact-code-graph.js",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
       "tests/spec-kit-skill-advisor-plugin.vitest.ts",
       "implementation-summary.md",
       "spec.md",
@@ -75,7 +75,7 @@
       {
         "name": "spec-kit-skill-advisor-plugin.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts",
         "source": "derived"
       },
       {

@@ -92,22 +92,22 @@ The two seams still worth carrying into the final synthesis are:
 The prior telemetry-vs-ranking seam is now mostly Q-OPP's local conclusion rather than a broader architectural packet: pass provenance first, prove ranking need later.
 
 ## Sources read this iteration (delta from prior)
-- `.opencode/skill/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/deep-research-strategy.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/011-post-stress-followup-research/research/iterations/iteration-005.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/query.py`
-- `.opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/server.py`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py`
+- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
 
 ## Suggested focus for iteration 7
 Close Q-P2 with a test-ready design for `getGraphReadinessSnapshot` and status assertions. Then do one final P0/P1 contradiction check against actual test files before marking them answered in strategy.

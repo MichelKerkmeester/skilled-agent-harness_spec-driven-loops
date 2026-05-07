@@ -87,8 +87,8 @@ Split the unified memory command into two focused commands with clear single res
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/memory/search.md` | Modify | Remove management operations, simplify to read-only |
-| `.opencode/command/memory/database.md` | Create | New database management command |
+| `.opencode/commands/memory/search.md` | Modify | Remove management operations, simplify to read-only |
+| `.opencode/commands/memory/database.md` | Create | New database management command |
 
 <!-- /ANCHOR:scope -->
 ---

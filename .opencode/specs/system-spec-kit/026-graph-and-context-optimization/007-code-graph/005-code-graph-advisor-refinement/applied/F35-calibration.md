@@ -3,14 +3,14 @@
 ## Source
 
 - Finding: `F35` from research iter-7.
-- Corpus: `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`
+- Corpus: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/routing-accuracy/labeled-prompts.jsonl`
 - Corpus SHA-256: `4b50b4ad7666d341fa43111ec05986430c855e4d0f5b8578a469f9a78e417e4d`
 - Rows: `200`
 
 ## Files Created
 
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/scorer-calibration.bench.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/bench/scorer-calibration-baseline.json`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/scorer-calibration.bench.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/bench/scorer-calibration-baseline.json`
 
 ## Brier Score
 
@@ -36,8 +36,8 @@ Top buckets by count:
 
 ## Verification
 
-- `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --noEmit` exited `0`.
-- `cd .opencode/skill/system-spec-kit/mcp_server && SPECKIT_RUN_BENCHES=true npx vitest run skill-advisor/bench/scorer-calibration.bench.ts` exited `0`.
+- `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit` exited `0`.
+- `cd .opencode/skills/system-spec-kit/mcp_server && SPECKIT_RUN_BENCHES=true npx vitest run skill-advisor/bench/scorer-calibration.bench.ts` exited `0`.
 
 ## Deferred
 

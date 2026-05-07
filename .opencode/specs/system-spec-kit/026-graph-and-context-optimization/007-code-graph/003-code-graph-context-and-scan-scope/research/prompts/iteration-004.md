@@ -47,7 +47,7 @@ The bugs were INTRODUCED by packet 012 (.gitignore-aware walk + new excludes). T
 2. Or should it amend packet 012 with a Phase 2 sub-folder (`012-.../002-incremental-flag-fix`)?
 3. List the canonical-spec-doc skeleton: spec.md sections, plan.md task breakdown, tasks.md gate, checklist.md P0/P1 items, decision-record.md ADR sketch.
 
-Cite: spec folder conventions in `.opencode/skill/system-spec-kit/SKILL.md` and `templates/level_2/` or `level_3/`.
+Cite: spec folder conventions in `.opencode/skills/system-spec-kit/SKILL.md` and `templates/level_2/` or `level_3/`.
 
 ### G2 (P0): Sequenced implementation tasks (the plan)
 

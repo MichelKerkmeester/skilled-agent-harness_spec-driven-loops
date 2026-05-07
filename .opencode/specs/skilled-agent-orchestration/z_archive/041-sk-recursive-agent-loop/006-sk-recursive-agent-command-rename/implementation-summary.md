@@ -20,7 +20,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -41,7 +41,7 @@ _memory:
 
 Phase `006` closed the final naming gap in the agent-improver program by renaming the command entrypoint itself.
 
-- the canonical command markdown is now `.opencode/command/spec_kit/agent-improver.md`
+- the canonical command markdown is now `.opencode/commands/spec_kit/agent-improver.md`
 - the workflow assets are now `improve_agent-improver_auto.yaml` and `improve_agent-improver_confirm.yaml`
 - the runtime wrappers are now `.agents/commands/spec_kit/agent-improver.toml` and `.gemini/commands/spec_kit/agent-improver.toml`
 - runtime agent tables, skill docs, README examples, and active packet docs now point at `/improve:agent-improver`
@@ -75,7 +75,7 @@ The work was delivered in three passes: rename the canonical command files, rena
 
 | Check | Scope | Result |
 |-------|-------|--------|
-| `validate_document.py --type command` | `.opencode/command/spec_kit/agent-improver.md` | PASS |
+| `validate_document.py --type command` | `.opencode/commands/spec_kit/agent-improver.md` | PASS |
 | `python3.11` TOML parse | `.agents/commands/spec_kit/agent-improver.toml` | PASS |
 | `python3.11` TOML parse | `.gemini/commands/spec_kit/agent-improver.toml` | PASS |
 | `python3.11` JSON parse | `.opencode/specs/descriptions.json` | PASS |

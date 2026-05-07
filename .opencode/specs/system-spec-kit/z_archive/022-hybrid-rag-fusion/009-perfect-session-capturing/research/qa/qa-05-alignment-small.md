@@ -1,12 +1,12 @@
 ● Todo added: Read target TypeScript files
 
-● Read .opencode/skill/system-spec-kit/scripts/core/file-writer.ts
+● Read .opencode/skills/system-spec-kit/scripts/core/file-writer.ts
   └ 93 lines read
 
-● Read .opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts
+● Read .opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts
   └ 90 lines read
 
-● Glob ".opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py" in
+● Glob ".opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py" in
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
   └ 1 file found
 
@@ -14,7 +14,7 @@
 
 ● Run alignment drift verifier
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
-  .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py
+  .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
   └ 12 lines...
 
 ● Todo completed: read-files
@@ -50,13 +50,13 @@
 
 ● Check verifier help
   $ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && python3
-  .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --help | head -n 80
+  .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --help | head -n 80
   └ 10 lines...
 
 ● Todo completed: run-verifier, report-findings
 
 ### FINDING-01: Non-compliant MODULE header format in file-writer.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:1-3`
+- **File:** `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:1-3`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header uses `// MODULE: File Writer` (with colon and spaced words).
@@ -66,7 +66,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-02: Missing numbered ALL-CAPS section headers in file-writer.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:1-94`
+- **File:** `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:1-94`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** File has no numbered section markers.
@@ -76,7 +76,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-03: Catch blocks do not consistently follow `catch (error: unknown)` guard pattern in file-writer.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/core/file-writer.ts:38-39,72,83,86`
+- **File:** `.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:38-39,72,83,86`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** Several catches are bare `catch { ... }` without typed error variable and guard.
@@ -86,7 +86,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-04: Non-compliant MODULE header format in contamination-filter.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:1-3`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:1-3`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header uses `// MODULE: Contamination Filter`.
@@ -96,7 +96,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-05: Missing numbered ALL-CAPS section headers in contamination-filter.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:1-91`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:1-91`
 - **Severity:** HIGH
 - **Category:** ALIGNMENT
 - **Current Behavior:** No numbered section headers are present.
@@ -106,7 +106,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-06: Missing TSDoc on public exports in contamination-filter.ts
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:45-49,58-61,84-90`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:45-49,58-61,84-90`
 - **Severity:** MEDIUM
 - **Category:** QUALITY
 - **Current Behavior:** `filterContamination` and exported `FilterResult` type are public but undocumented with TSDoc.
@@ -116,7 +116,7 @@
 - **Effort:** SMALL (<30 min)
 
 ### FINDING-07: Immutable denylist is not typed as readonly
-- **File:** `.opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts:6,60`
+- **File:** `.opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts:6,60`
 - **Severity:** LOW
 - **Category:** DESIGN
 - **Current Behavior:** `DEFAULT_DENYLIST` and `denylist` parameter use mutable `RegExp[]`.
@@ -126,7 +126,7 @@
 - **Effort:** TRIVIAL (<5 min)
 
 ### FINDING-08: Alignment verifier fails globally (not specific to these two files)
-- **File:** `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` run output (summary lines 1-8)
+- **File:** `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` run output (summary lines 1-8)
 - **Severity:** LOW
 - **Category:** ALIGNMENT
 - **Current Behavior:** Verifier returned `FAIL` with 341 findings across scanned roots.

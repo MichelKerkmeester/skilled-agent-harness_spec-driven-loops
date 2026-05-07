@@ -78,7 +78,7 @@ Optional:
 Create TypeScript sources under:
 
 ```text
-.opencode/skill/system-spec-kit/scripts/hooks/claude/
+.opencode/skills/system-spec-kit/scripts/hooks/claude/
   session-prime.ts
   compact-inject.ts
   session-stop.ts
@@ -90,7 +90,7 @@ Create TypeScript sources under:
 Compiled outputs:
 
 ```text
-.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/
+.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/
   session-prime.js
   compact-inject.js
   session-stop.js
@@ -104,7 +104,7 @@ Compiled outputs:
 Add a hook-safe public API surface:
 
 ```text
-.opencode/skill/system-spec-kit/mcp_server/api/hooks.ts
+.opencode/skills/system-spec-kit/mcp_server/api/hooks.ts
 ```
 
 This should expose the fast, reusable logic that both scripts and any future MCP tool or HTTP adapter can call.
@@ -467,7 +467,7 @@ Recommended defaults:
 9. Spawn:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   --session-id <claude-session-id> \
   /tmp/speckit-save-<session>.json \
   <spec-folder>
@@ -756,7 +756,7 @@ Recommended addition:
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/session-prime.js",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/session-prime.js",
             "timeout": 5,
             "statusMessage": "Loading Spec Kit context"
           }
@@ -769,7 +769,7 @@ Recommended addition:
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/compact-inject.js",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/compact-inject.js",
             "timeout": 2,
             "statusMessage": "Preparing compact context"
           }
@@ -781,7 +781,7 @@ Recommended addition:
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/session-stop.js",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/session-stop.js",
             "timeout": 20,
             "async": true,
             "statusMessage": "Saving Spec Kit context"
@@ -802,7 +802,7 @@ Optional cleanup:
       "hooks": [
         {
           "type": "command",
-          "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skill/system-spec-kit/scripts/dist/hooks/claude/session-stop.js --finalize",
+          "command": "node \"$CLAUDE_PROJECT_DIR\"/.opencode/skills/system-spec-kit/scripts/dist/hooks/claude/session-stop.js --finalize",
           "timeout": 2,
           "async": true
         }
@@ -852,11 +852,11 @@ and it avoids:
 ## Sources
 
 - [SOURCE: https://code.claude.com/docs/en/hooks] - current Claude Code hook behavior and event contracts
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/context-server.ts] - current runtime wiring for `memory_context`, auto-surface, and compaction-aware dispatch
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts] - current `autoSurfaceAtCompaction()` contract and limits
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts] - current `resume` strategy and anchors
-- [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/response/profile-formatters.ts] - existing `profile: "resume"` output shape
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts] - structured save path and `--session-id` support
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts] - session data/provenance shape
-- [SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts] - capture normalization and transcript provenance fields
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/context-server.ts] - current runtime wiring for `memory_context`, auto-surface, and compaction-aware dispatch
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts] - current `autoSurfaceAtCompaction()` contract and limits
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts] - current `resume` strategy and anchors
+- [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts] - existing `profile: "resume"` output shape
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts] - structured save path and `--session-id` support
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts] - session data/provenance shape
+- [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts] - capture normalization and transcript provenance fields
 - [SOURCE: .claude/settings.local.json] - current local Claude settings have no hook config yet

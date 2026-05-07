@@ -2,7 +2,7 @@
 
 **Auditor:** Claude Opus 4.6 (agent)
 **Date:** 2026-03-08
-**Base path:** `.opencode/skill/system-spec-kit/mcp_server/`
+**Base path:** `.opencode/skills/system-spec-kit/mcp_server/`
 
 ---
 

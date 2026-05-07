@@ -6,7 +6,7 @@ I re-checked the requested state-collapse seams against Iterations 003, 004, 009
 ## Findings
 
 ### Finding R23-001
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
 - **Lines:** `319-361`
 - **Severity:** P1
 - **Description:** `code_graph_query` still exposes a non-canonical readiness shape after failures. It seeds `readiness` with `freshness: 'empty'`, swallows `ensureCodeGraphReady(...)` exceptions, and then returns a normal `status: 'ok'` payload. Elsewhere in the same runtime, the canonical structural contract already treats unusable graph states as `missing`, not `empty`, so direct query payloads can contradict bootstrap/resume guidance about whether structural context is absent or merely stale.
@@ -14,7 +14,7 @@ I re-checked the requested state-collapse seams against Iterations 003, 004, 009
 - **Downstream Impact:** A caller that combines `session_bootstrap` with later `code_graph_query` reads can receive conflicting machine guidance for the same broken graph: bootstrap says the graph is structurally `missing`, while the query surface reports an `empty` readiness object inside a successful response. That breaks the "repair vs refresh" decision boundary for agents that rely on readiness metadata to decide whether to fall back, retry, or trust an empty result set.
 
 ### Finding R23-002
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - **Lines:** `223-233`
 - **Severity:** P1
 - **Description:** The schema-invalid-as-legacy fallback does not stop at validation. Once `validateGraphMetadataContent()` accepts the legacy reconstruction, the malformed modern file is indexed as first-class `graph_metadata`, and packet-oriented search explicitly boosts that document type above unboosted spec docs. This turns a validation downgrade into a retrieval-priority upgrade.
@@ -22,7 +22,7 @@ I re-checked the requested state-collapse seams against Iterations 003, 004, 009
 - **Downstream Impact:** A malformed current-schema `graph-metadata.json` that happens to look legacy-enough can surface as a boosted packet authority during searches like "resume packet dependencies and key files." That means downstream recovery, review, and planning flows can preferentially consume fallback-migrated metadata over the packet's unboosted spec/plan docs, even though the file only reached the index through a degraded validation path.
 
 ### Finding R23-003
-- **File:** `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+- **File:** `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
 - **Lines:** `83-87`
 - **Severity:** P2
 - **Description:** Unvalidated hook state lets stale compact-cache metadata survive as normal state, and the first consumer collapses "cache exists but is expired or malformed" into the same user-facing outcome as "no cache exists." The persistence layer accepts any `pendingCompactPrime.cachedAt` value, then `session-prime` makes a late TTL decision and falls back to the generic recovery message without distinguishing why the cached context was discarded.

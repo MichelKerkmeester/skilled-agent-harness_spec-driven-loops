@@ -378,7 +378,7 @@ This session followed a **Linear Sequential** conversation pattern with **0** di
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "003-memory-and-spec-kit/082-speckit-reimagined", limit: 10 })
@@ -390,7 +390,7 @@ ls -la 003-memory-and-spec-kit/082-speckit-reimagined/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/082-speckit-reimagined --force
+node .opencode/skills/system-spec-kit/scripts/memory/generate-context.js 003-memory-and-spec-kit/082-speckit-reimagined --force
 ```
 
 ### Recovery Priority

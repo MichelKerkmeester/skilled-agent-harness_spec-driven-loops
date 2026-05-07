@@ -40,7 +40,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-plan |
 |--------|-------|
 | **Language/Stack** | TypeScript (MCP server), JSON (settings + state), Markdown (playbook) |
 | **Framework** | Node 20+, Vitest for regression |
-| **Storage** | Filesystem state: `.opencode/skill/.advisor-state/`, `$TMPDIR/speckit-claude-hooks/` |
+| **Storage** | Filesystem state: `.opencode/skills/.advisor-state/`, `$TMPDIR/speckit-claude-hooks/` |
 | **Testing** | Vitest (`skill-advisor/tests`, `tests/advisor-*`) + direct `node dist/hooks/claude/*.js` smokes + one `claude -p` parity run |
 
 ### Overview
@@ -59,7 +59,7 @@ Three small, independent fixes bundled because they share the same test scaffold
 
 ### Definition of Done
 - [ ] All four P0 requirements met with cited evidence
-- [ ] `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` green
+- [ ] `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` green
 - [ ] Advisor test suite green (corpus parity + privacy + timing)
 - [ ] One real `claude -p` parity run recorded in implementation-summary.md evidence block
 - [ ] `.claude/settings.local.json.bak` removed (or documented if retained)
@@ -104,13 +104,13 @@ Today: `sourceSignature: null` always → probe can never match → always `stal
 ### Phase 2: Core Implementation
 - [ ] Patch scanner to compute and persist `sourceSignature` atomically
 - [ ] Normalize `.claude/settings.local.json` — remove outer `bash`/`timeoutSec` from all 4 event blocks (UserPromptSubmit, SessionStart, PreCompact, Stop)
-- [ ] Add §9 "Multi-turn regression harness" to `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
-- [ ] Add cross-reference in `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md`
+- [ ] Add §9 "Multi-turn regression harness" to `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
+- [ ] Add cross-reference in `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md`
 
 ### Phase 3: Verification
 - [ ] Run `skill_graph_scan` → verify `sourceSignature` non-null → verify direct advisor smoke returns `freshness: live`
 - [ ] Run stream-json parity: `claude -p "ping" --output-format stream-json --include-hook-events --max-budget-usd 0.30` → count `hook_started` events (expect 2 per event type)
-- [ ] Run full advisor suite: `npm --prefix .opencode/skill/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests`
+- [ ] Run full advisor suite: `npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests`
 - [ ] Write implementation-summary.md with evidence block
 <!-- /ANCHOR:phases -->
 
@@ -147,8 +147,8 @@ Today: `sourceSignature: null` always → probe can never match → always `stal
 - **Trigger**: Any of — freshness probe starts returning `unavailable` after fix; advisor corpus parity drops below 200/200; hook_started count exceeds 2 per event; build or typecheck fails.
 - **Procedure**:
   1. `git revert <commit-sha>` for the Phase 2 commit(s).
-  2. `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` to rebuild dist/.
-  3. Smoke: `printf '%s' '{"prompt":"help me commit","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` — expect pre-fix `freshness: stale` behavior.
+  2. `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` to rebuild dist/.
+  3. Smoke: `printf '%s' '{"prompt":"help me commit","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` — expect pre-fix `freshness: stale` behavior.
   4. Restore `.claude/settings.local.json.bak` if a backup was kept.
 <!-- /ANCHOR:rollback -->
 
@@ -199,7 +199,7 @@ Normalize and Document are parallelizable within Phase 2 since they touch disjoi
 
 ### Rollback Procedure
 1. Revert the feature commit: `git revert <sha>`
-2. If `dist/` diverged, rebuild: `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build`
+2. If `dist/` diverged, rebuild: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
 3. Smoke direct hook script to confirm pre-fix behavior returns
 4. If settings.local.json rolled back, restore from `.bak` and confirm via `jq` diff
 

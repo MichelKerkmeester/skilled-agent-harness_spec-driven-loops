@@ -183,13 +183,13 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - `.opencode/install_guides/SET-UP - Skill Advisor.md` - Documentation
 
-- `.opencode/agent/orchestrator.md` - Documentation
+- `.opencode/agents/orchestrator.md` - Documentation
 
 - `.opencode/scripts/README.md` - Documentation
 
-- `.opencode/command/create/skill_asset.md` - Documentation
+- `.opencode/commands/create/skill_asset.md` - Documentation
 
-- `.opencode/command/create/folder_readme.md` - Documentation
+- `.opencode/commands/create/folder_readme.md` - Documentation
 
 **How to Extend**:
 
@@ -227,10 +227,10 @@ Completed the final documentation cleanup phase of the system-memory → system-
 | `.opencode/install_guides/README.md` | Modified during session |
 | `.opencode/install_guides/SET-UP - Skill Creation.md` | Modified during session |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Modified during session |
-| `.opencode/agent/orchestrator.md` | Updated orchestrator |
+| `.opencode/agents/orchestrator.md` | Updated orchestrator |
 | `.opencode/scripts/README.md` | Modified during session |
-| `.opencode/command/create/skill_asset.md` | Updated skill asset |
-| `.opencode/command/create/folder_readme.md` | Updated folder readme |
+| `.opencode/commands/create/skill_asset.md` | Updated skill asset |
+| `.opencode/commands/create/folder_readme.md` | Updated folder readme |
 
 <!-- /ANCHOR:summary-session-1766681266636-ppm8g84xc-003-memory-and-spec-kit/035-memory-speckit-merger -->
 
@@ -535,10 +535,10 @@ key_files:
   - ".opencode/install_guides/README.md"
   - ".opencode/install_guides/SET-UP - Skill Creation.md"
   - ".opencode/install_guides/SET-UP - Skill Advisor.md"
-  - ".opencode/agent/orchestrator.md"
+  - ".opencode/agents/orchestrator.md"
   - ".opencode/scripts/README.md"
-  - ".opencode/command/create/skill_asset.md"
-  - ".opencode/command/create/folder_readme.md"
+  - ".opencode/commands/create/skill_asset.md"
+  - ".opencode/commands/create/folder_readme.md"
 
 # Relationships
 related_sessions:

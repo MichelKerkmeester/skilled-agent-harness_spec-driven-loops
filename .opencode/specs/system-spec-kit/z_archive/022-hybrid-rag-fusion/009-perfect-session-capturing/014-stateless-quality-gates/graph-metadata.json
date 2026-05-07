@@ -41,13 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts",
-      ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts",
       "decision-record.md",
       "plan.md",
       "tasks.md",
@@ -62,43 +62,43 @@
       {
         "name": "workflow.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/core/workflow.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
         "source": "derived"
       },
       {
         "name": "validate-memory-quality.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/validate-memory-quality.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts",
         "source": "derived"
       },
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/memory/generate-context.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
         "name": "contamination-filter.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/scripts/extractors/contamination-filter.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts",
         "source": "derived"
       },
       {
         "name": "generate-context-cli-authority.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
         "source": "derived"
       },
       {
         "name": "contamination-filter.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/contamination-filter.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/contamination-filter.vitest.ts",
         "source": "derived"
       },
       {
         "name": "quality-scorer-calibration.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/quality-scorer-calibration.vitest.ts",
         "source": "derived"
       },
       {

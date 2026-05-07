@@ -17,7 +17,7 @@ quality_flags: []
 agent: "none"
 response_excerpt: |
   Before I proceed, I need to ask about documentation:
-  This request modifies `.opencode/skill/sk-code/SKILL.md`, so it needs a spec folder.
+  This request modifies `.opencode/skills/sk-code/SKILL.md`, so it needs a spec folder.
 verdict: pending
 raw_stdout: "/tmp/skc-RD-002-opencode.txt"
 raw_stderr: "/tmp/skc-RD-002-opencode.err"

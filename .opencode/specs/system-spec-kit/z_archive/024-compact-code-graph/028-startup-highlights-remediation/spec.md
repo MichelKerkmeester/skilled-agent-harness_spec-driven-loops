@@ -75,8 +75,8 @@ The `queryStartupHighlights()` function in `code-graph-db.ts` has 3 correctness 
 
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Rewrite `queryStartupHighlights()` SQL |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts` | Add test for dedup, exclusion, incoming-call ranking |
+| `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts` | Rewrite `queryStartupHighlights()` SQL |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts` | Add test for dedup, exclusion, incoming-call ranking |
 <!-- /ANCHOR:scope -->
 
 ## 4. REQUIREMENTS

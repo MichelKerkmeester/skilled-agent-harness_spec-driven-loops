@@ -10,13 +10,13 @@ READ-ONLY deep-review audit. Output: `review-report.md` with severity-classified
 
 - `README.md` (root, post-042 refresh)
 - `AGENTS.md`, `CLAUDE.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`, `ARCHITECTURE.md`, `README.md`
-- `.opencode/skill/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md`
-- `.opencode/skill/system-spec-kit/mcp_server/{handlers,lib,hooks/codex,hooks/copilot,skill_advisor,code_graph,matrix_runners,stress_test,schemas,tools}/README.md` (sub-folder READMEs)
-- `.opencode/skill/system-spec-kit/feature_catalog/` and per-skill catalogs
-- `.opencode/skill/system-spec-kit/manual_testing_playbook/` and per-skill playbooks
-- `.opencode/skill/system-spec-kit/references/{config,hooks,templates}/`
-- `.opencode/skill/sk-doc/references/global/evergreen_packet_id_rule.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`, `ARCHITECTURE.md`, `README.md`
+- `.opencode/skills/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md`
+- `.opencode/skills/system-spec-kit/mcp_server/{handlers,lib,hooks/codex,hooks/copilot,skill_advisor,code_graph,matrix_runners,stress_test,schemas,tools}/README.md` (sub-folder READMEs)
+- `.opencode/skills/system-spec-kit/feature_catalog/` and per-skill catalogs
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/` and per-skill playbooks
+- `.opencode/skills/system-spec-kit/references/{config,hooks,templates}/`
+- `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md`
 
 ### Audit dimensions + truth-specific questions
 
@@ -35,11 +35,11 @@ For maintainability: evergreen-doc rule honored (no packet IDs in evergreen cont
 ```bash
 grep -rnE '\b0[0-9]{2}-[a-z-]+|\bpacket [0-9]{3}|\b03[0-9]/00[0-9]|\bF-013-[0-9]+|\bP1-[0-9]+|\bphase [0-9]{3}|\bin packet|\bvia packet' \
   AGENTS.md CLAUDE.md README.md \
-  .opencode/skill/system-spec-kit/{SKILL,ARCHITECTURE,README}.md \
-  .opencode/skill/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md \
-  .opencode/skill/system-spec-kit/feature_catalog/**/*.md \
-  .opencode/skill/system-spec-kit/manual_testing_playbook/**/*.md \
-  .opencode/skill/system-spec-kit/references/**/*.md \
+  .opencode/skills/system-spec-kit/{SKILL,ARCHITECTURE,README}.md \
+  .opencode/skills/system-spec-kit/mcp_server/{README,INSTALL_GUIDE,ENV_REFERENCE}.md \
+  .opencode/skills/system-spec-kit/feature_catalog/**/*.md \
+  .opencode/skills/system-spec-kit/manual_testing_playbook/**/*.md \
+  .opencode/skills/system-spec-kit/references/**/*.md \
   2>/dev/null
 ```
 

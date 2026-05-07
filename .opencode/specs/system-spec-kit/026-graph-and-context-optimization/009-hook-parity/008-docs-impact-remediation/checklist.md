@@ -29,13 +29,13 @@ Mark each item `[x]` only with **evidence**: file path + line range, commit hash
 
 - [x] **T-001** `references/config/hook_system.md` — runtime matrix refreshed with Codex native `SessionStart` (post-05), Claude `UserPromptSubmit`, OpenCode plugin bridge, Copilot `.claude/settings.local.json` wrapper parity; cross-runtime fallback prose aligned. [Evidence: applied/09-*.md; diff +29 in hook_system.md]
 - [x] **T-002** `AGENTS.md` — Gate 2 hook-brief primary + script fallback; Codex SessionStart note; OpenCode plugin ESM exemption in `sk-code-opencode` language table. [Evidence: applied/10-*.md; diff +6 in AGENTS.md]
-- [x] **T-003** `.opencode/skill/system-spec-kit/SKILL.md` — startup/recovery section: Claude four-event + `UserPromptSubmit`; Codex post-05 native `SessionStart`; Copilot `.claude/settings.local.json` startup surface. [Evidence: applied/05-*.md; diff +9 in SKILL.md]
-- [x] **T-004** `.opencode/skill/system-spec-kit/ARCHITECTURE.md` — Copilot file-based transport documented (`custom-instructions.ts` → `$HOME/.copilot/copilot-instructions.md`); OpenCode plugin bridge ESM default-export + per-instance state / dedup / cap. [Evidence: applied/03-*.md; diff +10 in ARCHITECTURE.md]
+- [x] **T-003** `.opencode/skills/system-spec-kit/SKILL.md` — startup/recovery section: Claude four-event + `UserPromptSubmit`; Codex post-05 native `SessionStart`; Copilot `.claude/settings.local.json` startup surface. [Evidence: applied/05-*.md; diff +9 in SKILL.md]
+- [x] **T-004** `.opencode/skills/system-spec-kit/ARCHITECTURE.md` — Copilot file-based transport documented (`custom-instructions.ts` → `$HOME/.copilot/copilot-instructions.md`); OpenCode plugin bridge ESM default-export + per-instance state / dedup / cap. [Evidence: applied/03-*.md; diff +10 in ARCHITECTURE.md]
 
 ### Package-Level READMEs
 
 - [x] **T-005** `.opencode/README.md` — Gate 2 prose + directory-structure updated; advisor surface pointer corrected to `mcp_server/skill-advisor/`. [Evidence: applied/01-*.md; diff +10 in .opencode/README.md]
-- [x] **T-006** `.opencode/skill/system-spec-kit/README.md` — hook-primary skill-advisor section; `scripts/` ESM module profile; Copilot runtime section; prompt-vs-lifecycle split. [Evidence: applied/04-*.md; diff +6 in system-spec-kit/README.md]
+- [x] **T-006** `.opencode/skills/system-spec-kit/README.md` — hook-primary skill-advisor section; `scripts/` ESM module profile; Copilot runtime section; prompt-vs-lifecycle split. [Evidence: applied/04-*.md; diff +6 in system-spec-kit/README.md]
 - [x] **T-007** `mcp_server/hooks/copilot/README.md` (and sibling runtime hook READMEs with stale Copilot examples) — registration example now uses `.claude/settings.local.json` wrapper contract; `.github/hooks/scripts/*.sh` example removed. [Evidence: applied/07-*.md; diff +31 in hooks/copilot/README.md; grep .github/hooks/scripts=0]
 
 ### Install / Reference / Feature-Catalog
@@ -71,9 +71,9 @@ Mark each item `[x]` only with **evidence**: file path + line range, commit hash
 
 These are integrated checks run after individual P0 tasks complete; they verify the canonical docs tell one coherent story.
 
-- [x] `grep -rn "skill_advisor.py" .opencode/README.md .opencode/skill/system-spec-kit/README.md AGENTS.md` — any surviving references explicitly describe the **fallback** path, never the primary Gate 2 surface. [Evidence: surviving 4+5+0 refs all describe compatibility/fallback context; verified inline]
-- [x] `grep -rn "\.github/hooks/scripts" .opencode/skill/system-spec-kit/mcp_server/hooks/copilot/README.md .opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — returns no rows for the Copilot prompt/startup execution path. [Evidence: both files return 0 matches; verified 2026-04-23]
-- [x] `grep -rn "CommonJS entrypoint.*plugin\|plugin.*CommonJS entrypoint" .opencode/skill/system-spec-kit/ARCHITECTURE.md` — empty (plugin is ESM default-export). [Evidence: ARCHITECTURE.md now describes plugin as ESM default-export; grep returns 0]
+- [x] `grep -rn "skill_advisor.py" .opencode/README.md .opencode/skills/system-spec-kit/README.md AGENTS.md` — any surviving references explicitly describe the **fallback** path, never the primary Gate 2 surface. [Evidence: surviving 4+5+0 refs all describe compatibility/fallback context; verified inline]
+- [x] `grep -rn "\.github/hooks/scripts" .opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — returns no rows for the Copilot prompt/startup execution path. [Evidence: both files return 0 matches; verified 2026-04-23]
+- [x] `grep -rn "CommonJS entrypoint.*plugin\|plugin.*CommonJS entrypoint" .opencode/skills/system-spec-kit/ARCHITECTURE.md` — empty (plugin is ESM default-export). [Evidence: ARCHITECTURE.md now describes plugin as ESM default-export; grep returns 0]
 - [x] `hook_system.md`, `SKILL.md`, `ARCHITECTURE.md`, `AGENTS.md` agree on: Codex post-05 native `SessionStart` gated by `codex_hooks`; Claude four-event `UserPromptSubmit` surface; OpenCode plugin bridge transport; Copilot `.claude/settings.local.json` wrapper. [Evidence: all four canonical docs updated with identical POST-05 reconciliation rule; `grep "no lifecycle hook"` across them returns 0; applied reports 03/05/09/10 all verify their respective file includes the reconciliation.]
 
 ---

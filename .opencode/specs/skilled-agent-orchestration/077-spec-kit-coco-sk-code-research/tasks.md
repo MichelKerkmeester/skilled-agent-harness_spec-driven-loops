@@ -102,7 +102,7 @@ _memory:
 
 - Predecessor: `069-sk-code-motion-dev-and-playbook` (just shipped sk-code v3.1.0.0)
 - Workflow command: `/spec_kit:deep-research:auto`
-- Skill: `.opencode/skill/deep-research/SKILL.md`
+- Skill: `.opencode/skills/deep-research/SKILL.md`
 - Synthesis output: `077/research/research.md`
 - Resource inventory: `077/research/resource-map.md`
 - 10 iteration narratives: `077/research/iterations/iteration-{001..010}.md`

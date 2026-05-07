@@ -80,16 +80,16 @@ Added standardized trigger tables to `AGENTS.md`, `AGENTS.md`, and `AGENTS.md` w
 | After `/clear` | Same as fresh session |
 | Before structural search | `code_graph_context({ subject: "..." })` |
 
-AGENTS.md advertises `@context-prime` and the session lifecycle guidance, while `.opencode/agent/orchestrate.md` performs the actual first-turn or post-`/clear` delegation. Claude-hook-specific wording was only partially cleaned up in non-Claude agent files, so this phase records that residual wording as a known gap instead of claiming full removal.
+AGENTS.md advertises `@context-prime` and the session lifecycle guidance, while `.opencode/agents/orchestrate.md` performs the actual first-turn or post-`/clear` delegation. Claude-hook-specific wording was only partially cleaned up in non-Claude agent files, so this phase records that residual wording as a known gap instead of claiming full removal.
 
 ### @context-prime Agent
 
-A new agent at `.opencode/agent/context.md` (227 lines) that:
+A new agent at `.opencode/agents/context.md` (227 lines) that:
 1. Calls `session_resume()` to recover prior session state plus graph and CocoIndex availability
 2. Optionally calls `session_health()` when a quality score is useful
 3. Returns a compact Prime Package with spec folder, task status, system health, and recommended next steps
 
-F059 is now verified done because `.opencode/agent/orchestrate.md` lines 18-21 explicitly delegate to `@context-prime` on the first user turn or after `/clear`. AGENTS.md remains the advertising and guidance surface, not the delegation executor. The public first-turn contract is still `session_bootstrap()`; `@context-prime` is the delegated lower-level resume surface used by orchestrators.
+F059 is now verified done because `.opencode/agents/orchestrate.md` lines 18-21 explicitly delegate to `@context-prime` on the first user turn or after `/clear`. AGENTS.md remains the advertising and guidance surface, not the delegation executor. The public first-turn contract is still `session_bootstrap()`; `@context-prime` is the delegated lower-level resume surface used by orchestrators.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,8 +97,8 @@ F059 is now verified done because `.opencode/agent/orchestrate.md` lines 18-21 e
 
 | File | Change Type | Description |
 |------|------------|-------------|
-| `.opencode/agent/context.md` | New | @context-prime agent for session priming (227 lines) |
-| `.opencode/agent/orchestrate.md` | Modified | Session Bootstrap delegation reference |
+| `.opencode/agents/context.md` | New | @context-prime agent for session priming (227 lines) |
+| `.opencode/agents/orchestrate.md` | Modified | Session Bootstrap delegation reference |
 | `AGENTS.md` | Modified | No Hook Transport trigger table |
 | `AGENTS.md` | Modified | No Hook Transport trigger table, @context-prime reference |
 | `AGENTS.md` | Modified | No Hook Transport trigger table |
@@ -107,7 +107,7 @@ F059 is now verified done because `.opencode/agent/orchestrate.md` lines 18-21 e
 
 <!-- ANCHOR:how-delivered -->
 ### How It Was Delivered
-This phase landed as a documentation and agent-instruction alignment pass. The final verification step confirmed that AGENTS.md defines and advertises `@context-prime`, while `.opencode/agent/orchestrate.md` is the runtime file that actually delegates to it on the first turn or after `/clear`.
+This phase landed as a documentation and agent-instruction alignment pass. The final verification step confirmed that AGENTS.md defines and advertises `@context-prime`, while `.opencode/agents/orchestrate.md` is the runtime file that actually delegates to it on the first turn or after `/clear`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -117,7 +117,7 @@ This phase landed as a documentation and agent-instruction alignment pass. The f
 | Treat `session_bootstrap()` as the public first-call contract for hookless runtimes | Root/runtime guidance now standardizes fresh starts and `/clear` on the composite bootstrap surface. |
 | Keep `session_resume()` plus optional `session_health()` inside `@context-prime` | The delegated agent still benefits from the two-step workflow while staying subordinate to the public bootstrap-first runtime guidance. |
 | Record Claude-hook wording as a known residual gap | The non-Claude agent files still contain that wording, so claiming full cleanup would be inaccurate. |
-| Mark F059 verified done | `.opencode/agent/orchestrate.md` already contains the required first-turn and post-`/clear` delegation wiring. |
+| Mark F059 verified done | `.opencode/agents/orchestrate.md` already contains the required first-turn and post-`/clear` delegation wiring. |
 ---
 
 <!-- ANCHOR:verification -->
@@ -125,7 +125,7 @@ This phase landed as a documentation and agent-instruction alignment pass. The f
 - TypeScript: N/A (documentation and config changes only)
 - Tests: N/A
 - Review: Opus CONDITIONAL PASS 78/100, GPT-5.4 CONDITIONAL 82%
-- Evidence: `.opencode/agent/context.md` lines 34-38, 61-65, 74-87, 229-230; `AGENTS.md` lines 294-299 and 386-399; `.opencode/agent/orchestrate.md` lines 18-21
+- Evidence: `.opencode/agents/context.md` lines 34-38, 61-65, 74-87, 229-230; `AGENTS.md` lines 294-299 and 386-399; `.opencode/agents/orchestrate.md` lines 18-21
 <!-- /ANCHOR:verification -->
 
 ---

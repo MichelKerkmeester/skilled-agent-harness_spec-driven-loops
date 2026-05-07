@@ -45,8 +45,8 @@
       "tests/cross-runtime-fallback.vitest.ts",
       "tests/runtime-routing.vitest.ts",
       "tests/runtime-detection.vitest.ts",
-      ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -81,13 +81,13 @@
       {
         "name": "05-cross-runtime-fallback.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md",
         "source": "derived"
       },
       {
         "name": "252-cross-runtime-fallback.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md",
         "source": "derived"
       },
       {

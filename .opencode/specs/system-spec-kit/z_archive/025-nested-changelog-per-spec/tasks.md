@@ -72,8 +72,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Review packet-local changelog examples in `024-compact-code-graph/changelog` (`.opencode/specs/system-spec-kit/024-compact-code-graph/changelog/`)
-- [x] T002 Review `/create:changelog` command and assets for current release-note behavior (`.opencode/command/create/changelog.md`)
-- [x] T003 Define packet-root and child-phase naming/output rules (`.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
+- [x] T002 Review `/create:changelog` command and assets for current release-note behavior (`.opencode/commands/create/changelog.md`)
+- [x] T003 Define packet-root and child-phase naming/output rules (`.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -81,14 +81,14 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Create nested changelog generator with root/phase detection (`.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
-- [x] T005 Create canonical packet changelog templates (`.opencode/skill/system-spec-kit/templates/changelog/root.md`, `.opencode/skill/system-spec-kit/templates/changelog/phase.md`)
-- [x] T006 [P] Export and document the generator in scripts package surfaces (`.opencode/skill/system-spec-kit/scripts/spec-folder/index.ts`, `.opencode/skill/system-spec-kit/scripts/spec-folder/README.md`, `.opencode/skill/system-spec-kit/scripts/scripts-registry.json`)
-- [x] T007 [P] Update system-spec-kit skill/template/reference guidance for nested changelog workflow (`.opencode/skill/system-spec-kit/SKILL.md`, references, template READMEs, phase addendum docs)
-- [x] T008 Add nested changelog mode to `/create:changelog` docs and YAML assets (`.opencode/command/create/changelog.md`, `.opencode/command/create/assets/create_changelog_*.yaml`)
-- [x] T009 Update `/spec_kit:implement` to generate nested changelog output for packet-aware targets (`.opencode/command/spec_kit/implement.md`, `.opencode/command/spec_kit/assets/spec_kit_implement_*.yaml`)
-- [x] T010 Update `/spec_kit:complete` to generate nested changelog output for packet-aware targets (`.opencode/command/spec_kit/complete.md`, `.opencode/command/spec_kit/assets/spec_kit_complete_*.yaml`)
-- [x] T011 Add focused test coverage for root and phase nested changelog output (`.opencode/skill/system-spec-kit/scripts/tests/nested-changelog.vitest.ts`)
+- [x] T004 Create nested changelog generator with root/phase detection (`.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
+- [x] T005 Create canonical packet changelog templates (`.opencode/skills/system-spec-kit/templates/changelog/root.md`, `.opencode/skills/system-spec-kit/templates/changelog/phase.md`)
+- [x] T006 [P] Export and document the generator in scripts package surfaces (`.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts`, `.opencode/skills/system-spec-kit/scripts/spec-folder/README.md`, `.opencode/skills/system-spec-kit/scripts/scripts-registry.json`)
+- [x] T007 [P] Update system-spec-kit skill/template/reference guidance for nested changelog workflow (`.opencode/skills/system-spec-kit/SKILL.md`, references, template READMEs, phase addendum docs)
+- [x] T008 Add nested changelog mode to `/create:changelog` docs and YAML assets (`.opencode/commands/create/changelog.md`, `.opencode/commands/create/assets/create_changelog_*.yaml`)
+- [x] T009 Update `/spec_kit:implement` to generate nested changelog output for packet-aware targets (`.opencode/commands/spec_kit/implement.md`, `.opencode/commands/spec_kit/assets/spec_kit_implement_*.yaml`)
+- [x] T010 Update `/spec_kit:complete` to generate nested changelog output for packet-aware targets (`.opencode/commands/spec_kit/complete.md`, `.opencode/commands/spec_kit/assets/spec_kit_complete_*.yaml`)
+- [x] T011 Add focused test coverage for root and phase nested changelog output (`.opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -96,9 +96,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T012 Fix template path resolution in the generator after the first test failure (`.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
-- [x] T013 Run scripts build verification (`.opencode/skill/system-spec-kit/scripts/`)
-- [x] T014 Run focused nested changelog Vitest verification (`.opencode/skill/system-spec-kit/scripts/tests/nested-changelog.vitest.ts`)
+- [x] T012 Fix template path resolution in the generator after the first test failure (`.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`)
+- [x] T013 Run scripts build verification (`.opencode/skills/system-spec-kit/scripts/`)
+- [x] T014 Run focused nested changelog Vitest verification (`.opencode/skills/system-spec-kit/scripts/tests/nested-changelog.vitest.ts`)
 - [x] T015 Update packet `025` documentation to match the shipped workflow (`.opencode/specs/system-spec-kit/025-nested-changelog-per-spec/`)
 <!-- /ANCHOR:phase-3 -->
 

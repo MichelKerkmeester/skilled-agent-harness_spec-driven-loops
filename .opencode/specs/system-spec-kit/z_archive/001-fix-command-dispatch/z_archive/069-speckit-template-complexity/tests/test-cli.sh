@@ -11,7 +11,7 @@ set -u
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
-SCRIPTS_DIR="$REPO_ROOT/.opencode/skill/system-spec-kit/scripts"
+SCRIPTS_DIR="$REPO_ROOT/.opencode/skills/system-spec-kit/scripts"
 
 PASSED=0
 FAILED=0

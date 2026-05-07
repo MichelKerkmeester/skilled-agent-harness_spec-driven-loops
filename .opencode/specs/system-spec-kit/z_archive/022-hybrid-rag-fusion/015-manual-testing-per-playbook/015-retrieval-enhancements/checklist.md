@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Playbook loaded — all 11 scenario files read from `.opencode/skill/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/` [EVIDENCE: tasks.md; implementation-summary.md]
+- [x] CHK-001 [P0] Playbook loaded — all 11 scenario files read from `.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/` [EVIDENCE: tasks.md; implementation-summary.md]
 - [x] CHK-002 [P0] Review protocol loaded — PASS/PARTIAL/FAIL verdict rules applied via code analysis methodology [EVIDENCE: tasks.md; implementation-summary.md]
 - [x] CHK-003 [P1] Feature catalog links confirmed — all 9 feature catalog files in `feature_catalog/15--retrieval-enhancements/` cross-referenced [EVIDENCE: tasks.md; implementation-summary.md]
 - [x] CHK-004 [P1] Baseline env var state: all flags default-ON (SPECKIT_CONSOLIDATION, SPECKIT_ENTITY_LINKING, SPECKIT_MEMORY_SUMMARIES, SPECKIT_CONTEXT_HEADERS); SPECKIT_RESPONSE_TRACE defaults to unset (false); SPECKIT_SEARCH_FALLBACK defaults unset [EVIDENCE: tasks.md; implementation-summary.md]

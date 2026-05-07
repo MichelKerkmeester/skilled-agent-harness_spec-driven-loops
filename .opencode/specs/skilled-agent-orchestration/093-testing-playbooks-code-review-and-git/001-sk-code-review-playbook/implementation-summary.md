@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Dispatch cli-codex for child 002"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/"
+      - ".opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -61,13 +61,13 @@ The cross-CLI category is what makes this playbook portable. Three scenarios cov
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` | Created | Root playbook (~600 lines): index, global preconditions, deterministic command notation, integrated review/release-readiness, sub-agent orchestration, per-category summaries |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/01--baseline-review-flow/00[1-3]-*.md` | Created | 3 baseline review scenarios (CR-001..CR-003) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/00[1-3]-*.md` | Created | 3 security baseline scenarios (CR-004..CR-006) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/00[1-3]-*.md` | Created | 3 evidence-discipline scenarios (CR-007..CR-009) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/04--scope-and-precedence/00[1-3]-*.md` | Created | 3 scope/precedence scenarios (CR-010..CR-012) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/00[1-3]-*.md` | Created | 3 re-review / stale-context scenarios (CR-013..CR-015) |
-| `.opencode/skill/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/00[1-3]-*.md` | Created | 3 cross-CLI scenarios (CR-016..CR-018) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` | Created | Root playbook (~600 lines): index, global preconditions, deterministic command notation, integrated review/release-readiness, sub-agent orchestration, per-category summaries |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/00[1-3]-*.md` | Created | 3 baseline review scenarios (CR-001..CR-003) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/00[1-3]-*.md` | Created | 3 security baseline scenarios (CR-004..CR-006) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/00[1-3]-*.md` | Created | 3 evidence-discipline scenarios (CR-007..CR-009) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/04--scope-and-precedence/00[1-3]-*.md` | Created | 3 scope/precedence scenarios (CR-010..CR-012) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/00[1-3]-*.md` | Created | 3 re-review / stale-context scenarios (CR-013..CR-015) |
+| `.opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/00[1-3]-*.md` | Created | 3 cross-CLI scenarios (CR-016..CR-018) |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -9,7 +9,7 @@ completedAt: 2026-04-12T10:38:33Z
 
 # Deep Review Iteration 014 — security
 
-**Focus:** Phase 007-008 database migrations: verify .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts v2 schema migration (drop-and-recreate) is safe, composite primary key correctness, and that .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts covers shared-ID collision regression.
+**Focus:** Phase 007-008 database migrations: verify .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts v2 schema migration (drop-and-recreate) is safe, composite primary key correctness, and that .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts covers shared-ID collision regression.
 
 ---
 
@@ -32,7 +32,7 @@ TARGET: Spec folder 042-sk-deep-research-review-improvement-2 and all implementa
 This bundle delivered runtime truth, semantic coverage graph, wave execution, and offline optimization across ~200 files and +19K lines for sk-deep-research, sk-deep-review, and sk-improve-agent.
 
 DIMENSION: security
-FOCUS: Phase 007-008 database migrations: verify .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts v2 schema migration (drop-and-recreate) is safe, composite primary key correctness, and that .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts covers shared-ID collision regression.
+FOCUS: Phase 007-008 database migrations: verify .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts v2 schema migration (drop-and-recreate) is safe, composite primary key correctness, and that .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts covers shared-ID collision regression.
 
 INSTRUCTIONS:
 1. Read the files mentioned in the focus area carefully.
@@ -67,7 +67,7 @@ mcp: spec_kit_memory/memory_match_triggers started
 mcp: spec_kit_memory/memory_match_triggers (failed)
 user cancelled MCP tool call
 exec
-/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review iteration 14 for spec folder 042-sk-deep-research-review-improvement-2 focusing on security review of coverage-graph-db.ts v2 schema migration drop-and-recreate safety, composite primary key correctness, and session-isolation.vitest.ts shared-ID collision regression coverage." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "Deep review iteration 14 for spec folder 042-sk-deep-research-review-improvement-2 focusing on security review of coverage-graph-db.ts v2 schema migration drop-and-recreate safety, composite primary key correctness, and session-isolation.vitest.ts shared-ID collision regression coverage." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 633ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-Ff8yrpJX' (errno=Operation not permitted)
 [
@@ -108,7 +108,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-Ff8yrpJX' (errno=Opera
 codex
 I’ve routed this as a deep-review pass rather than a general audit. Next I’m pulling the relevant skill guidance and prior memory references, then I’ll inspect the migration code and the isolation test line-by-line.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'rg -n "042-sk-deep-research-review-improvement-2|coverage-graph|session-isolation|deep-review|Phase 007|Phase 008" /Users/michelkerkmeester/.codex/memories/MEMORY.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -148,7 +148,7 @@ version: 1.3.1.0
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
 
 Runtime path resolution:
-- OpenCode/Copilot runtime: `.opencode/agent/*.md`
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
@@ -353,7 +353,7 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 ### Data Flow
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skill/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 name: sk-code-review
@@ -584,9 +584,9 @@ exec
 rg: specs/042-sk-deep-research-review-improvement-2: IO error for operation on specs/042-sk-deep-research-review-improvement-2: No such file or directory (os error 2)
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Database
@@ -1232,7 +1232,7 @@ exec
    320	    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y v1');
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '321,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '321,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    321	  });
    322	});
@@ -1279,29 +1279,29 @@ exec
 exec
 /bin/zsh -lc 'rg -n "coverage-graph-db|session-isolation|REQ-028|shared-ID|collision|composite primary key|drop-and-recreate|schema version" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-* .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-* .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-state.jsonl' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:1464:.opencode/skill/sk-deep-review/references/state_format.md:683:  "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:1516:.opencode/skill/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:50:| DRV-015 | Review iterations emit structured graphEvents | Verify completed review iterations emit `graphEvents` with `dimension_node`, `file_node`, and `finding_node` coverage. | Validate the structured `graphEvents` contract for sk-deep-review. Confirm that graph-aware review convergence expects `graphEvents` in iteration records, and that the graph replay tests show review JSONL records carrying `dimension_node`, `file_node`, and `finding_node` entries, then return a concise operator-facing verdict. | 1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skill/sk-deep-review/references/convergence.md` -> 2. `bash: rg -n 'graphEvents|dimension_node|file_node|finding_node|reviewNodeTypes' .opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` -> 3. `bash: rg -n 'graphEvents|finding_node' .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | `graphEvents` used as iteration-record input; replay tests show review node-type coverage including `dimension_node`, `file_node`, and `finding_node`. | Capture the convergence reference lines that describe `graphEvents` in review iteration records, the review node-type list, and one replay example showing JSONL-shaped `graphEvents`. | PASS if the convergence reference and replay tests agree that completed review iterations emit `graphEvents` and that review graph node coverage includes `dimension_node`, `file_node`, and `finding_node`; FAIL if any of those pieces are missing or contradictory. | Privilege the convergence reference for the contract and the replay tests for concrete review node-type evidence. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:1464:.opencode/skills/sk-deep-review/references/state_format.md:683:  "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:1516:.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:50:| DRV-015 | Review iterations emit structured graphEvents | Verify completed review iterations emit `graphEvents` with `dimension_node`, `file_node`, and `finding_node` coverage. | Validate the structured `graphEvents` contract for sk-deep-review. Confirm that graph-aware review convergence expects `graphEvents` in iteration records, and that the graph replay tests show review JSONL records carrying `dimension_node`, `file_node`, and `finding_node` entries, then return a concise operator-facing verdict. | 1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skills/sk-deep-review/references/convergence.md` -> 2. `bash: rg -n 'graphEvents|dimension_node|file_node|finding_node|reviewNodeTypes' .opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts` -> 3. `bash: rg -n 'graphEvents|finding_node' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | `graphEvents` used as iteration-record input; replay tests show review node-type coverage including `dimension_node`, `file_node`, and `finding_node`. | Capture the convergence reference lines that describe `graphEvents` in review iteration records, the review node-type list, and one replay example showing JSONL-shaped `graphEvents`. | PASS if the convergence reference and replay tests agree that completed review iterations emit `graphEvents` and that review graph node coverage includes `dimension_node`, `file_node`, and `finding_node`; FAIL if any of those pieces are missing or contradictory. | Privilege the convergence reference for the contract and the replay tests for concrete review node-type evidence. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2510:   683	  "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2512:   685	    ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2513:   686	    ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302"
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2512:   685	    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2513:   686	    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2515:   688	  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression — none found.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:2519:   692	  "downgradeTrigger": "If a composite primary key `(spec_folder, loop_type, session_id, id)` lands and a collision regression covers the ID-reuse path, downgrade to P2 tech-debt.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:263:- `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/plan.md:105:- [x] Session isolation and graph-aware stop tests were added. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts; graph-aware-stop.vitest.ts]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/checklist.md:59:- [x] CHK-021 [P0] Dedicated session-isolation coverage exists. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:83:  - `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:263:- `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/plan.md:105:- [x] Session isolation and graph-aware stop tests were added. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts; graph-aware-stop.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/checklist.md:59:- [x] CHK-021 [P0] Dedicated session-isolation coverage exists. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:83:  - `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:86:  - The dedicated session-isolation test currently locks this fallback behavior in as expected output.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:121:| REQ-024 | Pass with test blind spot | `session-isolation.vitest.ts` exists, but it explicitly blesses the `all_sessions_default` fallback when `sessionId` is omitted: `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`. |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:57:- [x] T013 Added session-scoped graph reads and dedicated isolation coverage. `[EVIDENCE: v1.6.0.0; v1.3.0.0; .opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:83:- [x] T026 Dedicated graph and reducer suites exist for the phase. `[EVIDENCE: .opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts; session-isolation.vitest.ts]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/graph-metadata.json:61:      ".opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:121:| REQ-024 | Pass with test blind spot | `session-isolation.vitest.ts` exists, but it explicitly blesses the `all_sessions_default` fallback when `sessionId` is omitted: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:57:- [x] T013 Added session-scoped graph reads and dedicated isolation coverage. `[EVIDENCE: v1.6.0.0; v1.3.0.0; .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:83:- [x] T026 Dedicated graph and reducer suites exist for the phase. `[EVIDENCE: .opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts; session-isolation.vitest.ts]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/graph-metadata.json:61:      ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
 
 codex
 I’ve reached the implementation path that actually enforces the composite key. I’m reading the upsert and lookup code next to confirm the schema fix wasn’t only declarative, and to see whether the new test would have caught the old collision bug.
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md | sed -n '220,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '320,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts | sed -n '320,760p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	
    221	| Risk ID | Description | Impact | Likelihood | Mitigation |
@@ -1338,15 +1338,15 @@ exec
    252	- `.opencode/changelog/13--sk-deep-review/v1.3.0.0.md`
    253	- `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md`
    254	- `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md`
-   255	- `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md`
-   256	- `.opencode/skill/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md`
-   257	- `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md`
-   258	- `.opencode/skill/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md`
-   259	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md`
-   260	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md`
-   261	- `.opencode/skill/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md`
-   262	- `.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts`
-   263	- `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+   255	- `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md`
+   256	- `.opencode/skills/sk-deep-research/manual_testing_playbook/04--convergence-and-recovery/033-graph-aware-stop-gate.md`
+   257	- `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/022-blocked-stop-reducer-surfacing.md`
+   258	- `.opencode/skills/sk-deep-review/manual_testing_playbook/04--convergence-and-recovery/023-fail-closed-reducer.md`
+   259	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md`
+   260	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md`
+   261	- `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md`
+   262	- `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts`
+   263	- `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
 
  succeeded in 0ms:
    320	  return Math.max(MIN_WEIGHT, Math.min(MAX_WEIGHT, weight));
@@ -1778,8 +1778,8 @@ exec
   2509	   682	  "findingId": "F003",
   2510	   683	  "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
   2511	   684	  "evidenceRefs": [
-  2512	   685	    ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154",
-  2513	   686	    ".opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302"
+  2512	   685	    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:154",
+  2513	   686	    ".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302"
   2514	   687	  ],
   2515	   688	  "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression — none found.",
   2516	   689	  "alternativeExplanation": "Could be intentional single-tenant design, but phase 008 REQ-024 explicitly requires session isolation, so this is rejected.",
@@ -1807,10 +1807,10 @@ exec
     77	- Evidence:
     78	  - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99`
     79	  - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md:169-170`
-    80	  - `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:196-199`
-    81	  - `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:67-73`
-    82	  - `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:226-273`
-    83	  - `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`
+    80	  - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:196-199`
+    81	  - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:67-73`
+    82	  - `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:226-273`
+    83	  - `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`
     84	- Description:
     85	  - REQ-012 and ADR-001/003 treat `specFolder + loopType + sessionId` scoping as mandatory, but the handlers still intentionally fall back to `all_sessions_default` aggregation when `sessionId` is omitted. More importantly, `findProvenanceChain()` delegates to helpers that filter by `sessionId` only and do not constrain by `specFolder` or `loopType`, so provenance reads are not fully namespaced even when a namespace object is already available.
     86	  - The dedicated session-isolation test currently locks this fallback behavior in as expected output.
@@ -1825,399 +1825,399 @@ exec
     95	
     96	| REQ | Status | Evidence / Notes |
     97	|-----|--------|------------------|
-    98	| REQ-001 | Pass | Research auto/confirm add first-class `blocked_stop` emission: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:330-338`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:350-358`. |
-    99	| REQ-002 | Pass | Research pause/recovery normalization is present: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:353-361`, `.opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml:373-381`. |
-   100	| REQ-003 | Pass | Review auto/confirm add blocked-stop and normalized pause/recovery flow: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:471-518`, `.opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml:471-518`. |
-   101	| REQ-004 | Pass | Improve-agent auto/confirm wire journal events at start, iteration boundaries, and end: `.opencode/command/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/command/improve/assets/improve_agent-improver_confirm.yaml` mirrors. |
-   102	| REQ-005 | Pass | CLI example corrected in `.opencode/command/improve/agent.md` and implementation summary documents the fix: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:48-50`. |
-   103	| REQ-006 | Pass | `trade-off-detector.cjs` min data gate shipped and reducer surfaces `insufficientData`: see implementation summary `.opencode/specs/.../implementation-summary.md:49-50`, reducer `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:127-142,443-476`. |
-   104	| REQ-007 | Pass | `benchmark-stability.cjs` min replay gate shipped and reducer surfaces `insufficientSample`: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:144-159,443-476`. |
+    98	| REQ-001 | Pass | Research auto/confirm add first-class `blocked_stop` emission: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:330-338`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:350-358`. |
+    99	| REQ-002 | Pass | Research pause/recovery normalization is present: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:353-361`, `.opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml:373-381`. |
+   100	| REQ-003 | Pass | Review auto/confirm add blocked-stop and normalized pause/recovery flow: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:471-518`, `.opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml:471-518`. |
+   101	| REQ-004 | Pass | Improve-agent auto/confirm wire journal events at start, iteration boundaries, and end: `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` mirrors. |
+   102	| REQ-005 | Pass | CLI example corrected in `.opencode/commands/improve/agent.md` and implementation summary documents the fix: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:48-50`. |
+   103	| REQ-006 | Pass | `trade-off-detector.cjs` min data gate shipped and reducer surfaces `insufficientData`: see implementation summary `.opencode/specs/.../implementation-summary.md:49-50`, reducer `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:127-142,443-476`. |
+   104	| REQ-007 | Pass | `benchmark-stability.cjs` min replay gate shipped and reducer surfaces `insufficientSample`: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:144-159,443-476`. |
    105	| REQ-008 | Pass | ADR-001 chooses MCP handler canonical: `.opencode/specs/.../decision-record.md:36-77`. |
-   106	| REQ-009 | Pass | Live YAML path genuinely calls graph convergence before stop vote and graph upsert after reduction in both loop families: research `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. |
-   107	| REQ-010 | Pass | CJS/TS parity work landed and is guarded by parity tests: `.opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:1-3`, `.opencode/skill/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:210-252`. |
+   106	| REQ-009 | Pass | Live YAML path genuinely calls graph convergence before stop vote and graph upsert after reduction in both loop families: research `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. |
+   107	| REQ-010 | Pass | CJS/TS parity work landed and is guarded by parity tests: `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:1-3`, `.opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts:210-252`. |
    108	| REQ-011 | Pass | Decision record and implementation summary both say the structural tools were provisioned on the live path: `.opencode/specs/.../decision-record.md:125-159`, `.opencode/specs/.../implementation-summary.md:59-60`. |
-   109	| REQ-012 | **Gap** | Session scoping is still optional and incomplete. Handlers intentionally allow `all_sessions_default`, and provenance helpers only filter by `sessionId`: `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:196-199`, `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:67-73`, `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:226-273`. |
-   110	| REQ-013 | **Gap** | Reducers expose `graphConvergenceScore`, but not as the real handler output. Research falls back to `0`; review averages raw signal values: `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:217-237`, `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:392-413`, handler output `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:188-205`. |
-   111	| REQ-014 | **Gap** | Blocked-stop promotion exists, but review live-path graph blockers can violate the `blockedBy: string[]` contract and the strategy can keep stale blocked-stop guidance: `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:417-450`, `.opencode/skill/sk-deep-review/references/state_format.md:237-262`, `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:604-623,737-753`. |
-   112	| REQ-015 | Pass | Review reducer now records `corruptionWarnings` and exits non-zero unless `--lenient`: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:74-106,827-857,911-914`. |
-   113	| REQ-016 | Pass | Missing anchors now throw unless `--create-missing-anchors` is supplied: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:548-569,880-888`. |
-   114	| REQ-017 | Pass | ADR-002 chose replay consumers and reducer now reads journal/lineage/coverage artifacts: `.opencode/specs/.../decision-record.md:80-121`, `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:178-281,841-849`. |
-   115	| REQ-018 | Pass | `persistentSameSeverity` and `severityChanged` arrays shipped: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:469-509,774-776`. |
-   116	| REQ-019 | Pass | Improve-agent dashboard includes distinct Sample Quality section: `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs:747-763,781-818`. |
-   117	| REQ-020 | Pass | Interrupted-session fixture exists: `.opencode/skill/sk-deep-research/scripts/tests/fixtures/interrupted-session/README.md:1-1` and spec summary `.opencode/specs/.../implementation-summary.md:77-79`. |
-   118	| REQ-021 | Pass | Review blocked-stop fixture exists and exercises reducer surfacing: `.opencode/skill/sk-deep-review/scripts/tests/fixtures/blocked-stop-session/README.md:1-24`. |
+   109	| REQ-012 | **Gap** | Session scoping is still optional and incomplete. Handlers intentionally allow `all_sessions_default`, and provenance helpers only filter by `sessionId`: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:196-199`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts:67-73`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:226-273`. |
+   110	| REQ-013 | **Gap** | Reducers expose `graphConvergenceScore`, but not as the real handler output. Research falls back to `0`; review averages raw signal values: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:217-237`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:392-413`, handler output `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:188-205`. |
+   111	| REQ-014 | **Gap** | Blocked-stop promotion exists, but review live-path graph blockers can violate the `blockedBy: string[]` contract and the strategy can keep stale blocked-stop guidance: `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:417-450`, `.opencode/skills/sk-deep-review/references/state_format.md:237-262`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:604-623,737-753`. |
+   112	| REQ-015 | Pass | Review reducer now records `corruptionWarnings` and exits non-zero unless `--lenient`: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:74-106,827-857,911-914`. |
+   113	| REQ-016 | Pass | Missing anchors now throw unless `--create-missing-anchors` is supplied: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:548-569,880-888`. |
+   114	| REQ-017 | Pass | ADR-002 chose replay consumers and reducer now reads journal/lineage/coverage artifacts: `.opencode/specs/.../decision-record.md:80-121`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:178-281,841-849`. |
+   115	| REQ-018 | Pass | `persistentSameSeverity` and `severityChanged` arrays shipped: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:469-509,774-776`. |
+   116	| REQ-019 | Pass | Improve-agent dashboard includes distinct Sample Quality section: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:747-763,781-818`. |
+   117	| REQ-020 | Pass | Interrupted-session fixture exists: `.opencode/skills/sk-deep-research/scripts/tests/fixtures/interrupted-session/README.md:1-1` and spec summary `.opencode/specs/.../implementation-summary.md:77-79`. |
+   118	| REQ-021 | Pass | Review blocked-stop fixture exists and exercises reducer surfacing: `.opencode/skills/sk-deep-review/scripts/tests/fixtures/blocked-stop-session/README.md:1-24`. |
    119	| REQ-022 | Pass | Low-sample improve-agent fixture exists per implementation summary and fixture tree: `.opencode/specs/.../implementation-summary.md:79-80`. |
-   120	| REQ-023 | Pass with test blind spot | `graph-aware-stop.vitest.ts` exists, but it seeds synthetic `signals.blendedScore` instead of the real handler shape: `.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:195-244`. |
-   121	| REQ-024 | Pass with test blind spot | `session-isolation.vitest.ts` exists, but it explicitly blesses the `all_sessions_default` fallback when `sessionId` is omitted: `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`. |
+   120	| REQ-023 | Pass with test blind spot | `graph-aware-stop.vitest.ts` exists, but it seeds synthetic `signals.blendedScore` instead of the real handler shape: `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:195-244`. |
+   121	| REQ-024 | Pass with test blind spot | `session-isolation.vitest.ts` exists, but it explicitly blesses the `all_sessions_default` fallback when `sessionId` is omitted: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:162-194`. |
    122	| REQ-025 | Pass | New manual testing playbooks exist across all three loop families: see implementation summary `.opencode/specs/.../implementation-summary.md:81-88`. |
    123	
    124	## Graph Integration Quality Check
    125	
-   126	`deep_loop_graph_upsert` and `deep_loop_graph_convergence` are genuinely on the live YAML path, so the graph is not just emitted on paper. Research calls convergence before the inline stop vote and upsert after reducer refresh at `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review mirrors that at `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. On the "actively and smartly utilized" criterion, the answer is therefore **yes for live stop gating**.
+   126	`deep_loop_graph_upsert` and `deep_loop_graph_convergence` are genuinely on the live YAML path, so the graph is not just emitted on paper. Research calls convergence before the inline stop vote and upsert after reducer refresh at `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml:250-266,415-433`; review mirrors that at `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml:339-360,600-619`. On the "actively and smartly utilized" criterion, the answer is therefore **yes for live stop gating**.
    127	
    128	The surfacing half is not honest enough yet. `graphConvergenceScore` is exposed in both reducers, but it is not the canonical convergence output:
    129	
-   130	- Research reducer expects `signals.blendedScore` or `signals.score` and otherwise records `0`: `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs:225-229`.
-   131	- Review reducer averages raw numeric signals when no score field exists: `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs:397-413`.
-   132	- The canonical handler returns raw `signals` plus `decision`/`blockers`, not a numeric score field: `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:188-205`.
+   130	- Research reducer expects `signals.blendedScore` or `signals.score` and otherwise records `0`: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:225-229`.
+   131	- Review reducer averages raw numeric signals when no score field exists: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:397-413`.
+   132	- The canonical handler returns raw `signals` plus `decision`/`blockers`, not a numeric score field: `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:188-205`.
    133	
    134	So the graph is actively consulted on the live path, but the reducer-owned score that is supposed to prove that consultation is not yet a trustworthy representation of the handler output.
    135	
 
 exec
-/bin/zsh -lc "rg -n \"getNode\\(|getNodes\\(|getEdges\\(|getLatestSnapshot\\(|getSnapshots\\(|coverage_graph|deep-loop-graph|sessionId\" .opencode/skill/system-spec-kit/mcp_server .opencode/skill/system-spec-kit/scripts | head -n 200" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"getNode\\(|getNodes\\(|getEdges\\(|getLatestSnapshot\\(|getSnapshots\\(|coverage_graph|deep-loop-graph|sessionId\" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts | head -n 200" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:361:    ? ((extra as { sessionId?: string }).sessionId ?? null)
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:363:  const explicitSessionId = typeof args.sessionId === 'string'
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:364:    ? args.sessionId
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:378:// that lack an explicit sessionId param can still correlate with a prior search.
-.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1803:            console.error('[context-server] Recoverable sessions:', interrupted.sessions.map((s: { sessionId: string }) => s.sessionId).join(', '));
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:87:  sessionId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:95:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:206:  // T73 SECURITY: Validate caller-supplied sessionId through server-side session
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:209:  let sessionId: string | undefined = rawSessionId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:217:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:228:    sessionId = trustedSession.effectiveSessionId;
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273:    sessionId &&
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:280:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:340:          sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:367:        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:395:    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:466:      sessionId: sessionId!,
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:  if (!useCognitive && sessionId) {
-.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:537:        session_id: sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:127:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:145:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:207:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:243:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:321:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:332:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:385:  sessionId: z.string().optional(),
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:449:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:453:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:459:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  task_preflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'knowledgeGaps', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  task_postflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'gapsClosed', 'newGapsDiscovered', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:474:  memory_get_learning_history: ['specFolder', 'sessionId', 'limit', 'onlyComplete', 'includeSummary'],
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1231:  const sessionId: string = (
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1246:      sessionId,
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1296:    : typeof data._sessionId === 'string'
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1297:      ? data._sessionId
-.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1574:    SESSION_ID: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null } = {}): SimilarMemory[] {
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null } = options;
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:101:        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
-.opencode/skill/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:187:  const sessionId = normalizeScopeMatchValue(scope.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:219:    sessionId,
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:262:  sessionId?: string;
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:274:  _sessionId?: string;
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1408:    sessionId: capture.sessionId ?? (raw.session_id as string | undefined),
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1706:    _sessionId: normalizedCapture.sessionId,
-.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:1719:      : normalizedCapture.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:68:  sessionId: string = 'replay-session',
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:99:        const statePath = getStatePath(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:101:        const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:168:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/types.ts:212:  sessionId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:74:      sessionId: {
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:81:        description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.'
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:218:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skill/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, routeAs: { type: 'string', enum: ['narrative_progress', 'narrative_delivery', 'decision', 'handover_state', 'research_finding', 'task_update', 'metadata_only', 'drop'], description: 'Optional routing override hint for canonical continuity saves.' }, mergeModeHint: { type: 'string', enum: ['append-as-paragraph', 'insert-new-adr', 'append-table-row', 'update-in-place', 'append-section'], description: 'Optional merge-mode hint for routed canonical continuity saves.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:310:      sessionId: { type: 'string', description: 'Optional session identifier for selection telemetry' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:400:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:406:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (must match preflight)' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (must match preflight)' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task knowledge level (0-100)' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task uncertainty level (0-100)' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task context completeness (0-100)' }, gapsClosed: { type: 'array', items: { type: 'string' }, description: 'List of knowledge gaps closed during task (optional)' }, newGapsDiscovered: { type: 'array', items: { type: 'string' }, description: 'List of new gaps discovered during task (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier. Required when multiple sessions share the same taskId and you need to target a specific learning cycle.' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:497:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:708:  description: '[L9:CoverageGraph] Idempotent upsert for coverage graph nodes and edges. Reducer writes graph deltas after each deep-loop iteration. Rejects self-loops, clamps weights to [0.0, 2.0], and merges metadata updates on repeated IDs. Requires specFolder, loopType, and sessionId for namespace isolation.',
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:714:      sessionId: { type: 'string', minLength: 1, description: 'Session identifier for namespace isolation (required)' },
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:748:    required: ['specFolder', 'loopType', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:762:      sessionId: { type: 'string', description: 'Optional session filter' },
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
-.opencode/skill/system-spec-kit/mcp_server/README.md:564:| `sessionId` | string | Session ID for deduplication across turns |
-.opencode/skill/system-spec-kit/mcp_server/README.md:696:| `sessionId` | string | Session attribution |
-.opencode/skill/system-spec-kit/mcp_server/README.md:888:| `sessionId` | string | Session identifier |
-.opencode/skill/system-spec-kit/mcp_server/README.md:1042:| `sessionId` | string | Filter by session |
-.opencode/skill/system-spec-kit/scripts/utils/fact-coercion.ts:27:  sessionId?: string;
-.opencode/skill/system-spec-kit/scripts/utils/fact-coercion.ts:95:      sessionId: ctx.sessionId,
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
-.opencode/skill/system-spec-kit/mcp_server/handlers/save/dedup.ts:66:    sessionId: normalizeScopeMatchValue(scope.sessionId),
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:43:function handleCompact(sessionId: string): OutputSection[] {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44:  const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:45:  const pendingCompactPrime = readCompactPrime(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:47:    hookLog('warn', 'session-prime', `No cached compact payload for session ${sessionId}`);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:58:    hookLog('warn', 'session-prime', `Rejecting stale compact cache for session ${sessionId} (cached at ${cachedAt})`);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:120:    claudeSessionId: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:177:function handleResume(sessionId: string): OutputSection[] {
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:178:  const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:215:  const sessionId = input.session_id ?? 'unknown';
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:217:  hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:224:      sections = handleCompact(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:232:      sections = handleResume(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:261:    clearCompactPrime(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:67:    sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:85:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:124:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:153:  sessionId: string;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:277:function hasSessionStateRecord(sessionId: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:283:    ).get(sessionId) as { 1?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:292:function hasSentMemoryRecord(sessionId: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:298:    ).get(sessionId) as { 1?: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:307:function isTrackedSession(sessionId: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:308:  if (!sessionId || typeof sessionId !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:312:  const normalizedSessionId = sessionId.trim();
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:330:function getSessionIdentityRecord(sessionId: string): {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:344:  `).get(sessionId) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:406:      error: `sessionId "${normalizedSessionId}" does not match a server-managed session. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:416:      error: `sessionId "${normalizedSessionId}" is not bound to a corroborated server identity. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:426:      error: `sessionId "${normalizedSessionId}" is bound to a different ${mismatch}. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:508:function shouldSendMemory(sessionId: string, memory: MemoryInput | number): boolean {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:515:  if (!sessionId || typeof sessionId !== 'string') return true;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:526:    const exists = stmt.get(sessionId, hash);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:536:  sessionId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:542:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(memories)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:573:      const existingRows = existingStmt.all(sessionId) as { memory_hash: string }[];
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:580:          const insertResult = insertStmt.run(sessionId, hash, memory.id || null, now);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:594:        enforceEntryLimit(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:634:function markMemorySent(sessionId: string, memory: MemoryInput | number): MarkResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:637:  if (!sessionId || typeof sessionId !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:638:    return { success: false, error: 'Valid sessionId is required' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:653:      stmt.run(sessionId, hash, memoryId, new Date().toISOString());
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:655:      enforceEntryLimit(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:666:function markMemoriesSentBatch(sessionId: string, memories: MemoryInput[]): MarkBatchResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:669:  if (!sessionId || !Array.isArray(memories) || memories.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:670:    return { success: false, markedCount: 0, error: 'Valid sessionId and memories array required' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:685:        const result = insertStmt.run(sessionId, hash, memory.id || null, now);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:691:      enforceEntryLimit(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:708:function enforceEntryLimit(sessionId: string): void {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:709:  if (!db || !sessionId) return;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:715:    const row = countStmt.get(sessionId) as { count: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:730:    deleteStmt.run(sessionId, sessionId, excess);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:843:function clearSession(sessionId: string): CleanupResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:844:  if (!db || !sessionId) return { success: false, deletedCount: 0 };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:850:    const result = stmt.run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:854:      workingMemory.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:857:      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:868:function getSessionStats(sessionId: string): SessionStats {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:869:  if (!db || !sessionId) return { totalSent: 0, oldestEntry: null, newestEntry: null };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:880:    const row = stmt.get(sessionId) as { total_sent: number; oldest_entry: string | null; newest_entry: string | null } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:898:function filterSearchResults(sessionId: string, results: MemoryInput[]): FilterResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:899:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results)) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:907:  const shouldSendMap = shouldSendMemoriesBatch(sessionId, results, true);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:938:function markResultsSent(sessionId: string, results: MemoryInput[]): MarkBatchResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:939:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results) || results.length === 0) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:943:  return markMemoriesSentBatch(sessionId, results);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1020:function saveSessionState(sessionId: string, state: SessionStateInput = {}): InitResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1022:  if (!sessionId || typeof sessionId !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1023:    return { success: false, error: 'Valid sessionId is required' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1057:      sessionId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1079:function completeSession(sessionId: string): InitResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1080:  if (!db || !sessionId) return { success: false, error: 'Database or sessionId not available' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1088:    stmt.run(new Date().toISOString(), sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1092:      workingMemory.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1095:      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1126:function recoverState(sessionId: string, scope: SessionIdentityScope = {}): RecoverResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1128:  if (!sessionId || typeof sessionId !== 'string') {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1129:    return { success: false, error: 'Valid sessionId is required' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1143:    const row = stmt.get(sessionId) as Record<string, unknown> | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1156:      return { success: false, error: `sessionId "${sessionId}" is bound to a different ${mismatch}` };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1182:      updateStmt.run(new Date().toISOString(), sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1241:    sessionId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1262:    : sessionId
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1278:| **Session ID** | \`${sessionId || 'N/A'}\` |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1324:function writeContinueSessionMd(sessionId: string, specFolderPath: string): CheckpointResult {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1325:  if (!sessionId || !specFolderPath) {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1326:    return { success: false, error: 'sessionId and specFolderPath are required' };
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1330:    const recoverResult = recoverState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1333:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1355:  sessionId: string,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1359:  const saveResult = saveSessionState(sessionId, state);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:1366:    return writeContinueSessionMd(sessionId, folderPath);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:116:function recordToolCall(sessionId?: string): void {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:118:  if (typeof sessionId === 'string' && sessionId.trim().length > 0) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:119:    lastActiveSessionId = sessionId.trim();
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:132:function isSessionPrimed(sessionId: string): boolean {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:133:  return primedSessionIds.has(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:137:function markSessionPrimed(sessionId: string): void {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:138:  primedSessionIds.add(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:139:  lastActiveSessionId = sessionId;
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:492:  sessionId?: string,
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:494:  // Derive a session key from explicit sessionId or tool args.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:495:  const effectiveSessionId = sessionId
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:496:    ?? (typeof toolArgs.sessionId === 'string' ? toolArgs.sessionId : null)
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:560: * Reset priming state. When called with a sessionId, clears only that session.
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:563:function resetSessionPrimed(sessionId?: string): void {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:564:  if (sessionId) {
-.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:565:    primedSessionIds.delete(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts:66:  sessionId?: string;
-.opencode/skill/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts:128:    claudeSessionId: typeof parsed.sessionId === 'string' ? parsed.sessionId : null,
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:142:const { filtered, dedupStats } = filterSearchResults(sessionId, results);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:148:markResultsSent(sessionId, filtered);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:166:  console.log(`Session ${s.sessionId}: ${s.lastAction} in ${s.specFolder}`);
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:176:saveSessionState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:185:checkpointSession(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:196:| Check if should send | `shouldSendMemory(sessionId, memory)` | Before returning single memory |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:197:| Batch check | `shouldSendMemoriesBatch(sessionId, memories)` | Before returning multiple memories |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:198:| Mark single sent | `markMemorySent(sessionId, memory)` | After returning a memory |
-.opencode/skill/system-spec-kit/mcp_server/lib/session/README.md:199:| Mark batch sent | `markMemoriesSentBatch(sessionId, memories)` | After returning multiple memories |
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:360:  const transportSessionId = typeof (extra as { sessionId?: unknown } | null)?.sessionId === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:361:    ? ((extra as { sessionId?: string }).sessionId ?? null)
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:363:  const explicitSessionId = typeof args.sessionId === 'string'
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:364:    ? args.sessionId
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:378:// that lack an explicit sessionId param can still correlate with a prior search.
+.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1803:            console.error('[context-server] Recoverable sessions:', interrupted.sessions.map((s: { sessionId: string }) => s.sessionId).join(', '));
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts:87:  sessionId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:95:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:206:  // T73 SECURITY: Validate caller-supplied sessionId through server-side session
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:209:  let sessionId: string | undefined = rawSessionId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:217:      console.warn(`[memory_match_triggers] SECURITY: Rejected untrusted sessionId "${rawSessionId}" — ${trustedSession.error}`);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:228:    sessionId = trustedSession.effectiveSessionId;
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:273:    sessionId &&
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:280:      decayStats = { decayedCount: workingMemory.batchUpdateScores(sessionId as string) };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:340:          sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:367:        workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:395:    const sessionMemories: WorkingMemoryEntry[] = workingMemory.getSessionMemories(sessionId as string)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:466:      sessionId: sessionId!,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:496:  if (!useCognitive && sessionId) {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:537:        session_id: sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:127:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:145:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:207:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:243:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:321:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:332:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:385:  sessionId: z.string().optional(),
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:449:  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:450:  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:453:  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:459:  memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:465:  task_preflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'knowledgeGaps', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:466:  task_postflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'gapsClosed', 'newGapsDiscovered', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:474:  memory_get_learning_history: ['specFolder', 'sessionId', 'limit', 'onlyComplete', 'includeSummary'],
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1231:  const sessionId: string = (
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1246:      sessionId,
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1296:    : typeof data._sessionId === 'string'
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1297:      ? data._sessionId
+.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1574:    SESSION_ID: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:64:function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null; tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null } = {}): SimilarMemory[] {
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:65:  const { limit = 5, specFolder = null, tenantId = null, userId = null, agentId = null, sessionId = null } = options;
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:101:        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
+.opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:102:        if (!matchesScopedValue(sessionId, r.session_id)) continue;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:187:  const sessionId = normalizeScopeMatchValue(scope.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:218:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:219:    sessionId,
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:262:  sessionId?: string;
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:274:  _sessionId?: string;
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1408:    sessionId: capture.sessionId ?? (raw.session_id as string | undefined),
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1706:    _sessionId: normalizedCapture.sessionId,
+.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:1719:      : normalizedCapture.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:68:  sessionId: string = 'replay-session',
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:90:          session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:99:        const statePath = getStatePath(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/test/hooks/replay-harness.ts:101:        const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:168:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/types.ts:212:  sessionId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44:  inputSchema: { type: 'object', additionalProperties: false, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:74:      sessionId: {
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:81:        description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent memories.'
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:218:  inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to the memory file (must be in specs/**/memory/, .opencode/specs/**/memory/, specs/**/ for spec documents, or .opencode/skills/*/constitutional/)' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation (CHK-160)' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. Memory is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, routeAs: { type: 'string', enum: ['narrative_progress', 'narrative_delivery', 'decision', 'handover_state', 'research_finding', 'task_update', 'metadata_only', 'drop'], description: 'Optional routing override hint for canonical continuity saves.' }, mergeModeHint: { type: 'string', enum: ['append-as-paragraph', 'insert-new-adr', 'append-table-row', 'update-in-place', 'append-section'], description: 'Optional merge-mode hint for routed canonical continuity saves.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governance guardrails are enabled.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governance guardrails are enabled.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral', 'shared'], description: 'Retention class applied to the saved memory.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the memory.' } }, required: ['filePath'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:310:      sessionId: { type: 'string', description: 'Optional session identifier for selection telemetry' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:400:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (e.g., "specs/003-memory/077-upgrade")' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (e.g., "T1", "T2", "implementation")' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current knowledge level (0-100): How well do you understand the task requirements and codebase context?' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current uncertainty level (0-100): How uncertain are you about the approach or implementation?' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Current context completeness (0-100): How complete is your understanding of relevant context?' }, knowledgeGaps: { type: 'array', items: { type: 'string' }, description: 'List of identified knowledge gaps (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:406:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (must match preflight)' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (must match preflight)' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task knowledge level (0-100)' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task uncertainty level (0-100)' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task context completeness (0-100)' }, gapsClosed: { type: 'array', items: { type: 'string' }, description: 'List of knowledge gaps closed during task (optional)' }, newGapsDiscovered: { type: 'array', items: { type: 'string' }, description: 'List of new gaps discovered during task (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier. Required when multiple sessions share the same taskId and you need to target a specific learning cycle.' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:497:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Spec folder path to get learning history for (required)' }, sessionId: { type: 'string', description: 'Filter by session ID (optional)' }, limit: { type: 'number', default: 10, minimum: 1, maximum: 100, description: 'Maximum records to return (default: 10, max: 100)' }, onlyComplete: { type: 'boolean', default: false, description: 'Only return records with both PREFLIGHT and POSTFLIGHT (complete learning cycles)' }, includeSummary: { type: 'boolean', default: true, description: 'Include summary statistics (averages, trends) in response' } }, required: ['specFolder'] },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:708:  description: '[L9:CoverageGraph] Idempotent upsert for coverage graph nodes and edges. Reducer writes graph deltas after each deep-loop iteration. Rejects self-loops, clamps weights to [0.0, 2.0], and merges metadata updates on repeated IDs. Requires specFolder, loopType, and sessionId for namespace isolation.',
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:714:      sessionId: { type: 'string', minLength: 1, description: 'Session identifier for namespace isolation (required)' },
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:748:    required: ['specFolder', 'loopType', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:762:      sessionId: { type: 'string', description: 'Optional session filter' },
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:171:  scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
+.opencode/skills/system-spec-kit/mcp_server/README.md:564:| `sessionId` | string | Session ID for deduplication across turns |
+.opencode/skills/system-spec-kit/mcp_server/README.md:696:| `sessionId` | string | Session attribution |
+.opencode/skills/system-spec-kit/mcp_server/README.md:888:| `sessionId` | string | Session identifier |
+.opencode/skills/system-spec-kit/mcp_server/README.md:1042:| `sessionId` | string | Filter by session |
+.opencode/skills/system-spec-kit/scripts/utils/fact-coercion.ts:27:  sessionId?: string;
+.opencode/skills/system-spec-kit/scripts/utils/fact-coercion.ts:95:      sessionId: ctx.sessionId,
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:22:  ['session_id', 'sessionId'],
+.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:66:    sessionId: normalizeScopeMatchValue(scope.sessionId),
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:43:function handleCompact(sessionId: string): OutputSection[] {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:44:  const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:45:  const pendingCompactPrime = readCompactPrime(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:47:    hookLog('warn', 'session-prime', `No cached compact payload for session ${sessionId}`);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:58:    hookLog('warn', 'session-prime', `Rejecting stale compact cache for session ${sessionId} (cached at ${cachedAt})`);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:115:  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:120:    claudeSessionId: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:177:function handleResume(sessionId: string): OutputSection[] {
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:178:  const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:215:  const sessionId = input.session_id ?? 'unknown';
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:217:  hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:224:      sections = handleCompact(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:232:      sections = handleResume(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:261:    clearCompactPrime(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:67:    sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:85:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:124:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:153:  sessionId: string;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:277:function hasSessionStateRecord(sessionId: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:283:    ).get(sessionId) as { 1?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:292:function hasSentMemoryRecord(sessionId: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:298:    ).get(sessionId) as { 1?: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:307:function isTrackedSession(sessionId: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:308:  if (!sessionId || typeof sessionId !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:312:  const normalizedSessionId = sessionId.trim();
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:330:function getSessionIdentityRecord(sessionId: string): {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:344:  `).get(sessionId) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:406:      error: `sessionId "${normalizedSessionId}" does not match a server-managed session. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:416:      error: `sessionId "${normalizedSessionId}" is not bound to a corroborated server identity. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:426:      error: `sessionId "${normalizedSessionId}" is bound to a different ${mismatch}. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.`,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:508:function shouldSendMemory(sessionId: string, memory: MemoryInput | number): boolean {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:515:  if (!sessionId || typeof sessionId !== 'string') return true;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:526:    const exists = stmt.get(sessionId, hash);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:536:  sessionId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:542:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(memories)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:573:      const existingRows = existingStmt.all(sessionId) as { memory_hash: string }[];
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:580:          const insertResult = insertStmt.run(sessionId, hash, memory.id || null, now);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:594:        enforceEntryLimit(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:634:function markMemorySent(sessionId: string, memory: MemoryInput | number): MarkResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:637:  if (!sessionId || typeof sessionId !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:638:    return { success: false, error: 'Valid sessionId is required' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:653:      stmt.run(sessionId, hash, memoryId, new Date().toISOString());
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:655:      enforceEntryLimit(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:666:function markMemoriesSentBatch(sessionId: string, memories: MemoryInput[]): MarkBatchResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:669:  if (!sessionId || !Array.isArray(memories) || memories.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:670:    return { success: false, markedCount: 0, error: 'Valid sessionId and memories array required' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:685:        const result = insertStmt.run(sessionId, hash, memory.id || null, now);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:691:      enforceEntryLimit(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:708:function enforceEntryLimit(sessionId: string): void {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:709:  if (!db || !sessionId) return;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:715:    const row = countStmt.get(sessionId) as { count: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:730:    deleteStmt.run(sessionId, sessionId, excess);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:843:function clearSession(sessionId: string): CleanupResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:844:  if (!db || !sessionId) return { success: false, deletedCount: 0 };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:850:    const result = stmt.run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:854:      workingMemory.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:857:      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:868:function getSessionStats(sessionId: string): SessionStats {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:869:  if (!db || !sessionId) return { totalSent: 0, oldestEntry: null, newestEntry: null };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:880:    const row = stmt.get(sessionId) as { total_sent: number; oldest_entry: string | null; newest_entry: string | null } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:898:function filterSearchResults(sessionId: string, results: MemoryInput[]): FilterResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:899:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results)) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:907:  const shouldSendMap = shouldSendMemoriesBatch(sessionId, results, true);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:938:function markResultsSent(sessionId: string, results: MemoryInput[]): MarkBatchResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:939:  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results) || results.length === 0) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:943:  return markMemoriesSentBatch(sessionId, results);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1020:function saveSessionState(sessionId: string, state: SessionStateInput = {}): InitResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1022:  if (!sessionId || typeof sessionId !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1023:    return { success: false, error: 'Valid sessionId is required' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1057:      sessionId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1079:function completeSession(sessionId: string): InitResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1080:  if (!db || !sessionId) return { success: false, error: 'Database or sessionId not available' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1088:    stmt.run(new Date().toISOString(), sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1092:      workingMemory.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1095:      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1126:function recoverState(sessionId: string, scope: SessionIdentityScope = {}): RecoverResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1128:  if (!sessionId || typeof sessionId !== 'string') {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1129:    return { success: false, error: 'Valid sessionId is required' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1143:    const row = stmt.get(sessionId) as Record<string, unknown> | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1156:      return { success: false, error: `sessionId "${sessionId}" is bound to a different ${mismatch}` };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1160:      sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1182:      updateStmt.run(new Date().toISOString(), sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1219:        sessionId: row.session_id as string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1241:    sessionId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1262:    : sessionId
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1263:      ? `memory_search({ sessionId: "${sessionId}" })`
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1278:| **Session ID** | \`${sessionId || 'N/A'}\` |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1324:function writeContinueSessionMd(sessionId: string, specFolderPath: string): CheckpointResult {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1325:  if (!sessionId || !specFolderPath) {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1326:    return { success: false, error: 'sessionId and specFolderPath are required' };
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1330:    const recoverResult = recoverState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1333:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1355:  sessionId: string,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1359:  const saveResult = saveSessionState(sessionId, state);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1366:    return writeContinueSessionMd(sessionId, folderPath);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:116:function recordToolCall(sessionId?: string): void {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:118:  if (typeof sessionId === 'string' && sessionId.trim().length > 0) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:119:    lastActiveSessionId = sessionId.trim();
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:132:function isSessionPrimed(sessionId: string): boolean {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:133:  return primedSessionIds.has(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:137:function markSessionPrimed(sessionId: string): void {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:138:  primedSessionIds.add(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:139:  lastActiveSessionId = sessionId;
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:492:  sessionId?: string,
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:494:  // Derive a session key from explicit sessionId or tool args.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:495:  const effectiveSessionId = sessionId
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:496:    ?? (typeof toolArgs.sessionId === 'string' ? toolArgs.sessionId : null)
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:560: * Reset priming state. When called with a sessionId, clears only that session.
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:563:function resetSessionPrimed(sessionId?: string): void {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:564:  if (sessionId) {
+.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:565:    primedSessionIds.delete(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts:66:  sessionId?: string;
+.opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts:128:    claudeSessionId: typeof parsed.sessionId === 'string' ? parsed.sessionId : null,
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:142:const { filtered, dedupStats } = filterSearchResults(sessionId, results);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:148:markResultsSent(sessionId, filtered);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:166:  console.log(`Session ${s.sessionId}: ${s.lastAction} in ${s.specFolder}`);
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:176:saveSessionState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:185:checkpointSession(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:196:| Check if should send | `shouldSendMemory(sessionId, memory)` | Before returning single memory |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:197:| Batch check | `shouldSendMemoriesBatch(sessionId, memories)` | Before returning multiple memories |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:198:| Mark single sent | `markMemorySent(sessionId, memory)` | After returning a memory |
+.opencode/skills/system-spec-kit/mcp_server/lib/session/README.md:199:| Mark batch sent | `markMemoriesSentBatch(sessionId, memories)` | After returning multiple memories |
 
 exec
-/bin/zsh -lc "rg -n \"SCHEMA_VERSION|schema_version|DROP TABLE IF EXISTS coverage_|DROP INDEX IF EXISTS idx_coverage_|initDb\\(|coverage_nodes|coverage_edges|coverage_snapshots\" .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph .opencode/skill/system-spec-kit/mcp_server/tests .opencode/skill/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"SCHEMA_VERSION|schema_version|DROP TABLE IF EXISTS coverage_|DROP INDEX IF EXISTS idx_coverage_|initDb\\(|coverage_nodes|coverage_edges|coverage_snapshots\" .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph .opencode/skills/system-spec-kit/mcp_server/tests .opencode/skills/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:93:        FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:97:            SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:127:        FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:131:            SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:174:    FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:175:    JOIN coverage_nodes s ON s.id = e.source_id
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:176:    JOIN coverage_nodes t ON t.id = e.target_id
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:269:    FROM coverage_nodes
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:282:    FROM coverage_edges
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:321:      SELECT * FROM coverage_nodes
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:350:    SELECT n.* FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:354:        SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:399:          SELECT COUNT(*) FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:405:          SELECT COALESCE(SUM(e.weight), 0) FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:410:      FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:384:    `SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND kind = 'DIMENSION'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:388:    SELECT COUNT(*) as c FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:391:        SELECT 1 FROM coverage_edges e WHERE e.source_id = n.id AND e.relation = 'COVERS'
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:399:    `SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND kind = 'FINDING'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:403:    SELECT COUNT(*) as c FROM coverage_nodes n
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:406:        SELECT 1 FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:415:    SELECT id, metadata FROM coverage_nodes
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:429:            `SELECT COUNT(*) as c FROM coverage_edges WHERE target_id = ? AND relation = 'RESOLVES'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:441:    `SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND relation = 'EVIDENCE_FOR'`,
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:461:    SELECT id, metadata FROM coverage_nodes
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:484:      FROM coverage_edges e
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:485:      JOIN coverage_nodes n ON n.id = e.source_id
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:558:    SELECT metrics FROM coverage_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:105:export const SCHEMA_VERSION = 2;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:  CREATE TABLE IF NOT EXISTS coverage_nodes (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:172:  CREATE TABLE IF NOT EXISTS coverage_edges (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:186:      REFERENCES coverage_nodes (spec_folder, loop_type, session_id, id),
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:188:      REFERENCES coverage_nodes (spec_folder, loop_type, session_id, id)
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:  CREATE TABLE IF NOT EXISTS coverage_snapshots (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:204:  CREATE TABLE IF NOT EXISTS schema_version (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:208:  CREATE INDEX IF NOT EXISTS idx_coverage_folder_type ON coverage_nodes(spec_folder, loop_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:209:  CREATE INDEX IF NOT EXISTS idx_coverage_kind ON coverage_nodes(kind);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:210:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(spec_folder, loop_type, session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:211:  CREATE INDEX IF NOT EXISTS idx_coverage_iteration ON coverage_nodes(iteration);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:212:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_source ON coverage_edges(spec_folder, loop_type, session_id, source_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:213:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_target ON coverage_edges(spec_folder, loop_type, session_id, target_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:214:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_relation ON coverage_edges(relation);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:215:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_folder_type ON coverage_edges(spec_folder, loop_type);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:216:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(spec_folder, loop_type, session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:217:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:228:export function initDb(dbDir: string): Database.Database {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:244:      "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_version'",
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:247:      const existing = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:248:      if (existing && existing.version < SCHEMA_VERSION) {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:250:          DROP INDEX IF EXISTS idx_coverage_folder_type;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:251:          DROP INDEX IF EXISTS idx_coverage_kind;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:252:          DROP INDEX IF EXISTS idx_coverage_session;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:253:          DROP INDEX IF EXISTS idx_coverage_iteration;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:254:          DROP INDEX IF EXISTS idx_coverage_edge_source;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:255:          DROP INDEX IF EXISTS idx_coverage_edge_target;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:256:          DROP INDEX IF EXISTS idx_coverage_edge_relation;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:257:          DROP INDEX IF EXISTS idx_coverage_edge_folder_type;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:258:          DROP INDEX IF EXISTS idx_coverage_edge_session;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:259:          DROP INDEX IF EXISTS idx_coverage_snapshot_session;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:260:          DROP TABLE IF EXISTS coverage_edges;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:261:          DROP TABLE IF EXISTS coverage_nodes;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:262:          DROP TABLE IF EXISTS coverage_snapshots;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:269:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:271:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:272:    } else if (versionRow.version < SCHEMA_VERSION) {
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:273:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:289:  if (!db) initDb(DATABASE_DIR);
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:338:    'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:342:      UPDATE coverage_nodes SET
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:355:    INSERT INTO coverage_nodes (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:373:    'SELECT * FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:390:  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:400:      'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND (source_id = ? OR target_id = ?)',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:403:      'DELETE FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:432:    'SELECT id FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:436:      UPDATE coverage_edges SET
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:447:    INSERT INTO coverage_edges (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:465:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:  const rows = d.prepare(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:483:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND source_id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND target_id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:507:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:515:    'UPDATE coverage_edges SET weight = ?, metadata = ? WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:525:    'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:540:    INSERT INTO coverage_snapshots (
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:560:      SELECT * FROM coverage_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:567:    SELECT * FROM coverage_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:579:      SELECT * FROM coverage_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:586:    SELECT * FROM coverage_snapshots
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:610:    'SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:614:    'SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:619:    'SELECT kind, COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? GROUP BY kind',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:625:    'SELECT relation, COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? GROUP BY relation',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:630:    'SELECT MAX(iteration) as max_iter FROM coverage_snapshots WHERE spec_folder = ? AND loop_type = ?',
-.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:645:    schemaVersion: SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:133:    initDb(tempDir);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62:    initDb(tempDir);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:247:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:318:    expect(byId.get(303)).toMatchObject({ publishable: false, exclusionReason: 'missing_schema_version' });
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:9:  CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:188:      schemaVersion: options.schemaVersion ?? CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:230:          schemaVersion: CACHED_SESSION_SUMMARY_SCHEMA_VERSION + 1,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:233:        expected: { status: 'rejected', category: 'fidelity', reason: 'schema_version_mismatch' },
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:153:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:419:    const beforeVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:423:    db.prepare('UPDATE schema_version SET version = 16 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:430:    const afterVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:32:  SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:886:    const db = initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:892:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:898:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:901:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:906:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:943:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:963:      initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:980:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:10:  GRAPH_METADATA_SCHEMA_VERSION,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:78:    expect(metadata.schema_version).toBe(GRAPH_METADATA_SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:118:      schema_version: 2,
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:128:    expect(validation.errors.join(' ')).toContain('schema_version');
-.opencode/skill/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:23:    initDb(tempDir);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:400:      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:13:      CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts:22:    schema_version: 1,
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:33:      exclusionReason: 'missing_schema_version',
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:3:import { SCHEMA_VERSION, validateBackwardCompatibility } from '../lib/search/vector-index-schema';
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:11:      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:22:        CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:27:        INSERT INTO schema_version (id, version, updated_at) VALUES (1, ${SCHEMA_VERSION}, datetime('now'));
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:107:      expect(report.schemaVersion).toBe(SCHEMA_VERSION);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:13:      CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:32:  it('keeps schema_version unchanged when a required migration index build fails', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:37:    database.prepare('UPDATE schema_version SET version = 14 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:49:    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:102:    database.prepare('UPDATE schema_version SET version = 22 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:126:    database.prepare('UPDATE schema_version SET version = 23 WHERE id = 1').run();
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:144:      CREATE TABLE schema_version (
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:149:      INSERT INTO schema_version (id, version, updated_at) VALUES (1, 25, datetime('now'));
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:54:  'schema_version',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:93:        FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:97:            SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:127:        FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:131:            SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:174:    FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:175:    JOIN coverage_nodes s ON s.id = e.source_id
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:176:    JOIN coverage_nodes t ON t.id = e.target_id
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:269:    FROM coverage_nodes
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:282:    FROM coverage_edges
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:321:      SELECT * FROM coverage_nodes
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:350:    SELECT n.* FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:354:        SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:399:          SELECT COUNT(*) FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:405:          SELECT COALESCE(SUM(e.weight), 0) FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts:410:      FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:384:    `SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND kind = 'DIMENSION'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:388:    SELECT COUNT(*) as c FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:391:        SELECT 1 FROM coverage_edges e WHERE e.source_id = n.id AND e.relation = 'COVERS'
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:399:    `SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND kind = 'FINDING'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:403:    SELECT COUNT(*) as c FROM coverage_nodes n
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:406:        SELECT 1 FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:415:    SELECT id, metadata FROM coverage_nodes
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:429:            `SELECT COUNT(*) as c FROM coverage_edges WHERE target_id = ? AND relation = 'RESOLVES'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:441:    `SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND relation = 'EVIDENCE_FOR'`,
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:461:    SELECT id, metadata FROM coverage_nodes
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:484:      FROM coverage_edges e
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:485:      JOIN coverage_nodes n ON n.id = e.source_id
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:558:    SELECT metrics FROM coverage_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:105:export const SCHEMA_VERSION = 2;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:157:  CREATE TABLE IF NOT EXISTS coverage_nodes (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:172:  CREATE TABLE IF NOT EXISTS coverage_edges (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:186:      REFERENCES coverage_nodes (spec_folder, loop_type, session_id, id),
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:188:      REFERENCES coverage_nodes (spec_folder, loop_type, session_id, id)
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:191:  CREATE TABLE IF NOT EXISTS coverage_snapshots (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:204:  CREATE TABLE IF NOT EXISTS schema_version (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:208:  CREATE INDEX IF NOT EXISTS idx_coverage_folder_type ON coverage_nodes(spec_folder, loop_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:209:  CREATE INDEX IF NOT EXISTS idx_coverage_kind ON coverage_nodes(kind);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:210:  CREATE INDEX IF NOT EXISTS idx_coverage_session ON coverage_nodes(spec_folder, loop_type, session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:211:  CREATE INDEX IF NOT EXISTS idx_coverage_iteration ON coverage_nodes(iteration);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:212:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_source ON coverage_edges(spec_folder, loop_type, session_id, source_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:213:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_target ON coverage_edges(spec_folder, loop_type, session_id, target_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:214:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_relation ON coverage_edges(relation);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:215:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_folder_type ON coverage_edges(spec_folder, loop_type);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:216:  CREATE INDEX IF NOT EXISTS idx_coverage_edge_session ON coverage_edges(spec_folder, loop_type, session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:217:  CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:228:export function initDb(dbDir: string): Database.Database {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:244:      "SELECT name FROM sqlite_master WHERE type='table' AND name='schema_version'",
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:247:      const existing = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:248:      if (existing && existing.version < SCHEMA_VERSION) {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:250:          DROP INDEX IF EXISTS idx_coverage_folder_type;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:251:          DROP INDEX IF EXISTS idx_coverage_kind;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:252:          DROP INDEX IF EXISTS idx_coverage_session;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:253:          DROP INDEX IF EXISTS idx_coverage_iteration;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:254:          DROP INDEX IF EXISTS idx_coverage_edge_source;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:255:          DROP INDEX IF EXISTS idx_coverage_edge_target;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:256:          DROP INDEX IF EXISTS idx_coverage_edge_relation;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:257:          DROP INDEX IF EXISTS idx_coverage_edge_folder_type;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:258:          DROP INDEX IF EXISTS idx_coverage_edge_session;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:259:          DROP INDEX IF EXISTS idx_coverage_snapshot_session;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:260:          DROP TABLE IF EXISTS coverage_edges;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:261:          DROP TABLE IF EXISTS coverage_nodes;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:262:          DROP TABLE IF EXISTS coverage_snapshots;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:269:    const versionRow = db.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:271:      db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:272:    } else if (versionRow.version < SCHEMA_VERSION) {
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:273:      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:289:  if (!db) initDb(DATABASE_DIR);
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:338:    'SELECT id FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:342:      UPDATE coverage_nodes SET
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:355:    INSERT INTO coverage_nodes (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:373:    'SELECT * FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:382:  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:390:  const rows = d.prepare(`SELECT * FROM coverage_nodes WHERE ${clause} AND kind = ?`).all(...params, kind) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:400:      'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND (source_id = ? OR target_id = ?)',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:403:      'DELETE FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:432:    'SELECT id FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:436:      UPDATE coverage_edges SET
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:447:    INSERT INTO coverage_edges (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:465:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:474:  const rows = d.prepare(`SELECT * FROM coverage_edges WHERE ${clause}`).all(...params) as Record<string, unknown>[];
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:483:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND source_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:493:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND target_id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:507:    'SELECT * FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:515:    'UPDATE coverage_edges SET weight = ?, metadata = ? WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:525:    'DELETE FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND id = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:540:    INSERT INTO coverage_snapshots (
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:560:      SELECT * FROM coverage_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:567:    SELECT * FROM coverage_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:579:      SELECT * FROM coverage_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:586:    SELECT * FROM coverage_snapshots
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:610:    'SELECT COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:614:    'SELECT COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:619:    'SELECT kind, COUNT(*) as c FROM coverage_nodes WHERE spec_folder = ? AND loop_type = ? GROUP BY kind',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:625:    'SELECT relation, COUNT(*) as c FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? GROUP BY relation',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:630:    'SELECT MAX(iteration) as max_iter FROM coverage_snapshots WHERE spec_folder = ? AND loop_type = ?',
+.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:645:    schemaVersion: SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:133:    initDb(tempDir);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:62:    initDb(tempDir);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:247:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search.vitest.ts:318:    expect(byId.get(303)).toMatchObject({ publishable: false, exclusionReason: 'missing_schema_version' });
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:9:  CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:188:      schemaVersion: options.schemaVersion ?? CACHED_SESSION_SUMMARY_SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:230:          schemaVersion: CACHED_SESSION_SUMMARY_SCHEMA_VERSION + 1,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:233:        expected: { status: 'rejected', category: 'fidelity', reason: 'schema_version_mismatch' },
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:153:    const versionRow = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:419:    const beforeVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:423:    db.prepare('UPDATE schema_version SET version = 16 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/regression-010-index-large-files.vitest.ts:430:    const afterVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:32:  SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:886:    const db = initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:892:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:898:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:901:    expect(stats.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:906:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:943:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:963:      initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:980:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:10:  GRAPH_METADATA_SCHEMA_VERSION,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:78:    expect(metadata.schema_version).toBe(GRAPH_METADATA_SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:118:      schema_version: 2,
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts:128:    expect(validation.errors.join(' ')).toContain('schema_version');
+.opencode/skills/system-spec-kit/mcp_server/tests/code-graph-seed-resolver.vitest.ts:23:    initDb(tempDir);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-impl.vitest.ts:400:      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:13:      CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/migration-checkpoint-scripts.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts:22:    schema_version: 1,
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:33:      exclusionReason: 'missing_schema_version',
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:3:import { SCHEMA_VERSION, validateBackwardCompatibility } from '../lib/search/vector-index-schema';
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:11:      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:22:        CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:27:        INSERT INTO schema_version (id, version, updated_at) VALUES (1, ${SCHEMA_VERSION}, datetime('now'));
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts:107:      expect(report.schemaVersion).toBe(SCHEMA_VERSION);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:13:      CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-state-baseline.vitest.ts:17:      INSERT INTO schema_version (id, version) VALUES (1, 21);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:32:  it('keeps schema_version unchanged when a required migration index build fails', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:37:    database.prepare('UPDATE schema_version SET version = 14 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:49:    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:102:    database.prepare('UPDATE schema_version SET version = 22 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:126:    database.prepare('UPDATE schema_version SET version = 23 WHERE id = 1').run();
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:144:      CREATE TABLE schema_version (
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts:149:      INSERT INTO schema_version (id, version, updated_at) VALUES (1, 25, datetime('now'));
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-completeness.vitest.ts:54:  'schema_version',
 
 codex
 The database schema itself looks scoped, but I’m seeing query-side joins that may still ignore the new composite identity. I’m reading those call sites carefully, because a correct primary key is not enough if higher-level reads still re-associate rows by bare `id`.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '150,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '150,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    150	          reason: `No incoming ${coverageRelations.join(' or ')} edges`,
    151	        });
@@ -2312,7 +2312,7 @@ exec
    240	          kind: targetNode.kind,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '240,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '240,330p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    240	          kind: targetNode.kind,
    241	          name: targetNode.name,
@@ -2407,7 +2407,7 @@ exec
    330	        loopType: r.loop_type as string,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '380,510p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '380,510p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    380	  const { specFolder, loopType } = ns;
    381	
@@ -2542,7 +2542,7 @@ exec
    510	/**
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Convergence Handler
@@ -2806,7 +2806,7 @@ exec
    260	      edgeCount: stats.totalEdges,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Query Handler
@@ -2982,963 +2982,963 @@ exec
    172	}
 
 exec
-/bin/zsh -lc "rg -n \"shared|collision|session isolation|sessionId|all_sessions_default|getNodes\\(|handleCoverageGraphConvergence|computeSignals|findContradictions|p0ResolutionRate|hotspotSaturation\" .opencode/skill/system-spec-kit/scripts/tests .opencode/skill/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"shared|collision|session isolation|sessionId|all_sessions_default|getNodes\\(|handleCoverageGraphConvergence|computeSignals|findContradictions|p0ResolutionRate|hotspotSaturation\" .opencode/skills/system-spec-kit/scripts/tests .opencode/skills/system-spec-kit/mcp_server/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:3:import { extractTriggerPhrases as sharedExtractTriggerPhrases } from '@spec-kit/shared/trigger-extractor';
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:17:    // ngramDepth 4 baseline (shared trigger-extractor and explicit depth 4)
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:92:  it('keeps trigger extraction locked to the shared baseline for frozen inputs', () => {
-.opencode/skill/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:97:      expect(sharedExtractTriggerPhrases(goldenCase.text).slice(0, 8)).toEqual(goldenCase.expected);
-.opencode/skill/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:229:// TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper fixtures. End-to-end detection tests render memory via the shared pipeline and assert on old packet-shape sections.
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:333:      'reorganize and simplify the shared module',
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:66:        // Ignore already-closed shared connections.
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:88:  // SUITE: Summary stats respect sessionId filter
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:89:  describe('T503: Summary stats respect sessionId filter', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:90:    it('T503-01: sessionId stats filter — totalTasks=1', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:103:        sessionId: sessA,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:120:        sessionId: sessB,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:130:      // Query with sessionId = sessA
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:133:        sessionId: sessA,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:143:    it('T503-01b: sessionId records filter consistent', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:157:        sessionId: sessA,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:173:        sessionId: sessB,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:185:        sessionId: sessA,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:192:      const allMatch = data.learningHistory.every(row => row.sessionId === sessA);
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:197:    it('T503-01c: sessionId filter normalizes whitespace to match stored records', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:200:      const sessionId = uniqueId('sess-trimmed');
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:209:        sessionId: `  ${sessionId}  `,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:217:        sessionId: `  ${sessionId}  `,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:222:        sessionId: `  ${sessionId}  `,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:228:      expect(data.learningHistory[0].sessionId).toBe(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:292:  // SUITE: Combined sessionId + onlyComplete filters
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:293:  describe('T503: Combined sessionId + onlyComplete filters', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:306:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:323:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:329:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:353:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:369:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:374:        sessionId: sessC,
-.opencode/skill/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:61:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:9:} from '@spec-kit/shared/contracts/retrieval-trace';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:22:} from '@spec-kit/shared/contracts/retrieval-trace';
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:34:    expect(trace.sessionId).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:38:  it('createTrace includes optional sessionId and intent', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:41:    expect(trace.sessionId).toBe('sess-123');
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:236:      sessionId: 'session-id',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:263:    expect(sanitizedRecord.sessionId).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:5:import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:295:    const { getAdaptiveWeights, INTENT_WEIGHT_PROFILES } = await import('../../shared/algorithms/adaptive-fusion');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:309:    const { getAdaptiveWeights, DEFAULT_WEIGHTS } = await import('../../shared/algorithms/adaptive-fusion');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:322:    const { INTENT_WEIGHT_PROFILES } = await import('../../shared/algorithms/adaptive-fusion');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:460:    const { hybridAdaptiveFuse } = await import('../../shared/algorithms/adaptive-fusion');
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:49:function writeConfig(specFolder: string, sessionId: string): void {
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:54:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:61:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:197:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-blocked","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:216:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-allowed","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:233:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-default","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:253:      '{"type":"config","topic":"Handler-shape fixture","sessionId":"graph-stop-handler","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
-.opencode/skill/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:255:      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","score":0.74,"signals":{"questionCoverage":0.8,"claimVerificationRate":0.7,"contradictionDensity":0.05,"sourceDiversity":2.1,"evidenceDepth":3.2,"score":0.74},"blockers":[],"trace":[],"timestamp":"2026-04-11T00:06:00Z","sessionId":"graph-stop-handler","generation":1}',
-.opencode/skill/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:221:      sessionId: 'copilot-parity',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:29:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:46:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:69:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:92:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:114:      sessionId: 'session-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:147:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:156:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:164:      sessionId: 'session-9',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:185:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:211:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:241:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:248:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:254:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:6:} from '@spec-kit/shared/scoring/folder-scoring';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:94:This regression fixture exists to prove that successful saves and duplicate no-op saves still report the correct UX payloads after the shared insufficiency gate and rendered-memory template contract were added to the save pipeline.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:225:    const sharedContent = buildMemoryContent('Duplicate Seed', 'Shared duplicate body for regression coverage.');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:227:    fs.writeFileSync(originalPath, sharedContent, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:228:    fs.writeFileSync(duplicatePath, sharedContent, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:308:    const sharedContent = buildMemoryContent('Atomic Duplicate Seed', 'Atomic duplicate behavior regression fixture.');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:310:    fs.writeFileSync(indexedPath, sharedContent, 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:319:        content: sharedContent,
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:14:} from '@spec-kit/shared/algorithms/adaptive-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:15:import type { FusionWeights, DegradedModeContract, AdaptiveFusionResult } from '@spec-kit/shared/algorithms/adaptive-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:16:import type { RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:76:    sessionId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:104:    scope.sessionId ?? null,
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:9:import { truncateToTokenBudget, COMPACTION_TOKEN_BUDGET } from '../hooks/claude/shared.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:69:        '{"message":{"content":"Reading /src/hooks/shared.ts"}}',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:80:      expect([...paths]).toContain('/src/hooks/shared.ts');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:418:      vi.doMock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:778:      vi.doMock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:905:      vi.doUnmock('@spec-kit/shared/parsing/memory-sufficiency');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1607:          sessionId: 'session-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1619:          sessionId: 'session-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1674:          sessionId: 'session-p',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1690:          sessionId: 'session-p',
-.opencode/skill/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts:6:} from '../../mcp_server/lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:272:    const sharedNode = results.find((row) => row['id'] === 9);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:273:    expect(sharedNode?.['score']).toBe(1.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:274:    expect(sharedNode?.['targetId']).toBe('11');
-.opencode/skill/system-spec-kit/mcp_server/tests/safety.vitest.ts:9:import type { MemoryDbRow } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:251:vi.mock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
-.opencode/skill/system-spec-kit/scripts/tests/description-enrichment.vitest.ts:21:  it('classifies placeholder stub patterns through the shared validator', () => {
-.opencode/skill/system-spec-kit/scripts/tests/description-enrichment.vitest.ts:45:      [{ TITLE: 'Implement shared validator', NARRATIVE: 'Unified description validation across extractors and scoring.' }],
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:10:} from '@spec-kit/shared/trigger-extractor';
-.opencode/skill/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:133:    sessionId: undefined,
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:9:  const sessionId = 'test-snapshot-store';
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:12:  afterEach(() => { try { rmSync(getStatePath(sessionId)); } catch { /* ok */ } });
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:15:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:18:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:26:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:29:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:32:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:38:    updateState(sessionId, { lastSpecFolder: 'specs/test' });
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:39:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:42:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:26:    expect(isProhibitedImportPath('../../shared/lib/../utils')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:29:  it('blocks sibling shared traversals and still allows public package imports', () => {
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:30:    expect(isProhibitedImportPath('../shared/utils')).toBe(true);
-.opencode/skill/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:31:    expect(isProhibitedImportPath('../../shared/utils/path-security')).toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:7:import { fuseResultsMulti, SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:8:import type { RankedList, FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:15:  if (relativePath.startsWith('shared/')) {
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:30:    source: 'shared/algorithms/rrf-fusion.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:35:    source: 'shared/embeddings.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:40:    source: 'shared/embeddings.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:55:    source: 'shared/embeddings/factory.ts',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:4:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:5:import type { Memory, MemoryDbRow } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:72:    sessionId: 'sess-abc123',
-.opencode/skill/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts:1:// TEST: Tool Sanitizer shared utilities
-.opencode/skill/system-spec-kit/scripts/tests/test-bug-fixes.js:18:const SHARED_PATH = path.join(ROOT, 'shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:34:function countSessionEntries(db: Database.Database, sessionId: string): number {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:36:    .get(sessionId) as CountRow;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:50:      const sessionId = 'stress-session';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:63:          const ok = workingMemory.setAttentionScore(sessionId, memoryId, score);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:66:          const currentCount = countSessionEntries(db, sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:71:      const finalCount = countSessionEntries(db, sessionId);
-.opencode/skill/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:11:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:131:vi.mock('@spec-kit/shared/contracts/retrieval-trace', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:149:    || scope.sessionId
-.opencode/skill/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:160:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
-.opencode/skill/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:613:    await fs.writeFile(realPath, 'shared-target', 'utf8');
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:384:        metadata: { applied: false, enabled: true, sessionId: 'test-001', boostedCount: 0, maxBoostApplied: 0 },
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:394:    input.config.sessionId = 'test-001';
-.opencode/skill/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:426:    input.config.sessionId = 'test-001';
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:26:  it('returns original filename when no collision', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:37:  it('appends -1 suffix on first collision', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:43:  it('appends incrementing suffix for multiple collisions', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:54:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:61:  it('ignores non-md files in collision check', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:67:  it('falls back to random hex suffix after 100 collisions (C5)', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:71:      fs.writeFileSync(path.join(tmpDir, `test-${i}.md`), `collision-${i}`);
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:81:  it('returns distinct random fallback names across repeated >100-collision calls', () => {
-.opencode/skill/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:84:      fs.writeFileSync(path.join(tmpDir, `test-${i}.md`), `collision-${i}`);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:171:    it('shared review relations have matching weights', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:326:    it('shared relations (COVERS, SUPPORTS, CONTRADICTS) exist in both sets', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:327:      const shared = ['COVERS', 'CONTRADICTS'];
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:331:      for (const rel of shared) {
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:5:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:6:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:14:      sessionId: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:43:  it('normalizes sessionId before filtering learning history queries', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:50:      sessionId: 'normalized-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:58:      sessionId: 'normalized-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:63:      sessionId: '  normalized-session  ',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:71:      sessionId: 'normalized-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:18:    it('T209-2: setAttentionScore accepts (sessionId, memoryId, score) without throwing', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:88:        sessionId: 'sess-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:141:        sessionId: 'sess-456',
-.opencode/skill/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:155:      expect(sel.context.sessionId).toBe('sess-456');
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:4:// Tests actual behavior of shared/embeddings.ts functions
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:21:const SHARED_DIST = path.join(ROOT, 'shared', 'dist');
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:861:  log('\n🔬 GROUP I: Re-export shim (lib/embeddings → shared/embeddings)');
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:865:    const sharedPath = path.join(ROOT, 'shared', 'dist', 'embeddings.js');
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:869:    const sharedMod = require(sharedPath);
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:871:    // The shim should re-export everything from shared
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:872:    const sharedKeys = Object.keys(sharedMod).sort();
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:875:    // All shared exports should be available through lib
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:878:    for (const key of sharedKeys) {
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:885:      'EB-126: lib/embeddings re-exports all shared/embeddings exports',
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:886:      missing.length === 0 ? `All ${sharedKeys.length} exports present` : `Missing: ${missing.join(', ')}`);
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:889:    assertEqual(libMod.generateEmbedding, sharedMod.generateEmbedding,
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:891:    assertEqual(libMod.EMBEDDING_DIM, sharedMod.EMBEDDING_DIM,
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:893:    assertEqual(libMod.TASK_PREFIX, sharedMod.TASK_PREFIX,
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:908:  console.log('  Source: shared/embeddings.ts (via lib/embeddings.ts shim)');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:19:  createWaveContext: (target: string, loopType: 'review' | 'research', options?: { sessionId?: string; generation?: number }) => object;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:90:      expect(ctx.sessionId).toMatch(/^wave-/);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:116:        sessionId: 'test-session',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:128:        sessionId: 'test',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:131:  it('T005a-I4c: MAX_INGEST_PATHS+1 paths throws the shared limit error', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:56:    const sessionId = 'gate-d-feature-3-session-dedup';
-.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:89:    const firstMark = sessionManager.markMemorySent(sessionId, specDocRow);
-.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:92:    const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, [
-.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-benchmark-memory-search.vitest.ts:127:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:8:// Mock the problematic @spec-kit/shared dependency chain
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:9:// So composite-scoring.ts can be imported without the shared workspace being linked
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:30:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:31:import type { FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts:6:const SHARED_ROOT = path.resolve(SERVER_ROOT, '..', 'shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts:128:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:32:function createSessionData(specFolderName: string, sessionId: string): SessionData {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:55:    SESSION_ID: sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:84:  it('passes options.sessionId as the third collectSessionDataFn argument', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:115:        sessionId: explicitSessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:139:vi.mock('@spec-kit/shared/ranking/learned-combiner', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:145:vi.mock('@spec-kit/shared/contracts/retrieval-trace', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-path-security.vitest.ts:8:import { validateFilePath } from '@spec-kit/shared/utils/path-security';
-.opencode/skill/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:78:    { id: 202, content: 'Tool schemas define optional fields, defaults, and shared validation helpers. '.repeat(2) },
-.opencode/skill/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:12:} from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:24:  findContradictions,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:201:    expect(getNodes(emptyResearchNs)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:204:    expect(findContradictions(emptyResearchNs)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:344:    const tsContradictions = findContradictions(ns)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:385:    expect(getNodes(researchNs).map(node => node.id).sort()).toEqual([
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:390:    expect(getNodes(reviewNs).map(node => node.id).sort()).toEqual([
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:396:    expect(findContradictions(reviewNs)).toEqual([]);
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:409:      hotspotSaturation: 0,
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:412:    expect(findContradictions(researchNs)).toHaveLength(1);
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:5:// Changes to shared files are correctly integrated and do not conflict.
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:13:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:74:    expect(brief.sharedPayload?.kind).toBe('startup');
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:75:    expect(brief.sharedPayload?.provenance.producer).toBe('startup_brief');
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:76:    expect(brief.sharedPayload?.sections.length).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:98:    expect(brief.sharedPayload?.provenance.trustState).toBe('stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:111:    expect(brief.sharedPayload?.provenance.trustState).toBe('stale');
-.opencode/skill/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:153:    expect(brief.sharedPayload).toBeNull();
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:80:  getSessionState: (sessionId: string) => MockSessionStateRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:155:            for (const [sessionId, row] of sessionState.entries()) {
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:157:                sessionState.delete(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:166:              sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:193:            const existing = sessionState.get(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:209:            sessionState.set(sessionId, nextRow);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:214:            const [updatedAt, sessionId] = args as [string, string];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:215:            const row = sessionState.get(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:238:            const [updatedAt, sessionId] = args as [string, string];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:239:            const row = sessionState.get(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:257:            const [sessionId] = args as [string];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:258:            return sessionState.has(sessionId) ? { 1: 1 } : undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:266:            const [sessionId] = args as [string];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:267:            return cloneRow(sessionState.get(sessionId));
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:271:            const [sessionId] = args as [string];
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:272:            const row = sessionState.get(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:335:    getSessionState: (sessionId: string) => cloneRow(sessionState.get(sessionId)),
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:472:      expect(result.sessions.map((session) => session.sessionId).sort()).toEqual(['list-a', 'list-b']);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:504:        sessionId: 'session-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:523:        sessionId: 'session-with-data',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:705:        sessionId: 'recover-fields',
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:788:      expect(result.sessions.map((session) => session.sessionId).sort()).toEqual(['recoverable-a', 'recoverable-b']);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:798:      expect(result.sessions.some((session) => session.sessionId === 'exclude-completed')).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:812:      const session = result.sessions.find((entry) => entry.sessionId === 'field-check');
-.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:815:        sessionId: 'field-check',
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:2:// Verifies current shared-provider architecture and MCP facade.
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:12:} from '@spec-kit/shared/embeddings/factory';
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:13:import { VoyageProvider } from '@spec-kit/shared/embeddings/providers/voyage';
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:14:import { getStartupEmbeddingProfile } from '../../shared/embeddings/factory.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:30:const HF_LOCAL_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'hf-local.ts');
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:31:const OPENAI_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'openai.ts');
-.opencode/skill/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:32:const VOYAGE_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'voyage.ts');
-.opencode/skill/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:2:import { validateApiKey } from '@spec-kit/shared/embeddings/factory';
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:386:  function getExtractedRow(database: TestDatabase, sessionId: string, memoryId: number): ExtractedRow | undefined {
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:398:    `).get(sessionId, memoryId) as ExtractedRow | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:422:      const sessionId = 'wm-provenance-session';
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:427:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:438:      const row = getExtractedRow(database, sessionId, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:454:      const sessionId = 'wm-no-count-probe';
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:467:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:476:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:492:      `).get(sessionId, memoryId) as { cnt: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:504:      const sessionId = 'wm-provenance-update';
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:509:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:520:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:534:      `).get(sessionId, memoryId) as { cnt: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:537:      const row = getExtractedRow(database, sessionId, memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:555:      const sessionId = 'wm-provenance-checkpoint';
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:560:        sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:574:      const removed = workingMemory.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:581:      const restoredRow = getExtractedRow(database, sessionId, memoryId);
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:579:  if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:580:    const candidate = args.sessionId.trim();
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:584:        args.sessionId = runtimeState.lastSessionId;
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:586:        delete args.sessionId;
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:874:    : typeof data.sessionId === 'string'
-.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts:875:      ? data.sessionId
-.opencode/skill/system-spec-kit/mcp_server/tests/mmr-reranker.vitest.ts:5:import { applyMMR, computeCosine } from '@spec-kit/shared/algorithms/mmr-reranker';
-.opencode/skill/system-spec-kit/mcp_server/tests/mmr-reranker.vitest.ts:6:import type { MMRCandidate, MMRConfig } from '@spec-kit/shared/algorithms/mmr-reranker';
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:39:vi.mock('../../shared/algorithms/rrf-fusion', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:64:vi.mock('../../shared/algorithms/adaptive-fusion', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:166:    const mod = await import('../../shared/algorithms/mmr-reranker');
-.opencode/skill/system-spec-kit/mcp_server/tests/lazy-loading.vitest.ts:33:  return import('../../shared/embeddings');
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-weighting.vitest.ts:3:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:53:      const sessionId = 'ses/sion/../bad';
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:54:      const path = getStatePath(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:57:      expect(path).toContain(createHash('sha256').update(sessionId).digest('hex').slice(0, 16));
-.opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:3:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:215:    const collisionSpecFolder = `specs/${checkpointName('t011-c7c-collision-folder')}`;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:216:    const collisionPath = `${collisionSpecFolder}/memory/collision.md`;
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:217:    const checkpoint = checkpointName('t011-c7c-id-collision');
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:234:    ).run(collisionSpecFolder, collisionPath, 'collision-title', memoryId);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:251:    expect(row?.spec_folder).toBe(collisionSpecFolder);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:252:    expect(row?.file_path).toBe(collisionPath);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:253:    expect(row?.title).toBe('collision-title');
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:6:import type { SharedPayloadEnvelope } from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:34:  it('builds a transport-only plan from shared payloads', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:59:        { id: 2, title: 'shared', score: 0.8 },
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:62:        { id: 2, title: 'shared-duplicate', score: 0.7 },
-.opencode/skill/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:68:    expect(merged[1]?.title).toBe('shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:9:  const sessionId = 'test-resume-session';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:12:  afterEach(() => { try { rmSync(getStatePath(sessionId)); } catch { /* ok */ } });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:15:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:19:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:33:    updateState(sessionId, {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:37:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:43:    updateState(sessionId, { lastSpecFolder: 'specs/a' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:44:    updateState(sessionId, { lastSpecFolder: 'specs/b' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:45:    const state = loadState(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:46:    expect(state!.claudeSessionId).toBe(sessionId);
-.opencode/skill/system-spec-kit/scripts/tests/test-upgrade-level.sh:73:# Use isolated copy of script with missing ../lib/shell-common.sh (no shared file mutation)
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:180:    // With 10 shared words and 1 different word each:
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:182:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:185:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:190:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:195:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:239:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:242:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:247:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:254:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:340:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:343:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:348:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:365:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:368:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:373:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:378:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/interference.vitest.ts:385:      triggerPhrases: sharedTriggers,
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:15:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:167:        { id: 'shared', content: 'shared doc' },
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:171:        { id: 'shared', content: 'shared doc' },
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:182:    expect(ids).toContain('shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:187:    const sharedDoc = expectDefined(fused.find((r: MultiFusedResult) => r.id === 'shared'), 'shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:188:    expect(sharedDoc.sources).toHaveLength(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:189:    expect(sharedDoc.rrfScore).toBeGreaterThan(expectDefined(fused.find((r: MultiFusedResult) => r.id === 'vec_only'), 'vec_only').rrfScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:191:    expect(sharedDoc.convergenceBonus).toBeGreaterThan(0);
-.opencode/skill/system-spec-kit/mcp_server/tests/learned-combiner.vitest.ts:24:} from '@spec-kit/shared/ranking/learned-combiner';
-.opencode/skill/system-spec-kit/mcp_server/tests/embedding-circuit-breaker.vitest.ts:10:import { __embeddingCircuitTestables } from '../../shared/embeddings';
-.opencode/skill/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:30:vi.mock('@spec-kit/shared/algorithms/mmr-reranker', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:7:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate'
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:19:const SHARED_TYPES_FILE = path.join(SERVER_DIR, '..', 'shared', 'types.ts')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:25:let sharedTypesCode = ''
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:71:    sharedTypesCode = fs.readFileSync(SHARED_TYPES_FILE, 'utf8')
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:435:      '@spec-kit/shared/embeddings/factory',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:964:          sessionId: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:972:          sessionId: null,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1099:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1107:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1115:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1134:      vi.doMock('@spec-kit/shared/embeddings/factory', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1463:          if (typeof args.sessionId === 'string') return args.sessionId
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1481:        simulateCall('memory_search', { query: 'recent issues', sessionId: 'sess-sticky-1' })
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1986:      // MCPResponse was moved to shared/types.ts and re-exported via 'export type'
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1987:      { name: 'MCPResponse', requiredFields: ['content'], source: 'sharedTypes' },
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2023:          sharedTypes: sharedTypesCode,
-.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2740:    it('T64d: pending recovery reuses shared startup root expansion', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:12:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:111:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'S' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:112:      { source: SOURCE_TYPES.BM25,   results: [{ id: 'shared', title: 'S' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:114:    const shared = fused.find(r => r.id === 'shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:115:    expect(shared).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:116:    expect(shared!.convergenceBonus).toBeCloseTo(CONVERGENCE_BONUS, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:121:      { source: SOURCE_TYPES.VECTOR,  results: [{ id: 'shared', title: 'S' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:122:      { source: SOURCE_TYPES.BM25,    results: [{ id: 'shared', title: 'S' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:123:      { source: SOURCE_TYPES.KEYWORD, results: [{ id: 'shared', title: 'S' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:125:    const shared = fused.find(r => r.id === 'shared');
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:126:    expect(shared).toBeDefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:127:    expect(shared!.convergenceBonus).toBeCloseTo(CONVERGENCE_BONUS * 2, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:235:        { id: 'shared', title: 'S' },
-.opencode/skill/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:239:        { id: 'shared', title: 'S' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:4:import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:5:import { fuseResults, fuseResultsMulti, fuseResultsCrossVariant, SOURCE_TYPES, DEFAULT_K } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:78:      { id: 'shared', title: 'Shared Result' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:82:      { id: 'shared', title: 'Shared Result' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:91:    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:95:    expect(shared.rrfScore).toBeGreaterThan(vectorOnly.rrfScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:96:    expect(shared.rrfScore).toBeGreaterThan(bm25Only.rrfScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:97:    expect(shared.sources).toHaveLength(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:98:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:138:      { id: 'shared', title: 'Shared' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:142:      { id: 'shared', title: 'Shared' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:158:    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:159:    expect(shared.sources).toContain(SOURCE_TYPES.VECTOR);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:160:    expect(shared.sources).toContain(SOURCE_TYPES.BM25);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:161:    expect(shared.sources).toHaveLength(2);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:162:    expect(shared.sourceScores).toHaveProperty(SOURCE_TYPES.BM25);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:163:    expect(shared.sourceScores[SOURCE_TYPES.BM25]).toEqual(expect.any(Number));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:182:    const vectorResults = [{ id: 'shared', title: 'Shared' }, { id: 'v-only', title: 'V' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:183:    const bm25Results = [{ id: 'shared', title: 'Shared' }, { id: 'b-only', title: 'B' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:184:    const graphResults = [{ id: 'shared', title: 'Shared' }, { id: 'g-only', title: 'G' }];
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:192:    const shared = requireResult(fused.find(r => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:193:    expect(shared.sources).toHaveLength(3);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:194:    expect(shared.rrfScore).toBeGreaterThan(requireResult(fused.find(r => r.id === 'v-only')).rrfScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:195:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:247:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v0-only', title: 'V0' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:250:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v1-only', title: 'V1' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:255:    const shared = requireResult(fused.find(r => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:258:    expect(shared.convergenceBonus).toBeGreaterThanOrEqual(0.10);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:259:    expect(shared.rrfScore).toBeGreaterThan(v0Only.rrfScore);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:268:      mkVariant(['shared', 'a']),
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:269:      mkVariant(['shared', 'b']),
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:270:      mkVariant(['shared', 'c']),
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:273:    const shared = requireResult(fused.find(r => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:275:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:297:        { id: 'shared', title: 'Shared' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:303:        { id: 'shared', title: 'Shared' },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:334:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:338:    const shared = requireResult(fused.find(r => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:340:    expect(shared.sourceScores[SOURCE_TYPES.VECTOR]).toBeCloseTo(2, 6);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:341:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 6);
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:346:      [{ source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] }],
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:361:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:362:      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'Shared' }] },
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:365:    const shared = requireResult(fused.find(r => r.id === 'shared'));
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:366:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 6);
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:618:      `).run(9101, 'anchor-spec', '/anchor-spec/shared.md', 'section-a', 'Anchor A', now, now, 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:624:      `).run(9102, 'anchor-spec', '/anchor-spec/shared.md', 'section-b', 'Anchor B', now, now, 'normal');
-.opencode/skill/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:642:          '/anchor-spec/shared.md',
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:18:} from '@spec-kit/shared/algorithms/adaptive-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:19:import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:20:import type { RrfItem, FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:21:import type { FusionWeights } from '@spec-kit/shared/algorithms/adaptive-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:402:    it('Composite recency delegates to shared folder recency scoring', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:405:      const sharedRecency = folderScoring.computeRecencyScore(
-.opencode/skill/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:411:      expect(compositeRecency).toBeCloseTo(sharedRecency, 8);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:26:      taskId: 'shared-task',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:30:      sessionId: 'sess-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:34:      taskId: 'shared-task',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:38:      sessionId: 'sess-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:43:      taskId: 'shared-task',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:47:      sessionId: 'sess-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:55:    `).get('specs/t081-session', 'shared-task', 'sess-a') as { phase: string; post_knowledge_score: number | null };
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:61:    `).get('specs/t081-session', 'shared-task', 'sess-b') as {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:76:  it('T081 requires sessionId when multiple open baselines share a task_id', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:83:      sessionId: 'sess-a',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:91:      sessionId: 'sess-b',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:101:      message: expect.stringContaining('Provide sessionId'),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:112:      sessionId: 'repeat-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:120:      sessionId: 'repeat-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:129:      sessionId: 'repeat-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:137:      sessionId: 'repeat-session',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:29:    sessionId?: unknown;
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:394:      sessionId: 'session-secret',
-.opencode/skill/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:418:    expect(tracePayload.sessionId).toBeUndefined();
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:175:      const sessionId: string = 'test-session-T003';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:177:      const shouldSend: boolean = sessionManager.shouldSendMemory(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:182:      const sessionId: string = 'test-session-T003';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:183:      const shouldSend2: boolean = sessionManager.shouldSendMemory(sessionId, 999);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:195:      const sessionId: string = 'test-session-T004';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:198:      const firstCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:201:      const markResult: MarkResult = sessionManager.markMemorySent(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:204:      const secondCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:216:      const sessionId: string = 'test-session-T005';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:224:        const result: MarkResult = sessionManager.markMemorySent(sessionId, memory);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:231:        expect(sessionManager.shouldSendMemory(sessionId, memory)).toBe(false);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:236:      `).get(sessionId) as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:280:      const sessionId: string = 'test-session-T007';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:290:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 502
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:291:      sessionManager.markMemorySent(sessionId, searchResults[3]); // 504
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:293:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:308:      const sessionId: string = 'test-session-T007b';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:314:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, [
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:337:      const sessionId: string = 'test-session-T008';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:346:      sessionManager.markMemorySent(sessionId, searchResults[0]); // 601
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:347:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 602
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:348:      sessionManager.markMemorySent(sessionId, searchResults[2]); // 603
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:350:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:359:      const sessionId: string = 'test-session-T008-zero';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:366:      const { dedupStats: noSavingsStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
-.opencode/skill/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:169:  it('promotes in-memory initialization to the shared connection used by default operations', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/envelope.vitest.ts:5:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:7:import * as rrfFusion from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1073:        id: 'shared-doc',
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1086:        id: 'shared-doc',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:6:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:7:import type { Memory, MemoryDbRow } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:208:        'shared anchor row',
-.opencode/skill/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:12:} from '@spec-kit/shared/scoring/folder-scoring';
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:36:    sessionId: 'sess-abc',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:217:      sessionId: 'session-XYZ',
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:232:    logFeedbackEvent(db, makeEvent({ sessionId: null }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:327:  it('filters by sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:329:    logFeedbackEvent(db, makeEvent({ sessionId: 'sess-1' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:330:    logFeedbackEvent(db, makeEvent({ sessionId: 'sess-2' }));
-.opencode/skill/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:332:    const forSess1 = getFeedbackEvents(db, { sessionId: 'sess-1' });
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:9:// ── Hook shared utilities ──
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:18:    const { parseHookStdin } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:33:    const { parseHookStdin } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:49:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:59:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:70:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:84:    const { withTimeout } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:91:    const { withTimeout } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:100:    const { truncateToTokenBudget } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:106:    const { truncateToTokenBudget } = await import('../hooks/claude/shared.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:67:    sessionId: 'sess-A',
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:218:      makeEvent({ memoryId: 'mem-A', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:219:      makeEvent({ memoryId: 'mem-A', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:220:      makeEvent({ memoryId: 'mem-B', sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:271:      makeEvent({ timestamp: 1000, sessionId: 'sess-in' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:272:      makeEvent({ timestamp: 5000, sessionId: 'sess-out' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:278:  it('treats distinct sessionIds as distinct sessions', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:281:      makeEvent({ sessionId: 'sess-1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:282:      makeEvent({ sessionId: 'sess-1' }), // same session, not counted twice
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:283:      makeEvent({ sessionId: 'sess-2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:532:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-A', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:533:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-B', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:534:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-C', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:554:      makeEvent({ memoryId: 'mem-weak', sessionId: 'sess-1', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:555:      makeEvent({ memoryId: 'mem-weak', sessionId: 'sess-2', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:574:      makeEvent({ memoryId: 'mem-ok', sessionId: 's1', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:575:      makeEvent({ memoryId: 'mem-ok', sessionId: 's2', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:576:      makeEvent({ memoryId: 'mem-ok', sessionId: 's3', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:578:      makeEvent({ memoryId: 'mem-skip', sessionId: 's4', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:593:      makeEvent({ sessionId: 'sess-1', timestamp: BASE_TS - 10_000 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:594:      makeEvent({ sessionId: 'sess-2', timestamp: BASE_TS - 10_000 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:595:      makeEvent({ sessionId: 'sess-3', timestamp: BASE_TS - 10_000 }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:613:      makeEvent({ sessionId: 'sX', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:614:      makeEvent({ sessionId: 'sY', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:615:      makeEvent({ sessionId: 'sZ', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:632:      makeEvent({ sessionId: 's1', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:633:      makeEvent({ sessionId: 's2', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:634:      makeEvent({ sessionId: 's3', timestamp: BASE_TS }),
-.opencode/skill/system-spec-kit/mcp_server/tests/session-state.vitest.ts:88:    expect(session.sessionId).toBe('sess-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-state.vitest.ts:502:    expect(session.sessionId).toBe('singleton-test');
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:14:  function setScoreDirectly(sessionId: string, memoryId: number, score: number) {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:18:    `).run(sessionId, memoryId, score);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:21:  function getScoreDirectly(sessionId: string, memoryId: number): number | null {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:24:    ).get(sessionId, memoryId) as { attention_score: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:28:  function countEntries(sessionId: string): number {
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:31:    ).get(sessionId) as { count: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:79:    const sessionId = 'decay-floor-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:88:      setScoreDirectly(sessionId, 1, 0.06);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:89:      wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:91:      const scoreAfter1 = getScoreDirectly(sessionId, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:100:        wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:103:      const scoreAfterMany = getScoreDirectly(sessionId, 1);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:109:      const count = countEntries(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:115:    const sessionId = 'delete-threshold-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:122:      setScoreDirectly(sessionId, 2, 0.05);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:123:      wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:125:      const scoreAtFloor = getScoreDirectly(sessionId, 2);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:130:      setScoreDirectly(sessionId, 3, 0.005);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:131:      wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:133:      const scoreClamped = getScoreDirectly(sessionId, 3);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:142:      const deleteSessionId = sessionId + '-delete-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:156:    const sessionId = 'floor-stability-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:163:      setScoreDirectly(sessionId, 4, 0.15);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:166:        wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:169:      const finalScore = getScoreDirectly(sessionId, 4);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:195:    const sessionId = 'mixed-scores-test';
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:202:      setScoreDirectly(sessionId, 5, 0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:203:      setScoreDirectly(sessionId, 6, 0.05);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:204:      setScoreDirectly(sessionId, 7, 0.005);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:205:      setScoreDirectly(sessionId, 8, 0.03);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:207:      wm.batchUpdateScores(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:209:      const s5 = getScoreDirectly(sessionId, 5);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:215:      const s6 = getScoreDirectly(sessionId, 6);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:220:      const s7 = getScoreDirectly(sessionId, 7);
-.opencode/skill/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:228:      const s8 = getScoreDirectly(sessionId, 8);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:26:    SHARED_DIR:               path.join(mDir, '..', 'shared'),
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:202:            sessionId: 'sess-123',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:214:        expect(message.includes('sessionId')).not.toBe(true);
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:109:function mockTrustedSession(sessionId: string): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:111:    requestedSessionId: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:112:    effectiveSessionId: sessionId,
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:188:          sessionId: 'session-auto-resume',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:512:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:530:    it('T027ka: rejects caller sessionId when it is not server-managed', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:536:          sessionId: 'session-new',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:553:        'Retry without sessionId to let the server mint a trusted session, then reuse the returned effectiveSessionId.'
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:573:          sessionId: 'session-abc',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:601:          sessionId: 'session-trace',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:634:          sessionId: 'session-known',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:663:          sessionId: 'session-default-on',
-.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:694:          sessionId: 'session-opt-out',
-.opencode/skill/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:14:} from '../hooks/claude/shared.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:242:      insertEntity(db, 2, 'shared entity');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:246:      expect(matches[0].canonicalName).toBe('shared entity');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:295:      insertEntity(db, 2, 'shared entity');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:298:      insertCatalogEntry(db, 'shared entity');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:305:        canonicalName: 'shared entity',
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:630:        VALUES ('1', '2', 'supports', 0.7, 'Cross-doc entity: shared', 'entity_linker')`)
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:665:      insertCatalogEntry(db, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:671:      insertEntity(db, 2, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:711:      insertCatalogEntry(db, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:719:      insertEntity(db, 2, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:736:      insertCatalogEntry(db, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:744:      insertEntity(db, 2, 'shared concept');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:762:      // Entity shared across 3 spec folders = 3 pairwise combinations
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:801:      insertEntity(db, 2, 'shared entity');
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:807:        VALUES ('shared entity', '["Shared Entity","shared entity"]', 'noun_phrase', 2),
-.opencode/skill/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:826:          evidence: 'Cross-doc entity: shared entity',
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:193:    // Use a larger holdout to make collision extremely unlikely
-.opencode/skill/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:24:vi.mock('@spec-kit/shared/algorithms/mmr-reranker', () => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:11:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
-.opencode/skill/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:36:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:4:} from '../lib/context/shared-payload.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:39:    vi.doUnmock('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:45:    vi.doUnmock('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:107:    const sharedPayload = await import('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:108:    vi.spyOn(sharedPayload, 'attachStructuralTrustFields').mockImplementation(() => {
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:109:      throw new sharedPayload.StructuralTrustPayloadError(
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:127:    vi.doUnmock('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:133:    vi.doUnmock('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:181:  it('T017-02: Handles minimal session state (only sessionId)', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:185:  it('T017-03: Handles undefined sessionId gracefully', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:200:  it('T018-02: Displays sessionId in code format', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:262:  it('T020-05: specFolder takes precedence over sessionId for resume command', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:10:// To bypass the flag check and hit the shared SQL path directly.
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:117:  it('uses the shared database directory resolver when db-dir env vars are unset', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:124:      import('../../shared/paths'),
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:33:import * as rrfFusion from '@spec-kit/shared/algorithms/rrf-fusion.js';
-.opencode/skill/system-spec-kit/mcp_server/tests/api-key-validation.vitest.ts:5:} from '@spec-kit/shared/embeddings/factory';
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:58:      sessionId: 'session-test',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:84:      sessionId: 'session-test',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:106:      sessionId: 'foreign-session',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:137:      sessionId: 'codex-evidence',
-.opencode/skill/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:176:      sessionId: 'generic-infra',
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:26:} from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:27:import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:524:      session_summary: 'Second same-minute save to verify collision-safe filename generation.',
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:67:    vi.doUnmock('../lib/context/shared-payload.js');
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:73:    vi.doMock('../lib/context/shared-payload.js', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:74:      const actual = await vi.importActual<typeof import('../lib/context/shared-payload.js')>(
-.opencode/skill/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:75:        '../lib/context/shared-payload.js',
-.opencode/skill/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:34:      expect(metrics.sessionId).toMatch(/^sess_/);
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:107:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:150:      sessionId: 'sess-ux-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/k-value-judged-sweep.vitest.ts:20:import { SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:24:  it('uses the shared helper contract and preserves a clean boundary with a Unicode ellipsis', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:39:  it('applies the shared truncation helper to decision-extractor fallback surfaces', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:40:    const longNarrative = 'The shared helper keeps the decision narrative readable while preserving word boundaries throughout the saved memory output. '
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:50:          title: 'Use the shared truncation helper',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:22:  function insertWorkingMemory(sessionId: string, memoryId: number, score: number = 0.8) {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:26:    `).run(sessionId, memoryId, score);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:29:  function countWorkingMemory(sessionId: string): number {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:32:    ).get(sessionId) as { count: number } | undefined;
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:105:      const sessionId = 'complete-test-session';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:108:      insertWorkingMemory(sessionId, 1, 0.9);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:109:      insertWorkingMemory(sessionId, 2, 0.7);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:110:      insertWorkingMemory(sessionId, 3, 0.5);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:112:      const countBefore = countWorkingMemory(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:116:      sm.saveSessionState(sessionId, { currentTask: 'testing' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:119:      const result = sm.completeSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:123:      const countAfter = countWorkingMemory(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:134:      const sessionId = 'clear-test-session';
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:137:      insertWorkingMemory(sessionId, 4, 0.8);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:138:      insertWorkingMemory(sessionId, 5, 0.6);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:140:      const countBefore = countWorkingMemory(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:147:      `).run(sessionId, 'test-hash-123', 4);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:150:      const result = sm.clearSession(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:154:      const countAfter = countWorkingMemory(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:160:      ).get(sessionId) as { count: number };
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:37:  'mcp_server/lib/governance/shared-policy.ts',
-.opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:3:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
-.opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:42:vi.mock('@spec-kit/shared/config', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:43:  const actual = await vi.importActual<typeof import('@spec-kit/shared/config')>('@spec-kit/shared/config');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:23:    it('T531-1: sessionId parameter accepted by search', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:28:            sessionId: 'dedup-session-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:35:        expect(getErrorMessage(error)).not.toContain('sessionId');
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:44:            sessionId: 'dedup-session-002',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:75:    it('T531-4: Search without sessionId accepted (no dedup)', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:80:            // No sessionId — dedup should not activate
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:94:    it('T531-5: Default dedup behavior with sessionId', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:99:            sessionId: 'dedup-session-default',
-.opencode/skill/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:115:            sessionId: 'dedup-session-disabled',
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:51:  run: (context: { sessionId: string }) => Promise<T>,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:58:  const sessionId = `session-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:70:    return await run({ sessionId });
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:82:  sessionId: string,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:99:    claudeSessionId: sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:100:    speckitSessionId: `speckit-${sessionId}`,
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:125:  saveState(sessionId, state);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:375:      await withHookSandbox(async ({ sessionId }) => {
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:378:        const liveStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:380:        seedHookState(sessionId, scenario);
-.opencode/skill/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:384:        const cachedStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:196:    it('namespace matches sessionId format', () => {
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:3:import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:13:        'Implemented a shared insufficiency gate across workflow and memory_save so thin saves fail explicitly.',
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:101:        'Implemented the shared insufficiency gate in both generate-context and memory_save, then wired the rejection payload so dry-run reports reasons and evidence counts before any write occurs.',
-.opencode/skill/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:115:        'Kept one shared insufficiency contract instead of backend-specific thresholds.',
-.opencode/skill/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js:22:// Monotonic counter for unique history IDs (avoids Date.now() collisions)
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:224:    // 1 question, 2 answering findings, 1 shared source → only 1 quality class → diversity = 1.0 < 1.5
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:79:    const sessionId = 'test-session-123';
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:84:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:97:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:465:    const sessionId = generateSessionId();
-.opencode/skill/system-spec-kit/scripts/tests/test-extractors-loaders.js:466:    assertMatch(sessionId, /^session-\d+-[a-z0-9]+$/, 'EXT-Session-016: Session ID format correct');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:25:  it('exports parity patterns through the shared NOISE_PATTERNS list', () => {
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:37:  it('keeps shared-prefix prompts when their bigram shingles diverge', () => {
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:38:    const sharedPrefix = Array.from({ length: 20 }, (_, index) => `shared-prefix-token-${index}`).join(' ');
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:41:    const firstPrompt = `${sharedPrefix} ${firstTail}`;
-.opencode/skill/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:42:    const secondPrompt = `${sharedPrefix} ${secondTail}`;
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:665:    // Test 3: validate_anchor_uniqueness handles collisions
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:669:      pass('T-009e: validate_anchor_uniqueness handles collisions', unique);
-.opencode/skill/system-spec-kit/scripts/tests/test-scripts-modules.js:671:      fail('T-009e: validate_anchor_uniqueness handles collisions', unique);
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:102:    const longRationale = 'Because the shared truncation helper keeps the decision context readable and avoids clipping words in the saved memory output. '
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:110:          decision: 'Adopt the shared truncation helper everywhere',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:120:    expect(result.DECISIONS[0]?.CONTEXT).toContain('Adopt the shared truncation helper everywhere');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:16:  createBoard: (opts: { sessionId: string; generation?: number; loopType: string; target?: string }) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:32:  createSegmentState: (id: string, config: { sessionId: string; generation?: number; waveId?: string; loopType?: string; files?: string[]; domains?: string[] }) => any;
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:53:      expect(b.sessionId).toBe('sess-1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:60:    it('throws for missing sessionId', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:127:      expect(record.sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:179:      expect(segState.MERGE_KEYS).toEqual(['sessionId', 'generation', 'segment', 'wave', 'findingId']);
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:187:      expect(s.sessionId).toBe('sess-1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:197:    it('throws for missing sessionId', () => {
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:206:      expect(record.sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:294:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f1","valid":true}',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:296:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f2","also":"valid"}',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:308:        sessionId: 's1', generation: 1, segment: 'seg-1', wave: 'w1', findingId: 'f1',
-.opencode/skill/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:315:      const result = segState.validateMergeKeys({ sessionId: 's1' });
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:135:      sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:150:      sessionId: 'hit-current-4',
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:13:// Configure relative paths - embeddings consolidated to shared/ on 2024-12-31
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:14:const libPath = path.join(__dirname, '../../shared/dist');
-.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:25:    // Test 1: Import modules (from shared/ after 2024-12-31 consolidation)
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:5:import { extractTriggerPhrases as extractSharedTriggerPhrases } from '@spec-kit/shared/trigger-extractor';
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:28:  vi.doUnmock('../../shared/embeddings/factory');
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:67:    const embeddings = await import('../../shared/embeddings');
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:98:    vi.doMock('../../shared/embeddings/factory', () => ({
-.opencode/skill/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:109:    const embeddings = await import('../../shared/embeddings');
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:15:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:29:  it('falls back to the shared boundary-safe helper for very long summaries', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:51:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:19:import { handleCoverageGraphConvergence } from '../../mcp_server/handlers/coverage-graph/convergence.js';
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:26:function makeNode(id: string, sessionId: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:31:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:38:function makeEdge(id: string, sessionId: string, sourceId: string, targetId: string, relation: CoverageEdge['relation']): CoverageEdge {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:43:    sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:52:  response: Awaited<ReturnType<typeof handleCoverageGraphConvergence>>,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:57:describe('coverage graph session isolation', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:106:  it('returns only the requested session nodes when sessionId is provided', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:107:    const sessionNodes = getNodes({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:110:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:121:    const aggregateNodes = getNodes({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:137:  it('returns only the requested session edges when sessionId is provided', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:141:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:165:  it('computes convergence from the session-scoped subset and defaults to all sessions when sessionId is omitted', async () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:166:    const scopedData = parseHandlerData(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:169:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:175:      sessionId: SESSION_A,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:183:    const aggregateData = parseHandlerData(await handleCoverageGraphConvergence({
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:192:    expect(aggregateData.namespace.sessionId).toBeUndefined();
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:193:    expect(aggregateData.scopeMode).toBe('all_sessions_default');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:201:// REQ-028 (F004, F005 in the 042 closing audit): shared-ID
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:202:// collision regression. Two sessions intentionally reuse the same
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:210:describe('coverage graph session isolation — shared-ID collisions', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:211:  const SHARED_SPEC = 'specs/042-session-collision';
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:216:  const nsX = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_X };
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:217:  const nsY = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_Y };
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:219:  function collisionNode(sessionId: string, id: string, name: string): CoverageNode {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:224:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:230:  function collisionEdge(sessionId: string, id: string, sourceId: string, targetId: string): CoverageEdge {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:235:      sessionId,
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:246:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-collision-'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:260:    // Session X writes "q-shared" first with one name.
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:261:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X text'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:262:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X text');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:263:    expect(getNode(nsY, 'q-shared')).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:268:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y text'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:270:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X text');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:271:    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y text');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:273:    const allSessionX = getNodes(nsX).map((n) => n.id);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:274:    const allSessionY = getNodes(nsY).map((n) => n.id);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:275:    expect(allSessionX).toEqual(['q-shared']);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:276:    expect(allSessionY).toEqual(['q-shared']);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:278:    const aggregate = getNodes({ specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE });
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:284:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:285:    upsertNode(collisionNode(SESSION_X, 'f-shared', 'Finding X'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:286:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:287:    upsertNode(collisionNode(SESSION_Y, 'f-shared', 'Finding Y'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:289:    upsertEdge(collisionEdge(SESSION_X, 'answers-shared', 'f-shared', 'q-shared'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:290:    expect(getEdge(nsX, 'answers-shared')).toBeTruthy();
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:291:    expect(getEdge(nsY, 'answers-shared')).toBeNull();
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:294:    upsertEdge(collisionEdge(SESSION_Y, 'answers-shared', 'f-shared', 'q-shared'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:296:    const edgeX = getEdge(nsX, 'answers-shared');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:297:    const edgeY = getEdge(nsY, 'answers-shared');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:300:    expect(edgeX?.sessionId).toBe(SESSION_X);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:301:    expect(edgeY?.sessionId).toBe(SESSION_Y);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:308:    expect(getEdgesFrom(nsX, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:309:    expect(getEdgesFrom(nsY, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:313:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v1'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:314:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y v1'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:317:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v2'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:319:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X v2');
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:320:    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y v1');
-.opencode/skill/system-spec-kit/mcp_server/tests/atomic-index-memory.vitest.ts:225:  it('serializes concurrent writes through the shared spec-folder lock', async () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:32:    sessionId?: string | null;
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:67:    params.sessionId ?? null,
-.opencode/skill/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:3:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:54:          sessionId: 'session-001',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:6:import type { MCPResponse } from '@spec-kit/shared/types';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:12:} from '@spec-kit/shared/parsing/memory-sufficiency';
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:13:import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:73:  'refactor shared utility functions module',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:62:    sessionId: 'rvw-fail-closed',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:117:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:141:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:142:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:179:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:182:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
-.opencode/skill/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:195:    expect(result.registry.sessionId).toBe('rvw-fail-closed');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:80:function insertSentRow(sessionId: string, hash: string, memoryId: number | null, sentAt: string): void {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:83:  ).run(sessionId, hash, memoryId, sentAt);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:232:    it('returns failure for empty sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:264:    it('empty sessionId returns zeros', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:334:    it('generates a server session when caller omits sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:430:    it('rejects empty sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:449:    it('fails for empty sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:506:        expect(state.sessionId).toBe('recover-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:539:    it('rejects empty sessionId', () => {
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:560:        const ids = r.sessions.map((s: InterruptedSession) => s.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:564:        const s1 = r.sessions.find((s: InterruptedSession) => s.sessionId === 'int-1');
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:577:      const ids = r.sessions.map((session: InterruptedSession) => session.sessionId);
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:598:        sessionId: 'gen-md-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:619:      // Minimal input (only sessionId required)
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:620:      const md = sm.generateContinueSessionMd({ sessionId: 'gen-md-2' });
-.opencode/skill/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:625:      // Without specFolder, should use sessionId-based resume command
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:71:      sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:85:      sessionId: 'miss-current-2',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:98:      sessionId: 'ambiguity-current-3',
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:125:        sessionId: 'hit-current-3',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:127:      sessionId: 'session-1',
-.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:160:      sessionId: undefined,
-.opencode/skill/system-spec-kit/scripts/tests/memory-quality-phase6-template.test.ts:13:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
-.opencode/skill/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts:89:        sessionId: 'implementation-save-2',
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:18:    fs.mkdirSync(path.join(root, 'shared'), { recursive: true });
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:39:  it('T39: GAP A detects shared -> mcp_server/scripts imports across syntax variants', () => {
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:42:    writeFixtureFile(root, 'shared/named-multiline.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:50:    writeFixtureFile(root, 'shared/default-import.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:55:    writeFixtureFile(root, 'shared/namespace-import.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:60:    writeFixtureFile(root, 'shared/dynamic-import.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:78:  it('parses export-from, import type, and require() forms when checking shared neutrality', () => {
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:81:    writeFixtureFile(root, 'shared/export-from.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:85:    writeFixtureFile(root, 'shared/import-type.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:90:    writeFixtureFile(root, 'shared/require-call.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:206:    writeFixtureFile(root, 'shared/utils.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:207:      'export const sharedValue = 42;',
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:226:  it('T45: valid mcp_server/scripts -> shared imports are not false positives', () => {
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:229:    writeFixtureFile(root, 'shared/utils.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:230:      'export const sharedValue = 42;',
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:233:    writeFixtureFile(root, 'shared/consumer.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:234:      "import { sharedValue } from './utils';",
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:235:      'export const value = sharedValue;',
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:239:      "import { sharedValue } from '../../shared/utils';",
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:240:      'export const fromMcp = sharedValue;',
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:243:    writeFixtureFile(root, 'scripts/use-shared.ts', [
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:244:      "import { sharedValue } from '../shared/utils';",
-.opencode/skill/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:245:      'export const fromScripts = sharedValue;',
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:1:{"type":"config","mode":"review","topic":"Review of graph optimization module","reviewTarget":"specs/040-graph-optimization","reviewTargetType":"spec-folder","reviewDimensions":["correctness","security","traceability","maintainability"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"createdAt":"2026-03-20T14:00:00Z","specFolder":"040-graph-optimization","releaseReadinessState":"in-progress"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"D1 Correctness - reducer logic review","dimensions":["correctness"],"filesReviewed":["src/graph-reducer.ts","src/parser.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":4,"findingsSummary":{"P0":1,"P1":2,"P2":1},"findingsNew":{"P0":1,"P1":2,"P2":1},"newFindingsRatio":0.90,"timestamp":"2026-03-20T14:12:00Z","durationMs":72000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"D2 Security - injection prevention audit","dimensions":["security","correctness"],"filesReviewed":["src/sanitizer.ts","src/input-validator.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":6,"findingsSummary":{"P0":1,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.40,"timestamp":"2026-03-20T14:24:00Z","durationMs":65000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:4:{"type":"event","event":"blocked_stop","mode":"review","run":2,"stopReason":"blockedStop","legalStop":{"blockedBy":["dimensionCoverage","p0Resolution"],"gateResults":{"findingStability":{"pass":true,"detail":"Stability voted STOP."},"dimensionCoverage":{"pass":false,"detail":"Traceability and maintainability not examined."},"p0Resolution":{"pass":false,"detail":"1 unresolved P0."},"evidenceDensity":{"pass":true,"detail":"Density sufficient."},"hotspotSaturation":{"pass":true,"detail":"Hotspots saturated."}},"replayInputs":{"iterationCount":2,"newFindingsRatio":0.40,"noveltyRatio":0.40,"dimensionsExamined":["correctness","security"],"reviewDimensions":["correctness","security","traceability","maintainability"],"activeFindings":{"P0":1,"P1":3,"P2":2},"hotspotCoverage":{"saturated":1,"required":2}}},"recoveryStrategy":"Cover traceability and maintainability dimensions, then resolve the active P0.","timestamp":"2026-03-20T14:24:30Z"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6:{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":3,"verdict":"CONDITIONAL","activeP0":0,"activeP1":3,"activeP2":4,"dimensionCoverage":1.0,"stopReason":"converged","legalStop":{"blockedBy":[],"gateResults":{"findingStability":{"pass":true,"detail":"Stable."},"dimensionCoverage":{"pass":true,"detail":"All dimensions covered."},"p0Resolution":{"pass":true,"detail":"P0 resolved."},"evidenceDensity":{"pass":true,"detail":"Sufficient."},"hotspotSaturation":{"pass":true,"detail":"Saturated."}},"replayInputs":{"iterationCount":3,"newFindingsRatio":0.08,"noveltyRatio":0.08,"dimensionsExamined":["correctness","security","traceability","maintainability"],"hotspotCoverage":{"saturated":2,"required":2},"stopScore":0.62}},"timestamp":"2026-03-20T14:38:00Z"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl:1:{"type":"config","mode":"research","topic":"Legacy holdout replay fixture","maxIterations":5,"convergenceThreshold":0.15,"stuckThreshold":3,"sessionId":"replay-028-fixture"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:1:{"type":"config","mode":"review","topic":"Replay fixture for 040","maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"sessionId":"replay-040-fixture"}
-.opencode/skill/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC1-truncation.json:3:  "sessionSummary": "Phase 1 foundation work focused on two narrow repairs that improve memory quality without widening the remediation packet into unrelated metadata or reviewer behavior. The first repair aligned the OVERVIEW anchor identity so the table of contents, the HTML anchor, and the internal comment marker all point to the same destination. The second repair extracted a shared truncation helper so long session summaries stop at a clean word boundary and carry the canonical Unicode ellipsis instead of drifting between punctuation styles. The fixture describes a realistic verification pass where the helper was reused by the observation summary path, the OVERVIEW owner adopted the same contract, the compiled CLI replay was exercised with explicit JSON input, and the temporary replay artifacts were removed immediately after the check so the packet memory store stayed clean for the real documentation workflow.",
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:3:import { extractTriggerPhrases as sharedExtractTriggerPhrases } from '@spec-kit/shared/trigger-extractor';
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:17:    // ngramDepth 4 baseline (shared trigger-extractor and explicit depth 4)
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:92:  it('keeps trigger extraction locked to the shared baseline for frozen inputs', () => {
+.opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts:97:      expect(sharedExtractTriggerPhrases(goldenCase.text).slice(0, 8)).toEqual(goldenCase.expected);
+.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts:229:// TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper fixtures. End-to-end detection tests render memory via the shared pipeline and assert on old packet-shape sections.
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts:333:      'reorganize and simplify the shared module',
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:66:        // Ignore already-closed shared connections.
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:88:  // SUITE: Summary stats respect sessionId filter
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:89:  describe('T503: Summary stats respect sessionId filter', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:90:    it('T503-01: sessionId stats filter — totalTasks=1', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:103:        sessionId: sessA,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:120:        sessionId: sessB,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:130:      // Query with sessionId = sessA
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:133:        sessionId: sessA,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:143:    it('T503-01b: sessionId records filter consistent', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:157:        sessionId: sessA,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:173:        sessionId: sessB,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:185:        sessionId: sessA,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:192:      const allMatch = data.learningHistory.every(row => row.sessionId === sessA);
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:197:    it('T503-01c: sessionId filter normalizes whitespace to match stored records', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:200:      const sessionId = uniqueId('sess-trimmed');
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:209:        sessionId: `  ${sessionId}  `,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:217:        sessionId: `  ${sessionId}  `,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:222:        sessionId: `  ${sessionId}  `,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:228:      expect(data.learningHistory[0].sessionId).toBe(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:292:  // SUITE: Combined sessionId + onlyComplete filters
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:293:  describe('T503: Combined sessionId + onlyComplete filters', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:306:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:323:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:329:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:353:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:369:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts:374:        sessionId: sessC,
+.opencode/skills/system-spec-kit/mcp_server/tests/full-spec-doc-indexing.vitest.ts:61:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:9:} from '@spec-kit/shared/contracts/retrieval-trace';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:22:} from '@spec-kit/shared/contracts/retrieval-trace';
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:34:    expect(trace.sessionId).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:38:  it('createTrace includes optional sessionId and intent', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:41:    expect(trace.sessionId).toBe('sess-123');
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:236:      sessionId: 'session-id',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-trace.vitest.ts:263:    expect(sanitizedRecord.sessionId).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:5:import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:295:    const { getAdaptiveWeights, INTENT_WEIGHT_PROFILES } = await import('../../shared/algorithms/adaptive-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:309:    const { getAdaptiveWeights, DEFAULT_WEIGHTS } = await import('../../shared/algorithms/adaptive-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:322:    const { INTENT_WEIGHT_PROFILES } = await import('../../shared/algorithms/adaptive-fusion');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-138-pipeline.vitest.ts:460:    const { hybridAdaptiveFuse } = await import('../../shared/algorithms/adaptive-fusion');
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:49:function writeConfig(specFolder: string, sessionId: string): void {
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:54:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:61:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:197:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-blocked","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:216:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-allowed","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:233:      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-default","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:253:      '{"type":"config","topic":"Handler-shape fixture","sessionId":"graph-stop-handler","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
+.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:255:      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","score":0.74,"signals":{"questionCoverage":0.8,"claimVerificationRate":0.7,"contradictionDensity":0.05,"sourceDiversity":2.1,"evidenceDepth":3.2,"score":0.74},"blockers":[],"trace":[],"timestamp":"2026-04-11T00:06:00Z","sessionId":"graph-stop-handler","generation":1}',
+.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts:221:      sessionId: 'copilot-parity',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:29:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:46:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:69:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:92:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:114:      sessionId: 'session-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:147:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:156:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:164:      sessionId: 'session-9',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:185:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:211:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:241:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:248:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-governance.vitest.ts:254:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/folder-scoring-overflow.vitest.ts:6:} from '@spec-kit/shared/scoring/folder-scoring';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:94:This regression fixture exists to prove that successful saves and duplicate no-op saves still report the correct UX payloads after the shared insufficiency gate and rendered-memory template contract were added to the save pipeline.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:225:    const sharedContent = buildMemoryContent('Duplicate Seed', 'Shared duplicate body for regression coverage.');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:227:    fs.writeFileSync(originalPath, sharedContent, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:228:    fs.writeFileSync(duplicatePath, sharedContent, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:308:    const sharedContent = buildMemoryContent('Atomic Duplicate Seed', 'Atomic duplicate behavior regression fixture.');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:310:    fs.writeFileSync(indexedPath, sharedContent, 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:319:        content: sharedContent,
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:14:} from '@spec-kit/shared/algorithms/adaptive-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:15:import type { FusionWeights, DegradedModeContract, AdaptiveFusionResult } from '@spec-kit/shared/algorithms/adaptive-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/adaptive-fusion.vitest.ts:16:import type { RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:76:    sessionId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-dedup.vitest.ts:104:    scope.sessionId ?? null,
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:9:import { truncateToTokenBudget, COMPACTION_TOKEN_BUDGET } from '../hooks/claude/shared.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:69:        '{"message":{"content":"Reading /src/hooks/shared.ts"}}',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-precompact.vitest.ts:80:      expect([...paths]).toContain('/src/hooks/shared.ts');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:418:      vi.doMock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:778:      vi.doMock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:905:      vi.doUnmock('@spec-kit/shared/parsing/memory-sufficiency');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1607:          sessionId: 'session-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1619:          sessionId: 'session-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1674:          sessionId: 'session-p',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:1690:          sessionId: 'session-p',
+.opencode/skills/system-spec-kit/scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts:6:} from '../../mcp_server/lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:272:    const sharedNode = results.find((row) => row['id'] === 9);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:273:    expect(sharedNode?.['score']).toBe(1.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-search-fn.vitest.ts:274:    expect(sharedNode?.['targetId']).toBe('11');
+.opencode/skills/system-spec-kit/mcp_server/tests/safety.vitest.ts:9:import type { MemoryDbRow } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/scripts/tests/task-enrichment.vitest.ts:251:vi.mock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
+.opencode/skills/system-spec-kit/scripts/tests/description-enrichment.vitest.ts:21:  it('classifies placeholder stub patterns through the shared validator', () => {
+.opencode/skills/system-spec-kit/scripts/tests/description-enrichment.vitest.ts:45:      [{ TITLE: 'Implement shared validator', NARRATIVE: 'Unified description validation across extractors and scoring.' }],
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-extractor.vitest.ts:10:} from '@spec-kit/shared/trigger-extractor';
+.opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-prefilter.vitest.ts:133:    sessionId: undefined,
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:9:  const sessionId = 'test-snapshot-store';
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:12:  afterEach(() => { try { rmSync(getStatePath(sessionId)); } catch { /* ok */ } });
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:15:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:18:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:26:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:29:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:32:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:38:    updateState(sessionId, { lastSpecFolder: 'specs/test' });
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:39:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/token-snapshot-store.vitest.ts:42:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:26:    expect(isProhibitedImportPath('../../shared/lib/../utils')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:29:  it('blocks sibling shared traversals and still allows public package imports', () => {
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:30:    expect(isProhibitedImportPath('../shared/utils')).toBe(true);
+.opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts:31:    expect(isProhibitedImportPath('../../shared/utils/path-security')).toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:7:import { fuseResultsMulti, SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-degree-channel.vitest.ts:8:import type { RankedList, FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:15:  if (relativePath.startsWith('shared/')) {
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:30:    source: 'shared/algorithms/rrf-fusion.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:35:    source: 'shared/embeddings.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:40:    source: 'shared/embeddings.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts:55:    source: 'shared/embeddings/factory.ts',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:4:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:5:import type { Memory, MemoryDbRow } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization.vitest.ts:72:    sessionId: 'sess-abc123',
+.opencode/skills/system-spec-kit/scripts/tests/tool-sanitizer.vitest.ts:1:// TEST: Tool Sanitizer shared utilities
+.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:18:const SHARED_PATH = path.join(ROOT, 'shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:34:function countSessionEntries(db: Database.Database, sessionId: string): number {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:36:    .get(sessionId) as CountRow;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:50:      const sessionId = 'stress-session';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:63:          const ok = workingMemory.setAttentionScore(sessionId, memoryId, score);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:66:          const currentCount = countSessionEntries(db, sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-stress.vitest.ts:71:      const finalCount = countSessionEntries(db, sessionId);
+.opencode/skills/system-spec-kit/scripts/tests/memory-render-fixture.vitest.ts:11:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:131:vi.mock('@spec-kit/shared/contracts/retrieval-trace', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:149:    || scope.sessionId
+.opencode/skills/system-spec-kit/mcp_server/tests/stage1-expansion.vitest.ts:160:    const sessionMatches = !scope.sessionId || row.session_id === scope.sessionId;
+.opencode/skills/system-spec-kit/mcp_server/tests/file-watcher.vitest.ts:613:    await fs.writeFile(realPath, 'shared-target', 'utf8');
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:384:        metadata: { applied: false, enabled: true, sessionId: 'test-001', boostedCount: 0, maxBoostApplied: 0 },
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:394:    input.config.sessionId = 'test-001';
+.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts:426:    input.config.sessionId = 'test-001';
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:4:// Tests: ensureUniqueMemoryFilename collision detection and resolution
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:26:  it('returns original filename when no collision', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:37:  it('appends -1 suffix on first collision', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:43:  it('appends incrementing suffix for multiple collisions', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:54:      const name = ensureUniqueMemoryFilename(tmpDir, 'collision.md');
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:61:  it('ignores non-md files in collision check', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:67:  it('falls back to random hex suffix after 100 collisions (C5)', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:71:      fs.writeFileSync(path.join(tmpDir, `test-${i}.md`), `collision-${i}`);
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:81:  it('returns distinct random fallback names across repeated >100-collision calls', () => {
+.opencode/skills/system-spec-kit/scripts/tests/slug-uniqueness.vitest.ts:84:      fs.writeFileSync(path.join(tmpDir, `test-${i}.md`), `collision-${i}`);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:171:    it('shared review relations have matching weights', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:326:    it('shared relations (COVERS, SUPPORTS, CONTRADICTS) exist in both sets', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:327:      const shared = ['COVERS', 'CONTRADICTS'];
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts:331:      for (const rel of shared) {
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:5:import { chunkMarkdown, splitIntoBlocks } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/tests/structure-aware-chunker.vitest.ts:6:import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:14:      sessionId: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:43:  it('normalizes sessionId before filtering learning history queries', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:50:      sessionId: 'normalized-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:58:      sessionId: 'normalized-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:63:      sessionId: '  normalized-session  ',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning.vitest.ts:71:      sessionId: 'normalized-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:18:    it('T209-2: setAttentionScore accepts (sessionId, memoryId, score) without throwing', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:78:      const strictPattern = /workingMemory\.setAttentionScore\(\s*(?:session_id|sessionId)\s*(as\s+string)?\s*,\s*match\.memoryId\s*,\s*[\d.]+\s*\)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/trigger-setAttentionScore.vitest.ts:79:      const relaxedPattern = /workingMemory\.setAttentionScore\([^)]*(?:session_id|sessionId)/;
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:88:        sessionId: 'sess-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:141:        sessionId: 'sess-456',
+.opencode/skills/system-spec-kit/mcp_server/tests/ground-truth-feedback.vitest.ts:155:      expect(sel.context.sessionId).toBe('sess-456');
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:4:// Tests actual behavior of shared/embeddings.ts functions
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:21:const SHARED_DIST = path.join(ROOT, 'shared', 'dist');
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:861:  log('\n🔬 GROUP I: Re-export shim (lib/embeddings → shared/embeddings)');
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:865:    const sharedPath = path.join(ROOT, 'shared', 'dist', 'embeddings.js');
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:869:    const sharedMod = require(sharedPath);
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:871:    // The shim should re-export everything from shared
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:872:    const sharedKeys = Object.keys(sharedMod).sort();
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:875:    // All shared exports should be available through lib
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:878:    for (const key of sharedKeys) {
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:885:      'EB-126: lib/embeddings re-exports all shared/embeddings exports',
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:886:      missing.length === 0 ? `All ${sharedKeys.length} exports present` : `Missing: ${missing.join(', ')}`);
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:889:    assertEqual(libMod.generateEmbedding, sharedMod.generateEmbedding,
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:891:    assertEqual(libMod.EMBEDDING_DIM, sharedMod.EMBEDDING_DIM,
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:893:    assertEqual(libMod.TASK_PREFIX, sharedMod.TASK_PREFIX,
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js:908:  console.log('  Source: shared/embeddings.ts (via lib/embeddings.ts shim)');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:19:  createWaveContext: (target: string, loopType: 'review' | 'research', options?: { sessionId?: string; generation?: number }) => object;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:20:  dispatchWave: (segments: object[], config: { sessionId: string; generation?: number; waveNumber: number; maxParallel?: number }) => { waveId: string; dispatches: object[]; timestamp: string; totalSegments: number; activeSegments: number; deferredSegments: number };
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:90:      expect(ctx.sessionId).toMatch(/^wave-/);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:116:        sessionId: 'test-session',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:128:        sessionId: 'test',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts:137:      expect(lifecycle.dispatchWave([], { sessionId: 's', waveNumber: 1 })).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest-edge.vitest.ts:131:  it('T005a-I4c: MAX_INGEST_PATHS+1 paths throws the shared limit error', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:56:    const sessionId = 'gate-d-feature-3-session-dedup';
+.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:89:    const firstMark = sessionManager.markMemorySent(sessionId, specDocRow);
+.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts:92:    const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, [
+.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-benchmark-memory-search.vitest.ts:127:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:8:// Mock the problematic @spec-kit/shared dependency chain
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:9:// So composite-scoring.ts can be imported without the shared workspace being linked
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:30:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/score-normalization.vitest.ts:31:import type { FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/stdio-logging-safety.vitest.ts:6:const SHARED_ROOT = path.resolve(SERVER_ROOT, '..', 'shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts:128:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:32:function createSessionData(specFolderName: string, sessionId: string): SessionData {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:55:    SESSION_ID: sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:84:  it('passes options.sessionId as the third collectSessionDataFn argument', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/workflow-session-id.vitest.ts:115:        sessionId: explicitSessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:139:vi.mock('@spec-kit/shared/ranking/learned-combiner', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts:145:vi.mock('@spec-kit/shared/contracts/retrieval-trace', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-path-security.vitest.ts:8:import { validateFilePath } from '@spec-kit/shared/utils/path-security';
+.opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts:78:    { id: 202, content: 'Tool schemas define optional fields, defaults, and shared validation helpers. '.repeat(2) },
+.opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts:12:} from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:24:  findContradictions,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:100:function makeResearchNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:105:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:112:function makeReviewNode(specFolder: string, sessionId: string, id: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:117:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:168:      sessionId: 'session-clamp',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:177:      { specFolder: 'spec-clamp', loopType: 'research', sessionId: 'session-clamp' },
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:187:      sessionId: 'session-empty',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:201:    expect(getNodes(emptyResearchNs)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:204:    expect(findContradictions(emptyResearchNs)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:224:      sessionId: 'session-loop',
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:234:    expect(getEdges({ specFolder: 'spec-loop', loopType: 'research', sessionId: 'session-loop' })).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:239:    const sessionId = 'session-signals';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:240:    const ns: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:258:      makeResearchNode(specFolder, sessionId, 'question-1', 'QUESTION', 'Question 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:259:      makeResearchNode(specFolder, sessionId, 'finding-1', 'FINDING', 'Finding 1'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:260:      makeResearchNode(specFolder, sessionId, 'finding-2', 'FINDING', 'Finding 2'),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:261:      makeResearchNode(specFolder, sessionId, 'source-1', 'SOURCE', 'Source 1', { quality_class: 'primary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:262:      makeResearchNode(specFolder, sessionId, 'source-2', 'SOURCE', 'Source 2', { quality_class: 'secondary' }),
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:270:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:280:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:290:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:300:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:310:        sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:344:    const tsContradictions = findContradictions(ns)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:354:    const researchNs: Namespace = { specFolder, loopType: 'research', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:355:    const reviewNs: Namespace = { specFolder, loopType: 'review', sessionId };
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:357:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-question', 'QUESTION', 'Research question'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:358:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-a', 'FINDING', 'Research finding A'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:359:    upsertNode(makeResearchNode(specFolder, sessionId, 'research-finding-b', 'FINDING', 'Research finding B'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:364:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:371:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-dimension', 'DIMENSION', 'Correctness'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:372:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-file', 'FILE', 'coverage-graph.ts', { hotspot_score: 2 }));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:373:    upsertNode(makeReviewNode(specFolder, sessionId, 'review-finding', 'FINDING', 'Review finding'));
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:378:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:385:    expect(getNodes(researchNs).map(node => node.id).sort()).toEqual([
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:390:    expect(getNodes(reviewNs).map(node => node.id).sort()).toEqual([
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:396:    expect(findContradictions(reviewNs)).toEqual([]);
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:409:      hotspotSaturation: 0,
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:412:    expect(findContradictions(researchNs)).toHaveLength(1);
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:5:// Changes to shared files are correctly integrated and do not conflict.
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-scoring-integration.vitest.ts:13:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:74:    expect(brief.sharedPayload?.kind).toBe('startup');
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:75:    expect(brief.sharedPayload?.provenance.producer).toBe('startup_brief');
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:76:    expect(brief.sharedPayload?.sections.length).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:98:    expect(brief.sharedPayload?.provenance.trustState).toBe('stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:111:    expect(brief.sharedPayload?.provenance.trustState).toBe('stale');
+.opencode/skills/system-spec-kit/mcp_server/tests/startup-brief.vitest.ts:153:    expect(brief.sharedPayload).toBeNull();
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:80:  getSessionState: (sessionId: string) => MockSessionStateRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:155:            for (const [sessionId, row] of sessionState.entries()) {
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:157:                sessionState.delete(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:166:              sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:193:            const existing = sessionState.get(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:195:              session_id: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:209:            sessionState.set(sessionId, nextRow);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:214:            const [updatedAt, sessionId] = args as [string, string];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:215:            const row = sessionState.get(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:238:            const [updatedAt, sessionId] = args as [string, string];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:239:            const row = sessionState.get(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:257:            const [sessionId] = args as [string];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:258:            return sessionState.has(sessionId) ? { 1: 1 } : undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:266:            const [sessionId] = args as [string];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:267:            return cloneRow(sessionState.get(sessionId));
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:271:            const [sessionId] = args as [string];
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:272:            const row = sessionState.get(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:335:    getSessionState: (sessionId: string) => cloneRow(sessionState.get(sessionId)),
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:472:      expect(result.sessions.map((session) => session.sessionId).sort()).toEqual(['list-a', 'list-b']);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:504:        sessionId: 'session-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:523:        sessionId: 'session-with-data',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:705:        sessionId: 'recover-fields',
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:788:      expect(result.sessions.map((session) => session.sessionId).sort()).toEqual(['recoverable-a', 'recoverable-b']);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:798:      expect(result.sessions.some((session) => session.sessionId === 'exclude-completed')).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:812:      const session = result.sessions.find((entry) => entry.sessionId === 'field-check');
+.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:815:        sessionId: 'field-check',
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:2:// Verifies current shared-provider architecture and MCP facade.
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:12:} from '@spec-kit/shared/embeddings/factory';
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:13:import { VoyageProvider } from '@spec-kit/shared/embeddings/providers/voyage';
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:14:import { getStartupEmbeddingProfile } from '../../shared/embeddings/factory.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:30:const HF_LOCAL_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'hf-local.ts');
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:31:const OPENAI_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'openai.ts');
+.opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts:32:const VOYAGE_PROVIDER_FILE = path.resolve(__dirname, '..', '..', 'shared', 'embeddings', 'providers', 'voyage.ts');
+.opencode/skills/system-spec-kit/mcp_server/tests/api-validation.vitest.ts:2:import { validateApiKey } from '@spec-kit/shared/embeddings/factory';
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:386:  function getExtractedRow(database: TestDatabase, sessionId: string, memoryId: number): ExtractedRow | undefined {
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:398:    `).get(sessionId, memoryId) as ExtractedRow | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:422:      const sessionId = 'wm-provenance-session';
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:427:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:438:      const row = getExtractedRow(database, sessionId, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:454:      const sessionId = 'wm-no-count-probe';
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:467:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:476:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:492:      `).get(sessionId, memoryId) as { cnt: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:504:      const sessionId = 'wm-provenance-update';
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:509:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:520:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:534:      `).get(sessionId, memoryId) as { cnt: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:537:      const row = getExtractedRow(database, sessionId, memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:555:      const sessionId = 'wm-provenance-checkpoint';
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:560:        sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:574:      const removed = workingMemory.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/working-memory.vitest.ts:581:      const restoredRow = getExtractedRow(database, sessionId, memoryId);
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:579:  if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:580:    const candidate = args.sessionId.trim();
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:584:        args.sessionId = runtimeState.lastSessionId;
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:586:        delete args.sessionId;
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:874:    : typeof data.sessionId === 'string'
+.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts:875:      ? data.sessionId
+.opencode/skills/system-spec-kit/mcp_server/tests/mmr-reranker.vitest.ts:5:import { applyMMR, computeCosine } from '@spec-kit/shared/algorithms/mmr-reranker';
+.opencode/skills/system-spec-kit/mcp_server/tests/mmr-reranker.vitest.ts:6:import type { MMRCandidate, MMRConfig } from '@spec-kit/shared/algorithms/mmr-reranker';
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:39:vi.mock('../../shared/algorithms/rrf-fusion', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:64:vi.mock('../../shared/algorithms/adaptive-fusion', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/pipeline-integration.vitest.ts:166:    const mod = await import('../../shared/algorithms/mmr-reranker');
+.opencode/skills/system-spec-kit/mcp_server/tests/lazy-loading.vitest.ts:33:  return import('../../shared/embeddings');
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-weighting.vitest.ts:3:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:53:      const sessionId = 'ses/sion/../bad';
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:54:      const path = getStatePath(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-state.vitest.ts:57:      expect(path).toContain(createHash('sha256').update(sessionId).digest('hex').slice(0, 16));
+.opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts:3:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:215:    const collisionSpecFolder = `specs/${checkpointName('t011-c7c-collision-folder')}`;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:216:    const collisionPath = `${collisionSpecFolder}/memory/collision.md`;
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:217:    const checkpoint = checkpointName('t011-c7c-id-collision');
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:234:    ).run(collisionSpecFolder, collisionPath, 'collision-title', memoryId);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:251:    expect(row?.spec_folder).toBe(collisionSpecFolder);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:252:    expect(row?.file_path).toBe(collisionPath);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-checkpoints-edge.vitest.ts:253:    expect(row?.title).toBe('collision-title');
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:6:import type { SharedPayloadEnvelope } from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts:34:  it('builds a transport-only plan from shared payloads', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:59:        { id: 2, title: 'shared', score: 0.8 },
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:62:        { id: 2, title: 'shared-duplicate', score: 0.7 },
+.opencode/skills/system-spec-kit/mcp_server/tests/query-decomposition.vitest.ts:68:    expect(merged[1]?.title).toBe('shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:9:  const sessionId = 'test-resume-session';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:12:  afterEach(() => { try { rmSync(getStatePath(sessionId)); } catch { /* ok */ } });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:15:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:19:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:33:    updateState(sessionId, {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:37:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:43:    updateState(sessionId, { lastSpecFolder: 'specs/a' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:44:    updateState(sessionId, { lastSpecFolder: 'specs/b' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:45:    const state = loadState(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-token-resume.vitest.ts:46:    expect(state!.claudeSessionId).toBe(sessionId);
+.opencode/skills/system-spec-kit/scripts/tests/test-upgrade-level.sh:73:# Use isolated copy of script with missing ../lib/shell-common.sh (no shared file mutation)
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:180:    // With 10 shared words and 1 different word each:
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:182:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:185:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:190:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:195:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:239:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:242:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:247:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:254:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:340:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:343:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:348:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:365:    const sharedTriggers = 'authentication, login, session, token, validation, handler, middleware, security, user, access';
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:368:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:373:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:378:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/interference.vitest.ts:385:      triggerPhrases: sharedTriggers,
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:15:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:167:        { id: 'shared', content: 'shared doc' },
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:171:        { id: 'shared', content: 'shared doc' },
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:182:    expect(ids).toContain('shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:187:    const sharedDoc = expectDefined(fused.find((r: MultiFusedResult) => r.id === 'shared'), 'shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:188:    expect(sharedDoc.sources).toHaveLength(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:189:    expect(sharedDoc.rrfScore).toBeGreaterThan(expectDefined(fused.find((r: MultiFusedResult) => r.id === 'vec_only'), 'vec_only').rrfScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/rrf-fusion.vitest.ts:191:    expect(sharedDoc.convergenceBonus).toBeGreaterThan(0);
+.opencode/skills/system-spec-kit/mcp_server/tests/learned-combiner.vitest.ts:24:} from '@spec-kit/shared/ranking/learned-combiner';
+.opencode/skills/system-spec-kit/mcp_server/tests/embedding-circuit-breaker.vitest.ts:10:import { __embeddingCircuitTestables } from '../../shared/embeddings';
+.opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts:30:vi.mock('@spec-kit/shared/algorithms/mmr-reranker', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:7:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate'
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:19:const SHARED_TYPES_FILE = path.join(SERVER_DIR, '..', 'shared', 'types.ts')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:25:let sharedTypesCode = ''
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:71:    sharedTypesCode = fs.readFileSync(SHARED_TYPES_FILE, 'utf8')
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:435:      '@spec-kit/shared/embeddings/factory',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:964:          sessionId: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:972:          sessionId: null,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1099:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1107:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1115:        getSessionSnapshot: vi.fn(() => ({ sessionId: null, lastTool: null })),
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1134:      vi.doMock('@spec-kit/shared/embeddings/factory', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1463:          if (typeof args.sessionId === 'string') return args.sessionId
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1481:        simulateCall('memory_search', { query: 'recent issues', sessionId: 'sess-sticky-1' })
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1986:      // MCPResponse was moved to shared/types.ts and re-exported via 'export type'
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:1987:      { name: 'MCPResponse', requiredFields: ['content'], source: 'sharedTypes' },
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2023:          sharedTypes: sharedTypesCode,
+.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts:2740:    it('T64d: pending recovery reuses shared startup root expansion', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:12:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:111:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'S' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:112:      { source: SOURCE_TYPES.BM25,   results: [{ id: 'shared', title: 'S' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:114:    const shared = fused.find(r => r.id === 'shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:115:    expect(shared).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:116:    expect(shared!.convergenceBonus).toBeCloseTo(CONVERGENCE_BONUS, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:121:      { source: SOURCE_TYPES.VECTOR,  results: [{ id: 'shared', title: 'S' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:122:      { source: SOURCE_TYPES.BM25,    results: [{ id: 'shared', title: 'S' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:123:      { source: SOURCE_TYPES.KEYWORD, results: [{ id: 'shared', title: 'S' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:125:    const shared = fused.find(r => r.id === 'shared');
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:126:    expect(shared).toBeDefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:127:    expect(shared!.convergenceBonus).toBeCloseTo(CONVERGENCE_BONUS * 2, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:235:        { id: 'shared', title: 'S' },
+.opencode/skills/system-spec-kit/mcp_server/tests/calibrated-overlap-bonus.vitest.ts:239:        { id: 'shared', title: 'S' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:4:import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:5:import { fuseResults, fuseResultsMulti, fuseResultsCrossVariant, SOURCE_TYPES, DEFAULT_K } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:78:      { id: 'shared', title: 'Shared Result' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:82:      { id: 'shared', title: 'Shared Result' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:91:    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:95:    expect(shared.rrfScore).toBeGreaterThan(vectorOnly.rrfScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:96:    expect(shared.rrfScore).toBeGreaterThan(bm25Only.rrfScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:97:    expect(shared.sources).toHaveLength(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:98:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:138:      { id: 'shared', title: 'Shared' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:142:      { id: 'shared', title: 'Shared' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:158:    const shared = requireResult(fused.find((r: FusionResult) => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:159:    expect(shared.sources).toContain(SOURCE_TYPES.VECTOR);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:160:    expect(shared.sources).toContain(SOURCE_TYPES.BM25);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:161:    expect(shared.sources).toHaveLength(2);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:162:    expect(shared.sourceScores).toHaveProperty(SOURCE_TYPES.BM25);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:163:    expect(shared.sourceScores[SOURCE_TYPES.BM25]).toEqual(expect.any(Number));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:182:    const vectorResults = [{ id: 'shared', title: 'Shared' }, { id: 'v-only', title: 'V' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:183:    const bm25Results = [{ id: 'shared', title: 'Shared' }, { id: 'b-only', title: 'B' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:184:    const graphResults = [{ id: 'shared', title: 'Shared' }, { id: 'g-only', title: 'G' }];
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:192:    const shared = requireResult(fused.find(r => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:193:    expect(shared.sources).toHaveLength(3);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:194:    expect(shared.rrfScore).toBeGreaterThan(requireResult(fused.find(r => r.id === 'v-only')).rrfScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:195:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:247:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v0-only', title: 'V0' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:250:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }, { id: 'v1-only', title: 'V1' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:255:    const shared = requireResult(fused.find(r => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:258:    expect(shared.convergenceBonus).toBeGreaterThanOrEqual(0.10);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:259:    expect(shared.rrfScore).toBeGreaterThan(v0Only.rrfScore);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:268:      mkVariant(['shared', 'a']),
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:269:      mkVariant(['shared', 'b']),
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:270:      mkVariant(['shared', 'c']),
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:273:    const shared = requireResult(fused.find(r => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:275:    expect(shared.convergenceBonus).toBeCloseTo(0.20, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:297:        { id: 'shared', title: 'Shared' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:303:        { id: 'shared', title: 'Shared' },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:334:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:338:    const shared = requireResult(fused.find(r => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:340:    expect(shared.sourceScores[SOURCE_TYPES.VECTOR]).toBeCloseTo(2, 6);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:341:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 6);
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:346:      [{ source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] }],
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:361:      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Shared' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:362:      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'Shared' }] },
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:365:    const shared = requireResult(fused.find(r => r.id === 'shared'));
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-rrf-fusion.vitest.ts:366:    expect(shared.convergenceBonus).toBeCloseTo(0.10, 6);
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:618:      `).run(9101, 'anchor-spec', '/anchor-spec/shared.md', 'section-a', 'Anchor A', now, now, 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:624:      `).run(9102, 'anchor-spec', '/anchor-spec/shared.md', 'section-b', 'Anchor B', now, now, 'normal');
+.opencode/skills/system-spec-kit/mcp_server/tests/checkpoints-extended.vitest.ts:642:          '/anchor-spec/shared.md',
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:18:} from '@spec-kit/shared/algorithms/adaptive-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:19:import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:20:import type { RrfItem, FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/intent-weighting.vitest.ts:21:import type { FusionWeights } from '@spec-kit/shared/algorithms/adaptive-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:402:    it('Composite recency delegates to shared folder recency scoring', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:405:      const sharedRecency = folderScoring.computeRecencyScore(
+.opencode/skills/system-spec-kit/mcp_server/tests/access-tracker-extended.vitest.ts:411:      expect(compositeRecency).toBeCloseTo(sharedRecency, 8);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:26:      taskId: 'shared-task',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:30:      sessionId: 'sess-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:34:      taskId: 'shared-task',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:38:      sessionId: 'sess-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:43:      taskId: 'shared-task',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:47:      sessionId: 'sess-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:55:    `).get('specs/t081-session', 'shared-task', 'sess-a') as { phase: string; post_knowledge_score: number | null };
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:61:    `).get('specs/t081-session', 'shared-task', 'sess-b') as {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:76:  it('T081 requires sessionId when multiple open baselines share a task_id', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:83:      sessionId: 'sess-a',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:91:      sessionId: 'sess-b',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:101:      message: expect.stringContaining('Provide sessionId'),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:112:      sessionId: 'repeat-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:120:      sessionId: 'repeat-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:129:      sessionId: 'repeat-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-learning-regressions.vitest.ts:137:      sessionId: 'repeat-session',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:29:    sessionId?: unknown;
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:394:      sessionId: 'session-secret',
+.opencode/skills/system-spec-kit/mcp_server/tests/retrieval-telemetry.vitest.ts:418:    expect(tracePayload.sessionId).toBeUndefined();
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:175:      const sessionId: string = 'test-session-T003';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:177:      const shouldSend: boolean = sessionManager.shouldSendMemory(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:182:      const sessionId: string = 'test-session-T003';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:183:      const shouldSend2: boolean = sessionManager.shouldSendMemory(sessionId, 999);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:195:      const sessionId: string = 'test-session-T004';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:198:      const firstCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:201:      const markResult: MarkResult = sessionManager.markMemorySent(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:204:      const secondCheck: boolean = sessionManager.shouldSendMemory(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:216:      const sessionId: string = 'test-session-T005';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:224:        const result: MarkResult = sessionManager.markMemorySent(sessionId, memory);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:231:        expect(sessionManager.shouldSendMemory(sessionId, memory)).toBe(false);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:236:      `).get(sessionId) as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:280:      const sessionId: string = 'test-session-T007';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:290:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 502
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:291:      sessionManager.markMemorySent(sessionId, searchResults[3]); // 504
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:293:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:308:      const sessionId: string = 'test-session-T007b';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:314:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, [
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:337:      const sessionId: string = 'test-session-T008';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:346:      sessionManager.markMemorySent(sessionId, searchResults[0]); // 601
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:347:      sessionManager.markMemorySent(sessionId, searchResults[1]); // 602
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:348:      sessionManager.markMemorySent(sessionId, searchResults[2]); // 603
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:350:      const { filtered, dedupStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:359:      const sessionId: string = 'test-session-T008-zero';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts:366:      const { dedupStats: noSavingsStats }: FilterResult = sessionManager.filterSearchResults(sessionId, searchResults);
+.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts:169:  it('promotes in-memory initialization to the shared connection used by default operations', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/envelope.vitest.ts:5:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:7:import * as rrfFusion from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1073:        id: 'shared-doc',
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1086:        id: 'shared-doc',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:6:import { dbRowToMemory, memoryToDbRow, partialDbRowToMemory } from '@spec-kit/shared/normalization';
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-normalization-roundtrip.vitest.ts:7:import type { Memory, MemoryDbRow } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts:208:        'shared anchor row',
+.opencode/skills/system-spec-kit/mcp_server/tests/unit-folder-scoring-types.vitest.ts:12:} from '@spec-kit/shared/scoring/folder-scoring';
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:36:    sessionId: 'sess-abc',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:217:      sessionId: 'session-XYZ',
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:232:    logFeedbackEvent(db, makeEvent({ sessionId: null }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:327:  it('filters by sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:329:    logFeedbackEvent(db, makeEvent({ sessionId: 'sess-1' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:330:    logFeedbackEvent(db, makeEvent({ sessionId: 'sess-2' }));
+.opencode/skills/system-spec-kit/mcp_server/tests/feedback-ledger.vitest.ts:332:    const forSess1 = getFeedbackEvents(db, { sessionId: 'sess-1' });
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:9:// ── Hook shared utilities ──
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:18:    const { parseHookStdin } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:33:    const { parseHookStdin } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:49:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:59:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:70:    const { calculatePressureAdjustedBudget } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:84:    const { withTimeout } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:91:    const { withTimeout } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:100:    const { truncateToTokenBudget } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/edge-cases.vitest.ts:106:    const { truncateToTokenBudget } = await import('../hooks/claude/shared.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:67:    sessionId: 'sess-A',
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:218:      makeEvent({ memoryId: 'mem-A', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:219:      makeEvent({ memoryId: 'mem-A', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:220:      makeEvent({ memoryId: 'mem-B', sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:233:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:234:      makeEvent({ confidence: 'medium', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:235:      makeEvent({ confidence: 'weak',   sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:249:      makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:250:      makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:251:      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:261:      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:271:      makeEvent({ timestamp: 1000, sessionId: 'sess-in' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:272:      makeEvent({ timestamp: 5000, sessionId: 'sess-out' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:278:  it('treats distinct sessionIds as distinct sessions', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:281:      makeEvent({ sessionId: 'sess-1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:282:      makeEvent({ sessionId: 'sess-1' }), // same session, not counted twice
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:283:      makeEvent({ sessionId: 'sess-2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:292:      makeEvent({ memoryId: 'mem-low',  confidence: 'weak',   sessionId: 's1' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:293:      makeEvent({ memoryId: 'mem-high', confidence: 'strong', sessionId: 's2' }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:532:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-A', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:533:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-B', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:534:      makeEvent({ memoryId: 'mem-1', sessionId: 'sess-C', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:554:      makeEvent({ memoryId: 'mem-weak', sessionId: 'sess-1', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:555:      makeEvent({ memoryId: 'mem-weak', sessionId: 'sess-2', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:574:      makeEvent({ memoryId: 'mem-ok', sessionId: 's1', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:575:      makeEvent({ memoryId: 'mem-ok', sessionId: 's2', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:576:      makeEvent({ memoryId: 'mem-ok', sessionId: 's3', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:578:      makeEvent({ memoryId: 'mem-skip', sessionId: 's4', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:593:      makeEvent({ sessionId: 'sess-1', timestamp: BASE_TS - 10_000 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:594:      makeEvent({ sessionId: 'sess-2', timestamp: BASE_TS - 10_000 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:595:      makeEvent({ sessionId: 'sess-3', timestamp: BASE_TS - 10_000 }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:613:      makeEvent({ sessionId: 'sX', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:614:      makeEvent({ sessionId: 'sY', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:615:      makeEvent({ sessionId: 'sZ', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:632:      makeEvent({ sessionId: 's1', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:633:      makeEvent({ sessionId: 's2', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts:634:      makeEvent({ sessionId: 's3', timestamp: BASE_TS }),
+.opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:88:    expect(session.sessionId).toBe('sess-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:502:    expect(session.sessionId).toBe('singleton-test');
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:14:  function setScoreDirectly(sessionId: string, memoryId: number, score: number) {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:18:    `).run(sessionId, memoryId, score);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:21:  function getScoreDirectly(sessionId: string, memoryId: number): number | null {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:24:    ).get(sessionId, memoryId) as { attention_score: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:28:  function countEntries(sessionId: string): number {
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:31:    ).get(sessionId) as { count: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:79:    const sessionId = 'decay-floor-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:82:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:88:      setScoreDirectly(sessionId, 1, 0.06);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:89:      wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:91:      const scoreAfter1 = getScoreDirectly(sessionId, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:100:        wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:103:      const scoreAfterMany = getScoreDirectly(sessionId, 1);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:109:      const count = countEntries(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:115:    const sessionId = 'delete-threshold-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:118:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:122:      setScoreDirectly(sessionId, 2, 0.05);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:123:      wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:125:      const scoreAtFloor = getScoreDirectly(sessionId, 2);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:130:      setScoreDirectly(sessionId, 3, 0.005);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:131:      wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:133:      const scoreClamped = getScoreDirectly(sessionId, 3);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:142:      const deleteSessionId = sessionId + '-delete-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:156:    const sessionId = 'floor-stability-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:159:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:163:      setScoreDirectly(sessionId, 4, 0.15);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:166:        wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:169:      const finalScore = getScoreDirectly(sessionId, 4);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:195:    const sessionId = 'mixed-scores-test';
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:198:      testDb.prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:202:      setScoreDirectly(sessionId, 5, 0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:203:      setScoreDirectly(sessionId, 6, 0.05);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:204:      setScoreDirectly(sessionId, 7, 0.005);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:205:      setScoreDirectly(sessionId, 8, 0.03);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:207:      wm.batchUpdateScores(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:209:      const s5 = getScoreDirectly(sessionId, 5);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:215:      const s6 = getScoreDirectly(sessionId, 6);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:220:      const s7 = getScoreDirectly(sessionId, 7);
+.opencode/skills/system-spec-kit/mcp_server/tests/decay-delete-race.vitest.ts:228:      const s8 = getScoreDirectly(sessionId, 8);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-helpers.vitest.ts:26:    SHARED_DIR:               path.join(mDir, '..', 'shared'),
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:202:            sessionId: 'sess-123',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-search-pipeline.vitest.ts:214:        expect(message.includes('sessionId')).not.toBe(true);
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:109:function mockTrustedSession(sessionId: string): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:111:    requestedSessionId: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:112:    effectiveSessionId: sessionId,
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:188:          sessionId: 'session-auto-resume',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:512:    it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:530:    it('T027ka: rejects caller sessionId when it is not server-managed', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:536:          sessionId: 'session-new',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:553:        'Retry without sessionId to let the server mint a trusted session, then reuse the returned effectiveSessionId.'
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:573:          sessionId: 'session-abc',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:601:          sessionId: 'session-trace',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:634:          sessionId: 'session-known',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:663:          sessionId: 'session-default-on',
+.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts:694:          sessionId: 'session-opt-out',
+.opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts:14:} from '../hooks/claude/shared.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:242:      insertEntity(db, 2, 'shared entity');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:246:      expect(matches[0].canonicalName).toBe('shared entity');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:295:      insertEntity(db, 2, 'shared entity');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:298:      insertCatalogEntry(db, 'shared entity');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:305:        canonicalName: 'shared entity',
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:630:        VALUES ('1', '2', 'supports', 0.7, 'Cross-doc entity: shared', 'entity_linker')`)
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:665:      insertCatalogEntry(db, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:671:      insertEntity(db, 2, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:711:      insertCatalogEntry(db, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:719:      insertEntity(db, 2, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:736:      insertCatalogEntry(db, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:744:      insertEntity(db, 2, 'shared concept');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:762:      // Entity shared across 3 spec folders = 3 pairwise combinations
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:801:      insertEntity(db, 2, 'shared entity');
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:807:        VALUES ('shared entity', '["Shared Entity","shared entity"]', 'noun_phrase', 2),
+.opencode/skills/system-spec-kit/mcp_server/tests/entity-linker.vitest.ts:826:          evidence: 'Cross-doc entity: shared entity',
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-scoring-holdout.vitest.ts:193:    // Use a larger holdout to make collision extremely unlikely
+.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search-flags.vitest.ts:24:vi.mock('@spec-kit/shared/algorithms/mmr-reranker', () => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/dual-scope-hooks.vitest.ts:11:import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
+.opencode/skills/system-spec-kit/mcp_server/tests/cross-feature-integration-eval.vitest.ts:36:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:4:} from '../lib/context/shared-payload.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:39:    vi.doUnmock('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:45:    vi.doUnmock('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:107:    const sharedPayload = await import('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:108:    vi.spyOn(sharedPayload, 'attachStructuralTrustFields').mockImplementation(() => {
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:109:      throw new sharedPayload.StructuralTrustPayloadError(
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:127:    vi.doUnmock('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/graph-payload-validator.vitest.ts:133:    vi.doUnmock('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:181:  it('T017-02: Handles minimal session state (only sessionId)', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:185:  it('T017-03: Handles undefined sessionId gracefully', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:200:  it('T018-02: Displays sessionId in code format', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:250:  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:254:  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/continue-session.vitest.ts:262:  it('T020-05: specFolder takes precedence over sessionId for resume command', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts:10:// To bypass the flag check and hit the shared SQL path directly.
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:117:  it('uses the shared database directory resolver when db-dir env vars are unset', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts:124:      import('../../shared/paths'),
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:33:import * as rrfFusion from '@spec-kit/shared/algorithms/rrf-fusion.js';
+.opencode/skills/system-spec-kit/mcp_server/tests/api-key-validation.vitest.ts:5:} from '@spec-kit/shared/embeddings/factory';
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:58:      sessionId: 'session-test',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:84:      sessionId: 'session-test',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:106:      sessionId: 'foreign-session',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:137:      sessionId: 'codex-evidence',
+.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts:176:      sessionId: 'generic-infra',
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:26:} from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/mcp_server/tests/feature-eval-graph-signals.vitest.ts:27:import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/scripts/tests/workflow-e2e.vitest.ts:524:      session_summary: 'Second same-minute save to verify collision-safe filename generation.',
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:67:    vi.doUnmock('../lib/context/shared-payload.js');
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:73:    vi.doMock('../lib/context/shared-payload.js', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:74:      const actual = await vi.importActual<typeof import('../lib/context/shared-payload.js')>(
+.opencode/skills/system-spec-kit/mcp_server/tests/publication-gate.vitest.ts:75:        '../lib/context/shared-payload.js',
+.opencode/skills/system-spec-kit/mcp_server/tests/context-metrics.vitest.ts:34:      expect(metrics.sessionId).toMatch(/^sess_/);
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:107:  filterSearchResults: vi.fn((_sessionId: string, results: unknown[]) => ({
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-ux-hooks.vitest.ts:150:      sessionId: 'sess-ux-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/k-value-judged-sweep.vitest.ts:20:import { SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:24:  it('uses the shared helper contract and preserves a clean boundary with a Unicode ellipsis', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:39:  it('applies the shared truncation helper to decision-extractor fallback surfaces', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:40:    const longNarrative = 'The shared helper keeps the decision narrative readable while preserving word boundaries throughout the saved memory output. '
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase1.vitest.ts:50:          title: 'Use the shared truncation helper',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:22:  function insertWorkingMemory(sessionId: string, memoryId: number, score: number = 0.8) {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:26:    `).run(sessionId, memoryId, score);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:29:  function countWorkingMemory(sessionId: string): number {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:32:    ).get(sessionId) as { count: number } | undefined;
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:105:      const sessionId = 'complete-test-session';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:108:      insertWorkingMemory(sessionId, 1, 0.9);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:109:      insertWorkingMemory(sessionId, 2, 0.7);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:110:      insertWorkingMemory(sessionId, 3, 0.5);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:112:      const countBefore = countWorkingMemory(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:116:      sm.saveSessionState(sessionId, { currentTask: 'testing' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:119:      const result = sm.completeSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:123:      const countAfter = countWorkingMemory(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:127:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:128:      getTestDb().prepare('DELETE FROM session_state WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:134:      const sessionId = 'clear-test-session';
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:137:      insertWorkingMemory(sessionId, 4, 0.8);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:138:      insertWorkingMemory(sessionId, 5, 0.6);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:140:      const countBefore = countWorkingMemory(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:147:      `).run(sessionId, 'test-hash-123', 4);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:150:      const result = sm.clearSession(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:154:      const countAfter = countWorkingMemory(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:160:      ).get(sessionId) as { count: number };
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:164:      getTestDb().prepare('DELETE FROM working_memory WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts:165:      getTestDb().prepare('DELETE FROM session_sent_memories WHERE session_id = ?').run(sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/hydra-spec-pack-consistency.vitest.ts:37:  'mcp_server/lib/governance/shared-policy.ts',
+.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:3:import { buildWeightedDocumentText, type WeightedDocumentSections } from '@spec-kit/shared/index';
+.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:42:vi.mock('@spec-kit/shared/config', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts:43:  const actual = await vi.importActual<typeof import('@spec-kit/shared/config')>('@spec-kit/shared/config');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:23:    it('T531-1: sessionId parameter accepted by search', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:28:            sessionId: 'dedup-session-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:35:        expect(getErrorMessage(error)).not.toContain('sessionId');
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:44:            sessionId: 'dedup-session-002',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:75:    it('T531-4: Search without sessionId accepted (no dedup)', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:80:            // No sessionId — dedup should not activate
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:94:    it('T531-5: Default dedup behavior with sessionId', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:99:            sessionId: 'dedup-session-default',
+.opencode/skills/system-spec-kit/mcp_server/tests/integration-session-dedup.vitest.ts:115:            sessionId: 'dedup-session-disabled',
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:51:  run: (context: { sessionId: string }) => Promise<T>,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:58:  const sessionId = `session-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:70:    return await run({ sessionId });
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:82:  sessionId: string,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:99:    claudeSessionId: sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:100:    speckitSessionId: `speckit-${sessionId}`,
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:125:  saveState(sessionId, state);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:375:      await withHookSandbox(async ({ sessionId }) => {
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:378:        const liveStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:380:        seedHookState(sessionId, scenario);
+.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:384:        const cachedStartup = handleStartup({ session_id: sessionId, specFolder: VALID_SPEC_FOLDER });
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:196:    it('namespace matches sessionId format', () => {
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:3:import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:13:        'Implemented a shared insufficiency gate across workflow and memory_save so thin saves fail explicitly.',
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:101:        'Implemented the shared insufficiency gate in both generate-context and memory_save, then wired the rejection payload so dry-run reports reasons and evidence counts before any write occurs.',
+.opencode/skills/system-spec-kit/scripts/tests/memory-sufficiency.vitest.ts:115:        'Kept one shared insufficiency contract instead of backend-specific thresholds.',
+.opencode/skills/system-spec-kit/scripts/tests/test-cleanup-orphaned-vectors.js:22:// Monotonic counter for unique history IDs (avoids Date.now() collisions)
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts:224:    // 1 question, 2 answering findings, 1 shared source → only 1 quality class → diversity = 1.0 < 1.5
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:79:    const sessionId = 'test-session-123';
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:84:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts:97:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:465:    const sessionId = generateSessionId();
+.opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js:466:    assertMatch(sessionId, /^session-\d+-[a-z0-9]+$/, 'EXT-Session-016: Session ID format correct');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:67:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:109:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:112:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:124:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:139:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:259:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts:268:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:25:  it('exports parity patterns through the shared NOISE_PATTERNS list', () => {
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:37:  it('keeps shared-prefix prompts when their bigram shingles diverge', () => {
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:38:    const sharedPrefix = Array.from({ length: 20 }, (_, index) => `shared-prefix-token-${index}`).join(' ');
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:41:    const firstPrompt = `${sharedPrefix} ${firstTail}`;
+.opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts:42:    const secondPrompt = `${sharedPrefix} ${secondTail}`;
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:665:    // Test 3: validate_anchor_uniqueness handles collisions
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:669:      pass('T-009e: validate_anchor_uniqueness handles collisions', unique);
+.opencode/skills/system-spec-kit/scripts/tests/test-scripts-modules.js:671:      fail('T-009e: validate_anchor_uniqueness handles collisions', unique);
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:102:    const longRationale = 'Because the shared truncation helper keeps the decision context readable and avoids clipping words in the saved memory output. '
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:110:          decision: 'Adopt the shared truncation helper everywhere',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase3-pr6.vitest.ts:120:    expect(result.DECISIONS[0]?.CONTEXT).toContain('Adopt the shared truncation helper everywhere');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:16:  createBoard: (opts: { sessionId: string; generation?: number; loopType: string; target?: string }) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:32:  createSegmentState: (id: string, config: { sessionId: string; generation?: number; waveId?: string; loopType?: string; files?: string[]; domains?: string[] }) => any;
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:51:      const b = board.createBoard({ sessionId: 'sess-1', loopType: 'review', target: 'my-repo' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:53:      expect(b.sessionId).toBe('sess-1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:60:    it('throws for missing sessionId', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:65:      expect(board.createBoard({ sessionId: 's', loopType: 'invalid' } as any)).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:71:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:81:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:91:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:104:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:121:      const b = board.createBoard({ sessionId: 's1', generation: 2, loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:127:      expect(record.sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:136:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:145:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:152:      const b = board.createBoard({ sessionId: 's1', loopType: 'review' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:179:      expect(segState.MERGE_KEYS).toEqual(['sessionId', 'generation', 'segment', 'wave', 'findingId']);
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:185:      const s = segState.createSegmentState('seg-1', { sessionId: 'sess-1', files: ['a.ts'] });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:187:      expect(s.sessionId).toBe('sess-1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:194:      expect(segState.createSegmentState('', { sessionId: 's' })).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:197:    it('throws for missing sessionId', () => {
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:204:      const state = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 2, waveId: 'w1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:206:      expect(record.sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:216:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:219:      expect(state.jsonlRecords[0].sessionId).toBe('s1');
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:226:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:229:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:238:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:241:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:250:      const s1 = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:253:      const s2 = segState.createSegmentState('seg-2', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:262:      const s1 = segState.createSegmentState('seg-2', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:265:      const s2 = segState.createSegmentState('seg-1', { sessionId: 's1', generation: 1 });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:282:      const state = segState.createSegmentState('seg-1', { sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:294:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f1","valid":true}',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:296:        '{"sessionId":"s1","generation":1,"segment":"seg-1","wave":"w1","findingId":"f2","also":"valid"}',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:308:        sessionId: 's1', generation: 1, segment: 'seg-1', wave: 'w1', findingId: 'f1',
+.opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts:315:      const result = segState.validateMergeKeys({ sessionId: 's1' });
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:135:      sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-save-d5-continuation-and-causal-links.vitest.ts:150:      sessionId: 'hit-current-4',
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:13:// Configure relative paths - embeddings consolidated to shared/ on 2024-12-31
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:14:const libPath = path.join(__dirname, '../../shared/dist');
+.opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js:25:    // Test 1: Import modules (from shared/ after 2024-12-31 consolidation)
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:5:import { extractTriggerPhrases as extractSharedTriggerPhrases } from '@spec-kit/shared/trigger-extractor';
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:28:  vi.doUnmock('../../shared/embeddings/factory');
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:67:    const embeddings = await import('../../shared/embeddings');
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:98:    vi.doMock('../../shared/embeddings/factory', () => ({
+.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts:109:    const embeddings = await import('../../shared/embeddings');
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:15:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:29:  it('falls back to the shared boundary-safe helper for very long summaries', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/overview-boundary-safe-truncation.vitest.ts:51:    const sessionSummary = 'Shipped the 014 code graph upgrades runtime lane across detector provenance, blast-radius correctness, hot-file breadcrumbs, edge evidence, and a frozen regression floor. The runtime adds a DetectorProvenance taxonomy to shared-payload, enforces blast-radius depth-cap at BFS traversal time with explicit multi-file unionMode, emits advisory hotFileBreadcrumb entries with low-authority wording, carries edgeEvidenceClass and numericConfidence additively on existing owner payloads without replacing the StructuralTrust envelope, and locks the provenance plus depth expectations behind a scripts-side frozen fixture floor. Strict packet validation passes.';
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:19:import { handleCoverageGraphConvergence } from '../../mcp_server/handlers/coverage-graph/convergence.js';
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:26:function makeNode(id: string, sessionId: string, kind: CoverageNode['kind'], name: string, metadata?: Record<string, unknown>): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:31:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:38:function makeEdge(id: string, sessionId: string, sourceId: string, targetId: string, relation: CoverageEdge['relation']): CoverageEdge {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:43:    sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:52:  response: Awaited<ReturnType<typeof handleCoverageGraphConvergence>>,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:57:describe('coverage graph session isolation', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:106:  it('returns only the requested session nodes when sessionId is provided', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:107:    const sessionNodes = getNodes({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:110:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:121:    const aggregateNodes = getNodes({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:137:  it('returns only the requested session edges when sessionId is provided', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:141:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:165:  it('computes convergence from the session-scoped subset and defaults to all sessions when sessionId is omitted', async () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:166:    const scopedData = parseHandlerData(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:169:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:175:      sessionId: SESSION_A,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:183:    const aggregateData = parseHandlerData(await handleCoverageGraphConvergence({
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:192:    expect(aggregateData.namespace.sessionId).toBeUndefined();
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:193:    expect(aggregateData.scopeMode).toBe('all_sessions_default');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:201:// REQ-028 (F004, F005 in the 042 closing audit): shared-ID
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:202:// collision regression. Two sessions intentionally reuse the same
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:210:describe('coverage graph session isolation — shared-ID collisions', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:211:  const SHARED_SPEC = 'specs/042-session-collision';
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:216:  const nsX = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_X };
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:217:  const nsY = { specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE, sessionId: SESSION_Y };
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:219:  function collisionNode(sessionId: string, id: string, name: string): CoverageNode {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:224:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:230:  function collisionEdge(sessionId: string, id: string, sourceId: string, targetId: string): CoverageEdge {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:235:      sessionId,
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:246:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-collision-'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:260:    // Session X writes "q-shared" first with one name.
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:261:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X text'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:262:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X text');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:263:    expect(getNode(nsY, 'q-shared')).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:268:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y text'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:270:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X text');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:271:    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y text');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:273:    const allSessionX = getNodes(nsX).map((n) => n.id);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:274:    const allSessionY = getNodes(nsY).map((n) => n.id);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:275:    expect(allSessionX).toEqual(['q-shared']);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:276:    expect(allSessionY).toEqual(['q-shared']);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:278:    const aggregate = getNodes({ specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE });
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:284:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:285:    upsertNode(collisionNode(SESSION_X, 'f-shared', 'Finding X'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:286:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:287:    upsertNode(collisionNode(SESSION_Y, 'f-shared', 'Finding Y'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:289:    upsertEdge(collisionEdge(SESSION_X, 'answers-shared', 'f-shared', 'q-shared'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:290:    expect(getEdge(nsX, 'answers-shared')).toBeTruthy();
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:291:    expect(getEdge(nsY, 'answers-shared')).toBeNull();
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:294:    upsertEdge(collisionEdge(SESSION_Y, 'answers-shared', 'f-shared', 'q-shared'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:296:    const edgeX = getEdge(nsX, 'answers-shared');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:297:    const edgeY = getEdge(nsY, 'answers-shared');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:300:    expect(edgeX?.sessionId).toBe(SESSION_X);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:301:    expect(edgeY?.sessionId).toBe(SESSION_Y);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:308:    expect(getEdgesFrom(nsX, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:309:    expect(getEdgesFrom(nsY, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:313:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v1'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:314:    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y v1'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:317:    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v2'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:319:    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X v2');
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:320:    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y v1');
+.opencode/skills/system-spec-kit/mcp_server/tests/atomic-index-memory.vitest.ts:225:  it('serializes concurrent writes through the shared spec-folder lock', async () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:32:    sessionId?: string | null;
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:67:    params.sessionId ?? null,
+.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:3:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:54:          sessionId: 'session-001',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts:6:import type { MCPResponse } from '@spec-kit/shared/types';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:12:} from '@spec-kit/shared/parsing/memory-sufficiency';
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-pipeline-enforcement.vitest.ts:13:import { validateMemoryTemplateContract } from '@spec-kit/shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/mcp_server/tests/shadow-comparison.vitest.ts:73:  'refactor shared utility functions module',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:62:    sessionId: 'rvw-fail-closed',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:117:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:119:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:141:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:142:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:179:        '{"type":"config","mode":"review","sessionId":"rvw-fail-closed"}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:182:        '{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"test","dimensions":["correctness"],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-fail-closed","generation":1,"lineageMode":"new","timestamp":"2026-04-11T00:05:00Z","durationMs":10000}',
+.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:195:    expect(result.registry.sessionId).toBe('rvw-fail-closed');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:80:function insertSentRow(sessionId: string, hash: string, memoryId: number | null, sentAt: string): void {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:83:  ).run(sessionId, hash, memoryId, sentAt);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:232:    it('returns failure for empty sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:264:    it('empty sessionId returns zeros', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:334:    it('generates a server session when caller omits sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:430:    it('rejects empty sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:449:    it('fails for empty sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:506:        expect(state.sessionId).toBe('recover-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:539:    it('rejects empty sessionId', () => {
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:560:        const ids = r.sessions.map((s: InterruptedSession) => s.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:564:        const s1 = r.sessions.find((s: InterruptedSession) => s.sessionId === 'int-1');
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:577:      const ids = r.sessions.map((session: InterruptedSession) => session.sessionId);
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:598:        sessionId: 'gen-md-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:619:      // Minimal input (only sessionId required)
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:620:      const md = sm.generateContinueSessionMd({ sessionId: 'gen-md-2' });
+.opencode/skills/system-spec-kit/mcp_server/tests/session-manager-extended.vitest.ts:625:      // Without specFolder, should use sessionId-based resume command
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:71:      sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:85:      sessionId: 'miss-current-2',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:98:      sessionId: 'ambiguity-current-3',
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase4-pr7.test.ts:125:        sessionId: 'hit-current-3',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:127:      sessionId: 'session-1',
+.opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts:160:      sessionId: undefined,
+.opencode/skills/system-spec-kit/scripts/tests/memory-quality-phase6-template.test.ts:13:import { validateMemoryTemplateContract } from '../../shared/parsing/memory-template-contract';
+.opencode/skills/system-spec-kit/scripts/tests/causal-links-auto-populate.vitest.ts:89:        sessionId: 'implementation-save-2',
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:18:    fs.mkdirSync(path.join(root, 'shared'), { recursive: true });
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:39:  it('T39: GAP A detects shared -> mcp_server/scripts imports across syntax variants', () => {
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:42:    writeFixtureFile(root, 'shared/named-multiline.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:50:    writeFixtureFile(root, 'shared/default-import.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:55:    writeFixtureFile(root, 'shared/namespace-import.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:60:    writeFixtureFile(root, 'shared/dynamic-import.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:78:  it('parses export-from, import type, and require() forms when checking shared neutrality', () => {
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:81:    writeFixtureFile(root, 'shared/export-from.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:85:    writeFixtureFile(root, 'shared/import-type.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:90:    writeFixtureFile(root, 'shared/require-call.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:206:    writeFixtureFile(root, 'shared/utils.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:207:      'export const sharedValue = 42;',
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:226:  it('T45: valid mcp_server/scripts -> shared imports are not false positives', () => {
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:229:    writeFixtureFile(root, 'shared/utils.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:230:      'export const sharedValue = 42;',
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:233:    writeFixtureFile(root, 'shared/consumer.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:234:      "import { sharedValue } from './utils';",
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:235:      'export const value = sharedValue;',
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:239:      "import { sharedValue } from '../../shared/utils';",
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:240:      'export const fromMcp = sharedValue;',
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:243:    writeFixtureFile(root, 'scripts/use-shared.ts', [
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:244:      "import { sharedValue } from '../shared/utils';",
+.opencode/skills/system-spec-kit/scripts/tests/architecture-boundary-enforcement.vitest.ts:245:      'export const fromScripts = sharedValue;',
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:1:{"type":"config","mode":"review","topic":"Review of graph optimization module","reviewTarget":"specs/040-graph-optimization","reviewTargetType":"spec-folder","reviewDimensions":["correctness","security","traceability","maintainability"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"createdAt":"2026-03-20T14:00:00Z","specFolder":"040-graph-optimization","releaseReadinessState":"in-progress"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:2:{"type":"iteration","mode":"review","run":1,"status":"complete","focus":"D1 Correctness - reducer logic review","dimensions":["correctness"],"filesReviewed":["src/graph-reducer.ts","src/parser.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":4,"findingsSummary":{"P0":1,"P1":2,"P2":1},"findingsNew":{"P0":1,"P1":2,"P2":1},"newFindingsRatio":0.90,"timestamp":"2026-03-20T14:12:00Z","durationMs":72000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"D2 Security - injection prevention audit","dimensions":["security","correctness"],"filesReviewed":["src/sanitizer.ts","src/input-validator.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":6,"findingsSummary":{"P0":1,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.40,"timestamp":"2026-03-20T14:24:00Z","durationMs":65000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:4:{"type":"event","event":"blocked_stop","mode":"review","run":2,"stopReason":"blockedStop","legalStop":{"blockedBy":["dimensionCoverage","p0Resolution"],"gateResults":{"findingStability":{"pass":true,"detail":"Stability voted STOP."},"dimensionCoverage":{"pass":false,"detail":"Traceability and maintainability not examined."},"p0Resolution":{"pass":false,"detail":"1 unresolved P0."},"evidenceDensity":{"pass":true,"detail":"Density sufficient."},"hotspotSaturation":{"pass":true,"detail":"Hotspots saturated."}},"replayInputs":{"iterationCount":2,"newFindingsRatio":0.40,"noveltyRatio":0.40,"dimensionsExamined":["correctness","security"],"reviewDimensions":["correctness","security","traceability","maintainability"],"activeFindings":{"P0":1,"P1":3,"P2":2},"hotspotCoverage":{"saturated":1,"required":2}}},"recoveryStrategy":"Cover traceability and maintainability dimensions, then resolve the active P0.","timestamp":"2026-03-20T14:24:30Z"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:5:{"type":"iteration","mode":"review","run":3,"status":"complete","focus":"D3 Traceability + D4 Maintainability sweep","dimensions":["traceability","maintainability"],"filesReviewed":["specs/040/spec.md","src/graph-reducer.ts","src/utils.ts"],"sessionId":"rvw-2026-03-20T14-00-00Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"findingsCount":7,"findingsSummary":{"P0":0,"P1":3,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":2},"newFindingsRatio":0.08,"convergenceSignals":{"rollingAvg":0.09,"madScore":0.06,"noveltyRatio":0.08,"compositeStop":0.62},"timestamp":"2026-03-20T14:36:00Z","durationMs":58000}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6:{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":3,"verdict":"CONDITIONAL","activeP0":0,"activeP1":3,"activeP2":4,"dimensionCoverage":1.0,"stopReason":"converged","legalStop":{"blockedBy":[],"gateResults":{"findingStability":{"pass":true,"detail":"Stable."},"dimensionCoverage":{"pass":true,"detail":"All dimensions covered."},"p0Resolution":{"pass":true,"detail":"P0 resolved."},"evidenceDensity":{"pass":true,"detail":"Sufficient."},"hotspotSaturation":{"pass":true,"detail":"Saturated."}},"replayInputs":{"iterationCount":3,"newFindingsRatio":0.08,"noveltyRatio":0.08,"dimensionsExamined":["correctness","security","traceability","maintainability"],"hotspotCoverage":{"saturated":2,"required":2},"stopScore":0.62}},"timestamp":"2026-03-20T14:38:00Z"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/028/sample-iterations.jsonl:1:{"type":"config","mode":"research","topic":"Legacy holdout replay fixture","maxIterations":5,"convergenceThreshold":0.15,"stuckThreshold":3,"sessionId":"replay-028-fixture"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/040/sample-iterations.jsonl:1:{"type":"config","mode":"review","topic":"Replay fixture for 040","maxIterations":7,"convergenceThreshold":0.10,"stuckThreshold":2,"sessionId":"replay-040-fixture"}
+.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC1-truncation.json:3:  "sessionSummary": "Phase 1 foundation work focused on two narrow repairs that improve memory quality without widening the remediation packet into unrelated metadata or reviewer behavior. The first repair aligned the OVERVIEW anchor identity so the table of contents, the HTML anchor, and the internal comment marker all point to the same destination. The second repair extracted a shared truncation helper so long session summaries stop at a clean word boundary and carry the canonical Unicode ellipsis instead of drifting between punctuation styles. The fixture describes a realistic verification pass where the helper was reused by the observation summary path, the OVERVIEW owner adopted the same contract, the compiled CLI replay was exercised with explicit JSON input, and the temporary replay artifacts were removed immediately after the check so the packet memory store stayed clean for the real documentation workflow.",
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts | sed -n '880,990p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts | sed -n '880,990p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    880	  afterEach(() => {
    881	    // Close the DB to release the file handle
@@ -4055,23 +4055,23 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md | sed -n '150,190p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"deep-loop-graph|coverage graph|SCHEMA_VERSION = 2|DROP TABLE IF EXISTS coverage_|schema_version.*coverage|migration.*coverage|initDb\\(tempDir\\).*coverage|session-isolation\" .opencode/skill/system-spec-kit/mcp_server/tests .opencode/skill/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"deep-loop-graph|coverage graph|SCHEMA_VERSION = 2|DROP TABLE IF EXISTS coverage_|schema_version.*coverage|migration.*coverage|initDb\\(tempDir\\).*coverage|session-isolation\" .opencode/skills/system-spec-kit/mcp_server/tests .opencode/skills/system-spec-kit/scripts/tests" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
  succeeded in 0ms:
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:57:describe('coverage graph session isolation', () => {
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-session-isolation-'));
-.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts:210:describe('coverage graph session isolation — shared-ID collisions', () => {
-.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:4:// Tests for the coverage graph database projection contract.
-.opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:4:// Tests for the MCP tool surface that exposes coverage graph
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:57:describe('coverage graph session isolation', () => {
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61:    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-session-isolation-'));
+.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:210:describe('coverage graph session isolation — shared-ID collisions', () => {
+.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts:353:    const sessionId = 'session-isolation';
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:4:// Tests for the coverage graph database projection contract.
+.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts:4:// Tests for the MCP tool surface that exposes coverage graph
 
 exec
 /bin/zsh -lc 'rg -n "REQ-024|REQ-028|session isolation|composite|collision|drop-and-recreate|drop the v1 tables|all_sessions_default" .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-tools.vitest.ts | sed -n '1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// COVERAGE GRAPH DB INTEGRATION TESTS (T022)
@@ -4603,7 +4603,7 @@ exec
    289	});
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Signals
@@ -4827,7 +4827,7 @@ exec
    220	  const citedSources = new Map<string, string[]>();
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '340,455p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '340,455p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    340	
    341	/**
@@ -4949,7 +4949,7 @@ exec
 codex
 I’ve isolated the likely failure mode: the schema is composite-keyed, but some higher-level reads still re-link rows using only bare node IDs. I’m doing one last pass over the remaining query helpers so I don’t miss a second leak path before I write the findings.
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '1,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '1,150p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	// ───────────────────────────────────────────────────────────────
      2	// MODULE: Coverage Graph Query Helpers
@@ -5103,7 +5103,7 @@ exec
    150	          reason: `No incoming ${coverageRelations.join(' or ')} edges`,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '320,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts | sed -n '320,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	    const rows = d.prepare(`
    321	      SELECT * FROM coverage_nodes
@@ -5218,7 +5218,7 @@ exec
    430	    limit,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-convergence.ts 2>/dev/null | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-convergence.ts 2>/dev/null | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 codex
 **Findings**
@@ -5226,7 +5226,7 @@ codex
 `F-014-001`  
 Severity: `P1`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
+File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
 Line: `378-447, 482-487`  
 Title: `Session-scoped convergence can still be influenced by another session's graph rows`  
 Description: `SCHEMA_VERSION = 2` correctly makes row identity `(spec_folder, loop_type, session_id, id)`, but the review-signal SQL still evaluates coverage and resolution using bare node IDs. In `computeReviewSignals(ns)`, the outer node scans are scoped to `spec_folder` and `loop_type`, but the nested edge lookups for `COVERS`, `CONTRADICTS`, and `RESOLVES` do not constrain `e.spec_folder`, `e.loop_type`, or `e.session_id`. In `computeHotspotSaturation`, the join back to `coverage_nodes` is also `ON n.id = e.source_id` only. After the v2 migration, two sessions are allowed to reuse the same logical IDs, so a second session can accidentally or intentionally satisfy another session's convergence checks and suppress blockers. That is a real cross-session integrity leak on the stop-gating path.`  
@@ -5236,7 +5236,7 @@ Recommendation: `Thread the full namespace through every nested edge lookup and 
 `F-014-002`  
 Severity: `P1`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`  
+File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`  
 Line: `89-100, 123-134, 171-178, 347-357`  
 Title: `Coverage-graph query helpers do not consistently honor the composite namespace`  
 Description: `The query layer still has the same post-migration flaw: it scopes the outer row set, then uses bare-ID subqueries or joins internally. `findCoverageGaps()` checks for matching edges by `source_id`/`target_id` without constraining `spec_folder` or `loop_type`; `findContradictions()` joins `coverage_nodes` on `s.id = e.source_id` and `t.id = e.target_id` only; `findUnverifiedClaims()` checks `RESOLVES` edges by `target_id = n.id` with no spec/loop binding. With v2, identical logical IDs across sessions are expected, so these helpers can leak names, duplicate contradiction rows, or incorrectly mark another session's node as covered or resolved.`  
@@ -5246,7 +5246,7 @@ Recommendation: `Treat the composite key as the only valid identity everywhere i
 `F-014-003`  
 Severity: `P2`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
+File: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
 Line: `165-197, 259-320`  
 Title: `The shared-ID regression suite does not cover the higher-level read paths that still leak`  
 Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`  
@@ -5278,7 +5278,7 @@ tokens used
 `F-014-001`  
 Severity: `P1`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
+File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
 Line: `378-447, 482-487`  
 Title: `Session-scoped convergence can still be influenced by another session's graph rows`  
 Description: `SCHEMA_VERSION = 2` correctly makes row identity `(spec_folder, loop_type, session_id, id)`, but the review-signal SQL still evaluates coverage and resolution using bare node IDs. In `computeReviewSignals(ns)`, the outer node scans are scoped to `spec_folder` and `loop_type`, but the nested edge lookups for `COVERS`, `CONTRADICTS`, and `RESOLVES` do not constrain `e.spec_folder`, `e.loop_type`, or `e.session_id`. In `computeHotspotSaturation`, the join back to `coverage_nodes` is also `ON n.id = e.source_id` only. After the v2 migration, two sessions are allowed to reuse the same logical IDs, so a second session can accidentally or intentionally satisfy another session's convergence checks and suppress blockers. That is a real cross-session integrity leak on the stop-gating path.`  
@@ -5288,7 +5288,7 @@ Recommendation: `Thread the full namespace through every nested edge lookup and 
 `F-014-002`  
 Severity: `P1`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`  
+File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts`  
 Line: `89-100, 123-134, 171-178, 347-357`  
 Title: `Coverage-graph query helpers do not consistently honor the composite namespace`  
 Description: `The query layer still has the same post-migration flaw: it scopes the outer row set, then uses bare-ID subqueries or joins internally. `findCoverageGaps()` checks for matching edges by `source_id`/`target_id` without constraining `spec_folder` or `loop_type`; `findContradictions()` joins `coverage_nodes` on `s.id = e.source_id` and `t.id = e.target_id` only; `findUnverifiedClaims()` checks `RESOLVES` edges by `target_id = n.id` with no spec/loop binding. With v2, identical logical IDs across sessions are expected, so these helpers can leak names, duplicate contradiction rows, or incorrectly mark another session's node as covered or resolved.`  
@@ -5298,7 +5298,7 @@ Recommendation: `Treat the composite key as the only valid identity everywhere i
 `F-014-003`  
 Severity: `P2`  
 Dimension: `security`  
-File: `.opencode/skill/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
+File: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
 Line: `165-197, 259-320`  
 Title: `The shared-ID regression suite does not cover the higher-level read paths that still leak`  
 Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`  

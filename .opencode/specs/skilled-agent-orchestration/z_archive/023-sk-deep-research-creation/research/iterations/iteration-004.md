@@ -281,7 +281,7 @@ function shouldContinue_Composite(state, config):
 - NIST Engineering Statistics Handbook: CUSUM control charts [DOC: itl.nist.gov/div898/handbook/pmc/section3/pmc323.htm]
 
 ### Our System
-- convergence.md [SOURCE: .opencode/skill/sk-deep-research/references/convergence.md] -- current shouldContinue() algorithm
+- convergence.md [SOURCE: .opencode/skills/sk-deep-research/references/convergence.md] -- current shouldContinue() algorithm
 
 ## Assessment
 

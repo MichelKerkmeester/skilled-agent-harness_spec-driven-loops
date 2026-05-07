@@ -179,7 +179,7 @@ Memory file written
 - [x] Run the broader scripts and MCP closure baselines retained in the parent pack — verify they remain applicable to the shipped Phase 014 implementation.
 - [x] Run the targeted Phase 014 scripts lane — `npm test -- --run tests/workflow-e2e.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`.
 - [x] Confirm the failed-embedding regression harness now mocks `indexMemory()` before `workflow.ts` import and returns `result.memoryId === null`.
-- [x] Revalidate the current phase with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates --json`.
+- [x] Revalidate the current phase with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates --json`.
 <!-- /ANCHOR:phases -->
 
 ---

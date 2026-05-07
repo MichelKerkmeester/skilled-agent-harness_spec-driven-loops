@@ -41,7 +41,7 @@
       "research/scripts/run-loop.sh",
       "research/research.md",
       "research/resource-map.md",
-      ".opencode/skill/deep-research/SKILL.md",
+      ".opencode/skills/deep-research/SKILL.md",
       "scripts/spec/validate.sh",
       "spec.md",
       "plan.md",
@@ -70,7 +70,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/deep-research/SKILL.md",
+        "path": ".opencode/skills/deep-research/SKILL.md",
         "source": "derived"
       },
       {

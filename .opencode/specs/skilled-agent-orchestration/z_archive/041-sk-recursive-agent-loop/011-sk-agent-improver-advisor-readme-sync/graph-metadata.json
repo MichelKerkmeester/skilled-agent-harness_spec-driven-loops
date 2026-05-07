@@ -37,7 +37,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/README.md",
+      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,7 +47,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {

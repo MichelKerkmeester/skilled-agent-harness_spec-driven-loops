@@ -19,14 +19,14 @@ contextType: "implementation"
 
 ### B. Update umbrella docs (in order)
 6. `/README.md` (root) — add new capabilities to features section
-7. `.opencode/skill/system-spec-kit/SKILL.md` — update capability matrix
-8. `.opencode/skill/system-spec-kit/README.md` — update feature index
-9. `.opencode/skill/system-spec-kit/mcp_server/README.md` — add `detect_changes` to handler list; note enriched query/blast_radius/skill-advisor lanes/memory badges
-10. `.opencode/skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — add verification steps for each new capability
+7. `.opencode/skills/system-spec-kit/SKILL.md` — update capability matrix
+8. `.opencode/skills/system-spec-kit/README.md` — update feature index
+9. `.opencode/skills/system-spec-kit/mcp_server/README.md` — add `detect_changes` to handler list; note enriched query/blast_radius/skill-advisor lanes/memory badges
+10. `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — add verification steps for each new capability
 
 ### C. Update catalog indexes
-11. `.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md` — list new per-packet entries (categories 03, 06, 11, 13, 14)
-12. `.opencode/skill/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` — list new per-packet playbook entries
+11. `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` — list new per-packet entries (categories 03, 06, 11, 13, 14)
+12. `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` — list new per-packet playbook entries
 
 ### D. Update phase map
 13. `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` — add 012 entry

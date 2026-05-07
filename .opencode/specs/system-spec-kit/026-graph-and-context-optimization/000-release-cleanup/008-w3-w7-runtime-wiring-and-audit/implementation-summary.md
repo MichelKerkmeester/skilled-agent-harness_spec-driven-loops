@@ -67,7 +67,7 @@ Phase G turned W3-W7 from isolated measured artifacts into a telemetry-first run
 | F-W5-001 | Closed | Advisor shadow sink writes JSONL at `mcp_server/skill_advisor/lib/shadow/shadow-sink.ts:39`; handler records `_shadow` at `mcp_server/skill_advisor/handlers/advisor-recommend.ts:282`; Python passthrough preserves `_shadow` at `mcp_server/skill_advisor/scripts/skill_advisor.py:365`. |
 | F-W6-001 | Closed | Runtime memory search calls `calibrateCocoIndexOverfetch` at `mcp_server/handlers/memory-search.ts:1151`; calibration carries scope at `mcp_server/lib/search/cocoindex-calibration.ts:17` and `:59`. |
 | F-W7-001 | Closed | W10 drives real isolated `code_graph_query` degraded state at `mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:23`; W7 files are marked fixture-only supplements. |
-| F-EMPTY-001 | Closed | Removed `.opencode/skill/system-spec-kit/mcp_server/tmp-test-fixtures/specs/` and duplicate empty `.opencode/skill/system-spec-kit/specs/.../007-search-rag-measurement-driven-implementation/measurements/`; follow-up `find` returned no paths. |
+| F-EMPTY-001 | Closed | Removed `.opencode/skills/system-spec-kit/mcp_server/tmp-test-fixtures/specs/` and duplicate empty `.opencode/skills/system-spec-kit/specs/.../007-search-rag-measurement-driven-implementation/measurements/`; follow-up `find` returned no paths. |
 | F-XW-001 | Closed | W8 envelope composes QueryPlan, trust tree, rerank decision, shadow deltas, calibration, degraded readiness, and latency at `mcp_server/lib/search/search-decision-envelope.ts:44`. |
 | F-ENT-001 | Closed | Envelope carries `tenantId`, `userId`, `agentId` at `mcp_server/lib/search/search-decision-envelope.ts:47`; Stage 3 threads scope into W4 at `mcp_server/lib/search/pipeline/stage3-rerank.ts:337`; W6 accepts scope at `mcp_server/lib/search/cocoindex-calibration.ts:17`. |
 | F-ENT-002 | Closed | Decision audit appends JSONL and computes SLA metrics at `mcp_server/lib/search/decision-audit.ts:43` and `:62`; `memory_search` and `memory_context` record decisions at `mcp_server/handlers/memory-search.ts:1409` and `mcp_server/handlers/memory-context.ts:1911`. |
@@ -122,7 +122,7 @@ The implementation kept the behavior boundary narrow. W8 landed first as a pure 
 | `npx vitest run stress_test/search-quality/*.vitest.ts tests/query-plan-emission.vitest.ts skill_advisor/tests/shadow-sink.vitest.ts skill_advisor/tests/compat/python-compat.vitest.ts` | PASS, exit 0, 17 files and 32 tests. |
 | `npm run typecheck` | PASS, exit 0. |
 | `npm run build` | PASS, exit 0. |
-| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit --strict` | PASS, exit 0. |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-w3-w7-runtime-wiring-and-audit --strict` | PASS, exit 0. |
 | `rg "buildTrustTree|calibrateCocoIndexOverfetch|recordShadowDelta|recordSearchDecision"` | PASS, production consumers found. |
 | Empty directory audit | PASS, both target directories removed and follow-up `find` returned no paths. |
 <!-- /ANCHOR:verification -->

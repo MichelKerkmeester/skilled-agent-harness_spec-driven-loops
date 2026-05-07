@@ -37,10 +37,10 @@ _memory:
     next_safe_action: "Keep command, runtime, and README parity aligned before release"
     blockers: []
     key_files:
-      - ".opencode/skill/cli-claude-code/SKILL.md"
-      - ".opencode/skill/cli-codex/SKILL.md"
-      - ".opencode/skill/cli-copilot/SKILL.md"
-      - ".opencode/skill/cli-gemini/SKILL.md"
+      - ".opencode/skills/cli-claude-code/SKILL.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-gemini/SKILL.md"
     session_dedup:
       fingerprint: "sha256:043-cli-skill-improved-prompting"
       session_id: "043-cli-skill-improved-prompting"
@@ -85,7 +85,7 @@ This packet introduces a two-tier prompt-quality architecture. The fast path kee
 - [x] The target spec folder is fixed: `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/`.
 - [x] The current command, skill, and runtime surfaces have been inspected.
 - [x] The `_guard_in_skill()` + same-skill markdown discovery constraint is documented as a hard architecture rule.
-- [x] Active runtime directories are confirmed: `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
+- [x] Active runtime directories are confirmed: `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.gemini/agents/`.
 
 ### Definition of Done
 
@@ -115,7 +115,7 @@ Canonical-source plus local mirrors, backed by an isolated escalation agent.
 - **Prompt template metadata**: framework tags inside the CLI prompt-template assets
 - **Full-methodology contract**: `sk-improve-prompt` skill definition
 - **Escalation runtime surface**: `@improve-prompt` across all active runtime directories
-- **Shared command surface**: `.opencode/command/improve/prompt.md`
+- **Shared command surface**: `.opencode/commands/improve/prompt.md`
 
 ### Data Flow
 
@@ -164,7 +164,7 @@ Caller requests CLI dispatch
 
 ### Phase 4: Command Routing and Verification
 
-- [ ] Update `.opencode/command/improve/prompt.md` to support inline and agent dispatch modes.
+- [ ] Update `.opencode/commands/improve/prompt.md` to support inline and agent dispatch modes.
 - [ ] Preserve inline mode as the default for ordinary interactive work.
 - [ ] Auto-route to agent mode when complexity or explicit isolation signals demand it.
 - [ ] Run static and semantic checks from the packet verification plan.
@@ -182,7 +182,7 @@ Caller requests CLI dispatch
 | Metadata parity | Framework tags and sync footers exist where expected | `grep` |
 | Command contract | `/improve:prompt` documents inline and agent modes consistently | `grep`, `sed`, manual read |
 | Runtime parity | New agent exists in all active runtime directories and matches the documented contract | `find`, `sed`, manual read |
-| Packet validation | Spec docs stay template-compliant | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --strict <packet>` |
+| Packet validation | Spec docs stay template-compliant | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <packet>` |
 <!-- /ANCHOR:testing -->
 
 ---

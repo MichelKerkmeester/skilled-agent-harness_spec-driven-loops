@@ -41,98 +41,98 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-deep-research/README.md",
-      ".opencode/skill/sk-deep-research/SKILL.md",
-      ".opencode/skill/sk-deep-research/references/quick_reference.md",
-      ".opencode/skill/sk-deep-research/references/state_format.md",
-      ".opencode/skill/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skill/sk-deep-research/references/capability_matrix.md",
-      ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
-      ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
-      ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
-      ".opencode/agent/deep-research.md",
+      ".opencode/skills/sk-deep-research/README.md",
+      ".opencode/skills/sk-deep-research/SKILL.md",
+      ".opencode/skills/sk-deep-research/references/quick_reference.md",
+      ".opencode/skills/sk-deep-research/references/state_format.md",
+      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
+      ".opencode/skills/sk-deep-research/references/capability_matrix.md",
+      ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
+      ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
+      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+      ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".gemini/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
-      ".opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-      ".opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
       "spec.md"
     ],
     "entities": [
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/README.md",
+        "path": ".opencode/skills/sk-deep-research/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/quick_reference.md",
+        "path": ".opencode/skills/sk-deep-research/references/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "state_format.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/state_format.md",
+        "path": ".opencode/skills/sk-deep-research/references/state_format.md",
         "source": "derived"
       },
       {
         "name": "loop_protocol.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/loop_protocol.md",
+        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
         "source": "derived"
       },
       {
         "name": "capability_matrix.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/references/capability_matrix.md",
+        "path": ".opencode/skills/sk-deep-research/references/capability_matrix.md",
         "source": "derived"
       },
       {
         "name": "runtime_capabilities.json",
         "kind": "config",
-        "path": ".opencode/skill/sk-deep-research/assets/runtime_capabilities.json",
+        "path": ".opencode/skills/sk-deep-research/assets/runtime_capabilities.json",
         "source": "derived"
       },
       {
         "name": "runtime-capabilities.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/runtime-capabilities.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs",
         "source": "derived"
       },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
-        "path": ".opencode/skill/sk-deep-research/scripts/reduce-state.cjs",
+        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_confirm.yaml",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
-        "path": ".opencode/agent/deep-research.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -144,25 +144,25 @@
       {
         "name": "deep-research-contract-parity.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
         "source": "derived"
       },
       {
         "name": "deep-research-reducer.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
         "name": "008-iteration-writes-iteration-jsonl-and-strategy-update.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
+        "path": ".opencode/skills/sk-deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md",
         "source": "derived"
       },
       {

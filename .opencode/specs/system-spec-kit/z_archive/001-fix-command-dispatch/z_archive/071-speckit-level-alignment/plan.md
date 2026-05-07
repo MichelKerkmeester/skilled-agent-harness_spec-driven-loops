@@ -80,7 +80,7 @@ templates/
 ## Phase 1: Script Updates (CRITICAL)
 
 ### 1.1 create-spec-folder.sh
-**Path**: `.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh`
+**Path**: `.opencode/skills/system-spec-kit/scripts/create-spec-folder.sh`
 **Changes**:
 - **Line 373**: Add `get_level_templates_dir()` function
 - **Lines 391-405**: Replace conditional copying with level folder iteration
@@ -106,7 +106,7 @@ done
 ```
 
 ### 1.2 expand-template.js
-**Path**: `.opencode/skill/system-spec-kit/scripts/expand-template.js`
+**Path**: `.opencode/skills/system-spec-kit/scripts/expand-template.js`
 **Changes**:
 - **Lines 157-159**: Update `getTemplatesDir(level)` to return level folder
 - **Lines 171-176**: Add fallback to root templates
@@ -152,21 +152,21 @@ function getTemplatesDir(level = null) {
 **Note**: Grep verification found significantly more documentation files needing updates.
 
 ### 3.1 SKILL.md (P0)
-**Path**: `.opencode/skill/system-spec-kit/SKILL.md`
+**Path**: `.opencode/skills/system-spec-kit/SKILL.md`
 **Changes**:
 - Update Resource Inventory table to show level folders
 - Replace COMPLEXITY_GATE workflow with folder selection
 - Add Template Folder Architecture documentation
 
 ### 3.2 README.md (P1)
-**Path**: `.opencode/skill/system-spec-kit/README.md`
+**Path**: `.opencode/skills/system-spec-kit/README.md`
 **Changes** (multiple locations):
 - Lines 412, 428, 466: Update copy commands for Level 1-3
 - Lines 1003-1004, 1553-1554, 1559: Update test fixture commands
 - Lines 1655-1656, 1891: Update manual copy examples
 
 ### 3.3 level_specifications.md (P1)
-**Path**: `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
+**Path**: `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
 **Changes**:
 - Lines 46-47, 97-100: Level 1 sources → `templates/level_1/`
 - Lines 173-178: Level 2 sources → `templates/level_2/`
@@ -175,36 +175,36 @@ function getTemplatesDir(level = null) {
 - Lines 639-642: Update template links
 
 ### 3.4 template_guide.md (P1)
-**Path**: `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
+**Path**: `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
 **Changes**:
 - Lines 56-57, 107, 400, 685: Update copy commands
 - Lines 999-1002: Update template links
 
 ### 3.5 complexity_guide.md (P1)
-**Path**: `.opencode/skill/system-spec-kit/references/templates/complexity_guide.md`
+**Path**: `.opencode/skills/system-spec-kit/references/templates/complexity_guide.md`
 **Changes**:
 - Lines 325-328: Update main template paths
 - Lines 331-334: Update complexity/ references (or remove)
 
 ### 3.6 quick_reference.md (P2)
-**Path**: `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
+**Path**: `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
 **Changes**:
 - Lines 53-54, 63: Update copy commands
 - Lines 552-555: Update template links
 
 ### 3.7 template_mapping.md (P2)
-**Path**: `.opencode/skill/system-spec-kit/assets/template_mapping.md`
+**Path**: `.opencode/skills/system-spec-kit/assets/template_mapping.md`
 **Changes**:
 - Lines 53-54, 61, 258-259, 266: Update copy commands
 - Lines 313-316: Update template links
 
 ### 3.8 validation_rules.md (P2)
-**Path**: `.opencode/skill/system-spec-kit/references/validation/validation_rules.md`
+**Path**: `.opencode/skills/system-spec-kit/references/validation/validation_rules.md`
 **Changes**:
 - Line 119: Update copy command example
 
 ### 3.9 phase_checklists.md (P2)
-**Path**: `.opencode/skill/system-spec-kit/references/validation/phase_checklists.md`
+**Path**: `.opencode/skills/system-spec-kit/references/validation/phase_checklists.md`
 **Changes**:
 - Line 176: Update checklist.md link
 
@@ -266,10 +266,10 @@ function getTemplatesDir(level = null) {
 ### Pre-Implementation Checks
 ```bash
 # Verify level folders exist and are populated
-ls -la .opencode/skill/system-spec-kit/templates/level_*/
+ls -la .opencode/skills/system-spec-kit/templates/level_*/
 
 # Verify level templates are clean (no COMPLEXITY_GATE except level_2/checklist)
-grep -r "COMPLEXITY_GATE" .opencode/skill/system-spec-kit/templates/level_*/
+grep -r "COMPLEXITY_GATE" .opencode/skills/system-spec-kit/templates/level_*/
 ```
 
 ### Post-Implementation Checks
@@ -283,8 +283,8 @@ done
 node scripts/expand-template.js --template spec.md --level 2 --dry-run
 
 # Verify no broken paths
-grep -r "templates/spec.md" .opencode/skill/system-spec-kit/scripts/
-grep -r "templates/plan.md" .opencode/skill/system-spec-kit/scripts/
+grep -r "templates/spec.md" .opencode/skills/system-spec-kit/scripts/
+grep -r "templates/plan.md" .opencode/skills/system-spec-kit/scripts/
 ```
 
 ### Run Existing Tests

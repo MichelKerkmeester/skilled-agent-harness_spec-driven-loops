@@ -34,8 +34,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skill/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
-      ".opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
       "mcp_server/code_graph/lib/code-graph-context.ts",
       "implementation-summary.md",
       "spec.md",
@@ -47,13 +47,13 @@
       {
         "name": "08-code-graph-edge-explanation-blast-radius-uplift.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
         "source": "derived"
       },
       {
         "name": "026-code-graph-edge-explanation-blast-radius-uplift.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
         "source": "derived"
       },
       {

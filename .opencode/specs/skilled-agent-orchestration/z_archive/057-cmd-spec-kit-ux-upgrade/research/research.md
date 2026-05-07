@@ -31,7 +31,7 @@ _memory:
 This synthesis completes the 10-iteration deep-research loop for packet `057-cmd-spec-kit-ux-upgrade`.
 
 - **External surface**: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/`
-- **Internal surface**: `system-spec-kit`, `.opencode/command/spec_kit/`, `.opencode/command/memory/`, `.opencode/command/create/`, `.opencode/agent/`, root instruction files
+- **Internal surface**: `system-spec-kit`, `.opencode/commands/spec_kit/`, `.opencode/commands/memory/`, `.opencode/commands/create/`, `.opencode/agents/`, root instruction files
 - **Run**: 10 cli-codex / gpt-5.5 / high / fast iterations
 - **Outcome**: converged ranked backlog, packets `058-*` through `069-*`
 
@@ -120,8 +120,8 @@ Internal system-spec-kit already has the harder discipline underneath: consolida
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/Research/research/personasRetrospective/spar.plan.recommendations.md`
 - Internal: `AGENTS.md`
-- Internal: `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- Internal: `.opencode/command/spec_kit/plan.md`
+- Internal: `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- Internal: `.opencode/commands/spec_kit/plan.md`
 
 **Adoption Risk**: Low. The main constraint is preserving machine-readable Gate 3 options while improving the surrounding copy.
 
@@ -144,10 +144,10 @@ The internal command surface is stronger and more granular than SPAR's, but its 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-act/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-retain/SKILL.md`
-- Internal: `.opencode/command/spec_kit/plan.md`
-- Internal: `.opencode/command/spec_kit/implement.md`
-- Internal: `.opencode/command/spec_kit/complete.md`
-- Internal: `.opencode/skill/system-spec-kit/SKILL.md`
+- Internal: `.opencode/commands/spec_kit/plan.md`
+- Internal: `.opencode/commands/spec_kit/implement.md`
+- Internal: `.opencode/commands/spec_kit/complete.md`
+- Internal: `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Adoption Risk**: Low. The risk is only accidental contradiction with existing gates; keep the copy descriptive and phase-local.
 
@@ -168,12 +168,12 @@ The right adaptation is a compatibility matrix that preserves existing semantics
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/README.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-plan/SKILL.md`
-- Internal: `.opencode/command/spec_kit/README.txt`
-- Internal: `.opencode/command/spec_kit/deep-research.md`
-- Internal: `.opencode/command/spec_kit/deep-review.md`
-- Internal: `.opencode/command/create/agent.md`
-- Internal: `.opencode/command/memory/README.txt`
-- Internal: `.opencode/skill/sk-deep-research/SKILL.md`
+- Internal: `.opencode/commands/spec_kit/README.txt`
+- Internal: `.opencode/commands/spec_kit/deep-research.md`
+- Internal: `.opencode/commands/spec_kit/deep-review.md`
+- Internal: `.opencode/commands/create/agent.md`
+- Internal: `.opencode/commands/memory/README.txt`
+- Internal: `.opencode/skills/sk-deep-research/SKILL.md`
 
 **Adoption Risk**: Medium. Skill-advisor examples, command README syntax, YAML start conditions, Gate 3 classification, and docs need synchronized edits.
 
@@ -197,9 +197,9 @@ Internal system-spec-kit needs this vocabulary more than it needs a public insta
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/lib/install-engine.mjs`
 - Internal: `AGENTS.md`
 - Internal: `.codex/AGENTS.md`
-- Internal: `.opencode/skill/system-spec-kit/templates/`
-- Internal: `.opencode/command/spec_kit/`
-- Internal: `.opencode/agent/`
+- Internal: `.opencode/skills/system-spec-kit/templates/`
+- Internal: `.opencode/commands/spec_kit/`
+- Internal: `.opencode/agents/`
 
 **Adoption Risk**: Medium-high. A manifest that mutates instruction files too early can damage hard-gate text; begin with read-only inventory, lint, and tiny generated-block rules.
 
@@ -220,10 +220,10 @@ Internal system-spec-kit has stronger live routing systems, but no single local 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/.spar-kit/.local/tools.yaml`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-init/SKILL.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/specs/completed/tools-check/tools-check_spec.md`
-- Internal: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- Internal: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- Internal: `.opencode/skill/mcp-code-mode/SKILL.md`
-- Internal: `.opencode/command/doctor/skill-advisor.md`
+- Internal: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- Internal: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- Internal: `.opencode/skills/mcp-code-mode/SKILL.md`
+- Internal: `.opencode/commands/doctor/skill-advisor.md`
 
 **Adoption Risk**: Medium. The ledger helps only if it remains diagnostic; if used as routing truth, it will drift from live schemas.
 
@@ -244,10 +244,10 @@ Internal system-spec-kit already has a composer that materializes level outputs 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/templates/spec.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/templates/plan.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/lib/pack-prep.mjs`
-- Internal: `.opencode/skill/system-spec-kit/templates/`
-- Internal: `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`
-- Internal: `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md`
-- Internal: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
+- Internal: `.opencode/skills/system-spec-kit/templates/`
+- Internal: `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`
+- Internal: `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md`
+- Internal: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 
 **Adoption Risk**: Medium. Template changes touch validators, existing spec folders, and resume contracts; classify first, generate later.
 
@@ -270,9 +270,9 @@ Runtime target manifests should therefore follow the ownership manifest. First d
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/targets/default.json`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/targets/codex.json`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/targets/opencode.json`
-- Internal: `.opencode/agent/README.txt`
-- Internal: `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
-- Internal: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- Internal: `.opencode/agents/README.txt`
+- Internal: `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
+- Internal: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
 - Internal: `.codex/AGENTS.md`
 
 **Adoption Risk**: Medium-high. A placement manifest without behavior semantics can create false confidence about cross-runtime parity.
@@ -295,9 +295,9 @@ Internal system-spec-kit should use those personas to evaluate whether command d
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/Research/research/personasRetrospective/spar.specify.recommendations.md`
 - Internal: `.codex/AGENTS.md`
 - Internal: `AGENTS.md`
-- Internal: `.opencode/agent/orchestrate.md`
-- Internal: `.opencode/agent/improve-prompt.md`
-- Internal: `.opencode/agent/ultra-think.md`
+- Internal: `.opencode/agents/orchestrate.md`
+- Internal: `.opencode/agents/improve-prompt.md`
+- Internal: `.opencode/agents/ultra-think.md`
 
 **Adoption Risk**: Low. Keep personas in evaluation fixtures and design docs, outside runtime prompts.
 
@@ -317,9 +317,9 @@ The internal system should borrow the operator inventory UX but reject static re
 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/.spar-kit/.local/tools.yaml`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/specs/completed/tools-check/tools-check_spec.md`
-- Internal: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- Internal: `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- Internal: `.opencode/skill/mcp-code-mode/SKILL.md`
+- Internal: `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- Internal: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- Internal: `.opencode/skills/mcp-code-mode/SKILL.md`
 
 **Adoption Risk**: Low. Documenting the authority boundary first prevents later ledger drift.
 
@@ -342,7 +342,7 @@ The portable pattern is a generated-block budget, not a full-file cap. A future 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-init/SKILL.md`
 - Internal: `AGENTS.md`
 - Internal: `.codex/AGENTS.md`
-- Internal: `.opencode/skill/system-spec-kit/SKILL.md`
+- Internal: `.opencode/skills/system-spec-kit/SKILL.md`
 
 **Adoption Risk**: Low. The rejection is clear; the adaptation is only lint guidance for generated blocks.
 
@@ -363,9 +363,9 @@ Keep personas as external evaluators of the UX, not as identities the assistant 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/Research/Personas/Personas.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/SKILL.md`
 - Internal: `.codex/AGENTS.md`
-- Internal: `.opencode/agent/orchestrate.md`
-- Internal: `.opencode/agent/improve-prompt.md`
-- Internal: `.opencode/agent/ultra-think.md`
+- Internal: `.opencode/agents/orchestrate.md`
+- Internal: `.opencode/agents/improve-prompt.md`
+- Internal: `.opencode/agents/ultra-think.md`
 
 **Adoption Risk**: Low. The boundary is easy to enforce in command prompt review.
 
@@ -385,10 +385,10 @@ The acceptable adaptation is source-layer compression: reduce duplicated fragmen
 
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/templates/spec.md`
 - External: `.opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/templates/plan.md`
-- Internal: `.opencode/skill/system-spec-kit/templates/`
-- Internal: `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`
-- Internal: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Internal: `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh`
+- Internal: `.opencode/skills/system-spec-kit/templates/`
+- Internal: `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`
+- Internal: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Internal: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`
 
 **Adoption Risk**: Medium. A poorly scoped template cleanup could break existing packets; baseline validation before changes is mandatory.
 
@@ -476,15 +476,15 @@ Remaining implementation questions:
 Post-adoption packets should validate with targeted commands:
 
 ```bash
-bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade --strict
 ```
 
 ```bash
-rg ":auto|:confirm|:with-phases|:with-research|--intake-only|--dry-run|--skip-tests" .opencode/command .opencode/skill/system-spec-kit
+rg ":auto|:confirm|:with-phases|:with-research|--intake-only|--dry-run|--skip-tests" .opencode/command .opencode/skills/system-spec-kit
 ```
 
 ```bash
-rg "managed_block|seed_if_missing|replace_managed_children|replace" .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external .opencode/skill/system-spec-kit .opencode/command
+rg "managed_block|seed_if_missing|replace_managed_children|replace" .opencode/specs/skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external .opencode/skills/system-spec-kit .opencode/command
 ```
 
 ```bash
@@ -536,32 +536,32 @@ For template packets, add a sampled strict-validation baseline before editing te
 - `AGENTS.md`
 - `.codex/AGENTS.md`
 - `CLAUDE.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/ARCHITECTURE.md`
-- `.opencode/skill/system-spec-kit/templates/`
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- `.opencode/skill/system-spec-kit/scripts/lib/shell-common.sh`
-- `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook.md`
-- `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md`
-- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/mcp-code-mode/SKILL.md`
-- `.opencode/command/spec_kit/README.txt`
-- `.opencode/command/spec_kit/plan.md`
-- `.opencode/command/spec_kit/implement.md`
-- `.opencode/command/spec_kit/complete.md`
-- `.opencode/command/spec_kit/resume.md`
-- `.opencode/command/spec_kit/deep-research.md`
-- `.opencode/command/spec_kit/deep-review.md`
-- `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml`
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml`
-- `.opencode/command/memory/README.txt`
-- `.opencode/command/create/agent.md`
-- `.opencode/command/create/assets/create_feature_catalog_confirm.yaml`
-- `.opencode/command/doctor/skill-advisor.md`
-- `.opencode/agent/README.txt`
-- `.opencode/agent/orchestrate.md`
-- `.opencode/agent/improve-prompt.md`
-- `.opencode/agent/ultra-think.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
+- `.opencode/skills/system-spec-kit/templates/`
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`
+- `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`
+- `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md`
+- `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/mcp-code-mode/SKILL.md`
+- `.opencode/commands/spec_kit/README.txt`
+- `.opencode/commands/spec_kit/plan.md`
+- `.opencode/commands/spec_kit/implement.md`
+- `.opencode/commands/spec_kit/complete.md`
+- `.opencode/commands/spec_kit/resume.md`
+- `.opencode/commands/spec_kit/deep-research.md`
+- `.opencode/commands/spec_kit/deep-review.md`
+- `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml`
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
+- `.opencode/commands/memory/README.txt`
+- `.opencode/commands/create/agent.md`
+- `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml`
+- `.opencode/commands/doctor/skill-advisor.md`
+- `.opencode/agents/README.txt`
+- `.opencode/agents/orchestrate.md`
+- `.opencode/agents/improve-prompt.md`
+- `.opencode/agents/ultra-think.md`
 <!-- /ANCHOR:research-citations -->

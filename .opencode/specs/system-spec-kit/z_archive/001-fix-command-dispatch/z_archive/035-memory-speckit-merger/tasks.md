@@ -53,11 +53,11 @@ The actual implementation differed from this plan:
 **Effort:** 5 min | **Dependencies:** None
 
 ```bash
-mkdir -p .opencode/skill/system-spec-kit/lib/tools
-mkdir -p .opencode/skill/system-spec-kit/lib/services
-mkdir -p .opencode/skill/system-spec-kit/lib/utils
-mkdir -p .opencode/skill/system-spec-kit/database
-mkdir -p .opencode/skill/system-spec-kit/constitutional
+mkdir -p .opencode/skills/system-spec-kit/lib/tools
+mkdir -p .opencode/skills/system-spec-kit/lib/services
+mkdir -p .opencode/skills/system-spec-kit/lib/utils
+mkdir -p .opencode/skills/system-spec-kit/database
+mkdir -p .opencode/skills/system-spec-kit/constitutional
 ```
 
 **Acceptance:**
@@ -77,7 +77,7 @@ mkdir -p .opencode/skill/system-spec-kit/constitutional
 **Effort:** 5 min | **Dependencies:** T1.1
 
 ```bash
-cp -r .opencode/skill/system-memory/lib/* .opencode/skill/system-spec-kit/lib/
+cp -r .opencode/skills/system-memory/lib/* .opencode/skills/system-spec-kit/lib/
 ```
 
 **Acceptance:**
@@ -88,8 +88,8 @@ cp -r .opencode/skill/system-memory/lib/* .opencode/skill/system-spec-kit/lib/
 **Effort:** 2 min | **Dependencies:** T1.1
 
 ```bash
-cp .opencode/skill/system-memory/package.json .opencode/skill/system-spec-kit/
-cp .opencode/skill/system-memory/package-lock.json .opencode/skill/system-spec-kit/
+cp .opencode/skills/system-memory/package.json .opencode/skills/system-spec-kit/
+cp .opencode/skills/system-memory/package-lock.json .opencode/skills/system-spec-kit/
 ```
 
 **Acceptance:**
@@ -100,7 +100,7 @@ cp .opencode/skill/system-memory/package-lock.json .opencode/skill/system-spec-k
 **Effort:** 3 min | **Dependencies:** T2.1, T2.2
 
 ```bash
-cd .opencode/skill/system-spec-kit && npm install
+cd .opencode/skills/system-spec-kit && npm install
 ```
 
 **Acceptance:**
@@ -117,8 +117,8 @@ cd .opencode/skill/system-spec-kit && npm install
 **Effort:** 2 min | **Dependencies:** T1.1
 
 ```bash
-cp .opencode/skill/system-memory/database/memory-index.sqlite \
-   .opencode/skill/system-spec-kit/database/
+cp .opencode/skills/system-memory/database/memory-index.sqlite \
+   .opencode/skills/system-spec-kit/database/
 ```
 
 **Acceptance:**
@@ -130,8 +130,8 @@ cp .opencode/skill/system-memory/database/memory-index.sqlite \
 **Effort:** 3 min | **Dependencies:** T1.1
 
 ```bash
-cp -r .opencode/skill/system-memory/constitutional/* \
-   .opencode/skill/system-spec-kit/constitutional/
+cp -r .opencode/skills/system-memory/constitutional/* \
+   .opencode/skills/system-spec-kit/constitutional/
 ```
 
 **Acceptance:**
@@ -147,8 +147,8 @@ cp -r .opencode/skill/system-memory/constitutional/* \
 **Effort:** 5 min | **Dependencies:** T1.1
 
 ```bash
-cp .opencode/skill/system-memory/scripts/generate-context.js \
-   .opencode/skill/system-spec-kit/scripts/
+cp .opencode/skills/system-memory/scripts/generate-context.js \
+   .opencode/skills/system-spec-kit/scripts/
 ```
 
 **Acceptance:**
@@ -164,8 +164,8 @@ cp .opencode/skill/system-memory/scripts/generate-context.js \
 
 ```bash
 # Copy any memory-related references that don't duplicate existing
-cp .opencode/skill/system-memory/references/*.md \
-   .opencode/skill/system-spec-kit/references/ 2>/dev/null || true
+cp .opencode/skills/system-memory/references/*.md \
+   .opencode/skills/system-spec-kit/references/ 2>/dev/null || true
 ```
 
 **Acceptance:**
@@ -231,7 +231,7 @@ cp .opencode/skill/system-memory/references/*.md \
   "mcpServers": {
     "semantic_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/lib/index.js"]
+      "args": [".opencode/skills/system-spec-kit/lib/index.js"]
     }
   }
 }
@@ -255,9 +255,9 @@ cp .opencode/skill/system-memory/references/*.md \
 **References to update:**
 | Line Area | Current | Target |
 |-----------|---------|--------|
-| Gate 5 | `.opencode/skill/system-memory/scripts/generate-context.js` | `.opencode/skill/system-spec-kit/scripts/generate-context.js` |
+| Gate 5 | `.opencode/skills/system-memory/scripts/generate-context.js` | `.opencode/skills/system-spec-kit/scripts/generate-context.js` |
 | Section 6 table | `system-memory` database location | `system-spec-kit` |
-| SKILL.md refs | `.opencode/skill/system-memory/SKILL.md` | `.opencode/skill/system-spec-kit/SKILL.md` |
+| SKILL.md refs | `.opencode/skills/system-memory/SKILL.md` | `.opencode/skills/system-spec-kit/SKILL.md` |
 
 **Acceptance:**
 - [ ] Grep for `system-memory` returns only z_archive refs
@@ -270,7 +270,7 @@ cp .opencode/skill/system-memory/references/*.md \
 ### T9.1: Update save.md
 **Effort:** 5 min | **Dependencies:** T8.1
 
-**File:** `.opencode/command/memory/save.md`
+**File:** `.opencode/commands/memory/save.md`
 
 **Changes:**
 - Line 167: `system-memory/scripts/generate-context.js` → `system-spec-kit/scripts/generate-context.js`
@@ -284,7 +284,7 @@ cp .opencode/skill/system-memory/references/*.md \
 ### T9.2: Update search.md
 **Effort:** 5 min | **Dependencies:** T8.1
 
-**File:** `.opencode/command/memory/search.md`
+**File:** `.opencode/commands/memory/search.md`
 
 **Changes:**
 - Line 594: `system-memory/SKILL.md` → `system-spec-kit/SKILL.md`
@@ -295,7 +295,7 @@ cp .opencode/skill/system-memory/references/*.md \
 ### T9.3: Update load.md
 **Effort:** 5 min | **Dependencies:** T8.1
 
-**File:** `.opencode/command/memory/load.md`
+**File:** `.opencode/commands/memory/load.md`
 
 **Changes:**
 - Line 293: `system-memory/SKILL.md` → `system-spec-kit/SKILL.md`
@@ -306,7 +306,7 @@ cp .opencode/skill/system-memory/references/*.md \
 ### T9.4: Update checkpoint.md
 **Effort:** 5 min | **Dependencies:** T8.1
 
-**File:** `.opencode/command/memory/checkpoint.md`
+**File:** `.opencode/commands/memory/checkpoint.md`
 
 **Changes:**
 - Line 471: `system-memory/SKILL.md` → `system-spec-kit/SKILL.md`
@@ -322,7 +322,7 @@ cp .opencode/skill/system-memory/references/*.md \
 ### T10.1: Update skill_advisor.py mapping
 **Effort:** 10 min | **Dependencies:** T9.1-T9.4
 
-**File:** `.opencode/skill/system-spec-kit/scripts/skill_advisor.py`
+**File:** `.opencode/skills/system-spec-kit/scripts/skill_advisor.py`
 
 **Changes:**
 - Remove separate `system-memory` skill entry
@@ -345,7 +345,7 @@ cp .opencode/skill/system-memory/references/*.md \
 **Effort:** 3 min | **Dependencies:** T7.1
 
 ```bash
-node .opencode/skill/system-spec-kit/lib/index.js
+node .opencode/skills/system-spec-kit/lib/index.js
 ```
 
 **Acceptance:**
@@ -378,7 +378,7 @@ memory_search({ query: "anything", includeConstitutional: true })
 **Effort:** 5 min | **Dependencies:** T6.4
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/generate-context.js \
+node .opencode/skills/system-spec-kit/scripts/generate-context.js \
   .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger
 ```
 
@@ -418,13 +418,13 @@ grep -r "system-memory" .opencode/ --include="*.md" --include="*.js" --include="
 **Effort:** 5 min | **Dependencies:** T11.1-T11.6 (all validation passed)
 
 ```bash
-mkdir -p .opencode/skill/z_archive
-mv .opencode/skill/system-memory .opencode/skill/z_archive/
+mkdir -p .opencode/skills/z_archive
+mv .opencode/skills/system-memory .opencode/skills/z_archive/
 ```
 
 **Acceptance:**
-- [ ] `.opencode/skill/system-memory/` no longer exists
-- [ ] `.opencode/skill/z_archive/system-memory/` contains all original files
+- [ ] `.opencode/skills/system-memory/` no longer exists
+- [ ] `.opencode/skills/z_archive/system-memory/` contains all original files
 - [ ] Final smoke test: memory commands still work
 
 <!-- /ANCHOR:phase-1 -->
@@ -434,23 +434,23 @@ mv .opencode/skill/system-memory .opencode/skill/z_archive/
 
 ### If Phase 2-5 fails (copy operations):
 ```bash
-rm -rf .opencode/skill/system-spec-kit/lib
-rm -rf .opencode/skill/system-spec-kit/database
-rm -rf .opencode/skill/system-spec-kit/constitutional
-rm .opencode/skill/system-spec-kit/package*.json
+rm -rf .opencode/skills/system-spec-kit/lib
+rm -rf .opencode/skills/system-spec-kit/database
+rm -rf .opencode/skills/system-spec-kit/constitutional
+rm .opencode/skills/system-spec-kit/package*.json
 ```
 
 ### If Phase 6-10 fails (path updates):
 ```bash
-git checkout -- .opencode/skill/system-spec-kit/
+git checkout -- .opencode/skills/system-spec-kit/
 git checkout -- opencode.json
 git checkout -- AGENTS.md
-git checkout -- .opencode/command/memory/
+git checkout -- .opencode/commands/memory/
 ```
 
 ### If Phase 12 fails (archive):
 ```bash
-mv .opencode/skill/z_archive/system-memory .opencode/skill/
+mv .opencode/skills/z_archive/system-memory .opencode/skills/
 ```
 
 ---

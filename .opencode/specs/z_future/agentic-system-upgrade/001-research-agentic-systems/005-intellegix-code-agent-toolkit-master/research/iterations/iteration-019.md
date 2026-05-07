@@ -15,8 +15,8 @@ I compared the external runtime-state and handoff surfaces with the local memory
 - `[SOURCE: external/automated-loop/state_tracker.py:65-77]` The external loop persists runtime state needed for one automation session and resumable transport continuity.
 - `[SOURCE: external/handoffs/README.md:1-18]` Its handoff system captures session context for continuation as markdown files.
 - `[SOURCE: external/handoffs/README.md:24-53]` The handoff format is concise and human-oriented rather than a semantic retrieval platform.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:17-35]` The local memory system is explicitly built for cross-session semantic retrieval, importance tiers, decay, checkpoints, and constitutional surfacing.
-- `[SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:99-145]` The local system also supports shared spaces, causal links, learning history, evaluation, code graph context, and search maintenance tools.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:17-35]` The local memory system is explicitly built for cross-session semantic retrieval, importance tiers, decay, checkpoints, and constitutional surfacing.
+- `[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:99-145]` The local system also supports shared spaces, causal links, learning history, evaluation, code graph context, and search maintenance tools.
 
 ## Analysis
 The external repo does not demonstrate that broad semantic memory is unnecessary. It demonstrates that loop runtime state should stay small. Those are not the same claim. The external toolkit mostly optimizes for a single operator driving one automation system. `system-spec-kit` is managing a broader universe of specs, packets, decisions, and recoverable context across many workflows. That larger problem still justifies a memory platform.
@@ -29,7 +29,7 @@ confidence: high
 finding: `system-spec-kit` should reject any proposal to replace its global memory architecture with `.workflow` files and human handoffs alone. The right move is to separate loop runtime state from archival memory, not delete archival memory.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/skill/system-spec-kit/references/memory/memory_system.md`, deep-loop workflow docs
+- **Target file or module:** `.opencode/skills/system-spec-kit/references/memory/memory_system.md`, deep-loop workflow docs
 - **Change type:** rejected
 - **Blast radius:** architectural
 - **Prerequisites:** none

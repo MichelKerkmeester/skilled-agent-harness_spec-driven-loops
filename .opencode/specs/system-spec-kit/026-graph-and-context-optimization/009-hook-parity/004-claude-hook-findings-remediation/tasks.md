@@ -48,8 +48,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 Spike + investigation before any code change.
 
-- [x] T001 Read `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` (and peers if signature logic lives elsewhere) — located `SourceSnapshot.sourceSignature` computation in `freshness.ts` and null publication in `handlers/skill-graph/scan.ts` (evidence moved into `implementation-summary.md`)
-- [x] T002 `git log -p --follow` for `.opencode/skill/.advisor-state/skill-graph-generation.json` and scanner module(s) — last 30 days; commits `32fd9197c4` and `a663cbe78f` show support added but no deferral ADR (evidence moved into `implementation-summary.md`)
+- [x] T001 Read `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/freshness.ts` (and peers if signature logic lives elsewhere) — located `SourceSnapshot.sourceSignature` computation in `freshness.ts` and null publication in `handlers/skill-graph/scan.ts` (evidence moved into `implementation-summary.md`)
+- [x] T002 `git log -p --follow` for `.opencode/skills/.advisor-state/skill-graph-generation.json` and scanner module(s) — last 30 days; commits `32fd9197c4` and `a663cbe78f` show support added but no deferral ADR (evidence moved into `implementation-summary.md`)
 - [x] T003 Write temporary spike notes: exact fix location, null cause, blockers recorded; scratch file removed after summary per cleanup requirement
 <!-- /ANCHOR:phase-1 -->
 
@@ -62,9 +62,9 @@ Patch + normalize + document, parallelizable where noted.
 
 - [x] T004 Patch scanner to compute and atomically persist `sourceSignature` alongside `generation` bump — implemented via `computeAdvisorSourceSignature()` and `publishSkillGraphGeneration({ sourceSignature })`; verification continues in T009-T010
 - [x] T005 [P] Normalize `.claude/settings.local.json` — removed only outer `bash` and `timeoutSec` from UserPromptSubmit, SessionStart, PreCompact, Stop after creating `.claude/settings.local.json.bak`
-- [x] T006 [P] Add §9 "Multi-turn regression harness" to `.opencode/skill/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with working stream-json fixture example and cost-reduction rationale
-- [x] T007 [P] Add cross-reference from `.opencode/skill/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` to the new §9
-- [x] T008 `npm --prefix .opencode/skill/system-spec-kit/mcp_server run build` — passed cleanly (evidence: `tsc --build`, exit 0)
+- [x] T006 [P] Add §9 "Multi-turn regression harness" to `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` with working stream-json fixture example and cost-reduction rationale
+- [x] T007 [P] Add cross-reference from `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/manual_testing_playbook.md` to the new §9
+- [x] T008 `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build` — passed cleanly (evidence: `tsc --build`, exit 0)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,8 +72,8 @@ Patch + normalize + document, parallelizable where noted.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Run `skill_graph_scan` via MCP → MCP surface was cancelled by runtime twice; compiled scan handler passed with `status:"ok"` and `.opencode/skill/.advisor-state/skill-graph-generation.json` shows `sourceSignature:"776a2bcc..."` (evidence: REQ-002, SC-001)
-- [x] T010 Direct advisor smoke: pipe UserPromptSubmit JSON into `.opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` → JSONL shows `status:"ok"`, `freshness:"live"`, `skillLabel:"sk-git"` (SC-001)
+- [x] T009 Run `skill_graph_scan` via MCP → MCP surface was cancelled by runtime twice; compiled scan handler passed with `status:"ok"` and `.opencode/skills/.advisor-state/skill-graph-generation.json` shows `sourceSignature:"776a2bcc..."` (evidence: REQ-002, SC-001)
+- [x] T010 Direct advisor smoke: pipe UserPromptSubmit JSON into `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js` → JSONL shows `status:"ok"`, `freshness:"live"`, `skillLabel:"sk-git"` (SC-001)
 - [B] T011 One real parity run: `claude -p "ping" --output-format stream-json --include-hook-events --max-budget-usd 0.30` → observed `SessionStart=2`, `UserPromptSubmit=3`; blocked because `$HOME/.claude/settings.json` has both GitKraken and SUPERSET UserPromptSubmit hooks and Claude CLI is not authenticated in the sandbox
 - [x] T012 Run advisor regression suites (corpus parity, privacy, timing) → green: 3 files, 4 tests; corpus parity 200/200; cache-hit p95 `0.025ms`; hit rate `20/30`
 - [x] T013 Write `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/004-claude-hook-findings-remediation/implementation-summary.md` with evidence citations (JSONL snippets, hook_started counts, vitest output, cost result limitations)

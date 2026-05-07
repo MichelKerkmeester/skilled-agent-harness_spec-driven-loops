@@ -402,9 +402,9 @@ trigger_phrases:
   - "includeScores parameter"
 
 key_files:
-  - ".opencode/skill/system-spec-kit/scripts/folder-scoring.js"
-  - ".opencode/skill/system-spec-kit/scripts/memory-crud.js"
-  - ".opencode/skill/system-spec-kit/scripts/context-server.js"
+  - ".opencode/skills/system-spec-kit/scripts/folder-scoring.js"
+  - ".opencode/skills/system-spec-kit/scripts/memory-crud.js"
+  - ".opencode/skills/system-spec-kit/scripts/context-server.js"
   - "specs/003-memory-and-spec-kit/071-memory-ranking/checklist.md"
 
 # Relationships

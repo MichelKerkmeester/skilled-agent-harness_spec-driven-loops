@@ -18,7 +18,7 @@
 
 ## By File
 
-### `.opencode/skill/system-spec-kit/README.md`
+### `.opencode/skills/system-spec-kit/README.md`
 
 | Bug ID | Priority | Line(s) | Issue |
 |--------|----------|---------|-------|
@@ -26,7 +26,7 @@
 | BUG-001b | P0 | 696 | Troubleshooting text mentions wrong ANCHOR format |
 | BUG-012a | P1 | 196 | complete command shows 12 steps (should be 14) |
 | BUG-012b | P1 | 198 | implement command shows 8 steps (should be 9) |
-| BUG-765 | P2 | 765 | Commands path says `.opencode/command/` (should be `.claude/commands/`) |
+| BUG-765 | P2 | 765 | Commands path says `.opencode/commands/` (should be `.claude/commands/`) |
 
 ### `.claude/commands/memory/save.md`
 
@@ -126,13 +126,13 @@
 | BUG-010 | P1 | 258 vs 550 | YAML contradiction |
 | BUG-011 | P1 | YAML 34-89 | Section mismatch 7 vs 5 |
 
-### `.opencode/agent/speckit.md`
+### `.opencode/agents/speckit.md`
 
 | Bug ID | Priority | Line(s) | Issue |
 |--------|----------|---------|-------|
 | BUG-015 | P1 | 419-420 | Orphaned references to deleted commands |
 
-### `.opencode/agent/handover.md`
+### `.opencode/agents/handover.md`
 
 | Bug ID | Priority | Line(s) | Issue |
 |--------|----------|---------|-------|
@@ -186,7 +186,7 @@
 
 ### Group A: YAML Path Fixes (7 files)
 All can be fixed with single search-and-replace:
-`.opencode/command/spec_kit/assets/` → `.claude/commands/spec_kit/assets/`
+`.opencode/commands/spec_kit/assets/` → `.claude/commands/spec_kit/assets/`
 
 ### Group B: complete.md YAML Additions (2 files)
 Add step_11_checklist_verify and step_14_handover_check, renumber steps

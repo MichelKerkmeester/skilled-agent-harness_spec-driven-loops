@@ -16,7 +16,7 @@ When `--json '<data>'` is passed:
 
 **Data loss point**: None at this stage -- the full payload is passed through.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:344-388, 546-567]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:344-388, 546-567]
 
 ### 2. Phase 2: Workflow Entry -- loadDataFn vs collectedData (workflow.ts lines 585-627)
 
@@ -59,10 +59,10 @@ For `--json` preloaded data: the payload typically has `sessionSummary` and `key
 
 **ROOT CAUSE IDENTIFIED**: For `--json`/`--stdin`, the payload is NOT normalized at all. The raw `sessionSummary` and `keyDecisions` fields sit as top-level properties on `collectedData`, but the extractors expect `userPrompts[]` and `observations[]`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:558-567]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:613-614]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:100-105]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:445-544, 617-700]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:558-567]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:613-614]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:100-105]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:445-544, 617-700]
 
 ### 3. Phase 3: Contamination Cleaning (workflow.ts lines 720-853)
 
@@ -88,7 +88,7 @@ if (data.userPrompts || data.user_prompts || data.observations || data.recentCon
 
 If the JSON payload has NONE of these fields (typical for AI-composed JSON with `sessionSummary` + `keyDecisions`), then the normalizer slow-path (line 617+) would be taken. But again, this normalizer is NOT called for `--json` preloaded data.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:720-853]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:720-853]
 
 ### 4. Phase 4: Session Data Collection (workflow.ts lines 979-984)
 
@@ -98,7 +98,7 @@ The `collectSessionData()` function (from `collect-session-data.ts`) is called w
 
 This is where `sessionSummary` finally gets used -- but only for metadata/title purposes. It does NOT produce MESSAGES for the conversation extractor.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts:1032-1035]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:1032-1035]
 
 ### 5. Phase 5: Conversation Extraction (workflow.ts lines 986-991)
 
@@ -114,7 +114,7 @@ This is where `sessionSummary` finally gets used -- but only for metadata/title 
 
 The conversation extractor NEVER looks at `sessionSummary` or `keyDecisions` directly. It only operates on `userPrompts` and `observations`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts:51-81, 93-166]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts:51-81, 93-166]
 
 ### 6. Phase 6: Decision Extraction (workflow.ts lines 992-996)
 
@@ -126,8 +126,8 @@ For JSON-mode: observations are empty AND `_manualDecisions` was never set (norm
 
 BUT there's a nuance: the normalizer fast-path (line 546-563) does set `_manualDecisions` from `keyDecisions` IF the fast-path is triggered. Since `--json` bypass normalization entirely, `_manualDecisions` is never populated.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:992-996]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts:546-563]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:992-996]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:546-563]
 
 ### 7. Phase 7: Template Rendering (workflow.ts lines 1116+)
 
@@ -145,7 +145,7 @@ The template renderer uses these to fill Mustache-like template variables. With 
 
 **The rendered content** is mostly boilerplate + metadata, with very thin substantive content.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1116-1170]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1116-1170]
 
 ### 8. Phase 8: Quality Scoring (workflow.ts post-template)
 
@@ -250,8 +250,8 @@ The fundamental issue is at step [2]. There are two valid entry paths:
 
 Path B skips the normalization that Path A gets. This creates the cascade failure where extractors receive empty arrays because the raw `sessionSummary` and `keyDecisions` were never converted to the format extractors expect.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts:558-567]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:613-627]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:558-567]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:613-627]
 
 ## Ruled Out
 - Template renderer as root cause: The renderer works correctly with whatever data it receives. The problem is upstream.
@@ -261,12 +261,12 @@ Path B skips the normalization that Path A gets. This creates the cascade failur
 None -- the data flow trace was productive at every step.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` (lines 1-607)
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 585-1170)
-- `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts` (lines 1-143)
-- `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 445-700)
-- `.opencode/skill/system-spec-kit/scripts/extractors/conversation-extractor.ts` (lines 50-200)
-- `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` (line 1032-1035)
+- `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` (lines 1-607)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 585-1170)
+- `.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts` (lines 1-143)
+- `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` (lines 445-700)
+- `.opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts` (lines 50-200)
+- `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` (line 1032-1035)
 
 ## Assessment
 - New information ratio: 1.0

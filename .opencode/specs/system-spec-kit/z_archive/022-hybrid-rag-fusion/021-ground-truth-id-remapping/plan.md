@@ -160,7 +160,7 @@ SummaryReporter → stdout
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Updated `ground-truth.json` produces worse ablation results than expected, or file is corrupted
-- **Procedure**: Restore `ground-truth.json` from git history: `git checkout HEAD -- .opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json`
+- **Procedure**: Restore `ground-truth.json` from git history: `git checkout HEAD -- .opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json`
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -207,7 +207,7 @@ Phase 1 (Scaffolding) ──► Phase 2 (Core Logic) ──► Phase 3 (Output &
 
 ### Rollback Procedure
 
-1. Immediately: `git checkout HEAD -- .opencode/skill/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json`
+1. Immediately: `git checkout HEAD -- .opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json`
 2. Verify restored file: `python3 -c "import json; d=json.load(open('ground-truth.json')); print(len(d['relevances']), 'relevances')"`
 3. Re-run ablation to confirm metrics revert to zero (confirming original stale state restored)
 4. Investigate FTS5 mismatch and re-run script with adjusted search logic

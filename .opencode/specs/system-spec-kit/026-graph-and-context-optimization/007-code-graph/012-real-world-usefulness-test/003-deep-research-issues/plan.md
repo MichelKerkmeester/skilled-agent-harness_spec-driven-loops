@@ -43,7 +43,7 @@ _memory:
 | **Language/Stack** | Markdown, JSON, Spec Kit validation scripts |
 | **Framework** | Spec Kit Level 2 packet documentation |
 | **Storage** | On-disk research packet under `specs/.../003-deep-research-issues` |
-| **Testing** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
+| **Testing** | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 
 ### Overview
 The packet is a synthesis-only documentation deliverable. The execution path is to read the 10 iteration narratives and JSONL deltas, deduplicate the 35 total findings, write the canonical synthesis and resource map, apply the user-provided design-intent correction, then validate the spec folder strictly.

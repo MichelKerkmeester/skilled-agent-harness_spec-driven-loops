@@ -128,7 +128,7 @@ contextType: "implementation"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [x] CHK-120 [P0] Strict packet validation passed after the write pass [Evidence: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exited 0 with `RESULT: PASSED` and 0 warnings.]
+- [x] CHK-120 [P0] Strict packet validation passed after the write pass [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "<phase>" --strict` exited 0 with `RESULT: PASSED` and 0 warnings.]
 - [x] CHK-121 [P0] Closeout identifies recommended follow-on packets or waves [Evidence: `research/research.md` orders the follow-on queue and separates architecture spikes from immediate work.]
 - [x] CHK-122 [P1] Report names explicit architectural non-goals [Evidence: the merged synthesis calls out non-goals including no broker replacement and no Level-system replacement.]
 - [x] CHK-123 [P1] Packet can be continued from a structurally valid baseline [Evidence: the packet now includes the missing Level 3 docs plus updated research artifacts for future continuation.]

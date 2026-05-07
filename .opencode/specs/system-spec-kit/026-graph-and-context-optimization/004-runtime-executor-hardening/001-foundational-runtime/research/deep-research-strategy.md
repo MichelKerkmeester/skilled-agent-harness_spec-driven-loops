@@ -133,29 +133,29 @@ Interim syntheses were authored by a separate copilot agent at iteration checkpo
 The 19 candidates from `spec.md` drove the iteration file selection:
 
 ### HIGH priority (7)
-1. `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
-2. `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
-3. `.opencode/skill/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
-4. `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
-5. `.opencode/skill/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
-6. `.opencode/skill/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
-7. `.opencode/skill/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
+1. `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`
+2. `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts`
+3. `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts`
+4. `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
+5. `.opencode/skills/system-spec-kit/shared/algorithms/adaptive-fusion.ts`
+6. `.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts`
+7. `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts`
 
 ### MEDIUM priority (8)
-8. `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts`
-9. `.opencode/skill/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts`
-10. `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
-11. `.opencode/skill/system-spec-kit/scripts/graph/backfill-graph-metadata.ts`
-12. `.opencode/skill/skill-advisor/scripts/skill_advisor.py`
-13. `.opencode/skill/skill-advisor/scripts/skill_graph_compiler.py`
-14. `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml`
+8. `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts`
+9. `.opencode/skills/system-spec-kit/scripts/lib/trigger-phrase-sanitizer.ts`
+10. `.opencode/skills/system-spec-kit/mcp_server/handlers/code-graph/query.ts`
+11. `.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts`
+12. `.opencode/skills/skill-advisor/scripts/skill_advisor.py`
+13. `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py`
+14. `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml`
 15. `015-deep-review-and-remediation/implementation-summary.md`
 
 ### LOW priority (4)
 16. `001-research-graph-context-systems/recommendations.md`
 17. `AGENTS.md`
 18. `006-continuity-refactor-gates/implementation-summary.md`
-19. `.opencode/skill/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
+19. `.opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.ts`
 
 Iterations were free to read companion files (tests, callers, transports) as context required. The 57 distinct files touched across the 50 iterations (see `findings-registry.json`) substantially exceed the 19 candidate files.
 

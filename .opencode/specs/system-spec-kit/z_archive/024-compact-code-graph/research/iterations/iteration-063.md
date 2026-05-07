@@ -204,10 +204,10 @@ This gives the auto-reindex trigger better signal about whether a full scan or t
 None identified. All investigated code paths lead to viable improvement designs.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (full file, 268 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (full file, 330 lines)
-- `.opencode/skill/mcp-coco-index/SKILL.md` (lines 220-330, MCP tools + daemon architecture)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/seed-resolver.ts` (full file, 268 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-context.ts` (full file, 330 lines)
+- `.opencode/skills/mcp-coco-index/SKILL.md` (lines 220-330, MCP tools + daemon architecture)
 - `.mcp.json` (full file, 42 lines -- MCP server configurations)
 
 ## Assessment

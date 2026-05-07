@@ -58,7 +58,7 @@
       "mcp_server/tests/causal-links-processor-null-insert.vitest.ts",
       "mcp_server/tests/checkpoints-restore-snapshot-schema.vitest.ts",
       "mcp_server/package.json",
-      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "tests/memory-parser-extended.vitest.ts",
       "skill_advisor/tests/handlers/advisor-validate.vitest.ts"
     ],
@@ -168,7 +168,7 @@
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {

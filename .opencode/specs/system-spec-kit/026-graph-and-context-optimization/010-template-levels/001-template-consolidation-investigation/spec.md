@@ -22,17 +22,17 @@ _memory:
     next_safe_action: "Let /spec_kit:deep-research:auto loop converge; do not interfere with iteration state"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/templates/core/"
-      - ".opencode/skill/system-spec-kit/templates/addendum/"
-      - ".opencode/skill/system-spec-kit/templates/level_1/"
-      - ".opencode/skill/system-spec-kit/templates/level_2/"
-      - ".opencode/skill/system-spec-kit/templates/level_3/"
-      - ".opencode/skill/system-spec-kit/templates/level_3+/"
-      - ".opencode/skill/system-spec-kit/scripts/templates/compose.sh"
-      - ".opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.ts"
-      - ".opencode/skill/system-spec-kit/scripts/spec/create.sh"
-      - ".opencode/skill/system-spec-kit/scripts/lib/template-utils.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-files.sh"
+      - ".opencode/skills/system-spec-kit/templates/core/"
+      - ".opencode/skills/system-spec-kit/templates/addendum/"
+      - ".opencode/skills/system-spec-kit/templates/level_1/"
+      - ".opencode/skills/system-spec-kit/templates/level_2/"
+      - ".opencode/skills/system-spec-kit/templates/level_3/"
+      - ".opencode/skills/system-spec-kit/templates/level_3+/"
+      - ".opencode/skills/system-spec-kit/scripts/templates/compose.sh"
+      - ".opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.ts"
+      - ".opencode/skills/system-spec-kit/scripts/spec/create.sh"
+      - ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-01-template-consolidation-investigation"
@@ -78,7 +78,7 @@ The spec-kit templates folder maintains **83 .md files / ~13K LOC** in a CORE + 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The current template system at `.opencode/skill/system-spec-kit/templates/` has accumulated **83 .md template files (~13K LOC)** across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level_1/`, `level_2/`, `level_3/`, `level_3+/`). The CORE + ADDENDUM architecture (v2.2) was designed to be composable, yet `compose.sh` writes the composition results back to disk and consumers (`create.sh::copy_template`) read those materialized outputs — meaning every CORE or ADDENDUM edit demands a re-run of `compose.sh` AND a commit of the regenerated level files. This produces two independent drift surfaces, ~60 redundant files, and a maintenance tax disproportionate to the ~12 conceptual sections actually being authored.
+The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated **83 .md template files (~13K LOC)** across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level_1/`, `level_2/`, `level_3/`, `level_3+/`). The CORE + ADDENDUM architecture (v2.2) was designed to be composable, yet `compose.sh` writes the composition results back to disk and consumers (`create.sh::copy_template`) read those materialized outputs — meaning every CORE or ADDENDUM edit demands a re-run of `compose.sh` AND a commit of the regenerated level files. This produces two independent drift surfaces, ~60 redundant files, and a maintenance tax disproportionate to the ~12 conceptual sections actually being authored.
 
 ### Purpose
 Determine — through structured deep-research — whether the per-level output directories can be eliminated and replaced with an on-demand generator that runs at spec-folder creation time, while preserving the validator, all existing spec folders, the phase-parent lean trio, and cross-cutting templates. The packet ends with a recommendation (CONSOLIDATE / PARTIAL / STATUS QUO) and a concrete refactor plan if the recommendation is to consolidate.
@@ -111,14 +111,14 @@ This packet is investigation-only. The deep-research loop will produce findings 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}/` | Investigate | Candidate for elimination |
-| `.opencode/skill/system-spec-kit/templates/core/` | Investigate | Source-of-truth candidate |
-| `.opencode/skill/system-spec-kit/templates/addendum/` | Investigate | Source-of-truth candidate |
-| `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` | Investigate | Existing composer to extend or replace |
-| `.opencode/skill/system-spec-kit/scripts/templates/wrap-all-templates.{ts,sh}` | Investigate | ANCHOR injection logic to preserve |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | Investigate | Primary template consumer |
-| `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` | Investigate | `copy_template` function |
-| `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` | Investigate | Validator level rules |
+| `.opencode/skills/system-spec-kit/templates/{level_1,level_2,level_3,level_3+}/` | Investigate | Candidate for elimination |
+| `.opencode/skills/system-spec-kit/templates/core/` | Investigate | Source-of-truth candidate |
+| `.opencode/skills/system-spec-kit/templates/addendum/` | Investigate | Source-of-truth candidate |
+| `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` | Investigate | Existing composer to extend or replace |
+| `.opencode/skills/system-spec-kit/scripts/templates/wrap-all-templates.{ts,sh}` | Investigate | ANCHOR injection logic to preserve |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Investigate | Primary template consumer |
+| `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` | Investigate | `copy_template` function |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Investigate | Validator level rules |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -231,7 +231,7 @@ This packet is investigation-only. The deep-research loop will produce findings 
 | R-001 | Breaking ~800 existing spec folders with `SPECKIT_TEMPLATE_SOURCE` marker references | H | M | Preserve markers as descriptive comments; add migration script if semantics change |
 | R-002 | Validator (`check-files.sh`) silently breaks for new spec folders | H | L | Refactor validator to read level rules from same JSON manifest the generator uses |
 | R-003 | ANCHOR-tag semantics regression breaks memory-frontmatter parsers | H | L | Byte-diff generator output against current `level_N/` files in CI; reject regressions |
-| R-004 | Phase-parent lean-trio detection relies on `phase_parent/` directory existence | M | L | Confirm via `grep -r 'phase_parent' .opencode/skill/system-spec-kit/scripts/` before refactor |
+| R-004 | Phase-parent lean-trio detection relies on `phase_parent/` directory existence | M | L | Confirm via `grep -r 'phase_parent' .opencode/skills/system-spec-kit/scripts/` before refactor |
 | R-005 | External tools / hardcoded paths in `.opencode`, `.claude`, `.codex` configs | M | M | Audit all runtime configs for `templates/level_N/` strings before deletion |
 
 ---

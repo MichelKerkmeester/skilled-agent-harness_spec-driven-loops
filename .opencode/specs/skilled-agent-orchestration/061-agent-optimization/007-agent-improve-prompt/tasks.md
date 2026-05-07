@@ -43,14 +43,14 @@ _memory:
 ## 2. PHASE 1: SETUP
 
 ### T-001: Read target + scan integration surface
-- `cat .opencode/agent/improve-prompt.md`
-- `node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent=improve-prompt --output=<packet>/integration.json`
+- `cat .opencode/agents/improve-prompt.md`
+- `node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent=improve-prompt --output=<packet>/integration.json`
 
 ### T-002: Generate dynamic 5-dimension profile
-- `node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agent/improve-prompt.md --output=<packet>/profile.json`
+- `node .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agents/improve-prompt.md --output=<packet>/profile.json`
 
 ### T-003: Dispatch /improve:agent
-- `/improve:agent .opencode/agent/improve-prompt.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt`
+- `/improve:agent .opencode/agents/improve-prompt.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,15 +59,15 @@ _memory:
 ## 3. PHASE 2: IMPLEMENTATION
 
 ### T-004: Score + benchmark
-- `node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agent/improve-prompt.md --manifest=<packet>/profile.json`
-- `node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs --profile=improve-prompt --outputs-dir=<packet>/benchmark-outputs --output=<packet>/benchmark.json`
+- `node .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agents/improve-prompt.md --manifest=<packet>/profile.json`
+- `node .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs --profile=improve-prompt --outputs-dir=<packet>/benchmark-outputs --output=<packet>/benchmark.json`
 
 ### T-005: Legal-stop gate verification
-- `node .opencode/skill/sk-improve-agent/scripts/reduce-state.cjs <packet>`
+- `node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs <packet>`
 - Verify `legal_stop_evaluated.details.gateResults` shows 5/5 pass
 
 ### T-006: Promote candidate
-- `node .opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agent/improve-prompt.md --score=<packet>/score.json --approve`
+- `node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate=<packet>/candidate.md --target=.opencode/agents/improve-prompt.md --score=<packet>/score.json --approve`
 <!-- /ANCHOR:phase-2 -->
 
 ---

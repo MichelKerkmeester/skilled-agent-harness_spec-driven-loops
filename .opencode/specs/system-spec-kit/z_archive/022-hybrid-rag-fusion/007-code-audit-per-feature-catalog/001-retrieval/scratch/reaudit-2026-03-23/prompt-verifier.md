@@ -14,11 +14,11 @@ For each of the 11 features, verify at the code level:
 ## Files to Read
 
 ### Feature Catalog Entries (read ALL 11)
-Directory: `.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/`
+Directory: `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/`
 Files: 01 through 11 (all .md files in this directory)
 
 ### MCP Server Source Code
-Root: `.opencode/skill/system-spec-kit/mcp_server/`
+Root: `.opencode/skills/system-spec-kit/mcp_server/`
 Key directories to scan:
 - `handlers/` — tool handlers (memory_context, memory_search, memory_match_triggers, memory_quick_search)
 - `lib/search/` — search library

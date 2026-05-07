@@ -113,7 +113,7 @@ Evidence shows scripts consumers currently import runtime internals (`@spec-kit/
 
 **We chose**: Preserve wrappers as transitional compatibility surfaces while moving canonical runbook ownership to root scripts docs.
 
-**How it works**: `.opencode/skill/system-spec-kit/scripts/memory/README.md` becomes canonical runbook source, while `.opencode/skill/system-spec-kit/mcp_server/scripts/README.md` and `.opencode/skill/system-spec-kit/mcp_server/database/README.md` point to it.
+**How it works**: `.opencode/skills/system-spec-kit/scripts/memory/README.md` becomes canonical runbook source, while `.opencode/skills/system-spec-kit/mcp_server/scripts/README.md` and `.opencode/skills/system-spec-kit/mcp_server/database/README.md` point to it.
 
 ### Alternatives Considered
 

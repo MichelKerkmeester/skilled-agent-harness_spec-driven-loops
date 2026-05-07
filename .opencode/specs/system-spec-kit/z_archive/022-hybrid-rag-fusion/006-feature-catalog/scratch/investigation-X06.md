@@ -10,7 +10,7 @@ reasoning summaries: none
 session id: 019cce99-13b5-7b13-8d37-01e58154af71
 --------
 user
-You are investigating undocumented features in an MCP server. Search for and read scoring and evaluation files under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skill/system-spec-kit/mcp_server/lib/: scoring/composite-scoring.ts, eval/eval-metrics.ts, eval/bm25-baseline.ts, eval/ground-truth-feedback.ts, eval/ground-truth-generator.ts, eval/ablation-framework.ts, eval/channel-attribution.ts, and any telemetry/ files. Verify gaps 24-31: Gap 24 (Document-Type-Aware Scoring), Gap 25 (Diagnostic Retrieval Metrics Suite), Gap 26 (BM25 Contingency Gate), Gap 27 (Feedback-Driven Ground-Truth Expansion), Gap 28 (Ground-Truth Diversity Gate), Gap 29 (Ablation Significance Testing), Gap 30 (Exclusive Contribution Rate), Gap 31 (Extended Retrieval Telemetry). 
+You are investigating undocumented features in an MCP server. Search for and read scoring and evaluation files under /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/: scoring/composite-scoring.ts, eval/eval-metrics.ts, eval/bm25-baseline.ts, eval/ground-truth-feedback.ts, eval/ground-truth-generator.ts, eval/ablation-framework.ts, eval/channel-attribution.ts, and any telemetry/ files. Verify gaps 24-31: Gap 24 (Document-Type-Aware Scoring), Gap 25 (Diagnostic Retrieval Metrics Suite), Gap 26 (BM25 Contingency Gate), Gap 27 (Feedback-Driven Ground-Truth Expansion), Gap 28 (Ground-Truth Diversity Gate), Gap 29 (Ablation Significance Testing), Gap 30 (Exclusive Contribution Rate), Gap 31 (Extended Retrieval Telemetry). 
 
 OUTPUT FORMAT (repeat for each gap):
 ---
@@ -39,68 +39,68 @@ mcp startup: ready: code_mode, sequential_thinking; failed: spec_kit_memory
 codex
 I’m going to inspect the exact scoring, eval, and telemetry files you listed under `system-spec-kit/mcp_server/lib`, then map each Gap 24–31 to concrete code evidence with line references and status. I’ll start by locating all relevant files and reading their implementations end to end.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg --files .opencode/skill/system-spec-kit/mcp_server/lib | rg 'scoring/composite-scoring.ts|eval/eval-metrics.ts|eval/bm25-baseline.ts|eval/ground-truth-feedback.ts|eval/ground-truth-generator.ts|eval/ablation-framework.ts|eval/channel-attribution.ts|telemetry/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
-.opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg --files .opencode/skills/system-spec-kit/mcp_server/lib | rg 'scoring/composite-scoring.ts|eval/eval-metrics.ts|eval/bm25-baseline.ts|eval/ground-truth-feedback.ts|eval/ground-truth-generator.ts|eval/ablation-framework.ts|eval/channel-attribution.ts|telemetry/'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
 codex
 I found all target files, including a telemetry module set and one extra `cache/scoring/composite-scoring.ts` variant. Next I’ll read each file with line numbers and extract exact implementation evidence for each gap.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && wc -l .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md .opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-     813 .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
-     587 .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
-     587 .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
-     553 .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
-     328 .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
-     755 .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
-     251 .opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
-     324 .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
-     412 .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
-     197 .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts
-     222 .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
-     266 .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md
-       9 .opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && wc -l .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md .opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+     813 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts
+     587 .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts
+     587 .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts
+     553 .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts
+     328 .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts
+     755 .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts
+     251 .opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts
+     324 .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts
+     412 .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
+     197 .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts
+     222 .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts
+     266 .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md
+       9 .opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts
     5304 total
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"document|type-aware|docType|doc_type|metadata\\.type|diagnostic|diagnostics|precision|recall|ndcg|mrr|bm25|contingency|fallback|gate|ground.?truth|feedback|diversity|ablation|significance|pvalue|t-test|wilcoxon|exclusive|contribution|telemetry|channel|attribution|trace|latency|cost|cache|bandit|rrf|hybrid\" .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"document|type-aware|docType|doc_type|metadata\\.type|diagnostic|diagnostics|precision|recall|ndcg|mrr|bm25|contingency|fallback|gate|ground.?truth|feedback|diversity|ablation|significance|pvalue|t-test|wilcoxon|exclusive|contribution|telemetry|channel|attribution|trace|latency|cost|cache|bandit|rrf|hybrid\" .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts .opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 Total output lines: 571
 
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:3:description: "Retrieval telemetry for observability and governance. Records latency, mode selection, fallback triggers, and composite quality scores for retrieval pipeline runs."
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:5:  - "retrieval telemetry"
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:6:  - "latency metrics"
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:12:> Retrieval telemetry for observability and governance. Records latency, mode selection, fallback triggers, and composite quality scores for retrieval pipeline runs.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:32:The telemetry module provides structured observability for the retrieval pipeline. It records per-stage latency, search mode selection, fallback triggers, and composite quality scores. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:38:| Modules | 1 | `retrieval-telemetry.ts` |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **QualityMetrics** | Composite 0–1 quality proxy derived from relevance, result count, and latency |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:51:| **TelemetryTracePayload** | Canonical retrieval trace payload (sanitized, no sensitive/extra fields) |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:52:| **Feature Flag** | `SPECKIT_EXTENDED_TELEMETRY` gates extended metric collection (default: enabled) |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:62:telemetry/
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:63: retrieval-telemetry.ts    # Telemetry interfaces, types, and collection utilities
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:71:| `retrieval-telemetry.ts` | Defines `RetrievalTelemetry`, `LatencyMetrics`, `ModeMetrics`, `FallbackMetrics`, and `QualityMetrics`; exposes collection helpers |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:84:| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable extended metric collection (latency breakdown, quality scoring) |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:86:When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency, mode, fallback, and quality sub-metrics are omitted.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:90:**Purpose**: Aggregate all metric groups for one retrieval run.
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:94:| `enabled` | `boolean` | Whether extended telemetry collection is enabled |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:96:| `latency` | `LatencyMetrics` | Per-stage timing breakdown |
-.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md:98:| `fallback` | `FallbackMetrics` | Fallback trigger record |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:3:description: "Retrieval telemetry for observability and governance. Records latency, mode selection, fallback triggers, and composite quality scores for retrieval pipeline runs."
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:5:  - "retrieval telemetry"
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:6:  - "latency metrics"
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:12:> Retrieval telemetry for observability and governance. Records latency, mode selection, fallback triggers, and composite quality scores for retrieval pipeline runs.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:32:The telemetry module provides structured observability for the retrieval pipeline. It records per-stage latency, search mode selection, fallback triggers, and composite quality scores. Telemetry data flows to governance tooling and is used by retrieval handlers to surface pipeline health metrics.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:38:| Modules | 1 | `retrieval-telemetry.ts` |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:50:| **QualityMetrics** | Composite 0–1 quality proxy derived from relevance, result count, and latency |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:51:| **TelemetryTracePayload** | Canonical retrieval trace payload (sanitized, no sensitive/extra fields) |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:52:| **Feature Flag** | `SPECKIT_EXTENDED_TELEMETRY` gates extended metric collection (default: enabled) |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:62:telemetry/
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:63: retrieval-telemetry.ts    # Telemetry interfaces, types, and collection utilities
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:71:| `retrieval-telemetry.ts` | Defines `RetrievalTelemetry`, `LatencyMetrics`, `ModeMetrics`, `FallbackMetrics`, and `QualityMetrics`; exposes collection helpers |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:84:| `SPECKIT_EXTENDED_TELEMETRY` | `true` | Enable extended metric collection (latency breakdown, quality scoring) |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:86:When disabled, only the minimal `RetrievalTelemetry` shell is populated; latency, mode, fallback, and quality sub-metrics are omitted.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:90:**Purpose**: Aggregate all metric groups for one retrieval run.
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:94:| `enabled` | `boolean` | Whether extended telemetry collection is enabled |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:96:| `latency` | `LatencyMetrics` | Per-stage timing breakdown |
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md:98:| `fallback` | `FallbackMetrics` | Fallback trigger record |
 exec
 /bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg --files | rg 'undocumented-features-scan\\.md"'$|gap|undocumented'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 .opencode/specs/03--commands-and-skills/018-code-opencode-refinement/scratch/agent-4-review-skill-gaps.md
-.opencode/skill/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts
-.opencode/skill/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts
-.opencode/skill/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md
+.opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/evidence-gap-detector.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/cognitive-gaps.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/scoring-gaps.vitest.ts
+.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/09-session-manager-transaction-gap-fixes.md
 .opencode/specs/system-spec-kit/024-sqlite-to-turso/research/003 - gaps-and-workarounds-sqlite-to-turso.md
 .opencode/specs/system-spec-kit/024-sqlite-to-turso/research/006 - gaps-and-workarounds-sqlite-to-libsql.md
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog/undocumented-features-scan.md
@@ -130,7 +130,7 @@ exec
     19	---
     20	
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && ls -1 .opencode/skill/system-spec-kit/feature_catalog" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && ls -1 .opencode/skills/system-spec-kit/feature_catalog" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 01--retrieval
 02--mutation
 03--discovery
@@ -152,7 +152,7 @@ exec
 19--decisions-and-deferrals
 20--feature-flag-reference
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"DOCUMENT_TYPE_MULTIPLIERS|DOC_TYPE_QUERY_MAP|document_type|docType|applyCompositeScoreAdjustments|Spec 126|keyword\" .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"DOCUMENT_TYPE_MULTIPLIERS|DOC_TYPE_QUERY_MAP|document_type|docType|applyCompositeScoreAdjustments|Spec 126|keyword\" .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 189:// Spec 126: Document type scoring multipliers
 192:export const DOCUMENT_TYPE_MULTIPLIERS: Readonly<Record<string, number>> = {
 414:  // Spec 126: Document-type pattern alignment bonus
@@ -165,7 +165,7 @@ exec
 505:  const docType = (row.document_type as string) || 'memory';
 506:  const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    160	  temporary: 0.5,
    161	  deprecated: 0.25,
    162	};
@@ -187,7 +187,7 @@ exec
    178	  critical: 1.5,
    179	  important: 1.3,
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '360,450p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '360,450p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    360	 */
    361	export function calculatePatternScore(row: ScoringInput, options: ScoringOptions = {}): number {
    362	  let score = 0;
@@ -209,7 +209,7 @@ exec
    378	      if (matches.length > 0 && queryWords.length > 0) {
    379	        score += PATTERN_ALIGNMENT_BONUSES.partial_match * (matches.length / queryWords.length);
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '470,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts | sed -n '470,560p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    470	export function calculateNoveltyBoost(_createdAt: string | undefined): number {
    471	  return 0;
    472	}
@@ -231,7 +231,7 @@ exec
    488	 * Apply doc-type multiplier, novelty boost, interference penalty, and
    489	 * observability telemetry to an already-computed weighted composite score.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export function|interface|type|Inversion|constitutional|importance|cold|F1|intent|NDCG|recall|precision|diagnostic|suite|metrics\" .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export function|interface|type|Inversion|constitutional|importance|cold|F1|intent|NDCG|recall|precision|diagnostic|suite|metrics\" .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 4:// T006a-e: Pure computation functions for 11 evaluation metrics
 5:// (6 core + 5 diagnostic). No DB access, no side effects.
 13:export interface EvalResult {
@@ -253,7 +253,7 @@ exec
 204:export function computePrecision(
 220: * Compute F1@K — harmonic mean of Precision@K and Recall@K.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Eval Metrics
      3	// ---------------------------------------------------------------
@@ -275,7 +275,7 @@ exec
     19	  rank: number;
     20	}
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '220,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '220,420p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    220	 * Compute F1@K — harmonic mean of Precision@K and Recall@K.
    221	 * F1 = 2 * (P * R) / (P + R), or 0 if both are 0.
    222	 */
@@ -297,7 +297,7 @@ exec
    238	  return 2 * (p * r) / (p + r);
    239	}
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '420,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts | sed -n '420,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    420	
    421	  const gtMap = buildGroundTruthMap(groundTruth);
    422	  const topResults = topK(results, k);
@@ -319,7 +319,7 @@ exec
    438	 * Percentage of queries where recently created memories (< cutoffHours
    439	 * old at query time) surface in top-K when they are relevant.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|contingency|bootstrap|confidence|CI|MRR|PAUSE|RATIONALIZE|PROCEED|statistical|p<|channel|saveBM25|runBM25|relative|evaluateContingency\" .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|contingency|bootstrap|confidence|CI|MRR|PAUSE|RATIONALIZE|PROCEED|statistical|p<|channel|saveBM25|runBM25|relative|evaluateContingency\" .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 6:// search path (disabling vector, graph, and trigger channels)
 16://   - The contingency decision matrix turns the measured MRR@5
 17://     into an actionable gate: PAUSE / RATIONALIZE / PROCEED.
@@ -341,7 +341,7 @@ exec
 77:  /** Gate action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED'. */
 78:  action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED';
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '1,140p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: BM25-Only Baseline Runner (T008)
      3	// ---------------------------------------------------------------
@@ -365,7 +365,7 @@ exec
 codex
 I’ve pulled the gap registry and confirmed the exact names for 24–31. I’m now going function-by-function in each target file to confirm whether each capability is implemented, partially implemented, or still a real gap.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '140,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '140,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    140	 *     BM25 is moderate — semantic/graph channels must demonstrably
    141	 *     improve over this baseline. Each additional channel needs
    142	 *     positive delta evidence.
@@ -387,7 +387,7 @@ exec
    158	      interpretation:
    159	        'BM25 alone is very strong — semantic/graph additions may not justify complexity. ' +
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '290,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '290,430p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    290	export interface BootstrapCIResult {
    291	  /** Point estimate (mean MRR@5 across all queries). */
    292	  pointEstimate: number;
@@ -409,7 +409,7 @@ exec
    308	}
    309	
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '430,590p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts | sed -n '430,590p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    430	
    431	    // Contingency decision (stored as JSON metadata on a sentinel row)
    432	    const contingencyMeta = JSON.stringify(result.contingencyDecision);
@@ -431,7 +431,7 @@ exec
    448	   4. BM25 BASELINE RUNNER
    449	--------------------------------------------------------------- */
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|feedback|selection|LLM|judge|agreement|ground truth|corpus|schema|save|record|history|merge|expand\" .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|feedback|selection|LLM|judge|agreement|ground truth|corpus|schema|save|record|history|merge|expand\" .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 5:// Ground Truth Expansion via Feedback + LLM-Judge
 7:// Phase B: Collect implicit feedback from user memory selections.
 8://   When a user selects a memory from search results, that selection
@@ -453,7 +453,7 @@ exec
 61:  /** The memory ID being judged. */
 64:   * Relevance grade assigned by the LLM-judge.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Ground Truth Feedback
      3	// ---------------------------------------------------------------
@@ -475,7 +475,7 @@ exec
     19	//   - LLM-judge interface is deterministic (non-stub fallback).
     20	//   - Agreement rate target: >= 80% between LLM-judge and manual labels.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '180,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '180,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    180	    .filter((token) => !JUDGE_STOP_WORDS.has(token));
    181	}
    182	
@@ -497,7 +497,7 @@ exec
    198	    db.exec(FEEDBACK_SCHEMA_SQL);
    199	    _feedbackSchemaEnsured = true;
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '340,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '340,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    340	 * @returns Array of deterministic LlmJudgeLabel values.
    341	 */
    342	export function generateLlmJudgeLabels(
@@ -519,7 +519,7 @@ exec
    358	          reasoning: 'Heuristic judge: insufficient lexical signal (empty query or content tokens)',
    359	        };
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '520,580p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts | sed -n '520,580p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 50ms:
    520	    const manualRow = db.prepare(
    521	      'SELECT COUNT(*) as cnt FROM eval_ground_truth',
    522	    ).get() as { cnt: number } | undefined;
@@ -541,7 +541,7 @@ exec
    538	      manualPairs,
    539	      selectionPairs,
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export function|diversity|gate|hard negative|manual|complexity|intent|duplicate|validateGroundTruthDiversity|Diversity\" .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export function|diversity|gate|hard negative|manual|complexity|intent|duplicate|validateGroundTruthDiversity|Diversity\" .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 10://   validateGroundTruthDiversity() — check all diversity gates
 30:export interface GroundTruthDataset {
 37:/** Per-dimension diversity validation result. */
@@ -565,7 +565,7 @@ exec
 codex
 I’ve confirmed there is explicit hard-gate logic for diversity and multiple decision/stat testing components. I’m collecting exact line ranges now so each gap report is fully traceable.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts | sed -n '1,180p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Ground Truth Generator
      3	// ---------------------------------------------------------------
@@ -587,7 +587,7 @@ exec
     19	  type GroundTruthQuery,
     20	  type GroundTruthRelevance,
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts | sed -n '180,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts | sed -n '180,340p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    180	        notes,
    181	      );
    182	      if (result.changes > 0) relevancesInserted++;
@@ -609,7 +609,7 @@ exec
    198	 *
    199	 * Hard gates:
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|ablation|sign test|p-value|pvalue|two-sided|helped|hurt|unchanged|significance|alpha|channel|delta|wilcoxon|bootstrap|normal\" .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"export interface|export type|export function|ablation|sign test|p-value|pvalue|two-sided|helped|hurt|unchanged|significance|alpha|channel|delta|wilcoxon|bootstrap|normal\" .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 5:// Controlled ablation studies for search channel contribution analysis.
 6:// Selectively disables one search channel at a time, measures Recall@20
 7:// delta against a full-pipeline baseline, and attributes per-channel
@@ -631,7 +631,7 @@ exec
 89:export interface AblationResult {
 90:  /** The channel that was disabled. */
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Ablation Framework (R13-S3)
      3	// ---------------------------------------------------------------
@@ -653,7 +653,7 @@ exec
     19	// SPECKIT_ABLATION=true. Every public function is wrapped in try-catch
     20	// and is a no-op when the flag is not set.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '220,400p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '220,400p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
    220	 * @returns p-value, or null if fewer than 5 non-tied observations.
    221	 *
    222	 * Precision note: Uses log-space computation to avoid integer overflow
@@ -675,7 +675,7 @@ exec
    238	    for (let i = 0; i < kVal; i++) {
    239	      result += Math.log(nVal - i) - Math.log(i + 1);
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '400,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '400,620p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
    400	      const disabledSet = new Set<AblationChannel>([channel]);
    401	      const ablatedRecalls: Map<number, number> = new Map();
    402	      const ablatedMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number }> = new Map();
@@ -697,7 +697,7 @@ exec
    418	        }
    419	
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '620,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts | sed -n '620,770p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
    620	  lines.push(`- **Duration:** ${report.durationMs}ms`);
    621	  lines.push(`- **Queries evaluated:** ${report.results[0]?.queryCount ?? 0}`);
    622	  lines.push(``);
@@ -719,7 +719,7 @@ exec
    638	      `| ${r.channel} ` +
    639	      `| ${r.baselineRecall20.toFixed(4)} ` +
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Channel Attribution
      3	// ---------------------------------------------------------------
@@ -741,7 +741,7 @@ exec
     19	/** Known retrieval channels (extensible — any lowercase string accepted). */
     20	export type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'trigger' | string;
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts | sed -n '1,360p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Retrieval Telemetry (C136-12)
      3	// ---------------------------------------------------------------
@@ -763,7 +763,7 @@ exec
     19	
     20	/**
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Telemetry Trace Schema
      3	// ---------------------------------------------------------------
@@ -785,7 +785,7 @@ exec
     19	
     20	const TRACE_STAGE_SET: Set<RetrievalStage> = new Set(RETRIEVAL_TRACE_STAGES);
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts | sed -n '1,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts | sed -n '1,460p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Consumption Logger (T004 — Agent UX Instrumentation)
      3	// ---------------------------------------------------------------
@@ -807,7 +807,7 @@ exec
     19	 * Defines the ConsumptionEventType type.
     20	 */
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Scoring Observability (T010)
      3	// ---------------------------------------------------------------
@@ -829,7 +829,7 @@ exec
     19	/** 5% sampling rate — logs ~1 in 20 scoring calls */
     20	export const SAMPLING_RATE = 0.05;
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/telemetry/README.md | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/telemetry/README.md | sed -n '1,290p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
      1	---
      2	title: "Telemetry"
      3	description: "Retrieval telemetry for observability and governance. Records latency, mode selection, fallback triggers, and composite quality scores for retrieval pipeline runs."
@@ -851,7 +851,7 @@ exec
     19	- [1. OVERVIEW](#1--overview)
     20	- [2. STRUCTURE](#2--structure)
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/cache/scoring/composite-scoring.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
      1	// ---------------------------------------------------------------
      2	// MODULE: Composite Scoring
      3	// ---------------------------------------------------------------
@@ -862,7 +862,7 @@ exec
      8	 */
      9	export type * from '../../scoring/composite-scoring';
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
      1	---
      2	title: "Spec Kit Memory  -- Feature Catalog"
      3	description: "Unified reference combining the complete system feature inventory and the refinement program changelog for the Spec Kit Memory MCP server."
@@ -884,21 +884,21 @@ exec
     19	  - [AST-level section retrieval tool](#ast-level-section-retrieval-tool)
     20	  - [Quality-aware 3-tier search fallback](#quality-aware-3-tier-search-fallback)
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Document-Type-Aware|document type|inversion rate|constitutional surfacing|importance-weighted recall|cold-start detection|intent-weighted|BM25 contingency|PAUSE|RATIONALIZE|ground truth expansion|LLM-judge|diversity gate|ablation significance|sign-test|Exclusive Contribution Rate|ECR|extended telemetry|stage-level latency|trace payload|channel attribution\" .opencode/skill/system-spec-kit/feature_catalog" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:76:  - [Shadow scoring and channel attribution](#shadow-scoring-and-channel-attribution)
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:217:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:853:Seven diagnostic metrics add depth: inversion rate counts pairwise ranking mistakes, constitutional surfacing rate tracks whether high-priority memories appear in top results, importance-weighted recall favors recall of critical content, cold-start detection rate measures whether fresh memories surface when relevant, precision@K and F1@K expose precision/recall balance, and intent-weighted NDCG adjusts ranking quality by query type.
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:954:### Shadow scoring and channel attribution
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:956:Full A/B comparison infrastructure ran alternative scoring algorithms in parallel, logging results without affecting live ranking. The system computed detailed comparison metrics including Kendall tau rank correlation, per-result score deltas, and production-only versus shadow-only result sets. Channel attribution tagged each result with its source channels and computed Exclusive Contribution Rate per channel: how often each channel was the sole source for a result in the top-k window.
-.opencode/skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:958:Ground truth expansion via implicit user selection tracking and an LLM-judge stub interface were included for future corpus growth.
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:1:# Shadow scoring and channel attribution
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:5:Full A/B comparison infrastructure ran alternative scoring algorithms in parallel, logging results without affecting live ranking. The system computed detailed comparison metrics including Kendall tau rank correlation, per-result score deltas, and production-only versus shadow-only result sets. Channel attribution tagged each result with its source channels and computed Exclusive Contribution Rate per channel: how often each channel was the sole source for a result in the top-k window.
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:7:Ground truth expansion via implicit user selection tracking and an LLM-judge stub interface were included for future corpus growth.
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:35:- Source feature title: Shadow scoring and channel attribution
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md:7:Seven diagnostic metrics add depth: inversion rate counts pairwise ranking mistakes, constitutional surfacing rate tracks whether high-priority memories appear in top results, importance-weighted recall favors recall of critical content, cold-start detection rate measures whether fresh memories surface when relevant, precision@K and F1@K expose precision/recall balance, and intent-weighted NDCG adjusts ranking quality by query type.
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:15:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"Document-Type-Aware|document type|inversion rate|constitutional surfacing|importance-weighted recall|cold-start detection|intent-weighted|BM25 contingency|PAUSE|RATIONALIZE|ground truth expansion|LLM-judge|diversity gate|ablation significance|sign-test|Exclusive Contribution Rate|ECR|extended telemetry|stage-level latency|trace payload|channel attribution\" .opencode/skills/system-spec-kit/feature_catalog" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:76:  - [Shadow scoring and channel attribution](#shadow-scoring-and-channel-attribution)
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:217:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:853:Seven diagnostic metrics add depth: inversion rate counts pairwise ranking mistakes, constitutional surfacing rate tracks whether high-priority memories appear in top results, importance-weighted recall favors recall of critical content, cold-start detection rate measures whether fresh memories surface when relevant, precision@K and F1@K expose precision/recall balance, and intent-weighted NDCG adjusts ranking quality by query type.
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:954:### Shadow scoring and channel attribution
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:956:Full A/B comparison infrastructure ran alternative scoring algorithms in parallel, logging results without affecting live ranking. The system computed detailed comparison metrics including Kendall tau rank correlation, per-result score deltas, and production-only versus shadow-only result sets. Channel attribution tagged each result with its source channels and computed Exclusive Contribution Rate per channel: how often each channel was the sole source for a result in the top-k window.
+.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md:958:Ground truth expansion via implicit user selection tracking and an LLM-judge stub interface were included for future corpus growth.
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:1:# Shadow scoring and channel attribution
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:5:Full A/B comparison infrastructure ran alternative scoring algorithms in parallel, logging results without affecting live ranking. The system computed detailed comparison metrics including Kendall tau rank correlation, per-result score deltas, and production-only versus shadow-only result sets. Channel attribution tagged each result with its source channels and computed Exclusive Contribution Rate per channel: how often each channel was the sole source for a result in the top-k window.
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:7:Ground truth expansion via implicit user selection tracking and an LLM-judge stub interface were included for future corpus growth.
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md:35:- Source feature title: Shadow scoring and channel attribution
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md:7:Seven diagnostic metrics add depth: inversion rate counts pairwise ranking mistakes, constitutional surfacing rate tracks whether high-priority memories appear in top results, importance-weighted recall favors recall of critical content, cold-start detection rate measures whether fresh memories surface when relevant, precision@K and F1@K expose precision/recall balance, and intent-weighted NDCG adjusts ranking quality by query type.
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:15:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && ls -1 .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && ls -1 .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
 01-evaluation-database-and-schema.md
 02-core-metric-computation.md
 03-observer-effect-mitigation.md
@@ -914,38 +914,38 @@ exec
 13-evaluation-and-housekeeping-fixes.md
 14-cross-ai-validation-fixes.md
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"document type|inversion|constitutional|importance-weighted|cold-start|intent-weighted|contingency|PAUSE|RATIONALIZE|PROCEED|bootstrap|95%|selection|LLM-judge|agreement|corpus|diversity|hard negative|manual queries|ablation|sign-test|p-value|helped|hurt|Exclusive Contribution Rate|ECR|latency|fallback|trace|telemetry\" .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement .opencode/skill/system-spec-kit/feature_catalog/07--evaluation .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:7:Intent detection classifies your input into one of seven types (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and maps it to a retrieval mode. Five modes are available: auto (default, intent-detected routing), quick (trigger matching for fast lookups), deep (comprehensive semantic search across the full corpus), focused (intent-optimized with tighter filtering) and resume (session recovery targeting state, next-steps, summary and blocker anchors with full content included).
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:11:When no `specFolder` is provided, automatic spec folder discovery attempts to identify the most relevant folder from the query text using a cached one-sentence description per spec folder. If the target folder can be identified from the description alone, the system avoids full-corpus search entirely. Discovery failure is non-fatal and falls through to the standard retrieval path. This feature runs behind the `SPECKIT_FOLDER_DISCOVERY` flag.
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:15:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:111:| `mcp_server/lib/telemetry/consumption-logger.ts` | Lib | Agent consumption logging |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:112:| `mcp_server/lib/telemetry/retrieval-telemetry.ts` | Lib | Retrieval telemetry |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:113:| `mcp_server/lib/telemetry/scoring-observability.ts` | Lib | Scoring observability |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:114:| `mcp_server/lib/telemetry/trace-schema.ts` | Lib | Trace schema definitions |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:132:| `shared/contracts/retrieval-trace.ts` | Shared | Retrieval trace contract |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:231:| `mcp_server/tests/retrieval-telemetry.vitest.ts` | Retrieval telemetry tests |
-.opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:232:| `mcp_server/tests/retrieval-trace.vitest.ts` | Retrieval trace tests |
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:1:# Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:5:This tool runs controlled ablation studies across the retrieval pipeline's search channels. You disable one channel at a time (vector, BM25, FTS5, graph or trigger) and measure the Recall@20 delta against a full-pipeline baseline. The answer to "what happens if we turn off the graph channel?" becomes a measured number rather than speculation.
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:7:The framework uses dependency injection for the search function, making it testable without the full pipeline. Each channel ablation wraps in a try-catch so a failure in one channel's ablation produces partial results rather than a total failure. Statistical significance is assessed via a sign test (exact binomial distribution) because it is reliable with small query sets where a t-test would be unreliable. Verdict classification ranges from CRITICAL (channel removal causes significant regression) through negligible to HARMFUL (channel removal actually improves results).
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:9:Results are stored in `eval_metric_snapshots` with negative timestamp IDs to distinguish ablation runs from production evaluation runs. The tool requires `SPECKIT_ABLATION=true` to activate. When the flag is off, the MCP handler returns an explicit disabled-flag error and does not execute an ablation run.
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:31:| `mcp_server/lib/eval/ablation-framework.ts` | Lib | Ablation study framework |
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:99:| `mcp_server/tests/ablation-framework.vitest.ts` | Ablation framework tests |
-.opencode/skill/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:175:- Source feature title: Ablation studies (eval_run_ablation)
-.opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/14-cross-ai-validation-fixes.md:14:- **CR-P1-8:** Config env var fallback chain (`SPEC_KIT_DB_DIR || SPECKIT_DB_DIR`).
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md:7:FSRS decay rates now vary by a two-dimensional multiplier matrix. On the context axis: decisions never decay (stability set to Infinity), research memories get 2x stability, and implementation/discovery/general memories follow the standard rate. On the tier axis: constitutional and critical memories never decay, important memories get 1.5x stability, normal memories follow the standard, temporary memories decay at 0.5x and deprecated at 0.25x.
-.opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md:24:| `mcp_server/lib/telemetry/scoring-observability.ts` | Lib | Scoring observability |
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && rg -n \"document type|inversion|constitutional|importance-weighted|cold-start|intent-weighted|contingency|PAUSE|RATIONALIZE|PROCEED|bootstrap|95%|selection|LLM-judge|agreement|corpus|diversity|hard negative|manual queries|ablation|sign-test|p-value|helped|hurt|Exclusive Contribution Rate|ECR|latency|fallback|trace|telemetry\" .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement .opencode/skills/system-spec-kit/feature_catalog/07--evaluation .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 52ms:
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:7:Intent detection classifies your input into one of seven types (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and maps it to a retrieval mode. Five modes are available: auto (default, intent-detected routing), quick (trigger matching for fast lookups), deep (comprehensive semantic search across the full corpus), focused (intent-optimized with tighter filtering) and resume (session recovery targeting state, next-steps, summary and blocker anchors with full content included).
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:11:When no `specFolder` is provided, automatic spec folder discovery attempts to identify the most relevant folder from the query text using a cached one-sentence description per spec folder. If the target folder can be identified from the description alone, the system avoids full-corpus search entirely. Discovery failure is non-fatal and falls through to the standard retrieval path. This feature runs behind the `SPECKIT_FOLDER_DISCOVERY` flag.
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:15:Retrieval telemetry records mode selection and pressure-override fallbacks for observability when extended telemetry is enabled.
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:111:| `mcp_server/lib/telemetry/consumption-logger.ts` | Lib | Agent consumption logging |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:112:| `mcp_server/lib/telemetry/retrieval-telemetry.ts` | Lib | Retrieval telemetry |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:113:| `mcp_server/lib/telemetry/scoring-observability.ts` | Lib | Scoring observability |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:114:| `mcp_server/lib/telemetry/trace-schema.ts` | Lib | Trace schema definitions |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:132:| `shared/contracts/retrieval-trace.ts` | Shared | Retrieval trace contract |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:231:| `mcp_server/tests/retrieval-telemetry.vitest.ts` | Retrieval telemetry tests |
+.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md:232:| `mcp_server/tests/retrieval-trace.vitest.ts` | Retrieval trace tests |
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:1:# Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:5:This tool runs controlled ablation studies across the retrieval pipeline's search channels. You disable one channel at a time (vector, BM25, FTS5, graph or trigger) and measure the Recall@20 delta against a full-pipeline baseline. The answer to "what happens if we turn off the graph channel?" becomes a measured number rather than speculation.
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:7:The framework uses dependency injection for the search function, making it testable without the full pipeline. Each channel ablation wraps in a try-catch so a failure in one channel's ablation produces partial results rather than a total failure. Statistical significance is assessed via a sign test (exact binomial distribution) because it is reliable with small query sets where a t-test would be unreliable. Verdict classification ranges from CRITICAL (channel removal causes significant regression) through negligible to HARMFUL (channel removal actually improves results).
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:9:Results are stored in `eval_metric_snapshots` with negative timestamp IDs to distinguish ablation runs from production evaluation runs. The tool requires `SPECKIT_ABLATION=true` to activate. When the flag is off, the MCP handler returns an explicit disabled-flag error and does not execute an ablation run.
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:31:| `mcp_server/lib/eval/ablation-framework.ts` | Lib | Ablation study framework |
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:99:| `mcp_server/tests/ablation-framework.vitest.ts` | Ablation framework tests |
+.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/01-ablation-studies-evalrunablation.md:175:- Source feature title: Ablation studies (eval_run_ablation)
+.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/14-cross-ai-validation-fixes.md:14:- **CR-P1-8:** Config env var fallback chain (`SPEC_KIT_DB_DIR || SPECKIT_DB_DIR`).
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md:7:FSRS decay rates now vary by a two-dimensional multiplier matrix. On the context axis: decisions never decay (stability set to Infinity), research memories get 2x stability, and implementation/discovery/general memories follow the standard rate. On the tier axis: constitutional and critical memories never decay, important memories get 1.5x stability, normal memories follow the standard, temporary memories decay at 0.5x and deprecated at 0.25x.
+.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md:24:| `mcp_server/lib/telemetry/scoring-observability.ts` | Lib | Scoring observability |
 codex
 I’ve now cross-checked the implementation and the current feature-catalog docs to avoid mislabeling stale items. I’m doing one final pass to decide which entries are still real documentation gaps versus already-covered features.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/10-full-reporting-and-ablation-study-framework.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && nl -ba .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/10-full-reporting-and-ablation-study-framework.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 usage: nl [-p] [-b type] [-d delim] [-f type] [-h type] [-i incr] [-l num]
           [-n format] [-s sep] [-v startnum] [-w width] [file]
 codex
 I hit a command formatting issue while reading multiple catalog files at once; I’ll pull them one by one and finish the status calls next.
 exec
-/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && for f in .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/10-full-reporting-and-ablation-study-framework.md .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md .opencode/skill/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md; do echo \"===== "'$f ====="; nl -ba "$f" | sed -n '"'1,120p'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
-===== .opencode/skill/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md =====
+/bin/zsh -lc "cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && for f in .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/07-bm25-only-baseline.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/06-synthetic-ground-truth-corpus.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/10-full-reporting-and-ablation-study-framework.md .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/11-shadow-scoring-and-channel-attribution.md .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/01-score-normalization.md .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md; do echo \"===== "'$f ====="; nl -ba "$f" | sed -n '"'1,120p'; done" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 53ms:
+===== .opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md =====
      1	# Core metric computation
      2	
      3	## Current Reality
@@ -970,7 +970,7 @@ codex
 GAP_NUMBER: 24
 FEATURE_NAME: Document-Type-Aware Scoring
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:189-203,414-433,504-507`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:189-203,414-433,504-507`
 DRAFT_DESCRIPTION: Composite scoring applies explicit `document_type` multipliers (for `spec`, `decision_record`, `plan`, etc.) before final clamping. It also adds query-keyword/type alignment bonuses via a per-document-type keyword map. This is active ranking logic, not metadata-only tagging. Unknown types safely fall back to neutral weighting.
 SUGGESTED_CATEGORY: `11--scoring-and-calibration`
 SIGNIFICANCE: MEDIUM
@@ -981,7 +981,7 @@ NOTES: This implementation depth goes beyond generic score normalization docs.
 GAP_NUMBER: 25
 FEATURE_NAME: Diagnostic Retrieval Metrics Suite
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:4-5,42-56,204-239,322-347,363-378,392-433,451-485,510-542,558-586`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:4-5,42-56,204-239,322-347,363-378,392-433,451-485,510-542,558-586`
 DRAFT_DESCRIPTION: `eval-metrics.ts` implements an 11-metric package (core + diagnostics), including inversion rate, constitutional surfacing, importance-weighted recall, cold-start detection, precision/F1, and intent-weighted NDCG. `computeAllMetrics()` exposes these in one call. The module is pure computation (no DB side effects), so it can be reused in runners and tests consistently.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -992,7 +992,7 @@ NOTES: Capability is clearly implemented and testable as an independent metrics 
 GAP_NUMBER: 26
 FEATURE_NAME: BM25 Contingency Gate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:151-189,216-281,321-389,472-559`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:151-189,216-281,321-389,472-559`
 DRAFT_DESCRIPTION: The BM25 baseline module implements explicit gate actions (`PAUSE`, `RATIONALIZE`, `PROCEED`) based on MRR thresholds, and computes bootstrap 95% confidence intervals for statistical confidence checks. It records per-query MRR and derives significance from CI boundary exclusion. The runner returns both decision and CI artifacts in the baseline result payload.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: HIGH
@@ -1003,7 +1003,7 @@ NOTES: Includes both absolute and relative contingency modes in code.
 GAP_NUMBER: 27
 FEATURE_NAME: Feedback-Driven Ground-Truth Expansion
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121-145,227-260,342-388,399-431,450-500,514-553`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121-145,227-260,342-388,399-431,450-500,514-553`
 DRAFT_DESCRIPTION: The feedback module persists implicit user selections, generates/stores LLM-judge relevance labels, computes judge-vs-manual agreement, and tracks corpus size by source. It defines dedicated tables for selection and judge labels. Agreement output includes exact/tolerant rates, target checks, and mean grade difference. Source-wise corpus accounting is implemented in SQL.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1014,7 +1014,7 @@ NOTES: The “LLM judge” path is deterministic heuristic logic today, but full
 GAP_NUMBER: 28
 FEATURE_NAME: Ground-Truth Diversity Gate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:67-84,211-302`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:67-84,211-302`
 DRAFT_DESCRIPTION: `validateGroundTruthDiversity()` enforces hard diversity checks for total size, intent coverage, complexity coverage, manual-query quota, hard negatives, and duplicate query detection. It returns a structured per-gate report with pass/fail status and summary text. This is runtime validation logic, not just dataset documentation.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1025,7 +1025,7 @@ NOTES: Code currently enforces 7 gates; one comment line still says “6 hard ga
 GAP_NUMBER: 29
 FEATURE_NAME: Ablation Significance Testing
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:226-254,358-460,629-653`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:226-254,358-460,629-653`
 DRAFT_DESCRIPTION: The ablation framework computes per-channel deltas and applies a two-sided exact sign test (`pValue`) for significance. It explicitly tracks `queriesChannelHelped`, `queriesChannelHurt`, and `queriesUnchanged`. Results are surfaced in structured reports and significance-marked output formatting. This is full statistical attribution, not simple delta logging.
 SUGGESTED_CATEGORY: `07--evaluation`
 SIGNIFICANCE: HIGH
@@ -1036,7 +1036,7 @@ NOTES: Uses log-space binomial math for stability at larger sample sizes.
 GAP_NUMBER: 30
 FEATURE_NAME: Exclusive Contribution Rate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts:99-131,146-195,208-250`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts:99-131,146-195,208-250`
 DRAFT_DESCRIPTION: Channel attribution tags each result with contributing channels, marks exclusivity, and computes per-channel ECR (`exclusiveCount / totalInTopK`). The report also tracks multi-channel convergence, single-channel counts, unattributed results, and channel coverage. This provides direct unique-value vs overlap diagnostics for retrieval channels.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1047,7 +1047,7 @@ NOTES: Supports extensible channel names beyond fixed enum-like values.
 GAP_NUMBER: 31
 FEATURE_NAME: Extended Retrieval Telemetry
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:20-26,43-86,129-204,210-237,243-310`; `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:21-33,66-137,139-189`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:20-26,43-86,129-204,210-237,243-310`; `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:21-33,66-137,139-189`
 DRAFT_DESCRIPTION: Telemetry captures stage-level latency, mode/override/pressure, fallback trigger state, and quality-proxy inputs/scores. It also supports canonical sanitized trace payload attachment via strict schema sanitization/validation. Serialization keeps output constrained and drops invalid trace payloads. Collection is feature-flag gated.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: HIGH
@@ -1060,7 +1060,7 @@ NEW capabilities found (not in gaps 24–31):
 GAP_NUMBER: NEW-1
 FEATURE_NAME: Relative BM25-vs-Hybrid Contingency Mode
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:216-281`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:216-281`
 DRAFT_DESCRIPTION: In addition to absolute thresholds, BM25 contingency supports ratio-based decisions against hybrid MRR (`bm25MRR / hybridMRR`). It returns mode, ratio, and action in a structured decision object. This creates a more deployment-relevant gate when hybrid baseline is known.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1071,7 +1071,7 @@ NOTES: This is materially beyond the basic absolute-threshold gate.
 GAP_NUMBER: NEW-2
 FEATURE_NAME: Multi-Metric Ablation Diagnostics (9 Metrics)
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:295-337,572-589,665-691`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:295-337,572-589,665-691`
 DRAFT_DESCRIPTION: Ablation computes and persists a 9-metric delta profile per channel (MRR@5, precision/recall@5, NDCG@5, MAP, hit-rate, latency p50/p95, token usage placeholder). Report output includes a dedicated full-metric breakdown table. This enables richer trade-off analysis than Recall@20 alone.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1082,7 +1082,7 @@ NOTES: Particularly useful for diagnosing quality-latency tradeoffs.
 GAP_NUMBER: NEW-3
 FEATURE_NAME: Consumption Pattern Mining over Telemetry Log
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:263-400`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:263-400`
 DRAFT_DESCRIPTION: The consumption logger includes SQL-driven pattern detection for repeated queries, zero-result queries, low-selection behavior, intent mismatch, and session-heavy usage. It returns categorized counts with examples for operator diagnostics. This is implemented even though runtime logging is currently disabled by flag behavior.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: LOW
@@ -1093,7 +1093,7 @@ NOTES: Instrumentation path is present; `isConsumptionLogEnabled()` currently ha
 GAP_NUMBER: NEW-4
 FEATURE_NAME: Sampled Scoring Observability Store
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:19-53,71-95,105-151,162-207`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:19-53,71-95,105-151,162-207`
 DRAFT_DESCRIPTION: A dedicated observability subsystem logs sampled scoring observations (5%) to SQLite and computes aggregate drift stats (boost usage, interference penalties, score deltas). It is fail-safe by design and isolated from ranking behavior. This provides post-hoc calibration visibility for scoring signals.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1105,7 +1105,7 @@ tokens used
 GAP_NUMBER: 24
 FEATURE_NAME: Document-Type-Aware Scoring
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:189-203,414-433,504-507`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/scoring/composite-scoring.ts:189-203,414-433,504-507`
 DRAFT_DESCRIPTION: Composite scoring applies explicit `document_type` multipliers (for `spec`, `decision_record`, `plan`, etc.) before final clamping. It also adds query-keyword/type alignment bonuses via a per-document-type keyword map. This is active ranking logic, not metadata-only tagging. Unknown types safely fall back to neutral weighting.
 SUGGESTED_CATEGORY: `11--scoring-and-calibration`
 SIGNIFICANCE: MEDIUM
@@ -1116,7 +1116,7 @@ NOTES: This implementation depth goes beyond generic score normalization docs.
 GAP_NUMBER: 25
 FEATURE_NAME: Diagnostic Retrieval Metrics Suite
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:4-5,42-56,204-239,322-347,363-378,392-433,451-485,510-542,558-586`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts:4-5,42-56,204-239,322-347,363-378,392-433,451-485,510-542,558-586`
 DRAFT_DESCRIPTION: `eval-metrics.ts` implements an 11-metric package (core + diagnostics), including inversion rate, constitutional surfacing, importance-weighted recall, cold-start detection, precision/F1, and intent-weighted NDCG. `computeAllMetrics()` exposes these in one call. The module is pure computation (no DB side effects), so it can be reused in runners and tests consistently.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1127,7 +1127,7 @@ NOTES: Capability is clearly implemented and testable as an independent metrics 
 GAP_NUMBER: 26
 FEATURE_NAME: BM25 Contingency Gate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:151-189,216-281,321-389,472-559`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:151-189,216-281,321-389,472-559`
 DRAFT_DESCRIPTION: The BM25 baseline module implements explicit gate actions (`PAUSE`, `RATIONALIZE`, `PROCEED`) based on MRR thresholds, and computes bootstrap 95% confidence intervals for statistical confidence checks. It records per-query MRR and derives significance from CI boundary exclusion. The runner returns both decision and CI artifacts in the baseline result payload.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: HIGH
@@ -1138,7 +1138,7 @@ NOTES: Includes both absolute and relative contingency modes in code.
 GAP_NUMBER: 27
 FEATURE_NAME: Feedback-Driven Ground-Truth Expansion
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121-145,227-260,342-388,399-431,450-500,514-553`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts:121-145,227-260,342-388,399-431,450-500,514-553`
 DRAFT_DESCRIPTION: The feedback module persists implicit user selections, generates/stores LLM-judge relevance labels, computes judge-vs-manual agreement, and tracks corpus size by source. It defines dedicated tables for selection and judge labels. Agreement output includes exact/tolerant rates, target checks, and mean grade difference. Source-wise corpus accounting is implemented in SQL.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1149,7 +1149,7 @@ NOTES: The “LLM judge” path is deterministic heuristic logic today, but full
 GAP_NUMBER: 28
 FEATURE_NAME: Ground-Truth Diversity Gate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:67-84,211-302`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts:67-84,211-302`
 DRAFT_DESCRIPTION: `validateGroundTruthDiversity()` enforces hard diversity checks for total size, intent coverage, complexity coverage, manual-query quota, hard negatives, and duplicate query detection. It returns a structured per-gate report with pass/fail status and summary text. This is runtime validation logic, not just dataset documentation.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1160,7 +1160,7 @@ NOTES: Code currently enforces 7 gates; one comment line still says “6 hard ga
 GAP_NUMBER: 29
 FEATURE_NAME: Ablation Significance Testing
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:226-254,358-460,629-653`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:226-254,358-460,629-653`
 DRAFT_DESCRIPTION: The ablation framework computes per-channel deltas and applies a two-sided exact sign test (`pValue`) for significance. It explicitly tracks `queriesChannelHelped`, `queriesChannelHurt`, and `queriesUnchanged`. Results are surfaced in structured reports and significance-marked output formatting. This is full statistical attribution, not simple delta logging.
 SUGGESTED_CATEGORY: `07--evaluation`
 SIGNIFICANCE: HIGH
@@ -1171,7 +1171,7 @@ NOTES: Uses log-space binomial math for stability at larger sample sizes.
 GAP_NUMBER: 30
 FEATURE_NAME: Exclusive Contribution Rate
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts:99-131,146-195,208-250`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/channel-attribution.ts:99-131,146-195,208-250`
 DRAFT_DESCRIPTION: Channel attribution tags each result with contributing channels, marks exclusivity, and computes per-channel ECR (`exclusiveCount / totalInTopK`). The report also tracks multi-channel convergence, single-channel counts, unattributed results, and channel coverage. This provides direct unique-value vs overlap diagnostics for retrieval channels.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1182,7 +1182,7 @@ NOTES: Supports extensible channel names beyond fixed enum-like values.
 GAP_NUMBER: 31
 FEATURE_NAME: Extended Retrieval Telemetry
 STATUS: CONFIRMED_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:20-26,43-86,129-204,210-237,243-310`; `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:21-33,66-137,139-189`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts:20-26,43-86,129-204,210-237,243-310`; `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/trace-schema.ts:21-33,66-137,139-189`
 DRAFT_DESCRIPTION: Telemetry captures stage-level latency, mode/override/pressure, fallback trigger state, and quality-proxy inputs/scores. It also supports canonical sanitized trace payload attachment via strict schema sanitization/validation. Serialization keeps output constrained and drops invalid trace payloads. Collection is feature-flag gated.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: HIGH
@@ -1195,7 +1195,7 @@ NEW capabilities found (not in gaps 24–31):
 GAP_NUMBER: NEW-1
 FEATURE_NAME: Relative BM25-vs-Hybrid Contingency Mode
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:216-281`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts:216-281`
 DRAFT_DESCRIPTION: In addition to absolute thresholds, BM25 contingency supports ratio-based decisions against hybrid MRR (`bm25MRR / hybridMRR`). It returns mode, ratio, and action in a structured decision object. This creates a more deployment-relevant gate when hybrid baseline is known.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1206,7 +1206,7 @@ NOTES: This is materially beyond the basic absolute-threshold gate.
 GAP_NUMBER: NEW-2
 FEATURE_NAME: Multi-Metric Ablation Diagnostics (9 Metrics)
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:295-337,572-589,665-691`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:295-337,572-589,665-691`
 DRAFT_DESCRIPTION: Ablation computes and persists a 9-metric delta profile per channel (MRR@5, precision/recall@5, NDCG@5, MAP, hit-rate, latency p50/p95, token usage placeholder). Report output includes a dedicated full-metric breakdown table. This enables richer trade-off analysis than Recall@20 alone.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM
@@ -1217,7 +1217,7 @@ NOTES: Particularly useful for diagnosing quality-latency tradeoffs.
 GAP_NUMBER: NEW-3
 FEATURE_NAME: Consumption Pattern Mining over Telemetry Log
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:263-400`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts:263-400`
 DRAFT_DESCRIPTION: The consumption logger includes SQL-driven pattern detection for repeated queries, zero-result queries, low-selection behavior, intent mismatch, and session-heavy usage. It returns categorized counts with examples for operator diagnostics. This is implemented even though runtime logging is currently disabled by flag behavior.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: LOW
@@ -1228,7 +1228,7 @@ NOTES: Instrumentation path is present; `isConsumptionLogEnabled()` currently ha
 GAP_NUMBER: NEW-4
 FEATURE_NAME: Sampled Scoring Observability Store
 STATUS: NEW_GAP
-SOURCE_FILES: `.opencode/skill/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:19-53,71-95,105-151,162-207`
+SOURCE_FILES: `.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/scoring-observability.ts:19-53,71-95,105-151,162-207`
 DRAFT_DESCRIPTION: A dedicated observability subsystem logs sampled scoring observations (5%) to SQLite and computes aggregate drift stats (boost usage, interference penalties, score deltas). It is fail-safe by design and isolated from ranking behavior. This provides post-hoc calibration visibility for scoring signals.
 SUGGESTED_CATEGORY: `09--evaluation-and-measurement`
 SIGNIFICANCE: MEDIUM

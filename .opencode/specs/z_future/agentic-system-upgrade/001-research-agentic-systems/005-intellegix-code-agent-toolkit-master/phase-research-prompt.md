@@ -61,10 +61,10 @@ Cross-phase rule:
 
 Assume `Code_Environment/Public` already has significant workflow infrastructure, but organized differently:
 
-- `.opencode/agent/orchestrate.md` already defines a senior orchestration model with single-hop delegation and leaf-agent boundaries.
-- `.opencode/skill/cli-copilot/` already provides multi-model delegation patterns through Copilot CLI.
-- `.opencode/command/` and `.opencode/agent/` already provide a substantial command and agent surface.
-- `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` already provides strong spec-folder validation.
+- `.opencode/agents/orchestrate.md` already defines a senior orchestration model with single-hop delegation and leaf-agent boundaries.
+- `.opencode/skills/cli-copilot/` already provides multi-model delegation patterns through Copilot CLI.
+- `.opencode/commands/` and `.opencode/agents/` already provide a substantial command and agent surface.
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` already provides strong spec-folder validation.
 - `CLAUDE.md` and Spec Kit Memory already provide hard gates, retrieval, recovery, and completion discipline.
 
 What this repo does **not** appear to have:
@@ -88,11 +88,11 @@ The research should therefore focus on control-plane deltas, not on capabilities
 7. Inspect the budget and stagnation model in detail: per-iteration limits, total limits, timeout cooldowns, fallback model logic, completion markers, and exit codes `0`, `1`, `2`, `3`.
 8. Read `automated-loop/tests/`, especially tests covering completion detection, budgets, resume, NDJSON parsing, research fallback, state tracking, file locking, and multi-agent behavior.
 9. Only after the loop-runtime read is complete, move to `external/agents/orchestrator.md` and `external/agents/orchestrator-multi.md`. Keep loop runtime and supervising agents conceptually separate.
-10. Then read `external/commands/orchestrator-new.md`, `external/commands/orchestrator.md`, `external/commands/orchestrator-multi.md`, plus representative command files for research, council, handoff, and portfolio status. Compare the `31` commands against this repo's `.opencode/command/` and `.opencode/skill/` surfaces.
+10. Then read `external/commands/orchestrator-new.md`, `external/commands/orchestrator.md`, `external/commands/orchestrator-multi.md`, plus representative command files for research, council, handoff, and portfolio status. Compare the `31` commands against this repo's `.opencode/commands/` and `.opencode/skills/` surfaces.
 11. Read `hooks/orchestrator-guard.py` and `hooks/inject-time.py` after the commands. Focus on role boundaries, path safety, and orchestration mode enforcement.
 12. Read `external/council-automation/council_query.py`, `external/council-automation/council_config.py`, and `external/council-automation/synthesis_prompt.md`. Focus on council workflow design, multi-model fan-out, fallback, and Opus synthesis rather than browser internals.
 13. Read `external/portfolio/PORTFOLIO.md.example` and `external/portfolio/DECISIONS.md` last. Capture how tier and phase restrictions constrain allowed work by project maturity.
-14. Compare findings directly against `.opencode/agent/orchestrate.md`, `.opencode/skill/cli-copilot/`, `.opencode/command/`, `CLAUDE.md`, and `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`. Make every recommendation comparative, not standalone.
+14. Compare findings directly against `.opencode/agents/orchestrate.md`, `.opencode/skills/cli-copilot/`, `.opencode/commands/`, `CLAUDE.md`, and `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`. Make every recommendation comparative, not standalone.
 15. Save outputs under this phase folder only. Use `research/research.md` as the canonical report, classify each finding as `adopt now`, `prototype later`, or `reject`, and explicitly tag overlap with phase `001` or phase `003` when appropriate.
 
 Use this exact deep-research topic:
@@ -144,7 +144,7 @@ Research Intellegix Code Agent Toolkit for Code_Environment/Public with focus on
 - **What it does:** Intellegix enforces per-iteration and total budget thresholds in persistent loop state, then exits with explicit status codes for `complete`, `max-iterations`, `budget-exceeded`, and `stagnation`.
 - **Why it matters here:** `Code_Environment/Public` has orchestration rules and validation, but not a reusable machine-readable runtime contract for autonomous loop outcomes.
 - **Recommendation:** `prototype later`
-- **Affected area:** `.opencode/agent/orchestrate.md`, future loop-runtime packet, operational reporting conventions
+- **Affected area:** `.opencode/agents/orchestrate.md`, future loop-runtime packet, operational reporting conventions
 - **Risk / cost:** Medium. Requires a durable runtime state model and agreement on how autonomous loops interact with existing gates.
 
 ### Example B - Worktree-native multi-agent supervision
@@ -153,7 +153,7 @@ Research Intellegix Code Agent Toolkit for Code_Environment/Public with focus on
 - **What it does:** Intellegix splits large work across isolated git worktrees, assigns explicit file territories, blocks orchestrator source edits via a guard hook, and merges agents sequentially.
 - **Why it matters here:** This repo has strong orchestration prompts, but not a first-class runtime for parallel isolated worker loops with merge-order semantics.
 - **Recommendation:** `prototype later`
-- **Affected area:** `.opencode/agent/`, `.opencode/command/`, future worktree orchestration design
+- **Affected area:** `.opencode/agents/`, `.opencode/commands/`, future worktree orchestration design
 - **Risk / cost:** Medium to high. High operational value, but substantial control-plane complexity.
 
 ## 10. Constraints
@@ -213,7 +213,7 @@ Use this CLEAR self-check:
 - The external analysis meaningfully covered `automated-loop/`, `agents/`, `commands/`, `hooks/`, `council-automation/`, and `portfolio/`.
 - The loop lifecycle was traced from initialization to exit, including NDJSON parsing, state persistence, budget enforcement, and stagnation handling.
 - The `31` command surface was compared against this repo's existing command and skill surfaces.
-- Local comparison anchors included `.opencode/agent/orchestrate.md`, `.opencode/skill/cli-copilot/`, `CLAUDE.md`, and `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`.
+- Local comparison anchors included `.opencode/agents/orchestrate.md`, `.opencode/skills/cli-copilot/`, `CLAUDE.md`, and `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`.
 - The final analysis distinguishes `adopt now`, `prototype later`, and `reject`.
 - Cross-phase overlap with phase `001` and phase `003` is explicitly addressed.
 - No writable changes occur outside this phase folder.

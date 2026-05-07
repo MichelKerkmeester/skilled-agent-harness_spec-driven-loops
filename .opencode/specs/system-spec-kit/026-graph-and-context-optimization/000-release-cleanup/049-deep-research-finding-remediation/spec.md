@@ -32,7 +32,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -105,7 +105,7 @@ Land surgical product-code, schema, doc, and test fixes for all 78 remaining fin
 - FR-3: Each sub-phase commit includes the finding IDs in its message body.
 
 ### Non-Functional
-- NFR-1: `npm run stress` (run from `.opencode/skill/system-spec-kit/mcp_server/`) stays at 56+ files / 163+ tests / exit 0 throughout. Baseline confirmed at 56/163 before this packet.
+- NFR-1: `npm run stress` (run from `.opencode/skills/system-spec-kit/mcp_server/`) stays at 56+ files / 163+ tests / exit 0 throughout. Baseline confirmed at 56/163 before this packet.
 - NFR-2: `validate.sh --strict` exits 0 for every sub-phase before its commit.
 - NFR-3: All commits push to `origin main` immediately. No giant final push.
 
@@ -219,5 +219,5 @@ Multi-day work in serial; multi-hour with disciplined parallel waves.
 <!--
 CORE TEMPLATE: Phase Parent (lean trio policy — only spec.md, description.json, graph-metadata.json live at parent root). Heavy docs (plan/tasks/checklist/implementation-summary) live in each child. The level-2 trio created by --subfolder at this root will be removed; spec.md is the manifest, description.json + graph-metadata.json are auto-generated metadata.
 
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->

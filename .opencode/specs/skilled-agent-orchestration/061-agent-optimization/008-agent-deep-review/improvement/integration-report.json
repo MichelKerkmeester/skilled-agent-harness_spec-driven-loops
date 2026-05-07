@@ -4,7 +4,7 @@
   "timestamp": "2026-05-02T18:03:49.211Z",
   "surfaces": {
     "canonical": {
-      "path": ".opencode/agent/deep-review.md",
+      "path": ".opencode/agents/deep-review.md",
       "exists": true,
       "frontmatter": {
         "name": "deep-review",
@@ -47,7 +47,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/command/spec_kit/deep-review.md",
+        "path": ".opencode/commands/spec_kit/deep-review.md",
         "references": [
           "@deep-review"
         ]
@@ -55,14 +55,14 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
         "references": [
           "deep-review",
           "@deep-review"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-review_confirm.yaml",
         "references": [
           "deep-review",
           "@deep-review"
@@ -71,23 +71,23 @@
     ],
     "skills": [
       {
-        "path": ".opencode/skill/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "referenceCount": 10
       },
       {
-        "path": ".opencode/skill/sk-code-review/SKILL.md",
+        "path": ".opencode/skills/sk-code-review/SKILL.md",
         "referenceCount": 1
       },
       {
-        "path": ".opencode/skill/sk-deep-research/SKILL.md",
+        "path": ".opencode/skills/sk-deep-research/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/sk-deep-review/SKILL.md",
+        "path": ".opencode/skills/sk-deep-review/SKILL.md",
         "referenceCount": 51
       },
       {
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "referenceCount": 1
       }
     ],
@@ -98,7 +98,7 @@
       }
     ],
     "skillAdvisor": {
-      "path": ".opencode/skill/scripts/skill_advisor.py",
+      "path": ".opencode/skills/scripts/skill_advisor.py",
       "matched": false
     }
   },

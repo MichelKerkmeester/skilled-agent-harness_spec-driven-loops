@@ -6,24 +6,24 @@ Investigate existing error handling patterns in hook scripts, code-graph-db.ts, 
 ## Findings
 
 1. **Hooks use a "never-block" guarantee pattern**: Both `compact-inject.ts` and `session-prime.ts` wrap their `main()` call in `.catch()` that logs to stderr, followed by `.finally(() => process.exit(0))`. This ensures the hook process ALWAYS exits successfully regardless of any error. The pattern is correct but loses all diagnostic context -- errors are logged to stderr which is typically invisible to the user.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:245-249]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:220-224]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:245-249]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:220-224]
 
 2. **Three-tier fallback already exists in compact-inject.ts**: The `main()` function tries `buildMergedContext()` (3-source merge pipeline) first, catches failures, then falls back to `buildCompactContext()` (legacy transcript-only analysis). This is a concrete existing pattern for source-level degradation. However, the fallback is coarse -- if the merge fails at ANY point, it falls back entirely rather than degrading specific sources.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:224-232]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:224-232]
 
 3. **session-prime.ts handles unavailable code graph gracefully**: It uses a dynamic import with try/catch for `code-graph-db.js`, setting `getStats` to null if the module is unavailable. When checking stale index, it wraps the `getStats()` call in another try/catch. This is the correct double-guard pattern for optional dependencies -- import guard + call guard.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:18-24, 103-117]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:18-24, 103-117]
 
 4. **code-graph-db.ts has NO error recovery for SQLite failures**: The `initDb()` function calls `new Database(dbPath)` and `db.exec(SCHEMA_SQL)` without any try/catch. If the DB file is corrupted, locked by another process, or the schema migration fails, the error propagates up and crashes the caller. There is no WAL checkpoint recovery, no corrupt-db detection, no auto-rebuild. The `getDb()` function only checks for null (uninitialized), not for a closed or corrupted connection. WAL mode is set (`pragma journal_mode = WAL`) which helps concurrent readers but does not handle corruption.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:71-80, 82-86]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:71-80, 82-86]
 
 5. **No retry logic anywhere in the codebase**: The `withTimeout()` function in shared.ts provides timeout protection (1800ms default, under the 2s hook hard cap) with fallback values, but there is zero retry logic. If a SQLite query fails due to a transient lock (`SQLITE_BUSY`), it crashes. The `better-sqlite3` library is synchronous, so `SQLITE_BUSY` manifests as a thrown exception. WAL mode reduces but does not eliminate writer-writer contention.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts:54-68]
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:7, 76]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts:54-68]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts:7, 76]
 
 6. **Runtime detection provides degradation signals but nothing consumes them**: `runtime-detection.ts` exports `getRecoveryApproach()` returning `'hooks'` or `'tool_fallback'`, and `HookPolicy` types including `'unavailable'`. However, no code in the codebase currently calls `getRecoveryApproach()` to adapt behavior. The degradation chain (hooks -> tool fallback -> memory only) is designed but unwired.
-[SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:46-54]
+[SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts:46-54]
 
 7. **Designed graceful degradation cascade (new design)**:
    - **Level 0 (full)**: Code Graph + CocoIndex + Memory (3-source merge) -- current happy path
@@ -48,12 +48,12 @@ Investigate existing error handling patterns in hook scripts, code-graph-db.ts, 
 None identified this iteration.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` (full file, 249 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, 224 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/shared.ts` (full file, 103 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
-- `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts` (full file, 55 lines)
-- Grep across `.opencode/skill/system-spec-kit/mcp_server/lib/code-graph/` for error/fallback/retry patterns
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts` (full file, 249 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts` (full file, 224 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts` (full file, 103 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/code-graph-db.ts` (full file, 339 lines)
+- `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/runtime-detection.ts` (full file, 55 lines)
+- Grep across `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph/` for error/fallback/retry patterns
 
 ## Assessment
 - New information ratio: 0.69

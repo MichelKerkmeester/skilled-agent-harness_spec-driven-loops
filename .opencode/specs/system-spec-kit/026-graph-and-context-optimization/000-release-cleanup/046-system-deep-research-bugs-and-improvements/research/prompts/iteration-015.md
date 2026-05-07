@@ -8,7 +8,7 @@ You are the deep-research LEAF agent for iteration 015 of 20. The packet root is
 
 **Angle C5 — Test suite reliability and flake patterns**
 
-Catalog the unit and stress tests under `.opencode/skill/system-spec-kit/mcp_server/` for environmental dependencies, timing dependencies, fixture-state dependencies. Where do tests rely on `process.env`, `Date.now()`, or external file system state in ways that make CI flaky? Propose fixture/sandbox improvements. Cite test file:line.
+Catalog the unit and stress tests under `.opencode/skills/system-spec-kit/mcp_server/` for environmental dependencies, timing dependencies, fixture-state dependencies. Where do tests rely on `process.env`, `Date.now()`, or external file system state in ways that make CI flaky? Propose fixture/sandbox improvements. Cite test file:line.
 
 **Cite specific function names + line numbers.** A finding is only valid if it points to `path/file.ext:LINE` or `path/file.ext:LINE-LINE`.
 

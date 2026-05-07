@@ -75,7 +75,7 @@ _memory:
 - [x] CHK-020 [P0] All acceptance criteria met. [EVIDENCE: `review-report.md` section 7 answers all packet-specific questions]
 - [x] CHK-021 [P0] Manual evidence review complete. [EVIDENCE: memory handlers, governance, schema, tests, and cache/index helpers cited]
 - [x] CHK-022 [P1] Edge cases validated by source review. [EVIDENCE: FTS/vector cleanup, BM25 drift, embedding cache retention, and partial-save paths are separated in `review-report.md`]
-- [x] CHK-023 [P1] Strict validator passed. [EVIDENCE: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/002-memory-data-integrity --strict`]
+- [x] CHK-023 [P1] Strict validator passed. [EVIDENCE: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/002-memory-data-integrity --strict`]
 <!-- /ANCHOR:testing -->
 
 ---

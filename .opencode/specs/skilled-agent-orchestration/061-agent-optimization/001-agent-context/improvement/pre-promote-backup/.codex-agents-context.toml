@@ -1,5 +1,5 @@
 # Agent: context
-# Converted from: .opencode/agent/context.md
+# Converted from: .opencode/agents/context.md
 name = "context"
 description = "Production context agent — comprehensive retrieval with canonical continuity recovery and structured Context Packages"
 sandbox_mode = "read-only"
@@ -392,7 +392,7 @@ When the query intent is semantic (find code by concept, understand implementati
 
 ## 11b. HOOK-INJECTED CONTEXT & QUERY ROUTING
 
-If hook-injected context is present from the active runtime's startup hook (Claude `SessionStart`, Codex `SessionStart`, Gemini `SessionStart`/`BeforeAgent`, or OpenCode plugin transform — see `.opencode/skill/system-spec-kit/references/config/hook_system.md`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present (sandbox child, runtime without wired hooks, or fail-open), recover prior work in `/spec_kit:resume` order: read `handover.md`, then `_memory.continuity`, then the relevant spec docs. Use `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` only when packet-local continuity is missing, ambiguous, or needs broader repo history.
+If hook-injected context is present from the active runtime's startup hook (Claude `SessionStart`, Codex `SessionStart`, Gemini `SessionStart`/`BeforeAgent`, or OpenCode plugin transform — see `.opencode/skills/system-spec-kit/references/config/hook_system.md`), use it directly. Do NOT redundantly call `memory_context` or `memory_match_triggers` for the same information. If hook context is NOT present (sandbox child, runtime without wired hooks, or fail-open), recover prior work in `/spec_kit:resume` order: read `handover.md`, then `_memory.continuity`, then the relevant spec docs. Use `memory_context({ mode: "resume", profile: "resume" })` and `memory_match_triggers()` only when packet-local continuity is missing, ambiguous, or needs broader repo history.
 
 Route queries by intent: CocoIndex (`mcp__cocoindex_code__search`) for semantic discovery, Code Graph (`code_graph_query`/`code_graph_context`) for structural navigation, Memory (`memory_search`/`memory_context`) for session continuity.
 

@@ -73,7 +73,7 @@ Two new foundation scripts:
 
 ## Requirements
 
-1. Any agent in `.opencode/agent/` must be a valid evaluation target via dynamic profiles
+1. Any agent in `.opencode/agents/` must be a valid evaluation target via dynamic profiles
 2. Integration scanner must discover canonical + mirrors + commands + YAML + skills + global docs
 3. Scorer must produce per-dimension scores alongside backward-compatible aggregate score
 4. Existing handover/context-prime hardcoded checks must still work unchanged

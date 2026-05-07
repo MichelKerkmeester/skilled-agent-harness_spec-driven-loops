@@ -36,7 +36,7 @@ When running `generate-context.js`, two issues occur:
 | `vector_index.get_db()` | `getDb` |
 | `vector_index.get_memory()` | `getMemory` |
 
-**Location:** `.opencode/skill/system-spec-kit/mcp_server/lib/providers/retry-manager.js`
+**Location:** `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.js`
 
 ### Issue 2: Unimplemented Template Variables
 
@@ -45,7 +45,7 @@ When running `generate-context.js`, two issues occur:
 - Memory verification: `MEMORY_FILE_EXISTS`, `CHECKSUMS_MATCH`, `NO_DEDUP_CONFLICTS`
 - Decay parameters: `MEMORY_TYPE`, `HALF_LIFE_DAYS`, `BASE_DECAY_RATE`, etc.
 
-**Location:** `.opencode/skill/system-spec-kit/templates/context_template.md`
+**Location:** `.opencode/skills/system-spec-kit/templates/context_template.md`
 
 ## Goals
 

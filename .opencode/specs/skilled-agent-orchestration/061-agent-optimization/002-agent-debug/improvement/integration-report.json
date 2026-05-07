@@ -4,7 +4,7 @@
   "timestamp": "2026-05-02T16:51:24.510Z",
   "surfaces": {
     "canonical": {
-      "path": ".opencode/agent/debug.md",
+      "path": ".opencode/agents/debug.md",
       "exists": true,
       "frontmatter": {
         "name": "debug",
@@ -46,19 +46,19 @@
     ],
     "commands": [
       {
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "references": [
           "@debug"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/implement.md",
+        "path": ".opencode/commands/spec_kit/implement.md",
         "references": [
           "@debug"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/resume.md",
+        "path": ".opencode/commands/spec_kit/resume.md",
         "references": [
           "@debug"
         ]
@@ -66,28 +66,28 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
         "references": [
           "debug",
           "@debug"
         ]
       },
       {
-        "path": ".opencode/command/spec_kit/assets/spec_kit_implement_confirm.yaml",
+        "path": ".opencode/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
         "references": [
           "debug",
           "@debug"
@@ -96,35 +96,35 @@
     ],
     "skills": [
       {
-        "path": ".opencode/skill/cli-claude-code/SKILL.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
         "referenceCount": 3
       },
       {
-        "path": ".opencode/skill/cli-codex/SKILL.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "referenceCount": 3
       },
       {
-        "path": ".opencode/skill/cli-gemini/SKILL.md",
+        "path": ".opencode/skills/cli-gemini/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/cli-opencode/SKILL.md",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
         "referenceCount": 5
       },
       {
-        "path": ".opencode/skill/sk-code/SKILL.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "referenceCount": 2
       },
       {
-        "path": ".opencode/skill/sk-code-opencode/SKILL.md",
+        "path": ".opencode/skills/sk-code-opencode/SKILL.md",
         "referenceCount": 1
       },
       {
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "referenceCount": 1
       },
       {
-        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "referenceCount": 11
       }
     ],
@@ -135,7 +135,7 @@
       }
     ],
     "skillAdvisor": {
-      "path": ".opencode/skill/scripts/skill_advisor.py",
+      "path": ".opencode/skills/scripts/skill_advisor.py",
       "matched": false
     }
   },

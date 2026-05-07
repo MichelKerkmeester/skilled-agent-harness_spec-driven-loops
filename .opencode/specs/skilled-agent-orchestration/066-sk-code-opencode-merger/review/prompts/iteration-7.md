@@ -21,7 +21,7 @@ Review Target: full review state and active findings F001-F004.
 
 ## Shared Doctrine
 
-Load `.opencode/skill/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
+Load `.opencode/skills/sk-code-review/SKILL.md` or its review-core references before final severity calls. Keep reviewed target files read-only.
 
 ## Review Focus
 

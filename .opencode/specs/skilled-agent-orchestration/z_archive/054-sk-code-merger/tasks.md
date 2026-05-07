@@ -57,7 +57,7 @@ _memory:
 
 ### Phase 1.b: New skill scaffold
 
-- [ ] T010 Create `.opencode/skill/sk-code/` directory tree (folders only)
+- [ ] T010 Create `.opencode/skills/sk-code/` directory tree (folders only)
 - [ ] T011 Author SKILL.md (merged routing pseudocode: stack detection → intent classification → phase lifecycle)
 - [ ] T012 [P] Author README.md (modeled on sk-code-web/README.md; setup, troubleshooting, structure inventory)
 - [ ] T013 [P] Author CHANGELOG.md (1.0.0 baseline noting merger of sk-code-web 1.1.0 + sk-code-full-stack 1.1.0)
@@ -156,13 +156,13 @@ _memory:
 
 ### Tier 5: Deep-review agent definitions (3 files)
 
-- [ ] T090 Update `.opencode/agent/deep-review.md`
+- [ ] T090 Update `.opencode/agents/deep-review.md`
 - [ ] T091 [P] Update `.claude/agents/deep-review.md`
 - [ ] T092 [P] Update `.gemini/agents/deep-review.md`
 
 ### Tier 6: README and documentation (~10 files)
 
-- [ ] T100 Update `.opencode/skill/README.md` (skill registry, capability matrix)
+- [ ] T100 Update `.opencode/skills/README.md` (skill registry, capability matrix)
 - [ ] T101 [P] Update `mcp-chrome-devtools/README.md`
 - [ ] T102 [P] Update `mcp-chrome-devtools/examples/README.md`
 - [ ] T103 [P] Update top-level `README.md`
@@ -187,16 +187,16 @@ _memory:
 
 ### Phase 3.a: Validation Suite
 
-- [ ] T120 `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh skilled-agent-orchestration/054-sk-code-merger --strict` exits 0
+- [ ] T120 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh skilled-agent-orchestration/054-sk-code-merger --strict` exits 0
 - [ ] T121 `/doctor:skill-advisor :confirm` re-tunes scoring without regressions
 - [ ] T122 Trigger test: "Fix Webflow animation flicker" → `sk-code` (WEB route, full content)
 - [ ] T123 [P] Trigger test: "Add a React component to my Next.js app" → `sk-code` (REACT placeholder)
 - [ ] T124 [P] Trigger test: "Help me debug a Go service" → `sk-code` (GO placeholder)
 - [ ] T125 [P] Trigger test: "Audit OpenCode plugin loader" → `sk-code-opencode` (UNCHANGED)
 - [ ] T126 [P] Trigger test: "Review this PR" → `sk-code-review` (UNCHANGED)
-- [ ] T127 `cd .opencode/skill/system-spec-kit/mcp_server && npm test -- lane-attribution` passes
+- [ ] T127 `cd .opencode/skills/system-spec-kit/mcp_server && npm test -- lane-attribution` passes
 - [ ] T128 Cross-repo regrep returns only intentional residuals
-- [ ] T129 Web smoke test: `node .opencode/skill/sk-code/scripts/minify-webflow.mjs` produces output identical to running from sk-code-web/scripts/
+- [ ] T129 Web smoke test: `node .opencode/skills/sk-code/scripts/minify-webflow.mjs` produces output identical to running from sk-code-web/scripts/
 
 ---
 

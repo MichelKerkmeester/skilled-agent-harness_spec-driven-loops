@@ -126,7 +126,7 @@ Grep `fs\.(writeFile|appendFile).*checklist` across the repo. Results:
 
 ### 2.5 scalarsEqual caller risk audit
 
-Grep `scalarsEqual` across `.opencode/skill/system-spec-kit`. Callers:
+Grep `scalarsEqual` across `.opencode/skills/system-spec-kit`. Callers:
 
 - `boolean-expr.ts:249` — `case '==': scalarsEqual(lhs, expr.value)` — expr.value comes from `parseScalarLiteral`.
 - `boolean-expr.ts:251` — `case '!=': !scalarsEqual(lhs, expr.value)` — same.

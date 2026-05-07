@@ -23,10 +23,10 @@ Each iteration N targets one pre-defined research angle. The mapping is fixed at
 ### Category B — Wiring / Automation Bugs
 
 - **Iter 006 / B1** — Hook contract drift across runtimes (Claude/Copilot/Gemini/Codex/OpenCode)
-- **Iter 007 / B2** — CLI orchestrator skill correctness (`.opencode/skill/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/`)
+- **Iter 007 / B2** — CLI orchestrator skill correctness (`.opencode/skills/cli-codex/`, `cli-copilot/`, `cli-gemini/`, `cli-claude-code/`, `cli-opencode/`)
 - **Iter 008 / B3** — Memory MCP round-trip integrity (`memory_save → memory_index_scan → memory_search → memory_context`)
 - **Iter 009 / B4** — Spec-kit validator correctness (`scripts/spec/validate.sh`, `scripts/rules/`)
-- **Iter 010 / B5** — Workflow command auto-routing (`.opencode/command/spec_kit/`)
+- **Iter 010 / B5** — Workflow command auto-routing (`.opencode/commands/spec_kit/`)
 
 ### Category C — Refinement / Improvement Opportunities
 

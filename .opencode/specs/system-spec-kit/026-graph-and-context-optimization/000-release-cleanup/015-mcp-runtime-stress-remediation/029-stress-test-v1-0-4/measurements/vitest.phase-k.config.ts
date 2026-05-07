@@ -1,5 +1,5 @@
 const ROOT = '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public';
-const MCP_SERVER = `${ROOT}/.opencode/skill/system-spec-kit/mcp_server`;
+const MCP_SERVER = `${ROOT}/.opencode/skills/system-spec-kit/mcp_server`;
 const PACKET = `${ROOT}/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/029-stress-test-v1-0-4`;
 
 export default {

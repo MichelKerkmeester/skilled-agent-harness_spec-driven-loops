@@ -17,14 +17,14 @@
 ### 1-8. OpenCode Agent Definitions
 **Priority**: P0
 **Files**:
-- `.opencode/agent/context.md`
-- `.opencode/agent/debug.md`
-- `.opencode/agent/handover.md`
-- `.opencode/agent/orchestrate.md`
-- `.opencode/agent/research/research/research.md`
-- `.opencode/agent/review.md`
-- `.opencode/agent/speckit.md`
-- `.opencode/agent/write.md`
+- `.opencode/agents/context.md`
+- `.opencode/agents/debug.md`
+- `.opencode/agents/handover.md`
+- `.opencode/agents/orchestrate.md`
+- `.opencode/agents/research/research/research.md`
+- `.opencode/agents/review.md`
+- `.opencode/agents/speckit.md`
+- `.opencode/agents/write.md`
 
 **Changes**:
 - Added explicit cross-platform body-sync convention (OpenCode/Claude/Codex parity)

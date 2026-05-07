@@ -6,7 +6,7 @@ Convergence check: re-validate the ranked SPAR-Kit adoption findings against dir
 
 1. Read the active strategy, config, state log, empty registry, and iterations 6-8. The registry still has no reducer-populated findings, so the prior iteration narratives remain the working source of truth.
 2. Re-checked SPAR source paths for installer policy, lifecycle framing, tool discovery, question-budget recommendations, and persona coverage: `external/install-root/targets/*.json`, `external/lib/repo-bootstrap.mjs`, `external/install-root/.spar-kit/.local/tools.yaml`, `external/README.md`, `external/install-root/skills/spar-*`, and `external/Research/Personas/Personas.md`.
-3. Re-checked internal source paths for command taxonomy, hook contracts, Gate 3, template architecture, validator sensitivity, and runtime voice boundaries: `.opencode/command/**`, `.opencode/skill/system-spec-kit/**`, `.opencode/skill/mcp-code-mode/SKILL.md`, `AGENTS.md`, `.codex/AGENTS.md`, and `.opencode/agent/**`.
+3. Re-checked internal source paths for command taxonomy, hook contracts, Gate 3, template architecture, validator sensitivity, and runtime voice boundaries: `.opencode/commands/**`, `.opencode/skills/system-spec-kit/**`, `.opencode/skills/mcp-code-mode/SKILL.md`, `AGENTS.md`, `.codex/AGENTS.md`, and `.opencode/agents/**`.
 4. Searched for the unresolved `fs-enterprises` instruction root and recounted the current `.opencode/specs` corpus. No `fs-enterprises` path was found under the searched `Code_Environment` depth. The current local corpus has 736 `spec.md` files and 750 numbered spec-like directories under `.opencode/specs`, so migration risk is broader than the earlier active-only count.
 
 # Findings
@@ -18,7 +18,7 @@ Follow-on: `058-gate-copy-and-question-budget`
 
 External evidence is strong. SPAR's planning retrospective recommends a hard question cap, separates `Key Follow-Up Questions` from `Optional Follow-Ups`, and says optional questions should only appear when the budget allows. SPAR Plan also already distinguishes material blockers from refinements in its follow-up behavior.
 
-Internal evidence is also strong. `AGENTS.md` already requires consolidated questions, `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` already caps clarification to high-impact items, and command setup flows already gather required inputs before dispatch. This is copy and intake ergonomics, not command semantics.
+Internal evidence is also strong. `AGENTS.md` already requires consolidated questions, `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` already caps clarification to high-impact items, and command setup flows already gather required inputs before dispatch. This is copy and intake ergonomics, not command semantics.
 
 Risk: low. The only constraint is preserving machine-readable Gate 3 answer options when the copy changes.
 
@@ -29,7 +29,7 @@ Follow-on: `059-phase-boundary-copy-pass`
 
 External evidence is strong. SPAR's README and four phase skills make Specify, Plan, Act, and Retain legible as boundaries: Specify clarifies intent without implementation, Plan stabilizes execution, Act implements against the plan, and Retain closes out durable memory.
 
-Internal evidence supports a copy pass but rejects behavioral collapse. `.opencode/command/spec_kit/README.txt` lists plan, implement, deep-research, deep-review, resume, intake-only plan, and complete; the command docs and YAML assets encode mode, feature flags, executor settings, validation rules, and lifecycle behavior that SPAR's four verbs do not represent.
+Internal evidence supports a copy pass but rejects behavioral collapse. `.opencode/commands/spec_kit/README.txt` lists plan, implement, deep-research, deep-review, resume, intake-only plan, and complete; the command docs and YAML assets encode mode, feature flags, executor settings, validation rules, and lifecycle behavior that SPAR's four verbs do not represent.
 
 Risk: low for boundary language; medium if a later packet tries to remove existing command distinctions.
 
@@ -56,7 +56,7 @@ Follow-on: `061-declarative-ownership-manifest`
 
 External evidence is strong. SPAR target configs use `replace`, `seed_if_missing`, `managed_block`, and `replace_managed_children`; `repo-bootstrap.mjs` centralizes those policies and applies target-specific payloads after the default target.
 
-Internal evidence supports the need but constrains the adoption. `AGENTS.md`, `.codex/AGENTS.md`, `.opencode/command`, `.opencode/agent`, `.opencode/skill/system-spec-kit/templates`, and runtime hook docs all define cross-runtime ownership in prose instead of one policy manifest.
+Internal evidence supports the need but constrains the adoption. `AGENTS.md`, `.codex/AGENTS.md`, `.opencode/command`, `.opencode/agent`, `.opencode/skills/system-spec-kit/templates`, and runtime hook docs all define cross-runtime ownership in prose instead of one policy manifest.
 
 Risk: medium-high. The manifest should start as inventory plus lint. It should not mutate AGENTS-like instruction files except inside explicitly owned generated blocks.
 
@@ -100,7 +100,7 @@ Follow-on: `065-persona-evaluation-fixtures`
 
 External evidence has six personas, not five: Vibe Vera, Promptwright Pete, Terminal Tess, Manager Maya, Maintainer Max, and Consultant Cass. This corrects the original charter wording.
 
-Internal evidence supports persona use as testing material. `.codex/AGENTS.md` defines the senior-engineer voice; `.opencode/agent/*.md` define role contracts. Personas can test whether docs and commands work for different operators, but should not become runtime identities.
+Internal evidence supports persona use as testing material. `.codex/AGENTS.md` defines the senior-engineer voice; `.opencode/agents/*.md` define role contracts. Personas can test whether docs and commands work for different operators, but should not become runtime identities.
 
 Risk: low. Keep personas outside execution prompts.
 

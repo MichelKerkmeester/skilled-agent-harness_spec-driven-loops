@@ -149,7 +149,7 @@ The "debug" keyword in skill_advisor.py routes to mcp-chrome-devtools with a boo
 
 ### Context
 
-The SPEC_KIT_DB_DIR environment variable is not set in opencode.json, so the SQLite database lives in the symlink target at `.opencode/skill/system-spec-kit/mcp_server/database/`. This means all projects sharing the `.opencode` symlink share one memory database. The MEMORY.md notes `.opencode-local/database/` as the intended project-local path, but this directory doesn't exist.
+The SPEC_KIT_DB_DIR environment variable is not set in opencode.json, so the SQLite database lives in the symlink target at `.opencode/skills/system-spec-kit/mcp_server/database/`. This means all projects sharing the `.opencode` symlink share one memory database. The MEMORY.md notes `.opencode-local/database/` as the intended project-local path, but this directory doesn't exist.
 
 ### Constraints
 - Creating a new project-local DB would start empty (no existing memories)

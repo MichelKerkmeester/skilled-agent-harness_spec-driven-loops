@@ -24,8 +24,8 @@ _memory:
 ### Pre-Flight
 - [x] All 8 .cjs scripts parse without errors
 - [x] `scan-integration.cjs --agent=agent-improver` produces valid JSON with `status: "complete"`
-- [x] `generate-profile.cjs --agent=.opencode/agent/agent-improver.md` produces valid JSON with `id: "agent-improver"`
-- [x] `score-candidate.cjs --candidate=.opencode/agent/agent-improver.md --dynamic` produces `evaluationMode: "dynamic-5d"` with 5 dimensions
+- [x] `generate-profile.cjs --agent=.opencode/agents/agent-improver.md` produces valid JSON with `id: "agent-improver"`
+- [x] `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` produces `evaluationMode: "dynamic-5d"` with 5 dimensions
 
 ### Loop Execution
 - [x] Runtime directories created under `improvement/`
@@ -42,7 +42,7 @@ _memory:
 ## P1 — Required
 
 ### Integration Scanner Observations
-- [x] Scanner discovers canonical `.opencode/agent/agent-improver.md`
+- [x] Scanner discovers canonical `.opencode/agents/agent-improver.md`
 - [x] Scanner discovers mirrors in `.claude/agents/`, `.agents/agents/`, `.codex/agents/`
 - [x] Scanner discovers command references in `improve/agent.md`
 - [x] Scanner discovers skill references in `sk-improve-agent/SKILL.md`

@@ -87,7 +87,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 - [x] **CHK-W2-02** [P1] Spec-doc classification and discovery inherit `EXCLUDED_FOR_MEMORY` through helper calls rather than duplicated exclusion arrays. [EVIDENCE: `lib/config/spec-doc-paths.ts`, `handlers/memory-index-discovery.ts`.]
 - [x] **CHK-W2-03** [P1] Memory-save and code-graph specific-file indexing resolve symlinks before invariant checks. [EVIDENCE: `lib/utils/canonical-path.ts`, `handlers/memory-save.ts`, `code_graph/lib/structural-indexer.ts`.]
 - [x] **CHK-W2-04** [P1] Recursive walkers cap `.gitignore` reads at 1MB, stop descending past depth 20, and abort past 50,000 nodes with warnings. [EVIDENCE: `handlers/memory-index-discovery.ts`, `code_graph/lib/structural-indexer.ts`.]
-- [x] **CHK-W2-05** [P2] Governance-audit action strings are centralized and operator-documented. [EVIDENCE: `lib/governance/scope-governance.ts`, `.opencode/skill/system-spec-kit/mcp_server/README.md`.]
+- [x] **CHK-W2-05** [P2] Governance-audit action strings are centralized and operator-documented. [EVIDENCE: `lib/governance/scope-governance.ts`, `.opencode/skills/system-spec-kit/mcp_server/README.md`.]
 - [x] **CHK-W2-06** [P1] Cleanup apply rebuilds its plan inside the transaction snapshot (TOCTOU closed). [EVIDENCE: `scripts/memory/cleanup-index-scope-violations.ts:429-435`.]
 <!-- /ANCHOR:code-quality -->
 
@@ -136,7 +136,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 - [x] **CHK-D02** [P1] `plan.md` defines the shared-helper + save-guard + SQL-layer + cleanup + verification phases. [EVIDENCE: plan.md §3 + §4.]
 - [x] **CHK-D03** [P1] `decision-record.md` records the invariant-enforcement ADR, delete-not-downgrade ADR, `important` downgrade ADR, constitutional-README exclusion ADR, Wave-1 SQL-layer ADR, and Wave-2 hardening ADRs (cleanup audit durability, SSOT unification, realpath, TOCTOU, governance audit helpers). [EVIDENCE: decision-record.md ADR-001 through ADR-012.]
 - [x] **CHK-D04** [P1] `implementation-summary.md` includes before/after DB counts and command exit codes. [EVIDENCE: implementation-summary.md verification + before/after tables.]
-- [x] **CHK-D05** [P1] Operator README documents the three invariants, helper location, and stable audit action strings. [EVIDENCE: `.opencode/skill/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section.]
+- [x] **CHK-D05** [P1] Operator README documents the three invariants, helper location, and stable audit action strings. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp_server/README.md` "Index Scope Invariants" section.]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -144,7 +144,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-v
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] **CHK-F01** [P1] Runtime edits stay inside `mcp_server/`. [EVIDENCE: touched runtime files all live under `.opencode/skill/system-spec-kit/mcp_server/`.]
+- [x] **CHK-F01** [P1] Runtime edits stay inside `mcp_server/`. [EVIDENCE: touched runtime files all live under `.opencode/skills/system-spec-kit/mcp_server/`.]
 - [x] **CHK-F02** [P1] Cleanup script stays inside `scripts/memory/`. [EVIDENCE: `scripts/memory/cleanup-index-scope-violations.ts`.]
 - [x] **CHK-F03** [P1] Packet docs stay inside the root folder (no phase folders). [EVIDENCE: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json` all live at `005-memory-indexer-invariants/` root.]
 - [x] **CHK-F04** [P1] Parent 026 metadata references this packet. [EVIDENCE: parent `description.json` and `graph-metadata.json` reference `005-memory-indexer-invariants`.]

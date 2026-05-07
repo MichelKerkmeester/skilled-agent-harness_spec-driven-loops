@@ -55,7 +55,7 @@ _memory:
   - **Files**: `mcp_server/lib/deep-loop/executor-config.ts:101-348`, `mcp_server/tests/executor-config-copilot-target-authority.vitest.ts`
   - **Acceptance**: `BuildCopilotPromptArgResult` shape (`argv`, `promptBody`, `promptFileBody?`, `enforcedPlanOnly`) confirmed; sibling test patterns adopted (e.g. `expect(built.argv[0]).toBe('-p')`).
 - [x] **T004** [P] Read both `_auto.yaml` files to confirm the actual write-then-dispatch ordering and the literal anchors the static-grep test will key on.
-  - **Files**: `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` (lines ~595-660), `.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines ~669-720)
+  - **Files**: `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` (lines ~595-660), `.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml` (lines ~669-720)
   - **Acceptance**: Both files contain `if (built.promptFileBody !== undefined)` + `writeFileSync(promptPath, built.promptFileBody, 'utf8')` BEFORE `spawnSync('copilot'` (deep-review) or `command: 'copilot'` (deep-research). Confirmed by grep + manual inspection.
 <!-- /ANCHOR:phase-1 -->
 
@@ -101,7 +101,7 @@ _memory:
 - [x] **T203** Run executor-config-copilot-target-authority vitest. Expect 29/29 pass (proves the helper contract this packet asserts is unchanged).
   - **Command**: `npx vitest run tests/executor-config-copilot-target-authority.vitest.ts`
   - **Acceptance**: `Tests 29 passed (29)`; exit 0.
-- [x] **T204** Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. Expect 0 structural errors; SPEC_DOC_INTEGRITY false-positives accepted as known noise (matching 010-012 baseline).
+- [x] **T204** Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict`. Expect 0 structural errors; SPEC_DOC_INTEGRITY false-positives accepted as known noise (matching 010-012 baseline).
   - **Acceptance**: Same accepted-noise pattern as predecessor packets.
 - [x] **T205** Author `implementation-summary.md` with verification table, decisions, known limitations, next steps.
   - **File**: `implementation-summary.md`

@@ -86,11 +86,11 @@ Q5: Highest-impact improvements for sk-deep-research
 - `/tmp/deep-research-029/autoresearch/skills/autoresearch/SKILL.md`
 - `/tmp/deep-research-029/autoresearch/skills/autoresearch/references/lessons.md`
 - `/tmp/deep-research-029/autoresearch/README.md`
-- `.opencode/skill/sk-deep-research/SKILL.md`
-- `.opencode/skill/sk-deep-research/references/loop_protocol.md`
-- `.opencode/skill/sk-deep-research/references/convergence.md`
-- `.opencode/skill/sk-deep-research/references/state_format.md`
-- `.opencode/skill/sk-deep-research/references/quick_reference.md`
+- `.opencode/skills/sk-deep-research/SKILL.md`
+- `.opencode/skills/sk-deep-research/references/loop_protocol.md`
+- `.opencode/skills/sk-deep-research/references/convergence.md`
+- `.opencode/skills/sk-deep-research/references/state_format.md`
+- `.opencode/skills/sk-deep-research/references/quick_reference.md`
 
 ## Assessment
 - newInfoRatio: 0.82

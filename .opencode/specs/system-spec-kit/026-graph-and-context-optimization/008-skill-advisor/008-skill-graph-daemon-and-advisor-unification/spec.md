@@ -89,8 +89,8 @@ Ship a unified advisor architecture where skill graph freshness, derived metadat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/**` | Modify | Native advisor implementation, daemon, tools, handlers, and tests. |
-| `.opencode/skill/skill-advisor/scripts/skill_advisor.py` | Modify | Compatibility shim for legacy callers. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/**` | Modify | Native advisor implementation, daemon, tools, handlers, and tests. |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modify | Compatibility shim for legacy callers. |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | Runtime adapter for native advisor routing. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/**` | Modify | Phase 027 packet evidence and strict validation shape. |
 <!-- /ANCHOR:scope -->

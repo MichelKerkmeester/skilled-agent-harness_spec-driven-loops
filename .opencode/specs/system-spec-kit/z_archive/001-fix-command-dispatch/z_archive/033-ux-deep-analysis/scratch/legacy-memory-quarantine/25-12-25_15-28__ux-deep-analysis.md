@@ -138,7 +138,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | RESEARCH |
-| Active File | .opencode/command/spec_kit/resume.md |
+| Active File | .opencode/commands/spec_kit/resume.md |
 | Last Action | Technical Implementation Details |
 | Next Action | Continue implementation |
 | Blockers | md without blocking gates since it's a non-destructive read operation unlike save. |
@@ -175,17 +175,17 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 **Key Files and Their Roles**:
 
-- `.opencode/command/spec_kit/resume.md` - Documentation
+- `.opencode/commands/spec_kit/resume.md` - Documentation
 
-- `.opencode/command/create/assets/create_skill.yaml` - Core create skill
+- `.opencode/commands/create/assets/create_skill.yaml` - Core create skill
 
 - `.opencode/.../assets/spec_kit_research_confirm.yaml` - Core spec kit research confirm
 
 - `.opencode/.../assets/spec_kit_research_auto.yaml` - Core spec kit research auto
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` - Core spec kit plan confirm
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` - Core spec kit plan confirm
 
-- `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` - Core spec kit plan auto
+- `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` - Core spec kit plan auto
 
 - `.opencode/.../assets/spec_kit_complete_confirm.yaml` - Core spec kit complete confirm
 
@@ -226,12 +226,12 @@ Completed post-fix verification and remediation for the UX Deep Analysis project
 
 | **File** | **Description** |
 |:---------|:----------------|
-| `.opencode/command/spec_kit/resume.md` | Modified during session |
-| `.opencode/command/create/assets/create_skill.yaml` | Modified during session |
+| `.opencode/commands/spec_kit/resume.md` | Modified during session |
+| `.opencode/commands/create/assets/create_skill.yaml` | Modified during session |
 | `.opencode/.../assets/spec_kit_research_confirm.yaml` | Modified during session |
 | `.opencode/.../assets/spec_kit_research_auto.yaml` | Modified during session |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml` | Modified during session |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` | Modified during session |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml` | Modified during session |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` | Modified during session |
 | `.opencode/.../assets/spec_kit_complete_confirm.yaml` | Modified during session |
 | `.opencode/.../assets/spec_kit_complete_auto.yaml` | Modified during session |
 | `.opencode/.../assets/spec_kit_implement_confirm.yaml` | Modified during session |
@@ -539,12 +539,12 @@ trigger_phrases:
   []
 
 key_files:
-  - ".opencode/command/spec_kit/resume.md"
-  - ".opencode/command/create/assets/create_skill.yaml"
+  - ".opencode/commands/spec_kit/resume.md"
+  - ".opencode/commands/create/assets/create_skill.yaml"
   - ".opencode/.../assets/spec_kit_research_confirm.yaml"
   - ".opencode/.../assets/spec_kit_research_auto.yaml"
-  - ".opencode/command/spec_kit/assets/spec_kit_plan_confirm.yaml"
-  - ".opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml"
+  - ".opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml"
+  - ".opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml"
   - ".opencode/.../assets/spec_kit_complete_confirm.yaml"
   - ".opencode/.../assets/spec_kit_complete_auto.yaml"
   - ".opencode/.../assets/spec_kit_implement_confirm.yaml"

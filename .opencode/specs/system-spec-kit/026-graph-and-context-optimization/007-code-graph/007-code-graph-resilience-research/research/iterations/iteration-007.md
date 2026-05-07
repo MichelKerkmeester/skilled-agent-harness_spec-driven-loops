@@ -8,9 +8,9 @@ Iteration 7 answers Q9 and Q10 and materializes the final synthesis outputs. The
 
 The doctor command should tell the user "your graph is unreliable, do a full re-scan" when any hard-stale or confidence-floor signal is present:
 
-1. `freshness` is `empty` or `error`, because those map to missing canonical readiness and `trustState:"absent"` or `trustState:"unavailable"`. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:73-124`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:18-38`]
-2. Readiness action is `full_scan`, including Git HEAD drift or more than 50 stale files. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-186`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-186`]
-3. The scan has no persisted evidence (`lastScanAt`/`lastPersistedAt` missing), reports no graph data persisted, or leaves staged stale rows after a retry. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-64`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:247-284`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`]
+1. `freshness` is `empty` or `error`, because those map to missing canonical readiness and `trustState:"absent"` or `trustState:"unavailable"`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:73-124`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:18-38`]
+2. Readiness action is `full_scan`, including Git HEAD drift or more than 50 stale files. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-186`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-186`]
+3. The scan has no persisted evidence (`lastScanAt`/`lastPersistedAt` missing), reports no graph data persisted, or leaves staged stale rows after a retry. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:40-64`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:247-284`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:227-248`]
 4. Gold verification fails after a scan: overall pass rate below 90%, edge-focus bucket below 80%, or a critical expected symbol missing from top-K. [SOURCE: `research/iterations/iteration-004.md:59-354`; `research/iterations/iteration-006.md:40-43`]
 5. Edge distribution or confidence drift crosses iteration 6's floors, especially edge share drift >30% relative, >5 percentage points absolute, PSI >= 0.25 review, JSD >= 0.10 warning, or blast-radius import coverage collapse after baseline. [SOURCE: `research/iterations/iteration-006.md:29-58`]
 
@@ -20,10 +20,10 @@ Soft warnings should not use the "unreliable full re-scan" wording. For 1-50 sta
 
 Auto-triggered partial re-scan is viable only inside strict safety boundaries:
 
-1. The stale set is bounded to existing tracked files and `stale.length <= 50`; this is the current selective reindex threshold. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:176-186`]
-2. Git HEAD has not changed; otherwise readiness and explicit scan both require full reindex. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-145`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-186`]
-3. The caller opts into inline indexing. `ensureCodeGraphReady` exposes `allowInlineIndex` and `allowInlineFullScan`; `detect_changes` disables both and blocks instead. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:38-41`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264`]
-4. The operation remains workspace-contained and bounded by timeout. The scan handler canonicalizes roots with `realpathSync` and rejects roots outside the workspace; auto-index has a 10-second timeout guard. [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:135-168`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-49`; `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:189-224`]
+1. The stale set is bounded to existing tracked files and `stale.length <= 50`; this is the current selective reindex threshold. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-52`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:176-186`]
+2. Git HEAD has not changed; otherwise readiness and explicit scan both require full reindex. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:118-145`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:174-186`]
+3. The caller opts into inline indexing. `ensureCodeGraphReady` exposes `allowInlineIndex` and `allowInlineFullScan`; `detect_changes` disables both and blocks instead. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:38-41`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:245-264`]
+4. The operation remains workspace-contained and bounded by timeout. The scan handler canonicalizes roots with `realpathSync` and rejects roots outside the workspace; auto-index has a 10-second timeout guard. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:135-168`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:47-49`; `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:189-224`]
 5. Schema/corruption/error signals, repeated persistence errors, gold-query failures, or edge-drift failures must stop self-healing and surface an operator-visible full scan/recovery path. [SOURCE: `research/iterations/iteration-003.md:107-152`; `research/iterations/iteration-006.md:29-58`]
 
 The safety boundary is therefore: auto partial re-scan for soft-stale query/context paths that explicitly allow inline indexing; no silent full scan; no silent repair on read-only impact/diff paths; and verification after any full repair or scan.
@@ -65,18 +65,18 @@ The safety boundary is therefore: auto partial re-scan for soft-stale query/cont
 - `research/deltas/iteration-004.json:1-323`
 - `research/deltas/iteration-005.json:1-159`
 - `research/deltas/iteration-006.json:1-205`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-405`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:1-249`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:120-288`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:80-280`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-120`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-715`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:850-1085`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1350-1548`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:1-405`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/readiness-contract.ts:1-249`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:1-77`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:120-288`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/detect-changes.ts:80-280`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:50-120`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:380-424`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:675-715`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:850-1085`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts:1350-1548`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:112-120`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:31-48`
 
 ## Convergence Signals
 

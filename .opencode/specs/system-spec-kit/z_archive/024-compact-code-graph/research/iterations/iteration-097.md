@@ -11,7 +11,7 @@ Investigate how non-hook CLIs can detect context loss (compaction, long conversa
 
 Non-hook CLIs lack that event. They only have manual doc instructions plus generic MCP continuity primitives: `memory_context` resume mode, trusted `effectiveSessionId`, working-memory event counters, inferred mode, and persisted session identity in `session-manager`.
 
-[SOURCE: `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`; `.opencode/skill/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/session-state.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`]
+[SOURCE: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`; `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`; `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`]
 
 ### Problem
 
@@ -24,11 +24,11 @@ Non-hook CLIs silently lose context during long conversations with no automatic 
 - Description: Add a `session_health` tool/endpoint that scores likely context continuity using existing MCP-side signals: trusted `effectiveSessionId`, event counter continuity, last session-state update, working-memory prompt context availability, token-pressure ratio, and elapsed wall-clock gap since last tool call. Return `ok | warning | stale` plus recovery hints and a recommended next action (`memory_context` resume, re-read runtime doc, inspect spec folder).
 - LOC estimate: 180-320
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/handlers/` (new `session-health` handler)
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/handlers/` (new `session-health` handler)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
   - tests for the new handler
 - Dependencies:
   - Existing `effectiveSessionId`
@@ -42,10 +42,10 @@ Non-hook CLIs silently lose context during long conversations with no automatic 
 - Description: Automatically create lightweight session checkpoints every N continuity-relevant tool calls or every M minutes. Do not run full `generate-context.js` every time; instead persist a compact session checkpoint record first, then optionally promote to a full memory save only when thresholds are crossed or the session becomes stale. Best source fields: current task, spec folder, last action, top working-memory items, recent tool names, and session summary.
 - LOC estimate: 260-420
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
-  - possibly `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js` (if adding a lighter JSON input contract)
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/working-memory.ts`
+  - possibly `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` (if adding a lighter JSON input contract)
   - tests for checkpoint cadence and dedupe
 - Dependencies:
   - `session-manager` durable session table
@@ -58,9 +58,9 @@ Non-hook CLIs silently lose context during long conversations with no automatic 
 - Description: When MCP sees a suspicious gap before the next tool call, inject a recovery payload into the next tool response envelope metadata/hints. This is the closest non-hook analogue to Claude's post-compaction injection. Trigger on elapsed gap, session mismatch, empty working-memory context after a previously active session, or sudden reset-like query patterns ("where was I", "resume", repeated onboarding questions). Payload should include last spec folder, last task, checkpoint freshness, and a one-line instruction to call `memory_context(...resume...)`.
 - LOC estimate: 140-260
 - Files to change:
-  - `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts`
-  - `.opencode/skill/system-spec-kit/mcp_server/lib/response/envelope.ts` or hint injection helpers
+  - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
+  - `.opencode/skills/system-spec-kit/mcp_server/lib/response/envelope.ts` or hint injection helpers
   - possibly `hooks/memory-surface.ts` if sharing injection format
 - Dependencies:
   - existing envelope `meta` / `hints` injection path in `context-server.ts`

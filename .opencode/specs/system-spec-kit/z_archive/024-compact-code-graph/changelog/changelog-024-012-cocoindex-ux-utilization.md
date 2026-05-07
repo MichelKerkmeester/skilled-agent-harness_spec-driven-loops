@@ -126,7 +126,7 @@ CocoIndex Code is a powerful semantic code search tool that understands 28+ prog
 | `mcp_server/handlers/code-graph/ccc-feedback.ts` | New -- result quality feedback MCP tool |
 | `mcp_server/handlers/code-graph/index.ts` | Registered new `ccc_*` handlers |
 | `mcp_server/lib/code-graph/code-graph-context.ts` | Reverse semantic augmentation via `nextActions` |
-| `.opencode/agent/context.md` | CocoIndex-first routing enforcement |
+| `.opencode/agents/context.md` | CocoIndex-first routing enforcement |
 | `.claude/agents/context.md` | CocoIndex-first routing enforcement |
 | `.codex/agents/context.toml` | CocoIndex-first routing enforcement |
 | `.gemini/agents/context.md` | CocoIndex-first routing enforcement |
@@ -144,7 +144,7 @@ CocoIndex Code is a powerful semantic code search tool that understands 28+ prog
 ## Deep Review Fixes (2026-04-01)
 
 ### Code Fixes
-- **ccc-status checks correct path** -- changed from `.opencode/skill/mcp-coco-index/mcp_server/.coco_index` to `.cocoindex_code/` at repo root
+- **ccc-status checks correct path** -- changed from `.opencode/skills/mcp-coco-index/mcp_server/.coco_index` to `.cocoindex_code/` at repo root
 - **ccc-reindex uses execFileSync** -- replaced `execSync` with `execFileSync` to prevent shell splitting on paths with spaces
 
 ### Doc Fixes

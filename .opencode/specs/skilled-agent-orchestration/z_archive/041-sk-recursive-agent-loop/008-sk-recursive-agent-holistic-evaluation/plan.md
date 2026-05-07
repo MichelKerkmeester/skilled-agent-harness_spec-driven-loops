@@ -89,8 +89,8 @@ D6-D8 ←── D12 (mirrors sync from canonical)
 ## Verification
 
 1. `node scripts/scan-integration.cjs --agent=handover` → finds all surfaces
-2. `node scripts/generate-profile.cjs --agent=.opencode/agent/debug.md` → valid profile
-3. `node scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --dynamic` → 5-dimension scores
-4. `node scripts/score-candidate.cjs --candidate=.opencode/agent/handover.md --profile=handover` → backward-compatible
+2. `node scripts/generate-profile.cjs --agent=.opencode/agents/debug.md` → valid profile
+3. `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --dynamic` → 5-dimension scores
+4. `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --profile=handover` → backward-compatible
 5. `node scripts/run-benchmark.cjs --profile=handover` → existing fixtures pass
-6. `python3 .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/sk-improve-agent/ --check` → PASS
+6. `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-improve-agent/ --check` → PASS

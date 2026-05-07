@@ -80,7 +80,7 @@ Template compliance shim anchor for cross-refs.
 - [x] No regression in existing Gate system — Gate 1/2/3 behavior unchanged
 - [x] 7-scenario test matrix implemented — `cross-runtime-fallback.vitest.ts`: claude hooks enabled, claude hooks disabled, codex, copilot, gemini, unknown, graceful degradation
 - [x] Runtime detection test suite — `runtime-routing.vitest.ts` + `runtime-detection.vitest.ts` covering env-based detection and policy resolution
-- [x] Cross-runtime behavior documented — Feature catalog entry `.opencode/skill/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` and manual testing playbook `.opencode/skill/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md`
+- [x] Cross-runtime behavior documented — Feature catalog entry `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md` and manual testing playbook `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md`
 
 ### Deferred
 

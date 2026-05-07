@@ -38,13 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md",
-      ".opencode/skill/cli-claude-code/assets/prompt_quality_card.md",
-      ".opencode/skill/cli-codex/assets/prompt_quality_card.md",
-      ".opencode/skill/cli-copilot/assets/prompt_quality_card.md",
-      ".opencode/skill/cli-gemini/assets/prompt_quality_card.md",
-      ".opencode/skill/sk-improve-prompt/SKILL.md",
-      ".opencode/command/improve/prompt.md",
+      ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-copilot/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
+      ".opencode/skills/sk-improve-prompt/SKILL.md",
+      ".opencode/commands/improve/prompt.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -60,25 +60,25 @@
       {
         "name": "cli_prompt_quality_card.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md",
+        "path": ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md",
         "source": "derived"
       },
       {
         "name": "prompt_quality_card.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-claude-code/assets/prompt_quality_card.md",
+        "path": ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skills/sk-improve-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/command/improve/prompt.md",
+        "path": ".opencode/commands/improve/prompt.md",
         "source": "derived"
       },
       {

@@ -16,9 +16,9 @@ _memory:
     next_safe_action: "review diff"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/SKILL.md"
-      - ".opencode/skill/system-spec-kit/references/"
-      - ".opencode/skill/system-spec-kit/assets/"
+      - ".opencode/skills/system-spec-kit/SKILL.md"
+      - ".opencode/skills/system-spec-kit/references/"
+      - ".opencode/skills/system-spec-kit/assets/"
       - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/graph-metadata.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -34,7 +34,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The remaining AI-facing system-spec-kit documentation surface now points at the current manifest-backed template and validation model. The audit covered 39 Markdown files across `.opencode/skill/system-spec-kit/SKILL.md`, `.opencode/skill/system-spec-kit/references/`, and `.opencode/skill/system-spec-kit/assets/`; 19 in-scope files were updated.
+The remaining AI-facing system-spec-kit documentation surface now points at the current manifest-backed template and validation model. The audit covered 39 Markdown files across `.opencode/skills/system-spec-kit/SKILL.md`, `.opencode/skills/system-spec-kit/references/`, and `.opencode/skills/system-spec-kit/assets/`; 19 in-scope files were updated.
 
 ### Skill Entry Alignment
 

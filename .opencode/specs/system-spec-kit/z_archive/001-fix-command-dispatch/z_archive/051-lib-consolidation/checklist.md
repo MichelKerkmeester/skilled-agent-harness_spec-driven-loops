@@ -1,6 +1,6 @@
 ---
 title: "Verification [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/checklist]"
-description: "npx madge --circular .opencode/skill/system-spec-kit/"
+description: "npx madge --circular .opencode/skills/system-spec-kit/"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -26,12 +26,12 @@ contextType: "implementation"
 ## P0 - Critical (Must Complete)
 
 ### LIB001: Create Shared Lib Directory
-- [x] Directory created at `.opencode/skill/system-spec-kit/shared/`
+- [x] Directory created at `.opencode/skills/system-spec-kit/shared/`
 - [x] README.md created documenting purpose and guidelines
 - **Evidence:** lib/ exists with embeddings.js, trigger-extractor.js, embeddings-legacy.js, embeddings/ subfolder, README.md (447 lines)
 
 ### LIB002: Move embeddings.js
-- [x] File moved to `.opencode/skill/system-spec-kit/shared/embeddings.js`
+- [x] File moved to `.opencode/skills/system-spec-kit/shared/embeddings.js`
 - [x] All imports updated (re-exports in scripts/shared/ and mcp_server/shared/)
 - [x] Multi-provider support preserved (nomic, Voyage AI, transformers)
 - [x] CLI can generate embeddings
@@ -39,7 +39,7 @@ contextType: "implementation"
 - **Evidence:** Canonical version in lib/, re-exports from scripts/shared/embeddings.js (`module.exports = require('../../shared/embeddings')`) and mcp_server/shared/embeddings.js (`module.exports = require('../../shared/embeddings')`)
 
 ### LIB003: Move trigger-extractor.js
-- [x] File moved to `.opencode/skill/system-spec-kit/shared/trigger-extractor.js`
+- [x] File moved to `.opencode/skills/system-spec-kit/shared/trigger-extractor.js`
 - [x] All imports updated
 - [x] Trigger phrase extraction works from CLI
 - [x] Trigger phrase extraction works from MCP
@@ -120,14 +120,14 @@ contextType: "implementation"
 
 ```bash
 # Check for circular dependencies - PASSED
-npx madge --circular .opencode/skill/system-spec-kit/
+npx madge --circular .opencode/skills/system-spec-kit/
 # Result: Processed 42 files, No circular dependency found!
 
 # Test MCP health check - PASSED
 # Result: memory_health returns healthy status
 
 # Test generate-context.js - PASSED
-node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
+node .opencode/skills/system-spec-kit/scripts/generate-context.js --help
 # Result: Shows help output, no errors
 ```
 

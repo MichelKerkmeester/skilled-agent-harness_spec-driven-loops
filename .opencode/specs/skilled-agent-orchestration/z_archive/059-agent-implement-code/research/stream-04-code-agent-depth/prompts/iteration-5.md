@@ -43,9 +43,9 @@ Include:
 
 ## ACTIONS
 
-1. Read `.opencode/agent/review.md:364-393` (Adversarial Self-Check Hunter/Skeptic/Referee — full).
-2. Read `.opencode/agent/debug.md:204-234` (Phase 4 Adversarial Validation — counter-evidence, alternative explanation, anchoring check, prior-attempt echo check).
-3. Read `.opencode/skill/sk-code-review/references/review_core.md` (search for sycophancy/adversarial — review-side baseline).
+1. Read `.opencode/agents/review.md:364-393` (Adversarial Self-Check Hunter/Skeptic/Referee — full).
+2. Read `.opencode/agents/debug.md:204-234` (Phase 4 Adversarial Validation — counter-evidence, alternative explanation, anchoring check, prior-attempt echo check).
+3. Read `.opencode/skills/sk-code-review/references/review_core.md` (search for sycophancy/adversarial — review-side baseline).
 4. Synthesize the Builder/Critic/Verifier coder protocol.
 
 ## OUTPUT CONTRACT

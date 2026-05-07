@@ -92,15 +92,15 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/system-spec-kit/scripts/types/session-types.ts` | Modify | Add shipped structured JSON summary types such as `toolCalls` and `exchanges` |
-| `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` | Modify | Keep existing JSON/file authority behavior; no file-source enrichment path shipped here |
-| `.opencode/skill/system-spec-kit/scripts/extractors/collect-session-data.ts` | Modify | Preserve the shipped Wave 2 count, confidence, and outcome handling |
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Normalize structured JSON inputs without inventing an unshipped nested metadata contract |
-| `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Document the shipped structured JSON fields and structured-first save workflow |
+| `.opencode/skills/system-spec-kit/scripts/types/session-types.ts` | Modify | Add shipped structured JSON summary types such as `toolCalls` and `exchanges` |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify | Keep existing JSON/file authority behavior; no file-source enrichment path shipped here |
+| `.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts` | Modify | Preserve the shipped Wave 2 count, confidence, and outcome handling |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | Normalize structured JSON inputs without inventing an unshipped nested metadata contract |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify | Document the shipped structured JSON fields and structured-first save workflow |
 | `016-json-mode-hybrid-enrichment/*.md` | Modify | Correct the phase pack so it matches the live code and archives the non-shipped design analysis clearly |
-| `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` | Modify | RC5: Move `decisionCount` check, add `explicitContextType` param |
-| `.opencode/skill/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | RC3: fast-path keyDecisions; RC5: contextType extraction |
-| `.opencode/skill/system-spec-kit/scripts/core/post-save-review.ts` | Create | Post-save quality review module |
+| `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` | Modify | RC5: Move `decisionCount` check, add `explicitContextType` param |
+| `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts` | Modify | RC3: fast-path keyDecisions; RC5: contextType extraction |
+| `.opencode/skills/system-spec-kit/scripts/core/post-save-review.ts` | Create | Post-save quality review module |
 | `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `AGENTS_example_fs_enterprises.md` | Modify | Post-save review instructions in the 4 tracked instruction files present in this repo |
 <!-- /ANCHOR:scope -->
 

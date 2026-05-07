@@ -22,9 +22,9 @@ The trigger phrase pipeline flows through these stages:
 
 5. **Minimum phrase guarantee** (workflow.ts line 1263 `ensureMinTriggerPhrases`): Fills up to minimum count from file names and spec folder tokens. Also adds individual folder name tokens that pass the FOLDER_STOPWORDS gate (lines 1242-1261).
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1174-1264]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts:21-27]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:219-258]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1174-1264]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts:21-27]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:219-258]
 
 ### Finding 2: The JSON-mode trigger extraction problem
 
@@ -36,7 +36,7 @@ For JSON-mode saves, the `sessionSummary` is the primary (often only) semantic t
 
 The result: trigger phrases fall back entirely to n-gram scoring, which produces generic bigrams like "module compliance" or "mcp server" that may not be distinctive enough for retrieval.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:219-258]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts:219-258]
 [INFERENCE: based on stopword set analysis and category regex patterns in shared/trigger-extractor.ts]
 
 ### Finding 3: NLP strategy for structured text trigger extraction
@@ -77,7 +77,7 @@ Rather than changing the SemanticSignalExtractor itself (which is shared infrast
 
 Estimated LOC: ~25 lines in workflow.ts.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1178-1199]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1178-1199]
 [INFERENCE: based on analysis of existing triggerSourceParts construction and JSON-mode data availability]
 
 ### Finding 4: Quality filtering to avoid bigram fragments
@@ -109,8 +109,8 @@ filtered = filtered.filter(p => {
 
 Estimated LOC: ~15 lines added to `filterTriggerPhrases`.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:120-157]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1242-1261]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:120-157]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1242-1261]
 
 ### Finding 5: Dedup strategy analysis
 
@@ -150,8 +150,8 @@ The current dedup operates at two levels:
 
 Estimated LOC: ~20 lines.
 
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:1200-1237]
-[SOURCE: .opencode/skill/system-spec-kit/scripts/core/workflow.ts:143-155]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1200-1237]
+[SOURCE: .opencode/skills/system-spec-kit/scripts/core/workflow.ts:143-155]
 
 ## Ruled Out
 - **Replacing SemanticSignalExtractor with a custom NLP pipeline**: The SSE is shared infrastructure used by topic extraction, trigger extraction, and summary generation. Modifying it would have broad impact. Better to enrich the input text and add post-processing filters.
@@ -161,10 +161,10 @@ Estimated LOC: ~20 lines.
 - **Full stemming/lemmatization for dedup**: Requires a stemmer library (Porter, Snowball) which adds complexity. The plural normalization heuristic covers the most common case with zero dependencies.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/scripts/core/workflow.ts` (lines 110-157, 1174-1268)
-- `.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.ts` (full file, 65 lines)
-- `.opencode/skill/system-spec-kit/scripts/lib/semantic-signal-extractor.ts` (lines 1-350, extraction engine)
-- `.opencode/skill/system-spec-kit/scripts/extractors/session-extractor.ts` (lines 535-561, extractKeyTopics)
+- `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` (lines 110-157, 1174-1268)
+- `.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts` (full file, 65 lines)
+- `.opencode/skills/system-spec-kit/scripts/lib/semantic-signal-extractor.ts` (lines 1-350, extraction engine)
+- `.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts` (lines 535-561, extractKeyTopics)
 
 ## Assessment
 - New information ratio: 1.0

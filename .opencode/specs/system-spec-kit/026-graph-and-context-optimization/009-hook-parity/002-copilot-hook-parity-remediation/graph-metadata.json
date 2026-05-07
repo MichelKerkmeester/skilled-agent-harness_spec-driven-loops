@@ -51,12 +51,12 @@
       "tests/claude-user-prompt-submit-hook.vitest.ts",
       ".claude/settings.local.json",
       "dist/hooks/copilot/user-prompt-submit.js",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       "hooks/claude/user-prompt-submit.ts",
       "implementation-summary.md",
-      ".opencode/skill/cli-copilot/SKILL.md",
+      ".opencode/skills/cli-copilot/SKILL.md",
       "decision-record.md",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-user-prompt-submit-hook.vitest.ts",
       "checklist.md",
       "spec.md",
       "tasks.md",
@@ -132,7 +132,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/cli-copilot/SKILL.md",
+        "path": ".opencode/skills/cli-copilot/SKILL.md",
         "source": "derived"
       },
       {

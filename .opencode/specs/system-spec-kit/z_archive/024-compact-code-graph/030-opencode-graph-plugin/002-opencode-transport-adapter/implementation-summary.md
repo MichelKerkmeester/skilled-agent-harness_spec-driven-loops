@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 2 is now implemented in runtime code. Packet 030 has a dedicated OpenCode transport contract in `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`, a live plugin at `.opencode/plugins/spec-kit-compact-code-graph.js`, and an `opencode.json` registration entry that enables the plugin with `[["spec-kit-compact-code-graph", { "cacheTtlMs": 5000 }]]`.
+Phase 2 is now implemented in runtime code. Packet 030 has a dedicated OpenCode transport contract in `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts`, a live plugin at `.opencode/plugins/spec-kit-compact-code-graph.js`, and an `opencode.json` registration entry that enables the plugin with `[["spec-kit-compact-code-graph", { "cacheTtlMs": 5000 }]]`.
 
 ### Transport Boundary
 
@@ -61,16 +61,16 @@ The transport layer was later refined so the OpenCode `systemTransform` startup 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts` | Created | Shared transport contract that maps payloads into OpenCode lifecycle blocks |
-| `.opencode/skill/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js` | Rebuilt | Refresh compiled transport output so the live OpenCode runtime carries the startup-snapshot note |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts` | Created | Shared transport contract that maps payloads into OpenCode lifecycle blocks |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js` | Rebuilt | Refresh compiled transport output so the live OpenCode runtime carries the startup-snapshot note |
 | `.opencode/plugins/spec-kit-compact-code-graph.js` | Created | Real `@opencode-ai/plugin` hook layer for event, system transform, messages transform, compacting, and diagnostics |
 | `opencode.json` | Modified | Register the plugin with `cacheTtlMs` configuration |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit transport contract data for resume surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modified | Emit transport contract data for bootstrap surfaces |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts` | Created | Verify transport contract behavior |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Created | Verify the live plugin hook behavior and diagnostics |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts` | Modified | Verify resume output includes transport contract data |
-| `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Modified | Verify bootstrap output includes startup-digest transport data |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts` | Modified | Emit transport contract data for resume surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts` | Modified | Emit transport contract data for bootstrap surfaces |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts` | Created | Verify transport contract behavior |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts` | Created | Verify the live plugin hook behavior and diagnostics |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts` | Modified | Verify resume output includes transport contract data |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` | Modified | Verify bootstrap output includes startup-digest transport data |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -104,8 +104,8 @@ The implementation stayed inside the Phase 2 boundary. Payload construction stil
 | `npm run build` | PASS |
 | `npm run typecheck` | PASS |
 | `npx vitest run tests/opencode-transport.vitest.ts tests/code-graph-ops-hardening.vitest.ts tests/session-resume.vitest.ts tests/session-bootstrap.vitest.ts tests/opencode-plugin.vitest.ts` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/opencode-transport.vitest.ts tests/startup-brief.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
-| `cd .opencode/skill/system-spec-kit/mcp_server && npx tsc --build --verbose` | PASS - rebuilt stale `dist/` transport output so live OpenCode picked up the snapshot-note fix |
+| `cd .opencode/skills/system-spec-kit/mcp_server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/opencode-transport.vitest.ts tests/startup-brief.vitest.ts tests/hook-session-start.vitest.ts` | PASS |
+| `cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --build --verbose` | PASS - rebuilt stale `dist/` transport output so live OpenCode picked up the snapshot-note fix |
 | `node --check .opencode/plugins/spec-kit-compact-code-graph.js` | PASS |
 | `jq empty opencode.json` | PASS |
 | Fresh OpenCode session retest of the startup digest after rebuild | PASS - digest now includes `Note: this is a startup snapshot; later structural reads may differ if the repo state changed.` |

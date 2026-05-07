@@ -41,18 +41,18 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/index.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/hooks/README.md",
-      ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       "tools/types.ts",
-      ".opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
       ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/004-ux-hooks-automation/tasks.md",
       "checklist.md",
       "dist/context-server.js",
@@ -66,61 +66,61 @@
       {
         "name": "memory-save.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
         "source": "derived"
       },
       {
         "name": "memory-crud-health.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
         "name": "memory-crud-types.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
         "source": "derived"
       },
       {
         "name": "context-server.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/context-server.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
         "name": "mutation-feedback.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
         "source": "derived"
       },
       {
         "name": "response-hints.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/response-hints.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts",
         "source": "derived"
       },
       {
         "name": "memory-surface.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
         "source": "derived"
       },
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/index.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/hooks/README.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
         "source": "derived"
       },
       {
         "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
@@ -132,7 +132,7 @@
       {
         "name": "hooks-ux-feedback.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
         "source": "derived"
       },
       {

@@ -179,7 +179,7 @@ collect-session-data.ts is a 960-line coupling point with a 57-field return lite
 
 | ID | Title | Sev | Source |
 |----|-------|-----|--------|
-| C1-1 | 83 files-to-change paths stale (prefix moved to `.opencode/skill/`) | high | C1 |
+| C1-1 | 83 files-to-change paths stale (prefix moved to `.opencode/skills/`) | high | C1 |
 | C1-3 | Phase 014 and 017 contradict on positional stateless saves | high | C1 |
 | C4-2 | 016 and 017 disagree on JSON authority timeline | high | C4 |
 | C4-4 | 001-SC-002 contamination criterion no longer holds | high | C4 |
@@ -198,7 +198,7 @@ collect-session-data.ts is a 960-line coupling point with a 57-field return lite
 | C4-8 | 003's deferred 004 scope partially resolved | low | C4 |
 | C2-4 | Missing config falls back silently to defaults | low | C2 |
 
-**Recommendation:** Batch-update all spec file paths with `.opencode/skill/system-spec-kit/` prefix. Add a spec-code alignment check to CI. Document the F-NN markers in a cross-reference table.
+**Recommendation:** Batch-update all spec file paths with `.opencode/skills/system-spec-kit/` prefix. Add a spec-code alignment check to CI. Document the F-NN markers in a cross-reference table.
 
 ---
 

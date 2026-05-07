@@ -663,4 +663,4 @@ Select new tier:
 ## 16. FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
-`.opencode/skill/system-spec-kit/SKILL.md`
+`.opencode/skills/system-spec-kit/SKILL.md`

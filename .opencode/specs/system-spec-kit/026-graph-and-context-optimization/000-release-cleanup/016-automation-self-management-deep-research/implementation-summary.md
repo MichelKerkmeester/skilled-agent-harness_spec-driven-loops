@@ -24,7 +24,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -93,7 +93,7 @@ The research used direct source reads and file:line citations from project docs,
 |-------|--------|
 | Artifact completeness | PASS: 7 iteration markdown files, 7 delta JSONL files, state log events, and final report authored |
 | Source grounding | PASS: findings include file:line citations or explicitly state absence checks |
-| Strict validation | PASS: `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research --strict` exited 0 |
+| Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-automation-self-management-deep-research --strict` exited 0 |
 | Git staging | WARN: non-fatal staging attempt failed because Git could not create `.git/index.lock` (`Operation not permitted`) |
 <!-- /ANCHOR:verification -->
 

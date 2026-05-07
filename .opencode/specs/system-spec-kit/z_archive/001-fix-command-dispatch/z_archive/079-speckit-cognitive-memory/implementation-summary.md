@@ -69,10 +69,10 @@ Successfully implemented a cognitive memory upgrade for the Spec Kit Memory MCP 
 
 | File | Type | Changes |
 |------|------|---------|
-| `.opencode/command/memory/checkpoint.md` | MODIFIED | Template alignment: emojis, section naming |
-| `.opencode/command/memory/database.md` | MODIFIED | Added section number to COGNITIVE MEMORY MODEL, fixed emoji (✓→✅), renumbered 9-17 |
-| `.opencode/command/memory/save.md` | MODIFIED | PHASE 1B→2 (integer numbering), emoji fixes |
-| `.opencode/command/memory/search.md` | MODIFIED | Numbered CONSTITUTIONAL/COGNITIVE sections, renumbered 7-15 |
+| `.opencode/commands/memory/checkpoint.md` | MODIFIED | Template alignment: emojis, section naming |
+| `.opencode/commands/memory/database.md` | MODIFIED | Added section number to COGNITIVE MEMORY MODEL, fixed emoji (✓→✅), renumbered 9-17 |
+| `.opencode/commands/memory/save.md` | MODIFIED | PHASE 1B→2 (integer numbering), emoji fixes |
+| `.opencode/commands/memory/search.md` | MODIFIED | Numbered CONSTITUTIONAL/COGNITIVE sections, renumbered 7-15 |
 
 **Purpose**: Aligned memory commands with `command_template.md` standards to ensure consistent documentation across the OpenCode command system. All commands now have sequential H2 numbering with proper emojis from the standard vocabulary.
 

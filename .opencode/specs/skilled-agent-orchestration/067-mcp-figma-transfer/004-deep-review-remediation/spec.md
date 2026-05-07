@@ -158,7 +158,7 @@ See `../review/review-report.md` §3-5 for full per-finding affected file list. 
 - 2 INSTALL_GUIDE.md (P1-1)
 - 3 implementation-summary.md (P1-2, P1-5, P1-9)
 - Phase 2 spec.md, decision-record.md, implementation-summary.md (P1-3, P1-4)
-- `.opencode/skill/README.md` (P1-6)
+- `.opencode/skills/README.md` (P1-6)
 - `.opencode/install_guides/README.md, SET-UP - AGENTS.md` (P1-7)
 - Phase 1 decision-record.md ADR-005 body (P1-8)
 - 2 Figma READMEs + 2 Combined Workflows KB docs (P1-11)

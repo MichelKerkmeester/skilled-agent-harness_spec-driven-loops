@@ -1,7 +1,7 @@
 # Context Agent 10 - Alignment Matrix (C10)
 
 ## Audit Scope
-- Compared `.opencode/skill/system-spec-kit` vs `.opencode/skill/workflows-code--opencode`.
+- Compared `.opencode/skills/system-spec-kit` vs `.opencode/skills/workflows-code--opencode`.
 - Focused on: language standards (JS/TS/Python/Shell/JSON), verification claims, command contracts, and documentation promises vs scripts.
 - Excluded node_modules move-only mismatch noise.
 

@@ -85,8 +85,8 @@ The user or command resolves a packet root or child phase folder, the generator 
 - [x] Define packet-root vs child-phase path rules
 
 ### Phase 2: Add Nested Changelog Runtime
-- [x] Implement `.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
-- [x] Add `.opencode/skill/system-spec-kit/templates/changelog/root.md` and `.opencode/skill/system-spec-kit/templates/changelog/phase.md`
+- [x] Implement `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
+- [x] Add `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `.opencode/skills/system-spec-kit/templates/changelog/phase.md`
 - [x] Export and document the generator in the scripts package
 
 ### Phase 3: Align Workflow Surfaces
@@ -107,7 +107,7 @@ The user or command resolves a packet root or child phase folder, the generator 
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Build | Scripts package compiles with the new generator | `cd .opencode/skill/system-spec-kit/scripts && npm run build` |
+| Build | Scripts package compiles with the new generator | `cd .opencode/skills/system-spec-kit/scripts && npm run build` |
 | Unit | Root and phase nested changelog generation paths | `npx vitest run tests/nested-changelog.vitest.ts --config ../mcp_server/vitest.config.ts --root .` |
 | Manual | Command and packet-doc wording consistency | Direct file review across command, skill, template, and reference surfaces |
 <!-- /ANCHOR:testing -->
@@ -175,7 +175,7 @@ Packet analysis ──► Generator + templates ──► Command/docs alignment
 - [x] Command docs updated at the same time as runtime changes
 
 ### Rollback Procedure
-1. Revert `.opencode/skill/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
+1. Revert `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts`
 2. Revert the changelog templates and documentation updates
 3. Revert `/create:changelog`, `/spec_kit:implement`, and `/spec_kit:complete` nested-mode wording
 4. Re-run scripts build to confirm the package compiles after rollback

@@ -160,7 +160,7 @@ The codebase already has a query-intent classifier at `lib/code-graph/query-inte
 
 1. **`cocoIndexAvailable` already exists** in both `SessionSnapshot` and `PrimePackage` — only `routingRecommendation` and `routingRules` need adding
 2. **Spec file paths partially wrong**: real files are `AGENTS.md` and `AGENTS.md` at repo root, not `.codex/CODEX.md` and `.gemini/GEMINI.md`
-3. **4 context-prime copies** (not 5): `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, `.agents/agents/` — no `.gemini/agents/` exists
+3. **4 context-prime copies** (not 5): `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.agents/agents/` — no `.gemini/agents/` exists
 4. **Reactive hints should use existing `envelope.hints` pipeline**, not a new response wrapper
 
 ---

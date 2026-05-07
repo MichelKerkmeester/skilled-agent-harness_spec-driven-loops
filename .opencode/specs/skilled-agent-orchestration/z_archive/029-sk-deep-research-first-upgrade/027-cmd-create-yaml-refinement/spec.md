@@ -26,11 +26,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This packet defines the refinement pass for `.opencode/command/create/assets/*.yaml` so the create-command suite more closely matches the richer `spec_kit` command YAML style. The work must strengthen the newer feature-catalog and testing-playbook assets, then add a shared structural contract across the broader create suite without rewriting command behavior or changing command names.
+This packet defines the refinement pass for `.opencode/commands/create/assets/*.yaml` so the create-command suite more closely matches the richer `spec_kit` command YAML style. The work must strengthen the newer feature-catalog and testing-playbook assets, then add a shared structural contract across the broader create suite without rewriting command behavior or changing command names.
 
 **Key Decisions**: Standardize on one shared top-level section family across all create YAML assets; keep `create_folder_readme` as a unified asset for now, but give it the same top-level contract as the rest of the suite.
 
-**Critical Dependencies**: `.opencode/command/spec_kit/assets/*.yaml`, the live `create/*` asset suite, and the previously shipped `025` and `026` command packets.
+**Critical Dependencies**: `.opencode/commands/spec_kit/assets/*.yaml`, the live `create/*` asset suite, and the previously shipped `025` and `026` command packets.
 
 ---
 
@@ -89,16 +89,16 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/command/create/assets/create_feature_catalog_auto.yaml` | Modify | Strengthen auto-mode contract to match suite standards |
-| `.opencode/command/create/assets/create_feature_catalog_confirm.yaml` | Modify | Add missing setup/gating/reporting sections and confirm-mode parity |
-| `.opencode/command/create/assets/create_testing_playbook_auto.yaml` | Modify | Strengthen auto-mode contract to match suite standards |
-| `.opencode/command/create/assets/create_testing_playbook_confirm.yaml` | Modify | Add missing setup/gating/reporting sections and confirm-mode parity |
-| `.opencode/command/create/assets/create_agent_auto.yaml` | Modify | Add shared top-level standardization sections |
-| `.opencode/command/create/assets/create_agent_confirm.yaml` | Modify | Add shared top-level standardization sections |
-| `.opencode/command/create/assets/create_changelog_auto.yaml` | Modify | Add shared top-level standardization sections |
-| `.opencode/command/create/assets/create_changelog_confirm.yaml` | Modify | Add shared top-level standardization sections |
-| `.opencode/command/create/assets/create_folder_readme_auto.yaml` | Modify | Add top-level standardization while keeping dual operation branches |
-| `.opencode/command/create/assets/create_folder_readme_confirm.yaml` | Modify | Add top-level standardization while keeping dual operation branches |
+| `.opencode/commands/create/assets/create_feature_catalog_auto.yaml` | Modify | Strengthen auto-mode contract to match suite standards |
+| `.opencode/commands/create/assets/create_feature_catalog_confirm.yaml` | Modify | Add missing setup/gating/reporting sections and confirm-mode parity |
+| `.opencode/commands/create/assets/create_testing_playbook_auto.yaml` | Modify | Strengthen auto-mode contract to match suite standards |
+| `.opencode/commands/create/assets/create_testing_playbook_confirm.yaml` | Modify | Add missing setup/gating/reporting sections and confirm-mode parity |
+| `.opencode/commands/create/assets/create_agent_auto.yaml` | Modify | Add shared top-level standardization sections |
+| `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modify | Add shared top-level standardization sections |
+| `.opencode/commands/create/assets/create_changelog_auto.yaml` | Modify | Add shared top-level standardization sections |
+| `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Modify | Add shared top-level standardization sections |
+| `.opencode/commands/create/assets/create_folder_readme_auto.yaml` | Modify | Add top-level standardization while keeping dual operation branches |
+| `.opencode/commands/create/assets/create_folder_readme_confirm.yaml` | Modify | Add top-level standardization while keeping dual operation branches |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,7 +112,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 |----|-------------|---------------------|
 | REQ-001 | The create YAML suite shares one recognizable top-level contract | Every create YAML asset exposes the core standard sections needed for routing, gates, workflow overview, recovery, and completion |
 | REQ-002 | Feature-catalog and testing-playbook confirm assets reach parity with their auto variants | Confirm mode retains the same root setup/gating/reporting contract and adds checkpoint behavior instead of dropping key sections |
-| REQ-003 | The full create asset suite remains valid YAML | A parser can load every file in `.opencode/command/create/assets/` after the refinement pass |
+| REQ-003 | The full create asset suite remains valid YAML | A parser can load every file in `.opencode/commands/create/assets/` after the refinement pass |
 | REQ-004 | `create_folder_readme` remains usable without structural ambiguity at the top level | The unified file gains the same shared workflow framing as the rest of the suite even though it still branches into README and install-guide operations |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -133,7 +133,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 - **SC-001**: Reviewers can inspect any create YAML asset and see the same top-level workflow scaffolding concepts.
 - **SC-002**: `create_feature_catalog_*` and `create_testing_playbook_*` now have real auto/confirm symmetry.
 - **SC-003**: `create_folder_readme_*` remains a dual-operation asset, but no longer feels structurally disconnected from the rest of the suite.
-- **SC-004**: YAML parse checks pass for every file in `.opencode/command/create/assets/`.
+- **SC-004**: YAML parse checks pass for every file in `.opencode/commands/create/assets/`.
 - **SC-005**: The packet is complete enough that later command work can treat the normalized create YAML suite as a stable baseline.
 
 ### Acceptance Scenarios
@@ -153,7 +153,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `.opencode/command/spec_kit/assets/*.yaml` | Wrong target style if ignored | Use `spec_kit` YAMLs as the style baseline for richer workflow scaffolding |
+| Dependency | `.opencode/commands/spec_kit/assets/*.yaml` | Wrong target style if ignored | Use `spec_kit` YAMLs as the style baseline for richer workflow scaffolding |
 | Dependency | Existing create-command semantics | Regression risk if structural cleanup changes behavior | Limit the pass to structural clarity and naming consistency, not command behavior changes |
 | Risk | Over-normalization breaks specialized assets | Medium | Keep command-specific operational content and normalize only the shared top-level contract |
 | Risk | `create_folder_readme` still feels unusually large | Medium | Record it as an intentional short-term exception while still adding shared top-level sections |

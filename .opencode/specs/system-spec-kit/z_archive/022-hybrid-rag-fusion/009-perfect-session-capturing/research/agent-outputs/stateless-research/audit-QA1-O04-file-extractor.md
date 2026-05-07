@@ -2,7 +2,7 @@
 
 **Auditor:** Opus 4.6 (Reviewer agent)
 **Date:** 2026-03-09
-**File:** `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts` (391 LOC)
+**File:** `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts` (391 LOC)
 **Scope:** ACTION field preservation, file dedup logic, backward compat with stateful mode, empty file list handling, rename detection
 **Severity:** P0=data loss/security/crash, P1=incorrect output/silent corruption, P2=code quality
 
@@ -59,8 +59,8 @@ if (cleaned.length > 60) {
 **Impact:** When two files share a common root directory and last two path segments but differ in intermediate directories, `toRelativePath` collapses them to the same string. Since `file-extractor.ts` uses the return value of `toRelativePath` as the `Map` key (line 134), these files are falsely merged — the second file's data overwrites (or is discarded by) the first. This is a **silent data loss** of distinct file entries.
 
 **Example:** Both paths below exceed 60 characters:
-- `.opencode/skill/system-spec-kit/scripts/extractors/file-extractor.ts` (69 chars) → `.opencode/.../extractors/file-extractor.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/file-extractor.ts` (64 chars) → `.opencode/.../tests/file-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/extractors/file-extractor.ts` (69 chars) → `.opencode/.../extractors/file-extractor.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/file-extractor.ts` (64 chars) → `.opencode/.../tests/file-extractor.ts`
 
 These would NOT collide (different last-2 segments). But consider:
 - `src/modules/admin/components/shared/Button.tsx` → `src/.../shared/Button.tsx`

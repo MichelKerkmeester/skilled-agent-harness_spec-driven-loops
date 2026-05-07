@@ -41,12 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skill/sk-git/SKILL.md",
-      ".opencode/skill/sk-git/references/worktree_workflows.md",
-      ".opencode/skill/sk-git/references/finish_workflows.md",
-      ".opencode/skill/sk-git/references/shared_patterns.md",
-      ".opencode/skill/sk-git/references/quick_reference.md",
-      ".opencode/skill/sk-git/assets/worktree_checklist.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/references/worktree_workflows.md",
+      ".opencode/skills/sk-git/references/finish_workflows.md",
+      ".opencode/skills/sk-git/references/shared_patterns.md",
+      ".opencode/skills/sk-git/references/quick_reference.md",
+      ".opencode/skills/sk-git/assets/worktree_checklist.md",
       "plan.md",
       "checklist.md",
       "decision-record.md",
@@ -57,37 +57,37 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/SKILL.md",
+        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
         "name": "worktree_workflows.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/worktree_workflows.md",
+        "path": ".opencode/skills/sk-git/references/worktree_workflows.md",
         "source": "derived"
       },
       {
         "name": "finish_workflows.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/finish_workflows.md",
+        "path": ".opencode/skills/sk-git/references/finish_workflows.md",
         "source": "derived"
       },
       {
         "name": "shared_patterns.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/shared_patterns.md",
+        "path": ".opencode/skills/sk-git/references/shared_patterns.md",
         "source": "derived"
       },
       {
         "name": "quick_reference.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/references/quick_reference.md",
+        "path": ".opencode/skills/sk-git/references/quick_reference.md",
         "source": "derived"
       },
       {
         "name": "worktree_checklist.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-git/assets/worktree_checklist.md",
+        "path": ".opencode/skills/sk-git/assets/worktree_checklist.md",
         "source": "derived"
       },
       {

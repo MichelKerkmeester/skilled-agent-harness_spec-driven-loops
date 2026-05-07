@@ -56,7 +56,7 @@ _memory:
 
 ### Evaluator Contract and First Target
 
-- [x] T-010: Define the MVP target as `.opencode/agent/handover.md` and document why it is the narrowest measurable surface
+- [x] T-010: Define the MVP target as `.opencode/agents/handover.md` and document why it is the narrowest measurable surface
 - [x] T-011: Create the improvement charter asset with goal, evaluator, keep/discard rule, and simplicity tie-break
 - [x] T-012: Create `assets/target_manifest.jsonc` with canonical, derived, fixed, and forbidden surface classes
 - [x] T-013: Create the evaluator contract reference with baseline, scoring rubric, rejection conditions, and infra-failure handling
@@ -68,7 +68,7 @@ _memory:
 - [x] T-021: Create the `sk-improve-agent` README surface
 - [x] T-022: Create the loop protocol, promotion rules, and quick reference docs
 - [x] T-023: Create `assets/improvement_config.json` and the improvement strategy asset
-- [x] T-024: Create reducer and scorer script entrypoints under `.opencode/skill/sk-improve-agent/scripts/`
+- [x] T-024: Create reducer and scorer script entrypoints under `.opencode/skills/sk-improve-agent/scripts/`
 
 ### Agent and Scorer
 
@@ -89,7 +89,7 @@ _memory:
 ### Registration and Runtime Packaging
 
 - [x] T-050: Register the skill in the skill catalog
-- [x] T-051: Add skill routing keywords to `.opencode/skill/skill-advisor/scripts/skill_advisor.py`
+- [x] T-051: Add skill routing keywords to `.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 - [x] T-052: Add the packet/feature entry to `.opencode/specs/descriptions.json`
 - [x] T-053: Update the framework README to reference the new capability
 - [x] T-054: Create runtime loop-agent definitions needed for invocation outside canonical OpenCode
@@ -112,7 +112,7 @@ _memory:
 
 - [x] T-070: Add a promotion workflow that can patch one canonical target only after evaluator and approval gates pass
 - [x] T-071: Add rollback instructions and post-edit verification requirements
-- [x] T-072: Re-evaluate whether `.opencode/agent/handover.md` remains the right target after the first promoted run
+- [x] T-072: Re-evaluate whether `.opencode/agents/handover.md` remains the right target after the first promoted run
 
 ### Runtime Parity and Expansion
 

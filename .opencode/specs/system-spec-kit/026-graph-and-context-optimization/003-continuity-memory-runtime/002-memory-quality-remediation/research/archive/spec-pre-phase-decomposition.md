@@ -31,7 +31,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This feature converts the findings of the 10-iteration deep research in `research/research.md` into a concrete backend remediation plan that fixes eight defect classes observed in JSON-mode `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js`. The research is complete and convergence was reached at iteration 9; this spec packages those findings into actionable, prioritized work without expanding scope. [SOURCE: research.md §1, §6]
+This feature converts the findings of the 10-iteration deep research in `research/research.md` into a concrete backend remediation plan that fixes eight defect classes observed in JSON-mode `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. The research is complete and convergence was reached at iteration 9; this spec packages those findings into actionable, prioritized work without expanding scope. [SOURCE: research.md §1, §6]
 
 **Key Decisions**: Adopt the iteration-9-narrowed remediation matrix (D2 precedence-only, D5 immediate-predecessor with continuation gating, D7 provenance-only, D3 keep `ensureMinTriggerPhrases()`); ship in priority groups P0 → P3 to limit blast radius; verify each fix with targeted unit tests or fixture replays rather than full pipeline runs. [SOURCE: research.md §6, §10, §11]
 

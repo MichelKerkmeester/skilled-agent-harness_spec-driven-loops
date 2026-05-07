@@ -29,7 +29,7 @@
       }
     ],
     "evidence": [
-      "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skill/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}",
+      "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skills/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}",
       "{\"summary\":\"Memory system: 11 memories across 2 folders\",\"data\":{\"totalMemories\":11,\"byStatus\":{\"pending\":0,\"success\":11,\"failed\":0,\"retry\":0,\"partial\":0},\"oldestMemory\":\"2026-04-12T00:32:34.418Z\",\"newestMemory\":\"2026-04-12T00:32:35.003Z\",\"topFolders\":[{\"folder\":\"001-manual-fixture-auth-resume\",\"count\":7},{\"folder\":\"002-test-sandbox\",\"count\":4}],\"totalSpecFolders\":2,\"limit\":10,\"totalTriggerPhrases\":11,\"vectorSearchEnabled\":true,\"graphChannelMetrics\":{\"totalQueries\":0,\"graphHits\":0,\"graphOnlyResults\":0,\"multiSourceResults\":104,\"graphHitRate\":0},\"folderRanking\":\"count\",\"tierBreakdown\":{\"normal\":11},\"databaseSizeBytes\":3981312,\"lastIndexedAt\":\"2026-04-12T00:32:35.003Z\"},\"hints\":[],\"meta\":{\"tool\":\"memory_stats\",\"tokenCount\":269,\"latencyMs\":0,\"cacheHit\":false}}"
     ],
     "steps": [
@@ -49,7 +49,7 @@
           "workspace indexing completed"
         ],
         "evidence": [
-          "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skill/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}"
+          "{\"summary\":\"No memory files found\",\"data\":{\"status\":\"complete\",\"scanned\":0,\"indexed\":0,\"updated\":0,\"unchanged\":0,\"failed\":0,\"staleDeleted\":0,\"staleDeleteFailed\":0},\"hints\":[\"Memory files should be in specs/**/memory/ directories\",\"Constitutional files go in .opencode/skills/*/constitutional/\"],\"meta\":{\"tool\":\"memory_index_scan\",\"tokenCount\":117,\"cacheHit\":false}}"
         ]
       },
       {
@@ -89,7 +89,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: `cd .opencode/skill/system-spec-kit/mcp_server` -> `npm test -- --run tests/startup-checks.vitest.ts`"
+      "Command sequence is not expressible as direct handler calls: `cd .opencode/skills/system-spec-kit/mcp_server` -> `npm test -- --run tests/startup-checks.vitest.ts`"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

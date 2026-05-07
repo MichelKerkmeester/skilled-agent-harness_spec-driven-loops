@@ -4,7 +4,7 @@
 
 ● Search (grep)
   │ "search|routing|advisor" in *.md (.opencode/specs,
-  │ .opencode/skill/system-spec-kit)
+  │ .opencode/skills/system-spec-kit)
   └ 13 files found
 
 ● memory_match_triggers (MCP: spec_kit_memory) · prompt: "I'm debugging the search bug — what shoul…
@@ -18,7 +18,7 @@ I found one strong lead already: **`system-spec-kit/026-graph-and-context-optimi
 ● Search (grep)
   │ "memory_search|memory_context|routing|rerank|artifactRouting|searchType|inte
   │ ntWeights|query routing|search routing" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 9 lines found
 
 ● Search (glob)
@@ -32,7 +32,7 @@ I found one strong lead already: **`system-spec-kit/026-graph-and-context-optimi
   └ Path does not exist
 
 ● search (MCP: cocoindex_code) · files implementing memory search ranking routing rerank artifact r…
-  └ {"success":true,"results":[{"file_path":".opencode/skill/system-spec-kit...
+  └ {"success":true,"results":[{"file_path":".opencode/skills/system-spec-kit...
 
 The memory hit was right, but the on-disk path is a little different than the indexed path, so I’m resolving the real folder layout now. After that I can point you to the exact spec packet and the first implementation files tied to search ranking/routing.
 
@@ -77,7 +77,7 @@ I found the real packet split: the old indexed “search-routing-advisor” work
   └ L1:220 (192 lines read)
 
 ● Read search.md
-  │ .opencode/command/memory/search.md
+  │ .opencode/commands/memory/search.md
   └ L1:260 (260 lines read)
 
 ● Read implementation-summary.md
@@ -86,28 +86,28 @@ I found the real packet split: the old indexed “search-routing-advisor” work
   └ L1:260 (234 lines read)
 
 ● Read memory-search.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
   └ L1:260 (260 lines read)
 
 ● Read artifact-routing.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts
   └ L1:260 (260 lines read)
 
 ● Read search-utils.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts
   └ L1:260 (260 lines read)
 
 ● Search (grep)
   │ "memory_context|memory_search|artifact-routing|search-utils|rerank|tokenBudg
   │ etEnforcement|queryIntentRouting|folderDiscovery|quality.*gap" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests)
   └ 8 lines found
 
 I have the likely split now:
 
 - **Spec/history:** `003-continuity-memory-runtime/005-memory-search-runtime-bugs`
 - **Earlier implementation/tuning:** `008-skill-advisor/001-search-and-routing-tuning`
-- **Canonical command contract:** `.opencode/command/memory/search.md`
+- **Canonical command contract:** `.opencode/commands/memory/search.md`
 
 I’m doing one more focused pass on tests and formatter surfaces so I can tell you which files are best for **bug triage first** versus **design/history first**.
 
@@ -115,47 +115,47 @@ I’m doing one more focused pass on tests and formatter surfaces so I can tell 
   │ "queryIntentRouting|tokenBudgetEnforcement|folderDiscovery|quality.*gap|Cont
   │ ext truncated to fit token budget|Auto-triggered memories|Trigger-matched
   │ spec-doc records" in *.{ts,md}
-  │ (.opencode/skill/system-spec-kit/mcp_server/tests,
-  │ .opencode/skill/system-spec-kit/mcp_server/formatters,
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/tests,
+  │ .opencode/skills/system-spec-kit/mcp_server/formatters,
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 12 lines found
 
 ● Search (grep)
   │ "formatSearchResults|createMCPSuccessResponse|progressive disclosure|profile
   │ formatter|truncated|returnedResultCount|originalResultCount" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/formatters,
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/response,
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search)
+  │ (.opencode/skills/system-spec-kit/mcp_server/formatters,
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/response,
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search)
   └ 64 lines found
 
 ● Search (grep)
   │ "classifyIntent|default fallback|understand|fix_bug|keyword" in *.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search,
-  │ .opencode/skill/system-spec-kit/mcp_server/tests)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search,
+  │ .opencode/skills/system-spec-kit/mcp_server/tests)
   └ 8 lines found
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L500:620 (121 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1260:1305 (46 lines read)
 
 ● Read memory-context.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
   └ L1670:1705 (36 lines read)
 
 ● Read intent-classifier.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts
   └ L1:260 (260 lines read)
 
 ● Read search-results.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts
   └ L600:760 (161 lines read)
 
 ● Read gate-d-regression-intent-routing.vitest.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-intent-ro
+  │ .opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-intent-ro
   │ uting.vitest.ts
   └ L280:360 (81 lines read)
 
@@ -179,21 +179,21 @@ Start with **`./.opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 
 If I were opening files in order, I’d do this:
 
-1. **Canonical contract:** `./.opencode/command/memory/search.md`  
+1. **Canonical contract:** `./.opencode/commands/memory/search.md`  
 2. **Current bug map:** `./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs/spec.md` and `plan.md`  
-3. **Primary runtime surface:** `./.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`  
+3. **Primary runtime surface:** `./.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`  
    - first for `tokenBudgetEnforcement`, `queryIntentRouting`, and `folderDiscovery`
-4. **Intent drift:** `./.opencode/skill/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`  
+4. **Intent drift:** `./.opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts`  
 5. **Search ranking/routing:**  
-   - `./.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`  
-   - `./.opencode/skill/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`  
-   - `./.opencode/skill/system-spec-kit/mcp_server/lib/search/search-utils.ts`
-6. **If the bug is in output shape/phrasing:** `./.opencode/skill/system-spec-kit/mcp_server/formatters/search-results.ts`
+   - `./.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`  
+   - `./.opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts`  
+   - `./.opencode/skills/system-spec-kit/mcp_server/lib/search/search-utils.ts`
+6. **If the bug is in output shape/phrasing:** `./.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`
 
 For quick repro coverage, the best tests to open first are:
 
-- `./.opencode/skill/system-spec-kit/mcp_server/tests/gate-d-regression-intent-routing.vitest.ts`
-- `./.opencode/skill/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts`
+- `./.opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-intent-routing.vitest.ts`
+- `./.opencode/skills/system-spec-kit/mcp_server/tests/search-results-format.vitest.ts`
 
 **Best single starting point:** `005-memory-search-runtime-bugs/spec.md` → it tells you whether your bug is already known, which cluster it belongs to, and which runtime file to inspect next.
 

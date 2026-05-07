@@ -19,9 +19,9 @@ _memory:
     blockers: []
     key_files:
       - "review-report.md"
-      - ".opencode/skill/system-spec-kit/scripts/spec/validate.sh"
-      - ".opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
-      - ".opencode/skill/system-spec-kit/scripts/utils/template-structure.js"
+      - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh"
+      - ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
     session_dedup:
       fingerprint: "sha256:045008validatorspecdocintegrity00000000000000000000000000"
       session_id: "045-008-validator-spec-doc-integrity"
@@ -67,7 +67,7 @@ Produce a severity-classified review report that identifies validator integrity 
 ## 3. SCOPE
 
 ### In Scope
-- Audit `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` and validator rule scripts.
+- Audit `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` and validator rule scripts.
 - Compare shell and TypeScript phase-parent detectors on real spec folders.
 - Probe strict-mode behavior for phase parents, template headers, frontmatter memory blocks, anchors and links.
 - Review related packet history from 010 phase-parent documentation and 037/004 sk-doc template alignment.

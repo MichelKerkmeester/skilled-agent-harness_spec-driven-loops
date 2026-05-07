@@ -47,12 +47,12 @@ The work validated that the Spec 073 CORE + ADDENDUM v2.0 architecture is well-d
 | `specs/074-*/analysis.md` | Created | Comprehensive 297-line comparison analysis |
 | `specs/074-*/review.md` | Created | 314-line quality assessment with grades |
 | `specs/074-*/refinement-recommendations.md` | Created | 558-line prioritized recommendations (15 items) |
-| `.opencode/skill/system-spec-kit/SKILL.md` | Modified | Version bump v1.8.0 → v1.9.0, documentation updates |
-| `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` | Modified | Path convention clarity, verbose variant documentation |
-| `.opencode/skill/system-spec-kit/assets/parallel_dispatch_config.md` | Modified | Compose script specification, workstream notation |
+| `.opencode/skills/system-spec-kit/SKILL.md` | Modified | Version bump v1.8.0 → v1.9.0, documentation updates |
+| `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` | Modified | Path convention clarity, verbose variant documentation |
+| `.opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md` | Modified | Compose script specification, workstream notation |
 | `specs/074-*/scratch/level_3+/*.md` | Created | 6 Level 3+ spec folder documents |
-| `.opencode/skill/system-spec-kit/templates/verbose/**/*.md` | Created | 26 verbose template files (REC-001) |
-| `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` | Created | 1,021-line template composition script (REC-002) |
+| `.opencode/skills/system-spec-kit/templates/verbose/**/*.md` | Created | 26 verbose template files (REC-001) |
+| `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` | Created | 1,021-line template composition script (REC-002) |
 
 ### Files Analyzed (Not Modified)
 

@@ -99,7 +99,7 @@ Reference repositories informed the research notes, the research notes informed 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Trace review | Research packet references | Manual read-through |
-| Spec validation | Packet structure | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
+| Spec validation | Packet structure | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Content sanity | Source links and synthesis | Manual comparison |
 <!-- /ANCHOR:testing -->
 

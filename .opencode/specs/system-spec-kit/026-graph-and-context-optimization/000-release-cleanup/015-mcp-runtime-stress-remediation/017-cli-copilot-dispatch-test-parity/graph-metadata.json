@@ -94,25 +94,25 @@
       {
         "name": "cli-matrix.vitest.ts",
         "kind": "test",
-        "path": "../../../../../../.opencode/skill/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
+        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
         "source": "derived"
       },
       {
         "name": "buildCopilotPromptArg",
         "kind": "function",
-        "path": "../../../../../../.opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
+        "path": "../../../../../../.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-research_auto.yaml",
         "kind": "workflow",
-        "path": "../../../../../../.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
         "source": "derived"
       },
       {
         "name": "spec_kit_deep-review_auto.yaml",
         "kind": "workflow",
-        "path": "../../../../../../.opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml",
+        "path": "../../../../../../.opencode/commands/spec_kit/assets/spec_kit_deep-review_auto.yaml",
         "source": "derived"
       }
     ],

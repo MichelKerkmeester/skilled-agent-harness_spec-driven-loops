@@ -82,9 +82,9 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T001 | Completed | REQ-001, REQ-002 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
-| T002 | Completed | REQ-003 | `.opencode/skill/system-spec-kit/scripts/optimizer/rubric.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` |
-| T003 | Completed | REQ-004 | `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
+| T001 | Completed | REQ-001, REQ-002 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-corpus.vitest.ts` |
+| T002 | Completed | REQ-003 | `.opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts` |
+| T003 | Completed | REQ-004 | `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts` |
 
 - [x] T001 Build the `040` replay corpus extractor, with optional compatibility-graded `028` holdout support and explicit exclusion of `042` until traces exist.
 - [x] T002 Define the quality rubric for convergence efficiency, recovery success rate, finding accuracy, and synthesis quality.
@@ -100,9 +100,9 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T004 | Completed | REQ-007 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-| T005 | Completed | REQ-008 | `.opencode/skill/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skill/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
-| T006 | Completed | REQ-005, REQ-007 | `.opencode/skill/system-spec-kit/scripts/optimizer/optimizer-manifest.json`; `.opencode/skill/sk-deep-research/assets/deep_research_config.json`; `.opencode/skill/sk-deep-review/assets/deep_review_config.json`; `.opencode/skill/sk-deep-research/references/convergence.md`; `.opencode/skill/sk-deep-review/references/convergence.md` |
+| T004 | Completed | REQ-007 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+| T005 | Completed | REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/search.cjs`; `.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts` |
+| T006 | Completed | REQ-005, REQ-007 | `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`; `.opencode/skills/sk-deep-research/assets/deep_research_config.json`; `.opencode/skills/sk-deep-review/assets/deep_review_config.json`; `.opencode/skills/sk-deep-research/references/convergence.md`; `.opencode/skills/sk-deep-review/references/convergence.md` |
 
 - [x] T004 Implement the random-search config optimizer for bounded deterministic numeric fields.
 - [x] T005 Build the audit trail for optimization runs, including rejected candidates and advisory patch outputs.
@@ -118,7 +118,7 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T007 | Completed | REQ-006, REQ-008 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+| T007 | Completed | REQ-006, REQ-008 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 
 - [x] T007 Implement the advisory-only promotion gate that refuses production mutation until replay fixtures and behavioral suites exist.
 
@@ -128,9 +128,9 @@ _memory:
 
 | Task ID | Status | Parent REQ | Files |
 |---------|--------|------------|-------|
-| T008 | Blocked | REQ-010 | `.opencode/skill/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skill/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
-| T009 | Blocked | REQ-011 | `.opencode/skill/system-spec-kit/scripts/optimizer/task-shape-model.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-task-shape-model.vitest.ts` |
-| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skill/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skill/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/command/spec_kit/deep-research.md`; `.opencode/command/spec_kit/deep-review.md` |
+| T008 | Blocked | REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/prompt-pack-generator.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-prompt-pack.vitest.ts`; `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/prompt-packs/` |
+| T009 | Blocked | REQ-011 | `.opencode/skills/system-spec-kit/scripts/optimizer/task-shape-model.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-task-shape-model.vitest.ts` |
+| T010 | Blocked | REQ-006, REQ-010 | `.opencode/skills/system-spec-kit/scripts/optimizer/promote.cjs`; `.opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts`; `.opencode/commands/spec_kit/deep-research.md`; `.opencode/commands/spec_kit/deep-review.md` |
 
 - [ ] [B] T008 DEFERRED: build the prompt-pack generation system for replayable and rollback-safe prompt candidates. Prerequisite: behavioral test suite + 2+ corpus families.
 - [ ] [B] T009 DEFERRED: build the cross-packet meta-learning data model for task-shape-aware learning. Prerequisite: behavioral test suite + 2+ corpus families.

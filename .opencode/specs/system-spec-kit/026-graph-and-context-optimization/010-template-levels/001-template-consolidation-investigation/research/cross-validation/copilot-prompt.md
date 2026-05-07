@@ -4,7 +4,7 @@ You are a fresh agent with no prior context. Read this carefully and respond wit
 
 ## Context
 
-This repo uses a "spec-kit" framework where every code-changing task has an associated spec folder under `.opencode/specs/`. Each spec folder contains markdown documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) plus optional addon docs (`handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`, `context-index.md`). These docs are scaffolded from templates that live in `.opencode/skill/system-spec-kit/templates/`.
+This repo uses a "spec-kit" framework where every code-changing task has an associated spec folder under `.opencode/specs/`. Each spec folder contains markdown documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) plus optional addon docs (`handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`, `context-index.md`). These docs are scaffolded from templates that live in `.opencode/skills/system-spec-kit/templates/`.
 
 ### Current template system (the thing under evaluation)
 

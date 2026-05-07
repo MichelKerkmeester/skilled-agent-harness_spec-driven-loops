@@ -19,10 +19,10 @@ You own the Code Graph foundation sub-phase. You wrap the existing scan flow in 
 5. **Research basis:**
    `.../research/007-external-project-pt-02/research.md` §4 (Code Graph findings), §11 Packet 1, §12 RISK-03
 6. **Existing Public code (READ before EDIT):**
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (target: line ~1369 `indexFiles` body)
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` (schema reference, do NOT modify)
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/index.ts` (add new handler registration)
-   - All existing `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/` (understand existing test patterns)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` (target: line ~1369 `indexFiles` body)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts` (schema reference, do NOT modify)
+   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/index.ts` (add new handler registration)
+   - All existing `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/` (understand existing test patterns)
 
 ## Worktree + branch
 
@@ -40,10 +40,10 @@ You own the Code Graph foundation sub-phase. You wrap the existing scan flow in 
 | `mcp_server/code_graph/handlers/index.ts` | **MODIFY** — register new `detect_changes` handler |
 | `mcp_server/code_graph/tests/phase-runner.test.ts` | **CREATE** — unit tests for runner |
 | `mcp_server/code_graph/tests/detect-changes.test.ts` | **CREATE** — handler tests |
-| `.opencode/skill/system-spec-kit/feature_catalog/03--discovery/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/03--discovery/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
-| `.opencode/skill/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/03--discovery/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/002/implementation-summary.md` | **MODIFY** — populate Status, Diff Library Choice, What Was Built, Verification Evidence |
 
 ## Files you may NOT touch
@@ -71,7 +71,7 @@ You own the Code Graph foundation sub-phase. You wrap the existing scan flow in 
 
 - [ ] All 19 tasks in `012/002/tasks.md` complete (T-002-A1 through T-002-F3)
 - [ ] All checklist items in `012/002/checklist.md` ticked with evidence
-- [ ] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .../012/002 --strict` passes
+- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../012/002 --strict` passes
 - [ ] `vitest run code_graph/tests/phase-runner.test.ts` green
 - [ ] `vitest run code_graph/tests/detect-changes.test.ts` green
 - [ ] Existing `code_graph` test suite still green (no regression)

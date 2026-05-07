@@ -11,18 +11,18 @@ Read the deep-research charter, prior iterations 001-006, the native-rerun synth
 
 This pass traced the requested advisor paths:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-status.ts`
 
 Adjacent code was read where needed to answer the focus question: `skill_advisor/lib/freshness/trust-state.ts`, `skill_advisor/lib/freshness/generation.ts`, `context-server.ts`, `handlers/skill-graph/scan.ts`, daemon watcher/lifecycle files, advisor schemas, and rebuild/status tests.
 
 Answer to the focus question: `trustState.state = "absent"` with `reason = "context-server-startup-scan"` resolves to `live` only when a later path both creates the SQLite skill graph artifact and publishes a generation whose source signature matches the new artifact state. Verified triggers are explicit `advisor_rebuild`, explicit `skill_graph_scan`, context-server startup scan, and context-server skill graph watcher events. `advisor_status` is diagnostic-only. No watchdog or automatic `advisor_status` repair path was found.
 
 ## FINDINGS
-- P1 `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:63` — `advisor_rebuild` skips when `before.freshness === "live"` and ignores `before.trustState.state`, so a mixed status like `freshness: "live"` plus `trustState.state: "absent"` can refuse the normal repair path even though the operator-visible trust state is absent; recommended remediation: rebuild unless both `freshness === "live"` and `trustState.state === "live"`, or derive rebuild reason from the worse of the two axes.
-- P1 `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1487` — the context-server startup skill graph scan publishes `state: "live"` immediately after `indexSkillMetadata()` and `computeAdvisorSourceSignature()` without checking that the SQLite artifact exists and that `advisor_status` would report a live trust state; recommended remediation: assert post-index artifact/trust-state invariants before publishing live, otherwise publish `absent`/`unavailable` or surface a startup warning that directs operators to `advisor_rebuild({"force":true})`.
-- P2 `.opencode/skill/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts:16` — rebuild tests model `trustState.state` as identical to `freshness`, and status tests cover absent only when generation state is also absent; this misses the verified mixed-axis regression shape; recommended remediation: add tests for `freshness:"live", trustState.state:"absent", reason:"context-server-startup-scan"` and assert non-forced rebuild repairs or at least does not skip.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:63` — `advisor_rebuild` skips when `before.freshness === "live"` and ignores `before.trustState.state`, so a mixed status like `freshness: "live"` plus `trustState.state: "absent"` can refuse the normal repair path even though the operator-visible trust state is absent; recommended remediation: rebuild unless both `freshness === "live"` and `trustState.state === "live"`, or derive rebuild reason from the worse of the two axes.
+- P1 `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1487` — the context-server startup skill graph scan publishes `state: "live"` immediately after `indexSkillMetadata()` and `computeAdvisorSourceSignature()` without checking that the SQLite artifact exists and that `advisor_status` would report a live trust state; recommended remediation: assert post-index artifact/trust-state invariants before publishing live, otherwise publish `absent`/`unavailable` or surface a startup warning that directs operators to `advisor_rebuild({"force":true})`.
+- P2 `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts:16` — rebuild tests model `trustState.state` as identical to `freshness`, and status tests cover absent only when generation state is also absent; this misses the verified mixed-axis regression shape; recommended remediation: add tests for `freshness:"live", trustState.state:"absent", reason:"context-server-startup-scan"` and assert non-forced rebuild repairs or at least does not skip.
 
 ## EVIDENCE
 Native-rerun advisor baseline:

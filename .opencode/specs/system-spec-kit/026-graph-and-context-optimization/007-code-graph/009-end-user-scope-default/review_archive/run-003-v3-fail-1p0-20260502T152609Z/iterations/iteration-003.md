@@ -2,18 +2,18 @@
 
 ## Files Reviewed (path:line list)
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:80-90`, `:140-166`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-238`, `:296-302`, `:334-340`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-332`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:293-379`, `:417-512`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-70`, `:73-120`
-- `.opencode/skill/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep for `SPECKIT_CODE_GRAPH_INDEX_SKILLS` / `CODE_GRAPH_INDEX_SKILLS_ENV`: no matches)
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md:31-42`
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts:27-33`, `:65-73`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:27-83`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts:80-90`, `:140-166`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts:248-265`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:179-198`, `:207-238`, `:296-302`, `:334-340`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/status.ts:171-175`, `:261-279`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts:103-113`, `:268-332`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:99-204`, `:293-379`, `:417-512`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scope-readiness.vitest.ts:59-70`, `:73-120`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/crash-recovery.vitest.ts:1-1040` (env-isolation grep sweep for `SPECKIT_CODE_GRAPH_INDEX_SKILLS` / `CODE_GRAPH_INDEX_SKILLS_ENV`: no matches)
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md:31-42`
+- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md:31-40`, `:84-105`
 
 ## Findings by Severity
 
@@ -23,9 +23,9 @@
 
 - **claim:** `relativizeScanError()` still does not reliably remove workspace absolute paths from `data.errors`. The tokenizer treats `/workspace/src/a.ts:/workspace/src/b.ts` and `/workspace/src/a.ts\0/workspace/src/b.ts` as one path-like match, calls `relativize()` once, and can return `src/a.ts:/workspace/src/b.ts` or `src/a.ts\0/workspace/src/b.ts`, leaving the second absolute path in the exposed payload.
 - **evidenceRefs:**
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
-  - `.opencode/skill/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:196-198`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:340`
+  - `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-scan.vitest.ts:486-512`
 - **counterevidenceSought:** Reproduced the same replacement logic against adversarial strings. Long all-matching input completed in linear time (1 MB in ~19 ms), newline-separated paths were individually relativized, and paths containing whitespace or brackets did not retain the workspace root. The existing regression test covers one embedded absolute path but not colon, NUL, quote, bracket, or whitespace variants.
 - **alternativeExplanation:** A colon can be a legal POSIX filename character, and NUL cannot be a real filesystem path character. However, this helper is redacting human/parser error strings, not only validated filesystem path inputs; parser or persistence error text can concatenate multiple absolute paths with delimiters before `data.errors` is serialized.
 - **finalSeverity:** P0

@@ -41,14 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/command/README.txt",
-      ".opencode/command/spec_kit/complete.md",
+      ".opencode/commands/README.txt",
+      ".opencode/commands/spec_kit/complete.md",
       ".opencode/README.md",
-      ".opencode/command/memory/learn.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md",
-      ".opencode/skill/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts",
-      ".opencode/command/memory/README.txt",
-      ".opencode/skill/system-spec-kit/README.md",
+      ".opencode/commands/memory/learn.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts",
+      ".opencode/commands/memory/README.txt",
+      ".opencode/skills/system-spec-kit/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -59,13 +59,13 @@
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/command/README.txt",
+        "path": ".opencode/commands/README.txt",
         "source": "derived"
       },
       {
         "name": "complete.md",
         "kind": "doc",
-        "path": ".opencode/command/spec_kit/complete.md",
+        "path": ".opencode/commands/spec_kit/complete.md",
         "source": "derived"
       },
       {
@@ -77,19 +77,19 @@
       {
         "name": "learn.md",
         "kind": "doc",
-        "path": ".opencode/command/memory/learn.md",
+        "path": ".opencode/commands/memory/learn.md",
         "source": "derived"
       },
       {
         "name": "13-constitutional-memory-manager-command.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md",
         "source": "derived"
       },
       {
         "name": "memory-learn-command-docs.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skill/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts",
         "source": "derived"
       },
       {

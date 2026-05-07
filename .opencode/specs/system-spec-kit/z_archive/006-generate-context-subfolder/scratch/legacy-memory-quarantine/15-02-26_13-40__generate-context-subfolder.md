@@ -264,7 +264,7 @@ Manual context save
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
+node .opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "system-spec-kit/z_archive/006-generate-context-subfolder", limit: 10 })
@@ -276,7 +276,7 @@ ls -la system-spec-kit/z_archive/006-generate-context-subfolder/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder --force
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js system-spec-kit/z_archive/006-generate-context-subfolder --force
 ```
 
 ### Recovery Priority

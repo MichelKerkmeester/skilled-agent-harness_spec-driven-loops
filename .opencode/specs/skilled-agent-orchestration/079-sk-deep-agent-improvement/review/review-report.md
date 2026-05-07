@@ -102,7 +102,7 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 
 ## Remediation Workstreams
 
-1. **Security hardening**: Fix unquoted command placeholders in `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml`; mirror if equivalent downstream runtime command assets exist.
+1. **Security hardening**: Fix unquoted command placeholders in `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml`; mirror if equivalent downstream runtime command assets exist.
 2. **Release evidence reconciliation**: Correct `resource-map.md` runtime mirror rows and summary.
 3. **Continuity completion**: Execute `/memory:save`, then update `implementation-summary.md`, `tasks.md`, and `checklist.md` so REQ-015/T-041/CHK-055 agree.
 4. **Documentation cleanup**: Replace retired `sk-deep-research` / `sk-deep-review` entries in `.opencode/install_guides/SET-UP - AGENTS.md`.
@@ -185,12 +185,12 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md`
-- `.opencode/command/improve/assets/improve_improve-agent_auto.yaml`
-- `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml`
+- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`
+- `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml`
 - `.opencode/install_guides/SET-UP - AGENTS.md`
 - `.opencode/install_guides/README.md`
 - `README.md`
 - `AGENTS.md`
-- `.opencode/skill/deep-agent-improvement/SKILL.md`
+- `.opencode/skills/deep-agent-improvement/SKILL.md`
 
 STATUS=OK

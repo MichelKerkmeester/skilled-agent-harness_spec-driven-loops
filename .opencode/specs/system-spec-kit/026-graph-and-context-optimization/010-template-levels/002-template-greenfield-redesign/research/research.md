@@ -97,7 +97,7 @@ The investigation started broader than the final answer. It scored multiple desi
 
 ## 6. Final Design - Manifest Schema
 
-The manifest lives at `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`.
+The manifest lives at `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`.
 
 Example v1 manifest:
 
@@ -248,7 +248,7 @@ Two details matter:
 
 ## 7. Final Design - Inline-Gate Grammar
 
-Inline gates are a template-rendering contract, not shell string filtering. The canonical renderer should live at `.opencode/skill/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`, with shell consumers calling compiled output or a narrow wrapper from `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`.
+Inline gates are a template-rendering contract, not shell string filtering. The canonical renderer should live at `.opencode/skills/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`, with shell consumers calling compiled output or a narrow wrapper from `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`.
 
 Syntax example:
 
@@ -326,10 +326,10 @@ The follow-on implementation packet should stage the work so the manifest can be
 
 Add:
 
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/inline-gates.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/template-scaffold.vitest.ts`
 
 Implement:
 
@@ -344,24 +344,24 @@ Implement:
 
 Add or port:
 
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/spec.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/plan.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/checklist.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/decision-record.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/implementation-summary.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/handover.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/debug-delegation.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/research.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/resource-map.md.tmpl`
-- `.opencode/skill/system-spec-kit/templates/manifest/templates/context-index.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/spec.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/plan.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/tasks.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/checklist.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/decision-record.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/implementation-summary.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/handover.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/debug-delegation.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/research.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/resource-map.md.tmpl`
+- `.opencode/skills/system-spec-kit/templates/manifest/templates/context-index.md.tmpl`
 
 Keep the 15-file source target by treating these as the functional source surface plus manifest/loader utilities. Legacy level folders are removed only after tests prove parity.
 
 ### Phase 3. Scaffolder Integration
 
-Modify `.opencode/skill/system-spec-kit/scripts/spec/create.sh`:
+Modify `.opencode/skills/system-spec-kit/scripts/spec/create.sh`:
 
 - replace primary `--level` with `--preset`;
 - keep `--level` as a legacy alias mapping `1 -> simple-change`, `2 -> validated-change`, `3 -> arch-change`, `3+ -> governed-change`;
@@ -371,18 +371,18 @@ Modify `.opencode/skill/system-spec-kit/scripts/spec/create.sh`:
 - mirror `templateContract` into `description.json` or make the description generator read the graph snapshot;
 - make `phase-parent` create only the parent unless child specs are explicitly supplied.
 
-Modify `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` only as a thin shell bridge. The canonical logic belongs in TypeScript.
+Modify `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` only as a thin shell bridge. The canonical logic belongs in TypeScript.
 
 ### Phase 4. Validator Integration
 
 Modify:
 
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh`
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh`
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh`
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh`
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts`
 
 Rules:
 
@@ -397,14 +397,14 @@ Rules:
 
 Delete or relocate level-era template sources only after snapshot and strict validation pass:
 
-- `.opencode/skill/system-spec-kit/templates/level_1/`
-- `.opencode/skill/system-spec-kit/templates/level_2/`
-- `.opencode/skill/system-spec-kit/templates/level_3/`
-- `.opencode/skill/system-spec-kit/templates/level_3+/`
-- `.opencode/skill/system-spec-kit/templates/addendum/`
-- `.opencode/skill/system-spec-kit/templates/core/`
-- `.opencode/skill/system-spec-kit/templates/examples/`
-- `.opencode/skill/system-spec-kit/templates/phase_parent/`
+- `.opencode/skills/system-spec-kit/templates/level_1/`
+- `.opencode/skills/system-spec-kit/templates/level_2/`
+- `.opencode/skills/system-spec-kit/templates/level_3/`
+- `.opencode/skills/system-spec-kit/templates/level_3+/`
+- `.opencode/skills/system-spec-kit/templates/addendum/`
+- `.opencode/skills/system-spec-kit/templates/core/`
+- `.opencode/skills/system-spec-kit/templates/examples/`
+- `.opencode/skills/system-spec-kit/templates/phase_parent/`
 
 Move stress-test assets out of `templates/` if they remain useful.
 
@@ -552,7 +552,7 @@ Intermediate checks:
 - graph metadata `source_docs` contains authored markdown only;
 - required files still include runtime metadata.
 
-Broken step found: `template-structure.js compare-manifest` is required before header validation can run. Fix: implement it in `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`.
+Broken step found: `template-structure.js compare-manifest` is required before header validation can run. Fix: implement it in `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`.
 
 ### `phase-parent`
 
@@ -588,35 +588,35 @@ Two baselines matter:
 The greenfield 15-file target:
 
 ```text
-.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json
-.opencode/skill/system-spec-kit/templates/manifest/templates/spec.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/plan.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/tasks.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/implementation-summary.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/checklist.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/decision-record.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/resource-map.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/context-index.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/handover.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/debug-delegation.md.tmpl
-.opencode/skill/system-spec-kit/templates/manifest/templates/research.md.tmpl
-.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh
-.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts
+.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json
+.opencode/skills/system-spec-kit/templates/manifest/templates/spec.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/plan.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/tasks.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/implementation-summary.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/checklist.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/decision-record.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/phase-parent.spec.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/resource-map.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/context-index.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/handover.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/debug-delegation.md.tmpl
+.opencode/skills/system-spec-kit/templates/manifest/templates/research.md.tmpl
+.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh
+.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts
 ```
 
-Practical implementation may add `.opencode/skill/system-spec-kit/mcp_server/lib/templates/inline-gates.ts` as a separate file. If so, keep the spirit of the target by counting it as the shared renderer that removes complexity from shell scripts, not as a regression into a template folder matrix.
+Practical implementation may add `.opencode/skills/system-spec-kit/mcp_server/lib/templates/inline-gates.ts` as a separate file. If so, keep the spirit of the target by counting it as the shared renderer that removes complexity from shell scripts, not as a regression into a template folder matrix.
 
 Per-level directories deleted after parity:
 
-- `.opencode/skill/system-spec-kit/templates/level_1/`
-- `.opencode/skill/system-spec-kit/templates/level_2/`
-- `.opencode/skill/system-spec-kit/templates/level_3/`
-- `.opencode/skill/system-spec-kit/templates/level_3+/`
-- `.opencode/skill/system-spec-kit/templates/addendum/`
-- `.opencode/skill/system-spec-kit/templates/core/`
-- `.opencode/skill/system-spec-kit/templates/examples/`
-- `.opencode/skill/system-spec-kit/templates/phase_parent/`
+- `.opencode/skills/system-spec-kit/templates/level_1/`
+- `.opencode/skills/system-spec-kit/templates/level_2/`
+- `.opencode/skills/system-spec-kit/templates/level_3/`
+- `.opencode/skills/system-spec-kit/templates/level_3+/`
+- `.opencode/skills/system-spec-kit/templates/addendum/`
+- `.opencode/skills/system-spec-kit/templates/core/`
+- `.opencode/skills/system-spec-kit/templates/examples/`
+- `.opencode/skills/system-spec-kit/templates/phase_parent/`
 
 Addon stubs eliminated from default scaffolds:
 
@@ -641,7 +641,7 @@ Future work:
 
 - Design the first manifest-version migration adapter when v1 has a concrete breaking change.
 - Decide whether `implementation-summary.md` is scaffolded from day one or remains lifecycle/warn-gated.
-- Implement `compare-manifest` in `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`.
+- Implement `compare-manifest` in `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`.
 - Wire `generate-description.js` and graph metadata creation to the same resolved contract.
 - Add orphan authored-doc warnings.
 - Add a prune/archive command only after warning behavior is proven.
@@ -677,8 +677,8 @@ No adapter should silently drop capabilities, sections, or authored docs.
 Representative command classes used during the loop:
 
 ```bash
-sed -n '1,220p' .opencode/skill/sk-deep-research/SKILL.md
-sed -n '1,220p' .opencode/skill/system-spec-kit/SKILL.md
+sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md
+sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md
 find .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research -maxdepth 3 -type f | sort
 wc -c .opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/research/iterations/iteration-00*.md
 ```
@@ -714,7 +714,7 @@ The key insight from iterations 10-13 is simple:
 - Levels are the PUBLIC contract.
 - Kind, capabilities, preset, section profiles, and manifest rows are PRIVATE implementation.
 
-Public and AI-facing surfaces keep `Level 1`, `Level 2`, `Level 3`, `Level 3+`, phase-parent wording, `--level N`, `DOC_LEVEL`, `<!-- SPECKIT_LEVEL: N -->`, `level: N`, and `spec_level`. The scaffolder and validators may privately call `resolveLevelContract(level)` and read `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`, but they must not emit internal taxonomy terms into help text, command docs, skill text, validator output, generated Markdown, or AI-readable packet metadata.
+Public and AI-facing surfaces keep `Level 1`, `Level 2`, `Level 3`, `Level 3+`, phase-parent wording, `--level N`, `DOC_LEVEL`, `<!-- SPECKIT_LEVEL: N -->`, `level: N`, and `spec_level`. The scaffolder and validators may privately call `resolveLevelContract(level)` and read `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, but they must not emit internal taxonomy terms into help text, command docs, skill text, validator output, generated Markdown, or AI-readable packet metadata.
 
 ### 18.3 Iteration 10 Audit Findings
 
@@ -746,15 +746,15 @@ Returned fields are level-shaped and safe for shell/validator boundaries: `requi
 
 **Context:** On 2026-05-01 the user added a workflow invariant: AI behavior, Gate 3 behavior, user conversation flow, command syntax, authored packet markers, and user-visible validator output must remain level-based. The C+F manifest design can still remove duplicated template source folders, but it must not introduce a new public taxonomy. Iteration 10 found that earlier iteration-007 and iteration-009 wording leaked `preset`, `capability`, and `kind` into public CLI help, validator messages, metadata, and synthesis language.
 
-**Decision:** Level vocabulary remains the sole public and AI-facing contract. `Level 1`, `Level 2`, `Level 3`, `Level 3+`, and phase-parent remain the user-facing taxonomy in `CLAUDE.md`, `AGENTS.md`, command markdown, skill text, generated packet markers, validator output, and CLI help. Preset, capability, and kind names are strictly internal to `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`, the TypeScript resolver, and scaffolder internals. The public bridge is `resolveLevelContract(level)`.
+**Decision:** Level vocabulary remains the sole public and AI-facing contract. `Level 1`, `Level 2`, `Level 3`, `Level 3+`, and phase-parent remain the user-facing taxonomy in `CLAUDE.md`, `AGENTS.md`, command markdown, skill text, generated packet markers, validator output, and CLI help. Preset, capability, and kind names are strictly internal to `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, the TypeScript resolver, and scaffolder internals. The public bridge is `resolveLevelContract(level)`.
 
 **Specific bans:**
 
 - No public `--preset X` flag. Drop it from `create.sh --help`, examples, slash-command docs, and AI-facing skill text. If test-only fixture generation needs a non-level selector, it must be private, undocumented, and unable to appear in normal help or logs.
-- No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, command markdown, agent prompts, `.opencode/skill/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.
+- No mention of `preset`, `capability`, or `kind` in `CLAUDE.md`, `AGENTS.md`, command markdown, agent prompts, `.opencode/skills/system-spec-kit/SKILL.md`, validator error messages, validator remediation text, scaffolder log lines, or frontmatter exposed to the AI.
 - Keep `--level N`, `<!-- SPECKIT_LEVEL: N -->`, existing `level: N` frontmatter, `spec_level` metadata, and the Level 1/2/3/3+ taxonomy in user-facing docs.
 
-**Implementation:** Replace the iteration-007 public `--preset` proposal with level-only public diffs. Canonical API: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts::resolveLevelContract(level)`. Shell bridge: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh::resolve_level_contract <level>`. `create.sh` keeps `DOC_LEVEL`, `--level`, `DOC_LEVEL` JSON, and Level-shaped logs. Validator rules consume the resolved contract internally but emit only Level-shaped or taxonomy-neutral messages.
+**Implementation:** Replace the iteration-007 public `--preset` proposal with level-only public diffs. Canonical API: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts::resolveLevelContract(level)`. Shell bridge: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh::resolve_level_contract <level>`. `create.sh` keeps `DOC_LEVEL`, `--level`, `DOC_LEVEL` JSON, and Level-shaped logs. Validator rules consume the resolved contract internally but emit only Level-shaped or taxonomy-neutral messages.
 
 **Consequences:** Workflow invariance improves because existing AI prompts, slash commands, Gate 3 behavior, and user muscle memory remain stable. Maintainability improves because duplicated `templates/level_N/` source folders can disappear after parity, while level semantics resolve from one manifest row. The cost is one adapter layer, and v1 cannot expose arbitrary named presets without a future ADR that reopens the public workflow contract.
 
@@ -806,7 +806,7 @@ Apply these replacements in the follow-on implementation packet:
    - Sub-phase list: which child phase folders exist and what each one does
    ```
 
-Workflow-invariance CI should be a single Vitest file under `.opencode/skill/system-spec-kit/scripts/tests/`, for example `workflow-invariance.vitest.ts`. It should scan live script outputs, generated fixture snapshots, template sources, command docs, agent prompts, and skill/root policy docs for banned public taxonomy terms. It should allow historical research references only through explicit path/section allowlists, and existing affected fixtures should be rewritten immediately in the same implementation PR.
+Workflow-invariance CI should be a single Vitest file under `.opencode/skills/system-spec-kit/scripts/tests/`, for example `workflow-invariance.vitest.ts`. It should scan live script outputs, generated fixture snapshots, template sources, command docs, agent prompts, and skill/root policy docs for banned public taxonomy terms. It should allow historical research references only through explicit path/section allowlists, and existing affected fixtures should be rewritten immediately in the same implementation PR.
 
 ### 18.9 Final Recommendation + Convergence
 

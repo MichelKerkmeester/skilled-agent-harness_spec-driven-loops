@@ -4,19 +4,19 @@
 
 Reviewed:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 Supporting code inspected where needed:
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`
-- `.opencode/skill/system-spec-kit/shared/embeddings.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`
+- `.opencode/skills/system-spec-kit/shared/embeddings.ts`
 
 ## Executive Summary
 

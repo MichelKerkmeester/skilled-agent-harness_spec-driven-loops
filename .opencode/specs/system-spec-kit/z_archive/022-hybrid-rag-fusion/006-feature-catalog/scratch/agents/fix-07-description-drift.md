@@ -3,36 +3,36 @@
 I’m checking each requested catalog entry against the actual `mcp_server` implementation first, then I’ll patch only the mismatches and show the diffs.
 
 ● Read 02-system-statistics-memorystats.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memorystats.m
+  │ .opencode/skills/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memorystats.m
   │ d
   └ 57 lines read
 
 ● Read 01-workspace-scanning-and-indexing-memoryindexscan.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-indexi
+  │ .opencode/skills/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-indexi
   │ ng-memoryindexscan.md
   └ 228 lines read
 
 ● Read 02-checkpoint-listing-checkpointlist.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpointli
+  │ .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpointli
   │ st.md
   └ 144 lines read
 
 ● Read 01-typed-weighted-degree-channel.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-de
+  │ .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-de
   │ gree-channel.md
   └ 58 lines read
 
 ● Read 17-temporal-structural-coherence-scoring.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
+  │ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
   │ al-coherence-scoring.md
   └ 50 lines read
 
 ● Read 06-query-expansion.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
   └ 108 lines read
 
 ● Read 11-graph-concept-routing.md
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
   │ md
   └ 47 lines read
 
@@ -61,44 +61,44 @@ I’ve got the doc targets loaded. Next I’m grounding each claim against the l
 
 ● Search (grep)
   │ "coherence|future|causal|structural|quality loop" in **/*.ts
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers)
   └ 5 lines found
 
 ● Search (grep)
   │ "excludePatterns|memory_stats|getStats|memory_stats" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "memory_index_scan|specs/|\.opencode/specs|\.txt|memory/" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "checkpoint_list|limit|offset|page|cursor" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "DEFAULT_MAX_TYPED_DEGREE|MAX_TYPED_DEGREE|DEGREE_BOOST_CAP|SPECKIT_DEGREE_BOOST|search-flags|gr
-  │ aphActivated" in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ aphActivated" in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "embedding-expansion|query-expander|simple|expand|Stage 1|expanded" in **/*.{ts,js}
-  │ (.opencode/skill/system-spec-kit/mcp_server)
+  │ (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Search (grep)
   │ "graph concept
   │ routing|graphActivated|matchedConcepts|d2-concept-routing|SPECKIT_GRAPH_CONCEPT_ROUTING|activat"
-  │ in **/*.{ts,js} (.opencode/skill/system-spec-kit/mcp_server)
+  │ in **/*.{ts,js} (.opencode/skills/system-spec-kit/mcp_server)
   └ 5 lines found
 
 ● Run skill advisor and create session plan (shell)
-  │ python3 .opencode/skill/scripts/skill_advisor.py "Documentation remediation for seven feature
-  │ catalog files under .opencode/skill/system-spec-kit/feature_catalog; verify against
-  │ .opencode/skill/system-spec-kit/mcp_server and fix inaccurate descriptions only" --threshold
+  │ python3 .opencode/skills/scripts/skill_advisor.py "Documentation remediation for seven feature
+  │ catalog files under .opencode/skills/system-spec-kit/feature_catalog; verify against
+  │ .opencode/skills/system-spec-kit/mcp_server and fix inaccurate descriptions only" --threshold
   │ 0.8 && mkdir -p
   │ "/Users/michelkerkmeester/.copilot/session-state/531b6f3a-2c42-4065-b00d-fb76f0b13b9c" && cat …
   └ 61 lines...
@@ -108,100 +108,100 @@ The broad search was noisy, so I’m narrowing to the exact handler/search files
 I found the catalog text that needs tightening. Now I’m narrowing into the exact source lines so the wording matches current runtime behavior, not older intent comments.
 
 ● Search (grep)
-  │ "excludePatterns" (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts)
+  │ "excludePatterns" (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts)
   └ 68 lines found
 
 ● Search (grep)
   │ "specs/|\.opencode/specs|\.txt|memory/|includeSpecDocs|includeConstitutional"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
   └ 85 lines found
 
 ● Search (grep)
   │ "checkpoint_list|limit|offset|page|cursor"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "DEFAULT_MAX_TYPED_DEGREE|MAX_TYPED_DEGREE|DEGREE_BOOST_CAP|MAX_TOTAL_DEGREE"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts)
   └ 107 lines found
 
 ● Search (grep)
   │ "SPECKIT_DEGREE_BOOST|degree|graph concept routing|SPECKIT_GRAPH_CONCEPT_ROUTING|activat"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/search-flags.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts)
   └ 35 lines found
 
 ● Search (grep)
   │ "coherence|future|causal|self|unresolved|structural"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "simple|expand|expanded|embedding"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "expand|expansion|synonym|terms"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/query-expander.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts)
   └ 63 lines found
 
 ● Search (grep)
   │ "embedding
   │ expansion|expanded|baseline|simple|classifier|d2-concept-routing|matchedConcepts|graphActivated"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "graphActivated|matchedConcepts|noun|alias|routing"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts)
   └ 5 lines found
 
 I’ve confirmed a few of the mismatches already: `excludePatterns` is substring-based, the degree constant is `DEFAULT_MAX_TYPED_DEGREE`, and the graph-routing flag comment really does overstate behavior. I’m pulling the last source slices now so I can patch all seven in one pass.
 
 ● Read checkpoints.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts
   └ L1:220 (220 lines read)
 
 ● Search (grep)
   │ "\.opencode/specs|specs/\*\*/memory|memory.*\.txt|\.txt|spec
   │ documents|includeSpecDocs|includeConstitutional"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts)
   └ 20 lines found
 
 ● Read quality-loop.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts
   └ L242:359 (118 lines read)
 
 ● Read embedding-expansion.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts
   └ L1:220 (220 lines read)
 
 ● Read stage1-candidate-gen.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts
   └ L1:260 (260 lines read)
 
 ● Read entity-linker.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/entity-linker.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts
   └ L1:260 (260 lines read)
 
 ● Read memory-index-discovery.ts
-  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
+  │ .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts
   └ L1:260 (197 lines read)
 
 ● Search (grep)
   │ "async function handleCheckpointList|function handleCheckpointList|checkpoint_list"
-  │ (.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts)
   └ 5 lines found
 
 ● Search (grep)
   │ "routeQueryConcepts|graphActivated|matchedConcepts|d2-concept-routing"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts)
   └ 47 lines found
 
 ● Search (grep)
   │ "export function isExpansionActive|classifyQueryComplexity"
-  │ (.opencode/skill/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts)
+  │ (.opencode/skills/system-spec-kit/mcp_server/lib/search/embedding-expansion.ts)
   └ 67 lines found
 
 I’ve got enough source evidence to patch accurately. I’m updating the seven feature files now, then I’ll run a quick validation pass and show you the diffs.
@@ -210,26 +210,26 @@ I’ve got enough source evidence to patch accurately. I’m updating the seven 
   │ python - <<'PY'
   │ from pathlib import Path
   │ base = Path('/Users/michelkerkmeester/MEGA/Development/Opencode
-  │ Env/Public/.opencode/skill/system-spec-kit/feature_catalog')
+  │ Env/Public/.opencode/skills/system-spec-kit/feature_catalog')
   │ changes = {…
   └ 180 lines...
 
 The first edit attempt tripped on the local shell using `python3` instead of `python`. I’m applying the changes directly now and then I’ll verify the docs against the same source files.
 
 ● Edit
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memoryst
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memoryst
   │ ats.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-i
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-i
   │ ndexing-memoryindexscan.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpo
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpo
   │ intlist.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weight
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weight
   │ ed-degree-channel.md
-  │ Edit .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-str
+  │ Edit .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-str
   │ uctural-coherence-scoring.md
   │ Edit
-  │ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
-  └ Edit .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-rou
+  │ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
+  └ Edit .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-rou
     ting.md
 
 The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing the exact hunks so you can review the remediations file by file.
@@ -260,7 +260,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │       aligned with chunked and partially indexed rows that already exist elsewhere in the
   │       vector-index state model.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memorystats.m
+  └ .opencode/skills/system-spec-kit/feature_catalog/03--discovery/02-system-statistics-memorystats.m
     d
 
 ● Show diff 01-workspace-scanning-and-indexing-memoryindexscan.md
@@ -270,14 +270,14 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │       it, new or modified memory files would be invisible to search.
   │ 19
   │ 20 -  The scanner discovers files from three sources: spec folder memory files
-  │       (`specs/**/memory/*.md`), constitutional files (`.opencode/skill/*/constitutional/*.md`)
+  │       (`specs/**/memory/*.md`), constitutional files (`.opencode/skills/*/constitutional/*.md`)
   │       and spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`,
   │       `decision-record.md`, `implementation-summary.md`, `research/research.md`, `handover.md`).
   │       Canonical path deduplication prevents the same file from being indexed twice under
   │       different paths (the `specs/` vs `.opencode/specs/` symlink problem).
   │ 20 +  The scanner discovers files from three sources: spec folder memory files under both
   │       `.opencode/specs/**/memory/` and `specs/**/memory/` (including `.md` and `.txt` memory
-  │       files), constitutional files under `.opencode/skill/*/constitutional/` (currently `.md`,
+  │       files), constitutional files under `.opencode/skills/*/constitutional/` (currently `.md`,
   │       excluding `README.md`/`README.txt`), and spec documents (`spec.md`, `plan.md`, `tasks.md`,
   │        `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research/research.md`,
   │       `handover.md`). Canonical path deduplication prevents the same file from being indexed
@@ -291,7 +291,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │       `INDEX_SCAN_COOLDOWN` prevents rapid repeated scans from exhausting resources, returning
   │       an E429 error with a wait time if you scan too frequently.
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-indexi
+  └ .opencode/skills/system-spec-kit/feature_catalog/04--maintenance/01-workspace-scanning-and-indexi
     ng-memoryindexscan.md
 
 ● Show diff 02-checkpoint-listing-checkpointlist.md
@@ -335,7 +335,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │ 19
   │ 20     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpointli
+  └ .opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/02-checkpoint-listing-checkpointli
     st.md
 
 ● Show diff 01-typed-weighted-degree-channel.md
@@ -382,7 +382,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │ 47     | `mcp_server/tests/graph-search-fn.vitest.ts` | Graph search function tests |
   │ 48     | `mcp_server/tests/rollout-policy.vitest.ts` | Rollout policy tests |
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-de
+  └ .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-de
     gree-channel.md
 
 ● Show diff 17-temporal-structural-coherence-scoring.md
@@ -448,7 +448,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │ 21
   │ 22     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
+  └ .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structur
     al-coherence-scoring.md
 
 ● Show diff 06-query-expansion.md
@@ -508,7 +508,7 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │ 21
   │ 22     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
+  └ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/06-query-expansion.md
 
 ● Show diff 11-graph-concept-routing.md
   │
@@ -537,14 +537,14 @@ The edits are in. I’m doing a quick whitespace/diff sanity check and surfacing
   │ 21
   │ 22     ---
   │
-  └ .opencode/skill/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
+  └ .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/11-graph-concept-routing.
     md
 
 ● Run diff whitespace check (shell)
-  │ git --no-pager diff --check -- .opencode/skill/system-spec-kit/feature_catalog/03--discovery/0
-  │ 2-system-statistics-memorystats.md .opencode/skill/system-spec-kit/feature_catalog/04--mainten
-  │ ance/01-workspace-scanning-and-indexing-memoryindexscan.md .opencode/skill/system-spec-kit/fea
-  │ ture_catalog/05--lifecycle/02-checkpoint-listing-checkpointlist.md .opencode/skill/system-spec
+  │ git --no-pager diff --check -- .opencode/skills/system-spec-kit/feature_catalog/03--discovery/0
+  │ 2-system-statistics-memorystats.md .opencode/skills/system-spec-kit/feature_catalog/04--mainten
+  │ ance/01-workspace-scanning-and-indexing-memoryindexscan.md .opencode/skills/system-spec-kit/fea
+  │ ture_catalog/05--lifecycle/02-checkpoint-listing-checkpointlist.md .opencode/skills/system-spec
   │ -kit/feature_catalog/10--graph-signal-activation/01-typed-weighted-degree-channel.md …
   └ 6 lines...
 

@@ -85,8 +85,8 @@ Reconcile the standard with the OpenCode plugin contract reality, AND bring the 
 
 ### In Scope
 
-- `.opencode/skill/sk-code-opencode/references/javascript/quality_standards.md` — add §10 OpenCode Plugin Exemption Tier (mirrors §9 Test File Exemption Tier structure)
-- `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md` — add a one-paragraph note next to the CommonJS P1 item pointing at the new exemption
+- `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` — add §10 OpenCode Plugin Exemption Tier (mirrors §9 Test File Exemption Tier structure)
+- `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md` — add a one-paragraph note next to the CommonJS P1 item pointing at the new exemption
 - `.opencode/plugins/spec-kit-skill-advisor.js` — add `COMPONENT:`/`PURPOSE:` lines to box header; add JSDoc to default export and missing helpers; add numbered ALL-CAPS section dividers mirroring compact plugin's pattern
 
 ### Out of Scope
@@ -100,8 +100,8 @@ Reconcile the standard with the OpenCode plugin contract reality, AND bring the 
 
 | Path | Change Type | Description |
 |------|-------------|-------------|
-| `.opencode/skill/sk-code-opencode/references/javascript/quality_standards.md` | Modify | Append §10 OpenCode Plugin Exemption Tier |
-| `.opencode/skill/sk-code-opencode/assets/checklists/javascript_checklist.md` | Modify | Annotate CommonJS P1 item with link to new exemption |
+| `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` | Modify | Append §10 OpenCode Plugin Exemption Tier |
+| `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md` | Modify | Annotate CommonJS P1 item with link to new exemption |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | Header fields + JSDoc + section dividers (no logic change) |
 <!-- /ANCHOR:scope -->
 

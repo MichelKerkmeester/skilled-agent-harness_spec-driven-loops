@@ -60,7 +60,7 @@ contextType: "implementation"
 ## Phase 2: Database/Checkpoint → Manage (P0) 
 
 ### T4: Create manage.md
-- [x] CHK-040: manage.md created at `.opencode/command/memory/manage.md`
+- [x] CHK-040: manage.md created at `.opencode/commands/memory/manage.md`
 - [x] CHK-041: All database modes working (stats, scan, cleanup, tier, health)
 - [x] CHK-042: MCP tools verified (L3-L5 tools)
 
@@ -146,7 +146,7 @@ contextType: "implementation"
 ## Post-Implementation Checklist 
 
 - [x] CHK-200: Command count verified = 5
-  - Evidence: `ls .opencode/command/memory/*.md` returns 5 files
+  - Evidence: `ls .opencode/commands/memory/*.md` returns 5 files
 - [x] CHK-201: All functionality preserved (except why)
   - Evidence: All MCP tools verified working
 - [x] CHK-202: No breaking changes during transition
@@ -164,15 +164,15 @@ contextType: "implementation"
 
 ```bash
 # Count commands after consolidation
-ls -la .opencode/command/memory/*.md | wc -l
+ls -la .opencode/commands/memory/*.md | wc -l
 # Result: 5 ✅
 
 # Verify no deprecated files remain
-ls .opencode/command/memory/ | grep -E "(search|database|checkpoint|why|correct)"
+ls .opencode/commands/memory/ | grep -E "(search|database|checkpoint|why|correct)"
 # Result: No output ✅
 
 # Verify no why references in command folder
-grep -r "memory:why" .opencode/command/memory/
+grep -r "memory:why" .opencode/commands/memory/
 # Result: No output ✅
 
 # Verify MCP tool names correct
@@ -191,7 +191,7 @@ grep -r "memory_drift_learn" .opencode/
 After consolidation, the following 5 commands exist:
 
 ```
-.opencode/command/memory/
+.opencode/commands/memory/
 ├── context.md     ✅ (unified retrieval, absorbed search)
 ├── continue.md    ✅ (session recovery)
 ├── learn.md       ✅ (feedback + correct/undo/history subcommands)
@@ -232,12 +232,12 @@ After consolidation, the following 5 commands exist:
 
 | Artifact | Location |
 |----------|----------|
-| Command files (5) | `.opencode/command/memory/` |
-| Updated SKILL.md | `.opencode/skill/system-spec-kit/SKILL.md` |
-| Updated README.md | `.opencode/skill/system-spec-kit/README.md` |
-| Updated CHANGELOG.md | `.opencode/skill/system-spec-kit/CHANGELOG.md` |
-| Updated MCP README | `.opencode/skill/system-spec-kit/mcp_server/README.md` |
-| Template reference | `.opencode/skill/sk-doc/assets/opencode/command_template.md` |
+| Command files (5) | `.opencode/commands/memory/` |
+| Updated SKILL.md | `.opencode/skills/system-spec-kit/SKILL.md` |
+| Updated README.md | `.opencode/skills/system-spec-kit/README.md` |
+| Updated CHANGELOG.md | `.opencode/skills/system-spec-kit/CHANGELOG.md` |
+| Updated MCP README | `.opencode/skills/system-spec-kit/mcp_server/README.md` |
+| Template reference | `.opencode/skills/sk-doc/assets/opencode/command_template.md` |
 | This spec folder | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-memory-command-consolidation` |
 
 ---

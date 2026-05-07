@@ -12,9 +12,9 @@ Yes. `@context-prime` is useful as an internal bootstrap behavior, but it does n
 I compared the local orchestrator/context stack with Xethryon's smaller visible role map and autonomy-driven role switching.
 
 ## Evidence
-- `@orchestrate` explicitly delegates to `@context-prime` at workflow start, then relies on `@context` for exploration. [SOURCE: .opencode/agent/orchestrate.md:24-36] [SOURCE: .opencode/agent/orchestrate.md:49-60] [SOURCE: .opencode/agent/orchestrate.md:158-183]
-- `@context` is a retrieval-first exploration role with broader search and evidence responsibilities. [SOURCE: .opencode/agent/context.md:25-31] [SOURCE: .opencode/agent/context.md:45-53] [SOURCE: .opencode/agent/context.md:133-168]
-- `@context-prime` is narrowly about fast bootstrap, session health, and compact startup orientation. [SOURCE: .opencode/agent/context-prime.md:22-39] [SOURCE: .opencode/agent/context-prime.md:57-87]
+- `@orchestrate` explicitly delegates to `@context-prime` at workflow start, then relies on `@context` for exploration. [SOURCE: .opencode/agents/orchestrate.md:24-36] [SOURCE: .opencode/agents/orchestrate.md:49-60] [SOURCE: .opencode/agents/orchestrate.md:158-183]
+- `@context` is a retrieval-first exploration role with broader search and evidence responsibilities. [SOURCE: .opencode/agents/context.md:25-31] [SOURCE: .opencode/agents/context.md:45-53] [SOURCE: .opencode/agents/context.md:133-168]
+- `@context-prime` is narrowly about fast bootstrap, session health, and compact startup orientation. [SOURCE: .opencode/agents/context-prime.md:22-39] [SOURCE: .opencode/agents/context-prime.md:57-87]
 - Xethryon exposes a smaller visible role set: build, plan, explore, coordinator, and verification. There is no separately named "priming" role in the operator-facing map. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/XETHRYON_CONTEXT.md:140-158]
 - Xethryon's runtime handles prompt assembly and orientation through the session system instead of giving bootstrap its own visible agent identity. [SOURCE: .opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/009-xethryon/external/packages/opencode/src/session/system.ts:66-115]
 
@@ -49,7 +49,7 @@ finding: merge `@context-prime` into startup/bootstrap behavior and keep `@conte
 - **Migration path:** first change documentation and routing language, then consider whether the separate agent file still needs to exist at all.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/agent/orchestrate.md`
+- **Target file or module:** `.opencode/agents/orchestrate.md`
 - **Change type:** modified existing
 - **Blast radius:** medium
 - **Prerequisites:** define what information must still be preserved in the startup payload after the role is de-emphasized

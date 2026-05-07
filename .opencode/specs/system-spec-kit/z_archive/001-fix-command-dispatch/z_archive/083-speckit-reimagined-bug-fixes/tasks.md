@@ -49,14 +49,14 @@ contextType: "implementation"
 
 ### T-001: Fix README ANCHOR Format - Line 421
 - **Bug:** BUG-001
-- **File:** `.opencode/skill/system-spec-kit/README.md`
+- **File:** `.opencode/skills/system-spec-kit/README.md`
 - **Line:** 421
 - **Change:** `ANCHOR_END` → `/ANCHOR:`
 - **Status:** [x] Complete
 
 ### T-002: Fix README ANCHOR Documentation - Line 696
 - **Bug:** BUG-001
-- **File:** `.opencode/skill/system-spec-kit/README.md`
+- **File:** `.opencode/skills/system-spec-kit/README.md`
 - **Line:** 696
 - **Change:** Update troubleshooting text
 - **Status:** [x] Complete
@@ -65,49 +65,49 @@ contextType: "implementation"
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/debug.md`
 - **Lines:** 345-346
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-004: Fix YAML Path - research/research.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/research/research/research.md`
 - **Lines:** 420-422
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-005: Fix YAML Path - complete.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/complete.md`
 - **Lines:** 604-605
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-006: Fix YAML Path - implement.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/implement.md`
 - **Lines:** 340-342
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-007: Fix YAML Path - plan.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/plan.md`
 - **Lines:** 309-310
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-008: Fix YAML Path - resume.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/resume.md`
 - **Lines:** 250-251
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-009: Fix YAML Path - handover.md
 - **Bug:** BUG-002
 - **File:** `.claude/commands/spec_kit/handover.md`
 - **Line:** 550
-- **Change:** `.opencode/command/` → `.claude/commands/`
+- **Change:** `.opencode/commands/` → `.claude/commands/`
 - **Status:** [x] Complete
 
 ### T-010: Add Missing Step 11 to complete YAMLs
@@ -155,7 +155,7 @@ contextType: "implementation"
 
 ### T-016: Fix Invalid Task Parameter - agent/handover.md
 - **Bug:** BUG-005
-- **File:** `.opencode/agent/handover.md`
+- **File:** `.opencode/agents/handover.md`
 - **Lines:** 51-59
 - **Change:** Remove `model` parameter from Task invocation
 - **Status:** [x] Complete
@@ -196,7 +196,7 @@ contextType: "implementation"
 
 ### T-022: Fix README Step Counts
 - **Bug:** BUG-012
-- **File:** `.opencode/skill/system-spec-kit/README.md`
+- **File:** `.opencode/skills/system-spec-kit/README.md`
 - **Lines:** 196, 198
 - **Change:** complete=14, implement=9
 - **Status:** [x] Complete
@@ -223,7 +223,7 @@ contextType: "implementation"
 
 ### T-025: Fix Orphaned References - speckit.md
 - **Bug:** BUG-015
-- **File:** `.opencode/agent/speckit.md`
+- **File:** `.opencode/agents/speckit.md`
 - **Lines:** 419-420
 - **Change:** Remove `/memory:why`, update `/memory:correct` → `/memory:learn correct`
 - **Status:** [x] Complete

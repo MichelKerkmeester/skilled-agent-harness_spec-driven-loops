@@ -8,7 +8,7 @@ description: Per-iteration tracking for the architect-led swarm pattern study. T
 ## 1. OVERVIEW
 
 ### Purpose
-Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory.
+Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory.
 
 ### Usage
 - Init: this template was populated from `deep_research_strategy.md`.
@@ -18,7 +18,7 @@ Identify reusable patterns from the opencode-swarm-main architect-led swarm fram
 ---
 
 ## 2. TOPIC
-Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agent/` inventory. Findings must include file:line citations from `.opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/`.
+Identify reusable patterns from the opencode-swarm-main architect-led swarm framework that inform the design of a new `@code` LEAF agent for our `.opencode/agents/` inventory. Findings must include file:line citations from `.opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/`.
 
 ---
 
@@ -34,7 +34,7 @@ Identify reusable patterns from the opencode-swarm-main architect-led swarm fram
 ## 4. NON-GOALS
 - Cross-stream synthesis with stream-01 (oh-my-opencode-slim) or stream-03 (internal agent inventory). That happens at the parent.
 - Wholesale code/architecture porting from opencode-swarm-main. We extract patterns + concrete diff-level recommendations.
-- Implementation of `.opencode/agent/code.md` itself. We produce a recommendation skeleton only.
+- Implementation of `.opencode/agents/code.md` itself. We produce a recommendation skeleton only.
 
 ---
 
@@ -82,7 +82,7 @@ None at packet level — all 5 questions resolved with citations. Hand off to pa
 ## 12. KNOWN CONTEXT
 - This packet investigates `.opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/` ONLY.
 - Cross-stream synthesis (with stream-01 oh-my-opencode-slim, stream-03 internal agent inventory) happens at the parent spec folder `059-agent-implement-code` — NOT here.
-- Target consumer: a new `@code` write-capable LEAF agent in `.opencode/agent/code.md`, dispatched only by `@orchestrate`.
+- Target consumer: a new `@code` write-capable LEAF agent in `.opencode/agents/code.md`, dispatched only by `@orchestrate`.
 - Layout note: opencode-swarm-main is a TypeScript codebase; src under `src/` with subdirs including `agents/`, `commands/`, `cli/`, `parallel/`, `council/`, `hooks/`, `knowledge/`, etc. Look for architect/worker/dispatch terminology.
 
 ---

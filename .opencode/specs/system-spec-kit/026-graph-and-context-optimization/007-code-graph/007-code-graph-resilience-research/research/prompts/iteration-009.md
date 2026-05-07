@@ -14,10 +14,10 @@ Iteration 6 cataloged 6 resolver failure modes (cross-module imports, path alias
 
 ## Required reads
 1. `research/iterations/iteration-006.md` — resolver failure catalog
-2. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — focus on import/export resolution paths (lines 850-1085 already cited)
-3. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts` — TS query patterns, focus on import/export captures (lines 340-525)
-4. `.opencode/skill/system-spec-kit/mcp_server/tsconfig.json` — current path alias configuration in this repo
-5. `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` — edge type enum + weight constants
+2. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts` — focus on import/export resolution paths (lines 850-1085 already cited)
+3. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts` — TS query patterns, focus on import/export captures (lines 340-525)
+4. `.opencode/skills/system-spec-kit/mcp_server/tsconfig.json` — current path alias configuration in this repo
+5. `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts` — edge type enum + weight constants
 
 ## What to look for
 - Where the resolver translates a string import specifier (`'./foo'`, `'@app/foo'`) to a concrete file path

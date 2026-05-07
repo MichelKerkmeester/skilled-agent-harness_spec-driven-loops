@@ -13,4 +13,4 @@ contextType: "implementation"
 1. Define the gate categories and evidence expectations in `spec.md`.
 2. Bind gate ownership to real handler and validator files in `plan.md`.
 3. Add tasks for CI-lane naming, rollback triggers, and threshold capture in `tasks.md`.
-4. Verify the phase remains evidence-only with `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/008-rollout-evidence-gates --strict`.
+4. Verify the phase remains evidence-only with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption/008-rollout-evidence-gates --strict`.

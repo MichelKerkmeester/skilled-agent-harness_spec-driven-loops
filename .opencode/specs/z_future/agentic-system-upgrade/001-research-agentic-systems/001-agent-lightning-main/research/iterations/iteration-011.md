@@ -17,8 +17,8 @@ I read Agent Lightning's packaging, CLI entrypoint, contributor guidance, and do
 - The external docs are organized by audience and task shape: Quickstart, How-To Recipes, Learning More, Deep Dive, and API References. [SOURCE: external/mkdocs.yml:98-138] [SOURCE: external/docs/index.md:14-23]
 - The external contributor guide keeps the verification surface short and standard: `uv sync`, `pytest`, `pyright`, `pre-commit`, and strict MkDocs build. [SOURCE: external/AGENTS.md:11-16]
 - `system-spec-kit` exposes many top-level workflow families in its operator guidance: `spec_kit:*`, `memory:*`, analysis commands, shared-memory commands, deep research/review, and multiple recovery flows. [SOURCE: AGENTS.md:132-155]
-- The memory system alone documents 43 MCP tools under one server surface. [SOURCE: .opencode/skill/system-spec-kit/references/memory/memory_system.md:95-140]
-- `/spec_kit:deep-research` adds mode suffixes, flags, setup-state rules, and YAML indirection before the actual research loop starts. [SOURCE: .opencode/command/spec_kit/deep-research.md:7-21] [SOURCE: .opencode/command/spec_kit/deep-research.md:39-63]
+- The memory system alone documents 43 MCP tools under one server surface. [SOURCE: .opencode/skills/system-spec-kit/references/memory/memory_system.md:95-140]
+- `/spec_kit:deep-research` adds mode suffixes, flags, setup-state rules, and YAML indirection before the actual research loop starts. [SOURCE: .opencode/commands/spec_kit/deep-research.md:7-21] [SOURCE: .opencode/commands/spec_kit/deep-research.md:39-63]
 
 ## Analysis
 Agent Lightning's public surface is not small because the system itself is simple. It is small because the repo draws a clear line between what maintainers need internally and what operators need at the front door. The user-facing surface is compressed into one CLI plus audience-based docs, while internal modules and optional capability groups stay behind that abstraction.
@@ -31,7 +31,7 @@ confidence: high
 finding: `system-spec-kit` should simplify its operator-facing surface. The right lesson from Agent Lightning is not "remove internal capabilities"; it is "hide internal topology behind a smaller front door." Keep the command and tool richness internally, but compress the public entrypoint set and organize docs by user task rather than by subsystem.
 
 ## Adoption recommendation for system-spec-kit
-- **Target file or module:** `.opencode/command/` and operator-facing docs
+- **Target file or module:** `.opencode/commands/` and operator-facing docs
 - **Change type:** UX simplification
 - **Blast radius:** medium
 - **Prerequisites:** inventory canonical operator journeys, identify compatibility aliases to preserve, and separate public entrypoints from expert-only surfaces

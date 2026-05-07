@@ -13,7 +13,7 @@
   - `review/deep-review-state.jsonl`
   - `review/deep-review-findings-registry.json`
   - `review/deep-review-strategy.md`
-  - `.opencode/skill/sk-code-review/references/review_core.md`
+  - `.opencode/skills/sk-code-review/references/review_core.md`
 - Prior findings:
   - Active P0: 0
   - Active P1: 0
@@ -23,27 +23,27 @@
 
 ## Files Reviewed
 
-- `.opencode/skill/sk-code-review/references/review_core.md`
+- `.opencode/skills/sk-code-review/references/review_core.md`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-config.json`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-state.jsonl`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-findings-registry.json`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/005-skill-references-assets-alignment/review/deep-review-strategy.md`
-- `.opencode/skill/system-spec-kit/assets/template_mapping.md`
-- `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
-- `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
-- `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/templates/README.md`
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json`
-- `.opencode/skill/system-spec-kit/templates/manifest/*.md.tmpl` gate inventory
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts`
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh`
-- `.opencode/skill/system-spec-kit/scripts/renderers/template-renderer.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts`
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
-- `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts`
-- `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts`
+- `.opencode/skills/system-spec-kit/assets/template_mapping.md`
+- `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
+- `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
+- `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/templates/README.md`
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`
+- `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl` gate inventory
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts`
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh`
+- `.opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts`
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
+- `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts`
+- `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts`
 
 ## Findings - New
 
@@ -57,7 +57,7 @@ None.
 
 ### P2 Findings
 
-1. **Lazy research document contract cannot be rendered through the shared contract-doc helper path** -- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:119` / `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh:205` -- The manifest registers the lazy document as public output `research/research.md` while mapping it to template file `research.md.tmpl` [SOURCE: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:119`; SOURCE: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:120`]. The resolver exposes lazy add-on docs as contract data [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:20`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:205`], but the shell template helper maps a contract document name directly to `manifest/${template_name}.tmpl` except for the phase-parent `spec.md` special case [SOURCE: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh:205`; SOURCE: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh:210`]. Therefore a generic consumer attempting to render the resolver-provided lazy doc name `research/research.md` through the same helper contract path would look for `templates/manifest/research/research.md.tmpl`, while the actual template is `templates/manifest/research.md.tmpl`. Current docs mitigate this by instructing agents to render the template file directly for research output [SOURCE: `.opencode/skill/system-spec-kit/assets/template_mapping.md:107`], and default scaffold flow excludes lazy docs from batch rendering [SOURCE: `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh:265`], so this is advisory rather than a blocking scaffold failure.
+1. **Lazy research document contract cannot be rendered through the shared contract-doc helper path** -- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:119` / `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh:205` -- The manifest registers the lazy document as public output `research/research.md` while mapping it to template file `research.md.tmpl` [SOURCE: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:119`; SOURCE: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:120`]. The resolver exposes lazy add-on docs as contract data [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:20`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:205`], but the shell template helper maps a contract document name directly to `manifest/${template_name}.tmpl` except for the phase-parent `spec.md` special case [SOURCE: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh:205`; SOURCE: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh:210`]. Therefore a generic consumer attempting to render the resolver-provided lazy doc name `research/research.md` through the same helper contract path would look for `templates/manifest/research/research.md.tmpl`, while the actual template is `templates/manifest/research.md.tmpl`. Current docs mitigate this by instructing agents to render the template file directly for research output [SOURCE: `.opencode/skills/system-spec-kit/assets/template_mapping.md:107`], and default scaffold flow excludes lazy docs from batch rendering [SOURCE: `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh:265`], so this is advisory rather than a blocking scaffold failure.
    - Finding class: cross-consumer
    - Scope proof: The lazy `research/research.md` row appears in manifest Level lazy docs for Levels 1, 2, 3, and 3+; `manifest.documents["research/research.md"].template` points to `research.md.tmpl`; `template-utils.sh` resolves non-phase doc names by appending `.tmpl` to the public doc path instead of consulting the manifest document-template mapping.
    - Affected surface hints: ["manifest lazyAddonDocs", "level-contract resolver consumers", "template-utils helper path", "optional research rendering docs", "deep-research lazy artifact creation"]
@@ -74,14 +74,14 @@ None.
 
 ## Integration Evidence
 
-- `.opencode/skill/system-spec-kit/templates/README.md` documents that `manifest/spec-kit-docs.json` maps Levels to docs and `manifest/*.md.tmpl` files are rendered by inline gates [SOURCE: `.opencode/skill/system-spec-kit/templates/README.md:37`; SOURCE: `.opencode/skill/system-spec-kit/templates/README.md:38`].
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` includes all expected core/addon template versions and document rows [SOURCE: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:5`; SOURCE: `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json:52`].
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts` supports Levels `1`, `2`, `3`, `3+`, and `phase`, rejects unknown levels, strips matched gate markers, detects unbalanced gates, and writes `*.md.tmpl` outputs as `*.md` in `--out-dir` mode [SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:15`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:32`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:234`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.ts:287`].
-- `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh` wraps the TypeScript renderer through the local `tsx` loader [SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh:9`; SOURCE: `.opencode/skill/system-spec-kit/scripts/templates/inline-gate-renderer.sh:14`].
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` validates Level names, document names, section gates, and exposes defensive contract copies [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:60`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:113`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:192`; SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:203`].
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` normal scaffold flow resolves the Level contract and renders only required core plus required addon docs through `copy_templates_batch` [SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1504`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1522`; SOURCE: `.opencode/skill/system-spec-kit/scripts/spec/create.sh:1527`].
-- `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts` covers matching/non-matching blocks, whitespace suppression, multi-level lists, boolean expressions, fenced-code preservation, unbalanced gates, and multi-file CLI output [SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:13`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:38`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:71`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:87`].
-- `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts` covers required docs, higher-Level add-ons, phase-parent contract, serialization, defensive copies, and invalid levels [SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:9`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:17`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:23`; SOURCE: `.opencode/skill/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:30`].
+- `.opencode/skills/system-spec-kit/templates/README.md` documents that `manifest/spec-kit-docs.json` maps Levels to docs and `manifest/*.md.tmpl` files are rendered by inline gates [SOURCE: `.opencode/skills/system-spec-kit/templates/README.md:37`; SOURCE: `.opencode/skills/system-spec-kit/templates/README.md:38`].
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` includes all expected core/addon template versions and document rows [SOURCE: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:5`; SOURCE: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:52`].
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts` supports Levels `1`, `2`, `3`, `3+`, and `phase`, rejects unknown levels, strips matched gate markers, detects unbalanced gates, and writes `*.md.tmpl` outputs as `*.md` in `--out-dir` mode [SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:15`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:32`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:234`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:287`].
+- `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh` wraps the TypeScript renderer through the local `tsx` loader [SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh:9`; SOURCE: `.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh:14`].
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts` validates Level names, document names, section gates, and exposes defensive contract copies [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:60`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:113`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:192`; SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/templates/level-contract-resolver.ts:203`].
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` normal scaffold flow resolves the Level contract and renders only required core plus required addon docs through `copy_templates_batch` [SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1504`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1522`; SOURCE: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1527`].
+- `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts` covers matching/non-matching blocks, whitespace suppression, multi-level lists, boolean expressions, fenced-code preservation, unbalanced gates, and multi-file CLI output [SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:13`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:38`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:71`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/inline-gate-renderer.vitest.ts:87`].
+- `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts` covers required docs, higher-Level add-ons, phase-parent contract, serialization, defensive copies, and invalid levels [SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:9`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:17`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:23`; SOURCE: `.opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts:30`].
 
 ## Edge Cases
 

@@ -111,7 +111,7 @@ Templates are referenced by: SKILL.md → references/*.md → command/*.yaml →
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Broken template references discovered
-- **Procedure**: `git checkout -- .opencode/skill/sk-doc/ .opencode/command/create/`
+- **Procedure**: `git checkout -- .opencode/skills/sk-doc/ .opencode/commands/create/`
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -153,7 +153,7 @@ Phase 1 (File Moves) ──► Phase 2 (Reference Updates) ──► Phase 3 (Ve
 - [x] Git status clean (can revert)
 
 ### Rollback Procedure
-1. `git checkout -- .opencode/skill/sk-doc/ .opencode/command/create/`
+1. `git checkout -- .opencode/skills/sk-doc/ .opencode/commands/create/`
 2. Verify templates are back in assets/opencode/
 
 ### Data Reversal

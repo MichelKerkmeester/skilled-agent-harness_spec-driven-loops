@@ -23,10 +23,10 @@ _memory:
     next_safe_action: "Apply 5 surgical fixes + new vitests; validate strict; commit + push"
     blockers: []
     key_files:
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/lib/ops/file-watcher.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
-      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/daemon/watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/projection.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/types.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "049-005-resource-leaks-silent-errors"
@@ -39,7 +39,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -167,8 +167,8 @@ Plug all three leaks and surface both silent errors with surgical changes that p
 
 Dependencies:
 - Source of truth: `046-system-deep-research-bugs-and-improvements/research/research.md` §3 (resource leaks) and §4 (silent errors)
-- Validate: `.opencode/skill/system-spec-kit/scripts/spec/validate.sh`
-- Stress: `cd .opencode/skill/system-spec-kit/mcp_server && npm run stress`
+- Validate: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
+- Stress: `cd .opencode/skills/system-spec-kit/mcp_server && npm run stress`
 - Sub-phase 003 (commit `f5b815c7e`) shifted projection.ts line numbers; F-004-A4-01 fix lives at the new `loadAdvisorProjection()` location, not the original 237-240. No conflict because 003's change touched lines 137-145 (`derivedTriggers`/`derivedKeywords` split) and the fallback catch lives below.
 <!-- /ANCHOR:risks -->
 

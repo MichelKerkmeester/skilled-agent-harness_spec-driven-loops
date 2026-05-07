@@ -6,10 +6,10 @@ Negative-knowledge pass on the new graph-quality summary readers in status/start
 
 ### Files Audited
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:248-279`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts:11-49`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:144-240`
-- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:203-203`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:248-279`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts:11-49`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts:144-240`
+- `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:203-203`
 
 ### Findings
 
@@ -29,8 +29,8 @@ if (qualityLine) {
 
 - No new fix from this angle. Preserve the reader surfaces and concentrate follow-up work on the incremental-scan and documentation gaps instead.
 Target files:
-`.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
-`.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
+`.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/status.ts`
+`.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/startup-brief.ts`
 
 ### Status
 

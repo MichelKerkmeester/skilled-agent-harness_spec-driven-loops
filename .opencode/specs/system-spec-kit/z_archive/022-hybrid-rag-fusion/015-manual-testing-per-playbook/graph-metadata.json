@@ -70,20 +70,20 @@
       "shared/index.ts",
       "spec.md",
       "plan.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
-      ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md"
     ],
     "entities": [
       {
@@ -125,85 +125,85 @@
       {
         "name": "07-ast-level-section-retrieval-tool.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
         "source": "derived"
       },
       {
         "name": "09-tool-result-extraction-to-working-memory.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
         "source": "derived"
       },
       {
         "name": "11-session-recovery-spec-kit-resume.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
         "source": "derived"
       },
       {
         "name": "09-correction-tracking-with-undo.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
         "source": "derived"
       },
       {
         "name": "10-causal-neighbor-boost-and-injection.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
         "source": "derived"
       },
       {
         "name": "11-temporal-contiguity-layer.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
         "source": "derived"
       },
       {
         "name": "15-tool-level-ttl-cache.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
         "source": "derived"
       },
       {
         "name": "16-access-driven-popularity-scoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
         "source": "derived"
       },
       {
         "name": "17-temporal-structural-coherence-scoring.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
         "source": "derived"
       },
       {
         "name": "11-content-aware-memory-filename-generation.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
         "source": "derived"
       },
       {
         "name": "16-backend-storage-adapter-abstraction.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
         "source": "derived"
       },
       {
         "name": "18-atomic-write-then-index-api.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
         "source": "derived"
       },
       {
         "name": "19-embedding-retry-orchestrator.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
         "source": "derived"
       },
       {
         "name": "20-7-layer-tool-architecture-metadata.md",
         "kind": "doc",
-        "path": ".opencode/skill/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md",
         "source": "derived"
       },
       {

@@ -11,7 +11,7 @@
   "dimensions": {
     "01": {
       "title": "Template design quality",
-      "focus": "resource-map.md at .opencode/skill/system-spec-kit/templates/",
+      "focus": "resource-map.md at .opencode/skills/system-spec-kit/templates/",
       "questions": "Is the shape correct? Are the 10 categories complete and non-overlapping? Is the Action/Status vocabulary clear? Are the author instructions actionable? Would a first-time user produce a useful catalog by copying and filling this template?",
       "out_of_scope": "Spec docs for the phase (spec/plan/tasks/checklist/impl-summary)."
     },

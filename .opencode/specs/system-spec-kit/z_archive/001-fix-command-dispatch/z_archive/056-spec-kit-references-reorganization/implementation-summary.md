@@ -123,7 +123,7 @@ Fixed priority inconsistency in 3 template files where P3 was used but P2 is the
 ### 6. Script Permission Fix
 
 ```bash
-chmod +x .opencode/skill/system-spec-kit/scripts/check-completion.sh
+chmod +x .opencode/skills/system-spec-kit/scripts/check-completion.sh
 ```
 
 <!-- ANCHOR:verification -->

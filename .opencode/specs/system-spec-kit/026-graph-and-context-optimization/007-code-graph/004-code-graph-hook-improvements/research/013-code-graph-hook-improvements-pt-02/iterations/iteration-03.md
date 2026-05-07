@@ -7,15 +7,15 @@ This round followed the CocoIndex-to-code-graph bridge. The working hypothesis w
 ### Context Consumed
 
 - `iterations/iteration-02.md`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/context.ts`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/013-code-graph-hook-improvements/spec.md`
 
 ### Findings
 
-- The native CocoIndex seed shape carries `range`, `score`, and optional `snippet`, but `resolveCocoIndexSeed()` throws away `score` and `snippet` immediately and forwards only `file`, `start`, and `end` into `resolveSeed()` [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92].
-- `resolveSeed()` is fundamentally a line-anchor resolver: it prefers exact `start_line`, then a `±5` line near-match, then the smallest enclosing symbol; `endLine` only survives into the file-anchor fallback, so multi-line semantic hits can still collapse onto the wrong symbol [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:185-246,250-260].
-- After resolution, `resolveSeeds()` sorts by local graph confidence rather than the original CocoIndex relevance score, so semantic ranking order is not preserved across multiple seeds [.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:275-290].
+- The native CocoIndex seed shape carries `range`, `score`, and optional `snippet`, but `resolveCocoIndexSeed()` throws away `score` and `snippet` immediately and forwards only `file`, `start`, and `end` into `resolveSeed()` [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:19-25,86-92].
+- `resolveSeed()` is fundamentally a line-anchor resolver: it prefers exact `start_line`, then a `±5` line near-match, then the smallest enclosing symbol; `endLine` only survives into the file-anchor fallback, so multi-line semantic hits can still collapse onto the wrong symbol [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:185-246,250-260].
+- After resolution, `resolveSeeds()` sorts by local graph confidence rather than the original CocoIndex relevance score, so semantic ranking order is not preserved across multiple seeds [.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/seed-resolver.ts:275-290].
 
 ### Evidence
 

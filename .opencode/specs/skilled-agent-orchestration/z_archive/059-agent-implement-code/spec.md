@@ -1,7 +1,7 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 ---
 title: "Feature Specification: @code Sub-Agent for Stack-Agnostic Code Implementation [template:level_3/spec.md]"
-description: "No write-capable code-implementation sub-agent exists in .opencode/agent/. Orchestrator must hand-author edits or route through @write (docs-only) or @debug (5-phase root-cause). Need a dedicated, repo-agnostic, sk-code-auto-loading agent that fills the gap between @write and @review."
+description: "No write-capable code-implementation sub-agent exists in .opencode/agents/. Orchestrator must hand-author edits or route through @write (docs-only) or @debug (5-phase root-cause). Need a dedicated, repo-agnostic, sk-code-auto-loading agent that fills the gap between @write and @review."
 trigger_phrases:
   - "code agent"
   - "implement agent"
@@ -21,10 +21,10 @@ _memory:
     next_safe_action: "Dispatch research streams"
     blockers: []
     key_files:
-      - .opencode/agent/review.md
-      - .opencode/agent/orchestrate.md
-      - .opencode/agent/write.md
-      - .opencode/skill/sk-code/SKILL.md
+      - .opencode/agents/review.md
+      - .opencode/agents/orchestrate.md
+      - .opencode/agents/write.md
+      - .opencode/skills/sk-code/SKILL.md
       - .opencode/specs/z_future/improved-agent-orchestration/external/oh-my-opencode-slim/
       - .opencode/specs/z_future/improved-agent-orchestration/external/opencode-swarm-main/
     session_dedup:
@@ -53,7 +53,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Author a new write-capable code-implementation sub-agent at `.opencode/agent/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agent/` inventory before authoring the agent file.
+Author a new write-capable code-implementation sub-agent at `.opencode/agents/code.md`, modeled on `review.md` but flipped to `write/edit/patch: allow`. The agent is codebase/repo-agnostic via auto-loading the `sk-code` skill (which owns stack detection internally), dispatchable only by `@orchestrate`, and enforces `task: deny` to keep it LEAF-depth-1. Packet-internal research dispatches three parallel `/spec_kit:deep-research:auto` streams (10 iters each, executed via `cli-copilot` with `gpt-5.5 high`) across two external multi-agent reference implementations (`oh-my-opencode-slim`, `opencode-swarm-main`) and our own `.opencode/agents/` inventory before authoring the agent file.
 
 **Key Decisions**: D1 filename `code.md`; D2 permission profile (`task: deny` enforces LEAF); D3 caller restriction is convention-based with three layers; D5 verify is fail-closed; D6 Level 3.
 
@@ -80,7 +80,7 @@ Author a new write-capable code-implementation sub-agent at `.opencode/agent/cod
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `.opencode/agent/` inventory has 10 agents (review, orchestrate, debug, write, context, deep-research, deep-review, improve-agent, improve-prompt, ultra-think) but **no write-capable code-implementation sub-agent**. Orchestrator workflows that need code edits currently fall back to either (a) hand-authored edits via the harness-default tool surface (no skill auto-loading, no stack awareness), (b) `@write` (which is documentation-scoped via `sk-doc`, not code-aware), or (c) `@debug` (5-phase root-cause loop, overkill for routine implementation). This gap forces orchestrator dispatch logic to either skip skill-routing or duplicate `sk-code` invocation in every implementation prompt.
+The `.opencode/agents/` inventory has 10 agents (review, orchestrate, debug, write, context, deep-research, deep-review, improve-agent, improve-prompt, ultra-think) but **no write-capable code-implementation sub-agent**. Orchestrator workflows that need code edits currently fall back to either (a) hand-authored edits via the harness-default tool surface (no skill auto-loading, no stack awareness), (b) `@write` (which is documentation-scoped via `sk-doc`, not code-aware), or (c) `@debug` (5-phase root-cause loop, overkill for routine implementation). This gap forces orchestrator dispatch logic to either skip skill-routing or duplicate `sk-code` invocation in every implementation prompt.
 
 ### Purpose
 Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loads `sk-code` for stack-aware patterns, accepts implementation tasks from `@orchestrate`, performs surgical edits, and returns fail-closed verification summaries. Establish precedent and convention for future write-capable LEAF agents.
@@ -92,8 +92,8 @@ Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loa
 ## 3. SCOPE
 
 ### In Scope
-- New file: `.opencode/agent/code.md` (frontmatter per D2; body sections §0–§13 mirroring `review.md` structure)
-- Routing-table update: `.opencode/agent/orchestrate.md` §3 adds `@code` row
+- New file: `.opencode/agents/code.md` (frontmatter per D2; body sections §0–§13 mirroring `review.md` structure)
+- Routing-table update: `.opencode/agents/orchestrate.md` §3 adds `@code` row
 - Sibling-doc sync: `AGENTS.md` (canonical), `AGENTS_Barter.md` (Barter symlink) §5 Agent Routing adds `@code` (per memory: shared-runtime contracts must mirror)
 - Three `/spec_kit:deep-research:auto` streams (10 iters each) via `cli-copilot gpt-5.5 high`, results synthesized in `research/synthesis.md`
 - `decision-record.md` capturing D1–D10 with research-validated D3 caller-restriction mechanism
@@ -108,8 +108,8 @@ Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loa
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agent/code.md` | Create | New write-capable LEAF agent |
-| `.opencode/agent/orchestrate.md` | Modify | §3 routing table adds `@code` row |
+| `.opencode/agents/code.md` | Create | New write-capable LEAF agent |
+| `.opencode/agents/orchestrate.md` | Modify | §3 routing table adds `@code` row |
 | `AGENTS.md` | Modify | §5 Agent Routing adds `@code` |
 | `AGENTS_Barter.md` | Modify | §5 Agent Routing adds `@code` (Barter sibling sync) |
 | `.opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/graph-metadata.json` | Modify | `children_ids` adds `059-agent-implement-code`; `derived.last_active_child_id` set |
@@ -126,7 +126,7 @@ Provide `@code` — a stack-agnostic, write-capable LEAF sub-agent that auto-loa
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | `@code` agent file authored with frontmatter matching D2 | `.opencode/agent/code.md` exists; permission profile shows `write/edit/patch: allow`, `task: deny`; `mode: subagent`; `temperature: 0.1` |
+| REQ-001 | `@code` agent file authored with frontmatter matching D2 | `.opencode/agents/code.md` exists; permission profile shows `write/edit/patch: allow`, `task: deny`; `mode: subagent`; `temperature: 0.1` |
 | REQ-002 | Stack detection delegated to sk-code (no pre-detection in @code) | Body §4 explicitly delegates to `sk-code` Skill invocation; UNKNOWN/ambiguous returns escalate to orchestrator |
 | REQ-003 | Verification is fail-closed (no silent loop-fix) | Body §5 specifies: verification failure returns summary to orchestrator; no internal retry loop |
 | REQ-004 | Orchestrator routing table updated | `orchestrate.md` §3 includes `@code` row; placement between `@write` and `@review` |

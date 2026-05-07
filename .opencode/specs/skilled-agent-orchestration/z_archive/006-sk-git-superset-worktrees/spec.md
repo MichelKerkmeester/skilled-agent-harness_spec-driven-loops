@@ -99,13 +99,13 @@ Adapt sk-git's worktree handling from Superset IDE's proven workspace model: cen
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-git/SKILL.md` | Modify | Update lifecycle map, workspace choice (worktree as recommended default), routing keywords, config.json awareness |
-| `.opencode/skill/sk-git/references/worktree_workflows.md` | Modify (major) | Restructure to Superset init flow, add centralized dir, branch sanitization, config loading, env vars, base branch fallback, gitignored copying |
-| `.opencode/skill/sk-git/references/finish_workflows.md` | Modify | Add configurable teardown scripts, pre-deletion safety checks, env var injection during teardown |
-| `.opencode/skill/sk-git/references/shared_patterns.md` | Modify | Add config.json patterns, branch sanitization helper, base branch resolution, gitignored file copy pattern |
-| `.opencode/skill/sk-git/references/quick_reference.md` | Modify | Update commands for centralized dirs, config, sanitization |
-| `.opencode/skill/sk-git/assets/worktree_checklist.md` | Modify | Align checklist with new init flow phases |
-| `.opencode/skill/sk-git/assets/config_template.json` | Create | Example .opencode/worktree.json template |
+| `.opencode/skills/sk-git/SKILL.md` | Modify | Update lifecycle map, workspace choice (worktree as recommended default), routing keywords, config.json awareness |
+| `.opencode/skills/sk-git/references/worktree_workflows.md` | Modify (major) | Restructure to Superset init flow, add centralized dir, branch sanitization, config loading, env vars, base branch fallback, gitignored copying |
+| `.opencode/skills/sk-git/references/finish_workflows.md` | Modify | Add configurable teardown scripts, pre-deletion safety checks, env var injection during teardown |
+| `.opencode/skills/sk-git/references/shared_patterns.md` | Modify | Add config.json patterns, branch sanitization helper, base branch resolution, gitignored file copy pattern |
+| `.opencode/skills/sk-git/references/quick_reference.md` | Modify | Update commands for centralized dirs, config, sanitization |
+| `.opencode/skills/sk-git/assets/worktree_checklist.md` | Modify | Align checklist with new init flow phases |
+| `.opencode/skills/sk-git/assets/config_template.json` | Create | Example .opencode/worktree.json template |
 
 ---
 <!-- /ANCHOR:scope -->

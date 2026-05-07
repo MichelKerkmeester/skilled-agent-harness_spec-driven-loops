@@ -1,4 +1,4 @@
-Created `.opencode/skill/system-spec-kit/shared/predicates/README.md`.
+Created `.opencode/skills/system-spec-kit/shared/predicates/README.md`.
 
 Validation passed:
 - `validate_document.py`: valid, 0 issues

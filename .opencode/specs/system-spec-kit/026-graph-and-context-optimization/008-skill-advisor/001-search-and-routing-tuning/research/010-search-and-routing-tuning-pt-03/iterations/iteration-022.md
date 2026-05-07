@@ -4,15 +4,15 @@
 Pin the exact basename de-duplication write sites and verify which side should win when a canonical packet doc collides with a non-canonical path.
 
 ## Findings
-1. The first collision point is still the key-files seeding loop: `deriveEntities()` writes `entities.set(filePath, { name: path.basename(filePath), ... })` before any normalized-name checks exist. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-428]
-2. The second collision point is the extracted-entity loop: `entities.set(normalizedName, ...)` already dedupes by normalized text there, but only after key-file-derived rows have been created. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:430-442]
+1. The first collision point is still the key-files seeding loop: `deriveEntities()` writes `entities.set(filePath, { name: path.basename(filePath), ... })` before any normalized-name checks exist. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-428]
+2. The second collision point is the extracted-entity loop: `entities.set(normalizedName, ...)` already dedupes by normalized text there, but only after key-file-derived rows have been created. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:430-442]
 3. A representative live collision proves that “keep first basename” is not enough by itself: `system-spec-kit/023-hybrid-rag-fusion-refinement/graph-metadata.json` currently stores `{ "name": "spec.md", "path": "specs/system-spec-kit/023-hybrid-rag-fusion-refinement/spec.md" }` even though plain `spec.md` is also present in `derived.key_files`. [SOURCE: .opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/graph-metadata.json]
 4. The exact safe insertion shape is a shared local helper in `deriveEntities()`:
    - build `canonicalDocPaths = new Set(docs.map((doc) => doc.relativePath))`
    - normalize a name key once (`name.trim().toLowerCase()`)
    - call `upsertEntityByName(candidate)` before both current `entities.set(...)` sites
    - if a collision occurs, replace the existing row only when the incoming `path` is canonical and the existing `path` is not
-5. This keeps the patch local to `deriveEntities()` while avoiding a schema rewrite or cross-function ordering change inside `deriveKeyFiles()`. [SOURCE: .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446]
+5. This keeps the patch local to `deriveEntities()` while avoiding a schema rewrite or cross-function ordering change inside `deriveKeyFiles()`. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446]
 
 ## Ruled Out
 - A naive “first basename wins” rule with no replacement path. It can preserve `specs/.../spec.md` and suppress plain `spec.md`.
@@ -21,7 +21,7 @@ Pin the exact basename de-duplication write sites and verify which side should w
 - Trying to solve canonical preference in the schema. The conflict happens before serialization, at the in-memory `Map` write sites.
 
 ## Sources Consulted
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446`
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:418-446`
 - `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/graph-metadata.json`
 - Live filesystem scan over `.opencode/specs` on 2026-04-13
 

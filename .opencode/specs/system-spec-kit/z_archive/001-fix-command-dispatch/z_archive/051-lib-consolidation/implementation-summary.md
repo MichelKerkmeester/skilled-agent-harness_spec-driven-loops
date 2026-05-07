@@ -33,11 +33,11 @@ Consolidated shared JavaScript modules into a central `lib/` folder within the s
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skill/system-spec-kit/shared/embeddings.js` | Canonical embedding generation module (multi-provider: nomic, Voyage AI, transformers) |
-| `.opencode/skill/system-spec-kit/shared/trigger-extractor.js` | Canonical trigger phrase extraction module |
-| `.opencode/skill/system-spec-kit/shared/embeddings-legacy.js` | Legacy embedding utilities (moved from scripts/shared/) |
-| `.opencode/skill/system-spec-kit/shared/embeddings/` | Embedding provider subfolder (moved from scripts/shared/) |
-| `.opencode/skill/system-spec-kit/shared/README.md` | Comprehensive documentation (447 lines) |
+| `.opencode/skills/system-spec-kit/shared/embeddings.js` | Canonical embedding generation module (multi-provider: nomic, Voyage AI, transformers) |
+| `.opencode/skills/system-spec-kit/shared/trigger-extractor.js` | Canonical trigger phrase extraction module |
+| `.opencode/skills/system-spec-kit/shared/embeddings-legacy.js` | Legacy embedding utilities (moved from scripts/shared/) |
+| `.opencode/skills/system-spec-kit/shared/embeddings/` | Embedding provider subfolder (moved from scripts/shared/) |
+| `.opencode/skills/system-spec-kit/shared/README.md` | Comprehensive documentation (447 lines) |
 
 ---
 
@@ -45,13 +45,13 @@ Consolidated shared JavaScript modules into a central `lib/` folder within the s
 
 | File | Change |
 |------|--------|
-| `.opencode/skill/system-spec-kit/scripts/shared/embeddings.js` | Converted to re-export: `module.exports = require('../../shared/embeddings')` |
-| `.opencode/skill/system-spec-kit/scripts/shared/trigger-extractor.js` | Converted to re-export: `module.exports = require('../../shared/trigger-extractor')` |
-| `.opencode/skill/system-spec-kit/mcp_server/shared/embeddings.js` | Converted to re-export: `module.exports = require('../../shared/embeddings')` |
-| `.opencode/skill/system-spec-kit/mcp_server/shared/trigger-extractor.js` | Converted to re-export: `module.exports = require('../../shared/trigger-extractor')` |
-| `.opencode/skill/system-spec-kit/mcp_server/shared/retry-manager.js` | Fixed syntax error (extra closing brace at line 414) |
-| `.opencode/skill/system-spec-kit/scripts/shared/README.md` | Updated to v1.1, added shared lib architecture section |
-| `.opencode/skill/system-spec-kit/mcp_server/shared/README.md` | Updated to v1.1, added shared lib architecture section |
+| `.opencode/skills/system-spec-kit/scripts/shared/embeddings.js` | Converted to re-export: `module.exports = require('../../shared/embeddings')` |
+| `.opencode/skills/system-spec-kit/scripts/shared/trigger-extractor.js` | Converted to re-export: `module.exports = require('../../shared/trigger-extractor')` |
+| `.opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js` | Converted to re-export: `module.exports = require('../../shared/embeddings')` |
+| `.opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js` | Converted to re-export: `module.exports = require('../../shared/trigger-extractor')` |
+| `.opencode/skills/system-spec-kit/mcp_server/shared/retry-manager.js` | Fixed syntax error (extra closing brace at line 414) |
+| `.opencode/skills/system-spec-kit/scripts/shared/README.md` | Updated to v1.1, added shared lib architecture section |
+| `.opencode/skills/system-spec-kit/mcp_server/shared/README.md` | Updated to v1.1, added shared lib architecture section |
 
 ---
 
@@ -59,15 +59,15 @@ Consolidated shared JavaScript modules into a central `lib/` folder within the s
 
 | File | Reason |
 |------|--------|
-| `.opencode/skill/system-spec-kit/scripts/shared/embeddings/` | Moved to lib/embeddings/ (canonical location) |
-| `.opencode/skill/system-spec-kit/scripts/shared/embeddings-legacy.js` | Moved to lib/embeddings-legacy.js (canonical location) |
+| `.opencode/skills/system-spec-kit/scripts/shared/embeddings/` | Moved to lib/embeddings/ (canonical location) |
+| `.opencode/skills/system-spec-kit/scripts/shared/embeddings-legacy.js` | Moved to lib/embeddings-legacy.js (canonical location) |
 
 ---
 
 ## Architecture After Consolidation
 
 ```
-.opencode/skill/system-spec-kit/
+.opencode/skills/system-spec-kit/
 ├── lib/                          # SHARED (canonical)
 │   ├── embeddings.js             # Multi-provider embeddings
 │   ├── embeddings-legacy.js      # Legacy utilities

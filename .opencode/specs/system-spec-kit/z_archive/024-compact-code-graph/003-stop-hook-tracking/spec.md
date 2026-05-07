@@ -180,7 +180,7 @@ Implementation uses per-session JSON hook-state files instead of the specified S
       "matcher": "",
       "hooks": [{
         "type": "command",
-        "command": "node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js",
+        "command": "node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js",
         "async": true
       }]
     }]

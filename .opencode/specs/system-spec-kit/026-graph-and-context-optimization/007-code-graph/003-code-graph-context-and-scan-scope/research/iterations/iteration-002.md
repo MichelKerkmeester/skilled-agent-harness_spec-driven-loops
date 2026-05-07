@@ -12,9 +12,9 @@ Secondary focus: test coverage and operator-facing scan response clarity.
 ## Actions Taken
 
 1. Read the deep-research loop instructions and current strategy/state files.
-2. Inspected `indexFiles()` in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`.
-3. Inspected the scan handler in `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`.
-4. Enumerated `indexFiles()` callers with `rg -n "indexFiles\\(" .opencode/skill/system-spec-kit/mcp_server`.
+2. Inspected `indexFiles()` in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts`.
+3. Inspected the scan handler in `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts`.
+4. Enumerated `indexFiles()` callers with `rg -n "indexFiles\\(" .opencode/skills/system-spec-kit/mcp_server`.
 5. Inspected duplicate symbol construction in `capturesToNodes()`, `tree-sitter-parser.ts`, `indexer-types.ts`, and `code-graph-db.ts`.
 6. Inspected existing tests in `tests/tree-sitter-parser.vitest.ts`, `tests/structural-contract.vitest.ts`, and `code-graph/tests/code-graph-scan.vitest.ts`.
 
@@ -24,21 +24,21 @@ Secondary focus: test coverage and operator-facing scan response clarity.
 
 `indexFiles()` discovers all included files, but line 1249 unconditionally applies the stale gate:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227` defines `indexFiles(config)` with no option parameter.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1246-1249` documents and applies `if (!isFileStale(file)) continue;`.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:177` computes `effectiveIncremental`.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:183` calls `indexFiles(config)` without passing the computed mode.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:193-201` removes tracked files missing from `results` on non-incremental scans, so stale-only `results` become a destructive full-scan desired set.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227` defines `indexFiles(config)` with no option parameter.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1246-1249` documents and applies `if (!isFileStale(file)) continue;`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:177` computes `effectiveIncremental`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:183` calls `indexFiles(config)` without passing the computed mode.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:193-201` removes tracked files missing from `results` on non-incremental scans, so stale-only `results` become a destructive full-scan desired set.
 
 Other callers found:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190` calls `indexFiles(config)` for bounded auto-indexing. It should keep stale-only behavior.
-- `.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:162` and `:184` call `indexFiles()` in scan-scope tests. Default stale-only behavior is currently masked by `isFileStale: true` mocks.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190` calls `indexFiles(config)` for bounded auto-indexing. It should keep stale-only behavior.
+- `.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts:162` and `:184` call `indexFiles()` in scan-scope tests. Default stale-only behavior is currently masked by `isFileStale: true` mocks.
 
 The minimal API change is an optional `IndexFilesOptions` parameter with a stale-gate-oriented flag. The flag should default to existing behavior so selective inline refresh paths are untouched.
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
 @@
 +export interface IndexFilesOptions {
 +  skipFreshFiles?: boolean;
@@ -55,7 +55,7 @@ diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structura
 ```
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
 @@
 -  const results = await indexFiles(config);
 +  const results = await indexFiles(config, { skipFreshFiles: effectiveIncremental });
@@ -67,11 +67,11 @@ Why this location: putting the bypass inside `indexFiles()` keeps scan mode visi
 
 Current symbol construction is deterministic but not collision-proof for repeated semantic captures in one file:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:82-85` hashes `filePath + fqName + kind`.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812` maps every capture directly to a node and calls `generateSymbolId(filePath, getCaptureFqName(c), c.kind)`.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:520-533` emits a node capture for each relevant AST node.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:535-539` then recurses through class bodies, which is part of how duplicate class/body and method captures can surface.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:328-333` inserts each node by `symbolId`; duplicate IDs hit the DB uniqueness constraint.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/indexer-types.ts:82-85` hashes `filePath + fqName + kind`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812` maps every capture directly to a node and calls `generateSymbolId(filePath, getCaptureFqName(c), c.kind)`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:520-533` emits a node capture for each relevant AST node.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/tree-sitter-parser.ts:535-539` then recurses through class bodies, which is part of how duplicate class/body and method captures can surface.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-db.ts:328-333` inserts each node by `symbolId`; duplicate IDs hit the DB uniqueness constraint.
 
 Trade-off evaluation:
 
@@ -82,7 +82,7 @@ Trade-off evaluation:
 Recommendation: Option A now. The code graph already defines identity as `(filePath, fqName, kind)`; the safest minimal fix is to enforce that invariant before DB insert rather than mutating identity at collision time.
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts
 @@
 -  const symbolNodes = captures.map(c => {
 +  const seenSymbolIds = new Set<string>([moduleNode.symbolId]);
@@ -111,16 +111,16 @@ Note: `extractEdges()` still receives raw captures (`tree-sitter-parser.ts:648`,
 
 The existing scan payload includes `fullReindexTriggered` in `ScanResult`:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:21-33` defines the response shape.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:248-261` populates `scanResult`.
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:263-265` already uses `fullReindexTriggered || !effectiveIncremental` to label readiness action as `full_scan`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:21-33` defines the response shape.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:248-261` populates `scanResult`.
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:263-265` already uses `fullReindexTriggered || !effectiveIncremental` to label readiness action as `full_scan`.
 
 `fullReindexTriggered=false` is technically accurate when the caller explicitly passes `incremental:false`, because no git-HEAD-triggered reindex occurred. It is operator-hostile because the response does not separately expose caller intent or effective mode.
 
 Recommended supplement, not rename:
 
 ```diff
-diff --git a/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts b/.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts
 @@
    durationMs: number;
 +  fullScanRequested?: boolean;
@@ -145,26 +145,26 @@ This keeps existing consumers stable while making all three states distinguishab
 
 Apply the optional `IndexFilesOptions` patch above in:
 
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227-1249`
-- `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:177-183`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:1227-1249`
+- `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:177-183`
 
-Keep `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190` unchanged so readiness auto-indexing continues to parse only stale/missing files.
+Keep `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/ensure-ready.ts:190` unchanged so readiness auto-indexing continues to parse only stale/missing files.
 
 ### G2 - Patch `capturesToNodes()` dedupe
 
-Apply Option A in `.opencode/skill/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812`.
+Apply Option A in `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/structural-indexer.ts:796-812`.
 
 Preserve first-seen node data and drop later nodes with the same generated `symbolId` inside the parse result. This directly prevents `code-graph-db.ts:328-333` from receiving duplicate keys.
 
 ### G4 - Add response clarity fields
 
-Add `fullScanRequested` and `effectiveIncremental` to `ScanResult` and `scanResult` in `.opencode/skill/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:21-33` and `:248-261`.
+Add `fullScanRequested` and `effectiveIncremental` to `ScanResult` and `scanResult` in `.opencode/skills/system-spec-kit/mcp_server/code-graph/handlers/scan.ts:21-33` and `:248-261`.
 
 Do not rename `fullReindexTriggered`; the current name is precise for the git-triggered branch and may be consumed externally.
 
 ## Test Plan
 
-### `.opencode/skill/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts`
+### `.opencode/skills/system-spec-kit/mcp_server/tests/structural-contract.vitest.ts`
 
 The file currently covers bootstrap contract behavior, not scan execution. Add contract-level coverage only if this suite is intended to assert the startup-facing response language after scan. Otherwise, the more natural home for scan handler mechanics is `code-graph/tests/code-graph-scan.vitest.ts`.
 
@@ -179,7 +179,7 @@ Recommended stronger companion cases in `code-graph/tests/code-graph-scan.vitest
 2. `incremental:true` with unchanged git HEAD calls `indexFiles(config, { skipFreshFiles: true })`, preserves stale-only behavior, and cleans only missing tracked files.
 3. Repeat full scan with no file changes returns the same `filesScanned` count as the first scan when `indexFiles` returns the full post-exclude set.
 
-### `.opencode/skill/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts`
+### `.opencode/skills/system-spec-kit/mcp_server/tests/tree-sitter-parser.vitest.ts`
 
 Add indexer-level tests because this file already owns scan-scope `indexFiles()` integration and mocks `isFileStale`.
 

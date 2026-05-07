@@ -13,18 +13,18 @@ Evaluate enterprise-readiness gaps around RBAC, multi-tenant isolation, SLA enfo
 
 ## Evidence Reviewed
 
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:120` defines `PipelineConfig`.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129` includes `specFolder`, `tenantId`, `userId`, and `agentId` scope fields.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:921` forwards normalized scope into search.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:92` stores tenant, user, and agent identities in session state.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:361` detects tenant identity mismatches.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25` has no tenant/user/agent input fields.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:15` has no tenant/user/agent input fields.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:14` has no tenant/user/agent input fields.
-- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288` warns if mutation ledger append fails.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:152` stores durable advisor metrics under tmpdir.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:267` defines alert thresholds for advisor hook metrics.
-- `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:478` defines 17 canonical metrics gated by `SPECKIT_METRICS_ENABLED`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:120` defines `PipelineConfig`.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:129` includes `specFolder`, `tenantId`, `userId`, and `agentId` scope fields.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:921` forwards normalized scope into search.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:92` stores tenant, user, and agent identities in session state.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:361` detects tenant identity mismatches.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts:25` has no tenant/user/agent input fields.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts:15` has no tenant/user/agent input fields.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:14` has no tenant/user/agent input fields.
+- `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:288` warns if mutation ledger append fails.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:152` stores durable advisor metrics under tmpdir.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:267` defines alert thresholds for advisor hook metrics.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/metrics.ts:478` defines 17 canonical metrics gated by `SPECKIT_METRICS_ENABLED`.
 
 ## Findings
 

@@ -52,7 +52,7 @@ Determine how to generate compact, query-aware repository maps by combining two 
    - verification coupling (tests, errors, config/runtime links),
    - local centrality within the induced subgraph.
 
-   Practical recommendation: use CocoIndex as a bounded boost, not the dominant score. A semantically similar but structurally distant file should not outrank a direct caller, imported module, or failing test neighbor of the active symbol. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:95-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:96-118`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`] [SOURCE: `.opencode/skill/mcp-coco-index/references/tool_reference.md:266-272`]
+   Practical recommendation: use CocoIndex as a bounded boost, not the dominant score. A semantically similar but structurally distant file should not outrank a direct caller, imported module, or failing test neighbor of the active symbol. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:95-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:96-118`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`] [SOURCE: `.opencode/skills/mcp-coco-index/references/tool_reference.md:266-272`]
 
 4. The optimal repo-map format for LLM consumption is compact, path-first, symbol-rich, and relevance-annotated, with structure preserved and prose used sparingly.
 
@@ -119,7 +119,7 @@ Determine how to generate compact, query-aware repository maps by combining two 
    - large module-level pseudo-nodes in Python/Shell;
    - ambiguous bridge/config files where structure alone is not self-explanatory.
 
-   That means the map should not become a wall of summaries. Use structural signatures everywhere, and optionally add a terse "why this matters" note informed by CocoIndex relevance. This preserves scanability and avoids spending Tier A budget on prose that belongs in Tier B symbol summaries. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:202-217`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-039.md:24-60`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`]
+   That means the map should not become a wall of summaries. Use structural signatures everywhere, and optionally add a terse "why this matters" note informed by CocoIndex relevance. This preserves scanability and avoids spending Tier A budget on prose that belongs in Tier B symbol summaries. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:202-217`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-039.md:24-60`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`]
 
 9. Freshness should be maintained by incrementally updating the structural index and regenerating repo maps from fresh graph state when requested.
 
@@ -160,8 +160,8 @@ Determine how to generate compact, query-aware repository maps by combining two 
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:155-246`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-118`
 - `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md:92-106`
-- `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`
-- `.opencode/skill/mcp-coco-index/references/tool_reference.md:266-272`
+- `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`
+- `.opencode/skills/mcp-coco-index/references/tool_reference.md:266-272`
 - https://aider.chat/docs/repomap.html
 - https://aider.chat/2023/10/22/repomap.html
 - https://github.com/Aider-AI/aider/blob/main/aider/repomap.py
@@ -206,7 +206,7 @@ This iteration is not a first-discovery pass; it is a synthesis pass that turns 
 10. Ship the MVP as a query-ranked dynamic map with static outline fallback. A static-only MVP would prove indexing but would not validate the structural-graph-plus-CocoIndex design that this packet is trying to establish.
 
 exec
-/bin/zsh -lc './.opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --no-recursive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
+/bin/zsh -lc './.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/024-compact-code-graph --no-recursive' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
 diff --git a/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-050.md b/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-050.md
 new file mode 100644
 index 0000000000000000000000000000000000000000..8cf0623c5588089438efbb56bfb9cba02593ebd3
@@ -267,7 +267,7 @@ index 0000000000000000000000000000000000000000..8cf0623c5588089438efbb56bfb9cba0
 +   - verification coupling (tests, errors, config/runtime links),
 +   - local centrality within the induced subgraph.
 +
-+   Practical recommendation: use CocoIndex as a bounded boost, not the dominant score. A semantically similar but structurally distant file should not outrank a direct caller, imported module, or failing test neighbor of the active symbol. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:95-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:96-118`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`] [SOURCE: `.opencode/skill/mcp-coco-index/references/tool_reference.md:266-272`]
++   Practical recommendation: use CocoIndex as a bounded boost, not the dominant score. A semantically similar but structurally distant file should not outrank a direct caller, imported module, or failing test neighbor of the active symbol. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:95-105`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:28-40`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-045.md:96-118`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`] [SOURCE: `.opencode/skills/mcp-coco-index/references/tool_reference.md:266-272`]
 +
 +4. The optimal repo-map format for LLM consumption is compact, path-first, symbol-rich, and relevance-annotated, with structure preserved and prose used sparingly.
 +
@@ -334,7 +334,7 @@ index 0000000000000000000000000000000000000000..8cf0623c5588089438efbb56bfb9cba0
 +   - large module-level pseudo-nodes in Python/Shell;
 +   - ambiguous bridge/config files where structure alone is not self-explanatory.
 +
-+   That means the map should not become a wall of summaries. Use structural signatures everywhere, and optionally add a terse "why this matters" note informed by CocoIndex relevance. This preserves scanability and avoids spending Tier A budget on prose that belongs in Tier B symbol summaries. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:202-217`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-039.md:24-60`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`]
++   That means the map should not become a wall of summaries. Use structural signatures everywhere, and optionally add a terse "why this matters" note informed by CocoIndex relevance. This preserves scanability and avoids spending Tier A budget on prose that belongs in Tier B symbol summaries. [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:202-217`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-039.md:24-60`] [SOURCE: `.opencode/specs/system-spec-kit/024-compact-code-graph/research/iterations/iteration-047.md:7-23`] [SOURCE: `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`]
 +
 +9. Freshness should be maintained by incrementally updating the structural index and regenerating repo maps from fresh graph state when requested.
 +
@@ -375,8 +375,8 @@ index 0000000000000000000000000000000000000000..8cf0623c5588089438efbb56bfb9cba0
 +- `.opencode/specs/system-spec-kit/024-compact-code-graph/research/research.md:155-246`
 +- `.opencode/specs/system-spec-kit/024-compact-code-graph/decision-record.md:94-118`
 +- `.opencode/specs/system-spec-kit/024-compact-code-graph/plan.md:92-106`
-+- `.opencode/skill/mcp-coco-index/references/settings_reference.md:144-159`
-+- `.opencode/skill/mcp-coco-index/references/tool_reference.md:266-272`
++- `.opencode/skills/mcp-coco-index/references/settings_reference.md:144-159`
++- `.opencode/skills/mcp-coco-index/references/tool_reference.md:266-272`
 +- https://aider.chat/docs/repomap.html
 +- https://aider.chat/2023/10/22/repomap.html
 +- https://github.com/Aider-AI/aider/blob/main/aider/repomap.py

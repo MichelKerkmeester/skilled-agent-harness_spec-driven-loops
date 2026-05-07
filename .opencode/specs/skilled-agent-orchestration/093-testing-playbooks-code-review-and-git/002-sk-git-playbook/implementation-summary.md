@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "Finalize parent metadata"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-git/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-git/manual_testing_playbook/03--safety-refusals/"
+      - ".opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -30,7 +30,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -59,13 +59,13 @@ You can now reproducibly verify that sk-git still asks the user about workspace 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skill/sk-git/manual_testing_playbook/manual_testing_playbook.md` | Created | Root playbook (~602 lines): index, global preconditions, deterministic command notation, integrated review/release-readiness, sub-agent orchestration, per-category summaries |
-| `.opencode/skill/sk-git/manual_testing_playbook/01--worktree-setup/00[1-3]-*.md` | Created | 3 worktree-setup scenarios (GIT-001..GIT-003 incl. stay-on-main) |
-| `.opencode/skill/sk-git/manual_testing_playbook/02--commit-formation/00[1-4]-*.md` | Created | 4 commit-formation scenarios (GIT-004..GIT-007 incl. Co-Authored-By footer) |
-| `.opencode/skill/sk-git/manual_testing_playbook/03--safety-refusals/00[1-4]-*.md` | Created | 4 safety-refusal scenarios (GIT-008..GIT-011) |
-| `.opencode/skill/sk-git/manual_testing_playbook/04--integration-and-pr/00[1-4]-*.md` | Created | 4 integration/PR scenarios (GIT-012..GIT-015) |
-| `.opencode/skill/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/00[1-4]-*.md` | Created | 4 recovery/edge-case scenarios (GIT-016..GIT-019) |
-| `.opencode/skill/sk-git/manual_testing_playbook/06--cross-cli-orchestration/00[1-3]-*.md` | Created | 3 cross-CLI scenarios (GIT-020..GIT-022) |
+| `.opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md` | Created | Root playbook (~602 lines): index, global preconditions, deterministic command notation, integrated review/release-readiness, sub-agent orchestration, per-category summaries |
+| `.opencode/skills/sk-git/manual_testing_playbook/01--worktree-setup/00[1-3]-*.md` | Created | 3 worktree-setup scenarios (GIT-001..GIT-003 incl. stay-on-main) |
+| `.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/00[1-4]-*.md` | Created | 4 commit-formation scenarios (GIT-004..GIT-007 incl. Co-Authored-By footer) |
+| `.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/00[1-4]-*.md` | Created | 4 safety-refusal scenarios (GIT-008..GIT-011) |
+| `.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/00[1-4]-*.md` | Created | 4 integration/PR scenarios (GIT-012..GIT-015) |
+| `.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/00[1-4]-*.md` | Created | 4 recovery/edge-case scenarios (GIT-016..GIT-019) |
+| `.opencode/skills/sk-git/manual_testing_playbook/06--cross-cli-orchestration/00[1-3]-*.md` | Created | 3 cross-CLI scenarios (GIT-020..GIT-022) |
 <!-- /ANCHOR:what-built -->
 
 ---

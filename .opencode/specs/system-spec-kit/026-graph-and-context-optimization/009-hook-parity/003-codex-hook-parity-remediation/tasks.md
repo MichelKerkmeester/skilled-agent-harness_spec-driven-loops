@@ -69,8 +69,8 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level3-arch 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] **T-19** Author cli-codex hook contract reference. [EVIDENCE: repo-root `.opencode/skill/cli-codex/references/hook_contract.md`.]
-- [x] **T-20** Update cli-codex skill docs. [EVIDENCE: `.opencode/skill/cli-codex/SKILL.md` references hook contract, startup context, advisor brief, and `codex_hooks`.]
+- [x] **T-19** Author cli-codex hook contract reference. [EVIDENCE: repo-root `.opencode/skills/cli-codex/references/hook_contract.md`.]
+- [x] **T-20** Update cli-codex skill docs. [EVIDENCE: `.opencode/skills/cli-codex/SKILL.md` references hook contract, startup context, advisor brief, and `codex_hooks`.]
 - [x] **T-21** Update cli-codex README. [EVIDENCE: README has Native Hooks section and FAQ.]
 - [x] **T-22** Update parent summary. [EVIDENCE: parent implementation summary includes Codex phase outcome.]
 - [x] **T-23** Resolve stale spec-020 reference. [EVIDENCE: active cross-reference points at the hook-daemon parity packet.]

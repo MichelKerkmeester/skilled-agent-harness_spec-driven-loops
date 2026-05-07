@@ -4,12 +4,12 @@
 
 Template-system documentation and legacy source orientation.
 
-- `.opencode/skill/system-spec-kit/templates/README.md` - current template taxonomy and addon guidance.
-- `.opencode/skill/system-spec-kit/templates/addendum/README.md` - legacy addendum layout targeted for deletion or consolidation.
-- `.opencode/skill/system-spec-kit/templates/core/README.md` - legacy core template layout targeted for consolidation.
-- `.opencode/skill/system-spec-kit/templates/changelog/README.md` - changelog templates that should be classified outside the new spec-doc template source surface if retained.
-- `.opencode/skill/system-spec-kit/templates/examples/README.md` - example templates targeted for deletion after golden snapshots replace them.
-- `.opencode/skill/system-spec-kit/templates/stress_test/README.md` - stress-test assets to relocate if still useful.
+- `.opencode/skills/system-spec-kit/templates/README.md` - current template taxonomy and addon guidance.
+- `.opencode/skills/system-spec-kit/templates/addendum/README.md` - legacy addendum layout targeted for deletion or consolidation.
+- `.opencode/skills/system-spec-kit/templates/core/README.md` - legacy core template layout targeted for consolidation.
+- `.opencode/skills/system-spec-kit/templates/changelog/README.md` - changelog templates that should be classified outside the new spec-doc template source surface if retained.
+- `.opencode/skills/system-spec-kit/templates/examples/README.md` - example templates targeted for deletion after golden snapshots replace them.
+- `.opencode/skills/system-spec-kit/templates/stress_test/README.md` - stress-test assets to relocate if still useful.
 
 ## Documents
 
@@ -33,10 +33,10 @@ Authored or workflow-owned markdown documents governed by the manifest.
 
 Command surfaces and workflow entry points that create or consume docs.
 
-- `.opencode/command/spec_kit/deep-research.md` - owns deep-research synthesis workflow.
-- `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` - owns automatic deep-research state flow.
-- `.opencode/command/spec_kit/complete.md` - references canonical save and completion behavior.
-- `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` - debug delegation trigger context.
+- `.opencode/commands/spec_kit/deep-research.md` - owns deep-research synthesis workflow.
+- `.opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml` - owns automatic deep-research state flow.
+- `.opencode/commands/spec_kit/complete.md` - references canonical save and completion behavior.
+- `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` - debug delegation trigger context.
 - `/spec_kit:deep-research` - workflow trigger for `research/research.md`.
 - `/spec_kit:deep-review` - workflow trigger for review packet outputs.
 - `/memory:save` - command trigger for `handover.md`.
@@ -45,8 +45,8 @@ Command surfaces and workflow entry points that create or consume docs.
 
 Agent-owned behavior relevant to lifecycle classification.
 
-- `.opencode/agent/deep-research.md` - workflow-owned research output behavior.
-- `.opencode/agent/orchestrate.md` - debug delegation routing and exclusive debug ownership notes.
+- `.opencode/agents/deep-research.md` - workflow-owned research output behavior.
+- `.opencode/agents/orchestrate.md` - debug delegation routing and exclusive debug ownership notes.
 - `@debug` - owns debug pass after `debug-delegation.md` dispatch.
 - `@deep-research` - LEAF research iteration executor when native workflow is used.
 
@@ -54,13 +54,13 @@ Agent-owned behavior relevant to lifecycle classification.
 
 Skill documentation and scripts used as protocol sources.
 
-- `.opencode/skill/sk-deep-research/SKILL.md` - deep-research loop protocol.
-- `.opencode/skill/sk-deep-research/references/convergence.md` - convergence and resource-map behavior.
-- `.opencode/skill/sk-deep-research/scripts/reduce-state.cjs` - reducer, state parser, and workflow resource-map emitter.
-- `.opencode/skill/system-spec-kit/SKILL.md` - spec folder and validation workflow.
-- `.opencode/skill/system-spec-kit/references/templates/level_specifications.md` - current level model reference.
-- `.opencode/skill/system-spec-kit/references/templates/template_guide.md` - template composition reference.
-- `.opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md` - validation contract reference.
+- `.opencode/skills/sk-deep-research/SKILL.md` - deep-research loop protocol.
+- `.opencode/skills/sk-deep-research/references/convergence.md` - convergence and resource-map behavior.
+- `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` - reducer, state parser, and workflow resource-map emitter.
+- `.opencode/skills/system-spec-kit/SKILL.md` - spec folder and validation workflow.
+- `.opencode/skills/system-spec-kit/references/templates/level_specifications.md` - current level model reference.
+- `.opencode/skills/system-spec-kit/references/templates/template_guide.md` - template composition reference.
+- `.opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md` - validation contract reference.
 
 ## Specs
 
@@ -112,48 +112,48 @@ Research packet sources and cross-validation context.
 
 Production and proposed implementation files affected by the refactor.
 
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` - scaffolder entry point that keeps public `--level` while resolving private template contracts internally.
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` - shell bridge for manifest helpers.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh` - required-doc validation.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-sections.sh` - required-section validation.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-section-counts.sh` - profile-derived count validation.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` - post-gate template header validation.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-level-match.sh` - legacy level consistency rule to split or retire.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-canonical-save.sh` - packet metadata provenance rule, not part of capability matrix.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs` - canonical save helper.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-frontmatter.sh` - current semantic frontmatter validator.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-source.sh` - current template-source marker validator.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh` - link and metadata integrity checks.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-phase-parent-content.sh` - phase-parent content discipline.
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` - required `compare-manifest` integration point.
-- `.opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` - debug delegation lifecycle source.
-- `.opencode/skill/system-spec-kit/scripts/dist/spec-folder/generate-description.js` - metadata contract mirror target.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` - scaffolder entry point that keeps public `--level` while resolving private template contracts internally.
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` - shell bridge for manifest helpers.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` - required-doc validation.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` - required-section validation.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` - profile-derived count validation.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` - post-gate template header validation.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh` - legacy level consistency rule to split or retire.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-canonical-save.sh` - packet metadata provenance rule, not part of capability matrix.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs` - canonical save helper.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh` - current semantic frontmatter validator.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh` - current template-source marker validator.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh` - link and metadata integrity checks.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh` - phase-parent content discipline.
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` - required `compare-manifest` integration point.
+- `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` - debug delegation lifecycle source.
+- `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` - metadata contract mirror target.
 
 ## Tests
 
 Verification surfaces for the manifest redesign.
 
-- `.opencode/skill/system-spec-kit/scripts/tests/template-scaffold.vitest.ts` - proposed golden snapshot test file.
-- `.opencode/skill/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts` - proposed single regression test for level-only public workflow vocabulary across live outputs, templates, fixtures, command docs, skill text, and agent prompts.
-- `.opencode/skill/system-spec-kit/scripts/package.json` - existing Vitest script surface.
-- `.opencode/skill/system-spec-kit/package.json` - root workspace test integration.
+- `.opencode/skills/system-spec-kit/scripts/tests/template-scaffold.vitest.ts` - proposed golden snapshot test file.
+- `.opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts` - proposed single regression test for level-only public workflow vocabulary across live outputs, templates, fixtures, command docs, skill text, and agent prompts.
+- `.opencode/skills/system-spec-kit/scripts/package.json` - existing Vitest script surface.
+- `.opencode/skills/system-spec-kit/package.json` - root workspace test integration.
 
 ## Config
 
 Metadata, manifests, schemas, and generated packet state.
 
-- `.opencode/skill/system-spec-kit/templates/manifest/spec-kit-docs.json` - proposed single manifest.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts` - proposed canonical manifest loader.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/templates/inline-gates.ts` - proposed canonical gate renderer.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` - TS validation registry integration.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts` - resume priority source.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts` - continuity contract source.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/description/description-schema.ts` - description metadata schema.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` - graph metadata schema.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` - metadata indexing parser.
-- `.opencode/skill/system-spec-kit/shared/parsing/spec-doc-health.ts` - current doc health parser.
-- `.opencode/skill/system-spec-kit/shared/parsing/memory-sufficiency.ts` - memory sufficiency parser.
-- `.opencode/skill/system-spec-kit/mcp_server/lib/routing/content-router.ts` - memory-save content routing.
+- `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` - proposed single manifest.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/manifest-loader.ts` - proposed canonical manifest loader.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/templates/inline-gates.ts` - proposed canonical gate renderer.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts` - TS validation registry integration.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts` - resume priority source.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/continuity/thin-continuity-record.ts` - continuity contract source.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts` - description metadata schema.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` - graph metadata schema.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts` - metadata indexing parser.
+- `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts` - current doc health parser.
+- `.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts` - memory sufficiency parser.
+- `.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts` - memory-save content routing.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/description.json` - current packet description metadata.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/002-template-greenfield-redesign/graph-metadata.json` - current packet graph metadata.
 
@@ -161,12 +161,12 @@ Metadata, manifests, schemas, and generated packet state.
 
 Legacy directories and migration targets referenced by the synthesis.
 
-- `.opencode/skill/system-spec-kit/templates/level_1/` - legacy Level 1 templates to remove after parity.
-- `.opencode/skill/system-spec-kit/templates/level_2/` - legacy Level 2 templates to remove after parity.
-- `.opencode/skill/system-spec-kit/templates/level_3/` - legacy Level 3 templates to remove after parity.
-- `.opencode/skill/system-spec-kit/templates/level_3+/` - legacy Level 3+ templates to remove after parity.
-- `.opencode/skill/system-spec-kit/templates/addendum/` - legacy addendum composition source to consolidate.
-- `.opencode/skill/system-spec-kit/templates/core/` - legacy core composition source to consolidate.
-- `.opencode/skill/system-spec-kit/templates/examples/` - legacy examples replaced by golden snapshots.
-- `.opencode/skill/system-spec-kit/templates/phase_parent/` - legacy phase parent template location.
-- `.opencode/skill/system-spec-kit/templates/stress_test/` - assets to relocate if retained.
+- `.opencode/skills/system-spec-kit/templates/level_1/` - legacy Level 1 templates to remove after parity.
+- `.opencode/skills/system-spec-kit/templates/level_2/` - legacy Level 2 templates to remove after parity.
+- `.opencode/skills/system-spec-kit/templates/level_3/` - legacy Level 3 templates to remove after parity.
+- `.opencode/skills/system-spec-kit/templates/level_3+/` - legacy Level 3+ templates to remove after parity.
+- `.opencode/skills/system-spec-kit/templates/addendum/` - legacy addendum composition source to consolidate.
+- `.opencode/skills/system-spec-kit/templates/core/` - legacy core composition source to consolidate.
+- `.opencode/skills/system-spec-kit/templates/examples/` - legacy examples replaced by golden snapshots.
+- `.opencode/skills/system-spec-kit/templates/phase_parent/` - legacy phase parent template location.
+- `.opencode/skills/system-spec-kit/templates/stress_test/` - assets to relocate if retained.

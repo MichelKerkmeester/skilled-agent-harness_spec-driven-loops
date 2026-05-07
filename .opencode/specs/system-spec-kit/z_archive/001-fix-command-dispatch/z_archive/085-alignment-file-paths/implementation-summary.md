@@ -1,6 +1,6 @@
 ---
 title: "Imple [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths/implementation-summary]"
-description: "File: .opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.js"
+description: "File: .opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.js"
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ### 1. alignment-validator.js
 
-**File:** `.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.js`
+**File:** `.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.js`
 
 #### Added Configuration
 ```javascript
@@ -56,7 +56,7 @@ ALIGNMENT_CONFIG.INFRASTRUCTURE_THRESHOLD = 0.5;
 
 ### 2. continue.md
 
-**File:** `.opencode/command/memory/continue.md`
+**File:** `.opencode/commands/memory/continue.md`
 
 #### Added Step 2.5: Content Validation
 - Extracts `key_files` from memory metadata
@@ -98,8 +98,8 @@ The fix: File paths are now the primary signal for infrastructure work. When >50
 
 ## Files Modified
 
-- `.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.js`
-- `.opencode/command/memory/continue.md`
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/alignment-validator.js`
+- `.opencode/commands/memory/continue.md`
 ---
 
 <!-- ANCHOR:limitations -->

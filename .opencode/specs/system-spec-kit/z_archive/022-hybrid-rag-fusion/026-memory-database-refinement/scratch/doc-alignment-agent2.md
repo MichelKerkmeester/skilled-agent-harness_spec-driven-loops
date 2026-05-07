@@ -5,14 +5,14 @@
 Audited the requested System Spec Kit skill docs plus the root repository README against the live Memory Database Refinement runtime.
 
 Files reviewed:
-- `.opencode/skill/system-spec-kit/README.md`
-- `.opencode/skill/system-spec-kit/SKILL.md`
-- `.opencode/skill/system-spec-kit/references/structure/folder_structure.md`
-- `.opencode/skill/system-spec-kit/references/templates/level_specifications.md`
-- `.opencode/skill/system-spec-kit/references/templates/template_guide.md`
-- `.opencode/skill/system-spec-kit/references/templates/template_style_guide.md`
-- `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md`
-- `.opencode/skill/system-spec-kit/assets/*.md`
+- `.opencode/skills/system-spec-kit/README.md`
+- `.opencode/skills/system-spec-kit/SKILL.md`
+- `.opencode/skills/system-spec-kit/references/structure/folder_structure.md`
+- `.opencode/skills/system-spec-kit/references/templates/level_specifications.md`
+- `.opencode/skills/system-spec-kit/references/templates/template_guide.md`
+- `.opencode/skills/system-spec-kit/references/templates/template_style_guide.md`
+- `.opencode/skills/system-spec-kit/references/workflows/quick_reference.md`
+- `.opencode/skills/system-spec-kit/assets/*.md`
 - `README.md`
 
 ## Source-of-Truth Checks
@@ -27,7 +27,7 @@ Validated doc claims against live implementation and refinement artifacts:
 
 ## Files Updated
 
-### 1. `.opencode/skill/system-spec-kit/README.md`
+### 1. `.opencode/skills/system-spec-kit/README.md`
 
 Updated:
 - Removed brittle structural counts/line-count claims for `mcp_server/`.
@@ -36,7 +36,7 @@ Updated:
 - Rewrote the feature-flag section to describe runtime-resolved flags instead of static/import-time behavior.
 - Updated the MCP-server README description to mention current 5-channel retrieval and runtime rollout behavior.
 
-### 2. `.opencode/skill/system-spec-kit/SKILL.md`
+### 2. `.opencode/skills/system-spec-kit/SKILL.md`
 
 Updated:
 - Changed the integrated memory-system overview from 3-channel wording to current 5-channel retrieval wording.
@@ -51,7 +51,7 @@ Updated:
 
 Updated:
 - Replaced stale memory-engine diagram copy (`PE gating - constitutional tiers`) with runtime/eval language that matches the current refinement surface.
-- Fixed the default database path to `.opencode/skill/system-spec-kit/mcp_server/dist/database/context-index.sqlite`.
+- Fixed the default database path to `.opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite`.
 - Rewrote the memory feature-flag section around runtime-resolved behavior and current control groups.
 - Replaced the obsolete 25-table schema summary with a current high-level description centered on `memory_index` plus companion FTS/vector/graph/lifecycle/eval tables.
 - Corrected the FAQ entry so `memory_match_triggers()` is described as the fast trigger/cognitive pass, while full hybrid retrieval is attributed to `memory_context()` / `memory_search()`.
@@ -77,9 +77,9 @@ Reason:
 Commands run:
 
 ```bash
-git diff -- .opencode/skill/system-spec-kit/README.md .opencode/skill/system-spec-kit/SKILL.md README.md
-rg -n "SPEC_KIT_DB_PATH|shared/mcp_server/database/context-index.sqlite|25 tables|memory_match_triggers\\(\\) runs a 5-channel hybrid search|PE gating ─ constitutional tiers|vector \\+ FTS \\+ BM25|shared_memory_status\\(\\).*L3" .opencode/skill/system-spec-kit/README.md .opencode/skill/system-spec-kit/SKILL.md README.md
-for f in .opencode/skill/system-spec-kit/references/structure/folder_structure.md .opencode/skill/system-spec-kit/references/templates/level_specifications.md .opencode/skill/system-spec-kit/references/templates/template_guide.md .opencode/skill/system-spec-kit/references/templates/template_style_guide.md .opencode/skill/system-spec-kit/references/workflows/quick_reference.md .opencode/skill/system-spec-kit/assets/*.md; do
+git diff -- .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/SKILL.md README.md
+rg -n "SPEC_KIT_DB_PATH|shared/mcp_server/database/context-index.sqlite|25 tables|memory_match_triggers\\(\\) runs a 5-channel hybrid search|PE gating ─ constitutional tiers|vector \\+ FTS \\+ BM25|shared_memory_status\\(\\).*L3" .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/SKILL.md README.md
+for f in .opencode/skills/system-spec-kit/references/structure/folder_structure.md .opencode/skills/system-spec-kit/references/templates/level_specifications.md .opencode/skills/system-spec-kit/references/templates/template_guide.md .opencode/skills/system-spec-kit/references/templates/template_style_guide.md .opencode/skills/system-spec-kit/references/workflows/quick_reference.md .opencode/skills/system-spec-kit/assets/*.md; do
   rg -n "33 tools|31 tools|57 columns|56 columns|5-channel|feature flag|graph walk|runtime-resolved|SPECKIT_GRAPH_WALK_ROLLOUT|memory_search\\(|memory_match_triggers\\(" "$f" || true
 done
 ```

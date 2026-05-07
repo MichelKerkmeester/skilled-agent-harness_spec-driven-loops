@@ -3,16 +3,16 @@
 ## 1. TL;DR
 
 - Recommendation: **PARTIAL**. Consolidate source-of-truth behavior now; defer physical deletion of rendered level directories until parity and consumer migration are proven.
-- Keep `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, and `.opencode/skill/system-spec-kit/templates/level_3+` as checked-in goldens and fallback through Phase 3.
-- Use `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` as the generator and add a thin resolver in TypeScript plus a shell wrapper for runtime callers.
+- Keep `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, and `.opencode/skills/system-spec-kit/templates/level_3+` as checked-in goldens and fallback through Phase 3.
+- Use `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` as the generator and add a thin resolver in TypeScript plus a shell wrapper for runtime callers.
 - Exact deletion budget for only the four rendered level directories is `25` markdown files and `4,087` LOC, not the broader approximate Phase 4 number from iteration 8.
-- Consolidate the four per-level README helper docs into `.opencode/skill/system-spec-kit/templates/README.md`; exclude README files from runtime byte parity.
+- Consolidate the four per-level README helper docs into `.opencode/skills/system-spec-kit/templates/README.md`; exclude README files from runtime byte parity.
 
 ## 2. Recommendation
 
 Adopt **PARTIAL** consolidation.
 
-The implementation should distinguish source-of-truth consolidation from immediate physical deletion. The durable source surface should be `.opencode/skill/system-spec-kit/templates/core`, `.opencode/skill/system-spec-kit/templates/addendum`, `.opencode/skill/system-spec-kit/scripts/templates/compose.sh`, resolver code, cache metadata, manifests, and cross-cutting templates such as `.opencode/skill/system-spec-kit/templates/handover.md`, `.opencode/skill/system-spec-kit/templates/debug-delegation.md`, `.opencode/skill/system-spec-kit/templates/research.md`, `.opencode/skill/system-spec-kit/templates/resource-map.md`, and `.opencode/skill/system-spec-kit/templates/context-index.md`.
+The implementation should distinguish source-of-truth consolidation from immediate physical deletion. The durable source surface should be `.opencode/skills/system-spec-kit/templates/core`, `.opencode/skills/system-spec-kit/templates/addendum`, `.opencode/skills/system-spec-kit/scripts/templates/compose.sh`, resolver code, cache metadata, manifests, and cross-cutting templates such as `.opencode/skills/system-spec-kit/templates/handover.md`, `.opencode/skills/system-spec-kit/templates/debug-delegation.md`, `.opencode/skills/system-spec-kit/templates/research.md`, `.opencode/skills/system-spec-kit/templates/resource-map.md`, and `.opencode/skills/system-spec-kit/templates/context-index.md`.
 
 Rendered `templates/level_N` directories should remain checked in through Phase 3 because they are still active contracts for creation scripts, validators, tests, command YAMLs, runtime agent docs, and governance text. Physical deletion becomes Phase 4 only after byte parity, validator parity, path compatibility, and strict resolver behavior are green.
 
@@ -20,9 +20,9 @@ The recommendation rejects a no-change outcome because generation, parity gates,
 
 ## 3. Background
 
-The current template tree is larger than the visible four level folders. Iteration 1 measured `.opencode/skill/system-spec-kit/templates` at `86` files, `83` markdown files, and `13,115` markdown LOC. The four rendered output directories alone contain `25` markdown files and `4,087` LOC.
+The current template tree is larger than the visible four level folders. Iteration 1 measured `.opencode/skills/system-spec-kit/templates` at `86` files, `83` markdown files, and `13,115` markdown LOC. The four rendered output directories alone contain `25` markdown files and `4,087` LOC.
 
-Those rendered directories are generated outputs, but they are also public contracts. `.opencode/skill/system-spec-kit/scripts/spec/create.sh` copies from them through `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`. `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` reads them to derive header and ANCHOR contracts. Command YAMLs and runtime agent docs cite concrete `templates/level_N` paths. Existing spec folders contain many `SPECKIT_TEMPLATE_SOURCE` and `template_source:` variants, so provenance compatibility is part of the migration, not a cleanup detail.
+Those rendered directories are generated outputs, but they are also public contracts. `.opencode/skills/system-spec-kit/scripts/spec/create.sh` copies from them through `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`. `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` reads them to derive header and ANCHOR contracts. Command YAMLs and runtime agent docs cite concrete `templates/level_N` paths. Existing spec folders contain many `SPECKIT_TEMPLATE_SOURCE` and `template_source:` variants, so provenance compatibility is part of the migration, not a cleanup detail.
 
 The project-level spec policy in `AGENTS.md` requires all file modifications to use spec-folder templates and completion verification. That makes the template system both code and governance infrastructure. The consolidation has to preserve creation behavior, validation behavior, and old packet readability.
 
@@ -55,7 +55,7 @@ Primary sources: `.opencode/specs/system-spec-kit/026-graph-and-context-optimiza
 
 ## 6. Generator Design
 
-Use `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` as the generator. It already owns the transformation from `.opencode/skill/system-spec-kit/templates/core` and `.opencode/skill/system-spec-kit/templates/addendum` into the four rendered level outputs.
+Use `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` as the generator. It already owns the transformation from `.opencode/skills/system-spec-kit/templates/core` and `.opencode/skills/system-spec-kit/templates/addendum` into the four rendered level outputs.
 
 Phase 1 should extend `compose.sh` with non-mutating output-root support, such as `SPECKIT_TEMPLATE_OUT_ROOT` or `--out-root`, so parity tests can generate into a temporary root and compare against checked-in goldens. The composer should also own legacy continuity blocks, committed ANCHOR shapes, level metadata quirks, and decision-record metadata repair. Wrapper utilities should not reintroduce numeric anchors after composer parity is fixed.
 
@@ -79,7 +79,7 @@ The resolver is not a second generator. It should call or read the generated cac
 | --- | --- | --- |
 | Phase 1: byte-equivalence repair | Add temp output-root support; repair legacy `_memory.continuity`; preserve committed ANCHOR spans; preserve metadata-level quirks; repair decision-record metadata; add golden parity tests. | Go only when generated runtime docs are byte-identical to checked-in goldens, excluding README files by policy. No-go if any runtime doc, ANCHOR span, or frontmatter block differs. |
 | Phase 2: resolver introduction | Add TypeScript resolver and shell wrapper; generate cache with checked-in fallback; preserve cache path shape; add resolver path/content/metadata tests. | Go only when `template-structure.js` reads through resolver content mode and `create.sh` temp workspace tests pass from both generated cache and fallback. No-go if diagnostics lose the `templates/level_N` path shape. |
-| Phase 3: consumer migration | Migrate `template-utils.sh`, `create.sh`, `template-structure.js`, `check-template-staleness.sh`, active tests, command YAMLs, runtime agent docs, `AGENTS.md`, and `CLAUDE.md`. | Go only when root `.opencode/skill/system-spec-kit` tests pass and strict validation samples match generated and checked-in behavior. No-go if fallback is still required for active runtime consumers. |
+| Phase 3: consumer migration | Migrate `template-utils.sh`, `create.sh`, `template-structure.js`, `check-template-staleness.sh`, active tests, command YAMLs, runtime agent docs, `AGENTS.md`, and `CLAUDE.md`. | Go only when root `.opencode/skills/system-spec-kit` tests pass and strict validation samples match generated and checked-in behavior. No-go if fallback is still required for active runtime consumers. |
 | Phase 4: optional deletion | Delete rendered level directories only after strict resolver mode, no active direct consumers, and a one-commit rollback path. | Go only when `rg "templates/level_"` shows no active consumers outside historical fixtures or explicitly legacy docs and resolver strict mode passes in CI. No-go if deletion cannot be reverted cleanly in one commit. |
 
 Phase 4 should be scoped carefully. Deleting only the four rendered level directories removes exactly `25` markdown files and `4,087` LOC. Broader cleanup of examples or other generated surfaces is a separate scope and needs a separate inventory.
@@ -97,7 +97,7 @@ Compatibility rules:
 - Do not batch-rewrite existing marker-bearing spec folders in Phase 1 through Phase 3.
 - Make canonical resolver misses hard errors for runtime docs; keep fallback only for declared optional cross-cutting templates.
 
-The phase-parent lean trio is adjacent to level generation, not a candidate for collapse. `.opencode/skill/system-spec-kit/templates/phase_parent/spec.md` and `.opencode/skill/system-spec-kit/templates/addendum/phase` should stay explicit.
+The phase-parent lean trio is adjacent to level generation, not a candidate for collapse. `.opencode/skills/system-spec-kit/templates/phase_parent/spec.md` and `.opencode/skills/system-spec-kit/templates/addendum/phase` should stay explicit.
 
 ## 9. Risk Register
 
@@ -105,7 +105,7 @@ The phase-parent lean trio is adjacent to level generation, not a candidate for 
 | --- | --- | --- | --- | --- | --- |
 | R1 | ANCHOR drift changes IDs, spans, or ordering consumed by validators and memory parsers. | H | H | Gate Phase 1 on byte parity plus ANCHOR invariant tests for all runtime docs; composer owns legacy anchors. | Template consolidation implementer |
 | R2 | Validator silent break occurs if `template-structure.js` reads different generated content but emits plausible contracts. | H | M | Compare checked-in and generated `template-structure.js` contracts and `validate.sh --json` behavior before consumer migration. | Validator owner |
-| R3 | Generator drift remains hidden because `compose.sh` output differs from checked-in rendered templates. | H | H | Add `.opencode/skill/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts` before resolver migration. | Template consolidation implementer |
+| R3 | Generator drift remains hidden because `compose.sh` output differs from checked-in rendered templates. | H | H | Add `.opencode/skills/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts` before resolver migration. | Template consolidation implementer |
 | R4 | Cache invalidation returns stale templates after source fragments, composer, or resolver code changes. | M | M | Hash `compose.sh`, resolver version, `core/**`, `addendum/**`, and relevant generation scripts; use atomic cache promotion. | Resolver owner |
 | R5 | Path-contract breakage affects scripts, command YAMLs, tests, title suffixes, and diagnostics expecting `templates/level_N/file.md`. | H | M | Preserve `templates/level_N` layout inside cache and keep `resolveTemplatePath` compatibility tests. | Resolver owner |
 | R6 | Marker variance causes old folders to be treated as stale or malformed. | M | H | Use tolerant provenance parsing and extract versions independently from payload names. | Compatibility owner |
@@ -113,13 +113,13 @@ The phase-parent lean trio is adjacent to level generation, not a candidate for 
 | R8 | Rollback ordering fails if checked-in rendered dirs are deleted before resolver strict mode is proven. | H | M | Keep rendered dirs through Phase 3; Phase 4 deletion requires strict resolver CI and a one-commit revert path. | Release owner |
 | R9 | Level 3+ test fixture hardcoding keeps old `level_3+` strings and title suffixes alive after migration. | M | M | Classify fixtures as deletion-safe historical data; update only during intentional validator fixture regeneration. | Test owner |
 | R10 | Canonical template missing falls through to empty-file creation in `copy_template`. | H | M | Make canonical resolver misses hard errors and keep fallback only for optional cross-cutting templates. | Runtime helper owner |
-| R11 | Per-level README files leak into scaffold or parity decisions. | M | M | Consolidate README guidance into `.opencode/skill/system-spec-kit/templates/README.md`; exclude README from runtime parity. | Documentation owner |
+| R11 | Per-level README files leak into scaffold or parity decisions. | M | M | Consolidate README guidance into `.opencode/skills/system-spec-kit/templates/README.md`; exclude README from runtime parity. | Documentation owner |
 
 ## 10. Performance Budget
 
 Iteration 7 closes the performance question well enough for planning. `compose.sh` remains the generator. The representative full compose measurement is `430ms`, with the broader cold all-level compose evidence sitting in the `430-470ms` range across iterations 3 and 7.
 
-The runtime creation path should not pay that cost repeatedly. `.opencode/skill/system-spec-kit/scripts/spec/create.sh` should resolve one level directory once, then copy files from that directory. It should not run Node, shell hashing, or compose for each template file. Warm resolver behavior should be path lookup plus cheap metadata checks.
+The runtime creation path should not pay that cost repeatedly. `.opencode/skills/system-spec-kit/scripts/spec/create.sh` should resolve one level directory once, then copy files from that directory. It should not run Node, shell hashing, or compose for each template file. Warm resolver behavior should be path lookup plus cheap metadata checks.
 
 Performance requirements:
 
@@ -130,29 +130,29 @@ Performance requirements:
 
 ## 11. Validator Migration
 
-The blocker is `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`, not `.opencode/skill/system-spec-kit/scripts/rules/check-files.sh`.
+The blocker is `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`, not `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh`.
 
 `check-files.sh` encodes required files by level and can survive consolidation because it does not need rendered templates to decide whether `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, or `implementation-summary.md` are required. It may later move to a manifest, but that is not the deletion blocker.
 
-`template-structure.js` reads rendered level template files to derive header and ANCHOR contracts. `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` delegates to it, so any subtle generated-output drift can change validation behavior. Migrate this helper through resolver content mode first, while preserving `resolveTemplatePath` diagnostics and the `templates/level_N` path shape.
+`template-structure.js` reads rendered level template files to derive header and ANCHOR contracts. `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` delegates to it, so any subtle generated-output drift can change validation behavior. Migrate this helper through resolver content mode first, while preserving `resolveTemplatePath` diagnostics and the `templates/level_N` path shape.
 
-`.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh` also reads `.opencode/skill/system-spec-kit/templates/level_1/spec.md` for the current template version. It should move to resolver path or content mode after the resolver contract exists.
+`.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh` also reads `.opencode/skills/system-spec-kit/templates/level_1/spec.md` for the current template version. It should move to resolver path or content mode after the resolver contract exists.
 
 ## 12. Consumer Migration Map
 
 | Consumer | Class | Migration |
 | --- | --- | --- |
-| `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` | PATH | Replace internals of `get_level_templates_dir` with `ensure_template_level_dir`; keep directory output contract. |
-| `.opencode/skill/system-spec-kit/scripts/spec/create.sh` | PATH | Resolve the level directory once before normal and subfolder copy loops. |
-| `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` | CONTENT and PATH | Use resolver content mode for contracts and preserve path mode for diagnostics. |
-| `.opencode/skill/system-spec-kit/scripts/spec/check-template-staleness.sh` | CONTENT or PATH | Read current template version from resolver output instead of hardcoded Level 1 path. |
-| `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` | PATH | Add temp output-root support while keeping checked-in output as default during Phase 1. |
-| `.opencode/skill/system-spec-kit/scripts/wrap-all-templates.ts` and `.opencode/skill/system-spec-kit/scripts/wrap-all-templates.sh` | DELETION-safe | Retire from runtime path or make maintenance-only with explicit root input after composer owns anchors. |
-| `.opencode/skill/system-spec-kit/scripts/memory/backfill-frontmatter.ts` | CONTENT | Treat generated cache as read-only; run frontmatter migrations against source fragments or explicit goldens. |
-| `.opencode/command/spec_kit/assets/spec_kit_plan_auto.yaml` and confirm variant | PATH | Replace literal level paths after resolver examples and shell wrapper exist. |
-| `.opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml` and confirm variant | PATH | Migrate in sync with plan YAMLs after Phase 2. |
-| `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` and confirm variant | PATH | Replace with resolver-backed manifest or `get_template_path` examples. |
-| `.opencode/command/create/assets/create_agent_auto.yaml` and confirm variant | PATH | Replace hardcoded Level 1 paths with resolver-backed path examples. |
+| `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` | PATH | Replace internals of `get_level_templates_dir` with `ensure_template_level_dir`; keep directory output contract. |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | PATH | Resolve the level directory once before normal and subfolder copy loops. |
+| `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | CONTENT and PATH | Use resolver content mode for contracts and preserve path mode for diagnostics. |
+| `.opencode/skills/system-spec-kit/scripts/spec/check-template-staleness.sh` | CONTENT or PATH | Read current template version from resolver output instead of hardcoded Level 1 path. |
+| `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` | PATH | Add temp output-root support while keeping checked-in output as default during Phase 1. |
+| `.opencode/skills/system-spec-kit/scripts/wrap-all-templates.ts` and `.opencode/skills/system-spec-kit/scripts/wrap-all-templates.sh` | DELETION-safe | Retire from runtime path or make maintenance-only with explicit root input after composer owns anchors. |
+| `.opencode/skills/system-spec-kit/scripts/memory/backfill-frontmatter.ts` | CONTENT | Treat generated cache as read-only; run frontmatter migrations against source fragments or explicit goldens. |
+| `.opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` and confirm variant | PATH | Replace literal level paths after resolver examples and shell wrapper exist. |
+| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` and confirm variant | PATH | Migrate in sync with plan YAMLs after Phase 2. |
+| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` and confirm variant | PATH | Replace with resolver-backed manifest or `get_template_path` examples. |
+| `.opencode/commands/create/assets/create_agent_auto.yaml` and confirm variant | PATH | Replace hardcoded Level 1 paths with resolver-backed path examples. |
 | Runtime agent docs in `.opencode/agent`, `.codex/agents`, `.claude/agents`, and `.gemini/agents` | PATH | Update wording to "resolved Level-N template source" after command YAMLs migrate. |
 | `AGENTS.md` and `CLAUDE.md` | PATH | Update policy language only after create and validator tooling works. |
 | Active template tests | CONTENT and PATH | Add golden parity tests and migrate existing tests to resolver path/content mode. |
@@ -160,12 +160,12 @@ The blocker is `.opencode/skill/system-spec-kit/scripts/utils/template-structure
 
 ## 13. Test Suite Design
 
-Phase 1 should add `.opencode/skill/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts`.
+Phase 1 should add `.opencode/skills/system-spec-kit/scripts/tests/template-rendered-parity.vitest.ts`.
 
 Required coverage:
 
 - Generate all runtime docs into a temporary output root with `compose.sh`.
-- Compare generated files against checked-in goldens under `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, and `.opencode/skill/system-spec-kit/templates/level_3+`.
+- Compare generated files against checked-in goldens under `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, and `.opencode/skills/system-spec-kit/templates/level_3+`.
 - Include runtime docs: `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `checklist.md`, and `decision-record.md` when present.
 - Exclude `README.md` by explicit policy because README files are helper documentation, not runtime templates.
 - Assert exact UTF-8 byte equality.
@@ -174,7 +174,7 @@ Required coverage:
 - Assert frontmatter invariants: one top YAML block, preserved `_memory.continuity`, committed metadata-level quirks, and repaired decision-record description.
 - Test resolver path/content/metadata modes, cache fallback, strict mode, and missing canonical template hard errors.
 
-The enforceable hook today is package-script CI, not GitHub Actions. Iteration 5 found no `.github/workflows` target in this repo. Add a targeted script in `.opencode/skill/system-spec-kit/scripts/package.json`, then include it before legacy template tests in the workspace test chain.
+The enforceable hook today is package-script CI, not GitHub Actions. Iteration 5 found no `.github/workflows` target in this repo. Add a targeted script in `.opencode/skills/system-spec-kit/scripts/package.json`, then include it before legacy template tests in the workspace test chain.
 
 ## 14. File/LOC Deltas
 
@@ -191,7 +191,7 @@ Use two metrics: markdown template surface and implementation footprint.
 
 The earlier iteration 8 broader-cleanup scenario should not be used as the exact deletion budget for the four per-level directories. It can only describe an unmeasured cleanup that also deletes or reclassifies other generated or duplicate surfaces, such as examples or helper documentation. That broader scope is future work until separately inventoried.
 
-Per-level README policy changes the Phase 4 handling: the useful guidance from `.opencode/skill/system-spec-kit/templates/level_1/README.md`, `.opencode/skill/system-spec-kit/templates/level_2/README.md`, `.opencode/skill/system-spec-kit/templates/level_3/README.md`, and `.opencode/skill/system-spec-kit/templates/level_3+/README.md` should move into `.opencode/skill/system-spec-kit/templates/README.md` before those rendered directories are deleted.
+Per-level README policy changes the Phase 4 handling: the useful guidance from `.opencode/skills/system-spec-kit/templates/level_1/README.md`, `.opencode/skills/system-spec-kit/templates/level_2/README.md`, `.opencode/skills/system-spec-kit/templates/level_3/README.md`, and `.opencode/skills/system-spec-kit/templates/level_3+/README.md` should move into `.opencode/skills/system-spec-kit/templates/README.md` before those rendered directories are deleted.
 
 ## 15. Open Items / Future Work
 
@@ -206,15 +206,15 @@ Per-level README policy changes the Phase 4 handling: the useful guidance from `
 
 Iteration graph in text form:
 
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` sources `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh`.
-- `.opencode/skill/system-spec-kit/scripts/lib/template-utils.sh` maps levels to `.opencode/skill/system-spec-kit/templates/level_1`, `.opencode/skill/system-spec-kit/templates/level_2`, `.opencode/skill/system-spec-kit/templates/level_3`, and `.opencode/skill/system-spec-kit/templates/level_3+`.
-- `.opencode/skill/system-spec-kit/scripts/spec/create.sh` copies rendered docs from those level directories.
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` reads `.opencode/skill/system-spec-kit/templates/core` and `.opencode/skill/system-spec-kit/templates/addendum`.
-- `.opencode/skill/system-spec-kit/scripts/templates/compose.sh` writes rendered level directories today and should write a generated compatibility cache in Phase 2.
-- `.opencode/skill/system-spec-kit/scripts/rules/check-template-headers.sh` delegates to `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`.
-- `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js` reads rendered level templates for header and ANCHOR contracts.
-- The resolver shell wrapper feeds `.opencode/skill/system-spec-kit/scripts/spec/create.sh` and `copy_template`.
-- The resolver TypeScript API feeds `.opencode/skill/system-spec-kit/scripts/utils/template-structure.js`, parity tests, and staleness checks.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` sources `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh`.
+- `.opencode/skills/system-spec-kit/scripts/lib/template-utils.sh` maps levels to `.opencode/skills/system-spec-kit/templates/level_1`, `.opencode/skills/system-spec-kit/templates/level_2`, `.opencode/skills/system-spec-kit/templates/level_3`, and `.opencode/skills/system-spec-kit/templates/level_3+`.
+- `.opencode/skills/system-spec-kit/scripts/spec/create.sh` copies rendered docs from those level directories.
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` reads `.opencode/skills/system-spec-kit/templates/core` and `.opencode/skills/system-spec-kit/templates/addendum`.
+- `.opencode/skills/system-spec-kit/scripts/templates/compose.sh` writes rendered level directories today and should write a generated compatibility cache in Phase 2.
+- `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` delegates to `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`.
+- `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` reads rendered level templates for header and ANCHOR contracts.
+- The resolver shell wrapper feeds `.opencode/skills/system-spec-kit/scripts/spec/create.sh` and `copy_template`.
+- The resolver TypeScript API feeds `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`, parity tests, and staleness checks.
 - Command YAMLs and runtime agent docs migrate after the resolver path contract is stable.
 - Phase 4 deletion is gated by strict resolver mode and absence of active direct consumers.
 
@@ -249,7 +249,7 @@ sed -n '1,280p' .opencode/specs/system-spec-kit/026-graph-and-context-optimizati
 ```
 
 ```bash
-find .opencode/skill/system-spec-kit/templates/level_1 .opencode/skill/system-spec-kit/templates/level_2 .opencode/skill/system-spec-kit/templates/level_3 .opencode/skill/system-spec-kit/templates/level_3+ -type f -name '*.md' | wc -l
+find .opencode/skills/system-spec-kit/templates/level_1 .opencode/skills/system-spec-kit/templates/level_2 .opencode/skills/system-spec-kit/templates/level_3 .opencode/skills/system-spec-kit/templates/level_3+ -type f -name '*.md' | wc -l
 ```
 
 Result:
@@ -259,7 +259,7 @@ Result:
 ```
 
 ```bash
-find .opencode/skill/system-spec-kit/templates/level_1 .opencode/skill/system-spec-kit/templates/level_2 .opencode/skill/system-spec-kit/templates/level_3 .opencode/skill/system-spec-kit/templates/level_3+ -type f -name '*.md' -print0 | xargs -0 wc -l
+find .opencode/skills/system-spec-kit/templates/level_1 .opencode/skills/system-spec-kit/templates/level_2 .opencode/skills/system-spec-kit/templates/level_3 .opencode/skills/system-spec-kit/templates/level_3+ -type f -name '*.md' -print0 | xargs -0 wc -l
 ```
 
 Result:
@@ -269,5 +269,5 @@ Result:
 ```
 
 ```bash
-sed -n '1,180p' .opencode/skill/system-spec-kit/templates/level_1/README.md .opencode/skill/system-spec-kit/templates/level_2/README.md .opencode/skill/system-spec-kit/templates/level_3/README.md .opencode/skill/system-spec-kit/templates/level_3+/README.md
+sed -n '1,180p' .opencode/skills/system-spec-kit/templates/level_1/README.md .opencode/skills/system-spec-kit/templates/level_2/README.md .opencode/skills/system-spec-kit/templates/level_3/README.md .opencode/skills/system-spec-kit/templates/level_3+/README.md
 ```

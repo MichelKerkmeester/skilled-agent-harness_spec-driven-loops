@@ -95,7 +95,7 @@ This document records the current verified state for this scope. Use [spec.md](s
 <!-- ANCHOR:docs -->
 ## 6. DOCUMENTATION
 
-- [x] CHK-040 [P1] Feature catalog `.opencode/skill/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` updated. Backfill note added, `generate-description.js` referenced [Evidence: The feature catalog entry documents per-folder architecture, backfill behavior, and the generator CLI path.]
+- [x] CHK-040 [P1] Feature catalog `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/04-spec-folder-description-discovery.md` updated. Backfill note added, `generate-description.js` referenced [Evidence: The feature catalog entry documents per-folder architecture, backfill behavior, and the generator CLI path.]
 - [x] CHK-041 [P1] Testing playbook updated with description system scenarios. NEW-120 (batch backfill) and NEW-121 (schema validation) added [Evidence: The same feature-catalog entry records the backfill and schema-validation test scenarios shipped with this phase.]
 - [x] CHK-042 [P1] spec.md, plan.md, checklist.md synchronized. Documentation sweep applied across 5 files [Evidence: spec.md, plan.md, tasks.md, checklist.md, and implementation-summary.md were aligned to the live Level 2 template contract on 2026-03-17.]
 - [x] CHK-043 [P2] Implementation-summary.md created after implementation. `implementation-summary.md` added for this spec folder on 2026-03-09 with campaign verification notes

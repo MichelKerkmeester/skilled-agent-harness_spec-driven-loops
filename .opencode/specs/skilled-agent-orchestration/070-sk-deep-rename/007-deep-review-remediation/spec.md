@@ -83,7 +83,7 @@ Phase 007 remediates the active P0 and in-scope P1 findings without broadening i
 
 ### Out of Scope
 - Renaming the internal `sk-deep` family bucket in `skill-graph.json`.
-- Fixing `.opencode/skill/sk-code/graph-metadata.json` entity kind validation.
+- Fixing `.opencode/skills/sk-code/graph-metadata.json` entity kind validation.
 - Editing runtime mirrors, archives, databases, or any files outside the approved write set.
 - Running advisor rebuild; the orchestrator owns the MCP rebuild after this JSON source patch.
 
@@ -103,7 +103,7 @@ Phase 007 remediates the active P0 and in-scope P1 findings without broadening i
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals/{spec.md,graph-metadata.json}` | Update | P0 narrative restoration |
 | `specs/skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors/{spec.md,graph-metadata.json}` | Update | P0 narrative restoration |
 | `.opencode/changelog/` | Update | Replace stale symlinks |
-| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Advisor signal tuning |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Update | Advisor signal tuning |
 <!-- /ANCHOR:scope -->
 
 ---

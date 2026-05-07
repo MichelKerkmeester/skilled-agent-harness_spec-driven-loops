@@ -102,7 +102,7 @@ Verifier findings map to exact file edits. Source edits are mirrored where compi
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| CocoIndex canonical resource defaults | Boost hidden `.opencode/skill/*/assets/**` resources | Replace named library folder with generic placeholder | `rg -n "motion_dev|motion\\.dev" settings.py` |
+| CocoIndex canonical resource defaults | Boost hidden `.opencode/skills/*/assets/**` resources | Replace named library folder with generic placeholder | `rg -n "motion_dev|motion\\.dev" settings.py` |
 | Advisor explicit and lexical lanes | Score prompt tokens and phrase hints | Remove stack-specific route cues outside sk-code | 8-prompt suite and source grep |
 | Advisor Python legacy script | CLI advisor scoring implementation | Mirror generic route terminology | 8-prompt suite |
 | Advisor dist JS lanes | Checked-in runtime mirror | Mirror source changes | `rg` source/dist parity spot check |
@@ -162,7 +162,7 @@ Required inventories:
 | Regression | Advisor routing | 8-prompt `skill_advisor.py` loop |
 | Compiler | Skill graph validity | `skill_graph_compiler.py --validate-only` |
 | Spec validation | Child and parent spec folders | `validate.sh --strict` |
-| Scope safety | sk-code untouched | `git diff --name-only .opencode/skill/sk-code/` |
+| Scope safety | sk-code untouched | `git diff --name-only .opencode/skills/sk-code/` |
 <!-- /ANCHOR:testing -->
 
 ---

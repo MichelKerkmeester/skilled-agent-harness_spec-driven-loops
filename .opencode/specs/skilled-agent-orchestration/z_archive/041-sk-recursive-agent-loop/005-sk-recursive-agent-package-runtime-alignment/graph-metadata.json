@@ -40,8 +40,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/skill/sk-improve-agent/README.md",
+      ".opencode/skills/sk-improve-agent/SKILL.md",
+      ".opencode/skills/sk-improve-agent/README.md",
       ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
@@ -53,13 +53,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skills/sk-improve-agent/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skill/sk-improve-agent/README.md",
+        "path": ".opencode/skills/sk-improve-agent/README.md",
         "source": "derived"
       },
       {

@@ -141,7 +141,7 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 | Field | Value |
 |-------|-------|
 | Phase | IMPLEMENTATION |
-| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md |
+| Active File | /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md |
 | Last Action | Tool: edit |
 | Next Action | Continue implementation |
 | Blockers | 2) Attempt 2 **failed with “Tool execution aborted”** (hard stop). |
@@ -181,11 +181,11 @@ Reply with A, B, C, or D.
 
 - `specs/.../038-post-merge-refinement-3/codex-checklist.md` - Documentation
 
-- `.opencode/skill/system-spec-kit/mcp_server/context-server.js` - .opencode/skill/system-spec-kit/mcp_server/context-server.js
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.js` - .opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-- `.opencode/skill/system-spec-kit/mcp_server/README.md` - Documentation
+- `.opencode/skills/system-spec-kit/mcp_server/README.md` - Documentation
 
-- `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` - Core spec kit resume auto
+- `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` - Core spec kit resume auto
 
 - `README.md` - Documentation
 
@@ -233,13 +233,13 @@ Assistant processed request
 | `specs/.../038-post-merge-refinement-3/codex-plan.md` | Updated codex plan |
 | `specs/.../038-post-merge-refinement-3/codex-tasks.md` | Updated codex tasks |
 | `specs/.../038-post-merge-refinement-3/codex-checklist.md` | Updated codex checklist |
-| `.opencode/skill/system-spec-kit/mcp_server/context-server.js` | Updated context server |
-| `.opencode/skill/system-spec-kit/mcp_server/README.md` | .opencode/skill/system-spec-kit/mcp_server/README.md |
-| `.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml` | Updated spec kit resume auto |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Updated context server |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | .opencode/skills/system-spec-kit/mcp_server/README.md |
+| `.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml` | Updated spec kit resume auto |
 | `README.md` | Modified during session |
 | `.opencode/.../lib/vector-index.js` | Updated vector index |
-| `.opencode/command/memory/checkpoint.md` | Updated checkpoint |
-| `.opencode/skill/system-spec-kit/templates/plan.md` | Updated plan |
+| `.opencode/commands/memory/checkpoint.md` | Updated checkpoint |
+| `.opencode/skills/system-spec-kit/templates/plan.md` | Updated plan |
 
 <!-- /ANCHOR:summary-session-1766685974819-4iiuany38-003-memory-and-spec-kit/037-post-merge-refinement-2 -->
 
@@ -351,9 +351,9 @@ Search for memory_load in yaml
 <!-- ANCHOR:implementation-tool-read-d00277d1-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml
+.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-session-1766685974819-4iiuany38 -->
 
@@ -385,18 +385,18 @@ README.md
 <!-- ANCHOR:implementation-tool-read-d00277d1-3-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-3-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-4-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/vector-index.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-4-session-1766685974819-4iiuany38 -->
 
@@ -411,18 +411,18 @@ Check tool count statement
 <!-- ANCHOR:implementation-tool-read-d00277d1-5-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-5-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-6-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-6-session-1766685974819-4iiuany38 -->
 
@@ -437,36 +437,36 @@ Find 'destructive' text in checkpoint doc
 <!-- ANCHOR:implementation-tool-read-d00277d1-7-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/command/memory/checkpoint.md
+.opencode/commands/memory/checkpoint.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/command/memory/checkpoint.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/commands/memory/checkpoint.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-7-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-8-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/plan.md
+.opencode/skills/system-spec-kit/templates/plan.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/plan.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/plan.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-8-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-9-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/tasks.md
+.opencode/skills/system-spec-kit/templates/tasks.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/tasks.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/tasks.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-9-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-10-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/templates/checklist.md
+.opencode/skills/system-spec-kit/templates/checklist.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/checklist.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/templates/checklist.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-10-session-1766685974819-4iiuany38 -->
 
@@ -548,72 +548,72 @@ Find slash usage in memory command docs
 <!-- ANCHOR:implementation-tool-read-d00277d1-11-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-11-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-12-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/checkpoints.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-12-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-13-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/lib/embeddings.js
+.opencode/skills/system-spec-kit/scripts/lib/embeddings.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/lib/embeddings.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/lib/embeddings.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-13-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-14-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/embeddings.js
+.opencode/skills/system-spec-kit/mcp_server/lib/embeddings.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/embeddings.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/embeddings.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-14-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-15-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/retry-manager.js
+.opencode/skills/system-spec-kit/mcp_server/lib/retry-manager.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/retry-manager.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/retry-manager.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-15-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-16-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/lib/retry-manager.js
+.opencode/skills/system-spec-kit/scripts/lib/retry-manager.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/lib/retry-manager.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/lib/retry-manager.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-16-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-17-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/lib/trigger-extractor.js
+.opencode/skills/system-spec-kit/mcp_server/lib/trigger-extractor.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/lib/trigger-extractor.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/lib/trigger-extractor.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-17-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-18-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.js
+.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/lib/trigger-extractor.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-18-session-1766685974819-4iiuany38 -->
 
@@ -652,18 +652,18 @@ Search for '14 MCP' string
 <!-- ANCHOR:implementation-tool-read-d00277d1-19-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-19-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-d00277d1-20-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-d00277d1-20-session-1766685974819-4iiuany38 -->
 
@@ -728,72 +728,72 @@ Executed glob
 <!-- ANCHOR:integration-tool-read-9db24271-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/package.json
+.opencode/skills/system-spec-kit/mcp_server/package.json
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/package.json
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/package.json
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:integration-tool-read-9db24271-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-read-9db24271-session-1766685974819-4iiuany38 -->
 ### OBSERVATION: Tool: read
 
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skills/system-spec-kit/mcp_server/context-server.js
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/context-server.js
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/context-server.js
 **Details:** Tool: read | Status: completed
 <!-- /ANCHOR:implementation-tool-read-9db24271-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-2-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-2-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-3-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-3-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-4-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-4-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-5-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-5-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-6-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-6-session-1766685974819-4iiuany38 -->
 
@@ -824,9 +824,9 @@ Search for string 14 in README
 <!-- ANCHOR:implementation-tool-edit-d930a318-7-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-7-session-1766685974819-4iiuany38 -->
 
@@ -841,18 +841,18 @@ Search for '14' after updates
 <!-- ANCHOR:implementation-tool-edit-d930a318-8-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-8-session-1766685974819-4iiuany38 -->
 
 <!-- ANCHOR:implementation-tool-edit-d930a318-9-session-1766685974819-4iiuany38 -->
 ### IMPLEMENTATION: Tool: edit
 
-.opencode/skill/system-spec-kit/mcp_server/README.md
+.opencode/skills/system-spec-kit/mcp_server/README.md
 
-**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/mcp_server/README.md
+**Files:** /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skills/system-spec-kit/mcp_server/README.md
 **Details:** Tool: edit | Status: completed
 <!-- /ANCHOR:implementation-tool-edit-d930a318-9-session-1766685974819-4iiuany38 -->
 
@@ -1481,13 +1481,13 @@ key_files:
   - "specs/.../038-post-merge-refinement-3/codex-plan.md"
   - "specs/.../038-post-merge-refinement-3/codex-tasks.md"
   - "specs/.../038-post-merge-refinement-3/codex-checklist.md"
-  - ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
-  - ".opencode/skill/system-spec-kit/mcp_server/README.md"
-  - ".opencode/command/spec_kit/assets/spec_kit_resume_auto.yaml"
+  - ".opencode/skills/system-spec-kit/mcp_server/context-server.js"
+  - ".opencode/skills/system-spec-kit/mcp_server/README.md"
+  - ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml"
   - "README.md"
   - ".opencode/.../lib/vector-index.js"
-  - ".opencode/command/memory/checkpoint.md"
-  - ".opencode/skill/system-spec-kit/templates/plan.md"
+  - ".opencode/commands/memory/checkpoint.md"
+  - ".opencode/skills/system-spec-kit/templates/plan.md"
 
 # Relationships
 related_sessions:

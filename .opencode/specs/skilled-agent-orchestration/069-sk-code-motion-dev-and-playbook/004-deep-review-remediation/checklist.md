@@ -66,7 +66,7 @@ _memory:
 - [x] CHK-011 [P0] F-005 Motion+ layout snippet uses documented import path.
   - **Evidence**: `layout_transition.js` imports `unstable_animateLayout` from `motion-plus/animate-layout` dynamically.
 - [x] CHK-012 [P0] No-regression check passes for Motion snippets.
-  - **Evidence**: `node --check .opencode/skill/sk-code/assets/motion_dev/snippets/*.js` exits 0.
+  - **Evidence**: `node --check .opencode/skills/sk-code/assets/motion_dev/snippets/*.js` exits 0.
 - [x] CHK-013 [P0] Re-validation gate passes for parent spec folder.
   - **Evidence**: `validate.sh .../069-sk-code-motion-dev-and-playbook --strict` exits 0.
 <!-- /ANCHOR:code-quality -->

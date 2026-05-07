@@ -52,7 +52,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Update argument parsing in `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
+- [x] T004 Update argument parsing in `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
 - [x] T005 Adjust `resolve_and_validate_spec_path()` to accept nested paths under approved roots
 - [x] T006 Resolve append output tree from the validated parent folder in `create.sh`
 - [x] T007 [P] Update append numbering logic so it scans only the chosen parent folder
@@ -92,7 +92,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Record**: See `decision-record.md`
-- **Target Script**: `.opencode/skill/system-spec-kit/scripts/spec/create.sh`
+- **Target Script**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh`
 <!-- /ANCHOR:cross-refs -->
 
 ---

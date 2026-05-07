@@ -39,9 +39,9 @@ _memory:
     next_safe_action: "Commit validated packet and implementation surfaces on the 026 branch"
     blockers: []
     key_files:
-      - ".opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md"
-      - ".opencode/agent/improve-prompt.md"
-      - ".opencode/command/improve/prompt.md"
+      - ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md"
+      - ".opencode/agents/improve-prompt.md"
+      - ".opencode/commands/improve/prompt.md"
     session_dedup:
       fingerprint: "sha256:043-cli-skill-improved-prompting"
       session_id: "043-cli-skill-improved-prompting"
@@ -66,7 +66,7 @@ The four CLI orchestration skills currently build dispatch prompts ad hoc from t
 
 **Key Decisions**: keep all routable assets inside each calling skill tree, use one canonical card in `sk-improve-prompt` plus four local mirrors, and route complexity-7+ or compliance-heavy prompts through a dedicated agent instead of inline full-skill loading.
 
-**Critical Dependencies**: `sk-improve-prompt` framework/CLEAR source material, the existing `_guard_in_skill()` self-containment rule inside all CLI skills, current `/improve:prompt` command behavior, and parity across `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
+**Critical Dependencies**: `sk-improve-prompt` framework/CLEAR source material, the existing `_guard_in_skill()` self-containment rule inside all CLI skills, current `/improve:prompt` command behavior, and parity across `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
 
 ---
 
@@ -81,7 +81,7 @@ The four CLI orchestration skills currently build dispatch prompts ad hoc from t
 | **Created** | 2026-04-11 |
 | **Branch** | `system-speckit/026-graph-and-context-optimization` |
 | **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/` |
-| **Primary Runtime Surface** | `.opencode/skill/cli-*`, `.opencode/skill/sk-improve-prompt/`, `.opencode/command/improve/prompt.md`, runtime agent mirrors |
+| **Primary Runtime Surface** | `.opencode/skills/cli-*`, `.opencode/skills/sk-improve-prompt/`, `.opencode/commands/improve/prompt.md`, runtime agent mirrors |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -125,23 +125,23 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skill/sk-improve-prompt/assets/` | Create | Canonical prompt-quality card asset |
-| `.opencode/skill/cli-claude-code/assets/` | Create | Claude Code local mirror asset |
-| `.opencode/skill/cli-codex/assets/` | Create | Codex local mirror asset |
-| `.opencode/skill/cli-copilot/assets/` | Create | Copilot local mirror asset |
-| `.opencode/skill/cli-gemini/assets/` | Create | Gemini local mirror asset |
-| `.opencode/skill/cli-claude-code/` | Modify | Add local card to resource domain, ALWAYS set, and prompt-construction rule |
-| `.opencode/skill/cli-codex/` | Modify | Same pattern as Claude Code |
-| `.opencode/skill/cli-copilot/` | Modify | Same pattern as Claude Code |
-| `.opencode/skill/cli-gemini/` | Modify | Same pattern as Claude Code |
-| `.opencode/skill/cli-*/assets/` | Modify | Add framework tags to existing templates |
-| `.opencode/skill/sk-improve-prompt/` | Modify | Add agent contract, fast-path asset notes, and version bump |
-| `.opencode/agent/` | Create | Primary OpenCode runtime agent surface |
+| `.opencode/skills/sk-improve-prompt/assets/` | Create | Canonical prompt-quality card asset |
+| `.opencode/skills/cli-claude-code/assets/` | Create | Claude Code local mirror asset |
+| `.opencode/skills/cli-codex/assets/` | Create | Codex local mirror asset |
+| `.opencode/skills/cli-copilot/assets/` | Create | Copilot local mirror asset |
+| `.opencode/skills/cli-gemini/assets/` | Create | Gemini local mirror asset |
+| `.opencode/skills/cli-claude-code/` | Modify | Add local card to resource domain, ALWAYS set, and prompt-construction rule |
+| `.opencode/skills/cli-codex/` | Modify | Same pattern as Claude Code |
+| `.opencode/skills/cli-copilot/` | Modify | Same pattern as Claude Code |
+| `.opencode/skills/cli-gemini/` | Modify | Same pattern as Claude Code |
+| `.opencode/skills/cli-*/assets/` | Modify | Add framework tags to existing templates |
+| `.opencode/skills/sk-improve-prompt/` | Modify | Add agent contract, fast-path asset notes, and version bump |
+| `.opencode/agents/` | Create | Primary OpenCode runtime agent surface |
 | `.claude/agents/` | Create | Claude runtime mirror |
 | `.codex/agents/` | Create | Codex runtime mirror |
 | `.gemini/agents/` | Create | Gemini runtime mirror |
-| `.opencode/command/improve/prompt.md` | Modify | Add dispatch-mode branch and agent routing documentation |
-| `.opencode/skill/skill-advisor/scripts/check-prompt-quality-card-sync.sh` | Create | Drift-check script that hashes the framework-selection table across the canonical card and four mirrors |
+| `.opencode/commands/improve/prompt.md` | Modify | Add dispatch-mode branch and agent routing documentation |
+| `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh` | Create | Drift-check script that hashes the framework-selection table across the canonical card and four mirrors |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -166,7 +166,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 |----|-------------|---------------------|
 | REQ-007 | Tag every existing CLI prompt template with framework metadata | Each CLI prompt-template asset gains per-template `Framework:` tags that match the task-to-framework mapping |
 | REQ-008 | Document the `sk-improve-prompt` agent-consumption contract | The `sk-improve-prompt` skill definition gains a stable input/output contract section for agent use plus a fast-path asset section |
-| REQ-009 | Provide runtime parity across active agent directories | `@improve-prompt` exists in `.opencode/agent/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`, with Codex using TOML and the others using markdown mirrors |
+| REQ-009 | Provide runtime parity across active agent directories | `@improve-prompt` exists in `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`, with Codex using TOML and the others using markdown mirrors |
 | REQ-010 | Preserve current skill-advisor behavior | The packet explicitly leaves `skill_advisor.py` unchanged and documents why |
 | REQ-011 | Add or explicitly defer mirror-drift detection | Either a lightweight fixture/check is added for card sync verification, or the implementation documents why the fixture was intentionally deferred |
 | REQ-012 | Keep packet documentation aligned with the final architecture | Spec, plan, tasks, checklist, and decision record all describe the same fast-path/deep-path split and the same file inventory |
@@ -312,7 +312,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 
 No open questions remain for packet closeout.
 
-- Resolved: the optional drift check landed as `.opencode/skill/skill-advisor/scripts/check-prompt-quality-card-sync.sh`, and `bash .opencode/skill/skill-advisor/scripts/check-prompt-quality-card-sync.sh` reports `SYNC OK`.
+- Resolved: the optional drift check landed as `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`, and `bash .opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh` reports `SYNC OK`.
 - Resolved: `/improve:prompt` now auto-selects Agent mode from `complexity_hint >= 7` and from explicit isolation or fresh-context requests, while keeping Inline mode as the default otherwise.
 <!-- /ANCHOR:questions -->
 
